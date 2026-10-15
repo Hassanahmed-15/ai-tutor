@@ -1,0 +1,3423 @@
+{
+ "id": "us-wv-computer-science",
+ "region": "US",
+ "framework": "West Virginia state academic standards: Computer Science & Technology",
+ "board": null,
+ "qualification": "K-12",
+ "subject": "Computer Science & Technology",
+ "syllabusCode": null,
+ "gradeSystem": "grade",
+ "source": {
+  "urls": [
+   "https://api.commonstandardsproject.com/api/v1/jurisdictions/F1D13BFFB41F4FC6B4D6132D1B6792F7",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/F1D13BFFB41F4FC6B4D6132D1B6792F7_D2558848_grades-01-02-k-pre-k",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/F1D13BFFB41F4FC6B4D6132D1B6792F7_D2558848_grades-03-04",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/F1D13BFFB41F4FC6B4D6132D1B6792F7_D2558848_grades-05-06-07-08",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/F1D13BFFB41F4FC6B4D6132D1B6792F7_D2558848_grades-09-10-11-12",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/25F687FFEE6449FB84D271A601C29DE3",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/5FE169EDC04846DD96B8182A538BF6EF",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/12E57D673C3B4AEDA863A98B4D8ECC66",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/C0CECDF3676843719793FDDD2E0B577F",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/9665AC0FF0EA406BA7221E0FAD438E98",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/864E9DDFFDEF4E218A5639013A2E44AE",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/8E2AC8BCBAFC4FE48978C5B4FA2ED824",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/454B73598C364828AB52B41CF1D34973",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/4F20C490758E42088320524275C43A86",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/604EE61010C5460282D5C261A1E8AF04",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/ED1BB05CC41E4834997FF1A1819D0779",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/CF91B214E9CC4B4DA466F33113049AE2"
+  ],
+  "publisher": "West Virginia state education agency (machine-readable via Common Standards Project / ASN)",
+  "licence": "CC BY 3.0 US, Desire2Learn Incorporated; CC BY 4.0 US, Common Curriculum, Inc.",
+  "firstExam": "2019"
+ },
+ "grades": [
+  {
+   "grade": "PK-2",
+   "units": [
+    {
+     "id": "information-and-communication-skills",
+     "title": "Information and Communication Skills",
+     "topics": [
+      {
+       "id": "the-student-will-access-analyze-manage-integrate",
+       "title": "The student will access, analyze, manage, integrate, evaluate, and create information in a variety of forms using appropriate technology skills and communicate that information in an appropriate oral, written, or multimedia format",
+       "subtopics": [
+        {
+         "id": "learning-skills",
+         "title": "Learning Skills",
+         "outcomes": [
+          {
+           "code": "21C.O.PK-2.1.LS1",
+           "text": "Student uses text, people and electronic resources (e.g. interactive books, educational software, CD-ROMs, elementary multimedia encyclopedias and search engines) to locate information for classroom assignments and is able to identify the author and purpose for each source located."
+          },
+          {
+           "code": "21C.O.PK-2.1.LS2",
+           "text": "Student can accurately interpret and create simple visuals (e.g. charts, maps, graphs and models) and use this information to solve problems and communicate information."
+          },
+          {
+           "code": "21C.O.PK-2.1.LS3",
+           "text": "Student articulates thoughts and ideas, representative of real and imaginary experiences, clearly and effectively through oral, written or multimedia communication."
+          }
+         ]
+        },
+        {
+         "id": "technology-tools",
+         "title": "Technology Tools",
+         "outcomes": [
+          {
+           "code": "21C.O.PK-2.1.TT1",
+           "text": "Student uses keyboard and mouse to enter name and User ID, types sentences and follows on-screen prompts to successfully operate computers. Student uses printers, audiotapes, and other technologies. Student names common technologies (e.g., CD player, DVD player, video camera, cell phone)."
+          },
+          {
+           "code": "21C.O.PK-2.1.TT2",
+           "text": "Student demonstrates correct keyboarding posture and correct hand and finger placement for the home row, knows how to use keyboard to create lower and upper case letters, knows how to locate and use the letters, numbers and special keys (e.g., enter, space bar, arrow keys, delete, shift, punctuation keys, number keys, left and right hand position), knows how to use a mouse to point and click, place cursor at a specified location, click and drag, and right click."
+          },
+          {
+           "code": "21C.O.PK-2.1.TT3",
+           "text": "Student logs on to computer, starts and exits programs, finds files, and handles and uses output devices (e.g., CDs, DVDs, USB drives, diskettes) with care. Student uses file menu commands (e.g., New, Open, Close, Save, Save as, Print) and saves computer files to diskette, hard drive and server."
+          },
+          {
+           "code": "21C.O.PK-2.1.TT4",
+           "text": "Student uses electronic drawing and paint programs to create graphics. Student participates in a group to locate and create pictures, clip art, graphs, tables and other appropriate objects and to insert into documents and presentations."
+          },
+          {
+           "code": "21C.O.PK-2.1.TT5",
+           "text": "Student creates text, types words and sentences, and inserts images using word processing software. Student creates, saves, prints and opens existing files. Student uses editing functions in word processing software (e.g., font, boldface, underline, font color). Student inserts graphics that enhance the understanding of the text."
+          },
+          {
+           "code": "21C.O.PK-2.1.TT6",
+           "text": "Student, working in a teacher–led whole group project, enters simple data into a spreadsheet and creates graphs electronically (i.e., use of chart wizard)."
+          },
+          {
+           "code": "21C.O.PK-2.1.TT7",
+           "text": "Student, working in a teacher-led whole group project, uses presentation software to illustrate concepts and communicate ideas."
+          },
+          {
+           "code": "21C.O.PK-2.1.TT8",
+           "text": "Student, working in a teacher-led whole group project, uses existing common databases (e.g., online or CD-ROM encyclopedias, electronic dictionaries, and other online library archives) to find information for classroom assignments."
+          },
+          {
+           "code": "21C.O.PK-2.1.TT9",
+           "text": "Student identifies the Internet and email as tools to locate information and communicate. Student, with assistance from teachers or student partners, views identified Internet sites and uses email to read and send messages to other students, teachers, and online experts."
+          },
+          {
+           "code": "21C.O.PK-2.1.TT10",
+           "text": "Student begins to locate information in a variety of developmentally appropriate technology resources (e.g., interactive books, educational software, CD-ROMs, elementary multi-media encyclopedias and web-based search engines) to support classroom assignments."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "thinking-and-reasoning-skills",
+     "title": "Thinking and Reasoning Skills",
+     "topics": [
+      {
+       "id": "the-student-will-demonstrate-the-ability-to-expl",
+       "title": "The student will demonstrate the ability to explore and develop new ideas, to intentionally apply sound reasoning processes and to frame, analyze and solve complex problems using appropriate technology tools",
+       "subtopics": [
+        {
+         "id": "learning-skills",
+         "title": "Learning Skills",
+         "outcomes": [
+          {
+           "code": "21C.O.PK-2.2.LS1",
+           "text": "Student engages with teacher assistance in a critical thinking process by conducting basic evaluations using simple criteria."
+          },
+          {
+           "code": "21C.O.PK-2.2.LS2",
+           "text": "Student identifies parts of a system and explains how those parts interact with one another."
+          },
+          {
+           "code": "21C.O.PK-2.2.LS3",
+           "text": "Student engages in a problem solving process using objects to solve problems and demonstrates learning by explaining how they solved the problem."
+          },
+          {
+           "code": "21C.O.PK-2.2.LS4",
+           "text": "Student engages in discovery, exploration and experimentation to reach unexpected answers. Student makes unusual associations and provides a variety of solutions to problems."
+          }
+         ]
+        },
+        {
+         "id": "technology-tools",
+         "title": "Technology Tools",
+         "outcomes": [
+          {
+           "code": "21C.O.PK-2.2.TT1",
+           "text": "Student identifies procedures for caring for and using developmentally appropriate technologies (e.g., computers, CD/DVD players, videotapes, diskettes, CD-ROMs, remote controls)."
+          },
+          {
+           "code": "21C.O.PK-2.2.TT2",
+           "text": "Student collaborates with classmates, families and others using telecommunications (e.g., class electronic pen pal projects, children's online message boards, e-cards, ask an expert online)."
+          },
+          {
+           "code": "21C.O.PK-2.2.TT3",
+           "text": "Student identifies different purposes among software applications (e.g., puzzles, writing tools, graphing tools, concept mapping tools). Student selects technology tools and software to solve problems (e.g., presentation software to explain and communicate information, drawing or paint software to make a picture, email software to send messages, Internet browser to access websites, and word processing software to write a story)."
+          },
+          {
+           "code": "21C.O.PK-2.2.TT4",
+           "text": "Student identifies how technology could be used to solve problems in our everyday world."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "personal-and-workplace-skills",
+     "title": "Personal and Workplace Skills",
+     "topics": [
+      {
+       "id": "the-student-will-exhibit-leadership-ethical-beha",
+       "title": "The student will exhibit leadership, ethical behavior, respect for others; accept responsibility for personal actions considering the impact on others; take the initiative to plan and execute tasks; and interact productively as a member of a group",
+       "subtopics": [
+        {
+         "id": "learning-skills",
+         "title": "Learning Skills",
+         "outcomes": [
+          {
+           "code": "21C.O.PK-2.3.LS1",
+           "text": "Student manages negative emotions, aligns his/her goals to the goals of others, and works cooperatively and productively with others in small groups."
+          },
+          {
+           "code": "21C.O.PK-2.3.LS2",
+           "text": "Student demonstrates ability to assume different roles and responsibilities as assigned by the teacher and abandons ineffective strategies when introduced to more effective strategies for solving a problem or completing a task."
+          },
+          {
+           "code": "21C.O.PK-2.3.LS3",
+           "text": "Student understands the defined learning goal and uses age-appropriate instructional rubrics and tools to assess his/her performance in meeting the goal within the timeline established by the teacher."
+          },
+          {
+           "code": "21C.O.PK-2.3.LS4",
+           "text": "Student knows the difference between right and wrong, is accepting of others in work and play groups, and shows regard for peers and adults within the school by keeping work, play and public areas clean and organized."
+          },
+          {
+           "code": "21C.O.PK-2.3.LS5",
+           "text": "Student uses clearly defined teacher directions and interpersonal skills to move others toward the goal."
+          },
+          {
+           "code": "21C.O.PK-2.3.LS6",
+           "text": "Student focuses on a project goal, and with teacher guidance, frames appropriate questions related to the goal, considers possible courses of action, selects a plan of action and completes the project."
+          }
+         ]
+        },
+        {
+         "id": "technology-tools",
+         "title": "Technology Tools",
+         "outcomes": [
+          {
+           "code": "21C.O.PK-2.3.TT1",
+           "text": "Student identifies and practices the responsible use of technology systems and software."
+          },
+          {
+           "code": "21C.O.PK-2.3.TT2",
+           "text": "Student discusses with the teacher how the Internet can be a source of information."
+          },
+          {
+           "code": "21C.O.PK-2.3.TT3",
+           "text": "Student identifies how technology is commonly used in homes, community, and other environments."
+          },
+          {
+           "code": "21C.O.PK-2.3.TT4",
+           "text": "Student discusses the requirements of acceptable use policies (AUP). Student recognizes and gives examples of an individual's right of ownership to computer-generated work."
+          },
+          {
+           "code": "21C.O.PK-2.3.TT5",
+           "text": "Student demonstrates positive social and ethical behaviors when using technology. Student identifies appropriate and inappropriate use of computers and describes how to work collaboratively with others when using technology at home or in school."
+          },
+          {
+           "code": "21C.O.PK-2.3.TT6",
+           "text": "Student discusses how technology is used in the classroom, during leisure time, and for communication with others."
+          },
+          {
+           "code": "21C.O.PK-2.3.TT7",
+           "text": "Student participates in teacher-led discussion about Internet safety and the importance of protecting identity on-line, in email, and/or websites, and of limiting distribution of information and pictures."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "3-4",
+   "units": [
+    {
+     "id": "information-and-communication-skills",
+     "title": "Information and Communication Skills",
+     "topics": [
+      {
+       "id": "the-student-will-access-analyze-manage-integrate",
+       "title": "The student will access, analyze, manage, integrate, evaluate, and create information in a variety of forms using appropriate technology skills and communicate that information in an appropriate oral, written, or multimedia format",
+       "subtopics": [
+        {
+         "id": "learning-skills",
+         "title": "Learning Skills",
+         "outcomes": [
+          {
+           "code": "21C.O.3-4.1.LS1",
+           "text": "Student identifies information needed to solve a problem or complete an assignment, conducts a search and prioritizes various sources based on credibility and relevance, retrieves relevant information from a variety of media sources, and uses this information to create an effective presentation."
+          },
+          {
+           "code": "21C.O.3-4.1.LS2",
+           "text": "Student accurately interprets symbols and visuals and can distinguish fact from opinion when presented with visuals through various media; student uses his/her knowledge to construct new knowledge and communicate information."
+          },
+          {
+           "code": "21C.O.3-4.1.LS3",
+           "text": "Student, cognizant of audience and purpose, articulates thoughts and ideas accurately and effectively through oral, written or multimedia communications."
+          }
+         ]
+        },
+        {
+         "id": "technology-tools",
+         "title": "Technology Tools",
+         "outcomes": [
+          {
+           "code": "21C.O.3-4.1.TT1",
+           "text": "Student uses keyboard, mouse and other common input and output devices (including adaptive devices when necessary) efficiently and effectively; student handles diskettes, CD/DVDs, USB drives, microphones, and headphones with care; student opens files independently, saves documents, and sends documents to the printer."
+          },
+          {
+           "code": "21C.O.3-4.1.TT2",
+           "text": "Student demonstrates correct keyboarding posture and technique, uses correct hand and finger placement for alphabetic, numeric, and special purpose keys such as arrows, escape, backspace, delete, caps lock, and control; student knows how to correctly use these keys; students know how to use Edit menu to cut, copy, paste, change font, and other common editing features."
+          },
+          {
+           "code": "21C.O.3-4.1.TT3",
+           "text": "Student uses menu options in software applications to create documents, simple spreadsheets and presentations and to save files to various locations (e.g., USB drive, diskette, hard drive, server). Student begins to use e-mail to exchange documents with other teachers and students. Students know how to organize files through the use of folders."
+          },
+          {
+           "code": "21C.O.3-4.1.TT4",
+           "text": "Student finds, imports, inserts, and resizes or moves pictures, images and charts in word processing documents, spreadsheets, presentations and other electronic templates."
+          },
+          {
+           "code": "21C.O.3-4.1.TT5",
+           "text": "Student uses word processing software to create and format a document (e.g., paragraphs, tabs, page justification, margins, spell check, grammar check, word count, insert page breaks, page numbers), uses Edit menu to cut, copy, paste, change font type, size and color, select and highlight text, and other common editing features."
+          },
+          {
+           "code": "21C.O.3-4.1.TT6",
+           "text": "Student enters data into a spreadsheet, performs simple calculations (e.g., Sum, Average), aligns data (e.g., left, right, center justification), applies different formats (e.g., number format, currency format, general format), and creates simple graphs and charts using the chart wizard."
+          },
+          {
+           "code": "21C.O.3-4.1.TT7",
+           "text": "Student creates a presentation of at least four to six slides. Student inserts slides and chooses backgrounds, fonts, and slide layouts. Student understands and uses different formats for viewing (e.g., slide sorter menu, slide show menu, normal view)."
+          },
+          {
+           "code": "21C.O.3-4.1.TT8",
+           "text": "Student uses existing common databases (e.g., online or CD-ROM encyclopedias, electronic dictionaries, and other online library archives) to find, sort and interpret information for classroom assignments."
+          },
+          {
+           "code": "21C.O.3-4.1.TT9",
+           "text": "Student participates in several curriculum-based telecommunications projects as class activities (e.g., web quests, ask an expert, collaborative email projects, online discussions). Student uses telecommunications efficiently and effectively to access remote information and communicate with audiences."
+          },
+          {
+           "code": "21C.O.3-4.1.TT10",
+           "text": "Student selects and uses appropriate software, other technologies, and grade level appropriate search engines to locate and acquire information from electronic resources (e.g., interactive books, multi-media encyclopedias, Internet sites). Student evaluates information found for content and usefulness."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "thinking-and-reasoning-skills",
+     "title": "Thinking and Reasoning Skills",
+     "topics": [
+      {
+       "id": "the-student-will-demonstrate-the-ability-to-expl",
+       "title": "The student will demonstrate the ability to explore and develop new ideas, to intentionally apply sound reasoning processes and to frame, analyze and solve complex problems using appropriate technology tools",
+       "subtopics": [
+        {
+         "id": "learning-skills",
+         "title": "Learning Skills",
+         "outcomes": [
+          {
+           "code": "21C.O.3-4.2.LS1",
+           "text": "Student engages, with teacher assistance, in a critical thinking process that synthesizes knowledge and ideas."
+          },
+          {
+           "code": "21C.O.3-4.2.LS2",
+           "text": "Student identifies parts of a system and explains how those parts interact with one another."
+          },
+          {
+           "code": "21C.O.3-4.2.LS3",
+           "text": "Student engages in a problem solving process that promotes questioning, planning investigations and finding answers and solutions."
+          },
+          {
+           "code": "21C.O.3-4.2.LS4",
+           "text": "Student generates ideas for solutions to problems and asks questions in order to create unusual, unique or clever products. Student begins to cognitively recognize the skills of adapting, improving, modifying, and expanding existing thoughts or ideas to create products."
+          }
+         ]
+        },
+        {
+         "id": "technology-tools",
+         "title": "Technology Tools",
+         "outcomes": [
+          {
+           "code": "21C.O.3-4.2.TT1",
+           "text": "Student troubleshoots simple hardware and software problems (e.g., rebooting, closing applications, powering off and restarting computers, using simple help menus, clearing print queues)."
+          },
+          {
+           "code": "21C.O.3-4.2.TT2",
+           "text": "Student collaborates with peers, experts and others using telecommunications and online resources (e.g., e-mail, online discussions) to participate in collaborative problem-solving activities for the purpose of developing solutions or products for audiences inside and outside the classroom."
+          },
+          {
+           "code": "21C.O.3-4.2.TT3",
+           "text": "Student uses technology tools (e.g., presentation software, word processing software, publishing software, group web page design, digital cameras, scanners) for individual and collaborative writing, communication, and publishing activities to create informative products for audiences inside and outside the classroom."
+          },
+          {
+           "code": "21C.O.3-4.2.TT4",
+           "text": "Student uses technology tools (e.g., calculators, data collection probes, videos, educational software) for problem solving, self-directed learning, and extended learning activities."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "personal-and-workplace-skills",
+     "title": "Personal and Workplace Skills",
+     "topics": [
+      {
+       "id": "the-student-will-exhibit-leadership-ethical-beha",
+       "title": "The student will exhibit leadership, ethical behavior, respect for others; accept responsibility for personal actions considering the impact on others; take the initiative to plan and execute tasks; and interact productively as a member of a group",
+       "subtopics": [
+        {
+         "id": "learning-skills",
+         "title": "Learning Skills",
+         "outcomes": [
+          {
+           "code": "21C.O.3-4.3.LS1",
+           "text": "Student manages and preempts negative emotions before they escalate, exercises self-restraint without assistance, and works productively in a variety of group settings."
+          },
+          {
+           "code": "21C.O.3-4.3.LS2",
+           "text": "Student is flexible in assuming various roles and responsibilities in the classroom and the school, and with minimal assistance, considers alternative methods, solutions and perspectives to solving a problem or completing a task."
+          },
+          {
+           "code": "21C.O.3-4.3.LS3",
+           "text": "Student engages in the goal setting process, and with guidance, demonstrates ability to change focus and direction or use different strategies, while using instructional rubrics and other tools to monitor and evaluate his/her performance."
+          },
+          {
+           "code": "21C.O.3-4.3.LS4",
+           "text": "Student appreciates, accepts and works cooperatively with others, in both academic and social contexts, shares responsibility for continued improvement of the academic performance and climate of the school, and exhibits ethical behavior while working alone or communicating with others."
+          },
+          {
+           "code": "21C.O.3-4.3.LS5",
+           "text": "Student uses his/her interpersonal skills when in an assigned leadership role, helps others stay focused and successfully moves the group toward the goal."
+          },
+          {
+           "code": "21C.O.3-4.3.LS6",
+           "text": "Student focuses on the larger goal of a project, frames appropriate questions related to the goal, develops and initiates a plan of action with specific tasks and appropriate benchmarks, and completes the project on time."
+          }
+         ]
+        },
+        {
+         "id": "technology-tools",
+         "title": "Technology Tools",
+         "outcomes": [
+          {
+           "code": "21C.O.3-4.3.TT1",
+           "text": "Student practices responsible use of technology systems. Student identifies the consequences of viruses, vandalism and inappropriate use of hardware and software."
+          },
+          {
+           "code": "21C.O.3-4.3.TT2",
+           "text": "Student evaluates bookmarked Internet sites or teacher-directed sites for relevance to curriculum tasks."
+          },
+          {
+           "code": "21C.O.3-4.3.TT3",
+           "text": "Student identifies and describes the impact of technology on homes, school and business environments. Student identifies how technology supports individual and group work and assistance for students with disabilities."
+          },
+          {
+           "code": "21C.O.3-4.3.TT4",
+           "text": "Student complies with county acceptable use policy. Student identifies the need for acceptable use policies (AUP), discusses basic issues related to responsible use of technology and information and describes personal consequences of inappropriate use, and begins to cite sources for information found through electronic searches."
+          },
+          {
+           "code": "21C.O.3-4.3.TT5",
+           "text": "Student identifies why technology is important to them, the purpose of using login names and passwords, and reasons for keeping them private. Student models acceptable use and understands the etiquette of email communications."
+          },
+          {
+           "code": "21C.O.3-4.3.TT6",
+           "text": "Student selects appropriate technology tools and resources needed to communicate information to others, to achieve personal goals, and to support independent learning."
+          },
+          {
+           "code": "21C.O.3-4.3.TT7",
+           "text": "Student identifies need to protect identity online, in email, and/or websites, and the importance of limiting distribution of information/pictures. Student begins to apply strategies for protecting identity online, in email, and on websites."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "5-8",
+   "units": [
+    {
+     "id": "information-and-communication-skills",
+     "title": "Information and Communication Skills",
+     "topics": [
+      {
+       "id": "the-student-will-access-analyze-manage-integrate",
+       "title": "The student will access, analyze, manage, integrate, evaluate, and create information in a variety of forms using appropriate technology skills and communicate that information in an appropriate oral, written, or multimedia format",
+       "subtopics": [
+        {
+         "id": "learning-skills",
+         "title": "Learning Skills",
+         "outcomes": [
+          {
+           "code": "21C.O.5-8.1.LS1",
+           "text": "Student, when presented with a problem, identifies the information needed, uses text, people, online databases and search engines to filter relevant information efficiently, analyzes information for biases, synthesizes information gathered and creates an effective and efficient response to the problem"
+          },
+          {
+           "code": "21C.O.5-8.1.LS2",
+           "text": "Student interprets abstract visuals and creates products (e.g. digital storytelling) that reflect a growing understanding of visual language and require the effective use of tools (e.g. cropped photos, original charts and graphs, well-chosen images from databases, video clips)."
+          },
+          {
+           "code": "21C.O.5-8.1.LS3",
+           "text": "Student presents thoughts, ideas, and conceptual understanding efficiently, accurately and in a compelling manner and enhances the oral or written presentation through the use of technology."
+          }
+         ]
+        },
+        {
+         "id": "technology-tools",
+         "title": "Technology Tools",
+         "outcomes": [
+          {
+           "code": "21C.O.5-8.1.TT1",
+           "text": "Student connects peripheral devices (e.g., scanners, digital cameras, video projectors, USB drives, printers, media storage devices) to computers and uses them efficiently and effectively. Student accesses server and/or network resources (e.g., file folders/software programs, bookmarked sites)."
+          },
+          {
+           "code": "21C.O.5-8.1.TT2",
+           "text": "Student increases keyboarding facility and uses mouse and keyboard shortcut techniques and identified assistive technology to improve speed and accuracy."
+          },
+          {
+           "code": "21C.O.5-8.1.TT3",
+           "text": "Student recognizes different file format extensions (e.g., .doc, .xls, .ppt, .rft, .pdf, .jpeg, .gif, .mpg, .wav, .mp3) and can import the different formats into documents, presentations, spreadsheets and databases."
+          },
+          {
+           "code": "21C.O.5-8.1.TT4",
+           "text": "Student uses audio, video, pictures, clip art, moviemaker programs, webpage design software, electronic documents, and other files to create and publish electronic products to communicate with various audiences inside and outside the classroom."
+          },
+          {
+           "code": "21C.O.5-8.1.TT5",
+           "text": "Student uses advanced features and utilities of word processing software (e.g., bullets, numbering, tables, find and replace, thesaurus, help menus and toolbars)."
+          },
+          {
+           "code": "21C.O.5-8.1.TT6",
+           "text": "Student uses advanced features and utilities of spreadsheet software, (e.g. functions, formulas, filters, sorts, creates graphs and charts), to perform calculations and to organize, analyze and report data."
+          },
+          {
+           "code": "21C.O.5-8.1.TT7",
+           "text": "Student uses advanced features and utilities of presentation software (e.g., design templates, design layouts (fonts/colors/backgrounds) animation and graphics, inserting pictures, objects, movies, sound, charts, hyperlinks, and graphs) to create an original product."
+          },
+          {
+           "code": "21C.O.5-8.1.TT8",
+           "text": "Student enters data relevant to class assignments into a database and performs simple queries."
+          },
+          {
+           "code": "21C.O.5-8.1.TT9",
+           "text": "Student uses telecommunications tools (e.g., email, web pages, blogs, discussion groups, list-servs, etc.) to learn academic content and to gather, share and publish information to various audiences."
+          },
+          {
+           "code": "21C.O.5-8.1.TT10",
+           "text": "Student uses Internet browsers, various search engines, book marking features, and advanced search techniques to gather information; student evaluates the information for validity, bias, appropriateness, content and usefulness."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "thinking-and-reasoning-skills",
+     "title": "Thinking and Reasoning Skills",
+     "topics": [
+      {
+       "id": "the-student-will-demonstrate-the-ability-to-expl",
+       "title": "The student will demonstrate the ability to explore and develop new ideas, to intentionally apply sound reasoning processes and to frame, analyze and solve complex problems using appropriate technology tools",
+       "subtopics": [
+        {
+         "id": "learning-skills",
+         "title": "Learning Skills",
+         "outcomes": [
+          {
+           "code": "21C.O.5-8.2.LS1",
+           "text": "Student engages in a critical thinking process that supports synthesis and conducts evaluations by applying comprehensive criteria."
+          },
+          {
+           "code": "21C.O.5-8.2.LS2",
+           "text": "Student draws conclusions from a variety of data sources to analyze and interpret systems."
+          },
+          {
+           "code": "21C.O.5-8.2.LS3",
+           "text": "Student engages in a problem solving process that divides complex problems into simple parts in order to devise solutions."
+          },
+          {
+           "code": "21C.O.5-8.2.LS4",
+           "text": "Student creates thoughtful ideas and solutions and takes risks as he/she works toward goal despite mistakes. Student begins to consistently think of all the possibilities and diverges to become more expansive with his/her thoughts/ideas that lead to the creation of original products."
+          }
+         ]
+        },
+        {
+         "id": "technology-tools",
+         "title": "Technology Tools",
+         "outcomes": [
+          {
+           "code": "21C.O.5-8.2.TT1",
+           "text": "Student solves problems related to hardware, software and networks by applying problem solving techniques (e.g., Task Manager to close tasks, Ctrl-Alt-delete, restarting the systems, accessing help menus, performing online searches, checking cable connections)."
+          },
+          {
+           "code": "21C.O.5-8.2.TT2",
+           "text": "Student collaborates with peers, experts, and others using telecommunications and collaborative tools to investigate curriculum-related problems, issues, and information, and to develop solutions or products for audiences inside and outside the classroom."
+          },
+          {
+           "code": "21C.O.5-8.2.TT3",
+           "text": "Student uses multiple technology tools for gathering information in order to solve problems, make informed decisions, and present and justify the solutions."
+          },
+          {
+           "code": "21C.O.5-8.2.TT4",
+           "text": "Student formulates a plan and uses technology tools and multiple media sources to compare and analyze information in order to solve real-world problems."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "personal-and-workplace-skills",
+     "title": "Personal and Workplace Skills",
+     "topics": [
+      {
+       "id": "the-student-will-exhibit-leadership-ethical-beha",
+       "title": "The student will exhibit leadership, ethical behavior, respect for others; accept responsibility for personal actions considering the impact on others; take the initiative to plan and execute tasks; and interact productively as a member of a group",
+       "subtopics": [
+        {
+         "id": "learning-skills",
+         "title": "Learning Skills",
+         "outcomes": [
+          {
+           "code": "21C.O.5-8.3.LS1",
+           "text": "Student manages emotions and behaviors, engages in collaborative work assignments requiring compromise, and demonstrates flexibility by assuming different roles and responsibilities within various team structures."
+          },
+          {
+           "code": "21C.O.5-8.3.LS2",
+           "text": "Student is flexible in approach to solving problems and completing tasks, considers alternative methods, solutions and perspectives, abandons strategies that do not work, and reallocates time and resources as priorities change."
+          },
+          {
+           "code": "21C.O.5-8.3.LS3",
+           "text": "Student sets challenging goals and strategically plans to reach those goals, monitors performance and adjusts effort and strategies, seeks assistance when needed, and demonstrates focused commitment to reaching the established goals."
+          },
+          {
+           "code": "21C.O.5-8.3.LS4",
+           "text": "Student demonstrates ethical behavior and works responsibly and collaboratively with others, in academic and social contexts, to accomplish both individual and team goals related to improved academic, extracurricular and co-curricular performances."
+          },
+          {
+           "code": "21C.O.5-8.3.LS5",
+           "text": "Student exhibits interpersonal and problem-solving skills when in the role of leader. He/she helps others stay focused on the goal, monitors-progress of the group, and successfully moves the group toward the goal."
+          },
+          {
+           "code": "21C.O.5-8.3.LS6",
+           "text": "Student maintains focus on larger project goal, frames appropriate questions, reflects on possible courses of action and their likely consequences, develops and initiates a plan of action with appropriate smaller objectives and benchmarks, and submits the completed project when due."
+          }
+         ]
+        },
+        {
+         "id": "technology-tools",
+         "title": "Technology Tools",
+         "outcomes": [
+          {
+           "code": "21C.O.5-8.3.TT1",
+           "text": "Student protects software, hardware and network resources from viruses, vandalism, and unauthorized use and uses proper techniques to access, use and shut down technology equipment."
+          },
+          {
+           "code": "21C.O.5-8.3.TT2",
+           "text": "Student conducts online research and evaluates the accuracy, relevance, and appropriateness of electronic information sources"
+          },
+          {
+           "code": "21C.O.5-8.3.TT3",
+           "text": "Student analyzes current information technologies and the effect these technologies have on the workplace and society."
+          },
+          {
+           "code": "21C.O.5-8.3.TT4",
+           "text": "Student complies with county acceptable use policy. Student discusses legal and ethical behaviors related to acceptable use of information and communication technology (e.g., privacy, security, copyright, file-sharing, plagiarism) and predicts the possible effects of unethical use of technology (e.g., consumer fraud, intrusion, spamming, virus setting, hacking) on the individual and society, as well as identify methods for addressing these risks."
+          },
+          {
+           "code": "21C.O.5-8.3.TT5",
+           "text": "Student models ethical behavior relating to security, privacy, computer etiquette, passwords and personal information. Student demonstrates an understanding of copyright by citing sources of copyrighted materials in papers, projects and multi-media presentations."
+          },
+          {
+           "code": "21C.O.5-8.3.TT6",
+           "text": "Student applies productivity/multimedia tools and peripherals to support personal productivity, group collaboration, self-directed learning, lifelong learning, and assistance for individuals with disabilities including supplemental assistive technology tools."
+          },
+          {
+           "code": "21C.O.5-8.3.TT7",
+           "text": "Student develops an understanding of the need to protect his/her identity online, in email, and or websites, limits the distribution of personal information and pictures, and evaluates the authenticity of e-mail that solicit personal information. Student identifies the methodologies that individuals and businesses can employ to protect the integrity of technology systems."
+          },
+          {
+           "code": "21C.O.5-8.3.TT8",
+           "text": "Student recognizes personal limits in his/her knowledge and develops strategies and skills for using technology to seek information."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "9-12",
+   "units": [
+    {
+     "id": "information-and-communication-skills",
+     "title": "Information and Communication Skills",
+     "topics": [
+      {
+       "id": "the-student-will-access-analyze-manage-integrate",
+       "title": "The student will access, analyze, manage, integrate, evaluate, and create information in a variety of forms using appropriate technology skills and communicate that information in an appropriate oral, written, or multimedia format",
+       "subtopics": [
+        {
+         "id": "learning-skills",
+         "title": "Learning Skills",
+         "outcomes": [
+          {
+           "code": "21C.O.9-12.1.LS1",
+           "text": "Student recognizes information needed for problem solving, can efficiently browse, search and navigate online to access relevant information, evaluates information based on credibility, social, economic, political and/or ethical issues, and presents findings clearly and persuasively using a range of technology tools and media."
+          },
+          {
+           "code": "21C.O.9-12.1.LS2",
+           "text": "Student analyzes and interprets visuals and recognizes the impact digital media influences (e.g. design, technique, and rate of speed) have on audiences. The student's visual products reflect a sophisticated understanding of subject, digital media and design techniques."
+          },
+          {
+           "code": "21C.O.9-12.1.LS3",
+           "text": "Student creates information using advanced skills of analysis, synthesis and evaluation and shares this information through a variety of oral, written and multimedia communications that target academic, professional and technical audiences and purposes."
+          }
+         ]
+        },
+        {
+         "id": "technology-tools",
+         "title": "Technology Tools",
+         "outcomes": [
+          {
+           "code": "21C.O.9-12.1.TT1",
+           "text": "Student makes informed choices among available advanced technology systems, resources and services (e.g., global positioning software, graphing calculators, personal digital assistants, web casting, online collaboration tools) for completing curriculum assignments and projects and for managing and communicating personal/professional information."
+          },
+          {
+           "code": "21C.O.9-12.1.TT2",
+           "text": "Student routinely applies keyboarding skills, keyboard shortcut techniques, and mouse skills with facility, speed and accuracy."
+          },
+          {
+           "code": "21C.O.9-12.1.TT3",
+           "text": "Student uses advanced utilities (e.g., zipping or compressing files, file level anti-virus scans), converts files to different formats (e.g., .doc, .xls, .mdb, .htm, .pdf) and saves finished products to multiple media sources (e.g., CDRW, DVDR, USB drives, shared folders, web-based file storage)."
+          },
+          {
+           "code": "21C.O.9-12.1.TT4",
+           "text": "Student uses audio, video, pictures, clip art, moviemaker programs, webpage design software, electronic documents and other files to collaborate for the creation of electronic products that inform multiple audiences both inside and outside the school environment."
+          },
+          {
+           "code": "21C.O.9-12.1.TT5",
+           "text": "Student uses advanced features of word processing software (e.g., outline, table of contents, index feature, draw tool, headers and footers, track changes, macros, hyperlinks to other file formats, etc.)."
+          },
+          {
+           "code": "21C.O.9-12.1.TT6",
+           "text": "Student uses advanced features and utilities of spreadsheet software, (e.g., formulas, filters, pivot tables, pivot charts, macros, conditional formatting), to perform calculations and to organize, analyze and report data."
+          },
+          {
+           "code": "21C.O.9-12.1.TT7",
+           "text": "Student uses advanced features and utilities of presentation software (e.g., slide transitions, master slides, narrations and timings, creating web-enabled presentations, creating a non-linear presentation) to communicate ideas to multiple audiences."
+          },
+          {
+           "code": "21C.O.9-12.1.TT8",
+           "text": "Student uses advanced features and utilities of database software (e.g., to create tables, forms, perform table relationships, advanced queries, and simple reports) to test hypotheses or research questions and to report results."
+          },
+          {
+           "code": "21C.O.9-12.1.TT9",
+           "text": "Student uses advanced telecommunication tools (e.g., email, video conferencing, interactive websites, newsgroups, video phones, chats) to create collaborative projects that are relevant to real world situations and contribute to the communication process among various groups."
+          },
+          {
+           "code": "21C.O.9-12.1.TT10",
+           "text": "Student implements various Internet search techniques (e.g., Boolean searches, metasearches, web bots) to gather information; student evaluates the information for validity, appropriateness, content, bias, currency, and usefulness."
+          },
+          {
+           "code": "21C.O.9-12.1.TT11",
+           "text": "Student imports and exports multiple data formats and integrates to multiple productivity programs (e.g., exports comma delimited files, standard data formats) and understands transferability of data among different programs."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "thinking-and-reasoning-skills",
+     "title": "Thinking and Reasoning Skills",
+     "topics": [
+      {
+       "id": "the-student-will-demonstrate-the-ability-to-expl",
+       "title": "The student will demonstrate the ability to explore and develop new ideas, to intentionally apply sound reasoning processes and to frame, analyze and solve complex problems using appropriate technology tools",
+       "subtopics": [
+        {
+         "id": "learning-skills",
+         "title": "Learning Skills",
+         "outcomes": [
+          {
+           "code": "21C.O.9-12.2.LS1",
+           "text": "Student engages in a critical thinking process that supports synthesis and conducts evaluation using complex criteria."
+          },
+          {
+           "code": "21C.O.9-12.2.LS2",
+           "text": "Student draws conclusions from a variety of data sources to analyze and interpret systems."
+          },
+          {
+           "code": "21C.O.9-12.2.LS3",
+           "text": "Student engages in a problem solving process by formulating questions and applying complex strategies in order to independently solve problems."
+          },
+          {
+           "code": "21C.O.9-12.2.LS4",
+           "text": "Student visualizes the connection between seemingly unrelated ideas and independently produces solutions that are fresh, unique, original and well developed. Student shows capacity for originality, concentration, commitment to completion, and persistence to develop unique and cogent products."
+          }
+         ]
+        },
+        {
+         "id": "technology-tools",
+         "title": "Technology Tools",
+         "outcomes": [
+          {
+           "code": "21C.O.9-12.2.TT1",
+           "text": "Student knows how to find information necessary to solve advanced problems related to hardware, software, networks, and connections (e.g., by accessing online help, Internet searches, technical documentation, system utilities, and communication with technical experts)."
+          },
+          {
+           "code": "21C.O.9-12.2.TT2",
+           "text": "Student collaborates with peers, experts and others to contribute to a content-related knowledge base by using technology to compile, synthesize, produce, and disseminate information, models, and other creative works."
+          },
+          {
+           "code": "21C.O.9-12.2.TT3",
+           "text": "Student uses multiple electronic sources of information and multiple technology tools and resources tools (e.g., digital cameras, graphing calculators, probes, mp3 players, handheld devices, other emerging technologies, simulations, models, browsers, word processing, authoring tools, spreadsheets, databases) to collaborate with others, to formulate a hypothesis, to solve problems, make decisions, and present and justify the solutions."
+          },
+          {
+           "code": "21C.O.9-12.2.TT4",
+           "text": "Student uses technology tools and multiple media sources to analyze a real-world problem, design and implement a process to assess the information, and chart and evaluate progress toward the solution."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "personal-and-workplace-skills",
+     "title": "Personal and Workplace Skills",
+     "topics": [
+      {
+       "id": "the-student-will-exhibit-leadership-ethical-beha",
+       "title": "The student will exhibit leadership, ethical behavior, respect for others; accept responsibility for personal actions considering the impact on others; take the initiative to plan and execute tasks; and interact productively as a member of a group",
+       "subtopics": [
+        {
+         "id": "learning-skills",
+         "title": "Learning Skills",
+         "outcomes": [
+          {
+           "code": "21C.O.9-12.3.LS1",
+           "text": "Student remains composed and focused, even under stress, willingly aligns his/her personal goals to the goals of others when appropriate, approaches conflict from win-win perspective, and derives personal satisfaction from achieving group goals."
+          },
+          {
+           "code": "21C.O.9-12.3.LS2",
+           "text": "Student independently considers multiple perspectives and can represent a problem in more than one way, quickly and calmly changes focus and goals as the situation requires, and actively seeks innovations (e.g. technology) that will enhance his/her work."
+          },
+          {
+           "code": "21C.O.9-12.3.LS3",
+           "text": "Student demonstrates ownership of his/her learning by setting goals, monitoring and adjusting performance, extending learning, using what he/she has learned to adapt to new situations, and displaying perseverance and commitment to continued learning."
+          },
+          {
+           "code": "21C.O.9-12.3.LS4",
+           "text": "Student demonstrates ethical behavior and works responsibly and collaboratively with others in the context of the school and the larger community, and he/she demonstrates civic responsibility through engagement in public discourse and participation in service learning."
+          },
+          {
+           "code": "21C.O.9-12.3.LS5",
+           "text": "Student exhibits positive leadership through interpersonal and problem-solving skills that contribute to achieving the goal. He/she helps others stay focused, distributes tasks and responsibilities effectively, and monitors group progress toward the goal without undermining the efforts of others."
+          },
+          {
+           "code": "21C.O.9-12.3.LS6",
+           "text": "Student maintains a strong focus on the larger project goal and frames appropriate questions and planning processes around goal. Prior to beginning work, student reflects upon possible courses of action and their likely consequences; sets objectives related to the larger goal; and establishes benchmarks for monitoring progress. While working on the project, student adjusts time and resources to allow for completion of a quality product."
+          }
+         ]
+        },
+        {
+         "id": "technology-tools",
+         "title": "Technology Tools",
+         "outcomes": [
+          {
+           "code": "21C.O.9-12.3.TT1",
+           "text": "Student protects software, hardware and network resources from viruses, vandalism, and unauthorized use and employs proper techniques to access, use and shut down technology equipment."
+          },
+          {
+           "code": "21C.O.9-12.3.TT2",
+           "text": "Student works collaboratively to acquire information from electronic resources, conducts online research, and evaluates information as to validity, appropriateness, usefulness, comprehensiveness and bias."
+          },
+          {
+           "code": "21C.O.9-12.3.TT3",
+           "text": "Student evaluates current trends in information technology, discusses the potential social, ethical, political, and economic impact of these technologies, and analyzes the advantages and disadvantages of widespread use and reliance on technology in the workplace and society."
+          },
+          {
+           "code": "21C.O.9-12.3.TT4",
+           "text": "Student adheres to acceptable use policy and displays ethical behaviors related to acceptable use of information and communication technology (e.g., privacy, security, copyright, file-sharing, plagiarism); student predicts the possible cost and effects of unethical use of technology (e.g., consumer fraud, intrusion, spamming, virus setting, hacking) on culture and society; student identifies the methodologies that individuals and businesses can employ to protect the integrity of technology systems."
+          },
+          {
+           "code": "21C.O.9-12.3.TT5",
+           "text": "Student models ethical behavior relating to security, privacy, computer etiquette, passwords and personal information and demonstrates an understanding of copyright by citing sources of copyrighted materials in papers, projects and multi-media presentations. Student advocates for legal and ethical behaviors among peers, family, and community regarding the use of technology and information."
+          },
+          {
+           "code": "21C.O.9-12.3.TT6",
+           "text": "Student evaluates and applies technology tools for research, information analysis, problem solving, content learning, decision making, and lifelong learning."
+          },
+          {
+           "code": "21C.O.9-12.3.TT7",
+           "text": "Student protects his/her identity online and in email and/or websites, limits the distribution of personal information/pictures, and evaluates the authenticity of emails that solicit personal information. Student identifies the methodologies that individuals and businesses can employ to protect the integrity of technology systems."
+          },
+          {
+           "code": "21C.O.9-12.3.TT8",
+           "text": "Student uses technology to seek strategies and information to address limits in their own knowledge."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "empowered-learner",
+     "title": "Empowered Learner",
+     "topics": [
+      {
+       "id": "empowered-learner",
+       "title": "Empowered Learner",
+       "subtopics": [
+        {
+         "id": "empowered-learner-1-of-2",
+         "title": "Empowered Learner (1 of 2)",
+         "outcomes": [
+          {
+           "code": "T.9-12.1",
+           "text": "Articulate personal learning goals, select, and manage appropriate technologies to achieve them, and reflect on their successes and areas of improvement in working toward their goals."
+          },
+          {
+           "code": "T.9-12.2",
+           "text": "Develop online networks within school policy, and customize their learning environments in ways that support their learning."
+          },
+          {
+           "code": "T.9-12.3",
+           "text": "Utilize a variety of technologies efficiently and transfer their knowledge and skills to learn how to use new technologies."
+          },
+          {
+           "code": "T.9-12.4",
+           "text": "Select appropriate platforms and tools to create, share, and communicate their work effectively."
+          }
+         ]
+        },
+        {
+         "id": "empowered-learner-2-of-2",
+         "title": "Empowered Learner (2 of 2)",
+         "outcomes": [
+          {
+           "code": "T.9-12.5",
+           "text": "Explore real-world issues and problems and actively pursue an understanding of them and solutions for them."
+          },
+          {
+           "code": "T.9-12.6",
+           "text": "Locate and collect resources from a variety of sources and organize assets into collections for a wide range of projects and purposes."
+          },
+          {
+           "code": "T.9-12.7",
+           "text": "Practice and demonstrate the ability to evaluate resources for accuracy, perspective, credibility, and relevance."
+          },
+          {
+           "code": "T.9-12.8",
+           "text": "Utilize research strategies effectively to locate appropriate digital resources across all content areas."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "digital-citizens",
+     "title": "Digital Citizens",
+     "topics": [
+      {
+       "id": "digital-citizens",
+       "title": "Digital Citizens",
+       "subtopics": [
+        {
+         "id": "digital-citizens",
+         "title": "Digital Citizens",
+         "outcomes": [
+          {
+           "code": "T.9-12.9",
+           "text": "Keep their personal data private and secure, including the awareness of terms such as encryption, HTTPS, passwords, cookies, and computer viruses; understand the limitations of data management and how data-collection technologies work."
+          },
+          {
+           "code": "T.9-12.10",
+           "text": "Understand how to manage digital identities and reputations within school policy, including demonstrating an understanding of how digital actions are never fully erasable."
+          },
+          {
+           "code": "T.9-12.11",
+           "text": "Demonstrate and advocate for positive, safe, legal, and ethical habits when using technology and when interacting with others online."
+          },
+          {
+           "code": "T.9-12.12",
+           "text": "Demonstrate and advocate for an understanding of intellectual property with both print and digital media including copyright, permission and fair use by creating a variety of media products that include appropriate citation and attribution elements."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "knowledge-constructor",
+     "title": "Knowledge Constructor",
+     "topics": [
+      {
+       "id": "knowledge-constructor",
+       "title": "Knowledge Constructor",
+       "subtopics": [
+        {
+         "id": "knowledge-constructor",
+         "title": "Knowledge Constructor",
+         "outcomes": [
+          {
+           "code": "T.9-12.13",
+           "text": "Publish, present, and defend content designed for specific audiences and select platforms that will effectively convey their ideas to those audiences."
+          },
+          {
+           "code": "T.9-12.14",
+           "text": "Communicate complex ideas clearly using various digital tools to convey the concepts textually, visually, graphically, etc."
+          },
+          {
+           "code": "T.9-12.15",
+           "text": "Create original works or responsibly repurpose other digital resources into new creative works."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "innovative-designer",
+     "title": "Innovative Designer",
+     "topics": [
+      {
+       "id": "innovative-designer",
+       "title": "Innovative Designer",
+       "subtopics": [
+        {
+         "id": "innovative-designer",
+         "title": "Innovative Designer",
+         "outcomes": [
+          {
+           "code": "T.9-12.16",
+           "text": "Engage in a design process and employ it to generate ideas, create innovative products or solve authentic problems."
+          },
+          {
+           "code": "T.9-12.17",
+           "text": "Present ideas and information using appropriate tools that are appropriate for specific audiences."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "computational-thinker",
+     "title": "Computational Thinker",
+     "topics": [
+      {
+       "id": "computational-thinker",
+       "title": "Computational Thinker",
+       "subtopics": [
+        {
+         "id": "computational-thinker",
+         "title": "Computational Thinker",
+         "outcomes": [
+          {
+           "code": "T.9-12.18",
+           "text": "Find or organize relevant data and use technology to analyze and represent it in various ways to solve problems and make decisions."
+          },
+          {
+           "code": "T.9-12.19",
+           "text": "Apply evaluation strategies when using electronic resources (such as publication/copyright date, fact vs. fiction, sources, credibility, ease of use)."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "creative-communicator",
+     "title": "Creative Communicator",
+     "topics": [
+      {
+       "id": "creative-communicator",
+       "title": "Creative Communicator",
+       "subtopics": [
+        {
+         "id": "creative-communicator",
+         "title": "Creative Communicator",
+         "outcomes": [
+          {
+           "code": "T.9-12.20",
+           "text": "Actively seek performance feedback from people, including teachers, and from functionalities embedded in digital tools to improve their learning process, and select technology to demonstrate their learning in a variety of ways."
+          },
+          {
+           "code": "T.9-12.21",
+           "text": "Use communication tools (such as email, discussion boards, online conferences, learning management systems, portfolios) to gather information, share ideas and respond to questions."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "global-collaborator",
+     "title": "Global Collaborator",
+     "topics": [
+      {
+       "id": "global-collaborator",
+       "title": "Global Collaborator",
+       "subtopics": [
+        {
+         "id": "global-collaborator",
+         "title": "Global Collaborator",
+         "outcomes": [
+          {
+           "code": "T.9-12.22",
+           "text": "Use collaborative technologies to connect with others, including peers, experts, and community members, to learn about issues and problems or to gain a broader perspective."
+          },
+          {
+           "code": "T.9-12.23",
+           "text": "Use digital tools to interact with others to mutually develop a richer understanding of different perspectives and cultures."
+          },
+          {
+           "code": "T.9-12.24",
+           "text": "Explore local and global issues and select collaborative technologies to use to work with others to investigate and develop solutions."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "computer-science-and-computational-thinking",
+     "title": "Computer Science and Computational Thinking",
+     "topics": [
+      {
+       "id": "computer-science-and-computational-thinking",
+       "title": "Computer Science and Computational Thinking",
+       "subtopics": [
+        {
+         "id": "computer-science-and-computational-thinking",
+         "title": "Computer Science and Computational Thinking",
+         "outcomes": [
+          {
+           "code": "CS.9-12.1",
+           "text": "Develop and apply criteria for evaluating a computer system for a given purpose."
+          },
+          {
+           "code": "CS.9-12.2",
+           "text": "Explain how abstractions hide the underlying implementation details of computing systems embedded in everyday objects."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "networks-and-cyber-infrastructure",
+     "title": "Networks and Cyber Infrastructure",
+     "topics": [
+      {
+       "id": "networks-and-cyber-infrastructure",
+       "title": "Networks and Cyber Infrastructure",
+       "subtopics": [
+        {
+         "id": "networks-and-cyber-infrastructure",
+         "title": "Networks and Cyber Infrastructure",
+         "outcomes": [
+          {
+           "code": "CS.9-12.3",
+           "text": "Analyze reliable and safe communication methods to transmit information among computing devices over the network."
+          },
+          {
+           "code": "CS.9-12.4",
+           "text": "Analyze the utilization of computers and networks."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "data-and-information",
+     "title": "Data and Information",
+     "topics": [
+      {
+       "id": "data-and-information",
+       "title": "Data and Information",
+       "subtopics": [
+        {
+         "id": "data-and-information",
+         "title": "Data and Information",
+         "outcomes": [
+          {
+           "code": "CS.9-12.5",
+           "text": "Store, transmit, and manipulate data electronically."
+          },
+          {
+           "code": "CS.9-12.6",
+           "text": "Use tools to graphically represent the data and information."
+          },
+          {
+           "code": "CS.9-12.7",
+           "text": "Create computational models for simulating real-world system."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "programming-and-algorithms",
+     "title": "Programming and Algorithms",
+     "topics": [
+      {
+       "id": "programming-and-algorithms",
+       "title": "Programming and Algorithms",
+       "subtopics": [
+        {
+         "id": "programming-and-algorithms-1-of-5",
+         "title": "Programming and Algorithms (1 of 5)",
+         "outcomes": [
+          {
+           "code": "CS.9-12.8",
+           "text": "Organize and create a modular program."
+          },
+          {
+           "code": "CS.9-12.9",
+           "text": "Compare the effectiveness of the algorithms."
+          },
+          {
+           "code": "CS.9-12.10",
+           "text": "Create computer program(s) to solve specific problems relevant to various real-world topics both independently and collaboratively."
+          },
+          {
+           "code": "CS.MW.16",
+           "text": "Create and organize Web pages through the use of a variety of web programming design tools."
+          },
+          {
+           "code": "CS.MW.17",
+           "text": "Use mobile devices/emulators to design, develop, and implement mobile computing applications."
+          }
+         ]
+        },
+        {
+         "id": "programming-and-algorithms-2-of-5",
+         "title": "Programming and Algorithms (2 of 5)",
+         "outcomes": [
+          {
+           "code": "CS.MW.18",
+           "text": "Use various debugging and testing methods to ensure program correctness (e.g., test cases, unit testing, white box, black box, integration testing)."
+          },
+          {
+           "code": "CS.MW.19",
+           "text": "Apply analysis, design, and implementation techniques to solve problems (e.g., use one or more software lifecycle models)."
+          },
+          {
+           "code": "CS.MW.20",
+           "text": "Use Application Program Interfaces (APls) and libraries to facilitate programming solutions."
+          },
+          {
+           "code": "CS.MW.21",
+           "text": "Select appropriate file formats for various types and uses of data."
+          },
+          {
+           "code": "CS.MW.22",
+           "text": "Describe a variety of programming languages available to solve problems and develop systems."
+          }
+         ]
+        },
+        {
+         "id": "programming-and-algorithms-3-of-5",
+         "title": "Programming and Algorithms (3 of 5)",
+         "outcomes": [
+          {
+           "code": "CS.MW.23",
+           "text": "Explain the program execution process."
+          },
+          {
+           "code": "CS.MW.24",
+           "text": "Explain the principles of security by examining encryption, cryptography, and authentication techniques."
+          },
+          {
+           "code": "CS.MW.25",
+           "text": "Explore a variety of careers to which computing is central."
+          },
+          {
+           "code": "CS.MW.26",
+           "text": "Describe techniques for locating and collecting small and large-scale data sets."
+          },
+          {
+           "code": "CS.MW.27",
+           "text": "Describe how mathematical and statistical functions, sets, and logic are used in computation."
+          }
+         ]
+        },
+        {
+         "id": "programming-and-algorithms-4-of-5",
+         "title": "Programming and Algorithms (4 of 5)",
+         "outcomes": [
+          {
+           "code": "CS.GIS.9",
+           "text": "Use a web-based GIS to answer questions about the earth and the environment."
+          },
+          {
+           "code": "CS.GIS.10",
+           "text": "Demonstrate basic proficiency in map creation, including adding layers, adding additional data, changing data symbology, configuring pop-up, saving and sharing maps."
+          },
+          {
+           "code": "CS.GIS.13",
+           "text": "Explore uses of geospatial technology by law enforcement to map, visualize, and analyze crime incident patterns."
+          },
+          {
+           "code": "CS.GIS.14",
+           "text": "Use geospatial technology to explore and investigate business problems related to asset management."
+          },
+          {
+           "code": "CS.GIS.15",
+           "text": "Use geospatial technology to explore and investigate problems related to medical geography and epidemiology."
+          }
+         ]
+        },
+        {
+         "id": "programming-and-algorithms-5-of-5",
+         "title": "Programming and Algorithms (5 of 5)",
+         "outcomes": [
+          {
+           "code": "CS.GIS.16",
+           "text": "Research a career related to GIS and present a career summary, projected job outlook, and roles and responsibilities."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "evaluate-the-use-of-programming-languages-to-sol",
+       "title": "Evaluate the use of programming languages to solve problems and develop systems",
+       "subtopics": [
+        {
+         "id": "evaluate-the-use-of-programming-languages-to-sol",
+         "title": "Evaluate the use of programming languages to solve problems and develop systems",
+         "outcomes": [
+          {
+           "code": "CS.M.20",
+           "text": "Compare and contrast computer programming languages and paradigms (e.g., compiled and interpreted languages, procedural and object-oriented paradigms)."
+          },
+          {
+           "code": "CS.M.21",
+           "text": "Diagram the program execution process."
+          },
+          {
+           "code": "CS.M.22",
+           "text": "Determine the output of a given sample program without the use of a computer."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "create-test-and-use-computer-programs-to-solve-p",
+       "title": "Create, test, and use computer programs to solve problems",
+       "subtopics": [
+        {
+         "id": "implement-computing-applications-using-the-follo",
+         "title": "Implement computing applications using the following software development tools and techniques",
+         "outcomes": [
+          {
+           "code": "CS.M.23.1",
+           "text": "branching (if, if-else)"
+          },
+          {
+           "code": "CS.M.23.2",
+           "text": "declare, define, and reference variables"
+          },
+          {
+           "code": "CS.M.23.3",
+           "text": "lists/arrays"
+          },
+          {
+           "code": "CS.M.23.4",
+           "text": "looping (for, while, do/while)"
+          },
+          {
+           "code": "CS.M.23.5",
+           "text": "recursion"
+          },
+          {
+           "code": "CS.M.23.6",
+           "text": "sequencing"
+          }
+         ]
+        },
+        {
+         "id": "create-test-and-use-computer-programs-to-solve-p",
+         "title": "Create, test, and use computer programs to solve problems",
+         "outcomes": [
+          {
+           "code": "CS.M.24",
+           "text": "Use various debugging and testing methods to ensure program correctness."
+          },
+          {
+           "code": "CS.M.25",
+           "text": "Cite evidence to support or refute the correctness of software solutions."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "use-geospatial-technology-to-explore-and-investi",
+       "title": "Use geospatial technology to explore and investigate environmental problems such as:",
+       "subtopics": [
+        {
+         "id": "use-geospatial-technology-to-explore-and-investi",
+         "title": "Use geospatial technology to explore and investigate environmental problems such as:",
+         "outcomes": [
+          {
+           "code": "CS.GIS.11.1",
+           "text": "resource management"
+          },
+          {
+           "code": "CS.GIS.11.2",
+           "text": "impact assessment"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "use-geospatial-technology-to-explore-and-investi-2",
+       "title": "Use geospatial technology to explore and investigate rural and urban issues such as:",
+       "subtopics": [
+        {
+         "id": "use-geospatial-technology-to-explore-and-investi",
+         "title": "Use geospatial technology to explore and investigate rural and urban issues such as:",
+         "outcomes": [
+          {
+           "code": "CS.GIS.12.1",
+           "text": "urban planning"
+          },
+          {
+           "code": "CS.GIS.12.2",
+           "text": "transportation"
+          },
+          {
+           "code": "CS.GIS.12.3",
+           "text": "logistics"
+          },
+          {
+           "code": "CS.GIS.12.4",
+           "text": "emergency planning to calculate emergency response times in the event of a natural disaster."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "impacts-of-computing",
+     "title": "Impacts of Computing",
+     "topics": [
+      {
+       "id": "impacts-of-computing",
+       "title": "Impacts of Computing",
+       "subtopics": [
+        {
+         "id": "impacts-of-computing-1-of-4",
+         "title": "Impacts of Computing (1 of 4)",
+         "outcomes": [
+          {
+           "code": "CS.9-12.11",
+           "text": "Explain the national and global economic impact of cybercrime."
+          },
+          {
+           "code": "CS.9-12.12",
+           "text": "Analyze the negative and positive impact of new technology socially and globally."
+          },
+          {
+           "code": "CS.9-12.13",
+           "text": "Test and refine computational artifacts to reduce bias and equity deficits."
+          },
+          {
+           "code": "CS.9-12.14",
+           "text": "Use tools and methods for collaborating on a project to increase connectivity of people in different cultures and career fields."
+          },
+          {
+           "code": "CS.MW.38",
+           "text": "Compare appropriate and inappropriate social networking behaviors."
+          }
+         ]
+        },
+        {
+         "id": "impacts-of-computing-2-of-4",
+         "title": "Impacts of Computing (2 of 4)",
+         "outcomes": [
+          {
+           "code": "CS.MW.39",
+           "text": "Discuss the impact of computing technology on business and commerce (e.g., automated tracking of goods, automated financial transactions, e-commerce, cloud computing)."
+          },
+          {
+           "code": "CS.MW.40",
+           "text": "Describe the role that adaptive technology can play in the lives of people with special needs."
+          },
+          {
+           "code": "CS.MW.41",
+           "text": "Compare the positive and negative impacts of technology on culture (e.g., social networking, delivery of news and other public media, and intercultural communication)."
+          },
+          {
+           "code": "CS.MW.42",
+           "text": "Describe strategies for determining the reliability of information found on the Internet."
+          },
+          {
+           "code": "CS.MW.43",
+           "text": "Differentiate between information access and information distribution rights."
+          }
+         ]
+        },
+        {
+         "id": "impacts-of-computing-3-of-4",
+         "title": "Impacts of Computing (3 of 4)",
+         "outcomes": [
+          {
+           "code": "CS.MW.44",
+           "text": "Describe how different kinds of software licenses can be used to share and protect intellectual property."
+          },
+          {
+           "code": "CS.MW.45",
+           "text": "Discuss the social and economic implications associated with hacking and software piracy."
+          },
+          {
+           "code": "CS.MW.46",
+           "text": "Describe different ways in which software is created and shared and their benefits and drawbacks (commercial software, public domain software, open source development)."
+          },
+          {
+           "code": "CS.MW.47",
+           "text": "Describe security and privacy issues that relate to computer networks."
+          },
+          {
+           "code": "CS.MW.48",
+           "text": "Explain the impact of the digital divide on access to critical information."
+          }
+         ]
+        },
+        {
+         "id": "impacts-of-computing-4-of-4",
+         "title": "Impacts of Computing (4 of 4)",
+         "outcomes": [
+          {
+           "code": "CS.GIS.19",
+           "text": "Use geospatial technology to explore and investigate the history of cartography."
+          },
+          {
+           "code": "CS.GIS.20",
+           "text": "Demonstrate an awareness of the ethical and social implications of the use of GIS and GPS system, including system reliability, privacy, legal issues, and the social and ethical ramifications of their use."
+          },
+          {
+           "code": "CS.GIS.21",
+           "text": "Identify the impacts GIS and GPS systems have on individuals, society, commercial markets, and innovation."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "evaluate-appropriate-and-inappropriate-uses-of-t",
+       "title": "Evaluate appropriate and inappropriate uses of technology",
+       "subtopics": [
+        {
+         "id": "evaluate-appropriate-and-inappropriate-uses-of-t",
+         "title": "Evaluate appropriate and inappropriate uses of technology",
+         "outcomes": [
+          {
+           "code": "CS.M.37",
+           "text": "Summarize appropriate and inappropriate technological behaviors, including issues of privacy, copyright, security, legalities, and politics."
+          },
+          {
+           "code": "CS.M.38",
+           "text": "Explore the ramifications of inappropriate uses of technology."
+          },
+          {
+           "code": "CS.M.39",
+           "text": "Investigate the national and global economic impact of cybercrime."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "investigate-social-and-ethical-issues-relating-t",
+       "title": "Investigate social and ethical issues relating to digital information",
+       "subtopics": [
+        {
+         "id": "investigate-social-and-ethical-issues-relating-t",
+         "title": "Investigate social and ethical issues relating to digital information",
+         "outcomes": [
+          {
+           "code": "CS.M.40",
+           "text": "Discuss accessibility issues (e.g., adaptive technology for special needs individuals, censorship, geographical locations, and economically-disadvantaged populations)."
+          },
+          {
+           "code": "CS.M.41",
+           "text": "Compare the reliability of various online sources."
+          },
+          {
+           "code": "CS.M.43",
+           "text": "Describe security and privacy issues that relate to computer networks."
+          }
+         ]
+        },
+        {
+         "id": "investigate-information-ownership-topics",
+         "title": "Investigate information ownership topics",
+         "outcomes": [
+          {
+           "code": "CS.M.42.1",
+           "text": "access"
+          },
+          {
+           "code": "CS.M.42.2",
+           "text": "distribution rights"
+          },
+          {
+           "code": "CS.M.42.3",
+           "text": "hacking"
+          },
+          {
+           "code": "CS.M.42.4",
+           "text": "licensure"
+          },
+          {
+           "code": "CS.M.42.5",
+           "text": "open source"
+          },
+          {
+           "code": "CS.M.42.6",
+           "text": "public domain"
+          },
+          {
+           "code": "CS.M.42.7",
+           "text": "software piracy"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "will-explore-security-and-privacy-techniques",
+       "title": "Will explore security and privacy techniques",
+       "subtopics": [
+        {
+         "id": "will-explore-security-and-privacy-techniques",
+         "title": "Will explore security and privacy techniques",
+         "outcomes": [
+          {
+           "code": "CS.M.44",
+           "text": "Explain principles of network security and techniques that protect stored and transmitted data (e.g., encryption, cryptography, and authentication)."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "computer-systems-and-computational-thinking",
+     "title": "Computer Systems and Computational Thinking",
+     "topics": [
+      {
+       "id": "computer-systems-and-computational-thinking",
+       "title": "Computer Systems and Computational Thinking",
+       "subtopics": [
+        {
+         "id": "computer-systems-and-computational-thinking-1-of",
+         "title": "Computer Systems and Computational Thinking (1 of 3)",
+         "outcomes": [
+          {
+           "code": "CS.MW.1",
+           "text": "Use predefined functions and parameters, classes and methods to divide a complex problem into simpler parts."
+          },
+          {
+           "code": "CS.MW.2",
+           "text": "Describe a software development process used to solve software problems (e.g., design, coding, testing, verification)."
+          },
+          {
+           "code": "CS.MW.3",
+           "text": "Explain how sequence, selection, iteration, and recursion are building blocks of algorithms."
+          },
+          {
+           "code": "CS.MW.4",
+           "text": "Compare techniques for analyzing massive data collections."
+          },
+          {
+           "code": "CS.MW.5",
+           "text": "Describe the relationship between binary and hexadecimal representations."
+          }
+         ]
+        },
+        {
+         "id": "computer-systems-and-computational-thinking-2-of",
+         "title": "Computer Systems and Computational Thinking (2 of 3)",
+         "outcomes": [
+          {
+           "code": "CS.MW.6",
+           "text": "Analyze the representation and trade-offs among various forms of digital information."
+          },
+          {
+           "code": "CS.MW.7",
+           "text": "Describe how various types of data are stored in a computer system."
+          },
+          {
+           "code": "CS.MW.8",
+           "text": "Use modeling and simulation to represent and understand natural phenomena."
+          },
+          {
+           "code": "CS.MW.9",
+           "text": "Discuss the value of abstraction to manage problem complexity."
+          },
+          {
+           "code": "CS.MW.10",
+           "text": "Describe the concept of parallel processing as a strategy to solve large problems."
+          }
+         ]
+        },
+        {
+         "id": "computer-systems-and-computational-thinking-3-of",
+         "title": "Computer Systems and Computational Thinking (3 of 3)",
+         "outcomes": [
+          {
+           "code": "CS.MW.11",
+           "text": "Describe how computation shares features with art andmusic by translating human intention into an artifact."
+          },
+          {
+           "code": "CS.GIS.1",
+           "text": "Demonstrate an understanding of the basics of cartography."
+          },
+          {
+           "code": "CS.GIS.2",
+           "text": "Demonstrate a basic proficiency in map reading; an understanding of scale; an understanding of the power of analysis; and an understanding of the history of map creation and use."
+          },
+          {
+           "code": "CS.GIS.3",
+           "text": "Analyze GIS data to identify spatial relationships or display results of analyses, using maps, graphs, or tabular data."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "evaluate-different-data-representations-to-solve",
+       "title": "Evaluate different data representations to solve problems",
+       "subtopics": [
+        {
+         "id": "evaluate-different-data-representations-to-solve",
+         "title": "Evaluate different data representations to solve problems",
+         "outcomes": [
+          {
+           "code": "CS.M.1",
+           "text": "Analyze the various mathematical bases (e.g., binary, decimal, hexadecimal) and convert between them."
+          },
+          {
+           "code": "CS.M.2",
+           "text": "Describe the relationship between binary and hexadecimal representations."
+          },
+          {
+           "code": "CS.M.3",
+           "text": "Convert information between various encoding formats (e.g., ASCII, Unicode, hexadecimal, binary)."
+          },
+          {
+           "code": "CS.M.4",
+           "text": "Compare techniques (e.g., sorting, statistics, searching) for analyzing massive data collections."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "connect-the-development-cycle-of-algorithm-const",
+       "title": "Connect the development cycle of algorithm construction to problem-solving",
+       "subtopics": [
+        {
+         "id": "connect-the-development-cycle-of-algorithm-const",
+         "title": "Connect the development cycle of algorithm construction to problem-solving",
+         "outcomes": [
+          {
+           "code": "CS.M.5",
+           "text": "Describe how mathematical and statistical functions, sets, and logic are used in computation."
+          },
+          {
+           "code": "CS.M.6",
+           "text": "Utilize predefined mathematical functions and parameters to divide a complex problem into simpler parts, including parallel processing."
+          },
+          {
+           "code": "CS.M.7",
+           "text": "Interpret truth tables from basic statements using Boolean operators (AND, OR, XOR, and NOT)."
+          },
+          {
+           "code": "CS.M.8",
+           "text": "Explain ways in which sequence, selection, iteration, and recursion are building blocks of algorithms."
+          },
+          {
+           "code": "CS.M.9",
+           "text": "Create systems of equations based on real-world situations."
+          },
+          {
+           "code": "CS.M.10",
+           "text": "Analyze decisions and strategies using probability and statistical concepts."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "create-and-evaluate-algorithms-to-solve-problems",
+       "title": "Create and evaluate algorithms to solve problems",
+       "subtopics": [
+        {
+         "id": "create-and-evaluate-algorithms-to-solve-problems",
+         "title": "Create and evaluate algorithms to solve problems (1 of 2)",
+         "outcomes": [
+          {
+           "code": "CS.M.11",
+           "text": "Utilize modeling and simulation techniques to represent and understand natural phenomena."
+          },
+          {
+           "code": "CS.M.12",
+           "text": "Examine classical algorithms (e.g., searching, sorting, and shortest path)."
+          },
+          {
+           "code": "CS.M.13",
+           "text": "Manipulate formulas and equations and apply them to algorithm development."
+          },
+          {
+           "code": "CS.M.14",
+           "text": "Apply algorithm analysis and design techniques to solve problems."
+          },
+          {
+           "code": "CS.M.15",
+           "text": "Write algorithms to solve mathematical problems using formulas, equations, and functions."
+          }
+         ]
+        },
+        {
+         "id": "create-and-evaluate-algorithms-to-solve-problems-2",
+         "title": "Create and evaluate algorithms to solve problems (2 of 2)",
+         "outcomes": [
+          {
+           "code": "CS.M.16",
+           "text": "Implement conditional statements that include if/then, if/then/else, case statements, and Boolean logic, in the design of algorithms."
+          },
+          {
+           "code": "CS.M.17",
+           "text": "Represent algorithms using flowcharts and pseudocode."
+          },
+          {
+           "code": "CS.M.18",
+           "text": "Combine standard function types using arithmetic operations."
+          },
+          {
+           "code": "CS.M.19",
+           "text": "Analyze algorithms for correctness, clarity, and efficiency."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "collaboration",
+     "title": "Collaboration",
+     "topics": [
+      {
+       "id": "collaboration",
+       "title": "Collaboration",
+       "subtopics": [
+        {
+         "id": "collaboration-1-of-2",
+         "title": "Collaboration (1 of 2)",
+         "outcomes": [
+          {
+           "code": "CS.MW.12",
+           "text": "Work in a team to design and develop a software artifact."
+          },
+          {
+           "code": "CS.MW.13",
+           "text": "Use collaborative tools to communicate with project team members (e.g., discussion threads, wikis, biogs, version control, etc.)."
+          },
+          {
+           "code": "CS.MW.14",
+           "text": "Describe how computing enhances traditional forms and enables new forms of experience, expression, communication, and collaboration."
+          },
+          {
+           "code": "CS.MW.15",
+           "text": "Identify how collaboration influences the design and development of software products."
+          },
+          {
+           "code": "CS.GIS.4",
+           "text": "Collect data using a student-created online data collection technology."
+          }
+         ]
+        },
+        {
+         "id": "collaboration-2-of-2",
+         "title": "Collaboration (2 of 2)",
+         "outcomes": [
+          {
+           "code": "CS.GIS.5",
+           "text": "Identify a community need related to a human impact on the environment; create a capstone mapping project that describes a solution for that human impact using student collected and generated GIS data; and evaluate competing solutions in terms of effectiveness at mitigating the human impact."
+          },
+          {
+           "code": "CS.GIS.6",
+           "text": "Create an Internet-based map product (story map application or web application) that describes a solution for mitigating a human impact on the environment using students collected and generated GIS data."
+          },
+          {
+           "code": "CS.GIS.7",
+           "text": "Use a GPS-enabled data collection technology to groundtruth an existing dataset, such as a published data layer, an orthophotograph, or remotely-sensed satellite imagery."
+          },
+          {
+           "code": "CS.GIS.8",
+           "text": "Create a presentation using an online map system displaying a student-created map with a purpose of educating the public on a community, state or national social issue."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "computers-and-communication-devices",
+     "title": "Computers and Communication Devices",
+     "topics": [
+      {
+       "id": "computers-and-communication-devices",
+       "title": "Computers and Communication Devices",
+       "subtopics": [
+        {
+         "id": "computers-and-communication-devices-1-of-3",
+         "title": "Computers and Communication Devices (1 of 3)",
+         "outcomes": [
+          {
+           "code": "CS.MW.28",
+           "text": "Describe the unique features of computers embedded in mobile devices and vehicles (e.g., cell phones, automobiles, airplanes)."
+          },
+          {
+           "code": "CS.MW.29",
+           "text": "Develop criteria for purchasing or upgrading computer system hardware."
+          },
+          {
+           "code": "CS.MW.30",
+           "text": "Describe the principal components of computer organization (e.g., input, output, processing, and storage)."
+          },
+          {
+           "code": "CS.MW.31",
+           "text": "Compare various forms of input and output."
+          }
+         ]
+        },
+        {
+         "id": "computers-and-communication-devices-2-of-3",
+         "title": "Computers and Communication Devices (2 of 3)",
+         "outcomes": [
+          {
+           "code": "CS.MW.32",
+           "text": "Explain the multiple levels of hardware and software that support program execution (e.g., compilers, interpreters, operating systems, networks)."
+          },
+          {
+           "code": "CS.MW.33",
+           "text": "Apply strategies for identifying and solving routine hardware and software problems that occur in everyday life."
+          },
+          {
+           "code": "CS.MW.34",
+           "text": "Compare and contrast client-server and peer-to-peer network strategies."
+          },
+          {
+           "code": "CS.MW.35",
+           "text": "Explain the basic components of computer networks (e.g., servers, file protection, routing, spoolers and queues, shared resources, and fault-tolerance)."
+          }
+         ]
+        },
+        {
+         "id": "computers-and-communication-devices-3-of-3",
+         "title": "Computers and Communication Devices (3 of 3)",
+         "outcomes": [
+          {
+           "code": "CS.MW.36",
+           "text": "Describe how the Internet facilitates global communication."
+          },
+          {
+           "code": "CS.MW.37",
+           "text": "Describe the major applications of artificial intelligence and robotics."
+          },
+          {
+           "code": "CS.GIS.17",
+           "text": "Demonstrates an understanding of GPS technology, data collection, and data layer creation in an online mapping system."
+          },
+          {
+           "code": "CS.GIS.18",
+           "text": "Collect GPS data using a GPS unit, compile it into a .cvs file, and add it to a saved web map."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "classify-electronic-devices-containing-computati",
+       "title": "Classify electronic devices containing computational processors that execute programs",
+       "subtopics": [
+        {
+         "id": "classify-electronic-devices-containing-computati",
+         "title": "Classify electronic devices containing computational processors that execute programs",
+         "outcomes": [
+          {
+           "code": "CS.M.26",
+           "text": "Recognize that computers are devices that execute programs."
+          },
+          {
+           "code": "CS.M.27",
+           "text": "Identify a variety of electronic devices (e.g., cell phones, desktops, laptops, vehicles, programmable thermostats, and programmable kitchen appliances) that contain computational processors."
+          },
+          {
+           "code": "CS.M.28",
+           "text": "Describe unique features of computers embedded in mobile devices and vehicles."
+          },
+          {
+           "code": "CS.M.29",
+           "text": "Investigate the history of computers, identifying contributors and major milestones (e.g., Alan Turing, Charles Babbage, Ada Lovelace, Grace Hopper, analytical machine, ENIAC, IBM PC)."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "analyze-the-relationship-between-hardware-and-so",
+       "title": "Analyze the relationship between hardware and software",
+       "subtopics": [
+        {
+         "id": "analyze-the-relationship-between-hardware-and-so",
+         "title": "Analyze the relationship between hardware and software",
+         "outcomes": [
+          {
+           "code": "CS.M.30",
+           "text": "Demonstrate an understanding of the relationship between hardware and software."
+          },
+          {
+           "code": "CS.M.31",
+           "text": "Develop criteria for purchasing or upgrading computer system hardware."
+          },
+          {
+           "code": "CS.M.32",
+           "text": "Describe primary components of computer systems (e.g., input, output, processing, and storage)."
+          },
+          {
+           "code": "CS.M.33",
+           "text": "Explain multiple levels of hardware and software that support program execution (e.g., compilers, interpreters, operating systems, networks)."
+          },
+          {
+           "code": "CS.M.34",
+           "text": "Apply strategies for identifying and solving routine hardware problems that occur during everyday computer use."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "describe-the-major-components-and-functions-of-n",
+       "title": "Describe the major components and functions of networks",
+       "subtopics": [
+        {
+         "id": "describe-the-major-components-and-functions-of-n",
+         "title": "Describe the major components and functions of networks",
+         "outcomes": [
+          {
+           "code": "CS.M.35",
+           "text": "Describe how the Internet facilitates global communication."
+          },
+          {
+           "code": "CS.M.36",
+           "text": "Describe issues that impact network functionality (e.g., latency, bandwidth, firewalls, server capability)."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "K-2",
+   "units": [
+    {
+     "id": "empowered-learner",
+     "title": "Empowered Learner",
+     "topics": [
+      {
+       "id": "empowered-learner",
+       "title": "Empowered Learner",
+       "subtopics": [
+        {
+         "id": "empowered-learner",
+         "title": "Empowered Learner",
+         "outcomes": [
+          {
+           "code": "T.K-2.1",
+           "text": "With support and guidance, explore a variety of age-appropriate technologies that can assist with the learning process."
+          },
+          {
+           "code": "T.K-2.2",
+           "text": "Explore multiple ways to share ideas and organize information about themselves and the things around them."
+          },
+          {
+           "code": "T.K-2.3",
+           "text": "Use an input device (mouse, touch screen, etc.) to select an item and navigate the screen."
+          },
+          {
+           "code": "T.K-2.4",
+           "text": "Navigate the basic functions of an Internet browser (search, forward, back, print, etc.)."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "digital-citizen",
+     "title": "Digital Citizen",
+     "topics": [
+      {
+       "id": "digital-citizen",
+       "title": "Digital Citizen",
+       "subtopics": [
+        {
+         "id": "digital-citizen",
+         "title": "Digital Citizen",
+         "outcomes": [
+          {
+           "code": "T.K-2.5",
+           "text": "Demonstrate responsible use of technology (e.g., seek guidance and appropriate support when selecting digital content, understand how to be safe online, follow safety rules when using media, etc.)."
+          },
+          {
+           "code": "T.K-2.6",
+           "text": "Practice using safe, legal, and ethical behavior when using technology."
+          },
+          {
+           "code": "T.K-2.7",
+           "text": "Collaborate with peers, teams, and individuals within their communities and home through the use of age-appropriate technology."
+          },
+          {
+           "code": "T.K-2.8",
+           "text": "With support and guidance, discuss the importance of fair use and copyright regulations."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "knowledge-constructor",
+     "title": "Knowledge Constructor",
+     "topics": [
+      {
+       "id": "knowledge-constructor",
+       "title": "Knowledge Constructor",
+       "subtopics": [
+        {
+         "id": "knowledge-constructor",
+         "title": "Knowledge Constructor",
+         "outcomes": [
+          {
+           "code": "T.K-2.9",
+           "text": "With support and guidance, create original work through the use of age-appropriate technology and digital resources."
+          },
+          {
+           "code": "T.K-2.10",
+           "text": "Demonstrate creativity and learning through technology (e.g., digital storytelling, portfolio creation, digital media displays, etc.)."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "innovative-designer",
+     "title": "Innovative Designer",
+     "topics": [
+      {
+       "id": "innovative-designer",
+       "title": "Innovative Designer",
+       "subtopics": [
+        {
+         "id": "innovative-designer",
+         "title": "Innovative Designer",
+         "outcomes": [
+          {
+           "code": "T.K-2.11",
+           "text": "With support and guidance, select appropriate technology tools to solve problems and communicate information."
+          },
+          {
+           "code": "T.K-2.12",
+           "text": "With support and guidance, create a product using a step-by-step process through the use of age-appropriate digital and non-digital resources."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "computational-thinker",
+     "title": "Computational Thinker",
+     "topics": [
+      {
+       "id": "computational-thinker",
+       "title": "Computational Thinker",
+       "subtopics": [
+        {
+         "id": "computational-thinker",
+         "title": "Computational Thinker",
+         "outcomes": [
+          {
+           "code": "T.K-2.13",
+           "text": "With support and guidance, research information on topics of interest through the use of age-appropriate technology and digital resources provided by the classroom teacher."
+          },
+          {
+           "code": "T.K-2.14",
+           "text": "With support and guidance, deepen learning across content areas through the use of age-appropriate technology and digital resources."
+          },
+          {
+           "code": "T.K-2.15",
+           "text": "With support and guidance, enter information into a spreadsheet and sort the information."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "creative-communicator",
+     "title": "Creative Communicator",
+     "topics": [
+      {
+       "id": "creative-communicator",
+       "title": "Creative Communicator",
+       "subtopics": [
+        {
+         "id": "creative-communicator",
+         "title": "Creative Communicator",
+         "outcomes": [
+          {
+           "code": "T.K-2.16",
+           "text": "With support and guidance, communicate with others through the use of age-appropriate technology."
+          },
+          {
+           "code": "T.K-2.17",
+           "text": "With guidance, select appropriate digital learning tools and resources to produce and publish information."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "global-collaborator",
+     "title": "Global Collaborator",
+     "topics": [
+      {
+       "id": "global-collaborator",
+       "title": "Global Collaborator",
+       "subtopics": [
+        {
+         "id": "global-collaborator",
+         "title": "Global Collaborator",
+         "outcomes": [
+          {
+           "code": "T.K-2.18",
+           "text": "With support and guidance, connect with others and explore different points of view on various topics through the use of age-appropriate technology resources."
+          },
+          {
+           "code": "T.K-2.19",
+           "text": "Identify positive and negative impacts the use of technology can have on them as individuals and their family."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "computer-science-and-computational-thinking",
+     "title": "Computer Science and Computational Thinking",
+     "topics": [
+      {
+       "id": "computer-science-and-computational-thinking",
+       "title": "Computer Science and Computational Thinking",
+       "subtopics": [
+        {
+         "id": "computer-science-and-computational-thinking",
+         "title": "Computer Science and Computational Thinking",
+         "outcomes": [
+          {
+           "code": "CS.K-2.1",
+           "text": "With support and guidance, verbalize the steps to solve a problem."
+          },
+          {
+           "code": "CS.K-2.2",
+           "text": "With support and guidance, work collaboratively with peers to solve a problem."
+          },
+          {
+           "code": "CS.K-2.3",
+           "text": "With support and guidance, identify various components and functions of computers."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "networks-and-cyber-infrastructure",
+     "title": "Networks and Cyber Infrastructure",
+     "topics": [
+      {
+       "id": "networks-and-cyber-infrastructure",
+       "title": "Networks and Cyber Infrastructure",
+       "subtopics": [
+        {
+         "id": "networks-and-cyber-infrastructure",
+         "title": "Networks and Cyber Infrastructure",
+         "outcomes": [
+          {
+           "code": "CS.K-2.4",
+           "text": "With support and guidance, experience the ability to make connections with familiar adults (e.g., family members) through the use of the Internet."
+          },
+          {
+           "code": "CS.K-2.5",
+           "text": "With support and guidance, identify the importance of staying safe while using family and educator-approved Internet sites."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "data-and-information",
+     "title": "Data and Information",
+     "topics": [
+      {
+       "id": "data-and-information",
+       "title": "Data and Information",
+       "subtopics": [
+        {
+         "id": "data-and-information",
+         "title": "Data and Information",
+         "outcomes": [
+          {
+           "code": "CS.K-2.6",
+           "text": "With support and guidance, identify, collect, organize, and describe patterns in various forms of data."
+          },
+          {
+           "code": "CS.K-2.7",
+           "text": "With support and guidance, make decisions using data (e.g., class surveys)."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "programming-and-algorithms",
+     "title": "Programming and Algorithms",
+     "topics": [
+      {
+       "id": "programming-and-algorithms",
+       "title": "Programming and Algorithms",
+       "subtopics": [
+        {
+         "id": "programming-and-algorithms",
+         "title": "Programming and Algorithms",
+         "outcomes": [
+          {
+           "code": "CS.K-2.8",
+           "text": "With support and guidance, analyze and explain the steps to solve simple problems."
+          },
+          {
+           "code": "CS.K-2.9",
+           "text": "Follow a procedure/algorithm using tangible materials."
+          },
+          {
+           "code": "CS.K-2.10",
+           "text": "Write an algorithm using sequences."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "impacts-of-computing",
+     "title": "Impacts of Computing",
+     "topics": [
+      {
+       "id": "impacts-of-computing",
+       "title": "Impacts of Computing",
+       "subtopics": [
+        {
+         "id": "impacts-of-computing",
+         "title": "Impacts of Computing",
+         "outcomes": [
+          {
+           "code": "CS.K-2.11",
+           "text": "Research and identify how technology has changed over time."
+          },
+          {
+           "code": "CS.K-2.12",
+           "text": "List ways to use computer technology to help their daily life."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "3-5",
+   "units": [
+    {
+     "id": "empowered-learner",
+     "title": "Empowered Learner",
+     "topics": [
+      {
+       "id": "empowered-learner",
+       "title": "Empowered Learner",
+       "subtopics": [
+        {
+         "id": "empowered-learner",
+         "title": "Empowered Learner",
+         "outcomes": [
+          {
+           "code": "T.3-5.1",
+           "text": "Explore a variety of age-appropriate technologies that can assist with the learning process."
+          },
+          {
+           "code": "T.3-5.2",
+           "text": "Explore multiple ways to share ideas and organize information about themselves and the things around them using appropriate digital resources (pictures, portfolio, etc.)"
+          },
+          {
+           "code": "T.3-5.3",
+           "text": "Evaluate digital sources for accuracy, perspective, credibility, and relevance."
+          },
+          {
+           "code": "T.3-5.4",
+           "text": "Learn proper keyboarding techniques."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "digital-citizen",
+     "title": "Digital Citizen",
+     "topics": [
+      {
+       "id": "digital-citizen",
+       "title": "Digital Citizen",
+       "subtopics": [
+        {
+         "id": "digital-citizen",
+         "title": "Digital Citizen",
+         "outcomes": [
+          {
+           "code": "T.3-5.5",
+           "text": "Demonstrate responsible use of technology (e.g., seek guidance and appropriate support when selecting digital content, understand how to be safe online, follow safety rules when using media, etc.)."
+          },
+          {
+           "code": "T.3-5.6",
+           "text": "Practice using safe, legal, and ethical behavior when using technology and interacting online."
+          },
+          {
+           "code": "T.3-5.7",
+           "text": "Collaborate with peers, teams, and individuals within their communities and home through the use of age-appropriate technology."
+          },
+          {
+           "code": "T.3-5.8",
+           "text": "Demonstrate an understanding of the role an online identity plays in the digital world and learn the permanence of decisions made when interacting online."
+          },
+          {
+           "code": "T.3-5.9",
+           "text": "Demonstrate appropriate methods of sharing personal data online and how to keер personal data private."
+          },
+          {
+           "code": "T.3-5.10",
+           "text": "Demonstrate responsible use of technology by respecting intellectual property with both print and digital media when using and sharing the work of others."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "knowledge-constructor",
+     "title": "Knowledge Constructor",
+     "topics": [
+      {
+       "id": "knowledge-constructor",
+       "title": "Knowledge Constructor",
+       "subtopics": [
+        {
+         "id": "knowledge-constructor",
+         "title": "Knowledge Constructor",
+         "outcomes": [
+          {
+           "code": "T.3-5.11",
+           "text": "Create original work through the use of age-appropriate technology and digital resources and tools."
+          },
+          {
+           "code": "T.3-5.12",
+           "text": "Demonstrate creativity and learning through technology (e.g., digital storytelling, portfolio creation, digital media displays, etc.)."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "innovative-designer",
+     "title": "Innovative Designer",
+     "topics": [
+      {
+       "id": "innovative-designer",
+       "title": "Innovative Designer",
+       "subtopics": [
+        {
+         "id": "innovative-designer",
+         "title": "Innovative Designer",
+         "outcomes": [
+          {
+           "code": "T.3-5.13",
+           "text": "With support and guidance, select appropriate technology tools to solve problems and communicate information."
+          },
+          {
+           "code": "T.3-5.14",
+           "text": "With support and guidance, create a product usinga step-by-step process through the use of age-appropriate digital and non-digital resources."
+          },
+          {
+           "code": "T.3-5.15",
+           "text": "Use appropriate technology to transfer learning to a variety of tools or learning environments."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "computational-thinker",
+     "title": "Computational Thinker",
+     "topics": [
+      {
+       "id": "computational-thinker",
+       "title": "Computational Thinker",
+       "subtopics": [
+        {
+         "id": "computational-thinker",
+         "title": "Computational Thinker",
+         "outcomes": [
+          {
+           "code": "T.3-5.16",
+           "text": "Research information on topics of interest through the use of age-appropriate technology and digital resources provided by the classroom teacher."
+          },
+          {
+           "code": "T.3-5.17",
+           "text": "With support and guidance, deepen learning across content areas through the use of age-appropriate technology and digital resources."
+          },
+          {
+           "code": "T.3-5.18",
+           "text": "Graph data using a spreadsheet. Analyze and produce a report that explains the analysis of data."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "creative-communicator",
+     "title": "Creative Communicator",
+     "topics": [
+      {
+       "id": "creative-communicator",
+       "title": "Creative Communicator",
+       "subtopics": [
+        {
+         "id": "creative-communicator",
+         "title": "Creative Communicator",
+         "outcomes": [
+          {
+           "code": "T.3-5.19",
+           "text": "Communicate with others through the use of electronic mail (email) or other digital resources."
+          },
+          {
+           "code": "T.3-5.20",
+           "text": "Utilize embedded digital tools for feedback."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "global-collaborator",
+     "title": "Global Collaborator",
+     "topics": [
+      {
+       "id": "global-collaborator",
+       "title": "Global Collaborator",
+       "subtopics": [
+        {
+         "id": "global-collaborator",
+         "title": "Global Collaborator",
+         "outcomes": [
+          {
+           "code": "T.3-5.21",
+           "text": "Connect with others and explore and different points of view on various topics through the use of age-appropriate technology resources."
+          },
+          {
+           "code": "T.3-5.22",
+           "text": "Explore multiple ways to share ideas and information about themselves and the world around them, considering the expected audience."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "computer-systems-and-computational-thinking",
+     "title": "Computer Systems and Computational Thinking",
+     "topics": [
+      {
+       "id": "computer-systems-and-computational-thinking",
+       "title": "Computer Systems and Computational Thinking",
+       "subtopics": [
+        {
+         "id": "computer-systems-and-computational-thinking",
+         "title": "Computer Systems and Computational Thinking",
+         "outcomes": [
+          {
+           "code": "CS.3-5.1",
+           "text": "Verbalize the steps to solve a problem."
+          },
+          {
+           "code": "CS.3-5.2",
+           "text": "Work together in a team to solve a problem."
+          },
+          {
+           "code": "CS.3-5.3",
+           "text": "Identify various components and functions of technology."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "networks-and-cyber-infrastructure",
+     "title": "Networks and Cyber Infrastructure",
+     "topics": [
+      {
+       "id": "networks-and-cyber-infrastructure",
+       "title": "Networks and Cyber Infrastructure",
+       "subtopics": [
+        {
+         "id": "networks-and-cyber-infrastructure",
+         "title": "Networks and Cyber Infrastructure",
+         "outcomes": [
+          {
+           "code": "CS.3-5.4",
+           "text": "Identify various components and functions of computers and technology."
+          },
+          {
+           "code": "CS.3-5.5",
+           "text": "Utilize appropriate digital tools for connecting people through network/Internet."
+          },
+          {
+           "code": "CS.3-5.6",
+           "text": "Identify the importance of staying safe while using family- and educator-approved Internet sites."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "data-and-information",
+     "title": "Data and Information",
+     "topics": [
+      {
+       "id": "data-and-information",
+       "title": "Data and Information",
+       "subtopics": [
+        {
+         "id": "data-and-information",
+         "title": "Data and Information",
+         "outcomes": [
+          {
+           "code": "CS.3-5.7",
+           "text": "Collect and organize data using appropriate digital tool."
+          },
+          {
+           "code": "CS.3-5.8",
+           "text": "Analyze, interpret, and communicate data to support or refute a claim."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "programming-and-algorithms",
+     "title": "Programming and Algorithms",
+     "topics": [
+      {
+       "id": "programming-and-algorithms",
+       "title": "Programming and Algorithms",
+       "subtopics": [
+        {
+         "id": "programming-and-algorithms",
+         "title": "Programming and Algorithms",
+         "outcomes": [
+          {
+           "code": "CS.3-5.9",
+           "text": "With support and guidance, analyze and write the steps to solve problems."
+          },
+          {
+           "code": "CS.3-5.10",
+           "text": "Understand how to decompose a larger problem into smaller sub-problems using sequences, events, loops, and conditionals."
+          },
+          {
+           "code": "CS.3-5.11",
+           "text": "With support and guidance, design, create, test, and debug procedures/algorithms."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "impacts-of-computing",
+     "title": "Impacts of Computing",
+     "topics": [
+      {
+       "id": "impacts-of-computing",
+       "title": "Impacts of Computing",
+       "subtopics": [
+        {
+         "id": "impacts-of-computing",
+         "title": "Impacts of Computing",
+         "outcomes": [
+          {
+           "code": "CS.3-5.12",
+           "text": "Research and discuss how technology has changed over time."
+          },
+          {
+           "code": "CS.3-5.13",
+           "text": "Identify ways that technology can assist with their daily life."
+          },
+          {
+           "code": "CS.3-5.14",
+           "text": "With guidance and support, brainstorm ways to improve the accessibility and usability of technology products for the diverse needs and wants of others."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "6-8",
+   "units": [
+    {
+     "id": "empowered-learner",
+     "title": "Empowered Learner",
+     "topics": [
+      {
+       "id": "empowered-learner",
+       "title": "Empowered Learner",
+       "subtopics": [
+        {
+         "id": "empowered-learner",
+         "title": "Empowered Learner",
+         "outcomes": [
+          {
+           "code": "T.6-8.1",
+           "text": "Navigate a variety of technologies and transfer their knowledge and skills to learn how to use new technologies."
+          },
+          {
+           "code": "T.6-8.2",
+           "text": "Actively seek performance feedback from people, including teachers and from functionalities embedded in digital tools to improve their learning process, and select technology to demonstrate their learning in a variety of ways."
+          },
+          {
+           "code": "T.6-8.3",
+           "text": "Identify and develop online networks within school policy, and customize their learning environments in ways that support their learning, in collaboration with an educator."
+          },
+          {
+           "code": "T.6-8.4",
+           "text": "Articulate personal learning goals, select and manage appropriate technologies to achieve them, and reflect on their successes and areas of improvement in working toward their goals."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "digital-citizen",
+     "title": "Digital Citizen",
+     "topics": [
+      {
+       "id": "digital-citizen",
+       "title": "Digital Citizen",
+       "subtopics": [
+        {
+         "id": "digital-citizen",
+         "title": "Digital Citizen",
+         "outcomes": [
+          {
+           "code": "T.6-8.5",
+           "text": "Manage their digital identities and reputations within school policy, including demonstrating an understanding of how digital actions are never fully erasable."
+          },
+          {
+           "code": "T.6-8.6",
+           "text": "Demonstrate and advocate for positive, safe, legal, and ethical habits when using technology and when interacting with others online."
+          },
+          {
+           "code": "T.6-8.7",
+           "text": "Demonstrate and advocate for an understanding of intellectual property with both print and digital media-including copyright, permission, and fair use by creating a variety of media products that include appropriate citation and attribution elements."
+          },
+          {
+           "code": "T.6-8.8",
+           "text": "Demonstrate an understanding of what personal data is and how to keep it private and secure, including the awareness of terms such as encryption, Hyper Text Transfer Protocol Security (HTTPS), password, cookies and computer viruses; they also understand the limitations of data management and how data-collection technologies work."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "knowledge-constructor",
+     "title": "Knowledge Constructor",
+     "topics": [
+      {
+       "id": "knowledge-constructor",
+       "title": "Knowledge Constructor",
+       "subtopics": [
+        {
+         "id": "knowledge-constructor",
+         "title": "Knowledge Constructor",
+         "outcomes": [
+          {
+           "code": "T.6-8.9",
+           "text": "Communicate complex ideas clearly using various digital tools to convey the concepts textually, visually, graphically, etc."
+          },
+          {
+           "code": "T.6-8.10",
+           "text": "Locate and collect resources from a variety of sources and organize assets into collections for a wide range of projects and purposes."
+          },
+          {
+           "code": "T.6-8.11",
+           "text": "Practice and demonstrate the ability to evaluate resources for accuracy, perspective, credibility and relevance."
+          },
+          {
+           "code": "T.6-8.12",
+           "text": "Demonstrate and practice the ability to effectively utilize research strategies to locate appropriate digital resources in support of their learning."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "innovative-designer",
+     "title": "Innovative Designer",
+     "topics": [
+      {
+       "id": "innovative-designer",
+       "title": "Innovative Designer",
+       "subtopics": [
+        {
+         "id": "innovative-designer",
+         "title": "Innovative Designer",
+         "outcomes": [
+          {
+           "code": "T.6-8.13",
+           "text": "Create original works or responsibly repurpose other digital resources into new creative works."
+          },
+          {
+           "code": "T.6-8.14",
+           "text": "Select appropriate platforms and tools to create, share and communicate their work effectively."
+          },
+          {
+           "code": "T.6-8.15",
+           "text": "Explore real-world issues and problems and actively pursue an understanding of them and solutions for them."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "computational-thinker",
+     "title": "Computational Thinker",
+     "topics": [
+      {
+       "id": "computational-thinker",
+       "title": "Computational Thinker",
+       "subtopics": [
+        {
+         "id": "computational-thinker",
+         "title": "Computational Thinker",
+         "outcomes": [
+          {
+           "code": "T.6-8.16",
+           "text": "Select and use digital tools to support a design process and expand their understanding to identify constraints and trade-offs and to weight risks."
+          },
+          {
+           "code": "T.6-8.17",
+           "text": "Defend the selection of a specific technology tool to complete a learning task."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "creative-communicator",
+     "title": "Creative Communicator",
+     "topics": [
+      {
+       "id": "creative-communicator",
+       "title": "Creative Communicator",
+       "subtopics": [
+        {
+         "id": "creative-communicator",
+         "title": "Creative Communicator",
+         "outcomes": [
+          {
+           "code": "T.6-8.18",
+           "text": "Publish or present content designed for specific audiences and select platforms that will effectively convey their ideas to those audiences."
+          },
+          {
+           "code": "T.6-8.19",
+           "text": "Use communication tools (such as email, discussion boards, online conferences, learning management systems, and portfolios) to gather information, share ideas, and respond to questions."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "global-collaborator",
+     "title": "Global Collaborator",
+     "topics": [
+      {
+       "id": "global-collaborator",
+       "title": "Global Collaborator",
+       "subtopics": [
+        {
+         "id": "global-collaborator",
+         "title": "Global Collaborator",
+         "outcomes": [
+          {
+           "code": "T.6-8.20",
+           "text": "Select collaborative technologies and use them to work with others to investigate and develop solutions related to local and global issues."
+          },
+          {
+           "code": "T.6-8.21",
+           "text": "Use collaborative technologies to connect with others, including peers, experts, and community members, to learn about issues and problems or to gain broader perspective."
+          },
+          {
+           "code": "T.6-8.22",
+           "text": "Use digital tools to interact with others to develop a richer understanding of different perspectives and cultures."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "computer-systems-and-computational-thinking",
+     "title": "Computer Systems and Computational Thinking",
+     "topics": [
+      {
+       "id": "computer-systems-and-computational-thinking",
+       "title": "Computer Systems and Computational Thinking",
+       "subtopics": [
+        {
+         "id": "computer-systems-and-computational-thinking-1-of",
+         "title": "Computer Systems and Computational Thinking (1 of 4)",
+         "outcomes": [
+          {
+           "code": "CS.6-8.1",
+           "text": "Analyze and devise problem-solving strategies cooperatively and collaboratively."
+          },
+          {
+           "code": "CS.6-8.2",
+           "text": "Systematically identify and fix problems with computing, devices and their components."
+          },
+          {
+           "code": "CS.6-8.3",
+           "text": "Analyze connections between elements of computer science and mathematics."
+          },
+          {
+           "code": "CS.DCS.1",
+           "text": "Use the basic steps in algorithmic problem-solving to design solutions (e.g., problem statement and exploration, examination of sample instances, design, implementing a solution, testing, and evaluation)."
+          },
+          {
+           "code": "CS.DCS.2",
+           "text": "Describe the process of parallelization as it relates to problem-solving."
+          }
+         ]
+        },
+        {
+         "id": "computer-systems-and-computational-thinking-2-of",
+         "title": "Computer Systems and Computational Thinking (2 of 4)",
+         "outcomes": [
+          {
+           "code": "CS.DCS.3",
+           "text": "Define an algorithm as a sequence of instructions that canbe processed by a computer."
+          },
+          {
+           "code": "CS.DCS.4",
+           "text": "Evaluate ways that different algorithms may be used to solve the same problem."
+          },
+          {
+           "code": "CS.DCS.5",
+           "text": "Act out searching and sorting algorithms."
+          },
+          {
+           "code": "CS.DCS.6",
+           "text": "Describe and analyze a sequence of instructions being followed (e.g., describe a character's behavior in a video game as driven by rules and algorithms)."
+          },
+          {
+           "code": "CS.DCS.7",
+           "text": "Represent data in a variety of ways including text, sounds, pictures, and numbers."
+          }
+         ]
+        },
+        {
+         "id": "computer-systems-and-computational-thinking-3-of",
+         "title": "Computer Systems and Computational Thinking (3 of 4)",
+         "outcomes": [
+          {
+           "code": "CS.DCS.8",
+           "text": "Use visual representations of problem states, structures, and data (e.g., graphs, charts, network diagrams, flowcharts)."
+          },
+          {
+           "code": "CS.DCS.9",
+           "text": "Interact with content-specific models and simulations (e.g., ecosystems, epidemics, molecular dynamics) to support learning and research."
+          },
+          {
+           "code": "CS.DCS.10",
+           "text": "Evaluate what kinds of problems can be solved using modeling and simulation."
+          },
+          {
+           "code": "CS.DCS.11",
+           "text": "Analyze the degree to which a computer model accurately represents the real world."
+          },
+          {
+           "code": "CS.DCS.12",
+           "text": "Use abstraction to decompose a problem into subproblems."
+          }
+         ]
+        },
+        {
+         "id": "computer-systems-and-computational-thinking-4-of",
+         "title": "Computer Systems and Computational Thinking (4 of 4)",
+         "outcomes": [
+          {
+           "code": "CS.DCS.13",
+           "text": "Understand the notion of hierarchy and abstraction in computing including high level languages, translation, instruction set, and logic circuits."
+          },
+          {
+           "code": "CS.DCS.14",
+           "text": "Examine connections between elements of mathematics and computer science including binary numbers, logic, sets and functions."
+          },
+          {
+           "code": "CS.DCS.15",
+           "text": "Provide examples of interdisciplinary applications of computational thinking."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "networks-and-cyber-infrastructure",
+     "title": "Networks and Cyber Infrastructure",
+     "topics": [
+      {
+       "id": "networks-and-cyber-infrastructure",
+       "title": "Networks and Cyber Infrastructure",
+       "subtopics": [
+        {
+         "id": "networks-and-cyber-infrastructure",
+         "title": "Networks and Cyber Infrastructure",
+         "outcomes": [
+          {
+           "code": "CS.6-8.4",
+           "text": "Use various computer applications and online resources to explore how networks and cyber infrastructure work together to provide security and prevent system compromise."
+          },
+          {
+           "code": "CS.6-8.5",
+           "text": "Model appropriate data privacy and cyber security procedures when using a computer."
+          },
+          {
+           "code": "CS.6-8.6",
+           "text": "Understand how information is transmitted via wired and wireless networks and the security vulnerability of each."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "data-and-information",
+     "title": "Data and Information",
+     "topics": [
+      {
+       "id": "data-and-information",
+       "title": "Data and Information",
+       "subtopics": [
+        {
+         "id": "data-and-information",
+         "title": "Data and Information",
+         "outcomes": [
+          {
+           "code": "CS.6-8.7",
+           "text": "Convert various types of data into different formats."
+          },
+          {
+           "code": "CS.6-8.8",
+           "text": "Use digital tools to collect, organize, and analyze data."
+          },
+          {
+           "code": "CS.6-8.9",
+           "text": "Produce accurate and correct information from data."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "programming-and-algorithms",
+     "title": "Programming and Algorithms",
+     "topics": [
+      {
+       "id": "programming-and-algorithms",
+       "title": "Programming and Algorithms",
+       "subtopics": [
+        {
+         "id": "programming-and-algorithms-1-of-3",
+         "title": "Programming and Algorithms (1 of 3)",
+         "outcomes": [
+          {
+           "code": "CS.6-8.10",
+           "text": "Analyze the problem and use a tool (e.g., flow chart) to design an algorithm to solve complex problems."
+          },
+          {
+           "code": "CS.6-8.11",
+           "text": "Understand the function of control structures to create specific behaviors (e.g., sequential, selection, repetition)."
+          },
+          {
+           "code": "CS.6-8.12",
+           "text": "rite computer program(s) to solve simple problems and document the process for others to reference."
+          },
+          {
+           "code": "CS.6-8.13",
+           "text": "Seek and incorporate feedback from team members and users to refine a solution that meets user needs."
+          },
+          {
+           "code": "CS.DCS.20",
+           "text": "Select appropriate tools and technology resources to accomplish a variety of tasks and solve problems."
+          }
+         ]
+        },
+        {
+         "id": "programming-and-algorithms-2-of-3",
+         "title": "Programming and Algorithms (2 of 3)",
+         "outcomes": [
+          {
+           "code": "CS.DCS.21",
+           "text": "Use a variety of multimedia tools and peripherals to support personal productivity and learning throughout the curriculum."
+          },
+          {
+           "code": "CS.DCS.22",
+           "text": "Design, develop, publish, and present products (e.g., webpages, mobile applications, animations) using technology resources that demonstrate and communicate curriculum concepts."
+          },
+          {
+           "code": "CS.DCS.23",
+           "text": "Demonstrate an understanding of algorithms and their practical application."
+          },
+          {
+           "code": "CS.DCS.24",
+           "text": "Implement problem solutions using a programming language, including: looping behavior, conditional statements, logic, expressions, variables, and functions."
+          },
+          {
+           "code": "CS.DCS.25",
+           "text": "Demonstrate good practices in personal information security, using passwords, encryption, and secure transactions."
+          }
+         ]
+        },
+        {
+         "id": "programming-and-algorithms-3-of-3",
+         "title": "Programming and Algorithms (3 of 3)",
+         "outcomes": [
+          {
+           "code": "CS.DCS.26",
+           "text": "Identify interdisciplinary careers that are enhanced by computer science."
+          },
+          {
+           "code": "CS.DCS.27",
+           "text": "Demonstrate characteristics used in open ended problem-solving and programming (e.g., comfort with complexity, persistence, brainstorming, adaptability, patience, propensity to tinker, creativity, accepting challenge)."
+          },
+          {
+           "code": "CS.DCS.28",
+           "text": "Collect and analyze data that is output from multiple runs of a computer program."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "impacts-of-computing",
+     "title": "Impacts of Computing",
+     "topics": [
+      {
+       "id": "impacts-of-computing",
+       "title": "Impacts of Computing",
+       "subtopics": [
+        {
+         "id": "impacts-of-computing-1-of-2",
+         "title": "Impacts of Computing (1 of 2)",
+         "outcomes": [
+          {
+           "code": "CS.6-8.14",
+           "text": "Determine the uses of computing concepts and technology in global collaboration."
+          },
+          {
+           "code": "CS.6-8.15",
+           "text": "Explain how computer science fosters innovation in all careers and disciplines."
+          },
+          {
+           "code": "CS.6-8.16",
+           "text": "Discuss issues of bias and accessibility in the design of existing technologies."
+          },
+          {
+           "code": "CS.DCS.37",
+           "text": "Demonstrate legal and ethical behaviors when using information and technology and discuss the consequences of misuse."
+          }
+         ]
+        },
+        {
+         "id": "impacts-of-computing-2-of-2",
+         "title": "Impacts of Computing (2 of 2)",
+         "outcomes": [
+          {
+           "code": "CS.DCS.38",
+           "text": "Demonstrate knowledge of changes in information technologies over time and the effects those changes have on education, the workplace, and society."
+          },
+          {
+           "code": "CS.DCS.39",
+           "text": "Analyze the positive and negative impacts of computing on human culture."
+          },
+          {
+           "code": "CS.DCS.40",
+           "text": "Evaluate the accuracy, relevance, appropriateness, comprehensiveness, and bias of electronic information sources concerning real-world problems."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "collaboration",
+     "title": "Collaboration",
+     "topics": [
+      {
+       "id": "collaboration",
+       "title": "Collaboration",
+       "subtopics": [
+        {
+         "id": "collaboration",
+         "title": "Collaboration",
+         "outcomes": [
+          {
+           "code": "CS.DCS.16",
+           "text": "Apply productivity/multimedia tools and peripherals to group collaboration and support learning throughout the curriculum."
+          },
+          {
+           "code": "CS.DCS.17",
+           "text": "Collaboratively design, develop, publish, and present products (e.g., videos, podcasts, websites) using technology resources that demonstrate and communicate curriculum concepts."
+          },
+          {
+           "code": "CS.DCS.18",
+           "text": "Use collaborative practices such as pair programming, working in project teams, and participating in group active learning activities."
+          },
+          {
+           "code": "CS.DCS.19",
+           "text": "Demonstrate characteristics necessary for collaboration: providing useful feedback, integrating feedback, understanding and accepting multiple perspectives, socialization."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "computers-and-communications-devices",
+     "title": "Computers and Communications Devices",
+     "topics": [
+      {
+       "id": "computers-and-communications-devices",
+       "title": "Computers and Communications Devices",
+       "subtopics": [
+        {
+         "id": "computers-and-communications-devices-1-of-2",
+         "title": "Computers and Communications Devices (1 of 2)",
+         "outcomes": [
+          {
+           "code": "CS.DCS.29",
+           "text": "Recognize that computers are devices that execute programs."
+          },
+          {
+           "code": "CS.DCS.30",
+           "text": "Identify a variety of electronic devices that contain computational processors."
+          },
+          {
+           "code": "CS.DCS.31",
+           "text": "Demonstrate an understanding of the relationship between hardware and software."
+          },
+          {
+           "code": "CS.DCS.32",
+           "text": "Use developmentally appropriate, accurate terminology when communicating about technology."
+          }
+         ]
+        },
+        {
+         "id": "computers-and-communications-devices-2-of-2",
+         "title": "Computers and Communications Devices (2 of 2)",
+         "outcomes": [
+          {
+           "code": "CS.DCS.33",
+           "text": "Apply strategies for identifying and solving routine hardware problems that occur during everyday computer use."
+          },
+          {
+           "code": "CS.DCS.34",
+           "text": "Describe the major components and functions of computer systems and networks."
+          },
+          {
+           "code": "CS.DCS.35",
+           "text": "Describe what distinguishes humans from machines focusing on human intelligence versus machine intelligence and ways we can communicate."
+          },
+          {
+           "code": "CS.DCS.36",
+           "text": "Describe ways in which computers use models of intelligent behavior (e.g., robot motion, speech and language understanding, and computer vision)."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "build": {
+  "builtAt": "2026-10-14T16:20:50.914Z",
+  "model": "none",
+  "usd": 0,
+  "expectedCodes": 450,
+  "coverage": 1,
+  "missingCodes": [],
+  "counts": {
+   "grades": 7,
+   "units": 65,
+   "topics": 78,
+   "subtopics": 113,
+   "outcomes": 450
+  },
+  "warnings": []
+ }
+}

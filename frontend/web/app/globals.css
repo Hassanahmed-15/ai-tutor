@@ -1343,3 +1343,68 @@ html[data-reduced-motion="1"] *::after {
   .bot .bot-bob, .bot .bot-eye, .bot .bot-shadow, .bot .bot-antenna-dot, .bot.bot-talking .bot-mouth, .bot-caret { animation: none; }
   .bot .bot-pupil { transition: none; transform: none; }
 }
+
+/* ── THE WELCOME PAGE (components/auth/WelcomePage.tsx): the signed-out front door. ───────────
+   Two soft accent lights behind the hero, a board that draws itself, Dot beside it. */
+.welcome-glow {
+  background:
+    radial-gradient(60% 55% at 50% 0%, color-mix(in srgb, var(--accent) 34%, transparent), transparent 70%),
+    radial-gradient(40% 40% at 85% 30%, color-mix(in srgb, #4F7BFF 18%, transparent), transparent 70%),
+    radial-gradient(40% 40% at 12% 38%, color-mix(in srgb, var(--accent-ink) 14%, transparent), transparent 70%);
+}
+[data-theme="light"] .welcome-glow { opacity: 0.55; }
+.welcome-ink {
+  background: linear-gradient(100deg, var(--accent) 0%, var(--accent-ink) 55%, var(--speaking) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+.welcome-box {
+  box-shadow: 0 0 0 6px color-mix(in srgb, var(--accent) 10%, transparent), var(--elev-2);
+  transition: border-color var(--motion) var(--ease), box-shadow var(--motion) var(--ease);
+}
+.welcome-box:focus-within {
+  box-shadow: 0 0 0 6px color-mix(in srgb, var(--accent) 22%, transparent), var(--elev-2);
+}
+.welcome-cta {
+  background:
+    radial-gradient(70% 90% at 50% 0%, color-mix(in srgb, var(--accent) 22%, transparent), transparent 75%),
+    var(--surface);
+}
+/* The board keeps the lesson board's own slate in both themes. */
+.welcome-board { background: #141428; }
+.welcome-chalk-title { font-family: var(--font-display); font-size: 26px; font-weight: 600; fill: #F5F3FF; }
+.welcome-chalk { font-family: var(--font-display); font-size: 18px; fill: #EDEAF7; }
+.welcome-chalk-strong { font-family: var(--font-display); font-size: 22px; font-weight: 600; fill: #F5C86B; }
+.welcome-chalk-dim { font-family: var(--font-display); font-size: 14px; fill: #B3B0D4; }
+.welcome-draw { stroke-dasharray: 1; stroke-dashoffset: 1; animation: welcome-draw 0.7s var(--ease) forwards; }
+.welcome-pop { opacity: 0; animation: welcome-pop 0.5s var(--ease) forwards; }
+@keyframes welcome-draw { to { stroke-dashoffset: 0; } }
+@keyframes welcome-pop { from { opacity: 0; transform: translateY(4px); } to { opacity: 1; transform: none; } }
+.welcome-dot { animation: welcome-float 5s ease-in-out infinite; }
+@keyframes welcome-float { 50% { transform: translateY(-6px); } }
+.welcome-dialog { animation: welcome-pop 0.22s var(--ease); }
+@media (prefers-reduced-motion: reduce) {
+  .welcome-draw { animation: none; stroke-dashoffset: 0; }
+  .welcome-pop, .welcome-dialog { animation: none; opacity: 1; }
+  .welcome-dot { animation: none; }
+}
+[data-reduced-motion="1"] .welcome-draw { animation: none; stroke-dashoffset: 0; }
+[data-reduced-motion="1"] .welcome-pop, [data-reduced-motion="1"] .welcome-dialog { animation: none; opacity: 1; }
+[data-reduced-motion="1"] .welcome-dot { animation: none; }
+
+/* ── FIRST-RUN LAB (app/first-run-lab): subjects orbiting Dot, star maps, the syllabus scan. ── */
+.fr-bob { animation: fr-bob 4.2s ease-in-out infinite; }
+@keyframes fr-bob { 50% { transform: translate(-50%, calc(-50% - 7px)); } }
+.fr-in { animation: fr-in 0.45s var(--ease) both; }
+@keyframes fr-in { from { opacity: 0; transform: translateY(8px) scale(0.97); } to { opacity: 1; transform: none; } }
+.fr-pulse { animation: fr-pulse 1.8s ease-out infinite; transform-box: fill-box; transform-origin: center; }
+@keyframes fr-pulse { from { opacity: 0.7; transform: scale(1); } to { opacity: 0; transform: scale(2.3); } }
+.fr-scan { animation: fr-scan 1.3s ease-in-out infinite alternate; }
+@keyframes fr-scan { from { top: 0%; } to { top: calc(100% - 3px); } }
+.fr-line { stroke-dasharray: 1; stroke-dashoffset: 1; animation: welcome-draw 0.6s var(--ease) forwards; }
+@media (prefers-reduced-motion: reduce) {
+  .fr-bob, .fr-pulse, .fr-scan { animation: none; }
+  .fr-in { animation: none; }
+  .fr-line { animation: none; stroke-dashoffset: 0; }
+}

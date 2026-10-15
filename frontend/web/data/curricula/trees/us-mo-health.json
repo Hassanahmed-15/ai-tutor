@@ -1,0 +1,4376 @@
+{
+ "id": "us-mo-health",
+ "region": "US",
+ "framework": "Missouri state academic standards: Health Education",
+ "board": null,
+ "qualification": "K-12",
+ "subject": "Health Education",
+ "syllabusCode": null,
+ "gradeSystem": "grade",
+ "source": {
+  "urls": [
+   "https://api.commonstandardsproject.com/api/v1/jurisdictions/175A144B44F94BFAB539F3B571A3A62C",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/8E7164B101844963AC5EE8384240015E",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/175A144B44F94BFAB539F3B571A3A62C_D2582981_grade-01",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/175A144B44F94BFAB539F3B571A3A62C_D2582981_grade-02",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/175A144B44F94BFAB539F3B571A3A62C_D2582981_grade-03",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/175A144B44F94BFAB539F3B571A3A62C_D2582981_grade-04",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/175A144B44F94BFAB539F3B571A3A62C_D2582981_grade-05",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/175A144B44F94BFAB539F3B571A3A62C_D2582981_grade-06",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/175A144B44F94BFAB539F3B571A3A62C_D2582981_grade-07",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/175A144B44F94BFAB539F3B571A3A62C_D2582981_grade-08",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/175A144B44F94BFAB539F3B571A3A62C_D2582981_grades-09-10-11-12",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/175A144B44F94BFAB539F3B571A3A62C_D2582981_grade-k"
+  ],
+  "publisher": "Missouri state education agency (machine-readable via Common Standards Project / ASN)",
+  "licence": "CC BY 4.0 US, Common Curriculum, Inc.; CC BY 3.0 US, Desire2Learn Incorporated",
+  "firstExam": "2007"
+ },
+ "grades": [
+  {
+   "grade": "K",
+   "units": [
+    {
+     "id": "functions-and-interrelationships-of-systems",
+     "title": "Functions and Interrelationships of Systems",
+     "topics": [
+      {
+       "id": "structure-and-functions-of-the-body",
+       "title": "Structure and Functions of the Body",
+       "subtopics": [
+        {
+         "id": "sensory-system",
+         "title": "Sensory System",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Identify the five senses."
+          }
+         ]
+        },
+        {
+         "id": "muscular-system",
+         "title": "Muscular System",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Tell why people have muscles."
+          }
+         ]
+        },
+        {
+         "id": "skeletal-system",
+         "title": "Skeletal System",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Tell why people have bones."
+          }
+         ]
+        },
+        {
+         "id": "cardio-respiratory-circulatory-system",
+         "title": "Cardio-respiratory/Circulatory System",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Show the location of the heart."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "social-emotional-and-mental-health",
+       "title": "Social, Emotional and Mental Health",
+       "subtopics": [
+        {
+         "id": "influence-of-family-and-peers",
+         "title": "Influence of Family and Peers",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "State qualities of a good friend."
+          },
+          {
+           "code": null,
+           "text": "Recognize similarities and differences of families."
+          }
+         ]
+        },
+        {
+         "id": "communication-skills",
+         "title": "Communication Skills",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Recognize different emotions."
+          },
+          {
+           "code": null,
+           "text": "Identify appropriate ways of expressing feelings and recognize verbal and nonverbal cues associated with each (e.g., happy, sad, mad, and afraid)."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "health-maintenance-and-enhancement",
+     "title": "Health Maintenance and Enhancement",
+     "topics": [
+      {
+       "id": "personal-and-family-health",
+       "title": "Personal and Family Health",
+       "subtopics": [
+        {
+         "id": "personal-health",
+         "title": "Personal Health",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Identify behaviors that keep a person healthy (e.g., physical activity, sleep, good nutrition, clothing, hygiene)."
+          }
+         ]
+        },
+        {
+         "id": "health-and-skill-related-fitness",
+         "title": "Health and Skill Related Fitness",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Recognize that active play makes people strong and healthy."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "nutrition",
+       "title": "Nutrition",
+       "subtopics": [
+        {
+         "id": "balance-variety-and-moderation",
+         "title": "Balance, Variety and Moderation",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Recognize we need a variety of foods each day."
+          }
+         ]
+        },
+        {
+         "id": "food-handling-and-safety",
+         "title": "Food Handling and Safety",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Recognize how germs are spread and apply practices to reduce germs in our community (e.g., hand washing, not eating food off, floor, not touching others' food, wash fruits and vegetables)."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "consumer-health-and-safety",
+       "title": "Consumer Health and Safety",
+       "subtopics": [
+        {
+         "id": "community-services-careers",
+         "title": "Community Services/Careers",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Identify community helpers and health professionals (e.g., fire, police, nurse, doctor, dentist, pediatrician, pharmacist, safety patrol)."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "life-management-skills",
+       "title": "Life Management Skills",
+       "subtopics": [
+        {
+         "id": "decision-making-and-problem-solving",
+         "title": "Decision Making and Problem Solving",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Recognize that people have disagreements and choices on how to resolve them."
+          }
+         ]
+        },
+        {
+         "id": "refusal-assertive-skills-and-conflict-resolution",
+         "title": "Refusal/Assertive Skills and Conflict Resolution",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Recognize and practice saying \"no\" to unhealthy actions and behaviors toward them (e.g., stop, get away, and tell an adult or No, Go, and Tell)."
+          }
+         ]
+        },
+        {
+         "id": "harassment-bullying-and-violence-prevention",
+         "title": "Harassment/Bullying and Violence Prevention",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Define \"private parts\" (e.g., what is covered by a swimming suit) and distinguish between \"safe\" and \"unsafe\" touch."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "risk-assessment-and-reduction",
+     "title": "Risk Assessment and Reduction",
+     "topics": [
+      {
+       "id": "disease-prevention-and-control",
+       "title": "Disease Prevention and Control",
+       "subtopics": [
+        {
+         "id": "communicable-vs-non-communicable-diseases",
+         "title": "Communicable vs. Non-Communicable Diseases",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Recognize that germs cause illness."
+          }
+         ]
+        },
+        {
+         "id": "body-defenses-and-recovery",
+         "title": "Body Defenses and Recovery",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Model proper hand washing and hygiene."
+          }
+         ]
+        },
+        {
+         "id": "hiv-aids-prevention-education",
+         "title": "HIV/AIDS Prevention Education",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Identify bodily fluids (e.g., blood, saliva, urine, tears, sweat, mucous)."
+          },
+          {
+           "code": null,
+           "text": "Identify how gloves protect us from bodily fluids."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "injury-prevention-and-safety",
+       "title": "Injury Prevention and Safety",
+       "subtopics": [
+        {
+         "id": "safety-for-home-school-and-communities",
+         "title": "Safety for Home, School, and Communities",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Identify safe and unsafe practices and conditions at home, school, and in the community."
+          },
+          {
+           "code": null,
+           "text": "Recognize warning labels that identify harmful items and substances (e.g., cleaning products, \"Mr. Yuk\" symbol, plastic bags)."
+          }
+         ]
+        },
+        {
+         "id": "first-aid-procedures",
+         "title": "First Aid Procedures",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Tell what first aid is and give an example."
+          },
+          {
+           "code": null,
+           "text": "Explain how to make emergency phone calls."
+          }
+         ]
+        },
+        {
+         "id": "activity-related-injuries-and-environmental-cond",
+         "title": "Activity Related Injuries and Environmental Conditions",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Recognize that safety equipment is necessary to protect the body during participation in sports and recreational activities (e.g., helmet, mouth piece, shin guards, eye protection)."
+          }
+         ]
+        },
+        {
+         "id": "water-related-emergencies",
+         "title": "Water-Related Emergencies",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Recognize the importance of safety rules in and around water."
+          },
+          {
+           "code": null,
+           "text": "Identify specific safe practices in and around water (e.g., life jackets, buddy system, inclement weather)."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "substance-education",
+       "title": "Substance Education",
+       "subtopics": [
+        {
+         "id": "safe-and-unsafe-substances",
+         "title": "Safe and Unsafe Substances",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Recognize that there are safe and unsafe substances that can be taken into the body."
+          },
+          {
+           "code": null,
+           "text": "Identify ways to stay sway from dangerous substances."
+          }
+         ]
+        },
+        {
+         "id": "purpose-and-guidelines-for-prescription-otc-drug",
+         "title": "Purpose and Guidelines for Prescription, OTC Drugs and Natural Substances",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Recognize that medicine is used to prevent or treat certain health problems, taken under adult supervision."
+          }
+         ]
+        },
+        {
+         "id": "substance-use-vs-non-use",
+         "title": "Substance Use vs. Non-Use",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Recognize that TAOD (tobacco, alcohol, and other drugs)can have dangerous effects on the body."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "environmental-health",
+       "title": "Environmental Health",
+       "subtopics": [
+        {
+         "id": "effects-of-pollution-on-health",
+         "title": "Effects of Pollution on Health",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Recognize how the environment affects a person's health."
+          }
+         ]
+        },
+        {
+         "id": "individual-responsibility",
+         "title": "Individual Responsibility",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Identify ways to protect the body from the environment (e.g., sunscreen, insect repellant, sunglasses, goggles, hats)."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "1",
+   "units": [
+    {
+     "id": "functions-and-interrelationships-of-systems",
+     "title": "Functions and Interrelationships of Systems",
+     "topics": [
+      {
+       "id": "structure-and-functions-of-the-body",
+       "title": "Structure and Functions of the Body",
+       "subtopics": [
+        {
+         "id": "sensory-system",
+         "title": "Sensory System",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Illustrate the functions of the five senses (e.g., eyes to see)."
+          }
+         ]
+        },
+        {
+         "id": "muscular-system",
+         "title": "Muscular System",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Identify a muscle in each region of the body (e.g., arms, torso, legs)."
+          }
+         ]
+        },
+        {
+         "id": "skeletal-system",
+         "title": "Skeletal System",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Identify a bone in each region of the body (i.e., head, arms, torso, and legs)."
+          }
+         ]
+        },
+        {
+         "id": "cardio-respiratory-circulatory-system",
+         "title": "Cardio-respiratory/Circulatory System",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Predict what happens to your heart rate during physical activity."
+          }
+         ]
+        },
+        {
+         "id": "respiratory-system",
+         "title": "Respiratory System",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Identify the basic components of the respiratory system (e.g., nose, mouth, lungs)."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "social-emotional-and-mental-health",
+       "title": "Social, Emotional and Mental Health",
+       "subtopics": [
+        {
+         "id": "influence-of-family-and-peers",
+         "title": "Influence of Family and Peers",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Identify responsibilities within a family and describe characteristics needed to be a responsible family member."
+          }
+         ]
+        },
+        {
+         "id": "responsibilities-in-society",
+         "title": "Responsibilities in Society",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Recognize how each person has a unique contribution (e.g., physical, mental, cultural, ethnicity) to their community (e.g., classroom, school, neighborhood)."
+          }
+         ]
+        },
+        {
+         "id": "communication-skills",
+         "title": "Communication Skills",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Identify a variety of feelings and situations that may require adult assistance."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "health-maintenance-and-enhancement",
+     "title": "Health Maintenance and Enhancement",
+     "topics": [
+      {
+       "id": "personal-and-family-health",
+       "title": "Personal and Family Health",
+       "subtopics": [
+        {
+         "id": "personal-health",
+         "title": "Personal Health",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Show the cause and effect of healthy behaviors (e.g., physical activity, sleep, good nutrition, clothing, hygiene."
+          }
+         ]
+        },
+        {
+         "id": "preventive-care",
+         "title": "Preventive Care",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Identify preventive health care (e.g., immunizations, regular health and dental check-ups)."
+          }
+         ]
+        },
+        {
+         "id": "health-and-skill-related-fitness",
+         "title": "Health and Skill Related Fitness",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Recognize that physical activity increases heart and respiratory rate."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "nutrition",
+       "title": "Nutrition",
+       "subtopics": [
+        {
+         "id": "essential-nutrients-and-food-groupings",
+         "title": "Essential Nutrients and Food Groupings",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Recognize that foods come from plant and animal sources and provide the body with fuel (energy)."
+          },
+          {
+           "code": null,
+           "text": "Recognize that food fits into different groups and that different amounts are needed from each food group for healthy eating (i.e., grains, fruits, vegetables, dairy, beans, meats)."
+          }
+         ]
+        },
+        {
+         "id": "food-labels",
+         "title": "Food Labels",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Recognize that packaged food products contain labels."
+          }
+         ]
+        },
+        {
+         "id": "food-handling-and-safety",
+         "title": "Food Handling and Safety",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Illustrate proper food safety procedures (e.g., washing hands, not touching other's food, double dipping)."
+          }
+         ]
+        },
+        {
+         "id": "food-energy-and-physical-activity",
+         "title": "Food Energy and Physical Activity",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Recognize that food provides the body with fuel (energy) (e.g., importance of eating breakfast)."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "consumer-health-and-safety",
+       "title": "Consumer Health and Safety",
+       "subtopics": [
+        {
+         "id": "community-services-careers",
+         "title": "Community Services/Careers",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe the responsibilities of various community helpers."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "life-management-skills",
+       "title": "Life Management Skills",
+       "subtopics": [
+        {
+         "id": "decision-making-and-problem-solving",
+         "title": "Decision Making and Problem Solving",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Recognize that decisions have consequences."
+          }
+         ]
+        },
+        {
+         "id": "refusal-assertive-skills-and-conflict-resolution",
+         "title": "Refusal/Assertive Skills and Conflict Resolution",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe what causes disagreements/fights and how to avoid them."
+          }
+         ]
+        },
+        {
+         "id": "goal-setting-and-asset-development",
+         "title": "Goal Setting and Asset Development",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "demonstrate how goal-setting can help a person make a difference in their health or fitness."
+          }
+         ]
+        },
+        {
+         "id": "stress-management-and-coping-skills",
+         "title": "Stress Management and Coping Skills",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Recognize what stress is and how it affects the body."
+          }
+         ]
+        },
+        {
+         "id": "harassment-bullying-and-violence-prevention",
+         "title": "Harassment/Bullying and Violence Prevention",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Identify a trusted adult."
+          },
+          {
+           "code": null,
+           "text": "Identify acceptable and unacceptable behavior toward others and list positive ways to deal with those behaviors."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "risk-assessment-and-reduction",
+     "title": "Risk Assessment and Reduction",
+     "topics": [
+      {
+       "id": "disease-prevention-and-control",
+       "title": "Disease Prevention and Control",
+       "subtopics": [
+        {
+         "id": "communicable-vs-non-communicable-diseases",
+         "title": "Communicable vs. Non-Communicable Diseases",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Identify signs of illness and list ways to help you recover."
+          },
+          {
+           "code": null,
+           "text": "Define germs, where they are found, and what harm they cause to the body."
+          }
+         ]
+        },
+        {
+         "id": "body-defenses-and-recovery",
+         "title": "Body Defenses and Recovery",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Identify behaviors that prevent and reduce chances of illness (e.g., drinking plenty of water, immunizations, sleep, eating healthy foods)."
+          }
+         ]
+        },
+        {
+         "id": "hiv-aids-prevention-education",
+         "title": "HIV/AIDS Prevention Education",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Recognize that bodily fluids can carry harmful diseases and that some diseases are easily transmitted while others are not."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "injury-prevention-and-safety",
+       "title": "Injury Prevention and Safety",
+       "subtopics": [
+        {
+         "id": "safety-for-home-school-and-communities",
+         "title": "Safety for Home, School, and Communities",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Identify ways to stay safe in bad weather (e.g., tornado, electric storms)."
+          },
+          {
+           "code": null,
+           "text": "Identify safety rules for being around strangers and using the internet."
+          },
+          {
+           "code": null,
+           "text": "Identify potential hazards in and around the home (e.g., kitchen, bathroom, yard, evacuation plan)."
+          }
+         ]
+        },
+        {
+         "id": "first-aid-procedures",
+         "title": "First Aid Procedures",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Identify individuals who can properly assist with first aid procedures (e.g., school nurse, lifeguard, teacher, parent, babysitter)."
+          }
+         ]
+        },
+        {
+         "id": "activity-related-injuries-and-environmental-cond",
+         "title": "Activity Related Injuries and Environmental Conditions",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Match safety equipment to the activity or sport."
+          }
+         ]
+        },
+        {
+         "id": "water-related-emergencies",
+         "title": "Water-Related Emergencies",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Demonstrate specific safe practices and procedures in and around water (e.g., life jackets, buddy system, inclement weather)."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "substance-education",
+       "title": "Substance Education",
+       "subtopics": [
+        {
+         "id": "safe-and-unsafe-substances",
+         "title": "Safe and Unsafe Substances",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Identify alcohol, tobacco, and medicines as drugs."
+          },
+          {
+           "code": null,
+           "text": "Differentiate what is and what is not medicine and it's proper and improper use (e.g., vitamins)."
+          }
+         ]
+        },
+        {
+         "id": "purpose-and-guidelines-for-prescription-otc-drug",
+         "title": "Purpose and Guidelines for Prescription, OTC Drugs and Natural Substances",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Distinguish between over-the-counter and prescription drugs."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "environmental-health",
+       "title": "Environmental Health",
+       "subtopics": [
+        {
+         "id": "effects-of-pollution-on-health",
+         "title": "Effects of Pollution on Health",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Identify substances that pollute the air and harm your lungs."
+          },
+          {
+           "code": null,
+           "text": "Recognize the effects of noise pollution on the body (e.g., loud music, headsets)."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "2",
+   "units": [
+    {
+     "id": "functions-and-interrelationships-of-systems",
+     "title": "Functions and Interrelationships of Systems",
+     "topics": [
+      {
+       "id": "structure-and-functions-of-the-body",
+       "title": "Structure and Functions of the Body",
+       "subtopics": [
+        {
+         "id": "muscular-system",
+         "title": "Muscular System",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe the functions of the muscular systems and provide examples (e.g., muscles pull on bones to move the joints, move food through the body)."
+          }
+         ]
+        },
+        {
+         "id": "skeletal-system",
+         "title": "Skeletal System",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe the functions of the skeletal system (e.g., protects body parts, supports the framework, works with muscles)."
+          }
+         ]
+        },
+        {
+         "id": "integumentary-system-skin",
+         "title": "Integumentary System (skin)",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe the function of the skin (e.g., protection)."
+          }
+         ]
+        },
+        {
+         "id": "cardio-respiratory-circulatory-system",
+         "title": "Cardio-respiratory/Circulatory System",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Identify the major components (i.e., blood vessels, heart) and functions (e.g., transport blood throughout the body) of the cardio-respiratory system."
+          },
+          {
+           "code": null,
+           "text": "Name the major functions of the cardio-respiratory system."
+          }
+         ]
+        },
+        {
+         "id": "respiratory-system",
+         "title": "Respiratory System",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Identify additional components of the respiratory system (e.g., trachea, bronchial tubes, diaphragm, alveoli)."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "social-emotional-and-mental-health",
+       "title": "Social, Emotional and Mental Health",
+       "subtopics": [
+        {
+         "id": "influence-of-family-and-peers",
+         "title": "Influence of Family and Peers",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Recognize the influence peers have on people ( shared interest, goals, and values)."
+          }
+         ]
+        },
+        {
+         "id": "responsibilities-in-society",
+         "title": "Responsibilities in Society",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Identify the cause and effect of one's actions on others."
+          }
+         ]
+        },
+        {
+         "id": "communication-skills",
+         "title": "Communication Skills",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Identify appropriate ways to express needs, wants, and feelings (e.g., dealing with anger, model attentive listening skills)."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "health-maintenance-and-enhancement",
+     "title": "Health Maintenance and Enhancement",
+     "topics": [
+      {
+       "id": "personal-and-family-health",
+       "title": "Personal and Family Health",
+       "subtopics": [
+        {
+         "id": "personal-health",
+         "title": "Personal Health",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Identify and show good oral hygiene (e.g., brushing, flossing, dental exams)."
+          }
+         ]
+        },
+        {
+         "id": "growth-and-development",
+         "title": "Growth and Development",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe how people grow and change throughout life (physically, mentally, emotionally, and socially)."
+          }
+         ]
+        },
+        {
+         "id": "health-and-skill-related-fitness",
+         "title": "Health and Skill Related Fitness",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe how physical activity makes a person's body stronger (e.g., helps develop strength, endurance, flexibility, and body composition)."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "nutrition",
+       "title": "Nutrition",
+       "subtopics": [
+        {
+         "id": "essential-nutrients-and-food-groupings",
+         "title": "Essential Nutrients and Food Groupings",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Identify healthy food choices (see MyPyramid.gov) in each of the five food groups (sorting play food or pictures into food groups)."
+          },
+          {
+           "code": null,
+           "text": "Compare and contrast the effects of nutrient-dense and empty-calorie foods on the body (e.g., soda/skim milk, chips/apple; cookies/carrots)."
+          }
+         ]
+        },
+        {
+         "id": "balance-variety-and-moderation",
+         "title": "Balance, Variety and Moderation",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Identify a healthy snack from each food group (see MyPyramid.gov)."
+          },
+          {
+           "code": null,
+           "text": "Recognize that eating healthy and being active will help maintain a healthy body composition."
+          }
+         ]
+        },
+        {
+         "id": "food-labels",
+         "title": "Food Labels",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Identify the basic parts of the Nutrition Facts label (e.g., serving size, fat, sugar, ingredients)."
+          }
+         ]
+        },
+        {
+         "id": "food-handling-and-safety",
+         "title": "Food Handling and Safety",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Recognize the four basic rules of food handling (i.e., clean, cook, chill, separate)."
+          }
+         ]
+        },
+        {
+         "id": "food-energy-and-physical-activity",
+         "title": "Food Energy and Physical Activity",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Select foods that are nutrient-dense to provide the body with long-lasting energy for thinking and physical activity (e.g., eating fruits/vegetables versus candy/chips)."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "consumer-health-and-safety",
+       "title": "Consumer Health and Safety",
+       "subtopics": [
+        {
+         "id": "media-influence-on-health-habits-and-decisions",
+         "title": "Media Influence on Health Habits and Decisions",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Identify advertising techniques that target children (e.g., toys in cereal, fast food meals, cartoon characters)."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "life-management-skills",
+       "title": "Life Management Skills",
+       "subtopics": [
+        {
+         "id": "decision-making-and-problem-solving",
+         "title": "Decision Making and Problem Solving",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Identify positive ways to solve or prevent problems (e.g., verbal communication skills, non-verbal, and \"I\" messages)."
+          }
+         ]
+        },
+        {
+         "id": "goal-setting-and-asset-development",
+         "title": "Goal Setting and Asset Development",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Identify positive influences in a person's life (e.g., school, community, family)."
+          }
+         ]
+        },
+        {
+         "id": "stress-management-and-coping-skills",
+         "title": "Stress Management and Coping Skills",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Identify healthy activities that can relieve uncomfortable feelings and emotions."
+          }
+         ]
+        },
+        {
+         "id": "harassment-bullying-and-violence-prevention",
+         "title": "Harassment/Bullying and Violence Prevention",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Identify resources in the community that can provide safety (e.g., police, safe houses, school, counselor, mall security)."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "risk-assessment-and-reduction",
+     "title": "Risk Assessment and Reduction",
+     "topics": [
+      {
+       "id": "disease-prevention-and-control",
+       "title": "Disease Prevention and Control",
+       "subtopics": [
+        {
+         "id": "communicable-vs-non-communicable-diseases",
+         "title": "Communicable vs. Non-Communicable Diseases",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Define communicable and non-communicable diseases."
+          },
+          {
+           "code": null,
+           "text": "Identify how germs are spread and apply practices which help reduce germs in our community (e.g., cover mouth when sneezing, wash hands)."
+          }
+         ]
+        },
+        {
+         "id": "hiv-aids-prevention-education",
+         "title": "HIV/AIDS Prevention Education",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Identify safe practices for reducing a person's risk for disease (e.g., syringes and needles, sneezing, coughing, hand washing)."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "injury-prevention-and-safety",
+       "title": "Injury Prevention and Safety",
+       "subtopics": [
+        {
+         "id": "safety-for-home-school-and-communities",
+         "title": "Safety for Home, School, and Communities",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe common safety rules and laws (e.g., playground, bicycle, pedestrian, vehicle)."
+          },
+          {
+           "code": null,
+           "text": "List common emergencies and steps to take in each situation."
+          }
+         ]
+        },
+        {
+         "id": "first-aid-procedures",
+         "title": "First Aid Procedures",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Recognize what to do for minor injuries under adult supervision (e.g., scrape, cut, nosebleed)."
+          }
+         ]
+        },
+        {
+         "id": "activity-related-injuries-and-environmental-cond",
+         "title": "Activity Related Injuries and Environmental Conditions",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain the use and purpose of safety equipment."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "substance-education",
+       "title": "Substance Education",
+       "subtopics": [
+        {
+         "id": "safe-and-unsafe-substances",
+         "title": "Safe and Unsafe Substances",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Identify various types of drugs (e.g., nicotine, alcohol and street drugs)."
+          },
+          {
+           "code": null,
+           "text": "Explain what constitutes a drug free and safe community."
+          }
+         ]
+        },
+        {
+         "id": "purpose-and-guidelines-for-prescription-otc-drug",
+         "title": "Purpose and Guidelines for Prescription, OTC Drugs and Natural Substances",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Recognize importance of safely storing medicine in its proper place."
+          }
+         ]
+        },
+        {
+         "id": "substance-use-vs-non-use",
+         "title": "Substance Use vs. Non-Use",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe the effects of TAOD on the body (e.g., lungs, brain, liver)."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "environmental-health",
+       "title": "Environmental Health",
+       "subtopics": [
+        {
+         "id": "individual-responsibility",
+         "title": "Individual Responsibility",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Recognize the harmful effects of poor air quality or extreme temperature to the body (e.g., asthma, allergies, hypothermia)."
+          },
+          {
+           "code": null,
+           "text": "Recognize that littering is against the law and promotes the spreading of pathogens."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "3",
+   "units": [
+    {
+     "id": "functions-and-interrelationships-of-systems",
+     "title": "Functions and Interrelationships of Systems",
+     "topics": [
+      {
+       "id": "structure-and-functions-of-the-body",
+       "title": "Structure and Functions of the Body",
+       "subtopics": [
+        {
+         "id": "sensory-system",
+         "title": "Sensory System",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Classify the five sense organs and their parts (e.g., iris, ear canal, olfactory bulb, taste buds, nasal cavity) and explain how the five senses are used in personal and social environment (e.g., gathering information, making observations, drawing conclusions)."
+          },
+          {
+           "code": null,
+           "text": "Name the major parts, functions and disorders of the sensory organs (e.g., near-sightedness, far-sightedness, hearing loss)."
+          }
+         ]
+        },
+        {
+         "id": "muscular-system",
+         "title": "Muscular System",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Recognize the major muscles of the muscular system (e.g., deltoid, tricep, abdominal, quadricep)."
+          }
+         ]
+        },
+        {
+         "id": "skeletal-system",
+         "title": "Skeletal System",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Categorize and label different bones by body parts (e.g., leg-tibia, arms-humerus, head-skull, torso-spine."
+          }
+         ]
+        },
+        {
+         "id": "integumentary-system-skin",
+         "title": "Integumentary System (skin)",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Identify the major components and functions of the integumentary system (i.e., skin, hair, nails)."
+          }
+         ]
+        },
+        {
+         "id": "cardio-respiratory-circulatory-system",
+         "title": "Cardio-respiratory/Circulatory System",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Identify the cause and effect of lifestyles choices (e.g., activity, diet, tobacco use) on the cardio-respiratory system (e.g., healthy heart vs. unhealthy heart, blocked blood vessels, lung capacity)."
+          },
+          {
+           "code": null,
+           "text": "Identify the cause and effect of an active vs. inactive lifestyle on the cardio-respiratory system (e.g., healthy vs. unhealthy heart and lungs)."
+          }
+         ]
+        },
+        {
+         "id": "respiratory-system",
+         "title": "Respiratory System",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Identify common problems, symptoms, and treatment of breathing disorders (e.g., asthma, bronchitis)."
+          },
+          {
+           "code": null,
+           "text": "Identify the cause and effect of lifestyle choices on the respiratory system (e.g., inactivity, tobacco)."
+          }
+         ]
+        },
+        {
+         "id": "nervous-system",
+         "title": "Nervous System",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Identify the major components and functions of the nervous system (i.e., brain, spinal cord, nerves)."
+          }
+         ]
+        },
+        {
+         "id": "digestive-system",
+         "title": "Digestive System",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Identify the major components (e.g., mouth, esophagus, stomach, small intestine, large intestine) and functions of the digestive system."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "social-emotional-and-mental-health",
+       "title": "Social, Emotional and Mental Health",
+       "subtopics": [
+        {
+         "id": "responsibilities-in-society",
+         "title": "Responsibilities in Society",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Analyze the duties and responsibilities needed to be a contributing member of a social community (e.g., school, church, neighborhood, Girl/Boy Scouts, service)."
+          }
+         ]
+        },
+        {
+         "id": "communication-skills",
+         "title": "Communication Skills",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Evaluate the importance of effective listening skills in building and maintaining relationships."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "health-maintenance-and-enhancement",
+     "title": "Health Maintenance and Enhancement",
+     "topics": [
+      {
+       "id": "personal-and-family-health",
+       "title": "Personal and Family Health",
+       "subtopics": [
+        {
+         "id": "personal-health",
+         "title": "Personal Health",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe how personal health is enhanced by behaviors (include care of skin, teeth, gums, hair, eyes, nose, ears, nails)."
+          }
+         ]
+        },
+        {
+         "id": "preventive-care",
+         "title": "Preventive Care",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Summarize how preventive health care enhances one's health (e.g., immunizations, regular health and dental care)."
+          }
+         ]
+        },
+        {
+         "id": "growth-and-development",
+         "title": "Growth and Development",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Sequence the stages of the human life cycle (e.g., infant, toddler, preschool, school-age)."
+          }
+         ]
+        },
+        {
+         "id": "health-and-skill-related-fitness",
+         "title": "Health and Skill Related Fitness",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Identify components of health related fitness."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "nutrition",
+       "title": "Nutrition",
+       "subtopics": [
+        {
+         "id": "essential-nutrients-and-food-groupings",
+         "title": "Essential Nutrients and Food Groupings",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Identify the six essential nutrients and their functions (carbohydrates, protein, fats, vitamins, minerals, water)."
+          }
+         ]
+        },
+        {
+         "id": "balance-variety-and-moderation",
+         "title": "Balance, Variety and Moderation",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Compare and contrast the relationship between body image and personal health (e.g., self-esteem, disease prevention)."
+          }
+         ]
+        },
+        {
+         "id": "food-labels",
+         "title": "Food Labels",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain the importance of nutrition facts on food labels in making healthy selections (e.g., serving size, calories, nutrients, ingredients)."
+          }
+         ]
+        },
+        {
+         "id": "food-energy-and-physical-activity",
+         "title": "Food Energy and Physical Activity",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Recognize that essential nutrients provide different amounts of energy (e.g., carbohydrates, protein, fats)."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "life-management-skills",
+       "title": "Life Management Skills",
+       "subtopics": [
+        {
+         "id": "decision-making-and-problem-solving",
+         "title": "Decision Making and Problem Solving",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Identify the five steps of the decision making process: 1. What is the problem? 2. What are my choices? 3. What are the pros and cons of each choice? 4. How important are the consequences of each choice? 5. Which is the best choice?."
+          }
+         ]
+        },
+        {
+         "id": "refusal-assertive-skills-and-conflict-resolution",
+         "title": "Refusal/Assertive Skills and Conflict Resolution",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Define refusal skills (strategies that help you say no) and assertive skills (skills that allow you to behave with confidence)."
+          }
+         ]
+        },
+        {
+         "id": "stress-management-and-coping-skills",
+         "title": "Stress Management and Coping Skills",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe healthy activities and coping strategies to deal with uncomfortable feelings and emotions(e.g., ask a trusted adult, make a plan of action, exercise, speak up)."
+          },
+          {
+           "code": null,
+           "text": "Differentiate positive and negative stress and how they can affect a person."
+          }
+         ]
+        },
+        {
+         "id": "harassment-bullying-and-violence-prevention",
+         "title": "Harassment/Bullying and Violence Prevention",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Define bullying and harassment and list acts of each (e.g., excluding from group, teasing, inflicting physical harm)."
+          },
+          {
+           "code": null,
+           "text": "Define violence and identify the causes (e.g., anger, prejudice, child abuse, socio-economic status)."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "risk-assessment-and-reduction",
+     "title": "Risk Assessment and Reduction",
+     "topics": [
+      {
+       "id": "disease-prevention-and-control",
+       "title": "Disease Prevention and Control",
+       "subtopics": [
+        {
+         "id": "communicable-vs-non-communicable-diseases",
+         "title": "Communicable vs. Non-Communicable Diseases",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Classify communicable and non-communicable diseases into the appropriate category."
+          }
+         ]
+        },
+        {
+         "id": "body-defenses-and-recovery",
+         "title": "Body Defenses and Recovery",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Identify the body's basic lines of defense (e.g., skin, hair in nasal passages, white blood cells)."
+          }
+         ]
+        },
+        {
+         "id": "types-of-pathogens-and-transmission",
+         "title": "Types of Pathogens and Transmission",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Define pathogen and identify three major types (i.e., bacteria, virus, fungi)."
+          }
+         ]
+        },
+        {
+         "id": "hiv-aids-prevention-education",
+         "title": "HIV/AIDS Prevention Education",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Define HIV/AIDS and recognize that HIV is transmitted through blood and other bodily fluids."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "injury-prevention-and-safety",
+       "title": "Injury Prevention and Safety",
+       "subtopics": [
+        {
+         "id": "safety-for-home-school-and-communities",
+         "title": "Safety for Home, School, and Communities",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Construct a plan of what to do when home alone (e.g., emergency phone list, not answering door, not using stove)."
+          }
+         ]
+        },
+        {
+         "id": "first-aid-procedures",
+         "title": "First Aid Procedures",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Create a plan that recognizes an emergency or non-emergency situation and how to respond (should I call 911?)."
+          }
+         ]
+        },
+        {
+         "id": "water-related-emergencies",
+         "title": "Water-Related Emergencies",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Apply safe practices and procedures in and around water."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "substance-education",
+       "title": "Substance Education",
+       "subtopics": [
+        {
+         "id": "purpose-and-guidelines-for-prescription-otc-drug",
+         "title": "Purpose and Guidelines for Prescription, OTC Drugs and Natural Substances",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Recognize the role of medication in treating an illness."
+          }
+         ]
+        },
+        {
+         "id": "substance-use-vs-non-use",
+         "title": "Substance Use vs. Non-Use",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe how TAOD affects the way a person thinks, feels, and acts."
+          },
+          {
+           "code": null,
+           "text": "Recognize the factors (e.g., media, peers, self-concept) that influence decisions to use or abuse substances."
+          },
+          {
+           "code": null,
+           "text": "Identify healthy alternatives instead of using or abusing substances (e.g., clubs, physical activity, sports)."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "environmental-health",
+       "title": "Environmental Health",
+       "subtopics": [
+        {
+         "id": "effects-of-pollution-on-health",
+         "title": "Effects of Pollution on Health",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Recognize different types of pollution and how they affect one's health (noise, water, air, land)."
+          }
+         ]
+        },
+        {
+         "id": "individual-responsibility",
+         "title": "Individual Responsibility",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe what an individual can do to help preserve the environment and promote environmental health (e.g., recycle, reduce, reuse)."
+          },
+          {
+           "code": null,
+           "text": "Recognize that there are laws and regulations designed to promote and protect community and environmental health (e.g., littering, illegal dumping, noise ordinances)."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "4",
+   "units": [
+    {
+     "id": "functions-and-interrelationships-of-systems",
+     "title": "Functions and Interrelationships of Systems",
+     "topics": [
+      {
+       "id": "structure-and-functions-of-the-body",
+       "title": "Structure and Functions of the Body",
+       "subtopics": [
+        {
+         "id": "muscular-system",
+         "title": "Muscular System",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe how muscles affect overall health (e.g., burning calories, good posture, healthy heart)."
+          }
+         ]
+        },
+        {
+         "id": "skeletal-system",
+         "title": "Skeletal System",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Identify the different types of bones (i.e., long, flat, wide, short, and curved) and their functions (mineral storage, calcium, red blood cells, growth plates)."
+          }
+         ]
+        },
+        {
+         "id": "integumentary-system-skin",
+         "title": "Integumentary System (skin)",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Determine the cause/effect of healthy lifestyle choices as they relate to the three layers of skin (nutrition, hydration, exercise."
+          }
+         ]
+        },
+        {
+         "id": "cardio-respiratory-circulatory-system",
+         "title": "Cardio-respiratory/Circulatory System",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Show the effects of lifestyle choices (e.g., high fat diet, physical activity) on the cardio-respiratory system and relate how the cardio-respiratory system affects quality of life."
+          }
+         ]
+        },
+        {
+         "id": "respiratory-system",
+         "title": "Respiratory System",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe the function of the respiratory system (e.g., exchange of carbon dioxide and oxygen) between air sacs and capillaries."
+          }
+         ]
+        },
+        {
+         "id": "nervous-system",
+         "title": "Nervous System",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Define and distinguish between short-term and long-term memory."
+          }
+         ]
+        },
+        {
+         "id": "digestive-system",
+         "title": "Digestive System",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe the processes of the digestive system (e.g., how the teeth, tongue, and saliva begin the digestive process) and how they are affected by lifestyle choices (e.g., diet, activity level, dental care)."
+          }
+         ]
+        },
+        {
+         "id": "urinary-excretory-system",
+         "title": "Urinary/Excretory System",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Label the major components (i.e., kidneys, ureters, bladder, urethra) and functions of the urinary/excretory system (e.g., removes liquid waste from the body)."
+          }
+         ]
+        },
+        {
+         "id": "endocrine-system",
+         "title": "Endocrine System",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Identify and describe the basic structure and functions of the endocrine system including growth (pituitary), reproduction (ovaries, testes), fight or flight responses (adrenal), energy, metabolism (thyroid)."
+          }
+         ]
+        },
+        {
+         "id": "reproductive-system",
+         "title": "Reproductive System",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Identify and describe the basic structure and function of the male and female reproductive system (e.g., menstrual cycle, nocturnal emissions)."
+          }
+         ]
+        },
+        {
+         "id": "lymphatic-immune-system",
+         "title": "Lymphatic-Immune System",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe how to keep the immune system healthy and explain the principles of vaccination and immunization."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "social-emotional-and-mental-health",
+       "title": "Social, Emotional and Mental Health",
+       "subtopics": [
+        {
+         "id": "responsibilities-in-society",
+         "title": "Responsibilities in Society",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Relate the effects of human actions towards people with diverse backgrounds and demonstrate ways to effectively communicate with them."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "health-maintenance-and-enhancement",
+     "title": "Health Maintenance and Enhancement",
+     "topics": [
+      {
+       "id": "personal-and-family-health",
+       "title": "Personal and Family Health",
+       "subtopics": [
+        {
+         "id": "personal-health",
+         "title": "Personal Health",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Classify activities as they relate to the health related fitness components and identify behaviors, that if performed regularly, can contribute to a healthy lifestyle (eating breakfast daily, not smoking, adequate sleep, maintain normal weight, regular physical activity, avoiding alcohol, healthy snacking)."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "nutrition",
+       "title": "Nutrition",
+       "subtopics": [
+        {
+         "id": "essential-nutrients-and-food-groupings",
+         "title": "Essential Nutrients and Food Groupings",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Identify the sources and basic functions of the six essential nutrients including fiber, and locate five essential nutrients (carbohydrates, fats, proteins, vitamins, minerals) on food labels and recognize that this information helps one make healthy food choices."
+          },
+          {
+           "code": null,
+           "text": "Describe the relationship between food intake and energy."
+          }
+         ]
+        },
+        {
+         "id": "balance-variety-and-moderation",
+         "title": "Balance, Variety and Moderation",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Make decisions regarding food choices based on balance (e.g., food log, meal planning, grocery shopping), moderation and variety."
+          }
+         ]
+        },
+        {
+         "id": "food-handling-and-safety",
+         "title": "Food Handling and Safety",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe proper food guidelines and storage (e.g., expiration date, refrigerated vs. non-refrigerated food)."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "consumer-health-and-safety",
+       "title": "Consumer Health and Safety",
+       "subtopics": [
+        {
+         "id": "media-influence-on-health-habits-and-decisions",
+         "title": "Media Influence on Health Habits and Decisions",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Collect and display examples of how the media can influence a consumer decision regarding health practices and products (e.g., magazine, newspaper, commercial)."
+          }
+         ]
+        },
+        {
+         "id": "community-services-careers",
+         "title": "Community Services/Careers",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Compare and contrast community helpers and agencies who can provide assistance for specific health issues or problems (e.g., firemen, policemen, paramedics, American Heart Association)."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "life-management-skills",
+       "title": "Life Management Skills",
+       "subtopics": [
+        {
+         "id": "decision-making-and-problem-solving",
+         "title": "Decision Making and Problem Solving",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain and cite examples where the decision making process may be used (e.g., choosing sports, snacks, friends)."
+          }
+         ]
+        },
+        {
+         "id": "refusal-assertive-skills-and-conflict-resolution",
+         "title": "Refusal/Assertive Skills and Conflict Resolution",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Identify steps of conflict resolution: (1) identify the conflict; (2) agree to disagree; (3) listen to each other; (4) negotiate; (5) compromise on a solution."
+          }
+         ]
+        },
+        {
+         "id": "goal-setting-and-asset-development",
+         "title": "Goal Setting and Asset Development",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Assess situations that may require coping strategies (e.g., loneliness, boredom, grief, anger, shyness) and list assets that would help address these situations."
+          }
+         ]
+        },
+        {
+         "id": "stress-management-and-coping-skills",
+         "title": "Stress Management and Coping Skills",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Identify personal stressors in daily living (e.g., large groups, tests, family pressures, too busy, language barriers) and describe strategies to deal with these stressors (coping, time management, decision-making)."
+          }
+         ]
+        },
+        {
+         "id": "harassment-bullying-and-violence-prevention",
+         "title": "Harassment/Bullying and Violence Prevention",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe strategies to prevent bullying (e.g., avoid being alone, stay away from people who fight, ignore insults)."
+          },
+          {
+           "code": null,
+           "text": "Describe strategies to prevent violence (e.g., count to 10 before acting, talk to a trusted adult about feelings, physical activity, channel energy into worthwhile activity)."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "risk-assessment-and-reduction",
+     "title": "Risk Assessment and Reduction",
+     "topics": [
+      {
+       "id": "disease-prevention-and-control",
+       "title": "Disease Prevention and Control",
+       "subtopics": [
+        {
+         "id": "communicable-vs-non-communicable-diseases",
+         "title": "Communicable vs. Non-Communicable Diseases",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Identify and describe basic causes, symptoms, treatments, and management of common communicable diseases and health problems."
+          }
+         ]
+        },
+        {
+         "id": "body-defenses-and-recovery",
+         "title": "Body Defenses and Recovery",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain how healthy behaviors enhance the body's basic lines of defense (e.g., sleep, physical activity, healthy food choices)."
+          }
+         ]
+        },
+        {
+         "id": "types-of-pathogens-and-transmission",
+         "title": "Types of Pathogens and Transmission",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Identify that there are certain conditions and lifestyle behaviors that enhance both the growth and spread of pathogens (e.g., person-to-person, food, water, not washing hands, improper refrigeration, lack of purification)."
+          }
+         ]
+        },
+        {
+         "id": "hiv-aids-prevention-education",
+         "title": "HIV/AIDS Prevention Education",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe how HIV affects the immune system."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "injury-prevention-and-safety",
+       "title": "Injury Prevention and Safety",
+       "subtopics": [
+        {
+         "id": "safety-for-home-school-and-communities",
+         "title": "Safety for Home, School, and Communities",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Assess personal environment and recognize the potential for danger in everyday situations (e.g., not wearing seatbelt, too many plugs in one outlet, telling caller parents are out)."
+          }
+         ]
+        },
+        {
+         "id": "first-aid-procedures",
+         "title": "First Aid Procedures",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Demonstrate basic first aid procedures for handling weather-related emergencies (e.g., hypothermia, frostbite, and heat exhaustion)."
+          }
+         ]
+        },
+        {
+         "id": "activity-related-injuries-and-environmental-cond",
+         "title": "Activity Related Injuries and Environmental Conditions",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Predict the outcome when safety equipment is used/not used in physical activity."
+          }
+         ]
+        },
+        {
+         "id": "water-related-emergencies",
+         "title": "Water-Related Emergencies",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain the cause and effect of following water safety rules."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "substance-education",
+       "title": "Substance Education",
+       "subtopics": [
+        {
+         "id": "safe-and-unsafe-substances",
+         "title": "Safe and Unsafe Substances",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Classify substances in the home according to proper and improper usage (e.g., bleach is for cleaning and not for ingesting; vitamins are one a day and not several a day)."
+          }
+         ]
+        },
+        {
+         "id": "purpose-and-guidelines-for-prescription-otc-drug",
+         "title": "Purpose and Guidelines for Prescription, OTC Drugs and Natural Substances",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Identify the purposes of prescriptions, OTC drugs, and other natural substances (herbs) and how they can be used safely (e.g., treat illness, prevent health problems)."
+          }
+         ]
+        },
+        {
+         "id": "substance-use-vs-non-use",
+         "title": "Substance Use vs. Non-Use",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe how TAOD can affect the body systems (e.g., circulatory, respiratory, nervous)."
+          },
+          {
+           "code": null,
+           "text": "Analyze the effects of choosing healthy alternatives rather than using or abusing substances."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "environmental-health",
+       "title": "Environmental Health",
+       "subtopics": [
+        {
+         "id": "effects-of-pollution-on-health",
+         "title": "Effects of Pollution on Health",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Compare the air quality between the smoking and non-smoking area of a restaurant and identify harmful effects of second hand smoke."
+          }
+         ]
+        },
+        {
+         "id": "individual-responsibility",
+         "title": "Individual Responsibility",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Identify actual or potential risks factors and reduction methods within the environment that can affect one's health (e.g., wearing sunscreen, having parent change furnace filter)."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "5",
+   "units": [
+    {
+     "id": "functions-and-interrelationships-of-systems",
+     "title": "Functions and Interrelationships of Systems",
+     "topics": [
+      {
+       "id": "structure-and-functions-of-the-body",
+       "title": "Structure and Functions of the Body",
+       "subtopics": [
+        {
+         "id": "muscular-system",
+         "title": "Muscular System",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain ways in which the muscular and other body systems work together."
+          }
+         ]
+        },
+        {
+         "id": "integumentary-system-skin",
+         "title": "Integumentary System (skin)",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Formulate ways to protect skin from environmental damage."
+          },
+          {
+           "code": null,
+           "text": "Explain ways in which the integumentary system works with the sensory organs."
+          },
+          {
+           "code": null,
+           "text": "Recognize the importance of self and regular check-ups for skin abnormalities."
+          }
+         ]
+        },
+        {
+         "id": "cardio-respiratory-circulatory-system",
+         "title": "Cardio-respiratory/Circulatory System",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Identify the types of blood vessels (i.e., arteries, veins, capillaries)."
+          },
+          {
+           "code": null,
+           "text": "Identify the chambers of the heart (i.e., atrium, ventricle)."
+          },
+          {
+           "code": null,
+           "text": "Identify types of blood cells (i.e., red, white, platelets)."
+          },
+          {
+           "code": null,
+           "text": "Explain ways in which the cardio-respiratory system interacts with other systems."
+          }
+         ]
+        },
+        {
+         "id": "nervous-system",
+         "title": "Nervous System",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Summarize the functions of the nervous system (e.g., sending and receiving messages, regulating body functions), serving as the body's control center for five senses (emotions, speech, coordination, balance, and learning)."
+          }
+         ]
+        },
+        {
+         "id": "digestive-system",
+         "title": "Digestive System",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain ways in which the digestive and other body systems work together."
+          }
+         ]
+        },
+        {
+         "id": "urinary-excretory-system",
+         "title": "Urinary/Excretory System",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain ways in which the urinary/excretory works with other body systems."
+          }
+         ]
+        },
+        {
+         "id": "endocrine-system",
+         "title": "Endocrine System",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain ways in which the endocrine and nervous systems work together."
+          }
+         ]
+        },
+        {
+         "id": "reproductive-system",
+         "title": "Reproductive System",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Research and analyze the physical, emotional, social, and intellectual changes occurring during puberty."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "social-emotional-and-mental-health",
+       "title": "Social, Emotional and Mental Health",
+       "subtopics": [
+        {
+         "id": "influence-of-family-and-peers",
+         "title": "Influence of Family and Peers",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Identify how family, friends, and culture can influence personal health practices and decisions."
+          }
+         ]
+        },
+        {
+         "id": "responsibilities-in-society",
+         "title": "Responsibilities in Society",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Recognize situations where the perspective of others may differ from your own."
+          }
+         ]
+        },
+        {
+         "id": "communication-skills",
+         "title": "Communication Skills",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Define defense mechanisms (constructive or destructive) as a means for handling emotions (e.g., talking it out vs. shutting down)."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "health-maintenance-and-enhancement",
+     "title": "Health Maintenance and Enhancement",
+     "topics": [
+      {
+       "id": "personal-and-family-health",
+       "title": "Personal and Family Health",
+       "subtopics": [
+        {
+         "id": "personal-health",
+         "title": "Personal Health",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Create a personal health plan that includes balanced nutrition, physical activity, hygiene, adequate sleep, no alcohol, healthy snacking."
+          }
+         ]
+        },
+        {
+         "id": "growth-and-development",
+         "title": "Growth and Development",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Recognize the rapid changes in adolescent development (e.g., social, emotional, physical, intellectual growth)."
+          }
+         ]
+        },
+        {
+         "id": "health-and-skill-related-fitness",
+         "title": "Health and Skill Related Fitness",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Distinguish individual strengths and weaknesses in health-related fitness."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "nutrition",
+       "title": "Nutrition",
+       "subtopics": [
+        {
+         "id": "essential-nutrients-and-food-groupings",
+         "title": "Essential Nutrients and Food Groupings",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Identify sources and functions of specific vitamins and minerals that are critical for youth (e.g., calcium, folate, vitamins A, C and D."
+          },
+          {
+           "code": null,
+           "text": "Recognize the MyPyramid.gov food slogans (e.g., go lean with meat, vary your vegetables, focus on fruits, get your calcium rich foods, make the most of your whole grains)."
+          }
+         ]
+        },
+        {
+         "id": "balance-variety-and-moderation",
+         "title": "Balance, Variety and Moderation",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Use the MyPyramid.gov website to construct a balanced menu."
+          },
+          {
+           "code": null,
+           "text": "Describe and assess the relationship of family preferences and culture to food choices."
+          }
+         ]
+        },
+        {
+         "id": "food-labels",
+         "title": "Food Labels",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Examine food labels to determine calories and nutrients in a product (e.g., compare nutritional value and ingredients of two product labels)."
+          }
+         ]
+        },
+        {
+         "id": "food-energy-and-physical-activity",
+         "title": "Food Energy and Physical Activity",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Summarize the relationship between foot intake and physical activity."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "consumer-health-and-safety",
+       "title": "Consumer Health and Safety",
+       "subtopics": [
+        {
+         "id": "consumer-rights-and-issues",
+         "title": "Consumer Rights and Issues",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "List five rights that consumers have to protect themselves from false health claims: (1) right to safety (2) right to be informed (3) right to be heard, (4) right to have problems corrected, (5) right to consumer education."
+          },
+          {
+           "code": null,
+           "text": "Identify consumer health problems in your community."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "life-management-skills",
+       "title": "Life Management Skills",
+       "subtopics": [
+        {
+         "id": "decision-making-and-problem-solving",
+         "title": "Decision Making and Problem Solving",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Apply strategies to solve or prevent problems (e.g., listen attentively, clam down, find a compromise)."
+          }
+         ]
+        },
+        {
+         "id": "goal-setting-and-asset-development",
+         "title": "Goal Setting and Asset Development",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Establish short and long term goals for a specific health issue."
+          }
+         ]
+        },
+        {
+         "id": "stress-management-and-coping-skills",
+         "title": "Stress Management and Coping Skills",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe the short and long term effects of stress on the body."
+          }
+         ]
+        },
+        {
+         "id": "harassment-bullying-and-violence-prevention",
+         "title": "Harassment/Bullying and Violence Prevention",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Devise a plan to reduce the risk of becoming a victim of violence, include violence prevention strategies (e.g., learn to protect yourself, avoid violent situations, choose friends wisely, don't talk to strangers)."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "risk-assessment-and-reduction",
+     "title": "Risk Assessment and Reduction",
+     "topics": [
+      {
+       "id": "disease-prevention-and-control",
+       "title": "Disease Prevention and Control",
+       "subtopics": [
+        {
+         "id": "communicable-vs-non-communicable-diseases",
+         "title": "Communicable vs. Non-Communicable Diseases",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Determine cause and effect relationships between non-communicable diseases (e.g., Type I diabetes vs. Type II diabetes) and lifestyle behaviors."
+          }
+         ]
+        },
+        {
+         "id": "hiv-aids-prevention-education",
+         "title": "HIV/AIDS Prevention Education",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "List behaviors that could enhance HIV transmission (e.g., tattoo, piercing, sex, syringe use, pregnancy) and strategies to prevent infection."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "injury-prevention-and-safety",
+       "title": "Injury Prevention and Safety",
+       "subtopics": [
+        {
+         "id": "safety-for-home-school-and-communities",
+         "title": "Safety for Home, School, and Communities",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Discuss problems in daily living that may contribute to self-destructive behaviors and strategies to cope with these behaviors."
+          }
+         ]
+        },
+        {
+         "id": "first-aid-procedures",
+         "title": "First Aid Procedures",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain how basic aid techniques can help to save lives (e.g., abdominal thrusts and rescue breathing)."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "substance-education",
+       "title": "Substance Education",
+       "subtopics": [
+        {
+         "id": "purpose-and-guidelines-for-prescription-otc-drug",
+         "title": "Purpose and Guidelines for Prescription, OTC Drugs and Natural Substances",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain the guidelines and precautions needed when using OTC and prescription drugs (e.g., take with trusted adult, follow the label directions, only take your own, check safety seal)."
+          }
+         ]
+        },
+        {
+         "id": "substance-use-vs-non-use",
+         "title": "Substance Use vs. Non-Use",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Discuss the issues relative to a smoke-free environment (e.g., financial, health risks, emotional) and demonstrate strategies for refusing TAOD."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "environmental-health",
+       "title": "Environmental Health",
+       "subtopics": [
+        {
+         "id": "individual-responsibility",
+         "title": "Individual Responsibility",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Develop ways to promote recycling, reducing waste, and reusing items to prevent pollution that damages the environment, disrupts ecosystems, and affects one's personal health."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "6",
+   "units": [
+    {
+     "id": "functions-and-interrelationships-of-systems",
+     "title": "Functions and Interrelationships of Systems",
+     "topics": [
+      {
+       "id": "structure-and-functions-of-the-body",
+       "title": "Structure and Functions of the Body",
+       "subtopics": [
+        {
+         "id": "muscular-system",
+         "title": "Muscular System",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Classify the three different types of muscle tissue (smooth, cardiac, skeletal) and differentiate between voluntary and involuntary muscle movement."
+          }
+         ]
+        },
+        {
+         "id": "skeletal-system",
+         "title": "Skeletal System",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Differentiate among the types of joints in the skeletal system (e.g., ball and socket, hinge, gliding, pivot, moveable, and immovable)."
+          }
+         ]
+        },
+        {
+         "id": "respiratory-system",
+         "title": "Respiratory System",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Illustrate air flow through the respiratory system and it's relationship to the circulatory system."
+          }
+         ]
+        },
+        {
+         "id": "nervous-system",
+         "title": "Nervous System",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Investigate how environment affects learning."
+          },
+          {
+           "code": null,
+           "text": "Distinguish between the CNS and PNS (Central Nervous System and Peripheral Nervous System."
+          }
+         ]
+        },
+        {
+         "id": "digestive-system",
+         "title": "Digestive System",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Identify the function of each organ in the digestive system (e.g., stomach-digestive juices, pancreas-insulin, gall bladder-storage of bile, liver-removes toxins, small intestines-absorbs nutrients, large intestines-removes solid waste) as it relates to overall health."
+          }
+         ]
+        },
+        {
+         "id": "endocrine-system",
+         "title": "Endocrine System",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe how the endocrine system affects all other body systems."
+          }
+         ]
+        },
+        {
+         "id": "reproductive-system",
+         "title": "Reproductive System",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe how hormones are responsible for the development of secondary sex characteristics and for the production and release of reproductive cells, allowing the opportunity for fertilization."
+          }
+         ]
+        },
+        {
+         "id": "lymphatic-immune-system",
+         "title": "Lymphatic-Immune System",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Label the major components (i.e., kidneys, ureters, bladder, urethra) and functions of the urinary/excretory system (e.g., removes liquid waste from the body)."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "social-emotional-and-mental-health",
+       "title": "Social, Emotional and Mental Health",
+       "subtopics": [
+        {
+         "id": "influence-of-family-and-peers",
+         "title": "Influence of Family and Peers",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Differentiate between negative and positive peer pressure and discuss reversal techniques."
+          },
+          {
+           "code": null,
+           "text": "Evaluate ideas and perspectives regarding the influence that family, friends, and culture have on health choices and behaviors during adolescence."
+          }
+         ]
+        },
+        {
+         "id": "communication-skills",
+         "title": "Communication Skills",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe how to constructively manage feelings caused by disappointment, stress, separation or loss."
+          },
+          {
+           "code": null,
+           "text": "Model healthy communication skills through exchange of information, questions, and ideas while recognizing the perspective of others."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "health-maintenance-and-enhancement",
+     "title": "Health Maintenance and Enhancement",
+     "topics": [
+      {
+       "id": "personal-and-family-health",
+       "title": "Personal and Family Health",
+       "subtopics": [
+        {
+         "id": "personal-health",
+         "title": "Personal Health",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Identify body changes during puberty and proper hygiene practices (e.g., acne)."
+          }
+         ]
+        },
+        {
+         "id": "preventive-care",
+         "title": "Preventive Care",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Identify various health needs during adolescence (e.g., mental, emotional, social, and physical, hygiene)."
+          }
+         ]
+        },
+        {
+         "id": "growth-and-development",
+         "title": "Growth and Development",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Compare and contrast factors that can affect growth and development which one can alter, enhance, or adapt (e.g., heredity, family, environment, physical activity, hormones, disease)."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "nutrition",
+       "title": "Nutrition",
+       "subtopics": [
+        {
+         "id": "essential-nutrients-and-food-groupings",
+         "title": "Essential Nutrients and Food Groupings",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe and differentiate the contribution specific nutrients make towards growth repair, and cellular needs of the body:fats provide the body with a stored form of energy, warmth and insulation for body organs; carbohydrates provides the body with an immediate source of energy; proteins help the body grow, make muscles strong and repair body tissues; vitamins and minerals help to release energy and help the body fight infections making strong bones and teeth."
+          }
+         ]
+        },
+        {
+         "id": "balance-variety-and-moderation",
+         "title": "Balance, Variety and Moderation",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Discuss the misconceptions projected by society in regard to body image."
+          }
+         ]
+        },
+        {
+         "id": "food-labels",
+         "title": "Food Labels",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Identify allergy information on food labels."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "consumer-health-and-safety",
+       "title": "Consumer Health and Safety",
+       "subtopics": [
+        {
+         "id": "media-influence-on-health-habits-and-decisions",
+         "title": "Media Influence on Health Habits and Decisions",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Recognize that fads, quackery, and advertising can influence health behaviors and practices."
+          }
+         ]
+        },
+        {
+         "id": "community-services-careers",
+         "title": "Community Services/Careers",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Recognize how the collaboration efforts of individuals, communities, and government affect the health of a community (e.g., recycling effort, pollution centers."
+          },
+          {
+           "code": null,
+           "text": "Identify and explore health-related careers."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "life-management-skills",
+       "title": "Life Management Skills",
+       "subtopics": [
+        {
+         "id": "decision-making-and-problem-solving",
+         "title": "Decision Making and Problem Solving",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Recognize that life management skills (e.g., stress management, goal setting, decision making, assertive behavior, resisting peer pressure, and conflict resolution) can be applied to personal situations that adolescents encounter."
+          }
+         ]
+        },
+        {
+         "id": "refusal-assertive-skills-and-conflict-resolution",
+         "title": "Refusal/Assertive Skills and Conflict Resolution",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Apply and assess conflict/mediation strategies to a variety of conflict situations."
+          }
+         ]
+        },
+        {
+         "id": "goal-setting-and-asset-development",
+         "title": "Goal Setting and Asset Development",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Evaluate current assets (positive influences in one's life) and determine ways to enhance those qualities."
+          }
+         ]
+        },
+        {
+         "id": "stress-management-and-coping-skills",
+         "title": "Stress Management and Coping Skills",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe positive stress management skills to reduce stress related problems."
+          }
+         ]
+        },
+        {
+         "id": "harassment-bullying-and-violence-prevention",
+         "title": "Harassment/Bullying and Violence Prevention",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Formulate a personal and school-wide plan(s) to address and reduce bullying."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "risk-assessment-and-reduction",
+     "title": "Risk Assessment and Reduction",
+     "topics": [
+      {
+       "id": "disease-prevention-and-control",
+       "title": "Disease Prevention and Control",
+       "subtopics": [
+        {
+         "id": "body-defenses-and-recovery",
+         "title": "Body Defenses and Recovery",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Identify the stages of disease progression (e.g., incubation)."
+          }
+         ]
+        },
+        {
+         "id": "types-of-pathogens-and-transmission",
+         "title": "Types of Pathogens and Transmission",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Analyze information about the transmission and prevention of communicable diseases."
+          }
+         ]
+        },
+        {
+         "id": "adolescent-health-issues-and-sexually-transmitte",
+         "title": "Adolescent Health Issues and Sexually Transmitted Infections",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Locate , select, and organize information about non-communicable diseases that may impact adolescents such as diabetes, asthma, joint disease, cancer, mental disorder)."
+          }
+         ]
+        },
+        {
+         "id": "hiv-aids-prevention-education",
+         "title": "HIV/AIDS Prevention Education",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain and discuss the relationship between HIV and AIDS."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "injury-prevention-and-safety",
+       "title": "Injury Prevention and Safety",
+       "subtopics": [
+        {
+         "id": "first-aid-procedures",
+         "title": "First Aid Procedures",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Recognize basic aid techniques that help save lives, reduce the severity of an injury and enhance recovery."
+          }
+         ]
+        },
+        {
+         "id": "activity-related-injuries-and-environmental-cond",
+         "title": "Activity Related Injuries and Environmental Conditions",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Apply concepts about weather safety (recognize and attend to changing conditions), exercise precautions during activities, and follow appropriate safety rules and use of equipment."
+          }
+         ]
+        },
+        {
+         "id": "water-related-emergencies",
+         "title": "Water-Related Emergencies",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Investigate the community agencies that provide water safety courses."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "substance-education",
+       "title": "Substance Education",
+       "subtopics": [
+        {
+         "id": "safe-and-unsafe-substances",
+         "title": "Safe and Unsafe Substances",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe the short and long-term effects of performance enhancing drugs."
+          }
+         ]
+        },
+        {
+         "id": "purpose-and-guidelines-for-prescription-otc-drug",
+         "title": "Purpose and Guidelines for Prescription, OTC Drugs and Natural Substances",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Differentiate between over the counter (OTC) and prescription drugs, their purpose, precautions and guidelines for use."
+          }
+         ]
+        },
+        {
+         "id": "substance-use-vs-non-use",
+         "title": "Substance Use vs. Non-Use",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Classify drugs based on their effect on the body (e.g., stimulant, depressant, hallucinogen, narcotic)."
+          },
+          {
+           "code": null,
+           "text": "Differentiate among various types of drugs and their effect upon the body including the following: how the drug enters the body; how the drug interacts with body chemistry."
+          },
+          {
+           "code": null,
+           "text": "Present different opinions and arguments about the effects of TAOD on individuals, family, and society."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "7",
+   "units": [
+    {
+     "id": "functions-and-interrelationships-of-systems",
+     "title": "Functions and Interrelationships of Systems",
+     "topics": [
+      {
+       "id": "structure-and-functions-of-the-body",
+       "title": "Structure and Functions of the Body",
+       "subtopics": [
+        {
+         "id": "muscular-system",
+         "title": "Muscular System",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain how muscles work in pairs for movement to occur and provide examples (e.g., flexors and extensors, bicep contracts and tricep extends to flex your elbow bringing hand to shoulder."
+          }
+         ]
+        },
+        {
+         "id": "skeletal-system",
+         "title": "Skeletal System",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain how the skeletal system supports and protects other body systems (e.g., circulatory, muscular, nervous)."
+          }
+         ]
+        },
+        {
+         "id": "cardio-respiratory-circulatory-system",
+         "title": "Cardio-respiratory/Circulatory System",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Analyze how aerobic exercise impacts an individual physically, mentally, and emotionally."
+          }
+         ]
+        },
+        {
+         "id": "respiratory-system",
+         "title": "Respiratory System",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Measure respiratory rates during inactivity and activity."
+          }
+         ]
+        },
+        {
+         "id": "nervous-system",
+         "title": "Nervous System",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe how healthy lifestyle choices (e.g., exercise, diet, sleep) affect the functioning of the central nervous system and peripheral nervous system (e.g., exercise increases endorphins, stress relief, mental alertness)."
+          }
+         ]
+        },
+        {
+         "id": "urinary-excretory-system",
+         "title": "Urinary/Excretory System",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Relate how health behaviors affect the urinary/excretory system."
+          }
+         ]
+        },
+        {
+         "id": "reproductive-system",
+         "title": "Reproductive System",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Distinguish between dominant and recessive traits."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "social-emotional-and-mental-health",
+       "title": "Social, Emotional and Mental Health",
+       "subtopics": [
+        {
+         "id": "communication-skills",
+         "title": "Communication Skills",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Formulate scenarios that will illustrate potential problems or difficult situations."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "health-maintenance-and-enhancement",
+     "title": "Health Maintenance and Enhancement",
+     "topics": [
+      {
+       "id": "personal-and-family-health",
+       "title": "Personal and Family Health",
+       "subtopics": [
+        {
+         "id": "personal-health",
+         "title": "Personal Health",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Critique personal behaviors and their cause and effect that relate to the following choices: eating breakfast daily; refraining from the use of tobacco and alcohol; sleeping six to eight hours a night; maintaining a healthy weight; daily moderate to vigorous physical activities; making healthy food choices (fruits, vegetables, whole grains, portion sizes)."
+          }
+         ]
+        },
+        {
+         "id": "preventive-care",
+         "title": "Preventive Care",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Predict problems that may occur due to insufficient or lack of preventive care for health needs."
+          }
+         ]
+        },
+        {
+         "id": "growth-and-development",
+         "title": "Growth and Development",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Sequence the process and events of the human life cycle including fertilization, fetal development and birth."
+          }
+         ]
+        },
+        {
+         "id": "health-and-skill-related-fitness",
+         "title": "Health and Skill Related Fitness",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Distinguish the differences between health and skill related fitness."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "nutrition",
+       "title": "Nutrition",
+       "subtopics": [
+        {
+         "id": "essential-nutrients-and-food-groupings",
+         "title": "Essential Nutrients and Food Groupings",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Apply nutrition knowledge to compare the nutrient contribution of a food to its energy contribution."
+          }
+         ]
+        },
+        {
+         "id": "balance-variety-and-moderation",
+         "title": "Balance, Variety and Moderation",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Evaluate factors that influence food choices (e.g., culture, family, emotions, peers, media) and their impact on nutrition and health."
+          },
+          {
+           "code": null,
+           "text": "Recognize the symptoms of various eating disorders and proper referral sources."
+          }
+         ]
+        },
+        {
+         "id": "food-labels",
+         "title": "Food Labels",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Analyze and critique food labeling information to determine calories, nutrients, serving size, types of ingredients and nutritional value in a product."
+          }
+         ]
+        },
+        {
+         "id": "food-handling-and-safety",
+         "title": "Food Handling and Safety",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Apply the four basic rules of food handling (e.g., clean, chill, cook, separate) to different food preparation situations."
+          }
+         ]
+        },
+        {
+         "id": "food-energy-and-physical-activity",
+         "title": "Food Energy and Physical Activity",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Apply nutrition knowledge to compare the nutrient contribution of a food to its energy contribution."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "consumer-health-and-safety",
+       "title": "Consumer Health and Safety",
+       "subtopics": [
+        {
+         "id": "community-services-careers",
+         "title": "Community Services/Careers",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Connect the appropriate resource in the community to determine their role in prevention and treatment of health related problems (e.g., American Cancer Society, March of Dimes, American Hearth Association)."
+          },
+          {
+           "code": null,
+           "text": "Examine the different types of health care systems (e.g., HMOs - employer-provided health insurance)."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "life-management-skills",
+       "title": "Life Management Skills",
+       "subtopics": [
+        {
+         "id": "decision-making-and-problem-solving",
+         "title": "Decision Making and Problem Solving",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Analyze and evaluate how the decision making process can help an individual in life situations."
+          }
+         ]
+        },
+        {
+         "id": "refusal-assertive-skills-and-conflict-resolution",
+         "title": "Refusal/Assertive Skills and Conflict Resolution",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Examine the impact that peer pressure refusal skills have on self-perception and the perception of others."
+          }
+         ]
+        },
+        {
+         "id": "stress-management-and-coping-skills",
+         "title": "Stress Management and Coping Skills",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Analyze various techniques designed to enhance coping abilities and manage stress (e.g., stay healthy, relax, positive outlook, physically active, talk it out)."
+          }
+         ]
+        },
+        {
+         "id": "harassment-bullying-and-violence-prevention",
+         "title": "Harassment/Bullying and Violence Prevention",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Discuss sexual harassment issues and create a plan to address these issues."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "risk-assessment-and-reduction",
+     "title": "Risk Assessment and Reduction",
+     "topics": [
+      {
+       "id": "disease-prevention-and-control",
+       "title": "Disease Prevention and Control",
+       "subtopics": [
+        {
+         "id": "adolescent-health-issues-and-sexually-transmitte",
+         "title": "Adolescent Health Issues and Sexually Transmitted Infections",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Recognize the importance of regular check-ups for various types of cancer (e.g., breast, testicular, skin)."
+          },
+          {
+           "code": null,
+           "text": "Name and discuss common STIs (sexually transmitted infections)."
+          },
+          {
+           "code": null,
+           "text": "Describe the patterns of transmission, treatments, and prevention of sexually transmitted infections."
+          }
+         ]
+        },
+        {
+         "id": "hiv-aids-prevention-education",
+         "title": "HIV/AIDS Prevention Education",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Compare and contrast signs and symptoms or HIV/AIDS."
+          }
+         ]
+        },
+        {
+         "id": "abstinence-prevention-behaviors-and-teen-pregnan",
+         "title": "Abstinence, Prevention Behaviors, and Teen Pregnancy",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe how to protect self and others from STI (sexually transmitted infections) and explain the role of abstinence for prevention."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "injury-prevention-and-safety",
+       "title": "Injury Prevention and Safety",
+       "subtopics": [
+        {
+         "id": "safety-for-home-school-and-communities",
+         "title": "Safety for Home, School, and Communities",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Assess home and school environments for potential unsafe situations and recommend corrective action."
+          }
+         ]
+        },
+        {
+         "id": "first-aid-procedures",
+         "title": "First Aid Procedures",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Demonstrate basic first aid procedures such as the abdominal thrust, rescue breathing and CPR, poisoning, burns, control bleeds, RICE."
+          }
+         ]
+        },
+        {
+         "id": "activity-related-injuries-and-environmental-cond",
+         "title": "Activity Related Injuries and Environmental Conditions",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Make informed decisions to reduce the risk of injuries during exercise, sports and other activities."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "substance-education",
+       "title": "Substance Education",
+       "subtopics": [
+        {
+         "id": "substance-use-vs-non-use",
+         "title": "Substance Use vs. Non-Use",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Compare peer pressure to peer support and evaluate how each influences the making of informed and reasoned decisions regarding TAOD use."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "8",
+   "units": [
+    {
+     "id": "functions-and-interrelationships-of-systems",
+     "title": "Functions and Interrelationships of Systems",
+     "topics": [
+      {
+       "id": "structure-and-functions-of-the-body",
+       "title": "Structure and Functions of the Body",
+       "subtopics": [
+        {
+         "id": "nervous-system",
+         "title": "Nervous System",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Analyze how learning is influenced by the brain's short term and long term memory, environmental learning styles and learning strategies (e.g., multiple intelligences, cooperative learning, hypothesis, inquiry."
+          }
+         ]
+        },
+        {
+         "id": "endocrine-system",
+         "title": "Endocrine System",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Relate a function of each endocrine gland (e.g., thyroid-metabolism; pituitary-master hormonal gland and height; adrenal-fight or flight; pancreas-insulin; ovaries-eggs; testes-sperm) and how it is impacted by lifestyle choices."
+          }
+         ]
+        },
+        {
+         "id": "reproductive-system",
+         "title": "Reproductive System",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe the impact heredity and lifestyle choices have on the reproductive system functions and disease formation."
+          },
+          {
+           "code": null,
+           "text": "Explain how to maintain a healthy reproductive system."
+          },
+          {
+           "code": null,
+           "text": "Identify cancer signs and symptoms and explain the importance of monthly self-examinations."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "social-emotional-and-mental-health",
+       "title": "Social, Emotional and Mental Health",
+       "subtopics": [
+        {
+         "id": "communication-skills",
+         "title": "Communication Skills",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Analyze ways individuals can respond to the various needs and characteristics of diverse people including those with different abilities, chronic diseases, different ethnic and cultural backgrounds."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "health-maintenance-and-enhancement",
+     "title": "Health Maintenance and Enhancement",
+     "topics": [
+      {
+       "id": "personal-and-family-health",
+       "title": "Personal and Family Health",
+       "subtopics": [
+        {
+         "id": "personal-health",
+         "title": "Personal Health",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Analyze how social, emotional, physical, and mental health affect wellness."
+          }
+         ]
+        },
+        {
+         "id": "preventive-care",
+         "title": "Preventive Care",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Assess personal health needs during adolescence and apply strategies to address those needs or problems."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "nutrition",
+       "title": "Nutrition",
+       "subtopics": [
+        {
+         "id": "essential-nutrients-and-food-groupings",
+         "title": "Essential Nutrients and Food Groupings",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Justify food sources that supply each of the essential nutrients."
+          }
+         ]
+        },
+        {
+         "id": "balance-variety-and-moderation",
+         "title": "Balance, Variety and Moderation",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Create a meal plan (s) through the selection of appropriate food based on energy needs, food preferences and nutrient requirements as represented in \"My Pyramid\"."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "consumer-health-and-safety",
+       "title": "Consumer Health and Safety",
+       "subtopics": [
+        {
+         "id": "media-influence-on-health-habits-and-decisions",
+         "title": "Media Influence on Health Habits and Decisions",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Analyze marketing and advertising techniques that influence consumer decisions (e.g., bandwagon, beautiful people, good times, status symbols/well known characters)."
+          }
+         ]
+        },
+        {
+         "id": "consumer-rights-and-issues",
+         "title": "Consumer Rights and Issues",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Identify and select appropriate consumer protection agencies that address various specific consumer issues."
+          },
+          {
+           "code": null,
+           "text": "Identify and analyze consumer health issues and products to make wise decisions."
+          }
+         ]
+        },
+        {
+         "id": "community-services-careers",
+         "title": "Community Services/Careers",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Examine the viewpoints and efforts of individuals, communities, and government regarding societal health issues in order to make decisions that are informed and responsible: managing waste, conserving energy and water, pollution control, tobacco free facilities."
+          },
+          {
+           "code": null,
+           "text": "Analyze how the Department of Health and Senior Services, the Center for Disease Control and Prevention, and other public health agencies are responsible for disease reduction and control prevention, research, education, and enforcement of laws (e.g., food inspection, safe food storage and handling, distributing flu vaccines, and no smoking ordinances)."
+          },
+          {
+           "code": null,
+           "text": "Identify career opportunities in health-related professions and how these roles meet the needs of the health consumer (e.g., exercise physiologist, sports therapist, dietician, tertiary care)."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "life-management-skills",
+       "title": "Life Management Skills",
+       "subtopics": [
+        {
+         "id": "decision-making-and-problem-solving",
+         "title": "Decision Making and Problem Solving",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Distinguish between problems that can be solved independently and those that need the help of a peer, adult, or professional."
+          }
+         ]
+        },
+        {
+         "id": "harassment-bullying-and-violence-prevention",
+         "title": "Harassment/Bullying and Violence Prevention",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Demonstrate strategies to prevent, manage, or report social problems related to abuse, exploitation, harassment, or bullying."
+          },
+          {
+           "code": null,
+           "text": "Investigate resources available to cope with social problems related to abuse, exploitation, harassment, or bullying (e.g., school, police, peers, hotlines, counselors)."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "risk-assessment-and-reduction",
+     "title": "Risk Assessment and Reduction",
+     "topics": [
+      {
+       "id": "disease-prevention-and-control",
+       "title": "Disease Prevention and Control",
+       "subtopics": [
+        {
+         "id": "communicable-vs-non-communicable-diseases",
+         "title": "Communicable vs. Non-Communicable Diseases",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Connect causative factors, symptoms, treatment and preventive measures to their appropriate non-communicable diseases."
+          },
+          {
+           "code": null,
+           "text": "Explain how risk behaviors can contribute to the development of chronic disease (e.g., relationships between smoking and emphysema or alcohol consumption and cirrhosis)."
+          }
+         ]
+        },
+        {
+         "id": "body-defenses-and-recovery",
+         "title": "Body Defenses and Recovery",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe the body's lines of defense and the stages of disease progression (e.g., incubation)."
+          }
+         ]
+        },
+        {
+         "id": "types-of-pathogens-and-transmission",
+         "title": "Types of Pathogens and Transmission",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Hypothesize optimal conditions for growth and transmission of pathogens."
+          }
+         ]
+        },
+        {
+         "id": "adolescent-health-issues-and-sexually-transmitte",
+         "title": "Adolescent Health Issues and Sexually Transmitted Infections",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Analyze the impact non-communicable diseases such as diabetes and asthma, could have on adolescents physical, social, and emotional development."
+          },
+          {
+           "code": null,
+           "text": "Recognize adolescent health issues and select appropriate strategies to solve or prevent problems (e.g., Anorexia, bulimia, acne, scoliosis) including knowing symptoms and causes, early diagnosis and treatment, self-care and management."
+          }
+         ]
+        },
+        {
+         "id": "hiv-aids-prevention-education",
+         "title": "HIV/AIDS Prevention Education",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain the patterns of transmission, treatment (past and present), and prevention of HIV/AIDS."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "injury-prevention-and-safety",
+       "title": "Injury Prevention and Safety",
+       "subtopics": [
+        {
+         "id": "safety-for-home-school-and-communities",
+         "title": "Safety for Home, School, and Communities",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Recognize problems in daily living that may contribute to self-destructive behaviors and apply strategies to reduce the risks of harm to self and others."
+          },
+          {
+           "code": null,
+           "text": "Identify societal problems (assault, homicide, rape, robbery, gangs, personal safety risks)."
+          }
+         ]
+        },
+        {
+         "id": "first-aid-procedures",
+         "title": "First Aid Procedures",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Prioritize and demonstrate the steps involved in assessing an emergency situation including 911 format, check, call, care."
+          },
+          {
+           "code": null,
+           "text": "Analyze why the processes are used in sequential order (i.e., ABC of emergencies)."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "substance-education",
+       "title": "Substance Education",
+       "subtopics": [
+        {
+         "id": "substance-use-vs-non-use",
+         "title": "Substance Use vs. Non-Use",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Determine a cause and effect relationship regarding body system functions (i.e., muscular, excretory, nervous, digestive, circulatory, respiratory) and the use of TAOD (e.g., alcohol and impaired judgment, marijuana and short term memory loss, smoking and low birth weight babies)."
+          },
+          {
+           "code": null,
+           "text": "Develop an informed decision regarding the use of smoked and smokeless tobacco based on knowledge of short and long-term effects on the body, individual, and society."
+          },
+          {
+           "code": null,
+           "text": "Determine the cause and effect relationship between the use of alcohol, tobacco, and other substances and emergency situations (e.g., motor vehicle accidents, overdose, accidental death, binge drinking)."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "environmental-health",
+       "title": "Environmental Health",
+       "subtopics": [
+        {
+         "id": "effects-of-pollution-on-health",
+         "title": "Effects of Pollution on Health",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe ways in which the environment and ecosystems can be damaged and disrupted such as overpopulation, overuse of resources, and pollution."
+          }
+         ]
+        },
+        {
+         "id": "individual-responsibility",
+         "title": "Individual Responsibility",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Evaluate potential results of an environmental solution considering aesthetics, ethics, societal responsibility."
+          },
+          {
+           "code": null,
+           "text": "Examine existing and potential environmental health problems within their community and create solutions to address them."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "K-12",
+   "units": [
+    {
+     "id": "grade-level-expectations-k-12",
+     "title": "Grade Level Expectations: K-12",
+     "topics": [
+      {
+       "id": "grade-level-expectations-k-12",
+       "title": "Grade Level Expectations: K-12",
+       "subtopics": [
+        {
+         "id": "grade-level-expectations-k-12-1-of-2",
+         "title": "Grade Level Expectations: K-12 (1 of 2)",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Students will comprehend concepts related to health promotion and disease prevention to enhance health."
+          },
+          {
+           "code": null,
+           "text": "Students will analyze the influence of family, peers, culture, media, technology, and other factors on health behaviors."
+          },
+          {
+           "code": null,
+           "text": "Students will demonstrate the ability to access valid information and products and services to enhance health."
+          },
+          {
+           "code": null,
+           "text": "Students will demonstrate the ability to use interpersonal communication skills to enhance health and avoid or reduce health risks."
+          }
+         ]
+        },
+        {
+         "id": "grade-level-expectations-k-12-2-of-2",
+         "title": "Grade Level Expectations: K-12 (2 of 2)",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Students will demonstrate the ability to use decision-making skills to enhance health."
+          },
+          {
+           "code": null,
+           "text": "Students will demonstrate the ability to use goal-setting skills to enhance health."
+          },
+          {
+           "code": null,
+           "text": "Students will demonstrate the ability to practice health-enhancing behaviors and avoid or reduce health risks."
+          },
+          {
+           "code": null,
+           "text": "Students will demonstrate the ability to advocate for personal, family, and community health."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "9-12",
+   "units": [
+    {
+     "id": "functions-and-interrelationships-of-systems",
+     "title": "Functions and Interrelationships of Systems",
+     "topics": [
+      {
+       "id": "structure-and-functions-of-the-body",
+       "title": "Structure and Functions of the Body",
+       "subtopics": [
+        {
+         "id": "sensory-system",
+         "title": "Sensory System",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Investigate disorders, their treatments, and prevention techniques to maintain a healthy sensory system (e.g., hearing loss, glaucoma, near and far-sightedness, halitosis, numbness, tingling)."
+          }
+         ]
+        },
+        {
+         "id": "muscular-system",
+         "title": "Muscular System",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Investigate disorders, their treatment, and prevention techniques to maintain a healthy muscular system (e.g., muscular dystrophy, muscle cramps, tendonitis, muscle strains)."
+          }
+         ]
+        },
+        {
+         "id": "skeletal-system",
+         "title": "Skeletal System",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Investigate disorders, their treatment, and prevention techniques to maintain a healthy skeletal system (e.g., osteoporosis, arthritis, sprain, scoliosis)."
+          }
+         ]
+        },
+        {
+         "id": "cardio-respiratory-circulatory-system",
+         "title": "Cardio-respiratory/Circulatory System",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Investigate disorders, their treatments, and prevention techniques to maintain a healthy cardio-respiratory system (e.g., high blood pressure, anemia, hemophilia, sickle cell, asthma, allergies, bronchitis, pneumonia)."
+          }
+         ]
+        },
+        {
+         "id": "nervous-system",
+         "title": "Nervous System",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Investigate disorders, their treatment, and prevention techniques to maintain a healthy nervous system (e.g., mental disorders, spinal cord injuries, cerebral palsy, meningitis, chemical imbalances, hives, shingles, multiple sclerosis, Parkinson's, epilepsy)."
+          }
+         ]
+        },
+        {
+         "id": "digestive-system",
+         "title": "Digestive System",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "List the most common disorders, describe how to treat them and prevention techniques to maintain a healthy digestive system (e.g., ulcers, irritable bowel syndrome, Crohn's Disease, diarrhea, constipation, gall stones, colon cancer)."
+          }
+         ]
+        },
+        {
+         "id": "urinary-excretory-system",
+         "title": "Urinary/Excretory System",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Investigate disorders, their treatment, and prevention techniques to maintain a healthy urinary/excretory system (e.g., kidney stones, urinary tract infections, nephritis)."
+          }
+         ]
+        },
+        {
+         "id": "endocrine-system",
+         "title": "Endocrine System",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Investigate disorders, their treatments, and prevention techniques to maintain a healthy endocrine system (e.g., thyroid cancer, type II diabetes, chemical imbalances)."
+          },
+          {
+           "code": null,
+           "text": "List the causes of type II diabetes and describe management procedures and prevention techniques."
+          }
+         ]
+        },
+        {
+         "id": "reproductive-system",
+         "title": "Reproductive System",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Recognize normal vs. abnormal conditions of the reproductive system."
+          },
+          {
+           "code": null,
+           "text": "Explain how the following affect the functioning of the reproductive system: ovarian cysts, HPV/cervical cancer, premenstrual syndrome, infertility, ovarian cancer, testicular cancer, and prostate cancer."
+          },
+          {
+           "code": null,
+           "text": "Discuss the importance of routine physical examinations and tests (e.g., pap smears, mammograms, prostate examination) to reduce the risks of problems related to cancer and other chronic diseases."
+          }
+         ]
+        },
+        {
+         "id": "lymphatic-immune-system",
+         "title": "Lymphatic-Immune System",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Investigate disorders, their treatments, and prevention techniques to maintain a healthy lymphatic/immune system (e.g., common cold, influenza, tonsillitis, strep throat)."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "social-emotional-and-mental-health",
+       "title": "Social, Emotional and Mental Health",
+       "subtopics": [
+        {
+         "id": "influence-of-family-and-peers",
+         "title": "Influence of Family and Peers",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Cite evidence that supports the rights both individuals and the communities have when making social health decisions."
+          },
+          {
+           "code": null,
+           "text": "Describe patterns of physical, social, and mental/emotional health that promote healthy long-term relationships (e.g., dating, work environment, friendship, and marriage)."
+          }
+         ]
+        },
+        {
+         "id": "responsibilities-in-society",
+         "title": "Responsibilities in Society",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Develop a list of attributes needed to live effectively with others."
+          }
+         ]
+        },
+        {
+         "id": "communication-skills",
+         "title": "Communication Skills",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Compare and contrast constructive versus destructive defense mechanisms as a means for handling one's emotions."
+          },
+          {
+           "code": null,
+           "text": "Predict how the dynamics of relationships with family, groups, and community change as the individual matures."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "health-maintenance-and-enhancement",
+     "title": "Health Maintenance and Enhancement",
+     "topics": [
+      {
+       "id": "personal-and-family-health",
+       "title": "Personal and Family Health",
+       "subtopics": [
+        {
+         "id": "personal-health",
+         "title": "Personal Health",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Show the steps used in the problem solving model to examine system functions and disease formation encountered in daily living situations (e.g., lead poisoning, second-hand smoke)."
+          }
+         ]
+        },
+        {
+         "id": "preventive-care",
+         "title": "Preventive Care",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Discuss the concept of preventive care and its importance in maintaining and improving health."
+          }
+         ]
+        },
+        {
+         "id": "health-and-skill-related-fitness",
+         "title": "Health and Skill Related Fitness",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Analyze factors (e.g., time, cost, accessibility) and benefits (physical and psychological) related to regular participation in physical activity."
+          },
+          {
+           "code": null,
+           "text": "Analyze present fitness levels to create a personal fitness plan which meets current and future needs necessary for the maintenance of total fitness."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "nutrition",
+       "title": "Nutrition",
+       "subtopics": [
+        {
+         "id": "essential-nutrients-and-food-groupings",
+         "title": "Essential Nutrients and Food Groupings",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Assess key nutrients and their specific functions and influences on body processes (e.g., disease prevention)."
+          },
+          {
+           "code": null,
+           "text": "Assess how nutritional needs change throughout the life cycle."
+          }
+         ]
+        },
+        {
+         "id": "balance-variety-and-moderation",
+         "title": "Balance, Variety and Moderation",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Prove how a well-balanced diet that is low in fat, high in fiber, vitamins and minerals can reduce the risk of certain disease."
+          },
+          {
+           "code": null,
+           "text": "Investigate and analyze the factors that influence dietary choices (e.g., lifestyle, ethnicity, family, media, and advertising)."
+          },
+          {
+           "code": null,
+           "text": "Analyze food choices and discuss how it should be used to develop a proper diet."
+          }
+         ]
+        },
+        {
+         "id": "food-labels",
+         "title": "Food Labels",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Apply concepts using food labels to meet the dietary needs of individuals for a healthy lifestyle (e.g., diabetes, lactose intolerance, food allergies)."
+          }
+         ]
+        },
+        {
+         "id": "food-handling-and-safety",
+         "title": "Food Handling and Safety",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Discuss the cause and effect relationships that influence a safe food supply (e.g., regulatory agencies, food handling and production, food storage techniques, pesticides, additives, bioterrorism)."
+          }
+         ]
+        },
+        {
+         "id": "food-energy-and-physical-activity",
+         "title": "Food Energy and Physical Activity",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Design a nutritional plan and fitness program based on the relationship between food intake and activity level with regard to weight management and healthy living (e.g., caloric intake, calorie expenditure, weight gain, weight maintenance, and safe weight loss)."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "consumer-health-and-safety",
+       "title": "Consumer Health and Safety",
+       "subtopics": [
+        {
+         "id": "media-influence-on-health-habits-and-decisions",
+         "title": "Media Influence on Health Habits and Decisions",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Evaluate the role the media can play in influencing young adults' self concept by idealizing body image and elite performance levels of famous people."
+          },
+          {
+           "code": null,
+           "text": "Analyze the health claims that the media make and their impact on physical, mental/emotional, and social health."
+          }
+         ]
+        },
+        {
+         "id": "consumer-rights-and-issues",
+         "title": "Consumer Rights and Issues",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Analyze the reliability of health care information, services and products that could affect consumer decision-making (e.g., finding specialists such as CDC, county health departments, extension centers; insurance carriers, clinics, hospitals, OB/GYN, and emergency rooms)."
+          }
+         ]
+        },
+        {
+         "id": "community-services-careers",
+         "title": "Community Services/Careers",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Develop a list of individual and/or governmental agencies and explain their responsibility for providing assistance to people for their health needs (e.g., Al-anon for drug abuse or dermatologist for acne)."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "life-management-skills",
+       "title": "Life Management Skills",
+       "subtopics": [
+        {
+         "id": "decision-making-and-problem-solving",
+         "title": "Decision Making and Problem Solving",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Apply practices that preserve and enhance the safety and health of others (e.g., conflict resolution, peer mediation, seeking adult or professional consultation, stress management, goal setting, decision-making, assertive behavior, resisting peer pressure, asset development)."
+          }
+         ]
+        },
+        {
+         "id": "stress-management-and-coping-skills",
+         "title": "Stress Management and Coping Skills",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Create a plan using life management skills to address personal and social concerns that are a part of daily living (e.g., learning to manage time and stress, setting goals, dealing with conflicts, working collaboratively)."
+          }
+         ]
+        },
+        {
+         "id": "harassment-bullying-and-violence-prevention",
+         "title": "Harassment/Bullying and Violence Prevention",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Develop a list of intervention skills that can be used to prevent violence and describe when and how to use these skills."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "risk-assessment-and-reduction",
+     "title": "Risk Assessment and Reduction",
+     "topics": [
+      {
+       "id": "disease-prevention-and-control",
+       "title": "Disease Prevention and Control",
+       "subtopics": [
+        {
+         "id": "communicable-vs-non-communicable-diseases",
+         "title": "Communicable vs. Non-Communicable Diseases",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe the effects of positive lifestyles behaviors on the occurrence of disease (e.g., sunscreen, physical activity, diet, sleep, stress management)."
+          },
+          {
+           "code": null,
+           "text": "Conduct research to answer questions regarding epidemiological studies and cite evidence about the management and prevention of communicable and non-communicable diseases (e.g., local health department statistics, youth risk behavior survey (YRBS), Centers for Disease Control (CDC), National Institute of Health (NIH)."
+          },
+          {
+           "code": null,
+           "text": "Analyze past problems related to chronic diseases to develop strategies to predict, prevent, solve or manage present or future disease-related problems (e.g., ethnic, cultural and family histories."
+          }
+         ]
+        },
+        {
+         "id": "body-defenses-and-recovery",
+         "title": "Body Defenses and Recovery",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe the primary and secondary defenses for prevention of disease and discuss how they help to maintain or improve them."
+          }
+         ]
+        },
+        {
+         "id": "types-of-pathogens-and-transmission",
+         "title": "Types of Pathogens and Transmission",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Formulate and support an interpretation regarding the reoccurrence of resistant strains of pathogens (e.g., strep, herpes, mononucleosis, gonorrhea, Chlamydia, HIV, Staff Infection)."
+          },
+          {
+           "code": null,
+           "text": "Use the scientific process of laboratory investigation to test hypotheses on pathogen transmission (e.g., hand sanitizers, Germglow, disinfectants)."
+          }
+         ]
+        },
+        {
+         "id": "adolescent-health-issues-and-sexually-transmitte",
+         "title": "Adolescent Health Issues and Sexually Transmitted Infections",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Compare signs and symptoms of common sexually transmitted infections."
+          },
+          {
+           "code": null,
+           "text": "Explain how sexually transmitted infections can affect an individual's physical, social, mental/emotional, intellectual, professional, and economic well-being (e.g., HIV/AIDS sterility, Kaposi Sarcoma, pneumonia, PCP, stress, oral thrush, yeast infections)."
+          }
+         ]
+        },
+        {
+         "id": "abstinence-prevention-behaviors-and-teen-pregnan",
+         "title": "Abstinence, Prevention Behaviors, and Teen Pregnancy",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Analyze and evaluate how teen pregnancy and parenting can impact personal, family and societal perspectives (e.g., dropout, low self-esteem, abandonment, and economics)."
+          },
+          {
+           "code": null,
+           "text": "Investigate and analyze the cause and effect relationship between obtaining prenatal care and the health of the mother and baby. (e.g., nutrition, alcohol and tobacco consumption, physical activity, age, other drug use) and it's effects on the unborn child (e.g., leg deformities, retardation, learning disabilities, addiction, low birth weight)."
+          },
+          {
+           "code": null,
+           "text": "Evaluate the progression of reliability of various contraceptive methods from most reliable to least reliable (e.g., abstinence, barrier methods, oral methods, surgical methods, injectable methods, implants)."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "injury-prevention-and-safety",
+       "title": "Injury Prevention and Safety",
+       "subtopics": [
+        {
+         "id": "safety-for-home-school-and-communities",
+         "title": "Safety for Home, School, and Communities",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe and analyze methods that can be effective in preventing societal problems affecting teens (e.g., rape, assault, homicide, and other personal safety risks, gangs)."
+          }
+         ]
+        },
+        {
+         "id": "first-aid-procedures",
+         "title": "First Aid Procedures",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Identify, from a given list, those situations that are life threatening and perform basic life saving maneuvers (e.g., CPR, abdominal thrust, bleeding control, shock, burns, asthma, bee stings, snake bites, poisoning)."
+          }
+         ]
+        },
+        {
+         "id": "activity-related-injuries-and-environmental-cond",
+         "title": "Activity Related Injuries and Environmental Conditions",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Recognize activity-related conditions (e.g., bleeding, shock, asthma, low blood sugar, diabetes, dehydration) and perform appropriate first aid procedures and practices for each."
+          },
+          {
+           "code": null,
+           "text": "Recognize weather-related emergencies (e.g., dehydration, asthma, heat exhaustion, heat stroke, hypothermia, frostbite) and perform appropriate first aid procedures and practices."
+          }
+         ]
+        },
+        {
+         "id": "water-related-emergencies",
+         "title": "Water-Related Emergencies",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "List the common water-related emergencies and describe prevention and treatment techniques."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "substance-education",
+       "title": "Substance Education",
+       "subtopics": [
+        {
+         "id": "safe-and-unsafe-substances",
+         "title": "Safe and Unsafe Substances",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Assess the short and long-term effects that performance enhancing aids have on the body processes (e.g., liver damage, heart failure, brain aneurysm, anger, \"road rage,\" acne, violence, memory loss, hepatitis, HIV) and on individuals and society (e.g., body image, obsession with winning, violent behavior, black market/illegal purchases)."
+          }
+         ]
+        },
+        {
+         "id": "purpose-and-guidelines-for-prescription-otc-drug",
+         "title": "Purpose and Guidelines for Prescription, OTC Drugs and Natural Substances",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain why individuals need to follow label guidelines for all substances (e.g., compatibility of ingested substances)."
+          }
+         ]
+        },
+        {
+         "id": "substance-use-vs-non-use",
+         "title": "Substance Use vs. Non-Use",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Evaluate the short and long term effects of alcohol, tobacco, and other substances on the body (e.g., changes in mood, thought processes, mental ability, coordination, reaction time) and draw conclusions on the impact of these substances on personal, social, and economic threats to society."
+          },
+          {
+           "code": null,
+           "text": "Review healthy alternatives to substance use and investigate effective strategies to promote individual, family, and community health."
+          },
+          {
+           "code": null,
+           "text": "Assess the risk of chemical dependency and locate available help if alcohol, tobacco, and other substance use becomes a problem."
+          },
+          {
+           "code": null,
+           "text": "Evaluate personal risks for chemical dependency based upon personal, family, and environmental factors."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "environmental-health",
+       "title": "Environmental Health",
+       "subtopics": [
+        {
+         "id": "effects-of-pollution-on-health",
+         "title": "Effects of Pollution on Health",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Define global warming and its effects on the health of individuals worldwide."
+          },
+          {
+           "code": null,
+           "text": "Compare present environmental health problems to past environment health problems and develop strategies to reduce or correct these problems for the future (e.g., destruction of the ozone layer, asbestos, second-hand smoke, nuclear disasters, carpooling)."
+          }
+         ]
+        },
+        {
+         "id": "individual-responsibility",
+         "title": "Individual Responsibility",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Compare ways that individuals, communities, state and federal government can cooperate to promote environmental health (e.g., recycling, adopt-a-highway programs, river clean-up, land preservation, community beautification, advocacy)."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "build": {
+  "builtAt": "2026-10-14T16:20:45.300Z",
+  "model": "none",
+  "usd": 0,
+  "expectedCodes": null,
+  "coverage": null,
+  "missingCodes": [],
+  "counts": {
+   "grades": 11,
+   "units": 31,
+   "topics": 98,
+   "subtopics": 314,
+   "outcomes": 404
+  },
+  "warnings": []
+ }
+}

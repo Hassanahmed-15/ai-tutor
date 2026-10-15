@@ -1,0 +1,2155 @@
+{
+ "id": "us-wi-health",
+ "region": "US",
+ "framework": "Wisconsin state academic standards: Health Education",
+ "board": null,
+ "qualification": "K-12",
+ "subject": "Health Education",
+ "syllabusCode": null,
+ "gradeSystem": "grade",
+ "source": {
+  "urls": [
+   "https://api.commonstandardsproject.com/api/v1/jurisdictions/745124D969E9491C9FC33D3235259386",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/745124D969E9491C9FC33D3235259386_D2403639_grades-01-02-k-pre-k",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/745124D969E9491C9FC33D3235259386_D2403639_grades-03-04-05",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/745124D969E9491C9FC33D3235259386_D2403639_grades-06-07-08",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/745124D969E9491C9FC33D3235259386_D2403639_grades-09-10-11-12",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/745124D969E9491C9FC33D3235259386_D2402428_grades-01-02-03-04-k-pre-k",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/745124D969E9491C9FC33D3235259386_D2402428_grades-05-06-07-08",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/745124D969E9491C9FC33D3235259386_D2402428_grades-09-10-11-12"
+  ],
+  "publisher": "Wisconsin state education agency (machine-readable via Common Standards Project / ASN)",
+  "licence": "CC BY 3.0 US, D2L Corporation; CC BY 3.0 US, Desire2Learn Incorporated",
+  "firstExam": "2011"
+ },
+ "grades": [
+  {
+   "grade": "PK-2",
+   "units": [
+    {
+     "id": "students-will-comprehend-concepts-related-to-hea",
+     "title": "Students will comprehend concepts related to health promotion and disease prevention to enhance health",
+     "topics": [
+      {
+       "id": "develop-age-appropriate-cognitive-understanding-",
+       "title": "Develop age-appropriate cognitive understanding of health promotion concepts to improve health behaviors",
+       "subtopics": [
+        {
+         "id": "describe-healthy-behaviors",
+         "title": "Describe healthy behaviors",
+         "outcomes": [
+          {
+           "code": "1:1:A1",
+           "text": "Describe ways to prevent common childhood accidents and injuries."
+          },
+          {
+           "code": "1:1:A2",
+           "text": "Describe healthy behaviors that impact personal health."
+          },
+          {
+           "code": "1:1:A3",
+           "text": "List ways to prevent communicable disease."
+          }
+         ]
+        },
+        {
+         "id": "apply-knowledge-of-healthy-behaviors",
+         "title": "Apply knowledge of healthy behaviors",
+         "outcomes": [
+          {
+           "code": "1:1:B1",
+           "text": "Describe why it is important to seek health care."
+          },
+          {
+           "code": "1:1:B2",
+           "text": "Describe why it is important to participate in healthy behaviors."
+          },
+          {
+           "code": "1:1:B3",
+           "text": "Use multiple dimensions of health (e.g., physical, social, environmental, and emotional) in everyday life."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "students-will-analyze-the-influence-of-family-pe",
+     "title": "Students will analyze the influence of family, peers, culture, media, technology, and other factors on health behaviors",
+     "topics": [
+      {
+       "id": "know-what-an-influence-is-and-how-it-could-affec",
+       "title": "Know what an influence is and how it could affect behaviors",
+       "subtopics": [
+        {
+         "id": "list-influences-on-health-behaviors",
+         "title": "List influences on health behaviors",
+         "outcomes": [
+          {
+           "code": "2:1:A1",
+           "text": "Identify internal and external factors that may influence health behaviors."
+          }
+         ]
+        },
+        {
+         "id": "analyze-various-influences-on-health-behaviors",
+         "title": "Analyze various influences on health behaviors",
+         "outcomes": [
+          {
+           "code": "2:1:B1",
+           "text": "Discuss how family, emotions, peers, and media can influence health behaviors."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "students-will-demonstrate-the-ability-to-access-",
+     "title": "Students will demonstrate the ability to access valid information and products and services to enhance health",
+     "topics": [
+      {
+       "id": "identify-individuals-who-provide-valid-health-in",
+       "title": "Identify individuals who provide valid health information to enhance health behaviors",
+       "subtopics": [
+        {
+         "id": "identify-where-to-get-help-to-promote-health",
+         "title": "Identify where to get help to promote health",
+         "outcomes": [
+          {
+           "code": "3:1:A1",
+           "text": "Identify trusted adults and professionals who can help promote health."
+          },
+          {
+           "code": "3:1:A2",
+           "text": "Describe ways to locate school and community health individuals."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "students-will-demonstrate-the-ability-to-use-int",
+     "title": "Students will demonstrate the ability to use interpersonal communication skills to enhance health and avoid or reduce health risks",
+     "topics": [
+      {
+       "id": "identify-and-apply-effective-interpersonal-commu",
+       "title": "Identify and apply effective interpersonal communication skills",
+       "subtopics": [
+        {
+         "id": "identify-communication-skills-that-can-improve-h",
+         "title": "Identify communication skills that can improve health and reduce health risks",
+         "outcomes": [
+          {
+           "code": "4:1:A1",
+           "text": "Identify ways to communicate."
+          },
+          {
+           "code": "4.1:A2",
+           "text": "Identify ways to express needs, wants, and feelings."
+          }
+         ]
+        },
+        {
+         "id": "apply-communication-skills-that-can-improve-heal",
+         "title": "Apply communication skills that can improve health and reduce health risks",
+         "outcomes": [
+          {
+           "code": "4:1:B1",
+           "text": "Describe ways to respond when in an unwanted, threatening, or dangerous situation."
+          },
+          {
+           "code": "4:1:B2",
+           "text": "Use refusal skills including firmly saying no and getting away from the situation."
+          },
+          {
+           "code": "4:1:B3",
+           "text": "Explain how to communicate to a trusted adult if threatened or harmed."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "students-will-demonstrate-the-ability-to-use-dec",
+     "title": "Students will demonstrate the ability to use decision-making skills to enhance health",
+     "topics": [
+      {
+       "id": "identify-when-a-decision-making-process-is-neede",
+       "title": "Identify when a decision-making process is needed to choose a healthy option",
+       "subtopics": [
+        {
+         "id": "list-health-situations-where-a-decision-making-p",
+         "title": "List health situations where a decision-making process could be used",
+         "outcomes": [
+          {
+           "code": "5:1:A1",
+           "text": "Identify steps in the decision-making process."
+          },
+          {
+           "code": "5:1:A2",
+           "text": "Provide an example of a situation when a health-related decision is needed to keep one safe."
+          },
+          {
+           "code": "5:1:A3",
+           "text": "Create a decision-making plan with family members or trusted adult."
+          }
+         ]
+        },
+        {
+         "id": "apply-a-decision-making-process-to-various-situa",
+         "title": "Apply a decision-making process to various situations to enhance health",
+         "outcomes": [
+          {
+           "code": "5:1:B1",
+           "text": "Provide an example of when a health-related decision can be made individually."
+          },
+          {
+           "code": "5:1:B2",
+           "text": "Provide an example of when assistance is needed to make a health-related decision."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "students-will-demonstrate-the-ability-to-use-goa",
+     "title": "Students will demonstrate the ability to use goal-setting skills to enhance health",
+     "topics": [
+      {
+       "id": "know-the-parts-of-a-personal-health-goal",
+       "title": "Know the parts of a personal health goal",
+       "subtopics": [
+        {
+         "id": "list-personal-health-goals",
+         "title": "List personal health goals",
+         "outcomes": [
+          {
+           "code": "6:1:A1",
+           "text": "Identify a personal health goal."
+          },
+          {
+           "code": "6:1:A2",
+           "text": "Identify steps to achieve a goal."
+          },
+          {
+           "code": "6:1:A3",
+           "text": "Discuss a health goal with a family member or trusted adult."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "students-will-demonstrate-the-ability-to-use-hea",
+     "title": "Students will demonstrate the ability to use health-enhancing behaviors and avoid or reduce health risks",
+     "topics": [
+      {
+       "id": "demonstrate-health-enhancing-behaviors",
+       "title": "Demonstrate health-enhancing behaviors",
+       "subtopics": [
+        {
+         "id": "demonstrate-health-enhancing-behaviors",
+         "title": "Demonstrate health-enhancing behaviors",
+         "outcomes": [
+          {
+           "code": "7:1:A1",
+           "text": "Demonstrate health-enhancing practices and behaviors. These may include but are not limited to: proper hygiene, physical activity, and healthy eating."
+          },
+          {
+           "code": "7:1:A2",
+           "text": "Demonstrate behaviors that avoid or reduce health risk. These may include but are not limited to: looking both ways before crossing the street, wearing a seat belt, wearing a bike helmet, and removing oneself from threatening situations."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "students-will-demonstrate-the-ability-to-advocat",
+     "title": "Students will demonstrate the ability to advocate for personal, family, and community health",
+     "topics": [
+      {
+       "id": "recognize-the-differences-between-health-needs-a",
+       "title": "Recognize the differences between health needs and personal wants",
+       "subtopics": [
+        {
+         "id": "identify-ways-to-express-health-needs-and-person",
+         "title": "Identify ways to express health needs and personal wants",
+         "outcomes": [
+          {
+           "code": "8:1:A1",
+           "text": "Define health needs and personal wants."
+          },
+          {
+           "code": "8:1:A2",
+           "text": "Express health needs and personal wants with family members or trusted adults."
+          }
+         ]
+        },
+        {
+         "id": "develop-strategies-to-communicate-personal-diffe",
+         "title": "Develop strategies to communicate personal differences between health needs and personal wants that affect health",
+         "outcomes": [
+          {
+           "code": "8:1:B1",
+           "text": "Communicate knowledge of healthy and unhealthy behaviors to family members, trusted adults, or friends."
+          },
+          {
+           "code": "8:1:B2",
+           "text": "Identify role models for healthy habits."
+          },
+          {
+           "code": "8:1:B3",
+           "text": "Encourage friends and classmates to make healthy choices."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "3-5",
+   "units": [
+    {
+     "id": "students-will-comprehend-concepts-related-to-hea",
+     "title": "Students will comprehend concepts related to health promotion and disease prevention to enhance health",
+     "topics": [
+      {
+       "id": "develop-age-appropriate-cognitive-understanding-",
+       "title": "Develop age-appropriate cognitive understanding of health promotion concepts to improve health behaviors and prevent disease",
+       "subtopics": [
+        {
+         "id": "describe-basic-concepts-related-to-health-promot",
+         "title": "Describe basic concepts related to health promotion and disease prevention",
+         "outcomes": [
+          {
+           "code": "1:2:A1",
+           "text": "Describe ways to prevent common childhood accidents, injuries, and communicable and chronic diseases. These may include but are not limited to: refraining from alcohol, tobacco, and other drug use; engaging in physical activity; demonstrating healthy eating; applying social behaviors to prevent or reduce violence; safety and related behaviors."
+          },
+          {
+           "code": "1:2:A2",
+           "text": "Describe the relationships among the environment, healthy behaviors, and personal health."
+          },
+          {
+           "code": "1:2:A3",
+           "text": "Explain ways to prevent the spread of communicable diseases."
+          }
+         ]
+        },
+        {
+         "id": "apply-health-knowledge-to-health-related-situati",
+         "title": "Apply health knowledge to health-related situations",
+         "outcomes": [
+          {
+           "code": "1:2:B1",
+           "text": "Describe when it is important to seek health care."
+          },
+          {
+           "code": "1:2:B2",
+           "text": "Describe personal and environmental barriers to practicing healthy behaviors."
+          },
+          {
+           "code": "1:2:B3",
+           "text": "Compare various dimensions of health (e.g., emotional, mental, physical, social, environmental, and occupational)."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "students-will-analyze-the-influence-of-family-pe",
+     "title": "Students will analyze the influence of family, peers, culture, media, technology, and other factors on health behaviors",
+     "topics": [
+      {
+       "id": "identify-how-influences-can-impact-health-behavi",
+       "title": "Identify how influences can impact health behaviors",
+       "subtopics": [
+        {
+         "id": "identify-influences",
+         "title": "Identify influences",
+         "outcomes": [
+          {
+           "code": "2:2:A1",
+           "text": "Describe external factors, including family, peers, culture, media, technology, school environments, physical environments, and health care, which can influence health behaviors."
+          },
+          {
+           "code": "2:2:A2",
+           "text": "Give examples of messages from external factors that can influence health behaviors."
+          },
+          {
+           "code": "2:2:A3",
+           "text": "Describe internal factors, such as personal values, beliefs, and emotions, which can influence health behaviors."
+          }
+         ]
+        },
+        {
+         "id": "explore-possible-impacts-of-influences",
+         "title": "Explore possible impacts of influences",
+         "outcomes": [
+          {
+           "code": "2:2:B1",
+           "text": "Describe how internal and external factors interact to influence health behaviors."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "students-will-demonstrate-the-ability-to-access-",
+     "title": "Students will demonstrate the ability to access valid information and products and services to enhance health",
+     "topics": [
+      {
+       "id": "identify-valid-sources-of-health-information",
+       "title": "Identify valid sources of health information",
+       "subtopics": [
+        {
+         "id": "list-sources-of-valid-health-information",
+         "title": "List sources of valid health information",
+         "outcomes": [
+          {
+           "code": "3:2:A1",
+           "text": "Identify characteristics of valid health information, products, and services."
+          },
+          {
+           "code": "3:2:A2",
+           "text": "Discuss ways to locate valid health information."
+          }
+         ]
+        },
+        {
+         "id": "identify-valid-health-information-to-promote-hea",
+         "title": "Identify valid health information to promote health",
+         "outcomes": [
+          {
+           "code": "3:2:B1",
+           "text": "Identify valid sources of health information."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "students-will-demonstrate-the-ability-to-use-int",
+     "title": "Students will demonstrate the ability to use interpersonal communication skills to enhance health and avoid or reduce health risks",
+     "topics": [
+      {
+       "id": "demonstrate-interpersonal-communication-skills",
+       "title": "Demonstrate interpersonal communication skills",
+       "subtopics": [
+        {
+         "id": "demonstrate-communication-skills-that-can-improv",
+         "title": "Demonstrate communication skills that can improve health",
+         "outcomes": [
+          {
+           "code": "4:2:A1",
+           "text": "Demonstrate effective verbal and nonverbal communication skills to enhance health."
+          },
+          {
+           "code": "4:2:A2",
+           "text": "Describe how to ask for assistance."
+          }
+         ]
+        },
+        {
+         "id": "demonstrate-communication-skills-that-prevent-re",
+         "title": "Demonstrate communication skills that prevent, resolve, or reduce health risks",
+         "outcomes": [
+          {
+           "code": "4:2:B1",
+           "text": "Demonstrate ways to prevent health risks and conflict through communications."
+          },
+          {
+           "code": "4:2:B2",
+           "text": "Identify refusal skills that avoid or reduce health risks."
+          },
+          {
+           "code": "4:2:B3",
+           "text": "Discuss nonviolent strategies to reduce, manage, or resolve conflict."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "students-will-demonstrate-the-ability-to-use-dec",
+     "title": "Students will demonstrate the ability to use decision-making skills to enhance health",
+     "topics": [
+      {
+       "id": "apply-a-decision-making-process-to-evaluate-heal",
+       "title": "Apply a decision-making process to evaluate health options",
+       "subtopics": [
+        {
+         "id": "continue-to-identify-health-related-situations-t",
+         "title": "Continue to identify health-related situations that require a decision",
+         "outcomes": [
+          {
+           "code": "5:2:A1",
+           "text": "Identify situations that require a thoughtful decision."
+          },
+          {
+           "code": "5:2:A2",
+           "text": "List healthy options to health-related issues or problems."
+          },
+          {
+           "code": "5:2:A3",
+           "text": "Choose the healthiest option when making a decision."
+          }
+         ]
+        },
+        {
+         "id": "examine-and-apply-how-a-decision-making-process-",
+         "title": "Examine and apply how a decision-making process can enhance health",
+         "outcomes": [
+          {
+           "code": "5:2:B1",
+           "text": "Determine when assistance is needed in making a health-related decision."
+          },
+          {
+           "code": "5:2:B2",
+           "text": "Examine the potential outcomes of each option when making a health-related decision."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "students-will-demonstrate-the-ability-to-use-goa",
+     "title": "Students will demonstrate the ability to use goal-setting skills to enhance health",
+     "topics": [
+      {
+       "id": "apply-goal-setting-skills-to-improve-health",
+       "title": "Apply goal-setting skills to improve health",
+       "subtopics": [
+        {
+         "id": "identify-ways-to-achieve-a-personal-health-goal",
+         "title": "Identify ways to achieve a personal health goal",
+         "outcomes": [
+          {
+           "code": "6:2:A1",
+           "text": "Identify resources to assist in achieving a personal health goal."
+          },
+          {
+           "code": "6:2:A2",
+           "text": "Identify key family, school, and community members that can assist in achieving a personal health goal."
+          }
+         ]
+        },
+        {
+         "id": "practice-appropriate-goal-setting-skills-to-achi",
+         "title": "Practice appropriate goal-setting skills to achieve a personal health goal",
+         "outcomes": [
+          {
+           "code": "6:2:B1",
+           "text": "Choose a clear and realistic personal health goal."
+          },
+          {
+           "code": "6:2:B2",
+           "text": "Develop a plan for reaching the goal."
+          },
+          {
+           "code": "6:2:B3",
+           "text": "Track progress toward goal achievement."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "students-will-demonstrate-the-ability-to-use-hea",
+     "title": "Students will demonstrate the ability to use health-enhancing behaviors and avoid or reduce health risks",
+     "topics": [
+      {
+       "id": "demonstrate-a-variety-of-health-enhancing-behavi",
+       "title": "Demonstrate a variety of health-enhancing behaviors",
+       "subtopics": [
+        {
+         "id": "identify-health-enhancing-behaviors",
+         "title": "Identify health-enhancing behaviors",
+         "outcomes": [
+          {
+           "code": "7:2:A1",
+           "text": "Identify responsible personal health behaviors. These may include but are not limited to: proper hygiene, physical activity, healthy eating, and safety-related behaviors."
+          }
+         ]
+        },
+        {
+         "id": "demonstrate-health-enhancing-behaviors",
+         "title": "Demonstrate health-enhancing behaviors",
+         "outcomes": [
+          {
+           "code": "7:2:B1",
+           "text": "Demonstrate behaviors that will maintain or improve personal health. These may include but are not limited to: engaging in regular, age-appropriate physical activity; making complex food choices that constitute healthy eating; and following medical instructions during illness."
+          },
+          {
+           "code": "7:2:B2",
+           "text": "Demonstrate behaviors that avoid or reduce health risks. These may include but are not limited to: looking both ways before crossing the street; wearing a seat belt; wearing a bike helmet; and refraining from alcohol, tobacco, and other drug use."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "students-will-demonstrate-the-ability-to-advocat",
+     "title": "Students will demonstrate the ability to advocate for personal, family, and community health",
+     "topics": [
+      {
+       "id": "describe-advocacy-and-health-related-situations-",
+       "title": "Describe advocacy and health-related situations for which it is appropriate",
+       "subtopics": [
+        {
+         "id": "define-advocacy",
+         "title": "Define advocacy",
+         "outcomes": [
+          {
+           "code": "8:2:A1",
+           "text": "State opinions about health issues."
+          },
+          {
+           "code": "8:2:A2",
+           "text": "Discuss factual information about health issues with family members or trusted adults."
+          },
+          {
+           "code": "8:2:A3",
+           "text": "Define advocacy."
+          }
+         ]
+        },
+        {
+         "id": "describe-situations-where-advocacy-is-appropriat",
+         "title": "Describe situations where advocacy is appropriate",
+         "outcomes": [
+          {
+           "code": "8:2:B1",
+           "text": "Discuss situations where advocacy may be used."
+          },
+          {
+           "code": "8:2:B2",
+           "text": "List types of situations in which one could model health-enhancing behaviors."
+          },
+          {
+           "code": "8:2:B3",
+           "text": "Encourage family members to engage in health-enhancing behaviors through actions or suggestions."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "6-8",
+   "units": [
+    {
+     "id": "students-will-comprehend-concepts-related-to-hea",
+     "title": "Students will comprehend concepts related to health promotion and disease prevention to enhance health",
+     "topics": [
+      {
+       "id": "comprehend-and-apply-concepts-related-to-health-",
+       "title": "Comprehend and apply concepts related to health promotion and disease prevention",
+       "subtopics": [
+        {
+         "id": "identify-the-components-of-health-promotion-and-",
+         "title": "Identify the components of health promotion and disease prevention",
+         "outcomes": [
+          {
+           "code": "1:3:A1",
+           "text": "Describe specific behaviors that can reduce or prevent injuries and communicable or chronic diseases. These may include but are not limited to: refraining from alcohol, tobacco, and other drug use; engaging in physical activity; demonstrating healthy eating; sexual behaviors; applying social behaviors to prevent or reduce violence; safety and related behaviors."
+          },
+          {
+           "code": "1:3:A2",
+           "text": "Describe the negative consequences of engaging in unhealthy behaviors."
+          },
+          {
+           "code": "1:3:A3",
+           "text": "Describe how family history can affect personal health."
+          },
+          {
+           "code": "1:3:A4",
+           "text": "Describe how physical and social environments can affect personal health."
+          }
+         ]
+        },
+        {
+         "id": "analyze-the-benefits-of-and-barriers-to-practici",
+         "title": "Analyze the benefits of and barriers to practicing healthy behaviors",
+         "outcomes": [
+          {
+           "code": "1:3:B1",
+           "text": "Analyze the relationships between healthy behaviors and personal health."
+          },
+          {
+           "code": "1:3:B2",
+           "text": "Examine healthy behaviors and consequences related to a health issue."
+          },
+          {
+           "code": "1:3:B3",
+           "text": "Predict the outcomes of a variety of unhealthy behaviors."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "students-will-analyze-the-influence-of-family-pe",
+     "title": "Students will analyze the influence of family, peers, culture, media, technology, and other factors on health behaviors",
+     "topics": [
+      {
+       "id": "examine-how-internal-and-external-factors-influe",
+       "title": "Examine how internal and external factors influence personal health behaviors",
+       "subtopics": [
+        {
+         "id": "examine-impact-of-influences",
+         "title": "Examine impact of influences",
+         "outcomes": [
+          {
+           "code": "2:3:A1",
+           "text": "Examine how external and internal factors can influence health behaviors."
+          },
+          {
+           "code": "2:3:A2",
+           "text": "Provide examples of how factors can interact to influence health behaviors."
+          },
+          {
+           "code": "2:3:A3",
+           "text": "Examine how one's family, culture, and peers influence one's own personal health behaviors."
+          },
+          {
+           "code": "2:3:A4",
+           "text": "Examine how media and technology influence one's own personal health behaviors."
+          },
+          {
+           "code": "2:3:A5",
+           "text": "Examine how one's values and beliefs influence one's own personal health behaviors."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "students-will-demonstrate-the-ability-to-access-",
+     "title": "Students will demonstrate the ability to access valid information and products and services to enhance health",
+     "topics": [
+      {
+       "id": "demonstrate-and-apply-strategies-to-access-valid",
+       "title": "Demonstrate and apply strategies to access valid sources of health information",
+       "subtopics": [
+        {
+         "id": "identify-criteria-for-choosing-accurate-sources-",
+         "title": "Identify criteria for choosing accurate sources of information",
+         "outcomes": [
+          {
+           "code": "3:3:A1",
+           "text": "Describe situations that require accurate health information."
+          },
+          {
+           "code": "3:3:A2",
+           "text": "Locate sources of valid health information from home, school, and community."
+          },
+          {
+           "code": "3:3:A3",
+           "text": "Describe criteria for evaluating resources."
+          }
+         ]
+        },
+        {
+         "id": "apply-models-to-analyze-sources-of-information-f",
+         "title": "Apply models to analyze sources of information for validity and reliability",
+         "outcomes": [
+          {
+           "code": "3:3:B1",
+           "text": "Analyze the validity of information about health issues, products, and services."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "students-will-demonstrate-the-ability-to-use-int",
+     "title": "Students will demonstrate the ability to use interpersonal communication skills to enhance health and avoid or reduce health risks",
+     "topics": [
+      {
+       "id": "examine-and-demonstrate-communication-skills-tha",
+       "title": "Examine and demonstrate communication skills that enhance health and avoid health risks",
+       "subtopics": [
+        {
+         "id": "examine-communication-strategies-in-various-heal",
+         "title": "Examine communication strategies in various health-related settings",
+         "outcomes": [
+          {
+           "code": "4:3:A1",
+           "text": "Examine appropriate communication strategies."
+          },
+          {
+           "code": "4:3:A2",
+           "text": "Examine the outcomes of using effective and ineffective strategies of communication."
+          }
+         ]
+        },
+        {
+         "id": "apply-appropriate-communication-skills-in-variou",
+         "title": "Apply appropriate communication skills in various health-related settings",
+         "outcomes": [
+          {
+           "code": "4:3:B1",
+           "text": "Demonstrate refusal and limit setting skills that avoid health risks."
+          },
+          {
+           "code": "4:3:B2",
+           "text": "Demonstrate effective conflict resolution skills."
+          },
+          {
+           "code": "4:3:B3",
+           "text": "Demonstrate ways, such as restorative justice practices, to manage or resolve interpersonal conflicts without harming self or others."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "students-will-demonstrate-the-ability-to-use-dec",
+     "title": "Students will demonstrate the ability to use decision-making skills to enhance health",
+     "topics": [
+      {
+       "id": "apply-a-decision-making-process-in-various-healt",
+       "title": "Apply a decision-making process in various health-related situations",
+       "subtopics": [
+        {
+         "id": "identify-situations-where-effective-decision-mak",
+         "title": "Identify situations where effective decision-making skills are implemented",
+         "outcomes": [
+          {
+           "code": "5:3:A1",
+           "text": "Determine when individual or collaborative decision making is appropriate."
+          }
+         ]
+        },
+        {
+         "id": "assess-the-impact-of-a-decision-making-process-o",
+         "title": "Assess the impact of a decision-making process on health-related situations",
+         "outcomes": [
+          {
+           "code": "5:3:B1",
+           "text": "Demonstrate decision making in a health-related situation."
+          },
+          {
+           "code": "5:3:B2",
+           "text": "Predict the impact of each decision on self and others."
+          },
+          {
+           "code": "5:3:B3",
+           "text": "Analyze the outcome of a health-related decision."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "students-will-demonstrate-the-ability-to-use-goa",
+     "title": "Students will demonstrate the ability to use goal-setting skills to enhance health",
+     "topics": [
+      {
+       "id": "apply-goal-setting-skills-to-health-situations",
+       "title": "Apply goal-setting skills to health situations",
+       "subtopics": [
+        {
+         "id": "identify-additional-steps-to-setting-and-achievi",
+         "title": "Identify additional steps to setting and achieving realistic health goals",
+         "outcomes": [
+          {
+           "code": "6:3:A1",
+           "text": "Establish a baseline of personal health behaviors and health status."
+          },
+          {
+           "code": "6:3:A2",
+           "text": "Identify strategies and behaviors needed to maintain or improve health status."
+          },
+          {
+           "code": "6:3:A3",
+           "text": "Identify strategies that might be utilized to overcome barriers or setbacks."
+          }
+         ]
+        },
+        {
+         "id": "apply-goal-setting-skills-to-various-health-rela",
+         "title": "Apply goal-setting skills to various health-related situations",
+         "outcomes": [
+          {
+           "code": "6:3:B1",
+           "text": "Examine how personal health goals can be impacted by various abilities, priorities, and responsibilities that may change throughout the lifespan."
+          },
+          {
+           "code": "6:3:B2",
+           "text": "Develop goals to maintain or improve personal health status."
+          },
+          {
+           "code": "6:3:B3",
+           "text": "Assess the effectiveness of strategies to reach personal health goals."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "students-will-demonstrate-the-ability-to-use-hea",
+     "title": "Students will demonstrate the ability to use health-enhancing behaviors and avoid or reduce health risks",
+     "topics": [
+      {
+       "id": "apply-health-enhancing-behaviors-that-maintain-o",
+       "title": "Apply health-enhancing behaviors that maintain or improve the health of self and others",
+       "subtopics": [
+        {
+         "id": "explain-the-importance-of-self-responsibility-fo",
+         "title": "Explain the importance of self-responsibility for personal health behaviors",
+         "outcomes": [
+          {
+           "code": "7:3:A1",
+           "text": "Evaluate behaviors that maintain or improve the health of self and others. These may include but are not limited to: refraining from risky sexual behaviors; refraining from alcohol, tobacco, and other drug use; engaging in regular and varied physical activity; meal planning that leads to healthy eating; applying social behaviors to prevent or reduce violence; practicing safety-related behaviors in various complex settings; and appropriate use of the health care system."
+          }
+         ]
+        },
+        {
+         "id": "demonstrate-the-role-of-self-responsibility-in-e",
+         "title": "Demonstrate the role of self-responsibility in enhancing health",
+         "outcomes": [
+          {
+           "code": "7:3:B1",
+           "text": "Demonstrate health-enhancing practices and behaviors that help maintain or improve the health of self and others."
+          },
+          {
+           "code": "7:3:B2",
+           "text": "Demonstrate behaviors that avoid or reduce health risks to self and others."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "students-will-demonstrate-the-ability-to-advocat",
+     "title": "Students will demonstrate the ability to advocate for personal, family, and community health",
+     "topics": [
+      {
+       "id": "develop-health-promoting-strategies-that-support",
+       "title": "Develop health-promoting strategies that support family or friends to make positive health choices",
+       "subtopics": [
+        {
+         "id": "develop-an-advocacy-plan-to-promote-health",
+         "title": "Develop an advocacy plan to promote health",
+         "outcomes": [
+          {
+           "code": "8:3:A1",
+           "text": "Develop an age-appropriate definition of advocacy."
+          },
+          {
+           "code": "8:3:A2",
+           "text": "Plan ways to advocate for healthy individuals, families, and schools."
+          },
+          {
+           "code": "8:3:A3",
+           "text": "Incorporate accurate information as it relates to a health-enhancing position to advocate for self and others."
+          },
+          {
+           "code": "8:3:A4",
+           "text": "Discuss the barriers that could be involved in an advocacy effort."
+          }
+         ]
+        },
+        {
+         "id": "implement-an-advocacy-plan-pertaining-to-a-healt",
+         "title": "Implement an advocacy plan pertaining to a health issue",
+         "outcomes": [
+          {
+           "code": "8:3:B1",
+           "text": "Predict how an advocacy plan will influence and support the health status of others."
+          },
+          {
+           "code": "8:3:B2",
+           "text": "Apply a plan to advocate for a health issue for people that experience health disparities."
+          },
+          {
+           "code": "8:3:B3",
+           "text": "Defend a position relating to a health issue."
+          },
+          {
+           "code": "8:3:B4",
+           "text": "Describe ways to adapt health messages for different audiences."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "9-12",
+   "units": [
+    {
+     "id": "students-will-comprehend-concepts-related-to-hea",
+     "title": "Students will comprehend concepts related to health promotion and disease prevention to enhance health",
+     "topics": [
+      {
+       "id": "examine-and-apply-health-concepts-related-to-hea",
+       "title": "Examine and apply health concepts related to health promotion and disease prevention",
+       "subtopics": [
+        {
+         "id": "analyze-the-impact-of-determinants-of-health",
+         "title": "Analyze the impact of determinants of health",
+         "outcomes": [
+          {
+           "code": "1:4:A1",
+           "text": "Analyze how genetics and family history can affect personal health."
+          },
+          {
+           "code": "1:4:A2",
+           "text": "Examine the interrelationships of various dimensions of health (e.g., emotional, mental, physical, social, environmental, and occupational)."
+          },
+          {
+           "code": "1:4:A3",
+           "text": "Analyze the impact of unhealthy behavior on various dimensions of health (e.g., emotional, mental, physical, social, environmental, and occupational)."
+          },
+          {
+           "code": "1:4:A4",
+           "text": "Predict how personal behaviors and access to appropriate health care can affect health."
+          },
+          {
+           "code": "1:4:A5",
+           "text": "Analyze how environment and personal health are interrelated."
+          }
+         ]
+        },
+        {
+         "id": "explore-factors-that-impact-health-status",
+         "title": "Explore factors that impact health status",
+         "outcomes": [
+          {
+           "code": "1:4:B1",
+           "text": "Investigate the relationship between access to health care and health status."
+          },
+          {
+           "code": "1:4:B2",
+           "text": "Compare the benefits of and barriers to practicing a variety of health behaviors. These may include but are not limited to: refraining from alcohol, tobacco, and other drug use; physical activity; healthy eating; social behaviors to prevent or reduce violence; safety and related behaviors."
+          },
+          {
+           "code": "1:4:B3",
+           "text": "Examine susceptibility to and severity of injury and illness if engaging in unhealthy behaviors."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "students-will-analyze-the-influence-of-family-pe",
+     "title": "Students will analyze the influence of family, peers, culture, media, technology, and other factors on health behaviors",
+     "topics": [
+      {
+       "id": "evaluate-how-influences-impact-health-behaviors",
+       "title": "Evaluate how influences impact health behaviors",
+       "subtopics": [
+        {
+         "id": "analyze-the-impact-of-external-and-internal-infl",
+         "title": "Analyze the impact of external and internal influences on the health behavior of individuals and populations",
+         "outcomes": [
+          {
+           "code": "2:4:A1",
+           "text": "Analyze how external influences, individually and in combination with others, can influence individuals' health behaviors and that of certain populations."
+          },
+          {
+           "code": "2:4:A2",
+           "text": "Analyze how internal influences, including perception of social norms among peers, can influence individuals' health behaviors and that of certain populations."
+          },
+          {
+           "code": "2:4:A3",
+           "text": "Examine how social policies can influence health behaviors."
+          },
+          {
+           "code": "2:4:A4",
+           "text": "Estimate the impact of internal and external influences on one's own personal health behavior."
+          },
+          {
+           "code": "2:4:A5",
+           "text": "Predict how various external and internal influences will interact and impact the health behavior of populations."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "students-will-demonstrate-the-ability-to-access-",
+     "title": "Students will demonstrate the ability to access valid information and products and services to enhance health",
+     "topics": [
+      {
+       "id": "examine-strategies-to-access-valid-and-reliable-",
+       "title": "Examine strategies to access valid and reliable sources of health information",
+       "subtopics": [
+        {
+         "id": "continue-to-apply-criteria-for-choosing-accurate",
+         "title": "Continue to apply criteria for choosing accurate sources of information",
+         "outcomes": [
+          {
+           "code": "3:4:A1",
+           "text": "Determine the availability of information, products, and services that enhance health."
+          },
+          {
+           "code": "3:4:A2",
+           "text": "Access health information, products, and services that improve health outcomes."
+          },
+          {
+           "code": "3:4:A3",
+           "text": "Determine when professional health services may be needed and how to access them."
+          }
+         ]
+        },
+        {
+         "id": "analyze-sources-of-information-for-validity-and-",
+         "title": "Analyze sources of information for validity and reliability",
+         "outcomes": [
+          {
+           "code": "3:4:B1",
+           "text": "Evaluate the validity of sources of health information using key criteria."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "students-will-demonstrate-the-ability-to-use-int",
+     "title": "Students will demonstrate the ability to use interpersonal communication skills to enhance health and avoid or reduce health risks",
+     "topics": [
+      {
+       "id": "analyze-various-communication-skills-that-enhanc",
+       "title": "Analyze various communication skills that enhance health and avoid health risks",
+       "subtopics": [
+        {
+         "id": "continue-to-analyze-communication-skills-in-vari",
+         "title": "Continue to analyze communication skills in various health-related settings",
+         "outcomes": [
+          {
+           "code": "4:4:A1",
+           "text": "Analyze communication strategies for effective interaction among family, peers, and others to enhance health."
+          },
+          {
+           "code": "4:4:A2",
+           "text": "Reflect on the impact of communication on enhancing health."
+          },
+          {
+           "code": "4:4:A3",
+           "text": "Demonstrate how to ask for and offer assistance to enhance the health of self and others."
+          }
+         ]
+        },
+        {
+         "id": "demonstrate-communication-skills-in-health-relat",
+         "title": "Demonstrate communication skills in health-related situations",
+         "outcomes": [
+          {
+           "code": "4:4:B1",
+           "text": "Demonstrate refusal, negotiation, and collaboration skills to enhance health and avoid or reduce health risks."
+          },
+          {
+           "code": "4:4:B2",
+           "text": "Demonstrate strategies to prevent interpersonal conflicts."
+          },
+          {
+           "code": "4:4:B3",
+           "text": "Demonstrate ways, such as restorative justice practices, to manage or resolve interpersonal conflicts without harming self or others."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "students-will-demonstrate-the-ability-to-use-dec",
+     "title": "Students will demonstrate the ability to use decision-making skills to enhance health",
+     "topics": [
+      {
+       "id": "examine-the-use-of-a-decision-making-process-in-",
+       "title": "Examine the use of a decision-making process in various health-related situations",
+       "subtopics": [
+        {
+         "id": "evaluate-the-impact-of-a-decision-making-process",
+         "title": "Evaluate the impact of a decision-making process on health-related situations",
+         "outcomes": [
+          {
+           "code": "5:4:A1",
+           "text": "Identify situations in which using a thoughtful decision-making process would be health-enhancing."
+          },
+          {
+           "code": "5:4:A2",
+           "text": "Justify when individual or collaborative decision making is appropriate."
+          }
+         ]
+        },
+        {
+         "id": "apply-effective-decision-making-skills-to-enhanc",
+         "title": "Apply effective decision-making skills to enhance health",
+         "outcomes": [
+          {
+           "code": "5:4:B1",
+           "text": "Demonstrate effective decision-making processes related to various complex and relevant health-related situations. These may include but are not limited to: decisions about personal behaviors, decisions related to social behaviors, and use of the health care system."
+          },
+          {
+           "code": "5:4:B2",
+           "text": "Generate alternatives for health-related issues or problems."
+          },
+          {
+           "code": "5:4:B3",
+           "text": "Examine barriers that can hinder healthy decision making."
+          },
+          {
+           "code": "5:4:B4",
+           "text": "Predict the potential short-term and long-term impacts of each alternative on self and others."
+          },
+          {
+           "code": "5:4:B5",
+           "text": "Defend the healthy choice when making decisions."
+          },
+          {
+           "code": "5:4:B6",
+           "text": "Evaluate the effectiveness of a health-related decision."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "students-will-demonstrate-the-ability-to-use-goa",
+     "title": "Students will demonstrate the ability to use goal-setting skills to enhance health",
+     "topics": [
+      {
+       "id": "apply-goal-setting-skills",
+       "title": "Apply goal-setting skills",
+       "subtopics": [
+        {
+         "id": "analyze-issues-that-impact-setting-a-goal",
+         "title": "Analyze issues that impact setting a goal",
+         "outcomes": [
+          {
+           "code": "6:4:A1",
+           "text": "Assess personal health practices and their impact on overall health status."
+          },
+          {
+           "code": "6:4:A2",
+           "text": "Evaluate potential barriers or setbacks that may impede one's ability to reach his/her health goal."
+          },
+          {
+           "code": "6:4:A3",
+           "text": "Identify strategies that might be utilized to overcome barriers or setbacks."
+          }
+         ]
+        },
+        {
+         "id": "apply-goal-setting-skills-to-various-health-rela",
+         "title": "Apply goal-setting skills to various health-related situations",
+         "outcomes": [
+          {
+           "code": "6:4:B1",
+           "text": "Formulate an effective long-term personal health goal."
+          },
+          {
+           "code": "6:4:B2",
+           "text": "Develop a plan to reach a personal health goal that addresses strengths, needs, and risks."
+          },
+          {
+           "code": "6:4:B3",
+           "text": "Implement a plan and monitor progress in achieving a personal health goal."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "students-will-demonstrate-the-ability-to-use-hea",
+     "title": "Students will demonstrate the ability to use health-enhancing behaviors and avoid or reduce health risks",
+     "topics": [
+      {
+       "id": "demonstrate-age-appropriate-health-enhancing-beh",
+       "title": "Demonstrate age-appropriate, health-enhancing behaviors to reduce health risks",
+       "subtopics": [
+        {
+         "id": "examine-health-enhancing-behaviors",
+         "title": "Examine health-enhancing behaviors",
+         "outcomes": [
+          {
+           "code": "7:4:A1",
+           "text": "Determine behaviors that will protect and promote health in high risk situations. These may include but are not limited to: refraining from risky sexual behaviors; refraining from alcohol, tobacco, and other drug use; engaging in various forms of physical activity appropriate to current and future life stages; making complex food choices in various food environments to support healthy eating; applying social behaviors to prevent or reduce violence in settings relevant to one's culture; practicing safety-related behaviors in high risk situations; and appropriately accessing health care services for routine preventive care and for illnesses and injuries."
+          },
+          {
+           "code": "7:4:A2",
+           "text": "Analyze the roles of individual responsibility and the health care system in enhancing health."
+          }
+         ]
+        },
+        {
+         "id": "demonstrate-a-variety-of-health-enhancing-behavi",
+         "title": "Demonstrate a variety of health-enhancing behaviors",
+         "outcomes": [
+          {
+           "code": "7:4:B1",
+           "text": "Demonstrate a variety of health practices and behaviors that will maintain or improve the health of self and others. These include, but are not limited to: personal behaviors such as regular and health-enhancing physical activity, healthy eating, and accessing appropriate preventive health care services."
+          },
+          {
+           "code": "7:4:B2",
+           "text": "Demonstrate a variety of behaviors that avoid or reduce health risks to self and others. These include, but are not limited to: various complex safety-related behaviors, appropriately accessing mental and physical health care services, and carefully following medical advice and instructions."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "students-will-demonstrate-the-ability-to-advocat",
+     "title": "Students will demonstrate the ability to advocate for personal, family, and community health",
+     "topics": [
+      {
+       "id": "apply-skills-to-advocate-for-a-health-issue",
+       "title": "Apply skills to advocate for a health issue",
+       "subtopics": [
+        {
+         "id": "develop-strategies-to-advocate-for-a-health-issu",
+         "title": "Develop strategies to advocate for a health issue",
+         "outcomes": [
+          {
+           "code": "8:4:A1",
+           "text": "Apply societal norms to formulate a health-enhancing message."
+          },
+          {
+           "code": "8:4:A2",
+           "text": "Adapt health-enhancing messages and persuasive communication techniques to a specific target audience."
+          },
+          {
+           "code": "8:4:A3",
+           "text": "Apply accurate information to support a health-enhancing message."
+          },
+          {
+           "code": "8:4:A4",
+           "text": "Develop strategies to overcome barriers or resistance to desired health action or behavior."
+          }
+         ]
+        },
+        {
+         "id": "implement-an-advocacy-plan-pertaining-to-a-healt",
+         "title": "Implement an advocacy plan pertaining to a health issue",
+         "outcomes": [
+          {
+           "code": "8:4:B1",
+           "text": "Develop a plan to advocate for a personal, family, or community health issue."
+          },
+          {
+           "code": "8:4:B2",
+           "text": "Implement an advocacy plan for a health issue."
+          },
+          {
+           "code": "8:4:B3",
+           "text": "Demonstrate conviction in encouraging others to make positive health choices."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "nutrition-for-energy-and-growth",
+     "title": "Nutrition for Energy and Growth",
+     "topics": [
+      {
+       "id": "students-in-wisconsin-will-understand-the-concep",
+       "title": "Students in Wisconsin will understand the concepts related to and the connections between food choices, eating habits, activity, and healthy growth",
+       "subtopics": [
+        {
+         "id": "students-in-wisconsin-will-understand-the-concep",
+         "title": "Students in Wisconsin will understand the concepts related to and the connections between food choices, eating habits, activity, and healthy growth",
+         "outcomes": [
+          {
+           "code": "A.12.1",
+           "text": "Describe the nutritional needs associated with life stages (prenatal through late adulthood)"
+          },
+          {
+           "code": "A.12.2",
+           "text": "Explain how overweight and obesity are the results of overeating and underactivity"
+          },
+          {
+           "code": "A.12.3",
+           "text": "Demonstrate an awareness that the amount of food that is served may not be an appropriate amount to consume based on the contribution of that food to the day's overall intake of calories and nutrients"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "food-safety",
+     "title": "Food Safety",
+     "topics": [
+      {
+       "id": "students-in-wisconsin-will-understand-know-how-t",
+       "title": "Students in Wisconsin will understand/know how to keep food safe for consumption and how to prepare food safely",
+       "subtopics": [
+        {
+         "id": "students-in-wisconsin-will-understand-know-how-t",
+         "title": "Students in Wisconsin will understand/know how to keep food safe for consumption and how to prepare food safely",
+         "outcomes": [
+          {
+           "code": "B.12.1",
+           "text": "Identify and explain the importance of key food safety messages (clean, cook, chill, avoid cross-contamination) and identify Critical Control Points in a HACCP (Hazard Analysis Critical Control Point) plan"
+          },
+          {
+           "code": "B.12.2",
+           "text": "Identify the effects of food preparation techniques on the nutritional value of the food"
+          },
+          {
+           "code": "B.12.3",
+           "text": "Explain how food importing/exporting, processing, food handling, and cooking methods can affect the safety of our food supply"
+          },
+          {
+           "code": "B.12.4",
+           "text": "Identify potential sources of food contamination between the origin of a food and consuming the food"
+          },
+          {
+           "code": "B.12.5",
+           "text": "Explain how contaminants may enter the food supply at various points in a food chain"
+          },
+          {
+           "code": "B.12.6",
+           "text": "Explain why the USDA has a food recall process and how the process works"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "critical-thinking-and-practical-reasoning",
+     "title": "Critical Thinking and Practical Reasoning",
+     "topics": [
+      {
+       "id": "students-in-wisconsin-will-understand-and-use-cr",
+       "title": "Students in Wisconsin will understand and use critical thinking and practical reasoning skills to address food choices, nutrition, and health concerns",
+       "subtopics": [
+        {
+         "id": "students-in-wisconsin-will-understand-and-use-cr",
+         "title": "Students in Wisconsin will understand and use critical thinking and practical reasoning skills to address food choices, nutrition, and health concerns (1 of 2)",
+         "outcomes": [
+          {
+           "code": "C.12.1",
+           "text": "Use reliable nutrition information to make dietary and health decisions, and compare and contrast fad diets, including the preceived and actual costs of weight loss attempts"
+          },
+          {
+           "code": "C.12.2",
+           "text": "Calculate Body Mass Index (BMI) and interpret results, realizing that body composition is only one factor in assessing health"
+          },
+          {
+           "code": "C.12.3",
+           "text": "Critically analyze dietary habits related to health and how they may affect body weight and long term health"
+          },
+          {
+           "code": "C.12.4",
+           "text": "Work within a budget to plan a week of nutritious meals for a family of four"
+          },
+          {
+           "code": "C.12.5",
+           "text": "Describe the benefits to buying locally grown and/or produced foods"
+          }
+         ]
+        },
+        {
+         "id": "students-in-wisconsin-will-understand-and-use-cr-2",
+         "title": "Students in Wisconsin will understand and use critical thinking and practical reasoning skills to address food choices, nutrition, and health concerns (2 of 2)",
+         "outcomes": [
+          {
+           "code": "C.12.6",
+           "text": "Describe the components of a nutrition label, and how to use the information from labels to make informed decisions regarding food choices"
+          },
+          {
+           "code": "C.12.7",
+           "text": "Give examples how economics influences food prices, availability, and marketing strategies"
+          },
+          {
+           "code": "C.12.8",
+           "text": "Evaluate the usefulness and credibility of nutrition information available online and in the media"
+          },
+          {
+           "code": "C.12.9",
+           "text": "Demonstrate how to comparison shop for foods, including comparing nutrient density, unit pricing, food packaging, and prices of foods in various forms"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "nutrition-for-health-promotion-of-healthy-behavi",
+     "title": "Nutrition for Health Promotion of Healthy Behaviors",
+     "topics": [
+      {
+       "id": "students-in-wisconsin-will-understand-concepts-r",
+       "title": "Students in Wisconsin will understand concepts related to personal health promotion and disease prevention, and will practice behaviors to promote health, prevent disease, and reduce health risks",
+       "subtopics": [
+        {
+         "id": "students-in-wisconsin-will-understand-concepts-r",
+         "title": "Students in Wisconsin will understand concepts related to personal health promotion and disease prevention, and will practice behaviors to promote health, prevent disease, and reduce health risks",
+         "outcomes": [
+          {
+           "code": "D.12.1",
+           "text": "Understand the links between community resources, healthy eating and physical activity, and how this affects personal health"
+          },
+          {
+           "code": "D.12.2",
+           "text": "Advocate for positive eating and physical activity choices in the community, such as increased access to fresh fruits and vegetables through community/school gardens, farmer's markets and local produce cooperatives"
+          },
+          {
+           "code": "D.12.3",
+           "text": "Describe the relationship of social and emotional factors in dysfunctional eating and identifies the consequences of eating disorders and the need for early intervention and treatment"
+          },
+          {
+           "code": "D.12.4",
+           "text": "Demonstrate the ability to adapt healthy eating and physical activity messages and communication techniques to the characteristics of a particular audience, considering cultural and social perspectives"
+          },
+          {
+           "code": "D.12.5",
+           "text": "List the functions and food sources for key nutrients and the relationship of key nutrients to health and prevention of chronic disease"
+          },
+          {
+           "code": "D.12.6",
+           "text": "Describe how food choices are influenced by availability, individual and family preferences, and the media"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "diversity",
+     "title": "Diversity",
+     "topics": [
+      {
+       "id": "students-in-wisconsin-will-understand-that-nutri",
+       "title": "Students in Wisconsin will understand that nutritional status and health can be impacted by many factors, and healthy eating must be individualized to meet personal preferences and characteristics",
+       "subtopics": [
+        {
+         "id": "students-in-wisconsin-will-understand-that-nutri",
+         "title": "Students in Wisconsin will understand that nutritional status and health can be impacted by many factors, and healthy eating must be individualized to meet personal preferences and characteristics",
+         "outcomes": [
+          {
+           "code": "E.12.1",
+           "text": "Analyze the availability and variety of affordable and nutritionally adequate foods in the community, including ethnic and other local markets"
+          },
+          {
+           "code": "E.12.2",
+           "text": "Examine genetic and cultural connections to weight, size and body shape"
+          },
+          {
+           "code": "E.12.3",
+           "text": "Analyze how culture, family traditions and economic situations influence eating and activity behaviors"
+          },
+          {
+           "code": "E.12.4",
+           "text": "Evaluate the nutritional and health implications of eating habits of various cultures, economic situations, family traditions and lifestyles"
+          },
+          {
+           "code": "E.12.5",
+           "text": "Identify how social and cultural messages about food and eating infl uence nutrition choices"
+          },
+          {
+           "code": "E.12.6",
+           "text": "Provide examples of how our health status and belief system may impact our food choices"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "identification-and-classification-of-food",
+     "title": "Identification and Classification of Food",
+     "topics": [
+      {
+       "id": "students-in-wisconsin-will-be-able-to-appreciate",
+       "title": "Students in Wisconsin will be able to appreciate and classify foods. They will also demonstrate an interest and appreciation for a variety of foods",
+       "subtopics": [
+        {
+         "id": "students-in-wisconsin-will-be-able-to-appreciate",
+         "title": "Students in Wisconsin will be able to appreciate and classify foods. They will also demonstrate an interest and appreciation for a variety of foods",
+         "outcomes": [
+          {
+           "code": "F.12.1",
+           "text": "Identify foods by form, function and source (plant, animal)"
+          },
+          {
+           "code": "F.12.2",
+           "text": "Explain why foods are processed, analyze how foods change during processing (form, texture, additives, nutritional value), and describe how processed foods fit into a food guidance system"
+          },
+          {
+           "code": "F.12.3",
+           "text": "Describe the relationship between the food guidance system and the Dietary Standards for Americans"
+          },
+          {
+           "code": "F.12.4",
+           "text": "Explain the role of food manufacturing in a global economy, including the negative and positive ramifi cations of food processing and importing/exporting"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "PK-4",
+   "units": [
+    {
+     "id": "nutrition-for-energy-and-growth",
+     "title": "Nutrition for Energy and Growth",
+     "topics": [
+      {
+       "id": "students-in-wisconsin-will-understand-the-concep",
+       "title": "Students in Wisconsin will understand the concepts related to and the connections between food choices, eating habits, activity, and healthy growth",
+       "subtopics": [
+        {
+         "id": "students-in-wisconsin-will-understand-the-concep",
+         "title": "Students in Wisconsin will understand the concepts related to and the connections between food choices, eating habits, activity, and healthy growth",
+         "outcomes": [
+          {
+           "code": "A.4.1",
+           "text": "Identify why people need to eat different kinds of foods"
+          },
+          {
+           "code": "A.4.2",
+           "text": "Identify feeling hungry vs. feeling full/satisfied"
+          },
+          {
+           "code": "A.4.3",
+           "text": "Identify the benefi ts of relationship between physical activity (using energy) and the need for food and water; state that people need to eat food to have energy and grow"
+          },
+          {
+           "code": "A.4.4",
+           "text": "Match food groups to their primary contribution for a healthy body, realizing that some foods are better fuel than others (nutrient density)"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "food-safety",
+     "title": "Food Safety",
+     "topics": [
+      {
+       "id": "students-in-wisconsin-will-understand-know-how-t",
+       "title": "Students in Wisconsin will understand/know how to keep food safe for consumption and how to prepare food safely",
+       "subtopics": [
+        {
+         "id": "students-in-wisconsin-will-understand-know-how-t",
+         "title": "Students in Wisconsin will understand/know how to keep food safe for consumption and how to prepare food safely",
+         "outcomes": [
+          {
+           "code": "B.4.1",
+           "text": "Identify when adults should help with food preparation"
+          },
+          {
+           "code": "B.4.2",
+           "text": "Identify ways to keep food fresh and safe to eat"
+          },
+          {
+           "code": "B.4.3",
+           "text": "Recognize that eating improperly prepared or spoiled food can make you sick"
+          },
+          {
+           "code": "B.4.4",
+           "text": "Trace a food from origin to table"
+          },
+          {
+           "code": "B.4.5",
+           "text": "Describe a food chain"
+          },
+          {
+           "code": "B.4.6",
+           "text": "Explain the importance of hand-washing during food preparation"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "critical-thinking-and-practical-reasoning",
+     "title": "Critical Thinking and Practical Reasoning",
+     "topics": [
+      {
+       "id": "students-in-wisconsin-will-understand-and-use-cr",
+       "title": "Students in Wisconsin will understand and use critical thinking and practical reasoning skills to address food choices, nutrition, and health concerns",
+       "subtopics": [
+        {
+         "id": "students-in-wisconsin-will-understand-and-use-cr",
+         "title": "Students in Wisconsin will understand and use critical thinking and practical reasoning skills to address food choices, nutrition, and health concerns",
+         "outcomes": [
+          {
+           "code": "C.4.1",
+           "text": "Be able to distinguish between food and nonfood items"
+          },
+          {
+           "code": "C.4.2",
+           "text": "Identify a healthy eating habit"
+          },
+          {
+           "code": "C.4.3",
+           "text": "Graph progress toward achieving a set nutrition goal, using a simple log chart"
+          },
+          {
+           "code": "C.4.4",
+           "text": "Compare and contrast snacks which can contribute to or undermine healthy eating habits and identify why one snack might be a better choice than another snack"
+          },
+          {
+           "code": "C.4.5",
+           "text": "Recognize factors in advertisements to sell foods"
+          },
+          {
+           "code": "C.4.6",
+           "text": "Demonstrate how to use food labels to select a healthy food or snack"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "nutrition-for-health-promotion-of-healthy-behavi",
+     "title": "Nutrition for Health Promotion of Healthy Behaviors",
+     "topics": [
+      {
+       "id": "students-in-wisconsin-will-understand-concepts-r",
+       "title": "Students in Wisconsin will understand concepts related to personal health promotion and disease prevention, and will practice behaviors to promote health, prevent disease, and reduce health risks",
+       "subtopics": [
+        {
+         "id": "students-in-wisconsin-will-understand-concepts-r",
+         "title": "Students in Wisconsin will understand concepts related to personal health promotion and disease prevention, and will practice behaviors to promote health, prevent disease, and reduce health risks",
+         "outcomes": [
+          {
+           "code": "D.4.1",
+           "text": "Understand the concept of variety, and identify that eating a variety of foods is important to health"
+          },
+          {
+           "code": "D.4.2",
+           "text": "Describe the consequences of overeating"
+          },
+          {
+           "code": "D.4.3",
+           "text": "Identify sources of fat, sugar, salt, fiber, protein, and calcium in the diet"
+          },
+          {
+           "code": "D.4.4",
+           "text": "Recognize the relationship between diet and chronic diseases, such as blood pressure, heart disease and obesity"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "diversity",
+     "title": "Diversity",
+     "topics": [
+      {
+       "id": "students-in-wisconsin-will-understand-that-nutri",
+       "title": "Students in Wisconsin will understand that nutritional status and health can be impacted by many factors, and healthy eating must be individualized to meet personal preferences and characteristics",
+       "subtopics": [
+        {
+         "id": "students-in-wisconsin-will-understand-that-nutri",
+         "title": "Students in Wisconsin will understand that nutritional status and health can be impacted by many factors, and healthy eating must be individualized to meet personal preferences and characteristics",
+         "outcomes": [
+          {
+           "code": "E.4.1",
+           "text": "Understand that people eat many different foods as part of a healthy diet"
+          },
+          {
+           "code": "E.4.2",
+           "text": "Recognize that people come in many shapes and sizes"
+          },
+          {
+           "code": "E.4.3",
+           "text": "Identify examples of cultures and their food customs and habits"
+          },
+          {
+           "code": "E.4.4",
+           "text": "Identify different dietary needs related to food allergies and medical conditions"
+          },
+          {
+           "code": "E.4.5",
+           "text": "Describe how food choices are influenced by availability, individual and family preferences, media and background"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "identification-and-classification-of-food",
+     "title": "Identification and Classification of Food",
+     "topics": [
+      {
+       "id": "students-in-wisconsin-will-be-able-to-appreciate",
+       "title": "Students in Wisconsin will be able to appreciate and classify foods. They will also demonstrate an interest and appreciation for a variety of foods",
+       "subtopics": [
+        {
+         "id": "students-in-wisconsin-will-be-able-to-appreciate",
+         "title": "Students in Wisconsin will be able to appreciate and classify foods. They will also demonstrate an interest and appreciation for a variety of foods",
+         "outcomes": [
+          {
+           "code": "F.4.1",
+           "text": "Recognize foods by name"
+          },
+          {
+           "code": "F.4.2",
+           "text": "Describe different kinds of food (by physical and sensory characteristics — shape, taste, color, texture, etc)"
+          },
+          {
+           "code": "F.4.3",
+           "text": "Categorize foods by source (plant, animal), including processed foods"
+          },
+          {
+           "code": "F.4.4",
+           "text": "Identify the basic food groups, and give examples from each group for meals and snacks"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "5-8",
+   "units": [
+    {
+     "id": "nutrition-for-energy-and-growth",
+     "title": "Nutrition for Energy and Growth",
+     "topics": [
+      {
+       "id": "students-in-wisconsin-will-understand-the-concep",
+       "title": "Students in Wisconsin will understand the concepts related to and the connections between food choices, eating habits, activity, and healthy growth",
+       "subtopics": [
+        {
+         "id": "students-in-wisconsin-will-understand-the-concep",
+         "title": "Students in Wisconsin will understand the concepts related to and the connections between food choices, eating habits, activity, and healthy growth",
+         "outcomes": [
+          {
+           "code": "A.8.1",
+           "text": "Explain the concepts of variety, moderation, and balance, and balancing caloric intake and energy expenditure"
+          },
+          {
+           "code": "A.8.2",
+           "text": "Identify recommended amounts of foods from each food group using the food guidance system"
+          },
+          {
+           "code": "A.8.3",
+           "text": "Compare portion and serving sizes and demonstrate an awareness of the amount of food consumed and the calories and other nutrients consumed as compared to recommended or label amounts"
+          },
+          {
+           "code": "A.8.4",
+           "text": "Describe how factors such as age, physical activity and gender affect nutritional requirements"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "food-safety",
+     "title": "Food Safety",
+     "topics": [
+      {
+       "id": "students-in-wisconsin-will-understand-know-how-t",
+       "title": "Students in Wisconsin will understand/know how to keep food safe for consumption and how to prepare food safely",
+       "subtopics": [
+        {
+         "id": "students-in-wisconsin-will-understand-know-how-t",
+         "title": "Students in Wisconsin will understand/know how to keep food safe for consumption and how to prepare food safely",
+         "outcomes": [
+          {
+           "code": "B.8.1",
+           "text": "Identify and explain the importance of key food safety messages (clean, cook, chill, avoid cross-contamination)"
+          },
+          {
+           "code": "B.8.2",
+           "text": "Verbalize how to safely prepare/pack foods"
+          },
+          {
+           "code": "B.8.3",
+           "text": "Explain the relationship between food safety practices and health"
+          },
+          {
+           "code": "B.8.4",
+           "text": "Describe factors associated with a safe food supply (food handling, production, storage, and preparation techniques)"
+          },
+          {
+           "code": "B.8.5",
+           "text": "Construct a food chain"
+          },
+          {
+           "code": "B.8.6",
+           "text": "Identify points in food preparation where hand washing is needed"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "critical-thinking-and-practical-reasoning",
+     "title": "Critical Thinking and Practical Reasoning",
+     "topics": [
+      {
+       "id": "students-in-wisconsin-will-understand-and-use-cr",
+       "title": "Students in Wisconsin will understand and use critical thinking and practical reasoning skills to address food choices, nutrition, and health concerns",
+       "subtopics": [
+        {
+         "id": "students-in-wisconsin-will-understand-and-use-cr",
+         "title": "Students in Wisconsin will understand and use critical thinking and practical reasoning skills to address food choices, nutrition, and health concerns (1 of 2)",
+         "outcomes": [
+          {
+           "code": "C.8.1",
+           "text": "Demonstrate the ability to apply a decision-making process to food choices at home and away from home"
+          },
+          {
+           "code": "C.8.2",
+           "text": "Identify the consequences of consuming too much or too little food"
+          },
+          {
+           "code": "C.8.3",
+           "text": "Assess eating habits (meals and snacks), set a personal nutrition goal, and track progress toward achieving this goal"
+          },
+          {
+           "code": "C.8.4",
+           "text": "Plan snacks and/or meals that are consistent with the Food Guidance System"
+          }
+         ]
+        },
+        {
+         "id": "students-in-wisconsin-will-understand-and-use-cr-2",
+         "title": "Students in Wisconsin will understand and use critical thinking and practical reasoning skills to address food choices, nutrition, and health concerns (2 of 2)",
+         "outcomes": [
+          {
+           "code": "C.8.5",
+           "text": "Identify examples of how the food companies, advertising, and the media encourage people to buy and use different foods"
+          },
+          {
+           "code": "C.8.6",
+           "text": "Differentiate between hunger and non-hunger cues to eating"
+          },
+          {
+           "code": "C.8.7",
+           "text": "Demonstrate how to use food labels to make healthier choices"
+          },
+          {
+           "code": "C.8.8",
+           "text": "Identify reliable sources of nutrition information"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "nutrition-for-health-promotion-of-healthy-behavi",
+     "title": "Nutrition for Health Promotion of Healthy Behaviors",
+     "topics": [
+      {
+       "id": "students-in-wisconsin-will-understand-concepts-r",
+       "title": "Students in Wisconsin will understand concepts related to personal health promotion and disease prevention, and will practice behaviors to promote health, prevent disease, and reduce health risks",
+       "subtopics": [
+        {
+         "id": "students-in-wisconsin-will-understand-concepts-r",
+         "title": "Students in Wisconsin will understand concepts related to personal health promotion and disease prevention, and will practice behaviors to promote health, prevent disease, and reduce health risks",
+         "outcomes": [
+          {
+           "code": "D.8.1",
+           "text": "Define the concepts of balance, and moderation as part of a healthy diet"
+          },
+          {
+           "code": "D.8.2",
+           "text": "Identify avenues of support for eating disorders, and where to go with concerns"
+          },
+          {
+           "code": "D.8.3",
+           "text": "Describe the relationship between food choices and health problems, such as dental caries, osteoporosis, diabetes, obesity, and blood pressure"
+          },
+          {
+           "code": "D.8.4",
+           "text": "Demonstrate the ability to influence and support others in making positive eating and physical activity choices"
+          },
+          {
+           "code": "D.8.5",
+           "text": "Identify key nutrients from each food group and list ways nutrients can promote health and prevent of chronic disease"
+          },
+          {
+           "code": "D.8.6",
+           "text": "Demonstrate understanding of health promotion concepts"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "diversity",
+     "title": "Diversity",
+     "topics": [
+      {
+       "id": "students-in-wisconsin-will-understand-that-nutri",
+       "title": "Students in Wisconsin will understand that nutritional status and health can be impacted by many factors, and healthy eating must be individualized to meet personal preferences and characteristics",
+       "subtopics": [
+        {
+         "id": "students-in-wisconsin-will-understand-that-nutri",
+         "title": "Students in Wisconsin will understand that nutritional status and health can be impacted by many factors, and healthy eating must be individualized to meet personal preferences and characteristics",
+         "outcomes": [
+          {
+           "code": "E.8.1",
+           "text": "Locate supplier(s), source(s) or retail outlet(s) for ethnic foods within the community"
+          },
+          {
+           "code": "E.8.2",
+           "text": "Demonstrate respect for others body weight, size, shape, and abilities and identify factors that contribute to differences in people (genetics, lifestyle behaviors, age)"
+          },
+          {
+           "code": "E.8.3",
+           "text": "Describe the food customs and habits, or various cultures, and recognize that our culture, ethnicity and health status may impact our food choices"
+          },
+          {
+           "code": "E.8.4",
+           "text": "Discuss different dietary needs related to food allergies and medical conditions"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "identification-and-classification-of-food",
+     "title": "Identification and Classification of Food",
+     "topics": [
+      {
+       "id": "students-in-wisconsin-will-be-able-to-appreciate",
+       "title": "Students in Wisconsin will be able to appreciate and classify foods. They will also demonstrate an interest and appreciation for a variety of foods",
+       "subtopics": [
+        {
+         "id": "students-in-wisconsin-will-be-able-to-appreciate",
+         "title": "Students in Wisconsin will be able to appreciate and classify foods. They will also demonstrate an interest and appreciation for a variety of foods",
+         "outcomes": [
+          {
+           "code": "F.8.1",
+           "text": "Identify foods by food group and nutrient contributions"
+          },
+          {
+           "code": "F.8.2",
+           "text": "Use descriptive words and sensory characteristics to evaluate and classify foods"
+          },
+          {
+           "code": "F.8.3",
+           "text": "Identify processed foods by source (plants and animal products) and explain how food may change during processing"
+          },
+          {
+           "code": "F.8.4",
+           "text": "List the basic food groups, give examples from each group and use the food groups to plan a meal and snack"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "build": {
+  "builtAt": "2026-10-14T16:20:51.386Z",
+  "model": "none",
+  "usd": 0,
+  "expectedCodes": 252,
+  "coverage": 1,
+  "missingCodes": [],
+  "counts": {
+   "grades": 6,
+   "units": 50,
+   "topics": 50,
+   "subtopics": 79,
+   "outcomes": 252
+  },
+  "warnings": []
+ }
+}

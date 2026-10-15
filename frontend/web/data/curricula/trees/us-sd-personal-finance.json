@@ -1,0 +1,176 @@
+{
+ "id": "us-sd-personal-finance",
+ "region": "US",
+ "framework": "South Dakota state academic standards: Personal Finance",
+ "board": null,
+ "qualification": "K-12",
+ "subject": "Personal Finance",
+ "syllabusCode": null,
+ "gradeSystem": "grade",
+ "source": {
+  "urls": [
+   "https://api.commonstandardsproject.com/api/v1/jurisdictions/2A3604CDDF8241DC82059FFBC308E74F",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/2A3604CDDF8241DC82059FFBC308E74F_D2568945_grades-11-12"
+  ],
+  "publisher": "South Dakota state education agency (machine-readable via Common Standards Project / ASN)",
+  "licence": "CC BY 3.0 US, Desire2Learn Incorporated",
+  "firstExam": "2011"
+ },
+ "grades": [
+  {
+   "grade": "11-12",
+   "units": [
+    {
+     "id": "analyze-elements-that-affect-personal-income",
+     "title": "Analyze elements that affect personal income",
+     "topics": [
+      {
+       "id": "analyze-elements-that-affect-personal-income",
+       "title": "Analyze elements that affect personal income",
+       "subtopics": [
+        {
+         "id": "analyze-elements-that-affect-personal-income",
+         "title": "Analyze elements that affect personal income",
+         "outcomes": [
+          {
+           "code": "PF.1.1",
+           "text": "Explain controllable factors involved in personal finance."
+          },
+          {
+           "code": "PF.1.2",
+           "text": "Analyze factors that affect take home pay."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "implement-the-processes-involved-in-managing-per",
+     "title": "Implement the processes involved in managing personal finances",
+     "topics": [
+      {
+       "id": "implement-the-processes-involved-in-managing-per",
+       "title": "Implement the processes involved in managing personal finances",
+       "subtopics": [
+        {
+         "id": "implement-the-processes-involved-in-managing-per",
+         "title": "Implement the processes involved in managing personal finances",
+         "outcomes": [
+          {
+           "code": "PF.2.1",
+           "text": "Execute a rational decision-making process considering alternatives and consequences."
+          },
+          {
+           "code": "PF.2.2",
+           "text": "Differentiate between various money management tools."
+          },
+          {
+           "code": "PF.2.3",
+           "text": "Generate a system to organize finances and maintain records."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "use-an-informed-decision-making-process-to-manag",
+     "title": "Use an informed decision-making process to manage credit and debt",
+     "topics": [
+      {
+       "id": "use-an-informed-decision-making-process-to-manag",
+       "title": "Use an informed decision-making process to manage credit and debt",
+       "subtopics": [
+        {
+         "id": "use-an-informed-decision-making-process-to-manag",
+         "title": "Use an informed decision-making process to manage credit and debt",
+         "outcomes": [
+          {
+           "code": "PF.3.1",
+           "text": "Differentiate the sources, costs and benefits of using consumer credit."
+          },
+          {
+           "code": "PF.3.2",
+           "text": "Explain the positive and negative consequences of using credit."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "evaluate-savings-and-investment-options-to-meet-",
+     "title": "Evaluate savings and investment options to meet short- and long-term…",
+     "topics": [
+      {
+       "id": "evaluate-savings-and-investment-options-to-meet-",
+       "title": "Evaluate savings and investment options to meet short- and long-term…",
+       "subtopics": [
+        {
+         "id": "evaluate-savings-and-investment-options-to-meet-",
+         "title": "Evaluate savings and investment options to meet short- and long-term…",
+         "outcomes": [
+          {
+           "code": "PF.4.1",
+           "text": "Explain how saving contributes to financial security."
+          },
+          {
+           "code": "PF.4.2",
+           "text": "Explain how investing builds wealth and helps meet financial goals."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "use-appropriate-and-cost-effective-risk-manageme",
+     "title": "Use appropriate and cost-effective risk management strategies",
+     "topics": [
+      {
+       "id": "use-appropriate-and-cost-effective-risk-manageme",
+       "title": "Use appropriate and cost-effective risk management strategies",
+       "subtopics": [
+        {
+         "id": "use-appropriate-and-cost-effective-risk-manageme",
+         "title": "Use appropriate and cost-effective risk management strategies",
+         "outcomes": [
+          {
+           "code": "PF.5.1",
+           "text": "Critique how risk management protects against financial loss."
+          },
+          {
+           "code": "PF.5.2",
+           "text": "Check how state and federal laws and regulations protect consumers."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "build": {
+  "builtAt": "2026-10-14T08:05:54.526Z",
+  "model": "none",
+  "usd": 0,
+  "expectedCodes": 11,
+  "coverage": 1,
+  "missingCodes": [],
+  "counts": {
+   "grades": 1,
+   "units": 5,
+   "topics": 5,
+   "subtopics": 5,
+   "outcomes": 11
+  },
+  "warnings": []
+ }
+}

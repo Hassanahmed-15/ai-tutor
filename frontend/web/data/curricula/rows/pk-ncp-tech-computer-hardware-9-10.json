@@ -1,0 +1,418 @@
+[
+ {
+  "grade": "9",
+  "unit": "Domain A: Computer System (Hardware and Software)",
+  "topic": "Computer systems",
+  "subtopic": "Parts of a computer system",
+  "code": "CHW-09-A-01",
+  "outcome": "Explain the hardware and software building blocks of a computer system."
+ },
+ {
+  "grade": "10",
+  "unit": "Domain A: Computer System (Hardware and Software)",
+  "topic": "Computer systems",
+  "subtopic": "Parts of a computer system",
+  "code": "CHW-10-A-01",
+  "outcome": "Explain computer building blocks and abstraction layers such as application, database, network and operating system."
+ },
+ {
+  "grade": "9",
+  "unit": "Domain A: Computer System (Hardware and Software)",
+  "topic": "Computer systems",
+  "subtopic": "Parts of a computer system",
+  "code": "CHW-09-A-03",
+  "outcome": "Recognise PC hardware: CPU, memory, storage, motherboard, USB, HDMI and Ethernet."
+ },
+ {
+  "grade": "10",
+  "unit": "Domain A: Computer System (Hardware and Software)",
+  "topic": "Computer systems",
+  "subtopic": "Parts of a computer system",
+  "code": "CHW-10-A-03",
+  "outcome": "Recognise hardware components and assemble them into a computer."
+ },
+ {
+  "grade": "10",
+  "unit": "Domain A: Computer System (Hardware and Software)",
+  "topic": "Computer systems",
+  "subtopic": "Parts of a computer system",
+  "code": "CHW-10-A-04",
+  "outcome": "Explain how hardware and software interact to perform tasks."
+ },
+ {
+  "grade": "9",
+  "unit": "Domain A: Computer System (Hardware and Software)",
+  "topic": "Computer systems",
+  "subtopic": "Evolution of computers",
+  "code": "CHW-09-A-02",
+  "outcome": "Explain the history of the personal computer's evolution."
+ },
+ {
+  "grade": "10",
+  "unit": "Domain A: Computer System (Hardware and Software)",
+  "topic": "Computer systems",
+  "subtopic": "Evolution of computers",
+  "code": "CHW-10-A-02",
+  "outcome": "Explain the evolution of personal computers, supercomputers and quantum computers."
+ },
+ {
+  "grade": "9",
+  "unit": "Domain B: Number System, Boolean Logic, Gates and Transistors",
+  "topic": "Number systems and logic",
+  "subtopic": "Number systems",
+  "code": "CHW-09-B-01",
+  "outcome": "Explain decimal, binary, octal and hexadecimal and how computers store numbers."
+ },
+ {
+  "grade": "9",
+  "unit": "Domain B: Number System, Boolean Logic, Gates and Transistors",
+  "topic": "Number systems and logic",
+  "subtopic": "Number systems",
+  "code": "CHW-09-B-02",
+  "outcome": "Convert between number systems."
+ },
+ {
+  "grade": "10",
+  "unit": "Domain B: Number System, Boolean Logic, Gates and Transistors",
+  "topic": "Number systems and logic",
+  "subtopic": "Number systems",
+  "code": "CHW-10-B-01",
+  "outcome": "Explain number systems and 2's complement used in computers."
+ },
+ {
+  "grade": "10",
+  "unit": "Domain B: Number System, Boolean Logic, Gates and Transistors",
+  "topic": "Number systems and logic",
+  "subtopic": "Number systems",
+  "code": "CHW-10-B-02",
+  "outcome": "Add and subtract in 2's complement."
+ },
+ {
+  "grade": "9",
+  "unit": "Domain B: Number System, Boolean Logic, Gates and Transistors",
+  "topic": "Number systems and logic",
+  "subtopic": "Logic gates and transistors",
+  "code": "CHW-09-B-03",
+  "outcome": "Explain boolean logic and the NOT, AND, OR and XOR gates."
+ },
+ {
+  "grade": "10",
+  "unit": "Domain B: Number System, Boolean Logic, Gates and Transistors",
+  "topic": "Number systems and logic",
+  "subtopic": "Logic gates and transistors",
+  "code": "CHW-10-B-03",
+  "outcome": "Demonstrate basic gates and build complex gates from them."
+ },
+ {
+  "grade": "10",
+  "unit": "Domain B: Number System, Boolean Logic, Gates and Transistors",
+  "topic": "Number systems and logic",
+  "subtopic": "Logic gates and transistors",
+  "code": "CHW-10-B-04",
+  "outcome": "Build a 1-bit adder in hardware using gates."
+ },
+ {
+  "grade": "10",
+  "unit": "Domain B: Number System, Boolean Logic, Gates and Transistors",
+  "topic": "Number systems and logic",
+  "subtopic": "Logic gates and transistors",
+  "code": "CHW-10-B-05",
+  "outcome": "Demonstrate how a transistor works and link gates to transistors."
+ },
+ {
+  "grade": "9",
+  "unit": "Domain C: Computer Architecture",
+  "topic": "Architecture",
+  "subtopic": "CPU, memory and peripherals",
+  "code": "CHW-09-C-01",
+  "outcome": "Explain basic computer architecture: CPU, memory and I/O peripherals."
+ },
+ {
+  "grade": "9",
+  "unit": "Domain C: Computer Architecture",
+  "topic": "Architecture",
+  "subtopic": "CPU, memory and peripherals",
+  "code": "CHW-09-C-02",
+  "outcome": "Identify the roles of CPU, memory and I/O peripherals."
+ },
+ {
+  "grade": "9",
+  "unit": "Domain C: Computer Architecture",
+  "topic": "Architecture",
+  "subtopic": "CPU, memory and peripherals",
+  "code": "CHW-09-C-03",
+  "outcome": "Explain how CPU, memory and peripherals are connected."
+ },
+ {
+  "grade": "10",
+  "unit": "Domain C: Computer Architecture",
+  "topic": "Architecture",
+  "subtopic": "CPU, memory and peripherals",
+  "code": "CHW-10-C-01",
+  "outcome": "Explain architecture components and how they work internally."
+ },
+ {
+  "grade": "10",
+  "unit": "Domain C: Computer Architecture",
+  "topic": "Architecture",
+  "subtopic": "CPU, memory and peripherals",
+  "code": "CHW-10-C-02",
+  "outcome": "Design a small computer from CPU, memory and I/O peripherals."
+ },
+ {
+  "grade": "9",
+  "unit": "Domain C: Computer Architecture",
+  "topic": "Architecture",
+  "subtopic": "Instruction processing",
+  "code": "CHW-09-C-04",
+  "outcome": "Identify basic operations: arithmetic and load/store."
+ },
+ {
+  "grade": "10",
+  "unit": "Domain C: Computer Architecture",
+  "topic": "Architecture",
+  "subtopic": "Instruction processing",
+  "code": "CHW-10-C-03",
+  "outcome": "Explain basic operations and a sample instruction format."
+ },
+ {
+  "grade": "10",
+  "unit": "Domain C: Computer Architecture",
+  "topic": "Architecture",
+  "subtopic": "Instruction processing",
+  "code": "CHW-10-C-04",
+  "outcome": "Explain how instructions are executed."
+ },
+ {
+  "grade": "9",
+  "unit": "Domain D: Memory",
+  "topic": "Memory",
+  "subtopic": "Memory hierarchy",
+  "code": "CHW-09-D-01",
+  "outcome": "Identify the memory hierarchy: registers, cache, RAM, hard disk, flash."
+ },
+ {
+  "grade": "9",
+  "unit": "Domain D: Memory",
+  "topic": "Memory",
+  "subtopic": "Memory hierarchy",
+  "code": "CHW-09-D-02",
+  "outcome": "Identify the role of each memory."
+ },
+ {
+  "grade": "10",
+  "unit": "Domain D: Memory",
+  "topic": "Memory",
+  "subtopic": "Memory hierarchy",
+  "code": "CHW-10-D-01",
+  "outcome": "Explain the hierarchy with trends in speed and capacity."
+ },
+ {
+  "grade": "10",
+  "unit": "Domain D: Memory",
+  "topic": "Memory",
+  "subtopic": "Memory hierarchy",
+  "code": "CHW-10-D-02",
+  "outcome": "Explain each memory's role and how data moves between levels."
+ },
+ {
+  "grade": "9",
+  "unit": "Domain D: Memory",
+  "topic": "Memory",
+  "subtopic": "Data and instruction memory",
+  "code": "CHW-09-D-03",
+  "outcome": "Distinguish data memory from instruction memory (grade 10 adds the high-level interface for reading and writing memory)."
+ },
+ {
+  "grade": "10",
+  "unit": "Domain D: Memory",
+  "topic": "Memory",
+  "subtopic": "Data and instruction memory",
+  "code": null,
+  "outcome": "Distinguish data and instruction memory and describe the high-level interface to read and write memory."
+ },
+ {
+  "grade": "9",
+  "unit": "Domain D: Memory",
+  "topic": "Memory",
+  "subtopic": "Data and instruction memory",
+  "code": "CHW-09-D-04",
+  "outcome": "Explain technologies used to build memories and storage devices."
+ },
+ {
+  "grade": "9",
+  "unit": "Domain E: Input/Output Devices",
+  "topic": "Input/output",
+  "subtopic": "Input and output devices",
+  "code": "CHW-09-E-01",
+  "outcome": "Explore devices such as mouse, keyboard, monitor, microphone and speaker."
+ },
+ {
+  "grade": "9",
+  "unit": "Domain E: Input/Output Devices",
+  "topic": "Input/output",
+  "subtopic": "Input and output devices",
+  "code": "CHW-09-E-02",
+  "outcome": "Explain how computers communicate with these devices through software."
+ },
+ {
+  "grade": "10",
+  "unit": "Domain E: Input/Output Devices",
+  "topic": "Input/output",
+  "subtopic": "Input and output devices",
+  "code": "CHW-10-E-01",
+  "outcome": "Explore conventional I/O devices and newer ones such as haptic devices."
+ },
+ {
+  "grade": "10",
+  "unit": "Domain E: Input/Output Devices",
+  "topic": "Input/output",
+  "subtopic": "Input and output devices",
+  "code": "CHW-10-E-02",
+  "outcome": "Show how the computer understands input from each input device."
+ },
+ {
+  "grade": "10",
+  "unit": "Domain E: Input/Output Devices",
+  "topic": "Input/output",
+  "subtopic": "Input and output devices",
+  "code": "CHW-10-E-03",
+  "outcome": "Show how the computer sends information to output devices."
+ },
+ {
+  "grade": "10",
+  "unit": "Domain E: Input/Output Devices",
+  "topic": "Input/output",
+  "subtopic": "Input and output devices",
+  "code": "CHW-10-E-04",
+  "outcome": "Show how I/O devices are accessed through software."
+ },
+ {
+  "grade": "9",
+  "unit": "Domain F: Networking Devices",
+  "topic": "Networking",
+  "subtopic": "Networks and devices",
+  "code": "CHW-09-F-01",
+  "outcome": "Explore connecting computers with Ethernet."
+ },
+ {
+  "grade": "9",
+  "unit": "Domain F: Networking Devices",
+  "topic": "Networking",
+  "subtopic": "Networks and devices",
+  "code": "CHW-09-F-02",
+  "outcome": "Differentiate switches and routers."
+ },
+ {
+  "grade": "9",
+  "unit": "Domain F: Networking Devices",
+  "topic": "Networking",
+  "subtopic": "Networks and devices",
+  "code": "CHW-09-F-03",
+  "outcome": "Explore intranets and the role of Ethernet card and switch."
+ },
+ {
+  "grade": "10",
+  "unit": "Domain F: Networking Devices",
+  "topic": "Networking",
+  "subtopic": "Networks and devices",
+  "code": "CHW-10-F-01",
+  "outcome": "Explore Ethernet connections with protocol description."
+ },
+ {
+  "grade": "10",
+  "unit": "Domain F: Networking Devices",
+  "topic": "Networking",
+  "subtopic": "Networks and devices",
+  "code": "CHW-10-F-02",
+  "outcome": "Explore networking layers."
+ },
+ {
+  "grade": "10",
+  "unit": "Domain F: Networking Devices",
+  "topic": "Networking",
+  "subtopic": "Networks and devices",
+  "code": "CHW-10-F-03",
+  "outcome": "Differentiate intranet and internet and their devices."
+ },
+ {
+  "grade": "10",
+  "unit": "Domain F: Networking Devices",
+  "topic": "Networking",
+  "subtopic": "Networks and devices",
+  "code": "CHW-10-F-04",
+  "outcome": "Explain how software and hardware work together for internet access."
+ },
+ {
+  "grade": "9",
+  "unit": "Domain G: Emerging Trends in Computer Hardware",
+  "topic": "Emerging trends",
+  "subtopic": "New hardware platforms",
+  "code": "CHW-09-G-01",
+  "outcome": "Explore multi-core processors and GPUs."
+ },
+ {
+  "grade": "9",
+  "unit": "Domain G: Emerging Trends in Computer Hardware",
+  "topic": "Emerging trends",
+  "subtopic": "New hardware platforms",
+  "code": "CHW-09-G-02",
+  "outcome": "Explain how conventional computers differ from new platforms."
+ },
+ {
+  "grade": "10",
+  "unit": "Domain G: Emerging Trends in Computer Hardware",
+  "topic": "Emerging trends",
+  "subtopic": "New hardware platforms",
+  "code": "CHW-10-G-01",
+  "outcome": "Explore multi-core, GPUs and quantum computers."
+ },
+ {
+  "grade": "10",
+  "unit": "Domain G: Emerging Trends in Computer Hardware",
+  "topic": "Emerging trends",
+  "subtopic": "New hardware platforms",
+  "code": "CHW-10-G-02",
+  "outcome": "Match hardware platforms to applications such as AI and office automation."
+ },
+ {
+  "grade": "9",
+  "unit": "Domain H: Design Project - Build your own Computer",
+  "topic": "Design project",
+  "subtopic": "Building a computer",
+  "code": "CHW-09-H-01",
+  "outcome": "Build a computer from discrete parts: CPU, memory, disk, power supply, motherboard, keyboard, mouse, monitor."
+ },
+ {
+  "grade": "9",
+  "unit": "Domain H: Design Project - Build your own Computer",
+  "topic": "Design project",
+  "subtopic": "Building a computer",
+  "code": "CHW-09-H-02",
+  "outcome": "Check whether the computer was built properly."
+ },
+ {
+  "grade": "10",
+  "unit": "Domain H: Design Project - Build your own Computer",
+  "topic": "Design project",
+  "subtopic": "Building a computer",
+  "code": "CHW-10-H-01",
+  "outcome": "Build a computer from discrete parts and test it using BIOS."
+ },
+ {
+  "grade": "10",
+  "unit": "Domain H: Design Project - Build your own Computer",
+  "topic": "Design project",
+  "subtopic": "Building a computer",
+  "code": "CHW-10-H-02",
+  "outcome": "Install an operating system."
+ },
+ {
+  "grade": "10",
+  "unit": "Domain H: Design Project - Build your own Computer",
+  "topic": "Design project",
+  "subtopic": "Building a computer",
+  "code": "CHW-10-H-03",
+  "outcome": "Diagnose hardware faults such as missing memory."
+ }
+]

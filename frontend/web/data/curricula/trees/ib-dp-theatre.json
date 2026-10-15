@@ -1,0 +1,178 @@
+{
+ "id": "ib-dp-theatre",
+ "region": "INTL",
+ "framework": "International Baccalaureate Diploma Programme (DP)",
+ "board": "IB",
+ "qualification": "IB Diploma Programme",
+ "subject": "Theatre (SL and HL)",
+ "syllabusCode": null,
+ "gradeSystem": "course",
+ "source": {
+  "urls": [
+   "https://www.ibo.org/globalassets/new-structure/programmes/dp/pdfs/theatre-subject-brief-sl-hl-en.pdf",
+   "https://web.archive.org/web/20230321003835id_/https://www.ibo.org/globalassets/new-structure/programmes/dp/pdfs/theatre-subject-brief-sl-hl-en.pdf"
+  ],
+  "publisher": "International Baccalaureate Organization",
+  "licence": "(c) International Baccalaureate Organization; all rights reserved, no open licence. ibo.org terms 1.8: IB copyrighted materials are licensed only under the IB's terms or a signed agreement; 'Any use not expressly permitted is prohibited unless special permission is obtained in writing from the IB'; 1.9: nothing on the IB websites confers any licence. Briefs are free public marketing summaries: take topic structure only, write everything in our own words, never reproduce brief text, and do not use IB logos/trade marks. Full subject guides are sold to schools and were NOT used. Terms: https://www.ibo.org/terms-and-conditions/ and https://www.ibo.org/copyright",
+  "firstExam": "2024"
+ },
+ "grades": [
+  {
+   "grade": "all",
+   "units": [
+    {
+     "id": "staging-play-texts",
+     "title": "Staging play texts",
+     "topics": [
+      {
+       "id": "staging-play-texts",
+       "title": "Staging play texts",
+       "subtopics": [
+        {
+         "id": "ideas-in-play-texts",
+         "title": "Ideas in play texts",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Examine how playwrights express ideas in play texts."
+          },
+          {
+           "code": null,
+           "text": "Turn a play text into action on stage."
+          }
+         ]
+        },
+        {
+         "id": "fulfilling-theatre-maker-intentions",
+         "title": "Fulfilling theatre-maker intentions",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Use performance and production elements to fulfil theatre-maker intentions."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "exploring-world-theatre-traditions",
+     "title": "Exploring world theatre traditions",
+     "topics": [
+      {
+       "id": "exploring-world-theatre-traditions",
+       "title": "Exploring world theatre traditions",
+       "subtopics": [
+        {
+         "id": "researching-a-tradition",
+         "title": "Researching a tradition",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Research a world theatre tradition through academic study and practical exploration."
+          },
+          {
+           "code": null,
+           "text": "Explore its performance conventions and material physically through body and voice."
+          },
+          {
+           "code": null,
+           "text": "Build a deeper appreciation of the tradition."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "collaboratively-creating-original-theatre",
+     "title": "Collaboratively creating original theatre",
+     "topics": [
+      {
+       "id": "collaboratively-creating-original-theatre",
+       "title": "Collaboratively creating original theatre",
+       "subtopics": [
+        {
+         "id": "forming-intentions",
+         "title": "Forming intentions",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Create original theatre as part of an ensemble from a starting point."
+          },
+          {
+           "code": null,
+           "text": "Formulate intentions for the theatre-making."
+          }
+         ]
+        },
+        {
+         "id": "realising-the-piece",
+         "title": "Realising the piece",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Show how intentions can be realised through collaborative creation and performance."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "performing-theatre-theory-higher-level-only",
+     "title": "Performing theatre theory (higher level only)",
+     "topics": [
+      {
+       "id": "performing-theatre-theory-higher-level-only",
+       "title": "Performing theatre theory (higher level only)",
+       "subtopics": [
+        {
+         "id": "theory-in-performance",
+         "title": "Theory in performance",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Research at least one theatre theorist."
+          },
+          {
+           "code": null,
+           "text": "Identify an aspect of their theory."
+          },
+          {
+           "code": null,
+           "text": "Apply it to create and present theatre work that shows the theory in performance."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "build": {
+  "builtAt": "2026-10-14T10:54:02.386Z",
+  "model": "claude-agent",
+  "usd": 0,
+  "expectedCodes": null,
+  "coverage": null,
+  "missingCodes": [],
+  "counts": {
+   "grades": 1,
+   "units": 4,
+   "topics": 4,
+   "subtopics": 6,
+   "outcomes": 12
+  },
+  "warnings": [
+   "grade DP year 1 has no content",
+   "grade DP year 2 has no content",
+   "unexpected grade label \"all\""
+  ]
+ }
+}

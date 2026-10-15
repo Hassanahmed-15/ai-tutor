@@ -1,0 +1,893 @@
+{
+ "id": "uk-aqa-alevel-law-7162",
+ "region": "UK",
+ "framework": "AQA A-level",
+ "board": "AQA",
+ "qualification": "A Level",
+ "subject": "Law",
+ "syllabusCode": "7162",
+ "gradeSystem": "year",
+ "source": {
+  "urls": [
+   "https://cdn.sanity.io/files/p28bar15/green/3ae0fa391f950da3efb2d0e9d6acec735d71b3a6.pdf"
+  ],
+  "publisher": "AQA",
+  "licence": "Exam board specification, (c) AQA; structure + our own wording only",
+  "firstExam": "2019"
+ },
+ "grades": [
+  {
+   "grade": "all",
+   "units": [
+    {
+     "id": "3-1-the-nature-of-law-and-the-english-legal-syst",
+     "title": "3.1 The nature of law and the English legal system",
+     "topics": [
+      {
+       "id": "nature-of-law",
+       "title": "Nature of law",
+       "subtopics": [
+        {
+         "id": "what-law-is",
+         "title": "What law is",
+         "outcomes": [
+          {
+           "code": "3.1",
+           "text": "Study the nature of law and the English legal system."
+          },
+          {
+           "code": null,
+           "text": "Distinguish enforceable legal rules from other rules and norms of behaviour."
+          },
+          {
+           "code": null,
+           "text": "Distinguish criminal from civil law and the sources: custom, statute and common law."
+          },
+          {
+           "code": null,
+           "text": "Explain the role of law in society and the balance between competing public and private interests."
+          },
+          {
+           "code": null,
+           "text": "Explain the meaning and importance of fault in civil and criminal law."
+          }
+         ]
+        },
+        {
+         "id": "law-morality-and-justice",
+         "title": "Law, morality and justice",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Distinguish law from morality in a society with varied moral views."
+          },
+          {
+           "code": null,
+           "text": "Explain the relationship between law and morality and legal enforcement of moral values."
+          },
+          {
+           "code": null,
+           "text": "Explain the meaning of justice and theories of justice."
+          },
+          {
+           "code": null,
+           "text": "Judge how far civil and criminal law achieve justice."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "the-rule-of-law",
+       "title": "The rule of law",
+       "subtopics": [
+        {
+         "id": "the-rule-of-law",
+         "title": "The rule of law",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain the rule of law: sanction only under law, equality before law, fairness and clarity."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "law-making",
+       "title": "Law making",
+       "subtopics": [
+        {
+         "id": "parliamentary-law-making",
+         "title": "Parliamentary law making",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain Green and White papers and the formal legislative process."
+          },
+          {
+           "code": null,
+           "text": "Explain influences on Parliament and the advantages and disadvantages of each."
+          },
+          {
+           "code": null,
+           "text": "Explain parliamentary supremacy and its limits."
+          }
+         ]
+        },
+        {
+         "id": "delegated-legislation",
+         "title": "Delegated legislation",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Name the types: orders in council, statutory instruments, bylaws."
+          },
+          {
+           "code": null,
+           "text": "Explain parliamentary and judicial controls on delegated legislation."
+          },
+          {
+           "code": null,
+           "text": "Explain the reasons for it and its advantages and disadvantages."
+          }
+         ]
+        },
+        {
+         "id": "statutory-interpretation",
+         "title": "Statutory interpretation",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Apply the literal, golden and mischief rules and the purposive approach."
+          },
+          {
+           "code": null,
+           "text": "Use internal and external aids to interpretation."
+          },
+          {
+           "code": null,
+           "text": "Explain how EU law and the Human Rights Act 1998 affect interpretation."
+          },
+          {
+           "code": null,
+           "text": "Weigh the advantages and disadvantages of each approach."
+          }
+         ]
+        },
+        {
+         "id": "judicial-precedent",
+         "title": "Judicial precedent",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain the doctrine of judicial precedent and the court hierarchy including the Supreme Court."
+          },
+          {
+           "code": null,
+           "text": "Explain stare decisis, ratio decidendi, obiter dicta and law reporting."
+          },
+          {
+           "code": null,
+           "text": "Explain following, overruling and distinguishing."
+          },
+          {
+           "code": null,
+           "text": "Weigh the advantages and disadvantages of precedent."
+          }
+         ]
+        },
+        {
+         "id": "law-reform-and-the-european-union",
+         "title": "Law reform and the European Union",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe the Law Commission's work: reform, codification, consolidation and repeal."
+          },
+          {
+           "code": null,
+           "text": "Weigh the advantages and disadvantages of Law Commission reform."
+          },
+          {
+           "code": null,
+           "text": "Describe the EU Council, Commission, Parliament and Court of Justice and their functions."
+          },
+          {
+           "code": null,
+           "text": "Distinguish EU treaties, regulations and directives and their impact on English law."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "the-legal-system",
+       "title": "The legal system",
+       "subtopics": [
+        {
+         "id": "civil-courts-and-dispute-resolution",
+         "title": "Civil courts and dispute resolution",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe the civil courts, the track system and appeals."
+          },
+          {
+           "code": null,
+           "text": "Describe tribunals, mediation and negotiation."
+          }
+         ]
+        },
+        {
+         "id": "criminal-courts-and-lay-people",
+         "title": "Criminal courts and lay people",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe the criminal process, classification of offences and appeals."
+          },
+          {
+           "code": null,
+           "text": "Describe criminal court powers and sentencing of adults."
+          },
+          {
+           "code": null,
+           "text": "Explain the role and powers of magistrates and juries."
+          },
+          {
+           "code": null,
+           "text": "Weigh the advantages and disadvantages of juries."
+          }
+         ]
+        },
+        {
+         "id": "legal-personnel-and-the-judiciary",
+         "title": "Legal personnel and the judiciary",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Distinguish the roles of barristers, solicitors and legal executives and how they are regulated."
+          },
+          {
+           "code": null,
+           "text": "Describe types of judge and judges' roles in civil and criminal courts."
+          },
+          {
+           "code": null,
+           "text": "Explain judicial independence: security of tenure, immunity from suit, independence from the Executive."
+          },
+          {
+           "code": null,
+           "text": "Explain why judicial independence matters and how it is achieved."
+          }
+         ]
+        },
+        {
+         "id": "access-to-justice-and-funding",
+         "title": "Access to justice and funding",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe alternative sources of legal advice: help lines, CAB, law centres, trade unions."
+          },
+          {
+           "code": null,
+           "text": "Describe private funding: own resources, insurance, conditional fee agreements."
+          },
+          {
+           "code": null,
+           "text": "Describe public funding in criminal and civil cases."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "3-2-criminal-law",
+     "title": "3.2 Criminal law",
+     "topics": [
+      {
+       "id": "rules-and-theory",
+       "title": "Rules and theory",
+       "subtopics": [
+        {
+         "id": "theory-of-criminal-law",
+         "title": "Theory of criminal law",
+         "outcomes": [
+          {
+           "code": "3.2",
+           "text": "Study the rules of criminal law: general liability, offences against the person, property and attempt."
+          },
+          {
+           "code": null,
+           "text": "Explain harm as the basis for criminalising conduct."
+          },
+          {
+           "code": null,
+           "text": "Explain autonomy, fault and individual responsibility."
+          },
+          {
+           "code": null,
+           "text": "Explain fair labelling, correspondence, maximum certainty and no retrospective liability."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "general-elements-of-liability",
+       "title": "General elements of liability",
+       "subtopics": [
+        {
+         "id": "actus-reus-and-mens-rea",
+         "title": "Actus reus and mens rea",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain actus reus: conduct, omissions, state of affairs, voluntariness, causation and consequences."
+          },
+          {
+           "code": null,
+           "text": "Explain mens rea: intention, subjective recklessness, negligence and transferred malice."
+          },
+          {
+           "code": null,
+           "text": "Explain strict liability and the coincidence of actus reus and mens rea."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "offences",
+       "title": "Offences",
+       "subtopics": [
+        {
+         "id": "fatal-offences",
+         "title": "Fatal offences",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain murder."
+          },
+          {
+           "code": null,
+           "text": "Explain voluntary manslaughter: loss of control and diminished responsibility."
+          },
+          {
+           "code": null,
+           "text": "Explain involuntary manslaughter: unlawful act and gross negligence."
+          }
+         ]
+        },
+        {
+         "id": "non-fatal-property-and-attempt-offences",
+         "title": "Non-fatal, property and attempt offences",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain common assault and battery."
+          },
+          {
+           "code": null,
+           "text": "Explain s47, s20 and s18 Offences Against the Person Act 1861."
+          },
+          {
+           "code": null,
+           "text": "Explain theft and robbery."
+          },
+          {
+           "code": null,
+           "text": "Explain attempt under the Criminal Attempts Act 1981."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "defences",
+       "title": "Defences",
+       "subtopics": [
+        {
+         "id": "criminal-defences",
+         "title": "Criminal defences",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Apply the capacity defences: insanity, automatism and intoxication."
+          },
+          {
+           "code": null,
+           "text": "Apply self-defence and prevention of crime."
+          },
+          {
+           "code": null,
+           "text": "Apply necessity defences: duress and duress of circumstances."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "3-3-tort",
+     "title": "3.3 Tort",
+     "topics": [
+      {
+       "id": "theory-of-tort-law",
+       "title": "Theory of tort law",
+       "subtopics": [
+        {
+         "id": "tort-principles-and-duty-of-care",
+         "title": "Tort principles and duty of care",
+         "outcomes": [
+          {
+           "code": "3.3",
+           "text": "Study liability and fault in negligence, occupiers' liability, nuisance and vicarious liability, with defences and remedies."
+          },
+          {
+           "code": null,
+           "text": "Explain the public policy behind the duty of care, using the Caparo test."
+          },
+          {
+           "code": null,
+           "text": "Explain the 'neighbour' principle and the duty of care in physical injury and property damage."
+          },
+          {
+           "code": null,
+           "text": "Explain breach of duty and the objective standard of care."
+          },
+          {
+           "code": null,
+           "text": "Explain damage: factual causation and legal causation (remoteness)."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "negligence",
+       "title": "Negligence",
+       "subtopics": [
+        {
+         "id": "economic-loss-and-psychiatric-injury",
+         "title": "Economic loss and psychiatric injury",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain liability for pure economic loss from negligent acts and misstatements."
+          },
+          {
+           "code": null,
+           "text": "Explain liability for psychiatric injury to primary and secondary victims."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "other-torts",
+       "title": "Other torts",
+       "subtopics": [
+        {
+         "id": "occupiers-liability",
+         "title": "Occupiers' liability",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain liability to visitors under the Occupiers' Liability Act 1957."
+          },
+          {
+           "code": null,
+           "text": "Explain liability to trespassers under the Occupiers' Liability Act 1984."
+          }
+         ]
+        },
+        {
+         "id": "nuisance-and-rylands-v-fletcher",
+         "title": "Nuisance and Rylands v Fletcher",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain private nuisance."
+          },
+          {
+           "code": null,
+           "text": "Explain the rule in Rylands v Fletcher."
+          }
+         ]
+        },
+        {
+         "id": "vicarious-liability",
+         "title": "Vicarious liability",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain the nature and purpose of vicarious liability."
+          },
+          {
+           "code": null,
+           "text": "Test employment status."
+          },
+          {
+           "code": null,
+           "text": "Explain other areas of vicarious liability."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "defences-and-remedies",
+       "title": "Defences and remedies",
+       "subtopics": [
+        {
+         "id": "tort-defences-and-remedies",
+         "title": "Tort defences and remedies",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Apply contributory negligence and consent (volenti)."
+          },
+          {
+           "code": null,
+           "text": "Apply defences specific to private nuisance and Rylands v Fletcher."
+          },
+          {
+           "code": null,
+           "text": "Explain compensatory damages and mitigation of loss."
+          },
+          {
+           "code": null,
+           "text": "Explain injunctions and how conflicting interests are balanced."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "3-4-law-of-contract",
+     "title": "3.4 Law of contract",
+     "topics": [
+      {
+       "id": "formation",
+       "title": "Formation",
+       "subtopics": [
+        {
+         "id": "offer-acceptance-and-consideration",
+         "title": "Offer, acceptance and consideration",
+         "outcomes": [
+          {
+           "code": "3.4",
+           "text": "Study formation, terms, vitiating factors, discharge and remedies of contract."
+          },
+          {
+           "code": null,
+           "text": "Explain freedom of contract and the need to protect consumers."
+          },
+          {
+           "code": null,
+           "text": "Distinguish offers, unilateral offers and invitations to treat."
+          },
+          {
+           "code": null,
+           "text": "Explain acceptance, the postal rule and electronic communications."
+          },
+          {
+           "code": null,
+           "text": "Explain consideration, privity, and links to economic duress."
+          },
+          {
+           "code": null,
+           "text": "Explain intention to create legal relations."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "contract-terms",
+       "title": "Contract terms",
+       "subtopics": [
+        {
+         "id": "types-of-terms",
+         "title": "Types of terms",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Distinguish express from implied terms."
+          },
+          {
+           "code": null,
+           "text": "Distinguish conditions, warranties and innominate terms."
+          }
+         ]
+        },
+        {
+         "id": "consumer-rights-act-2015-terms",
+         "title": "Consumer Rights Act 2015 terms",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Apply terms implied in goods contracts: satisfactory quality, fitness for purpose, description (s9-s11)."
+          },
+          {
+           "code": null,
+           "text": "Apply goods remedies: short-term right to reject, repair or replacement, price reduction (s20, s23, s24)."
+          },
+          {
+           "code": null,
+           "text": "Apply terms implied in service contracts: reasonable care and skill, reasonable time (s49, s52)."
+          },
+          {
+           "code": null,
+           "text": "Apply service remedies: repeat performance, price reduction (s55, s56)."
+          }
+         ]
+        },
+        {
+         "id": "exclusion-clauses",
+         "title": "Exclusion clauses",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain exclusion and limitation clauses and their effectiveness."
+          },
+          {
+           "code": null,
+           "text": "Explain common law control: incorporation and construction."
+          },
+          {
+           "code": null,
+           "text": "Explain statutory control: Unfair Contract Terms Act 1977 and Consumer Rights Act 2015."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "vitiating-factors-discharge-and-remedies",
+       "title": "Vitiating factors, discharge and remedies",
+       "subtopics": [
+        {
+         "id": "vitiating-factors-and-discharge",
+         "title": "Vitiating factors and discharge",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain misrepresentation: nature, types and remedies."
+          },
+          {
+           "code": null,
+           "text": "Explain economic duress: definition and remedies."
+          },
+          {
+           "code": null,
+           "text": "Explain discharge by performance, breach (actual and anticipatory) and frustration."
+          }
+         ]
+        },
+        {
+         "id": "contract-remedies",
+         "title": "Contract remedies",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain compensatory damages: loss categories, causation, remoteness and mitigation."
+          },
+          {
+           "code": null,
+           "text": "Explain specific performance and rescission."
+          },
+          {
+           "code": null,
+           "text": "Explain termination for breach."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "3-5-human-rights",
+     "title": "3.5 Human Rights",
+     "topics": [
+      {
+       "id": "theory-and-origins",
+       "title": "Theory and origins",
+       "subtopics": [
+        {
+         "id": "theory-of-rights",
+         "title": "Theory of rights",
+         "outcomes": [
+          {
+           "code": "3.5",
+           "text": "Study rights to life, liberty, privacy, expression, and assembly and association."
+          },
+          {
+           "code": null,
+           "text": "Explain theories of rights."
+          },
+          {
+           "code": null,
+           "text": "Contrast rights with liberties."
+          },
+          {
+           "code": null,
+           "text": "Explain the scope of fundamental human rights."
+          }
+         ]
+        },
+        {
+         "id": "human-rights-in-international-law",
+         "title": "Human rights in international law",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain the Second World War and its aftermath."
+          },
+          {
+           "code": null,
+           "text": "Explain the UN and the Universal Declaration of Human Rights 1948."
+          },
+          {
+           "code": null,
+           "text": "Explain the Council of Europe and the European Convention on Human Rights 1953."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "human-rights-in-the-uk",
+       "title": "Human rights in the UK",
+       "subtopics": [
+        {
+         "id": "human-rights-act-1998",
+         "title": "Human Rights Act 1998",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain the Convention's UK status before the Human Rights Act and the impact of the European Court's decisions."
+          },
+          {
+           "code": null,
+           "text": "Explain how the Convention was incorporated and interpreted by the Act."
+          },
+          {
+           "code": null,
+           "text": "Explain impact on constitutional arrangements and the Act's entrenchment in devolution."
+          },
+          {
+           "code": null,
+           "text": "Evaluate criticisms of human rights."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "the-european-convention-on-human-rights",
+       "title": "The European Convention on Human Rights",
+       "subtopics": [
+        {
+         "id": "articles-2-and-5",
+         "title": "Articles 2 and 5",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain Article 2: right to life and justified exceptions."
+          },
+          {
+           "code": null,
+           "text": "Explain Article 5: right to liberty and security, lawful arrest or detention, and extra requirements."
+          }
+         ]
+        },
+        {
+         "id": "articles-8-10-11-and-restrictions",
+         "title": "Articles 8, 10, 11 and restrictions",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain Article 8: respect for private and family life, home and correspondence."
+          },
+          {
+           "code": null,
+           "text": "Explain Article 10: freedom of expression."
+          },
+          {
+           "code": null,
+           "text": "Explain Article 11: peaceful assembly and association."
+          },
+          {
+           "code": null,
+           "text": "Explain restrictions under Articles 8.2, 10.2 and 11.2 and the general requirements for them."
+          }
+         ]
+        },
+        {
+         "id": "enforcement",
+         "title": "Enforcement",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain claims before the European Court of Human Rights and the role of domestic courts."
+          },
+          {
+           "code": null,
+           "text": "Explain the effect of decisions on states and claimants."
+          },
+          {
+           "code": null,
+           "text": "Explain judicial review."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "human-rights-and-english-law",
+       "title": "Human Rights and English law",
+       "subtopics": [
+        {
+         "id": "rights-in-english-law",
+         "title": "Rights in English law",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Outline criminal and civil protection of the right to life, including homicide, policing duties, negligence and investigations."
+          },
+          {
+           "code": null,
+           "text": "Outline law on deprivation of liberty."
+          },
+          {
+           "code": null,
+           "text": "Outline law protecting or restricting privacy and communication."
+          },
+          {
+           "code": null,
+           "text": "Balance privacy against expression, assembly and association."
+          },
+          {
+           "code": null,
+           "text": "Discuss reform of human rights protection in the UK."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "build": {
+  "builtAt": "2026-10-14T10:15:40.394Z",
+  "model": "claude-agent",
+  "usd": 0,
+  "expectedCodes": 5,
+  "coverage": 1,
+  "missingCodes": [],
+  "counts": {
+   "grades": 1,
+   "units": 5,
+   "topics": 19,
+   "subtopics": 36,
+   "outcomes": 122
+  },
+  "warnings": [
+   "grade Year 12 has no content",
+   "grade Year 13 has no content",
+   "unexpected grade label \"all\""
+  ]
+ }
+}

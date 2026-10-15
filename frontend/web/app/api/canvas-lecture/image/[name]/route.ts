@@ -5,7 +5,7 @@ import { canvasUser } from "../../access";
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
 
-/** A picture from one of the signed-in student's own canvas lectures. A picture never changes. */
+/** A private lecture picture or immutable approved curriculum asset, still behind sign-in. */
 export async function GET(_request: Request, { params }: { params: Promise<{ name: string }> }) {
   const who = await canvasUser();
   if ("error" in who) return NextResponse.json({ error: who.error }, { status: who.status });

@@ -1,0 +1,693 @@
+{
+ "id": "uk-edexcel-alevel-statistics-9st0",
+ "region": "UK",
+ "framework": "Pearson Edexcel Level 3 Advanced GCE",
+ "board": "Pearson Edexcel",
+ "qualification": "A Level",
+ "subject": "Statistics",
+ "syllabusCode": "9ST0",
+ "gradeSystem": "year",
+ "source": {
+  "urls": [
+   "https://qualifications.pearson.com/content/dam/pdf/A%20Level/statistics/2017/Specification%20and%20Sample%20assessment%20material/a-level-statistics-specification.pdf"
+  ],
+  "publisher": "Pearson Education",
+  "licence": "Exam board specification, (c) Pearson; structure + our own wording only",
+  "firstExam": "2019"
+ },
+ "grades": [
+  {
+   "grade": "all",
+   "units": [
+    {
+     "id": "subject-content",
+     "title": "Subject content",
+     "topics": [
+      {
+       "id": "1-numerical-measures-graphs-and-diagrams",
+       "title": "1 Numerical measures, graphs and diagrams",
+       "subtopics": [
+        {
+         "id": "reading-statistical-diagrams",
+         "title": "Reading statistical diagrams",
+         "outcomes": [
+          {
+           "code": "1.1",
+           "text": "Interpret bar charts, stem-and-leaf, box plots, cumulative frequency, histograms, time series and scatter diagrams."
+          },
+          {
+           "code": "1.2",
+           "text": "State what makes a data representation appropriate and how it can mislead."
+          },
+          {
+           "code": "1.3",
+           "text": "Justify a choice of graph and comment on published ones."
+          }
+         ]
+        },
+        {
+         "id": "comparing-data-sets",
+         "title": "Comparing data sets",
+         "outcomes": [
+          {
+           "code": "1.4",
+           "text": "Compare data sets using diagrams and measures of centre and spread, including variance and standard deviation."
+          },
+          {
+           "code": "1.5",
+           "text": "Calculate summary measures by calculator and by hand."
+          }
+         ]
+        },
+        {
+         "id": "outliers-and-misrepresentation",
+         "title": "Outliers and misrepresentation",
+         "outcomes": [
+          {
+           "code": "1.6",
+           "text": "Identify outliers by inspection and by calculation."
+          },
+          {
+           "code": "1.7",
+           "text": "Judge the nature of outliers from the population and how data was collected."
+          },
+          {
+           "code": "1.8",
+           "text": "Recognise data misrepresented out of context or by misleading visuals."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "2-probability",
+       "title": "2 Probability",
+       "subtopics": [
+        {
+         "id": "probability-language-and-diagrams",
+         "title": "Probability language and diagrams",
+         "outcomes": [
+          {
+           "code": "2.1",
+           "text": "Use set theory language and symbols in probability."
+          },
+          {
+           "code": "2.2",
+           "text": "Represent probabilities with tree diagrams, Venn diagrams and two-way tables."
+          }
+         ]
+        },
+        {
+         "id": "laws-of-probability",
+         "title": "Laws of probability",
+         "outcomes": [
+          {
+           "code": "2.3",
+           "text": "Calculate and compare single, independent, mutually exclusive and conditional probabilities."
+          },
+          {
+           "code": "2.4",
+           "text": "Apply the addition and multiplication laws, including conditional probability."
+          },
+          {
+           "code": "2.5",
+           "text": "Decide whether two events are statistically independent."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "3-population-and-samples",
+       "title": "3 Population and samples",
+       "subtopics": [
+        {
+         "id": "random-sampling",
+         "title": "Random sampling",
+         "outcomes": [
+          {
+           "code": "3.1",
+           "text": "Distinguish simple and unrestricted random samples and their properties."
+          },
+          {
+           "code": "3.2",
+           "text": "Obtain a random sample using random number tables or a calculator."
+          }
+         ]
+        },
+        {
+         "id": "sampling-methods-in-practice",
+         "title": "Sampling methods in practice",
+         "outcomes": [
+          {
+           "code": "3.3",
+           "text": "Evaluate simple random, systematic, cluster, judgmental and snowball sampling, with stratification."
+          },
+          {
+           "code": "3.4",
+           "text": "State the advantages and limitations of sampling methods."
+          },
+          {
+           "code": "3.5",
+           "text": "Choose a sampling method suited to the context."
+          },
+          {
+           "code": "3.6",
+           "text": "Explain practical constraints on collecting unbiased data."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "4-introduction-to-probability-distributions",
+       "title": "4 Introduction to probability distributions",
+       "subtopics": [
+        {
+         "id": "random-variables",
+         "title": "Random variables",
+         "outcomes": [
+          {
+           "code": "4.1",
+           "text": "Use the terms random, discrete, continuous, dependent and independent for variability."
+          }
+         ]
+        },
+        {
+         "id": "discrete-distributions",
+         "title": "Discrete distributions",
+         "outcomes": [
+          {
+           "code": "4.2",
+           "text": "Calculate probabilities, expected values, variances and standard deviations for discrete distributions."
+          },
+          {
+           "code": "4.3",
+           "text": "Model real situations with discrete random variables."
+          },
+          {
+           "code": "4.5",
+           "text": "Interpret graphs or tables of probabilities for discrete random variables."
+          }
+         ]
+        },
+        {
+         "id": "continuous-distributions",
+         "title": "Continuous distributions",
+         "outcomes": [
+          {
+           "code": "4.4",
+           "text": "State the properties of a continuous distribution."
+          },
+          {
+           "code": "4.6",
+           "text": "Interpret graphs of continuous distributions, using the uniform distribution."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "5-binomial-distribution",
+       "title": "5 Binomial distribution",
+       "subtopics": [
+        {
+         "id": "the-binomial-model",
+         "title": "The binomial model",
+         "outcomes": [
+          {
+           "code": "5.1",
+           "text": "Decide when a binomial model fits, with its assumptions."
+          },
+          {
+           "code": "5.2",
+           "text": "Find binomial probabilities by formula, tables or calculator."
+          },
+          {
+           "code": "5.3",
+           "text": "Calculate and interpret the binomial mean and variance."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "6-normal-distribution",
+       "title": "6 Normal distribution",
+       "subtopics": [
+        {
+         "id": "properties-of-the-normal-distribution",
+         "title": "Properties of the normal distribution",
+         "outcomes": [
+          {
+           "code": "6.1",
+           "text": "State the properties of the normal distribution and how samples vary."
+          },
+          {
+           "code": "6.2",
+           "text": "Use the 68-95-99.8 style rule for one, two and three standard deviations."
+          }
+         ]
+        },
+        {
+         "id": "using-the-normal-distribution",
+         "title": "Using the normal distribution",
+         "outcomes": [
+          {
+           "code": "6.3",
+           "text": "Find probabilities and unknown parameters for a normal distribution."
+          },
+          {
+           "code": "6.4",
+           "text": "Model real situations with the normal distribution."
+          },
+          {
+           "code": "6.5",
+           "text": "Use the distribution of the sample mean from a normal population."
+          },
+          {
+           "code": "6.6",
+           "text": "Approximate a binomial with a normal, using a continuity correction."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "7-correlation-and-linear-regression",
+       "title": "7 Correlation and linear regression",
+       "subtopics": [
+        {
+         "id": "correlation",
+         "title": "Correlation",
+         "outcomes": [
+          {
+           "code": "7.1",
+           "text": "Calculate and interpret Spearman's and Pearson's correlation coefficients."
+          },
+          {
+           "code": "7.2",
+           "text": "Test the significance of a correlation coefficient using tables."
+          },
+          {
+           "code": "7.3",
+           "text": "Choose the right correlation method and assess correlation in context."
+          }
+         ]
+        },
+        {
+         "id": "regression",
+         "title": "Regression",
+         "outcomes": [
+          {
+           "code": "7.4",
+           "text": "Find and interpret a least squares regression line, interpolation, extrapolation and residuals."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "8-introduction-to-hypothesis-testing",
+       "title": "8 Introduction to hypothesis testing",
+       "subtopics": [
+        {
+         "id": "language-of-hypothesis-tests",
+         "title": "Language of hypothesis tests",
+         "outcomes": [
+          {
+           "code": "8.1",
+           "text": "Define parameter, statistic, unbiased and standard error."
+          },
+          {
+           "code": "8.2",
+           "text": "Use hypothesis testing terms: hypotheses, significance level, critical region and p-value."
+          },
+          {
+           "code": "8.3",
+           "text": "Explain that a sample gives an inference about a population, needing random sampling."
+          },
+          {
+           "code": "8.4",
+           "text": "Choose a suitable hypothesis test."
+          }
+         ]
+        },
+        {
+         "id": "carrying-out-basic-tests",
+         "title": "Carrying out basic tests",
+         "outcomes": [
+          {
+           "code": "8.5",
+           "text": "Test a binomial proportion, using exact probabilities or normal approximation."
+          },
+          {
+           "code": "8.6",
+           "text": "Test the mean of a normal distribution with known variance from a large sample."
+          },
+          {
+           "code": "8.7",
+           "text": "Critique conclusions from hypothesis tests, with attention to sampling."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "9-contingency-tables",
+       "title": "9 Contingency tables",
+       "subtopics": [
+        {
+         "id": "chi-squared-test-for-independence",
+         "title": "Chi-squared test for independence",
+         "outcomes": [
+          {
+           "code": "9.1",
+           "text": "Build contingency tables from real data and interpret them."
+          },
+          {
+           "code": "9.2",
+           "text": "Use a chi-squared test with correct degrees of freedom to test independence."
+          },
+          {
+           "code": "9.3",
+           "text": "Combine classes when expected frequencies fall below 5."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "10-one-and-two-sample-non-parametric-tests",
+       "title": "10 One and two sample non-parametric tests",
+       "subtopics": [
+        {
+         "id": "non-parametric-tests",
+         "title": "Non-parametric tests",
+         "outcomes": [
+          {
+           "code": "10.1",
+           "text": "Use sign and Wilcoxon signed-rank tests for one sample and paired data, with their conditions."
+          },
+          {
+           "code": "10.2",
+           "text": "Use the Wilcoxon rank-sum test for two independent samples."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "11-bayes-theorem",
+       "title": "11 Bayes' theorem",
+       "subtopics": [
+        {
+         "id": "bayes-theorem",
+         "title": "Bayes' theorem",
+         "outcomes": [
+          {
+           "code": "11.1",
+           "text": "Use conditional probability and Bayes' theorem for up to three events with tree diagrams."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "12-probability-distributions",
+       "title": "12 Probability distributions",
+       "subtopics": [
+        {
+         "id": "choosing-distributions",
+         "title": "Choosing distributions",
+         "outcomes": [
+          {
+           "code": "12.1",
+           "text": "Judge when binomial, normal, Poisson and exponential distributions fit a situation."
+          }
+         ]
+        },
+        {
+         "id": "linear-combinations-of-variables",
+         "title": "Linear combinations of variables",
+         "outcomes": [
+          {
+           "code": "12.2",
+           "text": "Find mean and variance of linear combinations of independent random variables."
+          },
+          {
+           "code": "12.3",
+           "text": "Find probabilities for linear combinations of independent normal variables."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "13-experimental-design",
+       "title": "13 Experimental design",
+       "subtopics": [
+        {
+         "id": "designing-experiments",
+         "title": "Designing experiments",
+         "outcomes": [
+          {
+           "code": "13.1",
+           "text": "Discuss experimental error, randomisation, replication, control groups and blind trials."
+          },
+          {
+           "code": "13.2",
+           "text": "Explain how paired comparisons and blocking reduce experimental error."
+          },
+          {
+           "code": "13.3",
+           "text": "Use completely random and randomised block designs."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "14-sampling-estimates-and-resampling",
+       "title": "14 Sampling, estimates and resampling",
+       "subtopics": [
+        {
+         "id": "estimates-and-the-central-limit-theorem",
+         "title": "Estimates and the central limit theorem",
+         "outcomes": [
+          {
+           "code": "14.1",
+           "text": "Define parameter, statistic, unbiased and standard error."
+          },
+          {
+           "code": "14.2",
+           "text": "Use the central limit theorem for the sample mean from non-normal populations."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "15-hypothesis-testing-significance-testing-confi",
+       "title": "15 Hypothesis testing, significance testing, confidence intervals and power",
+       "subtopics": [
+        {
+         "id": "confidence-intervals",
+         "title": "Confidence intervals",
+         "outcomes": [
+          {
+           "code": "15.1",
+           "text": "Build and interpret confidence intervals for a mean using z or t."
+          },
+          {
+           "code": "15.2",
+           "text": "Explain how sample size affects interval width and find the size needed."
+          }
+         ]
+        },
+        {
+         "id": "errors-and-power",
+         "title": "Errors and power",
+         "outcomes": [
+          {
+           "code": "15.3",
+           "text": "Evaluate the strength of test conclusions, including power."
+          },
+          {
+           "code": "15.4",
+           "text": "Explain that changing sample size can give stronger evidence."
+          },
+          {
+           "code": "15.5",
+           "text": "Interpret Type I and Type II errors and their link to significance level."
+          },
+          {
+           "code": "15.6",
+           "text": "Calculate the risk of a Type II error and the power of a test."
+          },
+          {
+           "code": "15.7",
+           "text": "Compare critical regions and p-values in real contexts."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "16-hypothesis-testing-for-1-and-2-samples",
+       "title": "16 Hypothesis testing for 1 and 2 samples",
+       "subtopics": [
+        {
+         "id": "t-tests-and-two-sample-tests",
+         "title": "t-tests and two-sample tests",
+         "outcomes": [
+          {
+           "code": "16.1",
+           "text": "Test a mean with unknown variance using the t-distribution."
+          },
+          {
+           "code": "16.2",
+           "text": "Test the difference of two means with known variances."
+          },
+          {
+           "code": "16.3",
+           "text": "Test the difference of two means with unknown equal variances, using a pooled estimate."
+          },
+          {
+           "code": "16.4",
+           "text": "Test the difference between two binomial proportions."
+          },
+          {
+           "code": "16.5",
+           "text": "Interpret these test results in context."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "17-paired-tests",
+       "title": "17 Paired tests",
+       "subtopics": [
+        {
+         "id": "paired-tests",
+         "title": "Paired tests",
+         "outcomes": [
+          {
+           "code": "17.1",
+           "text": "Choose and use sign, Wilcoxon signed-rank or paired t-tests and interpret the result."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "18-exponential-and-poisson-distributions",
+       "title": "18 Exponential and Poisson distributions",
+       "subtopics": [
+        {
+         "id": "poisson-and-exponential-models",
+         "title": "Poisson and exponential models",
+         "outcomes": [
+          {
+           "code": "18.1",
+           "text": "Decide when a Poisson model is appropriate."
+          },
+          {
+           "code": "18.2",
+           "text": "Decide when an exponential model is appropriate and link it to the Poisson."
+          },
+          {
+           "code": "18.3",
+           "text": "Find Poisson and exponential probabilities, means and variances."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "19-goodness-of-fit",
+       "title": "19 Goodness of fit",
+       "subtopics": [
+        {
+         "id": "goodness-of-fit-tests",
+         "title": "Goodness of fit tests",
+         "outcomes": [
+          {
+           "code": "19.1",
+           "text": "Run a chi-squared goodness of fit test for binomial, Poisson, normal, exponential or given discrete distributions."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "20-analysis-of-variance",
+       "title": "20 Analysis of variance",
+       "subtopics": [
+        {
+         "id": "analysis-of-variance",
+         "title": "Analysis of variance",
+         "outcomes": [
+          {
+           "code": "20.1",
+           "text": "Conduct one-way analysis of variance with a completely randomised design."
+          },
+          {
+           "code": "20.2",
+           "text": "Conduct two-way analysis of variance without replication using blocks."
+          },
+          {
+           "code": "20.3",
+           "text": "State ANOVA assumptions and interpret results in context."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "21-effect-size",
+       "title": "21 Effect size",
+       "subtopics": [
+        {
+         "id": "effect-size",
+         "title": "Effect size",
+         "outcomes": [
+          {
+           "code": "21.1",
+           "text": "Explain effect size as a complement to significance testing."
+          },
+          {
+           "code": "21.2",
+           "text": "Calculate and interpret Cohen's d."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "build": {
+  "builtAt": "2026-10-14T10:30:05.575Z",
+  "model": "claude-agent",
+  "usd": 0,
+  "expectedCodes": 76,
+  "coverage": 1,
+  "missingCodes": [],
+  "counts": {
+   "grades": 1,
+   "units": 1,
+   "topics": 21,
+   "subtopics": 32,
+   "outcomes": 81
+  },
+  "warnings": [
+   "grade Year 12 has no content",
+   "grade Year 13 has no content",
+   "unexpected grade label \"all\""
+  ]
+ }
+}

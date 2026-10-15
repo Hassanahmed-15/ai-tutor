@@ -1,0 +1,2572 @@
+{
+ "id": "us-ap-computer-science-principles",
+ "region": "US",
+ "framework": "AP Computer Science Principles Course and Exam Description (effective fall 2023)",
+ "board": "College Board",
+ "qualification": "AP",
+ "subject": "Computer Science Principles",
+ "syllabusCode": null,
+ "gradeSystem": "course",
+ "source": {
+  "urls": [
+   "https://apcentral.collegeboard.org/media/pdf/ap-computer-science-principles-course-and-exam-description.pdf",
+   "https://apcentral.collegeboard.org/courses/ap-computer-science-principles"
+  ],
+  "publisher": "College Board",
+  "licence": "© College Board; structure + our own wording only",
+  "firstExam": "2024"
+ },
+ "grades": [
+  {
+   "grade": "all",
+   "units": [
+    {
+     "id": "big-idea-1-creative-development",
+     "title": "Big Idea 1: Creative Development",
+     "topics": [
+      {
+       "id": "1-1-collaboration",
+       "title": "1.1 Collaboration",
+       "subtopics": [
+        {
+         "id": "collaboration-and-solutions",
+         "title": "Collaboration and Solutions",
+         "outcomes": [
+          {
+           "code": "CRD-1.A",
+           "text": "Explain how collaboration influences the development of a solution."
+          },
+          {
+           "code": "CRD-1.B",
+           "text": "Describe how working with people from varied backgrounds can improve a computing solution."
+          },
+          {
+           "code": "CRD-1.C",
+           "text": "Explain how collaboration requires meaningful participation and input from all team members."
+          }
+         ]
+        },
+        {
+         "id": "computing-innovations",
+         "title": "Computing Innovations",
+         "outcomes": [
+          {
+           "code": "CRD-1.A.1",
+           "text": "Recognize that a computing innovation includes a program as part of its operation."
+          },
+          {
+           "code": "CRD-1.A.2",
+           "text": "Distinguish physical, software-based, and conceptual computing innovations."
+          },
+          {
+           "code": "CRD-1.A.3",
+           "text": "Explain how collaboration produces innovations reflecting designers’ varied talents and perspectives."
+          }
+         ]
+        },
+        {
+         "id": "diverse-perspectives",
+         "title": "Diverse Perspectives",
+         "outcomes": [
+          {
+           "code": "CRD-1.A.4",
+           "text": "Explain how diverse collaboration can reduce bias in computing innovation development."
+          },
+          {
+           "code": "CRD-1.A.5",
+           "text": "Recognize consultation and communication with users as important during innovation development."
+          },
+          {
+           "code": "CRD-1.A.6",
+           "text": "Use information from potential users to understand program purposes and include diverse perspectives."
+          }
+         ]
+        },
+        {
+         "id": "online-collaboration",
+         "title": "Online Collaboration",
+         "outcomes": [
+          {
+           "code": "CRD-1.B.1",
+           "text": "Explain how online tools enable programmers to share ideas, documents, and feedback."
+          },
+          {
+           "code": "CRD-1.B.2",
+           "text": "Recognize collaborative models such as pair programming."
+          }
+         ]
+        },
+        {
+         "id": "team-communication",
+         "title": "Team Communication",
+         "outcomes": [
+          {
+           "code": "CRD-1.C.1",
+           "text": "Use communication, consensus building, conflict resolution, and negotiation in collaborative teams."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "1-2-program-function-and-purpose",
+       "title": "1.2 Program Function and Purpose",
+       "subtopics": [
+        {
+         "id": "program-context-and-purpose",
+         "title": "Program Context and Purpose",
+         "outcomes": [
+          {
+           "code": "CRD-2.A",
+           "text": "Investigate the situation, context, or task a program addresses."
+          },
+          {
+           "code": "CRD-2.B",
+           "text": "Describe a program’s purpose and how users interact with it."
+          },
+          {
+           "code": "CRD-2.C",
+           "text": "Identify the inputs and outputs needed for a program to perform its task."
+          }
+         ]
+        },
+        {
+         "id": "programs-and-code",
+         "title": "Programs and Code",
+         "outcomes": [
+          {
+           "code": "CRD-2.D",
+           "text": "Explain how a code segment or program functions."
+          },
+          {
+           "code": "CRD-2.A.1",
+           "text": "Explain that computing innovations solve problems or pursue interests through creative expression."
+          },
+          {
+           "code": "CRD-2.A.2",
+           "text": "Explain how understanding an innovation’s purpose helps developers improve it."
+          },
+          {
+           "code": "CRD-2.B.1",
+           "text": "Define a program as statements that perform a specific task when executed."
+          },
+          {
+           "code": "CRD-2.B.2",
+           "text": "Define a code segment as statements forming part of a program."
+          }
+         ]
+        },
+        {
+         "id": "program-behavior",
+         "title": "Program Behavior",
+         "outcomes": [
+          {
+           "code": "CRD-2.B.3",
+           "text": "Recognize that programs must work across varied inputs and situations."
+          },
+          {
+           "code": "CRD-2.B.4",
+           "text": "Describe program behavior as its execution and user interaction."
+          },
+          {
+           "code": "CRD-2.B.5",
+           "text": "Describe programs by what they do and how their statements accomplish it."
+          }
+         ]
+        },
+        {
+         "id": "inputs-and-events",
+         "title": "Inputs and Events",
+         "outcomes": [
+          {
+           "code": "CRD-2.C.1",
+           "text": "Define inputs as data sent to a computer for program processing."
+          },
+          {
+           "code": "CRD-2.C.2",
+           "text": "Explain that events associate actions with input data."
+          },
+          {
+           "code": "CRD-2.C.3",
+           "text": "Identify actions that can generate events and affect execution flow."
+          },
+          {
+           "code": "CRD-2.C.4",
+           "text": "Explain that inputs usually influence program outputs."
+          },
+          {
+           "code": "CRD-2.C.5",
+           "text": "Explain that event-driven statements run when triggered rather than sequentially."
+          },
+          {
+           "code": "CRD-2.C.6",
+           "text": "Recognize that inputs may come from users or other programs."
+          }
+         ]
+        },
+        {
+         "id": "program-outputs",
+         "title": "Program Outputs",
+         "outcomes": [
+          {
+           "code": "CRD-2.D.1",
+           "text": "Define program outputs as data sent from a program to a device."
+          },
+          {
+           "code": "CRD-2.D.2",
+           "text": "Explain that outputs usually depend on inputs or the program’s prior state."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "1-3-program-design-and-development",
+       "title": "1.3 Program Design and Development",
+       "subtopics": [
+        {
+         "id": "planning-program-behavior",
+         "title": "Planning Program Behavior",
+         "outcomes": [
+          {
+           "code": "CRD-2.E",
+           "text": "Determine and design an appropriate approach for achieving a program’s purpose."
+          },
+          {
+           "code": "CRD-2.F",
+           "text": "Plan program behavior by considering inputs, user interaction, and intended outputs."
+          },
+          {
+           "code": "CRD-2.G",
+           "text": "Use diagrams or other planning tools to represent program behavior and logic."
+          },
+          {
+           "code": "CRD-2.H",
+           "text": "Document code segments to explain their purposes and how they work together."
+          }
+         ]
+        },
+        {
+         "id": "development-processes",
+         "title": "Development Processes",
+         "outcomes": [
+          {
+           "code": "CRD-2.I",
+           "text": "Explain how collaboration affects the development of a solution."
+          },
+          {
+           "code": "CRD-2.J",
+           "text": "Use iterative development to improve a program based on testing and feedback."
+          },
+          {
+           "code": "CRD-2.E.1",
+           "text": "Recognize that development processes may be ordered and intentional or exploratory."
+          },
+          {
+           "code": "CRD-2.E.2",
+           "text": "Identify common development phases: investigation, design, prototyping, and testing."
+          },
+          {
+           "code": "CRD-2.E.3",
+           "text": "Explain that iterative development revises work using feedback, testing, or reflection."
+          },
+          {
+           "code": "CRD-2.E.4",
+           "text": "Explain that incremental development builds and verifies smaller pieces before combining them."
+          }
+         ]
+        },
+        {
+         "id": "investigation-and-requirements",
+         "title": "Investigation and Requirements",
+         "outcomes": [
+          {
+           "code": "CRD-2.F.1",
+           "text": "Explain that program design incorporates investigation to establish requirements."
+          },
+          {
+           "code": "CRD-2.F.2",
+           "text": "Use investigation to identify constraints and user concerns or interests."
+          },
+          {
+           "code": "CRD-2.F.3",
+           "text": "Identify investigation methods including surveys, user testing, interviews, and observation."
+          },
+          {
+           "code": "CRD-2.F.4",
+           "text": "Explain that requirements specify program functions and required user interactions."
+          },
+          {
+           "code": "CRD-2.F.5",
+           "text": "Define a program specification as its requirements."
+          }
+         ]
+        },
+        {
+         "id": "program-design",
+         "title": "Program Design",
+         "outcomes": [
+          {
+           "code": "CRD-2.F.6",
+           "text": "Explain that design outlines how a program will meet its specification."
+          },
+          {
+           "code": "CRD-2.F.7",
+           "text": "Identify design activities such as brainstorming, storyboarding, modular planning, interface diagrams, and test planning."
+          }
+         ]
+        },
+        {
+         "id": "documentation",
+         "title": "Documentation",
+         "outcomes": [
+          {
+           "code": "CRD-2.G.1",
+           "text": "Define documentation as a written explanation of code, events, procedures, or program development."
+          },
+          {
+           "code": "CRD-2.G.2",
+           "text": "Recognize comments as documentation for people that does not change program execution."
+          },
+          {
+           "code": "CRD-2.G.3",
+           "text": "Document programs throughout their development."
+          }
+         ]
+        },
+        {
+         "id": "documentation-and-maintenance",
+         "title": "Documentation and Maintenance",
+         "outcomes": [
+          {
+           "code": "CRD-2.G.4",
+           "text": "Explain how documentation supports developing and maintaining correct programs individually or collaboratively."
+          },
+          {
+           "code": "CRD-2.G.5",
+           "text": "Recognize that environments without comments require alternative documentation methods."
+          }
+         ]
+        },
+        {
+         "id": "reusing-code-responsibly",
+         "title": "Reusing Code Responsibly",
+         "outcomes": [
+          {
+           "code": "CRD-2.H.1",
+           "text": "Acknowledge code developed collaboratively or obtained from another source."
+          },
+          {
+           "code": "CRD-2.H.2",
+           "text": "Document reused code with its source or original author."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "1-4-identifying-and-correcting-errors",
+       "title": "1.4 Identifying and Correcting Errors",
+       "subtopics": [
+        {
+         "id": "types-of-programming-errors",
+         "title": "Types of Programming Errors",
+         "outcomes": [
+          {
+           "code": "CRD-2.I.1",
+           "text": "A logic error makes an algorithm or program behave incorrectly or unexpectedly."
+          },
+          {
+           "code": "CRD-2.I.2",
+           "text": "A syntax error violates the rules of a programming language."
+          },
+          {
+           "code": "CRD-2.I.3",
+           "text": "A runtime error occurs while a program is executing, according to language-specific rules."
+          },
+          {
+           "code": "CRD-2.I.4",
+           "text": "An overflow error occurs when a number exceeds the computer’s permitted value range."
+          }
+         ]
+        },
+        {
+         "id": "finding-and-fixing-errors",
+         "title": "Finding and Fixing Errors",
+         "outcomes": [
+          {
+           "code": "CRD-2.I.5",
+           "text": "Use test cases, hand tracing, visualizations, debuggers, or extra output to locate and fix errors."
+          }
+         ]
+        },
+        {
+         "id": "testing-programs",
+         "title": "Testing Programs",
+         "outcomes": [
+          {
+           "code": "CRD-2.J.1",
+           "text": "Testing applies specified inputs, compares outcomes with expectations, and guides algorithm or program revisions."
+          },
+          {
+           "code": "CRD-2.J.2",
+           "text": "Test inputs should cover expected outcomes at or just beyond minimum and maximum data limits."
+          },
+          {
+           "code": "CRD-2.J.3",
+           "text": "Program requirements help determine suitable specified inputs for testing."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "big-idea-3-algorithms-and-programming",
+     "title": "Big Idea 3: Algorithms and Programming",
+     "topics": [
+      {
+       "id": "3-11-binary-search",
+       "title": "3.11 Binary Search",
+       "subtopics": [
+        {
+         "id": "how-binary-search-works",
+         "title": "How Binary Search Works",
+         "outcomes": [
+          {
+           "code": "AAP-2.P",
+           "text": "Determine the iterations needed for binary search and explain its requirements."
+          },
+          {
+           "code": "AAP-2.P.1",
+           "text": "Binary search repeatedly checks the midpoint and eliminates half the remaining data."
+          },
+          {
+           "code": "AAP-2.P.2",
+           "text": "Binary search requires data arranged in sorted order."
+          },
+          {
+           "code": "AAP-2.P.3",
+           "text": "For sorted data, binary search is often more efficient than sequential search."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "3-1-variables-and-assignments",
+       "title": "3.1 Variables and Assignments",
+       "subtopics": [
+        {
+         "id": "variables-and-data-types",
+         "title": "Variables and Data Types",
+         "outcomes": [
+          {
+           "code": "AAP-1.B",
+           "text": "Determine a variable’s value after an assignment."
+          },
+          {
+           "code": "AAP-1.A",
+           "text": "Represent a value using a variable."
+          },
+          {
+           "code": "AAP-1.A.1",
+           "text": "A variable stores one value at a time, including a list or other collection."
+          },
+          {
+           "code": "AAP-1.A.2",
+           "text": "Choose meaningful variable names to improve code readability and clarify represented values."
+          },
+          {
+           "code": "AAP-1.A.3",
+           "text": "Recognize common data types, including numbers, Booleans, lists, and strings."
+          },
+          {
+           "code": "AAP-1.A.4",
+           "text": "Select the data type that best represents a particular value."
+          }
+         ]
+        },
+        {
+         "id": "assignment-and-stored-values",
+         "title": "Assignment and Stored Values",
+         "outcomes": [
+          {
+           "code": "AAP-1.B.1",
+           "text": "Use assignment to change the value stored in a variable."
+          },
+          {
+           "code": "AAP-1.B.2",
+           "text": "Understand that assignment evaluates an expression before storing its result in a variable."
+          },
+          {
+           "code": "AAP-1.B.3",
+           "text": "Recognize that a variable retains its most recently assigned value."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "3-2-data-abstraction",
+       "title": "3.2 Data Abstraction",
+       "subtopics": [
+        {
+         "id": "lists-and-strings",
+         "title": "Lists and Strings",
+         "outcomes": [
+          {
+           "code": "AAP-1.C",
+           "text": "Represent a list or string with a variable."
+          },
+          {
+           "code": "AAP-1.C.1",
+           "text": "Understand that a list is an ordered sequence of elements."
+          },
+          {
+           "code": "AAP-1.C.2",
+           "text": "Identify a list element as an individual value with a unique index."
+          },
+          {
+           "code": "AAP-1.C.3",
+           "text": "Use an index to reference an element in a list or string."
+          },
+          {
+           "code": "AAP-1.C.4",
+           "text": "Understand that a string is an ordered sequence of characters."
+          }
+         ]
+        },
+        {
+         "id": "using-list-abstractions",
+         "title": "Using List Abstractions",
+         "outcomes": [
+          {
+           "code": "AAP-1.D",
+           "text": "Create list-based data abstractions and explain how they reduce program complexity."
+          },
+          {
+           "code": "AAP-1.D.1",
+           "text": "Separate a data type’s abstract properties from the details of its representation."
+          },
+          {
+           "code": "AAP-1.D.2",
+           "text": "Explain that data abstractions name collections without exposing representation details."
+          },
+          {
+           "code": "AAP-1.D.3",
+           "text": "Create data abstractions using lists."
+          },
+          {
+           "code": "AAP-1.D.4",
+           "text": "Recognize that data abstractions can make programs easier to develop and maintain."
+          }
+         ]
+        },
+        {
+         "id": "working-with-list-values",
+         "title": "Working With List Values",
+         "outcomes": [
+          {
+           "code": "AAP-1.D.5",
+           "text": "Understand that data abstractions may contain elements of different types."
+          },
+          {
+           "code": "AAP-1.D.6",
+           "text": "Use lists to treat multiple related items as one value."
+          },
+          {
+           "code": "AAP-1.D.7",
+           "text": "Create lists, including empty lists, and assign them to variables."
+          }
+         ]
+        },
+        {
+         "id": "list-indices-and-errors",
+         "title": "List Indices and Errors",
+         "outcomes": [
+          {
+           "code": "AAP-1.D.8",
+           "text": "Recognize that valid list indices run from 1 through the list length; invalid indices terminate the program with an error."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "3-3-mathematical-expressions",
+       "title": "3.3 Mathematical Expressions",
+       "subtopics": [
+        {
+         "id": "algorithms-and-code",
+         "title": "Algorithms and Code",
+         "outcomes": [
+          {
+           "code": "AAP-2.A",
+           "text": "Express a sequenced algorithm without relying on a programming language."
+          },
+          {
+           "code": "AAP-2.B",
+           "text": "Represent a step-by-step algorithm with sequential code statements."
+          },
+          {
+           "code": "AAP-2.A.1",
+           "text": "Recognize an algorithm as finite instructions designed to accomplish a specific task."
+          },
+          {
+           "code": "AAP-2.A.2",
+           "text": "Represent algorithms with natural language, diagrams, pseudocode, or programming languages."
+          },
+          {
+           "code": "AAP-2.A.3",
+           "text": "Understand that programs implement algorithms using programming languages."
+          },
+          {
+           "code": "AAP-2.A.4",
+           "text": "Construct algorithms from sequencing, selection, and iteration."
+          }
+         ]
+        },
+        {
+         "id": "arithmetic-operators",
+         "title": "Arithmetic Operators",
+         "outcomes": [
+          {
+           "code": "AAP-2.C",
+           "text": "Evaluate expressions using arithmetic operators."
+          },
+          {
+           "code": "AAP-2.C.1",
+           "text": "Identify addition, subtraction, multiplication, division, and modulus as common arithmetic operators."
+          },
+          {
+           "code": "AAP-2.C.2",
+           "text": "Use MOD to find the remainder when one nonnegative integer is divided by a positive integer."
+          },
+          {
+           "code": "AAP-2.C.3",
+           "text": "Use the arithmetic operators +, -, *, /, and MOD."
+          }
+         ]
+        },
+        {
+         "id": "statements-and-expressions",
+         "title": "Statements and Expressions",
+         "outcomes": [
+          {
+           "code": "AAP-2.B.1",
+           "text": "Apply each algorithm step in the order specified by the code."
+          },
+          {
+           "code": "AAP-2.B.2",
+           "text": "Recognize a code statement as code expressing an action."
+          },
+          {
+           "code": "AAP-2.B.3",
+           "text": "Identify expressions as values, variables, operators, or value-returning procedure calls."
+          },
+          {
+           "code": "AAP-2.B.4",
+           "text": "Understand that evaluating an expression produces one value."
+          },
+          {
+           "code": "AAP-2.B.6",
+           "text": "Determine that sequential statements run in their order of appearance."
+          },
+          {
+           "code": "AAP-2.B.7",
+           "text": "Write algorithms with attention to clarity and readability."
+          }
+         ]
+        },
+        {
+         "id": "order-of-operations",
+         "title": "Order of Operations",
+         "outcomes": [
+          {
+           "code": "AAP-2.B.5",
+           "text": "Apply the programming language’s defined order of operations when evaluating expressions."
+          },
+          {
+           "code": "AAP-2.C.4",
+           "text": "Apply mathematical precedence rules, with MOD sharing precedence with multiplication and division."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "3-5-boolean-expressions",
+       "title": "3.5 Boolean Expressions",
+       "subtopics": [
+        {
+         "id": "boolean-and-relational-expressions",
+         "title": "Boolean and Relational Expressions",
+         "outcomes": [
+          {
+           "code": "AAP-2.E",
+           "text": "Write and evaluate relational expressions comparing variables, expressions, or values."
+          },
+          {
+           "code": "AAP-2.F",
+           "text": "Write and evaluate logical expressions involving Boolean values."
+          },
+          {
+           "code": "AAP-2.E.1",
+           "text": "Understand that Boolean values are either true or false."
+          },
+          {
+           "code": "AAP-2.E.2",
+           "text": "Use relational operators to compare values and produce Boolean results."
+          }
+         ]
+        },
+        {
+         "id": "logical-operators",
+         "title": "Logical Operators",
+         "outcomes": [
+          {
+           "code": "AAP-2.F.1",
+           "text": "Use NOT, AND, and OR to produce Boolean values."
+          },
+          {
+           "code": "AAP-2.F.2",
+           "text": "Evaluate NOT expressions as the opposite truth value of their condition."
+          },
+          {
+           "code": "AAP-2.F.3",
+           "text": "Evaluate AND as true only when both operands are true."
+          },
+          {
+           "code": "AAP-2.F.4",
+           "text": "Evaluate OR as true when at least one operand is true."
+          },
+          {
+           "code": "AAP-2.F.5",
+           "text": "Recognize that logical operators take Boolean expressions or Boolean values as operands."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "3-4-strings",
+       "title": "3.4 Strings",
+       "subtopics": [
+        {
+         "id": "string-operations",
+         "title": "String Operations",
+         "outcomes": [
+          {
+           "code": "AAP-2.D",
+           "text": "Evaluate expressions that manipulate strings."
+          },
+          {
+           "code": "AAP-2.D.1",
+           "text": "Concatenate strings by joining them end-to-end into a new string."
+          },
+          {
+           "code": "AAP-2.D.2",
+           "text": "Recognize a substring as a portion of an existing string."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "3-7-nested-conditionals",
+       "title": "3.7 Nested Conditionals",
+       "subtopics": [
+        {
+         "id": "3-7-nested-conditionals",
+         "title": "3.7 Nested Conditionals",
+         "outcomes": [
+          {
+           "code": "AAP-2.I",
+           "text": "Write nested conditionals and determine their results."
+          },
+          {
+           "code": "AAP-2.I.1",
+           "text": "Recognize nested conditionals as conditionals placed inside other conditionals."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "3-6-conditionals",
+       "title": "3.6 Conditionals",
+       "subtopics": [
+        {
+         "id": "selection-and-conditions",
+         "title": "Selection and Conditions",
+         "outcomes": [
+          {
+           "code": "AAP-2.G",
+           "text": "Express an algorithm using selection without a programming language."
+          },
+          {
+           "code": "AAP-2.H",
+           "text": "Write conditional statements and determine their results."
+          },
+          {
+           "code": "AAP-2.G.1",
+           "text": "Understand that selection chooses executed algorithm parts according to a condition’s truth value."
+          },
+          {
+           "code": "AAP-2.H.1",
+           "text": "Understand that conditionals alter control flow according to a Boolean expression."
+          }
+         ]
+        },
+        {
+         "id": "if-and-else-blocks",
+         "title": "IF and ELSE Blocks",
+         "outcomes": [
+          {
+           "code": "AAP-2.H.2",
+           "text": "Execute an IF block only when its condition evaluates to true."
+          },
+          {
+           "code": "AAP-2.H.3",
+           "text": "Execute an IF block when true and an ELSE block otherwise."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "3-8-iteration",
+       "title": "3.8 Iteration",
+       "subtopics": [
+        {
+         "id": "iteration-basics",
+         "title": "Iteration Basics",
+         "outcomes": [
+          {
+           "code": "AAP-2.J",
+           "text": "Express an iterative algorithm without using a programming language."
+          },
+          {
+           "code": "AAP-2.K",
+           "text": "Write iteration statements and determine their results or side effects."
+          },
+          {
+           "code": "AAP-2.J.1",
+           "text": "Understand iteration as repeating an algorithm section a set number of times or until a condition is met."
+          },
+          {
+           "code": "AAP-2.K.1",
+           "text": "Understand that iteration repeats statements zero or more times until a stopping condition occurs."
+          }
+         ]
+        },
+        {
+         "id": "repeat-loops",
+         "title": "Repeat Loops",
+         "outcomes": [
+          {
+           "code": "AAP-2.K.2",
+           "text": "Use REPEAT n TIMES to execute a block exactly n times."
+          },
+          {
+           "code": "AAP-2.K.3",
+           "text": "Use REPEAT UNTIL to repeat a block until its condition becomes true."
+          }
+         ]
+        },
+        {
+         "id": "loop-stopping-problems",
+         "title": "Loop Stopping Problems",
+         "outcomes": [
+          {
+           "code": "AAP-2.K.4",
+           "text": "Identify an infinite loop when a REPEAT UNTIL condition can never become true."
+          },
+          {
+           "code": "AAP-2.K.5",
+           "text": "Understand that an initially true REPEAT UNTIL condition skips the loop body."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "3-9-developing-algorithms",
+       "title": "3.9 Developing Algorithms",
+       "subtopics": [
+        {
+         "id": "comparing-algorithms",
+         "title": "Comparing Algorithms",
+         "outcomes": [
+          {
+           "code": "AAP-2.L",
+           "text": "Compare algorithms to determine whether they produce the same result or side effect."
+          },
+          {
+           "code": "AAP-2.M",
+           "text": "Create, combine, and modify algorithms."
+          },
+          {
+           "code": "AAP-2.L.1",
+           "text": "Recognize that different algorithm implementations can accomplish the same task."
+          },
+          {
+           "code": "AAP-2.L.2",
+           "text": "Understand that similar-looking algorithms may produce different results or side effects."
+          }
+         ]
+        },
+        {
+         "id": "equivalent-solutions",
+         "title": "Equivalent Solutions",
+         "outcomes": [
+          {
+           "code": "AAP-2.L.3",
+           "text": "Recognize that some conditionals have equivalent Boolean-expression forms."
+          },
+          {
+           "code": "AAP-2.L.4",
+           "text": "Recognize that some Boolean expressions have equivalent conditional forms."
+          },
+          {
+           "code": "AAP-2.L.5",
+           "text": "Understand that multiple algorithms may solve the same problem."
+          }
+         ]
+        },
+        {
+         "id": "building-algorithms",
+         "title": "Building Algorithms",
+         "outcomes": [
+          {
+           "code": "AAP-2.M.1",
+           "text": "Build algorithms from ideas, existing algorithms, or modifications of existing algorithms."
+          },
+          {
+           "code": "AAP-2.M.2",
+           "text": "Apply common algorithms for extrema, aggregates, divisibility, and navigating a maze."
+          },
+          {
+           "code": "AAP-2.M.3",
+           "text": "Use tested algorithms as building blocks to reduce development, testing, and debugging effort."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "3-10-lists",
+       "title": "3.10 Lists",
+       "subtopics": [
+        {
+         "id": "list-access-and-procedures",
+         "title": "List Access and Procedures",
+         "outcomes": [
+          {
+           "code": "AAP-2.N",
+           "text": "Write and evaluate expressions using list indexing and list procedures."
+          },
+          {
+           "code": "AAP-2.O",
+           "text": "Write list-traversal iterations and determine the results of algorithms that traverse lists."
+          },
+          {
+           "code": "AAP-2.N.1",
+           "text": "Use list operations to access elements, assign elements to variables, and update list elements."
+          },
+          {
+           "code": "AAP-2.N.2",
+           "text": "Use list procedures according to the programming language’s syntax rules."
+          }
+         ]
+        },
+        {
+         "id": "traversing-lists",
+         "title": "Traversing Lists",
+         "outcomes": [
+          {
+           "code": "AAP-2.O.1",
+           "text": "Recognize complete traversals that access every list element and partial traversals that access only some elements."
+          },
+          {
+           "code": "AAP-2.O.2",
+           "text": "Use iteration statements to traverse lists."
+          },
+          {
+           "code": "AAP-2.O.3",
+           "text": "Explain how a for-each loop processes list elements sequentially from the first through the last."
+          }
+         ]
+        },
+        {
+         "id": "list-search-and-aggregates",
+         "title": "List Search and Aggregates",
+         "outcomes": [
+          {
+           "code": "AAP-2.O.4",
+           "text": "Apply list algorithms for finding extrema, calculating sums or averages, and similar tasks."
+          },
+          {
+           "code": "AAP-2.O.5",
+           "text": "Explain that linear search checks list elements in order until finding the target or exhausting the list."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "3-12-calling-procedures",
+       "title": "3.12 Calling Procedures",
+       "subtopics": [
+        {
+         "id": "procedures-and-parameters",
+         "title": "Procedures and Parameters",
+         "outcomes": [
+          {
+           "code": "AAP-3.A",
+           "text": "Write procedure calls and determine their results or effects."
+          },
+          {
+           "code": "AAP-3.A.1",
+           "text": "Identify a procedure as a named instruction group that may accept parameters and return a value."
+          },
+          {
+           "code": "AAP-3.A.2",
+           "text": "Recognize that procedures may be called methods or functions in different programming languages."
+          },
+          {
+           "code": "AAP-3.A.3",
+           "text": "Distinguish parameters as procedure inputs from arguments as supplied parameter values."
+          }
+         ]
+        },
+        {
+         "id": "calling-procedures",
+         "title": "Calling Procedures",
+         "outcomes": [
+          {
+           "code": "AAP-3.A.4",
+           "text": "Trace how a procedure call transfers control into the procedure and then returns to the following statement."
+          },
+          {
+           "code": "AAP-3.A.5",
+           "text": "Use procedure-call syntax with zero or more arguments matched to parameters."
+          }
+         ]
+        },
+        {
+         "id": "display-return-and-input",
+         "title": "Display, Return, and Input",
+         "outcomes": [
+          {
+           "code": "AAP-3.A.6",
+           "text": "Use DISPLAY to show an expression’s value followed by a space."
+          },
+          {
+           "code": "AAP-3.A.7",
+           "text": "Use RETURN to send control back to the caller and provide an expression’s value."
+          },
+          {
+           "code": "AAP-3.A.8",
+           "text": "Assign a procedure’s returned value to a variable or other result."
+          },
+          {
+           "code": "AAP-3.A.9",
+           "text": "Use INPUT to accept and return a value supplied by the user."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "3-13-developing-procedures",
+       "title": "3.13 Developing Procedures",
+       "subtopics": [
+        {
+         "id": "procedural-abstraction",
+         "title": "Procedural Abstraction",
+         "outcomes": [
+          {
+           "code": "AAP-3.B",
+           "text": "Explain how procedural abstraction reduces program complexity."
+          },
+          {
+           "code": "AAP-3.C",
+           "text": "Develop procedural abstractions by writing procedures that manage complexity."
+          },
+          {
+           "code": "AAP-3.B.1",
+           "text": "Explain that procedural abstraction names a process so users need only understand its purpose, not implementation."
+          },
+          {
+           "code": "AAP-3.B.2",
+           "text": "Use procedures for smaller subproblems to construct solutions to larger problems."
+          }
+         ]
+        },
+        {
+         "id": "modular-and-reusable-code",
+         "title": "Modular and Reusable Code",
+         "outcomes": [
+          {
+           "code": "AAP-3.B.3",
+           "text": "Define modularity as dividing a program into separate subprograms."
+          },
+          {
+           "code": "AAP-3.B.4",
+           "text": "Use procedural abstraction to generalize shared functionality, avoid duplication, and reuse code."
+          },
+          {
+           "code": "AAP-3.B.5",
+           "text": "Use parameters to generalize procedures for different inputs or arguments."
+          },
+          {
+           "code": "AAP-3.B.6",
+           "text": "Explain how procedural abstraction improves code readability."
+          },
+          {
+           "code": "AAP-3.B.7",
+           "text": "Explain how procedure internals can change without affecting users when the procedure’s behavior remains unchanged."
+          }
+         ]
+        },
+        {
+         "id": "defining-procedures",
+         "title": "Defining Procedures",
+         "outcomes": [
+          {
+           "code": "AAP-3.C.1",
+           "text": "Define procedures that accept zero or more arguments and contain executable statements."
+          },
+          {
+           "code": "AAP-3.C.2",
+           "text": "Define procedures that accept arguments, execute statements, and return a value."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "3-14-libraries",
+       "title": "3.14 Libraries",
+       "subtopics": [
+        {
+         "id": "using-libraries",
+         "title": "Using Libraries",
+         "outcomes": [
+          {
+           "code": "AAP-3.D",
+           "text": "Choose suitable libraries or existing code for building new programs."
+          },
+          {
+           "code": "AAP-3.D.1",
+           "text": "Recognize that software libraries provide procedures for use in new programs."
+          },
+          {
+           "code": "AAP-3.D.2",
+           "text": "Identify libraries and previously written code as internal or external sources of existing code."
+          }
+         ]
+        },
+        {
+         "id": "apis-and-documentation",
+         "title": "APIs and Documentation",
+         "outcomes": [
+          {
+           "code": "AAP-3.D.3",
+           "text": "Explain that libraries simplify the creation of complex programs."
+          },
+          {
+           "code": "AAP-3.D.4",
+           "text": "Explain that APIs specify how library procedures behave and how they may be used."
+          },
+          {
+           "code": "AAP-3.D.5",
+           "text": "Use API or library documentation to understand available behavior and proper usage."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "3-15-random-values",
+       "title": "3.15 Random Values",
+       "subtopics": [
+        {
+         "id": "generate-random-values",
+         "title": "Generate Random Values",
+         "outcomes": [
+          {
+           "code": "AAP-3.E",
+           "text": "Write and evaluate expressions that generate possible random values."
+          },
+          {
+           "code": "AAP-3.E.1",
+           "text": "Use RANDOM to generate equally likely integer values within an inclusive range."
+          },
+          {
+           "code": "AAP-3.E.2",
+           "text": "Explain that random-number use can produce different results on separate program executions."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "3-16-simulations",
+       "title": "3.16 Simulations",
+       "subtopics": [
+        {
+         "id": "what-simulations-represent",
+         "title": "What Simulations Represent",
+         "outcomes": [
+          {
+           "code": "AAP-3.F",
+           "text": "Explain how computers represent real-world phenomena with simulations and compare simulations with reality."
+          },
+          {
+           "code": "AAP-3.F.1",
+           "text": "Explain that simulations abstract complex objects or phenomena for a particular purpose."
+          },
+          {
+           "code": "AAP-3.F.2",
+           "text": "Describe simulations as representations whose values change to model changing phenomena."
+          }
+         ]
+        },
+        {
+         "id": "why-simulations-are-useful",
+         "title": "Why Simulations Are Useful",
+         "outcomes": [
+          {
+           "code": "AAP-3.F.3",
+           "text": "Explain that simulations model real events to support inference and investigation without real-world constraints."
+          },
+          {
+           "code": "AAP-3.F.4",
+           "text": "Explain that developing an abstract simulation requires removing details or simplifying functionality."
+          },
+          {
+           "code": "AAP-3.F.5",
+           "text": "Identify how included or excluded real-world elements can introduce bias into simulations."
+          },
+          {
+           "code": "AAP-3.F.6",
+           "text": "Explain why simulations are useful when real-world experiments are impractical, costly, dangerous, or otherwise constrained."
+          }
+         ]
+        },
+        {
+         "id": "variability-and-hypotheses",
+         "title": "Variability and Hypotheses",
+         "outcomes": [
+          {
+           "code": "AAP-3.F.7",
+           "text": "Simulations help develop and refine hypotheses about objects or phenomena."
+          },
+          {
+           "code": "AAP-3.F.8",
+           "text": "Random number generators model variability found in real-world situations."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "3-17-algorithmic-efficiency",
+       "title": "3.17 Algorithmic Efficiency",
+       "subtopics": [
+        {
+         "id": "problems-and-problem-instances",
+         "title": "Problems and Problem Instances",
+         "outcomes": [
+          {
+           "code": "AAP-4.A",
+           "text": "Explain differences between reasonable-time and unreasonable-time algorithms and recognize when heuristics are appropriate."
+          },
+          {
+           "code": "AAP-4.A.1",
+           "text": "Distinguish a general algorithmic problem from a specific instance containing particular input."
+          },
+          {
+           "code": "AAP-4.A.2",
+           "text": "Differentiate decision problems, which require yes-or-no answers, from optimization problems seeking the best solution."
+          }
+         ]
+        },
+        {
+         "id": "measuring-algorithm-efficiency",
+         "title": "Measuring Algorithm Efficiency",
+         "outcomes": [
+          {
+           "code": "AAP-4.A.3",
+           "text": "Understand that algorithmic efficiency estimates computational resources as a function of input size."
+          },
+          {
+           "code": "AAP-4.A.4",
+           "text": "Recognize that formal or mathematical reasoning can determine an algorithm’s efficiency."
+          },
+          {
+           "code": "AAP-4.A.5",
+           "text": "Informally measure efficiency by counting executions of a statement or group of statements."
+          },
+          {
+           "code": "AAP-4.A.6",
+           "text": "Recognize that correct algorithms solving the same problem may have different efficiencies."
+          }
+         ]
+        },
+        {
+         "id": "reasonable-time-algorithms",
+         "title": "Reasonable-Time Algorithms",
+         "outcomes": [
+          {
+           "code": "AAP-4.A.7",
+           "text": "Classify polynomial or slower algorithms as reasonable-time and exponential or factorial algorithms as unreasonable-time."
+          },
+          {
+           "code": "AAP-4.A.8",
+           "text": "Understand that some problems require approximate solutions because no efficient algorithm exists."
+          },
+          {
+           "code": "AAP-4.A.9",
+           "text": "Understand that heuristics can provide useful, nonoptimal solutions when guaranteed optimal methods are impractical."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "3-18-undecidable-problems",
+       "title": "3.18 Undecidable Problems",
+       "subtopics": [
+        {
+         "id": "decidable-and-undecidable-problems",
+         "title": "Decidable and Undecidable Problems",
+         "outcomes": [
+          {
+           "code": "AAP-4.B",
+           "text": "Explain why some problems in computer science are undecidable."
+          },
+          {
+           "code": "AAP-4.B.1",
+           "text": "Identify decidable problems as decision problems solvable correctly by an algorithm for every input."
+          },
+          {
+           "code": "AAP-4.B.2",
+           "text": "Define an undecidable problem as one lacking an algorithm that always gives a correct yes-or-no answer."
+          }
+         ]
+        },
+        {
+         "id": "solving-some-instances",
+         "title": "Solving Some Instances",
+         "outcomes": [
+          {
+           "code": "AAP-4.B.3",
+           "text": "Understand that some instances of an undecidable problem may be solvable, although no algorithm handles every instance."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "big-idea-2-data",
+     "title": "Big Idea 2: Data",
+     "topics": [
+      {
+       "id": "2-1-binary-numbers",
+       "title": "2.1 Binary Numbers",
+       "subtopics": [
+        {
+         "id": "bits-and-binary-data",
+         "title": "Bits and Binary Data",
+         "outcomes": [
+          {
+           "code": "DAT-1.A",
+           "text": "Explain how data can be represented using bits."
+          },
+          {
+           "code": "DAT-1.A.1",
+           "text": "Data values can be stored in variables, lists, or constants and passed into or out of procedures."
+          },
+          {
+           "code": "DAT-1.B",
+           "text": "Explain consequences of using bits to represent data."
+          },
+          {
+           "code": "DAT-1.C",
+           "text": "Convert positive integers between binary and decimal and compare or order binary numbers."
+          }
+         ]
+        },
+        {
+         "id": "digital-data-basics",
+         "title": "Digital Data Basics",
+         "outcomes": [
+          {
+           "code": "DAT-1.A.2",
+           "text": "Computing devices represent data digitally, with bits as the lowest-level components."
+          },
+          {
+           "code": "DAT-1.A.3",
+           "text": "A bit, or binary digit, has a value of either 0 or 1."
+          },
+          {
+           "code": "DAT-1.A.4",
+           "text": "A byte consists of eight bits."
+          }
+         ]
+        },
+        {
+         "id": "abstraction-and-sampling",
+         "title": "Abstraction and Sampling",
+         "outcomes": [
+          {
+           "code": "DAT-1.A.5",
+           "text": "Abstraction reduces complexity by emphasizing important details and hiding irrelevant ones."
+          },
+          {
+           "code": "DAT-1.A.6",
+           "text": "Groups of bits represent abstractions such as numbers, characters, and colors."
+          },
+          {
+           "code": "DAT-1.A.7",
+           "text": "The same bit sequence can represent different data types depending on context."
+          },
+          {
+           "code": "DAT-1.A.8",
+           "text": "Analog data change continuously rather than in discrete steps, such as music pitch, color, or position."
+          },
+          {
+           "code": "DAT-1.A.9",
+           "text": "Using digital data to approximate real-world analog data is an example of abstraction."
+          },
+          {
+           "code": "DAT-1.A.10",
+           "text": "Sampling approximates analog data digitally by measuring signal values at regular intervals and storing the required bits."
+          }
+         ]
+        },
+        {
+         "id": "limits-of-number-storage",
+         "title": "Limits of Number Storage",
+         "outcomes": [
+          {
+           "code": "DAT-1.B.1",
+           "text": "Fixed-width integer representations limit values and operations, potentially causing overflow or other errors."
+          },
+          {
+           "code": "DAT-1.B.2",
+           "text": "Some languages limit integer size only by available computer memory."
+          },
+          {
+           "code": "DAT-1.B.3",
+           "text": "Fixed-width real-number representations limit range and precision, causing rounding and other errors."
+          }
+         ]
+        },
+        {
+         "id": "binary-and-decimal-place-value",
+         "title": "Binary and Decimal Place Value",
+         "outcomes": [
+          {
+           "code": "DAT-1.C.1",
+           "text": "Binary and decimal are number bases used to represent data."
+          },
+          {
+           "code": "DAT-1.C.2",
+           "text": "Binary uses combinations of only zero and one."
+          },
+          {
+           "code": "DAT-1.C.3",
+           "text": "Decimal uses combinations of digits from zero through nine."
+          },
+          {
+           "code": "DAT-1.C.4",
+           "text": "A binary digit’s position determines its value by combining the bit value with its place value."
+          },
+          {
+           "code": "DAT-1.C.5",
+           "text": "Place values come from powers of the base, with positions numbered from zero at the right."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "2-2-data-compression",
+       "title": "2.2 Data Compression",
+       "subtopics": [
+        {
+         "id": "choosing-compression",
+         "title": "Choosing Compression",
+         "outcomes": [
+          {
+           "code": "DAT-1.D",
+           "text": "Compare compression algorithms and select the most appropriate one for a context."
+          },
+          {
+           "code": "DAT-1.D.1",
+           "text": "Data compression reduces the number of bits needed for stored or transmitted data."
+          },
+          {
+           "code": "DAT-1.D.2",
+           "text": "Using fewer bits does not necessarily mean preserving less information."
+          },
+          {
+           "code": "DAT-1.D.3",
+           "text": "Compression effectiveness depends on redundancy in the original data and the algorithm used."
+          }
+         ]
+        },
+        {
+         "id": "lossless-and-lossy-compression",
+         "title": "Lossless and Lossy Compression",
+         "outcomes": [
+          {
+           "code": "DAT-1.D.4",
+           "text": "Lossless compression reduces bits while allowing exact reconstruction of the original data."
+          },
+          {
+           "code": "DAT-1.D.5",
+           "text": "Lossy compression greatly reduces bits but reconstructs only an approximation of the original data."
+          },
+          {
+           "code": "DAT-1.D.6",
+           "text": "Lossy compression usually achieves greater size reduction than lossless compression."
+          },
+          {
+           "code": "DAT-1.D.7",
+           "text": "Choose lossless compression when preserving quality or exact reconstruction is most important."
+          },
+          {
+           "code": "DAT-1.D.8",
+           "text": "Choose lossy compression when minimizing size or transmission time is most important."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "2-3-extracting-information",
+       "title": "2.3 Extracting Information",
+       "subtopics": [
+        {
+         "id": "information-from-data",
+         "title": "Information from Data",
+         "outcomes": [
+          {
+           "code": "DAT-2.A",
+           "text": "Describe information that can be extracted from data."
+          },
+          {
+           "code": "DAT-2.B",
+           "text": "Describe information that can be extracted from metadata."
+          },
+          {
+           "code": "DAT-2.C",
+           "text": "Identify challenges involved in processing data."
+          },
+          {
+           "code": "DAT-2.A.1",
+           "text": "Information consists of facts and patterns extracted from data."
+          },
+          {
+           "code": "DAT-2.A.2",
+           "text": "Data can reveal trends, relationships, and ways to address problems."
+          },
+          {
+           "code": "DAT-2.A.3",
+           "text": "Correlation between variables does not by itself establish a causal relationship."
+          },
+          {
+           "code": "DAT-2.A.4",
+           "text": "Combining multiple data sources may be necessary to reach a conclusion."
+          }
+         ]
+        },
+        {
+         "id": "understanding-metadata",
+         "title": "Understanding Metadata",
+         "outcomes": [
+          {
+           "code": "DAT-2.B.1",
+           "text": "Metadata are data describing other data, such as an image’s creation date or file size."
+          },
+          {
+           "code": "DAT-2.B.2",
+           "text": "Changing or deleting metadata does not alter the primary data."
+          },
+          {
+           "code": "DAT-2.B.3",
+           "text": "Metadata help locate, organize, and manage information."
+          },
+          {
+           "code": "DAT-2.B.4",
+           "text": "Metadata can make data or data sets more useful by adding information."
+          },
+          {
+           "code": "DAT-2.B.5",
+           "text": "Metadata structure and organize data."
+          }
+         ]
+        },
+        {
+         "id": "challenges-in-data-processing",
+         "title": "Challenges in Data Processing",
+         "outcomes": [
+          {
+           "code": "DAT-2.C.1",
+           "text": "Data processing depends on users’ capabilities and the tools available to them."
+          },
+          {
+           "code": "DAT-2.C.2",
+           "text": "Data sets may require cleaning, contain missing or invalid entries, or need sources combined."
+          },
+          {
+           "code": "DAT-2.C.3",
+           "text": "Collection methods can produce inconsistent data, such as varying abbreviations, spelling, or capitalization."
+          },
+          {
+           "code": "DAT-2.C.4",
+           "text": "Data cleaning standardizes data without changing their meaning."
+          },
+          {
+           "code": "DAT-2.C.5",
+           "text": "Bias can result from the type or source of collected data and is not removed simply by gathering more."
+          }
+         ]
+        },
+        {
+         "id": "data-size-and-scalability",
+         "title": "Data Size and Scalability",
+         "outcomes": [
+          {
+           "code": "DAT-2.C.6",
+           "text": "Data-set size affects how much information can be extracted."
+          },
+          {
+           "code": "DAT-2.C.7",
+           "text": "Large data sets may exceed one computer’s capabilities and require parallel systems."
+          },
+          {
+           "code": "DAT-2.C.8",
+           "text": "System scalability matters because computational capacity affects data processing and storage."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "2-4-using-programs-with-data",
+       "title": "2.4 Using Programs with Data",
+       "subtopics": [
+        {
+         "id": "extracting-information",
+         "title": "Extracting Information",
+         "outcomes": [
+          {
+           "code": "DAT-2.D",
+           "text": "Extract information from data by using a program."
+          },
+          {
+           "code": "DAT-2.E",
+           "text": "Explain how programs provide insight and knowledge from data."
+          },
+          {
+           "code": "DAT-2.D.1",
+           "text": "Programs process data to obtain information."
+          },
+          {
+           "code": "DAT-2.D.2",
+           "text": "Tables, diagrams, text, and visualizations communicate insights and knowledge derived from data."
+          }
+         ]
+        },
+        {
+         "id": "finding-information",
+         "title": "Finding Information",
+         "outcomes": [
+          {
+           "code": "DAT-2.D.3",
+           "text": "Search tools efficiently locate information."
+          },
+          {
+           "code": "DAT-2.D.4",
+           "text": "Data filtering helps locate information and identify patterns."
+          },
+          {
+           "code": "DAT-2.D.5",
+           "text": "Spreadsheets organize information efficiently and reveal trends."
+          }
+         ]
+        },
+        {
+         "id": "transforming-data",
+         "title": "Transforming Data",
+         "outcomes": [
+          {
+           "code": "DAT-2.D.6",
+           "text": "Data extraction or modification can transform, filter, combine, compare, or visualize data."
+          },
+          {
+           "code": "DAT-2.E.1",
+           "text": "Programs process information interactively and repeatedly to help users understand data."
+          },
+          {
+           "code": "DAT-2.E.2",
+           "text": "Filtering and cleaning digital data with programs can reveal insights and knowledge."
+          }
+         ]
+        },
+        {
+         "id": "analyzing-data",
+         "title": "Analyzing Data",
+         "outcomes": [
+          {
+           "code": "DAT-2.E.3",
+           "text": "Combining, clustering, and classifying data support program-based analysis."
+          },
+          {
+           "code": "DAT-2.E.4",
+           "text": "Translating and transforming digital information can produce insight and knowledge."
+          },
+          {
+           "code": "DAT-2.E.5",
+           "text": "Programmed data transformations can reveal patterns."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "big-idea-4-computing-systems-and-networks",
+     "title": "Big Idea 4: Computing Systems and Networks",
+     "topics": [
+      {
+       "id": "4-1-the-internet",
+       "title": "4.1 The Internet",
+       "subtopics": [
+        {
+         "id": "networks-and-the-internet",
+         "title": "Networks and the Internet",
+         "outcomes": [
+          {
+           "code": "CSN-1.A",
+           "text": "Explain how computing devices work together within a network."
+          },
+          {
+           "code": "CSN-1.B",
+           "text": "Explain how the Internet operates."
+          },
+          {
+           "code": "CSN-1.C",
+           "text": "Explain how data travels across the Internet in packets."
+          },
+          {
+           "code": "CSN-1.D",
+           "text": "Distinguish the Internet from the World Wide Web."
+          }
+         ]
+        },
+        {
+         "id": "devices-and-networks",
+         "title": "Devices and Networks",
+         "outcomes": [
+          {
+           "code": "CSN-1.A.1",
+           "text": "Recognize computing devices as physical artifacts capable of running programs, including computers, routers, and sensors."
+          },
+          {
+           "code": "CSN-1.A.2",
+           "text": "Define a computing system as devices and programs working together toward a shared purpose."
+          },
+          {
+           "code": "CSN-1.A.3",
+           "text": "Define a computer network as interconnected devices that can send and receive data."
+          },
+          {
+           "code": "CSN-1.A.4",
+           "text": "Recognize that a computer network is a type of computing system."
+          },
+          {
+           "code": "CSN-1.A.5",
+           "text": "Describe a network path as directly connected devices linking a sender to a receiver."
+          }
+         ]
+        },
+        {
+         "id": "routing-and-bandwidth",
+         "title": "Routing and Bandwidth",
+         "outcomes": [
+          {
+           "code": "CSN-1.A.6",
+           "text": "Define routing as finding a path from a sender to a receiver."
+          },
+          {
+           "code": "CSN-1.A.7",
+           "text": "Define network bandwidth as the maximum data transferable during a fixed time period."
+          },
+          {
+           "code": "CSN-1.A.8",
+           "text": "Know that bandwidth is commonly measured in bits per second."
+          }
+         ]
+        },
+        {
+         "id": "internet-protocols",
+         "title": "Internet Protocols",
+         "outcomes": [
+          {
+           "code": "CSN-1.B.1",
+           "text": "Define the Internet as interconnected networks using standardized, open communication protocols."
+          },
+          {
+           "code": "CSN-1.B.2",
+           "text": "Explain that Internet access requires connecting a device to an Internet-connected device."
+          },
+          {
+           "code": "CSN-1.B.3",
+           "text": "Define a protocol as agreed rules governing system behavior."
+          },
+          {
+           "code": "CSN-1.B.4",
+           "text": "Explain that open Internet protocols make it easy to connect additional devices."
+          }
+         ]
+        },
+        {
+         "id": "internet-growth-and-routing",
+         "title": "Internet Growth and Routing",
+         "outcomes": [
+          {
+           "code": "CSN-1.B.5",
+           "text": "Recognize that Internet routing is generally dynamic rather than predetermined."
+          },
+          {
+           "code": "CSN-1.B.6",
+           "text": "Define scalability as a system’s ability to change size to meet new demands."
+          },
+          {
+           "code": "CSN-1.B.7",
+           "text": "Recognize that the Internet was designed to scale."
+          }
+         ]
+        },
+        {
+         "id": "packets-and-data-streams",
+         "title": "Packets and Data Streams",
+         "outcomes": [
+          {
+           "code": "CSN-1.C.1",
+           "text": "Explain that data streams are divided into chunks encapsulated in packets."
+          }
+         ]
+        },
+        {
+         "id": "packets-and-protocols",
+         "title": "Packets and Protocols",
+         "outcomes": [
+          {
+           "code": "CSN-1.C.2",
+           "text": "Describe packets as data chunks containing routing and reassembly metadata."
+          },
+          {
+           "code": "CSN-1.C.3",
+           "text": "Recognize that packets may arrive in order, out of order, or fail to arrive."
+          },
+          {
+           "code": "CSN-1.C.4",
+           "text": "Identify IP, TCP, and UDP as common Internet protocols."
+          }
+         ]
+        },
+        {
+         "id": "the-world-wide-web",
+         "title": "The World Wide Web",
+         "outcomes": [
+          {
+           "code": "CSN-1.D.1",
+           "text": "Define the World Wide Web as linked pages, programs, and files."
+          },
+          {
+           "code": "CSN-1.D.2",
+           "text": "Identify HTTP as a protocol used by the World Wide Web."
+          },
+          {
+           "code": "CSN-1.D.3",
+           "text": "Recognize that the World Wide Web operates over the Internet."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "4-2-fault-tolerance",
+       "title": "4.2 Fault Tolerance",
+       "subtopics": [
+        {
+         "id": "fault-tolerance-and-resilience",
+         "title": "Fault Tolerance and Resilience",
+         "outcomes": [
+          {
+           "code": "CSN-1.E",
+           "text": "Explain fault tolerance, evaluate system resilience, and identify vulnerabilities and benefits of redundancy."
+          }
+         ]
+        },
+        {
+         "id": "redundancy-and-alternate-routes",
+         "title": "Redundancy and Alternate Routes",
+         "outcomes": [
+          {
+           "code": "CSN-1.E.1",
+           "text": "Recognize that the Internet uses routing and transmission abstractions to tolerate faults."
+          },
+          {
+           "code": "CSN-1.E.2",
+           "text": "Define redundancy as extra components that mitigate failures elsewhere in a system."
+          },
+          {
+           "code": "CSN-1.E.3",
+           "text": "Explain that multiple paths between connected devices provide network redundancy."
+          },
+          {
+           "code": "CSN-1.E.4",
+           "text": "Explain that Internet data can use another route when a device or connection fails."
+          }
+         ]
+        },
+        {
+         "id": "reliable-systems",
+         "title": "Reliable Systems",
+         "outcomes": [
+          {
+           "code": "CSN-1.E.5",
+           "text": "Define fault tolerance as continuing operation despite system failures."
+          },
+          {
+           "code": "CSN-1.E.6",
+           "text": "Explain that redundancy requires resources but can improve fault tolerance."
+          },
+          {
+           "code": "CSN-1.E.7",
+           "text": "Explain that redundant routes improve Internet reliability and support growth."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "4-3-parallel-and-distributed-computing",
+       "title": "4.3 Parallel and Distributed Computing",
+       "subtopics": [
+        {
+         "id": "types-of-computing",
+         "title": "Types of Computing",
+         "outcomes": [
+          {
+           "code": "CSN-2.A",
+           "text": "Compare sequential, parallel, and distributed solutions and determine their efficiency."
+          },
+          {
+           "code": "CSN-2.B",
+           "text": "Describe advantages and challenges of parallel and distributed computing."
+          },
+          {
+           "code": "CSN-2.A.1",
+           "text": "Define sequential computing as performing operations one at a time in order."
+          },
+          {
+           "code": "CSN-2.A.2",
+           "text": "Define parallel computing as simultaneously performing some of multiple sequential tasks."
+          },
+          {
+           "code": "CSN-2.A.3",
+           "text": "Define distributed computing as running a program across multiple devices."
+          }
+         ]
+        },
+        {
+         "id": "measuring-computing-speed",
+         "title": "Measuring Computing Speed",
+         "outcomes": [
+          {
+           "code": "CSN-2.A.4",
+           "text": "Compare solution efficiency by measuring the time required for the same task."
+          },
+          {
+           "code": "CSN-2.A.5",
+           "text": "Determine that sequential runtime equals the combined duration of all steps."
+          },
+          {
+           "code": "CSN-2.A.6",
+           "text": "Determine that parallel runtime includes sequential tasks plus the longest parallel task."
+          },
+          {
+           "code": "CSN-2.A.7",
+           "text": "Calculate parallel speedup by dividing sequential completion time by parallel completion time."
+          }
+         ]
+        },
+        {
+         "id": "parallel-computing-limits",
+         "title": "Parallel Computing Limits",
+         "outcomes": [
+          {
+           "code": "CSN-2.B.1",
+           "text": "Recognize that parallel solutions contain both parallel and sequential portions."
+          },
+          {
+           "code": "CSN-2.B.2",
+           "text": "Explain that parallel solutions can scale more effectively than sequential ones."
+          }
+         ]
+        },
+        {
+         "id": "distributed-computing",
+         "title": "Distributed Computing",
+         "outcomes": [
+          {
+           "code": "CSN-2.B.3",
+           "text": "Explain how distributed computing handles problems exceeding one computer’s processing or storage capacity."
+          },
+          {
+           "code": "CSN-2.B.4",
+           "text": "Explain that distributed computing can solve larger problems faster than one computer."
+          },
+          {
+           "code": "CSN-2.B.5",
+           "text": "Explain why a sequential portion limits the efficiency gains from adding parallel work."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "big-idea-5-impact-of-computing",
+     "title": "Big Idea 5: Impact of Computing",
+     "topics": [
+      {
+       "id": "5-1-beneficial-and-harmful-effects",
+       "title": "5.1 Beneficial and Harmful Effects",
+       "subtopics": [
+        {
+         "id": "effects-of-computing-innovations",
+         "title": "Effects Of Computing Innovations",
+         "outcomes": [
+          {
+           "code": "IOC-1.A",
+           "text": "Explain how one effect of a computing innovation can benefit some people while harming others."
+          },
+          {
+           "code": "IOC-1.B",
+           "text": "Explain how a computing innovation can be used beyond its original purpose."
+          },
+          {
+           "code": "IOC-1.A.1",
+           "text": "People create computing innovations."
+          },
+          {
+           "code": "IOC-1.A.2",
+           "text": "Computing innovations change how people perform tasks."
+          },
+          {
+           "code": "IOC-1.A.3",
+           "text": "Some effects of computing innovations are not anticipated beforehand."
+          },
+          {
+           "code": "IOC-1.A.4",
+           "text": "Different people may judge the same effect as beneficial, harmful, or both."
+          }
+         ]
+        },
+        {
+         "id": "progress-and-unintended-uses",
+         "title": "Progress And Unintended Uses",
+         "outcomes": [
+          {
+           "code": "IOC-1.A.5",
+           "text": "Computing advances have increased creativity and progress in fields such as medicine, engineering, communication, and art."
+          },
+          {
+           "code": "IOC-1.B.1",
+           "text": "Innovations may be used in unintended ways, including targeted advertising misuse and discriminatory data-driven decisions."
+          },
+          {
+           "code": "IOC-1.B.2",
+           "text": "Some unintended uses of computing innovations can harm society, the economy, or culture."
+          }
+         ]
+        },
+        {
+         "id": "responsible-innovation",
+         "title": "Responsible Innovation",
+         "outcomes": [
+          {
+           "code": "IOC-1.B.3",
+           "text": "Responsible programmers consider possible unintended uses and their beneficial or harmful effects."
+          },
+          {
+           "code": "IOC-1.B.4",
+           "text": "Programmers cannot anticipate every possible use of a computing innovation."
+          },
+          {
+           "code": "IOC-1.B.5",
+           "text": "Unintended uses of computing innovations have sometimes produced advances in other fields."
+          },
+          {
+           "code": "IOC-1.B.6",
+           "text": "Rapid or widespread program distribution can create major effects beyond a programmer’s intended control."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "5-3-computing-bias",
+       "title": "5.3 Computing Bias",
+       "subtopics": [
+        {
+         "id": "understanding-computing-bias",
+         "title": "Understanding Computing Bias",
+         "outcomes": [
+          {
+           "code": "IOC-1.D",
+           "text": "Explain how bias can appear in computing innovations."
+          },
+          {
+           "code": "IOC-1.D.1",
+           "text": "Algorithms and training data can cause computing innovations to reproduce human biases."
+          },
+          {
+           "code": "IOC-1.D.2",
+           "text": "Programmers should reduce algorithmic bias to help counter existing human biases."
+          },
+          {
+           "code": "IOC-1.D.3",
+           "text": "Bias can be introduced at any stage of software development."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "5-2-digital-divide",
+       "title": "5.2 Digital Divide",
+       "subtopics": [
+        {
+         "id": "unequal-access-to-computing",
+         "title": "Unequal Access To Computing",
+         "outcomes": [
+          {
+           "code": "IOC-1.C",
+           "text": "Describe factors that contribute to unequal access to computing and the Internet."
+          },
+          {
+           "code": "IOC-1.C.1",
+           "text": "Internet access differs by socioeconomic, geographic, demographic, and national circumstances."
+          },
+          {
+           "code": "IOC-1.C.2",
+           "text": "The digital divide is unequal access to computing devices and the Internet."
+          },
+          {
+           "code": "IOC-1.C.3",
+           "text": "The digital divide can affect both individuals and groups."
+          }
+         ]
+        },
+        {
+         "id": "equity-and-the-digital-divide",
+         "title": "Equity And The Digital Divide",
+         "outcomes": [
+          {
+           "code": "IOC-1.C.4",
+           "text": "The digital divide creates local and global concerns about equity, access, and influence."
+          },
+          {
+           "code": "IOC-1.C.5",
+           "text": "Individuals, organizations, and governments influence the digital divide."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "5-4-crowdsourcing",
+       "title": "5.4 Crowdsourcing",
+       "subtopics": [
+        {
+         "id": "people-solve-problems-together",
+         "title": "People Solve Problems Together",
+         "outcomes": [
+          {
+           "code": "IOC-1.E",
+           "text": "Explain how people participate in large-scale problem-solving processes."
+          },
+          {
+           "code": "IOC-1.E.1",
+           "text": "Broad access to information and public data supports problem identification, solution development, and result sharing."
+          },
+          {
+           "code": "IOC-1.E.2",
+           "text": "Distributed participation and citizen science have changed how scientific problems are addressed."
+          },
+          {
+           "code": "IOC-1.E.3",
+           "text": "Citizen science involves distributed participants, often nonscientists, contributing research data through their devices."
+          }
+         ]
+        },
+        {
+         "id": "collaboration-through-computing",
+         "title": "Collaboration Through Computing",
+         "outcomes": [
+          {
+           "code": "IOC-1.E.4",
+           "text": "Crowdsourcing gathers information or contributions from many people through the Internet."
+          },
+          {
+           "code": "IOC-1.E.5",
+           "text": "Computing-based collaboration can extend human capabilities."
+          },
+          {
+           "code": "IOC-1.E.6",
+           "text": "Crowdsourcing enables collaborative models such as linking organizations or causes with financial support."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "5-5-legal-and-ethical-concerns",
+       "title": "5.5 Legal and Ethical Concerns",
+       "subtopics": [
+        {
+         "id": "intellectual-property-and-plagiarism",
+         "title": "Intellectual Property And Plagiarism",
+         "outcomes": [
+          {
+           "code": "IOC-1.F",
+           "text": "Explain how computing use can create legal and ethical concerns."
+          },
+          {
+           "code": "IOC-1.F.1",
+           "text": "Computer-created material belongs as intellectual property to its creator or owning organization."
+          },
+          {
+           "code": "IOC-1.F.2",
+           "text": "Easy digital copying and distribution raise questions about information ownership, value, and permitted use."
+          },
+          {
+           "code": "IOC-1.F.3",
+           "text": "People should protect intellectual property."
+          },
+          {
+           "code": "IOC-1.F.4",
+           "text": "Using someone else’s work without permission and claiming it as one’s own is plagiarism with possible legal consequences."
+          }
+         ]
+        },
+        {
+         "id": "sharing-digital-materials",
+         "title": "Sharing Digital Materials",
+         "outcomes": [
+          {
+           "code": "IOC-1.F.5",
+           "text": "Legal reuse may involve Creative Commons licenses, open-source software, or open-access research."
+          },
+          {
+           "code": "IOC-1.F.6",
+           "text": "Cite material created by someone else."
+          },
+          {
+           "code": "IOC-1.F.7",
+           "text": "Creative Commons, open source, and open access broaden access to digital information."
+          }
+         ]
+        },
+        {
+         "id": "ethical-and-legal-impacts",
+         "title": "Ethical And Legal Impacts",
+         "outcomes": [
+          {
+           "code": "IOC-1.F.8",
+           "text": "Using computing to harm people or groups creates legal and ethical concerns."
+          },
+          {
+           "code": "IOC-1.F.9",
+           "text": "Computing can influence social and political issues that raise legal and ethical questions."
+          },
+          {
+           "code": "IOC-1.F.10",
+           "text": "The digital divide creates ethical concerns about computing."
+          },
+          {
+           "code": "IOC-1.F.11",
+           "text": "Computing innovations can raise legal and ethical concerns involving media access, algorithmic bias, and other uses."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "5-6-safe-computing",
+       "title": "5.6 Safe Computing",
+       "subtopics": [
+        {
+         "id": "privacy-and-security-risks",
+         "title": "Privacy and Security Risks",
+         "outcomes": [
+          {
+           "code": "IOC-2.A",
+           "text": "Explain privacy risks from collecting and storing personal information in computer systems."
+          },
+          {
+           "code": "IOC-2.B",
+           "text": "Explain ways computing resources can be protected and misused."
+          },
+          {
+           "code": "IOC-2",
+           "text": "Recognize that computing innovations can create risks to personal safety and identity."
+          },
+          {
+           "code": "IOC-2.C",
+           "text": "Explain how unauthorized access to computing resources can occur."
+          }
+         ]
+        },
+        {
+         "id": "personal-information-and-tracking",
+         "title": "Personal Information and Tracking",
+         "outcomes": [
+          {
+           "code": "IOC-2.A.1",
+           "text": "Identify personally identifiable information as data that identifies, relates to, or describes an individual."
+          },
+          {
+           "code": "IOC-2.A.2",
+           "text": "Recognize that search engines can retain users’ search histories."
+          },
+          {
+           "code": "IOC-2.A.3",
+           "text": "Recognize that websites can retain records of visitors to their pages."
+          },
+          {
+           "code": "IOC-2.A.4",
+           "text": "Recognize that devices, websites, and networks can gather users’ location information."
+          },
+          {
+           "code": "IOC-2.A.5",
+           "text": "Explain that technology enables information about people and organizations to be collected, used, and exploited."
+          }
+         ]
+        },
+        {
+         "id": "benefits-of-personal-data",
+         "title": "Benefits of Personal Data",
+         "outcomes": [
+          {
+           "code": "IOC-2.A.6",
+           "text": "Explain that search histories can support recommendations and targeted advertising."
+          },
+          {
+           "code": "IOC-2.A.7",
+           "text": "Explain that combining data such as location, cookies, and browsing history can reveal information about an individual."
+          },
+          {
+           "code": "IOC-2.A.8",
+           "text": "Explain that online personal information can improve a user’s digital experiences."
+          },
+          {
+           "code": "IOC-2.A.9",
+           "text": "Explain that stored personal information can make online purchasing easier."
+          }
+         ]
+        },
+        {
+         "id": "harms-from-online-information",
+         "title": "Harms from Online Information",
+         "outcomes": [
+          {
+           "code": "IOC-2.A.10",
+           "text": "Recognize that organizations’ information curation can be misused when privacy protections are neglected."
+          },
+          {
+           "code": "IOC-2.A.11",
+           "text": "Recognize that online information may be reused in unintended and harmful ways."
+          },
+          {
+           "code": "IOC-2.A.12",
+           "text": "Explain that personal information can enable stalking, identity theft, or other crimes."
+          },
+          {
+           "code": "IOC-2.A.13",
+           "text": "Recognize that deleting information after it is posted online can be difficult."
+          }
+         ]
+        },
+        {
+         "id": "location-and-social-data",
+         "title": "Location and Social Data",
+         "outcomes": [
+          {
+           "code": "IOC-2.A.14",
+           "text": "Recognize that programs can track a person’s location history, route, and time spent at places."
+          },
+          {
+           "code": "IOC-2.A.15",
+           "text": "Explain that combining social media posts with other data can reveal private information."
+          }
+         ]
+        },
+        {
+         "id": "authentication-protects-information",
+         "title": "Authentication Protects Information",
+         "outcomes": [
+          {
+           "code": "IOC-2.B.1",
+           "text": "Explain how authentication protects devices and information from unauthorized access."
+          }
+         ]
+        },
+        {
+         "id": "strong-authentication",
+         "title": "Strong Authentication",
+         "outcomes": [
+          {
+           "code": "IOC-2.B.2",
+           "text": "Describe a strong password as memorable for its user but difficult for others to guess."
+          },
+          {
+           "code": "IOC-2.B.3",
+           "text": "Explain that multifactor authentication requires evidence from multiple categories, such as knowledge, possession, or inherence."
+          },
+          {
+           "code": "IOC-2.B.4",
+           "text": "Explain how multiple authentication steps add security layers against unauthorized access."
+          }
+         ]
+        },
+        {
+         "id": "encryption-and-trust",
+         "title": "Encryption and Trust",
+         "outcomes": [
+          {
+           "code": "IOC-2.B.5",
+           "text": "Distinguish encryption from decryption and compare symmetric-key with public-key encryption."
+          },
+          {
+           "code": "IOC-2.B.6",
+           "text": "Explain that certificate authorities validate encryption-key ownership through a trust model."
+          }
+         ]
+        },
+        {
+         "id": "malware-and-updates",
+         "title": "Malware and Updates",
+         "outcomes": [
+          {
+           "code": "IOC-2.B.7",
+           "text": "Explain how virus and malware scanners help protect systems from infection."
+          },
+          {
+           "code": "IOC-2.B.8",
+           "text": "Define a computer virus as malicious software that copies itself and gains unauthorized access."
+          },
+          {
+           "code": "IOC-2.B.9",
+           "text": "Define malware as software intended to damage or partially control a computing system."
+          },
+          {
+           "code": "IOC-2.B.10",
+           "text": "Recognize that exploitable system flaws exist and that updates can repair security-compromising errors."
+          },
+          {
+           "code": "IOC-2.C.7",
+           "text": "Recognize that downloads from untrustworthy freeware or shareware sites may contain malware."
+          }
+         ]
+        },
+        {
+         "id": "permissions-and-phishing",
+         "title": "Permissions and Phishing",
+         "outcomes": [
+          {
+           "code": "IOC-2.B.11",
+           "text": "Explain that users should review program permissions to limit information collection and protect privacy."
+          },
+          {
+           "code": "IOC-2.C.1",
+           "text": "Explain that phishing tricks users into revealing information that can unlock sensitive accounts."
+          },
+          {
+           "code": "IOC-2.C.2",
+           "text": "Explain that keylogging records keystrokes to steal passwords and other confidential information."
+          }
+         ]
+        },
+        {
+         "id": "network-security-threats",
+         "title": "Network Security Threats",
+         "outcomes": [
+          {
+           "code": "IOC-2.C.3",
+           "text": "Recognize that data sent across public networks can be intercepted, analyzed, or altered."
+          },
+          {
+           "code": "IOC-2.C.4",
+           "text": "Define a rogue access point as an unauthorized wireless gateway into a secure network."
+          },
+          {
+           "code": "IOC-2.C.5",
+           "text": "Recognize that malicious links can be disguised in webpages or email messages."
+          },
+          {
+           "code": "IOC-2.C.6",
+           "text": "Explain how unsolicited email content can compromise system security, including when sent from compromised accounts."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "build": {
+  "builtAt": "2026-10-14T07:55:59.807Z",
+  "model": "gpt-5.6-luna",
+  "usd": 0.0928,
+  "expectedCodes": 398,
+  "coverage": 0.9974874371859297,
+  "missingCodes": [
+   "APP-1.D.6"
+  ],
+  "counts": {
+   "grades": 1,
+   "units": 5,
+   "topics": 35,
+   "subtopics": 115,
+   "outcomes": 398
+  },
+  "warnings": [
+   "grade 9 has no content",
+   "grade 10 has no content",
+   "grade 11 has no content",
+   "grade 12 has no content",
+   "unexpected grade label \"all\""
+  ]
+ }
+}

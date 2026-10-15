@@ -1,0 +1,158 @@
+{
+ "id": "us-ak-arts",
+ "region": "US",
+ "framework": "Alaska state academic standards: Fine Arts",
+ "board": null,
+ "qualification": "K-12",
+ "subject": "Fine Arts",
+ "syllabusCode": null,
+ "gradeSystem": "grade",
+ "source": {
+  "urls": [
+   "https://api.commonstandardsproject.com/api/v1/jurisdictions/0DCD3CBE12314408BDBDB97FAF45EEE8",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/0DCD3CBE12314408BDBDB97FAF45EEE8_D2740434_grades-01-02-03-04-05-06-07-08-09-10-11-12-k-pre-k"
+  ],
+  "publisher": "Alaska state education agency (machine-readable via Common Standards Project / ASN)",
+  "licence": "CC BY 3.0 US, D2L Corporation",
+  "firstExam": "2016"
+ },
+ "grades": [
+  {
+   "grade": "1-PK",
+   "units": [
+    {
+     "id": "a-student-should-be-able-to-imagine-and-develop-",
+     "title": "A student should be able to imagine and develop artistic ideas and…",
+     "topics": [
+      {
+       "id": "a-student-should-be-able-to-imagine-and-develop-",
+       "title": "A student should be able to imagine and develop artistic ideas and…",
+       "subtopics": [
+        {
+         "id": "a-student-should-be-able-to-imagine-and-develop-",
+         "title": "A student should be able to imagine and develop artistic ideas and…",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "generalize and conceptualize artistic ideas and work;"
+          },
+          {
+           "code": null,
+           "text": "organize and develop artistic ideas and work; and"
+          },
+          {
+           "code": null,
+           "text": "refine and complete artistic work."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "a-student-should-be-able-to-interpret-and-share-",
+     "title": "A student should be able to interpret and share artistic work",
+     "topics": [
+      {
+       "id": "a-student-should-be-able-to-interpret-and-share-",
+       "title": "A student should be able to interpret and share artistic work",
+       "subtopics": [
+        {
+         "id": "a-student-should-be-able-to-interpret-and-share-",
+         "title": "A student should be able to interpret and share artistic work",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "select, analyze and interpret artistic works, including those from diverse cultural traditions, for performance, presentation and/or production;"
+          },
+          {
+           "code": null,
+           "text": "develop and refine artistic work for performances, presentations and/or productions; and"
+          },
+          {
+           "code": null,
+           "text": "perform, present and/or produce artistic work."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "a-student-should-be-able-to-understand-and-evalu",
+     "title": "A student should be able to understand and evaluate how the arts…",
+     "topics": [
+      {
+       "id": "a-student-should-be-able-to-understand-and-evalu",
+       "title": "A student should be able to understand and evaluate how the arts…",
+       "subtopics": [
+        {
+         "id": "a-student-should-be-able-to-understand-and-evalu",
+         "title": "A student should be able to understand and evaluate how the arts…",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "recognize and analyze artistic works, including those from diverse cultural traditions;"
+          },
+          {
+           "code": null,
+           "text": "interpret intent and meaning in artistic works; and"
+          },
+          {
+           "code": null,
+           "text": "apply criteria to evaluate artistic work."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "a-student-should-be-able-to-relate-artistic-idea",
+     "title": "A student should be able to relate artistic ideas and work with…",
+     "topics": [
+      {
+       "id": "a-student-should-be-able-to-relate-artistic-idea",
+       "title": "A student should be able to relate artistic ideas and work with…",
+       "subtopics": [
+        {
+         "id": "a-student-should-be-able-to-relate-artistic-idea",
+         "title": "A student should be able to relate artistic ideas and work with…",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "relate, synthesize, and express both knowledge and personal experiences as a way to participate in the arts; and"
+          },
+          {
+           "code": null,
+           "text": "relate artistic ideas and works with societal, cultural, and historical contexts to deepen understanding."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "build": {
+  "builtAt": "2026-10-14T08:02:08.250Z",
+  "model": "none",
+  "usd": 0,
+  "expectedCodes": null,
+  "coverage": null,
+  "missingCodes": [],
+  "counts": {
+   "grades": 1,
+   "units": 4,
+   "topics": 4,
+   "subtopics": 4,
+   "outcomes": 11
+  },
+  "warnings": []
+ }
+}

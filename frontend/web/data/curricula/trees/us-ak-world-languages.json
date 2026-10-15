@@ -1,0 +1,152 @@
+{
+ "id": "us-ak-world-languages",
+ "region": "US",
+ "framework": "Alaska state academic standards: World Languages",
+ "board": null,
+ "qualification": "K-12",
+ "subject": "World Languages",
+ "syllabusCode": null,
+ "gradeSystem": "grade",
+ "source": {
+  "urls": [
+   "https://api.commonstandardsproject.com/api/v1/jurisdictions/0DCD3CBE12314408BDBDB97FAF45EEE8",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/0DCD3CBE12314408BDBDB97FAF45EEE8_D2475126_grades-01-02-03-04-05-06-07-08-09-10-11-12-k"
+  ],
+  "publisher": "Alaska state education agency (machine-readable via Common Standards Project / ASN)",
+  "licence": "CC BY 3.0 US, D2L Corporation",
+  "firstExam": "2006"
+ },
+ "grades": [
+  {
+   "grade": "K-12",
+   "units": [
+    {
+     "id": "a-student-should-be-able-to-communicate-in-two-o",
+     "title": "A student should be able to communicate in two or more languages, one of which is English",
+     "topics": [
+      {
+       "id": "a-student-who-meets-the-content-standard-should",
+       "title": "A student who meets the content standard should:",
+       "subtopics": [
+        {
+         "id": "a-student-who-meets-the-content-standard-should",
+         "title": "A student who meets the content standard should:",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "understand written and oral communication in two or more languages;"
+          },
+          {
+           "code": null,
+           "text": "write and speak understandably in two or more languages;"
+          },
+          {
+           "code": null,
+           "text": "use two or more languages effectively in real life situations; and"
+          },
+          {
+           "code": null,
+           "text": "use two or more languages to learn new information in academic subjects."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "a-student-should-expand-the-student-s-knowledge-",
+     "title": "A student should expand the student's knowledge of peoples and cultures through language study",
+     "topics": [
+      {
+       "id": "a-student-who-meets-the-content-standard-should",
+       "title": "A student who meets the content standard should:",
+       "subtopics": [
+        {
+         "id": "a-student-who-meets-the-content-standard-should",
+         "title": "A student who meets the content standard should:",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "understand the relationship between language and culture;"
+          },
+          {
+           "code": null,
+           "text": "learn about and experience surface characteristics of the culture, including art, cuisine, dance, dress, geography, history, music, and literature;"
+          },
+          {
+           "code": null,
+           "text": "learn about and experience deep characteristics of the culture, including folkways, mores, laws, traditions, customs, and patterns of behavior;"
+          },
+          {
+           "code": null,
+           "text": "improve the student's understanding of the student's language and culture through experiences with other languages and cultures;"
+          },
+          {
+           "code": null,
+           "text": "apply knowledge of the functions and structure of one language to the study of another language; and"
+          },
+          {
+           "code": null,
+           "text": "recognize through language study that all cultures contribute to the global society."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "a-student-should-possess-the-language-skills-and",
+     "title": "A student should possess the language skills and cultural knowledge necessary to participate successfully in multilingual communities and the international marketplace",
+     "topics": [
+      {
+       "id": "a-student-who-meets-the-content-standard-should",
+       "title": "A student who meets the content standard should:",
+       "subtopics": [
+        {
+         "id": "a-student-who-meets-the-content-standard-should",
+         "title": "A student who meets the content standard should:",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "interact appropriately in multilingual communities through various means, including printed and electronic media, audio and visual sources, face-to-face conversations, penpals, and travel;"
+          },
+          {
+           "code": null,
+           "text": "use experiences with language and culture to explore the student's personal interests and career options;"
+          },
+          {
+           "code": null,
+           "text": "learn how language skills and cultural knowledge enhance a person's competitiveness in the international marketplace; and"
+          },
+          {
+           "code": null,
+           "text": "apply language skills and cultural knowledge to enhance the student's intellectual and social growth and to promote lifelong learning."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "build": {
+  "builtAt": "2026-10-14T16:20:38.336Z",
+  "model": "none",
+  "usd": 0,
+  "expectedCodes": null,
+  "coverage": null,
+  "missingCodes": [],
+  "counts": {
+   "grades": 1,
+   "units": 3,
+   "topics": 3,
+   "subtopics": 3,
+   "outcomes": 14
+  },
+  "warnings": []
+ }
+}

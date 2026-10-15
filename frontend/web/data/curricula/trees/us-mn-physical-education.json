@@ -1,0 +1,3280 @@
+{
+ "id": "us-mn-physical-education",
+ "region": "US",
+ "framework": "Minnesota state academic standards: Physical Education",
+ "board": null,
+ "qualification": "K-12",
+ "subject": "Physical Education",
+ "syllabusCode": null,
+ "gradeSystem": "grade",
+ "source": {
+  "urls": [
+   "https://api.commonstandardsproject.com/api/v1/jurisdictions/B632FB4B1B83445AA8DB46DC3F079D19",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/B632FB4B1B83445AA8DB46DC3F079D19_D2968233_grade-01",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/B632FB4B1B83445AA8DB46DC3F079D19_D2968233_grade-02",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/B632FB4B1B83445AA8DB46DC3F079D19_D2968233_grade-03",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/B632FB4B1B83445AA8DB46DC3F079D19_D2968233_grade-04",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/B632FB4B1B83445AA8DB46DC3F079D19_D2968233_grade-05",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/B632FB4B1B83445AA8DB46DC3F079D19_D2968233_grade-06",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/B632FB4B1B83445AA8DB46DC3F079D19_D2968233_grade-07",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/B632FB4B1B83445AA8DB46DC3F079D19_D2968233_grade-08",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/B632FB4B1B83445AA8DB46DC3F079D19_D2968233_grades-09-10-11-12",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/B632FB4B1B83445AA8DB46DC3F079D19_D2968233_grade-k"
+  ],
+  "publisher": "Minnesota state education agency (machine-readable via Common Standards Project / ASN)",
+  "licence": "CC BY 3.0 US, D2L Corporation",
+  "firstExam": "2018"
+ },
+ "grades": [
+  {
+   "grade": "K",
+   "units": [
+    {
+     "id": "demonstrates-competency-in-a-variety-of-motor-sk",
+     "title": "Demonstrates competency in a variety of motor skills and movement patterns",
+     "topics": [
+      {
+       "id": "demonstrates-competency-in-a-variety-of-motor-sk",
+       "title": "Demonstrates competency in a variety of motor skills and movement patterns",
+       "subtopics": [
+        {
+         "id": "demonstrates-competency-in-a-variety-of-motor-sk",
+         "title": "Demonstrates competency in a variety of motor skills and movement patterns (1 of 6)",
+         "outcomes": [
+          {
+           "code": "0.1.1.1",
+           "text": "Hop, gallop, slide, skip, and run while maintaining balance."
+          },
+          {
+           "code": "0.1.1.2",
+           "text": "Jump and land in the horizontal plane while maintaining balance."
+          },
+          {
+           "code": "0.1.1.3",
+           "text": "Jump and land in the vertical plane while maintaining balance."
+          },
+          {
+           "code": "0.1.1.4",
+           "text": "Perform locomotor skills in educational dance while maintaining balance"
+          },
+          {
+           "code": "0.1.2.1",
+           "text": "Maintain momentary stillness on different bases of support with different body shapes."
+          }
+         ]
+        },
+        {
+         "id": "demonstrates-competency-in-a-variety-of-motor-sk-2",
+         "title": "Demonstrates competency in a variety of motor skills and movement patterns (2 of 6)",
+         "outcomes": [
+          {
+           "code": "0.1.2.2",
+           "text": "Developmentally appropriate and emerging benchmarks first appear in Grade 1."
+          },
+          {
+           "code": "0.1.2.3",
+           "text": "Roll sideways in a narrow body shape. For example: pencil roll, log roll."
+          },
+          {
+           "code": "0.1.2.4",
+           "text": "Perform non-locomotor skills."
+          },
+          {
+           "code": "0.1.2.5",
+           "text": "Developmentally appropriate and emerging benchmarks first appear in Grade 2."
+          },
+          {
+           "code": "0.1.3.1",
+           "text": "Roll and throw underhand with opposite foot forward."
+          }
+         ]
+        },
+        {
+         "id": "demonstrates-competency-in-a-variety-of-motor-sk-3",
+         "title": "Demonstrates competency in a variety of motor skills and movement patterns (3 of 6)",
+         "outcomes": [
+          {
+           "code": "0.1.3.2",
+           "text": "Throw overhand while maintaining balance."
+          },
+          {
+           "code": "0.1.3.3",
+           "text": "Developmentally appropriate and emerging benchmarks first appear in Grade 3."
+          },
+          {
+           "code": "0.1.3.4",
+           "text": "Drop and catch a ball before it bounces twice."
+          },
+          {
+           "code": "0.1.3.5",
+           "text": "Dribble with one hand, attempting a second contact."
+          },
+          {
+           "code": "0.1.3.6",
+           "text": "Dribble with inside of the foot, attempting a second contact."
+          }
+         ]
+        },
+        {
+         "id": "demonstrates-competency-in-a-variety-of-motor-sk-4",
+         "title": "Demonstrates competency in a variety of motor skills and movement patterns (4 of 6)",
+         "outcomes": [
+          {
+           "code": "0.1.3.7",
+           "text": "Pass with the feet, while maintaining balance."
+          },
+          {
+           "code": "0.1.3.8",
+           "text": "Developmentally appropriate and emerging benchmarks first appear in Grade 4."
+          },
+          {
+           "code": "0.1.3.9",
+           "text": "Kick while maintaining balance."
+          },
+          {
+           "code": "0.1.3.10",
+           "text": "Developmentally appropriate and emerging benchmarks first appear in Grade 3."
+          },
+          {
+           "code": "0.1.3.11",
+           "text": "Volley individually using various body parts, attempting a second hit."
+          }
+         ]
+        },
+        {
+         "id": "demonstrates-competency-in-a-variety-of-motor-sk-5",
+         "title": "Demonstrates competency in a variety of motor skills and movement patterns (5 of 6)",
+         "outcomes": [
+          {
+           "code": "0.1.3.12",
+           "text": "Developmentally appropriate and emerging benchmarks first appear in Grade 3."
+          },
+          {
+           "code": "0.1.3.13",
+           "text": "Strike using a body part, while maintaining balance."
+          },
+          {
+           "code": "0.1.3.14",
+           "text": "Developmentally appropriate and emerging benchmarks first appear in Grade 2."
+          },
+          {
+           "code": "0.1.3.15",
+           "text": "Developmentally appropriate and emerging benchmarks first appear in Grade 4."
+          },
+          {
+           "code": "0.1.3.16",
+           "text": "Jump a single jump with a self-turned rope."
+          }
+         ]
+        },
+        {
+         "id": "demonstrates-competency-in-a-variety-of-motor-sk-6",
+         "title": "Demonstrates competency in a variety of motor skills and movement patterns (6 of 6)",
+         "outcomes": [
+          {
+           "code": "0.1.3.17",
+           "text": "Jump a long rope with teacher-assisted turning."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "apply-knowledge-of-concepts-principles-strategie",
+     "title": "Apply knowledge of concepts, principles, strategies and tactics to movement and performance",
+     "topics": [
+      {
+       "id": "apply-knowledge-of-concepts-principles-strategie",
+       "title": "Apply knowledge of concepts, principles, strategies and tactics to movement and performance",
+       "subtopics": [
+        {
+         "id": "apply-knowledge-of-concepts-principles-strategie",
+         "title": "Apply knowledge of concepts, principles, strategies and tactics to movement and performance",
+         "outcomes": [
+          {
+           "code": "0.2.1.1",
+           "text": "Travel in different pathways differentiating between movement in personal space (self-space) and general space. For example: straight, curvy, zig zag."
+          },
+          {
+           "code": "0.2.1.2",
+           "text": "Travel using body parts in different relationships to each other. For example: round, narrow, wide, twisted, symmetrical."
+          },
+          {
+           "code": "0.2.1.3",
+           "text": "Travel using slow and fast speeds."
+          },
+          {
+           "code": "0.2.1.4",
+           "text": "Developmentally appropriate and emerging benchmarks first appear in Grade 3."
+          },
+          {
+           "code": "0.2.1.5",
+           "text": "Developmentally appropriate and emerging benchmarks first appear in Grade 3."
+          },
+          {
+           "code": "0.2.1.6",
+           "text": "Developmentally appropriate and emerging benchmarks first appear in Grade 3."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "demonstrate-the-knowledge-and-skills-to-achieve-",
+     "title": "Demonstrate the knowledge and skills to achieve and maintain a health-enhancing level of physical activity and fitness",
+     "topics": [
+      {
+       "id": "demonstrate-the-knowledge-and-skills-to-achieve-",
+       "title": "Demonstrate the knowledge and skills to achieve and maintain a health-enhancing level of physical activity and fitness",
+       "subtopics": [
+        {
+         "id": "demonstrate-the-knowledge-and-skills-to-achieve-",
+         "title": "Demonstrate the knowledge and skills to achieve and maintain a health-enhancing level of physical activity and fitness",
+         "outcomes": [
+          {
+           "code": "0.3.1.1",
+           "text": "Identify ways to be physically active outside of physical education class, both indoors and outdoors."
+          },
+          {
+           "code": "0.3.2.1",
+           "text": "Actively participates in physical activities with teacher prompting."
+          },
+          {
+           "code": "0.3.3.1",
+           "text": "Recognize that faster movement corresponds to faster heartbeat and breathing."
+          },
+          {
+           "code": "0.3.3.2",
+           "text": "Recognize that the body has muscles."
+          },
+          {
+           "code": "0.3.4.1",
+           "text": "Developmentally appropriate and emerging benchmarks first appear in Grade 3."
+          },
+          {
+           "code": "0.3.5.1",
+           "text": "Recognize that food provides energy for physical activity."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "exhibit-responsible-personal-and-social-behavior",
+     "title": "Exhibit responsible personal and social behavior that respects self and others",
+     "topics": [
+      {
+       "id": "exhibit-responsible-personal-and-social-behavior",
+       "title": "Exhibit responsible personal and social behavior that respects self and others",
+       "subtopics": [
+        {
+         "id": "exhibit-responsible-personal-and-social-behavior",
+         "title": "Exhibit responsible personal and social behavior that respects self and others",
+         "outcomes": [
+          {
+           "code": "0.4.1.1",
+           "text": "Identify class rules and protocols related to self, space and equipment."
+          },
+          {
+           "code": "0.4.2.1",
+           "text": "Use feedback from the teacher."
+          },
+          {
+           "code": "0.4.3.1",
+           "text": "Share equipment and space with others."
+          },
+          {
+           "code": "0.4.4.1",
+           "text": "Developmentally appropriate and emerging benchmarks first appear in Grade 3."
+          },
+          {
+           "code": "0.4.5.1",
+           "text": "Move safely in personal space with minimal reminders."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "recognize-the-value-of-physical-activity-for-hea",
+     "title": "Recognize the value of physical activity for health, enjoyment, challenge, self-expression, and/or social interaction",
+     "topics": [
+      {
+       "id": "recognize-the-value-of-physical-activity-for-hea",
+       "title": "Recognize the value of physical activity for health, enjoyment, challenge, self-expression, and/or social interaction",
+       "subtopics": [
+        {
+         "id": "recognize-the-value-of-physical-activity-for-hea",
+         "title": "Recognize the value of physical activity for health, enjoyment, challenge, self-expression, and/or social interaction",
+         "outcomes": [
+          {
+           "code": "0.5.1.1",
+           "text": "Recognize that physical activity is important for good health."
+          },
+          {
+           "code": "0.5.2.1",
+           "text": "Recognize that some physical activities are challenging or difficult."
+          },
+          {
+           "code": "0.5.3.1",
+           "text": "Express enjoyment when being physically active individually and with others."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "1",
+   "units": [
+    {
+     "id": "demonstrates-competency-in-a-variety-of-motor-sk",
+     "title": "Demonstrates competency in a variety of motor skills and movement patterns",
+     "topics": [
+      {
+       "id": "demonstrates-competency-in-a-variety-of-motor-sk",
+       "title": "Demonstrates competency in a variety of motor skills and movement patterns",
+       "subtopics": [
+        {
+         "id": "demonstrates-competency-in-a-variety-of-motor-sk",
+         "title": "Demonstrates competency in a variety of motor skills and movement patterns (1 of 6)",
+         "outcomes": [
+          {
+           "code": "1.1.1.1",
+           "text": "Hop, gallop, and slide using a maturing pattern."
+          },
+          {
+           "code": "1.1.1.2",
+           "text": "Jump and land in the horizontal plane demonstrating two of the five critical elements, while taking off and landing with two feet."
+          },
+          {
+           "code": "1.1.1.3",
+           "text": "Jump and land in the vertical plan demonstrating two of the five critical elements, while taking off and landing with two feet."
+          },
+          {
+           "code": "1.1.1.4",
+           "text": "Combine locomotor and non-locomotor skills in educational dance while maintaining balance."
+          },
+          {
+           "code": "1.1.2.1",
+           "text": "Maintain balance on different bases of support with different body shapes."
+          }
+         ]
+        },
+        {
+         "id": "demonstrates-competency-in-a-variety-of-motor-sk-2",
+         "title": "Demonstrates competency in a variety of motor skills and movement patterns (2 of 6)",
+         "outcomes": [
+          {
+           "code": "1.1.2.2",
+           "text": "Transfer weight from one body part to another in personal space (self-space)."
+          },
+          {
+           "code": "1.1.2.3",
+           "text": "Roll forward or backward with a curled body shape. For example: rocker, egg roll."
+          },
+          {
+           "code": "1.1.2.4",
+           "text": "Perform non-locomotor skills with the body in a variety of stationary positions. For example: different levels, shapes, sizes."
+          },
+          {
+           "code": "1.1.2.5",
+           "text": "Developmentally appropriate and emerging benchmarks first appear in Grade 2."
+          },
+          {
+           "code": "1.1.3.1",
+           "text": "Roll and throw underhand demonstrating two of the five critical elements of a maturing pattern."
+          }
+         ]
+        },
+        {
+         "id": "demonstrates-competency-in-a-variety-of-motor-sk-3",
+         "title": "Demonstrates competency in a variety of motor skills and movement patterns (3 of 6)",
+         "outcomes": [
+          {
+           "code": "1.1.3.2",
+           "text": "Throw overhand with opposite foot forward."
+          },
+          {
+           "code": "1.1.3.3",
+           "text": "Developmentally appropriate and emerging benchmarks first appear in Grade 3."
+          },
+          {
+           "code": "1.1.3.4",
+           "text": "Catch a self-tossed ball adjusting hands and arms to the location of the ball."
+          },
+          {
+           "code": "1.1.3.5",
+           "text": "Dribble with preferred hand while remaining in personal space (self-space)."
+          },
+          {
+           "code": "1.1.3.6",
+           "text": "Dribble with inside of the foot while remaining in personal space (self-space)."
+          }
+         ]
+        },
+        {
+         "id": "demonstrates-competency-in-a-variety-of-motor-sk-4",
+         "title": "Demonstrates competency in a variety of motor skills and movement patterns (4 of 6)",
+         "outcomes": [
+          {
+           "code": "1.1.3.7",
+           "text": "Pass with the feet to a stationary target, while maintaining balance."
+          },
+          {
+           "code": "1.1.3.8",
+           "text": "Developmentally appropriate and emerging benchmarks first appear in Grade 4."
+          },
+          {
+           "code": "1.1.3.9",
+           "text": "Kick a stationary ball demonstrating two of the five critical elements of a maturing pattern."
+          },
+          {
+           "code": "1.1.3.10",
+           "text": "Developmentally appropriate and emerging benchmarks first appear in Grade 3."
+          },
+          {
+           "code": "1.1.3.11",
+           "text": "Volley individually using various body parts making multiple contacts, while maintaining balance."
+          }
+         ]
+        },
+        {
+         "id": "demonstrates-competency-in-a-variety-of-motor-sk-5",
+         "title": "Demonstrates competency in a variety of motor skills and movement patterns (5 of 6)",
+         "outcomes": [
+          {
+           "code": "1.1.3.12",
+           "text": "Developmentally appropriate and emerging benchmarks first appear in Grade 3."
+          },
+          {
+           "code": "1.1.3.13",
+           "text": "Strike using a short-handled implement, while maintaining balance."
+          },
+          {
+           "code": "1.1.3.14",
+           "text": "Developmentally appropriate and emerging benchmarks first appear in Grade 2."
+          },
+          {
+           "code": "1.1.3.15",
+           "text": "Developmentally appropriate and emerging benchmarks first appear in Grade 4."
+          },
+          {
+           "code": "1.1.3.16",
+           "text": "Consecutively jump forward or backward using a self-turned rope."
+          }
+         ]
+        },
+        {
+         "id": "demonstrates-competency-in-a-variety-of-motor-sk-6",
+         "title": "Demonstrates competency in a variety of motor skills and movement patterns (6 of 6)",
+         "outcomes": [
+          {
+           "code": "1.1.3.17",
+           "text": "Consecutively jump a long rope with teacher-assisted turning."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "apply-knowledge-of-concepts-principles-strategie",
+     "title": "Apply knowledge of concepts, principles, strategies and tactics to movement and performance",
+     "topics": [
+      {
+       "id": "apply-knowledge-of-concepts-principles-strategie",
+       "title": "Apply knowledge of concepts, principles, strategies and tactics to movement and performance",
+       "subtopics": [
+        {
+         "id": "apply-knowledge-of-concepts-principles-strategie",
+         "title": "Apply knowledge of concepts, principles, strategies and tactics to movement and performance",
+         "outcomes": [
+          {
+           "code": "1.2.1.1",
+           "text": "Travel at different levels differentiating between movement in personal space (self-space) and general space. For example: low, middle, high."
+          },
+          {
+           "code": "1.2.1.2",
+           "text": "Travel in different relationships to others and objects. For example: over, under, through, around, behind."
+          },
+          {
+           "code": "1.2.1.3",
+           "text": "Travel using strong and light forces."
+          },
+          {
+           "code": "1.2.1.4",
+           "text": "Developmentally appropriate and emerging benchmarks first appear in Grade 3."
+          },
+          {
+           "code": "1.2.1.5",
+           "text": "Developmentally appropriate and emerging benchmarks first appear in Grade 3."
+          },
+          {
+           "code": "1.2.1.6",
+           "text": "Developmentally appropriate and emerging benchmarks first appear in Grade 3."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "demonstrate-the-knowledge-and-skills-to-achieve-",
+     "title": "Demonstrate the knowledge and skills to achieve and maintain a health-enhancing level of physical activity and fitness",
+     "topics": [
+      {
+       "id": "demonstrate-the-knowledge-and-skills-to-achieve-",
+       "title": "Demonstrate the knowledge and skills to achieve and maintain a health-enhancing level of physical activity and fitness",
+       "subtopics": [
+        {
+         "id": "demonstrate-the-knowledge-and-skills-to-achieve-",
+         "title": "Demonstrate the knowledge and skills to achieve and maintain a health-enhancing level of physical activity and fitness",
+         "outcomes": [
+          {
+           "code": "1.3.1.1",
+           "text": "Identify basic benefits of being physically active outside of physical education class, both indoors and outdoors."
+          },
+          {
+           "code": "1.3.2.1",
+           "text": "Actively participates in physical activities with minimal teacher prompting."
+          },
+          {
+           "code": "1.3.3.1",
+           "text": "Identify the heart as a muscle that grows stronger with exercise, play and physical activity."
+          },
+          {
+           "code": "1.3.3.2",
+           "text": "Describe the connection between muscles and one's ability to move."
+          },
+          {
+           "code": "1.3.4.1",
+           "text": "Developmentally appropriate and emerging benchmarks first appear in Grade 3."
+          },
+          {
+           "code": "1.3.5.1",
+           "text": "Differentiate between foods to eat often, foods to eat some of the time, and foods to eat in moderation."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "exhibit-responsible-personal-and-social-behavior",
+     "title": "Exhibit responsible personal and social behavior that respects self and others",
+     "topics": [
+      {
+       "id": "exhibit-responsible-personal-and-social-behavior",
+       "title": "Exhibit responsible personal and social behavior that respects self and others",
+       "subtopics": [
+        {
+         "id": "exhibit-responsible-personal-and-social-behavior",
+         "title": "Exhibit responsible personal and social behavior that respects self and others",
+         "outcomes": [
+          {
+           "code": "1.4.1.1",
+           "text": "Follow class rules and protocols related to self, space and equipment with minimal teacher prompting."
+          },
+          {
+           "code": "1.4.2.1",
+           "text": "Consistently use feedback from the teacher."
+          },
+          {
+           "code": "1.4.3.1",
+           "text": "Work respectfully with a partner while sharing equipment and space."
+          },
+          {
+           "code": "1.4.4.1",
+           "text": "Developmentally appropriate and emerging benchmarks first appear in Grade 3."
+          },
+          {
+           "code": "1.4.5.1",
+           "text": "Move safely in general space with minimal reminders."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "recognize-the-value-of-physical-activity-for-hea",
+     "title": "Recognize the value of physical activity for health, enjoyment, challenge, self-expression, and/or social interaction",
+     "topics": [
+      {
+       "id": "recognize-the-value-of-physical-activity-for-hea",
+       "title": "Recognize the value of physical activity for health, enjoyment, challenge, self-expression, and/or social interaction",
+       "subtopics": [
+        {
+         "id": "recognize-the-value-of-physical-activity-for-hea",
+         "title": "Recognize the value of physical activity for health, enjoyment, challenge, self-expression, and/or social interaction",
+         "outcomes": [
+          {
+           "code": "1.5.1.1",
+           "text": "Identify physical activities that can enhance good health."
+          },
+          {
+           "code": "1.5.2.1",
+           "text": "Recognize that learning something new can be challenging, but practice and effort can lead to success."
+          },
+          {
+           "code": "1.5.3.1",
+           "text": "Identify physical activities that can be played alone and with others that are personally enjoyable."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "2",
+   "units": [
+    {
+     "id": "demonstrates-competency-in-a-variety-of-motor-sk",
+     "title": "Demonstrates competency in a variety of motor skills and movement patterns",
+     "topics": [
+      {
+       "id": "demonstrates-competency-in-a-variety-of-motor-sk",
+       "title": "Demonstrates competency in a variety of motor skills and movement patterns",
+       "subtopics": [
+        {
+         "id": "demonstrates-competency-in-a-variety-of-motor-sk",
+         "title": "Demonstrates competency in a variety of motor skills and movement patterns (1 of 6)",
+         "outcomes": [
+          {
+           "code": "2.1.1.1",
+           "text": "Skip and run using a maturing pattern."
+          },
+          {
+           "code": "2.1.1.2",
+           "text": "Jump and land in the horizontal plane demonstrating four of the five critical elements, while taking off and landing with two feet."
+          },
+          {
+           "code": "2.1.1.3",
+           "text": "Jump and land in the vertical plane demonstrating four of the five critical elements while taking off and landing on two feet."
+          },
+          {
+           "code": "2.1.1.4",
+           "text": "Combine locomotor and non-locomotor skills in educational dance with correct response to simple rhythms."
+          },
+          {
+           "code": "2.1.2.1",
+           "text": "Maintain balance on different bases of support, combining levels and shapes."
+          }
+         ]
+        },
+        {
+         "id": "demonstrates-competency-in-a-variety-of-motor-sk-2",
+         "title": "Demonstrates competency in a variety of motor skills and movement patterns (2 of 6)",
+         "outcomes": [
+          {
+           "code": "2.1.2.2",
+           "text": "Transfer weight from feet to different body parts or bases of support for balance or travel."
+          },
+          {
+           "code": "2.1.2.3",
+           "text": "Roll in different directions with either a narrow or curled body shape."
+          },
+          {
+           "code": "2.1.2.4",
+           "text": "Perform non-locomotor skills with the body in a variety of stationary positions, while maintaining balance."
+          },
+          {
+           "code": "2.1.2.5",
+           "text": "Combine balances, non-locomotor skills and locomotor skills to perform a three-part educational dance and an educational gymnastics sequence."
+          },
+          {
+           "code": "2.1.3.1",
+           "text": "Roll and throw underhand using a maturing pattern."
+          }
+         ]
+        },
+        {
+         "id": "demonstrates-competency-in-a-variety-of-motor-sk-3",
+         "title": "Demonstrates competency in a variety of motor skills and movement patterns (3 of 6)",
+         "outcomes": [
+          {
+           "code": "2.1.3.2",
+           "text": "Throw overhand with side facing target and opposite foot forward."
+          },
+          {
+           "code": "2.1.3.3",
+           "text": "Developmentally appropriate and emerging benchmarks first appear in Grade 3."
+          },
+          {
+           "code": "2.1.3.4",
+           "text": "Catch a self-tossed hand-sized ball demonstrating two of the four critical elements of a maturing pattern."
+          },
+          {
+           "code": "2.1.3.5",
+           "text": "Dribble with preferred hand while remaining in personal space (self-space), demonstrating a maturing pattern."
+          },
+          {
+           "code": "2.1.3.6",
+           "text": "Dribble with the feet while traveling through general space."
+          }
+         ]
+        },
+        {
+         "id": "demonstrates-competency-in-a-variety-of-motor-sk-4",
+         "title": "Demonstrates competency in a variety of motor skills and movement patterns (4 of 6)",
+         "outcomes": [
+          {
+           "code": "2.1.3.7",
+           "text": "Receive a partner-pass with the feet, while maintaining control of the object and the body."
+          },
+          {
+           "code": "2.1.3.8",
+           "text": "Developmentally appropriate and emerging benchmarks first appear in Grade 4."
+          },
+          {
+           "code": "2.1.3.9",
+           "text": "Kick a stationary ball demonstrating three of the five critical elements of a maturing pattern."
+          },
+          {
+           "code": "2.1.3.10",
+           "text": "Developmentally appropriate and emerging benchmarks first appear in Grade 3."
+          },
+          {
+           "code": "2.1.3.11",
+           "text": "Volley with a partner using hands only while maintaining balance."
+          }
+         ]
+        },
+        {
+         "id": "demonstrates-competency-in-a-variety-of-motor-sk-5",
+         "title": "Demonstrates competency in a variety of motor skills and movement patterns (5 of 6)",
+         "outcomes": [
+          {
+           "code": "2.1.3.12",
+           "text": "Developmentally appropriate and emerging benchmarks first appear in Grade 3."
+          },
+          {
+           "code": "2.1.3.13",
+           "text": "Strike using a short-handled implement, while controlling direction."
+          },
+          {
+           "code": "2.1.3.14",
+           "text": "Strike using a long-handled implement while controlling direction."
+          },
+          {
+           "code": "2.1.3.15",
+           "text": "Developmentally appropriate and emerging benchmarks first appear in Grade 4."
+          },
+          {
+           "code": "2.1.3.16",
+           "text": "Consecutively jump forward and backward, demonstrating a maturing pattern, using a self-turned rope."
+          }
+         ]
+        },
+        {
+         "id": "demonstrates-competency-in-a-variety-of-motor-sk-6",
+         "title": "Demonstrates competency in a variety of motor skills and movement patterns (6 of 6)",
+         "outcomes": [
+          {
+           "code": "2.1.3.17",
+           "text": "Enter a long rope with teacher-assisted turning."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "apply-knowledge-of-concepts-principles-strategie",
+     "title": "Apply knowledge of concepts, principles, strategies and tactics to movement and performance",
+     "topics": [
+      {
+       "id": "apply-knowledge-of-concepts-principles-strategie",
+       "title": "Apply knowledge of concepts, principles, strategies and tactics to movement and performance",
+       "subtopics": [
+        {
+         "id": "apply-knowledge-of-concepts-principles-strategie",
+         "title": "Apply knowledge of concepts, principles, strategies and tactics to movement and performance",
+         "outcomes": [
+          {
+           "code": "2.2.1.1",
+           "text": "Travel in different directions differentiating between movement in personal space (self-space) and general space. For example: up, down, forward, backward, right, left."
+          },
+          {
+           "code": "2.2.1.2",
+           "text": "Manipulate and control equipment in different relationships to others and objects. For example: over, under, through, around, behind."
+          },
+          {
+           "code": "2.2.1.3",
+           "text": "Travel using varying speeds and forces with gradual increases and decreases in both speed and force."
+          },
+          {
+           "code": "2.2.1.4",
+           "text": "Developmentally appropriate and emerging benchmarks first appear in Grade 3."
+          },
+          {
+           "code": "2.2.1.5",
+           "text": "Developmentally appropriate and emerging benchmarks first appear in Grade 3"
+          },
+          {
+           "code": "2.2.1.6",
+           "text": "Developmentally appropriate and emerging benchmarks first appear in Grade 3."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "demonstrate-the-knowledge-and-skills-to-achieve-",
+     "title": "Demonstrate the knowledge and skills to achieve and maintain a health-enhancing level of physical activity and fitness",
+     "topics": [
+      {
+       "id": "demonstrate-the-knowledge-and-skills-to-achieve-",
+       "title": "Demonstrate the knowledge and skills to achieve and maintain a health-enhancing level of physical activity and fitness",
+       "subtopics": [
+        {
+         "id": "demonstrate-the-knowledge-and-skills-to-achieve-",
+         "title": "Demonstrate the knowledge and skills to achieve and maintain a health-enhancing level of physical activity and fitness",
+         "outcomes": [
+          {
+           "code": "2.3.1.1",
+           "text": "Identify physical activity recommendations and recognize indoor and outdoor physical activities that could be used to meet these recommendations outside of physical education class."
+          },
+          {
+           "code": "2.3.2.1",
+           "text": "Actively participates in physical activities without teacher prompting."
+          },
+          {
+           "code": "2.3.3.1",
+           "text": "Describe what it feels like to work one's heart."
+          },
+          {
+           "code": "2.3.3.2",
+           "text": "Describe what it feels like to work one's muscles."
+          },
+          {
+           "code": "2.3.4.1",
+           "text": "Developmentally appropriate and emerging benchmarks first appear in Grade 3."
+          },
+          {
+           "code": "2.3.5.1",
+           "text": "Recognize the relationship between nutrition and physical activity."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "exhibit-responsible-personal-and-social-behavior",
+     "title": "Exhibit responsible personal and social behavior that respects self and others",
+     "topics": [
+      {
+       "id": "exhibit-responsible-personal-and-social-behavior",
+       "title": "Exhibit responsible personal and social behavior that respects self and others",
+       "subtopics": [
+        {
+         "id": "exhibit-responsible-personal-and-social-behavior",
+         "title": "Exhibit responsible personal and social behavior that respects self and others",
+         "outcomes": [
+          {
+           "code": "2.4.1.1",
+           "text": "Follow class rules and protocols related to self, space and equipment."
+          },
+          {
+           "code": "2.4.2.1",
+           "text": "Accept corrective feedback from the teacher."
+          },
+          {
+           "code": "2.4.3.1",
+           "text": "Work respectfully in small or large group activities while sharing equipment and space."
+          },
+          {
+           "code": "2.4.4.1",
+           "text": "Developmentally appropriate and emerging benchmarks first appear in Grade 3."
+          },
+          {
+           "code": "2.4.5.1",
+           "text": "Move safely using equipment in personal space with minimal reminders."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "recognize-the-value-of-physical-activity-for-hea",
+     "title": "Recognize the value of physical activity for health, enjoyment, challenge, self-expression, and/or social interaction",
+     "topics": [
+      {
+       "id": "recognize-the-value-of-physical-activity-for-hea",
+       "title": "Recognize the value of physical activity for health, enjoyment, challenge, self-expression, and/or social interaction",
+       "subtopics": [
+        {
+         "id": "recognize-the-value-of-physical-activity-for-hea",
+         "title": "Recognize the value of physical activity for health, enjoyment, challenge, self-expression, and/or social interaction",
+         "outcomes": [
+          {
+           "code": "2.5.1.1",
+           "text": "Identify the overall benefits of participation in physical activity. For example: mental-emotional health, physical health, social health, cognitive health."
+          },
+          {
+           "code": "2.5.2.1",
+           "text": "List physical activities that bring confidence and challenge."
+          },
+          {
+           "code": "2.5.3.1",
+           "text": "Describe positive feelings associated with participation in physical activities that are done alone and with others."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "3",
+   "units": [
+    {
+     "id": "demonstrates-competency-in-a-variety-of-motor-sk",
+     "title": "Demonstrates competency in a variety of motor skills and movement patterns",
+     "topics": [
+      {
+       "id": "demonstrates-competency-in-a-variety-of-motor-sk",
+       "title": "Demonstrates competency in a variety of motor skills and movement patterns",
+       "subtopics": [
+        {
+         "id": "demonstrates-competency-in-a-variety-of-motor-sk",
+         "title": "Demonstrates competency in a variety of motor skills and movement patterns (1 of 6)",
+         "outcomes": [
+          {
+           "code": "3.1.1.1",
+           "text": "Leap using a maturing pattern."
+          },
+          {
+           "code": "3.1.1.2",
+           "text": "Jump and land in the horizontal plane using a maturing pattern, while taking off and landing on two feet."
+          },
+          {
+           "code": "3.1.1.3",
+           "text": "Jump and land in the vertical plane using a maturing pattern, while taking off and landing with two feet."
+          },
+          {
+           "code": "3.1.1.4",
+           "text": "Combine and sequence locomotor and non-locomotor skills in educational dance transitioning from one skill to another smoothly without hesitation."
+          },
+          {
+           "code": "3.1.2.1",
+           "text": "Maintain balance on different bases of support, combining levels and shapes with a partner or using an object."
+          }
+         ]
+        },
+        {
+         "id": "demonstrates-competency-in-a-variety-of-motor-sk-2",
+         "title": "Demonstrates competency in a variety of motor skills and movement patterns (2 of 6)",
+         "outcomes": [
+          {
+           "code": "3.1.2.2",
+           "text": "Transfer weight from feet to hands then to different body parts and bases of support for balance and travel"
+          },
+          {
+           "code": "3.1.2.3",
+           "text": "Move into and out of a roll while maintaining balance and body control."
+          },
+          {
+           "code": "3.1.2.4",
+           "text": "Perform non-locomotor skills as the body moves into and out of balances."
+          },
+          {
+           "code": "3.1.2.5",
+           "text": "Combine balances, non-locomotor skills, locomotor skills and movement concepts (levels, shapes, extensions, pathways, force, time, and flow) to perform an educational dance and educational gymnastics sequence."
+          },
+          {
+           "code": "3.1.3.1",
+           "text": "Roll and throw underhand using a maturing pattern to a stationary partner or target."
+          }
+         ]
+        },
+        {
+         "id": "demonstrates-competency-in-a-variety-of-motor-sk-3",
+         "title": "Demonstrates competency in a variety of motor skills and movement patterns (3 of 6)",
+         "outcomes": [
+          {
+           "code": "3.1.3.2",
+           "text": "Throw overhand within a task that requires force for distance, demonstrating three of the five critical elements."
+          },
+          {
+           "code": "3.1.3.3",
+           "text": "Throw overhand with accuracy to a stationary target."
+          },
+          {
+           "code": "3.1.3.4",
+           "text": "Catch a gently tossed hand-sized ball from a partner, demonstrating three of the four critical elements of a maturing pattern."
+          },
+          {
+           "code": "3.1.3.5",
+           "text": "Dribble with preferred hand, traveling through general space."
+          },
+          {
+           "code": "3.1.3.6",
+           "text": "Dribble with the feet while traveling through general space with control of ball and body."
+          }
+         ]
+        },
+        {
+         "id": "demonstrates-competency-in-a-variety-of-motor-sk-4",
+         "title": "Demonstrates competency in a variety of motor skills and movement patterns (4 of 6)",
+         "outcomes": [
+          {
+           "code": "3.1.3.7",
+           "text": "Pass and receive a ball with the feet, \"giving\" on reception before returning the pass."
+          },
+          {
+           "code": "3.1.3.8",
+           "text": "Developmentally appropriate and emerging benchmarks first appear in Grade 4."
+          },
+          {
+           "code": "3.1.3.9",
+           "text": "Kick a stationary ball demonstrating a maturing pattern."
+          },
+          {
+           "code": "3.1.3.10",
+           "text": "Punt while maintaining balance."
+          },
+          {
+           "code": "3.1.3.11",
+           "text": "Volley underhand with a partner, using hands only, making multiple contacts while maintaining balance."
+          }
+         ]
+        },
+        {
+         "id": "demonstrates-competency-in-a-variety-of-motor-sk-5",
+         "title": "Demonstrates competency in a variety of motor skills and movement patterns (5 of 6)",
+         "outcomes": [
+          {
+           "code": "3.1.3.12",
+           "text": "Volley using a two-hand overhead pattern with a partner making multiple contacts while maintaining balance."
+          },
+          {
+           "code": "3.1.3.13",
+           "text": "Strike using a short-handled implement, while controlling direction, and demonstrating correct body alignment relative to the target and striking skill."
+          },
+          {
+           "code": "3.1.3.14",
+           "text": "Strike using a long-handled implement, while controlling direction, and demonstrating correct body alignment relative to the target and striking skill."
+          },
+          {
+           "code": "3.1.3.15",
+           "text": "Developmentally appropriate and emerging benchmarks first appear in Grade 4."
+          },
+          {
+           "code": "3.1.3.16",
+           "text": "Perform a variety of jump rope skills with a short rope."
+          }
+         ]
+        },
+        {
+         "id": "demonstrates-competency-in-a-variety-of-motor-sk-6",
+         "title": "Demonstrates competency in a variety of motor skills and movement patterns (6 of 6)",
+         "outcomes": [
+          {
+           "code": "3.1.3.17",
+           "text": "Exit a long rope with teacher-assisted turning."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "apply-knowledge-of-concepts-principles-strategie",
+     "title": "Apply knowledge of concepts, principles, strategies and tactics to movement and performance",
+     "topics": [
+      {
+       "id": "apply-knowledge-of-concepts-principles-strategie",
+       "title": "Apply knowledge of concepts, principles, strategies and tactics to movement and performance",
+       "subtopics": [
+        {
+         "id": "apply-knowledge-of-concepts-principles-strategie",
+         "title": "Apply knowledge of concepts, principles, strategies and tactics to movement and performance",
+         "outcomes": [
+          {
+           "code": "3.2.1.1",
+           "text": "Travel in different directions, pathways, levels and extensions in personal space (self-space) and general space. For example: large, small, near, far."
+          },
+          {
+           "code": "3.2.1.2",
+           "text": "Travel within different relationships with others while manipulating and controlling equipment. For example: alone, partners, groups, leading, following, mirroring, unison."
+          },
+          {
+           "code": "3.2.1.3",
+           "text": "Apply the effort awareness concepts of speed and force in educational games and educational dance or educational gymnastics."
+          },
+          {
+           "code": "3.2.1.4",
+           "text": "Identify offensive and defensive tactics used in chasing and fleeing games."
+          },
+          {
+           "code": "3.2.1.5",
+           "text": "Identify offensive and defensive tactics used in net and wall games."
+          },
+          {
+           "code": "3.2.1.6",
+           "text": "Identify distance and direction tactics used in target games."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "demonstrate-the-knowledge-and-skills-to-achieve-",
+     "title": "Demonstrate the knowledge and skills to achieve and maintain a health-enhancing level of physical activity and fitness",
+     "topics": [
+      {
+       "id": "demonstrate-the-knowledge-and-skills-to-achieve-",
+       "title": "Demonstrate the knowledge and skills to achieve and maintain a health-enhancing level of physical activity and fitness",
+       "subtopics": [
+        {
+         "id": "demonstrate-the-knowledge-and-skills-to-achieve-",
+         "title": "Demonstrate the knowledge and skills to achieve and maintain a health-enhancing level of physical activity and fitness",
+         "outcomes": [
+          {
+           "code": "3.3.1.1",
+           "text": "Identify personal participation in physical activity outside of physical education class and compare it to the physical activity recommendations."
+          },
+          {
+           "code": "3.3.2.1",
+           "text": "Actively participates in practice tasks with minimal teacher prompting."
+          },
+          {
+           "code": "3.3.3.1",
+           "text": "Define cardiorespiratory fitness and provide examples of physical activities that enhance cardiorespiratory fitness."
+          },
+          {
+           "code": "3.3.3.2",
+           "text": "Define the concepts of muscular endurance, muscular strength, and flexibility, and provide examples of physical activities that enhance these components."
+          },
+          {
+           "code": "3.3.4.1",
+           "text": "Define the health-related fitness components, and match them to the fitness assessment tool being used."
+          },
+          {
+           "code": "3.3.5.1",
+           "text": "Identify foods that are beneficial for before and after physical activity, and explain why these are good food choices."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "exhibit-responsible-personal-and-social-behavior",
+     "title": "Exhibit responsible personal and social behavior that respects self and others",
+     "topics": [
+      {
+       "id": "exhibit-responsible-personal-and-social-behavior",
+       "title": "Exhibit responsible personal and social behavior that respects self and others",
+       "subtopics": [
+        {
+         "id": "exhibit-responsible-personal-and-social-behavior",
+         "title": "Exhibit responsible personal and social behavior that respects self and others",
+         "outcomes": [
+          {
+           "code": "3.4.1.1",
+           "text": "Work independently for extended periods of time while exhibiting personal responsibility related to self, space and equipment."
+          },
+          {
+           "code": "3.4.2.1",
+           "text": "Accept and implement corrective feedback from the teacher."
+          },
+          {
+           "code": "3.4.3.1",
+           "text": "Work cooperatively and respectfully with classmates in small or large group activities."
+          },
+          {
+           "code": "3.4.4.1",
+           "text": "Identify the role of rules and etiquette used in a variety of physical activities."
+          },
+          {
+           "code": "3.4.5.1",
+           "text": "Move safely using equipment in general space with minimal reminders."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "recognize-the-value-of-physical-activity-for-hea",
+     "title": "Recognize the value of physical activity for health, enjoyment, challenge, self-expression, and/or social interaction",
+     "topics": [
+      {
+       "id": "recognize-the-value-of-physical-activity-for-hea",
+       "title": "Recognize the value of physical activity for health, enjoyment, challenge, self-expression, and/or social interaction",
+       "subtopics": [
+        {
+         "id": "recognize-the-value-of-physical-activity-for-hea",
+         "title": "Recognize the value of physical activity for health, enjoyment, challenge, self-expression, and/or social interaction",
+         "outcomes": [
+          {
+           "code": "3.5.1.1",
+           "text": "Recognize how the body and mind respond during and after physical activity participation."
+          },
+          {
+           "code": "3.5.2.1",
+           "text": "Describe the challenge and personal enjoyment that comes from learning a new physical activity."
+          },
+          {
+           "code": "3.5.3.1",
+           "text": "Describe characteristics of physical activities that make them personally enjoyable."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "4",
+   "units": [
+    {
+     "id": "demonstrates-competency-in-a-variety-of-motor-sk",
+     "title": "Demonstrates competency in a variety of motor skills and movement patterns",
+     "topics": [
+      {
+       "id": "demonstrates-competency-in-a-variety-of-motor-sk",
+       "title": "Demonstrates competency in a variety of motor skills and movement patterns",
+       "subtopics": [
+        {
+         "id": "demonstrates-competency-in-a-variety-of-motor-sk",
+         "title": "Demonstrates competency in a variety of motor skills and movement patterns (1 of 6)",
+         "outcomes": [
+          {
+           "code": "4.1.1.1",
+           "text": "Use various locomotor skills in educational games, educational dance, and educational gymnastics."
+          },
+          {
+           "code": "4.1.1.2",
+           "text": "Jump and land in the horizontal plane using spring-and-step take-off and landing as used in educational games, educational dance, and educational gymnastics."
+          },
+          {
+           "code": "4.1.1.3",
+           "text": "Jump and land in the vertical plane using spring step take-off and landing as used in educational games, educational dance, and educational gymnastics."
+          },
+          {
+           "code": "4.1.1.4",
+           "text": "Combine and sequence locomotor and non-locomotor skills transitioning from one skill to another smoothly without hesitation and with correct response to various rhythms."
+          },
+          {
+           "code": "4.1.2.1",
+           "text": "Maintain balance on different bases of support combining levels and shapes on an apparatus. For example: balance beam, dome cones, stepping stones, mats, balance ball, aerobic step benches."
+          }
+         ]
+        },
+        {
+         "id": "demonstrates-competency-in-a-variety-of-motor-sk-2",
+         "title": "Demonstrates competency in a variety of motor skills and movement patterns (2 of 6)",
+         "outcomes": [
+          {
+           "code": "4.1.2.2",
+           "text": "Transfer weight from feet to hands varying speed and using large extensions. For example: mule kick, handstand, cartwheel."
+          },
+          {
+           "code": "4.1.2.3",
+           "text": "Perform rolling as part of an educational gymnastic sequence, with fluidity and balanced transition into and out of rolls."
+          },
+          {
+           "code": "4.1.2.4",
+           "text": "Perform non-locomotor skills as the body moves into and out of balances on apparatus."
+          },
+          {
+           "code": "4.1.2.5",
+           "text": "Combine balances, non-locomotor skills, locomotor skills and movement concepts (levels, shapes, extensions, pathways, force, time, and flow) to perform an educational dance and an educational gymnastic sequence with a partner."
+          },
+          {
+           "code": "4.1.3.1",
+           "text": "Roll and throw underhand with accuracy in practice tasks."
+          }
+         ]
+        },
+        {
+         "id": "demonstrates-competency-in-a-variety-of-motor-sk-3",
+         "title": "Demonstrates competency in a variety of motor skills and movement patterns (3 of 6)",
+         "outcomes": [
+          {
+           "code": "4.1.3.2",
+           "text": "Throw overhand within a task that requires force for distance, demonstrating four of the five critical elements of a maturing pattern, in closed environments"
+          },
+          {
+           "code": "4.1.3.3",
+           "text": "Throw overhand with accuracy to a moving target."
+          },
+          {
+           "code": "4.1.3.4",
+           "text": "Catch a thrown ball, above the head, at chest or waist level and below the waist, in practice tasks."
+          },
+          {
+           "code": "4.1.3.5",
+           "text": "Dribble with both the preferred and non-preferred hand while traveling through general space, increasing and decreasing speed in practice tasks."
+          },
+          {
+           "code": "4.1.3.6",
+           "text": "Dribble with the feet while traveling through general space, increasing and decreasing speed in practice tasks."
+          }
+         ]
+        },
+        {
+         "id": "demonstrates-competency-in-a-variety-of-motor-sk-4",
+         "title": "Demonstrates competency in a variety of motor skills and movement patterns (4 of 6)",
+         "outcomes": [
+          {
+           "code": "4.1.3.7",
+           "text": "Pass and receive a ball with the feet in practice tasks."
+          },
+          {
+           "code": "4.1.3.8",
+           "text": "Dribble with hands or feet in combination with other skills, while controlling the ball and the body in practice tasks. For example: passing, receiving, shooting."
+          },
+          {
+           "code": "4.1.3.9",
+           "text": "Kick a moving ball along the ground and in the air demonstrating in practice tasks."
+          },
+          {
+           "code": "4.1.3.10",
+           "text": "Punt contacting the ball with shoelaces or top of the foot."
+          },
+          {
+           "code": "4.1.3.11",
+           "text": "Volley underhand in practice tasks."
+          }
+         ]
+        },
+        {
+         "id": "demonstrates-competency-in-a-variety-of-motor-sk-5",
+         "title": "Demonstrates competency in a variety of motor skills and movement patterns (5 of 6)",
+         "outcomes": [
+          {
+           "code": "4.1.3.12",
+           "text": "Volley using a two-hand overhead pattern in practice tasks."
+          },
+          {
+           "code": "4.1.3.13",
+           "text": "Strike using a short-handled implement in practice tasks."
+          },
+          {
+           "code": "4.1.3.14",
+           "text": "Strike using a long-handled implement in practice tasks."
+          },
+          {
+           "code": "4.1.3.15",
+           "text": "Combine traveling with the manipulative skills of dribbling, throwing, catching and striking in practice tasks."
+          },
+          {
+           "code": "4.1.3.16",
+           "text": "Combine jump rope skills to perform a routine using either a short or long rope."
+          }
+         ]
+        },
+        {
+         "id": "demonstrates-competency-in-a-variety-of-motor-sk-6",
+         "title": "Demonstrates competency in a variety of motor skills and movement patterns (6 of 6)",
+         "outcomes": [
+          {
+           "code": "4.1.3.17",
+           "text": "Enter, jump continuously, and exit a long rope with teacher-assisted turning."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "apply-knowledge-of-concepts-principles-strategie",
+     "title": "Apply knowledge of concepts, principles, strategies and tactics to movement and performance",
+     "topics": [
+      {
+       "id": "apply-knowledge-of-concepts-principles-strategie",
+       "title": "Apply knowledge of concepts, principles, strategies and tactics to movement and performance",
+       "subtopics": [
+        {
+         "id": "apply-knowledge-of-concepts-principles-strategie",
+         "title": "Apply knowledge of concepts, principles, strategies and tactics to movement and performance",
+         "outcomes": [
+          {
+           "code": "4.2.1.1",
+           "text": "Apply the space awareness concepts of directions, pathways, levels and extensions in practice tasks and educational dance or educational gymnastics."
+          },
+          {
+           "code": "4.2.1.2",
+           "text": "Apply the relationship awareness concepts in practice tasks and educational dance or educational gymnastics."
+          },
+          {
+           "code": "4.2.1.3",
+           "text": "Travel using varying degrees of flow. For example: bound, free."
+          },
+          {
+           "code": "4.2.1.4",
+           "text": "Apply offensive and defensive tactics in chasing and fleeing practice tasks."
+          },
+          {
+           "code": "4.2.1.5",
+           "text": "Apply offensive and defensive tactics in net and wall game practice tasks."
+          },
+          {
+           "code": "4.2.1.6",
+           "text": "Apply distance and direction tactics in target game practice tasks."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "demonstrate-the-knowledge-and-skills-to-achieve-",
+     "title": "Demonstrate the knowledge and skills to achieve and maintain a health-enhancing level of physical activity and fitness",
+     "topics": [
+      {
+       "id": "demonstrate-the-knowledge-and-skills-to-achieve-",
+       "title": "Demonstrate the knowledge and skills to achieve and maintain a health-enhancing level of physical activity and fitness",
+       "subtopics": [
+        {
+         "id": "demonstrate-the-knowledge-and-skills-to-achieve-",
+         "title": "Demonstrate the knowledge and skills to achieve and maintain a health-enhancing level of physical activity and fitness",
+         "outcomes": [
+          {
+           "code": "4.3.1.1",
+           "text": "Chart and analyze personal participation in physical activity outside of physical education class, and compare it to the physical activity recommendations."
+          },
+          {
+           "code": "4.3.2.1",
+           "text": "Actively participates in practice tasks without teacher prompting."
+          },
+          {
+           "code": "4.3.3.1",
+           "text": "Identify the components of the F.I.T.T. principle for cardiorespiratory fitness."
+          },
+          {
+           "code": "4.3.3.2",
+           "text": "Identify the components of the F.I.T.T. principle for muscular endurance, muscular strength, and flexibility."
+          },
+          {
+           "code": "4.3.4.1",
+           "text": "Describe pre- and post-fitness assessment results, making connections to the health-related fitness components and the recommendations for good health."
+          },
+          {
+           "code": "4.3.5.1",
+           "text": "Explain the importance of hydration and hydration choices relative to physical activity participation."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "exhibit-responsible-personal-and-social-behavior",
+     "title": "Exhibit responsible personal and social behavior that respects self and others",
+     "topics": [
+      {
+       "id": "exhibit-responsible-personal-and-social-behavior",
+       "title": "Exhibit responsible personal and social behavior that respects self and others",
+       "subtopics": [
+        {
+         "id": "exhibit-responsible-personal-and-social-behavior",
+         "title": "Exhibit responsible personal and social behavior that respects self and others",
+         "outcomes": [
+          {
+           "code": "4.4.1.1",
+           "text": "Reflect on personal behaviors in physical activity and identify impact on self and others."
+          },
+          {
+           "code": "4.4.2.1",
+           "text": "Give and receive feedback respectfully to and from peers."
+          },
+          {
+           "code": "4.4.3.1",
+           "text": "Reflect on personal behaviors within group physical activities and identify the impact on others."
+          },
+          {
+           "code": "4.4.4.1",
+           "text": "Follow rules and etiquette in practice tasks, educational dance, and educational gymnastics."
+          },
+          {
+           "code": "4.4.5.1",
+           "text": "Move safely in practice tasks, educational dance, and educational gymnastics."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "recognize-the-value-of-physical-activity-for-hea",
+     "title": "Recognize the value of physical activity for health, enjoyment, challenge, self-expression, and/or social interaction",
+     "topics": [
+      {
+       "id": "recognize-the-value-of-physical-activity-for-hea",
+       "title": "Recognize the value of physical activity for health, enjoyment, challenge, self-expression, and/or social interaction",
+       "subtopics": [
+        {
+         "id": "recognize-the-value-of-physical-activity-for-hea",
+         "title": "Recognize the value of physical activity for health, enjoyment, challenge, self-expression, and/or social interaction",
+         "outcomes": [
+          {
+           "code": "4.5.1.1",
+           "text": "Recognize the relationship between participation in physical activity and its impact on mental-emotional health, physical health, social health, and cognitive health."
+          },
+          {
+           "code": "4.5.2.1",
+           "text": "Rate various physical activities according to personal levels of challenge."
+          },
+          {
+           "code": "4.5.3.1",
+           "text": "Describe and provide examples of how participation in personally enjoyable physical activities allows for self-expression and social interaction."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "5",
+   "units": [
+    {
+     "id": "demonstrates-competency-in-a-variety-of-motor-sk",
+     "title": "Demonstrates competency in a variety of motor skills and movement patterns",
+     "topics": [
+      {
+       "id": "demonstrates-competency-in-a-variety-of-motor-sk",
+       "title": "Demonstrates competency in a variety of motor skills and movement patterns",
+       "subtopics": [
+        {
+         "id": "demonstrates-competency-in-a-variety-of-motor-sk",
+         "title": "Demonstrates competency in a variety of motor skills and movement patterns (1 of 6)",
+         "outcomes": [
+          {
+           "code": "5.1.1.1",
+           "text": "Combine locomotor and manipulative skills in educational games, educational dance, and educational gymnastics."
+          },
+          {
+           "code": "5.1.1.2",
+           "text": "Combine jumping and landing in the horizontal plane with locomotor and manipulative skills in educational games, educational dance, and educational gymnastics."
+          },
+          {
+           "code": "5.1.1.3",
+           "text": "Combine jumping and landing in the vertical plane with locomotor and manipulative skills in educational games, educational dance, and educational gymnastics."
+          },
+          {
+           "code": "5.1.1.4",
+           "text": "Combine and sequence locomotor and non-locomotor skills transitioning from one skill to another smoothly without hesitation, while maintaining rhythm in culturally relevant and creative dances."
+          },
+          {
+           "code": "5.1.2.1",
+           "text": "Combine balance and weight transfer in an educational dance and educational gymnastics sequence."
+          }
+         ]
+        },
+        {
+         "id": "demonstrates-competency-in-a-variety-of-motor-sk-2",
+         "title": "Demonstrates competency in a variety of motor skills and movement patterns (2 of 6)",
+         "outcomes": [
+          {
+           "code": "5.1.2.2",
+           "text": "Combine balance and weight transfer in an educational dance and educational gymnastics sequence."
+          },
+          {
+           "code": "5.1.2.3",
+           "text": "Combine rolling with traveling and non-locomotor skills as part of an educational gymnastic sequence, with fluidity and balanced transition from one skill to the next."
+          },
+          {
+           "code": "5.1.2.4",
+           "text": "Perform non-locomotor skills as part of an educational game, educational dance, or educational gymnastics sequence."
+          },
+          {
+           "code": "5.1.2.5",
+           "text": "Combine balances, non-locomotor skills, locomotor skills and movement concepts (levels, shapes, extensions, pathways, force, time, and flow) to perform an educational dance and an educational gymnastics sequence with a group."
+          },
+          {
+           "code": "5.1.3.1",
+           "text": "Roll and throw underhand in small-sided games."
+          }
+         ]
+        },
+        {
+         "id": "demonstrates-competency-in-a-variety-of-motor-sk-3",
+         "title": "Demonstrates competency in a variety of motor skills and movement patterns (3 of 6)",
+         "outcomes": [
+          {
+           "code": "5.1.3.2",
+           "text": "Throw overhand within a task that requires force for distance, using a maturing pattern in closed environments."
+          },
+          {
+           "code": "5.1.3.3",
+           "text": "Throw overhand with accuracy in small-sided games."
+          },
+          {
+           "code": "5.1.3.4",
+           "text": "Catch a thrown ball, above the head, at chest or waist level and below the waist, in small-sided games."
+          },
+          {
+           "code": "5.1.3.5",
+           "text": "Dribble with the preferred or non-preferred hand in small-sided games."
+          },
+          {
+           "code": "5.1.3.6",
+           "text": "Dribble with the feet in small-sided games."
+          }
+         ]
+        },
+        {
+         "id": "demonstrates-competency-in-a-variety-of-motor-sk-4",
+         "title": "Demonstrates competency in a variety of motor skills and movement patterns (4 of 6)",
+         "outcomes": [
+          {
+           "code": "5.1.3.7",
+           "text": "Pass and receive a ball with the feet in small-sided games."
+          },
+          {
+           "code": "5.1.3.8",
+           "text": "Dribble with hands or feet in combination with other skills while controlling the ball and the body in small-sided games."
+          },
+          {
+           "code": "5.1.3.9",
+           "text": "Kick a moving ball along the ground and in the air in small-sided games."
+          },
+          {
+           "code": "5.1.3.10",
+           "text": "Punt contacting the ball with shoelaces or top of the foot, sending it forward in practice tasks."
+          },
+          {
+           "code": "5.1.3.11",
+           "text": "Volley underhand in small-sided games."
+          }
+         ]
+        },
+        {
+         "id": "demonstrates-competency-in-a-variety-of-motor-sk-5",
+         "title": "Demonstrates competency in a variety of motor skills and movement patterns (5 of 6)",
+         "outcomes": [
+          {
+           "code": "5.1.3.12",
+           "text": "Volley using a two-hand overhead pattern in small-sided games."
+          },
+          {
+           "code": "5.1.3.13",
+           "text": "Strike using a short-handled implement in small-sided games."
+          },
+          {
+           "code": "5.1.3.14",
+           "text": "Strike using a long-handled implement in small-sided games."
+          },
+          {
+           "code": "5.1.3.15",
+           "text": "Combine traveling with the manipulative skills of dribbling, throwing, catching and striking with accuracy small-sided games."
+          },
+          {
+           "code": "5.1.3.16",
+           "text": "Combine jump rope skills to perform a routine using either a long or short rope, with a partner."
+          }
+         ]
+        },
+        {
+         "id": "demonstrates-competency-in-a-variety-of-motor-sk-6",
+         "title": "Demonstrates competency in a variety of motor skills and movement patterns (6 of 6)",
+         "outcomes": [
+          {
+           "code": "5.1.3.17",
+           "text": "Skill met in Grade 4."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "apply-knowledge-of-concepts-principles-strategie",
+     "title": "Apply knowledge of concepts, principles, strategies and tactics to movement and performance",
+     "topics": [
+      {
+       "id": "apply-knowledge-of-concepts-principles-strategie",
+       "title": "Apply knowledge of concepts, principles, strategies and tactics to movement and performance",
+       "subtopics": [
+        {
+         "id": "apply-knowledge-of-concepts-principles-strategie",
+         "title": "Apply knowledge of concepts, principles, strategies and tactics to movement and performance",
+         "outcomes": [
+          {
+           "code": "5.2.1.1",
+           "text": "Apply the space awareness concepts of directions, pathways, levels and extensions in small-sided games and educational dance or educational gymnastics."
+          },
+          {
+           "code": "5.2.1.2",
+           "text": "Apply the relationship awareness concepts in small-sided games and educational dance or educational gymnastics."
+          },
+          {
+           "code": "5.2.1.3",
+           "text": "Apply the effort awareness concepts of speed, force and flow in small-sided games and educational dance or educational gymnastics."
+          },
+          {
+           "code": "5.2.1.4",
+           "text": "Apply offensive and defensive tactics in small-sided invasion games."
+          },
+          {
+           "code": "5.2.1.5",
+           "text": "Apply offensive and defensive tactics in small-sided net and wall games."
+          },
+          {
+           "code": "5.2.1.6",
+           "text": "Apply distance and direction tactics in target games."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "demonstrate-the-knowledge-and-skills-to-achieve-",
+     "title": "Demonstrate the knowledge and skills to achieve and maintain a health-enhancing level of physical activity and fitness",
+     "topics": [
+      {
+       "id": "demonstrate-the-knowledge-and-skills-to-achieve-",
+       "title": "Demonstrate the knowledge and skills to achieve and maintain a health-enhancing level of physical activity and fitness",
+       "subtopics": [
+        {
+         "id": "demonstrate-the-knowledge-and-skills-to-achieve-",
+         "title": "Demonstrate the knowledge and skills to achieve and maintain a health-enhancing level of physical activity and fitness",
+         "outcomes": [
+          {
+           "code": "5.3.1.1",
+           "text": "Chart and analyze personal participation in physical activity outside of physical education class for health benefits."
+          },
+          {
+           "code": "5.3.2.1",
+           "text": "Actively participates in small-sided games without teacher prompting."
+          },
+          {
+           "code": "5.3.3.1",
+           "text": "Apply the F.I.T.T. principle for cardiorespiratory fitness to personal behaviors and identify the need for warm-up and cool down when participating in these types of activities."
+          },
+          {
+           "code": "5.3.3.2",
+           "text": "Apply the F.I.T.T. principle for muscular endurance, muscular strength, and flexibility to personal behaviors, and identify the need for warm-up and cool down when participating in these types of activities."
+          },
+          {
+           "code": "5.3.4.1",
+           "text": "Analyze pre-and post-fitness assessment results, compare results to recommendations for good health and describe personal strategies to enhance fitness through physical activity participation."
+          },
+          {
+           "code": "5.3.5.1",
+           "text": "Analyze the impact of food choices relative to physical activity and personal health."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "exhibit-responsible-personal-and-social-behavior",
+     "title": "Exhibit responsible personal and social behavior that respects self and others",
+     "topics": [
+      {
+       "id": "exhibit-responsible-personal-and-social-behavior",
+       "title": "Exhibit responsible personal and social behavior that respects self and others",
+       "subtopics": [
+        {
+         "id": "exhibit-responsible-personal-and-social-behavior",
+         "title": "Exhibit responsible personal and social behavior that respects self and others",
+         "outcomes": [
+          {
+           "code": "5.4.1.1",
+           "text": "Engage in physical activity while demonstrating responsible interpersonal behavior. For example: peer to peer, student to teacher, student to referee."
+          },
+          {
+           "code": "5.4.2.1",
+           "text": "Give and receive corrective feedback respectfully to and from peers."
+          },
+          {
+           "code": "5.4.3.1",
+           "text": "Work cooperatively and respectfully with classmates of all skill levels in small or large group activities."
+          },
+          {
+           "code": "5.4.4.1",
+           "text": "Follow rules and etiquette in small-sided games, educational dance, and educational gymnastics"
+          },
+          {
+           "code": "5.4.5.1",
+           "text": "Move safely in small-sided games, educational dance, and educational gymnastics."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "recognize-the-value-of-physical-activity-for-hea",
+     "title": "Recognize the value of physical activity for health, enjoyment, challenge, self-expression, and/or social interaction",
+     "topics": [
+      {
+       "id": "recognize-the-value-of-physical-activity-for-hea",
+       "title": "Recognize the value of physical activity for health, enjoyment, challenge, self-expression, and/or social interaction",
+       "subtopics": [
+        {
+         "id": "recognize-the-value-of-physical-activity-for-hea",
+         "title": "Recognize the value of physical activity for health, enjoyment, challenge, self-expression, and/or social interaction",
+         "outcomes": [
+          {
+           "code": "5.5.1.1",
+           "text": "Analyze participation in physical activity and describe the personal impact it has on mental-emotional health, physical health, social health, and cognitive health."
+          },
+          {
+           "code": "5.5.2.1",
+           "text": "Analyze physical activities based on personal levels of challenge and identify ways to overcome challenges to enhance enjoyment, confidence, and willingness to participate."
+          },
+          {
+           "code": "5.5.3.1",
+           "text": "Analyze physical activities based on personal levels of enjoyment, and opportunities for social interaction and self-expression."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "6",
+   "units": [
+    {
+     "id": "demonstrates-competency-in-a-variety-of-motor-sk",
+     "title": "Demonstrates competency in a variety of motor skills and movement patterns",
+     "topics": [
+      {
+       "id": "demonstrates-competency-in-a-variety-of-motor-sk",
+       "title": "Demonstrates competency in a variety of motor skills and movement patterns",
+       "subtopics": [
+        {
+         "id": "demonstrates-competency-in-a-variety-of-motor-sk",
+         "title": "Demonstrates competency in a variety of motor skills and movement patterns (1 of 5)",
+         "outcomes": [
+          {
+           "code": "6.1.1.1",
+           "text": "Demonstrate correct rhythm and pattern for one of the following dance forms: folk, social, creative, line, or world dance."
+          },
+          {
+           "code": "6.1.2.1",
+           "text": "Throw for distance appropriate to the invasion or fielding and striking game practice tasks. For example: outfield to home plate; outfield to 3rd base."
+          },
+          {
+           "code": "6.1.2.2",
+           "text": "Catch from a variety of trajectories using different objects in varying invasion or fielding and striking game practice tasks."
+          },
+          {
+           "code": "6.1.3.1",
+           "text": "Pass and receive with competency, using hands in combination with locomotor patterns of running and change of direction and speed in invasion game practice tasks. For example: basketball, flag football, speedball, team handball."
+          },
+          {
+           "code": "6.1.3.2",
+           "text": "Throw, while stationary, a leading pass to a moving receiver in invasion game practice tasks."
+          }
+         ]
+        },
+        {
+         "id": "demonstrates-competency-in-a-variety-of-motor-sk-2",
+         "title": "Demonstrates competency in a variety of motor skills and movement patterns (2 of 5)",
+         "outcomes": [
+          {
+           "code": "6.1.3.3",
+           "text": "Execute pivots, fakes, jab steps, and give and go designed to create open space during invasion game practice tasks."
+          },
+          {
+           "code": "6.1.3.4",
+           "text": "Dribble with preferred hand using a change of speed and direction in a variety of invasion game practice tasks."
+          },
+          {
+           "code": "6.1.3.5",
+           "text": "Foot-dribble or dribble using an implement with control, changing speed and direction in a variety of invasion game practice tasks."
+          },
+          {
+           "code": "6.1.3.6",
+           "text": "Shoot on goal with accuracy in invasion game practice tasks."
+          },
+          {
+           "code": "6.1.3.7",
+           "text": "Maintain defensive ready position with weight on balls of feet, arms extended, and eyes on midsection of the body of the offensive player in invasion game practice tasks."
+          }
+         ]
+        },
+        {
+         "id": "demonstrates-competency-in-a-variety-of-motor-sk-3",
+         "title": "Demonstrates competency in a variety of motor skills and movement patterns (3 of 5)",
+         "outcomes": [
+          {
+           "code": "6.1.4.1",
+           "text": "Execute a legal underhand serve with control in net and wall game practice tasks. For example: badminton, pickleball, volleyball."
+          },
+          {
+           "code": "6.1.4.2",
+           "text": "Strike with an overhand pattern in small sided net and wall game practice tasks. For example: badminton, handball, tennis."
+          },
+          {
+           "code": "6.1.4.3",
+           "text": "Demonstrate the forehand and backhand strokes using a short-handled implement in small-sided net and wall practice tasks. For example: paddleball, pickleball, short-handled racket tennis."
+          },
+          {
+           "code": "6.1.4.4",
+           "text": "Forehand volley, with control, using a short-handled implement in small-sided net and wall game practice tasks."
+          },
+          {
+           "code": "6.1.4.5",
+           "text": "Two-hand volley (underhand and overhand) with control in a variety of small-sided net and wall practice tasks."
+          }
+         ]
+        },
+        {
+         "id": "demonstrates-competency-in-a-variety-of-motor-sk-4",
+         "title": "Demonstrates competency in a variety of motor skills and movement patterns (4 of 5)",
+         "outcomes": [
+          {
+           "code": "6.1.5.1",
+           "text": "Execute an underhand roll or toss for a target game practice task. For example: bowling, bocce, horseshoes."
+          },
+          {
+           "code": "6.1.5.2",
+           "text": "Strike, using an implement and a stationary object for accuracy in target game practice tasks. For example: croquet, shuffleboard, golf."
+          },
+          {
+           "code": "6.1.6.1",
+           "text": "Strike a pitched ball, using an implement, in a variety of fielding and striking game practice tasks."
+          },
+          {
+           "code": "6.1.6.2",
+           "text": "Catch from different trajectories, using a variety of objects, in varying fielding and striking game practice tasks."
+          },
+          {
+           "code": "6.1.7.1",
+           "text": "Demonstrate correct technique for basic skills in an outdoor activity."
+          }
+         ]
+        },
+        {
+         "id": "demonstrates-competency-in-a-variety-of-motor-sk-5",
+         "title": "Demonstrates competency in a variety of motor skills and movement patterns (5 of 5)",
+         "outcomes": [
+          {
+           "code": "6.1.8.1",
+           "text": "Demonstrate correct technique for basic skills in one individual-performance activity."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "apply-knowledge-of-concepts-principles-strategie",
+     "title": "Apply knowledge of concepts, principles, strategies and tactics to movement and performance",
+     "topics": [
+      {
+       "id": "apply-knowledge-of-concepts-principles-strategie",
+       "title": "Apply knowledge of concepts, principles, strategies and tactics to movement and performance",
+       "subtopics": [
+        {
+         "id": "apply-knowledge-of-concepts-principles-strategie",
+         "title": "Apply knowledge of concepts, principles, strategies and tactics to movement and performance (1 of 3)",
+         "outcomes": [
+          {
+           "code": "6.2.1.1",
+           "text": "Execute at least one of the following offensive tactics in invasion game practice tasks to create open space: move to open space without the ball; use a variety of passes, pivots, and fakes; and give and go."
+          },
+          {
+           "code": "6.2.1.2",
+           "text": "Reduce open space on defense, in an invasion game practice task, by making the body larger and reducing passing angles."
+          },
+          {
+           "code": "6.2.1.3",
+           "text": "Reduce open space, in an invasion game practice task, by not allowing the catch (denial) or by allowing the catch but not the return pass."
+          },
+          {
+           "code": "6.2.1.4",
+           "text": "Transition from offense to defense, or defense to offense, in an invasion game practice task, by recovering quickly."
+          }
+         ]
+        },
+        {
+         "id": "apply-knowledge-of-concepts-principles-strategie-2",
+         "title": "Apply knowledge of concepts, principles, strategies and tactics to movement and performance (2 of 3)",
+         "outcomes": [
+          {
+           "code": "6.2.2.1",
+           "text": "Create open space in net and wall game practice tasks, with a short-handled implement, by varying force and direction."
+          },
+          {
+           "code": "6.2.2.2",
+           "text": "Reduce offensive options for opponents, in net and wall game practice tasks, by returning to base or home position."
+          },
+          {
+           "code": "6.2.3.1",
+           "text": "Select an appropriate shot and implement based on the location of the object in relation to the target in target game practice tasks."
+          },
+          {
+           "code": "6.2.4.1",
+           "text": "Identify open space, and attempt to strike an object into that space in fielding and striking game practice tasks."
+          }
+         ]
+        },
+        {
+         "id": "apply-knowledge-of-concepts-principles-strategie-3",
+         "title": "Apply knowledge of concepts, principles, strategies and tactics to movement and performance (3 of 3)",
+         "outcomes": [
+          {
+           "code": "6.2.4.2",
+           "text": "Identify the correct defensive play based on the situation in fielding and striking practice tasks. For example: number of outs, positions of runners."
+          },
+          {
+           "code": "6.2.5.1",
+           "text": "Vary the application of force during an individual-performance activity."
+          },
+          {
+           "code": "6.2.6.1",
+           "text": "Describe the basic skills and tactics needed for participation in an outdoor activity."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "demonstrate-the-knowledge-and-skills-to-achieve-",
+     "title": "Demonstrate the knowledge and skills to achieve and maintain a health-enhancing level of physical activity and fitness",
+     "topics": [
+      {
+       "id": "demonstrate-the-knowledge-and-skills-to-achieve-",
+       "title": "Demonstrate the knowledge and skills to achieve and maintain a health-enhancing level of physical activity and fitness",
+       "subtopics": [
+        {
+         "id": "demonstrate-the-knowledge-and-skills-to-achieve-",
+         "title": "Demonstrate the knowledge and skills to achieve and maintain a health-enhancing level of physical activity and fitness (1 of 3)",
+         "outcomes": [
+          {
+           "code": "6.3.1.1",
+           "text": "Identify barriers related to maintaining a physically active lifestyle."
+          },
+          {
+           "code": "6.3.2.1",
+           "text": "Participate in a variety of aerobic-fitness activities using technology or media. For example: cardio-kick, step aerobics and aerobic dance."
+          },
+          {
+           "code": "6.3.2.2",
+           "text": "Participate in moderate to vigorous aerobic physical activity that includes intermittent or continuous aerobic physical activity for at least sixty minutes per day."
+          },
+          {
+           "code": "6.3.3.1",
+           "text": "Identify the components of skill-related fitness."
+          },
+          {
+           "code": "6.3.3.2",
+           "text": "Identify correct techniques and methods of stretching."
+          }
+         ]
+        },
+        {
+         "id": "demonstrate-the-knowledge-and-skills-to-achieve--2",
+         "title": "Demonstrate the knowledge and skills to achieve and maintain a health-enhancing level of physical activity and fitness (2 of 3)",
+         "outcomes": [
+          {
+           "code": "6.3.3.3",
+           "text": "Describe the overload training principle and how it affects fitness."
+          },
+          {
+           "code": "6.3.3.4",
+           "text": "Describe the role of warm-ups and cool-downs before and after physical activity."
+          },
+          {
+           "code": "6.3.3.5",
+           "text": "Identify and explain heart rate zones. For example: resting heart rate, moderate heart rate, vigorous heart rate, and maximum heart rate."
+          },
+          {
+           "code": "6.3.3.6",
+           "text": "Identify major muscles and bones used in selected physical activities."
+          },
+          {
+           "code": "6.3.4.1",
+           "text": "Use SMART goals, based on the results of a health-related fitness assessment, to design, implement, and modify a maintenance or remediation program for one health-related fitness area. For example: SMART goals are specific and strategic, measurable, attainable, results-based and time-based."
+          }
+         ]
+        },
+        {
+         "id": "demonstrate-the-knowledge-and-skills-to-achieve--3",
+         "title": "Demonstrate the knowledge and skills to achieve and maintain a health-enhancing level of physical activity and fitness (3 of 3)",
+         "outcomes": [
+          {
+           "code": "6.3.4.2",
+           "text": "Maintain a physical activity log for at least two weeks and reflect on activity levels as documented in the log."
+          },
+          {
+           "code": "6.3.5.1",
+           "text": "Identify foods within each of the basic food groups and select appropriate servings and portions for one's age and physical activity levels."
+          },
+          {
+           "code": "6.3.6.1",
+           "text": "Identify possible causes of stress and the negative effects of stress on health."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "exhibit-responsible-personal-and-social-behavior",
+     "title": "Exhibit responsible personal and social behavior that respects self and others",
+     "topics": [
+      {
+       "id": "exhibit-responsible-personal-and-social-behavior",
+       "title": "Exhibit responsible personal and social behavior that respects self and others",
+       "subtopics": [
+        {
+         "id": "exhibit-responsible-personal-and-social-behavior",
+         "title": "Exhibit responsible personal and social behavior that respects self and others (1 of 2)",
+         "outcomes": [
+          {
+           "code": "6.4.1.1",
+           "text": "Accept differences among classmates in physical development, maturation, and varying skill levels by avoiding insulting or boastful speech during physical activity."
+          },
+          {
+           "code": "6.4.1.2",
+           "text": "Identify appropriate strategies to self-reinforce positive fitness behaviors, such as positive self-talk."
+          },
+          {
+           "code": "6.4.2.1",
+           "text": "Implement specific corrective feedback to improve performance."
+          },
+          {
+           "code": "6.4.3.1",
+           "text": "Cooperate with a small group of classmates during game play, or team-building activities."
+          }
+         ]
+        },
+        {
+         "id": "exhibit-responsible-personal-and-social-behavior-2",
+         "title": "Exhibit responsible personal and social behavior that respects self and others (2 of 2)",
+         "outcomes": [
+          {
+           "code": "6.4.4.1",
+           "text": "Follow the rules and etiquette for physical activities."
+          },
+          {
+           "code": "6.4.5.1",
+           "text": "Use equipment and facilities appropriately and safely, with the teacher's guidance, in a physical activity setting. For example: fitness equipment, pedometers, sport equipment."
+          },
+          {
+           "code": "6.4.5.2",
+           "text": "Make appropriate decisions regarding physical activity based on the weather, level of difficulty due to the conditions, or ability to ensure the safety of self and others."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "recognize-the-value-of-physical-activity-for-hea",
+     "title": "Recognize the value of physical activity for health, enjoyment, challenge, self-expression, and/or social interaction",
+     "topics": [
+      {
+       "id": "recognize-the-value-of-physical-activity-for-hea",
+       "title": "Recognize the value of physical activity for health, enjoyment, challenge, self-expression, and/or social interaction",
+       "subtopics": [
+        {
+         "id": "recognize-the-value-of-physical-activity-for-hea",
+         "title": "Recognize the value of physical activity for health, enjoyment, challenge, self-expression, and/or social interaction",
+         "outcomes": [
+          {
+           "code": "6.5.1.1",
+           "text": "Describe the impact of screen time on levels of health."
+          },
+          {
+           "code": "6.5.1.2",
+           "text": "Identify the relationship between participation in physical activity and stress reduction."
+          },
+          {
+           "code": "6.5.2.1",
+           "text": "Recognize individual challenges in physical activity and implement methods of coping with them in a positive way. For example: extending effort, asking for help or feedback, or modifying the tasks."
+          },
+          {
+           "code": "6.5.3.1",
+           "text": "Describe how moving competently in a physical activity setting creates enjoyment."
+          },
+          {
+           "code": "6.5.3.2",
+           "text": "Describe how physical activity provides opportunities for self-expression."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "7",
+   "units": [
+    {
+     "id": "demonstrates-competency-in-a-variety-of-motor-sk",
+     "title": "Demonstrates competency in a variety of motor skills and movement patterns",
+     "topics": [
+      {
+       "id": "demonstrates-competency-in-a-variety-of-motor-sk",
+       "title": "Demonstrates competency in a variety of motor skills and movement patterns",
+       "subtopics": [
+        {
+         "id": "demonstrates-competency-in-a-variety-of-motor-sk",
+         "title": "Demonstrates competency in a variety of motor skills and movement patterns (1 of 5)",
+         "outcomes": [
+          {
+           "code": "7.1.1.1",
+           "text": "Demonstrate correct rhythm and pattern for two of the following dance forms: folk, social, creative, line or world dance."
+          },
+          {
+           "code": "7.1.2.1",
+           "text": "Throw for distance and accuracy appropriate to the invasion or fielding and striking game practice tasks."
+          },
+          {
+           "code": "7.1.2.2",
+           "text": "Catch from a variety of trajectories using different objects in invasion or fielding and striking small-sided games."
+          },
+          {
+           "code": "7.1.3.1",
+           "text": "Pass and receive with competency using feet in combination with locomotor patterns of running and change of direction and speed in small-sided invasion games. For example: soccer or speedball."
+          },
+          {
+           "code": "7.1.3.2",
+           "text": "Throw, while moving, a leading pass to a moving receiver in invasion game practice tasks."
+          }
+         ]
+        },
+        {
+         "id": "demonstrates-competency-in-a-variety-of-motor-sk-2",
+         "title": "Demonstrates competency in a variety of motor skills and movement patterns (2 of 5)",
+         "outcomes": [
+          {
+           "code": "7.1.3.3",
+           "text": "Execute at least one of the following skills designed to create open space during small-sided invasion games, with varying levels of defense: pivots, fakes, jab steps, and give and go."
+          },
+          {
+           "code": "7.1.3.4",
+           "text": "Dribble with preferred and non-preferred hands using a change of speed and direction in a variety of invasion game practice tasks."
+          },
+          {
+           "code": "7.1.3.5",
+           "text": "Foot-dribble or dribble using an implement combined with passing in a variety of invasion game practice tasks."
+          },
+          {
+           "code": "7.1.3.6",
+           "text": "Shoot on goal with accuracy in small-sided invasion games."
+          },
+          {
+           "code": "7.1.3.7",
+           "text": "Slide in all directions while on defense without crossing feet in invasion game practice tasks."
+          }
+         ]
+        },
+        {
+         "id": "demonstrates-competency-in-a-variety-of-motor-sk-3",
+         "title": "Demonstrates competency in a variety of motor skills and movement patterns (3 of 5)",
+         "outcomes": [
+          {
+           "code": "7.1.4.1",
+           "text": "Execute a legal underhand serve to a predetermined target in net and wall small-sided games. For example: badminton, pickleball, volleyball."
+          },
+          {
+           "code": "7.1.4.2",
+           "text": "Strike consistently using an overhand pattern in small-sided net and wall games. For example: badminton, handball, tennis."
+          },
+          {
+           "code": "7.1.4.3",
+           "text": "Demonstrate forehand and backhand strokes using a long-handled implement in small-sided net and wall games. For example: badminton, tennis."
+          },
+          {
+           "code": "7.1.4.4",
+           "text": "Forehand and backhand volley, with control, using a short-handled implement in small-sided net and wall game practice tasks."
+          },
+          {
+           "code": "7.1.4.5",
+           "text": "Two-hand volley (underhand and overhand) with control in a small-sided net and wall game."
+          }
+         ]
+        },
+        {
+         "id": "demonstrates-competency-in-a-variety-of-motor-sk-4",
+         "title": "Demonstrates competency in a variety of motor skills and movement patterns (4 of 5)",
+         "outcomes": [
+          {
+           "code": "7.1.5.1",
+           "text": "Execute an underhand roll or toss in a target game. For example: bowling, bocce, horseshoes."
+          },
+          {
+           "code": "7.1.5.2",
+           "text": "Strike, using an implement and a stationary object for accuracy and distance in a target game. For example: croquet, shuffleboard, golf."
+          },
+          {
+           "code": "7.1.6.1",
+           "text": "Strike a pitched ball, using an implement, to open space in a variety of fielding and striking game practice tasks."
+          },
+          {
+           "code": "7.1.6.2",
+           "text": "Catch from different trajectories, using a variety of objects, in small-sided fielding and striking games."
+          },
+          {
+           "code": "7.1.7.1",
+           "text": "Demonstrate correct technique for a variety of skills in an outdoor activity."
+          }
+         ]
+        },
+        {
+         "id": "demonstrates-competency-in-a-variety-of-motor-sk-5",
+         "title": "Demonstrates competency in a variety of motor skills and movement patterns (5 of 5)",
+         "outcomes": [
+          {
+           "code": "7.1.8.1",
+           "text": "Demonstrate correct technique for a variety of skills in one individual-performance activity."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "apply-knowledge-of-concepts-principles-strategie",
+     "title": "Apply knowledge of concepts, principles, strategies and tactics to movement and performance",
+     "topics": [
+      {
+       "id": "apply-knowledge-of-concepts-principles-strategie",
+       "title": "Apply knowledge of concepts, principles, strategies and tactics to movement and performance",
+       "subtopics": [
+        {
+         "id": "apply-knowledge-of-concepts-principles-strategie",
+         "title": "Apply knowledge of concepts, principles, strategies and tactics to movement and performance (1 of 3)",
+         "outcomes": [
+          {
+           "code": "7.2.1.1",
+           "text": "Execute at least two of the following offensive tactics in invasion game practice tasks to create open space: use a variety of passes, pivots and fakes; and give and go."
+          },
+          {
+           "code": "7.2.1.2",
+           "text": "Reduce open space on defense, in an invasion game practice task, by staying close to the opponent as he or she nears the goal."
+          },
+          {
+           "code": "7.2.1.3",
+           "text": "Reduces open space, in an invasion game practice task, by not allowing the catch (denial) or anticipating the speed of the object or person for the purpose of interception or deflection."
+          },
+          {
+           "code": "7.2.1.4",
+           "text": "Transition from offense to defense, or defense to offense, in an invasion game practice task, by recovering quickly and communicating with teammates."
+          }
+         ]
+        },
+        {
+         "id": "apply-knowledge-of-concepts-principles-strategie-2",
+         "title": "Apply knowledge of concepts, principles, strategies and tactics to movement and performance (2 of 3)",
+         "outcomes": [
+          {
+           "code": "7.2.2.1",
+           "text": "Create open space in net and wall game practice tasks, with a long-handled implement, by varying force and direction, and moving an opponent from side to side."
+          },
+          {
+           "code": "7.2.2.2",
+           "text": "Select an offensive shot based on an opponent's location in net and wall game practice tasks. For example: Hit where the opponent is not."
+          },
+          {
+           "code": "7.2.3.1",
+           "text": "Vary the speed and trajectory of a shot based on the location of the object in relation to the target in small-sided target games."
+          },
+          {
+           "code": "7.2.4.1",
+           "text": "Use a variety of shots to hit into open space in fielding and striking game practice tasks. For example: bunt, line drive, high arc."
+          }
+         ]
+        },
+        {
+         "id": "apply-knowledge-of-concepts-principles-strategie-3",
+         "title": "Apply knowledge of concepts, principles, strategies and tactics to movement and performance (3 of 3)",
+         "outcomes": [
+          {
+           "code": "7.2.4.2",
+           "text": "Analyze the correct defensive play based on the situation in fielding and striking practice tasks. For example: number of outs, position of runners."
+          },
+          {
+           "code": "7.2.5.1",
+           "text": "Identify and apply Newton's laws of motion to various individual-performance activities."
+          },
+          {
+           "code": "7.2.6.1",
+           "text": "Describe advanced skills and tactics needed for participation in an outdoor activity."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "demonstrate-the-knowledge-and-skills-to-achieve-",
+     "title": "Demonstrate the knowledge and skills to achieve and maintain a health-enhancing level of physical activity and fitness",
+     "topics": [
+      {
+       "id": "demonstrate-the-knowledge-and-skills-to-achieve-",
+       "title": "Demonstrate the knowledge and skills to achieve and maintain a health-enhancing level of physical activity and fitness",
+       "subtopics": [
+        {
+         "id": "demonstrate-the-knowledge-and-skills-to-achieve-",
+         "title": "Demonstrate the knowledge and skills to achieve and maintain a health-enhancing level of physical activity and fitness (1 of 3)",
+         "outcomes": [
+          {
+           "code": "7.3.1.1",
+           "text": "Describe solutions for reducing barriers related to maintaining a physically active lifestyle."
+          },
+          {
+           "code": "7.3.2.1",
+           "text": "Participate in a variety of strength- and endurance-fitness activities using technology or media. For example: Pilates, resistance training, body-weight training and light free-weight training."
+          },
+          {
+           "code": "7.3.2.2",
+           "text": "Participate in moderate to vigorous muscle- and bone-strengthening physical activity at least three times a week."
+          },
+          {
+           "code": "7.3.3.1",
+           "text": "Define the components of skill-related fitness."
+          },
+          {
+           "code": "7.3.3.2",
+           "text": "Differentiate between dynamic and static stretches."
+          }
+         ]
+        },
+        {
+         "id": "demonstrate-the-knowledge-and-skills-to-achieve--2",
+         "title": "Demonstrate the knowledge and skills to achieve and maintain a health-enhancing level of physical activity and fitness (2 of 3)",
+         "outcomes": [
+          {
+           "code": "7.3.3.3",
+           "text": "Describe the specificity principle and how it affects fitness."
+          },
+          {
+           "code": "7.3.3.4",
+           "text": "Design a warm-up and cool-down regimen for a self-selected physical activity."
+          },
+          {
+           "code": "7.3.3.5",
+           "text": "Monitor physical activity intensity by comparing and contrasting heart rate responses through a variety of physical activities."
+          },
+          {
+           "code": "7.3.3.6",
+           "text": "Describe how muscles (muscular system) pull on bones (skeletal system) to create movement in pairs by relaxing and contracting."
+          },
+          {
+           "code": "7.3.4.1",
+           "text": "Use SMART goals, based on the results of a health-related fitness assessment, to design, implement, and modify a maintenance or remediation program for two health-related fitness areas. For example: SMART goals are specific and strategic, measurable, attainable, results-based and time-based."
+          }
+         ]
+        },
+        {
+         "id": "demonstrate-the-knowledge-and-skills-to-achieve--3",
+         "title": "Demonstrate the knowledge and skills to achieve and maintain a health-enhancing level of physical activity and fitness (3 of 3)",
+         "outcomes": [
+          {
+           "code": "7.3.4.2",
+           "text": "Maintain a physical activity and nutrition log for at least two weeks and reflect on activity levels and nutrition as documented in the log."
+          },
+          {
+           "code": "7.3.5.1",
+           "text": "Develop strategies for balancing healthy food, snacks and water intake, along with daily physical activity."
+          },
+          {
+           "code": "7.3.6.1",
+           "text": "Identify several strategies for dealing with stress. For example: deep breathing, guided visualization, aerobic exercise."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "exhibit-responsible-personal-and-social-behavior",
+     "title": "Exhibit responsible personal and social behavior that respects self and others",
+     "topics": [
+      {
+       "id": "exhibit-responsible-personal-and-social-behavior",
+       "title": "Exhibit responsible personal and social behavior that respects self and others",
+       "subtopics": [
+        {
+         "id": "exhibit-responsible-personal-and-social-behavior",
+         "title": "Exhibit responsible personal and social behavior that respects self and others (1 of 2)",
+         "outcomes": [
+          {
+           "code": "7.4.1.1",
+           "text": "Accept differences among classmates in physical development, maturation, and varying skill levels by providing encouragement."
+          },
+          {
+           "code": "7.4.1.2",
+           "text": "Demonstrate both intrinsic and extrinsic motivation by selecting opportunities to participate in physical activity outside of class."
+          },
+          {
+           "code": "7.4.2.1",
+           "text": "Provide corrective feedback to a peer using teacher-generated guidelines and incorporating appropriate tone and communication skills."
+          },
+          {
+           "code": "7.4.3.1",
+           "text": "Problem-solve with a small group of classmates during small group initiatives or game play."
+          }
+         ]
+        },
+        {
+         "id": "exhibit-responsible-personal-and-social-behavior-2",
+         "title": "Exhibit responsible personal and social behavior that respects self and others (2 of 2)",
+         "outcomes": [
+          {
+           "code": "7.4.4.1",
+           "text": "Apply rules and etiquette while self-monitoring personal behavior during physical activities."
+          },
+          {
+           "code": "7.4.5.1",
+           "text": "Independently use physical activity and fitness equipment appropriately and safely. For example: fitness equipment, sport equipment, heart rate monitors"
+          },
+          {
+           "code": "7.4.5.2",
+           "text": "Analyze a physical activity situation and make adjustments to ensure the safety of self and others."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "recognize-the-value-of-physical-activity-for-hea",
+     "title": "Recognize the value of physical activity for health, enjoyment, challenge, self-expression, and/or social interaction",
+     "topics": [
+      {
+       "id": "recognize-the-value-of-physical-activity-for-hea",
+       "title": "Recognize the value of physical activity for health, enjoyment, challenge, self-expression, and/or social interaction",
+       "subtopics": [
+        {
+         "id": "recognize-the-value-of-physical-activity-for-hea",
+         "title": "Recognize the value of physical activity for health, enjoyment, challenge, self-expression, and/or social interaction",
+         "outcomes": [
+          {
+           "code": "7.5.1.1",
+           "text": "Chart and analyze personal screen time behaviors."
+          },
+          {
+           "code": "7.5.1.2",
+           "text": "Explain the positive impact participation in physical activity has on one's physical, emotional, social and mental health."
+          },
+          {
+           "code": "7.5.2.1",
+           "text": "Generate positive statements such as offering suggestions or assistance, leading or following others, and providing possible solutions when faced with a group challenge."
+          },
+          {
+           "code": "7.5.3.1",
+           "text": "Describe how self-selected physical activities create enjoyment."
+          },
+          {
+           "code": "7.5.3.2",
+           "text": "Explain how the relationship between physical activity and self-expression can lead to lifelong enjoyment of physical activity."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "8",
+   "units": [
+    {
+     "id": "demonstrates-competency-in-a-variety-of-motor-sk",
+     "title": "Demonstrates competency in a variety of motor skills and movement patterns",
+     "topics": [
+      {
+       "id": "demonstrates-competency-in-a-variety-of-motor-sk",
+       "title": "Demonstrates competency in a variety of motor skills and movement patterns",
+       "subtopics": [
+        {
+         "id": "demonstrates-competency-in-a-variety-of-motor-sk",
+         "title": "Demonstrates competency in a variety of motor skills and movement patterns (1 of 5)",
+         "outcomes": [
+          {
+           "code": "8.1.1.1",
+           "text": "Demonstrate a movement sequence using correct rhythm and timing as an individual or in a group."
+          },
+          {
+           "code": "8.1.2.1",
+           "text": "Throw for distance, accuracy and speed appropriate to the activity during invasion or fielding and striking small-sided games."
+          },
+          {
+           "code": "8.1.2.2",
+           "text": "Catch using an implement during invasion or fielding and striking small-sided games."
+          },
+          {
+           "code": "8.1.3.1",
+           "text": "Pass and receive with competency using an implement in combination with locomotor patterns of running and change of direction and speed in small-sided invasion games. For example: floor hockey, field hockey, ice hockey, lacrosse (traditional or American)."
+          },
+          {
+           "code": "8.1.3.2",
+           "text": "Throw a lead pass to a moving partner off a dribble or pass in small-sided invasion games."
+          }
+         ]
+        },
+        {
+         "id": "demonstrates-competency-in-a-variety-of-motor-sk-2",
+         "title": "Demonstrates competency in a variety of motor skills and movement patterns (2 of 5)",
+         "outcomes": [
+          {
+           "code": "8.1.3.3",
+           "text": "Execute at least two of the following skills to create open space during small-sided invasion games: pivots, fakes, jab step, give and go, and screens."
+          },
+          {
+           "code": "8.1.3.4",
+           "text": "Dribble with preferred and non-preferred hands using a change of speed and direction in small-sided invasion games."
+          },
+          {
+           "code": "8.1.3.5",
+           "text": "Foot-dribble or dribble using an implement with control, changing speed and direction in small-sided invasion games."
+          },
+          {
+           "code": "8.1.3.6",
+           "text": "Shoot on goal for accuracy, using a long-handled implement, in small-sided invasion games. For example: floor hockey, field hockey, ice hockey, lacrosse (traditional or American)."
+          },
+          {
+           "code": "8.1.3.7",
+           "text": "Drop-step in the direction of the pass during player-to-player defense in small-sided invasion games."
+          }
+         ]
+        },
+        {
+         "id": "demonstrates-competency-in-a-variety-of-motor-sk-3",
+         "title": "Demonstrates competency in a variety of motor skills and movement patterns (3 of 5)",
+         "outcomes": [
+          {
+           "code": "8.1.4.1",
+           "text": "Execute a legal underhand serve for distance and accuracy in net and wall games. For example: badminton, pickleball, volleyball."
+          },
+          {
+           "code": "8.1.4.2",
+           "text": "Strike consistently using an overhand pattern for accuracy in small-sided net and wall games. For example: badminton, handball, tennis."
+          },
+          {
+           "code": "8.1.4.3",
+           "text": "Demonstrate forehand and backhand strokes using a short- or long-handled implement for accuracy in small-sided net and wall games. For example: pickleball, tennis, badminton, paddleball."
+          },
+          {
+           "code": "8.1.4.4",
+           "text": "Forehand and backhand volley, with control, using a short-handled implement during small-sided net and wall games."
+          },
+          {
+           "code": "8.1.4.5",
+           "text": "Two-hand-volley (underhand and overhand) with control in a variety of small-sided net and wall games."
+          }
+         ]
+        },
+        {
+         "id": "demonstrates-competency-in-a-variety-of-motor-sk-4",
+         "title": "Demonstrates competency in a variety of motor skills and movement patterns (4 of 5)",
+         "outcomes": [
+          {
+           "code": "8.1.5.1",
+           "text": "Execute consistently an underhand roll or toss with control in a target game. For example: bowling, bocce."
+          },
+          {
+           "code": "8.1.5.2",
+           "text": "Strike, using an implement and a stationary object for accuracy and distance in a variety of target games. For example: croquet, shuffleboard, golf."
+          },
+          {
+           "code": "8.1.6.1",
+           "text": "Strike a pitched ball, using an implement, to open space in a variety of small-sided fielding and striking games."
+          },
+          {
+           "code": "8.1.6.2",
+           "text": "Catch from different trajectories maintaining balance while transitioning to the next skill in small-sided fielding and striking games."
+          },
+          {
+           "code": "8.1.7.1",
+           "text": "Demonstrate correct technique for basic skills in at least two outdoor activities."
+          }
+         ]
+        },
+        {
+         "id": "demonstrates-competency-in-a-variety-of-motor-sk-5",
+         "title": "Demonstrates competency in a variety of motor skills and movement patterns (5 of 5)",
+         "outcomes": [
+          {
+           "code": "8.1.8.1",
+           "text": "Demonstrate correct technique for basic skills in at least two individual-performance activities."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "apply-knowledge-of-concepts-principles-strategie",
+     "title": "Apply knowledge of concepts, principles, strategies and tactics to movement and performance",
+     "topics": [
+      {
+       "id": "apply-knowledge-of-concepts-principles-strategie",
+       "title": "Apply knowledge of concepts, principles, strategies and tactics to movement and performance",
+       "subtopics": [
+        {
+         "id": "apply-knowledge-of-concepts-principles-strategie",
+         "title": "Apply knowledge of concepts, principles, strategies and tactics to movement and performance (1 of 3)",
+         "outcomes": [
+          {
+           "code": "8.2.1.1",
+           "text": "Execute at least three of the following offensive tactics in invasion game practice tasks to create open space: move to create open space on and off the ball; use a variety of passes, fakes, and pathways; and give and go."
+          },
+          {
+           "code": "8.2.1.2",
+           "text": "Reduce open space on defense, in an invasion game practice task, by staying on the goal side of the offensive player and reducing the distance to him/her (third-party perspective)."
+          },
+          {
+           "code": "8.2.1.3",
+           "text": "Reduces open space, in an invasion game practice task, by not allowing the catch (denial) and anticipating the speed of the object or person for the purpose of interception or deflection."
+          },
+          {
+           "code": "8.2.1.4",
+           "text": "Transition from offense to defense, or defense to offense, in an invasion game practice task, by recovering quickly, communicating with teammates and capitalizing on the advantage."
+          }
+         ]
+        },
+        {
+         "id": "apply-knowledge-of-concepts-principles-strategie-2",
+         "title": "Apply knowledge of concepts, principles, strategies and tactics to movement and performance (2 of 3)",
+         "outcomes": [
+          {
+           "code": "8.2.2.1",
+           "text": "Create open space in net and wall game practice tasks, with either a long- or short-handled implement, by varying force and direction, and moving an opponent forward and back and from side to side."
+          },
+          {
+           "code": "8.2.2.2",
+           "text": "Vary placement, force and timing of a return, in net and wall game practice tasks to prevent anticipation by opponent."
+          },
+          {
+           "code": "8.2.3.1",
+           "text": "Vary the speed, force and trajectory of the shot based on the location of the object in relation to the target in small-sided target games."
+          },
+          {
+           "code": "8.2.4.1",
+           "text": "Identify sacrifice situations and attempts to advance a teammate in small-sided fielding and striking games."
+          }
+         ]
+        },
+        {
+         "id": "apply-knowledge-of-concepts-principles-strategie-3",
+         "title": "Apply knowledge of concepts, principles, strategies and tactics to movement and performance (3 of 3)",
+         "outcomes": [
+          {
+           "code": "8.2.4.2",
+           "text": "Reduce open spaces in the field by working with teammates to maximize coverage in small-sided fielding and striking games."
+          },
+          {
+           "code": "8.2.5.1",
+           "text": "Describe and apply mechanical advantage(s) for a variety of individual-performance activities."
+          },
+          {
+           "code": "8.2.6.1",
+           "text": "Describe basic and advanced skills and tactics needed for participation in two outdoor activities."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "demonstrate-the-knowledge-and-skills-to-achieve-",
+     "title": "Demonstrate the knowledge and skills to achieve and maintain a health-enhancing level of physical activity and fitness",
+     "topics": [
+      {
+       "id": "demonstrate-the-knowledge-and-skills-to-achieve-",
+       "title": "Demonstrate the knowledge and skills to achieve and maintain a health-enhancing level of physical activity and fitness",
+       "subtopics": [
+        {
+         "id": "demonstrate-the-knowledge-and-skills-to-achieve-",
+         "title": "Demonstrate the knowledge and skills to achieve and maintain a health-enhancing level of physical activity and fitness (1 of 3)",
+         "outcomes": [
+          {
+           "code": "8.3.1.1",
+           "text": "Analyze the impact a physically active lifestyle has on physical and mental health."
+          },
+          {
+           "code": "8.3.2.1",
+           "text": "Participate in a variety of self-selected aerobic-fitness activities using technology. For example: walking, jogging, biking, skating, dancing and swimming."
+          },
+          {
+           "code": "8.3.2.2",
+           "text": "Participate in moderate to vigorous aerobic and/or muscle- and bone-strengthening physical activity for at least sixty minutes per day at least five days a week."
+          },
+          {
+           "code": "8.3.3.1",
+           "text": "Analyze a physical activity by identifying its skill-related components."
+          },
+          {
+           "code": "8.3.3.2",
+           "text": "Apply appropriate stretching techniques for all major muscle groups."
+          }
+         ]
+        },
+        {
+         "id": "demonstrate-the-knowledge-and-skills-to-achieve--2",
+         "title": "Demonstrate the knowledge and skills to achieve and maintain a health-enhancing level of physical activity and fitness (2 of 3)",
+         "outcomes": [
+          {
+           "code": "8.3.3.3",
+           "text": "Apply the overload and specificity principles in preparing a personal workout."
+          },
+          {
+           "code": "8.3.3.4",
+           "text": "Design and implement a warm-up and cool down regimen for a self-selected physical activity."
+          },
+          {
+           "code": "8.3.3.5",
+           "text": "Predict and modify activities which influence the target heart rate to meet desired goal and outcomes."
+          },
+          {
+           "code": "8.3.3.6",
+           "text": "Explain how body systems interact with one another during physical activity. For example: blood transports nutrients from the digestive system and oxygen from the respiratory system during physical activity."
+          },
+          {
+           "code": "8.3.4.1",
+           "text": "Use SMART goals, based on the results of a health-related fitness assessment, to design, implement, and modify a maintenance or remediation program for three health-related fitness areas. For example: SMART goals are specific and strategic, measurable, attainable, results-based and time-based."
+          }
+         ]
+        },
+        {
+         "id": "demonstrate-the-knowledge-and-skills-to-achieve--3",
+         "title": "Demonstrate the knowledge and skills to achieve and maintain a health-enhancing level of physical activity and fitness (3 of 3)",
+         "outcomes": [
+          {
+           "code": "8.3.4.2",
+           "text": "Design and implement a program to improve one's physical activity levels and nutrition."
+          },
+          {
+           "code": "8.3.5.1",
+           "text": "Describe the relationship between poor nutrition and health risk factors."
+          },
+          {
+           "code": "8.3.6.1",
+           "text": "Demonstrate several strategies for dealing with stress."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "exhibit-responsible-personal-and-social-behavior",
+     "title": "Exhibit responsible personal and social behavior that respects self and others",
+     "topics": [
+      {
+       "id": "exhibit-responsible-personal-and-social-behavior",
+       "title": "Exhibit responsible personal and social behavior that respects self and others",
+       "subtopics": [
+        {
+         "id": "exhibit-responsible-personal-and-social-behavior",
+         "title": "Exhibit responsible personal and social behavior that respects self and others (1 of 2)",
+         "outcomes": [
+          {
+           "code": "8.4.1.1",
+           "text": "Establish guidelines for resolving conflict and apply them to respond appropriately to classmates' ethical and unethical behavior during physical activity."
+          },
+          {
+           "code": "8.4.1.2",
+           "text": "Use effective self-monitoring skills to incorporate opportunities for physical activity in and outside of class."
+          },
+          {
+           "code": "8.4.2.1",
+           "text": "Provide encouragement and constructive feedback to peers without prompting from the teacher."
+          },
+          {
+           "code": "8.4.3.1",
+           "text": "Cooperate and problem-solve with classmates in large-group initiatives or game play."
+          }
+         ]
+        },
+        {
+         "id": "exhibit-responsible-personal-and-social-behavior-2",
+         "title": "Exhibit responsible personal and social behavior that respects self and others (2 of 2)",
+         "outcomes": [
+          {
+           "code": "8.4.4.1",
+           "text": "Monitor behaviors of self and others aligned to the rules and etiquette of physical activities."
+          },
+          {
+           "code": "8.4.5.1",
+           "text": "Independently use physical activity and fitness equipment appropriately, and identify specific safety concerns associated with the activity. For example: weight room equipment, cardiorespiratory equipment, sport equipment, fitness apps."
+          },
+          {
+           "code": "8.4.5.2",
+           "text": "Develop safety protocols for two or more outdoor activities."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "recognize-the-value-of-physical-activity-for-hea",
+     "title": "Recognize the value of physical activity for health, enjoyment, challenge, self-expression, and/or social interaction",
+     "topics": [
+      {
+       "id": "recognize-the-value-of-physical-activity-for-hea",
+       "title": "Recognize the value of physical activity for health, enjoyment, challenge, self-expression, and/or social interaction",
+       "subtopics": [
+        {
+         "id": "recognize-the-value-of-physical-activity-for-hea",
+         "title": "Recognize the value of physical activity for health, enjoyment, challenge, self-expression, and/or social interaction",
+         "outcomes": [
+          {
+           "code": "8.5.1.1",
+           "text": "Explain how the over-use of technology impacts health."
+          },
+          {
+           "code": "8.5.1.2",
+           "text": "Analyze participation in physical activity and determine the personal impact it has on one's physical, emotional, social and mental health."
+          },
+          {
+           "code": "8.5.2.1",
+           "text": "Develop a plan of action and make appropriate decisions based on that plan when faced with an individual or group challenge."
+          },
+          {
+           "code": "8.5.3.1",
+           "text": "Analyze how enjoyment could be increased in self-selected physical activities."
+          },
+          {
+           "code": "8.5.3.2",
+           "text": "Identify and participate in a physical activity that provides opportunities for enjoyment and explain how it could lead to lifelong enjoyment."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "9-12",
+   "units": [
+    {
+     "id": "demonstrates-competency-in-a-variety-of-motor-sk",
+     "title": "Demonstrates competency in a variety of motor skills and movement patterns",
+     "topics": [
+      {
+       "id": "demonstrates-competency-in-a-variety-of-motor-sk",
+       "title": "Demonstrates competency in a variety of motor skills and movement patterns",
+       "subtopics": [
+        {
+         "id": "demonstrates-competency-in-a-variety-of-motor-sk",
+         "title": "Demonstrates competency in a variety of motor skills and movement patterns",
+         "outcomes": [
+          {
+           "code": "9.1.1.1",
+           "text": "Demonstrate competency and refine activity-specific movement skills in two of the following lifetime activity categories: individual performance activities, outdoor pursuits."
+          },
+          {
+           "code": "9.1.1.2",
+           "text": "Demonstrate competency and refine activity-specific movement skills in two of the following lifetime activity categories: net and wall games, target games, aquatics."
+          },
+          {
+           "code": "9.1.2.1",
+           "text": "Demonstrate competency in one or more forms of dance. For example: ballroom, ballet, cultural dances, hip hop, modern, social dances, tap."
+          },
+          {
+           "code": "9.1.3.1",
+           "text": "Demonstrate competency in specialized skills in each of the health-related fitness components: muscular strength, muscular endurance, flexibility, cardiorespiratory fitness."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "apply-knowledge-of-concepts-principles-strategie",
+     "title": "Apply knowledge of concepts, principles, strategies and tactics to movement and performance",
+     "topics": [
+      {
+       "id": "apply-knowledge-of-concepts-principles-strategie",
+       "title": "Apply knowledge of concepts, principles, strategies and tactics to movement and performance",
+       "subtopics": [
+        {
+         "id": "apply-knowledge-of-concepts-principles-strategie",
+         "title": "Apply knowledge of concepts, principles, strategies and tactics to movement and performance",
+         "outcomes": [
+          {
+           "code": "9.2.1.1",
+           "text": "Apply terminology associated with exercise and participation in selected individual performance activities."
+          },
+          {
+           "code": "9.2.1.2",
+           "text": "Use movement concepts and principles (force, motion, rotation) to analyze and improve performance for a self-selected skill."
+          },
+          {
+           "code": "9.2.1.3",
+           "text": "Design a practice plan to improve performance for a self-selected skill and justify how the components of the plan will address the areas of concern."
+          },
+          {
+           "code": "9.2.1.4",
+           "text": "Analyze similarities and differences between various dance forms."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "demonstrate-the-knowledge-and-skills-to-achieve-",
+     "title": "Demonstrate the knowledge and skills to achieve and maintain a health-enhancing level of physical activity and fitness",
+     "topics": [
+      {
+       "id": "demonstrate-the-knowledge-and-skills-to-achieve-",
+       "title": "Demonstrate the knowledge and skills to achieve and maintain a health-enhancing level of physical activity and fitness",
+       "subtopics": [
+        {
+         "id": "demonstrate-the-knowledge-and-skills-to-achieve-",
+         "title": "Demonstrate the knowledge and skills to achieve and maintain a health-enhancing level of physical activity and fitness (1 of 4)",
+         "outcomes": [
+          {
+           "code": "9.3.1.1",
+           "text": "Explain the benefits of a physically active lifestyle as it relates to college or career productivity."
+          },
+          {
+           "code": "9.3.1.2",
+           "text": "Evaluate the validity of claims made by commercial products and programs pertaining to fitness and a healthy, active lifestyle."
+          },
+          {
+           "code": "9.3.1.3",
+           "text": "Apply technology and social media as tools to support a healthy, active lifestyle."
+          },
+          {
+           "code": "9.3.1.4",
+           "text": "Identify issues associated with exercising in heat, humidity and cold, and provide strategies for addressing the issues."
+          },
+          {
+           "code": "9.3.1.5",
+           "text": "Evaluate physical activities that can be pursued in the local environment for their benefits, social support network, and participation requirements."
+          }
+         ]
+        },
+        {
+         "id": "demonstrate-the-knowledge-and-skills-to-achieve--2",
+         "title": "Demonstrate the knowledge and skills to achieve and maintain a health-enhancing level of physical activity and fitness (2 of 4)",
+         "outcomes": [
+          {
+           "code": "9.3.1.6",
+           "text": "Evaluate risks and safety factors that might affect physical activity preferences throughout the life cycle."
+          },
+          {
+           "code": "9.3.2.1",
+           "text": "Participate in moderate to vigorous aerobic or muscle- and bone-strengthening physical activity several times per week."
+          },
+          {
+           "code": "9.3.2.2",
+           "text": "Participate several times per week in a self-selected lifetime activity, dance, or fitness activity outside of the school day."
+          },
+          {
+           "code": "9.3.3.1",
+           "text": "Explain appropriate techniques for resistance training machines, free weights, or body-weight exercises."
+          },
+          {
+           "code": "9.3.3.2",
+           "text": "Analyze short- and long-term physiological responses to regular physical activity."
+          }
+         ]
+        },
+        {
+         "id": "demonstrate-the-knowledge-and-skills-to-achieve--3",
+         "title": "Demonstrate the knowledge and skills to achieve and maintain a health-enhancing level of physical activity and fitness (3 of 4)",
+         "outcomes": [
+          {
+           "code": "9.3.3.3",
+           "text": "Differentiate among types of strength exercises (isometric, concentric, eccentric) and stretching exercises (static, dynamic) for personal fitness development."
+          },
+          {
+           "code": "9.3.3.4",
+           "text": "Calculate target heart rate and apply that information to a personal fitness plan."
+          },
+          {
+           "code": "9.3.3.5",
+           "text": "Adjust pacing to keep one's heart rate in the target zone using available technology to self-monitor aerobic intensity."
+          },
+          {
+           "code": "9.3.4.1",
+           "text": "Create a behavior modification plan that enhances a healthy active lifestyle in a college or career setting."
+          },
+          {
+           "code": "9.3.4.2",
+           "text": "Design a fitness program, including all components of health-related fitness, for a college student or an employee in the learner's chosen field of work."
+          }
+         ]
+        },
+        {
+         "id": "demonstrate-the-knowledge-and-skills-to-achieve--4",
+         "title": "Demonstrate the knowledge and skills to achieve and maintain a health-enhancing level of physical activity and fitness (4 of 4)",
+         "outcomes": [
+          {
+           "code": "9.3.5.1",
+           "text": "Design a nutritional plan to maintain an appropriate energy balance that supports a healthy active lifestyle for a college student or an employee in the learner's chosen field of work."
+          },
+          {
+           "code": "9.3.6.1",
+           "text": "Explain how stress-management strategies in physical activity settings can reduce stress and effect health. For example: physical activities such as aerobic exercise, deep breathing, meditation, mental imagery, relaxation techniques."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "exhibit-responsible-personal-and-social-behavior",
+     "title": "Exhibit responsible personal and social behavior that respects self and others",
+     "topics": [
+      {
+       "id": "exhibit-responsible-personal-and-social-behavior",
+       "title": "Exhibit responsible personal and social behavior that respects self and others",
+       "subtopics": [
+        {
+         "id": "exhibit-responsible-personal-and-social-behavior",
+         "title": "Exhibit responsible personal and social behavior that respects self and others",
+         "outcomes": [
+          {
+           "code": "9.4.1.1",
+           "text": "Employ effective self-management skills to analyze barriers and appropriately modify physical activity patterns as needed."
+          },
+          {
+           "code": "9.4.2.1",
+           "text": "Exhibit proper etiquette, respect for others, and teamwork while engaging in physical activity or social dance."
+          },
+          {
+           "code": "9.4.3.1",
+           "text": "Apply positive communication skills and strategies to the completion of a group task in a physical activity setting."
+          },
+          {
+           "code": "9.4.3.2",
+           "text": "Solve problems and think critically in physical activity or dance settings both as an individual and in groups."
+          },
+          {
+           "code": "9.4.4.1",
+           "text": "Apply best practices for safe participation in physical activity, exercise or dance. For example: injury prevention, proper alignment, hydration, use of equipment, implementation of rules, sun protection."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "recognize-the-value-of-physical-activity-for-hea",
+     "title": "Recognize the value of physical activity for health, enjoyment, challenge, self-expression, and/or social interaction",
+     "topics": [
+      {
+       "id": "recognize-the-value-of-physical-activity-for-hea",
+       "title": "Recognize the value of physical activity for health, enjoyment, challenge, self-expression, and/or social interaction",
+       "subtopics": [
+        {
+         "id": "recognize-the-value-of-physical-activity-for-hea",
+         "title": "Recognize the value of physical activity for health, enjoyment, challenge, self-expression, and/or social interaction",
+         "outcomes": [
+          {
+           "code": "9.5.1.1",
+           "text": "Analyze the health benefits of a self-selected physical activity."
+          },
+          {
+           "code": "9.5.2.1",
+           "text": "Choose an appropriate level of challenge to experience success and desire to participate in a self-selected physical activity."
+          },
+          {
+           "code": "9.5.3.1",
+           "text": "Select and participate in physical activities that meet the need for self-expression and enjoyment."
+          },
+          {
+           "code": "9.5.4.1",
+           "text": "Identify the opportunity for social support in a self-selected physical activity or dance."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "build": {
+  "builtAt": "2026-10-14T16:20:44.789Z",
+  "model": "none",
+  "usd": 0,
+  "expectedCodes": 481,
+  "coverage": 1,
+  "missingCodes": [],
+  "counts": {
+   "grades": 10,
+   "units": 50,
+   "topics": 50,
+   "subtopics": 110,
+   "outcomes": 481
+  },
+  "warnings": []
+ }
+}

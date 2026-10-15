@@ -1,0 +1,3408 @@
+{
+ "id": "us-or-social-studies",
+ "region": "US",
+ "framework": "Oregon state academic standards: Social Studies",
+ "board": null,
+ "qualification": "K-12",
+ "subject": "Social Studies",
+ "syllabusCode": null,
+ "gradeSystem": "grade",
+ "source": {
+  "urls": [
+   "https://api.commonstandardsproject.com/api/v1/jurisdictions/3C4329D21BCF435C880282CBAAE12AF1",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/8C8B1113FB514B9B9CD6AFA551816396",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/8F3424AFE37E4A4D8DB6E5A00698EE95",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/694F05735DF145B2A49745DDAB6B6080",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/9D4A4BB33877438CA6525E8558B69601",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/0686B4C3D7B5426ABFB85CDE00BD2B1C",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/C0555DF0947F4A72BCDCCECC28AFB3EF",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/4EC20A2E1A514CE7BAB50D82B5251E99",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/F9DF2EACA1EE487BB7F61FF294E9C5F6",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/7EFA3B37C4814EF3B108E4E3D4A2DCC9",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/2C0B62FF2DF44D2CBB92D1DB0EDB032B",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/11B0979C3D11440AAE04D68307CFCF58",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/3F39FBD58C4F4C78A9DA85E3C21E6188",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/A450CECEF1424991ACD2C72ADA37CF81"
+  ],
+  "publisher": "Oregon state education agency (machine-readable via Common Standards Project / ASN)",
+  "licence": "CC BY 4.0 US, Common Curriculum, Inc.",
+  "firstExam": "2024"
+ },
+ "grades": [
+  {
+   "grade": "K",
+   "units": [
+    {
+     "id": "civics",
+     "title": "Civics",
+     "topics": [
+      {
+       "id": "political-institutions",
+       "title": "Political Institutions",
+       "subtopics": [
+        {
+         "id": "political-institutions",
+         "title": "Political Institutions",
+         "outcomes": [
+          {
+           "code": "K.C.PI.1",
+           "text": "Explain the goals and purpose of public school."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "identity-roles-and-responsibilities",
+       "title": "Identity, Roles, and Responsibilities",
+       "subtopics": [
+        {
+         "id": "identity-roles-and-responsibilities",
+         "title": "Identity, Roles, and Responsibilities",
+         "outcomes": [
+          {
+           "code": "K.C.IR.2",
+           "text": "Recognize and develop an understanding of the components of a person’s identity including race, gender, family, ethnicity, culture, religion, and ability."
+          },
+          {
+           "code": "K.C.IR.3",
+           "text": "Identify the social skills necessary for healthy and respectful dialogue and relationships."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "democratic-principles",
+       "title": "Democratic Principles",
+       "subtopics": [
+        {
+         "id": "democratic-principles",
+         "title": "Democratic Principles",
+         "outcomes": [
+          {
+           "code": "K.C.DP.4",
+           "text": "Explain how words and actions affect others and explore what causes people to act in caring or hurtful ways."
+          },
+          {
+           "code": "K.C.DP.5",
+           "text": "Recognize holidays as special days that may celebrate democratic values, have religious significance, and recognize noteworthy events or people in history."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "civic-engagement",
+       "title": "Civic Engagement",
+       "subtopics": [
+        {
+         "id": "civic-engagement",
+         "title": "Civic Engagement",
+         "outcomes": [
+          {
+           "code": "K.C.CE.6",
+           "text": "Explain and demonstrate how rules can reduce conflict, address unfairness, and promote fairness in different settings and cultures."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "geography",
+     "title": "Geography",
+     "topics": [
+      {
+       "id": "geographic-reasoning",
+       "title": "Geographic Reasoning",
+       "subtopics": [
+        {
+         "id": "geographic-reasoning",
+         "title": "Geographic Reasoning",
+         "outcomes": [
+          {
+           "code": "K.G.GR.1",
+           "text": "Identify, compare, and contrast pictures, maps, and globes."
+          },
+          {
+           "code": "K.G.GR.2",
+           "text": "Create a representation of where you live, work, and play."
+          },
+          {
+           "code": "K.G.GR.3",
+           "text": "Use terms related to location, direction, and distance."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "migration-and-movement",
+       "title": "Migration and Movement",
+       "subtopics": [
+        {
+         "id": "migration-and-movement",
+         "title": "Migration and Movement",
+         "outcomes": [
+          {
+           "code": "K.G.MM.4",
+           "text": "Identify the migration stories of people to and within the local community/neighborhood."
+          },
+          {
+           "code": "K.G.MM.5",
+           "text": "Use maps to locate, identify, and describe places of importance to self, family, school, and culture."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "human-interaction-and-interconnection",
+       "title": "Human Interaction and Interconnection",
+       "subtopics": [
+        {
+         "id": "human-interaction-and-interconnection",
+         "title": "Human Interaction and Interconnection",
+         "outcomes": [
+          {
+           "code": "K.G.HI.6",
+           "text": "Compare and contrast the diverse aspects of culture represented in the community, such as individuals, events, songs, symbols, and community celebrations."
+          },
+          {
+           "code": "K.G.HI.7",
+           "text": "Identify and begin to understand ways humans interact with their environment"
+          },
+          {
+           "code": "K.G.HI.8",
+           "text": "Explain the influence of seasonal change on human activities."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "economics",
+     "title": "Economics",
+     "topics": [
+      {
+       "id": "earning-saving-and-spending",
+       "title": "Earning, Saving, and Spending",
+       "subtopics": [
+        {
+         "id": "earning-saving-and-spending",
+         "title": "Earning, Saving, and Spending",
+         "outcomes": [
+          {
+           "code": "K.E.ES.1",
+           "text": "Identify denominations of US money and explain uses for money."
+          },
+          {
+           "code": "K.E.ES.2",
+           "text": "Give examples of different jobs and volunteer positions in communities."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "incentives-choice-and-consumer-behavior",
+       "title": "Incentives, Choice, and Consumer Behavior",
+       "subtopics": [
+        {
+         "id": "incentives-choice-and-consumer-behavior",
+         "title": "Incentives, Choice, and Consumer Behavior",
+         "outcomes": [
+          {
+           "code": "K.E.IC.3",
+           "text": "Provide examples of goods and services people purchase with the money they earn."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "history",
+     "title": "History",
+     "topics": [
+      {
+       "id": "continuity-and-change-h-ch",
+       "title": "Continuity and Change (H.CH)",
+       "subtopics": [
+        {
+         "id": "continuity-and-change-h-ch",
+         "title": "Continuity and Change (H.CH)",
+         "outcomes": [
+          {
+           "code": "K.H.CH.1",
+           "text": "Recognize that events happen in sequential order."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "conflict-and-cooperation-h-cc",
+       "title": "Conflict and Cooperation (H.CC)",
+       "subtopics": [
+        {
+         "id": "conflict-and-cooperation-h-cc",
+         "title": "Conflict and Cooperation (H.CC)",
+         "outcomes": [
+          {
+           "code": "K.H.CC.2",
+           "text": "Identify examples in stories, biographies, or other primary and secondary sources of unfairness or injustice toward individuals or groups, and the changemakers working for a better world."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "cause-and-effect-h-ce",
+       "title": "Cause and Effect (H.CE)",
+       "subtopics": [
+        {
+         "id": "cause-and-effect-h-ce",
+         "title": "Cause and Effect (H.CE)",
+         "outcomes": [
+          {
+           "code": "K.H.CE.3",
+           "text": "Explain the cause and effect of an event in a community."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "communities-and-pluralism-h-cp",
+       "title": "Communities and Pluralism (H.CP)",
+       "subtopics": [
+        {
+         "id": "communities-and-pluralism-h-cp",
+         "title": "Communities and Pluralism (H.CP)",
+         "outcomes": [
+          {
+           "code": "K.H.CP.4",
+           "text": "Compare traditions and celebrations of people with different cultural backgrounds within a community."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "1",
+   "units": [
+    {
+     "id": "civics",
+     "title": "Civics",
+     "topics": [
+      {
+       "id": "political-institutions-c-pi",
+       "title": "Political Institutions (C.PI)",
+       "subtopics": [
+        {
+         "id": "political-institutions-c-pi",
+         "title": "Political Institutions (C.PI)",
+         "outcomes": [
+          {
+           "code": "1.C.PI.1",
+           "text": "Explain the purpose of local government."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "identity-roles-and-responsibilities-c-ir",
+       "title": "Identity, Roles, and Responsibilities (C.IR)",
+       "subtopics": [
+        {
+         "id": "identity-roles-and-responsibilities-c-ir",
+         "title": "Identity, Roles, and Responsibilities (C.IR)",
+         "outcomes": [
+          {
+           "code": "1.C.IR.2",
+           "text": "Identify, affirm, respect, and explain the diverse cultural heritage, songs, symbols, monuments, figures, and celebrations of the community and the diverse social and ethnic groups in Oregon and the United States of America."
+          },
+          {
+           "code": "1.C.IR.3",
+           "text": "Discuss the benefits, expectations, and responsibilities of belonging to various types of groups."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "democratic-principles-c-dp",
+       "title": "Democratic Principles (C.DP)",
+       "subtopics": [
+        {
+         "id": "democratic-principles-c-dp",
+         "title": "Democratic Principles (C.DP)",
+         "outcomes": [
+          {
+           "code": "1.C.DP.4",
+           "text": "Define important concepts and values of civic life."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "civic-engagement-c-ce",
+       "title": "Civic Engagement (C.CE)",
+       "subtopics": [
+        {
+         "id": "civic-engagement-c-ce",
+         "title": "Civic Engagement (C.CE)",
+         "outcomes": [
+          {
+           "code": "1.C.CE.5",
+           "text": "Identify rules and describe the responsibilities of leaders and team members when participating in rule making and group activities."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "geography",
+     "title": "Geography",
+     "topics": [
+      {
+       "id": "geographic-reasoning-g-gr",
+       "title": "Geographic Reasoning (G.GR)",
+       "subtopics": [
+        {
+         "id": "geographic-reasoning-g-gr",
+         "title": "Geographic Reasoning (G.GR)",
+         "outcomes": [
+          {
+           "code": "1.G.GR.1",
+           "text": "Identify and construct maps representing familiar places utilizing information from legends and keys."
+          },
+          {
+           "code": "1.G.GR.2",
+           "text": "Locate and identify important locations in the community."
+          },
+          {
+           "code": "1.G.GR.3",
+           "text": "Locate and explain that a capital city is the center of government for a state or nation."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "migration-and-movement-g-mm",
+       "title": "Migration and Movement (G.MM)",
+       "subtopics": [
+        {
+         "id": "migration-and-movement-g-mm",
+         "title": "Migration and Movement (G.MM)",
+         "outcomes": [
+          {
+           "code": "1.G.MM.4",
+           "text": "Explain why and how people move to and within communities."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "human-interaction-and-interconnection-g-hi",
+       "title": "Human Interaction and Interconnection (G.HI)",
+       "subtopics": [
+        {
+         "id": "human-interaction-and-interconnection-g-hi",
+         "title": "Human Interaction and Interconnection (G.HI)",
+         "outcomes": [
+          {
+           "code": "1.G.HI.5",
+           "text": "Demonstrate understanding that people from various parts of the world can have diverse ways of living, customs, and languages and all deserve respect."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "human-environmental-interaction-g-he",
+       "title": "Human Environmental Interaction (G.HE)",
+       "subtopics": [
+        {
+         "id": "human-environmental-interaction-g-he",
+         "title": "Human Environmental Interaction (G.HE)",
+         "outcomes": [
+          {
+           "code": "1.G.HE.6",
+           "text": "Provide examples of local natural resources and describe how people use them."
+          },
+          {
+           "code": "1.G.HE.7",
+           "text": "Describe ways people modify their environment."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "economics",
+     "title": "Economics",
+     "topics": [
+      {
+       "id": "earning-saving-and-spending-e-es",
+       "title": "Earning, Saving, and Spending (E.ES)",
+       "subtopics": [
+        {
+         "id": "earning-saving-and-spending-e-es",
+         "title": "Earning, Saving, and Spending (E.ES)",
+         "outcomes": [
+          {
+           "code": "1.E.ES.1",
+           "text": "Identify sources of income."
+          },
+          {
+           "code": "1.E.ES.2",
+           "text": "Identify choices and decisions for various uses of money."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "incentives-choice-and-consumer-behavior-e-ic",
+       "title": "Incentives, Choice, and Consumer Behavior (E.IC)",
+       "subtopics": [
+        {
+         "id": "incentives-choice-and-consumer-behavior-e-ic",
+         "title": "Incentives, Choice, and Consumer Behavior (E.IC)",
+         "outcomes": [
+          {
+           "code": "1.E.IC.3",
+           "text": "Explain the difference between a need and a want."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "micro-and-macro-e-mi",
+       "title": "Micro and Macro (E.MI)",
+       "subtopics": [
+        {
+         "id": "micro-and-macro-e-mi",
+         "title": "Micro and Macro (E.MI)",
+         "outcomes": [
+          {
+           "code": "1.E.MI.4",
+           "text": "Describe how people are buyers (consumers) and sellers (producers)."
+          },
+          {
+           "code": "1.E.MI.5",
+           "text": "Identify, provide examples of, and distinguish places in communities that provide goods and services."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "specialization-trade-interdependence-e-st",
+       "title": "Specialization, Trade, & Interdependence (E.ST)",
+       "subtopics": [
+        {
+         "id": "specialization-trade-interdependence-e-st",
+         "title": "Specialization, Trade, & Interdependence (E.ST)",
+         "outcomes": [
+          {
+           "code": "1.E.ST.6",
+           "text": "Investigate how people can benefit themselves and others by developing specific skills, strengths, and goods."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "history",
+     "title": "History",
+     "topics": [
+      {
+       "id": "continuity-and-change-h-ch",
+       "title": "Continuity and Change (H.CH)",
+       "subtopics": [
+        {
+         "id": "continuity-and-change-h-ch",
+         "title": "Continuity and Change (H.CH)",
+         "outcomes": [
+          {
+           "code": "1.H.CH.1",
+           "text": "Recognize and document sequential patterns in seasonal events or firsthand experiences, using a calendar, words, and phrases relating to chronology and time."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "conflict-and-cooperation-h-cc",
+       "title": "Conflict and Cooperation (H.CC)",
+       "subtopics": [
+        {
+         "id": "conflict-and-cooperation-h-cc",
+         "title": "Conflict and Cooperation (H.CC)",
+         "outcomes": [
+          {
+           "code": "1.H.CC.2",
+           "text": "Describe the use of individual and group characteristics to divide, unite, and categorize racial, religious, ethnic, and social groups in ways that may be helpful or harmful."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "cause-and-effect-h-ce",
+       "title": "Cause and Effect (H.CE)",
+       "subtopics": [
+        {
+         "id": "cause-and-effect-h-ce",
+         "title": "Cause and Effect (H.CE)",
+         "outcomes": [
+          {
+           "code": "1.H.CE.3",
+           "text": "Use primary sources such oral histories or artifacts to develop a simple timeline of a family's history in sequential order."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "communities-and-pluralism-h-cp",
+       "title": "Communities and Pluralism (H.CP)",
+       "subtopics": [
+        {
+         "id": "communities-and-pluralism-h-cp",
+         "title": "Communities and Pluralism (H.CP)",
+         "outcomes": [
+          {
+           "code": "1.H.CP.4",
+           "text": "Examine and understand self-identity and how it fits with the identities of the family, school, and the local community."
+          },
+          {
+           "code": "1.H.CP.5",
+           "text": "Identify and explain various viewpoints, including those from historically marginalized or underrepresented groups and individuals within our community, regarding local matters."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "2",
+   "units": [
+    {
+     "id": "civics",
+     "title": "Civics",
+     "topics": [
+      {
+       "id": "political-institutions-c-pi",
+       "title": "Political Institutions (C.PI)",
+       "subtopics": [
+        {
+         "id": "political-institutions-c-pi",
+         "title": "Political Institutions (C.PI)",
+         "outcomes": [
+          {
+           "code": "2.C.PI.1",
+           "text": "Identify local education and civic leaders and describe their role and responsibilities."
+          },
+          {
+           "code": "2.C.PI.2",
+           "text": "Explain the selection of political leaders through voting and democratic elections."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "identity-roles-and-responsibilities-c-ir",
+       "title": "Identity, Roles, and Responsibilities (C.IR)",
+       "subtopics": [
+        {
+         "id": "identity-roles-and-responsibilities-c-ir",
+         "title": "Identity, Roles, and Responsibilities (C.IR)",
+         "outcomes": [
+          {
+           "code": "2.C.IR.3",
+           "text": "Describe and analyze the many ways students can affect their local community."
+          },
+          {
+           "code": "2.C.IR.4",
+           "text": "Explain that all people born in the United States are citizens, many people become citizens after moving to the United States from another country, and that all residents of the United States are members of the community with rights and responsibilities."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "democratic-principles-c-dp",
+       "title": "Democratic Principles (C.DP)",
+       "subtopics": [
+        {
+         "id": "democratic-principles-c-dp",
+         "title": "Democratic Principles (C.DP)",
+         "outcomes": [
+          {
+           "code": "2.C.DP.5",
+           "text": "Define, explain, and analyze different approaches to conflict resolution among individuals, groups, and communities."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "civic-engagement-c-ce",
+       "title": "Civic Engagement (C.CE)",
+       "subtopics": [
+        {
+         "id": "civic-engagement-c-ce",
+         "title": "Civic Engagement (C.CE)",
+         "outcomes": [
+          {
+           "code": "2.C.CE.6",
+           "text": "Compare the personal point of view with others’ perspectives when participating in rule setting and addressing disagreements over issues of fairness or injustice."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "geography",
+     "title": "Geography",
+     "topics": [
+      {
+       "id": "geographic-reasoning-g-gr",
+       "title": "Geographic Reasoning (G.GR)",
+       "subtopics": [
+        {
+         "id": "geographic-reasoning-g-gr",
+         "title": "Geographic Reasoning (G.GR)",
+         "outcomes": [
+          {
+           "code": "2.G.GR.1",
+           "text": "Use the information on maps and other geographic tools to locate, identify, and describe the physical and human features of the community."
+          },
+          {
+           "code": "2.G.GR.2",
+           "text": "Utilize maps and globes to investigate and identify the world’s physical geography."
+          },
+          {
+           "code": "2.G.GR.3",
+           "text": "Utilize maps and globes to investigate and identify the world’s political geography."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "migration-and-movement-g-mm",
+       "title": "Migration and Movement (G.MM)",
+       "subtopics": [
+        {
+         "id": "migration-and-movement-g-mm",
+         "title": "Migration and Movement (G.MM)",
+         "outcomes": [
+          {
+           "code": "2.G.MM.4",
+           "text": "Investigate the causes of regional and global migration."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "human-interaction-and-interconnection-g-hi",
+       "title": "Human Interaction and Interconnection (G.HI)",
+       "subtopics": [
+        {
+         "id": "human-interaction-and-interconnection-g-hi",
+         "title": "Human Interaction and Interconnection (G.HI)",
+         "outcomes": [
+          {
+           "code": "2.G.HI.5",
+           "text": "Explain how factors such as race, culture, religion, gender, indigeneity, and socioeconomic status contribute to identity."
+          },
+          {
+           "code": "2.G.HI.6",
+           "text": "Examine the group identities in a community and describe how a diversity of cultural elements can enrich it."
+          },
+          {
+           "code": "2.G.HI.7",
+           "text": "Compare and contrast the diverse aspects of culture represented in a community, such as individuals, events, songs, symbols, and celebrations."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "human-environmental-interaction-g-he",
+       "title": "Human Environmental Interaction (G.HE)",
+       "subtopics": [
+        {
+         "id": "human-environmental-interaction-g-he",
+         "title": "Human Environmental Interaction (G.HE)",
+         "outcomes": [
+          {
+           "code": "2.G.HE.8",
+           "text": "Explain and describe how humans either adapt to, or change, the environment to meet their needs for survival and living and why humans prefer to settle by rivers, bodies of water, and in or near certain landforms."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "economics",
+     "title": "Economics",
+     "topics": [
+      {
+       "id": "earning-saving-and-spending-e-es",
+       "title": "Earning, Saving, and Spending (E.ES)",
+       "subtopics": [
+        {
+         "id": "earning-saving-and-spending-e-es",
+         "title": "Earning, Saving, and Spending (E.ES)",
+         "outcomes": [
+          {
+           "code": "2.E.ES.1",
+           "text": "Explain why people save money and the various saving methods, such as saving at home or in a bank account, to help reach both short and long-term financial goals."
+          },
+          {
+           "code": "2.E.ES.2",
+           "text": "Explain why employers pay people for their work."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "micro-and-macro-economics-e-mi",
+       "title": "Micro and Macro Economics (E.MI)",
+       "subtopics": [
+        {
+         "id": "micro-and-macro-economics-e-mi",
+         "title": "Micro and Macro Economics (E.MI)",
+         "outcomes": [
+          {
+           "code": "2.E.MI.3",
+           "text": "Describe how examples of capital, human, and natural resources are related to goods and services."
+          },
+          {
+           "code": "2.E.MI.4",
+           "text": "Provide examples of exchanges between buyers (consumers) and sellers (producers) in the community."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "incentives-choice-and-consumer-behavior-e-ic",
+       "title": "Incentives, Choice, and Consumer Behavior (E.IC)",
+       "subtopics": [
+        {
+         "id": "incentives-choice-and-consumer-behavior-e-ic",
+         "title": "Incentives, Choice, and Consumer Behavior (E.IC)",
+         "outcomes": [
+          {
+           "code": "2.E.IC.5",
+           "text": "Give examples of choices people make about buying goods and services"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "specialization-trade-and-interdependence-e-st",
+       "title": "Specialization, Trade, and Interdependence (E.ST)",
+       "subtopics": [
+        {
+         "id": "specialization-trade-and-interdependence-e-st",
+         "title": "Specialization, Trade, and Interdependence (E.ST)",
+         "outcomes": [
+          {
+           "code": "2.E.ST.6",
+           "text": "Explain why people specialize in producing goods and services."
+          },
+          {
+           "code": "2.E.ST.7",
+           "text": "Identify resources as renewable and non-renewable."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "history",
+     "title": "History",
+     "topics": [
+      {
+       "id": "continuity-and-change-h-ch",
+       "title": "Continuity and Change (H.CH)",
+       "subtopics": [
+        {
+         "id": "continuity-and-change-h-ch",
+         "title": "Continuity and Change (H.CH)",
+         "outcomes": [
+          {
+           "code": "2.H.CH.1",
+           "text": "Use chronological time to distinguish between events that happened in the recent and distant past."
+          },
+          {
+           "code": "2.H.CH.2",
+           "text": "Develop and analyze a timeline of events in the history of the local community."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "conflict-and-cooperation-h-cc",
+       "title": "Conflict and Cooperation (H.CC)",
+       "subtopics": [
+        {
+         "id": "conflict-and-cooperation-h-cc",
+         "title": "Conflict and Cooperation (H.CC)",
+         "outcomes": [
+          {
+           "code": "2.H.CC.3",
+           "text": "Describe how individuals and groups in the local community have functioned as changemakers for equity, equality, and freedom."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "cause-and-effect-h-ce",
+       "title": "Cause and Effect (H.CE)",
+       "subtopics": [
+        {
+         "id": "cause-and-effect-h-ce",
+         "title": "Cause and Effect (H.CE)",
+         "outcomes": [
+          {
+           "code": "2.H.CE.4",
+           "text": "Use primary and secondary sources, including conducting interviews with family members, neighbors, friends, or school staff to discover and document where their families came from, inclusive of adoptive, blended, foster, and other forms of family, and how and why they moved to where they now live, and when and why their families came to Oregon."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "communities-and-pluralism-h-cp",
+       "title": "Communities and Pluralism (H.CP)",
+       "subtopics": [
+        {
+         "id": "communities-and-pluralism-h-cp",
+         "title": "Communities and Pluralism (H.CP)",
+         "outcomes": [
+          {
+           "code": "2.H.CP.5",
+           "text": "Identify the history and contributions of traditionally underrepresented individuals and groups relevant to the local community."
+          },
+          {
+           "code": "2.H.CP.6",
+           "text": "Identify and describe community celebrations, landmarks, and symbols from a variety of traditions and explain why they are significant to the cultural heritage of members of the community."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "3",
+   "units": [
+    {
+     "id": "civics",
+     "title": "Civics",
+     "topics": [
+      {
+       "id": "political-institutions-c-pi",
+       "title": "Political Institutions (C.PI)",
+       "subtopics": [
+        {
+         "id": "political-institutions-c-pi",
+         "title": "Political Institutions (C.PI)",
+         "outcomes": [
+          {
+           "code": "3.C.PI.1",
+           "text": "Identify state offices, leaders, and their functions."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "identity-roles-responsibilities-c-ir",
+       "title": "Identity, Roles, & Responsibilities (C.IR)",
+       "subtopics": [
+        {
+         "id": "identity-roles-responsibilities-c-ir",
+         "title": "Identity, Roles, & Responsibilities (C.IR)",
+         "outcomes": [
+          {
+           "code": "3.C.IR.2",
+           "text": "Explain the differences between allies and bystanders exploring how individuals can promote democratic values such as liberty, equality, and justice when they see someone targeted for who they are."
+          },
+          {
+           "code": "3.C.IR.3",
+           "text": "Recognize that people's identities and individual experiences can lead to different interpretations of situations and events."
+          },
+          {
+           "code": "3.C.IR.4",
+           "text": "Explain how a community relies on active civic participation and identify opportunities for student participation in local and regional issues."
+          },
+          {
+           "code": "3.C.IR.5",
+           "text": "Describe the responsibilities of people in their community and state."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "democratic-principles-c-dp",
+       "title": "Democratic Principles (C.DP)",
+       "subtopics": [
+        {
+         "id": "democratic-principles-c-dp",
+         "title": "Democratic Principles (C.DP)",
+         "outcomes": [
+          {
+           "code": "3.C.DP.6",
+           "text": "Explain the democratic principle of a smaller voting group (the minority) having rights that the larger voting group (the majority) cannot take away."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "civic-engagement-c-ce",
+       "title": "Civic Engagement (C.CE)",
+       "subtopics": [
+        {
+         "id": "civic-engagement-c-ce",
+         "title": "Civic Engagement (C.CE)",
+         "outcomes": [
+          {
+           "code": "3.C.CE.7",
+           "text": "Identify a local public issue and describe ways individuals and groups can engage with decision-makers to have influence in the civic life of their communities."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "geography",
+     "title": "Geography",
+     "topics": [
+      {
+       "id": "geographic-reasoning-g-gr",
+       "title": "Geographic Reasoning (G.GR)",
+       "subtopics": [
+        {
+         "id": "geographic-reasoning-g-gr",
+         "title": "Geographic Reasoning (G.GR)",
+         "outcomes": [
+          {
+           "code": "3.G.GR.1",
+           "text": "Distinguish between physical, political, cultural, and thematic maps of Oregon and the United States."
+          },
+          {
+           "code": "3.G.GR.2",
+           "text": "Use lines of latitude and longitude on multiple types of maps, globes, and images to locate and describe tribal lands, environmental regions, and counties of Oregon and the greater Pacific Northwest."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "migration-and-movement-g-mm",
+       "title": "Migration and Movement (G.MM)",
+       "subtopics": [
+        {
+         "id": "migration-and-movement-g-mm",
+         "title": "Migration and Movement (G.MM)",
+         "outcomes": [
+          {
+           "code": "3.G.MM.3",
+           "text": "Evaluate multiple theories on the populating and human movement in North and South America using archaeological evidence for the origins of people in North America, including in the Pacific Northwest."
+          },
+          {
+           "code": "3.G.MM.4",
+           "text": "Investigate the causes behind global migration, distinguishing between voluntary relocation and forced displacement."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "human-interaction-and-interconnection-g-hi",
+       "title": "Human Interaction and Interconnection (G.HI)",
+       "subtopics": [
+        {
+         "id": "human-interaction-and-interconnection-g-hi",
+         "title": "Human Interaction and Interconnection (G.HI)",
+         "outcomes": [
+          {
+           "code": "3.G.HI.5",
+           "text": "Compare and contrast the diverse aspects of culture represented in a community, such as individuals, events, songs, symbols, and celebrations of community."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "human-environmental-interaction-g-he",
+       "title": "Human Environmental Interaction (G.HE)",
+       "subtopics": [
+        {
+         "id": "human-environmental-interaction-g-he",
+         "title": "Human Environmental Interaction (G.HE)",
+         "outcomes": [
+          {
+           "code": "3.G.HE.6",
+           "text": "Describe and compare how the physical and human geography of different Oregon regions affects the attributes of local communities."
+          },
+          {
+           "code": "3.G.HE.7",
+           "text": "Identify and analyze Oregon’s natural resources and describe how people in Oregon and other parts of the world use them."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "economics",
+     "title": "Economics",
+     "topics": [
+      {
+       "id": "earning-saving-and-spending-e-es",
+       "title": "Earning, Saving, and Spending (E.ES)",
+       "subtopics": [
+        {
+         "id": "earning-saving-and-spending-e-es",
+         "title": "Earning, Saving, and Spending (E.ES)",
+         "outcomes": [
+          {
+           "code": "3.E.ES.1",
+           "text": "Consider the effect of individual financial decisions on personal, community, regional, and world resources."
+          },
+          {
+           "code": "3.E.ES.2",
+           "text": "Explain the purpose of taxes in supporting examples of public goods."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "micro-and-macro-economics-e-mi",
+       "title": "Micro and Macro Economics (E.MI)",
+       "subtopics": [
+        {
+         "id": "micro-and-macro-economics-e-mi",
+         "title": "Micro and Macro Economics (E.MI)",
+         "outcomes": [
+          {
+           "code": "3.E.MI.3",
+           "text": "Identify the relationship between supply and demand in setting the price of goods and services in the marketplace."
+          },
+          {
+           "code": "3.E.MI.4",
+           "text": "Analyze the effect of government and business decisions on personal and community resources."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "incentives-choice-and-consumer-behavior-e-ic",
+       "title": "Incentives, Choice, and Consumer Behavior (E.IC)",
+       "subtopics": [
+        {
+         "id": "incentives-choice-and-consumer-behavior-e-ic",
+         "title": "Incentives, Choice, and Consumer Behavior (E.IC)",
+         "outcomes": [
+          {
+           "code": "3.E.IC.5",
+           "text": "Explain the role of advertising and peer pressure in decision-making."
+          },
+          {
+           "code": "3.E.IC.6",
+           "text": "Explain opportunity cost and how it influences buying decisions."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "specialization-trade-and-interdependence-e-st",
+       "title": "Specialization, Trade, and Interdependence (E.ST)",
+       "subtopics": [
+        {
+         "id": "specialization-trade-and-interdependence-e-st",
+         "title": "Specialization, Trade, and Interdependence (E.ST)",
+         "outcomes": [
+          {
+           "code": "3.E.ST.7",
+           "text": "Investigate examples of specialization and economic interdependence in the local community."
+          },
+          {
+           "code": "3.E.ST.8",
+           "text": "With prompting and support, ask and answer questions about buying, selling, or trading something and explain how people make choices about the things they need and want."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "history",
+     "title": "History",
+     "topics": [
+      {
+       "id": "continuity-and-change-h-ch",
+       "title": "Continuity and Change (H.CH)",
+       "subtopics": [
+        {
+         "id": "continuity-and-change-h-ch",
+         "title": "Continuity and Change (H.CH)",
+         "outcomes": [
+          {
+           "code": "3.H.CH.1",
+           "text": "Use primary and secondary sources, including conducting interviews, to research the history of the local community or region."
+          },
+          {
+           "code": "3.H.CH.2",
+           "text": "Create a timeline of noteworthy events to better understand the historical and contemporary events of the local community or region."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "conflict-and-cooperation-h-cc",
+       "title": "Conflict and Cooperation (H.CC)",
+       "subtopics": [
+        {
+         "id": "conflict-and-cooperation-h-cc",
+         "title": "Conflict and Cooperation (H.CC)",
+         "outcomes": [
+          {
+           "code": "3.H.CC.3",
+           "text": "Describe how individuals and groups in the local community and region have functioned as changemakers for equity, equality, and freedom against bias, discrimination, racism, and oppression."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "cause-and-effect-h-ce",
+       "title": "Cause and Effect (H.CE)",
+       "subtopics": [
+        {
+         "id": "cause-and-effect-h-ce",
+         "title": "Cause and Effect (H.CE)",
+         "outcomes": [
+          {
+           "code": "3.H.CE.4",
+           "text": "Describe how the inclusion or exclusion of individuals, social and ethnic groups, has shaped events and development of the local community and region."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "communities-and-pluralism-h-cp",
+       "title": "Communities and Pluralism (H.CP)",
+       "subtopics": [
+        {
+         "id": "communities-and-pluralism-h-cp",
+         "title": "Communities and Pluralism (H.CP)",
+         "outcomes": [
+          {
+           "code": "3.H.CP.5",
+           "text": "Identify what individuals and families bring with them when they move to a different place."
+          },
+          {
+           "code": "3.H.CP.6",
+           "text": "Describe how the identity of the local community shaped its history and compare it to other communities in the region."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "4",
+   "units": [
+    {
+     "id": "civics",
+     "title": "Civics",
+     "topics": [
+      {
+       "id": "political-institutions-c-pi",
+       "title": "Political Institutions (C.PI)",
+       "subtopics": [
+        {
+         "id": "political-institutions-c-pi",
+         "title": "Political Institutions (C.PI)",
+         "outcomes": [
+          {
+           "code": "4.C.PI.1",
+           "text": "Investigate the creation of the Oregon constitution and identify its key components. Note: Teachers may choose the sections of the Constitution that are most accessible and relevant to their students."
+          },
+          {
+           "code": "4.C.PI.2",
+           "text": "Compare key components of at least two Constitutions of the nine federally recognized Oregon Tribes."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "identity-roles-responsibilities-c-ir",
+       "title": "Identity, Roles, & Responsibilities (C.IR)",
+       "subtopics": [
+        {
+         "id": "identity-roles-responsibilities-c-ir",
+         "title": "Identity, Roles, & Responsibilities (C.IR)",
+         "outcomes": [
+          {
+           "code": "4.C.IR.3",
+           "text": "Examine how identity shapes perspectives about a local or state issue."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "democratic-principles-c-dp",
+       "title": "Democratic Principles (C.DP)",
+       "subtopics": [
+        {
+         "id": "democratic-principles-c-dp",
+         "title": "Democratic Principles (C.DP)",
+         "outcomes": [
+          {
+           "code": "4.C.DP.4",
+           "text": "Identify examples from the Oregon Constitution establishing equality or addressing discrimination, inequalities, or unfairness."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "civic-engagement-c-ce",
+       "title": "Civic Engagement (C.CE)",
+       "subtopics": [
+        {
+         "id": "civic-engagement-c-ce",
+         "title": "Civic Engagement (C.CE)",
+         "outcomes": [
+          {
+           "code": "4.C.CE.5",
+           "text": "Describe the importance of civic participation, including the ballot initiative process, in changing Oregon’s laws and Constitution."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "geography",
+     "title": "Geography",
+     "topics": [
+      {
+       "id": "geographic-reasoning-g-gr",
+       "title": "Geographic Reasoning (G.GR)",
+       "subtopics": [
+        {
+         "id": "geographic-reasoning-g-gr",
+         "title": "Geographic Reasoning (G.GR)",
+         "outcomes": [
+          {
+           "code": "4.G.GR.1",
+           "text": "Read and/or construct maps of the Northwest, Southwest, Midwest, Northeast, and Southeast, US Atlantic and Pacific Islands using a scale, compass, and key that includes important cities and physical features."
+          },
+          {
+           "code": "4.G.GR.2",
+           "text": "On political and physical maps of North America, locate significant sites in the United States, Mexico, Canada, Oregon, Nevada, Alaska, Hawai`i, Washington, Idaho, and California."
+          },
+          {
+           "code": "4.G.GR.3",
+           "text": "Compare and contrast tribal, colonial, historical, and contemporary maps to understand Oregon's history."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "migration-and-movement-g-mm",
+       "title": "Migration and Movement (G.MM)",
+       "subtopics": [
+        {
+         "id": "migration-and-movement-g-mm",
+         "title": "Migration and Movement (G.MM)",
+         "outcomes": [
+          {
+           "code": "4.G.MM.4",
+           "text": "Compare and contrast varying patterns of exploration and settlement in the Pacific Northwest over time, considering how physical features and the availability of natural resources affected exploration and settlement patterns, including the development of major urban/suburban areas, industries, or trade."
+          },
+          {
+           "code": "4.G.MM.5",
+           "text": "Explain how the contributions of the Indigenous Tribes of Oregon and various historical and contemporary immigrant groups create the diverse culture of present-day Oregon."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "human-interaction-and-interconnection-g-hi",
+       "title": "Human Interaction and Interconnection (G.HI)",
+       "subtopics": [
+        {
+         "id": "human-interaction-and-interconnection-g-hi",
+         "title": "Human Interaction and Interconnection (G.HI)",
+         "outcomes": [
+          {
+           "code": "4.G.HI.6",
+           "text": "Assess how physical geography and changing environmental factors affect land use and shape the cultural characteristics of a society."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "human-environmental-interaction-g-he",
+       "title": "Human Environmental Interaction (G.HE)",
+       "subtopics": [
+        {
+         "id": "human-environmental-interaction-g-he",
+         "title": "Human Environmental Interaction (G.HE)",
+         "outcomes": [
+          {
+           "code": "4.G.GE.7",
+           "text": "Identify the effects on environmental stability and sustainability of technologies and policies such as dams, wind turbines, and transportation in shaping Oregon's physical and human geography."
+          },
+          {
+           "code": "4.G.GE.8",
+           "text": "Utilize the Social Science Tribal History Shared History lessons to explore the relationship of the Nine federally recognized Tribes in Oregon with physical and human geography."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "economics",
+     "title": "Economics",
+     "topics": [
+      {
+       "id": "earning-saving-and-spending-e-es",
+       "title": "Earning, Saving, and Spending (E.ES)",
+       "subtopics": [
+        {
+         "id": "earning-saving-and-spending-e-es",
+         "title": "Earning, Saving, and Spending (E.ES)",
+         "outcomes": [
+          {
+           "code": "4.E.ES.1",
+           "text": "Examine the consequences of power and privilege on issues associated with poverty, income, and wealth accumulation."
+          },
+          {
+           "code": "4.E.ES.2",
+           "text": "Describe the difference between wages, salaries, commissions, and tips."
+          },
+          {
+           "code": "4.E.ES.3",
+           "text": "Describe examples of government-provided goods and services funded with taxes."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "micro-and-macro-economics-e-mi",
+       "title": "Micro and Macro Economics (E.MI)",
+       "subtopics": [
+        {
+         "id": "micro-and-macro-economics-e-mi",
+         "title": "Micro and Macro Economics (E.MI)",
+         "outcomes": [
+          {
+           "code": "4.E.MI.4",
+           "text": "Explain the role of producers, consumers, products, and labor in economic markets."
+          },
+          {
+           "code": "4.E.MI.5",
+           "text": "Investigate the relationship between the supply and demand of goods produced in Oregon."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "incentives-choice-and-consumer-behavior-e-ic",
+       "title": "Incentives, Choice, and Consumer Behavior (E.IC)",
+       "subtopics": [
+        {
+         "id": "incentives-choice-and-consumer-behavior-e-ic",
+         "title": "Incentives, Choice, and Consumer Behavior (E.IC)",
+         "outcomes": [
+          {
+           "code": "4.E.IC.6",
+           "text": "Demonstrate understanding of needs and wants using a budget."
+          },
+          {
+           "code": "4.E.IC.7",
+           "text": "Identify the use of targeted marketing in creating demand for consumer products."
+          },
+          {
+           "code": "4.E.IC.8",
+           "text": "Analyze different buying choices and opportunity costs."
+          },
+          {
+           "code": "4.E.IC.9",
+           "text": "Demonstrate understanding of safe internet practices by applying strategies to protect personal information."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "specialization-trade-interdependence-e-st",
+       "title": "Specialization, Trade, Interdependence (E.ST)",
+       "subtopics": [
+        {
+         "id": "specialization-trade-interdependence-e-st",
+         "title": "Specialization, Trade, Interdependence (E.ST)",
+         "outcomes": [
+          {
+           "code": "4.E.ST.10",
+           "text": "Explain how trade leads to increasing economic interdependence."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "history",
+     "title": "History",
+     "topics": [
+      {
+       "id": "continuity-and-change-h-ch",
+       "title": "Continuity and Change (H.CH)",
+       "subtopics": [
+        {
+         "id": "continuity-and-change-h-ch",
+         "title": "Continuity and Change (H.CH)",
+         "outcomes": [
+          {
+           "code": "4.H.CH.1",
+           "text": "Identify and examine the Indigenous sovereign people of Oregon prior to and during waves of exploration and settlement from Europe and the United States. Students should engage with lessons provided in Tribal History/Shared History to identify the first nine people groups of Oregon."
+          },
+          {
+           "code": "4.H.CH.2",
+           "text": "Investigate the role of “Manifest Destiny” and racial prejudice in shaping Oregon’s transition from “Oregon Country” to statehood. Include the legal, political, and cultural factors causing marginalization and attempts to promote inclusivity."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "conflict-and-cooperation-h-cc",
+       "title": "Conflict and Cooperation (H.CC)",
+       "subtopics": [
+        {
+         "id": "conflict-and-cooperation-h-cc",
+         "title": "Conflict and Cooperation (H.CC)",
+         "outcomes": [
+          {
+           "code": "4.H.CC.3",
+           "text": "Identify examples of Indigenous resistance to the expansion of non-Indigenous settlers into Oregon lands in the causes and results of the battles and wars in Oregon Territory and 19th century Oregon."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "cause-and-effect-h-ce",
+       "title": "Cause and Effect (H.CE)",
+       "subtopics": [
+        {
+         "id": "cause-and-effect-h-ce",
+         "title": "Cause and Effect (H.CE)",
+         "outcomes": [
+          {
+           "code": "4.H.CE.4",
+           "text": "Give examples of how changes in Oregon’s agricultural, industrial, political, and business development over time affect people of the state including traditionally underrepresented groups."
+          },
+          {
+           "code": "4.H.CE.5",
+           "text": "Use multiple sources to explore the Oregon Trail’s significance in shaping Oregon history, examining its role in westward expansion, cultural interactions, and settlement patterns."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "communities-and-pluralism-h-cp",
+       "title": "Communities and Pluralism (H.CP)",
+       "subtopics": [
+        {
+         "id": "communities-and-pluralism-h-cp",
+         "title": "Communities and Pluralism (H.CP)",
+         "outcomes": [
+          {
+           "code": "4.H.CP.6",
+           "text": "Identify the history, religion, languages, and cultural practices of the Indigenous Tribes of Oregon and examples of resistance and resilience to immigration and settlement by the United States."
+          },
+          {
+           "code": "4.H.CP.7",
+           "text": "Identify and explain how the legacy of colonialism and discrimination based on race, gender, economic, and social group identity created and continues to affect the history, growth, and current experience of residents of Oregon."
+          },
+          {
+           "code": "4.H.CP.8",
+           "text": "Identify various conflicts within Oregon, including acts of displacement, cultural and linguistic loss, violence, economic competition, political disagreements, boundary disputes, and cultural disparities across different geographical regions and demographic groups."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "5",
+   "units": [
+    {
+     "id": "civics",
+     "title": "Civics",
+     "topics": [
+      {
+       "id": "political-institutions-c-pi",
+       "title": "Political Institutions (C.PI)",
+       "subtopics": [
+        {
+         "id": "political-institutions-c-pi",
+         "title": "Political Institutions (C.PI)",
+         "outcomes": [
+          {
+           "code": "5.C.PI.1",
+           "text": "Compare and contrast how the governments of the British monarchy, American colonies, and Indigenous Tribes shaped interactions with one another."
+          },
+          {
+           "code": "5.C.PI.2",
+           "text": "Analyze the significance of the decisions and laws of the newly formed federal and state governments in establishing, expanding, limiting, and denying rights to individuals 1789-1865."
+          },
+          {
+           "code": "5.C.PI.",
+           "text": "Analyze how cooperation and conflict among people contribute to political, economic, religious, and current social events and situations in the United States."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "identity-roles-responsibilities-c-ir",
+       "title": "Identity, Roles, & Responsibilities (C.IR)",
+       "subtopics": [
+        {
+         "id": "identity-roles-responsibilities-c-ir",
+         "title": "Identity, Roles, & Responsibilities (C.IR)",
+         "outcomes": [
+          {
+           "code": "5.C.IR.4",
+           "text": "Examine and critique how colonial and new states’ governments established, expanded, limited, or denied rights and responsibilities of specific groups and individuals with particular attention to citizens, enslaved peoples, foreigners, nobles, religious groups, women, class systems, and Tribes."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "democratic-principles-c-dp",
+       "title": "Democratic Principles (C.DP)",
+       "subtopics": [
+        {
+         "id": "democratic-principles-c-dp",
+         "title": "Democratic Principles (C.DP)",
+         "outcomes": [
+          {
+           "code": "5.C.DP.5",
+           "text": "Analyze the Preamble and sections of the Constitution to understand the establishment and limitations of democratic principles. Note: Teachers may choose the section of the Constitution that are most accessible and relevant for their classroom."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "civic-engagement-c-ce",
+       "title": "Civic Engagement (C.CE)",
+       "subtopics": [
+        {
+         "id": "civic-engagement-c-ce",
+         "title": "Civic Engagement (C.CE)",
+         "outcomes": [
+          {
+           "code": "5.C.CE.6",
+           "text": "Explain specific protections provided in the Bill of Rights to individuals and the importance of these amendments to the ratification of the U.S. Constitution."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "geography",
+     "title": "Geography",
+     "topics": [
+      {
+       "id": "geographic-reasoning-g-gr",
+       "title": "Geographic Reasoning (G.GR)",
+       "subtopics": [
+        {
+         "id": "geographic-reasoning-g-gr",
+         "title": "Geographic Reasoning (G.GR)",
+         "outcomes": [
+          {
+           "code": "5.G.GR.1",
+           "text": "Use geographic tools such as maps, satellite images, photographs, and other representations to investigate and compare the process of constructing, recognizing, and utilizing, boundaries and borders (geographic and/or human-made) in the United States."
+          },
+          {
+           "code": "5.G.GR.2",
+           "text": "Locate states, capital cities, and important geographic features on a United States map."
+          },
+          {
+           "code": "5.G.GR.3",
+           "text": "Locate and examine significant physical geographic features of the thirteen British colonies that became the United States."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "migration-and-movement-g-mm",
+       "title": "Migration and Movement (G.MM)",
+       "subtopics": [
+        {
+         "id": "migration-and-movement-g-mm",
+         "title": "Migration and Movement (G.MM)",
+         "outcomes": [
+          {
+           "code": "5.G.MM.4",
+           "text": "Identify and analyze the implications and ramifications for Native American Tribes of the movement of people, goods, ideas, and cultural patterns to what became the United States, considering past, present, and future trends."
+          },
+          {
+           "code": "5.G.MM.5",
+           "text": "Investigate the causes behind domestic and global migration, distinguishing between voluntary relocation and forced displacement, including scenarios like refugees, individuals compelled to leave their homeland and those enslaved."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "human-interaction-and-interconnection-g-hi",
+       "title": "Human Interaction and Interconnection (G.HI)",
+       "subtopics": [
+        {
+         "id": "human-interaction-and-interconnection-g-hi",
+         "title": "Human Interaction and Interconnection (G.HI)",
+         "outcomes": [
+          {
+           "code": "5.G.HI.6",
+           "text": "Trace on a map Indigenous Tribes' encounters with Europeans in North America and the Caribbean Islands in the 15th through the 18th centuries."
+          },
+          {
+           "code": "5.G.HI.7",
+           "text": "Investigate the effects of exploration, conquest, exploitation, and colonial settlement on Indigenous Tribes in at least two geographic regions."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "human-environmental-interaction-g-he",
+       "title": "Human Environmental Interaction (G.HE)",
+       "subtopics": [
+        {
+         "id": "human-environmental-interaction-g-he",
+         "title": "Human Environmental Interaction (G.HE)",
+         "outcomes": [
+          {
+           "code": "5.G.HE.8",
+           "text": "Describe how physical, human, and political features influence events, movements, and adaptation to the environment."
+          },
+          {
+           "code": "5.G.HE.9",
+           "text": "Describe how technological developments, societal decisions, and personal practices affect sustainability in the United States."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "economics",
+     "title": "Economics",
+     "topics": [
+      {
+       "id": "earning-saving-and-spending-e-es",
+       "title": "Earning, Saving, and Spending (E.ES)",
+       "subtopics": [
+        {
+         "id": "earning-saving-and-spending-e-es",
+         "title": "Earning, Saving, and Spending (E.ES)",
+         "outcomes": [
+          {
+           "code": "5.E.ES.1",
+           "text": "Map out a savings and budget plan designed to achieve a future purchase objective."
+          },
+          {
+           "code": "5.E.ES.2",
+           "text": "Estimate income that a youth-operated business can earn."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "micro-and-macro-economics-e-mi",
+       "title": "Micro and Macro Economics (E.MI)",
+       "subtopics": [
+        {
+         "id": "micro-and-macro-economics-e-mi",
+         "title": "Micro and Macro Economics (E.MI)",
+         "outcomes": [
+          {
+           "code": "5.E.MI.3",
+           "text": "Explain the relationship between supply and demand."
+          },
+          {
+           "code": "5.E.MI.4",
+           "text": "Describe why the government collects taxes and what goods and services it provides society."
+          },
+          {
+           "code": "5.E.MI.5",
+           "text": "Explain the United States’ development from a mercantilist to a market economy."
+          },
+          {
+           "code": "5.E.MI.6",
+           "text": "Examine the significance of the slave trade among and between the Americas, Europe, Asia, and Africa."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "incentives-choice-and-consumer-behavior-e-ic",
+       "title": "Incentives, Choice, and Consumer Behavior (E.IC)",
+       "subtopics": [
+        {
+         "id": "incentives-choice-and-consumer-behavior-e-ic",
+         "title": "Incentives, Choice, and Consumer Behavior (E.IC)",
+         "outcomes": [
+          {
+           "code": "5.E.IC.7",
+           "text": "Analyze career choices with consideration of necessary qualifications, income potential, and time commitment."
+          },
+          {
+           "code": "5.E.IC.8",
+           "text": "Analyze how incentives and opportunity costs affect decision-making."
+          },
+          {
+           "code": "5.E.IC.9",
+           "text": "Discuss how life circumstances and experiences can cause people to differ in their values and attitudes about saving and their ability to save."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "specialization-trade-interdependence-e-st",
+       "title": "Specialization, Trade, Interdependence (E.ST)",
+       "subtopics": [
+        {
+         "id": "specialization-trade-interdependence-e-st",
+         "title": "Specialization, Trade, Interdependence (E.ST)",
+         "outcomes": [
+          {
+           "code": "5.E.ST.10",
+           "text": "Explain why cultures and civilizations choose to specialize in producing selected goods or services."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "history",
+     "title": "History",
+     "topics": [
+      {
+       "id": "continuity-and-change-h-ch",
+       "title": "Continuity and Change (H.CH)",
+       "subtopics": [
+        {
+         "id": "continuity-and-change-h-ch",
+         "title": "Continuity and Change (H.CH)",
+         "outcomes": [
+          {
+           "code": "5.H.CH.1",
+           "text": "Identify the significant role of the enslavement of Indigenous peoples and Africans in the establishment of North American colonies and the United States, the gradual abolition of slavery in the Northern states, and the expansion of slavery into Western states."
+          },
+          {
+           "code": "5.H.CH.2",
+           "text": "Use maps and other sources to trace European exploration, conquest, exploitation, and colonial settlement of North America and the Caribbean Islands in the 15th through 18th centuries, and identify the reasons and effects of the voyages, including on the Indigenous Tribes already living in the region."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "conflict-and-cooperation-h-cc",
+       "title": "Conflict and Cooperation (H.CC)",
+       "subtopics": [
+        {
+         "id": "conflict-and-cooperation-h-cc",
+         "title": "Conflict and Cooperation (H.CC)",
+         "outcomes": [
+          {
+           "code": "5.H.CC.3",
+           "text": "Examine how the decisions of those in power affected those with less political/economic power in past and current movements for equality, freedom, and justice with connections to the present day."
+          },
+          {
+           "code": "5.H.CC.4",
+           "text": "Analyze how instances of cooperation and conflict between Indigenous peoples and British, French, and Spanish colonial settlers contributed to political, economic, religious, and social conditions between 1500-1776."
+          },
+          {
+           "code": "5.H.CC.5",
+           "text": "Analyze the effect of policies of assimilation and erasure, including cultural and physical genocide on Indigenous cultures in what became the United States."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "cause-and-effect-h-ce",
+       "title": "Cause and Effect (H.CE)",
+       "subtopics": [
+        {
+         "id": "cause-and-effect-h-ce",
+         "title": "Cause and Effect (H.CE)",
+         "outcomes": [
+          {
+           "code": "5.H.CE.6",
+           "text": "Identify and describe the leadership and daily life of the founders of the United States, including the political, social, and economic interactions with the local and regional Indigenous peoples."
+          },
+          {
+           "code": "5.H.CE.7",
+           "text": "Explain multiple perspectives and causes and effects of events leading to colonial independence from British Rule."
+          },
+          {
+           "code": "5.H.CE.8",
+           "text": "Examine the effects Indigenous Tribes of North America had in the early development of the United States."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "communities-and-pluralism-h-cp",
+       "title": "Communities and Pluralism (H.CP)",
+       "subtopics": [
+        {
+         "id": "communities-and-pluralism-h-cp",
+         "title": "Communities and Pluralism (H.CP)",
+         "outcomes": [
+          {
+           "code": "5.H.CEP.9",
+           "text": "Explain the ideas and actions of individuals and groups resisting enslavement, indigenous genocide, and denial of equality and justice with connections to present-day issues."
+          },
+          {
+           "code": "5.H.CEP.10",
+           "text": "Analyze the distinct way of knowing and living amongst the different Indigenous peoples of North America before contact."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "8",
+   "units": [
+    {
+     "id": "civics",
+     "title": "Civics",
+     "topics": [
+      {
+       "id": "political-institutions-c-pi",
+       "title": "Political Institutions (C.PI)",
+       "subtopics": [
+        {
+         "id": "political-institutions-c-pi-1-of-2",
+         "title": "Political Institutions (C.PI) (1 of 2)",
+         "outcomes": [
+          {
+           "code": "8.C.PI.1",
+           "text": "Explain the significance of the influence of the democratic political concepts of ancient Greece and Rome on the structure and ideas of the Founders and the Constitution."
+          },
+          {
+           "code": "8.C.PI.2",
+           "text": "Explain the influence of the Enlightenment and Native American political ideas and documents on the American Revolution and the framework of the American government."
+          },
+          {
+           "code": "8.C.PI.3",
+           "text": "Identify the reasons for the failure of the Articles of Confederation and the adoption of the U.S. Constitution."
+          },
+          {
+           "code": "8.C.PI.4",
+           "text": "Examine and analyze significant primary source documents establishing, limiting, or denying civil rights in the United States and Oregon."
+          }
+         ]
+        },
+        {
+         "id": "political-institutions-c-pi-2-of-2",
+         "title": "Political Institutions (C.PI) (2 of 2)",
+         "outcomes": [
+          {
+           "code": "8.C.PI.5",
+           "text": "Evaluate how the persistence of racism, sexism, and other forms of prejudice, affected laws, treaties, and Supreme Court decisions from 1787 to 1865 on sovereignty, status, rights, and liberties of historically underrepresented individuals and groups."
+          },
+          {
+           "code": "8.C.PI.6",
+           "text": "Compare and contrast the United States republican form of government to direct democracy, theocracy, oligarchy, authoritarianism, and monarchy."
+          },
+          {
+           "code": "8.C.PI.7",
+           "text": "Explain the process of elections in the legislative and executive branches, and the process of nomination/confirmation of individuals in the judicial and executive branches."
+          },
+          {
+           "code": "8.C.PI.8",
+           "text": "Examine the interconnection of governing power and responsibility in the system of checks and balances."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "identity-roles-and-responsibilities-c-ir",
+       "title": "Identity, Roles, and Responsibilities (C.IR)",
+       "subtopics": [
+        {
+         "id": "identity-roles-and-responsibilities-c-ir",
+         "title": "Identity, Roles, and Responsibilities (C.IR)",
+         "outcomes": [
+          {
+           "code": "8.C.IR.9",
+           "text": "Identify and understand how to apply the rights and responsibilities of individuals under the Constitution."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "democratic-principles-c-dp",
+       "title": "Democratic Principles (C.DP)",
+       "subtopics": [
+        {
+         "id": "democratic-principles-c-dp",
+         "title": "Democratic Principles (C.DP)",
+         "outcomes": [
+          {
+           "code": "8.C.DP.10",
+           "text": "Analyze important political and ethical values for individual rights and their lasting effect on the status, rights, and liberties of historically underrepresented individuals and groups embodied in documents such as the Declaration of Independence, the United States and Oregon Constitutions, and the Bill of Rights."
+          },
+          {
+           "code": "8.C.DP.11",
+           "text": "Analyze issues involving liberty in conflict with equality or authority, individual rights in conflict with the common good, or majority rule in conflict with minority rights."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "civic-engagement-c-ce",
+       "title": "Civic Engagement (C.CE)",
+       "subtopics": [
+        {
+         "id": "civic-engagement-c-ce",
+         "title": "Civic Engagement (C.CE)",
+         "outcomes": [
+          {
+           "code": "8.C.CE.12",
+           "text": "Examine the evolution of political parties and interest groups and their effect on events, issues, and ideas."
+          },
+          {
+           "code": "8.C.CE.13",
+           "text": "Identify the methods of individuals and movements responsible for the expansion of justice, equality, equity, rights, and responsibilities of citizenship from historically underrepresented groups at the local and national levels."
+          },
+          {
+           "code": "8.C.CE.14",
+           "text": "Evaluate the historical and contemporary means of attempting to create more inclusive societies, including the importance of advocacy and activism related to the expansion of justice, equality, and equity for historically underrepresented individuals and groups."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "geography",
+     "title": "Geography",
+     "topics": [
+      {
+       "id": "geographic-reasoning-g-gr",
+       "title": "Geographic Reasoning (G.GR)",
+       "subtopics": [
+        {
+         "id": "geographic-reasoning-g-gr",
+         "title": "Geographic Reasoning (G.GR)",
+         "outcomes": [
+          {
+           "code": "8.G.GR.1",
+           "text": "Construct and use maps and other representations, technologies, and spatial thinking to understand changes in the demographic composition of North America."
+          },
+          {
+           "code": "8.G.GR.2",
+           "text": "Interpret maps to identify the changes in political geography, population, and economic development of the United States."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "migration-and-movement-g-mm",
+       "title": "Migration and Movement (G.MM)",
+       "subtopics": [
+        {
+         "id": "migration-and-movement-g-mm",
+         "title": "Migration and Movement (G.MM)",
+         "outcomes": [
+          {
+           "code": "8.G.MM.3",
+           "text": "Identify and describe the causes and effects of migration, settlement, and cultural diffusion, in the expansion of the United States after the American Revolution until the end of the Civil War."
+          },
+          {
+           "code": "8.G.MM.4",
+           "text": "Investigate the effects of migration on immigrants and the culture where they settle."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "human-interaction-and-interconnection-g-hi",
+       "title": "Human Interaction and Interconnection (G.HI)",
+       "subtopics": [
+        {
+         "id": "human-interaction-and-interconnection-g-hi",
+         "title": "Human Interaction and Interconnection (G.HI)",
+         "outcomes": [
+          {
+           "code": "8.G.HI.5",
+           "text": "Identify and explain examples of the influence of physical geography on human cultural elements such as law, religion, diet, and architecture."
+          },
+          {
+           "code": "8.G.HI.6",
+           "text": "Identify and describe how the physical and human characteristics of places and regions connect to human identities and cultures."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "human-environmental-interaction-g-he",
+       "title": "Human Environmental Interaction (G.HE)",
+       "subtopics": [
+        {
+         "id": "human-environmental-interaction-g-he",
+         "title": "Human Environmental Interaction (G.HE)",
+         "outcomes": [
+          {
+           "code": "8.G.HI.7",
+           "text": "Identify and describe examples of how conquest and colonialism in North America affected Indigenous peoples' identities, cultures, and communities."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "economics",
+     "title": "Economics",
+     "topics": [
+      {
+       "id": "earning-saving-and-spending-e-es",
+       "title": "Earning, Saving, and Spending (E.ES)",
+       "subtopics": [
+        {
+         "id": "earning-saving-and-spending-e-es",
+         "title": "Earning, Saving, and Spending (E.ES)",
+         "outcomes": [
+          {
+           "code": "8.E.ES.1",
+           "text": "Compare the education and training requirements, income potential, and primary duties of at least two jobs available to high school students."
+          },
+          {
+           "code": "8.E.ES.2",
+           "text": "Discuss how unexpected life situations can affect financial well-being and savings plans."
+          },
+          {
+           "code": "8.E.ES.3",
+           "text": "Explain how compound interest can generate both wealth and debt."
+          },
+          {
+           "code": "8.E.ES.4",
+           "text": "Define and analyze the concept of “fair lending practices” and the history of discrimination and systemic inequalities in the US financial system."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "micro-and-macro-economics-e-mi",
+       "title": "Micro and Macro Economics (E.MI)",
+       "subtopics": [
+        {
+         "id": "micro-and-macro-economics-e-mi",
+         "title": "Micro and Macro Economics (E.MI)",
+         "outcomes": [
+          {
+           "code": "8.E.MI.5",
+           "text": "Explore varying viewpoints on the role and purpose of taxation and government spending historical and contemporary debate."
+          },
+          {
+           "code": "8.E.MI.6",
+           "text": "Explain the role of forced and exploitative labor systems in the economic development of the United States."
+          },
+          {
+           "code": "8.E.MI.7",
+           "text": "Identify the positive and negative effects of technology on labor."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "incentives-choice-and-consumer-behavior-e-ic",
+       "title": "Incentives, Choice, and Consumer Behavior (E.IC)",
+       "subtopics": [
+        {
+         "id": "incentives-choice-and-consumer-behavior-e-ic",
+         "title": "Incentives, Choice, and Consumer Behavior (E.IC)",
+         "outcomes": [
+          {
+           "code": "8.E.IC.8",
+           "text": "Assess the effect of business growth and expansion on the allocation of resources and economic incentives."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "specialization-trade-and-interdependence-e-st",
+       "title": "Specialization, Trade, and Interdependence (E.ST)",
+       "subtopics": [
+        {
+         "id": "specialization-trade-and-interdependence-e-st",
+         "title": "Specialization, Trade, and Interdependence (E.ST)",
+         "outcomes": [
+          {
+           "code": "8.E.ST.9",
+           "text": "Explain how regional specialization created economic interdependence among the regions of the United States between 1783-1865."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "history",
+     "title": "History",
+     "topics": [
+      {
+       "id": "continuity-and-change-h-ch",
+       "title": "Continuity and Change (H.CH)",
+       "subtopics": [
+        {
+         "id": "continuity-and-change-h-ch",
+         "title": "Continuity and Change (H.CH)",
+         "outcomes": [
+          {
+           "code": "8.H.CH.1",
+           "text": "Identify the significant political developments surrounding the territorial expansion of the United States in the early republic (1776-1865)."
+          },
+          {
+           "code": "8.H.CH.2",
+           "text": "Utilize the grade 8 Tribal History Shared History resources and other Indigenous voices to examine the differing forms of oppression, including cultural and physical genocide, faced by Indigenous Tribes and acts of resilience and resistance used by Indigenous peoples in response to settler colonialism."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "conflict-and-cooperation-h-cc",
+       "title": "Conflict and Cooperation (H.CC)",
+       "subtopics": [
+        {
+         "id": "conflict-and-cooperation-h-cc",
+         "title": "Conflict and Cooperation (H.CC)",
+         "outcomes": [
+          {
+           "code": "8.H.CC.3",
+           "text": "Discuss the ongoing debate on attempts at restorative justice to address historic and ongoing injustice."
+          },
+          {
+           "code": "8.H.CC.4",
+           "text": "Analyze resistance to enslavement through research of primary sources such as newspapers, narratives, accounts of slave auctions, and political and legal records."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "cause-and-effect-h-ce",
+       "title": "Cause and Effect (H.CE)",
+       "subtopics": [
+        {
+         "id": "cause-and-effect-h-ce",
+         "title": "Cause and Effect (H.CE)",
+         "outcomes": [
+          {
+           "code": "8.H.CE.5",
+           "text": "Explain the effects of discoveries and technologies in the 18th and 19th centuries on the political and cultural development of the United States, including the expansion of slavery and the taking of Indigenous lands."
+          },
+          {
+           "code": "8.H.CE.6",
+           "text": "Analyze how economic, religious, social, ideological, and political developments led to sectional and national tensions, inspiring reform movements and political and social divisions between 1800-1860."
+          },
+          {
+           "code": "8.H.CE.7",
+           "text": "Evaluate the growing political tensions between 1820-1861 over the institution of slavery within the United States, leading to the Civil War."
+          },
+          {
+           "code": "8.H.CE.8",
+           "text": "Identify and analyze the political and military significance of the Civil War."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "communities-and-pluralism-h-cp",
+       "title": "Communities and Pluralism (H.CP)",
+       "subtopics": [
+        {
+         "id": "communities-and-pluralism-h-cp",
+         "title": "Communities and Pluralism (H.CP)",
+         "outcomes": [
+          {
+           "code": "8.H.CP.9",
+           "text": "Use primary and secondary sources to evaluate how intersecting identities including, gender identity, sexual orientation, age, race, ethnicity, religion, physical and mental ability, and class affect the living histories and experiences of peoples, groups, and events."
+          },
+          {
+           "code": "8.H.CP.10",
+           "text": "Identify and explain the contributions and experiences of individuals from traditionally underrepresented identities in Oregon and the United States."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "6-7",
+   "units": [
+    {
+     "id": "civics",
+     "title": "Civics",
+     "topics": [
+      {
+       "id": "political-institutions-c-pi",
+       "title": "Political Institutions (C.PI)",
+       "subtopics": [
+        {
+         "id": "political-institutions-c-pi",
+         "title": "Political Institutions (C.PI)",
+         "outcomes": [
+          {
+           "code": "6/7.C.PI.1",
+           "text": "Compare and contrast early forms of governance in early civilizations and empires from the Paleolithic to 900 CE."
+          },
+          {
+           "code": "6/7.C.PI.2",
+           "text": "Compare and contrast early forms of governance in civilizations and empires after 600 CE, including the treatment of historically underrepresented groups and individuals."
+          },
+          {
+           "code": "6/7.C.PI.3",
+           "text": "Compare and contrast historical and modern forms of governance over time and on multiple continents."
+          },
+          {
+           "code": "6/7.C.PI.4",
+           "text": "Analyze the origins, purpose, and influence of diverse religions, philosophies, and legal systems on the development of modern governments and the concepts of individual, civil, and human rights, equality, equity, and justice over time and on multiple continents."
+          },
+          {
+           "code": "6/7.C.PI.5",
+           "text": "Examine the origins, purposes, and effects of constitutions, laws, treaties, and international agreements, including the treatment of historically underrepresented groups and individuals."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "identity-roles-responsibilities-c-ir",
+       "title": "Identity, Roles, & Responsibilities (C.IR)",
+       "subtopics": [
+        {
+         "id": "identity-roles-responsibilities-c-ir",
+         "title": "Identity, Roles, & Responsibilities (C.IR)",
+         "outcomes": [
+          {
+           "code": "6/7.C.IR.6",
+           "text": "Describe the rights and roles of citizens in civilizations and empires to 900 CE, with attention to the inclusion of historically underrepresented groups and individuals."
+          },
+          {
+           "code": "6/7.C.IR.7",
+           "text": "Describe the rights and roles of citizens in civilizations and empires after 600 CE, with attention to the inclusion of historically underrepresented groups and individuals."
+          },
+          {
+           "code": "6/7.C.IR.8",
+           "text": "Evaluate the effectiveness of different methods of resistance available in pluralistic democracies to combat misinformation, indifference, and discrimination."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "democratic-principles-c-dp",
+       "title": "Democratic Principles (C.DP)",
+       "subtopics": [
+        {
+         "id": "democratic-principles-c-dp",
+         "title": "Democratic Principles (C.DP)",
+         "outcomes": [
+          {
+           "code": "6/7.C.DP.9",
+           "text": "Research and assess the effectiveness of individual and collective attempts towards the repair of civic society with recognition, reconciliation, and restorative justice in response to genocide and other historical injustices."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "civic-engagement-c-ce",
+       "title": "Civic Engagement (C.CE)",
+       "subtopics": [
+        {
+         "id": "civic-engagement-c-ce",
+         "title": "Civic Engagement (C.CE)",
+         "outcomes": [
+          {
+           "code": "6/7.C.CE.10",
+           "text": "Identify examples of attempts to limit the power and influence of government."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "geography",
+     "title": "Geography",
+     "topics": [
+      {
+       "id": "geographic-reasoning-g-gr",
+       "title": "Geographic Reasoning (G.GR)",
+       "subtopics": [
+        {
+         "id": "geographic-reasoning-g-gr",
+         "title": "Geographic Reasoning (G.GR)",
+         "outcomes": [
+          {
+           "code": "6/7.G.GR.1",
+           "text": "Construct and use maps and other representations, technologies, and spatial thinking to compare how physical geography, human, and environmental characteristics of a region influenced the movement of people, goods, and ideas among civilizations and empires."
+          },
+          {
+           "code": "6/7.G.GR.2",
+           "text": "Using physical and political maps, identify and distinguish countries, capitals, other cities, and important bodies of water to describe, place, region, and the absolute location and relative location of cultures and civilizations."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "migration-and-movement-g-mm",
+       "title": "Migration and Movement (G.MM)",
+       "subtopics": [
+        {
+         "id": "migration-and-movement-g-mm",
+         "title": "Migration and Movement (G.MM)",
+         "outcomes": [
+          {
+           "code": "6/7.G.MM.3",
+           "text": "Explain how technological developments in transportation and communication affected interactions between human settlements, including the diffusion of ideas and cultural practices."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "human-interaction-and-interconnection-g-hi",
+       "title": "Human Interaction and Interconnection (G.HI)",
+       "subtopics": [
+        {
+         "id": "human-interaction-and-interconnection-g-hi",
+         "title": "Human Interaction and Interconnection (G.HI)",
+         "outcomes": [
+          {
+           "code": "6/7.G.HI.4",
+           "text": "Identify and describe how the physical geography and human characteristics of places influence cultural attributes such as politics, law, religion, diet, architecture, and the construction of race, ethnicity, and gender."
+          },
+          {
+           "code": "6/7.G.HI.5",
+           "text": "Identify and explain the consequences of cultural conflict, interaction, exchange, and/or fusion."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "human-environmental-interaction-g-he",
+       "title": "Human Environmental Interaction (G.HE)",
+       "subtopics": [
+        {
+         "id": "human-environmental-interaction-g-he",
+         "title": "Human Environmental Interaction (G.HE)",
+         "outcomes": [
+          {
+           "code": "6/7.G.HE.6",
+           "text": "Identify how physical environments influence and effect changes in population, technical advancements, culture, and approaches to resource use, stewardship, and sustainability from the Paleolithic to 900 CE."
+          },
+          {
+           "code": "6/7.G.HE.7",
+           "text": "Identify and describe examples of how conquest and colonialism affected traditionally underrepresented identities, cultures, and communities."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "economics",
+     "title": "Economics",
+     "topics": [
+      {
+       "id": "earning-saving-and-spending-e-es",
+       "title": "Earning, Saving, and Spending (E.ES)",
+       "subtopics": [
+        {
+         "id": "earning-saving-and-spending-e-es",
+         "title": "Earning, Saving, and Spending (E.ES)",
+         "outcomes": [
+          {
+           "code": "6/7.E.ES.1",
+           "text": "Compare the education and training requirements for at least two student selected career choices."
+          },
+          {
+           "code": "6/7.E.ES.2",
+           "text": "Create and discuss budgeting that includes realistic and locally relevant living expenses and savings for various income levels."
+          },
+          {
+           "code": "6/7.E.ES.3",
+           "text": "Identify tools to help budget and save money to make a large purchase in one year, 5 -years, and 10-years."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "micro-and-macro-economics-e-mi",
+       "title": "Micro and Macro Economics (E.MI)",
+       "subtopics": [
+        {
+         "id": "micro-and-macro-economics-e-mi",
+         "title": "Micro and Macro Economics (E.MI)",
+         "outcomes": [
+          {
+           "code": "6/7.E.MI.4",
+           "text": "Explain how supply and demand affect wages and prices of resources."
+          },
+          {
+           "code": "6/7.E.MI.5",
+           "text": "Analyze the role of consumers and producers in product markets."
+          },
+          {
+           "code": "6/7.E.MI.6",
+           "text": "Identify how the four factors of production combine to make goods and deliver services in capitalist economies."
+          },
+          {
+           "code": "6/7.E.MI.7",
+           "text": "Compare how different economic systems choose to allocate the production, distribution, and consumption of resources."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "incentives-choice-and-consumer-behavior-e-ic",
+       "title": "Incentives, Choice, and Consumer Behavior (E.IC)",
+       "subtopics": [
+        {
+         "id": "incentives-choice-and-consumer-behavior-e-ic",
+         "title": "Incentives, Choice, and Consumer Behavior (E.IC)",
+         "outcomes": [
+          {
+           "code": "6/7.E.IC.8",
+           "text": "Explain how government interventions, such as incentives, taxes or tribute affect individual participation in the economy."
+          },
+          {
+           "code": "6/7.E.IC.9",
+           "text": "Evaluate alternative approaches or solutions to economic issues in terms of benefits and costs for traditionally underrepresented groups and individuals in early major Western and non-Western civilizations."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "specialization-trade-and-interdependence-e-st",
+       "title": "Specialization, Trade, and Interdependence (E.ST)",
+       "subtopics": [
+        {
+         "id": "specialization-trade-and-interdependence-e-st",
+         "title": "Specialization, Trade, and Interdependence (E.ST)",
+         "outcomes": [
+          {
+           "code": "6/7.EF.10.ST",
+           "text": "Compare specialization and trade in two or more civilizations or empires."
+          },
+          {
+           "code": "6/7.EF.11.ST",
+           "text": "Analyze the effect on the costs of goods and services for trade or barter with the development of specialization in local economies."
+          },
+          {
+           "code": "6/7.EF.12.ST",
+           "text": "Explain how growing interdependence and technological advances improve living standards within and across societies."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "history",
+     "title": "History",
+     "topics": [
+      {
+       "id": "continuity-and-change-h-ch",
+       "title": "Continuity and Change (H.CH)",
+       "subtopics": [
+        {
+         "id": "continuity-and-change-h-ch",
+         "title": "Continuity and Change (H.CH)",
+         "outcomes": [
+          {
+           "code": "6/7.H.CH.1",
+           "text": "Construct and interpret a timeline using words and abbreviations for identifying key periods in the development of human societies."
+          },
+          {
+           "code": "6/7.H.CH.2",
+           "text": "Explain the characteristics historians and social scientists have used to define complex societies or “civilizations.” Note- The characteristics remain a topic of debate for historians and archeologists and some societies do not include all listed characteristics."
+          },
+          {
+           "code": "6/7.H.CH.3",
+           "text": "Describe the key features and developments of independently formed civilizations and cultures between the Neolithic and 900 CE."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "conflict-and-cooperation-h-cc",
+       "title": "Conflict and Cooperation (H.CC)",
+       "subtopics": [
+        {
+         "id": "conflict-and-cooperation-h-cc",
+         "title": "Conflict and Cooperation (H.CC)",
+         "outcomes": [
+          {
+           "code": "6/7.H.CC.4",
+           "text": "Use primary and secondary sources to identify and analyze the interactions and exchanges of cultures and civilizations from the Neolithic to 900 CE."
+          },
+          {
+           "code": "6/7.H.CC.5",
+           "text": "Use primary and secondary sources to identify and analyze the interactions and exchanges of cultures and civilizations after 600 CE."
+          },
+          {
+           "code": "6/7.H.CC.6",
+           "text": "Identify examples of historical and contemporary indigenous resilience and resistance to colonial exploration and settlement."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "cause-and-effect-h-ce",
+       "title": "Cause and Effect (H.CE)",
+       "subtopics": [
+        {
+         "id": "cause-and-effect-h-ce",
+         "title": "Cause and Effect (H.CE)",
+         "outcomes": [
+          {
+           "code": "6/7.H.CE.7",
+           "text": "Identify and describe examples of how conquest and colonialism affected historically underrepresented identities, cultures, and communities."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "communities-and-pluralism-h-cp",
+       "title": "Communities and Pluralism (H.CP)",
+       "subtopics": [
+        {
+         "id": "communities-and-pluralism-h-cp-1-of-2",
+         "title": "Communities and Pluralism (H.CP) (1 of 2)",
+         "outcomes": [
+          {
+           "code": "6/7.H.CP.8",
+           "text": "Compare the origins and development of early world religions from the Neolithic to 1500 CE."
+          },
+          {
+           "code": "6/7.H.CP.9",
+           "text": "Identify the key components of creation or origin stories from various civilizations and cultures."
+          },
+          {
+           "code": "6/7.H.CP.10",
+           "text": "Compare and contrast the central tenets and cultural practices of Hinduism, Judaism, Buddhism, Taoism, Christianity, and Islam."
+          },
+          {
+           "code": "6/7.H.CP.11",
+           "text": "Investigate the historical origins and modern manifestations of anti-Judaism. Note: Anti-Judaism refers to the bias, discrimination, and violence experienced by Jewish individuals and communities throughout history primarily rooted in religious identity. Antisemitism is the prejudice, discrimination, hostility, or violence directed toward Jewish people or communities and their religious, cultural, and ethnic identity."
+          }
+         ]
+        },
+        {
+         "id": "communities-and-pluralism-h-cp-2-of-2",
+         "title": "Communities and Pluralism (H.CP) (2 of 2)",
+         "outcomes": [
+          {
+           "code": "6/7.H.CP.12",
+           "text": "Identify the motivations and methods governments and other institutions use to create, reinforce, or address injustice and divisions in society."
+          },
+          {
+           "code": "6/7.H.CP.13",
+           "text": "Use primary and secondary sources to identify archaeological evidence of the characteristics of Indigenous civilizations of the Americas and Caribbean basin from the Paleolithic to 1500."
+          },
+          {
+           "code": "6/7.H.CP.14",
+           "text": "Use primary and secondary sources to identify the important characteristics of civilizations and cultures in Western Asia, the Middle East, and North Africa from Paleolithic to 1500."
+          },
+          {
+           "code": "6/7.H.CP.15",
+           "text": "Use primary and secondary sources to identify the important characteristics of civilizations and cultures in Sub-Saharan Africa."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "9-12",
+   "units": [
+    {
+     "id": "civics",
+     "title": "Civics",
+     "topics": [
+      {
+       "id": "political-institutions-c-pi",
+       "title": "Political Institutions (C.PI)",
+       "subtopics": [
+        {
+         "id": "political-institutions-c-pi-1-of-2",
+         "title": "Political Institutions (C.PI) (1 of 2)",
+         "outcomes": [
+          {
+           "code": "HS.C.PI.1",
+           "text": "Investigate and compare core elements of early governments that were influential and evident in the United States government structure."
+          },
+          {
+           "code": "HS.C.PI.2",
+           "text": "Compare and contrast the United States republican form of government to direct democracy, theocracy, oligarchy, authoritarianism, and monarchy."
+          },
+          {
+           "code": "HS.C.PI.3",
+           "text": "Examine and compare institutions, functions, and processes of government."
+          },
+          {
+           "code": "HS.C.PI.4",
+           "text": "Using the Tribal History/Shared History resources and other primary and secondary source documents, identify and explain the development and mechanisms for the government-to-government relationship between Oregon and the nine federally recognized tribal governments."
+          }
+         ]
+        },
+        {
+         "id": "political-institutions-c-pi-2-of-2",
+         "title": "Political Institutions (C.PI) (2 of 2)",
+         "outcomes": [
+          {
+           "code": "HS.C.PI.5",
+           "text": "Explore and explain the historical evolution of the debate over the role, function, and size of the federal branches of government."
+          },
+          {
+           "code": "HS.C.PI.6",
+           "text": "Analyze and evaluate a landmark United States Supreme Court case addressing principles of federalism."
+          },
+          {
+           "code": "HS.C.PI.7",
+           "text": "Compare core documents associated with the protection of individual rights."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "identity-roles-and-responsibilities-c-ir",
+       "title": "Identity, Roles, and Responsibilities (C.IR)",
+       "subtopics": [
+        {
+         "id": "identity-roles-and-responsibilities-c-ir",
+         "title": "Identity, Roles, and Responsibilities (C.IR)",
+         "outcomes": [
+          {
+           "code": "HS.C.IR.8",
+           "text": "Using primary sources from multiple perspectives, discuss and debate the central ideas of the government of the United States and Oregon."
+          },
+          {
+           "code": "HS.C.IR.9",
+           "text": "Describe the civic behaviors that promote and strengthen a pluralistic democracy."
+          },
+          {
+           "code": "HS.C.IR.10",
+           "text": "Analyze how political parties, interest and community groups, corporations, and mass media influence the beliefs and behaviors of individuals, and the policies and laws adopted by local, state, and national governments."
+          },
+          {
+           "code": "HS.C.IR.11",
+           "text": "Identify and explain the roles and responsibilities of branches and agencies responsible for the foreign policy of the United States."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "democratic-principles-c-dp",
+       "title": "Democratic Principles (C.DP)",
+       "subtopics": [
+        {
+         "id": "democratic-principles-c-dp",
+         "title": "Democratic Principles (C.DP)",
+         "outcomes": [
+          {
+           "code": "HS.C.DP.12",
+           "text": "Using primary sources from multiple perspectives, identify and explain historical and contemporary efforts to narrow discrepancies between foundational ideas and values of American democracy and the realities of American political and civic life for traditionally underrepresented groups."
+          },
+          {
+           "code": "HS.C.DP.13",
+           "text": "Argue and defend positions on contemporary issues in which foundational ideas or values are in tension."
+          },
+          {
+           "code": "HS.C.DP.14",
+           "text": "Identify and analyze the existence and perpetuation of discrimination and inequity in the local, state, national, or context."
+          },
+          {
+           "code": "HS.C.DP.15",
+           "text": "Identify and evaluate the effect of the exclusionary language and intent of the Oregon and U.S. Constitution and the provisions and process for expanding and protecting civil rights."
+          },
+          {
+           "code": "HS.C.DP.16",
+           "text": "Identify the requirements and process for voting."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "civic-engagement-c-ce",
+       "title": "Civic Engagement (C.CE)",
+       "subtopics": [
+        {
+         "id": "civic-engagement-c-ce",
+         "title": "Civic Engagement (C.CE)",
+         "outcomes": [
+          {
+           "code": "HS.C.CE.17",
+           "text": "Explain how active citizens and political or social movements can affect the lawmaking process locally, nationally, and internationally."
+          },
+          {
+           "code": "HS.C.CE.18",
+           "text": "Identify and assess the planning and methods groups facing discrimination used to achieve access to voting, as well as expansion of rights and liberties from 1865 to the present."
+          },
+          {
+           "code": "HS.C.CE.19",
+           "text": "Compare the debate over a public policy issue from the past with a contemporary issue and evaluate the role of political parties, interest groups, social movements, and media in influencing public opinion."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "geography",
+     "title": "Geography",
+     "topics": [
+      {
+       "id": "geographic-reasoning-g-gr",
+       "title": "Geographic Reasoning (G.GR)",
+       "subtopics": [
+        {
+         "id": "geographic-reasoning-g-gr",
+         "title": "Geographic Reasoning (G.GR)",
+         "outcomes": [
+          {
+           "code": "HS.G.GR.1",
+           "text": "Use geographic tools, various kinds of maps, and geospatial technologies to examine geographic components of past and current world events or to solve geographic problems."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "migration-and-movement-g-mm",
+       "title": "Migration and Movement (G.MM)",
+       "subtopics": [
+        {
+         "id": "migration-and-movement-g-mm",
+         "title": "Migration and Movement (G.MM)",
+         "outcomes": [
+          {
+           "code": "HS.G.MM.2",
+           "text": "Analyze recent voluntary and forced migration patterns to identify and understand the push and pull factors and their effect on people and places."
+          },
+          {
+           "code": "HS.G.MM.3",
+           "text": "Investigate and analyze how political and economic decisions determine the settlement patterns of human populations, including the removal and segregation of communities in the United States."
+          },
+          {
+           "code": "HS.G.MM.4",
+           "text": "Investigate and analyze the migration and settlement patterns of human populations, including the removal and segregation of communities in past and in current societies globally."
+          },
+          {
+           "code": "HS.G.MM.5",
+           "text": "Explain how changes in transportation and communication technology affect the spatial connections among human settlements and the diffusion of ideas and cultural practices including religious beliefs, economic exchange, and languages."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "human-interaction-and-interconnection-g-hi",
+       "title": "Human Interaction and Interconnection (G.HI)",
+       "subtopics": [
+        {
+         "id": "human-interaction-and-interconnection-g-hi",
+         "title": "Human Interaction and Interconnection (G.HI)",
+         "outcomes": [
+          {
+           "code": "HS.G.HI.6",
+           "text": "Identify the effects of geographical factors on the interactions among societies."
+          },
+          {
+           "code": "HS.G.HI.7",
+           "text": "Assess the effect of human settlement activities on the environmental and cultural characteristics of specific places and regions."
+          },
+          {
+           "code": "HS.G.HI.8",
+           "text": "Identify examples of conflict and cooperation involving the use of land and natural resources."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "human-environmental-interaction-g-he",
+       "title": "Human Environmental Interaction (G.HE)",
+       "subtopics": [
+        {
+         "id": "human-environmental-interaction-g-he",
+         "title": "Human Environmental Interaction (G.HE)",
+         "outcomes": [
+          {
+           "code": "HS.G.HE.9",
+           "text": "Explain how technological developments, societal decisions, and personal practices influence global resource consumption patterns, conservation, and environmental sustainability."
+          },
+          {
+           "code": "HS.G.HE.10",
+           "text": "Evaluate efforts at the local, national, or international level to address the use of limited or environmentally harmful resources."
+          },
+          {
+           "code": "HS.G.HE.11",
+           "text": "Identify and describe how the relationship to land, utilization of natural resources, displacement, and land ownership affects historically underrepresented identities, cultures, and communities."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "economics",
+     "title": "Economics",
+     "topics": [
+      {
+       "id": "micro-and-macro-economics-e-mi",
+       "title": "Micro and Macro Economics (E.MI)",
+       "subtopics": [
+        {
+         "id": "micro-and-macro-economics-e-mi-1-of-2",
+         "title": "Micro and Macro Economics (E.MI) (1 of 2)",
+         "outcomes": [
+          {
+           "code": "HS.E.MI.1",
+           "text": "Define supply and demand and explain the factors that determine the production and distribution of goods and services in a market economy."
+          },
+          {
+           "code": "HS.E.MI.2",
+           "text": "Create and explain economic models of supply and demand."
+          },
+          {
+           "code": "HS.E.MI.3",
+           "text": "Analyze the effects of shortages and surpluses on supply and demand."
+          },
+          {
+           "code": "HS.E.MI.4",
+           "text": "Explain and give examples of the roles the government may play in a market economy."
+          }
+         ]
+        },
+        {
+         "id": "micro-and-macro-economics-e-mi-2-of-2",
+         "title": "Micro and Macro Economics (E.MI) (2 of 2)",
+         "outcomes": [
+          {
+           "code": "HS.E.MI.5",
+           "text": "Explain the role of banks and other financial institutions in the market economy of the United States and analyze the reasons for banking crises."
+          },
+          {
+           "code": "HS.E.MI.6",
+           "text": "Describe the intent and functions of the Federal Reserve System."
+          },
+          {
+           "code": "HS.E.MI.7",
+           "text": "Assess the health of the U.S. economy by applying the economic indicators of inflation, deflation, Gross Domestic Product (GDP), and unemployment from 1865 to the present."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "incentives-choice-and-consumer-behavior-e-ic",
+       "title": "Incentives, Choice, and Consumer Behavior (E.IC)",
+       "subtopics": [
+        {
+         "id": "incentives-choice-and-consumer-behavior-e-ic",
+         "title": "Incentives, Choice, and Consumer Behavior (E.IC)",
+         "outcomes": [
+          {
+           "code": "HS.E.IC.8",
+           "text": "Explain how consumers and producers confront the condition of scarcity by making choices that involve opportunity costs and tradeoffs."
+          },
+          {
+           "code": "HS.E.IC.9",
+           "text": "Analyze the effect of global events such as wars and technological developments on industry and consumers."
+          },
+          {
+           "code": "HS.E.IC.10",
+           "text": "Describe the potential intended and unintended benefits and negative consequences of government economic programs and policies on the welfare and well-being of individuals and groups including traditionally underrepresented groups."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "specialization-trade-and-interdependence-e-st",
+       "title": "Specialization, Trade, and Interdependence (E.ST)",
+       "subtopics": [
+        {
+         "id": "specialization-trade-and-interdependence-e-st",
+         "title": "Specialization, Trade, and Interdependence (E.ST)",
+         "outcomes": [
+          {
+           "code": "HS.E.ST.11",
+           "text": "Analyze the role of comparative advantage in the international trade of goods and services."
+          },
+          {
+           "code": "HS.E.ST.12",
+           "text": "Identify the basic characteristics of monopoly, oligopoly, monopolistic competition, and perfect competition."
+          },
+          {
+           "code": "HS.E.ST.13",
+           "text": "Explain how international economic trends and policies affect political, social, and economic conditions in various nations."
+          },
+          {
+           "code": "HS.E.ST.14",
+           "text": "Summarize the role and effect of economic institutions within market economies."
+          },
+          {
+           "code": "HS.E.ST.15",
+           "text": "Analyze the effect on national and global markets of the use of slavery and other exploitative labor systems in the development of the U.S. infrastructure, wage competition, trade, and standards of living."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "us-history-1865-present",
+     "title": "US History 1865-Present",
+     "topics": [
+      {
+       "id": "continuity-and-change-us-ch",
+       "title": "Continuity and Change (US.CH)",
+       "subtopics": [
+        {
+         "id": "continuity-and-change-us-ch",
+         "title": "Continuity and Change (US.CH)",
+         "outcomes": [
+          {
+           "code": "HS.US.CH.1",
+           "text": "Analyze social, political, and economic continuity and change following the Civil War and Reconstruction (1865-1896) with attention to how post-war policies and actions affected traditionally underrepresented groups and individuals."
+          },
+          {
+           "code": "HS.US.CH.2",
+           "text": "Using primary sources from multiple perspectives, identify and analyze developments in the growth of the US economy, the changing role of government, and efforts of individuals and organizations attempting to reduce political, economic, and social inequalities in the 20th century."
+          },
+          {
+           "code": "HS.US.CH.3",
+           "text": "Analyze the foreign policy statements of the United States to trace the changing role of United States intervention in global affairs from 1823 to the present."
+          },
+          {
+           "code": "HS.US.CH.4",
+           "text": "Identify and analyze the developments and consequences of significant changes in technology on American society and culture from 1865-present:"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "conflict-and-cooperation-us-cc",
+       "title": "Conflict and Cooperation (US.CC)",
+       "subtopics": [
+        {
+         "id": "conflict-and-cooperation-us-cc",
+         "title": "Conflict and Cooperation (US.CC)",
+         "outcomes": [
+          {
+           "code": "HS.US.CC.5",
+           "text": "Analyze primary sources from multiple perspectives to develop an argument about how the conflict between traditionalism and modernity in the early 20th century generated both progress and backlash on issues of justice and equality."
+          },
+          {
+           "code": "HS.US.CC.6",
+           "text": "Identify global conflicts and compromises to evaluate actions of the United States as an emerging global power between 1890-1945."
+          },
+          {
+           "code": "HS.US.CC.7",
+           "text": "Analyze how the differing ideologies and policies of the United States and the Soviet Union contributed to conflict and cooperation in multiple continents during the Cold War Era between 1945-1991."
+          },
+          {
+           "code": "HS.US.CC.8",
+           "text": "Identify how Cold War tensions between the United States and the Soviet Union shaped domestic attitudes, culture, and policies."
+          },
+          {
+           "code": "HS.US.CC.9",
+           "text": "Analyze examples of US intervention, conflict, and compromise between the United States and other nations, groups, and individuals in the post-Cold War Era."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "cause-and-effect-us-ce",
+       "title": "Cause and Effect (US.CE)",
+       "subtopics": [
+        {
+         "id": "cause-and-effect-us-ce",
+         "title": "Cause and Effect (US.CE)",
+         "outcomes": [
+          {
+           "code": "HS.US.CE.10",
+           "text": "Evaluate the actions and methods groups facing discrimination used to achieve expansion of rights and liberties from 1865-present."
+          },
+          {
+           "code": "HS.US.CE.11",
+           "text": "Using primary source images, data, and documents, describe the causes of immigration to the United States and identify the domestic social and political responses to migration and immigration in the United States from the 19th century to the present."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "communities-and-pluralism-h-cp",
+       "title": "Communities and Pluralism (H.CP)",
+       "subtopics": [
+        {
+         "id": "communities-and-pluralism-h-cp-1-of-2",
+         "title": "Communities and Pluralism (H.CP) (1 of 2)",
+         "outcomes": [
+          {
+           "code": "HS.US.CP.12",
+           "text": "Examine how underrepresented groups, including those identifying by race, ethnicity, gender, sexual orientation, and religion viewed themselves and contributed to the identity of the United States in the world from 1865-present."
+          },
+          {
+           "code": "HS.US.CP.13",
+           "text": "Using the Tribal History/Shared History resources and other primary and secondary documents, analyze and explain the histories of the American Indian/Alaska Natives and the history of Native Hawaiians in Oregon to examine the effect of state and federal actions and policies on tribal populations, rights, and culture."
+          },
+          {
+           "code": "HS.US.CP.14",
+           "text": "Examine the perspectives of survivors of Indigenous genocide, Black communities destroyed by violence, and other human rights violations utilizing primary sources from multiple perspectives including written and recorded survivor testimonies."
+          },
+          {
+           "code": "HS.US.CP.15",
+           "text": "Analyze the long-term consequences of the Jim Crow era (1870s–1960s)."
+          }
+         ]
+        },
+        {
+         "id": "communities-and-pluralism-h-cp-2-of-2",
+         "title": "Communities and Pluralism (H.CP) (2 of 2)",
+         "outcomes": [
+          {
+           "code": "HS.US.CP.16",
+           "text": "Assess the role and consequences of antisemitism in the United States."
+          },
+          {
+           "code": "HS.US.CP.17",
+           "text": "Analyze the role of religion in shaping social, cultural, and political developments in the United States during the 20th century."
+          },
+          {
+           "code": "HS.US.CP.18",
+           "text": "Analyze the origins, evolution, and goals of the movement for Black equality from 1865 to the present, including examples of the social and political resistance to integration and equality."
+          },
+          {
+           "code": "HS.US.CP.19",
+           "text": "Identify and analyze political, social, and intellectual movements in the post-WWII United States that challenged discrimination and changed traditional assumptions about race, ethnicity, class, gender, the environment, and religion."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "world-history-1789-present",
+     "title": "World History (1789-Present)",
+     "topics": [
+      {
+       "id": "continuity-and-change-wr-ch",
+       "title": "Continuity and Change (WR.CH)",
+       "subtopics": [
+        {
+         "id": "continuity-and-change-wr-ch",
+         "title": "Continuity and Change (WR.CH)",
+         "outcomes": [
+          {
+           "code": "HS.WR.CH.1",
+           "text": "Use primary and secondary resources to analyze the development of political identity associated with the nation-state and nationalism."
+          },
+          {
+           "code": "HS.WR.CH.2",
+           "text": "Analyze the political, social, and economic causes and effects of industrialization in Europe and North America between 1850 and the present"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "conflict-and-cooperation-us-cc",
+       "title": "Conflict and Cooperation (US.CC)",
+       "subtopics": [
+        {
+         "id": "conflict-and-cooperation-us-cc",
+         "title": "Conflict and Cooperation (US.CC)",
+         "outcomes": [
+          {
+           "code": "HS.WR.CC.3",
+           "text": "Examine various means national and cultural groups used in attempts to combat the power of European Imperialism between 1750-1945."
+          },
+          {
+           "code": "HS.WR.CC.4",
+           "text": "Analyze and assess how superpower rivalries created new political alliances, led to proxy wars, and resulted in the rise of international organizations from 1945- 1991."
+          },
+          {
+           "code": "HS.WR.CC.5",
+           "text": "Assess the effectiveness of organizations and institutions designed to foster collaboration, compromise, and development from 1945-present."
+          },
+          {
+           "code": "HS.WR.CC.6",
+           "text": "Analyze methods used by state and non-state actors in efforts to decolonize, including protests, social media campaigns, non-violent actions, boycotts, terrorism, guerilla warfare, and other methods from 1945 to the present."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "cause-and-effect-us-ce",
+       "title": "Cause and Effect (US.CE)",
+       "subtopics": [
+        {
+         "id": "cause-and-effect-us-ce",
+         "title": "Cause and Effect (US.CE)",
+         "outcomes": [
+          {
+           "code": "HS.WR.CE.7",
+           "text": "Determine the causes of World War I. Analyze causes and effects of political revolutions in multiple global regions from 1789 to the present."
+          },
+          {
+           "code": "HS.WR.CE.8",
+           "text": "Determine the causes of World War I."
+          },
+          {
+           "code": "HS.WR.CE.9",
+           "text": "Analyze the political, social, economic, and cultural developments following World War I."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "communities-and-pluralism-h-cp",
+       "title": "Communities and Pluralism (H.CP)",
+       "subtopics": [
+        {
+         "id": "communities-and-pluralism-h-cp-1-of-2",
+         "title": "Communities and Pluralism (H.CP) (1 of 2)",
+         "outcomes": [
+          {
+           "code": "HS.WR.CP.10",
+           "text": "Identify the characteristics of fascism, militarism, and totalitarianism as exhibited in the rise of the authoritarian regimes in Italy, Japan, Germany, and the Soviet Union during the 1920s and 1930s"
+          },
+          {
+           "code": "HS.WR.CP.111",
+           "text": "Determine the causes of World War II."
+          },
+          {
+           "code": "HS.WR.CP.112",
+           "text": "Identify the causes and effects of Japanese, Soviet, and German colonial military occupation on civilians from 1910-1945."
+          },
+          {
+           "code": "HS.WR.CP.113",
+           "text": "Analyze the political, social, economic, and cultural developments following World War II."
+          },
+          {
+           "code": "HS.WR.CP.114",
+           "text": "Identify and explain the significance of the origins of antisemitism."
+          }
+         ]
+        },
+        {
+         "id": "communities-and-pluralism-h-cp-2-of-2",
+         "title": "Communities and Pluralism (H.CP) (2 of 2)",
+         "outcomes": [
+          {
+           "code": "HS.WR.CP.115",
+           "text": "Explain the significant events, public policies, and experiences of the Holocaust."
+          },
+          {
+           "code": "HS.WR.CP.116",
+           "text": "Analyze primary documents to examine the role individual bystanders, collaborators, and perpetrators played in the implementation of Nazi policies against Jewish people and other targeted groups, as well as the role of resisters in opposing the Nazis and their policies within German-occupied territory."
+          },
+          {
+           "code": "HS.WR.CP.117",
+           "text": "Evaluate the international community’s responses to the persecution of Jews and other identity groups during the Holocaust."
+          },
+          {
+           "code": "HS.WR.CP.118",
+           "text": "Analyze the conditions and responses to genocides of the 20th century."
+          },
+          {
+           "code": "HS.WR.CP.119",
+           "text": "Analyze efforts among nation-states and in the international community’s efforts to hold perpetrators responsible for their involvement in the Holocaust and other acts of genocide."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "build": {
+  "builtAt": "2026-10-14T16:20:47.728Z",
+  "model": "none",
+  "usd": 0,
+  "expectedCodes": 332,
+  "coverage": 1,
+  "missingCodes": [],
+  "counts": {
+   "grades": 9,
+   "units": 37,
+   "topics": 144,
+   "subtopics": 150,
+   "outcomes": 332
+  },
+  "warnings": []
+ }
+}

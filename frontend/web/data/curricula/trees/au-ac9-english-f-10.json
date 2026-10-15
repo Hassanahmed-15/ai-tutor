@@ -1,0 +1,3580 @@
+{
+ "id": "au-ac9-english-f-10",
+ "region": "AU",
+ "framework": "Australian Curriculum Version 9.0 (F-10)",
+ "board": "ACARA",
+ "qualification": null,
+ "subject": "English",
+ "syllabusCode": "ENGENG",
+ "gradeSystem": "year",
+ "source": {
+  "urls": [
+   "https://vocabulary.curriculum.edu.au/MRAC/2024/04/LA/ENG/export/MRAC/2024/04/LA/ENG.jsonld",
+   "https://www.australiancurriculum.edu.au/content/dam/en/curriculum/ac-version-9/downloads/curriculum-workbook.xlsx"
+  ],
+  "publisher": "Australian Curriculum, Assessment and Reporting Authority (ACARA)",
+  "licence": "© ACARA, Australian Curriculum v9.0, CC BY 4.0",
+  "firstExam": null
+ },
+ "grades": [
+  {
+   "grade": "Foundation",
+   "units": [
+    {
+     "id": "language",
+     "title": "Language",
+     "topics": [
+      {
+       "id": "language-for-interacting-with-others",
+       "title": "Language for interacting with others",
+       "subtopics": [
+        {
+         "id": "language-for-interacting-with-others",
+         "title": "Language for interacting with others",
+         "outcomes": [
+          {
+           "code": "AC9EFLA01",
+           "text": "explore how language is used differently at home and school depending on the relationships between people"
+          },
+          {
+           "code": "AC9EFLA02",
+           "text": "explore different ways of using language to express preferences, likes and dislikes"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "text-structure-and-organisation",
+       "title": "Text structure and organisation",
+       "subtopics": [
+        {
+         "id": "text-structure-and-organisation",
+         "title": "Text structure and organisation",
+         "outcomes": [
+          {
+           "code": "AC9EFLA03",
+           "text": "understand that texts can take many forms such as signs, books and digital texts"
+          },
+          {
+           "code": "AC9EFLA04",
+           "text": "understand conventions of print and screen, including how books and simple digital texts are usually organised"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "language-for-expressing-and-developing-ideas",
+       "title": "Language for expressing and developing ideas",
+       "subtopics": [
+        {
+         "id": "sentences-express-ideas",
+         "title": "Sentences Express Ideas",
+         "outcomes": [
+          {
+           "code": "AC9EFLA05",
+           "text": "recognise that sentences are key units for expressing ideas"
+          },
+          {
+           "code": "AC9EFLA06",
+           "text": "recognise that sentences are made up of groups of words that work together in particular ways to make meaning"
+          }
+         ]
+        },
+        {
+         "id": "words-and-images",
+         "title": "Words and Images",
+         "outcomes": [
+          {
+           "code": "AC9EFLA07",
+           "text": "explore the contribution of images and words to meaning in stories and informative texts"
+          }
+         ]
+        },
+        {
+         "id": "everyday-vocabulary",
+         "title": "Everyday Vocabulary",
+         "outcomes": [
+          {
+           "code": "AC9EFLA08",
+           "text": "recognise and develop awareness of vocabulary used in familiar contexts related to everyday experiences, personal interests and topics taught at school"
+          }
+         ]
+        },
+        {
+         "id": "capital-letters-and-punctuation",
+         "title": "Capital Letters and Punctuation",
+         "outcomes": [
+          {
+           "code": "AC9EFLA09",
+           "text": "identify punctuation as a feature of written text different from letters; recognise that capital letters are used for names, and that capital letters also signal the beginning of sentences while punctuation marks signal the end"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "literature",
+     "title": "Literature",
+     "topics": [
+      {
+       "id": "literature-and-contexts",
+       "title": "Literature and contexts",
+       "subtopics": [
+        {
+         "id": "literature-and-contexts",
+         "title": "Literature and contexts",
+         "outcomes": [
+          {
+           "code": "AC9EFLE01",
+           "text": "share ideas about stories, poems and images in literature, reflecting on experiences that are similar or different to their own by engaging with texts by First Nations Australian, and wide-ranging Australian and world authors and illustrators"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "engaging-with-and-responding-to-literature",
+       "title": "Engaging with and responding to literature",
+       "subtopics": [
+        {
+         "id": "engaging-with-and-responding-to-literature",
+         "title": "Engaging with and responding to literature",
+         "outcomes": [
+          {
+           "code": "AC9EFLE02",
+           "text": "respond to stories and share feelings and thoughts about their events and characters"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "examining-literature",
+       "title": "Examining literature",
+       "subtopics": [
+        {
+         "id": "examining-literature",
+         "title": "Examining literature",
+         "outcomes": [
+          {
+           "code": "AC9EFLE03",
+           "text": "recognise different types of literary texts and identify features including events, characters, and beginnings and endings"
+          },
+          {
+           "code": "AC9EFLE04",
+           "text": "explore and replicate the rhythms and sound patterns of literary texts such as poems, rhymes and songs"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "creating-literature",
+       "title": "Creating literature",
+       "subtopics": [
+        {
+         "id": "creating-literature",
+         "title": "Creating literature",
+         "outcomes": [
+          {
+           "code": "AC9EFLE05",
+           "text": "retell and adapt familiar literary texts through play, performance, images or writing"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "literacy",
+     "title": "Literacy",
+     "topics": [
+      {
+       "id": "texts-in-context",
+       "title": "Texts in context",
+       "subtopics": [
+        {
+         "id": "texts-in-context",
+         "title": "Texts in context",
+         "outcomes": [
+          {
+           "code": "AC9EFLY01",
+           "text": "identify some familiar texts, such as stories and informative texts, and their purpose"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "interacting-with-others",
+       "title": "Interacting with others",
+       "subtopics": [
+        {
+         "id": "interacting-with-others",
+         "title": "Interacting with others",
+         "outcomes": [
+          {
+           "code": "AC9EFLY02",
+           "text": "interact in informal and structured situations by listening while others speak and using features of voice including volume levels"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "analysing-interpreting-and-evaluating",
+       "title": "Analysing, interpreting and evaluating",
+       "subtopics": [
+        {
+         "id": "imaginative-and-informative-texts",
+         "title": "Imaginative And Informative Texts",
+         "outcomes": [
+          {
+           "code": "AC9EFLY03",
+           "text": "identify some differences between imaginative and informative texts"
+          }
+         ]
+        },
+        {
+         "id": "reading-and-monitoring-meaning",
+         "title": "Reading And Monitoring Meaning",
+         "outcomes": [
+          {
+           "code": "AC9EFLY04",
+           "text": "read decodable and authentic texts using developing phonic knowledge, and monitor meaning using context and emerging grammatical knowledge"
+          }
+         ]
+        },
+        {
+         "id": "comprehension-strategies",
+         "title": "Comprehension Strategies",
+         "outcomes": [
+          {
+           "code": "AC9EFLY05",
+           "text": "use comprehension strategies such as visualising, predicting, connecting, summarising and questioning to understand and discuss texts listened to, viewed or read independently"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "creating-texts",
+       "title": "Creating texts",
+       "subtopics": [
+        {
+         "id": "writing-and-editing-texts",
+         "title": "Writing And Editing Texts",
+         "outcomes": [
+          {
+           "code": "AC9EFLY06",
+           "text": "create and participate in shared editing of short written texts to record and report ideas and events using some learnt vocabulary, basic sentence boundary punctuation and spelling some consonant–vowel–consonant words correctly"
+          }
+         ]
+        },
+        {
+         "id": "delivering-spoken-texts",
+         "title": "Delivering Spoken Texts",
+         "outcomes": [
+          {
+           "code": "AC9EFLY07",
+           "text": "create and deliver short spoken texts to report ideas and events to peers, using features of voice such as appropriate volume"
+          }
+         ]
+        },
+        {
+         "id": "forming-uppercase-and-lowercase-letters",
+         "title": "Forming Uppercase And Lowercase Letters",
+         "outcomes": [
+          {
+           "code": "AC9EFLY08",
+           "text": "form most lower-case and upper-case letters using learnt letter formations"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "phonic-and-word-knowledge",
+       "title": "Phonic and word knowledge",
+       "subtopics": [
+        {
+         "id": "rhymes-syllables-and-sounds",
+         "title": "Rhymes Syllables And Sounds",
+         "outcomes": [
+          {
+           "code": "AC9EFLY09",
+           "text": "recognise and generate rhyming words, alliteration patterns, syllables and sounds (phonemes) in spoken words (phonological awareness)"
+          }
+         ]
+        },
+        {
+         "id": "blending-and-segmenting-words",
+         "title": "Blending And Segmenting Words",
+         "outcomes": [
+          {
+           "code": "AC9EFLY10",
+           "text": "segment sentences into individual words; orally blend and segment single-syllable spoken words; isolate, blend and manipulate phonemes in single-syllable words (phonological awareness)"
+          }
+         ]
+        },
+        {
+         "id": "letter-names-and-sounds",
+         "title": "Letter Names And Sounds",
+         "outcomes": [
+          {
+           "code": "AC9EFLY11",
+           "text": "recognise and name all upper- and lower-case letters (graphs) and know the most common sound that each letter represents"
+          }
+         ]
+        },
+        {
+         "id": "reading-and-writing-cvc-words",
+         "title": "Reading And Writing CVC Words",
+         "outcomes": [
+          {
+           "code": "AC9EFLY12",
+           "text": "write consonant–vowel–consonant (CVC) words by representing sounds with the appropriate letters, and blend sounds associated with letters when reading CVC words"
+          }
+         ]
+        },
+        {
+         "id": "spelling-with-letters-and-sounds",
+         "title": "Spelling With Letters And Sounds",
+         "outcomes": [
+          {
+           "code": "AC9EFLY13",
+           "text": "use knowledge of letters and sounds to spell words"
+          }
+         ]
+        },
+        {
+         "id": "high-frequency-and-familiar-words",
+         "title": "High-Frequency And Familiar Words",
+         "outcomes": [
+          {
+           "code": "AC9EFLY14",
+           "text": "read and write some high-frequency words and other familiar words"
+          }
+         ]
+        },
+        {
+         "id": "words-and-meaningful-parts",
+         "title": "Words And Meaningful Parts",
+         "outcomes": [
+          {
+           "code": "AC9EFLY15",
+           "text": "understand that words are units of meaning and can be made of more than one meaningful part"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "1",
+   "units": [
+    {
+     "id": "language",
+     "title": "Language",
+     "topics": [
+      {
+       "id": "language-for-interacting-with-others",
+       "title": "Language for interacting with others",
+       "subtopics": [
+        {
+         "id": "language-for-interacting-with-others",
+         "title": "Language for interacting with others",
+         "outcomes": [
+          {
+           "code": "AC9E1LA01",
+           "text": "understand how language, facial expressions and gestures are used to interact with others when asking for and providing information, making offers, exclaiming, requesting and giving commands"
+          },
+          {
+           "code": "AC9E1LA02",
+           "text": "explore language to provide reasons for likes, dislikes and preferences"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "text-structure-and-organisation",
+       "title": "Text structure and organisation",
+       "subtopics": [
+        {
+         "id": "text-purposes-and-organisation",
+         "title": "Text Purposes and Organisation",
+         "outcomes": [
+          {
+           "code": "AC9E1LA03",
+           "text": "explore how texts are organised according to their purpose, such as to recount, narrate, express opinion, inform, report and explain"
+          }
+         ]
+        },
+        {
+         "id": "repetition-rhyme-and-rhythm",
+         "title": "Repetition, Rhyme and Rhythm",
+         "outcomes": [
+          {
+           "code": "AC9E1LA04",
+           "text": "explore how repetition, rhyme and rhythm create cohesion in simple poems, chants and songs"
+          }
+         ]
+        },
+        {
+         "id": "print-and-screen-features",
+         "title": "Print and Screen Features",
+         "outcomes": [
+          {
+           "code": "AC9E1LA05",
+           "text": "understand how print and screen texts are organised using features such as page numbers, tables of content, headings and titles, navigation buttons, swipe screens, verbal commands, links and images"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "language-for-expressing-and-developing-ideas",
+       "title": "Language for expressing and developing ideas",
+       "subtopics": [
+        {
+         "id": "sentences-and-word-types",
+         "title": "Sentences and Word Types",
+         "outcomes": [
+          {
+           "code": "AC9E1LA06",
+           "text": "understand that a simple sentence consists of a single independent clause representing a single event or idea"
+          },
+          {
+           "code": "AC9E1LA07",
+           "text": "understand that words can represent people, places and things (nouns, including pronouns), happenings and states (verbs), qualities (adjectives) and details such as when, where and how (adverbs)"
+          }
+         ]
+        },
+        {
+         "id": "images-and-meaning",
+         "title": "Images and Meaning",
+         "outcomes": [
+          {
+           "code": "AC9E1LA08",
+           "text": "compare how images in different types of texts contribute to meaning"
+          }
+         ]
+        },
+        {
+         "id": "learning-area-vocabulary",
+         "title": "Learning Area Vocabulary",
+         "outcomes": [
+          {
+           "code": "AC9E1LA09",
+           "text": "recognise the vocabulary of learning area topics"
+          }
+         ]
+        },
+        {
+         "id": "punctuation-and-capital-letters",
+         "title": "Punctuation and Capital Letters",
+         "outcomes": [
+          {
+           "code": "AC9E1LA10",
+           "text": "understand that written language uses punctuation such as full stops, question marks and exclamation marks, and uses capital letters for familiar proper nouns"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "literature",
+     "title": "Literature",
+     "topics": [
+      {
+       "id": "literature-and-contexts",
+       "title": "Literature and contexts",
+       "subtopics": [
+        {
+         "id": "literature-and-contexts",
+         "title": "Literature and contexts",
+         "outcomes": [
+          {
+           "code": "AC9E1LE01",
+           "text": "discuss how language and images are used to create characters, settings and events in literature by First Nations Australian, and wide-ranging Australian and world authors and illustrators"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "engaging-with-and-responding-to-literature",
+       "title": "Engaging with and responding to literature",
+       "subtopics": [
+        {
+         "id": "engaging-with-and-responding-to-literature",
+         "title": "Engaging with and responding to literature",
+         "outcomes": [
+          {
+           "code": "AC9E1LE02",
+           "text": "discuss literary texts and share responses by making connections with students’ own experiences"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "examining-literature",
+       "title": "Examining literature",
+       "subtopics": [
+        {
+         "id": "examining-literature",
+         "title": "Examining literature",
+         "outcomes": [
+          {
+           "code": "AC9E1LE03",
+           "text": "discuss plot, character and setting, which are features of stories"
+          },
+          {
+           "code": "AC9E1LE04",
+           "text": "listen to and discuss poems, chants, rhymes and songs, and imitate and invent sound patterns including alliteration and rhyme"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "creating-literature",
+       "title": "Creating literature",
+       "subtopics": [
+        {
+         "id": "creating-literature",
+         "title": "Creating literature",
+         "outcomes": [
+          {
+           "code": "AC9E1LE05",
+           "text": "orally retell or adapt a familiar story using plot and characters, language features including vocabulary, and structure of a familiar text, through role-play, writing, drawing or digital tools"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "literacy",
+     "title": "Literacy",
+     "topics": [
+      {
+       "id": "texts-in-context",
+       "title": "Texts in context",
+       "subtopics": [
+        {
+         "id": "texts-in-context",
+         "title": "Texts in context",
+         "outcomes": [
+          {
+           "code": "AC9E1LY01",
+           "text": "discuss different texts and identify some features that indicate their purposes"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "interacting-with-others",
+       "title": "Interacting with others",
+       "subtopics": [
+        {
+         "id": "interacting-with-others",
+         "title": "Interacting with others",
+         "outcomes": [
+          {
+           "code": "AC9E1LY02",
+           "text": "use interaction skills including turn-taking, speaking clearly, using active listening behaviours and responding to the contributions of others, and contributing ideas and questions"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "analysing-interpreting-and-evaluating",
+       "title": "Analysing, interpreting and evaluating",
+       "subtopics": [
+        {
+         "id": "compare-text-types",
+         "title": "Compare Text Types",
+         "outcomes": [
+          {
+           "code": "AC9E1LY03",
+           "text": "describe some similarities and differences between imaginative, informative and persuasive texts"
+          }
+         ]
+        },
+        {
+         "id": "read-fluently",
+         "title": "Read Fluently",
+         "outcomes": [
+          {
+           "code": "AC9E1LY04",
+           "text": "read decodable and authentic texts using developing phonic knowledge, phrasing and fluency, and monitoring meaning using context and grammatical knowledge"
+          }
+         ]
+        },
+        {
+         "id": "build-meaning",
+         "title": "Build Meaning",
+         "outcomes": [
+          {
+           "code": "AC9E1LY05",
+           "text": "use comprehension strategies such as visualising, predicting, connecting, summarising and questioning when listening, viewing and reading to build literal and inferred meaning by drawing on vocabulary and growing knowledge of context and text structures"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "creating-texts",
+       "title": "Creating texts",
+       "subtopics": [
+        {
+         "id": "create-written-texts",
+         "title": "Create Written Texts",
+         "outcomes": [
+          {
+           "code": "AC9E1LY06",
+           "text": "create and re-read to edit short written and/or multimodal texts to report on a topic, express an opinion or recount a real or imagined event, using grammatically correct simple sentences, some topic-specific vocabulary, sentence boundary punctuation and correct spelling of some one- and two-syllable words"
+          }
+         ]
+        },
+        {
+         "id": "present-ideas-orally",
+         "title": "Present Ideas Orally",
+         "outcomes": [
+          {
+           "code": "AC9E1LY07",
+           "text": "create and deliver short oral and/or multimodal presentations on personal and learnt topics, which include an opening, middle and concluding statement; some topic-specific vocabulary and appropriate gesture, volume and pace"
+          }
+         ]
+        },
+        {
+         "id": "form-uppercase-and-lowercase-letters",
+         "title": "Form Uppercase and Lowercase Letters",
+         "outcomes": [
+          {
+           "code": "AC9E1LY08",
+           "text": "write words using unjoined lower-case and upper-case letters"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "phonic-and-word-knowledge",
+       "title": "Phonic and word knowledge",
+       "subtopics": [
+        {
+         "id": "hear-and-change-sounds",
+         "title": "Hear and Change Sounds",
+         "outcomes": [
+          {
+           "code": "AC9E1LY09",
+           "text": "segment words into separate phonemes (sounds) including consonant blends or clusters at the beginnings and ends of words (phonological awareness)"
+          },
+          {
+           "code": "AC9E1LY10",
+           "text": "orally manipulate phonemes in spoken words by addition, deletion and substitution of initial, medial and final phonemes to generate new words (phonological awareness)"
+          }
+         ]
+        },
+        {
+         "id": "use-vowels-and-digraphs",
+         "title": "Use Vowels and Digraphs",
+         "outcomes": [
+          {
+           "code": "AC9E1LY11",
+           "text": "use short vowels, common long vowels, consonant blends and digraphs to write words, and blend these to read one- and two-syllable words"
+          },
+          {
+           "code": "AC9E1LY12",
+           "text": "understand that a letter can represent more than one sound and that a syllable must contain a vowel sound"
+          }
+         ]
+        },
+        {
+         "id": "spell-and-read-words",
+         "title": "Spell and Read Words",
+         "outcomes": [
+          {
+           "code": "AC9E1LY13",
+           "text": "spell one- and two-syllable words with common letter patterns"
+          },
+          {
+           "code": "AC9E1LY14",
+           "text": "read and write an increasing number of high-frequency words"
+          }
+         ]
+        },
+        {
+         "id": "build-word-families",
+         "title": "Build Word Families",
+         "outcomes": [
+          {
+           "code": "AC9E1LY15",
+           "text": "recognise and know how to use grammatical morphemes to create word families"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "2",
+   "units": [
+    {
+     "id": "language",
+     "title": "Language",
+     "topics": [
+      {
+       "id": "language-for-interacting-with-others",
+       "title": "Language for interacting with others",
+       "subtopics": [
+        {
+         "id": "language-for-interacting-with-others",
+         "title": "Language for interacting with others",
+         "outcomes": [
+          {
+           "code": "AC9E2LA01",
+           "text": "investigate how interpersonal language choices vary depending on the context, including the different roles taken on in interactions"
+          },
+          {
+           "code": "AC9E2LA02",
+           "text": "explore how language can be used for appreciating texts and providing reasons for preferences"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "text-structure-and-organisation",
+       "title": "Text structure and organisation",
+       "subtopics": [
+        {
+         "id": "organising-and-linking-texts",
+         "title": "Organising and Linking Texts",
+         "outcomes": [
+          {
+           "code": "AC9E2LA03",
+           "text": "identify how texts across the curriculum are organised differently and use language features depending on purposes"
+          },
+          {
+           "code": "AC9E2LA04",
+           "text": "understand how texts are made cohesive by using personal and possessive pronouns and by omitting words that can be inferred"
+          }
+         ]
+        },
+        {
+         "id": "navigating-texts",
+         "title": "Navigating Texts",
+         "outcomes": [
+          {
+           "code": "AC9E2LA05",
+           "text": "navigate print and screen texts using chapters, tables of contents, indexes, side-bar menus, drop-down menus or links"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "language-for-expressing-and-developing-ideas",
+       "title": "Language for expressing and developing ideas",
+       "subtopics": [
+        {
+         "id": "building-sentences",
+         "title": "Building Sentences",
+         "outcomes": [
+          {
+           "code": "AC9E2LA06",
+           "text": "understand that connections can be made between ideas by using a compound sentence with 2 or more independent clauses usually linked by a coordinating conjunction"
+          },
+          {
+           "code": "AC9E2LA07",
+           "text": "understand that in sentences nouns may be extended into noun groups using articles and adjectives, and verbs may be expressed as verb groups"
+          }
+         ]
+        },
+        {
+         "id": "images-and-vocabulary",
+         "title": "Images and Vocabulary",
+         "outcomes": [
+          {
+           "code": "AC9E2LA08",
+           "text": "understand that images add to or multiply the meanings of a text"
+          },
+          {
+           "code": "AC9E2LA09",
+           "text": "experiment with and begin to make conscious choices of vocabulary to suit the topic"
+          }
+         ]
+        },
+        {
+         "id": "capital-letters-and-commas",
+         "title": "Capital Letters and Commas",
+         "outcomes": [
+          {
+           "code": "AC9E2LA10",
+           "text": "recognise that capital letters are used in titles and commas are used to separate items in lists"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "literature",
+     "title": "Literature",
+     "topics": [
+      {
+       "id": "literature-and-contexts",
+       "title": "Literature and contexts",
+       "subtopics": [
+        {
+         "id": "literature-and-contexts",
+         "title": "Literature and contexts",
+         "outcomes": [
+          {
+           "code": "AC9E2LE01",
+           "text": "discuss how characters and settings are connected in literature created by First Nations Australian, and wide-ranging Australian and world authors and illustrators"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "engaging-with-and-responding-to-literature",
+       "title": "Engaging with and responding to literature",
+       "subtopics": [
+        {
+         "id": "engaging-with-and-responding-to-literature",
+         "title": "Engaging with and responding to literature",
+         "outcomes": [
+          {
+           "code": "AC9E2LE02",
+           "text": "identify features of literary texts, such as characters and settings, and give reasons for personal preferences"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "examining-literature",
+       "title": "Examining literature",
+       "subtopics": [
+        {
+         "id": "examining-literature",
+         "title": "Examining literature",
+         "outcomes": [
+          {
+           "code": "AC9E2LE03",
+           "text": "discuss the characters and settings of a range of texts and identify how language is used to present these features in different ways"
+          },
+          {
+           "code": "AC9E2LE04",
+           "text": "identify, reproduce and experiment with rhythmic sound and word patterns in poems, chants, rhymes or songs"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "creating-literature",
+       "title": "Creating literature",
+       "subtopics": [
+        {
+         "id": "creating-literature",
+         "title": "Creating literature",
+         "outcomes": [
+          {
+           "code": "AC9E2LE05",
+           "text": "create and edit literary texts by adapting structures and language features of familiar literary texts through drawing, writing, performance and digital tools"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "literacy",
+     "title": "Literacy",
+     "topics": [
+      {
+       "id": "texts-in-context",
+       "title": "Texts in context",
+       "subtopics": [
+        {
+         "id": "texts-in-context",
+         "title": "Texts in context",
+         "outcomes": [
+          {
+           "code": "AC9E2LY01",
+           "text": "identify how similar topics and information are presented in different types of texts"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "interacting-with-others",
+       "title": "Interacting with others",
+       "subtopics": [
+        {
+         "id": "interacting-with-others",
+         "title": "Interacting with others",
+         "outcomes": [
+          {
+           "code": "AC9E2LY02",
+           "text": "use interaction skills when engaging with topics, actively listening to others, receiving instructions and extending own ideas, speaking appropriately, expressing and responding to opinions, making statements, and giving instructions"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "analysing-interpreting-and-evaluating",
+       "title": "Analysing, interpreting and evaluating",
+       "subtopics": [
+        {
+         "id": "purpose-and-audience",
+         "title": "Purpose and Audience",
+         "outcomes": [
+          {
+           "code": "AC9E2LY03",
+           "text": "identify the purpose and audience of imaginative, informative and persuasive texts"
+          }
+         ]
+        },
+        {
+         "id": "fluent-reading-and-comprehension",
+         "title": "Fluent Reading and Comprehension",
+         "outcomes": [
+          {
+           "code": "AC9E2LY04",
+           "text": "read texts with phrasing and fluency, using phonic and word knowledge, and monitoring meaning by re-reading and self-correcting"
+          },
+          {
+           "code": "AC9E2LY05",
+           "text": "use comprehension strategies such as visualising, predicting, connecting, summarising, monitoring and questioning to build literal and inferred meaning"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "creating-texts",
+       "title": "Creating texts",
+       "subtopics": [
+        {
+         "id": "writing-different-texts",
+         "title": "Writing Different Texts",
+         "outcomes": [
+          {
+           "code": "AC9E2LY06",
+           "text": "create and edit short imaginative, informative and persuasive written and/or multimodal texts for familiar audiences, using text structure appropriate to purpose, simple and compound sentences, noun groups and verb groups, topic-specific vocabulary, simple punctuation and common 2-syllable words"
+          }
+         ]
+        },
+        {
+         "id": "presenting-to-an-audience",
+         "title": "Presenting to an Audience",
+         "outcomes": [
+          {
+           "code": "AC9E2LY07",
+           "text": "create, rehearse and deliver short oral and/or multimodal presentations for familiar audiences and purposes, using text structure appropriate to purpose and topic-specific vocabulary, and varying tone, volume and pace"
+          }
+         ]
+        },
+        {
+         "id": "writing-letters-clearly",
+         "title": "Writing Letters Clearly",
+         "outcomes": [
+          {
+           "code": "AC9E2LY08",
+           "text": "write words legibly and with growing fluency using unjoined upper-case and lower-case letters"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "phonic-and-word-knowledge",
+       "title": "Phonic and word knowledge",
+       "subtopics": [
+        {
+         "id": "working-with-sounds",
+         "title": "Working with Sounds",
+         "outcomes": [
+          {
+           "code": "AC9E2LY09",
+           "text": "manipulate more complex sounds in spoken words and use knowledge of blending, segmenting, phoneme deletion and phoneme substitution to read and write words"
+          }
+         ]
+        },
+        {
+         "id": "sound-and-letter-patterns",
+         "title": "Sound and Letter Patterns",
+         "outcomes": [
+          {
+           "code": "AC9E2LY10",
+           "text": "use phoneme–grapheme (sound–letter/s) matches, including vowel digraphs, less common long vowel patterns, consonant clusters and silent letters when reading and writing words of one or more syllables, including compound words"
+          }
+         ]
+        },
+        {
+         "id": "spelling-patterns-and-morphemes",
+         "title": "Spelling Patterns and Morphemes",
+         "outcomes": [
+          {
+           "code": "AC9E2LY11",
+           "text": "use knowledge of spelling patterns and morphemes to read and write words whose spelling is not completely predictable from their sounds, including high-frequency words"
+          },
+          {
+           "code": "AC9E2LY12",
+           "text": "build morphemic word families using knowledge of prefixes and suffixes"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "3",
+   "units": [
+    {
+     "id": "language",
+     "title": "Language",
+     "topics": [
+      {
+       "id": "language-for-interacting-with-others",
+       "title": "Language for interacting with others",
+       "subtopics": [
+        {
+         "id": "language-for-interacting-with-others",
+         "title": "Language for interacting with others",
+         "outcomes": [
+          {
+           "code": "AC9E3LA01",
+           "text": "understand that cooperation with others depends on shared understanding of social conventions, including turn-taking language, which vary according to the degree of formality"
+          },
+          {
+           "code": "AC9E3LA02",
+           "text": "understand how the language of evaluation and emotion, such as modal verbs, can be varied to be more or less forceful"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "text-structure-and-organisation",
+       "title": "Text structure and organisation",
+       "subtopics": [
+        {
+         "id": "text-structures-and-paragraphs",
+         "title": "Text Structures and Paragraphs",
+         "outcomes": [
+          {
+           "code": "AC9E3LA03",
+           "text": "describe how texts across the curriculum use different language features and structures relevant to their purpose"
+          },
+          {
+           "code": "AC9E3LA04",
+           "text": "understand that paragraphs are a key organisational feature of the stages of written texts, grouping related information together"
+          }
+         ]
+        },
+        {
+         "id": "layout-and-navigation",
+         "title": "Layout and Navigation",
+         "outcomes": [
+          {
+           "code": "AC9E3LA05",
+           "text": "identify the purpose of layout features in print and digital texts and the words used for navigation"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "language-for-expressing-and-developing-ideas",
+       "title": "Language for expressing and developing ideas",
+       "subtopics": [
+        {
+         "id": "clauses-verbs-and-tense",
+         "title": "Clauses, Verbs and Tense",
+         "outcomes": [
+          {
+           "code": "AC9E3LA06",
+           "text": "understand that a clause is a unit of grammar usually containing a subject and a verb that need to agree"
+          },
+          {
+           "code": "AC9E3LA07",
+           "text": "understand how verbs represent different processes for doing, feeling, thinking, saying and relating"
+          },
+          {
+           "code": "AC9E3LA08",
+           "text": "understand that verbs are anchored in time through tense"
+          }
+         ]
+        },
+        {
+         "id": "images-and-topic-vocabulary",
+         "title": "Images and Topic Vocabulary",
+         "outcomes": [
+          {
+           "code": "AC9E3LA09",
+           "text": "identify how images extend the meaning of a text"
+          },
+          {
+           "code": "AC9E3LA10",
+           "text": "extend topic-specific and technical vocabulary and know that words can have different meanings in different contexts"
+          }
+         ]
+        },
+        {
+         "id": "apostrophes-and-possession",
+         "title": "Apostrophes and Possession",
+         "outcomes": [
+          {
+           "code": "AC9E3LA11",
+           "text": "understand that apostrophes signal missing letters in contractions, and apostrophes are used to show singular and plural possession"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "literature",
+     "title": "Literature",
+     "topics": [
+      {
+       "id": "literature-and-contexts",
+       "title": "Literature and contexts",
+       "subtopics": [
+        {
+         "id": "literature-and-contexts",
+         "title": "Literature and contexts",
+         "outcomes": [
+          {
+           "code": "AC9E3LE01",
+           "text": "discuss characters, events and settings in different contexts in literature by First Nations Australian, and wide-ranging Australian and world authors and illustrators"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "engaging-with-and-responding-to-literature",
+       "title": "Engaging with and responding to literature",
+       "subtopics": [
+        {
+         "id": "engaging-with-and-responding-to-literature",
+         "title": "Engaging with and responding to literature",
+         "outcomes": [
+          {
+           "code": "AC9E3LE02",
+           "text": "discuss connections between personal experiences and character experiences in literary texts and share personal preferences"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "examining-literature",
+       "title": "Examining literature",
+       "subtopics": [
+        {
+         "id": "examining-literature",
+         "title": "Examining literature",
+         "outcomes": [
+          {
+           "code": "AC9E3LE03",
+           "text": "discuss how an author uses language and illustrations to portray characters and settings in texts, and explore how the settings and events influence the mood of the narrative"
+          },
+          {
+           "code": "AC9E3LE04",
+           "text": "discuss the effects of some literary devices used to enhance meaning and shape the reader’s reaction, including rhythm and onomatopoeia in poetry and prose"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "creating-literature",
+       "title": "Creating literature",
+       "subtopics": [
+        {
+         "id": "creating-literature",
+         "title": "Creating literature",
+         "outcomes": [
+          {
+           "code": "AC9E3LE05",
+           "text": "create and edit imaginative texts, using or adapting language features, characters, settings, plot structures and ideas encountered in literary texts"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "literacy",
+     "title": "Literacy",
+     "topics": [
+      {
+       "id": "texts-in-context",
+       "title": "Texts in context",
+       "subtopics": [
+        {
+         "id": "texts-in-context",
+         "title": "Texts in context",
+         "outcomes": [
+          {
+           "code": "AC9E3LY01",
+           "text": "recognise how texts can be created for similar purposes but different audiences"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "interacting-with-others",
+       "title": "Interacting with others",
+       "subtopics": [
+        {
+         "id": "interacting-with-others",
+         "title": "Interacting with others",
+         "outcomes": [
+          {
+           "code": "AC9E3LY02",
+           "text": "use interaction skills to contribute to conversations and discussions to share information and ideas"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "analysing-interpreting-and-evaluating",
+       "title": "Analysing, interpreting and evaluating",
+       "subtopics": [
+        {
+         "id": "audience-and-purpose",
+         "title": "Audience and Purpose",
+         "outcomes": [
+          {
+           "code": "AC9E3LY03",
+           "text": "identify the audience and purpose of imaginative, informative and persuasive texts through their use of language features and/or images"
+          }
+         ]
+        },
+        {
+         "id": "fluent-reading",
+         "title": "Fluent Reading",
+         "outcomes": [
+          {
+           "code": "AC9E3LY04",
+           "text": "read a range of texts using phonic, semantic and grammatical knowledge to read accurately and fluently, re-reading and self-correcting when required"
+          }
+         ]
+        },
+        {
+         "id": "understanding-and-evaluating-texts",
+         "title": "Understanding and Evaluating Texts",
+         "outcomes": [
+          {
+           "code": "AC9E3LY05",
+           "text": "use comprehension strategies when listening and viewing to build literal and inferred meaning, and begin to evaluate texts by drawing on a growing knowledge of context, text structures and language features"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "creating-texts",
+       "title": "Creating texts",
+       "subtopics": [
+        {
+         "id": "creating-written-texts",
+         "title": "Creating Written Texts",
+         "outcomes": [
+          {
+           "code": "AC9E3LY06",
+           "text": "plan, create, edit and publish imaginative, informative and persuasive written and multimodal texts, using visual features, appropriate form and layout, with ideas grouped in simple paragraphs, mostly correct tense, topic-specific vocabulary and correct spelling of most high-frequency and phonetically regular words"
+          }
+         ]
+        },
+        {
+         "id": "presenting-ideas",
+         "title": "Presenting Ideas",
+         "outcomes": [
+          {
+           "code": "AC9E3LY07",
+           "text": "plan, create, rehearse and deliver short oral and/or multimodal presentations to inform, express opinions or tell stories, using a clear structure, details to elaborate ideas, topic-specific and precise vocabulary, visual features, and appropriate tone, pace, pitch and volume"
+          }
+         ]
+        },
+        {
+         "id": "joined-letter-writing",
+         "title": "Joined Letter Writing",
+         "outcomes": [
+          {
+           "code": "AC9E3LY08",
+           "text": "write words using joined letters that are clearly formed and consistent in size"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "phonic-and-word-knowledge",
+       "title": "Phonic and word knowledge",
+       "subtopics": [
+        {
+         "id": "reading-multisyllabic-words",
+         "title": "Reading Multisyllabic Words",
+         "outcomes": [
+          {
+           "code": "AC9E3LY09",
+           "text": "understand how to apply knowledge of phoneme–grapheme (sound–letter) relationships, syllables, and blending and segmenting to fluently read and write multisyllabic words with more complex letter patterns"
+          }
+         ]
+        },
+        {
+         "id": "building-new-words",
+         "title": "Building New Words",
+         "outcomes": [
+          {
+           "code": "AC9E3LY10",
+           "text": "understand how to apply knowledge of common base words, prefixes, suffixes and generalisations for adding a suffix to a base word to read and comprehend new multimorphemic words"
+          }
+         ]
+        },
+        {
+         "id": "spelling-letter-patterns",
+         "title": "Spelling Letter Patterns",
+         "outcomes": [
+          {
+           "code": "AC9E3LY11",
+           "text": "use phoneme–grapheme (sound–letter) relationships and less common letter patterns to spell words"
+          }
+         ]
+        },
+        {
+         "id": "high-frequency-words",
+         "title": "High-Frequency Words",
+         "outcomes": [
+          {
+           "code": "AC9E3LY12",
+           "text": "recognise and know how to write most high-frequency words including some homophones"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "4",
+   "units": [
+    {
+     "id": "language",
+     "title": "Language",
+     "topics": [
+      {
+       "id": "language-for-interacting-with-others",
+       "title": "Language for interacting with others",
+       "subtopics": [
+        {
+         "id": "language-for-interacting-with-others",
+         "title": "Language for interacting with others",
+         "outcomes": [
+          {
+           "code": "AC9E4LA01",
+           "text": "explore language used to develop relationships in formal and informal situations"
+          },
+          {
+           "code": "AC9E4LA02",
+           "text": "identify the subjective language of opinion and feeling, and the objective language of factual reporting"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "text-structure-and-organisation",
+       "title": "Text structure and organisation",
+       "subtopics": [
+        {
+         "id": "text-stages-and-connections",
+         "title": "Text Stages and Connections",
+         "outcomes": [
+          {
+           "code": "AC9E4LA03",
+           "text": "identify how texts across the curriculum have different language features and are typically organised into characteristic stages depending on purposes"
+          },
+          {
+           "code": "AC9E4LA04",
+           "text": "identify how text connectives including temporal and conditional words, and topic word associations are used to sequence and connect ideas"
+          }
+         ]
+        },
+        {
+         "id": "online-text-navigation",
+         "title": "Online Text Navigation",
+         "outcomes": [
+          {
+           "code": "AC9E4LA05",
+           "text": "identify text navigation features of online texts that enhance readability including headlines, drop-down menus, links, graphics and layout"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "language-for-expressing-and-developing-ideas",
+       "title": "Language for expressing and developing ideas",
+       "subtopics": [
+        {
+         "id": "complex-sentences",
+         "title": "Complex Sentences",
+         "outcomes": [
+          {
+           "code": "AC9E4LA06",
+           "text": "understand that complex sentences contain one independent clause and at least one dependent clause typically joined by a subordinating conjunction to create relationships, such as time and causality"
+          }
+         ]
+        },
+        {
+         "id": "speech-and-dialogue",
+         "title": "Speech and Dialogue",
+         "outcomes": [
+          {
+           "code": "AC9E4LA07",
+           "text": "investigate how quoted (direct) and reported (indirect) speech are used"
+          },
+          {
+           "code": "AC9E4LA12",
+           "text": "understand that punctuation signals dialogue through quotation marks and that dialogue follows conventions for the use of capital letters, commas and boundary punctuation"
+          }
+         ]
+        },
+        {
+         "id": "describing-activities",
+         "title": "Describing Activities",
+         "outcomes": [
+          {
+           "code": "AC9E4LA08",
+           "text": "understand how adverb groups/phrases and prepositional phrases work in different ways to provide circumstantial details about an activity"
+          }
+         ]
+        },
+        {
+         "id": "tenses-and-meaning",
+         "title": "Tenses and Meaning",
+         "outcomes": [
+          {
+           "code": "AC9E4LA09",
+           "text": "understand past, present and future tenses and their impact on meaning in a sentence"
+          }
+         ]
+        },
+        {
+         "id": "framing-images",
+         "title": "Framing Images",
+         "outcomes": [
+          {
+           "code": "AC9E4LA10",
+           "text": "explore the effect of choices when framing an image, placement of elements in the image and salience on composition of still and moving images in texts"
+          }
+         ]
+        },
+        {
+         "id": "synonyms-and-antonyms",
+         "title": "Synonyms and Antonyms",
+         "outcomes": [
+          {
+           "code": "AC9E4LA11",
+           "text": "expand vocabulary by exploring a range of synonyms and antonyms, and using words encountered in a range of sources"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "literature",
+     "title": "Literature",
+     "topics": [
+      {
+       "id": "literature-and-contexts",
+       "title": "Literature and contexts",
+       "subtopics": [
+        {
+         "id": "literature-and-contexts",
+         "title": "Literature and contexts",
+         "outcomes": [
+          {
+           "code": "AC9E4LE01",
+           "text": "recognise similar storylines, ideas and relationships in different contexts in literary texts by First Nations Australian, and wide-ranging Australian and world authors"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "engaging-with-and-responding-to-literature",
+       "title": "Engaging with and responding to literature",
+       "subtopics": [
+        {
+         "id": "engaging-with-and-responding-to-literature",
+         "title": "Engaging with and responding to literature",
+         "outcomes": [
+          {
+           "code": "AC9E4LE02",
+           "text": "describe the effects of text structures and language features in literary texts when responding to and sharing opinions"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "examining-literature",
+       "title": "Examining literature",
+       "subtopics": [
+        {
+         "id": "examining-literature",
+         "title": "Examining literature",
+         "outcomes": [
+          {
+           "code": "AC9E4LE03",
+           "text": "discuss how authors and illustrators make stories engaging by the way they develop character, setting and plot tensions"
+          },
+          {
+           "code": "AC9E4LE04",
+           "text": "examine the use of literary devices and deliberate word play in literary texts, including poetry, to shape meaning"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "creating-literature",
+       "title": "Creating literature",
+       "subtopics": [
+        {
+         "id": "creating-literature",
+         "title": "Creating literature",
+         "outcomes": [
+          {
+           "code": "AC9E4LE05",
+           "text": "create and edit literary texts by developing storylines, characters and settings"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "literacy",
+     "title": "Literacy",
+     "topics": [
+      {
+       "id": "texts-in-context",
+       "title": "Texts in context",
+       "subtopics": [
+        {
+         "id": "texts-in-context",
+         "title": "Texts in context",
+         "outcomes": [
+          {
+           "code": "AC9E4LY01",
+           "text": "compare texts from different times with similar purposes and audiences to identify similarities and differences in their depictions of events"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "interacting-with-others",
+       "title": "Interacting with others",
+       "subtopics": [
+        {
+         "id": "interacting-with-others",
+         "title": "Interacting with others",
+         "outcomes": [
+          {
+           "code": "AC9E4LY02",
+           "text": "listen for key points and information to carry out tasks and contribute to discussions, acknowledging another opinion, linking a response to the topic, and sharing and extending ideas and information"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "analysing-interpreting-and-evaluating",
+       "title": "Analysing, interpreting and evaluating",
+       "subtopics": [
+        {
+         "id": "text-purpose-and-features",
+         "title": "Text Purpose and Features",
+         "outcomes": [
+          {
+           "code": "AC9E4LY03",
+           "text": "identify the characteristic features used in imaginative, informative and persuasive texts to meet the purpose of the text"
+          }
+         ]
+        },
+        {
+         "id": "reading-and-comprehension",
+         "title": "Reading and Comprehension",
+         "outcomes": [
+          {
+           "code": "AC9E4LY04",
+           "text": "read different types of texts, integrating phonic, semantic and grammatical knowledge to read accurately and fluently, re-reading and self-correcting when needed"
+          },
+          {
+           "code": "AC9E4LY05",
+           "text": "use comprehension strategies such as visualising, predicting, connecting, summarising, monitoring and questioning to build literal and inferred meaning, to expand topic knowledge and ideas, and evaluate texts"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "creating-texts",
+       "title": "Creating texts",
+       "subtopics": [
+        {
+         "id": "writing-and-publishing-texts",
+         "title": "Writing and Publishing Texts",
+         "outcomes": [
+          {
+           "code": "AC9E4LY06",
+           "text": "plan, create, edit and publish written and multimodal imaginative, informative and persuasive texts, using visual features, relevant linked ideas, complex sentences, appropriate tense, synonyms and antonyms, correct spelling of multisyllabic words and simple punctuation"
+          }
+         ]
+        },
+        {
+         "id": "oral-presentations",
+         "title": "Oral Presentations",
+         "outcomes": [
+          {
+           "code": "AC9E4LY07",
+           "text": "plan, create, rehearse and deliver structured oral and/or multimodal presentations to report on a topic, tell a story, recount events or present an argument using subjective and objective language, complex sentences, visual features, tone, pace, pitch and volume"
+          }
+         ]
+        },
+        {
+         "id": "joined-letter-writing",
+         "title": "Joined Letter Writing",
+         "outcomes": [
+          {
+           "code": "AC9E4LY08",
+           "text": "write words using clearly formed joined letters, with developing fluency and automaticity"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "phonic-and-word-knowledge",
+       "title": "Phonic and word knowledge",
+       "subtopics": [
+        {
+         "id": "word-patterns-and-word-parts",
+         "title": "Word Patterns and Word Parts",
+         "outcomes": [
+          {
+           "code": "AC9E4LY09",
+           "text": "understand how to use and apply phonological and morphological knowledge to read and write multisyllabic words with more complex letter combinations, including a variety of vowel sounds and known prefixes and suffixes"
+          },
+          {
+           "code": "AC9E4LY10",
+           "text": "understand how to use knowledge of letter patterns, including double letters, spelling generalisations, morphological word families, common prefixes and suffixes, and word origins, to spell more complex words"
+          }
+         ]
+        },
+        {
+         "id": "high-frequency-words",
+         "title": "High-Frequency Words",
+         "outcomes": [
+          {
+           "code": "AC9E4LY11",
+           "text": "read and write high-frequency words including homophones and know how to use context to identify correct spelling"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "5",
+   "units": [
+    {
+     "id": "language",
+     "title": "Language",
+     "topics": [
+      {
+       "id": "language-for-interacting-with-others",
+       "title": "Language for interacting with others",
+       "subtopics": [
+        {
+         "id": "language-for-interacting-with-others",
+         "title": "Language for interacting with others",
+         "outcomes": [
+          {
+           "code": "AC9E5LA01",
+           "text": "understand that language is selected for social contexts and that it helps to signal social roles and relationships"
+          },
+          {
+           "code": "AC9E5LA02",
+           "text": "understand how to move beyond making bare assertions by taking account of differing ideas or opinions and authoritative sources"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "text-structure-and-organisation",
+       "title": "Text structure and organisation",
+       "subtopics": [
+        {
+         "id": "text-structure-and-organisation",
+         "title": "Text structure and organisation",
+         "outcomes": [
+          {
+           "code": "AC9E5LA03",
+           "text": "describe how spoken, written and multimodal texts use language features and are typically organised into characteristic stages and phases, depending on purposes in texts"
+          },
+          {
+           "code": "AC9E5LA04",
+           "text": "understand how texts can be made cohesive by using the starting point of a sentence or paragraph to give prominence to the message and to guide the reader through the text"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "language-for-expressing-and-developing-ideas",
+       "title": "Language for expressing and developing ideas",
+       "subtopics": [
+        {
+         "id": "complex-sentences",
+         "title": "Complex Sentences",
+         "outcomes": [
+          {
+           "code": "AC9E5LA05",
+           "text": "understand that the structure of a complex sentence includes a main clause and at least one dependent clause, and understand how writers can use this structure for effect"
+          }
+         ]
+        },
+        {
+         "id": "expanding-noun-groups",
+         "title": "Expanding Noun Groups",
+         "outcomes": [
+          {
+           "code": "AC9E5LA06",
+           "text": "understand how noun groups can be expanded in a variety of ways to provide a fuller description of a person, place, thing or idea"
+          }
+         ]
+        },
+        {
+         "id": "image-sequence-and-meaning",
+         "title": "Image Sequence and Meaning",
+         "outcomes": [
+          {
+           "code": "AC9E5LA07",
+           "text": "explain how the sequence of images in print, digital and film texts has an effect on meaning"
+          }
+         ]
+        },
+        {
+         "id": "precise-and-technical-vocabulary",
+         "title": "Precise and Technical Vocabulary",
+         "outcomes": [
+          {
+           "code": "AC9E5LA08",
+           "text": "understand how vocabulary is used to express greater precision of meaning, including through the use of specialist and technical terms, and explore the history of words"
+          }
+         ]
+        },
+        {
+         "id": "commas-and-apostrophes",
+         "title": "Commas and Apostrophes",
+         "outcomes": [
+          {
+           "code": "AC9E5LA09",
+           "text": "use commas to indicate prepositional phrases, and apostrophes where there is multiple possession"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "literature",
+     "title": "Literature",
+     "topics": [
+      {
+       "id": "literature-and-contexts",
+       "title": "Literature and contexts",
+       "subtopics": [
+        {
+         "id": "literature-and-contexts",
+         "title": "Literature and contexts",
+         "outcomes": [
+          {
+           "code": "AC9E5LE01",
+           "text": "identify aspects of literary texts that represent details or information about historical, social and cultural contexts in literature by First Nations Australian, and wide-ranging Australian and world authors"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "engaging-with-and-responding-to-literature",
+       "title": "Engaging with and responding to literature",
+       "subtopics": [
+        {
+         "id": "engaging-with-and-responding-to-literature",
+         "title": "Engaging with and responding to literature",
+         "outcomes": [
+          {
+           "code": "AC9E5LE02",
+           "text": "present an opinion on a literary text using specific terms about literary devices, text structures and language features, and reflect on the viewpoints of others"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "examining-literature",
+       "title": "Examining literature",
+       "subtopics": [
+        {
+         "id": "examining-literature",
+         "title": "Examining literature",
+         "outcomes": [
+          {
+           "code": "AC9E5LE03",
+           "text": "recognise that the point of view in a literary text influences how readers interpret and respond to events and characters"
+          },
+          {
+           "code": "AC9E5LE04",
+           "text": "examine the effects of imagery, including simile, metaphor and personification, and sound devices in narratives, poetry and songs"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "creating-literature",
+       "title": "Creating literature",
+       "subtopics": [
+        {
+         "id": "creating-literature",
+         "title": "Creating literature",
+         "outcomes": [
+          {
+           "code": "AC9E5LE05",
+           "text": "create and edit literary texts, experimenting with figurative language, storylines, characters and settings from texts students have experienced"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "literacy",
+     "title": "Literacy",
+     "topics": [
+      {
+       "id": "texts-in-context",
+       "title": "Texts in context",
+       "subtopics": [
+        {
+         "id": "texts-in-context",
+         "title": "Texts in context",
+         "outcomes": [
+          {
+           "code": "AC9E5LY01",
+           "text": "describe the ways in which a text reflects the time and place in which it was created"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "interacting-with-others",
+       "title": "Interacting with others",
+       "subtopics": [
+        {
+         "id": "interacting-with-others",
+         "title": "Interacting with others",
+         "outcomes": [
+          {
+           "code": "AC9E5LY02",
+           "text": "use appropriate interaction skills including paraphrasing and questioning to clarify meaning, make connections to own experience, and present and justify an opinion or idea"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "analysing-interpreting-and-evaluating",
+       "title": "Analysing, interpreting and evaluating",
+       "subtopics": [
+        {
+         "id": "text-features-and-purpose",
+         "title": "Text Features and Purpose",
+         "outcomes": [
+          {
+           "code": "AC9E5LY03",
+           "text": "explain characteristic features used in imaginative, informative and persuasive texts to meet the purpose of the text"
+          }
+         ]
+        },
+        {
+         "id": "reading-for-a-purpose",
+         "title": "Reading for a Purpose",
+         "outcomes": [
+          {
+           "code": "AC9E5LY04",
+           "text": "navigate and read texts for specific purposes, monitoring meaning using strategies such as skimming, scanning and confirming"
+          }
+         ]
+        },
+        {
+         "id": "comprehension-and-evaluation",
+         "title": "Comprehension and Evaluation",
+         "outcomes": [
+          {
+           "code": "AC9E5LY05",
+           "text": "use comprehension strategies such as visualising, predicting, connecting, summarising, monitoring and questioning to build literal and inferred meaning to evaluate information and ideas"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "creating-texts",
+       "title": "Creating texts",
+       "subtopics": [
+        {
+         "id": "creating-texts",
+         "title": "Creating texts",
+         "outcomes": [
+          {
+           "code": "AC9E5LY06",
+           "text": "plan, create, edit and publish written and multimodal texts whose purposes may be imaginative, informative and persuasive, developing ideas using visual features, text structure appropriate to the topic and purpose, text connectives, expanded noun groups, specialist and technical vocabulary, and punctuation including dialogue punctuation"
+          },
+          {
+           "code": "AC9E5LY07",
+           "text": "plan, create, rehearse and deliver spoken and multimodal presentations that include relevant, elaborated ideas, sequencing ideas and using complex sentences, specialist and technical vocabulary, pitch, tone, pace, volume, and visual and digital features"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "phonic-and-word-knowledge",
+       "title": "Phonic and word knowledge",
+       "subtopics": [
+        {
+         "id": "letter-patterns-and-pronunciation",
+         "title": "Letter Patterns and Pronunciation",
+         "outcomes": [
+          {
+           "code": "AC9E5LY08",
+           "text": "use phonic, morphemic and vocabulary knowledge to read and spell words that share common letter patterns but have different pronunciations"
+          }
+         ]
+        },
+        {
+         "id": "building-and-spelling-words",
+         "title": "Building and Spelling Words",
+         "outcomes": [
+          {
+           "code": "AC9E5LY09",
+           "text": "build and spell new words from knowledge of known words, base words, prefixes and suffixes, word origins, letter patterns and spelling generalisations"
+          }
+         ]
+        },
+        {
+         "id": "plurals-and-suffixes",
+         "title": "Plurals and Suffixes",
+         "outcomes": [
+          {
+           "code": "AC9E5LY10",
+           "text": "explore less common plurals, and understand how a suffix changes the meaning or grammatical form of a word"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "6",
+   "units": [
+    {
+     "id": "language",
+     "title": "Language",
+     "topics": [
+      {
+       "id": "language-for-interacting-with-others",
+       "title": "Language for interacting with others",
+       "subtopics": [
+        {
+         "id": "language-for-interacting-with-others",
+         "title": "Language for interacting with others",
+         "outcomes": [
+          {
+           "code": "AC9E6LA01",
+           "text": "understand that language varies as levels of formality and social distance increase"
+          },
+          {
+           "code": "AC9E6LA02",
+           "text": "understand the uses of objective and subjective language, and identify bias"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "text-structure-and-organisation",
+       "title": "Text structure and organisation",
+       "subtopics": [
+        {
+         "id": "text-structure-and-organisation",
+         "title": "Text structure and organisation",
+         "outcomes": [
+          {
+           "code": "AC9E6LA03",
+           "text": "explain how texts across the curriculum are typically organised into characteristic stages and phases depending on purposes, recognising how authors often adapt text structures and language features"
+          },
+          {
+           "code": "AC9E6LA04",
+           "text": "understand that cohesion can be created by the intentional use of repetition, and the use of word associations"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "language-for-expressing-and-developing-ideas",
+       "title": "Language for expressing and developing ideas",
+       "subtopics": [
+        {
+         "id": "expanding-ideas-with-clauses",
+         "title": "Expanding Ideas with Clauses",
+         "outcomes": [
+          {
+           "code": "AC9E6LA05",
+           "text": "understand how embedded clauses can expand the variety of complex sentences to elaborate, extend and explain ideas"
+          }
+         ]
+        },
+        {
+         "id": "choosing-verbs-and-adverbs",
+         "title": "Choosing Verbs and Adverbs",
+         "outcomes": [
+          {
+           "code": "AC9E6LA06",
+           "text": "understand how ideas can be expanded and sharpened through careful choice of verbs, elaborated tenses and a range of adverb groups"
+          }
+         ]
+        },
+        {
+         "id": "reading-visual-information",
+         "title": "Reading Visual Information",
+         "outcomes": [
+          {
+           "code": "AC9E6LA07",
+           "text": "identify and explain how images, figures, tables, diagrams, maps and graphs contribute to meaning"
+          }
+         ]
+        },
+        {
+         "id": "vivid-and-emotive-language",
+         "title": "Vivid and Emotive Language",
+         "outcomes": [
+          {
+           "code": "AC9E6LA08",
+           "text": "identify authors’ use of vivid, emotive vocabulary, such as metaphors, similes, personification, idioms, imagery and hyperbole"
+          }
+         ]
+        },
+        {
+         "id": "using-commas-correctly",
+         "title": "Using Commas Correctly",
+         "outcomes": [
+          {
+           "code": "AC9E6LA09",
+           "text": "understand how to use the comma for lists, to separate a dependent clause from an independent clause, and in dialogue"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "literature",
+     "title": "Literature",
+     "topics": [
+      {
+       "id": "literature-and-contexts",
+       "title": "Literature and contexts",
+       "subtopics": [
+        {
+         "id": "literature-and-contexts",
+         "title": "Literature and contexts",
+         "outcomes": [
+          {
+           "code": "AC9E6LE01",
+           "text": "identify responses to characters and events in literary texts, drawn from historical, social or cultural contexts, by First Nations Australian, and wide-ranging Australian and world authors"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "engaging-with-and-responding-to-literature",
+       "title": "Engaging with and responding to literature",
+       "subtopics": [
+        {
+         "id": "engaging-with-and-responding-to-literature",
+         "title": "Engaging with and responding to literature",
+         "outcomes": [
+          {
+           "code": "AC9E6LE02",
+           "text": "identify similarities and differences in literary texts on similar topics, themes or plots"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "examining-literature",
+       "title": "Examining literature",
+       "subtopics": [
+        {
+         "id": "examining-literature",
+         "title": "Examining literature",
+         "outcomes": [
+          {
+           "code": "AC9E6LE03",
+           "text": "identify and explain characteristics that define an author's individual style"
+          },
+          {
+           "code": "AC9E6LE04",
+           "text": "explain the way authors use sound and imagery to create meaning and effect in poetry"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "creating-literature",
+       "title": "Creating literature",
+       "subtopics": [
+        {
+         "id": "creating-literature",
+         "title": "Creating literature",
+         "outcomes": [
+          {
+           "code": "AC9E6LE05",
+           "text": "create and edit literary texts that adapt plot structure, characters, settings and/or ideas from texts students have experienced, and experiment with literary devices"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "literacy",
+     "title": "Literacy",
+     "topics": [
+      {
+       "id": "texts-in-context",
+       "title": "Texts in context",
+       "subtopics": [
+        {
+         "id": "texts-in-context",
+         "title": "Texts in context",
+         "outcomes": [
+          {
+           "code": "AC9E6LY01",
+           "text": "examine texts including media texts that represent ideas and events, and identify how they reflect the context in which they were created"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "interacting-with-others",
+       "title": "Interacting with others",
+       "subtopics": [
+        {
+         "id": "interacting-with-others",
+         "title": "Interacting with others",
+         "outcomes": [
+          {
+           "code": "AC9E6LY02",
+           "text": "use interaction skills and awareness of formality when paraphrasing, questioning, clarifying and interrogating ideas, developing and supporting arguments, and sharing and evaluating information, experiences and opinions"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "analysing-interpreting-and-evaluating",
+       "title": "Analysing, interpreting and evaluating",
+       "subtopics": [
+        {
+         "id": "text-purpose-and-influence",
+         "title": "Text Purpose and Influence",
+         "outcomes": [
+          {
+           "code": "AC9E6LY03",
+           "text": "analyse how text structures and language features work together to meet the purpose of a text, and engage and influence audiences"
+          }
+         ]
+        },
+        {
+         "id": "navigating-text-structures",
+         "title": "Navigating Text Structures",
+         "outcomes": [
+          {
+           "code": "AC9E6LY04",
+           "text": "select, navigate and read texts for a range of purposes, monitoring meaning and evaluating the use of structural features; for example, table of contents, glossary, chapters, headings and subheadings"
+          }
+         ]
+        },
+        {
+         "id": "comprehension-strategies",
+         "title": "Comprehension Strategies",
+         "outcomes": [
+          {
+           "code": "AC9E6LY05",
+           "text": "use comprehension strategies such as visualising, predicting, connecting, summarising, monitoring and questioning to build literal and inferred meaning, and to connect and compare content from a variety of sources"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "creating-texts",
+       "title": "Creating texts",
+       "subtopics": [
+        {
+         "id": "creating-texts",
+         "title": "Creating texts",
+         "outcomes": [
+          {
+           "code": "AC9E6LY06",
+           "text": "plan, create, edit and publish written and multimodal texts whose purposes may be imaginative, informative and persuasive, using paragraphs, a variety of complex sentences, expanded verb groups, tense, topic-specific and vivid vocabulary, punctuation, spelling and visual features"
+          },
+          {
+           "code": "AC9E6LY07",
+           "text": "plan, create, rehearse and deliver spoken and multimodal presentations that include information, arguments and details that develop a theme or idea, organising ideas using precise topic-specific and technical vocabulary, pitch, tone, pace, volume, and visual and digital features"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "phonic-and-word-knowledge",
+       "title": "Phonic and word knowledge",
+       "subtopics": [
+        {
+         "id": "phonic-and-word-knowledge",
+         "title": "Phonic and word knowledge",
+         "outcomes": [
+          {
+           "code": "AC9E6LY08",
+           "text": "use phonic knowledge of common and less common grapheme–phoneme relationships to read and write increasingly complex words"
+          },
+          {
+           "code": "AC9E6LY09",
+           "text": "use knowledge of known words, word origins including some Latin and Greek roots, base words, prefixes, suffixes, letter patterns and spelling generalisations to spell new words including technical words"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "7",
+   "units": [
+    {
+     "id": "language",
+     "title": "Language",
+     "topics": [
+      {
+       "id": "language-for-interacting-with-others",
+       "title": "Language for interacting with others",
+       "subtopics": [
+        {
+         "id": "language-for-interacting-with-others",
+         "title": "Language for interacting with others",
+         "outcomes": [
+          {
+           "code": "AC9E7LA01",
+           "text": "understand how language expresses and creates personal and social identities"
+          },
+          {
+           "code": "AC9E7LA02",
+           "text": "recognise language used to evaluate texts including visual and multimodal texts, and how evaluations of a text can be substantiated by reference to the text and other sources"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "text-structure-and-organisation",
+       "title": "Text structure and organisation",
+       "subtopics": [
+        {
+         "id": "text-structure-and-organisation",
+         "title": "Text structure and organisation",
+         "outcomes": [
+          {
+           "code": "AC9E7LA03",
+           "text": "identify and describe how texts are structured differently depending on their purpose and how language features vary in texts"
+          },
+          {
+           "code": "AC9E7LA04",
+           "text": "understand that the cohesion of texts relies on devices that signal structure and guide readers, such as overviews and initial and concluding paragraphs"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "language-for-expressing-and-developing-ideas",
+       "title": "Language for expressing and developing ideas",
+       "subtopics": [
+        {
+         "id": "complex-sentences",
+         "title": "Complex Sentences",
+         "outcomes": [
+          {
+           "code": "AC9E7LA05",
+           "text": "understand how complex and compound-complex sentences can be used to elaborate, extend and explain ideas"
+          }
+         ]
+        },
+        {
+         "id": "consistent-verb-tense",
+         "title": "Consistent Verb Tense",
+         "outcomes": [
+          {
+           "code": "AC9E7LA06",
+           "text": "understand how consistency of tense through verbs and verb groups achieves clarity in sentences"
+          }
+         ]
+        },
+        {
+         "id": "visual-perspective-techniques",
+         "title": "Visual Perspective Techniques",
+         "outcomes": [
+          {
+           "code": "AC9E7LA07",
+           "text": "analyse how techniques such as vectors, angle and/or social distance in visual texts can be used to create a perspective"
+          }
+         ]
+        },
+        {
+         "id": "specialist-vocabulary",
+         "title": "Specialist Vocabulary",
+         "outcomes": [
+          {
+           "code": "AC9E7LA08",
+           "text": "investigate the role of vocabulary in building specialist and technical knowledge, including terms that have both everyday and technical meanings"
+          }
+         ]
+        },
+        {
+         "id": "colons-and-brackets",
+         "title": "Colons and Brackets",
+         "outcomes": [
+          {
+           "code": "AC9E7LA09",
+           "text": "understand the use of punctuation including colons and brackets to support meaning"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "literature",
+     "title": "Literature",
+     "topics": [
+      {
+       "id": "literature-and-contexts",
+       "title": "Literature and contexts",
+       "subtopics": [
+        {
+         "id": "literature-and-contexts",
+         "title": "Literature and contexts",
+         "outcomes": [
+          {
+           "code": "AC9E7LE01",
+           "text": "identify and explore ideas, points of view, characters, events and/or issues in literary texts, drawn from historical, social and/or cultural contexts, by First Nations Australian, and wide-ranging Australian and world authors"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "engaging-with-and-responding-to-literature",
+       "title": "Engaging with and responding to literature",
+       "subtopics": [
+        {
+         "id": "forming-and-justifying-opinions",
+         "title": "Forming and Justifying Opinions",
+         "outcomes": [
+          {
+           "code": "AC9E7LE02",
+           "text": "form an opinion about characters, settings and events in texts, identifying areas of agreement and difference with others’ opinions and justifying a response"
+          }
+         ]
+        },
+        {
+         "id": "creating-characters-and-feelings",
+         "title": "Creating Characters and Feelings",
+         "outcomes": [
+          {
+           "code": "AC9E7LE03",
+           "text": "explain the ways that literary devices and language features such as dialogue, and images are used to create character, and to influence emotions and opinions in different types of texts"
+          }
+         ]
+        },
+        {
+         "id": "discussing-literary-value",
+         "title": "Discussing Literary Value",
+         "outcomes": [
+          {
+           "code": "AC9E7LE04",
+           "text": "discuss the aesthetic and social value of literary texts using relevant and appropriate metalanguage"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "examining-literature",
+       "title": "Examining literature",
+       "subtopics": [
+        {
+         "id": "examining-literature",
+         "title": "Examining literature",
+         "outcomes": [
+          {
+           "code": "AC9E7LE05",
+           "text": "identify and explain the ways that characters, settings and events combine to create meaning in narratives"
+          },
+          {
+           "code": "AC9E7LE06",
+           "text": "identify and explain how literary devices create layers of meaning in texts including poetry"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "creating-literature",
+       "title": "Creating literature",
+       "subtopics": [
+        {
+         "id": "creating-literature",
+         "title": "Creating literature",
+         "outcomes": [
+          {
+           "code": "AC9E7LE07",
+           "text": "create and edit literary texts that experiment with language features and literary devices encountered in texts"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "literacy",
+     "title": "Literacy",
+     "topics": [
+      {
+       "id": "texts-in-context",
+       "title": "Texts in context",
+       "subtopics": [
+        {
+         "id": "texts-in-context",
+         "title": "Texts in context",
+         "outcomes": [
+          {
+           "code": "AC9E7LY01",
+           "text": "explain the effect of current technology on reading, creating and responding to texts including media texts"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "interacting-with-others",
+       "title": "Interacting with others",
+       "subtopics": [
+        {
+         "id": "interacting-with-others",
+         "title": "Interacting with others",
+         "outcomes": [
+          {
+           "code": "AC9E7LY02",
+           "text": "use interaction skills when discussing and presenting ideas and information including evaluations of the features of spoken texts"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "analysing-interpreting-and-evaluating",
+       "title": "Analysing, interpreting and evaluating",
+       "subtopics": [
+        {
+         "id": "language-shapes-meaning",
+         "title": "Language Shapes Meaning",
+         "outcomes": [
+          {
+           "code": "AC9E7LY03",
+           "text": "analyse the ways in which language features shape meaning and vary according to audience and purpose"
+          }
+         ]
+        },
+        {
+         "id": "structures-of-ideas",
+         "title": "Structures of Ideas",
+         "outcomes": [
+          {
+           "code": "AC9E7LY04",
+           "text": "explain the structure of ideas such as the use of taxonomies, cause and effect, extended metaphors and chronology"
+          }
+         ]
+        },
+        {
+         "id": "comprehension-strategies",
+         "title": "Comprehension Strategies",
+         "outcomes": [
+          {
+           "code": "AC9E7LY05",
+           "text": "use comprehension strategies such as visualising, predicting, connecting, summarising, monitoring, questioning and inferring to analyse and summarise information and ideas"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "creating-texts",
+       "title": "Creating texts",
+       "subtopics": [
+        {
+         "id": "creating-texts",
+         "title": "Creating texts",
+         "outcomes": [
+          {
+           "code": "AC9E7LY06",
+           "text": "plan, create, edit and publish written and multimodal texts, selecting subject matter, and using text structures, language features, literary devices and visual features as appropriate to convey information, ideas and opinions in ways that may be imaginative, reflective, informative, persuasive and/or analytical"
+          },
+          {
+           "code": "AC9E7LY07",
+           "text": "plan, create, rehearse and deliver presentations for purposes and audiences in ways that may be imaginative, reflective, informative, persuasive and/or analytical, by selecting text structures, language features, literary devices and visual features, and using features of voice including volume, tone, pitch and pace"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "word-knowledge",
+       "title": "Word knowledge",
+       "subtopics": [
+        {
+         "id": "word-knowledge",
+         "title": "Word knowledge",
+         "outcomes": [
+          {
+           "code": "AC9E7LY08",
+           "text": "understand how to use spelling rules and word origins; for example, Greek and Latin roots, base words, suffixes, prefixes and spelling patterns to learn new words and how to spell them"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "8",
+   "units": [
+    {
+     "id": "language",
+     "title": "Language",
+     "topics": [
+      {
+       "id": "language-for-interacting-with-others",
+       "title": "Language for interacting with others",
+       "subtopics": [
+        {
+         "id": "language-for-interacting-with-others",
+         "title": "Language for interacting with others",
+         "outcomes": [
+          {
+           "code": "AC9E8LA01",
+           "text": "recognise how language shapes relationships and roles"
+          },
+          {
+           "code": "AC9E8LA02",
+           "text": "understand how layers of meaning can be created when evaluating by using literary devices such as simile and metaphor"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "text-structure-and-organisation",
+       "title": "Text structure and organisation",
+       "subtopics": [
+        {
+         "id": "text-structure-and-organisation",
+         "title": "Text structure and organisation",
+         "outcomes": [
+          {
+           "code": "AC9E8LA03",
+           "text": "explain how texts are structured depending on their purpose and how language features vary, recognising that some texts are hybrids that combine different genres or elements of different genres"
+          },
+          {
+           "code": "AC9E8LA04",
+           "text": "understand how cohesion in texts is improved by strengthening the internal structure of paragraphs with examples, quotations and substantiation of claims"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "language-for-expressing-and-developing-ideas",
+       "title": "Language for expressing and developing ideas",
+       "subtopics": [
+        {
+         "id": "expand-ideas-with-clauses",
+         "title": "Expand Ideas with Clauses",
+         "outcomes": [
+          {
+           "code": "AC9E8LA05",
+           "text": "examine a variety of clause structures including embedded clauses that add information and expand ideas in sentences"
+          }
+         ]
+        },
+        {
+         "id": "use-nominalisation",
+         "title": "Use Nominalisation",
+         "outcomes": [
+          {
+           "code": "AC9E8LA06",
+           "text": "understand the effect of nominalisation in texts"
+          }
+         ]
+        },
+        {
+         "id": "layer-meaning-in-visual-texts",
+         "title": "Layer Meaning in Visual Texts",
+         "outcomes": [
+          {
+           "code": "AC9E8LA07",
+           "text": "investigate how visual texts use intertextual references to enhance and layer meaning"
+          }
+         ]
+        },
+        {
+         "id": "academic-vocabulary",
+         "title": "Academic Vocabulary",
+         "outcomes": [
+          {
+           "code": "AC9E8LA08",
+           "text": "identify and use vocabulary typical of academic texts"
+          }
+         ]
+        },
+        {
+         "id": "punctuation-for-extended-ideas",
+         "title": "Punctuation for Extended Ideas",
+         "outcomes": [
+          {
+           "code": "AC9E8LA09",
+           "text": "understand and use punctuation conventions including semicolons and dashes to extend ideas and support meaning"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "literature",
+     "title": "Literature",
+     "topics": [
+      {
+       "id": "literature-and-contexts",
+       "title": "Literature and contexts",
+       "subtopics": [
+        {
+         "id": "literature-and-contexts",
+         "title": "Literature and contexts",
+         "outcomes": [
+          {
+           "code": "AC9E8LE01",
+           "text": "explain the ways that ideas and points of view may represent the values of individuals and groups in literary texts, drawn from historical, social and cultural contexts, by First Nations Australian, and wide-ranging Australian and world authors"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "engaging-with-and-responding-to-literature",
+       "title": "Engaging with and responding to literature",
+       "subtopics": [
+        {
+         "id": "engaging-with-and-responding-to-literature",
+         "title": "Engaging with and responding to literature",
+         "outcomes": [
+          {
+           "code": "AC9E8LE02",
+           "text": "share opinions about the language features, literary devices and text structures that contribute to the styles of literary texts"
+          },
+          {
+           "code": "AC9E8LE03",
+           "text": "explain how language and/or images in texts position readers to respond and form viewpoints"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "examining-literature",
+       "title": "Examining literature",
+       "subtopics": [
+        {
+         "id": "examining-literature",
+         "title": "Examining literature",
+         "outcomes": [
+          {
+           "code": "AC9E8LE04",
+           "text": "identify intertextual references in literary texts and explain how the references enable new understanding of the aesthetic quality of the text"
+          },
+          {
+           "code": "AC9E8LE05",
+           "text": "analyse how language features such as sentence patterns create tone, and literary devices such as imagery create meaning and effect"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "creating-literature",
+       "title": "Creating literature",
+       "subtopics": [
+        {
+         "id": "creating-literature",
+         "title": "Creating literature",
+         "outcomes": [
+          {
+           "code": "AC9E8LE06",
+           "text": "create and edit literary texts that experiment with language features and literary devices for particular purposes and effects"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "literacy",
+     "title": "Literacy",
+     "topics": [
+      {
+       "id": "texts-in-context",
+       "title": "Texts in context",
+       "subtopics": [
+        {
+         "id": "texts-in-context",
+         "title": "Texts in context",
+         "outcomes": [
+          {
+           "code": "AC9E8LY01",
+           "text": "identify how texts reflect contexts"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "interacting-with-others",
+       "title": "Interacting with others",
+       "subtopics": [
+        {
+         "id": "interacting-with-others",
+         "title": "Interacting with others",
+         "outcomes": [
+          {
+           "code": "AC9E8LY02",
+           "text": "use interaction skills for identified purposes and situations, including when supporting or challenging the stated or implied meanings of spoken texts in presentations or discussion"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "analysing-interpreting-and-evaluating",
+       "title": "Analysing, interpreting and evaluating",
+       "subtopics": [
+        {
+         "id": "language-purpose-and-audience",
+         "title": "Language, Purpose and Audience",
+         "outcomes": [
+          {
+           "code": "AC9E8LY03",
+           "text": "analyse and evaluate the ways that language features vary according to the purpose and audience of the text, and the ways that sources and quotations are used in a text"
+          }
+         ]
+        },
+        {
+         "id": "organising-ideas",
+         "title": "Organising Ideas",
+         "outcomes": [
+          {
+           "code": "AC9E8LY04",
+           "text": "analyse how authors organise ideas to develop and shape meaning"
+          }
+         ]
+        },
+        {
+         "id": "comprehension-strategies",
+         "title": "Comprehension Strategies",
+         "outcomes": [
+          {
+           "code": "AC9E8LY05",
+           "text": "use comprehension strategies such as visualising, predicting, connecting, summarising, monitoring, questioning and inferring to interpret and evaluate ideas in texts"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "creating-texts",
+       "title": "Creating texts",
+       "subtopics": [
+        {
+         "id": "creating-texts",
+         "title": "Creating texts",
+         "outcomes": [
+          {
+           "code": "AC9E8LY06",
+           "text": "plan, create, edit and publish written and multimodal texts, organising and expanding ideas, and selecting text structures, language features, literary devices and visual features for purposes and audiences in ways that may be imaginative, reflective, informative, persuasive and/or analytical"
+          },
+          {
+           "code": "AC9E8LY07",
+           "text": "plan, create, rehearse and deliver spoken and multimodal presentations for audiences and purposes, selecting language features, literary devices, visual features and features of voice to suit formal or informal situations, and organising and developing ideas in texts in ways that may be imaginative, reflective, informative, persuasive and/or analytical"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "word-knowledge",
+       "title": "Word knowledge",
+       "subtopics": [
+        {
+         "id": "word-knowledge",
+         "title": "Word knowledge",
+         "outcomes": [
+          {
+           "code": "AC9E8LY08",
+           "text": "apply learnt knowledge to spell accurately and to learn new words"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "9",
+   "units": [
+    {
+     "id": "language",
+     "title": "Language",
+     "topics": [
+      {
+       "id": "language-for-interacting-with-others",
+       "title": "Language for interacting with others",
+       "subtopics": [
+        {
+         "id": "language-for-interacting-with-others",
+         "title": "Language for interacting with others",
+         "outcomes": [
+          {
+           "code": "AC9E9LA01",
+           "text": "recognise how language empowers relationships and roles"
+          },
+          {
+           "code": "AC9E9LA02",
+           "text": "understand how evaluation can be expressed directly and indirectly using devices such as allusion, evocative vocabulary and metaphor"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "text-structure-and-organisation",
+       "title": "Text structure and organisation",
+       "subtopics": [
+        {
+         "id": "text-structure-and-organisation",
+         "title": "Text structure and organisation",
+         "outcomes": [
+          {
+           "code": "AC9E9LA03",
+           "text": "examine how authors adapt and subvert text structures and language features by experimenting with spoken, written, visual and multimodal elements, and their combination"
+          },
+          {
+           "code": "AC9E9LA04",
+           "text": "investigate a range of cohesive devices that condense information in texts, including nominalisation, and devices that link, expand and develop ideas, including text connectives"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "language-for-expressing-and-developing-ideas",
+       "title": "Language for expressing and developing ideas",
+       "subtopics": [
+        {
+         "id": "creative-sentence-structures",
+         "title": "Creative Sentence Structures",
+         "outcomes": [
+          {
+           "code": "AC9E9LA05",
+           "text": "identify how authors vary sentence structures creatively for effects, such as intentionally using a dependent clause on its own or a sentence fragment"
+          }
+         ]
+        },
+        {
+         "id": "abstract-nouns-and-nominalisation",
+         "title": "Abstract Nouns and Nominalisation",
+         "outcomes": [
+          {
+           "code": "AC9E9LA06",
+           "text": "understand how abstract nouns and nominalisation can be used to summarise ideas in text"
+          }
+         ]
+        },
+        {
+         "id": "symbols-in-images",
+         "title": "Symbols in Images",
+         "outcomes": [
+          {
+           "code": "AC9E9LA07",
+           "text": "analyse how symbols in still and moving images augment meaning"
+          }
+         ]
+        },
+        {
+         "id": "vocabulary-style-and-mood",
+         "title": "Vocabulary, Style and Mood",
+         "outcomes": [
+          {
+           "code": "AC9E9LA08",
+           "text": "analyse how vocabulary choices contribute to style, mood and tone"
+          }
+         ]
+        },
+        {
+         "id": "punctuation-for-citing-others",
+         "title": "Punctuation for Citing Others",
+         "outcomes": [
+          {
+           "code": "AC9E9LA09",
+           "text": "understand punctuation conventions for referencing and citing others for formal and informal purposes"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "literature",
+     "title": "Literature",
+     "topics": [
+      {
+       "id": "literature-and-contexts",
+       "title": "Literature and contexts",
+       "subtopics": [
+        {
+         "id": "literature-and-contexts",
+         "title": "Literature and contexts",
+         "outcomes": [
+          {
+           "code": "AC9E9LE01",
+           "text": "analyse the representations of people and places in literary texts, drawn from historical, social and cultural contexts, by First Nations Australian, and wide-ranging Australian and world authors"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "engaging-with-and-responding-to-literature",
+       "title": "Engaging with and responding to literature",
+       "subtopics": [
+        {
+         "id": "engaging-with-and-responding-to-literature",
+         "title": "Engaging with and responding to literature",
+         "outcomes": [
+          {
+           "code": "AC9E9LE02",
+           "text": "present a personal response to a literary text comparing initial impressions and subsequent analysis of the whole text"
+          },
+          {
+           "code": "AC9E9LE03",
+           "text": "analyse how features of literary texts influence readers’ preference for texts"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "examining-literature",
+       "title": "Examining literature",
+       "subtopics": [
+        {
+         "id": "examining-literature",
+         "title": "Examining literature",
+         "outcomes": [
+          {
+           "code": "AC9E9LE04",
+           "text": "analyse texts and evaluate the aesthetic qualities and appeal of an author’s literary style"
+          },
+          {
+           "code": "AC9E9LE05",
+           "text": "analyse the effect of text structures, language features and literary devices such as extended metaphor, metonymy, allegory, symbolism and intertextual references"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "creating-literature",
+       "title": "Creating literature",
+       "subtopics": [
+        {
+         "id": "creating-literature",
+         "title": "Creating literature",
+         "outcomes": [
+          {
+           "code": "AC9E9LE06",
+           "text": "create and edit literary texts, that may be a hybrid, that experiment with text structures, language features and literary devices for purposes and audiences"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "literacy",
+     "title": "Literacy",
+     "topics": [
+      {
+       "id": "texts-in-context",
+       "title": "Texts in context",
+       "subtopics": [
+        {
+         "id": "texts-in-context",
+         "title": "Texts in context",
+         "outcomes": [
+          {
+           "code": "AC9E9LY01",
+           "text": "analyse how representations of people, places, events and concepts reflect contexts"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "interacting-with-others",
+       "title": "Interacting with others",
+       "subtopics": [
+        {
+         "id": "interacting-with-others",
+         "title": "Interacting with others",
+         "outcomes": [
+          {
+           "code": "AC9E9LY02",
+           "text": "listen to spoken texts that have different purposes and audiences, analysing how language features position listeners to respond in particular ways, and use interacting skills to present and discuss opinions regarding these texts"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "analysing-interpreting-and-evaluating",
+       "title": "Analysing, interpreting and evaluating",
+       "subtopics": [
+        {
+         "id": "language-and-perspectives",
+         "title": "Language and Perspectives",
+         "outcomes": [
+          {
+           "code": "AC9E9LY03",
+           "text": "analyse and evaluate how language features are used to represent a perspective of an issue, event, situation, individual or group"
+          }
+         ]
+        },
+        {
+         "id": "organising-ideas",
+         "title": "Organising Ideas",
+         "outcomes": [
+          {
+           "code": "AC9E9LY04",
+           "text": "analyse the organisation of ideas in paragraphs and extended texts, and evaluate its impact on meaning"
+          }
+         ]
+        },
+        {
+         "id": "comparing-texts",
+         "title": "Comparing Texts",
+         "outcomes": [
+          {
+           "code": "AC9E9LY05",
+           "text": "use comprehension strategies such as visualising, predicting, connecting, summarising, monitoring, questioning and inferring to compare and contrast ideas and opinions in and between texts"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "creating-texts",
+       "title": "Creating texts",
+       "subtopics": [
+        {
+         "id": "creating-texts",
+         "title": "Creating texts",
+         "outcomes": [
+          {
+           "code": "AC9E9LY06",
+           "text": "plan, create, edit and publish written and multimodal texts, organising, expanding and developing ideas, and selecting text structures, language features, literary devices and multimodal features for purposes and audiences in ways that may be imaginative, reflective, informative, persuasive, analytical and/or critical"
+          },
+          {
+           "code": "AC9E9LY07",
+           "text": "plan, create, rehearse and deliver spoken and multimodal presentations for purpose and audience, using language features, literary devices and features of voice such as volume, tone, pitch and pace, and organising, expanding and developing ideas in ways that may be imaginative, reflective, informative, persuasive, analytical and/or critical"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "word-knowledge",
+       "title": "Word knowledge",
+       "subtopics": [
+        {
+         "id": "word-knowledge",
+         "title": "Word knowledge",
+         "outcomes": [
+          {
+           "code": "AC9E9LY08",
+           "text": "understand how spelling is used in texts for particular effects; for example, characterisation, humour and to represent accents and distinctive speech"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "10",
+   "units": [
+    {
+     "id": "language",
+     "title": "Language",
+     "topics": [
+      {
+       "id": "language-for-interacting-with-others",
+       "title": "Language for interacting with others",
+       "subtopics": [
+        {
+         "id": "language-for-interacting-with-others",
+         "title": "Language for interacting with others",
+         "outcomes": [
+          {
+           "code": "AC9E10LA01",
+           "text": "understand how language can have inclusive and exclusive social effects, and can empower or disempower people"
+          },
+          {
+           "code": "AC9E10LA02",
+           "text": "understand that language used to evaluate, implicitly or explicitly reveals an individual's values"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "text-structure-and-organisation",
+       "title": "Text structure and organisation",
+       "subtopics": [
+        {
+         "id": "text-structure-and-organisation",
+         "title": "Text structure and organisation",
+         "outcomes": [
+          {
+           "code": "AC9E10LA03",
+           "text": "analyse text structures and language features and evaluate their effectiveness in achieving their purpose"
+          },
+          {
+           "code": "AC9E10LA04",
+           "text": "understand how paragraph structure can be varied to create cohesion, and paragraphs and images can be integrated for different purposes"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "language-for-expressing-and-developing-ideas",
+       "title": "Language for expressing and developing ideas",
+       "subtopics": [
+        {
+         "id": "sentence-structure-and-syntax",
+         "title": "Sentence Structure and Syntax",
+         "outcomes": [
+          {
+           "code": "AC9E10LA05",
+           "text": "analyse and evaluate the effectiveness of particular sentence structures to express and craft ideas"
+          },
+          {
+           "code": "AC9E10LA06",
+           "text": "analyse how meaning and style are achieved through syntax"
+          }
+         ]
+        },
+        {
+         "id": "still-and-moving-images",
+         "title": "Still and Moving Images",
+         "outcomes": [
+          {
+           "code": "AC9E10LA07",
+           "text": "evaluate the features of still and moving images, and the effects of those choices on representations"
+          }
+         ]
+        },
+        {
+         "id": "technical-and-academic-vocabulary",
+         "title": "Technical and Academic Vocabulary",
+         "outcomes": [
+          {
+           "code": "AC9E10LA08",
+           "text": "use an expanded technical and academic vocabulary for precision when writing academic texts"
+          }
+         ]
+        },
+        {
+         "id": "punctuation-choices",
+         "title": "Punctuation Choices",
+         "outcomes": [
+          {
+           "code": "AC9E10LA09",
+           "text": "understand how authors use and experiment with punctuation"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "literature",
+     "title": "Literature",
+     "topics": [
+      {
+       "id": "literature-and-contexts",
+       "title": "Literature and contexts",
+       "subtopics": [
+        {
+         "id": "literature-and-contexts",
+         "title": "Literature and contexts",
+         "outcomes": [
+          {
+           "code": "AC9E10LE01",
+           "text": "analyse representations of individuals, groups and places and evaluate how they reflect their context in literary texts by First Nations Australian, and wide-ranging Australian and world authors"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "engaging-with-and-responding-to-literature",
+       "title": "Engaging with and responding to literature",
+       "subtopics": [
+        {
+         "id": "extend-literary-responses",
+         "title": "Extend Literary Responses",
+         "outcomes": [
+          {
+           "code": "AC9E10LE02",
+           "text": "reflect on and extend others’ interpretations of and responses to literature"
+          }
+         ]
+        },
+        {
+         "id": "analyse-audience-response",
+         "title": "Analyse Audience Response",
+         "outcomes": [
+          {
+           "code": "AC9E10LE03",
+           "text": "analyse how the aesthetic qualities associated with text structures, language features, literary devices and visual features, and the context in which these texts are experienced, influence audience response"
+          }
+         ]
+        },
+        {
+         "id": "evaluate-positions-in-literature",
+         "title": "Evaluate Positions in Literature",
+         "outcomes": [
+          {
+           "code": "AC9E10LE04",
+           "text": "evaluate the social, moral or ethical positions represented in literature"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "examining-literature",
+       "title": "Examining literature",
+       "subtopics": [
+        {
+         "id": "interpret-texts-and-voices",
+         "title": "Interpret Texts and Voices",
+         "outcomes": [
+          {
+           "code": "AC9E10LE05",
+           "text": "analyse how text structure, language features, literary devices and intertextual connections shape interpretations of texts"
+          },
+          {
+           "code": "AC9E10LE06",
+           "text": "compare and evaluate how “voice” as a literary device is used in different types of texts, such as poetry, novels and film, to evoke emotional responses"
+          }
+         ]
+        },
+        {
+         "id": "evaluate-aesthetic-qualities",
+         "title": "Evaluate Aesthetic Qualities",
+         "outcomes": [
+          {
+           "code": "AC9E10LE07",
+           "text": "analyse and evaluate the aesthetic qualities of texts"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "creating-literature",
+       "title": "Creating literature",
+       "subtopics": [
+        {
+         "id": "creating-literature",
+         "title": "Creating literature",
+         "outcomes": [
+          {
+           "code": "AC9E10LE08",
+           "text": "create and edit literary texts with a sustained “voice”, selecting and adapting text structures, literary devices, and language, auditory and visual features for purposes and audiences"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "literacy",
+     "title": "Literacy",
+     "topics": [
+      {
+       "id": "texts-in-context",
+       "title": "Texts in context",
+       "subtopics": [
+        {
+         "id": "texts-in-context",
+         "title": "Texts in context",
+         "outcomes": [
+          {
+           "code": "AC9E10LY01",
+           "text": "analyse and evaluate how people, places, events and concepts are represented in texts and reflect contexts"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "interacting-with-others",
+       "title": "Interacting with others",
+       "subtopics": [
+        {
+         "id": "interacting-with-others",
+         "title": "Interacting with others",
+         "outcomes": [
+          {
+           "code": "AC9E10LY02",
+           "text": "listen to spoken texts and explain the purposes and effects of text structures and language features, and use interaction skills to discuss and present an opinion about these texts"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "analysing-interpreting-and-evaluating",
+       "title": "Analysing, interpreting and evaluating",
+       "subtopics": [
+        {
+         "id": "language-features-and-values",
+         "title": "Language Features and Values",
+         "outcomes": [
+          {
+           "code": "AC9E10LY03",
+           "text": "analyse and evaluate how language features are used to implicitly or explicitly represent values, beliefs and attitudes"
+          }
+         ]
+        },
+        {
+         "id": "organising-ideas-for-purpose",
+         "title": "Organising Ideas for Purpose",
+         "outcomes": [
+          {
+           "code": "AC9E10LY04",
+           "text": "analyse and evaluate how authors organise ideas in texts to achieve a purpose"
+          }
+         ]
+        },
+        {
+         "id": "comprehension-strategies",
+         "title": "Comprehension Strategies",
+         "outcomes": [
+          {
+           "code": "AC9E10LY05",
+           "text": "integrate comprehension strategies such as visualising, predicting, connecting, summarising, monitoring, questioning and inferring to analyse and interpret complex and abstract ideas"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "creating-texts",
+       "title": "Creating texts",
+       "subtopics": [
+        {
+         "id": "creating-texts",
+         "title": "Creating texts",
+         "outcomes": [
+          {
+           "code": "AC9E10LY06",
+           "text": "plan, create, edit and publish written and multimodal texts, organising, expanding and developing ideas through experimenting with text structures, language features, literary devices and multimodal features for specific purposes and audiences in ways that may be imaginative, reflective, informative, persuasive, analytical and/or critical"
+          },
+          {
+           "code": "AC9E10LY07",
+           "text": "plan, create, rehearse and deliver spoken and multimodal presentations by experimenting with rhetorical devices, and the organisation and development of ideas, to engage audiences for different purposes in ways that may be imaginative, reflective, informative, persuasive, analytical and/or critical"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "word-knowledge",
+       "title": "Word knowledge",
+       "subtopics": [
+        {
+         "id": "word-knowledge",
+         "title": "Word knowledge",
+         "outcomes": [
+          {
+           "code": "AC9E10LY08",
+           "text": "use knowledge of the spelling system to spell words and to manipulate standard spelling for particular effects"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "build": {
+  "builtAt": "2026-10-14T07:54:43.081Z",
+  "model": "gpt-5.6-luna",
+  "usd": 0.0066,
+  "expectedCodes": 284,
+  "coverage": 1,
+  "missingCodes": [],
+  "counts": {
+   "grades": 11,
+   "units": 33,
+   "topics": 132,
+   "subtopics": 227,
+   "outcomes": 284
+  },
+  "warnings": []
+ }
+}

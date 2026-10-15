@@ -1,0 +1,214 @@
+{
+ "id": "us-ny-english-language-development",
+ "region": "US",
+ "framework": "New York state academic standards: English Language Development",
+ "board": null,
+ "qualification": "K-12",
+ "subject": "English Language Development",
+ "syllabusCode": null,
+ "gradeSystem": "grade",
+ "source": {
+  "urls": [
+   "https://api.commonstandardsproject.com/api/v1/jurisdictions/DA1743190A534CB0AEC12F494BE1F8D7",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/ABEF065655234BECAA4F44364B418490"
+  ],
+  "publisher": "New York state education agency (machine-readable via Common Standards Project / ASN)",
+  "licence": "CC BY 4.0 US, Common Curriculum, Inc.",
+  "firstExam": null
+ },
+ "grades": [
+  {
+   "grade": "7-2",
+   "units": [
+    {
+     "id": "listening-performance-level-descriptions",
+     "title": "Listening Performance Level Descriptions",
+     "topics": [
+      {
+       "id": "can-determine-information-in-grade-level-spoken-",
+       "title": "Can determine information in grade-level spoken discourse",
+       "subtopics": [
+        {
+         "id": "can-determine-information-in-grade-level-spoken-",
+         "title": "Can determine information in grade-level spoken discourse",
+         "outcomes": [
+          {
+           "code": "L.1",
+           "text": "Students can identify key narrative elements and central ideas in grade-level spoken discourse."
+          },
+          {
+           "code": "L.2",
+           "text": "Students can identify words, phrases, and sentences used to elaborate on and connect ideas in grade-level spoken discourse."
+          },
+          {
+           "code": "L.3",
+           "text": "Students can determine the meaning of vocabulary in grade-level spoken discourse."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "can-determine-the-development-of-ideas-in-grade-",
+       "title": "Can determine the development of ideas in grade-level spoken…",
+       "subtopics": [
+        {
+         "id": "can-determine-the-development-of-ideas-in-grade-",
+         "title": "Can determine the development of ideas in grade-level spoken…",
+         "outcomes": [
+          {
+           "code": "L.4",
+           "text": "Students can identify language structures that develop narrative elements, key details, and central ideas in grade-level spoken discourse."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "reading-performance-level-descriptions",
+     "title": "Reading Performance Level Descriptions",
+     "topics": [
+      {
+       "id": "can-determine-information-in-a-grade-level-text",
+       "title": "Can determine information in a grade-level text",
+       "subtopics": [
+        {
+         "id": "can-determine-information-in-a-grade-level-text",
+         "title": "Can determine information in a grade-level text",
+         "outcomes": [
+          {
+           "code": "R.1",
+           "text": "Students can identify key narrative elements and central ideas in a grade level text."
+          },
+          {
+           "code": "R.2",
+           "text": "Students can identify words, phrases, and sentences used to elaborate on and connect ideas in a grade-level text."
+          },
+          {
+           "code": "R.3",
+           "text": "Students can determine the meaning of vocabulary in a grade-level text."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "can-determine-the-development-of-ideas-in-grade-",
+       "title": "Can determine the development of ideas in grade-level texts",
+       "subtopics": [
+        {
+         "id": "can-determine-the-development-of-ideas-in-grade-",
+         "title": "Can determine the development of ideas in grade-level texts",
+         "outcomes": [
+          {
+           "code": "R.4",
+           "text": "Students can identify text structures that develop narrative elements, key details, and central ideas in grade-level texts."
+          },
+          {
+           "code": "R.5",
+           "text": "Students can determine elements, connections, and topics that are established by text structures in grade level texts."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "speaking-performance-level-descriptions",
+     "title": "Speaking Performance Level Descriptions",
+     "topics": [
+      {
+       "id": "academic-topics",
+       "title": "Academic topics",
+       "subtopics": [
+        {
+         "id": "academic-topics",
+         "title": "Academic topics",
+         "outcomes": [
+          {
+           "code": "S.1",
+           "text": "Students can use grade-appropriate language to discuss a topic or text, with or without graphics."
+          },
+          {
+           "code": "S.2",
+           "text": "Students can use grade-appropriate language to describe information on a topic or text, with or without graphics."
+          },
+          {
+           "code": "S.3",
+           "text": "Students can use grade-appropriate language to analyze a topic or text, with or without graphics."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "writing-performance-level-descriptions",
+     "title": "Writing Performance Level Descriptions",
+     "topics": [
+      {
+       "id": "can-structure-thoughts-and-ideas-in-writing",
+       "title": "Can structure thoughts and ideas in writing",
+       "subtopics": [
+        {
+         "id": "can-structure-thoughts-and-ideas-in-writing",
+         "title": "Can structure thoughts and ideas in writing",
+         "outcomes": [
+          {
+           "code": "W.1",
+           "text": "Students can create and structure a written text."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "literary-and-informational-texts-and-topics",
+       "title": "Literary and informational texts and topics",
+       "subtopics": [
+        {
+         "id": "literary-and-informational-texts-and-topics",
+         "title": "Literary and informational texts and topics",
+         "outcomes": [
+          {
+           "code": "W.2",
+           "text": "Students can adapt vocabulary appropriately when writing."
+          },
+          {
+           "code": "W.3",
+           "text": "Students can develop a narrative written text."
+          },
+          {
+           "code": "W.4",
+           "text": "Students can develop an informational written text."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "build": {
+  "builtAt": "2026-10-14T08:04:50.152Z",
+  "model": "none",
+  "usd": 0,
+  "expectedCodes": 16,
+  "coverage": 1,
+  "missingCodes": [],
+  "counts": {
+   "grades": 1,
+   "units": 4,
+   "topics": 7,
+   "subtopics": 7,
+   "outcomes": 16
+  },
+  "warnings": []
+ }
+}

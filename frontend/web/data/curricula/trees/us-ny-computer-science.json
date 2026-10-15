@@ -1,0 +1,1670 @@
+{
+ "id": "us-ny-computer-science",
+ "region": "US",
+ "framework": "New York state academic standards: Computer Science & Technology",
+ "board": null,
+ "qualification": "K-12",
+ "subject": "Computer Science & Technology",
+ "syllabusCode": null,
+ "gradeSystem": "grade",
+ "source": {
+  "urls": [
+   "https://api.commonstandardsproject.com/api/v1/jurisdictions/DA1743190A534CB0AEC12F494BE1F8D7",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/08C0C1970BA74C8D910741663BC87184",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/67CB7AF804034D72AA7D7DEB2C6C3873",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/AD9E1C181CB64A3F8963A1AEBA400596",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/6A83BC8F75644CAA81C344C8434A5BC6",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/2613FD03E0E449238C5C5DF459E556EF"
+  ],
+  "publisher": "New York state education agency (machine-readable via Common Standards Project / ASN)",
+  "licence": "CC BY 4.0 US, Common Curriculum, Inc.",
+  "firstExam": "2020"
+ },
+ "grades": [
+  {
+   "grade": "9-12",
+   "units": [
+    {
+     "id": "impacts-of-computing",
+     "title": "IMPACTS OF COMPUTING",
+     "topics": [
+      {
+       "id": "society",
+       "title": "Society",
+       "subtopics": [
+        {
+         "id": "society",
+         "title": "Society",
+         "outcomes": [
+          {
+           "code": "9-12.IC.1",
+           "text": "Evaluate the impact of computing technologies on equity, access, and influence in a global society."
+          },
+          {
+           "code": "9-12.IC.2",
+           "text": "Debate laws and regulations that impact the development and use of computing technologies and digital information."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "ethics",
+       "title": "Ethics",
+       "subtopics": [
+        {
+         "id": "ethics",
+         "title": "Ethics",
+         "outcomes": [
+          {
+           "code": "9-12.IC.3",
+           "text": "Debate issues of ethics related to real-world computing technologies."
+          },
+          {
+           "code": "9-12.IC.4",
+           "text": "Assess personal and societal trade-offs related to computing technologies and data privacy."
+          },
+          {
+           "code": "9-12.IC.5",
+           "text": "Describe ways that complex computer systems can be designed for inclusivity and to mitigate unintended consequences."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "accessibility",
+       "title": "Accessibility",
+       "subtopics": [
+        {
+         "id": "accessibility",
+         "title": "Accessibility",
+         "outcomes": [
+          {
+           "code": "9-12.IC.6",
+           "text": "Create accessible computational artifacts that meet standard compliance requirements or otherwise meet the needs of users with disabilities."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "career-paths",
+       "title": "Career Paths",
+       "subtopics": [
+        {
+         "id": "career-paths",
+         "title": "Career Paths",
+         "outcomes": [
+          {
+           "code": "9-12.IC.7",
+           "text": "Investigate the use of computer science in multiple fields."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "computational-thinking",
+     "title": "Computational Thinking",
+     "topics": [
+      {
+       "id": "modeling-and-simulation",
+       "title": "Modeling and Simulation",
+       "subtopics": [
+        {
+         "id": "modeling-and-simulation",
+         "title": "Modeling and Simulation",
+         "outcomes": [
+          {
+           "code": "9-12.CT.1",
+           "text": "Create a simple digital model that makes predictions of outcomes."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "data-analysis-and-visualization",
+       "title": "Data Analysis and Visualization",
+       "subtopics": [
+        {
+         "id": "data-analysis-and-visualization",
+         "title": "Data Analysis and Visualization",
+         "outcomes": [
+          {
+           "code": "9-12.CT.2",
+           "text": "Collect and evaluate data from multiple sources for use in a computational artifact."
+          },
+          {
+           "code": "9-12.CT.3",
+           "text": "Refine and visualize complex data sets to tell different stories with the same data set."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "abstraction-and-decomposition",
+       "title": "Abstraction and Decomposition",
+       "subtopics": [
+        {
+         "id": "abstraction-and-decomposition",
+         "title": "Abstraction and Decomposition",
+         "outcomes": [
+          {
+           "code": "9-12.CT.4",
+           "text": "Implement a program using a combination of student-defined and third-party functions to organize the computation."
+          },
+          {
+           "code": "9-12.CT.5",
+           "text": "Modify a function or procedure in a program to perform its computation in a different way over the same inputs, while preserving the result of the overall program."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "algorithms-and-programming",
+       "title": "Algorithms and Programming",
+       "subtopics": [
+        {
+         "id": "algorithms-and-programming",
+         "title": "Algorithms and Programming",
+         "outcomes": [
+          {
+           "code": "9-12.CT.6",
+           "text": "Demonstrate how at least two classic algorithms work, and analyze the trade-offs related to two or more algorithms for completing the same task."
+          },
+          {
+           "code": "9-12.CT.7",
+           "text": "Design or remix a program that utilizes a data structure to maintain changes to related pieces of data."
+          },
+          {
+           "code": "9-12.CT.8",
+           "text": "Develop a program that effectively uses control structures in order to create a computer program for practical intent, personal expression, or to address a societal issue."
+          },
+          {
+           "code": "9-12.CT.9",
+           "text": "Systematically test and refine programs using a range of test cases, based on anticipating common errors and user behavior."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "networks-and-systems-design",
+     "title": "Networks and Systems Design",
+     "topics": [
+      {
+       "id": "hardware-and-software",
+       "title": "Hardware and Software",
+       "subtopics": [
+        {
+         "id": "hardware-and-software",
+         "title": "Hardware and Software",
+         "outcomes": [
+          {
+           "code": "9-12.NSD.1",
+           "text": "Design a solution to a problem that utilizes embedded systems to automatically gather input from the environment."
+          },
+          {
+           "code": "9-12.NSD.2",
+           "text": "Explain the levels of interaction existing between the application software, system software, and hardware of a computing system."
+          },
+          {
+           "code": "9-12.NSD.3",
+           "text": "Develop and communicate multistep troubleshooting strategies others can use to identify and fix problems with computing devices and their components."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "networks-and-the-internet",
+       "title": "Networks and the Internet",
+       "subtopics": [
+        {
+         "id": "networks-and-the-internet",
+         "title": "Networks and the Internet",
+         "outcomes": [
+          {
+           "code": "9-12.NSD.4",
+           "text": "Describe the components and design characteristics that allow data and information to be moved, stored, and referenced over the internet."
+          },
+          {
+           "code": "9-12.NSD.5",
+           "text": "Describe how emerging technologies are impacting networks and how they are used."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "cybersecurity",
+     "title": "Cybersecurity",
+     "topics": [
+      {
+       "id": "risks",
+       "title": "Risks",
+       "subtopics": [
+        {
+         "id": "risks",
+         "title": "Risks",
+         "outcomes": [
+          {
+           "code": "9-12.CY.1",
+           "text": "Determine the types of personal and organizational information and digital resources that an individual may have access to that need to be protected."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "safeguards",
+       "title": "Safeguards",
+       "subtopics": [
+        {
+         "id": "safeguards",
+         "title": "Safeguards",
+         "outcomes": [
+          {
+           "code": "9-12.CY.2",
+           "text": "Describe physical, digital, and behavioral safeguards that can be employed to protect the confidentiality, integrity, and accessibility of information."
+          },
+          {
+           "code": "9-12.CY.3",
+           "text": "Explain specific trade-offs when selecting and implementing security recommendations."
+          },
+          {
+           "code": "9-12.CY.4",
+           "text": "Evaluate applications of cryptographic methods."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "response",
+       "title": "Response",
+       "subtopics": [
+        {
+         "id": "response",
+         "title": "Response",
+         "outcomes": [
+          {
+           "code": "9-12.CY.5",
+           "text": "Recommend multiple actions to take prior and in response to various types of digital security breaches."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "digital-literacy",
+     "title": "Digital Literacy",
+     "topics": [
+      {
+       "id": "digital-use",
+       "title": "Digital Use",
+       "subtopics": [
+        {
+         "id": "digital-use",
+         "title": "Digital Use",
+         "outcomes": [
+          {
+           "code": "9-12.DL.1",
+           "text": "Type proficiently on a keyboard."
+          },
+          {
+           "code": "9-12.DL.2",
+           "text": "Communicate and work collaboratively with others using digital tools to support individual learning and contribute to the learning of others."
+          },
+          {
+           "code": "9-12.DL.4",
+           "text": "Independently select advanced digital tools and resources to create, revise, and publish complex digital artifacts or collection of artifacts."
+          },
+          {
+           "code": "9-12.DL.5",
+           "text": "Transfer knowledge of technology in order to use new and emerging technologies on multiple platforms."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "digital-citizenship",
+       "title": "Digital Citizenship",
+       "subtopics": [
+        {
+         "id": "digital-citizenship",
+         "title": "Digital Citizenship",
+         "outcomes": [
+          {
+           "code": "9-12.DL.6",
+           "text": "Actively manage digital presence and footprint to reflect an understanding of the permanence and potential consequences of actions in online spaces."
+          },
+          {
+           "code": "9-12.DL.7",
+           "text": "Design and implement strategies that support safety and security of digital information, personal identity, property, and physical and mental health when operating in the digital world."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "4-6",
+   "units": [
+    {
+     "id": "impacts-of-computing",
+     "title": "Impacts of Computing",
+     "topics": [
+      {
+       "id": "impacts-of-computing",
+       "title": "Impacts of Computing",
+       "subtopics": [
+        {
+         "id": "impacts-of-computing-1-of-2",
+         "title": "Impacts of Computing (1 of 2)",
+         "outcomes": [
+          {
+           "code": "4-6.IC.1",
+           "text": "Describe computing technologies that have changed the world, and express how those technologies influence, and are influenced by, cultural practices."
+          },
+          {
+           "code": "4-6.IC.2",
+           "text": "Explain how laws impact the use of computing technologies and digital information."
+          },
+          {
+           "code": "4-6.IC.3",
+           "text": "Explain current events that involve computing technologies."
+          },
+          {
+           "code": "4-6.IC.4",
+           "text": "Explain who has access to data in different digital spaces."
+          }
+         ]
+        },
+        {
+         "id": "impacts-of-computing-2-of-2",
+         "title": "Impacts of Computing (2 of 2)",
+         "outcomes": [
+          {
+           "code": "4-6.IC.5",
+           "text": "Explain how computer systems play a role in human decision-making."
+          },
+          {
+           "code": "4-6.IC.6",
+           "text": "Identify and explain ways to improve the accessibility and usability of a computing device or software application for the diverse needs and wants of users."
+          },
+          {
+           "code": "4-6.IC.7",
+           "text": "Identify a diverse range of role models in computer science."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "computational-thinking",
+     "title": "Computational Thinking",
+     "topics": [
+      {
+       "id": "computational-thinking",
+       "title": "Computational Thinking",
+       "subtopics": [
+        {
+         "id": "computational-thinking-1-of-2",
+         "title": "Computational Thinking (1 of 2)",
+         "outcomes": [
+          {
+           "code": "4-6.CT.1",
+           "text": "Develop a computational model of a system that shows changes in output when there are changes in inputs."
+          },
+          {
+           "code": "4-6.CT.2",
+           "text": "Collect digital data related to a real life question or need."
+          },
+          {
+           "code": "4-6.CT.3",
+           "text": "Visualize a simple data set in order to highlight relationships and persuade an audience."
+          },
+          {
+           "code": "4-6.CT.4",
+           "text": "Decompose a problem into smaller named tasks, some of which can themselves be decomposed into smaller steps."
+          },
+          {
+           "code": "4-6.CT.5",
+           "text": "Identify and name a task within a problem that gets performed multiple times while solving that problem, but with slightly different concrete details each time."
+          }
+         ]
+        },
+        {
+         "id": "computational-thinking-2-of-2",
+         "title": "Computational Thinking (2 of 2)",
+         "outcomes": [
+          {
+           "code": "4-6.CT.6",
+           "text": "Compare two or more algorithms and discuss the advantages and disadvantages of each for a specific task"
+          },
+          {
+           "code": "4-6.CT.7",
+           "text": "Identify pieces of information that might change as a program or process runs."
+          },
+          {
+           "code": "4-6.CT.8",
+           "text": "Develop algorithms or programs that use repetition and conditionals for creative expression or to solve a problem."
+          },
+          {
+           "code": "4-6.CT.9",
+           "text": "Explain each step of an algorithm or program that includes repetition and conditionals for the purposes of debugging."
+          },
+          {
+           "code": "4-6.CT.10",
+           "text": "Describe the steps taken and choices made to design and develop a solution using an iterative design process."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "networks-system-design",
+     "title": "Networks & System Design",
+     "topics": [
+      {
+       "id": "networks-system-design",
+       "title": "Networks & System Design",
+       "subtopics": [
+        {
+         "id": "networks-system-design",
+         "title": "Networks & System Design",
+         "outcomes": [
+          {
+           "code": "4-6.NSD.1",
+           "text": "Propose improvements to the design of a computing technology based on an analysis of user interactions with that technology."
+          },
+          {
+           "code": "4-6.NSD.2",
+           "text": "Model how computer hardware and software work together as a system to accomplish tasks."
+          },
+          {
+           "code": "4-6.NSD.3",
+           "text": "Determine potential solutions to solve hardware and software problems using common troubleshooting strategies."
+          },
+          {
+           "code": "4-6.NSD.4",
+           "text": "Model how data is structured to transmit through a network."
+          },
+          {
+           "code": "4-6.NSD.5",
+           "text": "Describe that data can be stored locally or remotely in a network."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "cybersecurity",
+     "title": "Cybersecurity",
+     "topics": [
+      {
+       "id": "cybersecurity",
+       "title": "Cybersecurity",
+       "subtopics": [
+        {
+         "id": "cybersecurity",
+         "title": "Cybersecurity",
+         "outcomes": [
+          {
+           "code": "4-6.CY.1",
+           "text": "Explain why different types of information might need to be protected."
+          },
+          {
+           "code": "4-6.CY.2",
+           "text": "Describe common safeguards for protecting personal information."
+          },
+          {
+           "code": "4-6.CY.3",
+           "text": "Describe trade-offs between allowing information to be public and keeping information private and secure."
+          },
+          {
+           "code": "4-6.CY.4",
+           "text": "Model and explain the purpose of simple cryptographic methods."
+          },
+          {
+           "code": "4-6.CY.5",
+           "text": "Explain suspicious activity of applications and devices."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "digital-literacy",
+     "title": "Digital Literacy",
+     "topics": [
+      {
+       "id": "digital-literacy",
+       "title": "Digital Literacy",
+       "subtopics": [
+        {
+         "id": "digital-literacy-1-of-2",
+         "title": "Digital Literacy (1 of 2)",
+         "outcomes": [
+          {
+           "code": "4-6.DL.1",
+           "text": "Type on a keyboard while demonstrating proper keyboarding technique."
+          },
+          {
+           "code": "4-6.DL.2",
+           "text": "Select appropriate digital tools to communicate and collaborate while learning with others."
+          },
+          {
+           "code": "4-6.DL.3",
+           "text": "Conduct and refine advanced multicriteria digital searches to locate content relevant to varied learning goals."
+          },
+          {
+           "code": "4-6.DL.4",
+           "text": "Use a variety of digital tools and resources to create and revise digital artifacts."
+          }
+         ]
+        },
+        {
+         "id": "digital-literacy-2-of-2",
+         "title": "Digital Literacy (2 of 2)",
+         "outcomes": [
+          {
+           "code": "4-6.DL.5",
+           "text": "Identify common features of digital technologies."
+          },
+          {
+           "code": "4-6.DL.6",
+           "text": "Describe persistence of digital information and explain how actions in online spaces can have consequences."
+          },
+          {
+           "code": "4-6.DL.7",
+           "text": "Identify and describe actions in online spaces that could potentially be unsafe or harmful."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "2-3",
+   "units": [
+    {
+     "id": "impact-of-computing",
+     "title": "Impact of Computing",
+     "topics": [
+      {
+       "id": "society",
+       "title": "Society",
+       "subtopics": [
+        {
+         "id": "society",
+         "title": "Society",
+         "outcomes": [
+          {
+           "code": "2-3.IC.1",
+           "text": "Identify and analyze how computing technology has changed the way people live and work."
+          },
+          {
+           "code": "2-3.IC.2",
+           "text": "Compare and explain rules related to computing technologies and digital information."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "ethics",
+       "title": "Ethics",
+       "subtopics": [
+        {
+         "id": "ethics",
+         "title": "Ethics",
+         "outcomes": [
+          {
+           "code": "2-3.IC.3",
+           "text": "Discuss and explain how computing technology can be used in society and the world."
+          },
+          {
+           "code": "2-3.IC.4",
+           "text": "Identify public and private digital spaces."
+          },
+          {
+           "code": "2-3.IC.5",
+           "text": "Identify and discuss how computers are programmed to make decisions without direct human input for daily life."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "accessibility",
+       "title": "Accessibility",
+       "subtopics": [
+        {
+         "id": "accessibility",
+         "title": "Accessibility",
+         "outcomes": [
+          {
+           "code": "2-3.IC.6",
+           "text": "Identify and discuss factors that make a computing device or software application easier or more difficult to use."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "career-paths",
+       "title": "Career Paths",
+       "subtopics": [
+        {
+         "id": "career-paths",
+         "title": "Career Paths",
+         "outcomes": [
+          {
+           "code": "2-3.IC.7",
+           "text": "Identify a diverse range of roles and skills in computer science."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "computational-thinking",
+     "title": "Computational Thinking",
+     "topics": [
+      {
+       "id": "modeling-and-simulation",
+       "title": "Modeling and Simulation",
+       "subtopics": [
+        {
+         "id": "modeling-and-simulation",
+         "title": "Modeling and Simulation",
+         "outcomes": [
+          {
+           "code": "2-3.CT.1",
+           "text": "Create a model of an object or computational process in order to identify patterns and essential elements of the object or process."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "data-analysis-and-visualization",
+       "title": "Data Analysis and Visualization",
+       "subtopics": [
+        {
+         "id": "data-analysis-and-visualization",
+         "title": "Data Analysis and Visualization",
+         "outcomes": [
+          {
+           "code": "2-3.CT.2",
+           "text": "Identify and describe data collection tools from everyday life."
+          },
+          {
+           "code": "2-3.CT.3",
+           "text": "Present the same data in multiple visual formats in order to tell a story about the data."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "abstraction-and-decomposition",
+       "title": "Abstraction and Decomposition",
+       "subtopics": [
+        {
+         "id": "abstraction-and-decomposition",
+         "title": "Abstraction and Decomposition",
+         "outcomes": [
+          {
+           "code": "2-3.CT.4",
+           "text": "Identify multiple ways that the same problem could be decomposed into smaller steps"
+          },
+          {
+           "code": "2-3.CT.5",
+           "text": "Identify the essential details needed to perform a general task in different settings or situations."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "algorithms-and-programming",
+       "title": "Algorithms And Programming",
+       "subtopics": [
+        {
+         "id": "algorithms-and-programming",
+         "title": "Algorithms And Programming",
+         "outcomes": [
+          {
+           "code": "2-3.CT.6",
+           "text": "Create two or more algorithms for the same task."
+          },
+          {
+           "code": "2-3.CT.7",
+           "text": "Name/label key pieces of information in a set of instructions, noting whether each name/label refers to a fixed or changing value."
+          },
+          {
+           "code": "2-3.CT.8",
+           "text": "Identify steps within a task that should only be carried out under certain precise conditions."
+          },
+          {
+           "code": "2-3.CT.9",
+           "text": "Identify and debug errors within an algorithm or program that includes sequencing or repetition."
+          },
+          {
+           "code": "2-3.CT.10",
+           "text": "Develop and document a plan that outlines specific steps taken to complete a project."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "networks-system-design",
+     "title": "Networks & System Design",
+     "topics": [
+      {
+       "id": "hardware-and-software",
+       "title": "Hardware and Software",
+       "subtopics": [
+        {
+         "id": "hardware-and-software",
+         "title": "Hardware and Software",
+         "outcomes": [
+          {
+           "code": "2-3.NSD.1",
+           "text": "Describe and demonstrate several ways a computer program can receive data and instructions (input) and can present results (output)."
+          },
+          {
+           "code": "2-3.NSD.2",
+           "text": "Explain the function of software in computing systems, using descriptive/precise language."
+          },
+          {
+           "code": "2-3.NSD.3",
+           "text": "Describe and attempt troubleshooting steps to solve a simple technology problem."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "networks-and-the-internet",
+       "title": "Networks and the Internet",
+       "subtopics": [
+        {
+         "id": "networks-and-the-internet",
+         "title": "Networks and the Internet",
+         "outcomes": [
+          {
+           "code": "2-3.NSD.4",
+           "text": "Recognize that information can be communicated using different representations that satisfy different rules."
+          },
+          {
+           "code": "2-3.NSD.5",
+           "text": "Describe and navigate to various locations where digital information can be stored."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "cybersecurity",
+     "title": "Cybersecurity",
+     "topics": [
+      {
+       "id": "risks",
+       "title": "Risks",
+       "subtopics": [
+        {
+         "id": "risks",
+         "title": "Risks",
+         "outcomes": [
+          {
+           "code": "2-3.CY.1",
+           "text": "Compare reasons why an individual should keep information private or make information public."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "safeguards",
+       "title": "Safeguards",
+       "subtopics": [
+        {
+         "id": "safeguards",
+         "title": "Safeguards",
+         "outcomes": [
+          {
+           "code": "2-3.CY.2",
+           "text": "Compare and contrast behaviors that do and do not keep information secure."
+          },
+          {
+           "code": "2-3.CY.3",
+           "text": "Identify why someone might choose to share an account, app access, or devices."
+          },
+          {
+           "code": "2-3.CY.4",
+           "text": "Encode and decode a short message or phrase."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "response",
+       "title": "Response",
+       "subtopics": [
+        {
+         "id": "response",
+         "title": "Response",
+         "outcomes": [
+          {
+           "code": "2-3.CY.5",
+           "text": "Identify unusual activity of applications and devices that should be reported to a responsible adult."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "digital-literacy",
+     "title": "Digital Literacy",
+     "topics": [
+      {
+       "id": "digital-use",
+       "title": "Digital Use",
+       "subtopics": [
+        {
+         "id": "digital-use",
+         "title": "Digital Use",
+         "outcomes": [
+          {
+           "code": "2-3.DL.1",
+           "text": "Locate and use the main keys on a keyboard to enter text independently."
+          },
+          {
+           "code": "2-3.DL.2",
+           "text": "Communicate and work with others using digital tools to share knowledge and convey ideas."
+          },
+          {
+           "code": "2-3.DL.3",
+           "text": "Conduct basic searches based on student identified keywords."
+          },
+          {
+           "code": "2-3.DL.4",
+           "text": "Use a variety of digital tools and resources to create digital artifacts."
+          },
+          {
+           "code": "2-3.DL.5",
+           "text": "* Standard begins in Grade Band 4-6."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "digital-citizenship",
+       "title": "Digital Citizenship",
+       "subtopics": [
+        {
+         "id": "digital-citizenship",
+         "title": "Digital Citizenship",
+         "outcomes": [
+          {
+           "code": "2-3.DL.6",
+           "text": "Describe ways that information may be shared online."
+          },
+          {
+           "code": "2-3.DL.7",
+           "text": "Understand what it means to be part of a digital community and describe ways to keep it a safe, respectful space."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "K-1",
+   "units": [
+    {
+     "id": "impacts-of-computing",
+     "title": "Impacts of Computing",
+     "topics": [
+      {
+       "id": "society",
+       "title": "Society",
+       "subtopics": [
+        {
+         "id": "society",
+         "title": "Society",
+         "outcomes": [
+          {
+           "code": "K-1.IC.1",
+           "text": "Identify and discuss how tasks are accomplished with and without computing technology."
+          },
+          {
+           "code": "K-1.IC.2",
+           "text": "Identify and explain classroom and home rules related to computing technologies and digital information."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "ethics",
+       "title": "Ethics",
+       "subtopics": [
+        {
+         "id": "ethics",
+         "title": "Ethics",
+         "outcomes": [
+          {
+           "code": "K-1.IC.3",
+           "text": "Identify computing technologies in the classroom, home and community."
+          },
+          {
+           "code": "K-1.IC.4",
+           "text": "Identify public and private spaces in our daily lives."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "accessibility",
+       "title": "Accessibility",
+       "subtopics": [
+        {
+         "id": "accessibility",
+         "title": "Accessibility",
+         "outcomes": [
+          {
+           "code": "K-1.IC.6",
+           "text": "With teacher support, identify different ways people interact with computers and computing devices."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "career-paths",
+       "title": "Career Paths",
+       "subtopics": [
+        {
+         "id": "career-paths",
+         "title": "Career Paths",
+         "outcomes": [
+          {
+           "code": "K-1.IC.7",
+           "text": "Identify multiple jobs that use computing technologies."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "computational-thinking",
+     "title": "Computational Thinking",
+     "topics": [
+      {
+       "id": "modeling-and-simulation",
+       "title": "Modeling and Simulation",
+       "subtopics": [
+        {
+         "id": "modeling-and-simulation",
+         "title": "Modeling and Simulation",
+         "outcomes": [
+          {
+           "code": "K-1.CT.1",
+           "text": "Identify and describe one or more patterns (found in nature or designed) and examine the patterns to find similarities and make predictions."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "data-analysis-and-visualization",
+       "title": "Data Analysis and Visualization",
+       "subtopics": [
+        {
+         "id": "data-analysis-and-visualization",
+         "title": "Data Analysis and Visualization",
+         "outcomes": [
+          {
+           "code": "K-1.CT.2",
+           "text": "Identify different kinds of data that can be collected from everyday life."
+          },
+          {
+           "code": "K-1.CT.3",
+           "text": "Identify ways to visualize data, and collaboratively create a visualization of data."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "abstraction-and-decomposition",
+       "title": "Abstraction and Decomposition",
+       "subtopics": [
+        {
+         "id": "abstraction-and-decomposition",
+         "title": "Abstraction and Decomposition",
+         "outcomes": [
+          {
+           "code": "K-1.CT.4",
+           "text": "Identify a problem or task and discuss ways to break it into multiple smaller steps."
+          },
+          {
+           "code": "K-1.CT.5",
+           "text": "Recognize that the same task can be described at different levels of detail."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "algorithms-and-programming",
+       "title": "Algorithms and Programming",
+       "subtopics": [
+        {
+         "id": "algorithms-and-programming",
+         "title": "Algorithms and Programming",
+         "outcomes": [
+          {
+           "code": "K-1.CT.6",
+           "text": "Follow an algorithm to complete a task."
+          },
+          {
+           "code": "K-1.CT.7",
+           "text": "Identify terms that refer to different concrete values over time."
+          },
+          {
+           "code": "K-1.CT.8",
+           "text": "Identify a task consisting of steps that are repeated and recognize which steps are repeated."
+          },
+          {
+           "code": "K-1.CT.9",
+           "text": "Identify and fix (debug) errors within a simple algorithm."
+          },
+          {
+           "code": "K-1.CT.10",
+           "text": "Collaboratively create a plan that outlines the steps needed to complete a task."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "networks-system-design",
+     "title": "Networks & System Design",
+     "topics": [
+      {
+       "id": "hardware-and-software",
+       "title": "Hardware and Software",
+       "subtopics": [
+        {
+         "id": "hardware-and-software",
+         "title": "Hardware and Software",
+         "outcomes": [
+          {
+           "code": "K-1.NSD.1",
+           "text": "Identify ways people provide input and get output from computing devices."
+          },
+          {
+           "code": "K-1.NSD.2",
+           "text": "Identify basic hardware components that are found in computing devices."
+          },
+          {
+           "code": "K-1.NSD.3",
+           "text": "Identify basic hardware and/or software problems."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "networks-and-the-internet",
+       "title": "Networks and the Internet",
+       "subtopics": [
+        {
+         "id": "networks-and-the-internet",
+         "title": "Networks and the Internet",
+         "outcomes": [
+          {
+           "code": "K-1.NSD.4",
+           "text": "Identify how protocols/rules help people share information over long distances."
+          },
+          {
+           "code": "K-1.NSD.5",
+           "text": "Identify physical devices that can store information."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "cybersecurity",
+     "title": "Cybersecurity",
+     "topics": [
+      {
+       "id": "risks",
+       "title": "Risks",
+       "subtopics": [
+        {
+         "id": "risks",
+         "title": "Risks",
+         "outcomes": [
+          {
+           "code": "K-1.CY.1",
+           "text": "Identify reasons for keeping information private."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "safeguards",
+       "title": "Safeguards",
+       "subtopics": [
+        {
+         "id": "safeguards",
+         "title": "Safeguards",
+         "outcomes": [
+          {
+           "code": "K-1.CY.2",
+           "text": "Identify why it is important to keep your account secure."
+          },
+          {
+           "code": "K-1.CY.4",
+           "text": "Decode a word or short message using a simple code."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "response",
+       "title": "Response",
+       "subtopics": [
+        {
+         "id": "response",
+         "title": "Response",
+         "outcomes": [
+          {
+           "code": "K-1.CY.5",
+           "text": "Identify when it is appropriate to open and/or click on links or files."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "digital-literacy",
+     "title": "Digital Literacy",
+     "topics": [
+      {
+       "id": "digital-use",
+       "title": "Digital Use",
+       "subtopics": [
+        {
+         "id": "digital-use",
+         "title": "Digital Use",
+         "outcomes": [
+          {
+           "code": "K-1.DL.1",
+           "text": "Identify and explore the keys on a keyboard."
+          },
+          {
+           "code": "K-1.DL.2",
+           "text": "Communicate and work with others using digital tools."
+          },
+          {
+           "code": "K-1.DL.3",
+           "text": "Conduct a basic search based on a provided keyword."
+          },
+          {
+           "code": "K-1.DL.4",
+           "text": "Use a least one digital tool to create a digital artifact."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "digital-citizenship",
+       "title": "Digital Citizenship",
+       "subtopics": [
+        {
+         "id": "digital-citizenship",
+         "title": "Digital Citizenship",
+         "outcomes": [
+          {
+           "code": "K-1.DL.7",
+           "text": "Identify actions that promote good digital citizenship, and those that do not."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "7-8",
+   "units": [
+    {
+     "id": "impacts-of-computing",
+     "title": "Impacts of Computing",
+     "topics": [
+      {
+       "id": "society",
+       "title": "Society",
+       "subtopics": [
+        {
+         "id": "society",
+         "title": "Society",
+         "outcomes": [
+          {
+           "code": "7-8.IC.1",
+           "text": "Compare and contrast tradeoffs associated with computing technologies that affect individuals and society."
+          },
+          {
+           "code": "7-8.IC.2",
+           "text": "Evaluate the impact of laws or regulations on the development and use of computing technologies and digital information."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "ethics",
+       "title": "Ethics",
+       "subtopics": [
+        {
+         "id": "ethics",
+         "title": "Ethics",
+         "outcomes": [
+          {
+           "code": "7-8.IC.3",
+           "text": "Identify and discuss issues of ethics surrounding computing technologies and current events."
+          },
+          {
+           "code": "7-8.IC.4",
+           "text": "Identify and discuss issues related to the collection and use of public and private data."
+          },
+          {
+           "code": "7-8.IC.5",
+           "text": "Analyze potential sources of bias that could be introduced to complex computer systems and the potential impact of these biases on individuals."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "accessibility",
+       "title": "Accessibility",
+       "subtopics": [
+        {
+         "id": "accessibility",
+         "title": "Accessibility",
+         "outcomes": [
+          {
+           "code": "7-8.IC.6",
+           "text": "Assess the accessibility of a computing device or software application in terms of user needs."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "career-paths",
+       "title": "Career Paths",
+       "subtopics": [
+        {
+         "id": "career-paths",
+         "title": "Career Paths",
+         "outcomes": [
+          {
+           "code": "7-8.IC.7",
+           "text": "Explore a range of computer sciencerelated career paths."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "computational-thinking",
+     "title": "Computational Thinking",
+     "topics": [
+      {
+       "id": "modeling-and-simulation",
+       "title": "Modeling and Simulation",
+       "subtopics": [
+        {
+         "id": "modeling-and-simulation",
+         "title": "Modeling and Simulation",
+         "outcomes": [
+          {
+           "code": "7-8.CT.1",
+           "text": "Compare the results of alternative models or simulations to determine and evaluate how the input data and assumptions change the results."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "data-analysis-and-visualization",
+       "title": "Data Analysis and Visualization",
+       "subtopics": [
+        {
+         "id": "data-analysis-and-visualization",
+         "title": "Data Analysis and Visualization",
+         "outcomes": [
+          {
+           "code": "7-8.CT.2",
+           "text": "Collect and use digital data in a computational artifact."
+          },
+          {
+           "code": "7-8.CT.3",
+           "text": "Refine and visualize a data set in order to persuade an audience."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "abstraction-and-decomposition",
+       "title": "Abstraction and Decomposition",
+       "subtopics": [
+        {
+         "id": "abstraction-and-decomposition",
+         "title": "Abstraction and Decomposition",
+         "outcomes": [
+          {
+           "code": "7-8.CT.4",
+           "text": "Write a program using functions or procedures whose names or other documentation convey their purpose within the larger task."
+          },
+          {
+           "code": "7-8.CT.5",
+           "text": "Identify multiple similar concrete computations in a program, then create a function to generalize over them using parameters to accommodate their differences"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "algorithms-and-programming",
+       "title": "Algorithms and Programming",
+       "subtopics": [
+        {
+         "id": "algorithms-and-programming",
+         "title": "Algorithms and Programming",
+         "outcomes": [
+          {
+           "code": "7-8.CT.6",
+           "text": "Design, compare and refine algorithms for a specific task or within a program."
+          },
+          {
+           "code": "7-8.CT.7",
+           "text": "Design or remix a program that uses a variable to maintain the current value of a key piece of information."
+          },
+          {
+           "code": "7-8.CT.8",
+           "text": "Develop or remix a program that effectively combines one or more control structures for creative expression or to solve a problem."
+          },
+          {
+           "code": "7-8.CT.9",
+           "text": "Read and interpret code to predict the outcome of various programs that involve conditionals and repetition for the purposes of debugging."
+          },
+          {
+           "code": "7-8.CT.10",
+           "text": "Document the iterative design process of developing a computational artifact that incorporates user feedback and preferences."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "networks-and-systems-design",
+     "title": "Networks and Systems Design",
+     "topics": [
+      {
+       "id": "hardware-and-software",
+       "title": "Hardware and Software",
+       "subtopics": [
+        {
+         "id": "hardware-and-software",
+         "title": "Hardware and Software",
+         "outcomes": [
+          {
+           "code": "7-8.NSD.1",
+           "text": "Design a user interface for a computing technology that considers usability, accessibility, and desirability."
+          },
+          {
+           "code": "7-8.NSD.2",
+           "text": "Design a project that combines hardware and software components."
+          },
+          {
+           "code": "7-8.NSD.3",
+           "text": "Identify and fix problems with computing devices and their components using a systematic troubleshooting method or guide."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "networks-and-the-internet",
+       "title": "Networks and the Internet",
+       "subtopics": [
+        {
+         "id": "networks-and-the-internet",
+         "title": "Networks and the Internet",
+         "outcomes": [
+          {
+           "code": "7-8.NSD.4",
+           "text": "Design a protocol for transmitting data through a multi-point network."
+          },
+          {
+           "code": "7-8.NSD.5",
+           "text": "Summarize how remote data is stored and accessed in a network."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "cybersecurity",
+     "title": "Cybersecurity",
+     "topics": [
+      {
+       "id": "risks",
+       "title": "Risks",
+       "subtopics": [
+        {
+         "id": "risks",
+         "title": "Risks",
+         "outcomes": [
+          {
+           "code": "7-8.CY.1",
+           "text": "Determine the types of personal information and digital resources that an individual may have access to that needs to be protected"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "safeguards",
+       "title": "Safeguards",
+       "subtopics": [
+        {
+         "id": "safeguards",
+         "title": "Safeguards",
+         "outcomes": [
+          {
+           "code": "7-8.CY.2",
+           "text": "Describe physical, digital, and behavioral safeguards that can be employed in different situations."
+          },
+          {
+           "code": "7-8.CY.3",
+           "text": "Describe trade-offs of implementing specific security safeguards."
+          },
+          {
+           "code": "7-8.CY.4",
+           "text": "Describe the limitations of cryptographic methods."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "response",
+       "title": "Response",
+       "subtopics": [
+        {
+         "id": "response",
+         "title": "Response",
+         "outcomes": [
+          {
+           "code": "7-8.CY.5",
+           "text": "Describe actions to be taken before and after an application or device reports a security problem or performs unexpectedly."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "digital-literacy",
+     "title": "Digital Literacy",
+     "topics": [
+      {
+       "id": "digital-use",
+       "title": "Digital Use",
+       "subtopics": [
+        {
+         "id": "digital-use",
+         "title": "Digital Use",
+         "outcomes": [
+          {
+           "code": "7-8.DL.1",
+           "text": "Type on a keyboard while demonstrating proper keyboarding technique, with increased speed and accuracy."
+          },
+          {
+           "code": "7-8.DL.2",
+           "text": "Communicate and collaborate with others using a variety of digital tools to create and revise a collaborative product."
+          },
+          {
+           "code": "7-8.DL.3",
+           "text": "Compare types of search tools, choose a search tool for effectiveness and efficiency, and evaluate the quality of search tools based on returned results."
+          },
+          {
+           "code": "7-8.DL.4",
+           "text": "Select and use digital tools to create, revise, and publish digital artifacts."
+          },
+          {
+           "code": "7-8.DL.5",
+           "text": "Transfer knowledge of technology in order to explore new technologies."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "digital-citizenship",
+       "title": "Digital Citizenship",
+       "subtopics": [
+        {
+         "id": "digital-citizenship",
+         "title": "Digital Citizenship",
+         "outcomes": [
+          {
+           "code": "7-8.DL.6",
+           "text": "Explain the connection between the persistence of data on the Internet, personal online identity, and personal privacy."
+          },
+          {
+           "code": "7-8.DL.7",
+           "text": "Describe safe, appropriate, positive, and responsible online behavior and identify strategies to combat negative online behavior."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "build": {
+  "builtAt": "2026-10-14T16:20:46.332Z",
+  "model": "none",
+  "usd": 0,
+  "expectedCodes": 164,
+  "coverage": 1,
+  "missingCodes": [],
+  "counts": {
+   "grades": 5,
+   "units": 25,
+   "topics": 65,
+   "subtopics": 68,
+   "outcomes": 164
+  },
+  "warnings": []
+ }
+}

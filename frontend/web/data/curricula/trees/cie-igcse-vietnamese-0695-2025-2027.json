@@ -1,0 +1,156 @@
+{
+ "id": "cie-igcse-vietnamese-0695-2025-2027",
+ "region": "INTL",
+ "framework": "Cambridge IGCSE Vietnamese - First Language (0695) syllabus 2025–2027",
+ "board": "Cambridge",
+ "qualification": "IGCSE",
+ "subject": "Vietnamese - First Language",
+ "syllabusCode": "0695",
+ "gradeSystem": "course",
+ "source": {
+  "urls": [
+   "https://www.cambridgeinternational.org/Images/683274-2025-2027-syllabus.pdf",
+   "https://www.cambridgeinternational.org/programmes-and-qualifications/cambridge-igcse-vietnamese-0695/"
+  ],
+  "publisher": "Cambridge University Press & Assessment (Cambridge International Education)",
+  "licence": "© Cambridge University Press & Assessment; structure + our own wording only",
+  "firstExam": "2025"
+ },
+ "grades": [
+  {
+   "grade": "IGCSE",
+   "units": [
+    {
+     "id": "3-subject-content",
+     "title": "3 Subject content",
+     "topics": [
+      {
+       "id": "reading",
+       "title": "Reading",
+       "subtopics": [
+        {
+         "id": "understand-and-summarise-texts",
+         "title": "Understand and Summarise Texts",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Understand written texts, including the meanings of words and phrases."
+          },
+          {
+           "code": null,
+           "text": "Summarise texts and adapt material for a specific context."
+          },
+          {
+           "code": null,
+           "text": "Develop, analyse and evaluate facts, ideas and opinions."
+          }
+         ]
+        },
+        {
+         "id": "language-devices-and-effects",
+         "title": "Language Devices and Effects",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain how writers create effects and influence readers."
+          },
+          {
+           "code": null,
+           "text": "Select information that is appropriate for particular purposes."
+          },
+          {
+           "code": null,
+           "text": "Recognise and respond to linguistic devices, figurative language and imagery."
+          }
+         ]
+        },
+        {
+         "id": "genres-style-and-influence",
+         "title": "Genres, Style and Influence",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Study twentieth- and twenty-first-century literature, fiction, non-fiction and varied text types across different genres."
+          },
+          {
+           "code": null,
+           "text": "Examine writers’ language, style, effects and influence, including facts, ideas, perspectives, opinions and bias."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "writing",
+       "title": "Writing",
+       "subtopics": [
+        {
+         "id": "ideas-vocabulary-and-context",
+         "title": "Ideas, Vocabulary and Context",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Communicate thoughts, feelings and imaginative ideas."
+          },
+          {
+           "code": null,
+           "text": "Organise and communicate facts, ideas and opinions effectively."
+          },
+          {
+           "code": null,
+           "text": "Use a varied vocabulary suited to the context."
+          }
+         ]
+        },
+        {
+         "id": "sentences-and-accuracy",
+         "title": "Sentences and Accuracy",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Use sentence structures effectively and with variety."
+          },
+          {
+           "code": null,
+           "text": "Adapt writing to its audience, purpose and form."
+          },
+          {
+           "code": null,
+           "text": "Use accurate spelling, punctuation and grammar."
+          }
+         ]
+        },
+        {
+         "id": "writing-different-text-types",
+         "title": "Writing Different Text Types",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Create and compose descriptive, narrative, discursive, argumentative and persuasive texts for varied purposes."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "build": {
+  "builtAt": "2026-10-14T07:56:48.993Z",
+  "model": "gpt-5.6-luna",
+  "usd": 0.0037,
+  "expectedCodes": null,
+  "coverage": null,
+  "missingCodes": [],
+  "counts": {
+   "grades": 1,
+   "units": 1,
+   "topics": 2,
+   "subtopics": 6,
+   "outcomes": 15
+  },
+  "warnings": []
+ }
+}

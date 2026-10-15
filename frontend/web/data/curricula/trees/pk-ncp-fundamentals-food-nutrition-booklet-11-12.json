@@ -1,0 +1,924 @@
+{
+ "id": "pk-ncp-fundamentals-food-nutrition-booklet-11-12",
+ "region": "PK",
+ "framework": "National Curriculum of Pakistan",
+ "board": null,
+ "qualification": "HSSC",
+ "subject": "Fundamentals of Food and Nutrition (Pre-Home Economics)",
+ "syllabusCode": null,
+ "gradeSystem": "grade",
+ "source": {
+  "urls": [
+   "https://ncc.gov.pk/SiteImage/Misc/files/Fundamentals%20of%20Food%20and%20Nutrition%20Booklet_11zon.pdf"
+  ],
+  "publisher": "National Curriculum Council, Ministry of Federal Education and Professional Training",
+  "licence": "Government publication; structure + our own wording only",
+  "firstExam": null
+ },
+ "grades": [
+  {
+   "grade": "11",
+   "units": [
+    {
+     "id": "domain-a-introduction-to-food-and-nutrition",
+     "title": "Domain A: Introduction to Food and Nutrition",
+     "topics": [
+      {
+       "id": "food-and-nutrients",
+       "title": "Food and nutrients",
+       "subtopics": [
+        {
+         "id": "nutrition-basics",
+         "title": "Nutrition basics",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Define food, nutrition, nutrients, malnutrition and nutritional status."
+          }
+         ]
+        },
+        {
+         "id": "macronutrients",
+         "title": "Macronutrients",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Compare carbohydrates, proteins and fats by function and source."
+          }
+         ]
+        },
+        {
+         "id": "micronutrients",
+         "title": "Micronutrients",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain water-soluble and fat-soluble vitamins and minerals, and their health roles."
+          }
+         ]
+        },
+        {
+         "id": "food-groups",
+         "title": "Food groups",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Illustrate the five basic food groups using the Food Pyramid or MyPlate."
+          }
+         ]
+        },
+        {
+         "id": "nutrients-and-growth",
+         "title": "Nutrients and growth",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Relate nutrient intake to growth and development."
+          }
+         ]
+        },
+        {
+         "id": "poor-diets",
+         "title": "Poor diets",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Identify the consequences of poor dietary practices."
+          }
+         ]
+        },
+        {
+         "id": "simple-diet-planning",
+         "title": "Simple diet planning",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Apply nutrient knowledge in simple diet-planning exercises."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "domain-b-food-hygiene-and-meal-planning",
+     "title": "Domain B: Food Hygiene and Meal planning",
+     "topics": [
+      {
+       "id": "hygiene-and-meal-planning",
+       "title": "Hygiene and meal planning",
+       "subtopics": [
+        {
+         "id": "food-hygiene",
+         "title": "Food hygiene",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Show hand hygiene and safe food handling."
+          },
+          {
+           "code": null,
+           "text": "Identify causes of food contamination and food-borne illness."
+          }
+         ]
+        },
+        {
+         "id": "storage-and-preservation",
+         "title": "Storage and preservation",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Apply correct storage for perishable and non-perishable foods."
+          },
+          {
+           "code": null,
+           "text": "Describe household food preservation methods."
+          }
+         ]
+        },
+        {
+         "id": "simple-meal-plans",
+         "title": "Simple meal plans",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Design simple daily meal plans."
+          },
+          {
+           "code": null,
+           "text": "Relate hygienic practice to healthy eating environments."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "domain-c-nutrition-through-life-cycle",
+     "title": "Domain C: Nutrition through Life cycle",
+     "topics": [
+      {
+       "id": "nutrition-through-the-life-cycle",
+       "title": "Nutrition through the life cycle",
+       "subtopics": [
+        {
+         "id": "growth-and-development",
+         "title": "Growth and development",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain the role of diet in growth and development."
+          }
+         ]
+        },
+        {
+         "id": "pregnancy-and-lactation",
+         "title": "Pregnancy and lactation",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Identify nutritional needs in pregnancy and lactation."
+          }
+         ]
+        },
+        {
+         "id": "infants-and-children",
+         "title": "Infants and children",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe dietary needs of infants and children."
+          },
+          {
+           "code": null,
+           "text": "Suggest healthy weaning and early childhood nutrition practices."
+          }
+         ]
+        },
+        {
+         "id": "malnutrition-risks",
+         "title": "Malnutrition risks",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Recognise malnutrition risks at different life stages."
+          }
+         ]
+        },
+        {
+         "id": "adolescent-diets",
+         "title": "Adolescent diets",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Relate adolescent dietary habits to long-term health."
+          }
+         ]
+        },
+        {
+         "id": "childhood-feeding-problems",
+         "title": "Childhood feeding problems",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Apply diet modification for childhood issues such as underweight and picky eating."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "domain-d-physiology-and-organic-compounds",
+     "title": "Domain D: Physiology and Organic Compounds",
+     "topics": [
+      {
+       "id": "physiology-and-organic-compounds",
+       "title": "Physiology and organic compounds",
+       "subtopics": [
+        {
+         "id": "structure-of-biomolecules",
+         "title": "Structure of biomolecules",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe the structure of carbohydrates, proteins and fats."
+          },
+          {
+           "code": null,
+           "text": "Compare essential and non-essential amino acids and fatty acids."
+          }
+         ]
+        },
+        {
+         "id": "chemistry-of-food",
+         "title": "Chemistry of food",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain simple food reactions such as hydrolysis and oxidation."
+          },
+          {
+           "code": null,
+           "text": "Relate organic compounds to food composition."
+          }
+         ]
+        },
+        {
+         "id": "enzymes-and-water",
+         "title": "Enzymes and water",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Define enzymes and their role in digestion."
+          },
+          {
+           "code": null,
+           "text": "Recognise the nutritional importance of water in metabolism."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "domain-e-food-additives-and-health-impacts",
+     "title": "Domain E: Food Additives and Health Impacts",
+     "topics": [
+      {
+       "id": "food-additives-and-health",
+       "title": "Food additives and health",
+       "subtopics": [
+        {
+         "id": "food-additives",
+         "title": "Food additives",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Define food additives and classify them by function."
+          },
+          {
+           "code": null,
+           "text": "Describe common additives: preservatives, colourants and flavour enhancers."
+          }
+         ]
+        },
+        {
+         "id": "processed-foods",
+         "title": "Processed foods",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Identify health risks of eating too much processed food."
+          }
+         ]
+        },
+        {
+         "id": "food-labels",
+         "title": "Food labels",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Read simple food labels for basic ingredients."
+          }
+         ]
+        },
+        {
+         "id": "natural-and-refined-foods",
+         "title": "Natural and refined foods",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Tell natural from synthetic food products."
+          },
+          {
+           "code": null,
+           "text": "Explain advantages and disadvantages of refined foods."
+          }
+         ]
+        },
+        {
+         "id": "food-advertising",
+         "title": "Food advertising",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Relate advertising claims for processed foods to consumer choices."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "domain-f-public-health-nutrition-sustainable-foo",
+     "title": "Domain F: Public Health Nutrition & Sustainable Food Practices",
+     "topics": [
+      {
+       "id": "public-health-and-sustainable-food",
+       "title": "Public health and sustainable food",
+       "subtopics": [
+        {
+         "id": "malnutrition",
+         "title": "Malnutrition",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Define malnutrition, undernutrition and overnutrition."
+          }
+         ]
+        },
+        {
+         "id": "diet-and-lifestyle-diseases",
+         "title": "Diet and lifestyle diseases",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Identify links between diet and lifestyle diseases."
+          }
+         ]
+        },
+        {
+         "id": "local-foods",
+         "title": "Local foods",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain the importance of locally available foods in daily diets."
+          }
+         ]
+        },
+        {
+         "id": "food-security-and-waste",
+         "title": "Food security and waste",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe basic ideas of food security."
+          },
+          {
+           "code": null,
+           "text": "Recognise why reducing food waste in preparation and serving matters."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "12",
+   "units": [
+    {
+     "id": "domain-a-introduction-to-food-and-nutrition",
+     "title": "Domain A: Introduction to Food and Nutrition",
+     "topics": [
+      {
+       "id": "food-and-nutrients",
+       "title": "Food and nutrients",
+       "subtopics": [
+        {
+         "id": "deficiencies",
+         "title": "Deficiencies",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Analyse nutritional deficiencies linked to macronutrients and micronutrients."
+          },
+          {
+           "code": null,
+           "text": "Recommend dietary changes to manage deficiency disorders."
+          }
+         ]
+        },
+        {
+         "id": "assessing-intake",
+         "title": "Assessing intake",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Evaluate daily nutrient intake using BMI and growth charts."
+          },
+          {
+           "code": null,
+           "text": "Assess dietary needs across age groups."
+          }
+         ]
+        },
+        {
+         "id": "myths-and-nutrition",
+         "title": "Myths and nutrition",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Critique common dietary myths and misconceptions."
+          },
+          {
+           "code": null,
+           "text": "Justify the role of nutrition in preventing disease."
+          }
+         ]
+        },
+        {
+         "id": "comparing-foods",
+         "title": "Comparing foods",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Make comparative charts of nutrient values across foods."
+          }
+         ]
+        },
+        {
+         "id": "malnutrition-case-studies",
+         "title": "Malnutrition case studies",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Evaluate case studies of malnutrition in different communities."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "domain-b-food-hygiene-and-meal-planning",
+     "title": "Domain B: Food Hygiene and Meal planning",
+     "topics": [
+      {
+       "id": "hygiene-and-meal-planning",
+       "title": "Hygiene and meal planning",
+       "subtopics": [
+        {
+         "id": "advanced-meal-planning",
+         "title": "Advanced meal planning",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Apply meal planning considering budget, age, lifestyle and health conditions."
+          },
+          {
+           "code": null,
+           "text": "Prepare meals for diverse cuisines and socioeconomic groups."
+          }
+         ]
+        },
+        {
+         "id": "food-safety-standards",
+         "title": "Food safety standards",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Build food safety standards such as HACCP into food preparation."
+          },
+          {
+           "code": null,
+           "text": "Evaluate storage and preservation for keeping nutrients."
+          }
+         ]
+        },
+        {
+         "id": "weekly-family-meal-plans",
+         "title": "Weekly family meal plans",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Develop balanced weekly meal plans for different family types."
+          }
+         ]
+        },
+        {
+         "id": "food-safety-and-community-health",
+         "title": "Food safety and community health",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Justify food safety and planning in preventing community health problems."
+          }
+         ]
+        },
+        {
+         "id": "culture-and-food-safety-in-the-media",
+         "title": "Culture and food safety in the media",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Assess cultural and religious considerations in meal planning."
+          },
+          {
+           "code": null,
+           "text": "Review food safety issues in media-reported outbreaks."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "domain-c-nutrition-through-life-cycle",
+     "title": "Domain C: Nutrition through Life cycle",
+     "topics": [
+      {
+       "id": "nutrition-through-the-life-cycle",
+       "title": "Nutrition through the life cycle",
+       "subtopics": [
+        {
+         "id": "adolescents",
+         "title": "Adolescents",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Analyse nutritional needs and dietary concerns of adolescents."
+          }
+         ]
+        },
+        {
+         "id": "supplements",
+         "title": "Supplements",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Evaluate nutraceuticals and supplements across life stages."
+          }
+         ]
+        },
+        {
+         "id": "special-diets",
+         "title": "Special diets",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Assess dietary changes for older adults and other groups."
+          }
+         ]
+        },
+        {
+         "id": "diets-for-chronic-illness",
+         "title": "Diets for chronic illness",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Propose diets for chronic illnesses such as diabetes and hypertension."
+          }
+         ]
+        },
+        {
+         "id": "age-group-diet-charts",
+         "title": "Age-group diet charts",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Design comparative diet charts for different age groups."
+          }
+         ]
+        },
+        {
+         "id": "lifestyle-and-nutrition",
+         "title": "Lifestyle and nutrition",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Critique lifestyle factors affecting nutrition across groups."
+          }
+         ]
+        },
+        {
+         "id": "special-groups",
+         "title": "Special groups",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Recommend diets for special groups such as athletes."
+          }
+         ]
+        },
+        {
+         "id": "nutrition-programs",
+         "title": "Nutrition programs",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Evaluate programs tackling malnutrition in maternal and child health."
+          },
+          {
+           "code": null,
+           "text": "Debate the role of fortified foods in national nutrition programs."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "domain-d-physiology-and-organic-compounds",
+     "title": "Domain D: Physiology and Organic Compounds",
+     "topics": [
+      {
+       "id": "physiology-and-organic-compounds",
+       "title": "Physiology and organic compounds",
+       "subtopics": [
+        {
+         "id": "the-digestive-system",
+         "title": "The digestive system",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Trace the path of food through the digestive system."
+          },
+          {
+           "code": null,
+           "text": "Explain the roles of digestive enzymes and secretions."
+          }
+         ]
+        },
+        {
+         "id": "absorption-and-elimination",
+         "title": "Absorption and elimination",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Evaluate absorption and assimilation of nutrients."
+          },
+          {
+           "code": null,
+           "text": "Analyse elimination and its nutritional implications."
+          }
+         ]
+        },
+        {
+         "id": "food-chemistry-and-diet",
+         "title": "Food chemistry and diet",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Relate the chemical make-up of food to dietary planning."
+          }
+         ]
+        },
+        {
+         "id": "nutritional-imbalance",
+         "title": "Nutritional imbalance",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Assess the physiological effects of nutritional imbalances."
+          }
+         ]
+        },
+        {
+         "id": "energy-metabolism",
+         "title": "Energy metabolism",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Compare biochemical processes in energy metabolism, such as glycolysis and the Krebs cycle."
+          }
+         ]
+        },
+        {
+         "id": "enzyme-disorders",
+         "title": "Enzyme disorders",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Evaluate disorders linked to enzyme deficiencies, such as lactose intolerance."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "domain-e-food-additives-and-health-impacts",
+     "title": "Domain E: Food Additives and Health Impacts",
+     "topics": [
+      {
+       "id": "food-additives-and-health",
+       "title": "Food additives and health",
+       "subtopics": [
+        {
+         "id": "safety-of-additives",
+         "title": "Safety of additives",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Evaluate the safety, risks and benefits of additives."
+          },
+          {
+           "code": null,
+           "text": "Compare natural and synthetic additives in food production."
+          }
+         ]
+        },
+        {
+         "id": "labels-and-allergens",
+         "title": "Labels and allergens",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Interpret nutrition labels, focusing on additives and allergens."
+          }
+         ]
+        },
+        {
+         "id": "processed-foods-and-health",
+         "title": "Processed foods and health",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Assess the long-term health effects of processed foods."
+          }
+         ]
+        },
+        {
+         "id": "consumer-rights",
+         "title": "Consumer rights",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Debate consumer rights and ethical issues in food marketing."
+          }
+         ]
+        },
+        {
+         "id": "healthier-choices",
+         "title": "Healthier choices",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Recommend healthier alternatives to processed foods."
+          }
+         ]
+        },
+        {
+         "id": "additive-controversies",
+         "title": "Additive controversies",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Evaluate case studies of additive-related health controversies."
+          }
+         ]
+        },
+        {
+         "id": "consumer-guides",
+         "title": "Consumer guides",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Make consumer guides that raise awareness of additives and labels."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "domain-f-public-health-nutrition-sustainable-foo",
+     "title": "Domain F: Public Health Nutrition & Sustainable Food Practices",
+     "topics": [
+      {
+       "id": "public-health-and-sustainable-food",
+       "title": "Public health and sustainable food",
+       "subtopics": [
+        {
+         "id": "national-and-global-nutrition-challenges",
+         "title": "National and global nutrition challenges",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe national and global nutrition challenges such as obesity and anaemia."
+          }
+         ]
+        },
+        {
+         "id": "prevention-of-disease",
+         "title": "Prevention of disease",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Recognise the role of diet in preventing non-communicable diseases."
+          }
+         ]
+        },
+        {
+         "id": "food-security-policy",
+         "title": "Food security policy",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Understand food security policies and health outcomes."
+          }
+         ]
+        },
+        {
+         "id": "community-action",
+         "title": "Community action",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Advocate community awareness of healthy eating."
+          }
+         ]
+        },
+        {
+         "id": "sustainable-food-practices",
+         "title": "Sustainable food practices",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Design strategies for sustainable food practices at household and community level."
+          }
+         ]
+        },
+        {
+         "id": "environment-and-food",
+         "title": "Environment and food",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Identify environmental effects of food production and consumption."
+          },
+          {
+           "code": null,
+           "text": "Recommend nutrition strategies for climate resilience."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "build": {
+  "builtAt": "2026-10-14T08:24:56.333Z",
+  "model": "claude-agent",
+  "usd": 0,
+  "expectedCodes": null,
+  "coverage": null,
+  "missingCodes": [],
+  "counts": {
+   "grades": 2,
+   "units": 12,
+   "topics": 12,
+   "subtopics": 65,
+   "outcomes": 86
+  },
+  "warnings": []
+ }
+}

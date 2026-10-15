@@ -1,0 +1,408 @@
+{
+ "id": "pk-fbise-af-hssc-1-computer-science",
+ "region": "PK",
+ "framework": "FBISE Assessment Framework (National Curriculum of Pakistan 2022-23)",
+ "board": "FBISE",
+ "qualification": "HSSC-I",
+ "subject": "Computer Science",
+ "syllabusCode": null,
+ "gradeSystem": "grade",
+ "source": {
+  "urls": [
+   "https://www.fbise.edu.pk/ModelPaper/2025/Assessment%20Frameworks//HSSC-I/Final%20Assessment%20Framework%20Model%20Question%20Paper%20Computer%20Science%20HSSC-I.pdf"
+  ],
+  "publisher": "Federal Board of Intermediate and Secondary Education",
+  "licence": "Government publication; structure + our own wording only",
+  "firstExam": "2025"
+ },
+ "grades": [
+  {
+   "grade": "11",
+   "units": [
+    {
+     "id": "a-computer-systems",
+     "title": "A: Computer Systems",
+     "topics": [
+      {
+       "id": "digital-logic",
+       "title": "Digital logic",
+       "subtopics": [
+        {
+         "id": "logic-gates-and-truth-tables",
+         "title": "Logic gates and truth tables",
+         "outcomes": [
+          {
+           "code": "CS-11-A-01",
+           "text": "Use logic gates and Boolean operators, build truth tables for up to three inputs and draw gate diagrams for expressions; also write Boolean functions, expressions and identities, and recognise duality"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "systems-design",
+       "title": "Systems design",
+       "subtopics": [
+        {
+         "id": "software-development-life-cycle",
+         "title": "Software development life cycle",
+         "outcomes": [
+          {
+           "code": "CS-11-A-02",
+           "text": "Describe the SDLC stages, apply them to a case study and plan a software project from design to launch; also compare Agile and Waterfall models and explain black box versus white box testing."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "networks",
+       "title": "Networks",
+       "subtopics": [
+        {
+         "id": "network-topologies",
+         "title": "Network topologies",
+         "outcomes": [
+          {
+           "code": "CS-11-A-03",
+           "text": "Describe bus, ring, star, tree, mesh and hybrid topologies with their advantages and drawbacks; also measure system availability, and prepare and test systems to be reliable and scale well, including"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "cyber-security",
+       "title": "Cyber security",
+       "subtopics": [
+        {
+         "id": "threats-and-security-planning",
+         "title": "Threats and security planning",
+         "outcomes": [
+          {
+           "code": "CS-11-A-04",
+           "text": "Explain why cyber security matters, how systems get attacked, and how to rank risks and plan protection; also compare basic encryption methods and protect data with strong passwords, two-factor authen"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "b-computational-thinking-and-algorithms",
+     "title": "B: Computational Thinking and Algorithms",
+     "topics": [
+      {
+       "id": "algorithms",
+       "title": "Algorithms",
+       "subtopics": [
+        {
+         "id": "pseudocode-and-flow-charts",
+         "title": "Pseudocode and flow charts",
+         "outcomes": [
+          {
+           "code": "CS-11-B-01",
+           "text": "Write pseudocode correctly, trace flow charts, test algorithms and judge their efficiency, correctness and clarity."
+          }
+         ]
+        },
+        {
+         "id": "problem-solving-searching-and-sorting",
+         "title": "Problem solving, searching and sorting",
+         "outcomes": [
+          {
+           "code": "CS-11-B-02",
+           "text": "Use abstraction, decomposition and pattern recognition, and apply linear and binary search, insertion and bubble sort."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "c-programming-fundamentals",
+     "title": "C: Programming Fundamentals",
+     "topics": [
+      {
+       "id": "programming-basics",
+       "title": "Programming basics",
+       "subtopics": [
+        {
+         "id": "why-programming-matters",
+         "title": "Why programming matters",
+         "outcomes": [
+          {
+           "code": "CS-11-C-01",
+           "text": "Explain how programs take input, process and output, and turn a real problem into a software solution."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "python",
+       "title": "Python",
+       "subtopics": [
+        {
+         "id": "python-basics",
+         "title": "Python basics",
+         "outcomes": [
+          {
+           "code": "CS-11-C-02",
+           "text": "Write and run Python programs using input/output, variables, operators, sequence, selection and repetition."
+          }
+         ]
+        },
+        {
+         "id": "turtle-graphics",
+         "title": "Turtle graphics",
+         "outcomes": [
+          {
+           "code": "CS-11-C-03",
+           "text": "Draw simple and compound shapes by commanding the Python turtle, including lifting the pen."
+          }
+         ]
+        },
+        {
+         "id": "using-libraries",
+         "title": "Using libraries",
+         "outcomes": [
+          {
+           "code": "CS-11-C-04",
+           "text": "Explain why libraries rely on abstraction and find and use a simple third-party Python library."
+          }
+         ]
+        },
+        {
+         "id": "lists-with-loops",
+         "title": "Lists with loops",
+         "outcomes": [
+          {
+           "code": "CS-11-C-05",
+           "text": "Use variables, sequence and repetition to fill a list and to find an element in it."
+          }
+         ]
+        },
+        {
+         "id": "functions",
+         "title": "Functions",
+         "outcomes": [
+          {
+           "code": "CS-11-C-06",
+           "text": "Break a problem into sub-problems and write functions with parameters, scope and return values."
+          }
+         ]
+        },
+        {
+         "id": "debugging",
+         "title": "Debugging",
+         "outcomes": [
+          {
+           "code": "CS-11-C-07",
+           "text": "Test code through functions, use a debugger with breakpoints and dry run code by hand to find bugs."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "d-data-and-analysis",
+     "title": "D: Data and Analysis",
+     "topics": [
+      {
+       "id": "modelling",
+       "title": "Modelling",
+       "subtopics": [
+        {
+         "id": "statistical-models",
+         "title": "Statistical models",
+         "outcomes": [
+          {
+           "code": "CS-11-D-01",
+           "text": "Use correlation, slope and intercept to fit a line and predict one variable from another, then build a first model."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "experiments",
+       "title": "Experiments",
+       "subtopics": [
+        {
+         "id": "experimental-design",
+         "title": "Experimental design",
+         "outcomes": [
+          {
+           "code": "CS-11-D-02",
+           "text": "Tell correlation from causation, population from sample, and choose suitable measures of centre and spread."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "data-visuals",
+       "title": "Data visuals",
+       "subtopics": [
+        {
+         "id": "summary-statistics-and-charts",
+         "title": "Summary statistics and charts",
+         "outcomes": [
+          {
+           "code": "CS-11-D-03",
+           "text": "Collect and clean data, compute summaries, make and read charts, and tell stories with data."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "e-applications-of-computer-science",
+     "title": "E: Applications of Computer Science",
+     "topics": [
+      {
+       "id": "emerging-technology",
+       "title": "Emerging technology",
+       "subtopics": [
+        {
+         "id": "iot-cloud-and-blockchain",
+         "title": "IoT, cloud and blockchain",
+         "outcomes": [
+          {
+           "code": "CS-11-E-01",
+           "text": "Describe the technologies that enable IoT, cloud computing and blockchain applications."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "ai-and-society",
+       "title": "AI and society",
+       "subtopics": [
+        {
+         "id": "stakeholders-in-ai-design",
+         "title": "Stakeholders in AI design",
+         "outcomes": [
+          {
+           "code": "CS-11-E-02",
+           "text": "Explain how different stakeholders' values and conflicting interests shape AI system design, and assess protective policies."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "f-impacts-of-computing",
+     "title": "F: Impacts of Computing",
+     "topics": [
+      {
+       "id": "information-use",
+       "title": "Information use",
+       "subtopics": [
+        {
+         "id": "reliable-information-and-bias",
+         "title": "Reliable information and bias",
+         "outcomes": [
+          {
+           "code": "CS-11-F-01",
+           "text": "Use information sources responsibly, spot reliable versus unreliable sources, and address bias in applications."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "connectivity",
+       "title": "Connectivity",
+       "subtopics": [
+        {
+         "id": "computing-and-connectivity",
+         "title": "Computing and connectivity",
+         "outcomes": [
+          {
+           "code": "CS-11-F-02",
+           "text": "Discuss how computing connects people, assistive technology, the digital divide and its effect on business."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "g-digital-literacy",
+     "title": "G: Digital Literacy",
+     "topics": [
+      {
+       "id": "research",
+       "title": "Research",
+       "subtopics": [
+        {
+         "id": "data-collection-and-presentation",
+         "title": "Data collection and presentation",
+         "outcomes": [
+          {
+           "code": "CS-11-G-01",
+           "text": "Design ways to collect original data such as surveys and interviews, and present findings with digital tools."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "h-entrepreneurship-in-the-digital-age",
+     "title": "H: Entrepreneurship in the Digital Age",
+     "topics": [
+      {
+       "id": "prototyping",
+       "title": "Prototyping",
+       "subtopics": [
+        {
+         "id": "prototyping-a-business-idea",
+         "title": "Prototyping a business idea",
+         "outcomes": [
+          {
+           "code": "EN-11-H-01",
+           "text": "Design, build, test and iterate a prototype for a business idea using test results."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "build": {
+  "builtAt": "2026-10-14T08:04:23.284Z",
+  "model": "claude-agent",
+  "usd": 0,
+  "expectedCodes": 21,
+  "coverage": 1,
+  "missingCodes": [],
+  "counts": {
+   "grades": 1,
+   "units": 8,
+   "topics": 16,
+   "subtopics": 22,
+   "outcomes": 22
+  },
+  "warnings": [
+   "unit \"G: Digital Literacy\" (grade 11) has a single outcome",
+   "unit \"H: Entrepreneurship in the Digital Age\" (grade 11) has a single outcome"
+  ]
+ }
+}

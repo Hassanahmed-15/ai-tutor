@@ -1,0 +1,2442 @@
+{
+ "id": "us-ap-precalculus",
+ "region": "US",
+ "framework": "AP Precalculus Course and Exam Description (effective fall 2026)",
+ "board": "College Board",
+ "qualification": "AP",
+ "subject": "Precalculus",
+ "syllabusCode": null,
+ "gradeSystem": "course",
+ "source": {
+  "urls": [
+   "https://apcentral.collegeboard.org/media/pdf/ap-precalculus-course-and-exam-description.pdf",
+   "https://apcentral.collegeboard.org/courses/ap-precalculus"
+  ],
+  "publisher": "College Board",
+  "licence": "© College Board; structure + our own wording only",
+  "firstExam": "2027"
+ },
+ "grades": [
+  {
+   "grade": "all",
+   "units": [
+    {
+     "id": "unit-1-polynomial-and-rational-functions",
+     "title": "Unit 1: Polynomial and Rational Functions",
+     "topics": [
+      {
+       "id": "1-1-change-in-tandem",
+       "title": "1.1 Change in Tandem",
+       "subtopics": [
+        {
+         "id": "functions-and-how-outputs-vary",
+         "title": "Functions and how outputs vary",
+         "outcomes": [
+          {
+           "code": "1.1.A",
+           "text": "Describe how a function's inputs and outputs vary together by comparing function values."
+          },
+          {
+           "code": "1.1.A.1",
+           "text": "Define function, domain, range, independent and dependent variables, and when two functions are equal."
+          },
+          {
+           "code": "1.1.A.2",
+           "text": "Know a function rule can be graphical, numerical, analytic or verbal; understand image and preimage."
+          },
+          {
+           "code": "1.1.A.3",
+           "text": "Recognize a function as increasing on an interval when larger inputs always give larger outputs."
+          },
+          {
+           "code": "1.1.A.4",
+           "text": "Recognize a function as decreasing on an interval when larger inputs always give smaller outputs."
+          }
+         ]
+        },
+        {
+         "id": "graphs-of-changing-quantities",
+         "title": "Graphs of changing quantities",
+         "outcomes": [
+          {
+           "code": "1.1.B",
+           "text": "Build a graph of two quantities that vary together in a real situation."
+          },
+          {
+           "code": "1.1.B.1",
+           "text": "Know a graph shows input-output pairs and how the values vary together."
+          },
+          {
+           "code": "1.1.B.2",
+           "text": "Use a verbal description of how things change together to build a graph."
+          },
+          {
+           "code": "1.1.B.3",
+           "text": "Identify concave up where the rate of change is increasing."
+          },
+          {
+           "code": "1.1.B.4",
+           "text": "Identify concave down where the rate of change is decreasing."
+          },
+          {
+           "code": "1.1.B.5",
+           "text": "Know the graph meets the x-axis at zeros, where output is zero."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "1-2-rates-of-change",
+       "title": "1.2 Rates of Change",
+       "subtopics": [
+        {
+         "id": "average-rate-of-change",
+         "title": "Average rate of change",
+         "outcomes": [
+          {
+           "code": "1.2.A",
+           "text": "Compare rates of change at two points using average rates of change near them."
+          },
+          {
+           "code": "1.2.A.1",
+           "text": "Define the average rate of change over an interval as output change divided by input change."
+          },
+          {
+           "code": "1.2.A.2",
+           "text": "Approximate the rate of change at a point using average rates over small intervals around it."
+          },
+          {
+           "code": "1.2.A.3",
+           "text": "Compare rates of change at two points using small-interval average rates."
+          }
+         ]
+        },
+        {
+         "id": "meaning-of-rate-of-change",
+         "title": "Meaning of rate of change",
+         "outcomes": [
+          {
+           "code": "1.2.B",
+           "text": "Describe how two quantities vary together at different points and over different intervals."
+          },
+          {
+           "code": "1.2.B.1",
+           "text": "Know rates of change measure how two quantities vary together."
+          },
+          {
+           "code": "1.2.B.2",
+           "text": "Read a positive rate of change as both quantities moving in the same direction."
+          },
+          {
+           "code": "1.2.B.3",
+           "text": "Read a negative rate of change as one quantity rising while the other falls."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "1-3-rates-of-change-in-linear-and-quadratic-func",
+       "title": "1.3 Rates of Change in Linear and Quadratic Functions",
+       "subtopics": [
+        {
+         "id": "average-rates-for-linear-and-quadratic-functions",
+         "title": "Average rates for linear and quadratic functions",
+         "outcomes": [
+          {
+           "code": "1.3.A",
+           "text": "Find average rates of change for sequences and functions, including linear and quadratic."
+          },
+          {
+           "code": "1.3.A.1",
+           "text": "Know a linear function has a constant average rate of change."
+          },
+          {
+           "code": "1.3.A.2",
+           "text": "Know a quadratic function's average rates over equal-length intervals form a linear function."
+          },
+          {
+           "code": "1.3.A.3",
+           "text": "Interpret the average rate of change over [a, b] as the slope of a secant line."
+          }
+         ]
+        },
+        {
+         "id": "change-in-the-rates-of-change",
+         "title": "Change in the rates of change",
+         "outcomes": [
+          {
+           "code": "1.3.B",
+           "text": "Find how average rates of change change for linear, quadratic and other functions."
+          },
+          {
+           "code": "1.3.B.1",
+           "text": "Know a linear function's average rates change at a rate of zero."
+          },
+          {
+           "code": "1.3.B.2",
+           "text": "Know a quadratic function's average rates change at a constant rate."
+          },
+          {
+           "code": "1.3.B.3",
+           "text": "Link increasing average rates to concave up and decreasing average rates to concave down."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "1-4-polynomial-functions-and-rates-of-change",
+       "title": "1.4 Polynomial Functions and Rates of Change",
+       "subtopics": [
+        {
+         "id": "polynomial-features-and-extrema",
+         "title": "Polynomial features and extrema",
+         "outcomes": [
+          {
+           "code": "1.4.A",
+           "text": "Identify key features of polynomial functions related to rates of change."
+          },
+          {
+           "code": "1.4.A.1",
+           "text": "Define a polynomial function, its degree, leading term and leading coefficient."
+          },
+          {
+           "code": "1.4.A.2",
+           "text": "Identify local and global maxima and minima where a polynomial switches between increasing and decreasing."
+          },
+          {
+           "code": "1.4.A.3",
+           "text": "Know a local extremum lies between every two distinct real zeros."
+          },
+          {
+           "code": "1.4.A.4",
+           "text": "Know even-degree polynomials have a global max or min, found at the vertex for quadratics."
+          },
+          {
+           "code": "1.4.A.5",
+           "text": "Locate points of inflection where concavity changes."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "1-5-polynomial-functions-and-complex-zeros",
+       "title": "1.5 Polynomial Functions and Complex Zeros",
+       "subtopics": [
+        {
+         "id": "zeros-and-multiplicity",
+         "title": "Zeros and multiplicity",
+         "outcomes": [
+          {
+           "code": "1.5.A",
+           "text": "Identify key features of polynomials related to zeros when factorizations or technology are available."
+          },
+          {
+           "code": "1.5.A.1",
+           "text": "Define zeros, roots and linear factors, and link real zeros to linear factors."
+          },
+          {
+           "code": "1.5.A.2",
+           "text": "Define multiplicity; a degree-n polynomial has n complex zeros counting multiplicity."
+          },
+          {
+           "code": "1.5.A.3",
+           "text": "Link real zeros to x-intercepts and to endpoints of polynomial inequality intervals."
+          },
+          {
+           "code": "1.5.A.4",
+           "text": "Know non-real zeros come in conjugate pairs."
+          },
+          {
+           "code": "1.5.A.5",
+           "text": "Know even-multiplicity zeros keep the output sign and make the graph tangent to the x-axis."
+          },
+          {
+           "code": "1.5.A.6",
+           "text": "Find the degree of a polynomial from constant successive differences of outputs."
+          }
+         ]
+        },
+        {
+         "id": "even-and-odd-polynomials",
+         "title": "Even and odd polynomials",
+         "outcomes": [
+          {
+           "code": "1.5.B",
+           "text": "Decide whether a polynomial function is even or odd."
+          },
+          {
+           "code": "1.5.B.1",
+           "text": "Know even functions are symmetric over x = 0 with f(-x) = f(x)."
+          },
+          {
+           "code": "1.5.B.2",
+           "text": "Know odd functions are symmetric about the origin with f(-x) = -f(x)."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "1-6-polynomial-functions-and-end-behavior",
+       "title": "1.6 Polynomial Functions and End Behavior",
+       "subtopics": [
+        {
+         "id": "end-behavior-of-polynomials",
+         "title": "End behavior of polynomials",
+         "outcomes": [
+          {
+           "code": "1.6.A",
+           "text": "Describe end behavior of polynomial functions."
+          },
+          {
+           "code": "1.6.A.1",
+           "text": "Describe outputs as inputs increase without bound, using limit notation."
+          },
+          {
+           "code": "1.6.A.2",
+           "text": "Describe outputs as inputs decrease without bound, using limit notation."
+          },
+          {
+           "code": "1.6.A.3",
+           "text": "Use the degree and sign of the leading term to determine end behavior."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "1-7-rational-functions-and-end-behavior",
+       "title": "1.7 Rational Functions and End Behavior",
+       "subtopics": [
+        {
+         "id": "end-behavior-of-rational-functions",
+         "title": "End behavior of rational functions",
+         "outcomes": [
+          {
+           "code": "1.7.A",
+           "text": "Describe end behavior of rational functions."
+          },
+          {
+           "code": "1.7.A.1",
+           "text": "Define a rational function as a quotient of polynomials comparing numerator to denominator size."
+          },
+          {
+           "code": "1.7.A.2",
+           "text": "Find end behavior from the quotient of leading terms."
+          },
+          {
+           "code": "1.7.A.3",
+           "text": "Find a polynomial end behavior or slant asymptote when the numerator dominates."
+          },
+          {
+           "code": "1.7.A.4",
+           "text": "Find a horizontal asymptote at a constant when neither polynomial dominates."
+          },
+          {
+           "code": "1.7.A.5",
+           "text": "Find a horizontal asymptote at y = 0 when the denominator dominates."
+          },
+          {
+           "code": "1.7.A.6",
+           "text": "Use limit notation for horizontal asymptotes."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "1-8-rational-functions-and-zeros",
+       "title": "1.8 Rational Functions and Zeros",
+       "subtopics": [
+        {
+         "id": "zeros-of-rational-functions",
+         "title": "Zeros of rational functions",
+         "outcomes": [
+          {
+           "code": "1.8.A",
+           "text": "Find the zeros of rational functions."
+          },
+          {
+           "code": "1.8.A.1",
+           "text": "Know real zeros of a rational function come from real zeros of its numerator within the domain."
+          },
+          {
+           "code": "1.8.A.2",
+           "text": "Use zeros of numerator and denominator as endpoints or asymptotes for rational inequality intervals."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "1-9-rational-functions-and-vertical-asymptotes",
+       "title": "1.9 Rational Functions and Vertical Asymptotes",
+       "subtopics": [
+        {
+         "id": "vertical-asymptotes",
+         "title": "Vertical asymptotes",
+         "outcomes": [
+          {
+           "code": "1.9.A",
+           "text": "Find vertical asymptotes of graphs of rational functions."
+          },
+          {
+           "code": "1.9.A.1",
+           "text": "Locate vertical asymptotes at denominator zeros that are not cancelled by the numerator."
+          },
+          {
+           "code": "1.9.A.2",
+           "text": "Describe behavior near a vertical asymptote with one-sided limit notation."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "1-10-rational-functions-and-holes",
+       "title": "1.10 Rational Functions and Holes",
+       "subtopics": [
+        {
+         "id": "holes-in-graphs",
+         "title": "Holes in graphs",
+         "outcomes": [
+          {
+           "code": "1.10.A",
+           "text": "Find holes in graphs of rational functions."
+          },
+          {
+           "code": "1.10.A.1",
+           "text": "Know a hole occurs where the numerator's zero multiplicity is at least the denominator's."
+          },
+          {
+           "code": "1.10.A.2",
+           "text": "Find a hole's location from outputs near the input, using limit notation."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "1-11-equivalent-representations-of-polynomial-an",
+       "title": "1.11 Equivalent Representations of Polynomial and Rational Expressions",
+       "subtopics": [
+        {
+         "id": "rewriting-expressions-and-long-division",
+         "title": "Rewriting expressions and long division",
+         "outcomes": [
+          {
+           "code": "1.11.A",
+           "text": "Rewrite polynomial and rational expressions in equivalent forms."
+          },
+          {
+           "code": "1.11.A.1",
+           "text": "Use factored form to read zeros, intercepts, asymptotes, holes, domain and range."
+          },
+          {
+           "code": "1.11.A.2",
+           "text": "Use standard form to read end behavior."
+          },
+          {
+           "code": "1.11.A.3",
+           "text": "Use information from different forms of the same function to answer contextual questions."
+          },
+          {
+           "code": "1.11.B",
+           "text": "Divide polynomial functions using long division."
+          },
+          {
+           "code": "1.11.B.1",
+           "text": "Rewrite f as g times quotient plus remainder, with remainder degree below the divisor."
+          },
+          {
+           "code": "1.11.B.2",
+           "text": "Use long division to find slant asymptote equations."
+          }
+         ]
+        },
+        {
+         "id": "binomial-theorem",
+         "title": "Binomial theorem",
+         "outcomes": [
+          {
+           "code": "1.11.C",
+           "text": "Rewrite repeated products of binomials using the binomial theorem."
+          },
+          {
+           "code": "1.11.C.1",
+           "text": "Expand (a + b)^n using a row of Pascal's Triangle, including (x + c)^n."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "1-12-transformations-of-functions",
+       "title": "1.12 Transformations of Functions",
+       "subtopics": [
+        {
+         "id": "translations-and-dilations",
+         "title": "Translations and dilations",
+         "outcomes": [
+          {
+           "code": "1.12.A",
+           "text": "Build a function that is an additive or multiplicative transformation of another function."
+          },
+          {
+           "code": "1.12.A.1",
+           "text": "Translate vertically with g(x) = f(x) + k."
+          },
+          {
+           "code": "1.12.A.2",
+           "text": "Translate horizontally with g(x) = f(x + h), a shift by -h."
+          },
+          {
+           "code": "1.12.A.3",
+           "text": "Dilate vertically with g(x) = a f(x), reflecting over the x-axis if a is negative."
+          },
+          {
+           "code": "1.12.A.4",
+           "text": "Dilate horizontally with g(x) = f(bx), reflecting over the y-axis if b is negative."
+          },
+          {
+           "code": "1.12.A.5",
+           "text": "Combine transformations; distinguish preimage from image."
+          },
+          {
+           "code": "1.12.A.6",
+           "text": "Know a transformed function can have a different domain and range from its parent."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "1-13-function-model-selection-and-assumption-art",
+       "title": "1.13 Function Model Selection and Assumption Articulation",
+       "subtopics": [
+        {
+         "id": "choosing-a-function-type",
+         "title": "Choosing a function type",
+         "outcomes": [
+          {
+           "code": "1.13.A",
+           "text": "Choose a suitable function type to model a scenario."
+          },
+          {
+           "code": "1.13.A.1",
+           "text": "Model roughly constant rates of change with linear functions."
+          },
+          {
+           "code": "1.13.A.2",
+           "text": "Model roughly linear rates of change or symmetric data with a single extremum using quadratics."
+          },
+          {
+           "code": "1.13.A.3",
+           "text": "Model area situations with quadratics and volume situations with cubics."
+          },
+          {
+           "code": "1.13.A.4",
+           "text": "Model data with several zeros or extrema using polynomials."
+          },
+          {
+           "code": "1.13.A.5",
+           "text": "Model data with roughly constant nonzero nth differences using degree-n polynomials."
+          },
+          {
+           "code": "1.13.A.6",
+           "text": "Fit a polynomial of degree n or less through n + 1 points with distinct inputs."
+          },
+          {
+           "code": "1.13.A.7",
+           "text": "Use piecewise-defined functions when behavior differs over different intervals."
+          }
+         ]
+        },
+        {
+         "id": "assumptions-and-restrictions",
+         "title": "Assumptions and restrictions",
+         "outcomes": [
+          {
+           "code": "1.13.B",
+           "text": "Describe assumptions and restrictions in building a function model."
+          },
+          {
+           "code": "1.13.B.1",
+           "text": "State what a model assumes stays consistent."
+          },
+          {
+           "code": "1.13.B.2",
+           "text": "State what a model assumes about how quantities change together."
+          },
+          {
+           "code": "1.13.B.3",
+           "text": "Restrict the domain using mathematical clues, context or extreme data values."
+          },
+          {
+           "code": "1.13.B.4",
+           "text": "Restrict the range, for example by rounding, using clues, context or extreme values."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "1-14-function-model-construction-and-application",
+       "title": "1.14 Function Model Construction and Application",
+       "subtopics": [
+        {
+         "id": "building-models",
+         "title": "Building models",
+         "outcomes": [
+          {
+           "code": "1.14.A",
+           "text": "Construct linear, quadratic, cubic, quartic, degree-n or piecewise models."
+          },
+          {
+           "code": "1.14.A.1",
+           "text": "Construct a model from restrictions found in the mathematical or real context."
+          },
+          {
+           "code": "1.14.A.2",
+           "text": "Construct a model by transforming a parent function."
+          },
+          {
+           "code": "1.14.A.3",
+           "text": "Construct a model with technology and regression, including linear to quartic."
+          },
+          {
+           "code": "1.14.A.4",
+           "text": "Construct a piecewise model by combining modeling techniques."
+          },
+          {
+           "code": "1.14.B",
+           "text": "Construct a rational function model from a context."
+          },
+          {
+           "code": "1.14.B.1",
+           "text": "Model inversely proportional quantities with rational functions."
+          }
+         ]
+        },
+        {
+         "id": "using-models",
+         "title": "Using models",
+         "outcomes": [
+          {
+           "code": "1.14.C",
+           "text": "Apply a function model to answer questions about data or a context."
+          },
+          {
+           "code": "1.14.C.1",
+           "text": "Use a model to draw conclusions and predict values and rates of change, with sensible units."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "unit-2-exponential-and-logarithmic-functions",
+     "title": "Unit 2: Exponential and Logarithmic Functions",
+     "topics": [
+      {
+       "id": "2-1-change-in-arithmetic-and-geometric-sequences",
+       "title": "2.1 Change in Arithmetic and Geometric Sequences",
+       "subtopics": [
+        {
+         "id": "arithmetic-sequences",
+         "title": "Arithmetic sequences",
+         "outcomes": [
+          {
+           "code": "2.1.A",
+           "text": "Express arithmetic sequences as functions of the whole numbers."
+          },
+          {
+           "code": "2.1.A.1",
+           "text": "Know a sequence is a function on the whole numbers whose graph is discrete points."
+          },
+          {
+           "code": "2.1.A.2",
+           "text": "Recognize a common difference as a constant rate of change."
+          },
+          {
+           "code": "2.1.A.3",
+           "text": "Write the general term a_n = a_0 + dn, or a_k + d(n - k)."
+          }
+         ]
+        },
+        {
+         "id": "geometric-sequences",
+         "title": "Geometric sequences",
+         "outcomes": [
+          {
+           "code": "2.1.B",
+           "text": "Express geometric sequences as functions of the whole numbers."
+          },
+          {
+           "code": "2.1.B.1",
+           "text": "Recognize a common ratio as constant proportional change."
+          },
+          {
+           "code": "2.1.B.2",
+           "text": "Write the general term g_n = g_0 r^n, or g_k r^(n-k)."
+          },
+          {
+           "code": "2.1.B.3",
+           "text": "Contrast arithmetic growth (equal steps) with geometric growth (growing steps)."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "2-2-change-in-linear-and-exponential-functions",
+       "title": "2.2 Change in Linear and Exponential Functions",
+       "subtopics": [
+        {
+         "id": "sequences-versus-functions",
+         "title": "Sequences versus functions",
+         "outcomes": [
+          {
+           "code": "2.2.A",
+           "text": "Build real-number functions comparable to arithmetic and geometric sequences."
+          },
+          {
+           "code": "2.2.A.1",
+           "text": "Compare f(x) = b + mx to arithmetic sequences: initial value plus repeated constant addition."
+          },
+          {
+           "code": "2.2.A.2",
+           "text": "Write a linear function from a slope and a point, as f(x) = y_i + m(x - x_i)."
+          },
+          {
+           "code": "2.2.A.3",
+           "text": "Compare f(x) = ab^x to geometric sequences: initial value times repeated constant ratio."
+          },
+          {
+           "code": "2.2.A.4",
+           "text": "Write an exponential function from a ratio and a point, as f(x) = y_i b^(x - x_i)."
+          },
+          {
+           "code": "2.2.A.5",
+           "text": "Know sequences and their matching functions may have different domains."
+          }
+         ]
+        },
+        {
+         "id": "linear-versus-exponential",
+         "title": "Linear versus exponential",
+         "outcomes": [
+          {
+           "code": "2.2.B",
+           "text": "Describe similarities and differences between linear and exponential functions."
+          },
+          {
+           "code": "2.2.B.1",
+           "text": "Tell constant change (linear) from proportional change (exponential) over equal-length intervals; the ratio is not 0 or 1."
+          },
+          {
+           "code": "2.2.B.2",
+           "text": "Compare linear (addition-based) and exponential (multiplication-based) forms built from an initial value."
+          },
+          {
+           "code": "2.2.B.3",
+           "text": "Know two distinct values determine an arithmetic or geometric sequence, linear or exponential function."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "2-3-exponential-functions",
+       "title": "2.3 Exponential Functions",
+       "subtopics": [
+        {
+         "id": "features-of-exponential-functions",
+         "title": "Features of exponential functions",
+         "outcomes": [
+          {
+           "code": "2.3.A",
+           "text": "Identify key features of exponential functions."
+          },
+          {
+           "code": "2.3.A.1",
+           "text": "Know the form f(x) = ab^x, growth when a > 0 and b > 1, decay when 0 < b < 1."
+          },
+          {
+           "code": "2.3.A.2",
+           "text": "Know natural-number inputs count factors of the base; the domain is all real numbers."
+          },
+          {
+           "code": "2.3.A.3",
+           "text": "Know exponential functions are always monotonic and concave one way, with no extrema or inflection points."
+          },
+          {
+           "code": "2.3.A.4",
+           "text": "Recognize functions modeled by an additive transformation of an exponential."
+          },
+          {
+           "code": "2.3.A.5",
+           "text": "Describe end behavior and the asymptote at zero using limits."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "2-4-exponential-function-manipulation",
+       "title": "2.4 Exponential Function Manipulation",
+       "subtopics": [
+        {
+         "id": "rewriting-exponential-expressions",
+         "title": "Rewriting exponential expressions",
+         "outcomes": [
+          {
+           "code": "2.4.A",
+           "text": "Rewrite exponential expressions in equivalent forms."
+          },
+          {
+           "code": "2.4.A.1",
+           "text": "Use the product property for exponents; horizontal translations equal vertical dilations."
+          },
+          {
+           "code": "2.4.A.2",
+           "text": "Use the power property for exponents; horizontal dilations change the base."
+          },
+          {
+           "code": "2.4.A.3",
+           "text": "Use the negative exponent property."
+          },
+          {
+           "code": "2.4.A.4",
+           "text": "Read b^(1/k) as the kth root of b."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "2-5-exponential-function-context-and-data-modeli",
+       "title": "2.5 Exponential Function Context and Data Modeling",
+       "subtopics": [
+        {
+         "id": "building-exponential-models",
+         "title": "Building exponential models",
+         "outcomes": [
+          {
+           "code": "2.5.A",
+           "text": "Build a model for situations with proportional outputs over equal-length input intervals."
+          },
+          {
+           "code": "2.5.A.1",
+           "text": "Use exponentials for patterns of repeated multiplication of a constant."
+          },
+          {
+           "code": "2.5.A.2",
+           "text": "Add a constant to the data when needed to reveal proportional growth."
+          },
+          {
+           "code": "2.5.A.3",
+           "text": "Build a model from a ratio and initial value or from two input-output pairs."
+          },
+          {
+           "code": "2.5.A.4",
+           "text": "Build models by transforming f(x) = ab^x."
+          },
+          {
+           "code": "2.5.A.5",
+           "text": "Build models with exponential regression technology."
+          },
+          {
+           "code": "2.5.A.6",
+           "text": "Recognize the natural base e (about 2.718) as a common base."
+          }
+         ]
+        },
+        {
+         "id": "using-exponential-models",
+         "title": "Using exponential models",
+         "outcomes": [
+          {
+           "code": "2.5.B",
+           "text": "Use exponential models to answer questions about data or a context."
+          },
+          {
+           "code": "2.5.B.1",
+           "text": "Read the base as a growth factor tied to percent change."
+          },
+          {
+           "code": "2.5.B.2",
+           "text": "Use equivalent forms to reveal different properties, such as growth per day versus per week."
+          },
+          {
+           "code": "2.5.B.3",
+           "text": "Predict dependent values and solve for independent values, within domain limits."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "2-6-competing-function-model-validation",
+       "title": "2.6 Competing Function Model Validation",
+       "subtopics": [
+        {
+         "id": "choosing-and-validating-models",
+         "title": "Choosing and validating models",
+         "outcomes": [
+          {
+           "code": "2.6.A",
+           "text": "Build linear, quadratic and exponential models from a data set."
+          },
+          {
+           "code": "2.6.A.1",
+           "text": "Model slightly changing rates of change with linear, quadratic or exponential functions."
+          },
+          {
+           "code": "2.6.A.2",
+           "text": "Compare models using context and applicability to choose the best."
+          },
+          {
+           "code": "2.6.B",
+           "text": "Validate a model built from a data set."
+          },
+          {
+           "code": "2.6.B.1",
+           "text": "Use residuals and residual plots; a model fits if the residual plot shows no pattern."
+          },
+          {
+           "code": "2.6.B.2",
+           "text": "Interpret model errors, including over- and underestimates, in context."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "2-7-composition-of-functions",
+       "title": "2.7 Composition of Functions",
+       "subtopics": [
+        {
+         "id": "evaluating-compositions",
+         "title": "Evaluating compositions",
+         "outcomes": [
+          {
+           "code": "2.7.A",
+           "text": "Evaluate the composition of two or more functions for given values."
+          },
+          {
+           "code": "2.7.A.1",
+           "text": "Define the composite f o g, its domain restrictions, and f(g(x)) notation."
+          },
+          {
+           "code": "2.7.A.2",
+           "text": "Evaluate compositions from graphs, tables, formulas or words."
+          },
+          {
+           "code": "2.7.A.3",
+           "text": "Know composition is not commutative."
+          },
+          {
+           "code": "2.7.A.4",
+           "text": "Know the identity function leaves compositions unchanged."
+          }
+         ]
+        },
+        {
+         "id": "building-and-decomposing-compositions",
+         "title": "Building and decomposing compositions",
+         "outcomes": [
+          {
+           "code": "2.7.B",
+           "text": "Build representations of the composition of two or more functions."
+          },
+          {
+           "code": "2.7.B.1",
+           "text": "Use composition to relate quantities with no direct formula."
+          },
+          {
+           "code": "2.7.B.2",
+           "text": "Write f(g(x)) by substituting g(x) for x in f."
+          },
+          {
+           "code": "2.7.B.3",
+           "text": "Build numerical or graphical compositions from values (x, f(g(x)))."
+          },
+          {
+           "code": "2.7.C",
+           "text": "Rewrite a function as a composition of simpler functions."
+          },
+          {
+           "code": "2.7.C.1",
+           "text": "Decompose analytic functions into simpler pieces, replacing the variable properly."
+          },
+          {
+           "code": "2.7.C.2",
+           "text": "See translations as composition with g(x) = x + k."
+          },
+          {
+           "code": "2.7.C.3",
+           "text": "See dilations as composition with g(x) = kx."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "2-8-inverse-functions",
+       "title": "2.8 Inverse Functions",
+       "subtopics": [
+        {
+         "id": "finding-inverses",
+         "title": "Finding inverses",
+         "outcomes": [
+          {
+           "code": "2.8.A",
+           "text": "Find the input-output pairs of a function's inverse."
+          },
+          {
+           "code": "2.8.A.1",
+           "text": "Know a function is invertible when each output comes from a unique input; restrict domains to make it so."
+          },
+          {
+           "code": "2.8.A.2",
+           "text": "Treat the inverse as a reverse mapping: pairs (a, b) become (b, a)."
+          },
+          {
+           "code": "2.8.B",
+           "text": "Find the inverse of a function on an invertible domain."
+          },
+          {
+           "code": "2.8.B.1",
+           "text": "Know a function composed with its inverse gives the identity."
+          },
+          {
+           "code": "2.8.B.2",
+           "text": "Swap domain and range, and reverse table pairs, to get the inverse."
+          },
+          {
+           "code": "2.8.B.3",
+           "text": "Reflect the graph over y = x to get the inverse graph."
+          },
+          {
+           "code": "2.8.B.4",
+           "text": "Find the inverse algebraically by swapping x and y and solving."
+          },
+          {
+           "code": "2.8.B.5",
+           "text": "Know context can restrict where an inverse applies."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "2-9-logarithmic-expressions",
+       "title": "2.9 Logarithmic Expressions",
+       "subtopics": [
+        {
+         "id": "evaluating-logarithms",
+         "title": "Evaluating logarithms",
+         "outcomes": [
+          {
+           "code": "2.9.A",
+           "text": "Evaluate logarithmic expressions."
+          },
+          {
+           "code": "2.9.A.1",
+           "text": "Define log_b c as the exponent a with b^a = c; common log is base 10."
+          },
+          {
+           "code": "2.9.A.2",
+           "text": "Evaluate some logs by arithmetic and estimate others with technology."
+          },
+          {
+           "code": "2.9.A.3",
+           "text": "Read logarithmic scales as multiplicative steps of the base."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "2-10-inverses-of-exponential-functions",
+       "title": "2.10 Inverses of Exponential Functions",
+       "subtopics": [
+        {
+         "id": "logarithms-as-inverses",
+         "title": "Logarithms as inverses",
+         "outcomes": [
+          {
+           "code": "2.10.A",
+           "text": "Build representations of the inverse of an exponential function with initial value 1."
+          },
+          {
+           "code": "2.10.A.1",
+           "text": "Know the general form f(x) = a log_b x."
+          },
+          {
+           "code": "2.10.A.2",
+           "text": "Contrast exponential growth (additive input, multiplicative output) with logarithmic growth (multiplicative input, additive output)."
+          },
+          {
+           "code": "2.10.A.3",
+           "text": "Know log_b x and b^x are inverse functions."
+          },
+          {
+           "code": "2.10.A.4",
+           "text": "Graph the log as a reflection of the exponential over y = x."
+          },
+          {
+           "code": "2.10.A.5",
+           "text": "Swap ordered pairs (s, t) to (t, s) between the exponential and its log."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "2-11-logarithmic-functions",
+       "title": "2.11 Logarithmic Functions",
+       "subtopics": [
+        {
+         "id": "features-of-logarithmic-functions",
+         "title": "Features of logarithmic functions",
+         "outcomes": [
+          {
+           "code": "2.11.A",
+           "text": "Identify key features of logarithmic functions."
+          },
+          {
+           "code": "2.11.A.1",
+           "text": "Know the domain is x > 0 and the range is all reals."
+          },
+          {
+           "code": "2.11.A.2",
+           "text": "Know logs are monotonic and concave one way, with no extrema or inflection points."
+          },
+          {
+           "code": "2.11.A.3",
+           "text": "Recognize logs as functions whose shifted forms have inputs proportional over equal output intervals."
+          },
+          {
+           "code": "2.11.A.4",
+           "text": "Describe the vertical asymptote at x = 0 and unbounded end behavior."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "2-12-logarithmic-function-manipulation",
+       "title": "2.12 Logarithmic Function Manipulation",
+       "subtopics": [
+        {
+         "id": "properties-of-logarithms",
+         "title": "Properties of logarithms",
+         "outcomes": [
+          {
+           "code": "2.12.A",
+           "text": "Rewrite logarithmic expressions in equivalent forms."
+          },
+          {
+           "code": "2.12.A.1",
+           "text": "Use the product property; horizontal dilations equal vertical translations."
+          },
+          {
+           "code": "2.12.A.2",
+           "text": "Use the power property; powers on the input are vertical dilations."
+          },
+          {
+           "code": "2.12.A.3",
+           "text": "Use the change of base property."
+          },
+          {
+           "code": "2.12.A.4",
+           "text": "Define ln x as log base e."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "2-13-exponential-and-logarithmic-equations-and-i",
+       "title": "2.13 Exponential and Logarithmic Equations and Inequalities",
+       "subtopics": [
+        {
+         "id": "solving-equations-and-inequalities",
+         "title": "Solving equations and inequalities",
+         "outcomes": [
+          {
+           "code": "2.13.A",
+           "text": "Solve exponential and logarithmic equations and inequalities."
+          },
+          {
+           "code": "2.13.A.1",
+           "text": "Use exponent properties, log properties and inverses to solve."
+          },
+          {
+           "code": "2.13.A.2",
+           "text": "Check solutions for extraneous values ruled out by domain or context."
+          },
+          {
+           "code": "2.13.A.3",
+           "text": "Use logs to rewrite exponential expressions, including b^x = c^(x log_c b)."
+          }
+         ]
+        },
+        {
+         "id": "inverses-of-transformed-functions",
+         "title": "Inverses of transformed functions",
+         "outcomes": [
+          {
+           "code": "2.13.B",
+           "text": "Build the inverse for exponential and logarithmic functions."
+          },
+          {
+           "code": "2.13.B.1",
+           "text": "Invert f(x) = ab^(x+h) + k by reversing its operations."
+          },
+          {
+           "code": "2.13.B.2",
+           "text": "Invert f(x) = a log_b(x + h) + k by reversing its operations."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "2-14-logarithmic-function-context-and-data-model",
+       "title": "2.14 Logarithmic Function Context and Data Modeling",
+       "subtopics": [
+        {
+         "id": "building-logarithmic-models",
+         "title": "Building logarithmic models",
+         "outcomes": [
+          {
+           "code": "2.14.A",
+           "text": "Build a logarithmic function model."
+          },
+          {
+           "code": "2.14.A.1",
+           "text": "Use logs for proportional-growth situations where inputs change proportionally over equal output steps."
+          },
+          {
+           "code": "2.14.A.2",
+           "text": "Build a log model from a proportion and a real zero, or two input-output pairs."
+          },
+          {
+           "code": "2.14.A.3",
+           "text": "Build log models by transforming f(x) = a log_b x."
+          },
+          {
+           "code": "2.14.A.4",
+           "text": "Build log models with logarithmic regression technology."
+          },
+          {
+           "code": "2.14.A.5",
+           "text": "Recognize the natural log as useful in real-world modeling."
+          },
+          {
+           "code": "2.14.A.6",
+           "text": "Predict dependent values and find independent values with a log model."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "2-15-semi-log-plots",
+       "title": "2.15 Semi-log Plots",
+       "subtopics": [
+        {
+         "id": "semi-log-plots-and-linearization",
+         "title": "Semi-log plots and linearization",
+         "outcomes": [
+          {
+           "code": "2.15.A",
+           "text": "Decide whether an exponential model fits by examining a semi-log plot."
+          },
+          {
+           "code": "2.15.A.1",
+           "text": "Know a log-scaled y-axis makes exponential data look linear."
+          },
+          {
+           "code": "2.15.A.2",
+           "text": "Know linear log-output trends justify transformed exponential models without shifting the data."
+          },
+          {
+           "code": "2.15.B",
+           "text": "Linearize exponential data."
+          },
+          {
+           "code": "2.15.B.1",
+           "text": "Apply linear modeling techniques to a semi-log graph."
+          },
+          {
+           "code": "2.15.B.2",
+           "text": "For y = ab^x, use the line y = (log b)x + log a, with slope log b and intercept log a."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "unit-3-trigonometric-and-polar-functions",
+     "title": "Unit 3: Trigonometric and Polar Functions",
+     "topics": [
+      {
+       "id": "3-1-periodic-phenomena",
+       "title": "3.1 Periodic Phenomena",
+       "subtopics": [
+        {
+         "id": "periodic-relationships",
+         "title": "Periodic relationships",
+         "outcomes": [
+          {
+           "code": "3.1.A",
+           "text": "Build graphs of periodic relationships from verbal descriptions."
+          },
+          {
+           "code": "3.1.A.1",
+           "text": "Recognize a periodic relationship as outputs repeating over successive equal-length input intervals."
+          },
+          {
+           "code": "3.1.A.2",
+           "text": "Build a periodic graph from one cycle."
+          },
+          {
+           "code": "3.1.B",
+           "text": "Describe key features of a periodic function from a verbal description."
+          },
+          {
+           "code": "3.1.B.1",
+           "text": "Define the period as the smallest positive k with f(x + k) = f(x)."
+          },
+          {
+           "code": "3.1.B.2",
+           "text": "Estimate the period by finding where the output pattern repeats."
+          },
+          {
+           "code": "3.1.B.3",
+           "text": "Know every characteristic in one period appears in every period."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "3-2-sine-cosine-and-tangent",
+       "title": "3.2 Sine, Cosine, and Tangent",
+       "subtopics": [
+        {
+         "id": "angles-and-the-unit-circle",
+         "title": "Angles and the unit circle",
+         "outcomes": [
+          {
+           "code": "3.2.A",
+           "text": "Find sine, cosine and tangent of an angle using the unit circle."
+          },
+          {
+           "code": "3.2.A.1",
+           "text": "Place angles in standard position; use positive and negative rotation and coterminal angles."
+          },
+          {
+           "code": "3.2.A.2",
+           "text": "Define radian measure as arc length divided by radius."
+          },
+          {
+           "code": "3.2.A.3",
+           "text": "Define sine as the vertical displacement ratio, the y-coordinate on the unit circle."
+          },
+          {
+           "code": "3.2.A.4",
+           "text": "Define cosine as the horizontal displacement ratio, the x-coordinate on the unit circle."
+          },
+          {
+           "code": "3.2.A.5",
+           "text": "Define tangent as the slope of the terminal ray, sine over cosine."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "3-3-sine-and-cosine-function-values",
+       "title": "3.3 Sine and Cosine Function Values",
+       "subtopics": [
+        {
+         "id": "coordinates-and-exact-values",
+         "title": "Coordinates and exact values",
+         "outcomes": [
+          {
+           "code": "3.3.A",
+           "text": "Find coordinates of points on a circle centered at the origin."
+          },
+          {
+           "code": "3.3.A.1",
+           "text": "Write the terminal-ray point on a circle of radius r as (r cos t, r sin t)."
+          },
+          {
+           "code": "3.3.A.2",
+           "text": "Use special triangles and quadrant signs to find exact values for multiples of pi/4 and pi/6."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "3-4-sine-and-cosine-function-graphs",
+       "title": "3.4 Sine and Cosine Function Graphs",
+       "subtopics": [
+        {
+         "id": "graphing-sine-and-cosine",
+         "title": "Graphing sine and cosine",
+         "outcomes": [
+          {
+           "code": "3.4.A",
+           "text": "Build representations of sine and cosine using the unit circle."
+          },
+          {
+           "code": "3.4.A.1",
+           "text": "Define sin t as the y-coordinate of the unit circle point, with domain all reals."
+          },
+          {
+           "code": "3.4.A.2",
+           "text": "See sine oscillate between -1 and 1 as the angle grows."
+          },
+          {
+           "code": "3.4.A.3",
+           "text": "Define cos t as the x-coordinate of the unit circle point, with domain all reals."
+          },
+          {
+           "code": "3.4.A.4",
+           "text": "See cosine oscillate between -1 and 1 as the angle grows."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "3-5-sinusoidal-functions",
+       "title": "3.5 Sinusoidal Functions",
+       "subtopics": [
+        {
+         "id": "features-of-sinusoidal-functions",
+         "title": "Features of sinusoidal functions",
+         "outcomes": [
+          {
+           "code": "3.5.A",
+           "text": "Identify key features of sine and cosine."
+          },
+          {
+           "code": "3.5.A.1",
+           "text": "Define sinusoidal functions as transformations of sine; cosine is sine shifted by pi/2."
+          },
+          {
+           "code": "3.5.A.2",
+           "text": "Treat period and frequency as reciprocals; the period of sine and cosine is 2 pi."
+          },
+          {
+           "code": "3.5.A.3",
+           "text": "Define amplitude as half the max-min difference."
+          },
+          {
+           "code": "3.5.A.4",
+           "text": "Find the midline as the average of max and min."
+          },
+          {
+           "code": "3.5.A.5",
+           "text": "Know sinusoids alternate between concave down and concave up."
+          },
+          {
+           "code": "3.5.A.6",
+           "text": "Know sine is odd and cosine is even."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "3-6-sinusoidal-function-transformations",
+       "title": "3.6 Sinusoidal Function Transformations",
+       "subtopics": [
+        {
+         "id": "transforming-sinusoids",
+         "title": "Transforming sinusoids",
+         "outcomes": [
+          {
+           "code": "3.6.A",
+           "text": "Identify amplitude, vertical shift, period and phase shift of a sinusoid."
+          },
+          {
+           "code": "3.6.A.1",
+           "text": "Recognize the form a sin(b(t + c)) + d, with the same transformations for sine and cosine."
+          },
+          {
+           "code": "3.6.A.2",
+           "text": "Treat adding d as a vertical translation that moves the midline."
+          },
+          {
+           "code": "3.6.A.3",
+           "text": "Treat adding c inside as a phase shift of -c units."
+          },
+          {
+           "code": "3.6.A.4",
+           "text": "Treat the factor a as a vertical dilation that changes amplitude."
+          },
+          {
+           "code": "3.6.A.5",
+           "text": "Treat the factor b as a horizontal dilation that changes period."
+          },
+          {
+           "code": "3.6.A.6",
+           "text": "Read amplitude |a|, period 2 pi/|b|, vertical shift d and phase shift -c from the form."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "3-7-sinusoidal-function-context-and-data-modelin",
+       "title": "3.7 Sinusoidal Function Context and Data Modeling",
+       "subtopics": [
+        {
+         "id": "modeling-with-sinusoids",
+         "title": "Modeling with sinusoids",
+         "outcomes": [
+          {
+           "code": "3.7.A",
+           "text": "Build sinusoidal models of periodic phenomena."
+          },
+          {
+           "code": "3.7.A.1",
+           "text": "Estimate period and frequency from consecutive maxima or minima."
+          },
+          {
+           "code": "3.7.A.2",
+           "text": "Find amplitude and vertical shift from the maximum and minimum."
+          },
+          {
+           "code": "3.7.A.3",
+           "text": "Estimate phase shift by comparing an actual data pair to the model."
+          },
+          {
+           "code": "3.7.A.4",
+           "text": "Build models with technology by estimating key values or using sinusoidal regression."
+          },
+          {
+           "code": "3.7.A.5",
+           "text": "Use sinusoidal models within their contextual domain to predict values and solve for inputs."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "3-8-the-tangent-function",
+       "title": "3.8 The Tangent Function",
+       "subtopics": [
+        {
+         "id": "tangent-function-and-its-graph",
+         "title": "Tangent function and its graph",
+         "outcomes": [
+          {
+           "code": "3.8.A",
+           "text": "Build representations of tangent using the unit circle."
+          },
+          {
+           "code": "3.8.A.1",
+           "text": "Define tan t as the slope of the terminal ray."
+          },
+          {
+           "code": "3.8.A.2",
+           "text": "Write tan t = sin t / cos t where cosine is nonzero."
+          },
+          {
+           "code": "3.8.B",
+           "text": "Describe key features of tangent."
+          },
+          {
+           "code": "3.8.B.1",
+           "text": "Know tangent has period pi."
+          },
+          {
+           "code": "3.8.B.2",
+           "text": "Locate vertical asymptotes at pi/2 + k pi."
+          },
+          {
+           "code": "3.8.B.3",
+           "text": "Know tangent increases and switches from concave down to concave up between asymptotes."
+          }
+         ]
+        },
+        {
+         "id": "transforming-tangent",
+         "title": "Transforming tangent",
+         "outcomes": [
+          {
+           "code": "3.8.C",
+           "text": "Describe additive and multiplicative transformations of tangent."
+          },
+          {
+           "code": "3.8.C.1",
+           "text": "Treat adding d as a vertical translation of the graph and its inflection line."
+          },
+          {
+           "code": "3.8.C.2",
+           "text": "Treat adding c inside as a phase shift of -c units."
+          },
+          {
+           "code": "3.8.C.3",
+           "text": "Treat a as a vertical dilation, reflecting over the x-axis if negative."
+          },
+          {
+           "code": "3.8.C.4",
+           "text": "Treat b as a horizontal dilation that changes the period, reflecting over the y-axis if negative."
+          },
+          {
+           "code": "3.8.C.5",
+           "text": "Read the form a tan(b(t + c)) + d: dilation a, period pi/|b|, shift d, phase shift -c."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "3-9-inverse-trigonometric-functions",
+       "title": "3.9 Inverse Trigonometric Functions",
+       "subtopics": [
+        {
+         "id": "arcsine-arccosine-arctangent",
+         "title": "Arcsine, arccosine, arctangent",
+         "outcomes": [
+          {
+           "code": "3.9.A",
+           "text": "Build equations and graphs of the inverses of sine, cosine and tangent on restricted domains."
+          },
+          {
+           "code": "3.9.A.1",
+           "text": "Know inverse trig functions swap input and output, giving an angle from a trig value."
+          },
+          {
+           "code": "3.9.A.2",
+           "text": "Name arcsine, arccosine and arctangent, invertible only on restricted domains."
+          },
+          {
+           "code": "3.9.A.3",
+           "text": "Use the standard restricted domains for sine, cosine and tangent."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "3-10-trigonometric-equations-and-inequalities",
+       "title": "3.10 Trigonometric Equations and Inequalities",
+       "subtopics": [
+        {
+         "id": "solving-trig-equations",
+         "title": "Solving trig equations",
+         "outcomes": [
+          {
+           "code": "3.10.A",
+           "text": "Solve equations and inequalities involving trigonometric functions."
+          },
+          {
+           "code": "3.10.A.1",
+           "text": "Use inverse trig functions to solve, adjusting solutions for domain restrictions."
+          },
+          {
+           "code": "3.10.A.2",
+           "text": "Expect infinitely many solutions because of periodicity."
+          },
+          {
+           "code": "3.10.A.3",
+           "text": "Use context to restrict the domain and limit the solutions."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "3-11-the-secant-cosecant-and-cotangent-functions",
+       "title": "3.11 The Secant, Cosecant, and Cotangent Functions",
+       "subtopics": [
+        {
+         "id": "reciprocal-trig-functions",
+         "title": "Reciprocal trig functions",
+         "outcomes": [
+          {
+           "code": "3.11.A",
+           "text": "Identify key features of functions made from quotients of sine and cosine."
+          },
+          {
+           "code": "3.11.A.1",
+           "text": "Define secant as the reciprocal of cosine."
+          },
+          {
+           "code": "3.11.A.2",
+           "text": "Define cosecant as the reciprocal of sine."
+          },
+          {
+           "code": "3.11.A.3",
+           "text": "Find vertical asymptotes of secant and cosecant, with range (-inf, -1] or [1, inf)."
+          },
+          {
+           "code": "3.11.A.4",
+           "text": "Define cotangent as the reciprocal of tangent, or cos over sin."
+          },
+          {
+           "code": "3.11.A.5",
+           "text": "Know cotangent has asymptotes where tangent is zero and decreases between them."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "3-12-equivalent-representations-of-trigonometric",
+       "title": "3.12 Equivalent Representations of Trigonometric Functions",
+       "subtopics": [
+        {
+         "id": "pythagorean-and-sum-identities",
+         "title": "Pythagorean and sum identities",
+         "outcomes": [
+          {
+           "code": "3.12.A",
+           "text": "Rewrite trig expressions in equivalent forms using the Pythagorean identity."
+          },
+          {
+           "code": "3.12.A.1",
+           "text": "Derive and use sin^2 t + cos^2 t = 1 from the unit circle."
+          },
+          {
+           "code": "3.12.A.2",
+           "text": "Rearrange the Pythagorean identity into other forms, such as tan^2 = sec^2 - 1."
+          },
+          {
+           "code": "3.12.B",
+           "text": "Rewrite trig expressions in equivalent forms using sine and cosine sum identities."
+          },
+          {
+           "code": "3.12.B.1",
+           "text": "Use the sum identity for sine."
+          },
+          {
+           "code": "3.12.B.2",
+           "text": "Use the sum identity for cosine."
+          },
+          {
+           "code": "3.12.B.3",
+           "text": "Use the sum identities to get difference and double-angle identities."
+          },
+          {
+           "code": "3.12.B.4",
+           "text": "Verify new identities using known identities and algebra."
+          }
+         ]
+        },
+        {
+         "id": "solving-with-equivalent-forms",
+         "title": "Solving with equivalent forms",
+         "outcomes": [
+          {
+           "code": "3.12.C",
+           "text": "Solve equations using equivalent analytic forms of trig functions."
+          },
+          {
+           "code": "3.12.C.1",
+           "text": "Choose equivalent trig forms that make information easier to access."
+          },
+          {
+           "code": "3.12.C.2",
+           "text": "Use equivalent forms to solve trig equations and inequalities."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "3-13-trigonometry-and-polar-coordinates",
+       "title": "3.13 Trigonometry and Polar Coordinates",
+       "subtopics": [
+        {
+         "id": "polar-coordinates",
+         "title": "Polar coordinates",
+         "outcomes": [
+          {
+           "code": "3.13.A",
+           "text": "Locate a point using both rectangular and polar coordinates."
+          },
+          {
+           "code": "3.13.A.1",
+           "text": "Define polar coordinates (r, t), including negative r and multiple names for one point."
+          },
+          {
+           "code": "3.13.A.2",
+           "text": "Convert polar to rectangular with x = r cos t and y = r sin t."
+          },
+          {
+           "code": "3.13.A.3",
+           "text": "Convert rectangular to polar using r = sqrt(x^2 + y^2) and an arctangent, adjusted for quadrant."
+          },
+          {
+           "code": "3.13.A.4",
+           "text": "Treat a complex number as a point in the plane, in rectangular or polar form."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "3-14-polar-function-graphs",
+       "title": "3.14 Polar Function Graphs",
+       "subtopics": [
+        {
+         "id": "graphing-polar-functions",
+         "title": "Graphing polar functions",
+         "outcomes": [
+          {
+           "code": "3.14.A",
+           "text": "Build graphs of polar functions."
+          },
+          {
+           "code": "3.14.A.1",
+           "text": "Graph r = f(t) with angles as inputs and radii as outputs."
+          },
+          {
+           "code": "3.14.A.2",
+           "text": "Restrict a polar function's domain by choosing endpoints of angle and radius."
+          },
+          {
+           "code": "3.14.A.3",
+           "text": "Relate input changes to angle changes and output changes to signed radial displacement."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "3-15-rates-of-change-in-polar-functions",
+       "title": "3.15 Rates of Change in Polar Functions",
+       "subtopics": [
+        {
+         "id": "polar-rates-of-change",
+         "title": "Polar rates of change",
+         "outcomes": [
+          {
+           "code": "3.15.A",
+           "text": "Describe features of polar function graphs."
+          },
+          {
+           "code": "3.15.A.1",
+           "text": "Know the distance to the origin grows when r is positive and increasing or negative and decreasing."
+          },
+          {
+           "code": "3.15.A.2",
+           "text": "Know the distance shrinks when r is positive and decreasing or negative and increasing."
+          },
+          {
+           "code": "3.15.A.3",
+           "text": "Find relative extrema as the points closest to or farthest from the origin."
+          },
+          {
+           "code": "3.15.A.4",
+           "text": "Define the average rate of change of r with respect to the angle as signed radius change per radian."
+          },
+          {
+           "code": "3.15.A.5",
+           "text": "Use average rate of change of r to estimate values in an interval."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "unit-4-functions-involving-parameters-vectors-an",
+     "title": "Unit 4: Functions Involving Parameters, Vectors, and Matrices",
+     "topics": [
+      {
+       "id": "4-1-parametric-functions",
+       "title": "4.1 Parametric Functions",
+       "subtopics": [
+        {
+         "id": "parametric-functions",
+         "title": "Parametric functions",
+         "outcomes": [
+          {
+           "code": "4.1.A",
+           "text": "Build a graph or table for an analytically given parametric function."
+          },
+          {
+           "code": "4.1.A.1",
+           "text": "Define parametric equations: x and y both depend on a parameter t."
+          },
+          {
+           "code": "4.1.A.2",
+           "text": "Write the pair as one function f(t) = (x(t), y(t))."
+          },
+          {
+           "code": "4.1.A.3",
+           "text": "Make a table of values by evaluating x and y at several t."
+          },
+          {
+           "code": "4.1.A.4",
+           "text": "Sketch the graph by joining points in order of increasing t."
+          },
+          {
+           "code": "4.1.A.5",
+           "text": "Know restricted domains give start and end points on the graph."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "4-2-parametric-functions-modeling-planar-motion",
+       "title": "4.2 Parametric Functions Modeling Planar Motion",
+       "subtopics": [
+        {
+         "id": "position-in-planar-motion",
+         "title": "Position in planar motion",
+         "outcomes": [
+          {
+           "code": "4.2.A",
+           "text": "Identify features of a parametric motion function related to position."
+          },
+          {
+           "code": "4.2.A.1",
+           "text": "Use f(t) = (x(t), y(t)) to model a particle's position at time t."
+          },
+          {
+           "code": "4.2.A.2",
+           "text": "Find horizontal and vertical extremes from the max and min of x(t) and y(t)."
+          },
+          {
+           "code": "4.2.A.3",
+           "text": "Link zeros of x(t) to y-intercepts and zeros of y(t) to x-intercepts."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "4-3-parametric-functions-and-rates-of-change",
+       "title": "4.3 Parametric Functions and Rates of Change",
+       "subtopics": [
+        {
+         "id": "direction-and-rate-of-change",
+         "title": "Direction and rate of change",
+         "outcomes": [
+          {
+           "code": "4.3.A",
+           "text": "Identify features of parametric motion related to direction and rate of change."
+          },
+          {
+           "code": "4.3.A.1",
+           "text": "Read direction from x(t) and y(t): right or left, up or down."
+          },
+          {
+           "code": "4.3.A.2",
+           "text": "Know direction at a point can differ for different t."
+          },
+          {
+           "code": "4.3.A.3",
+           "text": "Know one curve can be parametrized in different ways and directions."
+          },
+          {
+           "code": "4.3.A.4",
+           "text": "Find slope between two points as the ratio of average rates of change of y and x."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "4-4-parametrically-defined-circles-and-lines",
+       "title": "4.4 Parametrically Defined Circles and Lines",
+       "subtopics": [
+        {
+         "id": "circles-and-lines",
+         "title": "Circles and lines",
+         "outcomes": [
+          {
+           "code": "4.4.A",
+           "text": "Express motion around a circle or along a segment parametrically."
+          },
+          {
+           "code": "4.4.A.1",
+           "text": "Model a full counterclockwise unit-circle revolution as (cos t, sin t) for 0 to 2 pi."
+          },
+          {
+           "code": "4.4.A.2",
+           "text": "Transform (cos t, sin t) to model any circular path."
+          },
+          {
+           "code": "4.4.A.3",
+           "text": "Parametrize a segment from one point to another using a start point and rates of change."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "4-5-implicitly-defined-functions",
+       "title": "4.5 Implicitly Defined Functions",
+       "subtopics": [
+        {
+         "id": "graphing-implicit-equations",
+         "title": "Graphing implicit equations",
+         "outcomes": [
+          {
+           "code": "4.5.A",
+           "text": "Build a graph of an equation involving two variables."
+          },
+          {
+           "code": "4.5.A.1",
+           "text": "Know a two-variable equation can implicitly describe one or more functions."
+          },
+          {
+           "code": "4.5.A.2",
+           "text": "Graph an equation by finding its solutions."
+          },
+          {
+           "code": "4.5.A.3",
+           "text": "Solve for one variable to define a function that is part or all of the graph."
+          },
+          {
+           "code": "4.5.B",
+           "text": "Determine how the two quantities in an implicit function vary together."
+          },
+          {
+           "code": "4.5.B.1",
+           "text": "Read positive ratios of change as both increasing or both decreasing, negative as opposite."
+          },
+          {
+           "code": "4.5.B.2",
+           "text": "Know a zero rate of change marks vertical or horizontal intervals."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "4-6-conic-sections",
+       "title": "4.6 Conic Sections",
+       "subtopics": [
+        {
+         "id": "parabolas-ellipses-and-hyperbolas",
+         "title": "Parabolas, ellipses and hyperbolas",
+         "outcomes": [
+          {
+           "code": "4.6.A",
+           "text": "Represent conic sections with horizontal or vertical symmetry analytically."
+          },
+          {
+           "code": "4.6.A.1",
+           "text": "Write parabolas as x - h = a(y - k)^2 or y - k = a(x - h)^2."
+          },
+          {
+           "code": "4.6.A.2",
+           "text": "Write ellipses as (x-h)^2/a^2 + (y-k)^2/b^2 = 1; a circle is a = b."
+          },
+          {
+           "code": "4.6.A.3",
+           "text": "Write hyperbolas opening left-right or up-down, with asymptotes y - k = +/- (b/a)(x - h)."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "4-7-parametrization-of-implicitly-defined-functi",
+       "title": "4.7 Parametrization of Implicitly Defined Functions",
+       "subtopics": [
+        {
+         "id": "parametrizing-curves",
+         "title": "Parametrizing curves",
+         "outcomes": [
+          {
+           "code": "4.7.A",
+           "text": "Represent a curve in the plane parametrically."
+          },
+          {
+           "code": "4.7.A.1",
+           "text": "Check a parametrization by substituting x(t), y(t) into the equation."
+          },
+          {
+           "code": "4.7.A.2",
+           "text": "Parametrize y = f(x) as (t, f(t)), and an inverse as (f(t), t)."
+          },
+          {
+           "code": "4.7.B",
+           "text": "Represent conic sections parametrically."
+          },
+          {
+           "code": "4.7.B.1",
+           "text": "Parametrize a parabola by solving for one variable and setting the other to t."
+          },
+          {
+           "code": "4.7.B.2",
+           "text": "Parametrize an ellipse with x = h + a cos t and y = k + b sin t."
+          },
+          {
+           "code": "4.7.B.3",
+           "text": "Parametrize hyperbolas using secant and tangent."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "4-8-vectors",
+       "title": "4.8 Vectors",
+       "subtopics": [
+        {
+         "id": "vector-basics",
+         "title": "Vector basics",
+         "outcomes": [
+          {
+           "code": "4.8.A",
+           "text": "Identify features of a vector."
+          },
+          {
+           "code": "4.8.A.1",
+           "text": "Define a vector's tail, head and magnitude."
+          },
+          {
+           "code": "4.8.A.2",
+           "text": "Write a plane vector as component form <a, b> from two points; know the zero vector."
+          },
+          {
+           "code": "4.8.A.3",
+           "text": "Find direction and magnitude from components."
+          },
+          {
+           "code": "4.8.A.4",
+           "text": "Use trigonometry to find components of a geometric vector."
+          }
+         ]
+        },
+        {
+         "id": "vector-operations",
+         "title": "Vector operations",
+         "outcomes": [
+          {
+           "code": "4.8.B",
+           "text": "Find sums and products involving vectors."
+          },
+          {
+           "code": "4.8.B.1",
+           "text": "Multiply a vector by a constant to get a parallel vector."
+          },
+          {
+           "code": "4.8.B.2",
+           "text": "Add vectors by adding components, tail-to-head."
+          },
+          {
+           "code": "4.8.B.3",
+           "text": "Compute the dot product as the sum of component products."
+          },
+          {
+           "code": "4.8.C",
+           "text": "Find a unit vector for a given vector."
+          },
+          {
+           "code": "4.8.C.1",
+           "text": "Divide a vector by its magnitude to get a unit vector."
+          },
+          {
+           "code": "4.8.C.2",
+           "text": "Write <a, b> as a i + b j with unit vectors i and j."
+          },
+          {
+           "code": "4.8.D",
+           "text": "Find angles between vectors and magnitudes in vector addition."
+          },
+          {
+           "code": "4.8.D.1",
+           "text": "Link the dot product to magnitudes and the cosine of the angle; zero means perpendicular."
+          },
+          {
+           "code": "4.8.D.2",
+           "text": "Use the Law of Sines and Law of Cosines for triangles from vector addition."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "4-9-vector-valued-functions",
+       "title": "4.9 Vector-Valued Functions",
+       "subtopics": [
+        {
+         "id": "planar-motion-with-vectors",
+         "title": "Planar motion with vectors",
+         "outcomes": [
+          {
+           "code": "4.9.A",
+           "text": "Represent planar motion with vector-valued functions."
+          },
+          {
+           "code": "4.9.A.1",
+           "text": "Write position as p(t) = <x(t), y(t)>; its magnitude is distance from the origin."
+          },
+          {
+           "code": "4.9.A.2",
+           "text": "Use v(t) = <x'(t), y'(t)> for velocity; its magnitude is speed."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "4-10-matrices",
+       "title": "4.10 Matrices",
+       "subtopics": [
+        {
+         "id": "matrix-multiplication",
+         "title": "Matrix multiplication",
+         "outcomes": [
+          {
+           "code": "4.10.A",
+           "text": "Find the product of two matrices."
+          },
+          {
+           "code": "4.10.A.1",
+           "text": "Define an n by m matrix as n rows and m columns."
+          },
+          {
+           "code": "4.10.A.2",
+           "text": "Multiply matrices when columns of the first match rows of the second, using row-column dot products."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "4-11-the-inverse-and-determinant-of-a-matrix",
+       "title": "4.11 The Inverse and Determinant of a Matrix",
+       "subtopics": [
+        {
+         "id": "inverse-of-a-2-by-2-matrix",
+         "title": "Inverse of a 2 by 2 matrix",
+         "outcomes": [
+          {
+           "code": "4.11.A",
+           "text": "Find the inverse of a 2 by 2 matrix."
+          },
+          {
+           "code": "4.11.A.1",
+           "text": "Define the identity matrix."
+          },
+          {
+           "code": "4.11.A.2",
+           "text": "Know multiplying by the identity leaves a matrix unchanged."
+          },
+          {
+           "code": "4.11.A.3",
+           "text": "Know a matrix times its inverse is the identity."
+          },
+          {
+           "code": "4.11.A.4",
+           "text": "Compute a 2 by 2 inverse with or without technology."
+          }
+         ]
+        },
+        {
+         "id": "determinants",
+         "title": "Determinants",
+         "outcomes": [
+          {
+           "code": "4.11.B",
+           "text": "Apply the determinant to invertibility and vectors."
+          },
+          {
+           "code": "4.11.B.1",
+           "text": "Compute det(A) = ad - bc for a 2 by 2 matrix."
+          },
+          {
+           "code": "4.11.B.2",
+           "text": "Read the absolute determinant as the area of the parallelogram spanned by the vectors."
+          },
+          {
+           "code": "4.11.B.3",
+           "text": "Know a square matrix is invertible exactly when its determinant is nonzero."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "4-12-linear-transformations-and-matrices",
+       "title": "4.12 Linear Transformations and Matrices",
+       "subtopics": [
+        {
+         "id": "linear-transformations",
+         "title": "Linear transformations",
+         "outcomes": [
+          {
+           "code": "4.12.A",
+           "text": "Find output vectors of a linear transformation using a 2 by 2 matrix."
+          },
+          {
+           "code": "4.12.A.1",
+           "text": "Define a linear transformation: each output component is a sum of constant multiples of input components."
+          },
+          {
+           "code": "4.12.A.2",
+           "text": "Know a linear transformation maps the zero vector to the zero vector."
+          },
+          {
+           "code": "4.12.A.3",
+           "text": "Write vectors as 2 by 1 matrices and sets of n vectors as 2 by n matrices."
+          },
+          {
+           "code": "4.12.A.4",
+           "text": "Know every linear transformation has a unique 2 by 2 matrix, L(v) = Av."
+          },
+          {
+           "code": "4.12.A.5",
+           "text": "Transform n vectors at once by multiplying A by a 2 by n matrix."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "4-13-matrices-as-functions",
+       "title": "4.13 Matrices as Functions",
+       "subtopics": [
+        {
+         "id": "matrices-and-transformations",
+         "title": "Matrices and transformations",
+         "outcomes": [
+          {
+           "code": "4.13.A",
+           "text": "Link a linear transformation to its matrix."
+          },
+          {
+           "code": "4.13.A.1",
+           "text": "Associate the map (x, y) to (a11 x + a12 y, a21 x + a22 y) with its matrix."
+          },
+          {
+           "code": "4.13.A.2",
+           "text": "Use images of the unit vectors to find the matrix."
+          },
+          {
+           "code": "4.13.A.3",
+           "text": "Use the rotation matrix to rotate vectors counterclockwise by an angle."
+          },
+          {
+           "code": "4.13.A.4",
+           "text": "Read the absolute determinant as the area scale factor."
+          }
+         ]
+        },
+        {
+         "id": "composition-and-inverses-of-transformations",
+         "title": "Composition and inverses of transformations",
+         "outcomes": [
+          {
+           "code": "4.13.B",
+           "text": "Find the composition of two linear transformations."
+          },
+          {
+           "code": "4.13.B.1",
+           "text": "Know a composition of linear transformations is linear."
+          },
+          {
+           "code": "4.13.B.2",
+           "text": "Multiply the matrices to get the composition's matrix."
+          },
+          {
+           "code": "4.13.C",
+           "text": "Find the inverse of a linear transformation."
+          },
+          {
+           "code": "4.13.C.1",
+           "text": "Know inverse transformations compose to give back every vector."
+          },
+          {
+           "code": "4.13.C.2",
+           "text": "Use the inverse matrix A^-1 for the inverse transformation."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "4-14-matrices-modeling-contexts",
+       "title": "4.14 Matrices Modeling Contexts",
+       "subtopics": [
+        {
+         "id": "matrix-models-of-transitions",
+         "title": "Matrix models of transitions",
+         "outcomes": [
+          {
+           "code": "4.14.A",
+           "text": "Build a matrix model of transitions between two states."
+          },
+          {
+           "code": "4.14.A.1",
+           "text": "Turn percent change rates into a transition matrix over discrete steps."
+          },
+          {
+           "code": "4.14.B",
+           "text": "Apply matrix models to predict future and past states."
+          },
+          {
+           "code": "4.14.B.1",
+           "text": "Multiply the transition matrix by the state vector to predict future states."
+          },
+          {
+           "code": "4.14.B.2",
+           "text": "Repeat multiplication to find the steady state."
+          },
+          {
+           "code": "4.14.B.3",
+           "text": "Multiply by the inverse matrix to predict past states."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "build": {
+  "builtAt": "2026-10-14T10:05:44.918Z",
+  "model": "claude-agent",
+  "usd": 0,
+  "expectedCodes": 393,
+  "coverage": 1,
+  "missingCodes": [],
+  "counts": {
+   "grades": 1,
+   "units": 4,
+   "topics": 58,
+   "subtopics": 75,
+   "outcomes": 393
+  },
+  "warnings": [
+   "grade 9 has no content",
+   "grade 10 has no content",
+   "grade 11 has no content",
+   "grade 12 has no content",
+   "unexpected grade label \"all\""
+  ]
+ }
+}

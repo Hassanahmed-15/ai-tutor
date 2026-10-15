@@ -1,0 +1,1833 @@
+{
+ "id": "uk-ocr-alevel-chemistry-b-h433",
+ "region": "UK",
+ "framework": "OCR A Level",
+ "board": "OCR",
+ "qualification": "A Level",
+ "subject": "Chemistry B (Salters)",
+ "syllabusCode": "H433",
+ "gradeSystem": "year",
+ "source": {
+  "urls": [
+   "https://www.ocr.org.uk/Images/171723-specification-accredited-a-level-gce-chemistry-b-salters-h433.pdf"
+  ],
+  "publisher": "OCR (Oxford Cambridge and RSA)",
+  "licence": "Exam board specification, (c) OCR; structure + our own wording only",
+  "firstExam": "2017"
+ },
+ "grades": [
+  {
+   "grade": "Year 12",
+   "units": [
+    {
+     "id": "elements-of-life-el",
+     "title": "Elements of life (EL)",
+     "topics": [
+      {
+       "id": "formulae-equations-and-amount-of-substance",
+       "title": "Formulae, equations and amount of substance",
+       "subtopics": [
+        {
+         "id": "atoms-isotopes-and-relative-masses",
+         "title": "Atoms, isotopes and relative masses",
+         "outcomes": [
+          {
+           "code": "ELa",
+           "text": "Use atomic number, mass number, isotope, Avogadro constant and relative atomic, formula and molecular masses."
+          }
+         ]
+        },
+        {
+         "id": "moles-and-concentration",
+         "title": "Moles and concentration",
+         "outcomes": [
+          {
+           "code": "ELb",
+           "text": "Use the mole to calculate masses, empirical and molecular formulae, percentage composition, yields and water of crystallisation."
+          },
+          {
+           "code": "ELc",
+           "text": "Use moles to calculate concentrations, titration results, and standard solutions and dilutions."
+          },
+          {
+           "code": null,
+           "text": "Write balanced full and ionic equations with state symbols."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "atomic-structure",
+       "title": "Atomic structure",
+       "subtopics": [
+        {
+         "id": "electrons-in-atoms",
+         "title": "Electrons in atoms",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Represent electron distribution in orbitals and describe the shapes of s- and p-orbitals."
+          },
+          {
+           "code": "ELf",
+           "text": "Write electronic configurations of atoms to krypton and of s- and p-block ions using sub-shells."
+          }
+         ]
+        },
+        {
+         "id": "models-of-the-atom-and-fusion",
+         "title": "Models of the atom and fusion",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe how models of the atom developed, including the nucleus evidence and electron shells."
+          },
+          {
+           "code": null,
+           "text": "Explain nuclear fusion forming heavier elements and write nuclear equations."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "bonding-and-structure",
+       "title": "Bonding and structure",
+       "subtopics": [
+        {
+         "id": "chemical-bonds",
+         "title": "Chemical bonds",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain bonding as electrostatic forces and draw dot-and-cross diagrams for ionic, covalent and dative bonds."
+          }
+         ]
+        },
+        {
+         "id": "structure-types-and-properties",
+         "title": "Structure types and properties",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe metallic, ionic, covalent network and simple molecular structures and their typical properties."
+          },
+          {
+           "code": null,
+           "text": "Describe the structure of sodium chloride-type lattices and the nature of ionic bonding."
+          }
+         ]
+        },
+        {
+         "id": "shapes-of-molecules",
+         "title": "Shapes of molecules",
+         "outcomes": [
+          {
+           "code": "ELk",
+           "text": "Use electron pair repulsion to predict, name and explain molecule and ion shapes and bond angles."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "inorganic-chemistry-and-the-periodic-table",
+       "title": "Inorganic chemistry and the periodic table",
+       "subtopics": [
+        {
+         "id": "the-periodic-table-and-trends",
+         "title": "The periodic table and trends",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain how the periodic table groups elements and classify s-, p- and d-block elements, predicting properties."
+          },
+          {
+           "code": null,
+           "text": "Explain trends in melting points across Periods 2 and 3 using structure and bonding."
+          },
+          {
+           "code": "ELq",
+           "text": "Define ionisation enthalpy and explain trends across periods and down groups."
+          }
+         ]
+        },
+        {
+         "id": "ions-and-their-formulae",
+         "title": "Ions and their formulae",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Relate an element's position to its ion's charge and give names and formulae of common ions and compounds."
+          }
+         ]
+        },
+        {
+         "id": "group-2-chemistry",
+         "title": "Group 2 chemistry",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Compare reactions with water and oxygen, carbonate stability and solubility for Mg, Ca, Sr and Ba."
+          },
+          {
+           "code": null,
+           "text": "Relate charge density of ions to the thermal stability of Group 2 carbonates."
+          },
+          {
+           "code": null,
+           "text": "Describe the basic nature of Group 2 oxides and hydroxides and their reactions."
+          }
+         ]
+        },
+        {
+         "id": "solubility-and-ion-tests",
+         "title": "Solubility and ion tests",
+         "outcomes": [
+          {
+           "code": "ELs",
+           "text": "Predict solubility and precipitate colours for common ions and use tests to identify a salt."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "equilibria-acid-base",
+       "title": "Equilibria (acid–base)",
+       "subtopics": [
+        {
+         "id": "acids-bases-and-salts",
+         "title": "Acids, bases and salts",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Define acid, base, alkali and neutralisation, and make soluble and insoluble salts."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "energy-and-matter",
+       "title": "Energy and matter",
+       "subtopics": [
+        {
+         "id": "light-and-atomic-spectra",
+         "title": "Light and atomic spectra",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Order the infrared, visible and ultraviolet regions by frequency, energy and wavelength."
+          },
+          {
+           "code": "ELw",
+           "text": "Explain absorption and emission spectra using energy levels, ΔE = hν and c = νλ, and flame colours."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "modern-analytical-techniques",
+       "title": "Modern analytical techniques",
+       "subtopics": [
+        {
+         "id": "mass-spectrometry",
+         "title": "Mass spectrometry",
+         "outcomes": [
+          {
+           "code": "ELx",
+           "text": "Use mass spectrum data to find isotope abundances and calculate relative atomic mass."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "developing-fuels-df",
+     "title": "Developing fuels (DF)",
+     "topics": [
+      {
+       "id": "formulae-equations-and-amount-of-substance",
+       "title": "Formulae, equations and amount of substance",
+       "subtopics": [
+        {
+         "id": "gas-volumes",
+         "title": "Gas volumes",
+         "outcomes": [
+          {
+           "code": "DFa",
+           "text": "Use moles to calculate gas volumes, including pV = nRT, with balanced equations and enthalpy changes."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "bonding-and-structure",
+       "title": "Bonding and structure",
+       "subtopics": [
+        {
+         "id": "bonding-in-organic-molecules",
+         "title": "Bonding in organic molecules",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe bonding in organic compounds using sigma and pi bonds."
+          },
+          {
+           "code": null,
+           "text": "Relate molecular shape to structural formulae and draw 3-D shapes with wedges."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "energetics",
+       "title": "Energetics",
+       "subtopics": [
+        {
+         "id": "enthalpy-changes",
+         "title": "Enthalpy changes",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Define exothermic, endothermic, standard conditions and the standard enthalpy changes of reaction, combustion, formation and neutralisation."
+          },
+          {
+           "code": null,
+           "text": "Explain average bond enthalpy, bond breaking and making, and their link to overall enthalpy change."
+          }
+         ]
+        },
+        {
+         "id": "measuring-and-calculating-enthalpy",
+         "title": "Measuring and calculating enthalpy",
+         "outcomes": [
+          {
+           "code": "DFf",
+           "text": "Measure energy transferred in solution or by burning fuels and calculate enthalpy change using q = mcΔT."
+          },
+          {
+           "code": "DFg",
+           "text": "Find enthalpy changes using Hess cycles and enthalpy level diagrams."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "kinetics",
+       "title": "Kinetics",
+       "subtopics": [
+        {
+         "id": "catalysts-and-cracking",
+         "title": "Catalysts and cracking",
+         "outcomes": [
+          {
+           "code": "DFh",
+           "text": "Define catalyst, catalysis, catalyst poison and heterogeneous catalysis."
+          },
+          {
+           "code": null,
+           "text": "Explain how a heterogeneous catalyst works using a simple model."
+          },
+          {
+           "code": null,
+           "text": "Explain cracking, the use of catalysts, and how to crack a hydrocarbon vapour."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "inorganic-chemistry-and-the-periodic-table",
+       "title": "Inorganic chemistry and the periodic table",
+       "subtopics": [
+        {
+         "id": "atmospheric-pollutants",
+         "title": "Atmospheric pollutants",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe sources of particulates, unburnt hydrocarbons, CO, CO2, NOx and SOx, their effects, and how to reduce them."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "organic-functional-groups",
+       "title": "Organic functional groups",
+       "subtopics": [
+        {
+         "id": "naming-organic-compounds",
+         "title": "Naming organic compounds",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Define aliphatic, aromatic, arene, saturated, unsaturated, functional group and homologous series."
+          },
+          {
+           "code": null,
+           "text": "Name and write formulae for alkanes, cycloalkanes, alkenes and alcohols up to ten carbons."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "organic-reactions",
+       "title": "Organic reactions",
+       "subtopics": [
+        {
+         "id": "combustion-and-addition-reactions",
+         "title": "Combustion and addition reactions",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Write equations for combustion and incomplete combustion of alkanes, cycloalkanes, alkenes and alcohols."
+          },
+          {
+           "code": "DFo",
+           "text": "Describe the addition reactions of alkenes with bromine, HBr, hydrogen and water, including the bromine water test."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "polymers",
+       "title": "Polymers",
+       "subtopics": [
+        {
+         "id": "addition-polymers",
+         "title": "Addition polymers",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Relate monomer structure to addition polymer structure and vice versa."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "organic-mechanisms",
+       "title": "Organic mechanisms",
+       "subtopics": [
+        {
+         "id": "electrophilic-addition",
+         "title": "Electrophilic addition",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain electrophilic addition to alkenes with curly arrows, and how other anions support the mechanism."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "isomerism",
+       "title": "Isomerism",
+       "subtopics": [
+        {
+         "id": "structural-and-stereoisomers",
+         "title": "Structural and stereoisomers",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Write full, shortened and skeletal structural formulae."
+          },
+          {
+           "code": null,
+           "text": "Explain structural isomerism and draw isomers."
+          },
+          {
+           "code": null,
+           "text": "Explain E/Z and cis/trans stereoisomerism from lack of rotation about C=C."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "sustainability",
+       "title": "Sustainability",
+       "subtopics": [
+        {
+         "id": "fuels-for-the-future",
+         "title": "Fuels for the future",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Weigh the benefits and risks of fossil fuels, biofuels and hydrogen, and decide on a sustainable energy supply."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "elements-from-the-sea-es",
+     "title": "Elements from the sea (ES)",
+     "topics": [
+      {
+       "id": "formulae-equations-and-amount-of-substance",
+       "title": "Formulae, equations and amount of substance",
+       "subtopics": [
+        {
+         "id": "atom-economy",
+         "title": "Atom economy",
+         "outcomes": [
+          {
+           "code": "ESa",
+           "text": "Calculate atom economy and link it to efficient use of atoms."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "redox",
+       "title": "Redox",
+       "subtopics": [
+        {
+         "id": "extraction-and-electrolysis",
+         "title": "Extraction and electrolysis",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain the processes in extracting halogens from sea minerals, given information."
+          },
+          {
+           "code": null,
+           "text": "Describe electrolysis of molten salts and aqueous solutions with electrode half-equations."
+          }
+         ]
+        },
+        {
+         "id": "redox-and-oxidation-states",
+         "title": "Redox and oxidation states",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe redox as electron transfer using half-equations and identify oxidising and reducing agents."
+          },
+          {
+           "code": null,
+           "text": "Assign oxidation states and identify what is oxidised and reduced."
+          },
+          {
+           "code": "ESf",
+           "text": "Balance redox equations using oxidation states and carry out iodine-thiosulfate titrations."
+          },
+          {
+           "code": null,
+           "text": "Name inorganic compounds with systematic nomenclature."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "inorganic-chemistry-and-the-periodic-table",
+       "title": "Inorganic chemistry and the periodic table",
+       "subtopics": [
+        {
+         "id": "halogens",
+         "title": "Halogens",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe the physical properties of the halogens."
+          },
+          {
+           "code": null,
+           "text": "Compare halogen reactivity in terms of gaining electrons."
+          },
+          {
+           "code": "ESj",
+           "text": "Describe redox changes when halogens react with halide ions."
+          },
+          {
+           "code": "ESk",
+           "text": "Describe halide reactions with silver ions, precipitate colours and solubility in ammonia."
+          }
+         ]
+        },
+        {
+         "id": "hydrogen-halides",
+         "title": "Hydrogen halides",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe preparing HCl, HBr and HI and the action of sulfuric acid on halides."
+          },
+          {
+           "code": null,
+           "text": "Compare the thermal stability, acidity and reactions of the hydrogen halides."
+          },
+          {
+           "code": null,
+           "text": "Weigh the risks of storing and transporting chlorine against its uses in sterilising and bleaching."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "equilibria",
+       "title": "Equilibria",
+       "subtopics": [
+        {
+         "id": "dynamic-equilibrium-and-kc",
+         "title": "Dynamic equilibrium and Kc",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe the characteristics of dynamic equilibrium."
+          },
+          {
+           "code": "ESp",
+           "text": "Write Kc, calculate its size and equilibrium concentrations, and relate Kc to position of equilibrium."
+          },
+          {
+           "code": "ESq",
+           "text": "Use Kc to explain the effects of concentration, temperature and pressure on equilibrium position."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "the-ozone-story-oz",
+     "title": "The ozone story (OZ)",
+     "topics": [
+      {
+       "id": "bonding-and-structure",
+       "title": "Bonding and structure",
+       "subtopics": [
+        {
+         "id": "polarity-and-intermolecular-bonds",
+         "title": "Polarity and intermolecular bonds",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Define electronegativity, predict bond polarity, and relate molecule polarity to shape."
+          },
+          {
+           "code": null,
+           "text": "Explain instantaneous dipole-induced dipole and permanent dipole bonds."
+          },
+          {
+           "code": null,
+           "text": "Describe hydrogen bonding, including in water and ice."
+          },
+          {
+           "code": "OZd",
+           "text": "Explain relative boiling points using intermolecular bonds."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "kinetics",
+       "title": "Kinetics",
+       "subtopics": [
+        {
+         "id": "rates-of-reaction",
+         "title": "Rates of reaction",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Define activation enthalpy and draw enthalpy profiles."
+          },
+          {
+           "code": "OZf",
+           "text": "Explain how concentration, pressure, temperature and catalysts change rate using collision theory and the Boltzmann distribution."
+          },
+          {
+           "code": "OZg",
+           "text": "Explain how catalysts give alternative routes with lower activation enthalpy."
+          },
+          {
+           "code": null,
+           "text": "Explain homogeneous catalysis and intermediates, such as chlorine radicals and ozone."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "inorganic-chemistry-and-the-periodic-table",
+       "title": "Inorganic chemistry and the periodic table",
+       "subtopics": [
+        {
+         "id": "composition-of-gas-mixtures",
+         "title": "Composition of gas mixtures",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Calculate composition by volume as a percentage and in parts per million."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "organic-functional-groups",
+       "title": "Organic functional groups",
+       "subtopics": [
+        {
+         "id": "haloalkanes-and-amines",
+         "title": "Haloalkanes and amines",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Recognise and name haloalkanes and amines."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "organic-reactions",
+       "title": "Organic reactions",
+       "subtopics": [
+        {
+         "id": "reactions-of-haloalkanes",
+         "title": "Reactions of haloalkanes",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Compare haloalkanes' boiling points and their nucleophilic substitution with water, hydroxide and ammonia."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "reaction-mechanisms",
+       "title": "Reaction mechanisms",
+       "subtopics": [
+        {
+         "id": "nucleophilic-substitution",
+         "title": "Nucleophilic substitution",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Define substitution and nucleophile."
+          },
+          {
+           "code": null,
+           "text": "Explain nucleophilic substitution using the SN2 mechanism with curly arrows and partial charges."
+          },
+          {
+           "code": null,
+           "text": "Judge whether bond enthalpy or bond polarity controls haloalkane reactivity using evidence."
+          }
+         ]
+        },
+        {
+         "id": "radical-reactions",
+         "title": "Radical reactions",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Distinguish homolytic and heterolytic bond fission."
+          },
+          {
+           "code": null,
+           "text": "Explain radicals and radical chain reactions with initiation, propagation and termination."
+          }
+         ]
+        },
+        {
+         "id": "ozone-depletion",
+         "title": "Ozone depletion",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain ozone depletion by haloalkanes using photodissociation and radical equations."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "sustainability",
+       "title": "Sustainability",
+       "subtopics": [
+        {
+         "id": "ozone-in-the-atmosphere",
+         "title": "Ozone in the atmosphere",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain ozone formation and destruction and its effects as a stratospheric sunscreen and tropospheric pollutant."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "energy-and-matter",
+       "title": "Energy and matter",
+       "subtopics": [
+        {
+         "id": "radiation-and-molecules",
+         "title": "Radiation and molecules",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe the principal radiations of Earth and the Sun in the infrared, visible and ultraviolet."
+          },
+          {
+           "code": null,
+           "text": "Explain how UV and visible radiation promote electrons and can break bonds."
+          },
+          {
+           "code": null,
+           "text": "Calculate frequency, wavelength and energy of radiation."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "what-s-in-a-medicine-wm",
+     "title": "What's in a medicine? (WM)",
+     "topics": [
+      {
+       "id": "organic-functional-groups",
+       "title": "Organic functional groups",
+       "subtopics": [
+        {
+         "id": "functional-groups-and-alcohols",
+         "title": "Functional groups and alcohols",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Write formulae for carboxylic acids, phenols, acid anhydrides, esters, aldehydes, ketones and ethers."
+          },
+          {
+           "code": null,
+           "text": "Distinguish primary, secondary and tertiary alcohols by structure."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "organic-reactions",
+       "title": "Organic reactions",
+       "subtopics": [
+        {
+         "id": "phenols",
+         "title": "Phenols",
+         "outcomes": [
+          {
+           "code": "WMc",
+           "text": "Describe phenols' acidity, the iron(III) chloride test and reaction with acid anhydrides."
+          }
+         ]
+        },
+        {
+         "id": "reactions-of-alcohols",
+         "title": "Reactions of alcohols",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe alcohol reactions: esters, oxidation with dichromate, dehydration and substitution to haloalkanes."
+          }
+         ]
+        },
+        {
+         "id": "making-and-purifying-organic-products",
+         "title": "Making and purifying organic products",
+         "outcomes": [
+          {
+           "code": "WMe",
+           "text": "Make and purify a solid product using filtration, recrystallisation, melting point and TLC."
+          },
+          {
+           "code": "WMf",
+           "text": "Prepare and purify a liquid product using reflux, distillation and a separating funnel."
+          },
+          {
+           "code": "WMg",
+           "text": "Apply the principles of green chemistry to industrial processes."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "reaction-mechanisms",
+       "title": "Reaction mechanisms",
+       "subtopics": [
+        {
+         "id": "elimination",
+         "title": "Elimination",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Define elimination reactions, such as alkenes from alcohols."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "modern-analytical-techniques",
+       "title": "Modern analytical techniques",
+       "subtopics": [
+        {
+         "id": "mass-spectra-and-infrared-spectra",
+         "title": "Mass spectra and infrared spectra",
+         "outcomes": [
+          {
+           "code": "WMi",
+           "text": "Interpret and predict mass spectra: the M+ peak, fragments and the M+1 peak."
+          },
+          {
+           "code": null,
+           "text": "Interpret and predict infrared spectra to identify functional groups."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "Year 13",
+   "units": [
+    {
+     "id": "the-chemical-industry-ci",
+     "title": "The chemical industry (CI)",
+     "topics": [
+      {
+       "id": "kinetics",
+       "title": "Kinetics",
+       "subtopics": [
+        {
+         "id": "rate-equations",
+         "title": "Rate equations",
+         "outcomes": [
+          {
+           "code": "CIa",
+           "text": "Define rate, rate constant, order and rate equations and use them in calculations."
+          },
+          {
+           "code": null,
+           "text": "Calculate half-lives from data."
+          }
+         ]
+        },
+        {
+         "id": "finding-rate-from-experiments",
+         "title": "Finding rate from experiments",
+         "outcomes": [
+          {
+           "code": "CIc",
+           "text": "Use graphs, tangents, half-lives and initial rates to find rate, order, rate constant and the rate equation."
+          }
+         ]
+        },
+        {
+         "id": "arrhenius-and-mechanisms",
+         "title": "Arrhenius and mechanisms",
+         "outcomes": [
+          {
+           "code": "CId",
+           "text": "Use the Arrhenius equation to find activation energy and A from rate constants at different temperatures."
+          },
+          {
+           "code": null,
+           "text": "Explain the rate-determining step and link it to orders and mechanisms."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "equilibrium",
+       "title": "Equilibrium",
+       "subtopics": [
+        {
+         "id": "equilibrium-and-industry",
+         "title": "Equilibrium and industry",
+         "outcomes": [
+          {
+           "code": "CIf",
+           "text": "Explain how temperature, pressure and catalysts affect the equilibrium constant and position."
+          },
+          {
+           "code": null,
+           "text": "Choose the most economical operating conditions using equilibrium and rate principles."
+          },
+          {
+           "code": "CIh",
+           "text": "Calculate Kc with units from initial and equilibrium concentrations and describe how to measure it."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "inorganic-chemistry-and-the-periodic-table",
+       "title": "Inorganic chemistry and the periodic table",
+       "subtopics": [
+        {
+         "id": "industrial-and-nitrogen-chemistry",
+         "title": "Industrial and nitrogen chemistry",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Use given information to explain reactions in industrial processes."
+          },
+          {
+           "code": "CIj",
+           "text": "Describe nitrogen bonding, oxides, interconversion of nitrogen species and tests for nitrate(V) and ammonium."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "sustainability",
+       "title": "Sustainability",
+       "subtopics": [
+        {
+         "id": "costs-benefits-and-risks",
+         "title": "Costs, benefits and risks",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Analyse the costs, benefits and hazards of an industrial process."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "polymers-and-life-pl",
+     "title": "Polymers and life (PL)",
+     "topics": [
+      {
+       "id": "structure-and-bonding",
+       "title": "Structure and bonding",
+       "subtopics": [
+        {
+         "id": "amino-acids-and-proteins",
+         "title": "Amino acids and proteins",
+         "outcomes": [
+          {
+           "code": "PLa",
+           "text": "Describe amino acid structure, peptide formation and hydrolysis, and paper chromatography."
+          },
+          {
+           "code": null,
+           "text": "Describe primary, secondary and tertiary protein structure and the role of intermolecular bonds."
+          }
+         ]
+        },
+        {
+         "id": "dna-and-rna",
+         "title": "DNA and RNA",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe DNA and RNA as condensation polymers of nucleotides, and the double helix."
+          },
+          {
+           "code": null,
+           "text": "Explain hydrogen bonding in base pairing, replication and how DNA codes for proteins."
+          }
+         ]
+        },
+        {
+         "id": "molecular-recognition",
+         "title": "Molecular recognition",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain drug action using the pharmacophore, receptor sites and 3-D interactions."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "kinetics",
+       "title": "Kinetics",
+       "subtopics": [
+        {
+         "id": "enzymes",
+         "title": "Enzymes",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe the rate versus substrate curve for an enzyme and experiments with enzymes."
+          },
+          {
+           "code": null,
+           "text": "Explain specificity, temperature and pH sensitivity and competitive inhibition via the active site."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "equilibria-acid-base",
+       "title": "Equilibria (acid–base)",
+       "subtopics": [
+        {
+         "id": "acid-base-properties-of-organic-compounds",
+         "title": "Acid-base properties of organic compounds",
+         "outcomes": [
+          {
+           "code": "PLh",
+           "text": "Describe carboxylic acids' acidity and reactions with metals, alkalis and carbonates."
+          },
+          {
+           "code": null,
+           "text": "Describe amino acids' acid-base properties and zwitterions."
+          },
+          {
+           "code": null,
+           "text": "Explain the basic nature of amines and their reaction with acids."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "organic-functional-groups",
+       "title": "Organic functional groups",
+       "subtopics": [
+        {
+         "id": "functional-groups-and-nylons",
+         "title": "Functional groups and nylons",
+         "outcomes": [
+          {
+           "code": "PLk",
+           "text": "Name and write formulae for carboxylic acids, phenols, acyl chlorides, anhydrides, esters, aldehydes, ketones, diols, diacids and amines, and name nylons."
+          },
+          {
+           "code": null,
+           "text": "Write formulae for primary and secondary amides."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "organic-reactions",
+       "title": "Organic reactions",
+       "subtopics": [
+        {
+         "id": "hydrolysis-and-acyl-chlorides",
+         "title": "Hydrolysis and acyl chlorides",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe hydrolysis of esters and amides by acids and alkalis."
+          },
+          {
+           "code": null,
+           "text": "Describe reactions of acyl chlorides with amines and alcohols."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "polymers",
+       "title": "Polymers",
+       "subtopics": [
+        {
+         "id": "condensation-polymers",
+         "title": "Condensation polymers",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Distinguish addition and condensation polymerisation."
+          },
+          {
+           "code": null,
+           "text": "Relate condensation polymer structure to its monomers and vice versa."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "isomerism",
+       "title": "Isomerism",
+       "subtopics": [
+        {
+         "id": "optical-isomerism",
+         "title": "Optical isomerism",
+         "outcomes": [
+          {
+           "code": "PLq",
+           "text": "Draw optical isomers, identify chiral centres and explain enantiomers."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "modern-analytical-techniques",
+       "title": "Modern analytical techniques",
+       "subtopics": [
+        {
+         "id": "spectroscopy-and-structure",
+         "title": "Spectroscopy and structure",
+         "outcomes": [
+          {
+           "code": "PLr",
+           "text": "Use high-resolution M+ peaks and mass differences to find formulae and lost groups."
+          },
+          {
+           "code": null,
+           "text": "Interpret proton and carbon-13 NMR spectra to find structure."
+          },
+          {
+           "code": null,
+           "text": "Combine mass spectrometry, IR and NMR to determine structures."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "oceans-o",
+     "title": "Oceans (O)",
+     "topics": [
+      {
+       "id": "energetics",
+       "title": "Energetics",
+       "subtopics": [
+        {
+         "id": "solution-and-lattice-enthalpies",
+         "title": "Solution and lattice enthalpies",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain the factors affecting solubility in aqueous and non-aqueous solvents."
+          },
+          {
+           "code": "Ob",
+           "text": "Define hydrated ions, enthalpy of solution, lattice enthalpy and hydration enthalpy and use enthalpy cycles."
+          },
+          {
+           "code": null,
+           "text": "Explain how charge density affects lattice and hydration enthalpy."
+          }
+         ]
+        },
+        {
+         "id": "entropy",
+         "title": "Entropy",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain entropy as a measure of the number of ways particles and energy can be arranged."
+          },
+          {
+           "code": null,
+           "text": "Predict qualitative entropy changes from states and the number of gas particles."
+          },
+          {
+           "code": "Of",
+           "text": "Use ΔStot = ΔSsys + ΔSsurr and ΔSsurr = –ΔH/T to judge feasibility."
+          },
+          {
+           "code": null,
+           "text": "Calculate ΔSsys from entropies of reactants and products."
+          }
+         ]
+        },
+        {
+         "id": "solubility-products",
+         "title": "Solubility products",
+         "outcomes": [
+          {
+           "code": "Oh",
+           "text": "Define solubility product, calculate it and describe how to determine it."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "equilibria-acid-base",
+       "title": "Equilibria (acid–base)",
+       "subtopics": [
+        {
+         "id": "acids-bases-and-ph",
+         "title": "Acids, bases and pH",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Use Brønsted-Lowry theory, conjugate acids and bases."
+          },
+          {
+           "code": null,
+           "text": "Define strong acids and bases and write ionisation equations."
+          },
+          {
+           "code": "Ok",
+           "text": "Define weak acids, Ka and pKa, and measure pH."
+          },
+          {
+           "code": "Ol",
+           "text": "Calculate pH for strong acids, strong bases and weak acids."
+          }
+         ]
+        },
+        {
+         "id": "buffers",
+         "title": "Buffers",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain what buffers are, how they work, and calculate buffer pH."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "energy-and-matter",
+       "title": "Energy and matter",
+       "subtopics": [
+        {
+         "id": "the-greenhouse-effect",
+         "title": "The greenhouse effect",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain the greenhouse effect and the enhanced greenhouse effect through infrared absorption by greenhouse gases."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "developing-metals-dm",
+     "title": "Developing metals (DM)",
+     "topics": [
+      {
+       "id": "formulae-equations-and-amount-of-substance",
+       "title": "Formulae, equations and amount of substance",
+       "subtopics": [
+        {
+         "id": "redox-titrations",
+         "title": "Redox titrations",
+         "outcomes": [
+          {
+           "code": "DMa",
+           "text": "Carry out and calculate from manganate(VII) titrations and other titrations."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "bonding-and-structure",
+       "title": "Bonding and structure",
+       "subtopics": [
+        {
+         "id": "complex-shapes",
+         "title": "Complex shapes",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Define coordination number and give the shapes and bond angles of complexes with coordination number 4 and 6."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "redox",
+       "title": "Redox",
+       "subtopics": [
+        {
+         "id": "redox-equations-and-cells",
+         "title": "Redox equations and cells",
+         "outcomes": [
+          {
+           "code": "DMc",
+           "text": "Balance half-equations and full equations for redox processes that include acid-base reactions."
+          },
+          {
+           "code": "DMd",
+           "text": "Set up simple electrochemical cells with metal ion/metal and same-element half-cells."
+          },
+          {
+           "code": null,
+           "text": "Explain how a cell works in terms of half-equations, electron flow and the salt bridge."
+          }
+         ]
+        },
+        {
+         "id": "electrode-potentials",
+         "title": "Electrode potentials",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Define standard electrode potential, calculate Ecell, predict redox feasibility and explain rusting and its prevention."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "inorganic-chemistry-and-the-periodic-table",
+       "title": "Inorganic chemistry and the periodic table",
+       "subtopics": [
+        {
+         "id": "transition-metals",
+         "title": "Transition metals",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Define transition metals and give the oxidation states and ion colours of iron and copper."
+          },
+          {
+           "code": "DMh",
+           "text": "Write d-block ion configurations and explain variable oxidation states."
+          }
+         ]
+        },
+        {
+         "id": "complex-ions",
+         "title": "Complex ions",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Define ligand, complex ion and ligand substitution and write formulae of iron and copper complexes."
+          },
+          {
+           "code": null,
+           "text": "Explain dative bonding in complexes, ligand substitution equations, and bidentate and polydentate ligands."
+          },
+          {
+           "code": null,
+           "text": "Describe colour changes and ionic equations when Fe2+, Fe3+ and Cu2+ react with sodium hydroxide and ammonia."
+          }
+         ]
+        },
+        {
+         "id": "catalysis-and-colour",
+         "title": "Catalysis and colour",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain the catalytic activity of transition metals, homogeneous and heterogeneous."
+          },
+          {
+           "code": null,
+           "text": "Explain why transition metal complexes are coloured, using d-orbital splitting and electron transitions."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "energy-and-matter",
+       "title": "Energy and matter",
+       "subtopics": [
+        {
+         "id": "colorimetry",
+         "title": "Colorimetry",
+         "outcomes": [
+          {
+           "code": "DMn",
+           "text": "Measure solution concentrations using a colorimeter or visible spectrophotometer."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "colour-by-design-cd",
+     "title": "Colour by design (CD)",
+     "topics": [
+      {
+       "id": "bonding-and-structure",
+       "title": "Bonding and structure",
+       "subtopics": [
+        {
+         "id": "dyes",
+         "title": "Dyes",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain how dyes attach to fibres through intermolecular, ionic and covalent bonding."
+          },
+          {
+           "code": null,
+           "text": "Describe a dye's chromophore and the groups that modify colour, affect solubility and bond to fibres."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "organic-functional-groups",
+       "title": "Organic functional groups",
+       "subtopics": [
+        {
+         "id": "fats-and-oils",
+         "title": "Fats and oils",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe fats and oils as mixed esters of propane-1,2,3-triol with varying unsaturation."
+          }
+         ]
+        },
+        {
+         "id": "arenes-and-benzene",
+         "title": "Arenes and benzene",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Write formulae of arenes and explain delocalisation and its effect on properties."
+          },
+          {
+           "code": null,
+           "text": "Compare representations of benzene, its shape, and its bonding including hydrogenation enthalpy."
+          }
+         ]
+        },
+        {
+         "id": "polyfunctional-molecules",
+         "title": "Polyfunctional molecules",
+         "outcomes": [
+          {
+           "code": "CDf",
+           "text": "Name functional groups in polyfunctional molecules, predict properties and test for them."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "organic-reactions",
+       "title": "Organic reactions",
+       "subtopics": [
+        {
+         "id": "electrophilic-substitution-of-arenes",
+         "title": "Electrophilic substitution of arenes",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe halogenation, nitration, sulfonation and Friedel-Crafts alkylation and acylation of arenes."
+          },
+          {
+           "code": null,
+           "text": "Describe diazonium formation and azo dye coupling reactions."
+          }
+         ]
+        },
+        {
+         "id": "carbonyl-compounds",
+         "title": "Carbonyl compounds",
+         "outcomes": [
+          {
+           "code": "CDi",
+           "text": "Describe oxidation of aldehydes, tests with Fehling's and Tollens' reagents, and cyanohydrin formation."
+          }
+         ]
+        },
+        {
+         "id": "synthetic-routes",
+         "title": "Synthetic routes",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Use known reactions and conditions to suggest and explain synthetic routes."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "reaction-mechanisms",
+       "title": "Reaction mechanisms",
+       "subtopics": [
+        {
+         "id": "nucleophilic-addition-and-classifying-reactions",
+         "title": "Nucleophilic addition and classifying reactions",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain nucleophilic addition of CN– to carbonyl compounds using curly arrows."
+          },
+          {
+           "code": null,
+           "text": "Classify organic reactions and use curly arrows to describe unfamiliar mechanisms."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "energy-and-matter",
+       "title": "Energy and matter",
+       "subtopics": [
+        {
+         "id": "origins-of-colour",
+         "title": "Origins of colour",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain colour and UV absorption in organic molecules via electron transitions and delocalisation."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "modern-analytical-techniques",
+       "title": "Modern analytical techniques",
+       "subtopics": [
+        {
+         "id": "gas-liquid-chromatography",
+         "title": "Gas-liquid chromatography",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain the principles of gas-liquid chromatography: injection, column, detection and retention times."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "all",
+   "units": [
+    {
+     "id": "module-1-development-of-practical-skills-in-chem",
+     "title": "Module 1: Development of practical skills in chemistry",
+     "topics": [
+      {
+       "id": "practical-skills-assessed-in-written-papers",
+       "title": "Practical skills assessed in written papers",
+       "subtopics": [
+        {
+         "id": "planning-experiments",
+         "title": "Planning experiments",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Design experiments, choose apparatus and techniques, and solve problems in a practical context."
+          },
+          {
+           "code": null,
+           "text": "Identify variables that must be controlled."
+          },
+          {
+           "code": null,
+           "text": "Judge whether an experimental method suits the expected outcomes."
+          }
+         ]
+        },
+        {
+         "id": "implementing-and-recording",
+         "title": "Implementing and recording",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Use a wide range of apparatus and techniques correctly."
+          },
+          {
+           "code": null,
+           "text": "Use appropriate units for measurements."
+          },
+          {
+           "code": null,
+           "text": "Present observations and data in a suitable format."
+          }
+         ]
+        },
+        {
+         "id": "analysing-results",
+         "title": "Analysing results",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Process, analyse and interpret qualitative and quantitative results to reach valid conclusions."
+          },
+          {
+           "code": null,
+           "text": "Use suitable mathematical skills and significant figures on quantitative data."
+          },
+          {
+           "code": null,
+           "text": "Plot and interpret graphs, choosing axes and measuring gradients and intercepts."
+          }
+         ]
+        },
+        {
+         "id": "evaluating-experiments",
+         "title": "Evaluating experiments",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Evaluate results, spot anomalies and identify limitations in procedures."
+          },
+          {
+           "code": null,
+           "text": "Judge precision and accuracy, including percentage errors and uncertainties in apparatus."
+          },
+          {
+           "code": null,
+           "text": "Suggest improvements to procedures and apparatus."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "practical-skills-in-the-practical-endorsement",
+       "title": "Practical skills in the practical endorsement",
+       "subtopics": [
+        {
+         "id": "practical-working-skills",
+         "title": "Practical working skills",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Apply investigative approaches and use equipment and materials safely, identifying hazards."
+          },
+          {
+           "code": null,
+           "text": "Follow instructions, make and record observations, and keep appropriate records."
+          },
+          {
+           "code": null,
+           "text": "Present data scientifically and use software to process data and report findings."
+          },
+          {
+           "code": null,
+           "text": "Use research skills and cite sources correctly."
+          }
+         ]
+        },
+        {
+         "id": "apparatus-and-techniques",
+         "title": "Apparatus and techniques",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Measure mass, time, volume and temperature, and heat using water baths, electric heaters or sand baths."
+          },
+          {
+           "code": null,
+           "text": "Measure pH, and use titration, distillation, reflux, ion and functional group tests, and filtration."
+          },
+          {
+           "code": null,
+           "text": "Make standard solutions in a volumetric flask and use indicators in acid-base titrations."
+          },
+          {
+           "code": null,
+           "text": "Purify solids by recrystallisation and liquids with a separating funnel, and use melting point apparatus."
+          },
+          {
+           "code": null,
+           "text": "Use chromatography, set up electrochemical cells, handle hazardous substances safely, and measure reaction rates by two methods."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "chemical-literacy-cl",
+     "title": "Chemical literacy (CL)",
+     "topics": [
+      {
+       "id": "chemical-literacy",
+       "title": "Chemical literacy",
+       "subtopics": [
+        {
+         "id": "reading-and-using-scientific-information",
+         "title": "Reading and using scientific information",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Extract and manipulate data from a scientific article or practical insert."
+          },
+          {
+           "code": null,
+           "text": "Interpret and use information from a passage, including content outside the specification."
+          },
+          {
+           "code": null,
+           "text": "Show comprehension through logical written communication with correct technical terms."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "build": {
+  "builtAt": "2026-10-14T10:40:44.439Z",
+  "model": "claude-agent",
+  "usd": 0,
+  "expectedCodes": 51,
+  "coverage": 1,
+  "missingCodes": [],
+  "counts": {
+   "grades": 3,
+   "units": 12,
+   "topics": 63,
+   "subtopics": 95,
+   "outcomes": 190
+  },
+  "warnings": [
+   "unexpected grade label \"all\""
+  ]
+ }
+}

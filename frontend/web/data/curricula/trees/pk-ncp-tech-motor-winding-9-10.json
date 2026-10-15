@@ -1,0 +1,604 @@
+{
+ "id": "pk-ncp-tech-motor-winding-9-10",
+ "region": "PK",
+ "framework": "National Curriculum of Pakistan 2022-23",
+ "board": null,
+ "qualification": "Technical stream",
+ "subject": "Motor Winding",
+ "syllabusCode": null,
+ "gradeSystem": "grade",
+ "source": {
+  "urls": [
+   "https://ncc.gov.pk/SiteImage/Misc/files/67-%20Motor%20Winding.pdf"
+  ],
+  "publisher": "National Curriculum Council, Ministry of Federal Education and Professional Training",
+  "licence": "Government publication; structure + our own wording only",
+  "firstExam": null
+ },
+ "grades": [
+  {
+   "grade": "9",
+   "units": [
+    {
+     "id": "domain-a-concepts-of-electricity",
+     "title": "Domain A: Concepts of Electricity",
+     "topics": [
+      {
+       "id": "basics-of-electricity-and-safety",
+       "title": "Basics of electricity and safety",
+       "subtopics": [
+        {
+         "id": "electricity-and-safety",
+         "title": "Electricity and safety",
+         "outcomes": [
+          {
+           "code": "MW-09-A-01",
+           "text": "Explain what electricity is and why it matters in daily life."
+          },
+          {
+           "code": "MW-09-A-02",
+           "text": "List and explain basic electrical safety: discharge wristband, shielding, bonding."
+          },
+          {
+           "code": "MW-09-A-08",
+           "text": "Explore safety measures when handling electricity."
+          },
+          {
+           "code": "MW-09-A-09",
+           "text": "Describe safety steps with wristbands, shielding and bonding for equipment."
+          }
+         ]
+        },
+        {
+         "id": "circuits-and-static-electricity",
+         "title": "Circuits and static electricity",
+         "outcomes": [
+          {
+           "code": "MW-09-A-03",
+           "text": "Do simple experiments showing static electricity and its effects."
+          },
+          {
+           "code": "MW-09-A-04",
+           "text": "Explore circuits and circuit components."
+          },
+          {
+           "code": "MW-09-A-05",
+           "text": "Describe electrical circuits with resistors, capacitors and conductors."
+          },
+          {
+           "code": "MW-09-A-06",
+           "text": "Explore electrostatic discharge (ESD)."
+          },
+          {
+           "code": "MW-09-A-07",
+           "text": "Describe static electricity and its possible effects on electronic devices."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "domain-b-electromagnetism",
+     "title": "Domain B: Electromagnetism",
+     "topics": [
+      {
+       "id": "magnets-and-magnetism",
+       "title": "Magnets and magnetism",
+       "subtopics": [
+        {
+         "id": "magnetism-basics",
+         "title": "Magnetism basics",
+         "outcomes": [
+          {
+           "code": "MW-09-B-01",
+           "text": "Identify and explain basic principles of magnetism."
+          },
+          {
+           "code": "MW-09-B-02",
+           "text": "Tell magnetic from non-magnetic materials."
+          },
+          {
+           "code": "MW-09-B-03",
+           "text": "Describe how magnets attract or repel objects."
+          }
+         ]
+        },
+        {
+         "id": "types-and-strength-of-magnets",
+         "title": "Types and strength of magnets",
+         "outcomes": [
+          {
+           "code": "MW-09-B-04",
+           "text": "Group magnets by shape and size."
+          },
+          {
+           "code": "MW-09-B-05",
+           "text": "Explain properties of permanent and temporary magnets."
+          },
+          {
+           "code": "MW-09-B-06",
+           "text": "Analyze how size and material affect magnet strength."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "magnetic-poles-and-fields",
+       "title": "Magnetic poles and fields",
+       "subtopics": [
+        {
+         "id": "poles-attraction-and-repulsion",
+         "title": "Poles, attraction and repulsion",
+         "outcomes": [
+          {
+           "code": "MW-09-B-07",
+           "text": "Define and tell apart north and south poles."
+          },
+          {
+           "code": "MW-09-B-08",
+           "text": "Explain magnetic attraction and repulsion."
+          },
+          {
+           "code": "MW-09-B-09",
+           "text": "Predict and observe magnets near each other, given their poles."
+          }
+         ]
+        },
+        {
+         "id": "magnetic-field-experiments",
+         "title": "Magnetic field experiments",
+         "outcomes": [
+          {
+           "code": "MW-09-B-10",
+           "text": "Design experiments showing a magnetic field around a magnet."
+          },
+          {
+           "code": "MW-09-B-11",
+           "text": "Analyze magnetic field effects on iron filings or other magnets."
+          },
+          {
+           "code": "MW-09-B-12",
+           "text": "Draw conclusions about the nature and strength of magnetic fields."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "domain-c-understanding-motors",
+     "title": "Domain C: Understanding Motors",
+     "topics": [
+      {
+       "id": "concept-and-components-of-motors",
+       "title": "Concept and components of motors",
+       "subtopics": [
+        {
+         "id": "how-motors-work",
+         "title": "How motors work",
+         "outcomes": [
+          {
+           "code": "MW-09-C-01",
+           "text": "Explain what a motor is and its main purpose."
+          },
+          {
+           "code": "MW-09-C-02",
+           "text": "Describe how motors use magnetic fields and current to create motion."
+          }
+         ]
+        },
+        {
+         "id": "motor-parts-and-a-simple-motor",
+         "title": "Motor parts and a simple motor",
+         "outcomes": [
+          {
+           "code": "MW-09-C-03",
+           "text": "Name motor parts and what each does."
+          },
+          {
+           "code": "MW-09-C-04",
+           "text": "Build a simple motor from magnets and wire."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "domain-d-motor-winding",
+     "title": "Domain D: Motor Winding",
+     "topics": [
+      {
+       "id": "basics-of-motor-winding",
+       "title": "Basics of motor winding",
+       "subtopics": [
+        {
+         "id": "winding-basics-and-electromagnet",
+         "title": "Winding basics and electromagnet",
+         "outcomes": [
+          {
+           "code": "MW-09-D-01",
+           "text": "Explain the basic principles and purpose of motor winding."
+          },
+          {
+           "code": "MW-09-D-02",
+           "text": "Explain how coils and wire winding make magnetic fields and motion."
+          },
+          {
+           "code": "MW-09-D-03",
+           "text": "Build a simple electromagnet applying winding knowledge."
+          },
+          {
+           "code": "MW-09-D-04",
+           "text": "Show how coils, wire turns and magnetic strength relate."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "domain-e-building-a-simple-motor",
+     "title": "Domain E: Building a Simple Motor",
+     "topics": [
+      {
+       "id": "assembling-a-basic-motor",
+       "title": "Assembling a basic motor",
+       "subtopics": [
+        {
+         "id": "build-a-simple-motor",
+         "title": "Build a simple motor",
+         "outcomes": [
+          {
+           "code": "MW-09-E-01",
+           "text": "Build a basic motor from a battery, magnets, wire and a coil."
+          },
+          {
+           "code": "MW-09-E-02",
+           "text": "Explain the role of each component in the simple motor."
+          },
+          {
+           "code": "MW-09-E-03",
+           "text": "Explain how winding, electromagnetism and motor movement connect."
+          },
+          {
+           "code": "MW-09-E-04",
+           "text": "Apply knowledge by assembling a simple motor."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "domain-f-safety-and-maintenance",
+     "title": "Domain F: Safety and Maintenance",
+     "topics": [
+      {
+       "id": "motor-safety-and-maintenance",
+       "title": "Motor safety and maintenance",
+       "subtopics": [
+        {
+         "id": "safety-and-basic-maintenance",
+         "title": "Safety and basic maintenance",
+         "outcomes": [
+          {
+           "code": "MW-09-F-01",
+           "text": "Show safety precautions when working with electrical parts."
+          },
+          {
+           "code": "MW-09-F-02",
+           "text": "Do basic motor maintenance: routine checks and adjustments."
+          },
+          {
+           "code": "MW-09-F-03",
+           "text": "Find and fix common motor problems."
+          },
+          {
+           "code": "MW-09-F-04",
+           "text": "Explain why regular maintenance extends motor life."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "10",
+   "units": [
+    {
+     "id": "domain-a-concepts-of-electricity",
+     "title": "Domain A: Concepts of Electricity",
+     "topics": [
+      {
+       "id": "advanced-concepts-of-electricity",
+       "title": "Advanced concepts of electricity",
+       "subtopics": [
+        {
+         "id": "fields-esd-and-ac-dc",
+         "title": "Fields, ESD and AC/DC",
+         "outcomes": [
+          {
+           "code": "MW-10-A-01",
+           "text": "Explore electric field, magnetic field, electrostatic discharge and AC/DC current."
+          },
+          {
+           "code": "MW-10-A-10",
+           "text": "Describe electric fields and how they act on charged particles."
+          },
+          {
+           "code": "MW-10-A-07",
+           "text": "Tell DC from AC and where each is used in everyday devices."
+          }
+         ]
+        },
+        {
+         "id": "ohm-s-law-and-electromagnetism",
+         "title": "Ohm's law and electromagnetism",
+         "outcomes": [
+          {
+           "code": "MW-10-A-02",
+           "text": "Discuss voltage, current, resistance and Ohm's law."
+          },
+          {
+           "code": "MW-10-A-03",
+           "text": "Run circuit experiments showing these concepts."
+          },
+          {
+           "code": "MW-10-A-05",
+           "text": "Explore voltage, current and resistance relationships in depth, with Ohm's law."
+          },
+          {
+           "code": "MW-10-A-09",
+           "text": "Describe how electricity and magnetism relate, including electromagnets."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "domain-b-electromagnetism",
+     "title": "Domain B: Electromagnetism",
+     "topics": [
+      {
+       "id": "electromagnetic-induction",
+       "title": "Electromagnetic induction",
+       "subtopics": [
+        {
+         "id": "induction-principles",
+         "title": "Induction principles",
+         "outcomes": [
+          {
+           "code": "MW-10-B-01",
+           "text": "Define electromagnetic induction as magnetic fields interacting with electric currents."
+          },
+          {
+           "code": "MW-10-B-02",
+           "text": "Identify key components in electromagnetic induction."
+          },
+          {
+           "code": "MW-10-B-03",
+           "text": "Illustrate Faraday's law and Lenz's law in induction."
+          }
+         ]
+        },
+        {
+         "id": "generating-current-and-emf",
+         "title": "Generating current and EMF",
+         "outcomes": [
+          {
+           "code": "MW-10-B-04",
+           "text": "Run experiments generating current by induction."
+          },
+          {
+           "code": "MW-10-B-05",
+           "text": "Link magnet movement or changing fields to current production."
+          },
+          {
+           "code": "MW-10-B-06",
+           "text": "Explain factors that change induced EMF in a conductor."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "applications-of-electromagnetic-induction",
+       "title": "Applications of electromagnetic induction",
+       "subtopics": [
+        {
+         "id": "generators-and-transformers",
+         "title": "Generators and transformers",
+         "outcomes": [
+          {
+           "code": "MW-10-B-07",
+           "text": "Identify practical uses of electromagnetic induction in daily life and technology."
+          },
+          {
+           "code": "MW-10-B-08",
+           "text": "Design experiments showing uses such as generators or transformers."
+          },
+          {
+           "code": "MW-10-B-09",
+           "text": "Evaluate efficiency and effectiveness of induction-based devices."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "domain-c-understanding-motors",
+     "title": "Domain C: Understanding Motors",
+     "topics": [
+      {
+       "id": "motors-and-generators",
+       "title": "Motors and generators",
+       "subtopics": [
+        {
+         "id": "principles-and-comparison",
+         "title": "Principles and comparison",
+         "outcomes": [
+          {
+           "code": "MW-10-C-01",
+           "text": "Describe how motors and generators work, converting electrical and mechanical energy."
+          },
+          {
+           "code": "MW-10-C-02",
+           "text": "Compare motors and generators, their functions and uses."
+          }
+         ]
+        },
+        {
+         "id": "applications-and-experiments",
+         "title": "Applications and experiments",
+         "outcomes": [
+          {
+           "code": "MW-10-C-03",
+           "text": "Discuss roles of motors and generators in devices and industries."
+          },
+          {
+           "code": "MW-10-C-04",
+           "text": "Plan and run hands-on experiments on motor and generator principles."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "domain-d-motor-winding",
+     "title": "Domain D: Motor Winding",
+     "topics": [
+      {
+       "id": "advanced-motor-winding",
+       "title": "Advanced motor winding",
+       "subtopics": [
+        {
+         "id": "advanced-winding-and-performance",
+         "title": "Advanced winding and performance",
+         "outcomes": [
+          {
+           "code": "MW-10-D-01",
+           "text": "Understand advanced winding: wire gauges, patterns and effect on performance."
+          },
+          {
+           "code": "MW-10-D-02",
+           "text": "Discuss factors affecting motor efficiency and power output."
+          },
+          {
+           "code": "MW-10-D-03",
+           "text": "Build a more complex motor with varied winding techniques."
+          },
+          {
+           "code": "MW-10-D-04",
+           "text": "Evaluate motor efficiency and power output from winding techniques."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "domain-e-building-a-simple-motor",
+     "title": "Domain E: Building a Simple Motor",
+     "topics": [
+      {
+       "id": "motor-construction-skills",
+       "title": "Motor construction skills",
+       "subtopics": [
+        {
+         "id": "motor-projects",
+         "title": "Motor projects",
+         "outcomes": [
+          {
+           "code": "MW-10-E-01",
+           "text": "Do motor projects for uses like fans, small vehicles or model machines."
+          },
+          {
+           "code": "MW-10-E-02",
+           "text": "Discuss motor technology's impact on society and industry."
+          },
+          {
+           "code": "MW-10-E-03",
+           "text": "Evaluate the design and function of motor-based projects."
+          },
+          {
+           "code": "MW-10-E-04",
+           "text": "Collaborate on motor projects with communication, problem-solving and project management."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "domain-f-safety-and-maintenance",
+     "title": "Domain F: Safety and Maintenance",
+     "topics": [
+      {
+       "id": "advanced-troubleshooting-and-maintenance",
+       "title": "Advanced troubleshooting and maintenance",
+       "subtopics": [
+        {
+         "id": "troubleshooting-and-improvement",
+         "title": "Troubleshooting and improvement",
+         "outcomes": [
+          {
+           "code": "MW-10-F-01",
+           "text": "Build problem-solving skills for complex motor issues."
+          },
+          {
+           "code": "MW-10-F-02",
+           "text": "Use advanced troubleshooting for intricate motor problems."
+          },
+          {
+           "code": "MW-10-F-03",
+           "text": "Use methods to maintain and improve motor performance."
+          },
+          {
+           "code": "MW-10-F-04",
+           "text": "Analyze motor performance and apply ways to improve efficiency and longevity."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "build": {
+  "builtAt": "2026-10-14T08:38:51.837Z",
+  "model": "claude-agent",
+  "usd": 0,
+  "expectedCodes": 69,
+  "coverage": 1,
+  "missingCodes": [],
+  "counts": {
+   "grades": 2,
+   "units": 12,
+   "topics": 14,
+   "subtopics": 21,
+   "outcomes": 69
+  },
+  "warnings": []
+ }
+}

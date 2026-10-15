@@ -1,0 +1,2677 @@
+{
+ "id": "us-ne-mathematics",
+ "region": "US",
+ "framework": "Nebraska state academic standards: Mathematics",
+ "board": null,
+ "qualification": "K-12",
+ "subject": "Mathematics",
+ "syllabusCode": null,
+ "gradeSystem": "grade",
+ "source": {
+  "urls": [
+   "https://api.commonstandardsproject.com/api/v1/jurisdictions/12FDD9CA15FC49259C2EF4BB13D59D2F",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/12FDD9CA15FC49259C2EF4BB13D59D2F_D21351581_grade-01",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/12FDD9CA15FC49259C2EF4BB13D59D2F_D21351581_grade-02",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/12FDD9CA15FC49259C2EF4BB13D59D2F_D21351581_grade-03",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/12FDD9CA15FC49259C2EF4BB13D59D2F_D21351581_grade-04",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/12FDD9CA15FC49259C2EF4BB13D59D2F_D21351581_grade-05",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/12FDD9CA15FC49259C2EF4BB13D59D2F_D21351581_grade-06",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/12FDD9CA15FC49259C2EF4BB13D59D2F_D21351581_grade-07",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/12FDD9CA15FC49259C2EF4BB13D59D2F_D21351581_grade-08",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/12FDD9CA15FC49259C2EF4BB13D59D2F_D21351581_grades-09-10-11-12",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/12FDD9CA15FC49259C2EF4BB13D59D2F_D21351581_grade-k"
+  ],
+  "publisher": "Nebraska state education agency (machine-readable via Common Standards Project / ASN)",
+  "licence": "D2L Corporation",
+  "firstExam": "2022"
+ },
+ "grades": [
+  {
+   "grade": "K",
+   "units": [
+    {
+     "id": "nebraska-mathematical-processes",
+     "title": "Nebraska Mathematical Processes",
+     "topics": [
+      {
+       "id": "nebraska-mathematical-processes",
+       "title": "Nebraska Mathematical Processes",
+       "subtopics": [
+        {
+         "id": "nebraska-mathematical-processes",
+         "title": "Nebraska Mathematical Processes",
+         "outcomes": [
+          {
+           "code": "MP.1",
+           "text": "Make sense of problems and persevere in solving them."
+          },
+          {
+           "code": "MP.2",
+           "text": "Reason quantitatively and abstractly and consider the reasoning of others."
+          },
+          {
+           "code": "MP.3",
+           "text": "Create and use representations to organize, record, and communicate mathematical ideas."
+          },
+          {
+           "code": "MP.4",
+           "text": "Analyze mathematical relationships to connect mathematical ideas."
+          },
+          {
+           "code": "MP.5",
+           "text": "Explain and justify mathematical ideas using precise mathematical language in written or oral communication."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "kindergarten",
+     "title": "Kindergarten",
+     "topics": [
+      {
+       "id": "number",
+       "title": "Number",
+       "subtopics": [
+        {
+         "id": "solve-problems-and-reason-with-number-concepts-u",
+         "title": "Solve problems and reason with number concepts using multiple representations, make connections within math and across disciplines, and communicate their ideas",
+         "outcomes": [
+          {
+           "code": "K.N.1.a",
+           "text": "Without counting, recognize and verbally label arrangements for briefly shown collections up to 10 (e.g., \"I saw 5.\" \"How did you know?\" \"I saw 3 and 2, that is 5.\""
+          },
+          {
+           "code": "K.N.2.a",
+           "text": "Use one-to-one correspondence when counting objects to show the relationship between numbers and quantities and understand the last number counted is a direct representation of the total objects in a given set."
+          },
+          {
+           "code": "K.N.2.b",
+           "text": "Understand that each successive number name refers to a quantity that is one larger."
+          },
+          {
+           "code": "K.N.2.c",
+           "text": "Count out the number of objects given a number from 1 to 20."
+          },
+          {
+           "code": "K.N.2.d",
+           "text": "Count up to 20 objects arranged in a line, a rectangular array, or a circle, and count up to 10 objects in a scattered configuration."
+          },
+          {
+           "code": "K.N.2.e",
+           "text": "Count verbally forward and backward from any given number within 20."
+          },
+          {
+           "code": "K.N.2.f",
+           "text": "Count verbally in sequential order by ones and by tens to 100, making accurate decade transitions (e.g., 89 to 90)."
+          },
+          {
+           "code": "K.N.2.g",
+           "text": "Write and name numbers 0 to 20. Represent a number of objects with a written numeral 0 to 20."
+          },
+          {
+           "code": "K.N.2.h",
+           "text": "Compare the number of objects in two groups, up to 20, using the words fewer than, more than, the same as."
+          },
+          {
+           "code": "K.N.3.a",
+           "text": "Compose and decompose numbers from 11 to 19 into a group of ten ones and some more ones using a model, drawing, or equation."
+          },
+          {
+           "code": "K.N.4.a",
+           "text": "Represent and explain addition and subtraction as part-whole relationships, with addition as putting together and/or adding to and subtraction as taking apart and/or taking from, using objects, drawings, numbers, and equations."
+          },
+          {
+           "code": "K.N.4.b",
+           "text": "Compose and decompose numbers less than or equal to 10 into pairs in more than one way using verbal explanations, objects, or drawings."
+          },
+          {
+           "code": "K.N.4.c",
+           "text": "For any number from 1 to 9, find the number that makes 10 when added to the given number, sharing the answer with a model, drawing, or equation."
+          },
+          {
+           "code": "K.N.4.d",
+           "text": "Efficiently, flexibly, and accurately add and subtract within 5."
+          },
+          {
+           "code": "K.N.4.e",
+           "text": "Solve authentic problems that involve addition and subtraction within 10 (e.g., by using objects, drawings, and equations to represent the problem)."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "geometry",
+       "title": "Geometry",
+       "subtopics": [
+        {
+         "id": "solve-problems-and-reason-with-geometry-using-mu",
+         "title": "Solve problems and reason with geometry using multiple representations, make connections within math and across disciplines, and communicate their ideas",
+         "outcomes": [
+          {
+           "code": "K.G.1.a",
+           "text": "Identify and name two-dimensional shapes including circles, triangles, squares, and rectangles regardless of orientation or size."
+          },
+          {
+           "code": "K.G.1.b",
+           "text": "Identify and name three-dimensional shapes including spheres, cubes, cylinders, and cones regardless of orientation or size."
+          },
+          {
+           "code": "K.G.1.c",
+           "text": "Describe the relative positions of shapes in relation to other objects or shapes using terms such as above, below, in front of, behind, and next to."
+          },
+          {
+           "code": "K.G.1.d",
+           "text": "Create shapes using given materials and describe one or more of the attributes such as number of sides/corners."
+          },
+          {
+           "code": "K.G.1.e",
+           "text": "Combine simple shapes to compose larger shapes."
+          },
+          {
+           "code": "K.G.2.a",
+           "text": "Describe measurable attributes of authentic objects including length, capacity, and weight."
+          },
+          {
+           "code": "K.G.2.b",
+           "text": "Directly compare two objects with a measurable attribute in common to describe which object is longer/shorter, heavier/lighter, and has more/less-capacity."
+          },
+          {
+           "code": "K.G.3.a",
+           "text": "Identify the name and value of pennies, nickels, and dimes."
+          },
+          {
+           "code": "K.G.3.b",
+           "text": "Identify the parts of digital and analog clocks. Tell and write time to the hour using digital clocks and analog clocks using only the hour hand."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "data",
+       "title": "Data",
+       "subtopics": [
+        {
+         "id": "solve-problems-and-reason-with-data-probability-",
+         "title": "Solve problems and reason with data/probability using multiple representations, make connections within math and across disciplines, and communicate their ideas",
+         "outcomes": [
+          {
+           "code": "K.D.1.a",
+           "text": "Identify, sort, and classify objects by size, shape, color, and other attributes."
+          },
+          {
+           "code": "K.D.1.b",
+           "text": "Identify objects that do not belong to a particular group and explain the reasoning used."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "1",
+   "units": [
+    {
+     "id": "nebraska-mathematical-processes",
+     "title": "Nebraska Mathematical Processes",
+     "topics": [
+      {
+       "id": "nebraska-mathematical-processes",
+       "title": "Nebraska Mathematical Processes",
+       "subtopics": [
+        {
+         "id": "nebraska-mathematical-processes",
+         "title": "Nebraska Mathematical Processes",
+         "outcomes": [
+          {
+           "code": "MP.1",
+           "text": "Make sense of problems and persevere in solving them."
+          },
+          {
+           "code": "MP.2",
+           "text": "Reason quantitatively and abstractly and consider the reasoning of others."
+          },
+          {
+           "code": "MP.3",
+           "text": "Create and use representations to organize, record, and communicate mathematical ideas."
+          },
+          {
+           "code": "MP.4",
+           "text": "Analyze mathematical relationships to connect mathematical ideas."
+          },
+          {
+           "code": "MP.5",
+           "text": "Explain and justify mathematical ideas using precise mathematical language in written or oral communication."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "grade-1",
+     "title": "Grade 1",
+     "topics": [
+      {
+       "id": "number",
+       "title": "Number",
+       "subtopics": [
+        {
+         "id": "solve-problems-and-reason-with-number-concepts-u",
+         "title": "Solve problems and reason with number concepts using multiple representations, make connections within math and across disciplines, and communicate their ideas",
+         "outcomes": [
+          {
+           "code": "1.N.1.a",
+           "text": "Without counting, recognize and verbally label arrangements for briefly shown collections up to 20 (e.g.,\" I saw 16.\" \"How did you know?\" \"I saw 10 and 6, that is 16\")."
+          },
+          {
+           "code": "1.N.2.a",
+           "text": "Count verbally by ones and tens within 120 starting at any given number."
+          },
+          {
+           "code": "1.N.2.b",
+           "text": "Count verbally by ones and tens within 120 starting at any given number. Understand that the given number is a direct representation of the total objects in a given set and counting on each successive number represents adding an additional object, and counting back each proceeding number represents removing an object."
+          },
+          {
+           "code": "1.N.2.c",
+           "text": "Write numerals to match a representation of a given set of objects for numbers up to 120."
+          },
+          {
+           "code": "1.N.2.d",
+           "text": "Understand patterns of skip counting by 2s, 5s, and 10s."
+          },
+          {
+           "code": "1.N.3.a",
+           "text": "Understand 10 as a bundle, collection, or (more abstractly) composition of ten ones and that the two digits of a two-digit number represent a composition of some tens and some ones."
+          },
+          {
+           "code": "1.N.3.b",
+           "text": "Compare two, two-digit numbers using words greater than, less than, equal to, and symbols , =. Justify comparisons based on the number of tens and ones."
+          },
+          {
+           "code": "1.N.4.a",
+           "text": "Add and subtract within 20, using flexible strategies such as counting on or counting back, making ten, using ten, and using doubles and near doubles."
+          },
+          {
+           "code": "1.N.4.b",
+           "text": "Efficiently, flexibly, and accurately add and subtract within 10."
+          },
+          {
+           "code": "1.N.4.c",
+           "text": "Find the difference between two numbers that are multiples of 10, ranging from 10 to 90 using concrete models, drawings, or strategies, and write the corresponding equation."
+          },
+          {
+           "code": "1.N.4.d",
+           "text": "Mentally find 10 more or 10 less than a two-digit number without having to count and explain the reasoning used."
+          },
+          {
+           "code": "1.N.4.e",
+           "text": "Add within 100, including adding a two-digit number and a one-digit number, adding a two-digit number and a multiple of ten, using concrete models, drawings, and strategies that reflect an understanding of place value, the relationship between addition and subtraction, and the properties of operations. Relate the strategy to a written method and explain the reasoning used to solve."
+          },
+          {
+           "code": "1.N.4.f",
+           "text": "Understand that in adding two-digit numbers, one adds tens and tens, ones and ones; sometimes it is necessary to compose a ten."
+          },
+          {
+           "code": "1.N.4.g",
+           "text": "Subtract multiples of ten from two-digit numbers (positive or zero differences) using concrete models, drawings, and strategies that reflect an understanding of place value, the relationship between addition and subtraction, and the properties of operations. Relate the strategy to a written method and explain the reasoning used to solve."
+          },
+          {
+           "code": "1.N.5.a",
+           "text": "Use the meaning of the equal sign to determine if equations are true and give examples of equations that are true (e.g., 4 = 4, 6 = 7 – 1, 6 + 3 = 3 + 6, 7 + 2 = 5 + 4)."
+          },
+          {
+           "code": "1.N.5.b",
+           "text": "Use the relationship of addition and subtraction to solve subtraction problems (e.g., find 12 – 9 = , using the addition fact 9 + 3 = 12)."
+          },
+          {
+           "code": "1.N.5.c",
+           "text": "Determine the unknown whole number in an addition or subtraction equation (e.g., 7 + ? = 13)."
+          },
+          {
+           "code": "1.N.5.d",
+           "text": "Use the commutative property of addition to develop addition strategies and compose/decompose numbers to develop addition and subtraction strategies. (See other flexible strategies in 1.N.4.a49)."
+          },
+          {
+           "code": "1.N.5.e",
+           "text": "Solve problems that call for addition of three whole numbers whose sum is less than or equal to 20 using flexible strategies with objects, drawings, and/or equations."
+          },
+          {
+           "code": "1.N.5.f",
+           "text": "Solve authentic problems involving addition and subtraction within 20 in situations of adding to, taking from, putting together, taking apart, and comparing, with unknowns in all parts of the addition or subtraction problem by using objects, drawings, and/or equations with a symbol for the unknown number to represent the problem."
+          },
+          {
+           "code": "1.N.5.g",
+           "text": "Create an authentic problem to represent a given equation involving addition and subtraction within 20."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "geometry",
+       "title": "Geometry",
+       "subtopics": [
+        {
+         "id": "solve-problems-and-reason-with-geometry-using-mu",
+         "title": "Solve problems and reason with geometry using multiple representations, make connections within math and across disciplines, and communicate their ideas",
+         "outcomes": [
+          {
+           "code": "1.G.1.a",
+           "text": "Determine geometric attributes of two-dimensional shapes regardless of orientation or size for rhombi, trapezoids, and hexagons (e.g., a hexagon is closed with six sides)."
+          },
+          {
+           "code": "1.G.1.b",
+           "text": "Determine geometric attributes of three-dimensional shapes including cones, cylinders, cubes, and rectangular prisms regardless of orientation or size."
+          },
+          {
+           "code": "1.G.1.c",
+           "text": "Describe lines and sides of shapes as parallel or non-parallel."
+          },
+          {
+           "code": "1.G.1.d",
+           "text": "Partition circles and rectangles into two and four equal parts using the language halves and fourths."
+          },
+          {
+           "code": "1.G.2.a",
+           "text": "Measure the length of an object as a whole number of same-size, non-standard units by placing them end to end."
+          },
+          {
+           "code": "1.G.2.b",
+           "text": "Order three objects by directly comparing their lengths or indirectly by using a third object."
+          },
+          {
+           "code": "1.G.3.a",
+           "text": "Understand the value of dimes and pennies (e.g., a dime is equal to ten pennies) relating to tens and ones and solve problems involving dimes and pennies using the ¢ symbol appropriately."
+          },
+          {
+           "code": "1.G.3.b",
+           "text": "Count collections of like coins (penny, nickel, and dime) relating to patterns of counting by 1s, 5s, and 10s."
+          },
+          {
+           "code": "1.G.3.c",
+           "text": "Tell and write time to the half hour and hour using analog and digital clocks."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "data",
+       "title": "Data",
+       "subtopics": [
+        {
+         "id": "solve-problems-and-reason-with-data-probability-",
+         "title": "Solve problems and reason with data/probability using multiple representations, make connections within math and across disciplines, and communicate their ideas",
+         "outcomes": [
+          {
+           "code": "1.D.1.a",
+           "text": "Collect, organize, and represent a data set with up to three categories using a picture graph."
+          },
+          {
+           "code": "1.D.2.a",
+           "text": "Ask and answer questions about the total number of data points, how many in each category, and compare categories by identifying how many more or less are in a particular category using a picture graph."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "2",
+   "units": [
+    {
+     "id": "nebraska-mathematical-processes",
+     "title": "Nebraska Mathematical Processes",
+     "topics": [
+      {
+       "id": "nebraska-mathematical-processes",
+       "title": "Nebraska Mathematical Processes",
+       "subtopics": [
+        {
+         "id": "nebraska-mathematical-processes",
+         "title": "Nebraska Mathematical Processes",
+         "outcomes": [
+          {
+           "code": "MP.1",
+           "text": "Make sense of problems and persevere in solving them."
+          },
+          {
+           "code": "MP.2",
+           "text": "Reason quantitatively and abstractly and consider the reasoning of others."
+          },
+          {
+           "code": "MP.3",
+           "text": "Create and use representations to organize, record, and communicate mathematical ideas."
+          },
+          {
+           "code": "MP.4",
+           "text": "Analyze mathematical relationships to connect mathematical ideas."
+          },
+          {
+           "code": "MP.5",
+           "text": "Explain and justify mathematical ideas using precise mathematical language in written or oral communication."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "grade-2",
+     "title": "Grade 2",
+     "topics": [
+      {
+       "id": "number",
+       "title": "Number",
+       "subtopics": [
+        {
+         "id": "solve-problems-and-reason-with-number-concepts-u",
+         "title": "Solve problems and reason with number concepts using multiple representations, make connections within math and across disciplines, and communicate their ideas",
+         "outcomes": [
+          {
+           "code": "2.N.1.a",
+           "text": "Without counting, recognize and verbally label structured arrangements for briefly shown collections using groups, multiplicative thinking, and place value (e.g.,\" I saw 48.\" \"How did you know?\" \"I saw 4 groups of 10 and 2 groups of 4 is 8...4 tens and 8 ones...48\")."
+          },
+          {
+           "code": "2.N.2.a",
+           "text": "Count within 1,000, including skip counting by 5s, 10s, and 100s starting at a variety of multiples of 5, 10, or 100."
+          },
+          {
+           "code": "2.N.3.a",
+           "text": "Read and write numbers within the range of 0 to 1,000 using standard, word, and expanded forms."
+          },
+          {
+           "code": "2.N.3.b",
+           "text": "Understand 100 as a bundle, collection, or (more abstractly) composition of ten tens and that the three digits of a three-digit number represent a composition of some hundreds, some tens, and some ones."
+          },
+          {
+           "code": "2.N.3.c",
+           "text": "Compare two three-digit numbers by using symbols , = and justify the comparison based on the value of the hundreds, tens, and ones."
+          },
+          {
+           "code": "2.N.4.a",
+           "text": "Fluently add and subtract within 20."
+          },
+          {
+           "code": "2.N.4.b",
+           "text": "Add and subtract within 100 strategies based on place value including properties of operations, relationships between addition and subtraction, and algorithms."
+          },
+          {
+           "code": "2.N.4.c",
+           "text": "Mentally add or subtract 10 or 100 to or from a given number 100 to 900."
+          },
+          {
+           "code": "2.N.4.d",
+           "text": "Add up to three two-digit numbers using strategies based on place value and understanding of properties."
+          },
+          {
+           "code": "2.N.4.e",
+           "text": "Add and subtract within 1,000 using concrete models, drawings, and strategies that reflect an understanding of place value and the properties of operations."
+          },
+          {
+           "code": "2.N.5.a",
+           "text": "Solve authentic problems involving addition and subtraction within 100 in situations of addition and subtraction, including adding to, subtracting from, joining and separating, and comparing situations with unknowns in all positions using objects, models, drawings, verbal explanations, expressions, and equations."
+          },
+          {
+           "code": "2.N.5.b",
+           "text": "Create authentic problems to represent one-step addition and subtraction within 100 with unknowns in all positions."
+          },
+          {
+           "code": "2.N.5.c",
+           "text": "Use repeated addition to find the total number of objects arranged in an array no larger than five rows and five columns and write an equation to express the total."
+          },
+          {
+           "code": "2.N.5.d",
+           "text": "Identify a group of objects from 0 to 20 as even or odd by counting by 2s or by showing even numbers as a sum of two equal parts."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "geometry",
+       "title": "Geometry",
+       "subtopics": [
+        {
+         "id": "solve-problems-and-reason-with-geometry-using-mu",
+         "title": "Solve problems and reason with geometry using multiple representations, make connections within math and across disciplines, and communicate their ideas",
+         "outcomes": [
+          {
+           "code": "2.G.1.a",
+           "text": "Recognize and describe all faces of three-dimensional shapes as two-dimensional shapes. Identify and count attributes of solid shapes including the edges, faces, and vertices."
+          },
+          {
+           "code": "2.G.1.b",
+           "text": "Recognize and draw two-dimensional shapes having a specific number of sides, angles, and vertices including triangles, quadrilaterals, pentagons, and hexagons."
+          },
+          {
+           "code": "2.G.1.c",
+           "text": "Partition a rectangle into rows and columns of equal-sized squares and count to find the total."
+          },
+          {
+           "code": "2.G.1.d",
+           "text": "Divide circles and rectangles into two, three, or four equal parts and describe the parts using the language of halves, thirds, fourths, half of, a third of, and a fourth of."
+          },
+          {
+           "code": "2.G.1.e",
+           "text": "Recognize that equal shares of identical wholes need not have the same shape."
+          },
+          {
+           "code": "2.G.2.a",
+           "text": "Measure the length of an object using two different length units and describe how the measurements relate to the size of the specific unit."
+          },
+          {
+           "code": "2.G.2.b",
+           "text": "Compare the difference in length of objects using inches and feet or centimeters and meters."
+          },
+          {
+           "code": "2.G.3.a",
+           "text": "Identify and use appropriate tools for measuring length."
+          },
+          {
+           "code": "2.G.3.b",
+           "text": "Measure and estimate lengths using whole numbers with inches, feet, centimeters, and meters."
+          },
+          {
+           "code": "2.G.4.a",
+           "text": "Represent whole numbers as equally spaced lengths on a number line diagram. Use number lines to find sums and differences within 100."
+          },
+          {
+           "code": "2.G.4.b",
+           "text": "Use addition and subtraction within 100 to solve problems using the same standard-length units."
+          },
+          {
+           "code": "2.G.5.a",
+           "text": "Solve problems involving dollar bills, quarters, dimes, nickels, and pennies using $ and ¢ symbols appropriately."
+          },
+          {
+           "code": "2.G.5.b",
+           "text": "Identify and write time to five-minute intervals using analog and digital clocks and both a.m. and p.m."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "data",
+       "title": "Data",
+       "subtopics": [
+        {
+         "id": "solve-problems-and-reason-with-data-probability-",
+         "title": "Solve problems and reason with data/probability using multiple representations, make connections within math and across disciplines, and communicate their ideas",
+         "outcomes": [
+          {
+           "code": "2.D.1.a",
+           "text": "Ask authentic questions to generate data and represent the data using scaled picture graphs with up to four categories."
+          },
+          {
+           "code": "2.D.1.b",
+           "text": "Ask authentic questions to generate data and represent the data using bar graphs with up to four categories."
+          },
+          {
+           "code": "2.D.1.c",
+           "text": "Create and represent a data set by making a line plot using whole numbers."
+          },
+          {
+           "code": "2.D.2.a",
+           "text": "Analyze data using scaled picture graphs or bar graphs with up to four categories. Solve problems including one-step comparison problems, using information from the graphs."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "3",
+   "units": [
+    {
+     "id": "nebraska-mathematical-processes",
+     "title": "Nebraska Mathematical Processes",
+     "topics": [
+      {
+       "id": "nebraska-mathematical-processes",
+       "title": "Nebraska Mathematical Processes",
+       "subtopics": [
+        {
+         "id": "nebraska-mathematical-processes",
+         "title": "Nebraska Mathematical Processes",
+         "outcomes": [
+          {
+           "code": "MP.1",
+           "text": "Make sense of problems and persevere in solving them."
+          },
+          {
+           "code": "MP.2",
+           "text": "Reason quantitatively and abstractly and consider the reasoning of others."
+          },
+          {
+           "code": "MP.3",
+           "text": "Create and use representations to organize, record, and communicate mathematical ideas."
+          },
+          {
+           "code": "MP.4",
+           "text": "Analyze mathematical relationships to connect mathematical ideas."
+          },
+          {
+           "code": "MP.5",
+           "text": "Explain and justify mathematical ideas using precise mathematical language in written or oral communication."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "grade-3",
+     "title": "Grade 3",
+     "topics": [
+      {
+       "id": "number",
+       "title": "Number",
+       "subtopics": [
+        {
+         "id": "solve-problems-and-reason-with-number-concepts-u",
+         "title": "Solve problems and reason with number concepts using multiple representations, make connections within math and across disciplines, and communicate their ideas",
+         "outcomes": [
+          {
+           "code": "3.N.1.a",
+           "text": "Read, write, and demonstrate multiple equivalent representations for numbers up to 10,000 using objects or visual representations including standard form and expanded form."
+          },
+          {
+           "code": "3.N.1.b",
+           "text": "Represent and justify comparisons of whole numbers up to 10,000 using number lines and reasoning strategies."
+          },
+          {
+           "code": "3.N.2.a",
+           "text": "Partition two-dimensional figures into equal areas and express the area of each part as a unit fraction of the whole."
+          },
+          {
+           "code": "3.N.2.b",
+           "text": "Find parts of a whole using visual fraction models."
+          },
+          {
+           "code": "3.N.2.c",
+           "text": "Represent and understand a fraction as a number on a number line."
+          },
+          {
+           "code": "3.N.2.d",
+           "text": "Show and identify equivalent fractions using visual representations including pictures, manipulatives, and number lines."
+          },
+          {
+           "code": "3.N.2.e",
+           "text": "Justify whole numbers as fractions and identify fractions that are equivalent to whole numbers."
+          },
+          {
+           "code": "3.N.2.f",
+           "text": "Compare and order fractions having the same numerators or denominators by reasoning about their size."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "algebra",
+       "title": "Algebra",
+       "subtopics": [
+        {
+         "id": "solve-problems-and-reason-with-algebra-using-mul",
+         "title": "Solve problems and reason with algebra using multiple representations, make connections within math and across disciplines, and communicate their ideas",
+         "outcomes": [
+          {
+           "code": "3.A.1.a",
+           "text": "Add and subtract up to four-digit whole numbers with or without regrouping using strategies based on place value and algorithms."
+          },
+          {
+           "code": "3.A.1.b",
+           "text": "Determine the reasonableness of whole number sums and differences using estimations and number sense."
+          },
+          {
+           "code": "3.A.1.c",
+           "text": "Solve and write one-step whole number equations to represent authentic problems using the four operations including equations with an unknown start, unknown change, or unknown result."
+          },
+          {
+           "code": "3.A.1.d",
+           "text": "Interpret and solve two-step authentic problems involving whole numbers and the four operations."
+          },
+          {
+           "code": "3.A.1.e",
+           "text": "Apply commutative, associative, distributive, identity, and zero properties as strategies to multiply and divide."
+          },
+          {
+           "code": "3.A.1.f",
+           "text": "Use drawings, words, arrays, symbols, repeated addition, equal groups, and number lines to interpret and explain the meaning of multiplication and division and their relationship."
+          },
+          {
+           "code": "3.A.1.g",
+           "text": "Fluently multiply and divide within 100 using strategies based on understanding and properties of operations."
+          },
+          {
+           "code": "3.A.1.h",
+           "text": "Multiply one-digit whole numbers by multiples of 10 in the range of 10 to 90 using strategies based on place value and properties of operations."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "geometry",
+       "title": "Geometry",
+       "subtopics": [
+        {
+         "id": "solve-problems-and-reason-with-geometry-using-mu",
+         "title": "Solve problems and reason with geometry using multiple representations, make connections within math and across disciplines, and communicate their ideas",
+         "outcomes": [
+          {
+           "code": "3.G.1.1",
+           "text": "Sort quadrilaterals into categories according to their attributes."
+          },
+          {
+           "code": "3.G.2.a",
+           "text": "Solve authentic problems involving perimeters of polygons when given the side lengths or when given the perimeter and unknown side length(s)."
+          },
+          {
+           "code": "3.G.2.b",
+           "text": "Use concrete and pictorial models to measure areas in square units by counting square units."
+          },
+          {
+           "code": "3.G.2.c",
+           "text": "Find the area of a rectangle with whole-number side lengths by modeling with unit squares; show that area can be additive and is the same as would be found by multiplying the side lengths."
+          },
+          {
+           "code": "3.G.3.a",
+           "text": "Identify and use the appropriate tools and units of measurement, both customary and metric, to solve authentic problems involving length, weight, mass, liquid volume, and capacity (within the same system and unit)."
+          },
+          {
+           "code": "3.G.3.b",
+           "text": "Estimate and measure length to the nearest half inch, fourth inch, and centimeter."
+          },
+          {
+           "code": "3.G.4.a",
+           "text": "Tell and write time to the minute using both analog and digital clocks."
+          },
+          {
+           "code": "3.G.4.b",
+           "text": "Solve authentic problems involving addition and subtraction of time intervals and find elapsed time."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "data",
+       "title": "Data",
+       "subtopics": [
+        {
+         "id": "solve-problems-and-reason-with-data-probability-",
+         "title": "Solve problems and reason with data/probability using multiple representations, make connections within math and across disciplines, and communicate their ideas",
+         "outcomes": [
+          {
+           "code": "3.D.1.a",
+           "text": "Create scaled picture graphs and scaled bar graphs to represent a data set with more than four categories, including data collected through observations, surveys, and experiments."
+          },
+          {
+           "code": "3.D.1.b",
+           "text": "Generate and represent data using line plots where the horizontal scale is marked off in halves and whole number units."
+          },
+          {
+           "code": "3.D.2.a",
+           "text": "Analyze data and make simple statements using information represented in picture graphs, line plots, and bar graphs."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "4",
+   "units": [
+    {
+     "id": "nebraska-mathematical-processes",
+     "title": "Nebraska Mathematical Processes",
+     "topics": [
+      {
+       "id": "nebraska-mathematical-processes",
+       "title": "Nebraska Mathematical Processes",
+       "subtopics": [
+        {
+         "id": "nebraska-mathematical-processes",
+         "title": "Nebraska Mathematical Processes",
+         "outcomes": [
+          {
+           "code": "MP.1",
+           "text": "Make sense of problems and persevere in solving them."
+          },
+          {
+           "code": "MP.2",
+           "text": "Reason quantitatively and abstractly and consider the reasoning of others."
+          },
+          {
+           "code": "MP.3",
+           "text": "Create and use representations to organize, record, and communicate mathematical ideas."
+          },
+          {
+           "code": "MP.4",
+           "text": "Analyze mathematical relationships to connect mathematical ideas."
+          },
+          {
+           "code": "MP.5",
+           "text": "Explain and justify mathematical ideas using precise mathematical language in written or oral communication."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "grade-4",
+     "title": "Grade 4",
+     "topics": [
+      {
+       "id": "number",
+       "title": "Number",
+       "subtopics": [
+        {
+         "id": "students-will-solve-problems-and-reason-with-num",
+         "title": "Students will solve problems and reason with number concepts using multiple representations, make connections within math and across disciplines, and communicate their ideas",
+         "outcomes": [
+          {
+           "code": "4.N.1.a",
+           "text": "Read, write, and demonstrate multiple equivalent representations for whole numbers up to 1,000,000 and decimals to the hundredths using visual representations, standard form, and expanded form."
+          },
+          {
+           "code": "4.N.1.b",
+           "text": "Represent and justify comparisons of whole numbers up to 1,000,000 and decimals through the hundredths place using number lines and reasoning strategies."
+          },
+          {
+           "code": "4.N.1.c",
+           "text": "Recognize a digit in one place represents ten times what it represents in the place to its right."
+          },
+          {
+           "code": "4.N.1.d",
+           "text": "Use decimal notation for fractions with denominators of 10 or 100 (e.g., 43/100 = 0.43)."
+          },
+          {
+           "code": "4.N.2.a",
+           "text": "Explain and demonstrate how a mixed number is equivalent to a fraction greater than one and how a fraction greater than one is equivalent to a mixed number using visual fraction models and reasoning strategies."
+          },
+          {
+           "code": "4.N.2.b",
+           "text": "Explain and demonstrate how equivalent fractions are generated by multiplying by a fraction equivalent to 1 using visual fraction models and the Identity Property of Multiplication."
+          },
+          {
+           "code": "4.N.2.c",
+           "text": "Compare and order fractions having unlike numerators or denominators using number lines, benchmarks, reasoning strategies, and/or equivalence."
+          },
+          {
+           "code": "4.N.3.a",
+           "text": "Decompose a fraction into a sum of fractions with the same denominator in more than one way and record each decomposition with an equation and a visual representation."
+          },
+          {
+           "code": "4.N.3.b",
+           "text": "Explain the meaning of addition and subtraction of fractions with like denominators using visual fraction models, properties of operations, and reasoning strategies."
+          },
+          {
+           "code": "4.N.3.c",
+           "text": "Add and subtract fractions and mixed numbers with like denominators."
+          },
+          {
+           "code": "4.N.3.d",
+           "text": "Solve authentic problems involving addition and subtraction of fractions and mixed numbers with like denominators."
+          },
+          {
+           "code": "4.N.3.e",
+           "text": "Multiply a fraction by a whole number using visual fraction models and properties of operations."
+          },
+          {
+           "code": "4.N.4.a",
+           "text": "Determine whether a given whole number up to 100 is a multiple of a given one-digit number."
+          },
+          {
+           "code": "4.N.4.b",
+           "text": "Determine factors of any whole number up to 100 and classify a number up to 100 as prime or composite."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "algebra",
+       "title": "Algebra",
+       "subtopics": [
+        {
+         "id": "solve-problems-and-reason-with-algebra-using-mul",
+         "title": "Solve problems and reason with algebra using multiple representations, make connections within math and across disciplines, and communicate their ideas",
+         "outcomes": [
+          {
+           "code": "4.A.1.a",
+           "text": "Add and subtract multi-digit numbers using an algorithm."
+          },
+          {
+           "code": "4.A.1.b",
+           "text": "Multiply up to a four-digit whole number by a one-digit whole number and multiply a two-digit whole number by a two-digit whole number, using strategies based on place value, properties of operations, and algorithms."
+          },
+          {
+           "code": "4.A.1.c",
+           "text": "Divide up to a four-digit whole number by a one-digit divisor with and without a remainder using strategies based on place value."
+          },
+          {
+           "code": "4.A.1.d",
+           "text": "Determine the reasonableness of whole number products and quotients using estimations and number sense."
+          },
+          {
+           "code": "4.A.1.e",
+           "text": "Create a simple algebraic expression or equation using a variable for an unknown number to represent an authentic mathematical situation (e.g., 3 + n = 15, 81 ÷ n = 9)."
+          },
+          {
+           "code": "4.A.1.f",
+           "text": "Solve one- and two-step authentic problems using the four operations including interpreting remainders and the use of a letter to represent the unknown quantity."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "geometry",
+       "title": "Geometry",
+       "subtopics": [
+        {
+         "id": "solve-problems-and-reason-with-geometry-using-mu",
+         "title": "Solve problems and reason with geometry using multiple representations, make connections within math and across disciplines, and communicate their ideas",
+         "outcomes": [
+          {
+           "code": "4.G.1.a",
+           "text": "Identify, create, and describe points, lines, line segments, rays, angles, parallel lines, perpendicular lines, and intersecting lines."
+          },
+          {
+           "code": "4.G.1.b",
+           "text": "Justify the classification of angles as acute, obtuse, or right."
+          },
+          {
+           "code": "4.G.1.c",
+           "text": "Justify the classification of two-dimensional shapes based on the presence or absence of parallel and perpendicular lines or the presence or absence of specific angles."
+          },
+          {
+           "code": "4.G.1.d",
+           "text": "Recognize, draw, and justify lines of symmetry in two-dimensional shapes."
+          },
+          {
+           "code": "4.G.2.a",
+           "text": "Identify and use the appropriate tools, operations, and units of measurement, both customary and metric, to solve authentic problems involving time, length, weight, mass, and capacity."
+          },
+          {
+           "code": "4.G.2.b",
+           "text": "Determine the reasonableness of measurements involving time, length, weight, mass, capacity, and angles."
+          },
+          {
+           "code": "4.G.2.c",
+           "text": "Generate simple conversions from a larger unit to a smaller unit within the customary and metric systems of measurement."
+          },
+          {
+           "code": "4.G.2.d",
+           "text": "Measure angles in whole number degrees using a protractor and relate benchmark angle measurements to their rotation through a circle (e.g., 180º = 1/2 of a circle)."
+          },
+          {
+           "code": "4.G.2.e",
+           "text": "Recognize angle measures as additive and solve problems involving addition and subtraction to find unknown angles on a diagram."
+          },
+          {
+           "code": "4.G.3.a",
+           "text": "Apply perimeter and area formulas for rectangles to solve authentic problems."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "data",
+       "title": "Data",
+       "subtopics": [
+        {
+         "id": "solve-problems-and-reason-with-data-probability-",
+         "title": "Solve problems and reason with data/probability using multiple representations, make connections within math and across disciplines, and communicate their ideas",
+         "outcomes": [
+          {
+           "code": "4.D.1.a",
+           "text": "Generate and represent data using line plots where the horizontal scale is marked off in appropriate units—whole numbers, halves, fourths, or eighths."
+          },
+          {
+           "code": "4.D.2.a",
+           "text": "Solve authentic problems and analyze data involving addition or subtraction of fractions presented in line plots."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "5",
+   "units": [
+    {
+     "id": "nebraska-mathematical-processes",
+     "title": "Nebraska Mathematical Processes",
+     "topics": [
+      {
+       "id": "nebraska-mathematical-processes",
+       "title": "Nebraska Mathematical Processes",
+       "subtopics": [
+        {
+         "id": "nebraska-mathematical-processes",
+         "title": "Nebraska Mathematical Processes",
+         "outcomes": [
+          {
+           "code": "MP.1",
+           "text": "Make sense of problems and persevere in solving them."
+          },
+          {
+           "code": "MP.2",
+           "text": "Reason quantitatively and abstractly and consider the reasoning of others."
+          },
+          {
+           "code": "MP.3",
+           "text": "Create and use representations to organize, record, and communicate mathematical ideas."
+          },
+          {
+           "code": "MP.4",
+           "text": "Analyze mathematical relationships to connect mathematical ideas."
+          },
+          {
+           "code": "MP.5",
+           "text": "Explain and justify mathematical ideas using precise mathematical language in written or oral communication."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "grade-5",
+     "title": "Grade 5",
+     "topics": [
+      {
+       "id": "number",
+       "title": "Number",
+       "subtopics": [
+        {
+         "id": "solve-problems-and-reason-with-number-concepts-u",
+         "title": "Solve problems and reason with number concepts using multiple representations, make connections within math and across disciplines, and communicate their ideas",
+         "outcomes": [
+          {
+           "code": "5.N.1.a",
+           "text": "Read, write, and demonstrate multiple equivalent representations for multi-digit whole numbers and decimals through the thousandths place using standard form and expanded form."
+          },
+          {
+           "code": "5.N.1.b",
+           "text": "Recognize a digit in one place represents 1/10 of what it represents in the place to its left."
+          },
+          {
+           "code": "5.N.1.c",
+           "text": "Use whole number exponents to denote powers of 10."
+          },
+          {
+           "code": "5.N.2.a",
+           "text": "Generate equivalent forms of commonly used fractions and decimals (e.g., halves, fourths, fifths, tenths)."
+          },
+          {
+           "code": "5.N.2.b",
+           "text": "Represent and justify comparisons of whole numbers, fractions, mixed numbers, and decimals through the thousandths place using number lines, reasoning strategies, and/or equivalence."
+          },
+          {
+           "code": "5.N.3.a",
+           "text": "Interpret a fraction as division of the numerator by the denominator."
+          },
+          {
+           "code": "5.N.3.b",
+           "text": "Multiply a whole number by a fraction or a fraction by a fraction, including mixed numbers, using visual fraction models and properties of operations."
+          },
+          {
+           "code": "5.N.3.c",
+           "text": "Divide a unit fraction by a whole number and a whole number by a unit fraction using visual fraction models and properties of operations."
+          },
+          {
+           "code": "5.N.3.d",
+           "text": "Solve authentic problems involving addition, subtraction, and multiplication of fractions and mixed numbers with like and unlike denominators."
+          },
+          {
+           "code": "5.N.3.e",
+           "text": "Add and subtract fractions and mixed numbers with unlike denominators without simplifying."
+          },
+          {
+           "code": "5.N.3.f",
+           "text": "Solve authentic problems involving division of unit fractions by whole numbers and division of whole numbers by unit fractions."
+          },
+          {
+           "code": "5.N.3.g",
+           "text": "Add and subtract decimals to hundredths using strategies based on place value, properties of operations, and/or algorithms."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "algebra",
+       "title": "Algebra",
+       "subtopics": [
+        {
+         "id": "solve-problems-and-reason-with-algebra-using-mul",
+         "title": "Solve problems and reason with algebra using multiple representations, make connections within math and across disciplines, and communicate their ideas",
+         "outcomes": [
+          {
+           "code": "5.A.1.a",
+           "text": "Multiply multi-digit whole numbers using an algorithm."
+          },
+          {
+           "code": "5.A.1.b",
+           "text": "Divide four-digit whole numbers by a two-digit divisor, with and without remainders, using strategies based on place value."
+          },
+          {
+           "code": "5.A.1.c",
+           "text": "Justify the reasonableness of computations involving whole numbers, fractions, and decimals."
+          },
+          {
+           "code": "5.A.1.d",
+           "text": "Simplify authentic numerical or algebraic expressions using order of operations (excluding exponents)."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "geometry",
+       "title": "Geometry",
+       "subtopics": [
+        {
+         "id": "solve-problems-and-reason-with-geometry-using-mu",
+         "title": "Solve problems and reason with geometry using multiple representations, make connections within math and across disciplines, and communicate their ideas",
+         "outcomes": [
+          {
+           "code": "5.G.1.a",
+           "text": "Identify and describe faces, edges, and vertices of rectangular prisms."
+          },
+          {
+           "code": "5.G.1.b",
+           "text": "Recognize volume as an attribute of solid figures that is measured in cubic units."
+          },
+          {
+           "code": "5.G.1.c",
+           "text": "Justify the classification of two and three-dimensional figures in a hierarchy based on their properties."
+          },
+          {
+           "code": "5.G.2.a",
+           "text": "Identify the origin, x axis, and y axis of the coordinate plane."
+          },
+          {
+           "code": "5.G.2.b",
+           "text": "Graph and name points in the first quadrant of the coordinate plane using ordered pairs of whole numbers."
+          },
+          {
+           "code": "5.G.2.c",
+           "text": "Form ordered pairs from authentic problems involving rules or patterns, graph the ordered pairs in the first quadrant on a coordinate plane, and interpret coordinate values in the context of the situation."
+          },
+          {
+           "code": "5.G.3.a",
+           "text": "Generate conversions in authentic mathematical situations from larger units to smaller units and smaller units to larger units, within the customary and metric systems of measurement."
+          },
+          {
+           "code": "5.G.4.a",
+           "text": "Find the area of a rectangle with fractional side lengths by tiling it with unit squares of the fraction side lengths and show that the area is the same as would be found by multiplying the side lengths."
+          },
+          {
+           "code": "5.G.4.b",
+           "text": "Multiply fractional side lengths to find areas of rectangles and represent fraction products as rectangular areas."
+          },
+          {
+           "code": "5.G.4.c",
+           "text": "Use concrete models to measure the volume of rectangular prisms by counting cubic units."
+          },
+          {
+           "code": "5.G.4.d",
+           "text": "Find the volume of a rectangular prism with whole-number side lengths by modeling with unit cubes and show that the volume can be additive and is the same as would be found by multiplying the area of the base times height."
+          },
+          {
+           "code": "5.G.4.e",
+           "text": "Solve authentic problems by applying the formulas V = l × w × h and V = B × h for rectangular prisms to find volumes of rectangular prisms with whole number edge lengths."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "data",
+       "title": "Data",
+       "subtopics": [
+        {
+         "id": "solve-problems-and-reason-with-data-probability-",
+         "title": "Solve problems and reason with data/probability using multiple representations, make connections within math and across disciplines, and communicate their ideas",
+         "outcomes": [
+          {
+           "code": "5.D.1",
+           "text": "Data Collection: Students will formulate questions to collect, organize, and represent data."
+          },
+          {
+           "code": "5.D.2.a",
+           "text": "Represent, analyze, and solve authentic problems using information presented in one or more tables or line plots including whole numbers and fractions."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "6",
+   "units": [
+    {
+     "id": "nebraska-mathematical-processes",
+     "title": "Nebraska Mathematical Processes",
+     "topics": [
+      {
+       "id": "nebraska-mathematical-processes",
+       "title": "Nebraska Mathematical Processes",
+       "subtopics": [
+        {
+         "id": "nebraska-mathematical-processes",
+         "title": "Nebraska Mathematical Processes",
+         "outcomes": [
+          {
+           "code": "MP.1",
+           "text": "Make sense of problems and persevere in solving them."
+          },
+          {
+           "code": "MP.2",
+           "text": "Reason quantitatively and abstractly and consider the reasoning of others."
+          },
+          {
+           "code": "MP.3",
+           "text": "Create and use representations to organize, record, and communicate mathematical ideas."
+          },
+          {
+           "code": "MP.4",
+           "text": "Analyze mathematical relationships to connect mathematical ideas."
+          },
+          {
+           "code": "MP.5",
+           "text": "Explain and justify mathematical ideas using precise mathematical language in written or oral communication."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "grade-6",
+     "title": "Grade 6",
+     "topics": [
+      {
+       "id": "number",
+       "title": "Number",
+       "subtopics": [
+        {
+         "id": "solve-problems-and-reason-with-number-concepts-u",
+         "title": "Solve problems and reason with number concepts using multiple representations, make connections within math and across disciplines, and communicate their ideas",
+         "outcomes": [
+          {
+           "code": "6.N.1.a",
+           "text": "Determine common factors and common multiples."
+          },
+          {
+           "code": "6.N.1.b",
+           "text": "Determine prime factorization of numbers with and without exponents."
+          },
+          {
+           "code": "6.N.1.c",
+           "text": "Model integers using drawings, words, number lines, models, and symbols."
+          },
+          {
+           "code": "6.N.1.d",
+           "text": "Determine absolute value of rational numbers."
+          },
+          {
+           "code": "6.N.1.e",
+           "text": "Compare and order numbers including non-negative fractions and decimals, integers, and absolute values and locate them on the number line."
+          },
+          {
+           "code": "6.N.2.a",
+           "text": "Divide multi-digit whole numbers and decimals using an algorithm."
+          },
+          {
+           "code": "6.N.2.b",
+           "text": "Divide non-negative fractions and mixed numbers."
+          },
+          {
+           "code": "6.N.2.c",
+           "text": "Evaluate numerical expressions including absolute value and/or positive exponents with respect to order of operations."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "ratios-and-proportions",
+       "title": "Ratios And Proportions",
+       "subtopics": [
+        {
+         "id": "students-will-understand-ratio-concepts-and-use-",
+         "title": "Students will understand ratio concepts and use ratio reasoning to solve problems",
+         "outcomes": [
+          {
+           "code": "6.R.1.a",
+           "text": "Determine ratios from concrete models, drawings, and/or words."
+          },
+          {
+           "code": "6.R.1.b",
+           "text": "Explain and determine unit rates."
+          },
+          {
+           "code": "6.R.1.c",
+           "text": "Find a percent of a quantity as a rate per 100 and solve problems involving finding the whole, given a part and the percent."
+          },
+          {
+           "code": "6.R.1.d",
+           "text": "Convert among fractions, decimals, and percents using multiple representations."
+          },
+          {
+           "code": "6.R.1.e",
+           "text": "Solve authentic problems using ratios, unit rates, and percents."
+          },
+          {
+           "code": "6.R.1.f",
+           "text": "Use ratio reasoning to convert measurement units; manipulate and transform units appropriately when multiplying or dividing quantities."
+          },
+          {
+           "code": "6.R.2.a",
+           "text": "Identify the ordered pair of a given point in the coordinate plane."
+          },
+          {
+           "code": "6.R.2.b",
+           "text": "Plot the location of an ordered pair in the coordinate plane."
+          },
+          {
+           "code": "6.R.2.c",
+           "text": "Identify the location of a given point in the coordinate plane (e.g., axis, origin, quadrant)."
+          },
+          {
+           "code": "6.R.2.d",
+           "text": "Make tables of equivalent ratios relating quantities with whole number measurements."
+          },
+          {
+           "code": "6.R.2.e",
+           "text": "Use the constant of proportionality to find the missing value in ratio tables."
+          },
+          {
+           "code": "6.R.2.f",
+           "text": "Plot the pair of values from a ratio table on the coordinate plane."
+          },
+          {
+           "code": "6.R.2.g",
+           "text": "Explain what a point (x, y) on the graph of a proportional relationship means in terms of the situation."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "algebra",
+       "title": "Algebra",
+       "subtopics": [
+        {
+         "id": "solve-problems-and-reason-with-algebra-using-mul",
+         "title": "Solve problems and reason with algebra using multiple representations, make connections within math and across disciplines, and communicate their ideas",
+         "outcomes": [
+          {
+           "code": "6.A.1.a",
+           "text": "Recognize and generate equivalent algebraic expressions involving the distributive property and combining like terms."
+          },
+          {
+           "code": "6.A.1.b",
+           "text": "Given the value of the variable, evaluate algebraic expressions with non-negative rational numbers with respect to order of operations, which may include absolute value."
+          },
+          {
+           "code": "6.A.1.c",
+           "text": "Use substitution to determine if a given value for a variable makes an equation or inequality true."
+          },
+          {
+           "code": "6.A.1.d",
+           "text": "Solve one-step equations with non-negative rational numbers using addition, subtraction, multiplication, and division."
+          },
+          {
+           "code": "6.A.1.e",
+           "text": "Solve one-step inequalities with whole numbers using addition, subtraction, multiplication, and division and represent solutions on a number line (e.g., graph 3x > 3)."
+          },
+          {
+           "code": "6.A.2.a",
+           "text": "Create algebraic expressions (e.g., one operation, one variable as well as multiple operations, one variable) from word phrases."
+          },
+          {
+           "code": "6.A.2.b",
+           "text": "Write equations (e.g., one operation, one variable) to represent authentic situations involving non- negative rational numbers."
+          },
+          {
+           "code": "6.A.2.c",
+           "text": "Write inequalities (e.g., one operation, one variable) to represent authentic situations involving whole numbers."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "geometry",
+       "title": "Geometry",
+       "subtopics": [
+        {
+         "id": "solve-problems-and-reason-with-geometry-using-mu",
+         "title": "Solve problems and reason with geometry using multiple representations, make connections within math and across disciplines, and communicate their ideas",
+         "outcomes": [
+          {
+           "code": "6.G.1.a",
+           "text": "Identify and create nets to represent two-dimensional drawings of prisms and pyramids."
+          },
+          {
+           "code": "6.G.2",
+           "text": "Coordinate Geometry: Students will determine location, orientation, and relationships on the coordinate plane."
+          },
+          {
+           "code": "6.G.3.a",
+           "text": "Determine the area of quadrilaterals and triangles by composition and decomposition of these shapes, as well as applications of properties and formulas. Quadrilaterals include parallelograms and trapezoids."
+          },
+          {
+           "code": "6.G.3.b",
+           "text": "Determine the surface area of rectangular prisms and triangular prisms using nets as well as application of formulas."
+          },
+          {
+           "code": "6.G.3.c",
+           "text": "Apply volume formulas for triangular prisms."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "data",
+       "title": "Data",
+       "subtopics": [
+        {
+         "id": "solve-problems-and-reason-with-data-probability-",
+         "title": "Solve problems and reason with data/probability using multiple representations, make connections within math and across disciplines, and communicate their ideas",
+         "outcomes": [
+          {
+           "code": "6.D.1",
+           "text": "Data Collection and Statistical Methods: Students will formulate statistical investigative questions, collect data, and organize data."
+          },
+          {
+           "code": "6.D.2.a",
+           "text": "Represent data using dot plots, box-and-whisker plots, and histograms."
+          },
+          {
+           "code": "6.D.2.b",
+           "text": "Solve problems using information presented in dot plots, box-and-whisker plots, histograms, and circle graphs."
+          },
+          {
+           "code": "6.D.2.c",
+           "text": "Find and interpret the mean, median, mode, and range for a set of data."
+          },
+          {
+           "code": "6.D.2.d",
+           "text": "Compare the mean, median, mode, and range from two sets of data."
+          },
+          {
+           "code": "6.D.2.e",
+           "text": "Compare and interpret data sets based upon their measures of central tendency and graphical representations (e.g., center, spread, shape)."
+          },
+          {
+           "code": "6.D.3.a",
+           "text": "Identify a list of possible outcomes for a simple event."
+          },
+          {
+           "code": "6.D.3.b",
+           "text": "Describe the theoretical and experimental probability of an event using a fraction, percentage, and decimal."
+          },
+          {
+           "code": "6.D.3.c",
+           "text": "Express the degree of likelihood (possible, impossible, certain, more likely, equally likely, or less likely) of simple events."
+          },
+          {
+           "code": "6.D.3.d",
+           "text": "Compare and contrast theoretical and experimental probabilities."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "7",
+   "units": [
+    {
+     "id": "nebraska-mathematical-processes",
+     "title": "Nebraska Mathematical Processes",
+     "topics": [
+      {
+       "id": "nebraska-mathematical-processes",
+       "title": "Nebraska Mathematical Processes",
+       "subtopics": [
+        {
+         "id": "nebraska-mathematical-processes",
+         "title": "Nebraska Mathematical Processes",
+         "outcomes": [
+          {
+           "code": "MP.1",
+           "text": "Make sense of problems and persevere in solving them."
+          },
+          {
+           "code": "MP.2",
+           "text": "Reason quantitatively and abstractly and consider the reasoning of others."
+          },
+          {
+           "code": "MP.3",
+           "text": "Create and use representations to organize, record, and communicate mathematical ideas."
+          },
+          {
+           "code": "MP.4",
+           "text": "Analyze mathematical relationships to connect mathematical ideas."
+          },
+          {
+           "code": "MP.5",
+           "text": "Explain and justify mathematical ideas using precise mathematical language in written or oral communication."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "grade-7",
+     "title": "Grade 7",
+     "topics": [
+      {
+       "id": "number",
+       "title": "Number",
+       "subtopics": [
+        {
+         "id": "solve-problems-and-reason-with-number-concepts-u",
+         "title": "Solve problems and reason with number concepts using multiple representations, make connections within math and across disciplines, and communicate their ideas",
+         "outcomes": [
+          {
+           "code": "7.N.1",
+           "text": "Numeric Relationships: Students will demonstrate, represent, and show relationships among rational numbers within the base-ten number system."
+          },
+          {
+           "code": "7.N.2.a",
+           "text": "Add, subtract, multiply, and divide rational numbers (e.g., positive and negative fractions, decimals, and integers)."
+          },
+          {
+           "code": "7.N.2.b",
+           "text": "Apply properties of operations (commutative, associative, distributive, identity, inverse, zero) as strategies for problem solving with rational numbers."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "ratios-and-proportions",
+       "title": "Ratios And Proportions",
+       "subtopics": [
+        {
+         "id": "students-will-understand-ratio-concepts-and-use-",
+         "title": "Students will understand ratio concepts and use ratio reasoning to solve problems",
+         "outcomes": [
+          {
+           "code": "7.R.1.a",
+           "text": "Decide whether two quantities are in a proportional relationship (e.g., by testing for equivalent ratios in a table)."
+          },
+          {
+           "code": "7.R.1.b",
+           "text": "Represent and solve authentic problems with proportions."
+          },
+          {
+           "code": "7.R.1.c",
+           "text": "Use proportional relationships to solve authentic percent problems (e.g., percent change, sales tax, mark-up, discount, tip)."
+          },
+          {
+           "code": "7.R.1.d",
+           "text": "Solve authentic problems involving scale drawings."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "algebra",
+       "title": "Algebra",
+       "subtopics": [
+        {
+         "id": "solve-problems-and-reason-with-algebra-using-mul",
+         "title": "Solve problems and reason with algebra using multiple representations, make connections within math and across disciplines, and communicate their ideas",
+         "outcomes": [
+          {
+           "code": "7.A.1.a",
+           "text": "Use factoring and properties of operations to create equivalent algebraic expressions (e.g., 2x + 6 = 2(x + 3))."
+          },
+          {
+           "code": "7.A.1.b",
+           "text": "Given the value of the variable(s), evaluate algebraic expressions, which may include absolute value."
+          },
+          {
+           "code": "7.A.1.c",
+           "text": "Solve one- and two-step equations involving rational numbers."
+          },
+          {
+           "code": "7.A.1.d",
+           "text": "Solve equations using the distributive property and combining like terms."
+          },
+          {
+           "code": "7.A.1.e",
+           "text": "Solve one- and two-step inequalities involving integers and represent solutions on a number line."
+          },
+          {
+           "code": "7.A.2.a",
+           "text": "Write one- and two-step equations involving rational numbers from words, tables, and authentic situations."
+          },
+          {
+           "code": "7.A.2.b",
+           "text": "Write one- and two-step inequalities to represent authentic situations involving integers."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "geometry",
+       "title": "Geometry",
+       "subtopics": [
+        {
+         "id": "solve-problems-and-reason-with-geometry-using-mu",
+         "title": "Solve problems and reason with geometry using multiple representations, make connections within math and across disciplines, and communicate their ideas",
+         "outcomes": [
+          {
+           "code": "7.G.1.a",
+           "text": "Apply properties of adjacent, complementary, supplementary, linear pair, and vertical angles to find missing angle measures."
+          },
+          {
+           "code": "7.G.2.a",
+           "text": "Draw polygons in the coordinate plane given coordinates for the vertices."
+          },
+          {
+           "code": "7.G.2.b",
+           "text": "Calculate vertical and horizontal distances in the coordinate plane to find perimeter and area of rectangles."
+          },
+          {
+           "code": "7.G.3.a",
+           "text": "Solve authentic problems involving perimeter and area of composite shapes made from triangles and quadrilaterals."
+          },
+          {
+           "code": "7.G.3.b",
+           "text": "Determine surface area and volume of composite rectangular and triangular prisms."
+          },
+          {
+           "code": "7.G.3.c",
+           "text": "Determine the area and circumference of circles both on and off the coordinate plane using 3.14 for the value of Pi."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "data",
+       "title": "Data",
+       "subtopics": [
+        {
+         "id": "solve-problems-and-reason-with-data-probability-",
+         "title": "Solve problems and reason with data/probability using multiple representations, make connections within math and across disciplines, and communicate their ideas",
+         "outcomes": [
+          {
+           "code": "7.D.1.a",
+           "text": "Create an investigative question and collect data."
+          },
+          {
+           "code": "7.D.1.b",
+           "text": "Generate conclusions about a population based on a random sample."
+          },
+          {
+           "code": "7.D.1.c",
+           "text": "Identify and critique biases in various data representations."
+          },
+          {
+           "code": "7.D.2",
+           "text": "Analyze Data and Interpret Results: Students will represent and analyze the data and interpret the results."
+          },
+          {
+           "code": "7.D.3.a",
+           "text": "Find theoretical and experimental probabilities for compound independent and dependent events."
+          },
+          {
+           "code": "7.D.3.b",
+           "text": "Identify complementary events and calculate their probabilities."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "8",
+   "units": [
+    {
+     "id": "nebraska-mathematical-processes",
+     "title": "Nebraska Mathematical Processes",
+     "topics": [
+      {
+       "id": "nebraska-mathematical-processes",
+       "title": "Nebraska Mathematical Processes",
+       "subtopics": [
+        {
+         "id": "nebraska-mathematical-processes",
+         "title": "Nebraska Mathematical Processes",
+         "outcomes": [
+          {
+           "code": "MP.1",
+           "text": "Make sense of problems and persevere in solving them."
+          },
+          {
+           "code": "MP.2",
+           "text": "Reason quantitatively and abstractly and consider the reasoning of others."
+          },
+          {
+           "code": "MP.3",
+           "text": "Create and use representations to organize, record, and communicate mathematical ideas."
+          },
+          {
+           "code": "MP.4",
+           "text": "Analyze mathematical relationships to connect mathematical ideas."
+          },
+          {
+           "code": "MP.5",
+           "text": "Explain and justify mathematical ideas using precise mathematical language in written or oral communication."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "grade-8",
+     "title": "Grade 8",
+     "topics": [
+      {
+       "id": "number",
+       "title": "Number",
+       "subtopics": [
+        {
+         "id": "solve-problems-and-reason-with-number-concepts-u",
+         "title": "Solve problems and reason with number concepts using multiple representations, make connections within math and across disciplines, and communicate their ideas",
+         "outcomes": [
+          {
+           "code": "8.N.1.a",
+           "text": "Determine subsets of numbers as natural, whole, integer, rational, irrational, or real based on the definitions of these sets of numbers."
+          },
+          {
+           "code": "8.N.1.b",
+           "text": "Represent numbers with positive and negative exponents and in scientific notation."
+          },
+          {
+           "code": "8.N.1.c",
+           "text": "Describe the difference between a rational and irrational number."
+          },
+          {
+           "code": "8.N.1.d",
+           "text": "Approximate, compare, and order real numbers, both rational and irrational, and locate them on the number line."
+          },
+          {
+           "code": "8.N.2.a",
+           "text": "Evaluate the square roots of perfect squares less than or equal to 400 and cube roots of perfect cubes less than or equal to 125."
+          },
+          {
+           "code": "8.N.2.b",
+           "text": "Simplify numerical expressions involving integer exponents, square roots, and cube roots (e.g., 4-2 is the same as 1/16)."
+          },
+          {
+           "code": "8.N.2.c",
+           "text": "Evaluate numerical expressions involving absolute value."
+          },
+          {
+           "code": "8.N.2.d",
+           "text": "Multiply and divide numbers using scientific notation."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "algebra",
+       "title": "Algebra",
+       "subtopics": [
+        {
+         "id": "solve-problems-and-reason-with-algebra-using-mul",
+         "title": "Solve problems and reason with algebra using multiple representations, make connections within math and across disciplines, and communicate their ideas",
+         "outcomes": [
+          {
+           "code": "8.A.1.a",
+           "text": "Describe single variable equations as having one solution, no solution, or infinitely many solutions."
+          },
+          {
+           "code": "8.A.1.b",
+           "text": "Solve multi-step equations involving rational numbers with the same variable appearing on both sides of the equation."
+          },
+          {
+           "code": "8.A.1.c",
+           "text": "Solve equations of the form x2 = k(k <= 400) and x3 = k(k <= 125), where k is a positive rational number, using square root and cube root symbols."
+          },
+          {
+           "code": "8.A.2.a",
+           "text": "Write multi-step single variable equations from words, tables, and authentic situations."
+          },
+          {
+           "code": "8.A.2.b",
+           "text": "Determine and describe the rate of change for given situations through the use of tables and graphs."
+          },
+          {
+           "code": "8.A.2.c",
+           "text": "Graph proportional relationships and interpret the rate of change."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "geometry",
+       "title": "Geometry",
+       "subtopics": [
+        {
+         "id": "solve-problems-and-reason-with-geometry-using-mu",
+         "title": "Solve problems and reason with geometry using multiple representations, make connections within math and across disciplines, and communicate their ideas",
+         "outcomes": [
+          {
+           "code": "8.G.1.a",
+           "text": "Determine and use the relationships of the interior angles of a triangle to solve for missing measures."
+          },
+          {
+           "code": "8.G.1.b",
+           "text": "Identify and apply geometric properties of parallel lines cut by a transversal and the resulting corresponding same side interior, alternate interior, and alternate exterior angles to find missing measures."
+          },
+          {
+           "code": "8.G.2.a",
+           "text": "Perform and describe positions and orientations of shapes under single transformations including rotations in multiples of 90 degrees about the origin, translations, reflections, and dilations on and off the coordinate plane."
+          },
+          {
+           "code": "8.G.2.b",
+           "text": "Determine if two-dimensional figures are congruent or similar."
+          },
+          {
+           "code": "8.G.2.c",
+           "text": "Perform and describe positions and orientations of shapes under a sequence of transformations on and off the coordinate plane."
+          },
+          {
+           "code": "8.G.3.a",
+           "text": "Explain a model of the Pythagorean Theorem."
+          },
+          {
+           "code": "8.G.3.b",
+           "text": "Apply the Pythagorean Theorem to find side lengths of triangles and to solve authentic problems."
+          },
+          {
+           "code": "8.G.3.c",
+           "text": "Find the distance between any two points on the coordinate plane using the Pythagorean Theorem."
+          },
+          {
+           "code": "8.G.3.d",
+           "text": "Determine the volume of cones, cylinders, and spheres and solve authentic problems using volumes."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "data",
+       "title": "Data",
+       "subtopics": [
+        {
+         "id": "solve-problems-and-reason-with-data-probability-",
+         "title": "Solve problems and reason with data/probability using multiple representations, make connections within math and across disciplines, and communicate their ideas",
+         "outcomes": [
+          {
+           "code": "8.D.1",
+           "text": "Data Collection and Statistical Methods: Students will formulate statistical investigative questions, collect data, and organize data."
+          },
+          {
+           "code": "8.D.2.a",
+           "text": "Represent and interpret bivariate data (e.g., ordered pairs) using scatter plots."
+          },
+          {
+           "code": "8.D.2.b",
+           "text": "Describe patterns such as positive or negative association, linear or nonlinear association, clustering, and outliers when bivariate data is represented on a coordinate plane."
+          },
+          {
+           "code": "8.D.2.c",
+           "text": "Draw an informal line of best fit based on the closeness of the data points to the line."
+          },
+          {
+           "code": "8.D.2.d",
+           "text": "Use a linear model to make predictions and interpret the rate of change and y-intercept in context."
+          },
+          {
+           "code": "8.D.3",
+           "text": "Probability: Students will interpret and apply concepts of probability."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "9-12",
+   "units": [
+    {
+     "id": "nebraska-mathematical-processes",
+     "title": "Nebraska Mathematical Processes",
+     "topics": [
+      {
+       "id": "nebraska-mathematical-processes",
+       "title": "Nebraska Mathematical Processes",
+       "subtopics": [
+        {
+         "id": "nebraska-mathematical-processes",
+         "title": "Nebraska Mathematical Processes",
+         "outcomes": [
+          {
+           "code": "MP.1",
+           "text": "Make sense of problems and persevere in solving them."
+          },
+          {
+           "code": "MP.2",
+           "text": "Reason quantitatively and abstractly and consider the reasoning of others."
+          },
+          {
+           "code": "MP.3",
+           "text": "Create and use representations to organize, record, and communicate mathematical ideas."
+          },
+          {
+           "code": "MP.4",
+           "text": "Analyze mathematical relationships to connect mathematical ideas."
+          },
+          {
+           "code": "MP.5",
+           "text": "Explain and justify mathematical ideas using precise mathematical language in written or oral communication."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "high-school",
+     "title": "High School",
+     "topics": [
+      {
+       "id": "number",
+       "title": "Number",
+       "subtopics": [
+        {
+         "id": "solve-problems-and-reason-with-number-concepts-u",
+         "title": "Solve problems and reason with number concepts using multiple representations, make connections within math and across disciplines, and communicate their ideas",
+         "outcomes": [
+          {
+           "code": "HS.N.1.a",
+           "text": "Select, apply, and explain the method of computation when problem solving using real numbers (e.g., models, mental computation, paper-pencil, technology)."
+          },
+          {
+           "code": "HS.N.1.b",
+           "text": "Determine if the context of a problem calls for an approximation or an exact value."
+          },
+          {
+           "code": "HS.N.1.c",
+           "text": "Determine the rounding convention to be used based on the context of a problem."
+          },
+          {
+           "code": "HS.N.1.d",
+           "text": "Estimate a value using the concept of betweenness by bounding above and below (e.g., since log(10) = 1 and log(1,000) = 3 we know log(500) is between 1 and 3)."
+          },
+          {
+           "code": "HS.N.1.e",
+           "text": "Determine the tolerance interval and percent of error in measurement."
+          },
+          {
+           "code": "HS.N.1.f",
+           "text": "Convert equivalent rates (e.g., miles per hour to feet per second)."
+          },
+          {
+           "code": "HS.N.1.g",
+           "text": "Determine whether extremely large or extremely small quantities can be reasonably represented by a calculator or graphing utility."
+          },
+          {
+           "code": "HS.N.1.h",
+           "text": "Use scientific notation to appropriately represent large and small quantities."
+          },
+          {
+           "code": "HS.N.2.a",
+           "text": "Extend the properties of exponents to rational numbers."
+          },
+          {
+           "code": "HS.N.2.b",
+           "text": "Use properties of rational and irrational numbers."
+          },
+          {
+           "code": "HS.N.2.c",
+           "text": "Demonstrate, represent, and show relationships among the subsets of real numbers and the complex number system."
+          },
+          {
+           "code": "HS.N.2.d",
+           "text": "Compute with subsets of the complex number system including imaginary, rational, irrational, integers, whole, and natural numbers."
+          },
+          {
+           "code": "HS.N.3.a",
+           "text": "Understand roundoff error and why roundoff error accumulates when rounding occurs prior to the last step in a computation."
+          },
+          {
+           "code": "HS.N.3.b",
+           "text": "Use estimation methods to check the reasonableness of real number computations and decide if the problem calls for an approximation (including appropriate rounding) or an exact number."
+          },
+          {
+           "code": "HS.N.3.c",
+           "text": "Use units to assess the validity of an answer in the context of a problem."
+          },
+          {
+           "code": "HS.N.3.d",
+           "text": "Communicate the meaning of an answer in the context of a problem."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "algebra",
+       "title": "Algebra",
+       "subtopics": [
+        {
+         "id": "solve-problems-and-reason-with-algebra-using-mul",
+         "title": "Solve problems and reason with algebra using multiple representations, make connections within math and across disciplines, and communicate their ideas",
+         "outcomes": [
+          {
+           "code": "HS.A.1.a",
+           "text": "Demonstrate that functions are a well mapped subdomain of relations."
+          },
+          {
+           "code": "HS.A.1.b",
+           "text": "Analyze a relation to determine if it is a function given mapping diagrams, function notation (e.g., f(x)=x2), a table, or a graph."
+          },
+          {
+           "code": "HS.A.1.c",
+           "text": "Classify a function given its mapping diagram, function notation, table, or graph as a linear, quadratic, absolute value, exponential, or other function."
+          },
+          {
+           "code": "HS.A.1.d",
+           "text": "Analyze a function's domain and range to determine if it is one-to-one and has an inverse function both algebraically and graphically."
+          },
+          {
+           "code": "HS.A.1.e",
+           "text": "Define, interpret, and analyze linear, quadratic, absolute value, and exponential functions using the points of interest of the functions and graphing technology."
+          },
+          {
+           "code": "HS.A.1.f",
+           "text": "Identify, analyze, and apply transformations of existing functions (including translation and dilation)."
+          },
+          {
+           "code": "HS.A.1.g",
+           "text": "Interpret logarithmic equations as exponential equations."
+          },
+          {
+           "code": "HS.A.1.h",
+           "text": "Describe arithmetic sequences using tables of values and functions in explicit and recursive forms."
+          },
+          {
+           "code": "HS.A.1.i",
+           "text": "Describe geometric sequences using tables of values and functions in explicit and recursive forms."
+          },
+          {
+           "code": "HS.A.2.a",
+           "text": "Analyze and explain the properties used in solving equations, inequalities, systems of linear equations, systems of linear inequalities, and literal equations."
+          },
+          {
+           "code": "HS.A.2.b",
+           "text": "Generate expressions in equivalent forms by using algebraic properties to make different characteristics or features visible."
+          },
+          {
+           "code": "HS.A.2.c",
+           "text": "Analyze equations and inequalities to determine and apply efficient methods to solve and use appropriate technology as needed."
+          },
+          {
+           "code": "HS.A.2.d",
+           "text": "Calculate the slope (rate of change) of a line given coordinate points, a graph, or a table of values."
+          },
+          {
+           "code": "HS.A.2.e",
+           "text": "Write and graph equations of functions (linear, absolute value, quadratic, and exponential) using the points of interest of the function."
+          },
+          {
+           "code": "HS.A.2.f",
+           "text": "Given a line, write the equation of a line that is parallel or perpendicular to it."
+          },
+          {
+           "code": "HS.A.2.g",
+           "text": "Perform and explain operations such as addition, subtraction, multiplication, division, and factoring on polynomials."
+          },
+          {
+           "code": "HS.A.2.h",
+           "text": "Explain the connection between the factors of a polynomial and the zeros of a polynomial."
+          },
+          {
+           "code": "HS.A.2.i",
+           "text": "Combine functions by composition and perform operations on functions."
+          },
+          {
+           "code": "HS.A.3.a",
+           "text": "Analyze and model authentic situations using various representations and appropriate technology."
+          },
+          {
+           "code": "HS.A.3.b",
+           "text": "Identify, interpret, relate, and graph the factors, x-intercepts, roots, and zeros of polynomial functions using algebraic and graphing methods."
+          },
+          {
+           "code": "HS.A.3.c",
+           "text": "Identify and predict appropriate solutions to equations given context and domain/range (e.g., extraneous solutions, imaginary solutions, no solution, infinitely many solutions)."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "geometry",
+       "title": "Geometry",
+       "subtopics": [
+        {
+         "id": "solve-problems-and-reason-with-geometry-using-mu",
+         "title": "Solve problems and reason with geometry using multiple representations, make connections within math and across disciplines, and communicate their ideas",
+         "outcomes": [
+          {
+           "code": "HS.G.1.a",
+           "text": "Demonstrate that two figures are similar or congruent by using a sequence of rigid motions and dilations that map a figure onto the other in problems both with and without coordinates."
+          },
+          {
+           "code": "HS.G.1.b",
+           "text": "Describe symmetries of a figure in terms of rigid motions that map a figure onto itself and make inferences about symmetric figures (e.g., unknown side lengths or angle measures) in problems both with and without coordinates."
+          },
+          {
+           "code": "HS.G.1.c",
+           "text": "Explain how the criteria for triangle congruence and similarity (ASA, SAS, AAS, and SSS congruence; AA similarity criterion) follow from the definition of congruence and similarity in terms of corresponding parts."
+          },
+          {
+           "code": "HS.G.1.d",
+           "text": "Identify and apply right triangle relationships including converse of the Pythagorean Theorem."
+          },
+          {
+           "code": "HS.G.1.e",
+           "text": "Apply side and angle relationships of special right triangles (30 degree-60 degree-90 degree and 45 degree-45 degree-90 degree) to solve geometric problems."
+          },
+          {
+           "code": "HS.G.1.f",
+           "text": "Identify and apply right triangle relationships including sine, cosine, and tangent."
+          },
+          {
+           "code": "HS.G.1.g",
+           "text": "Apply interior and exterior angle formulas for n-gons and apply to authentic situations."
+          },
+          {
+           "code": "HS.G.1.h",
+           "text": "Compare/contrast the properties of quadrilaterals: parallelograms, rectangles, rhombi, squares, kites, trapezoids, and isosceles trapezoids."
+          },
+          {
+           "code": "HS.G.1.i",
+           "text": "Use slope and the distance formula to determine the type of quadrilateral."
+          },
+          {
+           "code": "HS.G.1.j",
+           "text": "Identify, describe, apply, and reason through properties of central angles, inscribed angles, angles formed by intersecting chords, secants, and/or tangents to find the measures of angles related to the circle, arc lengths, and areas of sectors."
+          },
+          {
+           "code": "HS.G.2.a",
+           "text": "Convert between various units of volume (e.g., cubic feet to cubic yards)."
+          },
+          {
+           "code": "HS.G.2.b",
+           "text": "Apply the effect of a scale factor to determine the volume of similar three-dimensional shapes and solids."
+          },
+          {
+           "code": "HS.G.2.c",
+           "text": "Determine surface area and volume of pyramids, as well as solids that are composites of pyramids, prisms, spheres, cylinders, and cones, using formulas and appropriate units."
+          },
+          {
+           "code": "HS.G.3.a",
+           "text": "Derive the midpoint formula using the concept of average and apply the midpoint formula to find coordinates."
+          },
+          {
+           "code": "HS.G.3.b",
+           "text": "Find the images and preimages of transformations of a point, shape, or a relation on the coordinate plane. Transformations include the following and their compositions: reflections across horizontal and vertical lines and the lines y=x and y=-x, rotations about the origin of 90 degrees, dilations about the origin by any positive scale factor, and any translation."
+          },
+          {
+           "code": "HS.G.3.c",
+           "text": "Find the equation of a circle given the radius and the center."
+          },
+          {
+           "code": "HS.G.4.a",
+           "text": "Know and use definitions to make deductions in mathematical argumentation (e.g., syllogism, detachment)."
+          },
+          {
+           "code": "HS.G.4.b",
+           "text": "Evaluate the validity of conditional statements, including biconditional statements (e.g., conditional, converse, contrapositive, inverse)."
+          },
+          {
+           "code": "HS.G.4.c",
+           "text": "Evaluate the validity of an argument communicated in different ways (e.g., a flow format, two- column, paragraph format)."
+          },
+          {
+           "code": "HS.G.4.d",
+           "text": "Use coordinate geometry to prove triangles are right, acute, obtuse, isosceles, equilateral, or scalene."
+          },
+          {
+           "code": "HS.G.4.e",
+           "text": "Prove and apply geometric properties and theorems regarding triangles, congruence, and similarity using deductive reasoning."
+          },
+          {
+           "code": "HS.G.4.f",
+           "text": "Prove and apply geometric theorems about quadrilaterals using deductive reasoning."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "data",
+       "title": "Data",
+       "subtopics": [
+        {
+         "id": "solve-problems-and-reason-with-data-probability-",
+         "title": "Solve problems and reason with data/probability using multiple representations, make connections within math and across disciplines, and communicate their ideas",
+         "outcomes": [
+          {
+           "code": "HS.D.1.a",
+           "text": "Formulate multi-variable statistical investigative questions and determine how data can be collected and analyzed to provide an answer."
+          },
+          {
+           "code": "HS.D.1.b",
+           "text": "Apply an appropriate data collection plan when collecting primary data for the statistical investigative question of interest."
+          },
+          {
+           "code": "HS.D.1.c",
+           "text": "Use appropriate technology, including spreadsheet-based logic, to organize data for analysis."
+          },
+          {
+           "code": "HS.D.1.d",
+           "text": "Distinguish between surveys, observational studies, and experiments."
+          },
+          {
+           "code": "HS.D.1.e",
+           "text": "Understand what constitutes good practice in designing a sample survey, an experiment, and an observational study."
+          },
+          {
+           "code": "HS.D.1.f",
+           "text": "Understand issues of bias and confounding variables in a study and their implications for interpretation."
+          },
+          {
+           "code": "HS.D.2.a",
+           "text": "Identify appropriate ways to summarize and then represent the distribution of univariate data and bivariate data through the construction of histograms, dot plots, stem plots, box plots, cumulative relative frequency graphs, time plots, circle graphs, stacked bar graphs, and mosaic bar graphs by hand or with technology."
+          },
+          {
+           "code": "HS.D.2.b",
+           "text": "Describe the shape, identify any outliers, and determine the spread of a data set."
+          },
+          {
+           "code": "HS.D.2.c",
+           "text": "Select and determine the appropriate measure of center based on the shape of a distribution and/or the presence of outliers."
+          },
+          {
+           "code": "HS.D.2.d",
+           "text": "Recognize when a data set can be reasonably said to be normally distributed and draw conclusions about the data from the associated normal distribution."
+          },
+          {
+           "code": "HS.D.2.e",
+           "text": "Summarize categorical data for two categories in two-way frequency tables. Interpret relative frequencies in the context of the data and recognize possible associations and trends in the data."
+          },
+          {
+           "code": "HS.D.2.f",
+           "text": "Represent data on two quantitative variables on a scatter plot and describe how the variables are related."
+          },
+          {
+           "code": "HS.D.2.g",
+           "text": "Use technology to develop regression models for linear and non-linear data to predict unobserved outcomes. Interpret slope and y-intercept in the context of the problem."
+          },
+          {
+           "code": "HS.D.2.h",
+           "text": "Measure the strength of association using correlation coefficients for regression curves and interpret their meanings for the model."
+          },
+          {
+           "code": "HS.D.2.i",
+           "text": "Use residuals and residual plots to judge the quality of a regression model."
+          },
+          {
+           "code": "HS.D.2.j",
+           "text": "Recognize and explain when arguments based on data confuse correlation with causation."
+          },
+          {
+           "code": "HS.D.2.k",
+           "text": "Understand what constitutes statistical significance. Interpret statistical significance in the context of a situation and answer investigative questions appropriately."
+          },
+          {
+           "code": "HS.D.2.l",
+           "text": "Use probability as a tool for assessing risk and for informed decision making by interpreting P-values."
+          },
+          {
+           "code": "HS.D.3.a",
+           "text": "Describe events as subsets of a sample space using characteristics of the outcomes or as unions, intersections, or complements of other events."
+          },
+          {
+           "code": "HS.D.3.b",
+           "text": "Explain independent versus dependent probability of an event."
+          },
+          {
+           "code": "HS.D.3.c",
+           "text": "Determine when order in counting matters and use permutations and combinations to compute probabilities of events accordingly."
+          },
+          {
+           "code": "HS.D.3.d",
+           "text": "Determine whether or not events are mutually exclusive (disjoint) and calculate their probabilities in either case."
+          },
+          {
+           "code": "HS.D.3.e",
+           "text": "Recognize and explain the concepts of conditional probability in everyday language and everyday situations."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "high-school-advanced-topics",
+     "title": "High School Advanced Topics",
+     "topics": [
+      {
+       "id": "number",
+       "title": "Number",
+       "subtopics": [
+        {
+         "id": "solve-problems-and-reason-with-number-concepts-u",
+         "title": "Solve problems and reason with number concepts using multiple representations, make connections within math and across disciplines, and communicate their ideas",
+         "outcomes": [
+          {
+           "code": "AT.N.1.a",
+           "text": "Use domain and range restrictions to apply an appropriate viewing window while using graphing technology."
+          },
+          {
+           "code": "AT.N.1.b",
+           "text": "Compare and contrast radians and degrees as measures of angles and the reason graphing utilities tend to use radians as the default setting."
+          },
+          {
+           "code": "AT.N.2.a",
+           "text": "Perform arithmetic operations with complex numbers."
+          },
+          {
+           "code": "AT.N.2.b",
+           "text": "Represent complex numbers and their operations in the complex plane."
+          },
+          {
+           "code": "AT.N.2.c",
+           "text": "Use complex numbers in polynomial identities and equations."
+          },
+          {
+           "code": "AT.N.2.d",
+           "text": "Represent quantities using bases other than decimal such as binary (base 2) or hexadecimal (base 16) and convert numbers to and from base 10."
+          },
+          {
+           "code": "AT.N.2.e",
+           "text": "Explain modular arithmetic and its role in computer programming."
+          },
+          {
+           "code": "AT.N.2.f",
+           "text": "Represent and model vector quantities."
+          },
+          {
+           "code": "AT.N.2.g",
+           "text": "Perform operations on vectors."
+          },
+          {
+           "code": "AT.N.2.h",
+           "text": "Perform operations on matrices and use matrices in applications."
+          },
+          {
+           "code": "AT.N.3.a",
+           "text": "Use vectors to communicate the geometric relationships between complex numbers in the complex plane."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "algebra",
+       "title": "Algebra",
+       "subtopics": [
+        {
+         "id": "solve-problems-and-reason-with-algebra-using-mul",
+         "title": "Solve problems and reason with algebra using multiple representations, make connections within math and across disciplines, and communicate their ideas",
+         "outcomes": [
+          {
+           "code": "AT.A.1.a",
+           "text": "Analyze and graph nonlinear functions (trigonometric, rational, higher-order polynomials, logarithmic, and piecewise) and relations (conic sections) using their points of interest and graphing technology."
+          },
+          {
+           "code": "AT.A.1.b",
+           "text": "Use the unit circle to define the trigonometric functions on multiples of known angles (positive and negative multiples of 30 and 45 degrees or pi/6 and pi/4)."
+          },
+          {
+           "code": "AT.A.1.c",
+           "text": "Given a function, list the sequence of algebraic transformations that changes a parent function to the given function."
+          },
+          {
+           "code": "AT.A.1.d",
+           "text": "Define the radian unit of measure and its relationship with degrees."
+          },
+          {
+           "code": "AT.A.2.a",
+           "text": "Explain symmetry of functions and determine whether a function is odd, even, or neither."
+          },
+          {
+           "code": "AT.A.2.b",
+           "text": "Represent, interpret, and analyze inverses of functions algebraically and graphically using domain restrictions when necessary."
+          },
+          {
+           "code": "AT.A.2.c",
+           "text": "Write equations of nonlinear functions (trigonometric, rational, higher-order polynomials, logarithmic and piecewise) using points of interest of the function."
+          },
+          {
+           "code": "AT.A.2.d",
+           "text": "Convert between radian and degree measures of an angle."
+          },
+          {
+           "code": "AT.A.2.e",
+           "text": "Use limits to describe the behavior of a function near its asymptotes and removable discontinuities."
+          },
+          {
+           "code": "AT.A.3.a",
+           "text": "Analyze and model authentic situations using various non-linear representations and relations with appropriate technology."
+          },
+          {
+           "code": "AT.A.3.b",
+           "text": "Analyze and model authentic application situations using various non-linear representations and relations with appropriate technology."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "geometry",
+       "title": "Geometry",
+       "subtopics": [
+        {
+         "id": "solve-problems-and-reason-with-geometry-using-mu",
+         "title": "Solve problems and reason with geometry using multiple representations, make connections within math and across disciplines, and communicate their ideas",
+         "outcomes": [
+          {
+           "code": "AT.G.1.a",
+           "text": "Apply the Law of Sines and the Law of Cosines to find unknown measures in triangles."
+          },
+          {
+           "code": "AT.G.2.a",
+           "text": "Determine the three-dimensional object created by rotating or revolving a two-dimensional object about an axis."
+          },
+          {
+           "code": "AT.G.2.b",
+           "text": "Determine the shape of a two-dimensional cross-section of a three-dimensional object."
+          },
+          {
+           "code": "AT.G.2.c",
+           "text": "Use Cavalieri's Principle to determine volume of three-dimensional figures."
+          },
+          {
+           "code": "AT.G.3.a",
+           "text": "Identify symmetry properties of a function (e.g., axis of symmetry of a parabola) and know the connection between its symmetry properties and specific transformations."
+          },
+          {
+           "code": "AT.G.3.b",
+           "text": "Recognize that translations can be described in terms of vectors."
+          },
+          {
+           "code": "AT.G.3.c",
+           "text": "Find the images and preimages of transformations of a point, shape, or relation on the coordinate plane, where transformations include the following compositions: reflections about lines of any rational slope passing through the origins, delations about the origin by any positive scale factor, and translations."
+          },
+          {
+           "code": "AT.G.3.d",
+           "text": "Explain the focus-directrix construction of a parabola and derive the equation of a parabola from focus and directrix for a parabola whose axis of symmetry is a coordinate axis."
+          },
+          {
+           "code": "AT.G.4.a",
+           "text": "Use known definitions and results in informal argumentation to construct logical arguments."
+          },
+          {
+           "code": "AT.G.4.b",
+           "text": "Distinguish between empirical reasoning, examples, and deductive reasoning, as well as informal and formal reasoning."
+          },
+          {
+           "code": "AT.G.4.c",
+           "text": "Evaluate the deductive consequences of alternative definitions of known objects (e.g., whether a trapezoid is defined as a quadrilateral with exactly one pair of parallel sides or defined as at least one pair of parallel sides)."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "data",
+       "title": "Data",
+       "subtopics": [
+        {
+         "id": "solve-problems-and-reason-with-data-probability-",
+         "title": "Solve problems and reason with data/probability using multiple representations, make connections within math and across disciplines, and communicate their ideas",
+         "outcomes": [
+          {
+           "code": "AT.D.1.a",
+           "text": "Explain what constitutes good practice in designing a sample survey, an experiment, and an observational study."
+          },
+          {
+           "code": "AT.D.1.b",
+           "text": "Explain the use of randomization to reduce the influence of confounding or lurking variables."
+          },
+          {
+           "code": "AT.D.1.c",
+           "text": "Explain issues of bias and confounding variables in a study and their implications for interpretation."
+          },
+          {
+           "code": "AT.D.1.d",
+           "text": "Demonstrate knowledge of the role sampling distributions play in the estimation of an unknown population parameter through the use of appropriate sampling techniques."
+          },
+          {
+           "code": "AT.D.2.a",
+           "text": "Determine when a data set can be reasonably said to be normally distributed and draw conclusions about the data from the associated normal distribution."
+          },
+          {
+           "code": "AT.D.2.b",
+           "text": "Use technology to develop regression models for linear and non-linear data to predict unobserved outcomes. Apply algebraic transformations to non-linear data to generate a linearized data set and employ linear regression techniques to analyze the non-linear data set."
+          },
+          {
+           "code": "AT.D.3.a",
+           "text": "Weigh the possible outcomes of a decision by assigning probabilities to payoff values and finding expected values. Interpret the expected value as the mean of a probability distribution."
+          },
+          {
+           "code": "AT.D.3.b",
+           "text": "Communicate what constitutes statistical significance. Interpret statistical significance in the context of a situation and answer investigative questions appropriately."
+          },
+          {
+           "code": "AT.D.3.c",
+           "text": "Use data to compare two groups, describe sample variability, and decide if differences between parameters are significant based on the statistics."
+          },
+          {
+           "code": "AT.D.3.d",
+           "text": "Use probability as a tool for assessing risk and for informed decision making by computing and interpreting P-values."
+          },
+          {
+           "code": "AT.D.3.e",
+           "text": "Use confidence intervals to estimate an unknown population parameter."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "build": {
+  "builtAt": "2026-10-14T16:20:45.662Z",
+  "model": "none",
+  "usd": 0,
+  "expectedCodes": 408,
+  "coverage": 1,
+  "missingCodes": [],
+  "counts": {
+   "grades": 10,
+   "units": 21,
+   "topics": 53,
+   "subtopics": 53,
+   "outcomes": 453
+  },
+  "warnings": [
+   "subtopic \"Solve problems and reason with number concepts using multiple representations, make connections within math and across disciplines, and communicate their ideas\" has 15 outcomes — too big for one lesson",
+   "subtopic \"Solve problems and reason with number concepts using multiple representations, make connections within math and across disciplines, and communicate their ideas\" has 21 outcomes — too big for one lesson",
+   "subtopic \"Solve problems and reason with number concepts using multiple representations, make connections within math and across disciplines, and communicate their ideas\" has 16 outcomes — too big for one lesson",
+   "subtopic \"Solve problems and reason with algebra using multiple representations, make connections within math and across disciplines, and communicate their ideas\" has 21 outcomes — too big for one lesson",
+   "subtopic \"Solve problems and reason with geometry using multiple representations, make connections within math and across disciplines, and communicate their ideas\" has 22 outcomes — too big for one lesson",
+   "subtopic \"Solve problems and reason with data/probability using multiple representations, make connections within math and across disciplines, and communicate their ideas\" has 23 outcomes — too big for one lesson"
+  ]
+ }
+}

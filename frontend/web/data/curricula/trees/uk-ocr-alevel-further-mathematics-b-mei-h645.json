@@ -1,0 +1,2378 @@
+{
+ "id": "uk-ocr-alevel-further-mathematics-b-mei-h645",
+ "region": "UK",
+ "framework": "OCR A Level",
+ "board": "OCR",
+ "qualification": "A Level",
+ "subject": "Further Mathematics B (MEI)",
+ "syllabusCode": "H645",
+ "gradeSystem": "year",
+ "source": {
+  "urls": [
+   "https://www.ocr.org.uk/Images/308768-specification-accredited-a-level-gce-further-mathematics-b-mei-h645.pdf"
+  ],
+  "publisher": "OCR (Oxford Cambridge and RSA)",
+  "licence": "Exam board specification, (c) OCR; structure + our own wording only",
+  "firstExam": "2019"
+ },
+ "grades": [
+  {
+   "grade": "Year 12",
+   "units": [
+    {
+     "id": "2c-core-pure-y420",
+     "title": "2c Core Pure (Y420)",
+     "topics": [
+      {
+       "id": "proof",
+       "title": "Proof",
+       "subtopics": [
+        {
+         "id": "proof-by-induction",
+         "title": "Proof by induction",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Prove formulae for sequence terms, series sums and matrix powers by mathematical induction."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "complex-numbers",
+       "title": "Complex numbers",
+       "subtopics": [
+        {
+         "id": "complex-number-language",
+         "title": "Complex number language",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Use the language of complex numbers: real and imaginary parts, conjugate, modulus, argument."
+          },
+          {
+           "code": null,
+           "text": "Solve any quadratic equation with real coefficients."
+          },
+          {
+           "code": null,
+           "text": "Know that complex roots of real polynomials come in conjugate pairs, and solve cubic and quartic equations."
+          }
+         ]
+        },
+        {
+         "id": "arithmetic-of-complex-numbers",
+         "title": "Arithmetic of complex numbers",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Add, subtract, multiply and divide complex numbers in x + yi form."
+          },
+          {
+           "code": null,
+           "text": "Know a complex number is zero only if both parts are zero."
+          }
+         ]
+        },
+        {
+         "id": "modulus-argument-form",
+         "title": "Modulus-argument form",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Use radians with complex numbers."
+          },
+          {
+           "code": null,
+           "text": "Convert between x + yi and modulus-argument form."
+          },
+          {
+           "code": null,
+           "text": "Multiply and divide complex numbers in modulus-argument form."
+          }
+         ]
+        },
+        {
+         "id": "the-argand-diagram",
+         "title": "The Argand diagram",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Represent complex numbers and their conjugates on an Argand diagram."
+          },
+          {
+           "code": null,
+           "text": "Represent sums, differences, products and quotients on an Argand diagram."
+          },
+          {
+           "code": null,
+           "text": "Represent loci and regions such as circles, half lines and perpendicular bisectors."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "matrices-and-transformations",
+       "title": "Matrices and transformations",
+       "subtopics": [
+        {
+         "id": "matrix-arithmetic",
+         "title": "Matrix arithmetic",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Add, subtract and multiply conformable matrices and multiply by a scalar."
+          },
+          {
+           "code": null,
+           "text": "Use zero and identity matrices and equal matrices."
+          },
+          {
+           "code": null,
+           "text": "Know matrix multiplication is associative but not commutative."
+          }
+         ]
+        },
+        {
+         "id": "linear-transformations",
+         "title": "Linear transformations",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Find the matrix for a linear transformation and vice versa, in 2-D and some 3-D cases."
+          },
+          {
+           "code": null,
+           "text": "Understand successive transformations and matrix multiplication."
+          },
+          {
+           "code": null,
+           "text": "Find invariant points and invariant lines."
+          }
+         ]
+        },
+        {
+         "id": "determinants",
+         "title": "Determinants",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Calculate determinants of 2x2 and 3x3 matrices and know singular and non-singular."
+          },
+          {
+           "code": null,
+           "text": "Link the determinant magnitude to area or volume scale factor and its sign to orientation."
+          },
+          {
+           "code": null,
+           "text": "Use det(MN) = det M x det N."
+          }
+         ]
+        },
+        {
+         "id": "inverse-matrices",
+         "title": "Inverse matrices",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Understand inverse matrices and calculate inverses of 2x2 and 3x3 matrices."
+          },
+          {
+           "code": null,
+           "text": "Use the inverse to solve matrix equations and relate it to the inverse transformation."
+          },
+          {
+           "code": null,
+           "text": "Use the product rule (AB)^-1 = B^-1 A^-1."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "vectors-and-3-d-space",
+       "title": "Vectors and 3-D space",
+       "subtopics": [
+        {
+         "id": "scalar-products-and-planes",
+         "title": "Scalar products and planes",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Calculate the scalar product and use it to find the angle between vectors."
+          },
+          {
+           "code": null,
+           "text": "Form and use vector and cartesian equations of a plane, converting between them."
+          },
+          {
+           "code": null,
+           "text": "Know a vector perpendicular to a plane is perpendicular to every vector in it."
+          }
+         ]
+        },
+        {
+         "id": "intersection-of-planes",
+         "title": "Intersection of planes",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Know the ways three planes can be arranged: point, sheaf, prismatic intersection or parallel."
+          },
+          {
+           "code": null,
+           "text": "Solve three simultaneous equations using a matrix inverse and interpret the result geometrically."
+          },
+          {
+           "code": null,
+           "text": "Find the angle between two planes using their normals."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "algebra-and-series",
+       "title": "Algebra and series",
+       "subtopics": [
+        {
+         "id": "roots-and-coefficients",
+         "title": "Roots and coefficients",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Use relationships between roots and coefficients of quadratic, cubic and quartic equations."
+          },
+          {
+           "code": null,
+           "text": "Form a new equation whose roots are a linear transformation of the roots of a given one."
+          }
+         ]
+        },
+        {
+         "id": "summing-series",
+         "title": "Summing series",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Use standard formulae for sums of r, r^2 and r^3 and the method of differences to sum series."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "2d-mechanics-major-y421",
+     "title": "2d Mechanics Major (Y421)",
+     "topics": [
+      {
+       "id": "dimensional-analysis",
+       "title": "Dimensional analysis",
+       "subtopics": [
+        {
+         "id": "dimensions-of-quantities",
+         "title": "Dimensions of quantities",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Find the dimensions of a quantity in terms of M, L and T."
+          },
+          {
+           "code": null,
+           "text": "Know that some quantities are dimensionless."
+          },
+          {
+           "code": null,
+           "text": "Determine and convert units from dimensions."
+          }
+         ]
+        },
+        {
+         "id": "using-dimensional-analysis",
+         "title": "Using dimensional analysis",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Check the consistency of a relationship by dimensions."
+          },
+          {
+           "code": null,
+           "text": "Find unknown indices in a proposed formula."
+          },
+          {
+           "code": null,
+           "text": "Use a dimensional model, such as to find a dimensionless constant."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "forces",
+       "title": "Forces",
+       "subtopics": [
+        {
+         "id": "friction",
+         "title": "Friction",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Understand the language of forces and why the normal reaction cannot be negative."
+          },
+          {
+           "code": null,
+           "text": "Model friction with F <= uR, acting to oppose sliding, and F = uR when sliding."
+          },
+          {
+           "code": null,
+           "text": "Show a body on a slope is about to slip when u = tan alpha."
+          },
+          {
+           "code": null,
+           "text": "Apply Newton's laws to situations involving friction."
+          }
+         ]
+        },
+        {
+         "id": "resolving-forces-and-equilibrium-of-a-particle",
+         "title": "Resolving forces and equilibrium of a particle",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Resolve forces into components in suitable directions."
+          },
+          {
+           "code": null,
+           "text": "Find the resultant of concurrent forces by vector addition."
+          },
+          {
+           "code": null,
+           "text": "Know a particle is in equilibrium when the resultant force is zero, and use polygons of forces."
+          },
+          {
+           "code": null,
+           "text": "Solve equilibrium problems by resolving forces."
+          }
+         ]
+        },
+        {
+         "id": "equilibrium-of-a-rigid-body",
+         "title": "Equilibrium of a rigid body",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Draw force diagrams for a rigid body."
+          },
+          {
+           "code": null,
+           "text": "Understand turning effects and couples."
+          },
+          {
+           "code": null,
+           "text": "Calculate moments about a fixed axis and the moment of a couple."
+          },
+          {
+           "code": null,
+           "text": "Apply the conditions for equilibrium of a rigid body."
+          },
+          {
+           "code": null,
+           "text": "Identify whether equilibrium breaks by sliding or toppling."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "work-energy-and-power",
+       "title": "Work, energy and power",
+       "subtopics": [
+        {
+         "id": "work-and-energy",
+         "title": "Work and energy",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Understand the language of work, energy and power."
+          },
+          {
+           "code": null,
+           "text": "Calculate work done by a force along or at an angle to its line of action."
+          },
+          {
+           "code": null,
+           "text": "Calculate kinetic energy and gravitational potential energy."
+          }
+         ]
+        },
+        {
+         "id": "energy-principles-and-power",
+         "title": "Energy principles and power",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Apply conservation of energy and the work-energy principle."
+          },
+          {
+           "code": null,
+           "text": "Use power as the rate at which a force does work, including maximum vehicle speed."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "momentum-and-impulse",
+       "title": "Momentum and impulse",
+       "subtopics": [
+        {
+         "id": "impulse-and-momentum",
+         "title": "Impulse and momentum",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Calculate the impulse of a force as a vector."
+          },
+          {
+           "code": null,
+           "text": "Use linear momentum and the impulse-momentum equation."
+          },
+          {
+           "code": null,
+           "text": "Apply conservation of linear momentum in any direction."
+          }
+         ]
+        },
+        {
+         "id": "direct-impact",
+         "title": "Direct impact",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Understand direct impact and its modelling assumptions."
+          },
+          {
+           "code": null,
+           "text": "Apply conservation of momentum to direct impacts within a system."
+          },
+          {
+           "code": null,
+           "text": "Use Newton's experimental law and the coefficient of restitution."
+          },
+          {
+           "code": null,
+           "text": "Explain e = 0 (coalescence) and e = 1 (perfectly elastic)."
+          },
+          {
+           "code": null,
+           "text": "Find the loss of kinetic energy when e < 1."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "centre-of-mass",
+       "title": "Centre of mass",
+       "subtopics": [
+        {
+         "id": "locating-centres-of-mass",
+         "title": "Locating centres of mass",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Find the centre of mass of a system of particles in 1, 2 and 3 dimensions."
+          },
+          {
+           "code": null,
+           "text": "Locate centres of mass by symmetry and know them for rods and rectangular and triangular laminas."
+          },
+          {
+           "code": null,
+           "text": "Find the centre of mass of a composite body."
+          },
+          {
+           "code": null,
+           "text": "Use the centre of mass in rigid body equilibrium."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "2e-statistics-major-y422",
+     "title": "2e Statistics Major (Y422)",
+     "topics": [
+      {
+       "id": "sampling",
+       "title": "Sampling",
+       "subtopics": [
+        {
+         "id": "sampling-and-experimental-design",
+         "title": "Sampling and experimental design",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain why sample size matters in experimental design."
+          },
+          {
+           "code": null,
+           "text": "Explain why sampling is needed and the desirable features of a sample."
+          },
+          {
+           "code": null,
+           "text": "Explain the advantage of a random sample for inference."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "discrete-random-variables",
+       "title": "Discrete random variables",
+       "subtopics": [
+        {
+         "id": "probability-distributions",
+         "title": "Probability distributions",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Use probability functions given algebraically or in tables."
+          },
+          {
+           "code": null,
+           "text": "Calculate probabilities and draw and interpret graphs of distributions."
+          }
+         ]
+        },
+        {
+         "id": "expectation-and-variance",
+         "title": "Expectation and variance",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Calculate and interpret E(X) and Var(X)."
+          },
+          {
+           "code": null,
+           "text": "Use E(a + bX) = a + bE(X) and Var(a + bX) = b^2 Var(X)."
+          },
+          {
+           "code": null,
+           "text": "Find expectation and variance of linear combinations of independent random variables."
+          }
+         ]
+        },
+        {
+         "id": "discrete-uniform-distribution",
+         "title": "Discrete uniform distribution",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Recognise when a discrete uniform model is appropriate and calculate probabilities."
+          },
+          {
+           "code": null,
+           "text": "Calculate the mean and variance of a discrete uniform distribution."
+          }
+         ]
+        },
+        {
+         "id": "the-binomial-distribution",
+         "title": "The binomial distribution",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Recognise when a binomial model is appropriate and calculate probabilities."
+          },
+          {
+           "code": null,
+           "text": "Use the mean np and variance np(1-p), and prove them in particular cases."
+          }
+         ]
+        },
+        {
+         "id": "the-poisson-distribution",
+         "title": "The Poisson distribution",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Recognise when a Poisson model is appropriate."
+          },
+          {
+           "code": null,
+           "text": "Recognise when both Poisson and binomial models might apply."
+          },
+          {
+           "code": null,
+           "text": "Calculate Poisson probabilities."
+          },
+          {
+           "code": null,
+           "text": "Use the mean and variance of a Poisson distribution."
+          },
+          {
+           "code": null,
+           "text": "Know the sum of independent Poisson variables is Poisson."
+          }
+         ]
+        },
+        {
+         "id": "the-geometric-distribution",
+         "title": "The geometric distribution",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Recognise when a geometric model is appropriate."
+          },
+          {
+           "code": null,
+           "text": "Calculate geometric probabilities, including cumulative probabilities."
+          },
+          {
+           "code": null,
+           "text": "Use the mean and variance of a geometric distribution."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "bivariate-data",
+       "title": "Bivariate data",
+       "subtopics": [
+        {
+         "id": "scatter-diagrams-and-pmcc",
+         "title": "Scatter diagrams and pmcc",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Understand bivariate data and the axis conventions for scatter diagrams."
+          },
+          {
+           "code": null,
+           "text": "Use and interpret scatter diagrams, including software output."
+          },
+          {
+           "code": null,
+           "text": "Calculate the product moment correlation coefficient."
+          },
+          {
+           "code": null,
+           "text": "Know when a hypothesis test on the pmcc is appropriate."
+          },
+          {
+           "code": null,
+           "text": "Carry out hypothesis tests using the pmcc."
+          },
+          {
+           "code": null,
+           "text": "Use the pmcc as an effect size."
+          }
+         ]
+        },
+        {
+         "id": "spearman-s-rank-correlation",
+         "title": "Spearman's rank correlation",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Calculate Spearman's rank correlation coefficient."
+          },
+          {
+           "code": null,
+           "text": "Carry out hypothesis tests using Spearman's coefficient."
+          },
+          {
+           "code": null,
+           "text": "Decide whether a test based on r or rs is more appropriate."
+          }
+         ]
+        },
+        {
+         "id": "regression-lines",
+         "title": "Regression lines",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Calculate the least squares regression line for a random variable on a non-random variable."
+          },
+          {
+           "code": null,
+           "text": "Use the regression line to estimate values and calculate and interpret residuals."
+          },
+          {
+           "code": null,
+           "text": "Calculate the y-on-x and x-on-y regression lines for random-on-random data."
+          },
+          {
+           "code": null,
+           "text": "Check how well a regression model fits and choose the correct line to use."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "chi-squared-tests",
+       "title": "Chi-squared tests",
+       "subtopics": [
+        {
+         "id": "contingency-tables",
+         "title": "Contingency tables",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Interpret bivariate categorical data in a contingency table."
+          },
+          {
+           "code": null,
+           "text": "Apply the chi-squared test for association and interpret results from tables or software."
+          }
+         ]
+        },
+        {
+         "id": "goodness-of-fit",
+         "title": "Goodness of fit",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Carry out a chi-squared goodness of fit test for uniform, binomial or Poisson models."
+          },
+          {
+           "code": null,
+           "text": "Interpret goodness of fit results from tables or software."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "2h-modelling-with-algorithms-y433",
+     "title": "2h Modelling with Algorithms (Y433)",
+     "topics": [
+      {
+       "id": "algorithms",
+       "title": "Algorithms",
+       "subtopics": [
+        {
+         "id": "what-an-algorithm-is",
+         "title": "What an algorithm is",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Understand an algorithm as a finite sequence of operations that can underlie a computer program."
+          },
+          {
+           "code": null,
+           "text": "Interpret and apply algorithms given as flowcharts, written English or pseudocode."
+          },
+          {
+           "code": null,
+           "text": "Repair, develop and adapt given algorithms."
+          }
+         ]
+        },
+        {
+         "id": "complexity-proof-and-heuristics",
+         "title": "Complexity, proof and heuristics",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Use basic ideas of algorithmic complexity and analyse the complexity of given algorithms."
+          },
+          {
+           "code": null,
+           "text": "Understand algorithms can sometimes be proved correct or incorrect."
+          },
+          {
+           "code": null,
+           "text": "Understand the importance of heuristics."
+          }
+         ]
+        },
+        {
+         "id": "sorting-algorithms",
+         "title": "Sorting algorithms",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Use the quick sort algorithm and apply other specified sorting algorithms."
+          },
+          {
+           "code": null,
+           "text": "Count comparisons and swaps in sorting and relate to complexity."
+          },
+          {
+           "code": null,
+           "text": "Reason about why a sorting algorithm works."
+          }
+         ]
+        },
+        {
+         "id": "packing-algorithms",
+         "title": "Packing algorithms",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Use first fit, first fit decreasing and full bin packing strategies."
+          },
+          {
+           "code": null,
+           "text": "Count comparisons in packing algorithms and relate to complexity."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "networks",
+       "title": "Networks",
+       "subtopics": [
+        {
+         "id": "graphs-and-networks",
+         "title": "Graphs and networks",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Use graphs and their language: nodes, arcs, trees, simple, complete, connected and bipartite graphs, digraphs."
+          },
+          {
+           "code": null,
+           "text": "Model problems using graphs and, with weights, networks."
+          }
+         ]
+        },
+        {
+         "id": "minimum-connector-and-shortest-path",
+         "title": "Minimum connector and shortest path",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Solve minimum connector problems with Kruskal's and Prim's algorithms."
+          },
+          {
+           "code": null,
+           "text": "Model shortest path problems and solve them with Dijkstra's algorithm."
+          },
+          {
+           "code": null,
+           "text": "Know that these algorithms have quadratic complexity."
+          }
+         ]
+        },
+        {
+         "id": "critical-path-analysis",
+         "title": "Critical path analysis",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Model precedence problems with an activity-on-arc network."
+          },
+          {
+           "code": null,
+           "text": "Use critical path analysis, interpreting criticality, float, resourcing and scheduling."
+          }
+         ]
+        },
+        {
+         "id": "network-flows",
+         "title": "Network flows",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Model a transmission system as a network with sources and sinks."
+          },
+          {
+           "code": null,
+           "text": "Specify a cut and calculate its capacity."
+          },
+          {
+           "code": null,
+           "text": "Use the maximum flow minimum cut theorem."
+          },
+          {
+           "code": null,
+           "text": "Understand network algorithms can be run by hand but need technology for practical problems."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "linear-programming",
+       "title": "Linear programming",
+       "subtopics": [
+        {
+         "id": "formulating-linear-programs",
+         "title": "Formulating linear programs",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Use the language of linear programming."
+          },
+          {
+           "code": null,
+           "text": "Define variables and formulate a problem as a linear program."
+          },
+          {
+           "code": null,
+           "text": "Recognise standard form and convert to augmented form with slack variables."
+          },
+          {
+           "code": null,
+           "text": "Recognise when an integer solution is needed."
+          },
+          {
+           "code": null,
+           "text": "Formulate network problems as linear programs."
+          }
+         ]
+        },
+        {
+         "id": "graphical-solutions",
+         "title": "Graphical solutions",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Graph inequalities in 2-D, identify feasible regions and recognise infeasibility."
+          },
+          {
+           "code": null,
+           "text": "Solve a 2-D linear program graphically and consider changes to constraints or objective."
+          },
+          {
+           "code": null,
+           "text": "Solve 2-D integer linear programs graphically."
+          },
+          {
+           "code": null,
+           "text": "Use a visualisation of a 3-D linear program to solve it."
+          }
+         ]
+        },
+        {
+         "id": "the-simplex-method",
+         "title": "The simplex method",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Use the simplex algorithm on an LP in augmented form."
+          },
+          {
+           "code": null,
+           "text": "Understand the geometric basis of the simplex method."
+          },
+          {
+           "code": null,
+           "text": "Recognise when the two-stage simplex method is needed for constraints of the form >=."
+          },
+          {
+           "code": null,
+           "text": "Reformulate equality constraints, negative variables and minimisation before applying simplex."
+          }
+         ]
+        },
+        {
+         "id": "using-software-for-lps",
+         "title": "Using software for LPs",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Know that spreadsheet or other software solvers handle practical-sized LPs."
+          },
+          {
+           "code": null,
+           "text": "Interpret output from an optimisation routine for the simplex method or integer LPs."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "2i-numerical-methods-y434",
+     "title": "2i Numerical Methods (Y434)",
+     "topics": [
+      {
+       "id": "technology-and-errors",
+       "title": "Technology and errors",
+       "subtopics": [
+        {
+         "id": "using-spreadsheets-and-calculators",
+         "title": "Using spreadsheets and calculators",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Implement numerical methods in a spreadsheet and interpret output."
+          },
+          {
+           "code": null,
+           "text": "Use the iterative capability of a calculator."
+          }
+         ]
+        },
+        {
+         "id": "errors",
+         "title": "Errors",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Calculate absolute and relative errors in sums, differences, products and quotients."
+          },
+          {
+           "code": null,
+           "text": "Calculate the error in f(x) given an error in x and understand the effect of operation order."
+          },
+          {
+           "code": null,
+           "text": "Understand limited precision, rounding and chopping and the danger of subtracting nearly equal quantities."
+          }
+         ]
+        },
+        {
+         "id": "convergence-and-improving-solutions",
+         "title": "Convergence and improving solutions",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Understand convergence, divergence and order of convergence of iterative sequences and methods."
+          },
+          {
+           "code": null,
+           "text": "Use error analysis and extrapolation to improve a solution."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "solution-of-equations",
+       "title": "Solution of equations",
+       "subtopics": [
+        {
+         "id": "root-finding-methods",
+         "title": "Root-finding methods",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Understand graphical interpretations of bisection, false position, secant, fixed point and Newton-Raphson methods, including staircase and cobweb diagrams."
+          },
+          {
+           "code": null,
+           "text": "Solve equations to a required accuracy using these methods."
+          },
+          {
+           "code": null,
+           "text": "Understand relative merits and possible failure of these methods."
+          },
+          {
+           "code": null,
+           "text": "Know fixed point iteration is generally first order and Newton-Raphson generally second order."
+          },
+          {
+           "code": null,
+           "text": "Apply relaxation to accelerate or fix convergence of fixed point iteration."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "numerical-differentiation",
+       "title": "Numerical differentiation",
+       "subtopics": [
+        {
+         "id": "difference-methods",
+         "title": "Difference methods",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Estimate a derivative with forward and central difference methods using suitable step sizes."
+          },
+          {
+           "code": null,
+           "text": "Know central difference is generally second order and forward difference first order."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "numerical-integration",
+       "title": "Numerical integration",
+       "subtopics": [
+        {
+         "id": "midpoint-trapezium-and-simpson-s-rules",
+         "title": "Midpoint, trapezium and Simpson's rules",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Evaluate definite integrals to a required accuracy using midpoint, trapezium and Simpson's rules."
+          },
+          {
+           "code": null,
+           "text": "Know midpoint and trapezium are second order and Simpson's is fourth order, and how Simpson's develops from them."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "approximating-functions",
+       "title": "Approximating functions",
+       "subtopics": [
+        {
+         "id": "interpolation",
+         "title": "Interpolation",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Use Newton's forward difference interpolation formula to reconstruct polynomials and approximate functions."
+          },
+          {
+           "code": null,
+           "text": "Construct the Lagrange interpolating polynomial through n + 1 data points."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "Year 13",
+   "units": [
+    {
+     "id": "2c-core-pure-y420",
+     "title": "2c Core Pure (Y420)",
+     "topics": [
+      {
+       "id": "proof",
+       "title": "Proof",
+       "subtopics": [
+        {
+         "id": "proof-by-induction",
+         "title": "Proof by induction",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Use induction more generally, including proving divisibility results and de Moivre's theorem."
+          },
+          {
+           "code": null,
+           "text": "Prove results by contradiction."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "complex-numbers",
+       "title": "Complex numbers",
+       "subtopics": [
+        {
+         "id": "de-moivre-s-theorem",
+         "title": "De Moivre's theorem",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Understand and use de Moivre's theorem."
+          },
+          {
+           "code": null,
+           "text": "Apply it to multiple angle formulae and summing series."
+          },
+          {
+           "code": null,
+           "text": "Use the definition e^(i theta) = cos theta + i sin theta and the form z = re^(i theta)."
+          }
+         ]
+        },
+        {
+         "id": "roots-of-complex-numbers",
+         "title": "Roots of complex numbers",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Know every non-zero complex number has n distinct nth roots forming a regular n-gon."
+          },
+          {
+           "code": null,
+           "text": "Find the nth roots of re^(i theta)."
+          },
+          {
+           "code": null,
+           "text": "Explain why the sum of the nth roots is zero."
+          }
+         ]
+        },
+        {
+         "id": "complex-numbers-in-geometry",
+         "title": "Complex numbers in geometry",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Understand multiplication by a complex number as enlargement with rotation."
+          },
+          {
+           "code": null,
+           "text": "Represent roots of unity on an Argand diagram."
+          },
+          {
+           "code": null,
+           "text": "Apply complex numbers to geometrical problems."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "matrices-and-transformations",
+       "title": "Matrices and transformations",
+       "subtopics": [
+        {
+         "id": "3-by-3-matrices",
+         "title": "3 by 3 matrices",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Find the determinant and inverse of a 3x3 matrix without a calculator."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "vectors-and-3-d-space",
+       "title": "Vectors and 3-D space",
+       "subtopics": [
+        {
+         "id": "vector-product",
+         "title": "Vector product",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Use the vector product in component form to give a vector perpendicular to two vectors."
+          },
+          {
+           "code": null,
+           "text": "Use the form a x b = |a||b| sin theta n and know the meaning of a x b = 0."
+          }
+         ]
+        },
+        {
+         "id": "lines-in-2-d-and-3-d",
+         "title": "Lines in 2-D and 3-D",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Form and use the equation of a line in vector and cartesian form."
+          },
+          {
+           "code": null,
+           "text": "Calculate the angle between two lines."
+          },
+          {
+           "code": null,
+           "text": "Know the ways two lines can intersect, be parallel or be skew, and find an intersection point."
+          },
+          {
+           "code": null,
+           "text": "Find the distance between parallel lines and the shortest distance between skew lines."
+          }
+         ]
+        },
+        {
+         "id": "points-lines-and-planes",
+         "title": "Points, lines and planes",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Find the intersection of a line and a plane."
+          },
+          {
+           "code": null,
+           "text": "Calculate the angle between a line and a plane."
+          },
+          {
+           "code": null,
+           "text": "Find the distance from a point to a line and from a point to a plane."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "series",
+       "title": "Series",
+       "subtopics": [
+        {
+         "id": "summing-with-partial-fractions",
+         "title": "Summing with partial fractions",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Know the difference between a sequence and a series, and what converge means."
+          },
+          {
+           "code": null,
+           "text": "Sum a simple series using partial fractions."
+          }
+         ]
+        },
+        {
+         "id": "maclaurin-series",
+         "title": "Maclaurin series",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Find the Maclaurin series of a function, including the general term."
+          },
+          {
+           "code": null,
+           "text": "Know a Maclaurin series may converge only for some values of x."
+          },
+          {
+           "code": null,
+           "text": "Recognise and use series for e^x, ln(1+x), sin x, cos x and (1+x)^n, with their validity."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "calculus",
+       "title": "Calculus",
+       "subtopics": [
+        {
+         "id": "improper-integrals-and-volumes",
+         "title": "Improper integrals and volumes",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Evaluate improper integrals with undefined integrand or infinite limits."
+          },
+          {
+           "code": null,
+           "text": "Derive and calculate volumes of revolution about the x-axis or y-axis."
+          },
+          {
+           "code": null,
+           "text": "Understand and evaluate the mean value of a function."
+          }
+         ]
+        },
+        {
+         "id": "integration-techniques",
+         "title": "Integration techniques",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Use partial fractions in integration, including a quadratic factor ax^2 + c."
+          },
+          {
+           "code": null,
+           "text": "Know inverse trigonometric functions and differentiate them."
+          },
+          {
+           "code": null,
+           "text": "Integrate using trigonometric substitutions."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "polar-coordinates",
+       "title": "Polar coordinates",
+       "subtopics": [
+        {
+         "id": "polar-curves",
+         "title": "Polar curves",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Use polar coordinates and convert to and from cartesian."
+          },
+          {
+           "code": null,
+           "text": "Sketch curves given by simple polar equations."
+          },
+          {
+           "code": null,
+           "text": "Find the area enclosed by a polar curve."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "hyperbolic-functions",
+       "title": "Hyperbolic functions",
+       "subtopics": [
+        {
+         "id": "hyperbolic-functions",
+         "title": "Hyperbolic functions",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Define hyperbolic functions, their domains and ranges, and sketch their graphs."
+          },
+          {
+           "code": null,
+           "text": "Use the identity cosh^2 x - sinh^2 x = 1."
+          },
+          {
+           "code": null,
+           "text": "Differentiate and integrate hyperbolic functions."
+          }
+         ]
+        },
+        {
+         "id": "inverse-hyperbolic-functions",
+         "title": "Inverse hyperbolic functions",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Use definitions of inverse hyperbolic functions, their domains and ranges."
+          },
+          {
+           "code": null,
+           "text": "Derive and use the logarithmic forms of inverse hyperbolic functions."
+          },
+          {
+           "code": null,
+           "text": "Integrate using hyperbolic substitutions."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "differential-equations",
+       "title": "Differential equations",
+       "subtopics": [
+        {
+         "id": "modelling-with-differential-equations",
+         "title": "Modelling with differential equations",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Introduce and define variables to describe a situation mathematically."
+          },
+          {
+           "code": null,
+           "text": "Formulate differential equations from verbal descriptions of derivatives."
+          },
+          {
+           "code": null,
+           "text": "Use the language of kinematics and Newton's second law."
+          },
+          {
+           "code": null,
+           "text": "Use differential equations in modelling kinematics and other contexts."
+          }
+         ]
+        },
+        {
+         "id": "first-order-equations",
+         "title": "First order equations",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Distinguish general and particular solutions and find both."
+          },
+          {
+           "code": null,
+           "text": "Recognise equations suited to the integrating factor method."
+          },
+          {
+           "code": null,
+           "text": "Find an integrating factor and use it to solve equations."
+          }
+         ]
+        },
+        {
+         "id": "second-order-equations",
+         "title": "Second order equations",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Solve y'' + ay' + by = 0 using the auxiliary equation."
+          },
+          {
+           "code": null,
+           "text": "Relate the cases of solution to the nature of the auxiliary equation's roots."
+          },
+          {
+           "code": null,
+           "text": "Solve y'' + ay' + by = f(x) by adding a particular integral to the complementary function."
+          },
+          {
+           "code": null,
+           "text": "Find particular integrals for polynomial, trigonometric and exponential f(x)."
+          }
+         ]
+        },
+        {
+         "id": "oscillations-and-coupled-equations",
+         "title": "Oscillations and coupled equations",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Solve the simple harmonic motion equation and relate the solution to the motion."
+          },
+          {
+           "code": null,
+           "text": "Model damped oscillations with second order equations and interpret over-, critical and under-damping."
+          },
+          {
+           "code": null,
+           "text": "Analyse models with two dependent variables leading to coupled first order equations."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "2d-mechanics-major-y421",
+     "title": "2d Mechanics Major (Y421)",
+     "topics": [
+      {
+       "id": "momentum-and-impulse",
+       "title": "Momentum and impulse",
+       "subtopics": [
+        {
+         "id": "oblique-impact",
+         "title": "Oblique impact",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Understand oblique impact and its modelling assumptions."
+          },
+          {
+           "code": null,
+           "text": "Apply Newton's experimental law to oblique impact."
+          },
+          {
+           "code": null,
+           "text": "Model oblique impact with a smooth plane using components parallel and perpendicular to the impulse."
+          },
+          {
+           "code": null,
+           "text": "Model oblique impact between two bodies."
+          },
+          {
+           "code": null,
+           "text": "Calculate loss of kinetic energy in an oblique impact."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "circular-motion",
+       "title": "Circular motion",
+       "subtopics": [
+        {
+         "id": "modelling-circular-motion",
+         "title": "Modelling circular motion",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Understand angular velocity and radial and tangential components of acceleration."
+          },
+          {
+           "code": null,
+           "text": "Identify forces on a body in circular motion and calculate acceleration towards the centre."
+          },
+          {
+           "code": null,
+           "text": "Model circular motion at uniform speed, such as a conical pendulum."
+          }
+         ]
+        },
+        {
+         "id": "non-uniform-and-vertical-circles",
+         "title": "Non-uniform and vertical circles",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Model circular motion with non-uniform speed and calculate tangential acceleration."
+          },
+          {
+           "code": null,
+           "text": "Model motion in a vertical circle using energy and Newton's second law."
+          },
+          {
+           "code": null,
+           "text": "Identify when a particle leaves circular motion."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "hooke-s-law",
+       "title": "Hooke's law",
+       "subtopics": [
+        {
+         "id": "elastic-strings-and-springs",
+         "title": "Elastic strings and springs",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Understand the language of elasticity and Hooke's law."
+          },
+          {
+           "code": null,
+           "text": "Calculate stiffness, modulus of elasticity and tension."
+          },
+          {
+           "code": null,
+           "text": "Calculate equilibrium positions in systems with elastic strings or springs."
+          }
+         ]
+        },
+        {
+         "id": "elastic-energy",
+         "title": "Elastic energy",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Calculate energy stored in a string or spring."
+          },
+          {
+           "code": null,
+           "text": "Use energy principles to model systems with elastic strings or springs, including extreme positions."
+          },
+          {
+           "code": null,
+           "text": "Know when Hooke's law is not applicable."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "centre-of-mass",
+       "title": "Centre of mass",
+       "subtopics": [
+        {
+         "id": "centre-of-mass-using-calculus",
+         "title": "Centre of mass using calculus",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Calculate volumes generated by rotating a plane region about an axis."
+          },
+          {
+           "code": null,
+           "text": "Use calculus to find centres of mass of solids of revolution and of plane laminas."
+          },
+          {
+           "code": null,
+           "text": "Find the centre of mass of a compound body with solids of revolution."
+          },
+          {
+           "code": null,
+           "text": "Use the centre of mass in equilibrium situations."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "vectors-and-variable-forces",
+       "title": "Vectors and variable forces",
+       "subtopics": [
+        {
+         "id": "kinematics-in-vectors",
+         "title": "Kinematics in vectors",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Understand the language of kinematics in 2 and 3 dimensions."
+          },
+          {
+           "code": null,
+           "text": "Use vectors and calculus to extend 1-D techniques to 2 and 3 dimensions."
+          },
+          {
+           "code": null,
+           "text": "Find acceleration, velocity and position vectors under constant or variable force."
+          },
+          {
+           "code": null,
+           "text": "Use these vectors to model situations in 1, 2 and 3 dimensions."
+          }
+         ]
+        },
+        {
+         "id": "paths-and-projectiles",
+         "title": "Paths and projectiles",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Eliminate a parameter from a position vector to find the path equation and interpret it."
+          },
+          {
+           "code": null,
+           "text": "Derive the cartesian path equation of a particle in 2-D."
+          },
+          {
+           "code": null,
+           "text": "Find the range of a projectile up or down a uniform slope."
+          },
+          {
+           "code": null,
+           "text": "Find the maximum range up or down a slope and the angle of projection."
+          }
+         ]
+        },
+        {
+         "id": "differential-equations-in-mechanics",
+         "title": "Differential equations in mechanics",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Formulate differential equations for motion under variable acceleration."
+          },
+          {
+           "code": null,
+           "text": "Verify general or particular solutions and use initial conditions."
+          },
+          {
+           "code": null,
+           "text": "Recognise and transform simple harmonic motion equations in non-standard forms."
+          },
+          {
+           "code": null,
+           "text": "Solve the simple harmonic motion equation and relate it to the context."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "2e-statistics-major-y422",
+     "title": "2e Statistics Major (Y422)",
+     "topics": [
+      {
+       "id": "continuous-random-variables",
+       "title": "Continuous random variables",
+       "subtopics": [
+        {
+         "id": "probability-density-functions",
+         "title": "Probability density functions",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Use a simple continuous random variable as a model, including uniform and Normal."
+          },
+          {
+           "code": null,
+           "text": "Understand a pdf and use it to find probabilities."
+          },
+          {
+           "code": null,
+           "text": "Know and use the properties of a pdf and sketch its graph."
+          }
+         ]
+        },
+        {
+         "id": "mean-variance-mode-and-median-from-a-pdf",
+         "title": "Mean, variance, mode and median from a pdf",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Find the mean and variance from a given pdf."
+          },
+          {
+           "code": null,
+           "text": "Find the mode and median from a given pdf."
+          }
+         ]
+        },
+        {
+         "id": "cumulative-distribution-function",
+         "title": "Cumulative distribution function",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Understand a cdf, obtain it from a pdf and sketch it."
+          },
+          {
+           "code": null,
+           "text": "Obtain a pdf from a cdf."
+          },
+          {
+           "code": null,
+           "text": "Use a cdf to find the median and other percentiles."
+          },
+          {
+           "code": null,
+           "text": "Find the mean of a linear combination of random variables and the variance for independent ones."
+          }
+         ]
+        },
+        {
+         "id": "the-normal-distribution",
+         "title": "The Normal distribution",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Use the Normal distribution as a model and calculate probabilities."
+          },
+          {
+           "code": null,
+           "text": "Use linear combinations of independent Normal random variables."
+          },
+          {
+           "code": null,
+           "text": "Know the Normal distribution as a model in its own right and via the Central Limit Theorem."
+          },
+          {
+           "code": null,
+           "text": "Interpret Normal probability plots and Kolmogorov-Smirnov output to judge a Normal model."
+          },
+          {
+           "code": null,
+           "text": "Use the Normal distribution in constructing confidence intervals."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "inference",
+       "title": "Inference",
+       "subtopics": [
+        {
+         "id": "sample-mean-and-the-central-limit-theorem",
+         "title": "Sample mean and the Central Limit Theorem",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Estimate the population mean from sample data and the population variance from the sample variance."
+          },
+          {
+           "code": null,
+           "text": "Understand the sample mean as a random variable with its own distribution."
+          },
+          {
+           "code": null,
+           "text": "Calculate and interpret the standard error of the mean."
+          },
+          {
+           "code": null,
+           "text": "Know the sample mean is Normal when the population is Normal."
+          },
+          {
+           "code": null,
+           "text": "Apply the Central Limit Theorem to sample means and sums, with continuity corrections where needed."
+          }
+         ]
+        },
+        {
+         "id": "confidence-intervals",
+         "title": "Confidence intervals",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Know the meaning of a confidence interval and its language."
+          },
+          {
+           "code": null,
+           "text": "Understand factors affecting interval width."
+          },
+          {
+           "code": null,
+           "text": "Construct and interpret a confidence interval for a single mean using Normal or t distributions."
+          },
+          {
+           "code": null,
+           "text": "Know when samples are paired and construct a confidence interval for a mean difference."
+          },
+          {
+           "code": null,
+           "text": "Interpret software confidence intervals."
+          },
+          {
+           "code": null,
+           "text": "Use a confidence interval to decide about a hypothesised value."
+          }
+         ]
+        },
+        {
+         "id": "hypothesis-tests-for-an-average",
+         "title": "Hypothesis tests for an average",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Carry out a Wilcoxon signed rank test for a single median."
+          },
+          {
+           "code": null,
+           "text": "Carry out a hypothesis test for a single mean using Normal or t distributions."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "simulation",
+       "title": "Simulation",
+       "subtopics": [
+        {
+         "id": "simulating-random-variables",
+         "title": "Simulating random variables",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Use spreadsheets to simulate discrete and continuous uniform and Normal distributions."
+          },
+          {
+           "code": null,
+           "text": "Use simulation to approximate distributions and probabilities, and interpret spreadsheet output."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "2j-extra-pure-y435",
+     "title": "2j Extra Pure (Y435)",
+     "topics": [
+      {
+       "id": "recurrence-relations",
+       "title": "Recurrence relations",
+       "subtopics": [
+        {
+         "id": "modelling-and-investigating-recurrence-relations",
+         "title": "Modelling and investigating recurrence relations",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Model problems using recurrence relations."
+          },
+          {
+           "code": null,
+           "text": "Use the language of recurrence relations."
+          },
+          {
+           "code": null,
+           "text": "Investigate behaviour of recurrence relations, including long-run behaviour and non-linear cases."
+          }
+         ]
+        },
+        {
+         "id": "first-order-recurrence-relations",
+         "title": "First order recurrence relations",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Verify a given solution of a recurrence relation."
+          },
+          {
+           "code": null,
+           "text": "Solve first order linear homogeneous recurrence relations."
+          },
+          {
+           "code": null,
+           "text": "Solve first order linear non-homogeneous recurrence relations."
+          }
+         ]
+        },
+        {
+         "id": "second-order-recurrence-relations",
+         "title": "Second order recurrence relations",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Solve second order linear homogeneous recurrence relations with real distinct, repeated or complex roots."
+          },
+          {
+           "code": null,
+           "text": "Solve second order linear non-homogeneous recurrence relations."
+          },
+          {
+           "code": null,
+           "text": "Investigate properties of solutions, including limits."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "groups",
+       "title": "Groups",
+       "subtopics": [
+        {
+         "id": "sets-and-group-axioms",
+         "title": "Sets and group axioms",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Use the language and notation of sets and of number sets."
+          },
+          {
+           "code": null,
+           "text": "Understand the group axioms and associated language."
+          },
+          {
+           "code": null,
+           "text": "Know examples of groups and use group tables for finite groups."
+          }
+         ]
+        },
+        {
+         "id": "order-cyclic-groups-and-subgroups",
+         "title": "Order, cyclic groups and subgroups",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Understand cyclic groups generated by a single element."
+          },
+          {
+           "code": null,
+           "text": "Understand the order of a finite group and of an element."
+          },
+          {
+           "code": null,
+           "text": "Work with subgroups and know the conditions for a subset to be a subgroup."
+          },
+          {
+           "code": null,
+           "text": "Use Lagrange's theorem."
+          }
+         ]
+        },
+        {
+         "id": "isomorphism",
+         "title": "Isomorphism",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Understand that different situations can share the same group structure."
+          },
+          {
+           "code": null,
+           "text": "Specify an isomorphism between two groups, including cyclic groups of the same order."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "matrices",
+       "title": "Matrices",
+       "subtopics": [
+        {
+         "id": "eigenvalues-and-eigenvectors",
+         "title": "Eigenvalues and eigenvectors",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Understand eigenvalues and eigenvectors and find them for 2x2 and 3x3 matrices."
+          },
+          {
+           "code": null,
+           "text": "Form and solve the characteristic equation."
+          }
+         ]
+        },
+        {
+         "id": "diagonalisation-and-cayley-hamilton",
+         "title": "Diagonalisation and Cayley-Hamilton",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Form the matrix of eigenvectors and diagonalise a matrix."
+          },
+          {
+           "code": null,
+           "text": "Find powers of a matrix using diagonal form."
+          },
+          {
+           "code": null,
+           "text": "Use the Cayley-Hamilton theorem."
+          }
+         ]
+        },
+        {
+         "id": "eigenvectors-in-transformations",
+         "title": "Eigenvectors in transformations",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Understand the significance of eigenvalues and eigenvectors in 2-D and 3-D transformations."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "multivariable-calculus",
+       "title": "Multivariable calculus",
+       "subtopics": [
+        {
+         "id": "surfaces-and-partial-derivatives",
+         "title": "Surfaces and partial derivatives",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Know z = f(x,y) defines a surface in 3-D and sketch contours and sections."
+          },
+          {
+           "code": null,
+           "text": "Find first order partial derivatives."
+          },
+          {
+           "code": null,
+           "text": "Find coordinates of stationary points on a surface."
+          },
+          {
+           "code": null,
+           "text": "Know g(x,y,z) = c defines a surface."
+          }
+         ]
+        },
+        {
+         "id": "normal-lines-and-tangent-planes",
+         "title": "Normal lines and tangent planes",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Find grad g and evaluate it at a point to give a normal vector."
+          },
+          {
+           "code": null,
+           "text": "Find equations of the normal line and tangent plane at a point on a surface."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "2k-further-pure-with-technology-y436",
+     "title": "2k Further Pure with Technology (Y436)",
+     "topics": [
+      {
+       "id": "investigation-of-curves",
+       "title": "Investigation of curves",
+       "subtopics": [
+        {
+         "id": "using-software-with-curves",
+         "title": "Using software with curves",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Plot families of curves in cartesian, polar and parametric forms using graphing software."
+          },
+          {
+           "code": null,
+           "text": "Use a computer algebra system to work with equations of curves."
+          }
+         ]
+        },
+        {
+         "id": "properties-of-curves",
+         "title": "Properties of curves",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Use vocabulary of curves: asymptote, cusp, loop, bounded, symmetry."
+          },
+          {
+           "code": null,
+           "text": "Find, describe and generalise properties of curves."
+          },
+          {
+           "code": null,
+           "text": "Convert between cartesian, polar and parametric forms."
+          },
+          {
+           "code": null,
+           "text": "Find tangent gradients and equations of chords, tangents and normals."
+          }
+         ]
+        },
+        {
+         "id": "arc-length-and-envelopes",
+         "title": "Arc length and envelopes",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Calculate arc length in cartesian, parametric and polar forms."
+          },
+          {
+           "code": null,
+           "text": "Find the envelope of a family of curves."
+          }
+         ]
+        },
+        {
+         "id": "limiting-behaviour",
+         "title": "Limiting behaviour",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Use limits to investigate and deduce properties of curves."
+          },
+          {
+           "code": null,
+           "text": "Determine asymptotes, including oblique ones."
+          },
+          {
+           "code": null,
+           "text": "Identify cusps by examining nearby behaviour."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "exploring-differential-equations",
+       "title": "Exploring differential equations",
+       "subtopics": [
+        {
+         "id": "software-and-tangent-fields",
+         "title": "Software and tangent fields",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Use software to find analytical solutions to families of first order differential equations."
+          },
+          {
+           "code": null,
+           "text": "Produce, sketch and interpret tangent fields, including isoclines."
+          },
+          {
+           "code": null,
+           "text": "Construct or interpret a spreadsheet solving first order differential equations numerically."
+          },
+          {
+           "code": null,
+           "text": "Verify solutions and work with families of particular solutions."
+          }
+         ]
+        },
+        {
+         "id": "numerical-solution-methods",
+         "title": "Numerical solution methods",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Solve first order differential equations by repeated Euler and modified Euler methods."
+          },
+          {
+           "code": null,
+           "text": "Understand that smaller step lengths and the modified method usually give more accurate answers."
+          },
+          {
+           "code": null,
+           "text": "Understand and use Runge-Kutta methods."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "number-theory",
+       "title": "Number theory",
+       "subtopics": [
+        {
+         "id": "programming-for-number-theory",
+         "title": "Programming for number theory",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Write, adapt and interpret programs to solve number theory problems."
+          },
+          {
+           "code": null,
+           "text": "Identify limitations of a short program and suggest refinements."
+          }
+         ]
+        },
+        {
+         "id": "primes-and-congruences",
+         "title": "Primes and congruences",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Use unique prime factorisation of natural numbers."
+          },
+          {
+           "code": null,
+           "text": "Solve problems with modular arithmetic."
+          },
+          {
+           "code": null,
+           "text": "Use Fermat's little theorem, Euler's totient function and theorem, and Wilson's theorem."
+          }
+         ]
+        },
+        {
+         "id": "diophantine-equations",
+         "title": "Diophantine equations",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Find Pythagorean triples and use related equations."
+          },
+          {
+           "code": null,
+           "text": "Solve Pell's equation and use solutions."
+          },
+          {
+           "code": null,
+           "text": "Solve other Diophantine equations."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "build": {
+  "builtAt": "2026-10-14T10:44:23.197Z",
+  "model": "claude-agent",
+  "usd": 0,
+  "expectedCodes": null,
+  "coverage": null,
+  "missingCodes": [],
+  "counts": {
+   "grades": 2,
+   "units": 10,
+   "topics": 46,
+   "subtopics": 110,
+   "outcomes": 334
+  },
+  "warnings": []
+ }
+}

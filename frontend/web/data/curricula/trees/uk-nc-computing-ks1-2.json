@@ -1,0 +1,233 @@
+{
+ "id": "uk-nc-computing-ks1-2",
+ "region": "UK",
+ "framework": "National Curriculum in England (2014)",
+ "board": "Department for Education",
+ "qualification": "Primary",
+ "subject": "Computing",
+ "syllabusCode": null,
+ "gradeSystem": "key-stage",
+ "source": {
+  "urls": [
+   "https://assets.publishing.service.gov.uk/media/5a7c576be5274a1b00423213/PRIMARY_national_curriculum_-_Computing.pdf",
+   "https://www.gov.uk/government/publications/national-curriculum-in-england-computing-programmes-of-study"
+  ],
+  "publisher": "Department for Education",
+  "licence": "Open Government Licence v3.0 (Crown copyright)",
+  "firstExam": "2014"
+ },
+ "grades": [
+  {
+   "grade": "KS1",
+   "units": [
+    {
+     "id": "computing-programme-of-study",
+     "title": "Computing programme of study",
+     "topics": [
+      {
+       "id": "programming-and-algorithms",
+       "title": "Programming and algorithms",
+       "subtopics": [
+        {
+         "id": "algorithms-and-programs",
+         "title": "Algorithms and programs",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain what algorithms are and that programs run by following precise, unambiguous instructions on digital devices."
+          }
+         ]
+        },
+        {
+         "id": "making-and-fixing-programs",
+         "title": "Making and fixing programs",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Create and debug simple programs."
+          },
+          {
+           "code": null,
+           "text": "Use logical reasoning to predict what simple programs will do."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "using-technology",
+       "title": "Using technology",
+       "subtopics": [
+        {
+         "id": "digital-content",
+         "title": "Digital content",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Use technology purposefully to create, organise, store, change and find digital content."
+          }
+         ]
+        },
+        {
+         "id": "it-in-the-world",
+         "title": "IT in the world",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Recognise common uses of information technology beyond school."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "online-safety",
+       "title": "Online safety",
+       "subtopics": [
+        {
+         "id": "staying-safe-online",
+         "title": "Staying safe online",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Use technology safely and respectfully, keep personal information private and know where to get help with online concerns."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "KS2",
+   "units": [
+    {
+     "id": "computing-programme-of-study",
+     "title": "Computing programme of study",
+     "topics": [
+      {
+       "id": "programming-and-algorithms",
+       "title": "Programming and algorithms",
+       "subtopics": [
+        {
+         "id": "designing-programs",
+         "title": "Designing programs",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Design, write and debug programs for specific goals, including controlling or simulating physical systems."
+          },
+          {
+           "code": null,
+           "text": "Solve problems by breaking them into smaller parts."
+          }
+         ]
+        },
+        {
+         "id": "programming-constructs",
+         "title": "Programming constructs",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Use sequence, selection and repetition in programs."
+          },
+          {
+           "code": null,
+           "text": "Work with variables and different forms of input and output."
+          }
+         ]
+        },
+        {
+         "id": "reasoning-about-algorithms",
+         "title": "Reasoning about algorithms",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Use logical reasoning to explain how simple algorithms work and to find and fix errors."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "networks-and-information",
+       "title": "Networks and information",
+       "subtopics": [
+        {
+         "id": "computer-networks",
+         "title": "Computer networks",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe computer networks, including the internet, the services they offer such as the web, and how they help communication and collaboration."
+          }
+         ]
+        },
+        {
+         "id": "searching-the-web",
+         "title": "Searching the web",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Use search technologies well, understand how results are selected and ranked, and judge digital content critically."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "using-technology",
+       "title": "Using technology",
+       "subtopics": [
+        {
+         "id": "creating-with-software",
+         "title": "Creating with software",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Select, use and combine software and internet services to create programs, systems and content, including collecting, analysing, evaluating and presenting data."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "online-safety",
+       "title": "Online safety",
+       "subtopics": [
+        {
+         "id": "responsible-use",
+         "title": "Responsible use",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Use technology safely, respectfully and responsibly, recognise acceptable and unacceptable behaviour, and know ways to report concerns."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "build": {
+  "builtAt": "2026-10-14T10:36:32.225Z",
+  "model": "claude-agent",
+  "usd": 0,
+  "expectedCodes": null,
+  "coverage": null,
+  "missingCodes": [],
+  "counts": {
+   "grades": 2,
+   "units": 2,
+   "topics": 7,
+   "subtopics": 12,
+   "outcomes": 15
+  },
+  "warnings": []
+ }
+}

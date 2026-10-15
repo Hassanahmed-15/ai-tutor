@@ -1,0 +1,1910 @@
+{
+ "id": "cie-igcse-information-and-communication-technology-9-1-0983-2026-2028",
+ "region": "INTL",
+ "framework": "Cambridge IGCSE Information and Communication Technology (0983) syllabus 2026–2028",
+ "board": "Cambridge",
+ "qualification": "IGCSE (9-1)",
+ "subject": "Information and Communication Technology",
+ "syllabusCode": "0983",
+ "gradeSystem": "course",
+ "source": {
+  "urls": [
+   "https://www.cambridgeinternational.org/Images/697246-2026-2028-syllabus.pdf",
+   "https://www.cambridgeinternational.org/programmes-and-qualifications/cambridge-igcse-information-and-communication-technology-9-1-0983/"
+  ],
+  "publisher": "Cambridge University Press & Assessment (Cambridge International Education)",
+  "licence": "© Cambridge University Press & Assessment; structure + our own wording only",
+  "firstExam": "2026"
+ },
+ "grades": [
+  {
+   "grade": "IGCSE",
+   "units": [
+    {
+     "id": "1-types-and-components-of-computer-systems",
+     "title": "1 Types and components of computer systems",
+     "topics": [
+      {
+       "id": "1-1-hardware-and-software",
+       "title": "1.1 Hardware and software",
+       "subtopics": [
+        {
+         "id": "hardware",
+         "title": "Hardware",
+         "outcomes": [
+          {
+           "code": "1.1",
+           "text": "Explain that hardware is the physical parts of a computer system."
+          },
+          {
+           "code": null,
+           "text": "Identify internal components: CPU, processor, motherboard, RAM and ROM."
+          },
+          {
+           "code": null,
+           "text": "Identify hardware components: graphics card, sound card, NIC, camera, storage, input and output devices."
+          }
+         ]
+        },
+        {
+         "id": "software",
+         "title": "Software",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain that software is programs controlling a computer or processing data."
+          },
+          {
+           "code": null,
+           "text": "Describe applications software and give examples such as word processing, spreadsheets, databases, apps and CAD."
+          },
+          {
+           "code": null,
+           "text": "Describe system software and give examples such as operating systems, compilers, device drivers and utilities."
+          }
+         ]
+        },
+        {
+         "id": "analogue-and-digital-data",
+         "title": "Analogue and digital data",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe the characteristics of analogue and digital data and how they differ."
+          },
+          {
+           "code": null,
+           "text": "Explain why analogue data is converted to digital to be processed, and digital to analogue to control devices."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "1-2-the-main-components-of-computer-systems",
+       "title": "1.2 The main components of computer systems",
+       "subtopics": [
+        {
+         "id": "main-components",
+         "title": "Main components",
+         "outcomes": [
+          {
+           "code": "1.2",
+           "text": "Explain the role of the CPU in processing instructions to produce output."
+          },
+          {
+           "code": null,
+           "text": "Describe ROM and RAM and how they differ."
+          },
+          {
+           "code": null,
+           "text": "Describe input and output devices and how they differ."
+          },
+          {
+           "code": null,
+           "text": "Describe backing storage and how it differs from internal memory."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "1-3-operating-systems",
+       "title": "1.3 Operating systems",
+       "subtopics": [
+        {
+         "id": "operating-systems",
+         "title": "Operating systems",
+         "outcomes": [
+          {
+           "code": "1.3",
+           "text": "Describe command line, graphical, dialogue-based and gesture-based interfaces."
+          },
+          {
+           "code": null,
+           "text": "Compare types of operating system, including advantages and disadvantages."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "1-4-types-of-computer",
+       "title": "1.4 Types of computer",
+       "subtopics": [
+        {
+         "id": "types-of-computer",
+         "title": "Types of computer",
+         "outcomes": [
+          {
+           "code": "1.4",
+           "text": "Describe a desktop computer and its uses."
+          },
+          {
+           "code": null,
+           "text": "Describe mobile computers (laptop, smartphone, tablet, phablet) and their uses."
+          },
+          {
+           "code": null,
+           "text": "Compare types of computer, including portability and expandability."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "1-5-emerging-technologies",
+       "title": "1.5 Emerging technologies",
+       "subtopics": [
+        {
+         "id": "emerging-technologies",
+         "title": "Emerging technologies",
+         "outcomes": [
+          {
+           "code": "1.5",
+           "text": "Describe the impact of emerging technologies such as AI and extended reality on everyday life."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "2-input-and-output-devices",
+     "title": "2 Input and output devices",
+     "topics": [
+      {
+       "id": "2-1-input-devices-and-their-uses",
+       "title": "2.1 Input devices and their uses",
+       "subtopics": [
+        {
+         "id": "input-devices",
+         "title": "Input devices",
+         "outcomes": [
+          {
+           "code": "2.1",
+           "text": "Describe characteristics, uses, advantages and disadvantages of input devices such as keyboards, pointing devices, scanners, microphones and sensors."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "2-2-direct-data-entry-and-associated-devices",
+       "title": "2.2 Direct data entry and associated devices",
+       "subtopics": [
+        {
+         "id": "direct-data-entry",
+         "title": "Direct data entry",
+         "outcomes": [
+          {
+           "code": "2.2",
+           "text": "Describe characteristics, uses and pros and cons of magnetic stripe, chip and PIN, RFID, OMR, OCR, barcode and QR readers."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "2-3-output-devices-and-their-uses",
+       "title": "2.3 Output devices and their uses",
+       "subtopics": [
+        {
+         "id": "output-devices",
+         "title": "Output devices",
+         "outcomes": [
+          {
+           "code": "2.3",
+           "text": "Describe characteristics, uses and pros and cons of monitors, projectors, printers, plotters, 3D printers, speakers and actuators."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "3-storage-devices-and-media",
+     "title": "3 Storage devices and media",
+     "topics": [
+      {
+       "id": "storage-devices-and-media",
+       "title": "Storage devices and media",
+       "subtopics": [
+        {
+         "id": "storage-devices-and-media",
+         "title": "Storage devices and media",
+         "outcomes": [
+          {
+           "code": "Storage devices and media",
+           "text": "Describe characteristics, uses and pros and cons of magnetic, optical and solid-state storage devices."
+          },
+          {
+           "code": null,
+           "text": "Describe fixed and portable magnetic hard drives, tape drives, optical drives and solid-state drives."
+          },
+          {
+           "code": null,
+           "text": "Describe characteristics, uses and pros and cons of magnetic, optical and solid-state storage media."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "4-networks-and-the-effects-of-using-them",
+     "title": "4 Networks and the effects of using them",
+     "topics": [
+      {
+       "id": "4-1-networks",
+       "title": "4.1 Networks",
+       "subtopics": [
+        {
+         "id": "network-devices-and-wireless",
+         "title": "Network devices and wireless",
+         "outcomes": [
+          {
+           "code": "4.1",
+           "text": "Explain the purpose of a router: connecting networks, storing addresses, routing packets."
+          },
+          {
+           "code": null,
+           "text": "Describe common network devices: NIC, hub, bridge, switch."
+          },
+          {
+           "code": null,
+           "text": "Describe uses of wi-fi and Bluetooth and compare them."
+          }
+         ]
+        },
+        {
+         "id": "cloud-computing-and-network-types",
+         "title": "Cloud computing and network types",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe cloud computing characteristics, uses and issues."
+          },
+          {
+           "code": null,
+           "text": "Explain how data is stored, managed and shared in the cloud, and compare cloud storage with other methods."
+          },
+          {
+           "code": null,
+           "text": "Compare extranet, intranet and the internet."
+          },
+          {
+           "code": null,
+           "text": "Compare LAN, WLAN and WAN."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "4-2-network-issues-and-communication",
+       "title": "4.2 Network issues and communication",
+       "subtopics": [
+        {
+         "id": "passwords-and-authentication",
+         "title": "Passwords and authentication",
+         "outcomes": [
+          {
+           "code": "4.2",
+           "text": "Explain privacy and confidentiality of data transfer."
+          },
+          {
+           "code": null,
+           "text": "Explain how to avoid password interception and the difference between strong and weak passwords."
+          },
+          {
+           "code": null,
+           "text": "Describe other authentication: zero login, biometrics, magnetic stripes, smart cards, tokens."
+          }
+         ]
+        },
+        {
+         "id": "malware-protection-and-conferencing",
+         "title": "Malware protection and conferencing",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe anti-malware software, removing or quarantining viruses and scanning transferred and downloaded data."
+          },
+          {
+           "code": null,
+           "text": "Describe video, audio and web conferencing with advantages and disadvantages."
+          },
+          {
+           "code": null,
+           "text": "Describe the hardware, software and network connection needed for each conference type."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "5-the-effects-of-using-it",
+     "title": "5 The effects of using IT",
+     "topics": [
+      {
+       "id": "5-1-microprocessor-controlled-devices",
+       "title": "5.1 Microprocessor-controlled devices",
+       "subtopics": [
+        {
+         "id": "microprocessor-controlled-devices",
+         "title": "Microprocessor-controlled devices",
+         "outcomes": [
+          {
+           "code": "5.1",
+           "text": "Describe positive and negative effects of smart devices at home on lifestyle, leisure, fitness, data security and social interaction."
+          },
+          {
+           "code": null,
+           "text": "Describe positive and negative effects of smart devices in transport, including autonomous vehicles and safety."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "5-2-potential-health-problems-related-to-the-pro",
+       "title": "5.2 Potential health problems related to the prolonged use of IT equipment",
+       "subtopics": [
+        {
+         "id": "health-problems-of-it-use",
+         "title": "Health problems of IT use",
+         "outcomes": [
+          {
+           "code": "5.2",
+           "text": "Describe health issues: RSI, back problems, eye problems, headaches."
+          },
+          {
+           "code": null,
+           "text": "Explain the causes of these issues and how to prevent them."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "6-ict-applications",
+     "title": "6 ICT applications",
+     "topics": [
+      {
+       "id": "6-1-communication",
+       "title": "6.1 Communication",
+       "subtopics": [
+        {
+         "id": "communication-applications",
+         "title": "Communication applications",
+         "outcomes": [
+          {
+           "code": "6.1",
+           "text": "Describe communication media: newsletters, posters, websites, presentations, audio, video, streaming, ePublications."
+          },
+          {
+           "code": null,
+           "text": "Describe mobile communication: SMS, calls, VoIP, video calls, internet access."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "6-2-modelling-applications",
+       "title": "6.2 Modelling applications",
+       "subtopics": [
+        {
+         "id": "modelling-and-control",
+         "title": "Modelling and control",
+         "outcomes": [
+          {
+           "code": "6.2",
+           "text": "Describe computer modelling for finance, buildings, floods, traffic and weather."
+          },
+          {
+           "code": null,
+           "text": "Compare computer modelling with using humans."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "6-3-computer-controlled-systems",
+       "title": "6.3 Computer controlled systems",
+       "subtopics": [
+        {
+         "id": "modelling-and-control",
+         "title": "Modelling and control",
+         "outcomes": [
+          {
+           "code": "6.3",
+           "text": "Describe computer controlled systems such as robots, production lines and autonomous vehicles."
+          },
+          {
+           "code": null,
+           "text": "Compare computer controlled systems with using humans."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "6-4-school-management-systems",
+       "title": "6.4 School management systems",
+       "subtopics": [
+        {
+         "id": "school-and-booking-systems",
+         "title": "School and booking systems",
+         "outcomes": [
+          {
+           "code": "6.4",
+           "text": "Describe systems that manage learner registration and attendance."
+          },
+          {
+           "code": null,
+           "text": "Describe systems that record learner performance, including computer aided learning."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "6-5-booking-systems",
+       "title": "6.5 Booking systems",
+       "subtopics": [
+        {
+         "id": "school-and-booking-systems",
+         "title": "School and booking systems",
+         "outcomes": [
+          {
+           "code": "6.5",
+           "text": "Describe online booking systems for travel, concerts, cinemas and sport, with advantages and disadvantages."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "6-6-banking-applications",
+       "title": "6.6 Banking applications",
+       "subtopics": [
+        {
+         "id": "banking-applications",
+         "title": "Banking applications",
+         "outcomes": [
+          {
+           "code": "6.6",
+           "text": "Describe ATMs and their pros and cons: cash, deposits, balances, statements, bills, transfers."
+          },
+          {
+           "code": null,
+           "text": "Describe EFT, card transactions, cheques and internet banking with pros and cons."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "6-7-computers-in-medicine",
+       "title": "6.7 Computers in medicine",
+       "subtopics": [
+        {
+         "id": "medicine-and-expert-systems",
+         "title": "Medicine and expert systems",
+         "outcomes": [
+          {
+           "code": "6.7",
+           "text": "Describe patient and pharmacy records."
+          },
+          {
+           "code": null,
+           "text": "Describe 3D printing in medicine: prosthetics, tissue engineering, blood vessels, custom medicines."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "6-8-expert-systems",
+       "title": "6.8 Expert systems",
+       "subtopics": [
+        {
+         "id": "medicine-and-expert-systems",
+         "title": "Medicine and expert systems",
+         "outcomes": [
+          {
+           "code": "6.8",
+           "text": "Describe uses and purpose of expert systems such as mineral prospecting and medical diagnosis."
+          },
+          {
+           "code": null,
+           "text": "Name the components: user interface, inference engine, knowledge base, rules base, explanation system."
+          },
+          {
+           "code": null,
+           "text": "Explain how an expert system produces possible solutions for different scenarios."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "6-9-computers-in-the-retail-industry",
+       "title": "6.9 Computers in the retail industry",
+       "subtopics": [
+        {
+         "id": "retail-and-recognition-systems",
+         "title": "Retail and recognition systems",
+         "outcomes": [
+          {
+           "code": "6.9",
+           "text": "Describe POS terminals, including automatic stock updating and reordering."
+          },
+          {
+           "code": null,
+           "text": "Describe EFTPOS terminals: card validity, chip and PIN, contactless, NFC, supermarket-bank communication."
+          },
+          {
+           "code": null,
+           "text": "Describe internet shopping with advantages and disadvantages."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "6-10-recognition-systems",
+       "title": "6.10 Recognition systems",
+       "subtopics": [
+        {
+         "id": "retail-and-recognition-systems",
+         "title": "Retail and recognition systems",
+         "outcomes": [
+          {
+           "code": "6.10",
+           "text": "Describe OMR with registers, exam papers, barcodes and QR codes."
+          },
+          {
+           "code": null,
+           "text": "Describe OCR, including number plate recognition."
+          },
+          {
+           "code": null,
+           "text": "Describe RFID uses: stock, passports, vehicles, contactless payment."
+          },
+          {
+           "code": null,
+           "text": "Describe NFC payment by smartphone."
+          },
+          {
+           "code": null,
+           "text": "Describe biometric recognition: face, iris, retina, fingerprint, hand, voice."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "6-11-satellite-systems",
+       "title": "6.11 Satellite systems",
+       "subtopics": [
+        {
+         "id": "satellite-systems",
+         "title": "Satellite systems",
+         "outcomes": [
+          {
+           "code": "6.11",
+           "text": "Describe GPS, satellite navigation, GIS and satellite TV and phones, with pros and cons."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "7-the-systems-life-cycle",
+     "title": "7 The systems life cycle",
+     "topics": [
+      {
+       "id": "7-1-analysis",
+       "title": "7.1 Analysis",
+       "subtopics": [
+        {
+         "id": "analysis",
+         "title": "Analysis",
+         "outcomes": [
+          {
+           "code": "7.1",
+           "text": "Compare research methods: observation, interviews, questionnaires, examining documents."
+          },
+          {
+           "code": null,
+           "text": "Record inputs, outputs, processing, problems and user requirements of the current system."
+          },
+          {
+           "code": null,
+           "text": "Identify and justify suitable hardware and software for the new system."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "7-2-design",
+       "title": "7.2 Design",
+       "subtopics": [
+        {
+         "id": "design",
+         "title": "Design",
+         "outcomes": [
+          {
+           "code": "7.2",
+           "text": "Design file and data structures: field length, name, data type, coding."
+          },
+          {
+           "code": null,
+           "text": "Describe validation routines: range, character, length, type, format, presence, check digit."
+          },
+          {
+           "code": null,
+           "text": "Design input formats such as data capture forms."
+          },
+          {
+           "code": null,
+           "text": "Design output formats such as screen and report layouts."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "7-3-development-and-testing",
+       "title": "7.3 Development and testing",
+       "subtopics": [
+        {
+         "id": "development-and-testing",
+         "title": "Development and testing",
+         "outcomes": [
+          {
+           "code": "7.3",
+           "text": "Explain why a system is tested before implementation."
+          },
+          {
+           "code": null,
+           "text": "Describe test designs, strategies and plans with test data, expected and actual outcomes, remedial action."
+          },
+          {
+           "code": null,
+           "text": "Test data structures, formats and validation routines, and test each module, function and the whole system."
+          },
+          {
+           "code": null,
+           "text": "Describe normal, abnormal and extreme test data, and live data."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "7-4-implementation",
+       "title": "7.4 Implementation",
+       "subtopics": [
+        {
+         "id": "implementation-and-documentation",
+         "title": "Implementation and documentation",
+         "outcomes": [
+          {
+           "code": "7.4",
+           "text": "Compare direct changeover, parallel running, pilot running and phased implementation."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "7-5-documentation",
+       "title": "7.5 Documentation",
+       "subtopics": [
+        {
+         "id": "implementation-and-documentation",
+         "title": "Implementation and documentation",
+         "outcomes": [
+          {
+           "code": "7.5",
+           "text": "Describe the purpose of technical and user documentation."
+          },
+          {
+           "code": null,
+           "text": "List components of technical documentation such as flowcharts, variables, file structures and test runs."
+          },
+          {
+           "code": null,
+           "text": "List components of user documentation such as installation, error messages, troubleshooting and FAQs."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "7-6-evaluation",
+       "title": "7.6 Evaluation",
+       "subtopics": [
+        {
+         "id": "evaluation",
+         "title": "Evaluation",
+         "outcomes": [
+          {
+           "code": "7.6",
+           "text": "Evaluate a solution for efficiency, ease of use and appropriateness."
+          },
+          {
+           "code": null,
+           "text": "Compare the solution with requirements, find limitations and improvements, and judge user responses to testing."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "8-safety-and-security",
+     "title": "8 Safety and security",
+     "topics": [
+      {
+       "id": "8-1-physical-safety",
+       "title": "8.1 Physical safety",
+       "subtopics": [
+        {
+         "id": "physical-safety",
+         "title": "Physical safety",
+         "outcomes": [
+          {
+           "code": "8.1",
+           "text": "Describe safety issues: electrocution, fire, tripping, falling equipment."
+          },
+          {
+           "code": null,
+           "text": "Explain the causes of these issues and how to prevent them."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "8-2-esafety",
+       "title": "8.2 eSafety",
+       "subtopics": [
+        {
+         "id": "data-protection-and-esafety",
+         "title": "Data protection and eSafety",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain the principles of data protection acts and why the legislation is needed."
+          },
+          {
+           "code": null,
+           "text": "Describe personal and sensitive data and why it must stay confidential."
+          },
+          {
+           "code": null,
+           "text": "Explain the need for eSafety on the internet, email, social media and online gaming."
+          },
+          {
+           "code": null,
+           "text": "Explain how to minimise danger when using the internet, email, social media and online games."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "8-3-security-of-data",
+       "title": "8.3 Security of data",
+       "subtopics": [
+        {
+         "id": "threats-to-data",
+         "title": "Threats to data",
+         "outcomes": [
+          {
+           "code": "8.3",
+           "text": "Describe threats to data: hacking, phishing, pharming, smishing, vishing, viruses, malware, card fraud."
+          },
+          {
+           "code": null,
+           "text": "Describe measures to protect data from hacking."
+          },
+          {
+           "code": null,
+           "text": "Describe methods to help prevent phishing, pharming, smishing and vishing."
+          },
+          {
+           "code": null,
+           "text": "Describe preventing malware infection from downloads."
+          },
+          {
+           "code": null,
+           "text": "Describe card fraud: shoulder surfing, card cloning, key logging."
+          }
+         ]
+        },
+        {
+         "id": "protecting-data",
+         "title": "Protecting data",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe biometrics, digital certificates and SSL for protecting data."
+          },
+          {
+           "code": null,
+           "text": "Describe encryption, firewalls and two-factor authentication."
+          },
+          {
+           "code": null,
+           "text": "Explain how user IDs and passwords increase data security."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "9-audience",
+     "title": "9 Audience",
+     "topics": [
+      {
+       "id": "9-1-audience-appreciation",
+       "title": "9.1 Audience appreciation",
+       "subtopics": [
+        {
+         "id": "audience-and-copyright",
+         "title": "Audience and copyright",
+         "outcomes": [
+          {
+           "code": "9.1",
+           "text": "Show a clear sense of audience and purpose."
+          },
+          {
+           "code": null,
+           "text": "Plan ICT solutions that respond to and respect audience needs."
+          },
+          {
+           "code": null,
+           "text": "Analyse the needs of an audience when creating ICT solutions."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "9-2-copyright",
+       "title": "9.2 Copyright",
+       "subtopics": [
+        {
+         "id": "audience-and-copyright",
+         "title": "Audience and copyright",
+         "outcomes": [
+          {
+           "code": "9.2",
+           "text": "Explain the need for copyright legislation and its principles for software, such as piracy."
+          },
+          {
+           "code": null,
+           "text": "Describe methods software producers use to prevent copyright being broken."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "10-communication",
+     "title": "10 Communication",
+     "topics": [
+      {
+       "id": "10-1-communication-with-other-ict-users-using-em",
+       "title": "10.1 Communication with other ICT users using email",
+       "subtopics": [
+        {
+         "id": "email",
+         "title": "Email",
+         "outcomes": [
+          {
+           "code": "10.1",
+           "text": "Describe characteristics, uses and constraints of email: acceptable language, employer rules, security, netiquette, cc, bcc, attachments."
+          },
+          {
+           "code": null,
+           "text": "Describe the effects of spam email and how to help prevent it."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "10-2-effective-use-of-the-internet",
+       "title": "10.2 Effective use of the internet",
+       "subtopics": [
+        {
+         "id": "the-internet-and-the-web",
+         "title": "The internet and the web",
+         "outcomes": [
+          {
+           "code": "10.2",
+           "text": "Describe the internet's uses, advantages and disadvantages, and how it differs from intranets, extranets and the WWW."
+          },
+          {
+           "code": null,
+           "text": "Describe blogs, forums, wikis and social networking."
+          },
+          {
+           "code": null,
+           "text": "Describe ISPs, web addresses, URLs, hyperlinks and web browsers."
+          }
+         ]
+        },
+        {
+         "id": "searching-and-internet-safety",
+         "title": "Searching and internet safety",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe using search engines: speed, amount and reliability of information."
+          },
+          {
+           "code": null,
+           "text": "Evaluate internet information for how current, reliable, biased and valid it is."
+          },
+          {
+           "code": null,
+           "text": "Describe internet protocols: HTTP, HTTPS, FTP, SSL."
+          },
+          {
+           "code": null,
+           "text": "Describe internet risks and controls by parents, schools and ISPs."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "11-file-management",
+     "title": "11 File management",
+     "topics": [
+      {
+       "id": "11-1-manage-files-effectively",
+       "title": "11.1 Manage files effectively",
+       "subtopics": [
+        {
+         "id": "managing-files",
+         "title": "Managing files",
+         "outcomes": [
+          {
+           "code": "11.1",
+           "text": "Locate stored files and open or import files of different types."
+          },
+          {
+           "code": null,
+           "text": "Save files in a planned folder structure with appropriate file names."
+          },
+          {
+           "code": null,
+           "text": "Save and print files in a variety of formats such as documents, screenshots, reports and web pages."
+          },
+          {
+           "code": null,
+           "text": "Save and export in application and generic file formats."
+          },
+          {
+           "code": null,
+           "text": "Describe characteristics and uses of file formats such as css, csv, gif, jpg, pdf, png, rtf, txt, zip."
+          },
+          {
+           "code": null,
+           "text": "Explain the need for generic file formats."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "11-2-reduce-file-sizes-for-storage-or-transmissi",
+       "title": "11.2 Reduce file sizes for storage or transmission",
+       "subtopics": [
+        {
+         "id": "file-compression",
+         "title": "File compression",
+         "outcomes": [
+          {
+           "code": "11.2",
+           "text": "Compress files for storage or transmission using .zip and .rar."
+          },
+          {
+           "code": null,
+           "text": "Explain why file sizes need reducing for storage or transmission."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "12-images",
+     "title": "12 Images",
+     "topics": [
+      {
+       "id": "images",
+       "title": "Images",
+       "subtopics": [
+        {
+         "id": "placing-and-editing-images",
+         "title": "Placing and editing images",
+         "outcomes": [
+          {
+           "code": "Images",
+           "text": "Place an image with precision."
+          },
+          {
+           "code": null,
+           "text": "Resize an image as specified, keeping or adjusting its aspect ratio."
+          },
+          {
+           "code": null,
+           "text": "Crop, rotate and reflect an image."
+          },
+          {
+           "code": null,
+           "text": "Adjust image brightness and contrast."
+          },
+          {
+           "code": null,
+           "text": "Group, ungroup and layer images."
+          },
+          {
+           "code": null,
+           "text": "Recognise that lower resolution or colour depth reduces file size."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "13-layout",
+     "title": "13 Layout",
+     "topics": [
+      {
+       "id": "13-1-create-or-edit-a-document",
+       "title": "13.1 Create or edit a document",
+       "subtopics": [
+        {
+         "id": "creating-and-editing-documents",
+         "title": "Creating and editing documents",
+         "outcomes": [
+          {
+           "code": "13.1",
+           "text": "Create or edit a document, entering and changing text and numbers accurately."
+          },
+          {
+           "code": null,
+           "text": "Use editing techniques: highlight, delete, move, cut, copy, paste, drag and drop."
+          },
+          {
+           "code": null,
+           "text": "Place objects from varied sources into a document."
+          },
+          {
+           "code": null,
+           "text": "Wrap text around a table, chart or image."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "13-2-tables",
+       "title": "13.2 Tables",
+       "subtopics": [
+        {
+         "id": "tables-in-documents",
+         "title": "Tables in documents",
+         "outcomes": [
+          {
+           "code": "13.2",
+           "text": "Create a table with specified rows and columns and place text or objects in it."
+          },
+          {
+           "code": null,
+           "text": "Insert and delete rows and columns and merge cells."
+          },
+          {
+           "code": null,
+           "text": "Format tables: alignment, gridlines, text wrap, shading, row height, column width."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "13-3-headers-and-footers",
+       "title": "13.3 Headers and footers",
+       "subtopics": [
+        {
+         "id": "headers-and-footers",
+         "title": "Headers and footers",
+         "outcomes": [
+          {
+           "code": "13.3",
+           "text": "Create or edit headers and footers."
+          },
+          {
+           "code": null,
+           "text": "Align header and footer contents consistently."
+          },
+          {
+           "code": null,
+           "text": "Place text and automated objects such as page numbers and dates in headers and footers."
+          },
+          {
+           "code": null,
+           "text": "Explain the purpose of headers and footers."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "14-styles",
+     "title": "14 Styles",
+     "topics": [
+      {
+       "id": "styles",
+       "title": "Styles",
+       "subtopics": [
+        {
+         "id": "styles",
+         "title": "Styles",
+         "outcomes": [
+          {
+           "code": "Styles",
+           "text": "Create, modify, update and apply styles for consistency."
+          },
+          {
+           "code": null,
+           "text": "Set fonts, text alignment and text enhancement in styles."
+          },
+          {
+           "code": null,
+           "text": "Set paragraph and line spacing, and bullet shape, alignment and indent."
+          },
+          {
+           "code": null,
+           "text": "Explain the purpose and uses of a corporate house style."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "15-proofing",
+     "title": "15 Proofing",
+     "topics": [
+      {
+       "id": "15-1-software-tools",
+       "title": "15.1 Software tools",
+       "subtopics": [
+        {
+         "id": "reducing-errors",
+         "title": "Reducing errors",
+         "outcomes": [
+          {
+           "code": "15.1",
+           "text": "Use spell and grammar check and make appropriate changes."
+          },
+          {
+           "code": null,
+           "text": "Explain that spell check suggestions are not always correct."
+          },
+          {
+           "code": null,
+           "text": "Use validation routines to minimise data entry errors."
+          },
+          {
+           "code": null,
+           "text": "Explain the importance and uses of validation checks."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "15-2-proofing-techniques",
+       "title": "15.2 Proofing techniques",
+       "subtopics": [
+        {
+         "id": "proofing-and-verification",
+         "title": "Proofing and verification",
+         "outcomes": [
+          {
+           "code": "15.2",
+           "text": "Perform visual verification, correcting transposed numbers, spelling and inconsistent spacing or case."
+          },
+          {
+           "code": null,
+           "text": "Proofread: fix line spacing, blank pages, widows and orphans, style errors and split tables."
+          },
+          {
+           "code": null,
+           "text": "Explain the importance and uses of verification, such as visual checking and double data entry."
+          },
+          {
+           "code": null,
+           "text": "Explain why validation is needed as well as verification."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "16-graphs-and-charts",
+     "title": "16 Graphs and charts",
+     "topics": [
+      {
+       "id": "graphs-and-charts",
+       "title": "Graphs and charts",
+       "subtopics": [
+        {
+         "id": "creating-charts",
+         "title": "Creating charts",
+         "outcomes": [
+          {
+           "code": "Graphs and charts",
+           "text": "Select data for a chart, including contiguous and non-contiguous ranges."
+          },
+          {
+           "code": null,
+           "text": "Select the chart type."
+          },
+          {
+           "code": null,
+           "text": "Label a chart with title, legend, axis titles and data labels."
+          }
+         ]
+        },
+        {
+         "id": "formatting-charts",
+         "title": "Formatting charts",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Add a second data series and a second axis."
+          },
+          {
+           "code": null,
+           "text": "Format numbers to set decimal places and currency symbols."
+          },
+          {
+           "code": null,
+           "text": "Adjust axis maximum, minimum and increments."
+          },
+          {
+           "code": null,
+           "text": "Enhance chart appearance, such as extracting a pie sector or changing colours."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "17-document-production",
+     "title": "17 Document production",
+     "topics": [
+      {
+       "id": "document-production",
+       "title": "Document production",
+       "subtopics": [
+        {
+         "id": "page-layout-and-text",
+         "title": "Page layout and text",
+         "outcomes": [
+          {
+           "code": "Document production",
+           "text": "Edit page size, orientation, margins, columns and breaks."
+          },
+          {
+           "code": null,
+           "text": "Set line spacing, tabs, indents and hanging paragraphs."
+          },
+          {
+           "code": null,
+           "text": "Apply text enhancement and change case."
+          },
+          {
+           "code": null,
+           "text": "Create bulleted and numbered lists."
+          }
+         ]
+        },
+        {
+         "id": "finding-navigating-and-pagination",
+         "title": "Finding, navigating and pagination",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Find and replace text, matching case or whole words."
+          },
+          {
+           "code": null,
+           "text": "Add and delete bookmarks and hyperlinks."
+          },
+          {
+           "code": null,
+           "text": "Explain the purpose of page, section and column breaks."
+          },
+          {
+           "code": null,
+           "text": "Explain the purpose of gutter margins."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "18-databases",
+     "title": "18 Databases",
+     "topics": [
+      {
+       "id": "18-1-create-a-database-structure",
+       "title": "18.1 Create a database structure",
+       "subtopics": [
+        {
+         "id": "building-tables",
+         "title": "Building tables",
+         "outcomes": [
+          {
+           "code": "18.1",
+           "text": "Import data from csv or txt files into tables with specified field names."
+          },
+          {
+           "code": null,
+           "text": "Set data types and numeric sub-types for fields."
+          },
+          {
+           "code": null,
+           "text": "Set display formats for Boolean and date/time fields."
+          },
+          {
+           "code": null,
+           "text": "Create and edit primary and foreign keys and relationships between tables."
+          }
+         ]
+        },
+        {
+         "id": "database-types-and-forms",
+         "title": "Database types and forms",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Compare flat file and relational databases."
+          },
+          {
+           "code": null,
+           "text": "Describe primary and foreign keys."
+          },
+          {
+           "code": null,
+           "text": "Create and use a data entry form with appropriate layout and controls."
+          },
+          {
+           "code": null,
+           "text": "Describe the characteristics of good form design."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "18-2-manipulate-data",
+       "title": "18.2 Manipulate data",
+       "subtopics": [
+        {
+         "id": "calculating-sorting-and-searching",
+         "title": "Calculating, sorting and searching",
+         "outcomes": [
+          {
+           "code": "18.2",
+           "text": "Use arithmetic operations and functions for calculated fields and controls."
+          },
+          {
+           "code": null,
+           "text": "Use formulae and functions such as sum, average, max, min and count."
+          },
+          {
+           "code": null,
+           "text": "Sort data on one or several criteria."
+          },
+          {
+           "code": null,
+           "text": "Select subsets with queries using one or several criteria."
+          },
+          {
+           "code": null,
+           "text": "Search using operators AND, OR, NOT, LIKE and comparisons, and wildcards."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "18-3-present-data",
+       "title": "18.3 Present data",
+       "subtopics": [
+        {
+         "id": "database-reports",
+         "title": "Database reports",
+         "outcomes": [
+          {
+           "code": "18.3",
+           "text": "Produce reports displaying all required data and labels in full."
+          },
+          {
+           "code": null,
+           "text": "Use report and page headers and footers and set report titles."
+          },
+          {
+           "code": null,
+           "text": "Produce different output layouts, such as tabular or columnar."
+          },
+          {
+           "code": null,
+           "text": "Align data and labels, right-aligning numbers and decimals."
+          },
+          {
+           "code": null,
+           "text": "Control number display: decimal places, currency, percentage."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "19-presentations",
+     "title": "19 Presentations",
+     "topics": [
+      {
+       "id": "presentations",
+       "title": "Presentations",
+       "subtopics": [
+        {
+         "id": "master-slides",
+         "title": "Master slides",
+         "outcomes": [
+          {
+           "code": "Presentations",
+           "text": "Create a new presentation from a text file."
+          },
+          {
+           "code": null,
+           "text": "Use a master slide to insert and edit objects consistently."
+          },
+          {
+           "code": null,
+           "text": "Format master slide headings, bullets and backgrounds."
+          }
+         ]
+        },
+        {
+         "id": "editing-a-presentation",
+         "title": "Editing a presentation",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Apply slide layouts, and insert, move or delete slides."
+          },
+          {
+           "code": null,
+           "text": "Insert and edit text, images, video, charts, tables, audio and shapes on a slide."
+          },
+          {
+           "code": null,
+           "text": "Add presenter notes."
+          },
+          {
+           "code": null,
+           "text": "Insert and edit hyperlinks and action buttons."
+          },
+          {
+           "code": null,
+           "text": "Add alternative text or screentips to objects."
+          }
+         ]
+        },
+        {
+         "id": "transitions-and-output",
+         "title": "Transitions and output",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Apply consistent transitions and animations."
+          },
+          {
+           "code": null,
+           "text": "Hide slides within a presentation."
+          },
+          {
+           "code": null,
+           "text": "Display a presentation as a looped carousel or presenter controlled."
+          },
+          {
+           "code": null,
+           "text": "Print a presentation as full slides, presenter notes or handouts."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "20-spreadsheets",
+     "title": "20 Spreadsheets",
+     "topics": [
+      {
+       "id": "20-1-create-a-data-model",
+       "title": "20.1 Create a data model",
+       "subtopics": [
+        {
+         "id": "building-a-spreadsheet-model",
+         "title": "Building a spreadsheet model",
+         "outcomes": [
+          {
+           "code": "20.1",
+           "text": "Insert and delete cells, rows and columns, and merge cells."
+          },
+          {
+           "code": null,
+           "text": "Create formulae using cell references."
+          },
+          {
+           "code": null,
+           "text": "Replicate formulae using absolute and relative references."
+          },
+          {
+           "code": null,
+           "text": "Use arithmetic operators in formulae."
+          },
+          {
+           "code": null,
+           "text": "Use named cells and ranges."
+          }
+         ]
+        },
+        {
+         "id": "functions-and-formula-concepts",
+         "title": "Functions and formula concepts",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Use functions such as sum, average, max, min, round, count, lookups and IF."
+          },
+          {
+           "code": null,
+           "text": "Use external data sources and nested functions in functions."
+          },
+          {
+           "code": null,
+           "text": "Explain the difference between a formula and a function."
+          },
+          {
+           "code": null,
+           "text": "Explain the order of operations and the use of brackets."
+          },
+          {
+           "code": null,
+           "text": "Explain absolute and relative cell referencing."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "20-2-manipulate-data",
+       "title": "20.2 Manipulate data",
+       "subtopics": [
+        {
+         "id": "sorting-and-searching-spreadsheets",
+         "title": "Sorting and searching spreadsheets",
+         "outcomes": [
+          {
+           "code": "20.2",
+           "text": "Sort data on one or several criteria."
+          },
+          {
+           "code": null,
+           "text": "Select subsets of data using one or several criteria."
+          },
+          {
+           "code": null,
+           "text": "Search using operators AND, OR, NOT and comparisons."
+          },
+          {
+           "code": null,
+           "text": "Search using wildcards."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "20-3-present-data",
+       "title": "20.3 Present data",
+       "subtopics": [
+        {
+         "id": "displaying-and-formatting-spreadsheets",
+         "title": "Displaying and formatting spreadsheets",
+         "outcomes": [
+          {
+           "code": "20.3",
+           "text": "Display formulae or values."
+          },
+          {
+           "code": null,
+           "text": "Adjust row heights and column widths, wrap text, and hide or show rows and columns."
+          },
+          {
+           "code": null,
+           "text": "Enhance a spreadsheet with colour, bold, underline, italic and shading."
+          },
+          {
+           "code": null,
+           "text": "Format numbers for decimal places, currency and percentages."
+          },
+          {
+           "code": null,
+           "text": "Use conditional formatting."
+          },
+          {
+           "code": null,
+           "text": "Set page orientation and print layout, area, gridlines and headings."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "21-website-authoring",
+     "title": "21 Website authoring",
+     "topics": [
+      {
+       "id": "21-1-web-development-layers",
+       "title": "21.1 Web development layers",
+       "subtopics": [
+        {
+         "id": "web-development-layers",
+         "title": "Web development layers",
+         "outcomes": [
+          {
+           "code": "21.1",
+           "text": "Describe the content layer for page content and structure."
+          },
+          {
+           "code": null,
+           "text": "Describe the presentation layer for displaying and formatting elements."
+          },
+          {
+           "code": null,
+           "text": "Describe the behaviour layer for scripting to control elements."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "21-2-create-a-web-page",
+       "title": "21.2 Create a web page",
+       "subtopics": [
+        {
+         "id": "html-head-and-body",
+         "title": "HTML head and body",
+         "outcomes": [
+          {
+           "code": "21.2",
+           "text": "Create the content layer of a web page using HTML."
+          },
+          {
+           "code": null,
+           "text": "Place head elements: page title, external stylesheets, metatags, default targets."
+          },
+          {
+           "code": null,
+           "text": "Place appropriate content in the body."
+          },
+          {
+           "code": null,
+           "text": "Insert tables with header, row and data tags and attributes for spans and sizes."
+          }
+         ]
+        },
+        {
+         "id": "html-objects-text-and-links",
+         "title": "HTML objects, text and links",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Insert text, images, sound and video with controls, size and alternate text."
+          },
+          {
+           "code": null,
+           "text": "Use div tags and apply classes and styles."
+          },
+          {
+           "code": null,
+           "text": "Apply heading, paragraph and list tags and ordered or unordered lists."
+          },
+          {
+           "code": null,
+           "text": "Create bookmarks with an id attribute."
+          },
+          {
+           "code": null,
+           "text": "Create hyperlinks to bookmarks, local pages, websites, email addresses and set target windows."
+          }
+         ]
+        },
+        {
+         "id": "html-concepts",
+         "title": "HTML concepts",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain the purpose of the head and body sections."
+          },
+          {
+           "code": null,
+           "text": "Explain why tables structure elements in a web page."
+          },
+          {
+           "code": null,
+           "text": "Explain the function of metatags."
+          },
+          {
+           "code": null,
+           "text": "Explain hyperlinks, bookmarks and anchors."
+          },
+          {
+           "code": null,
+           "text": "Explain relative and absolute file paths and why absolute paths must not link local pages."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "21-3-use-stylesheets",
+       "title": "21.3 Use stylesheets",
+       "subtopics": [
+        {
+         "id": "css-in-practice",
+         "title": "CSS in practice",
+         "outcomes": [
+          {
+           "code": "21.3",
+           "text": "Create the presentation layer of a web page using CSS."
+          },
+          {
+           "code": null,
+           "text": "Create external styles and inline style attributes for backgrounds, fonts and tables."
+          },
+          {
+           "code": null,
+           "text": "Create classes for backgrounds, fonts and table properties."
+          },
+          {
+           "code": null,
+           "text": "Create external styles for h1, h2, h3, p and li."
+          },
+          {
+           "code": null,
+           "text": "Specify font family, size, colour, alignment, bold and italic."
+          },
+          {
+           "code": null,
+           "text": "Add comments to a stylesheet and save in CSS format."
+          }
+         ]
+        },
+        {
+         "id": "css-concepts",
+         "title": "CSS concepts",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe attached stylesheets versus inline style attributes and their hierarchy."
+          },
+          {
+           "code": null,
+           "text": "Describe the difference between a style and a class."
+          },
+          {
+           "code": null,
+           "text": "Explain why relative file paths must be used for attached stylesheets."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "build": {
+  "builtAt": "2026-10-14T09:50:36.720Z",
+  "model": "claude-agent",
+  "usd": 0,
+  "expectedCodes": 51,
+  "coverage": 1,
+  "missingCodes": [],
+  "counts": {
+   "grades": 1,
+   "units": 21,
+   "topics": 58,
+   "subtopics": 73,
+   "outcomes": 239
+  },
+  "warnings": []
+ }
+}

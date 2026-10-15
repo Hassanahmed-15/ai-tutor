@@ -1,0 +1,190 @@
+{
+ "id": "uk-nc-languages-ks2",
+ "region": "UK",
+ "framework": "National Curriculum in England (2014)",
+ "board": "Department for Education",
+ "qualification": "Primary",
+ "subject": "Languages (foreign language)",
+ "syllabusCode": null,
+ "gradeSystem": "key-stage",
+ "source": {
+  "urls": [
+   "https://assets.publishing.service.gov.uk/media/5a7b9246e5274a7318b8f889/PRIMARY_national_curriculum_-_Languages.pdf",
+   "https://www.gov.uk/government/publications/national-curriculum-in-england-languages-progammes-of-study"
+  ],
+  "publisher": "Department for Education",
+  "licence": "Open Government Licence v3.0 (Crown copyright)",
+  "firstExam": "2014"
+ },
+ "grades": [
+  {
+   "grade": "KS2",
+   "units": [
+    {
+     "id": "languages-programme-of-study-foreign-language",
+     "title": "Languages programme of study: foreign language",
+     "topics": [
+      {
+       "id": "listening-and-sounds",
+       "title": "Listening and sounds",
+       "subtopics": [
+        {
+         "id": "listening-and-joining-in",
+         "title": "Listening and joining in",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Listen attentively to spoken language and show understanding by joining in and responding."
+          }
+         ]
+        },
+        {
+         "id": "songs-rhymes-and-sounds",
+         "title": "Songs, rhymes and sounds",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explore patterns and sounds through songs and rhymes and link spelling, sound and meaning."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "speaking",
+       "title": "Speaking",
+       "subtopics": [
+        {
+         "id": "conversation",
+         "title": "Conversation",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Hold conversations, ask and answer questions, give opinions, respond to others and ask for clarification (modern languages)."
+          }
+         ]
+        },
+        {
+         "id": "speaking-in-sentences",
+         "title": "Speaking in sentences",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Speak in sentences using familiar vocabulary, phrases and basic structures."
+          }
+         ]
+        },
+        {
+         "id": "pronunciation-and-presenting",
+         "title": "Pronunciation and presenting",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Use accurate pronunciation and intonation when reading aloud or using familiar words (modern languages)."
+          },
+          {
+           "code": null,
+           "text": "Present ideas and information orally to different audiences (modern languages)."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "reading",
+       "title": "Reading",
+       "subtopics": [
+        {
+         "id": "reading-with-understanding",
+         "title": "Reading with understanding",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Read carefully and show understanding of words, phrases and simple writing."
+          }
+         ]
+        },
+        {
+         "id": "stories-songs-and-vocabulary",
+         "title": "Stories, songs and vocabulary",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Appreciate stories, songs, poems and rhymes in the language."
+          },
+          {
+           "code": null,
+           "text": "Widen vocabulary and work out new words in familiar texts, including using a dictionary."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "writing",
+       "title": "Writing",
+       "subtopics": [
+        {
+         "id": "writing-phrases-and-sentences",
+         "title": "Writing phrases and sentences",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Write phrases from memory and adapt them into new sentences to express ideas clearly."
+          }
+         ]
+        },
+        {
+         "id": "describing",
+         "title": "Describing",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe people, places, things and actions orally (modern languages) and in writing."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "grammar",
+       "title": "Grammar",
+       "subtopics": [
+        {
+         "id": "basic-grammar",
+         "title": "Basic grammar",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Understand basic grammar, including masculine, feminine and neuter forms and conjugating common verbs where relevant."
+          },
+          {
+           "code": null,
+           "text": "Notice key features and patterns of the language, use them to build sentences, and compare them with English."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "build": {
+  "builtAt": "2026-10-14T10:37:28.871Z",
+  "model": "claude-agent",
+  "usd": 0,
+  "expectedCodes": null,
+  "coverage": null,
+  "missingCodes": [],
+  "counts": {
+   "grades": 1,
+   "units": 1,
+   "topics": 5,
+   "subtopics": 10,
+   "outcomes": 13
+  },
+  "warnings": []
+ }
+}

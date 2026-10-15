@@ -1,0 +1,3442 @@
+[
+{
+"grade": "all",
+"unit": "Course Skills",
+"topic": "Skill Category 1: Analyze Risk",
+"subtopic": "Analyze Risk skills",
+"code": "1.A",
+"outcome": "Identify, with and without the support of AI, vulnerabilities, threats, and attack methods, and explain how they generate risk."
+},
+{
+"grade": "all",
+"unit": "Course Skills",
+"topic": "Skill Category 1: Analyze Risk",
+"subtopic": "Analyze Risk skills",
+"code": "1.B",
+"outcome": "Determine ways adversaries exploit vulnerabilities to compromise an asset."
+},
+{
+"grade": "all",
+"unit": "Course Skills",
+"topic": "Skill Category 1: Analyze Risk",
+"subtopic": "Analyze Risk skills",
+"code": "1.C",
+"outcome": "Evaluate, with and without the support of AI, the likelihood and impact of risks."
+},
+{
+"grade": "all",
+"unit": "Course Skills",
+"topic": "Skill Category 1: Analyze Risk",
+"subtopic": "Analyze Risk skills",
+"code": "1.D",
+"outcome": "Document, with and without the support of AI, the likelihood and impact of risks."
+},
+{
+"grade": "all",
+"unit": "Course Skills",
+"topic": "Skill Category 2: Mitigate Risk",
+"subtopic": "Mitigate Risk skills",
+"code": "2.A",
+"outcome": "Identify security controls, and explain how they mitigate risks."
+},
+{
+"grade": "all",
+"unit": "Course Skills",
+"topic": "Skill Category 2: Mitigate Risk",
+"subtopic": "Mitigate Risk skills",
+"code": "2.B",
+"outcome": "Determine layered security controls that address vulnerabilities."
+},
+{
+"grade": "all",
+"unit": "Course Skills",
+"topic": "Skill Category 2: Mitigate Risk",
+"subtopic": "Mitigate Risk skills",
+"code": "2.C",
+"outcome": "Evaluate, with and without the support of AI, the impact of protective risk-management strategies."
+},
+{
+"grade": "all",
+"unit": "Course Skills",
+"topic": "Skill Category 2: Mitigate Risk",
+"subtopic": "Mitigate Risk skills",
+"code": "2.D",
+"outcome": "Implement and log mitigations with and without the support of AI."
+},
+{
+"grade": "all",
+"unit": "Course Skills",
+"topic": "Skill Category 3: Detect Attacks",
+"subtopic": "Detect Attacks skills",
+"code": "3.A",
+"outcome": "Identify methods for monitoring systems, and explain how they detect attacks."
+},
+{
+"grade": "all",
+"unit": "Course Skills",
+"topic": "Skill Category 3: Detect Attacks",
+"subtopic": "Detect Attacks skills",
+"code": "3.B",
+"outcome": "Determine strategies and methods to detect attacks."
+},
+{
+"grade": "all",
+"unit": "Course Skills",
+"topic": "Skill Category 3: Detect Attacks",
+"subtopic": "Detect Attacks skills",
+"code": "3.C",
+"outcome": "Evaluate the impact of threat detection methods."
+},
+{
+"grade": "all",
+"unit": "Course Skills",
+"topic": "Skill Category 3: Detect Attacks",
+"subtopic": "Detect Attacks skills",
+"code": "3.D",
+"outcome": "Detect and classify cyberattacks by analyzing digital evidence with and without the support of AI."
+},
+{
+"grade": "all",
+"unit": "Course Skills",
+"topic": "Skill Category 4: Collaborate",
+"subtopic": "Collaborate skills",
+"code": "4.A",
+"outcome": "Develop clear, shared team objectives related to a cybersecurity task."
+},
+{
+"grade": "all",
+"unit": "Course Skills",
+"topic": "Skill Category 4: Collaborate",
+"subtopic": "Collaborate skills",
+"code": "4.B",
+"outcome": "Determine clear roles and responsibilities for members of a team working to accomplish a cybersecurity task."
+},
+{
+"grade": "all",
+"unit": "Course Skills",
+"topic": "Skill Category 4: Collaborate",
+"subtopic": "Collaborate skills",
+"code": "4.C",
+"outcome": "Implement AI as a collaboration tool individually and as a group."
+},
+{
+"grade": "all",
+"unit": "Course Skills",
+"topic": "Skill Category 4: Collaborate",
+"subtopic": "Collaborate skills",
+"code": "4.D",
+"outcome": "Complete assigned work to accomplish a collaborative cybersecurity task."
+},
+{
+"grade": "all",
+"unit": "Unit 1: Introduction to Security",
+"topic": "1.1 Understanding Social Engineering",
+"subtopic": "Recognize Social Engineering",
+"code": "1.1.A",
+"outcome": "Identify common indicators of social engineering tactics."
+},
+{
+"grade": "all",
+"unit": "Unit 1: Introduction to Security",
+"topic": "1.1 Understanding Social Engineering",
+"subtopic": "Recognize Social Engineering",
+"code": "1.1.A.1",
+"outcome": "Social engineering attacks employ psychological tactics to manipulate users into revealing sensitive information (elicitation), downloading a malicious file, or clicking on a malicious link. Social engineering can be performed in person but is often done by email, by text message, or through social media messages."
+},
+{
+"grade": "all",
+"unit": "Unit 1: Introduction to Security",
+"topic": "1.1 Understanding Social Engineering",
+"subtopic": "Recognize Social Engineering",
+"code": "1.1.A.2",
+"outcome": "Adversaries often use psychological tactics like intimidation and urgency to achieve their goals. Intimidation is when an adversary threatens a target with negative consequences if they don’t comply. Urgency is when an adversary creates reasons why a target should act quickly."
+},
+{
+"grade": "all",
+"unit": "Unit 1: Introduction to Security",
+"topic": "1.1 Understanding Social Engineering",
+"subtopic": "Recognize Social Engineering",
+"code": "1.1.B",
+"outcome": "Explain how social engineering tactics influence victims to perform a desired action."
+},
+{
+"grade": "all",
+"unit": "Unit 1: Introduction to Security",
+"topic": "1.1 Understanding Social Engineering",
+"subtopic": "Recognize Social Engineering",
+"code": "1.1.B.1",
+"outcome": "Social engineering tactics rely on common psychological principles that influence human behavior."
+},
+{
+"grade": "all",
+"unit": "Unit 1: Introduction to Security",
+"topic": "1.1 Understanding Social Engineering",
+"subtopic": "Recognize Social Engineering",
+"code": "1.1.B.2",
+"outcome": "Intimidation leverages a natural human aversion to negative consequences. By drawing attention to possible negative consequences, adversaries use fear to incite targets to act."
+},
+{
+"grade": "all",
+"unit": "Unit 1: Introduction to Security",
+"topic": "1.1 Understanding Social Engineering",
+"subtopic": "Recognize Social Engineering",
+"code": "1.1.B.3",
+"outcome": "Urgency leverages a natural human response to react quickly to time-sensitive needs. When targets detect a sense of urgency in a message, they feel pressured to respond or act quickly, which can prevent them from taking the time to consider whether an action is reasonable or safe."
+},
+{
+"grade": "all",
+"unit": "Unit 1: Introduction to Security",
+"topic": "1.1 Understanding Social Engineering",
+"subtopic": "Social Engineering Consequences",
+"code": "1.1.C",
+"outcome": "Describe possible impacts for victims of social engineering attacks."
+},
+{
+"grade": "all",
+"unit": "Unit 1: Introduction to Security",
+"topic": "1.1 Understanding Social Engineering",
+"subtopic": "Social Engineering Consequences",
+"code": "1.1.C.1",
+"outcome": "Victims may give an adversary personal information that could lead to impersonation, such as name, phone number, address, workplace, pets’ names, or birthdate. These types of information, and information like them, are often used on websites as challenge questions to verify a user’s identity."
+},
+{
+"grade": "all",
+"unit": "Unit 1: Introduction to Security",
+"topic": "1.1 Understanding Social Engineering",
+"subtopic": "Social Engineering Consequences",
+"code": "1.1.C.2",
+"outcome": "Victims may give an adversary secure information like a one-time password (OTP) or authentication login code, which could allow an adversary to log in to a service as the victim."
+},
+{
+"grade": "all",
+"unit": "Unit 1: Introduction to Security",
+"topic": "1.1 Understanding Social Engineering",
+"subtopic": "Social Engineering Consequences",
+"code": "1.1.C.3",
+"outcome": "Victims may download malware or click a link that that installs malware on their device, steals information from their web browser, or directs them to a website where their login credentials can be captured by an adversary."
+},
+{
+"grade": "all",
+"unit": "Unit 1: Introduction to Security",
+"topic": "1.2 Suspicious Website Logins",
+"subtopic": "Recognize Password Attacks",
+"code": "1.2.A",
+"outcome": "Identify common signs of a password attack."
+},
+{
+"grade": "all",
+"unit": "Unit 1: Introduction to Security",
+"topic": "1.2 Suspicious Website Logins",
+"subtopic": "Recognize Password Attacks",
+"code": "1.2.A.1",
+"outcome": "In an online password attack, adversaries try logging in to a device or service using common passwords, common password patterns, or stolen passwords."
+},
+{
+"grade": "all",
+"unit": "Unit 1: Introduction to Security",
+"topic": "1.2 Suspicious Website Logins",
+"subtopic": "Recognize Password Attacks",
+"code": "1.2.A.2",
+"outcome": "Signs of an online password attack include: § Many failed attempts to log in over a short duration § Login attempts at unusual times § Login attempts from unknown devices"
+},
+{
+"grade": "all",
+"unit": "Unit 1: Introduction to Security",
+"topic": "1.2 Suspicious Website Logins",
+"subtopic": "Recognize Password Attacks",
+"code": "1.2.B",
+"outcome": "Explain how adversaries take advantage of weak authentication."
+},
+{
+"grade": "all",
+"unit": "Unit 1: Introduction to Security",
+"topic": "1.2 Suspicious Website Logins",
+"subtopic": "Recognize Password Attacks",
+"code": "1.2.B.1",
+"outcome": "Many people use common patterns when creating passwords, such as: § Starting a password with one or two words, adding a two-digit number (often signifying a year), and putting a special character at the end § Including the names of family or pets in their passwords § Including personally significant dates in their passwords"
+},
+{
+"grade": "all",
+"unit": "Unit 1: Introduction to Security",
+"topic": "1.2 Suspicious Website Logins",
+"subtopic": "Recognize Password Attacks",
+"code": "1.2.B.2",
+"outcome": "Adversaries often construct a dictionary of possible passwords based on personal information gathered about a target (e.g., birthday, anniversary, names of pets and family) and use an automated tool to submit potential passwords."
+},
+{
+"grade": "all",
+"unit": "Unit 1: Introduction to Security",
+"topic": "1.2 Suspicious Website Logins",
+"subtopic": "Secure Authentication",
+"code": "1.2.C",
+"outcome": "Explain how to make authentication stronger."
+},
+{
+"grade": "all",
+"unit": "Unit 1: Introduction to Security",
+"topic": "1.2 Suspicious Website Logins",
+"subtopic": "Secure Authentication",
+"code": "1.2.C.1",
+"outcome": "Users should create passwords that are long, random, and unique. A password manager can be used to generate and store strong passwords, or a user may create long, unique passphrases for their accounts."
+},
+{
+"grade": "all",
+"unit": "Unit 1: Introduction to Security",
+"topic": "1.2 Suspicious Website Logins",
+"subtopic": "Secure Authentication",
+"code": "1.2.C.2",
+"outcome": "When creating passwords, users should avoid names, dates, or other personally meaningful words or numbers."
+},
+{
+"grade": "all",
+"unit": "Unit 1: Introduction to Security",
+"topic": "1.2 Suspicious Website Logins",
+"subtopic": "Secure Authentication",
+"code": "1.2.C.3",
+"outcome": "When available, users should enable multifactor authentication (MFA), which will require the user to provide extra proof of identity—such as a one-time code—in addition to the password as an extra layer of security."
+},
+{
+"grade": "all",
+"unit": "Unit 1: Introduction to Security",
+"topic": "1.3 Best Practices for Public Networks",
+"subtopic": "Adversaries and Motivations",
+"code": "1.3.A",
+"outcome": "Identify the type of adversary conducting a cyberattack."
+},
+{
+"grade": "all",
+"unit": "Unit 1: Introduction to Security",
+"topic": "1.3 Best Practices for Public Networks",
+"subtopic": "Adversaries and Motivations",
+"code": "1.3.A.1",
+"outcome": "Adversaries can be classified by their skill levels. § Low-skilled adversaries rely on malicious cyber tools created by others that can be purchased online. The tools they use exploit known vulnerabilities. § High-skilled adversaries have the capacity to create new malicious cyber tools or modify existing ones to adapt to new defensive techniques and tools. They also have the capacity to discover undocumented vulnerabilities, known as zero days."
+},
+{
+"grade": "all",
+"unit": "Unit 1: Introduction to Security",
+"topic": "1.3 Best Practices for Public Networks",
+"subtopic": "Adversaries and Motivations",
+"code": "1.3.A.2",
+"outcome": "Adversaries have a variety of motivations, including greed, desire for recognition, dedication to a cause, revenge, politics, or beliefs."
+},
+{
+"grade": "all",
+"unit": "Unit 1: Introduction to Security",
+"topic": "1.3 Best Practices for Public Networks",
+"subtopic": "Wireless Network Attacks",
+"code": "1.3.B",
+"outcome": "Identify types of wireless cyberattacks."
+},
+{
+"grade": "all",
+"unit": "Unit 1: Introduction to Security",
+"topic": "1.3 Best Practices for Public Networks",
+"subtopic": "Wireless Network Attacks",
+"code": "1.3.B.1",
+"outcome": "In an evil twin attack, an adversary sets up their own wireless access point (WAP) with a service set identifier (SSID) similar or identical to a target network; the adversary’s network is called the evil twin. Victims of this attack could select to unknowingly connect to the evil twin, allowing the adversary to capture their network traffic. The adversary cannot read traffic that uses an encrypted protocol like HTTPS."
+},
+{
+"grade": "all",
+"unit": "Unit 1: Introduction to Security",
+"topic": "1.3 Best Practices for Public Networks",
+"subtopic": "Wireless Network Attacks",
+"code": "1.3.B.2",
+"outcome": "In a jamming attack, an adversary floods an area with a strong electromagnetic (EM) signal in the same frequency range as the wireless network, which prevents legitimate traffic between the access point (AP) and users. This type of attack that prevents users from accessing resources is called a denial of service (DoS) attack."
+},
+{
+"grade": "all",
+"unit": "Unit 1: Introduction to Security",
+"topic": "1.3 Best Practices for Public Networks",
+"subtopic": "Wireless Network Attacks",
+"code": "1.3.B.3",
+"outcome": "In a war driving attack, adversaries try to detect wireless network beacons while driving or walking around a target. If a wireless signal is detected, the adversary can gather information about the type of wireless network used and find areas where the wireless signal extends outside the physical building."
+},
+{
+"grade": "all",
+"unit": "Unit 1: Introduction to Security",
+"topic": "1.3 Best Practices for Public Networks",
+"subtopic": "Protect Public Network Use",
+"code": "1.3.C",
+"outcome": "Describe actions individuals can take to increase protection of sensitive data when using the internet and Wi-Fi."
+},
+{
+"grade": "all",
+"unit": "Unit 1: Introduction to Security",
+"topic": "1.3 Best Practices for Public Networks",
+"subtopic": "Protect Public Network Use",
+"code": "1.3.C.1",
+"outcome": "Individuals should verify that the name of any wireless network they join exactly matches the name of the network they intend to join."
+},
+{
+"grade": "all",
+"unit": "Unit 1: Introduction to Security",
+"topic": "1.3 Best Practices for Public Networks",
+"subtopic": "Protect Public Network Use",
+"code": "1.3.C.2",
+"outcome": "Most internet protocols are encrypted to protect network traffic. However, individuals may consider the sensitivity of their data in choosing whether to join unencrypted Wi-Fi networks to protect vulnerable data such as DNS queries."
+},
+{
+"grade": "all",
+"unit": "Unit 1: Introduction to Security",
+"topic": "1.3 Best Practices for Public Networks",
+"subtopic": "Protect Public Network Use",
+"code": "1.3.C.3",
+"outcome": "Individuals may consider using a virtual private network (VPN), which encrypts all their traffic to the VPN operator’s system. Although this action prevents a service provider from viewing traffic, the VPN provider can view the traffic."
+},
+{
+"grade": "all",
+"unit": "Unit 1: Introduction to Security",
+"topic": "1.4 AI-Based Cybersecurity Attacks",
+"subtopic": "AI-Enhanced Attacks",
+"code": "1.4.A",
+"outcome": "Explain how adversaries use AI-powered tools to augment cyberattacks."
+},
+{
+"grade": "all",
+"unit": "Unit 1: Introduction to Security",
+"topic": "1.4 AI-Based Cybersecurity Attacks",
+"subtopic": "AI-Enhanced Attacks",
+"code": "1.4.A.1",
+"outcome": "Adversaries can use AI-powered tools that leverage existing voice and image samples of a person to create a digital avatar of that person. The use of these technologies enables adversaries to impersonate someone over the phone or even on a video call, which can lead to financial loss or the sharing of sensitive or private information. As more organizations adopt voice-based authentication, the impact of voice-impersonation has a larger potential impact."
+},
+{
+"grade": "all",
+"unit": "Unit 1: Introduction to Security",
+"topic": "1.4 AI-Based Cybersecurity Attacks",
+"subtopic": "AI-Enhanced Attacks",
+"code": "1.4.A.2",
+"outcome": "Adversaries can use generative AI tools, like large language models (LLMs), to create convincing phishing messages in any target language. Because traditional phishing messages are sometimes written by non-native speakers of the target’s language, unnatural language is a feature that has been used to distinguish phishing messages from legitimate messages. However, with AI tools, adversaries can now craft phishing messages in any language that read as though they were written by a native speaker."
+},
+{
+"grade": "all",
+"unit": "Unit 1: Introduction to Security",
+"topic": "1.4 AI-Based Cybersecurity Attacks",
+"subtopic": "AI-Enhanced Attacks",
+"code": "1.4.A.3",
+"outcome": "Adversaries can craft prompts that extract secure or sensitive information from LLMs. Secure or sensitive information in LLMs can come from user input and the large data sets used to train LLMs."
+},
+{
+"grade": "all",
+"unit": "Unit 1: Introduction to Security",
+"topic": "1.4 AI-Based Cybersecurity Attacks",
+"subtopic": "AI-Enhanced Attacks",
+"code": "1.4.A.4",
+"outcome": "Adversaries can publish websites or modify existing websites to contain false information so that the false information will be included in the training sets for LLMs, causing the LLMs to repeat the false information."
+},
+{
+"grade": "all",
+"unit": "Unit 1: Introduction to Security",
+"topic": "1.4 AI-Based Cybersecurity Attacks",
+"subtopic": "AI-Enhanced Attacks",
+"code": "1.4.A.5",
+"outcome": "Adversaries can perform reconnaissance on a target using AI-powered tools that scan the internet to gather information posted on social media and public websites."
+},
+{
+"grade": "all",
+"unit": "Unit 1: Introduction to Security",
+"topic": "1.4 AI-Based Cybersecurity Attacks",
+"subtopic": "AI-Enhanced Attacks",
+"code": "1.4.A.6",
+"outcome": "Adversaries can use AI-enhanced coding tools to help them write new malware, modify existing application code to perform malicious activities, or to find vulnerabilities in large code bases."
+},
+{
+"grade": "all",
+"unit": "Unit 1: Introduction to Security",
+"topic": "1.4 AI-Based Cybersecurity Attacks",
+"subtopic": "Defend Against AI Attacks",
+"code": "1.4.B",
+"outcome": "Explain how to protect against some AI-augmented cyberattacks."
+},
+{
+"grade": "all",
+"unit": "Unit 1: Introduction to Security",
+"topic": "1.4 AI-Based Cybersecurity Attacks",
+"subtopic": "Defend Against AI Attacks",
+"code": "1.4.B.1",
+"outcome": "Shared secrets with close friends and relatives that can be used to verify each other’s identities should be established. A secret word or phrase known only to two parties can be used to authenticate identities in high-stakes situations."
+},
+{
+"grade": "all",
+"unit": "Unit 1: Introduction to Security",
+"topic": "1.4 AI-Based Cybersecurity Attacks",
+"subtopic": "Defend Against AI Attacks",
+"code": "1.4.B.2",
+"outcome": "Multifactor authentication (MFA) should be enabled. If an adversary clones a target’s voice to access a system with voice authentication, requiring a second authentication factor could prevent an adversary from gaining access to accounts."
+},
+{
+"grade": "all",
+"unit": "Unit 1: Introduction to Security",
+"topic": "1.4 AI-Based Cybersecurity Attacks",
+"subtopic": "Defend Against AI Attacks",
+"code": "1.4.B.3",
+"outcome": "Personal or sensitive data should not be entered into any AI-powered tools, such as chatbots or virtual assistants. Some AI- powered tools feed user input back into the model to provide continuous training. Adversaries could extract data that users have included in prompts."
+},
+{
+"grade": "all",
+"unit": "Unit 1: Introduction to Security",
+"topic": "1.4 AI-Based Cybersecurity Attacks",
+"subtopic": "Defend Against AI Attacks",
+"code": "1.4.B.4",
+"outcome": "Output from AI-powered tools should be carefully evaluated. Verify information from AI-powered tools using reputable, stable, non- AI-based sources."
+},
+{
+"grade": "all",
+"unit": "Unit 1: Introduction to Security",
+"topic": "1.5 Leveraging AI in Cyber Defense",
+"subtopic": "AI for Cyber Defense",
+"code": "1.5.A",
+"outcome": "Explain how cyber defenders can leverage AI-powered tools to protect networks, applications, and data."
+},
+{
+"grade": "all",
+"unit": "Unit 1: Introduction to Security",
+"topic": "1.5 Leveraging AI in Cyber Defense",
+"subtopic": "AI for Cyber Defense",
+"code": "1.5.A.1",
+"outcome": "AI tools can review current security configurations, like firewall rules and access controls, and recommend more secure options. Recommendations should always be checked by a knowledgeable security technician before being implemented."
+},
+{
+"grade": "all",
+"unit": "Unit 1: Introduction to Security",
+"topic": "1.5 Leveraging AI in Cyber Defense",
+"subtopic": "AI for Cyber Defense",
+"code": "1.5.A.2",
+"outcome": "AI-powered tools can analyze application code to identify vulnerabilities and recommend mitigations. Recommendations should always be reviewed by a knowledgeable programmer before being implemented."
+},
+{
+"grade": "all",
+"unit": "Unit 1: Introduction to Security",
+"topic": "1.5 Leveraging AI in Cyber Defense",
+"subtopic": "AI for Cyber Defense",
+"code": "1.5.A.3",
+"outcome": "AI-powered tools can suggest rules for automated detection systems. Detection rules should always be reviewed by a knowledgeable detection engineer before being added to a system."
+},
+{
+"grade": "all",
+"unit": "Unit 1: Introduction to Security",
+"topic": "1.5 Leveraging AI in Cyber Defense",
+"subtopic": "AI Threat Detection",
+"code": "1.5.B",
+"outcome": "Explain how AI-powered tools are enabling faster and more accurate threat detection and response."
+},
+{
+"grade": "all",
+"unit": "Unit 1: Introduction to Security",
+"topic": "1.5 Leveraging AI in Cyber Defense",
+"subtopic": "AI Threat Detection",
+"code": "1.5.B.1",
+"outcome": "Of the millions of digital events that happen on networks daily, some likely represent an adversary conducting malicious activity. Humans cannot carefully examine all those events to identify the malicious activity."
+},
+{
+"grade": "all",
+"unit": "Unit 1: Introduction to Security",
+"topic": "1.5 Leveraging AI in Cyber Defense",
+"subtopic": "AI Threat Detection",
+"code": "1.5.B.2",
+"outcome": "AI-powered tools can be trained to quickly analyze digital events and sort the events that are likely malicious activity from those that are harmless."
+},
+{
+"grade": "all",
+"unit": "Unit 1: Introduction to Security",
+"topic": "1.5 Leveraging AI in Cyber Defense",
+"subtopic": "AI Threat Detection",
+"code": "1.5.B.3",
+"outcome": "AI-powered tools can be programmed to alert human cybersecurity personnel when likely malicious activity is detected or to take specific corrective actions based on the type of malicious activity detected."
+},
+{
+"grade": "all",
+"unit": "Unit 1: Introduction to Security",
+"topic": "1.5 Leveraging AI in Cyber Defense",
+"subtopic": "AI Threat Detection",
+"code": "1.5.B.4",
+"outcome": "AI-powered tools enable threat-detection and response teams to catch malicious activity and intervene quickly to prevent loss, harm, damage, and destruction to digital infrastructure and data."
+},
+{
+"grade": "all",
+"unit": "Unit 2: Securing Spaces",
+"topic": "1.5 Leveraging AI in Cyber Defense",
+"subtopic": "Recognize Social Engineering",
+"code": "2.1.A",
+"outcome": "Identify social engineering attacks."
+},
+{
+"grade": "all",
+"unit": "Unit 2: Securing Spaces",
+"topic": "1.5 Leveraging AI in Cyber Defense",
+"subtopic": "Recognize Social Engineering",
+"code": "2.1.A.1",
+"outcome": "Social engineers use psychological tactics to manipulate targets into taking a desired action."
+},
+{
+"grade": "all",
+"unit": "Unit 2: Securing Spaces",
+"topic": "1.5 Leveraging AI in Cyber Defense",
+"subtopic": "Recognize Social Engineering",
+"code": "2.1.A.2",
+"outcome": "Pretexting is when adversaries create a believable reason to contact a target."
+},
+{
+"grade": "all",
+"unit": "Unit 2: Securing Spaces",
+"topic": "1.5 Leveraging AI in Cyber Defense",
+"subtopic": "Recognize Social Engineering",
+"code": "2.1.A.3",
+"outcome": "Authority is when adversaries impersonate someone with power over a target or pretend to relay instructions from that person."
+},
+{
+"grade": "all",
+"unit": "Unit 2: Securing Spaces",
+"topic": "1.5 Leveraging AI in Cyber Defense",
+"subtopic": "Recognize Social Engineering",
+"code": "2.1.A.4",
+"outcome": "Intimidation is when adversaries state negative consequences if demands aren’t met."
+},
+{
+"grade": "all",
+"unit": "Unit 2: Securing Spaces",
+"topic": "1.5 Leveraging AI in Cyber Defense",
+"subtopic": "Recognize Social Engineering",
+"code": "2.1.A.5",
+"outcome": "Consensus is when adversaries create social pressure by making a target believe everyone else is doing a desired action."
+},
+{
+"grade": "all",
+"unit": "Unit 2: Securing Spaces",
+"topic": "1.5 Leveraging AI in Cyber Defense",
+"subtopic": "Recognize Social Engineering",
+"code": "2.1.A.6",
+"outcome": "Scarcity is when adversaries create a sense of limited availability."
+},
+{
+"grade": "all",
+"unit": "Unit 2: Securing Spaces",
+"topic": "1.5 Leveraging AI in Cyber Defense",
+"subtopic": "Recognize Social Engineering (part 2)",
+"code": "2.1.A.7",
+"outcome": "Familiarity is when adversaries pretend to be or know someone close to a target to establish trust."
+},
+{
+"grade": "all",
+"unit": "Unit 2: Securing Spaces",
+"topic": "1.5 Leveraging AI in Cyber Defense",
+"subtopic": "Recognize Social Engineering (part 2)",
+"code": "2.1.A.8",
+"outcome": "Urgency is when adversaries create a deadline that requires quick action by a target to avert negative consequences."
+},
+{
+"grade": "all",
+"unit": "Unit 2: Securing Spaces",
+"topic": "2.1 Cyber Foundations",
+"subtopic": "Identify Cyber Adversaries",
+"code": "2.1.B",
+"outcome": "Identify types of adversaries."
+},
+{
+"grade": "all",
+"unit": "Unit 2: Securing Spaces",
+"topic": "2.1 Cyber Foundations",
+"subtopic": "Identify Cyber Adversaries",
+"code": "2.1.B.1",
+"outcome": "Script kiddies are low-skilled adversaries who use tools developed by others without understanding how the tools work. They are often motivated by greed or a desire for recognition."
+},
+{
+"grade": "all",
+"unit": "Unit 2: Securing Spaces",
+"topic": "2.1 Cyber Foundations",
+"subtopic": "Identify Cyber Adversaries",
+"code": "2.1.B.2",
+"outcome": "Hacktivists are motivated by social, political, or personal causes. They compromise computers and networks to support their cause or stop perceived harm, believing their goals justify their illegal methods."
+},
+{
+"grade": "all",
+"unit": "Unit 2: Securing Spaces",
+"topic": "2.1 Cyber Foundations",
+"subtopic": "Identify Cyber Adversaries",
+"code": "2.1.B.3",
+"outcome": "Insider adversaries are unique threats because they have legitimate credentials and access to systems and data. They can be recruited by malicious third parties and can be motivated by greed or revenge."
+},
+{
+"grade": "all",
+"unit": "Unit 2: Securing Spaces",
+"topic": "2.1 Cyber Foundations",
+"subtopic": "Identify Cyber Adversaries",
+"code": "2.1.B.4",
+"outcome": "Cyberterrorists are motivated by politics or beliefs and seek to disrupt entire communities, regions, or nations through cyberattacks (e.g., attacking a power grid, water treatment plant, or other civil infrastructure). They can act independently or on behalf of governments or criminal organizations."
+},
+{
+"grade": "all",
+"unit": "Unit 2: Securing Spaces",
+"topic": "2.1 Cyber Foundations",
+"subtopic": "Identify Cyber Adversaries",
+"code": "2.1.B.5",
+"outcome": "Transnational criminal organizations seek financial gain primarily by deploying ransomware and stealing corporate intellectual property (IP) to sell in illegal markets."
+},
+{
+"grade": "all",
+"unit": "Unit 2: Securing Spaces",
+"topic": "2.1 Cyber Foundations",
+"subtopic": "Cyberattack Phases",
+"code": "2.1.C",
+"outcome": "Describe the phases of a cyberattack."
+},
+{
+"grade": "all",
+"unit": "Unit 2: Securing Spaces",
+"topic": "2.1 Cyber Foundations",
+"subtopic": "Cyberattack Phases",
+"code": "2.1.C.1",
+"outcome": "Cyberattacks aim to disrupt, harm, steal, or destroy devices, networks, or data. Adversaries work in phases, which may not all be used in every attack. The phases are: i. Reconnaissance ii. Initial access iii. Persistence iv. Lateral movement v. Taking action vi. Evading detection"
+},
+{
+"grade": "all",
+"unit": "Unit 2: Securing Spaces",
+"topic": "2.1 Cyber Foundations",
+"subtopic": "Cyberattack Phases",
+"code": "2.1.C.2",
+"outcome": "In the reconnaissance phase of an attack, adversaries gather as much information as possible about their target, often using open source intelligence (OSINT), which is freely available information."
+},
+{
+"grade": "all",
+"unit": "Unit 2: Securing Spaces",
+"topic": "2.1 Cyber Foundations",
+"subtopic": "Cyberattack Phases",
+"code": "2.1.C.3",
+"outcome": "In the initial-access phase of an attack, adversaries establish a foothold on the target’s computer, often through social engineering or compromised or weak credentials."
+},
+{
+"grade": "all",
+"unit": "Unit 2: Securing Spaces",
+"topic": "2.1 Cyber Foundations",
+"subtopic": "Cyberattack Phases",
+"code": "2.1.C.4",
+"outcome": "After gaining access during an attack, adversaries establish persistence to maintain access without needing to regain it. They may use a command and control (C2) protocol to send commands to the device and receive output, often through malware like a remote access trojan (RAT) or rootkit."
+},
+{
+"grade": "all",
+"unit": "Unit 2: Securing Spaces",
+"topic": "2.1 Cyber Foundations",
+"subtopic": "Cyberattack Phases",
+"code": "2.1.C.5",
+"outcome": "In the lateral-movement phase of an attack, adversaries try to escalate their privileges by accessing computers and user accounts with elevated permissions to services and data."
+},
+{
+"grade": "all",
+"unit": "Unit 2: Securing Spaces",
+"topic": "2.1 Cyber Foundations",
+"subtopic": "Cyberattack Phases",
+"code": "2.1.C.6",
+"outcome": "In the taking-action phase of an attack, adversaries act on their objectives by collecting targeted data, exfiltrating it, and disrupting services or destroying data."
+},
+{
+"grade": "all",
+"unit": "Unit 2: Securing Spaces",
+"topic": "2.1 Cyber Foundations",
+"subtopic": "Cyberattack Phases",
+"code": "2.1.C.7",
+"outcome": "In the final phase of an attack, many adversaries try to evade detection by removing or editing log files and erasing other files they may have planted on devices (e.g., malware)."
+},
+{
+"grade": "all",
+"unit": "Unit 2: Securing Spaces",
+"topic": "2.1 Cyber Foundations",
+"subtopic": "Understand Risk",
+"code": "2.1.D",
+"outcome": "Describe the risk assessment process."
+},
+{
+"grade": "all",
+"unit": "Unit 2: Securing Spaces",
+"topic": "2.1 Cyber Foundations",
+"subtopic": "Understand Risk",
+"code": "2.1.D.1",
+"outcome": "Risk occurs when a threat can exploit a vulnerability to compromise an asset."
+},
+{
+"grade": "all",
+"unit": "Unit 2: Securing Spaces",
+"topic": "2.1 Cyber Foundations",
+"subtopic": "Understand Risk",
+"code": "2.1.D.2",
+"outcome": "An asset is anything valuable. Assets include financial resources, intellectual property, data, digital infrastructure, physical property, and reputation."
+},
+{
+"grade": "all",
+"unit": "Unit 2: Securing Spaces",
+"topic": "2.1 Cyber Foundations",
+"subtopic": "Understand Risk",
+"code": "2.1.D.3",
+"outcome": "Risk assessment considers two factors: § The likelihood of an attack against a specific vulnerability § The severity of the projected damage from an attack against a specific vulnerability"
+},
+{
+"grade": "all",
+"unit": "Unit 2: Securing Spaces",
+"topic": "2.1 Cyber Foundations",
+"subtopic": "Understand Risk",
+"code": "2.1.D.4",
+"outcome": "The likelihood of a vulnerability being exploited depends on many factors, including: § The value of the target: Adversaries are more likely to attack targets they perceive as valuable. § The level of skill required to exploit the vulnerability (i.e., the difficulty): Vulnerabilities with well-documented exploits often require less skill and can be carried out by more adversaries. § The motivation and capabilities of likely adversaries: Highly motivated and skilled adversaries are more likely to be able to perform more complex exploits."
+},
+{
+"grade": "all",
+"unit": "Unit 2: Securing Spaces",
+"topic": "2.1 Cyber Foundations",
+"subtopic": "Understand Risk",
+"code": "2.1.D.5",
+"outcome": "The severity of an attack is often measured by financial cost, which can also include reputational and operational impacts. ILLUSTRATIVE EXAMPLE A hacktivist is passionate about illegal fishing practices supported by a local food production company. The main webpage of this food production company would be a high-value target for this hacktivist; defacing the webpage to expose the company’s support of illegal fishing would provide no financial gain to the adversary, but would allow them to raise awareness about an issue that motivates them."
+},
+{
+"grade": "all",
+"unit": "Unit 2: Securing Spaces",
+"topic": "2.1 Cyber Foundations",
+"subtopic": "Understand Risk",
+"code": "2.1.D.6",
+"outcome": "The result of a risk assessment can be quantitative or qualitative. § Quantitative risk assessment assigns a numeric value to a vulnerability based on a numeric scale (e.g., 1–10) or quantifiable impact, which could be financial (e.g., a $10,000 annual risk). Illustrative examples: § Low, medium, high, severe § Unlikely low impact, likely low impact, unlikely high impact, likely high impact"
+},
+{
+"grade": "all",
+"unit": "Unit 2: Securing Spaces",
+"topic": "2.1 Cyber Foundations",
+"subtopic": "Understand Risk",
+"code": "2.1.D.7",
+"outcome": "Risk assessment documentation should include: § Vulnerable assets and their value § Descriptions of likely threats to the assets § Details of specific vulnerabilities for specific assets and how they would be exploited § An explanation of the severity of damage (financial, operational, reputational, etc.) if a specific asset were compromised, and the likelihood of that compromise occurring § A final rating, quantitative or qualitative, for each risk identified Illustrative examples: § Scaled score (e.g., 1–10) § Monetary value (e.g., a $10,000 risk vs. a $100,000 risk)"
+},
+{
+"grade": "all",
+"unit": "Unit 2: Securing Spaces",
+"topic": "2.1 Cyber Foundations",
+"subtopic": "Manage Risk Treatments",
+"code": "2.1.E",
+"outcome": "Identify strategies for managing risk."
+},
+{
+"grade": "all",
+"unit": "Unit 2: Securing Spaces",
+"topic": "2.1 Cyber Foundations",
+"subtopic": "Manage Risk Treatments",
+"code": "2.1.E.1",
+"outcome": "Once a risk has been identified and assessed, an organization has four options for managing that risk: i. Avoid ii. Transfer iii. Mitigate iv. Accept"
+},
+{
+"grade": "all",
+"unit": "Unit 2: Securing Spaces",
+"topic": "2.1 Cyber Foundations",
+"subtopic": "Manage Risk Treatments",
+"code": "2.1.E.2",
+"outcome": "Risk avoidance stops the activity that is generating the risk. If the activity is a critical part of an organization’s mission or purpose, then avoidance is not possible."
+},
+{
+"grade": "all",
+"unit": "Unit 2: Securing Spaces",
+"topic": "2.1 Cyber Foundations",
+"subtopic": "Manage Risk Treatments",
+"code": "2.1.E.3",
+"outcome": "Risk transference places the burden of the risk on another entity, such as an insurance company, a government, or consumers."
+},
+{
+"grade": "all",
+"unit": "Unit 2: Securing Spaces",
+"topic": "2.1 Cyber Foundations",
+"subtopic": "Manage Risk Treatments",
+"code": "2.1.E.4",
+"outcome": "Risk mitigation implements security controls to reduce the likelihood or impact of a risk."
+},
+{
+"grade": "all",
+"unit": "Unit 2: Securing Spaces",
+"topic": "2.1 Cyber Foundations",
+"subtopic": "Manage Risk Treatments",
+"code": "2.1.E.5",
+"outcome": "Residual risk is the risk that remains after an organization has gone through avoidance, transference, and mitigation. The residual risk is the level of risk that an organization is willing to accept. Risk acceptance acknowledges the fact that absolute security is unattainable."
+},
+{
+"grade": "all",
+"unit": "Unit 2: Securing Spaces",
+"topic": "2.1 Cyber Foundations",
+"subtopic": "Manage Risk Treatments",
+"code": "2.1.E.6",
+"outcome": "To conserve financial resources and employee capacity, an organization will often favor solutions that are cost effective and easy to implement and maintain. Cost-effective solutions cost less to install and maintain than the expected loss from an attack."
+},
+{
+"grade": "all",
+"unit": "Unit 2: Securing Spaces",
+"topic": "2.1 Cyber Foundations",
+"subtopic": "Security Control Types",
+"code": "2.1.F",
+"outcome": "Identify types of security controls."
+},
+{
+"grade": "all",
+"unit": "Unit 2: Securing Spaces",
+"topic": "2.1 Cyber Foundations",
+"subtopic": "Security Control Types",
+"code": "2.1.F.1",
+"outcome": "Security controls address at least one of the following principles: § Confidentiality ensures that only authorized individuals, systems, or processes can access data. Systems lacking confidentiality are vulnerable to data theft or destruction. § Integrity ensures data are accurate and trustworthy. Systems lacking integrity are vulnerable to data manipulation. § Availability ensures data and services are accessible to authorized individuals when needed. Systems lacking availability may experience unexpected downtime."
+},
+{
+"grade": "all",
+"unit": "Unit 2: Securing Spaces",
+"topic": "2.1 Cyber Foundations",
+"subtopic": "Security Control Types",
+"code": "2.1.F.2",
+"outcome": "Security controls can be classified by type. § Physical controls provide security in the physical space and include locks, fences, and cameras, bollards, and security guards. § Technical controls provide security in the digital space and include firewalls, anti-malware software, and encryption. § Managerial controls provide rules, guidelines, policies, and procedures that specify what security should be in place and include password policies, regular access reviews, and incident response plans (IRPs)."
+},
+{
+"grade": "all",
+"unit": "Unit 2: Securing Spaces",
+"topic": "2.1 Cyber Foundations",
+"subtopic": "Security Control Types",
+"code": "2.1.F.3",
+"outcome": "Security controls can be classified by function. § Preventative controls address potential vulnerabilities with the goal of stopping an adversary from attacking and include locks and encryption. § Detective controls help identify attacks when they occur and include intrusion detection systems (IDSs), cameras, and security incident and event management (SIEM) systems. § Corrective controls fix problems and help restore systems to an operational state and include vulnerability patching, repairing a broken card reader, and intrusion prevention systems (IPSs)."
+},
+{
+"grade": "all",
+"unit": "Unit 2: Securing Spaces",
+"topic": "2.1 Cyber Foundations",
+"subtopic": "Defense in Depth",
+"code": "2.1.G",
+"outcome": "Explain why a defense-in-depth security strategy is necessary to optimally protect an organization."
+},
+{
+"grade": "all",
+"unit": "Unit 2: Securing Spaces",
+"topic": "2.1 Cyber Foundations",
+"subtopic": "Defense in Depth",
+"code": "2.1.G.1",
+"outcome": "A defense-in-depth strategy, or layered defense, uses multiple types of security controls to protect sensitive data and systems."
+},
+{
+"grade": "all",
+"unit": "Unit 2: Securing Spaces",
+"topic": "2.1 Cyber Foundations",
+"subtopic": "Defense in Depth",
+"code": "2.1.G.2",
+"outcome": "A defense-in-depth strategy allows an organization to address different types of threats, each with a security control most suited to mitigate it."
+},
+{
+"grade": "all",
+"unit": "Unit 2: Securing Spaces",
+"topic": "2.1 Cyber Foundations",
+"subtopic": "Defense in Depth",
+"code": "2.1.G.3",
+"outcome": "A defense-in-depth strategy allows for resilience in data protection so when one security control is bypassed by an adversary, another security control may still prevent access to the data or system or limit the damage done to the data or system."
+},
+{
+"grade": "all",
+"unit": "Unit 2: Securing Spaces",
+"topic": "2.1 Cyber Foundations",
+"subtopic": "Defense in Depth",
+"code": "2.1.G.4",
+"outcome": "Layers in a defense-in-depth strategy can include human, physical, network, device, application, and data."
+},
+{
+"grade": "all",
+"unit": "Unit 2: Securing Spaces",
+"topic": "2.2 Physical Vulnerabilities and Attacks",
+"subtopic": "Physical Attacks and Threats",
+"code": "2.2.A",
+"outcome": "Identify common physical attacks."
+},
+{
+"grade": "all",
+"unit": "Unit 2: Securing Spaces",
+"topic": "2.2 Physical Vulnerabilities and Attacks",
+"subtopic": "Physical Attacks and Threats",
+"code": "2.2.A.1",
+"outcome": "Adversaries often use social engineering when conducting a physical attack."
+},
+{
+"grade": "all",
+"unit": "Unit 2: Securing Spaces",
+"topic": "2.2 Physical Vulnerabilities and Attacks",
+"subtopic": "Physical Attacks and Threats",
+"code": "2.2.A.2",
+"outcome": "Piggybacking is the name for an attack where an adversary uses social engineering to manipulate an authorized individual to grant the adversary access to a restricted area. Common piggybacking tactics include carrying something large to entice an authorized person to hold the door open, pretending to be an authorized person who has forgotten their access token, or pretending to be a maintenance person who needs to get into a certain area to perform an inspection or repair."
+},
+{
+"grade": "all",
+"unit": "Unit 2: Securing Spaces",
+"topic": "2.2 Physical Vulnerabilities and Attacks",
+"subtopic": "Physical Attacks and Threats",
+"code": "2.2.A.3",
+"outcome": "Tailgating is the name for an attack where an adversary gains unauthorized access to a restricted area by following close behind an authorized individual without that individual’s awareness or knowledge."
+},
+{
+"grade": "all",
+"unit": "Unit 2: Securing Spaces",
+"topic": "2.2 Physical Vulnerabilities and Attacks",
+"subtopic": "Physical Attacks and Threats",
+"code": "2.2.A.4",
+"outcome": "Shoulder surfing is the name for an attack where an adversary watches as a user accesses sensitive information so the adversary can use it later. Sometimes adversaries use a camera to record the target accessing the sensitive information for later analysis."
+},
+{
+"grade": "all",
+"unit": "Unit 2: Securing Spaces",
+"topic": "2.2 Physical Vulnerabilities and Attacks",
+"subtopic": "Physical Attacks and Threats",
+"code": "2.2.A.5",
+"outcome": "Dumpster diving is the name for an attack where an adversary goes through a target’s physical trash to look for information that could be used to help the adversary reach their goal."
+},
+{
+"grade": "all",
+"unit": "Unit 2: Securing Spaces",
+"topic": "2.2 Physical Vulnerabilities and Attacks",
+"subtopic": "Physical Attacks and Threats",
+"code": "2.2.A.6",
+"outcome": "Card cloning is the name for an attack where an adversary makes a copy of an authorized user’s access card so they can gain access to all the resources the user is authorized to access."
+},
+{
+"grade": "all",
+"unit": "Unit 2: Securing Spaces",
+"topic": "2.2 Physical Vulnerabilities and Attacks",
+"subtopic": "Physical Attacks and Threats (part 2)",
+"code": "2.2.B",
+"outcome": "Explain how threats can exploit common physical vulnerabilities to cause loss, damage, disruption, or destruction to assets."
+},
+{
+"grade": "all",
+"unit": "Unit 2: Securing Spaces",
+"topic": "2.2 Physical Vulnerabilities and Attacks",
+"subtopic": "Physical Attacks and Threats (part 2)",
+"code": "2.2.B.1",
+"outcome": "Threats include human adversaries seeking to cause harm or disruption as well as natural disasters. Natural disasters can cause physical damage or destruction to computers and data as well as disruption of digital services provided by computers."
+},
+{
+"grade": "all",
+"unit": "Unit 2: Securing Spaces",
+"topic": "2.2 Physical Vulnerabilities and Attacks",
+"subtopic": "Physical Attacks and Threats (part 2)",
+"code": "2.2.B.2",
+"outcome": "Vulnerabilities are weaknesses or flaws that could allow an asset to be compromised. Common compromises include: § Unauthorized access to sensitive data or restricted physical spaces § Disruption of services § Theft or destruction of digital or physical resources § Unauthorized modification of data"
+},
+{
+"grade": "all",
+"unit": "Unit 2: Securing Spaces",
+"topic": "2.2 Physical Vulnerabilities and Attacks",
+"subtopic": "Physical Attacks and Threats (part 2)",
+"code": "2.2.B.3",
+"outcome": "When adversaries disrupt power to a device, the device and any services it provides become unavailable. To disrupt power, adversaries may damage fuses or breakers in an electrical box, unplug or cut electrical wiring, or damage power distribution systems like substations and transformers."
+},
+{
+"grade": "all",
+"unit": "Unit 2: Securing Spaces",
+"topic": "2.2 Physical Vulnerabilities and Attacks",
+"subtopic": "Physical Attacks and Threats (part 2)",
+"code": "2.2.B.4",
+"outcome": "When adversaries gain access to an area with sensitive information, they can steal or copy sensitive information."
+},
+{
+"grade": "all",
+"unit": "Unit 2: Securing Spaces",
+"topic": "2.2 Physical Vulnerabilities and Attacks",
+"subtopic": "Physical Attacks and Threats (part 2)",
+"code": "2.2.B.5",
+"outcome": "When adversaries gain physical access to a device and its ports, they can plug in a keylogger or external drive containing malware, which could allow them to collect data from a user or possibly even to gain control of the device. With direct physical access adversaries can also physically destroy a device, making the device itself, any data stored on it, and any services it provides unavailable."
+},
+{
+"grade": "all",
+"unit": "Unit 2: Securing Spaces",
+"topic": "2.2 Physical Vulnerabilities and Attacks",
+"subtopic": "Physical Vulnerability Impacts",
+"code": "2.2.C",
+"outcome": "Assess and document risks from physical vulnerabilities."
+},
+{
+"grade": "all",
+"unit": "Unit 2: Securing Spaces",
+"topic": "2.2 Physical Vulnerabilities and Attacks",
+"subtopic": "Physical Vulnerability Impacts",
+"code": "2.2.C.1",
+"outcome": "Physical access to devices can allow adversaries to bypass many technical controls and layers of security."
+},
+{
+"grade": "all",
+"unit": "Unit 2: Securing Spaces",
+"topic": "2.2 Physical Vulnerabilities and Attacks",
+"subtopic": "Physical Vulnerability Impacts",
+"code": "2.2.C.2",
+"outcome": "High risks from physical vulnerabilities arise when sensitive information or systems are exposed in physical spaces without sufficiently restricted and controlled access. ILLUSTRATIVE EXAMPLE A server that stores customer data is in a room with no lock which is accessed via an unmonitored hallway."
+},
+{
+"grade": "all",
+"unit": "Unit 2: Securing Spaces",
+"topic": "2.2 Physical Vulnerabilities and Attacks",
+"subtopic": "Physical Vulnerability Impacts",
+"code": "2.2.C.3",
+"outcome": "Moderate risks from physical vulnerabilities arise when a noncritical or nonsensitive part of an organization is left unprotected in a way that it could act as a foothold for an adversary to gain initial access to other resources. ILLUSTRATIVE EXAMPLE An office has a reception area beyond which access is controlled; the receptionist has a computer that connects to the office’s internal wireless network and the computer has exposed USB ports."
+},
+{
+"grade": "all",
+"unit": "Unit 2: Securing Spaces",
+"topic": "2.2 Physical Vulnerabilities and Attacks",
+"subtopic": "Physical Vulnerability Impacts",
+"code": "2.2.C.4",
+"outcome": "Low risks from physical vulnerabilities arise when a vulnerable asset is of low value and the vulnerability is unlikely to be exploited. ILLUSTRATIVE EXAMPLE Employees in an office that requires badge access have laptop computers that they leave on their desks unattended when they all go to lunch together. The computers do not contain any sensitive information, but there are no cables securing the devices to the desks."
+},
+{
+"grade": "all",
+"unit": "Unit 2: Securing Spaces",
+"topic": "2.3 Protecting Physical Spaces",
+"subtopic": "Physical Security Management",
+"code": "2.3.A",
+"outcome": "Identify managerial controls related to physical security."
+},
+{
+"grade": "all",
+"unit": "Unit 2: Securing Spaces",
+"topic": "2.3 Protecting Physical Spaces",
+"subtopic": "Physical Security Management",
+"code": "2.3.A.1",
+"outcome": "Organizations should conduct employee security awareness training to educate employees about how they can contribute to the organization’s security by: § Detecting social engineering attempts like phishing § Not badging other people into restricted areas § Preventing device theft"
+},
+{
+"grade": "all",
+"unit": "Unit 2: Securing Spaces",
+"topic": "2.3 Protecting Physical Spaces",
+"subtopic": "Physical Security Management",
+"code": "2.3.A.2",
+"outcome": "Organizations should have a workstation security policy that outlines the measures necessary to protect a physical workplace. The policy may have tiers of workstation security based on the type of data handled at a workstation. Workstation policies often require: § Locking devices before leaving workstations unattended to prevent unauthorized access § Clearing sensitive documents off workstations before leaving them unattended (sometimes called a clean desk policy) § Using a privacy screen filter or other physical barrier to prevent others from viewing information on the screen § Connecting devices to surge protectors or uninterruptible power supplies (UPS)"
+},
+{
+"grade": "all",
+"unit": "Unit 2: Securing Spaces",
+"topic": "2.3 Protecting Physical Spaces",
+"subtopic": "Physical Security Management",
+"code": "2.3.B",
+"outcome": "Determine mitigation strategies for risks from physical vulnerabilities."
+},
+{
+"grade": "all",
+"unit": "Unit 2: Securing Spaces",
+"topic": "2.3 Protecting Physical Spaces",
+"subtopic": "Physical Security Management",
+"code": "2.3.B.1",
+"outcome": "To determine a relevant control, a cyber defender considers how an adversary could take advantage of a vulnerability to attack a system and how to prevent, detect, or correct the attack."
+},
+{
+"grade": "all",
+"unit": "Unit 2: Securing Spaces",
+"topic": "2.3 Protecting Physical Spaces",
+"subtopic": "Physical Security Management (part 2)",
+"code": "2.3.B.2",
+"outcome": "Installing physical controls like fencing, gates, and bollards around a building can deter adversaries from trying to physically access an organization’s buildings."
+},
+{
+"grade": "all",
+"unit": "Unit 2: Securing Spaces",
+"topic": "2.3 Protecting Physical Spaces",
+"subtopic": "Physical Security Management (part 2)",
+"code": "2.3.B.3",
+"outcome": "Locks on doors, server cabinets, and computers can prevent devices from being accessed or stolen."
+},
+{
+"grade": "all",
+"unit": "Unit 2: Securing Spaces",
+"topic": "2.3 Protecting Physical Spaces",
+"subtopic": "Physical Security Management (part 2)",
+"code": "2.3.B.4",
+"outcome": "Card readers can record which employee badges are being used to access different entries at specific times and deny access to unauthorized badges."
+},
+{
+"grade": "all",
+"unit": "Unit 2: Securing Spaces",
+"topic": "2.3 Protecting Physical Spaces",
+"subtopic": "Physical Security Management (part 2)",
+"code": "2.3.B.5",
+"outcome": "Access control vestibules and turnstiles can prevent an authorized person from intentionally or accidentally admitting an unauthorized person into a restricted area."
+},
+{
+"grade": "all",
+"unit": "Unit 2: Securing Spaces",
+"topic": "2.3 Protecting Physical Spaces",
+"subtopic": "Physical Security Management (part 2)",
+"code": "2.3.B.6",
+"outcome": "Organizations can disable USB ports to prevent external drives from loading malware onto a computer."
+},
+{
+"grade": "all",
+"unit": "Unit 2: Securing Spaces",
+"topic": "2.3 Protecting Physical Spaces",
+"subtopic": "Physical Security Management (part 2)",
+"code": "2.3.B.7",
+"outcome": "An uninterruptible power supply (UPS) provides a backup power source for a device in the event of a power outage. Organizations can also use power generators to provide power at a larger scale to a building or set of critical devices."
+},
+{
+"grade": "all",
+"unit": "Unit 2: Securing Spaces",
+"topic": "2.3 Protecting Physical Spaces",
+"subtopic": "Physical Security Management (part 2)",
+"code": "2.3.B.8",
+"outcome": "Organizations prioritize risk mitigations based on the severity of the risks and the cost of the recommended mitigations."
+},
+{
+"grade": "all",
+"unit": "Unit 2: Securing Spaces",
+"topic": "2.4 Detecting Physical Attacks",
+"subtopic": "Cameras and Guards",
+"code": "2.4.A",
+"outcome": "Identify ways security controls can detect physical attacks."
+},
+{
+"grade": "all",
+"unit": "Unit 2: Securing Spaces",
+"topic": "2.4 Detecting Physical Attacks",
+"subtopic": "Cameras and Guards",
+"code": "2.4.A.1",
+"outcome": "Cameras can capture a visual record of an adversary’s malicious activity. The feed from a camera should be recorded and monitored for maximum effect. Recordings can be especially helpful in after-incident investigations."
+},
+{
+"grade": "all",
+"unit": "Unit 2: Securing Spaces",
+"topic": "2.4 Detecting Physical Attacks",
+"subtopic": "Cameras and Guards",
+"code": "2.4.A.2",
+"outcome": "Security guards can monitor activity in an area and respond to suspicious activity once detected."
+},
+{
+"grade": "all",
+"unit": "Unit 2: Securing Spaces",
+"topic": "2.4 Detecting Physical Attacks",
+"subtopic": "Cameras and Guards",
+"code": "2.4.A.3",
+"outcome": "Motion sensors can alert security to movement in an area."
+},
+{
+"grade": "all",
+"unit": "Unit 2: Securing Spaces",
+"topic": "2.4 Detecting Physical Attacks",
+"subtopic": "Cameras and Guards",
+"code": "2.4.A.4",
+"outcome": "Employees that work in a physical space are often the first to notice the presence of an unauthorized person and can alert security."
+},
+{
+"grade": "all",
+"unit": "Unit 2: Securing Spaces",
+"topic": "2.4 Detecting Physical Attacks",
+"subtopic": "Placing Detection Controls",
+"code": "2.4.B",
+"outcome": "Determine effective placement of security controls for detecting physical attacks."
+},
+{
+"grade": "all",
+"unit": "Unit 2: Securing Spaces",
+"topic": "2.4 Detecting Physical Attacks",
+"subtopic": "Placing Detection Controls",
+"code": "2.4.B.1",
+"outcome": "When placing cameras, consideration should be given to visual coverage, angle, and the ability to be tampered with by an adversary. Consideration should also be given to what a camera in a specific area could capture an adversary doing and how that information would be helpful. Points of ingress and egress are often monitored by camera."
+},
+{
+"grade": "all",
+"unit": "Unit 2: Securing Spaces",
+"topic": "2.4 Detecting Physical Attacks",
+"subtopic": "Placing Detection Controls",
+"code": "2.4.B.2",
+"outcome": "Motion sensors should be placed in areas where traffic is unexpected, like server rooms, or areas where sensitive materials are stored and few people have access. Motion sensors in high-traffic areas create many false alarms, making the alarms less likely to be taken seriously when there is a real security event."
+},
+{
+"grade": "all",
+"unit": "Unit 2: Securing Spaces",
+"topic": "2.4 Detecting Physical Attacks",
+"subtopic": "Placing Detection Controls",
+"code": "2.4.B.3",
+"outcome": "Locks should be placed on all entries to areas containing sensitive information or systems. For areas with particularly sensitive information or systems, an organization could use an access control vestibule at the entry point to prevent piggybacking or tailgating."
+},
+{
+"grade": "all",
+"unit": "Unit 2: Securing Spaces",
+"topic": "2.4 Detecting Physical Attacks",
+"subtopic": "Placing Detection Controls",
+"code": "2.4.B.4",
+"outcome": "Security guards can be stationary or patrolling. Stationary guards can provide constant protection for a specific area, entrance, or high-value item. Patrolling guards are more difficult for an adversary to plan around and can create time pressure for an adversary. Placing stationary guards at places that funnel traffic (e.g., entry gates, main entrances or lobbies, and entrances to more secure access areas) can be highly effective, while patrolling guards are better suited for perimeters and exterior areas."
+},
+{
+"grade": "all",
+"unit": "Unit 2: Securing Spaces",
+"topic": "2.4 Detecting Physical Attacks",
+"subtopic": "Verifying Physical Breaches",
+"code": "2.4.C",
+"outcome": "Apply detection techniques to identify physical attacks."
+},
+{
+"grade": "all",
+"unit": "Unit 2: Securing Spaces",
+"topic": "2.4 Detecting Physical Attacks",
+"subtopic": "Verifying Physical Breaches",
+"code": "2.4.C.1",
+"outcome": "Cameras provide visual monitoring and a visual record of activity within a designated space. Cameras can be paired with facial recognition software that can provide alerts when unauthorized individuals enter controlled areas. Once a physical breach has been detected, defenders can use live and recorded camera footage to track an adversary’s path and actions."
+},
+{
+"grade": "all",
+"unit": "Unit 2: Securing Spaces",
+"topic": "2.4 Detecting Physical Attacks",
+"subtopic": "Verifying Physical Breaches",
+"code": "2.4.C.2",
+"outcome": "Motion detectors work best when paired with cameras. When a security alert is raised because a motion detector has been activated, defenders can use cameras to check the space visually and verify a physical security breach."
+},
+{
+"grade": "all",
+"unit": "Unit 2: Securing Spaces",
+"topic": "2.4 Detecting Physical Attacks",
+"subtopic": "Verifying Physical Breaches",
+"code": "2.4.C.3",
+"outcome": "When employees are required to use an electronic badge to unlock a door to a restricted area, a sensor can record how long the door was open. In reviewing entry logs for the door, potential piggybacking or tailgating can be detected by doors being open for longer than normal lengths of time."
+},
+{
+"grade": "all",
+"unit": "Unit 3: Securing Networks",
+"topic": "3.1 Network Vulnerabilities and Attacks",
+"subtopic": "Traffic Interception Attacks",
+"code": "3.1.A",
+"outcome": "Identify common network attacks."
+},
+{
+"grade": "all",
+"unit": "Unit 3: Securing Networks",
+"topic": "3.1 Network Vulnerabilities and Attacks",
+"subtopic": "Traffic Interception Attacks",
+"code": "3.1.A.1",
+"outcome": "The address resolution protocol (ARP) is used by a default gateway on a network to establish a table that pairs internet protocol (IP) addresses with media access control (MAC) addresses. An ARP poisoning attack is when an adversary sends falsified ARP packets to the default gateway to modify the table so that the adversary’s device receives traffic intended for the target by linking the target’s IP address to the adversary’s MAC address. Faking a MAC address is called MAC spoofing. This is an example of an on-path attack (or man-in-the-middle attack), which is when an adversary interrupts a data stream between two parties, captures both parties’ data, and copies or alters the data before sending them on. Both parties think they are communicating directly with each other, but instead they are each communicating with the adversary who is secretly intercepting their messages."
+},
+{
+"grade": "all",
+"unit": "Unit 3: Securing Networks",
+"topic": "3.1 Network Vulnerabilities and Attacks",
+"subtopic": "Traffic Interception Attacks",
+"code": "3.1.A.2",
+"outcome": "A MAC flooding attack is when an adversary sends the target switch many Ethernet frames, each with a different MAC address. This can force the switch into broadcast mode, and the adversary can then collect all of the frames on the network (because they are being broadcast), which could allow the adversary to access sensitive information. This is an example of eavesdropping (or sniffing), which is when an adversary captures data in transit and can record and copy the data."
+},
+{
+"grade": "all",
+"unit": "Unit 3: Securing Networks",
+"topic": "3.1 Network Vulnerabilities and Attacks",
+"subtopic": "Traffic Interception Attacks",
+"code": "3.1.A.3",
+"outcome": "A domain name system (DNS) poisoning attack is when an adversary pretends to be an authoritative name server (NS) and plants a fake DNS record on a DNS server to redirect browser traffic to a malicious website designed to steal credentials. This is an example of credential harvesting, which is when adversaries set up a fake login site that looks like a real one. Unsuspecting users enter their real credentials, which the adversaries capture and use."
+},
+{
+"grade": "all",
+"unit": "Unit 3: Securing Networks",
+"topic": "3.1 Network Vulnerabilities and Attacks",
+"subtopic": "Traffic Interception Attacks",
+"code": "3.1.A.4",
+"outcome": "A smurf attack attempts to overwhelm a network with Internet Control Message Protocol (ICMP) requests. It is a type of denial of service (DoS) attack, which makes a system or resource unavailable to authorized users. During a smurf attack, an adversary sends many ICMP requests with the victim’s address to the network’s broadcast address. The network’s gateway then sends these requests to all devices on the network. Each device on the network replies to the victim’s address, creating a flood of traffic that can block legitimate messages. When multiple devices attack the same target simultaneously, it’s called a distributed denial of service (DDoS) attack."
+},
+{
+"grade": "all",
+"unit": "Unit 3: Securing Networks",
+"topic": "3.1 Network Vulnerabilities and Attacks",
+"subtopic": "Malicious Network Traffic",
+"code": "3.1.B",
+"outcome": "Explain how adversaries can exploit network vulnerabilities to steal, disrupt, or destroy network communication."
+},
+{
+"grade": "all",
+"unit": "Unit 3: Securing Networks",
+"topic": "3.1 Network Vulnerabilities and Attacks",
+"subtopic": "Malicious Network Traffic",
+"code": "3.1.B.1",
+"outcome": "Adversaries can send malicious traffic into a network to flood it creating a DoS, to map the internal structure of the network, or to spoof a legitimate device. Networks without firewalls, or with improperly configured firewalls, are vulnerable to these types of attacks."
+},
+{
+"grade": "all",
+"unit": "Unit 3: Securing Networks",
+"topic": "3.1 Network Vulnerabilities and Attacks",
+"subtopic": "Malicious Network Traffic",
+"code": "3.1.B.2",
+"outcome": "Adversaries that have compromised a device often attempt to leverage their access to compromise other devices on the local area network (LAN)."
+},
+{
+"grade": "all",
+"unit": "Unit 3: Securing Networks",
+"topic": "3.1 Network Vulnerabilities and Attacks",
+"subtopic": "Malicious Network Traffic",
+"code": "3.1.B.3",
+"outcome": "Adversaries that physically plug into a data port can gain access to a LAN through the switch port unless port security is enabled. This allows adversaries to launch DoS attacks or perform MAC flooding or MAC spoofing attacks."
+},
+{
+"grade": "all",
+"unit": "Unit 3: Securing Networks",
+"topic": "3.1 Network Vulnerabilities and Attacks",
+"subtopic": "Malicious Network Traffic",
+"code": "3.1.B.4",
+"outcome": "Adversaries standing outside of physically secure spaces can pick up the signals and beacon frames from a wireless access point that is broadcasting outside the physical space. This allows them to gather information about the wireless network and to attempt eavesdropping and cryptographic attacks on it."
+},
+{
+"grade": "all",
+"unit": "Unit 3: Securing Networks",
+"topic": "3.1 Network Vulnerabilities and Attacks",
+"subtopic": "Malicious Network Traffic",
+"code": "3.1.B.5",
+"outcome": "Adversaries can attempt to join networks to launch attacks from within the networks. Networks that do not authenticate devices and users make it easier for adversaries to join."
+},
+{
+"grade": "all",
+"unit": "Unit 3: Securing Networks",
+"topic": "3.1 Network Vulnerabilities and Attacks",
+"subtopic": "Malicious Network Traffic",
+"code": "3.1.B.6",
+"outcome": "If there is an open network port, an adversary can plug a wireless access point into the port creating a rogue access point. The adversary could use this rogue access point to access the internal network wirelessly (maybe even from outside the physical space). This allows the adversary direct access to the LAN, bypassing any firewalls."
+},
+{
+"grade": "all",
+"unit": "Unit 3: Securing Networks",
+"topic": "3.1 Network Vulnerabilities and Attacks",
+"subtopic": "Malicious Network Traffic",
+"code": "3.1.B.7",
+"outcome": "Adversaries can attempt to break wireless encryption and intercept, steal, or compromise data on a network."
+},
+{
+"grade": "all",
+"unit": "Unit 3: Securing Networks",
+"topic": "3.1 Network Vulnerabilities and Attacks",
+"subtopic": "Vulnerability Impact and Scanning",
+"code": "3.1.C",
+"outcome": "Assess and document risks from network vulnerabilities."
+},
+{
+"grade": "all",
+"unit": "Unit 3: Securing Networks",
+"topic": "3.1 Network Vulnerabilities and Attacks",
+"subtopic": "Vulnerability Impact and Scanning",
+"code": "3.1.C.1",
+"outcome": "Vulnerabilities on a network can lead to adversaries being able to intercept and alter data in transit, launch DoS attacks, or move laterally on a network to gain access to more sensitive or critical systems. Network vulnerabilities can constitute a risk to confidentiality, integrity, and availability."
+},
+{
+"grade": "all",
+"unit": "Unit 3: Securing Networks",
+"topic": "3.1 Network Vulnerabilities and Attacks",
+"subtopic": "Vulnerability Impact and Scanning",
+"code": "3.1.C.2",
+"outcome": "There are automated vulnerability scanners that can check networks, devices, and applications for known vulnerabilities. These scanners produce a report that often includes the vulnerabilities detected, their severity, and mitigation recommendations."
+},
+{
+"grade": "all",
+"unit": "Unit 3: Securing Networks",
+"topic": "3.1 Network Vulnerabilities and Attacks",
+"subtopic": "Vulnerability Impact and Scanning",
+"code": "3.1.C.3",
+"outcome": "Successfully exploiting a network vulnerability often requires advanced technical ability and knowledge. This can impact the likelihood of an exploit."
+},
+{
+"grade": "all",
+"unit": "Unit 3: Securing Networks",
+"topic": "3.1 Network Vulnerabilities and Attacks",
+"subtopic": "Vulnerability Impact and Scanning",
+"code": "3.1.C.4",
+"outcome": "High risks from network vulnerabilities allow an adversary to easily have a significant impact by capturing network traffic, spoofing a legitimate device on the network, or launching a DoS attack. ILLUSTRATIVE EXAMPLE An organization has a single unsegmented internal network that is accessible via a wireless network with weak encryption, and on that network it has a server running its proprietary web-application."
+},
+{
+"grade": "all",
+"unit": "Unit 3: Securing Networks",
+"topic": "3.1 Network Vulnerabilities and Attacks",
+"subtopic": "Vulnerability Impact and Scanning",
+"code": "3.1.C.5",
+"outcome": "Moderate risks from network vulnerabilities could include vulnerabilities that might give adversaries the ability to gain information about systems or devices on a network. ILLUSTRATIVE EXAMPLE An organization’s external firewall is not configured to block external ICMP traffic."
+},
+{
+"grade": "all",
+"unit": "Unit 3: Securing Networks",
+"topic": "3.1 Network Vulnerabilities and Attacks",
+"subtopic": "Vulnerability Impact and Scanning",
+"code": "3.1.C.6",
+"outcome": "Low risks from network vulnerabilities include vulnerabilities that would be difficult to exploit and would likely have minimal negative impacts on an organization. ILLUSTRATIVE EXAMPLE An organization has wireless access points that broadcast a beacon frame, which contains the network service set identifier (SSID) and the wireless encryption protocols."
+},
+{
+"grade": "all",
+"unit": "Unit 3: Securing Networks",
+"topic": "3.2 Protecting Networks: Managerial Controls and Wireless Security",
+"subtopic": "Managerial Network Controls",
+"code": "3.2.A",
+"outcome": "Identify managerial controls related to network security."
+},
+{
+"grade": "all",
+"unit": "Unit 3: Securing Networks",
+"topic": "3.2 Protecting Networks: Managerial Controls and Wireless Security",
+"subtopic": "Managerial Network Controls",
+"code": "3.2.A.1",
+"outcome": "A router security policy will set forth a minimum configuration standard for routers on an organization’s network and may include: § Banning local user accounts (All router logins must use an approved authentication server.) § Disabling unnecessary services (e.g., Telnet) § Requiring a firewall (An organization may opt for a firewall device separate from the router.)"
+},
+{
+"grade": "all",
+"unit": "Unit 3: Securing Networks",
+"topic": "3.2 Protecting Networks: Managerial Controls and Wireless Security",
+"subtopic": "Managerial Network Controls",
+"code": "3.2.A.2",
+"outcome": "A switch security policy will set forth a minimum configuration standard for switches on an organization’s network and may include: § Banning local user accounts (All switch logins must use an approved authentication server.) § Requiring port security to be enabled. § Using MAC filtering"
+},
+{
+"grade": "all",
+"unit": "Unit 3: Securing Networks",
+"topic": "3.2 Protecting Networks: Managerial Controls and Wireless Security",
+"subtopic": "Managerial Network Controls",
+"code": "3.2.A.3",
+"outcome": "A virtual private network (VPN) policy will detail the minimum security requirements for employees using a VPN to access an organization’s internal network, and it may include: § A list of roles within the organization that are allowed to use a VPN to access the organization’s internal network § Authentication requirements for employees using a VPN (e.g., public/private key system or MFA) § A prohibition against split tunneling (also called dual tunneling)"
+},
+{
+"grade": "all",
+"unit": "Unit 3: Securing Networks",
+"topic": "3.2 Protecting Networks: Managerial Controls and Wireless Security",
+"subtopic": "Managerial Network Controls",
+"code": "3.2.A.4",
+"outcome": "A wireless security policy will establish the minimum security requirements for wireless networks within an organization and may include: § Requiring users to authenticate to the wireless network through an extensible authentication protocol (EAP) connected to an approved authentication server § Requiring all wireless traffic to be encrypted using AES encryption with a minimum key length § Disabling beacon frames on wireless access points"
+},
+{
+"grade": "all",
+"unit": "Unit 3: Securing Networks",
+"topic": "3.2 Protecting Networks: Managerial Controls and Wireless Security",
+"subtopic": "Wireless Security Configuration",
+"code": "3.2.B",
+"outcome": "Configure wireless network security features."
+},
+{
+"grade": "all",
+"unit": "Unit 3: Securing Networks",
+"topic": "3.2 Protecting Networks: Managerial Controls and Wireless Security",
+"subtopic": "Wireless Security Configuration",
+"code": "3.2.B.1",
+"outcome": "Organizations can disable beacon frame broadcasting on wireless access points (WAPs) to make it harder for adversaries to find their wireless network and learn its basic properties."
+},
+{
+"grade": "all",
+"unit": "Unit 3: Securing Networks",
+"topic": "3.2 Protecting Networks: Managerial Controls and Wireless Security",
+"subtopic": "Wireless Security Configuration",
+"code": "3.2.B.2",
+"outcome": "Organizations can control the broadcast direction and signal strength of a WAP so the signal does not extend beyond the physical space the access point is meant to cover."
+},
+{
+"grade": "all",
+"unit": "Unit 3: Securing Networks",
+"topic": "3.2 Protecting Networks: Managerial Controls and Wireless Security",
+"subtopic": "Wireless Security Configuration",
+"code": "3.2.B.3",
+"outcome": "Organizations should enable strong wireless encryption protocols to ensure wireless frames are not readable by adversaries who might intercept them. § WEP, WPS, and the original WPA wireless encryption protocols have known vulnerabilities and are insecure. § WPA3 is currently the strongest wireless encryption algorithm."
+},
+{
+"grade": "all",
+"unit": "Unit 3: Securing Networks",
+"topic": "3.2 Protecting Networks: Managerial Controls and Wireless Security",
+"subtopic": "Wireless Security Configuration",
+"code": "3.2.B.4",
+"outcome": "Organizations can enable MAC filtering to prevent unauthorized devices from accessing the network, and they can require users to authenticate when joining a network."
+},
+{
+"grade": "all",
+"unit": "Unit 3: Securing Networks",
+"topic": "3.3 Protecting Networks: Segmentation",
+"subtopic": "Segmentation Techniques",
+"code": "3.3.A",
+"outcome": "Identify techniques for segmenting a network."
+},
+{
+"grade": "all",
+"unit": "Unit 3: Securing Networks",
+"topic": "3.3 Protecting Networks: Segmentation",
+"subtopic": "Segmentation Techniques",
+"code": "3.3.A.1",
+"outcome": "Firewall zones and rules can be used to create a screened subnet (also known as a demilitarized zone, or DMZ)—a network segment that sits between public, external networks like the internet and internal, private networks. A screened subnet is typically is a lower security zone than the internal, private networks, and it typically holds an organization’s publicly facing resources, separating them from the internal network."
+},
+{
+"grade": "all",
+"unit": "Unit 3: Securing Networks",
+"topic": "3.3 Protecting Networks: Segmentation",
+"subtopic": "Segmentation Techniques",
+"code": "3.3.A.2",
+"outcome": "Subnetting can be used to create different subnets based on IP addressing. If a device is compromised by an adversary, subnets can contain a security breach to reduce the number of exposed devices."
+},
+{
+"grade": "all",
+"unit": "Unit 3: Securing Networks",
+"topic": "3.3 Protecting Networks: Segmentation",
+"subtopic": "Segmentation Techniques",
+"code": "3.3.A.3",
+"outcome": "Switches can be used to create VLANs, which logically separate devices physically connected to central switches."
+},
+{
+"grade": "all",
+"unit": "Unit 3: Securing Networks",
+"topic": "3.3 Protecting Networks: Segmentation",
+"subtopic": "Isolated Network Segments",
+"code": "3.3.B",
+"outcome": "Explain why network segmentation can increase network security."
+},
+{
+"grade": "all",
+"unit": "Unit 3: Securing Networks",
+"topic": "3.3 Protecting Networks: Segmentation",
+"subtopic": "Isolated Network Segments",
+"code": "3.3.B.1",
+"outcome": "Network segmentation refers to the process of dividing a network into smaller, isolated segments or subnetworks (subnets)."
+},
+{
+"grade": "all",
+"unit": "Unit 3: Securing Networks",
+"topic": "3.3 Protecting Networks: Segmentation",
+"subtopic": "Isolated Network Segments",
+"code": "3.3.B.2",
+"outcome": "Dividing a network into smaller subnets isolates network traffic, which can prevent attacks on one subnet from impacting devices on other subnets."
+},
+{
+"grade": "all",
+"unit": "Unit 3: Securing Networks",
+"topic": "3.3 Protecting Networks: Segmentation",
+"subtopic": "Isolated Network Segments",
+"code": "3.3.B.3",
+"outcome": "Network segmentation can allow for different security policies and controls to be applied to different segments of the network, allowing for higher security zones and lower security zones."
+},
+{
+"grade": "all",
+"unit": "Unit 3: Securing Networks",
+"topic": "3.3 Protecting Networks: Segmentation",
+"subtopic": "Isolated Network Segments",
+"code": "3.3.B.4",
+"outcome": "Port security on a switch can prevent MAC flooding by limiting the number of addresses assignable to any single switch port."
+},
+{
+"grade": "all",
+"unit": "Unit 3: Securing Networks",
+"topic": "3.4 Protecting Networks: Firewalls",
+"subtopic": "Firewall Filtering Types",
+"code": "3.4.A",
+"outcome": "Identify types of network-based firewalls."
+},
+{
+"grade": "all",
+"unit": "Unit 3: Securing Networks",
+"topic": "3.4 Protecting Networks: Firewalls",
+"subtopic": "Firewall Filtering Types",
+"code": "3.4.A.1",
+"outcome": "A firewall is used to allow or deny network traffic in or out of a network. The firewall itself is software that can be hosted on a standalone device or integrated into another network device, such as a router."
+},
+{
+"grade": "all",
+"unit": "Unit 3: Securing Networks",
+"topic": "3.4 Protecting Networks: Firewalls",
+"subtopic": "Firewall Filtering Types",
+"code": "3.4.A.2",
+"outcome": "A stateless firewall filters traffic based on information in packet headers, such as IP addresses, ports, and protocols."
+},
+{
+"grade": "all",
+"unit": "Unit 3: Securing Networks",
+"topic": "3.4 Protecting Networks: Firewalls",
+"subtopic": "Firewall Filtering Types",
+"code": "3.4.A.3",
+"outcome": "A stateful firewall (also known as dynamic packet filtering) tracks the state of network connections passing through the firewall and can filter according to connection-related rules in addition to the filtering done by a stateless firewall. This allows for more control over content allowed in and out of a network."
+},
+{
+"grade": "all",
+"unit": "Unit 3: Securing Networks",
+"topic": "3.4 Protecting Networks: Firewalls",
+"subtopic": "Firewall Filtering Types",
+"code": "3.4.A.4",
+"outcome": "A next-generation firewall (NGFW) has both the capabilities of typical stateless and stateful firewalls and additional advanced features, such as intrusion prevention, deep packet inspection, and filtering by application type."
+},
+{
+"grade": "all",
+"unit": "Unit 3: Securing Networks",
+"topic": "3.4 Protecting Networks: Firewalls",
+"subtopic": "Firewall Access Rules",
+"code": "3.4.B",
+"outcome": "Explain how a firewall uses an access control list to allow or deny traffic entering or leaving a network."
+},
+{
+"grade": "all",
+"unit": "Unit 3: Securing Networks",
+"topic": "3.4 Protecting Networks: Firewalls",
+"subtopic": "Firewall Access Rules",
+"code": "3.4.B.1",
+"outcome": "Network administrators create a set of rules, called an access control list (ACL), that a firewall uses to permit or deny inbound and outbound network traffic."
+},
+{
+"grade": "all",
+"unit": "Unit 3: Securing Networks",
+"topic": "3.4 Protecting Networks: Firewalls",
+"subtopic": "Firewall Access Rules",
+"code": "3.4.B.2",
+"outcome": "ACL rules are checked in order and the first rule that matches the criteria will be executed for the specified data."
+},
+{
+"grade": "all",
+"unit": "Unit 3: Securing Networks",
+"topic": "3.4 Protecting Networks: Firewalls",
+"subtopic": "Firewall Access Rules",
+"code": "3.4.B.3",
+"outcome": "A typical ACL will specify the direction of traffic (inbound or outbound), the criterion to filter by (IP addresses, logical port, service, or application), and the action to take (permit or deny)."
+},
+{
+"grade": "all",
+"unit": "Unit 3: Securing Networks",
+"topic": "3.4 Protecting Networks: Firewalls",
+"subtopic": "Firewall Segment Placement",
+"code": "3.4.C",
+"outcome": "Determine the effective placement of firewalls in a network."
+},
+{
+"grade": "all",
+"unit": "Unit 3: Securing Networks",
+"topic": "3.4 Protecting Networks: Firewalls",
+"subtopic": "Firewall Segment Placement",
+"code": "3.4.C.1",
+"outcome": "Each segment of a network should have a firewall to control the flow of data in and out of that segment."
+},
+{
+"grade": "all",
+"unit": "Unit 3: Securing Networks",
+"topic": "3.4 Protecting Networks: Firewalls",
+"subtopic": "Firewall Segment Placement",
+"code": "3.4.C.2",
+"outcome": "Network segments may have different security needs based on the data and services within them. The level of security for each firewall can be set independently."
+},
+{
+"grade": "all",
+"unit": "Unit 3: Securing Networks",
+"topic": "3.4 Protecting Networks: Firewalls",
+"subtopic": "Firewall Segment Placement",
+"code": "3.4.C.3",
+"outcome": "Each point of data ingress and egress between the internal network and the public internet should have a firewall."
+},
+{
+"grade": "all",
+"unit": "Unit 3: Securing Networks",
+"topic": "3.4 Protecting Networks: Firewalls",
+"subtopic": "Creating Effective Rules",
+"code": "3.4.D",
+"outcome": "Configure a firewall to manage the flow of network traffic."
+},
+{
+"grade": "all",
+"unit": "Unit 3: Securing Networks",
+"topic": "3.4 Protecting Networks: Firewalls",
+"subtopic": "Creating Effective Rules",
+"code": "3.4.D.1",
+"outcome": "The requirements for a firewall will specify what type of traffic from which sources or to which destinations should be allowed or denied."
+},
+{
+"grade": "all",
+"unit": "Unit 3: Securing Networks",
+"topic": "3.4 Protecting Networks: Firewalls",
+"subtopic": "Creating Effective Rules",
+"code": "3.4.D.2",
+"outcome": "Specific rules for a firewall can allow or deny inbound or outbound traffic based on source or destination port or IP address, service, protocol, or application. Illustrative examples: § Allow inbound TCP port 22 from ALL; (this rule will allow all inbound TCP traffic with destination port 22, which is the designated port for the SSH protocol) § Deny inbound TCP port 80 from 192.168.1.0/24; (this rule will deny inbound TCP traffic with destination port 80 from IP addresses in the 192.168.1.0- 192.168.1.255 range)"
+},
+{
+"grade": "all",
+"unit": "Unit 3: Securing Networks",
+"topic": "3.4 Protecting Networks: Firewalls",
+"subtopic": "Creating Effective Rules",
+"code": "3.4.D.3",
+"outcome": "Rules are implemented in order, and changing the order of a set of rules can change which traffic is allowed or denied. Consideration must be given to the precedence of filtering priorities when establishing the order of rules. Illustrative examples: This set of rules would allow SSH traffic and deny other inbound TCP traffic § Rule1: ALLOW inbound TCP port 22 from ALL; § Rule 2: DENY inbound TCP ALL from ALL; Reversing the order of those rules would deny all inbound TCP traffic including SSH traffic."
+},
+{
+"grade": "all",
+"unit": "Unit 3: Securing Networks",
+"topic": "3.5 Detecting Network Attacks",
+"subtopic": "Network Detection Tools",
+"code": "3.5.A",
+"outcome": "Identify types of automated security tools used to detect network attacks."
+},
+{
+"grade": "all",
+"unit": "Unit 3: Securing Networks",
+"topic": "3.5 Detecting Network Attacks",
+"subtopic": "Network Detection Tools",
+"code": "3.5.A.1",
+"outcome": "Automated detection tools analyze data collected from an organization’s network and devices, such as switches and routers, servers, firewalls, and user computers. These data are often collected in a log file."
+},
+{
+"grade": "all",
+"unit": "Unit 3: Securing Networks",
+"topic": "3.5 Detecting Network Attacks",
+"subtopic": "Network Detection Tools",
+"code": "3.5.A.2",
+"outcome": "A network intrusion detection system (NIDS) is an automated tool that analyzes data to determine if malicious activity is taking place on a network. When an attack is detected, it generates an alert."
+},
+{
+"grade": "all",
+"unit": "Unit 3: Securing Networks",
+"topic": "3.5 Detecting Network Attacks",
+"subtopic": "Network Detection Tools",
+"code": "3.5.A.3",
+"outcome": "A network intrusion prevention system (NIPS) is an automated tool that, like an IDS, analyzes data to determine if malicious activity is taking place on a network. A NIPS can also mitigate or halt an attack by closing ports, blocking specific IP or MAC addresses, or rejecting specific protocols."
+},
+{
+"grade": "all",
+"unit": "Unit 3: Securing Networks",
+"topic": "3.5 Detecting Network Attacks",
+"subtopic": "Network Detection Tools",
+"code": "3.5.A.4",
+"outcome": "A security information and event management (SIEM) system collects and analyzes data from multiple sources (including firewalls, NIDS/NIPS, device logs, and application logs) to detect patterns that may indicate a cyberattack and raises an alert if a potential attack is detected. Security analysts investigate the alert to determine whether it represents a true threat and follow standard operating procedures to resolve or escalate the alert."
+},
+{
+"grade": "all",
+"unit": "Unit 3: Securing Networks",
+"topic": "3.5 Detecting Network Attacks",
+"subtopic": "AI and Alert Thresholds",
+"code": "3.5.B",
+"outcome": "Explain how organizations can leverage artificial intelligence (AI) to enhance threat detection and response."
+},
+{
+"grade": "all",
+"unit": "Unit 3: Securing Networks",
+"topic": "3.5 Detecting Network Attacks",
+"subtopic": "AI and Alert Thresholds",
+"code": "3.5.B.1",
+"outcome": "Computers log every action that users take. Firewalls, IDS, IPS, and other network sensors log all the traffic passing through various points in a network. A medium-sized organization’s network is logging millions (or even tens of millions) of data points per day. Even a large team of humans is incapable of analyzing so much data."
+},
+{
+"grade": "all",
+"unit": "Unit 3: Securing Networks",
+"topic": "3.5 Detecting Network Attacks",
+"subtopic": "AI and Alert Thresholds",
+"code": "3.5.B.2",
+"outcome": "Threat detection teams are creating AI algorithms to analyze large amounts of data and classify the data patterns as malicious or normal."
+},
+{
+"grade": "all",
+"unit": "Unit 3: Securing Networks",
+"topic": "3.5 Detecting Network Attacks",
+"subtopic": "AI and Alert Thresholds",
+"code": "3.5.B.3",
+"outcome": "AI models for threat detection are based on probabilistic calculations; they report a percentage to indicate the likelihood that something is malicious."
+},
+{
+"grade": "all",
+"unit": "Unit 3: Securing Networks",
+"topic": "3.5 Detecting Network Attacks",
+"subtopic": "AI and Alert Thresholds",
+"code": "3.5.B.4",
+"outcome": "Organizations determine their own thresholds for what percentage of likelihood of a threat results in an alert. If the threshold is set too high, real attacks may go undetected; if the threshold is too low, the security team will be overwhelmed with false alerts."
+},
+{
+"grade": "all",
+"unit": "Unit 3: Securing Networks",
+"topic": "3.5 Detecting Network Attacks",
+"subtopic": "Choosing Detection Methods",
+"code": "3.5.C",
+"outcome": "Determine a network detection method."
+},
+{
+"grade": "all",
+"unit": "Unit 3: Securing Networks",
+"topic": "3.5 Detecting Network Attacks",
+"subtopic": "Choosing Detection Methods",
+"code": "3.5.C.1",
+"outcome": "Volume of network traffic is a criterion for determining a detection method. Signature-based detection is more efficient for networks with high traffic volume. Signature-based detection compares detection data to a database of known indicators of compromise (IoCs), called signatures. Signature databases must be updated with IoCs for the latest attacks. Signature-based detection runs more quickly than anomaly-based detection."
+},
+{
+"grade": "all",
+"unit": "Unit 3: Securing Networks",
+"topic": "3.5 Detecting Network Attacks",
+"subtopic": "Choosing Detection Methods",
+"code": "3.5.C.2",
+"outcome": "Consistency of network traffic patterns is a criterion for determining a detection method. Anomaly-based detection is most effective on networks with consistent traffic patterns. Anomaly-based detection compares detection data to a baseline of recorded activity. Baselines must be recorded on uncompromised systems to establish expected data types and volumes. Anomaly-based detection triggers an alert or action when data types or volumes outside of a specified tolerance range are recorded. Anomaly-based detection relies on consistent patterns in network traffic to detect anomalous traffic patterns."
+},
+{
+"grade": "all",
+"unit": "Unit 3: Securing Networks",
+"topic": "3.5 Detecting Network Attacks",
+"subtopic": "Choosing Detection Methods",
+"code": "3.5.C.3",
+"outcome": "Degree of sensitivity or criticality of a network is a criterion for determining a detection method. Networks with more sensitive or critical data or services will likely consider a hybrid approach. Hybrid detection combines signature-based and anomaly-based detection. Hybrid detection is more expensive than using either signature- or anomaly-based detection alone, and hybrid-detection models generate more alerts."
+},
+{
+"grade": "all",
+"unit": "Unit 3: Securing Networks",
+"topic": "3.5 Detecting Network Attacks",
+"subtopic": "Choosing Detection Methods",
+"code": "3.5.C.4",
+"outcome": "Likelihood of novel attacks on a network is a criterion for determining a detection method. Signature-based detection cannot detect a new attack. When an organization suspects that adversaries are likely to attempt a new attack on a network, anomaly-based detection is the preferred method when the cost of hybrid detection is prohibitively high."
+},
+{
+"grade": "all",
+"unit": "Unit 3: Securing Networks",
+"topic": "3.5 Detecting Network Attacks",
+"subtopic": "Detection Method Impacts",
+"code": "3.5.D",
+"outcome": "Evaluate the impact of a network detection method."
+},
+{
+"grade": "all",
+"unit": "Unit 3: Securing Networks",
+"topic": "3.5 Detecting Network Attacks",
+"subtopic": "Detection Method Impacts",
+"code": "3.5.D.1",
+"outcome": "Speed of detection is a factor in evaluating the impact of a network detection method. Faster detection enables faster response. Signature-based detection methods are faster than anomaly-based detection methods, especially on networks with high traffic volume."
+},
+{
+"grade": "all",
+"unit": "Unit 3: Securing Networks",
+"topic": "3.5 Detecting Network Attacks",
+"subtopic": "Detection Method Impacts",
+"code": "3.5.D.2",
+"outcome": "Cost is a factor in evaluating the impact of a network detection method. Detection tools and ongoing costs need to be within a budget. Anomaly-based detection systems require more expensive hardware to operate than signature based. Hybrid detection is the most expensive option because it combines both anomaly- and signature-based methods."
+},
+{
+"grade": "all",
+"unit": "Unit 3: Securing Networks",
+"topic": "3.5 Detecting Network Attacks",
+"subtopic": "Detection Method Impacts",
+"code": "3.5.D.3",
+"outcome": "False positive rate is a factor in evaluating the impact of a network detection method. Signature-based detection has almost no false positives. Anomaly-based or hybrid detection will have higher false positive rates. Impacts of high false positive rates include: § Time and resources are put toward investigating alerts for nonmalicious activity. § Alert fatigue is a condition that occurs when responders get accustomed to false positives and take alerts less seriously because they assume alerts are false positives before investigating them."
+},
+{
+"grade": "all",
+"unit": "Unit 3: Securing Networks",
+"topic": "3.5 Detecting Network Attacks",
+"subtopic": "Detection Method Impacts",
+"code": "3.5.D.4",
+"outcome": "False negative rate is a factor in evaluating the impact of a network detection method. A false negative occurs when an adversary can bypass a detection system. Signature-based detection systems are easier to bypass than anomaly-based or hybrid systems. False negatives can result in adversaries causing loss, harm, disruption, or destruction to data and systems."
+},
+{
+"grade": "all",
+"unit": "Unit 3: Securing Networks",
+"topic": "3.5 Detecting Network Attacks",
+"subtopic": "Wireless and Local Attacks",
+"code": "3.5.E",
+"outcome": "Apply detection techniques to identify indicators of network attacks by analyzing log files."
+},
+{
+"grade": "all",
+"unit": "Unit 3: Securing Networks",
+"topic": "3.5 Detecting Network Attacks",
+"subtopic": "Wireless and Local Attacks",
+"code": "3.5.E.1",
+"outcome": "Evil-twin attacks can be detected by regularly scanning for service set identifiers (SSIDs) that look suspicious or similar to local legitimate SSIDs. Signal triangulation can be used to locate and disable an access point broadcasting an evil-twin network."
+},
+{
+"grade": "all",
+"unit": "Unit 3: Securing Networks",
+"topic": "3.5 Detecting Network Attacks",
+"subtopic": "Wireless and Local Attacks",
+"code": "3.5.E.2",
+"outcome": "Jamming attacks can be detected by recognizing that no wireless devices in a specific physical space are able to connect to a wireless network and by scanning for electromagnetic (EM) noise in the wireless range."
+},
+{
+"grade": "all",
+"unit": "Unit 3: Securing Networks",
+"topic": "3.5 Detecting Network Attacks",
+"subtopic": "Wireless and Local Attacks",
+"code": "3.5.E.3",
+"outcome": "ARP poisoning attacks can be detected by monitoring network traffic for unusual ARP messages (particularly duplicate MAC address ARP packets) and checking the ARP table on the default gateway."
+},
+{
+"grade": "all",
+"unit": "Unit 3: Securing Networks",
+"topic": "3.5 Detecting Network Attacks",
+"subtopic": "Wireless and Local Attacks",
+"code": "3.5.E.4",
+"outcome": "MAC flooding attacks can be detected by monitoring network traffic for an unexpected surge of Ethernet frames with different MAC addresses and checking the MAC address table on a switch."
+},
+{
+"grade": "all",
+"unit": "Unit 3: Securing Networks",
+"topic": "3.5 Detecting Network Attacks",
+"subtopic": "Wireless and Local Attacks",
+"code": "3.5.E.5",
+"outcome": "DNS poisoning attacks are difficult to detect. However, if an organization’s website experiences an abrupt and otherwise inexplicable drop in traffic, DNS records should be examined as a potential cause."
+},
+{
+"grade": "all",
+"unit": "Unit 3: Securing Networks",
+"topic": "3.5 Detecting Network Attacks",
+"subtopic": "Wireless and Local Attacks",
+"code": "3.5.E.6",
+"outcome": "Smurf attacks can be detected by watching network traffic for a sudden increase in ICMP requests sent to the network’s broadcast address."
+},
+{
+"grade": "all",
+"unit": "Unit 3: Securing Networks",
+"topic": "3.5 Detecting Network Attacks",
+"subtopic": "Wireless and Local Attacks",
+"code": "3.5.E.7",
+"outcome": "Network-based IoCs are discovered when analyzing network traffic, often in the form of packet capture files. Indicators can be found in source and destination IP addresses, ports, and protocols. These can include: § Connections to known malicious IP addresses § Unauthorized network scans § Unusual spikes or slow downs in network traffic § Mismatched port-application traffic"
+},
+{
+"grade": "all",
+"unit": "Unit 4: Securing Devices",
+"topic": "4.1 Device Vulnerabilities and Attacks",
+"subtopic": "Types of Computing Devices",
+"code": "4.1.A",
+"outcome": "Identify types of computing devices."
+},
+{
+"grade": "all",
+"unit": "Unit 4: Securing Devices",
+"topic": "4.1 Device Vulnerabilities and Attacks",
+"subtopic": "Types of Computing Devices",
+"code": "4.1.A.1",
+"outcome": "Server computers are devices that provide one or more services to other computers (e.g., DNS, DHCP, FTP). Any computer can be a server, and in an enterprise environment servers typically have more processing power and storage than a personal computer."
+},
+{
+"grade": "all",
+"unit": "Unit 4: Securing Devices",
+"topic": "4.1 Device Vulnerabilities and Attacks",
+"subtopic": "Types of Computing Devices",
+"code": "4.1.A.2",
+"outcome": "Personal computers are devices that are designed to be used by one person for work or recreational purposes (e.g., word processing, graphic design, web browsing, and media production or viewing). These include desktop, laptop, and notebook computers."
+},
+{
+"grade": "all",
+"unit": "Unit 4: Securing Devices",
+"topic": "4.1 Device Vulnerabilities and Attacks",
+"subtopic": "Types of Computing Devices",
+"code": "4.1.A.3",
+"outcome": "Handheld computers (also called mobile computers or information appliances) are smaller than personal computers and run on battery power. These include tablets, smartphones, and wearable technology like smart watches."
+},
+{
+"grade": "all",
+"unit": "Unit 4: Securing Devices",
+"topic": "4.1 Device Vulnerabilities and Attacks",
+"subtopic": "Types of Computing Devices",
+"code": "4.1.A.4",
+"outcome": "Embedded computers are devices that are part of a machine. Embedded devices have specific instruction sets for interfacing with the specialized components of the machine they’re embedded in. Embedded computers tend to be slower and cheaper than other computers and have minimal storage."
+},
+{
+"grade": "all",
+"unit": "Unit 4: Securing Devices",
+"topic": "4.1 Device Vulnerabilities and Attacks",
+"subtopic": "Types of Computing Devices",
+"code": "4.1.A.5",
+"outcome": "Everyday devices with embedded computers are often called Internet of Things (IoT) devices. Embedded computers are found in transportation (e.g., cars, trains, and airplanes), devices that operate critical infrastructure (e.g., operating circuit breakers at electrical substations and pumps at water treatment plants), medical equipment (e.g., IV pumps, MRI scanners, pacemakers, and insulin pumps), and everyday devices like washing machines, coffee makers, and thermostats."
+},
+{
+"grade": "all",
+"unit": "Unit 4: Securing Devices",
+"topic": "4.1 Device Vulnerabilities and Attacks",
+"subtopic": "Malware Categories",
+"code": "4.1.B",
+"outcome": "Identify the type of malware used in a cyberattack."
+},
+{
+"grade": "all",
+"unit": "Unit 4: Securing Devices",
+"topic": "4.1 Device Vulnerabilities and Attacks",
+"subtopic": "Malware Categories",
+"code": "4.1.B.1",
+"outcome": "Malware is malicious software that can damage or destroy a device or network, or allow an adversary access to a device and the data on the device."
+},
+{
+"grade": "all",
+"unit": "Unit 4: Securing Devices",
+"topic": "4.1 Device Vulnerabilities and Attacks",
+"subtopic": "Malware Categories",
+"code": "4.1.B.2",
+"outcome": "Malware is often used as a tool to accomplish part of an adversary’s plan to achieve their ultimate goal(s). There are many types of malware, such as: § Viruses are malware that must be activated by a user executing or opening a file. § Worms spread from one computer to another without human interaction. § Trojans are malware embedded in other software that seems harmless. Remote access trojans (RATs) provide an adversary with remote access to the target system. § Ransomware encrypts a device’s files, preventing the user from accessing files on the device. The ransomware typically presents the user with a screen demanding payment and promising to give the user a decryption key for their files if the user pays within a fixed amount of time. § Spyware tracks a user’s actions on a computer and sends information back to an adversary. § A keylogger is software or hardware that logs the users keystrokes and sends the information back to the adversary. Adversaries can often extract usernames and passwords from keylogger data. § Logic bombs are set to trigger their effect only when a specific set of conditions are met; the conditions can include time and date, specific type or version of the operating system, character set the computer is using, etc. § A rootkit is sophisticated malware that gets into the target computer’s operating system and can control nearly every aspect of the system, including making the rootkit itself invisible to detection."
+},
+{
+"grade": "all",
+"unit": "Unit 4: Securing Devices",
+"topic": "4.1 Device Vulnerabilities and Attacks",
+"subtopic": "Malware Categories",
+"code": "4.1.B.3",
+"outcome": "While most malware is a file or a collection of files, fileless malware is malicious code that lives in RAM and uses legitimate programs already installed on a device to compromise it."
+},
+{
+"grade": "all",
+"unit": "Unit 4: Securing Devices",
+"topic": "4.1 Device Vulnerabilities and Attacks",
+"subtopic": "Device Weaknesses",
+"code": "4.1.C",
+"outcome": "Explain how adversaries can exploit common device vulnerabilities to cause loss, damage, disruption, or destruction."
+},
+{
+"grade": "all",
+"unit": "Unit 4: Securing Devices",
+"topic": "4.1 Device Vulnerabilities and Attacks",
+"subtopic": "Device Weaknesses",
+"code": "4.1.C.1",
+"outcome": "Adversaries can develop exploits for known vulnerabilities in software (including operating systems). Devices with unpatched software are vulnerable to these exploits, which could allow an adversary to crash a system, view user actions, enable or disable various services or components on the device (e.g., turning on a webcam or microphone), or even take control of the device to issue their own commands including commands to steal or destroy information on the device."
+},
+{
+"grade": "all",
+"unit": "Unit 4: Securing Devices",
+"topic": "4.1 Device Vulnerabilities and Attacks",
+"subtopic": "Device Weaknesses",
+"code": "4.1.C.2",
+"outcome": "Adversaries can take advantage of weak authentication requirements by guessing a user’s password or using social engineering to get a user to divulge their password."
+},
+{
+"grade": "all",
+"unit": "Unit 4: Securing Devices",
+"topic": "4.1 Device Vulnerabilities and Attacks",
+"subtopic": "Device Weaknesses",
+"code": "4.1.C.3",
+"outcome": "When systems don’t have a password on the basic input output system (BIOS) or unified extensible firmware interface (UEFI), an adversary can boot a computer into a special mode (e.g., “recovery mode”) that gives them higher-level privileges. Without BIOS or UEFI protection, adversaries can load their own operating system onto a device from an external drive and use specialized tools to alter or create user profiles, including changing user passwords."
+},
+{
+"grade": "all",
+"unit": "Unit 4: Securing Devices",
+"topic": "4.1 Device Vulnerabilities and Attacks",
+"subtopic": "Device Weaknesses",
+"code": "4.1.C.4",
+"outcome": "Adversaries can load malware onto an external drive, and if autorun is enabled, then a device will run the malware when the external drive is inserted."
+},
+{
+"grade": "all",
+"unit": "Unit 4: Securing Devices",
+"topic": "4.1 Device Vulnerabilities and Attacks",
+"subtopic": "Device Weaknesses",
+"code": "4.1.C.5",
+"outcome": "Adversaries can leverage open ports to connect to a device."
+},
+{
+"grade": "all",
+"unit": "Unit 4: Securing Devices",
+"topic": "4.1 Device Vulnerabilities and Attacks",
+"subtopic": "Device Weaknesses",
+"code": "4.1.C.6",
+"outcome": "Adversaries can send malicious data to devices to disrupt them or attempt to take control of them. Devices that have no firewall (or a misconfigured firewall) cannot filter out this malicious data."
+},
+{
+"grade": "all",
+"unit": "Unit 4: Securing Devices",
+"topic": "4.1 Device Vulnerabilities and Attacks",
+"subtopic": "Device Weaknesses",
+"code": "4.1.C.7",
+"outcome": "Adversaries often attempt to install malware on a device to disrupt or control it. Devices lacking anti-malware software are more vulnerable to this type of attack."
+},
+{
+"grade": "all",
+"unit": "Unit 4: Securing Devices",
+"topic": "4.1 Device Vulnerabilities and Attacks",
+"subtopic": "Security Protection Gaps",
+"code": "4.1.D",
+"outcome": "Assess and document risks from device vulnerabilities."
+},
+{
+"grade": "all",
+"unit": "Unit 4: Securing Devices",
+"topic": "4.1 Device Vulnerabilities and Attacks",
+"subtopic": "Security Protection Gaps",
+"code": "4.1.D.1",
+"outcome": "Risk from device vulnerabilities can come from unauthorized access or malware that allow an adversary to impersonate an authorized user, remotely control a device, encrypt a device’s drive to ransom the data, or wipe a device’s memory, destroying data or rendering the device inoperable. The level of risk varies depending on the criticality of the device or the services the device provides or data it stores."
+},
+{
+"grade": "all",
+"unit": "Unit 4: Securing Devices",
+"topic": "4.1 Device Vulnerabilities and Attacks",
+"subtopic": "Security Protection Gaps",
+"code": "4.1.D.2",
+"outcome": "High risks from device vulnerabilities involve potentially compromising sensitive data or critical operations. ILLUSTRATIVE EXAMPLE An organization has not installed the most recent update for their email server which included a patch for a known critical vulnerability."
+},
+{
+"grade": "all",
+"unit": "Unit 4: Securing Devices",
+"topic": "4.1 Device Vulnerabilities and Attacks",
+"subtopic": "Security Protection Gaps",
+"code": "4.1.D.3",
+"outcome": "Moderate risks from device vulnerabilities can arise from weak authentication requirements or from vulnerabilities that would be less likely to be exploited. ILLUSTRATIVE EXAMPLE A water treatment plant has embedded systems controlling pumps. The pumps can be remotely accessed via username and password for remote management for the plant, but the devices do not require multi-factor authentication (MFA)."
+},
+{
+"grade": "all",
+"unit": "Unit 4: Securing Devices",
+"topic": "4.1 Device Vulnerabilities and Attacks",
+"subtopic": "Security Protection Gaps",
+"code": "4.1.D.4",
+"outcome": "Low risks from device vulnerabilities are typically related to vulnerabilities that, if exploited, would have little impact. ILLUSTRATIVE EXAMPLE An employee’s laptop has telnet port 23 open."
+},
+{
+"grade": "all",
+"unit": "Unit 4: Securing Devices",
+"topic": "4.2 Authentication",
+"subtopic": "Hashing Passwords",
+"code": "4.2.A",
+"outcome": "Explain why hashes (also called hash outputs, checksums, message digests, or digests) are used to store passwords."
+},
+{
+"grade": "all",
+"unit": "Unit 4: Securing Devices",
+"topic": "4.2 Authentication",
+"subtopic": "Hashing Passwords",
+"code": "4.2.A.1",
+"outcome": "A cryptographic hash function (also called a message digest function) is a mathematical algorithm that takes binary data of an arbitrary length, processes it according to a set of instructions, and outputs a fixed-length binary string called the hash (or checksum or message digest). Well known cryptographic hashes include: § MD5 § SHA-1, SHA-256, SHA-512 (SHA stands for Secure Hash Algorithm) § NTHash § RIPEMD-160"
+},
+{
+"grade": "all",
+"unit": "Unit 4: Securing Devices",
+"topic": "4.2 Authentication",
+"subtopic": "Hashing Passwords",
+"code": "4.2.A.2",
+"outcome": "Ann-bit hash has2n possible outputs. The number of inputs is infinite, and so inevitably two different inputs will produce the same hash. This is called a collision."
+},
+{
+"grade": "all",
+"unit": "Unit 4: Securing Devices",
+"topic": "4.2 Authentication",
+"subtopic": "Hashing Passwords",
+"code": "4.2.A.3",
+"outcome": "Cryptographic hash functions have the following properties: § Hashes are collision resistant; it is difficult to find two different inputs to the same hash function that produce the same output. § Hashes have pre-image resistance; given a hash, it is infeasible to figure out the input that generated the hash. § Hashes are repeatable; the same input will always produce the same hash. § Hashes have a fixed length; the length in bits of the hash for a specific hash function is constant regardless of the size of the input."
+},
+{
+"grade": "all",
+"unit": "Unit 4: Securing Devices",
+"topic": "4.2 Authentication",
+"subtopic": "Hashing Passwords",
+"code": "4.2.A.4",
+"outcome": "Adversaries try to compromise hashing functions by forcing collisions in their output. If an efficient algorithm exists to force a collision for a specific hash function, then that hash function will be deprecated (no longer used in secure settings). MD5 and SHA1 are examples of deprecated hash functions."
+},
+{
+"grade": "all",
+"unit": "Unit 4: Securing Devices",
+"topic": "4.2 Authentication",
+"subtopic": "Hashing Passwords",
+"code": "4.2.A.5",
+"outcome": "Password-based authentication services shouldn’t store passwords in plaintext, so that if an adversary gains access to the user:password directory they won’t immediately know the passwords for all users. Instead, user passwords should be hashed and the hash stored in a database. When a user enters their password, it is hashed, and the hash is compared to the hash stored on file. If the hashes match, then the user is authenticated."
+},
+{
+"grade": "all",
+"unit": "Unit 4: Securing Devices",
+"topic": "4.2 Authentication",
+"subtopic": "Hashing Passwords",
+"code": "4.2.A.6",
+"outcome": "If two users had the same password, then their passwords would have identical hashes in the user:password directory. To prevent this, a few random bits (called salt) are hashed with a user’s password to generate the hash. Each user’s salt is unique, so even if two users have the same password they will have a different password hash because they have different salt."
+},
+{
+"grade": "all",
+"unit": "Unit 4: Securing Devices",
+"topic": "4.2 Authentication",
+"subtopic": "Password Attacks",
+"code": "4.2.B",
+"outcome": "Explain how password attacks exploit vulnerabilities."
+},
+{
+"grade": "all",
+"unit": "Unit 4: Securing Devices",
+"topic": "4.2 Authentication",
+"subtopic": "Password Attacks",
+"code": "4.2.B.1",
+"outcome": "If an adversary can compromise the password of a legitimate user, and that user’s organization has not enabled MFA or other authentication protections, then the adversary can act within that organization with all the access and rights available to the user."
+},
+{
+"grade": "all",
+"unit": "Unit 4: Securing Devices",
+"topic": "4.2 Authentication",
+"subtopic": "Password Attacks",
+"code": "4.2.B.2",
+"outcome": "Password attacks can be classified as online or offline. § Online password attacks attempt user:password combinations in an active authentication portal. § Offline password attacks have captured a user:password database and can run password attacks against the database on their own computer. This method bypasses any account lock out protections that may be in place."
+},
+{
+"grade": "all",
+"unit": "Unit 4: Securing Devices",
+"topic": "4.2 Authentication",
+"subtopic": "Password Attacks",
+"code": "4.2.B.3",
+"outcome": "Many users reuse the same passwords (or variations of the same password) for all the services and accounts they have, despite warnings not to. When an organization’s user database is stolen, the usernames, emails, and passwords are sold to adversaries or posted online. Adversaries often begin an attempt to compromise an account by trying stolen or leaked credentials for a target individual."
+},
+{
+"grade": "all",
+"unit": "Unit 4: Securing Devices",
+"topic": "4.2 Authentication",
+"subtopic": "Password Attacks",
+"code": "4.2.B.4",
+"outcome": "Many users set passwords that are easy to guess, and adversaries will attempt to guess common passwords for a user’s account. Password spraying is an attack where an adversary attempts a common password against many different user accounts."
+},
+{
+"grade": "all",
+"unit": "Unit 4: Securing Devices",
+"topic": "4.2 Authentication",
+"subtopic": "Password Attacks",
+"code": "4.2.B.5",
+"outcome": "Some services and devices (e.g., switches, routers, and IoT devices) are preconfigured with a default administrative user and password. Credential stuffing is an attack where an adversary attempts to gain access to these services or devices using common default credentials or account credentials that have been stolen."
+},
+{
+"grade": "all",
+"unit": "Unit 4: Securing Devices",
+"topic": "4.2 Authentication",
+"subtopic": "Password Attacks",
+"code": "4.2.B.6",
+"outcome": "Offline password attacks use automated hash-cracking tools to hash possible passwords and compare them against a captured hash. Although hashes can’t be reversed, an adversary can use these tools to hash many potential passwords and compare them to the target hash. If an adversary finds a hash that matches, they can use the password that generated the hash to login to the user’s account. Offline attacks include: § Brute force attacks, where an adversary uses an automated tool to test all the potential passwords that a user could have § Dictionary attacks, where an adversary uses an automated tool to test a list of common passwords"
+},
+{
+"grade": "all",
+"unit": "Unit 4: Securing Devices",
+"topic": "4.2 Authentication",
+"subtopic": "Password Attacks",
+"code": "4.2.B.7",
+"outcome": "A rainbow table attack uses a list of common passwords to generate a rainbow table. A rainbow table is a table that contains each potential password and its hash. The table is then sorted by the hashes, and the adversary uses an automated tool to search the list of hashes for the captured hash. If the hashes match, then the adversary has found a password that generates the same hash, and the password will allow the adversary to log in to the user’s account."
+},
+{
+"grade": "all",
+"unit": "Unit 4: Securing Devices",
+"topic": "4.2 Authentication",
+"subtopic": "Authentication Factors",
+"code": "4.2.C",
+"outcome": "Determine the type of authentication used to verify the identity of a user."
+},
+{
+"grade": "all",
+"unit": "Unit 4: Securing Devices",
+"topic": "4.2 Authentication",
+"subtopic": "Authentication Factors",
+"code": "4.2.C.1",
+"outcome": "Authentication mechanisms are technical controls that verify the identity of a user to ensure that only authorized users access a system. The proof the user provides to identify themselves is called a factor. Common authentication factors include: § Something the user knows (knowledge factor) § Something the user has (possession factor) § Something the user is (biometric factor) § Somewhere the user is (location factor)"
+},
+{
+"grade": "all",
+"unit": "Unit 4: Securing Devices",
+"topic": "4.2 Authentication",
+"subtopic": "Authentication Factors",
+"code": "4.2.C.2",
+"outcome": "Knowledge factors can be passwords, PINs, or answers to preselected challenge questions. For a knowledge factor to be effective it needs to be something an adversary can’t easily guess; however, knowledge factors that are difficult for an adversary to figure out can also be harder for a user to remember."
+},
+{
+"grade": "all",
+"unit": "Unit 4: Securing Devices",
+"topic": "4.2 Authentication",
+"subtopic": "Authentication Factors",
+"code": "4.2.C.3",
+"outcome": "A possession factor is an object a user has that is unique to them, such as an access card, a bank card, a cell phone, or an authentication token. The more difficult it is for an adversary to obtain the object (or a copy of it), the more secure the possession factor is."
+},
+{
+"grade": "all",
+"unit": "Unit 4: Securing Devices",
+"topic": "4.2 Authentication",
+"subtopic": "Authentication Factors",
+"code": "4.2.C.4",
+"outcome": "Biometric factors measure features of the human body and can include fingerprints, palm prints, facial recognition, iris or retina scans, or voice identification. Biometric factors are difficult for an adversary to duplicate because they are unique to an individual."
+},
+{
+"grade": "all",
+"unit": "Unit 4: Securing Devices",
+"topic": "4.2 Authentication",
+"subtopic": "Authentication Factors",
+"code": "4.2.C.5",
+"outcome": "Location factors use information about Wi-Fi signals, GPS data, time zone settings, and even IP address information to make determinations about location. Rules can be established for allowing or denying access based on a location factor."
+},
+{
+"grade": "all",
+"unit": "Unit 4: Securing Devices",
+"topic": "4.2 Authentication",
+"subtopic": "Authentication Factors",
+"code": "4.2.C.6",
+"outcome": "Multifactor authentication (MFA) is when a system uses more than one factor to authenticate a user. MFA is more secure than single-factor authentication because it requires the user to provide at least two separate factors of authentication."
+},
+{
+"grade": "all",
+"unit": "Unit 4: Securing Devices",
+"topic": "4.2 Authentication",
+"subtopic": "Secure Password Settings",
+"code": "4.2.D",
+"outcome": "Configure login settings to make a device more secure."
+},
+{
+"grade": "all",
+"unit": "Unit 4: Securing Devices",
+"topic": "4.2 Authentication",
+"subtopic": "Secure Password Settings",
+"code": "4.2.D.1",
+"outcome": "Requiring complexity in passwords is a login setting that can be configured. When enabled, users setting a new password must include at least one character from each character set. Passwords with characters from each character set are significantly harder for an adversary to crack than passwords that use characters from only one or two character sets. The main character sets often required are: § Uppercase letters (A–Z) § Lowercase letters (a–z) § Numeric digits (0–9) § Special characters (!”#$%&’()*+,-./:;<=>?@ [ \\ ] ^_`{|}~)"
+},
+{
+"grade": "all",
+"unit": "Unit 4: Securing Devices",
+"topic": "4.2 Authentication",
+"subtopic": "Secure Password Settings",
+"code": "4.2.D.2",
+"outcome": "Requiring a minimum password length is a login setting that can be configured. This means that users must have at least a certain number of characters in their password. The longer and more complex a password is, the longer it will take a digital tool to crack the password."
+},
+{
+"grade": "all",
+"unit": "Unit 4: Securing Devices",
+"topic": "4.2 Authentication",
+"subtopic": "Secure Password Settings",
+"code": "4.2.D.3",
+"outcome": "Requiring a maximum password age is a login setting that can be configured. When configured, users will receive a prompt to change their password a certain number of days after their last password change, usually every 90 or 120 days. If a user’s password has been compromised, changing it could prevent an adversary from gaining access to the user’s account. However, some national standards recommend that organizations not require users to change their passwords on predefined intervals to discourage users from developing password patterns (e.g., PasswordFall2028)."
+},
+{
+"grade": "all",
+"unit": "Unit 4: Securing Devices",
+"topic": "4.2 Authentication",
+"subtopic": "Secure Password Settings",
+"code": "4.2.D.4",
+"outcome": "Requiring the system to store a certain number of previous user passwords is a login setting that can be configured. This prevents a user from reusing a password. Many organizations store users’ previous 5–10 password hashes to prevent reuse."
+},
+{
+"grade": "all",
+"unit": "Unit 4: Securing Devices",
+"topic": "4.2 Authentication",
+"subtopic": "Secure Password Settings",
+"code": "4.2.D.5",
+"outcome": "Requiring a lockout period after a certain number of invalid login attempts is a login setting that can be configured. This prevents an adversary from continuously randomly attempting wrong passwords. Many organizations lock a user’s account after 3–5 invalid login attempts. The period of the lockout varies."
+},
+{
+"grade": "all",
+"unit": "Unit 4: Securing Devices",
+"topic": "4.3 Protecting Devices",
+"subtopic": "Device Use Policies",
+"code": "4.3.A",
+"outcome": "Identify managerial controls related to device security."
+},
+{
+"grade": "all",
+"unit": "Unit 4: Securing Devices",
+"topic": "4.3 Protecting Devices",
+"subtopic": "Device Use Policies",
+"code": "4.3.A.1",
+"outcome": "An acceptable use policy will describe the range of activities that are permissible, prohibited, or required by users on devices owned by an organization and may include: § Prohibiting users from accessing specific websites or types of websites (e.g., social media or gaming) § Requiring users to keep software updated § Allowing users to connect peripheral devices § Prohibiting users from connecting external drives or media"
+},
+{
+"grade": "all",
+"unit": "Unit 4: Securing Devices",
+"topic": "4.3 Protecting Devices",
+"subtopic": "Device Use Policies",
+"code": "4.3.A.2",
+"outcome": "A password policy will detail the requirements for user passwords within an organization and may include: § A minimum or maximum password length § A minimum or maximum amount of time a user may keep the same password § A prohibition of password reuse § Rules for password construction (e.g., no dictionary words and character set requirements) § A suggestion to use secure password management tools instead of writing passwords down"
+},
+{
+"grade": "all",
+"unit": "Unit 4: Securing Devices",
+"topic": "4.3 Protecting Devices",
+"subtopic": "Device Use Policies",
+"code": "4.3.A.3",
+"outcome": "A software installation policy will describe what (if any) software users are allowed to install on their devices and usually also a process for users to request specialized software they may need to perform their role, and it may include: § A prohibition against users installing software on their devices § A process for users to request new software needed for their role § A list of approved software for users"
+},
+{
+"grade": "all",
+"unit": "Unit 4: Securing Devices",
+"topic": "4.3 Protecting Devices",
+"subtopic": "Malware Detection and Quarantine",
+"code": "4.3.B",
+"outcome": "Explain how anti-malware software can make a device more secure."
+},
+{
+"grade": "all",
+"unit": "Unit 4: Securing Devices",
+"topic": "4.3 Protecting Devices",
+"subtopic": "Malware Detection and Quarantine",
+"code": "4.3.B.1",
+"outcome": "Anti-malware software (sometimes called antivirus software) has tools to quarantine and remove malware that can corrupt, spy on, or destroy a system. Malware contains indicators that make it detectable; these indicators are called signatures."
+},
+{
+"grade": "all",
+"unit": "Unit 4: Securing Devices",
+"topic": "4.3 Protecting Devices",
+"subtopic": "Malware Detection and Quarantine",
+"code": "4.3.B.2",
+"outcome": "Anti-malware software has a database of malware signatures. It periodically scans the files on a device and checks to see if any of the files match any of the signatures in its database. If there is a match, the software quarantines and removes the malicious files."
+},
+{
+"grade": "all",
+"unit": "Unit 4: Securing Devices",
+"topic": "4.3 Protecting Devices",
+"subtopic": "Patching Software Vulnerabilities",
+"code": "4.3.C",
+"outcome": "Explain why keeping a device’s operating system and software updated makes it more secure."
+},
+{
+"grade": "all",
+"unit": "Unit 4: Securing Devices",
+"topic": "4.3 Protecting Devices",
+"subtopic": "Patching Software Vulnerabilities",
+"code": "4.3.C.1",
+"outcome": "When vulnerabilities in operating systems and software are found, the vendor or organization that maintains the operating system software will fix it and send an update. A small update is called a patch."
+},
+{
+"grade": "all",
+"unit": "Unit 4: Securing Devices",
+"topic": "4.3 Protecting Devices",
+"subtopic": "Patching Software Vulnerabilities",
+"code": "4.3.C.2",
+"outcome": "Ensuring that a computer’s operating system and software applications are updated to the most recent version prevents adversaries from taking advantage of a known vulnerability."
+},
+{
+"grade": "all",
+"unit": "Unit 4: Securing Devices",
+"topic": "4.3 Protecting Devices",
+"subtopic": "Host Firewall Protection",
+"code": "4.3.D",
+"outcome": "Configure a host-based firewall."
+},
+{
+"grade": "all",
+"unit": "Unit 4: Securing Devices",
+"topic": "4.3 Protecting Devices",
+"subtopic": "Host Firewall Protection",
+"code": "4.3.D.1",
+"outcome": "Host-based firewalls allow or deny traffic into or out of a single device. This provides an extra layer of security in case a host is connected to a compromised network."
+},
+{
+"grade": "all",
+"unit": "Unit 4: Securing Devices",
+"topic": "4.3 Protecting Devices",
+"subtopic": "Host Firewall Protection",
+"code": "4.3.D.2",
+"outcome": "A host-based firewall is software that runs on a device and follows a set of rules (an ACL) like a network-based firewall. Firewall rules are implemented in order, applying the first rule that matches."
+},
+{
+"grade": "all",
+"unit": "Unit 4: Securing Devices",
+"topic": "4.3 Protecting Devices",
+"subtopic": "Host Firewall Protection",
+"code": "4.3.D.3",
+"outcome": "A host-based firewall can also block specified types of outbound traffic. Host-based firewalls should always block ports or services not needed for a given device. Illustrative examples: A host-based firewall is configured to block outbound FTP traffic. This prevents an adversary with remote access to the host from using FTP to exfiltrate a file to the adversary’s server."
+},
+{
+"grade": "all",
+"unit": "Unit 4: Securing Devices",
+"topic": "4.3 Protecting Devices",
+"subtopic": "Host Firewall Protection",
+"code": "4.3.D.4",
+"outcome": "The rules for a host-based firewall can allow or deny traffic based on source or destination port or IP address, service, protocol, or application."
+},
+{
+"grade": "all",
+"unit": "Unit 4: Securing Devices",
+"topic": "4.4 Detecting Attacks on Devices",
+"subtopic": "Logs and Compromise Indicators",
+"code": "4.4.A",
+"outcome": "Explain how to detect attacks against devices."
+},
+{
+"grade": "all",
+"unit": "Unit 4: Securing Devices",
+"topic": "4.4 Detecting Attacks on Devices",
+"subtopic": "Logs and Compromise Indicators",
+"code": "4.4.A.1",
+"outcome": "System processes and settings, login attempts, file download attempts, and user actions are logged by computing systems. These logs can be used to reconstruct circumstances leading up to and during a cyber incident."
+},
+{
+"grade": "all",
+"unit": "Unit 4: Securing Devices",
+"topic": "4.4 Detecting Attacks on Devices",
+"subtopic": "Logs and Compromise Indicators",
+"code": "4.4.A.2",
+"outcome": "An indicator of compromise (IoC) is evidence that an adversary has compromised a device or network."
+},
+{
+"grade": "all",
+"unit": "Unit 4: Securing Devices",
+"topic": "4.4 Detecting Attacks on Devices",
+"subtopic": "Logs and Compromise Indicators",
+"code": "4.4.A.3",
+"outcome": "Authentication logs (or auth logs) record every attempted login on a system. Analysis of authentication logs can reveal attempted attacks."
+},
+{
+"grade": "all",
+"unit": "Unit 4: Securing Devices",
+"topic": "4.4 Detecting Attacks on Devices",
+"subtopic": "Logs and Compromise Indicators",
+"code": "4.4.A.4",
+"outcome": "Host-based IoCs are discovered when analyzing logs and configuration settings. Indicators, such as the following, can be found in authentication logs, user activity logs, and system configuration files: § Unusual files being created or modified § Unexpected processes or services § Unauthorized changes to system configuration settings § Unauthorized software installation or update"
+},
+{
+"grade": "all",
+"unit": "Unit 4: Securing Devices",
+"topic": "4.4 Detecting Attacks on Devices",
+"subtopic": "Logs and Compromise Indicators",
+"code": "4.4.A.5",
+"outcome": "File-based IoCs are discovered when analyzing files on a device. Indicators are usually found in executable files and can include: § Files whose hash matches known malware § File names that are known to be created by a certain piece of malware § File paths that are associated with malicious activity"
+},
+{
+"grade": "all",
+"unit": "Unit 4: Securing Devices",
+"topic": "4.4 Detecting Attacks on Devices",
+"subtopic": "Logs and Compromise Indicators",
+"code": "4.4.A.6",
+"outcome": "Behavior-based IoCs are discovered when analyzing logs. Indicators can be found in authentication logs and access logs and can include: § Multiple failed login attempts § Unusual login times or locations § Unauthorized attempts to access sensitive data § Attempts to elevate user privileges on a system"
+},
+{
+"grade": "all",
+"unit": "Unit 4: Securing Devices",
+"topic": "4.4 Detecting Attacks on Devices",
+"subtopic": "Choosing Detection Controls",
+"code": "4.4.B",
+"outcome": "Determine controls for detecting attacks against a device."
+},
+{
+"grade": "all",
+"unit": "Unit 4: Securing Devices",
+"topic": "4.4 Detecting Attacks on Devices",
+"subtopic": "Choosing Detection Controls",
+"code": "4.4.B.1",
+"outcome": "Performance is a criterion for determining a detection method. Detection tools use system memory and processing power and can impact the performance of a device. Anomaly-based detection tools use more system resources than signature-based tools. Signature-based detection is a better option for devices with less powerful system resources. Many embedded devices do not have enough system resources to run any detection tools on the device."
+},
+{
+"grade": "all",
+"unit": "Unit 4: Securing Devices",
+"topic": "4.4 Detecting Attacks on Devices",
+"subtopic": "Choosing Detection Controls",
+"code": "4.4.B.2",
+"outcome": "Cost is a criterion for determining a detection method. Organizations that purchase detection software need to consider the cost of purchasing enough software licenses for the number of devices they need to monitor. Some organizations purchase an endpoint detection and response (EDR) service from a third-party vendor. Although these services are expensive, they provide a holistic, unified approach to threat detection for an organization’s devices; they typically include a centralized alert platform for monitoring possible attacks on devices."
+},
+{
+"grade": "all",
+"unit": "Unit 4: Securing Devices",
+"topic": "4.4 Detecting Attacks on Devices",
+"subtopic": "Choosing Detection Controls",
+"code": "4.4.B.3",
+"outcome": "Sensitivity or criticality of the device is a criterion for determining a detection method. Devices that store or process sensitive information or provide critical services are more likely to be targeted by adversaries and benefit from a hybrid-detection model to offer maximum protection, when possible."
+},
+{
+"grade": "all",
+"unit": "Unit 4: Securing Devices",
+"topic": "4.4 Detecting Attacks on Devices",
+"subtopic": "Choosing Detection Controls",
+"code": "4.4.C",
+"outcome": "Evaluate the impact of a device detection method."
+},
+{
+"grade": "all",
+"unit": "Unit 4: Securing Devices",
+"topic": "4.4 Detecting Attacks on Devices",
+"subtopic": "Choosing Detection Controls",
+"code": "4.4.C.1",
+"outcome": "Speed and performance are factors in evaluating the impact of a detection method. Signature-based detection is faster than anomaly-based detection in general, and that effect is compounded on devices, which often lack the processing power to effectively run anomaly-based detection tools. Implementing resource-intensive detection tools on devices can degrade device performance."
+},
+{
+"grade": "all",
+"unit": "Unit 4: Securing Devices",
+"topic": "4.4 Detecting Attacks on Devices",
+"subtopic": "Choosing Detection Controls",
+"code": "4.4.C.2",
+"outcome": "Phase of the attack is a factor in evaluating the impact of a detection method. To carry out actions on a device, adversaries must first bypass a combination of physical- or network-layer protective, deterrent, and detective security controls. Detecting and stopping an attack at the device level can prevent adversaries from accessing sensitive data or disrupting critical services."
+},
+{
+"grade": "all",
+"unit": "Unit 4: Securing Devices",
+"topic": "4.4 Detecting Attacks on Devices",
+"subtopic": "Choosing Detection Controls",
+"code": "4.4.C.3",
+"outcome": "False positives versus ease of bypassing detection is a factor in evaluating the impact of a detection method. Most device-level detection tools are signature-based, and signature-based detection has a low rate of false positives. However, signature-based detection is easier for adversaries to bypass."
+},
+{
+"grade": "all",
+"unit": "Unit 4: Securing Devices",
+"topic": "4.4 Detecting Attacks on Devices",
+"subtopic": "Detecting Password Attacks",
+"code": "4.4.D",
+"outcome": "Apply detection techniques to identify indicators of password attacks by analyzing log files."
+},
+{
+"grade": "all",
+"unit": "Unit 4: Securing Devices",
+"topic": "4.4 Detecting Attacks on Devices",
+"subtopic": "Detecting Password Attacks",
+"code": "4.4.D.1",
+"outcome": "Online password attacks can be detected in authentication logs. A single user attempting many wrong passwords is an indicator of an online password attack. If a user:password hash database has been compromised, all the user passwords in the database should be considered insecure and all users should be forced to reset their passwords."
+},
+{
+"grade": "all",
+"unit": "Unit 4: Securing Devices",
+"topic": "4.4 Detecting Attacks on Devices",
+"subtopic": "Detecting Password Attacks",
+"code": "4.4.D.2",
+"outcome": "If an authorized user is logging in from a different location or IP address than expected, or at a different time than normal, this can be an indicator that the user’s password has been compromised."
+},
+{
+"grade": "all",
+"unit": "Unit 4: Securing Devices",
+"topic": "4.4 Detecting Attacks on Devices",
+"subtopic": "Detecting Password Attacks",
+"code": "4.4.D.3",
+"outcome": "An indicator of password spraying is many users trying to log in within seconds of each other from one IP address or from unusual IP addresses."
+},
+{
+"grade": "all",
+"unit": "Unit 4: Securing Devices",
+"topic": "4.4 Detecting Attacks on Devices",
+"subtopic": "Detecting Password Attacks",
+"code": "4.4.D.4",
+"outcome": "An indicator of credential stuffing is a series of default user:password combinations being attempted on a device in quick succession, often from the same IP address."
+},
+{
+"grade": "all",
+"unit": "Unit 4: Securing Devices",
+"topic": "4.4 Detecting Attacks on Devices",
+"subtopic": "Detecting Password Attacks",
+"code": "4.4.D.5",
+"outcome": "Offline password attacks can’t be detected, because the attack takes place on the adversary’s computer."
+},
+{
+"grade": "all",
+"unit": "Unit 5: Securing Applications and Data",
+"topic": "5.1 Application and Data Vulnerabilities and Attacks",
+"subtopic": "Users Permissions and Files",
+"code": "5.1.A",
+"outcome": "Explain how adversaries can exploit application and file vulnerabilities to cause loss, damage, disruption, or destruction."
+},
+{
+"grade": "all",
+"unit": "Unit 5: Securing Applications and Data",
+"topic": "5.1 Application and Data Vulnerabilities and Attacks",
+"subtopic": "Users Permissions and Files",
+"code": "5.1.A.1",
+"outcome": "An adversary can read any unencrypted files if they have access to the device or drive storing the files."
+},
+{
+"grade": "all",
+"unit": "Unit 5: Securing Applications and Data",
+"topic": "5.1 Application and Data Vulnerabilities and Attacks",
+"subtopic": "Users Permissions and Files",
+"code": "5.1.A.2",
+"outcome": "Computers have standard users and administrative users. Administrative users have access to control system settings and can typically access any files or applications on a system. If regular users are given administrative privileges on a computer, and an adversary can compromise a user’s account, then the adversary will have elevated privileges on the system."
+},
+{
+"grade": "all",
+"unit": "Unit 5: Securing Applications and Data",
+"topic": "5.1 Application and Data Vulnerabilities and Attacks",
+"subtopic": "Users Permissions and Files",
+"code": "5.1.A.3",
+"outcome": "When access control settings are weakly configured, many users often have permission to view and sometimes even edit files on a system. Adversaries can take advantage of weak access control settings to steal or destroy files or disrupt an application."
+},
+{
+"grade": "all",
+"unit": "Unit 5: Securing Applications and Data",
+"topic": "5.1 Application and Data Vulnerabilities and Attacks",
+"subtopic": "Applications and Input Validation",
+"code": "5.1.B",
+"outcome": "Explain how application attacks exploit vulnerabilities."
+},
+{
+"grade": "all",
+"unit": "Unit 5: Securing Applications and Data",
+"topic": "5.1 Application and Data Vulnerabilities and Attacks",
+"subtopic": "Applications and Input Validation",
+"code": "5.1.B.1",
+"outcome": "Applications are programs that run instructions on computers; they are executable data. Some applications run locally on a user’s computer, while other applications, like web applications, run on a server and are accessed by users through a network."
+},
+{
+"grade": "all",
+"unit": "Unit 5: Securing Applications and Data",
+"topic": "5.1 Application and Data Vulnerabilities and Attacks",
+"subtopic": "Applications and Input Validation",
+"code": "5.1.B.2",
+"outcome": "Many applications take user input through open-ended input fields where users can type characters (e.g., letters, numbers, punctuation). Developers should include user input checks in their application, such as numeric input when asked for a number of items, to ensure that the user input matches what is expected; the application should reject input outside of the expected parameters. This process of verifying that user input meets expected criteria before processing it is called data validation. Applications that fail to validate user input are vulnerable to injection-type attacks, where adversaries insert unexpected character strings in input fields to alter the behavior of a program."
+},
+{
+"grade": "all",
+"unit": "Unit 5: Securing Applications and Data",
+"topic": "5.1 Application and Data Vulnerabilities and Attacks",
+"subtopic": "Applications and Input Validation",
+"code": "5.1.B.3",
+"outcome": "Structured query language (SQL) is a computer language used to request information from databases and make changes to databases or entries in databases. Applications that query a database using unvalidated or unsanitized input from users are vulnerable."
+},
+{
+"grade": "all",
+"unit": "Unit 5: Securing Applications and Data",
+"topic": "5.1 Application and Data Vulnerabilities and Attacks",
+"subtopic": "Applications and Input Validation",
+"code": "5.1.B.4",
+"outcome": "An SQL-injection attack places SQL commands and control characters into a user-input field in an application, which can lead to a breach of confidentiality by causing the application to return more information than it should, or a breach of integrity by modifying or deleting data in the database."
+},
+{
+"grade": "all",
+"unit": "Unit 5: Securing Applications and Data",
+"topic": "5.1 Application and Data Vulnerabilities and Attacks",
+"subtopic": "Applications and Input Validation",
+"code": "5.1.B.5",
+"outcome": "Websites are written using hypertext markup language (HTML), and many websites use Javascript to create dynamic content on websites or web applications. Because Javascript commands run in the browser of the user visiting the website, those commands can access sensitive data stored in the browser like usernames, passwords, and cryptographic keys."
+},
+{
+"grade": "all",
+"unit": "Unit 5: Securing Applications and Data",
+"topic": "5.1 Application and Data Vulnerabilities and Attacks",
+"subtopic": "Applications and Input Validation",
+"code": "5.1.B.6",
+"outcome": "A cross site scripting (XSS) attack injects malicious code into a website that a user’s browser then executes. The malicious code can be embedded in a link the user clicks (a Type I or Reflected XSS attack) or it can be inserted onto a website through a comment field, forum post, or visitor log, which would affect any user visiting that website (a Type II or Stored XSS attack)."
+},
+{
+"grade": "all",
+"unit": "Unit 5: Securing Applications and Data",
+"topic": "5.1 Application and Data Vulnerabilities and Attacks",
+"subtopic": "Applications and Input Validation (part 2)",
+"code": "5.1.B.7",
+"outcome": "When applications take user input, that input is written to a buffer. A buffer is a designated section of computer memory with a fixed size. If the amount of data the user enters exceeds the size of the buffer, it can overflow into adjacent memory locations and overwrite other parts of the computer’s memory."
+},
+{
+"grade": "all",
+"unit": "Unit 5: Securing Applications and Data",
+"topic": "5.1 Application and Data Vulnerabilities and Attacks",
+"subtopic": "Applications and Input Validation (part 2)",
+"code": "5.1.B.8",
+"outcome": "A buffer overflow attack feeds more data into memory than was allotted, which can cause a system to crash or to execute code outside the scope of a program’s security policy, effectively allowing the adversary to perform unauthorized actions on a computer, such as accessing, modifying, or deleting files."
+},
+{
+"grade": "all",
+"unit": "Unit 5: Securing Applications and Data",
+"topic": "5.1 Application and Data Vulnerabilities and Attacks",
+"subtopic": "Applications and Input Validation (part 2)",
+"code": "5.1.B.9",
+"outcome": "The files that run web applications are stored in directories on servers. When users access web applications, their browsers send GET requests using hypertext transfer protocol (HTTP). A GET request accesses a file somewhere in the filesystem of the server."
+},
+{
+"grade": "all",
+"unit": "Unit 5: Securing Applications and Data",
+"topic": "5.1 Application and Data Vulnerabilities and Attacks",
+"subtopic": "Applications and Input Validation (part 2)",
+"code": "5.1.B.10",
+"outcome": "In a directory traversal attack, adversaries modify URLs and GET requests to attempt to access sensitive data (e.g., usernames and passwords) on a server’s file system. ILLUSTRATIVE EXAMPLE A web server stores images for a website it hosts in the /var/www/images/ directory. An adversary modifies a URL requesting an image to ../ ../ ../etc/passwd. The .. moves one directory up in the file system; so the three consecutive .. returns the path to the root, and from there the adversary is attempting to access the passwd file that would return a list of all the authorized usernames on the device."
+},
+{
+"grade": "all",
+"unit": "Unit 5: Securing Applications and Data",
+"topic": "5.1 Application and Data Vulnerabilities and Attacks",
+"subtopic": "Data Risk Levels",
+"code": "5.1.C",
+"outcome": "Assess and document risks from application and data vulnerabilities."
+},
+{
+"grade": "all",
+"unit": "Unit 5: Securing Applications and Data",
+"topic": "5.1 Application and Data Vulnerabilities and Attacks",
+"subtopic": "Data Risk Levels",
+"code": "5.1.C.1",
+"outcome": "Data security risks can involve a compromise of confidentiality when unauthorized persons can access sensitive data, integrity when data can be manipulated or altered from its intended state, and availability when data can be destroyed or encrypted to prevent others from accessing it."
+},
+{
+"grade": "all",
+"unit": "Unit 5: Securing Applications and Data",
+"topic": "5.1 Application and Data Vulnerabilities and Attacks",
+"subtopic": "Data Risk Levels",
+"code": "5.1.C.2",
+"outcome": "High risks from data vulnerabilities often involve highly sensitive data (e.g., data that is governed by laws or regulations) that could be compromised through a highly likely exploit. ILLUSTRATIVE EXAMPLE The company developing the next jet engine that will be used by the Air Force in its planes is storing the technical specifications for the engine on an unencrypted drive."
+},
+{
+"grade": "all",
+"unit": "Unit 5: Securing Applications and Data",
+"topic": "5.1 Application and Data Vulnerabilities and Attacks",
+"subtopic": "Data Risk Levels",
+"code": "5.1.C.3",
+"outcome": "Moderate risks from data vulnerabilities often involve sensitive data not having strong enough encryption or strict enough access controls. ILLUSTRATIVE EXAMPLE A company stores its customers’ PII in a spreadsheet, and the spreadsheet is encrypted using a small key."
+},
+{
+"grade": "all",
+"unit": "Unit 5: Securing Applications and Data",
+"topic": "5.1 Application and Data Vulnerabilities and Attacks",
+"subtopic": "Data Risk Levels",
+"code": "5.1.C.4",
+"outcome": "Low risks from data vulnerabilities often involve less sensitive information being encrypted with shorter keys or having access controls that are not strict enough. ILLUSTRATIVE EXAMPLE An organization’s CEO stores his private memos to his executive staff on a company share drive that is unencrypted and has no access controls."
+},
+{
+"grade": "all",
+"unit": "Unit 5: Securing Applications and Data",
+"topic": "5.2 Protecting Applications and Data: Managerial Controls and Access Controls",
+"subtopic": "Data States and Classification",
+"code": "5.2.A",
+"outcome": "Explain how the state or classification of data impacts the type and degree of security applied to that data."
+},
+{
+"grade": "all",
+"unit": "Unit 5: Securing Applications and Data",
+"topic": "5.2 Protecting Applications and Data: Managerial Controls and Access Controls",
+"subtopic": "Data States and Classification",
+"code": "5.2.A.1",
+"outcome": "Organizations implement specific security controls to comply with legal requirements based on the types of data they collect, store, process, and transmit."
+},
+{
+"grade": "all",
+"unit": "Unit 5: Securing Applications and Data",
+"topic": "5.2 Protecting Applications and Data: Managerial Controls and Access Controls",
+"subtopic": "Data States and Classification",
+"code": "5.2.A.2",
+"outcome": "Data can be classified by their state. § Data at rest are stored on a drive. It is important to protect the physical drive storing the data from destruction or theft. Data at rest can also be encrypted so that if an adversary steals it, they can’t immediately read the data. § Data in transit are being sent from one device to another. If the data are being transferred over physical media (e.g., cables) it is important to protect the media. Data in transit can also be encrypted so that if an adversary intercepts it, they can’t immediately read the data. § Data in use are being processed by software or a person. Access controls can be used to limit who or what has the ability to use data in different ways (e.g., view or edit). Data must be unencrypted to be used."
+},
+{
+"grade": "all",
+"unit": "Unit 5: Securing Applications and Data",
+"topic": "5.2 Protecting Applications and Data: Managerial Controls and Access Controls",
+"subtopic": "Data States and Classification",
+"code": "5.2.A.3",
+"outcome": "Organizations often categorize data according to their sensitivity and prioritize a higher degree of security for more sensitive information."
+},
+{
+"grade": "all",
+"unit": "Unit 5: Securing Applications and Data",
+"topic": "5.2 Protecting Applications and Data: Managerial Controls and Access Controls",
+"subtopic": "Data States and Classification",
+"code": "5.2.A.4",
+"outcome": "Laws and regulations can require certain types of data to be stored, transmitted, and handled according to specific rules. § Personally identifiable information (PII) is any data that allows someone to be identified and includes (but is not limited to): name, signature, phone number, address, biometric data (e.g., fingerprints), social security number, date of birth, and email address. The protection of this data is covered by many laws but most notably The Privacy Act of 1974 and for children under the age of 13 the Children’s Online Privacy Protection Act of 1998. § Protected health information (PHI) is any data related to an individual’s health, treatment, payment for healthcare at any time and includes (but is not limited to): test results, treatment records, hospital records, doctor visit notes, and health provider payment records. The protection of PHI is included in the Health Insurance Portability and Accountability Act of 1996. § Payment card information (PCI) is the data collected by organizations to process payments via cards (e.g., credit cards) and includes the following: name, account number, expiration date, address, and CVV code. The protection of this data is regulated by the Payment Card Industry Data Security Standard (PCI-DSS)."
+},
+{
+"grade": "all",
+"unit": "Unit 5: Securing Applications and Data",
+"topic": "5.2 Protecting Applications and Data: Managerial Controls and Access Controls",
+"subtopic": "Data States and Classification",
+"code": "5.2.A.5",
+"outcome": "Organizations that collect regulated data will label them and have policies that comply with the legal or regulatory requirements for the safe storage, transmission, and handling of these data."
+},
+{
+"grade": "all",
+"unit": "Unit 5: Securing Applications and Data",
+"topic": "5.2 Protecting Applications and Data: Managerial Controls and Access Controls",
+"subtopic": "Security Policies",
+"code": "5.2.B",
+"outcome": "Identify managerial controls related to application and data security."
+},
+{
+"grade": "all",
+"unit": "Unit 5: Securing Applications and Data",
+"topic": "5.2 Protecting Applications and Data: Managerial Controls and Access Controls",
+"subtopic": "Security Policies",
+"code": "5.2.B.1",
+"outcome": "A cryptography policy will describe the acceptable encryption protocols and key parameters for an organization and may include: § A list of encryption algorithms approved for specific uses § Minimum or maximum key lengths § Cryptographic key-generation requirements and parameters § Cryptographic key-storage requirements"
+},
+{
+"grade": "all",
+"unit": "Unit 5: Securing Applications and Data",
+"topic": "5.2 Protecting Applications and Data: Managerial Controls and Access Controls",
+"subtopic": "Security Policies",
+"code": "5.2.B.2",
+"outcome": "A web application security policy will outline the requirements and parameters for testing and mitigating web application vulnerabilities in an organization, and it may include: § Parameters for when an application is subject to a security assessment § Timelines for remediating vulnerabilities based on level of risk § Parameters for how an application security assessment is to be carried out (e.g., using specific tools or according to specific frameworks)"
+},
+{
+"grade": "all",
+"unit": "Unit 5: Securing Applications and Data",
+"topic": "5.2 Protecting Applications and Data: Managerial Controls and Access Controls",
+"subtopic": "Access Control Models",
+"code": "5.2.C",
+"outcome": "Determine an appropriate access control model to protect applications and data."
+},
+{
+"grade": "all",
+"unit": "Unit 5: Securing Applications and Data",
+"topic": "5.2 Protecting Applications and Data: Managerial Controls and Access Controls",
+"subtopic": "Access Control Models",
+"code": "5.2.C.1",
+"outcome": "Access control enforces which users or applications (called subjects) can access, modify, add, or remove (called operations) which files or applications (called objects). Access control models describe how to determine which subjects have what type of access to which objects."
+},
+{
+"grade": "all",
+"unit": "Unit 5: Securing Applications and Data",
+"topic": "5.2 Protecting Applications and Data: Managerial Controls and Access Controls",
+"subtopic": "Access Control Models",
+"code": "5.2.C.2",
+"outcome": "Role-based access control (RBAC) assigns every subject to a role and defines which roles have which types of access to which objects. ILLUSTRATIVE EXAMPLE An example of a role at a company might be “accountant,” and one type of object could be the payroll software. Role-based access could be used to ensure that only subjects who are assigned to the role of “accountant” have access to the payroll software object."
+},
+{
+"grade": "all",
+"unit": "Unit 5: Securing Applications and Data",
+"topic": "5.2 Protecting Applications and Data: Managerial Controls and Access Controls",
+"subtopic": "Access Control Models",
+"code": "5.2.C.3",
+"outcome": "Rule-based access control (RuBAC) checks a set of rules to determine what type of access a subject should have for a specific object and then allows or denies types of access based on the rules. This access control model is typically layered on top of another access control model. ILLUSTRATIVE EXAMPLE There is a rule that prohibits subjects (even those who would normally have access) from accessing a certain database (the object) outside of local working hours. When a subject attempts to access the database, even if they are authorized to access it, they will be denied access if it is outside the time designated by the rule."
+},
+{
+"grade": "all",
+"unit": "Unit 5: Securing Applications and Data",
+"topic": "5.2 Protecting Applications and Data: Managerial Controls and Access Controls",
+"subtopic": "Access Control Models",
+"code": "5.2.C.4",
+"outcome": "Discretionary access control (DAC) gives individual subjects the ability to set the type of access that other subjects have on objects they own. In DAC models some subjects are designated as administrators or super users, and they have the ability to override the access controls established by other subjects. ILLUSTRATIVE EXAMPLE Bob creates a file (an object) and decides to give Alice permission to edit the file, to give Frank permission to view the file only, and to deny everyone else access to the file altogether."
+},
+{
+"grade": "all",
+"unit": "Unit 5: Securing Applications and Data",
+"topic": "5.2 Protecting Applications and Data: Managerial Controls and Access Controls",
+"subtopic": "Access Control Models",
+"code": "5.2.C.5",
+"outcome": "Mandatory access control (MAC) follows strict rules for which types of access each subject level has for objects that are above their level, at their level, or below their level. Subject and object levels are assigned by an external administrator."
+},
+{
+"grade": "all",
+"unit": "Unit 5: Securing Applications and Data",
+"topic": "5.2 Protecting Applications and Data: Managerial Controls and Access Controls",
+"subtopic": "Access Control Models",
+"code": "5.2.C.6",
+"outcome": "The Bell-LaPadula model is a MAC model that is often used by governments and military organizations to control the security of information. This model has the following two important properties: i. The Simple Security Property states that subjects may not read objects that are above their level. ii. The * (Star) Security Property states that subjects may not write to objects below their level. These rules taken together are often summarized as “write up, read down” (WURD)."
+},
+{
+"grade": "all",
+"unit": "Unit 5: Securing Applications and Data",
+"topic": "5.2 Protecting Applications and Data: Managerial Controls and Access Controls",
+"subtopic": "Access Control Models",
+"code": "5.2.C.7",
+"outcome": "The principle of least privilege is the idea that entities should be given exactly as much access as they need to perform their function and no more."
+},
+{
+"grade": "all",
+"unit": "Unit 5: Securing Applications and Data",
+"topic": "5.2 Protecting Applications and Data: Managerial Controls and Access Controls",
+"subtopic": "Linux Permissions Basics",
+"code": "5.2.D",
+"outcome": "Configure access control settings on a Linux-based system."
+},
+{
+"grade": "all",
+"unit": "Unit 5: Securing Applications and Data",
+"topic": "5.2 Protecting Applications and Data: Managerial Controls and Access Controls",
+"subtopic": "Linux Permissions Basics",
+"code": "5.2.D.1",
+"outcome": "Authorization is when an entity is granted permission to have a certain type of access to a resource. Access controls are put in place to control which users have what types of access to which data."
+},
+{
+"grade": "all",
+"unit": "Unit 5: Securing Applications and Data",
+"topic": "5.2 Protecting Applications and Data: Managerial Controls and Access Controls",
+"subtopic": "Linux Permissions Basics",
+"code": "5.2.D.2",
+"outcome": "There are three types of access to a file in Linux that can be set, and they always come in the following order: i. Read access allows a user to view the contents of a file. ii. Write access allows a user to make changes to a file. iii. Execute access allows a user to run a binary file such as a program. These are abbreviated rwx, respectively. If a user only has read and execute permissions (not write), then it would display as r-x. The - symbol indicates the absence of that permission."
+},
+{
+"grade": "all",
+"unit": "Unit 5: Securing Applications and Data",
+"topic": "5.2 Protecting Applications and Data: Managerial Controls and Access Controls",
+"subtopic": "Linux Permissions Basics",
+"code": "5.2.D.3",
+"outcome": "There are three default entities for which permissions are set and always in this order: (1) the file owner, (2) the file group, and (3) all other users. The three sets are displayed with no spaces (e.g., rwxrwxrwx )."
+},
+{
+"grade": "all",
+"unit": "Unit 5: Securing Applications and Data",
+"topic": "5.2 Protecting Applications and Data: Managerial Controls and Access Controls",
+"subtopic": "Linux Permissions Basics",
+"code": "5.2.D.4",
+"outcome": "To view the current permission settings for a file, use the command ls -l , which will show the current settings for the default entities. If there is a + symbol at the end of the permissions, this means that other permissions have been set for that file and it can be viewed with the getfacl command."
+},
+{
+"grade": "all",
+"unit": "Unit 5: Securing Applications and Data",
+"topic": "5.2 Protecting Applications and Data: Managerial Controls and Access Controls",
+"subtopic": "Linux Permissions Basics",
+"code": "5.2.D.5",
+"outcome": "To modify the permission settings for a file, use the chmod command. This command can be used with the numeric method or the symbolic method."
+},
+{
+"grade": "all",
+"unit": "Unit 5: Securing Applications and Data",
+"topic": "5.2 Protecting Applications and Data: Managerial Controls and Access Controls",
+"subtopic": "Linux Permissions Basics",
+"code": "5.2.D.6",
+"outcome": "To use chmod in the numeric method the syntax is chmod ### filename. Each of the three ### represents one of the three entities mentioned above (the owner, the group, other nongroup users). § The first # = the owner § The second # = the group § The third # = other nongroup users The permission for each entity is determined by adding up the values for the types of access to be granted: § 0 = no permissions § 1 = execute § 2 = write § 4 = read Therefore 3 sets permission to write and execute, 5 sets permission to read and execute, 6 sets permission to read and write, and 7 sets permission to read, write, and execute. Illustrative examples: § The command chmod 750 test would set the permissions for the owner to read, write, and execute, for the group to read and execute, and for everyone else to no access at all. § The command chmod 543 test would set the permissions for the owner to read and execute, for the group to read only, and for everyone else to write and execute. § The command chmod 777 test would set the permissions for all three entities to read, write, and execute for the file test."
+},
+{
+"grade": "all",
+"unit": "Unit 5: Securing Applications and Data",
+"topic": "5.2 Protecting Applications and Data: Managerial Controls and Access Controls",
+"subtopic": "Linux Permissions Basics",
+"code": "5.2.D.7",
+"outcome": "To use chmod in the symbolic method the syntax is chmod entity +(or –) permission filename. The entities are the user owner, the group, and other nongroup users. Each entity is represented with a single letter. § u = user owner § g = group § o = others § a = all Permission can be either added or removed to any combination of entities. § + = add the permission § – = remove the permission The permissions that can be set are read, write, and execute. § r = read § w = write § x = execute Entities and permissions can be combined in a single command. To add the read and execute permissions for the group and user owner for a file called testfile, the command would be chmod ug+rx testfile."
+},
+{
+"grade": "all",
+"unit": "Unit 5: Securing Applications and Data",
+"topic": "5.3 Protecting Stored Data with Cryptography",
+"subtopic": "Encryption Fundamentals",
+"code": "5.3.A",
+"outcome": "Explain how encryption can be used to protect files."
+},
+{
+"grade": "all",
+"unit": "Unit 5: Securing Applications and Data",
+"topic": "5.3 Protecting Stored Data with Cryptography",
+"subtopic": "Encryption Fundamentals",
+"code": "5.3.A.1",
+"outcome": "The purpose of cryptography is to hide information. A cryptographic algorithm defines a process for encrypting and decrypting information. Encryption is the process of hiding the information, and decryption is the process of reversing the encryption to retrieve the original information."
+},
+{
+"grade": "all",
+"unit": "Unit 5: Securing Applications and Data",
+"topic": "5.3 Protecting Stored Data with Cryptography",
+"subtopic": "Encryption Fundamentals",
+"code": "5.3.A.2",
+"outcome": "An encryption algorithm defines a process for combining the information to be encrypted with a predefined key. The information to be encrypted is called the plaintext. The output of the encryption algorithm is called the ciphertext."
+},
+{
+"grade": "all",
+"unit": "Unit 5: Securing Applications and Data",
+"topic": "5.3 Protecting Stored Data with Cryptography",
+"subtopic": "Encryption Fundamentals",
+"code": "5.3.A.3",
+"outcome": "The number of possible keys that can be used in an encryption algorithm is called the keyspace. The larger the keyspace, the longer it will take an adversary to discover the correct key by random chance."
+},
+{
+"grade": "all",
+"unit": "Unit 5: Securing Applications and Data",
+"topic": "5.3 Protecting Stored Data with Cryptography",
+"subtopic": "Encryption Fundamentals",
+"code": "5.3.A.4",
+"outcome": "Cryptographic algorithms are classified by whether they use one key or two keys. § Symmetric encryption algorithms use the same key to encrypt and decrypt information. § Asymmetric encryption algorithms use two different keys—one to encrypt information and the other to decrypt information."
+},
+{
+"grade": "all",
+"unit": "Unit 5: Securing Applications and Data",
+"topic": "5.3 Protecting Stored Data with Cryptography",
+"subtopic": "Encryption Fundamentals",
+"code": "5.3.A.5",
+"outcome": "Cryptographic algorithms are also classified by whether they process information one bit at a time or in fixed-size chunks of bits. § Block encryption handles information in fixed-size chunks called blocks, producing an output block for each input block. § Stream encryption handles input information continuously, producing output one element at a time."
+},
+{
+"grade": "all",
+"unit": "Unit 5: Securing Applications and Data",
+"topic": "5.3 Protecting Stored Data with Cryptography",
+"subtopic": "Encryption Types",
+"code": "5.3.B",
+"outcome": "Apply symmetric encryption algorithms to encrypt and decrypt data."
+},
+{
+"grade": "all",
+"unit": "Unit 5: Securing Applications and Data",
+"topic": "5.3 Protecting Stored Data with Cryptography",
+"subtopic": "Encryption Types",
+"code": "5.3.B.1",
+"outcome": "Computer-based encryption algorithms operate on binary data. The most common symmetric encryption algorithm is the Advanced Encryption Standard (AES). AES encryption is used to secure Wi- Fi transmissions, internet browsing, file encryption on disks, and hardware-level encryption on processors."
+},
+{
+"grade": "all",
+"unit": "Unit 5: Securing Applications and Data",
+"topic": "5.3 Protecting Stored Data with Cryptography",
+"subtopic": "Encryption Types",
+"code": "5.3.B.2",
+"outcome": "AES is a symmetric key block cipher that encrypts data in 128-bit blocks (16 bytes). AES can operate with keys of varying lengths. Longer keys produce more secure encryption but require more time to encrypt and decrypt."
+},
+{
+"grade": "all",
+"unit": "Unit 5: Securing Applications and Data",
+"topic": "5.3 Protecting Stored Data with Cryptography",
+"subtopic": "Encryption Types",
+"code": "5.3.B.3",
+"outcome": "Symmetric encryption and decryption can be performed using the command line, specialized software, or web-based tools. § On a command line interface, users can encrypt or decrypt with OpenSSL. § Specialized software like AES Crypt is an open source tool that can encrypt and decrypt files. § There are many web-based tools for encrypting and decrypting files."
+},
+{
+"grade": "all",
+"unit": "Unit 5: Securing Applications and Data",
+"topic": "5.3 Protecting Stored Data with Cryptography",
+"subtopic": "Encryption Types",
+"code": "5.3.B.4",
+"outcome": "Using OpenSSL in a CLI, a user can encrypt and decrypt a file using the following commands (note that the encryption key is derived from the password provided): § To encrypt a file named test with AES using a 128-bit key, use the command: openssl enc -aes-128-cbc -e -in test -k password -out test.enc § To decrypt the encrypted file using the same key, use the command: openssl enc -aes-128-cbc -d -in test.enc -k password -out text"
+},
+{
+"grade": "all",
+"unit": "Unit 5: Securing Applications and Data",
+"topic": "5.4 Asymmetric Cryptography",
+"subtopic": "Public and Private Keys",
+"code": "5.4.A",
+"outcome": "Determine the appropriate asymmetric key to use when sending or receiving encrypted data."
+},
+{
+"grade": "all",
+"unit": "Unit 5: Securing Applications and Data",
+"topic": "5.4 Asymmetric Cryptography",
+"subtopic": "Public and Private Keys",
+"code": "5.4.A.1",
+"outcome": "Asymmetric encryption allows users to communicate securely without prearranging a shared secret key."
+},
+{
+"grade": "all",
+"unit": "Unit 5: Securing Applications and Data",
+"topic": "5.4 Asymmetric Cryptography",
+"subtopic": "Public and Private Keys",
+"code": "5.4.A.2",
+"outcome": "When using asymmetric encryption, each entity that will be receiving data must first generate a key pair. Key pairs are binary strings of equal length that are generated at the same time through a mathematical process. One key is designated as the public key and the other as the private key. The keys are mathematical inverses of each other— each key reverses its partner. Either key can be used to encrypt information, but only the other key in the key pair will then be able to decrypt it."
+},
+{
+"grade": "all",
+"unit": "Unit 5: Securing Applications and Data",
+"topic": "5.4 Asymmetric Cryptography",
+"subtopic": "Public and Private Keys",
+"code": "5.4.A.3",
+"outcome": "Once the receiver generates the key pair, the private key must be stored securely. If the private key is exposed, shared, stolen, corrupted, or compromised the key pair must be deleted and a new key pair must be generated, because the security of the encryption algorithm rests on the security of the private key. The public key is published for anyone to view and use."
+},
+{
+"grade": "all",
+"unit": "Unit 5: Securing Applications and Data",
+"topic": "5.4 Asymmetric Cryptography",
+"subtopic": "Public and Private Keys",
+"code": "5.4.A.4",
+"outcome": "To send information securely to someone, the sender will use the receiver’s public key to encrypt the data and send it. Only the receiver who has the private key will be able to decrypt and read the information."
+},
+{
+"grade": "all",
+"unit": "Unit 5: Securing Applications and Data",
+"topic": "5.4 Asymmetric Cryptography",
+"subtopic": "Key Length and Security",
+"code": "5.4.B",
+"outcome": "Explain why the length of a key impacts the security of encrypted data."
+},
+{
+"grade": "all",
+"unit": "Unit 5: Securing Applications and Data",
+"topic": "5.4 Asymmetric Cryptography",
+"subtopic": "Key Length and Security",
+"code": "5.4.B.1",
+"outcome": "Longer keys result in larger keyspaces. For binary keys, ann-bit length key has a keyspace of2n ."
+},
+{
+"grade": "all",
+"unit": "Unit 5: Securing Applications and Data",
+"topic": "5.4 Asymmetric Cryptography",
+"subtopic": "Key Length and Security",
+"code": "5.4.B.2",
+"outcome": "Using an application to randomly guess an n-bit length encryption key means that on average an adversary will be able to guess the correct key in2 2 n / or2n 1 − guesses."
+},
+{
+"grade": "all",
+"unit": "Unit 5: Securing Applications and Data",
+"topic": "5.4 Asymmetric Cryptography",
+"subtopic": "Key Length and Security",
+"code": "5.4.B.3",
+"outcome": "Although longer keys are more secure, they also require more time to encrypt and decrypt messages."
+},
+{
+"grade": "all",
+"unit": "Unit 5: Securing Applications and Data",
+"topic": "5.4 Asymmetric Cryptography",
+"subtopic": "Key Length and Security",
+"code": "5.4.B.4",
+"outcome": "Computational processing power and efficiency continue to improve, allowing software to guess keys faster. Key-length recommendations for both symmetric and asymmetric encryption algorithms are periodically increased to account for increased processing power."
+},
+{
+"grade": "all",
+"unit": "Unit 5: Securing Applications and Data",
+"topic": "5.4 Asymmetric Cryptography",
+"subtopic": "Key Length and Security",
+"code": "5.4.B.5",
+"outcome": "Key-length comparison is only valid when comparing keys for the same cryptographic algorithm. Illustrative examples: § An AES 256-bit key is more secure than an AES 128-bit key. § An RSA 4096-bit key is more secure than an RSA 2048-bit key. § RSA and AES keys cannot be directly compared to one another in determining the level of security."
+},
+{
+"grade": "all",
+"unit": "Unit 5: Securing Applications and Data",
+"topic": "5.4 Asymmetric Cryptography",
+"subtopic": "Asymmetric Algorithms",
+"code": "5.4.C",
+"outcome": "Apply asymmetric encryption algorithms to encrypt and decrypt data."
+},
+{
+"grade": "all",
+"unit": "Unit 5: Securing Applications and Data",
+"topic": "5.4 Asymmetric Cryptography",
+"subtopic": "Asymmetric Algorithms",
+"code": "5.4.C.1",
+"outcome": "Common asymmetric encryption algorithms include RSA and elliptic curve cryptography (ECC). Asymmetric algorithms are used in many applications, including digital signatures and digital certificates."
+},
+{
+"grade": "all",
+"unit": "Unit 5: Securing Applications and Data",
+"topic": "5.4 Asymmetric Cryptography",
+"subtopic": "Asymmetric Algorithms",
+"code": "5.4.C.2",
+"outcome": "As with symmetric encryption, asymmetric encryption and decryption can be performed using the command line, specialized software, or web-based tools. § On a command line interface, users can encrypt or decrypt with OpenSSL. § Specialized software like RSA Encryption Tool is an open source tool that can encrypt and decrypt files. § There are many web-based tools for encrypting and decrypting files."
+},
+{
+"grade": "all",
+"unit": "Unit 5: Securing Applications and Data",
+"topic": "5.4 Asymmetric Cryptography",
+"subtopic": "Asymmetric Algorithms",
+"code": "5.4.C.3",
+"outcome": "In a CLI, a user can generate an asymmetric key pair and encrypt or decrypt files as necessary. § To generate a 2048-bit RSA key pair and save the key to a file named rsa.pem use the command: openssl genrsa -out rsa.pem 2048 § To extract the public key from rsa.pem into a file named public.pem, use the command: openssl rsa -pubout -in rsa.pem -outform PEM -out public.pem § To encrypt the file test using RSA encryption and the key file public.pem, use the command: openssl pkeyutl -encrypt -pubin -inkey public.pem -in test -out test.enc § To decrypt the test.enc file using the rsa.pem file, run the command: openssl pkeyutl -decrypt -inkey rsa.pem -in test.enc -out test"
+},
+{
+"grade": "all",
+"unit": "Unit 5: Securing Applications and Data",
+"topic": "5.5 Protecting Applications",
+"subtopic": "Secure Application Principles",
+"code": "5.5.A",
+"outcome": "Identify the application security principles of secure by design and security by default."
+},
+{
+"grade": "all",
+"unit": "Unit 5: Securing Applications and Data",
+"topic": "5.5 Protecting Applications",
+"subtopic": "Secure Application Principles",
+"code": "5.5.A.1",
+"outcome": "Secure by design is an initiative that encourages companies to include security in all phases of product development including design. When organizations implement secure by design, security is a design principle not just a technical feature."
+},
+{
+"grade": "all",
+"unit": "Unit 5: Securing Applications and Data",
+"topic": "5.5 Protecting Applications",
+"subtopic": "Secure Application Principles",
+"code": "5.5.A.2",
+"outcome": "Secure by design includes three design principles: i. Companies should take ownership of customer security outcomes. Companies should build products that meet the security needs of their customers. ii. Companies should embrace radical transparency and accountability. Sharing relevant security-related product news and updates quickly increases security for everyone. iii. Companies should build organizational structure and leadership to implement secure by design. Companies need leaders who are focused on security and have a security-first posture."
+},
+{
+"grade": "all",
+"unit": "Unit 5: Securing Applications and Data",
+"topic": "5.5 Protecting Applications",
+"subtopic": "Secure Application Principles",
+"code": "5.5.A.3",
+"outcome": "Secure by design includes the concept of secure by default, which is the idea that security features for software and devices should be enabled by default. Devices and software should be secure to use out of the box, with security features already enabled."
+},
+{
+"grade": "all",
+"unit": "Unit 5: Securing Applications and Data",
+"topic": "5.5 Protecting Applications",
+"subtopic": "Input Validation and Sanitization",
+"code": "5.5.B",
+"outcome": "Explain how user input sanitization protects applications."
+},
+{
+"grade": "all",
+"unit": "Unit 5: Securing Applications and Data",
+"topic": "5.5 Protecting Applications",
+"subtopic": "Input Validation and Sanitization",
+"code": "5.5.B.1",
+"outcome": "When users enter input into an application, the application typically encases that input in special characters to process it. The characters that encase the user input are called control characters and include the single quote, the double quote, and the semicolon."
+},
+{
+"grade": "all",
+"unit": "Unit 5: Securing Applications and Data",
+"topic": "5.5 Protecting Applications",
+"subtopic": "Input Validation and Sanitization",
+"code": "5.5.B.2",
+"outcome": "When creating a program that takes user input, programmers should use a function to verify that user input meets their expected criteria and does not include any control characters that could be used to manipulate the system. This verification function can sanitize user input by removing potentially malicious characters, or it can give the user an error and force the user to provide different input. This can protect against many application attacks, including: § SQL injection attacks § XSS attacks § Directory traversal attacks"
+},
+{
+"grade": "all",
+"unit": "Unit 5: Securing Applications and Data",
+"topic": "5.6 Detecting Attacks on Data and Applications",
+"subtopic": "Logs and Automated Detection",
+"code": "5.6.A",
+"outcome": "Explain how to detect attacks on data."
+},
+{
+"grade": "all",
+"unit": "Unit 5: Securing Applications and Data",
+"topic": "5.6 Detecting Attacks on Data and Applications",
+"subtopic": "Logs and Automated Detection",
+"code": "5.6.A.1",
+"outcome": "Devices track and log when data are accessed and by whom. The process of recording and monitoring user activities is called accounting. Analysis of these logs can reveal malicious activity when an adversary attempts to access, copy, move, or delete data. Suspicious activity can include: § Accessing files that aren’t typically accessed § Accessing files or applications outside of a user’s normal patterns (including time of day, location, and device type) § Attempts to delete or copy sensitive files"
+},
+{
+"grade": "all",
+"unit": "Unit 5: Securing Applications and Data",
+"topic": "5.6 Detecting Attacks on Data and Applications",
+"subtopic": "Logs and Automated Detection",
+"code": "5.6.A.2",
+"outcome": "A honeypot is a file that appears as if it contains valuable data (e.g., credit card information, PII, passwords), but the data in the file are fake. A system can alert defenders if someone attempts to access the honeypot. Since the honeypot is a fake file, there is no legitimate reason to be accessing it, and any attempted access would be an indicator of malicious activity."
+},
+{
+"grade": "all",
+"unit": "Unit 5: Securing Applications and Data",
+"topic": "5.6 Detecting Attacks on Data and Applications",
+"subtopic": "Logs and Automated Detection",
+"code": "5.6.A.3",
+"outcome": "Cryptographic hash functions can generate a digest for data and can reveal if data have been altered. If a file has changed unexpectedly, this can be a sign of malicious activity."
+},
+{
+"grade": "all",
+"unit": "Unit 5: Securing Applications and Data",
+"topic": "5.6 Detecting Attacks on Data and Applications",
+"subtopic": "Attack Detection Methods",
+"code": "5.6.B",
+"outcome": "Determine controls for detecting attacks against applications or data."
+},
+{
+"grade": "all",
+"unit": "Unit 5: Securing Applications and Data",
+"topic": "5.6 Detecting Attacks on Data and Applications",
+"subtopic": "Attack Detection Methods",
+"code": "5.6.B.1",
+"outcome": "Cost is a criterion in determining detective controls. Detective controls like honeypots and using hash values to check data integrity are inexpensive. Some organizations invest in third-party data loss prevention (DLP) services, which monitor data access, usage, and transmission by users throughout the organization to detect suspicious activity; DLP services provide strong detection capabilities at a higher cost."
+},
+{
+"grade": "all",
+"unit": "Unit 5: Securing Applications and Data",
+"topic": "5.6 Detecting Attacks on Data and Applications",
+"subtopic": "Attack Detection Methods",
+"code": "5.6.B.2",
+"outcome": "Sensitivity or criticality of data or applications is a criterion in determining detective controls. More sensitive or critical data or applications are more likely targets of an adversary and should be monitored more closely."
+},
+{
+"grade": "all",
+"unit": "Unit 5: Securing Applications and Data",
+"topic": "5.6 Detecting Attacks on Data and Applications",
+"subtopic": "Attack Detection Methods",
+"code": "5.6.B.3",
+"outcome": "Classification of data is a criterion in determining detective controls. Data that have been classified as private, educational, healthcare, or financial often have legal or regulatory detection and monitoring requirements."
+},
+{
+"grade": "all",
+"unit": "Unit 5: Securing Applications and Data",
+"topic": "5.6 Detecting Attacks on Data and Applications",
+"subtopic": "Logs and Automated Detection",
+"code": "5.6.C",
+"outcome": "Evaluate the impact of a method for detecting attacks against an application or data."
+},
+{
+"grade": "all",
+"unit": "Unit 5: Securing Applications and Data",
+"topic": "5.6 Detecting Attacks on Data and Applications",
+"subtopic": "Logs and Automated Detection",
+"code": "5.6.C.1",
+"outcome": "To operate at an effective speed, log analysis needs to be augmented with some automation. Honeypots offer near instantaneous detection capabilities."
+},
+{
+"grade": "all",
+"unit": "Unit 5: Securing Applications and Data",
+"topic": "5.6 Detecting Attacks on Data and Applications",
+"subtopic": "Logs and Automated Detection",
+"code": "5.6.C.2",
+"outcome": "Some DLP tools, honeypots, and realtime automated log analysis provide alerts as an attack is happening. These tools allow for a prompt response that can stop an attack before it does more harm. Retrospective log analysis and the use of cryptographic hashes to verify data integrity identify attacks after they have occurred."
+},
+{
+"grade": "all",
+"unit": "Unit 5: Securing Applications and Data",
+"topic": "5.6 Detecting Attacks on Data and Applications",
+"subtopic": "Logs and Automated Detection",
+"code": "5.6.C.3",
+"outcome": "False negatives can occur in applications and data attack detection. Cryptographic hash functions only detect if data have been altered. An adversary could view and steal data without altering it, and a cryptographic hash function would not detect this. Honeypots cannot detect adversaries that do not attempt to access them."
+},
+{
+"grade": "all",
+"unit": "Unit 5: Securing Applications and Data",
+"topic": "5.6 Detecting Attacks on Data and Applications",
+"subtopic": "Hashes Detect Data Changes",
+"code": "5.6.D",
+"outcome": "Identify whether a file has been altered by verifying its hash."
+},
+{
+"grade": "all",
+"unit": "Unit 5: Securing Applications and Data",
+"topic": "5.6 Detecting Attacks on Data and Applications",
+"subtopic": "Hashes Detect Data Changes",
+"code": "5.6.D.1",
+"outcome": "Cryptographic hash functions can help identify changes in a file because they are repeatable: the same input always produces the same output for a given hash function."
+},
+{
+"grade": "all",
+"unit": "Unit 5: Securing Applications and Data",
+"topic": "5.6 Detecting Attacks on Data and Applications",
+"subtopic": "Hashes Detect Data Changes",
+"code": "5.6.D.2",
+"outcome": "Hashes can be calculated using the command line on a computer, a website, or specialized software. § In Windows Powershell, if a user wanted to generate the SHA256 hash for a file named testfile, they would use the command: Get-FileHash testfile -Algorithm SHA256 § In BASH the same could be accomplished with the command: sha256sum testfile § In zsh, the common command line terminal on Apple computers, this could be accomplished with the command: shasum -a 256 testfile"
+},
+{
+"grade": "all",
+"unit": "Unit 5: Securing Applications and Data",
+"topic": "5.6 Detecting Attacks on Data and Applications",
+"subtopic": "Hashes Detect Data Changes",
+"code": "5.6.D.3",
+"outcome": "A file can be hashed and its hash output recorded. Then it can be hashed again later, and the second hash output can be compared to the previous hash output for the same file. If a file’s hash changes, then the file was altered between when the first and second hashes were generated."
+},
+{
+"grade": "all",
+"unit": "Unit 5: Securing Applications and Data",
+"topic": "5.6 Detecting Attacks on Data and Applications",
+"subtopic": "SQL Injection Indicators",
+"code": "5.6.E",
+"outcome": "Apply detection techniques to identify and report indicators of application attacks by analyzing log files."
+},
+{
+"grade": "all",
+"unit": "Unit 5: Securing Applications and Data",
+"topic": "5.6 Detecting Attacks on Data and Applications",
+"subtopic": "SQL Injection Indicators",
+"code": "5.6.E.1",
+"outcome": "SQL injection attacks can be detected by reviewing application and server logs of user input for SQL control words and symbols such as: § A single or double quote character: `` , ` § Boolean conditions like OR 1=1 § A double dash (which indicates a comment in SQL): -- § SQL control words (always in capital letters) like WHERE, IN, FROM"
+},
+{
+"grade": "all",
+"unit": "Unit 5: Securing Applications and Data",
+"topic": "5.6 Detecting Attacks on Data and Applications",
+"subtopic": "SQL Injection Indicators",
+"code": "5.6.E.2",
+"outcome": "XSS attacks can be detected by reviewing user input for suspicious tags, particularly the <script>...</script> tag."
+},
+{
+"grade": "all",
+"unit": "Unit 5: Securing Applications and Data",
+"topic": "5.6 Detecting Attacks on Data and Applications",
+"subtopic": "SQL Injection Indicators",
+"code": "5.6.E.3",
+"outcome": "For web applications, buffer overflows can be detected by checking the amount of data the user is sending to the web application in their request. The fields commonly checked are the URL length, cookie length, query string length, and total request length. Long strings in any of these fields can be an indicator of an attempted buffer overflow attack."
+},
+{
+"grade": "all",
+"unit": "Unit 5: Securing Applications and Data",
+"topic": "5.6 Detecting Attacks on Data and Applications",
+"subtopic": "SQL Injection Indicators",
+"code": "5.6.E.4",
+"outcome": "Directory traversal attacks can be detected by reviewing application and server logs. HTTP GET requests that include paths with sequences of ../ are indicators of an adversary attempting a directory traversal."
+}
+]

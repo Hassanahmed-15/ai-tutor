@@ -1,0 +1,1782 @@
+{
+ "id": "us-ap-physics-2",
+ "region": "US",
+ "framework": "AP Physics 2: Algebra-Based Course and Exam Description (effective fall 2024)",
+ "board": "College Board",
+ "qualification": "AP",
+ "subject": "Physics 2: Algebra-Based",
+ "syllabusCode": null,
+ "gradeSystem": "course",
+ "source": {
+  "urls": [
+   "https://apcentral.collegeboard.org/media/pdf/ap-physics-2-course-and-exam-description.pdf",
+   "https://apcentral.collegeboard.org/courses/ap-physics-2"
+  ],
+  "publisher": "College Board",
+  "licence": "© College Board; structure + our own wording only",
+  "firstExam": "2025"
+ },
+ "grades": [
+  {
+   "grade": "all",
+   "units": [
+    {
+     "id": "unit-10-electric-force-field-and-potential",
+     "title": "Unit 10: Electric Force, Field, and Potential",
+     "topics": [
+      {
+       "id": "10-1-electric-charge-and-electric-force",
+       "title": "10.1 Electric Charge and Electric Force",
+       "subtopics": [
+        {
+         "id": "electric-charge-and-electric-force-part-1",
+         "title": "Electric Charge and Electric Force, part 1",
+         "outcomes": [
+          {
+           "code": "10.1.A",
+           "text": "Describe the electric force from interactions between charged objects or systems."
+          },
+          {
+           "code": "10.1.A.1",
+           "text": "Explain that charge is a fundamental property, positive or negative, with elementary charge e as the smallest unit; define a point charge."
+          },
+          {
+           "code": "10.1.A.2",
+           "text": "Apply Coulomb's law: force proportional to each charge and inversely to distance squared."
+          },
+          {
+           "code": "10.1.A.3",
+           "text": "Give the force direction: along the line between charges, repulsive for like signs and attractive for opposite signs."
+          },
+          {
+           "code": "10.1.A.4",
+           "text": "Explain that everyday contact forces (normal, friction, tension) are convenient models of many electric interactions."
+          },
+          {
+           "code": "10.1.B",
+           "text": "Compare electric and gravitational forces between charged objects with mass."
+          },
+          {
+           "code": "10.1.B.1",
+           "text": "Contrast electrostatic forces, attractive or repulsive, with gravity, always attractive."
+          }
+         ]
+        },
+        {
+         "id": "electric-charge-and-electric-force-part-2",
+         "title": "Electric Charge and Electric Force, part 2",
+         "outcomes": [
+          {
+           "code": "10.1.B.2",
+           "text": "Recognise that gravity is usually far weaker than the electrostatic force between two charged masses."
+          },
+          {
+           "code": "10.1.B.3",
+           "text": "Explain why gravity dominates at large scales: large systems are electrically neutral."
+          },
+          {
+           "code": "10.1.C",
+           "text": "Describe the electric permittivity of a material or medium."
+          },
+          {
+           "code": "10.1.C.1",
+           "text": "Define permittivity as how strongly a material is polarised by an electric field."
+          },
+          {
+           "code": "10.1.C.2",
+           "text": "Model polarisation as induced rearrangement of electrons separating positive and negative charge."
+          },
+          {
+           "code": "10.1.C.3",
+           "text": "Recognise the constant permittivity of free space, epsilon-zero."
+          },
+          {
+           "code": "10.1.C.4",
+           "text": "Explain that matter's permittivity depends on how easily its electrons rearrange, distinguishing conductors from insulators."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "10-2-conservation-of-electric-charge-and-the-pro",
+       "title": "10.2 Conservation of Electric Charge and the Process of Charging",
+       "subtopics": [
+        {
+         "id": "conservation-of-electric-charge-and-the-process-",
+         "title": "Conservation of Electric Charge and the Process of Charging",
+         "outcomes": [
+          {
+           "code": "10.2.A",
+           "text": "Describe system behaviour using conservation of charge."
+          },
+          {
+           "code": "10.2.A.1",
+           "text": "Explain how net charge or charge distribution changes by friction, contact and induced charge separation, even in neutral systems."
+          },
+          {
+           "code": "10.2.A.2",
+           "text": "Explain that any net charge change comes from charge transfer, usually electrons, and net charge is otherwise constant."
+          },
+          {
+           "code": "10.2.A.3",
+           "text": "Define grounding as connecting a charged system to a much larger, nearly neutral system such as Earth."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "10-3-electric-fields",
+       "title": "10.3 Electric Fields",
+       "subtopics": [
+        {
+         "id": "electric-fields",
+         "title": "Electric Fields",
+         "outcomes": [
+          {
+           "code": "10.3.A",
+           "text": "Describe the electric field of a charged object or arrangement of point charges."
+          },
+          {
+           "code": "10.3.A.1",
+           "text": "Recognise that electric fields originate from charged objects."
+          },
+          {
+           "code": "10.3.A.2",
+           "text": "Define the field as force per unit test charge (E = F/q); fields point away from positive and toward negative charges."
+          },
+          {
+           "code": "10.3.A.3",
+           "text": "Treat the field as a vector: sum fields from nearby charges and read field maps and field-line diagrams."
+          },
+          {
+           "code": "10.3.B",
+           "text": "Describe the electric field made by charged conductors or insulators."
+          },
+          {
+           "code": "10.3.B.1",
+           "text": "Explain that in electrostatic equilibrium a conductor's excess charge sits on its surface, interior field is zero, and surface field is perpendicular; a symmetric sphere acts like a point charge outside."
+          },
+          {
+           "code": "10.3.B.2",
+           "text": "Explain that an insulator's excess charge spreads through its interior and surface, and its interior field may be nonzero."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "10-4-electric-potential-energy",
+       "title": "10.4 Electric Potential Energy",
+       "subtopics": [
+        {
+         "id": "electric-potential-energy",
+         "title": "Electric Potential Energy",
+         "outcomes": [
+          {
+           "code": "10.4.A",
+           "text": "Describe the electric potential energy of a system."
+          },
+          {
+           "code": "10.4.A.1",
+           "text": "Define the potential energy of two point charges as the work to bring them from infinitely far apart."
+          },
+          {
+           "code": "10.4.A.2",
+           "text": "Use the general potential energy equation for two charged objects."
+          },
+          {
+           "code": "10.4.A.3",
+           "text": "Sum pairwise potential energies to find a system's total electric potential energy."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "10-5-electric-potential",
+       "title": "10.5 Electric Potential",
+       "subtopics": [
+        {
+         "id": "electric-potential",
+         "title": "Electric Potential",
+         "outcomes": [
+          {
+           "code": "10.5.A",
+           "text": "Describe the electric potential due to a configuration of charged objects."
+          },
+          {
+           "code": "10.5.A.1",
+           "text": "Define electric potential as potential energy per unit charge at a point."
+          },
+          {
+           "code": "10.5.A.2",
+           "text": "Add potentials from several point charges by scalar superposition."
+          },
+          {
+           "code": "10.5.A.3",
+           "text": "Define potential difference as change in potential energy per unit charge, including from batteries."
+          },
+          {
+           "code": "10.5.A.4",
+           "text": "Explain that conductors in contact reach the same potential as electrons redistribute."
+          },
+          {
+           "code": "10.5.B",
+           "text": "Describe the relationship between electric potential and electric field."
+          },
+          {
+           "code": "10.5.B.1",
+           "text": "Relate average field to potential difference divided by distance."
+          },
+          {
+           "code": "10.5.B.2",
+           "text": "Use field maps and equipotential lines, which are perpendicular to field vectors; field points toward decreasing potential."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "10-6-capacitors",
+       "title": "10.6 Capacitors",
+       "subtopics": [
+        {
+         "id": "capacitors",
+         "title": "Capacitors",
+         "outcomes": [
+          {
+           "code": "10.6.A",
+           "text": "Describe the physical properties of a parallel-plate capacitor."
+          },
+          {
+           "code": "10.6.A.1",
+           "text": "Describe a parallel-plate capacitor as two separated conducting plates holding equal opposite charges."
+          },
+          {
+           "code": "10.6.A.2",
+           "text": "Define capacitance as charge per potential difference; for parallel plates it grows with plate area and shrinks with separation and depends on the dielectric."
+          },
+          {
+           "code": "10.6.A.3",
+           "text": "Describe the uniform field between plates and the constant acceleration of a charged particle there, like projectile motion."
+          },
+          {
+           "code": "10.6.A.4",
+           "text": "Explain that stored potential energy equals the work to separate the charge."
+          },
+          {
+           "code": "10.6.A.5",
+           "text": "Calculate the energy stored in a capacitor."
+          },
+          {
+           "code": "10.6.A.6",
+           "text": "Explain how a dielectric changes capacitance and induces an opposing field inside it."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "10-7-conservation-of-electric-energy",
+       "title": "10.7 Conservation of Electric Energy",
+       "subtopics": [
+        {
+         "id": "conservation-of-electric-energy",
+         "title": "Conservation of Electric Energy",
+         "outcomes": [
+          {
+           "code": "10.7.A",
+           "text": "Describe energy changes when a charge moves between locations of different potential."
+          },
+          {
+           "code": "10.7.A.1",
+           "text": "Calculate the change in electric potential energy as a charge moves through a potential difference."
+          },
+          {
+           "code": "10.7.A.2",
+           "text": "Use conservation of energy to link that change to the charge's change in kinetic energy."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "unit-11-electric-circuits",
+     "title": "Unit 11: Electric Circuits",
+     "topics": [
+      {
+       "id": "11-1-electric-current",
+       "title": "11.1 Electric Current",
+       "subtopics": [
+        {
+         "id": "electric-current",
+         "title": "Electric Current",
+         "outcomes": [
+          {
+           "code": "11.1.A",
+           "text": "Describe the movement of electric charges through a medium."
+          },
+          {
+           "code": "11.1.A.1",
+           "text": "Define current as the rate charge passes through a wire's cross-section, driven by a potential difference (emf)."
+          },
+          {
+           "code": "11.1.A.2",
+           "text": "Explain that current has a direction (conventional current, as positive charge would move) even though it is not a vector; real carriers are usually electrons."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "11-2-simple-circuits",
+       "title": "11.2 Simple Circuits",
+       "subtopics": [
+        {
+         "id": "simple-circuits",
+         "title": "Simple Circuits",
+         "outcomes": [
+          {
+           "code": "11.2.A",
+           "text": "Describe the behaviour of a circuit."
+          },
+          {
+           "code": "11.2.A.1",
+           "text": "Describe a circuit as electrical loops made of elements such as wires, batteries, resistors, bulbs, capacitors, switches and meters."
+          },
+          {
+           "code": "11.2.A.2",
+           "text": "Distinguish closed, open and short circuits as closed paths for charge flow."
+          },
+          {
+           "code": "11.2.A.3",
+           "text": "Recognise that a single element can belong to several loops."
+          },
+          {
+           "code": "11.2.A.4",
+           "text": "Read and draw circuit schematics with standard symbols, using conventional current."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "11-3-resistance-resistivity-and-ohm-s-law",
+       "title": "11.3 Resistance, Resistivity, and Ohm's Law",
+       "subtopics": [
+        {
+         "id": "resistance-resistivity-and-ohm-s-law",
+         "title": "Resistance, Resistivity, and Ohm's Law",
+         "outcomes": [
+          {
+           "code": "11.3.A",
+           "text": "Describe the resistance of an object using its physical properties."
+          },
+          {
+           "code": "11.3.A.1",
+           "text": "Define resistance as how strongly an object opposes charge movement."
+          },
+          {
+           "code": "11.3.A.2",
+           "text": "Relate resistance to resistivity, length and cross-sectional area; note resistivity of conductors usually rises with temperature."
+          },
+          {
+           "code": "11.3.B",
+           "text": "Describe the electrical characteristics of circuit elements."
+          },
+          {
+           "code": "11.3.B.1",
+           "text": "Apply Ohm's law (V = IR); ohmic materials have constant resistance, resistors turn electrical energy to heat, and resistance is the slope of an I-V graph."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "11-4-electric-power",
+       "title": "11.4 Electric Power",
+       "subtopics": [
+        {
+         "id": "electric-power",
+         "title": "Electric Power",
+         "outcomes": [
+          {
+           "code": "11.4.A",
+           "text": "Describe energy transfer into, out of or within a circuit in terms of power."
+          },
+          {
+           "code": "11.4.A.1",
+           "text": "Calculate the power in an element from the current and potential difference (P = IV and derived forms)."
+          },
+          {
+           "code": "11.4.A.2",
+           "text": "Predict bulb brightness qualitatively from the power it dissipates."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "11-5-compound-dc-circuits",
+       "title": "11.5 Compound DC Circuits",
+       "subtopics": [
+        {
+         "id": "compound-dc-circuits-part-1",
+         "title": "Compound DC Circuits, part 1",
+         "outcomes": [
+          {
+           "code": "11.5.A",
+           "text": "Describe the equivalent resistance of several resistors in a circuit."
+          },
+          {
+           "code": "11.5.A.1",
+           "text": "Distinguish series connections (same current) from parallel connections (same potential difference)."
+          },
+          {
+           "code": "11.5.A.2",
+           "text": "Find equivalent resistance: sum in series, sum of inverses in parallel, which falls as paths are added."
+          },
+          {
+           "code": "11.5.B",
+           "text": "Describe a circuit with resistive wires and a battery with internal resistance."
+          },
+          {
+           "code": "11.5.B.1",
+           "text": "Treat ideal wires and batteries as resistance-free, neglect good-conductor wire resistance when other resistance exists, and define emf."
+          },
+          {
+           "code": "11.5.B.2",
+           "text": "Model a real battery as an ideal battery in series with an internal resistor."
+          }
+         ]
+        },
+        {
+         "id": "compound-dc-circuits-part-2",
+         "title": "Compound DC Circuits, part 2",
+         "outcomes": [
+          {
+           "code": "11.5.B.3",
+           "text": "Explain that a battery's terminal voltage drops below emf when it carries current."
+          },
+          {
+           "code": "11.5.C",
+           "text": "Describe measuring current and potential difference in a circuit."
+          },
+          {
+           "code": "11.5.C.1",
+           "text": "Connect ammeters in series; ideal ammeters have zero resistance."
+          },
+          {
+           "code": "11.5.C.2",
+           "text": "Connect voltmeters in parallel; ideal voltmeters have infinite resistance."
+          },
+          {
+           "code": "11.5.C.3",
+           "text": "Explain qualitatively that non-ideal meters alter the circuit being measured."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "11-6-kirchhoff-s-loop-rule",
+       "title": "11.6 Kirchhoff's Loop Rule",
+       "subtopics": [
+        {
+         "id": "kirchhoff-s-loop-rule",
+         "title": "Kirchhoff's Loop Rule",
+         "outcomes": [
+          {
+           "code": "11.6.A",
+           "text": "Describe a circuit by applying Kirchhoff's loop rule."
+          },
+          {
+           "code": "11.6.A.1",
+           "text": "Represent circuit energy changes as charges moving through potential differences in elements."
+          },
+          {
+           "code": "11.6.A.2",
+           "text": "Explain the loop rule as a consequence of conservation of energy."
+          },
+          {
+           "code": "11.6.A.3",
+           "text": "State the loop rule: potential differences around a closed loop sum to zero."
+          },
+          {
+           "code": "11.6.A.4",
+           "text": "Graph electric potential against position around a loop."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "11-7-kirchhoff-s-junction-rule",
+       "title": "11.7 Kirchhoff's Junction Rule",
+       "subtopics": [
+        {
+         "id": "kirchhoff-s-junction-rule",
+         "title": "Kirchhoff's Junction Rule",
+         "outcomes": [
+          {
+           "code": "11.7.A",
+           "text": "Describe a circuit by applying Kirchhoff's junction rule."
+          },
+          {
+           "code": "11.7.A.1",
+           "text": "Explain the junction rule as a consequence of conservation of charge."
+          },
+          {
+           "code": "11.7.A.2",
+           "text": "State that charge entering a junction per unit time equals charge leaving it."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "11-8-resistor-capacitor-rc-circuits",
+       "title": "11.8 Resistor-Capacitor (RC) Circuits",
+       "subtopics": [
+        {
+         "id": "resistor-capacitor-rc-circuits",
+         "title": "Resistor-Capacitor (RC) Circuits",
+         "outcomes": [
+          {
+           "code": "11.8.A",
+           "text": "Describe the equivalent capacitance of several capacitors."
+          },
+          {
+           "code": "11.8.A.1",
+           "text": "Find equivalent capacitance: sum of inverses in series (less than the smallest), plain sum in parallel."
+          },
+          {
+           "code": "11.8.A.2",
+           "text": "Explain that capacitors in series carry the same charge magnitude on each plate."
+          },
+          {
+           "code": "11.8.B",
+           "text": "Describe the behaviour of circuits with resistors and capacitors."
+          },
+          {
+           "code": "11.8.B.1",
+           "text": "Use the time constant (RC) as how quickly a capacitor charges or discharges: about 63 percent charged, or 37 percent remaining."
+          },
+          {
+           "code": "11.8.B.2",
+           "text": "Describe qualitatively how capacitor voltage, branch current and stored energy change over time and approach steady state."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "unit-12-magnetism-and-electromagnetism",
+     "title": "Unit 12: Magnetism and Electromagnetism",
+     "topics": [
+      {
+       "id": "12-1-magnetic-fields",
+       "title": "12.1 Magnetic Fields",
+       "subtopics": [
+        {
+         "id": "magnetic-fields-part-1",
+         "title": "Magnetic Fields, part 1",
+         "outcomes": [
+          {
+           "code": "12.1.A",
+           "text": "Describe the properties of a magnetic field."
+          },
+          {
+           "code": "12.1.A.1",
+           "text": "Explain that magnetic fields come from moving charges, currents or magnetic materials, from dipoles never monopoles, and dipoles have north and south poles."
+          },
+          {
+           "code": "12.1.A.2",
+           "text": "Treat the magnetic field as a vector shown on field maps; field lines form closed loops, leaving a magnet's north pole and returning to its south."
+          },
+          {
+           "code": "12.1.B",
+           "text": "Describe a material's magnetic behaviour from the arrangement of its magnetic dipoles."
+          },
+          {
+           "code": "12.1.B.1",
+           "text": "Explain that dipoles come from circulating charge, poles never exist alone, like poles repel and opposites attract, and field weakens with distance."
+          },
+          {
+           "code": "12.1.B.2",
+           "text": "Explain that a dipole such as a compass tends to align with an external field."
+          }
+         ]
+        },
+        {
+         "id": "magnetic-fields-part-2",
+         "title": "Magnetic Fields, part 2",
+         "outcomes": [
+          {
+           "code": "12.1.B.3",
+           "text": "Distinguish ferromagnetic, paramagnetic and diamagnetic materials, and model Earth's field as a dipole."
+          },
+          {
+           "code": "12.1.C",
+           "text": "Describe the magnetic permeability of a material."
+          },
+          {
+           "code": "12.1.C.1",
+           "text": "Define permeability as how much a material magnetises in an external field."
+          },
+          {
+           "code": "12.1.C.2",
+           "text": "Recognise the constant vacuum permeability, mu-zero."
+          },
+          {
+           "code": "12.1.C.3",
+           "text": "Explain that matter's permeability differs from free space and varies with temperature, orientation and field strength."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "12-2-magnetism-and-moving-charges",
+       "title": "12.2 Magnetism and Moving Charges",
+       "subtopics": [
+        {
+         "id": "magnetism-and-moving-charges",
+         "title": "Magnetism and Moving Charges",
+         "outcomes": [
+          {
+           "code": "12.2.A",
+           "text": "Describe the magnetic field produced by moving charged objects."
+          },
+          {
+           "code": "12.2.A.1",
+           "text": "Explain that the field depends on speed and distance, is perpendicular to velocity and position vector (right-hand rule), and is largest when those are perpendicular."
+          },
+          {
+           "code": "12.2.B",
+           "text": "Describe the force a magnetic field exerts on moving charged objects."
+          },
+          {
+           "code": "12.2.B.1",
+           "text": "Recognise that magnetic forces describe interactions between moving charges."
+          },
+          {
+           "code": "12.2.B.2",
+           "text": "Calculate the force on a moving charge from charge, speed, field strength and angle; its direction follows the right-hand rule."
+          },
+          {
+           "code": "12.2.B.3",
+           "text": "Explain that electric and magnetic fields act independently on a moving charge."
+          },
+          {
+           "code": "12.2.B.4",
+           "text": "Describe the Hall effect as a potential difference across a conductor in a perpendicular magnetic field."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "12-3-magnetism-and-current-carrying-wires",
+       "title": "12.3 Magnetism and Current-Carrying Wires",
+       "subtopics": [
+        {
+         "id": "magnetism-and-current-carrying-wires",
+         "title": "Magnetism and Current-Carrying Wires",
+         "outcomes": [
+          {
+           "code": "12.3.A",
+           "text": "Describe the magnetic field produced by a current-carrying wire."
+          },
+          {
+           "code": "12.3.A.1",
+           "text": "Explain that a straight wire's field circles it, scales with current over distance, follows the right-hand rule, and fields from several wires add as vectors."
+          },
+          {
+           "code": "12.3.B",
+           "text": "Describe the force a magnetic field exerts on a current-carrying wire."
+          },
+          {
+           "code": "12.3.B.1",
+           "text": "Calculate the force on a wire from current, length in the field, field strength and angle; find its direction by the right-hand rule."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "12-4-electromagnetic-induction",
+       "title": "12.4 Electromagnetic Induction",
+       "subtopics": [
+        {
+         "id": "electromagnetic-induction",
+         "title": "Electromagnetic Induction",
+         "outcomes": [
+          {
+           "code": "12.4.A",
+           "text": "Describe the induced potential difference from a change in magnetic flux."
+          },
+          {
+           "code": "12.4.A.1",
+           "text": "Define magnetic flux as the field component perpendicular to a surface times its area."
+          },
+          {
+           "code": "12.4.A.2",
+           "text": "Use the area vector and interpret the sign of flux as parallel or antiparallel to it."
+          },
+          {
+           "code": "12.4.A.3",
+           "text": "Apply Faraday's law: induced emf from changing flux."
+          },
+          {
+           "code": "12.4.A.4",
+           "text": "Apply Lenz's law: the induced current's field opposes the flux change, using the right-hand rule."
+          },
+          {
+           "code": "12.4.A.5",
+           "text": "Analyse a conducting rod sliding on rails in a uniform magnetic field as a standard induction example."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "unit-13-geometric-optics",
+     "title": "Unit 13: Geometric Optics",
+     "topics": [
+      {
+       "id": "13-1-reflection",
+       "title": "13.1 Reflection",
+       "subtopics": [
+        {
+         "id": "reflection",
+         "title": "Reflection",
+         "outcomes": [
+          {
+           "code": "13.1.A",
+           "text": "Describe light as a ray."
+          },
+          {
+           "code": "13.1.A.1",
+           "text": "Model light as a ray, a line perpendicular to the wavefront along the travel direction, valid when wave spreading can be ignored; a laser acts as a single ray."
+          },
+          {
+           "code": "13.1.A.2",
+           "text": "Draw ray diagrams showing the path of light before and after meeting matter."
+          },
+          {
+           "code": "13.1.B",
+           "text": "Describe the reflection of light from a surface."
+          },
+          {
+           "code": "13.1.B.1",
+           "text": "Recognise that light hitting a surface can be reflected."
+          },
+          {
+           "code": "13.1.B.2",
+           "text": "Apply the law of reflection: angle of incidence equals angle of reflection, both measured from the normal."
+          },
+          {
+           "code": "13.1.B.3",
+           "text": "Explain diffuse reflection from rough surfaces as light scattering in many directions."
+          },
+          {
+           "code": "13.1.B.4",
+           "text": "Explain specular reflection from smooth surfaces as light reflected uniformly."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "13-2-images-formed-by-mirrors",
+       "title": "13.2 Images Formed by Mirrors",
+       "subtopics": [
+        {
+         "id": "images-formed-by-mirrors-part-1",
+         "title": "Images Formed by Mirrors, part 1",
+         "outcomes": [
+          {
+           "code": "13.2.A",
+           "text": "Describe the image formed by a mirror."
+          },
+          {
+           "code": "13.2.A.1",
+           "text": "Explain that rays parallel to the axis of a concave mirror converge on its focal point."
+          },
+          {
+           "code": "13.2.A.2",
+           "text": "Explain that rays parallel to the axis of a convex mirror diverge as if from a focal point behind it."
+          },
+          {
+           "code": "13.2.A.3",
+           "text": "Recognise that a plane mirror's focal point is infinitely far away."
+          },
+          {
+           "code": "13.2.A.4",
+           "text": "Place a spherical mirror's focal point halfway between its surface and its centre of curvature."
+          }
+         ]
+        },
+        {
+         "id": "images-formed-by-mirrors-part-2",
+         "title": "Images Formed by Mirrors, part 2",
+         "outcomes": [
+          {
+           "code": "13.2.A.5",
+           "text": "Define a real image as one where reflected rays actually intersect."
+          },
+          {
+           "code": "13.2.A.6",
+           "text": "Define a virtual image as one where reflected rays only appear to come from a point."
+          },
+          {
+           "code": "13.2.A.7",
+           "text": "Use the mirror equation 1/si + 1/so = 1/f with sign conventions; a plane mirror image is as far behind as the object is in front."
+          },
+          {
+           "code": "13.2.A.8",
+           "text": "Calculate magnification as image height over object height, equal to -si/so."
+          },
+          {
+           "code": "13.2.A.9",
+           "text": "Use the three principal rays to find image location, type, size and orientation (upright or inverted, real or virtual, larger or smaller)."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "13-3-refraction",
+       "title": "13.3 Refraction",
+       "subtopics": [
+        {
+         "id": "refraction",
+         "title": "Refraction",
+         "outcomes": [
+          {
+           "code": "13.3.A",
+           "text": "Describe the refraction of light between two media."
+          },
+          {
+           "code": "13.3.A.1",
+           "text": "Explain that refraction bends a ray as it passes from one medium into another."
+          },
+          {
+           "code": "13.3.A.2",
+           "text": "Define index of refraction n = c/v, inversely proportional to the speed of light in the medium."
+          },
+          {
+           "code": "13.3.A.3",
+           "text": "Relate a medium's index of refraction to the light's wavelength and frequency change on entering it."
+          },
+          {
+           "code": "13.3.A.4",
+           "text": "Apply Snell's law; rays bend toward the normal into higher index and away into lower index, and are not bent along the normal."
+          },
+          {
+           "code": "13.3.A.5",
+           "text": "Explain total internal reflection beyond the critical angle when light goes toward a lower index, with refraction at 90 degrees at the critical angle."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "13-4-images-formed-by-lenses",
+       "title": "13.4 Images Formed by Lenses",
+       "subtopics": [
+        {
+         "id": "images-formed-by-lenses",
+         "title": "Images Formed by Lenses",
+         "outcomes": [
+          {
+           "code": "13.4.A",
+           "text": "Describe the image formed by a lens."
+          },
+          {
+           "code": "13.4.A.1",
+           "text": "Explain that rays parallel to the axis of a thin convex lens converge at its focal point."
+          },
+          {
+           "code": "13.4.A.2",
+           "text": "Explain that rays parallel to the axis of a thin concave lens diverge as if from a focal point on the incident side."
+          },
+          {
+           "code": "13.4.A.3",
+           "text": "Define a real image formed by a lens as refracted rays that actually intersect."
+          },
+          {
+           "code": "13.4.A.4",
+           "text": "Define a virtual image formed by a lens as refracted rays that only appear to originate from a point."
+          },
+          {
+           "code": "13.4.A.5",
+           "text": "Use the thin-lens equation 1/si + 1/so = 1/f with sign conventions; a lens has a focal point on each side."
+          },
+          {
+           "code": "13.4.A.6",
+           "text": "Calculate thin-lens magnification as image height over object height, equal to -si/so."
+          },
+          {
+           "code": "13.4.A.7",
+           "text": "Use the three principal rays to find a lens image's location, type, size and orientation."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "unit-14-waves-sound-and-physical-optics",
+     "title": "Unit 14: Waves, Sound, and Physical Optics",
+     "topics": [
+      {
+       "id": "14-1-properties-of-waves-and-wave-pulses",
+       "title": "14.1 Properties of Waves and Wave Pulses",
+       "subtopics": [
+        {
+         "id": "properties-of-waves-and-wave-pulses",
+         "title": "Properties of Waves and Wave Pulses",
+         "outcomes": [
+          {
+           "code": "14.1.A",
+           "text": "Describe the physical properties of waves and wave pulses."
+          },
+          {
+           "code": "14.1.A.1",
+           "text": "Distinguish a wave pulse (single disturbance moving energy, not matter) from a periodic wave with wavelength and frequency."
+          },
+          {
+           "code": "14.1.A.2",
+           "text": "Explain that mechanical waves need a medium while electromagnetic waves do not."
+          },
+          {
+           "code": "14.1.A.3",
+           "text": "Explain that wave speed depends on wave type and medium: c in vacuum for EM waves, tension and mass per length on a string, temperature for sound."
+          },
+          {
+           "code": "14.1.A.4",
+           "text": "Define transverse waves: disturbance perpendicular to propagation."
+          },
+          {
+           "code": "14.1.A.5",
+           "text": "Define longitudinal waves: disturbance parallel to propagation; sound has compressions and rarefactions."
+          },
+          {
+           "code": "14.1.A.6",
+           "text": "Define amplitude as maximum displacement; larger amplitude means louder sound and more wave energy."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "14-2-periodic-waves",
+       "title": "14.2 Periodic Waves",
+       "subtopics": [
+        {
+         "id": "periodic-waves",
+         "title": "Periodic Waves",
+         "outcomes": [
+          {
+           "code": "14.2.A",
+           "text": "Describe the physical properties of a periodic wave."
+          },
+          {
+           "code": "14.2.A.1",
+           "text": "Define period, frequency (T = 1/f), wavelength and their links to amplitude, energy and pitch."
+          },
+          {
+           "code": "14.2.A.2",
+           "text": "Describe a sinusoidal wave by displacement versus time at a place or versus position at a time."
+          },
+          {
+           "code": "14.2.A.3",
+           "text": "Relate wavelength, wave speed and frequency (v = f lambda)."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "14-3-boundary-behavior-of-waves-and-polarization",
+       "title": "14.3 Boundary Behavior of Waves and Polarization",
+       "subtopics": [
+        {
+         "id": "boundary-behavior-of-waves-and-polarization",
+         "title": "Boundary Behavior of Waves and Polarization",
+         "outcomes": [
+          {
+           "code": "14.3.A",
+           "text": "Describe the interaction between a wave and a boundary."
+          },
+          {
+           "code": "14.3.A.1",
+           "text": "Explain that waves crossing a boundary are partly reflected and transmitted; reflection inverts when the wave slows, and frequency never changes."
+          },
+          {
+           "code": "14.3.A.2",
+           "text": "Explain that transverse waves can be polarised to one plane and longitudinal waves cannot."
+          },
+          {
+           "code": "14.3.A.3",
+           "text": "Explain that polarisation can reduce intensity, defined as average power per unit area."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "14-4-electromagnetic-waves",
+       "title": "14.4 Electromagnetic Waves",
+       "subtopics": [
+        {
+         "id": "electromagnetic-waves",
+         "title": "Electromagnetic Waves",
+         "outcomes": [
+          {
+           "code": "14.4.A",
+           "text": "Describe the properties of an electromagnetic wave."
+          },
+          {
+           "code": "14.4.A.1",
+           "text": "Describe EM waves as transverse, mutually perpendicular oscillating electric and magnetic fields, usually modelled as plane waves."
+          },
+          {
+           "code": "14.4.A.2",
+           "text": "Recognise that EM waves need no medium."
+          },
+          {
+           "code": "14.4.A.3",
+           "text": "Order the EM spectrum by wavelength (radio to gamma) and the colours of visible light."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "14-5-the-doppler-effect",
+       "title": "14.5 The Doppler Effect",
+       "subtopics": [
+        {
+         "id": "the-doppler-effect",
+         "title": "The Doppler Effect",
+         "outcomes": [
+          {
+           "code": "14.5.A",
+           "text": "Describe wave properties based on relative motion of source and observer."
+          },
+          {
+           "code": "14.5.A.1",
+           "text": "Relate rest frequency, observed frequency and relative velocity in the Doppler effect."
+          },
+          {
+           "code": "14.5.A.2",
+           "text": "Explain qualitatively that approach raises observed frequency, recession lowers it, and greater relative speed gives a larger shift."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "14-6-wave-interference-and-standing-waves",
+       "title": "14.6 Wave Interference and Standing Waves",
+       "subtopics": [
+        {
+         "id": "wave-interference-and-standing-waves-part-1",
+         "title": "Wave Interference and Standing Waves, part 1",
+         "outcomes": [
+          {
+           "code": "14.6.A",
+           "text": "Describe the net disturbance when waves overlap."
+          },
+          {
+           "code": "14.6.A.1",
+           "text": "Define interference as the interaction of two or more wave pulses or waves."
+          },
+          {
+           "code": "14.6.A.2",
+           "text": "Explain that overlapping waves pass through each other instead of bouncing off."
+          },
+          {
+           "code": "14.6.A.3",
+           "text": "Apply superposition: the resulting displacement is the sum of the individual displacements."
+          },
+          {
+           "code": "14.6.A.4",
+           "text": "Distinguish constructive interference (same-direction displacements) from destructive (opposite directions)."
+          },
+          {
+           "code": "14.6.A.5",
+           "text": "Use diagrams to find the result of interacting waves."
+          }
+         ]
+        },
+        {
+         "id": "wave-interference-and-standing-waves-part-2",
+         "title": "Wave Interference and Standing Waves, part 2",
+         "outcomes": [
+          {
+           "code": "14.6.A.6",
+           "text": "Explain beats from two slightly different frequencies; beat frequency is |f1 - f2|."
+          },
+          {
+           "code": "14.6.B",
+           "text": "Describe the properties of a standing wave."
+          },
+          {
+           "code": "14.6.B.1",
+           "text": "Explain standing waves as interference of confined, opposite-travelling waves with nodes and antinodes; allowed wavelengths depend on the region and boundaries."
+          },
+          {
+           "code": "14.6.B.2",
+           "text": "Name harmonics; a node at one end and antinode at the other allows only odd harmonics."
+          },
+          {
+           "code": "14.6.B.3",
+           "text": "Use drawings of standing waves to relate length, wavelength, frequency, speed and harmonic."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "14-7-diffraction",
+       "title": "14.7 Diffraction",
+       "subtopics": [
+        {
+         "id": "diffraction",
+         "title": "Diffraction",
+         "outcomes": [
+          {
+           "code": "14.7.A",
+           "text": "Describe wave behaviour and the diffraction pattern from a single opening."
+          },
+          {
+           "code": "14.7.A.1",
+           "text": "Define diffraction as spreading of a wave around an obstacle's edges or through an opening."
+          },
+          {
+           "code": "14.7.A.2",
+           "text": "Explain that diffraction is strongest when the opening is comparable to the wavelength."
+          },
+          {
+           "code": "14.7.A.3",
+           "text": "Explain that diffracted wavefronts from one opening interfere in observable patterns."
+          },
+          {
+           "code": "14.7.A.4",
+           "text": "Analyse single-slit light on a screen: path difference, bright and dark bands, and small-angle minima positions."
+          },
+          {
+           "code": "14.7.A.5",
+           "text": "Recognise that the pattern depends on the opening's shape."
+          },
+          {
+           "code": "14.7.A.6",
+           "text": "Use diagrams of single-slit patterns to infer slit and wave properties."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "14-8-double-slit-interference-and-diffraction-gr",
+       "title": "14.8 Double-Slit Interference and Diffraction Gratings",
+       "subtopics": [
+        {
+         "id": "double-slit-interference-and-diffraction-grating",
+         "title": "Double-Slit Interference and Diffraction Gratings",
+         "outcomes": [
+          {
+           "code": "14.8.A",
+           "text": "Describe wave behaviour and the diffraction pattern from multiple openings."
+          },
+          {
+           "code": "14.8.A.1",
+           "text": "Explain double-slit patterns as diffraction plus interference: path difference, maxima positions for small angles, and the single-slit envelope."
+          },
+          {
+           "code": "14.8.A.2",
+           "text": "Explain how Young's double-slit experiment showed light has wave properties."
+          },
+          {
+           "code": "14.8.A.3",
+           "text": "Use diagrams of double-slit patterns to infer slit and wave properties."
+          },
+          {
+           "code": "14.8.A.4",
+           "text": "Describe a diffraction grating as many evenly spaced slits combining diffraction patterns."
+          },
+          {
+           "code": "14.8.A.5",
+           "text": "Explain that white light on a grating gives a white centre and rainbows with red farthest out."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "14-9-thin-film-interference",
+       "title": "14.9 Thin-Film Interference",
+       "subtopics": [
+        {
+         "id": "thin-film-interference",
+         "title": "Thin-Film Interference",
+         "outcomes": [
+          {
+           "code": "14.9.A",
+           "text": "Describe the behaviour of light interacting with a thin film."
+          },
+          {
+           "code": "14.9.A.1",
+           "text": "Explain that light crossing a boundary is partly transmitted, reflected and absorbed."
+          },
+          {
+           "code": "14.9.A.2",
+           "text": "Apply phase change rules: 180 degrees on reflection from a higher index, none from a lower index."
+          },
+          {
+           "code": "14.9.A.3",
+           "text": "Recognise that refraction causes no phase change."
+          },
+          {
+           "code": "14.9.A.4",
+           "text": "Explain thin-film interference of the two reflected waves, depending on thickness, wavelength, phase shifts and angle."
+          },
+          {
+           "code": "14.9.A.5",
+           "text": "Explain soap-bubble and oil-film colours and antireflection coatings (quarter-wavelength thickness, intermediate index)."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "unit-15-modern-physics",
+     "title": "Unit 15: Modern Physics",
+     "topics": [
+      {
+       "id": "15-1-quantum-theory-and-wave-particle-duality",
+       "title": "15.1 Quantum Theory and Wave-Particle Duality",
+       "subtopics": [
+        {
+         "id": "quantum-theory-and-wave-particle-duality",
+         "title": "Quantum Theory and Wave-Particle Duality",
+         "outcomes": [
+          {
+           "code": "15.1.A",
+           "text": "Describe the properties and behaviour of objects that act as both particles and waves."
+          },
+          {
+           "code": "15.1.A.1",
+           "text": "Explain that quantum theory is needed for atomic-scale behaviour classical mechanics could not explain, such as atomic spectra, blackbody radiation and the photoelectric effect."
+          },
+          {
+           "code": "15.1.A.2",
+           "text": "Model light as photons: massless, neutral particles with energy proportional to frequency (E = hf)."
+          },
+          {
+           "code": "15.1.A.3",
+           "text": "Explain that photon speed is c in free space and slower in a medium, inversely proportional to its index of refraction."
+          },
+          {
+           "code": "15.1.A.4",
+           "text": "Explain that particles show wave behaviour and use the de Broglie wavelength, which grows as momentum falls."
+          },
+          {
+           "code": "15.1.A.5",
+           "text": "Explain that bound systems have quantised, discrete energy and momentum values."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "15-2-the-bohr-model-of-atomic-structure",
+       "title": "15.2 The Bohr Model of Atomic Structure",
+       "subtopics": [
+        {
+         "id": "the-bohr-model-of-atomic-structure",
+         "title": "The Bohr Model of Atomic Structure",
+         "outcomes": [
+          {
+           "code": "15.2.A",
+           "text": "Describe the properties of an atom."
+          },
+          {
+           "code": "15.2.A.1",
+           "text": "Describe an atom's nucleus of protons and neutrons with surrounding electrons, nuclear notation, and ions."
+          },
+          {
+           "code": "15.2.A.2",
+           "text": "Explain that proton number identifies the element, proton plus neutron count identifies the isotope, and nuclear mass dominates atomic mass."
+          },
+          {
+           "code": "15.2.A.3",
+           "text": "Describe the Bohr model: electron circular orbits from electric force, with the standing-wave condition giving allowed energy states."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "15-3-emission-and-absorption-spectra",
+       "title": "15.3 Emission and Absorption Spectra",
+       "subtopics": [
+        {
+         "id": "emission-and-absorption-spectra",
+         "title": "Emission and Absorption Spectra",
+         "outcomes": [
+          {
+           "code": "15.3.A",
+           "text": "Describe the emission or absorption of photons by atoms."
+          },
+          {
+           "code": "15.3.A.1",
+           "text": "Explain that atoms exchange energy by absorbing or emitting photons matching the gap between two energy states."
+          },
+          {
+           "code": "15.3.A.2",
+           "text": "Describe absorption to higher states and spontaneous emission down to lower states as changes in electron-nucleus interaction energy."
+          },
+          {
+           "code": "15.3.A.3",
+           "text": "Explain that each transition corresponds to a single photon frequency and wavelength."
+          },
+          {
+           "code": "15.3.A.4",
+           "text": "Use each element's unique emission and absorption spectra to identify it, and read energy level diagrams."
+          },
+          {
+           "code": "15.3.A.5",
+           "text": "Define binding energy as the energy to ionise an atom; the ground state needs the most."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "15-4-blackbody-radiation",
+       "title": "15.4 Blackbody Radiation",
+       "subtopics": [
+        {
+         "id": "blackbody-radiation",
+         "title": "Blackbody Radiation",
+         "outcomes": [
+          {
+           "code": "15.4.A",
+           "text": "Describe the electromagnetic radiation an object emits because of its temperature."
+          },
+          {
+           "code": "15.4.A.1",
+           "text": "Explain that thermal radiation converts internal thermal energy to electromagnetic energy."
+          },
+          {
+           "code": "15.4.A.2",
+           "text": "Define a blackbody as an idealised absorber that must emit when in equilibrium."
+          },
+          {
+           "code": "15.4.A.3",
+           "text": "Explain blackbody spectra: Planck's law needs quantised light, Wien's law gives peak wavelength shrinking with temperature, Stefan-Boltzmann gives power by area and T to the fourth."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "15-5-the-photoelectric-effect",
+       "title": "15.5 The Photoelectric Effect",
+       "subtopics": [
+        {
+         "id": "the-photoelectric-effect",
+         "title": "The Photoelectric Effect",
+         "outcomes": [
+          {
+           "code": "15.5.A",
+           "text": "Describe an interaction between photons and matter using the photoelectric effect."
+          },
+          {
+           "code": "15.5.A.1",
+           "text": "Define the photoelectric effect as electron emission when radiation hits a photoactive material."
+          },
+          {
+           "code": "15.5.A.2",
+           "text": "Explain that light at or above the threshold frequency ejects electrons regardless of photon number, and electron energy is independent of intensity, which supports photons."
+          },
+          {
+           "code": "15.5.A.3",
+           "text": "Calculate the maximum kinetic energy of emitted electrons from photon energy minus the work function, and describe the stopping-potential experiment."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "15-6-compton-scattering",
+       "title": "15.6 Compton Scattering",
+       "subtopics": [
+        {
+         "id": "compton-scattering",
+         "title": "Compton Scattering",
+         "outcomes": [
+          {
+           "code": "15.6.A",
+           "text": "Describe photon-matter interaction using Compton scattering."
+          },
+          {
+           "code": "15.6.A.1",
+           "text": "Explain that a photon scattered by a free electron emerges with lower energy and longer wavelength."
+          },
+          {
+           "code": "15.6.A.2",
+           "text": "Explain that Compton scattering supports photons, using conservation of energy and momentum for the photon-electron collision."
+          },
+          {
+           "code": "15.6.A.3",
+           "text": "Relate the photon's wavelength change to its scattering angle."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "15-7-fission-fusion-and-nuclear-decay",
+       "title": "15.7 Fission, Fusion, and Nuclear Decay",
+       "subtopics": [
+        {
+         "id": "fission-fusion-and-nuclear-decay-part-1",
+         "title": "Fission, Fusion, and Nuclear Decay, part 1",
+         "outcomes": [
+          {
+           "code": "15.7.A",
+           "text": "Describe the physical properties that constrain interacting nuclei, subatomic particles and nucleons."
+          },
+          {
+           "code": "15.7.A.1",
+           "text": "Recognise that the strong force dominates interactions between nucleons at nuclear scales."
+          },
+          {
+           "code": "15.7.A.2",
+           "text": "Explain that nuclear reactions obey conservation of energy, mass-energy equivalence and momentum."
+          },
+          {
+           "code": "15.7.A.3",
+           "text": "Apply conservation of charge and nucleon number to nuclear reactions."
+          },
+          {
+           "code": "15.7.A.4",
+           "text": "Use E = mc2 to exchange mass and energy in nuclear reactions."
+          },
+          {
+           "code": "15.7.A.5",
+           "text": "Explain that nuclear energy is released as kinetic energy of products or as photons."
+          },
+          {
+           "code": "15.7.A.6",
+           "text": "Define nuclear fusion as smaller nuclei combining into a larger one."
+          }
+         ]
+        },
+        {
+         "id": "fission-fusion-and-nuclear-decay-part-2",
+         "title": "Fission, Fusion, and Nuclear Decay, part 2",
+         "outcomes": [
+          {
+           "code": "15.7.A.7",
+           "text": "Define nuclear fission as a nucleus splitting into smaller nuclei."
+          },
+          {
+           "code": "15.7.A.8",
+           "text": "Explain that fission may be spontaneous or need energy input, depending on binding energy."
+          },
+          {
+           "code": "15.7.B",
+           "text": "Describe the radioactive decay of a sample with a finite number of nuclei."
+          },
+          {
+           "code": "15.7.B.1",
+           "text": "Define radioactive decay as spontaneous nuclear transformation; individual timing is random but described by probability, with half-life and decay constant."
+          },
+          {
+           "code": "15.7.B.2",
+           "text": "Use the decay constant to predict remaining nuclei or a sample's age."
+          },
+          {
+           "code": "15.7.B.3",
+           "text": "Recognise that half-lives range from fractions of a second to billions of years."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "15-8-types-of-radioactive-decay",
+       "title": "15.8 Types of Radioactive Decay",
+       "subtopics": [
+        {
+         "id": "types-of-radioactive-decay",
+         "title": "Types of Radioactive Decay",
+         "outcomes": [
+          {
+           "code": "15.8.A",
+           "text": "Describe the processes by which individual nuclei decay."
+          },
+          {
+           "code": "15.8.A.1",
+           "text": "Describe particles emitted in decay: alpha particles (He-4), neutrinos and antineutrinos, and positrons."
+          },
+          {
+           "code": "15.8.A.2",
+           "text": "Distinguish alpha, beta-minus, beta-plus and gamma decay, with nucleon number, lepton number and charge conserved."
+          },
+          {
+           "code": "15.8.A.3",
+           "text": "Recognise that the decay type a nucleus undergoes is determined by its isotope."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "unit-9-thermodynamics",
+     "title": "Unit 9: Thermodynamics",
+     "topics": [
+      {
+       "id": "9-1-kinetic-theory-of-temperature-and-pressure",
+       "title": "9.1 Kinetic Theory of Temperature and Pressure",
+       "subtopics": [
+        {
+         "id": "kinetic-theory-of-temperature-and-pressure",
+         "title": "Kinetic Theory of Temperature and Pressure",
+         "outcomes": [
+          {
+           "code": "9.1.A",
+           "text": "Describe the pressure a gas exerts on its container in terms of atomic motion."
+          },
+          {
+           "code": "9.1.A.1",
+           "text": "Explain that gas atoms collide with each other and the container walls and exert forces; pressure is force per area and exists throughout the gas."
+          },
+          {
+           "code": "9.1.B",
+           "text": "Describe the temperature of a system in terms of atomic motion."
+          },
+          {
+           "code": "9.1.B.1",
+           "text": "Explain that temperature reflects average atomic kinetic energy, using the Maxwell-Boltzmann distribution and rms speed for an ideal gas."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "9-2-the-ideal-gas-law",
+       "title": "9.2 The Ideal Gas Law",
+       "subtopics": [
+        {
+         "id": "the-ideal-gas-law",
+         "title": "The Ideal Gas Law",
+         "outcomes": [
+          {
+           "code": "9.2.A",
+           "text": "Describe the properties of an ideal gas."
+          },
+          {
+           "code": "9.2.A.1",
+           "text": "State the ideal gas model: random velocities, negligible atom volume, elastic collisions, forces only during collisions."
+          },
+          {
+           "code": "9.2.A.2",
+           "text": "Use PV = nRT = NkT to relate pressure, volume, amount and temperature of an ideal gas."
+          },
+          {
+           "code": "9.2.A.3",
+           "text": "Use graphs of pressure, temperature and volume to find properties of a gas."
+          },
+          {
+           "code": "9.2.A.4",
+           "text": "Extrapolate a P-versus-T graph to find the temperature at which an ideal gas would have zero pressure."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "9-3-thermal-energy-transfer-and-equilibrium",
+       "title": "9.3 Thermal Energy Transfer and Equilibrium",
+       "subtopics": [
+        {
+         "id": "thermal-energy-transfer-and-equilibrium",
+         "title": "Thermal Energy Transfer and Equilibrium",
+         "outcomes": [
+          {
+           "code": "9.3.A",
+           "text": "Describe energy transfer between two systems in thermal contact due to a temperature difference."
+          },
+          {
+           "code": "9.3.A.1",
+           "text": "Define heating and cooling as energy transferred into or out of a system by thermal processes between systems in thermal contact."
+          },
+          {
+           "code": "9.3.A.2",
+           "text": "Name the thermal processes: conduction, convection and radiation."
+          },
+          {
+           "code": "9.3.A.3",
+           "text": "Explain that energy flows spontaneously from hotter to cooler systems, since collisions tend to pass energy from high-energy to low-energy atoms."
+          },
+          {
+           "code": "9.3.A.4",
+           "text": "Define thermal equilibrium as no net energy transfer between systems in thermal contact."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "9-4-the-first-law-of-thermodynamics",
+       "title": "9.4 The First Law of Thermodynamics",
+       "subtopics": [
+        {
+         "id": "the-first-law-of-thermodynamics",
+         "title": "The First Law of Thermodynamics",
+         "outcomes": [
+          {
+           "code": "9.4.A",
+           "text": "Describe the internal energy of a system."
+          },
+          {
+           "code": "9.4.A.1",
+           "text": "Define internal energy as the kinetic plus potential energy of a system's parts; an ideal monatomic gas has U = (3/2)nRT."
+          },
+          {
+           "code": "9.4.A.2",
+           "text": "Recognise that internal energy can change internal structure and behaviour without changing the centre-of-mass motion."
+          },
+          {
+           "code": "9.4.B",
+           "text": "Describe the behaviour of a system using thermodynamic processes."
+          },
+          {
+           "code": "9.4.B.1",
+           "text": "State the first law as conservation of energy: change in internal energy equals heating plus work done on the system; compute work as -PdV."
+          },
+          {
+           "code": "9.4.B.2",
+           "text": "Use PV diagrams, isotherms and the area under the curve as the work done on or by a gas."
+          },
+          {
+           "code": "9.4.B.3",
+           "text": "Describe isovolumetric, isothermal, isobaric and adiabatic processes."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "9-5-specific-heat-and-thermal-conductivity",
+       "title": "9.5 Specific Heat and Thermal Conductivity",
+       "subtopics": [
+        {
+         "id": "specific-heat-and-thermal-conductivity",
+         "title": "Specific Heat and Thermal Conductivity",
+         "outcomes": [
+          {
+           "code": "9.5.A",
+           "text": "Describe the energy needed to change an object's temperature."
+          },
+          {
+           "code": "9.5.A.1",
+           "text": "Relate the energy needed for a temperature change to the material's specific heat (Q = mc dT)."
+          },
+          {
+           "code": "9.5.A.2",
+           "text": "Recognise specific heat as an intrinsic property depending on atomic arrangement and interactions."
+          },
+          {
+           "code": "9.5.B",
+           "text": "Describe the rate of energy transfer by conduction through a material."
+          },
+          {
+           "code": "9.5.B.1",
+           "text": "Relate conduction rate to thermal conductivity, the material's dimensions and the temperature difference."
+          },
+          {
+           "code": "9.5.B.2",
+           "text": "Recognise thermal conductivity as an intrinsic property depending on atomic arrangement and interactions."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "9-6-entropy-and-the-second-law-of-thermodynamics",
+       "title": "9.6 Entropy and the Second Law of Thermodynamics",
+       "subtopics": [
+        {
+         "id": "entropy-and-the-second-law-of-thermodynamics",
+         "title": "Entropy and the Second Law of Thermodynamics",
+         "outcomes": [
+          {
+           "code": "9.6.A",
+           "text": "Describe how a system's entropy changes over time."
+          },
+          {
+           "code": "9.6.A.1",
+           "text": "State the second law: total entropy of an isolated system never decreases and is constant only for reversible processes."
+          },
+          {
+           "code": "9.6.A.2",
+           "text": "Describe entropy qualitatively as energy spreading out; it is a state function, maximal at equilibrium."
+          },
+          {
+           "code": "9.6.A.3",
+           "text": "Explain that an isolated system moves toward equilibrium and a closed system's entropy can drop when energy leaves it."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "build": {
+  "builtAt": "2026-10-14T10:04:44.009Z",
+  "model": "claude-agent",
+  "usd": 0,
+  "expectedCodes": 276,
+  "coverage": 1,
+  "missingCodes": [],
+  "counts": {
+   "grades": 1,
+   "units": 7,
+   "topics": 46,
+   "subtopics": 52,
+   "outcomes": 276
+  },
+  "warnings": [
+   "grade 9 has no content",
+   "grade 10 has no content",
+   "grade 11 has no content",
+   "grade 12 has no content",
+   "unexpected grade label \"all\""
+  ]
+ }
+}

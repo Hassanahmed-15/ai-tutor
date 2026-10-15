@@ -1,0 +1,795 @@
+{
+ "id": "pk-fbise-af-ssc-1-biology",
+ "region": "PK",
+ "framework": "FBISE Assessment Framework (National Curriculum of Pakistan 2022-23)",
+ "board": "FBISE",
+ "qualification": "SSC-I",
+ "subject": "Biology",
+ "syllabusCode": null,
+ "gradeSystem": "grade",
+ "source": {
+  "urls": [
+   "https://www.fbise.edu.pk/ModelPaper/2025/Assessment%20Frameworks/SSC-I/Final%20Assessment%20Framework%20Model%20Question%20Paper%20Biology%20SSC-I.pdf"
+  ],
+  "publisher": "Federal Board of Intermediate and Secondary Education",
+  "licence": "Government publication; structure + our own wording only",
+  "firstExam": "2025"
+ },
+ "grades": [
+  {
+   "grade": "9",
+   "units": [
+    {
+     "id": "domain-a-introduction-to-biology",
+     "title": "Domain A: Introduction to Biology",
+     "topics": [
+      {
+       "id": "what-biology-is",
+       "title": "What biology is",
+       "subtopics": [
+        {
+         "id": "what-biology-studies",
+         "title": "What biology studies",
+         "outcomes": [
+          {
+           "code": "B-09-A-01",
+           "text": "Define biology as the study of life."
+          },
+          {
+           "code": "B-09-A-02",
+           "text": "State the Quranic call to study living things."
+          },
+          {
+           "code": "B-09-A-03",
+           "text": "Name the major branches: botany, zoology and microbiology."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "branches-of-biology",
+       "title": "Branches of biology",
+       "subtopics": [
+        {
+         "id": "sub-fields-and-links-to-other-sciences",
+         "title": "Sub-fields and links to other sciences",
+         "outcomes": [
+          {
+           "code": "B-09-A-04",
+           "text": "Define and give examples of the many sub-fields such as cytology, genetics and ecology."
+          },
+          {
+           "code": "B-09-A-05",
+           "text": "Relate biology to other sciences, e.g. biophysics, biochemistry, biotechnology."
+          },
+          {
+           "code": "B-09-A-06",
+           "text": "Identify careers in biology and show how biology belongs to the natural and life sciences."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "scientific-method",
+       "title": "Scientific method",
+       "subtopics": [
+        {
+         "id": "how-scientists-work",
+         "title": "How scientists work",
+         "outcomes": [
+          {
+           "code": "B-09-A-07",
+           "text": "Show with examples that science needs researchers from many fields sharing and criticising ideas."
+          },
+          {
+           "code": "B-09-A-08",
+           "text": "Describe the steps of the scientific method from observation to results."
+          },
+          {
+           "code": "B-09-A-09",
+           "text": "Distinguish hypothesis, theory and law in natural science research."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "domain-b-evolution-and-biodiversity",
+     "title": "Domain B: Evolution and Biodiversity",
+     "topics": [
+      {
+       "id": "evolution",
+       "title": "Evolution",
+       "subtopics": [
+        {
+         "id": "natural-selection",
+         "title": "Natural selection",
+         "outcomes": [
+          {
+           "code": "B-09-B-01",
+           "text": "Explain evolution by natural selection with an example."
+          },
+          {
+           "code": "B-09-B-04",
+           "text": "Summarise what Darwin observed on the Beagle voyage."
+          }
+         ]
+        },
+        {
+         "id": "species-and-speciation",
+         "title": "Species and speciation",
+         "outcomes": [
+          {
+           "code": "B-09-B-02",
+           "text": "Define a species."
+          },
+          {
+           "code": "B-09-B-03",
+           "text": "Describe how new species form."
+          },
+          {
+           "code": "B-09-B-05",
+           "text": "Describe the sources of variation that lead to speciation and evolution."
+          }
+         ]
+        },
+        {
+         "id": "evidence-for-evolution",
+         "title": "Evidence for evolution",
+         "outcomes": [
+          {
+           "code": "B-09-B-06",
+           "text": "Describe fossil, comparative anatomy and selective breeding evidence for evolution."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "classification",
+       "title": "Classification",
+       "subtopics": [
+        {
+         "id": "why-we-classify",
+         "title": "Why we classify",
+         "outcomes": [
+          {
+           "code": "B-09-B-07",
+           "text": "Define biodiversity and classification."
+          },
+          {
+           "code": "B-09-B-08",
+           "text": "Describe the advantages of classifying organisms."
+          },
+          {
+           "code": "B-09-B-09",
+           "text": "Discuss how classification schemes developed over history."
+          }
+         ]
+        },
+        {
+         "id": "domains-and-ranks",
+         "title": "Domains and ranks",
+         "outcomes": [
+          {
+           "code": "B-09-B-10",
+           "text": "List the three domains of life."
+          },
+          {
+           "code": "B-09-B-11",
+           "text": "List the taxonomic ranks in order."
+          },
+          {
+           "code": "B-09-B-12",
+           "text": "Outline binomial nomenclature."
+          },
+          {
+           "code": "B-09-B-13",
+           "text": "Describe why viruses are hard to classify."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "domain-c-molecular-biology",
+     "title": "Domain C: Molecular Biology",
+     "topics": [
+      {
+       "id": "biomolecules",
+       "title": "Biomolecules",
+       "subtopics": [
+        {
+         "id": "types-of-biomolecules",
+         "title": "Types of biomolecules",
+         "outcomes": [
+          {
+           "code": "B-09-C-1",
+           "text": "Define biochemistry and molecular biology."
+          },
+          {
+           "code": "B-09-C-2",
+           "text": "Outline the main biomolecules, their cell locations and roles."
+          }
+         ]
+        },
+        {
+         "id": "proteins",
+         "title": "Proteins",
+         "outcomes": [
+          {
+           "code": "B-09-C-03",
+           "text": "Outline protein structure, function and sources, including amino acid structure."
+          }
+         ]
+        },
+        {
+         "id": "lipids",
+         "title": "Lipids",
+         "outcomes": [
+          {
+           "code": "B-09-C-4",
+           "text": "Outline the structure, function and sources of lipids."
+          }
+         ]
+        },
+        {
+         "id": "carbohydrates",
+         "title": "Carbohydrates",
+         "outcomes": [
+          {
+           "code": "B-09-C-05",
+           "text": "Define carbohydrates and outline their structure, function and sources."
+          },
+          {
+           "code": "B-09-C-06",
+           "text": "Classify carbohydrates as mono-, di- or polysaccharides."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "nucleic-acids",
+       "title": "Nucleic acids",
+       "subtopics": [
+        {
+         "id": "dna",
+         "title": "DNA",
+         "outcomes": [
+          {
+           "code": "B-09-C-07",
+           "text": "Describe DNA as a double helix of nucleotides joined by complementary base pairing."
+          },
+          {
+           "code": "B-09-C-08",
+           "text": "Outline DNA as the carrier of hereditary information."
+          }
+         ]
+        },
+        {
+         "id": "rna-and-protein-making",
+         "title": "RNA and protein making",
+         "outcomes": [
+          {
+           "code": "B-09-C-09",
+           "text": "Describe RNA as a single-stranded nucleotide molecule."
+          },
+          {
+           "code": "B-09-C-10",
+           "text": "Outline how RNA helps turn hereditary information into proteins."
+          },
+          {
+           "code": "B-09-C-11",
+           "text": "Outline how DNA information passes to RNA and then to proteins."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "domain-d-cells-and-subcells",
+     "title": "Domain D: Cells and Subcells",
+     "topics": [
+      {
+       "id": "cell-structure",
+       "title": "Cell structure",
+       "subtopics": [
+        {
+         "id": "the-cell-as-the-unit-of-life",
+         "title": "The cell as the unit of life",
+         "outcomes": [
+          {
+           "code": "B-09-D-01",
+           "text": "Describe the cell as the basic unit of life."
+          },
+          {
+           "code": "B-09-D-2",
+           "text": "Compare animal and plant cells using diagrams."
+          }
+         ]
+        },
+        {
+         "id": "organelles",
+         "title": "Organelles",
+         "outcomes": [
+          {
+           "code": "B-09-D-03",
+           "text": "Sketch organelles such as nucleus and mitochondria and outline their roles."
+          },
+          {
+           "code": "B-09-D-04",
+           "text": "Outline the structural advantages of plant and animal cells."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "cell-specialisation",
+       "title": "Cell specialisation",
+       "subtopics": [
+        {
+         "id": "types-of-cells-and-division-of-labour",
+         "title": "Types of cells and division of labour",
+         "outcomes": [
+          {
+           "code": "B-09-D-05",
+           "text": "Identify and sketch cell types such as mesophyll, neuron, muscle and red blood cells."
+          },
+          {
+           "code": "B-09-D-06",
+           "text": "Describe division of labour within cells and across cells of an organism."
+          },
+          {
+           "code": "B-09-D-07",
+           "text": "Describe cell specialisation."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "cell-division",
+       "title": "Cell division",
+       "subtopics": [
+        {
+         "id": "cell-cycle-and-mitosis",
+         "title": "Cell cycle and mitosis",
+         "outcomes": [
+          {
+           "code": "B-09-D-08",
+           "text": "Describe the cell cycle."
+          },
+          {
+           "code": "B-09-D-09",
+           "text": "Explain mitosis and meiosis and the stages of mitosis using sketches."
+          }
+         ]
+        },
+        {
+         "id": "meiosis-significance-and-stem-cells",
+         "title": "Meiosis, significance and stem cells",
+         "outcomes": [
+          {
+           "code": "B-09-D-11",
+           "text": "Compare mitosis and meiosis."
+          },
+          {
+           "code": "B-09-D-12",
+           "text": "Outline the significance of mitosis and meiosis."
+          },
+          {
+           "code": "B-09-D-13",
+           "text": "Define stem cells as unspecialised cells."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "domain-e-tissues-organs-and-systems",
+     "title": "Domain E: Tissues, Organs and Systems",
+     "topics": [
+      {
+       "id": "levels-of-organisation",
+       "title": "Levels of organisation",
+       "subtopics": [
+        {
+         "id": "cells-to-organisms",
+         "title": "Cells to organisms",
+         "outcomes": [
+          {
+           "code": "B-09-E-1",
+           "text": "Distinguish tissues, organs and systems with examples from animals and plants."
+          },
+          {
+           "code": "B-09-E-02",
+           "text": "Describe emergent properties through the levels from organelles up to whole organisms."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "tissues-and-organs",
+       "title": "Tissues and organs",
+       "subtopics": [
+        {
+         "id": "how-tissues-form-organs-and-systems",
+         "title": "How tissues form organs and systems",
+         "outcomes": [
+          {
+           "code": "B-09-E-3",
+           "text": "List the tissue types that combine to form the stomach."
+          },
+          {
+           "code": "B-09-E-04",
+           "text": "Discuss the tissue types that combine to form a leaf."
+          },
+          {
+           "code": "B-09-E-5",
+           "text": "Discuss how organ systems combine to form the human body."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "homeostasis-and-body-systems",
+       "title": "Homeostasis and body systems",
+       "subtopics": [
+        {
+         "id": "homeostasis-and-organ-systems",
+         "title": "Homeostasis and organ systems",
+         "outcomes": [
+          {
+           "code": "B-09-E-06",
+           "text": "Describe the advantages of homeostasis."
+          },
+          {
+           "code": "B-09-E-07",
+           "text": "Discuss how human organs and systems work together to keep homeostasis."
+          },
+          {
+           "code": "B-09-E-08",
+           "text": "Explain plant physiology in terms of plant organ structures and roles."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "domain-f-metabolism",
+     "title": "Domain F: Metabolism",
+     "topics": [
+      {
+       "id": "metabolism-and-enzymes",
+       "title": "Metabolism and enzymes",
+       "subtopics": [
+        {
+         "id": "metabolism",
+         "title": "Metabolism",
+         "outcomes": [
+          {
+           "code": "B-09-F-01",
+           "text": "Define metabolism, catabolism and anabolism with examples."
+          }
+         ]
+        },
+        {
+         "id": "enzymes",
+         "title": "Enzymes",
+         "outcomes": [
+          {
+           "code": "B-09-F-02",
+           "text": "Define enzymes and describe their characteristics."
+          },
+          {
+           "code": "B:09-F-03",
+           "text": "Show how an enzyme works."
+          },
+          {
+           "code": "B-09-F-04",
+           "text": "Assess the factors that change enzyme activity."
+          },
+          {
+           "code": "B-09-F-05",
+           "text": "Describe competitive and non-competitive inhibition."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "energy-in-cells",
+       "title": "Energy in cells",
+       "subtopics": [
+        {
+         "id": "atp-and-photosynthesis",
+         "title": "ATP and photosynthesis",
+         "outcomes": [
+          {
+           "code": "B-09-F-06",
+           "text": "Discuss ATP as the cell energy currency."
+          },
+          {
+           "code": "B-09-F-07",
+           "text": "Describe photosynthesis in plants."
+          }
+         ]
+        },
+        {
+         "id": "respiration",
+         "title": "Respiration",
+         "outcomes": [
+          {
+           "code": "B-09-F-08",
+           "text": "Explain aerobic and anaerobic respiration."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "domain-q-plant-physiology",
+     "title": "Domain Q: Plant Physiology",
+     "topics": [
+      {
+       "id": "mineral-nutrition",
+       "title": "Mineral nutrition",
+       "subtopics": [
+        {
+         "id": "plant-minerals",
+         "title": "Plant minerals",
+         "outcomes": [
+          {
+           "code": "B-09-Q-01",
+           "text": "Define mineral nutrition in plants."
+          },
+          {
+           "code": "B-09-Q-02",
+           "text": "Sort plant mineral nutrients into macro- and micronutrients."
+          },
+          {
+           "code": "B-09-Q-03",
+           "text": "State that nitrogen is needed for proteins and magnesium for chlorophyll."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "transport-in-plants",
+       "title": "Transport in plants",
+       "subtopics": [
+        {
+         "id": "roots-and-water-uptake",
+         "title": "Roots and water uptake",
+         "outcomes": [
+          {
+           "code": "B-09-Q-04",
+           "text": "Explain why plants need transport."
+          },
+          {
+           "code": "B-09-Q-05",
+           "text": "Explain the inner structure of the root and root hair."
+          },
+          {
+           "code": "B-09-Q-06",
+           "text": "Describe active and passive uptake of water and minerals by roots."
+          }
+         ]
+        },
+        {
+         "id": "transpiration",
+         "title": "Transpiration",
+         "outcomes": [
+          {
+           "code": "B-09-Q-07",
+           "text": "Describe transpiration and its link to stomata opening and closing."
+          },
+          {
+           "code": "B-09-Q-08",
+           "text": "Describe how temperature, wind and humidity affect transpiration rate."
+          }
+         ]
+        },
+        {
+         "id": "moving-water-and-food",
+         "title": "Moving water and food",
+         "outcomes": [
+          {
+           "code": "B-09-Q-09",
+           "text": "Describe how water and salts move through a plant."
+          },
+          {
+           "code": "B-09-Q-10",
+           "text": "Explain food translocation by the pressure flow mechanism."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "gas-exchange-and-homeostasis-in-plants",
+       "title": "Gas exchange and homeostasis in plants",
+       "subtopics": [
+        {
+         "id": "gas-exchange-and-excretion",
+         "title": "Gas exchange and excretion",
+         "outcomes": [
+          {
+           "code": "B-09-Q-11",
+           "text": "Describe gas exchange in plants."
+          },
+          {
+           "code": "B-09-Q-12",
+           "text": "Define homeostasis and describe why it matters."
+          },
+          {
+           "code": "B-09-Q-13",
+           "text": "Describe plant mechanisms and adaptations for excretion."
+          },
+          {
+           "code": "B-09-Q-14",
+           "text": "Explain osmotic adjustments in plants."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "plant-reproduction",
+       "title": "Plant reproduction",
+       "subtopics": [
+        {
+         "id": "asexual-reproduction",
+         "title": "Asexual reproduction",
+         "outcomes": [
+          {
+           "code": "B-09-Q-15",
+           "text": "Describe asexual reproduction: fission, budding, spores and vegetative propagation."
+          },
+          {
+           "code": "B-09-Q-16",
+           "text": "Distinguish natural vegetative propagation from artificial propagation."
+          },
+          {
+           "code": "B-09-Q-17",
+           "text": "Explain vegetative propagation through stems, suckers and leaves."
+          },
+          {
+           "code": "B-09-Q-18",
+           "text": "Describe cuttings and grafting as artificial propagation."
+          },
+          {
+           "code": "B-09-Q-19",
+           "text": "Explain parthenogenesis as a kind of asexual reproduction."
+          },
+          {
+           "code": "B-09-Q-20",
+           "text": "Define cloning."
+          }
+         ]
+        },
+        {
+         "id": "sexual-reproduction",
+         "title": "Sexual reproduction",
+         "outcomes": [
+          {
+           "code": "B-09-Q-21",
+           "text": "Explain sexual reproduction in plants."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "practical-skills",
+     "title": "Practical Skills",
+     "topics": [
+      {
+       "id": "laboratory-work",
+       "title": "Laboratory work",
+       "subtopics": [
+        {
+         "id": "measuring-in-the-lab",
+         "title": "Measuring in the lab",
+         "outcomes": [
+          {
+           "code": "B-09-10-X-01",
+           "text": "Make simple SI measurements of volume, mass, temperature, time and length."
+          }
+         ]
+        },
+        {
+         "id": "biology-experiments",
+         "title": "Biology experiments",
+         "outcomes": [
+          {
+           "code": "B-09-10-X-02",
+           "text": "Carry out experiments such as diffusion, osmosis, food tests, enzyme rates, photosynthesis and germination."
+          }
+         ]
+        },
+        {
+         "id": "microscope-work",
+         "title": "Microscope work",
+         "outcomes": [
+          {
+           "code": "B-09-10-X-03",
+           "text": "Use a microscope to examine biological specimens."
+          },
+          {
+           "code": "B-09-10-X-04",
+           "text": "Calculate the magnification of specimens."
+          }
+         ]
+        },
+        {
+         "id": "practical-technique",
+         "title": "Practical technique",
+         "outcomes": [
+          {
+           "code": "B-09-10-X-05",
+           "text": "Choose and safely use apparatus, draw and label diagrams, and justify method choices."
+          },
+          {
+           "code": "B-09-10-X-06",
+           "text": "Follow lab safety rules such as PPE, goggles and tied-up hair."
+          }
+         ]
+        },
+        {
+         "id": "measurement-quality",
+         "title": "Measurement quality",
+         "outcomes": [
+          {
+           "code": "B-09-10-X-07",
+           "text": "Use terms such as accuracy, precision, repeatability, validity and range correctly."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "build": {
+  "builtAt": "2026-10-14T08:07:46.641Z",
+  "model": "claude-agent",
+  "usd": 0,
+  "expectedCodes": 72,
+  "coverage": 0.9861111111111112,
+  "missingCodes": [
+   "B-09-D-012"
+  ],
+  "counts": {
+   "grades": 1,
+   "units": 8,
+   "topics": 20,
+   "subtopics": 38,
+   "outcomes": 89
+  },
+  "warnings": []
+ }
+}

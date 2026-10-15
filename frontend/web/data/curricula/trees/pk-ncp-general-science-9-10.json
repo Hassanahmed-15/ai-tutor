@@ -1,0 +1,964 @@
+{
+ "id": "pk-ncp-general-science-9-10",
+ "region": "PK",
+ "framework": "National Curriculum of Pakistan 2022-23",
+ "board": null,
+ "qualification": "SSC",
+ "subject": "General Science",
+ "syllabusCode": null,
+ "gradeSystem": "grade",
+ "source": {
+  "urls": [
+   "https://ncc.gov.pk/SiteImage/Misc/files/18-General%20Science.pdf"
+  ],
+  "publisher": "National Curriculum Council, Ministry of Federal Education and Professional Training",
+  "licence": "Government publication; structure + our own wording only",
+  "firstExam": null
+ },
+ "grades": [
+  {
+   "grade": "9",
+   "units": [
+    {
+     "id": "domain-a-nature-of-science",
+     "title": "Domain A: Nature of Science",
+     "topics": [
+      {
+       "id": "nature-of-science",
+       "title": "Nature of Science",
+       "subtopics": [
+        {
+         "id": "nature-and-branches-of-science",
+         "title": "Nature and branches of science",
+         "outcomes": [
+          {
+           "code": "GS-09-A-01",
+           "text": "Explain the nature of science."
+          },
+          {
+           "code": "GS-09-A-02",
+           "text": "List the main branches of science and their uses."
+          },
+          {
+           "code": "GS-09-A-03",
+           "text": "Describe how branches of science relate and name interdisciplinary fields."
+          }
+         ]
+        },
+        {
+         "id": "science-as-teamwork",
+         "title": "Science as teamwork",
+         "outcomes": [
+          {
+           "code": "GS-09-A-04",
+           "text": "Show with examples that science depends on collaboration and shared critique."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "domain-b-life-sciences",
+     "title": "Domain B: Life Sciences",
+     "topics": [
+      {
+       "id": "cells-and-tissues",
+       "title": "Cells and Tissues",
+       "subtopics": [
+        {
+         "id": "cell-and-organelles",
+         "title": "Cell and organelles",
+         "outcomes": [
+          {
+           "code": "GS-09-B-01",
+           "text": "Define the cell as the basic unit of life."
+          },
+          {
+           "code": "GS-09-B-02",
+           "text": "Describe the organelles of a cell."
+          },
+          {
+           "code": "GS-09-B-03",
+           "text": "Compare plant and animal cells."
+          }
+         ]
+        },
+        {
+         "id": "tissues-and-cell-models",
+         "title": "Tissues and cell models",
+         "outcomes": [
+          {
+           "code": "GS-09-B-04",
+           "text": "Describe plant tissues (epidermal, xylem, phloem) and animal tissues (epithelial, muscular, nervous)."
+          },
+          {
+           "code": "GS-09-B-05",
+           "text": "Build 3-D models of plant and animal cells (STEAM)."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "biodiversity-and-classification",
+       "title": "Biodiversity and Classification",
+       "subtopics": [
+        {
+         "id": "biodiversity",
+         "title": "Biodiversity",
+         "outcomes": [
+          {
+           "code": "GS-09-B-06",
+           "text": "Define biodiversity."
+          },
+          {
+           "code": "GS-09-B-07",
+           "text": "Identify why biodiversity matters."
+          },
+          {
+           "code": "GS-09-B-08",
+           "text": "Discuss human impact on biodiversity."
+          },
+          {
+           "code": "GS-09-B-09",
+           "text": "Describe ways to conserve biodiversity."
+          }
+         ]
+        },
+        {
+         "id": "classification-systems",
+         "title": "Classification systems",
+         "outcomes": [
+          {
+           "code": "GS-09-B-10",
+           "text": "Explain why a classification system is needed."
+          },
+          {
+           "code": "GS-09-B-11",
+           "text": "Compare the two, three and five kingdom systems."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "domain-c-physical-science",
+     "title": "Domain C: Physical Science",
+     "topics": [
+      {
+       "id": "chemistry-atomic-structure",
+       "title": "Chemistry: Atomic Structure",
+       "subtopics": [
+        {
+         "id": "atom-structure-and-isotopes",
+         "title": "Atom structure and isotopes",
+         "outcomes": [
+          {
+           "code": "GS-09-C-01",
+           "text": "Describe an atom's structure with the location and charges of protons, electrons and neutrons."
+          },
+          {
+           "code": "GS-09-C-02",
+           "text": "Draw atomic structure of the first twenty elements."
+          },
+          {
+           "code": "GS-09-C-03",
+           "text": "Work out protons, neutrons and electrons in isotopes of H, C, O, Cl and U."
+          }
+         ]
+        },
+        {
+         "id": "rutherford-and-bohr-models",
+         "title": "Rutherford and Bohr models",
+         "outcomes": [
+          {
+           "code": "GS-09-C-04",
+           "text": "Describe Rutherford's experiment that found the nucleus."
+          },
+          {
+           "code": "GS-09-C-05",
+           "text": "Describe the flaws of Rutherford's model."
+          },
+          {
+           "code": "GS-09-C-06",
+           "text": "List the main postulates of Bohr's model."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "chemistry-chemical-bonding",
+       "title": "Chemistry: Chemical Bonding",
+       "subtopics": [
+        {
+         "id": "valence-electrons-and-octet-rule",
+         "title": "Valence electrons and octet rule",
+         "outcomes": [
+          {
+           "code": "GS-09-C-07",
+           "text": "Define shells and subshells and find valence electrons from the periodic table."
+          },
+          {
+           "code": "GS-09-C-08",
+           "text": "Describe the duplet and octet rule."
+          },
+          {
+           "code": "GS-09-C-09",
+           "text": "Identify elements and their ions from atomic number using duplet and octet rules."
+          },
+          {
+           "code": "GS-09-C-10",
+           "text": "Justify why atoms form bonds."
+          }
+         ]
+        },
+        {
+         "id": "ionic-and-covalent-bonds",
+         "title": "Ionic and covalent bonds",
+         "outcomes": [
+          {
+           "code": "GS-09-C-11",
+           "text": "Describe how an ionic bond forms."
+          },
+          {
+           "code": "GS-09-C-12",
+           "text": "Describe ionic compound properties."
+          },
+          {
+           "code": "GS-09-C-13",
+           "text": "Describe how a covalent bond forms."
+          },
+          {
+           "code": "GS-09-C-14",
+           "text": "Describe covalent compound properties."
+          },
+          {
+           "code": "GS-09-C-15",
+           "text": "Identify polar and nonpolar covalent molecules."
+          },
+          {
+           "code": "GS-09-C-16",
+           "text": "Compare ionic and covalent compounds with examples."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "chemistry-states-of-matter",
+       "title": "Chemistry: States of Matter",
+       "subtopics": [
+        {
+         "id": "states-of-matter-and-gases",
+         "title": "States of matter and gases",
+         "outcomes": [
+          {
+           "code": "GS-09-C-17",
+           "text": "Identify the three states of matter, using water as an example."
+          },
+          {
+           "code": "GS-09-C-18",
+           "text": "Compare intermolecular forces across the three states."
+          },
+          {
+           "code": "GS-09-C-19",
+           "text": "Describe gas properties: diffusion, effusion, condensation, density, compressibility."
+          }
+         ]
+        },
+        {
+         "id": "liquids-and-solids",
+         "title": "Liquids and solids",
+         "outcomes": [
+          {
+           "code": "GS-09-C-20",
+           "text": "Analyse liquid properties: evaporation, vapour pressure, boiling and freezing point, density."
+          },
+          {
+           "code": "GS-09-C-21",
+           "text": "Explain solid properties: melting point, sublimation, compressibility, density."
+          },
+          {
+           "code": "GS-09-C-22",
+           "text": "Tell amorphous from crystalline solids."
+          },
+          {
+           "code": "GS-09-C-23",
+           "text": "Tell the allotropes of carbon apart."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "physics-measurement",
+       "title": "Physics: Measurement",
+       "subtopics": [
+        {
+         "id": "physical-quantities-and-measuring",
+         "title": "Physical quantities and measuring",
+         "outcomes": [
+          {
+           "code": "GS-09-C-24",
+           "text": "Tell physical from non-physical quantities and tabulate measurements."
+          },
+          {
+           "code": "GS-09-C-25",
+           "text": "Explain with an example that physics rests on physical quantities."
+          },
+          {
+           "code": "GS-09-C-26",
+           "text": "Measure length with tapes and metre rules."
+          },
+          {
+           "code": "GS-09-C-27",
+           "text": "Measure time intervals with digital and analogue stopwatches."
+          },
+          {
+           "code": "GS-09-C-28",
+           "text": "Round off and justify calculation estimates."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "physics-forces",
+       "title": "Physics: Forces",
+       "subtopics": [
+        {
+         "id": "gravitation-and-weight",
+         "title": "Gravitation and weight",
+         "outcomes": [
+          {
+           "code": "GS-09-C-29",
+           "text": "Explain gravitation and compare Earth's field strength g with other planets."
+          },
+          {
+           "code": "GS-09-C-30",
+           "text": "Justify that gravity is a non-contact force."
+          },
+          {
+           "code": "GS-09-C-31",
+           "text": "Calculate an object's weight using the formula."
+          },
+          {
+           "code": "GS-09-C-32",
+           "text": "State the four fundamental forces and compare their strengths."
+          }
+         ]
+        },
+        {
+         "id": "friction-and-efficiency",
+         "title": "Friction and efficiency",
+         "outcomes": [
+          {
+           "code": "GS-09-C-33",
+           "text": "Analyse the dissipative effect of friction with examples."
+          },
+          {
+           "code": "GS-09-C-34",
+           "text": "Justify ways to reduce friction."
+          },
+          {
+           "code": "GS-09-C-35",
+           "text": "Define efficiency and explain why no machine is 100% efficient."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "physics-heat",
+       "title": "Physics: Heat",
+       "subtopics": [
+        {
+         "id": "heat-and-temperature",
+         "title": "Heat and temperature",
+         "outcomes": [
+          {
+           "code": "GS-09-C-36",
+           "text": "Tell heat from temperature."
+          },
+          {
+           "code": "GS-09-C-37",
+           "text": "Describe thermal expansion and its everyday effects."
+          },
+          {
+           "code": "GS-09-C-38",
+           "text": "State the melting and boiling temperatures of water."
+          },
+          {
+           "code": "GS-09-C-39",
+           "text": "Tell conduction, convection and radiation apart."
+          },
+          {
+           "code": "GS-09-C-40",
+           "text": "Describe the structure of an atom."
+          },
+          {
+           "code": "GS-09-C-41",
+           "text": "Tell heat conductors from insulators."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "domain-d-earth-space-sciences",
+     "title": "Domain D: Earth & Space Sciences",
+     "topics": [
+      {
+       "id": "energy-resources-and-climate",
+       "title": "Energy Resources and Climate",
+       "subtopics": [
+        {
+         "id": "energy-resources",
+         "title": "Energy resources",
+         "outcomes": [
+          {
+           "code": "GS-09-C-42",
+           "text": "Tell renewable from non-renewable energy resources."
+          },
+          {
+           "code": "GS-09-C-43",
+           "text": "Justify that renewable resources are more beneficial than non-renewable ones."
+          }
+         ]
+        },
+        {
+         "id": "greenhouse-effect-and-smog",
+         "title": "Greenhouse effect and smog",
+         "outcomes": [
+          {
+           "code": "GS-09-C-44",
+           "text": "Describe the greenhouse effect and its climate impact."
+          },
+          {
+           "code": "GS-09-C-45",
+           "text": "Discuss harmful effects of smog on environment and health."
+          }
+         ]
+        },
+        {
+         "id": "green-education-and-skills",
+         "title": "Green education and skills",
+         "outcomes": [
+          {
+           "code": "GS-09-C-46",
+           "text": "Recognise why greening education supports sustainable development."
+          },
+          {
+           "code": "GS-09-C-47",
+           "text": "Identify green skills and how they prepare for the future."
+          },
+          {
+           "code": "GS-09-C-48",
+           "text": "Compare green skills with 21st century skills."
+          }
+         ]
+        },
+        {
+         "id": "pressure-and-solar-oven",
+         "title": "Pressure and solar oven",
+         "outcomes": [
+          {
+           "code": "GS-09-C-49",
+           "text": "Explain how atmospheric pressure changes with altitude, with prior pressure knowledge."
+          },
+          {
+           "code": "GS-09-C-50",
+           "text": "Make a solar oven and identify the science behind it (STEAM)."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "10",
+   "units": [
+    {
+     "id": "domain-a-nature-of-science",
+     "title": "Domain A: Nature of Science",
+     "topics": [
+      {
+       "id": "nature-of-science",
+       "title": "Nature of Science",
+       "subtopics": [
+        {
+         "id": "science-technology-and-engineering",
+         "title": "Science, technology and engineering",
+         "outcomes": [
+          {
+           "code": "GS-10-A-01",
+           "text": "Tell science, technology and engineering apart with examples."
+          },
+          {
+           "code": "GS-10-A-02",
+           "text": "Discuss science as a blend of logic and imagination."
+          }
+         ]
+        },
+        {
+         "id": "falsifiability",
+         "title": "Falsifiability",
+         "outcomes": [
+          {
+           "code": "GS-10-A-03",
+           "text": "Explain with examples that a scientific theory must be able to be disproven."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "domain-b-life-sciences",
+     "title": "Domain B: Life Sciences",
+     "topics": [
+      {
+       "id": "life-processes",
+       "title": "Life Processes",
+       "subtopics": [
+        {
+         "id": "circulatory-muscle-and-skeletal-systems",
+         "title": "Circulatory, muscle and skeletal systems",
+         "outcomes": [
+          {
+           "code": "GS-10-B-01",
+           "text": "Recognise the roles of heart, lungs, blood and blood vessels."
+          },
+          {
+           "code": "GS-10-B-02",
+           "text": "Describe the human muscle and skeletal systems."
+          },
+          {
+           "code": "GS-10-B-05",
+           "text": "Build a working circulatory system model (STEAM)."
+          }
+         ]
+        },
+        {
+         "id": "photosynthesis",
+         "title": "Photosynthesis",
+         "outcomes": [
+          {
+           "code": "GS-10-B-03",
+           "text": "Explain photosynthesis in plants."
+          },
+          {
+           "code": "GS-10-B-04",
+           "text": "Analyse the factors that limit photosynthesis."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "biotechnology-and-genetic-engineering",
+       "title": "Biotechnology and Genetic Engineering",
+       "subtopics": [
+        {
+         "id": "biotechnology",
+         "title": "Biotechnology",
+         "outcomes": [
+          {
+           "code": "GS-10-B-06",
+           "text": "Explain biotechnology and why it matters."
+          },
+          {
+           "code": "GS-10-B-07",
+           "text": "Interpret uses of biotechnology in food, medicine and agriculture."
+          },
+          {
+           "code": "GS-10-B-08",
+           "text": "Define genetic engineering and discuss its uses."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "health-and-hygiene",
+       "title": "Health and Hygiene",
+       "subtopics": [
+        {
+         "id": "nutrition-and-balanced-diet",
+         "title": "Nutrition and balanced diet",
+         "outcomes": [
+          {
+           "code": "GS-10-B-09",
+           "text": "Define nutrition and nutrients."
+          },
+          {
+           "code": "GS-10-B-10",
+           "text": "Discuss roles of carbohydrates, proteins, lipids, vitamins, water and fibre."
+          },
+          {
+           "code": "GS-10-B-11",
+           "text": "Define a balanced diet and explain its importance."
+          },
+          {
+           "code": "GS-10-B-12",
+           "text": "Discuss hygiene and why it matters."
+          }
+         ]
+        },
+        {
+         "id": "microorganisms-and-disease",
+         "title": "Microorganisms and disease",
+         "outcomes": [
+          {
+           "code": "GS-10-B-13",
+           "text": "Describe fungi, bacteria and viruses."
+          },
+          {
+           "code": "GS-10-B-14",
+           "text": "Recognise advantages and disadvantages of microorganisms."
+          }
+         ]
+        },
+        {
+         "id": "common-infections",
+         "title": "Common infections",
+         "outcomes": [
+          {
+           "code": "GS-10-B-15",
+           "text": "List common bacterial and viral diseases such as pink eye, influenza, diarrhoea, typhoid, measles and covid."
+          },
+          {
+           "code": "GS-10-B-16",
+           "text": "Explain symptoms, causes, prevention and treatment of those diseases."
+          },
+          {
+           "code": "GS-10-B-17",
+           "text": "Tell vaccines from antibiotics."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "domain-c-physical-science",
+     "title": "Domain C: Physical Science",
+     "topics": [
+      {
+       "id": "chemistry-periodic-table",
+       "title": "Chemistry: Periodic Table",
+       "subtopics": [
+        {
+         "id": "periodic-table-layout",
+         "title": "Periodic table layout",
+         "outcomes": [
+          {
+           "code": "GS-10-C-01",
+           "text": "Define the periodic table."
+          },
+          {
+           "code": "GS-10-C-02",
+           "text": "Tell groups from periods."
+          },
+          {
+           "code": "GS-10-C-03",
+           "text": "Describe the s, p, d and f blocks."
+          },
+          {
+           "code": "GS-10-C-04",
+           "text": "Deduce groups and periods of the first twenty elements from electronic configuration."
+          }
+         ]
+        },
+        {
+         "id": "periodic-trends-and-groups",
+         "title": "Periodic trends and groups",
+         "outcomes": [
+          {
+           "code": "GS-10-C-05",
+           "text": "Define and analyse trends in atomic radius, ionisation energy, electron affinity, electronegativity, shielding and metallic character."
+          },
+          {
+           "code": "GS-10-C-06",
+           "text": "Discuss physical and chemical properties of main groups I, II, IV, VII and VIII."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "chemistry-acids-bases-and-salts",
+       "title": "Chemistry: Acids, Bases and Salts",
+       "subtopics": [
+        {
+         "id": "acid-base-concepts",
+         "title": "Acid-base concepts",
+         "outcomes": [
+          {
+           "code": "GS-10-C-07",
+           "text": "State the Arrhenius concept of acids and bases with examples."
+          },
+          {
+           "code": "GS-10-C-08",
+           "text": "Describe the Bronsted-Lowry concept with examples."
+          },
+          {
+           "code": "GS-10-C-09",
+           "text": "Deduce the Lewis concept with examples."
+          },
+          {
+           "code": "GS-10-C-10",
+           "text": "Identify substances under each of the three concepts."
+          }
+         ]
+        },
+        {
+         "id": "properties-and-uses",
+         "title": "Properties and uses",
+         "outcomes": [
+          {
+           "code": "GS-10-C-11",
+           "text": "Compare strong with concentrated and weak with dilute acids and bases."
+          },
+          {
+           "code": "GS-10-C-12",
+           "text": "Discuss physical and chemical properties of acids and bases."
+          },
+          {
+           "code": "GS-10-C-13",
+           "text": "Identify uses of acids, bases and salts at home and in industry (STEAM)."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "chemistry-environmental-chemistry",
+       "title": "Chemistry: Environmental Chemistry",
+       "subtopics": [
+        {
+         "id": "atmosphere-and-air-pollution",
+         "title": "Atmosphere and air pollution",
+         "outcomes": [
+          {
+           "code": "GS-10-C-14",
+           "text": "Recognise the importance of environmental chemistry."
+          },
+          {
+           "code": "GS-10-C-15",
+           "text": "Tell the troposphere, stratosphere, mesosphere and thermosphere apart."
+          },
+          {
+           "code": "GS-10-C-16",
+           "text": "Identify sources and effects of air pollutants."
+          },
+          {
+           "code": "GS-10-C-17",
+           "text": "Discuss problems caused by air pollution."
+          },
+          {
+           "code": "GS-10-C-18",
+           "text": "Explain ozone formation in the stratosphere."
+          },
+          {
+           "code": "GS-10-C-19",
+           "text": "Analyse global warming, its causes and effects (STEAM)."
+          }
+         ]
+        },
+        {
+         "id": "water-pollution",
+         "title": "Water pollution",
+         "outcomes": [
+          {
+           "code": "GS-10-C-20",
+           "text": "Show understanding of causes and effects of water pollution (STEAM)."
+          },
+          {
+           "code": "GS-10-C-21",
+           "text": "Recognise the international, cross-cultural and cross-subject nature of environmental problems."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "physics-sound",
+       "title": "Physics: Sound",
+       "subtopics": [
+        {
+         "id": "waves-and-sound",
+         "title": "Waves and sound",
+         "outcomes": [
+          {
+           "code": "GS-10-C-22",
+           "text": "Describe what a wave is."
+          },
+          {
+           "code": "GS-10-C-23",
+           "text": "Describe how sound is produced."
+          },
+          {
+           "code": "GS-10-C-24",
+           "text": "Describe that sound travels faster in solids than liquids and faster in liquids than gases."
+          },
+          {
+           "code": "GS-10-C-25",
+           "text": "Analyse the effects of noise pollution."
+          },
+          {
+           "code": "GS-10-C-26",
+           "text": "Justify the effect of acoustic protection."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "physics-current-electricity",
+       "title": "Physics: Current Electricity",
+       "subtopics": [
+        {
+         "id": "current-and-electrical-safety",
+         "title": "Current and electrical safety",
+         "outcomes": [
+          {
+           "code": "GS-10-C-27",
+           "text": "Define current."
+          },
+          {
+           "code": "GS-10-C-28",
+           "text": "Explain electrical conduction in metals by free electron movement."
+          },
+          {
+           "code": "GS-10-C-29",
+           "text": "Explain why appliance casings must be insulators."
+          },
+          {
+           "code": "GS-10-C-30",
+           "text": "State common electrical hazards from malpractice and poor maintenance."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "physics-magnetism",
+       "title": "Physics: Magnetism",
+       "subtopics": [
+        {
+         "id": "magnetism",
+         "title": "Magnetism",
+         "outcomes": [
+          {
+           "code": "GS-10-C-31",
+           "text": "Describe magnetism and the field around a bar magnet."
+          },
+          {
+           "code": "GS-10-C-32",
+           "text": "State the theory that Earth's field comes from its rotation and molten iron core."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "domain-d-earth-space-sciences",
+     "title": "Domain D: Earth & Space Sciences",
+     "topics": [
+      {
+       "id": "earth-science",
+       "title": "Earth Science",
+       "subtopics": [
+        {
+         "id": "earth-processes-and-resources",
+         "title": "Earth processes and resources",
+         "outcomes": [
+          {
+           "code": "GS-10-C-33",
+           "text": "Explain basics of surface and groundwater, volcano and earthquake hazards, glaciers, ice ages and climate change, and mineral and hydrocarbon resources."
+          },
+          {
+           "code": "GS-10-C-34",
+           "text": "Identify key problems of floods and drought."
+          },
+          {
+           "code": null,
+           "text": "Explain earth processes using plate tectonics, Earth's systems and the rock cycle."
+          }
+         ]
+        },
+        {
+         "id": "water-and-drainage-basins",
+         "title": "Water and drainage basins",
+         "outcomes": [
+          {
+           "code": "GS-10-C-35",
+           "text": "Define drainage basin and show how basins influence surface water movement."
+          },
+          {
+           "code": "GS-10-C-36",
+           "text": "Explain how human activity affects water quality and movement."
+          }
+         ]
+        },
+        {
+         "id": "climate-and-weather",
+         "title": "Climate and weather",
+         "outcomes": [
+          {
+           "code": "GS-10-C-37",
+           "text": "Explain factors that affect an area's climate."
+          },
+          {
+           "code": "GS-10-C-38",
+           "text": "Discuss how to prevent climate change."
+          },
+          {
+           "code": "GS-10-C-39",
+           "text": "Analyse weather changes in relation to atmospheric pressure."
+          },
+          {
+           "code": "GS-10-C-40",
+           "text": "Grow a plant in a greenhouse and one outdoors and compare growth (STEAM)."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "build": {
+  "builtAt": "2026-10-14T08:25:15.317Z",
+  "model": "claude-agent",
+  "usd": 0,
+  "expectedCodes": 125,
+  "coverage": 1,
+  "missingCodes": [],
+  "counts": {
+   "grades": 2,
+   "units": 8,
+   "topics": 21,
+   "subtopics": 40,
+   "outcomes": 126
+  },
+  "warnings": []
+ }
+}

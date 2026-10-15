@@ -1,0 +1,1856 @@
+{
+ "id": "uk-edexcel-alevel-biology-b-9bi0",
+ "region": "UK",
+ "framework": "Pearson Edexcel Level 3 Advanced GCE",
+ "board": "Pearson Edexcel",
+ "qualification": "A Level",
+ "subject": "Biology B",
+ "syllabusCode": "9BI0",
+ "gradeSystem": "year",
+ "source": {
+  "urls": [
+   "https://qualifications.pearson.com/content/dam/pdf/A%20Level/biology-b/2015/specification-and-sample-assessment-materials/9781446930892-gce2015-a-biob-spec.pdf"
+  ],
+  "publisher": "Pearson Education",
+  "licence": "Exam board specification, (c) Pearson; structure + our own wording only",
+  "firstExam": "2017"
+ },
+ "grades": [
+  {
+   "grade": "Year 12",
+   "units": [
+    {
+     "id": "topic-1-biological-molecules",
+     "title": "Topic 1: Biological Molecules",
+     "topics": [
+      {
+       "id": "1-1-carbohydrates",
+       "title": "1.1 Carbohydrates",
+       "subtopics": [
+        {
+         "id": "sugars-and-their-bonds",
+         "title": "Sugars and their bonds",
+         "outcomes": [
+          {
+           "code": "1.1",
+           "text": "Distinguish monosaccharides, disaccharides and polysaccharides."
+          },
+          {
+           "code": null,
+           "text": "Recall the structures of alpha and beta glucose and of ribose."
+          },
+          {
+           "code": null,
+           "text": "Explain how condensation forms glycosidic bonds in disaccharides and polysaccharides, and how hydrolysis splits them."
+          }
+         ]
+        },
+        {
+         "id": "structure-and-function-of-polysaccharides",
+         "title": "Structure and function of polysaccharides",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Relate the structures of glucose, starch, glycogen and cellulose to their functions."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "1-2-lipids",
+       "title": "1.2 Lipids",
+       "subtopics": [
+        {
+         "id": "triglycerides-and-phospholipids",
+         "title": "Triglycerides and phospholipids",
+         "outcomes": [
+          {
+           "code": "1.2",
+           "text": "Describe how a triglyceride forms by ester bonds between glycerol and three fatty acids."
+          },
+          {
+           "code": null,
+           "text": "Compare saturated and unsaturated lipids."
+          },
+          {
+           "code": null,
+           "text": "Link lipid structure to energy storage, waterproofing and insulation."
+          },
+          {
+           "code": null,
+           "text": "Explain how phospholipid structure suits cell membranes."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "1-3-proteins",
+       "title": "1.3 Proteins",
+       "subtopics": [
+        {
+         "id": "amino-acids-and-protein-structure",
+         "title": "Amino acids and protein structure",
+         "outcomes": [
+          {
+           "code": "1.3",
+           "text": "Draw the general structure of an amino acid."
+          },
+          {
+           "code": null,
+           "text": "Explain how peptide bonds form polypeptides by condensation."
+          },
+          {
+           "code": null,
+           "text": "Describe the role of ionic, hydrogen and disulfide bonds in protein structure."
+          },
+          {
+           "code": null,
+           "text": "Explain how primary to quaternary structure determines properties of fibrous and globular proteins."
+          }
+         ]
+        },
+        {
+         "id": "collagen-and-haemoglobin",
+         "title": "Collagen and haemoglobin",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Relate the structures of collagen and haemoglobin to their functions."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "1-4-dna-and-protein-synthesis",
+       "title": "1.4 DNA and protein synthesis",
+       "subtopics": [
+        {
+         "id": "dna-structure-and-replication",
+         "title": "DNA structure and replication",
+         "outcomes": [
+          {
+           "code": "1.4",
+           "text": "Describe DNA structure: nucleotides, base pairing, backbones, phosphodiester and hydrogen bonds."
+          },
+          {
+           "code": null,
+           "text": "Explain semi-conservative replication and the roles of helicase, polymerase and ligase."
+          },
+          {
+           "code": null,
+           "text": "State that a gene is a base sequence coding for a polypeptide's amino acids."
+          }
+         ]
+        },
+        {
+         "id": "rna-transcription-and-translation",
+         "title": "RNA, transcription and translation",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe the structure of mRNA."
+          },
+          {
+           "code": null,
+           "text": "Describe the structure of tRNA including the anticodon."
+          },
+          {
+           "code": null,
+           "text": "Explain transcription in the nucleus and translation at the ribosome, with sense and anti-sense DNA."
+          }
+         ]
+        },
+        {
+         "id": "the-genetic-code-and-mutations",
+         "title": "The genetic code and mutations",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe the genetic code: triplets, start and stop codons, degenerate, non-overlapping, non-coding DNA."
+          },
+          {
+           "code": null,
+           "text": "Define gene mutation using base deletion, insertion and substitution."
+          },
+          {
+           "code": null,
+           "text": "Explain how point mutations change amino acid sequences, as in sickle cell anaemia."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "1-5-enzymes",
+       "title": "1.5 Enzymes",
+       "subtopics": [
+        {
+         "id": "how-enzymes-work",
+         "title": "How enzymes work",
+         "outcomes": [
+          {
+           "code": "1.5",
+           "text": "Describe enzymes as globular proteins."
+          },
+          {
+           "code": null,
+           "text": "Explain specificity and the induced fit hypothesis."
+          },
+          {
+           "code": null,
+           "text": "Explain that enzymes are catalysts lowering activation energy."
+          }
+         ]
+        },
+        {
+         "id": "factors-affecting-enzyme-rate",
+         "title": "Factors affecting enzyme rate",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain how temperature, pH, substrate and enzyme concentration affect enzyme rate. Core practical 1."
+          },
+          {
+           "code": null,
+           "text": "Explain how initial rate is measured and why it matters."
+          }
+         ]
+        },
+        {
+         "id": "inhibition",
+         "title": "Inhibition",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain competitive, non-competitive and end-product inhibition."
+          },
+          {
+           "code": null,
+           "text": "Recognise that enzymes work both inside cells and outside them."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "1-6-inorganic-ions",
+       "title": "1.6 Inorganic ions",
+       "subtopics": [
+        {
+         "id": "ions-in-plants",
+         "title": "Ions in plants",
+         "outcomes": [
+          {
+           "code": "1.6",
+           "text": "Explain the roles of nitrate, calcium, magnesium and phosphate ions in plants."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "1-7-water",
+       "title": "1.7 Water",
+       "subtopics": [
+        {
+         "id": "properties-of-water",
+         "title": "Properties of water",
+         "outcomes": [
+          {
+           "code": "1.7",
+           "text": "Explain how water's dipole and hydrogen bonding give high specific heat, solvent action, surface tension, incompressibility and density maximum at 4 C."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "topic-2-cells-viruses-and-reproduction-of-living",
+     "title": "Topic 2: Cells, Viruses and Reproduction of Living Things",
+     "topics": [
+      {
+       "id": "2-1-eukaryotic-and-prokaryotic-cell-structure-an",
+       "title": "2.1 Eukaryotic and prokaryotic cell structure and function",
+       "subtopics": [
+        {
+         "id": "cell-theory-and-prokaryotes",
+         "title": "Cell theory and prokaryotes",
+         "outcomes": [
+          {
+           "code": "2.1",
+           "text": "State cell theory: cells are the basic unit of structure, function and organisation."
+          },
+          {
+           "code": null,
+           "text": "Describe how cells are organised into tissues, organs and organ systems."
+          },
+          {
+           "code": null,
+           "text": "Describe prokaryotic ultrastructure: nucleoid, plasmids, 70S ribosomes, cell wall."
+          },
+          {
+           "code": null,
+           "text": "Distinguish Gram positive and negative walls and their antibiotic responses."
+          }
+         ]
+        },
+        {
+         "id": "eukaryotic-cells-and-microscopy",
+         "title": "Eukaryotic cells and microscopy",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe eukaryotic ultrastructure and the functions of its organelles."
+          },
+          {
+           "code": null,
+           "text": "Explain how magnification and resolution are achieved in light and electron microscopy."
+          },
+          {
+           "code": null,
+           "text": "Explain why specimens are stained. Core practical 2: light microscope and micrometers."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "2-2-viruses",
+       "title": "2.2 Viruses",
+       "subtopics": [
+        {
+         "id": "virus-structure-and-replication",
+         "title": "Virus structure and replication",
+         "outcomes": [
+          {
+           "code": "2.2",
+           "text": "Classify viruses by structure and nucleic acid type, using lambda phage, TMV, Ebola and HIV."
+          },
+          {
+           "code": null,
+           "text": "Describe the viral lytic cycle and latency."
+          }
+         ]
+        },
+        {
+         "id": "controlling-viral-disease",
+         "title": "Controlling viral disease",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain that viruses are not cells, so antivirals inhibit replication."
+          },
+          {
+           "code": null,
+           "text": "Explain why preventing spread is key to disease control, using the 2014 Ebola outbreak."
+          },
+          {
+           "code": null,
+           "text": "Evaluate the ethics of using untested drugs in epidemics."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "2-3-eukaryotic-cell-cycle-and-division",
+       "title": "2.3 Eukaryotic cell cycle and division",
+       "subtopics": [
+        {
+         "id": "the-cell-cycle-and-mitosis",
+         "title": "The cell cycle and mitosis",
+         "outcomes": [
+          {
+           "code": "2.3",
+           "text": "Describe the regulated cell cycle: interphase, mitosis, cytokinesis."
+          },
+          {
+           "code": null,
+           "text": "Describe what happens to genetic material through the stages of mitosis."
+          },
+          {
+           "code": null,
+           "text": "Explain how mitosis supports growth, repair and asexual reproduction. Core practical 3: root tip squash."
+          }
+         ]
+        },
+        {
+         "id": "meiosis-and-chromosome-changes",
+         "title": "Meiosis and chromosome changes",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe the stages of meiosis and how it produces haploid gametes."
+          },
+          {
+           "code": null,
+           "text": "Explain how independent assortment and crossing over create genetic variation."
+          },
+          {
+           "code": null,
+           "text": "Describe chromosome mutations such as translocation."
+          },
+          {
+           "code": null,
+           "text": "Explain how non-disjunction causes polysomy (Down's) and monosomy (Turner's)."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "2-4-sexual-reproduction-in-mammals",
+       "title": "2.4 Sexual reproduction in mammals",
+       "subtopics": [
+        {
+         "id": "gametes-and-fertilisation",
+         "title": "Gametes and fertilisation",
+         "outcomes": [
+          {
+           "code": "2.4",
+           "text": "Describe oogenesis and spermatogenesis."
+          },
+          {
+           "code": null,
+           "text": "Describe fertilisation from first contact to nuclear fusion."
+          },
+          {
+           "code": null,
+           "text": "Describe early embryo development to the blastocyst."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "2-5-sexual-reproduction-in-plants",
+       "title": "2.5 Sexual reproduction in plants",
+       "subtopics": [
+        {
+         "id": "flowering-plant-fertilisation",
+         "title": "Flowering plant fertilisation",
+         "outcomes": [
+          {
+           "code": "2.5",
+           "text": "Describe formation of pollen grains in the anther and the embryo sac in the ovule."
+          },
+          {
+           "code": null,
+           "text": "Explain how male nuclei reach the embryo sac via the pollen tube. Core practical 4: sucrose and pollen tubes."
+          },
+          {
+           "code": null,
+           "text": "Describe double fertilisation forming a triploid endosperm and a zygote."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "topic-3-classification-and-biodiversity",
+     "title": "Topic 3: Classification and Biodiversity",
+     "topics": [
+      {
+       "id": "3-1-classification",
+       "title": "3.1 Classification",
+       "subtopics": [
+        {
+         "id": "taxonomy-and-species",
+         "title": "Taxonomy and species",
+         "outcomes": [
+          {
+           "code": "3.1",
+           "text": "Recall the hierarchy from domain to species."
+          },
+          {
+           "code": null,
+           "text": "Discuss the limits of the species definition."
+          },
+          {
+           "code": null,
+           "text": "Explain why assigning organisms to species or finding new species is difficult."
+          }
+         ]
+        },
+        {
+         "id": "molecular-evidence-and-validation",
+         "title": "Molecular evidence and validation",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain how gel electrophoresis distinguishes species and shows evolutionary relationships."
+          },
+          {
+           "code": null,
+           "text": "Recall that DNA sequencing and bioinformatics separate species and show relationships."
+          },
+          {
+           "code": null,
+           "text": "Explain how journals, peer review and conferences validate evidence for evolution."
+          },
+          {
+           "code": null,
+           "text": "Describe evidence for the three-domain model over five kingdoms and how scientists validated it."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "3-2-natural-selection",
+       "title": "3.2 Natural selection",
+       "subtopics": [
+        {
+         "id": "natural-selection-and-speciation",
+         "title": "Natural selection and speciation",
+         "outcomes": [
+          {
+           "code": "3.2",
+           "text": "Explain evolution by natural selection acting on variation to produce adaptations."
+          },
+          {
+           "code": null,
+           "text": "Explain how niches depend on physiological, behavioural and anatomical adaptations."
+          },
+          {
+           "code": null,
+           "text": "Explain how reproductive isolation leads to allopatric and sympatric speciation."
+          },
+          {
+           "code": null,
+           "text": "Describe the evolutionary race between pathogens and medicines."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "3-3-biodiversity",
+       "title": "3.3 Biodiversity",
+       "subtopics": [
+        {
+         "id": "measuring-biodiversity",
+         "title": "Measuring biodiversity",
+         "outcomes": [
+          {
+           "code": "3.3",
+           "text": "Assess biodiversity by habitat species diversity index and by allele variety in a gene pool."
+          }
+         ]
+        },
+        {
+         "id": "conserving-biodiversity",
+         "title": "Conserving biodiversity",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain the ethical and economic reasons for maintaining biodiversity."
+          },
+          {
+           "code": null,
+           "text": "Explain ex-situ and in-situ conservation and the issues with each."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "topic-4-exchange-and-transport",
+     "title": "Topic 4: Exchange and Transport",
+     "topics": [
+      {
+       "id": "4-1-surface-area-to-volume-ratio",
+       "title": "4.1 Surface area to volume ratio",
+       "subtopics": [
+        {
+         "id": "size-and-exchange",
+         "title": "Size and exchange",
+         "outcomes": [
+          {
+           "code": "4.1",
+           "text": "Explain how surface area to volume ratio affects transport of molecules."
+          },
+          {
+           "code": null,
+           "text": "Explain why larger organisms need mass transport and specialised exchange surfaces."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "4-2-cell-transport-mechanisms",
+       "title": "4.2 Cell transport mechanisms",
+       "subtopics": [
+        {
+         "id": "membranes-and-passive-transport",
+         "title": "Membranes and passive transport",
+         "outcomes": [
+          {
+           "code": "4.2",
+           "text": "Describe the fluid mosaic model of the cell surface membrane."
+          },
+          {
+           "code": null,
+           "text": "Explain diffusion, facilitated diffusion and osmosis as passive transport."
+          },
+          {
+           "code": null,
+           "text": "Explain how solubility, size and charge affect transport of molecules."
+          },
+          {
+           "code": null,
+           "text": "Describe endocytosis and exocytosis through vesicles. Core practicals 5 and 6: beetroot permeability, water potential."
+          }
+         ]
+        },
+        {
+         "id": "active-transport-and-atp",
+         "title": "Active transport and ATP",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain active transport and the role of ATP."
+          },
+          {
+           "code": null,
+           "text": "Explain that ADP phosphorylation takes energy and ATP hydrolysis supplies it."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "4-3-gas-exchange",
+       "title": "4.3 Gas exchange",
+       "subtopics": [
+        {
+         "id": "gas-exchange-in-animals-and-plants",
+         "title": "Gas exchange in animals and plants",
+         "outcomes": [
+          {
+           "code": "4.3",
+           "text": "Explain gas exchange adaptations of insects, fish and mammals. Core practical 7: insect dissection."
+          },
+          {
+           "code": null,
+           "text": "Explain gas exchange in flowering plants: stomata, leaf surfaces, lenticels."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "4-4-circulation",
+       "title": "4.4 Circulation",
+       "subtopics": [
+        {
+         "id": "heart-and-circulatory-systems",
+         "title": "Heart and circulatory systems",
+         "outcomes": [
+          {
+           "code": "4.4",
+           "text": "Describe the structure of heart, arteries, veins and capillaries."
+          },
+          {
+           "code": null,
+           "text": "Explain why double circulation beats single circulation in fish."
+          }
+         ]
+        },
+        {
+         "id": "the-cardiac-cycle",
+         "title": "The cardiac cycle",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe the sequence of events in the cardiac cycle."
+          },
+          {
+           "code": null,
+           "text": "Explain myogenic stimulation via SAN, AVN and bundle of His."
+          },
+          {
+           "code": null,
+           "text": "Interpret ECG traces and cardiac pressure data."
+          }
+         ]
+        },
+        {
+         "id": "blood-and-clotting",
+         "title": "Blood and clotting",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe blood as plasma and cells including erythrocytes and the types of leucocyte."
+          },
+          {
+           "code": null,
+           "text": "Describe blood's roles in transport, defence, and forming lymph and tissue fluid."
+          },
+          {
+           "code": null,
+           "text": "Explain clotting: platelets, thromboplastin, prothrombin to thrombin, fibrinogen to fibrin."
+          }
+         ]
+        },
+        {
+         "id": "atherosclerosis",
+         "title": "Atherosclerosis",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain the stages of atherosclerosis, its health effects and risk factors."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "4-5-transport-of-gases-in-the-blood",
+       "title": "4.5 Transport of gases in the blood",
+       "subtopics": [
+        {
+         "id": "haemoglobin-and-oxygen",
+         "title": "Haemoglobin and oxygen",
+         "outcomes": [
+          {
+           "code": "4.5",
+           "text": "Explain haemoglobin's role in carrying respiratory gases, including the Bohr effect."
+          },
+          {
+           "code": null,
+           "text": "Interpret the haemoglobin oxygen dissociation curve."
+          },
+          {
+           "code": null,
+           "text": "Compare haemoglobin with myoglobin."
+          },
+          {
+           "code": null,
+           "text": "Explain the higher oxygen affinity of fetal haemoglobin."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "4-6-transfer-of-materials-between-the-circulator",
+       "title": "4.6 Transfer of materials between the circulatory system and cells",
+       "subtopics": [
+        {
+         "id": "tissue-fluid",
+         "title": "Tissue fluid",
+         "outcomes": [
+          {
+           "code": "4.6",
+           "text": "Explain tissue fluid formation and reabsorption using hydrostatic and oncotic pressure."
+          },
+          {
+           "code": null,
+           "text": "Recall that unabsorbed tissue fluid returns to the blood through the lymph system."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "4-7-transport-in-plants",
+       "title": "4.7 Transport in plants",
+       "subtopics": [
+        {
+         "id": "xylem-and-phloem",
+         "title": "Xylem and phloem",
+         "outcomes": [
+          {
+           "code": "4.7",
+           "text": "Relate xylem and phloem structure to transport."
+          }
+         ]
+        },
+        {
+         "id": "water-movement-in-plants",
+         "title": "Water movement in plants",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain apoplastic and symplastic water pathways."
+          },
+          {
+           "code": null,
+           "text": "Explain the cohesion-tension model of water transport."
+          },
+          {
+           "code": null,
+           "text": "Explain how temperature, light, humidity and air movement change transpiration. Core practical 8: potometer."
+          }
+         ]
+        },
+        {
+         "id": "sugar-transport-in-phloem",
+         "title": "Sugar transport in phloem",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Evaluate the mass-flow hypothesis for phloem transport."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "Year 13",
+   "units": [
+    {
+     "id": "topic-5-energy-for-biological-processes",
+     "title": "Topic 5: Energy for Biological Processes",
+     "topics": [
+      {
+       "id": "5-1-aerobic-respiration",
+       "title": "5.1 Aerobic respiration",
+       "subtopics": [
+        {
+         "id": "overview-of-aerobic-respiration",
+         "title": "Overview of aerobic respiration",
+         "outcomes": [
+          {
+           "code": "5.1",
+           "text": "Explain that respiration makes ATP for metabolism and releases heat."
+          },
+          {
+           "code": null,
+           "text": "Name the stages: glycolysis, link reaction, Krebs cycle, oxidative phosphorylation."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "5-2-glycolysis",
+       "title": "5.2 Glycolysis",
+       "subtopics": [
+        {
+         "id": "glycolysis",
+         "title": "Glycolysis",
+         "outcomes": [
+          {
+           "code": "5.2",
+           "text": "Describe glycolysis: hexose phosphorylation by ATP, splitting to GP, and NADH and ATP production."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "5-3-link-reaction-and-krebs-cycle",
+       "title": "5.3 Link reaction and Krebs cycle",
+       "subtopics": [
+        {
+         "id": "link-reaction-and-krebs-cycle",
+         "title": "Link reaction and Krebs cycle",
+         "outcomes": [
+          {
+           "code": "5.3",
+           "text": "State that the link reaction and Krebs cycle occur in the mitochondrial matrix."
+          },
+          {
+           "code": null,
+           "text": "Explain how pyruvate oxidation releases carbon dioxide, NADH and ATP."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "5-4-oxidative-phosphorylation",
+       "title": "5.4 Oxidative phosphorylation",
+       "subtopics": [
+        {
+         "id": "electron-transport-and-chemiosmosis",
+         "title": "Electron transport and chemiosmosis",
+         "outcomes": [
+          {
+           "code": "5.4",
+           "text": "State that the electron transport chain sits in the inner mitochondrial membrane."
+          },
+          {
+           "code": null,
+           "text": "Explain how the electron transport chain generates ATP."
+          },
+          {
+           "code": null,
+           "text": "Explain oxygen as the final electron acceptor forming water."
+          },
+          {
+           "code": null,
+           "text": "Explain ATP synthesis by chemiosmosis."
+          },
+          {
+           "code": null,
+           "text": "Explain why mitochondrial membranes matter to the process."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "5-5-anaerobic-respiration",
+       "title": "5.5 Anaerobic respiration",
+       "subtopics": [
+        {
+         "id": "anaerobic-respiration",
+         "title": "Anaerobic respiration",
+         "outcomes": [
+          {
+           "code": "5.5",
+           "text": "Describe anaerobic respiration as partial hexose breakdown with low ATP yield."
+          },
+          {
+           "code": null,
+           "text": "Compare ATP yield per hexose in aerobic and anaerobic conditions."
+          },
+          {
+           "code": null,
+           "text": "Explain how lactate affects mammalian muscle contraction."
+          },
+          {
+           "code": null,
+           "text": "Explain ethanol formation in plant anaerobic respiration. Core practical 9: respirometer."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "5-6-photosynthetic-pigments",
+       "title": "5.6 Photosynthetic pigments",
+       "subtopics": [
+        {
+         "id": "photosynthetic-pigments",
+         "title": "Photosynthetic pigments",
+         "outcomes": [
+          {
+           "code": "5.6",
+           "text": "Explain absorption and action spectra. Core practical 10: wavelength and photosynthesis rate."
+          },
+          {
+           "code": null,
+           "text": "Explain why plants have several photosynthetic pigments. Core practical 11: chromatography."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "5-7-photosynthesis",
+       "title": "5.7 Photosynthesis",
+       "subtopics": [
+        {
+         "id": "chloroplasts-and-the-light-dependent-stage",
+         "title": "Chloroplasts and the light-dependent stage",
+         "outcomes": [
+          {
+           "code": "5.7",
+           "text": "Describe chloroplast structure: envelope, stroma, grana, lamellae."
+          },
+          {
+           "code": null,
+           "text": "Explain the role of thylakoid membranes in the light-dependent stage."
+          },
+          {
+           "code": null,
+           "text": "Explain cyclic and non-cyclic photophosphorylation producing reduced NADP, ATP and oxygen."
+          }
+         ]
+        },
+        {
+         "id": "the-calvin-cycle",
+         "title": "The Calvin cycle",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain the role of the stroma in the light-independent stage."
+          },
+          {
+           "code": null,
+           "text": "Explain carbon dioxide fixation with RuBP and RUBISCO to form GP."
+          },
+          {
+           "code": null,
+           "text": "Explain how reduced NADP and ATP make GALP and regenerate RuBP."
+          },
+          {
+           "code": null,
+           "text": "Explain how GALP is used to make sugars, amino acids and other molecules."
+          }
+         ]
+        },
+        {
+         "id": "limiting-factors",
+         "title": "Limiting factors",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain how carbon dioxide, light intensity and temperature limit photosynthesis."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "topic-6-microbiology-and-pathogens",
+     "title": "Topic 6: Microbiology and Pathogens",
+     "topics": [
+      {
+       "id": "6-1-microbial-techniques",
+       "title": "6.1 Microbial techniques",
+       "subtopics": [
+        {
+         "id": "culturing-microorganisms",
+         "title": "Culturing microorganisms",
+         "outcomes": [
+          {
+           "code": "6.1",
+           "text": "Describe basic aseptic techniques for culturing organisms."
+          },
+          {
+           "code": null,
+           "text": "Explain the principles and techniques of culturing microorganisms."
+          },
+          {
+           "code": null,
+           "text": "Compare broth, agar and selective media. Core practical 13: streak plating."
+          }
+         ]
+        },
+        {
+         "id": "measuring-bacterial-growth",
+         "title": "Measuring bacterial growth",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Compare ways to measure bacterial growth: cell counts, dilution plating, mass, turbidity."
+          },
+          {
+           "code": null,
+           "text": "Describe growth curve phases and calculate exponential growth rate constants. Core practical 12."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "6-2-bacteria-as-pathogens",
+       "title": "6.2 Bacteria as pathogens",
+       "subtopics": [
+        {
+         "id": "bacterial-pathogens",
+         "title": "Bacterial pathogens",
+         "outcomes": [
+          {
+           "code": "6.2",
+           "text": "Explain how bacteria infect by invading tissue and making toxins."
+          },
+          {
+           "code": null,
+           "text": "Distinguish exotoxins (Staphylococcus), endotoxins (Salmonella) and tissue invasion (TB)."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "6-3-action-of-antibiotics",
+       "title": "6.3 Action of antibiotics",
+       "subtopics": [
+        {
+         "id": "antibiotic-action",
+         "title": "Antibiotic action",
+         "outcomes": [
+          {
+           "code": "6.3",
+           "text": "Explain bactericidal and bacteriostatic action using penicillin and tetracycline."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "6-4-antibiotic-resistance",
+       "title": "6.4 Antibiotic resistance",
+       "subtopics": [
+        {
+         "id": "antibiotic-resistance",
+         "title": "Antibiotic resistance",
+         "outcomes": [
+          {
+           "code": "6.4",
+           "text": "Explain how antibiotic resistance develops and spreads."
+          },
+          {
+           "code": null,
+           "text": "Describe methods and difficulties in controlling antibiotic resistance."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "6-5-other-pathogenic-agents",
+       "title": "6.5 Other pathogenic agents",
+       "subtopics": [
+        {
+         "id": "fungal-viral-and-protozoan-pathogens",
+         "title": "Fungal, viral and protozoan pathogens",
+         "outcomes": [
+          {
+           "code": "6.5",
+           "text": "Describe transmission, infection and effects of wheat stem rust, influenza virus and the malarial parasite."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "6-6-problems-of-controlling-endemic-diseases",
+       "title": "6.6 Problems of controlling endemic diseases",
+       "subtopics": [
+        {
+         "id": "controlling-malaria",
+         "title": "Controlling malaria",
+         "outcomes": [
+          {
+           "code": "6.6",
+           "text": "Evaluate social, economic and ethical effects of malaria control methods and scientific validation."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "6-7-response-to-infection",
+       "title": "6.7 Response to infection",
+       "subtopics": [
+        {
+         "id": "phagocytes-and-the-immune-responses",
+         "title": "Phagocytes and the immune responses",
+         "outcomes": [
+          {
+           "code": "6.7",
+           "text": "Describe how macrophages, neutrophils and lymphocytes act."
+          },
+          {
+           "code": null,
+           "text": "Explain the humoral response: antigen-presenting T cells, T helpers, cytokines, B cells, clonal selection, plasma cells, antibodies."
+          },
+          {
+           "code": null,
+           "text": "Explain the cell-mediated response: antigen-presenting cells, T helpers, cytokines, T killers."
+          }
+         ]
+        },
+        {
+         "id": "memory-immunity-and-vaccination",
+         "title": "Memory, immunity and vaccination",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain T and B memory cells in the secondary response."
+          },
+          {
+           "code": null,
+           "text": "Distinguish natural, artificial, active and passive immunity."
+          },
+          {
+           "code": null,
+           "text": "Explain vaccination and herd immunity."
+          },
+          {
+           "code": null,
+           "text": "Discuss problems when some people choose not to vaccinate."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "topic-7-modern-genetics",
+     "title": "Topic 7: Modern Genetics",
+     "topics": [
+      {
+       "id": "7-1-using-gene-sequencing",
+       "title": "7.1 Using gene sequencing",
+       "subtopics": [
+        {
+         "id": "genomes-pcr-and-dna-profiling",
+         "title": "Genomes, PCR and DNA profiling",
+         "outcomes": [
+          {
+           "code": "7.1",
+           "text": "Define genome."
+          },
+          {
+           "code": null,
+           "text": "Explain PCR, and its uses in predicting protein sequences and genetic conditions, and in forensic profiling and paternity tests."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "7-2-factors-affecting-gene-expression",
+       "title": "7.2 Factors affecting gene expression",
+       "subtopics": [
+        {
+         "id": "regulating-gene-expression",
+         "title": "Regulating gene expression",
+         "outcomes": [
+          {
+           "code": "7.2",
+           "text": "Recall that transcription factors are DNA-binding proteins."
+          },
+          {
+           "code": null,
+           "text": "Explain how transcription factors regulate gene expression."
+          },
+          {
+           "code": null,
+           "text": "Explain how RNA splicing gives different products from one gene."
+          }
+         ]
+        },
+        {
+         "id": "epigenetics",
+         "title": "Epigenetics",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe epigenetic change via non-coding RNA, histone modification and DNA methylation."
+          },
+          {
+           "code": null,
+           "text": "Recall that epigenetic modification drives cell differentiation."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "7-3-stem-cells",
+       "title": "7.3 Stem cells",
+       "subtopics": [
+        {
+         "id": "types-of-stem-cell",
+         "title": "Types of stem cell",
+         "outcomes": [
+          {
+           "code": "7.3",
+           "text": "Define stem cells and distinguish totipotent, pluripotent and multipotent."
+          },
+          {
+           "code": null,
+           "text": "Discuss medical opportunities and ethics of embryonic pluripotent stem cells."
+          },
+          {
+           "code": null,
+           "text": "Explain how epigenetic changes take totipotent cells to pluripotent to differentiated somatic cells."
+          }
+         ]
+        },
+        {
+         "id": "induced-pluripotent-stem-cells",
+         "title": "Induced pluripotent stem cells",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain how fibroblasts are reprogrammed into iPS cells with named genes."
+          },
+          {
+           "code": null,
+           "text": "Explain why iPS cells are less problematic than embryonic stem cells."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "7-4-gene-technology",
+       "title": "7.4 Gene technology",
+       "subtopics": [
+        {
+         "id": "making-recombinant-dna",
+         "title": "Making recombinant DNA",
+         "outcomes": [
+          {
+           "code": "7.4",
+           "text": "Explain producing recombinant DNA with restriction endonucleases and DNA ligase."
+          },
+          {
+           "code": null,
+           "text": "Explain inserting recombinant DNA into cells using vectors such as viruses and gene guns."
+          },
+          {
+           "code": null,
+           "text": "Explain using antibiotic resistance marker genes and replica plating to find recombinant cells."
+          }
+         ]
+        },
+        {
+         "id": "applications-of-gene-technology",
+         "title": "Applications of gene technology",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain how knockout mice reveal gene function."
+          },
+          {
+           "code": null,
+           "text": "Describe genetic modification of soya beans, including fatty acid changes to prevent oxidation."
+          },
+          {
+           "code": null,
+           "text": "Explain why GM crops and transgenic processes cause public debate."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "topic-8-origins-of-genetic-variation",
+     "title": "Topic 8: Origins of Genetic Variation",
+     "topics": [
+      {
+       "id": "8-1-origins-of-genetic-variation",
+       "title": "8.1 Origins of genetic variation",
+       "subtopics": [
+        {
+         "id": "sources-of-variation",
+         "title": "Sources of variation",
+         "outcomes": [
+          {
+           "code": "8.1",
+           "text": "Explain mutation as the source of new variation and how assortment and crossing over make new allele combinations."
+          },
+          {
+           "code": null,
+           "text": "Explain how random fertilisation adds variation."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "8-2-transfer-of-genetic-information",
+       "title": "8.2 Transfer of genetic information",
+       "subtopics": [
+        {
+         "id": "genetic-terms-and-crosses",
+         "title": "Genetic terms and crosses",
+         "outcomes": [
+          {
+           "code": "8.2",
+           "text": "Use the terms genotype, phenotype, homozygote, heterozygote, dominant, recessive, codominance, multiple alleles."
+          },
+          {
+           "code": null,
+           "text": "Construct genetic crosses and pedigree diagrams."
+          }
+         ]
+        },
+        {
+         "id": "dihybrid-and-linked-inheritance",
+         "title": "Dihybrid and linked inheritance",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain inheritance of two non-interacting unlinked genes."
+          },
+          {
+           "code": null,
+           "text": "Explain autosomal linkage and cross results through meiosis, using Drosophila."
+          }
+         ]
+        },
+        {
+         "id": "sex-linkage-and-chi-squared",
+         "title": "Sex linkage and chi squared",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain X-linked inheritance, including haemophilia."
+          },
+          {
+           "code": null,
+           "text": "Use chi squared tests on observed and expected results."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "8-3-gene-pools",
+       "title": "8.3 Gene pools",
+       "subtopics": [
+        {
+         "id": "selection-and-allele-frequencies",
+         "title": "Selection and allele frequencies",
+         "outcomes": [
+          {
+           "code": "8.3",
+           "text": "Explain how stabilising and disruptive selection change allele frequencies and cause speciation."
+          },
+          {
+           "code": null,
+           "text": "Explain chance changes in allele frequency, including genetic drift."
+          },
+          {
+           "code": null,
+           "text": "Explain population bottlenecks and the founder effect."
+          }
+         ]
+        },
+        {
+         "id": "hardy-weinberg",
+         "title": "Hardy-Weinberg",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Use the Hardy-Weinberg equation to track allele frequency change."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "topic-9-control-systems",
+     "title": "Topic 9: Control Systems",
+     "topics": [
+      {
+       "id": "9-1-homeostasis",
+       "title": "9.1 Homeostasis",
+       "subtopics": [
+        {
+         "id": "homeostasis-and-feedback",
+         "title": "Homeostasis and feedback",
+         "outcomes": [
+          {
+           "code": "9.1",
+           "text": "Define homeostasis as dynamic equilibrium."
+          },
+          {
+           "code": null,
+           "text": "Explain why pH, temperature and water potential must be kept steady."
+          },
+          {
+           "code": null,
+           "text": "Distinguish negative and positive feedback."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "9-2-chemical-control-in-mammals",
+       "title": "9.2 Chemical control in mammals",
+       "subtopics": [
+        {
+         "id": "hormones",
+         "title": "Hormones",
+         "outcomes": [
+          {
+           "code": "9.2",
+           "text": "Explain hormone production by endocrine glands and action through target cell receptors."
+          },
+          {
+           "code": null,
+           "text": "Compare second-messenger action (adrenaline) with direct binding to transcription factors (oestrogen)."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "9-3-chemical-control-in-plants",
+       "title": "9.3 Chemical control in plants",
+       "subtopics": [
+        {
+         "id": "plant-growth-substances",
+         "title": "Plant growth substances",
+         "outcomes": [
+          {
+           "code": "9.3",
+           "text": "Describe auxins, cytokinins and gibberellins as plant growth substances. Core practical 14: gibberellin and amylase."
+          },
+          {
+           "code": null,
+           "text": "Describe auxin effects: cell elongation, apical dominance, root growth."
+          },
+          {
+           "code": null,
+           "text": "Explain interaction, such as antagonism of cytokinin and auxin on apical dominance."
+          }
+         ]
+        },
+        {
+         "id": "phytochrome",
+         "title": "Phytochrome",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain how phytochrome controls flowering and photomorphogenesis."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "9-4-structure-and-function-of-the-mammalian-nerv",
+       "title": "9.4 Structure and function of the mammalian nervous system",
+       "subtopics": [
+        {
+         "id": "nervous-system-organisation",
+         "title": "Nervous system organisation",
+         "outcomes": [
+          {
+           "code": "9.4",
+           "text": "Describe the central and peripheral nervous systems."
+          },
+          {
+           "code": null,
+           "text": "Describe the structure of the spinal cord."
+          },
+          {
+           "code": null,
+           "text": "Locate and give functions of medulla, cerebellum, cerebrum and hypothalamus."
+          }
+         ]
+        },
+        {
+         "id": "autonomic-nervous-system",
+         "title": "Autonomic nervous system",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Divide the peripheral system into autonomic and voluntary parts."
+          },
+          {
+           "code": null,
+           "text": "Explain the antagonistic sympathetic and parasympathetic systems."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "9-5-nervous-transmission",
+       "title": "9.5 Nervous transmission",
+       "subtopics": [
+        {
+         "id": "resting-and-action-potentials",
+         "title": "Resting and action potentials",
+         "outcomes": [
+          {
+           "code": "9.5",
+           "text": "Explain the resting potential from axon membrane properties and Na+ and K+ transport."
+          },
+          {
+           "code": null,
+           "text": "Explain how an action potential forms and propagates."
+          },
+          {
+           "code": null,
+           "text": "Explain faster myelinated conduction by saltatory conduction."
+          }
+         ]
+        },
+        {
+         "id": "synapses",
+         "title": "Synapses",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe synapse structure and function with acetylcholine and noradrenaline."
+          },
+          {
+           "code": null,
+           "text": "Explain excitatory and inhibitory postsynaptic potentials."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "9-6-effects-of-drugs-on-the-nervous-system",
+       "title": "9.6 Effects of drugs on the nervous system",
+       "subtopics": [
+        {
+         "id": "drugs-and-synapses",
+         "title": "Drugs and synapses",
+         "outcomes": [
+          {
+           "code": "9.6",
+           "text": "Explain drug effects on synapses: nicotine, lidocaine and cobra venom."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "9-7-detection-of-light-by-mammals",
+       "title": "9.7 Detection of light by mammals",
+       "subtopics": [
+        {
+         "id": "the-retina",
+         "title": "The retina",
+         "outcomes": [
+          {
+           "code": "9.7",
+           "text": "Describe the structure of the human retina."
+          },
+          {
+           "code": null,
+           "text": "Explain how rhodopsin starts action potentials."
+          },
+          {
+           "code": null,
+           "text": "Explain how rod and cone distribution supports vision across light levels."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "9-8-control-of-heart-rate-in-mammals",
+       "title": "9.8 Control of heart rate in mammals",
+       "subtopics": [
+        {
+         "id": "heart-rate-control",
+         "title": "Heart rate control",
+         "outcomes": [
+          {
+           "code": "9.8",
+           "text": "Explain autonomic heart rate control: baroreceptors, chemoreceptors, cardiac centre, noradrenaline and acetylcholine at the SAN."
+          },
+          {
+           "code": null,
+           "text": "Explain autonomic triggering of adrenaline release to raise heart rate."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "9-9-osmoregulation-and-temperature-regulation",
+       "title": "9.9 Osmoregulation and temperature regulation",
+       "subtopics": [
+        {
+         "id": "the-kidney-and-urea",
+         "title": "The kidney and urea",
+         "outcomes": [
+          {
+           "code": "9.9",
+           "text": "Describe the gross and microscopic structure of the mammalian kidney."
+          },
+          {
+           "code": null,
+           "text": "Explain urea formation in the liver and removal by ultrafiltration."
+          }
+         ]
+        },
+        {
+         "id": "water-balance",
+         "title": "Water balance",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain selective reabsorption in the proximal tubule and the loop of Henle as counter-current multiplier."
+          },
+          {
+           "code": null,
+           "text": "Explain ADH negative feedback via pituitary and hypothalamic osmoreceptors."
+          },
+          {
+           "code": null,
+           "text": "Explain kangaroo rat kidney adaptations to dry environments."
+          }
+         ]
+        },
+        {
+         "id": "temperature-regulation",
+         "title": "Temperature regulation",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Distinguish endotherms from ectotherms."
+          },
+          {
+           "code": null,
+           "text": "Explain endotherm regulation by behaviour and autonomic control with thermoreceptors, hypothalamus and skin."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "topic-10-ecosystems",
+     "title": "Topic 10: Ecosystems",
+     "topics": [
+      {
+       "id": "10-1-the-nature-of-ecosystems",
+       "title": "10.1 The nature of ecosystems",
+       "subtopics": [
+        {
+         "id": "ecosystems-and-trophic-structure",
+         "title": "Ecosystems and trophic structure",
+         "outcomes": [
+          {
+           "code": "10.1",
+           "text": "Define ecosystem and note they vary in size."
+          },
+          {
+           "code": null,
+           "text": "Define trophic levels."
+          },
+          {
+           "code": null,
+           "text": "Evaluate pyramids of numbers, biomass and energy, and how biomass and energy move."
+          }
+         ]
+        },
+        {
+         "id": "sampling-and-statistics",
+         "title": "Sampling and statistics",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe quadrats, transects, ACFOR, percentage cover and counts for abundance and distribution."
+          },
+          {
+           "code": null,
+           "text": "Choose suitable ecological techniques for a given ecosystem. Core practical 15: sampling methods."
+          },
+          {
+           "code": null,
+           "text": "Use t-test and Spearman rank correlation on ecological data."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "10-2-energy-transfer-through-ecosystems",
+       "title": "10.2 Energy transfer through ecosystems",
+       "subtopics": [
+        {
+         "id": "energy-flow",
+         "title": "Energy flow",
+         "outcomes": [
+          {
+           "code": "10.2",
+           "text": "Explain energy transfer using net and gross primary productivity."
+          },
+          {
+           "code": null,
+           "text": "Calculate transfer efficiency between trophic levels and explain energy losses."
+          },
+          {
+           "code": null,
+           "text": "Explain microorganisms' role in nutrient recycling."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "10-3-changes-in-ecosystems",
+       "title": "10.3 Changes in ecosystems",
+       "subtopics": [
+        {
+         "id": "succession-and-populations",
+         "title": "Succession and populations",
+         "outcomes": [
+          {
+           "code": "10.3",
+           "text": "Explain colonisation, succession and climax communities."
+          },
+          {
+           "code": null,
+           "text": "Explain how biotic and abiotic factors affect population size. Core practical 16: abiotic factor and distribution."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "10-4-human-effects-on-ecosystems",
+       "title": "10.4 Human effects on ecosystems",
+       "subtopics": [
+        {
+         "id": "human-impact-and-conservation",
+         "title": "Human impact and conservation",
+         "outcomes": [
+          {
+           "code": "10.4",
+           "text": "Interpret data on human impact: climate change and overfishing."
+          },
+          {
+           "code": null,
+           "text": "Explain the effect of treaties such as CITES on biodiversity."
+          },
+          {
+           "code": null,
+           "text": "Explain sustainability as managing human needs against conservation, using fish stocks and climate change."
+          },
+          {
+           "code": null,
+           "text": "Explain how journals, peer review and conferences validate climate change evidence."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "build": {
+  "builtAt": "2026-10-14T10:25:59.003Z",
+  "model": "claude-agent",
+  "usd": 0,
+  "expectedCodes": 55,
+  "coverage": 1,
+  "missingCodes": [],
+  "counts": {
+   "grades": 2,
+   "units": 10,
+   "topics": 56,
+   "subtopics": 89,
+   "outcomes": 220
+  },
+  "warnings": []
+ }
+}

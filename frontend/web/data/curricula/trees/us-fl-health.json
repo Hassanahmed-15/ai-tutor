@@ -1,0 +1,4292 @@
+{
+ "id": "us-fl-health",
+ "region": "US",
+ "framework": "Florida state academic standards: Health Education",
+ "board": null,
+ "qualification": "K-12",
+ "subject": "Health Education",
+ "syllabusCode": null,
+ "gradeSystem": "grade",
+ "source": {
+  "urls": [
+   "https://api.commonstandardsproject.com/api/v1/jurisdictions/80B94A122D3D4B95884660FF09CC357E",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/DA0B1F58630349C98D04A449FA118274",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/5E468386E57A486AA6DF435D785DD529",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/96D18FB8C31547E29CF6DC8E849FFC49",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/5446AC58E2674FFCB2A2AC9B21234E52",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/A76D076521D84443ADF265BCA2F851D5",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/30E975AC20E14112BCE51D7CCE0F4149",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/EE385A50F06D4A63962D941A6D383015",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/0D1133192A84443D8599F5D76DEBD7F0",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/66FE9B6BD5B64640A94D793671D5CD38",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/02A313BD20464D3591ABC5269338D9E6",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/AC0AB34F5CB646289F36E51C56CB3E2C"
+  ],
+  "publisher": "Florida state education agency (machine-readable via Common Standards Project / ASN)",
+  "licence": "CC BY 4.0 US, Common Curriculum, Inc.",
+  "firstExam": "2023"
+ },
+ "grades": [
+  {
+   "grade": "K",
+   "units": [
+    {
+     "id": "resiliency",
+     "title": "Resiliency",
+     "topics": [
+      {
+       "id": "character",
+       "title": "Character",
+       "subtopics": [
+        {
+         "id": "character",
+         "title": "Character",
+         "outcomes": [
+          {
+           "code": "HE.K.R.1.1",
+           "text": "Define and give examples of kindness and caring."
+          },
+          {
+           "code": "HE.K.R.1.2",
+           "text": "Demonstrate the ability to take turns and share with others."
+          },
+          {
+           "code": "HE.K.R.1.3",
+           "text": "Describe ways to show respect to others."
+          },
+          {
+           "code": "HE.K.R.1.4",
+           "text": "Identify the difference between the truth and a lie."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "personal-responsibility",
+       "title": "Personal Responsibility",
+       "subtopics": [
+        {
+         "id": "personal-responsibility",
+         "title": "Personal Responsibility",
+         "outcomes": [
+          {
+           "code": "HE.K.R.2.1",
+           "text": "Identify healthy choices that affect personal wellness."
+          },
+          {
+           "code": "HE.K.R.2.2",
+           "text": "Demonstrate the ability to follow rules and directions."
+          },
+          {
+           "code": "HE.K.R.2.3",
+           "text": "Discuss the value of goal setting."
+          },
+          {
+           "code": "HE.K.R.2.4",
+           "text": "Identify and recognize basic feelings."
+          },
+          {
+           "code": "HE.K.R.2.5",
+           "text": "Identify personal strengths and actions individuals can do independently."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "mentorship-and-citizenship",
+       "title": "Mentorship and Citizenship",
+       "subtopics": [
+        {
+         "id": "mentorship-and-citizenship",
+         "title": "Mentorship and Citizenship",
+         "outcomes": [
+          {
+           "code": "HE.K.R.3.1",
+           "text": "Identify the roles and responsibilities of trusted adults."
+          },
+          {
+           "code": "HE.K.R.3.2",
+           "text": "Identify characteristics of a good citizen in school and the community."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "critical-thinking-and-problem-solving",
+       "title": "Critical Thinking and Problem Solving",
+       "subtopics": [
+        {
+         "id": "critical-thinking-and-problem-solving",
+         "title": "Critical Thinking and Problem Solving",
+         "outcomes": [
+          {
+           "code": "HE.K.R.4.1",
+           "text": "Identify when help is needed and who to ask for help."
+          },
+          {
+           "code": "HE.K.R.4.2",
+           "text": "Identify the importance of sharing thoughts and ideas to solve problems."
+          },
+          {
+           "code": "HE.K.R.4.3",
+           "text": "Discuss ways to work together to solve problems."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "personal-health-concepts",
+     "title": "Personal Health Concepts",
+     "topics": [
+      {
+       "id": "core-concepts",
+       "title": "Core Concepts",
+       "subtopics": [
+        {
+         "id": "core-concepts",
+         "title": "Core Concepts",
+         "outcomes": [
+          {
+           "code": "HE.K.PHC.1.1",
+           "text": "Identify healthy behaviors that affect personal health."
+          },
+          {
+           "code": "HE.K.PHC.1.2",
+           "text": "Understand how you can prevent childhood injuries in the home, school, and community settings."
+          },
+          {
+           "code": "HE.K.PHC.1.3",
+           "text": "Recognize there are body parts inside and outside of the body."
+          },
+          {
+           "code": "HE.K.PHC.1.4",
+           "text": "Recognize ways you can prevent common communicable diseases."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "internal-and-external-influence",
+       "title": "Internal and External Influence",
+       "subtopics": [
+        {
+         "id": "internal-and-external-influence",
+         "title": "Internal and External Influence",
+         "outcomes": [
+          {
+           "code": "HE.K.PHC.2.1",
+           "text": "Identify members of the school and community who support personal health practices and behaviors."
+          },
+          {
+           "code": "HE.K.PHC.2.2",
+           "text": "Name healthy behaviors that family members should practice."
+          },
+          {
+           "code": "HE.K.PHC.2.3",
+           "text": "Identify safe and unsafe examples of internet use."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "prevention-and-decision-making",
+       "title": "Prevention and Decision Making",
+       "subtopics": [
+        {
+         "id": "prevention-and-decision-making",
+         "title": "Prevention and Decision Making",
+         "outcomes": [
+          {
+           "code": "HE.K.PHC.3.1",
+           "text": "Name situations when a health-related decision can be made individually or when assistance is needed."
+          },
+          {
+           "code": "HE.K.PHC.3.2",
+           "text": "Recognize healthy options to personal health-related issues or problems."
+          },
+          {
+           "code": "HE.K.PHC.3.3",
+           "text": "Recognize the consequences of not following rules/practices when making healthy and safe decisions."
+          },
+          {
+           "code": "HE.K.PHC.3.4",
+           "text": "Define a personal health goal and how it relates to overall health."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "advocacy",
+       "title": "Advocacy",
+       "subtopics": [
+        {
+         "id": "advocacy",
+         "title": "Advocacy",
+         "outcomes": [
+          {
+           "code": "HE.K.PHC.4.1",
+           "text": "Identify the appropriate responses to unwanted, unsafe, and threatening situations."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "community-and-environmental-health",
+     "title": "Community and Environmental Health",
+     "topics": [
+      {
+       "id": "core-concepts",
+       "title": "Core Concepts",
+       "subtopics": [
+        {
+         "id": "core-concepts",
+         "title": "Core Concepts",
+         "outcomes": [
+          {
+           "code": "HE.K.CEH.1.1",
+           "text": "Recognize ways the community encourages a healthy environment."
+          },
+          {
+           "code": "HE.K.CEH.1.2",
+           "text": "Recognize ways in the community to prevent common communicable diseases."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "internal-and-external-influence",
+       "title": "Internal and External Influence",
+       "subtopics": [
+        {
+         "id": "internal-and-external-influence",
+         "title": "Internal and External Influence",
+         "outcomes": [
+          {
+           "code": "HE.K.CEH.2.1",
+           "text": "Explain the importance of rules to maintain health."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "prevention-and-decision-making",
+       "title": "Prevention and Decision Making",
+       "subtopics": [
+        {
+         "id": "prevention-and-decision-making",
+         "title": "Prevention and Decision Making",
+         "outcomes": [
+          {
+           "code": "HE.K.CEH.3.1",
+           "text": "Recognize ways the community can prevent childhood injuries in the school and community settings."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "advocacy",
+       "title": "Advocacy",
+       "subtopics": [
+        {
+         "id": "advocacy",
+         "title": "Advocacy",
+         "outcomes": [
+          {
+           "code": "HE.K.CEH.4.1",
+           "text": "Encourage others make positive health choices."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "consumer-health",
+     "title": "Consumer Health",
+     "topics": [
+      {
+       "id": "core-concepts",
+       "title": "Core Concepts",
+       "subtopics": [
+        {
+         "id": "core-concepts",
+         "title": "Core Concepts",
+         "outcomes": [
+          {
+           "code": "HE.K.CH.1.1",
+           "text": "Recognize warning labels and signs on hazardous products and places."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "prevention-and-decision-making",
+       "title": "Prevention and Decision Making",
+       "subtopics": [
+        {
+         "id": "prevention-and-decision-making",
+         "title": "Prevention and Decision Making",
+         "outcomes": [
+          {
+           "code": "HE.K.CH.3.1",
+           "text": "Define healthy and unhealthy choices."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "advocacy",
+       "title": "Advocacy",
+       "subtopics": [
+        {
+         "id": "advocacy",
+         "title": "Advocacy",
+         "outcomes": [
+          {
+           "code": "HE.K.CH.4.1",
+           "text": "Define ways to ask for support from a trusted adult or professional."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "1",
+   "units": [
+    {
+     "id": "resiliency",
+     "title": "Resiliency",
+     "topics": [
+      {
+       "id": "character",
+       "title": "Character",
+       "subtopics": [
+        {
+         "id": "character",
+         "title": "Character",
+         "outcomes": [
+          {
+           "code": "HE.1.R.1.1",
+           "text": "Discuss ways to respect personal property and personal space of others."
+          },
+          {
+           "code": "HE.1.R.1.2",
+           "text": "Describe the traits of a good friend."
+          },
+          {
+           "code": "HE.1.R.1.3",
+           "text": "Identify the benefits of sharing and cooperation."
+          },
+          {
+           "code": "HE.1.R.1.4",
+           "text": "Define and give examples of honesty."
+          },
+          {
+           "code": "HE.1.R.1.5",
+           "text": "Identify strategies to overcome a challenge."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "personal-responsibility",
+       "title": "Personal Responsibility",
+       "subtopics": [
+        {
+         "id": "personal-responsibility",
+         "title": "Personal Responsibility",
+         "outcomes": [
+          {
+           "code": "HE.1.R.2.1",
+           "text": "Identify my role and responsibilities in the school, community, and family."
+          },
+          {
+           "code": "HE.1.R.2.2",
+           "text": "Establish a short-term goal as a class and take action toward achieving the goal."
+          },
+          {
+           "code": "HE.1.R.2.3",
+           "text": "Identify the characteristics of a responsible decision maker."
+          },
+          {
+           "code": "HE.1.R.2.4",
+           "text": "Describe how individual actions can affect others."
+          },
+          {
+           "code": "HE.1.R.2.5",
+           "text": "Identify strategies to discover and demonstrate personal strengths."
+          },
+          {
+           "code": "HE.1.R.2.6",
+           "text": "Identify healthy ways to express needs and wants."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "mentorship-and-citizenship",
+       "title": "Mentorship and Citizenship",
+       "subtopics": [
+        {
+         "id": "mentorship-and-citizenship",
+         "title": "Mentorship and Citizenship",
+         "outcomes": [
+          {
+           "code": "HE.1.R.3.1",
+           "text": "Identify characteristics of a leader in the school community."
+          },
+          {
+           "code": "HE.1.R.3.2",
+           "text": "Demonstrate the characteristics of a good citizen in school and the community."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "critical-thinking-and-problem-solving",
+       "title": "Critical Thinking and Problem Solving",
+       "subtopics": [
+        {
+         "id": "critical-thinking-and-problem-solving",
+         "title": "Critical Thinking and Problem Solving",
+         "outcomes": [
+          {
+           "code": "HE.1.R.4.1",
+           "text": "Identify the importance of working together to solve problems."
+          },
+          {
+           "code": "HE.1.R.4.2",
+           "text": "Identify the importance of sharing thoughts and ideas as an individual and as part of a group."
+          },
+          {
+           "code": "HE.1.R.4.3",
+           "text": "Understand that conflict may arise when working together."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "personal-health-concepts",
+     "title": "Personal Health Concepts",
+     "topics": [
+      {
+       "id": "core-concepts",
+       "title": "Core Concepts",
+       "subtopics": [
+        {
+         "id": "core-concepts",
+         "title": "Core Concepts",
+         "outcomes": [
+          {
+           "code": "HE.1.PHC.1.1",
+           "text": "Recognize how healthy behaviors affect personal health."
+          },
+          {
+           "code": "HE.1.PHC.1.2",
+           "text": "Identify how you can prevent childhood injuries in the home, school, and community settings."
+          },
+          {
+           "code": "HE.1.PHC.1.3",
+           "text": "Identify the correct names of human body parts."
+          },
+          {
+           "code": "HE.1.PHC.1.4",
+           "text": "Describe ways you can prevent common communicable diseases."
+          },
+          {
+           "code": "HE.1.PHC.1.5",
+           "text": "Tell about behaviors that avoid or reduce health risks."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "internal-and-external-influence",
+       "title": "Internal and External Influence",
+       "subtopics": [
+        {
+         "id": "internal-and-external-influence",
+         "title": "Internal and External Influence",
+         "outcomes": [
+          {
+           "code": "HE.1.PHC.2.1",
+           "text": "Identify how children learn health behaviors from family and friends."
+          },
+          {
+           "code": "HE.1.PHC.2.2",
+           "text": "Explain why personal information should not be shared on the internet."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "prevention-and-decision-making",
+       "title": "Prevention and Decision Making",
+       "subtopics": [
+        {
+         "id": "prevention-and-decision-making",
+         "title": "Prevention and Decision Making",
+         "outcomes": [
+          {
+           "code": "HE.1.PHC.3.1",
+           "text": "Describe situations when a health-related decision can be made individually or when assistance is needed."
+          },
+          {
+           "code": "HE.1.PHC.3.2",
+           "text": "Identify healthy options to personal health-related issues or problems."
+          },
+          {
+           "code": "HE.1.PHC.3.3",
+           "text": "Explain the consequences of not following rules/practices when making healthy and safe decisions."
+          },
+          {
+           "code": "HE.1.PHC.3.4",
+           "text": "Establish a short-term health goal as a class and monitor progress toward achieving the goal."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "advocacy",
+       "title": "Advocacy",
+       "subtopics": [
+        {
+         "id": "advocacy",
+         "title": "Advocacy",
+         "outcomes": [
+          {
+           "code": "HE.1.PHC.4.1",
+           "text": "Describe appropriate responses to unwanted, unsafe, and threatening situations."
+          },
+          {
+           "code": "HE.1.PHC.4.2",
+           "text": "Identify ways one can make request to promote personal health."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "community-and-environmental-health",
+     "title": "Community and Environmental Health",
+     "topics": [
+      {
+       "id": "core-concepts",
+       "title": "Core Concepts",
+       "subtopics": [
+        {
+         "id": "core-concepts",
+         "title": "Core Concepts",
+         "outcomes": [
+          {
+           "code": "HE.1.CEH.1.1",
+           "text": "Identify ways the community encourages a healthy environment."
+          },
+          {
+           "code": "HE.1.CEH.1.2",
+           "text": "Understand ways to prevent common communicable diseases in the community."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "internal-and-external-influence",
+       "title": "Internal and External Influence",
+       "subtopics": [
+        {
+         "id": "internal-and-external-influence",
+         "title": "Internal and External Influence",
+         "outcomes": [
+          {
+           "code": "HE.1.CEH.2.1",
+           "text": "Recognize health consequences for not following rules."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "prevention-and-decision-making",
+       "title": "Prevention and Decision Making",
+       "subtopics": [
+        {
+         "id": "prevention-and-decision-making",
+         "title": "Prevention and Decision Making",
+         "outcomes": [
+          {
+           "code": "HE.1.CEH.3.1",
+           "text": "Identify ways in the community to prevent childhood injuries in the school and community settings."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "advocacy",
+       "title": "Advocacy",
+       "subtopics": [
+        {
+         "id": "advocacy",
+         "title": "Advocacy",
+         "outcomes": [
+          {
+           "code": "HE.1.CEH.4.1",
+           "text": "Help others to make positive health choices."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "consumer-health",
+     "title": "Consumer Health",
+     "topics": [
+      {
+       "id": "core-concepts",
+       "title": "Core Concepts",
+       "subtopics": [
+        {
+         "id": "core-concepts",
+         "title": "Core Concepts",
+         "outcomes": [
+          {
+           "code": "HE.1.CH.1.1",
+           "text": "Determine the meaning of warning labels and signs on hazardous products and places."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "prevention-and-decision-making",
+       "title": "Prevention and Decision Making",
+       "subtopics": [
+        {
+         "id": "prevention-and-decision-making",
+         "title": "Prevention and Decision Making",
+         "outcomes": [
+          {
+           "code": "HE.1.CH.3.1",
+           "text": "List healthy and unhealthy choices for personal health and safety."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "advocacy",
+       "title": "Advocacy",
+       "subtopics": [
+        {
+         "id": "advocacy",
+         "title": "Advocacy",
+         "outcomes": [
+          {
+           "code": "HE.1.CH.4.1",
+           "text": "Discuss ways to ask for support from a trusted adult or professional."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "2",
+   "units": [
+    {
+     "id": "resiliency",
+     "title": "Resiliency",
+     "topics": [
+      {
+       "id": "character",
+       "title": "Character",
+       "subtopics": [
+        {
+         "id": "character",
+         "title": "Character",
+         "outcomes": [
+          {
+           "code": "HE.2.R.1.1",
+           "text": "Identify the benefits of showing kindness and treating others with respect."
+          },
+          {
+           "code": "HE.2.R.1.2",
+           "text": "Identify what a conflict is and how disagreements can happen."
+          },
+          {
+           "code": "HE.2.R.1.3",
+           "text": "Explain the importance of being truthful."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "personal-responsibility",
+       "title": "Personal Responsibility",
+       "subtopics": [
+        {
+         "id": "personal-responsibility",
+         "title": "Personal Responsibility",
+         "outcomes": [
+          {
+           "code": "HE.2.R.2.1",
+           "text": "Identify ways to make positive contributions to the wellbeing of the school and the community."
+          },
+          {
+           "code": "HE.2.R.2.2",
+           "text": "Identify personal goals and strategies to achieve those goals."
+          },
+          {
+           "code": "HE.2.R.2.3",
+           "text": "Demonstrate healthy ways to express needs, wants, and listening skills."
+          },
+          {
+           "code": "HE.2.R.2.4",
+           "text": "Identify personal strengths and areas for improvement."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "mentorship-and-citizenship",
+       "title": "Mentorship and Citizenship",
+       "subtopics": [
+        {
+         "id": "mentorship-and-citizenship",
+         "title": "Mentorship and Citizenship",
+         "outcomes": [
+          {
+           "code": "HE.2.R.3.1",
+           "text": "Identify ways to benefit the school and the community."
+          },
+          {
+           "code": "HE.2.R.3.2",
+           "text": "Identify characteristics of a community leader."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "critical-thinking-and-problem-solving",
+       "title": "Critical Thinking and Problem Solving",
+       "subtopics": [
+        {
+         "id": "critical-thinking-and-problem-solving",
+         "title": "Critical Thinking and Problem Solving",
+         "outcomes": [
+          {
+           "code": "HE.2.R.4.1",
+           "text": "Identify strategies to work together to solve problems."
+          },
+          {
+           "code": "HE.2.R.4.2",
+           "text": "Identify how disagreements can be settled using conflict resolution skills."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "personal-health-concepts",
+     "title": "Personal Health Concepts",
+     "topics": [
+      {
+       "id": "core-concepts",
+       "title": "Core Concepts",
+       "subtopics": [
+        {
+         "id": "core-concepts",
+         "title": "Core Concepts",
+         "outcomes": [
+          {
+           "code": "HE.2.PHC.1.1",
+           "text": "Discuss how healthy behaviors affect personal health."
+          },
+          {
+           "code": "HE.2.PHC.1.2",
+           "text": "Describe ways you can prevent personal injuries."
+          },
+          {
+           "code": "HE.2.PHC.1.3",
+           "text": "Recognize the locations and functions of major human organs."
+          },
+          {
+           "code": "HE.2.PHC.1.4",
+           "text": "Select trusted adults and professionals who can help promote health."
+          },
+          {
+           "code": "HE.2.PHC.1.5",
+           "text": "Recognize healthy practices and behaviors to maintain or improve personal health."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "internal-and-external-influence",
+       "title": "Internal and External Influence",
+       "subtopics": [
+        {
+         "id": "internal-and-external-influence",
+         "title": "Internal and External Influence",
+         "outcomes": [
+          {
+           "code": "HE.2.PHC.2.1",
+           "text": "Describe how outside influences, family, and friends can influence personal health decisions."
+          },
+          {
+           "code": "HE.2.PHC.2.2",
+           "text": "Describe ways a safe, healthy home environment can promote personal health."
+          },
+          {
+           "code": "HE.2.PHC.2.3",
+           "text": "Describe the attributes of a safe and responsible internet user."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "prevention-and-decision-making",
+       "title": "Prevention and Decision Making",
+       "subtopics": [
+        {
+         "id": "prevention-and-decision-making",
+         "title": "Prevention and Decision Making",
+         "outcomes": [
+          {
+           "code": "HE.2.PHC.3.1",
+           "text": "Differentiate between situations when a health-related decision can be made individually or when assistance is needed."
+          },
+          {
+           "code": "HE.2.PHC.3.2",
+           "text": "List healthy options to health-related issues or problems."
+          },
+          {
+           "code": "HE.2.PHC.3.3",
+           "text": "Compare the consequences of following/not following rules/practices when making healthy and safe decisions."
+          },
+          {
+           "code": "HE.2.PHC.3.4",
+           "text": "Discuss short-term and long-term goals and their importance to physical health."
+          },
+          {
+           "code": "HE.2.PHC.3.5",
+           "text": "Establish a short-term health goal as a class and monitor progress toward achieving the goal."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "advocacy",
+       "title": "Advocacy",
+       "subtopics": [
+        {
+         "id": "advocacy",
+         "title": "Advocacy",
+         "outcomes": [
+          {
+           "code": "HE.2.PHC.4.1",
+           "text": "Demonstrate appropriate responses to unwanted, unsafe, and threatening situations."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "community-and-environmental-health",
+     "title": "Community and Environmental Health",
+     "topics": [
+      {
+       "id": "core-concepts",
+       "title": "Core Concepts",
+       "subtopics": [
+        {
+         "id": "core-concepts",
+         "title": "Core Concepts",
+         "outcomes": [
+          {
+           "code": "HE.2.CEH.1.1",
+           "text": "Identify how healthy behaviors affect the community."
+          },
+          {
+           "code": "HE.2.CEH.1.2",
+           "text": "Describe ways to prevent common communicable diseases in the community."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "internal-and-external-influence",
+       "title": "Internal and External Influence",
+       "subtopics": [
+        {
+         "id": "internal-and-external-influence",
+         "title": "Internal and External Influence",
+         "outcomes": [
+          {
+           "code": "HE.2.CEH.2.1",
+           "text": "Explain the ways that rules make the classroom, school, and community safer."
+          },
+          {
+           "code": "HE.2.CEH.2.2",
+           "text": "Describe how the school and community influence health behaviors of children."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "prevention-and-decision-making",
+       "title": "Prevention and Decision Making",
+       "subtopics": [
+        {
+         "id": "prevention-and-decision-making",
+         "title": "Prevention and Decision Making",
+         "outcomes": [
+          {
+           "code": "HE.2.CEH.3.1",
+           "text": "Describe ways the community can prevent childhood injuries in the school and community settings."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "advocacy",
+       "title": "Advocacy",
+       "subtopics": [
+        {
+         "id": "advocacy",
+         "title": "Advocacy",
+         "outcomes": [
+          {
+           "code": "HE.2.CEH.4.1",
+           "text": "Support peers when making positive health choices."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "consumer-health",
+     "title": "Consumer Health",
+     "topics": [
+      {
+       "id": "core-concepts",
+       "title": "Core Concepts",
+       "subtopics": [
+        {
+         "id": "core-concepts",
+         "title": "Core Concepts",
+         "outcomes": [
+          {
+           "code": "HE.2.CH.1.1",
+           "text": "Understand the meaning of warning labels and signs on hazardous products."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "prevention-and-decision-making",
+       "title": "Prevention and Decision Making",
+       "subtopics": [
+        {
+         "id": "prevention-and-decision-making",
+         "title": "Prevention and Decision Making",
+         "outcomes": [
+          {
+           "code": "HE.2.CH.3.1",
+           "text": "Describe healthy and unhealthy choices."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "advocacy",
+       "title": "Advocacy",
+       "subtopics": [
+        {
+         "id": "advocacy",
+         "title": "Advocacy",
+         "outcomes": [
+          {
+           "code": "HE.2.CH.4.1",
+           "text": "Practice ways to ask for support from a trusted adult or professional."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "3",
+   "units": [
+    {
+     "id": "resiliency",
+     "title": "Resiliency",
+     "topics": [
+      {
+       "id": "character",
+       "title": "Character",
+       "subtopics": [
+        {
+         "id": "character",
+         "title": "Character",
+         "outcomes": [
+          {
+           "code": "HE.3.R.1.1",
+           "text": "Identify skills needed when working with others."
+          },
+          {
+           "code": "HE.3.R.1.2",
+           "text": "Identify ways to display trustworthiness."
+          },
+          {
+           "code": "HE.3.R.1.3",
+           "text": "Discuss ways to be loyal to friends and family."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "personal-responsibility",
+       "title": "Personal Responsibility",
+       "subtopics": [
+        {
+         "id": "personal-responsibility",
+         "title": "Personal Responsibility",
+         "outcomes": [
+          {
+           "code": "HE.3.R.2.1",
+           "text": "Categorize resources used to achieve a personal goal."
+          },
+          {
+           "code": "HE.3.R.2.2",
+           "text": "Identify ways in which my decisions affect others."
+          },
+          {
+           "code": "HE.3.R.2.3",
+           "text": "Describe positive ways to deal with failure and learn from challenges."
+          },
+          {
+           "code": "HE.3.R.2.4",
+           "text": "Discuss how skills can be improved through hard work and perseverance."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "mentorship-and-citizenship",
+       "title": "Mentorship and Citizenship",
+       "subtopics": [
+        {
+         "id": "mentorship-and-citizenship",
+         "title": "Mentorship and Citizenship",
+         "outcomes": [
+          {
+           "code": "HE.3.R.3.1",
+           "text": "Identify leadership opportunities within the school and the community."
+          },
+          {
+           "code": "HE.3.R.3.2",
+           "text": "Identify opportunities to volunteer or serve others in the school or community."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "critical-thinking-and-problem-solving",
+       "title": "Critical Thinking and Problem Solving",
+       "subtopics": [
+        {
+         "id": "critical-thinking-and-problem-solving",
+         "title": "Critical Thinking and Problem Solving",
+         "outcomes": [
+          {
+           "code": "HE.3.R.4.1",
+           "text": "Explain the importance of always taking ownership for personal actions."
+          },
+          {
+           "code": "HE.3.R.4.2",
+           "text": "Identify different solutions and potential outcomes when problems arise."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "personal-health-concepts",
+     "title": "Personal Health Concepts",
+     "topics": [
+      {
+       "id": "core-concepts",
+       "title": "Core Concepts",
+       "subtopics": [
+        {
+         "id": "core-concepts",
+         "title": "Core Concepts",
+         "outcomes": [
+          {
+           "code": "HE.3.PHC.1.1",
+           "text": "Describe healthy behaviors that affect personal health."
+          },
+          {
+           "code": "HE.3.PHC.1.2",
+           "text": "Apply ways you can prevent personal injuries."
+          },
+          {
+           "code": "HE.3.PHC.1.3",
+           "text": "Recognize that body parts and organs work together to form human body systems."
+          },
+          {
+           "code": "HE.3.PHC.1.4",
+           "text": "Discuss behaviors that avoid or reduce health risks."
+          },
+          {
+           "code": "HE.3.PHC.1.5",
+           "text": "Demonstrate health behaviors to maintain or improve personal health."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "internal-and-external-influence",
+       "title": "Internal and External Influence",
+       "subtopics": [
+        {
+         "id": "internal-and-external-influence",
+         "title": "Internal and External Influence",
+         "outcomes": [
+          {
+           "code": "HE.3.PHC.2.1",
+           "text": "Describe how outside influences, family, and friends can influence health behaviors."
+          },
+          {
+           "code": "HE.3.PHC.2.2",
+           "text": "Identify what the school and community do to support personal health practices and behaviors."
+          },
+          {
+           "code": "HE.3.PHC.2.3",
+           "text": "Understand the positive and negative impacts technology may have on health."
+          },
+          {
+           "code": "HE.3.PHC.2.4",
+           "text": "Identify appropriate and inappropriate uses of the internet and communicating with others through technology."
+          },
+          {
+           "code": "HE.3.PHC.2.5",
+           "text": "Identify types of cyberbullying."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "prevention-and-decision-making",
+       "title": "Prevention and Decision Making",
+       "subtopics": [
+        {
+         "id": "prevention-and-decision-making",
+         "title": "Prevention and Decision Making",
+         "outcomes": [
+          {
+           "code": "HE.3.PHC.3.1",
+           "text": "Explain when assistance is needed when making a health-related decision."
+          },
+          {
+           "code": "HE.3.PHC.3.2",
+           "text": "Recognize healthy options when making decisions for yourself that avoid or reduce health risks."
+          },
+          {
+           "code": "HE.3.PHC.3.3",
+           "text": "Discuss the potential short-term personal impact of each option when making a health-related decision."
+          },
+          {
+           "code": "HE.3.PHC.3.4",
+           "text": "Select a personal health goal and track progress toward achievement."
+          },
+          {
+           "code": "HE.3.PHC.3.5",
+           "text": "Discuss healthy options to health-related issues or problems."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "advocacy",
+       "title": "Advocacy",
+       "subtopics": [
+        {
+         "id": "advocacy",
+         "title": "Advocacy",
+         "outcomes": [
+          {
+           "code": "HE.3.PHC.4.1",
+           "text": "Practice appropriate responses to unwanted, unsafe, and threatening situations."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "community-and-environmental-health",
+     "title": "Community and Environmental Health",
+     "topics": [
+      {
+       "id": "core-concepts",
+       "title": "Core Concepts",
+       "subtopics": [
+        {
+         "id": "core-concepts",
+         "title": "Core Concepts",
+         "outcomes": [
+          {
+           "code": "HE.3.CEH.1.1",
+           "text": "Relate how healthy behaviors impact the community."
+          },
+          {
+           "code": "HE.3.CEH.1.2",
+           "text": "Understand common childhood health conditions and their impact on school and community environments."
+          },
+          {
+           "code": "HE.3.CEH.1.3",
+           "text": "Identify the impact of internet and social media in the community."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "internal-and-external-influence",
+       "title": "Internal and External Influence",
+       "subtopics": [
+        {
+         "id": "internal-and-external-influence",
+         "title": "Internal and External Influence",
+         "outcomes": [
+          {
+           "code": "HE.3.CEH.2.1",
+           "text": "Identify classroom and school rules that promote health and disease prevention."
+          },
+          {
+           "code": "HE.3.CEH.2.2",
+           "text": "Explore how the traditions and customs of the school and community influence health behavior of children."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "prevention-and-decision-making",
+       "title": "Prevention and Decision Making",
+       "subtopics": [
+        {
+         "id": "prevention-and-decision-making",
+         "title": "Prevention and Decision Making",
+         "outcomes": [
+          {
+           "code": "HE.3.CEH.3.1",
+           "text": "Explore ways the community can prevent childhood injuries in the school and community settings."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "advocacy",
+       "title": "Advocacy",
+       "subtopics": [
+        {
+         "id": "advocacy",
+         "title": "Advocacy",
+         "outcomes": [
+          {
+           "code": "HE.3.CEH.4.1",
+           "text": "Encourage positive behaviors and healthy choices by others."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "consumer-health",
+     "title": "Consumer Health",
+     "topics": [
+      {
+       "id": "core-concepts",
+       "title": "Core Concepts",
+       "subtopics": [
+        {
+         "id": "core-concepts",
+         "title": "Core Concepts",
+         "outcomes": [
+          {
+           "code": "HE.3.CH.1.1",
+           "text": "Locate resources from home, school, and community that provide valid health information, products, and services."
+          },
+          {
+           "code": "HE.3.CH.1.2",
+           "text": "Describe why it is important to seek health care."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "internal-and-external-influence",
+       "title": "Internal and External Influence",
+       "subtopics": [
+        {
+         "id": "internal-and-external-influence",
+         "title": "Internal and External Influence",
+         "outcomes": [
+          {
+           "code": "HE.3.CH.2.1",
+           "text": "Describe how the internet and various media/social media"
+          },
+          {
+           "code": "HE.3.CH.2.2",
+           "text": "Identify resources that could assist in achieving personal health goals."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "prevention-and-decision-making",
+       "title": "Prevention and Decision Making",
+       "subtopics": [
+        {
+         "id": "prevention-and-decision-making",
+         "title": "Prevention and Decision Making",
+         "outcomes": [
+          {
+           "code": "HE.3.CH.3.1",
+           "text": "Describe criteria for selecting health information, resources, products, and services."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "advocacy",
+       "title": "Advocacy",
+       "subtopics": [
+        {
+         "id": "advocacy",
+         "title": "Advocacy",
+         "outcomes": [
+          {
+           "code": "HE.3.CH.4.1",
+           "text": "Describe ways to encourage healthy school environments."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "4",
+   "units": [
+    {
+     "id": "resiliency",
+     "title": "Resiliency",
+     "topics": [
+      {
+       "id": "character",
+       "title": "Character",
+       "subtopics": [
+        {
+         "id": "character",
+         "title": "Character",
+         "outcomes": [
+          {
+           "code": "HE.4.R.1.1",
+           "text": "Consider the perspectives of others."
+          },
+          {
+           "code": "HE.4.R.1.2",
+           "text": "Identify the benefits of treating others with respect."
+          },
+          {
+           "code": "HE.4.R.1.3",
+           "text": "Predict the potential outcomes of repeating and/or sharing information that is not true."
+          },
+          {
+           "code": "HE.4.R.1.4",
+           "text": "Identify strategies to help persevere in difficult situations."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "personal-responsibility",
+       "title": "Personal Responsibility",
+       "subtopics": [
+        {
+         "id": "personal-responsibility",
+         "title": "Personal Responsibility",
+         "outcomes": [
+          {
+           "code": "HE.4.R.2.1",
+           "text": "Discuss ways to take responsibility for ones actions."
+          },
+          {
+           "code": "HE.4.R.2.2",
+           "text": "Identify the value of making healthy choices for personal well-being."
+          },
+          {
+           "code": "HE.4.R.2.3",
+           "text": "Create a personal goal and track progress toward achievement."
+          },
+          {
+           "code": "HE.4.R.2.4",
+           "text": "Explain how attitudes and thoughts can influence your behavior."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "mentorship-and-citizenship",
+       "title": "Mentorship and Citizenship",
+       "subtopics": [
+        {
+         "id": "mentorship-and-citizenship",
+         "title": "Mentorship and Citizenship",
+         "outcomes": [
+          {
+           "code": "HE.4.R.3.1",
+           "text": "Identify opportunities to actively participate as a responsible citizen in the school and the local community."
+          },
+          {
+           "code": "HE.4.R.3.2",
+           "text": "Model serving or helping others in the school or community."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "critical-thinking-and-problem-solving",
+       "title": "Critical Thinking and Problem Solving",
+       "subtopics": [
+        {
+         "id": "critical-thinking-and-problem-solving",
+         "title": "Critical Thinking and Problem Solving",
+         "outcomes": [
+          {
+           "code": "HE.4.R.4.1",
+           "text": "Describe how perseverance may help overcome obstacles."
+          },
+          {
+           "code": "HE.4.R.4.2",
+           "text": "Describe strategies to resolve conflicts."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "personal-health-concepts",
+     "title": "Personal Health Concepts",
+     "topics": [
+      {
+       "id": "core-concepts",
+       "title": "Core Concepts",
+       "subtopics": [
+        {
+         "id": "core-concepts",
+         "title": "Core Concepts",
+         "outcomes": [
+          {
+           "code": "HE.4.PHC.1.1",
+           "text": "Identify examples of mental and physical health."
+          },
+          {
+           "code": "HE.4.PHC.1.2",
+           "text": "Analyze ways you can prevent personal injuries."
+          },
+          {
+           "code": "HE.4.PHC.1.3",
+           "text": "Identify the human body parts and organs that work together to form healthy body systems."
+          },
+          {
+           "code": "HE.4.PHC.1.4",
+           "text": "Identify the relationship between healthy behaviors and personal health."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "internal-and-external-influence",
+       "title": "Internal and External Influence",
+       "subtopics": [
+        {
+         "id": "internal-and-external-influence",
+         "title": "Internal and External Influence",
+         "outcomes": [
+          {
+           "code": "HE.4.PHC.2.1",
+           "text": "Identify how outside influences, including family and friends, affect health practices and behaviors."
+          },
+          {
+           "code": "HE.4.PHC.2.2",
+           "text": "Describe ways a safe, healthy school environment can influence personal health."
+          },
+          {
+           "code": "HE.4.PHC.2.3",
+           "text": "Discuss how technology influences personal thoughts, feelings, and health behaviors."
+          },
+          {
+           "code": "HE.4.PHC.2.4",
+           "text": "Discuss how media/social media influences personal thoughts, feelings, and health behaviors."
+          },
+          {
+           "code": "HE.4.PHC.2.5",
+           "text": "Identify health-related consequences of inappropriate and/or excessive internet use."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "prevention-and-decision-making",
+       "title": "Prevention and Decision Making",
+       "subtopics": [
+        {
+         "id": "prevention-and-decision-making",
+         "title": "Prevention and Decision Making",
+         "outcomes": [
+          {
+           "code": "HE.4.PHC.3.1",
+           "text": "Examine when assistance is needed to make a health-related decision."
+          },
+          {
+           "code": "HE.4.PHC.3.2",
+           "text": "Apply healthy options when making decisions to maintain or improve personal health and reduce health risks."
+          },
+          {
+           "code": "HE.4.PHC.3.3",
+           "text": "Predict the potential short-term impact of each option on self and others when making a health-related decision."
+          },
+          {
+           "code": "HE.4.PHC.3.4",
+           "text": "Create a personal health goal and track progress toward achievement."
+          },
+          {
+           "code": "HE.4.PHC.3.5",
+           "text": "Choose healthy options to health-related issues or problems."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "advocacy",
+       "title": "Advocacy",
+       "subtopics": [
+        {
+         "id": "advocacy",
+         "title": "Advocacy",
+         "outcomes": [
+          {
+           "code": "HE.4.PHC.4.1",
+           "text": "Select appropriate responses to unwanted, unsafe, and threatening situations."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "community-and-environmental-health",
+     "title": "Community and Environmental Health",
+     "topics": [
+      {
+       "id": "core-concepts",
+       "title": "Core Concepts",
+       "subtopics": [
+        {
+         "id": "core-concepts",
+         "title": "Core Concepts",
+         "outcomes": [
+          {
+           "code": "HE.4.CEH.1.1",
+           "text": "Investigate how healthy and unhealthy behaviors impact the community."
+          },
+          {
+           "code": "HE.4.CEH.1.2",
+           "text": "Recognize common childhood health conditions and their impact on school and community environments."
+          },
+          {
+           "code": "HE.4.CEH.1.3",
+           "text": "Discuss the impact of internet and social media in the community."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "internal-and-external-influence",
+       "title": "Internal and External Influence",
+       "subtopics": [
+        {
+         "id": "internal-and-external-influence",
+         "title": "Internal and External Influence",
+         "outcomes": [
+          {
+           "code": "HE.4.CEH.2.1",
+           "text": "Recognize types of school rules and community laws that promote health and disease prevention."
+          },
+          {
+           "code": "HE.4.CEH.2.2",
+           "text": "Explain the important roles that school and community play in health practices and behaviors."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "prevention-and-decision-making",
+       "title": "Prevention and Decision Making",
+       "subtopics": [
+        {
+         "id": "prevention-and-decision-making",
+         "title": "Prevention and Decision Making",
+         "outcomes": [
+          {
+           "code": "HE.4.CEH.3.1",
+           "text": "Compare community resources available to prevent common childhood injuries and health problems."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "advocacy",
+       "title": "Advocacy",
+       "subtopics": [
+        {
+         "id": "advocacy",
+         "title": "Advocacy",
+         "outcomes": [
+          {
+           "code": "HE.4.CEH.4.1",
+           "text": "Assist others to make positive health choices in their school and community."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "consumer-health",
+     "title": "Consumer Health",
+     "topics": [
+      {
+       "id": "core-concepts",
+       "title": "Core Concepts",
+       "subtopics": [
+        {
+         "id": "core-concepts",
+         "title": "Core Concepts",
+         "outcomes": [
+          {
+           "code": "HE.4.CH.1.1",
+           "text": "Describe characteristics of valid health information, products, and services."
+          },
+          {
+           "code": "HE.4.CH.1.2",
+           "text": "Distinguish differences among various healthcare providers, products, and services."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "internal-and-external-influence",
+       "title": "Internal and External Influence",
+       "subtopics": [
+        {
+         "id": "internal-and-external-influence",
+         "title": "Internal and External Influence",
+         "outcomes": [
+          {
+           "code": "HE.4.CH.2.1",
+           "text": "Recognize ways health messages and communication"
+          },
+          {
+           "code": "HE.4.CH.2.2",
+           "text": "Categorize resources that could assist in achieving a small group personal health goal."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "prevention-and-decision-making",
+       "title": "Prevention and Decision Making",
+       "subtopics": [
+        {
+         "id": "prevention-and-decision-making",
+         "title": "Prevention and Decision Making",
+         "outcomes": [
+          {
+           "code": "HE.4.CH.3.1",
+           "text": "Construct criteria for selecting health resources, products, services, and reputable technologies."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "advocacy",
+       "title": "Advocacy",
+       "subtopics": [
+        {
+         "id": "advocacy",
+         "title": "Advocacy",
+         "outcomes": [
+          {
+           "code": "HE.4.CH.4.1",
+           "text": "Choose ways to promote healthy school environments."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "5",
+   "units": [
+    {
+     "id": "resiliency",
+     "title": "Resiliency",
+     "topics": [
+      {
+       "id": "character",
+       "title": "Character",
+       "subtopics": [
+        {
+         "id": "character",
+         "title": "Character",
+         "outcomes": [
+          {
+           "code": "HE.5.R.1.1",
+           "text": "Discuss how to work together to achieve a positive outcome."
+          },
+          {
+           "code": "HE.5.R.1.2",
+           "text": "Identify how to communicate effectively within a group."
+          },
+          {
+           "code": "HE.5.R.1.3",
+           "text": "Describe the importance of considering the perspective of others when communicating."
+          },
+          {
+           "code": "HE.5.R.1.4",
+           "text": "Discuss ways that honesty and trustworthiness can lead to school and career success."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "personal-responsibility",
+       "title": "Personal Responsibility",
+       "subtopics": [
+        {
+         "id": "personal-responsibility",
+         "title": "Personal Responsibility",
+         "outcomes": [
+          {
+           "code": "HE.5.R.2.1",
+           "text": "Describe the importance of having the courage to the do the right thing even when it is difficult."
+          },
+          {
+           "code": "HE.5.R.2.2",
+           "text": "Discuss how responsible decision-making affects personal well-being."
+          },
+          {
+           "code": "HE.5.R.2.3",
+           "text": "Select reliable resources that would assist in achieving a personal goal."
+          },
+          {
+           "code": "HE.5.R.2.4",
+           "text": "Devise an individual goal (short or long term) to adopt, maintain, or improve a personal practice."
+          },
+          {
+           "code": "HE.5.R.2.5",
+           "text": "Explain how attitudes and thoughts can influence your behavior and affect others."
+          },
+          {
+           "code": "HE.5.R.2.6",
+           "text": "Demonstrate how to positively respond to external influences."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "mentorship-and-citizenship",
+       "title": "Mentorship and Citizenship",
+       "subtopics": [
+        {
+         "id": "mentorship-and-citizenship",
+         "title": "Mentorship and Citizenship",
+         "outcomes": [
+          {
+           "code": "HE.5.R.3.1",
+           "text": "Identify leadership skills that encourage and empower others."
+          },
+          {
+           "code": "HE.5.R.3.2",
+           "text": "Identify ways to participate in decision-making in the school or community."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "critical-thinking-and-problem-solving",
+       "title": "Critical Thinking and Problem Solving",
+       "subtopics": [
+        {
+         "id": "critical-thinking-and-problem-solving",
+         "title": "Critical Thinking and Problem Solving",
+         "outcomes": [
+          {
+           "code": "HE.5.R.4.1",
+           "text": "Apply organizational strategies that support completing multiple tasks efficiently."
+          },
+          {
+           "code": "HE.5.R.4.2",
+           "text": "Identify successful strategies for adjusting to change and setbacks."
+          },
+          {
+           "code": "HE.5.R.4.3",
+           "text": "Compare conflict resolution methods to identify potential solutions."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "personal-health-concepts",
+     "title": "Personal Health Concepts",
+     "topics": [
+      {
+       "id": "core-concepts",
+       "title": "Core Concepts",
+       "subtopics": [
+        {
+         "id": "core-concepts",
+         "title": "Core Concepts",
+         "outcomes": [
+          {
+           "code": "HE.5.PHC.1.1",
+           "text": "Demonstrate the physical and mental dimensions of health."
+          },
+          {
+           "code": "HE.5.PHC.1.2",
+           "text": "Explain ways you can prevent personal injuries."
+          },
+          {
+           "code": "HE.5.PHC.1.3",
+           "text": "Explain how human body parts and organs work together in healthy body systems, including the endocrine and reproductive systems."
+          },
+          {
+           "code": "HE.5.PHC.1.4",
+           "text": "Describe the relationship between healthy behaviors and personal health."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "internal-and-external-influence",
+       "title": "Internal and External Influence",
+       "subtopics": [
+        {
+         "id": "internal-and-external-influence",
+         "title": "Internal and External Influence",
+         "outcomes": [
+          {
+           "code": "HE.5.PHC.2.1",
+           "text": "Explain how outside influences, including family and friends, affect health practices and behaviors."
+          },
+          {
+           "code": "HE.5.PHC.2.2",
+           "text": "Explain ways a safe, healthy home and school environment promote personal health."
+          },
+          {
+           "code": "HE.5.PHC.2.3",
+           "text": "Explain how technology influences personal thoughts, feelings, and health behaviors."
+          },
+          {
+           "code": "HE.5.PHC.2.4",
+           "text": "Discuss how media/social media influences personal and family health behaviors."
+          },
+          {
+           "code": "HE.5.PHC.2.5",
+           "text": "Identify the legal and social consequences of inappropriate social media use."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "prevention-and-decision-making",
+       "title": "Prevention and Decision Making",
+       "subtopics": [
+        {
+         "id": "prevention-and-decision-making",
+         "title": "Prevention and Decision Making",
+         "outcomes": [
+          {
+           "code": "HE.5.PHC.3.1",
+           "text": "Analyze when assistance is needed when making a health-related decision."
+          },
+          {
+           "code": "HE.5.PHC.3.2",
+           "text": "Select a healthy option when making decisions for yourself to maintain or improve personal health and reduce health risks."
+          },
+          {
+           "code": "HE.5.PHC.3.3",
+           "text": "Compare the potential short-term impact of each option on self and others when making a health-related decision."
+          },
+          {
+           "code": "HE.5.PHC.3.4",
+           "text": "Develop a personal health goal and track progress toward achievement."
+          },
+          {
+           "code": "HE.5.PHC.3.5",
+           "text": "Summarize healthy options to health-related issues or problems."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "advocacy",
+       "title": "Advocacy",
+       "subtopics": [
+        {
+         "id": "advocacy",
+         "title": "Advocacy",
+         "outcomes": [
+          {
+           "code": "HE.5.PHC.4.1",
+           "text": "Evaluate appropriate responses to unwanted, unsafe, and threatening situations."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "community-and-environmental-health",
+     "title": "Community and Environmental Health",
+     "topics": [
+      {
+       "id": "core-concepts",
+       "title": "Core Concepts",
+       "subtopics": [
+        {
+         "id": "core-concepts",
+         "title": "Core Concepts",
+         "outcomes": [
+          {
+           "code": "HE.5.CEH.1.1",
+           "text": "Compare and contrast how healthy and unhealthy behaviors impact the community."
+          },
+          {
+           "code": "HE.5.CEH.1.2",
+           "text": "Explain common childhood health conditions and their impact on school and community environments."
+          },
+          {
+           "code": "HE.5.CEH.1.3",
+           "text": "Explain how community health can be impacted by internet and social media in the community."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "internal-and-external-influence",
+       "title": "Internal and External Influence",
+       "subtopics": [
+        {
+         "id": "internal-and-external-influence",
+         "title": "Internal and External Influence",
+         "outcomes": [
+          {
+           "code": "HE.5.CEH.2.1",
+           "text": "Give examples of school and public health policies that influence health promotion and disease prevention."
+          },
+          {
+           "code": "HE.5.CEH.2.2",
+           "text": "Investigate influences that change health beliefs and behaviors."
+          },
+          {
+           "code": "HE.5.CEH.2.3",
+           "text": "Determine how media/social media influences health behaviors and the selection of health information, products, and services."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "prevention-and-decision-making",
+       "title": "Prevention and Decision Making",
+       "subtopics": [
+        {
+         "id": "prevention-and-decision-making",
+         "title": "Prevention and Decision Making",
+         "outcomes": [
+          {
+           "code": "HE.5.CEH.3.1",
+           "text": "Research community resources available to prevent common childhood injuries and health problems."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "advocacy",
+       "title": "Advocacy",
+       "subtopics": [
+        {
+         "id": "advocacy",
+         "title": "Advocacy",
+         "outcomes": [
+          {
+           "code": "HE.5.CEH.4.1",
+           "text": "Persuade others to make positive health choices."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "consumer-health",
+     "title": "Consumer Health",
+     "topics": [
+      {
+       "id": "core-concepts",
+       "title": "Core Concepts",
+       "subtopics": [
+        {
+         "id": "core-concepts",
+         "title": "Core Concepts",
+         "outcomes": [
+          {
+           "code": "HE.5.CH.1.1",
+           "text": "Discuss characteristics of valid health information, products, and services."
+          },
+          {
+           "code": "HE.5.CH.1.2",
+           "text": "Research resources from home, school, and the community that provide valid health information."
+          },
+          {
+           "code": "HE.5.CH.1.3",
+           "text": "Recognize appropriate health care products and services in the community."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "internal-and-external-influence",
+       "title": "Internal and External Influence",
+       "subtopics": [
+        {
+         "id": "internal-and-external-influence",
+         "title": "Internal and External Influence",
+         "outcomes": [
+          {
+           "code": "HE.5.CH.2.1",
+           "text": "Identify ways health messages and communication"
+          },
+          {
+           "code": "HE.5.CH.2.2",
+           "text": "Select reliable resources that would assist in achieving a personal health goal."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "prevention-and-decision-making",
+       "title": "Prevention and Decision Making",
+       "subtopics": [
+        {
+         "id": "prevention-and-decision-making",
+         "title": "Prevention and Decision Making",
+         "outcomes": [
+          {
+           "code": "HE.5.CH.3.1",
+           "text": "Evaluate criteria for selecting health resources, products, and services."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "advocacy",
+       "title": "Advocacy",
+       "subtopics": [
+        {
+         "id": "advocacy",
+         "title": "Advocacy",
+         "outcomes": [
+          {
+           "code": "HE.5.CH.4.1",
+           "text": "Develop a plan as a class to champion healthy school environments."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "6",
+   "units": [
+    {
+     "id": "personal-health-concepts",
+     "title": "Personal Health Concepts",
+     "topics": [
+      {
+       "id": "core-concepts",
+       "title": "Core Concepts",
+       "subtopics": [
+        {
+         "id": "core-concepts",
+         "title": "Core Concepts",
+         "outcomes": [
+          {
+           "code": "HE.6.PHC.1.1",
+           "text": "Describe how the physical, mental social, and intellectual dimensions of health are interrelated."
+          },
+          {
+           "code": "HE.6.PHC.1.2",
+           "text": "Identify personal health problems and concerns common to adolescents including reproductive development."
+          },
+          {
+           "code": "HE.6.PHC.1.3",
+           "text": "Examine the importance of assuming responsibility for personal reproductive health behaviors."
+          },
+          {
+           "code": "HE.6.PHC.1.4",
+           "text": "Describe situations when professional health services may be required."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "internal-and-external-influence",
+       "title": "Internal and External Influence",
+       "subtopics": [
+        {
+         "id": "internal-and-external-influence-1-of-2",
+         "title": "Internal and External Influence (1 of 2)",
+         "outcomes": [
+          {
+           "code": "HE.6.PHC.2.1",
+           "text": "Analyze how media/social media influences personal and peer thoughts, feelings, and health behaviors."
+          },
+          {
+           "code": "HE.6.PHC.2.2",
+           "text": "Identify environmental factors that affect personal health."
+          },
+          {
+           "code": "HE.6.PHC.2.3",
+           "text": "Examine how friends and peers influence the health of adolescents."
+          },
+          {
+           "code": "HE.6.PHC.2.4",
+           "text": "Examine how family and culture influence the health of adolescents."
+          }
+         ]
+        },
+        {
+         "id": "internal-and-external-influence-2-of-2",
+         "title": "Internal and External Influence (2 of 2)",
+         "outcomes": [
+          {
+           "code": "HE.6.PHC.2.5",
+           "text": "Recognize how personal health choices can affect hereditary risk factors."
+          },
+          {
+           "code": "HE.6.PHC.2.6",
+           "text": "Determine how social norms may impact healthy and unhealthy behavior."
+          },
+          {
+           "code": "HE.6.PHC.2.7",
+           "text": "Explain how body systems are impacted by hereditary factors and infectious diseases."
+          },
+          {
+           "code": "HE.6.PHC.2.8",
+           "text": "Describe legal and ethical behaviors when using the internet and social media."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "prevention-and-decision-making",
+       "title": "Prevention and Decision Making",
+       "subtopics": [
+        {
+         "id": "prevention-and-decision-making-1-of-2",
+         "title": "Prevention and Decision Making (1 of 2)",
+         "outcomes": [
+          {
+           "code": "HE.6.PHC.3.1",
+           "text": "Distinguish between the need for individual or collaborative decision making."
+          },
+          {
+           "code": "HE.6.PHC.3.2",
+           "text": "Specify the potential outcomes of each option when making a personal health-related decision."
+          },
+          {
+           "code": "HE.6.PHC.3.3",
+           "text": "Predict the potential outcomes of a health-related decision."
+          },
+          {
+           "code": "HE.6.PHC.3.4",
+           "text": "Use various methods to measure personal health status."
+          },
+          {
+           "code": "HE.6.PHC.3.5",
+           "text": "Develop an individual goal to adopt, maintain, or improve a personal health practice."
+          }
+         ]
+        },
+        {
+         "id": "prevention-and-decision-making-2-of-2",
+         "title": "Prevention and Decision Making (2 of 2)",
+         "outcomes": [
+          {
+           "code": "HE.6.PHC.3.6",
+           "text": "Determine strategies and skills needed to attain a personal health goal."
+          },
+          {
+           "code": "HE.6.PHC.3.7",
+           "text": "Monitor progress toward attaining a personal health goal."
+          },
+          {
+           "code": "HE.6.PHC.3.8",
+           "text": "Examine the likelihood of injury or illness if engaging in unhealthy/risky behaviors."
+          },
+          {
+           "code": "HE.6.PHC.3.9",
+           "text": "Explore healthy practices and behaviors that will maintain or improve personal health and reduce health risks."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "advocacy",
+       "title": "Advocacy",
+       "subtopics": [
+        {
+         "id": "advocacy",
+         "title": "Advocacy",
+         "outcomes": [
+          {
+           "code": "HE.6.PHC.4.1",
+           "text": "Use valid and reliable information to request access to health products, services, or environments."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "community-and-environmental-health",
+     "title": "Community and Environmental Health",
+     "topics": [
+      {
+       "id": "core-concepts",
+       "title": "Core Concepts",
+       "subtopics": [
+        {
+         "id": "core-concepts",
+         "title": "Core Concepts",
+         "outcomes": [
+          {
+           "code": "HE.6.CEH.1.1",
+           "text": "Describe how the physical, mental, social, and intellectual dimensions of community health are interrelated."
+          },
+          {
+           "code": "HE.6.CEH.1.2",
+           "text": "Identify community health problems and concerns common to adolescents."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "internal-and-external-influence",
+       "title": "Internal and External Influence",
+       "subtopics": [
+        {
+         "id": "internal-and-external-influence",
+         "title": "Internal and External Influence",
+         "outcomes": [
+          {
+           "code": "HE.6.CEH.2.1",
+           "text": "Identify the impact of health information conveyed to students by the school and community."
+          },
+          {
+           "code": "HE.6.CEH.2.2",
+           "text": "Investigate changes to societal norms and how they influence health beliefs and behaviors."
+          },
+          {
+           "code": "HE.6.CEH.2.3",
+           "text": "Examine how media/social media influences peer and community health behaviors."
+          },
+          {
+           "code": "HE.6.CEH.2.4",
+           "text": "Propose ways that technology can influence peer and community health behaviors."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "prevention-and-decision-making",
+       "title": "Prevention and Decision Making",
+       "subtopics": [
+        {
+         "id": "prevention-and-decision-making",
+         "title": "Prevention and Decision Making",
+         "outcomes": [
+          {
+           "code": "HE.6.CEH.3.1",
+           "text": "Choose healthy alternatives over unhealthy alternatives when making a decision."
+          },
+          {
+           "code": "HE.6.CEH.3.2",
+           "text": "Specify the potential outcomes of each option when making a community health-related decision."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "advocacy",
+       "title": "Advocacy",
+       "subtopics": [
+        {
+         "id": "advocacy",
+         "title": "Advocacy",
+         "outcomes": [
+          {
+           "code": "HE.6.CEH.4.1",
+           "text": "Describe how the community can influence and support others to make positive health choices."
+          },
+          {
+           "code": "HE.6.CEH.4.2",
+           "text": "State a health-enhancing position on a topic and support it with accurate information."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "consumer-health",
+     "title": "Consumer Health",
+     "topics": [
+      {
+       "id": "core-concepts",
+       "title": "Core Concepts",
+       "subtopics": [
+        {
+         "id": "core-concepts",
+         "title": "Core Concepts",
+         "outcomes": [
+          {
+           "code": "HE.6.CH.1.1",
+           "text": "Examine how appropriate health care can promote personal health."
+          },
+          {
+           "code": "HE.6.CH.1.2",
+           "text": "Investigate a variety of technologies to gather health information."
+          },
+          {
+           "code": "HE.6.CH.1.3",
+           "text": "Identify available resources and services needed to attain a personal health goal."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "internal-and-external-influence",
+       "title": "Internal and External Influence",
+       "subtopics": [
+        {
+         "id": "internal-and-external-influence",
+         "title": "Internal and External Influence",
+         "outcomes": [
+          {
+           "code": "HE.6.CH.2.1",
+           "text": "Illustrate ways health messages and communication"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "prevention-and-decision-making",
+       "title": "Prevention and Decision Making",
+       "subtopics": [
+        {
+         "id": "prevention-and-decision-making",
+         "title": "Prevention and Decision Making",
+         "outcomes": [
+          {
+           "code": "HE.6.CH.3.1",
+           "text": "Examine the validity of health information and determine the cost benefit of health products and services."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "advocacy",
+       "title": "Advocacy",
+       "subtopics": [
+        {
+         "id": "advocacy",
+         "title": "Advocacy",
+         "outcomes": [
+          {
+           "code": "HE.6.CH.4.1",
+           "text": "Identify ways students can request access to appropriate resources and services that promote healthy living."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "7",
+   "units": [
+    {
+     "id": "personal-health-concepts",
+     "title": "Personal Health Concepts",
+     "topics": [
+      {
+       "id": "core-concepts",
+       "title": "Core Concepts",
+       "subtopics": [
+        {
+         "id": "core-concepts",
+         "title": "Core Concepts",
+         "outcomes": [
+          {
+           "code": "HE.7.PHC.1.1",
+           "text": "Explain how physical, mental, social, and intellectual dimensions of health are interrelated."
+          },
+          {
+           "code": "HE.7.PHC.1.2",
+           "text": "Classify infectious diseases and their modes of transmission to the human body."
+          },
+          {
+           "code": "HE.7.PHC.1.3",
+           "text": "Explain the importance of assuming responsibility for personal and reproductive health behaviors."
+          },
+          {
+           "code": "HE.7.PHC.1.4",
+           "text": "Differentiate among professional health services that may be required."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "internal-and-external-influence",
+       "title": "Internal and External Influence",
+       "subtopics": [
+        {
+         "id": "internal-and-external-influence-1-of-2",
+         "title": "Internal and External Influence (1 of 2)",
+         "outcomes": [
+          {
+           "code": "HE.7.PHC.2.1",
+           "text": "Interpret the potential impact of media/social media on health behaviors, personal thoughts, and feelings."
+          },
+          {
+           "code": "HE.7.PHC.2.2",
+           "text": "Analyze how environmental factors affect personal health."
+          },
+          {
+           "code": "HE.7.PHC.2.3",
+           "text": "Analyze how friends and peers influence the health of adolescents."
+          },
+          {
+           "code": "HE.7.PHC.2.4",
+           "text": "Analyze how family and cultural changes influence the health of adolescents."
+          }
+         ]
+        },
+        {
+         "id": "internal-and-external-influence-2-of-2",
+         "title": "Internal and External Influence (2 of 2)",
+         "outcomes": [
+          {
+           "code": "HE.7.PHC.2.5",
+           "text": "Describe how personal health choices can affect hereditary risk factors."
+          },
+          {
+           "code": "HE.7.PHC.2.6",
+           "text": "Analyze personal beliefs as they relate to health practices."
+          },
+          {
+           "code": "HE.7.PHC.2.7",
+           "text": "Explain the influence of personal values, attitudes, and beliefs about individual health practices and behaviors."
+          },
+          {
+           "code": "HE.7.PHC.2.8",
+           "text": "Describe safe and legal practices when participating in online communities."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "prevention-and-decision-making",
+       "title": "Prevention and Decision Making",
+       "subtopics": [
+        {
+         "id": "prevention-and-decision-making-1-of-2",
+         "title": "Prevention and Decision Making (1 of 2)",
+         "outcomes": [
+          {
+           "code": "HE.7.PHC.3.1",
+           "text": "Predict when health-related situations require the application of a thoughtful decision-making process."
+          },
+          {
+           "code": "HE.7.PHC.3.2",
+           "text": "Select healthy alternatives over unhealthy alternatives when making a decision."
+          },
+          {
+           "code": "HE.7.PHC.3.3",
+           "text": "Determine when individual or collaborative decision making is appropriate."
+          },
+          {
+           "code": "HE.7.PHC.3.4",
+           "text": "Predict the short and long-term consequences of engaging in health-risk behaviors."
+          },
+          {
+           "code": "HE.7.PHC.3.5",
+           "text": "Devise an individual goal (short or long term) to adopt, maintain, or improve a personal health practice."
+          }
+         ]
+        },
+        {
+         "id": "prevention-and-decision-making-2-of-2",
+         "title": "Prevention and Decision Making (2 of 2)",
+         "outcomes": [
+          {
+           "code": "HE.7.PHC.3.6",
+           "text": "Explain strategies and skills needed to assess progress and maintenance of a personal health goal."
+          },
+          {
+           "code": "HE.7.PHC.3.7",
+           "text": "Compare and contrast the effects of healthy and unhealthy behaviors on personal health."
+          },
+          {
+           "code": "HE.7.PHC.3.8",
+           "text": "Describe ways one can reduce or prevent injuries and adolescent health problems."
+          },
+          {
+           "code": "HE.7.PHC.3.9",
+           "text": "Practice behaviors that will maintain or improve personal health and reduce health risks, including reproductive health."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "advocacy",
+       "title": "Advocacy",
+       "subtopics": [
+        {
+         "id": "advocacy",
+         "title": "Advocacy",
+         "outcomes": [
+          {
+           "code": "HE.7.PHC.4.1",
+           "text": "Articulate ways to request access to healthy products, services, and environments."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "community-and-environmental-health",
+     "title": "Community and Environmental Health",
+     "topics": [
+      {
+       "id": "core-concepts",
+       "title": "Core Concepts",
+       "subtopics": [
+        {
+         "id": "core-concepts",
+         "title": "Core Concepts",
+         "outcomes": [
+          {
+           "code": "HE.7.CEH.1.1",
+           "text": "Investigate how the physical, mental, social, and intellectual dimensions of community health are interrelated."
+          },
+          {
+           "code": "HE.7.CEH.1.2",
+           "text": "Describe community health problems and concerns common to adolescents."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "internal-and-external-influence",
+       "title": "Internal and External Influence",
+       "subtopics": [
+        {
+         "id": "internal-and-external-influence",
+         "title": "Internal and External Influence",
+         "outcomes": [
+          {
+           "code": "HE.7.CEH.2.1",
+           "text": "Examine how the school and community may influence the health behaviors of adolescents."
+          },
+          {
+           "code": "HE.7.CEH.2.2",
+           "text": "Evaluate how changes in social norms impact healthy and unhealthy behavior."
+          },
+          {
+           "code": "HE.7.CEH.2.3",
+           "text": "Evaluate how media/social media influences peer and community health behaviors."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "prevention-and-decision-making",
+       "title": "Prevention and Decision Making",
+       "subtopics": [
+        {
+         "id": "prevention-and-decision-making",
+         "title": "Prevention and Decision Making",
+         "outcomes": [
+          {
+           "code": "HE.7.CEH.3.1",
+           "text": "Describe ways the community can reduce or prevent injuries and adolescent health problems."
+          },
+          {
+           "code": "HE.7.CEH.3.2",
+           "text": "Explain how injury or illness stemming from unhealthy or risky behaviors impacts the community."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "advocacy",
+       "title": "Advocacy",
+       "subtopics": [
+        {
+         "id": "advocacy",
+         "title": "Advocacy",
+         "outcomes": [
+          {
+           "code": "HE.7.CEH.4.1",
+           "text": "Evaluate how community practices influence the positive health choices of others."
+          },
+          {
+           "code": "HE.7.CEH.4.2",
+           "text": "Articulate a position on a health-related issue and support it with accurate health information."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "consumer-health",
+     "title": "Consumer Health",
+     "topics": [
+      {
+       "id": "core-concepts",
+       "title": "Core Concepts",
+       "subtopics": [
+        {
+         "id": "core-concepts",
+         "title": "Core Concepts",
+         "outcomes": [
+          {
+           "code": "HE.7.CH.1.1",
+           "text": "Explain how appropriate health care can promote personal health."
+          },
+          {
+           "code": "HE.7.CH.1.2",
+           "text": "Evaluate a variety of technologies to gather health information."
+          },
+          {
+           "code": "HE.7.CH.1.3",
+           "text": "Determine appropriate resources and services needed to attain a personal health goal."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "internal-and-external-influence",
+       "title": "Internal and External Influence",
+       "subtopics": [
+        {
+         "id": "internal-and-external-influence",
+         "title": "Internal and External Influence",
+         "outcomes": [
+          {
+           "code": "HE.7.CH.2.1",
+           "text": "Analyze ways consumer health messages can target different audiences through internet and social media sources."
+          },
+          {
+           "code": "HE.7.CH.2.2",
+           "text": "Analyze how messages from media/social media influence health behaviors."
+          },
+          {
+           "code": "HE.7.CH.2.3",
+           "text": "Evaluate the influence of technology in locating valid health information."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "prevention-and-decision-making",
+       "title": "Prevention and Decision Making",
+       "subtopics": [
+        {
+         "id": "prevention-and-decision-making",
+         "title": "Prevention and Decision Making",
+         "outcomes": [
+          {
+           "code": "HE.7.CH.3.1",
+           "text": "Analyze the validity of health information, products, and services."
+          },
+          {
+           "code": "HE.7.CH.3.2",
+           "text": "Compare resources and services needed to attain a personal health goal."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "advocacy",
+       "title": "Advocacy",
+       "subtopics": [
+        {
+         "id": "advocacy",
+         "title": "Advocacy",
+         "outcomes": [
+          {
+           "code": "HE.7.CH.4.1",
+           "text": "Articulate ways students can request access to appropriate resources and services that promote healthy living."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "8",
+   "units": [
+    {
+     "id": "personal-health-concepts",
+     "title": "Personal Health Concepts",
+     "topics": [
+      {
+       "id": "core-concepts",
+       "title": "Core Concepts",
+       "subtopics": [
+        {
+         "id": "core-concepts",
+         "title": "Core Concepts",
+         "outcomes": [
+          {
+           "code": "HE.8.PHC.1.1",
+           "text": "Analyze how the physical, mental, social, and intellectual dimensions of personal health are interrelated."
+          },
+          {
+           "code": "HE.8.PHC.1.2",
+           "text": "Identify major chronic diseases that impact human body systems."
+          },
+          {
+           "code": "HE.8.PHC.1.3",
+           "text": "Assess the importance of assuming responsibility for personal health behaviors."
+          },
+          {
+           "code": "HE.8.PHC.1.4",
+           "text": "Assess personal health practices."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "internal-and-external-influence",
+       "title": "Internal and External Influence",
+       "subtopics": [
+        {
+         "id": "internal-and-external-influence-1-of-2",
+         "title": "Internal and External Influence (1 of 2)",
+         "outcomes": [
+          {
+           "code": "HE.8.PHC.2.1",
+           "text": "Analyze the influences of media/social media on physical, emotional, and social health."
+          },
+          {
+           "code": "HE.8.PHC.2.2",
+           "text": "Analyze the influence of personal values, attitudes, and beliefs about individual health practices and behaviors."
+          },
+          {
+           "code": "HE.8.PHC.2.3",
+           "text": "Predict how environmental factors affect personal health."
+          },
+          {
+           "code": "HE.8.PHC.2.4",
+           "text": "Assess the role of the beliefs of friends and peers on the health of adolescents."
+          },
+          {
+           "code": "HE.8.PHC.2.5",
+           "text": "Assess the role of the beliefs of family and culture on the health of adolescents."
+          }
+         ]
+        },
+        {
+         "id": "internal-and-external-influence-2-of-2",
+         "title": "Internal and External Influence (2 of 2)",
+         "outcomes": [
+          {
+           "code": "HE.8.PHC.2.6",
+           "text": "Describe the influence of culture on health beliefs, practices, and behaviors."
+          },
+          {
+           "code": "HE.8.PHC.2.7",
+           "text": "Explore how heredity and family history can affect personal health."
+          },
+          {
+           "code": "HE.8.PHC.2.8",
+           "text": "Explain how the perceptions of norms influence healthy and unhealthy behaviors."
+          },
+          {
+           "code": "HE.8.PHC.2.9",
+           "text": "Describe how personal health goals can vary with changing abilities, priorities, and responsibilities."
+          },
+          {
+           "code": "HE.8.PHC.2.10",
+           "text": "Explain the impact of cyberbullying and inappropriate use of social media on personal wellness."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "prevention-and-decision-making",
+       "title": "Prevention and Decision Making",
+       "subtopics": [
+        {
+         "id": "prevention-and-decision-making-1-of-2",
+         "title": "Prevention and Decision Making (1 of 2)",
+         "outcomes": [
+          {
+           "code": "HE.8.PHC.3.1",
+           "text": "Determine when health-related situations require the application of a thoughtful prepared plan of action."
+          },
+          {
+           "code": "HE.8.PHC.3.2",
+           "text": "Compile the potential outcomes of each option when making a health-related decision."
+          },
+          {
+           "code": "HE.8.PHC.3.3",
+           "text": "Distinguish when individual or collaborative decision-making is appropriate."
+          },
+          {
+           "code": "HE.8.PHC.3.4",
+           "text": "Evaluate the outcomes of a health-related decision."
+          },
+          {
+           "code": "HE.8.PHC.3.5",
+           "text": "Determine situations when specific professional health services or providers may be required."
+          }
+         ]
+        },
+        {
+         "id": "prevention-and-decision-making-2-of-2",
+         "title": "Prevention and Decision Making (2 of 2)",
+         "outcomes": [
+          {
+           "code": "HE.8.PHC.3.6",
+           "text": "Investigate personal strategies to reduce or prevent injuries and other adolescent health problems."
+          },
+          {
+           "code": "HE.8.PHC.3.7",
+           "text": "Design an individual goal to adopt, maintain, or improve a personal health practice."
+          },
+          {
+           "code": "HE.8.PHC.3.8",
+           "text": "Apply strategies and skills needed to attain a personal health goal."
+          },
+          {
+           "code": "HE.8.PHC.3.9",
+           "text": "Apply healthy practices and behaviors that will maintain or improve personal health and reduce health risks."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "advocacy",
+       "title": "Advocacy",
+       "subtopics": [
+        {
+         "id": "advocacy",
+         "title": "Advocacy",
+         "outcomes": [
+          {
+           "code": "HE.8.PHC.4.1",
+           "text": "Promote ways to acquire health services, products and or environments based on accurate and truthful information."
+          },
+          {
+           "code": "HE.8.PHC.4.2",
+           "text": "Identify strategies to combat cyberbullying and online harassment."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "community-and-environmental-health",
+     "title": "Community and Environmental Health",
+     "topics": [
+      {
+       "id": "core-concepts",
+       "title": "Core Concepts",
+       "subtopics": [
+        {
+         "id": "core-concepts",
+         "title": "Core Concepts",
+         "outcomes": [
+          {
+           "code": "HE.8.CEH.1.1",
+           "text": "Analyze how the physical, mental, social, and intellectual dimensions of community health are interrelated."
+          },
+          {
+           "code": "HE.8.CEH.1.2",
+           "text": "Evaluate community health problems and concerns common to adolescents."
+          },
+          {
+           "code": "HE.8.CEH.1.3",
+           "text": "Identify the social determinants of health."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "internal-and-external-influence",
+       "title": "Internal and External Influence",
+       "subtopics": [
+        {
+         "id": "internal-and-external-influence",
+         "title": "Internal and External Influence",
+         "outcomes": [
+          {
+           "code": "HE.8.CEH.2.1",
+           "text": "Analyze how the school and community may influence adolescent health."
+          },
+          {
+           "code": "HE.8.CEH.2.2",
+           "text": "Critique school and public health policies that influence health promotion and disease prevention."
+          },
+          {
+           "code": "HE.8.CEH.2.3",
+           "text": "Analyze how media/social media influences community health behaviors."
+          },
+          {
+           "code": "HE.8.CEH.2.4",
+           "text": "Predict how environmental factors affect community health."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "prevention-and-decision-making",
+       "title": "Prevention and Decision Making",
+       "subtopics": [
+        {
+         "id": "prevention-and-decision-making",
+         "title": "Prevention and Decision Making",
+         "outcomes": [
+          {
+           "code": "HE.8.CEH.3.1",
+           "text": "Investigate community strategies to reduce or prevent injuries and other adolescent health problems."
+          },
+          {
+           "code": "HE.8.CEH.3.2",
+           "text": "Anticipate how injury or illness stemming from unhealthy or risky behaviors impacts the community."
+          },
+          {
+           "code": "HE.8.CEH.3.3",
+           "text": "Categorize healthy and unhealthy alternatives to community health-related issues or problems."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "advocacy",
+       "title": "Advocacy",
+       "subtopics": [
+        {
+         "id": "advocacy",
+         "title": "Advocacy",
+         "outcomes": [
+          {
+           "code": "HE.8.CEH.4.1",
+           "text": "Promote positive health choices with the influence and support of others."
+          },
+          {
+           "code": "HE.8.CEH.4.2",
+           "text": "Justify a health-enhancing position on a topic and support it with accurate information."
+          },
+          {
+           "code": "HE.8.CEH.4.3",
+           "text": "Work cooperatively to advocate for healthy individuals, peers, families, and schools."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "consumer-health",
+     "title": "Consumer Health",
+     "topics": [
+      {
+       "id": "core-concepts",
+       "title": "Core Concepts",
+       "subtopics": [
+        {
+         "id": "core-concepts",
+         "title": "Core Concepts",
+         "outcomes": [
+          {
+           "code": "HE.8.CH.1.1",
+           "text": "Analyze how appropriate health care can influence personal health."
+          },
+          {
+           "code": "HE.8.CH.1.2",
+           "text": "Compare and contrast a variety of technologies to gather health information."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "internal-and-external-influence",
+       "title": "Internal and External Influence",
+       "subtopics": [
+        {
+         "id": "internal-and-external-influence",
+         "title": "Internal and External Influence",
+         "outcomes": [
+          {
+           "code": "HE.8.CH.2.1",
+           "text": "Evaluate ways consumer health messages and communication techniques can be targeted for different audiences."
+          },
+          {
+           "code": "HE.8.CH.2.2",
+           "text": "Research marketing strategies behind health-related media/social media messages."
+          },
+          {
+           "code": "HE.8.CH.2.3",
+           "text": "Analyze the influence of technology on personal and family health."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "prevention-and-decision-making",
+       "title": "Prevention and Decision Making",
+       "subtopics": [
+        {
+         "id": "prevention-and-decision-making",
+         "title": "Prevention and Decision Making",
+         "outcomes": [
+          {
+           "code": "HE.8.CH.3.1",
+           "text": "Analyze the accessibility, validity, and reliability of products and services that enhance home, school, and community health."
+          },
+          {
+           "code": "HE.8.CH.3.2",
+           "text": "Analyze valid and reliable health services and the cost of products."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "advocacy",
+       "title": "Advocacy",
+       "subtopics": [
+        {
+         "id": "advocacy",
+         "title": "Advocacy",
+         "outcomes": [
+          {
+           "code": "HE.8.CH.4.1",
+           "text": "Promote resources that assist in goal setting."
+          },
+          {
+           "code": "HE.8.CH.4.2",
+           "text": "Recommend a variety of technologies to gather health information."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "6-8",
+   "units": [
+    {
+     "id": "substance-use-and-abuse-standards",
+     "title": "Substance Use and Abuse Standards",
+     "topics": [
+      {
+       "id": "health-promotion-and-disease-prevention-concepts",
+       "title": "Health promotion and disease prevention concepts",
+       "subtopics": [
+        {
+         "id": "health-promotion-and-disease-prevention-concepts",
+         "title": "Health promotion and disease prevention concepts (1 of 2)",
+         "outcomes": [
+          {
+           "code": "HE.68.SUA.1.1",
+           "text": "Demonstrate responsible decision-making about the use of substances."
+          },
+          {
+           "code": "HE.68.SUA.1.2",
+           "text": "Define terminology specific to alcohol misuse/abuse and discuss the short- and long-term effects of consuming alcohol."
+          },
+          {
+           "code": "HE.68.SUA.1.3",
+           "text": "Discuss the health risks associated with alcohol"
+          },
+          {
+           "code": "HE.68.SUA.1.4",
+           "text": "Describe the types, delivery devices and accessibility of marijuana/THC products and their impacts on prevalence of use."
+          }
+         ]
+        },
+        {
+         "id": "health-promotion-and-disease-prevention-concepts-2",
+         "title": "Health promotion and disease prevention concepts (2 of 2)",
+         "outcomes": [
+          {
+           "code": "HE.68.SUA.1.5",
+           "text": "Examine the effects of marijuana/THC and opioids on body systems and behavior."
+          },
+          {
+           "code": "HE.68.SUA.1.6",
+           "text": "State the risks of misusing and sharing prescription and/or illicit drugs, including fentanyl and other opioids."
+          },
+          {
+           "code": "HE.68.SUA.1.7",
+           "text": "Identify signs and symptoms of prescription and/or illicit drug misuse and overdose, including fentanyl and other opioids."
+          },
+          {
+           "code": "HE.68.SUA.1.8",
+           "text": "Describe the short- and long-term physical and social consequences of tobacco, nicotine use and/or vaping."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "internal-and-external-influences",
+       "title": "Internal and external influences",
+       "subtopics": [
+        {
+         "id": "internal-and-external-influences",
+         "title": "Internal and external influences",
+         "outcomes": [
+          {
+           "code": "HE.68.SUA.2.1",
+           "text": "Discuss family rules, school rules and state laws about the use of alcohol and other drugs."
+          },
+          {
+           "code": "HE.68.SUA.2.2",
+           "text": "Discuss the dangers of underage consumption of alcohol and the benefits of abstaining from drinking alcohol."
+          },
+          {
+           "code": "HE.68.SUA.2.3",
+           "text": "Describe how external factors can influence behaviors related to tobacco, nicotine use, and/or vaping."
+          },
+          {
+           "code": "HE.68.SUA.2.4",
+           "text": "Explain school-based policies and legal consequences"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "access-to-valid-information-products-and-service",
+       "title": "Access to valid information, products and services",
+       "subtopics": [
+        {
+         "id": "access-to-valid-information-products-and-service",
+         "title": "Access to valid information, products and services",
+         "outcomes": [
+          {
+           "code": "HE.68.SUA.3.1",
+           "text": "Discuss ways to identify valid and reliable multi-media information as it pertains to alcohol and other drugs."
+          },
+          {
+           "code": "HE.68.SUA.3.2",
+           "text": "Identify how to find and access school and community resources related to alcohol misuse and/or abuse."
+          },
+          {
+           "code": "HE.68.SUA.3.3",
+           "text": "Differentiate between marijuana/THC myths and facts."
+          },
+          {
+           "code": "HE.68.SUA.3.4",
+           "text": "Explain how family, peers and multi-media messages over time can influence the use of marijuana/THC."
+          },
+          {
+           "code": "HE.68.SUA.3.5",
+           "text": "Describe the three major categories, purposes and side effects of prescription drugs."
+          },
+          {
+           "code": "HE.68.SUA.3.6",
+           "text": "Distinguish valid and reliable resources for cessation."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "communication-skills-and-resilient-behaviors-to-",
+       "title": "Communication skills and resilient behaviors to reduce health risks",
+       "subtopics": [
+        {
+         "id": "communication-skills-and-resilient-behaviors-to-",
+         "title": "Communication skills and resilient behaviors to reduce health risks",
+         "outcomes": [
+          {
+           "code": "HE.68.SUA.4.1",
+           "text": "Demonstrate refusal and communication skills in specific scenarios related to underage drinking and illicit drug use."
+          },
+          {
+           "code": "HE.68.SUA.4.2",
+           "text": "Predict the potential short- and long-term impacts on self"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "advocacy-for-personal-family-and-community-healt",
+       "title": "Advocacy for personal, family and community health",
+       "subtopics": [
+        {
+         "id": "advocacy-for-personal-family-and-community-healt",
+         "title": "Advocacy for personal, family and community health",
+         "outcomes": [
+          {
+           "code": "HE.68.SUA.5.1",
+           "text": "Work cooperatively with peers to advocate for others to remain alcohol and drug free."
+          },
+          {
+           "code": "HE.68.SUA.5.2",
+           "text": "Demonstrate ways to seek help and support from trusted"
+          },
+          {
+           "code": "HE.68.SUA.5.3",
+           "text": "Identify the consequences of marijuana/THC use and work cooperatively to advocate for healthy behaviors."
+          },
+          {
+           "code": "HE.68.SUA.5.4",
+           "text": "Model ways that encourage others to avoid situations where alcohol and other drugs are present or may be used."
+          },
+          {
+           "code": "HE.68.SUA.5.5",
+           "text": "Encourage peers to model healthy choices related to goals, communication, friendship and peer pressure."
+          },
+          {
+           "code": "HE.68.SUA.5.6",
+           "text": "Describe how to support family and friends who are trying to stop using tobacco, nicotine, and/or vaping."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "resiliency-starting-2024-2025",
+     "title": "Resiliency (starting 2024-2025)",
+     "topics": [
+      {
+       "id": "character",
+       "title": "Character",
+       "subtopics": [
+        {
+         "id": "character",
+         "title": "Character",
+         "outcomes": [
+          {
+           "code": "HE.68.R.1.1",
+           "text": "Demonstrate the ability to respond with empathy in a variety of contexts and situations."
+          },
+          {
+           "code": "HE.68.R.1.2",
+           "text": "Describe the importance of empathy, kindness, honesty and trust in building and sustaining relationships."
+          },
+          {
+           "code": "HE.68.R.1.3",
+           "text": "Identify sources of relational conflicts and healthy approaches to conflict resolutions."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "personal-responsibility",
+       "title": "Personal Responsibility",
+       "subtopics": [
+        {
+         "id": "personal-responsibility-1-of-2",
+         "title": "Personal Responsibility (1 of 2)",
+         "outcomes": [
+          {
+           "code": "HE.68.R.2.1",
+           "text": "Discuss how character is shaped by attitudes, decisions and actions."
+          },
+          {
+           "code": "HE.68.R.2.2",
+           "text": "Demonstrate responsible decision-making that considers multiple perspectives."
+          },
+          {
+           "code": "HE.68.R.2.3",
+           "text": "Describe the importance of following school and community laws and rules."
+          },
+          {
+           "code": "HE.68.R.2.4",
+           "text": "Monitor progress toward attaining a personal goal."
+          },
+          {
+           "code": "HE.68.R.2.5",
+           "text": "Explain strategies and skills needed to assess progress and maintenance of a challenging personal goal."
+          }
+         ]
+        },
+        {
+         "id": "personal-responsibility-2-of-2",
+         "title": "Personal Responsibility (2 of 2)",
+         "outcomes": [
+          {
+           "code": "HE.68.R.2.6",
+           "text": "Describe how personal goals can vary with changing abilities, priorities, and responsibilities."
+          },
+          {
+           "code": "HE.68.R.2.7",
+           "text": "Identify how continuous learning leads to personal growth."
+          },
+          {
+           "code": "HE.68.R.2.8",
+           "text": "Identify strategies to manage challenges and setbacks."
+          },
+          {
+           "code": "HE.68.R.2.9",
+           "text": "Identify healthy responses to negative peer pressure."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "mentorship-and-citizenship",
+       "title": "Mentorship and Citizenship",
+       "subtopics": [
+        {
+         "id": "mentorship-and-citizenship",
+         "title": "Mentorship and Citizenship",
+         "outcomes": [
+          {
+           "code": "HE.68.R.3.1",
+           "text": "Discuss ways a leader can build the trust of individuals and groups."
+          },
+          {
+           "code": "HE.68.R.3.2",
+           "text": "Explain and develop ways to apply leadership skills in the school and the community."
+          },
+          {
+           "code": "HE.68.R.3.3",
+           "text": "Identify the importance of volunteerism in positively affecting the community and nation."
+          },
+          {
+           "code": "HE.68.R.3.4",
+           "text": "Identify ways to participate in our constitutional republic through public policy, voting, and leadership positions."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "critical-thinking-and-problem-solving",
+       "title": "Critical Thinking and Problem Solving",
+       "subtopics": [
+        {
+         "id": "critical-thinking-and-problem-solving",
+         "title": "Critical Thinking and Problem Solving",
+         "outcomes": [
+          {
+           "code": "HE.68.R.4.1",
+           "text": "Analyze possible solutions to a problem to determine the best outcome for oneself and others."
+          },
+          {
+           "code": "HE.68.R.4.2",
+           "text": "Develop and apply conflict resolution skills in a variety of situations."
+          },
+          {
+           "code": "HE.68.R.4.3",
+           "text": "Analyze ways to pursue common goals as a part of a team or group."
+          },
+          {
+           "code": "HE.68.R.4.4",
+           "text": "Identify the importance of perseverance when facing difficulty solving a problem."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "9-12",
+   "units": [
+    {
+     "id": "substance-use-and-abuse-standards",
+     "title": "Substance Use and Abuse Standards",
+     "topics": [
+      {
+       "id": "health-promotion-and-disease-prevention-concepts",
+       "title": "Health promotion and disease prevention concepts",
+       "subtopics": [
+        {
+         "id": "health-promotion-and-disease-prevention-concepts",
+         "title": "Health promotion and disease prevention concepts (1 of 2)",
+         "outcomes": [
+          {
+           "code": "HE.912.SUA.1.1",
+           "text": "Differentiate between various levels of alcohol consumption and its effects on the body."
+          },
+          {
+           "code": "HE.912.SUA.1.2",
+           "text": "Analyze how moderate and excessive alcohol consumption can contribute to risky, unsafe behaviors and consequences."
+          },
+          {
+           "code": "HE.912.SUA.1.3",
+           "text": "Analyze the long-term health risks associated with alcohol misuse including physical and neurological damage."
+          },
+          {
+           "code": "HE.912.SUA.1.4",
+           "text": "Analyze how alcohol, marijuana/THC, tobacco, nicotine, and/or drug use can impede goals, activities, achievements, and college and career readiness."
+          },
+          {
+           "code": "HE.912.SUA.1.5",
+           "text": "Analyze the physical, mental, social and legal consequences of marijuana/THC use."
+          }
+         ]
+        },
+        {
+         "id": "health-promotion-and-disease-prevention-concepts-2",
+         "title": "Health promotion and disease prevention concepts (2 of 2)",
+         "outcomes": [
+          {
+           "code": "HE.912.SUA.1.6",
+           "text": "Examine the effects of marijuana/THC and vaping on brain function and development."
+          },
+          {
+           "code": "HE.912.SUA.1.7",
+           "text": "Differentiate between the three major categories of prescription drugs and describe the purposes and side effects."
+          },
+          {
+           "code": "HE.912.SUA.1.8",
+           "text": "Analyze signs and symptoms of prescription drug and/or illicit drug misuse and overdose."
+          },
+          {
+           "code": "HE.912.SUA.1.9",
+           "text": "Summarize the risks and consequences of misusing and sharing prescription drugs and/or illicit drugs."
+          },
+          {
+           "code": "HE.912.SUA.1.10",
+           "text": "Analyze the short- and long-term physical, psychological, financial, and social consequences of tobacco, nicotine use, and/or vaping."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "internal-and-external-influences",
+       "title": "Internal and external influences",
+       "subtopics": [
+        {
+         "id": "internal-and-external-influences",
+         "title": "Internal and external influences",
+         "outcomes": [
+          {
+           "code": "HE.912.SUA.2.1",
+           "text": "Analyze the legal, mental and social consequences of underage consumption of alcohol."
+          },
+          {
+           "code": "HE.912.SUA.2.2",
+           "text": "Distinguish how external factors, including industry practices, can influence behaviors related to tobacco, nicotine use, and/or vaping."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "access-to-valid-information-products-and-service",
+       "title": "Access to valid information, products and services",
+       "subtopics": [
+        {
+         "id": "access-to-valid-information-products-and-service",
+         "title": "Access to valid information, products and services",
+         "outcomes": [
+          {
+           "code": "HE.912.SUA.3.1",
+           "text": "Discuss valid, reliable school and community resources where an individual can seek help for issues related to alcohol and/or other drug misuse and/or abuse."
+          },
+          {
+           "code": "HE.912.SUA.3.2",
+           "text": "Assess and examine the misconceptions and perceived norms that surround marijuana/THC and factors that contribute and influence decisions regarding usage."
+          },
+          {
+           "code": "HE.912.SUA.3.3",
+           "text": "Evaluate the accessibility of effective nicotine cessation products and services."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "communication-skills-and-resilient-behaviors-to-",
+       "title": "Communication skills and resilient behaviors to reduce health risks",
+       "subtopics": [
+        {
+         "id": "communication-skills-and-resilient-behaviors-to-",
+         "title": "Communication skills and resilient behaviors to reduce health risks",
+         "outcomes": [
+          {
+           "code": "HE.912.SUA.4.1",
+           "text": "Propose strategies that can reduce health risks for self and others for potential pressures at the college or career level."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "advocacy-for-personal-family-and-community-healt",
+       "title": "Advocacy for personal, family and community health",
+       "subtopics": [
+        {
+         "id": "advocacy-for-personal-family-and-community-healt",
+         "title": "Advocacy for personal, family and community health",
+         "outcomes": [
+          {
+           "code": "HE.912.SUA.5.1",
+           "text": "Plan how to effectively ask for help if a person in your immediate environment experiences a problem with alcohol and/or other drugs."
+          },
+          {
+           "code": "HE.912.SUA.5.2",
+           "text": "Utilize current, accurate data/information to formulate a health-enhancing message to effectively persuade others to be drug and alcohol free."
+          },
+          {
+           "code": "HE.912.SUA.5.3",
+           "text": "Propose strategies for prevention, detection and treatment options for youth who misuse, are dependent on or are addicted to alcohol, marijuana/THC, nicotine, tobacco, vaping, and other drugs."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "resiliency-starting-2024-2025",
+     "title": "Resiliency (starting 2024-2025)",
+     "topics": [
+      {
+       "id": "character",
+       "title": "Character",
+       "subtopics": [
+        {
+         "id": "character",
+         "title": "Character",
+         "outcomes": [
+          {
+           "code": "HE.912.R.1.1",
+           "text": "Demonstrate effective and respectful communication skills and strategies."
+          },
+          {
+           "code": "HE.912.R.1.2",
+           "text": "Demonstrate empathy in a variety of contexts and situations."
+          },
+          {
+           "code": "HE.912.R.1.3",
+           "text": "Adjust behavior to respect the needs of others."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "personal-responsibility",
+       "title": "Personal Responsibility",
+       "subtopics": [
+        {
+         "id": "personal-responsibility-1-of-2",
+         "title": "Personal Responsibility (1 of 2)",
+         "outcomes": [
+          {
+           "code": "HE.912.R.2.1",
+           "text": "Describe the importance of leadership skills in the school and the community."
+          },
+          {
+           "code": "HE.912.R.2.2",
+           "text": "Analyze different perspectives to inform responsible decision-making."
+          },
+          {
+           "code": "HE.912.R.2.3",
+           "text": "Formulate a plan to attain a personal goal that addresses strengths, needs, and risks."
+          },
+          {
+           "code": "HE.912.R.2.4",
+           "text": "Implement strategies and monitor progress in achieving a personal goal."
+          }
+         ]
+        },
+        {
+         "id": "personal-responsibility-2-of-2",
+         "title": "Personal Responsibility (2 of 2)",
+         "outcomes": [
+          {
+           "code": "HE.912.R.2.5",
+           "text": "Formulate an effective long-term plan to include all dimensions of wellness."
+          },
+          {
+           "code": "HE.912.R.2.6",
+           "text": "Analyze how actions and reactions can influence one to respond in different situations."
+          },
+          {
+           "code": "HE.912.R.2.7",
+           "text": "Evaluate strategies that assist with managing challenges or setbacks."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "mentorship-and-citizenship",
+       "title": "Mentorship and Citizenship",
+       "subtopics": [
+        {
+         "id": "mentorship-and-citizenship",
+         "title": "Mentorship and Citizenship",
+         "outcomes": [
+          {
+           "code": "HE.912.R.3.1",
+           "text": "Identify benefits of voting, volunteering, mentoring, and seeking leadership positions."
+          },
+          {
+           "code": "HE.912.R.3.2",
+           "text": "Analyze ways a leader can inspire confidence and motivate others."
+          },
+          {
+           "code": "HE.912.R.3.3",
+           "text": "Analyze situations and demonstrate strategies to engage in respectful debate."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "critical-thinking-and-problem-solving",
+       "title": "Critical Thinking and Problem Solving",
+       "subtopics": [
+        {
+         "id": "critical-thinking-and-problem-solving",
+         "title": "Critical Thinking and Problem Solving",
+         "outcomes": [
+          {
+           "code": "HE.912.R.4.1",
+           "text": "Analyze the importance of character and grit to achieve successful outcomes."
+          },
+          {
+           "code": "HE.912.R.4.2",
+           "text": "Generate and apply alternative solutions when solving problems or resolving conflict."
+          },
+          {
+           "code": "HE.912.R.4.3",
+           "text": "Describe ways to anticipate, avoid or de-escalate conflicts."
+          },
+          {
+           "code": "HE.912.R.4.4",
+           "text": "Identify the importance of perseverance when facing difficulty solving a problem."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "personal-health-concepts",
+     "title": "Personal Health Concepts",
+     "topics": [
+      {
+       "id": "core-concepts",
+       "title": "Core Concepts",
+       "subtopics": [
+        {
+         "id": "core-concepts",
+         "title": "Core Concepts",
+         "outcomes": [
+          {
+           "code": "HE.912.PHC.1.1",
+           "text": "Evaluate personal health practices and overall health status to include all dimensions of health."
+          },
+          {
+           "code": "HE.912.PHC.1.2",
+           "text": "Analyze personal strategies for prevention, detection, and treatment of communicable and chronic diseases"
+          },
+          {
+           "code": "HE.912.PHC.1.3",
+           "text": "Analyze the role of individual responsibility in enhancing health."
+          },
+          {
+           "code": "HE.912.PHC.1.4",
+           "text": "Interpret the significance of interrelationships in mental and physical health."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "internal-and-external-influence",
+       "title": "Internal and External Influence",
+       "subtopics": [
+        {
+         "id": "internal-and-external-influence-1-of-2",
+         "title": "Internal and External Influence (1 of 2)",
+         "outcomes": [
+          {
+           "code": "HE.912.PHC.2.1",
+           "text": "Evaluate how the influences of social media affect physical and/or mental health, and the ability to make healthy choices."
+          },
+          {
+           "code": "HE.912.PHC.2.2",
+           "text": "Evaluate how environment and personal health are interrelated."
+          },
+          {
+           "code": "HE.912.PHC.2.3",
+           "text": "Analyze how friends and peers influence the health of individuals."
+          },
+          {
+           "code": "HE.912.PHC.2.4",
+           "text": "Analyze how family and culture influence the health of individuals."
+          },
+          {
+           "code": "HE.912.PHC.2.5",
+           "text": "Analyze how heredity and family history can impact personal health."
+          }
+         ]
+        },
+        {
+         "id": "internal-and-external-influence-2-of-2",
+         "title": "Internal and External Influence (2 of 2)",
+         "outcomes": [
+          {
+           "code": "HE.912.PHC.2.6",
+           "text": "Predict how healthy behaviors can affect health status."
+          },
+          {
+           "code": "HE.912.PHC.2.7",
+           "text": "Evaluate the influence of personal values, attitudes, and beliefs about individual health practices and behaviors."
+          },
+          {
+           "code": "HE.912.PHC.2.8",
+           "text": "Design a social media campaign that positively influences physical and/or mental health."
+          },
+          {
+           "code": "HE.912.PHC.2.9",
+           "text": "Analyze the impacts of technology and social media on popular culture and personal life."
+          },
+          {
+           "code": "HE.912.PHC.2.10",
+           "text": "Demonstrate ethical and responsible use of technology."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "prevention-and-decision-making",
+       "title": "Prevention and Decision Making",
+       "subtopics": [
+        {
+         "id": "prevention-and-decision-making-1-of-2",
+         "title": "Prevention and Decision Making (1 of 2)",
+         "outcomes": [
+          {
+           "code": "HE.912.PHC.3.1",
+           "text": "Determine the value of applying a thoughtful decision making process in health-related situations."
+          },
+          {
+           "code": "HE.912.PHC.3.2",
+           "text": "Assess whether individual or collaborative decision making is needed to make a healthy decision."
+          },
+          {
+           "code": "HE.912.PHC.3.3",
+           "text": "Identify protective factors that help to mitigate the risks of suicide and mental health disorders."
+          },
+          {
+           "code": "HE.912.PHC.3.4",
+           "text": "Recognize the signs, symptoms and how to seek treatment or support for mental health disorders."
+          },
+          {
+           "code": "HE.912.PHC.3.5",
+           "text": "Recognize the signs and symptoms of suicidal ideations."
+          }
+         ]
+        },
+        {
+         "id": "prevention-and-decision-making-2-of-2",
+         "title": "Prevention and Decision Making (2 of 2)",
+         "outcomes": [
+          {
+           "code": "HE.912.PHC.3.6",
+           "text": "Identify when and who can provide assistance with suicidal ideations."
+          },
+          {
+           "code": "HE.912.PHC.3.7",
+           "text": "Assess the degree of susceptibility to injury, illness, or death if engaging in unhealthy/risky behaviors."
+          },
+          {
+           "code": "HE.912.PHC.3.8",
+           "text": "Formulate a plan to attain a personal health goal that addresses strengths, needs, barriers, and risks."
+          },
+          {
+           "code": "HE.912.PHC.3.9",
+           "text": "Implement strategies and monitor progress in achieving a personal health goal."
+          },
+          {
+           "code": "HE.912.PHC.3.10",
+           "text": "Evaluate healthy practices and behaviors that will maintain or improve health and reduce health risks, including reproductive health."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "advocacy",
+       "title": "Advocacy",
+       "subtopics": [
+        {
+         "id": "advocacy",
+         "title": "Advocacy",
+         "outcomes": [
+          {
+           "code": "HE.912.PHC.4.1",
+           "text": "Justify when professional health services or providers may be required."
+          },
+          {
+           "code": "HE.912.PHC.4.2",
+           "text": "Propose strategies to reduce or prevent injuries and health problems."
+          },
+          {
+           "code": "HE.912.PHC.4.3",
+           "text": "Develop strategies to combat cyberbullying and online harassment."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "community-and-environmental-health",
+     "title": "Community and Environmental Health",
+     "topics": [
+      {
+       "id": "core-concepts",
+       "title": "Core Concepts",
+       "subtopics": [
+        {
+         "id": "core-concepts",
+         "title": "Core Concepts",
+         "outcomes": [
+          {
+           "code": "HE.912.CEH.1.1",
+           "text": "Interpret the significance of interrelationships in community health."
+          },
+          {
+           "code": "HE.912.CEH.1.2",
+           "text": "Utilize current, accurate data/information to formulate a health-enhancing message."
+          },
+          {
+           "code": "HE.912.CEH.1.3",
+           "text": "Investigate the social determinants of health in a community."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "internal-and-external-influence",
+       "title": "Internal and External Influence",
+       "subtopics": [
+        {
+         "id": "internal-and-external-influence-1-of-2",
+         "title": "Internal and External Influence (1 of 2)",
+         "outcomes": [
+          {
+           "code": "HE.912.CEH.2.1",
+           "text": "Assess how the school and community can affect personal health practices and behaviors."
+          },
+          {
+           "code": "HE.912.CEH.2.2",
+           "text": "Evaluate how public health policies and government regulations can influence health promotion and disease prevention."
+          },
+          {
+           "code": "HE.912.CEH.2.3",
+           "text": "Propose strategies to avoid risks on social media and the internet."
+          },
+          {
+           "code": "HE.912.CEH.2.4",
+           "text": "Evaluate how environment and community health are interrelated."
+          },
+          {
+           "code": "HE.912.CEH.2.5",
+           "text": "Predict how healthy behaviors can affect community health status."
+          }
+         ]
+        },
+        {
+         "id": "internal-and-external-influence-2-of-2",
+         "title": "Internal and External Influence (2 of 2)",
+         "outcomes": [
+          {
+           "code": "HE.912.CEH.2.6",
+           "text": "Analyze how culture supports and challenges health beliefs, practices, and behaviors."
+          },
+          {
+           "code": "HE.912.CEH.2.7",
+           "text": "Analyze how the perceptions of norms influence healthy and unhealthy behaviors."
+          },
+          {
+           "code": "HE.912.CEH.2.8",
+           "text": "Evaluate how the social determinants of health impact a communitys health, wellbeing, and quality of life."
+          },
+          {
+           "code": "HE.912.CEH.2.9",
+           "text": "Identify computer related laws and analyze their impact on internet safety."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "prevention-and-decision-making",
+       "title": "Prevention and Decision Making",
+       "subtopics": [
+        {
+         "id": "prevention-and-decision-making",
+         "title": "Prevention and Decision Making",
+         "outcomes": [
+          {
+           "code": "HE.912.CEH.3.1",
+           "text": "Analyze community strategies for prevention, detection, and treatment of communicable and chronic diseases."
+          },
+          {
+           "code": "HE.912.CEH.3.2",
+           "text": "Propose community strategies to reduce or prevent injuries and health problems."
+          },
+          {
+           "code": "HE.912.CEH.3.3",
+           "text": "Formulate alternatives to community health-related issues or problems."
+          },
+          {
+           "code": "HE.912.CEH.3.4",
+           "text": "Appraise the potential short-term and long-term outcomes of alternative solutions to community health-related issues or problems."
+          },
+          {
+           "code": "HE.912.CEH.3.5",
+           "text": "Examine barriers that can hinder healthy decision making."
+          },
+          {
+           "code": "HE.912.CEH.3.6",
+           "text": "Design a campaign promoting health literacy that would result in a variety of positive health and quality of life outcomes."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "advocacy",
+       "title": "Advocacy",
+       "subtopics": [
+        {
+         "id": "advocacy",
+         "title": "Advocacy",
+         "outcomes": [
+          {
+           "code": "HE.912.CEH.4.1",
+           "text": "Develop a resource that influences and supports others in making positive health choices."
+          },
+          {
+           "code": "HE.912.CEH.4.2",
+           "text": "Demonstrate leadership skills by advocating for personal, family, and community health."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "consumer-health",
+     "title": "Consumer Health",
+     "topics": [
+      {
+       "id": "core-concepts",
+       "title": "Core Concepts",
+       "subtopics": [
+        {
+         "id": "core-concepts",
+         "title": "Core Concepts",
+         "outcomes": [
+          {
+           "code": "HE.912.CH.1.1",
+           "text": "Evaluate the relationship between access to health care and health status."
+          },
+          {
+           "code": "HE.912.CH.1.2",
+           "text": "Describe resources or services that facilitate achieving personal health goals."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "internal-and-external-influence",
+       "title": "Internal and External Influence",
+       "subtopics": [
+        {
+         "id": "internal-and-external-influence",
+         "title": "Internal and External Influence",
+         "outcomes": [
+          {
+           "code": "HE.912.CH.2.1",
+           "text": "Adapt health messages and communication techniques to a specific target audience using various media."
+          },
+          {
+           "code": "HE.912.CH.2.2",
+           "text": "Evaluate the effect of media/social media on personal and family health."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "prevention-and-decision-making",
+       "title": "Prevention and Decision Making",
+       "subtopics": [
+        {
+         "id": "prevention-and-decision-making",
+         "title": "Prevention and Decision Making",
+         "outcomes": [
+          {
+           "code": "HE.912.CH.3.1",
+           "text": "Authenticate the validity of health information and resources."
+          },
+          {
+           "code": "HE.912.CH.3.2",
+           "text": "Verify the validity of health information, products, and services."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "advocacy",
+       "title": "Advocacy",
+       "subtopics": [
+        {
+         "id": "advocacy",
+         "title": "Advocacy",
+         "outcomes": [
+          {
+           "code": "HE.912.CH.4.1",
+           "text": "Justify the use of valid technologies to gather health information."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "build": {
+  "builtAt": "2026-10-14T16:20:40.356Z",
+  "model": "none",
+  "usd": 0,
+  "expectedCodes": 491,
+  "coverage": 1,
+  "missingCodes": [],
+  "counts": {
+   "grades": 11,
+   "units": 40,
+   "topics": 159,
+   "subtopics": 172,
+   "outcomes": 491
+  },
+  "warnings": []
+ }
+}

@@ -1,0 +1,766 @@
+{
+ "id": "us-ncas-music-technology",
+ "region": "US",
+ "framework": "National Core Arts Standards (2014)",
+ "board": "National Coalition for Core Arts Standards",
+ "qualification": "K-12",
+ "subject": "Music: Technology",
+ "syllabusCode": null,
+ "gradeSystem": "grade",
+ "source": {
+  "urls": [
+   "https://nationalartsstandards.org/sites/default/files/2021-11/Music%20Tech%20Strand%20at%20a%20Glance.pdf",
+   "https://nationalartsstandards.org/"
+  ],
+  "publisher": "National Coalition for Core Arts Standards (NCCAS)",
+  "licence": "© 2014 NCCAS / State Education Agency Directors of Arts Education; free use for education - structure + our own wording only",
+  "firstExam": "2014"
+ },
+ "grades": [
+  {
+   "grade": "HS Proficient",
+   "units": [
+    {
+     "id": "creating",
+     "title": "Creating",
+     "topics": [
+      {
+       "id": "anchor-standard-1-generate-and-conceptualize-art",
+       "title": "Anchor Standard 1: Generate and conceptualize artistic ideas",
+       "subtopics": [
+        {
+         "id": "generating-musical-ideas",
+         "title": "Generating musical ideas",
+         "outcomes": [
+          {
+           "code": "MU:Cr1.1.T.Ia",
+           "text": "Use digital tools to come up with melodic, rhythmic and harmonic ideas for compositions or improvisations."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "anchor-standard-2-organize-and-develop-artistic-",
+       "title": "Anchor Standard 2: Organize and develop artistic ideas",
+       "subtopics": [
+        {
+         "id": "developing-ideas-into-a-larger-work",
+         "title": "Developing ideas into a larger work",
+         "outcomes": [
+          {
+           "code": "MU:Cr2.1.T.Ia",
+           "text": "Choose melodic, rhythmic and harmonic ideas and grow them into a larger work with digital tools."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "anchor-standard-3-refine-and-complete-artistic-w",
+       "title": "Anchor Standard 3: Refine and complete artistic work",
+       "subtopics": [
+        {
+         "id": "refining-and-sharing-compositions",
+         "title": "Refining and sharing compositions",
+         "outcomes": [
+          {
+           "code": "MU:Cr3.1.T.Ia",
+           "text": "Use teacher and peer feedback to plan and apply strategies that improve the technical and expressive sides of draft pieces."
+          },
+          {
+           "code": "MU:Cr3.2.T.Ia",
+           "text": "Share work showing proficient musical and technological craft and digital tools for organizing ideas."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "performing",
+     "title": "Performing",
+     "topics": [
+      {
+       "id": "anchor-standard-4-select-analyze-and-interpret-a",
+       "title": "Anchor Standard 4: Select, analyze, and interpret artistic work for presentation",
+       "subtopics": [
+        {
+         "id": "choosing-repertoire",
+         "title": "Choosing repertoire",
+         "outcomes": [
+          {
+           "code": "MU:Pr4.I.T.Ia",
+           "text": "Develop and explain criteria for picking varied repertoire, based on interest, reading skills and the performer's technical and technology skills."
+          }
+         ]
+        },
+        {
+         "id": "analyzing-music-for-performance",
+         "title": "Analyzing music for performance",
+         "outcomes": [
+          {
+           "code": "MU:Pr4.2.T.Ia",
+           "text": "Describe how context, musical structure and digital tools inform prepared and improvised performances."
+          }
+         ]
+        },
+        {
+         "id": "interpreting-music-in-performance",
+         "title": "Interpreting music in performance",
+         "outcomes": [
+          {
+           "code": "MU:Pr4.3.T.Ia",
+           "text": "Show how understanding context, expressive challenges and digital tools in varied repertoire influences performances."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "anchor-standard-5-develop-and-refine-artistic-te",
+       "title": "Anchor Standard 5: Develop and refine artistic techniques and work for presentation",
+       "subtopics": [
+        {
+         "id": "rehearsing-and-refining",
+         "title": "Rehearsing and refining",
+         "outcomes": [
+          {
+           "code": "MU:Pr5.1.T.Ia",
+           "text": "Identify and use rehearsal strategies to improve technical and expressive parts of performances."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "anchor-standard-6-convey-meaning-through-the-pre",
+       "title": "Anchor Standard 6: Convey meaning through the presentation of artistic work",
+       "subtopics": [
+        {
+         "id": "presenting-a-performance",
+         "title": "Presenting a performance",
+         "outcomes": [
+          {
+           "code": "MU:Pr6.1.T.Ia",
+           "text": "Use digital tools to show attention to technical accuracy and expression in performances of varied music."
+          },
+          {
+           "code": "MU:Pr6.1.T.Ib",
+           "text": "Show understanding of the music's context through prepared and improvised performances."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "responding",
+     "title": "Responding",
+     "topics": [
+      {
+       "id": "anchor-standard-7-perceive-and-analyze-artistic-",
+       "title": "Anchor Standard 7: Perceive and analyze artistic work",
+       "subtopics": [
+        {
+         "id": "choosing-music-to-study",
+         "title": "Choosing music to study",
+         "outcomes": [
+          {
+           "code": "MU:Re7.I.T.Ia",
+           "text": "Give reasons for choosing music based on elements of music, digital and electronic aspects, and interest or purpose."
+          }
+         ]
+        },
+        {
+         "id": "analyzing-music",
+         "title": "Analyzing music",
+         "outcomes": [
+          {
+           "code": "MU:Re7.2.T.Ia",
+           "text": "Explain how structure (repetition, similarity, contrast), technology and purpose inform a response to music."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "anchor-standard-8-interpret-intent-and-meaning-i",
+       "title": "Anchor Standard 8: Interpret intent and meaning in artistic work",
+       "subtopics": [
+        {
+         "id": "interpreting-expressive-intent",
+         "title": "Interpreting expressive intent",
+         "outcomes": [
+          {
+           "code": "MU:Re8.1.T.Ia",
+           "text": "Explain and support an interpretation of expressive intent from treatment of musical elements, digital features and purpose."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "anchor-standard-9-apply-criteria-to-evaluate-art",
+       "title": "Anchor Standard 9: Apply criteria to evaluate artistic work",
+       "subtopics": [
+        {
+         "id": "evaluating-music",
+         "title": "Evaluating music",
+         "outcomes": [
+          {
+           "code": "MU:Re9.1.T.Ia",
+           "text": "Evaluate music with criteria drawn from analysis, interpretation, digital features and personal interests."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "connecting",
+     "title": "Connecting",
+     "topics": [
+      {
+       "id": "anchor-standard-10-relate-artistic-ideas-and-wor",
+       "title": "Anchor Standard 10: Relate artistic ideas and works with societal, cultural, and historical context",
+       "subtopics": [
+        {
+         "id": "personal-connections-to-music",
+         "title": "Personal connections to music",
+         "outcomes": [
+          {
+           "code": "MU:Cn10.0.T.Ia",
+           "text": "Show how personal interests, knowledge and skills relate to choices and intent in creating, performing and responding to music."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "anchor-standard-11-synthesize-and-relate-knowled",
+       "title": "Anchor Standard 11: Synthesize and relate knowledge and personal experiences to make art",
+       "subtopics": [
+        {
+         "id": "music-and-other-fields",
+         "title": "Music and other fields",
+         "outcomes": [
+          {
+           "code": "MU:Cn11.0.T.Ia",
+           "text": "Show understanding of how music relates to other arts, other subjects, varied contexts and daily life."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "HS Accomplished",
+   "units": [
+    {
+     "id": "creating",
+     "title": "Creating",
+     "topics": [
+      {
+       "id": "anchor-standard-1-generate-and-conceptualize-art",
+       "title": "Anchor Standard 1: Generate and conceptualize artistic ideas",
+       "subtopics": [
+        {
+         "id": "generating-musical-ideas",
+         "title": "Generating musical ideas",
+         "outcomes": [
+          {
+           "code": "MU:Cr1.1.T.IIa",
+           "text": "Use digital tools and resources to generate melodic, rhythmic and harmonic ideas for compositions and improvisations."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "anchor-standard-2-organize-and-develop-artistic-",
+       "title": "Anchor Standard 2: Organize and develop artistic ideas",
+       "subtopics": [
+        {
+         "id": "developing-ideas-into-a-larger-work",
+         "title": "Developing ideas into a larger work",
+         "outcomes": [
+          {
+           "code": "MU:Cr2.1.T.IIa",
+           "text": "Choose ideas and develop a larger work showing unity and variety, using digital and analog tools."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "anchor-standard-3-refine-and-complete-artistic-w",
+       "title": "Anchor Standard 3: Refine and complete artistic work",
+       "subtopics": [
+        {
+         "id": "refining-and-sharing-compositions",
+         "title": "Refining and sharing compositions",
+         "outcomes": [
+          {
+           "code": "MU:Cr3.1.T.IIa",
+           "text": "Develop and apply varied strategies to improve the technical and expressive aspects of draft compositions and improvisations."
+          },
+          {
+           "code": "MU:Cr3.2.T.IIa",
+           "text": "Share work showing accomplished musical and technological craft using digital and analog tools."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "performing",
+     "title": "Performing",
+     "topics": [
+      {
+       "id": "anchor-standard-4-select-analyze-and-interpret-a",
+       "title": "Anchor Standard 4: Select, analyze, and interpret artistic work for presentation",
+       "subtopics": [
+        {
+         "id": "choosing-repertoire",
+         "title": "Choosing repertoire",
+         "outcomes": [
+          {
+           "code": "MU:Pr4.I.T.IIa",
+           "text": "Develop and apply criteria to pick repertoire based on interest, theory and structure of the music, and the performer's skill using digital tools."
+          }
+         ]
+        },
+        {
+         "id": "analyzing-music-for-performance",
+         "title": "Analyzing music for performance",
+         "outcomes": [
+          {
+           "code": "MU:Pr4.2.T.IIa",
+           "text": "Describe and show how context, theory, structure and digital tools shape prepared and improvised performances."
+          }
+         ]
+        },
+        {
+         "id": "interpreting-music-in-performance",
+         "title": "Interpreting music in performance",
+         "outcomes": [
+          {
+           "code": "MU:Pr4.3.T.IIa",
+           "text": "Show how knowing style, genre, context and digital tools shapes performances and the ability to connect with audiences."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "anchor-standard-5-develop-and-refine-artistic-te",
+       "title": "Anchor Standard 5: Develop and refine artistic techniques and work for presentation",
+       "subtopics": [
+        {
+         "id": "rehearsing-and-refining",
+         "title": "Rehearsing and refining",
+         "outcomes": [
+          {
+           "code": "MU:Pr5.1.T.IIa",
+           "text": "Develop and use rehearsal strategies to improve and refine technical and expressive aspects of performances."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "anchor-standard-6-convey-meaning-through-the-pre",
+       "title": "Anchor Standard 6: Convey meaning through the presentation of artistic work",
+       "subtopics": [
+        {
+         "id": "presenting-a-performance",
+         "title": "Presenting a performance",
+         "outcomes": [
+          {
+           "code": "MU:Pr6.1.T.IIa",
+           "text": "Use digital tools to show technical accuracy and expression in music from diverse cultures, styles and genres."
+          },
+          {
+           "code": "MU:Pr6.1.T.IIb",
+           "text": "Show understanding of expressive intent while connecting with an audience."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "responding",
+     "title": "Responding",
+     "topics": [
+      {
+       "id": "anchor-standard-7-perceive-and-analyze-artistic-",
+       "title": "Anchor Standard 7: Perceive and analyze artistic work",
+       "subtopics": [
+        {
+         "id": "choosing-music-to-study",
+         "title": "Choosing music to study",
+         "outcomes": [
+          {
+           "code": "MU:Re7.I.T.IIa",
+           "text": "Pick and critique contrasting works, defending opinions using the elements of music, electronic aspects, purpose and context."
+          }
+         ]
+        },
+        {
+         "id": "analyzing-music",
+         "title": "Analyzing music",
+         "outcomes": [
+          {
+           "code": "MU:Re7.2.T.IIa",
+           "text": "Explain how analyzing structure, context and technology informs a response."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "anchor-standard-8-interpret-intent-and-meaning-i",
+       "title": "Anchor Standard 8: Interpret intent and meaning in artistic work",
+       "subtopics": [
+        {
+         "id": "interpreting-expressive-intent",
+         "title": "Interpreting expressive intent",
+         "outcomes": [
+          {
+           "code": "MU:Re8.1.T.IIa",
+           "text": "Connect how musical elements, digital features, context, purpose and other arts influence expressive intent."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "anchor-standard-9-apply-criteria-to-evaluate-art",
+       "title": "Anchor Standard 9: Apply criteria to evaluate artistic work",
+       "subtopics": [
+        {
+         "id": "evaluating-music",
+         "title": "Evaluating music",
+         "outcomes": [
+          {
+           "code": "MU:Re9.1.T.IIa",
+           "text": "Apply criteria based on analysis, interpretation, artistic intent, digital and analog features and musical qualities."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "connecting",
+     "title": "Connecting",
+     "topics": [
+      {
+       "id": "anchor-standard-10-relate-artistic-ideas-and-wor",
+       "title": "Anchor Standard 10: Relate artistic ideas and works with societal, cultural, and historical context",
+       "subtopics": [
+        {
+         "id": "personal-connections-to-music",
+         "title": "Personal connections to music",
+         "outcomes": [
+          {
+           "code": "CN10.0.T.IIa",
+           "text": "Show how personal interests, knowledge and skills relate to choices and intent in creating, performing and responding to music."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "anchor-standard-11-synthesize-and-relate-knowled",
+       "title": "Anchor Standard 11: Synthesize and relate knowledge and personal experiences to make art",
+       "subtopics": [
+        {
+         "id": "music-and-other-fields",
+         "title": "Music and other fields",
+         "outcomes": [
+          {
+           "code": "CN11.0.T.IIa",
+           "text": "Show understanding of how music relates to other arts, other subjects, varied contexts and daily life."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "HS Advanced",
+   "units": [
+    {
+     "id": "creating",
+     "title": "Creating",
+     "topics": [
+      {
+       "id": "anchor-standard-1-generate-and-conceptualize-art",
+       "title": "Anchor Standard 1: Generate and conceptualize artistic ideas",
+       "subtopics": [
+        {
+         "id": "generating-musical-ideas",
+         "title": "Generating musical ideas",
+         "outcomes": [
+          {
+           "code": "MU:Cr1.1.T.IIIa",
+           "text": "Generate melodic, rhythmic and harmonic ideas that build digital tools, resources and systems into compositions and improvisations."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "anchor-standard-2-organize-and-develop-artistic-",
+       "title": "Anchor Standard 2: Organize and develop artistic ideas",
+       "subtopics": [
+        {
+         "id": "developing-ideas-into-a-larger-work",
+         "title": "Developing ideas into a larger work",
+         "outcomes": [
+          {
+           "code": "MU:Cr2.1.T.IIIa",
+           "text": "Select, develop and organize many ideas into a larger work with unity, variety, complexity and coherence, using digital and analog tools and systems."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "anchor-standard-3-refine-and-complete-artistic-w",
+       "title": "Anchor Standard 3: Refine and complete artistic work",
+       "subtopics": [
+        {
+         "id": "refining-and-sharing-compositions",
+         "title": "Refining and sharing compositions",
+         "outcomes": [
+          {
+           "code": "MU:Cr3.1.T.IIIa",
+           "text": "Develop varied strategies and apply suitable criteria to refine the technical and expressive aspects of drafts."
+          },
+          {
+           "code": "MU:Cr3.2.T.IIIa",
+           "text": "Share a portfolio of varied styles and genres showing advanced musical and technological craft with digital and analog tools and systems."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "performing",
+     "title": "Performing",
+     "topics": [
+      {
+       "id": "anchor-standard-4-select-analyze-and-interpret-a",
+       "title": "Anchor Standard 4: Select, analyze, and interpret artistic work for presentation",
+       "subtopics": [
+        {
+         "id": "choosing-repertoire",
+         "title": "Choosing repertoire",
+         "outcomes": [
+          {
+           "code": "MU:Pr4.I.T.IIIa",
+           "text": "Develop and apply criteria to pick varied programs, weighing interest, theory, structure, expressive challenges and skill, using digital tools and systems."
+          }
+         ]
+        },
+        {
+         "id": "analyzing-music-for-performance",
+         "title": "Analyzing music for performance",
+         "outcomes": [
+          {
+           "code": "MU:Pr4.2.T.IIIa",
+           "text": "Examine, evaluate and critique how context, theory, structure and digital tools influence performances."
+          }
+         ]
+        },
+        {
+         "id": "interpreting-music-in-performance",
+         "title": "Interpreting music in performance",
+         "outcomes": [
+          {
+           "code": "MU:Pr4.3.T.IIIa",
+           "text": "Show how understanding style, genre, context and integrated digital technology informs performance and audience connection."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "anchor-standard-5-develop-and-refine-artistic-te",
+       "title": "Anchor Standard 5: Develop and refine artistic techniques and work for presentation",
+       "subtopics": [
+        {
+         "id": "rehearsing-and-refining",
+         "title": "Rehearsing and refining",
+         "outcomes": [
+          {
+           "code": "MU:Pr5.1.T.IIIa",
+           "text": "Apply criteria and feedback from many sources and use varied strategies to refine performances of varied programs."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "anchor-standard-6-convey-meaning-through-the-pre",
+       "title": "Anchor Standard 6: Convey meaning through the presentation of artistic work",
+       "subtopics": [
+        {
+         "id": "presenting-a-performance",
+         "title": "Presenting a performance",
+         "outcomes": [
+          {
+           "code": "MU:Pr6.1.T.IIIa",
+           "text": "Combine digital and analog tools to show understanding of accuracy and expression across cultures, styles, genres and periods."
+          },
+          {
+           "code": "MU:Pr6.1.T.IIIb",
+           "text": "Connect with audience members before a performance and engage and respond to them during it."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "responding",
+     "title": "Responding",
+     "topics": [
+      {
+       "id": "anchor-standard-7-perceive-and-analyze-artistic-",
+       "title": "Anchor Standard 7: Perceive and analyze artistic work",
+       "subtopics": [
+        {
+         "id": "choosing-music-to-study",
+         "title": "Choosing music to study",
+         "outcomes": [
+          {
+           "code": "MU:Re7.I.T.IIIa",
+           "text": "Select, describe and compare varied pieces using their characteristics, digital and electronic aspects, purpose and context."
+          }
+         ]
+        },
+        {
+         "id": "analyzing-music",
+         "title": "Analyzing music",
+         "outcomes": [
+          {
+           "code": "MU:Re7.2.T.IIIa",
+           "text": "Demonstrate and justify how analyzing structure, context, and technological and creative decisions informs interest and response."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "anchor-standard-8-interpret-intent-and-meaning-i",
+       "title": "Anchor Standard 8: Interpret intent and meaning in artistic work",
+       "subtopics": [
+        {
+         "id": "interpreting-expressive-intent",
+         "title": "Interpreting expressive intent",
+         "outcomes": [
+          {
+           "code": "MU:Re8.1.T.IIIa",
+           "text": "Use research and multiple sources to connect how elements, digital features, context, purpose and other arts shape expressive intent."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "anchor-standard-9-apply-criteria-to-evaluate-art",
+       "title": "Anchor Standard 9: Apply criteria to evaluate artistic work",
+       "subtopics": [
+        {
+         "id": "evaluating-music",
+         "title": "Evaluating music",
+         "outcomes": [
+          {
+           "code": "MU:Re9.1.T.IIIa",
+           "text": "Develop and justify evaluations of varied music using established and personal criteria, features, purpose and context."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "connecting",
+     "title": "Connecting",
+     "topics": [
+      {
+       "id": "anchor-standard-10-relate-artistic-ideas-and-wor",
+       "title": "Anchor Standard 10: Relate artistic ideas and works with societal, cultural, and historical context",
+       "subtopics": [
+        {
+         "id": "personal-connections-to-music",
+         "title": "Personal connections to music",
+         "outcomes": [
+          {
+           "code": "MU:Cn10.0.T.IIIa",
+           "text": "Show how personal interests, knowledge and skills relate to choices and intent in creating, performing and responding to music."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "anchor-standard-11-synthesize-and-relate-knowled",
+       "title": "Anchor Standard 11: Synthesize and relate knowledge and personal experiences to make art",
+       "subtopics": [
+        {
+         "id": "music-and-other-fields",
+         "title": "Music and other fields",
+         "outcomes": [
+          {
+           "code": "MU:Cn11.0.T.IIIa",
+           "text": "Show understanding of how music relates to other arts, other subjects, varied contexts and daily life."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "build": {
+  "builtAt": "2026-10-14T10:10:18.188Z",
+  "model": "claude-agent",
+  "usd": 0,
+  "expectedCodes": 46,
+  "coverage": 1,
+  "missingCodes": [],
+  "counts": {
+   "grades": 3,
+   "units": 12,
+   "topics": 33,
+   "subtopics": 42,
+   "outcomes": 48
+  },
+  "warnings": []
+ }
+}

@@ -12,6 +12,8 @@ import { asksForVisual, isAffirmative, isNegative } from "@/lib/drawConsent";
 import { isCodeQuestion } from "@/lib/codeSpec";
 import { captureVoice, isSpeechSupported, type VoiceCaptureHandle } from "@/lib/speech";
 import { HudPanel, HudEyebrow } from "@/components/hud/HudKit";
+import { MathText } from "@/components/MathText";
+import { speakableMath } from "@/lib/mathText";
 import type { SourceScope } from "@/lib/sourceScope";
 import type { BeatSourceGrounding } from "@/lib/sourceGrounding";
 
@@ -200,7 +202,8 @@ export function useLessonChat(opts: {
   const narrate = useCallback(
     (script: string, onDone?: () => void) => {
       setNarrating(true);
-      const handle = playNarration(script, {
+      // Maths is read as words, not LaTeX ("\sin 30^\circ" → "sin 30 degrees").
+      const handle = playNarration(speakableMath(script), {
         onStart: () => {},
         onSentenceStart: (si, _s, st) => setDrawProgress(st > 1 ? Math.min(1, (si + 1) / st) : 1),
         onEnd: () => {
@@ -714,7 +717,7 @@ export function ChatPanel({
               <span className={`${compact ? "mr-1 inline" : "mb-1 block"} text-[10px] font-black uppercase tracking-wider ${t.role === "you" ? "text-[var(--hud-cyan)]" : "text-[var(--hud-text-faint)]"}`}>
                 {t.role === "you" ? "You" : "Aria"}
               </span>
-              {t.text}
+              <MathText text={t.text} />
               {t.chips && onAnswerOffer && (
                 <>
                   <p className="mt-2 text-[12px] font-semibold text-[var(--hud-text)]">Want me to draw it?</p>

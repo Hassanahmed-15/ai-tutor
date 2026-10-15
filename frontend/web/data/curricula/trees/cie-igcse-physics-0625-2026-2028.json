@@ -1,0 +1,2605 @@
+{
+ "id": "cie-igcse-physics-0625-2026-2028",
+ "region": "INTL",
+ "framework": "Cambridge IGCSE Physics (0625) syllabus 2026–2028",
+ "board": "Cambridge",
+ "qualification": "IGCSE",
+ "subject": "Physics",
+ "syllabusCode": "0625",
+ "gradeSystem": "course",
+ "source": {
+  "urls": [
+   "https://www.cambridgeinternational.org/Images/697209-2026-2028-syllabus.pdf",
+   "https://www.cambridgeinternational.org/programmes-and-qualifications/cambridge-igcse-physics-0625/"
+  ],
+  "publisher": "Cambridge University Press & Assessment (Cambridge International Education)",
+  "licence": "© Cambridge University Press & Assessment; structure + our own wording only",
+  "firstExam": "2026"
+ },
+ "grades": [
+  {
+   "grade": "IGCSE",
+   "units": [
+    {
+     "id": "igcse-1-motion-forces-and-energy",
+     "title": "[IGCSE] 1 Motion, forces and energy",
+     "topics": [
+      {
+       "id": "1-1-physical-quantities-and-measurement-techniqu",
+       "title": "1.1 Physical quantities and measurement techniques",
+       "subtopics": [
+        {
+         "id": "1-1-physical-quantities-and-measurement-techniqu",
+         "title": "1.1 Physical quantities and measurement techniques",
+         "outcomes": [
+          {
+           "code": "1.1",
+           "text": "Use rulers and measuring cylinders to measure lengths and volumes."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "1-2-motion",
+       "title": "1.2 Motion",
+       "subtopics": [
+        {
+         "id": "1-2-motion",
+         "title": "1.2 Motion",
+         "outcomes": [
+          {
+           "code": "1.2",
+           "text": "Define speed as distance divided by time and use the speed equation."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "1-3-mass-and-weight",
+       "title": "1.3 Mass and weight",
+       "subtopics": [
+        {
+         "id": "1-3-mass-and-weight",
+         "title": "1.3 Mass and weight",
+         "outcomes": [
+          {
+           "code": "1.3",
+           "text": "State that mass measures the amount of matter in an object."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "1-4-density",
+       "title": "1.4 Density",
+       "subtopics": [
+        {
+         "id": "1-4-density",
+         "title": "1.4 Density",
+         "outcomes": [
+          {
+           "code": "1.4",
+           "text": "Define density as mass per volume and use ρ = m/V."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "1-5-forces",
+       "title": "1.5 Forces",
+       "subtopics": [
+        {
+         "id": "force-effects-and-moments",
+         "title": "Force Effects and Moments",
+         "outcomes": [
+          {
+           "code": "1.5.1",
+           "text": "Recognise that forces can alter an object's size or shape."
+          },
+          {
+           "code": "1.5.2",
+           "text": "Describe moments as turning effects and give everyday examples."
+          },
+          {
+           "code": "1.5.3",
+           "text": "State the meaning of centre of gravity."
+          }
+         ]
+        },
+        {
+         "id": "elastic-materials-and-resultants",
+         "title": "Elastic Materials and Resultants",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Recognise that forces can alter an object's size or shape."
+          },
+          {
+           "code": null,
+           "text": "Construct and interpret load–extension graphs for elastic materials, including the related experiment."
+          },
+          {
+           "code": null,
+           "text": "Find the resultant of collinear forces."
+          }
+         ]
+        },
+        {
+         "id": "resultant-force-and-motion",
+         "title": "Resultant Force and Motion",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "State that motion remains stationary or uniform and straight unless a resultant force acts."
+          },
+          {
+           "code": null,
+           "text": "Explain that a resultant force can alter velocity by changing speed or direction."
+          },
+          {
+           "code": null,
+           "text": "Describe solid friction as a force opposing motion and causing heating."
+          }
+         ]
+        },
+        {
+         "id": "drag-and-spring-constants",
+         "title": "Drag and Spring Constants",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Know that drag acts on objects moving through liquids."
+          },
+          {
+           "code": null,
+           "text": "Know that drag acts on objects moving through gases, including air resistance."
+          },
+          {
+           "code": null,
+           "text": "Calculate spring constant as force divided by extension."
+          }
+         ]
+        },
+        {
+         "id": "proportionality-and-acceleration",
+         "title": "Proportionality and Acceleration",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Define the limit of proportionality and locate it on a load–extension graph."
+          },
+          {
+           "code": null,
+           "text": "Use F = ma and recognise that force and acceleration have the same direction."
+          }
+         ]
+        },
+        {
+         "id": "forces-in-circular-motion",
+         "title": "Forces in Circular Motion",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain qualitatively how perpendicular force affects circular motion when speed, mass or radius changes."
+          }
+         ]
+        },
+        {
+         "id": "moments-and-perpendicular-distance",
+         "title": "Moments and Perpendicular Distance",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe moments as turning effects of forces and identify everyday examples."
+          },
+          {
+           "code": null,
+           "text": "Calculate a moment using force multiplied by perpendicular distance from the pivot."
+          }
+         ]
+        },
+        {
+         "id": "balanced-beams-and-equilibrium",
+         "title": "Balanced Beams and Equilibrium",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Apply the principle of moments to balanced beams and cases with one force on each side."
+          },
+          {
+           "code": null,
+           "text": "State that equilibrium requires both zero resultant force and zero resultant moment."
+          }
+         ]
+        },
+        {
+         "id": "multiple-forces-and-moments",
+         "title": "Multiple Forces and Moments",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Apply the principle of moments when multiple forces act on either side of the pivot."
+          },
+          {
+           "code": null,
+           "text": "Describe an experiment showing that an equilibrium object has no resultant moment."
+          }
+         ]
+        },
+        {
+         "id": "centre-of-gravity-experiments",
+         "title": "Centre of Gravity Experiments",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "State the meaning of centre of gravity."
+          },
+          {
+           "code": null,
+           "text": "Describe an experiment for locating the centre of gravity of an irregular plane lamina."
+          }
+         ]
+        },
+        {
+         "id": "stability-and-centre-of-gravity",
+         "title": "Stability and Centre of Gravity",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain how centre-of-gravity position affects the stability of simple objects."
+          }
+         ]
+        },
+        {
+         "id": "load-extension-graphs",
+         "title": "Load Extension Graphs",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Produce and interpret load–extension graphs for elastic solids, including the related experimental method."
+          }
+         ]
+        },
+        {
+         "id": "straight-line-forces",
+         "title": "Straight Line Forces",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Find the resultant of forces acting along one straight line."
+          },
+          {
+           "code": null,
+           "text": "State Newton's first-law behaviour when no resultant force acts."
+          }
+         ]
+        },
+        {
+         "id": "velocity-and-friction",
+         "title": "Velocity and Friction",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain that a resultant force changes velocity by altering speed, direction, or both."
+          },
+          {
+           "code": null,
+           "text": "Describe solid friction as a force that resists motion and generates heat."
+          }
+         ]
+        },
+        {
+         "id": "force-and-acceleration",
+         "title": "Force and Acceleration",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Use F = ma, recognising that force and acceleration have the same direction."
+          }
+         ]
+        },
+        {
+         "id": "circular-motion-factors",
+         "title": "Circular Motion Factors",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe how force, mass, speed, and radius affect circular motion qualitatively."
+          }
+         ]
+        },
+        {
+         "id": "moments-and-everyday-turning",
+         "title": "Moments and Everyday Turning",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe a force's moment as its turning effect and give everyday examples."
+          },
+          {
+           "code": null,
+           "text": "Calculate moment as force multiplied by perpendicular distance from the pivot."
+          }
+         ]
+        },
+        {
+         "id": "moments-in-balanced-systems",
+         "title": "Moments in Balanced Systems",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Apply the principle of moments to balanced beams with one force on each side."
+          },
+          {
+           "code": null,
+           "text": "State that zero resultant force and moment indicate equilibrium."
+          }
+         ]
+        },
+        {
+         "id": "multiple-moments",
+         "title": "Multiple Moments",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Apply the principle of moments when multiple forces act on either side of a pivot."
+          }
+         ]
+        },
+        {
+         "id": "finding-centre-of-gravity",
+         "title": "Finding Centre of Gravity",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe how to locate the centre of gravity of an irregular plane lamina experimentally."
+          },
+          {
+           "code": null,
+           "text": "Explain qualitatively how centre-of-gravity position affects the stability of simple objects."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "1-6-momentum",
+       "title": "1.6 Momentum",
+       "subtopics": [
+        {
+         "id": "1-6-momentum",
+         "title": "1.6 Momentum",
+         "outcomes": [
+          {
+           "code": "1.6",
+           "text": "Define momentum as mass times velocity and use p = mv."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "1-7-energy-work-and-power",
+       "title": "1.7 Energy, work and power",
+       "subtopics": [
+        {
+         "id": "energy-stores-and-transfers",
+         "title": "Energy Stores and Transfers",
+         "outcomes": [
+          {
+           "code": "1.7",
+           "text": "Understand energy stores and transfers, mechanical work, energy resources, conservation, efficiency, and relationships involving kinetic energy, gravitational potential energy and power."
+          },
+          {
+           "code": "1.7.1",
+           "text": "Identify kinetic, gravitational, chemical, elastic, nuclear, electrostatic and thermal energy stores."
+          },
+          {
+           "code": "1.7.2",
+           "text": "Understand that mechanical or electrical work equals transferred energy."
+          }
+         ]
+        },
+        {
+         "id": "energy-resources",
+         "title": "Energy Resources",
+         "outcomes": [
+          {
+           "code": "1.7.3",
+           "text": "Describe how different renewable and non-renewable resources provide useful energy or electricity."
+          }
+         ]
+        },
+        {
+         "id": "power-and-its-equations",
+         "title": "Power and Its Equations",
+         "outcomes": [
+          {
+           "code": "1.7.4",
+           "text": "Define power as work done or energy transferred per unit time and use both equations."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "1-8-pressure",
+       "title": "1.8 Pressure",
+       "subtopics": [
+        {
+         "id": "1-8-pressure",
+         "title": "1.8 Pressure",
+         "outcomes": [
+          {
+           "code": "1.8",
+           "text": "Define pressure as force per area and use p = F/A."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "igcse-2-thermal-physics",
+     "title": "[IGCSE] 2 Thermal physics",
+     "topics": [
+      {
+       "id": "2-1-kinetic-particle-model-of-matter",
+       "title": "2.1 Kinetic particle model of matter",
+       "subtopics": [
+        {
+         "id": "states-of-matter",
+         "title": "States of matter",
+         "outcomes": [
+          {
+           "code": "2.1.1",
+           "text": "Describe distinguishing properties of solids, liquids and gases."
+          },
+          {
+           "code": "2.1.2",
+           "text": "Describe particle arrangements, separations and motions in solids, liquids and gases, using diagrams."
+          }
+         ]
+        },
+        {
+         "id": "gas-pressure-and-temperature",
+         "title": "Gas pressure and temperature",
+         "outcomes": [
+          {
+           "code": "2.1.3",
+           "text": "Explain qualitatively how gas pressure responds to temperature or volume changes under stated conditions."
+          },
+          {
+           "code": null,
+           "text": "Identify the distinguishing properties of solids, liquids and gases."
+          },
+          {
+           "code": null,
+           "text": "Name the changes of state between solids, liquids and gases, excluding gas-to-solid and solid-to-gas changes."
+          },
+          {
+           "code": null,
+           "text": "Describe and diagram particle arrangements, separations and movements in solids, liquids and gases."
+          }
+         ]
+        },
+        {
+         "id": "particle-motion-and-temperature",
+         "title": "Particle motion and temperature",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Relate particle motion to temperature, including absolute zero at −273 °C, where kinetic energy is lowest."
+          },
+          {
+           "code": null,
+           "text": "Explain gas pressure and pressure changes using particle motion and collisions with surfaces."
+          },
+          {
+           "code": null,
+           "text": "Recognise random microscopic motion in suspensions as evidence for the kinetic particle model."
+          },
+          {
+           "code": null,
+           "text": "Explain Brownian motion as random collisions between suspended particles and surrounding gas or liquid particles."
+          }
+         ]
+        },
+        {
+         "id": "forces-between-particles",
+         "title": "Forces between particles",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Relate material properties to forces, separations and motions between atoms, molecules, ions and electrons."
+          },
+          {
+           "code": null,
+           "text": "Explain gas pressure changes as forces from particle collisions produce force per unit area."
+          },
+          {
+           "code": null,
+           "text": "Explain how collisions with rapidly moving molecules can move microscopic particles, distinguishing atoms and molecules from those particles."
+          }
+         ]
+        },
+        {
+         "id": "gas-pressure-changes",
+         "title": "Gas pressure changes",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe particle-level effects on fixed-mass gas pressure when temperature changes at constant volume or volume changes at constant temperature."
+          },
+          {
+           "code": null,
+           "text": "Convert between kelvin and Celsius temperatures using T = θ + 273."
+          },
+          {
+           "code": null,
+           "text": "Use pV = constant for a fixed mass of gas at constant temperature, including graphical representations."
+          }
+         ]
+        },
+        {
+         "id": "states-and-changes",
+         "title": "States and changes",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Know the distinguishing properties of solids, liquids and gases."
+          },
+          {
+           "code": null,
+           "text": "Know the terms for changes of state between solids, liquids and gases, excluding gas–solid and solid–gas changes."
+          },
+          {
+           "code": null,
+           "text": "Describe particle arrangement, separation and movement in solids, liquids and gases, and represent them with simple diagrams."
+          }
+         ]
+        },
+        {
+         "id": "temperature-and-particle-motion",
+         "title": "Temperature and particle motion",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Relate particle motion to temperature, including absolute zero at −273 °C, where particles have minimum kinetic energy."
+          },
+          {
+           "code": null,
+           "text": "Explain gas pressure and pressure changes using particle motion and collisions with surfaces."
+          },
+          {
+           "code": null,
+           "text": "Recognise random microscopic motion in suspensions as evidence supporting the kinetic particle model."
+          },
+          {
+           "code": null,
+           "text": "Explain Brownian motion as random collisions between suspended microscopic particles and surrounding gas or liquid particles."
+          }
+         ]
+        },
+        {
+         "id": "interparticle-forces",
+         "title": "Interparticle forces",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Understand that interparticle forces, separations and motion determine the properties of solids, liquids and gases."
+          },
+          {
+           "code": null,
+           "text": "Explain gas pressure and its changes using forces from particles colliding with surfaces, producing force per unit area."
+          },
+          {
+           "code": null,
+           "text": "Understand that collisions with rapidly moving molecules can move microscopic particles, distinguishing atoms and molecules from microscopic particles."
+          }
+         ]
+        },
+        {
+         "id": "gas-laws-and-temperature",
+         "title": "Gas laws and temperature",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe how changing temperature at constant volume or volume at constant temperature affects fixed-mass gas pressure."
+          },
+          {
+           "code": null,
+           "text": "Convert between kelvin and Celsius using T = θ + 273, with temperature in kelvin and Celsius respectively."
+          },
+          {
+           "code": null,
+           "text": "Use pV = constant for a fixed mass of gas at constant temperature, including graphical representations."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "2-2-thermal-properties-and-temperature",
+       "title": "2.2 Thermal properties and temperature",
+       "subtopics": [
+        {
+         "id": "thermal-expansion",
+         "title": "Thermal expansion",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe how solids, liquids and gases expand when heated at constant pressure."
+          },
+          {
+           "code": null,
+           "text": "Give everyday uses and effects of thermal expansion."
+          },
+          {
+           "code": null,
+           "text": "Explain why solids, liquids and gases expand by different amounts using particle motion and arrangement."
+          }
+         ]
+        },
+        {
+         "id": "heating-and-internal-energy",
+         "title": "Heating and internal energy",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Know that heating an object increases its internal energy."
+          },
+          {
+           "code": null,
+           "text": "Explain increased temperature as greater average kinetic energy of the particles."
+          },
+          {
+           "code": null,
+           "text": "Define specific heat capacity and use ΔE = mcΔθ."
+          }
+         ]
+        },
+        {
+         "id": "specific-heat-capacity-experiments",
+         "title": "Specific heat capacity experiments",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe experiments measuring the specific heat capacity of solids and liquids."
+          }
+         ]
+        },
+        {
+         "id": "melting-and-boiling",
+         "title": "Melting and boiling",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain melting and boiling as energy input without temperature change."
+          },
+          {
+           "code": null,
+           "text": "State the melting and boiling temperatures of water at standard atmospheric pressure."
+          },
+          {
+           "code": null,
+           "text": "Describe condensation and solidification using particle ideas."
+          }
+         ]
+        },
+        {
+         "id": "evaporation-and-cooling",
+         "title": "Evaporation and cooling",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain evaporation as higher-energy particles escaping from a liquid surface."
+          },
+          {
+           "code": null,
+           "text": "Know that evaporation cools a liquid."
+          },
+          {
+           "code": null,
+           "text": "Distinguish boiling from evaporation."
+          },
+          {
+           "code": null,
+           "text": "Explain how temperature, surface area and air movement affect evaporation."
+          },
+          {
+           "code": null,
+           "text": "Explain cooling when an object contacts an evaporating liquid."
+          }
+         ]
+        },
+        {
+         "id": "thermal-properties-overview",
+         "title": "Thermal properties overview",
+         "outcomes": [
+          {
+           "code": "2.2",
+           "text": "Understand how temperature affects matter and how thermal energy is transferred and stored."
+          },
+          {
+           "code": "2.2.1",
+           "text": "Describe thermal expansion in solids, liquids and gases, compare their expansion, and explain practical applications and effects."
+          },
+          {
+           "code": "2.2.2",
+           "text": "Relate temperature increases to internal energy, define and calculate specific heat capacity, and describe measurement experiments."
+          },
+          {
+           "code": "2.2.3",
+           "text": "Explain melting, boiling, condensation, solidification and evaporation, including temperature conditions, particle behaviour and cooling effects."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "2-3-transfer-of-thermal-energy",
+       "title": "2.3 Transfer of thermal energy",
+       "subtopics": [
+        {
+         "id": "conduction-experiments",
+         "title": "Conduction experiments",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe experiments comparing good and poor thermal conductors."
+          },
+          {
+           "code": null,
+           "text": "Explain conduction in solids through lattice vibrations and free-electron movement in metals."
+          },
+          {
+           "code": null,
+           "text": "Explain why gases and most liquids conduct thermal energy poorly using particle ideas."
+          },
+          {
+           "code": null,
+           "text": "Recognise that some solids conduct better than insulators but worse than good conductors."
+          }
+         ]
+        },
+        {
+         "id": "convection",
+         "title": "Convection",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Know that convection transfers thermal energy importantly in liquids and gases."
+          },
+          {
+           "code": null,
+           "text": "Explain convection through density changes and describe illustrative experiments."
+          }
+         ]
+        },
+        {
+         "id": "infrared-radiation",
+         "title": "Infrared radiation",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Know that thermal radiation is infrared and is emitted by all objects."
+          },
+          {
+           "code": null,
+           "text": "Know that thermal radiation transfers energy without needing a medium."
+          },
+          {
+           "code": null,
+           "text": "Describe how surface colour and texture affect infrared emission, absorption and reflection."
+          },
+          {
+           "code": null,
+           "text": "Know that constant temperature requires equal rates of energy transfer in and out."
+          }
+         ]
+        },
+        {
+         "id": "radiation-and-temperature",
+         "title": "Radiation and temperature",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Predict temperature changes when incoming and outgoing energy-transfer rates differ."
+          },
+          {
+           "code": null,
+           "text": "Explain how Earth’s temperature depends on the balance of incoming and emitted radiation."
+          },
+          {
+           "code": null,
+           "text": "Describe experiments comparing infrared emitters."
+          },
+          {
+           "code": null,
+           "text": "Describe experiments comparing infrared absorbers."
+          },
+          {
+           "code": null,
+           "text": "Describe how radiation emission rate depends on surface temperature and area."
+          }
+         ]
+        },
+        {
+         "id": "thermal-energy-applications",
+         "title": "Thermal energy applications",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain everyday applications of conduction, convection and radiation, including pans and room heating."
+          },
+          {
+           "code": null,
+           "text": "Explain complex applications involving multiple transfer methods, including fires and car radiators."
+          },
+          {
+           "code": "2.3",
+           "text": "Understand the ways thermal energy moves between objects or regions."
+          },
+          {
+           "code": "2.3.1",
+           "text": "Understand thermal energy transfer through materials by conduction."
+          }
+         ]
+        },
+        {
+         "id": "convection-and-radiation-review",
+         "title": "Convection and radiation review",
+         "outcomes": [
+          {
+           "code": "2.3.2",
+           "text": "Understand thermal energy transfer in liquids and gases by convection."
+          },
+          {
+           "code": "2.3.3",
+           "text": "Understand thermal energy transfer by infrared radiation."
+          },
+          {
+           "code": "2.3.4",
+           "text": "Explain everyday and complex applications of conduction, convection and radiation, including heating pans, room heating, fires and car radiators."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "igcse-3-waves",
+     "title": "[IGCSE] 3 Waves",
+     "topics": [
+      {
+       "id": "3-1-general-properties-of-waves",
+       "title": "3.1 General properties of waves",
+       "subtopics": [
+        {
+         "id": "wave-motion-and-features",
+         "title": "Wave motion and features",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Know that waves transfer energy without transferring matter."
+          },
+          {
+           "code": null,
+           "text": "Describe wave motion using ropes, springs and water-wave experiments."
+          },
+          {
+           "code": null,
+           "text": "Describe wavefront, wavelength, frequency, crest, trough, amplitude and speed."
+          }
+         ]
+        },
+        {
+         "id": "wave-speed-and-types",
+         "title": "Wave speed and types",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Use v = fλ to calculate wave speed."
+          },
+          {
+           "code": null,
+           "text": "Describe transverse waves and identify electromagnetic, water and seismic S-waves as examples."
+          },
+          {
+           "code": null,
+           "text": "Describe longitudinal waves and identify sound and seismic P-waves as examples."
+          }
+         ]
+        },
+        {
+         "id": "wave-behaviours",
+         "title": "Wave behaviours",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe reflection, refraction and diffraction of waves."
+          },
+          {
+           "code": null,
+           "text": "Use a ripple tank to demonstrate reflection, refraction and diffraction."
+          }
+         ]
+        },
+        {
+         "id": "diffraction-and-wavelength",
+         "title": "Diffraction and wavelength",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain how wavelength and gap width affect diffraction through a gap."
+          },
+          {
+           "code": null,
+           "text": "Explain how wavelength affects diffraction at an edge."
+          }
+         ]
+        },
+        {
+         "id": "wave-properties-review",
+         "title": "Wave properties review",
+         "outcomes": [
+          {
+           "code": "3.1",
+           "text": "Understand wave energy transfer, wave motion, wave features and speed, transverse and longitudinal waves, reflection, refraction and diffraction."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "3-2-light",
+       "title": "3.2 Light",
+       "subtopics": [
+        {
+         "id": "reflection-from-plane-mirrors",
+         "title": "Reflection from plane mirrors",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Define and use normal, incidence angle and reflection angle."
+          },
+          {
+           "code": null,
+           "text": "Describe a plane-mirror image as virtual, same-sized and equally distant behind the mirror."
+          },
+          {
+           "code": null,
+           "text": "Apply the law that incidence angle equals reflection angle."
+          },
+          {
+           "code": null,
+           "text": "Construct, measure and calculate simple plane-mirror reflections."
+          }
+         ]
+        },
+        {
+         "id": "refraction-through-materials",
+         "title": "Refraction through materials",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Define and use normal, incidence angle and refraction angle."
+          },
+          {
+           "code": null,
+           "text": "Describe an experiment demonstrating refraction through transparent blocks."
+          },
+          {
+           "code": null,
+           "text": "Describe light crossing boundaries between two transparent media."
+          },
+          {
+           "code": null,
+           "text": "State the meaning of critical angle."
+          }
+         ]
+        },
+        {
+         "id": "total-internal-reflection",
+         "title": "Total internal reflection",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe internal and total internal reflection experimentally and in applications."
+          },
+          {
+           "code": null,
+           "text": "Define refractive index as a ratio of wave speeds in two regions."
+          },
+          {
+           "code": null,
+           "text": "Use n = sin i / sin r."
+          },
+          {
+           "code": null,
+           "text": "Use n = 1 / sin c."
+          },
+          {
+           "code": null,
+           "text": "Describe optical-fibre applications, especially telecommunications."
+          }
+         ]
+        },
+        {
+         "id": "light-overview",
+         "title": "Light overview",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe converging and diverging thin lenses acting on parallel light."
+          },
+          {
+           "code": null,
+           "text": "Define focal length, principal axis and principal focus."
+          },
+          {
+           "code": null,
+           "text": "Draw and use ray diagrams for real images formed by converging lenses."
+          },
+          {
+           "code": null,
+           "text": "Describe images as enlarged, equal-sized or diminished; upright or inverted; real or virtual."
+          },
+          {
+           "code": null,
+           "text": "Explain that extrapolated diverging rays form a virtual image that cannot project onto a screen."
+          },
+          {
+           "code": null,
+           "text": "Draw and use ray diagrams for virtual images formed by converging lenses."
+          }
+         ]
+        },
+        {
+         "id": "magnifying-and-correcting-vision",
+         "title": "Magnifying and correcting vision",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe how a single lens acts as a magnifying glass."
+          },
+          {
+           "code": null,
+           "text": "Explain lens correction of long-sightedness and short-sightedness."
+          }
+         ]
+        },
+        {
+         "id": "dispersion-and-colours",
+         "title": "Dispersion and colours",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe dispersion of white light by refraction in a glass prism."
+          },
+          {
+           "code": null,
+           "text": "Recall the seven visible-spectrum colours ordered by frequency and wavelength."
+          },
+          {
+           "code": null,
+           "text": "Know that single-frequency visible light is monochromatic."
+          }
+         ]
+        },
+        {
+         "id": "light-behaviour-review",
+         "title": "Light behaviour review",
+         "outcomes": [
+          {
+           "code": "3.2",
+           "text": "Study of light and its behaviour."
+          },
+          {
+           "code": "3.2.1",
+           "text": "Study of how light reflects from surfaces."
+          },
+          {
+           "code": "3.2.2",
+           "text": "Explain refraction, critical angle, internal reflection and total internal reflection, including refractive index, equations and optical-fibre applications."
+          },
+          {
+           "code": "3.2.3",
+           "text": "Explain converging and diverging lenses, define focal terms, construct ray diagrams, describe images, magnification and vision correction."
+          },
+          {
+           "code": "3.2.4",
+           "text": "Explain prism dispersion, identify visible-spectrum colours by frequency and wavelength, and recognise monochromatic light."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "3-3-electromagnetic-spectrum",
+       "title": "3.3 Electromagnetic spectrum",
+       "subtopics": [
+        {
+         "id": "spectrum-order-and-speed",
+         "title": "Spectrum order and speed",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Order the main electromagnetic-spectrum regions by frequency and wavelength."
+          },
+          {
+           "code": null,
+           "text": "Know that all electromagnetic waves travel at the same high vacuum speed."
+          },
+          {
+           "code": null,
+           "text": "Describe typical uses of radio, microwave, infrared, visible, ultraviolet, X-ray and gamma radiation."
+          },
+          {
+           "code": null,
+           "text": "Describe harmful effects of excessive microwave, infrared, ultraviolet, X-ray and gamma exposure."
+          },
+          {
+           "code": null,
+           "text": "Explain satellite communication using low-orbit and geostationary satellites."
+          },
+          {
+           "code": null,
+           "text": "Know communication systems using microwaves, radio waves and optical fibres."
+          }
+         ]
+        },
+        {
+         "id": "digital-and-analogue-signals",
+         "title": "Digital and analogue signals",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Distinguish digital signals from analogue signals."
+          },
+          {
+           "code": null,
+           "text": "Know that sound can be transmitted digitally or in analogue form."
+          },
+          {
+           "code": null,
+           "text": "Explain digital signalling benefits, including faster transmission and longer range through regeneration."
+          }
+         ]
+        },
+        {
+         "id": "spectrum-and-radiation-review",
+         "title": "Spectrum and radiation review",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Arrange the main electromagnetic-spectrum regions by frequency and by wavelength."
+          },
+          {
+           "code": null,
+           "text": "Know that all electromagnetic waves travel at the same very high speed in a vacuum."
+          },
+          {
+           "code": null,
+           "text": "Describe typical applications of radio, microwave, infrared, visible, ultraviolet, X-ray and gamma radiation."
+          },
+          {
+           "code": null,
+           "text": "Describe how excessive exposure to microwaves, infrared, ultraviolet, X-rays and gamma rays can harm people."
+          },
+          {
+           "code": null,
+           "text": "Explain that artificial-satellite communication mainly uses microwaves, including low-orbit and geostationary satellite applications."
+          },
+          {
+           "code": null,
+           "text": "Know the speed of electromagnetic waves in a vacuum is 3.0 × 10⁸ m/s and approximately the same in air."
+          }
+         ]
+        },
+        {
+         "id": "communication-systems",
+         "title": "Communication systems",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain how microwaves, radio waves and visible or infrared light support mobile, wireless, Bluetooth, cable television and broadband communication."
+          },
+          {
+           "code": null,
+           "text": "Distinguish between digital and analogue signals."
+          },
+          {
+           "code": null,
+           "text": "Know that sound may be transmitted using either digital or analogue signalling."
+          },
+          {
+           "code": null,
+           "text": "Explain that digital signalling enables faster data transmission and longer range through accurate regeneration."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "3-4-sound",
+       "title": "3.4 Sound",
+       "subtopics": [
+        {
+         "id": "sound-production-and-transmission",
+         "title": "Sound production and transmission",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe sound production by vibrating sources."
+          },
+          {
+           "code": null,
+           "text": "Describe sound as a longitudinal wave."
+          },
+          {
+           "code": null,
+           "text": "State human hearing as approximately 20 Hz to 20 000 Hz."
+          },
+          {
+           "code": null,
+           "text": "Know that sound transmission requires a medium."
+          },
+          {
+           "code": null,
+           "text": "Know that sound travels through air at approximately 330–350 m/s."
+          },
+          {
+           "code": null,
+           "text": "Explain compressions and rarefactions."
+          }
+         ]
+        },
+        {
+         "id": "sound-speed-and-measurement",
+         "title": "Sound speed and measurement",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Know that sound generally travels fastest in solids, then liquids, then gases."
+          },
+          {
+           "code": null,
+           "text": "Describe measuring distance and time to determine sound speed in air."
+          },
+          {
+           "code": null,
+           "text": "Explain how amplitude and frequency affect loudness and pitch."
+          }
+         ]
+        },
+        {
+         "id": "echoes-and-ultrasound",
+         "title": "Echoes and ultrasound",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe an echo as reflected sound."
+          },
+          {
+           "code": null,
+           "text": "Define ultrasound as sound above 20 kHz."
+          },
+          {
+           "code": null,
+           "text": "Describe ultrasound uses in material testing, medical scanning and sonar, including distance calculations."
+          }
+         ]
+        },
+        {
+         "id": "sound-fundamentals-review",
+         "title": "Sound fundamentals review",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain that vibrating sources produce sound."
+          },
+          {
+           "code": null,
+           "text": "Describe sound waves as longitudinal waves."
+          },
+          {
+           "code": null,
+           "text": "State that human hearing typically covers frequencies from 20 Hz to 20 000 Hz."
+          },
+          {
+           "code": null,
+           "text": "Know that sound requires a medium for transmission."
+          },
+          {
+           "code": null,
+           "text": "State that sound travels through air at approximately 330–350 m/s."
+          },
+          {
+           "code": null,
+           "text": "Determine sound speed in air by measuring distance travelled and travel time."
+          }
+         ]
+        },
+        {
+         "id": "sound-properties-review",
+         "title": "Sound properties review",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Relate sound amplitude to loudness and frequency to pitch."
+          },
+          {
+           "code": null,
+           "text": "Describe an echo as sound waves reflected from a surface."
+          },
+          {
+           "code": null,
+           "text": "Define ultrasound as sound having a frequency above 20 kHz."
+          },
+          {
+           "code": null,
+           "text": "Describe sound compressions and rarefactions."
+          },
+          {
+           "code": null,
+           "text": "Compare sound speeds, noting that sound generally travels fastest in solids and slowest in gases."
+          },
+          {
+           "code": null,
+           "text": "Describe ultrasound applications in material testing, medical imaging and sonar, including distance calculations."
+          }
+         ]
+        },
+        {
+         "id": "sound-applications-review",
+         "title": "Sound applications review",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain that sound is produced by vibrating sources."
+          },
+          {
+           "code": null,
+           "text": "State that human hearing typically spans frequencies from 20 Hz to 20 000 Hz."
+          },
+          {
+           "code": null,
+           "text": "Recognise that sound needs a medium for transmission."
+          },
+          {
+           "code": null,
+           "text": "Determine sound speed in air by measuring a distance and the corresponding travel time."
+          },
+          {
+           "code": null,
+           "text": "Describe an echo as sound produced by reflected sound waves."
+          },
+          {
+           "code": null,
+           "text": "Describe compressions and rarefactions in sound waves."
+          },
+          {
+           "code": null,
+           "text": "State that sound generally travels fastest in solids, then liquids, then gases."
+          },
+          {
+           "code": null,
+           "text": "Describe ultrasound applications in material testing, medical scanning and sonar, including distance calculations."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "igcse-4-electricity-and-magnetism",
+     "title": "[IGCSE] 4 Electricity and magnetism",
+     "topics": [
+      {
+       "id": "4-1-simple-phenomena-of-magnetism",
+       "title": "4.1 Simple phenomena of magnetism",
+       "subtopics": [
+        {
+         "id": "magnetic-materials-and-poles",
+         "title": "Magnetic Materials and Poles",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe forces between magnetic poles and between magnets and magnetic materials."
+          },
+          {
+           "code": null,
+           "text": "Describe induced magnetism."
+          },
+          {
+           "code": null,
+           "text": "Compare temporary soft-iron magnets with permanent steel magnets."
+          },
+          {
+           "code": null,
+           "text": "Distinguish magnetic from non-magnetic materials."
+          }
+         ]
+        },
+        {
+         "id": "magnetic-fields-and-directions",
+         "title": "Magnetic Fields and Directions",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Define a magnetic field as a region where a magnetic pole experiences force."
+          },
+          {
+           "code": null,
+           "text": "Draw magnetic-field patterns and directions around a bar magnet."
+          },
+          {
+           "code": null,
+           "text": "Define field direction as the force direction on a north pole."
+          },
+          {
+           "code": null,
+           "text": "Plot magnetic fields with compasses or iron filings and use a compass to find direction."
+          }
+         ]
+        },
+        {
+         "id": "magnet-uses-and-forces",
+         "title": "Magnet Uses and Forces",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe uses of permanent magnets and electromagnets."
+          },
+          {
+           "code": null,
+           "text": "Explain magnetic forces as interactions between magnetic fields."
+          },
+          {
+           "code": null,
+           "text": "Describe attraction and repulsion between magnetic poles and magnets and magnetic materials, including magnetisation and pole terminology."
+          },
+          {
+           "code": null,
+           "text": "Describe how magnetism can be induced in materials."
+          }
+         ]
+        },
+        {
+         "id": "magnetic-field-patterns",
+         "title": "Magnetic Field Patterns",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Distinguish between magnetic and non-magnetic materials."
+          },
+          {
+           "code": null,
+           "text": "Describe a magnetic field as a region where a magnetic pole experiences a force."
+          },
+          {
+           "code": null,
+           "text": "Draw magnetic field lines and their directions around a bar magnet."
+          },
+          {
+           "code": null,
+           "text": "State that field direction is the force direction acting on a north pole at that location."
+          },
+          {
+           "code": null,
+           "text": "Explain how compasses or iron filings reveal magnetic field lines and how a compass finds field direction."
+          },
+          {
+           "code": null,
+           "text": "Describe applications of permanent magnets and electromagnets."
+          },
+          {
+           "code": null,
+           "text": "Relate magnetic field strength to the spacing of magnetic field lines."
+          }
+         ]
+        },
+        {
+         "id": "magnetism-and-materials",
+         "title": "Magnetism and Materials",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe forces between magnetic poles and between magnets and magnetic materials, using terms such as attraction, repulsion and magnetisation."
+          },
+          {
+           "code": null,
+           "text": "Describe how magnetism can be induced in a material."
+          },
+          {
+           "code": null,
+           "text": "Distinguish temporary soft-iron magnets from permanent steel magnets by their properties."
+          },
+          {
+           "code": null,
+           "text": "Distinguish magnetic materials from non-magnetic materials."
+          }
+         ]
+        },
+        {
+         "id": "bar-magnet-fields",
+         "title": "Bar Magnet Fields",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Draw the field-line pattern and directions around a bar magnet."
+          },
+          {
+           "code": null,
+           "text": "State that magnetic-field direction is the force direction on a north pole placed at that point."
+          },
+          {
+           "code": null,
+           "text": "Explain how compasses or iron filings plot magnetic field lines and how a compass gives their direction."
+          },
+          {
+           "code": null,
+           "text": "Relate the strength of a magnetic field to the spacing of its field lines."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "4-2-electrical-quantities",
+       "title": "4.2 Electrical quantities",
+       "subtopics": [
+        {
+         "id": "charge-and-electrostatics",
+         "title": "Charge and Electrostatics",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "State that charge may be positive or negative."
+          },
+          {
+           "code": null,
+           "text": "Describe attraction and repulsion between like and unlike charges."
+          },
+          {
+           "code": null,
+           "text": "Describe experiments producing and detecting electrostatic charge by friction."
+          },
+          {
+           "code": null,
+           "text": "Explain frictional charging as transfer of electrons."
+          }
+         ]
+        },
+        {
+         "id": "conductors-and-insulators",
+         "title": "Conductors and Insulators",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe an experiment distinguishing conductors from insulators."
+          },
+          {
+           "code": null,
+           "text": "Use an electron model to explain conductors and insulators, with examples."
+          },
+          {
+           "code": null,
+           "text": "State that charge is measured in coulombs."
+          }
+         ]
+        },
+        {
+         "id": "electric-fields",
+         "title": "Electric Fields",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Define an electric field as a region where charge experiences force."
+          },
+          {
+           "code": null,
+           "text": "Define electric-field direction as the force direction on a positive charge."
+          },
+          {
+           "code": null,
+           "text": "Describe electric-field patterns around charges, conducting spheres and oppositely charged parallel plates."
+          }
+         ]
+        },
+        {
+         "id": "current-and-charge-flow",
+         "title": "Current and Charge Flow",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Know that electric current relates to the flow of charge."
+          },
+          {
+           "code": null,
+           "text": "Describe using analogue and digital ammeters with different ranges."
+          },
+          {
+           "code": null,
+           "text": "Explain metallic conduction as movement of free electrons."
+          },
+          {
+           "code": null,
+           "text": "Distinguish direct current from alternating current."
+          },
+          {
+           "code": null,
+           "text": "Define current as charge per unit time and use I = Q/t."
+          },
+          {
+           "code": null,
+           "text": "State that conventional current flows positive to negative, opposite to electron flow."
+          }
+         ]
+        },
+        {
+         "id": "e-m-f-and-potential-difference",
+         "title": "E.m.f. and Potential Difference",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Define e.m.f. as work done per unit charge by a source around a complete circuit."
+          },
+          {
+           "code": null,
+           "text": "State that e.m.f. is measured in volts."
+          },
+          {
+           "code": null,
+           "text": "Define potential difference as work done per unit charge passing through a component."
+          },
+          {
+           "code": null,
+           "text": "State that potential difference is measured in volts."
+          },
+          {
+           "code": null,
+           "text": "Describe using analogue and digital voltmeters with different ranges."
+          }
+         ]
+        },
+        {
+         "id": "e-m-f-and-voltage-calculations",
+         "title": "E.m.f. and Voltage Calculations",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Use the equation E = W/Q to calculate e.m.f."
+          },
+          {
+           "code": null,
+           "text": "Use the equation V = W/Q to calculate potential difference."
+          }
+         ]
+        },
+        {
+         "id": "resistance-calculations",
+         "title": "Resistance Calculations",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Use R = V/I to calculate resistance."
+          },
+          {
+           "code": null,
+           "text": "Determine resistance experimentally using voltmeter and ammeter measurements."
+          }
+         ]
+        },
+        {
+         "id": "wire-resistance-and-graphs",
+         "title": "Wire Resistance and Graphs",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe how metallic-wire resistance depends qualitatively on length and cross-sectional area."
+          },
+          {
+           "code": null,
+           "text": "Sketch and explain current–voltage graphs for a resistor, filament lamp and diode."
+          },
+          {
+           "code": null,
+           "text": "Use that metallic resistance is proportional to length and inversely proportional to cross-sectional area."
+          }
+         ]
+        },
+        {
+         "id": "electrical-energy-and-power",
+         "title": "Electrical Energy and Power",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain that circuits transfer energy from sources through components to the surroundings."
+          },
+          {
+           "code": null,
+           "text": "Use P = IV to calculate electrical power."
+          },
+          {
+           "code": null,
+           "text": "Use E = IVt to calculate electrical energy."
+          },
+          {
+           "code": null,
+           "text": "Define the kilowatt-hour and calculate appliance costs using this energy unit."
+          }
+         ]
+        },
+        {
+         "id": "electrical-quantities-overview",
+         "title": "Electrical Quantities Overview",
+         "outcomes": [
+          {
+           "code": "4.2",
+           "text": "Study electrical quantities, including charge, current, electromotive force, potential difference, resistance, energy and power."
+          },
+          {
+           "code": "4.2.1",
+           "text": "Learn about positive and negative charge, electrostatic effects, charging by friction, electric fields, conductors and insulators."
+          },
+          {
+           "code": "4.2.2",
+           "text": "Learn how current relates to charge flow, how ammeters are used, electron conduction in metals, and the difference between direct and alternating current."
+          },
+          {
+           "code": "4.2.3",
+           "text": "Define e.m.f. and potential difference, state their units, use their equations, and describe how to measure potential difference with voltmeters."
+          },
+          {
+           "code": "4.2.4",
+           "text": "Use the resistance equation, measure resistance experimentally, describe how wire dimensions affect resistance, and interpret current–voltage graphs."
+          },
+          {
+           "code": "4.2.5",
+           "text": "Explain energy transfer in circuits, calculate electrical power and energy, and use kilowatt-hours to determine appliance running costs."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "4-3-electric-circuits",
+       "title": "4.3 Electric circuits",
+       "subtopics": [
+        {
+         "id": "circuit-diagrams-and-components",
+         "title": "Circuit Diagrams and Components",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Draw and interpret circuits containing listed sources, controls, components and measuring instruments."
+          },
+          {
+           "code": null,
+           "text": "Draw and interpret circuits containing diodes and LEDs, including their behaviour."
+          }
+         ]
+        },
+        {
+         "id": "series-circuit-rules",
+         "title": "Series Circuit Rules",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "State that current is the same everywhere in a series circuit."
+          },
+          {
+           "code": null,
+           "text": "Construct and use series and parallel circuits."
+          },
+          {
+           "code": null,
+           "text": "Calculate the combined e.m.f. of sources connected in series."
+          },
+          {
+           "code": null,
+           "text": "Calculate the combined resistance of resistors connected in series."
+          }
+         ]
+        },
+        {
+         "id": "parallel-circuit-rules",
+         "title": "Parallel Circuit Rules",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "State that source current in parallel exceeds the current in each branch."
+          },
+          {
+           "code": null,
+           "text": "State that two parallel resistors have less combined resistance than either alone."
+          },
+          {
+           "code": null,
+           "text": "State the advantages of connecting lighting lamps in parallel."
+          },
+          {
+           "code": null,
+           "text": "Calculate junction currents, series potential differences and parallel potential differences."
+          },
+          {
+           "code": null,
+           "text": "Explain that currents entering and leaving a junction have equal totals."
+          },
+          {
+           "code": null,
+           "text": "Calculate the combined resistance of two resistors connected in parallel."
+          }
+         ]
+        },
+        {
+         "id": "potential-dividers",
+         "title": "Potential Dividers",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "State that conductor potential difference increases with resistance at constant current."
+          },
+          {
+           "code": null,
+           "text": "Describe how a variable potential divider operates."
+          },
+          {
+           "code": null,
+           "text": "Use the potential-divider equation for two resistors."
+          }
+         ]
+        },
+        {
+         "id": "electric-circuits-overview",
+         "title": "Electric Circuits Overview",
+         "outcomes": [
+          {
+           "code": "4.3",
+           "text": "Understand circuit components, circuit arrangements, their electrical behaviour, and safe operation."
+          },
+          {
+           "code": "4.3.1",
+           "text": "Draw and interpret circuits containing common electrical components, including diodes and LEDs, and explain their behaviour."
+          },
+          {
+           "code": "4.3.2",
+           "text": "Construct, use and analyse series and parallel circuits, including their currents, potential differences, electromotive forces and resistances."
+          },
+          {
+           "code": "4.3.3",
+           "text": "Relate potential difference to resistance at constant current; describe variable potential dividers and use the two-resistor potential-divider equation."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "4-4-electrical-safety",
+       "title": "4.4 Electrical safety",
+       "subtopics": [
+        {
+         "id": "mains-electricity-hazards",
+         "title": "Mains Electricity Hazards",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "State hazards from damaged insulation, overheated cables, dampness and overloaded mains connections."
+          },
+          {
+           "code": null,
+           "text": "Describe mains wires and explain why the switch belongs in the live wire."
+          }
+         ]
+        },
+        {
+         "id": "fuses-and-trip-switches",
+         "title": "Fuses and Trip Switches",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain trip switches and fuses, selecting suitable ratings and settings."
+          }
+         ]
+        },
+        {
+         "id": "earthing-and-double-insulation",
+         "title": "Earthing and Double Insulation",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain why appliance casings must be insulating or earthed."
+          },
+          {
+           "code": null,
+           "text": "State that a fuse protects double-insulated appliance wiring without an earth wire."
+          }
+         ]
+        },
+        {
+         "id": "electrical-safety-summary",
+         "title": "Electrical Safety Summary",
+         "outcomes": [
+          {
+           "code": "4.4",
+           "text": "Identify mains electricity hazards; explain wiring, switches, fuses, trip switches, earthing and double insulation, including suitable protective settings."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "4-5-electromagnetic-effects",
+       "title": "4.5 Electromagnetic effects",
+       "subtopics": [
+        {
+         "id": "electromagnetic-induction",
+         "title": "Electromagnetic Induction",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain that motion across or changing magnetic linkage through a conductor induces e.m.f."
+          },
+          {
+           "code": null,
+           "text": "Describe an experiment demonstrating electromagnetic induction."
+          },
+          {
+           "code": null,
+           "text": "State factors affecting the magnitude of induced e.m.f."
+          },
+          {
+           "code": null,
+           "text": "State that induced e.m.f. opposes the change producing it."
+          },
+          {
+           "code": null,
+           "text": "Use the relative directions of force, magnetic field and induced current."
+          }
+         ]
+        },
+        {
+         "id": "the-a-c-generator",
+         "title": "The A.C. Generator",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe a simple a.c. generator and the roles of slip rings and brushes."
+          },
+          {
+           "code": null,
+           "text": "Interpret e.m.f.–time graphs and relate features to generator-coil positions."
+          }
+         ]
+        },
+        {
+         "id": "magnetic-fields-from-currents",
+         "title": "Magnetic Fields from Currents",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe magnetic-field patterns and directions around current-carrying wires and solenoids."
+          },
+          {
+           "code": null,
+           "text": "Experimentally identify magnetic-field patterns around straight wires and solenoids."
+          },
+          {
+           "code": null,
+           "text": "Explain relay and loudspeaker operation using current magnetism, with applications."
+          },
+          {
+           "code": null,
+           "text": "State qualitatively how field strength varies around wires and solenoids."
+          },
+          {
+           "code": null,
+           "text": "Describe field changes when current magnitude or direction changes."
+          }
+         ]
+        },
+        {
+         "id": "force-on-current-carrying-conductors",
+         "title": "Force on Current-Carrying Conductors",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe an experiment showing force on a current-carrying conductor in a magnetic field."
+          },
+          {
+           "code": null,
+           "text": "Use the relative directions of force, field and current."
+          },
+          {
+           "code": null,
+           "text": "Determine force direction on charged-particle beams in magnetic fields."
+          }
+         ]
+        },
+        {
+         "id": "the-d-c-motor",
+         "title": "The D.C. Motor",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain coil turning and how turns, current and field strength increase the effect."
+          },
+          {
+           "code": null,
+           "text": "Describe motor operation, including split-ring commutator and brushes."
+          }
+         ]
+        },
+        {
+         "id": "transformer-principles",
+         "title": "Transformer Principles",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe a simple soft-iron-core transformer."
+          },
+          {
+           "code": null,
+           "text": "Use primary, secondary, step-up and step-down terminology."
+          },
+          {
+           "code": null,
+           "text": "Use the transformer voltage–turns ratio."
+          },
+          {
+           "code": null,
+           "text": "Explain transformer operation using electromagnetic induction."
+          }
+         ]
+        },
+        {
+         "id": "high-voltage-transmission",
+         "title": "High-Voltage Transmission",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe transformers in high-voltage electricity transmission."
+          },
+          {
+           "code": null,
+           "text": "State advantages of transmitting electricity at high voltage."
+          },
+          {
+           "code": null,
+           "text": "Use the equation IpVp = IsVs for an ideal transformer."
+          },
+          {
+           "code": null,
+           "text": "Use P = I²R to explain reduced cable losses at higher voltage."
+          }
+         ]
+        },
+        {
+         "id": "electromagnetic-effects-overview",
+         "title": "Electromagnetic Effects Overview",
+         "outcomes": [
+          {
+           "code": "4.5",
+           "text": "Understand electromagnetic effects involving currents, magnetic fields, induction and electrical machines."
+          },
+          {
+           "code": "4.5.1",
+           "text": "Understand how changing magnetic fields or conductor motion induce electromotive force."
+          },
+          {
+           "code": "4.5.2",
+           "text": "Understand how a.c. generators produce alternating electromotive force using rotating coils or magnets."
+          },
+          {
+           "code": "4.5.3",
+           "text": "Understand the magnetic fields produced by currents and their applications in relays and loudspeakers."
+          },
+          {
+           "code": "4.5.4",
+           "text": "Demonstrate and predict the force on current-carrying conductors and charged-particle beams in magnetic fields, including effects of reversing current or field."
+          },
+          {
+           "code": "4.5.5",
+           "text": "Explain how a current-carrying coil turns in a magnetic field and how increased turns, current or field strength increase the turning effect; describe commutator operation."
+          },
+          {
+           "code": "4.5.6",
+           "text": "Describe transformer construction and operation, use primary, secondary, step-up and step-down terminology, apply transformer equations, and explain high-voltage transmission and reduced cable losses."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "igcse-5-nuclear-physics",
+     "title": "[IGCSE] 5 Nuclear physics",
+     "topics": [
+      {
+       "id": "5-1-the-nuclear-model-of-the-atom",
+       "title": "5.1 The nuclear model of the atom",
+       "subtopics": [
+        {
+         "id": "atoms-and-ions",
+         "title": "Atoms and ions",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe atoms as positive nuclei surrounded by orbiting negative electrons."
+          },
+          {
+           "code": null,
+           "text": "Explain positive and negative ion formation by electron loss or gain."
+          }
+         ]
+        },
+        {
+         "id": "alpha-scattering-and-the-nucleus",
+         "title": "Alpha scattering and the nucleus",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain how alpha scattering supports the nuclear model."
+          },
+          {
+           "code": null,
+           "text": "Describe nuclei as containing protons and neutrons."
+          },
+          {
+           "code": null,
+           "text": "State relative proton, neutron and electron charges as +1, 0 and −1."
+          }
+         ]
+        },
+        {
+         "id": "nuclear-numbers-and-notation",
+         "title": "Nuclear numbers and notation",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Define proton and nucleon numbers and calculate neutron number."
+          },
+          {
+           "code": null,
+           "text": "Use nuclide notation."
+          },
+          {
+           "code": null,
+           "text": "Explain isotopes and state that elements can have multiple isotopes."
+          }
+         ]
+        },
+        {
+         "id": "nuclear-charge-and-mass",
+         "title": "Nuclear charge and mass",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe nuclear fission and fusion, including qualitative mass and energy changes."
+          },
+          {
+           "code": null,
+           "text": "Relate proton number to nuclear charge."
+          },
+          {
+           "code": null,
+           "text": "Relate nucleon number to relative nuclear mass."
+          }
+         ]
+        },
+        {
+         "id": "the-nuclear-model-summary",
+         "title": "The nuclear model summary",
+         "outcomes": [
+          {
+           "code": "5.1",
+           "text": "Understand that atomic structure is explained by a small, positively charged nucleus containing most mass, with electrons around it."
+          },
+          {
+           "code": "5.1.1",
+           "text": "Describe atoms and ions, and explain how alpha-particle scattering supports the nuclear model."
+          },
+          {
+           "code": "5.1.2",
+           "text": "Describe nuclear composition, charges, proton and nucleon numbers, isotopes, nuclide notation, fission and fusion."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "5-2-radioactivity",
+       "title": "5.2 Radioactivity",
+       "subtopics": [
+        {
+         "id": "detecting-radioactivity",
+         "title": "Detecting radioactivity",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Define background radiation."
+          },
+          {
+           "code": null,
+           "text": "Identify major background-radiation sources, including radon, rocks, food and cosmic rays."
+          },
+          {
+           "code": null,
+           "text": "State that ionising radiation is measured with a detector and counter."
+          },
+          {
+           "code": null,
+           "text": "Use count rates measured per second or per minute."
+          },
+          {
+           "code": null,
+           "text": "Use background measurements to calculate corrected count rate."
+          }
+         ]
+        },
+        {
+         "id": "types-of-nuclear-emission",
+         "title": "Types of nuclear emission",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe nuclear radiation emission as spontaneous and random in direction."
+          },
+          {
+           "code": null,
+           "text": "Identify alpha, beta and gamma emissions by nature, ionisation and penetration."
+          },
+          {
+           "code": null,
+           "text": "Describe alpha, beta and gamma deflection in electric and magnetic fields."
+          },
+          {
+           "code": null,
+           "text": "Explain relative ionisation using kinetic energy and electric charge."
+          }
+         ]
+        },
+        {
+         "id": "radioactive-decay",
+         "title": "Radioactive decay",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe radioactive decay as spontaneous, random change of an unstable nucleus."
+          },
+          {
+           "code": null,
+           "text": "State that alpha or beta decay produces a different element."
+          },
+          {
+           "code": null,
+           "text": "Explain why isotopes may be radioactive because of excess neutrons or excessive nuclear mass."
+          },
+          {
+           "code": null,
+           "text": "Describe how alpha, beta and gamma emissions alter nuclear stability and neutron excess."
+          },
+          {
+           "code": null,
+           "text": "Use nuclide equations for alpha, beta and gamma decay."
+          }
+         ]
+        },
+        {
+         "id": "half-life-and-applications",
+         "title": "Half-life and applications",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Define half-life and use it in simple calculations."
+          },
+          {
+           "code": null,
+           "text": "Determine half-life from data or decay curves without background subtraction."
+          },
+          {
+           "code": null,
+           "text": "Choose isotopes for applications using radiation type and half-life."
+          }
+         ]
+        },
+        {
+         "id": "radiation-safety",
+         "title": "Radiation safety",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "State effects of ionising radiation, including cell death, mutations and cancer."
+          },
+          {
+           "code": null,
+           "text": "Describe safe transport, use and storage of radioactive materials."
+          },
+          {
+           "code": null,
+           "text": "Explain radiation protection through shorter exposure, greater distance and shielding."
+          }
+         ]
+        },
+        {
+         "id": "radioactivity-summary",
+         "title": "Radioactivity summary",
+         "outcomes": [
+          {
+           "code": "5.2",
+           "text": "Understand radioactivity, including detecting nuclear emissions, the three emission types, radioactive decay, and half-life."
+          },
+          {
+           "code": "5.2.1",
+           "text": "Understand background radiation, its sources, detection, count-rate measurement, and correction for background counts."
+          },
+          {
+           "code": "5.2.2",
+           "text": "Identify alpha, beta and gamma emissions, comparing their nature, ionising effects, penetration, and deflection in electric and magnetic fields."
+          },
+          {
+           "code": "5.2.3",
+           "text": "Explain radioactive decay as spontaneous, random nuclear change producing alpha, beta or gamma radiation; describe isotope causes, element changes, nuclear effects and decay equations."
+          },
+          {
+           "code": "5.2.4",
+           "text": "Define and calculate half-life using data or decay curves, and explain isotope applications based on radiation type, half-life, penetration and absorption."
+          },
+          {
+           "code": "5.2.5",
+           "text": "Understand radiation’s biological effects and safe handling, storage, transport, and exposure-reduction precautions."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "igcse-6-space-physics",
+     "title": "[IGCSE] 6 Space physics",
+     "topics": [
+      {
+       "id": "6-1-the-earth-and-the-solar-system",
+       "title": "6.1 The Earth and the Solar System",
+       "subtopics": [
+        {
+         "id": "earth-moon-cycles",
+         "title": "Earth Moon Cycles",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Use Earth’s tilted daily rotation to explain apparent solar motion and day and night."
+          },
+          {
+           "code": null,
+           "text": "Use Earth’s annual orbit to explain seasonal cycles."
+          },
+          {
+           "code": null,
+           "text": "Use the Moon’s monthly orbit to explain its repeating phases."
+          }
+         ]
+        },
+        {
+         "id": "orbital-speed",
+         "title": "Orbital Speed",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Define average orbital speed and use v = 2πr/T."
+          }
+         ]
+        },
+        {
+         "id": "solar-system-formation",
+         "title": "Solar System Formation",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe the Solar System’s Sun, planets, minor planets, moons and smaller bodies."
+          },
+          {
+           "code": null,
+           "text": "Compare rocky inner planets with large gaseous outer planets using accretion theory."
+          },
+          {
+           "code": null,
+           "text": "Explain accretion using gravity, interstellar material, rotation and disc formation."
+          },
+          {
+           "code": null,
+           "text": "State that planetary, minor-planet and comet orbits are generally elliptical with the Sun off-centre."
+          }
+         ]
+        },
+        {
+         "id": "planetary-data",
+         "title": "Planetary Data",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Analyse planetary data on orbit, density, temperature and surface gravitational field strength."
+          }
+         ]
+        },
+        {
+         "id": "earth-and-solar-system-review",
+         "title": "Earth And Solar System Review",
+         "outcomes": [
+          {
+           "code": "6.1",
+           "text": "Understand Earth, the Moon, and the Solar System through their rotations, orbits, cycles, and orbital speed."
+          },
+          {
+           "code": "6.1.1",
+           "text": "Explain Earth’s rotation, orbit around the Sun, the Moon’s orbit, resulting cycles, and calculate average orbital speed."
+          }
+         ]
+        },
+        {
+         "id": "planetary-gravity",
+         "title": "Planetary Gravity",
+         "outcomes": [
+          {
+           "code": "6.1.2",
+           "text": "Relate a planet’s surface gravitational field to its mass and distance from the planet."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "6-2-stars-and-the-universe",
+       "title": "6.2 Stars and the Universe",
+       "subtopics": [
+        {
+         "id": "the-sun",
+         "title": "The Sun",
+         "outcomes": [
+          {
+           "code": "6.2.1",
+           "text": "Describe the Sun as a medium-sized hydrogen-and-helium star emitting mainly infrared, visible and ultraviolet radiation."
+          }
+         ]
+        },
+        {
+         "id": "galaxies-and-light-years",
+         "title": "Galaxies And Light-Years",
+         "outcomes": [
+          {
+           "code": "6.2.2",
+           "text": "Describe galaxies, the Milky Way, stellar distances and the light-year, including its approximate value in metres."
+          }
+         ]
+        },
+        {
+         "id": "sun-and-nuclear-fusion",
+         "title": "Sun And Nuclear Fusion",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe the Sun as a medium-sized star, mainly hydrogen and helium, radiating energy as infrared, visible and ultraviolet radiation."
+          },
+          {
+           "code": null,
+           "text": "Explain that stable stars release energy through nuclear fusion, converting hydrogen into helium."
+          }
+         ]
+        },
+        {
+         "id": "stellar-distances",
+         "title": "Stellar Distances",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe galaxies, the Milky Way, stellar distances and the light-year as the distance light travels in one year."
+          },
+          {
+           "code": null,
+           "text": "Recall that one light-year is approximately 9.5 × 10¹⁵ metres."
+          }
+         ]
+        },
+        {
+         "id": "star-life-cycles",
+         "title": "Star Life Cycles",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe stellar evolution from interstellar cloud and protostar through stable star, giant stages and final remnants."
+          }
+         ]
+        },
+        {
+         "id": "the-milky-way",
+         "title": "The Milky Way",
+         "outcomes": [
+          {
+           "code": "6.2.3",
+           "text": "Describe the Milky Way as one of billions of galaxies and recall its approximate diameter of 100,000 light-years."
+          }
+         ]
+        },
+        {
+         "id": "sun-and-fusion-review",
+         "title": "Sun And Fusion Review",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe the Sun as a medium-sized hydrogen-and-helium star emitting mainly infrared, visible and ultraviolet radiation."
+          },
+          {
+           "code": null,
+           "text": "Explain that stable stars produce energy by fusing hydrogen into helium through nuclear reactions."
+          }
+         ]
+        },
+        {
+         "id": "galaxies-and-distances-review",
+         "title": "Galaxies And Distances Review",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "State that galaxies contain billions of stars; the Sun belongs to the Milky Way; other stars are farther away; distances use light-years."
+          },
+          {
+           "code": null,
+           "text": "Recall that one light-year represents approximately 9.5 × 10¹⁵ metres."
+          }
+         ]
+        },
+        {
+         "id": "stellar-evolution-review",
+         "title": "Stellar Evolution Review",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe star formation, development into giants or supergiants, and possible endpoints including white dwarfs, neutron stars and black holes."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "build": {
+  "builtAt": "2026-10-14T05:38:33.810Z",
+  "model": "gpt-5.6-luna",
+  "usd": 0.0705,
+  "expectedCodes": 71,
+  "coverage": 0.9154929577464789,
+  "missingCodes": [
+   "1.5",
+   "2.1",
+   "3.3",
+   "3.4",
+   "4.1",
+   "6.2"
+  ],
+  "counts": {
+   "grades": 1,
+   "units": 6,
+   "topics": 24,
+   "subtopics": 131,
+   "outcomes": 397
+  },
+  "warnings": [
+   "10 invented code(s) dropped: 3.3.1, 3.3.2, 3.3.3, 3.3.4, 3.3.5, 3.3.6, 3.3.7, 3.3.8"
+  ]
+ }
+}

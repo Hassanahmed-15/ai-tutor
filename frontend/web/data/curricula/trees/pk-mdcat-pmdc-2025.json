@@ -1,0 +1,3058 @@
+{
+ "id": "pk-mdcat-pmdc-2025",
+ "region": "PK",
+ "framework": "MDCAT Uniform Curriculum 2025",
+ "board": "PMDC",
+ "qualification": "MDCAT",
+ "subject": "Biology, Chemistry, Physics, English, Logical Reasoning",
+ "syllabusCode": null,
+ "gradeSystem": "course",
+ "source": {
+  "urls": [
+   "https://pmdc.pk/Documents/Syllabus/Uniform%20Curriculum%20MDCAT-2025%20%20Final%20(26-05-2025).pdf"
+  ],
+  "publisher": "Pakistan Medical & Dental Council",
+  "licence": "Government publication; structure + our own wording only",
+  "firstExam": "2025"
+ },
+ "grades": [
+  {
+   "grade": "all",
+   "units": [
+    {
+     "id": "biology-1-acellular-life",
+     "title": "Biology: 1 Acellular Life",
+     "topics": [
+      {
+       "id": "viruses",
+       "title": "Viruses",
+       "subtopics": [
+        {
+         "id": "viruses-and-aids",
+         "title": "Viruses and AIDS",
+         "outcomes": [
+          {
+           "code": "1.1",
+           "text": "Sort viruses by structure, strand type, disease and host."
+          },
+          {
+           "code": "1.2",
+           "text": "Name the cause, symptoms and spread of AIDS and HIV infection."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "biology-2-bioenergetics",
+     "title": "Biology: 2 Bioenergetics",
+     "topics": [
+      {
+       "id": "respiration",
+       "title": "Respiration",
+       "subtopics": [
+        {
+         "id": "respiration-of-proteins-and-fats",
+         "title": "Respiration of proteins and fats",
+         "outcomes": [
+          {
+           "code": "2.1",
+           "text": "Outline how proteins and fats are respired and compare it with glucose."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "biology-3-biological-molecules",
+     "title": "Biology: 3 Biological Molecules",
+     "topics": [
+      {
+       "id": "biological-molecules",
+       "title": "Biological molecules",
+       "subtopics": [
+        {
+         "id": "biomolecules-and-water",
+         "title": "Biomolecules and water",
+         "outcomes": [
+          {
+           "code": "3.1",
+           "text": "Define and classify biological molecules."
+          },
+          {
+           "code": "3.2",
+           "text": "Discuss why biological molecules matter."
+          },
+          {
+           "code": "3.3",
+           "text": "Describe water's key properties: polarity, hydrolysis, specific heat, solvent, density, cohesion."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "carbohydrates-proteins-and-lipids",
+       "title": "Carbohydrates, proteins and lipids",
+       "subtopics": [
+        {
+         "id": "carbohydrates",
+         "title": "Carbohydrates",
+         "outcomes": [
+          {
+           "code": "3.4",
+           "text": "Describe monosaccharides, oligosaccharides and polysaccharides."
+          }
+         ]
+        },
+        {
+         "id": "proteins",
+         "title": "Proteins",
+         "outcomes": [
+          {
+           "code": "3.5",
+           "text": "Describe amino acids and protein structure."
+          }
+         ]
+        },
+        {
+         "id": "lipids",
+         "title": "Lipids",
+         "outcomes": [
+          {
+           "code": "3.6",
+           "text": "Describe phospholipids, triglycerides and esters of alcohol."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "nucleic-acids-and-conjugated-molecules",
+       "title": "Nucleic acids and conjugated molecules",
+       "subtopics": [
+        {
+         "id": "rna-and-conjugated-molecules",
+         "title": "RNA and conjugated molecules",
+         "outcomes": [
+          {
+           "code": "3.7",
+           "text": "Give the structure and function of RNA."
+          },
+          {
+           "code": "3.8",
+           "text": "Discuss glycolipids and glycoproteins."
+          }
+         ]
+        },
+        {
+         "id": "dna-and-genes",
+         "title": "DNA and genes",
+         "outcomes": [
+          {
+           "code": "3.9",
+           "text": "Explain the Watson and Crick double helix of DNA."
+          },
+          {
+           "code": "3.10",
+           "text": "Define a gene as a nucleotide sequence coding for a polypeptide."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "biology-4-cell-structure-and-function",
+     "title": "Biology: 4 Cell Structure and Function",
+     "topics": [
+      {
+       "id": "prokaryotic-and-eukaryotic-cells",
+       "title": "Prokaryotic and eukaryotic cells",
+       "subtopics": [
+        {
+         "id": "cell-types",
+         "title": "Cell types",
+         "outcomes": [
+          {
+           "code": "4.1",
+           "text": "Compare typical animal and plant cells."
+          },
+          {
+           "code": "4.2",
+           "text": "Compare prokaryotic and eukaryotic cells."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "organelles-and-chromosomes",
+       "title": "Organelles and chromosomes",
+       "subtopics": [
+        {
+         "id": "organelles-and-chromosomes",
+         "title": "Organelles and chromosomes",
+         "outcomes": [
+          {
+           "code": "4.3",
+           "text": "Outline structure and function of nucleus, ER, Golgi and mitochondria."
+          },
+          {
+           "code": "4.4",
+           "text": "Describe the structure, makeup and function of chromosomes."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "biology-5-coordination-and-control",
+     "title": "Biology: 5 Coordination and Control",
+     "topics": [
+      {
+       "id": "receptors-and-neurons",
+       "title": "Receptors and neurons",
+       "subtopics": [
+        {
+         "id": "receptors-and-neurons",
+         "title": "Receptors and neurons",
+         "outcomes": [
+          {
+           "code": "5.1",
+           "text": "Recognise receptors as transducers sensitive to stimuli."
+          },
+          {
+           "code": "5.2",
+           "text": "Explain the structure of a typical neuron."
+          },
+          {
+           "code": "5.3",
+           "text": "Define a nerve impulse."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "reflexes-and-brain",
+       "title": "Reflexes and brain",
+       "subtopics": [
+        {
+         "id": "reflexes",
+         "title": "Reflexes",
+         "outcomes": [
+          {
+           "code": "5.4",
+           "text": "Classify reflexes."
+          },
+          {
+           "code": "5.5",
+           "text": "Explain the parts of a reflex arc."
+          }
+         ]
+        },
+        {
+         "id": "the-brain",
+         "title": "The brain",
+         "outcomes": [
+          {
+           "code": "5.6",
+           "text": "Discuss the main parts of the brain."
+          },
+          {
+           "code": "5.7",
+           "text": "Describe the function of each brain part."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "biology-6-enzymes",
+     "title": "Biology: 6 Enzymes",
+     "topics": [
+      {
+       "id": "enzymes",
+       "title": "Enzymes",
+       "subtopics": [
+        {
+         "id": "how-enzymes-work",
+         "title": "How enzymes work",
+         "outcomes": [
+          {
+           "code": "6.1",
+           "text": "Describe the distinguishing characteristics of enzymes."
+          },
+          {
+           "code": "6.2",
+           "text": "Explain how enzymes act."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "enzyme-rates",
+       "title": "Enzyme rates",
+       "subtopics": [
+        {
+         "id": "enzyme-rate-and-inhibitors",
+         "title": "Enzyme rate and inhibitors",
+         "outcomes": [
+          {
+           "code": "6.3",
+           "text": "Describe how temperature, pH and concentration affect enzymes."
+          },
+          {
+           "code": "6.4",
+           "text": "Describe enzyme inhibitors."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "biology-7-evolution",
+     "title": "Biology: 7 Evolution",
+     "topics": [
+      {
+       "id": "evolution",
+       "title": "Evolution",
+       "subtopics": [
+        {
+         "id": "theories-of-evolution",
+         "title": "Theories of evolution",
+         "outcomes": [
+          {
+           "code": "7.1",
+           "text": "Explain the origin of life in evolutionary terms."
+          },
+          {
+           "code": "7.2",
+           "text": "Describe Lamarck's inheritance of acquired characters."
+          },
+          {
+           "code": "7.3",
+           "text": "Explain Darwin's natural selection."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "biology-8-reproduction",
+     "title": "Biology: 8 Reproduction",
+     "topics": [
+      {
+       "id": "human-reproduction",
+       "title": "Human reproduction",
+       "subtopics": [
+        {
+         "id": "reproductive-system-and-cycle",
+         "title": "Reproductive system and cycle",
+         "outcomes": [
+          {
+           "code": "8.1",
+           "text": "Describe parts of the male and female systems and the hormones controlling them."
+          },
+          {
+           "code": "8.2",
+           "text": "Describe the menstrual cycle and hormone roles."
+          }
+         ]
+        },
+        {
+         "id": "sexually-transmitted-diseases",
+         "title": "Sexually transmitted diseases",
+         "outcomes": [
+          {
+           "code": "8.3",
+           "text": "List common sexually transmitted diseases, their causes and symptoms."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "biology-9-support-and-movement",
+     "title": "Biology: 9 Support and Movement",
+     "topics": [
+      {
+       "id": "skeleton-and-muscles",
+       "title": "Skeleton and muscles",
+       "subtopics": [
+        {
+         "id": "skeleton",
+         "title": "Skeleton",
+         "outcomes": [
+          {
+           "code": "9.1",
+           "text": "Describe cartilage, muscle and bone."
+          },
+          {
+           "code": "9.2",
+           "text": "Explain the characteristics and functions of cartilage and bone."
+          }
+         ]
+        },
+        {
+         "id": "muscles",
+         "title": "Muscles",
+         "outcomes": [
+          {
+           "code": "9.3",
+           "text": "Compare smooth, cardiac and skeletal muscle."
+          },
+          {
+           "code": "9.4",
+           "text": "Explain skeletal muscle ultra-structure."
+          },
+          {
+           "code": "9.5",
+           "text": "Describe skeletal muscle contraction in brief."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "joints",
+       "title": "Joints",
+       "subtopics": [
+        {
+         "id": "joints-and-arthritis",
+         "title": "Joints and arthritis",
+         "outcomes": [
+          {
+           "code": "9.6",
+           "text": "Classify joints."
+          },
+          {
+           "code": "9.7",
+           "text": "Define arthritis."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "biology-10-inheritance",
+     "title": "Biology: 10 Inheritance",
+     "topics": [
+      {
+       "id": "mendel-and-linkage",
+       "title": "Mendel and linkage",
+       "subtopics": [
+        {
+         "id": "mendel-s-laws",
+         "title": "Mendel's laws",
+         "outcomes": [
+          {
+           "code": "10.1",
+           "text": "Link inheritance to Mendel's laws."
+          },
+          {
+           "code": "10.2",
+           "text": "Explain independent assortment with an example."
+          }
+         ]
+        },
+        {
+         "id": "gene-linkage-and-crossing-over",
+         "title": "Gene linkage and crossing over",
+         "outcomes": [
+          {
+           "code": "10.3",
+           "text": "Describe gene linkage and crossing over."
+          },
+          {
+           "code": "10.4",
+           "text": "Explain how linkage counters independent assortment and crossing over alters progeny."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "sex-linkage",
+       "title": "Sex linkage",
+       "subtopics": [
+        {
+         "id": "sex-linked-inheritance",
+         "title": "Sex-linked inheritance",
+         "outcomes": [
+          {
+           "code": "10.5",
+           "text": "Describe the concept of sex linkage."
+          },
+          {
+           "code": "10.6",
+           "text": "Describe inheritance of sex-linked traits."
+          },
+          {
+           "code": "10.7",
+           "text": "Analyse the inheritance of hemophilia."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "biology-11-circulation",
+     "title": "Biology: 11 Circulation",
+     "topics": [
+      {
+       "id": "heart-and-vessels",
+       "title": "Heart and vessels",
+       "subtopics": [
+        {
+         "id": "the-heart-and-heartbeat",
+         "title": "The heart and heartbeat",
+         "outcomes": [
+          {
+           "code": "11.1",
+           "text": "Discuss the general structure of the human heart."
+          },
+          {
+           "code": "11.2",
+           "text": "Describe the phases of the heartbeat."
+          }
+         ]
+        },
+        {
+         "id": "vessels-and-lymph",
+         "title": "Vessels and lymph",
+         "outcomes": [
+          {
+           "code": "11.3",
+           "text": "List differences and functions of arteries, veins and capillaries."
+          },
+          {
+           "code": "11.4",
+           "text": "Describe the lymphatic system."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "biology-12-immunity",
+     "title": "Biology: 12 Immunity",
+     "topics": [
+      {
+       "id": "specific-defence",
+       "title": "Specific defence",
+       "subtopics": [
+        {
+         "id": "specific-defence-mechanisms",
+         "title": "Specific defence mechanisms",
+         "outcomes": [
+          {
+           "code": "12.1",
+           "text": "Define and discuss specific defence mechanisms and their importance."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "biology-13-respiration",
+     "title": "Biology: 13 Respiration",
+     "topics": [
+      {
+       "id": "human-respiratory-system",
+       "title": "Human respiratory system",
+       "subtopics": [
+        {
+         "id": "respiratory-system",
+         "title": "Respiratory system",
+         "outcomes": [
+          {
+           "code": "13.1",
+           "text": "Discuss the functions of the main respiratory parts."
+          },
+          {
+           "code": "13.2",
+           "text": "Discuss gas exchange in the lungs."
+          },
+          {
+           "code": "13.3",
+           "text": "Discuss the effects of smoking on the respiratory system."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "biology-14-digestion",
+     "title": "Biology: 14 Digestion",
+     "topics": [
+      {
+       "id": "human-digestive-system",
+       "title": "Human digestive system",
+       "subtopics": [
+        {
+         "id": "digestive-system",
+         "title": "Digestive system",
+         "outcomes": [
+          {
+           "code": "14.1",
+           "text": "Describe the parts of the human digestive system."
+          },
+          {
+           "code": "14.2",
+           "text": "Explain the functions of the main parts, associated structures and glands."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "biology-15-homeostasis",
+     "title": "Biology: 15 Homeostasis",
+     "topics": [
+      {
+       "id": "kidney",
+       "title": "Kidney",
+       "subtopics": [
+        {
+         "id": "kidney-structure-and-function",
+         "title": "Kidney structure and function",
+         "outcomes": [
+          {
+           "code": "15.1",
+           "text": "Explain urinary organs and relate kidney structure to function."
+          },
+          {
+           "code": "15.2",
+           "text": "Explain filtration, reabsorption and tubular secretion."
+          },
+          {
+           "code": "15.3",
+           "text": "Justify the kidney as both excretion and osmoregulation organ."
+          },
+          {
+           "code": "15.4",
+           "text": "Compare glomerular and peritubular capillary beds."
+          }
+         ]
+        },
+        {
+         "id": "kidney-problems",
+         "title": "Kidney problems",
+         "outcomes": [
+          {
+           "code": "15.5",
+           "text": "Explain causes and treatments of kidney stones."
+          },
+          {
+           "code": "15.6",
+           "text": "Outline the causes of kidney failure."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "thermoregulation-and-excretion",
+       "title": "Thermoregulation and excretion",
+       "subtopics": [
+        {
+         "id": "thermoregulation-and-excretion",
+         "title": "Thermoregulation and excretion",
+         "outcomes": [
+          {
+           "code": "15.7",
+           "text": "Describe thermoregulation and why it is needed."
+          },
+          {
+           "code": "15.8",
+           "text": "List nitrogenous compounds excreted."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "biology-16-biotechnology",
+     "title": "Biology: 16 Biotechnology",
+     "topics": [
+      {
+       "id": "biotechnology-and-health-care",
+       "title": "Biotechnology and health care",
+       "subtopics": [
+        {
+         "id": "biotechnology-in-medicine",
+         "title": "Biotechnology in medicine",
+         "outcomes": [
+          {
+           "code": "16.1",
+           "text": "Describe how vaccines made by biotechnology fight disease."
+          },
+          {
+           "code": "16.2",
+           "text": "State the role of DNA/RNA probes and monoclonal antibodies in diagnosis."
+          },
+          {
+           "code": "16.3",
+           "text": "Describe products biotechnologists make to treat disease."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "chemistry-1-fundamental-concepts-of-chemistry",
+     "title": "Chemistry: 1 Fundamental Concepts of Chemistry",
+     "topics": [
+      {
+       "id": "moles-and-stoichiometry",
+       "title": "Moles and stoichiometry",
+       "subtopics": [
+        {
+         "id": "mole-ratios-and-calculations",
+         "title": "Mole ratios and calculations",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Build mole ratios from balanced equations."
+          },
+          {
+           "code": null,
+           "text": "Do stoichiometric calculations with moles, particles, masses and gas volumes at STP."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "limiting-reactants-and-yield",
+       "title": "Limiting reactants and yield",
+       "subtopics": [
+        {
+         "id": "limiting-reagent",
+         "title": "Limiting reagent",
+         "outcomes": [
+          {
+           "code": "1.3",
+           "text": "Explain the limiting reagent."
+          },
+          {
+           "code": "1.4",
+           "text": "Calculate the maximum product and leftover excess reagent."
+          }
+         ]
+        },
+        {
+         "id": "percentage-yield",
+         "title": "Percentage yield",
+         "outcomes": [
+          {
+           "code": "1.5",
+           "text": "Find theoretical, actual or percentage yield from the other two."
+          },
+          {
+           "code": "1.6",
+           "text": "Calculate theoretical and percent yield from an equation and quantities."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "chemistry-2-atomic-structure",
+     "title": "Chemistry: 2 Atomic Structure",
+     "topics": [
+      {
+       "id": "quantum-ideas",
+       "title": "Quantum ideas",
+       "subtopics": [
+        {
+         "id": "proton-and-quantum-theory",
+         "title": "Proton and quantum theory",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe the discovery and properties of the proton."
+          },
+          {
+           "code": "2.2",
+           "text": "Define a photon as a unit of radiation energy."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "orbitals-and-quantum-numbers",
+       "title": "Orbitals and quantum numbers",
+       "subtopics": [
+        {
+         "id": "orbitals-and-their-shapes",
+         "title": "Orbitals and their shapes",
+         "outcomes": [
+          {
+           "code": "2.3",
+           "text": "Describe the concept of orbitals."
+          },
+          {
+           "code": "2.4",
+           "text": "Tell energy levels, sub-levels and orbitals apart."
+          },
+          {
+           "code": "2.5",
+           "text": "Describe the shapes of s and p orbitals."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "hydrogen-spectrum-and-configuration",
+       "title": "Hydrogen spectrum and configuration",
+       "subtopics": [
+        {
+         "id": "spectrum-and-electronic-configuration",
+         "title": "Spectrum and electronic configuration",
+         "outcomes": [
+          {
+           "code": "2.6",
+           "text": "Describe the hydrogen atom using quantum theory."
+          },
+          {
+           "code": "2.7",
+           "text": "Use Aufbau, Pauli exclusion and Hund's rule for configurations."
+          },
+          {
+           "code": "2.8",
+           "text": "Write the electronic configuration of atoms."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "chemistry-3-gases",
+     "title": "Chemistry: 3 Gases",
+     "topics": [
+      {
+       "id": "kinetic-molecular-theory",
+       "title": "Kinetic molecular theory",
+       "subtopics": [
+        {
+         "id": "kinetic-theory-and-stp",
+         "title": "Kinetic theory and STP",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "List the postulates of kinetic molecular theory."
+          },
+          {
+           "code": null,
+           "text": "Describe gas particle motion by kinetic theory."
+          },
+          {
+           "code": null,
+           "text": "State standard temperature and pressure."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "gas-laws",
+       "title": "Gas laws",
+       "subtopics": [
+        {
+         "id": "boyle-s-and-charles-s-laws",
+         "title": "Boyle's and Charles's laws",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe how pressure changes gas volume."
+          },
+          {
+           "code": null,
+           "text": "Describe how temperature changes gas volume."
+          },
+          {
+           "code": null,
+           "text": "Explain absolute zero and its value."
+          }
+         ]
+        },
+        {
+         "id": "ideal-gas-equation",
+         "title": "Ideal gas equation",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Derive the ideal gas equation from Boyle, Charles and Avogadro."
+          },
+          {
+           "code": null,
+           "text": "Explain the meaning and units of R."
+          },
+          {
+           "code": null,
+           "text": "Distinguish real from ideal gases."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "chemistry-4-liquids",
+     "title": "Chemistry: 4 Liquids",
+     "topics": [
+      {
+       "id": "liquid-properties",
+       "title": "Liquid properties",
+       "subtopics": [
+        {
+         "id": "properties-of-liquids",
+         "title": "Properties of liquids",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe diffusion, compression, expansion and forces in liquids by kinetic theory."
+          },
+          {
+           "code": null,
+           "text": "Explain evaporation, vapour pressure and boiling point."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "hydrogen-bonding",
+       "title": "Hydrogen bonding",
+       "subtopics": [
+        {
+         "id": "hydrogen-bonding-and-water",
+         "title": "Hydrogen bonding and water",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe hydrogen bonding in H2O, NH3 and HF."
+          },
+          {
+           "code": null,
+           "text": "Explain water's density maximum at 4 degrees centigrade."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "chemistry-5-solid",
+     "title": "Chemistry: 5 Solid",
+     "topics": [
+      {
+       "id": "crystals",
+       "title": "Crystals",
+       "subtopics": [
+        {
+         "id": "crystalline-solids",
+         "title": "Crystalline solids",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe a crystalline solid."
+          },
+          {
+           "code": null,
+           "text": "Name three factors affecting ionic crystal shape."
+          },
+          {
+           "code": null,
+           "text": "Describe ionic and molecular crystals."
+          }
+         ]
+        },
+        {
+         "id": "crystal-lattice-and-energy",
+         "title": "Crystal lattice and energy",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain the structure of a crystal lattice."
+          },
+          {
+           "code": null,
+           "text": "Define lattice energy."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "chemistry-6-chemical-equilibrium",
+     "title": "Chemistry: 6 Chemical Equilibrium",
+     "topics": [
+      {
+       "id": "equilibrium",
+       "title": "Equilibrium",
+       "subtopics": [
+        {
+         "id": "reversible-reactions-and-le-chatelier",
+         "title": "Reversible reactions and Le Chatelier",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Define chemical equilibrium for reversible reactions."
+          },
+          {
+           "code": null,
+           "text": "Write forward and reverse reactions and describe their macroscopic features."
+          },
+          {
+           "code": null,
+           "text": "State and apply Le Chatelier's principle."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "solubility-and-buffers",
+       "title": "Solubility and buffers",
+       "subtopics": [
+        {
+         "id": "solubility-product-and-common-ion-effect",
+         "title": "Solubility product and common ion effect",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Define and explain solubility products."
+          },
+          {
+           "code": "6.5",
+           "text": "Define and explain the common ion effect."
+          }
+         ]
+        },
+        {
+         "id": "buffers-and-haber-process",
+         "title": "Buffers and Haber process",
+         "outcomes": [
+          {
+           "code": "6.6",
+           "text": "Define buffer solutions and their types."
+          },
+          {
+           "code": "6.7",
+           "text": "Explain Haber's synthesis of ammonia."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "chemistry-7-reaction-kinetics",
+     "title": "Chemistry: 7 Reaction Kinetics",
+     "topics": [
+      {
+       "id": "rates-of-reaction",
+       "title": "Rates of reaction",
+       "subtopics": [
+        {
+         "id": "rate-and-its-factors",
+         "title": "Rate and its factors",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Define chemical kinetics."
+          },
+          {
+           "code": null,
+           "text": "Explain rate of reaction and the rate equation."
+          },
+          {
+           "code": null,
+           "text": "Explain factors affecting reaction rate."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "order-activation-energy-and-rate-constant",
+       "title": "Order, activation energy and rate constant",
+       "subtopics": [
+        {
+         "id": "order-and-activation-energy",
+         "title": "Order and activation energy",
+         "outcomes": [
+          {
+           "code": "7.4",
+           "text": "Give reaction order and write the rate law."
+          },
+          {
+           "code": "7.5",
+           "text": "Explain activation energy and activated complex."
+          },
+          {
+           "code": "7.6",
+           "text": "Relate activation energy and activated complex to rate."
+          },
+          {
+           "code": "7.7",
+           "text": "Describe the rate constant's role in finding reaction rate."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "chemistry-8-thermochemistry-and-energetics-of-ch",
+     "title": "Chemistry: 8 Thermochemistry and Energetics of Chemical Reaction",
+     "topics": [
+      {
+       "id": "thermodynamics-basics",
+       "title": "Thermodynamics basics",
+       "subtopics": [
+        {
+         "id": "heat-in-reactions",
+         "title": "Heat in reactions",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Define thermodynamics."
+          },
+          {
+           "code": null,
+           "text": "Classify reactions as exothermic or endothermic."
+          },
+          {
+           "code": null,
+           "text": "Define system, surroundings, state function, heat capacity, internal energy, work and enthalpy."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "laws-and-enthalpy",
+       "title": "Laws and enthalpy",
+       "subtopics": [
+        {
+         "id": "first-law-and-hess-s-law",
+         "title": "First law and Hess's law",
+         "outcomes": [
+          {
+           "code": "8.4",
+           "text": "Name and define units of internal energy."
+          },
+          {
+           "code": "8.5",
+           "text": "Explain the first law of thermodynamics."
+          },
+          {
+           "code": "8.6",
+           "text": "Apply Hess's law to simple energy cycles."
+          },
+          {
+           "code": "8.7",
+           "text": "Describe enthalpy of a reaction."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "chemistry-9-electrochemistry",
+     "title": "Chemistry: 9 Electrochemistry",
+     "topics": [
+      {
+       "id": "redox",
+       "title": "Redox",
+       "subtopics": [
+        {
+         "id": "oxidation-and-reduction",
+         "title": "Oxidation and reduction",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Give the characteristics of a redox reaction."
+          },
+          {
+           "code": null,
+           "text": "Define oxidation and reduction by oxidation-number change."
+          },
+          {
+           "code": null,
+           "text": "Find atoms oxidised or reduced by the oxidation-number method."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "electrode-potential",
+       "title": "Electrode potential",
+       "subtopics": [
+        {
+         "id": "standard-hydrogen-electrode",
+         "title": "Standard hydrogen electrode",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Define cathode, anode, electrode potential and S.H.E."
+          },
+          {
+           "code": null,
+           "text": "Define standard electrode potential."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "chemistry-10-chemical-bonding",
+     "title": "Chemistry: 10 Chemical Bonding",
+     "topics": [
+      {
+       "id": "molecular-shape",
+       "title": "Molecular shape",
+       "subtopics": [
+        {
+         "id": "vsepr-theory",
+         "title": "VSEPR theory",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Use VSEPR theory to describe molecular shapes."
+          },
+          {
+           "code": null,
+           "text": "Find shapes from the number of bonded pairs."
+          }
+         ]
+        },
+        {
+         "id": "sigma-pi-bonds-and-hybridisation",
+         "title": "Sigma, pi bonds and hybridisation",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe sigma and pi bonds."
+          },
+          {
+           "code": null,
+           "text": "Describe simple molecular shapes by hybridisation."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "polarity-and-bond-energy",
+       "title": "Polarity and bond energy",
+       "subtopics": [
+        {
+         "id": "dipole-moment-and-bond-energy",
+         "title": "Dipole moment and bond energy",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Predict molecular polarity from shape."
+          },
+          {
+           "code": null,
+           "text": "Explain ionic character of a covalent bond."
+          },
+          {
+           "code": null,
+           "text": "Use polarity to explain physical and chemical properties."
+          },
+          {
+           "code": "10.8",
+           "text": "Define bond energy and compare bond strengths."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "chemistry-11-s-and-p-block-elements",
+     "title": "Chemistry: 11 S- and P-Block Elements",
+     "topics": [
+      {
+       "id": "periodic-properties",
+       "title": "Periodic properties",
+       "subtopics": [
+        {
+         "id": "periodic-trends",
+         "title": "Periodic trends",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Define atomic, ionic and covalent radii, ionisation energy, electron affinity, electronegativity, bond energy and length."
+          },
+          {
+           "code": null,
+           "text": "Recognise the s, p, d and f blocks."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "group-reactions",
+       "title": "Group reactions",
+       "subtopics": [
+        {
+         "id": "group-i-ii-and-iv-reactions",
+         "title": "Group I, II and IV reactions",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe Group I reactions with water, oxygen and chlorine."
+          },
+          {
+           "code": null,
+           "text": "Describe Group II reactions with water, oxygen and chlorine."
+          },
+          {
+           "code": "11.5",
+           "text": "Describe Group IV reactions."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "chemistry-12-transition-elements",
+     "title": "Chemistry: 12 Transition Elements",
+     "topics": [
+      {
+       "id": "electronic-structure",
+       "title": "Electronic structure",
+       "subtopics": [
+        {
+         "id": "d-block-electronic-structure",
+         "title": "D-block electronic structure",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe electronic structures of d-block elements and ions."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "chemistry-13-fundamental-principles-of-organic-c",
+     "title": "Chemistry: 13 Fundamental Principles of Organic Chemistry",
+     "topics": [
+      {
+       "id": "organic-basics",
+       "title": "Organic basics",
+       "subtopics": [
+        {
+         "id": "classifying-organic-compounds",
+         "title": "Classifying organic compounds",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Define organic chemistry and organic compound."
+          },
+          {
+           "code": null,
+           "text": "Classify organic compounds by structure."
+          },
+          {
+           "code": null,
+           "text": "Define a functional group."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "isomerism",
+       "title": "Isomerism",
+       "subtopics": [
+        {
+         "id": "isomerism",
+         "title": "Isomerism",
+         "outcomes": [
+          {
+           "code": "13.4",
+           "text": "Explain stereoisomerism and its types."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "chemistry-14-chemistry-of-hydrocarbons",
+     "title": "Chemistry: 14 Chemistry of Hydrocarbons",
+     "topics": [
+      {
+       "id": "alkanes",
+       "title": "Alkanes",
+       "subtopics": [
+        {
+         "id": "alkane-naming-and-substitution",
+         "title": "Alkane naming and substitution",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe naming of alkanes."
+          },
+          {
+           "code": null,
+           "text": "Define free-radical initiation, propagation and termination."
+          },
+          {
+           "code": "14.3",
+           "text": "Describe free-radical substitution in methane and ethane."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "alkenes",
+       "title": "Alkenes",
+       "subtopics": [
+        {
+         "id": "alkenes",
+         "title": "Alkenes",
+         "outcomes": [
+          {
+           "code": "14.4",
+           "text": "Explain IUPAC naming of alkenes."
+          },
+          {
+           "code": "14.5",
+           "text": "Explain ethene's shape by sigma and pi bonds."
+          },
+          {
+           "code": "14.6",
+           "text": "Describe alkene structure and reactivity with ethene."
+          },
+          {
+           "code": "14.7",
+           "text": "Explain dehydration of alcohols and dehydrohalogenation for ethane preparation."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "benzene",
+       "title": "Benzene",
+       "subtopics": [
+        {
+         "id": "structure-of-benzene",
+         "title": "Structure of benzene",
+         "outcomes": [
+          {
+           "code": "14.8",
+           "text": "Explain benzene's shape by molecular orbitals."
+          },
+          {
+           "code": "14.9",
+           "text": "Define resonance, resonance energy and relative stability."
+          },
+          {
+           "code": "14.10",
+           "text": "Compare benzene's reactivity with alkanes and alkenes."
+          }
+         ]
+        },
+        {
+         "id": "reactions-of-benzene",
+         "title": "Reactions of benzene",
+         "outcomes": [
+          {
+           "code": "14.11",
+           "text": "Define addition reactions of benzene and methylbenzene."
+          },
+          {
+           "code": "14.12",
+           "text": "Describe electrophilic substitution in benzene."
+          },
+          {
+           "code": "14.13",
+           "text": "Discuss nitration, sulphonation, halogenation and Friedel-Crafts reactions."
+          },
+          {
+           "code": "14.14",
+           "text": "Apply substituent positions in electrophilic substitution."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "alkynes",
+       "title": "Alkynes",
+       "subtopics": [
+        {
+         "id": "alkynes",
+         "title": "Alkynes",
+         "outcomes": [
+          {
+           "code": "14.15",
+           "text": "Use IUPAC naming for alkynes."
+          },
+          {
+           "code": "14.16",
+           "text": "Describe alkyne preparation by elimination."
+          },
+          {
+           "code": "14.17",
+           "text": "Describe the acidity of alkynes."
+          },
+          {
+           "code": "14.18",
+           "text": "Discuss alkyne hydrogenation, hydrohalogenation and hydration."
+          },
+          {
+           "code": "14.19",
+           "text": "Differentiate substitution from addition reactions."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "chemistry-15-alkyl-halides",
+     "title": "Chemistry: 15 Alkyl Halides",
+     "topics": [
+      {
+       "id": "alkyl-halides",
+       "title": "Alkyl halides",
+       "subtopics": [
+        {
+         "id": "alkyl-halides",
+         "title": "Alkyl halides",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Name alkyl halides by IUPAC."
+          },
+          {
+           "code": null,
+           "text": "Discuss structure and reactivity of alkyl halides."
+          },
+          {
+           "code": null,
+           "text": "Describe nucleophilic substitution mechanisms and types."
+          },
+          {
+           "code": null,
+           "text": "Describe elimination mechanisms and types."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "chemistry-16-alcohols-and-phenols",
+     "title": "Chemistry: 16 Alcohols and Phenols",
+     "topics": [
+      {
+       "id": "alcohols",
+       "title": "Alcohols",
+       "subtopics": [
+        {
+         "id": "alcohols",
+         "title": "Alcohols",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain naming and structure of alcohols."
+          },
+          {
+           "code": null,
+           "text": "Explain alcohol reactivity."
+          },
+          {
+           "code": null,
+           "text": "Describe making ethers and esters from alcohols."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "phenols",
+       "title": "Phenols",
+       "subtopics": [
+        {
+         "id": "phenols",
+         "title": "Phenols",
+         "outcomes": [
+          {
+           "code": "16.4",
+           "text": "Explain naming, structure and reactivity of phenols."
+          },
+          {
+           "code": "16.5",
+           "text": "Discuss phenol reactivity and electrophilic aromatic substitution."
+          },
+          {
+           "code": "16.6",
+           "text": "Differentiate alcohol from phenol."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "chemistry-17-aldehydes-and-ketones",
+     "title": "Chemistry: 17 Aldehydes and Ketones",
+     "topics": [
+      {
+       "id": "aldehydes-and-ketones",
+       "title": "Aldehydes and ketones",
+       "subtopics": [
+        {
+         "id": "structure-and-preparation",
+         "title": "Structure and preparation",
+         "outcomes": [
+          {
+           "code": "17.1",
+           "text": "Explain naming and structure of aldehydes and ketones."
+          },
+          {
+           "code": "17.2",
+           "text": "Discuss preparing aldehydes and ketones."
+          },
+          {
+           "code": "17.3",
+           "text": "Describe their reactivity and compare them."
+          }
+         ]
+        },
+        {
+         "id": "reactions-of-aldehydes-and-ketones",
+         "title": "Reactions of aldehydes and ketones",
+         "outcomes": [
+          {
+           "code": "17.4",
+           "text": "Describe acid- and base-catalysed nucleophilic addition."
+          },
+          {
+           "code": "17.5",
+           "text": "Discuss reduction to alcohols."
+          },
+          {
+           "code": "17.6",
+           "text": "Describe oxidation reactions."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "chemistry-18-carboxylic-acids",
+     "title": "Chemistry: 18 Carboxylic Acids",
+     "topics": [
+      {
+       "id": "carboxylic-acids",
+       "title": "Carboxylic acids",
+       "subtopics": [
+        {
+         "id": "carboxylic-acids-and-derivatives",
+         "title": "Carboxylic acids and derivatives",
+         "outcomes": [
+          {
+           "code": "18.1",
+           "text": "Describe naming, structure and preparation of carboxylic acids."
+          },
+          {
+           "code": "18.2",
+           "text": "Discuss reactivity of carboxylic acids."
+          },
+          {
+           "code": "18.3",
+           "text": "Describe converting them to acyl halides, anhydrides and esters."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "chemistry-19-macro-molecules",
+     "title": "Chemistry: 19 Macro Molecules",
+     "topics": [
+      {
+       "id": "proteins",
+       "title": "Proteins",
+       "subtopics": [
+        {
+         "id": "proteins-and-enzymes",
+         "title": "Proteins and enzymes",
+         "outcomes": [
+          {
+           "code": "19.1",
+           "text": "Explain protein classification and structure-function link."
+          },
+          {
+           "code": "19.2",
+           "text": "Describe protein roles and nutritional importance."
+          },
+          {
+           "code": "19.3",
+           "text": "Describe enzymes as biocatalysts."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "chemistry-20-industrial-chemistry",
+     "title": "Chemistry: 20 Industrial Chemistry",
+     "topics": [
+      {
+       "id": "industrial-products",
+       "title": "Industrial products",
+       "subtopics": [
+        {
+         "id": "adhesives-dyes-and-polymers",
+         "title": "Adhesives, dyes and polymers",
+         "outcomes": [
+          {
+           "code": "20.1",
+           "text": "Know types and uses of adhesives."
+          },
+          {
+           "code": "20.2",
+           "text": "Know types and uses of dyes."
+          },
+          {
+           "code": "20.3",
+           "text": "Know condensation and addition polymers and their sub-types."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "physics-1-vectors-and-equilibrium",
+     "title": "Physics: 1 Vectors and Equilibrium",
+     "topics": [
+      {
+       "id": "vectors",
+       "title": "Vectors",
+       "subtopics": [
+        {
+         "id": "adding-and-multiplying-vectors",
+         "title": "Adding and multiplying vectors",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Add vectors using perpendicular components."
+          },
+          {
+           "code": null,
+           "text": "Describe the scalar product by the angle between vectors."
+          },
+          {
+           "code": null,
+           "text": "Describe the vector product by the angle between vectors."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "physics-2-force-and-motion",
+     "title": "Physics: 2 Force and Motion",
+     "topics": [
+      {
+       "id": "kinematics",
+       "title": "Kinematics",
+       "subtopics": [
+        {
+         "id": "displacement-velocity-acceleration",
+         "title": "Displacement, velocity, acceleration",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe displacement."
+          },
+          {
+           "code": null,
+           "text": "Describe average velocity."
+          },
+          {
+           "code": null,
+           "text": "Interpret displacement-time graphs on a straight line."
+          },
+          {
+           "code": null,
+           "text": "Describe acceleration."
+          },
+          {
+           "code": null,
+           "text": "Tell uniform from variable acceleration."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "projectile-motion",
+       "title": "Projectile motion",
+       "subtopics": [
+        {
+         "id": "projectile-motion-basics",
+         "title": "Projectile motion basics",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain projectile motion as 2D motion in a vertical plane."
+          },
+          {
+           "code": null,
+           "text": "Describe an ideal projectile without air resistance."
+          },
+          {
+           "code": null,
+           "text": "Explain the horizontal velocity component is constant."
+          },
+          {
+           "code": "2.9",
+           "text": "Explain acceleration is vertical and equals free-fall."
+          },
+          {
+           "code": "2.10",
+           "text": "Contrast horizontal and vertical motion."
+          }
+         ]
+        },
+        {
+         "id": "height-range-and-time-of-flight",
+         "title": "Height, range and time of flight",
+         "outcomes": [
+          {
+           "code": "2.11",
+           "text": "Use equations of motion to find height, range, position, time of flight, and best launch angles."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "newton-s-laws-and-momentum",
+       "title": "Newton's laws and momentum",
+       "subtopics": [
+        {
+         "id": "newton-s-laws",
+         "title": "Newton's laws",
+         "outcomes": [
+          {
+           "code": "2.12",
+           "text": "Apply Newton's laws to explain motion in varied contexts."
+          },
+          {
+           "code": "2.13",
+           "text": "Describe Newton's second law as rate of change of momentum."
+          },
+          {
+           "code": "2.14",
+           "text": "Link Newton's third law to conservation of momentum."
+          }
+         ]
+        },
+        {
+         "id": "collisions-and-momentum",
+         "title": "Collisions and momentum",
+         "outcomes": [
+          {
+           "code": "2.15",
+           "text": "Solve elastic and inelastic collision problems in one dimension."
+          },
+          {
+           "code": "2.16",
+           "text": "Describe momentum conservation in situations such as explosions."
+          },
+          {
+           "code": "2.17",
+           "text": "Identify that in elastic collisions approach speed equals separation speed."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "physics-3-work-and-energy",
+     "title": "Physics: 3 Work and Energy",
+     "topics": [
+      {
+       "id": "work-energy-and-power",
+       "title": "Work, energy and power",
+       "subtopics": [
+        {
+         "id": "work-and-energy",
+         "title": "Work and energy",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe work as force times displacement along the force."
+          },
+          {
+           "code": null,
+           "text": "Describe energy."
+          },
+          {
+           "code": null,
+           "text": "Explain kinetic energy."
+          }
+         ]
+        },
+        {
+         "id": "potential-energy-and-power",
+         "title": "Potential energy and power",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain potential versus gravitational potential energy."
+          },
+          {
+           "code": null,
+           "text": "Explain absolute potential energy measured from a reference level."
+          },
+          {
+           "code": null,
+           "text": "Express power as scalar product of force and velocity."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "energy-losses",
+       "title": "Energy losses",
+       "subtopics": [
+        {
+         "id": "energy-losses-and-efficiency",
+         "title": "Energy losses and efficiency",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain work against friction dissipates as heat."
+          },
+          {
+           "code": null,
+           "text": "State implications of energy losses and efficiency in devices."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "physics-4-rotational-and-circular-motion",
+     "title": "Physics: 4 Rotational and Circular Motion",
+     "topics": [
+      {
+       "id": "angular-motion",
+       "title": "Angular motion",
+       "subtopics": [
+        {
+         "id": "angular-displacement-and-velocity",
+         "title": "Angular displacement and velocity",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Define angular displacement and express it in radians."
+          },
+          {
+           "code": null,
+           "text": "Define revolution, degree and radian."
+          },
+          {
+           "code": null,
+           "text": "Describe angular velocity."
+          }
+         ]
+        },
+        {
+         "id": "linear-and-angular-quantities",
+         "title": "Linear and angular quantities",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Relate linear and angular displacement, velocity and acceleration."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "physics-5-fluid-dynamics",
+     "title": "Physics: 5 Fluid Dynamics",
+     "topics": [
+      {
+       "id": "drag-and-flow",
+       "title": "Drag and flow",
+       "subtopics": [
+        {
+         "id": "terminal-velocity-and-drag",
+         "title": "Terminal velocity and drag",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe terminal velocity."
+          },
+          {
+           "code": null,
+           "text": "Define and explain fluid drag."
+          }
+         ]
+        },
+        {
+         "id": "types-of-fluid-flow",
+         "title": "Types of fluid flow",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Define steady, incompressible and non-viscous flow."
+          },
+          {
+           "code": null,
+           "text": "Explain the change from laminar to turbulent flow at high speed."
+          },
+          {
+           "code": null,
+           "text": "Describe that most real flow is turbulent."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "continuity-and-bernoulli",
+       "title": "Continuity and Bernoulli",
+       "subtopics": [
+        {
+         "id": "continuity-and-bernoulli",
+         "title": "Continuity and Bernoulli",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe the continuity equation and use it."
+          },
+          {
+           "code": null,
+           "text": "Identify continuity as conservation of mass."
+          },
+          {
+           "code": "5.8",
+           "text": "Interpret and apply Bernoulli's effect in blood physics."
+          },
+          {
+           "code": "5.9",
+           "text": "Derive Bernoulli's equation for a horizontal tube."
+          },
+          {
+           "code": "5.10",
+           "text": "Describe pressure differences from different flow rates."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "physics-6-waves",
+     "title": "Physics: 6 Waves",
+     "topics": [
+      {
+       "id": "wave-motion",
+       "title": "Wave motion",
+       "subtopics": [
+        {
+         "id": "wave-basics",
+         "title": "Wave basics",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe wave motion in ropes and springs."
+          },
+          {
+           "code": null,
+           "text": "Show mechanical waves need a medium while electromagnetic waves do not."
+          },
+          {
+           "code": null,
+           "text": "Define and use wave terms: amplitude, period, wavelength, crest, trough and others."
+          },
+          {
+           "code": null,
+           "text": "Solve problems with v = f lambda."
+          },
+          {
+           "code": null,
+           "text": "Describe energy transfer by a progressive wave."
+          },
+          {
+           "code": null,
+           "text": "Compare transverse and longitudinal waves."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "speed-of-sound",
+       "title": "Speed of sound",
+       "subtopics": [
+        {
+         "id": "speed-of-sound",
+         "title": "Speed of sound",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain speed of sound depends on the medium and describe Newton's formula."
+          },
+          {
+           "code": "6.8",
+           "text": "Describe the Laplace correction."
+          },
+          {
+           "code": "6.9",
+           "text": "Identify factors affecting speed of sound in air."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "superposition-and-standing-waves",
+       "title": "Superposition and standing waves",
+       "subtopics": [
+        {
+         "id": "superposition-and-interference",
+         "title": "Superposition and interference",
+         "outcomes": [
+          {
+           "code": "6.10",
+           "text": "Describe superposition of waves from coherent sources."
+          },
+          {
+           "code": "6.11",
+           "text": "Describe interference of sound waves."
+          },
+          {
+           "code": "6.16",
+           "text": "Explain the principle of superposition."
+          }
+         ]
+        },
+        {
+         "id": "stationary-waves",
+         "title": "Stationary waves",
+         "outcomes": [
+          {
+           "code": "6.12",
+           "text": "Explain stationary waves graphically."
+          },
+          {
+           "code": "6.13",
+           "text": "Define nodes and antinodes."
+          },
+          {
+           "code": "6.14",
+           "text": "Describe modes of vibration of strings."
+          },
+          {
+           "code": "6.15",
+           "text": "Describe stationary waves in air columns."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "simple-harmonic-motion",
+       "title": "Simple harmonic motion",
+       "subtopics": [
+        {
+         "id": "simple-harmonic-motion",
+         "title": "Simple harmonic motion",
+         "outcomes": [
+          {
+           "code": "6.17",
+           "text": "Explain simple harmonic motion and its characteristics."
+          },
+          {
+           "code": "6.18",
+           "text": "Describe that a circular-motion projection on a diameter is SHM."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "physics-7-thermodynamics",
+     "title": "Physics: 7 Thermodynamics",
+     "topics": [
+      {
+       "id": "heat-and-the-first-law",
+       "title": "Heat and the first law",
+       "subtopics": [
+        {
+         "id": "heat-and-work",
+         "title": "Heat and work",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe heat flowing from hot to cold regions."
+          },
+          {
+           "code": null,
+           "text": "Distinguish specific heat from molar specific heat."
+          },
+          {
+           "code": null,
+           "text": "Calculate work done by a system during volume change."
+          }
+         ]
+        },
+        {
+         "id": "first-law-of-thermodynamics",
+         "title": "First law of thermodynamics",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe the first law using internal energy, heating and work."
+          },
+          {
+           "code": null,
+           "text": "Explain the first law as energy conservation."
+          },
+          {
+           "code": null,
+           "text": "Define specific heat and molar specific heats of a gas."
+          },
+          {
+           "code": null,
+           "text": "Apply the first law to derive Cp - Cv = R."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "physics-8-electrostatics",
+     "title": "Physics: 8 Electrostatics",
+     "topics": [
+      {
+       "id": "electric-field",
+       "title": "Electric field",
+       "subtopics": [
+        {
+         "id": "coulomb-s-law-and-electric-field",
+         "title": "Coulomb's law and electric field",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "State Coulomb's law and how a medium reduces force."
+          },
+          {
+           "code": null,
+           "text": "Describe the electric field as a field of force."
+          },
+          {
+           "code": null,
+           "text": "Calculate field magnitude and direction from two charges."
+          }
+         ]
+        },
+        {
+         "id": "field-lines-and-sheets-of-charge",
+         "title": "Field lines and sheets of charge",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Sketch field lines for two equal point charges."
+          },
+          {
+           "code": null,
+           "text": "Describe the field of an infinite charged conducting plate."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "electric-potential",
+       "title": "Electric potential",
+       "subtopics": [
+        {
+         "id": "electric-potential",
+         "title": "Electric potential",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Define electric potential through work bringing unit charge from infinity."
+          },
+          {
+           "code": null,
+           "text": "Define the unit of potential."
+          },
+          {
+           "code": "8.8",
+           "text": "Derive electric potential due to a point charge."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "capacitors",
+       "title": "Capacitors",
+       "subtopics": [
+        {
+         "id": "charging-a-capacitor",
+         "title": "Charging a capacitor",
+         "outcomes": [
+          {
+           "code": "8.9",
+           "text": "Demonstrate charging and discharging a capacitor through a resistor."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "physics-9-current-electricity",
+     "title": "Physics: 9 Current Electricity",
+     "topics": [
+      {
+       "id": "current-and-resistance",
+       "title": "Current and resistance",
+       "subtopics": [
+        {
+         "id": "current-ohm-s-law-and-resistivity",
+         "title": "Current, Ohm's law and resistivity",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe steady current."
+          },
+          {
+           "code": null,
+           "text": "State Ohm's law."
+          },
+          {
+           "code": null,
+           "text": "Define resistivity and its temperature dependence."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "sources-and-power",
+       "title": "Sources and power",
+       "subtopics": [
+        {
+         "id": "internal-resistance-and-power-transfer",
+         "title": "Internal resistance and power transfer",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain internal resistance and its effect on circuits."
+          },
+          {
+           "code": null,
+           "text": "Describe the conditions for maximum power transfer."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "physics-10-electromagnetism",
+     "title": "Physics: 10 Electromagnetism",
+     "topics": [
+      {
+       "id": "magnetic-fields",
+       "title": "Magnetic fields",
+       "subtopics": [
+        {
+         "id": "flux-density-and-flux",
+         "title": "Flux density and flux",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Define magnetic flux density and units."
+          },
+          {
+           "code": null,
+           "text": "Describe magnetic flux as the scalar product of field and area."
+          }
+         ]
+        },
+        {
+         "id": "charges-in-magnetic-fields",
+         "title": "Charges in magnetic fields",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe the path of a charge entering a field perpendicularly."
+          },
+          {
+           "code": null,
+           "text": "Explain the force on a charge in a uniform magnetic field."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "physics-11-electromagnetic-induction",
+     "title": "Physics: 11 Electromagnetic Induction",
+     "topics": [
+      {
+       "id": "induction",
+       "title": "Induction",
+       "subtopics": [
+        {
+         "id": "faraday-and-lenz",
+         "title": "Faraday and Lenz",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "State Faraday's law."
+          },
+          {
+           "code": null,
+           "text": "Use Lenz's law to find induced current direction and link it to energy conservation."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "transformers",
+       "title": "Transformers",
+       "subtopics": [
+        {
+         "id": "transformers",
+         "title": "Transformers",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe how a transformer is built and works."
+          },
+          {
+           "code": null,
+           "text": "Describe step-up and step-down transformers for efficient transmission."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "physics-12-alternating-current",
+     "title": "Physics: 12 Alternating Current",
+     "topics": [
+      {
+       "id": "alternating-current",
+       "title": "Alternating current",
+       "subtopics": [
+        {
+         "id": "ac-and-electromagnetic-waves",
+         "title": "AC and electromagnetic waves",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe AC phase, lag and lead."
+          },
+          {
+           "code": "12.2",
+           "text": "Explain AC through resistors, capacitors and inductors."
+          },
+          {
+           "code": "12.3",
+           "text": "Become familiar with the EM spectrum."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "physics-13-electronics",
+     "title": "Physics: 13 Electronics",
+     "topics": [
+      {
+       "id": "semiconductors",
+       "title": "Semiconductors",
+       "subtopics": [
+        {
+         "id": "diodes-and-rectification",
+         "title": "Diodes and rectification",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Define rectification and use diodes for half- and full-wave rectifiers."
+          },
+          {
+           "code": null,
+           "text": "Describe the PN junction and its biasing."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "physics-14-dawn-of-modern-physics",
+     "title": "Physics: 14 Dawn of Modern Physics",
+     "topics": [
+      {
+       "id": "quantum-theory",
+       "title": "Quantum theory",
+       "subtopics": [
+        {
+         "id": "photons",
+         "title": "Photons",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain the particle model of light with photon energy."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "physics-15-atomic-spectra",
+     "title": "Physics: 15 Atomic Spectra",
+     "topics": [
+      {
+       "id": "atomic-spectra",
+       "title": "Atomic spectra",
+       "subtopics": [
+        {
+         "id": "line-spectra",
+         "title": "Line spectra",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe and explain atomic line spectra."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "physics-16-nuclear-physics",
+     "title": "Physics: 16 Nuclear Physics",
+     "topics": [
+      {
+       "id": "nucleus-and-decay",
+       "title": "Nucleus and decay",
+       "subtopics": [
+        {
+         "id": "nucleus-and-radioactive-decay",
+         "title": "Nucleus and radioactive decay",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe a simple atom model with protons, neutrons and electrons."
+          },
+          {
+           "code": null,
+           "text": "Identify the spontaneous, random nature of decay."
+          },
+          {
+           "code": null,
+           "text": "Describe half-life and solve problems with decay constant."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "radiation",
+       "title": "Radiation",
+       "subtopics": [
+        {
+         "id": "radiation-effects-and-uses",
+         "title": "Radiation effects and uses",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe biological effects and medical uses of radiation."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "english-1-reading-and-thinking-skills",
+     "title": "English: 1 Reading and Thinking Skills",
+     "topics": [
+      {
+       "id": "reading",
+       "title": "Reading",
+       "subtopics": [
+        {
+         "id": "scanning-and-meaning",
+         "title": "Scanning and meaning",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Scan a text to answer short questions."
+          },
+          {
+           "code": null,
+           "text": "Work out meanings from context."
+          },
+          {
+           "code": null,
+           "text": "Analyse how writers use figurative language to appeal to the senses."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "english-2-formal-and-lexical-aspect-of-language",
+     "title": "English: 2 Formal and Lexical Aspect of Language",
+     "topics": [
+      {
+       "id": "vocabulary",
+       "title": "Vocabulary",
+       "subtopics": [
+        {
+         "id": "word-meaning",
+         "title": "Word meaning",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Work out difficult words from context clues."
+          },
+          {
+           "code": null,
+           "text": "Explore synonyms with shades of meaning for irony, parody and satire."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "grammar",
+       "title": "Grammar",
+       "subtopics": [
+        {
+         "id": "pronouns-tenses-and-verbals",
+         "title": "Pronouns, tenses and verbals",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Use pronoun-antecedent agreement."
+          },
+          {
+           "code": null,
+           "text": "Use tenses."
+          },
+          {
+           "code": null,
+           "text": "Use infinitives and infinitive phrases."
+          },
+          {
+           "code": null,
+           "text": "Use gerunds and gerund phrases."
+          }
+         ]
+        },
+        {
+         "id": "adverbs-prepositions-and-transitions",
+         "title": "Adverbs, prepositions and transitions",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Place adverbs in sentences by kind and importance."
+          },
+          {
+           "code": null,
+           "text": "Use prepositions of position, time, movement and direction."
+          },
+          {
+           "code": null,
+           "text": "Use transitional devices in speech and writing."
+          },
+          {
+           "code": null,
+           "text": "Use punctuation marks."
+          }
+         ]
+        },
+        {
+         "id": "sentence-structure-voice-and-speech",
+         "title": "Sentence structure, voice and speech",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Analyse sentence classes and phrases and how position changes meaning."
+          },
+          {
+           "code": null,
+           "text": "Recognise and use sentence inversion."
+          },
+          {
+           "code": null,
+           "text": "Use active and passive voice."
+          },
+          {
+           "code": null,
+           "text": "Use direct and indirect speech."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "english-3-writing-skills",
+     "title": "English: 3 Writing Skills",
+     "topics": [
+      {
+       "id": "writing",
+       "title": "Writing",
+       "subtopics": [
+        {
+         "id": "proofreading-and-error-correction",
+         "title": "Proofreading and error correction",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Proofread and edit own, peers' and given text."
+          },
+          {
+           "code": null,
+           "text": "Correct faulty sentence structure."
+          },
+          {
+           "code": null,
+           "text": "Correct subject-verb agreement."
+          },
+          {
+           "code": null,
+           "text": "Correct errors of function and spelling."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "logical-reasoning-5-1-critical-thinking",
+     "title": "Logical Reasoning: 5.1 Critical Thinking",
+     "topics": [
+      {
+       "id": "critical-thinking",
+       "title": "Critical thinking",
+       "subtopics": [
+        {
+         "id": "critical-thinking",
+         "title": "Critical thinking",
+         "outcomes": [
+          {
+           "code": "5.1.1",
+           "text": "Develop logical arguments for statements being true or false."
+          },
+          {
+           "code": "5.1.2",
+           "text": "Give reasons for sound beliefs."
+          },
+          {
+           "code": "5.1.3",
+           "text": "Identify and critically evaluate false beliefs."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "logical-reasoning-5-2-letter-and-symbols-series",
+     "title": "Logical Reasoning: 5.2 Letter and Symbols Series",
+     "topics": [
+      {
+       "id": "series",
+       "title": "Series",
+       "subtopics": [
+        {
+         "id": "letter-number-and-symbol-series",
+         "title": "Letter, number and symbol series",
+         "outcomes": [
+          {
+           "code": "5.2.1",
+           "text": "Build arithmetic series from numbers."
+          },
+          {
+           "code": "5.2.2",
+           "text": "Build geometric progressions from numbers."
+          },
+          {
+           "code": "5.2.3",
+           "text": "Build letter and symbol series by their rules."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "logical-reasoning-5-3-logical-deductions",
+     "title": "Logical Reasoning: 5.3 Logical Deductions",
+     "topics": [
+      {
+       "id": "deductions",
+       "title": "Deductions",
+       "subtopics": [
+        {
+         "id": "logical-deductions",
+         "title": "Logical deductions",
+         "outcomes": [
+          {
+           "code": "5.3.1",
+           "text": "Predict new relations from given relations."
+          },
+          {
+           "code": "5.3.2",
+           "text": "Build new structures from information in drawn structures."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "logical-reasoning-5-4-logical-problems",
+     "title": "Logical Reasoning: 5.4 Logical Problems",
+     "topics": [
+      {
+       "id": "puzzles",
+       "title": "Puzzles",
+       "subtopics": [
+        {
+         "id": "logical-problems",
+         "title": "Logical problems",
+         "outcomes": [
+          {
+           "code": "5.4.1",
+           "text": "Infer the result of one problem to resolve another."
+          },
+          {
+           "code": "5.4.2",
+           "text": "Develop skills to solve puzzles."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "logical-reasoning-5-5-course-of-action",
+     "title": "Logical Reasoning: 5.5 Course of Action",
+     "topics": [
+      {
+       "id": "decisions",
+       "title": "Decisions",
+       "subtopics": [
+        {
+         "id": "course-of-action",
+         "title": "Course of action",
+         "outcomes": [
+          {
+           "code": "5.5.1",
+           "text": "Gather different parts of information."
+          },
+          {
+           "code": "5.5.2",
+           "text": "Use information to make decisions."
+          },
+          {
+           "code": "5.5.3",
+           "text": "Judge different courses using arguments."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "logical-reasoning-5-6-cause-and-effect",
+     "title": "Logical Reasoning: 5.6 Cause and Effect",
+     "topics": [
+      {
+       "id": "causes",
+       "title": "Causes",
+       "subtopics": [
+        {
+         "id": "cause-and-effect",
+         "title": "Cause and effect",
+         "outcomes": [
+          {
+           "code": "5.6.1",
+           "text": "Give reasons for events and accidents."
+          },
+          {
+           "code": "5.6.2",
+           "text": "Reject false beliefs through valid arguments."
+          },
+          {
+           "code": "5.6.3",
+           "text": "Build positive thinking through strong arguments."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "build": {
+  "builtAt": "2026-10-14T08:14:48.864Z",
+  "model": "claude-agent",
+  "usd": 0,
+  "expectedCodes": 155,
+  "coverage": 1,
+  "missingCodes": [],
+  "counts": {
+   "grades": 1,
+   "units": 61,
+   "topics": 98,
+   "subtopics": 125,
+   "outcomes": 326
+  },
+  "warnings": [
+   "grade 11 has no content",
+   "grade 12 has no content",
+   "unexpected grade label \"all\"",
+   "unit \"Biology: 2 Bioenergetics\" (grade all) has a single outcome",
+   "unit \"Biology: 12 Immunity\" (grade all) has a single outcome",
+   "unit \"Chemistry: 12 Transition Elements\" (grade all) has a single outcome",
+   "unit \"Physics: 14 Dawn of Modern Physics\" (grade all) has a single outcome",
+   "unit \"Physics: 15 Atomic Spectra\" (grade all) has a single outcome"
+  ]
+ }
+}

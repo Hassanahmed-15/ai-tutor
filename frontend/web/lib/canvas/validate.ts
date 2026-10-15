@@ -8,6 +8,8 @@
  */
 
 import { compileExpr, exprUsesOnly } from "./expr";
+import { figureComponent } from "../figures/registry";
+import { snapEquilibrium } from "./graphCheck";
 import {
   CANVAS_ICONS,
   CANVAS_STAGES,
@@ -21,7 +23,10 @@ import {
   type FlowArrow,
   type FlowStage,
   type GraphStage,
+  type FigureStage,
   type IllustrationStage,
+  type MoleculeStage,
+  type AtomMapStage,
   type SceneStage,
   type StageSpec,
 } from "./types";
@@ -34,6 +39,17 @@ const str = (v: unknown, max = 80): string => {
   const text = typeof v === "string" ? v : Array.isArray(v) && v.every((x) => typeof x === "string") ? v.join(" ") : "";
   return text.replace(/\s+/g, " ").trim().slice(0, max);
 };
+/**
+ * Text a student reads, kept to a length: cut at a word with "…", never mid-word ("Quantity of
+ * loanable funds ($ bi" — audit 2026-10-15).
+ */
+const shown = (v: unknown, max = 80): string => {
+  const text = str(v, 4000);
+  if (text.length <= max) return text;
+  const cut = text.slice(0, max - 1);
+  const at = cut.lastIndexOf(" ");
+  return `${(at >= max * 0.6 ? cut.slice(0, at) : cut).replace(/[\s,;:(–-]+$/, "")}…`;
+};
 const num = (v: unknown, fallback: number): number => (Number.isFinite(Number(v)) ? Number(v) : fallback);
 
 export function slug(v: unknown, fallback: string): string {
@@ -41,9 +57,49 @@ export function slug(v: unknown, fallback: string): string {
   return s || fallback;
 }
 
-const icon = (v: unknown): CanvasIcon | undefined => {
+/**
+ * A picture-icon must mean what its label says. The set is made for science, so for "Funding choice"
+ * the model reached for "battery" (audit 2026-10-15): a wrong icon teaches something false, a plain
+ * disc teaches nothing. Concrete icons need one of their words in the label; generic ones (person,
+ * book, gear, earth, factory) fit anything.
+ */
+const ICON_MEANS: Partial<Record<CanvasIcon, RegExp>> = {
+  battery: /batter|cell|charge|energy|power|circuit|voltage|current|store/i,
+  magnet: /magnet|field|pole|attract|repel/i,
+  sugar: /sugar|glucose|sucrose|starch|carbohydrate|sweet|food/i,
+  chloroplast: /chloroplast|photosynth|chlorophyll/i,
+  stomata: /stomat|pore|leaf|guard cell/i,
+  lungs: /lung|breath|respir|air|gas exchange|alveol/i,
+  heart: /heart|blood|pump|circulat|cardi/i,
+  flame: /flame|fire|burn|combust|heat|hot|fuel/i,
+  ice: /ice|freez|cold|solid|melt|frozen/i,
+  steam: /steam|vapou?r|boil|evaporat/i,
+  wing: /wing|bird|flight|fly|lift|insect/i,
+  airplane: /plane|aircraft|flight|fly|travel|transport|international|global|abroad|border|foreign/i,
+  oxygen: /oxygen|o2|o₂|breath|air/i,
+  water: /water|h2o|h₂o|rain|sea|ocean|river|liquid|aqueous|hydr|moist/i,
+  gas: /gas|co2|co₂|carbon dioxide|air|vapou?r|fume|emission/i,
+  leaf: /leaf|leaves|plant|tree|green|photosynth|forest/i,
+  plant: /plant|crop|tree|grow|flower|forest|vegetat/i,
+  root: /root|soil|absor/i,
+  cell: /cell/i,
+  atom: /atom|element|nucle|particle|ion\b|molecul|proton|electron|neutron/i,
+  wave: /wave|sound|light|signal|frequen|oscillat|vibrat|radiat/i,
+  bulb: /bulb|lamp|light|idea|insight|innovat/i,
+  force: /force|push|pull|weight|tension|friction|drag|thrust|pressure/i,
+  sun: /sun|light|solar|star|day/i,
+  energy: /energy|power|electric|heat|work|fuel/i,
+  car: /car\b|vehicle|drive|road|traffic|transport/i,
+  animal: /animal|organism|species|mammal|predator|prey|creature|wildlife/i,
+  cloud: /cloud|weather|rain|sky|climate|data|storage/i,
+  // A gear means a mechanism or a process step, never a piece of glassware (a burette drawn as a gear).
+  gear: /gear|machine|mechanism|process|engine|system|method|step|procedure|control|regulat|catalys|enzyme|work/i,
+};
+const icon = (v: unknown, means = ""): CanvasIcon | undefined => {
   const s = str(v, 20).toLowerCase();
-  return (CANVAS_ICONS as readonly string[]).includes(s) ? (s as CanvasIcon) : undefined;
+  if (!(CANVAS_ICONS as readonly string[]).includes(s)) return undefined;
+  const need = ICON_MEANS[s as CanvasIcon];
+  return !means || !need || need.test(means) ? (s as CanvasIcon) : undefined;
 };
 const color = (v: unknown): string | undefined => {
   const s = str(v, 9);
@@ -62,13 +118,13 @@ export function validateCanvasSpec(raw: unknown, sentenceCount: number, vars: st
     return id;
   };
 
-  const heading = str(r.heading, 60);
+  const heading = shown(r.heading, 60);
   if (!heading) return null;
 
   const notes = arr(r.notes)
     .map((n, i) => {
       const o = typeof n === "string" ? { text: n } : obj(n);
-      const text = str(o.text, 44).replace(/\.$/, "");
+      const text = shown(o.text, 48).replace(/\.$/, "");
       return text ? { id: unique(o.id ?? `note-${i + 1}`, `note-${i + 1}`), text, s: sentence(o.s ?? o.sentence, i) } : null;
     })
     .filter((n): n is NonNullable<typeof n> => Boolean(n))
@@ -128,7 +184,7 @@ function validateArrows(raw: unknown, sentence: (v: unknown, f?: number) => numb
         id: unique(a.id ?? `${from}-to-${to}`, `arrow-${i + 1}`),
         from,
         to,
-        label: str(a.label, 22) || undefined,
+        label: shown(a.label, 28) || undefined,
         s: sentence(a.s ?? a.sentence),
         flow: a.flow === true,
         rate: rate && exprUsesOnly(rate, vars) ? rate : undefined,
@@ -145,11 +201,44 @@ function validateStage(r: Raw, sentence: (v: unknown, f?: number) => number, uni
 
   if (kind === "code") return validateCode(r, sentence, unique);
 
+  if (kind === "molecule") {
+    const molecules = arr(r.molecules).map((m) => obj(m)).map((m, mi) => {
+      const atoms = arr(m.atoms).map((a) => obj(a)).map((a, ai) => ({
+        id: slug(a.id, `atom-${ai + 1}`), element: str(a.element, 3),
+        x: Math.max(-1, Math.min(1, num(a.x, 0))), y: Math.max(-1, Math.min(1, num(a.y, 0))), z: Math.max(-1, Math.min(1, num(a.z, 0))),
+        lonePairs: Math.max(0, Math.min(4, Math.round(num(a.lonePairs, 0)))) || undefined, color: color(a.color),
+      })).filter((a) => a.element).slice(0, 12);
+      const atomIds = new Set(atoms.map((a) => a.id));
+      const bonds = arr(m.bonds).map((b) => obj(b)).map((b) => {
+        const from = slug(b.from, ""); const to = slug(b.to, "");
+        const style = str(b.style, 8);
+        const order = Math.max(1, Math.min(3, Math.round(num(b.order, 1)))) as 1 | 2 | 3;
+        return atomIds.has(from) && atomIds.has(to) && from !== to ? { from, to, order, style: (["wedge", "dash"].includes(style) ? style : "line") as "line" | "wedge" | "dash" } : null;
+      }).filter((b): b is NonNullable<typeof b> => Boolean(b)).slice(0, 18);
+      return atoms.length >= 2 && bonds.length ? { id: unique(m.id ?? `molecule-${mi + 1}`, `molecule-${mi + 1}`), label: shown(m.label, 32) || `Molecule ${mi + 1}`, geometry: str(m.geometry, 28), bondAngle: str(m.bondAngle, 18) || undefined, atoms, bonds, s: sentence(m.s, mi) } : null;
+    }).filter((m): m is NonNullable<typeof m> => Boolean(m)).slice(0, 3);
+    return molecules.length ? ({ kind, molecules } satisfies MoleculeStage) : null;
+  }
+
+  if (kind === "atom-map") {
+    const groups = (value: unknown, prefix: string) => arr(value).map((g) => obj(g)).map((g, gi) => {
+      const atoms = arr(g.atoms).map((a) => obj(a)).map((a) => ({ element: str(a.element, 3), count: Math.max(1, Math.min(24, Math.round(num(a.count, 1)))) })).filter((a) => a.element).slice(0, 4);
+      return atoms.length ? { id: unique(g.id ?? `${prefix}-${gi + 1}`, `${prefix}-${gi + 1}`), label: shown(g.label, 32) || `${prefix} ${gi + 1}`, atoms, s: sentence(g.s, gi) } : null;
+    }).filter((g): g is NonNullable<typeof g> => Boolean(g)).slice(0, 4);
+    const reactants = groups(r.reactants, "reactant");
+    const products = groups(r.products, "product");
+    if (!reactants.length || !products.length) return null;
+    const energyRaw = obj(r.energy);
+    const input = str(energyRaw.input, 40); const output = str(energyRaw.output, 40);
+    const energy = input || output ? { input, output, s: sentence(energyRaw.s, 0) } : undefined;
+    return { kind, reactants, products, ...(energy ? { energy } : {}) } satisfies AtomMapStage;
+  }
+
   if (kind === "flow") {
     const nodes = arr(r.nodes)
       .map((n) => obj(n))
       .map((n, i) => {
-        const label = str(n.label, 24);
+        const label = shown(n.label, 28);
         if (!label) return null;
         const glow = str(n.glow, 120);
         const role = str(n.role, 8);
@@ -157,8 +246,8 @@ function validateStage(r: Raw, sentence: (v: unknown, f?: number) => number, uni
         return {
           id: unique(n.id ?? label, `node-${i + 1}`),
           label,
-          sub: str(n.sub, 28) || undefined,
-          icon: icon(n.icon),
+          sub: shown(n.sub, 32) || undefined,
+          icon: icon(n.icon, `${str(n.id, 40)} ${str(n.label, 60)} ${str(n.sub, 60)}`),
           color: color(n.color),
           role: (["input", "core", "output"].includes(role) ? role : undefined) as FlowStage["nodes"][number]["role"],
           s: sentence(n.s ?? n.sentence, i),
@@ -179,12 +268,67 @@ function validateStage(r: Raw, sentence: (v: unknown, f?: number) => number, uni
     return stage;
   }
 
+  if (kind === "figure" && str(r.component, 40) === "library") {
+    // A textbook diagram from the library: the server fills `asset` from the index before this runs
+    // (lib/canvas/generate.ts), so only its shape is checked here; parts must be the asset's own.
+    const asset = libraryAsset(r.asset);
+    if (!asset) return null;
+    const known = new Map(asset.parts.map((p) => [p.id, p]));
+    const parts = arr(r.parts)
+      .map((p) => (typeof p === "string" ? { id: p } : obj(p)))
+      .map((p, i) => {
+        const id = str(p.id, 60).toLowerCase();
+        if (!known.has(id)) return null;
+        const name = shown(p.name ?? p.label, 34) || known.get(id)!.name.slice(0, 34);
+        const say = shown(p.say, 200);
+        if (unique(id, id) !== id) return null;
+        return { id, name, s: sentence(p.s ?? p.sentence, i), ...(say ? { say } : {}) };
+      })
+      .filter((p): p is NonNullable<typeof p> => Boolean(p))
+      .slice(0, 8);
+    if (!parts.length) return null;
+    const stage: FigureStage = { kind, component: "library", params: {}, parts, asset };
+    return stage;
+  }
+
+  if (kind === "figure") {
+    const component = figureComponent(str(r.component, 40));
+    if (!component) return null;
+    // Parameters are plain values only; the component itself checks and defaults each one.
+    const params: FigureStage["params"] = {};
+    for (const [k, v] of Object.entries(obj(r.params)).slice(0, 12)) {
+      if (!/^[A-Za-z][A-Za-z0-9]{0,23}$/.test(k)) continue;
+      if (typeof v === "string") params[k] = str(v, 60);
+      else if (typeof v === "number" && Number.isFinite(v)) params[k] = v;
+      else if (typeof v === "boolean") params[k] = v;
+    }
+    // Only parts this figure actually draws for these params (a transverse wave has no compression).
+    const drawn = new Set(component.build(params).parts.map((p) => p.id));
+    const known = new Map(component.parts.filter((p) => drawn.has(p.id)).map((p) => [p.id, p]));
+    const parts = arr(r.parts)
+      .map((p) => (typeof p === "string" ? { id: p } : obj(p)))
+      .map((p, i) => {
+        const id = slug(p.id, "");
+        if (!known.has(id)) return null;
+        const name = shown(p.name ?? p.label, 34) || known.get(id)!.name;
+        const say = shown(p.say, 200);
+        // A part's id is the component's own (its anchor is looked up by it): a repeat is dropped, not renamed.
+        if (unique(id, id) !== id) return null;
+        return { id, name, s: sentence(p.s ?? p.sentence, i), ...(say ? { say } : {}) };
+      })
+      .filter((p): p is NonNullable<typeof p> => Boolean(p))
+      .slice(0, 8);
+    if (!parts.length) return null;
+    const stage: FigureStage = { kind, component: component.name, params, parts };
+    return stage;
+  }
+
   if (kind === "illustration") {
     const subject = str(r.subject, 500);
     const parts = arr(r.parts)
       .map((p) => (typeof p === "string" ? { name: p } : obj(p)))
       .map((p, i) => {
-        const name = str(p.name, 32);
+        const name = shown(p.name, 32);
         const say = str(p.say, 220);
         return name ? { id: unique(p.id ?? name, `part-${i + 1}`), name, s: sentence(p.s ?? p.sentence, i), ...(say ? { say } : {}), ...(Number.isFinite(Number(p.x)) ? { x: Number(p.x), y: Number(p.y) } : {}) } : null;
       })
@@ -196,7 +340,7 @@ function validateStage(r: Raw, sentence: (v: unknown, f?: number) => number, uni
       kind,
       subject,
       parts,
-      labels: arr(r.labels).map((l) => slug(l, "")).filter((l) => partIds.has(l)).slice(0, 3),
+      labels: arr(r.labels).map((l) => slug(l, "")).filter((l) => partIds.has(l)).slice(0, 6),
       ...(typeof r.src === "string" ? { src: r.src } : {}),
       ...(typeof r.paper === "string" ? { paper: r.paper } : {}),
     };
@@ -220,7 +364,7 @@ function validateStage(r: Raw, sentence: (v: unknown, f?: number) => number, uni
       .map((st) => {
         const order = arr(st.order).map((id) => slug(id, "")).filter((id) => tokenIds.has(id));
         return order.length
-          ? { s: sentence(st.s ?? st.sentence), order: [...new Set(order)], highlight: arr(st.highlight).map((h) => slug(h, "")).filter((h) => tokenIds.has(h)), caption: str(st.caption, 60) || undefined }
+          ? { s: sentence(st.s ?? st.sentence), order: [...new Set(order)], highlight: arr(st.highlight).map((h) => slug(h, "")).filter((h) => tokenIds.has(h)), caption: shown(st.caption, 64) || undefined }
           : null;
       })
       .filter((st): st is NonNullable<typeof st> => Boolean(st))
@@ -235,7 +379,7 @@ function validateStage(r: Raw, sentence: (v: unknown, f?: number) => number, uni
       const a = obj(v);
       const min = num(a.min, 0);
       const max = num(a.max, 100);
-      return { label: str(a.label, 32) || fallback, min: Math.min(min, max - 1e-6), max: Math.max(max, min + 1e-6) };
+      return { label: shown(a.label, 48) || fallback, min: Math.min(min, max - 1e-6), max: Math.max(max, min + 1e-6) };
     };
     const curveVars = [...vars, "x"];
     const curves = arr(r.curves)
@@ -247,7 +391,7 @@ function validateStage(r: Raw, sentence: (v: unknown, f?: number) => number, uni
         const read = compileExpr(expr)?.vars ?? [];
         if (!read.includes("x") && read.length === 1 && vars.includes(read[0])) expr = expr.replace(new RegExp(`\\b${read[0]}\\b`, "g"), "x");
         if (!compileExpr(expr) || !exprUsesOnly(expr, curveVars)) return null;
-        return { id: unique(c.id ?? `curve-${i + 1}`, `curve-${i + 1}`), expr, label: str(c.label, 28) || undefined, color: color(c.color), s: sentence(c.s ?? c.sentence, i) };
+        return { id: unique(c.id ?? `curve-${i + 1}`, `curve-${i + 1}`), expr, label: shown(c.label, 32) || undefined, color: color(c.color), s: sentence(c.s ?? c.sentence, i) };
       })
       .filter((c): c is NonNullable<typeof c> => Boolean(c))
       .slice(0, 3);
@@ -259,13 +403,13 @@ function validateStage(r: Raw, sentence: (v: unknown, f?: number) => number, uni
         const x = str(m.x, 80) || String(num(m.x, NaN));
         const curve = slug(m.curve, curves[0].id);
         if (!compileExpr(x) || !exprUsesOnly(x, vars) || !curveIds.has(curve)) return null;
-        return { id: unique(m.id ?? `marker-${i + 1}`, `marker-${i + 1}`), x, curve, label: str(m.label, 24) || undefined, s: sentence(m.s ?? m.sentence) };
+        return { id: unique(m.id ?? `marker-${i + 1}`, `marker-${i + 1}`), x, curve, label: shown(m.label, 32) || undefined, s: sentence(m.s ?? m.sentence) };
       })
       .filter((m): m is NonNullable<typeof m> => Boolean(m))
       .slice(0, 2);
     const guides = arr(r.guides)
       .map((g) => obj(g))
-      .map((g, i) => (Number.isFinite(Number(g.x)) && str(g.label, 24) ? { id: unique(g.id ?? `guide-${i + 1}`, `guide-${i + 1}`), x: Number(g.x), label: str(g.label, 24), s: sentence(g.s ?? g.sentence) } : null))
+      .map((g, i) => (Number.isFinite(Number(g.x)) && str(g.label, 32) ? { id: unique(g.id ?? `guide-${i + 1}`, `guide-${i + 1}`), x: Number(g.x), label: shown(g.label, 32), s: sentence(g.s ?? g.sentence) } : null))
       .filter((g): g is NonNullable<typeof g> => Boolean(g))
       .slice(0, 2);
     const trace = obj(r.trace);
@@ -278,19 +422,19 @@ function validateStage(r: Raw, sentence: (v: unknown, f?: number) => number, uni
       ...(guides.length ? { guides } : {}),
       ...(curveIds.has(slug(trace.curve, "")) ? { trace: { curve: slug(trace.curve, ""), s: sentence(trace.s ?? trace.sentence) } } : {}),
     };
-    return stage;
+    return snapEquilibrium(stage);
   }
 
   if (kind === "compare") {
     const side = (v: unknown, fallback: string) => {
       const s = obj(v);
-      const title = str(s.title, 28);
+      const title = shown(s.title, 32);
       const items = arr(s.items)
         .map((it) => (typeof it === "string" ? { text: it } : obj(it)))
-        .map((it, i) => (str(it.text, 60) ? { id: unique(it.id ?? `${fallback}-${i + 1}`, `${fallback}-${i + 1}`), text: str(it.text, 60), s: sentence(it.s ?? it.sentence, i) } : null))
+        .map((it, i) => (str(it.text, 80) ? { id: unique(it.id ?? `${fallback}-${i + 1}`, `${fallback}-${i + 1}`), text: shown(it.text, 72), s: sentence(it.s ?? it.sentence, i) } : null))
         .filter((it): it is NonNullable<typeof it> => Boolean(it))
         .slice(0, 4);
-      return title && items.length ? { id: unique(s.id ?? fallback, fallback), title, icon: icon(s.icon), color: color(s.color), items } : null;
+      return title && items.length ? { id: unique(s.id ?? fallback, fallback), title, icon: icon(s.icon, `${str(s.title, 60)} ${items.map((i) => i.text).join(" ")}`), color: color(s.color), items } : null;
     };
     const left = side(r.left, "left");
     const right = side(r.right, "right");
@@ -319,8 +463,9 @@ function validateStage(r: Raw, sentence: (v: unknown, f?: number) => number, uni
       return {
         id: unique(it.id ?? it.label ?? `item-${i + 1}`, `item-${i + 1}`),
         kind: (k === "box" || k === "text" ? k : "icon") as SceneStage["items"][number]["kind"],
-        icon: icon(it.icon),
-        label: str(it.label, 40) || undefined,
+        icon: icon(it.icon, `${str(it.id, 40)} ${str(it.label, 60)} ${str(it.detail, 90)}`),
+        label: shown(it.label, 40) || undefined,
+        ...(shown(it.detail, 90) ? { detail: shown(it.detail, 90) } : {}),
         cell,
         span: /^[1-6]x[1-4]$/.test(str(it.span, 3)) ? str(it.span, 3) : undefined,
         color: color(it.color),
@@ -389,7 +534,7 @@ function validateCode(r: Raw, sentence: (v: unknown, f?: number) => number, uniq
     .map((g, i) => {
       const from = lineNo(g.from);
       const to = lineNo(g.to ?? g.from);
-      const label = str(g.label, 18);
+      const label = shown(g.label, 22);
       return from && to && to >= from && label ? { from, to, label, s: sentence(g.s ?? g.sentence, i) } : null;
     })
     .filter((g): g is NonNullable<typeof g> => Boolean(g))
@@ -428,7 +573,7 @@ function cell(v: unknown): string {
 
 function becomesOf(raw: unknown, sentence: (v: unknown, f?: number) => number): { icon?: CanvasIcon; label?: string; s: number } | undefined {
   const b = obj(raw);
-  const next = { icon: icon(b.icon), label: str(b.label, 24) || undefined };
+  const next = { icon: icon(b.icon, str(b.label, 60)), label: shown(b.label, 28) || undefined };
   if (!next.icon && !next.label) return undefined;
   return { ...next, s: sentence(b.s ?? b.sentence, 1) };
 }
@@ -445,7 +590,7 @@ export function validateInteraction(raw: unknown): CanvasInteraction | undefined
   if (kind === "quiz") {
     const options = arr(r.options)
       .map((o) => obj(o))
-      .map((o) => ({ text: str(o.text, 90), correct: o.correct === true, feedback: str(o.feedback, 260) }))
+      .map((o) => ({ text: shown(o.text, 110), correct: o.correct === true, feedback: shown(o.feedback, 260) }))
       .filter((o) => o.text && o.feedback)
       .slice(0, 4);
     const right = options.filter((o) => o.correct);
@@ -453,7 +598,9 @@ export function validateInteraction(raw: unknown): CanvasInteraction | undefined
     // "none of these is quite right" has written a broken question — refuse it, so the board is redone.
     const selfDoubting = /none of (these|the above)|not quite right|isn'?t (quite )?right|neither is|is (actually )?wrong/i;
     if (right.length !== 1 || selfDoubting.test(right[0].feedback)) return undefined;
-    return options.length >= 2 ? { kind: "quiz", question: prompt, options } : undefined;
+    // The card's header already says "Predict it"; the question is the question.
+    const question = prompt.replace(/^\s*predict\s*:\s*/i, "").replace(/^./, (c) => c.toUpperCase());
+    return options.length === 3 || options.length === 4 ? { kind: "quiz", question, options } : undefined;
   }
   if (kind !== "try") return undefined;
   const controls = arr(r.controls)
@@ -485,4 +632,29 @@ export function validateInteraction(raw: unknown): CanvasInteraction | undefined
       .filter((x) => x.label && exprUsesOnly(x.expr, vars))
       .slice(0, 2),
   };
+}
+
+/**
+ * A library diagram as a stage carries it (lib/figures/libraryIndex.ts stageAsset): checked for
+ * shape only — a safe id (it becomes a URL path), a positive size, and parts whose anchors lie on
+ * the art. Its contents come from the server's index, never from the model.
+ */
+function libraryAsset(v: unknown): NonNullable<FigureStage["asset"]> | null {
+  const a = obj(v);
+  const id = typeof a.id === "string" && /^[a-z0-9-]{1,80}$/.test(a.id) ? a.id : "";
+  const w = num(a.w, 0), h = num(a.h, 0);
+  if (!id || !(w > 0 && w < 1e5) || !(h > 0 && h < 1e5)) return null;
+  const parts = arr(a.parts)
+    .map((p) => obj(p))
+    .map((p) => {
+      const pid = typeof p.id === "string" && /^[a-z0-9-]{1,60}$/.test(p.id) ? p.id : "";
+      const at = obj(p.anchor);
+      const x = num(at.x, NaN), y = num(at.y, NaN);
+      if (!pid || !Number.isFinite(x) || !Number.isFinite(y) || x < -w * 0.05 || x > w * 1.05 || y < -h * 0.05 || y > h * 1.05) return null;
+      return { id: pid, name: str(p.name, 60) || pid, anchor: { x, y } };
+    })
+    .filter((p): p is NonNullable<typeof p> => Boolean(p))
+    .slice(0, 80);
+  if (!parts.length) return null;
+  return { id, w, h, credit: str(a.credit, 160), parts };
 }

@@ -1,0 +1,1950 @@
+{
+ "id": "uk-aqa-gcse-biology-8461",
+ "region": "UK",
+ "framework": "AQA GCSE (9-1)",
+ "board": "AQA",
+ "qualification": "GCSE",
+ "subject": "Biology",
+ "syllabusCode": "8461",
+ "gradeSystem": "year",
+ "source": {
+  "urls": [
+   "https://cdn.sanity.io/files/p28bar15/green/510eb7c76df13be23292df4392de95eb32b0d30f.pdf"
+  ],
+  "publisher": "AQA",
+  "licence": "Exam board specification, (c) AQA; structure + our own wording only",
+  "firstExam": "2018"
+ },
+ "grades": [
+  {
+   "grade": "all",
+   "units": [
+    {
+     "id": "4-1-cell-biology",
+     "title": "4.1 Cell biology",
+     "topics": [
+      {
+       "id": "4-1-1-cell-structure",
+       "title": "4.1.1 Cell structure",
+       "subtopics": [
+        {
+         "id": "eukaryotes-and-prokaryotes",
+         "title": "Eukaryotes and prokaryotes",
+         "outcomes": [
+          {
+           "code": "4.1.1.1",
+           "text": "Describe eukaryotic cells as having a nucleus, and bacterial cells as smaller with a cell wall, a free DNA loop and plasmids."
+          },
+          {
+           "code": null,
+           "text": "Compare the size and scale of cells using order-of-magnitude estimates, standard form and metric prefixes."
+          }
+         ]
+        },
+        {
+         "id": "animal-and-plant-cells",
+         "title": "Animal and plant cells",
+         "outcomes": [
+          {
+           "code": "4.1.1.2",
+           "text": "Explain how the nucleus, membrane, mitochondria, ribosomes, chloroplasts, vacuole, cell wall and plasmids relate to their functions."
+          },
+          {
+           "code": null,
+           "text": "List the parts of a typical animal cell and the extra parts found in plant and algal cells."
+          },
+          {
+           "code": null,
+           "text": "Use a light microscope to observe, draw and label cells with a magnification scale (required practical 1)."
+          }
+         ]
+        },
+        {
+         "id": "cell-specialisation",
+         "title": "Cell specialisation",
+         "outcomes": [
+          {
+           "code": "4.1.1.3",
+           "text": "Explain how the structure of a specialised cell suits its function in a tissue, organ or whole organism."
+          },
+          {
+           "code": null,
+           "text": "Give examples of specialised cells: sperm, nerve and muscle in animals; root hair, xylem and phloem in plants."
+          }
+         ]
+        },
+        {
+         "id": "cell-differentiation",
+         "title": "Cell differentiation",
+         "outcomes": [
+          {
+           "code": "4.1.1.4",
+           "text": "Explain why cell differentiation matters as an organism develops."
+          },
+          {
+           "code": null,
+           "text": "Contrast animal cells, which mostly differentiate early, with plant cells that can differentiate throughout life."
+          },
+          {
+           "code": null,
+           "text": "State that in mature animals cell division mainly serves repair and replacement, and that differentiation gives a cell its specialised structures."
+          }
+         ]
+        },
+        {
+         "id": "microscopy",
+         "title": "Microscopy",
+         "outcomes": [
+          {
+           "code": "4.1.1.5",
+           "text": "Explain how the development of microscopy, especially electron microscopy, improved understanding of sub-cellular structures."
+          },
+          {
+           "code": null,
+           "text": "Compare light and electron microscopes in magnification and resolving power."
+          },
+          {
+           "code": null,
+           "text": "Calculate magnification, real size and image size, using prefixes and standard form."
+          }
+         ]
+        },
+        {
+         "id": "culturing-microorganisms",
+         "title": "Culturing microorganisms",
+         "outcomes": [
+          {
+           "code": "4.1.1.6",
+           "text": "State that bacteria divide by binary fission as often as every 20 minutes given nutrients and warmth."
+          },
+          {
+           "code": null,
+           "text": "Describe growing bacteria in nutrient broth or as colonies on agar plates."
+          },
+          {
+           "code": null,
+           "text": "Describe aseptic technique for an uncontaminated culture and explain the sterilising, taping and 25 degree incubation steps."
+          },
+          {
+           "code": null,
+           "text": "Calculate bacterial population after a time from the mean division time, and the area of colonies or clear zones using pi r squared."
+          },
+          {
+           "code": null,
+           "text": "Investigate the effect of antiseptics or antibiotics on bacterial growth using zones of inhibition (required practical 2)."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "4-1-2-cell-division",
+       "title": "4.1.2 Cell division",
+       "subtopics": [
+        {
+         "id": "chromosomes",
+         "title": "Chromosomes",
+         "outcomes": [
+          {
+           "code": "4.1.2.1",
+           "text": "State that the nucleus holds chromosomes made of DNA, each carrying many genes, usually in pairs in body cells."
+          }
+         ]
+        },
+        {
+         "id": "mitosis-and-the-cell-cycle",
+         "title": "Mitosis and the cell cycle",
+         "outcomes": [
+          {
+           "code": "4.1.2.2",
+           "text": "Describe the cell cycle: growth, DNA replication, then mitosis and division of cytoplasm and membranes into two identical cells."
+          },
+          {
+           "code": null,
+           "text": "Explain why mitosis matters for growth and development and recognise it in given situations."
+          }
+         ]
+        },
+        {
+         "id": "stem-cells",
+         "title": "Stem cells",
+         "outcomes": [
+          {
+           "code": "4.1.2.3",
+           "text": "Define a stem cell and describe its role in embryos, adult bone marrow and plant meristems."
+          },
+          {
+           "code": null,
+           "text": "Describe how stem cells and therapeutic cloning may treat conditions such as diabetes and paralysis, and why the body will not reject them."
+          },
+          {
+           "code": null,
+           "text": "Evaluate risks and ethical or religious objections to stem cell use."
+          },
+          {
+           "code": null,
+           "text": "Explain how plant meristem cells can be cloned to protect rare species or produce disease-resistant crops."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "4-1-3-transport-in-cells",
+       "title": "4.1.3 Transport in cells",
+       "subtopics": [
+        {
+         "id": "diffusion",
+         "title": "Diffusion",
+         "outcomes": [
+          {
+           "code": "4.1.3.1",
+           "text": "Define diffusion and give examples such as oxygen, carbon dioxide and urea moving across membranes."
+          },
+          {
+           "code": null,
+           "text": "Explain how concentration gradient, temperature and surface area affect the rate of diffusion."
+          }
+         ]
+        },
+        {
+         "id": "surface-area-to-volume-ratio",
+         "title": "Surface area to volume ratio",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain why single-celled organisms exchange enough without special systems, and calculate and compare surface area to volume ratios."
+          },
+          {
+           "code": null,
+           "text": "Explain why multicellular organisms need exchange surfaces and a transport system."
+          }
+         ]
+        },
+        {
+         "id": "exchange-surfaces",
+         "title": "Exchange surfaces",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain how the small intestine, lungs, gills, roots and leaves are adapted for exchange."
+          },
+          {
+           "code": null,
+           "text": "State that exchange surfaces work better with large area, thin membrane, good blood supply and ventilation."
+          }
+         ]
+        },
+        {
+         "id": "osmosis",
+         "title": "Osmosis",
+         "outcomes": [
+          {
+           "code": "4.1.3.2",
+           "text": "Define osmosis as the diffusion of water across a partially permeable membrane from dilute to concentrated solution."
+          },
+          {
+           "code": null,
+           "text": "Calculate rate of water uptake and percentage mass change of plant tissue, and plot and interpret graphs."
+          },
+          {
+           "code": null,
+           "text": "Investigate how salt or sugar concentration changes plant tissue mass (required practical 3)."
+          }
+         ]
+        },
+        {
+         "id": "active-transport",
+         "title": "Active transport",
+         "outcomes": [
+          {
+           "code": "4.1.3.3",
+           "text": "Describe active transport as movement against a concentration gradient that needs energy from respiration."
+          },
+          {
+           "code": null,
+           "text": "Give examples: mineral ions into root hairs and sugar from the gut into the blood."
+          },
+          {
+           "code": null,
+           "text": "Explain the differences between diffusion, osmosis and active transport."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "4-2-organisation",
+     "title": "4.2 Organisation",
+     "topics": [
+      {
+       "id": "4-2-1-principles-of-organisation",
+       "title": "4.2.1 Principles of organisation",
+       "subtopics": [
+        {
+         "id": "levels-of-organisation",
+         "title": "Levels of organisation",
+         "outcomes": [
+          {
+           "code": "4.2.1",
+           "text": "Describe cells, tissues, organs, organ systems and organisms as a hierarchy, and judge size and scale between levels."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "4-2-2-animal-tissues-organs-and-organ-systems",
+       "title": "4.2.2 Animal tissues, organs and organ systems",
+       "subtopics": [
+        {
+         "id": "digestive-system-and-enzymes",
+         "title": "Digestive system and enzymes",
+         "outcomes": [
+          {
+           "code": "4.2.2.1",
+           "text": "Describe the digestive system as organs working together to digest and absorb food."
+          },
+          {
+           "code": null,
+           "text": "Explain how enzymes work using the lock and key model, and how temperature and pH change their activity."
+          },
+          {
+           "code": null,
+           "text": "Recall where amylase, proteases and lipases are made and what each breaks down into."
+          },
+          {
+           "code": null,
+           "text": "Explain that digestion makes small soluble molecules that are absorbed and rebuilt into carbohydrates, lipids and proteins, with some glucose used in respiration."
+          },
+          {
+           "code": null,
+           "text": "Explain how alkaline bile from the liver neutralises stomach acid and emulsifies fat to speed lipase action."
+          },
+          {
+           "code": null,
+           "text": "Test foods for sugars, starch and protein using Benedict's, iodine and Biuret (required practical 4)."
+          },
+          {
+           "code": null,
+           "text": "Investigate the effect of pH on amylase reaction rate (required practical 5) and do rate calculations."
+          }
+         ]
+        },
+        {
+         "id": "the-heart-and-blood-vessels",
+         "title": "The heart and blood vessels",
+         "outcomes": [
+          {
+           "code": "4.2.2.2",
+           "text": "Describe the heart as a pump in a double circulation, with the right ventricle to the lungs and left to the body."
+          },
+          {
+           "code": null,
+           "text": "Name the main vessels of the heart and the lung parts, and explain how lungs are adapted for gas exchange."
+          },
+          {
+           "code": null,
+           "text": "Explain how a group of cells in the right atrium acts as the natural pacemaker, and how artificial pacemakers help."
+          },
+          {
+           "code": null,
+           "text": "Explain how the structures of arteries, veins and capillaries suit their functions, and calculate blood flow rates."
+          }
+         ]
+        },
+        {
+         "id": "blood",
+         "title": "Blood",
+         "outcomes": [
+          {
+           "code": "4.2.2.3",
+           "text": "Describe blood as plasma carrying red cells, white cells and platelets, and state the function of each."
+          },
+          {
+           "code": null,
+           "text": "Recognise blood cell types in images and explain how they are adapted to their functions."
+          }
+         ]
+        },
+        {
+         "id": "coronary-heart-disease",
+         "title": "Coronary heart disease",
+         "outcomes": [
+          {
+           "code": "4.2.2.4",
+           "text": "Explain how fatty deposits narrow coronary arteries and starve heart muscle of oxygen, and how stents and statins help."
+          },
+          {
+           "code": null,
+           "text": "Explain the consequences of faulty heart valves and how biological or mechanical valves replace them."
+          },
+          {
+           "code": null,
+           "text": "Describe heart or heart-and-lung transplants and artificial hearts for heart failure."
+          },
+          {
+           "code": null,
+           "text": "Evaluate drugs, mechanical devices and transplant as treatments for cardiovascular disease."
+          }
+         ]
+        },
+        {
+         "id": "health-issues",
+         "title": "Health issues",
+         "outcomes": [
+          {
+           "code": "4.2.2.5",
+           "text": "Define health and describe how communicable and non-communicable diseases, diet, stress and life situations affect it."
+          },
+          {
+           "code": null,
+           "text": "Give examples of disease interactions: immune defects, virus-triggered cancers, pathogen-triggered allergies, and ill health leading to mental illness."
+          },
+          {
+           "code": null,
+           "text": "Translate disease data between graphs and numbers, use frequency tables and scatter diagrams, and explain sampling."
+          }
+         ]
+        },
+        {
+         "id": "lifestyle-and-non-communicable-disease",
+         "title": "Lifestyle and non-communicable disease",
+         "outcomes": [
+          {
+           "code": "4.2.2.6",
+           "text": "Discuss the human and financial cost of non-communicable diseases for individuals, communities and nations."
+          },
+          {
+           "code": null,
+           "text": "Define risk factors and explain how diet, alcohol, smoking and exercise affect disease rates."
+          },
+          {
+           "code": null,
+           "text": "Describe specific links: smoking and lung disease or cancer, obesity and Type 2 diabetes, alcohol and liver, effects on unborn babies, carcinogens."
+          },
+          {
+           "code": null,
+           "text": "Explain that many diseases have several interacting causes and that causal mechanisms are proven only for some risk factors."
+          }
+         ]
+        },
+        {
+         "id": "cancer",
+         "title": "Cancer",
+         "outcomes": [
+          {
+           "code": "4.2.2.7",
+           "text": "Describe cancer as changes in cells that cause uncontrolled growth and division."
+          },
+          {
+           "code": null,
+           "text": "Contrast benign tumours, which stay in one place, with malignant tumours that spread and form secondary tumours."
+          },
+          {
+           "code": null,
+           "text": "State that cancer has lifestyle and genetic risk factors."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "4-2-3-plant-tissues-organs-and-systems",
+       "title": "4.2.3 Plant tissues, organs and systems",
+       "subtopics": [
+        {
+         "id": "plant-tissues",
+         "title": "Plant tissues",
+         "outcomes": [
+          {
+           "code": "4.2.3.1",
+           "text": "Explain how epidermis, palisade and spongy mesophyll, xylem, phloem, guard cells and meristems suit their functions."
+          },
+          {
+           "code": null,
+           "text": "Describe the leaf as a plant organ and observe a leaf section."
+          }
+         ]
+        },
+        {
+         "id": "plant-transport",
+         "title": "Plant transport",
+         "outcomes": [
+          {
+           "code": "4.2.3.2",
+           "text": "Describe roots, stem and leaves as an organ system for transporting substances."
+          },
+          {
+           "code": null,
+           "text": "Explain how root hair cells, xylem and phloem are adapted to their functions."
+          }
+         ]
+        },
+        {
+         "id": "transpiration",
+         "title": "Transpiration",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe transpiration and the role of stomata and guard cells in gas exchange and water loss."
+          },
+          {
+           "code": null,
+           "text": "Explain how temperature, humidity, air movement and light intensity change the transpiration rate, and calculate it from water uptake."
+          }
+         ]
+        },
+        {
+         "id": "translocation",
+         "title": "Translocation",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe translocation as phloem moving dissolved sugars from leaves to the rest of the plant."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "4-3-infection-and-response",
+     "title": "4.3 Infection and response",
+     "topics": [
+      {
+       "id": "4-3-1-communicable-diseases",
+       "title": "4.3.1 Communicable diseases",
+       "subtopics": [
+        {
+         "id": "communicable-diseases",
+         "title": "Communicable diseases",
+         "outcomes": [
+          {
+           "code": "4.3.1",
+           "text": "State that pathogens may be viruses, bacteria, protists or fungi spread by contact, water or air."
+          },
+          {
+           "code": "4.3.1.1",
+           "text": "Explain how diseases are spread in animals and plants, and how spread can be reduced or prevented."
+          },
+          {
+           "code": null,
+           "text": "Describe how bacteria make toxins and viruses damage the cells they live in."
+          }
+         ]
+        },
+        {
+         "id": "viral-diseases",
+         "title": "Viral diseases",
+         "outcomes": [
+          {
+           "code": "4.3.1.2",
+           "text": "Describe measles: symptoms, droplet spread, and why children are vaccinated."
+          },
+          {
+           "code": null,
+           "text": "Describe HIV: spread, flu-like start, attack on immune cells, antiretroviral control and AIDS."
+          },
+          {
+           "code": null,
+           "text": "Describe tobacco mosaic virus and how it harms plant growth."
+          }
+         ]
+        },
+        {
+         "id": "bacterial-diseases",
+         "title": "Bacterial diseases",
+         "outcomes": [
+          {
+           "code": "4.3.1.3",
+           "text": "Describe Salmonella food poisoning: spread, symptoms, and vaccination of poultry."
+          },
+          {
+           "code": null,
+           "text": "Describe gonorrhoea: symptoms, spread, antibiotic resistance and control by treatment or condoms."
+          }
+         ]
+        },
+        {
+         "id": "fungal-and-protist-diseases",
+         "title": "Fungal and protist diseases",
+         "outcomes": [
+          {
+           "code": "4.3.1.4",
+           "text": "Describe rose black spot: symptoms, effect on photosynthesis, spread and treatment."
+          },
+          {
+           "code": "4.3.1.5",
+           "text": "Describe malaria: protist pathogen, mosquito vector, symptoms, and control by stopping breeding and using nets."
+          }
+         ]
+        },
+        {
+         "id": "human-defence-systems",
+         "title": "Human defence systems",
+         "outcomes": [
+          {
+           "code": "4.3.1.6",
+           "text": "Describe non-specific defences: skin, nose, trachea and bronchi, and stomach."
+          },
+          {
+           "code": null,
+           "text": "Explain how white blood cells defend by phagocytosis, antibody production and antitoxin production."
+          }
+         ]
+        },
+        {
+         "id": "vaccination",
+         "title": "Vaccination",
+         "outcomes": [
+          {
+           "code": "4.3.1.7",
+           "text": "Explain how vaccination with dead or inactive pathogen makes antibodies quickly on re-infection."
+          },
+          {
+           "code": null,
+           "text": "Explain how immunising most of a population reduces the spread of disease."
+          }
+         ]
+        },
+        {
+         "id": "antibiotics-and-painkillers",
+         "title": "Antibiotics and painkillers",
+         "outcomes": [
+          {
+           "code": "4.3.1.8",
+           "text": "Explain that antibiotics kill bacteria, must match the bacterium, and do not work on viruses."
+          },
+          {
+           "code": null,
+           "text": "Explain why antibiotic-resistant strains are a concern, and that painkillers treat symptoms only."
+          }
+         ]
+        },
+        {
+         "id": "drug-discovery-and-testing",
+         "title": "Drug discovery and testing",
+         "outcomes": [
+          {
+           "code": "4.3.1.9",
+           "text": "Describe how drugs were traditionally taken from plants and microbes, such as digitalis, aspirin and penicillin."
+          },
+          {
+           "code": null,
+           "text": "Describe preclinical testing and clinical trials for toxicity, efficacy and dose, including placebo and double blind trials."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "4-3-2-monoclonal-antibodies-biology-only-higher-",
+       "title": "4.3.2 Monoclonal antibodies (biology only, higher tier)",
+       "subtopics": [
+        {
+         "id": "monoclonal-antibodies",
+         "title": "Monoclonal antibodies",
+         "outcomes": [
+          {
+           "code": "4.3.2",
+           "text": "Describe how mouse lymphocytes and tumour cells make hybridoma cells that are cloned to produce one specific antibody."
+          },
+          {
+           "code": "4.3.2.1",
+           "text": "Explain why monoclonal antibodies target one specific antigen."
+          }
+         ]
+        },
+        {
+         "id": "uses-of-monoclonal-antibodies",
+         "title": "Uses of monoclonal antibodies",
+         "outcomes": [
+          {
+           "code": "4.3.2.2",
+           "text": "Describe uses in pregnancy tests, lab measurement, locating molecules in research, and delivering drugs to cancer cells."
+          },
+          {
+           "code": null,
+           "text": "Evaluate monoclonal antibodies, noting side effects and ethical issues."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "4-3-3-plant-disease-biology-only",
+       "title": "4.3.3 Plant disease (biology only)",
+       "subtopics": [
+        {
+         "id": "detecting-plant-disease",
+         "title": "Detecting plant disease",
+         "outcomes": [
+          {
+           "code": "4.3.3",
+           "text": "Name symptoms of plant disease such as stunted growth, spots, rot, growths, malformation, discolouration and pests."
+          },
+          {
+           "code": "4.3.3.1",
+           "text": "Describe identifying plant disease from manuals, laboratories or monoclonal antibody test kits."
+          },
+          {
+           "code": null,
+           "text": "Describe plant damage by tobacco mosaic virus, black spot and aphids."
+          },
+          {
+           "code": null,
+           "text": "Explain how nitrate and magnesium deficiency cause stunted growth and chlorosis."
+          }
+         ]
+        },
+        {
+         "id": "plant-defence-responses",
+         "title": "Plant defence responses",
+         "outcomes": [
+          {
+           "code": "4.3.3.2",
+           "text": "Describe physical defences: cellulose walls, waxy cuticle and layers of dead cells."
+          },
+          {
+           "code": null,
+           "text": "Describe chemical defences and mechanical adaptations such as thorns, drooping leaves and mimicry."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "4-4-bioenergetics",
+     "title": "4.4 Bioenergetics",
+     "topics": [
+      {
+       "id": "4-4-1-photosynthesis",
+       "title": "4.4.1 Photosynthesis",
+       "subtopics": [
+        {
+         "id": "photosynthesis-reaction",
+         "title": "Photosynthesis reaction",
+         "outcomes": [
+          {
+           "code": "4.4.1",
+           "text": "Write the word and symbol equation for photosynthesis."
+          },
+          {
+           "code": "4.4.1.1",
+           "text": "Describe photosynthesis as endothermic, with light energy transferred to chloroplasts."
+          }
+         ]
+        },
+        {
+         "id": "rate-of-photosynthesis",
+         "title": "Rate of photosynthesis",
+         "outcomes": [
+          {
+           "code": "4.4.1.2",
+           "text": "Explain how temperature, light intensity, carbon dioxide and chlorophyll affect photosynthesis rate."
+          },
+          {
+           "code": null,
+           "text": "Measure, calculate and graph photosynthesis rates and read graphs with one limiting factor."
+          },
+          {
+           "code": null,
+           "text": "Investigate light intensity and photosynthesis rate with pondweed (required practical 6)."
+          },
+          {
+           "code": null,
+           "text": "Explain interacting limiting factors, graphs with several factors and the inverse square law for light (higher tier)."
+          },
+          {
+           "code": null,
+           "text": "Explain the cost-benefit of adding heat, light or carbon dioxide in greenhouses (higher tier)."
+          }
+         ]
+        },
+        {
+         "id": "uses-of-glucose",
+         "title": "Uses of glucose",
+         "outcomes": [
+          {
+           "code": "4.4.1.3",
+           "text": "Describe the uses of glucose from photosynthesis: respiration, starch, fat or oil, cellulose and amino acids."
+          },
+          {
+           "code": null,
+           "text": "State that plants use nitrate ions from soil to make proteins."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "4-4-2-respiration",
+       "title": "4.4.2 Respiration",
+       "subtopics": [
+        {
+         "id": "aerobic-and-anaerobic-respiration",
+         "title": "Aerobic and anaerobic respiration",
+         "outcomes": [
+          {
+           "code": "4.4.2",
+           "text": "Describe respiration as a continuous exothermic reaction supplying energy for building molecules, movement and keeping warm."
+          },
+          {
+           "code": "4.4.2.1",
+           "text": "Write the aerobic respiration equation and recognise its chemical symbols."
+          },
+          {
+           "code": null,
+           "text": "Compare aerobic and anaerobic respiration in oxygen need, products and energy released."
+          },
+          {
+           "code": null,
+           "text": "Write the equations for anaerobic respiration in muscles (lactic acid) and in plants and yeast (ethanol and carbon dioxide)."
+          },
+          {
+           "code": null,
+           "text": "Describe fermentation in yeast and its use in bread and alcoholic drinks."
+          }
+         ]
+        },
+        {
+         "id": "response-to-exercise",
+         "title": "Response to exercise",
+         "outcomes": [
+          {
+           "code": "4.4.2.2",
+           "text": "Explain why heart rate, breathing rate and breath volume rise during exercise."
+          },
+          {
+           "code": null,
+           "text": "Explain how anaerobic respiration builds lactic acid, an oxygen debt and muscle fatigue."
+          },
+          {
+           "code": null,
+           "text": "Explain how the liver removes lactic acid and how oxygen debt is repaid (higher tier)."
+          }
+         ]
+        },
+        {
+         "id": "metabolism",
+         "title": "Metabolism",
+         "outcomes": [
+          {
+           "code": "4.4.2.3",
+           "text": "Define metabolism as all the reactions in a cell or body, powered by energy from respiration."
+          },
+          {
+           "code": null,
+           "text": "Explain how sugars, amino acids, fatty acids and glycerol are used to build and break down carbohydrates, proteins and lipids."
+          },
+          {
+           "code": null,
+           "text": "List metabolic reactions: making starch, glycogen, cellulose, lipids and amino acids, and turning excess protein into urea."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "4-5-homeostasis-and-response",
+     "title": "4.5 Homeostasis and response",
+     "topics": [
+      {
+       "id": "4-5-1-homeostasis",
+       "title": "4.5.1 Homeostasis",
+       "subtopics": [
+        {
+         "id": "homeostasis",
+         "title": "Homeostasis",
+         "outcomes": [
+          {
+           "code": "4.5.1",
+           "text": "Explain homeostasis as regulating internal conditions to keep optimum conditions for enzymes and cells."
+          },
+          {
+           "code": null,
+           "text": "List what the body controls: blood glucose, body temperature and water levels."
+          },
+          {
+           "code": null,
+           "text": "Describe control systems made of receptors, coordination centres and effectors."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "4-5-2-the-human-nervous-system",
+       "title": "4.5.2 The human nervous system",
+       "subtopics": [
+        {
+         "id": "structure-and-function",
+         "title": "Structure and function",
+         "outcomes": [
+          {
+           "code": "4.5.2",
+           "text": "Describe how neurones carry electrical impulses to the central nervous system, which coordinates effectors."
+          },
+          {
+           "code": "4.5.2.1",
+           "text": "Describe the sequence stimulus, receptor, coordinator, effector, response."
+          }
+         ]
+        },
+        {
+         "id": "reflex-arc",
+         "title": "Reflex arc",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain how the sensory neurone, synapse, relay neurone and motor neurone work in a reflex arc."
+          },
+          {
+           "code": null,
+           "text": "Explain why reflex actions are automatic, rapid and important."
+          },
+          {
+           "code": null,
+           "text": "Plan an investigation into a factor affecting reaction time and interpret reaction time data (required practical 7)."
+          }
+         ]
+        },
+        {
+         "id": "the-brain",
+         "title": "The brain",
+         "outcomes": [
+          {
+           "code": "4.5.2.2",
+           "text": "Describe the brain as billions of connected neurones with regions for different functions."
+          },
+          {
+           "code": null,
+           "text": "Identify the cerebral cortex, cerebellum and medulla and state their functions."
+          },
+          {
+           "code": null,
+           "text": "Explain how brain regions are mapped and why brain disorders are hard to study and treat (higher tier)."
+          }
+         ]
+        },
+        {
+         "id": "the-eye",
+         "title": "The eye",
+         "outcomes": [
+          {
+           "code": "4.5.2.3",
+           "text": "Describe the eye as a sense organ with receptors for light intensity and colour."
+          },
+          {
+           "code": null,
+           "text": "Identify the retina, optic nerve, sclera, cornea, iris, ciliary muscles and suspensory ligaments and relate them to function."
+          }
+         ]
+        },
+        {
+         "id": "accommodation-and-eye-defects",
+         "title": "Accommodation and eye defects",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain how the lens changes shape to focus on near and distant objects."
+          },
+          {
+           "code": null,
+           "text": "Describe myopia and hyperopia and their treatments, and use ray diagrams to show spectacle lens correction."
+          }
+         ]
+        },
+        {
+         "id": "control-of-body-temperature",
+         "title": "Control of body temperature",
+         "outcomes": [
+          {
+           "code": "4.5.2.4",
+           "text": "Describe how the thermoregulatory centre and skin receptors monitor body temperature."
+          },
+          {
+           "code": null,
+           "text": "Explain the responses to being too hot (vasodilation, sweating) and too cold (vasoconstriction, no sweating, shivering)."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "4-5-3-hormonal-coordination-in-humans",
+       "title": "4.5.3 Hormonal coordination in humans",
+       "subtopics": [
+        {
+         "id": "the-endocrine-system",
+         "title": "The endocrine system",
+         "outcomes": [
+          {
+           "code": "4.5.3",
+           "text": "Describe how glands release hormones into the blood to affect target organs, more slowly but for longer than nerves."
+          },
+          {
+           "code": "4.5.3.1",
+           "text": "Describe the pituitary as the master gland that triggers other glands."
+          },
+          {
+           "code": null,
+           "text": "Locate the pituitary, pancreas, thyroid, adrenal glands, ovaries and testes on a body diagram."
+          }
+         ]
+        },
+        {
+         "id": "blood-glucose-control",
+         "title": "Blood glucose control",
+         "outcomes": [
+          {
+           "code": "4.5.3.2",
+           "text": "Explain how the pancreas releases insulin when blood glucose is high, moving glucose into cells and storing it as glycogen."
+          },
+          {
+           "code": null,
+           "text": "Compare Type 1 diabetes (too little insulin, injections) and Type 2 (cells unresponsive, diet, exercise, obesity risk)."
+          },
+          {
+           "code": null,
+           "text": "Interpret graphs of blood glucose and insulin in people with and without diabetes."
+          },
+          {
+           "code": null,
+           "text": "Explain how glucagon and insulin work in negative feedback to control blood glucose (higher tier)."
+          }
+         ]
+        },
+        {
+         "id": "water-and-nitrogen-balance",
+         "title": "Water and nitrogen balance",
+         "outcomes": [
+          {
+           "code": "4.5.3.3",
+           "text": "Explain the effect on cells of osmotic changes in body fluids."
+          },
+          {
+           "code": null,
+           "text": "Describe water, ion and urea loss through lungs, skin and kidneys, and which losses are uncontrolled."
+          },
+          {
+           "code": null,
+           "text": "Explain how the liver deaminates excess amino acids to ammonia, then urea (higher tier)."
+          }
+         ]
+        },
+        {
+         "id": "kidneys-and-dialysis",
+         "title": "Kidneys and dialysis",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe how kidneys filter blood and selectively reabsorb glucose, ions and water to control water balance."
+          },
+          {
+           "code": null,
+           "text": "Explain how ADH changes kidney tubule permeability under negative feedback (higher tier)."
+          },
+          {
+           "code": null,
+           "text": "Describe kidney dialysis and evaluate dialysis against transplant for kidney failure."
+          }
+         ]
+        },
+        {
+         "id": "reproductive-hormones",
+         "title": "Reproductive hormones",
+         "outcomes": [
+          {
+           "code": "4.5.3.4",
+           "text": "Describe how puberty hormones bring secondary sex characteristics, oestrogen causes ovulation about every 28 days, and testosterone drives sperm production."
+          },
+          {
+           "code": null,
+           "text": "Describe the roles of FSH, LH, oestrogen and progesterone in the menstrual cycle."
+          },
+          {
+           "code": null,
+           "text": "Explain the interactions of the menstrual cycle hormones and read hormone level graphs (higher tier)."
+          }
+         ]
+        },
+        {
+         "id": "contraception",
+         "title": "Contraception",
+         "outcomes": [
+          {
+           "code": "4.5.3.5",
+           "text": "Describe hormonal contraceptives: pills, injections, implants and patches."
+          },
+          {
+           "code": null,
+           "text": "Describe non-hormonal methods: barriers, intrauterine devices, spermicides, abstinence and sterilisation."
+          },
+          {
+           "code": null,
+           "text": "Evaluate hormonal and non-hormonal contraception."
+          }
+         ]
+        },
+        {
+         "id": "treating-infertility",
+         "title": "Treating infertility",
+         "outcomes": [
+          {
+           "code": "4.5.3.6",
+           "text": "Explain how FSH and LH fertility drugs help a woman become pregnant (higher tier)."
+          },
+          {
+           "code": null,
+           "text": "Describe the steps of IVF from stimulation to embryo transfer (higher tier)."
+          },
+          {
+           "code": null,
+           "text": "Evaluate IVF, including emotional stress, low success rates and multiple births (higher tier)."
+          }
+         ]
+        },
+        {
+         "id": "negative-feedback",
+         "title": "Negative feedback",
+         "outcomes": [
+          {
+           "code": "4.5.3.7",
+           "text": "Explain the roles of adrenaline in fight or flight and thyroxine in metabolic rate and growth (higher tier)."
+          },
+          {
+           "code": null,
+           "text": "Interpret simple diagrams of negative feedback, such as thyroxine control (higher tier)."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "4-5-4-plant-hormones-biology-only",
+       "title": "4.5.4 Plant hormones (biology only)",
+       "subtopics": [
+        {
+         "id": "plant-hormones",
+         "title": "Plant hormones",
+         "outcomes": [
+          {
+           "code": "4.5.4",
+           "text": "Describe how auxin's unequal distribution causes plant responses to light and gravity."
+          },
+          {
+           "code": "4.5.4.1",
+           "text": "Investigate the effect of light or gravity on seedling growth (required practical 8)."
+          },
+          {
+           "code": null,
+           "text": "Describe how gibberellins start germination and ethene controls cell division and fruit ripening (higher tier)."
+          }
+         ]
+        },
+        {
+         "id": "uses-of-plant-hormones",
+         "title": "Uses of plant hormones",
+         "outcomes": [
+          {
+           "code": "4.5.4.2",
+           "text": "Describe agricultural uses of auxins: weed killers, rooting powders and tissue culture (higher tier)."
+          },
+          {
+           "code": null,
+           "text": "Describe ethene for controlling fruit ripening and gibberellins for ending dormancy, flowering and larger fruit (higher tier)."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "4-6-inheritance-variation-and-evolution",
+     "title": "4.6 Inheritance, variation and evolution",
+     "topics": [
+      {
+       "id": "4-6-1-reproduction",
+       "title": "4.6.1 Reproduction",
+       "subtopics": [
+        {
+         "id": "sexual-and-asexual-reproduction",
+         "title": "Sexual and asexual reproduction",
+         "outcomes": [
+          {
+           "code": "4.6.1",
+           "text": "Contrast meiosis, which makes non-identical cells, with mitosis, which makes identical cells."
+          },
+          {
+           "code": "4.6.1.1",
+           "text": "Describe sexual reproduction as fusion of male and female gametes, mixing genetic information and giving variety."
+          },
+          {
+           "code": null,
+           "text": "Describe asexual reproduction as one parent, mitosis only, and genetically identical clones."
+          }
+         ]
+        },
+        {
+         "id": "meiosis",
+         "title": "Meiosis",
+         "outcomes": [
+          {
+           "code": "4.6.1.2",
+           "text": "Explain how meiosis halves the chromosome number in gametes and fertilisation restores it."
+          },
+          {
+           "code": null,
+           "text": "Describe meiosis: DNA copied, two divisions, four genetically different gametes."
+          },
+          {
+           "code": null,
+           "text": "Describe how the fertilised cell divides by mitosis and its cells differentiate as the embryo develops."
+          }
+         ]
+        },
+        {
+         "id": "sexual-versus-asexual-reproduction",
+         "title": "Sexual versus asexual reproduction",
+         "outcomes": [
+          {
+           "code": "4.6.1.3",
+           "text": "Explain the advantages of sexual reproduction: variation and survival if the environment changes."
+          },
+          {
+           "code": null,
+           "text": "Explain the advantages of asexual reproduction: one parent, fast, efficient and many identical offspring."
+          },
+          {
+           "code": null,
+           "text": "Give organisms using both methods: malarial parasites, fungi, strawberries and daffodils."
+          }
+         ]
+        },
+        {
+         "id": "dna-and-the-genome",
+         "title": "DNA and the genome",
+         "outcomes": [
+          {
+           "code": "4.6.1.4",
+           "text": "Describe DNA as a double helix polymer in chromosomes, with genes coding for sequences of amino acids."
+          },
+          {
+           "code": null,
+           "text": "Define the genome and discuss why understanding the human genome matters for disease genes, inherited disorders and migration."
+          }
+         ]
+        },
+        {
+         "id": "dna-structure",
+         "title": "DNA structure",
+         "outcomes": [
+          {
+           "code": "4.6.1.5",
+           "text": "Describe DNA as a polymer of nucleotides, each with a sugar, a phosphate and one of four bases A, C, G or T."
+          },
+          {
+           "code": null,
+           "text": "Explain that three bases code for one amino acid and their order sets the protein."
+          },
+          {
+           "code": null,
+           "text": "Describe complementary base pairing and protein synthesis on ribosomes with carrier molecules (higher tier)."
+          },
+          {
+           "code": null,
+           "text": "Explain how mutations and non-coding DNA can alter proteins or gene expression (higher tier)."
+          }
+         ]
+        },
+        {
+         "id": "genetic-inheritance",
+         "title": "Genetic inheritance",
+         "outcomes": [
+          {
+           "code": "4.6.1.6",
+           "text": "Explain gamete, chromosome, gene, allele, dominant, recessive, homozygous, heterozygous, genotype and phenotype."
+          },
+          {
+           "code": null,
+           "text": "Describe single-gene characteristics such as fur colour in mice, and that most features involve many genes."
+          }
+         ]
+        },
+        {
+         "id": "genetic-crosses",
+         "title": "Genetic crosses",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Complete a Punnett square and express outcomes as ratios and probabilities."
+          },
+          {
+           "code": null,
+           "text": "Interpret genetic crosses and family trees, and construct crosses to make predictions (higher tier)."
+          }
+         ]
+        },
+        {
+         "id": "inherited-disorders",
+         "title": "Inherited disorders",
+         "outcomes": [
+          {
+           "code": "4.6.1.7",
+           "text": "Describe polydactyly as caused by a dominant allele and cystic fibrosis by a recessive allele."
+          },
+          {
+           "code": null,
+           "text": "Make informed judgements about the economic, social and ethical issues of embryo screening."
+          }
+         ]
+        },
+        {
+         "id": "sex-determination",
+         "title": "Sex determination",
+         "outcomes": [
+          {
+           "code": "4.6.1.8",
+           "text": "State that humans have 23 chromosome pairs, with XX in females and XY in males."
+          },
+          {
+           "code": null,
+           "text": "Carry out a genetic cross showing sex inheritance."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "4-6-2-variation-and-evolution",
+       "title": "4.6.2 Variation and evolution",
+       "subtopics": [
+        {
+         "id": "variation",
+         "title": "Variation",
+         "outcomes": [
+          {
+           "code": "4.6.2",
+           "text": "Explain how the genome and environment shape the phenotype."
+          },
+          {
+           "code": "4.6.2.1",
+           "text": "Describe variation as caused by inherited genes, environment, or both."
+          },
+          {
+           "code": null,
+           "text": "Explain that variants arise from mutations, most with no effect, and rarely lead to rapid change if suited to the environment."
+          }
+         ]
+        },
+        {
+         "id": "evolution",
+         "title": "Evolution",
+         "outcomes": [
+          {
+           "code": "4.6.2.2",
+           "text": "Describe evolution by natural selection as a change in inherited characteristics of a population over time."
+          },
+          {
+           "code": null,
+           "text": "Explain how natural selection favours phenotypes best suited to the environment."
+          },
+          {
+           "code": null,
+           "text": "Explain how populations that cannot interbreed to give fertile offspring form new species."
+          }
+         ]
+        },
+        {
+         "id": "selective-breeding",
+         "title": "Selective breeding",
+         "outcomes": [
+          {
+           "code": "4.6.2.3",
+           "text": "Describe selective breeding as choosing parents with desired traits over many generations."
+          },
+          {
+           "code": null,
+           "text": "Give examples of selective breeding and explain its benefits and the risks of inbreeding."
+          }
+         ]
+        },
+        {
+         "id": "genetic-engineering",
+         "title": "Genetic engineering",
+         "outcomes": [
+          {
+           "code": "4.6.2.4",
+           "text": "Describe genetic engineering as adding a gene from another organism to give a desired characteristic."
+          },
+          {
+           "code": null,
+           "text": "Give examples such as disease-resistant crops and bacteria making human insulin."
+          },
+          {
+           "code": null,
+           "text": "Explain benefits, risks and objections concerning GM crops and medical gene modification."
+          },
+          {
+           "code": null,
+           "text": "Describe the steps of genetic engineering with enzymes, vectors and early-stage cells (higher tier)."
+          }
+         ]
+        },
+        {
+         "id": "cloning",
+         "title": "Cloning",
+         "outcomes": [
+          {
+           "code": "4.6.2.5",
+           "text": "Describe tissue culture and cuttings for growing identical plants."
+          },
+          {
+           "code": null,
+           "text": "Describe embryo transplants and adult cell cloning with a nucleus transferred into an egg cell."
+          },
+          {
+           "code": null,
+           "text": "Explain potential benefits, risks and ethical objections of cloning."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "4-6-3-the-development-of-understanding-of-geneti",
+       "title": "4.6.3 The development of understanding of genetics and evolution",
+       "subtopics": [
+        {
+         "id": "theory-of-evolution",
+         "title": "Theory of evolution",
+         "outcomes": [
+          {
+           "code": "4.6.3",
+           "text": "Describe the key ideas of Darwin's natural selection: variation, survival of the best suited, and passing on features."
+          },
+          {
+           "code": "4.6.3.1",
+           "text": "Explain why the theory was slowly accepted and how Lamarck's ideas differ."
+          }
+         ]
+        },
+        {
+         "id": "speciation",
+         "title": "Speciation",
+         "outcomes": [
+          {
+           "code": "4.6.3.2",
+           "text": "Describe the work of Darwin and Wallace and the impact of their ideas on biology."
+          },
+          {
+           "code": null,
+           "text": "Describe the steps that give rise to new species."
+          }
+         ]
+        },
+        {
+         "id": "understanding-of-genetics",
+         "title": "Understanding of genetics",
+         "outcomes": [
+          {
+           "code": "4.6.3.3",
+           "text": "Describe Mendel's work and why its importance went unrecognised until after his death."
+          },
+          {
+           "code": null,
+           "text": "Trace how chromosomes, genes and DNA structure led to gene theory."
+          }
+         ]
+        },
+        {
+         "id": "evidence-for-evolution",
+         "title": "Evidence for evolution",
+         "outcomes": [
+          {
+           "code": "4.6.3.4",
+           "text": "Describe fossils and antibiotic resistance in bacteria as evidence for evolution."
+          }
+         ]
+        },
+        {
+         "id": "fossils",
+         "title": "Fossils",
+         "outcomes": [
+          {
+           "code": "4.6.3.5",
+           "text": "Describe how fossils form: unrotted parts, mineral replacement, and preserved traces."
+          },
+          {
+           "code": null,
+           "text": "Explain why the fossil record is incomplete and interpret evolutionary trees and charts."
+          }
+         ]
+        },
+        {
+         "id": "extinction",
+         "title": "Extinction",
+         "outcomes": [
+          {
+           "code": "4.6.3.6",
+           "text": "Define extinction and describe factors that contribute to it."
+          }
+         ]
+        },
+        {
+         "id": "resistant-bacteria",
+         "title": "Resistant bacteria",
+         "outcomes": [
+          {
+           "code": "4.6.3.7",
+           "text": "Explain how mutation and natural selection produce antibiotic-resistant strains such as MRSA."
+          },
+          {
+           "code": null,
+           "text": "Describe ways to slow resistance: careful prescribing, completing courses and restricting farm use."
+          },
+          {
+           "code": null,
+           "text": "Explain why developing new antibiotics is costly and slow."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "4-6-4-classification-of-living-organisms",
+       "title": "4.6.4 Classification of living organisms",
+       "subtopics": [
+        {
+         "id": "classification",
+         "title": "Classification",
+         "outcomes": [
+          {
+           "code": "4.6.4",
+           "text": "Describe the Linnaean system from kingdom to species and the binomial naming system."
+          },
+          {
+           "code": null,
+           "text": "Explain how better microscopes and biochemistry led to new models such as Woese's three domains."
+          },
+          {
+           "code": null,
+           "text": "Describe the three domains: archaea, bacteria and eukaryota."
+          },
+          {
+           "code": null,
+           "text": "Interpret evolutionary trees built from classification and fossil data."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "4-7-ecology",
+     "title": "4.7 Ecology",
+     "topics": [
+      {
+       "id": "4-7-1-adaptations-interdependence-and-competitio",
+       "title": "4.7.1 Adaptations, interdependence and competition",
+       "subtopics": [
+        {
+         "id": "communities",
+         "title": "Communities",
+         "outcomes": [
+          {
+           "code": "4.7.1",
+           "text": "Describe levels of organisation from organism to ecosystem, and the biotic and abiotic parts of an ecosystem."
+          },
+          {
+           "code": "4.7.1.1",
+           "text": "Explain interdependence and competition, and suggest what organisms compete for in a habitat."
+          },
+          {
+           "code": null,
+           "text": "Describe a stable community, and interpret data on interactions within a community."
+          }
+         ]
+        },
+        {
+         "id": "abiotic-factors",
+         "title": "Abiotic factors",
+         "outcomes": [
+          {
+           "code": "4.7.1.2",
+           "text": "Name abiotic factors: light, temperature, moisture, soil pH and minerals, wind, carbon dioxide and oxygen."
+          },
+          {
+           "code": null,
+           "text": "Explain how a change in an abiotic factor would affect a community, using data."
+          }
+         ]
+        },
+        {
+         "id": "biotic-factors",
+         "title": "Biotic factors",
+         "outcomes": [
+          {
+           "code": "4.7.1.3",
+           "text": "Name biotic factors: food supply, new predators, new pathogens and competition that cuts breeding numbers."
+          },
+          {
+           "code": null,
+           "text": "Explain how a change in a biotic factor would affect a community, using data."
+          }
+         ]
+        },
+        {
+         "id": "adaptations",
+         "title": "Adaptations",
+         "outcomes": [
+          {
+           "code": "4.7.1.4",
+           "text": "Explain how structural, behavioural and functional adaptations help organisms survive in their environment."
+          },
+          {
+           "code": null,
+           "text": "Describe extremophiles, such as deep-sea vent bacteria, in extreme conditions."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "4-7-2-organisation-of-an-ecosystem",
+       "title": "4.7.2 Organisation of an ecosystem",
+       "subtopics": [
+        {
+         "id": "food-chains-and-sampling",
+         "title": "Food chains and sampling",
+         "outcomes": [
+          {
+           "code": "4.7.2",
+           "text": "Explain that photosynthetic producers make the biomass for all life, and that food chains start with a producer."
+          },
+          {
+           "code": "4.7.2.1",
+           "text": "Describe producers, primary, secondary and tertiary consumers, predators and prey."
+          },
+          {
+           "code": null,
+           "text": "Interpret predator-prey cycle graphs in a stable community."
+          }
+         ]
+        },
+        {
+         "id": "sampling-populations",
+         "title": "Sampling populations",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Use transects and quadrats to measure distribution and abundance, and calculate mean, mode and median."
+          },
+          {
+           "code": null,
+           "text": "Measure the population size of a species and the effect of a factor on its distribution (required practical 9)."
+          }
+         ]
+        },
+        {
+         "id": "cycling-materials",
+         "title": "Cycling materials",
+         "outcomes": [
+          {
+           "code": "4.7.2.2",
+           "text": "Explain the importance of the carbon cycle, returning carbon dioxide for photosynthesis."
+          },
+          {
+           "code": null,
+           "text": "Explain the importance of the water cycle, with continuous evaporation and precipitation."
+          },
+          {
+           "code": null,
+           "text": "Explain how microorganisms recycle carbon as carbon dioxide and minerals into the soil."
+          }
+         ]
+        },
+        {
+         "id": "decomposition",
+         "title": "Decomposition",
+         "outcomes": [
+          {
+           "code": "4.7.2.3",
+           "text": "Explain how temperature, water and oxygen affect the rate of decay, and calculate decay rates."
+          },
+          {
+           "code": null,
+           "text": "Describe composting as a natural fertiliser and biogas generators using anaerobic decay to make methane."
+          },
+          {
+           "code": null,
+           "text": "Investigate temperature and the rate of decay of milk by measuring pH (required practical 10)."
+          }
+         ]
+        },
+        {
+         "id": "environmental-change",
+         "title": "Environmental change",
+         "outcomes": [
+          {
+           "code": "4.7.2.4",
+           "text": "Evaluate how changes in temperature, water and atmospheric gases, seasonal, geographic or human, alter species distribution (higher tier)."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "4-7-3-biodiversity-and-the-effect-of-human-inter",
+       "title": "4.7.3 Biodiversity and the effect of human interaction on ecosystems",
+       "subtopics": [
+        {
+         "id": "biodiversity",
+         "title": "Biodiversity",
+         "outcomes": [
+          {
+           "code": "4.7.3",
+           "text": "Define biodiversity and explain why high biodiversity makes ecosystems stable."
+          },
+          {
+           "code": "4.7.3.1",
+           "text": "Explain why human survival relies on biodiversity, which human activities are reducing."
+          }
+         ]
+        },
+        {
+         "id": "waste-management",
+         "title": "Waste management",
+         "outcomes": [
+          {
+           "code": "4.7.3.2",
+           "text": "Explain how population growth and living standards increase resource use and waste."
+          },
+          {
+           "code": null,
+           "text": "Describe pollution of water, air and land and how it reduces biodiversity."
+          }
+         ]
+        },
+        {
+         "id": "land-use",
+         "title": "Land use",
+         "outcomes": [
+          {
+           "code": "4.7.3.3",
+           "text": "Describe how building, quarrying, farming and dumping reduce land for wildlife."
+          },
+          {
+           "code": null,
+           "text": "Explain the conflict over peat bog destruction for compost and the carbon dioxide released."
+          }
+         ]
+        },
+        {
+         "id": "deforestation",
+         "title": "Deforestation",
+         "outcomes": [
+          {
+           "code": "4.7.3.4",
+           "text": "Describe tropical deforestation for cattle, rice and biofuel crops, and evaluate its environmental effects."
+          }
+         ]
+        },
+        {
+         "id": "global-warming",
+         "title": "Global warming",
+         "outcomes": [
+          {
+           "code": "4.7.3.5",
+           "text": "Explain how rising carbon dioxide and methane contribute to global warming."
+          },
+          {
+           "code": null,
+           "text": "Describe biological consequences of global warming."
+          }
+         ]
+        },
+        {
+         "id": "maintaining-biodiversity",
+         "title": "Maintaining biodiversity",
+         "outcomes": [
+          {
+           "code": "4.7.3.6",
+           "text": "Describe positive and negative human interactions with ecosystems and their impact on biodiversity."
+          },
+          {
+           "code": null,
+           "text": "Describe conservation programmes: breeding, habitat protection, hedgerows, reduced deforestation and recycling."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "4-7-4-trophic-levels-in-an-ecosystem-biology-onl",
+       "title": "4.7.4 Trophic levels in an ecosystem (biology only)",
+       "subtopics": [
+        {
+         "id": "trophic-levels",
+         "title": "Trophic levels",
+         "outcomes": [
+          {
+           "code": "4.7.4",
+           "text": "Describe trophic levels 1 to 4 and apex predators in a food chain."
+          },
+          {
+           "code": "4.7.4.1",
+           "text": "Explain how decomposers break down dead matter using enzymes and absorb the products."
+          }
+         ]
+        },
+        {
+         "id": "pyramids-of-biomass",
+         "title": "Pyramids of biomass",
+         "outcomes": [
+          {
+           "code": "4.7.4.2",
+           "text": "Construct pyramids of biomass from data, with trophic level 1 at the bottom."
+          }
+         ]
+        },
+        {
+         "id": "transfer-of-biomass",
+         "title": "Transfer of biomass",
+         "outcomes": [
+          {
+           "code": "4.7.4.3",
+           "text": "Explain why only about 10 percent of biomass passes up each trophic level and where the rest is lost."
+          },
+          {
+           "code": null,
+           "text": "Calculate the efficiency of biomass transfer and explain how it limits numbers at each level."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "4-7-5-food-production-biology-only",
+       "title": "4.7.5 Food production (biology only)",
+       "subtopics": [
+        {
+         "id": "food-security",
+         "title": "Food security",
+         "outcomes": [
+          {
+           "code": "4.7.5",
+           "text": "Define food security and describe biological threats to it, such as birth rate, pests, climate and conflict."
+          },
+          {
+           "code": "4.7.5.1",
+           "text": "Explain why sustainable methods of feeding everyone are needed."
+          }
+         ]
+        },
+        {
+         "id": "farming-techniques",
+         "title": "Farming techniques",
+         "outcomes": [
+          {
+           "code": "4.7.5.2",
+           "text": "Explain how limiting movement and temperature in intensive farming improves energy efficiency."
+          },
+          {
+           "code": null,
+           "text": "Evaluate the advantages, disadvantages and ethical objections of modern farming."
+          }
+         ]
+        },
+        {
+         "id": "sustainable-fisheries",
+         "title": "Sustainable fisheries",
+         "outcomes": [
+          {
+           "code": "4.7.5.3",
+           "text": "Explain how net size and fishing quotas keep fish stocks sustainable."
+          }
+         ]
+        },
+        {
+         "id": "biotechnology-in-food",
+         "title": "Biotechnology in food",
+         "outcomes": [
+          {
+           "code": "4.7.5.4",
+           "text": "Describe making mycoprotein from the fungus Fusarium grown on glucose syrup."
+          },
+          {
+           "code": null,
+           "text": "Describe GM bacteria making insulin and GM crops such as golden rice as solutions to a growing population."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "4-8-key-ideas",
+     "title": "4.8 Key ideas",
+     "topics": [
+      {
+       "id": "4-8-key-ideas",
+       "title": "4.8 Key ideas",
+       "subtopics": [
+        {
+         "id": "key-ideas-in-biology",
+         "title": "Key ideas in biology",
+         "outcomes": [
+          {
+           "code": "4.8",
+           "text": "Link molecules, cells, tissues, organisms, ecosystems and cycling of chemicals to the key ideas of biology."
+          },
+          {
+           "code": null,
+           "text": "Link photosynthesis, respiration, genome-environment interaction and natural selection to the key ideas of biology."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "build": {
+  "builtAt": "2026-10-14T10:20:08.109Z",
+  "model": "claude-agent",
+  "usd": 0,
+  "expectedCodes": 128,
+  "coverage": 0.984375,
+  "missingCodes": [
+   "4.9.1.2",
+   "4.9.3.1"
+  ],
+  "counts": {
+   "grades": 1,
+   "units": 8,
+   "topics": 25,
+   "subtopics": 106,
+   "outcomes": 267
+  },
+  "warnings": [
+   "grade Year 10 has no content",
+   "grade Year 11 has no content",
+   "unexpected grade label \"all\""
+  ]
+ }
+}

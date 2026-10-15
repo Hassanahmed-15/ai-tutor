@@ -1,0 +1,4445 @@
+{
+ "id": "us-ga-physical-education",
+ "region": "US",
+ "framework": "Georgia state academic standards: Physical Education",
+ "board": null,
+ "qualification": "K-12",
+ "subject": "Physical Education",
+ "syllabusCode": null,
+ "gradeSystem": "grade",
+ "source": {
+  "urls": [
+   "https://api.commonstandardsproject.com/api/v1/jurisdictions/AB6E6F50DDF047E8BC3EE2CCFD33DCCC",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/AB6E6F50DDF047E8BC3EE2CCFD33DCCC_D2979051_grade-06",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/AB6E6F50DDF047E8BC3EE2CCFD33DCCC_D2979051_grade-07",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/AB6E6F50DDF047E8BC3EE2CCFD33DCCC_D2979051_grade-08",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/AB6E6F50DDF047E8BC3EE2CCFD33DCCC_D2979052_grades-09-10-11-12",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/AB6E6F50DDF047E8BC3EE2CCFD33DCCC_D2979050_grade-01",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/AB6E6F50DDF047E8BC3EE2CCFD33DCCC_D2979050_grade-02",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/AB6E6F50DDF047E8BC3EE2CCFD33DCCC_D2979050_grade-03",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/AB6E6F50DDF047E8BC3EE2CCFD33DCCC_D2979050_grade-04",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/AB6E6F50DDF047E8BC3EE2CCFD33DCCC_D2979050_grade-05",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/AB6E6F50DDF047E8BC3EE2CCFD33DCCC_D2979050_grade-k"
+  ],
+  "publisher": "Georgia state education agency (machine-readable via Common Standards Project / ASN)",
+  "licence": "D2L Corporation",
+  "firstExam": "2018"
+ },
+ "grades": [
+  {
+   "grade": "K",
+   "units": [
+    {
+     "id": "motor-skills-and-movement-patterns",
+     "title": "Motor Skills and Movement Patterns",
+     "topics": [
+      {
+       "id": "the-physically-educated-student-demonstrates-com",
+       "title": "The physically educated student demonstrates competency in a variety of motor skills and movement patterns",
+       "subtopics": [
+        {
+         "id": "the-physically-educated-student-demonstrates-com",
+         "title": "The physically educated student demonstrates competency in a variety of motor skills and movement patterns (1 of 3)",
+         "outcomes": [
+          {
+           "code": "PEK.1.a",
+           "text": "Performs basic locomotor skills (walk, run, hop, jump, skip, slide, and gallop) while maintaining balance."
+          },
+          {
+           "code": "PEK.1.b",
+           "text": "Performs locomotor skills in response to teacher-led, creative dance."
+          },
+          {
+           "code": "PEK.1.c",
+           "text": "Performs jumping/landing with balance."
+          },
+          {
+           "code": "PEK.1.d",
+           "text": "Performs basic non-locomotor skills (bend, straighten, twist, stretch, swing, sway, and turn) while maintaining balance."
+          },
+          {
+           "code": "PEK.1.e",
+           "text": "Maintains balance on different bases of support (wide, narrow, curled, and twisted body shapes)."
+          }
+         ]
+        },
+        {
+         "id": "the-physically-educated-student-demonstrates-com-2",
+         "title": "The physically educated student demonstrates competency in a variety of motor skills and movement patterns (2 of 3)",
+         "outcomes": [
+          {
+           "code": "PEK.1.f",
+           "text": "Throws underhand with opposite foot forward."
+          },
+          {
+           "code": "PEK.1.g",
+           "text": "Catches a self-tossed object (ball, scarf, and bean bag)."
+          },
+          {
+           "code": "PEK.1.h",
+           "text": "Drops a ball and catches it after a single bounce."
+          },
+          {
+           "code": "PEK.1.i",
+           "text": "Demonstrates basic dribbling skills with hands attempting multiple contacts."
+          },
+          {
+           "code": "PEK.1.j",
+           "text": "Demonstrates basic dribbling skills with feet attempting multiple contacts."
+          }
+         ]
+        },
+        {
+         "id": "the-physically-educated-student-demonstrates-com-3",
+         "title": "The physically educated student demonstrates competency in a variety of motor skills and movement patterns (3 of 3)",
+         "outcomes": [
+          {
+           "code": "PEK.1.k",
+           "text": "Kicks a stationary ball from a stationary position (keeping eyes on the ball, stepping with the opposite foot next to ball, contacting the ball with dominant foot, and following through)."
+          },
+          {
+           "code": "PEK.1.l",
+           "text": "Volleys a lightweight object (beach ball or balloon) upward using a variety of body parts."
+          },
+          {
+           "code": "PEK.1.m",
+           "text": "Strikes a lightweight object (beach ball or balloon) using a short-handled implement."
+          },
+          {
+           "code": "PEK.1.n",
+           "text": "Executes a single jump using a self-turned rope."
+          },
+          {
+           "code": "PEK.1.o",
+           "text": "Executes a single jump of a long rope with teacher assisted turning."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "movement-concepts-and-principles",
+     "title": "Movement Concepts and Principles",
+     "topics": [
+      {
+       "id": "the-physically-educated-student-applies-the-know",
+       "title": "The physically educated student applies the knowledge of concepts, principles, strategies, and tactics related to movement and performance",
+       "subtopics": [
+        {
+         "id": "the-physically-educated-student-applies-the-know",
+         "title": "The physically educated student applies the knowledge of concepts, principles, strategies, and tactics related to movement and performance",
+         "outcomes": [
+          {
+           "code": "PEK.2.a",
+           "text": "Demonstrates an understanding of general and personal space by traveling without bumping into another student."
+          },
+          {
+           "code": "PEK.2.b",
+           "text": "Performs a rhythmic activity in a personal space."
+          },
+          {
+           "code": "PEK.2.c",
+           "text": "Travels in three different pathways (straight, curved, and zig zag)"
+          },
+          {
+           "code": "PEK.2.d",
+           "text": "Travels in general space with different speeds."
+          },
+          {
+           "code": "PEK.2.e",
+           "text": "Travels in general space on different levels."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "fitness",
+     "title": "Fitness",
+     "topics": [
+      {
+       "id": "the-physically-educated-student-demonstrates-kno",
+       "title": "The physically educated student demonstrates knowledge and skills to help achieve and maintain a health-enhancing level of physical activity and fitness",
+       "subtopics": [
+        {
+         "id": "the-physically-educated-student-demonstrates-kno",
+         "title": "The physically educated student demonstrates knowledge and skills to help achieve and maintain a health-enhancing level of physical activity and fitness",
+         "outcomes": [
+          {
+           "code": "PEK.3.a",
+           "text": "Identifies active play opportunities outside the physical education setting."
+          },
+          {
+           "code": "PEK.3.b",
+           "text": "Actively participates in physical education class."
+          },
+          {
+           "code": "PEK.3.c",
+           "text": "Recognizes that moving at a fast pace increases heart rate and breathing."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "personal-and-social-behavior-rules-safety-and-et",
+     "title": "Personal and Social Behavior, Rules, Safety, and Etiquette",
+     "topics": [
+      {
+       "id": "the-physically-educated-student-exhibits-respons",
+       "title": "The physically educated student exhibits responsible personal and social behavior that respects self and others in physical activity settings",
+       "subtopics": [
+        {
+         "id": "the-physically-educated-student-exhibits-respons",
+         "title": "The physically educated student exhibits responsible personal and social behavior that respects self and others in physical activity settings",
+         "outcomes": [
+          {
+           "code": "PEK.4.a",
+           "text": "Follows directions individually and in a group setting (follows rules and takes turns)."
+          },
+          {
+           "code": "PEK.4.b",
+           "text": "Acknowledges responsibility for behavior when prompted."
+          },
+          {
+           "code": "PEK.4.c",
+           "text": "Shares equipment and space with others."
+          },
+          {
+           "code": "PEK.4.d",
+           "text": "Recognizes the established classroom procedures."
+          },
+          {
+           "code": "PEK.4.e",
+           "text": "Follows teacher directions for safe participation and proper use of equipment with minimal reminders."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "the-physically-educated-student-recognizes-the-v",
+       "title": "The physically educated student recognizes the value of physical activity for health, enjoyment, challenge, self-expression, and/or social interaction",
+       "subtopics": [
+        {
+         "id": "the-physically-educated-student-recognizes-the-v",
+         "title": "The physically educated student recognizes the value of physical activity for health, enjoyment, challenge, self-expression, and/or social interaction",
+         "outcomes": [
+          {
+           "code": "PEK.5.a",
+           "text": "Recognizes that physical activity is important for good health."
+          },
+          {
+           "code": "PEK.5.b",
+           "text": "Acknowledges that some physical activities are challenging/difficult."
+          },
+          {
+           "code": "PEK.5.c",
+           "text": "Identifies physical activities that are enjoyable."
+          },
+          {
+           "code": "PEK.5.d",
+           "text": "Recognizes the enjoyment of playing with others."
+          },
+          {
+           "code": "PEK.5.e",
+           "text": "Accepts and respects differences and similarities of physical abilities in self and others."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "1",
+   "units": [
+    {
+     "id": "motor-skills-and-movement-patterns",
+     "title": "Motor Skills and Movement Patterns",
+     "topics": [
+      {
+       "id": "the-physically-educated-student-demonstrates-com",
+       "title": "The physically educated student demonstrates competency in a variety of motor skills and movement patterns",
+       "subtopics": [
+        {
+         "id": "the-physically-educated-student-demonstrates-com",
+         "title": "The physically educated student demonstrates competency in a variety of motor skills and movement patterns (1 of 4)",
+         "outcomes": [
+          {
+           "code": "PE1.1.a",
+           "text": "Performs hops, gallops, jogs, and slides using a mature form."
+          },
+          {
+           "code": "PE1.1.b",
+           "text": "Performs mature pattern of jumping in a horizontal and vertical plane."
+          },
+          {
+           "code": "PE1.1.c",
+           "text": "Performs non-locomotor and locomotor combinations."
+          },
+          {
+           "code": "PE1.1.d",
+           "text": "Performs mature form of landing in a horizontal and vertical plane."
+          },
+          {
+           "code": "PE1.1.e",
+           "text": "Maintains balance on different bases of support while maintaining different body shapes."
+          }
+         ]
+        },
+        {
+         "id": "the-physically-educated-student-demonstrates-com-2",
+         "title": "The physically educated student demonstrates competency in a variety of motor skills and movement patterns (2 of 4)",
+         "outcomes": [
+          {
+           "code": "PE1.1.f",
+           "text": "Transfers weight from one body part to another maintaining personal space."
+          },
+          {
+           "code": "PE1.1.g",
+           "text": "Rolls with either a narrow or curled body shape."
+          },
+          {
+           "code": "PE1.1.h",
+           "text": "Demonstrates twisting, curling, bending, and stretching actions."
+          },
+          {
+           "code": "PE1.1.i",
+           "text": "Demonstrates underhand throwing techniques following teacher cues."
+          },
+          {
+           "code": "PE1.1.j",
+           "text": "Catches various sized objects."
+          }
+         ]
+        },
+        {
+         "id": "the-physically-educated-student-demonstrates-com-3",
+         "title": "The physically educated student demonstrates competency in a variety of motor skills and movement patterns (3 of 4)",
+         "outcomes": [
+          {
+           "code": "PE1.1.k",
+           "text": "Dribbles continuously in personal space using the dominant hand."
+          },
+          {
+           "code": "PE1.1.l",
+           "text": "Dribbles a ball using the inside of the foot while walking in general space."
+          },
+          {
+           "code": "PE1.1.m",
+           "text": "Approaches a stationary ball and kicks it forward while refining correct kicking form (keeping eye on the ball, walking up to the ball, stepping with opposite foot next to ball, contacting the ball with dominant foot, and following through)."
+          },
+          {
+           "code": "PE1.1.n",
+           "text": "Volleys an object upward with an open hand."
+          },
+          {
+           "code": "PE1.1.o",
+           "text": "Strikes an object with a short-handled implement using a proper grip."
+          }
+         ]
+        },
+        {
+         "id": "the-physically-educated-student-demonstrates-com-4",
+         "title": "The physically educated student demonstrates competency in a variety of motor skills and movement patterns (4 of 4)",
+         "outcomes": [
+          {
+           "code": "PE1.1.p",
+           "text": "Jumps forward or backward consecutively using a self-turned rope."
+          },
+          {
+           "code": "PE1.1.q",
+           "text": "Jumps a long rope consecutively with teacher assisted turning."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "movement-concepts-and-principles",
+     "title": "Movement Concepts and Principles",
+     "topics": [
+      {
+       "id": "the-physically-educated-student-applies-the-know",
+       "title": "The physically educated student applies the knowledge of concepts, principles, strategies, and tactics related to movement and performance",
+       "subtopics": [
+        {
+         "id": "the-physically-educated-student-applies-the-know",
+         "title": "The physically educated student applies the knowledge of concepts, principles, strategies, and tactics related to movement and performance",
+         "outcomes": [
+          {
+           "code": "PE1.2.a",
+           "text": "Responds to different beats/rhythms in personal and general space."
+          },
+          {
+           "code": "PE1.2.b",
+           "text": "Travels demonstrating low, medium, and high levels."
+          },
+          {
+           "code": "PE1.2.c",
+           "text": "Travels over, under, around, and through a variety of objects."
+          },
+          {
+           "code": "PE1.2.d",
+           "text": "Differentiates between fast and slow speeds."
+          },
+          {
+           "code": "PE1.2.e",
+           "text": "Differentiates between strong and light force."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "fitness",
+     "title": "Fitness",
+     "topics": [
+      {
+       "id": "the-physically-educated-student-demonstrates-kno",
+       "title": "The physically educated student demonstrates knowledge and skills to help achieve and maintain a health-enhancing level of physical activity and fitness",
+       "subtopics": [
+        {
+         "id": "the-physically-educated-student-demonstrates-kno",
+         "title": "The physically educated student demonstrates knowledge and skills to help achieve and maintain a health-enhancing level of physical activity and fitness",
+         "outcomes": [
+          {
+           "code": "PE1.3.a",
+           "text": "Discusses the benefits of exercising/playing and being active."
+          },
+          {
+           "code": "PE1.3.b",
+           "text": "Actively engages in physical education class."
+          },
+          {
+           "code": "PE1.3.c",
+           "text": "Identifies the heart as a muscle that grows stronger with exercise, play, and physical activity."
+          },
+          {
+           "code": "PE1.3.d",
+           "text": "Practices the proper protocol for each Georgia Fitness Assessment component."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "personal-and-social-behavior-rules-safety-and-et",
+     "title": "Personal and Social Behavior, Rules, Safety, and Etiquette",
+     "topics": [
+      {
+       "id": "the-physically-educated-student-exhibits-respons",
+       "title": "The physically educated student exhibits responsible personal and social behavior that respects self and others in physical activity settings",
+       "subtopics": [
+        {
+         "id": "the-physically-educated-student-exhibits-respons",
+         "title": "The physically educated student exhibits responsible personal and social behavior that respects self and others in physical activity settings",
+         "outcomes": [
+          {
+           "code": "PE1.4.a",
+           "text": "Accepts personal responsibility by using equipment and space appropriately."
+          },
+          {
+           "code": "PE1.4.b",
+           "text": "Follows the rules and procedures of the learning environment."
+          },
+          {
+           "code": "PE1.4.c",
+           "text": "Responds appropriately to feedback from the teacher."
+          },
+          {
+           "code": "PE1.4.d",
+           "text": "Works independently with others in small and large groups."
+          },
+          {
+           "code": "PE1.4.e",
+           "text": "Follows teacher directions for safe participation and proper use of equipment with minimal teacher reminders."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "the-physically-educated-student-recognizes-the-v",
+       "title": "The physically educated student recognizes the value of physical activity for health, enjoyment, challenge, self-expression, and/or social interaction",
+       "subtopics": [
+        {
+         "id": "the-physically-educated-student-recognizes-the-v",
+         "title": "The physically educated student recognizes the value of physical activity for health, enjoyment, challenge, self-expression, and/or social interaction",
+         "outcomes": [
+          {
+           "code": "PE1.5.a",
+           "text": "Recognizes physical activity as a component of good health."
+          },
+          {
+           "code": "PE1.5.b",
+           "text": "Recognizes that challenges in physical activity can lead to success."
+          },
+          {
+           "code": "PE1.5.c",
+           "text": "Describes positive feelings that result from physical activities."
+          },
+          {
+           "code": "PE1.5.d",
+           "text": "Identifies personal likes and dislikes regarding participation in physical activities with others."
+          },
+          {
+           "code": "PE1.5.e",
+           "text": "Accepts and respects differences and similarities in physical abilities in self and others."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "2",
+   "units": [
+    {
+     "id": "motor-skills-and-movement-patterns",
+     "title": "Motor Skills and Movement Patterns",
+     "topics": [
+      {
+       "id": "the-physically-educated-student-demonstrates-com",
+       "title": "The physically educated student demonstrates competency in a variety of motor skills and movement patterns",
+       "subtopics": [
+        {
+         "id": "the-physically-educated-student-demonstrates-com",
+         "title": "The physically educated student demonstrates competency in a variety of motor skills and movement patterns (1 of 4)",
+         "outcomes": [
+          {
+           "code": "PE2.1.a",
+           "text": "Uses combinations of various locomotor movement patterns (skip, gallop, slide, jog, run, and jump) while demonstrating proper form with different pathways."
+          },
+          {
+           "code": "PE2.1.b",
+           "text": "Performs a variety of locomotor and non-locomotor skills in teacher-designed rhythmic activities."
+          },
+          {
+           "code": "PE2.1.c",
+           "text": "Performs a combination of rolling and balance skills."
+          },
+          {
+           "code": "PE2.1.d",
+           "text": "Performs rhythmical sequences in a creative routine and in simple folk/line dance."
+          },
+          {
+           "code": "PE2.1.e",
+           "text": "Transfers weight while maintaining balance."
+          }
+         ]
+        },
+        {
+         "id": "the-physically-educated-student-demonstrates-com-2",
+         "title": "The physically educated student demonstrates competency in a variety of motor skills and movement patterns (2 of 4)",
+         "outcomes": [
+          {
+           "code": "PE2.1.f",
+           "text": "Demonstrates the underhand throw while using mature form (facing target, stepping with opposition, transferring weight, and following through)."
+          },
+          {
+           "code": "PE2.1.g",
+           "text": "Demonstrates overhand throwing techniques following teacher cues."
+          },
+          {
+           "code": "PE2.1.h",
+           "text": "Catches an object at a medium level with the hands (not trapping against the body)."
+          },
+          {
+           "code": "PE2.1.i",
+           "text": "Dribbles a ball using the dominant hand while traveling in general space."
+          },
+          {
+           "code": "PE2.1.j",
+           "text": "Dribbles a ball with control using the feet while traveling in general space."
+          }
+         ]
+        },
+        {
+         "id": "the-physically-educated-student-demonstrates-com-3",
+         "title": "The physically educated student demonstrates competency in a variety of motor skills and movement patterns (3 of 4)",
+         "outcomes": [
+          {
+           "code": "PE2.1.k",
+           "text": "Kicks a moving ball using mature kicking form while traveling (keeping eye on the ball, stepping with opposite foot next to ball, contacting the ball with dominant foot, and following through)."
+          },
+          {
+           "code": "PE2.1.l",
+           "text": "Consecutively volleys an object."
+          },
+          {
+           "code": "PE2.1.m",
+           "text": "Consecutively strikes a variety of objects with a short-handled implement."
+          },
+          {
+           "code": "PE2.1.n",
+           "text": "Rolls an object/ball to a partner or target."
+          },
+          {
+           "code": "PE2.1.o",
+           "text": "Turns a long rope successfully."
+          }
+         ]
+        },
+        {
+         "id": "the-physically-educated-student-demonstrates-com-4",
+         "title": "The physically educated student demonstrates competency in a variety of motor skills and movement patterns (4 of 4)",
+         "outcomes": [
+          {
+           "code": "PE2.1.p",
+           "text": "Jumps a self-turned rope continuously."
+          },
+          {
+           "code": "PE2.1.q",
+           "text": "Jumps a long rope successfully."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "movement-concepts-and-principles",
+     "title": "Movement Concepts and Principles",
+     "topics": [
+      {
+       "id": "the-physically-educated-student-applies-the-know",
+       "title": "The physically educated student applies the knowledge of concepts, principles, strategies, and tactics related to movement and performance",
+       "subtopics": [
+        {
+         "id": "the-physically-educated-student-applies-the-know",
+         "title": "The physically educated student applies the knowledge of concepts, principles, strategies, and tactics related to movement and performance",
+         "outcomes": [
+          {
+           "code": "PE2.2.a",
+           "text": "Maintains personal space in a movement setting."
+          },
+          {
+           "code": "PE2.2.b",
+           "text": "Uses a variety of shapes, levels, and pathways in a variety of movement settings."
+          },
+          {
+           "code": "PE2.2.c",
+           "text": "Demonstrates gradual increases and decreases in speed and force in dance and/or a variety of activities."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "fitness",
+     "title": "Fitness",
+     "topics": [
+      {
+       "id": "the-physically-educated-student-demonstrates-kno",
+       "title": "The physically educated student demonstrates knowledge and skills to help achieve and maintain a health-enhancing level of physical activity and fitness",
+       "subtopics": [
+        {
+         "id": "the-physically-educated-student-demonstrates-kno",
+         "title": "The physically educated student demonstrates knowledge and skills to help achieve and maintain a health-enhancing level of physical activity and fitness",
+         "outcomes": [
+          {
+           "code": "PE2.3.a",
+           "text": "Recognizes physiological indicators that accompany moderate to vigorous physical activities (feels hot, thirsty, sweaty, increased heart rate and heavy breathing)."
+          },
+          {
+           "code": "PE2.3.b",
+           "text": "Actively engages in physical education."
+          },
+          {
+           "code": "PE2.3.c",
+           "text": "Identifies physical activities that contribute to fitness in and outside of a physical education setting."
+          },
+          {
+           "code": "PE2.3.d",
+           "text": "Practices the proper protocol for each Georgia Fitness Assessment component."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "personal-and-social-behavior-rules-safety-and-et",
+     "title": "Personal and Social Behavior, Rules, Safety, and Etiquette",
+     "topics": [
+      {
+       "id": "the-physically-educated-student-exhibits-respons",
+       "title": "The physically educated student exhibits responsible personal and social behavior that respects self and others in physical activity settings",
+       "subtopics": [
+        {
+         "id": "the-physically-educated-student-exhibits-respons",
+         "title": "The physically educated student exhibits responsible personal and social behavior that respects self and others in physical activity settings",
+         "outcomes": [
+          {
+           "code": "PE2.4.a",
+           "text": "Accepts corrective feedback from teacher."
+          },
+          {
+           "code": "PE2.4.b",
+           "text": "Works cooperatively with peers to solve problems and conflicts."
+          },
+          {
+           "code": "PE2.4.c",
+           "text": "Respects personal and group space (recognizes boundaries and keeps hands/feet to self)."
+          },
+          {
+           "code": "PE2.4.d",
+           "text": "Interacts positively with others during partner and small group activities."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "the-physically-educated-student-recognizes-the-v",
+       "title": "The physically educated student recognizes the value of physical activity for health, enjoyment, challenge, self-expression, and/or social interaction",
+       "subtopics": [
+        {
+         "id": "the-physically-educated-student-recognizes-the-v",
+         "title": "The physically educated student recognizes the value of physical activity for health, enjoyment, challenge, self-expression, and/or social interaction",
+         "outcomes": [
+          {
+           "code": "PE2.5.a",
+           "text": "Describes and identifies emotions before, during, and after participating in physical activity."
+          },
+          {
+           "code": "PE2.5.b",
+           "text": "Participates willingly in physical activities which require learning new skills."
+          },
+          {
+           "code": "PE2.5.c",
+           "text": "Identifies physical activities which provide opportunities for self-expression in dance, gymnastics routines, and game environments."
+          },
+          {
+           "code": "PE2.5.d",
+           "text": "Recognizes the value of working cooperatively with others."
+          },
+          {
+           "code": "PE2.5.e",
+           "text": "Accepts and respects differences and similarities in physical abilities in self and others."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "3",
+   "units": [
+    {
+     "id": "motor-skills-and-movement-patterns",
+     "title": "Motor Skills and Movement Patterns",
+     "topics": [
+      {
+       "id": "the-physically-educated-student-demonstrates-com",
+       "title": "The physically educated student demonstrates competency in a variety of motor skills and movement patterns",
+       "subtopics": [
+        {
+         "id": "the-physically-educated-student-demonstrates-com",
+         "title": "The physically educated student demonstrates competency in a variety of motor skills and movement patterns (1 of 4)",
+         "outcomes": [
+          {
+           "code": "PE3.1.a",
+           "text": "Demonstrates fleeing, dodging, and chasing skills during game play."
+          },
+          {
+           "code": "PE3.1.b",
+           "text": "Performs a leap using a mature pattern."
+          },
+          {
+           "code": "PE3.1.c",
+           "text": "Travels differentiating between speeds. (jogging, sprinting, and running)."
+          },
+          {
+           "code": "PE3.1.d",
+           "text": "Jumps and lands on feet for height and distance."
+          },
+          {
+           "code": "PE3.1.e",
+           "text": "Transfers weight while traveling in a variety of directions, levels, and pathways."
+          }
+         ]
+        },
+        {
+         "id": "the-physically-educated-student-demonstrates-com-2",
+         "title": "The physically educated student demonstrates competency in a variety of motor skills and movement patterns (2 of 4)",
+         "outcomes": [
+          {
+           "code": "PE3.1.f",
+           "text": "Balances on different bases of support demonstrating various levels and shapes."
+          },
+          {
+           "code": "PE3.1.g",
+           "text": "Demonstrates various step patterns and combinations of movement patterns in repeatable rhythmic sequences."
+          },
+          {
+           "code": "PE3.1.h",
+           "text": "Throws underhand to partner/target with a mature form (facing target, stepping with opposition, transferring weight, and following through)."
+          },
+          {
+           "code": "PE3.1.i",
+           "text": "Throws overhand for distance and/or force using critical cues (stepping with opposition and side to target, transferring weight, and following through)."
+          },
+          {
+           "code": "PE3.1.j",
+           "text": "Catches an object tossed from a partner."
+          }
+         ]
+        },
+        {
+         "id": "the-physically-educated-student-demonstrates-com-3",
+         "title": "The physically educated student demonstrates competency in a variety of motor skills and movement patterns (3 of 4)",
+         "outcomes": [
+          {
+           "code": "PE3.1.k",
+           "text": "Dribbles with dominate/non-dominate hand while traveling at various speeds and while keeping the ball under control."
+          },
+          {
+           "code": "PE3.1.l",
+           "text": "Dribbles with the feet while traveling at slow to moderate speeds and while keeping the ball under control."
+          },
+          {
+           "code": "PE3.1.m",
+           "text": "Runs to kick a stationary ball at a target."
+          },
+          {
+           "code": "PE3.1.n",
+           "text": "Uses a continuous running approach to kick the ball on the ground (inside of foot) and in the air (shoe laces) while demonstrating mature kicking form (keeping eye on the ball, stepping with opposite foot next to ball, contacting the ball with dominant foot, following through)."
+          },
+          {
+           "code": "PE3.1.o",
+           "text": "Receives and passes the ball to a stationary target using the inside of the feet."
+          }
+         ]
+        },
+        {
+         "id": "the-physically-educated-student-demonstrates-com-4",
+         "title": "The physically educated student demonstrates competency in a variety of motor skills and movement patterns (4 of 4)",
+         "outcomes": [
+          {
+           "code": "PE3.1.p",
+           "text": "Volleys an object over a net or to a partner/target with an underhand or sidearm striking pattern."
+          },
+          {
+           "code": "PE3.1.q",
+           "text": "Uses a proper grip when striking an object with a long-handled implement (paddle, bat, hockey stick, and racket)."
+          },
+          {
+           "code": "PE3.1.r",
+           "text": "Jumps a self-turned rope while continuously performing a variety of skills (skier, bell, straddle, and scissors)."
+          },
+          {
+           "code": "PE3.1.s",
+           "text": "Enters/exits a turning long rope."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "movement-concepts-and-principles",
+     "title": "Movement Concepts and Principles",
+     "topics": [
+      {
+       "id": "the-physically-educated-student-applies-the-know",
+       "title": "The physically educated student applies the knowledge of concepts, principles, strategies, and tactics related to movement and performance",
+       "subtopics": [
+        {
+         "id": "the-physically-educated-student-applies-the-know",
+         "title": "The physically educated student applies the knowledge of concepts, principles, strategies, and tactics related to movement and performance",
+         "outcomes": [
+          {
+           "code": "PE3.2.a",
+           "text": "Practices and recognizes the proper protocol for each Georgia Fitness Assessment component."
+          },
+          {
+           "code": "PE3.2.b",
+           "text": "Applies the concept of muscle tension with balance in gymnastics and/or dance."
+          },
+          {
+           "code": "PE3.2.c",
+           "text": "Uses a variety of locomotor skills in general space to a rhythm."
+          },
+          {
+           "code": "PE3.2.d",
+           "text": "Recognizes the concept of open spaces in a movement setting."
+          },
+          {
+           "code": "PE3.2.e",
+           "text": "Incorporates movement concepts (direction, levels, time, and force) with skills as directed by the teacher."
+          },
+          {
+           "code": "PE3.2.f",
+           "text": "Applies simple strategies and/or tactics in chasing, fleeing, and dodging activities."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "fitness",
+     "title": "Fitness",
+     "topics": [
+      {
+       "id": "the-physically-educated-student-demonstrates-kno",
+       "title": "The physically educated student demonstrates knowledge and skills to help achieve and maintain a health-enhancing level of physical activity and fitness",
+       "subtopics": [
+        {
+         "id": "the-physically-educated-student-demonstrates-kno",
+         "title": "The physically educated student demonstrates knowledge and skills to help achieve and maintain a health-enhancing level of physical activity and fitness",
+         "outcomes": [
+          {
+           "code": "PE3.3.a",
+           "text": "Identifies the benefits of being active, exercising, and playing."
+          },
+          {
+           "code": "PE3.3.b",
+           "text": "Recognizes and compares the difference between resting heart rate and the heart rate after vigorous activity."
+          },
+          {
+           "code": "PE3.3.c",
+           "text": "Demonstrates activities for each component of health-related fitness to prepare for fitness testing."
+          },
+          {
+           "code": "PE3.3.d",
+           "text": "Demonstrates the proper protocol for the Georgia Fitness Assessment components."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "personal-and-social-behavior-rules-safety-and-et",
+     "title": "Personal and Social Behavior, Rules, Safety, and Etiquette",
+     "topics": [
+      {
+       "id": "the-physically-educated-student-exhibits-respons",
+       "title": "The physically educated student exhibits responsible personal and social behavior that respects self and others in physical activity settings",
+       "subtopics": [
+        {
+         "id": "the-physically-educated-student-exhibits-respons",
+         "title": "The physically educated student exhibits responsible personal and social behavior that respects self and others in physical activity settings",
+         "outcomes": [
+          {
+           "code": "PE3.4.a",
+           "text": "Demonstrates the ability to work successfully with a partner or with a small group."
+          },
+          {
+           "code": "PE3.4.b",
+           "text": "Exhibits self-control and takes personal responsibility for student's own actions by actively and independently practicing skills."
+          },
+          {
+           "code": "PE3.4.c",
+           "text": "Accepts and implements corrective feedback from teacher."
+          },
+          {
+           "code": "PE3.4.d",
+           "text": "Accepts and respects differences and similarities in physical abilities in self and others."
+          },
+          {
+           "code": "PE3.4.e",
+           "text": "Identifies equipment-specific safety rules and follows them."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "the-physically-educated-student-recognizes-the-v",
+       "title": "The physically educated student recognizes the value of physical activity for health, enjoyment, challenge, self-expression, and/or social interaction",
+       "subtopics": [
+        {
+         "id": "the-physically-educated-student-recognizes-the-v",
+         "title": "The physically educated student recognizes the value of physical activity for health, enjoyment, challenge, self-expression, and/or social interaction",
+         "outcomes": [
+          {
+           "code": "PE3.5.a",
+           "text": "Explains the relationship between physical activity and good health."
+          },
+          {
+           "code": "PE3.5.b",
+           "text": "Describes the challenge that comes from learning a new physical activity."
+          },
+          {
+           "code": "PE3.5.c",
+           "text": "Recognizes the connection between enjoyment and participation of physical activity."
+          },
+          {
+           "code": "PE3.5.d",
+           "text": "Recognizes that physical activity provides opportunity for social interaction."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "4",
+   "units": [
+    {
+     "id": "motor-skills-and-movement-patterns",
+     "title": "Motor Skills and Movement Patterns",
+     "topics": [
+      {
+       "id": "the-physically-educated-student-demonstrates-com",
+       "title": "The physically educated student demonstrates competency in a variety of motor skills and movement patterns",
+       "subtopics": [
+        {
+         "id": "the-physically-educated-student-demonstrates-com",
+         "title": "The physically educated student demonstrates competency in a variety of motor skills and movement patterns (1 of 4)",
+         "outcomes": [
+          {
+           "code": "PE4.1.a",
+           "text": "Uses various locomotor skills in a variety of small-sided games, dance, and educational gymnastics experiences."
+          },
+          {
+           "code": "PE4.1.b",
+           "text": "Creates a repeatable dance, gymnastics, or exercise routine when combining locomotor movement patterns."
+          },
+          {
+           "code": "PE4.1.c",
+           "text": "Balances on different bases of support while transferring weight (walk and balance on a low beam, log roll, transfer weight while stretching and transferring weight from one foot to the other)."
+          },
+          {
+           "code": "PE4.1.d",
+           "text": "Transfers weight in gymnastics and/or dance environments."
+          },
+          {
+           "code": "PE4.1.e",
+           "text": "Throws underhand and overhand using a mature form to a stationary partner or target with reasonable accuracy."
+          }
+         ]
+        },
+        {
+         "id": "the-physically-educated-student-demonstrates-com-2",
+         "title": "The physically educated student demonstrates competency in a variety of motor skills and movement patterns (2 of 4)",
+         "outcomes": [
+          {
+           "code": "PE4.1.f",
+           "text": "Throws to a moving partner or target with reasonable accuracy."
+          },
+          {
+           "code": "PE4.1.g",
+           "text": "Catches a ball thrown from a partner at three different levels (high, medium, and low) with proper form."
+          },
+          {
+           "code": "PE4.1.h",
+           "text": "Dribbles with dominant and non-dominant hands in general space with control of ball and body while increasing and decreasing speed."
+          },
+          {
+           "code": "PE4.1.i",
+           "text": "Dribbles (with feet) in general space with control of ball and body while increasing and decreasing speed."
+          },
+          {
+           "code": "PE4.1.j",
+           "text": "Kicks an object along the ground and in the air."
+          }
+         ]
+        },
+        {
+         "id": "the-physically-educated-student-demonstrates-com-3",
+         "title": "The physically educated student demonstrates competency in a variety of motor skills and movement patterns (3 of 4)",
+         "outcomes": [
+          {
+           "code": "PE4.1.k",
+           "text": "Punts a ball using mature form."
+          },
+          {
+           "code": "PE4.1.l",
+           "text": "Receives and passes the ball with the inside and outside of the feet to a stationary and moving target."
+          },
+          {
+           "code": "PE4.1.m",
+           "text": "Volleys underhand using a mature form in small-sided games."
+          },
+          {
+           "code": "PE4.1.n",
+           "text": "Volleys a ball upward with a two-hand overhead pattern."
+          },
+          {
+           "code": "PE4.1.o",
+           "text": "Strikes an object with a short-handled implement (lollipop paddle or ping pong paddle) alternating hits with a partner over a low net, line, or against a wall demonstrating mature form."
+          }
+         ]
+        },
+        {
+         "id": "the-physically-educated-student-demonstrates-com-4",
+         "title": "The physically educated student demonstrates competency in a variety of motor skills and movement patterns (4 of 4)",
+         "outcomes": [
+          {
+           "code": "PE4.1.p",
+           "text": "Strikes an object with a long-handled implement (hockey stick, golf club, bat, tennis or badminton racket) while demonstrating three of the five critical elements of a mature form (grip, stance, body orientation, swing plane, and follow-through)."
+          },
+          {
+           "code": "PE4.1.q",
+           "text": "Combines traveling with the manipulative skills of dribbling, throwing, catching, striking, and kicking in small-sided games."
+          },
+          {
+           "code": "PE4.1.r",
+           "text": "Creates and/or performs a jump rope routine."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "movement-concepts-and-principles",
+     "title": "Movement Concepts and Principles",
+     "topics": [
+      {
+       "id": "the-physically-educated-student-applies-the-know",
+       "title": "The physically educated student applies the knowledge of concepts, principles, strategies, and tactics related to movement and performance",
+       "subtopics": [
+        {
+         "id": "the-physically-educated-student-applies-the-know",
+         "title": "The physically educated student applies the knowledge of concepts, principles, strategies, and tactics related to movement and performance",
+         "outcomes": [
+          {
+           "code": "PE4.2.a",
+           "text": "Applies the concepts of open and closed spaces in a movement setting."
+          },
+          {
+           "code": "PE4.2.b",
+           "text": "Combines pathways, shapes and levels with skills in small-sided games, gymnastics and/or dance environments."
+          },
+          {
+           "code": "PE4.2.c",
+           "text": "Applies the concepts of speed, endurance, and pacing in movement activities."
+          },
+          {
+           "code": "PE4.2.d",
+           "text": "Applies the concepts of direction and force when manipulating an object."
+          },
+          {
+           "code": "PE4.2.e",
+           "text": "Applies simple offensive and defensive tactics and strategies in a variety of activities."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "fitness",
+     "title": "Fitness",
+     "topics": [
+      {
+       "id": "the-physically-educated-student-demonstrates-kno",
+       "title": "The physically educated student demonstrates knowledge and skills to help achieve and maintain a health-enhancing level of physical activity and fitness",
+       "subtopics": [
+        {
+         "id": "the-physically-educated-student-demonstrates-kno",
+         "title": "The physically educated student demonstrates knowledge and skills to help achieve and maintain a health-enhancing level of physical activity and fitness (1 of 2)",
+         "outcomes": [
+          {
+           "code": "PE4.3.a",
+           "text": "Identifies physical activities which contribute to fitness."
+          },
+          {
+           "code": "PE4.3.b",
+           "text": "Demonstrates warm-up and cool-down activities as they relate to cardiorespiratory fitness assessment."
+          },
+          {
+           "code": "PE4.3.c",
+           "text": "Identifies the components of health-related fitness."
+          },
+          {
+           "code": "PE4.3.d",
+           "text": "Demonstrates the proper protocol and identifies form breaks for the Georgia fitness assessment components."
+          },
+          {
+           "code": "PE4.3.e",
+           "text": "Identifies what the Healthy Fitness Zones are and connects their significance as a piece of the Georgia Fitness Assessment."
+          }
+         ]
+        },
+        {
+         "id": "the-physically-educated-student-demonstrates-kno-2",
+         "title": "The physically educated student demonstrates knowledge and skills to help achieve and maintain a health-enhancing level of physical activity and fitness (2 of 2)",
+         "outcomes": [
+          {
+           "code": "PE4.3.f",
+           "text": "Participates in the Georgia Fitness Assessment Program with teacher supervision and determines if he/she is within the healthy fitness zone."
+          },
+          {
+           "code": "PE4.3.g",
+           "text": "Identifies areas to improve based on Georgia Fitness Assessment results."
+          },
+          {
+           "code": "PE4.3.h",
+           "text": "Compares opportunities for participating in physical activity outside of physical education class."
+          },
+          {
+           "code": "PE4.3.i",
+           "text": "Independently engages in physical education class."
+          },
+          {
+           "code": "PE4.3.j",
+           "text": "Discusses the importance of hydration related to physical activity."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "personal-and-social-behavior-rules-safety-and-et",
+     "title": "Personal and Social Behavior, Rules, Safety, and Etiquette",
+     "topics": [
+      {
+       "id": "the-physically-educated-student-exhibits-respons",
+       "title": "The physically educated student exhibits responsible personal and social behavior that respects self and others in physical activity settings",
+       "subtopics": [
+        {
+         "id": "the-physically-educated-student-exhibits-respons",
+         "title": "The physically educated student exhibits responsible personal and social behavior that respects self and others in physical activity settings",
+         "outcomes": [
+          {
+           "code": "PE4.4.a",
+           "text": "Exhibits responsible behavior through adherence to rules and procedures in a variety of physical activities."
+          },
+          {
+           "code": "PE4.4.b",
+           "text": "Exhibits independent and cooperative responsibility."
+          },
+          {
+           "code": "PE4.4.c",
+           "text": "Listens respectfully to corrective feedback from others (peers and adults)."
+          },
+          {
+           "code": "PE4.4.d",
+           "text": "Works safely with peers and equipment in physical activity settings."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "the-physically-educated-student-recognizes-the-v",
+       "title": "The physically educated student recognizes the value of physical activity for health, enjoyment, challenge, self-expression, and/or social interaction",
+       "subtopics": [
+        {
+         "id": "the-physically-educated-student-recognizes-the-v",
+         "title": "The physically educated student recognizes the value of physical activity for health, enjoyment, challenge, self-expression, and/or social interaction",
+         "outcomes": [
+          {
+           "code": "PE4.5.a",
+           "text": "Examines the health benefits of participating in physical activity."
+          },
+          {
+           "code": "PE4.5.b",
+           "text": "Ranks the enjoyment and/or challenge of various physical activities."
+          },
+          {
+           "code": "PE4.5.c",
+           "text": "Describes and compares the positive social interactions when engaged in a variety of physical activities."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "5",
+   "units": [
+    {
+     "id": "motor-skills-and-movement-patterns",
+     "title": "Motor Skills and Movement Patterns",
+     "topics": [
+      {
+       "id": "the-physically-educated-student-demonstrates-com",
+       "title": "The physically educated student demonstrates competency in a variety motor skills and movement patterns",
+       "subtopics": [
+        {
+         "id": "the-physically-educated-student-demonstrates-com",
+         "title": "The physically educated student demonstrates competency in a variety motor skills and movement patterns (1 of 4)",
+         "outcomes": [
+          {
+           "code": "PE5.1.a",
+           "text": "Demonstrates mature patterns of various locomotor skills in a variety of small-sided games, dance, and educational gymnastics experiences."
+          },
+          {
+           "code": "PE5.1.b",
+           "text": "Creates a repeatable dance, gymnastics, jump rope, or exercise routine when combining locomotor movement patterns using correct rhythm/patterns with a partner or group."
+          },
+          {
+           "code": "PE5.1.c",
+           "text": "Combines balance and weight transfer in a gymnastics and/or dance sequence with a partner."
+          },
+          {
+           "code": "PE5.1.d",
+           "text": "Throws underhand and overhand using a mature form utilizing a variety of objects with accuracy."
+          }
+         ]
+        },
+        {
+         "id": "the-physically-educated-student-demonstrates-com-2",
+         "title": "The physically educated student demonstrates competency in a variety motor skills and movement patterns (2 of 4)",
+         "outcomes": [
+          {
+           "code": "PE5.1.e",
+           "text": "Throws accurately while both partners are in motion."
+          },
+          {
+           "code": "PE5.1.f",
+           "text": "Catches an object with both partners moving."
+          },
+          {
+           "code": "PE5.1.g",
+           "text": "Combines hand dribbling with other skills in small-sided games."
+          },
+          {
+           "code": "PE5.1.h",
+           "text": "Combines dribbling with feet and other skills in small-sided games."
+          }
+         ]
+        },
+        {
+         "id": "the-physically-educated-student-demonstrates-com-3",
+         "title": "The physically educated student demonstrates competency in a variety motor skills and movement patterns (3 of 4)",
+         "outcomes": [
+          {
+           "code": "PE5.1.i",
+           "text": "Demonstrates mature form of kicking and punting in small-sided games."
+          },
+          {
+           "code": "PE5.1.j",
+           "text": "Passes accurately and receives with the feet using a mature form as both partners travel."
+          },
+          {
+           "code": "PE5.1.k",
+           "text": "Volleys underhand using a mature form with accuracy in small-sided games."
+          },
+          {
+           "code": "PE5.1.l",
+           "text": "Volleys a ball with a two-hand overhead pattern, sending it upward accurately and demonstrating mature form."
+          }
+         ]
+        },
+        {
+         "id": "the-physically-educated-student-demonstrates-com-4",
+         "title": "The physically educated student demonstrates competency in a variety motor skills and movement patterns (4 of 4)",
+         "outcomes": [
+          {
+           "code": "PE5.1.m",
+           "text": "Consecutively strikes an object with a partner using a short-handled implement over a net, line, or against a wall in small-sided games."
+          },
+          {
+           "code": "PE5.1.n",
+           "text": "Strikes an object with a long-handled implement demonstrating mature form."
+          },
+          {
+           "code": "PE5.1.o",
+           "text": "Combines traveling with manipulative skills to successfully hit a target (soccer goal, hockey goal, and basketball goal)."
+          },
+          {
+           "code": "PE5.1.p",
+           "text": "Creates and/or performs a jump rope routine with a partner or group."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "movement-concepts-and-principles",
+     "title": "Movement Concepts and Principles",
+     "topics": [
+      {
+       "id": "the-physically-educated-student-applies-the-know",
+       "title": "The physically educated student applies the knowledge of concepts, principles, strategies, and tactics related to movement and performance",
+       "subtopics": [
+        {
+         "id": "the-physically-educated-student-applies-the-know",
+         "title": "The physically educated student applies the knowledge of concepts, principles, strategies, and tactics related to movement and performance",
+         "outcomes": [
+          {
+           "code": "PE5.2.a",
+           "text": "Applies the concepts of open and closed spaces in a practice or game setting."
+          },
+          {
+           "code": "PE5.2.b",
+           "text": "Analyzes movement and applies movement concepts (force, direction, speed, pathways, shapes, and levels) in a variety of small-sided games, dance, and/or gymnastics activities."
+          },
+          {
+           "code": "PE5.2.c",
+           "text": "Applies basic offensive and defensive tactics and strategies in game settings (invasion, chasing/fleeing, net/wall, and field)."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "fitness",
+     "title": "Fitness",
+     "topics": [
+      {
+       "id": "the-physically-educated-student-demonstrates-kno",
+       "title": "The physically educated student demonstrates knowledge and skills to help achieve and maintain a health-enhancing level of physical activity and fitness",
+       "subtopics": [
+        {
+         "id": "the-physically-educated-student-demonstrates-kno",
+         "title": "The physically educated student demonstrates knowledge and skills to help achieve and maintain a health-enhancing level of physical activity and fitness (1 of 2)",
+         "outcomes": [
+          {
+           "code": "PE5.3.a",
+           "text": "Summarizes the effects of physical activity on body systems."
+          },
+          {
+           "code": "PE5.3.b",
+           "text": "Designs a plan to address ways to use physical activity to enhance fitness."
+          },
+          {
+           "code": "PE5.3.c",
+           "text": "Participates in the Georgia Fitness Assessment Program with teacher supervision."
+          },
+          {
+           "code": "PE5.3.d",
+           "text": "Compares Georgia Fitness Assessment results to Healthy Fitness Zones (HFZ)."
+          }
+         ]
+        },
+        {
+         "id": "the-physically-educated-student-demonstrates-kno-2",
+         "title": "The physically educated student demonstrates knowledge and skills to help achieve and maintain a health-enhancing level of physical activity and fitness (2 of 2)",
+         "outcomes": [
+          {
+           "code": "PE5.3.e",
+           "text": "Identifies strategies to improve areas of need based on the Georgia Fitness Assessment results (with teacher assistance)."
+          },
+          {
+           "code": "PE5.3.f",
+           "text": "Reassesses health related fitness to determine improvement and/or non-improvement areas."
+          },
+          {
+           "code": "PE5.3.g",
+           "text": "Engages in teacher-led and independent physical education class activities."
+          },
+          {
+           "code": "PE5.3.h",
+           "text": "Analyzes opportunities for participating in physical activity outside physical education class for fitness benefits."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "personal-and-social-behavior-rules-safety-and-et",
+     "title": "Personal and Social Behavior, Rules, Safety, and Etiquette",
+     "topics": [
+      {
+       "id": "the-physically-educated-student-exhibits-respons",
+       "title": "The physically educated student exhibits responsible personal and social behavior that respects self and others in physical activity settings",
+       "subtopics": [
+        {
+         "id": "the-physically-educated-student-exhibits-respons",
+         "title": "The physically educated student exhibits responsible personal and social behavior that respects self and others in physical activity settings",
+         "outcomes": [
+          {
+           "code": "PE5.4.a",
+           "text": "Engages in responsible behavior through adherence to rules and procedures in a variety of physical activities."
+          },
+          {
+           "code": "PE5.4.b",
+           "text": "Participates with independent and cooperative responsibility."
+          },
+          {
+           "code": "PE5.4.c",
+           "text": "Gives and accepts corrective feedback respectfully to and from others (peers and adults)."
+          },
+          {
+           "code": "PE5.4.d",
+           "text": "Applies safety principles with peers and equipment in physical activity settings."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "the-physically-educated-student-recognizes-the-v",
+       "title": "The physically educated student recognizes the value of physical activity for health, enjoyment, challenge, self-expression, and/or social interaction",
+       "subtopics": [
+        {
+         "id": "the-physically-educated-student-recognizes-the-v",
+         "title": "The physically educated student recognizes the value of physical activity for health, enjoyment, challenge, self-expression, and/or social interaction",
+         "outcomes": [
+          {
+           "code": "PE5.5.a",
+           "text": "Compares the health benefits of participating in physical activity."
+          },
+          {
+           "code": "PE5.5.b",
+           "text": "Analyzes the enjoyment and/or challenge of various physical activities for a positive or negative response."
+          },
+          {
+           "code": "PE5.5.c",
+           "text": "Describes the social benefits gained when engaged in a variety of physical activities."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "6",
+   "units": [
+    {
+     "id": "motor-skills-and-movement-patterns",
+     "title": "Motor Skills and Movement Patterns",
+     "topics": [
+      {
+       "id": "the-physically-educated-student-demonstrates-com",
+       "title": "The physically educated student demonstrates competency in a variety of motor skills and movement patterns",
+       "subtopics": [
+        {
+         "id": "the-physically-educated-student-demonstrates-com",
+         "title": "The physically educated student demonstrates competency in a variety of motor skills and movement patterns",
+         "outcomes": [
+          {
+           "code": "PE6.1.a",
+           "text": "Performs elements of movement combinations (shape, motion, space, energy, and flow) in multiple activity categories. (see chart for examples)"
+          },
+          {
+           "code": "PE6.1.b",
+           "text": "Performs specialized manipulative skills in an applied setting to include throwing, catching, striking, shooting, and passing, utilizing various body parts or implements with varying trajectories, speed, and direction."
+          },
+          {
+           "code": "PE6.1.c",
+           "text": "Performs rhythm sequences which combine movements and skills."
+          },
+          {
+           "code": "PE6.1.d",
+           "text": "Performs motor skills specific to multiple activity categories."
+          },
+          {
+           "code": "PE6.1.e",
+           "text": "Performs motor skills and movement patterns with appropriate adjustment to dynamic movements such as balance, weight transfer, speed, and direction."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "movement-concepts-and-principles",
+     "title": "Movement Concepts and Principles",
+     "topics": [
+      {
+       "id": "the-physically-educated-student-applies-the-know",
+       "title": "The physically educated student applies the knowledge of concepts, principles, strategies, and tactics related to movement and performance",
+       "subtopics": [
+        {
+         "id": "the-physically-educated-student-applies-the-know",
+         "title": "The physically educated student applies the knowledge of concepts, principles, strategies, and tactics related to movement and performance",
+         "outcomes": [
+          {
+           "code": "PE6.2.a",
+           "text": "Identifies concepts that apply to movement skills, such as creating open space by using various movements (run, jump, or pivot)."
+          },
+          {
+           "code": "PE6.2.b",
+           "text": "Identifies concepts that combine movements (run, jump, or pivot) and changes of speed, direction."
+          },
+          {
+           "code": "PE6.2.c",
+           "text": "Describes basic strategies and motor skill techniques for offense and defense in small-sided game play."
+          },
+          {
+           "code": "PE6.2.d",
+           "text": "Identifies steps to correctly demonstrate a rhythmic or systematic pattern."
+          },
+          {
+           "code": "PE6.2.e",
+           "text": "Identifies and explains the components of skill-related fitness."
+          },
+          {
+           "code": "PE6.2.f",
+           "text": "Identifies opportunities in school, home, and community to be physically active."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "fitness",
+     "title": "Fitness",
+     "topics": [
+      {
+       "id": "the-physically-educated-student-demonstrates-kno",
+       "title": "The physically educated student demonstrates knowledge and skills to help achieve and maintain a health-enhancing level of physical activity and fitness",
+       "subtopics": [
+        {
+         "id": "the-physically-educated-student-demonstrates-kno",
+         "title": "The physically educated student demonstrates knowledge and skills to help achieve and maintain a health-enhancing level of physical activity and fitness (1 of 2)",
+         "outcomes": [
+          {
+           "code": "PE6.3.a",
+           "text": "Recognizes the difference between health-related fitness versus skill-related fitness."
+          },
+          {
+           "code": "PE6.3.b",
+           "text": "Participates in a variety of cardiovascular activities in school and home settings which are considered Moderate to Vigorous Physical Activity (MVPA)."
+          },
+          {
+           "code": "PE6.3.c",
+           "text": "Explains and demonstrates the components of the FITT principle (Frequency, Intensity, Time, and Type) for each component of health-related fitness."
+          },
+          {
+           "code": "PE6.3.d",
+           "text": "Participates in the Georgia Fitness Assessment with teacher supervision."
+          },
+          {
+           "code": "PE6.3.e",
+           "text": "Identifies form breaks for each Georgia Fitness Assessment component."
+          }
+         ]
+        },
+        {
+         "id": "the-physically-educated-student-demonstrates-kno-2",
+         "title": "The physically educated student demonstrates knowledge and skills to help achieve and maintain a health-enhancing level of physical activity and fitness (2 of 2)",
+         "outcomes": [
+          {
+           "code": "PE6.3.f",
+           "text": "Performs fitness assessment protocols correctly."
+          },
+          {
+           "code": "PE6.3.g",
+           "text": "Determines if fitness scores are in the Healthy Fitness Zone (HFZ) for age and gender."
+          },
+          {
+           "code": "PE6.3.h",
+           "text": "Identifies health fitness components that are strong and those in need of improvement."
+          },
+          {
+           "code": "PE6.3.i",
+           "text": "Designs short and long-term personal fitness goals based on strengths and the areas for improvement as indicated by the Georgia Fitness Assessment."
+          },
+          {
+           "code": "PE6.3.j",
+           "text": "Identifies and explains considerations in exercise programs and related equipment."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "personal-and-social-behavior-rules-safety-and-et",
+     "title": "Personal and Social Behavior, Rules, Safety, and Etiquette",
+     "topics": [
+      {
+       "id": "the-physically-educated-student-exhibits-respons",
+       "title": "The physically educated student exhibits responsible personal and social behavior that respects self and others in physical activity settings",
+       "subtopics": [
+        {
+         "id": "the-physically-educated-student-exhibits-respons",
+         "title": "The physically educated student exhibits responsible personal and social behavior that respects self and others in physical activity settings",
+         "outcomes": [
+          {
+           "code": "PE6.4.a",
+           "text": "Demonstrates responsibility by following rules, making appropriate decisions with proper etiquette, and exhibiting safety and respect for self and others."
+          },
+          {
+           "code": "PE6.4.b",
+           "text": "Identifies and demonstrates safe practices with physical education equipment and facilities."
+          },
+          {
+           "code": "PE6.4.c",
+           "text": "Participates independently and cooperatively in class activities."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "the-physically-educated-student-recognizes-the-v",
+       "title": "The physically educated student recognizes the value of physical activity for health, enjoyment, challenge, self-expression, and/or social interaction",
+       "subtopics": [
+        {
+         "id": "the-physically-educated-student-recognizes-the-v",
+         "title": "The physically educated student recognizes the value of physical activity for health, enjoyment, challenge, self-expression, and/or social interaction",
+         "outcomes": [
+          {
+           "code": "PE6.5.a",
+           "text": "Selects and participates in physical activities that foster social interaction and continued personal growth."
+          },
+          {
+           "code": "PE6.5.b",
+           "text": "Explains disease risks which are reduced by participating in physical activity."
+          },
+          {
+           "code": "PE6.5.c",
+           "text": "Explains the physical benefits of participating in physical activity."
+          },
+          {
+           "code": "PE6.5.d",
+           "text": "Describes the social benefits of being physically active."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "7",
+   "units": [
+    {
+     "id": "motor-skills-and-movement-patterns",
+     "title": "Motor Skills and Movement Patterns",
+     "topics": [
+      {
+       "id": "the-physically-educated-student-demonstrates-com",
+       "title": "The physically educated student demonstrates competency in a variety motor skills and movement patterns",
+       "subtopics": [
+        {
+         "id": "the-physically-educated-student-demonstrates-com",
+         "title": "The physically educated student demonstrates competency in a variety motor skills and movement patterns",
+         "outcomes": [
+          {
+           "code": "PE7.1.a",
+           "text": "Performs specialized manipulative skills in an applied setting to include striking and kicking in a dynamic environment while running, changing direction, pace, and levels."
+          },
+          {
+           "code": "PE7.1.b",
+           "text": "Performs a movement sequence in a physical activity, dance routine, or game (e.g., give and go in soccer; hop/step/ jump in triple jump; and jump rope routine)."
+          },
+          {
+           "code": "PE7.1.c",
+           "text": "Creates rhythm sequences that combine complex movement concepts and skills (e.g., the foot movements required to perform a successful basketball layup; running jump shot in team handball; run/jump/throw as in a double play)."
+          },
+          {
+           "code": "PE7.1.d",
+           "text": "Demonstrates control while using a variety of throwing motions in activities (e.g., angleball, horseshoes, spin casting, and ultimate frisbee)."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "movement-concepts-and-principles",
+     "title": "Movement Concepts and Principles",
+     "topics": [
+      {
+       "id": "the-physically-educated-student-applies-the-know",
+       "title": "The physically educated student applies the knowledge of concepts, principles, strategies, and tactics related to movement and performance",
+       "subtopics": [
+        {
+         "id": "the-physically-educated-student-applies-the-know",
+         "title": "The physically educated student applies the knowledge of concepts, principles, strategies, and tactics related to movement and performance",
+         "outcomes": [
+          {
+           "code": "PE7.2.a",
+           "text": "Explores basic physics concepts such as action-reaction, trajectory, levers, and linear velocity that are important in physical activities."
+          },
+          {
+           "code": "PE7.2.b",
+           "text": "Identifies and predicts the results of open space concepts in team sport activities by utilizing offensive and defensive tactics."
+          },
+          {
+           "code": "PE7.2.c",
+           "text": "Analyzes potential outcomes of offensive and defensive tactics in small-sided game settings."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "fitness",
+     "title": "Fitness",
+     "topics": [
+      {
+       "id": "the-physically-educated-student-demonstrates-kno",
+       "title": "The physically educated student demonstrates knowledge and skills to help achieve and maintain a health-enhancing level of physical activity and fitness",
+       "subtopics": [
+        {
+         "id": "the-physically-educated-student-demonstrates-kno",
+         "title": "The physically educated student demonstrates knowledge and skills to help achieve and maintain a health-enhancing level of physical activity and fitness (1 of 3)",
+         "outcomes": [
+          {
+           "code": "PE7.3.a",
+           "text": "Identifies barriers to maintaining a physically active lifestyle."
+          },
+          {
+           "code": "PE7.3.b",
+           "text": "Identifies general principals of training. (the overload principle and the FITT principle of Frequency, Intensity, Time, and Type)."
+          },
+          {
+           "code": "PE7.3.c",
+           "text": "Identifies places in the community where activities learned in class can be practiced and enjoyed."
+          },
+          {
+           "code": "PE7.3.d",
+           "text": "Identifies and explains the difference between health-related and skill-related fitness."
+          },
+          {
+           "code": "PE7.3.e",
+           "text": "Participates in the Georgia Fitness Assessment with teacher supervision."
+          }
+         ]
+        },
+        {
+         "id": "the-physically-educated-student-demonstrates-kno-2",
+         "title": "The physically educated student demonstrates knowledge and skills to help achieve and maintain a health-enhancing level of physical activity and fitness (2 of 3)",
+         "outcomes": [
+          {
+           "code": "PE7.3.f",
+           "text": "Identifies accurately form breaks for each Georgia Fitness Assessment component."
+          },
+          {
+           "code": "PE7.3.g",
+           "text": "Performs fitness assessment protocols correctly."
+          },
+          {
+           "code": "PE7.3.h",
+           "text": "Determines if fitness scores are in the Healthy Fitness Zone (HFZ) for age and gender."
+          },
+          {
+           "code": "PE7.3.i",
+           "text": "Identifies health fitness components that are strong and those in need of improvement."
+          },
+          {
+           "code": "PE7.3.j",
+           "text": "Develops and revises an exercise plan utilizing exercises or activities that will contribute to the improvement of in one or more components of the Georgia Fitness Assessment Program."
+          }
+         ]
+        },
+        {
+         "id": "the-physically-educated-student-demonstrates-kno-3",
+         "title": "The physically educated student demonstrates knowledge and skills to help achieve and maintain a health-enhancing level of physical activity and fitness (3 of 3)",
+         "outcomes": [
+          {
+           "code": "PE7.3.k",
+           "text": "Explains the RPE (Rating of Perceived Exertion) scale and how it can be used in a personal fitness regimen."
+          },
+          {
+           "code": "PE7.3.l",
+           "text": "Explains the importance of the aerobic capacity in overall health."
+          },
+          {
+           "code": "PE7.3.m",
+           "text": "Compares and contrasts static and dynamic stretching."
+          },
+          {
+           "code": "PE7.3.n",
+           "text": "Compares and contrasts strength and endurance training."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "personal-and-social-behavior-rules-safety-and-et",
+     "title": "Personal and Social Behavior, Rules, Safety, and Etiquette",
+     "topics": [
+      {
+       "id": "the-physically-educated-student-exhibits-respons",
+       "title": "The physically educated student exhibits responsible personal and social behavior that respects self and others in physical activity settings",
+       "subtopics": [
+        {
+         "id": "the-physically-educated-student-exhibits-respons",
+         "title": "The physically educated student exhibits responsible personal and social behavior that respects self and others in physical activity settings",
+         "outcomes": [
+          {
+           "code": "PE7.4.a",
+           "text": "Demonstrates support of and cooperation with peers."
+          },
+          {
+           "code": "PE7.4.b",
+           "text": "Exhibits task behaviors with limited supervision by self-officiating and problem solving during activities and including the safe and appropriate use of equipment."
+          },
+          {
+           "code": "PE7.4.c",
+           "text": "Demonstrates an acceptance of differences among classmates in physical development, maturation, and varying skill levels by providing encouragement and positive feedback and by avoiding bullying behavior."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "the-physically-educated-student-recognizes-the-v",
+       "title": "The physically educated student recognizes the value of physical activity for health, enjoyment, challenge, self-expression, and/or social interaction",
+       "subtopics": [
+        {
+         "id": "the-physically-educated-student-recognizes-the-v",
+         "title": "The physically educated student recognizes the value of physical activity for health, enjoyment, challenge, self-expression, and/or social interaction",
+         "outcomes": [
+          {
+           "code": "PE7.5.a",
+           "text": "Participates in health enhancing activities for personal challenge and describes how each exerts a positive effect on health."
+          },
+          {
+           "code": "PE7.5.b",
+           "text": "Participates in new activities and describes the positive mental and emotional benefits of participation."
+          },
+          {
+           "code": "PE7.5.c",
+           "text": "Explains the benefits of social interaction through physical activity."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "8",
+   "units": [
+    {
+     "id": "motor-skills-and-movement-patterns",
+     "title": "Motor Skills and Movement Patterns",
+     "topics": [
+      {
+       "id": "the-physically-educated-student-demonstrates-com",
+       "title": "The physically educated student demonstrates competency in a variety of motor skills and movement patterns",
+       "subtopics": [
+        {
+         "id": "the-physically-educated-student-demonstrates-com",
+         "title": "The physically educated student demonstrates competency in a variety of motor skills and movement patterns",
+         "outcomes": [
+          {
+           "code": "PE8.1.a",
+           "text": "Performs specialized manipulative skills in small-sided games."
+          },
+          {
+           "code": "PE8.1.b",
+           "text": "Performs movement skills in complex activity settings based on situational analysis (e.g., number of outs, players on base, shot selection, time on the clock, and/or playing short one player vs. opponents)."
+          },
+          {
+           "code": "PE8.1.c",
+           "text": "Creates offensive and defensive strategies in small-sided games based on situational play."
+          },
+          {
+           "code": "PE8.1.d",
+           "text": "Creates rhythm sequences that combine complex movement concepts and skills."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "movement-concepts-and-principles",
+     "title": "Movement Concepts and Principles",
+     "topics": [
+      {
+       "id": "the-physically-educated-student-applies-the-know",
+       "title": "The physically educated student applies the knowledge of concepts, principles, strategies, and tactics related to movement and performance",
+       "subtopics": [
+        {
+         "id": "the-physically-educated-student-applies-the-know",
+         "title": "The physically educated student applies the knowledge of concepts, principles, strategies, and tactics related to movement and performance",
+         "outcomes": [
+          {
+           "code": "PE8.2.a",
+           "text": "Assesses movement and strategies necessary for physical performance in individual activity and team situations (transition from offense to defense and vice versa; offensive and defensive positioning; body position; weight transfer; and communication with teammates)."
+          },
+          {
+           "code": "PE8.2.b",
+           "text": "Explores important concepts in physical activities, such as action-reaction, trajectory, levers, and linear velocity."
+          },
+          {
+           "code": "PE8.2.c",
+           "text": "Describes the impacts of critical elements related to complex motor skills (force, timing, speed, direction, levels, and sequence of motion)."
+          },
+          {
+           "code": "PE8.2.d",
+           "text": "Critiques self or others in the performance of a specific motor skill and provides suggestions for improving the performance."
+          },
+          {
+           "code": "PE8.2.e",
+           "text": "Formulates appropriate decisions based on game conditions (weather, teammates, individual skill levels, game situations, and opponent's skill level)."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "fitness",
+     "title": "Fitness",
+     "topics": [
+      {
+       "id": "the-physically-educated-student-demonstrates-kno",
+       "title": "The physically educated student demonstrates knowledge & skills to help achieve and maintain a health-enhancing level of physical activity and fitness",
+       "subtopics": [
+        {
+         "id": "the-physically-educated-student-demonstrates-kno",
+         "title": "The physically educated student demonstrates knowledge & skills to help achieve and maintain a health-enhancing level of physical activity and fitness (1 of 2)",
+         "outcomes": [
+          {
+           "code": "PE8.3.a",
+           "text": "Investigates ways to increase levels of moderate and vigorous physical activity (MVPA) in daily routines and reduce the barriers within one's environment (home, school, and/or community)."
+          },
+          {
+           "code": "PE8.3.b",
+           "text": "Tracks activity and progress using activity journals, computer software, apps, or other methods to make indicated adjustments."
+          },
+          {
+           "code": "PE8.3.c",
+           "text": "Participates in the Georgia Fitness Assessment with teacher supervision."
+          },
+          {
+           "code": "PE8.3.d",
+           "text": "Develops and revises an exercise plan utilizing exercises or activities that will contribute to the improvement of in one or more components of the Georgia Fitness Assessment Program."
+          }
+         ]
+        },
+        {
+         "id": "the-physically-educated-student-demonstrates-kno-2",
+         "title": "The physically educated student demonstrates knowledge & skills to help achieve and maintain a health-enhancing level of physical activity and fitness (2 of 2)",
+         "outcomes": [
+          {
+           "code": "PE8.3.e",
+           "text": "Explains the importance of aerobic capacity and strives in the personal fitness plan to achieve a goal of 50% of activity time spent in MVPA."
+          },
+          {
+           "code": "PE8.3.f",
+           "text": "Uses heart rate to measure Rating of Perceived Exertion (RPE) and to determine intensity."
+          },
+          {
+           "code": "PE8.3.g",
+           "text": "Demonstrate which strength, toning, and physical activities impact specific muscle groups."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "personal-and-social-behavior-rules-safety-and-et",
+     "title": "Personal and Social Behavior, Rules, Safety, and Etiquette",
+     "topics": [
+      {
+       "id": "the-physically-educated-student-exhibits-respons",
+       "title": "The physically educated student exhibits responsible personal and social behavior that respects self and others in physical activity settings",
+       "subtopics": [
+        {
+         "id": "the-physically-educated-student-exhibits-respons",
+         "title": "The physically educated student exhibits responsible personal and social behavior that respects self and others in physical activity settings",
+         "outcomes": [
+          {
+           "code": "PE8.4.a",
+           "text": "Exhibits personal responsibility and the ability to resolve conflicts in a physical activity setting."
+          },
+          {
+           "code": "PE8.4.b",
+           "text": "Assumes leadership roles to facilitate class management (team leaders, officials, or equipment managers)."
+          },
+          {
+           "code": "PE8.4.c",
+           "text": "Adheres to school, class, or activity rules and guidelines established for resolving conflicts."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "the-physically-educated-student-recognizes-the-v",
+       "title": "The physically educated student recognizes the value of physical activity for health, enjoyment, challenge, self-expression, and/or social interaction",
+       "subtopics": [
+        {
+         "id": "the-physically-educated-student-recognizes-the-v",
+         "title": "The physically educated student recognizes the value of physical activity for health, enjoyment, challenge, self-expression, and/or social interaction",
+         "outcomes": [
+          {
+           "code": "PE8.5.a",
+           "text": "Recognizes the role of physical activity in today's society in the development of positive health aspects, enjoyment, and social interaction."
+          },
+          {
+           "code": "PE8.5.b",
+           "text": "Analyzes the relationship between inactivity (\"sedentary behavior\") and obesity on mental and emotional health."
+          },
+          {
+           "code": "PE8.5.c",
+           "text": "Explores the importance of physical activity in managing social and emotional challenges (anxiety, depression, etc.)."
+          },
+          {
+           "code": "PE8.5.d",
+           "text": "Displays empathy and encouragement to others during physical activity."
+          },
+          {
+           "code": "PE8.5.e",
+           "text": "Supports student-centered inquiry into all types of physical activity to encourage discovery of activities that allow for self-expression and lifelong enjoyment."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "9-12",
+   "units": [
+    {
+     "id": "body-sculpting",
+     "title": "Body Sculpting",
+     "topics": [
+      {
+       "id": "motor-skills-and-movement-patterns",
+       "title": "Motor Skills and Movement Patterns",
+       "subtopics": [
+        {
+         "id": "the-physically-educated-student-demonstrates-com",
+         "title": "The physically educated student demonstrates competency in a variety motor skills and movement patterns",
+         "outcomes": [
+          {
+           "code": "PEBS.1.a",
+           "text": "Identifies and performs proper strength and conditioning techniques using calisthenics and other exercises with body weight."
+          },
+          {
+           "code": "PEBS.1.b",
+           "text": "Demonstrates proper spotting techniques for all lifts and exercises that require spotting."
+          },
+          {
+           "code": "PEBS.1.c",
+           "text": "Demonstrates the proper lifting techniques for equipment used to strengthen the lower body."
+          },
+          {
+           "code": "PEBS.1.d",
+           "text": "Demonstrates the proper lifting techniques for equipment used to strengthen the upper body."
+          },
+          {
+           "code": "PEBS.1.e",
+           "text": "Demonstrates the proper use of two major types of weight-training equipment: machines and free weights."
+          },
+          {
+           "code": "PEBS.1.f",
+           "text": "Develops and executes a series of exercises using machines and free weights to enhance a conditioning program."
+          },
+          {
+           "code": "PEBS.1.g",
+           "text": "Demonstrates proper posture, form, and flexibility in training"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "movement-concepts-and-principles",
+       "title": "Movement Concepts and Principles",
+       "subtopics": [
+        {
+         "id": "the-physically-educated-student-applies-the-know",
+         "title": "The physically educated student applies the knowledge of concepts, principles, strategies, and tactics related to movement and performance",
+         "outcomes": [
+          {
+           "code": "PEBS.2.a",
+           "text": "Compares the differences between warm-up and cool–down."
+          },
+          {
+           "code": "PEBS.2.b",
+           "text": "Defines set and repetition as they relate to body toning."
+          },
+          {
+           "code": "PEBS.2.c",
+           "text": "Identifies the weight load needed for individual workouts."
+          },
+          {
+           "code": "PEBS.2.d",
+           "text": "Identifies the proper training methods and develops a series of exercises based on personal goals."
+          },
+          {
+           "code": "PEBS.2.e",
+           "text": "Identifies exercise(s) needed to target specific muscle groups."
+          },
+          {
+           "code": "PEBS.2.f",
+           "text": "Classifies the advantages and disadvantages of machine and free-weight exercises."
+          },
+          {
+           "code": "PEBS.2.g",
+           "text": "Identifies the major muscle groups."
+          },
+          {
+           "code": "PEBS.2.h",
+           "text": "Understands the biomechanical purpose for each major muscle group."
+          },
+          {
+           "code": "PEBS.2.i",
+           "text": "Determines the differences between small and large (isolated) muscle-group exercises."
+          },
+          {
+           "code": "PEBS.2.j",
+           "text": "Compares the different types of muscular contractions."
+          },
+          {
+           "code": "PEBS.2.k",
+           "text": "Determines the amount of rest needed between each set as it relates to the type of exercise being performed."
+          },
+          {
+           "code": "PEBS.2.l",
+           "text": "Demonstrates the proper use of various free-weight equipment for specified muscle groups."
+          },
+          {
+           "code": "PEBS.2.m",
+           "text": "Describes the importance of charting and record-keeping in a training and conditioning program."
+          },
+          {
+           "code": "PEBS.2.n",
+           "text": "Identifies the importance of nutrition as part of an overall conditioning and weight-management program."
+          },
+          {
+           "code": "PEBS.2.o",
+           "text": "Identifies the benefits of aerobic exercise for general health and an overall body conditioning program."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "fitness",
+       "title": "Fitness",
+       "subtopics": [
+        {
+         "id": "the-physically-educated-student-demonstrates-kno",
+         "title": "The physically educated student demonstrates knowledge and skills to help achieve and maintain a health-enhancing level of physical activity and fitness",
+         "outcomes": [
+          {
+           "code": "PEBS.3.a",
+           "text": "Participates in the components of the Georgia Fitness Assessment with teacher supervision and guidance."
+          },
+          {
+           "code": "PEBS.3.b",
+           "text": "Evaluates current fitness scores on the Georgia health-related fitness assessment."
+          },
+          {
+           "code": "PEBS.3.c",
+           "text": "Designs, implements, and monitors a program of improvement or maintenance based on the results of Georgia health-related fitness assessments."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "personal-and-social-behavior-rules-safety-and-et",
+       "title": "Personal and Social Behavior, Rules, Safety, and Etiquette",
+       "subtopics": [
+        {
+         "id": "the-physically-educated-student-exhibits-respons",
+         "title": "The physically educated student exhibits responsible personal and social behavior that respects self and others in physical activity settings",
+         "outcomes": [
+          {
+           "code": "PEBS.4.a",
+           "text": "Exhibits responsibility and proper application of safety protocols when participating in conditioning and toning activities."
+          },
+          {
+           "code": "PEBS.4.b",
+           "text": "Exhibits the ability to demonstrate safe and responsible behavior."
+          },
+          {
+           "code": "PEBS.4.c",
+           "text": "Exhibits proper etiquette and respect for others while engaging in physical activity."
+          }
+         ]
+        },
+        {
+         "id": "the-physically-educated-student-recognizes-the-v",
+         "title": "The physically educated student recognizes the value of physical activity for health, enjoyment, challenge, self-expression, and/or social interaction",
+         "outcomes": [
+          {
+           "code": "PEBS.5.a",
+           "text": "Explains the personal value of aerobic exercise and body toning."
+          },
+          {
+           "code": "PEBS.5.b",
+           "text": "Summarizes the mental and emotional benefits of aerobic exercise and body toning."
+          },
+          {
+           "code": "PEBS.5.c",
+           "text": "Evaluates the personal benefits of individual and group activities."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "advanced-body-sculpting",
+     "title": "Advanced Body Sculpting",
+     "topics": [
+      {
+       "id": "motor-skills-and-movement-patterns",
+       "title": "Motor Skills and Movement Patterns",
+       "subtopics": [
+        {
+         "id": "the-physically-educated-student-demonstrates-com",
+         "title": "The physically educated student demonstrates competency in a variety motor skills and movement patterns",
+         "outcomes": [
+          {
+           "code": "PEABS.1.a",
+           "text": "Demonstrates correct training methods used in body sculpting."
+          },
+          {
+           "code": "PEABS.1.b",
+           "text": "Identifies and performs more complex callisthenic and other exercises using body weight."
+          },
+          {
+           "code": "PEABS.1.c",
+           "text": "Demonstrates the proper use of two major types of weight-training equipment: machines and free weights."
+          },
+          {
+           "code": "PEABS.1.d",
+           "text": "Identifies and demonstrates the proper use of resistance bands, handheld weights, and other strength and conditioning apparatus."
+          },
+          {
+           "code": "PEABS.1.e",
+           "text": "Demonstrates competence while performing correct strength training techniques and emphasizing fitness and personal responsibility."
+          },
+          {
+           "code": "PEABS.1.f",
+           "text": "Provides support to classmates when using weight machines, handheld weights, and body weight exercises."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "movement-concepts-and-principles",
+       "title": "Movement Concepts and Principles",
+       "subtopics": [
+        {
+         "id": "the-physically-educated-student-applies-the-know",
+         "title": "The physically educated student applies the knowledge of concepts, principles, strategies, and tactics related to movement and performance",
+         "outcomes": [
+          {
+           "code": "PEABS.2.a",
+           "text": "Identifies the types of exercises needed to enhance the development of various muscle groups."
+          },
+          {
+           "code": "PEABS.2.b",
+           "text": "Identifies healthy concepts of weight management related to an overall conditioning program."
+          },
+          {
+           "code": "PEABS.2.c",
+           "text": "Develops a body sculpting plan including a variety of muscle toning and muscle strengthening activities."
+          },
+          {
+           "code": "PEABS.2.d",
+           "text": "Assists classmates in developing and implementing training plans."
+          },
+          {
+           "code": "PEABS.2.e",
+           "text": "Evaluates personally selected activities based on their impact in the areas of flexibility and cardiovascular endurance, or muscular strength and endurance."
+          },
+          {
+           "code": "PEABS.2.f",
+           "text": "Predicts the amount of rest needed between workout routines based on personal goals."
+          },
+          {
+           "code": "PEABS.2.g",
+           "text": "Identifies the signs of over-training."
+          },
+          {
+           "code": "PEABS.2.h",
+           "text": "Identifies the effects of performance enhancing, over-the-counter, and illegal drugs on the body."
+          },
+          {
+           "code": "PEABS.2.i",
+           "text": "Identifies and performs multiple aerobic-conditioning exercises as part of an overall body-sculpting program."
+          },
+          {
+           "code": "PEABS.2.j",
+           "text": "Demonstrates the proper use of a variety of machines."
+          },
+          {
+           "code": "PEABS.2.k",
+           "text": "Assists classmates in the proper use of equipment for specified muscle groups."
+          },
+          {
+           "code": "PEABS.2.l",
+           "text": "Identifies problematic situations when training (overtraining, illness, and fatigue)."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "fitness",
+       "title": "Fitness",
+       "subtopics": [
+        {
+         "id": "the-physically-educated-student-demonstrates-kno",
+         "title": "The physically educated student demonstrates knowledge and skills to help achieve and maintain a health-enhancing level of physical activity and fitness",
+         "outcomes": [
+          {
+           "code": "PEABS.3.a",
+           "text": "Monitors target heart rate during exercise."
+          },
+          {
+           "code": "PEABS.3.b",
+           "text": "Participates in aerobic activities at least 3 times per week."
+          },
+          {
+           "code": "PEABS.3.c",
+           "text": "Participates in the components of the Georgia Fitness Assessment with teacher supervision and guidance."
+          },
+          {
+           "code": "PEABS.3.d",
+           "text": "Evaluates current fitness scores on the Georgia health-related fitness assessment."
+          },
+          {
+           "code": "PEABS.3.e",
+           "text": "Assists classmates in proper techniques when practicing the components of the Georgia Fitness Assessment."
+          },
+          {
+           "code": "PEABS.3.f",
+           "text": "Assists classmates as needed when designing and implementing a program of improvement."
+          },
+          {
+           "code": "PEABS.3.g",
+           "text": "Explains Rate of Perceived Exertion (RPE)."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "personal-and-social-behavior-rules-safety-and-et",
+       "title": "Personal and Social Behavior, Rules, Safety, and Etiquette",
+       "subtopics": [
+        {
+         "id": "the-physically-educated-student-exhibits-respons",
+         "title": "The physically educated student exhibits responsible personal and social behavior that respects self and others in physical activity settings",
+         "outcomes": [
+          {
+           "code": "PEABS.4.a",
+           "text": "Exhibits responsibility and proper application of safety protocols when participating in body sculpting activities."
+          },
+          {
+           "code": "PEABS.4.b",
+           "text": "Determines environmental factors in performing aerobic exercise safely."
+          },
+          {
+           "code": "PEABS.4.c",
+           "text": "Exhibits proper etiquette and respect for others while engaging in body sculpting."
+          }
+         ]
+        },
+        {
+         "id": "the-physically-educated-student-recognizes-the-v",
+         "title": "The physically educated student recognizes the value of physical activity for health, enjoyment, challenge, self-expression, and/or social interaction",
+         "outcomes": [
+          {
+           "code": "PEABS.5.a",
+           "text": "Explains the personal value of aerobic exercise and body sculpting."
+          },
+          {
+           "code": "PEABS.5.b",
+           "text": "Analyzes the mental and emotional benefits of aerobic exercise and body sculpting."
+          },
+          {
+           "code": "PEABS.5.c",
+           "text": "Evaluates the personal benefits of individual and group activities while body sculpting."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "general-physical-education",
+     "title": "General Physical Education",
+     "topics": [
+      {
+       "id": "motor-skills-and-movement-patterns",
+       "title": "Motor Skills and Movement Patterns",
+       "subtopics": [
+        {
+         "id": "the-physically-educated-student-demonstrates-com",
+         "title": "The physically educated student demonstrates competency in a variety of motor skills and movement patterns",
+         "outcomes": [
+          {
+           "code": "PEGPE.1.a",
+           "text": "Demonstrates competence while performing skills in a variety of settings or activities, including sport, rhythms, and other lifetime and recreational activities."
+          },
+          {
+           "code": "PEGPE.1.b",
+           "text": "Demonstrates the proper warm-up and cool-down protocol associated with different physical activities."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "movement-concepts-and-principles",
+       "title": "Movement Concepts and Principles",
+       "subtopics": [
+        {
+         "id": "the-physically-educated-student-applies-the-know",
+         "title": "The physically educated student applies the knowledge of concepts, principles, strategies, and tactics related to movement and performance",
+         "outcomes": [
+          {
+           "code": "PEGPE.2.a",
+           "text": "Integrates a variety of strategies, tactics, concepts, and skills during sports and activities."
+          },
+          {
+           "code": "PEGPE.2.b",
+           "text": "Creates a sequence of movements (dance, gymnastics, sports, etc.) that transition and flow smoothly from one to the next."
+          },
+          {
+           "code": "PEGPE.2.c",
+           "text": "Evaluates skills needed for sports, outdoor, rhythm, and lifetime leisure activities."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "fitness",
+       "title": "Fitness",
+       "subtopics": [
+        {
+         "id": "the-physically-educated-student-demonstrates-kno",
+         "title": "The physically educated student demonstrates knowledge and skills to help achieve and maintain a health-enhancing level of physical activity and fitness",
+         "outcomes": [
+          {
+           "code": "PEGPE.3.a",
+           "text": "Maintains or improves fitness level by using the results of the Georgia Fitness Assessment to guide a personal program of physical activity."
+          },
+          {
+           "code": "PEGPE.3.b",
+           "text": "Uses technologies to assess, enhance, and maintain health-related and skill-related fitness."
+          },
+          {
+           "code": "PEGPE.3.c",
+           "text": "Analyzes the relationship between physical activity and longevity."
+          },
+          {
+           "code": "PEGPE.3.d",
+           "text": "Evaluates the relationship between exercise (fitness) and nutrition."
+          },
+          {
+           "code": "PEGPE.3.e",
+           "text": "Develops fitness goals that are age, gender, and skill appropriate."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "personal-and-social-behavior-rules-safety-and-et",
+       "title": "Personal and Social Behavior, Rules, Safety, and Etiquette",
+       "subtopics": [
+        {
+         "id": "the-physically-educated-student-exhibits-respons",
+         "title": "The physically educated student exhibits responsible personal and social behavior that respects self and others in physical activity settings",
+         "outcomes": [
+          {
+           "code": "PEGPE.4.a",
+           "text": "Displays the ability to design rules, procedures, and routines appropriate for the group."
+          },
+          {
+           "code": "PEGPE.4.b",
+           "text": "Demonstrates the ability to apply the rules and etiquette of various physical activities regardless of differences."
+          },
+          {
+           "code": "PEGPE.4.c",
+           "text": "Applies safe practices in the physical education setting."
+          },
+          {
+           "code": "PEGPE.4.d",
+           "text": "Describes safety protocol to avoid dehydration, overexertion, and hypo/hyperthermia during physical activity."
+          }
+         ]
+        },
+        {
+         "id": "the-physically-educated-student-recognizes-the-v",
+         "title": "The physically educated student recognizes the value of physical activity for health, enjoyment, challenge, self-expression, and/or social interaction",
+         "outcomes": [
+          {
+           "code": "PEGPE.5.a",
+           "text": "Explains why participation in activities is enjoyable and desirable either alone or in a group."
+          },
+          {
+           "code": "PEGPE.5.b",
+           "text": "Participates in activities designed to improve skills for personal challenge, enjoyment, and expression."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "lifetime-sports",
+     "title": "Lifetime Sports",
+     "topics": [
+      {
+       "id": "motor-skills-and-movement-patterns",
+       "title": "Motor Skills and Movement Patterns",
+       "subtopics": [
+        {
+         "id": "the-physically-educated-student-demonstrates-com",
+         "title": "The physically educated student demonstrates competency in a variety of motor skills and movement patterns",
+         "outcomes": [
+          {
+           "code": "PELS.1.a",
+           "text": "Demonstrates competence while performing skills in a variety of lifetime sports settings and activities."
+          },
+          {
+           "code": "PELS.1.b",
+           "text": "Performs skills at a level of competence which contributes to health-related fitness."
+          },
+          {
+           "code": "PELS.1.c",
+           "text": "Demonstrates proper warm-up and cool-down protocol associated with different life time sport physical activities."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "movement-concepts-and-principles",
+       "title": "Movement Concepts and Principles",
+       "subtopics": [
+        {
+         "id": "the-physically-educated-student-applies-the-know",
+         "title": "The physically educated student applies the knowledge of concepts, principles, strategies, and tactics related to movement and performance",
+         "outcomes": [
+          {
+           "code": "PELS.2.a",
+           "text": "Integrates a variety of strategies, tactics, concepts, and skills during lifetime sport activities."
+          },
+          {
+           "code": "PELS.2.b",
+           "text": "Evaluates skills needed for lifetime sports and lifetime leisure activities."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "fitness",
+       "title": "Fitness",
+       "subtopics": [
+        {
+         "id": "the-physically-educated-student-demonstrates-kno",
+         "title": "The physically educated student demonstrates knowledge and skills to help achieve and maintain a health-enhancing level of physical activity and fitness",
+         "outcomes": [
+          {
+           "code": "PELS.3.a",
+           "text": "Maintains or improves fitness level by using the results of the Georgia Fitness Assessment to guide changes in a personal program of physical activity."
+          },
+          {
+           "code": "PELS.3.b",
+           "text": "Uses technologies to assess, enhance, and maintain health-related and skill-related fitness."
+          },
+          {
+           "code": "PELS.3.c",
+           "text": "Analyzes the relationship between physical activity and longevity."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "personal-and-social-behavior-rules-safety-and-et",
+       "title": "Personal and Social Behavior, Rules, Safety, and Etiquette",
+       "subtopics": [
+        {
+         "id": "the-physically-educated-student-exhibits-respons",
+         "title": "The physically educated student exhibits responsible personal and social behavior that respects self and others in physical activity settings",
+         "outcomes": [
+          {
+           "code": "PELS.4.a",
+           "text": "Displays the ability to design rules, procedures, and routines appropriate for the group."
+          },
+          {
+           "code": "PELS.4.b",
+           "text": "Demonstrates the ability to apply the rules and etiquette of various physical activities regardless of individual differences."
+          },
+          {
+           "code": "PELS.4.c",
+           "text": "Applies safe practices in the physical education setting."
+          },
+          {
+           "code": "PELS.4.d",
+           "text": "Describes safety protocol to avoid dehydration, overexertion, and hypo/hyperthermia during physical activity."
+          }
+         ]
+        },
+        {
+         "id": "the-physically-educated-student-recognizes-the-v",
+         "title": "The physically educated student recognizes the value of physical activity for health, enjoyment, challenge, self-expression, and/or social interaction",
+         "outcomes": [
+          {
+           "code": "PELS.5.a",
+           "text": "Explains why participation in activities is enjoyable and desirable either alone or in a group."
+          },
+          {
+           "code": "PELS.5.b",
+           "text": "Participates in activities designed to improve skills for personal challenge, enjoyment, and expression."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "outdoor-education",
+     "title": "Outdoor Education",
+     "topics": [
+      {
+       "id": "motor-skills-and-movement-patterns",
+       "title": "Motor Skills and Movement Patterns",
+       "subtopics": [
+        {
+         "id": "the-physically-educated-student-demonstrates-com",
+         "title": "The physically educated student demonstrates competency in a variety of motor skills and movement patterns",
+         "outcomes": [
+          {
+           "code": "PEOE.1.a",
+           "text": "Demonstrates competence while performing skills in a variety of outdoor education and related activities"
+          },
+          {
+           "code": "PEOE.1.b",
+           "text": "Performs skills at a level of competence which contributes to health-related fitness."
+          },
+          {
+           "code": "PEOE.1.c",
+           "text": "Demonstrates proper warm-up and cool-down protocol associated with different life time sport physical activities."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "movement-concepts-and-principles",
+       "title": "Movement Concepts and Principles",
+       "subtopics": [
+        {
+         "id": "the-physically-educated-student-applies-the-know",
+         "title": "The physically educated student applies the knowledge of concepts, principles, strategies, and tactics related to movement and performance",
+         "outcomes": [
+          {
+           "code": "PEOE.2.a",
+           "text": "Integrates a variety of strategies, tactics, concepts, and skills during outdoor education activities."
+          },
+          {
+           "code": "PEOE.2.b",
+           "text": "Evaluates skills needed for outdoor education activities."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "fitness",
+       "title": "Fitness",
+       "subtopics": [
+        {
+         "id": "the-physically-educated-student-demonstrates-kno",
+         "title": "The physically educated student demonstrates knowledge and skills to help achieve and maintain a health-enhancing level of physical activity and fitness",
+         "outcomes": [
+          {
+           "code": "PEOE.3.a",
+           "text": "Maintains or improves fitness level by using the results of the Georgia Fitness Assessment to guide changes in a personal program of physical activity."
+          },
+          {
+           "code": "PEOE.3.b",
+           "text": "Uses technologies to assess, enhance, and maintain health-related and skill-related fitness."
+          },
+          {
+           "code": "PEOE.3.c",
+           "text": "Analyzes the relationship between physical activity and longevity."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "personal-and-social-behavior-rules-safety-and-et",
+       "title": "Personal and Social Behavior, Rules, Safety, and Etiquette",
+       "subtopics": [
+        {
+         "id": "the-physically-educated-student-exhibits-respons",
+         "title": "The physically educated student exhibits responsible personal and social behavior that respects self and others in physical activity settings",
+         "outcomes": [
+          {
+           "code": "PEOE.4.a",
+           "text": "Displays the ability to design rules, procedures, and routines appropriate for the group."
+          },
+          {
+           "code": "PEOE.4.b",
+           "text": "Demonstrates the ability to apply the rules and etiquette of various physical activities regardless of individual differences."
+          },
+          {
+           "code": "PEOE.4.c",
+           "text": "Applies safe practices in the physical education setting."
+          },
+          {
+           "code": "PEOE.4.d",
+           "text": "Describes safety protocol to avoid dehydration, overexertion, and hypo/hyperthermia during physical activity."
+          }
+         ]
+        },
+        {
+         "id": "the-physically-educated-student-recognizes-the-v",
+         "title": "The physically educated student recognizes the value of physical activity for health, enjoyment, challenge, self-expression, and/or social interaction",
+         "outcomes": [
+          {
+           "code": "PEOE.5.a",
+           "text": "Explains why participation in activities is enjoyable and desirable either alone or in a group."
+          },
+          {
+           "code": "PEOE.5.b",
+           "text": "Participates in activities designed to improve skills for personal challenge, enjoyment, and expression."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "personal-fitness",
+     "title": "Personal Fitness",
+     "topics": [
+      {
+       "id": "motor-skills-and-movement-patterns",
+       "title": "Motor Skills and Movement Patterns",
+       "subtopics": [
+        {
+         "id": "the-physically-educated-student-demonstrates-com",
+         "title": "The physically educated student demonstrates competency in a variety motor skills and movement patterns",
+         "outcomes": [
+          {
+           "code": "PEPF.1.a",
+           "text": "Demonstrates competency skills in two or more lifetime activities."
+          },
+          {
+           "code": "PEPF.1.b",
+           "text": "Demonstrates competency in one or more skills in the health-related and skill-related fitness components."
+          },
+          {
+           "code": "PEPF.1.c",
+           "text": "Demonstrates competence while performing skills in a variety of settings or activities to include fitness activities, sport, rhythms, and other lifetime and recreational activities."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "movement-concepts-and-principles",
+       "title": "Movement Concepts and Principles",
+       "subtopics": [
+        {
+         "id": "the-physically-educated-student-applies-the-know",
+         "title": "The physically educated student applies the knowledge of concepts, principles, strategies, and tactics related to movement and performance",
+         "outcomes": [
+          {
+           "code": "PEPF.2.a",
+           "text": "Applies types of strength (isometric, concentric, etc.) and stretching (static, proprioceptive, etc.) exercises for personal fitness development."
+          },
+          {
+           "code": "PEPF.2.b",
+           "text": "Applies the principles of progression, overload, and specificity as it relates to skill development and fitness levels."
+          },
+          {
+           "code": "PEPF.2.c",
+           "text": "Applies target heart rate to a personal fitness plan."
+          },
+          {
+           "code": "PEPF.2.d",
+           "text": "Describes muscle groups, bones, and joints which facilitate movement."
+          },
+          {
+           "code": "PEPF.2.e",
+           "text": "Compares and contrasts skeletal muscle-fiber types."
+          },
+          {
+           "code": "PEPF.2.f",
+           "text": "Compares and contrasts the differences in aerobic and anaerobic activities."
+          },
+          {
+           "code": "PEPF.2.g",
+           "text": "Identifies the effects of performance-enhancing, over-the-counter, and illegal drugs on the body."
+          },
+          {
+           "code": "PEPF.2.h",
+           "text": "Applies the FITT principle (Frequency, Intensity, Time, and Type) to skill and fitness development."
+          },
+          {
+           "code": "PEPF.2.i",
+           "text": "Explains the cardiorespiratory response to exercise and physical activity."
+          },
+          {
+           "code": "PEPF.2.j",
+           "text": "Differentiates between skill-related and health-related components of fitness."
+          },
+          {
+           "code": "PEPF.2.k",
+           "text": "Compares the different types of muscular contractions."
+          },
+          {
+           "code": "PEPF.2.l",
+           "text": "Demonstrates proper warm-up and cool-down protocol associated with different physical activities."
+          },
+          {
+           "code": "PEPF.2.m",
+           "text": "Integrates a variety of strategies, tactics, concepts and skills during activities and sports."
+          },
+          {
+           "code": "PEPF.2.n",
+           "text": "Critiques the impact of various factors on physical activity participation in college and career settings."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "fitness",
+       "title": "Fitness",
+       "subtopics": [
+        {
+         "id": "the-physically-educated-student-demonstrates-kno",
+         "title": "The physically educated student demonstrates knowledge and skills to help achieve and maintain a health-enhancing level of physical activity and fitness",
+         "outcomes": [
+          {
+           "code": "PEPF.3.a",
+           "text": "Participates in the Georgia Fitness Assessment."
+          },
+          {
+           "code": "PEPF.3.b",
+           "text": "Conducts self and peer fitness assessments."
+          },
+          {
+           "code": "PEPF.3.c",
+           "text": "Uses the Georgia Fitness Assessment results to set personal SMART goals."
+          },
+          {
+           "code": "PEPF.3.d",
+           "text": "Designs, implements, and monitors a personal fitness plan for improvement or maintenance based on the results of a health-related fitness assessment."
+          },
+          {
+           "code": "PEPF.3.e",
+           "text": "Utilizes a personal fitness plan to evaluate and provide rationale for improvement or lack of improvement."
+          },
+          {
+           "code": "PEPF.3.f",
+           "text": "Designs a proper warm-up and cool-down protocol within a personal plan."
+          },
+          {
+           "code": "PEPF.3.g",
+           "text": "Tracks physical activity using an activity journal, computer software, apps, technology, or other methods."
+          },
+          {
+           "code": "PEPF.3.h",
+           "text": "Discusses the benefits of a physically active lifestyle."
+          },
+          {
+           "code": "PEPF.3.i",
+           "text": "Explains the relationship between physical activity, nutrition, and body composition."
+          },
+          {
+           "code": "PEPF.3.j",
+           "text": "Creates a nutritional plan to maintain an energy balance for a healthy and active lifestyle."
+          },
+          {
+           "code": "PEPF.3.k",
+           "text": "Identifies healthy nutritional practices for before, during, and after exercise."
+          },
+          {
+           "code": "PEPF.3.l",
+           "text": "Identifies the benefits of participating in a fitness program that includes muscular strength, muscular endurance, and flexibility."
+          },
+          {
+           "code": "PEPF.3.m",
+           "text": "Identifies issues associated with exercising in heat and cold."
+          },
+          {
+           "code": "PEPF.3.n",
+           "text": "Explains the relationship between heat, heat index, and Air Quality Index (AQI) as they relate to safe outdoor physical activity."
+          },
+          {
+           "code": "PEPF.3.o",
+           "text": "Evaluates the validity of claims made by commercial products and programs related to personal fitness."
+          },
+          {
+           "code": "PEPF.3.p",
+           "text": "Monitors physiological responses to individual levels of exercise intensity."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "personal-and-social-behavior-rules-safety-and-et",
+       "title": "Personal and Social Behavior, Rules, Safety, and Etiquette",
+       "subtopics": [
+        {
+         "id": "the-physically-educated-student-exhibits-respons",
+         "title": "The physically educated student exhibits responsible personal and social behavior that respects self and others in physical activity settings",
+         "outcomes": [
+          {
+           "code": "PEPF.4.a",
+           "text": "Identifies and uses proper attire for physical activity."
+          },
+          {
+           "code": "PEPF.4.b",
+           "text": "Employs self-management skills to analyze potential barriers to physical activity."
+          },
+          {
+           "code": "PEPF.4.c",
+           "text": "Accepts differences between personal characteristics and individual performance levels."
+          },
+          {
+           "code": "PEPF.4.d",
+           "text": "Exhibits proper etiquette, respect for others, and teamwork while engaging in physical activity."
+          },
+          {
+           "code": "PEPF.4.e",
+           "text": "Recognizes and applies practices for participating safely in physical activity (e.g., injury prevention, hydration, use of equipment, implementation of rules, and sun protection)."
+          },
+          {
+           "code": "PEPF.4.f",
+           "text": "Describes risks and safety factors that might affect physical activity throughout life."
+          }
+         ]
+        },
+        {
+         "id": "the-physically-educated-student-recognizes-the-v",
+         "title": "The physically educated student recognizes the value of physical activity for health, enjoyment, challenge, self-expression, and/or social interaction",
+         "outcomes": [
+          {
+           "code": "PEPF.5.a",
+           "text": "Critiques the impact of various factors on physical activity participation in college and career settings."
+          },
+          {
+           "code": "PEPF.5.b",
+           "text": "Recognizes the health benefits of physical activity."
+          },
+          {
+           "code": "PEPF.5.c",
+           "text": "Identifies the opportunities for social interaction in physical activity settings."
+          },
+          {
+           "code": "PEPF.5.d",
+           "text": "Identifies the benefits of health-related fitness and their contribution to overall wellness."
+          },
+          {
+           "code": "PEPF.5.e",
+           "text": "Identifies local facilities available for fitness activities."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "recreational-games",
+     "title": "Recreational Games",
+     "topics": [
+      {
+       "id": "motor-skills-and-movement-patterns",
+       "title": "Motor Skills and Movement Patterns",
+       "subtopics": [
+        {
+         "id": "the-physically-educated-student-demonstrates-com",
+         "title": "The physically educated student demonstrates competency in a variety of motor skills and movement patterns",
+         "outcomes": [
+          {
+           "code": "PERG.1.a",
+           "text": "Demonstrates competence while performing skills in a variety of recreational game settings and activities"
+          },
+          {
+           "code": "PERG.1.b",
+           "text": "Performs skills at a level of competence which contributes to health-related fitness."
+          },
+          {
+           "code": "PERG.1.c",
+           "text": "Demonstrates proper warm-up and cool-down protocol associated with different life time sport physical activities."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "movement-concepts-and-principles",
+       "title": "Movement Concepts and Principles",
+       "subtopics": [
+        {
+         "id": "the-physically-educated-student-applies-the-know",
+         "title": "The physically educated student applies the knowledge of concepts, principles, strategies, and tactics related to movement and performance",
+         "outcomes": [
+          {
+           "code": "PERG.2.a",
+           "text": "Integrates a variety of strategies, tactics, concepts, and skills during recreational games activities."
+          },
+          {
+           "code": "PERG.2.b",
+           "text": "Evaluates skills needed for recreational games and leisure activities."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "fitness",
+       "title": "Fitness",
+       "subtopics": [
+        {
+         "id": "the-physically-educated-student-demonstrates-kno",
+         "title": "The physically educated student demonstrates knowledge and skills to help achieve and maintain a health-enhancing level of physical activity and fitness",
+         "outcomes": [
+          {
+           "code": "PERG.3.a",
+           "text": "Maintains or improves fitness level by using the results of the Georgia Fitness Assessment to guide changes in a personal program of physical activity."
+          },
+          {
+           "code": "PERG.3.b",
+           "text": "Uses technologies to assess, enhance, and maintain health-related and skill-related fitness."
+          },
+          {
+           "code": "PERG.3.c",
+           "text": "Analyzes the relationship between physical activity and longevity."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "personal-and-social-behavior-rules-safety-and-et",
+       "title": "Personal and Social Behavior, Rules, Safety, and Etiquette",
+       "subtopics": [
+        {
+         "id": "the-physically-educated-student-exhibits-respons",
+         "title": "The physically educated student exhibits responsible personal and social behavior that respects self and others in physical activity settings",
+         "outcomes": [
+          {
+           "code": "PERG.4.a",
+           "text": "Displays the ability to design rules, procedures, and routines appropriate for the group."
+          },
+          {
+           "code": "PERG.4.b",
+           "text": "Demonstrates the ability to apply the rules and etiquette of various physical activities regardless of individual differences."
+          },
+          {
+           "code": "PERG.4.c",
+           "text": "Applies safe practices in the physical education setting."
+          },
+          {
+           "code": "PERG.4.d",
+           "text": "Describes safety protocol to avoid dehydration, overexertion, and hypo/hyperthermia during physical activity."
+          }
+         ]
+        },
+        {
+         "id": "the-physically-educated-student-recognizes-the-v",
+         "title": "The physically educated student recognizes the value of physical activity for health, enjoyment, challenge, self-expression, and/or social interaction",
+         "outcomes": [
+          {
+           "code": "PERG.5.a",
+           "text": "Explains why participation in activities is enjoyable and desirable either alone or in a group."
+          },
+          {
+           "code": "PERG.5.b",
+           "text": "Participates in activities designed to improve skills for personal challenge, enjoyment, and expression."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "rhythmics-and-dance",
+     "title": "Rhythmics and Dance",
+     "topics": [
+      {
+       "id": "motor-skills-and-movement-patterns",
+       "title": "Motor Skills and Movement Patterns",
+       "subtopics": [
+        {
+         "id": "the-physically-educated-student-demonstrates-com",
+         "title": "The physically educated student demonstrates competency in a variety of motor skills and movement patterns",
+         "outcomes": [
+          {
+           "code": "PERD.1.a",
+           "text": "Demonstrates competence while performing skills in a variety of rhythmic and dance activities."
+          },
+          {
+           "code": "PERD.1.b",
+           "text": "Performs skills at a level of competence which contributes to health-related fitness."
+          },
+          {
+           "code": "PERD.1.c",
+           "text": "Demonstrates proper warm-up and cool-down protocol associated with different rhythmic and dance activities."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "movement-concepts-and-principles",
+       "title": "Movement Concepts and Principles",
+       "subtopics": [
+        {
+         "id": "the-physically-educated-student-applies-the-know",
+         "title": "The physically educated student applies the knowledge of concepts, principles, strategies, and tactics related to movement and performance",
+         "outcomes": [
+          {
+           "code": "PERD.2.a",
+           "text": "Integrates a variety of strategies, tactics, concepts, and skills during rhythmic and dance activities."
+          },
+          {
+           "code": "PERD.2.b",
+           "text": "Evaluates skills needed for rhythm and dance activities."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "fitness",
+       "title": "Fitness",
+       "subtopics": [
+        {
+         "id": "the-physically-educated-student-demonstrates-kno",
+         "title": "The physically educated student demonstrates knowledge and skills to help achieve and maintain a health-enhancing level of physical activity and fitness",
+         "outcomes": [
+          {
+           "code": "PERD.3.a",
+           "text": "Maintains or improves fitness level by using the results of the Georgia Fitness Assessment to guide changes in a personal program of physical activity."
+          },
+          {
+           "code": "PERD.3.b",
+           "text": "Uses technologies to assess, enhance, and maintain health-related and skill-related fitness."
+          },
+          {
+           "code": "PERD.3.c",
+           "text": "Analyzes the relationship between physical activity and longevity."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "personal-and-social-behavior-rules-safety-and-et",
+       "title": "Personal and Social Behavior, Rules, Safety, and Etiquette",
+       "subtopics": [
+        {
+         "id": "the-physically-educated-student-exhibits-respons",
+         "title": "The physically educated student exhibits responsible personal and social behavior that respects self and others in physical activity settings",
+         "outcomes": [
+          {
+           "code": "PERD.4.a",
+           "text": "Displays the ability to design rules, procedures, and routines appropriate for the group."
+          },
+          {
+           "code": "PERD.4.b",
+           "text": "Demonstrates the ability to apply the rules and etiquette of various physical activities regardless of individual differences."
+          },
+          {
+           "code": "PERD.4.c",
+           "text": "Applies safe practices in the physical education setting."
+          },
+          {
+           "code": "PERD.4.d",
+           "text": "Describes safety protocol to avoid dehydration, overexertion, and hypo/hyperthermia during physical activity."
+          }
+         ]
+        },
+        {
+         "id": "the-physically-educated-student-recognizes-the-v",
+         "title": "The physically educated student recognizes the value of physical activity for health, enjoyment, challenge, self-expression, and/or social interaction",
+         "outcomes": [
+          {
+           "code": "PERD.5.a",
+           "text": "Explains why participation in activities is enjoyable and desirable either alone or in a group."
+          },
+          {
+           "code": "PERD.5.b",
+           "text": "Participates in activities designed to improve skills for personal challenge, enjoyment, and expression."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "introductory-team-sports",
+     "title": "Introductory Team Sports",
+     "topics": [
+      {
+       "id": "motor-skills-and-movement-patterns",
+       "title": "Motor Skills and Movement Patterns",
+       "subtopics": [
+        {
+         "id": "the-physically-educated-student-demonstrates-com",
+         "title": "The physically educated student demonstrates competency in a variety of motor skills and movement patterns",
+         "outcomes": [
+          {
+           "code": "PETSTRO.1.a",
+           "text": "Demonstrates competencies in the motor skills and movement patterns needed to participate in sports and games involving controlling and using manipulatives (balls, pucks, birdies, long implements, short implements, and frisbee discs)."
+          },
+          {
+           "code": "PETSTRO.1.b",
+           "text": "Demonstrates competencies in the motor skills and movement patterns needed to participate in sports and games involving throwing and catching."
+          },
+          {
+           "code": "PETSTRO.1.c",
+           "text": "Demonstrate competencies in the motor skills and movement patterns needed to participate in sports and games involving striking with the upper body."
+          },
+          {
+           "code": "PETSTRO.1.d",
+           "text": "Demonstrates competencies in the motor skills and movement patterns needed to participate in sports and games involving striking with the lower body."
+          },
+          {
+           "code": "PETSTRO.1.e",
+           "text": "Demonstrates competencies in the motor skills and movement patterns needed to participate in sports and games involving striking with long and/or short handled implements."
+          },
+          {
+           "code": "PETSTRO.1.f",
+           "text": "Identifies basic muscle groups, bones, and joints used in motor skills and movement patterns."
+          },
+          {
+           "code": "PETSTRO.1.g",
+           "text": "Describes how muscles are used in a basic, sport-specific motion in invasion, net, and a striking game or sport."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "movement-concepts-and-principles",
+       "title": "Movement Concepts and Principles",
+       "subtopics": [
+        {
+         "id": "the-physically-educated-student-applies-the-know",
+         "title": "The physically educated student applies the knowledge of concepts, principles, strategies, and tactics related to movement and performance",
+         "outcomes": [
+          {
+           "code": "PETSTRO.2.a",
+           "text": "Identifies principles and concepts of safety, rules, equipment use, and warm-up/cool-down procedures."
+          },
+          {
+           "code": "PETSTRO.2.b",
+           "text": "Identifies the principles and concepts of offensive and defensive player positions and applies correct positioning to game situations."
+          },
+          {
+           "code": "PETSTRO.2.c",
+           "text": "Identifies the team sport principles and concepts of basic offense, defense, and set plays for various games."
+          },
+          {
+           "code": "PETSTRO.2.d",
+           "text": "Identifies sequences of individual motor skills and movement patterns for body position, movement in general space, and the use of manipulatives in various team sports."
+          },
+          {
+           "code": "PETSTRO.2.e",
+           "text": "Identifies a sequence of motor skills and movement patterns for creating offensive and defensive advancements."
+          },
+          {
+           "code": "PETSTRO.2.f",
+           "text": "Recognizes offensive and defensive tactics enacted by individual students, a small group, and the whole team."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "fitness",
+       "title": "Fitness",
+       "subtopics": [
+        {
+         "id": "the-physically-educated-student-demonstrates-kno",
+         "title": "The physically educated student demonstrates knowledge and skills to help achieve and maintain a health-enhancing level of physical activity and fitness",
+         "outcomes": [
+          {
+           "code": "PETSTRO.3.a",
+           "text": "Identifies the cardiovascular benefits of participating in physical activities."
+          },
+          {
+           "code": "PETSTRO.3.b",
+           "text": "Identifies the level of physical exertion in various game situations. (e.g., vigorous, moderate, and low)."
+          },
+          {
+           "code": "PETSTRO.3.c",
+           "text": "Identifies the various health-related and skill-related fitness components needed to enhance performance in various games."
+          },
+          {
+           "code": "PETSTRO.3.d",
+           "text": "Identifies risks and safety factors that affect physical activity levels in team sports in heat, heat index, Air Quality Index (AQI), humidity, and cold weather."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "personal-and-social-behavior-rules-safety-and-et",
+       "title": "Personal and Social Behavior, Rules, Safety, and Etiquette",
+       "subtopics": [
+        {
+         "id": "the-physically-educated-student-exhibits-respons",
+         "title": "The physically educated student exhibits responsible personal and social behavior that respects self and others in physical activity settings",
+         "outcomes": [
+          {
+           "code": "PETSTRO.4.a",
+           "text": "Identifies the difference between taunting and celebrating as it relates to sportsmanship."
+          },
+          {
+           "code": "PETSTRO.4.b",
+           "text": "Uses communication skills to promote positive team building group dynamics."
+          },
+          {
+           "code": "PETSTRO.4.c",
+           "text": "Becomes a problem solver and remains impartial when communicating and coming to a decision regarding a strategy, tactic, principle, concept, or ruling during game play."
+          },
+          {
+           "code": "PETSTRO.4.d",
+           "text": "Applies safe practices in physical education setting."
+          },
+          {
+           "code": "PETSTRO.4.e",
+           "text": "Identifies and follows the rules of each team sport and game."
+          },
+          {
+           "code": "PETSTRO.4.f",
+           "text": "Exhibits proper etiquette, respect for others, and teamwork in a given team sport."
+          },
+          {
+           "code": "PETSTRO.4.g",
+           "text": "Uses communication skills to promote positive team building group dynamics."
+          },
+          {
+           "code": "PETSTRO.4.h",
+           "text": "Applies safe practices in physical education setting."
+          },
+          {
+           "code": "PETSTRO.4.i",
+           "text": "Demonstrates good sportsmanship in all competitive situations."
+          }
+         ]
+        },
+        {
+         "id": "the-physically-educated-student-recognizes-the-v",
+         "title": "The physically educated student recognizes the value of physical activity for health, enjoyment, challenge, self-expression, and/or social interaction",
+         "outcomes": [
+          {
+           "code": "PETSTRO.5.a",
+           "text": "Recognizes the value of a physically active lifestyle as it relates to high school, college, and career productivity."
+          },
+          {
+           "code": "PETSTRO.5.b",
+           "text": "Recognizes the health benefits of participation in life-long team sports and games."
+          },
+          {
+           "code": "PETSTRO.5.c",
+           "text": "Recognizes how learning a team sport provides confidence in physical skills that can lead to better social interaction and participation in sports throughout one's life."
+          },
+          {
+           "code": "PETSTRO.5.d",
+           "text": "Recognizes how exercise can positively affect psychological fitness and sociological interactions."
+          },
+          {
+           "code": "PETSTRO.5.e",
+           "text": "Understands how strategies, tactics, and participation in individual and team sports can be a form of self-expression."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "intermediate-team-sports",
+     "title": "Intermediate Team Sports",
+     "topics": [
+      {
+       "id": "motor-skills-and-movement-patterns",
+       "title": "Motor Skills and Movement Patterns",
+       "subtopics": [
+        {
+         "id": "the-physically-educated-student-demonstrates-com",
+         "title": "The physically educated student demonstrates competency in a variety of motor skills and movement patterns",
+         "outcomes": [
+          {
+           "code": "PEIMT.1.a",
+           "text": "Chooses and employs the appropriate motor skills and movement patterns needed to participate in sports and games involving body control and movement in open and personal space."
+          },
+          {
+           "code": "PEIMT.1.b",
+           "text": "Chooses and employs the appropriate motor skills and movement patterns needed to participate in sports and games involving controlling and using manipulates (balls, pucks, birdies, long implements, short implements, and frisbee discs)."
+          },
+          {
+           "code": "PEIMT.1.c",
+           "text": "Chooses and employs the appropriate motor skills and movement patterns needed to participate in sports and games involving throwing and catching."
+          },
+          {
+           "code": "PEIMT.1.d",
+           "text": "Chooses and employs the appropriate motor skills and movement patterns needed to participate in sports and games involving striking with the upper body."
+          },
+          {
+           "code": "PEIMT.1.e",
+           "text": "Chooses and employs the appropriate motor skills and movement patterns needed to participate in sports and games involving striking with the lower body."
+          },
+          {
+           "code": "PEIMT.1.f",
+           "text": "Chooses and employs the appropriate motor skills and movement patterns needed to participate in sports and games involving striking with long and/or short handled implements."
+          },
+          {
+           "code": "PEIMT.1.g",
+           "text": "Compares and contrasts the basic muscle groups, bones, and joints used in motor skills and movement patterns for at least one invasion game, one net game, and one striking game."
+          },
+          {
+           "code": "PEIMT.1.h",
+           "text": "Explains how muscles are used in a basic, sport-specific motion utilized in an invasion, net, or striking game or sport in order for a person to participate."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "movement-concepts-and-principles",
+       "title": "Movement Concepts and Principles",
+       "subtopics": [
+        {
+         "id": "the-physically-educated-student-applies-the-know",
+         "title": "The physically educated student applies the knowledge of concepts, principles, strategies, and tactics related to movement and performance",
+         "outcomes": [
+          {
+           "code": "PEIMT.2.a",
+           "text": "Applies the principles and concepts of safety, rules, equipment, and warm-up/cool-down procedures for at least one invasion game, one net game, and one striking game."
+          },
+          {
+           "code": "PEIMT.2.b",
+           "text": "Applies the principles and concepts of offensive and defensive player positions and applies the appropriate positioning to game situations in at least one invasion game, one net game, and one striking game."
+          },
+          {
+           "code": "PEIMT.2.c",
+           "text": "Applies sequences of motor skills and movement patterns of body position, movement in general space, use of manipulates, and use of force/motion/rotation in least one invasion game, one net game, and one striking game."
+          },
+          {
+           "code": "PEIMT.2.d",
+           "text": "Applies a sequence of motor skills and movement patterns for creating space and offensive advancements and scoring in general and in individual space in at least one invasion game, one net game, and one striking game."
+          },
+          {
+           "code": "PEIMT.2.e",
+           "text": "Applies motor skills and movement patterns for creating space and defensive play to prevent offensive advancements and scoring in at least one invasion game, one net game, and one striking game."
+          },
+          {
+           "code": "PEIMT.2.f",
+           "text": "Employs offensive strategies and tactics enacted by individual students, small group, and the whole team in at least one invasion game, one net game, and one striking game."
+          },
+          {
+           "code": "PEIMT.2.g",
+           "text": "Employs defensive strategies and tactics enacted by individual students, small group, and the whole team in at least one invasion game, one net game, and one striking game."
+          },
+          {
+           "code": "PEIMT.2.h",
+           "text": "Enacts set plays, strategies and tactics for at least one invasion game, one net game, and one striking game."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "fitness",
+       "title": "Fitness",
+       "subtopics": [
+        {
+         "id": "the-physically-educated-student-demonstrates-kno",
+         "title": "The physically educated student demonstrates knowledge and skills to help achieve and maintain a health-enhancing level of physical activity and fitness",
+         "outcomes": [
+          {
+           "code": "PEIMT.3.a",
+           "text": "Compares and contrasts the cardiovascular benefit of participating in physical activities between at least one invasion game, one net game, and one striking game."
+          },
+          {
+           "code": "PEIMT.3.b",
+           "text": "Compares and contrasts the level of physical exertion (e.g., vigorous, moderate, and low) between at least one invasion game, one net game, and one striking game."
+          },
+          {
+           "code": "PEIMT.3.c",
+           "text": "Compares and contrasts the muscular endurance needed when competing in at least one invasion game, one net game, and one striking game."
+          },
+          {
+           "code": "PEIMT.3.d",
+           "text": "Compares and contrasts the muscular power needed when competing in at least one invasion game, one net game, and one striking game."
+          },
+          {
+           "code": "PEIMT.3.e",
+           "text": "Compares and contrasts the flexibility needed when competing in at least one invasion game, one net game, and one striking game."
+          },
+          {
+           "code": "PEIMT.3.f",
+           "text": "Discusses risks and safety factors that affect physical activity levels in team sports in heat, humidity, and cold."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "personal-and-social-behavior-rules-safety-and-et",
+       "title": "Personal and Social Behavior, Rules, Safety, and Etiquette",
+       "subtopics": [
+        {
+         "id": "the-physically-educated-student-exhibits-respons",
+         "title": "The physically educated student exhibits responsible personal and social behavior that respects self and others in physical activity settings",
+         "outcomes": [
+          {
+           "code": "PEIMT.4.a",
+           "text": "Identifies the difference between taunting and celebrating as it relates to sportsmanship"
+          },
+          {
+           "code": "PEIMT.4.b",
+           "text": "Uses communication skills to promote positive team building group dynamic"
+          },
+          {
+           "code": "PEIMT.4.c",
+           "text": "Becomes a problem solver and remains impartial when communicating and coming to a decision regarding a strategy, tactic, principle, concept, or ruling during an activity or game."
+          },
+          {
+           "code": "PEIMT.4.d",
+           "text": "Applies safe practices in physical education settings."
+          },
+          {
+           "code": "PEIMT.4.e",
+           "text": "Identifies and follows the rules of each team sport and game."
+          },
+          {
+           "code": "PEIMT.4.f",
+           "text": "Exhibits proper etiquette, respect for others, and teamwork in given team sport."
+          },
+          {
+           "code": "PEIMT.4.g",
+           "text": "Uses communication skills to promote positive team building group dynamics."
+          },
+          {
+           "code": "PEIMT.4.h",
+           "text": "Applies safe practices in physical education setting."
+          },
+          {
+           "code": "PEIMT.4.i",
+           "text": "Discusses appropriate responses to success, failure, sportsmanship, conflict, and teammate encouragement as it relates to participation in team sports."
+          }
+         ]
+        },
+        {
+         "id": "the-physically-educated-student-recognizes-the-v",
+         "title": "The physically educated student recognizes the value of physical activity for health, enjoyment, challenge, self-expression, and/or social interaction",
+         "outcomes": [
+          {
+           "code": "PEIMT.5.a",
+           "text": "Assesses the value of a physically active lifestyle as it relates to high school, college, and career productivity."
+          },
+          {
+           "code": "PEIMT.5.b",
+           "text": "Compares the health benefits of participation in life-long team sports and games."
+          },
+          {
+           "code": "PEIMT.5.c",
+           "text": "Investigates how learning a team sport provides confidence in physical skills that can lead to better social interaction and participation in sport throughout one's life."
+          },
+          {
+           "code": "PEIMT.5.d",
+           "text": "Differentiates how exercise can positively affect psychological fitness and sociological interactions."
+          },
+          {
+           "code": "PEIMT.5.e",
+           "text": "Formulates ideas regarding how strategies, tactics, and participation as an individual and player in team sports can be a form of self-expression."
+          },
+          {
+           "code": "PEIMT.5.f",
+           "text": "Discusses appropriate interactions between students, teammates, coaches, officials, administrators, and parents as it relates to the team sports."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "advanced-team-sports",
+     "title": "Advanced Team Sports",
+     "topics": [
+      {
+       "id": "motor-skills-and-movement-patterns",
+       "title": "Motor Skills and Movement Patterns",
+       "subtopics": [
+        {
+         "id": "the-physically-educated-student-demonstrates-com",
+         "title": "The physically educated student demonstrates competency in a variety of motor skills and movement patterns",
+         "outcomes": [
+          {
+           "code": "PETSAD.1.a",
+           "text": "Summarizes and assesses the appropriate motor skills and movement patterns needed to participate in sports and games."
+          },
+          {
+           "code": "PETSAD.1.b",
+           "text": "Summarizes and assesses the appropriate motor skills and movement patterns needed to participate in sports and games involving controlling and using manipulates (balls, pucks, birdies, long implements, short implements, and frisbee discs)."
+          },
+          {
+           "code": "PETSAD.1.c",
+           "text": "Summarizes and assesses the appropriate motor skills and movement patterns needed to participate in sports and games involving throwing and catching."
+          },
+          {
+           "code": "PETSAD.1.d",
+           "text": "Summarizes and assesses the appropriate motor skills and movement patterns needed to participate in sports and games involving striking with the upper body."
+          },
+          {
+           "code": "PETSAD.1.e",
+           "text": "Summarizes and assesses the appropriate motor skills and movement patterns needed to participate in sports and games involving striking with the lower body."
+          },
+          {
+           "code": "PETSAD.1.f",
+           "text": "Summarizes and assesses the appropriate motor skills and movement patterns needed to participate in sports and games involving striking with long and/or short handled implements."
+          },
+          {
+           "code": "PETSAD.1.g",
+           "text": "Summarizes and assesses the basic muscle groups, bones, and joints used in motor skills and movement patterns in at least one invasion game, one net game, and one striking game."
+          },
+          {
+           "code": "PETSAD.1.h",
+           "text": "Summarizes and assesses how muscles are used in a basic, sport-specific motion that is used in an invasion, net, or striking game or sport."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "movement-concepts-and-principles",
+       "title": "Movement Concepts and Principles",
+       "subtopics": [
+        {
+         "id": "the-physically-educated-student-applies-the-know",
+         "title": "The physically educated student applies the knowledge of concepts, principles, strategies, and tactics related to movement and performance",
+         "outcomes": [
+          {
+           "code": "PETSAD.2.a",
+           "text": "Conveys the principles and concepts of safety, rules, equipment, and warm-up/cool-down procedures for at least one invasion game, one net game, and one striking game."
+          },
+          {
+           "code": "PETSAD.2.b",
+           "text": "Conveys the principles and concepts of offensive and defensive player positions and applies the appropriate positioning to game situations for at least one invasion game, one net game, and one striking game."
+          },
+          {
+           "code": "PETSAD.2.c",
+           "text": "Conveys the principles and concepts of basic offensive, defensive, and set plays for at least one invasion game, one net game, and one striking game."
+          },
+          {
+           "code": "PETSAD.2.d",
+           "text": "Conveys sequences of individual motor skills and movement patterns for use of body position, movement in general space, use of manipulates, and use of force/motion/rotation for at least one invasion game, one net game, and one striking game."
+          },
+          {
+           "code": "PETSAD.2.e",
+           "text": "Conveys applications of a sequence of partner and whole team motor skills and movement patterns for creating space and offensive advancements and scoring in general and individual space for at least one invasion game, one net game, and one striking game."
+          },
+          {
+           "code": "PETSAD.2.f",
+           "text": "Conveys applications of a sequence of partner and whole team motor skills and movement patterns for creating space and defensive play to prevent offensive advancements and scoring in general and personal space for at least one invasion game, one net game, and one striking game."
+          },
+          {
+           "code": "PETSAD.2.g",
+           "text": "Conveys applications of an offensive strategies and tactics enacted by individual students, small groups, and the whole team using appropriate motor skills and movement patterns in at least one invasion game, one net game, and one striking game."
+          },
+          {
+           "code": "PETSAD.2.h",
+           "text": "Conveys applications of defensive strategies and tactics enacted by individual students, small group, and the whole team using appropriate motor skills and movement patterns in at least one invasion game, one net game, and one striking game."
+          },
+          {
+           "code": "PETSAD.2.i",
+           "text": "Conveys applications of strategies for set plays and tactics for at least one invasion game, one net game, and one striking game."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "fitness",
+       "title": "Fitness",
+       "subtopics": [
+        {
+         "id": "the-physically-educated-student-demonstrates-kno",
+         "title": "The physically educated student demonstrates knowledge and skills to help achieve and maintain a health-enhancing level of physical activity and fitness",
+         "outcomes": [
+          {
+           "code": "PETSAD.3.a",
+           "text": "Interprets and evaluates the cardiovascular benefit of participating in an invasion game, one net game, and one striking game."
+          },
+          {
+           "code": "PETSAD.3.b",
+           "text": "Interprets and evaluates the level of physical exertion (vigorous, moderate, and low) in an invasion game, a net game, and a striking game."
+          },
+          {
+           "code": "PETSAD.3.c",
+           "text": "Interprets and evaluates the muscular endurance needed when competing in an invasion game, a net game, and a striking game."
+          },
+          {
+           "code": "PETSAD.3.d",
+           "text": "Interprets and evaluates the muscular power needed when competing in an invasion game, a net game, and a striking game."
+          },
+          {
+           "code": "PETSAD.3.e",
+           "text": "Interprets and evaluates the flexibility needed when competing in an invasion game, a net game, and a striking game."
+          },
+          {
+           "code": "PETSAD.3.f",
+           "text": "Interprets and evaluates the risks and safety factors that affect physical activity levels in team sports in heat, humidity, and cold."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "personal-and-social-behavior-rules-safety-and-et",
+       "title": "Personal and Social Behavior, Rules, Safety, and Etiquette",
+       "subtopics": [
+        {
+         "id": "the-physically-educated-student-exhibits-respons",
+         "title": "The physically educated student exhibits responsible personal and social behavior that respects self and others in physical activity settings",
+         "outcomes": [
+          {
+           "code": "PETSAD.4.a",
+           "text": "Identifies and follows the rules of each team sport."
+          },
+          {
+           "code": "PETSAD.4.b",
+           "text": "Exhibits proper etiquette, respect for others, and teamwork in given team sport"
+          },
+          {
+           "code": "PETSAD.4.c",
+           "text": "Uses communication skills to promote positive team building group dynamics."
+          },
+          {
+           "code": "PETSAD.4.d",
+           "text": "Becomes a problem solver and remains impartial when communicating and coming to a decision regarding a strategy, tactic, principle, concept, or ruling during an activity or game."
+          },
+          {
+           "code": "PETSAD.4.e",
+           "text": "Applies safe practices in physical education setting."
+          }
+         ]
+        },
+        {
+         "id": "the-physically-educated-student-recognizes-the-v",
+         "title": "The physically educated student recognizes the value of physical activity for health, enjoyment, challenge, self-expression, and/or social interaction",
+         "outcomes": [
+          {
+           "code": "PETSAD.5.a",
+           "text": "Promotes the value of a physically active lifestyle as it relates to high school, college, and career productivity."
+          },
+          {
+           "code": "PETSAD.5.b",
+           "text": "Promotes the health benefits of participation in life-long team sports and games."
+          },
+          {
+           "code": "PETSAD.5.c",
+           "text": "Advocates how learning a team sport provides confidence in physical skills that can lead to better social interaction and participation in sports throughout one's life."
+          },
+          {
+           "code": "PETSAD.5.d",
+           "text": "Advocates how exercise can positively affect psychological fitness and sociological interactions."
+          },
+          {
+           "code": "PETSAD.5.e",
+           "text": "Advocates how strategies, tactics, and participation as an individual and player in team sports can be a form of self-expression."
+          },
+          {
+           "code": "PETSAD.5.f",
+           "text": "Conveys appropriate responses to success, failure, sportsmanship, and conflict as it relates to team sport participation."
+          },
+          {
+           "code": "PETSAD.5.g",
+           "text": "Conveys appropriate interactions between students, teammates, coaches, officials, administrators, and parents as it relates to the team sport participation."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "track-and-field",
+     "title": "Track and Field",
+     "topics": [
+      {
+       "id": "motor-skills-and-movement-patterns",
+       "title": "Motor Skills and Movement Patterns",
+       "subtopics": [
+        {
+         "id": "the-physically-educated-student-demonstrates-com",
+         "title": "The physically educated student demonstrates competency in a variety of motor skills and movement patterns",
+         "outcomes": [
+          {
+           "code": "PETF.1.a",
+           "text": "Demonstrates competence while performing skills in track and field activities."
+          },
+          {
+           "code": "PETF.1.b",
+           "text": "Performs skills at a level of competence which contributes to health-related fitness."
+          },
+          {
+           "code": "PETF.1.c",
+           "text": "Demonstrates proper warm-up and cool-down protocol associated with different track and field activities."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "movement-concepts-and-principles",
+       "title": "Movement Concepts and Principles",
+       "subtopics": [
+        {
+         "id": "the-physically-educated-student-applies-the-know",
+         "title": "The physically educated student applies the knowledge of concepts, principles, strategies, and tactics related to movement and performance",
+         "outcomes": [
+          {
+           "code": "PETF.2.a",
+           "text": "Integrates a variety of strategies, tactics, concepts, and skills during track and field activities."
+          },
+          {
+           "code": "PETF.2.b",
+           "text": "Evaluates skills needed for track and field activities."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "fitness",
+       "title": "Fitness",
+       "subtopics": [
+        {
+         "id": "the-physically-educated-student-demonstrates-kno",
+         "title": "The physically educated student demonstrates knowledge and skills to help achieve and maintain a health-enhancing level of physical activity and fitness",
+         "outcomes": [
+          {
+           "code": "PETF.3.a",
+           "text": "Maintains or improves fitness level by using the results of the Georgia Fitness Assessment to guide changes in a personal program of physical activity."
+          },
+          {
+           "code": "PETF.3.b",
+           "text": "Uses technologies to assess, enhance, and maintain health-related and skill-related fitness."
+          },
+          {
+           "code": "PETF.3.c",
+           "text": "Analyzes the relationship between physical activity and longevity."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "personal-and-social-behavior-rules-safety-and-et",
+       "title": "Personal and Social Behavior, Rules, Safety and Etiquette",
+       "subtopics": [
+        {
+         "id": "the-physically-educated-student-exhibits-respons",
+         "title": "The physically educated student exhibits responsible personal and social behavior that respects self and others in physical activity settings",
+         "outcomes": [
+          {
+           "code": "PETF.4.a",
+           "text": "Displays the ability to design rules, procedures, and routines appropriate for the group."
+          },
+          {
+           "code": "PETF.4.b",
+           "text": "Demonstrates the ability to apply the rules and etiquette of various physical activities regardless of individual differences."
+          },
+          {
+           "code": "PETF.4.c",
+           "text": "Applies safe practices in the physical education setting."
+          },
+          {
+           "code": "PETF.4.d",
+           "text": "Describes safety protocol to avoid dehydration, overexertion, and hypo/hyperthermia during physical activity."
+          }
+         ]
+        },
+        {
+         "id": "the-physically-educated-student-recognizes-the-v",
+         "title": "The physically educated student recognizes the value of physical activity for health, enjoyment, challenge, self-expression, and/or social interaction",
+         "outcomes": [
+          {
+           "code": "PETF.5.a",
+           "text": "Explains why participation in activities is enjoyable and desirable either alone or in a group."
+          },
+          {
+           "code": "PETF.5.b",
+           "text": "Participates in activities designed to improve skills for personal challenge, enjoyment, and expression."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "weight-training",
+     "title": "Weight Training",
+     "topics": [
+      {
+       "id": "motor-skills-and-movement-patterns",
+       "title": "Motor Skills and Movement Patterns",
+       "subtopics": [
+        {
+         "id": "the-physically-educated-student-demonstrates-com",
+         "title": "The physically educated student demonstrates competency in a variety of motor skills and movement patterns",
+         "outcomes": [
+          {
+           "code": "PEWT.1.a",
+           "text": "Demonstrates proper spotting techniques for lifts and exercises as needed."
+          },
+          {
+           "code": "PEWT.1.b",
+           "text": "Identifies and applies principles of biomechanics necessary for the safe and successful performance of upper and lower body lifts."
+          },
+          {
+           "code": "PEWT.1.c",
+           "text": "Demonstrates proper biomechanics for use of free weights and resistance machines."
+          },
+          {
+           "code": "PEWT.1.d",
+           "text": "Demonstrates independent learning of movement skills and patterns for speed and agility."
+          },
+          {
+           "code": "PEWT.1.e",
+           "text": "Demonstrates proper posture, form, and flexibility in weight training."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "movement-concepts-and-principles",
+       "title": "Movement Concepts and Principles",
+       "subtopics": [
+        {
+         "id": "the-physically-educated-student-applies-the-know",
+         "title": "The physically educated student applies the knowledge of concepts, principles, strategies, and tactics related to movement and performance",
+         "outcomes": [
+          {
+           "code": "PEWT.2.a",
+           "text": "Observes the lifting technique of another student."
+          },
+          {
+           "code": "PEWT.2.b",
+           "text": "Observes another student performing a plyometric exercise."
+          },
+          {
+           "code": "PEWT.2.c",
+           "text": "Identifies muscles used for upper and lower body lifts."
+          },
+          {
+           "code": "PEWT.2.d",
+           "text": "Identifies safety equipment required for participation in weight training."
+          },
+          {
+           "code": "PEWT.2.e",
+           "text": "Meets increasingly higher levels of strength and endurance."
+          },
+          {
+           "code": "PEWT.2.f",
+           "text": "Identifies various exercises to enhance the development of muscle groups."
+          },
+          {
+           "code": "PEWT.2.g",
+           "text": "Charts progress in a variety of upper and lower body lifts."
+          },
+          {
+           "code": "PEWT.2.h",
+           "text": "Recognizes importance of a variety of sets, repetitions, and work-loads."
+          },
+          {
+           "code": "PEWT.2.i",
+           "text": "Performs a variety of upper and lower body lifts or exercises for muscular development."
+          },
+          {
+           "code": "PEWT.2.j",
+           "text": "Exhibits understanding of terminology associated with weight training."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "fitness",
+       "title": "Fitness",
+       "subtopics": [
+        {
+         "id": "the-physically-educated-student-demonstrates-kno",
+         "title": "The physically educated student demonstrates knowledge and skills to help achieve and maintain a health-enhancing level of physical activity and fitness",
+         "outcomes": [
+          {
+           "code": "PEWT.3.a",
+           "text": "Designs and implements a strength and conditioning plan that supports a healthy life style."
+          },
+          {
+           "code": "PEWT.3.b",
+           "text": "Creates a fitness plan for life changes."
+          },
+          {
+           "code": "PEWT.3.c",
+           "text": "Establishes goals for skill-based strength training and conditioning by using progressive variations."
+          },
+          {
+           "code": "PEWT.3.d",
+           "text": "Applies specificity, overload, and progression to increase the intensity of the workout."
+          },
+          {
+           "code": "PEWT.3.e",
+           "text": "Participates in the Georgia criterion-referenced, health-related fitness assessment with teacher supervision and guidance."
+          },
+          {
+           "code": "PEWT.3.f",
+           "text": "Evaluates current fitness scores on the Georgia Fitness Assessment."
+          },
+          {
+           "code": "PEWT.3.g",
+           "text": "Uses technologies to assess, enhance, and maintain health-related and skill-related fitness."
+          },
+          {
+           "code": "PEWT.3.h",
+           "text": "Analyzes the relationship between physical activity and longevity."
+          },
+          {
+           "code": "PEWT.3.i",
+           "text": "Evaluates the relationship between exercise (fitness) and nutrition (activity progression log)."
+          },
+          {
+           "code": "PEWT.3.j",
+           "text": "Explains the effect exercise has on metabolism."
+          },
+          {
+           "code": "PEWT.3.k",
+           "text": "Performs skills correctly during strength training conditioning and health related fitness."
+          },
+          {
+           "code": "PEWT.3.l",
+           "text": "Improves performance for long term personal development and health."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "personal-and-social-behavior-rules-safety-and-et",
+       "title": "Personal and Social Behavior, Rules, Safety and Etiquette",
+       "subtopics": [
+        {
+         "id": "the-physically-educated-student-exhibits-respons",
+         "title": "The physically educated student exhibits responsible personal and social behavior that respects self and others in physical activity settings",
+         "outcomes": [
+          {
+           "code": "PEWT.4.a",
+           "text": "Displays the ability to follow rules, procedures, and routines appropriate in the weight training setting."
+          },
+          {
+           "code": "PEWT.4.b",
+           "text": "Exhibits the ability to demonstrate safe and responsible behavior."
+          },
+          {
+           "code": "PEWT.4.c",
+           "text": "Identifies the difference between encouraging and discouraging progression while training."
+          },
+          {
+           "code": "PEWT.4.d",
+           "text": "Demonstrates the ability to apply the rules and etiquette of various weight training activities."
+          }
+         ]
+        },
+        {
+         "id": "the-physically-educated-student-recognizes-the-v",
+         "title": "The physically educated student recognizes the value of physical activity for health, enjoyment, challenge, self-expression, and/or social interaction",
+         "outcomes": [
+          {
+           "code": "PEWT.5.a",
+           "text": "Explains why participation in weight training is enjoyable and desirable either alone or in a group."
+          },
+          {
+           "code": "PEWT.5.b",
+           "text": "Participates in activities designed to improve skills for personal challenge, enjoyment, and expression."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "advanced-weight-training",
+     "title": "Advanced Weight Training",
+     "topics": [
+      {
+       "id": "motor-skills-and-movement-patterns",
+       "title": "Motor Skills and Movement Patterns",
+       "subtopics": [
+        {
+         "id": "the-physically-educated-student-demonstrates-com",
+         "title": "The physically educated student demonstrates competency in a variety of motor skills and movement patterns",
+         "outcomes": [
+          {
+           "code": "PEAWT.1.a",
+           "text": "Develops a workout with a variety of sets and repetitions to improve muscular strength and endurance."
+          },
+          {
+           "code": "PEAWT.1.b",
+           "text": "Develops a routine of varying plyometric, speed, and agility drills."
+          },
+          {
+           "code": "PEAWT.1.c",
+           "text": "Implements multiple upper and lower body exercises during the course of a workout."
+          },
+          {
+           "code": "PEAWT.1.d",
+           "text": "Demonstrates understanding of the various disciplines of weight training (powerlifting, super-setting, and sport specific explosion)."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "movement-concepts-and-principles",
+       "title": "Movement Concepts and Principles",
+       "subtopics": [
+        {
+         "id": "the-physically-educated-student-applies-the-know",
+         "title": "The physically educated student applies the knowledge of concepts, principles, strategies, and tactics related to movement and performance",
+         "outcomes": [
+          {
+           "code": "PEAWT.2.a",
+           "text": "Compares and constructs specific activities to be used in warm-up and cool-down exercises."
+          },
+          {
+           "code": "PEAWT.2.b",
+           "text": "Identifies and discusses with classmates the training procedures of upper and lower-body resistance exercises."
+          },
+          {
+           "code": "PEAWT.2.c",
+           "text": "Applies concepts and plans a series of exercises in order to maximize the benefits of a weight-training program."
+          },
+          {
+           "code": "PEAWT.2.d",
+           "text": "Applies concepts and assists others in developing a comprehensive exercise plan for weight training."
+          },
+          {
+           "code": "PEAWT.2.e",
+           "text": "Explains the concept of over-training to classmates."
+          },
+          {
+           "code": "PEAWT.2.f",
+           "text": "Designs an exercise program to allow appropriate recovery."
+          },
+          {
+           "code": "PEAWT.2.g",
+           "text": "Measures and assesses a higher performance level of balance, coordination, power and speed."
+          },
+          {
+           "code": "PEAWT.2.h",
+           "text": "Explains how to select and modify strength conditioning and fitness activities."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "fitness",
+       "title": "Fitness",
+       "subtopics": [
+        {
+         "id": "the-physically-educated-student-demonstrates-kno",
+         "title": "The physically educated student demonstrates knowledge and skills to help achieve and maintain a health-enhancing level of physical activity and fitness",
+         "outcomes": [
+          {
+           "code": "PEAWT.3.a",
+           "text": "Participates daily in strength-training activities."
+          },
+          {
+           "code": "PEAWT.3.b",
+           "text": "Analyzes the benefits of a physically active lifestyle."
+          },
+          {
+           "code": "PEAWT.3.c",
+           "text": "Identifies local facilities where weight training opportunities are available."
+          },
+          {
+           "code": "PEAWT.3.d",
+           "text": "Investigates the relationships between physical activity and nutrition and how it influences body composition."
+          },
+          {
+           "code": "PEAWT.3.e",
+           "text": "Participates in the components of the Georgia Fitness Assessment with teacher supervision and guidance."
+          },
+          {
+           "code": "PEAWT.3.f",
+           "text": "Evaluates current Georgia Fitness Assessment scores."
+          },
+          {
+           "code": "PEAWT.3.g",
+           "text": "Designs, implements, and monitors a program of improvement or maintenance based on the results of the Georgia Fitness Assessment."
+          },
+          {
+           "code": "PEAWT.3.h",
+           "text": "Designs a nutrition plan to support a strength-training program."
+          },
+          {
+           "code": "PEAWT.3.i",
+           "text": "Assists classmates in understanding how to evaluate fitness scores and how to develop a fitness plan including nutrition, strength training, and cardiovascular exercises."
+          },
+          {
+           "code": "PEAWT.3.j",
+           "text": "Analyzes and applies technology for supporting an active lifestyle."
+          }
+         ]
+        },
+        {
+         "id": "fitness",
+         "title": "Fitness",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Personal and Social Behavior, Rules, Safety and Etiquette"
+          }
+         ]
+        },
+        {
+         "id": "the-physically-educated-student-exhibits-respons",
+         "title": "The physically educated student exhibits responsible personal and social behavior that respects self and others in physical activity settings",
+         "outcomes": [
+          {
+           "code": "PEAWT.4.a",
+           "text": "Accepts responsibility for the safety of the facility by putting all equipment in the proper locations."
+          },
+          {
+           "code": "PEAWT.4.b",
+           "text": "Accepts differences between personal characteristics and individual performance levels."
+          },
+          {
+           "code": "PEAWT.4.c",
+           "text": "Exhibits proper etiquette, respect for others, and teamwork while engaging in physical activity."
+          },
+          {
+           "code": "PEAWT.4.d",
+           "text": "Applies practices for participating safely in physical activity."
+          },
+          {
+           "code": "PEAWT.4.e",
+           "text": "Provides leadership by helping classmates with weight room etiquette and proper facility safety reminders (injury prevention, hydration, use of equipment, implementation of rules, and sun protection)."
+          }
+         ]
+        },
+        {
+         "id": "the-physically-educated-student-recognizes-the-v",
+         "title": "The physically educated student recognizes the value of physical activity for health, enjoyment, challenge, self-expression, and/or social interaction",
+         "outcomes": [
+          {
+           "code": "PEAWT.5.a",
+           "text": "Explains the personal value derived from weight training."
+          },
+          {
+           "code": "PEAWT.5.b",
+           "text": "Analyzes the health benefits of strength training."
+          },
+          {
+           "code": "PEAWT.5.c",
+           "text": "Creates the opportunity for social interaction in physical activity and group settings."
+          },
+          {
+           "code": "PEAWT.5.d",
+           "text": "Chooses an appropriate level of challenges within each activity."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "build": {
+  "builtAt": "2026-10-14T16:20:41.175Z",
+  "model": "none",
+  "usd": 0,
+  "expectedCodes": 652,
+  "coverage": 1,
+  "missingCodes": [],
+  "counts": {
+   "grades": 10,
+   "units": 50,
+   "topics": 100,
+   "subtopics": 139,
+   "outcomes": 653
+  },
+  "warnings": [
+   "subtopic \"The physically educated student applies the knowledge of concepts, principles, strategies, and tactics related to movement and performance\" has 15 outcomes — too big for one lesson",
+   "subtopic \"The physically educated student demonstrates knowledge and skills to help achieve and maintain a health-enhancing level of physical activity and fitness\" has 16 outcomes — too big for one lesson"
+  ]
+ }
+}

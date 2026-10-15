@@ -1,0 +1,680 @@
+{
+ "id": "pk-fbise-af-ssc-2-urdu",
+ "region": "PK",
+ "framework": "FBISE Assessment Framework (National Curriculum of Pakistan 2022-23)",
+ "board": "FBISE",
+ "qualification": "SSC-II",
+ "subject": "Urdu",
+ "syllabusCode": null,
+ "gradeSystem": "grade",
+ "source": {
+  "urls": [
+   "https://www.fbise.edu.pk/ModelPaper/2025/Assessment%20Frameworks/SSC-II/Final%20Assessment%20Framework%20%2B%20Model%20Question%20Paper%20Urdu%20SSC-II.pdf"
+  ],
+  "publisher": "Federal Board of Intermediate and Secondary Education",
+  "licence": "Government publication; structure + our own wording only",
+  "firstExam": "2026"
+ },
+ "grades": [
+  {
+   "grade": "10",
+   "units": [
+    {
+     "id": "domain-a-listening",
+     "title": "Domain A: Listening",
+     "topics": [
+      {
+       "id": "listening",
+       "title": "Listening",
+       "subtopics": [
+        {
+         "id": "listening-with-understanding",
+         "title": "Listening with understanding",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Listen to Urdu from many sources with attention and understanding."
+          },
+          {
+           "code": null,
+           "text": "Judge the speaker's meaning, tone and purpose."
+          },
+          {
+           "code": null,
+           "text": "Weigh what was heard and respond to it."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "domain-b-speaking",
+     "title": "Domain B: Speaking",
+     "topics": [
+      {
+       "id": "speaking",
+       "title": "Speaking",
+       "subtopics": [
+        {
+         "id": "speaking-in-daily-life",
+         "title": "Speaking in daily life",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Hold reasoned conversations on daily topics."
+          },
+          {
+           "code": null,
+           "text": "Give a short speech on a topic with clear voice and manner."
+          },
+          {
+           "code": null,
+           "text": "Discuss a text or talk with evidence."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "domain-c-reading",
+     "title": "Domain C: Reading",
+     "topics": [
+      {
+       "id": "reading-prose-and-poetry",
+       "title": "Reading prose and poetry",
+       "subtopics": [
+        {
+         "id": "understanding-a-text",
+         "title": "Understanding a text",
+         "outcomes": [
+          {
+           "code": "U-10-C-03",
+           "text": "Read prose or poetry for meaning and answer direct, indirect and long-answer questions."
+          },
+          {
+           "code": "U-10-C-10",
+           "text": "Give an opinion on a part of a text, with references and reasons."
+          },
+          {
+           "code": "U-10-C-28",
+           "text": "Read a text and present opinions on how ideas, views and attitudes link."
+          }
+         ]
+        },
+        {
+         "id": "reading-poetry",
+         "title": "Reading poetry",
+         "outcomes": [
+          {
+           "code": "U-10-C-15",
+           "text": "Tell the matla and maqta of a ghazal and see why they differ."
+          },
+          {
+           "code": "U-10-C-17",
+           "text": "Read a poem, explain its verses with references and give a view of it."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "domain-d-writing",
+     "title": "Domain D: Writing",
+     "topics": [
+      {
+       "id": "writing-skills",
+       "title": "Writing skills",
+       "subtopics": [
+        {
+         "id": "correct-word-use-and-sentences",
+         "title": "Correct word use and sentences",
+         "outcomes": [
+          {
+           "code": "U-10-D-01",
+           "text": "Proofread writing and check words are used correctly."
+          },
+          {
+           "code": "U-10-D-02",
+           "text": "Write sentences with idioms, proverbs and phrases at class level."
+          }
+         ]
+        },
+        {
+         "id": "translation-and-essays",
+         "title": "Translation and essays",
+         "outcomes": [
+          {
+           "code": "U-10-D-06",
+           "text": "Translate texts into Urdu, keeping meaning and purpose."
+          },
+          {
+           "code": "U-10-D-07",
+           "text": "Write essays in different styles, planning with notes."
+          },
+          {
+           "code": "U-10-D-08",
+           "text": "Turn a drama into a story or a story into a dramatic script."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "writing-about-poetry-and-prose",
+       "title": "Writing about poetry and prose",
+       "subtopics": [
+        {
+         "id": "explaining-and-summarising",
+         "title": "Explaining and summarising",
+         "outcomes": [
+          {
+           "code": "U-10-D-03",
+           "text": "Explain a poem or ghazal's references, style and use of poetic beauty."
+          },
+          {
+           "code": "U-10-D-04",
+           "text": "Read a poem or prose piece and write a summary of its central idea."
+          },
+          {
+           "code": "U-10-D-05",
+           "text": "Write the central idea of a text from the writer's or reader's viewpoint."
+          },
+          {
+           "code": "U-10-D-13",
+           "text": "Pick out and summarise the key points of a passage."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "practical-writing",
+       "title": "Practical writing",
+       "subtopics": [
+        {
+         "id": "letters-and-forms",
+         "title": "Letters and forms",
+         "outcomes": [
+          {
+           "code": "U-10-D-09",
+           "text": "Prepare formal and informal letters and applications."
+          },
+          {
+           "code": "U-10-D-10",
+           "text": "Fill in forms such as admission, ID card and account forms."
+          }
+         ]
+        },
+        {
+         "id": "reports-and-reflective-writing",
+         "title": "Reports and reflective writing",
+         "outcomes": [
+          {
+           "code": "U-10-D-11",
+           "text": "Tell diary, travelogue and memoir apart; write an information report."
+          },
+          {
+           "code": "U-10-D-12",
+           "text": "Analyse and comment on a narrative or non-narrative piece such as a report or column."
+          },
+          {
+           "code": "U-10-D-16",
+           "text": "Write a character sketch or personality portrait."
+          }
+         ]
+        },
+        {
+         "id": "speeches-and-critique",
+         "title": "Speeches and critique",
+         "outcomes": [
+          {
+           "code": "U-10-D-14",
+           "text": "Write a speech of at least 250 words with poetic references."
+          },
+          {
+           "code": "U-10-D-15",
+           "text": "Understand, critique and comment on a prose or poetry piece using given hints."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "domain-e-grammar-and-language-study",
+     "title": "Domain E: Grammar and Language Study",
+     "topics": [
+      {
+       "id": "grammar",
+       "title": "Grammar",
+       "subtopics": [
+        {
+         "id": "words-and-their-forms",
+         "title": "Words and their forms",
+         "outcomes": [
+          {
+           "code": "U-10-E-01",
+           "text": "Form plurals and use singular and plural correctly."
+          }
+         ]
+        },
+        {
+         "id": "word-order-and-phrases",
+         "title": "Word order and phrases",
+         "outcomes": [
+          {
+           "code": "U-10-E-05",
+           "text": "Know word order within phrases and why it matters."
+          },
+          {
+           "code": "U-10-E-11",
+           "text": "Spell and pronounce words correctly and use diacritics for correct reading."
+          }
+         ]
+        },
+        {
+         "id": "punctuation-and-sentence-parts",
+         "title": "Punctuation and sentence parts",
+         "outcomes": [
+          {
+           "code": "U-10-E-09",
+           "text": "Know punctuation marks and use them correctly."
+          },
+          {
+           "code": "U-10-E-10",
+           "text": "Tell complete and incomplete phrases apart; know parts of a nominal sentence."
+          }
+         ]
+        },
+        {
+         "id": "sentence-correctness",
+         "title": "Sentence correctness",
+         "outcomes": [
+          {
+           "code": "U-10-E-13",
+           "text": "Fix errors in sentence structure, gender, number and tense."
+          },
+          {
+           "code": "U-10-E-14",
+           "text": "Tell idioms and proverbs apart and use them in speech and writing."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "vocabulary",
+       "title": "Vocabulary",
+       "subtopics": [
+        {
+         "id": "opposites-synonyms-and-look-alikes",
+         "title": "Opposites, synonyms and look-alikes",
+         "outcomes": [
+          {
+           "code": "U-10-E-04",
+           "text": "Spot synonyms and use them well in writing."
+          },
+          {
+           "code": "U-10-E-06",
+           "text": "Tell similar-sounding words apart and use them correctly."
+          },
+          {
+           "code": "U-10-E-07",
+           "text": "Tell words and phrases with more than one meaning apart in use."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "poetry-forms",
+       "title": "Poetry forms",
+       "subtopics": [
+        {
+         "id": "kinds-of-poetry",
+         "title": "Kinds of poetry",
+         "outcomes": [
+          {
+           "code": "U-10-E-15",
+           "text": "Tell poems apart by theme: hamd, naat, national poem, qasida, prayer, elegy."
+          },
+          {
+           "code": "U-10-E-16",
+           "text": "Tell poems apart by form: ghazal, mukhammas, musaddas."
+          }
+         ]
+        },
+        {
+         "id": "parts-of-a-poem",
+         "title": "Parts of a poem",
+         "outcomes": [
+          {
+           "code": "U-10-E-17",
+           "text": "Name parts of a poem: misra, sher, qafia, radif, band, matla, maqta."
+          },
+          {
+           "code": "U-10-E-18",
+           "text": "Spot poetic beauties and figures of speech in verse."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "9",
+   "units": [
+    {
+     "id": "domain-c-reading",
+     "title": "Domain C: Reading",
+     "topics": [
+      {
+       "id": "reading-prose-and-poetry",
+       "title": "Reading prose and poetry",
+       "subtopics": [
+        {
+         "id": "understanding-a-text",
+         "title": "Understanding a text",
+         "outcomes": [
+          {
+           "code": "U-09-C-03",
+           "text": "Read prose or poetry for meaning and answer direct, indirect and long-answer questions."
+          },
+          {
+           "code": "U-09-C-10",
+           "text": "Give an opinion on a part of a text, with references and reasons."
+          },
+          {
+           "code": "U-09-C-28",
+           "text": "Read a text and present opinions on how ideas, views and attitudes link."
+          }
+         ]
+        },
+        {
+         "id": "reading-poetry",
+         "title": "Reading poetry",
+         "outcomes": [
+          {
+           "code": "U-09-C-15",
+           "text": "Tell the matla and maqta of a ghazal and see why they differ."
+          },
+          {
+           "code": "U-09-C-17",
+           "text": "Read a poem, explain its verses with references and give a view of it."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "domain-d-writing",
+     "title": "Domain D: Writing",
+     "topics": [
+      {
+       "id": "writing-skills",
+       "title": "Writing skills",
+       "subtopics": [
+        {
+         "id": "correct-word-use-and-sentences",
+         "title": "Correct word use and sentences",
+         "outcomes": [
+          {
+           "code": "U-09-D-01",
+           "text": "Proofread writing and check words are used correctly."
+          },
+          {
+           "code": "U-09-D-02",
+           "text": "Write sentences with idioms, proverbs and phrases at class level."
+          }
+         ]
+        },
+        {
+         "id": "translation-and-essays",
+         "title": "Translation and essays",
+         "outcomes": [
+          {
+           "code": "U-09-D-06",
+           "text": "Translate texts into Urdu, keeping meaning and purpose."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "writing-about-poetry-and-prose",
+       "title": "Writing about poetry and prose",
+       "subtopics": [
+        {
+         "id": "explaining-and-summarising",
+         "title": "Explaining and summarising",
+         "outcomes": [
+          {
+           "code": "U-09-D-03",
+           "text": "Explain a poem or ghazal's references, style and use of poetic beauty."
+          },
+          {
+           "code": "U-09-D-04",
+           "text": "Read a poem or prose piece and write a summary of its central idea."
+          },
+          {
+           "code": "U-09-D-05",
+           "text": "Write the central idea of a text from the writer's or reader's viewpoint."
+          },
+          {
+           "code": "U-09-D-13",
+           "text": "Pick out and summarise the key points of a passage."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "practical-writing",
+       "title": "Practical writing",
+       "subtopics": [
+        {
+         "id": "letters-and-forms",
+         "title": "Letters and forms",
+         "outcomes": [
+          {
+           "code": "U-09-D-09",
+           "text": "Prepare formal and informal letters and applications."
+          },
+          {
+           "code": "U-09-D-10",
+           "text": "Fill in forms such as admission, ID card and account forms."
+          }
+         ]
+        },
+        {
+         "id": "reports-and-reflective-writing",
+         "title": "Reports and reflective writing",
+         "outcomes": [
+          {
+           "code": "U-09-D-11",
+           "text": "Tell diary, travelogue and memoir apart; write an information report."
+          },
+          {
+           "code": "U-09-D-12",
+           "text": "Analyse and comment on a narrative or non-narrative piece such as a report or column."
+          }
+         ]
+        },
+        {
+         "id": "speeches-and-critique",
+         "title": "Speeches and critique",
+         "outcomes": [
+          {
+           "code": "U-09-D-14",
+           "text": "Write a speech of at least 250 words with poetic references."
+          },
+          {
+           "code": "U-09-D-15",
+           "text": "Understand, critique and comment on a prose or poetry piece using given hints."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "domain-e-grammar-and-language-study",
+     "title": "Domain E: Grammar and Language Study",
+     "topics": [
+      {
+       "id": "grammar",
+       "title": "Grammar",
+       "subtopics": [
+        {
+         "id": "words-and-their-forms",
+         "title": "Words and their forms",
+         "outcomes": [
+          {
+           "code": "U-09-E-02",
+           "text": "Know nouns and pronouns and use them in speech and writing."
+          },
+          {
+           "code": "U-09-E-12",
+           "text": "Form new words using prefixes and suffixes."
+          }
+         ]
+        },
+        {
+         "id": "word-order-and-phrases",
+         "title": "Word order and phrases",
+         "outcomes": [
+          {
+           "code": "U-09-E-05",
+           "text": "Know word order within phrases and why it matters."
+          },
+          {
+           "code": "U-09-E-11",
+           "text": "Spell and pronounce words correctly and use diacritics for correct reading."
+          }
+         ]
+        },
+        {
+         "id": "parts-of-speech",
+         "title": "Parts of speech",
+         "outcomes": [
+          {
+           "code": "U-09-E-08",
+           "text": "Mark nouns, verbs and particles in sentences; use prepositions, conjunctions and other particles."
+          }
+         ]
+        },
+        {
+         "id": "punctuation-and-sentence-parts",
+         "title": "Punctuation and sentence parts",
+         "outcomes": [
+          {
+           "code": "U-09-E-10",
+           "text": "Tell complete and incomplete phrases apart; know parts of a nominal sentence."
+          }
+         ]
+        },
+        {
+         "id": "sentence-correctness",
+         "title": "Sentence correctness",
+         "outcomes": [
+          {
+           "code": "U-09-E-13",
+           "text": "Fix errors in sentence structure, gender, number and tense."
+          },
+          {
+           "code": "U-09-E-14",
+           "text": "Tell idioms and proverbs apart and use them in speech and writing."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "vocabulary",
+       "title": "Vocabulary",
+       "subtopics": [
+        {
+         "id": "opposites-synonyms-and-look-alikes",
+         "title": "Opposites, synonyms and look-alikes",
+         "outcomes": [
+          {
+           "code": "U-09-E-03",
+           "text": "Spot opposite words and use them in writing."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "poetry-forms",
+       "title": "Poetry forms",
+       "subtopics": [
+        {
+         "id": "kinds-of-poetry",
+         "title": "Kinds of poetry",
+         "outcomes": [
+          {
+           "code": "U-09-E-15",
+           "text": "Tell poems apart by theme: hamd, naat, national poem, qasida, prayer, elegy."
+          },
+          {
+           "code": "U-09-E-16",
+           "text": "Tell poems apart by form: ghazal, mukhammas, musaddas."
+          }
+         ]
+        },
+        {
+         "id": "parts-of-a-poem",
+         "title": "Parts of a poem",
+         "outcomes": [
+          {
+           "code": "U-09-E-17",
+           "text": "Name parts of a poem: misra, sher, qafia, radif, band, matla, maqta."
+          },
+          {
+           "code": "U-09-E-18",
+           "text": "Spot poetic beauties and figures of speech in verse."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "build": {
+  "builtAt": "2026-10-14T09:30:35.452Z",
+  "model": "claude-agent",
+  "usd": 0,
+  "expectedCodes": 67,
+  "coverage": 0.9850746268656716,
+  "missingCodes": [
+   "U-02-E-15"
+  ],
+  "counts": {
+   "grades": 2,
+   "units": 8,
+   "topics": 16,
+   "subtopics": 33,
+   "outcomes": 72
+  },
+  "warnings": [
+   "unexpected grade label \"9\""
+  ]
+ }
+}

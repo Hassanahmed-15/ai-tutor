@@ -1,0 +1,220 @@
+{
+ "id": "cie-igcse-bahasa-indonesia-0538-2025-2027",
+ "region": "INTL",
+ "framework": "Cambridge IGCSE Bahasa Indonesia (0538) syllabus 2025–2027",
+ "board": "Cambridge",
+ "qualification": "IGCSE",
+ "subject": "Bahasa Indonesia",
+ "syllabusCode": "0538",
+ "gradeSystem": "course",
+ "source": {
+  "urls": [
+   "https://www.cambridgeinternational.org/Images/664631-2025-2027-syllabus.pdf",
+   "https://www.cambridgeinternational.org/programmes-and-qualifications/cambridge-igcse-bahasa-indonesia-0538/"
+  ],
+  "publisher": "Cambridge University Press & Assessment (Cambridge International Education)",
+  "licence": "© Cambridge University Press & Assessment; structure + our own wording only",
+  "firstExam": "2025"
+ },
+ "grades": [
+  {
+   "grade": "IGCSE",
+   "units": [
+    {
+     "id": "igcse-skills",
+     "title": "[IGCSE] Skills",
+     "topics": [
+      {
+       "id": "reading",
+       "title": "Reading",
+       "subtopics": [
+        {
+         "id": "understanding-texts",
+         "title": "Understanding Texts",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Understand literary and non-literary texts, including the meanings of particular words and phrases."
+          },
+          {
+           "code": null,
+           "text": "Recognise the main points or themes in an extended text."
+          }
+         ]
+        },
+        {
+         "id": "finding-information",
+         "title": "Finding Information",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Find and choose relevant information across varied texts, including youth-oriented magazines and newspapers."
+          },
+          {
+           "code": null,
+           "text": "Locate specific details, arrange relevant information, and present it logically in the required format."
+          }
+         ]
+        },
+        {
+         "id": "reading-between-the-lines",
+         "title": "Reading Between the Lines",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Interpret unstated meaning, including a text’s gist, opinions, purpose, and intentions."
+          }
+         ]
+        },
+        {
+         "id": "vocabulary-and-effects",
+         "title": "Vocabulary and Effects",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain writers’ vocabulary choices and how these create effects or influence readers."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "writing",
+       "title": "Writing",
+       "subtopics": [
+        {
+         "id": "writing-summaries",
+         "title": "Writing Summaries",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Produce an effective summary."
+          }
+         ]
+        },
+        {
+         "id": "forms-and-purposes",
+         "title": "Forms and Purposes",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Compose texts in varied forms and for different purposes, including argumentative, descriptive, and narrative writing."
+          },
+          {
+           "code": null,
+           "text": "Adapt writing to its audience, purpose, and form."
+          }
+         ]
+        },
+        {
+         "id": "ideas-for-readers",
+         "title": "Ideas for Readers",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Communicate thoughts, feelings, and imagination to interest, inform, or persuade readers."
+          },
+          {
+           "code": null,
+           "text": "Present facts, ideas, and opinions clearly and effectively in an appropriate form."
+          }
+         ]
+        },
+        {
+         "id": "structure-and-style",
+         "title": "Structure and Style",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Use varied grammatical structures and vocabulary, with suitable paragraphing."
+          }
+         ]
+        },
+        {
+         "id": "writing-accurately",
+         "title": "Writing Accurately",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Apply accurate spelling, punctuation, and grammar."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "speaking",
+       "title": "Speaking",
+       "subtopics": [
+        {
+         "id": "planning-a-presentation",
+         "title": "Planning a Presentation",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Research, organise, and deliver a presentation on a self-selected topic."
+          }
+         ]
+        },
+        {
+         "id": "discussing-a-topic",
+         "title": "Discussing a Topic",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Answer spoken questions about a chosen topic and take part in engaging related conversations."
+          },
+          {
+           "code": null,
+           "text": "Respond spontaneously to questions and prompts, adapting to new ideas and other speakers."
+          }
+         ]
+        },
+        {
+         "id": "communicating-ideas",
+         "title": "Communicating Ideas",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Organise and communicate facts, ideas, and opinions orally."
+          },
+          {
+           "code": null,
+           "text": "Speak clearly with appropriate focus and purpose."
+          }
+         ]
+        },
+        {
+         "id": "effective-spoken-language",
+         "title": "Effective Spoken Language",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Use suitable vocabulary and grammatical structures with accurate pronunciation and appropriate intonation."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "build": {
+  "builtAt": "2026-10-14T05:25:55.308Z",
+  "model": "gpt-5.6-luna",
+  "usd": 0.0052,
+  "expectedCodes": null,
+  "coverage": null,
+  "missingCodes": [],
+  "counts": {
+   "grades": 1,
+   "units": 1,
+   "topics": 3,
+   "subtopics": 13,
+   "outcomes": 19
+  },
+  "warnings": []
+ }
+}

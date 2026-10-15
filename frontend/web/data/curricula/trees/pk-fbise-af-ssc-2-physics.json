@@ -1,0 +1,1495 @@
+{
+ "id": "pk-fbise-af-ssc-2-physics",
+ "region": "PK",
+ "framework": "FBISE Assessment Framework (National Curriculum of Pakistan 2022-23)",
+ "board": "FBISE",
+ "qualification": "SSC-II",
+ "subject": "Physics",
+ "syllabusCode": null,
+ "gradeSystem": "grade",
+ "source": {
+  "urls": [
+   "https://www.fbise.edu.pk/ModelPaper/2025/Assessment%20Frameworks/SSC-II/Final%20Assessment%20Framework%20%2B%20Model%20Question%20Paper%20Physics%20SSC-II.pdf"
+  ],
+  "publisher": "Federal Board of Intermediate and Secondary Education",
+  "licence": "Government publication; structure + our own wording only",
+  "firstExam": "2026"
+ },
+ "grades": [
+  {
+   "grade": "10",
+   "units": [
+    {
+     "id": "domain-c-thermal-physics",
+     "title": "Domain C: Thermal Physics",
+     "topics": [
+      {
+       "id": "heat-and-temperature",
+       "title": "Heat and temperature",
+       "subtopics": [
+        {
+         "id": "specific-heat",
+         "title": "Specific heat",
+         "outcomes": [
+          {
+           "code": "P-10-C-01",
+           "text": "Define and calculate specific heat capacity."
+          },
+          {
+           "code": "P-10-C-02",
+           "text": "Suggest experiments to measure specific heat capacity."
+          },
+          {
+           "code": "P-10-C-03",
+           "text": "Analyse everyday effects of water's large specific heat."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "thermal-expansion",
+       "title": "Thermal expansion",
+       "subtopics": [
+        {
+         "id": "changes-of-state-and-expansion",
+         "title": "Changes of state and expansion",
+         "outcomes": [
+          {
+           "code": "P-10-C-04",
+           "text": "Use the terms for changes of state between solid, liquid and gas."
+          },
+          {
+           "code": "P-10-C-05",
+           "text": "Explain thermal expansion with kinetic theory."
+          },
+          {
+           "code": "P-10-C-06",
+           "text": "Analyse applications and consequences of thermal expansion."
+          },
+          {
+           "code": "P-10-C-07",
+           "text": "Analyse melting, solidification, boiling and condensation using particles."
+          },
+          {
+           "code": "P-10-C-08",
+           "text": "State melting and boiling temperatures of water at standard pressure."
+          },
+          {
+           "code": "P-10-C-09",
+           "text": "Describe expansion of solids qualitatively."
+          },
+          {
+           "code": "P-10-C-10",
+           "text": "Explain expansion of liquids, real and apparent."
+          },
+          {
+           "code": "P-10-C-11",
+           "text": "Explain gas pressure in terms of particle collisions."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "evaporation-and-latent-heat",
+       "title": "Evaporation and latent heat",
+       "subtopics": [
+        {
+         "id": "evaporation",
+         "title": "Evaporation",
+         "outcomes": [
+          {
+           "code": "P-10-C-12",
+           "text": "Differentiate boiling from evaporation."
+          },
+          {
+           "code": "P-10-C-22",
+           "text": "Describe evaporation as escape of energetic particles."
+          },
+          {
+           "code": "P-10-C-23",
+           "text": "Analyse how temperature, humidity, area and air movement affect evaporation."
+          },
+          {
+           "code": "P-10-C-24",
+           "text": "Explain how evaporation causes cooling."
+          },
+          {
+           "code": "P-10-C-25",
+           "text": "Describe evaporative cooling in refrigeration."
+          }
+         ]
+        },
+        {
+         "id": "latent-heat",
+         "title": "Latent heat",
+         "outcomes": [
+          {
+           "code": "P-10-C-26",
+           "text": "Explain latent heat using particle behaviour."
+          },
+          {
+           "code": "P-10-C-27",
+           "text": "Justify experiments to find latent heat of fusion and vaporisation."
+          },
+          {
+           "code": "P-10-C-28",
+           "text": "State that some materials become superconducting near absolute zero."
+          },
+          {
+           "code": "P-10-C-29",
+           "text": "Describe superconductivity."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "heat-transfer",
+       "title": "Heat transfer",
+       "subtopics": [
+        {
+         "id": "conduction-and-convection",
+         "title": "Conduction and convection",
+         "outcomes": [
+          {
+           "code": "P-10-C-30",
+           "text": "Justify experiments separating good and bad thermal conductors."
+          },
+          {
+           "code": "P-10-C-31",
+           "text": "Explain conduction in solids by lattice vibrations and free electrons."
+          },
+          {
+           "code": "P-10-C-32",
+           "text": "Explain convection in fluids through density changes."
+          },
+          {
+           "code": "P-10-C-33",
+           "text": "Explain convection in seawater supporting marine life."
+          },
+          {
+           "code": "P-10-C-34",
+           "text": "Describe land and sea breezes."
+          },
+          {
+           "code": "P-10-C-35",
+           "text": "Explain how birds and gliders use thermals."
+          }
+         ]
+        },
+        {
+         "id": "radiation-and-applications",
+         "title": "Radiation and applications",
+         "outcomes": [
+          {
+           "code": "P-10-C-36",
+           "text": "Describe heat transfer by radiation, needing no medium."
+          },
+          {
+           "code": "P-10-C-37",
+           "text": "Describe how surface colour and texture affect infrared emission and absorption."
+          },
+          {
+           "code": "P-10-C-38",
+           "text": "Justify how emission depends on temperature and area."
+          },
+          {
+           "code": "P-10-C-39",
+           "text": "Justify experiments on good and bad emitters and absorbers."
+          },
+          {
+           "code": "P-10-C-40",
+           "text": "Analyse the greenhouse effect as a result of heat radiation."
+          },
+          {
+           "code": "P-10-C-41",
+           "text": "Analyse everyday uses of conduction, convection and radiation."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "domain-d-waves-sound-and-light",
+     "title": "Domain D: Waves, Sound and Light",
+     "topics": [
+      {
+       "id": "wave-motion",
+       "title": "Wave motion",
+       "subtopics": [
+        {
+         "id": "waves-and-their-features",
+         "title": "Waves and their features",
+         "outcomes": [
+          {
+           "code": "P-10-D-01",
+           "text": "Show that waves transfer energy without moving matter."
+          },
+          {
+           "code": "P-10-D-02",
+           "text": "Describe wave motion."
+          },
+          {
+           "code": "P-10-D-03",
+           "text": "Describe wave features: wavefront, crest and trough."
+          },
+          {
+           "code": "P-10-D-04",
+           "text": "Define frequency, wavelength and amplitude."
+          },
+          {
+           "code": "P-10-D-05",
+           "text": "Use wave speed = frequency x wavelength."
+          },
+          {
+           "code": "P-10-D-06",
+           "text": "Illustrate transverse waves."
+          },
+          {
+           "code": "P-10-D-07",
+           "text": "Illustrate longitudinal waves."
+          }
+         ]
+        },
+        {
+         "id": "wave-behaviour",
+         "title": "Wave behaviour",
+         "outcomes": [
+          {
+           "code": "P-10-D-08",
+           "text": "Describe reflection, refraction and diffraction of waves."
+          },
+          {
+           "code": "P-10-D-09",
+           "text": "Describe how wavelength affects diffraction at an edge."
+          },
+          {
+           "code": "P-10-D-10",
+           "text": "Analyse tsunamis as shallow-water waves."
+          },
+          {
+           "code": "P-10-D-11",
+           "text": "Describe how wavelength and gap size affect diffraction."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "sound",
+       "title": "Sound",
+       "subtopics": [
+        {
+         "id": "nature-of-sound",
+         "title": "Nature of sound",
+         "outcomes": [
+          {
+           "code": "P-10-D-12",
+           "text": "Describe how sound is produced."
+          },
+          {
+           "code": "P-10-D-13",
+           "text": "Describe sound as a longitudinal wave."
+          },
+          {
+           "code": "P-10-D-14",
+           "text": "State the audible frequency range for humans."
+          },
+          {
+           "code": "P-10-D-15",
+           "text": "Justify why sound cannot travel in a vacuum."
+          },
+          {
+           "code": "P-10-D-16",
+           "text": "Describe how amplitude and frequency change loudness and pitch."
+          },
+          {
+           "code": "P-10-D-17",
+           "text": "Describe how different sources produce different waveforms."
+          }
+         ]
+        },
+        {
+         "id": "echo-and-speed-of-sound",
+         "title": "Echo and speed of sound",
+         "outcomes": [
+          {
+           "code": "P-10-D-18",
+           "text": "Describe an echo as reflected sound."
+          },
+          {
+           "code": "P-10-D-19",
+           "text": "Justify experiments showing reflection of sound."
+          },
+          {
+           "code": "P-10-D-20",
+           "text": "Illustrate a method to measure the speed of sound."
+          },
+          {
+           "code": "P-10-D-21",
+           "text": "State that sound in air travels about 330-350 m/s."
+          },
+          {
+           "code": "P-10-D-22",
+           "text": "Describe how sound speed differs in solids, liquids and gases."
+          }
+         ]
+        },
+        {
+         "id": "ultrasound-noise-and-hearing",
+         "title": "Ultrasound, noise and hearing",
+         "outcomes": [
+          {
+           "code": "P-10-D-23",
+           "text": "Define ultrasound as sound above 20 kHz."
+          },
+          {
+           "code": "P-10-D-24",
+           "text": "Illustrate and analyse uses of ultrasound."
+          },
+          {
+           "code": "P-10-D-25",
+           "text": "Illustrate the use of infrasound."
+          },
+          {
+           "code": "P-10-D-26",
+           "text": "Analyse effects of noise pollution."
+          },
+          {
+           "code": "P-10-D-27",
+           "text": "Justify the importance of acoustic protection."
+          },
+          {
+           "code": "P-10-D-28",
+           "text": "Describe how sound properties are used in applications."
+          },
+          {
+           "code": "P-10-D-29",
+           "text": "Explain how soft materials reduce echo."
+          },
+          {
+           "code": "P-10-D-30",
+           "text": "Explain with examples how sound reflects, refracts and diffracts."
+          },
+          {
+           "code": "P-10-D-31",
+           "text": "Explain how the ear converts sound into nerve signals."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "light",
+       "title": "Light",
+       "subtopics": [
+        {
+         "id": "reflection",
+         "title": "Reflection",
+         "outcomes": [
+          {
+           "code": "P-10-D-32",
+           "text": "Define normal, angle of incidence and angle of reflection."
+          },
+          {
+           "code": "P-10-D-33",
+           "text": "Describe an experiment to find the position and nature of a mirror image."
+          },
+          {
+           "code": "P-10-D-34",
+           "text": "Use the laws of reflection in simple optics problems."
+          }
+         ]
+        },
+        {
+         "id": "refraction-and-refractive-index",
+         "title": "Refraction and refractive index",
+         "outcomes": [
+          {
+           "code": "P-10-D-35",
+           "text": "Define normal, angle of incidence and refraction."
+          },
+          {
+           "code": "P-10-D-36",
+           "text": "Explain that a wave refracts toward the normal on entering a slower medium."
+          },
+          {
+           "code": "P-10-D-37",
+           "text": "Define and use refractive index from vacuum to a medium."
+          },
+          {
+           "code": "P-10-D-38",
+           "text": "Define n = sin i / sin r and apply Snell's law."
+          },
+          {
+           "code": "P-10-D-39",
+           "text": "Describe an experiment showing refraction through a block."
+          }
+         ]
+        },
+        {
+         "id": "total-internal-reflection",
+         "title": "Total internal reflection",
+         "outcomes": [
+          {
+           "code": "P-10-D-40",
+           "text": "Define critical angle and total internal reflection."
+          },
+          {
+           "code": "P-10-D-41",
+           "text": "Derive n = 1/sin c."
+          },
+          {
+           "code": "P-10-D-42",
+           "text": "Apply n = 1/sin c to problems."
+          },
+          {
+           "code": "P-10-D-43",
+           "text": "Describe experiments showing total internal reflection."
+          },
+          {
+           "code": "P-10-D-44",
+           "text": "Evaluate the use of optical fibres."
+          }
+         ]
+        },
+        {
+         "id": "lenses",
+         "title": "Lenses",
+         "outcomes": [
+          {
+           "code": "P-10-D-45",
+           "text": "Analyse thin converging and diverging lenses."
+          },
+          {
+           "code": "P-10-D-46",
+           "text": "Define focal length, principal axis and principal focus."
+          },
+          {
+           "code": "P-10-D-47",
+           "text": "Draw ray diagrams for real and virtual images."
+          },
+          {
+           "code": "P-10-D-48",
+           "text": "Differentiate real from virtual images."
+          },
+          {
+           "code": "P-10-D-49",
+           "text": "Define and calculate linear magnification."
+          },
+          {
+           "code": "P-10-D-50",
+           "text": "Describe a single lens as a magnifying glass."
+          },
+          {
+           "code": "P-10-D-53",
+           "text": "Describe single lenses in optical devices."
+          },
+          {
+           "code": "P-10-D-54",
+           "text": "Draw ray diagrams for image formation in optical devices."
+          },
+          {
+           "code": "P-10-D-55",
+           "text": "Describe lenses correcting eye defects."
+          }
+         ]
+        },
+        {
+         "id": "dispersion-and-the-eye",
+         "title": "Dispersion and the eye",
+         "outcomes": [
+          {
+           "code": "P-10-D-51",
+           "text": "Explain dispersion of light by a prism."
+          },
+          {
+           "code": "P-10-D-52",
+           "text": "State the seven colours of the visible spectrum in order."
+          },
+          {
+           "code": "P-10-D-56",
+           "text": "Illustrate how the eye processes colour."
+          },
+          {
+           "code": "P-10-D-57",
+           "text": "State that extreme gravity from objects like black holes bends light."
+          },
+          {
+           "code": "P-10-D-58",
+           "text": "State that acoustic lenses focus sound using shape and material."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "domain-e-electricity-magnetism-and-electronics",
+     "title": "Domain E: Electricity, Magnetism and Electronics",
+     "topics": [
+      {
+       "id": "electrostatics",
+       "title": "Electrostatics",
+       "subtopics": [
+        {
+         "id": "charges-and-charging",
+         "title": "Charges and charging",
+         "outcomes": [
+          {
+           "code": "P-10-E-01",
+           "text": "State that there are positive and negative charges."
+          },
+          {
+           "code": "P-10-E-02",
+           "text": "State that like charges repel and unlike attract."
+          },
+          {
+           "code": "P-10-E-03",
+           "text": "Describe experiments on charging by friction."
+          },
+          {
+           "code": "P-10-E-04",
+           "text": "Explain that friction charging moves only electrons."
+          },
+          {
+           "code": "P-09-E-05",
+           "text": "Explain how an insulator is discharged."
+          },
+          {
+           "code": "P-10-E-06",
+           "text": "Explain charging a conductor by induction."
+          },
+          {
+           "code": "P-10-E-07",
+           "text": "Describe where charging causes problems."
+          },
+          {
+           "code": "P-10-E-08",
+           "text": "Suggest how charging and discharging are used."
+          }
+         ]
+        },
+        {
+         "id": "electric-fields",
+         "title": "Electric fields",
+         "outcomes": [
+          {
+           "code": "P-10-E-09",
+           "text": "Describe an electric field as a region where charge feels force."
+          },
+          {
+           "code": "P-10-E-10",
+           "text": "State that field direction is the force on a positive charge."
+          },
+          {
+           "code": "P-10-E-11",
+           "text": "Analyse and draw simple field patterns."
+          }
+         ]
+        },
+        {
+         "id": "conductors-insulators-and-lightning",
+         "title": "Conductors, insulators and lightning",
+         "outcomes": [
+          {
+           "code": "P-10-E-12",
+           "text": "State examples of conductors and insulators."
+          },
+          {
+           "code": "P-10-E-13",
+           "text": "Describe an experiment to tell conductors from insulators."
+          },
+          {
+           "code": "P-10-E-14",
+           "text": "Use a simple electron model for conductors and insulators."
+          },
+          {
+           "code": "P-10-E-15",
+           "text": "Explain how a lightning rod protects people."
+          },
+          {
+           "code": "P-10-E-16",
+           "text": "Explain electrical breakdown."
+          },
+          {
+           "code": "P-10-E-17",
+           "text": "State that corona discharge and Lichtenberg figures are visible discharges."
+          },
+          {
+           "code": "P-10-E-18",
+           "text": "Explain how lightning forms."
+          },
+          {
+           "code": "P-10-E-19",
+           "text": "State that there are many kinds of lightning."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "current-electricity",
+       "title": "Current electricity",
+       "subtopics": [
+        {
+         "id": "current-and-potential",
+         "title": "Current and potential",
+         "outcomes": [
+          {
+           "code": "P-10-E-20",
+           "text": "Define and calculate electric current."
+          },
+          {
+           "code": "P-10-E-21",
+           "text": "Explain conduction in metals by electron flow."
+          },
+          {
+           "code": "P-10-E-22",
+           "text": "State that current is measured in amperes."
+          },
+          {
+           "code": "P-10-E-23",
+           "text": "Differentiate d.c. from a.c."
+          },
+          {
+           "code": "P-10-E-24",
+           "text": "Differentiate conventional from actual current."
+          },
+          {
+           "code": "P-10-E-25",
+           "text": "Justify and show the use of ammeters."
+          },
+          {
+           "code": "P-10-E-26",
+           "text": "Define e.m.f."
+          },
+          {
+           "code": "P-10-E-27",
+           "text": "Define potential difference."
+          },
+          {
+           "code": "P-10-E-28",
+           "text": "State that e.m.f. and p.d. are measured in volts."
+          },
+          {
+           "code": "P-10-E-29",
+           "text": "Justify and show the use of voltmeters."
+          },
+          {
+           "code": "P-10-E-30",
+           "text": "Calculate total e.m.f. of cells in series."
+          },
+          {
+           "code": "P-10-E-31",
+           "text": "State the e.m.f. of identical cells in parallel."
+          }
+         ]
+        },
+        {
+         "id": "resistance-and-ohm-s-law",
+         "title": "Resistance and Ohm's law",
+         "outcomes": [
+          {
+           "code": "P-10-E-32",
+           "text": "Describe an experiment to find resistance."
+          },
+          {
+           "code": "P-10-E-33",
+           "text": "Define and calculate resistivity."
+          },
+          {
+           "code": "P-10-E-34",
+           "text": "Define and apply Ohm's law."
+          },
+          {
+           "code": "P-10-E-35",
+           "text": "Describe how temperature changes resistance."
+          },
+          {
+           "code": "P-10-E-36",
+           "text": "Interpret current-voltage graphs."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "circuits",
+       "title": "Circuits",
+       "subtopics": [
+        {
+         "id": "circuit-rules-and-calculations",
+         "title": "Circuit rules and calculations",
+         "outcomes": [
+          {
+           "code": "P-10-E-37",
+           "text": "Draw circuit diagrams."
+          },
+          {
+           "code": "P-10-E-38",
+           "text": "Use current and voltage rules for series and parallel circuits."
+          },
+          {
+           "code": "P-10-E-39",
+           "text": "Calculate combined resistance in series."
+          },
+          {
+           "code": "P-10-E-40",
+           "text": "Calculate combined resistance of two resistors in parallel."
+          },
+          {
+           "code": "P-10-E-41",
+           "text": "Calculate current, voltage and resistance in circuit parts."
+          },
+          {
+           "code": "P-10-E-42",
+           "text": "Describe the action of an NTC thermistor."
+          },
+          {
+           "code": "P-10-E-43",
+           "text": "Analyse variable potential dividers."
+          },
+          {
+           "code": "P-10-E-44",
+           "text": "Justify and show the use of resistor colour codes."
+          }
+         ]
+        },
+        {
+         "id": "diodes-and-relays",
+         "title": "Diodes and relays",
+         "outcomes": [
+          {
+           "code": "P-10-E-45",
+           "text": "Describe the working of a diode."
+          },
+          {
+           "code": "P-10-E-46",
+           "text": "Describe how an LED passes current."
+          },
+          {
+           "code": "P-10-E-47",
+           "text": "Describe how relays switch circuits."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "electrical-energy-and-safety",
+       "title": "Electrical energy and safety",
+       "subtopics": [
+        {
+         "id": "electrical-power-and-cost",
+         "title": "Electrical power and cost",
+         "outcomes": [
+          {
+           "code": "P-10-E-48",
+           "text": "State common uses of electricity."
+          },
+          {
+           "code": "P-10-E-49",
+           "text": "Justify connecting lamps in parallel."
+          },
+          {
+           "code": "P-10-E-50",
+           "text": "Use P = IV."
+          },
+          {
+           "code": "P-10-E-51",
+           "text": "Use E = IVt."
+          },
+          {
+           "code": "P-10-E-52",
+           "text": "Define the kilowatt-hour."
+          },
+          {
+           "code": "P-10-E-53",
+           "text": "Explain choosing components with suitable power ratings."
+          },
+          {
+           "code": "P-10-E-54",
+           "text": "Calculate the cost of using electrical appliances."
+          }
+         ]
+        },
+        {
+         "id": "safety-in-the-home",
+         "title": "Safety in the home",
+         "outcomes": [
+          {
+           "code": "P-10-E-55",
+           "text": "State common electrical hazards."
+          },
+          {
+           "code": "P-10-E-56",
+           "text": "Explain trip switches and fuses."
+          },
+          {
+           "code": "P-10-E-57",
+           "text": "Explain what happens when a live wire touches a metal case."
+          },
+          {
+           "code": "P-10-E-58",
+           "text": "Explain why metal casings must be earthed."
+          },
+          {
+           "code": "P-10-E-59",
+           "text": "State that a mains circuit has live, neutral and earth wires."
+          },
+          {
+           "code": "P-10-E-60",
+           "text": "Explain why fuses and breakers are on the live wire."
+          },
+          {
+           "code": "P-10-E-61",
+           "text": "Explain why domestic supplies are parallel."
+          },
+          {
+           "code": "P-10-E-62",
+           "text": "Explain the damage electric shock does to the body."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "digital-electronics",
+       "title": "Digital electronics",
+       "subtopics": [
+        {
+         "id": "logic-gates-and-transistors",
+         "title": "Logic gates and transistors",
+         "outcomes": [
+          {
+           "code": "P-10-E-63",
+           "text": "Explain that electronic devices are built from digital logic."
+          },
+          {
+           "code": "P-10-E-64",
+           "text": "Explain that Boolean logic underlies analogue-to-digital conversion."
+          },
+          {
+           "code": "P-10-E-65",
+           "text": "State logic gate actions in words and truth tables."
+          },
+          {
+           "code": "P-10-E-66",
+           "text": "Identify logic gates in security uses."
+          },
+          {
+           "code": "P-10-E-67",
+           "text": "Use circuit symbols for logic gates."
+          },
+          {
+           "code": "P-10-E-68",
+           "text": "Identify how Boolean switches combine in problems."
+          },
+          {
+           "code": "P-10-E-69",
+           "text": "Describe an npn transistor as a switch."
+          },
+          {
+           "code": "P-10-E-70",
+           "text": "Explain that transistors are used in digital devices."
+          },
+          {
+           "code": "P-10-E-71",
+           "text": "State that some circuits keep their state after an input."
+          },
+          {
+           "code": "P-10-E-72",
+           "text": "State that quantum computers are early in development."
+          },
+          {
+           "code": "P-10-E-73",
+           "text": "Compare analogue and digital electronics."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "electromagnetism",
+       "title": "Electromagnetism",
+       "subtopics": [
+        {
+         "id": "electromagnetic-induction",
+         "title": "Electromagnetic induction",
+         "outcomes": [
+          {
+           "code": "P-10-E-74",
+           "text": "Describe an experiment showing electromagnetic induction."
+          },
+          {
+           "code": "P-10-E-75",
+           "text": "Use factors that affect induced e.m.f."
+          },
+          {
+           "code": "P-10-E-76",
+           "text": "Use Lenz's law for the effect of induced current."
+          },
+          {
+           "code": "P-10-E-77",
+           "text": "Describe how a.c. generators work."
+          },
+          {
+           "code": "P-10-E-78",
+           "text": "Sketch and interpret e.m.f.-time graphs for a.c."
+          }
+         ]
+        },
+        {
+         "id": "magnetic-effect-of-current",
+         "title": "Magnetic effect of current",
+         "outcomes": [
+          {
+           "code": "P-10-E-79",
+           "text": "Describe the magnetic field pattern around a current-carrying conductor."
+          },
+          {
+           "code": "P-10-E-80",
+           "text": "State how field changes with current and direction."
+          },
+          {
+           "code": "P-10-E-81",
+           "text": "Describe the magnetic effect of current in relays."
+          },
+          {
+           "code": "P-10-E-82",
+           "text": "Describe an experiment showing a force on a current in a field."
+          },
+          {
+           "code": "P-10-E-83",
+           "text": "State and use the relative directions of force, field and current."
+          },
+          {
+           "code": "P-10-E-84",
+           "text": "Describe field patterns between parallel currents."
+          },
+          {
+           "code": "P-10-E-85",
+           "text": "State that a current-carrying coil in a field can turn."
+          },
+          {
+           "code": "P-10-E-86",
+           "text": "Describe the operation of an electric motor."
+          },
+          {
+           "code": "P-10-E-87",
+           "text": "State that Earth's magnetic field is thought to come from molten iron movement."
+          }
+         ]
+        },
+        {
+         "id": "transformers",
+         "title": "Transformers",
+         "outcomes": [
+          {
+           "code": "P-10-E-88",
+           "text": "Explain how a simple iron-cored transformer works."
+          },
+          {
+           "code": "P-10-E-89",
+           "text": "Use primary, secondary, step-up and step-down."
+          },
+          {
+           "code": "P-10-E-90",
+           "text": "Use Vp/Vs = Np/Ns."
+          },
+          {
+           "code": "P-10-E-91",
+           "text": "Justify the advantages of high-voltage transmission."
+          }
+         ]
+        },
+        {
+         "id": "electron-beams-and-oscilloscope",
+         "title": "Electron beams and oscilloscope",
+         "outcomes": [
+          {
+           "code": "P-10-E-92",
+           "text": "Describe electron beam deflection by electric and magnetic fields."
+          },
+          {
+           "code": "P-10-E-93",
+           "text": "Interpret oscilloscope waveforms."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "electromagnetic-waves",
+       "title": "Electromagnetic waves",
+       "subtopics": [
+        {
+         "id": "electromagnetic-spectrum",
+         "title": "Electromagnetic spectrum",
+         "outcomes": [
+          {
+           "code": "P-10-E-94",
+           "text": "State the regions of the electromagnetic spectrum in order."
+          },
+          {
+           "code": "P-10-E-95",
+           "text": "State that all electromagnetic waves travel at the same speed in vacuum."
+          },
+          {
+           "code": "P-10-E-96",
+           "text": "Describe applications of electromagnetic waves."
+          },
+          {
+           "code": "P-10-E-97",
+           "text": "Describe damage caused by electromagnetic radiation."
+          },
+          {
+           "code": "P-10-E-98",
+           "text": "Explain qualitatively how light scattering gives the blue sky."
+          },
+          {
+           "code": "P-10-E-99",
+           "text": "State that light can be treated as photons carrying momentum."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "domain-f-modern-physics",
+     "title": "Domain F: Modern Physics",
+     "topics": [
+      {
+       "id": "atomic-and-nuclear-physics",
+       "title": "Atomic and nuclear physics",
+       "subtopics": [
+        {
+         "id": "atomic-structure",
+         "title": "Atomic structure",
+         "outcomes": [
+          {
+           "code": "P-10-F-01",
+           "text": "Describe the structure of the atom."
+          },
+          {
+           "code": "P-10-F-02",
+           "text": "Justify the findings of alpha scattering experiments."
+          },
+          {
+           "code": "P-10-F-03",
+           "text": "Define proton number and nucleon number."
+          },
+          {
+           "code": "P-10-F-04",
+           "text": "Use nuclide notation."
+          },
+          {
+           "code": "P-10-F-05",
+           "text": "Explain isotopes."
+          }
+         ]
+        },
+        {
+         "id": "radioactivity",
+         "title": "Radioactivity",
+         "outcomes": [
+          {
+           "code": "P-10-F-06",
+           "text": "Explain background radiation."
+          },
+          {
+           "code": "P-10-F-07",
+           "text": "State the main sources of background radiation."
+          },
+          {
+           "code": "P-10-F-08",
+           "text": "Describe radiation emission as spontaneous and random."
+          },
+          {
+           "code": "P-10-F-09",
+           "text": "Describe alpha, beta and gamma radiation."
+          },
+          {
+           "code": "P-10-F-10",
+           "text": "Justify the order of ionising and penetrating power of radiations."
+          },
+          {
+           "code": "P-10-F-11",
+           "text": "Describe deflection of radiation in electric and magnetic fields."
+          },
+          {
+           "code": "P-10-F-12",
+           "text": "Explain radioactive decay as a change in an unstable nucleus."
+          },
+          {
+           "code": "P-10-F-13",
+           "text": "Use decay equations with nuclide notation."
+          }
+         ]
+        },
+        {
+         "id": "mass-energy-and-half-life",
+         "title": "Mass-energy and half-life",
+         "outcomes": [
+          {
+           "code": "P-10-F-14",
+           "text": "Recognise that matter can be converted to energy and the reverse."
+          },
+          {
+           "code": "P-10-F-15",
+           "text": "Use E = mc^2 to calculate energy released."
+          },
+          {
+           "code": "P-10-F-16",
+           "text": "Describe activity of a radioactive material in counts per second."
+          },
+          {
+           "code": "P-10-F-17",
+           "text": "Define and infer half-life."
+          },
+          {
+           "code": "P-10-F-18",
+           "text": "Explain and apply carbon dating."
+          },
+          {
+           "code": "P-10-F-19",
+           "text": "Explain how radiation type and half-life determine uses."
+          },
+          {
+           "code": "P-10-F-20",
+           "text": "State the effects of ionising radiation on living things."
+          },
+          {
+           "code": "P-10-F-21",
+           "text": "Explain how radioactive materials are moved, used and stored safely."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "astrophysics-and-earth",
+       "title": "Astrophysics and earth",
+       "subtopics": [
+        {
+         "id": "the-sun-universe-and-earth",
+         "title": "The Sun, universe and Earth",
+         "outcomes": [
+          {
+           "code": "P-10-F-22",
+           "text": "Explain the nature of the Sun as a medium-sized star."
+          },
+          {
+           "code": "P-10-F-23",
+           "text": "Describe the hypothesis that most matter in the universe is dark matter."
+          },
+          {
+           "code": "P-10-F-24",
+           "text": "Explain how global warming contributes to extreme weather."
+          },
+          {
+           "code": "P-10-F-25",
+           "text": "Explain geothermal activity."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "domain-g-nature-of-physics",
+     "title": "Domain G: Nature of Physics",
+     "topics": [
+      {
+       "id": "nature-of-physics",
+       "title": "Nature of physics",
+       "subtopics": [
+        {
+         "id": "falsifiability",
+         "title": "Falsifiability",
+         "outcomes": [
+          {
+           "code": "P-10-G-01",
+           "text": "Explain with examples that a scientific idea must be falsifiable."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "domain-n-practical-skills",
+     "title": "Domain N: Practical Skills",
+     "topics": [
+      {
+       "id": "practical-skills",
+       "title": "Practical skills",
+       "subtopics": [
+        {
+         "id": "lab-safety",
+         "title": "Lab safety",
+         "outcomes": [
+          {
+           "code": "P-09-10-N-01",
+           "text": "Explain with examples how lab hazards can be reduced."
+          },
+          {
+           "code": "P-09-10-N-02",
+           "text": "Identify risks in a given experimental procedure."
+          },
+          {
+           "code": "P-09-10-N-03",
+           "text": "Identify the meaning of common hazard signs."
+          },
+          {
+           "code": "P-09-10-N-04",
+           "text": "Call emergency services after a lab accident."
+          }
+         ]
+        },
+        {
+         "id": "measurement-and-error",
+         "title": "Measurement and error",
+         "outcomes": [
+          {
+           "code": "P-09-10-N-05",
+           "text": "Define true value, error, accuracy, precision and related terms."
+          },
+          {
+           "code": "P-09-10-N-06",
+           "text": "Identify apparatus for collecting data."
+          },
+          {
+           "code": "P-09-10-N-07",
+           "text": "Plan how data will be tabulated or graphed."
+          },
+          {
+           "code": "P-09-10-N-08",
+           "text": "Explain step by step how data will be analysed."
+          },
+          {
+           "code": "P-09-10-N-09",
+           "text": "Suggest how human and systematic errors can be reduced."
+          },
+          {
+           "code": "P-09-10-N-10",
+           "text": "Set up apparatus under supervision."
+          },
+          {
+           "code": "P-09-10-N-11",
+           "text": "Avoid parallax error."
+          },
+          {
+           "code": "P-09-10-N-12",
+           "text": "Identify and correct zero error."
+          },
+          {
+           "code": "P-09-10-N-13",
+           "text": "Take enough readings to average out random error."
+          },
+          {
+           "code": "P-09-10-N-14",
+           "text": "Take correct meniscus readings."
+          },
+          {
+           "code": "P-09-10-N-15",
+           "text": "Record sources of potential error."
+          },
+          {
+           "code": "P-09-10-N-16",
+           "text": "Avoid systematic error in the specific experiment."
+          }
+         ]
+        },
+        {
+         "id": "taking-measurements",
+         "title": "Taking measurements",
+         "outcomes": [
+          {
+           "code": "P-09-10-N-17",
+           "text": "Make measurements with common laboratory apparatus."
+          },
+          {
+           "code": "P-09-10-N-18",
+           "text": "Use a stopwatch to time intervals, including oscillations."
+          },
+          {
+           "code": "P-09-10-N-19",
+           "text": "Use analogue scales and digital displays."
+          },
+          {
+           "code": "P-09-10-N-20",
+           "text": "Measure physical quantities such as length, volume and mass."
+          },
+          {
+           "code": "P-09-10-N-21",
+           "text": "Measure small distances or short time intervals."
+          },
+          {
+           "code": "P-09-10-N-22",
+           "text": "Determine a derived quantity such as extension per unit load."
+          },
+          {
+           "code": "P-09-10-N-23",
+           "text": "Test the relationship between two variables."
+          },
+          {
+           "code": "P-09-10-N-24",
+           "text": "Compare measured quantities such as angles of reflection."
+          }
+         ]
+        },
+        {
+         "id": "experiments-with-common-apparatus",
+         "title": "Experiments with common apparatus",
+         "outcomes": [
+          {
+           "code": "P-09-10-N-25",
+           "text": "Compare derived quantities such as density."
+          },
+          {
+           "code": "P-09-10-N-26",
+           "text": "Heat and cool materials and measure temperature."
+          },
+          {
+           "code": "P-09-10-N-27",
+           "text": "Run experiments with springs and balances."
+          },
+          {
+           "code": "P-09-10-N-28",
+           "text": "Time motion or oscillations."
+          },
+          {
+           "code": "P-09-10-N-29",
+           "text": "Work with electric circuits, connecting and reconnecting."
+          },
+          {
+           "code": "P-09-10-N-30",
+           "text": "Do optics experiments with pins and transparent, translucent and opaque materials."
+          },
+          {
+           "code": "P-09-10-N-31",
+           "text": "Use procedures with simple apparatus in other situations."
+          }
+         ]
+        },
+        {
+         "id": "recording-and-graphs",
+         "title": "Recording and graphs",
+         "outcomes": [
+          {
+           "code": "P-09-10-N-32",
+           "text": "Record measured and calculated quantities with correct units."
+          },
+          {
+           "code": "P-09-10-N-33",
+           "text": "Organise tabulated results with headings and units."
+          },
+          {
+           "code": "P-09-10-N-34",
+           "text": "Label graph axes with quantities and units."
+          },
+          {
+           "code": "P-09-10-N-35",
+           "text": "Choose scales that use most of the graph paper."
+          },
+          {
+           "code": "P-09-10-N-36",
+           "text": "Plot points accurately."
+          },
+          {
+           "code": "P-09-10-N-37",
+           "text": "Plot points with small crosses or fine dots."
+          },
+          {
+           "code": "P-09-10-N-38",
+           "text": "Use measuring instruments to full precision."
+          },
+          {
+           "code": "P-09-10-N-39",
+           "text": "Estimate significant figures for calculated quantities."
+          },
+          {
+           "code": "P-09-10-N-40",
+           "text": "Show clear working in calculations."
+          },
+          {
+           "code": "P-09-10-N-41",
+           "text": "Express ratios as decimals to sensible figures."
+          },
+          {
+           "code": "P-09-10-N-42",
+           "text": "Sketch lines of best fit with balanced points."
+          },
+          {
+           "code": "P-09-10-N-43",
+           "text": "Calculate the gradient of a straight line from a graph."
+          },
+          {
+           "code": "P-09-10-N-44",
+           "text": "Determine the intercept of a straight-line graph."
+          },
+          {
+           "code": "P-09-10-N-45",
+           "text": "Take readings from graphs by extrapolation."
+          }
+         ]
+        },
+        {
+         "id": "evaluating-procedures",
+         "title": "Evaluating procedures",
+         "outcomes": [
+          {
+           "code": "P-09-10-N-46",
+           "text": "Identify whether a procedure is valid."
+          },
+          {
+           "code": "P-09-10-N-47",
+           "text": "Identify whether a procedure is reliable."
+          },
+          {
+           "code": "P-09-10-N-48",
+           "text": "Recommend how to reduce random and systematic errors."
+          },
+          {
+           "code": "P-09-10-N-49",
+           "text": "Identify unsafe steps in an experimental design."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "build": {
+  "builtAt": "2026-10-14T08:14:19.764Z",
+  "model": "claude-agent",
+  "usd": 0,
+  "expectedCodes": 215,
+  "coverage": 1,
+  "missingCodes": [],
+  "counts": {
+   "grades": 1,
+   "units": 6,
+   "topics": 18,
+   "subtopics": 42,
+   "outcomes": 264
+  },
+  "warnings": [
+   "unit \"Domain G: Nature of Physics\" (grade 10) has a single outcome"
+  ]
+ }
+}

@@ -1,0 +1,709 @@
+{
+ "id": "uk-edexcel-alevel-arabic-9aa0",
+ "region": "UK",
+ "framework": "Pearson Edexcel Level 3 Advanced GCE",
+ "board": "Pearson Edexcel",
+ "qualification": "A Level",
+ "subject": "Arabic",
+ "syllabusCode": "9AA0",
+ "gradeSystem": "year",
+ "source": {
+  "urls": [
+   "https://qualifications.pearson.com/content/dam/pdf/A%20Level/Arabic/2018/specification-and-sample-assessments/A-level-Arabic-Specification1.pdf"
+  ],
+  "publisher": "Pearson Education",
+  "licence": "Exam board specification, (c) Pearson; structure + our own wording only",
+  "firstExam": "2020"
+ },
+ "grades": [
+  {
+   "grade": "all",
+   "units": [
+    {
+     "id": "theme-1-changes-in-arab-society",
+     "title": "Theme 1: Changes in Arab society",
+     "topics": [
+      {
+       "id": "the-arab-family",
+       "title": "The Arab family",
+       "subtopics": [
+        {
+         "id": "gender-roles-in-the-family",
+         "title": "Gender roles in the family",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Discuss the roles of men and women within the Arab family."
+          }
+         ]
+        },
+        {
+         "id": "extended-family-and-marriage",
+         "title": "Extended family and marriage",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain the role of extended family and relatives, and attitudes to marriage and divorce."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "the-media",
+       "title": "The media",
+       "subtopics": [
+        {
+         "id": "media-and-society",
+         "title": "Media and society",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Evaluate how the media influence Arab society."
+          }
+         ]
+        },
+        {
+         "id": "technology-and-social-media",
+         "title": "Technology and social media",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Discuss technology, media outlets and how social media affect society and relationships."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "research-subject-social-customs-in-one-arab-coun",
+       "title": "Research subject: Social customs in one Arab country",
+       "subtopics": [
+        {
+         "id": "social-customs",
+         "title": "Social customs",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Research where social customs come from and why they matter to Arab society."
+          },
+          {
+           "code": null,
+           "text": "Judge how modern life is changing these customs in one chosen country."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "theme-2-artistic-culture-in-the-arab-world",
+     "title": "Theme 2: Artistic culture in the Arab world",
+     "topics": [
+      {
+       "id": "music",
+       "title": "Music",
+       "subtopics": [
+        {
+         "id": "traditional-music-and-song",
+         "title": "Traditional music and song",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe types of music and traditional songs, and folk and musical culture."
+          }
+         ]
+        },
+        {
+         "id": "role-of-music",
+         "title": "Role of music",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain the role of music and song in Arab life."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "the-arabesque-an-arab-art",
+       "title": "The arabesque, an Arab art",
+       "subtopics": [
+        {
+         "id": "arab-arts-and-crafts",
+         "title": "Arab arts and crafts",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain how artistic and craft skills pass between generations."
+          }
+         ]
+        },
+        {
+         "id": "architecture-and-calligraphy",
+         "title": "Architecture and calligraphy",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe changes in architecture and the place of Arabic calligraphy."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "research-subject-celebrations-and-occasions-in-o",
+       "title": "Research subject: Celebrations and occasions in one Arab country",
+       "subtopics": [
+        {
+         "id": "traditional-celebrations",
+         "title": "Traditional celebrations",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe existing traditional celebrations and occasions in one chosen country."
+          }
+         ]
+        },
+        {
+         "id": "modernising-celebrations",
+         "title": "Modernising celebrations",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain how celebrations are modernised and the role of tourism, festivals and events."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "theme-3-work-and-citizenship-in-the-arab-world",
+     "title": "Theme 3: Work and citizenship in the Arab world",
+     "topics": [
+      {
+       "id": "life-and-work",
+       "title": "Life and work",
+       "subtopics": [
+        {
+         "id": "social-mobility-and-work",
+         "title": "Social mobility and work",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Discuss social mobility and attitudes to equal opportunities at work."
+          }
+         ]
+        },
+        {
+         "id": "unemployment",
+         "title": "Unemployment",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain causes and effects of unemployment."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "responsibility-for-the-environment",
+       "title": "Responsibility for the environment",
+       "subtopics": [
+        {
+         "id": "pollution-and-recycling",
+         "title": "Pollution and recycling",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe Arab society's attitudes to pollution and recycling."
+          }
+         ]
+        },
+        {
+         "id": "alternative-energy-and-green-groups",
+         "title": "Alternative energy and green groups",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain government positions on alternative energy and the work of environment-friendly groups."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "research-subject-tourism-in-one-arab-country",
+       "title": "Research subject: Tourism in one Arab country",
+       "subtopics": [
+        {
+         "id": "tourism-economy",
+         "title": "Tourism economy",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Research tourism's effect on the economy of one chosen country."
+          }
+         ]
+        },
+        {
+         "id": "costs-and-benefits-of-tourism",
+         "title": "Costs and benefits of tourism",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Weigh tourism's costs and benefits for locals, and its effect on heritage and infrastructure."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "theme-4-political-culture-in-the-arab-world",
+     "title": "Theme 4: Political culture in the Arab world",
+     "topics": [
+      {
+       "id": "arab-identity",
+       "title": "Arab identity",
+       "subtopics": [
+        {
+         "id": "nationalism-and-independence",
+         "title": "Nationalism and independence",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe nationalism and independence movements of the twentieth century."
+          }
+         ]
+        },
+        {
+         "id": "pan-arabism",
+         "title": "Pan-Arabism",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain pan-Arab political philosophy and beliefs, and how widespread pan-Arabism is today."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "political-situation-in-the-twenty-first-century",
+       "title": "Political situation in the twenty-first century",
+       "subtopics": [
+        {
+         "id": "political-systems",
+         "title": "Political systems",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe political systems of the Arab world and how they have changed."
+          }
+         ]
+        },
+        {
+         "id": "elections-and-freedom-of-choice",
+         "title": "Elections and freedom of choice",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Discuss attitudes to elections and freedom of choice."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "research-subject-ethnic-minorities-in-one-arab-c",
+       "title": "Research subject: Ethnic minorities in one Arab country",
+       "subtopics": [
+        {
+         "id": "minorities-in-context",
+         "title": "Minorities in context",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe the historical context of ethnic minorities in one chosen country."
+          }
+         ]
+        },
+        {
+         "id": "integration-and-equality",
+         "title": "Integration and equality",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Judge how far minorities are integrated and enjoy equality."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "paper-1-translation-reading-and-research-writing",
+     "title": "Paper 1: Translation, reading and research writing",
+     "topics": [
+      {
+       "id": "skills-for-paper-1",
+       "title": "Skills for Paper 1",
+       "subtopics": [
+        {
+         "id": "translating-arabic-into-english",
+         "title": "Translating Arabic into English",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Translate accurately from Arabic into English on any sub-theme."
+          }
+         ]
+        },
+        {
+         "id": "reading-authentic-texts",
+         "title": "Reading authentic texts",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Understand main points and detail and infer meaning from complex authentic texts, factual and abstract."
+          }
+         ]
+        },
+        {
+         "id": "independent-research",
+         "title": "Independent research",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Research one country from at least two authentic Arabic sources and evaluate the findings."
+          }
+         ]
+        },
+        {
+         "id": "writing-a-research-argument",
+         "title": "Writing a research argument",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Use research findings and an unseen text to argue and conclude about the research subject."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "paper-2-translation-into-arabic-and-works",
+     "title": "Paper 2: Translation into Arabic and works",
+     "topics": [
+      {
+       "id": "skills-for-paper-2",
+       "title": "Skills for Paper 2",
+       "subtopics": [
+        {
+         "id": "translating-english-into-arabic",
+         "title": "Translating English into Arabic",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Translate an unseen English passage into accurate Arabic."
+          }
+         ]
+        },
+        {
+         "id": "analysing-works",
+         "title": "Analysing works",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Analyse form, technique, themes, characterisation, plot structure and social and cultural setting of the works."
+          }
+         ]
+        },
+        {
+         "id": "writing-critical-essays",
+         "title": "Writing critical essays",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Write Arabic essays that present and justify viewpoints with evidence from the work."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "prescribed-works",
+       "title": "Prescribed works",
+       "subtopics": [
+        {
+         "id": "literary-texts-and-films",
+         "title": "Literary texts and films",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Study two prescribed works: two literary texts, or one text and one film, from the set list."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "paper-3-listening-reading-and-writing",
+     "title": "Paper 3: Listening, reading and writing",
+     "topics": [
+      {
+       "id": "skills-for-paper-3",
+       "title": "Skills for Paper 3",
+       "subtopics": [
+        {
+         "id": "listening-and-responding",
+         "title": "Listening and responding",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Understand and respond in Arabic to spoken texts across the four themes."
+          }
+         ]
+        },
+        {
+         "id": "reading-and-writing-in-arabic",
+         "title": "Reading and writing in Arabic",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Understand written texts and write coherent Arabic responses across the four themes."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "grammar-list",
+     "title": "Grammar list",
+     "topics": [
+      {
+       "id": "appendix-2-grammar",
+       "title": "Appendix 2 grammar",
+       "subtopics": [
+        {
+         "id": "the-case-system",
+         "title": "The case system",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Use the Arabic case system accurately."
+          }
+         ]
+        },
+        {
+         "id": "vocalisation",
+         "title": "Vocalisation",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Use and read the vocalisation system."
+          }
+         ]
+        },
+        {
+         "id": "nouns",
+         "title": "Nouns",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Use noun definiteness, gender, singular, dual and plural forms, diptotes, idafa and loan word transliteration."
+          }
+         ]
+        },
+        {
+         "id": "pronouns",
+         "title": "Pronouns",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Use personal, object, emphatic, relative, demonstrative, possessive and interrogative pronouns."
+          }
+         ]
+        },
+        {
+         "id": "nominal-sentences",
+         "title": "Nominal sentences",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Form equational sentences, kana and inna with their sisters, and negation."
+          }
+         ]
+        },
+        {
+         "id": "articles",
+         "title": "Articles",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Use definite and indefinite articles, including omission and generic use."
+          }
+         ]
+        },
+        {
+         "id": "adjectives",
+         "title": "Adjectives",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Apply adjective agreement, position, comparatives, superlatives, nisba and negation with ghayr."
+          }
+         ]
+        },
+        {
+         "id": "adverbs",
+         "title": "Adverbs",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Use adverbs of manner, time, place and purpose, cognate accusative, tamyiz and hal."
+          }
+         ]
+        },
+        {
+         "id": "quantifiers-and-intensifiers",
+         "title": "Quantifiers and intensifiers",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Use quantifiers and intensifiers such as all, some, little, much and very."
+          }
+         ]
+        },
+        {
+         "id": "verb-forms-and-conjugation",
+         "title": "Verb forms and conjugation",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Conjugate forms I-X of sound, weak, hollow, defective, doubled and hamzated verbs."
+          }
+         ]
+        },
+        {
+         "id": "verb-tenses-and-moods",
+         "title": "Verb tenses and moods",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Use perfect, imperfect, future, subjunctive, jussive, conditional, pluperfect and future perfect tenses."
+          }
+         ]
+        },
+        {
+         "id": "imperative-and-passive",
+         "title": "Imperative and passive",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Form affirmative, negative and indirect imperatives, passive voice, possibility with qad, verbal nouns and participles."
+          }
+         ]
+        },
+        {
+         "id": "verbal-sentences",
+         "title": "Verbal sentences",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Order verb, subject, object and pronoun suffixes in verbal sentences."
+          }
+         ]
+        },
+        {
+         "id": "prepositions",
+         "title": "Prepositions",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Use all prepositions correctly."
+          }
+         ]
+        },
+        {
+         "id": "conjunctions",
+         "title": "Conjunctions",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Use coordinating and subordinating conjunctions."
+          }
+         ]
+        },
+        {
+         "id": "particles",
+         "title": "Particles",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Use interrogative, vocative, absolute negation, exclamation and emphatic particles."
+          }
+         ]
+        },
+        {
+         "id": "numerals",
+         "title": "Numerals",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Use cardinal and ordinal numbers, exception, number-noun agreement, dates in several calendars, and munthu."
+          }
+         ]
+        },
+        {
+         "id": "word-formation",
+         "title": "Word formation",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Use roots and patterns to form nouns, adjectives and verbs."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "build": {
+  "builtAt": "2026-10-14T10:24:33.132Z",
+  "model": "claude-agent",
+  "usd": 0,
+  "expectedCodes": null,
+  "coverage": null,
+  "missingCodes": [],
+  "counts": {
+   "grades": 1,
+   "units": 8,
+   "topics": 17,
+   "subtopics": 51,
+   "outcomes": 52
+  },
+  "warnings": [
+   "grade Year 12 has no content",
+   "grade Year 13 has no content",
+   "unexpected grade label \"all\""
+  ]
+ }
+}

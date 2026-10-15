@@ -1,0 +1,724 @@
+{
+ "id": "pk-ncp-tech-microbiology-11-12",
+ "region": "PK",
+ "framework": "National Curriculum of Pakistan 2022-23",
+ "board": null,
+ "qualification": "Technical stream",
+ "subject": "Microbiology",
+ "syllabusCode": null,
+ "gradeSystem": "grade",
+ "source": {
+  "urls": [
+   "https://ncc.gov.pk/SiteImage/Misc/files/52-Medical%20Technology.pdf"
+  ],
+  "publisher": "National Curriculum Council, Ministry of Federal Education and Professional Training",
+  "licence": "Government publication; structure + our own wording only",
+  "firstExam": null
+ },
+ "grades": [
+  {
+   "grade": "11",
+   "units": [
+    {
+     "id": "domain-a-introduction-to-microbiology",
+     "title": "Domain A: Introduction to Microbiology",
+     "topics": [
+      {
+       "id": "introduction-to-microbiology",
+       "title": "Introduction to Microbiology",
+       "subtopics": [
+        {
+         "id": "history-and-importance-of-microbiology",
+         "title": "History and importance of microbiology",
+         "outcomes": [
+          {
+           "code": "MB-11-A-01",
+           "text": "Recall key milestones and contributors in the history of microbiology."
+          },
+          {
+           "code": "MB-11-A-02",
+           "text": "Study historical figures across the discovery, transition, golden and modern eras."
+          },
+          {
+           "code": "MB-11-A-03",
+           "text": "Define why microbiology matters and learn its applied areas."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "domain-b-microscope",
+     "title": "Domain B: Microscope",
+     "topics": [
+      {
+       "id": "microscope",
+       "title": "Microscope",
+       "subtopics": [
+        {
+         "id": "history-and-parts-of-the-microscope",
+         "title": "History and parts of the microscope",
+         "outcomes": [
+          {
+           "code": "MB-11-B-01",
+           "text": "Recall a brief history of the microscope."
+          },
+          {
+           "code": "MB-11-B-02",
+           "text": "Identify the basic parts of a microscope and what they do."
+          }
+         ]
+        },
+        {
+         "id": "types-of-microscope-and-practical-use",
+         "title": "Types of microscope and practical use",
+         "outcomes": [
+          {
+           "code": "MB-11-B-03",
+           "text": "Compare compound, fluorescent, dark field, phase contrast and electron microscopes, with uses and limits."
+          },
+          {
+           "code": null,
+           "text": "Practical: examine specimens as wet (unstained) preparations and stained slides, telling microscopic structures apart."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "domain-c-sterilization-and-disinfection",
+     "title": "Domain C: Sterilization and Disinfection",
+     "topics": [
+      {
+       "id": "sterilization-and-disinfection",
+       "title": "Sterilization and disinfection",
+       "subtopics": [
+        {
+         "id": "principles-of-sterilization-and-disinfection",
+         "title": "Principles of sterilization and disinfection",
+         "outcomes": [
+          {
+           "code": "MB-11-C-01",
+           "text": "Define sterilization and disinfection."
+          },
+          {
+           "code": "MB-11-C-02",
+           "text": "Distinguish the principles of sterilization and disinfection."
+          },
+          {
+           "code": "MB-11-C-03",
+           "text": "Describe physical methods of sterilization."
+          }
+         ]
+        },
+        {
+         "id": "moist-heat-sterilization",
+         "title": "Moist heat sterilization",
+         "outcomes": [
+          {
+           "code": "MB-11-C-04",
+           "text": "Explain moist heat sterilization."
+          },
+          {
+           "code": "MB-11-C-05",
+           "text": "Describe how an autoclave works."
+          },
+          {
+           "code": "MB-11-C-06",
+           "text": "Explain flash sterilization and where it is used."
+          },
+          {
+           "code": "MB-11-C-07",
+           "text": "Describe sterilization by boiling."
+          }
+         ]
+        },
+        {
+         "id": "dry-heat-sterilization",
+         "title": "Dry heat sterilization",
+         "outcomes": [
+          {
+           "code": "MB-11-C-08",
+           "text": "Explain the procedure and benefits of dry heat sterilization."
+          },
+          {
+           "code": "MB-11-C-09",
+           "text": "Discuss how a hot air oven works and its uses."
+          },
+          {
+           "code": "MB-11-C-10",
+           "text": "Explain incineration as a sterilization method."
+          },
+          {
+           "code": "MB-11-C-11",
+           "text": "Discuss the principles and use of the red heat method."
+          }
+         ]
+        },
+        {
+         "id": "radiation-sterilization",
+         "title": "Radiation sterilization",
+         "outcomes": [
+          {
+           "code": "MB-11-C-12",
+           "text": "Describe sterilization techniques that use radiation."
+          },
+          {
+           "code": "MB-11-C-13",
+           "text": "Explain the principles and uses of infrared and ultraviolet radiation in sterilization."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "domain-d-microbial-culture-media",
+     "title": "Domain D: Microbial Culture Media",
+     "topics": [
+      {
+       "id": "microbial-culture-media",
+       "title": "Microbial culture media",
+       "subtopics": [
+        {
+         "id": "classifying-culture-media",
+         "title": "Classifying culture media",
+         "outcomes": [
+          {
+           "code": "MB-11-D-01",
+           "text": "Define culture media and explain their purpose."
+          },
+          {
+           "code": "MB-11-D-02",
+           "text": "Classify media by consistency: solid, semi-solid, liquid."
+          },
+          {
+           "code": "MB-11-D-03",
+           "text": "Distinguish simple, complex and synthetic media by nutrients."
+          },
+          {
+           "code": "MB-11-D-04",
+           "text": "Classify media by application and chemical composition."
+          },
+          {
+           "code": "MB-11-D-05",
+           "text": "Outline basal, enriched, selective, enrichment, differential, transport, antimicrobial testing and storage media."
+          },
+          {
+           "code": "MB-11-D-06",
+           "text": "Distinguish aerobic from anaerobic media and why it matters for growth."
+          }
+         ]
+        },
+        {
+         "id": "using-culture-media",
+         "title": "Using culture media",
+         "outcomes": [
+          {
+           "code": "MB-11-D-07",
+           "text": "Discuss how culture media are used to grow and identify microbes."
+          },
+          {
+           "code": "MB-11-D-08",
+           "text": "Practical: identify and select media by classification and need."
+          },
+          {
+           "code": "MB-11-D-09",
+           "text": "Explain the important composition of media."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "domain-e-microbial-staining-techniques",
+     "title": "Domain E: Microbial Staining Techniques",
+     "topics": [
+      {
+       "id": "staining-techniques",
+       "title": "Staining techniques",
+       "subtopics": [
+        {
+         "id": "gram-staining",
+         "title": "Gram staining",
+         "outcomes": [
+          {
+           "code": "MB-11-E-01",
+           "text": "Explain why staining matters and the techniques used."
+          },
+          {
+           "code": "MB-11-E-02",
+           "text": "Define the principle of the Gram stain."
+          },
+          {
+           "code": "MB-11-E-03",
+           "text": "Outline the steps of Gram staining."
+          }
+         ]
+        },
+        {
+         "id": "acid-fast-staining",
+         "title": "Acid-fast staining",
+         "outcomes": [
+          {
+           "code": "MB-11-E-04",
+           "text": "Describe the principle of acid-fast staining."
+          },
+          {
+           "code": "MB-11-E-05",
+           "text": "Explain the steps of the Ziehl-Neelsen (heat) stain."
+          },
+          {
+           "code": "MB-11-E-06",
+           "text": "Explain the steps of the Kinyoun (cold) stain."
+          },
+          {
+           "code": null,
+           "text": "Practical: observe stained slides and identify Gram-positive and Gram-negative organisms."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "domain-f-classification-of-bacteria-on-the-basis",
+     "title": "Domain F: Classification of bacteria on the basis of Gram reaction and Morphology",
+     "topics": [
+      {
+       "id": "classification-of-bacteria",
+       "title": "Classification of bacteria",
+       "subtopics": [
+        {
+         "id": "gram-reaction-and-morphology",
+         "title": "Gram reaction and morphology",
+         "outcomes": [
+          {
+           "code": "MB-11-F-01",
+           "text": "Classify bacteria by Gram reaction and shape as Gram-positive or Gram-negative."
+          },
+          {
+           "code": "MB-11-F-02",
+           "text": "List examples of Gram-positive cocci."
+          },
+          {
+           "code": "MB-11-F-03",
+           "text": "List examples of Gram-positive bacilli."
+          },
+          {
+           "code": "MB-11-F-04",
+           "text": "List examples of Gram-negative cocci."
+          },
+          {
+           "code": "MB-11-F-05",
+           "text": "List examples of Gram-negative bacilli."
+          }
+         ]
+        },
+        {
+         "id": "bacterial-growth-terms",
+         "title": "Bacterial growth terms",
+         "outcomes": [
+          {
+           "code": "MB-11-F-06",
+           "text": "Define hemolysis, aerobic, anaerobic, obligate aerobic, obligate anaerobic, fastidious, aerotolerant and microaerophilic."
+          },
+          {
+           "code": null,
+           "text": "Practical: observe bacterial cultures on media and under the microscope."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "domain-g-identification-of-bacteria",
+     "title": "Domain G: Identification of Bacteria",
+     "topics": [
+      {
+       "id": "identification-tests",
+       "title": "Identification tests",
+       "subtopics": [
+        {
+         "id": "biochemical-tests",
+         "title": "Biochemical tests",
+         "outcomes": [
+          {
+           "code": "MB-11-G-01",
+           "text": "Explain the principle of the catalase test."
+          },
+          {
+           "code": "MB-11-G-02",
+           "text": "Describe the principle of the coagulase test."
+          },
+          {
+           "code": "MB-11-G-03",
+           "text": "Outline the principle of the mannitol fermentation test."
+          },
+          {
+           "code": "MB-11-G-04",
+           "text": "Define the principle of the DNase test."
+          },
+          {
+           "code": "MB-11-G-05",
+           "text": "Explain the principle of lactose fermentation."
+          },
+          {
+           "code": "MB-11-G-06",
+           "text": "Discuss the principle of the oxidase test."
+          }
+         ]
+        },
+        {
+         "id": "antimicrobial-testing-and-practicals",
+         "title": "Antimicrobial testing and practicals",
+         "outcomes": [
+          {
+           "code": "MB-11-G-07",
+           "text": "Explain antimicrobial testing by the Kirby-Bauer disc diffusion method."
+          },
+          {
+           "code": "MB-11-G-08",
+           "text": "Practical: observe lactose fermentation on selective agar."
+          },
+          {
+           "code": "MB-11-G-09",
+           "text": "Practical: observe catalase, coagulase and oxidase tests."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "domain-h-virology",
+     "title": "Domain H: Virology",
+     "topics": [
+      {
+       "id": "virology",
+       "title": "Virology",
+       "subtopics": [
+        {
+         "id": "viruses",
+         "title": "Viruses",
+         "outcomes": [
+          {
+           "code": "MB-11-H-01",
+           "text": "Define virology and outline its basic concepts."
+          },
+          {
+           "code": "MB-11-H-02",
+           "text": "Describe general characteristics of viruses."
+          },
+          {
+           "code": "MB-11-H-03",
+           "text": "Describe the structure of viruses."
+          },
+          {
+           "code": "MB-11-H-04",
+           "text": "Learn the classification of viruses."
+          },
+          {
+           "code": null,
+           "text": "Practical: draw a labelled diagram of virus structure."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "12",
+   "units": [
+    {
+     "id": "domain-c-sterilization-and-disinfection",
+     "title": "Domain C: Sterilization and Disinfection",
+     "topics": [
+      {
+       "id": "sterilization-and-disinfection",
+       "title": "Sterilization and disinfection",
+       "subtopics": [
+        {
+         "id": "radiation-and-chemical-sterilization",
+         "title": "Radiation and chemical sterilization",
+         "outcomes": [
+          {
+           "code": "MB-12-C-01",
+           "text": "Discuss how X-rays and gamma rays are applied in sterilization."
+          },
+          {
+           "code": "MB-12-C-02",
+           "text": "Describe chemical methods of sterilization."
+          },
+          {
+           "code": "MB-12-C-03",
+           "text": "Explain gaseous sterilization with ethylene oxide, formaldehyde, nitrogen oxide and ozone."
+          },
+          {
+           "code": "MB-12-C-04",
+           "text": "Discuss liquid sterilization with hydrogen peroxide, glutaraldehyde and hypochlorite."
+          }
+         ]
+        },
+        {
+         "id": "filtration-testing-and-terminology",
+         "title": "Filtration, testing and terminology",
+         "outcomes": [
+          {
+           "code": "MB-12-C-05",
+           "text": "Understand filtration, inspissation and the red heat method."
+          },
+          {
+           "code": "MB-12-C-06",
+           "text": "Describe biological, chemical and mechanical tests of sterilization efficiency."
+          },
+          {
+           "code": "MB-12-C-07",
+           "text": "Define antiseptic, bacteriostatic and bactericidal."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "domain-i-parasitology",
+     "title": "Domain I: Parasitology",
+     "topics": [
+      {
+       "id": "introduction-to-medical-parasitology",
+       "title": "Introduction to medical parasitology",
+       "subtopics": [
+        {
+         "id": "parasitic-infection-terms-and-transmission",
+         "title": "Parasitic infection terms and transmission",
+         "outcomes": [
+          {
+           "code": "MB-12-I-01",
+           "text": "Recall general terms, risks and prevention of parasitic infections."
+          },
+          {
+           "code": "MB-12-I-02",
+           "text": "Define vectors, hosts, reservoirs and zoonosis."
+          },
+          {
+           "code": "MB-12-I-03",
+           "text": "Describe factors that spread parasitic infections and preventions: sanitation, hygiene, vector control."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "domain-j-introduction-to-medical-parasitology",
+     "title": "Domain J: Introduction to Medical Parasitology",
+     "topics": [
+      {
+       "id": "classifying-parasites",
+       "title": "Classifying parasites",
+       "subtopics": [
+        {
+         "id": "protozoa-helminths-and-ectoparasites",
+         "title": "Protozoa, helminths and ectoparasites",
+         "outcomes": [
+          {
+           "code": "MB-12-J-01",
+           "text": "Classify parasites by morphology as protozoa, helminths or ectoparasites."
+          },
+          {
+           "code": "MB-12-J-02",
+           "text": "Identify parasites by shape, size, locomotion and reproduction."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "domain-k-protozoa",
+     "title": "Domain K : Protozoa",
+     "topics": [
+      {
+       "id": "protozoa",
+       "title": "Protozoa",
+       "subtopics": [
+        {
+         "id": "protozoan-life-cycles",
+         "title": "Protozoan life cycles",
+         "outcomes": [
+          {
+           "code": "MB-12-K-01",
+           "text": "Explain life cycles, stages and transmission of Entamoeba histolytica and Entamoeba coli."
+          },
+          {
+           "code": "MB-12-K-02",
+           "text": "Describe life cycles, stages and transmission of Giardia lamblia and Trichomonas vaginalis."
+          },
+          {
+           "code": "MB-12-K-03",
+           "text": "Explain the life cycle, stages and transmission of Balantidium coli."
+          },
+          {
+           "code": null,
+           "text": "Practical: make wet and iodine stool preparations to screen for parasites."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "domain-l-arthropod",
+     "title": "Domain L: Arthropod",
+     "topics": [
+      {
+       "id": "arthropods",
+       "title": "Arthropods",
+       "subtopics": [
+        {
+         "id": "mosquito-and-house-fly",
+         "title": "Mosquito and house fly",
+         "outcomes": [
+          {
+           "code": "MB-12-L-01",
+           "text": "Explain the life cycle of the Anopheles mosquito."
+          },
+          {
+           "code": "MB-12-L-02",
+           "text": "Describe the life cycle of the house fly."
+          },
+          {
+           "code": "MB-12-L-03",
+           "text": "Describe ways to prevent the spread of mosquitoes and house flies."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "domain-m-helminths",
+     "title": "Domain M: Helminths",
+     "topics": [
+      {
+       "id": "helminths",
+       "title": "Helminths",
+       "subtopics": [
+        {
+         "id": "worm-life-cycles",
+         "title": "Worm life cycles",
+         "outcomes": [
+          {
+           "code": "MB-12-M-01",
+           "text": "Describe life cycles of Enterobius, Trichuris, Ascaris, Ancylostoma, Taenia, Echinococcus granulosus and Hymenolepis nana."
+          },
+          {
+           "code": "MB-12-M-02",
+           "text": "Outline features and life cycles of trematodes such as Fasciola hepatica and Schistosoma."
+          },
+          {
+           "code": null,
+           "text": "Practical: study stool concentration methods."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "domain-n-mycology",
+     "title": "Domain N: Mycology",
+     "topics": [
+      {
+       "id": "mycology",
+       "title": "Mycology",
+       "subtopics": [
+        {
+         "id": "fungi",
+         "title": "Fungi",
+         "outcomes": [
+          {
+           "code": "MB-12-N-01",
+           "text": "Recall the general characteristics of fungi."
+          },
+          {
+           "code": "MB-12-N-02",
+           "text": "Define key fungal terms."
+          },
+          {
+           "code": "MB-12-N-03",
+           "text": "Explain the classification of fungi."
+          },
+          {
+           "code": "MB-12-N-04",
+           "text": "List how fungi differ from bacteria."
+          },
+          {
+           "code": "MB-12-N-05",
+           "text": "Describe fungal morphology, especially mold and yeast dimorphism."
+          }
+         ]
+        },
+        {
+         "id": "fungal-practicals",
+         "title": "Fungal practicals",
+         "outcomes": [
+          {
+           "code": "MB-12-L-06",
+           "text": "Draw diagrams of fungi highlighting morphological features."
+          },
+          {
+           "code": "MB-12-L-07",
+           "text": "Learn KOH preparation."
+          },
+          {
+           "code": "MB-12-L-08",
+           "text": "Learn the lactophenol cotton blue staining technique."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "build": {
+  "builtAt": "2026-10-14T08:38:29.788Z",
+  "model": "claude-agent",
+  "usd": 0,
+  "expectedCodes": 81,
+  "coverage": 1,
+  "missingCodes": [],
+  "counts": {
+   "grades": 2,
+   "units": 15,
+   "topics": 15,
+   "subtopics": 25,
+   "outcomes": 87
+  },
+  "warnings": []
+ }
+}

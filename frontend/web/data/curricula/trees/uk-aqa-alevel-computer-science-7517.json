@@ -1,0 +1,3228 @@
+{
+ "id": "uk-aqa-alevel-computer-science-7517",
+ "region": "UK",
+ "framework": "AQA A-level",
+ "board": "AQA",
+ "qualification": "A Level",
+ "subject": "Computer Science",
+ "syllabusCode": "7517",
+ "gradeSystem": "year",
+ "source": {
+  "urls": [
+   "https://cdn.sanity.io/files/p28bar15/green/f166bc32cf15f0544176053d76db4544891e8399.pdf"
+  ],
+  "publisher": "AQA",
+  "licence": "Exam board specification, (c) AQA; structure + our own wording only",
+  "firstExam": "2017"
+ },
+ "grades": [
+  {
+   "grade": "Year 12",
+   "units": [
+    {
+     "id": "3-1-fundamentals-of-programming",
+     "title": "3.1 Fundamentals of programming",
+     "topics": [
+      {
+       "id": "3-1-1-programming",
+       "title": "3.1.1 Programming",
+       "subtopics": [
+        {
+         "id": "data-types",
+         "title": "Data types",
+         "outcomes": [
+          {
+           "code": "3.1.1.1",
+           "text": "Explain what a data type is."
+          },
+          {
+           "code": null,
+           "text": "Use integer, real, Boolean, character, string, date/time, record and array types appropriately."
+          },
+          {
+           "code": null,
+           "text": "Define and use your own data types built from built-in ones."
+          }
+         ]
+        },
+        {
+         "id": "programming-statements",
+         "title": "Programming statements",
+         "outcomes": [
+          {
+           "code": "3.1.1.2",
+           "text": "Combine variable and constant declaration, assignment, iteration, selection and subroutines in programs."
+          },
+          {
+           "code": null,
+           "text": "Use definite and indefinite iteration, with the test at the start or end of the loop."
+          },
+          {
+           "code": null,
+           "text": "Use nested selection and nested iteration."
+          },
+          {
+           "code": null,
+           "text": "Choose meaningful identifier names and explain why it matters."
+          }
+         ]
+        },
+        {
+         "id": "arithmetic-and-relational-operations",
+         "title": "Arithmetic and relational operations",
+         "outcomes": [
+          {
+           "code": "3.1.1.3",
+           "text": "Use addition, subtraction, multiplication, real and integer division with remainders, exponentiation, rounding and truncation."
+          },
+          {
+           "code": "3.1.1.4",
+           "text": "Use the six relational operators: equal, not equal, less, greater, and their or-equal forms."
+          }
+         ]
+        },
+        {
+         "id": "boolean-operations-and-constants",
+         "title": "Boolean operations and constants",
+         "outcomes": [
+          {
+           "code": "3.1.1.5",
+           "text": "Use NOT, AND, OR and XOR in programs."
+          },
+          {
+           "code": "3.1.1.6",
+           "text": "Explain how a variable differs from a constant."
+          },
+          {
+           "code": null,
+           "text": "Explain the advantages of named constants."
+          }
+         ]
+        },
+        {
+         "id": "strings-and-random-numbers",
+         "title": "Strings and random numbers",
+         "outcomes": [
+          {
+           "code": "3.1.1.7",
+           "text": "Use string length, position, substring and concatenation operations."
+          },
+          {
+           "code": null,
+           "text": "Convert between characters and character codes."
+          },
+          {
+           "code": null,
+           "text": "Convert between strings and integers, floats and dates/times."
+          },
+          {
+           "code": "3.1.1.8",
+           "text": "Generate and use random numbers in programs."
+          }
+         ]
+        },
+        {
+         "id": "exception-handling",
+         "title": "Exception handling",
+         "outcomes": [
+          {
+           "code": "3.1.1.9",
+           "text": "Explain what exception handling is."
+          },
+          {
+           "code": null,
+           "text": "Apply exception handling in a familiar programming language."
+          }
+         ]
+        },
+        {
+         "id": "subroutines-and-parameters",
+         "title": "Subroutines and parameters",
+         "outcomes": [
+          {
+           "code": "3.1.1.10",
+           "text": "Describe subroutines as named out-of-line blocks of code that are called by name."
+          },
+          {
+           "code": null,
+           "text": "Explain the advantages of using subroutines."
+          },
+          {
+           "code": "3.1.1.11",
+           "text": "Describe how parameters pass data between parts of a program."
+          },
+          {
+           "code": null,
+           "text": "Write and call subroutines with interfaces."
+          },
+          {
+           "code": "3.1.1.12",
+           "text": "Write subroutines that return values to the caller."
+          }
+         ]
+        },
+        {
+         "id": "local-and-global-variables",
+         "title": "Local and global variables",
+         "outcomes": [
+          {
+           "code": "3.1.1.13",
+           "text": "Describe local variables: they exist only while the subroutine runs and are accessible only inside it."
+          },
+          {
+           "code": null,
+           "text": "Use local variables and explain why that is good practice."
+          },
+          {
+           "code": "3.1.1.14",
+           "text": "Contrast local variables with global variables."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "3-1-2-procedural-oriented-programming",
+       "title": "3.1.2 Procedural-oriented programming",
+       "subtopics": [
+        {
+         "id": "structured-programming",
+         "title": "Structured programming",
+         "outcomes": [
+          {
+           "code": "3.1.2.1",
+           "text": "Explain the structured approach to designing and building programs."
+          },
+          {
+           "code": null,
+           "text": "Draw and use hierarchy charts when designing programs."
+          },
+          {
+           "code": null,
+           "text": "Explain the advantages of structured programming."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "3-2-fundamentals-of-data-structures",
+     "title": "3.2 Fundamentals of data structures",
+     "topics": [
+      {
+       "id": "3-2-1-data-structures-and-abstract-data-types",
+       "title": "3.2.1 Data structures and abstract data types",
+       "subtopics": [
+        {
+         "id": "data-structures-and-arrays",
+         "title": "Data structures and arrays",
+         "outcomes": [
+          {
+           "code": "3.2.1.1",
+           "text": "Explain the concept of a data structure."
+          },
+          {
+           "code": "3.2.1.2",
+           "text": "Use one-dimensional and multi-dimensional arrays to solve simple problems."
+          }
+         ]
+        },
+        {
+         "id": "files",
+         "title": "Files",
+         "outcomes": [
+          {
+           "code": "3.2.1.3",
+           "text": "Read from and write to a text file."
+          },
+          {
+           "code": null,
+           "text": "Read from and write to a binary file."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "3-3-systematic-approach-to-problem-solving",
+     "title": "3.3 Systematic approach to problem solving",
+     "topics": [
+      {
+       "id": "3-3-1-aspects-of-software-development",
+       "title": "3.3.1 Aspects of software development",
+       "subtopics": [
+        {
+         "id": "analysis-and-design",
+         "title": "Analysis and design",
+         "outcomes": [
+          {
+           "code": "3.3.1.1",
+           "text": "Know that a problem must be defined, requirements set and a data model created before solving it."
+          },
+          {
+           "code": "3.3.1.2",
+           "text": "Know that a solution is designed first: data structures, algorithms, modular structure and user interface."
+          }
+         ]
+        },
+        {
+         "id": "implementation-testing-evaluation",
+         "title": "Implementation, testing, evaluation",
+         "outcomes": [
+          {
+           "code": "3.3.1.3",
+           "text": "Know that models and algorithms are implemented as data structures and code, then shown correct and efficient by reasoning, test data and feedback."
+          },
+          {
+           "code": "3.3.1.4",
+           "text": "Test programs with normal, boundary and erroneous data."
+          },
+          {
+           "code": "3.3.1.5",
+           "text": "Know the criteria used to evaluate a computer system."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "3-4-theory-of-computation",
+     "title": "3.4 Theory of computation",
+     "topics": [
+      {
+       "id": "3-4-1-abstraction-and-automation",
+       "title": "3.4.1 Abstraction and automation",
+       "subtopics": [
+        {
+         "id": "problem-solving-and-algorithms",
+         "title": "Problem-solving and algorithms",
+         "outcomes": [
+          {
+           "code": "3.4.1.1",
+           "text": "Develop and check solutions to simple logic problems."
+          },
+          {
+           "code": "3.4.1.2",
+           "text": "Define an algorithm as a finite sequence of steps that always terminates."
+          },
+          {
+           "code": null,
+           "text": "Write algorithms in pseudo-code using sequence, assignment, selection and iteration."
+          },
+          {
+           "code": null,
+           "text": "Hand-trace algorithms and convert pseudo-code into program code."
+          },
+          {
+           "code": null,
+           "text": "Argue for a program's correctness and efficiency using reasoning, test data and feedback."
+          }
+         ]
+        },
+        {
+         "id": "kinds-of-abstraction",
+         "title": "Kinds of abstraction",
+         "outcomes": [
+          {
+           "code": "3.4.1.3",
+           "text": "Distinguish representational abstraction from abstraction by generalisation or categorisation."
+          },
+          {
+           "code": "3.4.1.4",
+           "text": "Describe information hiding: concealing details that are not essential to an object."
+          },
+          {
+           "code": "3.4.1.5",
+           "text": "Explain procedural abstraction as capturing a computational method as a procedure."
+          },
+          {
+           "code": "3.4.1.6",
+           "text": "Explain functional abstraction, where the particular computation method is hidden."
+          },
+          {
+           "code": "3.4.1.7",
+           "text": "Explain data abstraction, where how data is represented is hidden, with a stack as an example."
+          }
+         ]
+        },
+        {
+         "id": "reduction-decomposition-composition-automation",
+         "title": "Reduction, decomposition, composition, automation",
+         "outcomes": [
+          {
+           "code": "3.4.1.8",
+           "text": "Explain problem abstraction: removing detail until the problem reduces to one already solved."
+          },
+          {
+           "code": "3.4.1.9",
+           "text": "Explain procedural decomposition into sub-problems with identifiable tasks."
+          },
+          {
+           "code": "3.4.1.10",
+           "text": "Build compound procedures and compound data (such as trees) by composition."
+          },
+          {
+           "code": "3.4.1.11",
+           "text": "Explain that automation puts models into action through algorithms, code, data structures and execution."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "3-4-2-finite-state-machines-fsms",
+       "title": "3.4.2 Finite state machines (FSMs)",
+       "subtopics": [
+        {
+         "id": "finite-state-machines",
+         "title": "Finite state machines",
+         "outcomes": [
+          {
+           "code": "3.4.2.1",
+           "text": "Draw and interpret state transition diagrams and tables for FSMs with no output."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "3-5-fundamentals-of-data-representation",
+     "title": "3.5 Fundamentals of data representation",
+     "topics": [
+      {
+       "id": "3-5-1-number-systems",
+       "title": "3.5.1 Number systems",
+       "subtopics": [
+        {
+         "id": "sets-of-numbers",
+         "title": "Sets of numbers",
+         "outcomes": [
+          {
+           "code": "3.5.1.1",
+           "text": "Describe natural numbers and the set N."
+          },
+          {
+           "code": "3.5.1.2",
+           "text": "Describe integers and the set Z."
+          },
+          {
+           "code": "3.5.1.3",
+           "text": "Describe rational numbers, the set Q, and that integers are rational."
+          },
+          {
+           "code": "3.5.1.4",
+           "text": "Describe irrational numbers such as root 2."
+          },
+          {
+           "code": "3.5.1.5",
+           "text": "Describe real numbers and the set R."
+          }
+         ]
+        },
+        {
+         "id": "ordinals-counting-and-measuring",
+         "title": "Ordinals, counting and measuring",
+         "outcomes": [
+          {
+           "code": "3.5.1.6",
+           "text": "Use ordinal numbers to give positions in an ordered set."
+          },
+          {
+           "code": "3.5.1.7",
+           "text": "Use natural numbers for counting and real numbers for measurement."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "3-5-2-number-bases",
+       "title": "3.5.2 Number bases",
+       "subtopics": [
+        {
+         "id": "decimal-binary-and-hexadecimal",
+         "title": "Decimal, binary and hexadecimal",
+         "outcomes": [
+          {
+           "code": "3.5.2.1",
+           "text": "Explain number bases and write a base using a subscript."
+          },
+          {
+           "code": null,
+           "text": "Convert between decimal, binary and hexadecimal."
+          },
+          {
+           "code": null,
+           "text": "Use hexadecimal as shorthand for binary and say why."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "3-5-3-units-of-information",
+       "title": "3.5.3 Units of information",
+       "subtopics": [
+        {
+         "id": "bits-bytes-and-units",
+         "title": "Bits, bytes and units",
+         "outcomes": [
+          {
+           "code": "3.5.3.1",
+           "text": "Know a bit is the basic unit and a byte is 8 bits."
+          },
+          {
+           "code": null,
+           "text": "Know that n bits give 2^n different values."
+          },
+          {
+           "code": "3.5.3.2",
+           "text": "Distinguish binary prefixes (kibi, mebi, gibi, tebi) from decimal prefixes (kilo, mega, giga, tera)."
+          },
+          {
+           "code": null,
+           "text": "Know each prefix's symbol and its power of 2 or 10."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "3-5-4-binary-number-system",
+       "title": "3.5.4 Binary number system",
+       "subtopics": [
+        {
+         "id": "unsigned-binary",
+         "title": "Unsigned binary",
+         "outcomes": [
+          {
+           "code": "3.5.4.1",
+           "text": "Distinguish unsigned from signed binary."
+          },
+          {
+           "code": null,
+           "text": "Convert between unsigned binary and decimal."
+          },
+          {
+           "code": null,
+           "text": "State the range 0 to 2^n - 1 of n unsigned bits."
+          },
+          {
+           "code": "3.5.4.2",
+           "text": "Add two unsigned binary integers."
+          },
+          {
+           "code": null,
+           "text": "Multiply two unsigned binary integers."
+          }
+         ]
+        },
+        {
+         "id": "two-s-complement-and-fixed-point",
+         "title": "Two's complement and fixed point",
+         "outcomes": [
+          {
+           "code": "3.5.4.3",
+           "text": "Represent positive and negative integers in two's complement."
+          },
+          {
+           "code": null,
+           "text": "Convert between signed binary and decimal."
+          },
+          {
+           "code": null,
+           "text": "Subtract using two's complement."
+          },
+          {
+           "code": null,
+           "text": "Calculate the range of n bits in two's complement."
+          },
+          {
+           "code": "3.5.4.4",
+           "text": "Represent numbers with a fractional part in fixed-point binary."
+          },
+          {
+           "code": null,
+           "text": "Convert fixed-point binary to and from decimal in a given number of bits."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "3-5-5-information-coding-systems",
+       "title": "3.5.5 Information coding systems",
+       "subtopics": [
+        {
+         "id": "character-codes-and-error-checking",
+         "title": "Character codes and error checking",
+         "outcomes": [
+          {
+           "code": "3.5.5.1",
+           "text": "Distinguish a digit's character code from its pure binary value."
+          },
+          {
+           "code": "3.5.5.2",
+           "text": "Describe ASCII and Unicode and explain why Unicode was introduced."
+          },
+          {
+           "code": "3.5.5.3",
+           "text": "Explain parity bits."
+          },
+          {
+           "code": null,
+           "text": "Explain majority voting."
+          },
+          {
+           "code": null,
+           "text": "Explain check digits."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "3-5-6-representing-images-sound-and-other-data",
+       "title": "3.5.6 Representing images, sound and other data",
+       "subtopics": [
+        {
+         "id": "analogue-digital-and-other-data",
+         "title": "Analogue, digital and other data",
+         "outcomes": [
+          {
+           "code": "3.5.6.1",
+           "text": "Describe how bit patterns can represent graphics, sound and other data."
+          },
+          {
+           "code": "3.5.6.2",
+           "text": "Distinguish analogue from digital data and signals."
+          },
+          {
+           "code": "3.5.6.3",
+           "text": "Describe how an ADC works."
+          },
+          {
+           "code": null,
+           "text": "Describe how a DAC works."
+          }
+         ]
+        },
+        {
+         "id": "bitmaps",
+         "title": "Bitmaps",
+         "outcomes": [
+          {
+           "code": "3.5.6.4",
+           "text": "Explain how bitmap images are represented."
+          },
+          {
+           "code": null,
+           "text": "Explain resolution, colour depth and size in pixels."
+          },
+          {
+           "code": null,
+           "text": "Calculate bitmap storage as pixels times colour depth, and know files hold metadata."
+          },
+          {
+           "code": null,
+           "text": "Recognise typical metadata such as width, height and colour depth."
+          }
+         ]
+        },
+        {
+         "id": "sound-and-midi",
+         "title": "Sound and MIDI",
+         "outcomes": [
+          {
+           "code": "3.5.6.5",
+           "text": "Describe digital sound using sample resolution, sampling rate and the Nyquist theorem."
+          },
+          {
+           "code": null,
+           "text": "Calculate sound sample sizes in bytes."
+          },
+          {
+           "code": "3.5.6.6",
+           "text": "Describe MIDI's purpose and its event messages."
+          },
+          {
+           "code": null,
+           "text": "Describe the advantages of MIDI files for music."
+          }
+         ]
+        },
+        {
+         "id": "compression",
+         "title": "Compression",
+         "outcomes": [
+          {
+           "code": "3.5.6.7",
+           "text": "Explain why image, sound and other files are compressed."
+          },
+          {
+           "code": null,
+           "text": "Compare lossless and lossy compression with advantages and disadvantages."
+          },
+          {
+           "code": null,
+           "text": "Explain run length encoding."
+          },
+          {
+           "code": null,
+           "text": "Explain dictionary-based lossless compression."
+          }
+         ]
+        },
+        {
+         "id": "encryption-and-ciphers",
+         "title": "Encryption and ciphers",
+         "outcomes": [
+          {
+           "code": "3.5.6.8",
+           "text": "Define encryption and the terms cipher, plaintext and ciphertext."
+          },
+          {
+           "code": null,
+           "text": "Apply the Caesar cipher to encrypt and decrypt, and explain why it is easily cracked."
+          },
+          {
+           "code": null,
+           "text": "Apply the Vernam cipher (one-time pad) to encrypt and decrypt."
+          },
+          {
+           "code": null,
+           "text": "Explain why the Vernam cipher gives perfect security."
+          },
+          {
+           "code": null,
+           "text": "Compare the Vernam cipher with ciphers relying on computational security."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "3-6-fundamentals-of-computer-systems",
+     "title": "3.6 Fundamentals of computer systems",
+     "topics": [
+      {
+       "id": "3-6-1-hardware-and-software",
+       "title": "3.6.1 Hardware and software",
+       "subtopics": [
+        {
+         "id": "hardware-software-and-system-software",
+         "title": "Hardware, software and system software",
+         "outcomes": [
+          {
+           "code": "3.6.1.1",
+           "text": "Define hardware and software and explain how they relate."
+          },
+          {
+           "code": "3.6.1.2",
+           "text": "Distinguish system software from application software."
+          },
+          {
+           "code": null,
+           "text": "Explain the need for and attributes of different types of software."
+          },
+          {
+           "code": "3.6.1.3",
+           "text": "Explain the need for and functions of operating systems, utility programs and libraries."
+          },
+          {
+           "code": null,
+           "text": "Explain the role of compilers, assemblers and interpreters as translators."
+          }
+         ]
+        },
+        {
+         "id": "role-of-the-operating-system",
+         "title": "Role of the operating system",
+         "outcomes": [
+          {
+           "code": "3.6.1.4",
+           "text": "Explain that the OS hides the complexity of hardware."
+          },
+          {
+           "code": null,
+           "text": "Explain OS resource management: allocating processors, memory and I/O among competing processes."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "3-6-2-classification-of-programming-languages",
+       "title": "3.6.2 Classification of programming languages",
+       "subtopics": [
+        {
+         "id": "low-level-and-high-level-languages",
+         "title": "Low-level and high-level languages",
+         "outcomes": [
+          {
+           "code": "3.6.2.1",
+           "text": "Classify languages as low-level (machine code, assembly) or high-level."
+          },
+          {
+           "code": null,
+           "text": "Describe machine code and assembly language."
+          },
+          {
+           "code": null,
+           "text": "Compare machine code and assembly programming with high-level programming."
+          },
+          {
+           "code": null,
+           "text": "Explain imperative high-level languages and how they relate to low-level ones."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "3-6-3-types-of-program-translator",
+       "title": "3.6.3 Types of program translator",
+       "subtopics": [
+        {
+         "id": "assemblers-compilers-and-interpreters",
+         "title": "Assemblers, compilers and interpreters",
+         "outcomes": [
+          {
+           "code": "3.6.3.1",
+           "text": "Explain the role of an assembler, compiler and interpreter."
+          },
+          {
+           "code": null,
+           "text": "Compare compilation with interpretation and say when each suits."
+          },
+          {
+           "code": null,
+           "text": "Explain why some compilers output bytecode and how it is used."
+          },
+          {
+           "code": null,
+           "text": "Distinguish source code from object (executable) code."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "3-6-4-logic-gates",
+       "title": "3.6.4 Logic gates",
+       "subtopics": [
+        {
+         "id": "logic-gates-and-circuits",
+         "title": "Logic gates and circuits",
+         "outcomes": [
+          {
+           "code": "3.6.4.1",
+           "text": "Build truth tables for NOT, AND, OR, XOR, NAND and NOR gates."
+          },
+          {
+           "code": null,
+           "text": "Draw and interpret logic circuit diagrams using these gates."
+          },
+          {
+           "code": null,
+           "text": "Complete a truth table for a given logic circuit."
+          },
+          {
+           "code": null,
+           "text": "Write a Boolean expression for a given circuit."
+          },
+          {
+           "code": null,
+           "text": "Draw the circuit for a given Boolean expression."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "3-6-5-boolean-algebra",
+       "title": "3.6.5 Boolean algebra",
+       "subtopics": [
+        {
+         "id": "boolean-algebra",
+         "title": "Boolean algebra",
+         "outcomes": [
+          {
+           "code": "3.6.5.1",
+           "text": "Use Boolean identities and De Morgan's laws to simplify Boolean expressions."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "3-7-fundamentals-of-computer-organisation-and-ar",
+     "title": "3.7 Fundamentals of computer organisation and architecture",
+     "topics": [
+      {
+       "id": "3-7-1-internal-hardware-components-of-a-computer",
+       "title": "3.7.1 Internal hardware components of a computer",
+       "subtopics": [
+        {
+         "id": "components-and-buses",
+         "title": "Components and buses",
+         "outcomes": [
+          {
+           "code": "3.7.1.1",
+           "text": "Describe the roles of processor, main memory, address bus, data bus, control bus and I/O controllers and how they relate."
+          },
+          {
+           "code": null,
+           "text": "Explain why components communicate and how buses carry addresses, data and control signals."
+          },
+          {
+           "code": null,
+           "text": "Distinguish von Neumann from Harvard architecture and say where each is used."
+          },
+          {
+           "code": null,
+           "text": "Explain addressable memory."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "3-7-2-the-stored-program-concept",
+       "title": "3.7.2 The stored program concept",
+       "subtopics": [
+        {
+         "id": "stored-program-concept",
+         "title": "Stored program concept",
+         "outcomes": [
+          {
+           "code": "3.7.2.1",
+           "text": "Describe the stored program concept: instructions in memory are fetched and executed serially by the processor."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "3-7-3-structure-and-role-of-the-processor-and-it",
+       "title": "3.7.3 Structure and role of the processor and its components",
+       "subtopics": [
+        {
+         "id": "processor-components-and-the-fetch-execute-cycle",
+         "title": "Processor components and the fetch-execute cycle",
+         "outcomes": [
+          {
+           "code": "3.7.3.1",
+           "text": "Explain the ALU, control unit, clock and general-purpose registers."
+          },
+          {
+           "code": null,
+           "text": "Explain the program counter, current instruction register, memory address and buffer registers, and status register."
+          },
+          {
+           "code": "3.7.3.2",
+           "text": "Explain the fetch, decode and execute stages and the registers used."
+          }
+         ]
+        },
+        {
+         "id": "instruction-set-and-addressing",
+         "title": "Instruction set and addressing",
+         "outcomes": [
+          {
+           "code": "3.7.3.3",
+           "text": "Explain that an instruction set is processor specific."
+          },
+          {
+           "code": null,
+           "text": "Explain that instructions have an opcode and one or more operands."
+          },
+          {
+           "code": "3.7.3.4",
+           "text": "Apply immediate and direct addressing modes."
+          }
+         ]
+        },
+        {
+         "id": "machine-code-operations-and-performance",
+         "title": "Machine code operations and performance",
+         "outcomes": [
+          {
+           "code": "3.7.3.5",
+           "text": "Apply load, add, subtract, store, branching, compare, bitwise logic, shifts and halt operations."
+          },
+          {
+           "code": null,
+           "text": "Use these operations in assembly mnemonics with immediate and direct addressing."
+          },
+          {
+           "code": "3.7.3.6",
+           "text": "Explain how cores, cache, clock speed, word length and bus widths affect performance."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "3-7-4-external-hardware-devices",
+       "title": "3.7.4 External hardware devices",
+       "subtopics": [
+        {
+         "id": "input-output-and-storage-devices",
+         "title": "Input, output and storage devices",
+         "outcomes": [
+          {
+           "code": "3.7.4.1",
+           "text": "Describe the characteristics, uses and operation of barcode readers, digital cameras, laser printers and RFID."
+          },
+          {
+           "code": "3.7.4.2",
+           "text": "Explain the need for secondary storage."
+          },
+          {
+           "code": null,
+           "text": "Describe the operation and suitability of hard disks, optical disks and solid-state disks."
+          },
+          {
+           "code": null,
+           "text": "Compare capacity and speed of storage media and judge suitability for applications."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "3-8-consequences-of-uses-of-computing",
+     "title": "3.8 Consequences of uses of computing",
+     "topics": [
+      {
+       "id": "3-8-1-individual-social-legal-and-cultural-issue",
+       "title": "3.8.1 Individual, social, legal and cultural issues",
+       "subtopics": [
+        {
+         "id": "ethical-and-legal-issues-of-computing",
+         "title": "Ethical and legal issues of computing",
+         "outcomes": [
+          {
+           "code": "3.8.1",
+           "text": "Show awareness of moral, ethical, legal and cultural opportunities and risks of computing."
+          },
+          {
+           "code": null,
+           "text": "Explain how digital technology has changed monitoring, collecting and sharing of personal information."
+          },
+          {
+           "code": null,
+           "text": "Explain that computer scientists hold power and responsibility because algorithms embed values and operate at global scale."
+          },
+          {
+           "code": null,
+           "text": "Discuss the challenges facing legislators in the digital age."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "3-9-fundamentals-of-communication-and-networking",
+     "title": "3.9 Fundamentals of communication and networking",
+     "topics": [
+      {
+       "id": "3-9-1-communication",
+       "title": "3.9.1 Communication",
+       "subtopics": [
+        {
+         "id": "communication-methods-and-basics",
+         "title": "Communication methods and basics",
+         "outcomes": [
+          {
+           "code": "3.9.1.1",
+           "text": "Define serial and parallel transmission and argue why serial is better."
+          },
+          {
+           "code": null,
+           "text": "Compare synchronous and asynchronous transmission."
+          },
+          {
+           "code": null,
+           "text": "Describe the purpose of start and stop bits."
+          },
+          {
+           "code": "3.9.1.2",
+           "text": "Define baud rate, bit rate, bandwidth, latency and protocol."
+          },
+          {
+           "code": null,
+           "text": "Distinguish baud rate from bit rate."
+          },
+          {
+           "code": null,
+           "text": "Explain that bit rate is proportional to bandwidth."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "3-9-2-networking",
+       "title": "3.9.2 Networking",
+       "subtopics": [
+        {
+         "id": "topologies-and-network-types",
+         "title": "Topologies and network types",
+         "outcomes": [
+          {
+           "code": "3.9.2.1",
+           "text": "Explain physical star and logical bus topologies and tell them apart."
+          },
+          {
+           "code": "3.9.2.2",
+           "text": "Explain peer-to-peer and client-server networks and where each is used."
+          }
+         ]
+        },
+        {
+         "id": "wireless-networking",
+         "title": "Wireless networking",
+         "outcomes": [
+          {
+           "code": "3.9.2.3",
+           "text": "Explain the purpose of WiFi."
+          },
+          {
+           "code": null,
+           "text": "Name the components needed for wireless networking."
+          },
+          {
+           "code": null,
+           "text": "Describe how wireless networks are secured: WPA/WPA2, hidden SSID, MAC allow list."
+          },
+          {
+           "code": null,
+           "text": "Explain CSMA/CA with and without RTS/CTS."
+          },
+          {
+           "code": null,
+           "text": "Explain the purpose of the SSID."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "Year 13",
+   "units": [
+    {
+     "id": "4-1-fundamentals-of-programming",
+     "title": "4.1 Fundamentals of programming",
+     "topics": [
+      {
+       "id": "4-1-1-programming",
+       "title": "4.1.1 Programming",
+       "subtopics": [
+        {
+         "id": "data-types",
+         "title": "Data types",
+         "outcomes": [
+          {
+           "code": "4.1.1.1",
+           "text": "Explain what a data type is."
+          },
+          {
+           "code": null,
+           "text": "Use integer, real, Boolean, character, string, date/time, pointer/reference, record and array types."
+          },
+          {
+           "code": null,
+           "text": "Define and use your own data types built from built-in ones."
+          }
+         ]
+        },
+        {
+         "id": "programming-statements",
+         "title": "Programming statements",
+         "outcomes": [
+          {
+           "code": "4.1.1.2",
+           "text": "Combine variable and constant declaration, assignment, iteration, selection and subroutines in programs."
+          },
+          {
+           "code": null,
+           "text": "Use definite and indefinite iteration, with the test at the start or end."
+          },
+          {
+           "code": null,
+           "text": "Use nested selection and iteration."
+          },
+          {
+           "code": null,
+           "text": "Choose meaningful identifier names and explain why."
+          }
+         ]
+        },
+        {
+         "id": "arithmetic-and-relational-operations",
+         "title": "Arithmetic and relational operations",
+         "outcomes": [
+          {
+           "code": "4.1.1.3",
+           "text": "Use all arithmetic operations including integer division, exponentiation, rounding and truncation."
+          },
+          {
+           "code": "4.1.1.4",
+           "text": "Use the six relational operators."
+          }
+         ]
+        },
+        {
+         "id": "boolean-operations-and-constants",
+         "title": "Boolean operations and constants",
+         "outcomes": [
+          {
+           "code": "4.1.1.5",
+           "text": "Use NOT, AND, OR and XOR."
+          },
+          {
+           "code": "4.1.1.6",
+           "text": "Explain how variables differ from constants."
+          },
+          {
+           "code": null,
+           "text": "Explain the advantages of named constants."
+          }
+         ]
+        },
+        {
+         "id": "strings-and-random-numbers",
+         "title": "Strings and random numbers",
+         "outcomes": [
+          {
+           "code": "4.1.1.7",
+           "text": "Use string length, position, substring, concatenation and character-code operations."
+          },
+          {
+           "code": null,
+           "text": "Convert between strings and numbers or dates."
+          },
+          {
+           "code": "4.1.1.8",
+           "text": "Generate and use random numbers."
+          }
+         ]
+        },
+        {
+         "id": "exception-handling-and-subroutines",
+         "title": "Exception handling and subroutines",
+         "outcomes": [
+          {
+           "code": "4.1.1.9",
+           "text": "Explain and apply exception handling."
+          },
+          {
+           "code": "4.1.1.10",
+           "text": "Describe subroutines and explain their advantages."
+          },
+          {
+           "code": "4.1.1.11",
+           "text": "Describe parameters and use subroutines with interfaces."
+          },
+          {
+           "code": "4.1.1.12",
+           "text": "Write subroutines that return values."
+          }
+         ]
+        },
+        {
+         "id": "local-and-global-variables",
+         "title": "Local and global variables",
+         "outcomes": [
+          {
+           "code": "4.1.1.13",
+           "text": "Describe local variables as existing only while the subroutine runs and visible only inside it."
+          },
+          {
+           "code": null,
+           "text": "Use local variables and explain why that is good practice."
+          },
+          {
+           "code": "4.1.1.14",
+           "text": "Contrast local variables with global variables."
+          }
+         ]
+        },
+        {
+         "id": "stack-frames-and-recursion",
+         "title": "Stack frames and recursion",
+         "outcomes": [
+          {
+           "code": "4.1.1.15",
+           "text": "Explain how a stack frame stores return addresses, parameters and local variables during calls."
+          },
+          {
+           "code": "4.1.1.16",
+           "text": "Explain recursion: general case, base case and how it is implemented."
+          },
+          {
+           "code": null,
+           "text": "Solve simple problems using recursion."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "4-1-2-programming-paradigms",
+       "title": "4.1.2 Programming paradigms",
+       "subtopics": [
+        {
+         "id": "paradigms-and-structured-design",
+         "title": "Paradigms and structured design",
+         "outcomes": [
+          {
+           "code": "4.1.2.1",
+           "text": "Describe procedural and object-oriented paradigms and program in each."
+          },
+          {
+           "code": "4.1.2.2",
+           "text": "Explain the structured approach to program design."
+          },
+          {
+           "code": null,
+           "text": "Draw and use hierarchy charts."
+          },
+          {
+           "code": null,
+           "text": "Explain the advantages of structured programming."
+          }
+         ]
+        },
+        {
+         "id": "object-oriented-concepts",
+         "title": "Object-oriented concepts",
+         "outcomes": [
+          {
+           "code": "4.1.2.3",
+           "text": "Explain class, object and instantiation."
+          },
+          {
+           "code": null,
+           "text": "Explain encapsulation, inheritance, aggregation and composition."
+          },
+          {
+           "code": null,
+           "text": "Explain polymorphism and overriding."
+          },
+          {
+           "code": null,
+           "text": "Know how constructors create objects and how UML shows composition and aggregation."
+          },
+          {
+           "code": null,
+           "text": "Explain why the object-oriented paradigm is used."
+          },
+          {
+           "code": null,
+           "text": "Apply OO design principles: encapsulate what varies, favour composition over inheritance, program to interfaces."
+          }
+         ]
+        },
+        {
+         "id": "writing-oo-programs",
+         "title": "Writing OO programs",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Write object-oriented programs using abstract, virtual and static methods, inheritance, aggregation and polymorphism."
+          },
+          {
+           "code": null,
+           "text": "Use public, private and protected specifiers."
+          },
+          {
+           "code": null,
+           "text": "Draw and interpret class diagrams with single inheritance, composition, aggregation and access symbols."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "4-2-fundamentals-of-data-structures",
+     "title": "4.2 Fundamentals of data structures",
+     "topics": [
+      {
+       "id": "4-2-1-data-structures-and-abstract-data-types",
+       "title": "4.2.1 Data structures and abstract data types",
+       "subtopics": [
+        {
+         "id": "arrays-and-files",
+         "title": "Arrays and files",
+         "outcomes": [
+          {
+           "code": "4.2.1.1",
+           "text": "Explain the concept of a data structure."
+          },
+          {
+           "code": "4.2.1.2",
+           "text": "Use one- and multi-dimensional arrays to solve simple problems."
+          },
+          {
+           "code": "4.2.1.3",
+           "text": "Read and write text files."
+          },
+          {
+           "code": null,
+           "text": "Read and write binary files."
+          }
+         ]
+        },
+        {
+         "id": "abstract-data-types",
+         "title": "Abstract data types",
+         "outcomes": [
+          {
+           "code": "4.2.1.4",
+           "text": "Explain and use queues, stacks, graphs, trees, hash tables, dictionaries and vectors."
+          },
+          {
+           "code": null,
+           "text": "Represent these types when the language lacks them."
+          },
+          {
+           "code": null,
+           "text": "Compare static and dynamic structures with their advantages and disadvantages."
+          },
+          {
+           "code": null,
+           "text": "Describe creating and maintaining data in linear, circular and priority queues, stacks and hash tables."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "4-2-2-queues",
+       "title": "4.2.2 Queues",
+       "subtopics": [
+        {
+         "id": "queues",
+         "title": "Queues",
+         "outcomes": [
+          {
+           "code": "4.2.2.1",
+           "text": "Add, remove, and test for empty or full in linear, circular and priority queues."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "4-2-3-stacks",
+       "title": "4.2.3 Stacks",
+       "subtopics": [
+        {
+         "id": "stacks",
+         "title": "Stacks",
+         "outcomes": [
+          {
+           "code": "4.2.3.1",
+           "text": "Perform push, pop, peek, and test for empty or full stack."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "4-2-4-graphs",
+       "title": "4.2.4 Graphs",
+       "subtopics": [
+        {
+         "id": "graphs",
+         "title": "Graphs",
+         "outcomes": [
+          {
+           "code": "4.2.4.1",
+           "text": "Explain that graphs represent complex relationships and give typical uses."
+          },
+          {
+           "code": null,
+           "text": "Define graph, weighted graph, vertex, edge, undirected and directed graph."
+          },
+          {
+           "code": null,
+           "text": "Represent a graph with an adjacency matrix and an adjacency list."
+          },
+          {
+           "code": null,
+           "text": "Compare adjacency matrices with adjacency lists."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "4-2-5-trees",
+       "title": "4.2.5 Trees",
+       "subtopics": [
+        {
+         "id": "trees-and-binary-trees",
+         "title": "Trees and binary trees",
+         "outcomes": [
+          {
+           "code": "4.2.5.1",
+           "text": "Define a tree as a connected undirected graph with no cycles."
+          },
+          {
+           "code": null,
+           "text": "Define a rooted tree with parent-child relationships."
+          },
+          {
+           "code": null,
+           "text": "Define a binary tree and give typical uses of rooted trees."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "4-2-6-hash-tables",
+       "title": "4.2.6 Hash tables",
+       "subtopics": [
+        {
+         "id": "hash-tables",
+         "title": "Hash tables",
+         "outcomes": [
+          {
+           "code": "4.2.6.1",
+           "text": "Explain hash tables and their uses."
+          },
+          {
+           "code": null,
+           "text": "Apply simple hashing algorithms."
+          },
+          {
+           "code": null,
+           "text": "Explain collisions and handling them by rehashing."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "4-2-7-dictionaries",
+       "title": "4.2.7 Dictionaries",
+       "subtopics": [
+        {
+         "id": "dictionaries",
+         "title": "Dictionaries",
+         "outcomes": [
+          {
+           "code": "4.2.7.1",
+           "text": "Explain dictionaries as key-value collections."
+          },
+          {
+           "code": null,
+           "text": "Use dictionaries in simple applications such as information retrieval."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "4-2-8-vectors",
+       "title": "4.2.8 Vectors",
+       "subtopics": [
+        {
+         "id": "vectors",
+         "title": "Vectors",
+         "outcomes": [
+          {
+           "code": "4.2.8.1",
+           "text": "Write a vector as a list, a function mapping, a dictionary or a 1-D array."
+          },
+          {
+           "code": null,
+           "text": "Know all entries of a vector come from the same field such as the reals."
+          },
+          {
+           "code": null,
+           "text": "Visualise a vector as an arrow from the origin."
+          },
+          {
+           "code": null,
+           "text": "Add vectors and multiply by a scalar; know these give translation and scaling."
+          },
+          {
+           "code": null,
+           "text": "Form a convex combination of two vectors."
+          },
+          {
+           "code": null,
+           "text": "Compute the dot product and use it to find the angle between vectors."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "4-3-fundamentals-of-algorithms",
+     "title": "4.3 Fundamentals of algorithms",
+     "topics": [
+      {
+       "id": "4-3-1-graph-traversal",
+       "title": "4.3.1 Graph-traversal",
+       "subtopics": [
+        {
+         "id": "graph-traversal",
+         "title": "Graph traversal",
+         "outcomes": [
+          {
+           "code": "4.3.1.1",
+           "text": "Trace breadth-first and depth-first search and describe typical uses."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "4-3-2-tree-traversal",
+       "title": "4.3.2 Tree-traversal",
+       "subtopics": [
+        {
+         "id": "tree-traversal",
+         "title": "Tree traversal",
+         "outcomes": [
+          {
+           "code": "4.3.2.1",
+           "text": "Trace pre-order, post-order and in-order traversal."
+          },
+          {
+           "code": null,
+           "text": "Describe uses of each traversal."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "4-3-3-reverse-polish",
+       "title": "4.3.3 Reverse Polish",
+       "subtopics": [
+        {
+         "id": "reverse-polish-notation",
+         "title": "Reverse Polish notation",
+         "outcomes": [
+          {
+           "code": "4.3.3.1",
+           "text": "Convert simple expressions between infix and Reverse Polish form."
+          },
+          {
+           "code": null,
+           "text": "Explain why and where RPN is used."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "4-3-4-searching-algorithms",
+       "title": "4.3.4 Searching algorithms",
+       "subtopics": [
+        {
+         "id": "searching-algorithms",
+         "title": "Searching algorithms",
+         "outcomes": [
+          {
+           "code": "4.3.4.1",
+           "text": "Trace linear search and analyse its O(n) time."
+          },
+          {
+           "code": "4.3.4.2",
+           "text": "Trace binary search and analyse its O(log n) time."
+          },
+          {
+           "code": "4.3.4.3",
+           "text": "Trace binary tree search and analyse its time complexity."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "4-3-5-sorting-algorithms",
+       "title": "4.3.5 Sorting algorithms",
+       "subtopics": [
+        {
+         "id": "sorting-algorithms",
+         "title": "Sorting algorithms",
+         "outcomes": [
+          {
+           "code": "4.3.5.1",
+           "text": "Trace bubble sort and analyse its O(n squared) time."
+          },
+          {
+           "code": "4.3.5.2",
+           "text": "Trace merge sort and analyse its O(n log n) time."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "4-3-6-optimisation-algorithms",
+       "title": "4.3.6 Optimisation algorithms",
+       "subtopics": [
+        {
+         "id": "dijkstra-s-algorithm",
+         "title": "Dijkstra's algorithm",
+         "outcomes": [
+          {
+           "code": "4.3.6.1",
+           "text": "Trace Dijkstra's shortest path algorithm."
+          },
+          {
+           "code": null,
+           "text": "Describe applications of shortest path algorithms."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "4-4-theory-of-computation",
+     "title": "4.4 Theory of computation",
+     "topics": [
+      {
+       "id": "4-4-1-abstraction-and-automation",
+       "title": "4.4.1 Abstraction and automation",
+       "subtopics": [
+        {
+         "id": "problem-solving-and-algorithms",
+         "title": "Problem-solving and algorithms",
+         "outcomes": [
+          {
+           "code": "4.4.1.1",
+           "text": "Develop and check solutions to simple logic problems."
+          },
+          {
+           "code": "4.4.1.2",
+           "text": "Define an algorithm as a finite sequence of steps that terminates."
+          },
+          {
+           "code": null,
+           "text": "Write pseudo-code with sequence, assignment, selection and iteration."
+          },
+          {
+           "code": null,
+           "text": "Hand-trace algorithms and convert pseudo-code to program code."
+          },
+          {
+           "code": null,
+           "text": "Argue for a program's correctness and efficiency."
+          }
+         ]
+        },
+        {
+         "id": "kinds-of-abstraction",
+         "title": "Kinds of abstraction",
+         "outcomes": [
+          {
+           "code": "4.4.1.3",
+           "text": "Distinguish representational abstraction from generalisation or categorisation."
+          },
+          {
+           "code": "4.4.1.4",
+           "text": "Describe information hiding."
+          },
+          {
+           "code": "4.4.1.5",
+           "text": "Explain procedural abstraction."
+          },
+          {
+           "code": "4.4.1.6",
+           "text": "Explain functional abstraction."
+          },
+          {
+           "code": "4.4.1.7",
+           "text": "Explain data abstraction."
+          }
+         ]
+        },
+        {
+         "id": "reduction-decomposition-composition-automation",
+         "title": "Reduction, decomposition, composition, automation",
+         "outcomes": [
+          {
+           "code": "4.4.1.8",
+           "text": "Explain problem abstraction as reducing to an already solved problem."
+          },
+          {
+           "code": "4.4.1.9",
+           "text": "Explain procedural decomposition."
+          },
+          {
+           "code": "4.4.1.10",
+           "text": "Build compound procedures and compound data by composition."
+          },
+          {
+           "code": "4.4.1.11",
+           "text": "Explain automation as putting models into action via algorithms, code, data structures and execution."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "4-4-2-regular-languages",
+       "title": "4.4.2 Regular languages",
+       "subtopics": [
+        {
+         "id": "finite-state-machines",
+         "title": "Finite state machines",
+         "outcomes": [
+          {
+           "code": "4.4.2.1",
+           "text": "Draw and interpret state transition diagrams and tables for FSMs, including Mealy machines with output."
+          }
+         ]
+        },
+        {
+         "id": "sets",
+         "title": "Sets",
+         "outcomes": [
+          {
+           "code": "4.4.2.2",
+           "text": "Specify sets by listing and by set comprehension."
+          },
+          {
+           "code": null,
+           "text": "Know the empty set and its symbols."
+          },
+          {
+           "code": null,
+           "text": "Write compact sets such as 0^n 1^n."
+          },
+          {
+           "code": null,
+           "text": "Explain finite, infinite and countably infinite sets, cardinality and Cartesian product."
+          },
+          {
+           "code": null,
+           "text": "Explain subset, proper subset and countable set."
+          },
+          {
+           "code": null,
+           "text": "Apply membership, union, intersection and difference."
+          }
+         ]
+        },
+        {
+         "id": "regular-expressions-and-languages",
+         "title": "Regular expressions and languages",
+         "outcomes": [
+          {
+           "code": "4.4.2.3",
+           "text": "Explain that a regular expression describes a set of strings."
+          },
+          {
+           "code": null,
+           "text": "Write and use simple regular expressions with *, +, ?, | and brackets."
+          },
+          {
+           "code": null,
+           "text": "Relate regular expressions to FSMs and convert between them."
+          },
+          {
+           "code": "4.4.2.4",
+           "text": "Define a regular language as one a regular expression or FSM can express."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "4-4-3-context-free-languages",
+       "title": "4.4.3 Context-free languages",
+       "subtopics": [
+        {
+         "id": "backus-naur-form",
+         "title": "Backus-Naur Form",
+         "outcomes": [
+          {
+           "code": "4.4.3.1",
+           "text": "Check syntax with BNF or syntax diagrams and write simple production rules."
+          },
+          {
+           "code": null,
+           "text": "Explain why BNF can describe languages regular expressions cannot."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "4-4-4-classification-of-algorithms",
+       "title": "4.4.4 Classification of algorithms",
+       "subtopics": [
+        {
+         "id": "comparing-algorithms-and-big-o",
+         "title": "Comparing algorithms and Big-O",
+         "outcomes": [
+          {
+           "code": "4.4.4.1",
+           "text": "Compare algorithms by complexity as a function of problem size, in time and space."
+          },
+          {
+           "code": "4.4.4.2",
+           "text": "Describe functions as mappings with domain and co-domain."
+          },
+          {
+           "code": null,
+           "text": "Recognise linear, polynomial, exponential and logarithmic functions."
+          },
+          {
+           "code": null,
+           "text": "Explain permutations and n factorial."
+          },
+          {
+           "code": "4.4.4.3",
+           "text": "Use Big-O for constant, logarithmic, linear, polynomial and exponential time."
+          },
+          {
+           "code": null,
+           "text": "Derive the time complexity of an algorithm."
+          }
+         ]
+        },
+        {
+         "id": "limits-of-computation",
+         "title": "Limits of computation",
+         "outcomes": [
+          {
+           "code": "4.4.4.4",
+           "text": "Explain that algorithmic complexity and hardware limit what can be computed."
+          },
+          {
+           "code": "4.4.4.5",
+           "text": "Distinguish tractable from intractable problems and say heuristics help with intractable ones."
+          },
+          {
+           "code": "4.4.4.6",
+           "text": "Know some problems cannot be solved algorithmically."
+          },
+          {
+           "code": "4.4.4.7",
+           "text": "Describe the Halting problem and why it matters."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "4-4-5-a-model-of-computation",
+       "title": "4.4.5 A model of computation",
+       "subtopics": [
+        {
+         "id": "turing-machines",
+         "title": "Turing machines",
+         "outcomes": [
+          {
+           "code": "4.4.5.1",
+           "text": "Describe and use Turing machines for simple computations."
+          },
+          {
+           "code": null,
+           "text": "Describe a Turing machine as a fixed-program computer: finite states, finite alphabet, an infinite one-way tape and a read-write head."
+          },
+          {
+           "code": null,
+           "text": "Identify the start state and halting states (no outgoing transitions)."
+          },
+          {
+           "code": null,
+           "text": "Relate a transition function to a state transition diagram and write rules in either form."
+          },
+          {
+           "code": null,
+           "text": "Hand-trace simple Turing machines."
+          },
+          {
+           "code": null,
+           "text": "Explain why Turing machines and the Universal Turing machine matter to computation."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "4-5-fundamentals-of-data-representation",
+     "title": "4.5 Fundamentals of data representation",
+     "topics": [
+      {
+       "id": "4-5-1-number-systems",
+       "title": "4.5.1 Number systems",
+       "subtopics": [
+        {
+         "id": "sets-of-numbers",
+         "title": "Sets of numbers",
+         "outcomes": [
+          {
+           "code": "4.5.1.1",
+           "text": "Describe natural numbers and the set N."
+          },
+          {
+           "code": "4.5.1.2",
+           "text": "Describe integers and the set Z."
+          },
+          {
+           "code": "4.5.1.3",
+           "text": "Describe rational numbers, the set Q, and that integers are rational."
+          },
+          {
+           "code": "4.5.1.4",
+           "text": "Describe irrational numbers such as root 2."
+          },
+          {
+           "code": "4.5.1.5",
+           "text": "Describe real numbers and the set R."
+          }
+         ]
+        },
+        {
+         "id": "ordinals-counting-and-measuring",
+         "title": "Ordinals, counting and measuring",
+         "outcomes": [
+          {
+           "code": "4.5.1.6",
+           "text": "Use ordinal numbers to give positions in an ordered set."
+          },
+          {
+           "code": "4.5.1.7",
+           "text": "Use natural numbers for counting and real numbers for measurement."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "4-5-2-number-bases",
+       "title": "4.5.2 Number bases",
+       "subtopics": [
+        {
+         "id": "decimal-binary-and-hexadecimal",
+         "title": "Decimal, binary and hexadecimal",
+         "outcomes": [
+          {
+           "code": "4.5.2.1",
+           "text": "Explain number bases and write a base using a subscript."
+          },
+          {
+           "code": null,
+           "text": "Convert between decimal, binary and hexadecimal."
+          },
+          {
+           "code": null,
+           "text": "Use hexadecimal as shorthand for binary and say why."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "4-5-3-units-of-information",
+       "title": "4.5.3 Units of information",
+       "subtopics": [
+        {
+         "id": "bits-bytes-and-units",
+         "title": "Bits, bytes and units",
+         "outcomes": [
+          {
+           "code": "4.5.3.1",
+           "text": "Know a bit is the basic unit and a byte is 8 bits."
+          },
+          {
+           "code": null,
+           "text": "Know that n bits give 2^n different values."
+          },
+          {
+           "code": "4.5.3.2",
+           "text": "Distinguish binary prefixes (kibi, mebi, gibi, tebi) from decimal prefixes (kilo, mega, giga, tera)."
+          },
+          {
+           "code": null,
+           "text": "Know each prefix's symbol and its power of 2 or 10."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "4-5-4-binary-number-system",
+       "title": "4.5.4 Binary number system",
+       "subtopics": [
+        {
+         "id": "unsigned-binary",
+         "title": "Unsigned binary",
+         "outcomes": [
+          {
+           "code": "4.5.4.1",
+           "text": "Distinguish unsigned from signed binary."
+          },
+          {
+           "code": null,
+           "text": "Convert between unsigned binary and decimal."
+          },
+          {
+           "code": null,
+           "text": "State the range 0 to 2^n - 1 of n unsigned bits."
+          },
+          {
+           "code": "4.5.4.2",
+           "text": "Add two unsigned binary integers."
+          },
+          {
+           "code": null,
+           "text": "Multiply two unsigned binary integers."
+          }
+         ]
+        },
+        {
+         "id": "two-s-complement-and-fixed-point",
+         "title": "Two's complement and fixed point",
+         "outcomes": [
+          {
+           "code": "4.5.4.3",
+           "text": "Represent positive and negative integers in two's complement."
+          },
+          {
+           "code": null,
+           "text": "Convert between signed binary and decimal."
+          },
+          {
+           "code": null,
+           "text": "Subtract using two's complement."
+          },
+          {
+           "code": null,
+           "text": "Calculate the range of n bits in two's complement."
+          }
+         ]
+        },
+        {
+         "id": "floating-point-and-errors",
+         "title": "Floating point and errors",
+         "outcomes": [
+          {
+           "code": "4.5.4.4",
+           "text": "Represent numbers with a fractional part in fixed point and in simplified mantissa-and-exponent floating point."
+          },
+          {
+           "code": null,
+           "text": "Convert fixed and floating point binary to and from decimal in a given number of bits."
+          },
+          {
+           "code": "4.5.4.5",
+           "text": "Explain why fixed and floating point representations can be inaccurate."
+          },
+          {
+           "code": "4.5.4.6",
+           "text": "Calculate absolute and relative errors."
+          },
+          {
+           "code": null,
+           "text": "Compare absolute and relative errors for large, small and near-one numbers."
+          }
+         ]
+        },
+        {
+         "id": "range-precision-and-normalisation",
+         "title": "Range, precision and normalisation",
+         "outcomes": [
+          {
+           "code": "4.5.4.7",
+           "text": "Compare fixed and floating point for range, precision and speed."
+          },
+          {
+           "code": "4.5.4.8",
+           "text": "Explain why floating point is normalised and normalise positive and negative mantissas."
+          },
+          {
+           "code": "4.5.4.9",
+           "text": "Explain underflow and overflow and when they occur."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "4-5-5-information-coding-systems",
+       "title": "4.5.5 Information coding systems",
+       "subtopics": [
+        {
+         "id": "character-codes-and-error-checking",
+         "title": "Character codes and error checking",
+         "outcomes": [
+          {
+           "code": "4.5.5.1",
+           "text": "Distinguish a digit's character code from its pure binary value."
+          },
+          {
+           "code": "4.5.5.2",
+           "text": "Describe ASCII and Unicode and explain why Unicode was introduced."
+          },
+          {
+           "code": "4.5.5.3",
+           "text": "Explain parity bits."
+          },
+          {
+           "code": null,
+           "text": "Explain majority voting."
+          },
+          {
+           "code": null,
+           "text": "Explain check digits."
+          }
+         ]
+        },
+        {
+         "id": "error-checking-with-checksums",
+         "title": "Error checking with checksums",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain checksums as an error-checking method."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "4-5-6-representing-images-sound-and-other-data",
+       "title": "4.5.6 Representing images, sound and other data",
+       "subtopics": [
+        {
+         "id": "bit-patterns-and-conversion",
+         "title": "Bit patterns and conversion",
+         "outcomes": [
+          {
+           "code": "4.5.6.1",
+           "text": "Describe how bit patterns represent graphics, sound and other data."
+          },
+          {
+           "code": "4.5.6.2",
+           "text": "Distinguish analogue from digital data and signals."
+          },
+          {
+           "code": "4.5.6.3",
+           "text": "Describe how an ADC and a DAC work."
+          },
+          {
+           "code": null,
+           "text": "Know ADCs are used with analogue sensors and DACs mainly turn digital audio into analogue."
+          }
+         ]
+        },
+        {
+         "id": "bitmaps-and-vector-graphics",
+         "title": "Bitmaps and vector graphics",
+         "outcomes": [
+          {
+           "code": "4.5.6.4",
+           "text": "Explain how bitmaps are represented, with resolution, colour depth and size in pixels."
+          },
+          {
+           "code": null,
+           "text": "Calculate bitmap storage and recognise typical metadata."
+          },
+          {
+           "code": "4.5.6.5",
+           "text": "Explain how vector graphics store images as lists of objects with properties."
+          },
+          {
+           "code": null,
+           "text": "Use vector graphic primitives to create a simple image."
+          },
+          {
+           "code": "4.5.6.6",
+           "text": "Compare vector and bitmap graphics and where each suits."
+          }
+         ]
+        },
+        {
+         "id": "sound-midi-and-compression",
+         "title": "Sound, MIDI and compression",
+         "outcomes": [
+          {
+           "code": "4.5.6.7",
+           "text": "Describe digital sound using sample resolution, sampling rate and the Nyquist theorem."
+          },
+          {
+           "code": null,
+           "text": "Calculate sound sample sizes in bytes."
+          },
+          {
+           "code": "4.5.6.8",
+           "text": "Describe MIDI's purpose, event messages and advantages."
+          },
+          {
+           "code": "4.5.6.9",
+           "text": "Explain why files are compressed and compare lossless with lossy compression."
+          },
+          {
+           "code": null,
+           "text": "Explain run length encoding and dictionary-based compression."
+          }
+         ]
+        },
+        {
+         "id": "encryption-and-ciphers",
+         "title": "Encryption and ciphers",
+         "outcomes": [
+          {
+           "code": "4.5.6.10",
+           "text": "Define encryption, cipher, plaintext and ciphertext."
+          },
+          {
+           "code": null,
+           "text": "Apply the Caesar cipher and explain why it is easily cracked."
+          },
+          {
+           "code": null,
+           "text": "Apply the Vernam cipher (one-time pad) and explain its perfect security."
+          },
+          {
+           "code": null,
+           "text": "Compare the Vernam cipher with computationally secure ciphers."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "4-6-fundamentals-of-computer-systems",
+     "title": "4.6 Fundamentals of computer systems",
+     "topics": [
+      {
+       "id": "4-6-1-hardware-and-software",
+       "title": "4.6.1 Hardware and software",
+       "subtopics": [
+        {
+         "id": "hardware-software-and-system-software",
+         "title": "Hardware, software and system software",
+         "outcomes": [
+          {
+           "code": "4.6.1.1",
+           "text": "Define hardware and software and explain how they relate."
+          },
+          {
+           "code": "4.6.1.2",
+           "text": "Distinguish system software from application software."
+          },
+          {
+           "code": null,
+           "text": "Explain the need for and attributes of different types of software."
+          },
+          {
+           "code": "4.6.1.3",
+           "text": "Explain the need for and functions of operating systems, utility programs and libraries."
+          },
+          {
+           "code": null,
+           "text": "Explain the role of compilers, assemblers and interpreters as translators."
+          }
+         ]
+        },
+        {
+         "id": "role-of-the-operating-system",
+         "title": "Role of the operating system",
+         "outcomes": [
+          {
+           "code": "4.6.1.4",
+           "text": "Explain that the OS hides the complexity of hardware."
+          },
+          {
+           "code": null,
+           "text": "Explain OS resource management: allocating processors, memory and I/O among competing processes."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "4-6-2-classification-of-programming-languages",
+       "title": "4.6.2 Classification of programming languages",
+       "subtopics": [
+        {
+         "id": "low-level-and-high-level-languages",
+         "title": "Low-level and high-level languages",
+         "outcomes": [
+          {
+           "code": "4.6.2.1",
+           "text": "Classify languages as low-level (machine code, assembly) or high-level."
+          },
+          {
+           "code": null,
+           "text": "Describe machine code and assembly language."
+          },
+          {
+           "code": null,
+           "text": "Compare machine code and assembly programming with high-level programming."
+          },
+          {
+           "code": null,
+           "text": "Explain imperative high-level languages and how they relate to low-level ones."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "4-6-3-types-of-program-translator",
+       "title": "4.6.3 Types of program translator",
+       "subtopics": [
+        {
+         "id": "assemblers-compilers-and-interpreters",
+         "title": "Assemblers, compilers and interpreters",
+         "outcomes": [
+          {
+           "code": "4.6.3.1",
+           "text": "Explain the role of an assembler, compiler and interpreter."
+          },
+          {
+           "code": null,
+           "text": "Compare compilation with interpretation and say when each suits."
+          },
+          {
+           "code": null,
+           "text": "Explain why some compilers output bytecode and how it is used."
+          },
+          {
+           "code": null,
+           "text": "Distinguish source code from object (executable) code."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "4-6-5-boolean-algebra",
+       "title": "4.6.5 Boolean algebra",
+       "subtopics": [
+        {
+         "id": "boolean-algebra",
+         "title": "Boolean algebra",
+         "outcomes": [
+          {
+           "code": "4.6.5.1",
+           "text": "Use Boolean identities and De Morgan's laws to simplify Boolean expressions."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "4-6-4-logic-gates",
+       "title": "4.6.4 Logic gates",
+       "subtopics": [
+        {
+         "id": "logic-gates-and-adders",
+         "title": "Logic gates and adders",
+         "outcomes": [
+          {
+           "code": "4.6.4.1",
+           "text": "Build truth tables for NOT, AND, OR, XOR, NAND and NOR gates."
+          },
+          {
+           "code": null,
+           "text": "Draw and interpret circuits; complete truth tables; write expressions for circuits and circuits for expressions."
+          },
+          {
+           "code": null,
+           "text": "Recognise and trace the half-adder and full-adder, and construct a half-adder."
+          },
+          {
+           "code": null,
+           "text": "Describe the edge-triggered D-type flip-flop as a memory unit."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "4-7-fundamentals-of-computer-organisation-and-ar",
+     "title": "4.7 Fundamentals of computer organisation and architecture",
+     "topics": [
+      {
+       "id": "4-7-1-internal-hardware-components-of-a-computer",
+       "title": "4.7.1 Internal hardware components of a computer",
+       "subtopics": [
+        {
+         "id": "components-and-buses",
+         "title": "Components and buses",
+         "outcomes": [
+          {
+           "code": "4.7.1.1",
+           "text": "Describe the roles of processor, main memory, address bus, data bus, control bus and I/O controllers and how they relate."
+          },
+          {
+           "code": null,
+           "text": "Explain why components communicate and how buses carry addresses, data and control signals."
+          },
+          {
+           "code": null,
+           "text": "Distinguish von Neumann from Harvard architecture and say where each is used."
+          },
+          {
+           "code": null,
+           "text": "Explain addressable memory."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "4-7-2-the-stored-program-concept",
+       "title": "4.7.2 The stored program concept",
+       "subtopics": [
+        {
+         "id": "stored-program-concept",
+         "title": "Stored program concept",
+         "outcomes": [
+          {
+           "code": "4.7.2.1",
+           "text": "Describe the stored program concept: instructions in memory are fetched and executed serially by the processor."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "4-7-3-structure-and-role-of-the-processor-and-it",
+       "title": "4.7.3 Structure and role of the processor and its components",
+       "subtopics": [
+        {
+         "id": "processor-components-and-the-fetch-execute-cycle",
+         "title": "Processor components and the fetch-execute cycle",
+         "outcomes": [
+          {
+           "code": "4.7.3.1",
+           "text": "Explain the ALU, control unit, clock and general-purpose registers."
+          },
+          {
+           "code": null,
+           "text": "Explain the program counter, current instruction register, memory address and buffer registers, and status register."
+          },
+          {
+           "code": "4.7.3.2",
+           "text": "Explain the fetch, decode and execute stages and the registers used."
+          }
+         ]
+        },
+        {
+         "id": "instruction-set-and-addressing",
+         "title": "Instruction set and addressing",
+         "outcomes": [
+          {
+           "code": "4.7.3.3",
+           "text": "Explain that an instruction set is processor specific."
+          },
+          {
+           "code": null,
+           "text": "Explain that instructions have an opcode and one or more operands."
+          },
+          {
+           "code": "4.7.3.4",
+           "text": "Apply immediate and direct addressing modes."
+          }
+         ]
+        },
+        {
+         "id": "machine-code-operations-and-performance",
+         "title": "Machine code operations and performance",
+         "outcomes": [
+          {
+           "code": "4.7.3.5",
+           "text": "Apply load, add, subtract, store, branching, compare, bitwise logic, shifts and halt operations."
+          },
+          {
+           "code": null,
+           "text": "Use these operations in assembly mnemonics with immediate and direct addressing."
+          }
+         ]
+        },
+        {
+         "id": "interrupts-and-performance",
+         "title": "Interrupts and performance",
+         "outcomes": [
+          {
+           "code": "4.7.3.6",
+           "text": "Describe interrupts and ISRs, their effect on the fetch-execute cycle, and saving the volatile environment."
+          },
+          {
+           "code": "4.7.3.7",
+           "text": "Explain how cores, cache, clock speed, word length and bus widths affect performance."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "4-7-4-external-hardware-devices",
+       "title": "4.7.4 External hardware devices",
+       "subtopics": [
+        {
+         "id": "input-output-and-storage-devices",
+         "title": "Input, output and storage devices",
+         "outcomes": [
+          {
+           "code": "4.7.4.1",
+           "text": "Describe the characteristics, uses and operation of barcode readers, digital cameras, laser printers and RFID."
+          },
+          {
+           "code": "4.7.4.2",
+           "text": "Explain the need for secondary storage."
+          },
+          {
+           "code": null,
+           "text": "Describe the operation and suitability of hard disks, optical disks and solid-state disks."
+          },
+          {
+           "code": null,
+           "text": "Compare capacity and speed of storage media and judge suitability for applications."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "4-8-consequences-of-uses-of-computing",
+     "title": "4.8 Consequences of uses of computing",
+     "topics": [
+      {
+       "id": "4-8-1-individual-social-legal-and-cultural-issue",
+       "title": "4.8.1 Individual, social, legal and cultural issues",
+       "subtopics": [
+        {
+         "id": "ethical-and-legal-issues-of-computing",
+         "title": "Ethical and legal issues of computing",
+         "outcomes": [
+          {
+           "code": "4.8",
+           "text": "Show awareness of moral, ethical, legal and cultural opportunities and risks of computing."
+          },
+          {
+           "code": "4.8.1",
+           "text": "Explain how digital technology changed monitoring, collecting and sharing of personal information."
+          },
+          {
+           "code": null,
+           "text": "Explain that computer scientists hold power and responsibility because algorithms embed values and work at global scale."
+          },
+          {
+           "code": null,
+           "text": "Discuss the challenges facing legislators in the digital age."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "4-9-fundamentals-of-communication-and-networking",
+     "title": "4.9 Fundamentals of communication and networking",
+     "topics": [
+      {
+       "id": "4-9-1-communication",
+       "title": "4.9.1 Communication",
+       "subtopics": [
+        {
+         "id": "communication-methods-and-basics",
+         "title": "Communication methods and basics",
+         "outcomes": [
+          {
+           "code": "4.9",
+           "text": "Study how data is communicated and networked."
+          },
+          {
+           "code": "4.9.1",
+           "text": "Study communication methods and basics."
+          },
+          {
+           "code": "4.9.1.1",
+           "text": "Define serial and parallel transmission and argue why serial is better."
+          },
+          {
+           "code": null,
+           "text": "Compare synchronous and asynchronous transmission and explain start and stop bits."
+          },
+          {
+           "code": "4.9.1.2",
+           "text": "Define baud rate, bit rate, bandwidth, latency and protocol."
+          },
+          {
+           "code": null,
+           "text": "Distinguish baud rate from bit rate and relate bit rate to bandwidth."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "4-9-2-networking",
+       "title": "4.9.2 Networking",
+       "subtopics": [
+        {
+         "id": "topologies-network-types-and-wifi",
+         "title": "Topologies, network types and WiFi",
+         "outcomes": [
+          {
+           "code": "4.9.2",
+           "text": "Study how hosts are networked."
+          },
+          {
+           "code": "4.9.2.1",
+           "text": "Explain physical star and logical bus topologies and tell them apart."
+          },
+          {
+           "code": "4.9.2.2",
+           "text": "Explain peer-to-peer and client-server networks and where each is used."
+          },
+          {
+           "code": "4.9.2.3",
+           "text": "Explain the purpose of WiFi and the components of wireless networks."
+          },
+          {
+           "code": null,
+           "text": "Describe wireless security: WPA/WPA2, hidden SSID, MAC allow list."
+          },
+          {
+           "code": null,
+           "text": "Explain CSMA/CA with and without RTS/CTS, and the SSID."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "4-9-3-the-internet",
+       "title": "4.9.3 The Internet",
+       "subtopics": [
+        {
+         "id": "how-the-internet-works",
+         "title": "How the Internet works",
+         "outcomes": [
+          {
+           "code": "4.9.3",
+           "text": "Study the Internet."
+          },
+          {
+           "code": "4.9.3.1",
+           "text": "Describe the structure of the Internet, packet switching and routers."
+          },
+          {
+           "code": null,
+           "text": "Name the main components of a packet and define router and gateway."
+          },
+          {
+           "code": null,
+           "text": "Explain how routing works across the Internet."
+          },
+          {
+           "code": null,
+           "text": "Explain URL, FQDN, domain name and IP address and how domain names are organised."
+          },
+          {
+           "code": null,
+           "text": "Explain the domain name service, DNS and Internet registries."
+          }
+         ]
+        },
+        {
+         "id": "internet-security",
+         "title": "Internet security",
+         "outcomes": [
+          {
+           "code": "4.9.3.2",
+           "text": "Explain how firewalls work: packet filtering, proxy server and stateful inspection."
+          },
+          {
+           "code": null,
+           "text": "Explain symmetric and asymmetric encryption and key exchange."
+          },
+          {
+           "code": null,
+           "text": "Explain how digital certificates and signatures are obtained and used."
+          },
+          {
+           "code": null,
+           "text": "Discuss worms, trojans and viruses and the vulnerabilities they exploit."
+          },
+          {
+           "code": null,
+           "text": "Discuss how better code quality, monitoring and protection counter malware."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "4-9-4-the-tcp-ip-protocol",
+       "title": "4.9.4 The TCP/IP protocol",
+       "subtopics": [
+        {
+         "id": "tcp-ip-stack-and-application-protocols",
+         "title": "TCP/IP stack and application protocols",
+         "outcomes": [
+          {
+           "code": "4.9.4",
+           "text": "Study the TCP/IP protocol."
+          },
+          {
+           "code": "4.9.4.1",
+           "text": "Describe the four TCP/IP layers: application, transport, network, link."
+          },
+          {
+           "code": null,
+           "text": "Describe sockets, MAC addresses, and well-known versus client ports."
+          },
+          {
+           "code": "4.9.4.2",
+           "text": "Describe FTP, HTTP, HTTPS, POP3, SMTP and SSH."
+          },
+          {
+           "code": null,
+           "text": "Use FTP with anonymous and non-anonymous access."
+          },
+          {
+           "code": null,
+           "text": "Explain SSH for secure remote login and sending protocol commands to a port."
+          },
+          {
+           "code": null,
+           "text": "Explain the roles of email server, web server and web browser."
+          }
+         ]
+        },
+        {
+         "id": "ip-addressing",
+         "title": "IP addressing",
+         "outcomes": [
+          {
+           "code": "4.9.4.3",
+           "text": "Explain that an IP address has a network part and a host part."
+          },
+          {
+           "code": "4.9.4.4",
+           "text": "Use subnet masks to find the network part of an address."
+          },
+          {
+           "code": "4.9.4.5",
+           "text": "Distinguish IPv4 from IPv6 and explain why IPv6 was introduced."
+          },
+          {
+           "code": "4.9.4.6",
+           "text": "Distinguish routable from non-routable IP addresses."
+          },
+          {
+           "code": "4.9.4.7",
+           "text": "Explain the purpose of DHCP."
+          },
+          {
+           "code": "4.9.4.8",
+           "text": "Explain NAT and why it is used."
+          },
+          {
+           "code": "4.9.4.9",
+           "text": "Explain port forwarding and why it is used."
+          }
+         ]
+        },
+        {
+         "id": "client-server-rest-and-thin-clients",
+         "title": "Client-server, REST and thin clients",
+         "outcomes": [
+          {
+           "code": "4.9.4.10",
+           "text": "Explain the client-server request and response model."
+          },
+          {
+           "code": null,
+           "text": "Explain the Websocket protocol, why and where it is used."
+          },
+          {
+           "code": null,
+           "text": "Explain CRUD web applications and REST mapping to HTTP methods and SQL."
+          },
+          {
+           "code": null,
+           "text": "Compare JSON with XML."
+          },
+          {
+           "code": "4.9.4.11",
+           "text": "Compare thin-client with thick-client computing."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "4-10-fundamentals-of-databases",
+     "title": "4.10 Fundamentals of databases",
+     "topics": [
+      {
+       "id": "4-10-1-entity-relationship-modelling",
+       "title": "4.10.1 Entity relationship modelling",
+       "subtopics": [
+        {
+         "id": "data-models-and-relational-databases",
+         "title": "Data models and relational databases",
+         "outcomes": [
+          {
+           "code": "4.10.1",
+           "text": "Produce a data model from requirements involving several entities."
+          },
+          {
+           "code": null,
+           "text": "Draw entity relationship diagrams and write entity descriptions."
+          },
+          {
+           "code": "4.10.2",
+           "text": "Explain relational databases."
+          },
+          {
+           "code": null,
+           "text": "Define attribute, primary key, composite primary key and foreign key."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "4-10-3-normalisation-and-sql",
+       "title": "4.10.3 Normalisation and SQL",
+       "subtopics": [
+        {
+         "id": "normalisation-and-sql",
+         "title": "Normalisation and SQL",
+         "outcomes": [
+          {
+           "code": "4.10.3",
+           "text": "Normalise relations to third normal form and explain why."
+          },
+          {
+           "code": "4.10.4",
+           "text": "Use SQL to retrieve, update, insert and delete data across tables."
+          },
+          {
+           "code": null,
+           "text": "Use SQL to define a table."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "4-10-5-client-server-databases",
+       "title": "4.10.5 Client server databases",
+       "subtopics": [
+        {
+         "id": "client-server-databases",
+         "title": "Client-server databases",
+         "outcomes": [
+          {
+           "code": "4.10.5",
+           "text": "Explain that a client-server database serves many clients at once."
+          },
+          {
+           "code": null,
+           "text": "Control concurrent access with record locks, serialisation, timestamp ordering or commitment ordering."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "4-11-big-data",
+     "title": "4.11 Big Data",
+     "topics": [
+      {
+       "id": "4-11-1-big-data",
+       "title": "4.11.1 Big Data",
+       "subtopics": [
+        {
+         "id": "big-data",
+         "title": "Big Data",
+         "outcomes": [
+          {
+           "code": "4.11.1",
+           "text": "Describe Big Data by volume, velocity and variety."
+          },
+          {
+           "code": null,
+           "text": "Explain why lack of structure and size make Big Data hard for relational databases."
+          },
+          {
+           "code": null,
+           "text": "Explain why huge data must be processed across several machines and why functional programming helps."
+          },
+          {
+           "code": null,
+           "text": "Explain immutable data, statelessness and higher-order functions help write correct, distributable code."
+          },
+          {
+           "code": null,
+           "text": "Describe the fact-based model and graph schema with nodes, edges and properties."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "4-12-fundamentals-of-functional-programming",
+     "title": "4.12 Fundamentals of functional programming",
+     "topics": [
+      {
+       "id": "4-12-1-functional-programming-paradigm",
+       "title": "4.12.1 Functional programming paradigm",
+       "subtopics": [
+        {
+         "id": "function-types-and-first-class-functions",
+         "title": "Function types and first-class functions",
+         "outcomes": [
+          {
+           "code": "4.12",
+           "text": "Study the functional programming paradigm."
+          },
+          {
+           "code": "4.12.1",
+           "text": "Study functions as mathematical objects."
+          },
+          {
+           "code": "4.12.1.1",
+           "text": "Describe a function type A to B with domain and co-domain."
+          },
+          {
+           "code": "4.12.1.2",
+           "text": "Explain functions as first-class objects."
+          },
+          {
+           "code": "4.12.1.3",
+           "text": "Explain function application and Cartesian product argument types."
+          }
+         ]
+        },
+        {
+         "id": "partial-application-and-composition",
+         "title": "Partial application and composition",
+         "outcomes": [
+          {
+           "code": "4.12.1.4",
+           "text": "Explain partial function application and its notation."
+          },
+          {
+           "code": "4.12.1.5",
+           "text": "Explain composition of functions and compute g after f."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "4-12-2-writing-functional-programs",
+       "title": "4.12.2 Writing functional programs",
+       "subtopics": [
+        {
+         "id": "writing-functional-programs",
+         "title": "Writing functional programs",
+         "outcomes": [
+          {
+           "code": "4.12.2",
+           "text": "Write functional programs."
+          },
+          {
+           "code": "4.12.2.1",
+           "text": "Build simple programs in a functional language."
+          },
+          {
+           "code": null,
+           "text": "Define higher-order functions."
+          },
+          {
+           "code": null,
+           "text": "Use map, filter and reduce or fold."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "4-12-3-lists-in-functional-programming",
+       "title": "4.12.3 Lists in functional programming",
+       "subtopics": [
+        {
+         "id": "list-processing",
+         "title": "List processing",
+         "outcomes": [
+          {
+           "code": "4.12.3",
+           "text": "Process lists functionally."
+          },
+          {
+           "code": "4.12.3.1",
+           "text": "Represent a list as a head and a tail, and know a list may be empty."
+          },
+          {
+           "code": null,
+           "text": "Apply head, tail, empty test, length, empty list, prepend and append operations."
+          },
+          {
+           "code": null,
+           "text": "Write list-operation programs in a functional language."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "4-13-systematic-approach-to-problem-solving",
+     "title": "4.13 Systematic approach to problem solving",
+     "topics": [
+      {
+       "id": "4-13-1-aspects-of-software-development",
+       "title": "4.13.1 Aspects of software development",
+       "subtopics": [
+        {
+         "id": "analysis-and-design",
+         "title": "Analysis and design",
+         "outcomes": [
+          {
+           "code": "4.13",
+           "text": "Study systematic problem solving."
+          },
+          {
+           "code": "4.13.1",
+           "text": "Study aspects of software development."
+          },
+          {
+           "code": "4.13.1.1",
+           "text": "Define the problem, set requirements with users and build a data model, using prototyping or agile."
+          },
+          {
+           "code": "4.13.1.2",
+           "text": "Design data structures, algorithms, modules and user interface, possibly iteratively."
+          }
+         ]
+        },
+        {
+         "id": "implementation-testing-evaluation",
+         "title": "Implementation, testing, evaluation",
+         "outcomes": [
+          {
+           "code": "4.13.1.3",
+           "text": "Implement models and algorithms as code, iterating with prototypes and tackling the critical path first."
+          },
+          {
+           "code": "4.13.1.4",
+           "text": "Test with normal, boundary and erroneous data and run acceptance testing with users."
+          },
+          {
+           "code": "4.13.1.5",
+           "text": "Know the criteria for evaluating a computer system."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "build": {
+  "builtAt": "2026-10-14T10:14:36.656Z",
+  "model": "claude-agent",
+  "usd": 0,
+  "expectedCodes": 351,
+  "coverage": 0.9230769230769231,
+  "missingCodes": [
+   "4.14",
+   "4.14.1",
+   "4.14.1.1",
+   "4.14.1.2",
+   "4.14.1.3",
+   "4.14.2",
+   "4.14.2.1",
+   "4.14.2.2",
+   "4.14.3",
+   "4.14.3.1",
+   "4.14.3.2",
+   "4.14.3.3",
+   "4.14.3.3.1",
+   "4.14.3.3.2",
+   "4.14.3.4",
+   "4.14.3.4.1",
+   "4.14.3.4.2",
+   "4.14.3.5",
+   "4.14.3.6",
+   "4.14.4",
+   "4.14.5",
+   "4.14.5.1",
+   "4.14.5.2",
+   "4.14.5.3",
+   "4.14.5.4",
+   "4.14.5.5",
+   "4.14.6"
+  ],
+  "counts": {
+   "grades": 2,
+   "units": 22,
+   "topics": 73,
+   "subtopics": 126,
+   "outcomes": 457
+  },
+  "warnings": []
+ }
+}

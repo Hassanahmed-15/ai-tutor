@@ -1,0 +1,944 @@
+{
+ "id": "us-ap-german-language-and-culture",
+ "region": "US",
+ "framework": "AP German Language and Culture Course and Exam Description (effective fall 2026)",
+ "board": "College Board",
+ "qualification": "AP",
+ "subject": "German Language and Culture",
+ "syllabusCode": null,
+ "gradeSystem": "course",
+ "source": {
+  "urls": [
+   "https://apcentral.collegeboard.org/media/pdf/ap-german-language-and-culture-course-and-exam-description.pdf",
+   "https://apcentral.collegeboard.org/courses/ap-german-language-and-culture"
+  ],
+  "publisher": "College Board",
+  "licence": "© College Board; structure + our own wording only",
+  "firstExam": "2027"
+ },
+ "grades": [
+  {
+   "grade": "all",
+   "units": [
+    {
+     "id": "course-skills-and-learning-objectives",
+     "title": "Course Skills and Learning Objectives",
+     "topics": [
+      {
+       "id": "skill-category-1-interpretive-communication",
+       "title": "Skill Category 1: Interpretive Communication",
+       "subtopics": [
+        {
+         "id": "recognizing-explicit-meaning",
+         "title": "Recognizing explicit meaning",
+         "outcomes": [
+          {
+           "code": "1.A",
+           "text": "Skill 1.A: Recognize explicit meaning. (Interpretive Communication: Comprehend written texts, audio, and visualizations of data.)"
+          },
+          {
+           "code": "1.A.1",
+           "text": "Identify supporting or relevant details."
+          },
+          {
+           "code": "1.A.2",
+           "text": "Identify data points, patterns, and trends."
+          }
+         ]
+        },
+        {
+         "id": "interpreting-meaning",
+         "title": "Interpreting meaning",
+         "outcomes": [
+          {
+           "code": "1.B",
+           "text": "Skill 1.B: Interpret meaning."
+          },
+          {
+           "code": "1.B.1",
+           "text": "Determine the main idea, theme, or purpose."
+          },
+          {
+           "code": "1.B.2",
+           "text": "Determine the intended audience."
+          },
+          {
+           "code": "1.B.3",
+           "text": "Determine the point(s) of view, perspective(s), tone, or attitude."
+          },
+          {
+           "code": "1.B.4",
+           "text": "Identify organizing and/or rhetorical structures and/or strategies."
+          },
+          {
+           "code": "1.B.5",
+           "text": "Determine the meaning of words and phrases using textual cues."
+          }
+         ]
+        },
+        {
+         "id": "synthesizing-and-inferring-meaning",
+         "title": "Synthesizing and inferring meaning",
+         "outcomes": [
+          {
+           "code": "1.C",
+           "text": "Skill 1.C: Synthesize and infer meaning."
+          },
+          {
+           "code": "1.C.1",
+           "text": "Connect information within or across sources."
+          },
+          {
+           "code": "1.C.2",
+           "text": "Synthesize meaning to draw logical conclusions."
+          },
+          {
+           "code": "1.C.3",
+           "text": "Infer implied meaning through context."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "skill-category-2-interpersonal-and-presentationa",
+       "title": "Skill Category 2: Interpersonal and Presentational Communication",
+       "subtopics": [
+        {
+         "id": "language-for-purpose-and-context",
+         "title": "Language for purpose and context",
+         "outcomes": [
+          {
+           "code": "2.A",
+           "text": "Skill 2.A: Use language that aligns with the communicative purpose and context. (Interpersonal and Presentational Communication: Speak and write in interpersonal and presentational contexts.)"
+          },
+          {
+           "code": "2.A.1",
+           "text": "Use a variety of grammatical structures."
+          },
+          {
+           "code": "2.A.2",
+           "text": "Use a variety of vocabulary."
+          },
+          {
+           "code": "2.A.3",
+           "text": "Use idiomatic and culturally relevant expressions."
+          },
+          {
+           "code": "2.A.4",
+           "text": "Adopt an appropriate register for the intended audience and situation."
+          }
+         ]
+        },
+        {
+         "id": "making-communication-comprehensible",
+         "title": "Making communication comprehensible",
+         "outcomes": [
+          {
+           "code": "2.B",
+           "text": "Skill 2.B: Make communication comprehensible for the intended audience."
+          },
+          {
+           "code": "2.B.1",
+           "text": "Use communication strategies such as circumlocution and paraphrasing."
+          },
+          {
+           "code": "2.B.2",
+           "text": "Monitor language production; recognize errors and attempt self-correction in spoken exchanges."
+          },
+          {
+           "code": "2.B.3",
+           "text": "Use pronunciation that is comprehensible to a variety of speakers of the target language."
+          },
+          {
+           "code": "2.B.4",
+           "text": "Use an appropriate rate of speech and effective intonation patterns."
+          },
+          {
+           "code": "2.B.5",
+           "text": "Use standard conventions of written language (e.g., capitalization, orthography, accents, punctuation)."
+          }
+         ]
+        },
+        {
+         "id": "sharing-ideas-information-and-opinions",
+         "title": "Sharing ideas, information and opinions",
+         "outcomes": [
+          {
+           "code": "2.C",
+           "text": "Skill 2.C: Share ideas, information, and opinions about familiar and researched topics."
+          },
+          {
+           "code": "2.C.1",
+           "text": "Express ideas, preferences, and opinions."
+          },
+          {
+           "code": "2.C.2",
+           "text": "Use research strategies to gather information and evidence."
+          },
+          {
+           "code": "2.C.3",
+           "text": "Use examples to provide advice or information and to explain opinions or emotions."
+          },
+          {
+           "code": "2.C.4",
+           "text": "Integrate information from multiple sources to develop and support a position or perspective."
+          },
+          {
+           "code": "2.C.5",
+           "text": "Reference and cite sources appropriately."
+          }
+         ]
+        },
+        {
+         "id": "organizational-and-rhetorical-strategies",
+         "title": "Organizational and rhetorical strategies",
+         "outcomes": [
+          {
+           "code": "2.D",
+           "text": "Skill 2.D: Apply organizational and rhetorical strategies."
+          },
+          {
+           "code": "2.D.1",
+           "text": "Apply an appropriate organizational structure."
+          },
+          {
+           "code": "2.D.2",
+           "text": "Use a variety of cohesive devices (e.g., relative pronouns, pronoun referents, conjunctions, transitions) to effectively convey and connect ideas."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "skill-category-3-cultural-understanding",
+       "title": "Skill Category 3: Cultural Understanding",
+       "subtopics": [
+        {
+         "id": "connections-within-and-across-cultures",
+         "title": "Connections within and across cultures",
+         "outcomes": [
+          {
+           "code": "3.A",
+           "text": "Skill 3.A: Make connections within and across cultures. (Cultural Understanding: Demonstrate cultural understanding.)"
+          },
+          {
+           "code": "3.A.1",
+           "text": "Describe cultural products, practices, and perspectives."
+          },
+          {
+           "code": "3.A.2",
+           "text": "Compare cultural products, practices, and perspectives among distinct communities."
+          },
+          {
+           "code": "3.A.3",
+           "text": "Reflect on the significance of cultural products, practices, and perspectives."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "unit-1-families-and-communities",
+     "title": "Unit 1: Families and Communities",
+     "topics": [
+      {
+       "id": "essential-questions",
+       "title": "Essential questions",
+       "subtopics": [
+        {
+         "id": "families-and-communities-essential-questions",
+         "title": "Families and Communities: essential questions",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Essential question: What constitutes a family in German-speaking societies? Wie versteht man den Begriff „Familie“ in deutschsprachigen Regionen?"
+          },
+          {
+           "code": null,
+           "text": "Essential question: What are some important aspects of family values and family life in German-speaking societies? Was sind einige wichtige Aspekte und Werte des Familienlebens in deutschsprachigen Regionen?"
+          },
+          {
+           "code": null,
+           "text": "Essential question: How do families and communities experience today’s world? Wie erleben Familien und Gemeinschaften die heutige Welt?"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "developing-understanding",
+       "title": "Developing understanding",
+       "subtopics": [
+        {
+         "id": "families-and-communities-developing-understandin",
+         "title": "Families and Communities: developing understanding",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Students could: Explore how families shape values and traditions, as well as personal beliefs and interests."
+          },
+          {
+           "code": null,
+           "text": "Students could: Examine the experiences faced by families in modern society."
+          },
+          {
+           "code": null,
+           "text": "Students could: Consider the evolving role of the community in contemporary societies."
+          },
+          {
+           "code": null,
+           "text": "Other recommended instructional contexts: Customs and Celebrations; Linguistics; German in the World; Education and Career; Food and Health; Pop Culture; Global Communication; History; Policy and Planning."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "recommended-instructional-contexts",
+       "title": "Recommended instructional contexts",
+       "subtopics": [
+        {
+         "id": "community-activities-gemeinschaftsaktivita-ten",
+         "title": "Community Activities (Gemeinschaftsaktivitäten)",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Recommended instructional context: Community Activities (Gemeinschaftsaktivitäten)"
+          }
+         ]
+        },
+        {
+         "id": "family-relationships-familienbeziehungen",
+         "title": "Family Relationships (Familienbeziehungen)",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Recommended instructional context: Family Relationships (Familienbeziehungen)"
+          }
+         ]
+        },
+        {
+         "id": "social-interactions-and-relationships-soziale-ko",
+         "title": "Social Interactions and Relationships (Soziale Kontakte und Beziehungen)",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Recommended instructional context: Social Interactions and Relationships (Soziale Kontakte und Beziehungen)"
+          }
+         ]
+        },
+        {
+         "id": "urban-and-rural-communities-sta-dtische-und-la-n",
+         "title": "Urban and Rural Communities (Städtische und ländliche Gemeinden)",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Recommended instructional context: Urban and Rural Communities (Städtische und ländliche Gemeinden)"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "unit-2-language-and-culture",
+     "title": "Unit 2: Language and Culture",
+     "topics": [
+      {
+       "id": "essential-questions",
+       "title": "Essential questions",
+       "subtopics": [
+        {
+         "id": "language-and-culture-essential-questions",
+         "title": "Language and Culture: essential questions",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Essential question: How do language and culture influence each other? Wie beinflussen sich Sprache und Kultur gegenseitig?"
+          },
+          {
+           "code": null,
+           "text": "Essential question: How do language and culture evolve over time? Wie verändern sich Sprache und Kultur im Laufe der Zeit?"
+          },
+          {
+           "code": null,
+           "text": "Essential question: How does technology influence language and culture? Wie beinflusst Technologie die Sprache und Kultur?"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "developing-understanding",
+       "title": "Developing understanding",
+       "subtopics": [
+        {
+         "id": "language-and-culture-developing-understanding",
+         "title": "Language and Culture: developing understanding",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Students could: Explore how developments in science and technology impact language and the ways in which people communicate."
+          },
+          {
+           "code": null,
+           "text": "Students could: Examine how social media affects others."
+          },
+          {
+           "code": null,
+           "text": "Students could: Consider the role of entertainment and advertising as integral parts of culture."
+          },
+          {
+           "code": null,
+           "text": "Students could: Explore how a community’s values are reflected in its art and customs."
+          },
+          {
+           "code": null,
+           "text": "Other recommended instructional contexts: Artistic Heritage; Beauty and Aesthetics; Literature; Visual and Performing Arts; Education and Career; Entertainment and Media; Pop Culture; Travel and Tourism; Innovations and Emerging Technologies; Personal Technology and Communication; Societal Impacts of Science and Technology."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "recommended-instructional-contexts",
+       "title": "Recommended instructional contexts",
+       "subtopics": [
+        {
+         "id": "customs-and-celebrations-bra-uche-und-feste",
+         "title": "Customs and Celebrations (Bräuche und Feste)",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Recommended instructional context: Customs and Celebrations (Bräuche und Feste)"
+          }
+         ]
+        },
+        {
+         "id": "linguistics-sprachwissenschaft",
+         "title": "Linguistics (Sprachwissenschaft)",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Recommended instructional context: Linguistics (Sprachwissenschaft)"
+          }
+         ]
+        },
+        {
+         "id": "german-in-the-world-deutsch-in-der-welt",
+         "title": "German in the World (Deutsch in der Welt)",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Recommended instructional context: German in the World (Deutsch in der Welt)"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "unit-3-art-and-creativity",
+     "title": "Unit 3: Art and Creativity",
+     "topics": [
+      {
+       "id": "essential-questions",
+       "title": "Essential questions",
+       "subtopics": [
+        {
+         "id": "art-and-creativity-essential-questions",
+         "title": "Art and Creativity: essential questions",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Essential question: How can art and creativity influence daily life? Wie können Kunst und Kreativität den Alltag beeinflussen?"
+          },
+          {
+           "code": null,
+           "text": "Essential question: How does art both challenge and reflect cultural perspectives? Inwiefern hinterfragt und reflektiert Kunst kulturelle Perspektiven?"
+          },
+          {
+           "code": null,
+           "text": "Essential question: How do communities value art and creativity? Welchen Wert legen Gemeinschaften auf Kunst und Kreativität?"
+          },
+          {
+           "code": null,
+           "text": "Essential question: How is art used to record history? Wie kann Kunst die Geschichte dokumentieren?"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "developing-understanding",
+       "title": "Developing understanding",
+       "subtopics": [
+        {
+         "id": "art-and-creativity-developing-understanding",
+         "title": "Art and Creativity: developing understanding",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Students could: Explore how art and creativity influence the quality of life and values in a community."
+          },
+          {
+           "code": null,
+           "text": "Students could: Consider the role and importance of art in German-speaking communities."
+          },
+          {
+           "code": null,
+           "text": "Students could: Discover how the arts capture and reflect the history of a community."
+          },
+          {
+           "code": null,
+           "text": "Students could: Investigate how the concepts of art and creativity are defined within a culture."
+          },
+          {
+           "code": null,
+           "text": "Students could: Explore how art challenges and reflects cultural perspectives."
+          },
+          {
+           "code": null,
+           "text": "Other recommended instructional contexts: Entertainment and Media; Pop Culture; Sports and Leisure; Travel and Tourism; Community Activities; Family Relationships; Urban and Rural Communities."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "recommended-instructional-contexts",
+       "title": "Recommended instructional contexts",
+       "subtopics": [
+        {
+         "id": "architecture-architektur",
+         "title": "Architecture (Architektur)",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Recommended instructional context: Architecture (Architektur)"
+          }
+         ]
+        },
+        {
+         "id": "artistic-heritage-ku-nstlerisches-erbe",
+         "title": "Artistic Heritage (Künstlerisches Erbe)",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Recommended instructional context: Artistic Heritage (Künstlerisches Erbe)"
+          }
+         ]
+        },
+        {
+         "id": "beauty-and-aesthetics-scho-nheit-und-a-sthetik",
+         "title": "Beauty and Aesthetics (Schönheit und Ästhetik)",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Recommended instructional context: Beauty and Aesthetics (Schönheit und Ästhetik)"
+          }
+         ]
+        },
+        {
+         "id": "fashion-and-design-mode-und-design",
+         "title": "Fashion and Design (Mode und Design)",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Recommended instructional context: Fashion and Design (Mode und Design)"
+          }
+         ]
+        },
+        {
+         "id": "literature-literatur",
+         "title": "Literature (Literatur)",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Recommended instructional context: Literature (Literatur)"
+          }
+         ]
+        },
+        {
+         "id": "visual-and-performing-arts-kunst-theater-musik-u",
+         "title": "Visual and Performing Arts (Kunst, Theater, Musik und Film)",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Recommended instructional context: Visual and Performing Arts (Kunst, Theater, Musik und Film)"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "unit-4-science-and-technology",
+     "title": "Unit 4: Science and Technology",
+     "topics": [
+      {
+       "id": "essential-questions",
+       "title": "Essential questions",
+       "subtopics": [
+        {
+         "id": "science-and-technology-essential-questions",
+         "title": "Science and Technology: essential questions",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Essential question: What factors drive innovation and discovery in the fields of science and technology? Welche Rolle spielen Erfindungen und Entdeckungen in Wissenschaft und Technologie?"
+          },
+          {
+           "code": null,
+           "text": "Essential question: How does technology enhance global communication? Wie fördert Technologie die weltweite Kommunikation?"
+          },
+          {
+           "code": null,
+           "text": "Essential question: What is the societal impact of scientific or technological advancements? Welche Auswirkungen haben wissenschaftliche und technologische Entwicklungen auf die Gesellschaft?"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "developing-understanding",
+       "title": "Developing understanding",
+       "subtopics": [
+        {
+         "id": "science-and-technology-developing-understanding",
+         "title": "Science and Technology: developing understanding",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Students could: Explore how developments in science can both create and resolve challenges in contemporary society."
+          },
+          {
+           "code": null,
+           "text": "Students could: Investigate how technology creates new ways to connect with others and how it impacts and shapes language and culture."
+          },
+          {
+           "code": null,
+           "text": "Other recommended instructional contexts: Global Communication; Policy and Planning; Transportation; Education and Career; Food and Health; Travel and Tourism; Community Activities; Social Interactions and Relationships; Urban and Rural Communities."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "recommended-instructional-contexts",
+       "title": "Recommended instructional contexts",
+       "subtopics": [
+        {
+         "id": "innovations-and-emerging-technologies-innovation",
+         "title": "Innovations and Emerging Technologies (Innovationen und Zukunftstechnologien)",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Recommended instructional context: Innovations and Emerging Technologies (Innovationen und Zukunftstechnologien)"
+          }
+         ]
+        },
+        {
+         "id": "personal-technology-and-communication-allta-glic",
+         "title": "Personal Technology and Communication (Alltägliche Technik und Kommunikation)",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Recommended instructional context: Personal Technology and Communication (Alltägliche Technik und Kommunikation)"
+          }
+         ]
+        },
+        {
+         "id": "science-in-everyday-life-wissenschaft-im-alltag",
+         "title": "Science in Everyday Life (Wissenschaft im Alltag)",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Recommended instructional context: Science in Everyday Life (Wissenschaft im Alltag)"
+          }
+         ]
+        },
+        {
+         "id": "societal-impacts-of-science-and-technology-sozia",
+         "title": "Societal Impacts of Science and Technology (Soziale Auswirkungen von Wissenschaft und Technologie)",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Recommended instructional context: Societal Impacts of Science and Technology (Soziale Auswirkungen von Wissenschaft und Technologie)"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "unit-5-contemporary-life",
+     "title": "Unit 5: Contemporary Life",
+     "topics": [
+      {
+       "id": "essential-questions",
+       "title": "Essential questions",
+       "subtopics": [
+        {
+         "id": "contemporary-life-essential-questions",
+         "title": "Contemporary Life: essential questions",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Essential question: How has contemporary life changed in the last 20 years? Wie hat sich das alltägliche Leben in den letzten 20 Jahren verändert?"
+          },
+          {
+           "code": null,
+           "text": "Essential question: What impact do cultural values and traditions have on contemporary life? Welchen Einfluss haben kulturelle Werte und Traditionen auf das alltägliche Leben?"
+          },
+          {
+           "code": null,
+           "text": "Essential question: What influences one’s interpretation and perception of what is valued in contemporary life? Was beeinflusst die Interpretation und Vorstellungen von Werten im alltäglichen Leben?"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "developing-understanding",
+       "title": "Developing understanding",
+       "subtopics": [
+        {
+         "id": "contemporary-life-developing-understanding",
+         "title": "Contemporary Life: developing understanding",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Students could: Investigate how cultural perspectives and traditions relate to contemporary life."
+          },
+          {
+           "code": null,
+           "text": "Students could: Consider how a community’s culture affects public life."
+          },
+          {
+           "code": null,
+           "text": "Students could: Explore how popular culture influences contemporary life."
+          },
+          {
+           "code": null,
+           "text": "Other recommended instructional contexts: Innovations and Emerging Technologies; Personal Technology and Communication; Science in Everyday Life; Societal Impacts of Science and Technology; Beauty and Aesthetics; Fashion and Design; Visual and Performing Arts."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "recommended-instructional-contexts",
+       "title": "Recommended instructional contexts",
+       "subtopics": [
+        {
+         "id": "education-and-career-bildung-und-karriere",
+         "title": "Education and Career (Bildung und Karriere)",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Recommended instructional context: Education and Career (Bildung und Karriere)"
+          }
+         ]
+        },
+        {
+         "id": "entertainment-and-media-unterhaltung-und-medien",
+         "title": "Entertainment and Media (Unterhaltung und Medien)",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Recommended instructional context: Entertainment and Media (Unterhaltung und Medien)"
+          }
+         ]
+        },
+        {
+         "id": "food-and-health-erna-hrung-und-gesundheit",
+         "title": "Food and Health (Ernährung und Gesundheit)",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Recommended instructional context: Food and Health (Ernährung und Gesundheit)"
+          }
+         ]
+        },
+        {
+         "id": "pop-culture-popkultur",
+         "title": "Pop Culture (Popkultur)",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Recommended instructional context: Pop Culture (Popkultur)"
+          }
+         ]
+        },
+        {
+         "id": "sports-and-leisure-sport-und-freizeit",
+         "title": "Sports and Leisure (Sport und Freizeit)",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Recommended instructional context: Sports and Leisure (Sport und Freizeit)"
+          }
+         ]
+        },
+        {
+         "id": "travel-and-tourism-reisen-und-tourismus",
+         "title": "Travel and Tourism (Reisen und Tourismus)",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Recommended instructional context: Travel and Tourism (Reisen und Tourismus)"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "unit-6-global-contexts",
+     "title": "Unit 6: Global Contexts",
+     "topics": [
+      {
+       "id": "essential-questions",
+       "title": "Essential questions",
+       "subtopics": [
+        {
+         "id": "global-contexts-essential-questions",
+         "title": "Global Contexts: essential questions",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Essential question: How do global phenomena impact German-speaking communities? Wie wirken sich globale Phänomene auf deutschsprachige Regionen aus?"
+          },
+          {
+           "code": null,
+           "text": "Essential question: What role do individuals play in understanding and responding to global phenomena? Welche Rolle können individuelle Personen beim Verstehen von und im Umgang mit globalen Phänomenen spielen?"
+          },
+          {
+           "code": null,
+           "text": "Essential question: How do complex issues affect a society’s culture? Wie beeinflussen komplexe Themen die Kultur einer Gesellschaft?"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "developing-understanding",
+       "title": "Developing understanding",
+       "subtopics": [
+        {
+         "id": "global-contexts-developing-understanding",
+         "title": "Global Contexts: developing understanding",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Students could: Investigate how global phenomena affect individual families and communities."
+          },
+          {
+           "code": null,
+           "text": "Students could: Explore how individuals can influence the world around them."
+          },
+          {
+           "code": null,
+           "text": "Students could: Suggest possible solutions that address contemporary global challenges."
+          },
+          {
+           "code": null,
+           "text": "Other recommended instructional contexts: Education and Career; Entertainment and Media; Food and Health; Innovations and Emerging Technologies; Personal Technology and Communication; Societal Impacts of Science and Technology; Community Activities; Family Relationships; Social Interactions and Relationships."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "recommended-instructional-contexts",
+       "title": "Recommended instructional contexts",
+       "subtopics": [
+        {
+         "id": "global-communication-globale-kommunikation",
+         "title": "Global Communication (Globale Kommunikation)",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Recommended instructional context: Global Communication (Globale Kommunikation)"
+          }
+         ]
+        },
+        {
+         "id": "natural-world-natur",
+         "title": "Natural World (Natur)",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Recommended instructional context: Natural World (Natur)"
+          }
+         ]
+        },
+        {
+         "id": "history-geschichte",
+         "title": "History (Geschichte)",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Recommended instructional context: History (Geschichte)"
+          }
+         ]
+        },
+        {
+         "id": "policy-and-planning-richtlinien-und-planung",
+         "title": "Policy and Planning (Richtlinien und Planung)",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Recommended instructional context: Policy and Planning (Richtlinien und Planung)"
+          }
+         ]
+        },
+        {
+         "id": "transportation-verkehrsmittel",
+         "title": "Transportation (Verkehrsmittel)",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Recommended instructional context: Transportation (Verkehrsmittel)"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "build": {
+  "builtAt": "2026-10-14T16:47:10.196Z",
+  "model": "claude-agent",
+  "usd": 0,
+  "expectedCodes": 37,
+  "coverage": 1,
+  "missingCodes": [],
+  "counts": {
+   "grades": 1,
+   "units": 7,
+   "topics": 21,
+   "subtopics": 48,
+   "outcomes": 110
+  },
+  "warnings": [
+   "grade 9 has no content",
+   "grade 10 has no content",
+   "grade 11 has no content",
+   "grade 12 has no content",
+   "unexpected grade label \"all\""
+  ]
+ }
+}

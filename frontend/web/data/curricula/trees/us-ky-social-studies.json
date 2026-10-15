@@ -1,0 +1,2854 @@
+{
+ "id": "us-ky-social-studies",
+ "region": "US",
+ "framework": "Kentucky state academic standards: Social Studies",
+ "board": null,
+ "qualification": "K-12",
+ "subject": "Social Studies",
+ "syllabusCode": null,
+ "gradeSystem": "grade",
+ "source": {
+  "urls": [
+   "https://api.commonstandardsproject.com/api/v1/jurisdictions/46C7F759B14D4334A1CD073B03B9BB7C",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/46C7F759B14D4334A1CD073B03B9BB7C_D2975991_grade-01",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/46C7F759B14D4334A1CD073B03B9BB7C_D2975991_grade-02",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/46C7F759B14D4334A1CD073B03B9BB7C_D2975991_grade-03",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/46C7F759B14D4334A1CD073B03B9BB7C_D2975991_grade-04",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/46C7F759B14D4334A1CD073B03B9BB7C_D2975991_grade-05",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/46C7F759B14D4334A1CD073B03B9BB7C_D2975991_grade-06",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/46C7F759B14D4334A1CD073B03B9BB7C_D2975991_grade-07",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/46C7F759B14D4334A1CD073B03B9BB7C_D2975991_grade-08",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/46C7F759B14D4334A1CD073B03B9BB7C_D2975991_grades-09-10-11-12",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/46C7F759B14D4334A1CD073B03B9BB7C_D2975991_grade-k"
+  ],
+  "publisher": "Kentucky state education agency (machine-readable via Common Standards Project / ASN)",
+  "licence": "D2L Corporation",
+  "firstExam": "2022"
+ },
+ "grades": [
+  {
+   "grade": "K",
+   "units": [
+    {
+     "id": "kindergarten-myself-and-my-community",
+     "title": "Kindergarten (Myself and My Community)",
+     "topics": [
+      {
+       "id": "inquiry",
+       "title": "Inquiry",
+       "subtopics": [
+        {
+         "id": "inquiry-1-of-2",
+         "title": "Inquiry (1 of 2)",
+         "outcomes": [
+          {
+           "code": "K.I.Q.1",
+           "text": "Ask compelling questions about their community."
+          },
+          {
+           "code": "K.I.UE.1",
+           "text": "Identify information from two or more sources to investigate characteristics of a community."
+          },
+          {
+           "code": "K.I.UE.2",
+           "text": "Construct responses to compelling questions about oneself and one's community."
+          },
+          {
+           "code": "K.I.CC.1",
+           "text": "Construct an explanation about their community's civic life, history, geography and/or economy."
+          }
+         ]
+        },
+        {
+         "id": "inquiry-2-of-2",
+         "title": "Inquiry (2 of 2)",
+         "outcomes": [
+          {
+           "code": "K.I.CC.2",
+           "text": "Construct an argument to address a problem in the classroom or school."
+          },
+          {
+           "code": "K.I.CC.3",
+           "text": "Identify ways to civically engage at school."
+          },
+          {
+           "code": "K.I.CC.4",
+           "text": "Use listening skills to decide on and take action in their classrooms."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "civics",
+       "title": "Civics",
+       "subtopics": [
+        {
+         "id": "civics-1-of-2",
+         "title": "Civics (1 of 2)",
+         "outcomes": [
+          {
+           "code": "K.C.CP.1",
+           "text": "Explain the purpose of local government."
+          },
+          {
+           "code": "K.C.RR.1",
+           "text": "Identify roles and responsibilities of self and others at home, in school and neighborhood settings."
+          },
+          {
+           "code": "K.C.RR.2",
+           "text": "Identify symbols and events that represent American patriotism."
+          },
+          {
+           "code": "K.C.CV.1",
+           "text": "Explain ways people can work together effectively to make decisions."
+          }
+         ]
+        },
+        {
+         "id": "civics-2-of-2",
+         "title": "Civics (2 of 2)",
+         "outcomes": [
+          {
+           "code": "K.C.PR.1",
+           "text": "Identify examples of rules that apply in the school and community, and explain why they exist."
+          },
+          {
+           "code": "K.C.PR.2",
+           "text": "Describe consequences of following or not following rules."
+          },
+          {
+           "code": "K.C.KGO.1",
+           "text": "Identify leaders in the local community, and explain their roles and responsibilities."
+          },
+          {
+           "code": "K.C.KGO.2",
+           "text": "Identify local and Kentucky state symbols and events."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "economics",
+       "title": "Economics",
+       "subtopics": [
+        {
+         "id": "economics",
+         "title": "Economics",
+         "outcomes": [
+          {
+           "code": "K.E.MI.1",
+           "text": "Describe why people purchase goods and services."
+          },
+          {
+           "code": "K.E.MA.1",
+           "text": "Identify places in communities that provide goods and services."
+          },
+          {
+           "code": "K.E.ST.1",
+           "text": "Demonstrate ways trade can be used to obtain goods and services."
+          },
+          {
+           "code": "K.E.IC.1",
+           "text": "Differentiate between needs and wants."
+          },
+          {
+           "code": "K.E.KE.1",
+           "text": "Explain how various jobs affect communities."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "geography",
+       "title": "Geography",
+       "subtopics": [
+        {
+         "id": "geography",
+         "title": "Geography",
+         "outcomes": [
+          {
+           "code": "K.G.MM.1",
+           "text": "Identify why and how people and goods move to and within communities."
+          },
+          {
+           "code": "K.G.HI.1",
+           "text": "Identify and describe the culture of communities."
+          },
+          {
+           "code": "K.G.HE.1",
+           "text": "Identify ways humans interact with their environment."
+          },
+          {
+           "code": "K.G.GR.1",
+           "text": "Create maps of familiar areas, such as the classroom, school and community."
+          },
+          {
+           "code": "K.G.KGE.1",
+           "text": "Identify physical and environmental characteristics of communities."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "history",
+       "title": "History",
+       "subtopics": [
+        {
+         "id": "history",
+         "title": "History",
+         "outcomes": [
+          {
+           "code": "K.H.CH.1",
+           "text": "Identify and describe how communities change over time."
+          },
+          {
+           "code": "K.H.CH.2",
+           "text": "Compare traditions found in communities over time, including those from diverse backgrounds."
+          },
+          {
+           "code": "K.H.CE.1",
+           "text": "Identify the cause and effect of an event in a community."
+          },
+          {
+           "code": "K.H.CO.1",
+           "text": "Describe interactions that occur between individuals/groups in families, classrooms and communities."
+          },
+          {
+           "code": "K.H.KH.1",
+           "text": "Compare life in the past to life today in communities."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "1",
+   "units": [
+    {
+     "id": "grade-1-impact-on-community-and-state",
+     "title": "Grade 1 (Impact on Community and State)",
+     "topics": [
+      {
+       "id": "inquiry",
+       "title": "Inquiry",
+       "subtopics": [
+        {
+         "id": "inquiry-1-of-2",
+         "title": "Inquiry (1 of 2)",
+         "outcomes": [
+          {
+           "code": "1.I.Q.1",
+           "text": "Ask compelling questions about communities in Kentucky."
+          },
+          {
+           "code": "1.I.Q.2",
+           "text": "Identify supporting questions to investigate compelling questions about communities in Kentucky."
+          },
+          {
+           "code": "1.I.UE.1",
+           "text": "Identify information from two or more sources to describe multiple perspectives about communities in Kentucky."
+          },
+          {
+           "code": "1.I.UE.2",
+           "text": "Construct responses to compelling and supporting questions about communities in Kentucky."
+          }
+         ]
+        },
+        {
+         "id": "inquiry-2-of-2",
+         "title": "Inquiry (2 of 2)",
+         "outcomes": [
+          {
+           "code": "1.I.CC.1",
+           "text": "Construct an explanation about a specific community in Kentucky."
+          },
+          {
+           "code": "1.I.CC.2",
+           "text": "Construct an argument with reasons to address how to improve the local community and Kentucky."
+          },
+          {
+           "code": "1.I.CC.3",
+           "text": "Identify ways to civically engage in the local community."
+          },
+          {
+           "code": "1.I.CC.4",
+           "text": "Use listening and voting procedures to decide on and take action in their school, local community or Kentucky."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "civics",
+       "title": "Civics",
+       "subtopics": [
+        {
+         "id": "civics-1-of-2",
+         "title": "Civics (1 of 2)",
+         "outcomes": [
+          {
+           "code": "1.C.CP.1",
+           "text": "Describe the purpose of Kentucky government."
+          },
+          {
+           "code": "1.C.RR.1",
+           "text": "Identify the rights and responsibilities of citizens."
+          },
+          {
+           "code": "1.C.CV.1",
+           "text": "Describe basic democratic principles."
+          },
+          {
+           "code": "1.C.CV.2",
+           "text": "Describe civic virtues."
+          }
+         ]
+        },
+        {
+         "id": "civics-2-of-2",
+         "title": "Civics (2 of 2)",
+         "outcomes": [
+          {
+           "code": "1.C.PR.1",
+           "text": "Investigate rules and laws in Kentucky to understand their purpose."
+          },
+          {
+           "code": "1.C.KGO.1",
+           "text": "Identify Kentucky leaders, and explain their roles and responsibilities."
+          },
+          {
+           "code": "1.C.KGO.2",
+           "text": "Investigate how civic identity is shaped by symbolic figures, places and events."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "economics",
+       "title": "Economics",
+       "subtopics": [
+        {
+         "id": "economics-1-of-2",
+         "title": "Economics (1 of 2)",
+         "outcomes": [
+          {
+           "code": "1.E.MI.1",
+           "text": "Differentiate between buyers (consumers) and sellers (producers)."
+          },
+          {
+           "code": "1.E.MI.2",
+           "text": "Give an example of a cost or benefit of an event."
+          },
+          {
+           "code": "1.E.MA.1",
+           "text": "Describe how different jobs, as well as public and private institutions, help people in the community."
+          },
+          {
+           "code": "1.E.ST.1",
+           "text": "Explain why the goods and services people in a community produce are traded with those produced in other communities."
+          }
+         ]
+        },
+        {
+         "id": "economics-2-of-2",
+         "title": "Economics (2 of 2)",
+         "outcomes": [
+          {
+           "code": "1.E.ST.2",
+           "text": "Investigate how people can benefit themselves and others by developing special skills, strengths and goods."
+          },
+          {
+           "code": "1.E.IC.1",
+           "text": "Predict a person's change in behavior in response to incentives and opportunity costs."
+          },
+          {
+           "code": "1.E.IC.2",
+           "text": "Explain how choices are made as a result of scarcity."
+          },
+          {
+           "code": "1.E.KE.1",
+           "text": "Identify and describe what goods and services are produced in different places and regions in Kentucky."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "geography",
+       "title": "Geography",
+       "subtopics": [
+        {
+         "id": "geography",
+         "title": "Geography",
+         "outcomes": [
+          {
+           "code": "1.G.MM.1",
+           "text": "Explain why and how people and goods move to and within communities."
+          },
+          {
+           "code": "1.G.HI.1",
+           "text": "Describe how culture and experience influence the cultural landscape of places and regions within their community and state."
+          },
+          {
+           "code": "1.G.HE.1",
+           "text": "Describe ways people modify their environment."
+          },
+          {
+           "code": "1.G.GR.1",
+           "text": "Create geographic representations to identify the location of familiar places, and organize information regarding familiar places at different scales."
+          },
+          {
+           "code": "1.G.KGE.1",
+           "text": "Compare the physical and human characteristics of communities in Kentucky."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "history",
+       "title": "History",
+       "subtopics": [
+        {
+         "id": "history",
+         "title": "History",
+         "outcomes": [
+          {
+           "code": "1.H.CH.1",
+           "text": "Describe how events, people and innovation of the past affect their present lives, community and state."
+          },
+          {
+           "code": "1.H.CE.1",
+           "text": "Predict the causes and effects of events in their community and state."
+          },
+          {
+           "code": "1.H.CO.1",
+           "text": "Describe interactions that occur between individuals as members of groups, the community and/or state."
+          },
+          {
+           "code": "1.H.KH.1",
+           "text": "Compare life in Kentucky in the past to life in Kentucky today."
+          },
+          {
+           "code": "1.H.KH.2",
+           "text": "Identify Kentucky symbols, songs and traditions."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "2",
+   "units": [
+    {
+     "id": "grade-2-north-american-interactions",
+     "title": "Grade 2 (North American Interactions)",
+     "topics": [
+      {
+       "id": "inquiry",
+       "title": "Inquiry",
+       "subtopics": [
+        {
+         "id": "inquiry-1-of-2",
+         "title": "Inquiry (1 of 2)",
+         "outcomes": [
+          {
+           "code": "2.I.Q.1",
+           "text": "Ask compelling questions about communities found in North America."
+          },
+          {
+           "code": "2.I.Q.2",
+           "text": "Identify supporting questions that help answer compelling questions about communities found in North America."
+          },
+          {
+           "code": "2.I.UE.1",
+           "text": "Identify characteristics of primary and secondary sources."
+          },
+          {
+           "code": "2.I.UE.2",
+           "text": "Determine whether the evidence in primary and secondary sources is fact or opinion."
+          },
+          {
+           "code": "2.I.UE.3",
+           "text": "Identify a primary and secondary source, and explain who created it, when they created it, where they created it and why they created it."
+          }
+         ]
+        },
+        {
+         "id": "inquiry-2-of-2",
+         "title": "Inquiry (2 of 2)",
+         "outcomes": [
+          {
+           "code": "2.I.UE.4",
+           "text": "Construct responses to compelling and supporting questions, using reasoning, examples and details, about the diversity of communities in North America."
+          },
+          {
+           "code": "2.I.CC.1",
+           "text": "Construct an explanation, using correct sequence and relevant information, to provide information on a community in North America."
+          },
+          {
+           "code": "2.I.CC.2",
+           "text": "Construct an argument with reasons and details to address a civic issue on a community in North America."
+          },
+          {
+           "code": "2.I.CC.3",
+           "text": "Identify ways to civically engage in Kentucky."
+          },
+          {
+           "code": "2.I.CC.4",
+           "text": "Use listening and consensus-building procedures to discuss how to take action in the local community or Kentucky."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "civics",
+       "title": "Civics",
+       "subtopics": [
+        {
+         "id": "civics-1-of-2",
+         "title": "Civics (1 of 2)",
+         "outcomes": [
+          {
+           "code": "2.C.CP.1",
+           "text": "Explain the need for civic and political structures in North America."
+          },
+          {
+           "code": "2.C.CP.2",
+           "text": "Explain that the functions of effective government are to create order, establish justice and meet the needs of their citizens."
+          },
+          {
+           "code": "2.C.RR.1",
+           "text": "Describe the importance of civic participation."
+          },
+          {
+           "code": "2.C.RR.2",
+           "text": "Compare the rights and responsibilities of citizens in North America."
+          }
+         ]
+        },
+        {
+         "id": "civics-2-of-2",
+         "title": "Civics (2 of 2)",
+         "outcomes": [
+          {
+           "code": "2.C.CV.1",
+           "text": "Evaluate how civic virtues guide governments, societies and communities."
+          },
+          {
+           "code": "2.C.CV.2",
+           "text": "Evaluate how democratic principles guide governments, societies and communities."
+          },
+          {
+           "code": "2.C.PR.1",
+           "text": "Describe how societies changed and continue to change through processes, rules and laws in North America."
+          },
+          {
+           "code": "2.C.KGO.1",
+           "text": "Describe how Kentucky's laws change over time."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "economics",
+       "title": "Economics",
+       "subtopics": [
+        {
+         "id": "economics-1-of-2",
+         "title": "Economics (1 of 2)",
+         "outcomes": [
+          {
+           "code": "2.E.MI.1",
+           "text": "Describe how examples of capital, human, and natural resources are related to goods and services."
+          },
+          {
+           "code": "2.E.MI.2",
+           "text": "Describe how people are both producers and consumers."
+          },
+          {
+           "code": "2.E.MA.1",
+           "text": "Identify the cost of everyday, common goods."
+          },
+          {
+           "code": "2.E.MA.2",
+           "text": "Explain the role of prices in an economic market."
+          }
+         ]
+        },
+        {
+         "id": "economics-2-of-2",
+         "title": "Economics (2 of 2)",
+         "outcomes": [
+          {
+           "code": "2.E.ST.1",
+           "text": "Explain why people specialize in the production of goods and services."
+          },
+          {
+           "code": "2.E.IC.1",
+           "text": "Categorize different limited resources as renewable and non-renewable resources."
+          },
+          {
+           "code": "2.E.KE.1",
+           "text": "Provide examples of each of the factors of production in Kentucky."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "geography",
+       "title": "Geography",
+       "subtopics": [
+        {
+         "id": "geography",
+         "title": "Geography",
+         "outcomes": [
+          {
+           "code": "2.G.MM.1",
+           "text": "Explain patterns of human settlement in North America."
+          },
+          {
+           "code": "2.G.HI.1",
+           "text": "Compare the ways various cultural groups connect and interact within North America."
+          },
+          {
+           "code": "2.G.HE.1",
+           "text": "Explain the ways human activities impact the physical environment of North America."
+          },
+          {
+           "code": "2.G.GR.1",
+           "text": "Examine geographic features of places in North America, using a variety of geographic data, including maps, photos and other geographic tools."
+          },
+          {
+           "code": "2.G.KGE.1",
+           "text": "Analyze reasons for similarities and differences in the settlement patterns of North America and Kentucky."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "history",
+       "title": "History",
+       "subtopics": [
+        {
+         "id": "history",
+         "title": "History",
+         "outcomes": [
+          {
+           "code": "2.H.CH.1",
+           "text": "Identify and compare the diverse North American cultural groups of the past and today."
+          },
+          {
+           "code": "2.H.CE.1",
+           "text": "Describe events in North America shaped by multiple cause and effect relationships."
+          },
+          {
+           "code": "2.H.CE.2",
+           "text": "Describe the events and innovations that had effects on North America."
+          },
+          {
+           "code": "2.H.CO.1",
+           "text": "Describe events in North America that illustrate how people from diverse cultural groups attempted to work through conflicts to solve a problem."
+          },
+          {
+           "code": "2.H.KH.1",
+           "text": "Explain how events in North America impacted Kentucky."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "3",
+   "units": [
+    {
+     "id": "grade-3-global-interactions",
+     "title": "Grade 3 (Global Interactions)",
+     "topics": [
+      {
+       "id": "inquiry",
+       "title": "Inquiry",
+       "subtopics": [
+        {
+         "id": "inquiry-1-of-2",
+         "title": "Inquiry (1 of 2)",
+         "outcomes": [
+          {
+           "code": "3.I.Q.1",
+           "text": "Ask compelling questions about the interactions of diverse groups of people."
+          },
+          {
+           "code": "3.I.Q.2",
+           "text": "Develop supporting questions that help answer compelling questions about the interactions of diverse groups of people."
+          },
+          {
+           "code": "3.I.UE.1",
+           "text": "Describe how multiple perspectives shape the content and style of a primary and secondary source."
+          },
+          {
+           "code": "3.I.UE.2",
+           "text": "Explain the relationship between two or more sources on the same theme or topic."
+          },
+          {
+           "code": "3.I.UE.3",
+           "text": "Construct responses to compelling and supporting questions about the interactions of diverse groups of people using evidence and reasoning."
+          }
+         ]
+        },
+        {
+         "id": "inquiry-2-of-2",
+         "title": "Inquiry (2 of 2)",
+         "outcomes": [
+          {
+           "code": "3.I.CC.1",
+           "text": "Construct an explanation, using relevant information, to address a local, regional or global problem."
+          },
+          {
+           "code": "3.I.CC.2",
+           "text": "Construct an argument with reasons and supporting evidence to address a local, regional or global problem."
+          },
+          {
+           "code": "3.I.CC.3",
+           "text": "Identify strategies to address local, regional or global problems."
+          },
+          {
+           "code": "3.I.CC.4",
+           "text": "Use listening, consensus-building and voting procedures to determine the best strategies to take to address local, regional and global problems."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "civics",
+       "title": "Civics",
+       "subtopics": [
+        {
+         "id": "civics",
+         "title": "Civics",
+         "outcomes": [
+          {
+           "code": "3.C.CP.1",
+           "text": "Explain the basic purposes and functions of differing governing bodies in the world."
+          },
+          {
+           "code": "3.C.CP.2",
+           "text": "Compare how diverse societies govern themselves."
+          },
+          {
+           "code": "3.C.RR.1",
+           "text": "Examine how the government maintains order, keeps people safe, and makes and enforces rules and laws in diverse world communities."
+          },
+          {
+           "code": "3.C.CV.1",
+           "text": "Compare civic virtues and democratic principles within a variety of diverse world communities."
+          },
+          {
+           "code": "3.C.PR.1",
+           "text": "Explain how processes, rules and laws influence how individuals are governed and how diverse world communities address problems."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "economics",
+       "title": "Economics",
+       "subtopics": [
+        {
+         "id": "economics-1-of-2",
+         "title": "Economics (1 of 2)",
+         "outcomes": [
+          {
+           "code": "3.E.KE.1",
+           "text": "Explain how trade between people and groups can benefit Kentucky."
+          },
+          {
+           "code": "3.E.MI.1",
+           "text": "Explain how producers and consumers interact to determine the prices of goods and services in markets."
+          },
+          {
+           "code": "3.E.MI.2",
+           "text": "Describe the relationship between supply and demand."
+          },
+          {
+           "code": "3.E.MA.1",
+           "text": "Differentiate between private property and public property."
+          }
+         ]
+        },
+        {
+         "id": "economics-2-of-2",
+         "title": "Economics (2 of 2)",
+         "outcomes": [
+          {
+           "code": "3.E.MA.2",
+           "text": "Investigate how the cost of things changes over time."
+          },
+          {
+           "code": "3.E.ST.1",
+           "text": "Describe examples of economic interdependence."
+          },
+          {
+           "code": "3.E.IC.1",
+           "text": "Explain how people use incentives and opportunity costs to inform economic decisions."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "geography",
+       "title": "Geography",
+       "subtopics": [
+        {
+         "id": "geography",
+         "title": "Geography",
+         "outcomes": [
+          {
+           "code": "3.G.MM.1",
+           "text": "Analyze how human settlement and movement impact diverse groups of people."
+          },
+          {
+           "code": "3.G.HI.1",
+           "text": "Explain how the cultural aspects of a region spread beyond its borders."
+          },
+          {
+           "code": "3.G.HE.1",
+           "text": "Explain how the culture of places and regions influence how people modify and adapt to their environments."
+          },
+          {
+           "code": "3.G.GR.1",
+           "text": "Explain how physical and cultural characteristics of world regions affect people, using a variety of maps, photos and other geographic representations."
+          },
+          {
+           "code": "3.G.KGE.1",
+           "text": "Describe the impact of cultural diffusion and blending on Kentucky in the past and today."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "history",
+       "title": "History",
+       "subtopics": [
+        {
+         "id": "history",
+         "title": "History",
+         "outcomes": [
+          {
+           "code": "3.H.CH.1",
+           "text": "Create and use chronological reasoning to learn about significant figures, traditions and events of diverse world communities."
+          },
+          {
+           "code": "3.H.CH.2",
+           "text": "Identify contributions made by inventors in diverse world communities."
+          },
+          {
+           "code": "3.H.CE.1",
+           "text": "Compare diverse world communities in terms of members, customs and traditions to the local community."
+          },
+          {
+           "code": "3.H.CO.1",
+           "text": "Evaluate the effects of people, goods and ideas that diffused from one world community into other world communities and the effects of the people, goods and ideas on these communities."
+          },
+          {
+           "code": "3.H.KH.1",
+           "text": "Explain how world events impact Kentucky, both in the past and today."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "4",
+   "units": [
+    {
+     "id": "grade-4-migration-and-settlement",
+     "title": "Grade 4 (Migration and Settlement)",
+     "topics": [
+      {
+       "id": "inquiry",
+       "title": "Inquiry",
+       "subtopics": [
+        {
+         "id": "inquiry-1-of-2",
+         "title": "Inquiry (1 of 2)",
+         "outcomes": [
+          {
+           "code": "4.I.Q.1",
+           "text": "Ask compelling questions about migration and settlement."
+          },
+          {
+           "code": "4.I.Q.2",
+           "text": "Develop supporting questions to answer compelling questions about migration and settlement."
+          },
+          {
+           "code": "4.I.UE.1",
+           "text": "Integrate evidence from two or more sources to answer compelling and supporting questions."
+          },
+          {
+           "code": "4.I.UE.2",
+           "text": "Determine the value and limitations of primary and secondary sources."
+          },
+          {
+           "code": "4.I.UE.3",
+           "text": "Develop claims with evidence to answer compelling and supporting questions."
+          }
+         ]
+        },
+        {
+         "id": "inquiry-2-of-2",
+         "title": "Inquiry (2 of 2)",
+         "outcomes": [
+          {
+           "code": "4.I.CC.1",
+           "text": "Construct an explanation, using reasoning and relevant information, to examine the causes and effects of an issue around migration and settlement."
+          },
+          {
+           "code": "4.I.CC.2",
+           "text": "Construct an argument with reasons and supporting evidence on the challenges and opportunities people face when transitioning to a new community."
+          },
+          {
+           "code": "4.I.CC.3",
+           "text": "Describe different strategies that can be taken to address issues of migration and settlement."
+          },
+          {
+           "code": "4.I.CC.4",
+           "text": "Use listening and consensus-building to determine ways to support people in transitioning to a new community."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "civics",
+       "title": "Civics",
+       "subtopics": [
+        {
+         "id": "civics",
+         "title": "Civics",
+         "outcomes": [
+          {
+           "code": "4.C.CP.1",
+           "text": "Describe diverse forms of self-government used by various groups in Colonial America."
+          },
+          {
+           "code": "4.C.CP.2",
+           "text": "Compare the political form of monarchy with the self-governing system developed in Colonial America."
+          },
+          {
+           "code": "4.C.RR.1",
+           "text": "Describe the importance of civic participation, and locate examples in past and current events."
+          },
+          {
+           "code": "4.C.CV.1",
+           "text": "Assess the ability of various forms of government to foster civic virtues and uphold democratic principles."
+          },
+          {
+           "code": "4.C.PR.1",
+           "text": "Describe the processes people use to change rules and laws."
+          },
+          {
+           "code": "4.C.KGO.1",
+           "text": "Explain how the development of rules improves communities and attempts to meet the needs of citizens."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "economics",
+       "title": "Economics",
+       "subtopics": [
+        {
+         "id": "economics",
+         "title": "Economics",
+         "outcomes": [
+          {
+           "code": "4.E.MI.1",
+           "text": "Explain the role of producers, consumers, products and labor in economic markets."
+          },
+          {
+           "code": "4.E.MI.2",
+           "text": "Investigate the relationship between supply and demand."
+          },
+          {
+           "code": "4.E.MA.1",
+           "text": "Compare and contrast different ways that the government interacts with the economy."
+          },
+          {
+           "code": "4.E.ST.1",
+           "text": "Explain how trade leads to increasing economic interdependence."
+          },
+          {
+           "code": "4.E.IC.1",
+           "text": "Describe and evaluate the relationship between resource availability, opportunity costs, migration and settlement."
+          },
+          {
+           "code": "4.E.KE.1",
+           "text": "Predict how producers in colonial Kentucky used the factors of production to make goods, deliver services and earn profits."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "geography",
+       "title": "Geography",
+       "subtopics": [
+        {
+         "id": "geography",
+         "title": "Geography",
+         "outcomes": [
+          {
+           "code": "4.G.MM.1",
+           "text": "Compare the distinctive cultural characteristics of groups that immigrated or were brought forcibly to the United States from other nations from European Exploration to the Thirteen Colonies."
+          },
+          {
+           "code": "4.G.HI.1",
+           "text": "Explain how cultural, economic and environmental characteristics affect the interactions of people, goods and ideas from European Exploration to the Thirteen Colonies."
+          },
+          {
+           "code": "4.G.HE.1",
+           "text": "Analyze how geographic features created challenges and opportunities for the development of Colonial America."
+          },
+          {
+           "code": "4.G.GR.1",
+           "text": "Analyze how location and regional landforms affect human settlement, movement and use of various national resources, using maps, photos and other geographic representations."
+          },
+          {
+           "code": "4.G.KGE.1",
+           "text": "Compare how the movement of people, goods and ideas in Colonial America and modern Kentucky were affected by technology."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "history",
+       "title": "History",
+       "subtopics": [
+        {
+         "id": "history",
+         "title": "History",
+         "outcomes": [
+          {
+           "code": "4.H.CH.1",
+           "text": "Describe how migration and settlement impacted diverse groups of people as they encountered one another from European Exploration to the Thirteen Colonies."
+          },
+          {
+           "code": "4.H.CH.2",
+           "text": "Describe the impact innovation and human ingenuity had on the development of the United States from European Exploration to the Thirteen Colonies."
+          },
+          {
+           "code": "4.H.CE.1",
+           "text": "Utilize chronological sequences of events to explain causes and effects of historical developments from European Exploration to the Thirteen Colonies."
+          },
+          {
+           "code": "4.H.CO.1",
+           "text": "Explain examples of conflict and collaboration among various groups of people from European Exploration to the Thirteen Colonies as they encountered one another."
+          },
+          {
+           "code": "4.H.KH.1",
+           "text": "Identify and describe the significance of diverse groups of people in Kentucky from European Exploration to the Thirteen Colonies."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "5",
+   "units": [
+    {
+     "id": "grade-5-colonization-to-constitution",
+     "title": "Grade 5 (Colonization to Constitution)",
+     "topics": [
+      {
+       "id": "inquiry",
+       "title": "Inquiry",
+       "subtopics": [
+        {
+         "id": "inquiry-1-of-2",
+         "title": "Inquiry (1 of 2)",
+         "outcomes": [
+          {
+           "code": "5.I.Q.1",
+           "text": "Ask compelling questions about the founding of the United States."
+          },
+          {
+           "code": "5.I.Q.2",
+           "text": "Generate supporting questions to answer compelling questions about the founding of the United States."
+          },
+          {
+           "code": "5.I.Q.3",
+           "text": "Identify the types of supporting questions each of the social studies disciplines uses to answer compelling and supporting questions."
+          },
+          {
+           "code": "5.I.UE.1",
+           "text": "Use evidence to develop claims in response to compelling and supporting questions."
+          },
+          {
+           "code": "5.I.UE.2",
+           "text": "Analyze primary and secondary sources on the same event or topic, noting key similarities and differences in the perspective they represent."
+          }
+         ]
+        },
+        {
+         "id": "inquiry-2-of-2",
+         "title": "Inquiry (2 of 2)",
+         "outcomes": [
+          {
+           "code": "5.I.UE.3",
+           "text": "Integrate evidence that draws information from multiple sources to answer compelling and supporting questions."
+          },
+          {
+           "code": "5.I.CC.1",
+           "text": "Construct explanatory products, using reasoning, correct sequence, examples and details with relevant information and data, to convey the diverse perspectives that impacted the founding of the United States."
+          },
+          {
+           "code": "5.I.CC.2",
+           "text": "Construct arguments using claims and evidence from multiple sources on how a founding principle(s) is applicable today."
+          },
+          {
+           "code": "5.I.CC.3",
+           "text": "Explain different approaches people can take to address local, regional and global problems, using examples from U.S. history."
+          },
+          {
+           "code": "5.I.CC.4",
+           "text": "Use a range of deliberative and democratic procedures to identify strategies on how to address a current issue."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "civics",
+       "title": "Civics",
+       "subtopics": [
+        {
+         "id": "civics-1-of-2",
+         "title": "Civics (1 of 2)",
+         "outcomes": [
+          {
+           "code": "5.C.CP.1",
+           "text": "Analyze the development and establishment of the U.S. federal government."
+          },
+          {
+           "code": "5.C.CP.2",
+           "text": "Analyze the structure of the U.S. government, including separation of power and its system of checks and balances."
+          },
+          {
+           "code": "5.C.CP.3",
+           "text": "Describe how the Constitution of the United States upholds popular sovereignty, ensures rule of law and establishes a federal system."
+          },
+          {
+           "code": "5.C.RR.1",
+           "text": "Analyze responsibilities of U.S. citizens by explaining and demonstrating ways to show good citizenship."
+          }
+         ]
+        },
+        {
+         "id": "civics-2-of-2",
+         "title": "Civics (2 of 2)",
+         "outcomes": [
+          {
+           "code": "5.C.RR.2",
+           "text": "Analyze the personal rights conferred by citizenship, and find examples of citizenship, using a variety of sources."
+          },
+          {
+           "code": "5.C.CV.1",
+           "text": "Describe the democratic principles of equality before the law, inalienable rights, consent of the governed and right to alter or abolish the government."
+          },
+          {
+           "code": "5.C.PR.1",
+           "text": "Evaluate whether various rules and laws promote the general welfare, using historical and contemporary examples."
+          },
+          {
+           "code": "5.C.KGO.1",
+           "text": "Explain the roles and responsibilities of a Kentucky citizen."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "economics",
+       "title": "Economics",
+       "subtopics": [
+        {
+         "id": "economics",
+         "title": "Economics",
+         "outcomes": [
+          {
+           "code": "5.E.MI.1",
+           "text": "Explain the relationship between supply and demand."
+          },
+          {
+           "code": "5.E.MA.1",
+           "text": "Describe why the government collects taxes and what goods and services it provides society."
+          },
+          {
+           "code": "5.E.MA.2",
+           "text": "Explain how the United States developed into a market economy."
+          },
+          {
+           "code": "5.E.ST.1",
+           "text": "Explain how specialization, comparative advantage and competition influence the production and exchange of goods and services in an interdependent economy."
+          },
+          {
+           "code": "5.E.IC.1",
+           "text": "Analyze how incentives and opportunity costs impact decision making, using examples from history."
+          },
+          {
+           "code": "5.E.KE.1",
+           "text": "Analyze how incentives and opportunity costs impact decision making, using examples from Kentucky history."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "geography",
+       "title": "Geography",
+       "subtopics": [
+        {
+         "id": "geography",
+         "title": "Geography",
+         "outcomes": [
+          {
+           "code": "5.G.MM.1",
+           "text": "Analyze how cultural, economic and environmental factors encouraged and restricted the movement of people, ideas and goods to and within the United States."
+          },
+          {
+           "code": "5.G.HI.1",
+           "text": "Describe the traditions diverse cultural groups brought with them when they moved to and within the United States."
+          },
+          {
+           "code": "5.G.HI.2",
+           "text": "Analyze how and why cultural characteristics diffuse and blend with migration and settlement."
+          },
+          {
+           "code": "5.G.HE.1",
+           "text": "Explain how cultural and environmental changes impact population distribution and influence how people modify and adapt to their environments."
+          },
+          {
+           "code": "5.G.GR.1",
+           "text": "Use a variety of maps, satellite images and other models to explain the relationships between the location of places and regions and their human and environmental characteristics."
+          },
+          {
+           "code": "5.G.KGE.1",
+           "text": "Compare the lives of Kentucky settlers to those living in other areas during the early years of the United States."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "history",
+       "title": "History",
+       "subtopics": [
+        {
+         "id": "history-1-of-2",
+         "title": "History (1 of 2)",
+         "outcomes": [
+          {
+           "code": "5.H.CH.1",
+           "text": "Describe the impact of fundamental documents on the development of the United States."
+          },
+          {
+           "code": "5.H.CH.2",
+           "text": "Analyze the impact innovation and human ingenuity had on the development of the United States from Colonization to Constitution."
+          },
+          {
+           "code": "5.H.CE.1",
+           "text": "Analyze the causes of the American Revolution and the effects individuals and groups had on the conflict."
+          },
+          {
+           "code": "5.H.CE.2",
+           "text": "Analyze the role religion played in early colonial society."
+          }
+         ]
+        },
+        {
+         "id": "history-2-of-2",
+         "title": "History (2 of 2)",
+         "outcomes": [
+          {
+           "code": "5.H.CE.3",
+           "text": "Describe the social and economic impact of the slave trade on diverse groups."
+          },
+          {
+           "code": "5.H.CO.1",
+           "text": "Analyze the role conflict and collaboration played in the founding of the United States."
+          },
+          {
+           "code": "5.H.KH.1",
+           "text": "Describe the role of Kentucky settlers in the American Revolution."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "6",
+   "units": [
+    {
+     "id": "grade-6-development-of-civilizations",
+     "title": "Grade 6 (Development of Civilizations)",
+     "topics": [
+      {
+       "id": "inquiry",
+       "title": "Inquiry",
+       "subtopics": [
+        {
+         "id": "inquiry-1-of-3",
+         "title": "Inquiry (1 of 3)",
+         "outcomes": [
+          {
+           "code": "6.I.Q.1",
+           "text": "Develop compelling questions related to the development of civilizations between 3500 BCE-600 CE."
+          },
+          {
+           "code": "6.I.Q.2",
+           "text": "Generate supporting questions related to the development of civilizations between 3500 BCE-600 CE."
+          },
+          {
+           "code": "6.I.Q.3",
+           "text": "Identify the types of supporting questions each of the social studies disciplines uses to answer compelling and supporting questions."
+          },
+          {
+           "code": "6.I.UE.1",
+           "text": "Develop claims, citing relevant evidence, in response to compelling and supporting questions."
+          }
+         ]
+        },
+        {
+         "id": "inquiry-2-of-3",
+         "title": "Inquiry (2 of 3)",
+         "outcomes": [
+          {
+           "code": "6.I.UE.2",
+           "text": "Compare evidence from primary and secondary sources to assist in answering compelling and supporting questions."
+          },
+          {
+           "code": "6.I.UE.3",
+           "text": "Gather primary and secondary sources, and determine their relevance and intended use to answer compelling and supporting questions."
+          },
+          {
+           "code": "6.I.CC.1",
+           "text": "Construct explanations, using reasoning, correct sequence, examples and details with relevant information and data, while acknowledging the strengths and weaknesses of the explanations concerning the development of civilizations."
+          },
+          {
+           "code": "6.I.CC.2",
+           "text": "Construct arguments, using claims and evidence from multiple credible sources, while acknowledging the strengths and limitations of the arguments, to address how a specific problem can manifest itself at local, regional and global levels over time."
+          }
+         ]
+        },
+        {
+         "id": "inquiry-3-of-3",
+         "title": "Inquiry (3 of 3)",
+         "outcomes": [
+          {
+           "code": "6.I.CC.3",
+           "text": "Evaluate how individuals and groups addressed local, regional and global problems throughout the development of civilizations."
+          },
+          {
+           "code": "6.I.CC.4",
+           "text": "Engage in a range of deliberative and democratic procedures to discuss current local, regional and global issues."
+          },
+          {
+           "code": "6.I.CC.5",
+           "text": "Describe a specific problem from the development of civilizations using each of the social studies disciplines."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "civics",
+       "title": "Civics",
+       "subtopics": [
+        {
+         "id": "civics",
+         "title": "Civics",
+         "outcomes": [
+          {
+           "code": "6.C.CP.1",
+           "text": "Explain the origins, functions and structures of governments in River Valley Civilizations and Classical Empires between 3500 BCE-600 CE."
+          },
+          {
+           "code": "6.C.CP.2",
+           "text": "Explain connections between government and religion in River Valley Civilizations and Classical Empires between 3500 BCE-600 CE."
+          },
+          {
+           "code": "6.C.CP.3",
+           "text": "Describe the political institutions of monarchy, democracy, republic, empire and theocracy in River Valley Civilizations and Classical Empires between 3500 BCE-600 CE."
+          },
+          {
+           "code": "6.C.RR.1",
+           "text": "Evaluate the rights, roles, responsibilities and limitations of the concept of citizen in Classical Greece and Rome."
+          },
+          {
+           "code": "6.C.CV.1",
+           "text": "Analyze how historical, economic, geographic and cultural characteristics influence social and government structures in River Valley Civilizations and Classical Empires between 3500 BCE-600 CE."
+          },
+          {
+           "code": "6.C.PR.1",
+           "text": "Analyze the purposes and effects of laws in River Valley Civilizations and Classical Empires between 3500 BCE-600 CE."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "economics",
+       "title": "Economics",
+       "subtopics": [
+        {
+         "id": "economics-1-of-2",
+         "title": "Economics (1 of 2)",
+         "outcomes": [
+          {
+           "code": "6.E.MI.1",
+           "text": "Trace the chain of supply for a needed product."
+          },
+          {
+           "code": "6.E.MI.2",
+           "text": "Predict and analyze unintended costs and benefits of economic decisions."
+          },
+          {
+           "code": "6.E.MI.3",
+           "text": "Explain how markets exist whenever there is an exchange of goods and services."
+          },
+          {
+           "code": "6.E.MI.4",
+           "text": "Compare the markets of River Valley Civilizations and Classical Empires between 3500 BCE-600 CE."
+          },
+          {
+           "code": "6.E.MA.1",
+           "text": "Describe how civilizations used bartering to establish mediums of exchange to meet their wants."
+          }
+         ]
+        },
+        {
+         "id": "economics-2-of-2",
+         "title": "Economics (2 of 2)",
+         "outcomes": [
+          {
+           "code": "6.E.MA.2",
+           "text": "Explain how market conditions and economic activity affected the growth of River Valley Civilizations and Classical Empires between 3500 BCE-600 CE."
+          },
+          {
+           "code": "6.E.ST.1",
+           "text": "Compare specialization in two or more civilizations or empires."
+          },
+          {
+           "code": "6.E.ST.2",
+           "text": "Examine how new knowledge, technology and specialization increase productivity."
+          },
+          {
+           "code": "6.E.IC.1",
+           "text": "Analyze the economic choices of individuals, societies and governments."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "geography",
+       "title": "Geography",
+       "subtopics": [
+        {
+         "id": "geography",
+         "title": "Geography",
+         "outcomes": [
+          {
+           "code": "6.G.MM.1",
+           "text": "Compare how human and environmental characteristics of a region influenced the movement of people, goods and ideas during the rise of River Valley Civilizations and Classical Empires between 3500 BCE-600 CE."
+          },
+          {
+           "code": "6.G.HI.1",
+           "text": "Explain how population changes in River Valley Civilizations and Classical Empires affected land use between 3500 BCE-600 CE."
+          },
+          {
+           "code": "6.G.HI.2",
+           "text": "Analyze the impact of interactions between various River Valley Civilizations and between various Classical Empires between 3500 BCE-600 CE."
+          },
+          {
+           "code": "6.G.HE.1",
+           "text": "Analyze how physical environments shaped the development of River Valley Civilizations and Classical Empires between 3500 BCE-600 CE."
+          },
+          {
+           "code": "6.G.HE.2",
+           "text": "Analyze how River Valley Civilizations and Classical Empires impacted the environment, both positively and negatively, between 3500 BCE-600 CE."
+          },
+          {
+           "code": "6.G.GR.1",
+           "text": "Use maps and other geographic representations, geospatial technologies, and spatial thinking to determine similarities and differences among River Valley Civilizations and Classical Empires between 3500 BCE-600 CE."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "history",
+       "title": "History",
+       "subtopics": [
+        {
+         "id": "history",
+         "title": "History",
+         "outcomes": [
+          {
+           "code": "6.H.CH.1",
+           "text": "Describe how River Valley Civilizations transitioned to empires between 3500 BCE-600 CE."
+          },
+          {
+           "code": "6.H.CH.2",
+           "text": "Compare the origins and development of early world religions from River Valley Civilizations to Classical Empires 3500 BCE-600 CE."
+          },
+          {
+           "code": "6.H.CE.1",
+           "text": "Analyze the causes and effects of the rise of River Valley Civilizations."
+          },
+          {
+           "code": "6.H.CO.1",
+           "text": "Explain the role conflict played in the development and expansion of Classical Empires between 3500 BCE-600 CE."
+          },
+          {
+           "code": "6.H.CO.2",
+           "text": "Analyze the impact trade networks had on interactions among various human societies between 3500 BCE-600 CE."
+          },
+          {
+           "code": "6.H.KH.1",
+           "text": "Determine the influences of Classical Greece and Rome on the structures of Kentucky's state government."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "7",
+   "units": [
+    {
+     "id": "grade-7-growth-and-expansion-of-civilization",
+     "title": "Grade 7 (Growth and Expansion of Civilization)",
+     "topics": [
+      {
+       "id": "inquiry",
+       "title": "Inquiry",
+       "subtopics": [
+        {
+         "id": "inquiry-1-of-3",
+         "title": "Inquiry (1 of 3)",
+         "outcomes": [
+          {
+           "code": "7.I.Q.1",
+           "text": "Develop compelling questions, focusing on the growth and expansion of civilizations from 600-1600."
+          },
+          {
+           "code": "7.I.Q.2",
+           "text": "Generate supporting questions, using the disciplines of social studies, to help answer compelling questions related to the growth and expansion of civilizations between 600-1600."
+          },
+          {
+           "code": "7.I.Q.3",
+           "text": "Compare the types of supporting questions each of the social studies disciplines uses to answer compelling and supporting questions."
+          },
+          {
+           "code": "7.I.UE.1",
+           "text": "Use multiple sources to develop claims in response to compelling and supporting questions."
+          }
+         ]
+        },
+        {
+         "id": "inquiry-2-of-3",
+         "title": "Inquiry (2 of 3)",
+         "outcomes": [
+          {
+           "code": "7.I.UE.2",
+           "text": "Analyze evidence from multiple perspectives and sources to support claims and refute opposing claims, noting evidentiary limitations to answer compelling and supporting questions."
+          },
+          {
+           "code": "7.I.UE.3",
+           "text": "Gather relevant information from multiple sources while using the origin, authority, structure and context of the sources to guide the selection to answer compelling and supporting questions."
+          },
+          {
+           "code": "7.I.CC.1",
+           "text": "Construct explanations, using reasoning, correct sequence, examples and details with relevant information and data, while acknowledging the strengths and weaknesses of the explanations concerning the growth and expansion of civilizations."
+          },
+          {
+           "code": "7.I.CC.2",
+           "text": "Construct arguments by drawing on multiple disciplinary lenses to analyze how a specific problem can manifest itself at local, regional and global levels over time, identifying its characteristics and causes and the challenges and opportunities faced by those trying to address the problem."
+          }
+         ]
+        },
+        {
+         "id": "inquiry-3-of-3",
+         "title": "Inquiry (3 of 3)",
+         "outcomes": [
+          {
+           "code": "7.I.CC.3",
+           "text": "Evaluate how individuals and groups addressed local, regional and global problems throughout the growth and expansion of civilizations."
+          },
+          {
+           "code": "7.I.CC.4",
+           "text": "Use a range of deliberative and democratic procedures to discuss current local, regional and global issues."
+          },
+          {
+           "code": "7.I.CC.5",
+           "text": "Analyze a specific problem from the growth and expansion of civilizations using each of the social studies disciplines."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "civics",
+       "title": "Civics",
+       "subtopics": [
+        {
+         "id": "civics",
+         "title": "Civics",
+         "outcomes": [
+          {
+           "code": "7.C.CP.1",
+           "text": "Compare political institutions and their impacts on people in empires between 600-1600."
+          },
+          {
+           "code": "7.C.RR.1",
+           "text": "Compare rights, roles, responsibilities and limitations of subjects in empires between 600-1600 with those of citizens in modern countries."
+          },
+          {
+           "code": "7.C.CV.1",
+           "text": "Describe the methods used by non-democratic governments to create order, establish justice and meet the needs of their subjects between 600-1600."
+          },
+          {
+           "code": "7.C.PR.1",
+           "text": "Assess the effectiveness of law codes to create order, establish justice and meet the needs of their subjects between 600-1600."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "economics",
+       "title": "Economics",
+       "subtopics": [
+        {
+         "id": "economics-1-of-3",
+         "title": "Economics (1 of 3)",
+         "outcomes": [
+          {
+           "code": "7.E.MI.1",
+           "text": "Analyze the role of consumers and producers in product markets."
+          },
+          {
+           "code": "7.E.MI.2",
+           "text": "Analyze the relationship between supply and demand."
+          },
+          {
+           "code": "7.E.MI.3",
+           "text": "Categorize the four factors of production and how they are combined to make goods and deliver services."
+          },
+          {
+           "code": "7.E.MA.1",
+           "text": "Compare the economic development of traditional and market economies."
+          }
+         ]
+        },
+        {
+         "id": "economics-2-of-3",
+         "title": "Economics (2 of 3)",
+         "outcomes": [
+          {
+           "code": "7.E.MA.2",
+           "text": "Compare how different economic systems choose to allocate the production, distribution and consumption of resources."
+          },
+          {
+           "code": "7.E.ST.1",
+           "text": "Explain the impact of supply and demand on the emergence of global markets."
+          },
+          {
+           "code": "7.E.ST.2",
+           "text": "Analyze the impact of specialization upon trade and the cost of goods and services."
+          },
+          {
+           "code": "7.E.ST.3",
+           "text": "Explain how growing interdependence and advances in technology improve standards of living."
+          }
+         ]
+        },
+        {
+         "id": "economics-3-of-3",
+         "title": "Economics (3 of 3)",
+         "outcomes": [
+          {
+           "code": "7.E.ST.4",
+           "text": "Analyze the interregional trading systems of the Americas, Africa, Asia and Europe between 600-1450."
+          },
+          {
+           "code": "7.E.IC.1",
+           "text": "Analyze how economic choices were made based on scarcity."
+          },
+          {
+           "code": "7.E.IC.2",
+           "text": "Analyze the impact of growth and expansion on the allocation of resources and economic incentives."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "geography",
+       "title": "Geography",
+       "subtopics": [
+        {
+         "id": "geography-1-of-2",
+         "title": "Geography (1 of 2)",
+         "outcomes": [
+          {
+           "code": "7.G.MM.1",
+           "text": "Analyze the push and pull factors that influenced movement, voluntary migration and forced migration in the societies and empires of Afro-Eurasia and the Americas between 600-1600."
+          },
+          {
+           "code": "7.G.HI.1",
+           "text": "Distinguish how cooperation and conflict within and among the societies and empires of Afro-Eurasia and the Americas between 600-1600 influenced the division and control of land and resources."
+          },
+          {
+           "code": "7.G.HI.2",
+           "text": "Examine ways in which one culture can both positively and negatively influence another through cultural diffusion, trade relationships, expansion and exploration."
+          },
+          {
+           "code": "7.G.HE.1",
+           "text": "Examine how physical geography influenced the societies and empires of Afro-Eurasia and the Americas between 600-1600."
+          }
+         ]
+        },
+        {
+         "id": "geography-2-of-2",
+         "title": "Geography (2 of 2)",
+         "outcomes": [
+          {
+           "code": "7.G.HE.2",
+           "text": "Explain how societies and empires of Afro-Eurasia and the Americas between 600-1600 impacted the environment in a variety of ways."
+          },
+          {
+           "code": "7.G.GR.1",
+           "text": "Analyze the spatial organization of people, places and environments found in the societies and empires of Afro-Eurasia and the Americas between 600-1600."
+          },
+          {
+           "code": "7.G.GR.2",
+           "text": "Use maps and other geographic representations, geospatial technologies, and spatial thinking to interpret the relationships between humans and their environment."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "history",
+       "title": "History",
+       "subtopics": [
+        {
+         "id": "history",
+         "title": "History",
+         "outcomes": [
+          {
+           "code": "7.H.CH.1",
+           "text": "Indicate changes resulting from increased interactions and connections between Afro-Eurasia and the Americas between 1450-1600."
+          },
+          {
+           "code": "7.H.CE.1",
+           "text": "Analyze the causes and effects of the Renaissance, Scientific Revolution and the Enlightenment."
+          },
+          {
+           "code": "7.H.CE.2",
+           "text": "Evaluate the political, geographic, economic and social impact of the expansion of empires between 600-1600."
+          },
+          {
+           "code": "7.H.CO.1",
+           "text": "Explain how religion influenced state-building, trade and cultural interactions between 600-1600."
+          },
+          {
+           "code": "7.H.CO.2",
+           "text": "Evaluate various motives for expansion among multiple empires between 600-1600."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "8",
+   "units": [
+    {
+     "id": "grade-8-the-united-states-1600-1877",
+     "title": "Grade 8 (The United States: 1600-1877)",
+     "topics": [
+      {
+       "id": "inquiry",
+       "title": "Inquiry",
+       "subtopics": [
+        {
+         "id": "inquiry-1-of-3",
+         "title": "Inquiry (1 of 3)",
+         "outcomes": [
+          {
+           "code": "8.I.Q.I",
+           "text": "Develop compelling questions related to the development of the United States between 1600-1877."
+          },
+          {
+           "code": "8.I.Q.2",
+           "text": "Generate supporting questions, using the disciplines of social studies, to help answer compelling questions in U.S. history between 1600-1877."
+          },
+          {
+           "code": "8.I.Q.3",
+           "text": "Evaluate the types of supporting questions each of the social studies disciplines uses to answer compelling and supporting questions."
+          },
+          {
+           "code": "8.I.UE.1",
+           "text": "Use multiple sources to develop claims in response to compelling and supporting questions."
+          }
+         ]
+        },
+        {
+         "id": "inquiry-2-of-3",
+         "title": "Inquiry (2 of 3)",
+         "outcomes": [
+          {
+           "code": "8.I.UE.2",
+           "text": "Create claims and counterclaims, using appropriate evidence, to construct an argument to answer compelling and supporting questions."
+          },
+          {
+           "code": "8.I.UE.3",
+           "text": "Gather relevant information from multiple sources while using the origin, authority, structure, context and corroborative value of the sources to guide the selection to answer compelling and supporting questions."
+          },
+          {
+           "code": "8.I.CC.1",
+           "text": "Construct explanations, using reasoning, correct sequence, examples and details with relevant information and data, while acknowledging the strengths and weaknesses of the explanations related to the development of the United States."
+          },
+          {
+           "code": "8.I.CC.2",
+           "text": "Construct arguments by drawing on multiple disciplinary lenses to analyze how multiple perspectives, diversity and conflict and compromise impacted the development of the United States."
+          }
+         ]
+        },
+        {
+         "id": "inquiry-3-of-3",
+         "title": "Inquiry (3 of 3)",
+         "outcomes": [
+          {
+           "code": "8.I.CC.3",
+           "text": "Evaluate how individuals and groups address local, regional and global problems concerning the development of the United States."
+          },
+          {
+           "code": "8.I.CC.4",
+           "text": "Apply a range of deliberative and democratic procedures to make decisions about ways to take action on current local, regional and global issues."
+          },
+          {
+           "code": "8.I.CC.5",
+           "text": "Evaluate a specific problem concerning the development of the United States using each of the social studies disciplines."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "civics",
+       "title": "Civics",
+       "subtopics": [
+        {
+         "id": "civics-1-of-2",
+         "title": "Civics (1 of 2)",
+         "outcomes": [
+          {
+           "code": "8.C.CP.1",
+           "text": "Analyze the origin and purposes of rule of law, popular sovereignty, federalism, separation of powers and checks and balances."
+          },
+          {
+           "code": "8.C.CP.2",
+           "text": "Explain the origins, functions and structure of government, with reference to the Mayflower Compact, the Declaration of Independence, Articles of Confederation, the Federalist No. 1 (Alexander Hamilton), the Federalist Nos. 10 and 51 (James Madison), the Constitution of the United States, the first ten (10) amendments to the Constitution of the United States, also known as the Bill of Rights and other fundamental documents, and their impacts on citizens."
+          },
+          {
+           "code": "8.C.CP.3",
+           "text": "Explain how a system of checks and balances is intended to prevent a concentration of power in one branch."
+          },
+          {
+           "code": "8.C.RR.1",
+           "text": "Analyze the role of citizens in the U.S. political system, with attention to the definition of who is a citizen, expansion of that definition over time and changes in participation over time."
+          },
+          {
+           "code": "8.C.RR.2",
+           "text": "Analyze expansion of and restriction on citizenship and voting rights on diverse groups in the United States from the Colonial Era to Reconstruction from 1600-1877."
+          }
+         ]
+        },
+        {
+         "id": "civics-2-of-2",
+         "title": "Civics (2 of 2)",
+         "outcomes": [
+          {
+           "code": "8.C.RR.3",
+           "text": "Analyze how groups in the United States have challenged Constitutional provisions, laws and court rulings denying them the rights of citizens."
+          },
+          {
+           "code": "8.C.CV.1",
+           "text": "Analyze the impact of the democratic principles of equality before the law, inalienable rights, consent of the governed and the right to alter or abolish the government in the United States from the Colonial Era to Reconstruction from 1600-1877."
+          },
+          {
+           "code": "8.C.PR.1",
+           "text": "Explain the relationship between federalism and local, state and national governments."
+          },
+          {
+           "code": "8.C.PR.2",
+           "text": "Explain how the Constitution of the United States was interpreted and amended through the amendment process, legislative processes, judicial review, executive actions and Supreme Court Cases between 1789-1877."
+          },
+          {
+           "code": "8.C.KGO.1",
+           "text": "Examine the role of Kentucky and Kentuckians within national politics between 1792-1877."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "economics",
+       "title": "Economics",
+       "subtopics": [
+        {
+         "id": "economics-1-of-3",
+         "title": "Economics (1 of 3)",
+         "outcomes": [
+          {
+           "code": "8.E.MI.1",
+           "text": "Describe the impact of supply and demand on equilibrium prices and quantities produced in the United States from the Colonial Era to Reconstruction from 1600-1877."
+          },
+          {
+           "code": "8.E.MI.2",
+           "text": "Assess the ways factors of production are combined in innovative ways resulting in economic growth and increased standards of living."
+          },
+          {
+           "code": "8.E.MA.1",
+           "text": "Analyze differing perspectives regarding the role of government in the economy, including the role of money and banking."
+          },
+          {
+           "code": "8.E.MA.2",
+           "text": "Assess how regions of the United States specialized based on supply and demand due to their geographic locations."
+          }
+         ]
+        },
+        {
+         "id": "economics-2-of-3",
+         "title": "Economics (2 of 3)",
+         "outcomes": [
+          {
+           "code": "8.E.MA.3",
+           "text": "Analyze the purpose of taxation and its impact on government spending."
+          },
+          {
+           "code": "8.E.MA.4",
+           "text": "Analyze how property rights are defined, protected, enforced and limited by government."
+          },
+          {
+           "code": "8.E.ST.1",
+           "text": "Analyze why economic interdependence existed between the regions of the United States between 1783-1877."
+          },
+          {
+           "code": "8.E.IC.1",
+           "text": "Evaluate economic decisions based on scarcity, opportunity costs and incentives."
+          }
+         ]
+        },
+        {
+         "id": "economics-3-of-3",
+         "title": "Economics (3 of 3)",
+         "outcomes": [
+          {
+           "code": "8.E.IC.2",
+           "text": "Assess the impact of growth and expansion on the allocation of resources and economic incentives."
+          },
+          {
+           "code": "8.E.KE.1",
+           "text": "Explain how regional trends and policies impacted Kentucky's economy prior to the Civil War."
+          },
+          {
+           "code": "8.E.KE.2",
+           "text": "Explain how the availability of resources in Kentucky led people to make economic choices from the Colonial Era to Reconstruction from 1600-1877."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "geography",
+       "title": "Geography",
+       "subtopics": [
+        {
+         "id": "geography",
+         "title": "Geography",
+         "outcomes": [
+          {
+           "code": "8.G.MM.1",
+           "text": "Interpret how political, environmental, social and economic factors led to both forced and voluntary migration in the United States from the Colonial Era to Reconstruction from 1600-1877."
+          },
+          {
+           "code": "8.G.HI.1",
+           "text": "Explain how global interconnections impacted culture, land use and trade in the United States during Colonial Era through Reconstruction from 1600-1877."
+          },
+          {
+           "code": "8.G.HE.1",
+           "text": "Analyze how cultural and technological changes influenced how people interacted with their environments in the United States from the Colonial Era to Reconstruction from 1600-1877."
+          },
+          {
+           "code": "8.G.GR.1",
+           "text": "Use maps and other geographic representations, geospatial technologies, and spatial thinking to analyze settlement patterns in the United States from the Colonial Era to Reconstruction from 1600-1877."
+          },
+          {
+           "code": "8.G.KGE.1",
+           "text": "Analyze Kentucky's role in the early nation through Reconstruction based on its physical geography and location."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "history",
+       "title": "History",
+       "subtopics": [
+        {
+         "id": "history-1-of-3",
+         "title": "History (1 of 3)",
+         "outcomes": [
+          {
+           "code": "8.H.CH.1",
+           "text": "Explain the role changing political, social and economic perspectives had on the lives of diverse groups of people in the Colonial Era."
+          },
+          {
+           "code": "8.H.CH.2",
+           "text": "Analyze how social and ideological philosophies impacted various movements in the United States from the Colonial Era to Reconstruction from 1600-1877."
+          },
+          {
+           "code": "8.H.CH.3",
+           "text": "Explain how political, social and economic perspectives in the United States led to the rise in sectionalism between 1840-1860."
+          },
+          {
+           "code": "8.H.CH.4",
+           "text": "Evaluate the impact technological innovations made on agriculture, trade and commerce in the years leading up to the Civil War between 1840-1860."
+          },
+          {
+           "code": "8.H.CH.5",
+           "text": "Explain examples of political, geographic, social and economic changes and consistencies in the different regions of the United States between 1860-1877."
+          }
+         ]
+        },
+        {
+         "id": "history-2-of-3",
+         "title": "History (2 of 3)",
+         "outcomes": [
+          {
+           "code": "8.H.CH.6",
+           "text": "Analyze the impact of fundamental documents and speeches on the development of the United States from 1600-1877 that shall include but are not limited to: The Mayflower Compact; The Declaration of Independence; The Constitution of the United States; The Federalist No. 1 (Alexander Hamilton); The Federalist Nos. 10 and 51 (James Madison); The June 8, 1789 speech on amendments to the Constitution of the United States by James Madison; The first ten (10) amendments to the Constitution of the United States, also known as the Bill of Rights; The 1796 Farewell Address by George Washington; The United States Supreme Court opinion in Marbury v. Madison, 5 U.S. 137 (1803); The Monroe Doctrine by James Monroe; What to the Slave is the Fourth of July? speech by Frederick Douglass; The United States Supreme Court opinion in Dred Scott v. Sanford, 60 U.S. 393 (1857); Final Emancipation Proclamation by Abraham Lincoln; The Gettysburg Address by Abraham Lincoln; and Declaration of Rights of the Women of the United States by Susan B. Anthony, Matilda Joselyn Gage, and Elizabeth Cady Stanton."
+          },
+          {
+           "code": "8.H.CE.1",
+           "text": "Analyze how the political, geographic, social and economic choices of the Colonial Era impacted the Revolutionary Period and Early Republic Period."
+          },
+          {
+           "code": "8.H.CE.2",
+           "text": "Analyze the cause and effect of Westward Expansion, the Civil War and Reconstruction on the diverse populations of the United States."
+          },
+          {
+           "code": "8.H.CO.1",
+           "text": "Explain how colonial resistance to British control led to the Revolutionary War."
+          },
+          {
+           "code": "8.H.CO.2",
+           "text": "Describe the conflicts and compromises that shaped the development of the U.S. government between 1783-1877."
+          }
+         ]
+        },
+        {
+         "id": "history-3-of-3",
+         "title": "History (3 of 3)",
+         "outcomes": [
+          {
+           "code": "8.H.CO.3",
+           "text": "Analyze how economic, social, ideological and political changes led to sectional and national tensions, inspiring reform movements between 1840-1860."
+          },
+          {
+           "code": "8.H.CO.4",
+           "text": "Explain how sectionalism and the institution of slavery within the United States led to conflicts between 1820-1877."
+          },
+          {
+           "code": "8.H.KH.1",
+           "text": "Articulate Kentucky's role in early American history from the earliest colonial settlement to 1877."
+          },
+          {
+           "code": "8.H.KH.2",
+           "text": "Examine patterns of collaboration and conflict between immigrants to Kentucky and those already in residence from 1775 to 1877."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "9-12",
+   "units": [
+    {
+     "id": "high-school",
+     "title": "High School",
+     "topics": [
+      {
+       "id": "inquiry",
+       "title": "Inquiry",
+       "subtopics": [
+        {
+         "id": "inquiry-1-of-7",
+         "title": "Inquiry (1 of 7)",
+         "outcomes": [
+          {
+           "code": "HS.C.I.Q.1",
+           "text": "Generate compelling questions to frame thinking, inquiry and/or understanding of key civics concepts."
+          },
+          {
+           "code": "HS.C.I.Q.2",
+           "text": "Generate supporting questions to develop knowledge, understanding and/or thinking relative to key civics concepts framed by compelling questions."
+          },
+          {
+           "code": "HS.C.I.UE.1",
+           "text": "Evaluate the credibility of multiple sources representing a variety of perspectives relevant to compelling and/or supporting questions in civics."
+          },
+          {
+           "code": "HS.C.I.UE.2",
+           "text": "Gather information and evidence from credible sources representing a variety of perspectives relevant to compelling and/or supporting questions in civics."
+          },
+          {
+           "code": "HS.C.I.UE.3",
+           "text": "Use appropriate evidence to construct and revise claims and counterclaims relevant to compelling and/or supporting questions in civics."
+          }
+         ]
+        },
+        {
+         "id": "inquiry-2-of-7",
+         "title": "Inquiry (2 of 7)",
+         "outcomes": [
+          {
+           "code": "HS.C.I.CC.1",
+           "text": "Engage in civil discussion, reach consensus when appropriate and respect diverse opinions relevant to compelling and/or supporting questions in civics."
+          },
+          {
+           "code": "HS.C.I.CC.2",
+           "text": "Engage in disciplinary thinking and construct arguments, explanations or public communications relevant to compelling and/or supporting questions in civics."
+          },
+          {
+           "code": "HS.C.I.CC.3",
+           "text": "Engage in disciplinary thinking and apply appropriate evidence to propose a solution or design an action plan relevant to compelling and/or supporting questions in civics."
+          },
+          {
+           "code": "HS.G.I.Q.1",
+           "text": "Generate compelling questions to frame thinking, inquiry and/or understanding of key geographic concepts."
+          },
+          {
+           "code": "HS.G.I.Q.2",
+           "text": "Generate supporting questions to develop knowledge, understanding and thinking relative to key geographic concepts framed by compelling questions."
+          }
+         ]
+        },
+        {
+         "id": "inquiry-3-of-7",
+         "title": "Inquiry (3 of 7)",
+         "outcomes": [
+          {
+           "code": "HS.G.I.UE.1",
+           "text": "Evaluate the credibility of multiple sources representing a variety of perspectives relevant to compelling and/or supporting questions in geography."
+          },
+          {
+           "code": "HS.G.I.UE.2",
+           "text": "Gather information and evidence from credible sources representing a variety of perspectives relevant to compelling and/or supporting questions in geography."
+          },
+          {
+           "code": "HS.G.I.UE.3",
+           "text": "Use appropriate evidence to construct and revise claims and counterclaims relevant to compelling and/or supporting questions in geography."
+          },
+          {
+           "code": "HS.G.I.CC.1",
+           "text": "Engage in civil discussion, reach consensus when appropriate and respect diverse opinions relevant to compelling and/or supporting questions in geography."
+          },
+          {
+           "code": "HS.G.I.CC.2",
+           "text": "Engage in disciplinary thinking and construct arguments, explanations or public communications relevant to compelling and/or supporting questions in geography."
+          }
+         ]
+        },
+        {
+         "id": "inquiry-4-of-7",
+         "title": "Inquiry (4 of 7)",
+         "outcomes": [
+          {
+           "code": "HS.G.I.CC.3",
+           "text": "Engage in disciplinary thinking and apply appropriate evidence to propose a solution or design an action plan relevant to compelling and/or supporting questions in geography."
+          },
+          {
+           "code": "HS.UH.I.Q.1",
+           "text": "Generate compelling questions to frame thinking, inquiry and/or understanding of key concepts in U.S. history."
+          },
+          {
+           "code": "HS.UH.I.Q.2",
+           "text": "Generate supporting questions to develop knowledge, understanding and/or thinking relative to key concepts in U.S. history framed by compelling questions."
+          },
+          {
+           "code": "HS.UH.I.UE.1",
+           "text": "Evaluate the credibility of multiple sources representing a variety of perspectives relevant to compelling and/or supporting questions in U.S. history."
+          },
+          {
+           "code": "HS.UH.I.UE.2",
+           "text": "Gather information and evidence from credible sources representing a variety of perspectives relevant to compelling and/or supporting questions in U.S. history."
+          }
+         ]
+        },
+        {
+         "id": "inquiry-5-of-7",
+         "title": "Inquiry (5 of 7)",
+         "outcomes": [
+          {
+           "code": "HS.UH.I.UE.3",
+           "text": "Use appropriate evidence to construct and revise claims and counterclaims relevant to compelling and/or supporting questions in U.S. history."
+          },
+          {
+           "code": "HS.UH.I.CC.1",
+           "text": "Engage in meaningful discussions/democratic discourse and respect diverse opinions relevant to compelling and/or supporting questions in U.S. history."
+          },
+          {
+           "code": "HS.UH.I.CC.2",
+           "text": "Engage in disciplinary thinking and construct arguments, explanations or public communications relevant to compelling and/or supporting questions in U.S. history."
+          },
+          {
+           "code": "HS.UH.I.CC.3",
+           "text": "Engage in disciplinary thinking and apply appropriate evidence to propose a solution or design an action plan relevant to compelling and/or supporting questions in U.S. history."
+          },
+          {
+           "code": "HS.WH.I.Q.1",
+           "text": "Generate compelling questions to frame thinking, inquiry and/or understanding of key concepts in world history."
+          }
+         ]
+        },
+        {
+         "id": "inquiry-6-of-7",
+         "title": "Inquiry (6 of 7)",
+         "outcomes": [
+          {
+           "code": "HS.WH.I.Q.2",
+           "text": "Generate supporting questions to develop knowledge, understanding and/or thinking relative to key concepts in world history framed by compelling questions."
+          },
+          {
+           "code": "HS.WH.I.UE.1",
+           "text": "Evaluate the credibility of multiple sources representing a variety of perspectives relevant to compelling/supporting questions in world history."
+          },
+          {
+           "code": "HS.WH.I.UE.2",
+           "text": "Gather information and evidence from credible sources representing a variety of perspectives relevant to compelling/supporting questions in world history."
+          },
+          {
+           "code": "HS.WH.I.UE.3",
+           "text": "Use appropriate evidence to construct and revise claims and counterclaims relevant to compelling/supporting questions in world history."
+          },
+          {
+           "code": "HS.WH.I.CC.1",
+           "text": "Engage in meaningful discussions/democratic discourse and respect diverse opinions relevant to compelling/supporting questions in world history."
+          }
+         ]
+        },
+        {
+         "id": "inquiry-7-of-7",
+         "title": "Inquiry (7 of 7)",
+         "outcomes": [
+          {
+           "code": "HS.WH.I.CC.2",
+           "text": "Engage in disciplinary thinking and construct arguments, explanations or public communications relevant to compelling/supporting questions in world history."
+          },
+          {
+           "code": "HS.WH.I.CC.3",
+           "text": "Engage in disciplinary thinking and apply appropriate evidence to propose a solution or design an action plan relevant to compelling/supporting questions in world history."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "civics",
+       "title": "Civics",
+       "subtopics": [
+        {
+         "id": "civics-1-of-4",
+         "title": "Civics (1 of 4)",
+         "outcomes": [
+          {
+           "code": "HS.C.CP.1",
+           "text": "Explain how the Constitution of the United States embodies the principles of rule of law, popular sovereignty, republicanism, federalism, separation of powers and checks and balances to promote general welfare."
+          },
+          {
+           "code": "HS.C.CP.2",
+           "text": "Analyze legislative, executive and judicial branch decisions in terms of constitutionality and impact on citizens and states."
+          },
+          {
+           "code": "HS.C.CP.3",
+           "text": "Compare various forms of government and how each maintains order, upholds human rights and interacts within the international community."
+          },
+          {
+           "code": "HS.C.CP.4",
+           "text": "Evaluate how the U.S. judicial system is designed to uphold equality before the law, due process and inalienable rights."
+          }
+         ]
+        },
+        {
+         "id": "civics-2-of-4",
+         "title": "Civics (2 of 4)",
+         "outcomes": [
+          {
+           "code": "HS.C.RR.1",
+           "text": "Evaluate the civic responsibilities of individuals within a society."
+          },
+          {
+           "code": "HS.C.RR.2",
+           "text": "Explain how active citizens can affect the lawmaking process locally, nationally and internationally."
+          },
+          {
+           "code": "HS.C.CV.1",
+           "text": "Explain how classical republicanism, natural rights philosophy and English common law influenced the thinking and actions of the American Founders."
+          },
+          {
+           "code": "HS.C.CV.2",
+           "text": "Assess how the expansion of civic virtues, democratic principles, constitutional rights and human rights influence the thoughts and actions of individuals and groups."
+          }
+         ]
+        },
+        {
+         "id": "civics-3-of-4",
+         "title": "Civics (3 of 4)",
+         "outcomes": [
+          {
+           "code": "HS.C.CV.3",
+           "text": "Analyze the impact of the efforts of individuals and reform movements on the expansion of civil rights and liberties locally, nationally and internationally."
+          },
+          {
+           "code": "HS.C.PR.1",
+           "text": "Analyze the role of the three branches of government in the lawmaking process."
+          },
+          {
+           "code": "HS.C.PR.2",
+           "text": "Analyze the role of elections, bureaucracy, political parties, interest groups and media in shaping public policy."
+          },
+          {
+           "code": "HS.C.PR.3",
+           "text": "Evaluate intended and unintended consequences of public policies locally, nationally and internationally."
+          }
+         ]
+        },
+        {
+         "id": "civics-4-of-4",
+         "title": "Civics (4 of 4)",
+         "outcomes": [
+          {
+           "code": "HS.C.PR.4",
+           "text": "Compare the domestic and foreign policies of the United States and other countries."
+          },
+          {
+           "code": "HS.C.KGO.1",
+           "text": "Explain how the Kentucky Constitution embodies the principles of rule of law, popular sovereignty, separation of powers and checks and balances."
+          },
+          {
+           "code": "HS.C.KGO.2",
+           "text": "Compare Kentucky's government to other states and to the federal government."
+          },
+          {
+           "code": "HS.C.KGO.3",
+           "text": "Describe how active citizens can affect change in their communities and Kentucky."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "economics",
+       "title": "Economics",
+       "subtopics": [
+        {
+         "id": "economics-1-of-5",
+         "title": "Economics (1 of 5)",
+         "outcomes": [
+          {
+           "code": "HS.E.MI.1",
+           "text": "Compare perfect competition, monopolistic competition, oligopoly and monopoly and how the extent of competition within various markets affects price, quantity and variety in production."
+          },
+          {
+           "code": "HS.E.MI.2",
+           "text": "Analyze and graph the impact of supply and demand shifts on equilibrium price and quantities produced."
+          },
+          {
+           "code": "HS.E.MI.3",
+           "text": "Analyze the roles of product and factor markets."
+          },
+          {
+           "code": "HS.E.MI.4",
+           "text": "Compare the roles of consumers and producers in the product, labor and financial markets and the economy as a whole."
+          },
+          {
+           "code": "HS.E.MA.1",
+           "text": "Evaluate how values and beliefs like economic freedom, equity, full employment, price stability, security, efficiency and growth help to form different types of economic systems."
+          }
+         ]
+        },
+        {
+         "id": "economics-2-of-5",
+         "title": "Economics (2 of 5)",
+         "outcomes": [
+          {
+           "code": "HS.E.MA.2",
+           "text": "Analyze ways in which competition and government regulation influence what is produced and allocated in an economy."
+          },
+          {
+           "code": "HS.E.MA.3",
+           "text": "Describe the externalities of government attempts to remedy market failure and improve market outcomes through fiscal policy."
+          },
+          {
+           "code": "HS.E.MA.4",
+           "text": "Analyze the impact of fiscal policies, various government taxation and spending policies on the economy."
+          },
+          {
+           "code": "HS.E.MA.5",
+           "text": "Assess how interest rates influence borrowing and investing."
+          },
+          {
+           "code": "HS.E.MA.6",
+           "text": "Assess the effectiveness of rules and laws that protect both consumers and producers."
+          }
+         ]
+        },
+        {
+         "id": "economics-3-of-5",
+         "title": "Economics (3 of 5)",
+         "outcomes": [
+          {
+           "code": "HS.E.MA.7",
+           "text": "Explain how the Federal Reserve uses monetary policy to promote price stability, employment and economic growth."
+          },
+          {
+           "code": "HS.E.ST.1",
+           "text": "Draw conclusions regarding the effect of specialization and trade on production, distribution and consumption of goods and services for individuals, businesses and societies."
+          },
+          {
+           "code": "HS.E.ST.2",
+           "text": "Analyze the role of comparative advantage in international trade of goods and services."
+          },
+          {
+           "code": "HS.E.ST.3",
+           "text": "Explain how international economic trends and policies affect political, social and economic conditions in various nations."
+          },
+          {
+           "code": "HS.E.IC.1",
+           "text": "Predict the way scarcity causes individuals, organizations and governments to evaluate tradeoffs, make choices and incur opportunity costs."
+          }
+         ]
+        },
+        {
+         "id": "economics-4-of-5",
+         "title": "Economics (4 of 5)",
+         "outcomes": [
+          {
+           "code": "HS.E.IC.2",
+           "text": "Evaluate how individuals, organizations and governments respond to incentives in the decision-making process."
+          },
+          {
+           "code": "HS.E.IC.3",
+           "text": "Perform a cost-benefit analysis on a real-world situation, using economic thinking to describe the marginal costs and benefits of a particular situation."
+          },
+          {
+           "code": "HS.E.IC.4",
+           "text": "Evaluate how incentives determine what is produced and distributed in a competitive market system."
+          },
+          {
+           "code": "HS.E.KE.1",
+           "text": "Explain the impact of varying market structures on profit, price and production in Kentucky."
+          },
+          {
+           "code": "HS.E.KE.2",
+           "text": "Analyze how national and international trends and policies impact Kentucky's state and local economies."
+          }
+         ]
+        },
+        {
+         "id": "economics-5-of-5",
+         "title": "Economics (5 of 5)",
+         "outcomes": [
+          {
+           "code": "HS.E.KE.3",
+           "text": "Analyze how the four components of Gross Domestic Product (GDP) are combined to assess the health of Kentucky's economy."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "geography",
+       "title": "Geography",
+       "subtopics": [
+        {
+         "id": "geography-1-of-3",
+         "title": "Geography (1 of 3)",
+         "outcomes": [
+          {
+           "code": "HS.G.MM.1",
+           "text": "Analyze how cultural, economic and environmental factors contribute to migration patterns and population distribution at multiple scales."
+          },
+          {
+           "code": "HS.G.MM.2",
+           "text": "Evaluate reasons for the spatial distribution of human populations at different scales on Earth's surface."
+          },
+          {
+           "code": "HS.G.HI.1",
+           "text": "Analyze how the forces of cooperation and conflict within and among people, nations and empires influence the division and control of Earth's surface and resources."
+          },
+          {
+           "code": "HS.G.HI.2",
+           "text": "Analyze how cultural and economic decisions influence the characteristics of various places."
+          }
+         ]
+        },
+        {
+         "id": "geography-2-of-3",
+         "title": "Geography (2 of 3)",
+         "outcomes": [
+          {
+           "code": "HS.G.HI.3",
+           "text": "Explain how people create natural and cultural regions to interpret Earth's complexity."
+          },
+          {
+           "code": "HS.G.HE.1",
+           "text": "Assess the reciprocal relationship between physical environment and culture within local, national and global scales."
+          },
+          {
+           "code": "HS.G.HE.2",
+           "text": "Analyze how human settlements are influenced by or influence the relationship between people and the environment."
+          },
+          {
+           "code": "HS.G.GR.1",
+           "text": "Interpret the relationships among human and physical patterns and processes at local, national and global scales."
+          }
+         ]
+        },
+        {
+         "id": "geography-3-of-3",
+         "title": "Geography (3 of 3)",
+         "outcomes": [
+          {
+           "code": "HS.G.GR.2",
+           "text": "Analyze how environmental factors influence population distributions from place to place."
+          },
+          {
+           "code": "HS.G.KGE.1",
+           "text": "Explain how Kentuckians view sense of place differently based on cultural and environmental characteristics of varying regions of the state."
+          },
+          {
+           "code": "HS.G.KGE.2",
+           "text": "Explain how the geography of Kentucky influences the development of the state."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "united-states-history",
+       "title": "United States History",
+       "subtopics": [
+        {
+         "id": "united-states-history-1-of-4",
+         "title": "United States History (1 of 4)",
+         "outcomes": [
+          {
+           "code": "HS.UH.CH.1",
+           "text": "Examine the ways diverse groups viewed themselves and contributed to the identity of the United States in the world from 1877-present."
+          },
+          {
+           "code": "HS.UH.CH.2",
+           "text": "Analyze changes to economic policies, the size of government and the power of government between 1890-1945."
+          },
+          {
+           "code": "HS.UH.CH.3",
+           "text": "Analyze the impact of economic institutions, including the Federal Reserve, property rights, legal systems and corporations on the development of the United States from an agrarian to an industrial state from 1877-present."
+          },
+          {
+           "code": "HS.UH.CH.4",
+           "text": "Assess the effectiveness of how people, organizations, government policies, labor laws and economic systems have attempted to address working conditions and income distributions from 1877-present."
+          },
+          {
+           "code": "HS.UH.CH.5",
+           "text": "Analyze the impact of technology and new ideas on American culture from 1877-present."
+          }
+         ]
+        },
+        {
+         "id": "united-states-history-2-of-4",
+         "title": "United States History (2 of 4)",
+         "outcomes": [
+          {
+           "code": "HS.UH.CH.6",
+           "text": "Analyze the role of the United States in global affairs in the post-Cold War Era from 1991-present."
+          },
+          {
+           "code": "HS.UH.CH.7",
+           "text": "Evaluate the impact of fundamental documents and speeches on the development of the United States from 1877 to present that shall include but are not limited to: The September 18, 1895, Atlanta Exposition Address by Booker T. Washington; Of Booker T. Washington and Others by W.E.B. Du Bois; The United States Supreme Court opinion in Plessy v. Ferguson, 163 U.S. 537 (1896); The August 31, 1910, New Nationalism speech by Theodore Roosevelt; The January 11, 1944, State of the Union Address by Franklin D. Roosevelt; The United States Supreme Court opinions in Brown v. Board of Education of Topeka, 347 U.S. 483 (1954) and Brown v. Board of Education of Topeka, 349 U.S. 294 (1955); Letter from Birmingham Jail by Martin Luther King, Jr.; The August 28, 1963, I Have a Dream speech by Martin Luther King, Jr.; and A Time for Choosing by Ronald Reagan."
+          },
+          {
+           "code": "HS.UH.CE.1",
+           "text": "Analyze the political, economic and social impacts of industrialization on the United States between 1877-1945."
+          },
+          {
+           "code": "HS.UH.CE.2",
+           "text": "Analyze the events that caused the United States to emerge as a global power between 1890-1991."
+          },
+          {
+           "code": "HS.UH.CE.3",
+           "text": "Explain the political, social and economic causes and effects of economic boom and bust cycles between 1877-1945."
+          }
+         ]
+        },
+        {
+         "id": "united-states-history-3-of-4",
+         "title": "United States History (3 of 4)",
+         "outcomes": [
+          {
+           "code": "HS.UH.CE.4",
+           "text": "Assess the health of the U.S. economy by applying the economic indicators of inflation, deflation, Gross Domestic Product (GDP) and unemployment from 1877-present."
+          },
+          {
+           "code": "HS.UH.CE.5",
+           "text": "Evaluate the ways in which groups facing discrimination worked to achieve expansion of rights and liberties from 1877-present."
+          },
+          {
+           "code": "HS.UH.CE.6",
+           "text": "Analyze how global interactions impacted American culture and society from 1890-present."
+          },
+          {
+           "code": "HS.UH.CO.1",
+           "text": "Explain the impact of U.S. expansion at home and abroad between 1877-1929."
+          },
+          {
+           "code": "HS.UH.CO.2",
+           "text": "Evaluate domestic responses to migration and immigration in the United States from 1877-present."
+          }
+         ]
+        },
+        {
+         "id": "united-states-history-4-of-4",
+         "title": "United States History (4 of 4)",
+         "outcomes": [
+          {
+           "code": "HS.UH.CO.3",
+           "text": "Analyze the role of the United States in global compromises and conflicts between 1890-1945 in the Spanish American War, World War I, the Interwar years and World War II."
+          },
+          {
+           "code": "HS.UH.CO.4",
+           "text": "Analyze the conflicting ideologies and policies of the United States and Soviet Union and their impact, both domestically and globally, during the Cold War Era between 1945-1991."
+          },
+          {
+           "code": "HS.UH.CO.5",
+           "text": "Analyze examples of conflict and compromise between the United States and other nations, groups and individuals in the post-Cold War Era from 1991-present."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "world-history",
+       "title": "World History",
+       "subtopics": [
+        {
+         "id": "world-history-1-of-5",
+         "title": "World History (1 of 5)",
+         "outcomes": [
+          {
+           "code": "HS.WH.CH.1",
+           "text": "Analyze the rise and fall of major states and empires in Africa, Asia, the Middle East, Europe and the Americas between 1300-1500."
+          },
+          {
+           "code": "HS.WH.CH.2",
+           "text": "Explain continuities and changes within the religion, ideology, science and arts of empires and nation-states in multiple global regions between 1300-1750."
+          },
+          {
+           "code": "HS.WH.CH.3",
+           "text": "Analyze changes and continuities within and among the Indian Ocean Maritime System, Trans-Saharan System and Silk Roads due to technology and the opening of the Atlantic System between 1300-1750."
+          },
+          {
+           "code": "HS.WH.CH.4",
+           "text": "Analyze the connections between industrialization and the development of total war between 1900-1950."
+          },
+          {
+           "code": "HS.WH.CH.5",
+           "text": "Analyze how continuities in the desire for cheap labor led to the institution of slavery and other systems of forced labor across the globe between 1300-1888."
+          }
+         ]
+        },
+        {
+         "id": "world-history-2-of-5",
+         "title": "World History (2 of 5)",
+         "outcomes": [
+          {
+           "code": "HS.WH.CH.6",
+           "text": "Analyze changes and continuities regarding views of government power and accepted sources of legitimacy in multiple global regions from 1750-present."
+          },
+          {
+           "code": "HS.WH.CH.7",
+           "text": "Evaluate how non-Westernized empires and nations adapted and developed Western technologies and industrial practices to fit new cultural contexts from 1850-present."
+          },
+          {
+           "code": "HS.WH.CE.1",
+           "text": "Examine effects of the movement of people, cultures, goods, diseases and technologies through established systems of connection, including the Silk Roads, Trans-Saharan Trade Routes and Indian Ocean Maritime System between 1300-1450."
+          },
+          {
+           "code": "HS.WH.CE.2",
+           "text": "Analyze the political, economic, geographic and social causes and effects of exploration and colonization between 1450-1750."
+          },
+          {
+           "code": "HS.WH.CE.3",
+           "text": "Assess demographic, social and cultural consequences of forced migration and the expansion of the institution of plantation-based slavery into the Americas between 1500-1888."
+          }
+         ]
+        },
+        {
+         "id": "world-history-3-of-5",
+         "title": "World History (3 of 5)",
+         "outcomes": [
+          {
+           "code": "HS.WH.CE.4",
+           "text": "Analyze causes and effects of political revolutions in multiple global regions from 1750-present."
+          },
+          {
+           "code": "HS.WH.CE.5",
+           "text": "Analyze the political, social and economic causes and effects of early industrialization in Europe and North America between 1750-1850."
+          },
+          {
+           "code": "HS.WH.CE.6",
+           "text": "Examine the causes and effects of imperialism from multiple perspectives between 1750-1900."
+          },
+          {
+           "code": "HS.WH.CE.7",
+           "text": "Examine the ways non-industrialized nations attempted to combat the rising power of European Imperialism between 1750-1900."
+          },
+          {
+           "code": "HS.WH.CE.8",
+           "text": "Determine the causes of the World Wars and their global effects between 1900-1945."
+          }
+         ]
+        },
+        {
+         "id": "world-history-4-of-5",
+         "title": "World History (4 of 5)",
+         "outcomes": [
+          {
+           "code": "HS.WH.CE.9",
+           "text": "Analyze the causes of Decolonization, methods of gaining independence and geopolitical impacts of new nation-states from 1945-present."
+          },
+          {
+           "code": "HS.WH.CO.1",
+           "text": "Assess how inter- and intra-regional interactions shaped the development of empires and cultures in multiple global regions between 1300-1750."
+          },
+          {
+           "code": "HS.WH.CO.2",
+           "text": "Analyze examples of conflict created by global expansionist policies and actions between 1750-1945 across global regions."
+          },
+          {
+           "code": "HS.WH.CO.3",
+           "text": "Analyze how superpower rivalries created new political alliances, led to proxy wars and resulted in the rise of international organizations from 1950-present."
+          },
+          {
+           "code": "HS.WH.CO.4",
+           "text": "Assess the effectiveness of institutions designed to foster collaboration, compromise and development from 1945-present."
+          }
+         ]
+        },
+        {
+         "id": "world-history-5-of-5",
+         "title": "World History (5 of 5)",
+         "outcomes": [
+          {
+           "code": "HS.WH.CO.5",
+           "text": "Analyze how advancements in communication, technology and trade impact global interactions from 1900-present."
+          },
+          {
+           "code": "HS.WH.CO.6",
+           "text": "Analyze methods used by state and non-state actors seeking to alter the global order which emerged during the post-World War period, including protests, social media campaigns, non-violent actions, boycotts, terrorism, guerilla warfare and other methods from 1945-present."
+          },
+          {
+           "code": "HS.WH.KH.1",
+           "text": "Describe the impact of world history on Kentuckians and how Kentucky impacted the world."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "build": {
+  "builtAt": "2026-10-14T16:20:43.043Z",
+  "model": "none",
+  "usd": 0,
+  "expectedCodes": 445,
+  "coverage": 1,
+  "missingCodes": [],
+  "counts": {
+   "grades": 10,
+   "units": 10,
+   "topics": 51,
+   "subtopics": 102,
+   "outcomes": 445
+  },
+  "warnings": []
+ }
+}

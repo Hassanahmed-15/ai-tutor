@@ -1,0 +1,1789 @@
+{
+ "id": "us-wa-computer-science",
+ "region": "US",
+ "framework": "Washington state academic standards: Computer Science & Technology",
+ "board": null,
+ "qualification": "K-12",
+ "subject": "Computer Science & Technology",
+ "syllabusCode": null,
+ "gradeSystem": "grade",
+ "source": {
+  "urls": [
+   "https://api.commonstandardsproject.com/api/v1/jurisdictions/7432D25024594EA9A2092DF45BBA7F6C",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/1C443A4AC59943FD9ED7D4277F3EF849",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/354FCDA9AF1C42209D71220401B8E0AA",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/F9F4C79D236446E48522B16D210657DC",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/7432D25024594EA9A2092DF45BBA7F6C_D2862287_grades-01-02-k",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/7432D25024594EA9A2092DF45BBA7F6C_D2862287_grades-03-04-05",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/7432D25024594EA9A2092DF45BBA7F6C_D2862287_grades-06-07-08",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/7432D25024594EA9A2092DF45BBA7F6C_D2862287_grades-09-10",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/7432D25024594EA9A2092DF45BBA7F6C_D2862287_grades-11-12",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/CEB5C61BDBB54F0EA7805E89919B3B7C"
+  ],
+  "publisher": "Washington state education agency (machine-readable via Common Standards Project / ASN)",
+  "licence": "CC BY 4.0 US, Common Curriculum, Inc.; CC BY 3.0 US, D2L Corporation",
+  "firstExam": "2018"
+ },
+ "grades": [
+  {
+   "grade": "9-10",
+   "units": [
+    {
+     "id": "computing-systems",
+     "title": "Computing Systems",
+     "topics": [
+      {
+       "id": "computing-systems",
+       "title": "Computing Systems",
+       "subtopics": [
+        {
+         "id": "computing-systems-1-of-2",
+         "title": "Computing Systems (1 of 2)",
+         "outcomes": [
+          {
+           "code": "P.4.1",
+           "text": "Explain how abstractions hide the underlying implementation details of computing systems embedded in everyday objects."
+          },
+          {
+           "code": "P.4.1",
+           "text": "Compare levels of abstraction and interactions between application software, system software, and hardware layers."
+          },
+          {
+           "code": "P.6.2",
+           "text": "Develop guidelines that convey systematic troubleshooting strategies that others can use to identify and fix errors."
+          },
+          {
+           "code": "3A-C-7-13",
+           "text": "Develop and apply criteria (e.g., power consumption, processing speed, storage space, battery life, cost, operating system) for evaluating a computer system for a given purpose (e.g., system specification needed to run a game, web browsing, graphic design or video editing)."
+          }
+         ]
+        },
+        {
+         "id": "computing-systems-2-of-2",
+         "title": "Computing Systems (2 of 2)",
+         "outcomes": [
+          {
+           "code": "3A-C-5-14",
+           "text": "Create, extend, or modify existing programs to add new features and behaviors using different forms of inputs and outputs (e.g., inputs such as sensors, mouse clicks, data sets; outputs such as text, graphics, sounds)."
+          },
+          {
+           "code": "3A-C-4-15",
+           "text": "Demonstrate the role and interaction of a computer embedded within a physical system, such as a consumer electronic, biological system, or vehicle, by creating a diagram, model, simulation, or prototype."
+          },
+          {
+           "code": "3A-C-4-16",
+           "text": "Describe the steps necessary for a computer to execute high compilation to machine language, interpretation, fetch-decode-execute"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "networks-and-the-internet",
+     "title": "Networks and the Internet",
+     "topics": [
+      {
+       "id": "networks-and-the-internet",
+       "title": "Networks and the Internet",
+       "subtopics": [
+        {
+         "id": "networks-and-the-internet-1-of-3",
+         "title": "Networks and the Internet (1 of 3)",
+         "outcomes": [
+          {
+           "code": "P.4.1",
+           "text": "Evaluate the scalability and reliability of networks, by describing the relationship between routers, switches, servers, topology, and addressing."
+          },
+          {
+           "code": "P.7.2",
+           "text": "Give examples to illustrate how sensitive data can be affected by malware and other attacks."
+          },
+          {
+           "code": "P.3.3",
+           "text": "Recommend security measures to address various scenarios based on factors such as efficiency, feasibility, and ethical impacts"
+          },
+          {
+           "code": "6.3",
+           "text": "Compare various security measures, considering tradeoffs between the usability and security of a computing system."
+          }
+         ]
+        },
+        {
+         "id": "networks-and-the-internet-2-of-3",
+         "title": "Networks and the Internet (2 of 3)",
+         "outcomes": [
+          {
+           "code": "P.7.2",
+           "text": "Explain tradeoffs when selecting and implementing cybersecurity recommendations."
+          },
+          {
+           "code": "3A-N-7-30",
+           "text": "Describe key protocols and underlying processes of Internet-based services (e.g., http/https and SMTP/IMAP, routing protocols)."
+          },
+          {
+           "code": "3A-N-4-31",
+           "text": "Illustrate the basic components of computer networks (e.g., draw logical and topological diagrams of networks including routers, switches, servers, and end user devices; create model with string and paper)."
+          },
+          {
+           "code": "3A-N-1-32",
+           "text": "Compare and contrast multiple viewpoints on cybersecurity (e.g., from the perspective of security experts, privacy advocates, the government)."
+          }
+         ]
+        },
+        {
+         "id": "networks-and-the-internet-3-of-3",
+         "title": "Networks and the Internet (3 of 3)",
+         "outcomes": [
+          {
+           "code": "3A-N-3-33",
+           "text": "Explain the principles of information security (confidentiality, integrity, availability) and authentication techniques."
+          },
+          {
+           "code": "3A-N-3-34",
+           "text": "Use simple encryption and decryption algorithms to transmit/receive an encrypted message."
+          },
+          {
+           "code": "3A-N-6-35",
+           "text": "Identify digital and physical strategies to secure networks and discuss the tradeoffs between ease of access and need for security."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "data-and-analysis",
+     "title": "Data and Analysis",
+     "topics": [
+      {
+       "id": "data-and-analysis",
+       "title": "Data and Analysis",
+       "subtopics": [
+        {
+         "id": "data-and-analysis-1-of-2",
+         "title": "Data and Analysis (1 of 2)",
+         "outcomes": [
+          {
+           "code": "P.4.1",
+           "text": "Translate between different bit representations of real-world phenomena, such as characters, numbers, and images."
+          },
+          {
+           "code": "P3.3",
+           "text": "Evaluate the tradeoffs in how data elements are organized and where data is stored."
+          },
+          {
+           "code": "P.4.4",
+           "text": "Create interactive data visualizations using software tools to help others better understand real-world phenomena."
+          },
+          {
+           "code": "P.4.4",
+           "text": "Create computational models that represent the relationships among different elements of data collected from a phenomenon or process."
+          },
+          {
+           "code": "3A-D-5-17",
+           "text": "Create computational models that simulate real-world systems (e.g., ecosystems, epidemics, spread of ideas)."
+          }
+         ]
+        },
+        {
+         "id": "data-and-analysis-2-of-2",
+         "title": "Data and Analysis (2 of 2)",
+         "outcomes": [
+          {
+           "code": "3A-D-4-18",
+           "text": "Convert between binary, decimal, and hexadecimal representations of data (e.g., convert hexadecimal color codes to decimal percentages, ASCII/Unicode representation)."
+          },
+          {
+           "code": "3A-D-4-19",
+           "text": "Analyze the representation tradeoffs among various forms of digital information (e.g., lossy versus lossless compression, encrypted vs. unencrypted, various image representations)."
+          },
+          {
+           "code": "3A-D-3-20",
+           "text": "Discuss techniques used to store, process, and retrieve different amounts of information (e.g., files, databases, data warehouses)."
+          },
+          {
+           "code": "3A-D-3-21",
+           "text": "Apply basic techniques for locating and collecting small- and large-scale data sets (e.g., creating and distributing user surveys, accessing real-world data sets)."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "algorithms-and-programming",
+     "title": "Algorithms and Programming",
+     "topics": [
+      {
+       "id": "algorithms-and-programming",
+       "title": "Algorithms and Programming",
+       "subtopics": [
+        {
+         "id": "algorithms-and-programming-1-of-5",
+         "title": "Algorithms and Programming (1 of 5)",
+         "outcomes": [
+          {
+           "code": "P.5.2",
+           "text": "Create prototypes that use algorithms to solve computational problems by leveraging prior student knowledge and personal interests."
+          },
+          {
+           "code": "P.4.1",
+           "text": "Use lists to simplify solutions, generalizing computational problems instead of repeatedly using simple variables."
+          },
+          {
+           "code": "P.5.2",
+           "text": "Justify the selection of specific control structures when tradeoffs involve implementation, readability, and program performance, and explain the benefits and drawbacks of choices made."
+          },
+          {
+           "code": "P.5.2",
+           "text": "Design and iteratively develop computational artifacts for practical intent, personal expression, or to address a societal issue by using events to initiate instructions."
+          },
+          {
+           "code": "P.3.2",
+           "text": "Decompose problems into smaller components through systematic analysis, using constructs such as procedures, modules, and/or objects."
+          }
+         ]
+        },
+        {
+         "id": "algorithms-and-programming-2-of-5",
+         "title": "Algorithms and Programming (2 of 5)",
+         "outcomes": [
+          {
+           "code": "P.5.2",
+           "text": "Create artifacts by using procedures within a program, combinations of data and procedures, or independent but interrelated programs."
+          },
+          {
+           "code": "P.5.1",
+           "text": "Systematically design and develop programs for broad audiences by incorporating feedback from users"
+          },
+          {
+           "code": "P.7.3",
+           "text": "Evaluate licenses that limit or restrict use of computational artifacts when using resources such as libraries."
+          },
+          {
+           "code": "P.6.3",
+           "text": "Evaluate and refine computational artifacts to make them more usable and accessible."
+          },
+          {
+           "code": "P.2.4",
+           "text": "Design and develop computational artifacts working in team roles using collaborative tools."
+          }
+         ]
+        },
+        {
+         "id": "algorithms-and-programming-3-of-5",
+         "title": "Algorithms and Programming (3 of 5)",
+         "outcomes": [
+          {
+           "code": "P.7.2",
+           "text": "Document – esign decisions using text, graphics, presentations, and/or demonstrations in the development of complex programs."
+          },
+          {
+           "code": "3A-A-2-1",
+           "text": "Design and develop a software artifact working in a team."
+          },
+          {
+           "code": "3A-A-2-2",
+           "text": "Demonstrate how diverse collaborating impacts the design and development of software products (e.g., discussing real-world examples of products that have been improved through having a diverse design team or reflecting on their own team's development experience)."
+          },
+          {
+           "code": "3A-A-7-3",
+           "text": "Compare and contrast various software licensing schemes (e.g., open source, freeware, commercial)."
+          },
+          {
+           "code": "3A-A-5-4",
+           "text": "Design, develop, and implement a computing artifact that responds to an event (e.g., robot that responds to a sensor, mobile app that responds to a text message, sprite that responds to a broadcast)."
+          }
+         ]
+        },
+        {
+         "id": "algorithms-and-programming-4-of-5",
+         "title": "Algorithms and Programming (4 of 5)",
+         "outcomes": [
+          {
+           "code": "3A-A-5-5",
+           "text": "Use user-centered research and design techniques (e.g., surveys, interviews) to create software solutions"
+          },
+          {
+           "code": "3A-A-5-6",
+           "text": "Integrate grade-level appropriate mathematical techniques, concepts, and processes in the creation of computing artifacts."
+          },
+          {
+           "code": "3A-A-4-7",
+           "text": "Understand the notion of hierarchy and abstraction in high-level languages, translation, instruction sets, and logic circuits."
+          },
+          {
+           "code": "3A-A-4-8",
+           "text": "Deconstruct a complex problem into simpler parts using predefined constructs (e.g., functions and parameters and/or classes)."
+          },
+          {
+           "code": "3A-A-4-9",
+           "text": "Demonstrate the value of abstraction for managing problem complexity (e.g., using a list instead of discrete variables)."
+          }
+         ]
+        },
+        {
+         "id": "algorithms-and-programming-5-of-5",
+         "title": "Algorithms and Programming (5 of 5)",
+         "outcomes": [
+          {
+           "code": "3A-A-3-10",
+           "text": "Design algorithms using sequence, selection, and iteration."
+          },
+          {
+           "code": "3A-A-3-11",
+           "text": "Explain and demonstrate how modeling and simulation can be used to explore natural phenomena (e.g., flocking behaviors, queueing, life cycles)."
+          },
+          {
+           "code": "3A-A-6-12",
+           "text": "Use a systematic approach and debugging tools to independently debug a program (e.g., setting breakpoints, inspecting variables with a debugger)."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "impacts-of-computing",
+     "title": "Impacts of Computing",
+     "topics": [
+      {
+       "id": "impacts-of-computing",
+       "title": "Impacts of Computing",
+       "subtopics": [
+        {
+         "id": "impacts-of-computing-1-of-3",
+         "title": "Impacts of Computing (1 of 3)",
+         "outcomes": [
+          {
+           "code": "P.1.2",
+           "text": "Evaluate the ways computing impacts personal, ethical, social, economic, and cultural practices."
+          },
+          {
+           "code": "P.1.2",
+           "text": "Test and refine computational artifacts to reduce bias and equity deficits."
+          },
+          {
+           "code": "P.3.1",
+           "text": "Demonstrate ways a given algorithm applies to problems across disciplines."
+          },
+          {
+           "code": "P.2.4",
+           "text": "Use tools and methods for collaboration on a project to increase connectivity of people in different cultures and career fields."
+          },
+          {
+           "code": "P.7.3",
+           "text": "Explain the beneficial and harmful effects that intellectual property laws can have on innovation."
+          }
+         ]
+        },
+        {
+         "id": "impacts-of-computing-2-of-3",
+         "title": "Impacts of Computing (2 of 3)",
+         "outcomes": [
+          {
+           "code": "P.7.2",
+           "text": "Explain the privacy concerns related to the collection and generation of data through automated processes that may not be evident to users."
+          },
+          {
+           "code": "P.7.3",
+           "text": "Evaluate the social and economic implications of privacy in the context of safety, law, or ethics."
+          },
+          {
+           "code": "3A-I-2-22",
+           "text": "Debate the social and economic implications associated with ethical and unethical computing practices (e.g., intellectual property rights, hacktivism, software piracy, diesel emissions testing scandal, new computers shipped with malware)."
+          },
+          {
+           "code": "3A-I-7-23",
+           "text": "Compare and contrast information access and distribution rights."
+          },
+          {
+           "code": "3A-I-7-24",
+           "text": "Discuss implications of the collection and large-scale analysis of information about individuals (e.g., how businesses, social media, and government collect and use personal data)."
+          }
+         ]
+        },
+        {
+         "id": "impacts-of-computing-3-of-3",
+         "title": "Impacts of Computing (3 of 3)",
+         "outcomes": [
+          {
+           "code": "3A-I-7-25",
+           "text": "Describe how computation shares features with art and music by translating human intention into an artifact."
+          },
+          {
+           "code": "3A-I-1-26",
+           "text": "Compare and debate the positive and negative impacts of computing on behavior and culture (e.g., evolution from hitchhiking to ridesharing apps, online accommodation rental services)."
+          },
+          {
+           "code": "3A-I-1-27",
+           "text": "Demonstrate how computing enables new forms of experience, expression, communication, and collaborating."
+          },
+          {
+           "code": "3A-I-1-28",
+           "text": "Explain the impact of the digital divide (i.e., uneven access to computing, computing education, and interfaces) on access to critical information."
+          },
+          {
+           "code": "3A-I-6-29",
+           "text": "Redesign user interfaces (e.g., webpages, mobile applications, animations) to be more inclusive, accessible, and minimizing the impact of the designer's inherent bias."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "6-8",
+   "units": [
+    {
+     "id": "computing-systems",
+     "title": "Computing Systems",
+     "topics": [
+      {
+       "id": "computing-systems",
+       "title": "Computing Systems",
+       "subtopics": [
+        {
+         "id": "computing-systems",
+         "title": "Computing Systems",
+         "outcomes": [
+          {
+           "code": "2-CS-01",
+           "text": "Recommend improvements to the design of computing devices, based on an analysis of how users interact with the devices."
+          },
+          {
+           "code": "2-CS-02",
+           "text": "Design projects that combine hardware and software components to collect and exchange data."
+          },
+          {
+           "code": "2-CS-03",
+           "text": "Systematically identify and fix problems with computing devices and their components."
+          },
+          {
+           "code": "2-C-7-11",
+           "text": "Justify the hardware and software chosen to accomplish a task (e.g., comparison of the features of a tablet vs. desktop, selecting which sensors and platform to use in building a robot or developing a mobile app)."
+          },
+          {
+           "code": "2-C-4-12",
+           "text": "Analyze the relationship between a device's computational components and its capabilities. [Clarification: Computing Systems include not only computers, but also cars, microwaves, smartphones, traffic lights, and flash drives.]"
+          },
+          {
+           "code": "2-C-6-13",
+           "text": "Use a systematic process to identify the source of a problem within individual and connected devices (e.g., follow a troubleshooting flow diagram, make changes to software to see if hardware will work, restart device, check connections, swap in working components)."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "networks-and-the-internet",
+     "title": "Networks and the Internet",
+     "topics": [
+      {
+       "id": "networks-and-the-internet",
+       "title": "Networks and the Internet",
+       "subtopics": [
+        {
+         "id": "networks-and-the-internet",
+         "title": "Networks and the Internet",
+         "outcomes": [
+          {
+           "code": "2-NI-04",
+           "text": "Model the role of protocols in transmitting data across networks and the Internet."
+          },
+          {
+           "code": "2-NI-05",
+           "text": "Explain how physical and digital security measures protect electronic information."
+          },
+          {
+           "code": "2-NI-06",
+           "text": "Apply multiple methods of encryption to model the secure transmission of information."
+          },
+          {
+           "code": "2-N-7-24",
+           "text": "Summarize security risks associated with weak passwords, lack of encryption, insecure transactions, and persistence of data."
+          },
+          {
+           "code": "2-N-4-25",
+           "text": "Simulate how information is transmitted as packets through multiple devices over the Internet and Networks."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "data-and-analysis",
+     "title": "Data and Analysis",
+     "topics": [
+      {
+       "id": "data-and-analysis",
+       "title": "Data and Analysis",
+       "subtopics": [
+        {
+         "id": "data-and-analysis-1-of-2",
+         "title": "Data and Analysis (1 of 2)",
+         "outcomes": [
+          {
+           "code": "2-DA-07",
+           "text": "Represent data using multiple encoding schemes."
+          },
+          {
+           "code": "2-DA-08",
+           "text": "Collect data using computational tools and transform the data to make it more useful and reliable."
+          },
+          {
+           "code": "2-DA-09",
+           "text": "Refine computational models based on the data they have generated."
+          },
+          {
+           "code": "2-D-7-14",
+           "text": "Describe how different formats of stored data represent tradeoffs between quality and size. [Clarification: compare examples of music, text and/or image formats.]"
+          }
+         ]
+        },
+        {
+         "id": "data-and-analysis-2-of-2",
+         "title": "Data and Analysis (2 of 2)",
+         "outcomes": [
+          {
+           "code": "2-D-7-15",
+           "text": "Explain the processes used to collect, transform, and analyze data to solve a problem using computational tools (e.g., use an app or spreadsheet form to collect data, decide which data to use or ignore, and choose a visualization method.)."
+          },
+          {
+           "code": "2-D-5-16",
+           "text": "Revise computational models to more accurately reflect real-world systems (e.g., ecosystems, epidemics, spread of ideas)."
+          },
+          {
+           "code": "2-D-4-17",
+           "text": "Represent data using different encoding schemes (e.g., binary, Unicode, Morse code, shorthand, student-created codes)."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "algorithms-and-and-programming",
+     "title": "Algorithms and and Programming",
+     "topics": [
+      {
+       "id": "algorithms-and-and-programming",
+       "title": "Algorithms and and Programming",
+       "subtopics": [
+        {
+         "id": "algorithms-and-and-programming-1-of-2",
+         "title": "Algorithms and and Programming (1 of 2)",
+         "outcomes": [
+          {
+           "code": "2-AP-10",
+           "text": "Use flowcharts and/or pseudocode to address complex problems as algorithms."
+          },
+          {
+           "code": "2-AP-11",
+           "text": "Create clearly named variables that represent different data types and perform operations on their values."
+          },
+          {
+           "code": "2-AP-12",
+           "text": "Design and iteratively develop programs that combine control structures, including nested loops and compound conditionals"
+          },
+          {
+           "code": "2-AP-13",
+           "text": "Decompose problems and subproblems into parts to facilitate the design, implementation, and review of programs."
+          },
+          {
+           "code": "2-AP-14",
+           "text": "Create procedures with parameters to organize code and make it easier to reuse."
+          }
+         ]
+        },
+        {
+         "id": "algorithms-and-and-programming-2-of-2",
+         "title": "Algorithms and and Programming (2 of 2)",
+         "outcomes": [
+          {
+           "code": "2-AP-15",
+           "text": "Seek and incorporate feedback from team members and users to refine a solution that meets user needs."
+          },
+          {
+           "code": "2-AP-16",
+           "text": "Incorporate existing code, media, and libraries into original programs, and give attribution."
+          },
+          {
+           "code": "2-AP-17",
+           "text": "Systematically test and refine programs using a range of test cases."
+          },
+          {
+           "code": "2-AP-18",
+           "text": "Distribute tasks and maintain a project timeline when collaboratively developing computational artifacts."
+          },
+          {
+           "code": "2-AP-19",
+           "text": "Document programs in order to make them easier to follow, test, and debug."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "impacts-of-computing",
+     "title": "Impacts of Computing",
+     "topics": [
+      {
+       "id": "impacts-of-computing",
+       "title": "Impacts of Computing",
+       "subtopics": [
+        {
+         "id": "impacts-of-computing-1-of-2",
+         "title": "Impacts of Computing (1 of 2)",
+         "outcomes": [
+          {
+           "code": "2-IC-20",
+           "text": "Compare tradeoffs associated with computing technologies that affect people's everyday activities and career options."
+          },
+          {
+           "code": "2-IC-21",
+           "text": "Discuss issues of bias and accessibility in the design of existing technologies."
+          },
+          {
+           "code": "2-IC-22",
+           "text": "Collaborate with many contributors through strategies such as crowdsourcing or surveys when creating a computational artifact."
+          },
+          {
+           "code": "2-IC-23",
+           "text": "Describe tradeoffs between allowing information to be public and keeping information private and secure."
+          },
+          {
+           "code": "2-I-7-18",
+           "text": "Summarize negative and positive impacts of using data and information to categorize people, predict behavior, and make recommendations based on those predictions (e.g., customizing search results or targeted advertising, based on previous browsing history, can save search time and limit options at the same time)."
+          }
+         ]
+        },
+        {
+         "id": "impacts-of-computing-2-of-2",
+         "title": "Impacts of Computing (2 of 2)",
+         "outcomes": [
+          {
+           "code": "2-I-7-19",
+           "text": "Explain how computer science fosters innovation and enhances nearly all careers and disciplines."
+          },
+          {
+           "code": "2-I-1-20",
+           "text": "Provide examples of how computational artifacts and devices impact health and wellbeing, both positively and negatively."
+          },
+          {
+           "code": "2-I-1-21",
+           "text": "Describe ways in which the Internet impacts global communication and collaborating."
+          },
+          {
+           "code": "2-I-1-22",
+           "text": "Describe ethical issues that relate to computing devices and networks (e.g., equity of access, security and plagiarism), hacking, intellectual property, copyright, Creative Commons licensing."
+          },
+          {
+           "code": "2-I-6-23",
+           "text": "Redesign a computational artifact to remove barriers to universal access (e.g., using captions on images, high contrast colors, and/or larger font sizes)."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "algorithms-and-programming",
+     "title": "Algorithms and Programming",
+     "topics": [
+      {
+       "id": "algorithms-and-programming",
+       "title": "Algorithms and Programming",
+       "subtopics": [
+        {
+         "id": "algorithms-and-programming-1-of-2",
+         "title": "Algorithms and Programming (1 of 2)",
+         "outcomes": [
+          {
+           "code": "2-A-2-1",
+           "text": "Solicit and integrate peer feedback as appropriate to develop or refine a program."
+          },
+          {
+           "code": "2-A-7-2",
+           "text": "Compare different algorithms that may be used to solve the same problem, but one might be faster than the other. (e.g., different algorithms solve the same problem, but one might be faster than the other). [Clarification: Students are not expected to quantify these differences.]"
+          },
+          {
+           "code": "2-A-7-3",
+           "text": "Provide proper attribution when code is borrowed or built upon."
+          },
+          {
+           "code": "2-A-7-4",
+           "text": "Interpret the flow of execution of algorithms and predict their outcomes. [Clarification: Algorithms can be expressed using natural language, flow and control diagrams, comments within code, and pseudocode.]"
+          },
+          {
+           "code": "2-A-5-5",
+           "text": "Design, develop, and present computational artifacts such as mobile applications that address social problems both independently and collaboratively."
+          }
+         ]
+        },
+        {
+         "id": "algorithms-and-programming-2-of-2",
+         "title": "Algorithms and Programming (2 of 2)",
+         "outcomes": [
+          {
+           "code": "2-A-5-6",
+           "text": "Develop programs, both independently and collaboratively, that include sequences with nested loops and multiple branches. [Clarification: At this level, students may use block-based and/or text-based programming languages.]"
+          },
+          {
+           "code": "2-A-5-7",
+           "text": "Create variables that represent different types of data and manipulate their values."
+          },
+          {
+           "code": "2-A-4-8",
+           "text": "Define and use procedures that hide the complexity of a task and can be reused to solve similar tasks. [Clarification: Students use and modify, but do not necessarily create, procedures with parameters.]"
+          },
+          {
+           "code": "2-A-3-9",
+           "text": "Decompose a problem into parts and create solutions for each part."
+          },
+          {
+           "code": "2-A-6-10",
+           "text": "Use an iterative design process (e.g., define the problem, generate ideas, build, test, and improve solutions) to solve problems, both independently and collaboratively."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "11-12",
+   "units": [
+    {
+     "id": "computing-systems",
+     "title": "Computing Systems",
+     "topics": [
+      {
+       "id": "computing-systems",
+       "title": "Computing Systems",
+       "subtopics": [
+        {
+         "id": "computing-systems",
+         "title": "Computing Systems",
+         "outcomes": [
+          {
+           "code": "P.7.2",
+           "text": "Categorize the roles of operating system software."
+          },
+          {
+           "code": "P.7.2",
+           "text": "Illustrate ways computing systems implement logic, input, and output through hardware components."
+          },
+          {
+           "code": "3B-C-7-22",
+           "text": "Explain the role of operating systems (e.g., how programs are stored in memory, how data is organized/retrieved, how processes are managed and multi-tasked)."
+          },
+          {
+           "code": "3B-C-7-23",
+           "text": "Identify the functionality of various categories of hardware components and communication between them (e.g., physical layers, logic gates, chips, input and output devices)."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "networks-and-the-internet",
+     "title": "Networks and the Internet",
+     "topics": [
+      {
+       "id": "networks-and-the-internet",
+       "title": "Networks and the Internet",
+       "subtopics": [
+        {
+         "id": "networks-and-the-internet",
+         "title": "Networks and the Internet",
+         "outcomes": [
+          {
+           "code": "P.7.2",
+           "text": "Describe the issues that impact network functionality (e.g., bandwidth, load, delay, topology)."
+          },
+          {
+           "code": "P.7.2",
+           "text": "Compare ways software developers protect devices and information from unauthorized access."
+          },
+          {
+           "code": "3B-N-4-35",
+           "text": "Simulate and discuss the issues (e.g., bandwidth, load, delay, topology) that impact network functionality (e.g., use free network simulators)."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "data-and-analysis",
+     "title": "Data and Analysis",
+     "topics": [
+      {
+       "id": "data-and-analysis",
+       "title": "Data and Analysis",
+       "subtopics": [
+        {
+         "id": "data-and-analysis-1-of-2",
+         "title": "Data and Analysis (1 of 2)",
+         "outcomes": [
+          {
+           "code": "P.4.1",
+           "text": "Use data analysis tools and techniques to identify patterns in data representing complex systems."
+          },
+          {
+           "code": "P.7.2",
+           "text": "Select data collection tools and techniques to generate data sets that support a claim or communicate information."
+          },
+          {
+           "code": "P.4.4",
+           "text": "Evaluate the ability of models and simulations to test and support the refinement of hypotheses."
+          },
+          {
+           "code": "3B-D-4-24",
+           "text": "Use data analysis to identify significant patterns in complex systems (e.g., take existing data sets and make sense of them)."
+          },
+          {
+           "code": "3B-D-4-25",
+           "text": "Discuss how data sequences (e.g., binary, hexadecimal, octal) can be interpreted in a variety of forms (e.g., instructions, numbers, text, sound, image)."
+          }
+         ]
+        },
+        {
+         "id": "data-and-analysis-2-of-2",
+         "title": "Data and Analysis (2 of 2)",
+         "outcomes": [
+          {
+           "code": "3B-D-4-26",
+           "text": "Evaluate the ability of models and simulations to formulate, refine, and test hypotheses."
+          },
+          {
+           "code": "3B-D-4-27",
+           "text": "Identify mathematical and computational patterns through modeling and simulation (e.g., regression, Runge-Kutta, queueing theory, discrete event simulation)."
+          },
+          {
+           "code": "3B-D-1-28",
+           "text": "Use various data collection techniques for different types of problems (e.g., mobile device, GPS, user surveys, embedded system sensors, open data sets, social media data sets)."
+          },
+          {
+           "code": "3B-D-3-29",
+           "text": "Explore security policies by implementing and comparing encryption and authentication strategies (e.g., secure coding, safeguarding keys)."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "algorithms-and-programming",
+     "title": "Algorithms and Programming",
+     "topics": [
+      {
+       "id": "algorithms-and-programming",
+       "title": "Algorithms and Programming",
+       "subtopics": [
+        {
+         "id": "algorithms-and-programming-1-of-8",
+         "title": "Algorithms and Programming (1 of 8)",
+         "outcomes": [
+          {
+           "code": "P.7.2",
+           "text": "Describe how artificial intelligence drives many software and physical systems."
+          },
+          {
+           "code": "P.5.3",
+           "text": "Implement an artificial intelligence algorithm to play a game against a human opponent or solve a problem."
+          },
+          {
+           "code": "P.4.2",
+           "text": "Use and adapt classic algorithms to solve computational problems."
+          },
+          {
+           "code": "P.4.2",
+           "text": "Evaluate algorithms in terms of their efficiency, correctness, and clarity."
+          },
+          {
+           "code": "P.4.2",
+           "text": "Compare and contrast fundamental data structures and their uses."
+          }
+         ]
+        },
+        {
+         "id": "algorithms-and-programming-2-of-8",
+         "title": "Algorithms and Programming (2 of 8)",
+         "outcomes": [
+          {
+           "code": "P.3.2",
+           "text": "Illustrate the flow of execution of a recursive algorithm."
+          },
+          {
+           "code": "P.5.2",
+           "text": "Construct solutions to problems using student-created components, such as procedures, modules and/or objects."
+          },
+          {
+           "code": "P.4.1",
+           "text": "Analyze a large-scale computational problem and identify generalizable patterns that can be applied to a solution."
+          },
+          {
+           "code": "P.5.3",
+           "text": "Demonstrate code reuse by creating programming solutions using libraries and APIs."
+          },
+          {
+           "code": "P.5.1",
+           "text": "Plan and develop programs for broad audiences using a software lifecycle process."
+          }
+         ]
+        },
+        {
+         "id": "algorithms-and-programming-3-of-8",
+         "title": "Algorithms and Programming (3 of 8)",
+         "outcomes": [
+          {
+           "code": "P.7.2",
+           "text": "Explain security issues that might lead to compromised computer programs."
+          },
+          {
+           "code": "P.5.2",
+           "text": "Develop programs for multiple computing platforms."
+          },
+          {
+           "code": "P.2.4",
+           "text": "Use version control systems, integrated development environments (IDEs), and collaborative tools and practices (code documentation) in a group software project."
+          },
+          {
+           "code": "P.6.1",
+           "text": "Develop and use a series of test cases to verify that a program performs according to its design specifications."
+          },
+          {
+           "code": "P.5.3",
+           "text": "Modify an existing program to add additional functionality and discuss intended and unintended implications (e.g., breaking other functionality)."
+          }
+         ]
+        },
+        {
+         "id": "algorithms-and-programming-4-of-8",
+         "title": "Algorithms and Programming (4 of 8)",
+         "outcomes": [
+          {
+           "code": "P.6.3",
+           "text": "Evaluate key qualities of a program through a process such as a code review."
+          },
+          {
+           "code": "P.7.2",
+           "text": "Compare multiple programming languages and discuss how their features make them suitable for solving different types of problems."
+          },
+          {
+           "code": "3B-A-2-1",
+           "text": "Use version control systems, integrated development environments (IDEs), and collaborating tools and practices (code documentation) in a group software project."
+          },
+          {
+           "code": "3B-A-2-2",
+           "text": "Demonstrate software life cycle processes (e.g., spiral, waterfall) by participating on software project teams (e.g., community service project with real-world clients)."
+          },
+          {
+           "code": "3B-A-7-3",
+           "text": "Modify an existing program to add additional functionality and discuss intended and unintended implications (e.g., breaking other functionality)."
+          }
+         ]
+        },
+        {
+         "id": "algorithms-and-programming-5-of-8",
+         "title": "Algorithms and Programming (5 of 8)",
+         "outcomes": [
+          {
+           "code": "3B-A-7-4",
+           "text": "Explain security issues that might lead to compromised computer programs (e.g., circular references, ambiguous program calls, lack of error checking and field size checking)."
+          },
+          {
+           "code": "3B-A-7-5",
+           "text": "Compare a variety of programming languages and identify features that make them useful for solving different types of problems and developing different kinds of systems (e.g., declarative, logic, parallel, functional, compiled, interpreted, real-time)."
+          },
+          {
+           "code": "3B-A-7-6",
+           "text": "Describe how artificial intelligence drives many software and physical systems (e.g., autonomous robots, computer vision, pattern recognition, text analysis)."
+          },
+          {
+           "code": "3B-A-5-7",
+           "text": "Decompose a problem by creating new data types, functions, or classes."
+          },
+          {
+           "code": "3B-A-5-8",
+           "text": "Demonstrate code reuse by creating programming solutions using libraries and APIs (e.g., graphics libraries, maps API)."
+          }
+         ]
+        },
+        {
+         "id": "algorithms-and-programming-6-of-8",
+         "title": "Algorithms and Programming (6 of 8)",
+         "outcomes": [
+          {
+           "code": "3B-A-5-9",
+           "text": "Implement an AI algorithm to play a game against a human opponent or solve a problem."
+          },
+          {
+           "code": "3B-A-5-10",
+           "text": "Develop programs for multiple computing platforms (e.g., computer desktop, web, mobile)."
+          },
+          {
+           "code": "3B-A-4-11",
+           "text": "Critically analyze classic algorithms (e.g., sorting, searching) and use in different contexts, adapting as appropriate."
+          },
+          {
+           "code": "3B-A-4-12",
+           "text": "Evaluate algorithms (e.g., sorting, searching) in terms of their efficiency, correctness, and clarity."
+          },
+          {
+           "code": "3B-A-4-13",
+           "text": "Compare and contrast fundamental data structures and their uses (e.g., lists, maps, arrays, stacks, queues, trees, graphs)."
+          }
+         ]
+        },
+        {
+         "id": "algorithms-and-programming-7-of-8",
+         "title": "Algorithms and Programming (7 of 8)",
+         "outcomes": [
+          {
+           "code": "3B-A-4-14",
+           "text": "Discuss issues that arise when breaking large-scale problems down into parts that must be processed simultaneously on separate systems (e.g., cloud computing, parallelization, concurrency)."
+          },
+          {
+           "code": "3B-A-3-15",
+           "text": "Provide examples of computationally solvable problems and difficult-to-solve problems."
+          },
+          {
+           "code": "3B-A-3-16",
+           "text": "Explain the value of heuristic algorithms (discovery methods) to approximating solutions for difficult-to-solve computational problems."
+          },
+          {
+           "code": "3B-A-3-17",
+           "text": "Decompose a large-scale computational problem by identifying generalizable patterns and applying them in a solution."
+          },
+          {
+           "code": "3B-A-3-18",
+           "text": "Illustrate the flow of execution of a recursive algorithm."
+          }
+         ]
+        },
+        {
+         "id": "algorithms-and-programming-8-of-8",
+         "title": "Algorithms and Programming (8 of 8)",
+         "outcomes": [
+          {
+           "code": "3B-A-3-19",
+           "text": "Describe how parallel processing can be used to solve large problems (e.g., SETI at Home, FoldIt)."
+          },
+          {
+           "code": "3B-A-3-20",
+           "text": "Develop and use a series of test cases to verify that a program performs according to its design specifications."
+          },
+          {
+           "code": "3B-A-6-21",
+           "text": "Evaluate key qualities of a program (e.g., correctness, usability, readability, efficiency, portability, scalability) through a process such as a code review."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "impacts-of-computing",
+     "title": "Impacts of Computing",
+     "topics": [
+      {
+       "id": "impacts-of-computing",
+       "title": "Impacts of Computing",
+       "subtopics": [
+        {
+         "id": "impacts-of-computing-1-of-2",
+         "title": "Impacts of Computing (1 of 2)",
+         "outcomes": [
+          {
+           "code": "P.6.1, P.1.2",
+           "text": "Evaluate computational artifacts to maximize their beneficial effects and minimize harmful effects on society."
+          },
+          {
+           "code": "P.1.2",
+           "text": "Evaluate the impact of equity, access, and influence on the distribution of computing resources in a global society."
+          },
+          {
+           "code": "P.7.2",
+           "text": "Predict how computational innovations that have revolutionized aspects of our culture might evolve."
+          },
+          {
+           "code": "P.3.3, P.7.3",
+           "text": "Debate laws and regulations that impact the development and use of software."
+          },
+          {
+           "code": "3B-I-7-30",
+           "text": "Develop criteria to evaluate the beneficial and harmful effects of computing innovations on people and society."
+          }
+         ]
+        },
+        {
+         "id": "impacts-of-computing-2-of-2",
+         "title": "Impacts of Computing (2 of 2)",
+         "outcomes": [
+          {
+           "code": "3B-I-5-31",
+           "text": "Select, observe, and contribute to global Collaborating in the development of a computational artifact (e.g., contribute the resolution of a bug in an open-source project hosted on GitHub)."
+          },
+          {
+           "code": "3B-I-1-32",
+           "text": "Design and implement a study that evaluates or predicts how computation has revolutionized an aspect of our culture and how it might evolve (e.g., education, healthcare, art/entertainment, energy)."
+          },
+          {
+           "code": "3B-I-1-33",
+           "text": "Debate laws and regulations that impact the development and use of software."
+          },
+          {
+           "code": "3B-I-1-34",
+           "text": "Evaluate the impact of equity, access, and influence on the distribution of computing resources in a global society."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "K-2",
+   "units": [
+    {
+     "id": "algorithms-and-programming",
+     "title": "Algorithms and Programming",
+     "topics": [
+      {
+       "id": "algorithms-and-programming",
+       "title": "Algorithms and Programming",
+       "subtopics": [
+        {
+         "id": "algorithms-and-programming-1-of-2",
+         "title": "Algorithms and Programming (1 of 2)",
+         "outcomes": [
+          {
+           "code": "1A-A-7-1",
+           "text": "Give credit when using code, music, or pictures (for example) that were created by others."
+          },
+          {
+           "code": "1A-A-5-2",
+           "text": "Construct programs, to accomplish a task or as a means of creative expression, which include sequencing, events, and simple loops, using a block-based visual programming language, both independently and collaboratively (e.g., pair programming)."
+          },
+          {
+           "code": "1A-A-5-3",
+           "text": "Plan and create a design document to illustrate thoughts, ideas, and stories in a sequential (step-by-step) manner (e.g., story map, storyboard, sequential graphic organizer)."
+          },
+          {
+           "code": "1A-A-4-4",
+           "text": "Use numbers or other symbols to represent data (e.g., thumbs up/down for yes/no, color by number, arrows for direction, encoding/decoding a word using numbers or pictographs)."
+          }
+         ]
+        },
+        {
+         "id": "algorithms-and-programming-2-of-2",
+         "title": "Algorithms and Programming (2 of 2)",
+         "outcomes": [
+          {
+           "code": "1A-A-3-5",
+           "text": "Decompose (break down) a larger problem into smaller sub-problems with teacher guidance or independently."
+          },
+          {
+           "code": "1A-A-3-6",
+           "text": "Categorize a group of items based on the attributes or actions of each item, with or without a computing device."
+          },
+          {
+           "code": "1A-A-3-7",
+           "text": "Construct and execute algorithms (sets of step-by-step instructions) that include sequencing and simple loops to accomplish a task, both independently and collaboratively, with or without a computing device."
+          },
+          {
+           "code": "1A-A-6-8",
+           "text": "Analyze and debug (fix) an algorithm that includes sequencing and simple loops, with or without a computing device."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "computing-systems",
+     "title": "Computing Systems",
+     "topics": [
+      {
+       "id": "computing-systems",
+       "title": "Computing Systems",
+       "subtopics": [
+        {
+         "id": "computing-systems",
+         "title": "Computing Systems",
+         "outcomes": [
+          {
+           "code": "1A-C-7-9",
+           "text": "Identify and use software that controls computational devices (e.g., use an app to draw on the screen, use software to write a story or control robots)."
+          },
+          {
+           "code": "1A-C-7-10",
+           "text": "Use appropriate terminology in naming and describing the function of common computing devices and components (e.g., desktop computer, laptop computer, tablet device, monitor, keyboard, mouse, printer)."
+          },
+          {
+           "code": "1A-C-6-11",
+           "text": "Identify, using accurate terminology, simple hardware and software problems that may occur during use (e.g., app or program not working as expected, no sound, device won't turn on)."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "data-and-analysis",
+     "title": "Data and Analysis",
+     "topics": [
+      {
+       "id": "data-and-analysis",
+       "title": "Data and Analysis",
+       "subtopics": [
+        {
+         "id": "data-and-analysis",
+         "title": "Data and Analysis",
+         "outcomes": [
+          {
+           "code": "1A-D-7-12",
+           "text": "Collect data over time and organize it in a chart or graph in order to make a prediction."
+          },
+          {
+           "code": "1A-D-4-13",
+           "text": "Use a computing device to store, search, retrieve, modify, and delete information and define the information stored as data."
+          },
+          {
+           "code": "1A-D-4-14",
+           "text": "Create a model of an object or process in order to identify patterns and essential elements (e.g., water cycle, butterfly life cycle, seasonal weather patterns)."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "impacts-of-computing",
+     "title": "Impacts of Computing",
+     "topics": [
+      {
+       "id": "impacts-of-computing",
+       "title": "Impacts of Computing",
+       "subtopics": [
+        {
+         "id": "impacts-of-computing",
+         "title": "Impacts of Computing",
+         "outcomes": [
+          {
+           "code": "1A-I-7-15",
+           "text": "Compare and contrast examples of how computing technology has changed and improved the way people live, work, and interact."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "networks-and-the-internet",
+     "title": "Networks and the Internet",
+     "topics": [
+      {
+       "id": "networks-and-the-internet",
+       "title": "Networks and the Internet",
+       "subtopics": [
+        {
+         "id": "networks-and-the-internet",
+         "title": "Networks and the Internet",
+         "outcomes": [
+          {
+           "code": "1A-N-2-16",
+           "text": "Use computers or other computing devices to connect with people using a network (e.g., the Internet) to communicate, access, and share information as a class."
+          },
+          {
+           "code": "1A-N-7-17",
+           "text": "Use passwords to protect private information and discuss the effects of password misuse"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "3-5",
+   "units": [
+    {
+     "id": "algorithms-and-programming",
+     "title": "Algorithms and Programming",
+     "topics": [
+      {
+       "id": "algorithms-and-programming",
+       "title": "Algorithms and Programming",
+       "subtopics": [
+        {
+         "id": "algorithms-and-programming-1-of-2",
+         "title": "Algorithms and Programming (1 of 2)",
+         "outcomes": [
+          {
+           "code": "1B-A-2-1",
+           "text": "Apply collaboration strategies to support problem solving within the design cycle of a program."
+          },
+          {
+           "code": "1B-A-7-2",
+           "text": "Use proper citations and document when ideas are borrowed and changed for their own use (e.g., using pictures created by others, using music created by others, remixing programming projects)."
+          },
+          {
+           "code": "1B-A-5-3",
+           "text": "Create a plan as part of the iterative design process, both independently and with diverse collaborative teams (e.g., storyboard, flowchart, pseudo-code, story map)."
+          },
+          {
+           "code": "1B-A-5-4",
+           "text": "Construct programs, in order to solve a problem or for creative expression, that include sequencing, events, loops, conditionals, parallelism, and variables, using a block-based visual programming language or text-based language, both independently and collaboratively (e.g., pair programming)."
+          }
+         ]
+        },
+        {
+         "id": "algorithms-and-programming-2-of-2",
+         "title": "Algorithms and Programming (2 of 2)",
+         "outcomes": [
+          {
+           "code": "1B-A-5-5",
+           "text": "Use mathematical operations to change a value stored in a variable."
+          },
+          {
+           "code": "1B-A-3-6",
+           "text": "Decompose (break down) a larger problem into smaller sub-problems, independently or in a collaborative group."
+          },
+          {
+           "code": "1B-A-3-7",
+           "text": "Construct and execute an algorithm (set of step-by-step instructions) that includes sequencing, loops, and conditionals to accomplish a task, both independently and collaboratively, with or without a computing device."
+          },
+          {
+           "code": "1B-A-6-8",
+           "text": "Analyze and debug (fix) an algorithm that includes sequencing, events, loops, conditionals, parallelism, and variables."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "computing-systems",
+     "title": "Computing Systems",
+     "topics": [
+      {
+       "id": "computing-systems",
+       "title": "Computing Systems",
+       "subtopics": [
+        {
+         "id": "computing-systems",
+         "title": "Computing Systems",
+         "outcomes": [
+          {
+           "code": "1B-C-7-9",
+           "text": "Model how a computer system works. [Clarification: Only includes basic elements of a computer system, such as input, output, processor, sensors, and storage.]"
+          },
+          {
+           "code": "1B-C-7-10",
+           "text": "Use appropriate terminology in naming internal and external components of computing devices and describing their relationships, capabilities, and limitations."
+          },
+          {
+           "code": "1B-C-6-11",
+           "text": "Identify, using accurate terminology, simple hardware and software problems that may occur during use, and apply strategies for solving problems (e.g., reboot device, check for power, check network availability, close and reopen app)."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "data-and-analysis",
+     "title": "Data and Analysis",
+     "topics": [
+      {
+       "id": "data-and-analysis",
+       "title": "Data and Analysis",
+       "subtopics": [
+        {
+         "id": "data-and-analysis",
+         "title": "Data and Analysis",
+         "outcomes": [
+          {
+           "code": "1B-D-5-12",
+           "text": "Create a computational artifact to model the attributes and behaviors associated with a concept (e.g., solar system, life cycle of a plant)."
+          },
+          {
+           "code": "1B-D-5-13",
+           "text": "Answer a question by using a computer to (e.g., sort, total and/or average, chart, graph) and analyze data that has been collected by the class or student."
+          },
+          {
+           "code": "1B-D-4-14",
+           "text": "Use numeric values to represent non-numeric ideas in the computer (binary, ASCII, pixel attributes such as RGB)."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "impacts-of-computing",
+     "title": "Impacts of Computing",
+     "topics": [
+      {
+       "id": "impacts-of-computing",
+       "title": "Impacts of Computing",
+       "subtopics": [
+        {
+         "id": "impacts-of-computing",
+         "title": "Impacts of Computing",
+         "outcomes": [
+          {
+           "code": "1B-I-7-15",
+           "text": "Evaluate and describe the positive and negative impacts of the pervasiveness of computers and computing in daily life (e.g., downloading videos and audio files, electronic appliances, wireless Internet, mobile computing devices, GPS systems, wearable computing)."
+          },
+          {
+           "code": "1B-I-7-16",
+           "text": "Generate examples of how computing can affect society, and also how societal values can shape computing choices."
+          },
+          {
+           "code": "1B-I-1-17",
+           "text": "Seek out and compare diverse perspectives, synchronously or asynchronously, to improve a project."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "networks-and-the-internet",
+     "title": "Networks and the Internet",
+     "topics": [
+      {
+       "id": "networks-and-the-internet",
+       "title": "Networks and the Internet",
+       "subtopics": [
+        {
+         "id": "networks-and-the-internet",
+         "title": "Networks and the Internet",
+         "outcomes": [
+          {
+           "code": "1B-I-1-18",
+           "text": "Brainstorm ways in which computing devices could be made more accessible to all users."
+          },
+          {
+           "code": "1B-I-1-19",
+           "text": "Explain problems that relate to using computing devices and networks (e.g., logging out to deter others from using your account, cyberbullying, privacy of personal information, and ownership)."
+          },
+          {
+           "code": "1B-N-7-20",
+           "text": "Create examples of strong passwords, explain why strong passwords should be used, and demonstrate proper use and protection of personal passwords."
+          },
+          {
+           "code": "1B-N-4-21",
+           "text": "Model how a device on a network sends a message from one device (sender) to another (receiver) while following specific rules."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "9-12",
+   "units": [
+    {
+     "id": "empowered-learner-students-leverage-technology-t",
+     "title": "Empowered Learner - Students leverage technology to take an active role in choosing, achieving and demonstrating competency in their learning goals, informed by the learning sciences",
+     "topics": [
+      {
+       "id": "empowered-learner-students-leverage-technology-t",
+       "title": "Empowered Learner - Students leverage technology to take an active role in choosing, achieving and demonstrating competency in their learning goals, informed by the learning sciences",
+       "subtopics": [
+        {
+         "id": "empowered-learner-students-leverage-technology-t",
+         "title": "Empowered Learner - Students leverage technology to take an active role in choosing, achieving and demonstrating competency in their learning goals, informed by the learning sciences",
+         "outcomes": [
+          {
+           "code": "1.a.",
+           "text": "Students articulate and set personal learning goals, develop strategies leveraging technology to achieve them and relfect on the learning process itself to improve learning outcomes."
+          },
+          {
+           "code": "1.b.",
+           "text": "Students builed networks and customize their learning environments in ways that support the learning process."
+          },
+          {
+           "code": "1.c.",
+           "text": "Students use technology to seek feedback that informs and improves their practice and to demonstrate their learning in a variety of ways."
+          },
+          {
+           "code": "1.d.",
+           "text": "Students understand the fundamental concepts of technology operations, demonstrate the ability to choose, use and troubleshoot current technologies and are able to transfer their knowledge to explore emerging technologies."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "digital-citizen-students-recognize-the-rights-re",
+     "title": "Digital Citizen - Students recognize the rights, responsibilities and opportunities of living, learning and working in an interconnected digital world, and they act and model in ways that are safe, legal and ethical",
+     "topics": [
+      {
+       "id": "digital-citizen-students-recognize-the-rights-re",
+       "title": "Digital Citizen - Students recognize the rights, responsibilities and opportunities of living, learning and working in an interconnected digital world, and they act and model in ways that are safe, legal and ethical",
+       "subtopics": [
+        {
+         "id": "digital-citizen-students-recognize-the-rights-re",
+         "title": "Digital Citizen - Students recognize the rights, responsibilities and opportunities of living, learning and working in an interconnected digital world, and they act and model in ways that are safe, legal and ethical",
+         "outcomes": [
+          {
+           "code": "2.a.",
+           "text": "Students cultivate and manage their digital identity and reputation and are aware of the permanence of their actions in the digital world."
+          },
+          {
+           "code": "2.b.",
+           "text": "Students engage in positive, safe, legal and ethical behavior when using technology, including social interactions online or when using networked devices."
+          },
+          {
+           "code": "2.c.",
+           "text": "Students demonstrate an understanding of and respect for the rights and obligations of using and sharing intellectual property."
+          },
+          {
+           "code": "2.d.",
+           "text": "Students manage their personal data to maintain digital privacy and security and are aware of data-collection technology used to track their navigation online"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "knowledge-constructor-students-critically-curate",
+     "title": "Knowledge Constructor - Students critically curate a variety of resources using digital tools to construct knowledge, produce creative artifacts and make meaningful learning experiences for themselves and others",
+     "topics": [
+      {
+       "id": "knowledge-constructor-students-critically-curate",
+       "title": "Knowledge Constructor - Students critically curate a variety of resources using digital tools to construct knowledge, produce creative artifacts and make meaningful learning experiences for themselves and others",
+       "subtopics": [
+        {
+         "id": "knowledge-constructor-students-critically-curate",
+         "title": "Knowledge Constructor - Students critically curate a variety of resources using digital tools to construct knowledge, produce creative artifacts and make meaningful learning experiences for themselves and others",
+         "outcomes": [
+          {
+           "code": "3.a.",
+           "text": "Students plan and employ effective research strategies to locate information and other resources for their intellectual or creative pursuits."
+          },
+          {
+           "code": "3.b.",
+           "text": "Students evaluate the accuracy, perspective, credibility and relevance of information, media, data or other resources."
+          },
+          {
+           "code": "3.c.",
+           "text": "Students curate information from digital resources using a variety of tools and methods to create collections of artifacts that demonstrate meaningful connections or conclusions."
+          },
+          {
+           "code": "3.d.",
+           "text": "Students build knowledge by actively exploring real-world issues and problems, developing ideas and theories and pursuing answers and solutions."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "innovative-designer-students-use-a-variety-of-te",
+     "title": "Innovative Designer - Students use a variety of technologies within a design process to identify and solve problems by creating new, useful or imaginative solutions",
+     "topics": [
+      {
+       "id": "innovative-designer-students-use-a-variety-of-te",
+       "title": "Innovative Designer - Students use a variety of technologies within a design process to identify and solve problems by creating new, useful or imaginative solutions",
+       "subtopics": [
+        {
+         "id": "innovative-designer-students-use-a-variety-of-te",
+         "title": "Innovative Designer - Students use a variety of technologies within a design process to identify and solve problems by creating new, useful or imaginative solutions",
+         "outcomes": [
+          {
+           "code": "4.a.",
+           "text": "Students know and use a deliberate design process for generating ideas, testing theories, creating innovative artifacts or solving authentic problems."
+          },
+          {
+           "code": "4.b.",
+           "text": "Students select and use digital tools to plan and manage a design process that considers design constraints and calculated risks."
+          },
+          {
+           "code": "4.c.",
+           "text": "Students develop, test and refine prototypes as part of a cyclical design process."
+          },
+          {
+           "code": "4.d.",
+           "text": "Students exhibit a tolerance for ambiguity, perseverance and the capacity to work with open-ended problems."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "computational-thinker-students-develop-and-emplo",
+     "title": "Computational Thinker - Students develop and employ strategies for understanding and solving problems in ways that leverage the power of technological methods to develop and test solutions",
+     "topics": [
+      {
+       "id": "computational-thinker-students-develop-and-emplo",
+       "title": "Computational Thinker - Students develop and employ strategies for understanding and solving problems in ways that leverage the power of technological methods to develop and test solutions",
+       "subtopics": [
+        {
+         "id": "computational-thinker-students-develop-and-emplo",
+         "title": "Computational Thinker - Students develop and employ strategies for understanding and solving problems in ways that leverage the power of technological methods to develop and test solutions",
+         "outcomes": [
+          {
+           "code": "5.a.",
+           "text": "Students formulate problem definitions suited for technology-assisted methods such as data analysis, abstract models and algorithmic thinking in exploring and finding solutions."
+          },
+          {
+           "code": "5.b.",
+           "text": "Students collect data or identify relevant data sets, use digital tools to analyze them, and represent data in various ways to facilitate problem-solving and decision-making."
+          },
+          {
+           "code": "5.c.",
+           "text": "Students break problems into component parts, extract key information, and develop descriptive models to understand complex systems or facilitate problem-solving."
+          },
+          {
+           "code": "5.d.",
+           "text": "Students understand how automation works and use algorithmic thinking to develop a sequence of steps to create and test automated solutions."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "creative-communicator-students-communicate-clear",
+     "title": "Creative Communicator - Students communicate clearly and express themselves creatively for a variety of purposes using the platforms, tools, styles, formats and digital media appropriate to their goals",
+     "topics": [
+      {
+       "id": "creative-communicator-students-communicate-clear",
+       "title": "Creative Communicator - Students communicate clearly and express themselves creatively for a variety of purposes using the platforms, tools, styles, formats and digital media appropriate to their goals",
+       "subtopics": [
+        {
+         "id": "creative-communicator-students-communicate-clear",
+         "title": "Creative Communicator - Students communicate clearly and express themselves creatively for a variety of purposes using the platforms, tools, styles, formats and digital media appropriate to their goals",
+         "outcomes": [
+          {
+           "code": "6.a.",
+           "text": "Students choose the appropriate platforms and tools for meeting the desired objectives of their creation or communication."
+          },
+          {
+           "code": "6.b.",
+           "text": "Students create original works or responsibly repurpose or remix digital resources into new creations."
+          },
+          {
+           "code": "6.c.",
+           "text": "Students communicate complex ideas clearly and effectively by creating or using a variety of digital objects such as visualizations, models or simulations."
+          },
+          {
+           "code": "6.d.",
+           "text": "Students publish or present content that customizes the message and medium for their intended audiences."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "global-collaborator-students-use-digital-tools-t",
+     "title": "Global Collaborator - Students use digital tools to broaden their perspectives and enrich their learning by collaborating with others and working effectively in teams locally and globally",
+     "topics": [
+      {
+       "id": "global-collaborator-students-use-digital-tools-t",
+       "title": "Global Collaborator - Students use digital tools to broaden their perspectives and enrich their learning by collaborating with others and working effectively in teams locally and globally",
+       "subtopics": [
+        {
+         "id": "global-collaborator-students-use-digital-tools-t",
+         "title": "Global Collaborator - Students use digital tools to broaden their perspectives and enrich their learning by collaborating with others and working effectively in teams locally and globally",
+         "outcomes": [
+          {
+           "code": "7.a.",
+           "text": "Students use digital tools to connect with learners from a variety of backgrounds and cultures, engaging with them in ways that broaden mutual understanding and learning."
+          },
+          {
+           "code": "7.b.",
+           "text": "Students use collaborative technologies to work with others, including peers, experts or community members, to examine issues and problems from multiple viewpoints."
+          },
+          {
+           "code": "7.c.",
+           "text": "Students contribute constructively to project teams, assuming various roles and responsibilities to work effectively toward a common goal."
+          },
+          {
+           "code": "7.d.",
+           "text": "Students explore local and global issues and use collaborative technologies to work with others to investigate solutions."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "build": {
+  "builtAt": "2026-10-14T16:20:50.404Z",
+  "model": "none",
+  "usd": 0,
+  "expectedCodes": 204,
+  "coverage": 1,
+  "missingCodes": [],
+  "counts": {
+   "grades": 6,
+   "units": 33,
+   "topics": 33,
+   "subtopics": 58,
+   "outcomes": 242
+  },
+  "warnings": [
+   "unit \"Impacts of Computing\" (grade K-2) has a single outcome"
+  ]
+ }
+}

@@ -1,0 +1,1605 @@
+{
+ "id": "uk-edexcel-alevel-business-9bs0",
+ "region": "UK",
+ "framework": "Pearson Edexcel Level 3 Advanced GCE",
+ "board": "Pearson Edexcel",
+ "qualification": "A Level",
+ "subject": "Business",
+ "syllabusCode": "9BS0",
+ "gradeSystem": "year",
+ "source": {
+  "urls": [
+   "https://qualifications.pearson.com/content/dam/pdf/A%20Level/Business%20Studies/2015/specification-and-sample-assessment-materials/9781446914694-gce2015-a-bus-web.pdf"
+  ],
+  "publisher": "Pearson Education",
+  "licence": "Exam board specification, (c) Pearson; structure + our own wording only",
+  "firstExam": "2017"
+ },
+ "grades": [
+  {
+   "grade": "all",
+   "units": [
+    {
+     "id": "theme-1-marketing-and-people",
+     "title": "Theme 1: Marketing and people",
+     "topics": [
+      {
+       "id": "1-1-meeting-customer-needs",
+       "title": "1.1 Meeting customer needs",
+       "subtopics": [
+        {
+         "id": "the-market",
+         "title": "The market",
+         "outcomes": [
+          {
+           "code": "1.1.1",
+           "text": "Compare mass and niche markets: characteristics, market size and share, and brands."
+          },
+          {
+           "code": null,
+           "text": "Explain dynamic markets: online retailing, market change, innovation and adapting to change."
+          },
+          {
+           "code": null,
+           "text": "Explain how competition affects the market."
+          },
+          {
+           "code": null,
+           "text": "Distinguish risk from uncertainty."
+          }
+         ]
+        },
+        {
+         "id": "market-research",
+         "title": "Market research",
+         "outcomes": [
+          {
+           "code": "1.1.2",
+           "text": "Distinguish product orientation from market orientation."
+          },
+          {
+           "code": null,
+           "text": "Use primary and secondary, quantitative and qualitative data to identify customer needs, quantify demand and understand behaviour."
+          },
+          {
+           "code": null,
+           "text": "Evaluate limits of market research: sample size and bias."
+          },
+          {
+           "code": null,
+           "text": "Use ICT in research: websites, social networking and databases."
+          },
+          {
+           "code": null,
+           "text": "Explain market segmentation."
+          }
+         ]
+        },
+        {
+         "id": "market-positioning",
+         "title": "Market positioning",
+         "outcomes": [
+          {
+           "code": "1.1.3",
+           "text": "Use market mapping."
+          },
+          {
+           "code": null,
+           "text": "Explain competitive advantage of a product or service."
+          },
+          {
+           "code": null,
+           "text": "Explain the purpose of product differentiation."
+          },
+          {
+           "code": null,
+           "text": "Explain how businesses add value."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "1-2-market",
+       "title": "1.2 Market",
+       "subtopics": [
+        {
+         "id": "demand",
+         "title": "Demand",
+         "outcomes": [
+          {
+           "code": "1.2.1",
+           "text": "Explain factors that change demand: related-goods prices, incomes, tastes, advertising, demographics, shocks and seasonality."
+          }
+         ]
+        },
+        {
+         "id": "supply",
+         "title": "Supply",
+         "outcomes": [
+          {
+           "code": "1.2.2",
+           "text": "Explain factors that change supply: costs, new technology, indirect taxes, subsidies and shocks."
+          }
+         ]
+        },
+        {
+         "id": "markets",
+         "title": "Markets",
+         "outcomes": [
+          {
+           "code": "1.2.3",
+           "text": "Explain how supply and demand interact."
+          },
+          {
+           "code": null,
+           "text": "Draw and interpret supply and demand diagrams for price changes."
+          }
+         ]
+        },
+        {
+         "id": "price-elasticity-of-demand",
+         "title": "Price elasticity of demand",
+         "outcomes": [
+          {
+           "code": "1.2.4",
+           "text": "Calculate price elasticity of demand."
+          },
+          {
+           "code": null,
+           "text": "Interpret its numerical values."
+          },
+          {
+           "code": null,
+           "text": "Explain factors influencing it."
+          },
+          {
+           "code": null,
+           "text": "Explain what it means for pricing."
+          },
+          {
+           "code": null,
+           "text": "Calculate and interpret its link with total revenue."
+          }
+         ]
+        },
+        {
+         "id": "income-elasticity-of-demand",
+         "title": "Income elasticity of demand",
+         "outcomes": [
+          {
+           "code": "1.2.5",
+           "text": "Calculate income elasticity of demand."
+          },
+          {
+           "code": null,
+           "text": "Interpret its numerical values."
+          },
+          {
+           "code": null,
+           "text": "Explain factors influencing it."
+          },
+          {
+           "code": null,
+           "text": "Explain its significance for businesses."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "1-3-marketing-mix-and-strategy",
+       "title": "1.3 Marketing mix and strategy",
+       "subtopics": [
+        {
+         "id": "product-and-service-design",
+         "title": "Product and service design",
+         "outcomes": [
+          {
+           "code": "1.3.1",
+           "text": "Explain the design mix: function, aesthetics and cost."
+          },
+          {
+           "code": null,
+           "text": "Explain design changes for social trends: waste minimisation, recycling and ethical sourcing."
+          }
+         ]
+        },
+        {
+         "id": "branding-and-promotion",
+         "title": "Branding and promotion",
+         "outcomes": [
+          {
+           "code": "1.3.2",
+           "text": "Describe types of promotion."
+          },
+          {
+           "code": null,
+           "text": "Describe types of branding."
+          },
+          {
+           "code": null,
+           "text": "Explain benefits of strong branding: added value, premium prices and lower elasticity."
+          },
+          {
+           "code": null,
+           "text": "Explain ways to build a brand: USPs, advertising, sponsorship, social media."
+          },
+          {
+           "code": null,
+           "text": "Explain social-trend changes: viral marketing, social media and emotional branding."
+          }
+         ]
+        },
+        {
+         "id": "pricing-strategies",
+         "title": "Pricing strategies",
+         "outcomes": [
+          {
+           "code": "1.3.3",
+           "text": "Explain pricing strategies: cost plus, skimming, penetration, predatory, competitive and psychological."
+          },
+          {
+           "code": null,
+           "text": "Explain factors that decide the best pricing strategy."
+          },
+          {
+           "code": null,
+           "text": "Explain pricing changes from online sales and price comparison sites."
+          }
+         ]
+        },
+        {
+         "id": "distribution",
+         "title": "Distribution",
+         "outcomes": [
+          {
+           "code": "1.3.4",
+           "text": "Describe distribution channels."
+          },
+          {
+           "code": null,
+           "text": "Explain online distribution and the shift from product to service."
+          }
+         ]
+        },
+        {
+         "id": "marketing-strategy",
+         "title": "Marketing strategy",
+         "outcomes": [
+          {
+           "code": "1.3.5",
+           "text": "Explain the product life cycle."
+          },
+          {
+           "code": null,
+           "text": "Describe extension strategies for product and promotion."
+          },
+          {
+           "code": null,
+           "text": "Use the Boston Matrix and product portfolio."
+          },
+          {
+           "code": null,
+           "text": "Choose strategies for mass, niche, B2B and B2C markets."
+          },
+          {
+           "code": null,
+           "text": "Explain how businesses develop customer loyalty."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "1-4-managing-people",
+       "title": "1.4 Managing people",
+       "subtopics": [
+        {
+         "id": "approaches-to-staffing",
+         "title": "Approaches to staffing",
+         "outcomes": [
+          {
+           "code": "1.4.1",
+           "text": "Compare staff as an asset and as a cost."
+          },
+          {
+           "code": null,
+           "text": "Explain flexible workforce types: multi-skilling, part-time, flexible hours, outsourcing."
+          },
+          {
+           "code": null,
+           "text": "Distinguish dismissal from redundancy."
+          },
+          {
+           "code": null,
+           "text": "Compare individual and collective employer-employee relationships."
+          }
+         ]
+        },
+        {
+         "id": "recruitment-selection-and-training",
+         "title": "Recruitment, selection and training",
+         "outcomes": [
+          {
+           "code": "1.4.2",
+           "text": "Explain recruitment and selection, internal versus external."
+          },
+          {
+           "code": null,
+           "text": "Explain the costs of recruitment, selection and training."
+          },
+          {
+           "code": null,
+           "text": "Describe induction, on-the-job and off-the-job training."
+          }
+         ]
+        },
+        {
+         "id": "organisational-design",
+         "title": "Organisational design",
+         "outcomes": [
+          {
+           "code": "1.4.3",
+           "text": "Explain hierarchy, chain of command, span of control and centralisation."
+          },
+          {
+           "code": null,
+           "text": "Compare tall, flat and matrix structures."
+          },
+          {
+           "code": null,
+           "text": "Evaluate how structures affect efficiency and motivation."
+          }
+         ]
+        },
+        {
+         "id": "motivation-in-theory-and-practice",
+         "title": "Motivation in theory and practice",
+         "outcomes": [
+          {
+           "code": "1.4.4",
+           "text": "Explain the importance of employee motivation."
+          },
+          {
+           "code": null,
+           "text": "Explain theories of Taylor, Mayo, Maslow and Herzberg."
+          },
+          {
+           "code": null,
+           "text": "Describe financial incentives: piecework, commission, bonus, profit share and performance pay."
+          },
+          {
+           "code": null,
+           "text": "Describe non-financial techniques: delegation, empowerment, team working, job enrichment, rotation and enlargement."
+          }
+         ]
+        },
+        {
+         "id": "leadership",
+         "title": "Leadership",
+         "outcomes": [
+          {
+           "code": "1.4.5",
+           "text": "Distinguish management from leadership."
+          },
+          {
+           "code": null,
+           "text": "Compare autocratic, paternalistic, democratic and laissez-faire leadership."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "1-5-entrepreneurs-and-leaders",
+       "title": "1.5 Entrepreneurs and leaders",
+       "subtopics": [
+        {
+         "id": "role-of-an-entrepreneur",
+         "title": "Role of an entrepreneur",
+         "outcomes": [
+          {
+           "code": "1.5.1",
+           "text": "Explain creating and setting up a business."
+          },
+          {
+           "code": null,
+           "text": "Explain running and expanding a business."
+          },
+          {
+           "code": null,
+           "text": "Explain intrapreneurship."
+          },
+          {
+           "code": null,
+           "text": "Identify barriers to entrepreneurship."
+          },
+          {
+           "code": null,
+           "text": "Explain anticipating risk and uncertainty."
+          }
+         ]
+        },
+        {
+         "id": "entrepreneurial-motives-and-characteristics",
+         "title": "Entrepreneurial motives and characteristics",
+         "outcomes": [
+          {
+           "code": "1.5.2",
+           "text": "Describe entrepreneurial characteristics and skills."
+          },
+          {
+           "code": null,
+           "text": "Explain financial and non-financial reasons for starting a business."
+          }
+         ]
+        },
+        {
+         "id": "business-objectives",
+         "title": "Business objectives",
+         "outcomes": [
+          {
+           "code": "1.5.3",
+           "text": "Explain survival as an objective."
+          },
+          {
+           "code": null,
+           "text": "Explain profit maximisation."
+          },
+          {
+           "code": null,
+           "text": "Explain other objectives: sales, market share, cost efficiency, welfare, satisfaction, social."
+          }
+         ]
+        },
+        {
+         "id": "forms-of-business",
+         "title": "Forms of business",
+         "outcomes": [
+          {
+           "code": "1.5.4",
+           "text": "Compare sole trader, partnership and private limited company."
+          },
+          {
+           "code": null,
+           "text": "Describe franchising, social enterprise, lifestyle and online businesses."
+          },
+          {
+           "code": null,
+           "text": "Explain growth to PLC and flotation."
+          }
+         ]
+        },
+        {
+         "id": "business-choices",
+         "title": "Business choices",
+         "outcomes": [
+          {
+           "code": "1.5.5",
+           "text": "Explain opportunity cost."
+          },
+          {
+           "code": null,
+           "text": "Explain choices and trade-offs."
+          }
+         ]
+        },
+        {
+         "id": "moving-from-entrepreneur-to-leader",
+         "title": "Moving from entrepreneur to leader",
+         "outcomes": [
+          {
+           "code": "1.5.6",
+           "text": "Explain difficulties of moving from entrepreneur to leader."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "theme-2-managing-business-activities",
+     "title": "Theme 2: Managing business activities",
+     "topics": [
+      {
+       "id": "2-1-raising-finance",
+       "title": "2.1 Raising finance",
+       "subtopics": [
+        {
+         "id": "internal-finance",
+         "title": "Internal finance",
+         "outcomes": [
+          {
+           "code": "2.1.1",
+           "text": "Explain owner's capital."
+          },
+          {
+           "code": null,
+           "text": "Explain retained profit."
+          },
+          {
+           "code": null,
+           "text": "Explain sale of assets."
+          }
+         ]
+        },
+        {
+         "id": "external-finance",
+         "title": "External finance",
+         "outcomes": [
+          {
+           "code": "2.1.2",
+           "text": "Compare sources of finance: family, banks, peer-to-peer, angels, crowd funding, other businesses."
+          },
+          {
+           "code": null,
+           "text": "Compare methods: loans, shares, venture capital, overdrafts, leasing, trade credit, grants."
+          }
+         ]
+        },
+        {
+         "id": "liability",
+         "title": "Liability",
+         "outcomes": [
+          {
+           "code": "2.1.3",
+           "text": "Explain limited and unlimited liability."
+          },
+          {
+           "code": null,
+           "text": "Match finance to limited and unlimited liability businesses."
+          }
+         ]
+        },
+        {
+         "id": "planning",
+         "title": "Planning",
+         "outcomes": [
+          {
+           "code": "2.1.4",
+           "text": "Explain a business plan's role in getting finance."
+          },
+          {
+           "code": null,
+           "text": "Interpret a cash-flow forecast and calculate changes in its variables."
+          },
+          {
+           "code": null,
+           "text": "Evaluate use and limits of cash-flow forecasts."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "2-2-financial-planning",
+       "title": "2.2 Financial planning",
+       "subtopics": [
+        {
+         "id": "sales-forecasting",
+         "title": "Sales forecasting",
+         "outcomes": [
+          {
+           "code": "2.2.1",
+           "text": "Explain the purpose of sales forecasts."
+          },
+          {
+           "code": null,
+           "text": "Explain factors affecting forecasts."
+          },
+          {
+           "code": null,
+           "text": "Explain difficulties of forecasting."
+          }
+         ]
+        },
+        {
+         "id": "sales-revenue-and-costs",
+         "title": "Sales, revenue and costs",
+         "outcomes": [
+          {
+           "code": "2.2.2",
+           "text": "Calculate sales volume and revenue."
+          },
+          {
+           "code": null,
+           "text": "Calculate fixed and variable costs."
+          }
+         ]
+        },
+        {
+         "id": "break-even",
+         "title": "Break-even",
+         "outcomes": [
+          {
+           "code": "2.2.3",
+           "text": "Calculate contribution."
+          },
+          {
+           "code": null,
+           "text": "Explain the break-even point."
+          },
+          {
+           "code": null,
+           "text": "Calculate break-even using contribution."
+          },
+          {
+           "code": null,
+           "text": "Calculate margin of safety."
+          },
+          {
+           "code": null,
+           "text": "Interpret break-even charts."
+          },
+          {
+           "code": null,
+           "text": "Evaluate limits of break-even analysis."
+          }
+         ]
+        },
+        {
+         "id": "budgets",
+         "title": "Budgets",
+         "outcomes": [
+          {
+           "code": "2.2.4",
+           "text": "Explain the purpose of budgets."
+          },
+          {
+           "code": null,
+           "text": "Compare historical and zero-based budgets."
+          },
+          {
+           "code": null,
+           "text": "Carry out variance analysis."
+          },
+          {
+           "code": null,
+           "text": "Explain difficulties of budgeting."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "2-3-managing-finance",
+       "title": "2.3 Managing finance",
+       "subtopics": [
+        {
+         "id": "profit",
+         "title": "Profit",
+         "outcomes": [
+          {
+           "code": "2.3.1",
+           "text": "Calculate gross, operating and net profit."
+          },
+          {
+           "code": null,
+           "text": "Calculate profit margins from the income statement and improve profitability."
+          },
+          {
+           "code": null,
+           "text": "Distinguish profit from cash."
+          }
+         ]
+        },
+        {
+         "id": "liquidity",
+         "title": "Liquidity",
+         "outcomes": [
+          {
+           "code": "2.3.2",
+           "text": "Calculate current and acid test ratios and improve liquidity."
+          },
+          {
+           "code": null,
+           "text": "Explain working capital and the importance of cash."
+          }
+         ]
+        },
+        {
+         "id": "business-failure",
+         "title": "Business failure",
+         "outcomes": [
+          {
+           "code": "2.3.3",
+           "text": "Explain internal and external, financial and non-financial causes of business failure."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "2-4-resource-management",
+       "title": "2.4 Resource management",
+       "subtopics": [
+        {
+         "id": "production-productivity-and-efficiency",
+         "title": "Production, productivity and efficiency",
+         "outcomes": [
+          {
+           "code": "2.4.1",
+           "text": "Compare job, batch, flow and cell production."
+          },
+          {
+           "code": null,
+           "text": "Explain productivity and its link to competitiveness."
+          },
+          {
+           "code": null,
+           "text": "Explain efficiency and labour versus capital intensive production."
+          }
+         ]
+        },
+        {
+         "id": "capacity-utilisation",
+         "title": "Capacity utilisation",
+         "outcomes": [
+          {
+           "code": "2.4.2",
+           "text": "Calculate capacity utilisation."
+          },
+          {
+           "code": null,
+           "text": "Explain under- and over-utilisation."
+          },
+          {
+           "code": null,
+           "text": "Explain ways to improve capacity utilisation."
+          }
+         ]
+        },
+        {
+         "id": "stock-control",
+         "title": "Stock control",
+         "outcomes": [
+          {
+           "code": "2.4.3",
+           "text": "Interpret a stock control diagram."
+          },
+          {
+           "code": null,
+           "text": "Explain buffer stocks."
+          },
+          {
+           "code": null,
+           "text": "Explain effects of poor stock control."
+          },
+          {
+           "code": null,
+           "text": "Explain just in time."
+          },
+          {
+           "code": null,
+           "text": "Explain waste minimisation."
+          },
+          {
+           "code": null,
+           "text": "Explain competitive advantage from lean production."
+          }
+         ]
+        },
+        {
+         "id": "quality-management",
+         "title": "Quality management",
+         "outcomes": [
+          {
+           "code": "2.4.4",
+           "text": "Explain quality control, assurance, circles and TQM."
+          },
+          {
+           "code": null,
+           "text": "Explain continuous improvement (Kaizen)."
+          },
+          {
+           "code": null,
+           "text": "Explain competitive advantage from quality."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "2-5-external-influences",
+       "title": "2.5 External influences",
+       "subtopics": [
+        {
+         "id": "economic-influences",
+         "title": "Economic influences",
+         "outcomes": [
+          {
+           "code": "2.5.1",
+           "text": "Explain effects of inflation, exchange rates, interest rates, taxation, spending and the business cycle."
+          },
+          {
+           "code": null,
+           "text": "Explain effects of economic uncertainty."
+          }
+         ]
+        },
+        {
+         "id": "legislation",
+         "title": "Legislation",
+         "outcomes": [
+          {
+           "code": "2.5.2",
+           "text": "Explain effects of consumer, employee and environmental protection, competition policy, and health and safety law."
+          }
+         ]
+        },
+        {
+         "id": "the-competitive-environment",
+         "title": "The competitive environment",
+         "outcomes": [
+          {
+           "code": "2.5.3",
+           "text": "Explain competition and market size."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "theme-3-business-decisions-and-strategy",
+     "title": "Theme 3: Business decisions and strategy",
+     "topics": [
+      {
+       "id": "3-1-business-objectives-and-strategy",
+       "title": "3.1 Business objectives and strategy",
+       "subtopics": [
+        {
+         "id": "corporate-objectives",
+         "title": "Corporate objectives",
+         "outcomes": [
+          {
+           "code": "3.1.1",
+           "text": "Explain how objectives develop from the mission statement."
+          },
+          {
+           "code": null,
+           "text": "Appraise mission statements."
+          }
+         ]
+        },
+        {
+         "id": "theories-of-corporate-strategy",
+         "title": "Theories of corporate strategy",
+         "outcomes": [
+          {
+           "code": "3.1.2",
+           "text": "Use Ansoff's and Porter's matrices."
+          },
+          {
+           "code": null,
+           "text": "Explain portfolio analysis."
+          },
+          {
+           "code": null,
+           "text": "Explain advantage through distinctive capabilities."
+          },
+          {
+           "code": null,
+           "text": "Explain effects of strategic and tactical decisions on resources."
+          }
+         ]
+        },
+        {
+         "id": "swot-analysis",
+         "title": "SWOT analysis",
+         "outcomes": [
+          {
+           "code": "3.1.3",
+           "text": "Carry out SWOT analysis of internal and external factors."
+          }
+         ]
+        },
+        {
+         "id": "impact-of-external-influences",
+         "title": "Impact of external influences",
+         "outcomes": [
+          {
+           "code": "3.1.4",
+           "text": "Use PESTLE analysis."
+          },
+          {
+           "code": null,
+           "text": "Explain the changing competitive environment."
+          },
+          {
+           "code": null,
+           "text": "Use Porter's Five Forces."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "3-2-business-growth",
+       "title": "3.2 Business growth",
+       "subtopics": [
+        {
+         "id": "growth",
+         "title": "Growth",
+         "outcomes": [
+          {
+           "code": "3.2.1",
+           "text": "Explain growth objectives: economies of scale, market power, share and profit."
+          },
+          {
+           "code": null,
+           "text": "Explain growth problems: diseconomies, communication and overtrading."
+          }
+         ]
+        },
+        {
+         "id": "mergers-and-takeovers",
+         "title": "Mergers and takeovers",
+         "outcomes": [
+          {
+           "code": "3.2.2",
+           "text": "Explain reasons for mergers and takeovers."
+          },
+          {
+           "code": null,
+           "text": "Distinguish mergers from takeovers."
+          },
+          {
+           "code": null,
+           "text": "Distinguish horizontal and vertical integration."
+          },
+          {
+           "code": null,
+           "text": "Explain financial risks and rewards."
+          },
+          {
+           "code": null,
+           "text": "Explain problems of rapid growth."
+          }
+         ]
+        },
+        {
+         "id": "organic-growth",
+         "title": "Organic growth",
+         "outcomes": [
+          {
+           "code": "3.2.3",
+           "text": "Distinguish inorganic from organic growth."
+          },
+          {
+           "code": null,
+           "text": "Describe methods of organic growth."
+          },
+          {
+           "code": null,
+           "text": "Evaluate organic growth."
+          }
+         ]
+        },
+        {
+         "id": "reasons-for-staying-small",
+         "title": "Reasons for staying small",
+         "outcomes": [
+          {
+           "code": "3.2.4",
+           "text": "Explain how small businesses survive: differentiation, flexibility, service and e-commerce."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "3-3-decision-making-techniques",
+       "title": "3.3 Decision-making techniques",
+       "subtopics": [
+        {
+         "id": "quantitative-sales-forecasting",
+         "title": "Quantitative sales forecasting",
+         "outcomes": [
+          {
+           "code": "3.3.1",
+           "text": "Calculate moving averages in time-series analysis."
+          },
+          {
+           "code": null,
+           "text": "Interpret scatter graphs, lines of best fit and extrapolation."
+          },
+          {
+           "code": null,
+           "text": "Evaluate limits of forecasting techniques."
+          }
+         ]
+        },
+        {
+         "id": "investment-appraisal",
+         "title": "Investment appraisal",
+         "outcomes": [
+          {
+           "code": "3.3.2",
+           "text": "Calculate simple payback."
+          },
+          {
+           "code": null,
+           "text": "Calculate average rate of return."
+          },
+          {
+           "code": null,
+           "text": "Calculate net present value."
+          },
+          {
+           "code": null,
+           "text": "Interpret the figures."
+          },
+          {
+           "code": null,
+           "text": "Evaluate limits of these techniques."
+          }
+         ]
+        },
+        {
+         "id": "decision-trees",
+         "title": "Decision trees",
+         "outcomes": [
+          {
+           "code": "3.3.3",
+           "text": "Construct and interpret decision trees."
+          },
+          {
+           "code": null,
+           "text": "Calculate and interpret their figures."
+          },
+          {
+           "code": null,
+           "text": "Evaluate limits of decision trees."
+          }
+         ]
+        },
+        {
+         "id": "critical-path-analysis",
+         "title": "Critical path analysis",
+         "outcomes": [
+          {
+           "code": "3.3.4",
+           "text": "Explain the purpose of critical path analysis."
+          },
+          {
+           "code": null,
+           "text": "Complete networks and identify the critical path."
+          },
+          {
+           "code": null,
+           "text": "Calculate earliest start, latest finish and total float."
+          },
+          {
+           "code": null,
+           "text": "Evaluate its limits."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "3-4-influences-on-business-decisions",
+       "title": "3.4 Influences on business decisions",
+       "subtopics": [
+        {
+         "id": "corporate-influences",
+         "title": "Corporate influences",
+         "outcomes": [
+          {
+           "code": "3.4.1",
+           "text": "Compare short-termism with long-termism."
+          },
+          {
+           "code": null,
+           "text": "Compare evidence-based and subjective decisions."
+          }
+         ]
+        },
+        {
+         "id": "corporate-culture",
+         "title": "Corporate culture",
+         "outcomes": [
+          {
+           "code": "3.4.2",
+           "text": "Compare strong and weak cultures."
+          },
+          {
+           "code": null,
+           "text": "Classify power, role, task and person cultures."
+          },
+          {
+           "code": null,
+           "text": "Explain how culture forms."
+          },
+          {
+           "code": null,
+           "text": "Explain difficulties of changing culture."
+          }
+         ]
+        },
+        {
+         "id": "shareholders-versus-stakeholders",
+         "title": "Shareholders versus stakeholders",
+         "outcomes": [
+          {
+           "code": "3.4.3",
+           "text": "Identify internal and external stakeholders."
+          },
+          {
+           "code": null,
+           "text": "Explain stakeholder objectives."
+          },
+          {
+           "code": null,
+           "text": "Compare stakeholder and shareholder views."
+          },
+          {
+           "code": null,
+           "text": "Explain conflict between profit and wider objectives."
+          }
+         ]
+        },
+        {
+         "id": "business-ethics",
+         "title": "Business ethics",
+         "outcomes": [
+          {
+           "code": "3.4.4",
+           "text": "Explain ethics and profit trade-offs."
+          },
+          {
+           "code": null,
+           "text": "Explain pay and rewards."
+          },
+          {
+           "code": null,
+           "text": "Explain corporate social responsibility."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "3-5-assessing-competitiveness",
+       "title": "3.5 Assessing competitiveness",
+       "subtopics": [
+        {
+         "id": "interpretation-of-financial-statements",
+         "title": "Interpretation of financial statements",
+         "outcomes": [
+          {
+           "code": "3.5.1",
+           "text": "Interpret the income statement: key information and stakeholder interest."
+          },
+          {
+           "code": null,
+           "text": "Interpret the statement of financial position: key information and stakeholder interest."
+          }
+         ]
+        },
+        {
+         "id": "ratio-analysis",
+         "title": "Ratio analysis",
+         "outcomes": [
+          {
+           "code": "3.5.2",
+           "text": "Calculate gearing and ROCE."
+          },
+          {
+           "code": null,
+           "text": "Interpret ratios for decisions."
+          },
+          {
+           "code": null,
+           "text": "Evaluate limits of ratio analysis."
+          }
+         ]
+        },
+        {
+         "id": "human-resources",
+         "title": "Human resources",
+         "outcomes": [
+          {
+           "code": "3.5.3",
+           "text": "Calculate and interpret labour productivity, turnover, retention and absenteeism."
+          },
+          {
+           "code": null,
+           "text": "Explain HR strategies: rewards, share ownership, consultation and empowerment."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "3-6-managing-change",
+       "title": "3.6 Managing change",
+       "subtopics": [
+        {
+         "id": "causes-and-effects-of-change",
+         "title": "Causes and effects of change",
+         "outcomes": [
+          {
+           "code": "3.6.1",
+           "text": "Explain causes of change: size, poor performance, ownership, leadership and external factors."
+          },
+          {
+           "code": null,
+           "text": "Explain effects on competitiveness, productivity, finances and stakeholders."
+          }
+         ]
+        },
+        {
+         "id": "key-factors-in-change",
+         "title": "Key factors in change",
+         "outcomes": [
+          {
+           "code": "3.6.2",
+           "text": "Explain role of culture."
+          },
+          {
+           "code": null,
+           "text": "Explain role of organisation size."
+          },
+          {
+           "code": null,
+           "text": "Explain role of speed of change."
+          },
+          {
+           "code": null,
+           "text": "Explain managing resistance to change."
+          }
+         ]
+        },
+        {
+         "id": "scenario-planning",
+         "title": "Scenario planning",
+         "outcomes": [
+          {
+           "code": "3.6.3",
+           "text": "Identify key risks by risk assessment."
+          },
+          {
+           "code": null,
+           "text": "Plan risk mitigation: continuity and succession."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "theme-4-global-business",
+     "title": "Theme 4: Global business",
+     "topics": [
+      {
+       "id": "4-1-globalisation",
+       "title": "4.1 Globalisation",
+       "subtopics": [
+        {
+         "id": "growing-economies",
+         "title": "Growing economies",
+         "outcomes": [
+          {
+           "code": "4.1.1",
+           "text": "Compare UK and emerging economy growth."
+          },
+          {
+           "code": null,
+           "text": "Explain growing economic power in Asia, Africa and elsewhere."
+          },
+          {
+           "code": null,
+           "text": "Explain growth implications for trade and employment."
+          },
+          {
+           "code": null,
+           "text": "Use growth indicators: GDP per capita, literacy, health and HDI."
+          }
+         ]
+        },
+        {
+         "id": "international-trade-and-business-growth",
+         "title": "International trade and business growth",
+         "outcomes": [
+          {
+           "code": "4.1.2",
+           "text": "Explain exports and imports."
+          },
+          {
+           "code": null,
+           "text": "Link specialisation to competitive advantage."
+          },
+          {
+           "code": null,
+           "text": "Explain foreign direct investment and growth."
+          }
+         ]
+        },
+        {
+         "id": "factors-contributing-to-increased-globalisation",
+         "title": "Factors contributing to increased globalisation",
+         "outcomes": [
+          {
+           "code": "4.1.3",
+           "text": "Explain trade liberalisation and political change."
+          },
+          {
+           "code": null,
+           "text": "Explain cheaper transport and communication."
+          },
+          {
+           "code": null,
+           "text": "Explain growth of transnationals and FDI."
+          },
+          {
+           "code": null,
+           "text": "Explain migration, labour force growth and structural change."
+          }
+         ]
+        },
+        {
+         "id": "protectionism",
+         "title": "Protectionism",
+         "outcomes": [
+          {
+           "code": "4.1.4",
+           "text": "Explain tariffs."
+          },
+          {
+           "code": null,
+           "text": "Explain import quotas."
+          },
+          {
+           "code": null,
+           "text": "Explain other barriers: legislation and subsidies."
+          }
+         ]
+        },
+        {
+         "id": "trading-blocs",
+         "title": "Trading blocs",
+         "outcomes": [
+          {
+           "code": "4.1.5",
+           "text": "Describe EU, ASEAN and NAFTA expansion."
+          },
+          {
+           "code": null,
+           "text": "Explain impact of trading blocs on businesses."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "4-2-global-markets-and-business-expansion",
+       "title": "4.2 Global markets and business expansion",
+       "subtopics": [
+        {
+         "id": "conditions-that-prompt-trade",
+         "title": "Conditions that prompt trade",
+         "outcomes": [
+          {
+           "code": "4.2.1",
+           "text": "Explain push factors: saturated markets and competition."
+          },
+          {
+           "code": null,
+           "text": "Explain pull factors: economies of scale and risk spreading."
+          },
+          {
+           "code": null,
+           "text": "Explain off-shoring and outsourcing."
+          },
+          {
+           "code": null,
+           "text": "Explain extending the life cycle through multiple markets."
+          }
+         ]
+        },
+        {
+         "id": "assessment-of-a-country-as-a-market",
+         "title": "Assessment of a country as a market",
+         "outcomes": [
+          {
+           "code": "4.2.2",
+           "text": "Assess a country as a market: income, ease of business, infrastructure, stability and exchange rate."
+          }
+         ]
+        },
+        {
+         "id": "assessment-of-a-country-as-a-production-location",
+         "title": "Assessment of a country as a production location",
+         "outcomes": [
+          {
+           "code": "4.2.3",
+           "text": "Assess a country for production: costs, labour skills, infrastructure, trade bloc, incentives, stability, resources and return."
+          }
+         ]
+        },
+        {
+         "id": "global-mergers-and-joint-ventures",
+         "title": "Global mergers and joint ventures",
+         "outcomes": [
+          {
+           "code": "4.2.4",
+           "text": "Explain risk spreading."
+          },
+          {
+           "code": null,
+           "text": "Explain entering new markets and blocs."
+          },
+          {
+           "code": null,
+           "text": "Explain acquiring brands and patents."
+          },
+          {
+           "code": null,
+           "text": "Explain securing resources."
+          },
+          {
+           "code": null,
+           "text": "Explain maintaining global competitiveness."
+          }
+         ]
+        },
+        {
+         "id": "global-competitiveness",
+         "title": "Global competitiveness",
+         "outcomes": [
+          {
+           "code": "4.2.5",
+           "text": "Explain exchange rate effects."
+          },
+          {
+           "code": null,
+           "text": "Explain advantage through cost and differentiation."
+          },
+          {
+           "code": null,
+           "text": "Explain skill shortages and competitiveness."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "4-3-global-marketing",
+       "title": "4.3 Global marketing",
+       "subtopics": [
+        {
+         "id": "marketing",
+         "title": "Marketing",
+         "outcomes": [
+          {
+           "code": "4.3.1",
+           "text": "Explain global marketing strategy and glocalisation."
+          },
+          {
+           "code": null,
+           "text": "Compare ethnocentric, geocentric and polycentric approaches."
+          },
+          {
+           "code": null,
+           "text": "Adapt the 4Ps and Ansoff's Matrix to global markets."
+          }
+         ]
+        },
+        {
+         "id": "niche-markets",
+         "title": "Niche markets",
+         "outcomes": [
+          {
+           "code": "4.3.2",
+           "text": "Explain cultural diversity and differing values."
+          },
+          {
+           "code": null,
+           "text": "Describe features of global niche markets."
+          },
+          {
+           "code": null,
+           "text": "Adapt the 4Ps to global niches."
+          }
+         ]
+        },
+        {
+         "id": "cultural-and-social-factors",
+         "title": "Cultural and social factors",
+         "outcomes": [
+          {
+           "code": "4.3.3",
+           "text": "Consider cultural differences, tastes, language, unintended meanings, poor translation and inappropriate branding."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "4-4-global-industries-and-companies-multinationa",
+       "title": "4.4 Global industries and companies (multinational corporations)",
+       "subtopics": [
+        {
+         "id": "the-impact-of-mncs",
+         "title": "The impact of MNCs",
+         "outcomes": [
+          {
+           "code": "4.4.1",
+           "text": "Explain MNC impact on the local economy: labour, businesses, community and environment."
+          },
+          {
+           "code": null,
+           "text": "Explain MNC impact on the national economy: FDI, balance of payments, skills transfer, consumers, culture and tax."
+          }
+         ]
+        },
+        {
+         "id": "ethics",
+         "title": "Ethics",
+         "outcomes": [
+          {
+           "code": "4.4.2",
+           "text": "Explain stakeholder conflicts."
+          },
+          {
+           "code": null,
+           "text": "Explain pay and working conditions."
+          },
+          {
+           "code": null,
+           "text": "Explain emissions and waste."
+          },
+          {
+           "code": null,
+           "text": "Explain labour exploitation and child labour."
+          },
+          {
+           "code": null,
+           "text": "Explain misleading labelling and promotion."
+          }
+         ]
+        },
+        {
+         "id": "controlling-mncs",
+         "title": "Controlling MNCs",
+         "outcomes": [
+          {
+           "code": "4.4.3",
+           "text": "Explain controls on MNCs: political influence, legal control, pressure groups and social media."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "build": {
+  "builtAt": "2026-10-14T10:25:13.939Z",
+  "model": "claude-agent",
+  "usd": 0,
+  "expectedCodes": 80,
+  "coverage": 1,
+  "missingCodes": [],
+  "counts": {
+   "grades": 1,
+   "units": 4,
+   "topics": 20,
+   "subtopics": 80,
+   "outcomes": 234
+  },
+  "warnings": [
+   "grade Year 12 has no content",
+   "grade Year 13 has no content",
+   "unexpected grade label \"all\""
+  ]
+ }
+}

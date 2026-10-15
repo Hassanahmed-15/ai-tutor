@@ -1,0 +1,789 @@
+{
+ "id": "pk-fbise-af-ssc-2-mathematics",
+ "region": "PK",
+ "framework": "FBISE Assessment Framework (National Curriculum of Pakistan 2022-23)",
+ "board": "FBISE",
+ "qualification": "SSC-II",
+ "subject": "Mathematics",
+ "syllabusCode": null,
+ "gradeSystem": "grade",
+ "source": {
+  "urls": [
+   "https://www.fbise.edu.pk/ModelPaper/2025/Assessment%20Frameworks/SSC-II/Final%20Assessment%20Framework%20%2B%20Model%20Question%20Paper%20Mathematics%20SSC-II.pdf"
+  ],
+  "publisher": "Federal Board of Intermediate and Secondary Education",
+  "licence": "Government publication; structure + our own wording only",
+  "firstExam": "2026"
+ },
+ "grades": [
+  {
+   "grade": "10",
+   "units": [
+    {
+     "id": "a-numbers-and-algebra",
+     "title": "A: Numbers and Algebra",
+     "topics": [
+      {
+       "id": "complex-numbers",
+       "title": "Complex Numbers",
+       "subtopics": [
+        {
+         "id": "complex-numbers-and-conjugates",
+         "title": "Complex numbers and conjugates",
+         "outcomes": [
+          {
+           "code": "M-10-A-01",
+           "text": "Recognise complex numbers, conjugates and modulus."
+          },
+          {
+           "code": "M-10-A-02",
+           "text": "Add, subtract, multiply and divide complex numbers using algebra rules."
+          },
+          {
+           "code": "M-10-A-03",
+           "text": "Show the additive and multiplicative identities for complex numbers."
+          },
+          {
+           "code": "M-10-A-04",
+           "text": "Find the additive and multiplicative inverse of a complex number."
+          },
+          {
+           "code": "M-10-A-05",
+           "text": "Show the standard properties of conjugates and modulus of complex numbers."
+          }
+         ]
+        },
+        {
+         "id": "real-and-imaginary-parts-equations",
+         "title": "Real and imaginary parts, equations",
+         "outcomes": [
+          {
+           "code": "M-10-A-06",
+           "text": "Find real and imaginary parts of powers and quotients of complex numbers."
+          },
+          {
+           "code": "M-10-A-07",
+           "text": "Show with examples how maths models make predictions in science."
+          },
+          {
+           "code": "M-10-A-08",
+           "text": "Solve pairs of linear equations with complex coefficients."
+          }
+         ]
+        },
+        {
+         "id": "geometry-of-complex-numbers",
+         "title": "Geometry of complex numbers",
+         "outcomes": [
+          {
+           "code": "M-10-A-09",
+           "text": "Use the plane picture of a complex number."
+          },
+          {
+           "code": "M-10-A-10",
+           "text": "Use the geometric meaning of modulus."
+          },
+          {
+           "code": "M-10-A-11",
+           "text": "Use the plane picture of complex arithmetic."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "quadratic-equations-i",
+       "title": "Quadratic Equations I",
+       "subtopics": [
+        {
+         "id": "solving-quadratics",
+         "title": "Solving quadratics",
+         "outcomes": [
+          {
+           "code": "M-10-A-12",
+           "text": "Solve quadratics by factoring, formula, completing the square and graphs."
+          },
+          {
+           "code": "M-10-A-13",
+           "text": "Draw graphs of quadratic functions."
+          }
+         ]
+        },
+        {
+         "id": "roots-coefficients-and-discriminant",
+         "title": "Roots, coefficients and discriminant",
+         "outcomes": [
+          {
+           "code": "M-10-A-14",
+           "text": "Relate the roots of a quadratic to its coefficients."
+          },
+          {
+           "code": "M-10-A-15",
+           "text": "Build a quadratic from given roots."
+          },
+          {
+           "code": "M-10-A-16",
+           "text": "Find the discriminant of a quadratic."
+          },
+          {
+           "code": "M-10-A-17",
+           "text": "Tell the nature of roots from the discriminant."
+          }
+         ]
+        },
+        {
+         "id": "quadratic-systems-inequalities-problems",
+         "title": "Quadratic systems, inequalities, problems",
+         "outcomes": [
+          {
+           "code": "M-10-A-18",
+           "text": "Solve a linear and a quadratic equation together."
+          },
+          {
+           "code": "M-10-A-19",
+           "text": "Solve word problems using quadratics."
+          },
+          {
+           "code": "M-10-A-20",
+           "text": "Solve quadratic inequalities in one unknown."
+          },
+          {
+           "code": "M-10-A-21",
+           "text": "Apply quadratics and inequalities to real problems."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "matrices-and-determinants",
+       "title": "Matrices and Determinants",
+       "subtopics": [
+        {
+         "id": "matrix-operations",
+         "title": "Matrix operations",
+         "outcomes": [
+          {
+           "code": "M-10-A-22",
+           "text": "Show information as a 2 by 2 matrix."
+          },
+          {
+           "code": "M-10-A-23",
+           "text": "Add, subtract and multiply two matrices."
+          },
+          {
+           "code": "M-10-A-24",
+           "text": "Multiply a matrix by a scalar."
+          }
+         ]
+        },
+        {
+         "id": "determinant-inverse-and-systems",
+         "title": "Determinant, inverse and systems",
+         "outcomes": [
+          {
+           "code": "M-10-A-25",
+           "text": "Find the determinant and inverse of a 2 by 2 matrix."
+          },
+          {
+           "code": "M-10-A-26",
+           "text": "Solve two linear equations by matrix inverse and Cramer's rule."
+          },
+          {
+           "code": "M-10-A-27",
+           "text": "Show with examples how maths drives new science and technology."
+          },
+          {
+           "code": "M-10-A-28",
+           "text": "Apply matrices to real problems in engineering, economics and graphics."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "functions-and-graphs",
+       "title": "Functions and Graphs",
+       "subtopics": [
+        {
+         "id": "functions-and-their-types",
+         "title": "Functions and their types",
+         "outcomes": [
+          {
+           "code": "M-10-A-29",
+           "text": "Use function notation and find function values."
+          },
+          {
+           "code": "M-10-A-30",
+           "text": "Identify into, onto, one-to-one and bijective functions with Venn diagrams."
+          }
+         ]
+        },
+        {
+         "id": "composite-and-inverse-functions",
+         "title": "Composite and inverse functions",
+         "outcomes": [
+          {
+           "code": "M-10-A-31",
+           "text": "Explain operations on and composition of functions."
+          },
+          {
+           "code": "M-10-A-32",
+           "text": "Find the inverse of a function."
+          },
+          {
+           "code": "M-10-A-33",
+           "text": "Build composite functions."
+          },
+          {
+           "code": "M-10-A-34",
+           "text": "Apply functions to finance, transport and sales problems."
+          }
+         ]
+        },
+        {
+         "id": "absolute-value-functions",
+         "title": "Absolute value functions",
+         "outcomes": [
+          {
+           "code": "M-10-A-35",
+           "text": "Plot constant, identity, linear and absolute value functions."
+          },
+          {
+           "code": "M-10-A-36",
+           "text": "Solve absolute value equations and inequalities and show answers on a number line."
+          },
+          {
+           "code": "M-10-A-37",
+           "text": "Apply absolute value functions to real problems."
+          },
+          {
+           "code": "M-10-A-38",
+           "text": "Apply functions to finance, transport and sales problems."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "algebraic-fractions",
+       "title": "Algebraic Fractions",
+       "subtopics": [
+        {
+         "id": "rational-expressions",
+         "title": "Rational expressions",
+         "outcomes": [
+          {
+           "code": "M-10-A-39",
+           "text": "Describe rational expressions."
+          },
+          {
+           "code": "M-10-A-40",
+           "text": "Factor and simplify rational expressions."
+          },
+          {
+           "code": "M-10-A-41",
+           "text": "Work with algebraic fractions."
+          },
+          {
+           "code": "M-10-A-42",
+           "text": "Add, subtract, multiply and divide rational expressions."
+          },
+          {
+           "code": "M-10-A-43",
+           "text": "Use rational equations in work and rate problems."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "linear-inequalities-in-two-variables",
+       "title": "Linear Inequalities in Two Variables",
+       "subtopics": [
+        {
+         "id": "two-inequalities-in-the-plane",
+         "title": "Two inequalities in the plane",
+         "outcomes": [
+          {
+           "code": "M-10-A-44",
+           "text": "Solve two linear inequalities in two unknowns together."
+          },
+          {
+           "code": "M-10-A-45",
+           "text": "Find the plane region bounded by two linear inequalities."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "quadratic-equations-ii",
+       "title": "Quadratic Equations II",
+       "subtopics": [
+        {
+         "id": "solving-with-other-methods",
+         "title": "Solving with other methods",
+         "outcomes": [
+          {
+           "code": "M-10-A-46",
+           "text": "Solve quadratics by factoring, completing the square and the formula."
+          },
+          {
+           "code": "M-10-A-47",
+           "text": "Change the subject of a formula."
+          },
+          {
+           "code": "M-10-A-48",
+           "text": "Solve fractional equations that reduce to quadratics."
+          },
+          {
+           "code": "M-10-A-49",
+           "text": "Model real situations with a quadratic equation."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "plotting-and-interpreting-graphs",
+       "title": "Plotting and Interpreting Graphs",
+       "subtopics": [
+        {
+         "id": "graphs-of-power-functions",
+         "title": "Graphs of power functions",
+         "outcomes": [
+          {
+           "code": "M-10-A-50",
+           "text": "Draw graphs of y = a x^n and sums of these."
+          },
+          {
+           "code": "M-10-A-51",
+           "text": "Solve a linear-quadratic pair graphically."
+          },
+          {
+           "code": "M-10-A-52",
+           "text": "Show exponential growth and decay from a graph."
+          },
+          {
+           "code": "M-10-A-53",
+           "text": "Find gradients of curves using tangents."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "curve-sketching",
+       "title": "Curve Sketching",
+       "subtopics": [
+        {
+         "id": "sketching-curves",
+         "title": "Sketching curves",
+         "outcomes": [
+          {
+           "code": "M-10-A-54",
+           "text": "Sketch and read graphs of linear functions."
+          },
+          {
+           "code": "M-10-A-55",
+           "text": "Sketch and read quadratic, cubic, reciprocal and exponential graphs."
+          },
+          {
+           "code": "M-10-A-56",
+           "text": "Sketch y = x^n for positive, negative and rational n."
+          },
+          {
+           "code": "M-10-A-57",
+           "text": "Use graph sketching for tax, income and cost-profit problems."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "b-geometry",
+     "title": "B: Geometry",
+     "topics": [
+      {
+       "id": "vectors-in-the-plane",
+       "title": "Vectors in the Plane",
+       "subtopics": [
+        {
+         "id": "vectors-and-coordinates",
+         "title": "Vectors and coordinates",
+         "outcomes": [
+          {
+           "code": "M-10-B-01",
+           "text": "Set up rectangular coordinates in the plane."
+          },
+          {
+           "code": "M-10-B-02",
+           "text": "Show vectors as directed line segments."
+          },
+          {
+           "code": "M-10-B-03",
+           "text": "Write a vector using two non-parallel vectors."
+          },
+          {
+           "code": "M-10-B-04",
+           "text": "Write a vector using position vectors."
+          },
+          {
+           "code": "M-10-B-05",
+           "text": "Show a translation by a vector."
+          }
+         ]
+        },
+        {
+         "id": "vector-operations",
+         "title": "Vector operations",
+         "outcomes": [
+          {
+           "code": "M-10-B-06",
+           "text": "Find the magnitude of a vector."
+          },
+          {
+           "code": "M-10-B-07",
+           "text": "Add and subtract vectors."
+          },
+          {
+           "code": "M-10-B-08",
+           "text": "Multiply a vector by a scalar."
+          },
+          {
+           "code": "M-10-B-09",
+           "text": "Solve geometry problems using vectors."
+          },
+          {
+           "code": "M-10-B-10",
+           "text": "Apply vectors to real problems like crosswinds and roller coasters."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "trigonometry",
+       "title": "Trigonometry",
+       "subtopics": [
+        {
+         "id": "trig-beyond-right-angles",
+         "title": "Trig beyond right angles",
+         "outcomes": [
+          {
+           "code": "M-10-B-11",
+           "text": "Extend sine and cosine to angles between 90 and 180 degrees."
+          },
+          {
+           "code": "M-10-B-12",
+           "text": "Use sine and cosine laws and area formulas in any triangle."
+          }
+         ]
+        },
+        {
+         "id": "3d-trig-and-applications",
+         "title": "3D trig and applications",
+         "outcomes": [
+          {
+           "code": "M-10-B-13",
+           "text": "Solve simple trig problems in three dimensions."
+          },
+          {
+           "code": "M-10-B-14",
+           "text": "Apply trig to games, flight, navigation and sound."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "chords-and-arcs-of-a-circle",
+       "title": "Chords and Arcs of a Circle",
+       "subtopics": [
+        {
+         "id": "circle-through-points-and-chords",
+         "title": "Circle through points and chords",
+         "outcomes": [
+          {
+           "code": "M-10-B-15",
+           "text": "Use that one circle passes through three non-collinear points."
+          },
+          {
+           "code": "M-10-B-16",
+           "text": "Use that the line from the centre perpendicular to a chord property holds."
+          },
+          {
+           "code": "M-10-B-17",
+           "text": "Use that a perpendicular from the centre bisects the chord."
+          },
+          {
+           "code": "M-10-B-18",
+           "text": "Use that equal chords are equally far from the centre."
+          },
+          {
+           "code": "M-10-B-19",
+           "text": "Use that chords equally far from the centre are equal."
+          }
+         ]
+        },
+        {
+         "id": "arcs-chords-and-central-angles",
+         "title": "Arcs, chords and central angles",
+         "outcomes": [
+          {
+           "code": "M-10-B-20",
+           "text": "Use that equal arcs have equal chords."
+          },
+          {
+           "code": "M-10-B-21",
+           "text": "Use that equal chords have equal arcs."
+          },
+          {
+           "code": "M-10-B-22",
+           "text": "Use that equal chords subtend equal angles at the centre."
+          },
+          {
+           "code": "M-10-B-23",
+           "text": "Use that equal central angles give equal chords."
+          },
+          {
+           "code": "M-10-B-24",
+           "text": "Apply chords and arcs to bridges, rainbows and tracks."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "tangent-and-angles-of-a-circle",
+       "title": "Tangent and Angles of a Circle",
+       "subtopics": [
+        {
+         "id": "tangent-properties",
+         "title": "Tangent properties",
+         "outcomes": [
+          {
+           "code": "M-10-B-25",
+           "text": "Use that a line perpendicular to a radius at its end is a tangent."
+          },
+          {
+           "code": "M-10-B-26",
+           "text": "Use that a tangent is perpendicular to the radius at the contact point."
+          },
+          {
+           "code": "M-10-B-27",
+           "text": "Use that tangents from an outside point are equal."
+          },
+          {
+           "code": "M-10-B-28",
+           "text": "Use the distance between centres of touching circles."
+          }
+         ]
+        },
+        {
+         "id": "angles-in-a-circle",
+         "title": "Angles in a circle",
+         "outcomes": [
+          {
+           "code": "M-10-B-29",
+           "text": "Use that a central angle is double the inscribed angle on the same arc."
+          },
+          {
+           "code": "M-10-B-30",
+           "text": "Use that angles in the same segment are equal."
+          },
+          {
+           "code": "M-10-B-31",
+           "text": "Use the angle in a semicircle and in larger or smaller segments."
+          },
+          {
+           "code": "M-10-B-32",
+           "text": "Use that opposite angles of a cyclic quadrilateral add to 180 degrees."
+          },
+          {
+           "code": "M-10-B-33",
+           "text": "Apply tangents and circle angles to architecture."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "practical-geometry-of-circles",
+       "title": "Practical Geometry of Circles",
+       "subtopics": [
+        {
+         "id": "constructing-circles",
+         "title": "Constructing circles",
+         "outcomes": [
+          {
+           "code": "M-10-B-34",
+           "text": "Find the centre of a given circle."
+          },
+          {
+           "code": "M-10-B-35",
+           "text": "Draw a circle through three non-collinear points."
+          },
+          {
+           "code": "M-10-B-36",
+           "text": "Complete a circle from a part of its circumference."
+          }
+         ]
+        },
+        {
+         "id": "constructing-tangents",
+         "title": "Constructing tangents",
+         "outcomes": [
+          {
+           "code": "M-10-B-37",
+           "text": "Draw a tangent to an arc without using the centre."
+          },
+          {
+           "code": "M-10-B-38",
+           "text": "Draw a tangent to a circle from a point on or outside it."
+          },
+          {
+           "code": "M-10-B-39",
+           "text": "Draw two tangents meeting at a given angle."
+          },
+          {
+           "code": "M-10-B-40",
+           "text": "Apply circle constructions to tracks, parks and wheels."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "c-information-handling",
+     "title": "C: Information Handling",
+     "topics": [
+      {
+       "id": "cumulative-frequency-distribution",
+       "title": "Cumulative Frequency Distribution",
+       "subtopics": [
+        {
+         "id": "cumulative-frequency",
+         "title": "Cumulative frequency",
+         "outcomes": [
+          {
+           "code": "M-10-C-01",
+           "text": "Build cumulative frequency tables, polygons and ogives."
+          },
+          {
+           "code": "M-10-C-02",
+           "text": "Read median, quartiles, deciles and percentiles from a cumulative curve."
+          }
+         ]
+        },
+        {
+         "id": "box-plots",
+         "title": "Box plots",
+         "outcomes": [
+          {
+           "code": "M-10-C-03",
+           "text": "Read and analyse box and whisker plots."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "correlation",
+       "title": "Correlation",
+       "subtopics": [
+        {
+         "id": "scatter-diagrams-and-correlation",
+         "title": "Scatter diagrams and correlation",
+         "outcomes": [
+          {
+           "code": "M-10-C-04",
+           "text": "Draw and read scatter diagrams with lines of best fit."
+          },
+          {
+           "code": "M-10-C-05",
+           "text": "Judge correlation from a scatter diagram."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "measures-of-dispersion",
+       "title": "Measures of Dispersion",
+       "subtopics": [
+        {
+         "id": "range-variance-standard-deviation",
+         "title": "Range, variance, standard deviation",
+         "outcomes": [
+          {
+           "code": "M-10-C-06",
+           "text": "Find range, standard deviation and variance for grouped data."
+          },
+          {
+           "code": "M-10-C-07",
+           "text": "Compare two data sets with mean and standard deviation."
+          },
+          {
+           "code": "M-10-C-08",
+           "text": "Solve real situations with grouped variance and deviation."
+          },
+          {
+           "code": "M-10-C-09",
+           "text": "Use dispersion to judge consistency and variability."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "probability-of-combined-events",
+       "title": "Probability of Combined Events",
+       "subtopics": [
+        {
+         "id": "combined-events-and-laws",
+         "title": "Combined events and laws",
+         "outcomes": [
+          {
+           "code": "M-10-C-10",
+           "text": "Find probability of combined events with diagrams and trees."
+          },
+          {
+           "code": "M-10-C-11",
+           "text": "Use the addition law for mutually exclusive events."
+          },
+          {
+           "code": "M-10-C-12",
+           "text": "Use the multiplication law for independent and dependent events."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "build": {
+  "builtAt": "2026-10-14T08:10:23.896Z",
+  "model": "claude-agent",
+  "usd": 0,
+  "expectedCodes": 109,
+  "coverage": 1,
+  "missingCodes": [],
+  "counts": {
+   "grades": 1,
+   "units": 3,
+   "topics": 18,
+   "subtopics": 31,
+   "outcomes": 109
+  },
+  "warnings": []
+ }
+}

@@ -1,0 +1,826 @@
+[
+ {
+  "grade": "9",
+  "unit": "Domain A: Computer System",
+  "topic": "Computer architecture and software",
+  "subtopic": "Von Neumann architecture and software",
+  "code": "CS-09-A-01",
+  "outcome": "Define a system and the Von Neumann architecture, its registers and the types of computer software."
+ },
+ {
+  "grade": "9",
+  "unit": "Domain A: Computer System",
+  "topic": "Computer architecture and software",
+  "subtopic": "Data, memory and programming languages",
+  "code": "CS-09-A-02",
+  "outcome": "Explain binary and other number systems, binary addition and subtraction, memory types, data storage units, programming language types, translators and IDE parts."
+ },
+ {
+  "grade": "9",
+  "unit": "Domain A: Computer System",
+  "topic": "Networks",
+  "subtopic": "Data communication and network devices",
+  "code": "CS-09-A-03",
+  "outcome": "Define data communication and its parts, and name network devices like hub, router, switch, gateway and bridge."
+ },
+ {
+  "grade": "10",
+  "unit": "Domain A: Computer System",
+  "topic": "Data representation",
+  "subtopic": "Number systems and data encoding",
+  "code": "CS-10-A-01",
+  "outcome": "Define number systems and encoding schemes for text, image, audio and video."
+ },
+ {
+  "grade": "10",
+  "unit": "Domain A: Computer System",
+  "topic": "Data representation",
+  "subtopic": "Number systems and data encoding",
+  "code": "CS-10-A-02",
+  "outcome": "Convert between number systems and do binary arithmetic including 1's and 2's complement."
+ },
+ {
+  "grade": "10",
+  "unit": "Domain A: Computer System",
+  "topic": "Operating systems and networks",
+  "subtopic": "Operating systems and topologies",
+  "code": "CS-10-A-03",
+  "outcome": "Describe operating system functions and types, processes and the process state model."
+ },
+ {
+  "grade": "10",
+  "unit": "Domain A: Computer System",
+  "topic": "Operating systems and networks",
+  "subtopic": "Operating systems and topologies",
+  "code": "CS-10-A-04",
+  "outcome": "Explain the features, advantages and disadvantages of bus, ring, star and mesh topologies."
+ },
+ {
+  "grade": "11",
+  "unit": "Domain A: Computer System",
+  "topic": "Logic and software development",
+  "subtopic": "Digital logic",
+  "code": "CS-11-A-01",
+  "outcome": "Know analog and digital data, logic gates and Boolean functions."
+ },
+ {
+  "grade": "11",
+  "unit": "Domain A: Computer System",
+  "topic": "Logic and software development",
+  "subtopic": "Digital logic",
+  "code": "CS-11-A-02",
+  "outcome": "Build truth tables, logic circuits and simplified logic."
+ },
+ {
+  "grade": "11",
+  "unit": "Domain A: Computer System",
+  "topic": "Logic and software development",
+  "subtopic": "Software development and network models",
+  "code": "CS-11-A-03",
+  "outcome": "Explain the software development life cycle stages and methodologies like waterfall and Agile."
+ },
+ {
+  "grade": "11",
+  "unit": "Domain A: Computer System",
+  "topic": "Logic and software development",
+  "subtopic": "Software development and network models",
+  "code": "CS-11-A-04",
+  "outcome": "Understand topology reliability and scalability, the OSI model, protocols and the TCP/IP model."
+ },
+ {
+  "grade": "12",
+  "unit": "Domain A: Computer System",
+  "topic": "Human-computer interaction",
+  "subtopic": "HCI fundamentals and design principles",
+  "code": "CS-12-A-01",
+  "outcome": "Define user needs for interface design and explain HCI basics and why it matters."
+ },
+ {
+  "grade": "12",
+  "unit": "Domain A: Computer System",
+  "topic": "Human-computer interaction",
+  "subtopic": "HCI fundamentals and design principles",
+  "code": "CS-12-A-02",
+  "outcome": "Describe design principles such as accessibility, contrast, readability and color-blind friendly design, plus HCI testing and evaluation."
+ },
+ {
+  "grade": "12",
+  "unit": "Domain A: Computer System",
+  "topic": "Human-computer interaction",
+  "subtopic": "Building and testing UI/UX",
+  "code": "CS-12-A-03",
+  "outcome": "Implement a UI/UX design with a tool like Figma or Adobe XD."
+ },
+ {
+  "grade": "12",
+  "unit": "Domain A: Computer System",
+  "topic": "Human-computer interaction",
+  "subtopic": "Building and testing UI/UX",
+  "code": "CS-12-A-04",
+  "outcome": "Examine the testing and evaluation of a UI/UX design."
+ },
+ {
+  "grade": "9",
+  "unit": "Domain B: Computational Thinking & Algorithms",
+  "topic": "Computational thinking",
+  "subtopic": "Problem-solving techniques",
+  "code": "CS-09-B-01",
+  "outcome": "Explain decomposition, abstraction, pattern recognition and algorithmic thinking."
+ },
+ {
+  "grade": "9",
+  "unit": "Domain B: Computational Thinking & Algorithms",
+  "topic": "Computational thinking",
+  "subtopic": "Problem-solving techniques",
+  "code": "CS-09-B-02",
+  "outcome": "Define the Input-Process-Output model for systematic problem solving."
+ },
+ {
+  "grade": "9",
+  "unit": "Domain B: Computational Thinking & Algorithms",
+  "topic": "Computational thinking",
+  "subtopic": "Applying computational thinking",
+  "code": "CS-09-B-03",
+  "outcome": "Apply computational thinking to real-world problems."
+ },
+ {
+  "grade": "9",
+  "unit": "Domain B: Computational Thinking & Algorithms",
+  "topic": "Computational thinking",
+  "subtopic": "Applying computational thinking",
+  "code": "CS-09-B-04",
+  "outcome": "Create an IPO model to solve a complex real-world scenario."
+ },
+ {
+  "grade": "10",
+  "unit": "Domain B: Computational Thinking & Algorithms",
+  "topic": "Algorithms",
+  "subtopic": "Pseudocode, flowcharts and dry runs",
+  "code": "CS-10-B-01",
+  "outcome": "Apply computational thinking to design and develop solutions with pseudocode and flowcharts."
+ },
+ {
+  "grade": "10",
+  "unit": "Domain B: Computational Thinking & Algorithms",
+  "topic": "Algorithms",
+  "subtopic": "Pseudocode, flowcharts and dry runs",
+  "code": "CS-10-B-02",
+  "outcome": "Analyze algorithms using dry runs and trace tables."
+ },
+ {
+  "grade": "10",
+  "unit": "Domain B: Computational Thinking & Algorithms",
+  "topic": "Algorithms",
+  "subtopic": "Evaluating and designing algorithms",
+  "code": "CS-10-B-03",
+  "outcome": "Evaluate algorithm correctness and efficiency by finding and justifying structural and logical errors."
+ },
+ {
+  "grade": "10",
+  "unit": "Domain B: Computational Thinking & Algorithms",
+  "topic": "Algorithms",
+  "subtopic": "Evaluating and designing algorithms",
+  "code": "CS-10-B-04",
+  "outcome": "Create pseudocode and flowcharts for scenarios like admission, book issuing and reservation systems."
+ },
+ {
+  "grade": "11",
+  "unit": "Domain B: Computational Thinking & Algorithms",
+  "topic": "Algorithms",
+  "subtopic": "Computational thinking in real problems",
+  "code": "CS-11-B-01",
+  "outcome": "Explain real-world problems by finding their components and applying decomposition and pattern recognition."
+ },
+ {
+  "grade": "11",
+  "unit": "Domain B: Computational Thinking & Algorithms",
+  "topic": "Algorithms",
+  "subtopic": "Computational thinking in real problems",
+  "code": "CS-11-B-02",
+  "outcome": "Describe the role of algorithms in efficiency and accuracy."
+ },
+ {
+  "grade": "11",
+  "unit": "Domain B: Computational Thinking & Algorithms",
+  "topic": "Algorithms",
+  "subtopic": "Searching and sorting",
+  "code": "CS-11-B-03",
+  "outcome": "Apply searching algorithms such as linear and binary search."
+ },
+ {
+  "grade": "11",
+  "unit": "Domain B: Computational Thinking & Algorithms",
+  "topic": "Algorithms",
+  "subtopic": "Searching and sorting",
+  "code": "CS-11-B-04",
+  "outcome": "Apply bubble and insertion sort to organize and retrieve data."
+ },
+ {
+  "grade": "11",
+  "unit": "Domain B: Computational Thinking & Algorithms",
+  "topic": "Algorithms",
+  "subtopic": "Searching and sorting",
+  "code": "CS-11-B-05",
+  "outcome": "Create real-world solutions using abstraction, decomposition and pattern recognition."
+ },
+ {
+  "grade": "12",
+  "unit": "Domain B: Computational Thinking & Algorithms",
+  "topic": "Data structures and algorithms",
+  "subtopic": "Data structures",
+  "code": "CS-12-B-01",
+  "outcome": "Define data structures and tell linear from non-linear forms."
+ },
+ {
+  "grade": "12",
+  "unit": "Domain B: Computational Thinking & Algorithms",
+  "topic": "Data structures and algorithms",
+  "subtopic": "Data structures",
+  "code": "CS-12-B-02",
+  "outcome": "Explain data retrieval in arrays, lists and queues."
+ },
+ {
+  "grade": "12",
+  "unit": "Domain B: Computational Thinking & Algorithms",
+  "topic": "Data structures and algorithms",
+  "subtopic": "Data structures",
+  "code": "CS-12-B-06",
+  "outcome": "Develop arrays, lists and queues for a real-world scenario."
+ },
+ {
+  "grade": "12",
+  "unit": "Domain B: Computational Thinking & Algorithms",
+  "topic": "Data structures and algorithms",
+  "subtopic": "Advanced algorithms",
+  "code": "CS-12-B-03",
+  "outcome": "Apply selection, quick and merge sort to organize and retrieve data."
+ },
+ {
+  "grade": "12",
+  "unit": "Domain B: Computational Thinking & Algorithms",
+  "topic": "Data structures and algorithms",
+  "subtopic": "Advanced algorithms",
+  "code": "CS-12-B-04",
+  "outcome": "Analyze algorithm correctness using trace tables and find structural and logical issues."
+ },
+ {
+  "grade": "12",
+  "unit": "Domain B: Computational Thinking & Algorithms",
+  "topic": "Data structures and algorithms",
+  "subtopic": "Advanced algorithms",
+  "code": "CS-12-B-05",
+  "outcome": "Evaluate algorithm clarity and efficiency through modularity, readability and steps, and suggest refinements."
+ },
+ {
+  "grade": "9",
+  "unit": "Domain C: Programming Fundamentals",
+  "topic": "Web development",
+  "subtopic": "HTML and CSS",
+  "code": "CS-09-C-01",
+  "outcome": "Define the features of web development and static websites."
+ },
+ {
+  "grade": "9",
+  "unit": "Domain C: Programming Fundamentals",
+  "topic": "Web development",
+  "subtopic": "HTML and CSS",
+  "code": "CS-09-C-02",
+  "outcome": "Explain front-end and back-end website development."
+ },
+ {
+  "grade": "9",
+  "unit": "Domain C: Programming Fundamentals",
+  "topic": "Web development",
+  "subtopic": "HTML and CSS",
+  "code": "CS-09-C-03",
+  "outcome": "Write simple HTML in a text editor and test it in a browser."
+ },
+ {
+  "grade": "9",
+  "unit": "Domain C: Programming Fundamentals",
+  "topic": "Web development",
+  "subtopic": "HTML and CSS",
+  "code": "CS-09-C-04",
+  "outcome": "Analyze an HTML document's structure and tell basic from advanced tags."
+ },
+ {
+  "grade": "9",
+  "unit": "Domain C: Programming Fundamentals",
+  "topic": "Web development",
+  "subtopic": "HTML and CSS",
+  "code": "CS-09-C-05",
+  "outcome": "Format text, images and layout with inline and internal CSS."
+ },
+ {
+  "grade": "9",
+  "unit": "Domain C: Programming Fundamentals",
+  "topic": "Web development",
+  "subtopic": "HTML and CSS",
+  "code": "CS-09-C-06",
+  "outcome": "Build a multi-page static website using HTML structure, links, tables, forms and CSS."
+ },
+ {
+  "grade": "10",
+  "unit": "Domain C: Programming Fundamentals",
+  "topic": "Web development",
+  "subtopic": "JavaScript basics",
+  "code": "CS-10-C-01",
+  "outcome": "Tell static from dynamic websites and understand the DOM."
+ },
+ {
+  "grade": "10",
+  "unit": "Domain C: Programming Fundamentals",
+  "topic": "Web development",
+  "subtopic": "JavaScript basics",
+  "code": "CS-10-C-02",
+  "outcome": "Use basic JavaScript syntax: variables, data types and operators."
+ },
+ {
+  "grade": "10",
+  "unit": "Domain C: Programming Fundamentals",
+  "topic": "Web development",
+  "subtopic": "JavaScript basics",
+  "code": "CS-10-C-03",
+  "outcome": "Apply sequence, selection and repetition in JavaScript."
+ },
+ {
+  "grade": "10",
+  "unit": "Domain C: Programming Fundamentals",
+  "topic": "Web development",
+  "subtopic": "Interactive JavaScript projects",
+  "code": "CS-10-C-04",
+  "outcome": "Develop dynamic websites with interactive features like image sliders and user-input pages."
+ },
+ {
+  "grade": "10",
+  "unit": "Domain C: Programming Fundamentals",
+  "topic": "Web development",
+  "subtopic": "Interactive JavaScript projects",
+  "code": "CS-10-C-05",
+  "outcome": "Use event handling such as onclick, onchange and onmouseover, and build a small project."
+ },
+ {
+  "grade": "10",
+  "unit": "Domain C: Programming Fundamentals",
+  "topic": "Web development",
+  "subtopic": "Interactive JavaScript projects",
+  "code": "CS-10-C-06",
+  "outcome": "Evaluate debugging and tell syntax, runtime and logical errors apart in JavaScript."
+ },
+ {
+  "grade": "10",
+  "unit": "Domain C: Programming Fundamentals",
+  "topic": "Web development",
+  "subtopic": "Interactive JavaScript projects",
+  "code": "CS-10-C-07",
+  "outcome": "Develop a small project such as a quiz app or calculator."
+ },
+ {
+  "grade": "11",
+  "unit": "Domain C: Programming Fundamentals",
+  "topic": "Python programming",
+  "subtopic": "Python foundations",
+  "code": "CS-11-C-01",
+  "outcome": "Understand Python fundamentals and where it is used, such as AI, automation and games."
+ },
+ {
+  "grade": "11",
+  "unit": "Domain C: Programming Fundamentals",
+  "topic": "Python programming",
+  "subtopic": "Python foundations",
+  "code": "CS-11-C-02",
+  "outcome": "Run Python in suitable environments such as IDLE, VS Code or online compilers."
+ },
+ {
+  "grade": "11",
+  "unit": "Domain C: Programming Fundamentals",
+  "topic": "Python programming",
+  "subtopic": "Python foundations",
+  "code": "CS-11-C-03",
+  "outcome": "Apply variables, naming rules, data types and arithmetic, comparison, logical, assignment, bitwise and membership operators, with comments."
+ },
+ {
+  "grade": "11",
+  "unit": "Domain C: Programming Fundamentals",
+  "topic": "Python programming",
+  "subtopic": "Python foundations",
+  "code": "CS-11-C-04",
+  "outcome": "Write programs with input() and print() and debug syntax, runtime and logical errors."
+ },
+ {
+  "grade": "11",
+  "unit": "Domain C: Programming Fundamentals",
+  "topic": "Python programming",
+  "subtopic": "Control flow, libraries and projects",
+  "code": "CS-11-C-05",
+  "outcome": "Apply selection and repetition in Python, using break and continue."
+ },
+ {
+  "grade": "11",
+  "unit": "Domain C: Programming Fundamentals",
+  "topic": "Python programming",
+  "subtopic": "Control flow, libraries and projects",
+  "code": "CS-11-C-06",
+  "outcome": "Use libraries such as math, random and datetime."
+ },
+ {
+  "grade": "11",
+  "unit": "Domain C: Programming Fundamentals",
+  "topic": "Python programming",
+  "subtopic": "Control flow, libraries and projects",
+  "code": "CS-11-C-07",
+  "outcome": "Develop a small Python project such as a log book, calculator, game or word counter."
+ },
+ {
+  "grade": "12",
+  "unit": "Domain C: Programming Fundamentals",
+  "topic": "Python programming",
+  "subtopic": "Collections",
+  "code": "CS-12-C-01",
+  "outcome": "Understand lists, tuples, sets and dictionaries in Python."
+ },
+ {
+  "grade": "12",
+  "unit": "Domain C: Programming Fundamentals",
+  "topic": "Python programming",
+  "subtopic": "Collections",
+  "code": "CS-12-C-02",
+  "outcome": "Build Python programs with these collections for tasks like counting word frequency or organizing data."
+ },
+ {
+  "grade": "12",
+  "unit": "Domain C: Programming Fundamentals",
+  "topic": "Python programming",
+  "subtopic": "Functions and libraries",
+  "code": "CS-12-C-03",
+  "outcome": "Understand function structure, built-in versus user-defined functions, scope, lambda functions and parameters."
+ },
+ {
+  "grade": "12",
+  "unit": "Domain C: Programming Fundamentals",
+  "topic": "Python programming",
+  "subtopic": "Functions and libraries",
+  "code": "CS-12-C-04",
+  "outcome": "Develop programs using built-in libraries such as numpy, pandas and matplotlib, and user-defined functions."
+ },
+ {
+  "grade": "12",
+  "unit": "Domain C: Programming Fundamentals",
+  "topic": "Python programming",
+  "subtopic": "File handling",
+  "code": "CS-12-C-05",
+  "outcome": "Understand file handling and how data is stored, retrieved and managed in files."
+ },
+ {
+  "grade": "12",
+  "unit": "Domain C: Programming Fundamentals",
+  "topic": "Python programming",
+  "subtopic": "File handling",
+  "code": "CS-12-C-06",
+  "outcome": "Use file modes and functions to read, write and close files."
+ },
+ {
+  "grade": "9",
+  "unit": "Domain D: Data and Analysis",
+  "topic": "Data",
+  "subtopic": "Data and data science",
+  "code": "CS-09-D-01",
+  "outcome": "Define data and the types of data science."
+ },
+ {
+  "grade": "9",
+  "unit": "Domain D: Data and Analysis",
+  "topic": "Data",
+  "subtopic": "Data and data science",
+  "code": "CS-09-D-02",
+  "outcome": "Understand data collection."
+ },
+ {
+  "grade": "10",
+  "unit": "Domain D: Data and Analysis",
+  "topic": "Data and databases",
+  "subtopic": "Data life cycle and databases",
+  "code": "CS-10-D-01",
+  "outcome": "Understand data science, its life cycle and applications."
+ },
+ {
+  "grade": "10",
+  "unit": "Domain D: Data and Analysis",
+  "topic": "Data and databases",
+  "subtopic": "Data life cycle and databases",
+  "code": "CS-10-D-02",
+  "outcome": "Understand data storage, the role of databases and their elements: field, record, table and primary key."
+ },
+ {
+  "grade": "10",
+  "unit": "Domain D: Data and Analysis",
+  "topic": "Data and databases",
+  "subtopic": "Data life cycle and databases",
+  "code": "CS-10-D-03",
+  "outcome": "Create tables and do basic insert and delete operations in MS Access."
+ },
+ {
+  "grade": "11",
+  "unit": "Domain D: Data and Analysis",
+  "topic": "Databases and statistics",
+  "subtopic": "Relationships and database design",
+  "code": "CS-11-D-01",
+  "outcome": "Understand relationship types (1:1, 1:M, M:N) and referential integrity."
+ },
+ {
+  "grade": "11",
+  "unit": "Domain D: Data and Analysis",
+  "topic": "Databases and statistics",
+  "subtopic": "Relationships and database design",
+  "code": "CS-11-D-02",
+  "outcome": "Apply entity-relationship models and build database objects in MS Access."
+ },
+ {
+  "grade": "11",
+  "unit": "Domain D: Data and Analysis",
+  "topic": "Databases and statistics",
+  "subtopic": "Summary statistics and visuals",
+  "code": "CS-11-D-03",
+  "outcome": "Analyze datasets with grouping functions, statistics and charts using MS Access reports."
+ },
+ {
+  "grade": "12",
+  "unit": "Domain D: Data and Analysis",
+  "topic": "Databases with Python",
+  "subtopic": "Python and databases",
+  "code": "CS-12-D-01",
+  "outcome": "Memorize terminology for connecting a database (SQL tool like MySQL) with Python."
+ },
+ {
+  "grade": "12",
+  "unit": "Domain D: Data and Analysis",
+  "topic": "Databases with Python",
+  "subtopic": "Python and databases",
+  "code": "CS-12-D-02",
+  "outcome": "Connect a database to Python and run basic queries."
+ },
+ {
+  "grade": "12",
+  "unit": "Domain D: Data and Analysis",
+  "topic": "Databases with Python",
+  "subtopic": "Visualization and project",
+  "code": "CS-12-D-03",
+  "outcome": "Visualize data with Python: central tendency, spread, box plots, bar charts, histograms and scatter plots."
+ },
+ {
+  "grade": "12",
+  "unit": "Domain D: Data and Analysis",
+  "topic": "Databases with Python",
+  "subtopic": "Visualization and project",
+  "code": "CS-12-D-04",
+  "outcome": "Develop a small interactive Python project using a database, file handling and visualization."
+ },
+ {
+  "grade": "9",
+  "unit": "Domain E: Applications and Impacts of Computing",
+  "topic": "AI and digital citizenship",
+  "subtopic": "AI basics and tools",
+  "code": "CS-09-E-01",
+  "outcome": "Explain basic AI and ML ideas, AI/ML tools, digital citizenship, online safety, privacy, intellectual property and legal issues."
+ },
+ {
+  "grade": "9",
+  "unit": "Domain E: Applications and Impacts of Computing",
+  "topic": "AI and digital citizenship",
+  "subtopic": "AI basics and tools",
+  "code": "CS-09-E-02",
+  "outcome": "Describe how AI and ML tools are used in education, health and business."
+ },
+ {
+  "grade": "10",
+  "unit": "Domain E: Applications and Impacts of Computing",
+  "topic": "Emerging technologies",
+  "subtopic": "Blockchain, cloud and AI impacts",
+  "code": "CS-10-E-01",
+  "outcome": "Describe blockchain, its uses in supply chains, copyright and voting, and cloud computing's benefits."
+ },
+ {
+  "grade": "10",
+  "unit": "Domain E: Applications and Impacts of Computing",
+  "topic": "Emerging technologies",
+  "subtopic": "Blockchain, cloud and AI impacts",
+  "code": "CS-10-E-02",
+  "outcome": "Illustrate the social effects of AI, such as injustice from misuse and designers' responsibility."
+ },
+ {
+  "grade": "11",
+  "unit": "Domain E: Applications and Impacts of Computing",
+  "topic": "Emerging technologies",
+  "subtopic": "IoT and digital society",
+  "code": "CS-11-E-01",
+  "outcome": "Describe IoT technologies, components and uses in smart cities, healthcare, education, farming and wearables."
+ },
+ {
+  "grade": "11",
+  "unit": "Domain E: Applications and Impacts of Computing",
+  "topic": "Emerging technologies",
+  "subtopic": "IoT and digital society",
+  "code": "CS-11-E-02",
+  "outcome": "Describe the reliability of digital information and the societal impacts of computing: equity, access and assistive technology."
+ },
+ {
+  "grade": "12",
+  "unit": "Domain E: Applications and Impacts of Computing",
+  "topic": "Emerging technologies",
+  "subtopic": "Neural networks and secure solutions",
+  "code": "CS-12-E-01",
+  "outcome": "Explain neural networks and deep learning concepts and their applications."
+ },
+ {
+  "grade": "12",
+  "unit": "Domain E: Applications and Impacts of Computing",
+  "topic": "Emerging technologies",
+  "subtopic": "Neural networks and secure solutions",
+  "code": "CS-12-E-02",
+  "outcome": "Design secure, inclusive digital solutions covering data protection and security threat mitigation."
+ },
+ {
+  "grade": "9",
+  "unit": "Domain F: Digital Literacy",
+  "topic": "Digital communication",
+  "subtopic": "Researching and presenting ideas",
+  "code": "CS-09-F-01",
+  "outcome": "Gather information on simple topics, extract key ideas and present them in different formats."
+ },
+ {
+  "grade": "9",
+  "unit": "Domain F: Digital Literacy",
+  "topic": "Digital communication",
+  "subtopic": "Researching and presenting ideas",
+  "code": "CS-09-F-02",
+  "outcome": "Create text and graphics like posters and billboards to communicate effectively."
+ },
+ {
+  "grade": "9",
+  "unit": "Domain F: Digital Literacy",
+  "topic": "Digital communication",
+  "subtopic": "Reaching audiences online",
+  "code": "CS-09-F-03",
+  "outcome": "Illustrate uses of social media platforms for communicating ideas to diverse audiences."
+ },
+ {
+  "grade": "9",
+  "unit": "Domain F: Digital Literacy",
+  "topic": "Digital communication",
+  "subtopic": "Reaching audiences online",
+  "code": "CS-09-F-04",
+  "outcome": "Apply best practices for reaching audiences across digital platforms."
+ },
+ {
+  "grade": "9",
+  "unit": "Domain F: Digital Literacy",
+  "topic": "Digital communication",
+  "subtopic": "Reaching audiences online",
+  "code": "CS-09-F-05",
+  "outcome": "Support key ideas for varied audiences using digital tools and media-rich resources."
+ },
+ {
+  "grade": "11",
+  "unit": "Domain F: Digital Literacy",
+  "topic": "Data collection and presentation",
+  "subtopic": "Collecting data",
+  "code": "CS-11-F-01",
+  "outcome": "Define data-collection strategies like interviews, surveys, prototypes and simulations."
+ },
+ {
+  "grade": "11",
+  "unit": "Domain F: Digital Literacy",
+  "topic": "Data collection and presentation",
+  "subtopic": "Collecting data",
+  "code": "CS-11-F-02",
+  "outcome": "Gather original data for a research question."
+ },
+ {
+  "grade": "11",
+  "unit": "Domain F: Digital Literacy",
+  "topic": "Data collection and presentation",
+  "subtopic": "Presenting findings",
+  "code": "CS-11-F-03",
+  "outcome": "Present primary and secondary data using suitable formats."
+ },
+ {
+  "grade": "11",
+  "unit": "Domain F: Digital Literacy",
+  "topic": "Data collection and presentation",
+  "subtopic": "Presenting findings",
+  "code": "CS-11-F-04",
+  "outcome": "Present data with graphs, infographics and reports."
+ },
+ {
+  "grade": "11",
+  "unit": "Domain F: Digital Literacy",
+  "topic": "Data collection and presentation",
+  "subtopic": "Presenting findings",
+  "code": "CS-11-F-05",
+  "outcome": "Recommend an artefact that answers a research question and draws conclusions using digital resources."
+ },
+ {
+  "grade": "10",
+  "unit": "Domain G: Entrepreneurship in the Digital Age",
+  "topic": "Design thinking and business plans",
+  "subtopic": "Design thinking and mindset",
+  "code": "CS-10-G-01",
+  "outcome": "Identify a problem and create a business plan using design thinking."
+ },
+ {
+  "grade": "10",
+  "unit": "Domain G: Entrepreneurship in the Digital Age",
+  "topic": "Design thinking and business plans",
+  "subtopic": "Design thinking and mindset",
+  "code": "CS-10-G-02",
+  "outcome": "Compare growth mindset and fixed mindset in entrepreneurship."
+ },
+ {
+  "grade": "10",
+  "unit": "Domain G: Entrepreneurship in the Digital Age",
+  "topic": "Design thinking and business plans",
+  "subtopic": "Design thinking and mindset",
+  "code": "CS-10-G-03",
+  "outcome": "Illustrate the 4Cs of problem solving: critical thinking, creativity, collaboration and communication."
+ },
+ {
+  "grade": "10",
+  "unit": "Domain G: Entrepreneurship in the Digital Age",
+  "topic": "Design thinking and business plans",
+  "subtopic": "Design thinking and mindset",
+  "code": "CS-10-G-04",
+  "outcome": "Define design thinking: empathize, define, ideate, prototype, evolve."
+ },
+ {
+  "grade": "10",
+  "unit": "Domain G: Entrepreneurship in the Digital Age",
+  "topic": "Design thinking and business plans",
+  "subtopic": "Business plans and pitches",
+  "code": "CS-10-G-05",
+  "outcome": "Use digital tools to create and present a business plan."
+ },
+ {
+  "grade": "10",
+  "unit": "Domain G: Entrepreneurship in the Digital Age",
+  "topic": "Design thinking and business plans",
+  "subtopic": "Business plans and pitches",
+  "code": "CS-10-G-06",
+  "outcome": "Evaluate a business plan by market size, USP, financial feasibility and go-to-market strategy."
+ },
+ {
+  "grade": "10",
+  "unit": "Domain G: Entrepreneurship in the Digital Age",
+  "topic": "Design thinking and business plans",
+  "subtopic": "Business plans and pitches",
+  "code": "CS-10-G-07",
+  "outcome": "Create a business idea by separating a business plan from a pitch and building customer profiles."
+ },
+ {
+  "grade": "12",
+  "unit": "Domain G: Entrepreneurship in the Digital Age",
+  "topic": "Prototyping and MVP",
+  "subtopic": "Prototypes and MVP",
+  "code": "CS-12-G-01",
+  "outcome": "Discuss prototyping and why it matters in developing business ideas."
+ },
+ {
+  "grade": "12",
+  "unit": "Domain G: Entrepreneurship in the Digital Age",
+  "topic": "Prototyping and MVP",
+  "subtopic": "Prototypes and MVP",
+  "code": "CS-12-G-02",
+  "outcome": "Test a business-idea prototype and improve it with feedback."
+ },
+ {
+  "grade": "12",
+  "unit": "Domain G: Entrepreneurship in the Digital Age",
+  "topic": "Prototyping and MVP",
+  "subtopic": "Prototypes and MVP",
+  "code": "CS-12-G-03",
+  "outcome": "Define a minimum viable product (MVP) and a prototype."
+ },
+ {
+  "grade": "12",
+  "unit": "Domain G: Entrepreneurship in the Digital Age",
+  "topic": "Prototyping and MVP",
+  "subtopic": "Prototypes and MVP",
+  "code": "CS-12-G-04",
+  "outcome": "Identify the riskiest business model assumptions and build an MVP with offline or online tools."
+ },
+ {
+  "grade": "12",
+  "unit": "Domain G: Entrepreneurship in the Digital Age",
+  "topic": "Prototyping and MVP",
+  "subtopic": "Building and improving an MVP",
+  "code": "CS-12-G-05",
+  "outcome": "Develop and test an MVP: define features, estimate costs, plan marketing and gather feedback."
+ },
+ {
+  "grade": "12",
+  "unit": "Domain G: Entrepreneurship in the Digital Age",
+  "topic": "Prototyping and MVP",
+  "subtopic": "Building and improving an MVP",
+  "code": "CS-12-G-06",
+  "outcome": "Evaluate and improve the MVP from feedback and find a beachhead market to test."
+ }
+]

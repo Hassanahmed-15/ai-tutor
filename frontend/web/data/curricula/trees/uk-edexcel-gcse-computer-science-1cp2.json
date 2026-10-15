@@ -1,0 +1,729 @@
+{
+ "id": "uk-edexcel-gcse-computer-science-1cp2",
+ "region": "UK",
+ "framework": "Pearson Edexcel GCSE (9-1)",
+ "board": "Pearson Edexcel",
+ "qualification": "GCSE",
+ "subject": "Computer Science",
+ "syllabusCode": "1CP2",
+ "gradeSystem": "year",
+ "source": {
+  "urls": [
+   "https://qualifications.pearson.com/content/dam/pdf/GCSE/Computer%20Science/2020/specification-and-sample-assessments/GCSE_L1_L2_Computer_Science_2020_Specification.pdf"
+  ],
+  "publisher": "Pearson Education",
+  "licence": "Exam board specification, (c) Pearson; structure + our own wording only",
+  "firstExam": "2022"
+ },
+ "grades": [
+  {
+   "grade": "all",
+   "units": [
+    {
+     "id": "topic-1-computational-thinking",
+     "title": "Topic 1: Computational thinking",
+     "topics": [
+      {
+       "id": "1-1-decomposition-and-abstraction",
+       "title": "1.1 Decomposition and abstraction",
+       "subtopics": [
+        {
+         "id": "decomposition-and-abstraction",
+         "title": "Decomposition and abstraction",
+         "outcomes": [
+          {
+           "code": "1.1.1",
+           "text": "Explain how breaking problems down and hiding detail helps model the real world and solve problems."
+          },
+          {
+           "code": "1.1.2",
+           "text": "Explain the benefits of splitting a program into subprograms."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "1-2-algorithms",
+       "title": "1.2 Algorithms",
+       "subtopics": [
+        {
+         "id": "sequence-selection-and-repetition",
+         "title": "Sequence, selection and repetition",
+         "outcomes": [
+          {
+           "code": "1.2.1",
+           "text": "Follow and write algorithms as flowcharts, pseudocode or code using sequence, selection, loops, iteration, input, processing and output."
+          }
+         ]
+        },
+        {
+         "id": "variables-and-data-structures",
+         "title": "Variables and data structures",
+         "outcomes": [
+          {
+           "code": "1.2.2",
+           "text": "Explain why variables and constants are needed and use them with strings, records and 1D/2D arrays in algorithms."
+          }
+         ]
+        },
+        {
+         "id": "operators-in-algorithms",
+         "title": "Operators in algorithms",
+         "outcomes": [
+          {
+           "code": "1.2.3",
+           "text": "Use arithmetic, relational and logical operators (including modulus, integer division, exponentiation) in algorithms."
+          }
+         ]
+        },
+        {
+         "id": "trace-tables",
+         "title": "Trace tables",
+         "outcomes": [
+          {
+           "code": "1.2.4",
+           "text": "Work out an algorithm's output for given data and use a trace table to track variable values."
+          }
+         ]
+        },
+        {
+         "id": "errors-in-programs",
+         "title": "Errors in programs",
+         "outcomes": [
+          {
+           "code": "1.2.5",
+           "text": "Distinguish syntax, logic and runtime errors and find and fix logic errors in algorithms."
+          }
+         ]
+        },
+        {
+         "id": "sorting-and-searching-algorithms",
+         "title": "Sorting and searching algorithms",
+         "outcomes": [
+          {
+           "code": "1.2.6",
+           "text": "Describe how bubble sort, merge sort, linear search and binary search work."
+          }
+         ]
+        },
+        {
+         "id": "evaluating-algorithms",
+         "title": "Evaluating algorithms",
+         "outcomes": [
+          {
+           "code": "1.2.7",
+           "text": "Use reasoning and test data to judge whether an algorithm is fit for purpose and efficient."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "1-3-truth-tables",
+       "title": "1.3 Truth tables",
+       "subtopics": [
+        {
+         "id": "truth-tables",
+         "title": "Truth tables",
+         "outcomes": [
+          {
+           "code": "1.3.1",
+           "text": "Apply AND, OR and NOT in truth tables with up to three inputs."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "topic-2-data",
+     "title": "Topic 2: Data",
+     "topics": [
+      {
+       "id": "2-1-binary",
+       "title": "2.1 Binary",
+       "subtopics": [
+        {
+         "id": "binary-and-number-systems",
+         "title": "Binary and number systems",
+         "outcomes": [
+          {
+           "code": "2.1.1",
+           "text": "Explain that all data and instructions are stored as binary and work out how many states a pattern of given length can hold."
+          },
+          {
+           "code": "2.1.2",
+           "text": "Explain how unsigned integers and two's complement signed integers are represented and manipulated."
+          },
+          {
+           "code": "2.1.3",
+           "text": "Convert between denary and 8-bit binary, both unsigned and signed."
+          }
+         ]
+        },
+        {
+         "id": "binary-arithmetic-and-shifts",
+         "title": "Binary arithmetic and shifts",
+         "outcomes": [
+          {
+           "code": "2.1.4",
+           "text": "Add two positive binary patterns and apply logical and arithmetic binary shifts."
+          },
+          {
+           "code": "2.1.5",
+           "text": "Explain overflow when a value needs more bits than are available."
+          }
+         ]
+        },
+        {
+         "id": "hexadecimal",
+         "title": "Hexadecimal",
+         "outcomes": [
+          {
+           "code": "2.1.6",
+           "text": "Explain why hexadecimal is used and convert between hexadecimal and binary."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "2-2-data-representation",
+       "title": "2.2 Data representation",
+       "subtopics": [
+        {
+         "id": "representing-text-and-images",
+         "title": "Representing text and images",
+         "outcomes": [
+          {
+           "code": "2.2.1",
+           "text": "Explain how characters are encoded using 7-bit ASCII."
+          },
+          {
+           "code": "2.2.2",
+           "text": "Explain how bitmap images are stored using pixels, resolution and colour depth."
+          }
+         ]
+        },
+        {
+         "id": "representing-sound",
+         "title": "Representing sound",
+         "outcomes": [
+          {
+           "code": "2.2.3",
+           "text": "Explain how analogue sound is stored in binary using amplitude, sample rate, bit depth and sample interval."
+          },
+          {
+           "code": "2.2.4",
+           "text": "Describe the limits of binary representation when the number of bits is fixed."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "2-3-data-storage-and-compression",
+       "title": "2.3 Data storage and compression",
+       "subtopics": [
+        {
+         "id": "file-sizes-and-storage-units",
+         "title": "File sizes and storage units",
+         "outcomes": [
+          {
+           "code": "2.3.1",
+           "text": "Use binary storage units from bit to tebibyte and write expressions for file sizes and capacity needs."
+          }
+         ]
+        },
+        {
+         "id": "data-compression",
+         "title": "Data compression",
+         "outcomes": [
+          {
+           "code": "2.3.2",
+           "text": "Explain why compression is needed and how lossless and lossy methods work."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "topic-3-computers",
+     "title": "Topic 3: Computers",
+     "topics": [
+      {
+       "id": "3-1-hardware",
+       "title": "3.1 Hardware",
+       "subtopics": [
+        {
+         "id": "the-cpu-and-fetch-decode-execute",
+         "title": "The CPU and fetch-decode-execute",
+         "outcomes": [
+          {
+           "code": "3.1.1",
+           "text": "Explain the stored program concept and the roles of RAM, CPU parts, clock and buses in the fetch-decode-execute cycle."
+          }
+         ]
+        },
+        {
+         "id": "secondary-storage-and-embedded-systems",
+         "title": "Secondary storage and embedded systems",
+         "outcomes": [
+          {
+           "code": "3.1.2",
+           "text": "Explain the role of secondary storage and how magnetic, optical and solid state devices store data."
+          },
+          {
+           "code": "3.1.3",
+           "text": "Explain what an embedded system is and what it is used for."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "3-2-software",
+       "title": "3.2 Software",
+       "subtopics": [
+        {
+         "id": "operating-systems-and-utilities",
+         "title": "Operating systems and utilities",
+         "outcomes": [
+          {
+           "code": "3.2.1",
+           "text": "Explain the purpose of an operating system: file, process, peripheral and user management."
+          },
+          {
+           "code": "3.2.2",
+           "text": "Explain the purpose of utility software such as backup, defragmentation, compression and anti-malware."
+          }
+         ]
+        },
+        {
+         "id": "robust-software",
+         "title": "Robust software",
+         "outcomes": [
+          {
+           "code": "3.2.3",
+           "text": "Explain why robust software matters and how audit trails and code reviews find vulnerabilities."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "3-3-programming-languages",
+       "title": "3.3 Programming languages",
+       "subtopics": [
+        {
+         "id": "programming-languages-and-translators",
+         "title": "Programming languages and translators",
+         "outcomes": [
+          {
+           "code": "3.3.1",
+           "text": "Describe the features and uses of low-level and high-level languages."
+          },
+          {
+           "code": "3.3.2",
+           "text": "Explain how an interpreter and a compiler translate code differently."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "topic-4-networks",
+     "title": "Topic 4: Networks",
+     "topics": [
+      {
+       "id": "4-1-networks",
+       "title": "4.1 Networks",
+       "subtopics": [
+        {
+         "id": "networks-and-the-internet",
+         "title": "Networks and the internet",
+         "outcomes": [
+          {
+           "code": "4.1.1",
+           "text": "Explain why computers are connected in networks."
+          },
+          {
+           "code": "4.1.2",
+           "text": "Describe LANs and WANs."
+          },
+          {
+           "code": "4.1.3",
+           "text": "Explain how the internet is structured using IP addressing and routers."
+          }
+         ]
+        },
+        {
+         "id": "network-performance",
+         "title": "Network performance",
+         "outcomes": [
+          {
+           "code": "4.1.4",
+           "text": "Explain how wired and wireless connections differ in speed, range, latency and bandwidth."
+          },
+          {
+           "code": "4.1.5",
+           "text": "Use bits-per-second units to calculate file size, transmission rate and time."
+          }
+         ]
+        },
+        {
+         "id": "protocols-and-the-tcp-ip-model",
+         "title": "Protocols and the TCP/IP model",
+         "outcomes": [
+          {
+           "code": "4.1.6",
+           "text": "Explain why network protocols are needed and the roles of Ethernet, Wi-Fi, TCP/IP, HTTP(S), FTP and email protocols."
+          },
+          {
+           "code": "4.1.7",
+           "text": "Describe how the four TCP/IP layers handle data across a network."
+          }
+         ]
+        },
+        {
+         "id": "network-topologies",
+         "title": "Network topologies",
+         "outcomes": [
+          {
+           "code": "4.1.8",
+           "text": "Describe the features of bus, star and mesh topologies."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "4-2-network-security",
+       "title": "4.2 Network security",
+       "subtopics": [
+        {
+         "id": "network-security",
+         "title": "Network security",
+         "outcomes": [
+          {
+           "code": "4.2.1",
+           "text": "Explain why network security matters, how penetration testing finds weaknesses, and how access control, physical security and firewalls protect."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "topic-5-issues-and-impact",
+     "title": "Topic 5: Issues and impact",
+     "topics": [
+      {
+       "id": "5-1-environmental",
+       "title": "5.1 Environmental",
+       "subtopics": [
+        {
+         "id": "environmental-impact",
+         "title": "Environmental impact",
+         "outcomes": [
+          {
+           "code": "5.1.1",
+           "text": "Explain the environmental effects of digital devices: energy use, manufacture, replacement and disposal."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "5-2-ethical-and-legal",
+       "title": "5.2 Ethical and legal",
+       "subtopics": [
+        {
+         "id": "personal-data",
+         "title": "Personal data",
+         "outcomes": [
+          {
+           "code": "5.2.1",
+           "text": "Explain the ethical and legal issues of collecting and using personal data."
+          }
+         ]
+        },
+        {
+         "id": "ai-machine-learning-and-robotics",
+         "title": "AI, machine learning and robotics",
+         "outcomes": [
+          {
+           "code": "5.2.2",
+           "text": "Explain the ethical and legal issues of AI, machine learning and robotics, such as bias, safety and liability."
+          }
+         ]
+        },
+        {
+         "id": "intellectual-property",
+         "title": "Intellectual property",
+         "outcomes": [
+          {
+           "code": "5.2.3",
+           "text": "Describe how copyright, patents, trademarks and licences protect computer systems and software."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "5-3-cybersecurity",
+       "title": "5.3 Cybersecurity",
+       "subtopics": [
+        {
+         "id": "malware-and-cyberattacks",
+         "title": "Malware and cyberattacks",
+         "outcomes": [
+          {
+           "code": "5.3.1",
+           "text": "Describe malware types and how hackers use technical weaknesses and social engineering."
+          }
+         ]
+        },
+        {
+         "id": "protecting-systems-and-data",
+         "title": "Protecting systems and data",
+         "outcomes": [
+          {
+           "code": "5.3.2",
+           "text": "Describe protection methods: anti-malware, encryption, acceptable use policies, backup and recovery."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "topic-6-problem-solving-with-programming",
+     "title": "Topic 6: Problem solving with programming",
+     "topics": [
+      {
+       "id": "6-1-develop-code",
+       "title": "6.1 Develop code",
+       "subtopics": [
+        {
+         "id": "analysing-and-refining-programs",
+         "title": "Analysing and refining programs",
+         "outcomes": [
+          {
+           "code": "6.1.1",
+           "text": "Use decomposition and abstraction to analyse and solve programming problems."
+          },
+          {
+           "code": "6.1.2",
+           "text": "Read, write, analyse and refine programs in a high-level language."
+          },
+          {
+           "code": "6.1.3",
+           "text": "Convert flowcharts and pseudocode algorithms into programs."
+          }
+         ]
+        },
+        {
+         "id": "readable-code",
+         "title": "Readable code",
+         "outcomes": [
+          {
+           "code": "6.1.4",
+           "text": "Use layout, indentation, comments, meaningful names and white space to make programs readable and maintainable."
+          }
+         ]
+        },
+        {
+         "id": "debugging-and-testing",
+         "title": "Debugging and testing",
+         "outcomes": [
+          {
+           "code": "6.1.5",
+           "text": "Identify, locate and correct logic, syntax and runtime errors."
+          },
+          {
+           "code": "6.1.6",
+           "text": "Use reasoning and test data to judge a program's fitness for purpose and efficiency."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "6-2-constructs",
+       "title": "6.2 Constructs",
+       "subtopics": [
+        {
+         "id": "program-structure",
+         "title": "Program structure",
+         "outcomes": [
+          {
+           "code": "6.2.1",
+           "text": "Identify and explain the structural components of programs, from constants and variables to subprograms and input/output."
+          }
+         ]
+        },
+        {
+         "id": "control-structures",
+         "title": "Control structures",
+         "outcomes": [
+          {
+           "code": "6.2.2",
+           "text": "Write programs using sequence, selection, loops, iteration and single entry/exit points."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "6-3-data-types-and-structures",
+       "title": "6.3 Data types and structures",
+       "subtopics": [
+        {
+         "id": "data-types",
+         "title": "Data types",
+         "outcomes": [
+          {
+           "code": "6.3.1",
+           "text": "Use primitive types and 1D/2D structured types (string, array, record) appropriately."
+          }
+         ]
+        },
+        {
+         "id": "variables-and-strings",
+         "title": "Variables and strings",
+         "outcomes": [
+          {
+           "code": "6.3.2",
+           "text": "Use variables and constants appropriately in programs."
+          },
+          {
+           "code": "6.3.3",
+           "text": "Write programs that manipulate strings: length, position, substrings, case conversion."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "6-4-input-output",
+       "title": "6.4 Input/output",
+       "subtopics": [
+        {
+         "id": "user-input-and-files",
+         "title": "User input and files",
+         "outcomes": [
+          {
+           "code": "6.4.1",
+           "text": "Write programs that accept and respond sensibly to user input."
+          },
+          {
+           "code": "6.4.2",
+           "text": "Write programs that read from and write to CSV text files."
+          }
+         ]
+        },
+        {
+         "id": "validation-and-authentication",
+         "title": "Validation and authentication",
+         "outcomes": [
+          {
+           "code": "6.4.3",
+           "text": "Explain why validation is needed and implement length, presence, range and pattern checks."
+          },
+          {
+           "code": "6.4.4",
+           "text": "Explain why authentication is needed and implement ID/password and lookup checks."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "6-5-operators",
+       "title": "6.5 Operators",
+       "subtopics": [
+        {
+         "id": "operators-in-programs",
+         "title": "Operators in programs",
+         "outcomes": [
+          {
+           "code": "6.5.1",
+           "text": "Write programs using arithmetic operators."
+          },
+          {
+           "code": "6.5.2",
+           "text": "Write programs using relational operators."
+          },
+          {
+           "code": "6.5.3",
+           "text": "Write programs using logical operators."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "6-6-subprograms",
+       "title": "6.6 Subprograms",
+       "subtopics": [
+        {
+         "id": "subprograms",
+         "title": "Subprograms",
+         "outcomes": [
+          {
+           "code": "6.6.1",
+           "text": "Use built-in, library and user-written procedures and functions."
+          },
+          {
+           "code": "6.6.2",
+           "text": "Write functions that return values and procedures that do not, with or without parameters."
+          }
+         ]
+        },
+        {
+         "id": "scope-of-variables",
+         "title": "Scope of variables",
+         "outcomes": [
+          {
+           "code": "6.6.3",
+           "text": "Explain the difference between global and local variables and use each appropriately."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "build": {
+  "builtAt": "2026-10-14T10:32:18.718Z",
+  "model": "claude-agent",
+  "usd": 0,
+  "expectedCodes": 66,
+  "coverage": 1,
+  "missingCodes": [],
+  "counts": {
+   "grades": 1,
+   "units": 6,
+   "topics": 20,
+   "subtopics": 44,
+   "outcomes": 66
+  },
+  "warnings": [
+   "grade Year 10 has no content",
+   "grade Year 11 has no content",
+   "unexpected grade label \"all\""
+  ]
+ }
+}

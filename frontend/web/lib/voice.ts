@@ -433,14 +433,17 @@ export function playNarration(text: string, callbacks: NarrationCallbacks): Narr
      * now gives up after 10 s and is retried twice; clips are fetched well ahead of playback, so a
      * retry normally lands before the sentence is reached. A 4xx is a real answer and is not retried.
      */
-    const fetchClip = async (text: string): Promise<Blob | null> => {
-      for (let attempt = 0; attempt < 3 && !cancelled; attempt += 1) {
+    // The FIRST clip of a part gets one 7 s try, then the browser voice speaks: the student is
+    // waiting in silence for it, and 3 x 10 s of retries behind a busy speech queue was the
+    // ~28 s of dead air the audit measured. Later clips are fetched ahead, so they keep retrying.
+    const fetchClip = async (text: string, first = false): Promise<Blob | null> => {
+      for (let attempt = 0; attempt < (first ? 1 : 3) && !cancelled; attempt += 1) {
         try {
           const res = await fetch("/api/tts", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ text }),
-            signal: typeof AbortSignal !== "undefined" && "timeout" in AbortSignal ? AbortSignal.timeout(10_000) : undefined,
+            signal: typeof AbortSignal !== "undefined" && "timeout" in AbortSignal ? AbortSignal.timeout(first ? 7_000 : 10_000) : undefined,
           });
           recordTtsResponse(res);
           if (res.ok) return await res.blob();
@@ -464,7 +467,7 @@ export function playNarration(text: string, callbacks: NarrationCallbacks): Narr
         const i = nextToFetch;
         nextToFetch += 1;
         inFlight += 1;
-        fetchClip(sentences[i])
+        fetchClip(sentences[i], i === 0)
           .then((blob) => {
             if (blob) void trackFor(i, blob);
             resolvers[i](blob);

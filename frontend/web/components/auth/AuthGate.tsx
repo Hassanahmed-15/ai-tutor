@@ -1,7 +1,7 @@
 "use client";
 
 import { createContext, useCallback, useContext, useEffect, useState } from "react";
-import { AuthScreen } from "./AuthScreen";
+import { WelcomePage } from "./WelcomePage";
 import { OnboardingScreen } from "./OnboardingScreen";
 import { SettingsScreen } from "./SettingsScreen";
 import { AriaMark } from "@/components/brand/AriaMark";
@@ -182,7 +182,8 @@ export function AuthGate({ children }: { children: React.ReactNode }) {
       </main>
     );
   }
-  if (state === "anon") return <AuthScreen onAuthenticated={refresh} />;
+  // Signed out: the front door, a home page with sign-up in a dialog over it (WelcomePage.tsx).
+  if (state === "anon") return <WelcomePage onAuthenticated={refresh} />;
   if (state === "onboarding") {
     return (
       <OnboardingScreen

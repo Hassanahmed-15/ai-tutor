@@ -1,0 +1,186 @@
+{
+ "id": "cie-igcse-turkish-first-language-0513-2025-2027",
+ "region": "INTL",
+ "framework": "Cambridge IGCSE Turkish - First Language (0513) syllabus 2025–2027",
+ "board": "Cambridge",
+ "qualification": "IGCSE",
+ "subject": "Turkish - First Language",
+ "syllabusCode": "0513",
+ "gradeSystem": "course",
+ "source": {
+  "urls": [
+   "https://www.cambridgeinternational.org/Images/664970-2025-2027-syllabus.pdf",
+   "https://www.cambridgeinternational.org/programmes-and-qualifications/cambridge-igcse-turkish-first-language-0513/"
+  ],
+  "publisher": "Cambridge University Press & Assessment (Cambridge International Education)",
+  "licence": "© Cambridge University Press & Assessment; structure + our own wording only",
+  "firstExam": "2025"
+ },
+ "grades": [
+  {
+   "grade": "IGCSE",
+   "units": [
+    {
+     "id": "3-subject-content",
+     "title": "3 Subject content",
+     "topics": [
+      {
+       "id": "reading",
+       "title": "Reading",
+       "subtopics": [
+        {
+         "id": "understand-and-summarise-texts",
+         "title": "Understand and Summarise Texts",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Understand written texts and the meanings of words and phrases within them."
+          },
+          {
+           "code": null,
+           "text": "Summarise material and adapt it for a particular context."
+          }
+         ]
+        },
+        {
+         "id": "evaluate-facts-and-ideas",
+         "title": "Evaluate Facts and Ideas",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Develop, analyse and evaluate facts, ideas and opinions."
+          }
+         ]
+        },
+        {
+         "id": "how-writers-influence-readers",
+         "title": "How Writers Influence Readers",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain how writers create effects and influence readers."
+          },
+          {
+           "code": null,
+           "text": "Identify and respond to linguistic devices, figurative language and imagery."
+          }
+         ]
+        },
+        {
+         "id": "choose-useful-information",
+         "title": "Choose Useful Information",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Choose suitable information for particular purposes."
+          }
+         ]
+        },
+        {
+         "id": "study-different-text-types",
+         "title": "Study Different Text Types",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Study twentieth- and/or twenty-first-century literature, fiction, non-fiction and other text types across varied genres."
+          }
+         ]
+        },
+        {
+         "id": "analyse-language-and-bias",
+         "title": "Analyse Language and Bias",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Examine writers’ language, style, effects and influence, including facts, ideas, perspectives, opinions and bias."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "writing",
+       "title": "Writing",
+       "subtopics": [
+        {
+         "id": "express-ideas-and-experiences",
+         "title": "Express Ideas and Experiences",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Express thoughts, feelings and imagined experiences."
+          },
+          {
+           "code": null,
+           "text": "Organise and communicate facts, ideas and opinions effectively."
+          }
+         ]
+        },
+        {
+         "id": "use-vocabulary-and-sentences",
+         "title": "Use Vocabulary and Sentences",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Use varied vocabulary suited to the context."
+          },
+          {
+           "code": null,
+           "text": "Use sentence structures effectively and with variety."
+          }
+         ]
+        },
+        {
+         "id": "adapt-writing-for-purpose",
+         "title": "Adapt Writing for Purpose",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Adapt writing to its audience, purpose and form."
+          }
+         ]
+        },
+        {
+         "id": "accurate-spelling-and-grammar",
+         "title": "Accurate Spelling and Grammar",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Use spelling, punctuation and grammar accurately."
+          }
+         ]
+        },
+        {
+         "id": "write-different-texts",
+         "title": "Write Different Texts",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Create and compose texts for varied purposes, including descriptive, narrative, discursive and argumentative writing."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "build": {
+  "builtAt": "2026-10-14T05:41:02.404Z",
+  "model": "gpt-5.6-luna",
+  "usd": 0.0041,
+  "expectedCodes": null,
+  "coverage": null,
+  "missingCodes": [],
+  "counts": {
+   "grades": 1,
+   "units": 1,
+   "topics": 2,
+   "subtopics": 11,
+   "outcomes": 15
+  },
+  "warnings": []
+ }
+}

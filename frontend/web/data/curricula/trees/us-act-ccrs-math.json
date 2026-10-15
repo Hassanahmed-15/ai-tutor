@@ -1,0 +1,1687 @@
+{
+ "id": "us-act-ccrs-math",
+ "region": "US",
+ "framework": "ACT College and Career Readiness Standards",
+ "board": "ACT",
+ "qualification": "ACT",
+ "subject": "Mathematics",
+ "syllabusCode": null,
+ "gradeSystem": "grade",
+ "source": {
+  "urls": [
+   "https://www.act.org/content/dam/act/unsecured/documents/CCRS-MathStandards.pdf",
+   "https://www.act.org/standard"
+  ],
+  "publisher": "ACT, Inc.",
+  "licence": "\u00a9 ACT, Inc.; structure + our own wording only",
+  "firstExam": null
+ },
+ "grades": [
+  {
+   "grade": "8",
+   "units": [
+    {
+     "id": "number-and-quantity",
+     "title": "Number and Quantity",
+     "topics": [
+      {
+       "id": "score-range-13-15",
+       "title": "Score range 13-15",
+       "subtopics": [
+        {
+         "id": "whole-number-and-decimal-arithmetic",
+         "title": "Whole number and decimal arithmetic",
+         "outcomes": [
+          {
+           "code": "N 201",
+           "text": "Do one-step calculations with whole numbers and decimals."
+          }
+         ]
+        },
+        {
+         "id": "fractions-and-the-number-line",
+         "title": "Fractions and the number line",
+         "outcomes": [
+          {
+           "code": "N 202",
+           "text": "Recognize equivalent fractions and fractions written in lowest terms."
+          },
+          {
+           "code": "N 203",
+           "text": "Place positive whole numbers, fractions, decimals and mixed numbers on a number line."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "algebra-and-functions",
+     "title": "Algebra and Functions",
+     "topics": [
+      {
+       "id": "score-range-13-15",
+       "title": "Score range 13-15",
+       "subtopics": [
+        {
+         "id": "basic-problem-solving",
+         "title": "Basic problem solving",
+         "outcomes": [
+          {
+           "code": "AF 201",
+           "text": "Solve one- or two-step problems with whole numbers and money decimals."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "algebra",
+     "title": "Algebra",
+     "topics": [
+      {
+       "id": "score-range-13-15",
+       "title": "Score range 13-15",
+       "subtopics": [
+        {
+         "id": "basic-expressions-and-equations",
+         "title": "Basic expressions and equations",
+         "outcomes": [
+          {
+           "code": "A 201",
+           "text": "Recognize basic expressions, such as writing a total as b + g."
+          },
+          {
+           "code": "A 202",
+           "text": "Solve equations of the form x + a = b with whole numbers or decimals."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "functions",
+     "title": "Functions",
+     "topics": [
+      {
+       "id": "score-range-13-15",
+       "title": "Score range 13-15",
+       "subtopics": [
+        {
+         "id": "patterns",
+         "title": "Patterns",
+         "outcomes": [
+          {
+           "code": "F 201",
+           "text": "Extend a pattern with a constant increase or decrease by a few terms."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "geometry",
+     "title": "Geometry",
+     "topics": [
+      {
+       "id": "score-range-13-15",
+       "title": "Score range 13-15",
+       "subtopics": [
+        {
+         "id": "lengths-and-conversions",
+         "title": "Lengths and conversions",
+         "outcomes": [
+          {
+           "code": "G 201",
+           "text": "Estimate a line segment's length from other lengths in a figure."
+          },
+          {
+           "code": "G 202",
+           "text": "Compute a segment length from other same-direction segments."
+          },
+          {
+           "code": "G 203",
+           "text": "Convert money, length, weight, mass and time within one measurement system."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "statistics-and-probability",
+     "title": "Statistics and Probability",
+     "topics": [
+      {
+       "id": "score-range-13-15",
+       "title": "Score range 13-15",
+       "subtopics": [
+        {
+         "id": "averages-and-tables",
+         "title": "Averages and tables",
+         "outcomes": [
+          {
+           "code": "S 201",
+           "text": "Find the average of a list of positive whole numbers."
+          },
+          {
+           "code": "S 202",
+           "text": "Take one number from a basic table or chart and use it in a computation."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "9",
+   "units": [
+    {
+     "id": "number-and-quantity",
+     "title": "Number and Quantity",
+     "topics": [
+      {
+       "id": "score-range-16-19",
+       "title": "Score range 16-19",
+       "subtopics": [
+        {
+         "id": "factors-and-place-value",
+         "title": "Factors and place value",
+         "outcomes": [
+          {
+           "code": "N 301",
+           "text": "Recognize single-digit factors of a number."
+          },
+          {
+           "code": "N 302",
+           "text": "Identify the place value of a digit."
+          }
+         ]
+        },
+        {
+         "id": "fractions-and-the-number-line",
+         "title": "Fractions and the number line",
+         "outcomes": [
+          {
+           "code": "N 303",
+           "text": "Locate rational numbers on a number line."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "algebra-and-functions",
+     "title": "Algebra and Functions",
+     "topics": [
+      {
+       "id": "score-range-16-19",
+       "title": "Score range 16-19",
+       "subtopics": [
+        {
+         "id": "routine-arithmetic-problems",
+         "title": "Routine arithmetic problems",
+         "outcomes": [
+          {
+           "code": "AF 301",
+           "text": "Solve one-step arithmetic problems with positive rationals, such as single-step percent."
+          },
+          {
+           "code": "AF 302",
+           "text": "Solve some routine two-step arithmetic problems."
+          }
+         ]
+        },
+        {
+         "id": "graphs-and-defined-operations",
+         "title": "Graphs and defined operations",
+         "outcomes": [
+          {
+           "code": "AF 303",
+           "text": "Relate a graph to a situation described in words, like increasing or before and after."
+          },
+          {
+           "code": "AF 304",
+           "text": "Apply a given definition of an operation on whole numbers."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "algebra",
+     "title": "Algebra",
+     "topics": [
+      {
+       "id": "score-range-16-19",
+       "title": "Score range 16-19",
+       "subtopics": [
+        {
+         "id": "evaluating-and-simplifying",
+         "title": "Evaluating and simplifying",
+         "outcomes": [
+          {
+           "code": "A 301",
+           "text": "Substitute whole numbers into expressions to evaluate them."
+          },
+          {
+           "code": "A 302",
+           "text": "Solve one-step equations with integer or decimal answers."
+          },
+          {
+           "code": "A 303",
+           "text": "Combine like terms."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "functions",
+     "title": "Functions",
+     "topics": [
+      {
+       "id": "score-range-16-19",
+       "title": "Score range 16-19",
+       "subtopics": [
+        {
+         "id": "patterns",
+         "title": "Patterns",
+         "outcomes": [
+          {
+           "code": "F 301",
+           "text": "Extend a pattern with a constant factor between terms."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "geometry",
+     "title": "Geometry",
+     "topics": [
+      {
+       "id": "score-range-16-19",
+       "title": "Score range 16-19",
+       "subtopics": [
+        {
+         "id": "angles-perimeter-and-area-basics",
+         "title": "Angles, perimeter and area basics",
+         "outcomes": [
+          {
+           "code": "G 301",
+           "text": "Show some knowledge of angles formed by parallel lines."
+          },
+          {
+           "code": "G 302",
+           "text": "Compute polygon perimeter when all sides are given."
+          },
+          {
+           "code": "G 303",
+           "text": "Compute rectangle area from whole number dimensions."
+          }
+         ]
+        },
+        {
+         "id": "coordinate-plane-basics",
+         "title": "Coordinate plane basics",
+         "outcomes": [
+          {
+           "code": "G 304",
+           "text": "Locate points in the first quadrant."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "statistics-and-probability",
+     "title": "Statistics and Probability",
+     "topics": [
+      {
+       "id": "score-range-16-19",
+       "title": "Score range 16-19",
+       "subtopics": [
+        {
+         "id": "averages-and-tables",
+         "title": "Averages and tables",
+         "outcomes": [
+          {
+           "code": "S 301",
+           "text": "Find the average of a list of numbers."
+          },
+          {
+           "code": "S 302",
+           "text": "Find the average from the count and the sum of the values."
+          }
+         ]
+        },
+        {
+         "id": "reading-tables-and-charts",
+         "title": "Reading tables and charts",
+         "outcomes": [
+          {
+           "code": "S 303",
+           "text": "Read basic tables and charts."
+          },
+          {
+           "code": "S 304",
+           "text": "Extract data from a basic table or chart and compute with it."
+          }
+         ]
+        },
+        {
+         "id": "basic-probability",
+         "title": "Basic probability",
+         "outcomes": [
+          {
+           "code": "S 305",
+           "text": "Use the link between an event's probability and its complement's."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "10",
+   "units": [
+    {
+     "id": "number-and-quantity",
+     "title": "Number and Quantity",
+     "topics": [
+      {
+       "id": "score-range-20-23",
+       "title": "Score range 20-23",
+       "subtopics": [
+        {
+         "id": "number-concepts",
+         "title": "Number concepts",
+         "outcomes": [
+          {
+           "code": "N 401",
+           "text": "Use elementary number ideas: rounding, ordering decimals, patterns, primes, greatest common factor."
+          }
+         ]
+        },
+        {
+         "id": "powers-of-ten",
+         "title": "Powers of ten",
+         "outcomes": [
+          {
+           "code": "N 402",
+           "text": "Write positive powers of 10 using exponents."
+          }
+         ]
+        },
+        {
+         "id": "distance-and-absolute-value",
+         "title": "Distance and absolute value",
+         "outcomes": [
+          {
+           "code": "N 403",
+           "text": "Understand length on the number line and find the distance between two points."
+          },
+          {
+           "code": "N 404",
+           "text": "Understand absolute value as distance."
+          },
+          {
+           "code": "N 405",
+           "text": "Find the distance between two coordinate-plane points sharing an x- or y-coordinate."
+          }
+         ]
+        },
+        {
+         "id": "adding-matrices",
+         "title": "Adding matrices",
+         "outcomes": [
+          {
+           "code": "N 406",
+           "text": "Add two matrices with whole number entries."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "algebra-and-functions",
+     "title": "Algebra and Functions",
+     "topics": [
+      {
+       "id": "score-range-20-23",
+       "title": "Score range 20-23",
+       "subtopics": [
+        {
+         "id": "rates-percent-and-word-translation",
+         "title": "Rates, percent and word translation",
+         "outcomes": [
+          {
+           "code": "AF 401",
+           "text": "Solve two- or three-step problems using rate, proportion, tax, percent off and averages."
+          },
+          {
+           "code": "AF 402",
+           "text": "Translate words into symbols in straightforward cases."
+          },
+          {
+           "code": "AF 403",
+           "text": "Relate a graph to a start value plus a per-unit amount."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "algebra",
+     "title": "Algebra",
+     "topics": [
+      {
+       "id": "score-range-20-23",
+       "title": "Score range 20-23",
+       "subtopics": [
+        {
+         "id": "expressions-and-first-degree-equations",
+         "title": "Expressions and first-degree equations",
+         "outcomes": [
+          {
+           "code": "A 401",
+           "text": "Evaluate expressions by substituting integers."
+          },
+          {
+           "code": "A 402",
+           "text": "Add and subtract simple algebraic expressions."
+          },
+          {
+           "code": "A 403",
+           "text": "Solve routine first-degree equations."
+          }
+         ]
+        },
+        {
+         "id": "binomials-and-slope",
+         "title": "Binomials and slope",
+         "outcomes": [
+          {
+           "code": "A 404",
+           "text": "Multiply two binomials."
+          },
+          {
+           "code": "A 406",
+           "text": "Show knowledge of slope."
+          }
+         ]
+        },
+        {
+         "id": "inequalities-on-the-number-line",
+         "title": "Inequalities on the number line",
+         "outcomes": [
+          {
+           "code": "A 405",
+           "text": "Match simple inequalities with number-line graphs."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "functions",
+     "title": "Functions",
+     "topics": [
+      {
+       "id": "score-range-20-23",
+       "title": "Score range 20-23",
+       "subtopics": [
+        {
+         "id": "function-notation-and-evaluation",
+         "title": "Function notation and evaluation",
+         "outcomes": [
+          {
+           "code": "F 401",
+           "text": "Evaluate linear and quadratic functions in function notation at integers."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "geometry",
+     "title": "Geometry",
+     "topics": [
+      {
+       "id": "score-range-20-23",
+       "title": "Score range 20-23",
+       "subtopics": [
+        {
+         "id": "angle-properties",
+         "title": "Angle properties",
+         "outcomes": [
+          {
+           "code": "G 401",
+           "text": "Use parallel line properties to find an angle measure."
+          },
+          {
+           "code": "G 402",
+           "text": "Know basic angle properties and special sums such as 90, 180 and 360 degrees."
+          }
+         ]
+        },
+        {
+         "id": "area-perimeter-and-the-hypotenuse",
+         "title": "Area, perimeter and the hypotenuse",
+         "outcomes": [
+          {
+           "code": "G 403",
+           "text": "Compute area and perimeter of triangles and rectangles in simple problems."
+          },
+          {
+           "code": "G 404",
+           "text": "Find a right triangle's hypotenuse in very simple cases like 3-4-5."
+          },
+          {
+           "code": "G 405",
+           "text": "Use geometric formulas when all needed information is given."
+          }
+         ]
+        },
+        {
+         "id": "coordinate-plane-moves",
+         "title": "Coordinate plane moves",
+         "outcomes": [
+          {
+           "code": "G 406",
+           "text": "Locate points in the coordinate plane."
+          },
+          {
+           "code": "G 407",
+           "text": "Translate points up, down, left and right."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "statistics-and-probability",
+     "title": "Statistics and Probability",
+     "topics": [
+      {
+       "id": "score-range-20-23",
+       "title": "Score range 20-23",
+       "subtopics": [
+        {
+         "id": "averages-and-tables",
+         "title": "Averages and tables",
+         "outcomes": [
+          {
+           "code": "S 401",
+           "text": "Find a missing value given the average and all other values."
+          }
+         ]
+        },
+        {
+         "id": "reading-tables-and-charts",
+         "title": "Reading tables and charts",
+         "outcomes": [
+          {
+           "code": "S 402",
+           "text": "Translate data from one representation to another, such as bar graph to circle graph."
+          }
+         ]
+        },
+        {
+         "id": "basic-probability",
+         "title": "Basic probability",
+         "outcomes": [
+          {
+           "code": "S 403",
+           "text": "Find the probability of a simple event."
+          }
+         ]
+        },
+        {
+         "id": "events-and-counting",
+         "title": "Events and counting",
+         "outcomes": [
+          {
+           "code": "S 404",
+           "text": "Describe events as combinations of others using and, or and not."
+          },
+          {
+           "code": "S 405",
+           "text": "Show knowledge of simple counting techniques."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "11",
+   "units": [
+    {
+     "id": "number-and-quantity",
+     "title": "Number and Quantity",
+     "topics": [
+      {
+       "id": "score-range-24-27",
+       "title": "Score range 24-27",
+       "subtopics": [
+        {
+         "id": "fractions-and-multiples",
+         "title": "Fractions and multiples",
+         "outcomes": [
+          {
+           "code": "N 501",
+           "text": "Put fractions in order."
+          },
+          {
+           "code": "N 502",
+           "text": "Find and use the least common multiple."
+          },
+          {
+           "code": "N 503",
+           "text": "Work with numerical factors."
+          }
+         ]
+        },
+        {
+         "id": "complex-numbers-and-matrices",
+         "title": "Complex numbers and matrices",
+         "outcomes": [
+          {
+           "code": "N 504",
+           "text": "Show some knowledge of complex numbers."
+          },
+          {
+           "code": "N 505",
+           "text": "Add and subtract matrices with integer entries."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "algebra-and-functions",
+     "title": "Algebra and Functions",
+     "topics": [
+      {
+       "id": "score-range-24-27",
+       "title": "Score range 24-27",
+       "subtopics": [
+        {
+         "id": "multistep-and-linear-modeling",
+         "title": "Multistep and linear modeling",
+         "outcomes": [
+          {
+           "code": "AF 501",
+           "text": "Solve multistep problems that involve converting derived units of measure."
+          },
+          {
+           "code": "AF 502",
+           "text": "Write expressions, equations or inequalities in one variable for pre-algebra settings."
+          },
+          {
+           "code": "AF 503",
+           "text": "Match linear equations with their coordinate-plane graphs."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "algebra",
+     "title": "Algebra",
+     "topics": [
+      {
+       "id": "score-range-24-27",
+       "title": "Score range 24-27",
+       "subtopics": [
+        {
+         "id": "real-world-equations-and-inequalities",
+         "title": "Real-world equations and inequalities",
+         "outcomes": [
+          {
+           "code": "A 501",
+           "text": "Recognize that reported real-world numbers are often rounded."
+          },
+          {
+           "code": "A 502",
+           "text": "Solve real-world problems with first-degree equations."
+          },
+          {
+           "code": "A 503",
+           "text": "Solve first-degree inequalities that do not reverse the sign."
+          },
+          {
+           "code": "A 504",
+           "text": "Match compound inequalities with number-line graphs."
+          }
+         ]
+        },
+        {
+         "id": "polynomials-and-quadratics",
+         "title": "Polynomials and quadratics",
+         "outcomes": [
+          {
+           "code": "A 505",
+           "text": "Add, subtract and multiply polynomials."
+          },
+          {
+           "code": "A 506",
+           "text": "Identify solutions of simple quadratic equations."
+          },
+          {
+           "code": "A 507",
+           "text": "Solve quadratics given in factored form (x+a)(x+b)=0."
+          },
+          {
+           "code": "A 508",
+           "text": "Factor simple quadratics such as difference of squares and perfect squares."
+          }
+         ]
+        },
+        {
+         "id": "powers-roots-and-exponents",
+         "title": "Powers, roots and exponents",
+         "outcomes": [
+          {
+           "code": "A 509",
+           "text": "Work with squares and square roots."
+          },
+          {
+           "code": "A 510",
+           "text": "Work with cubes and cube roots."
+          },
+          {
+           "code": "A 511",
+           "text": "Work with scientific notation."
+          },
+          {
+           "code": "A 512",
+           "text": "Solve problems with positive integer exponents."
+          }
+         ]
+        },
+        {
+         "id": "undefined-expressions-and-slope",
+         "title": "Undefined expressions and slope",
+         "outcomes": [
+          {
+           "code": "A 513",
+           "text": "Decide when an expression is undefined."
+          },
+          {
+           "code": "A 514",
+           "text": "Find the slope of a line from its equation."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "functions",
+     "title": "Functions",
+     "topics": [
+      {
+       "id": "score-range-24-27",
+       "title": "Score range 24-27",
+       "subtopics": [
+        {
+         "id": "function-notation-and-evaluation",
+         "title": "Function notation and evaluation",
+         "outcomes": [
+          {
+           "code": "F 501",
+           "text": "Evaluate polynomial functions in function notation at integers."
+          },
+          {
+           "code": "F 511",
+           "text": "Use function notation for simple functions of two variables."
+          }
+         ]
+        },
+        {
+         "id": "sequences",
+         "title": "Sequences",
+         "outcomes": [
+          {
+           "code": "F 502",
+           "text": "Find the next term of a recursively described sequence."
+          }
+         ]
+        },
+        {
+         "id": "building-and-modeling-functions",
+         "title": "Building and modeling functions",
+         "outcomes": [
+          {
+           "code": "F 503",
+           "text": "Build functions and identify graphs for proportional or linear relations."
+          },
+          {
+           "code": "F 504",
+           "text": "Notice the gap between a function modeling a situation and reality."
+          }
+         ]
+        },
+        {
+         "id": "function-concepts",
+         "title": "Function concepts",
+         "outcomes": [
+          {
+           "code": "F 505",
+           "text": "Understand a function gives one output for each valid input."
+          },
+          {
+           "code": "F 506",
+           "text": "Understand domain and range as valid inputs and outputs, and on graphs."
+          },
+          {
+           "code": "F 507",
+           "text": "Interpret function-notation statements in their context."
+          }
+         ]
+        },
+        {
+         "id": "domain-range-and-asymptotes",
+         "title": "Domain, range and asymptotes",
+         "outcomes": [
+          {
+           "code": "F 508",
+           "text": "Find the domain of polynomial and rational functions."
+          },
+          {
+           "code": "F 509",
+           "text": "Find the range of polynomial functions."
+          },
+          {
+           "code": "F 510",
+           "text": "Find the vertical asymptote of a rational function's graph."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "geometry",
+     "title": "Geometry",
+     "topics": [
+      {
+       "id": "score-range-24-27",
+       "title": "Score range 24-27",
+       "subtopics": [
+        {
+         "id": "angles-and-symmetry",
+         "title": "Angles and symmetry",
+         "outcomes": [
+          {
+           "code": "G 501",
+           "text": "Use several angle properties to find an unknown angle."
+          },
+          {
+           "code": "G 502",
+           "text": "Count lines of symmetry in a figure."
+          },
+          {
+           "code": "G 503",
+           "text": "Use isosceles triangle symmetry to find unknown sides or angles."
+          }
+         ]
+        },
+        {
+         "id": "measurement-precision",
+         "title": "Measurement precision",
+         "outcomes": [
+          {
+           "code": "G 504",
+           "text": "Recognize real measurements are imprecise and precision depends on the tool."
+          }
+         ]
+        },
+        {
+         "id": "perimeter-area-and-circles",
+         "title": "Perimeter, area and circles",
+         "outcomes": [
+          {
+           "code": "G 505",
+           "text": "Find perimeter of simple composite figures with unknown sides."
+          },
+          {
+           "code": "G 506",
+           "text": "Find area of triangles and rectangles needing extra steps."
+          },
+          {
+           "code": "G 507",
+           "text": "Find area and circumference of circles."
+          }
+         ]
+        },
+        {
+         "id": "right-triangles-and-trig-ratios",
+         "title": "Right triangles and trig ratios",
+         "outcomes": [
+          {
+           "code": "G 508",
+           "text": "Find the third side of a right triangle with Pythagorean triple sides."
+          },
+          {
+           "code": "G 509",
+           "text": "Write sine, cosine and tangent as ratios of side lengths."
+          }
+         ]
+        },
+        {
+         "id": "lines-and-transformations",
+         "title": "Lines and transformations",
+         "outcomes": [
+          {
+           "code": "G 510",
+           "text": "Find a line's slope from points or a graph."
+          },
+          {
+           "code": "G 511",
+           "text": "Find the midpoint of a line segment."
+          },
+          {
+           "code": "G 512",
+           "text": "Find the coordinates of a point rotated 180 degrees about a center."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "statistics-and-probability",
+     "title": "Statistics and Probability",
+     "topics": [
+      {
+       "id": "score-range-24-27",
+       "title": "Score range 24-27",
+       "subtopics": [
+        {
+         "id": "averages-from-frequencies",
+         "title": "Averages from frequencies",
+         "outcomes": [
+          {
+           "code": "S 501",
+           "text": "Find the average from frequency counts of all values."
+          },
+          {
+           "code": "S 502",
+           "text": "Manipulate data from tables and charts."
+          }
+         ]
+        },
+        {
+         "id": "probability-and-venn-diagrams",
+         "title": "Probability and Venn diagrams",
+         "outcomes": [
+          {
+           "code": "S 503",
+           "text": "Compute straightforward probabilities in common situations."
+          },
+          {
+           "code": "S 504",
+           "text": "Use Venn diagrams in counting."
+          }
+         ]
+        },
+        {
+         "id": "precision-and-statistical-models",
+         "title": "Precision and statistical models",
+         "outcomes": [
+          {
+           "code": "S 505",
+           "text": "Recognize reported data summaries are rounded and have limited precision."
+          },
+          {
+           "code": "S 506",
+           "text": "Recognize model values typically differ from actual values."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "12",
+   "units": [
+    {
+     "id": "number-and-quantity",
+     "title": "Number and Quantity",
+     "topics": [
+      {
+       "id": "score-range-28-32",
+       "title": "Score range 28-32",
+       "subtopics": [
+        {
+         "id": "number-properties",
+         "title": "Number properties",
+         "outcomes": [
+          {
+           "code": "N 601",
+           "text": "Use prime factorization in number-property problems."
+          },
+          {
+           "code": "N 602",
+           "text": "Use properties of even and odd numbers, factors and multiples."
+          },
+          {
+           "code": "N 603",
+           "text": "Use properties of positive and negative numbers."
+          }
+         ]
+        },
+        {
+         "id": "irrational-numbers-and-exponents",
+         "title": "Irrational numbers and exponents",
+         "outcomes": [
+          {
+           "code": "N 604",
+           "text": "Apply that pi is irrational and a square root of an integer is rational only for perfect squares."
+          },
+          {
+           "code": "N 605",
+           "text": "Apply properties of rational exponents."
+          }
+         ]
+        },
+        {
+         "id": "complex-numbers-and-vectors",
+         "title": "Complex numbers and vectors",
+         "outcomes": [
+          {
+           "code": "N 606",
+           "text": "Multiply two complex numbers."
+          },
+          {
+           "code": "N 607",
+           "text": "Use addition, subtraction and scalar multiplication of vectors and matrices."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "score-range-33-36",
+       "title": "Score range 33-36",
+       "subtopics": [
+        {
+         "id": "number-systems",
+         "title": "Number systems",
+         "outcomes": [
+          {
+           "code": "N 701",
+           "text": "Analyze and draw conclusions from number concepts."
+          },
+          {
+           "code": "N 702",
+           "text": "Apply properties of rational numbers and the rational number system."
+          },
+          {
+           "code": "N 703",
+           "text": "Apply properties of real numbers, including irrational numbers."
+          }
+         ]
+        },
+        {
+         "id": "complex-numbers-and-matrices",
+         "title": "Complex numbers and matrices",
+         "outcomes": [
+          {
+           "code": "N 704",
+           "text": "Apply properties of complex numbers and their number system."
+          },
+          {
+           "code": "N 705",
+           "text": "Multiply matrices."
+          },
+          {
+           "code": "N 706",
+           "text": "Apply properties of matrices, including matrices viewed as a number system."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "algebra-and-functions",
+     "title": "Algebra and Functions",
+     "topics": [
+      {
+       "id": "score-range-28-32",
+       "title": "Score range 28-32",
+       "subtopics": [
+        {
+         "id": "rates-and-graph-interpretation",
+         "title": "Rates and graph interpretation",
+         "outcomes": [
+          {
+           "code": "AF 601",
+           "text": "Solve word problems with several rates, proportions or percentages."
+          },
+          {
+           "code": "AF 602",
+           "text": "Build expressions, equations and inequalities for common algebra settings."
+          },
+          {
+           "code": "AF 603",
+           "text": "Interpret and use information from coordinate-plane graphs."
+          }
+         ]
+        },
+        {
+         "id": "translating-graphs",
+         "title": "Translating graphs",
+         "outcomes": [
+          {
+           "code": "AF 604",
+           "text": "Find an equation whose graph is a vertical translation of a given one."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "score-range-33-36",
+       "title": "Score range 33-36",
+       "subtopics": [
+        {
+         "id": "complex-problems-and-graph-analysis",
+         "title": "Complex problems and graph analysis",
+         "outcomes": [
+          {
+           "code": "AF 701",
+           "text": "Solve complex percent-change and multi-concept arithmetic problems."
+          },
+          {
+           "code": "AF 702",
+           "text": "Build equations or inequalities when strategic planning is needed."
+          },
+          {
+           "code": "AF 703",
+           "text": "Draw conclusions from properties of algebra and functions."
+          },
+          {
+           "code": "AF 704",
+           "text": "Draw conclusions from information in coordinate-plane graphs."
+          }
+         ]
+        },
+        {
+         "id": "graph-characteristics-and-translations",
+         "title": "Graph characteristics and translations",
+         "outcomes": [
+          {
+           "code": "AF 705",
+           "text": "Identify graph features from conditions or from an equation like y = ax^2 + c."
+          },
+          {
+           "code": "AF 706",
+           "text": "Find an equation for a graph translated horizontally and vertically."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "algebra",
+     "title": "Algebra",
+     "topics": [
+      {
+       "id": "score-range-28-32",
+       "title": "Score range 28-32",
+       "subtopics": [
+        {
+         "id": "manipulating-equations-and-inequalities",
+         "title": "Manipulating equations and inequalities",
+         "outcomes": [
+          {
+           "code": "A 601",
+           "text": "Manipulate expressions and equations."
+          },
+          {
+           "code": "A 602",
+           "text": "Solve linear inequalities that require reversing the sign."
+          },
+          {
+           "code": "A 603",
+           "text": "Match linear inequalities with number-line graphs."
+          }
+         ]
+        },
+        {
+         "id": "systems-and-nonlinear-equations",
+         "title": "Systems and nonlinear equations",
+         "outcomes": [
+          {
+           "code": "A 604",
+           "text": "Solve systems of two linear equations."
+          },
+          {
+           "code": "A 605",
+           "text": "Solve quadratic equations."
+          },
+          {
+           "code": "A 606",
+           "text": "Solve absolute value equations."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "score-range-33-36",
+       "title": "Score range 33-36",
+       "subtopics": [
+        {
+         "id": "advanced-inequalities-and-polynomials",
+         "title": "Advanced inequalities and polynomials",
+         "outcomes": [
+          {
+           "code": "A 701",
+           "text": "Solve simple absolute value inequalities."
+          },
+          {
+           "code": "A 702",
+           "text": "Match simple quadratic inequalities with number-line graphs."
+          },
+          {
+           "code": "A 703",
+           "text": "Apply the remainder theorem: P(a) is the remainder of P(x) divided by (x - a)."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "functions",
+     "title": "Functions",
+     "topics": [
+      {
+       "id": "score-range-28-32",
+       "title": "Score range 28-32",
+       "subtopics": [
+        {
+         "id": "rates-of-change-and-inverse-relations",
+         "title": "Rates of change and inverse relations",
+         "outcomes": [
+          {
+           "code": "F 601",
+           "text": "Relate a graph to a situation described as faster or slower change."
+          },
+          {
+           "code": "F 602",
+           "text": "Build functions for inversely proportional relations."
+          }
+         ]
+        },
+        {
+         "id": "sequences",
+         "title": "Sequences: Score range 28-32",
+         "outcomes": [
+          {
+           "code": "F 603",
+           "text": "Find a recursive expression for the general term of a sequence."
+          }
+         ]
+        },
+        {
+         "id": "composite-functions",
+         "title": "Composite functions: Score range 28-32",
+         "outcomes": [
+          {
+           "code": "F 604",
+           "text": "Evaluate composite functions at integer values."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "score-range-33-36",
+       "title": "Score range 33-36",
+       "subtopics": [
+        {
+         "id": "model-fit-and-exponentials",
+         "title": "Model fit and exponentials",
+         "outcomes": [
+          {
+           "code": "F 701",
+           "text": "Compare actual values with a modeling function's values to judge and compare models."
+          },
+          {
+           "code": "F 702",
+           "text": "Build functions for exponential relations."
+          }
+         ]
+        },
+        {
+         "id": "sequences",
+         "title": "Sequences: Score range 33-36",
+         "outcomes": [
+          {
+           "code": "F 703",
+           "text": "Show knowledge of geometric sequences."
+          }
+         ]
+        },
+        {
+         "id": "trigonometry-and-logarithms",
+         "title": "Trigonometry and logarithms",
+         "outcomes": [
+          {
+           "code": "F 704",
+           "text": "Show knowledge of unit circle trigonometry."
+          },
+          {
+           "code": "F 705",
+           "text": "Match graphs of basic trig functions with their equations."
+          },
+          {
+           "code": "F 706",
+           "text": "Use trig concepts and basic identities to solve problems."
+          },
+          {
+           "code": "F 707",
+           "text": "Show knowledge of logarithms."
+          }
+         ]
+        },
+        {
+         "id": "composite-functions",
+         "title": "Composite functions: Score range 33-36",
+         "outcomes": [
+          {
+           "code": "F 708",
+           "text": "Write an expression for the composite of two simple functions."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "geometry",
+     "title": "Geometry",
+     "topics": [
+      {
+       "id": "score-range-28-32",
+       "title": "Score range 28-32",
+       "subtopics": [
+        {
+         "id": "measurement-and-right-triangles",
+         "title": "Measurement and right triangles",
+         "outcomes": [
+          {
+           "code": "G 601",
+           "text": "Use area, perimeter and volume relationships to find another measure."
+          },
+          {
+           "code": "G 602",
+           "text": "Use the Pythagorean theorem."
+          },
+          {
+           "code": "G 603",
+           "text": "Apply properties of special, similar and congruent triangles."
+          },
+          {
+           "code": "G 604",
+           "text": "Use basic trig ratios to solve right triangles."
+          }
+         ]
+        },
+        {
+         "id": "coordinate-geometry",
+         "title": "Coordinate geometry",
+         "outcomes": [
+          {
+           "code": "G 605",
+           "text": "Use the distance formula."
+          },
+          {
+           "code": "G 606",
+           "text": "Use parallel and perpendicular line properties to find a line's equation or a point."
+          }
+         ]
+        },
+        {
+         "id": "transformations-and-conics",
+         "title": "Transformations and conics",
+         "outcomes": [
+          {
+           "code": "G 607",
+           "text": "Find a point's coordinates after reflection across a vertical or horizontal line or y = x."
+          },
+          {
+           "code": "G 608",
+           "text": "Find a point's coordinates after a 90 degree rotation about the origin."
+          },
+          {
+           "code": "G 609",
+           "text": "Recognize special features of parabolas and circles, like vertex, center and radius."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "score-range-33-36",
+       "title": "Score range 33-36",
+       "subtopics": [
+        {
+         "id": "circles-and-composite-figures",
+         "title": "Circles and composite figures",
+         "outcomes": [
+          {
+           "code": "G 701",
+           "text": "Use relationships among angles, arcs and distances in a circle."
+          },
+          {
+           "code": "G 702",
+           "text": "Find area of composite figures needing planning or visualization."
+          }
+         ]
+        },
+        {
+         "id": "scale-and-multistep-geometry",
+         "title": "Scale and multistep geometry",
+         "outcomes": [
+          {
+           "code": "G 703",
+           "text": "Use scale factors to find the size of a size change."
+          },
+          {
+           "code": "G 704",
+           "text": "Draw conclusions from a set of geometric conditions."
+          },
+          {
+           "code": "G 705",
+           "text": "Solve multistep geometry problems that integrate several concepts."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "statistics-and-probability",
+     "title": "Statistics and Probability",
+     "topics": [
+      {
+       "id": "score-range-28-32",
+       "title": "Score range 28-32",
+       "subtopics": [
+        {
+         "id": "weighted-averages-and-tables",
+         "title": "Weighted averages and tables",
+         "outcomes": [
+          {
+           "code": "S 601",
+           "text": "Calculate or use a weighted average."
+          },
+          {
+           "code": "S 602",
+           "text": "Interpret information from tables, including two-way frequency tables."
+          }
+         ]
+        },
+        {
+         "id": "counting-and-probability",
+         "title": "Counting and probability",
+         "outcomes": [
+          {
+           "code": "S 603",
+           "text": "Apply counting techniques."
+          },
+          {
+           "code": "S 604",
+           "text": "Compute a probability when the event or sample space is not obvious."
+          }
+         ]
+        },
+        {
+         "id": "conditional-probability-and-independence",
+         "title": "Conditional probability and independence",
+         "outcomes": [
+          {
+           "code": "S 605",
+           "text": "Recognize conditional and joint probability in real-world contexts."
+          },
+          {
+           "code": "S 606",
+           "text": "Recognize independence in real-world contexts."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "score-range-33-36",
+       "title": "Score range 33-36",
+       "subtopics": [
+        {
+         "id": "data-analysis",
+         "title": "Data analysis",
+         "outcomes": [
+          {
+           "code": "S 701",
+           "text": "Distinguish mean, median and mode of a list."
+          },
+          {
+           "code": "S 702",
+           "text": "Draw conclusions from tables, including two-way frequency tables."
+          }
+         ]
+        },
+        {
+         "id": "study-design-and-modeling",
+         "title": "Study design and modeling",
+         "outcomes": [
+          {
+           "code": "S 703",
+           "text": "Understand the role of randomization in surveys, experiments and observational studies."
+          }
+         ]
+        },
+        {
+         "id": "probability-and-models",
+         "title": "Probability and models",
+         "outcomes": [
+          {
+           "code": "S 704",
+           "text": "Show knowledge of conditional and joint probability."
+          },
+          {
+           "code": "S 705",
+           "text": "Recognize statistical models gain power from regularity in actual-versus-model differences."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "build": {
+  "builtAt": "2026-10-14T10:00:00.948Z",
+  "model": "claude-agent",
+  "usd": 0,
+  "expectedCodes": 180,
+  "coverage": 1,
+  "missingCodes": [],
+  "counts": {
+   "grades": 5,
+   "units": 30,
+   "topics": 36,
+   "subtopics": 84,
+   "outcomes": 180
+  },
+  "warnings": [
+   "unit \"Algebra and Functions\" (grade 8) has a single outcome",
+   "unit \"Functions\" (grade 8) has a single outcome",
+   "unit \"Functions\" (grade 9) has a single outcome",
+   "unit \"Functions\" (grade 10) has a single outcome"
+  ]
+ }
+}

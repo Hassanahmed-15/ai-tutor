@@ -1,0 +1,538 @@
+{
+ "id": "pk-ncp-tech-welding-9-10",
+ "region": "PK",
+ "framework": "National Curriculum of Pakistan 2022-23",
+ "board": null,
+ "qualification": "Technical stream",
+ "subject": "Welding (Arc and Gas)",
+ "syllabusCode": null,
+ "gradeSystem": "grade",
+ "source": {
+  "urls": [
+   "https://ncc.gov.pk/SiteImage/Misc/files/73-%20WELDING%20(ARC%20and%20GAS).pdf"
+  ],
+  "publisher": "National Curriculum Council, Ministry of Federal Education and Professional Training",
+  "licence": "Government publication; structure + our own wording only",
+  "firstExam": null
+ },
+ "grades": [
+  {
+   "grade": "9",
+   "units": [
+    {
+     "id": "domain-a-introduction-to-welding",
+     "title": "Domain A: Introduction to Welding",
+     "topics": [
+      {
+       "id": "welding-and-its-two-major-kinds",
+       "title": "Welding and its two major kinds",
+       "subtopics": [
+        {
+         "id": "what-welding-is",
+         "title": "What welding is",
+         "outcomes": [
+          {
+           "code": "WD-09-A-01",
+           "text": "Define welding."
+          },
+          {
+           "code": "WD-09-A-02",
+           "text": "Sort welding into fusion and pressure welding."
+          }
+         ]
+        },
+        {
+         "id": "fusion-welding",
+         "title": "Fusion welding",
+         "outcomes": [
+          {
+           "code": "WD-09-A-03",
+           "text": "Explain fusion welding."
+          },
+          {
+           "code": "WD-09-A-04",
+           "text": "Describe what fusion welding is used for."
+          },
+          {
+           "code": "WD-09-A-05",
+           "text": "Describe the benefits of fusion welding."
+          }
+         ]
+        },
+        {
+         "id": "pressure-welding",
+         "title": "Pressure welding",
+         "outcomes": [
+          {
+           "code": "WD-09-A-06",
+           "text": "Define pressure welding."
+          },
+          {
+           "code": "WD-09-A-07",
+           "text": "Classify pressure welding types."
+          },
+          {
+           "code": "WD-09-A-08",
+           "text": "Explain what pressure welding is used for."
+          },
+          {
+           "code": "WD-09-A-09",
+           "text": "Explain the benefits of pressure welding."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "domain-b-basics-of-arc-and-gas-welding",
+     "title": "Domain B: Basics of Arc and Gas Welding",
+     "topics": [
+      {
+       "id": "electric-arc-welding",
+       "title": "Electric arc welding",
+       "subtopics": [
+        {
+         "id": "electric-arc-welding-basics",
+         "title": "Electric arc welding basics",
+         "outcomes": [
+          {
+           "code": "WD-09-B-01",
+           "text": "Define electric arc welding."
+          },
+          {
+           "code": "WD-09-B-02",
+           "text": "Explain the types of electric arc welding."
+          },
+          {
+           "code": "WD-09-B-03",
+           "text": "Analyze the uses of electric arc welding."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "domain-c-equipment-and-tools-of-arc-and-gas-weld",
+     "title": "Domain C: Equipment and Tools of Arc and Gas Welding",
+     "topics": [
+      {
+       "id": "arc-welding-equipment",
+       "title": "Arc welding equipment",
+       "subtopics": [
+        {
+         "id": "arc-welding-machines-and-tools",
+         "title": "Arc welding machines and tools",
+         "outcomes": [
+          {
+           "code": "WD-09-C-01",
+           "text": "Identify the various arc welding tools."
+          },
+          {
+           "code": "WD-09-C-02",
+           "text": "Tell AC welding transformer, DC generator and welding rectifier apart."
+          },
+          {
+           "code": "WD-09-C-03",
+           "text": "Describe the use of step-up and step-down transformers."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "domain-d-arc-and-gas-welding-and-gas-cutting-pro",
+     "title": "Domain D: Arc and Gas Welding and Gas Cutting Procedures",
+     "topics": [
+      {
+       "id": "arc-welding-procedures",
+       "title": "Arc welding procedures",
+       "subtopics": [
+        {
+         "id": "arc-welding-and-cutting-procedure",
+         "title": "Arc welding and cutting procedure",
+         "outcomes": [
+          {
+           "code": "WD-09-D-01",
+           "text": "Explain the arc welding procedure in the workplace."
+          },
+          {
+           "code": "WD-09-D-02",
+           "text": "Explain cutting metal with arc welding."
+          }
+         ]
+        },
+        {
+         "id": "arc-welding-positions",
+         "title": "Arc welding positions",
+         "outcomes": [
+          {
+           "code": "WD-09-D-03",
+           "text": "Explain arc welding procedure in different positions."
+          },
+          {
+           "code": "WD-09-D-04",
+           "text": "Explain cutting metal by arc in different positions."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "domain-e-safety-precautions-in-arc-and-gas-weldi",
+     "title": "Domain E: Safety Precautions in Arc and Gas Welding",
+     "topics": [
+      {
+       "id": "arc-welding-safety",
+       "title": "Arc welding safety",
+       "subtopics": [
+        {
+         "id": "general-and-specific-safety",
+         "title": "General and specific safety",
+         "outcomes": [
+          {
+           "code": "WD-09-E-01",
+           "text": "Understand general safety practice in arc welding workshops."
+          },
+          {
+           "code": "WD-09-E-02",
+           "text": "Understand specific safety precautions of arc welding."
+          }
+         ]
+        },
+        {
+         "id": "handling-arc-equipment-safely",
+         "title": "Handling arc equipment safely",
+         "outcomes": [
+          {
+           "code": "WD-09-E-03",
+           "text": "Describe safety practice for arc welding plants."
+          },
+          {
+           "code": "WD-09-E-04",
+           "text": "Describe safety practice for electrode holders."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "domain-f-practical-implications-of-arc-and-gas-w",
+     "title": "Domain F: Practical Implications of Arc and Gas Welding",
+     "topics": [
+      {
+       "id": "welding-joints",
+       "title": "Welding joints",
+       "subtopics": [
+        {
+         "id": "types-and-uses-of-joints",
+         "title": "Types and uses of joints",
+         "outcomes": [
+          {
+           "code": "WD-09-F-01",
+           "text": "Define welding joints."
+          },
+          {
+           "code": "WD-09-F-02",
+           "text": "Explain the types of welding joints."
+          },
+          {
+           "code": "WD-09-F-03",
+           "text": "Describe what each welding joint is used for."
+          }
+         ]
+        },
+        {
+         "id": "making-v-and-u-joints",
+         "title": "Making V and U joints",
+         "outcomes": [
+          {
+           "code": "WD-09-F-04",
+           "text": "Gain skill in making V joints."
+          },
+          {
+           "code": "WD-09-F-05",
+           "text": "Gain skill in making U joints."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "domain-g-modern-welding-techniques",
+     "title": "Domain G: Modern Welding Techniques",
+     "topics": [
+      {
+       "id": "modern-arc-welding",
+       "title": "Modern arc welding",
+       "subtopics": [
+        {
+         "id": "thermit-and-submerged-arc",
+         "title": "Thermit and submerged arc",
+         "outcomes": [
+          {
+           "code": "WD-09-G-01",
+           "text": "Explain Thermit welding."
+          },
+          {
+           "code": "WD-09-G-02",
+           "text": "Explain submerged arc welding."
+          },
+          {
+           "code": "WD-09-G-03",
+           "text": "Describe the purposes of modern arc welding techniques."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "10",
+   "units": [
+    {
+     "id": "domain-b-basics-of-arc-and-gas-welding",
+     "title": "Domain B: Basics of Arc and Gas Welding",
+     "topics": [
+      {
+       "id": "gas-welding",
+       "title": "Gas welding",
+       "subtopics": [
+        {
+         "id": "gas-welding-basics",
+         "title": "Gas welding basics",
+         "outcomes": [
+          {
+           "code": "WD-10-B-01",
+           "text": "Explain gas welding."
+          },
+          {
+           "code": "WD-10-B-02",
+           "text": "Classify gas welding as low pressure and high pressure."
+          },
+          {
+           "code": "WD-10-B-03",
+           "text": "Explain oxy-acetylene gas welding."
+          },
+          {
+           "code": "WD-10-B-04",
+           "text": "Describe uses of oxy-acetylene welding."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "domain-c-equipment-and-tools-of-arc-and-gas-weld",
+     "title": "Domain C: Equipment and Tools of Arc and Gas Welding",
+     "topics": [
+      {
+       "id": "gas-welding-equipment",
+       "title": "Gas welding equipment",
+       "subtopics": [
+        {
+         "id": "gas-welding-gases-and-tools",
+         "title": "Gas welding gases and tools",
+         "outcomes": [
+          {
+           "code": "WD-10-C-01",
+           "text": "Identify gas welding tools and equipment."
+          },
+          {
+           "code": "WD-10-C-02",
+           "text": "Classify the gases used in gas welding: oxygen, nitrogen, carbon, acetylene."
+          },
+          {
+           "code": "WD-10-C-03",
+           "text": "Describe how each gas is used in gas welding."
+          },
+          {
+           "code": "WD-10-C-04",
+           "text": "Recognize what each gas welding tool is for."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "domain-d-arc-and-gas-welding-and-gas-cutting-pro",
+     "title": "Domain D: Arc and Gas Welding and Gas Cutting Procedures",
+     "topics": [
+      {
+       "id": "gas-welding-and-cutting-procedures",
+       "title": "Gas welding and cutting procedures",
+       "subtopics": [
+        {
+         "id": "gas-cutting-torch-and-process",
+         "title": "Gas cutting torch and process",
+         "outcomes": [
+          {
+           "code": "WD-10-D-01",
+           "text": "Recognize the gas cutting torch, its functions and types."
+          },
+          {
+           "code": "WD-10-D-02",
+           "text": "Explain the gas cutting process."
+          }
+         ]
+        },
+        {
+         "id": "gas-welding-positions",
+         "title": "Gas welding positions",
+         "outcomes": [
+          {
+           "code": "WD-10-D-03",
+           "text": "Recognize the cutting torch and its types when welding in different positions."
+          },
+          {
+           "code": "WD-10-D-04",
+           "text": "Explain the gas cutting process in different positions."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "domain-e-safety-precautions-in-arc-and-gas-weldi",
+     "title": "Domain E: Safety Precautions in Arc and Gas Welding",
+     "topics": [
+      {
+       "id": "gas-welding-safety",
+       "title": "Gas welding safety",
+       "subtopics": [
+        {
+         "id": "general-and-specific-safety",
+         "title": "General and specific safety",
+         "outcomes": [
+          {
+           "code": "WD-10-E-01",
+           "text": "Understand general safety practice in gas welding workshops."
+          },
+          {
+           "code": "WD-10-E-02",
+           "text": "Understand specific safety precautions of gas welding."
+          }
+         ]
+        },
+        {
+         "id": "handling-gas-equipment-safely",
+         "title": "Handling gas equipment safely",
+         "outcomes": [
+          {
+           "code": "WD-10-E-03",
+           "text": "Understand proper handling of gas cylinders."
+          },
+          {
+           "code": "WD-10-E-04",
+           "text": "Explain safety practice for the blow pipe and rubber hose."
+          },
+          {
+           "code": "WD-10-E-05",
+           "text": "Understand back-fire and flashback in gas welding."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "domain-f-practical-implications-of-arc-and-gas-w",
+     "title": "Domain F: Practical Implications of Arc and Gas Welding",
+     "topics": [
+      {
+       "id": "gas-welding-flames",
+       "title": "Gas welding flames",
+       "subtopics": [
+        {
+         "id": "gas-flames",
+         "title": "Gas flames",
+         "outcomes": [
+          {
+           "code": "WD-10-F-01",
+           "text": "Describe gas welding flames."
+          },
+          {
+           "code": "WD-10-F-02",
+           "text": "Recognize the types of gas flames."
+          },
+          {
+           "code": "WD-10-F-03",
+           "text": "Explain how gas flames are made."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "domain-g-modern-welding-techniques",
+     "title": "Domain G: Modern Welding Techniques",
+     "topics": [
+      {
+       "id": "modern-gas-welding",
+       "title": "Modern gas welding",
+       "subtopics": [
+        {
+         "id": "tig-and-mig-welding",
+         "title": "TIG and MIG welding",
+         "outcomes": [
+          {
+           "code": "WD-10-G-01",
+           "text": "Recognize TIG welding."
+          },
+          {
+           "code": "WD-10-G-02",
+           "text": "Understand MIG welding."
+          },
+          {
+           "code": "WD-10-G-03",
+           "text": "Describe the purposes of modern gas welding techniques."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "build": {
+  "builtAt": "2026-10-14T08:40:19.915Z",
+  "model": "claude-agent",
+  "usd": 0,
+  "expectedCodes": 54,
+  "coverage": 1,
+  "missingCodes": [],
+  "counts": {
+   "grades": 2,
+   "units": 13,
+   "topics": 13,
+   "subtopics": 20,
+   "outcomes": 54
+  },
+  "warnings": []
+ }
+}

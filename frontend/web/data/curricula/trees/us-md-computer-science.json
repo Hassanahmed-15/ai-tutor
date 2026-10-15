@@ -1,0 +1,5458 @@
+{
+ "id": "us-md-computer-science",
+ "region": "US",
+ "framework": "Maryland state academic standards: Computer Science & Technology",
+ "board": null,
+ "qualification": "K-12",
+ "subject": "Computer Science & Technology",
+ "syllabusCode": null,
+ "gradeSystem": "grade",
+ "source": {
+  "urls": [
+   "https://api.commonstandardsproject.com/api/v1/jurisdictions/49FCDFBD2CF04033A9C347BFA0584DF0",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/E0F2703192B5437E8A46CC7197978509",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/22956C238B454F6A88A99F65026A39B7",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/85F87428928F4790B87E6B40D77F244C",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/04337E52BE9C41BAAF60131A5215E847",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/4E4F5215ED6747F2B3D4765D2637EEA7",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/EB1BB101ECC842579CCFD25C1283B2CA",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/93532AF3FA0D4AA9871F95B77FA00407",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/5A9FA3BDAFD74FBD8756E6A4FB8A7ECA",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/43BA41A15BAF4D82AA322D6F53A12FAF",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/8D515E89AE084C62989134EEE35C8A1F",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/540C02742E3A4FEA9DE33B1C65084574",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/AE859FA2D6B24269B0DA8EC01010944C",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/EF85D90CDFEB4ADEA02368CC75C48541",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/383335916913475E9F088D167E5DDDCB"
+  ],
+  "publisher": "Maryland state education agency (machine-readable via Common Standards Project / ASN)",
+  "licence": "CC BY 4.0 US, Common Curriculum, Inc.",
+  "firstExam": "2018"
+ },
+ "grades": [
+  {
+   "grade": "K",
+   "units": [
+    {
+     "id": "computing-systems",
+     "title": "Computing Systems",
+     "topics": [
+      {
+       "id": "devices",
+       "title": "Devices",
+       "subtopics": [
+        {
+         "id": "devices",
+         "title": "Devices",
+         "outcomes": [
+          {
+           "code": "K.CS.D.01",
+           "text": "Select and operate the appropriate computing device to perform a variety of different tasks"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "hardware-software",
+       "title": "Hardware & Software",
+       "subtopics": [
+        {
+         "id": "hardware-software",
+         "title": "Hardware & Software",
+         "outcomes": [
+          {
+           "code": "K.CS.HS.01",
+           "text": "Identify by name and locate common computing devices and external hardware in a variety of environments, using appropriate technical terminology (e.g., mobile devices, desktop computer, laptop computer, mouse, keyboard, wearables)."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "troubleshooting",
+       "title": "Troubleshooting",
+       "subtopics": [
+        {
+         "id": "troubleshooting",
+         "title": "Troubleshooting",
+         "outcomes": [
+          {
+           "code": "K.CS.T.01",
+           "text": "Recognize the possibility computing systems might not work as expected and identify basic hardware and software problems using appropriate technical terminology (e.g., monitor turned off, volume decreased on headphones)."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "networks-and-the-internet",
+     "title": "Networks and the Internet",
+     "topics": [
+      {
+       "id": "network-communication-organization",
+       "title": "Network Communication & Organization",
+       "subtopics": [
+        {
+         "id": "network-communication-organization",
+         "title": "Network Communication & Organization",
+         "outcomes": [
+          {
+           "code": "K.NI.NCO.01",
+           "text": "Recognize that basic computing devices and components can be connected to one another."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "cybersecurity",
+       "title": "Cybersecurity",
+       "subtopics": [
+        {
+         "id": "cybersecurity",
+         "title": "Cybersecurity",
+         "outcomes": [
+          {
+           "code": "K.NI.C.01",
+           "text": "Identify and use passwords and discuss why they are not shared with others."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "data-analysis",
+     "title": "Data Analysis",
+     "topics": [
+      {
+       "id": "storage",
+       "title": "Storage",
+       "subtopics": [
+        {
+         "id": "storage",
+         "title": "Storage",
+         "outcomes": [
+          {
+           "code": "K.DA.S.01",
+           "text": "Identify that information from our everyday lives can be stored and accessed via computing devices."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "collection-visualization-transformation",
+       "title": "Collection, Visualization & Transformation",
+       "subtopics": [
+        {
+         "id": "collection-visualization-transformation",
+         "title": "Collection, Visualization & Transformation",
+         "outcomes": [
+          {
+           "code": "K.DA.CVT.01",
+           "text": "With guidance, collect data on a basic topic (e.g., weather, temperature) and present it visually."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "inference-models",
+       "title": "Inference & Models",
+       "subtopics": [
+        {
+         "id": "inference-models",
+         "title": "Inference & Models",
+         "outcomes": [
+          {
+           "code": "K.DA.IM.01",
+           "text": "With guidance, draw conclusions and make predictions based on picture graphs or patterns (e.g., make predictions based on weather data presented in a picture graph, complete a pattern) with or without a computing device."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "algorithms-and-programming",
+     "title": "Algorithms and Programming",
+     "topics": [
+      {
+       "id": "algorithms",
+       "title": "Algorithms",
+       "subtopics": [
+        {
+         "id": "algorithms",
+         "title": "Algorithms",
+         "outcomes": [
+          {
+           "code": "K.AP.A.01",
+           "text": "Model daily processes and follow basic algorithms (step-by-step lists of instructions) to complete tasks."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "variables",
+       "title": "Variables",
+       "subtopics": [
+        {
+         "id": "variables",
+         "title": "Variables",
+         "outcomes": [
+          {
+           "code": "K.AP.V.01",
+           "text": "With guidance, model the way programs store and manipulate gradelevel data by using numbers or other symbols to represent information (e.g., encode or decode words using numbers, pictographs or symbols to letters, words, or direction)."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "control",
+       "title": "Control",
+       "subtopics": [
+        {
+         "id": "control",
+         "title": "Control",
+         "outcomes": [
+          {
+           "code": "K.AP.C.01",
+           "text": "With guidance, create a set of instructions (programs) to accomplish a task using a programming language, device, or unplugged activity, including sequencing, emphasizing the beginning, middle, and end."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "modularity",
+       "title": "Modularity",
+       "subtopics": [
+        {
+         "id": "modularity",
+         "title": "Modularity",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Not addressed at this level"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "program-development",
+       "title": "Program Development",
+       "subtopics": [
+        {
+         "id": "program-development",
+         "title": "Program Development",
+         "outcomes": [
+          {
+           "code": "K.AP.PD.01",
+           "text": "With guidance, create a grade level appropriate document to illustrate thoughts, ideas, or stories in a sequential manner (e.g., storyboard, story map, sequential graphic organizer)."
+          },
+          {
+           "code": "K.AP.PD.02",
+           "text": "Give attribution to ideas, solutions, and creations of others, verbally, while developing algorithms."
+          },
+          {
+           "code": "K.AP.PD.03",
+           "text": "Identify errors in an algorithm that includes sequencing and repeated procedures using a programming language or unplugged activity. Discuss how errors in the algorithm could be corrected."
+          },
+          {
+           "code": "K.AP.PD.04",
+           "text": "Use correct terminology (e.g., first, second, etc.) in the development of an algorithm to solve a simple problem."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "impacts-of-computing",
+     "title": "Impacts of Computing",
+     "topics": [
+      {
+       "id": "culture-and-diversity",
+       "title": "Culture and Diversity",
+       "subtopics": [
+        {
+         "id": "culture-and-diversity",
+         "title": "Culture and Diversity",
+         "outcomes": [
+          {
+           "code": "K.IC.C.01",
+           "text": "Use grade-level appropriate language to identify and describe how people use a variety of technologies and applications in their daily work and personal lives."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "social-interactions",
+       "title": "Social Interactions",
+       "subtopics": [
+        {
+         "id": "social-interactions",
+         "title": "Social Interactions",
+         "outcomes": [
+          {
+           "code": "K.IC.SI.01",
+           "text": "Identify appropriate and safe behaviors when participating online."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "safety-law-ethics",
+       "title": "Safety, Law & Ethics",
+       "subtopics": [
+        {
+         "id": "safety-law-ethics",
+         "title": "Safety, Law & Ethics",
+         "outcomes": [
+          {
+           "code": "K.IC.SLE.01",
+           "text": "Keep login information private and log off devices appropriately."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "1",
+   "units": [
+    {
+     "id": "computing-systems",
+     "title": "Computing Systems",
+     "topics": [
+      {
+       "id": "devices",
+       "title": "Devices",
+       "subtopics": [
+        {
+         "id": "devices",
+         "title": "Devices",
+         "outcomes": [
+          {
+           "code": "1.CS.D.01",
+           "text": "Select and operate the appropriate application/software to perform a variety of tasks or obtain a desired outcome."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "hardware-software",
+       "title": "Hardware & Software",
+       "subtopics": [
+        {
+         "id": "hardware-software",
+         "title": "Hardware & Software",
+         "outcomes": [
+          {
+           "code": "1.CS.HS.01",
+           "text": "Identify by name and locate common computing devices and external hardware in a variety of environments, using appropriate technical terminology (e.g., mobile devices, desktop computer, laptop computer, mouse, keyboard, wearables)."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "troubleshooting",
+       "title": "Troubleshooting",
+       "subtopics": [
+        {
+         "id": "troubleshooting",
+         "title": "Troubleshooting",
+         "outcomes": [
+          {
+           "code": "K.CS.T.01",
+           "text": "Recognize the possibility computing systems might not work as expected and identify basic hardware and software problems using appropriate technical terminology (e.g., monitor turned off, volume decreased on headphones)."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "networks-and-the-internet",
+     "title": "Networks and the Internet",
+     "topics": [
+      {
+       "id": "network-communication-organization",
+       "title": "Network Communication & Organization",
+       "subtopics": [
+        {
+         "id": "network-communication-organization",
+         "title": "Network Communication & Organization",
+         "outcomes": [
+          {
+           "code": "1.NI.NCO.01",
+           "text": "Recognize that computing devices can be connected through physical or wireless pathways."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "cybersecurity",
+       "title": "Cybersecurity",
+       "subtopics": [
+        {
+         "id": "cybersecurity",
+         "title": "Cybersecurity",
+         "outcomes": [
+          {
+           "code": "1.NI.C.01",
+           "text": "Recognize what passwords are, why they are used, and why they are not shared."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "data-analysis",
+     "title": "Data Analysis",
+     "topics": [
+      {
+       "id": "storage",
+       "title": "Storage",
+       "subtopics": [
+        {
+         "id": "storage",
+         "title": "Storage",
+         "outcomes": [
+          {
+           "code": "1.DA.S.01",
+           "text": "Identify, access, modify, and save an existing file with a computing device."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "collection-visualization-transformation",
+       "title": "Collection, Visualization & Transformation",
+       "subtopics": [
+        {
+         "id": "collection-visualization-transformation",
+         "title": "Collection, Visualization & Transformation",
+         "outcomes": [
+          {
+           "code": "1.DA.CVT.01",
+           "text": "With guidance, collect and organize data. Present data effectively in two different ways"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "inference-models",
+       "title": "Inference & Models",
+       "subtopics": [
+        {
+         "id": "inference-models",
+         "title": "Inference & Models",
+         "outcomes": [
+          {
+           "code": "1.DA.IM.01",
+           "text": "With guidance, identify, interpret, and analyze data from a chart or graphical display (visualization) in order to make a prediction, with or without a computing device"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "algorithms-and-programming",
+     "title": "Algorithms and Programming",
+     "topics": [
+      {
+       "id": "algorithms",
+       "title": "Algorithms",
+       "subtopics": [
+        {
+         "id": "algorithms",
+         "title": "Algorithms",
+         "outcomes": [
+          {
+           "code": "1.AP.A.01",
+           "text": "Model daily processes and follow basic algorithms (step-by-step lists of instructions) to complete tasks verbally, kinesthetically, via a programming language, or using a device."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "variables",
+       "title": "Variables",
+       "subtopics": [
+        {
+         "id": "variables",
+         "title": "Variables",
+         "outcomes": [
+          {
+           "code": "1.AP.V.01",
+           "text": "With guidance, model the way programs store and manipulate gradelevel data by using numbers or other symbols to represent information (e.g., encode or decode words using numbers, pictographs or symbols to letters, words, or direction)"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "control",
+       "title": "Control",
+       "subtopics": [
+        {
+         "id": "control",
+         "title": "Control",
+         "outcomes": [
+          {
+           "code": "1.AP.C.01",
+           "text": "With guidance, create programs by using creative expression or problem solving, to accomplish tasks that include sequencing and repetition. Programming languages, robot devices, or unplugged activity can serve as the means"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "modularity",
+       "title": "Modularity",
+       "subtopics": [
+        {
+         "id": "modularity",
+         "title": "Modularity",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Not addressed at this level"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "program-development",
+       "title": "Program Development",
+       "subtopics": [
+        {
+         "id": "program-development",
+         "title": "Program Development",
+         "outcomes": [
+          {
+           "code": "1.AP.PD.01",
+           "text": "Create a grade-level appropriate document to illustrate thoughts, ideas, or stories in a sequential manner (e.g., storyboard, story map, sequential graphic organizer)."
+          },
+          {
+           "code": "1.AP.PD.02",
+           "text": "Give attribution to ideas, solutions, and creations of others, verbally, or written, while writing or developing algorithms and programs."
+          },
+          {
+           "code": "1.AP.PD.03",
+           "text": "Identify and correct errors (debug) in programs which include sequencing and repetition to accomplish a task, through a variety of techniques and strategies that could include an unplugged activity (e.g., changing order or sequence, following steps, trial and error)."
+          },
+          {
+           "code": "1.AP.PD.04",
+           "text": "Use correct terminology (e.g., beginning, middle, end, etc.) and explain choices made during the development of an algorithm and/or program to solve a simple problem."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "impacts-of-computing",
+     "title": "Impacts of Computing",
+     "topics": [
+      {
+       "id": "culture-and-diversity",
+       "title": "Culture and Diversity",
+       "subtopics": [
+        {
+         "id": "culture-and-diversity",
+         "title": "Culture and Diversity",
+         "outcomes": [
+          {
+           "code": "1.IC.C.01",
+           "text": "Use grade-level appropriate language to identify and describe how people use a variety of technologies and applications in their daily work and personal lives."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "social-interactions",
+       "title": "Social Interactions",
+       "subtopics": [
+        {
+         "id": "social-interactions",
+         "title": "Social Interactions",
+         "outcomes": [
+          {
+           "code": "1.IC.SI.01",
+           "text": "Identify and describe appropriate and inappropriate behaviors when participating online."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "safety-law-ethics",
+       "title": "Safety, Law & Ethics",
+       "subtopics": [
+        {
+         "id": "safety-law-ethics",
+         "title": "Safety, Law & Ethics",
+         "outcomes": [
+          {
+           "code": "1.IC.SLE.01",
+           "text": "Keep login information private and log off devices appropriately."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "2",
+   "units": [
+    {
+     "id": "computing-systems",
+     "title": "Computing Systems",
+     "topics": [
+      {
+       "id": "devices",
+       "title": "Devices",
+       "subtopics": [
+        {
+         "id": "devices",
+         "title": "Devices",
+         "outcomes": [
+          {
+           "code": "2.CS.D.01",
+           "text": "Compare and discuss preferences for applications/software with the same primary functionality."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "hardware-software",
+       "title": "Hardware & Software",
+       "subtopics": [
+        {
+         "id": "hardware-software",
+         "title": "Hardware & Software",
+         "outcomes": [
+          {
+           "code": "2.CS.HS.01",
+           "text": "Identify internal and external components of a computer system and their basic functions (e.g., hard drive and memory) as well as peripherals (e.g., printers, scanners, external hard drives) and external storage features and their uses (e.g., cloud storage)."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "troubleshooting",
+       "title": "Troubleshooting",
+       "subtopics": [
+        {
+         "id": "troubleshooting",
+         "title": "Troubleshooting",
+         "outcomes": [
+          {
+           "code": "2.CS.T.01",
+           "text": "Identify and summarize basic troubleshooting techniques to solve basic hardware and software problems (e.g., turning off and on a device to restart, closing and reopening an application/program, turning on speakers)."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "networks-and-the-internet",
+     "title": "Networks and the Internet",
+     "topics": [
+      {
+       "id": "network-communication-organization",
+       "title": "Network Communication & Organization",
+       "subtopics": [
+        {
+         "id": "network-communication-organization",
+         "title": "Network Communication & Organization",
+         "outcomes": [
+          {
+           "code": "2.NI.NCO.01",
+           "text": "Recognize that by connecting computing devices together they can share information (e.g., printers, scanners, internet, display devices)."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "cybersecurity",
+       "title": "Cybersecurity",
+       "subtopics": [
+        {
+         "id": "cybersecurity",
+         "title": "Cybersecurity",
+         "outcomes": [
+          {
+           "code": "2.NI.C.01",
+           "text": "Identify differences between strong and weak passwords and explain the importance of choosing strong passwords to protect devices and information from unauthorized users."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "data-analysis",
+     "title": "Data Analysis",
+     "topics": [
+      {
+       "id": "storage",
+       "title": "Storage",
+       "subtopics": [
+        {
+         "id": "storage",
+         "title": "Storage",
+         "outcomes": [
+          {
+           "code": "2.DA.S.01",
+           "text": "Create, copy, manipulate, and delete a file on a computing device. Identify the information stored as data"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "collection-visualization-transformation",
+       "title": "Collection, Visualization & Transformation",
+       "subtopics": [
+        {
+         "id": "collection-visualization-transformation",
+         "title": "Collection, Visualization & Transformation",
+         "outcomes": [
+          {
+           "code": "2.DA.CVT.01",
+           "text": "With guidance, collect, organize, and present the same data in a variety of visual ways (e.g., bar graph, pie chart, table, etc.)"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "inference-models",
+       "title": "Inference & Models",
+       "subtopics": [
+        {
+         "id": "inference-models",
+         "title": "Inference & Models",
+         "outcomes": [
+          {
+           "code": "2.DA.IM.01",
+           "text": "With guidance, collect, organize, present, and analyze data from a chart or graphical display (visualization) in order to make a prediction, with or without a computing device"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "algorithms-and-programming",
+     "title": "Algorithms and Programming",
+     "topics": [
+      {
+       "id": "algorithms",
+       "title": "Algorithms",
+       "subtopics": [
+        {
+         "id": "algorithms",
+         "title": "Algorithms",
+         "outcomes": [
+          {
+           "code": "2.AP.A.01",
+           "text": "Model daily processes by creating and following algorithms (stepby-step lists of instructions) to complete tasks verbally, kinesthetically, via a programming language, or using a device."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "variables",
+       "title": "Variables",
+       "subtopics": [
+        {
+         "id": "variables",
+         "title": "Variables",
+         "outcomes": [
+          {
+           "code": "2.AP.V.01",
+           "text": "Model the way programs store and manipulate grade-level data by using numbers or other symbols to represent information (e.g., encode or decode words using numbers, pictographs or symbols to letters, words, or direction)."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "control",
+       "title": "Control",
+       "subtopics": [
+        {
+         "id": "control",
+         "title": "Control",
+         "outcomes": [
+          {
+           "code": "2.AP.C.01",
+           "text": "Create programs using a programming language, robot device, or unplugged activity that utilize sequencing and repetition to solve a problem or express creative ideas."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "modularity",
+       "title": "Modularity",
+       "subtopics": [
+        {
+         "id": "modularity",
+         "title": "Modularity",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Not addressed at this level"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "program-development",
+       "title": "Program Development",
+       "subtopics": [
+        {
+         "id": "program-development",
+         "title": "Program Development",
+         "outcomes": [
+          {
+           "code": "2.AP.PD.01",
+           "text": "With guidance, create a grade level appropriate document to clarify the steps that will be needed to create a sequential program and can be used to check if the program functionality is correct."
+          },
+          {
+           "code": "2.AP.PD.02",
+           "text": "Give attribution to ideas, solutions, and creations of others, verbally and written, while writing and developing programs."
+          },
+          {
+           "code": "2.AP.PD.03",
+           "text": "Develop and debug programs that include sequencing and repetition to accomplish a task, through the use of a programming language and/or unplugged activity."
+          },
+          {
+           "code": "2.AP.PD.04",
+           "text": "Use correct terminology (e.g., debug, program input/output, code, etc.) to explain the development of a program to solve a problem in an unplugged activity, handson manipulative, or programming language."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "impacts-of-computing",
+     "title": "Impacts of Computing",
+     "topics": [
+      {
+       "id": "culture-and-diversity",
+       "title": "Culture and Diversity",
+       "subtopics": [
+        {
+         "id": "culture-and-diversity",
+         "title": "Culture and Diversity",
+         "outcomes": [
+          {
+           "code": "2.IC.C.01",
+           "text": "Use grade-level appropriate language to identify and describe how people use a variety of technologies and applications in their daily work and personal lives and the impact of new technologies on daily life."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "social-interactions",
+       "title": "Social Interactions",
+       "subtopics": [
+        {
+         "id": "social-interactions",
+         "title": "Social Interactions",
+         "outcomes": [
+          {
+           "code": "2.IC.SI.01",
+           "text": "Develop a code of conduct and explain responsible practices when participating online. Practice the code of conduct and identify and report inappropriate behavior."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "safety-law-ethics",
+       "title": "Safety, Law & Ethics",
+       "subtopics": [
+        {
+         "id": "safety-law-ethics",
+         "title": "Safety, Law & Ethics",
+         "outcomes": [
+          {
+           "code": "2.IC.SLE.01",
+           "text": "Keep login information private and log off devices appropriately."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "3",
+   "units": [
+    {
+     "id": "computing-systems",
+     "title": "Computing Systems",
+     "topics": [
+      {
+       "id": "devices",
+       "title": "Devices",
+       "subtopics": [
+        {
+         "id": "devices",
+         "title": "Devices",
+         "outcomes": [
+          {
+           "code": "3.CS.D.01",
+           "text": "Identify internal and external parts of computing devices that function together to form a system."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "hardware-software",
+       "title": "Hardware & Software",
+       "subtopics": [
+        {
+         "id": "hardware-software",
+         "title": "Hardware & Software",
+         "outcomes": [
+          {
+           "code": "3.CS.D.01",
+           "text": "Identify a variety of ways computer hardware and software work together as a system to accomplish a task."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "troubleshooting",
+       "title": "Troubleshooting",
+       "subtopics": [
+        {
+         "id": "troubleshooting",
+         "title": "Troubleshooting",
+         "outcomes": [
+          {
+           "code": "3.CS.D.01",
+           "text": "Identify and troubleshoot, using appropriate technical terminology, simple hardware and software problems that may occur during everyday use, discuss problems with peers and adults (e.g., viruses, malware, versions of software and non-working applications, refresh screen, closing/reopening application, adjusting volume on headphones or speakers)."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "networks-and-the-internet",
+     "title": "Networks and the Internet",
+     "topics": [
+      {
+       "id": "network-communication-organization",
+       "title": "Network Communication & Organization",
+       "subtopics": [
+        {
+         "id": "network-communication-organization",
+         "title": "Network Communication & Organization",
+         "outcomes": [
+          {
+           "code": "3.NI.NCO.01",
+           "text": "Recognize how information is sent and received over physical and wireless pathways."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "cybersecurity",
+       "title": "Cybersecurity",
+       "subtopics": [
+        {
+         "id": "cybersecurity",
+         "title": "Cybersecurity",
+         "outcomes": [
+          {
+           "code": "3.NI.C.01",
+           "text": "Discuss basic issues that relate to responsible use of computing devices and describe consequences of inappropriate use in a variety of locations."
+          },
+          {
+           "code": null,
+           "text": "Not addressed at this level."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "data-analysis",
+     "title": "Data Analysis",
+     "topics": [
+      {
+       "id": "storage",
+       "title": "Storage",
+       "subtopics": [
+        {
+         "id": "storage",
+         "title": "Storage",
+         "outcomes": [
+          {
+           "code": "3.DA.S.01",
+           "text": "Recognize that different types of information are stored in different formats that have varying characteristics, which could include associated programs and storage requirements."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "collection-visualization-transformation",
+       "title": "Collection, Visualization & Transformation",
+       "subtopics": [
+        {
+         "id": "collection-visualization-transformation",
+         "title": "Collection, Visualization & Transformation",
+         "outcomes": [
+          {
+           "code": "3.DA.CVT.01",
+           "text": "Collect, organize, and present the same data in a variety of visual formats (e.g., charts, graphs, tables, etc.)."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "inference-models",
+       "title": "Inference & Models",
+       "subtopics": [
+        {
+         "id": "inference-models",
+         "title": "Inference & Models",
+         "outcomes": [
+          {
+           "code": "3.DA.IM.01",
+           "text": "Utilize data to make predictions and discuss whether there are sufficient data to make these predictions and extrapolations."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "algorithms-and-programming",
+     "title": "Algorithms and Programming",
+     "topics": [
+      {
+       "id": "algorithms",
+       "title": "Algorithms",
+       "subtopics": [
+        {
+         "id": "algorithms",
+         "title": "Algorithms",
+         "outcomes": [
+          {
+           "code": "3.AP.A.01",
+           "text": "Develop and compare multiple algorithms for the same task."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "variables",
+       "title": "Variables",
+       "subtopics": [
+        {
+         "id": "variables",
+         "title": "Variables",
+         "outcomes": [
+          {
+           "code": "3.AP.V.01",
+           "text": "Create programs that use variables to store and modify grade appropriate data."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "control",
+       "title": "Control",
+       "subtopics": [
+        {
+         "id": "control",
+         "title": "Control",
+         "outcomes": [
+          {
+           "code": "3.AP.C.01",
+           "text": "Create programs using a programming language that includes sequences, loops, conditionals, and variables to solve a problem or express an idea."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "modularity",
+       "title": "Modularity",
+       "subtopics": [
+        {
+         "id": "modularity",
+         "title": "Modularity",
+         "outcomes": [
+          {
+           "code": "3.AP.M.01",
+           "text": "Decompose a simple problem into a precise set of sequences instructions."
+          },
+          {
+           "code": "3.AP.M.02",
+           "text": "Modify, remix, or incorporate portions of an existing program into one’s own work, to develop or add more advanced features (grade-level appropriate)."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "program-development",
+       "title": "Program Development",
+       "subtopics": [
+        {
+         "id": "program-development",
+         "title": "Program Development",
+         "outcomes": [
+          {
+           "code": "3.AP.PD.01",
+           "text": "Use an iterative process to plan the development of a program by including others’ perspectives and considering user preferences while solving simple problems."
+          },
+          {
+           "code": "3.AP.PD.02",
+           "text": "Identify instances of remixing, when ideas are borrowed and treated upon, and provide attribution"
+          },
+          {
+           "code": "3.AP.PD.03",
+           "text": "Analyze and debug an existing program or algorithm that includes sequencing, repetition, and variables in a programming language."
+          },
+          {
+           "code": "3.AP.PD.0",
+           "text": "Communicate and explain program development to peers and adults using comments, presentations, and demonstrations."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "impacts-of-computing",
+     "title": "Impacts of Computing",
+     "topics": [
+      {
+       "id": "culture-and-diversity",
+       "title": "Culture and Diversity",
+       "subtopics": [
+        {
+         "id": "culture-and-diversity",
+         "title": "Culture and Diversity",
+         "outcomes": [
+          {
+           "code": "3.IC.C.01",
+           "text": "Identify how different technologies created by people from diverse backgrounds have contributed to computing and helped to change the world."
+          },
+          {
+           "code": "3.IC.C.0",
+           "text": "Identify potential problems that limit accessibility/usability and how computing devices have built-in features to increase accessibility for all users."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "social-interactions",
+       "title": "Social Interactions",
+       "subtopics": [
+        {
+         "id": "social-interactions",
+         "title": "Social Interactions",
+         "outcomes": [
+          {
+           "code": "3.IC.SI.01",
+           "text": "Develop a code of conduct, explain, and practice grade-level appropriate behavior and responsibilities while participating online. Identify and report inappropriate behavior."
+          },
+          {
+           "code": "3.IC.SI.02",
+           "text": "Identify how computing devices and computational products have been, or can be, improved by incorporating diverse perspectives."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "safety-law-ethics",
+       "title": "Safety, Law & Ethics",
+       "subtopics": [
+        {
+         "id": "safety-law-ethics",
+         "title": "Safety, Law & Ethics",
+         "outcomes": [
+          {
+           "code": "3.IC.SLE.01",
+           "text": "Introduce intellectual property concepts and identify types of digital data (music, videos, photos) that may have intellectual property rights preventing copying and/or requiring attribution"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "4",
+   "units": [
+    {
+     "id": "computing-systems",
+     "title": "Computing Systems",
+     "topics": [
+      {
+       "id": "devices",
+       "title": "Devices",
+       "subtopics": [
+        {
+         "id": "devices",
+         "title": "Devices",
+         "outcomes": [
+          {
+           "code": "4.CS.D.01",
+           "text": "Describe how internal and external parts of computing devices function to form a system."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "hardware-software",
+       "title": "Hardware & Software",
+       "subtopics": [
+        {
+         "id": "hardware-software",
+         "title": "Hardware & Software",
+         "outcomes": [
+          {
+           "code": "4.CS.HS.01",
+           "text": "Identify and describe a variety of ways computer hardware and software work together as a system to accomplish a task, using appropriate technical terminology (e.g., input, output, processors, sensors, storage)."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "troubleshooting",
+       "title": "Troubleshooting",
+       "subtopics": [
+        {
+         "id": "troubleshooting",
+         "title": "Troubleshooting",
+         "outcomes": [
+          {
+           "code": "4.CS.T.01",
+           "text": "Identify, using appropriate technical terminology, simple hardware and software problems that may occur during everyday use, discuss problems with peers and adults, and apply various strategies for solving these problems (e.g., rebooting the device, checking the power, forced shutdown of an application, running anti-virus)."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "networks-and-the-internet",
+     "title": "Networks and the Internet",
+     "topics": [
+      {
+       "id": "network-communication-organization",
+       "title": "Network Communication & Organization",
+       "subtopics": [
+        {
+         "id": "network-communication-organization",
+         "title": "Network Communication & Organization",
+         "outcomes": [
+          {
+           "code": "4.NI.NCO.01",
+           "text": "Summarize how information is sent and received over physical and wireless pathways (e.g., information is deconstructed in smaller pieces called packets, transmitted to final destination, and reassembled)."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "cybersecurity",
+       "title": "Cybersecurity",
+       "subtopics": [
+        {
+         "id": "cybersecurity",
+         "title": "Cybersecurity",
+         "outcomes": [
+          {
+           "code": "4.NI.C.01",
+           "text": "Identify problems that relate to unsecure networks and inappropriate use of computing devices and potential subsequent consequences"
+          },
+          {
+           "code": null,
+           "text": "Not addressed at this level."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "data-analysis",
+     "title": "Data Analysis",
+     "topics": [
+      {
+       "id": "storage",
+       "title": "Storage",
+       "subtopics": [
+        {
+         "id": "storage",
+         "title": "Storage",
+         "outcomes": [
+          {
+           "code": "4.DA.S.01",
+           "text": "Store information in various formats for specific purposes (e.g., file type, file size, file compression)."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "collection-visualization-transformation",
+       "title": "Collection, Visualization & Transformation",
+       "subtopics": [
+        {
+         "id": "collection-visualization-transformation",
+         "title": "Collection, Visualization & Transformation",
+         "outcomes": [
+          {
+           "code": "4.DA.CVT.01",
+           "text": "Organize and present collected data in a variety of visual formats to emphasize particular aspects or parts of the data set to make interpretation easier."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "inference-models",
+       "title": "Inference & Models",
+       "subtopics": [
+        {
+         "id": "inference-models",
+         "title": "Inference & Models",
+         "outcomes": [
+          {
+           "code": "4.DA.IM.01",
+           "text": "Discuss the potential accuracy of conclusions and predictions based on the adequacy of the data set (number of data)."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "algorithms-and-programming",
+     "title": "Algorithms and Programming",
+     "topics": [
+      {
+       "id": "algorithms",
+       "title": "Algorithms",
+       "subtopics": [
+        {
+         "id": "algorithms",
+         "title": "Algorithms",
+         "outcomes": [
+          {
+           "code": "4.AP.A.01",
+           "text": "Develop, compare, and refine multiple algorithms for the same task"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "variables",
+       "title": "Variables",
+       "subtopics": [
+        {
+         "id": "variables",
+         "title": "Variables",
+         "outcomes": [
+          {
+           "code": "4.AP.V.01",
+           "text": "Create programs that use variables to store and modify grade-appropriate data."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "control",
+       "title": "Control",
+       "subtopics": [
+        {
+         "id": "control",
+         "title": "Control",
+         "outcomes": [
+          {
+           "code": "4.AP.C.01",
+           "text": "Create programs using a programming language that includes sequences, loops, conditionals,, and variables that utilize mathematics operations to manipulate values in order to solve a problem or express an idea."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "modularity",
+       "title": "Modularity",
+       "subtopics": [
+        {
+         "id": "modularity",
+         "title": "Modularity",
+         "outcomes": [
+          {
+           "code": "4.AP.M.01",
+           "text": "Decompose a large problem into smaller, manageable sub-problems to facilitate the program development process."
+          },
+          {
+           "code": "4.AP.M.02",
+           "text": "Modify, remix, or incorporate portions of an existing program into one’s own work, to develop or add more advanced features (grade-level appropriate)."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "program-development",
+       "title": "Program Development",
+       "subtopics": [
+        {
+         "id": "program-development",
+         "title": "Program Development",
+         "outcomes": [
+          {
+           "code": "4.AP.PD.01",
+           "text": "Use an iterative process to plan the development if a program by including others’ perspectives and considering user preferences while solving simple problems."
+          },
+          {
+           "code": "4.AP.PD.02",
+           "text": "Observe intellectual property rights and give appropriate attribution when creating or remixing programs"
+          },
+          {
+           "code": "4.AP.PD.03",
+           "text": "Create and debug a program or algorithm that includes sequencing, repetition, and variables in a programming language"
+          },
+          {
+           "code": "4.AP.PD.04",
+           "text": "Communicate and explain program development to peers and adults using comments, presentations, and demonstrations"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "impacts-of-computing",
+     "title": "Impacts of Computing",
+     "topics": [
+      {
+       "id": "culture-and-diversity",
+       "title": "Culture and Diversity",
+       "subtopics": [
+        {
+         "id": "culture-and-diversity",
+         "title": "Culture and Diversity",
+         "outcomes": [
+          {
+           "code": "4.IC.C.01",
+           "text": "Summarize how different technologies created by people from diverse backgrounds have contributed to computing and helped to change the world."
+          },
+          {
+           "code": "4.IC.C.02",
+           "text": "Brainstorm solutions to improve accessibility/usability and ways computing could be improved to increase accessibility for all users."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "social-interactions",
+       "title": "Social Interactions",
+       "subtopics": [
+        {
+         "id": "social-interactions",
+         "title": "Social Interactions",
+         "outcomes": [
+          {
+           "code": "4.IC.SI.01",
+           "text": "Develop a code of conduct, explain, and practice grade-level appropriate behavior and responsibilities while participating online. Identify and report inappropriate behavior."
+          },
+          {
+           "code": "4.IC.SI.02",
+           "text": "Discuss ways existing devices or computational products can be improved by collaborating with peers to gain their diverse perspectives."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "safety-law-ethics",
+       "title": "Safety, Law & Ethics",
+       "subtopics": [
+        {
+         "id": "safety-law-ethics",
+         "title": "Safety, Law & Ethics",
+         "outcomes": [
+          {
+           "code": "4.IC.SLE.01",
+           "text": "Observe intellectual property law and give appropriate credit when using resources."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "5",
+   "units": [
+    {
+     "id": "computing-systems",
+     "title": "Computing Systems",
+     "topics": [
+      {
+       "id": "devices",
+       "title": "Devices",
+       "subtopics": [
+        {
+         "id": "devices",
+         "title": "Devices",
+         "outcomes": [
+          {
+           "code": "5.CS.D.01",
+           "text": "Describe and model how internal and external parts of computing devices function to form a system. Describe how some components rely on others for correct functionality"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "hardware-software",
+       "title": "Hardware & Software",
+       "subtopics": [
+        {
+         "id": "hardware-software",
+         "title": "Hardware & Software",
+         "outcomes": [
+          {
+           "code": "5.CS.HS.01",
+           "text": "Model and explain how information flows through hardware and software to accomplish a task."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "troubleshooting",
+       "title": "Troubleshooting",
+       "subtopics": [
+        {
+         "id": "troubleshooting",
+         "title": "Troubleshooting",
+         "outcomes": [
+          {
+           "code": "5.CS.T.01",
+           "text": "Identify, using appropriate technical terminology, simple hardware and software problems that may occur during everyday use, discuss problems with peers and adults, apply a variety of strategies for solving these problems, and provide evidence why these strategies did or did not work."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "networks-and-the-internet",
+     "title": "Networks and the Internet",
+     "topics": [
+      {
+       "id": "network-communication-organization",
+       "title": "Network Communication & Organization",
+       "subtopics": [
+        {
+         "id": "network-communication-organization",
+         "title": "Network Communication & Organization",
+         "outcomes": [
+          {
+           "code": "5.NI.NCO.01",
+           "text": "Model how information is deconstructed into packets (smaller pieces), transmitted through multiple devices over the internet and networks, and reassembled at the final destination."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "cybersecurity",
+       "title": "Cybersecurity",
+       "subtopics": [
+        {
+         "id": "cybersecurity",
+         "title": "Cybersecurity",
+         "outcomes": [
+          {
+           "code": "5.NI.C.01",
+           "text": "Define personal identifiable information (e.g., digital footprint) and why it should be protected as related to real-world cyber security problems."
+          },
+          {
+           "code": "5.NI.C.02",
+           "text": "Discuss real-world cybersecurity problems and explain how personal information can be protected (e.g., antivirus software, backing up data, strong passwords)."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "data-analysis",
+     "title": "Data Analysis",
+     "topics": [
+      {
+       "id": "storage",
+       "title": "Storage",
+       "subtopics": [
+        {
+         "id": "storage",
+         "title": "Storage",
+         "outcomes": [
+          {
+           "code": "5.DA.S.01",
+           "text": "Convert different types of information into various formats to be used across multiple software/hardware."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "collection-visualization-transformation",
+       "title": "Collection, Visualization & Transformation",
+       "subtopics": [
+        {
+         "id": "collection-visualization-transformation",
+         "title": "Collection, Visualization & Transformation",
+         "outcomes": [
+          {
+           "code": "5.DA.CVT.01",
+           "text": "Interpret and communicate data in a variety of visual formats to highlight the relationships among the data to support a claim"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "inference-models",
+       "title": "Inference & Models",
+       "subtopics": [
+        {
+         "id": "inference-models",
+         "title": "Inference & Models",
+         "outcomes": [
+          {
+           "code": "5.DA.IM.01",
+           "text": "Refer to data sets to highlight or propose cause-and-effect relationships, predict outcomes, or communicate ideas."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "algorithms-and-programming",
+     "title": "Algorithms and Programming",
+     "topics": [
+      {
+       "id": "algorithms",
+       "title": "Algorithms",
+       "subtopics": [
+        {
+         "id": "algorithms",
+         "title": "Algorithms",
+         "outcomes": [
+          {
+           "code": "5.AP.A.01",
+           "text": "Develop, compare, and refine multiple algorithms for the same task and determine which algorithm is the most appropriate."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "variables",
+       "title": "Variables",
+       "subtopics": [
+        {
+         "id": "variables",
+         "title": "Variables",
+         "outcomes": [
+          {
+           "code": "5.AP.V.01",
+           "text": "Create programs that use variables to store and modify grade-appropriate data."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "control",
+       "title": "Control",
+       "subtopics": [
+        {
+         "id": "control",
+         "title": "Control",
+         "outcomes": [
+          {
+           "code": "5.AP.C.01",
+           "text": "Create programs using a programming language that includes sequences, loops, conditionals, event handlers, and variables that utilize mathematics operations to manipulate values in order to solve a problem or express an idea."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "modularity",
+       "title": "Modularity",
+       "subtopics": [
+        {
+         "id": "modularity",
+         "title": "Modularity",
+         "outcomes": [
+          {
+           "code": "5.AP.M.01",
+           "text": "Decompose a large problem into smaller, manageable sub-problems and then further into sets of sequenced instructions to facilitate the program development process."
+          },
+          {
+           "code": "5.AP.M.02",
+           "text": "Modify, remix, or incorporate portions of an existing program into one’s own work, to develop or add more advanced features (grade-level appropriate)."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "program-development",
+       "title": "Program Development",
+       "subtopics": [
+        {
+         "id": "program-development",
+         "title": "Program Development",
+         "outcomes": [
+          {
+           "code": "5.AP.PD.01",
+           "text": "Use an iterative process to plan the development of a program by including others’ perspectives and considering user preferences while solving problems."
+          },
+          {
+           "code": "5.AP.PD.02",
+           "text": "Observe intellectual property rights and give appropriate attribution when creating or remixing programs"
+          },
+          {
+           "code": "5.AP.PD.03",
+           "text": "Create, test, and debug a program that includes sequencing, repetition, and variables in a programming language to ensure its runs as intended."
+          },
+          {
+           "code": "5.AP.PD.04",
+           "text": "Communicate and explain program development to peers and adults using comments, presentations, and demonstrations."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "impacts-of-computing",
+     "title": "Impacts of Computing",
+     "topics": [
+      {
+       "id": "culture-and-diversity",
+       "title": "Culture and Diversity",
+       "subtopics": [
+        {
+         "id": "culture-and-diversity",
+         "title": "Culture and Diversity",
+         "outcomes": [
+          {
+           "code": "5.IC.C.01",
+           "text": "Evaluate how different technologies created by people from diverse backgrounds have contributed to computing and helped to change the world."
+          },
+          {
+           "code": "5.IC.C.02",
+           "text": "Develop, test, and refine computational artifacts to improve accessibility and usability for all users."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "social-interactions",
+       "title": "Social Interactions",
+       "subtopics": [
+        {
+         "id": "social-interactions",
+         "title": "Social Interactions",
+         "outcomes": [
+          {
+           "code": "5.IC.SI.01",
+           "text": "Develop a code of conduct, explain, and practice grade-level appropriate behavior and responsibilities while participating online. Identify and report inappropriate behavior."
+          },
+          {
+           "code": "5.IC.SI.02",
+           "text": "Discuss ways existing computing devices or computational products can be improved by collaborating with outside resources (other gradelevels, businesses) to gain their diverse perspectives."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "safety-law-ethics",
+       "title": "Safety, Law & Ethics",
+       "subtopics": [
+        {
+         "id": "safety-law-ethics",
+         "title": "Safety, Law & Ethics",
+         "outcomes": [
+          {
+           "code": "5.IC.SLE.01",
+           "text": "Discuss personal consequences and social impact of violating intellectual property rights or failing to provide appropriate attribution."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "6",
+   "units": [
+    {
+     "id": "computing-systems",
+     "title": "Computing Systems",
+     "topics": [
+      {
+       "id": "devices",
+       "title": "Devices",
+       "subtopics": [
+        {
+         "id": "devices",
+         "title": "Devices",
+         "outcomes": [
+          {
+           "code": "6.CS.D.01",
+           "text": "Evaluate existing computing devices and make recommendations for improvements to design based on analysis of personal interactions and how others interact with the devices"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "hardware-software",
+       "title": "Hardware & Software",
+       "subtopics": [
+        {
+         "id": "hardware-software",
+         "title": "Hardware & Software",
+         "outcomes": [
+          {
+           "code": "6.CS.HS.01",
+           "text": "Identify ways that hardware and software are combined and work synchronously to collect, store, retrieve, and exchange data."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "troubleshooting",
+       "title": "Troubleshooting",
+       "subtopics": [
+        {
+         "id": "troubleshooting",
+         "title": "Troubleshooting",
+         "outcomes": [
+          {
+           "code": "6.CS.T.01",
+           "text": "Troubleshoot problems with computing devices and networked components (e.g. peripherals, routers, cables, etc.)."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "networks-and-the-internet",
+     "title": "Networks and the Internet",
+     "topics": [
+      {
+       "id": "network-communication-organization",
+       "title": "Network Communication & Organization",
+       "subtopics": [
+        {
+         "id": "network-communication-organization",
+         "title": "Network Communication & Organization",
+         "outcomes": [
+          {
+           "code": "6.NI.NCO.01",
+           "text": "Model a simple protocol for transferring information, using packets, across networks and the internet"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "cybersecurity",
+       "title": "Cybersecurity",
+       "subtopics": [
+        {
+         "id": "cybersecurity",
+         "title": "Cybersecurity",
+         "outcomes": [
+          {
+           "code": "6.NI.C.01",
+           "text": "Identify existing cybersecurity concerns with the internet, its connected devices (i.e. IoT) and the systems it uses."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "data-analysis",
+     "title": "Data Analysis",
+     "topics": [
+      {
+       "id": "storage",
+       "title": "Storage",
+       "subtopics": [
+        {
+         "id": "storage",
+         "title": "Storage",
+         "outcomes": [
+          {
+           "code": "6.DA.S.01",
+           "text": "Identify multiple encoding schemes that can be used to represent the same data."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "collection-visualization-transformation",
+       "title": "Collection, Visualization & Transformation",
+       "subtopics": [
+        {
+         "id": "collection-visualization-transformation",
+         "title": "Collection, Visualization & Transformation",
+         "outcomes": [
+          {
+           "code": "6.DA.CVT.01",
+           "text": "Collect data using computational tools and transform the data to make it more useful."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "inference-models",
+       "title": "Inference & Models",
+       "subtopics": [
+        {
+         "id": "inference-models",
+         "title": "Inference & Models",
+         "outcomes": [
+          {
+           "code": "6.DA.IM.01",
+           "text": "Identify relevant data points and use models and simulations to formulate, refine, and test hypotheses."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "algorithms-and-programming",
+     "title": "Algorithms and Programming",
+     "topics": [
+      {
+       "id": "algorithms",
+       "title": "Algorithms",
+       "subtopics": [
+        {
+         "id": "algorithms",
+         "title": "Algorithms",
+         "outcomes": [
+          {
+           "code": "6.AP.A.01",
+           "text": "Use an existing algorithm or pseudocode to solve a problem."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "variables",
+       "title": "Variables",
+       "subtopics": [
+        {
+         "id": "variables",
+         "title": "Variables",
+         "outcomes": [
+          {
+           "code": "6.AP.V.01",
+           "text": "Decide when and how to declare and name new variables."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "control",
+       "title": "Control",
+       "subtopics": [
+        {
+         "id": "control",
+         "title": "Control",
+         "outcomes": [
+          {
+           "code": "6.AP.C.01",
+           "text": "Develop secure programs that utilize combinations of loops, conditionals, and the manipulation of variables representing different data types."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "modularity",
+       "title": "Modularity",
+       "subtopics": [
+        {
+         "id": "modularity",
+         "title": "Modularity",
+         "outcomes": [
+          {
+           "code": "6.AP.M.01",
+           "text": "Decompose problems and subproblems into parts to facilitate the secure design, implementation, and review of programs."
+          },
+          {
+           "code": "6.AP.M.02",
+           "text": "Identify and use functions within a program to repeat instructions."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "program-development",
+       "title": "Program Development",
+       "subtopics": [
+        {
+         "id": "program-development",
+         "title": "Program Development",
+         "outcomes": [
+          {
+           "code": "6.AP.PD.01",
+           "text": "Seek and incorporate feedback from team members to refine the solution to a problem."
+          },
+          {
+           "code": "6.AP.PD.02",
+           "text": "Incorporate existing code, media, and libraries into original programs from secure sources, and give appropriate attribution."
+          },
+          {
+           "code": "6.AP.PD.03",
+           "text": "Test and refine existing and original programs."
+          },
+          {
+           "code": "6.AP.PD.04",
+           "text": "Distribute tasks and maintain a project timeline when collaboratively developing computational artifacts."
+          },
+          {
+           "code": "6.AP.PD.05",
+           "text": "Document programs in order to make them easier to understand, test, and debug."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "impacts-of-computing",
+     "title": "Impacts of Computing",
+     "topics": [
+      {
+       "id": "culture-and-diversity",
+       "title": "Culture and Diversity",
+       "subtopics": [
+        {
+         "id": "culture-and-diversity",
+         "title": "Culture and Diversity",
+         "outcomes": [
+          {
+           "code": "6.IC.C.01",
+           "text": "Identify tradeoffs associated with computing technologies that affect people’s everyday activities and future opportunities (e.g., college acceptances, career choices that include security clearances)."
+          },
+          {
+           "code": "6.IC.C.02",
+           "text": "Identify issues of bias and accessibility that occur in the design of existing computing technologies."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "social-interactions",
+       "title": "Social Interactions",
+       "subtopics": [
+        {
+         "id": "social-interactions",
+         "title": "Social Interactions",
+         "outcomes": [
+          {
+           "code": "6.IC.SI.01",
+           "text": "Describe and use safe, appropriate, and responsible practices when participating online (e.g., discussion groups, blogs, social networking sites) to maintain a clean record for post-secondary choices that require security clearances and background checks."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "safety-law-ethics",
+       "title": "Safety, Law & Ethics",
+       "subtopics": [
+        {
+         "id": "safety-law-ethics",
+         "title": "Safety, Law & Ethics",
+         "outcomes": [
+          {
+           "code": "6.IC.SLE.01",
+           "text": "Differentiate between appropriate and inappropriate content on the internet, and identify unethical and illegal online behavior and consequences."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "7",
+   "units": [
+    {
+     "id": "computing-systems",
+     "title": "Computing Systems",
+     "topics": [
+      {
+       "id": "devices",
+       "title": "Devices",
+       "subtopics": [
+        {
+         "id": "devices",
+         "title": "Devices",
+         "outcomes": [
+          {
+           "code": "7.CS.D.01",
+           "text": "Evaluate existing computing devices and make recommendations for improvements to design that consider usability through a variety of lenses (accessibility, ergonomics, learnability, security)."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "hardware-software",
+       "title": "Hardware & Software",
+       "subtopics": [
+        {
+         "id": "hardware-software",
+         "title": "Hardware & Software",
+         "outcomes": [
+          {
+           "code": "7.CS.HS.01",
+           "text": "Select appropriate hardware and software components for a project considering what type of data will be collected, stored, retrieved, and exchanged."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "troubleshooting",
+       "title": "Troubleshooting",
+       "subtopics": [
+        {
+         "id": "troubleshooting",
+         "title": "Troubleshooting",
+         "outcomes": [
+          {
+           "code": "7.CS.T.01",
+           "text": "Identify and fix problems with computing devices and their interfaced components using a variety of strategies (e.g. lost data retrieval, hardware password recovery, file restoration, key logging)."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "networks-and-the-internet",
+     "title": "Networks and the Internet",
+     "topics": [
+      {
+       "id": "network-communication-organization",
+       "title": "Network Communication & Organization",
+       "subtopics": [
+        {
+         "id": "network-communication-organization",
+         "title": "Network Communication & Organization",
+         "outcomes": [
+          {
+           "code": "7.NI.NCO.01",
+           "text": "Explain and model the process to replace lost packets using a protocol for information transfer."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "cybersecurity",
+       "title": "Cybersecurity",
+       "subtopics": [
+        {
+         "id": "cybersecurity",
+         "title": "Cybersecurity",
+         "outcomes": [
+          {
+           "code": "7.NI.C.01",
+           "text": "Explain how to protect electronic information using both physical (hard drive) and digital measures; explain existing cybersecurity concerns with the internet and the systems it uses."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "data-analysis",
+     "title": "Data Analysis",
+     "topics": [
+      {
+       "id": "storage",
+       "title": "Storage",
+       "subtopics": [
+        {
+         "id": "storage",
+         "title": "Storage",
+         "outcomes": [
+          {
+           "code": "7.DA.S.01",
+           "text": "Represent data using multiple encoding schemes."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "collection-visualization-transformation",
+       "title": "Collection, Visualization & Transformation",
+       "subtopics": [
+        {
+         "id": "collection-visualization-transformation",
+         "title": "Collection, Visualization & Transformation",
+         "outcomes": [
+          {
+           "code": "7.DA.CVT.01",
+           "text": "Collect data using computational tools and hardware (e.g., sensors) and transform the data to make it more useful and reliable."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "inference-models",
+       "title": "Inference & Models",
+       "subtopics": [
+        {
+         "id": "inference-models",
+         "title": "Inference & Models",
+         "outcomes": [
+          {
+           "code": "7.DA.IM.01",
+           "text": "Verify a model’s accuracy by comparing the results with observed data."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "algorithms-and-programming",
+     "title": "Algorithms and Programming",
+     "topics": [
+      {
+       "id": "algorithms",
+       "title": "Algorithms",
+       "subtopics": [
+        {
+         "id": "algorithms",
+         "title": "Algorithms",
+         "outcomes": [
+          {
+           "code": "7.AP.A.01",
+           "text": "Select and modify existing algorithms and pseudocode to solve complex problems."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "variables",
+       "title": "Variables",
+       "subtopics": [
+        {
+         "id": "variables",
+         "title": "Variables",
+         "outcomes": [
+          {
+           "code": "7.AP.V.01",
+           "text": "Create clearly named variables that represent different types of data."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "control",
+       "title": "Control",
+       "subtopics": [
+        {
+         "id": "control",
+         "title": "Control",
+         "outcomes": [
+          {
+           "code": "7.AP.C.01",
+           "text": "Develop secure programs that utilize combinations of loops, compound conditionals, and the manipulation of variables representing different data types."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "modularity",
+       "title": "Modularity",
+       "subtopics": [
+        {
+         "id": "modularity",
+         "title": "Modularity",
+         "outcomes": [
+          {
+           "code": "7.AP.M.01",
+           "text": "Decompose problems and subproblems into parts to facilitate the secure design, implementation, and review of increasingly complex programs."
+          },
+          {
+           "code": "7.AP.M.0",
+           "text": "Create and use a function in a program to repeat instructions in order to organize code and make it easier to reuse."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "program-development",
+       "title": "Program Development",
+       "subtopics": [
+        {
+         "id": "program-development",
+         "title": "Program Development",
+         "outcomes": [
+          {
+           "code": "7.AP.PD.01",
+           "text": "Seek and incorporate feedback from team members and users to refine the solution to a problem."
+          },
+          {
+           "code": "7.AP.PD.02",
+           "text": "Incorporate existing code, media and libraries into original programs of increasing complexity, from secure sources, and give appropriate attribution"
+          },
+          {
+           "code": "7.AP.PD.03",
+           "text": "Test and refine existing and original programs using user input and secure software development guidance."
+          },
+          {
+           "code": "7.AP.PD.04",
+           "text": "Explain how effective communication between participants is required for successful collaboration when developing computational artifacts."
+          },
+          {
+           "code": "7.AP.PD.05",
+           "text": "Document complex programs in order to make them easier to understand, test, and debug."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "impacts-of-computing",
+     "title": "Impacts of Computing",
+     "topics": [
+      {
+       "id": "culture-and-diversity",
+       "title": "Culture and Diversity",
+       "subtopics": [
+        {
+         "id": "culture-and-diversity",
+         "title": "Culture and Diversity",
+         "outcomes": [
+          {
+           "code": "7.IC.C.01",
+           "text": "Explain how computing impacts people’s everyday activities, career options, and diversity in innovation in computing and non-computing fields."
+          },
+          {
+           "code": "7.IC.C.02",
+           "text": "Explain issues of bias and accessibility that occur in the design of existing computing technologies and describe the role and responsibility of a designer in reducing bias."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "social-interactions",
+       "title": "Social Interactions",
+       "subtopics": [
+        {
+         "id": "social-interactions",
+         "title": "Social Interactions",
+         "outcomes": [
+          {
+           "code": "7.IC.SI.01",
+           "text": "Individually and collaboratively use advanced tools to design and create online content (e.g., digital portfolio, multimedia, blog, webpage)."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "safety-law-ethics",
+       "title": "Safety, Law & Ethics",
+       "subtopics": [
+        {
+         "id": "safety-law-ethics",
+         "title": "Safety, Law & Ethics",
+         "outcomes": [
+          {
+           "code": "7.IC.SLE.01",
+           "text": "Explain the connection between the longevity of data on the internet, personal online identity, and personal privacy."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "8",
+   "units": [
+    {
+     "id": "computing-systems",
+     "title": "Computing Systems",
+     "topics": [
+      {
+       "id": "devices",
+       "title": "Devices",
+       "subtopics": [
+        {
+         "id": "devices",
+         "title": "Devices",
+         "outcomes": [
+          {
+           "code": "8.CS.D.01",
+           "text": "Develop and implement a process to evaluate existing computing devices and make recommendations for improvements to design based on analysis of user interaction and other lenses."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "hardware-software",
+       "title": "Hardware & Software",
+       "subtopics": [
+        {
+         "id": "hardware-software",
+         "title": "Hardware & Software",
+         "outcomes": [
+          {
+           "code": "8.CS.HS.01",
+           "text": "Design and refine systems where secure hardware and software are combined to collect, store, retrieve, and exchange data and explain why specific components were chosen for optimality."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "troubleshooting",
+       "title": "Troubleshooting",
+       "subtopics": [
+        {
+         "id": "troubleshooting",
+         "title": "Troubleshooting",
+         "outcomes": [
+          {
+           "code": "8.CS.T.01",
+           "text": "Systematically identify and fix problems with computing devices and their interfaced components by using a structured system such as a troubleshooting flow diagram."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "networks-and-the-internet",
+     "title": "Networks and the Internet",
+     "topics": [
+      {
+       "id": "network-communication-organization",
+       "title": "Network Communication & Organization",
+       "subtopics": [
+        {
+         "id": "network-communication-organization",
+         "title": "Network Communication & Organization",
+         "outcomes": [
+          {
+           "code": "8.NI.NCO.01",
+           "text": "Model and explain how data is sent using protocols to choose the fastest pathway, to deal with missing information, and to deliver data securely."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "cybersecurity",
+       "title": "Cybersecurity",
+       "subtopics": [
+        {
+         "id": "cybersecurity",
+         "title": "Cybersecurity",
+         "outcomes": [
+          {
+           "code": "8.NI.C.01",
+           "text": "Evaluate physical and digital security measures that have been developed and implemented to protect electronic information; discuss the impacts of hacking, ransomware, scams, fake scams, and ethical/legal concerns."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "data-analysis",
+     "title": "Data Analysis",
+     "topics": [
+      {
+       "id": "storage",
+       "title": "Storage",
+       "subtopics": [
+        {
+         "id": "storage",
+         "title": "Storage",
+         "outcomes": [
+          {
+           "code": "8.DA.S.01",
+           "text": "Evaluate different schemes of encoding data in order to effectively choose the most appropriate method of representation."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "collection-visualization-transformation",
+       "title": "Collection, Visualization & Transformation",
+       "subtopics": [
+        {
+         "id": "collection-visualization-transformation",
+         "title": "Collection, Visualization & Transformation",
+         "outcomes": [
+          {
+           "code": "8.DA.CVT.01",
+           "text": "Develop and implement a refined process that uses computational tools to transform data to a more useful and reliable state"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "inference-models",
+       "title": "Inference & Models",
+       "subtopics": [
+        {
+         "id": "inference-models",
+         "title": "Inference & Models",
+         "outcomes": [
+          {
+           "code": "8.DA.IM.01",
+           "text": "Refine existing or develop and implement new computational models based on observed and generated data."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "algorithms-and-programming",
+     "title": "Algorithms and Programming",
+     "topics": [
+      {
+       "id": "algorithms",
+       "title": "Algorithms",
+       "subtopics": [
+        {
+         "id": "algorithms",
+         "title": "Algorithms",
+         "outcomes": [
+          {
+           "code": "8.AP.A.01",
+           "text": "Develop and implement algorithms and pseudocode to solve complex problems."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "variables",
+       "title": "Variables",
+       "subtopics": [
+        {
+         "id": "variables",
+         "title": "Variables",
+         "outcomes": [
+          {
+           "code": "8.AP.V.01",
+           "text": "Create clearly named variables of different data types that utilize naming conventions to improve program readability; perform operations on variable values."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "control",
+       "title": "Control",
+       "subtopics": [
+        {
+         "id": "control",
+         "title": "Control",
+         "outcomes": [
+          {
+           "code": "8.AP.C.01",
+           "text": "Develop secure programs that utilize combinations of nested loops, compound conditionals, procedures with and without parameters, and the manipulation of variables representing different data types."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "modularity",
+       "title": "Modularity",
+       "subtopics": [
+        {
+         "id": "modularity",
+         "title": "Modularity",
+         "outcomes": [
+          {
+           "code": "8.AP.M.01",
+           "text": "Decompose problems and subproblems into parts to facilitate the secure design, implementation, and review of complex programs."
+          },
+          {
+           "code": "8.AP.M.02",
+           "text": "Create and use a function with parameters in a program to repeat instructions in order to organize code and make it easier to reuse."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "program-development",
+       "title": "Program Development",
+       "subtopics": [
+        {
+         "id": "program-development",
+         "title": "Program Development",
+         "outcomes": [
+          {
+           "code": "8.AP.PD.01",
+           "text": "Seek and incorporate feedback from team members and users to refine the solution to a problem that meets the needs of a diverse group of users."
+          },
+          {
+           "code": "8.AP.PD.02",
+           "text": "Incorporate existing code, media, and libraries into original programs of increasing complexity, from secure sources, and give appropriate attribution."
+          },
+          {
+           "code": "8.AP.PD.03",
+           "text": "Develop a method or implement an existing method to systematically test and refine existing and original programs using user input and secure software development guidance."
+          },
+          {
+           "code": "8.AP.PD.04",
+           "text": "Evaluate communication between participants to determine best practices in collaboration when developing computational artifacts."
+          },
+          {
+           "code": "8.AP.PD.05",
+           "text": "Document complex programs, using multiple methods, in order to make them easier to understand, test, and debug."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "impacts-of-computing",
+     "title": "Impacts of Computing",
+     "topics": [
+      {
+       "id": "culture-and-diversity",
+       "title": "Culture and Diversity",
+       "subtopics": [
+        {
+         "id": "culture-and-diversity",
+         "title": "Culture and Diversity",
+         "outcomes": [
+          {
+           "code": "8.IC.C.01",
+           "text": "Compare the tradeoffs associated with computing concepts (e.g., automation, communication, privacy, cybersecurity), explaining their effects on economics and global societies."
+          },
+          {
+           "code": "8.IC.C.02",
+           "text": "Analyze issues of bias and accessibility that occur in the design of everyday computing technologies, the role and responsibility of the designer, and make recommendations for how these issues could be rectified to reduce bias."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "social-interactions",
+       "title": "Social Interactions",
+       "subtopics": [
+        {
+         "id": "social-interactions",
+         "title": "Social Interactions",
+         "outcomes": [
+          {
+           "code": "8.IC.SI.01",
+           "text": "Communicate and publish key ideas and details individually or collaboratively in a way that informs, persuades, and/or entertains using a variety of digital tools and media-rich resources."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "safety-law-ethics",
+       "title": "Safety, Law & Ethics",
+       "subtopics": [
+        {
+         "id": "safety-law-ethics",
+         "title": "Safety, Law & Ethics",
+         "outcomes": [
+          {
+           "code": "8.IC.SLE.01",
+           "text": "Discuss the social impacts and ethical considerations associated with cybersecurity, including the positive and malicious purposes of hacking."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "9-10",
+   "units": [
+    {
+     "id": "computing-systems",
+     "title": "Computing Systems",
+     "topics": [
+      {
+       "id": "devices",
+       "title": "Devices",
+       "subtopics": [
+        {
+         "id": "devices",
+         "title": "Devices",
+         "outcomes": [
+          {
+           "code": "10.CS.D.01",
+           "text": "Explain how abstractions hide the underlying implementation of computing systems embedded in everyday objects."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "hardware-software",
+       "title": "Hardware & Software",
+       "subtopics": [
+        {
+         "id": "hardware-software",
+         "title": "Hardware & Software",
+         "outcomes": [
+          {
+           "code": "10.CS.HS.01",
+           "text": "Explain and compare levels of abstraction between application software, system software, and hardware layers."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "troubleshooting",
+       "title": "Troubleshooting",
+       "subtopics": [
+        {
+         "id": "troubleshooting",
+         "title": "Troubleshooting",
+         "outcomes": [
+          {
+           "code": "10.CS.T.01",
+           "text": "Develop and evaluate guidelines and criteria that convey systematic troubleshooting strategies that can be used to identify/fix errors."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "networks-and-the-internet",
+     "title": "Networks and the Internet",
+     "topics": [
+      {
+       "id": "network-communication-organization",
+       "title": "Network Communication & Organization",
+       "subtopics": [
+        {
+         "id": "network-communication-organization",
+         "title": "Network Communication & Organization",
+         "outcomes": [
+          {
+           "code": "10.NI.NCO.01",
+           "text": "Evaluate the scalability and reliability of networks by identifying and describing the relationship between routers, switches, servers, topology, and addresses."
+          },
+          {
+           "code": "10.NI.NCO.02",
+           "text": "Describe the issues that impact network functionality (e.g. Bandwidth, load, delay, topology, TCP/IP and OSI Models)."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "cybersecurity",
+       "title": "Cybersecurity",
+       "subtopics": [
+        {
+         "id": "cybersecurity",
+         "title": "Cybersecurity",
+         "outcomes": [
+          {
+           "code": "10.NI.C.01",
+           "text": "Illustrate how sensitive data and critical infrastructure can be affected by malware and other attacks and recommend security measures to address various scenarios based on factors such as efficiency, feasibility, and ethical impacts"
+          },
+          {
+           "code": "10.NI.C.02",
+           "text": "Explain tradeoffs when selecting and implementing cybersecurity recommendations from multiple perspectives such as the user, enterprise, and government."
+          },
+          {
+           "code": "10.NI.C.03",
+           "text": "Understand and identify the relationship between Confidentiality, Integrity, Availability (CIA) Triad and the security measures that address the balance between them as it pertains to data."
+          },
+          {
+           "code": "10.NI.C.04",
+           "text": "Identify ethical concerns about individual privacy, intellectual property, entering systems without permission, and destroying data and demonstrate the ability to exercise proper judgement and best practices in a variety of different scenarios."
+          },
+          {
+           "code": "10.NI.C.05",
+           "text": "Recognize and prevent social engineering attacks. Differentiate between legitimate and fraudulent information."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "data-analysis",
+     "title": "Data Analysis",
+     "topics": [
+      {
+       "id": "storage",
+       "title": "Storage",
+       "subtopics": [
+        {
+         "id": "storage",
+         "title": "Storage",
+         "outcomes": [
+          {
+           "code": "10.DA.S.01",
+           "text": "Translate, compare, and evaluate different bit representations of realworld phenomena (large data sets), such as characters, numbers, and images and how they are organized and stored."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "collection-visualization-transformation",
+       "title": "Collection, Visualization & Transformation",
+       "subtopics": [
+        {
+         "id": "collection-visualization-transformation",
+         "title": "Collection, Visualization & Transformation",
+         "outcomes": [
+          {
+           "code": "10.DA.CVT.01",
+           "text": "Use software tools to develop interactive data representations that help others to better understand real-world phenomena"
+          },
+          {
+           "code": null,
+           "text": "Not addressed at this level"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "inference-models",
+       "title": "Inference & Models",
+       "subtopics": [
+        {
+         "id": "inference-models",
+         "title": "Inference & Models",
+         "outcomes": [
+          {
+           "code": "10.DA.IM.01",
+           "text": "Design computational models that identify and represent the relationships among different elements of data collected from a phenomenon or process"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "algorithms-and-programming",
+     "title": "Algorithms and Programming",
+     "topics": [
+      {
+       "id": "algorithms",
+       "title": "Algorithms",
+       "subtopics": [
+        {
+         "id": "algorithms",
+         "title": "Algorithms",
+         "outcomes": [
+          {
+           "code": "10.AP.A.01",
+           "text": "Develop prototypes that use algorithms (e.g., sequencing, selection, iteration, recursion, etc.) to solve computational problems by leveraging prior student knowledge and personal interest."
+          },
+          {
+           "code": "10.AP.A.0",
+           "text": "Design and implement an algorithm to play a game against a human opponent or solve a problem."
+          },
+          {
+           "code": null,
+           "text": "Not addressed at this level"
+          },
+          {
+           "code": null,
+           "text": "Not addressed at this level"
+          },
+          {
+           "code": null,
+           "text": "Not addressed at this level"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "variables",
+       "title": "Variables",
+       "subtopics": [
+        {
+         "id": "variables",
+         "title": "Variables",
+         "outcomes": [
+          {
+           "code": "10.AP.V.01",
+           "text": "Identify common features in multiple lines of code and substitute a single segment that uses lists (arrays) to account for differences."
+          },
+          {
+           "code": "10.AP.V.02",
+           "text": "Utilize lists to simplify solutions, generalizing computational problems, instead of repeatedly utilizing simple variables."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "control",
+       "title": "Control",
+       "subtopics": [
+        {
+         "id": "control",
+         "title": "Control",
+         "outcomes": [
+          {
+           "code": "10.AP.C.01",
+           "text": "Justify and explain the rationale behind the selection of specific control structures when tradeoffs involve implementation, readability, and program performance."
+          },
+          {
+           "code": "10.AP.C.02",
+           "text": "Design and iteratively develop computational artifacts for practical intent, personal expression, or to address a societal issue by using events to initiate instructions."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "modularity",
+       "title": "Modularity",
+       "subtopics": [
+        {
+         "id": "modularity",
+         "title": "Modularity",
+         "outcomes": [
+          {
+           "code": "10.AP.M.01",
+           "text": "Systematically analyze problems, using top down design, in order to break them down into smaller components, using procedures, modules, and/or objects to implement abstractions."
+          },
+          {
+           "code": "10.AP.M.02",
+           "text": "Create computational artifacts by using common structures to organize, manipulate, and process data"
+          },
+          {
+           "code": null,
+           "text": "Not addressed at this level"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "program-development",
+       "title": "Program Development",
+       "subtopics": [
+        {
+         "id": "program-development-1-of-2",
+         "title": "Program Development (1 of 2)",
+         "outcomes": [
+          {
+           "code": "10.AP.PD.01",
+           "text": "Systematically design and implement programs for broad audiences, solicit user feedback, and refine programs based on user feedback."
+          },
+          {
+           "code": "10.AP.PD.02",
+           "text": "Identify and evaluate licenses that limit or restrict use of computational artifacts and consider implications on original work, especially when incorporating libraries and other resources."
+          },
+          {
+           "code": "10.AP.PD.03",
+           "text": "Evaluate and refine computational artifacts to improve usability, accessibility, and efficiency."
+          },
+          {
+           "code": "10.AP.PD.04",
+           "text": "Design and develop computational artifacts while working collaboratively."
+          }
+         ]
+        },
+        {
+         "id": "program-development-2-of-2",
+         "title": "Program Development (2 of 2)",
+         "outcomes": [
+          {
+           "code": "10.AP.PD.0",
+           "text": "Represent the design elements and data flow (e.g., flowcharts, pseudocode, etc.) of the development of a complex program through the use of various visual aids and documentation techniques."
+          },
+          {
+           "code": null,
+           "text": "Not addressed at this level"
+          },
+          {
+           "code": null,
+           "text": "Not addressed at this level"
+          },
+          {
+           "code": null,
+           "text": "Not addressed at this level"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "impacts-of-computing",
+     "title": "Impacts of Computing",
+     "topics": [
+      {
+       "id": "culture-and-diversity",
+       "title": "Culture and Diversity",
+       "subtopics": [
+        {
+         "id": "culture-and-diversity",
+         "title": "Culture and Diversity",
+         "outcomes": [
+          {
+           "code": "10.IC.C.01",
+           "text": "Evaluate the ways computing impacts personal, ethical, social, economic, and cultural practices."
+          },
+          {
+           "code": "10.IC.C.02",
+           "text": "Evaluate and refine computational artifacts to reduce bias and equity deficits"
+          },
+          {
+           "code": "10.IC.C.03",
+           "text": "Demonstrate and explain how an existing algorithm/computational innovation applies to problems across disciplines."
+          },
+          {
+           "code": "10.IC.C.0",
+           "text": "Demonstrate and explain how an existing algorithm/computational innovation applies to problems in society."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "social-interactions",
+       "title": "Social Interactions",
+       "subtopics": [
+        {
+         "id": "social-interactions",
+         "title": "Social Interactions",
+         "outcomes": [
+          {
+           "code": "10.IC.SI.01",
+           "text": "Demonstrate and explain how various methods of collaboration can increase diverse ideas and solutions."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "safety-law-ethics",
+       "title": "Safety, Law & Ethics",
+       "subtopics": [
+        {
+         "id": "safety-law-ethics",
+         "title": "Safety, Law & Ethics",
+         "outcomes": [
+          {
+           "code": "10.IC.SLE.01",
+           "text": "Explain the positive and negative consequences that intellectual property laws can have on innovation."
+          },
+          {
+           "code": "10.IC.SLE.02",
+           "text": "Explain the privacy concerns related to the collection, generation, and analysis of large-scaled data that may not be evident to users."
+          },
+          {
+           "code": "10.IC.SLE.03",
+           "text": "Evaluate the social and economic implications of privacy in the context of safety, law, and ethics."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "11-12",
+   "units": [
+    {
+     "id": "computing-systems",
+     "title": "Computing Systems",
+     "topics": [
+      {
+       "id": "devices",
+       "title": "Devices",
+       "subtopics": [
+        {
+         "id": "devices",
+         "title": "Devices",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Not addressed at this level"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "hardware-software",
+       "title": "Hardware & Software",
+       "subtopics": [
+        {
+         "id": "hardware-software",
+         "title": "Hardware & Software",
+         "outcomes": [
+          {
+           "code": "12.CS.HS.01",
+           "text": "Identify, categorize, and illustrate the roles of operating systems to include memory management, data storage/retrieval, process management, and access control."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "troubleshooting",
+       "title": "Troubleshooting",
+       "subtopics": [
+        {
+         "id": "troubleshooting",
+         "title": "Troubleshooting",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Not addressed at this level"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "networks-and-the-internet",
+     "title": "Networks and the Internet",
+     "topics": [
+      {
+       "id": "network-communication-organization",
+       "title": "Network Communication & Organization",
+       "subtopics": [
+        {
+         "id": "network-communication-organization",
+         "title": "Network Communication & Organization",
+         "outcomes": [
+          {
+           "code": "12.NI.NCO.01",
+           "text": "Evaluate the scalability and reliability of networks by identifying and describing the relationship between routers, switches, servers, topology, protocols, and addressing."
+          },
+          {
+           "code": null,
+           "text": "Not addressed at this level"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "cybersecurity",
+       "title": "Cybersecurity",
+       "subtopics": [
+        {
+         "id": "cybersecurity",
+         "title": "Cybersecurity",
+         "outcomes": [
+          {
+           "code": "12.NI.C.01",
+           "text": "Compare and refine ways software developers protect devices and information from unauthorized access including complex encryption algorithms such as public key encryption."
+          },
+          {
+           "code": null,
+           "text": "Not addressed at this level"
+          },
+          {
+           "code": null,
+           "text": "Not addressed at this level"
+          },
+          {
+           "code": null,
+           "text": "Not addressed at this level"
+          },
+          {
+           "code": null,
+           "text": "Not addressed at this level"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "data-analysis",
+     "title": "Data Analysis",
+     "topics": [
+      {
+       "id": "storage",
+       "title": "Storage",
+       "subtopics": [
+        {
+         "id": "storage",
+         "title": "Storage",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Not addressed at this level"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "collection-visualization-transformation",
+       "title": "Collection, Visualization & Transformation",
+       "subtopics": [
+        {
+         "id": "collection-visualization-transformation",
+         "title": "Collection, Visualization & Transformation",
+         "outcomes": [
+          {
+           "code": "12.DA.CVT.01",
+           "text": "Use data analysis tools and techniques to identify patterns in data representing complex systems."
+          },
+          {
+           "code": "12.DA.CVT.02",
+           "text": "Use a variety of robust data collection techniques and tools to generate data sets that support a claim or communicate information."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "inference-models",
+       "title": "Inference & Models",
+       "subtopics": [
+        {
+         "id": "inference-models",
+         "title": "Inference & Models",
+         "outcomes": [
+          {
+           "code": "12.DA.IM.01",
+           "text": "Evaluate the ability of models and simulations to test and support refinement of hypotheses."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "algorithms-and-programming",
+     "title": "Algorithms and Programming",
+     "topics": [
+      {
+       "id": "algorithms",
+       "title": "Algorithms",
+       "subtopics": [
+        {
+         "id": "algorithms",
+         "title": "Algorithms",
+         "outcomes": [
+          {
+           "code": "12.AP.A.01",
+           "text": "Describe how artificial intelligence drives many software and physical systems (e.g., autonomous robots, computer vision, pattern recognition, test analysis)."
+          },
+          {
+           "code": "12.AP.A.02",
+           "text": "Design and implement an algorithm to play a game against a human opponent or solve a problem."
+          },
+          {
+           "code": "12.AP.A.03",
+           "text": "Design and implement encryption algorithms to securely store and retrieve information."
+          },
+          {
+           "code": "12.AP.A.04",
+           "text": "Analyze and refine classic algorithms to solve problems."
+          },
+          {
+           "code": "12.AP.A.05",
+           "text": "Evaluate algorithms (e.g., searching, sorting) in terms of their efficiency, correctness, and clarity."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "variables",
+       "title": "Variables",
+       "subtopics": [
+        {
+         "id": "variables",
+         "title": "Variables",
+         "outcomes": [
+          {
+           "code": "12.AP.V.01",
+           "text": "Compare and contrast foundational data structures and their primary functions."
+          },
+          {
+           "code": null,
+           "text": "Not addressed at this level"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "control",
+       "title": "Control",
+       "subtopics": [
+        {
+         "id": "control",
+         "title": "Control",
+         "outcomes": [
+          {
+           "code": "12.AP.C.01",
+           "text": "Illustrate the flow of execution of a recursive algorithm"
+          },
+          {
+           "code": null,
+           "text": "Not addressed at this level"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "modularity",
+       "title": "Modularity",
+       "subtopics": [
+        {
+         "id": "modularity",
+         "title": "Modularity",
+         "outcomes": [
+          {
+           "code": "12.AP.M.01",
+           "text": "Construct solutions to problems using student-created components, such as procedures, modules, and objects to implement abstractions."
+          },
+          {
+           "code": "12.AP.M.02",
+           "text": "Analyze a large-scaled computational problem and identify generalizable patterns that can be applied to a solution"
+          },
+          {
+           "code": "12.AP.M.03",
+           "text": "Create programming solutions using libraries and APIs through the application of code reuse."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "program-development",
+       "title": "Program Development",
+       "subtopics": [
+        {
+         "id": "program-development-1-of-2",
+         "title": "Program Development (1 of 2)",
+         "outcomes": [
+          {
+           "code": "12.AP.PD.01",
+           "text": "Utilize a software lifecycle process that considers security, to plan and develop programs for all types of users."
+          },
+          {
+           "code": "12.AP.PD.02",
+           "text": "Explain security issues that might lead to comprised computer programs."
+          },
+          {
+           "code": "12.AP.PD.03",
+           "text": "Develop different programs for various computing platforms (e.g., desktop, web, mobile)."
+          },
+          {
+           "code": "12.AP.PD.04",
+           "text": "Design software collaboratively using integrated development environments (IDEs), with version control and collaboration systems."
+          }
+         ]
+        },
+        {
+         "id": "program-development-2-of-2",
+         "title": "Program Development (2 of 2)",
+         "outcomes": [
+          {
+           "code": "12.AP.PD.05",
+           "text": "Develop and use a series of test cases to verify that a program performs according to its design specifications."
+          },
+          {
+           "code": "12.AP.PD.06",
+           "text": "Modify an existing program to add additional functionality and discuss intended and unintended implications (e.g., breaking other functionality)."
+          },
+          {
+           "code": "12.AP.PD.07",
+           "text": "Compare multiple programming languages or libraries and discuss how their features make them suitable for solving different types of problems."
+          },
+          {
+           "code": "12.AP.PD.08",
+           "text": "Evaluate key qualities of a program through a process such as code review."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "impacts-of-computing",
+     "title": "Impacts of Computing",
+     "topics": [
+      {
+       "id": "culture-and-diversity",
+       "title": "Culture and Diversity",
+       "subtopics": [
+        {
+         "id": "culture-and-diversity",
+         "title": "Culture and Diversity",
+         "outcomes": [
+          {
+           "code": "12.IC.C.01",
+           "text": "Evaluate the positive and negative implications computational artifacts have on society"
+          },
+          {
+           "code": "12.IC.C.02",
+           "text": "Evaluate the impact of equity, access, and influence on the distribution of computing resources in the global society."
+          },
+          {
+           "code": "12.IC.C.03",
+           "text": "Predict evolutionary trends of computational innovations that have revolutionized aspects of global society."
+          },
+          {
+           "code": "12.IC.C.04",
+           "text": "Predict how computational innovations may revolutionize aspects of global society"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "social-interactions",
+       "title": "Social Interactions",
+       "subtopics": [
+        {
+         "id": "social-interactions",
+         "title": "Social Interactions",
+         "outcomes": [
+          {
+           "code": "12.IC.SI.01",
+           "text": "Debate the laws and regulations that govern and impact the development of computing innovations and policies."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "safety-law-ethics",
+       "title": "Safety, Law & Ethics",
+       "subtopics": [
+        {
+         "id": "safety-law-ethics",
+         "title": "Safety, Law & Ethics",
+         "outcomes": [
+          {
+           "code": "12.IC.SLE.01",
+           "text": "Investigate reasons new technologies require evaluation of existing laws and regulations and the creation of new legislation."
+          },
+          {
+           "code": "12.IC.SLE.02",
+           "text": "Explain the privacy concerns related to the collection, generation, and analysis of large-scaled data that may not be evident to users."
+          },
+          {
+           "code": "12.IC.SLE.03",
+           "text": "Evaluate the social and economic implications of privacy in the context of safety, law, and ethics."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "6-8",
+   "units": [
+    {
+     "id": "the-nature-of-technology-students-will-develop-a",
+     "title": "The Nature of Technology - Students will develop an understanding of the nature of technology",
+     "topics": [
+      {
+       "id": "the-characteristics-and-scope-of-technology",
+       "title": "The characteristics and scope of technology",
+       "subtopics": [
+        {
+         "id": "the-characteristics-and-scope-of-technology",
+         "title": "The characteristics and scope of technology",
+         "outcomes": [
+          {
+           "code": "6-8.1.1.a",
+           "text": "Differentiate between technological inventions and innovations."
+          },
+          {
+           "code": "6-8.1.1.b",
+           "text": "Identify the need for technological invention and innovation."
+          },
+          {
+           "code": "6-8.1.1.c",
+           "text": "Describe how marketing and advertising is used to create demand for technological products (STL, 3I)."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "core-concepts-of-technology",
+       "title": "Core Concepts of Technology",
+       "subtopics": [
+        {
+         "id": "core-concepts-of-technology-1-of-2",
+         "title": "Core Concepts of Technology (1 of 2)",
+         "outcomes": [
+          {
+           "code": "6-8.1.2.a",
+           "text": "Describe the components of a technological system."
+          },
+          {
+           "code": "6-8.1.2.b",
+           "text": "Design a model that demonstrates how subsystems and system elements interact within systems."
+          },
+          {
+           "code": "6-8.1.2.c",
+           "text": "Select or design a technological system to perform a task based on specific requirements."
+          },
+          {
+           "code": "6-8.1.2.d",
+           "text": "Assemble and operate simple technological systems."
+          }
+         ]
+        },
+        {
+         "id": "core-concepts-of-technology-2-of-2",
+         "title": "Core Concepts of Technology (2 of 2)",
+         "outcomes": [
+          {
+           "code": "6-8.1.2.e",
+           "text": "Analyze the performance of a feedback control system."
+          },
+          {
+           "code": "6-8.1.2.f",
+           "text": "Troubleshoot a malfunctioning system (STL, 10F)."
+          },
+          {
+           "code": "6-8.1.2.g",
+           "text": "Use tools, materials, and machines safely to diagnose, adjust and repair systems (STL, 12I)."
+          },
+          {
+           "code": "6-8.1.2.h",
+           "text": "Provide examples of optimization and trade-offs for products, processes, and systems."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "connections-between-technology-and-other-fields-",
+       "title": "Connections Between Technology and Other Fields of Study",
+       "subtopics": [
+        {
+         "id": "connections-between-technology-and-other-fields-",
+         "title": "Connections Between Technology and Other Fields of Study",
+         "outcomes": [
+          {
+           "code": "6-8.1.3.a",
+           "text": "Analyze how knowledge gained from other fields of study has impacted the development of technological products and systems (STL, 3F)."
+          },
+          {
+           "code": "6-8.1.3.b",
+           "text": "Describe how patents protect intellectual property (STL, 3I)."
+          },
+          {
+           "code": "6-8.1.3.c",
+           "text": "Assess the limitations of open source technology."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "impacts-of-technology-students-will-evaluate-the",
+     "title": "Impacts of Technology - Students will evaluate the impact of technology. The impact of technology incorporates",
+     "topics": [
+      {
+       "id": "effects-of-technology",
+       "title": "Effects of Technology",
+       "subtopics": [
+        {
+         "id": "effects-of-technology",
+         "title": "Effects of Technology",
+         "outcomes": [
+          {
+           "code": "6-8.2.1.a",
+           "text": "Discriminate between responsible and irresponsible use of technology."
+          },
+          {
+           "code": "6-8.2.1.b",
+           "text": "Analyze the cultural, social, economic, political and environmental effects of technology."
+          },
+          {
+           "code": "6-8.2.1.c",
+           "text": "Describe legal and ethical concerns resulting from the development and use of technology (STL, F)."
+          },
+          {
+           "code": "6-8.2.1.d",
+           "text": "Explain that decisions about the use of technology involve trade-offs between positive and negative effects (STL, 4I)."
+          },
+          {
+           "code": "6-8.2.1.e",
+           "text": "Assess the impact of technology transfer from one society to another (STL, 4K)."
+          },
+          {
+           "code": "6-8.2.1.f",
+           "text": "Evaluate the advantages and disadvantages of technology."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "role-of-society-in-the-development-and-use-of-te",
+       "title": "Role of Society in the Development and Use of Technology",
+       "subtopics": [
+        {
+         "id": "role-of-society-in-the-development-and-use-of-te",
+         "title": "Role of Society in the Development and Use of Technology",
+         "outcomes": [
+          {
+           "code": "6-8.2.2.a",
+           "text": "Describe how new technologies have evolved as a result of combing existing technologies."
+          },
+          {
+           "code": "6-8.2.2.b",
+           "text": "Assess the impact that technological invention and innovation has on the needs and wants of a society (STL, 4E)."
+          },
+          {
+           "code": "6-8.2.2.c",
+           "text": "Explain how technological advances have impacted the nature of work."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "engineering-design-and-development-students-will",
+     "title": "Engineering Design and Development - Students will demonstrate knowledge of and apply the engineering design process to develop solutions to problems",
+     "topics": [
+      {
+       "id": "explain-how-the-design-process-is-an-iterative-s",
+       "title": "Explain how the design process is an iterative, systematic approach to problem solving that includes collaboratively:",
+       "subtopics": [
+        {
+         "id": "explain-how-the-design-process-is-an-iterative-s",
+         "title": "Explain how the design process is an iterative, systematic approach to problem solving that includes collaboratively: (1 of 3)",
+         "outcomes": [
+          {
+           "code": "6-8.3.1.a.1",
+           "text": "Defining a problem – students will be able to employ technical reading and writing skills to develop concise problem statement."
+          },
+          {
+           "code": "6-8.3.1.a.2",
+           "text": "Brainstorming – students will be able to apply team brainstorming rules and techniques."
+          },
+          {
+           "code": "6-8.3.1.a.3",
+           "text": "Researching and Generating Ideas – students will be able to conduct research to assess prior solutions to the problem."
+          },
+          {
+           "code": "6-8.3.1.a.4",
+           "text": "Identifying Criteria and Specifying Constraints – students will be able to assess the criteria (guidelines) and prioritize constraints (limitations) of the problem. This includes people, time, materials, capital, energy, etc."
+          }
+         ]
+        },
+        {
+         "id": "explain-how-the-design-process-is-an-iterative-s-2",
+         "title": "Explain how the design process is an iterative, systematic approach to problem solving that includes collaboratively: (2 of 3)",
+         "outcomes": [
+          {
+           "code": "6-8.3.1.a.5",
+           "text": "Exploring Possibilities – students will conduct research and explore possibilities for potential solutions."
+          },
+          {
+           "code": "6-8.3.1.a.6",
+           "text": "Selecting an Approach – students will be able to employ a decision matrix to select the best approach to solve the problem."
+          },
+          {
+           "code": "6-8.3.1.a.7",
+           "text": "Developing a Design Proposal – students will be able to create a plan of action that details the specifics of the project."
+          },
+          {
+           "code": "6-8.3.1.a.8",
+           "text": "Making a Model or a Prototype – students will be able to develop conceptual, mathematical, or physical models and/or a prototype that performs the final solution and can be used for testing/evaluating. This includes the creation of two and three dimensional scale drawings."
+          }
+         ]
+        },
+        {
+         "id": "explain-how-the-design-process-is-an-iterative-s-3",
+         "title": "Explain how the design process is an iterative, systematic approach to problem solving that includes collaboratively: (3 of 3)",
+         "outcomes": [
+          {
+           "code": "6-8.3.1.a.9",
+           "text": "Testing and Evaluating Design Using Specifications – students will be able to use establish specifications to assess their design product."
+          },
+          {
+           "code": "6-8.3.1.a.10",
+           "text": "Refining a Design – student will employ data-driven decision making to improve their product."
+          },
+          {
+           "code": "6-8.3.1.a.11",
+           "text": "Creating or Making the Product – students will be able to produce the design product"
+          },
+          {
+           "code": "6-8.3.1.a.12",
+           "text": "Communicate Processes and Results – students will be able to communicate throughout the design process demonstrating application of the essential skills and knowledge presented in Maryland’s College and Career Ready Disciplinary Literacy Standards."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "engineering-design-and-development-students-will",
+       "title": "Engineering Design and Development - Students will demonstrate knowledge of and apply the engineering design process to develop solutions to problems",
+       "subtopics": [
+        {
+         "id": "engineering-design-and-development-students-will",
+         "title": "Engineering Design and Development - Students will demonstrate knowledge of and apply the engineering design process to develop solutions to problems",
+         "outcomes": [
+          {
+           "code": "6-8.3.1.b",
+           "text": "Apply the design process to develop solutions to real-world problems."
+          },
+          {
+           "code": "6-8.3.1.c",
+           "text": "Document the design process and solutions in a journal, notebook, or portfolio."
+          },
+          {
+           "code": "6-8.3.1.d",
+           "text": "Assess the reliability and validity of researched information."
+          },
+          {
+           "code": "6-8.3.1.e",
+           "text": "Evaluate competing design solutions using a systematic process to determine how well they meet the criteria and constraints of a problem (MS-ETS1-2)."
+          },
+          {
+           "code": "6-8.3.1.f",
+           "text": "Discriminate between ethical and unethical engineering practices."
+          },
+          {
+           "code": "6-8.3.1.g",
+           "text": "Analyze the function of select core technologies in the designed world."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "core-technologies-and-the-designed-world-student",
+     "title": "Core Technologies and The Designed World - Students will demonstrate knowledge of the core technologies that underpin the designed world and major enterprises that produce the goods and services of the designed world. Core technologies include but are not limited to biotechnology, electrical, electronics, fluid, material, mechanical, optical, structural, and thermal technologies. Major enterprises include medical, agriculture, biotechnology, energy and power, information and communication, transportation, and manufacturing and construction technologies",
+     "topics": [
+      {
+       "id": "medical-technologies",
+       "title": "Medical Technologies",
+       "subtopics": [
+        {
+         "id": "medical-technologies",
+         "title": "Medical Technologies",
+         "outcomes": [
+          {
+           "code": "6-8.4.1.a",
+           "text": "Explore the function and application of several medical technologies."
+          },
+          {
+           "code": "6-8.4.1.b",
+           "text": "Correlate advances in medical technologies to improvements in the length and quality of life for multicellular organisms."
+          },
+          {
+           "code": "6-8.4.1.c",
+           "text": "Describe ethical considerations involved in the development and application of medical technologies."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "agricultural-technologies",
+       "title": "Agricultural Technologies",
+       "subtopics": [
+        {
+         "id": "agricultural-technologies",
+         "title": "Agricultural Technologies",
+         "outcomes": [
+          {
+           "code": "6-8.4.2.a",
+           "text": "Explore the function and application of a variety of technological processes, equipment, and systems used in agriculture (e.g. agroforestry, irrigation, global positioning systems)."
+          },
+          {
+           "code": "6-8.4.2.b",
+           "text": "Design, develop, use, manage, maintain, and assess a closed system that supports living organisms (e.g. terrarium, hydroponics station)."
+          },
+          {
+           "code": "6-8.4.2.c",
+           "text": "Evaluate the positive and negative effects of technological solutions to agricultural problems."
+          },
+          {
+           "code": "6-8.4.2.d",
+           "text": "Describe techniques used to provide longterm storage of food and reduce the health risk caused by tainted food (STL, 15J)."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "biotechnology",
+       "title": "Biotechnology",
+       "subtopics": [
+        {
+         "id": "biotechnology",
+         "title": "Biotechnology",
+         "outcomes": [
+          {
+           "code": "6-8.4.3.a",
+           "text": "Explore applications of biotechnology"
+          },
+          {
+           "code": "6-8.4.3.b",
+           "text": "Examine positive and negative impacts of biotechnology."
+          },
+          {
+           "code": "6-8.4.3.c",
+           "text": "Analyze ethical, societal, and legal issues that arise from biotechnology applications."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "energy-and-power-technologies",
+       "title": "Energy and Power Technologies",
+       "subtopics": [
+        {
+         "id": "energy-and-power-technologies",
+         "title": "Energy and Power Technologies",
+         "outcomes": [
+          {
+           "code": "6-8.4.4.a",
+           "text": "Analyze how power systems are used to drive and provide propulsion to other technological products and systems (STL, 16H)."
+          },
+          {
+           "code": "6-8.4.4.b",
+           "text": "Design, construct, and test a device that either minimizes or maximizes energy transfer (MS-PS3-3)."
+          },
+          {
+           "code": "6-8.4.4.c",
+           "text": "Explore ways to conserve energy."
+          },
+          {
+           "code": "6-8.4.4.d",
+           "text": "Assess advantages and disadvantages of different forms of renewable and nonrenewable energy."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "information-and-communication-technologies",
+       "title": "Information and Communication Technologies",
+       "subtopics": [
+        {
+         "id": "information-and-communication-technologies",
+         "title": "Information and Communication Technologies",
+         "outcomes": [
+          {
+           "code": "6-8.4.5.a",
+           "text": "Assess the application and functionality of the parts of a communication system (source, encoder, transmitter, receiver, decoder, and destination) (STL, 17H)."
+          },
+          {
+           "code": "6-8.4.5.b",
+           "text": "Explore different steps in the communication process (encode message, encoded message is transmitted or switched through a channel, message is received and decoded by the receiver)."
+          },
+          {
+           "code": "6-8.4.5.c",
+           "text": "Design and send messages using various types of communication systems."
+          },
+          {
+           "code": "6-8.4.5.d",
+           "text": "Design and develop a simple communications system."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "transportation-technologies",
+       "title": "Transportation Technologies",
+       "subtopics": [
+        {
+         "id": "transportation-technologies",
+         "title": "Transportation Technologies",
+         "outcomes": [
+          {
+           "code": "6-8.4.6.a",
+           "text": "Investigate the functionality of various methods of transportation for land, water, air, and space."
+          },
+          {
+           "code": "6-8.4.6.b",
+           "text": "Assess processes necessary for an entire transportation system to operate efficiently (e.g. receiving, holding, storing, loading) (STL, 18I)."
+          },
+          {
+           "code": "6-8.4.6.c",
+           "text": "Analyze the interdependence of transportation systems."
+          },
+          {
+           "code": "6-8.4.6.d",
+           "text": "Design and develop models of subsystems in a transportation system (structural, propulsion, suspension, guidance, control, and support)."
+          },
+          {
+           "code": "6-8.4.6.e",
+           "text": "Design and develop a model of a new energy efficient vehicle to be use on land, in the sea, in the air, or in space."
+          },
+          {
+           "code": "6-8.4.6.f",
+           "text": "Describe how governmental regulations influence the design and operation of transportation system."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "manufacturing-technologies",
+       "title": "Manufacturing Technologies",
+       "subtopics": [
+        {
+         "id": "manufacturing-technologies-1-of-2",
+         "title": "Manufacturing Technologies (1 of 2)",
+         "outcomes": [
+          {
+           "code": "6-8.4.7.a",
+           "text": "Identify the components of a manufacturing system."
+          },
+          {
+           "code": "6-8.4.7.b",
+           "text": "Identify resources required for manufacturing systems to operate properly (e.g. raw materials, finances, people, tools, machines, time)."
+          },
+          {
+           "code": "6-8.4.7.c",
+           "text": "Examine the mechanical and chemical processes of manufacturing."
+          },
+          {
+           "code": "6-8.4.7.d",
+           "text": "Analyze the development, production, application, marketing, acquisition, and disposal of manufactured products."
+          }
+         ]
+        },
+        {
+         "id": "manufacturing-technologies-2-of-2",
+         "title": "Manufacturing Technologies (2 of 2)",
+         "outcomes": [
+          {
+           "code": "6-8.4.7.e",
+           "text": "Assess the impact that technology (e.g. computer-aided design, automation, robots, assembly lines) has on the manufacturing process."
+          },
+          {
+           "code": "6-8.4.7.f",
+           "text": "Assess the impact that the manufacturing process has on people and the environment."
+          },
+          {
+           "code": "6-8.4.7.g",
+           "text": "Classify manufactured goods according to their longevity."
+          },
+          {
+           "code": "6-8.4.7.h",
+           "text": "Assess a variety of manufacturing methodologies."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "construction-technologies",
+       "title": "Construction Technologies",
+       "subtopics": [
+        {
+         "id": "construction-technologies-1-of-2",
+         "title": "Construction Technologies (1 of 2)",
+         "outcomes": [
+          {
+           "code": "6-8.4.8.a",
+           "text": "Analyze the type of and purpose for a variety of structures."
+          },
+          {
+           "code": "6-8.4.8.b",
+           "text": "Analyze factors used in the selection of designs for structures (e.g. laws, codes, style, cost, climate, function) (STL, 20F)."
+          },
+          {
+           "code": "6-8.4.8.c",
+           "text": "Examine different subsystems within buildings."
+          },
+          {
+           "code": "6-8.4.8.d",
+           "text": "Analyze the maintenance of structures and subsystems."
+          }
+         ]
+        },
+        {
+         "id": "construction-technologies-2-of-2",
+         "title": "Construction Technologies (2 of 2)",
+         "outcomes": [
+          {
+           "code": "6-8.4.8.e",
+           "text": "Assess the role that community planning, laws, and regulation have in the development and maintenance of structures."
+          },
+          {
+           "code": "6-8.4.8.f",
+           "text": "Design, use, and assess building material."
+          },
+          {
+           "code": "6-8.4.8.g",
+           "text": "Design and create models of structures."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "computational-thinking-and-computer-science-appl",
+     "title": "Computational Thinking and Computer Science Applications - Students will be able to apply computational thinking skills and computer science applications as tools to develop solutions to engineering problems",
+     "topics": [
+      {
+       "id": "computational-thinking-and-computer-science-appl",
+       "title": "Computational Thinking and Computer Science Applications - Students will be able to apply computational thinking skills and computer science applications as tools to develop solutions to engineering problems",
+       "subtopics": [
+        {
+         "id": "computational-thinking-and-computer-science-appl",
+         "title": "Computational Thinking and Computer Science Applications - Students will be able to apply computational thinking skills and computer science applications as tools to develop solutions to engineering problems (1 of 2)",
+         "outcomes": [
+          {
+           "code": "6-8.5.1.a",
+           "text": "Select and use appropriate tools and technology resources to accomplish a variety of tasks and solve problems."
+          },
+          {
+           "code": "6-8.5.1.b",
+           "text": "Use the basic steps in algorithmic problem solving to design solutions to problems."
+          },
+          {
+           "code": "6-8.5.1.c",
+           "text": "Use modeling and simulation to represent and understand natural phenomena."
+          },
+          {
+           "code": "6-8.5.1.d",
+           "text": "Implement problem solutions using a programming language."
+          }
+         ]
+        },
+        {
+         "id": "computational-thinking-and-computer-science-appl-2",
+         "title": "Computational Thinking and Computer Science Applications - Students will be able to apply computational thinking skills and computer science applications as tools to develop solutions to engineering problems (2 of 2)",
+         "outcomes": [
+          {
+           "code": "6-8.5.1.e",
+           "text": "Use productivity technology tools for individual and collaborative writing, communication, presentation, and/or publishing activities."
+          },
+          {
+           "code": "6-8.5.1.f",
+           "text": "Apply responsible legal and ethical behaviors in the use of technology systems and software."
+          },
+          {
+           "code": "6-8.5.1.g",
+           "text": "Analyze how computational thinking and computer programing can be used as tools for problem solving."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "9-12",
+   "units": [
+    {
+     "id": "the-nature-of-technology-students-will-develop-a",
+     "title": "The Nature of Technology - Students will develop an understanding of the nature of technology",
+     "topics": [
+      {
+       "id": "characteristics-and-scope-of-technology",
+       "title": "Characteristics and Scope of Technology",
+       "subtopics": [
+        {
+         "id": "characteristics-and-scope-of-technology",
+         "title": "Characteristics and Scope of Technology",
+         "outcomes": [
+          {
+           "code": "9-12.1.1.a",
+           "text": "Analyze factors that drive technological invention and innovation."
+          },
+          {
+           "code": "9-12.1.1.b",
+           "text": "Describe factors that may limit the development or use of technology (e.g. resources, societal concerns)."
+          },
+          {
+           "code": "9-12.1.1.c",
+           "text": "Assess the effects of technology on supply and demand."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "core-concepts-of-technology",
+       "title": "Core Concepts of Technology",
+       "subtopics": [
+        {
+         "id": "core-concepts-of-technology-1-of-2",
+         "title": "Core Concepts of Technology (1 of 2)",
+         "outcomes": [
+          {
+           "code": "9-12.1.2.a",
+           "text": "Analyze the functionality and interaction of various technological systems."
+          },
+          {
+           "code": "9-12.1.2.b",
+           "text": "Analyze how technology can be repurposed for applications beyond their intended use."
+          },
+          {
+           "code": "9-12.1.2.c",
+           "text": "Use mathematical models and/or computer simulations to predict the effects of a design solution on systems and/or the interaction between systems (HS-ETS 1-4)."
+          },
+          {
+           "code": "9-12.1.2.d",
+           "text": "Employ constraint-based modeling to describe a biological system."
+          },
+          {
+           "code": "9-12.1.2.e",
+           "text": "Assemble and operate simple and complex systems."
+          }
+         ]
+        },
+        {
+         "id": "core-concepts-of-technology-2-of-2",
+         "title": "Core Concepts of Technology (2 of 2)",
+         "outcomes": [
+          {
+           "code": "9-12.1.2.f",
+           "text": "Diagnose a system that is malfunctioning and use tools, materials, and knowledge to repair it (STL, 12M)."
+          },
+          {
+           "code": "9-12.1.2.g",
+           "text": "Troubleshoot, analyze, and maintain systems to ensure safe and proper function and precision."
+          },
+          {
+           "code": "9-12.1.2.h",
+           "text": "Create a model of a feedback control system."
+          },
+          {
+           "code": "9-12.1.2.i",
+           "text": "Demonstrate how trade-offs can impact a design product."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "connections-between-technology-and-other-fields-",
+       "title": "Connections Between Technology and Other Fields of Study",
+       "subtopics": [
+        {
+         "id": "connections-between-technology-and-other-fields-",
+         "title": "Connections Between Technology and Other Fields of Study",
+         "outcomes": [
+          {
+           "code": "9-12.1.3.a",
+           "text": "Correlate technological advances to progress in other fields of study such as science and mathematics (STL, 3J)."
+          },
+          {
+           "code": "9-12.1.3.b",
+           "text": "Analyze the purpose and functionality of subject matter (SMEs) on a team."
+          },
+          {
+           "code": "9-12.1.3.c",
+           "text": "Assess ways to protect intellectual property (e.g. patent, trademark, copyright)."
+          },
+          {
+           "code": "9-12.1.3.d",
+           "text": "Differentiate between open source and proprietary technology."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "impacts-of-technology-students-will-evaluate-the",
+     "title": "Impacts of Technology - Students will evaluate the impact of technology",
+     "topics": [
+      {
+       "id": "effects-of-technology",
+       "title": "Effects of Technology",
+       "subtopics": [
+        {
+         "id": "effects-of-technology",
+         "title": "Effects of Technology",
+         "outcomes": [
+          {
+           "code": "9-12.2.1.a",
+           "text": "Evaluate the desirable and undesirable consequences of technological advancements."
+          },
+          {
+           "code": "9-12.2.1.b",
+           "text": "Apply assessment techniques, such as trend analysis and experimentation, to make decisions about the future development of technology (STL, 13L)."
+          },
+          {
+           "code": "9-12.2.1.c",
+           "text": "Analyze legal and ethical considerations in the development and application of technology."
+          },
+          {
+           "code": "9-12.2.1.d",
+           "text": "Analyze the relationship between technological and natural systems."
+          },
+          {
+           "code": "9-12.2.1.e",
+           "text": "Design a forecasting technique to evaluate the results of altering natural systems (STL, 13M)."
+          },
+          {
+           "code": "9-12.2.1.f",
+           "text": "Create and design a product to mitigate the undesirable consequences of an existing technology."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "role-of-society-in-the-development-and-use-of-te",
+       "title": "Role of Society in the Development and Use of Technology",
+       "subtopics": [
+        {
+         "id": "role-of-society-in-the-development-and-use-of-te",
+         "title": "Role of Society in the Development and Use of Technology",
+         "outcomes": [
+          {
+           "code": "9-12.2.2.a",
+           "text": "Distinguish factors that affect the scaling of technology."
+          },
+          {
+           "code": "9-12.2.2.b",
+           "text": "Analyze how different cultures develop their own technologies to satisfy their individual and shared needs, wants, and values."
+          },
+          {
+           "code": "9-12.2.2.c",
+           "text": "Compare and contrast the development, availability, and application of technology in developed and underdeveloped countries."
+          },
+          {
+           "code": "9-12.2.2.d",
+           "text": "Draw connections between technological advances and evolution of civilization through different archaeological periods (e.g. stone age, bronze age, iron age) (STL, 4H)."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "engineering-design-and-development-students-will",
+     "title": "Engineering Design and Development - Students will demonstrate knowledge of and apply the engineering design process to develop solutions to problems",
+     "topics": [
+      {
+       "id": "engineering-design-and-development-students-will",
+       "title": "Engineering Design and Development - Students will demonstrate knowledge of and apply the engineering design process to develop solutions to problems",
+       "subtopics": [
+        {
+         "id": "engineering-design-and-development-students-will",
+         "title": "Engineering Design and Development - Students will demonstrate knowledge of and apply the engineering design process to develop solutions to problems (1 of 3)",
+         "outcomes": [
+          {
+           "code": "9-12.3.1.a",
+           "text": "Apply the design process to develop solutions to real-world problems."
+          },
+          {
+           "code": "9-12.3.1.b",
+           "text": "Document the design process and solutions in a journal, notebook, or portfolio."
+          },
+          {
+           "code": "9-12.3.1.c",
+           "text": "Assess the reliability and validity of researched information."
+          },
+          {
+           "code": "9-12.3.1.d",
+           "text": "Apply design principles (e.g. flexibility, balance, function, proportion) to evaluate existing designs, to collect data, and to guide the design process (STL, 9I)."
+          }
+         ]
+        },
+        {
+         "id": "engineering-design-and-development-students-will-2",
+         "title": "Engineering Design and Development - Students will demonstrate knowledge of and apply the engineering design process to develop solutions to problems (2 of 3)",
+         "outcomes": [
+          {
+           "code": "9-12.3.1.e",
+           "text": "Evaluate design solutions using software and other tools to develop conceptual, physical, and mathematical models at various intervals of the design process in order to ensure compliance with design requirements (STL, 11P)."
+          },
+          {
+           "code": "9-12.3.1.f",
+           "text": "Assess how design requirements such as criteria, constraints, and efficiency can compete with each other (STL, 8K)."
+          },
+          {
+           "code": "9-12.3.1.g",
+           "text": "Identify the capital and other resources needed to develop solutions to problems."
+          },
+          {
+           "code": "9-12.3.1.h",
+           "text": "Apply assessment techniques (e.g. trend analysis) to determine if a solution should be pursued to design and development."
+          }
+         ]
+        },
+        {
+         "id": "engineering-design-and-development-students-will-3",
+         "title": "Engineering Design and Development - Students will demonstrate knowledge of and apply the engineering design process to develop solutions to problems (3 of 3)",
+         "outcomes": [
+          {
+           "code": "9-12.3.1.i",
+           "text": "Engage in failure analysis and optimization."
+          },
+          {
+           "code": "9-12.3.1.j",
+           "text": "Assess the validity of a research results."
+          },
+          {
+           "code": "9-12.3.1.k",
+           "text": "Apply the research and development problem-solving approach to prepare devices and systems for the marketplace."
+          },
+          {
+           "code": "9-12.3.1.l",
+           "text": "Apply knowledge of core technologies in the development of solutions to problems."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "core-technologies-and-the-designed-world-student",
+     "title": "Core Technologies and The Designed World - Students will demonstrate knowledge of the core technologies that underpin the designed world and major enterprises that produce the goods and services of the designed world. Core technologies include but are not limited to biotechnology, electrical, electronics, fluid, material, mechanical, optical, structural, and thermal technologies. Major enterprises include medical, agriculture, biotechnology, energy and power, information and communication, transportation, and manufacturing and construction technologies",
+     "topics": [
+      {
+       "id": "medical-technologies",
+       "title": "Medical Technologies",
+       "subtopics": [
+        {
+         "id": "medical-technologies",
+         "title": "Medical Technologies",
+         "outcomes": [
+          {
+           "code": "9-12.4.1.a",
+           "text": "Employ trends, research, and forecasting techniques to analyze emerging health and medical technologies."
+          },
+          {
+           "code": "9-12.4.1.b",
+           "text": "Investigate the benefits and consequences of advances in medicine made through the use of technology."
+          },
+          {
+           "code": "9-12.4.1.c",
+           "text": "Analyze ethical issues and global concerns surrounding the development, access, application, and effects of health and medical technologies."
+          },
+          {
+           "code": "9-12.4.1.d",
+           "text": "Assess how advances in medical technology have improved the health of multicellular organisms (e.g. reducing the instances of serious diseases in humans)."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "agricultural-technologies",
+       "title": "Agricultural Technologies",
+       "subtopics": [
+        {
+         "id": "agricultural-technologies",
+         "title": "Agricultural Technologies",
+         "outcomes": [
+          {
+           "code": "9-12.4.2.a",
+           "text": "Analyze how advancement in technology has improved the yield and quality of food."
+          },
+          {
+           "code": "9-12.4.2.b",
+           "text": "Assess the products and systems used to produce, process, and distribute food, fiber, fuel, chemical, and other products (STL, 16K)."
+          },
+          {
+           "code": "9-12.4.2.c",
+           "text": "Assess the need for regulations governing technologies used in agriculture."
+          },
+          {
+           "code": "9-12.4.2.d",
+           "text": "Examine the social side effects and trade-offs of using various technologies in the production of food."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "biotechnology",
+       "title": "Biotechnology",
+       "subtopics": [
+        {
+         "id": "biotechnology",
+         "title": "Biotechnology",
+         "outcomes": [
+          {
+           "code": "9-12.4.3.a",
+           "text": "Analyze the application of biotechnology processes and products in medicine, agriculture, food processing, and the environment."
+          },
+          {
+           "code": "9-12.4.3.b",
+           "text": "Assess the ethical, social, and legal issues regarding the use of biotechnology (e.g. genetic engineering)."
+          },
+          {
+           "code": "9-12.4.3.c",
+           "text": "Assess the application and impacts of biotechnology on other fields of study such as bioinformatics, bioprocess engineering, and biorobotics."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "energy-and-power-technologies",
+       "title": "Energy and Power Technologies",
+       "subtopics": [
+        {
+         "id": "energy-and-power-technologies",
+         "title": "Energy and Power Technologies",
+         "outcomes": [
+          {
+           "code": "9-12.4.4.a",
+           "text": "Analyze the production, conversion, transmission, and application of different forms of energy (e.g. mechanical, radiant, chemical, thermal, electrical, nuclear)."
+          },
+          {
+           "code": "9-12.4.4.b",
+           "text": "Analyze energy inputs, processes and outputs."
+          },
+          {
+           "code": "9-12.4.4.c",
+           "text": "Assess energy efficiency at generation, distribution, and point of use."
+          },
+          {
+           "code": "9-12.4.4.d",
+           "text": "Create computational models to calculate the change in the energy of one component in a system when the change in the energy of the other component(s) an energy flows in and out of the system are known (HS-PS3-1)."
+          },
+          {
+           "code": "9-12.4.4.e",
+           "text": "Design, build, and refine a device that works within given constraints to convert one form of energy into another form of energy (HS-PS3-3)."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "information-and-communication-technologies",
+       "title": "Information and Communication Technologies",
+       "subtopics": [
+        {
+         "id": "information-and-communication-technologies-1-of-",
+         "title": "Information and Communication Technologies (1 of 2)",
+         "outcomes": [
+          {
+           "code": "9-12.4.5.a",
+           "text": "Analyze the inputs, processes, and outputs associated with sending and receiving information (STL, 17I)."
+          },
+          {
+           "code": "9-12.4.5.b",
+           "text": "Investigate components of a communication system (STL, 17O)."
+          },
+          {
+           "code": "9-12.4.5.c",
+           "text": "Assess approaches to reduce noise and promote clear communication."
+          },
+          {
+           "code": "9-12.4.5.d",
+           "text": "Analyze the function and application of different forms of communication technologies (e.g. internet, wireless networks)."
+          }
+         ]
+        },
+        {
+         "id": "information-and-communication-technologies-2-of-",
+         "title": "Information and Communication Technologies (2 of 2)",
+         "outcomes": [
+          {
+           "code": "9-12.4.5.e",
+           "text": "Demonstrate the transfer of information through different communication systems."
+          },
+          {
+           "code": "9-12.4.5.f",
+           "text": "Analyze factors that influence messages (e.g. timing, sequencings, processing)."
+          },
+          {
+           "code": "9-12.4.5.g",
+           "text": "Design, use, and assess various types of information and communication systems (e.g. graphic, optical, radio, tactical)."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "transportation-technologies",
+       "title": "Transportation Technologies",
+       "subtopics": [
+        {
+         "id": "transportation-technologies",
+         "title": "Transportation Technologies",
+         "outcomes": [
+          {
+           "code": "9-12.4.6.a",
+           "text": "Assess the role of transportation in manufacturing, construction, communication, health, safety, recreation, entertainment, and agriculture."
+          },
+          {
+           "code": "9-12.4.6.b",
+           "text": "Analyze intermodal travel of people and goods."
+          },
+          {
+           "code": "9-12.4.6.c",
+           "text": "Investigate and propose solutions to issues associated with transportation such as cost, safety, environmental impact, energy, and government regulations."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "manufacturing-technologies",
+       "title": "Manufacturing Technologies",
+       "subtopics": [
+        {
+         "id": "manufacturing-technologies-1-of-2",
+         "title": "Manufacturing Technologies (1 of 2)",
+         "outcomes": [
+          {
+           "code": "9-12.4.7.a",
+           "text": "Analyze manufacturing processes (designing, development, producing, and servicing)."
+          },
+          {
+           "code": "9-12.4.7.b",
+           "text": "Describe mechanical processes that change the form of materials (separating, forming, combining, and conditioning)."
+          },
+          {
+           "code": "9-12.4.7.c",
+           "text": "Classify manufacturing systems as being customized production, batch production, or continuous production."
+          },
+          {
+           "code": "9-12.4.7.d",
+           "text": "Design and develop an interchangeable part."
+          },
+          {
+           "code": "9-12.4.7.e",
+           "text": "Create machine code to manufacture a product."
+          }
+         ]
+        },
+        {
+         "id": "manufacturing-technologies-2-of-2",
+         "title": "Manufacturing Technologies (2 of 2)",
+         "outcomes": [
+          {
+           "code": "9-12.4.7.f",
+           "text": "Classify materials as natural, synthetic, or mixed (STL, 19M)."
+          },
+          {
+           "code": "9-12.4.7.g",
+           "text": "Analyze the life cycle of a manufactured product."
+          },
+          {
+           "code": "9-12.4.7.h",
+           "text": "Explore the life cycle costing of products in a manufacturing process."
+          },
+          {
+           "code": "9-12.4.7.i",
+           "text": "Examine the need for and application of terotechnology in manufacturing."
+          },
+          {
+           "code": "9-12.4.7.j",
+           "text": "Apply marketing techniques to build awareness of a manufactured product."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "construction-technologies",
+       "title": "Construction Technologies",
+       "subtopics": [
+        {
+         "id": "construction-technologies",
+         "title": "Construction Technologies",
+         "outcomes": [
+          {
+           "code": "9-12.4.8.a",
+           "text": "Design and create models of a variety of structures."
+          },
+          {
+           "code": "9-12.4.8.b",
+           "text": "Analyze the physical infrastructures that allow a society or government to function (e.g. infrastructures of roads, airports, dams, canals, rail lines, sewers)."
+          },
+          {
+           "code": "9-12.4.8.c",
+           "text": "Analyze the various materials and systems that comprise buildings."
+          },
+          {
+           "code": "9-12.4.8.d",
+           "text": "Analyze factors used to guide the process of designing and making structures."
+          },
+          {
+           "code": "9-12.4.8.e",
+           "text": "Examine the need for maintenance, alteration, or renovation to improve structures or to alter their intended use (STL, 20M)."
+          },
+          {
+           "code": "9-12.4.8.f",
+           "text": "Analyze the steps in the construction process (preparing the site; setting foundations; building the framework; enclosing the structure; installing utilities; finishing the interior and exterior; completing the site)."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "computational-thinking-and-computer-science-appl",
+     "title": "Computational Thinking and Computer Science Applications - Students will be able to apply computational thinking skills and computer science applications as tools to develop solutions to engineering problems",
+     "topics": [
+      {
+       "id": "computational-thinking-and-computer-science-appl",
+       "title": "Computational Thinking and Computer Science Applications - Students will be able to apply computational thinking skills and computer science applications as tools to develop solutions to engineering problems",
+       "subtopics": [
+        {
+         "id": "computational-thinking-and-computer-science-appl",
+         "title": "Computational Thinking and Computer Science Applications - Students will be able to apply computational thinking skills and computer science applications as tools to develop solutions to engineering problems (1 of 2)",
+         "outcomes": [
+          {
+           "code": "9-12.5.1.a",
+           "text": "Decompose a complex problem or system into parts."
+          },
+          {
+           "code": "9-12.5.1.b",
+           "text": "Use a programming language to develop solutions to problems and/or accomplish tasks."
+          },
+          {
+           "code": "9-12.5.1.c",
+           "text": "Design, use, and evaluate computational abstractions that model the state and behavior of real-world problems and physical systems."
+          },
+          {
+           "code": "9-12.5.1.d",
+           "text": "Automate solutions through algorithmic thinking."
+          }
+         ]
+        },
+        {
+         "id": "computational-thinking-and-computer-science-appl-2",
+         "title": "Computational Thinking and Computer Science Applications - Students will be able to apply computational thinking skills and computer science applications as tools to develop solutions to engineering problems (2 of 2)",
+         "outcomes": [
+          {
+           "code": "9-12.5.1.e",
+           "text": "Apply strategies for identifying and solving routine hardware and software problems."
+          },
+          {
+           "code": "9-12.5.1.f",
+           "text": "Use a variety of productivity technology tools to collaborate with others, manage projects, collect and analyze data, share information, and/or publish findings."
+          },
+          {
+           "code": "9-12.5.1.g",
+           "text": "Apply responsible legal and ethical behaviors in the use of technology systems and software."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "10-12",
+   "units": [
+    {
+     "id": "the-nature-of-technology-students-will-develop-a",
+     "title": "The Nature of Technology - Students will develop an understanding of the nature of technology",
+     "topics": [
+      {
+       "id": "characteristics-and-scope-of-technology",
+       "title": "Characteristics and Scope of Technology",
+       "subtopics": [
+        {
+         "id": "characteristics-and-scope-of-technology",
+         "title": "Characteristics and Scope of Technology",
+         "outcomes": [
+          {
+           "code": "10-12.1.1.a",
+           "text": "Assess factors that shape the design of and demand for various technologies."
+          },
+          {
+           "code": "10-12.1.1.b",
+           "text": "Demonstrate how research and development is a specific problem-solving approach that is used intensively in business and industry to prepare devices and systems for the marketplace."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "core-concepts-of-technology",
+       "title": "Core Concepts of Technology",
+       "subtopics": [
+        {
+         "id": "core-concepts-of-technology-1-of-2",
+         "title": "Core Concepts of Technology (1 of 2)",
+         "outcomes": [
+          {
+           "code": "10-12.1.2.a",
+           "text": "Use mathematical models and/or computer simulations to predict the effects of a design solution on systems and/or the interaction between systems (HS-ETS 1-4)."
+          },
+          {
+           "code": "10-12.1.2.b",
+           "text": "Diagnose a system that is malfunctioning and use tools, materials, machines, and knowledge to repair it."
+          },
+          {
+           "code": "10-12.1.2.c",
+           "text": "Create representation of a system in another form or a higher level of abstraction."
+          },
+          {
+           "code": "10-12.1.2.d",
+           "text": "Design and create a complex system."
+          },
+          {
+           "code": "10-12.1.2.e",
+           "text": "Test and evaluate the operation of a system based on its specified purpose."
+          }
+         ]
+        },
+        {
+         "id": "core-concepts-of-technology-2-of-2",
+         "title": "Core Concepts of Technology (2 of 2)",
+         "outcomes": [
+          {
+           "code": "10-12.1.2.f",
+           "text": "Design instructions for system maintenance."
+          },
+          {
+           "code": "10-12.1.2.g",
+           "text": "Repurpose a technological device for an application beyond its intended use."
+          },
+          {
+           "code": "10-12.1.2.h",
+           "text": "Differentiate between quality control and quality assurance."
+          },
+          {
+           "code": "10-12.1.2.i",
+           "text": "Apply the quality control process to a designed product."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "connections-between-technology-and-other-fields-",
+       "title": "Connections Between Technology and Other Fields of Study",
+       "subtopics": [
+        {
+         "id": "connections-between-technology-and-other-fields-",
+         "title": "Connections Between Technology and Other Fields of Study",
+         "outcomes": [
+          {
+           "code": "10-12.1.3.a",
+           "text": "Collaborate with subject matter experts to develop solutions to problems."
+          },
+          {
+           "code": "10-12.1.3.b",
+           "text": "Analyze and apply the process for protecting intellectual property."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "impacts-of-technology-students-will-evaluate-the",
+     "title": "Impacts of Technology - Students will evaluate the impact of technology",
+     "topics": [
+      {
+       "id": "effects-of-technology",
+       "title": "Effects of Technology",
+       "subtopics": [
+        {
+         "id": "effects-of-technology",
+         "title": "Effects of Technology",
+         "outcomes": [
+          {
+           "code": "10-12.2.1.a",
+           "text": "Conduct research on technological issues that currently affect a society."
+          },
+          {
+           "code": "10-12.2.1.b",
+           "text": "Assess the unintended consequences of technology on a society."
+          },
+          {
+           "code": "10-12.2.1.c",
+           "text": "Assess the impact of technological advances on the environment."
+          },
+          {
+           "code": "10-12.2.1.d",
+           "text": "Predict future consequences of technological solutions on a society."
+          },
+          {
+           "code": "10-12.2.1.e",
+           "text": "Weigh available information about the benefits, risks, costs, and trade-offs of technology in a systematic way."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "role-of-society-in-the-development-and-use-of-te",
+       "title": "Role of Society in the Development and Use of Technology",
+       "subtopics": [
+        {
+         "id": "role-of-society-in-the-development-and-use-of-te",
+         "title": "Role of Society in the Development and Use of Technology",
+         "outcomes": [
+          {
+           "code": "10-12.2.2.a",
+           "text": "Explain the ethical considerations that inform the development, selection, and use of technologies."
+          },
+          {
+           "code": "10-12.2.2.b",
+           "text": "Analyze the impact that technology transfer between societies has on the economy, culture, and government of each society."
+          },
+          {
+           "code": "10-12.2.2.c",
+           "text": "Assess the impact that technological invention and innovation has on economic competitiveness and shifts in employment opportunities (job creation and destruction)."
+          },
+          {
+           "code": "10-12.2.2.d",
+           "text": "Assess how technology stimulates changes in society, influence cultural patterns, political movements, and local and global economies."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "engineering-design-and-development-students-will",
+     "title": "Engineering Design and Development - Students will demonstrate knowledge of and apply the engineering design process to develop solutions to problems",
+     "topics": [
+      {
+       "id": "engineering-design-and-development-students-will",
+       "title": "Engineering Design and Development - Students will demonstrate knowledge of and apply the engineering design process to develop solutions to problems",
+       "subtopics": [
+        {
+         "id": "engineering-design-and-development-students-will",
+         "title": "Engineering Design and Development - Students will demonstrate knowledge of and apply the engineering design process to develop solutions to problems (1 of 3)",
+         "outcomes": [
+          {
+           "code": "10-12.3.1.a",
+           "text": "Conduct market research to make informed decisions about product development."
+          },
+          {
+           "code": "10-12.3.1.b",
+           "text": "Develop or refine products based on the results of market research."
+          },
+          {
+           "code": "10-12.3.1.c",
+           "text": "Apply the engineering design process to develop solutions to real-world problems."
+          },
+          {
+           "code": "10-12.3.1.d",
+           "text": "Engage in the reverse engineering process to deduce design features in a novel product."
+          },
+          {
+           "code": "10-12.3.1.e",
+           "text": "Document the design process and solutions in a journal, notebook, or portfolio."
+          }
+         ]
+        },
+        {
+         "id": "engineering-design-and-development-students-will-2",
+         "title": "Engineering Design and Development - Students will demonstrate knowledge of and apply the engineering design process to develop solutions to problems (2 of 3)",
+         "outcomes": [
+          {
+           "code": "10-12.3.1.f",
+           "text": "Evaluate the reliability and validity of researched information."
+          },
+          {
+           "code": "10-12.3.1.g",
+           "text": "Employ risk analysis to minimize the likelihood of unwanted side effects."
+          },
+          {
+           "code": "10-12.3.1.h",
+           "text": "Engage in cost-benefit analysis."
+          },
+          {
+           "code": "10-12.3.1.i",
+           "text": "Use assessment techniques to ascertain if a solution should be pursed to design and development."
+          },
+          {
+           "code": "10-12.3.1.j",
+           "text": "Compare trade-offs between competing values."
+          }
+         ]
+        },
+        {
+         "id": "engineering-design-and-development-students-will-3",
+         "title": "Engineering Design and Development - Students will demonstrate knowledge of and apply the engineering design process to develop solutions to problems (3 of 3)",
+         "outcomes": [
+          {
+           "code": "10-12.3.1.k",
+           "text": "Implement current industry standard systems for quality control."
+          },
+          {
+           "code": "10-12.3.1.l",
+           "text": "Analyze how the engineering code of ethics impact product design."
+          },
+          {
+           "code": "10-12.3.1.m",
+           "text": "Engage in ethical engineering practices."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "core-technologies-and-the-designed-world-student",
+     "title": "Core Technologies and The Designed World - Students will demonstrate knowledge of the core technologies that underpin the designed world and major enterprises that produce the goods and services of the designed world. Core technologies include but are not limited to biotechnology, electrical, electronics, fluid, material, mechanical, optical, structural, and thermal technologies. Major enterprises include medical, agriculture, biotechnology, energy and power, information and communication, transportation, and manufacturing and construction technologies",
+     "topics": [
+      {
+       "id": "core-technologies-and-the-designed-world-student",
+       "title": "Core Technologies and The Designed World - Students will demonstrate knowledge of the core technologies that underpin the designed world and major enterprises that produce the goods and services of the designed world. Core technologies include but are not limited to biotechnology, electrical, electronics, fluid, material, mechanical, optical, structural, and thermal technologies. Major enterprises include medical, agriculture, biotechnology, energy and power, information and communication, transportation, and manufacturing and construction technologies",
+       "subtopics": [
+        {
+         "id": "core-technologies-and-the-designed-world-student",
+         "title": "Core Technologies and The Designed World - Students will demonstrate knowledge of the core technologies that underpin the designed world and major enterprises that produce the goods and services of the designed world. Core technologies include but are not limited to biotechnology, electrical, electronics, fluid, material, mechanical, optical, structural, and thermal technologies. Major enterprises include medical, agriculture, biotechnology, energy and power, information and communication, transportation, and manufacturing and construction technologies",
+         "outcomes": [
+          {
+           "code": "10-12.4.1.a",
+           "text": "Apply knowledge of core technologies in the development of solutions to problems."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "medical-technologies",
+       "title": "Medical Technologies",
+       "subtopics": [
+        {
+         "id": "medical-technologies-1-of-2",
+         "title": "Medical Technologies (1 of 2)",
+         "outcomes": [
+          {
+           "code": "10-12.4.2.a",
+           "text": "Assess the social, cultural, political, and environmental forces impacting the design, development, application, and access to a variety of medical technologies."
+          },
+          {
+           "code": "10-12.4.2.b",
+           "text": "Analyze factors that need to be established to make emerging medical technologies viable in the marketplace."
+          },
+          {
+           "code": "10-12.4.2.c",
+           "text": "Describe the application of bioinformatics in health and wellness."
+          },
+          {
+           "code": "10-12.4.2.d",
+           "text": "Apply bioinformatics to analyze and interpret biological data."
+          }
+         ]
+        },
+        {
+         "id": "medical-technologies-2-of-2",
+         "title": "Medical Technologies (2 of 2)",
+         "outcomes": [
+          {
+           "code": "10-12.4.2.e",
+           "text": "Analyze and evaluate health data collection tools (e.g. patient monitoring equipment, medical wearable devices)."
+          },
+          {
+           "code": "10-12.4.2.f",
+           "text": "Analyze technological advances that allow for identification of disease pathogens."
+          },
+          {
+           "code": "10-12.4.2.g",
+           "text": "Design and build a medical device that meets a specific medical need."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "agricultural-technologies",
+       "title": "Agricultural Technologies",
+       "subtopics": [
+        {
+         "id": "agricultural-technologies",
+         "title": "Agricultural Technologies",
+         "outcomes": [
+          {
+           "code": "10-12.4.3.a",
+           "text": "Assess the impact that technologies such as automation, sensors, mobile computing, and telematics have on agriculture."
+          },
+          {
+           "code": "10-12.4.3.b",
+           "text": "Assess governmental regulations on agricultural practices."
+          },
+          {
+           "code": "10-12.4.3.c",
+           "text": "Explore sustainable farming practices."
+          },
+          {
+           "code": "10-12.4.3.d",
+           "text": "Analyze the advantages and disadvantages of innovation farming techniques (e.g. vertical farms, hydroponics, rooftop farming)."
+          },
+          {
+           "code": "10-12.4.3.e",
+           "text": "Design and build a model of agricultural technology that meets a specific need."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "biotechnology",
+       "title": "Biotechnology",
+       "subtopics": [
+        {
+         "id": "biotechnology",
+         "title": "Biotechnology",
+         "outcomes": [
+          {
+           "code": "10-12.4.4.a",
+           "text": "Conduct research on emerging trends in biotechnology."
+          },
+          {
+           "code": "10-12.4.4.b",
+           "text": "Apply biotechnology techniques to assess how genetic engineering can alter the function of cellular processes for a specific purpose."
+          },
+          {
+           "code": "10-12.4.4.c",
+           "text": "Assess the connection between biotechnology and other fields of study."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "energy-and-power-technologies",
+       "title": "Energy and Power Technologies",
+       "subtopics": [
+        {
+         "id": "energy-and-power-technologies",
+         "title": "Energy and Power Technologies",
+         "outcomes": [
+          {
+           "code": "10-12.4.5.a",
+           "text": "Examine renewable and conventional energy production technologies."
+          },
+          {
+           "code": "10-12.4.5.b",
+           "text": "Analyze the global production, distribution, and consumption of energy."
+          },
+          {
+           "code": "10-12.4.5.c",
+           "text": "Compare and contrast means to transfer and store energy."
+          },
+          {
+           "code": "10-12.4.5.d",
+           "text": "Create models and design experiments to improve energy efficiency."
+          },
+          {
+           "code": "10-12.4.5.e",
+           "text": "Create models that demonstrate energy and power flow in electromechnical systems and optoelectronic devices."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "information-and-communication-technologies",
+       "title": "Information and Communication Technologies",
+       "subtopics": [
+        {
+         "id": "information-and-communication-technologies",
+         "title": "Information and Communication Technologies",
+         "outcomes": [
+          {
+           "code": "10-12.4.6.a",
+           "text": "Analyze the interconnectivity of telecommunication, computer, and audiovisual systems required to access, store, transmit, and manipulate information."
+          },
+          {
+           "code": "10-12.4.6.b",
+           "text": "Assess a variety of communication methods, techniques, and devices."
+          },
+          {
+           "code": "10-12.4.6.c",
+           "text": "Analyze factors that impact the design, development, use, and access to information and communication technologies."
+          },
+          {
+           "code": "10-12.4.6.d",
+           "text": "Design and assemble a communication system to fulfill a specific need."
+          },
+          {
+           "code": "10-12.4.6.e",
+           "text": "Assess the local, national, and global economic impact of information and communication technologies."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "transportation-technologies",
+       "title": "Transportation Technologies",
+       "subtopics": [
+        {
+         "id": "transportation-technologies",
+         "title": "Transportation Technologies",
+         "outcomes": [
+          {
+           "code": "10-12.4.7.a",
+           "text": "Analyze how systems (e.g. structural, suspension) in vehicles, aircrafts and other means of transportation impact passenger and cargo safety."
+          },
+          {
+           "code": "10-12.4.7.b",
+           "text": "Utilize a variety of systems for controlling distance and direction of a vehicle, hovercraft, or other means of transportation."
+          },
+          {
+           "code": "10-12.4.7.c",
+           "text": "Develop a model of an intelligent transportation system."
+          },
+          {
+           "code": "10-12.4.7.d",
+           "text": "Design systems to modify the speed, torque, or direction of power."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "manufacturing-technologies",
+       "title": "Manufacturing Technologies",
+       "subtopics": [
+        {
+         "id": "manufacturing-technologies",
+         "title": "Manufacturing Technologies",
+         "outcomes": [
+          {
+           "code": "10-12.4.8.a",
+           "text": "Assess of the role of manufacturing technologies in society."
+          },
+          {
+           "code": "10-12.4.8.b",
+           "text": "Assess the advantages and disadvantages of a variety of manufacturing systems."
+          },
+          {
+           "code": "10-12.4.8.c",
+           "text": "Analyze manufacturing systems in terms of material flow and storage, information flow, capacities, and times and durations of events."
+          },
+          {
+           "code": "10-12.4.8.d",
+           "text": "Analyze strategies to control quantity and quality in manufacturing systems."
+          },
+          {
+           "code": "10-12.4.8.e",
+           "text": "Evaluate advances in design and manufacturing technologies."
+          },
+          {
+           "code": "10-12.4.8.f",
+           "text": "Design a product using a computer controlled manufacturing process."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "construction-technologies",
+       "title": "Construction Technologies",
+       "subtopics": [
+        {
+         "id": "construction-technologies",
+         "title": "Construction Technologies",
+         "outcomes": [
+          {
+           "code": "10-12.4.9.a",
+           "text": "Analyze how architectural designs can promote human health, well-being and social interaction."
+          },
+          {
+           "code": "10-12.4.9.b",
+           "text": "Design and construct an architectural model that serves a specified purpose."
+          },
+          {
+           "code": "10-12.4.9.c",
+           "text": "Design or model buildings that utilize optimum value engineering."
+          },
+          {
+           "code": "10-12.4.9.d",
+           "text": "Analyze and apply the process and requirements for LEED certification."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "computational-thinking-and-computer-science-appl",
+     "title": "Computational Thinking and Computer Science Applications - Students will be able to apply computational thinking skills and computer science applications as tools to develop solutions to engineering problems",
+     "topics": [
+      {
+       "id": "computational-thinking-and-computer-science-appl",
+       "title": "Computational Thinking and Computer Science Applications - Students will be able to apply computational thinking skills and computer science applications as tools to develop solutions to engineering problems",
+       "subtopics": [
+        {
+         "id": "computational-thinking-and-computer-science-appl",
+         "title": "Computational Thinking and Computer Science Applications - Students will be able to apply computational thinking skills and computer science applications as tools to develop solutions to engineering problems (1 of 2)",
+         "outcomes": [
+          {
+           "code": "10-12.5.1.a",
+           "text": "Demonstrate proficiency in using a variety of programming languages to develop solutions to problems or accomplish tasks."
+          },
+          {
+           "code": "10-12.5.1.b",
+           "text": "Analyze data and identify patterns through modeling and simulation."
+          },
+          {
+           "code": "10-12.5.1.c",
+           "text": "Analyze and/or design algorithms necessary for developing solutions to problems."
+          },
+          {
+           "code": "10-12.5.1.d",
+           "text": "Select and apply the appropriate software to facilitate collaboration and project management."
+          }
+         ]
+        },
+        {
+         "id": "computational-thinking-and-computer-science-appl-2",
+         "title": "Computational Thinking and Computer Science Applications - Students will be able to apply computational thinking skills and computer science applications as tools to develop solutions to engineering problems (2 of 2)",
+         "outcomes": [
+          {
+           "code": "10-12.5.1.e",
+           "text": "Select and apply productivity technology tools to collect and analyze data, and to record, share, publish, and present information."
+          },
+          {
+           "code": "10-12.5.1.f",
+           "text": "Use advanced technology tools to create digital artifacts (e.g. web design, animation, video, multimedia)."
+          },
+          {
+           "code": "10-12.5.1.g",
+           "text": "Apply responsible legal and ethical behaviors in the use of technology systems and software."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "build": {
+  "builtAt": "2026-10-14T16:20:43.774Z",
+  "model": "none",
+  "usd": 0,
+  "expectedCodes": 506,
+  "coverage": 1,
+  "missingCodes": [],
+  "counts": {
+   "grades": 14,
+   "units": 70,
+   "topics": 223,
+   "subtopics": 242,
+   "outcomes": 532
+  },
+  "warnings": []
+ }
+}

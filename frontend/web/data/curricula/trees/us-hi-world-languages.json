@@ -1,0 +1,2794 @@
+{
+ "id": "us-hi-world-languages",
+ "region": "US",
+ "framework": "Hawaii state academic standards: World Languages",
+ "board": null,
+ "qualification": "K-12",
+ "subject": "World Languages",
+ "syllabusCode": null,
+ "gradeSystem": "grade",
+ "source": {
+  "urls": [
+   "https://api.commonstandardsproject.com/api/v1/jurisdictions/64B8E297AAEF42DA886248000B292DF1",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/B666CE8FAA8F4434B2AF02E2E0CAD5D9",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/F48469606BC7485589761EF34E7E9F0A",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/55431D45CC8C4439AD95AC2FBC2A1A5A",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/07E5ABF29F994C86883D718BFCBC9222",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/C01867485214457EBB3484653C696106",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/ACD9B4944CD74F03AD70627977A8CB42",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/EF3BE02D1EA447E7981036D1A34C638E",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/FD7F388E67E5423A81CDFB668A973C36"
+  ],
+  "publisher": "Hawaii state education agency (machine-readable via Common Standards Project / ASN)",
+  "licence": "CC BY 4.0 US, Common Curriculum, Inc.",
+  "firstExam": null
+ },
+ "grades": [
+  {
+   "grade": "K",
+   "units": [
+    {
+     "id": "ka-o-lelo",
+     "title": "Ka ʻŌlelo",
+     "topics": [
+      {
+       "id": "ka-o-lelo-walewaha",
+       "title": "Ka ʻŌlelo Walewaha",
+       "subtopics": [
+        {
+         "id": "ho-ike-ka-hauma-na-i-ka-lawena",
+         "title": "Hōʻike ka haumāna i ka lawena:",
+         "outcomes": [
+          {
+           "code": "M-2.O.1.1.a",
+           "text": "Nānā ka maka, hoʻolohe ka pepeiao, a paʻa ka waha o ka haumāna i ka manawa kūpono."
+          },
+          {
+           "code": "M-2.O.1.1.b",
+           "text": "Walaʻau ka haumāna i ka manawa kūpono e hoʻomaʻamaʻa ai i ka ʻōlelo Hawaiʻi."
+          }
+         ]
+        },
+        {
+         "id": "ho-ohana-ka-hauma-na-i-kekahi-hua-o-lelo-o-lelo-",
+         "title": "Hoʻohana ka haumāna i kekahi hua ʻōlelo / ʻōlelo kūpono i pani no kekahi hua ʻōlelo / ʻōlelo e like ka manaʻo",
+         "outcomes": [
+          {
+           "code": "M-2.O.2.1.a",
+           "text": "Hoʻohana ka haumāna i nā hua ʻōlelo i pili loa i kāna mau hana maʻamau."
+          },
+          {
+           "code": "M-2.O.2.1.b",
+           "text": "Maopopo i ka haumāna, he mau manaʻo ko ka hua ʻōlelo hoʻokahi."
+          }
+         ]
+        },
+        {
+         "id": "pane-piha-ka-hauma-na-i-na-ni-nau-nohie",
+         "title": "Pane piha ka haumāna i nā nīnau nohie",
+         "outcomes": [
+          {
+           "code": "M-2.O.3.1.a",
+           "text": "Pane piha ka haumāna i nā nīnau e pili ana i nā hana maʻamau āna."
+          }
+         ]
+        },
+        {
+         "id": "ho-ohana-ka-hauma-na-i-na-pepeke-ma-ka-po-aiapil",
+         "title": "Hoʻohana ka haumāna i nā pepeke ma ka pōʻaiapili kūpono a kū i ka manaʻo Hawaiʻi",
+         "outcomes": [
+          {
+           "code": "M-2.O.3.2.a",
+           "text": "ʻŌlelo ka haumāna i nā pilina ʻōlelo: He, ʻO, Aia, Painu."
+          }
+         ]
+        },
+        {
+         "id": "ka-o-lelo-walewaha-1-of-3",
+         "title": "Ka ʻŌlelo Walewaha (1 of 3)",
+         "outcomes": [
+          {
+           "code": "M-2.O.3.3",
+           "text": "Hōʻike ka haumāna i ka ʻokoʻa o ka hopena a me ka hamani (haʻina pili)."
+          },
+          {
+           "code": "M-2.O.4.2",
+           "text": "Noi ka haumāna i nā mea e pono ai ʻo ia."
+          },
+          {
+           "code": "M-2.O.4.1",
+           "text": "Haku ka haumāna i nā nīnau e hoʻokele ana i kona ʻapomanaʻo ʻana a i ʻole haku i nīnau e nūnē ana me ke kōkua."
+          },
+          {
+           "code": "M-2.O.5.1",
+           "text": "ʻŌlelo ka haumāna me ka poeko, ʻaʻohe ona kānalua."
+          }
+         ]
+        },
+        {
+         "id": "ka-o-lelo-walewaha-2-of-3",
+         "title": "Ka ʻŌlelo Walewaha (2 of 3)",
+         "outcomes": [
+          {
+           "code": "M-2.O.6.1",
+           "text": "Hoʻolauna aku ka haumāna me ka welina kuʻuna i ke anaina."
+          },
+          {
+           "code": "M-2.O.7.3",
+           "text": "Hoʻopaʻanaʻau a hoʻopuka ka haumāna i kona moʻokūʻauhau ponoʻī."
+          },
+          {
+           "code": "M-2.O.7.2",
+           "text": "Hoʻonohonoho ka haumāna i ka ʻike i noiʻi ʻia ma kahi kūpono o ke ʻolokeʻa no kona moʻokūʻauhau"
+          },
+          {
+           "code": "M-2.O.7.1",
+           "text": "Hoʻopuka ka haumāna i nā nīnau i mea e ʻike ai ʻo ia i kona moʻokūʻauhau ponoʻī."
+          }
+         ]
+        },
+        {
+         "id": "ho-ike-a-wehewehe-ka-hauma-na-i-kekahi-mea-a-na-",
+         "title": "Hōʻike a wehewehe ka haumāna i kekahi mea āna i lawe mai i ka papa",
+         "outcomes": [
+          {
+           "code": "M-2.O.8.1.a",
+           "text": "Haʻiʻōlelo uluwale i mua o ke anaina."
+          }
+         ]
+        },
+        {
+         "id": "ka-o-lelo-walewaha-3-of-3",
+         "title": "Ka ʻŌlelo Walewaha (3 of 3)",
+         "outcomes": [
+          {
+           "code": "M-2.O.9.1",
+           "text": "Wehewehe ka haumāna i ka ʻōlelo noʻeau."
+          },
+          {
+           "code": "M-2.O.9.2",
+           "text": "Hoʻopuka ka haumāna i ka ʻōlelo noʻeau ma ka pōʻaiapili kūpono."
+          },
+          {
+           "code": "M-2.O.10.1",
+           "text": "Ma ka hui, haku ʻia he hana keaka no ka moʻolelo."
+          },
+          {
+           "code": "M-2.O.11.1",
+           "text": "Haʻi hou i ka moʻolelo a ke kumu i haʻi mua ai."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "ka-ho-omaopopo",
+       "title": "Ka Hoʻomaopopo",
+       "subtopics": [
+        {
+         "id": "maka-ala-ka-hauma-na-i",
+         "title": "Makaʻala ka haumāna i:",
+         "outcomes": [
+          {
+           "code": "M-2.O.12.1.a",
+           "text": "Nā kani ʻokoʻa o ka honua"
+          },
+          {
+           "code": "M-2.O.12.1.b",
+           "text": "Ka leo kumu / makua"
+          }
+         ]
+        },
+        {
+         "id": "ka-ho-omaopopo",
+         "title": "Ka Hoʻomaopopo",
+         "outcomes": [
+          {
+           "code": "M-2.O.13.1",
+           "text": "Hoʻokō ka haumāna i nā ʻōkuhi a kekahi no ke kaha kiʻi ʻana, ka hana ʻana, a ʻo ia mau ʻano."
+          },
+          {
+           "code": "M-2.O.14.1",
+           "text": "Hoʻolohe a hōʻike ka haumāna e pili ana i kāna i lohe ai."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "ke-mele-oli",
+     "title": "Ke Mele/ Oli",
+     "topics": [
+      {
+       "id": "ka-ho-opa-ana-au",
+       "title": "Ka Hoʻopaʻanaʻau",
+       "subtopics": [
+        {
+         "id": "ho-opa-ana-au-ka-hauma-na-i-na-mele-oli",
+         "title": "Hoʻopaʻanaʻau ka haumāna i nā mele/oli",
+         "outcomes": [
+          {
+           "code": "M-2.MO.1.1.a",
+           "text": "Haʻi hou ka haumāna i ka manaʻo nui o ke mele/oli"
+          }
+         ]
+        },
+        {
+         "id": "oli-ka-hauma-na-i-ke-oli-i-ho-opa-ana-au-ia-ma-k",
+         "title": "Oli ka haumāna i ke oli i hoʻopaʻanaʻau ʻia ma ka pōʻaiapili kūpono",
+         "outcomes": [
+          {
+           "code": "M-2.MO.2.1.a",
+           "text": "Hoʻopuka pololei ʻia ke mele/oli."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "ke-ka-kau",
+     "title": "Ke Kākau",
+     "topics": [
+      {
+       "id": "na-ano-ka-kau",
+       "title": "Nā ʻAno Kākau",
+       "subtopics": [
+        {
+         "id": "na-ano-ka-kau",
+         "title": "Nā ʻAno Kākau",
+         "outcomes": [
+          {
+           "code": "M.K.1.1",
+           "text": "Kākau ke keiki i ka pīʻāpā Hawaiʻi"
+          },
+          {
+           "code": "M.K.2.1",
+           "text": "Kahakiʻi ka haumāna i kona makemake."
+          },
+          {
+           "code": "M.K.2.2",
+           "text": "Lepili ʻia ia mea i kahakiʻi ʻia e ke keiki me ke kōkua ʻana mai a ke kumu."
+          }
+         ]
+        },
+        {
+         "id": "ka-kau-ke-keiki-i-na-hua-o-lelo-po-kole",
+         "title": "Kākau ke keiki i nā hua ʻōlelo pōkole",
+         "outcomes": [
+          {
+           "code": "M.K.1.2.a",
+           "text": "Kaha i nā laina like ʻole"
+          },
+          {
+           "code": "M.K.1.2.b",
+           "text": "Hana kope"
+          }
+         ]
+        },
+        {
+         "id": "hana-ke-keiki-i-na-mea-e-pono-ai-ka-hana-ana-ma-",
+         "title": "Hana ke keiki i nā mea e pono ai ka hana ʻana ma ka lumi papa",
+         "outcomes": [
+          {
+           "code": "M.K.1.3.a",
+           "text": "ʻOki i ka pepa"
+          },
+          {
+           "code": "M.K.1.3.b",
+           "text": "Tuko"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "ka-heluhelu",
+     "title": "Ka Heluhelu",
+     "topics": [
+      {
+       "id": "na-ano-heluhelu",
+       "title": "Nā ʻAno Heluhelu",
+       "subtopics": [
+        {
+         "id": "na-ano-heluhelu",
+         "title": "Nā ʻAno Heluhelu",
+         "outcomes": [
+          {
+           "code": "M.H.1.1",
+           "text": "Hoʻopaʻa pololei ka haumāna i ka puke no ka heluhelu ʻana."
+          },
+          {
+           "code": "M.H.2.1",
+           "text": "Pane ka haumāna i nā nīnau e pili i kekahi mea i heluhelu ʻia iā ia."
+          },
+          {
+           "code": "M.H.2.2",
+           "text": "Kuhi ka haumāna i nā māhele moʻolelo (poʻoinoa, hameʻe, pōʻaiapili, hihia, kumuhana, kumu-hopena, panina)."
+          }
+         ]
+        },
+        {
+         "id": "ma-lama-ka-hauma-na-i-na-puke",
+         "title": "Mālama ka haumāna i nā puke:",
+         "outcomes": [
+          {
+           "code": "M.H.1.2.a",
+           "text": "Hoʻihoʻi pono i nā puke"
+          },
+          {
+           "code": "M.H.1.2.b",
+           "text": "ʻAʻole e kākau i loko o ka puke"
+          },
+          {
+           "code": "M.H.1.2.c",
+           "text": "Lole mālie i nā ʻaoʻao"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "1",
+   "units": [
+    {
+     "id": "ka-o-lelo",
+     "title": "Ka ʻŌlelo",
+     "topics": [
+      {
+       "id": "ka-o-lelo-walewaha",
+       "title": "Ka ʻŌlelo Walewaha",
+       "subtopics": [
+        {
+         "id": "ho-ike-ka-hauma-na-i-ka-lawena",
+         "title": "Hōʻike ka haumāna i ka lawena:",
+         "outcomes": [
+          {
+           "code": "M-2.O.1.1.a",
+           "text": "Nānā ka maka, hoʻolohe ka pepeiao, a paʻa ka waha o ka haumāna i ka manawa kūpono."
+          },
+          {
+           "code": "M-2.O.1.1.b",
+           "text": "Walaʻau ka haumāna i ka manawa kūpono e hoʻomaʻamaʻa ai i ka ʻōlelo Hawaiʻi."
+          }
+         ]
+        },
+        {
+         "id": "ho-ohana-ka-hauma-na-i-kekahi-hua-o-lelo-o-lelo-",
+         "title": "Hoʻohana ka haumāna i kekahi hua ʻōlelo / ʻōlelo kūpono i pani no kekahi hua ʻōlelo / ʻōlelo e like ka manaʻo",
+         "outcomes": [
+          {
+           "code": "M-2.O.2.1.a",
+           "text": "Hoʻohana ka haumāna i nā hua ʻōlelo i pili loa i kāna mau hana maʻamau."
+          },
+          {
+           "code": "M-2.O.2.1.b",
+           "text": "Maopopo i ka haumāna, he mau manaʻo ko ka hua ʻōlelo hoʻokahi."
+          }
+         ]
+        },
+        {
+         "id": "pane-piha-ka-hauma-na-i-na-ni-nau-nohie",
+         "title": "Pane piha ka haumāna i nā nīnau nohie",
+         "outcomes": [
+          {
+           "code": "M-2.O.3.1.a",
+           "text": "Pane piha ka haumāna i nā nīnau e pili ana i nā hana maʻamau āna."
+          }
+         ]
+        },
+        {
+         "id": "ho-ohana-ka-hauma-na-i-na-pepeke-ma-ka-po-aiapil",
+         "title": "Hoʻohana ka haumāna i nā pepeke ma ka pōʻaiapili kūpono a kū i ka manaʻo Hawaiʻi",
+         "outcomes": [
+          {
+           "code": "M-2.O.3.2.a",
+           "text": "ʻŌlelo ka haumāna i nā pilina ʻōlelo: He, ʻO, Aia, Painu."
+          }
+         ]
+        },
+        {
+         "id": "ka-o-lelo-walewaha-1-of-3",
+         "title": "Ka ʻŌlelo Walewaha (1 of 3)",
+         "outcomes": [
+          {
+           "code": "M-2.O.3.3",
+           "text": "Hōʻike ka haumāna i ka ʻokoʻa o ka hopena a me ka hamani (haʻina pili)."
+          },
+          {
+           "code": "M-2.O.4.1",
+           "text": "Haku ka haumāna i nā nīnau e hoʻokele ana i kona ʻapomanaʻo ʻana a i ʻole haku i nīnau e nūnē ana me ke kōkua."
+          },
+          {
+           "code": "M-2.O.4.2",
+           "text": "Noi ka haumāna i nā mea e pono ai ʻo ia."
+          },
+          {
+           "code": "M-2.O.5.1",
+           "text": "ʻŌlelo ka haumāna me ka poeko, ʻaʻohe ona kānalua."
+          }
+         ]
+        },
+        {
+         "id": "ka-o-lelo-walewaha-2-of-3",
+         "title": "Ka ʻŌlelo Walewaha (2 of 3)",
+         "outcomes": [
+          {
+           "code": "M-2.O.6.1",
+           "text": "Hoʻolauna aku ka haumāna me ka welina kuʻuna i ke anaina."
+          },
+          {
+           "code": "M-2.O.7.1",
+           "text": "Hoʻopuka ka haumāna i nā nīnau i mea e ʻike ai ʻo ia i kona moʻokūʻauhau ponoʻī."
+          },
+          {
+           "code": "M-2.O.7.2",
+           "text": "Hoʻonohonoho ka haumāna i ka ʻike i noiʻi ʻia ma kahi kūpono o ke ʻolokeʻa no kona moʻokūʻauhau"
+          },
+          {
+           "code": "M-2.O.7.3",
+           "text": "Hoʻopaʻanaʻau a hoʻopuka ka haumāna i kona moʻokūʻauhau ponoʻī."
+          }
+         ]
+        },
+        {
+         "id": "ho-ike-a-wehewehe-ka-hauma-na-i-kekahi-mea-a-na-",
+         "title": "Hōʻike a wehewehe ka haumāna i kekahi mea āna i lawe mai i ka papa",
+         "outcomes": [
+          {
+           "code": "M-2.O.8.1.a",
+           "text": "Haʻiʻōlelo uluwale i mua o ke anaina."
+          }
+         ]
+        },
+        {
+         "id": "ka-o-lelo-walewaha-3-of-3",
+         "title": "Ka ʻŌlelo Walewaha (3 of 3)",
+         "outcomes": [
+          {
+           "code": "M-2.O.9.1",
+           "text": "Wehewehe ka haumāna i ka ʻōlelo noʻeau."
+          },
+          {
+           "code": "M-2.O.9.2",
+           "text": "Hoʻopuka ka haumāna i ka ʻōlelo noʻeau ma ka pōʻaiapili kūpono."
+          },
+          {
+           "code": "M-2.O.10.1",
+           "text": "Ma ka hui, haku ʻia he hana keaka no ka moʻolelo."
+          },
+          {
+           "code": "M-2.O.11.1",
+           "text": "Haʻi hou i ka moʻolelo a ke kumu i haʻi mua ai."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "ka-ho-omaopopo",
+       "title": "Ka Hoʻomaopopo",
+       "subtopics": [
+        {
+         "id": "maka-ala-ka-hauma-na-i",
+         "title": "Makaʻala ka haumāna i:",
+         "outcomes": [
+          {
+           "code": "M-2.O.12.1.a",
+           "text": "Nā kani ʻokoʻa o ka honua"
+          },
+          {
+           "code": "M-2.O.12.1.b",
+           "text": "Ka leo kumu / makua"
+          }
+         ]
+        },
+        {
+         "id": "ka-ho-omaopopo",
+         "title": "Ka Hoʻomaopopo",
+         "outcomes": [
+          {
+           "code": "M-2.O.13.1",
+           "text": "Hoʻokō ka haumāna i nā ʻōkuhi a kekahi no ke kaha kiʻi ʻana, ka hana ʻana, a ʻo ia mau ʻano."
+          },
+          {
+           "code": "M-2.O.14.1",
+           "text": "Hoʻolohe a hōʻike ka haumāna e pili ana i kāna i lohe ai."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "ke-mele-oli",
+     "title": "Ke Mele/ Oli",
+     "topics": [
+      {
+       "id": "ka-ho-opa-ana-au",
+       "title": "Ka Hoʻopaʻanaʻau",
+       "subtopics": [
+        {
+         "id": "ho-opa-ana-au-ka-hauma-na-i-na-mele-oli",
+         "title": "Hoʻopaʻanaʻau ka haumāna i nā mele/oli",
+         "outcomes": [
+          {
+           "code": "M-2.MO.1.1.a",
+           "text": "Haʻi hou ka haumāna i ka manaʻo nui o ke mele/oli"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "ka-leo-mele-oli",
+       "title": "Ka Leo Mele/ Oli",
+       "subtopics": [
+        {
+         "id": "oli-ka-hauma-na-i-ke-oli-i-ho-opa-ana-au-ia-ma-k",
+         "title": "Oli ka haumāna i ke oli i hoʻopaʻanaʻau ʻia ma ka pōʻaiapili kūpono",
+         "outcomes": [
+          {
+           "code": "M-2.MO.2.1.a",
+           "text": "Hoʻopuka pololei ʻia ke mele/oli."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "ke-ka-kau",
+     "title": "Ke Kākau",
+     "topics": [
+      {
+       "id": "na-ano-ka-kau",
+       "title": "Nā ʻAno Kākau",
+       "subtopics": [
+        {
+         "id": "na-ano-ka-kau",
+         "title": "Nā ʻAno Kākau",
+         "outcomes": [
+          {
+           "code": "1.K.1.1",
+           "text": "Kākau ka haumāna i nā māmalaʻōlelo pōkole."
+          },
+          {
+           "code": "1.K.2.1",
+           "text": "Kākau ka haumāna no nā kumu like ʻole."
+          },
+          {
+           "code": "1.K.3.1",
+           "text": "ʻIke ka haumāna i ka manaʻo o ke kahakō a me ka ʻokina."
+          },
+          {
+           "code": "1.K.4.1",
+           "text": "Loihape ka haumāna i kāna mea i kākau ai"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "ka-heluhelu",
+     "title": "Ka Heluhelu",
+     "topics": [
+      {
+       "id": "na-ano-heluhelu",
+       "title": "Nā ʻAno Heluhelu",
+       "subtopics": [
+        {
+         "id": "na-ano-heluhelu",
+         "title": "Nā ʻAno Heluhelu",
+         "outcomes": [
+          {
+           "code": "1.H.1.1",
+           "text": "Heluhelu ka haumāna i nā puke i kūpono no kona pae makahiki."
+          },
+          {
+           "code": "1.H.2.1",
+           "text": "Haʻi hou ka haumāna i ka mea i heluhelu ʻia iā ia ma ke kaʻina pololei."
+          },
+          {
+           "code": "1.H.2.2",
+           "text": "Kuhi ka haumāna i nā māhele moʻolelo like ʻole (poʻoinoa, hameʻe, pōʻaiapili, hihia, kumuhana, kumu-hopena, panina)."
+          },
+          {
+           "code": "1.H.2.3",
+           "text": "Maopopo ka manaʻo o ka hua ʻ ōlelo hou ma o ka pōʻaiapili, ka nānā ʻana i nā kiʻi, a me ke kōkua a ke kumu."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "2",
+   "units": [
+    {
+     "id": "ka-o-lelo",
+     "title": "Ka ʻŌlelo",
+     "topics": [
+      {
+       "id": "ka-o-lelo-walewaha",
+       "title": "Ka ʻŌlelo Walewaha",
+       "subtopics": [
+        {
+         "id": "ho-ike-ka-hauma-na-i-ka-lawena",
+         "title": "Hōʻike ka haumāna i ka lawena:",
+         "outcomes": [
+          {
+           "code": "M-2.O.1.1.a",
+           "text": "Nānā ka maka, hoʻolohe ka pepeiao, a paʻa ka waha o ka haumāna i ka manawa kūpono."
+          },
+          {
+           "code": "M-2.O.1.1.b",
+           "text": "Walaʻau ka haumāna i ka manawa kūpono e hoʻomaʻamaʻa ai i ka ʻōlelo Hawaiʻi."
+          }
+         ]
+        },
+        {
+         "id": "ho-ohana-ka-hauma-na-i-kekahi-hua-o-lelo-o-lelo-",
+         "title": "Hoʻohana ka haumāna i kekahi hua ʻōlelo / ʻōlelo kūpono i pani no kekahi hua ʻōlelo / ʻōlelo e like ka manaʻo",
+         "outcomes": [
+          {
+           "code": "M-2.O.2.1.a",
+           "text": "Hoʻohana ka haumāna i nā hua ʻōlelo i pili loa i kāna mau hana maʻamau."
+          },
+          {
+           "code": "M-2.O.2.1.b",
+           "text": "Maopopo i ka haumāna, he mau manaʻo ko ka hua ʻōlelo hoʻokahi."
+          }
+         ]
+        },
+        {
+         "id": "pane-piha-ka-hauma-na-i-na-ni-nau-nohie",
+         "title": "Pane piha ka haumāna i nā nīnau nohie",
+         "outcomes": [
+          {
+           "code": "M-2.O.3.1.a",
+           "text": "Pane piha ka haumāna i nā nīnau e pili ana i nā hana maʻamau āna."
+          }
+         ]
+        },
+        {
+         "id": "ho-ohana-ka-hauma-na-i-na-pepeke-ma-ka-po-aiapil",
+         "title": "Hoʻohana ka haumāna i nā pepeke ma ka pōʻaiapili kūpono a kū i ka manaʻo Hawaiʻi",
+         "outcomes": [
+          {
+           "code": "M-2.O.3.2.a",
+           "text": "ʻŌlelo ka haumāna i nā pilina ʻōlelo: He, ʻO, Aia, Painu."
+          }
+         ]
+        },
+        {
+         "id": "ka-o-lelo-walewaha-1-of-3",
+         "title": "Ka ʻŌlelo Walewaha (1 of 3)",
+         "outcomes": [
+          {
+           "code": "M-2.O.3.3",
+           "text": "Hōʻike ka haumāna i ka ʻokoʻa o ka hopena a me ka hamani (haʻina pili)."
+          },
+          {
+           "code": "M-2.O.4.1",
+           "text": "Haku ka haumāna i nā nīnau e hoʻokele ana i kona ʻapomanaʻo ʻana a i ʻole haku i nīnau e nūnē ana me ke kōkua."
+          },
+          {
+           "code": "M-2.O.4.2",
+           "text": "Noi ka haumāna i nā mea e pono ai ʻo ia."
+          },
+          {
+           "code": "M-2.O.5.1",
+           "text": "ʻŌlelo ka haumāna me ka poeko, ʻaʻohe ona kānalua."
+          }
+         ]
+        },
+        {
+         "id": "ka-o-lelo-walewaha-2-of-3",
+         "title": "Ka ʻŌlelo Walewaha (2 of 3)",
+         "outcomes": [
+          {
+           "code": "M-2.O.6.1",
+           "text": "Hoʻolauna aku ka haumāna me ka welina kuʻuna i ke anaina."
+          },
+          {
+           "code": "M-2.O.7.1",
+           "text": "Hoʻopuka ka haumāna i nā nīnau i mea e ʻike ai ʻo ia i kona moʻokūʻauhau ponoʻī."
+          },
+          {
+           "code": "M-2.O.7.2",
+           "text": "Hoʻonohonoho ka haumāna i ka ʻike i noiʻi ʻia ma kahi kūpono o ke ʻolokeʻa no kona moʻokūʻauhau"
+          },
+          {
+           "code": "M-2.O.7.3",
+           "text": "Hoʻopaʻanaʻau a hoʻopuka ka haumāna i kona moʻokūʻauhau ponoʻī."
+          }
+         ]
+        },
+        {
+         "id": "ho-ike-a-wehewehe-ka-hauma-na-i-kekahi-mea-a-na-",
+         "title": "Hōʻike a wehewehe ka haumāna i kekahi mea āna i lawe mai i ka papa",
+         "outcomes": [
+          {
+           "code": "M-2.O.8.1.a",
+           "text": "Haʻiʻōlelo uluwale i mua o ke anaina."
+          }
+         ]
+        },
+        {
+         "id": "ka-o-lelo-walewaha-3-of-3",
+         "title": "Ka ʻŌlelo Walewaha (3 of 3)",
+         "outcomes": [
+          {
+           "code": "M-2.O.9.1",
+           "text": "Wehewehe ka haumāna i ka ʻōlelo noʻeau"
+          },
+          {
+           "code": "M-2.O.9.2",
+           "text": "Hoʻopuka ka haumāna i ka ʻōlelo noʻeau ma ka pōʻaiapili kūpono."
+          },
+          {
+           "code": "M-2.O.10.1",
+           "text": "Ma ka hui, haku ʻia he hana keaka no ka moʻolelo."
+          },
+          {
+           "code": "M-2.O.11.1",
+           "text": "Haʻi hou i ka moʻolelo a ke kumu i haʻi mua ai."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "ka-ho-omaopopo",
+       "title": "Ka Hoʻomaopopo",
+       "subtopics": [
+        {
+         "id": "maka-ala-ka-hauma-na-i",
+         "title": "Makaʻala ka haumāna i:",
+         "outcomes": [
+          {
+           "code": "M-2.O.12.1.a",
+           "text": "Nā kani ʻokoʻa o ka honua"
+          },
+          {
+           "code": "M-2.O.12.1.b",
+           "text": "Ka leo kumu / makua"
+          }
+         ]
+        },
+        {
+         "id": "ka-ho-omaopopo",
+         "title": "Ka Hoʻomaopopo",
+         "outcomes": [
+          {
+           "code": "M-2.O.13.1",
+           "text": "Hoʻokō ka haumāna i nā ʻōkuhi a kekahi no ke kaha kiʻi ʻana, ka hana ʻana, a ʻo ia mau ʻano."
+          },
+          {
+           "code": "M-2.O.14.1",
+           "text": "Hoʻolohe a hōʻike ka haumāna e pili ana i kāna i lohe ai."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "ke-mele-oli",
+     "title": "Ke Mele/ Oli",
+     "topics": [
+      {
+       "id": "ka-ho-opa-ana-au",
+       "title": "Ka Hoʻopaʻanaʻau",
+       "subtopics": [
+        {
+         "id": "ho-opa-ana-au-ka-hauma-na-i-na-mele-oli",
+         "title": "Hoʻopaʻanaʻau ka haumāna i nā mele/oli",
+         "outcomes": [
+          {
+           "code": "M-2.MO.1.1.a",
+           "text": "Haʻi hou ka haumāna i ka manaʻo nui o ke mele/oli"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "ka-leo-mele-oli",
+       "title": "Ka Leo Mele/ Oli",
+       "subtopics": [
+        {
+         "id": "oli-ka-hauma-na-i-ke-oli-i-ho-opa-ana-au-ia-ma-k",
+         "title": "Oli ka haumāna i ke oli i hoʻopaʻanaʻau ʻia ma ka pōʻaiapili kūpono",
+         "outcomes": [
+          {
+           "code": "M-2.MO.2.1.a",
+           "text": "Hoʻopuka pololei ʻia ke mele/oli."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "ke-ka-kau",
+     "title": "Ke Kākau",
+     "topics": [
+      {
+       "id": "na-ano-ka-kau",
+       "title": "Nā ʻAno Kākau",
+       "subtopics": [
+        {
+         "id": "ka-kau-i-ka-mana-o-o-lelo-hawai-i",
+         "title": "Kākau i ka manaʻo / ʻōlelo Hawaiʻi",
+         "outcomes": [
+          {
+           "code": "2.K.1.1.a",
+           "text": "Paukū pōkole (hoʻolauna)"
+          },
+          {
+           "code": "2.K.1.1.b",
+           "text": "Hopunaʻōlelo piha"
+          },
+          {
+           "code": "2.K.1.1.c",
+           "text": "ʻIke ʻia ka pilina o kekahi māmalaʻōlelo me kekahi māmalaʻōlelo."
+          },
+          {
+           "code": "2.K.1.1.d",
+           "text": "Hoʻokaʻina kūpono i ka hopunaʻōlelo"
+          }
+         ]
+        },
+        {
+         "id": "na-ano-ka-kau-1-of-2",
+         "title": "Nā ʻAno Kākau (1 of 2)",
+         "outcomes": [
+          {
+           "code": "2.K.2.1",
+           "text": "Kākau ka haumāna no nā kumu like ʻole."
+          },
+          {
+           "code": "2.K.2.2",
+           "text": "Kākau ka haumāna i ka leka e hōʻike ana i nā māhele a pau o ka leka."
+          },
+          {
+           "code": "2.K.2.3",
+           "text": "Kākau ka haumāna i nā nīnau e pane ʻia ai ma ka noiʻi ʻana i ke kumuhana nohie."
+          },
+          {
+           "code": "2.K.2.4",
+           "text": "Hoʻokaʻina ka haumāna i kāna mau hana."
+          },
+          {
+           "code": "2.K.3.1",
+           "text": "Pela pololei ma kona ʻano i ʻae ʻia ma ke kula."
+          }
+         ]
+        },
+        {
+         "id": "na-ano-ka-kau-2-of-2",
+         "title": "Nā ʻAno Kākau (2 of 2)",
+         "outcomes": [
+          {
+           "code": "2.K.3.2",
+           "text": "ʻIke ka haumāna i ka manaʻo o ke kahakō a me ka ʻokina."
+          },
+          {
+           "code": "2.K.4.1",
+           "text": "Loihape ka haumāna i kāna mea i kākau ai."
+          },
+          {
+           "code": "2.K.4.2",
+           "text": "Hoʻoponopono ka haumāna i kekahi hopunaʻōlelo hemahema."
+          },
+          {
+           "code": "2.K.5.1",
+           "text": "Wehewehe ka haumāna i kona manaʻo e pili ana i kekahi kumu upu manaʻo a hoʻohana ʻia nā hua ʻōlelo kūpono no ia kumuhana."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "ka-heluhelu",
+     "title": "Ka Heluhelu",
+     "topics": [
+      {
+       "id": "na-ano-heluhelu",
+       "title": "Nā ʻAno Heluhelu",
+       "subtopics": [
+        {
+         "id": "na-ano-heluhelu-1-of-2",
+         "title": "Nā ʻAno Heluhelu (1 of 2)",
+         "outcomes": [
+          {
+           "code": "2.H.1.1",
+           "text": "Launa ka manaʻo o ka haumāna i ka moʻolelo ma o ka laʻanaa e helu ai."
+          },
+          {
+           "code": "2.H.2.1",
+           "text": "Hōʻuluʻulu pōkole ka haumāna i ka manaʻo nui."
+          },
+          {
+           "code": "2.H.2.2",
+           "text": "Wehewehe ka haumāna i ka manaʻo nui a kākoʻo ʻia me kekahi laʻana"
+          },
+          {
+           "code": "2.H.2.3",
+           "text": "Kuhi ka haumāna i nā māhele moʻolelo like ʻole (poʻoinoa, hameʻe, pōʻaiapili, hihia, kumuhana, kumu-hopena, panina)."
+          }
+         ]
+        },
+        {
+         "id": "na-ano-heluhelu-2-of-2",
+         "title": "Nā ʻAno Heluhelu (2 of 2)",
+         "outcomes": [
+          {
+           "code": "2.H.2.4",
+           "text": "Maopopo ka manaʻo o ka hua ʻōlelo hou ma o ka pōʻaiapili, ka nānā ʻana i nā kiʻi, a me ke kōkua a ke kumu."
+          },
+          {
+           "code": "2.H.3.1",
+           "text": "Kūpono ka leo ma ka haʻi moʻolelo ʻana."
+          },
+          {
+           "code": "2.H.3.2",
+           "text": "Kūpono ke kiʻina leo ma ka nīnau ʻana."
+          },
+          {
+           "code": "2.H.4.1",
+           "text": "ʻImi noiʻi ka haumāna ma nā mea āna i heluhelu ai."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "3",
+   "units": [
+    {
+     "id": "ka-o-lelo",
+     "title": "Ka ʻŌlelo",
+     "topics": [
+      {
+       "id": "ka-o-lelo-walewaha",
+       "title": "Ka ʻŌlelo Walewaha",
+       "subtopics": [
+        {
+         "id": "ka-o-lelo-walewaha",
+         "title": "Ka ʻŌlelo Walewaha",
+         "outcomes": [
+          {
+           "code": "3­4.O.1.1",
+           "text": "Pane piha ʻia nā nīnau me ka ʻōlelo mōakāka."
+          },
+          {
+           "code": "3­4.O.3.1",
+           "text": "Wehewehe pono ʻia ke kaʻina o kekahi hana a i ʻole kekahi moʻolelo ma o ka helu papa ʻia o nā ʻānuʻu o ia hana"
+          },
+          {
+           "code": "3­4.O.4.1",
+           "text": "Puana pono ʻia nā hua ʻōlelo e mōakāka ai ka ʻōlelo."
+          },
+          {
+           "code": "3­4.O.5.1",
+           "text": "Hoʻopuka ʻia ka ʻōlelo e kū ana i ka pōʻaiapili kūpono."
+          }
+         ]
+        },
+        {
+         "id": "ho-opuka-ia-ka-o-lelo",
+         "title": "Hoʻopuka ʻia ka ʻōlelo:",
+         "outcomes": [
+          {
+           "code": "3­4.O.2.1.a",
+           "text": "e kuhikuhi pono ai iā haʻi i kekahi hana"
+          },
+          {
+           "code": "3­4.O.2.1.e",
+           "text": "e hōʻike ai i ke ʻano o ka haumana a me kona manaʻo ponoʻī"
+          },
+          {
+           "code": "3­4.O.2.1.i",
+           "text": "e kākoʻo ai i ko ka haumāna manaʻo me nā laʻana kūpono (2+)"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "ka-ho-omaopopo",
+       "title": "Ka Hoʻomaopopo",
+       "subtopics": [
+        {
+         "id": "ka-ho-omaopopo",
+         "title": "Ka Hoʻomaopopo",
+         "outcomes": [
+          {
+           "code": "3­4.O.6.1",
+           "text": "Paʻa ka manaʻo o nā pilina kūpono a me nā huaʻōlelo kūpono e komo ai i ke kūkā kamaʻilio."
+          },
+          {
+           "code": "3­4.O.7.1",
+           "text": "Haʻi hou i kekahi moʻolelo e hōʻike ai i ka maopopo o kā ka haumana i lohe ai."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "ke-mele-oli",
+     "title": "Ke Mele/ Oli",
+     "topics": [
+      {
+       "id": "ka-ho-opa-ana-au",
+       "title": "Ka Hoʻopaʻanaʻau",
+       "subtopics": [
+        {
+         "id": "ka-ho-opa-ana-au",
+         "title": "Ka Hoʻopaʻanaʻau",
+         "outcomes": [
+          {
+           "code": "3­4.MO.1.1",
+           "text": "Paʻa kekahi haʻawina no loko o ke mele e hoʻonui ai i ka ʻike haumana."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "ka-leo-mele-oli",
+       "title": "Ka Leo Mele/ Oli",
+       "subtopics": [
+        {
+         "id": "ka-leo-mele-oli",
+         "title": "Ka Leo Mele/ Oli",
+         "outcomes": [
+          {
+           "code": "3­4.MO.2.1",
+           "text": "Mele a oli ʻia ke mele/ oli ma ka pōʻaiapili kūpono no ia pae."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "ke-ka-kau",
+     "title": "Ke Kākau",
+     "topics": [
+      {
+       "id": "na-ano-ka-kau",
+       "title": "Nā ʻAno Kākau",
+       "subtopics": [
+        {
+         "id": "na-ano-ka-kau-1-of-2",
+         "title": "Nā ʻAno Kākau (1 of 2)",
+         "outcomes": [
+          {
+           "code": "3.K.1.1",
+           "text": "Hōʻike ʻia ka loina kuʻuna a me nā mahele koʻikoʻi o ka moʻolelo."
+          },
+          {
+           "code": "3.K.1.2",
+           "text": "***Loina Kuʻuna­ ka ʻike i kaʻa mai ka wā mai o ke Kumulipo a i nā kūpuna a hiki mai i o kākou nei. He loina ia i pili i ka ʻuhane a me ka wā mai o nā ʻōlelo noʻeau.***"
+          },
+          {
+           "code": "3.K.1.3",
+           "text": "***Mahele Koʻikoʻi­ nā mahele i kū i ke ʻano o nā moʻolelo i waiho ʻia e nā kūpuna i pili i ka ʻĀina, ka Moʻokūʻauhau a me nā Haʻawina Kupuna.***"
+          },
+          {
+           "code": "3.K.2.1",
+           "text": "Kākau ʻia ka ʻōlelo e launa ai me ka pōʻaiapili me ka hoʻonohonoho pono ʻana i nā manaʻo."
+          }
+         ]
+        },
+        {
+         "id": "na-ano-ka-kau-2-of-2",
+         "title": "Nā ʻAno Kākau (2 of 2)",
+         "outcomes": [
+          {
+           "code": "3.K.3.1",
+           "text": "Hoʻolauna ʻia ke kumuhana kākau me ka mōakāka me ka helu papa ʻana i ka ʻike o ka moʻolelo ma ke kaʻina kūpono."
+          },
+          {
+           "code": "3.K.4.1",
+           "text": "Kākau me nā huaʻōlelo e wehewehe ai i ke kumuhana kākau."
+          },
+          {
+           "code": "3.K.5.1",
+           "text": "Kūkulu mōakāka ʻia kekahi manaʻo me ka wehewehe pū."
+          },
+          {
+           "code": "3.K.6.1",
+           "text": "Pane mōakāka ʻia ka nīnau no nā kumuhana a me nā pōʻaiapili kūpono no kēia pae."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "na-loina-mo-olelo",
+       "title": "Nā Loina Moʻolelo",
+       "subtopics": [
+        {
+         "id": "na-loina-mo-olelo",
+         "title": "Nā Loina Moʻolelo",
+         "outcomes": [
+          {
+           "code": "3.K.7.1",
+           "text": "Helu ʻia ka moʻokūʻauhau ʻohana o nā meʻe."
+          },
+          {
+           "code": "3.K.8.1",
+           "text": "Helu ʻia kekahi inoa o ka ʻāina a me kekahi mau inoa ʻē aʻe i pili i ia wahi."
+          },
+          {
+           "code": "3.K.9.1",
+           "text": "Helu ʻia kekahi haʻawina nui i pili i ka ʻike kuʻuna."
+          },
+          {
+           "code": "3.K.10.1",
+           "text": "Wehewehe ʻia ka pilina o ka haʻawina kuʻuna i nā hāmeʻe."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "na-loina-ka-kau",
+       "title": "Nā Loina Kākau",
+       "subtopics": [
+        {
+         "id": "na-loina-ka-kau-1-of-2",
+         "title": "Nā Loina Kākau (1 of 2)",
+         "outcomes": [
+          {
+           "code": "3.K.11.1",
+           "text": "Hoʻokomo ʻia nā ʻōlelo noʻeau no ka wehewehe ʻana i kekahi manaʻo mai ke kuanaʻike Hawaiʻi."
+          },
+          {
+           "code": "3.K.12.1",
+           "text": "Pololei ka pela ʻana a me ka hoʻohana ʻana i nā kiko."
+          },
+          {
+           "code": "3.K.13.1",
+           "text": "E kūkulu pono ʻia nā māmalaʻōlelo me ka hoʻolauna pono ʻana i ka manaʻo nui a me ka pani pono ʻana."
+          },
+          {
+           "code": "3.K.13.2",
+           "text": "***Hoʻolauna ʻia ka manaʻo me ka hoʻohana ʻana i kekahi ʻike mai ke kumuhana/nīnau mai. A laila, hoʻohui ʻia ka manaʻo nui o ka haumana ma o ka hoʻokomo ʻana i ka “no ka mea.”***"
+          },
+          {
+           "code": "3.K.14.1",
+           "text": "Hoʻohana ʻia nā analula kūpono no kēia pae."
+          }
+         ]
+        },
+        {
+         "id": "na-loina-ka-kau-2-of-2",
+         "title": "Nā Loina Kākau (2 of 2)",
+         "outcomes": [
+          {
+           "code": "3.K.15.1",
+           "text": "E paʻa loa ke kākau ʻana i nā māmala ʻōlelo piha a pololei."
+          },
+          {
+           "code": "3.K.16.1",
+           "text": "E kākau ma ka paukū."
+          },
+          {
+           "code": "3.K.17.1",
+           "text": "E hōʻakāka i ke ʻano o kekahi mea."
+          },
+          {
+           "code": "3.K.17.2",
+           "text": "***ʻAno­ ma kēia Ana ʻo “ke ʻano o kekahi mea” kāna hana, kona hiʻohiʻona, kona wai hoʻoluʻu, kona nui a pēla aku.***"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "ka-heluhelu",
+     "title": "Ka Heluhelu",
+     "topics": [
+      {
+       "id": "na-ano-heluhelu",
+       "title": "Nā ʻAno Heluhelu",
+       "subtopics": [
+        {
+         "id": "ku-kulu-ka-haumana-i-kona-mana-o",
+         "title": "Kūkulu ka haumana i kona manaʻo",
+         "outcomes": [
+          {
+           "code": "3.H.1.1.a",
+           "text": "ma o nā laʻana mai ka mea āna i heluhelu ai. (1+ a ʻoi laʻana)"
+          },
+          {
+           "code": "3.H.1.1.e",
+           "text": "ma o ke kuhi ʻana i ka manaʻo o ka mea kākau."
+          }
+         ]
+        },
+        {
+         "id": "na-ano-heluhelu",
+         "title": "Nā ʻAno Heluhelu",
+         "outcomes": [
+          {
+           "code": "3.H.2.1",
+           "text": "Wehewehe ʻia ke kaʻina hana o ka moʻolelo"
+          },
+          {
+           "code": "3.H.3.1",
+           "text": "Hoʻohālikelike ʻia ka poʻe o ka moʻolelo, ʻo ia hoʻi, nā meʻe a me nā hāmeʻe."
+          },
+          {
+           "code": "3.H.4.1",
+           "text": "ʻIke ʻia nā mahele nui o ka moʻolelo a me ko lākou waiwai."
+          },
+          {
+           "code": "3.H.5.1",
+           "text": "Maopopo ka manaʻo o ka huaʻōlelo hou ma o ka pōʻaiapili a me nā kiʻi."
+          },
+          {
+           "code": "3.H.6.1",
+           "text": "Hōʻuluʻulu ʻia ka moʻolelo e pane pono ai i kekahi nīnau e pili ana i ka moʻolelo a me nā kiʻi o ia moʻolelo."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "na-loina-mo-olelo",
+       "title": "Nā Loina Moʻolelo",
+       "subtopics": [
+        {
+         "id": "na-loina-mo-olelo",
+         "title": "Nā Loina Moʻolelo",
+         "outcomes": [
+          {
+           "code": "3.H.7.1",
+           "text": "Mālama ʻia ka ʻikena kuʻuna a me ke kuanaʻike Hawaiʻi"
+          },
+          {
+           "code": "3.H.8.1",
+           "text": "ʻIke ʻia ka ʻokoʻa o ka manaʻo o ka huaʻōlelo ma ka loli ʻana o ka puana ʻia."
+          },
+          {
+           "code": "3.H.9.1",
+           "text": "Unuhi ʻia nā loina kuʻuna i helu ʻia i ka moʻolelo."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "na-loina-heluhelu",
+       "title": "Nā Loina Heluhelu",
+       "subtopics": [
+        {
+         "id": "na-loina-heluhelu",
+         "title": "Nā Loina Heluhelu",
+         "outcomes": [
+          {
+           "code": "3.H.10.1",
+           "text": "Ua paʻa nā pilinaʻōlelo a me nā huaʻōlelo e heluhelu ai i nā moʻolelo no ia pae me ka maopopo."
+          },
+          {
+           "code": "3.H.11.1",
+           "text": "Poeko pono ka heluhelu waha no ka ʻapo ʻana i ka manaʻo o ka mea e heluhelu ʻia."
+          },
+          {
+           "code": "3.H.12.1",
+           "text": "Wehewehe ʻia ka manaʻo nui o kekahi ʻŌlelo Noʻeau e hōʻike ai i ke kuanaʻike Hawaiʻi."
+          },
+          {
+           "code": "3.H.13.1",
+           "text": "ʻIke ʻia hoʻi he nīnau ka Nane e pane ai."
+          },
+          {
+           "code": "3.H.14.1",
+           "text": "ʻApo ʻia nā manaʻo pālua o kekahi ʻōlelo e hōʻike ai he Kaona nō ia ʻano manaʻo."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "4",
+   "units": [
+    {
+     "id": "ka-o-lelo",
+     "title": "Ka ʻŌlelo",
+     "topics": [
+      {
+       "id": "ka-o-lelo-walewaha",
+       "title": "Ka ʻŌlelo Walewaha",
+       "subtopics": [
+        {
+         "id": "ka-o-lelo-walewaha",
+         "title": "Ka ʻŌlelo Walewaha",
+         "outcomes": [
+          {
+           "code": "3­4.O.1.1",
+           "text": "Pane piha ʻia nā nīnau me ka ʻōlelo mōakāka."
+          },
+          {
+           "code": "3­4.O.3.1",
+           "text": "Wehewehe pono ʻia ke kaʻina o kekahi hana a i ʻole kekahi moʻolelo ma o ka helu papa ʻia o nā ʻānuʻu o ia hana"
+          },
+          {
+           "code": "3­4.O.4.1",
+           "text": "Puana pono ʻia nā hua ʻōlelo e mōakāka ai ka ʻōlelo."
+          },
+          {
+           "code": "3­4.O.5.1",
+           "text": "Hoʻopuka ʻia ka ʻōlelo e kū ana i ka pōʻaiapili kūpono."
+          }
+         ]
+        },
+        {
+         "id": "ho-opuka-ia-ka-o-lelo",
+         "title": "Hoʻopuka ʻia ka ʻōlelo:",
+         "outcomes": [
+          {
+           "code": "3­4.O.2.1.a",
+           "text": "e kuhikuhi pono ai iā haʻi i kekahi hana"
+          },
+          {
+           "code": "3­4.O.2.1.e",
+           "text": "e hōʻike ai i ke ʻano o ka haumana a me kona manaʻo ponoʻī"
+          },
+          {
+           "code": "3­4.O.2.1.i",
+           "text": "e kākoʻo ai i ko ka haumāna manaʻo me nā laʻana kūpono (2+)"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "ka-ho-omaopopo",
+       "title": "Ka Hoʻomaopopo",
+       "subtopics": [
+        {
+         "id": "ka-ho-omaopopo",
+         "title": "Ka Hoʻomaopopo",
+         "outcomes": [
+          {
+           "code": "3­4.O.6.1",
+           "text": "Paʻa ka manaʻo o nā pilina kūpono a me nā huaʻōlelo kūpono e komo ai i ke kūkā kamaʻilio."
+          },
+          {
+           "code": "3­4.O.7.1",
+           "text": "Haʻi hou i kekahi moʻolelo e hōʻike ai i ka maopopo o kā ka haumana i lohe ai."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "ke-mele-oli",
+     "title": "Ke Mele/ Oli",
+     "topics": [
+      {
+       "id": "ka-ho-opa-ana-au",
+       "title": "Ka Hoʻopaʻanaʻau",
+       "subtopics": [
+        {
+         "id": "ka-ho-opa-ana-au",
+         "title": "Ka Hoʻopaʻanaʻau",
+         "outcomes": [
+          {
+           "code": "3­4.MO.1.1",
+           "text": "Paʻa kekahi haʻawina no loko o ke mele e hoʻonui ai i ka ʻike haumana."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "ka-leo-mele-oli",
+       "title": "Ka Leo Mele/ Oli",
+       "subtopics": [
+        {
+         "id": "ka-leo-mele-oli",
+         "title": "Ka Leo Mele/ Oli",
+         "outcomes": [
+          {
+           "code": "3­4.MO.2.1",
+           "text": "Mele a oli ʻia ke mele/ oli ma ka pōʻaiapili kūpono no ia pae."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "ke-ka-kau",
+     "title": "Ke Kākau",
+     "topics": [
+      {
+       "id": "na-ano-ka-kau",
+       "title": "Nā ʻAno Kākau",
+       "subtopics": [
+        {
+         "id": "e-ka-kau-i-ka-mo-olelo-me-ka-ho-ike-i",
+         "title": "E kākau i ka moʻolelo me ka hōʻike i;",
+         "outcomes": [
+          {
+           "code": "4.K.1.1.a",
+           "text": "ke mahele o ka moʻokūʻauhau o ka mea nona ka moʻolelo"
+          },
+          {
+           "code": "4.K.1.1.e",
+           "text": "ka inoa o ka ʻāina i pili i ka moʻolelo"
+          },
+          {
+           "code": "4.K.1.1.i",
+           "text": "kekahi haʻawina kuʻuna"
+          }
+         ]
+        },
+        {
+         "id": "na-ano-ka-kau-1-of-2",
+         "title": "Nā ʻAno Kākau (1 of 2)",
+         "outcomes": [
+          {
+           "code": "4.K.2.1",
+           "text": "Wehewehe pono ʻia ka pōaiapili o ka moʻolelo me nā huaʻōlelo kūpono."
+          },
+          {
+           "code": "4.K.3.1",
+           "text": "Kūkulu mōakāka ʻia ke kumuhana kākau me ka hoʻokaʻina kūpono ʻana i ka ʻike o ka moʻolelo."
+          },
+          {
+           "code": "4.K.4.1",
+           "text": "Hoʻohana ʻia nā huaʻōlelo kūpono e wehewehe ai i ke ʻano o ke kumuhana."
+          },
+          {
+           "code": "4.K.5.1",
+           "text": "Kūkulu mōakāka ʻia ka manaʻo me ke kākoʻo piha ʻia ʻana ona."
+          }
+         ]
+        },
+        {
+         "id": "na-ano-ka-kau-2-of-2",
+         "title": "Nā ʻAno Kākau (2 of 2)",
+         "outcomes": [
+          {
+           "code": "4.K.6.1",
+           "text": "Wehewehe ʻia ke ʻano o kekahi mea ma o ka hōʻike ʻana i kekahi ʻikepili i pili iā ia."
+          },
+          {
+           "code": "4.K.6.2",
+           "text": "***“Ke ʻano o kekahi mea”= kona lōʻihi, kona ʻano, kāna hana, kona wahi e noho ai a pēlā aku***"
+          },
+          {
+           "code": "4.K.7.1",
+           "text": "E nīnau ʻia a pane piha ʻia kekahi nīnau noiʻi."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "na-loina-mo-olelo",
+       "title": "Nā Loina Moʻolelo",
+       "subtopics": [
+        {
+         "id": "na-loina-mo-olelo",
+         "title": "Nā Loina Moʻolelo",
+         "outcomes": [
+          {
+           "code": "4.K.8.1",
+           "text": "Wehewehe ʻia ke kuanaʻike o nā hāmeʻe o ka moʻolelo."
+          },
+          {
+           "code": "4.K.9.1",
+           "text": "Hōʻike ʻia ka inoa o ka ʻāina o ka moʻolelo me ka wehewehe ʻia o nā hāmeʻe i ia wahi."
+          },
+          {
+           "code": "4.K.10.1",
+           "text": "Hōʻike ʻia a wehewehe ʻia kekahi loina kuʻuna o ka moʻolelo a me ka pilina o ia loina i nā hāmeʻe o ka moʻolelo."
+          },
+          {
+           "code": "4.K.10.2",
+           "text": "******Loina Kuʻuna­ ka ʻike i kaʻa mai ka wā mai o ke Kumulipo a i nā kūpuna a hiki mai i o kākou nei. He loina ia i pili i ka ʻuhane a me ka wā mai o nā ʻōlelo noʻeau.***"
+          },
+          {
+           "code": "4.K.11.1",
+           "text": "E kākau a wehewehe i ka pilina o kekahi loina kuʻuna i nā hāmeʻe."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "na-loina-ka-kau",
+       "title": "Nā Loina Kākau",
+       "subtopics": [
+        {
+         "id": "na-loina-ka-kau-1-of-2",
+         "title": "Nā Loina Kākau (1 of 2)",
+         "outcomes": [
+          {
+           "code": "4.K.12.1",
+           "text": "Hoʻohana ʻia nā ʻōlelo noʻeau e kākoʻo ai i kekahi manaʻo i pili i ke kumuhana kākau."
+          },
+          {
+           "code": "4.K.13.1",
+           "text": "ʻIke ʻia ka nane i nīnau e hōʻike ai i kekahi manaʻo me ke kuhikuhi pololei ʻole ʻia o ia manaʻo."
+          },
+          {
+           "code": "4.K.14.1",
+           "text": "Hoʻohana ʻia ke kaona no ka hōʻike ʻana i kekahi manaʻo pālua o ka ʻōlelo hoʻokahi."
+          },
+          {
+           "code": "4.K.15.1",
+           "text": "Pololei ka pela ʻana a me ka hoʻohana ʻia o nā kiko."
+          }
+         ]
+        },
+        {
+         "id": "na-loina-ka-kau-2-of-2",
+         "title": "Nā Loina Kākau (2 of 2)",
+         "outcomes": [
+          {
+           "code": "4.K.16.1",
+           "text": "Kūkulu pono ʻia ka manaʻo."
+          },
+          {
+           "code": "4.K.17.1",
+           "text": "Hoʻohana ʻia nā analula pololei e mōakāka ai ka manaʻo nui."
+          },
+          {
+           "code": "4.K.18.1",
+           "text": "E paʻa loa nā loina kākau o kēia pae."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "ka-heluhelu",
+     "title": "Ka Heluhelu",
+     "topics": [
+      {
+       "id": "na-ano-heluhelu",
+       "title": "Nā ʻAno Heluhelu",
+       "subtopics": [
+        {
+         "id": "ku-kulu-ka-haumana-i-kona-mana-o",
+         "title": "Kūkulu ka haumana i kona manaʻo",
+         "outcomes": [
+          {
+           "code": "4.H.1.1.a",
+           "text": "ma o nā laʻana mai ka mea āna i heluhelu ai. (1 a ʻoi laʻana)"
+          },
+          {
+           "code": "4.H.1.1.e",
+           "text": "ma o ke kuhi ʻana i ka manaʻo o ka mea kākau."
+          }
+         ]
+        },
+        {
+         "id": "na-ano-heluhelu",
+         "title": "Nā ʻAno Heluhelu",
+         "outcomes": [
+          {
+           "code": "4.H.2.1",
+           "text": "Wehewehe ʻia ke kaʻina hana o ka moʻolelo me ka hōʻike pū i ka pilina o nā hanana i ka moʻolelo."
+          },
+          {
+           "code": "4.H.3.1",
+           "text": "Hoʻohālikelike ʻia ka poʻe o ka moʻolelo, ʻo ia hoʻi, nā meʻe a me nā hāmeʻe me ke kākoʻo."
+          },
+          {
+           "code": "4.H.4.1",
+           "text": "Kālailai ʻia nā moʻolelo ʻokoʻa e ʻike ai i nā ʻano ʻokoʻa o nā moʻolelo Hawaiʻi."
+          },
+          {
+           "code": "4.H.5.1",
+           "text": "ʻIke ʻia nā huaʻōlelo i pili i nā mahele koʻikoʻi o ka moʻolelo a me ko lākou pilina i ka manaʻo nui o ka moʻolelo."
+          },
+          {
+           "code": "4.H.6.1",
+           "text": "Maopopo ka hōʻuluʻulu ʻana i ka moʻolelo ma ke ʻano he hoʻopōkole."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "na-loina-heluhelu",
+       "title": "Nā Loina Heluhelu",
+       "subtopics": [
+        {
+         "id": "na-loina-heluhelu-1-of-2",
+         "title": "Nā Loina Heluhelu (1 of 2)",
+         "outcomes": [
+          {
+           "code": "4.H.7.1",
+           "text": "Mālama ʻia ka ʻikena kuʻuna a me ke kuanaʻike Hawaiʻi."
+          },
+          {
+           "code": "4.H.8.1",
+           "text": "ʻIke ʻia ka ʻokoʻa o ka manaʻo o ka huaʻōlelo ma ka loli ʻana o ka puana ʻia."
+          },
+          {
+           "code": "4.H.9.1",
+           "text": "Helu ʻia nā loina kuʻuna o ka moʻolelo me ke kākoʻo ʻana i ke koho."
+          },
+          {
+           "code": "4.H.10.1",
+           "text": "Ua paʻa nā pilinaʻōlelo a me nā huaʻōlelo e heluhelu ai i nā moʻolelo no ia pae me ka maopopo."
+          },
+          {
+           "code": "4.H.11.1",
+           "text": "Poeko pono ka heluhelu waha no ka ʻapo ʻana i ka manaʻo o ka mea e heluhelu ʻia."
+          }
+         ]
+        },
+        {
+         "id": "na-loina-heluhelu-2-of-2",
+         "title": "Nā Loina Heluhelu (2 of 2)",
+         "outcomes": [
+          {
+           "code": "4.H.12.1",
+           "text": "ʻIke ʻia ka ʻokoʻa o ka leo hāmeʻe a me ka leo waha ʻōlelo o ka moʻolelo."
+          },
+          {
+           "code": "4.H.13.1",
+           "text": "Maopopo ka manaʻo o kekahi huaʻōlelo hou ma o ka pōʻaiapili moʻolelo/ hopunaʻōlelo."
+          },
+          {
+           "code": "4.H.14.1",
+           "text": "Wehewehe ʻia ka manaʻo nui o kekahi ʻŌlelo Noʻeau e hōʻike ai i ke kuanaʻike Hawaiʻi me ke kākoʻo."
+          },
+          {
+           "code": "4.H.15.1",
+           "text": "ʻIke ʻia hoʻi he nīnau ka Nane e pane ai a wehewehe ʻia me ke kākoʻo."
+          },
+          {
+           "code": "4.H.16.1",
+           "text": "ʻApo ʻia nā manaʻo pālua o kekahi ʻōlelo e hōʻike ai he Kaona nō ia ʻano manaʻo."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "5",
+   "units": [
+    {
+     "id": "ka-o-lelo",
+     "title": "Ka ʻŌlelo",
+     "topics": [
+      {
+       "id": "ka-o-lelo-walewaha",
+       "title": "Ka ʻŌlelo Walewaha",
+       "subtopics": [
+        {
+         "id": "ho-opuka-ia-ka-o-lelo",
+         "title": "Hoʻopuka ʻia ka ʻōlelo,",
+         "outcomes": [
+          {
+           "code": "5-6.O.1.1.a",
+           "text": "e wehewehe pono ai iā haʻi i kekahi hana"
+          },
+          {
+           "code": "5-6.O.1.1.e",
+           "text": "e hōʻike leʻa ai i ka pōʻaiapili hoihoi a pili loa i ka haumana ma ka ʻōlelo uluwale"
+          },
+          {
+           "code": "5-6.O.1.1.i",
+           "text": "e wehewehe ai i kona kuanaʻike ponoʻī"
+          },
+          {
+           "code": "5-6.O.1.1.o",
+           "text": "e hōʻuluʻulu ai i nā manaʻo like ʻole"
+          },
+          {
+           "code": "5-6.O.1.1.u",
+           "text": "e pono ai ke kama‘ilio"
+          }
+         ]
+        },
+        {
+         "id": "ka-o-lelo-walewaha",
+         "title": "Ka ʻŌlelo Walewaha",
+         "outcomes": [
+          {
+           "code": "5-6.O.2.1",
+           "text": "Haʻiʻōlelo ma mua o ke anaina e pili i kekahi kumuhana i noiʻi ʻia me ke kahe kūpono o ka ʻōlelo."
+          },
+          {
+           "code": "5-6.O.3.1",
+           "text": "Hoʻokomo ʻia ka ʻōlelo noʻeau ma kahi kūpono."
+          },
+          {
+           "code": "5-6.O.4.1",
+           "text": "Kūpono ke kiʻina leo a me ke ‘ano o ke kino o ka haumāna e kūlike ai me ka pōʻaiapili."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "ka-ho-omaopopo",
+       "title": "Ka Hoʻomaopopo",
+       "subtopics": [
+        {
+         "id": "ka-ho-omaopopo",
+         "title": "Ka Hoʻomaopopo",
+         "outcomes": [
+          {
+           "code": "5-6.O.5.1",
+           "text": "Hō‘ike i ka ‘a‘apo ‘ia o ka ‘ike mai loko mai o nā kūmole like ‘ole i lohe ‘ia."
+          },
+          {
+           "code": "5-6.O.7.1",
+           "text": "Maopopo ka loina ku‘una o kāna i lohe ai."
+          }
+         ]
+        },
+        {
+         "id": "maopopo-ka-pilina-o-kona-ohana-i",
+         "title": "Maopopo ka pilina o kona ʻohana i",
+         "outcomes": [
+          {
+           "code": "5-6.O.6.1.a",
+           "text": "Kona ʻāina hānau"
+          },
+          {
+           "code": "5-6.O.6.1.b",
+           "text": "Kona wahi noho"
+          },
+          {
+           "code": "5-6.O.6.1.c",
+           "text": "Ke kahua kula"
+          }
+         ]
+        },
+        {
+         "id": "maopopo-ka-ho-ohana-pololei-ia-o-na-ho-o-ho-ma-a",
+         "title": "Maopopo ka hoʻohana pololei ʻia o nā hoʻōho maʻamau:",
+         "outcomes": [
+          {
+           "code": "5-6.O.8.1.a",
+           "text": "ʻĀ ʻoia"
+          },
+          {
+           "code": "5-6.O.8.1.b",
+           "text": "Tsā/Kā"
+          },
+          {
+           "code": "5-6.O.8.1.c",
+           "text": "Hemū/Hele pēlā"
+          },
+          {
+           "code": "5-6.O.8.1.d",
+           "text": "Hāmau/Kulikuli"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "ke-mele-oli",
+     "title": "Ke Mele/ Oli",
+     "topics": [
+      {
+       "id": "ke-ka-lailai-mele-oli",
+       "title": "Ke Kālailai Mele/Oli",
+       "subtopics": [
+        {
+         "id": "wehewehe-i-ka-ha-awina-o-kekahi-mele",
+         "title": "Wehewehe i ka ha‘awina o kekahi mele",
+         "outcomes": [
+          {
+           "code": "5-6.MO.1.1.a",
+           "text": "me ke kākoʻo pū ʻana i kona manaʻo ma o nā lāʻana mai ke mele mai"
+          },
+          {
+           "code": "5-6.MO.1.1.e",
+           "text": "me ke kuhi ‘ana i ka pō‘aiapili kūpono e ho‘ohana ‘ia ai ke mele"
+          }
+         ]
+        },
+        {
+         "id": "ke-ka-lailai-mele-oli",
+         "title": "Ke Kālailai Mele/Oli",
+         "outcomes": [
+          {
+           "code": "5-6.MO.2.1",
+           "text": "Hoʻohālikelike i nā mele Hawaiʻi me ke kālele pū ʻana i nā loina kuʻuna o ke mele."
+          },
+          {
+           "code": "5-6.MO.3.1",
+           "text": "Ho‘ohālikelike ‘ia ke mele i lohe ‘ia me ka mea i kākau ‘ia."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "ke-ka-kau",
+     "title": "Ke Kākau",
+     "topics": [
+      {
+       "id": "na-ano-ka-kau",
+       "title": "Nā ʻAno Kākau",
+       "subtopics": [
+        {
+         "id": "e-ka-kau-i-ka-mo-olelo-me-ka-ho-ike-i",
+         "title": "E kākau i ka moʻolelo me ka hōʻike i:",
+         "outcomes": [
+          {
+           "code": "5.K.1.1.a",
+           "text": "ke ‘ano a me ka hana o ka mea nona ka mo‘olelo"
+          },
+          {
+           "code": "5.K.1.1.e",
+           "text": "kona pilina i ka ‘āina"
+          },
+          {
+           "code": "5.K.1.1.i",
+           "text": "kekahi ha‘awina i a‘o ‘ia"
+          },
+          {
+           "code": "5.K.1.1.o",
+           "text": "nā hi‘ohi‘ona e pono ai ka mo‘olelo (hāme‘e, pō‘aiapili, hihia, ho‘oponopono, a pēlā aku)"
+          }
+         ]
+        },
+        {
+         "id": "na-ano-ka-kau",
+         "title": "Nā ʻAno Kākau",
+         "outcomes": [
+          {
+           "code": "5.K.2.1",
+           "text": "Hoʻonohonoho ʻia nā manaʻo nui o kekahi kumuhana."
+          }
+         ]
+        },
+        {
+         "id": "ku-kulu-mo-aka-ka-ia-ka-mana-o-me-ke-ka-ko-o-pih",
+         "title": "Kūkulu mōakāka ʻia ka manaʻo me ke kākoʻo piha ʻia ʻana ona",
+         "outcomes": [
+          {
+           "code": "5.K.3.1.a",
+           "text": "me ka ho‘ohana ‘ana i la‘ana mai kekahi kūmole"
+          },
+          {
+           "code": "5.K.3.1.e",
+           "text": "me ka ho‘ohana ‘ana i mau kūmole ‘oko‘a"
+          },
+          {
+           "code": "5.K.3.1.i",
+           "text": "me ke kālailai ‘ana i ke ‘ano o kekahi mea i ‘imi noi‘i ‘ia"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "na-loina-mo-olelo",
+       "title": "Nā Loina Moʻolelo",
+       "subtopics": [
+        {
+         "id": "na-loina-mo-olelo",
+         "title": "Nā Loina Moʻolelo",
+         "outcomes": [
+          {
+           "code": "5.K.4.1",
+           "text": "E kākau a wehewehe i ka waiwai o ka loina kuʻuna i aʻo ʻia ma ka moʻolelo."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "na-loina-ka-kau",
+       "title": "Nā Loina Kākau",
+       "subtopics": [
+        {
+         "id": "na-loina-ka-kau",
+         "title": "Nā Loina Kākau",
+         "outcomes": [
+          {
+           "code": "5.K.5.1",
+           "text": "Wehewehe ʻia ke kaona no ka hōʻike ʻana i kekahi manaʻo pālua o ka ʻōlelo hoʻokahi ma nā pōʻaiapili like ʻole."
+          },
+          {
+           "code": "5.K.6.1",
+           "text": "Pololei ka pela ʻana a me ka hoʻohana ʻia o nā kiko."
+          },
+          {
+           "code": "5.K.7.1",
+           "text": "Ohi‘ohi a ho‘onohonoho ‘ia ka ‘ikepili e pono ai ke kākau ‘oloke‘a i mea e kūkulu pono ‘ia ai kona mana‘o."
+          },
+          {
+           "code": "5.K.8.1",
+           "text": "Hoʻohana ʻia nā analula pololei ma ka pō‘aiapili kūpono e mōakāka ai ka manaʻo nui."
+          },
+          {
+           "code": "5.K.9.1",
+           "text": "‘Ike ‘ia ka ‘oko‘a o ke ‘ano kākau ma nā pō‘aiapili like ‘ole."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "ka-heluhelu",
+     "title": "Ka Heluhelu",
+     "topics": [
+      {
+       "id": "na-ano-heluhelu",
+       "title": "Nā ʻAno Heluhelu",
+       "subtopics": [
+        {
+         "id": "ku-kulu-ka-hauma-na-i-kona-mana-o",
+         "title": "Kūkulu ka haumāna i kona manaʻo",
+         "outcomes": [
+          {
+           "code": "5.H.1.1.a",
+           "text": "ma o nā laʻana mai ka mea āna i heluhelu ai. (2 a ʻoi laʻana)"
+          },
+          {
+           "code": "5.H.1.1.e",
+           "text": "ma o ke kālailai ʻana i ka manaʻo o ka mea kākau"
+          }
+         ]
+        },
+        {
+         "id": "na-ano-heluhelu",
+         "title": "Nā ʻAno Heluhelu",
+         "outcomes": [
+          {
+           "code": "5.H.2.1",
+           "text": "Kālailai ‘ia ke ka‘ina hana o ka mo‘olelo a me ka pilina o nā hanana i ka holo ‘ana o ka mo‘olelo."
+          },
+          {
+           "code": "5.H.3.1",
+           "text": "Ho‘ohālikelike ‘ia nā hi‘ohi‘ona like ‘ole o ka mo‘olelo."
+          },
+          {
+           "code": "5.H.4.1",
+           "text": "Kālailai ʻia nā moʻolelo ʻokoʻa e ʻike ai i nā ʻano ʻokoʻa o nā moʻolelo Hawaiʻi."
+          },
+          {
+           "code": "5.H.5.1",
+           "text": "Hō‘ulu‘ulu ‘ia ka mo‘olelo ma ke ‘ano he ho‘opōkole me ka hō‘ike ‘ana i nā mahele ko‘iko‘i a me ka mana‘o nui o ia mo‘olelo."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "na-loina-heluhelu",
+       "title": "Nā Loina Heluhelu",
+       "subtopics": [
+        {
+         "id": "na-loina-heluhelu-1-of-2",
+         "title": "Nā Loina Heluhelu (1 of 2)",
+         "outcomes": [
+          {
+           "code": "5.H.6.1",
+           "text": "Mālama ʻia ka ʻikena kuʻuna a me ke kuanaʻike Hawaiʻi."
+          },
+          {
+           "code": "5.H.7.1",
+           "text": "Wehewehe ʻia nā loina kuʻuna o ka moʻolelo me ke kākoʻo ʻana i kona mana‘o."
+          },
+          {
+           "code": "5.H.8.1",
+           "text": "Ua paʻa nā pilinaʻōlelo a me nā hua ʻōlelo e heluhelu ai i nā moʻolelo no ia pae me ka maopopo."
+          },
+          {
+           "code": "5.H.9.1",
+           "text": "Maopopo ka manaʻo o kekahi huaʻōlelo hou ma o ka pōʻaiapili moʻolelo/ māmalaʻōlelo."
+          }
+         ]
+        },
+        {
+         "id": "na-loina-heluhelu-2-of-2",
+         "title": "Nā Loina Heluhelu (2 of 2)",
+         "outcomes": [
+          {
+           "code": "5.H.10.1",
+           "text": "Wehewehe ʻia ka manaʻo nui o kekahi ʻŌlelo Noʻeau e hōʻike ai i ke kuanaʻike Hawaiʻi me ke kākoʻo."
+          },
+          {
+           "code": "5.H.11.1",
+           "text": "ʻIke ʻia hoʻi he nīnau ka nane e pane ai a wehewehe ʻia me ke kākoʻo."
+          },
+          {
+           "code": "5.H.12.1",
+           "text": "ʻApo ʻia nā manaʻo pālua o kekahi ʻōlelo e hōʻike ai he Kaona nō ia ʻano manaʻo."
+          },
+          {
+           "code": "5.H.13.1",
+           "text": "Kālailai ‘ia he mau kūmole no ka wae ‘ana i ‘ike i pili i kekahi kumuhana kiko‘ī."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "6",
+   "units": [
+    {
+     "id": "ka-o-lelo",
+     "title": "Ka ʻŌlelo",
+     "topics": [
+      {
+       "id": "ka-o-lelo-walewaha",
+       "title": "Ka ʻŌlelo Walewaha",
+       "subtopics": [
+        {
+         "id": "ho-opuka-ia-ka-o-lelo",
+         "title": "Hoʻopuka ʻia ka ʻōlelo,",
+         "outcomes": [
+          {
+           "code": "5-6.O.1.1.a",
+           "text": "e wehewehe pono ai iā haʻi i kekahi hana"
+          },
+          {
+           "code": "5-6.O.1.1.e",
+           "text": "e hōʻike leʻa ai i ka pōʻaiapili hoihoi a pili loa i ka haumana ma ka ʻōlelo uluwale"
+          },
+          {
+           "code": "5-6.O.1.1.i",
+           "text": "e wehewehe ai i kona kuanaʻike ponoʻī"
+          },
+          {
+           "code": "5-6.O.1.1.o",
+           "text": "e hōʻuluʻulu ai i nā manaʻo like ʻole"
+          },
+          {
+           "code": "5-6.O.1.1.u",
+           "text": "e pono ai ke kama‘ilio"
+          }
+         ]
+        },
+        {
+         "id": "ka-o-lelo-walewaha",
+         "title": "Ka ʻŌlelo Walewaha",
+         "outcomes": [
+          {
+           "code": "5-6.O.2.1",
+           "text": "Haʻiʻōlelo ma mua o ke anaina e pili i kekahi kumuhana i noiʻi ʻia me ke kahe kūpono o ka ʻōlelo."
+          },
+          {
+           "code": "5-6.O.3.1",
+           "text": "Hoʻokomo ʻia ka ʻōlelo noʻeau ma kahi kūpono."
+          },
+          {
+           "code": "5-6.O.4.1",
+           "text": "Kūpono ke kiʻina leo a me ke ‘ano o ke kino o ka haumāna e kūlike ai me ka pōʻaiapili."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "ka-ho-omaopopo",
+       "title": "Ka Hoʻomaopopo",
+       "subtopics": [
+        {
+         "id": "ka-ho-omaopopo",
+         "title": "Ka Hoʻomaopopo",
+         "outcomes": [
+          {
+           "code": "5-6.O.5.1",
+           "text": "Hō‘ike i ka ‘a‘apo ‘ia o ka ‘ike mai loko mai o nā kūmole like ‘ole i lohe ‘ia."
+          },
+          {
+           "code": "5-6.O.7.1",
+           "text": "Maopopo ka loina ku‘una o kāna i lohe ai."
+          }
+         ]
+        },
+        {
+         "id": "maopopo-ka-pilina-o-kona-ohana-i",
+         "title": "Maopopo ka pilina o kona ʻohana i",
+         "outcomes": [
+          {
+           "code": "5-6.O.6.1.a",
+           "text": "Kona ʻāina hānau"
+          },
+          {
+           "code": "5-6.O.6.1.b",
+           "text": "Kona wahi noho"
+          },
+          {
+           "code": "5-6.O.6.1.c",
+           "text": "Ke kahua kula"
+          }
+         ]
+        },
+        {
+         "id": "maopopo-ka-ho-ohana-pololei-ia-o-na-ho-o-ho-ma-a",
+         "title": "Maopopo ka hoʻohana pololei ʻia o nā hoʻōho maʻamau:",
+         "outcomes": [
+          {
+           "code": "5-6.O.8.1.a",
+           "text": "ʻĀ ʻoia"
+          },
+          {
+           "code": "5-6.O.8.1.b",
+           "text": "Tsā/Kā"
+          },
+          {
+           "code": "5-6.O.8.1.c",
+           "text": "Hemū/Hele pēlā"
+          },
+          {
+           "code": "5-6.O.8.1.d",
+           "text": "Hāmau/Kulikuli"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "ke-mele-oli",
+     "title": "Ke Mele/ Oli",
+     "topics": [
+      {
+       "id": "ke-ka-lailai-mele-oli",
+       "title": "Ke Kālailai Mele/Oli",
+       "subtopics": [
+        {
+         "id": "wehewehe-i-ka-ha-awina-o-kekahi-mele",
+         "title": "Wehewehe i ka ha‘awina o kekahi mele",
+         "outcomes": [
+          {
+           "code": "5-6.MO.1.1.a",
+           "text": "me ke kākoʻo pū ʻana i kona manaʻo ma o nā lāʻana mai ke mele mai"
+          },
+          {
+           "code": "5-6.MO.1.1.e",
+           "text": "me ke kuhi ‘ana i ka pō‘aiapili kūpono e ho‘ohana ‘ia ai ke mele"
+          }
+         ]
+        },
+        {
+         "id": "ke-ka-lailai-mele-oli",
+         "title": "Ke Kālailai Mele/Oli",
+         "outcomes": [
+          {
+           "code": "5-6.MO.2.1",
+           "text": "Hoʻohālikelike i nā mele Hawaiʻi me ke kālele pū ʻana i nā loina kuʻuna o ke mele."
+          },
+          {
+           "code": "5-6.MO.3.1",
+           "text": "Ho‘ohālikelike ‘ia ke mele i lohe ‘ia me ka mea i kākau ‘ia."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "ke-ka-kau",
+     "title": "Ke Kākau",
+     "topics": [
+      {
+       "id": "na-ano-ka-kau",
+       "title": "Nā ʻAno Kākau",
+       "subtopics": [
+        {
+         "id": "e-ka-kau-i-ka-mo-olelo-me-ka-ho-ike-i",
+         "title": "E kākau i ka moʻolelo me ka hōʻike i:",
+         "outcomes": [
+          {
+           "code": "6.K.1.1.a",
+           "text": "ke ‘ano a me ka hana o ka mea nona ka mo‘olelo"
+          },
+          {
+           "code": "6.K.1.1.e",
+           "text": "kona pilina i ka ‘āina"
+          },
+          {
+           "code": "6.K.1.1.i",
+           "text": "kekahi ha‘awina i a‘o ‘ia"
+          },
+          {
+           "code": "6.K.1.1.o",
+           "text": "nā hi‘ohi‘ona e pono ai ka mo‘olelo (hame‘e, pō‘aiapili, hihia, ho‘oponopono, a pēlā aku)"
+          }
+         ]
+        },
+        {
+         "id": "na-ano-ka-kau",
+         "title": "Nā ʻAno Kākau",
+         "outcomes": [
+          {
+           "code": "6.K.2.1",
+           "text": "Hoʻonohonoho a wehewehe ʻia nā manaʻo nui o kekahi kumuhana i mōakāka nā haʻawina i aʻo ʻia mai."
+          }
+         ]
+        },
+        {
+         "id": "ku-kulu-mo-aka-ka-ia-ka-mana-o-me-ke-ka-ko-o-pih",
+         "title": "Kūkulu mōakāka ʻia ka manaʻo me ke kākoʻo piha ʻia ʻana ona",
+         "outcomes": [
+          {
+           "code": "6.K.3.1.a",
+           "text": "me ka ho‘ohana ‘ana i mau la‘ana mai kekahi mau kūmole ʻokoʻa mai"
+          },
+          {
+           "code": "6.K.3.1.e",
+           "text": "me ke kālailai ‘ana i ke ‘ano o kekahi mea i ‘imi noi‘i ‘ia"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "na-loina-mo-olelo",
+       "title": "Nā Loina Moʻolelo",
+       "subtopics": [
+        {
+         "id": "na-loina-mo-olelo",
+         "title": "Nā Loina Moʻolelo",
+         "outcomes": [
+          {
+           "code": "6.K.4.1",
+           "text": "E kākau a wehewehe i ka pilina o kekahi loina kuʻuna i nā hāmeʻe a hōʻike i ka waiwai o ia mau loina kuʻuna."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "na-loina-ka-kau",
+       "title": "Nā Loina Kākau",
+       "subtopics": [
+        {
+         "id": "na-loina-ka-kau",
+         "title": "Nā Loina Kākau",
+         "outcomes": [
+          {
+           "code": "6.K.5.1",
+           "text": "Wehewehe ʻia ke kaona no ka hōʻike ʻana i kekahi manaʻo pālua o ka ʻōlelo hoʻokahi ma nā pōʻaiapili like ʻole."
+          },
+          {
+           "code": "6.K.6.1",
+           "text": "Pololei ka pela ʻana a me ka hoʻohana ʻia o nā kiko."
+          },
+          {
+           "code": "6.K.7.1",
+           "text": "‘Ohi‘ohi a ho‘onohonoho ‘ia ka ‘ikepili e pono ai ke kākau ‘oloke‘a i mea e kūkulu pono ‘ia ai kona mana‘o."
+          },
+          {
+           "code": "6.K.8.1",
+           "text": "Hoʻohana ʻia nā analula like ‘ole ma ka pō‘aiapili kūpono e mōakāka ai ka manaʻo nui."
+          },
+          {
+           "code": "6.K.9.1",
+           "text": "‘Ike ‘ia ka ‘oko‘a o ke ‘ano kākau ma nā pō‘aiapili like ‘ole."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "ka-heluhelu",
+     "title": "Ka Heluhelu",
+     "topics": [
+      {
+       "id": "na-ano-heluhelu",
+       "title": "Nā ʻAno Heluhelu",
+       "subtopics": [
+        {
+         "id": "ku-kulu-ka-hauma-na-i-kona-mana-o",
+         "title": "Kūkulu ka haumāna i kona manaʻo",
+         "outcomes": [
+          {
+           "code": "6.H.1.1.a",
+           "text": "ma o nā laʻana mai ka mea āna i heluhelu ai. (2 a ʻoi laʻana)"
+          },
+          {
+           "code": "6.H.1.1.e",
+           "text": "ma o ke kālailai ʻana i ka manaʻo o ka mea kākau"
+          }
+         ]
+        },
+        {
+         "id": "na-ano-heluhelu",
+         "title": "Nā ʻAno Heluhelu",
+         "outcomes": [
+          {
+           "code": "6.H.2.1",
+           "text": "Kālailai ‘ia ke ka‘ina hana o ka mo‘olelo a me ka pilina o nā hanana i ka holo ‘ana o ka mo‘olelo."
+          },
+          {
+           "code": "6.H.3.1",
+           "text": "Kālailai a ho‘ohālikelike ‘ia nā hāme‘e o ‘elua mo‘olelo ʻokoʻa."
+          },
+          {
+           "code": "6.H.4.1",
+           "text": "Kālailai ʻia nā moʻolelo ʻokoʻa e ʻike ai i nā ʻano ʻokoʻa o nā moʻolelo Hawaiʻi."
+          },
+          {
+           "code": "6.H.5.1",
+           "text": "Hō‘ulu‘ulu ‘ia ka mo‘olelo ma ke ‘ano he ho‘opōkole me ka hō‘ike ‘ana i nā mahele ko‘iko‘i a me ka mana‘o nui o ia mo‘olelo."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "na-loina-heluhelu",
+       "title": "Nā Loina Heluhelu",
+       "subtopics": [
+        {
+         "id": "na-loina-heluhelu-1-of-2",
+         "title": "Nā Loina Heluhelu (1 of 2)",
+         "outcomes": [
+          {
+           "code": "6.H.6.1",
+           "text": "Wehewehe ʻia ka ʻikena kuʻuna a me ke kuanaʻike Hawaiʻi."
+          },
+          {
+           "code": "6.H.7.1",
+           "text": "Kālailai ʻia nā loina kuʻuna o ka moʻolelo me ke kākoʻo ʻana i kona mana‘o."
+          },
+          {
+           "code": "6.H.8.1",
+           "text": "Ua paʻa nā pilinaʻōlelo a me nā hua ʻōlelo e heluhelu ai i nā moʻolelo no ia pae me ka maopopo."
+          },
+          {
+           "code": "6.H.9.1",
+           "text": "Maopopo leʻa ka manaʻo o kekahi huaʻōlelo hou ma o ka pōʻaiapili moʻolelo/ māmalaʻōlelo."
+          }
+         ]
+        },
+        {
+         "id": "na-loina-heluhelu-2-of-2",
+         "title": "Nā Loina Heluhelu (2 of 2)",
+         "outcomes": [
+          {
+           "code": "6.H.10.1",
+           "text": "Kālailai ʻia ka manaʻo nui o kekahi ʻŌlelo Noʻeau e hōʻike ai i ke kuanaʻike Hawaiʻi me ke kākoʻo."
+          },
+          {
+           "code": "6.H.11.1",
+           "text": "ʻIke ʻia hoʻi he nīnau ka nane e pane ai a wehewehe ʻia me ke kākoʻo."
+          },
+          {
+           "code": "6.H.12.1",
+           "text": "Maopopo nā manaʻo pālua o kekahi ʻōlelo a wehewehe ʻia hoʻi nā manaʻo ʻokoʻa o ia ʻōlelo hoʻokahi."
+          },
+          {
+           "code": "6.H.13.1",
+           "text": "Kālailai ‘ia he mau kūmole no ka wae ‘ana i ‘ike i pili i kekahi kumuhana kiko‘ī."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "7-12",
+   "units": [
+    {
+     "id": "ka-o-lelo",
+     "title": "Ka ʻŌlelo",
+     "topics": [
+      {
+       "id": "ka-o-lelo-walewaha",
+       "title": "Ka ʻŌlelo Walewaha",
+       "subtopics": [
+        {
+         "id": "ho-opuka-ia-ka-o-lelo",
+         "title": "Hoʻopuka ʻia ka ʻōlelo,",
+         "outcomes": [
+          {
+           "code": "7-8.O.1.1.a",
+           "text": "e alakaʻi pono ai iā haʻi i kekahi hana nāna e hana"
+          },
+          {
+           "code": "7-8.O.1.1.e",
+           "text": "e hōʻike leʻa ai i ka pōʻaiapili ma ka ʻōlelo uluwale"
+          },
+          {
+           "code": "7-8.O.1.1.i",
+           "text": "e wehewehe ai i kekahi kumuhana me ka ho‘ohana ‘ana i nā la‘ana e kāko‘o ai i kona mana‘o"
+          },
+          {
+           "code": "7-8.O.1.1.o",
+           "text": "e pono ai ke kūkā kamaʻilio"
+          }
+         ]
+        },
+        {
+         "id": "ka-o-lelo-walewaha",
+         "title": "Ka ʻŌlelo Walewaha",
+         "outcomes": [
+          {
+           "code": "7-8.O.2.1",
+           "text": "Haʻiʻōlelo ma mua o ke anaina e pili i kekahi kumuhana i hāʻawi ʻia iā ia me ke kahe kūpono o ka ʻōlelo."
+          },
+          {
+           "code": "7-8.O.2.2",
+           "text": "He ha‘i‘ōlelo uluwale paha, a i ‘ole he ha‘i‘ōlelo me ka ho‘ohana ‘ana paha i hō‘ike‘ike ‘enehana e kōkua ai i kāna mea e ha‘i‘ōlelo ana"
+          },
+          {
+           "code": "7-8.O.3.1",
+           "text": "Hoʻokomo ʻia ka ʻōlelo noʻeau ma kahi kūpono."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "ka-ho-omaopopo",
+       "title": "Ka Hoʻomaopopo",
+       "subtopics": [
+        {
+         "id": "ka-ho-omaopopo",
+         "title": "Ka Hoʻomaopopo",
+         "outcomes": [
+          {
+           "code": "7-8.O.4.1",
+           "text": "Kālailai ka haumāna i nā mea āna i ʻaʻapo mai ai mai nā kūmole i lohe ʻia."
+          },
+          {
+           "code": "7-8.O.5.1",
+           "text": "Maopopo ka loina ku‘una o kāna i lohe ai a helu ʻia me ka wehewehena."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "ke-mele-oli",
+     "title": "Ke Mele/Oli",
+     "topics": [
+      {
+       "id": "ke-ka-lailai-mele-oli",
+       "title": "Ke Kālailai Mele/Oli",
+       "subtopics": [
+        {
+         "id": "ka-lailai-i-ka-ha-awina-a-me-ka-mana-o-nui-o-kek",
+         "title": "Kālailai i ka ha‘awina a me ka manaʻo nui o kekahi mele",
+         "outcomes": [
+          {
+           "code": "7-8.MO.1.1.a",
+           "text": "me ka hoʻohālikelike pū ʻana i nā mele ʻē aʻe i paʻa ʻē iā ia."
+          },
+          {
+           "code": "7-8.MO.1.1.e",
+           "text": "me ka wae/wehewehe ‘ana i ka pō‘aiapili kūpono e ho‘ohana ‘ia ai ke mele"
+          },
+          {
+           "code": "7-8.MO.1.1.o",
+           "text": "ma o ke kuhi ‘ana i ka mana‘o o ke kaona i ‘ike ‘ia ma nā mele"
+          }
+         ]
+        },
+        {
+         "id": "ke-ka-lailai-mele-oli",
+         "title": "Ke Kālailai Mele/Oli",
+         "outcomes": [
+          {
+           "code": "7-8.MO.2.1",
+           "text": "Hoʻohālikelike a kālailai ʻia hoʻi nā mele Hawaiʻi o nā ʻano like ʻole me ke kālele pū ʻana i nā loina kuʻuna o ke mele."
+          },
+          {
+           "code": "7-8.MO.2.2",
+           "text": "ʻIke ka haumāna i nā ʻano ʻokoʻa o ke mele/oli (mele wahi pana, mele inoa, kānaenae, ke kiʻina leo, a pēlā aku) a me nā hiʻohiʻona o ia mau ʻano mele."
+          },
+          {
+           "code": "7-8.MO.3.1",
+           "text": "Ho‘ohālikelike ‘ia ke mele i lohe ‘ia me ka mea i kākau ‘ia."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "ke-ka-kau",
+     "title": "Ke Kākau",
+     "topics": [
+      {
+       "id": "na-ano-ka-kau",
+       "title": "Nā ʻAno Kākau",
+       "subtopics": [
+        {
+         "id": "e-ka-kau-i-mo-olelo",
+         "title": "E kākau i moʻolelo:",
+         "outcomes": [
+          {
+           "code": "7.K.1.1.a",
+           "text": "e hōʻike ana i ke ʻano a me ka hana o ka mea nona ka moʻolelo"
+          },
+          {
+           "code": "7.K.1.1.e",
+           "text": "e hōʻike ana i mau haʻawina a nā hāmeʻe ʻokoʻa i aʻo mai ai"
+          },
+          {
+           "code": "7.K.1.1.i",
+           "text": "me ka hoʻohana ʻana i nā ʻano hiʻohiʻona moʻolelo like ʻole ma ke kaʻina kūpono"
+          },
+          {
+           "code": "7.K.1.1.o",
+           "text": "e kahe maikaʻi ana mai kinohi a i ka pau ʻana"
+          },
+          {
+           "code": "7.K.1.1.u",
+           "text": "me ka lōʻihi kūpono no kēia pae makahiki"
+          }
+         ]
+        },
+        {
+         "id": "na-ano-ka-kau",
+         "title": "Nā ʻAno Kākau",
+         "outcomes": [
+          {
+           "code": "7.K.2.1",
+           "text": "Kālailai ʻia nā manaʻo nui o kekahi kumuhana i mōakāka ka waiwai o nā haʻawina i aʻo mai ai."
+          }
+         ]
+        },
+        {
+         "id": "ho-onohonoho-a-wehewehe-mo-aka-ka-ia-ka-mana-o-m",
+         "title": "Hoʻonohonoho a wehewehe mōakāka ʻia ka manaʻo me ke kākoʻo piha ʻia ʻana ona",
+         "outcomes": [
+          {
+           "code": "7.K.3.1.a",
+           "text": "me ka ho‘ohana ‘ana i mau la‘ana mai kekahi mau kūmole ʻokoʻa mai"
+          },
+          {
+           "code": "7.K.3.1.e",
+           "text": "me ke kālailai ‘ana i ke ‘ano o kekahi mea i ‘imi noi‘i ‘ia (me ka ho‘ohālikelike ho‘i i nā ‘ao‘ao ‘ēko‘a)"
+          },
+          {
+           "code": "7.K.3.1.i",
+           "text": "me ka hoʻohana ʻana i ka ʻenehana e kākoʻo ai i kona manaʻo (he pōkāmana, he wikiō, a pēlā aku)"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "na-loina-mo-olelo",
+       "title": "Nā Loina Moʻolelo",
+       "subtopics": [
+        {
+         "id": "na-loina-mo-olelo",
+         "title": "Nā Loina Moʻolelo",
+         "outcomes": [
+          {
+           "code": "7.K.4.1",
+           "text": "E hoʻohālikelike i ka pilina o kekahi loina kuʻuna i nā hāmeʻe o nā moʻolelo ʻokoʻa a hōʻike i ka waiwai o ia mau loina kuʻuna i ia mau hāmeʻe."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "na-loina-ka-kau",
+       "title": "Nā Loina Kākau",
+       "subtopics": [
+        {
+         "id": "na-loina-ka-kau",
+         "title": "Nā Loina Kākau",
+         "outcomes": [
+          {
+           "code": "7.K.5.1",
+           "text": "Wehewehe ʻia ke kaona no ka hōʻike ʻana i kekahi manaʻo pālua o ka ʻōlelo hoʻokahi ma nā pōʻaiapili like ʻole."
+          },
+          {
+           "code": "7.K.6.1",
+           "text": "Pololei ka pela ʻana a me ka hoʻohana ʻia o nā kiko."
+          },
+          {
+           "code": "7.K.7.1",
+           "text": "‘Ohi‘ohi a ho‘onohonoho ‘ia ka ‘ikepili e pono ai ke kākau ‘oloke‘a i mea e kūkulu pono ‘ia ai kona mana‘o."
+          },
+          {
+           "code": "7.K.8.1",
+           "text": "Pa‘a nā analula like ‘ole i pololei ma ka pō‘aiapili kūpono e mōakāka ai ka manaʻo nui."
+          },
+          {
+           "code": "7.K.9.1",
+           "text": "‘Ike ‘ia ka ‘oko‘a o ke ‘ano kākau ma nā pō‘aiapili like ‘ole."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "ka-heluhelu",
+     "title": "Ka Heluhelu",
+     "topics": [
+      {
+       "id": "na-ano-heluhelu",
+       "title": "Nā ʻAno Heluhelu",
+       "subtopics": [
+        {
+         "id": "ku-kulu-ka-hauma-na-i-kona-mana-o",
+         "title": "Kūkulu ka haumāna i kona manaʻo",
+         "outcomes": [
+          {
+           "code": "7.H.1.1.a",
+           "text": "maonālaʻanamaikameaānai heluhelu ai. (3 a ʻoi laʻana)"
+          },
+          {
+           "code": "7.H.1.1.e",
+           "text": "ma o ke kālailai ʻana i ka manaʻo o ka mea kākau."
+          }
+         ]
+        },
+        {
+         "id": "na-ano-heluhelu",
+         "title": "Nā ʻAno Heluhelu",
+         "outcomes": [
+          {
+           "code": "7.H.2.1",
+           "text": "Kālailai ‘ia ke ka‘ina hana o ka mo‘olelo a me ka pilina o nā hanana i ka holo ‘ana o ka mo‘olelo."
+          },
+          {
+           "code": "7.H.3.1",
+           "text": "Kālailai a ho‘ohālikelike ‘ia nā hi‘ohi‘ona like ‘ole o ‘elua mo‘olelo ʻokoʻa."
+          },
+          {
+           "code": "7.H.4.1",
+           "text": "Noi‘i ʻia nā moʻolelo ʻokoʻa e ʻike ai i nā ʻano ʻokoʻa o nā moʻolelo Hawaiʻi."
+          },
+          {
+           "code": "7.H.5.1",
+           "text": "Unuhi ‘ia ka mana‘o nui o kekahi mo‘olelo."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "na-loina-heluhelu",
+       "title": "Nā Loina Heluhelu",
+       "subtopics": [
+        {
+         "id": "na-loina-heluhelu-1-of-2",
+         "title": "Nā Loina Heluhelu (1 of 2)",
+         "outcomes": [
+          {
+           "code": "7.H.6.1",
+           "text": "Kālailai ʻia ka ʻikena kuʻuna a me ke kuanaʻike Hawaiʻi."
+          },
+          {
+           "code": "7.H.7.1",
+           "text": "Kālailai ʻia nā loina kuʻuna o ka moʻolelo me ke kākoʻo ʻana i kona mana‘o."
+          },
+          {
+           "code": "7.H.8.1",
+           "text": "Ua paʻa nā pilinaʻōlelo a me nā huaʻōlelo e heluhelu ai i nā moʻolelo no ia pae me ka maopopo."
+          },
+          {
+           "code": "7.H.9.1",
+           "text": "Maopopo leʻa ka manaʻo o kekahi huaʻōlelo hou ma o ka pōʻaiapili moʻolelo/ māmalaʻōlelo a hoʻohana ʻia ia huaʻōlelo e ʻoi aʻe ai ka waihona huaʻōlelo a ka haumāna."
+          }
+         ]
+        },
+        {
+         "id": "na-loina-heluhelu-2-of-2",
+         "title": "Nā Loina Heluhelu (2 of 2)",
+         "outcomes": [
+          {
+           "code": "7.H.10.1",
+           "text": "Kālailai ʻia ka manaʻo nui o kekahi ʻŌlelo Noʻeau e hōʻike ai i ke kuanaʻike Hawaiʻi me ke kākoʻo."
+          },
+          {
+           "code": "7.H.11.1",
+           "text": "ʻIke ʻia hoʻi he nīnau ka nane e pane ai a wehewehe ʻia me ke kākoʻo."
+          },
+          {
+           "code": "7.H.12.1",
+           "text": "Maopopo leʻa nā manaʻo pālua o kekahi ʻōlelo a wehewehe ʻia hoʻi nā manaʻo ʻokoʻa o ia ʻōlelo hoʻokahi."
+          },
+          {
+           "code": "7.H.13.1",
+           "text": "Kālailai ‘ia he mau kūmole like ‘ole no ka wae ‘ana i ‘ike i pili i kekahi kumuhana kiko‘ī."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "build": {
+  "builtAt": "2026-10-14T16:20:41.216Z",
+  "model": "none",
+  "usd": 0,
+  "expectedCodes": 273,
+  "coverage": 1,
+  "missingCodes": [],
+  "counts": {
+   "grades": 8,
+   "units": 32,
+   "topics": 60,
+   "subtopics": 123,
+   "outcomes": 355
+  },
+  "warnings": []
+ }
+}

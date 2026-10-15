@@ -45,6 +45,25 @@ export interface TimedOp {
   untilSentence?: number;
 }
 
+export type SyncGateOptions = {
+  /** Require every meaningful operation to carry a sentence binding. */
+  requireSentenceBinding?: boolean;
+  /** Minimum share of narration sentences that should introduce a visual operation. */
+  minCoverage?: number;
+  /** Minimum share of operations that should be sentence-bound. */
+  minBoundRatio?: number;
+};
+
+export type SyncGateResult = {
+  passed: boolean;
+  legacy: boolean;
+  coverage: number;
+  boundRatio: number;
+  sentencesCovered: number;
+  sentenceCount: number;
+  issues: string[];
+};
+
 /**
  * Should this op be visible right now?
  *
@@ -118,5 +137,53 @@ export function syncCoverage(ops: TimedOp[], sentenceCount: number): {
     unbound: ops.length - bound,
     sentencesCovered: covered.size,
     coverage: sentenceCount > 0 ? covered.size / sentenceCount : 0,
+  };
+}
+
+/**
+ * Release gate for narration/visual synchronisation.
+ *
+ * A legacy board may still use only `at` fractions. It is reported as legacy and remains playable
+ * during migration, but a new board with a required sync policy cannot pass until its meaningful
+ * operations are bound to the sentence that introduces them.
+ */
+export function evaluateSyncGate(
+  ops: TimedOp[],
+  sentenceCount: number,
+  options: SyncGateOptions = {},
+): SyncGateResult {
+  const minCoverage = options.minCoverage ?? 0.75;
+  const minBoundRatio = options.minBoundRatio ?? 0.8;
+  const count = Math.max(0, Math.floor(sentenceCount));
+  const meaningful = ops.filter((op) => op && (typeof op.atSentence === "number" || typeof op.at === "number"));
+  const bound = meaningful.filter((op) => typeof op.atSentence === "number");
+  const invalid = bound.filter((op) => !Number.isInteger(op.atSentence) || (op.atSentence as number) < 0 || (op.atSentence as number) >= Math.max(1, count));
+  const covered = new Set(bound.map((op) => op.atSentence as number));
+  const coverage = count > 0 ? covered.size / count : 1;
+  const boundRatio = meaningful.length > 0 ? bound.length / meaningful.length : 1;
+  const legacy = meaningful.length > 0 && bound.length === 0;
+  const issues: string[] = [];
+
+  if (invalid.length) issues.push(`${invalid.length} visual operation(s) reference an invalid narration sentence`);
+  if (options.requireSentenceBinding && meaningful.length > 0 && boundRatio < 1) {
+    issues.push(`${meaningful.length - bound.length} visual operation(s) lack an atSentence binding`);
+  }
+  if (meaningful.length > 0 && boundRatio < minBoundRatio && !legacy) {
+    issues.push(`only ${Math.round(boundRatio * 100)}% of visual operations are sentence-bound (minimum ${Math.round(minBoundRatio * 100)}%)`);
+  }
+  // Legacy boards remain playable during migration. Their fractional timing is intentionally
+  // reported through `legacy`, but should not fail the non-strict compatibility path.
+  if (!legacy && count > 1 && meaningful.length > 0 && coverage < Math.min(minCoverage, 1)) {
+    issues.push(`visuals cover ${Math.round(coverage * 100)}% of narration sentences (minimum ${Math.round(minCoverage * 100)}%)`);
+  }
+
+  return {
+    passed: issues.length === 0 && (!options.requireSentenceBinding || !legacy),
+    legacy,
+    coverage,
+    boundRatio,
+    sentencesCovered: covered.size,
+    sentenceCount: count,
+    issues,
   };
 }

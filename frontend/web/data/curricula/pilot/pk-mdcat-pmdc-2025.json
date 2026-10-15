@@ -1,0 +1,2896 @@
+{
+  "courseId": "pk-mdcat-pmdc-2025",
+  "model": "gpt-5.6-luna",
+  "builtAt": "2026-10-14T14:57:27.116Z",
+  "spentUsd": 0.0435,
+  "lessons": [
+    {
+      "key": "all/biology-1-acellular-life/viruses/viruses-and-aids",
+      "unit": "Biology: 1 Acellular Life",
+      "topic": "Viruses",
+      "evidencePages": [
+        5
+      ],
+      "modelGaps": [],
+      "attempts": 1,
+      "usd": 0.00207,
+      "ms": 16837,
+      "spec": {
+        "prerequisites": [
+          "Basic understanding that viruses are infectious agents that reproduce only inside host cells",
+          "Basic knowledge of cells, DNA, RNA and infectious diseases",
+          "Understanding that diseases can spread between people through specific transmission routes"
+        ],
+        "requiredTerms": [
+          "virus",
+          "acellular",
+          "capsid",
+          "envelope",
+          "DNA",
+          "RNA",
+          "single-stranded",
+          "double-stranded",
+          "host",
+          "bacteriophage",
+          "HIV",
+          "AIDS",
+          "immune system",
+          "transmission",
+          "symptom",
+          "sexual transmission",
+          "blood transmission",
+          "mother-to-child transmission"
+        ],
+        "requiredMethods": [
+          "Classifying viruses using more than one criterion: structure, nucleic-acid strand type, disease and host",
+          "Separating the cause of a disease from its symptoms and modes of transmission",
+          "Using a classification table to sort examples"
+        ],
+        "commandWords": [
+          "classify",
+          "sort",
+          "identify",
+          "name"
+        ],
+        "depth": "Students should use the stated classification vocabulary and recognise representative examples of viruses, without detailed molecular replication or advanced immunology. AIDS and HIV should be treated at the level of cause, common symptoms and transmission routes; no quantitative or biochemical treatment is required.",
+        "misconceptions": [
+          "Viruses are not cellular organisms; they are acellular infectious agents.",
+          "HIV is the virus, whereas AIDS is the disease syndrome that can result from HIV infection.",
+          "HIV is not spread by casual contact such as shaking hands, hugging, sharing food or using the same toilet.",
+          "AIDS is not caused by bacteria; it is caused by HIV.",
+          "Not all viruses have an envelope, and not all viruses have the same type or number of nucleic-acid strands.",
+          "A host is the organism in which a virus infects and reproduces; a disease name is not a host category."
+        ],
+        "outOfScope": [
+          "Detailed stages of viral replication",
+          "Detailed HIV structure, reverse transcription and molecular genetics",
+          "CD4-cell counts, viral load, antiretroviral drug mechanisms and AIDS treatment",
+          "Detailed immune-system pathways",
+          "Detailed classification into viral families or species",
+          "Epidemiological statistics and regional prevalence",
+          "Other sexually transmitted infections except where needed to distinguish HIV transmission"
+        ],
+        "boards": [
+          {
+            "title": "Sorting Viruses by Their Features",
+            "objective": "Classify viruses according to structure, nucleic-acid strand type, disease caused and host.",
+            "outcomeRefs": [
+              1
+            ],
+            "keyPoints": [
+              "Viruses are acellular infectious agents made of genetic material surrounded by a protein coat called a capsid; some also have an outer envelope.",
+              "By structure, viruses may be described as naked viruses, which have a capsid without an outer envelope, or enveloped viruses, which have a capsid and an outer envelope.",
+              "By strand type, viral genetic material may be DNA or RNA, and may be single-stranded or double-stranded.",
+              "Examples of viruses classified by nucleic acid include HIV as an enveloped single-stranded RNA virus, influenza virus as an enveloped single-stranded RNA virus, adenovirus as a non-enveloped double-stranded DNA virus, and bacteriophages as viruses that infect bacteria.",
+              "Viruses can be sorted by the disease they cause, for example HIV causes AIDS, influenza virus causes influenza, and hepatitis B virus causes hepatitis B.",
+              "Viruses can be sorted by host: animal viruses infect animals including humans, plant viruses infect plants, and bacteriophages infect bacteria.",
+              "A single virus can be classified using all four criteria: structure, strand type, disease and host."
+            ],
+            "workedExample": "Sort the following descriptions into the four requested categories: (A) HIV, (B) a bacteriophage. Answer: HIV — structure: enveloped; strand type: single-stranded RNA; disease: AIDS; host: humans. Bacteriophage — structure: capsid, often with a head-and-tail form and no lipid envelope at this level; strand type: may be DNA or RNA depending on the phage, so the strand type cannot be assigned without a named example; disease: infects bacteria rather than causing a human disease; host: bacteria. The classification must use only information supplied or known for the named virus.",
+            "evidencePages": [
+              5
+            ]
+          },
+          {
+            "title": "HIV Infection and AIDS",
+            "objective": "Name the cause, symptoms and modes of transmission of HIV infection and AIDS.",
+            "outcomeRefs": [
+              2
+            ],
+            "keyPoints": [
+              "HIV means human immunodeficiency virus; it is the virus that causes HIV infection and may lead to AIDS.",
+              "AIDS means acquired immunodeficiency syndrome. It occurs when HIV has severely weakened the immune system, making the person vulnerable to opportunistic infections and some cancers.",
+              "Possible symptoms of HIV infection or advanced disease include fever, tiredness, swollen lymph nodes, weight loss, night sweats, recurrent infections and diarrhoea; early HIV infection may also have no obvious symptoms.",
+              "HIV is transmitted through infected blood, semen, vaginal fluids and breast milk.",
+              "Important routes of spread include unprotected sexual contact, sharing contaminated needles or other injecting equipment, transfusion of infected blood, and transmission from an infected mother to her baby during pregnancy, birth or breastfeeding.",
+              "HIV is not spread by ordinary casual contact, coughing, sharing food, hugging or mosquito bites.",
+              "The cause, symptoms and spread must be stated separately: HIV is the cause, symptoms are effects experienced by the infected person, and transmission describes how the virus moves between hosts."
+            ],
+            "workedExample": "Question: A person asks how HIV infection can spread and whether a handshake is a route of transmission. Answer: HIV can spread through unprotected sexual contact, infected blood such as through shared contaminated needles or unsafe blood transfusion, and from an infected mother to her baby during pregnancy, birth or breastfeeding. A handshake is not a route of HIV transmission because ordinary casual contact does not transfer the infected body fluids required for transmission. Symptoms may include fever, tiredness, swollen lymph nodes, weight loss, night sweats and recurrent infections, although early infection may have no obvious symptoms.",
+            "evidencePages": [
+              5
+            ]
+          }
+        ],
+        "checkpoint": [
+          {
+            "question": "Classify HIV by structure, strand type, disease and host.",
+            "answer": "HIV is an enveloped virus containing single-stranded RNA; it causes AIDS and infects humans.",
+            "outcomeRef": 1
+          },
+          {
+            "question": "Name the cause of AIDS and give two symptoms and two modes of transmission of HIV infection.",
+            "answer": "AIDS is caused by HIV. Symptoms may include fever, tiredness, swollen lymph nodes, weight loss or recurrent infections. Transmission may occur through unprotected sexual contact, infected blood or contaminated needles, and from an infected mother to her baby during pregnancy, birth or breastfeeding.",
+            "outcomeRef": 2
+          }
+        ],
+        "courseLabel": "PMDC MDCAT Biology, Chemistry, Physics, English, Logical Reasoning",
+        "level": "MDCAT",
+        "lessonTitle": "Viruses and AIDS",
+        "outcomes": [
+          {
+            "code": "1.1",
+            "text": "Sort viruses by structure, strand type, disease and host."
+          },
+          {
+            "code": "1.2",
+            "text": "Name the cause, symptoms and spread of AIDS and HIV infection."
+          }
+        ]
+      }
+    },
+    {
+      "key": "all/biology-3-biological-molecules/nucleic-acids-and-conjugated-molecules/rna-and-conjugated-molecules",
+      "unit": "Biology: 3 Biological Molecules",
+      "topic": "Nucleic acids and conjugated molecules",
+      "evidencePages": [
+        5
+      ],
+      "modelGaps": [],
+      "attempts": 1,
+      "usd": 0.00175,
+      "ms": 14306,
+      "spec": {
+        "prerequisites": [
+          "Basic knowledge of cells and cell membranes",
+          "Basic understanding that biological molecules have specific structures and functions",
+          "Basic knowledge of nucleotides and carbohydrates, lipids, and proteins"
+        ],
+        "requiredTerms": [
+          "RNA",
+          "ribonucleic acid",
+          "nucleotide",
+          "ribose",
+          "phosphate group",
+          "nitrogenous base",
+          "adenine",
+          "uracil",
+          "guanine",
+          "cytosine",
+          "single-stranded",
+          "messenger RNA (mRNA)",
+          "transfer RNA (tRNA)",
+          "ribosomal RNA (rRNA)",
+          "glycolipid",
+          "glycoprotein",
+          "carbohydrate chain",
+          "cell membrane",
+          "cell recognition",
+          "receptor"
+        ],
+        "requiredMethods": [
+          "Identify and label the components of an RNA nucleotide",
+          "Describe the structure-function relationship of RNA",
+          "Distinguish a glycolipid from a glycoprotein by identifying the molecule attached to the carbohydrate chain",
+          "Relate membrane carbohydrate components to cell recognition and receptor functions"
+        ],
+        "commandWords": [
+          "Give",
+          "Discuss"
+        ],
+        "depth": "Students should describe RNA as a ribose-containing, usually single-stranded nucleic acid made of nucleotides, identify its bases and major types, and link its structure to its roles in protein synthesis. They should explain that glycolipids and glycoproteins contain carbohydrate components attached to lipids or proteins and describe their membrane roles without requiring detailed molecular structures or advanced gene-expression mechanisms.",
+        "misconceptions": [
+          "RNA contains deoxyribose rather than ribose; RNA contains ribose.",
+          "RNA uses thymine; RNA uses uracil instead of thymine.",
+          "All RNA is double-stranded; RNA is usually single-stranded at this level.",
+          "mRNA, tRNA, and rRNA are interchangeable; they have different roles in protein synthesis.",
+          "A glycolipid is a carbohydrate attached to a protein; it is a carbohydrate attached to a lipid.",
+          "A glycoprotein is simply a free protein in the cytoplasm; it is a protein with carbohydrate attached, commonly exposed on the cell surface.",
+          "Cell-surface carbohydrates are mainly energy stores; in this context they are important in cell recognition and interactions.",
+          "Glycolipids and glycoproteins are found only inside the cell rather than as components of cell membranes."
+        ],
+        "outOfScope": [
+          "Detailed RNA secondary and tertiary structures",
+          "RNA replication and detailed transcription mechanisms",
+          "Detailed codon tables, translation stages, and post-transcriptional RNA processing",
+          "The chemical structures and bonding angles of every RNA base",
+          "Detailed classifications of membrane carbohydrates beyond glycolipids and glycoproteins",
+          "Advanced immunology, glycosylation pathways, and clinical applications"
+        ],
+        "boards": [
+          {
+            "title": "RNA: structure and function",
+            "objective": "Describe the structure of RNA and explain how its structure enables its roles in protein synthesis.",
+            "outcomeRefs": [
+              1
+            ],
+            "keyPoints": [
+              "RNA is ribonucleic acid, a nucleic acid made from nucleotide units.",
+              "Each RNA nucleotide contains a ribose sugar, a phosphate group, and one nitrogenous base.",
+              "The bases in RNA are adenine (A), uracil (U), guanine (G), and cytosine (C). RNA contains uracil instead of thymine.",
+              "RNA is usually a single polynucleotide strand. The nucleotide units are joined by phosphodiester bonds in the sugar-phosphate backbone.",
+              "The principal types are messenger RNA (mRNA), transfer RNA (tRNA), and ribosomal RNA (rRNA).",
+              "mRNA carries the genetic code from DNA to a ribosome; tRNA carries specific amino acids to the ribosome; rRNA forms part of the ribosome and helps in protein synthesis.",
+              "RNA can be found in the nucleus and cytoplasm, including in ribosomes."
+            ],
+            "workedExample": "Construct a labelled description of an RNA nucleotide and state the function of each part. Answer: Draw or describe a phosphate group bonded to a ribose sugar, with the ribose bonded to one nitrogenous base such as uracil. The phosphate and ribose form part of the RNA backbone, while the sequence of bases stores or conveys genetic information. Linking many such nucleotides forms a single RNA strand; for example, an mRNA strand carries information used during protein synthesis.",
+            "evidencePages": [
+              5
+            ]
+          },
+          {
+            "title": "Glycolipids and glycoproteins",
+            "objective": "Discuss the structures and functions of glycolipids and glycoproteins in cell membranes.",
+            "outcomeRefs": [
+              2
+            ],
+            "keyPoints": [
+              "A glycolipid is a lipid molecule with a carbohydrate chain attached.",
+              "A glycoprotein is a protein molecule with a carbohydrate chain attached.",
+              "Glycolipids and glycoproteins are components of the cell-surface membrane, with carbohydrate portions exposed at the cell surface.",
+              "Their carbohydrate chains contribute to cell recognition and communication between cells.",
+              "They can act as cell-surface markers, helping cells distinguish self from non-self or one cell type from another.",
+              "Some glycoproteins function as membrane receptors: the extracellular carbohydrate/protein-containing structure can interact with particular signalling molecules.",
+              "The carbohydrate component of a glycolipid is attached to a lipid, whereas the carbohydrate component of a glycoprotein is attached to a protein; this distinction must be used when identifying them."
+            ],
+            "workedExample": "Identify the membrane molecule described in each case. (a) A carbohydrate chain is covalently attached to a lipid. (b) A carbohydrate chain is attached to a membrane protein that can bind a signalling molecule. Answer: (a) glycolipid, because the carbohydrate is attached to a lipid. (b) glycoprotein, because the carbohydrate is attached to a protein; the protein may act as a receptor involved in cell signalling.",
+            "evidencePages": [
+              5
+            ]
+          }
+        ],
+        "checkpoint": [
+          {
+            "question": "Name the sugar and the nitrogenous base found in RNA but not in DNA at this level.",
+            "answer": "RNA contains ribose sugar and uracil; uracil replaces thymine in RNA.",
+            "outcomeRef": 1
+          },
+          {
+            "question": "A membrane molecule has a carbohydrate chain attached to a lipid. What is it called, and what is one function of its carbohydrate chain?",
+            "answer": "It is a glycolipid. Its carbohydrate chain can contribute to cell recognition or cell-surface interactions.",
+            "outcomeRef": 2
+          }
+        ],
+        "courseLabel": "PMDC MDCAT Biology, Chemistry, Physics, English, Logical Reasoning",
+        "level": "MDCAT",
+        "lessonTitle": "RNA and conjugated molecules",
+        "outcomes": [
+          {
+            "code": "3.7",
+            "text": "Give the structure and function of RNA."
+          },
+          {
+            "code": "3.8",
+            "text": "Discuss glycolipids and glycoproteins."
+          }
+        ]
+      }
+    },
+    {
+      "key": "all/biology-5-coordination-and-control/reflexes-and-brain/the-brain",
+      "unit": "Biology: 5 Coordination and Control",
+      "topic": "Reflexes and brain",
+      "evidencePages": [
+        6
+      ],
+      "modelGaps": [],
+      "attempts": 1,
+      "usd": 0.00241,
+      "ms": 17651,
+      "spec": {
+        "prerequisites": [
+          "Basic structure and function of a neuron",
+          "The central nervous system consists of the brain and spinal cord",
+          "Nervous impulses carry information between receptors, the central nervous system and effectors",
+          "Basic understanding of voluntary and involuntary actions"
+        ],
+        "requiredTerms": [
+          "brain",
+          "central nervous system",
+          "cerebrum",
+          "cerebral hemispheres",
+          "cerebral cortex",
+          "corpus callosum",
+          "thalamus",
+          "hypothalamus",
+          "midbrain",
+          "pons",
+          "medulla oblongata",
+          "brainstem",
+          "cerebellum",
+          "forebrain",
+          "midbrain",
+          "hindbrain",
+          "sensory information",
+          "motor response",
+          "homeostasis",
+          "reflex action",
+          "balance",
+          "coordination"
+        ],
+        "requiredMethods": [
+          "Identify and label the main brain regions on a simple diagram",
+          "Match each brain part with its principal function",
+          "Distinguish the broad divisions of the brain from their component parts"
+        ],
+        "commandWords": [
+          "discuss",
+          "describe"
+        ],
+        "depth": "Students should know the main anatomical divisions and the principal functions of the major brain parts at a board-examination level. Use basic biological vocabulary and simple labelled diagrams; do not require microscopic anatomy, detailed neural pathways or advanced neurophysiology.",
+        "misconceptions": [
+          "The cerebellum is responsible for thinking and intelligence; these functions are mainly associated with the cerebrum.",
+          "The spinal cord is part of the brain; it is part of the central nervous system but is separate from the brain.",
+          "The medulla controls all movement; it mainly controls involuntary activities, while voluntary movement is largely coordinated by the cerebrum and cerebellum.",
+          "The hypothalamus and pituitary gland are the same structure; the hypothalamus regulates the pituitary but is a separate brain region.",
+          "The brainstem consists only of the medulla; at this level it is treated as including the midbrain, pons and medulla oblongata.",
+          "The two cerebral hemispheres have no communication; they are connected mainly by the corpus callosum.",
+          "All reflex actions are controlled by the brain; many simple reflexes are integrated in the spinal cord, although the brain may receive information about them."
+        ],
+        "outOfScope": [
+          "Detailed lobes of the cerebral cortex and their specialised cortical maps",
+          "Names and functions of individual cranial nerves",
+          "Detailed ascending and descending neural tracts",
+          "Synaptic physiology, neurotransmitter chemistry and action potentials",
+          "Detailed anatomy of the ventricular system and cerebrospinal-fluid circulation",
+          "Diseases, lesions and clinical neurological diagnosis",
+          "Advanced endocrine control involving detailed hypothalamic releasing hormones"
+        ],
+        "boards": [
+          {
+            "title": "Brain divisions and main structures",
+            "objective": "Discuss the principal divisions of the brain and identify the major structures belonging to each division.",
+            "outcomeRefs": [
+              1
+            ],
+            "keyPoints": [
+              "The brain is the control centre of the central nervous system and is protected by the skull.",
+              "The major anatomical divisions are the forebrain, midbrain and hindbrain.",
+              "The forebrain includes the cerebrum, thalamus and hypothalamus.",
+              "The midbrain forms part of the brainstem and connects the forebrain with the hindbrain.",
+              "The hindbrain includes the pons, medulla oblongata and cerebellum.",
+              "The brainstem consists of the midbrain, pons and medulla oblongata and connects the brain with the spinal cord.",
+              "The cerebrum is divided into right and left cerebral hemispheres, which are connected by the corpus callosum.",
+              "A simple brain diagram should show the cerebrum, cerebellum, brainstem, pons, medulla oblongata, thalamus and hypothalamus."
+            ],
+            "workedExample": "Label a simplified lateral brain diagram described from top to bottom: (A) the large upper mass, (B) the smaller folded region at the back, (C) the stalk connecting the brain to the spinal cord, and (D) the lower part of that stalk. Answer: A = cerebrum, B = cerebellum, C = brainstem, D = medulla oblongata. The pons is the bulging part of the brainstem above the medulla; the thalamus and hypothalamus lie deep within the forebrain.",
+            "evidencePages": []
+          },
+          {
+            "title": "Functions of the forebrain",
+            "objective": "Describe the functions of the cerebrum, thalamus and hypothalamus.",
+            "outcomeRefs": [
+              2
+            ],
+            "keyPoints": [
+              "The cerebrum receives and interprets sensory information, including information related to sight, hearing, touch, taste and smell.",
+              "The cerebrum is involved in conscious thought, intelligence, memory, learning, language, emotions and voluntary movement.",
+              "The right and left cerebral hemispheres generally control the opposite sides of the body and communicate through the corpus callosum.",
+              "The thalamus acts mainly as a relay centre for sensory information travelling to the cerebrum, except for the sense of smell.",
+              "The hypothalamus helps maintain homeostasis by regulating body temperature, hunger, thirst, water balance and sleep-related functions.",
+              "The hypothalamus links nervous control with hormonal control through its regulation of the pituitary gland.",
+              "The hypothalamus also contributes to emotional and autonomic responses."
+            ],
+            "workedExample": "",
+            "evidencePages": []
+          },
+          {
+            "title": "Functions of the hindbrain and brainstem",
+            "objective": "Describe the functions of the cerebellum, pons, medulla oblongata and midbrain.",
+            "outcomeRefs": [
+              2
+            ],
+            "keyPoints": [
+              "The cerebellum coordinates voluntary muscular activity and helps maintain posture, balance and equilibrium.",
+              "The medulla oblongata controls important involuntary activities such as breathing, heartbeat, blood-vessel diameter and swallowing.",
+              "The pons acts as a bridge between parts of the brain and helps relay information; it also contributes to regulation of breathing.",
+              "The midbrain is involved in the processing of visual and auditory reflexes and helps relay nerve impulses.",
+              "The brainstem contains pathways carrying impulses between the brain and spinal cord and contains centres involved in vital involuntary functions.",
+              "The cerebrum initiates conscious voluntary actions, while the cerebellum coordinates their precision and timing."
+            ],
+            "workedExample": "",
+            "evidencePages": []
+          },
+          {
+            "title": "Integrated identification and function",
+            "objective": "Discuss the relationship between the main brain parts and describe how their functions contribute to coordinated control of the body.",
+            "outcomeRefs": [
+              1,
+              2
+            ],
+            "keyPoints": [
+              "The cerebrum performs higher conscious functions and initiates many voluntary responses.",
+              "The thalamus relays most sensory information to the cerebrum.",
+              "The hypothalamus maintains internal conditions and links the nervous and endocrine systems.",
+              "The cerebellum coordinates movement and maintains balance and posture.",
+              "The brainstem, including the midbrain, pons and medulla oblongata, connects the brain with the spinal cord and supports reflex and involuntary functions.",
+              "Brain parts work together rather than acting as completely independent organs: for example, sensory information may be relayed by the thalamus, interpreted by the cerebrum, coordinated by the cerebellum and accompanied by autonomic responses controlled through the brainstem and hypothalamus."
+            ],
+            "workedExample": "A person sees an obstacle and moves around it. The visual information is interpreted by the cerebrum; the cerebrum plans and initiates the voluntary movement; the cerebellum coordinates the movement and balance; and the brainstem continues to regulate involuntary functions such as breathing and heartbeat. This example shows the coordinated roles of several brain parts.",
+            "evidencePages": []
+          }
+        ],
+        "checkpoint": [
+          {
+            "question": "Name the three broad divisions of the brain and give one major structure found in each.",
+            "answer": "The three broad divisions are the forebrain, midbrain and hindbrain. For example, the forebrain contains the cerebrum, the midbrain is part of the brainstem, and the hindbrain contains the cerebellum.",
+            "outcomeRef": 1
+          },
+          {
+            "question": "Which brain part coordinates voluntary muscular movement and maintains balance, and which part controls involuntary breathing and heartbeat?",
+            "answer": "The cerebellum coordinates voluntary muscular movement and maintains balance; the medulla oblongata controls involuntary breathing and heartbeat.",
+            "outcomeRef": 2
+          }
+        ],
+        "courseLabel": "PMDC MDCAT Biology, Chemistry, Physics, English, Logical Reasoning",
+        "level": "MDCAT",
+        "lessonTitle": "The brain",
+        "outcomes": [
+          {
+            "code": "5.6",
+            "text": "Discuss the main parts of the brain."
+          },
+          {
+            "code": "5.7",
+            "text": "Describe the function of each brain part."
+          }
+        ]
+      }
+    },
+    {
+      "key": "all/biology-9-support-and-movement/skeleton-and-muscles/skeleton",
+      "unit": "Biology: 9 Support and Movement",
+      "topic": "Skeleton and muscles",
+      "evidencePages": [
+        6
+      ],
+      "modelGaps": [],
+      "attempts": 1,
+      "usd": 0.00117,
+      "ms": 10462,
+      "spec": {
+        "prerequisites": [
+          "Basic understanding that the skeleton supports and protects the body.",
+          "Basic knowledge of cells, tissues, organs and movement."
+        ],
+        "requiredTerms": [
+          "cartilage",
+          "muscle",
+          "bone",
+          "skeletal tissue",
+          "connective tissue",
+          "support",
+          "protection",
+          "movement",
+          "flexibility",
+          "rigid",
+          "skeletal muscle",
+          "smooth muscle",
+          "cardiac muscle",
+          "contractile"
+        ],
+        "requiredMethods": [
+          "Identify and describe a tissue using its structure and function.",
+          "Compare cartilage and bone by their characteristics and functions."
+        ],
+        "commandWords": [
+          "describe",
+          "explain"
+        ],
+        "depth": "Students should know the basic structural characteristics and main functions of cartilage, muscle and bone. Explanations should use clear biological vocabulary and simple structure–function links, without requiring microscopic detail or biochemical mechanisms.",
+        "misconceptions": [
+          "Cartilage is completely soft and has no supporting function.",
+          "Bone is a dead, non-living material.",
+          "All muscle is under conscious control.",
+          "Cartilage and bone have the same flexibility and strength.",
+          "Muscles push bones to produce movement; in fact, muscles contract and pull on bones.",
+          "Bone only provides support and has no protective or movement role."
+        ],
+        "outOfScope": [
+          "Detailed microscopic histology of cartilage, muscle or bone.",
+          "Names and functions of individual bones and joints.",
+          "Detailed anatomy of muscle fibres, sarcomeres or the sliding-filament mechanism.",
+          "Bone marrow, blood-cell formation and mineral homeostasis.",
+          "Detailed classification of cartilage types.",
+          "Diseases and injuries of the skeletal system."
+        ],
+        "boards": [
+          {
+            "title": "The three supporting tissues",
+            "objective": "Describe the basic characteristics and roles of cartilage, muscle and bone.",
+            "outcomeRefs": [
+              1
+            ],
+            "keyPoints": [
+              "Cartilage is a firm but flexible connective tissue that provides support and cushioning.",
+              "Muscle is contractile tissue; it shortens or develops tension to produce movement.",
+              "Skeletal muscle is attached to bones and usually produces voluntary movement.",
+              "Smooth muscle is found in the walls of internal organs and produces involuntary movement.",
+              "Cardiac muscle is found in the heart and contracts rhythmically and involuntarily.",
+              "Bone is a hard, strong connective tissue forming the skeleton.",
+              "Bones support the body, protect organs and provide attachment points for muscles, allowing movement.",
+              "Cartilage and bone are supporting connective tissues, whereas muscle produces movement by contraction."
+            ],
+            "workedExample": "",
+            "evidencePages": [
+              6
+            ]
+          },
+          {
+            "title": "Cartilage and bone: structure and function",
+            "objective": "Explain how the characteristics of cartilage and bone enable them to perform their functions.",
+            "outcomeRefs": [
+              2
+            ],
+            "keyPoints": [
+              "Cartilage is strong but flexible and has a smooth surface that reduces friction at joints.",
+              "Cartilage supports structures such as the nose and external ear and helps maintain the shape of body parts.",
+              "Cartilage cushions the ends of bones at joints and helps absorb shocks.",
+              "Bone is hard and rigid because its matrix contains mineral salts, especially calcium compounds.",
+              "Bone provides strong support for the body and protects delicate organs such as the brain, spinal cord and thoracic organs.",
+              "Bones act as levers and provide attachment sites for muscles; muscle contraction therefore produces movement at joints.",
+              "The flexibility of cartilage allows bending and cushioning, while the rigidity of bone allows strong support and protection."
+            ],
+            "workedExample": "",
+            "evidencePages": [
+              6
+            ]
+          }
+        ],
+        "checkpoint": [
+          {
+            "question": "Name the tissue that contracts to produce movement and state one type of muscle.",
+            "answer": "Muscle; one type is skeletal muscle. Other correct types are smooth muscle and cardiac muscle.",
+            "outcomeRef": 1
+          },
+          {
+            "question": "Explain why cartilage is suitable for covering the ends of bones at a joint.",
+            "answer": "Cartilage is firm but flexible, and its smooth surface reduces friction and cushions the joint during movement.",
+            "outcomeRef": 2
+          }
+        ],
+        "courseLabel": "PMDC MDCAT Biology, Chemistry, Physics, English, Logical Reasoning",
+        "level": "MDCAT",
+        "lessonTitle": "Skeleton",
+        "outcomes": [
+          {
+            "code": "9.1",
+            "text": "Describe cartilage, muscle and bone."
+          },
+          {
+            "code": "9.2",
+            "text": "Explain the characteristics and functions of cartilage and bone."
+          }
+        ]
+      }
+    },
+    {
+      "key": "all/biology-11-circulation/heart-and-vessels/vessels-and-lymph",
+      "unit": "Biology: 11 Circulation",
+      "topic": "Heart and vessels",
+      "evidencePages": [
+        7
+      ],
+      "modelGaps": [],
+      "attempts": 1,
+      "usd": 0.00163,
+      "ms": 12555,
+      "spec": {
+        "prerequisites": [
+          "Basic structure of the heart and circulation",
+          "Blood as a transport tissue",
+          "Tissues, organs and body fluids",
+          "The meaning of pressure, exchange and immunity"
+        ],
+        "requiredTerms": [
+          "artery",
+          "vein",
+          "capillary",
+          "lumen",
+          "thick muscular wall",
+          "elastic wall",
+          "valves",
+          "blood pressure",
+          "tissue fluid",
+          "lymph",
+          "lymphatic capillary",
+          "lymphatic vessel",
+          "lymph node",
+          "thoracic duct",
+          "right lymphatic duct",
+          "immune defence"
+        ],
+        "requiredMethods": [
+          "Compare structures and functions in a table",
+          "Trace the movement of blood through arteries, capillaries and veins",
+          "Trace tissue fluid into lymphatic capillaries and back into the bloodstream"
+        ],
+        "commandWords": [
+          "List",
+          "Describe"
+        ],
+        "depth": "Students should know the defining structural differences and major functions of arteries, veins and capillaries, and be able to describe the main components and roles of the lymphatic system. Use standard biological vocabulary and labelled-system descriptions; no quantitative haemodynamics or detailed immunology is required.",
+        "misconceptions": [
+          "All arteries carry oxygenated blood; the pulmonary artery carries deoxygenated blood.",
+          "All veins carry deoxygenated blood; the pulmonary veins carry oxygenated blood.",
+          "Arteries and veins are distinguished only by the oxygen content of their blood; they are primarily distinguished by the direction of blood flow relative to the heart and their structure.",
+          "Capillaries have thick muscular walls; their walls are actually one cell thick to allow exchange.",
+          "Veins pump blood back to the heart; veins return blood at relatively low pressure and use valves and skeletal-muscle contractions to help prevent backflow.",
+          "Lymph is a separate form of blood; lymph is tissue fluid that has entered lymphatic vessels.",
+          "Lymph nodes pump lymph; they filter lymph and contain immune cells.",
+          "The lymphatic system is only involved in immunity; it also returns excess tissue fluid to the blood and transports absorbed fats from the small intestine."
+        ],
+        "outOfScope": [
+          "Detailed histology of vessel wall layers",
+          "The cardiac cycle and quantitative blood-pressure calculations",
+          "Detailed mechanisms of capillary fluid exchange and Starling forces",
+          "Detailed cellular and molecular immunology",
+          "Names and functions of all individual lymph nodes",
+          "Detailed lymphatic drainage of every body region",
+          "Diseases of blood vessels or the lymphatic system"
+        ],
+        "boards": [
+          {
+            "title": "Comparing blood vessels",
+            "objective": "List the structural differences and functions of arteries, veins and capillaries.",
+            "outcomeRefs": [
+              1
+            ],
+            "keyPoints": [
+              "Arteries carry blood away from the heart, usually at high pressure.",
+              "Arteries have thick, strong, elastic and muscular walls and a relatively narrow lumen; their walls withstand and maintain high pressure.",
+              "Veins carry blood towards the heart, usually at lower pressure.",
+              "Veins have thinner walls, less muscle and elasticity, and a wider lumen than arteries.",
+              "Veins contain valves that prevent the backflow of blood; skeletal-muscle contractions also assist venous return.",
+              "Capillaries connect the smallest arteries, or arterioles, to the smallest veins, or venules, and form networks close to body cells.",
+              "Capillary walls are one cell thick and have a very narrow lumen, allowing a short diffusion distance.",
+              "Capillaries are the main sites of exchange of oxygen, carbon dioxide, nutrients and wastes between blood and tissues.",
+              "Arteries and veins generally have three tissue layers, whereas capillaries consist mainly of a single endothelial layer.",
+              "The pulmonary artery carries deoxygenated blood and the pulmonary veins carry oxygenated blood, so vessel type is defined by direction of flow, not oxygen content."
+            ],
+            "workedExample": "",
+            "evidencePages": [
+              7
+            ]
+          },
+          {
+            "title": "The lymphatic system",
+            "objective": "Describe the main structures and functions of the lymphatic system.",
+            "outcomeRefs": [
+              2
+            ],
+            "keyPoints": [
+              "Some blood plasma leaves capillaries to form tissue fluid around body cells.",
+              "Most tissue fluid returns directly to blood capillaries; excess tissue fluid enters blind-ended lymphatic capillaries and is then called lymph.",
+              "Lymphatic capillaries join to form larger lymphatic vessels, which contain valves and carry lymph in one direction.",
+              "Lymph nodes occur along lymphatic vessels; they filter lymph and contain lymphocytes and other immune cells that help defend against pathogens.",
+              "Lymphatic vessels ultimately return lymph to the bloodstream through the thoracic duct and right lymphatic duct, which join veins near the base of the neck.",
+              "The lymphatic system maintains fluid balance by returning excess tissue fluid to the blood.",
+              "Lacteals, which are lymphatic capillaries in the villi of the small intestine, absorb and transport dietary fats as part of the lymphatic system."
+            ],
+            "workedExample": "",
+            "evidencePages": [
+              7
+            ]
+          }
+        ],
+        "checkpoint": [
+          {
+            "question": "State two structural differences between an artery and a vein, and give one function of a capillary.",
+            "answer": "An artery has a thicker, more muscular and elastic wall and a narrower lumen than a vein; a vein has valves and a wider lumen. A capillary allows exchange of substances between blood and body tissues through its one-cell-thick wall.",
+            "outcomeRef": 1
+          },
+          {
+            "question": "Describe how excess tissue fluid is returned to the bloodstream by the lymphatic system.",
+            "answer": "Excess tissue fluid enters lymphatic capillaries and becomes lymph. It passes through lymphatic vessels and lymph nodes, then is returned to veins near the base of the neck through the thoracic duct or right lymphatic duct.",
+            "outcomeRef": 2
+          }
+        ],
+        "courseLabel": "PMDC MDCAT Biology, Chemistry, Physics, English, Logical Reasoning",
+        "level": "MDCAT",
+        "lessonTitle": "Vessels and lymph",
+        "outcomes": [
+          {
+            "code": "11.3",
+            "text": "List differences and functions of arteries, veins and capillaries."
+          },
+          {
+            "code": "11.4",
+            "text": "Describe the lymphatic system."
+          }
+        ]
+      }
+    },
+    {
+      "key": "all/biology-15-homeostasis/thermoregulation-and-excretion/thermoregulation-and-excretion",
+      "unit": "Biology: 15 Homeostasis",
+      "topic": "Thermoregulation and excretion",
+      "evidencePages": [
+        8
+      ],
+      "modelGaps": [],
+      "attempts": 1,
+      "usd": 0.00141,
+      "ms": 11525,
+      "spec": {
+        "prerequisites": [
+          "Homeostasis as maintenance of a relatively stable internal environment",
+          "Enzyme activity depends on temperature",
+          "Basic distinction between metabolism and excretion"
+        ],
+        "requiredTerms": [
+          "thermoregulation",
+          "homeostasis",
+          "core body temperature",
+          "hypothalamus",
+          "heat gain",
+          "heat loss",
+          "sweating",
+          "vasodilation",
+          "vasoconstriction",
+          "shivering",
+          "nitrogenous compounds",
+          "ammonia",
+          "urea",
+          "uric acid",
+          "creatinine"
+        ],
+        "requiredMethods": [
+          "Describe a homeostatic process by identifying the change, control centre, response, and resulting correction",
+          "Recall and list examples of nitrogenous excretory compounds"
+        ],
+        "commandWords": [
+          "describe",
+          "list"
+        ],
+        "depth": "Students should describe thermoregulation at the human biological level using standard homeostasis vocabulary and the main responses to overheating and cooling. They should recall the names of nitrogenous compounds excreted; no chemical structures, pathways, detailed kidney physiology, or quantitative calculations are required.",
+        "misconceptions": [
+          "Thermoregulation means keeping body temperature permanently fixed rather than maintaining it within a narrow range.",
+          "Sweating cools the body merely because sweat is present; cooling mainly results from evaporation of sweat.",
+          "Vasodilation reduces heat loss, whereas it actually increases heat loss from the skin.",
+          "Shivering produces cooling rather than heat through involuntary muscle contractions.",
+          "Excretion is the removal of undigested food; that process is egestion.",
+          "Urea and uric acid are the only nitrogenous excretory compounds; ammonia and creatinine are also examples."
+        ],
+        "outOfScope": [
+          "Detailed negative-feedback control pathways and neural circuitry",
+          "Detailed kidney anatomy, nephron processes, and urine formation",
+          "Osmoregulation and water balance beyond what is needed to distinguish excretion",
+          "Chemical structures, synthesis pathways, or toxicity comparisons of nitrogenous compounds",
+          "Diseases or clinical disorders of thermoregulation and excretion"
+        ],
+        "boards": [
+          {
+            "title": "Keeping body temperature stable",
+            "objective": "Describe thermoregulation and explain why it is needed.",
+            "outcomeRefs": [
+              1
+            ],
+            "keyPoints": [
+              "Thermoregulation is the maintenance of a relatively constant internal or core body temperature despite changes in external temperature.",
+              "It is needed because enzyme-controlled metabolic reactions and other cellular processes work efficiently only within a suitable temperature range.",
+              "The hypothalamus acts as a control centre that detects changes in core body temperature and coordinates corrective responses.",
+              "When body temperature rises, sweating increases evaporative heat loss and skin vasodilation increases heat loss from the skin.",
+              "When body temperature falls, shivering generates heat through involuntary muscle contractions and skin vasoconstriction reduces heat loss.",
+              "These responses help return body temperature towards its normal level and therefore represent homeostatic negative feedback."
+            ],
+            "workedExample": "",
+            "evidencePages": [
+              8
+            ]
+          },
+          {
+            "title": "Nitrogenous compounds removed",
+            "objective": "List the main nitrogenous compounds excreted by organisms.",
+            "outcomeRefs": [
+              2
+            ],
+            "keyPoints": [
+              "Nitrogenous excretory compounds are nitrogen-containing waste products formed mainly during the breakdown of amino acids and other nitrogen-containing substances.",
+              "The main nitrogenous compounds excreted are ammonia, urea, uric acid, and creatinine.",
+              "Ammonia is highly toxic and requires substantial water for removal.",
+              "Urea is less toxic than ammonia and is the principal nitrogenous excretory compound in humans.",
+              "Uric acid is a relatively insoluble nitrogenous waste product, and creatinine is produced from normal muscle metabolism."
+            ],
+            "workedExample": "",
+            "evidencePages": [
+              8
+            ]
+          }
+        ],
+        "checkpoint": [
+          {
+            "question": "Why is thermoregulation needed, and name one response to overheating and one response to cooling.",
+            "answer": "It is needed to keep internal temperature within a suitable range for enzyme-controlled reactions. Overheating may cause sweating or vasodilation; cooling may cause shivering or vasoconstriction.",
+            "outcomeRef": 1
+          },
+          {
+            "question": "List four nitrogenous compounds that may be excreted.",
+            "answer": "Ammonia, urea, uric acid, and creatinine.",
+            "outcomeRef": 2
+          }
+        ],
+        "courseLabel": "PMDC MDCAT Biology, Chemistry, Physics, English, Logical Reasoning",
+        "level": "MDCAT",
+        "lessonTitle": "Thermoregulation and excretion",
+        "outcomes": [
+          {
+            "code": "15.7",
+            "text": "Describe thermoregulation and why it is needed."
+          },
+          {
+            "code": "15.8",
+            "text": "List nitrogenous compounds excreted."
+          }
+        ]
+      }
+    },
+    {
+      "key": "all/chemistry-2-atomic-structure/orbitals-and-quantum-numbers/orbitals-and-their-shapes",
+      "unit": "Chemistry: 2 Atomic Structure",
+      "topic": "Orbitals and quantum numbers",
+      "evidencePages": [
+        9
+      ],
+      "modelGaps": [],
+      "attempts": 1,
+      "usd": 0.002,
+      "ms": 14492,
+      "spec": {
+        "prerequisites": [
+          "Basic structure of an atom: nucleus, protons, neutrons and electrons.",
+          "Electrons occupy regions of space associated with different amounts of energy.",
+          "Basic use of the terms shell and electron."
+        ],
+        "requiredTerms": [
+          "orbital",
+          "energy level",
+          "shell",
+          "sub-level",
+          "subshell",
+          "s orbital",
+          "p orbital",
+          "electron cloud",
+          "probability",
+          "spherical",
+          "dumbbell-shaped"
+        ],
+        "requiredMethods": [
+          "Classify an atomic region as an energy level, sub-level or orbital.",
+          "Describe an orbital as a region of high probability of finding an electron.",
+          "Recognise and sketch the basic shapes of s and p orbitals."
+        ],
+        "commandWords": [
+          "describe",
+          "tell apart"
+        ],
+        "depth": "Students should use the terms energy level, sub-level and orbital accurately and understand that an orbital is a probability region, not a fixed electron path. At this level, descriptions and simple labelled sketches of spherical s orbitals and dumbbell-shaped p orbitals are required; detailed wave equations, quantum-mechanical derivations and d- or f-orbital shapes are not required.",
+        "misconceptions": [
+          "An orbital is not a circular or elliptical path followed by an electron.",
+          "An energy level, sub-level and orbital are different levels of organisation, not interchangeable terms.",
+          "A p orbital is not spherical; it has two lobes on opposite sides of the nucleus.",
+          "The two lobes of a p orbital are parts of one orbital, not two separate orbitals.",
+          "The s and p labels describe types of orbitals and are not names of particular electron shells.",
+          "The electron is most likely to be found within an orbital but is not necessarily at one fixed point."
+        ],
+        "outOfScope": [
+          "Derivation of orbitals from the Schrödinger equation.",
+          "Quantum numbers and their mathematical relationships.",
+          "Radial and angular probability distribution graphs.",
+          "Shapes and orientations of d and f orbitals.",
+          "Orbital hybridisation and molecular orbital theory.",
+          "Detailed electron configurations beyond what is needed to distinguish levels, sub-levels and orbitals."
+        ],
+        "boards": [
+          {
+            "title": "Orbitals: regions of electron probability",
+            "objective": "Describe what an orbital represents and distinguish it from a fixed path around the nucleus.",
+            "outcomeRefs": [
+              1
+            ],
+            "keyPoints": [
+              "An orbital is a region of space around the nucleus where there is a high probability of finding an electron.",
+              "An orbital does not represent a definite path or orbit followed by an electron.",
+              "Orbitals are associated with particular energy levels and sub-levels.",
+              "An orbital may be represented as an electron cloud: denser or more concentrated regions indicate a greater probability of finding the electron."
+            ],
+            "workedExample": "A diagram shows a shaded spherical region around a nucleus, with the shading becoming less dense farther from the nucleus. Interpretation: this represents an orbital, because it shows a region in which the electron has a high probability of being found. It is not an electron track, because no definite path is shown.",
+            "evidencePages": [
+              9
+            ]
+          },
+          {
+            "title": "Energy levels, sub-levels and orbitals",
+            "objective": "Tell energy levels, sub-levels and orbitals apart by their position in the organisation of atomic electron regions.",
+            "outcomeRefs": [
+              2
+            ],
+            "keyPoints": [
+              "An energy level, also called a shell, is a main region of electron energy around the nucleus.",
+              "A sub-level, also called a subshell, is a division within an energy level.",
+              "An orbital is a region within a sub-level where an electron is likely to be found.",
+              "The order of organisation is: energy level (shell) → sub-level (subshell) → orbital.",
+              "The s sub-level contains one s orbital, while the p sub-level contains three p orbitals."
+            ],
+            "workedExample": "Classify the terms in the statement: “The second energy level contains an s sub-level and a p sub-level; the p sub-level contains three p orbitals.” Answer: “second energy level” is the shell; “s sub-level” and “p sub-level” are subshells within that shell; each named orbital is a region within a sub-level. Thus, the hierarchy is shell → subshell → orbital.",
+            "evidencePages": [
+              9
+            ]
+          },
+          {
+            "title": "Shapes of s and p orbitals",
+            "objective": "Describe and identify the basic shapes of s and p orbitals.",
+            "outcomeRefs": [
+              3
+            ],
+            "keyPoints": [
+              "An s orbital is spherical, with the nucleus at the centre.",
+              "A p orbital has two lobes and is commonly described as dumbbell-shaped, with the nucleus between the lobes.",
+              "There are three p orbitals in a p sub-level, oriented in three mutually perpendicular directions.",
+              "The three p orbitals have the same basic dumbbell shape but different orientations.",
+              "The orbital shape represents the region of high probability of finding the electron, not a solid surface or an electron path."
+            ],
+            "workedExample": "Sketch and label one s orbital and the three p orbitals. Answer: draw a sphere centred on the nucleus and label it s. Then draw three dumbbells centred on the same nucleus: one horizontally, one vertically and one perpendicular to the page; label them p orbitals. The s orbital is spherical, while each p orbital has two opposite lobes and the three p orbitals differ only in orientation.",
+            "evidencePages": [
+              9
+            ]
+          }
+        ],
+        "checkpoint": [
+          {
+            "question": "What is an orbital?",
+            "answer": "A region around the nucleus where there is a high probability of finding an electron.",
+            "outcomeRef": 1
+          },
+          {
+            "question": "Put these in order from largest organisational level to smallest: orbital, energy level, sub-level.",
+            "answer": "Energy level (shell) → sub-level (subshell) → orbital.",
+            "outcomeRef": 2
+          },
+          {
+            "question": "State the shapes of s and p orbitals.",
+            "answer": "An s orbital is spherical; a p orbital is dumbbell-shaped with two lobes.",
+            "outcomeRef": 3
+          }
+        ],
+        "courseLabel": "PMDC MDCAT Biology, Chemistry, Physics, English, Logical Reasoning",
+        "level": "MDCAT",
+        "lessonTitle": "Orbitals and their shapes",
+        "outcomes": [
+          {
+            "code": "2.3",
+            "text": "Describe the concept of orbitals."
+          },
+          {
+            "code": "2.4",
+            "text": "Tell energy levels, sub-levels and orbitals apart."
+          },
+          {
+            "code": "2.5",
+            "text": "Describe the shapes of s and p orbitals."
+          }
+        ]
+      }
+    },
+    {
+      "key": "all/chemistry-4-liquids/hydrogen-bonding/hydrogen-bonding-and-water",
+      "unit": "Chemistry: 4 Liquids",
+      "topic": "Hydrogen bonding",
+      "evidencePages": [
+        10
+      ],
+      "modelGaps": [],
+      "attempts": 1,
+      "usd": 0.00211,
+      "ms": 15637,
+      "spec": {
+        "prerequisites": [
+          "Knowledge that atoms form covalent bonds by sharing electrons.",
+          "Basic understanding of electronegativity and unequal sharing of electrons.",
+          "Understanding that water exists as a liquid and solid and that density equals mass divided by volume.",
+          "Basic particle model of matter."
+        ],
+        "requiredTerms": [
+          "hydrogen bond",
+          "covalent bond",
+          "electronegativity",
+          "partial positive charge",
+          "partial negative charge",
+          "lone pair",
+          "intermolecular force",
+          "density",
+          "anomalous expansion",
+          "ice lattice"
+        ],
+        "requiredMethods": [
+          "Identify polar bonds and partial charges in a molecule.",
+          "Identify the hydrogen-bond donor and acceptor.",
+          "Relate changes in molecular arrangement and volume to changes in density."
+        ],
+        "commandWords": [
+          "describe",
+          "explain"
+        ],
+        "depth": "Students should describe hydrogen bonding using partial charges, electronegativity, hydrogen atoms bonded to electronegative atoms, and lone pairs on electronegative atoms. For water, they should explain the density maximum at 4 °C qualitatively using molecular arrangement and volume; no quantitative derivation is required.",
+        "misconceptions": [
+          "A hydrogen bond is not the same as the covalent O-H, N-H, or H-F bond within a molecule.",
+          "Hydrogen bonding occurs between suitably polar molecules, not between every molecule containing hydrogen.",
+          "The hydrogen atom in a hydrogen bond is partially positive, while the electronegative atom carrying a lone pair is partially negative.",
+          "Water does not have its greatest density at 0 °C; its density is greatest at 4 °C.",
+          "Cooling water from above 4 °C initially decreases its volume, but cooling it below 4 °C increases its volume.",
+          "Ice is less dense than liquid water because hydrogen bonds hold its molecules in a more open structure."
+        ],
+        "outOfScope": [
+          "Quantitative calculation of hydrogen-bond energies or bond angles.",
+          "Detailed molecular-orbital or quantum-mechanical explanations of hydrogen bonding.",
+          "Hydrogen bonding in substances other than H2O, NH3, and HF.",
+          "Detailed phase diagrams of water.",
+          "Numerical density values or derivation of the density-temperature curve.",
+          "Detailed treatment of ice polymorphs and high-pressure forms of ice."
+        ],
+        "boards": [
+          {
+            "title": "Hydrogen bonds in polar molecules",
+            "objective": "Describe how hydrogen bonding occurs in H2O, NH3, and HF.",
+            "outcomeRefs": [
+              1
+            ],
+            "keyPoints": [
+              "A hydrogen bond is a strong intermolecular attraction involving a hydrogen atom covalently bonded to a highly electronegative atom and a lone pair on an electronegative atom in a neighbouring molecule.",
+              "The electronegative atom attracts shared electrons, giving hydrogen a partial positive charge (δ+) and the electronegative atom a partial negative charge (δ−).",
+              "In H2O, oxygen is more electronegative than hydrogen. Each water molecule has polar O-H bonds, a δ+ hydrogen region, and lone pairs on oxygen that can attract hydrogen atoms of neighbouring water molecules.",
+              "In NH3, nitrogen is more electronegative than hydrogen. The N-H bonds are polar, hydrogen is δ+, and the lone pair on nitrogen can accept hydrogen bonds from neighbouring ammonia molecules.",
+              "In HF, fluorine is highly electronegative. The H-F bond is strongly polar, hydrogen is δ+, and lone pairs on fluorine can form hydrogen bonds with hydrogen atoms of neighbouring HF molecules.",
+              "Hydrogen bonding is an intermolecular attraction; the covalent bonds within H2O, NH3, and HF remain distinct from the hydrogen bonds between molecules."
+            ],
+            "workedExample": "Describe the hydrogen bonding between two H2O molecules. Answer: Oxygen attracts the shared electrons in each O-H bond more strongly than hydrogen, so each water molecule has δ− oxygen and δ+ hydrogen regions. A δ+ hydrogen atom of one water molecule is attracted to a lone pair on the δ− oxygen atom of a neighbouring water molecule. This attraction is a hydrogen bond.",
+            "evidencePages": [
+              10
+            ]
+          },
+          {
+            "title": "Why water is densest at 4 °C",
+            "objective": "Explain why water has its maximum density at 4 °C.",
+            "outcomeRefs": [
+              2
+            ],
+            "keyPoints": [
+              "Density is mass per unit volume: density = mass ÷ volume.",
+              "When liquid water is cooled from a temperature above 4 °C, its molecules move closer together, so its volume decreases and its density increases.",
+              "At 4 °C, water molecules are packed most closely on average, so a given mass occupies its smallest volume and water has its maximum density.",
+              "When water is cooled below 4 °C, hydrogen bonding arranges the molecules into a more open structure, similar to the lattice structure of ice.",
+              "This open arrangement increases the volume of the same mass of water, so its density decreases below 4 °C.",
+              "At 0 °C, ice has an open hydrogen-bonded structure and is less dense than liquid water; therefore ice floats."
+            ],
+            "workedExample": "Explain what happens to the density of a fixed mass of water as it is cooled from 10 °C to 0 °C. Answer: From 10 °C to 4 °C, the molecules move closer together, the volume decreases, and the density increases. At 4 °C, the molecules are packed most closely and the density is maximum. From 4 °C to 0 °C, hydrogen bonding produces a more open arrangement, the volume increases, and the density decreases.",
+            "evidencePages": [
+              10
+            ]
+          }
+        ],
+        "checkpoint": [
+          {
+            "question": "Describe the hydrogen bonding between two NH3 molecules.",
+            "answer": "The N-H bond is polar because nitrogen is more electronegative than hydrogen, giving hydrogen a partial positive charge. A partial positive hydrogen atom of one NH3 molecule is attracted to the lone pair on the nitrogen atom of a neighbouring NH3 molecule.",
+            "outcomeRef": 1
+          },
+          {
+            "question": "Explain why water has its maximum density at 4 °C.",
+            "answer": "At 4 °C, water molecules are packed most closely, so a given mass occupies its smallest volume and has its greatest density. Below 4 °C, hydrogen bonding produces a more open structure, increasing volume and decreasing density.",
+            "outcomeRef": 2
+          }
+        ],
+        "courseLabel": "PMDC MDCAT Biology, Chemistry, Physics, English, Logical Reasoning",
+        "level": "MDCAT",
+        "lessonTitle": "Hydrogen bonding and water",
+        "outcomes": [
+          {
+            "code": null,
+            "text": "Describe hydrogen bonding in H2O, NH3 and HF."
+          },
+          {
+            "code": null,
+            "text": "Explain water's density maximum at 4 degrees centigrade."
+          }
+        ]
+      }
+    },
+    {
+      "key": "all/chemistry-7-reaction-kinetics/order-activation-energy-and-rate-constant/order-and-activation-energy",
+      "unit": "Chemistry: 7 Reaction Kinetics",
+      "topic": "Order, activation energy and rate constant",
+      "evidencePages": [
+        11
+      ],
+      "modelGaps": [],
+      "attempts": 1,
+      "usd": 0.00282,
+      "ms": 22044,
+      "spec": {
+        "prerequisites": [
+          "Meaning of a chemical reaction and reactants and products",
+          "Concentration expressed in mol dm^-3",
+          "Units and substitution in algebraic equations",
+          "Basic idea that particles must collide for a reaction to occur"
+        ],
+        "requiredTerms": [
+          "reaction rate",
+          "reaction order",
+          "order with respect to a reactant",
+          "overall order",
+          "rate law",
+          "rate constant, k",
+          "activation energy, Ea",
+          "activated complex",
+          "transition state",
+          "effective collision"
+        ],
+        "requiredMethods": [
+          "Identify the powers of concentration terms in a rate law",
+          "Add individual orders to obtain the overall reaction order",
+          "Substitute concentration and rate-constant values into a rate law",
+          "Use an energy-profile description to compare activation energies and reaction rates"
+        ],
+        "commandWords": [
+          "give",
+          "write",
+          "explain",
+          "relate",
+          "describe"
+        ],
+        "depth": "Students should use concentration terms, reaction-order notation, rate-law equations and activation-energy terminology at introductory MDCAT level. They should substitute values into a rate law and compare rates qualitatively, but are not required to derive rate laws experimentally or use advanced kinetic mathematics.",
+        "misconceptions": [
+          "Assuming that reaction order is always the same as the stoichiometric coefficient in the balanced equation.",
+          "Confusing the order with respect to one reactant with the overall order.",
+          "Forgetting that a zero-order reactant has no concentration term in the rate law.",
+          "Treating activation energy as the total energy released or absorbed by a reaction.",
+          "Thinking that the activated complex is a stable intermediate or a product.",
+          "Thinking that every collision produces a reaction, regardless of energy.",
+          "Assuming that a catalyst increases the energy of the activated complex; it provides an alternative pathway with lower activation energy.",
+          "Using the rate constant k as the reaction rate without multiplying by the concentration terms.",
+          "Assuming that k has the same units for reactions of every order."
+        ],
+        "outOfScope": [
+          "Derivation of rate laws from reaction mechanisms",
+          "Experimental methods for determining reaction order from initial-rate data",
+          "Integrated rate laws and half-life calculations",
+          "Arrhenius-equation calculations and determination of activation energy from graphs",
+          "Detailed collision-theory mathematics",
+          "Detailed transition-state theory",
+          "Reaction mechanisms, elementary steps and steady-state approximation",
+          "Detailed catalyst mechanisms beyond the effect of lowering activation energy"
+        ],
+        "boards": [
+          {
+            "title": "Reaction order and rate law",
+            "objective": "State the order of a reaction and write its rate law using the powers of the reactant concentrations.",
+            "outcomeRefs": [
+              1
+            ],
+            "keyPoints": [
+              "The order with respect to a reactant is the power of that reactant's concentration in the rate law.",
+              "For a reaction involving A and B, a general rate law is rate = k[A]^m[B]^n.",
+              "m is the order with respect to A and n is the order with respect to B.",
+              "The overall reaction order is m + n.",
+              "A reactant with a zero power does not affect the rate law through its concentration.",
+              "Reaction order is determined from the rate law or experimental evidence; it should not automatically be taken from the balanced chemical equation."
+            ],
+            "workedExample": "For rate = k[A]^2[B], the order with respect to A is 2, the order with respect to B is 1, and the overall order is 2 + 1 = 3. If k = 0.50 dm^6 mol^-2 s^-1, [A] = 0.20 mol dm^-3 and [B] = 0.10 mol dm^-3, then rate = 0.50(0.20)^2(0.10) = 0.50(0.040)(0.10) = 0.0020 mol dm^-3 s^-1.",
+            "evidencePages": [
+              11
+            ]
+          },
+          {
+            "title": "Activation energy and reaction rate",
+            "objective": "Explain activation energy and the activated complex, and relate them to the rate of a reaction.",
+            "outcomeRefs": [
+              2,
+              3
+            ],
+            "keyPoints": [
+              "Activation energy, Ea, is the minimum energy that reacting particles must possess for an effective collision and reaction to occur.",
+              "The activated complex is the short-lived, high-energy arrangement of atoms formed at the maximum-energy point during a reaction.",
+              "An activated complex is not a stable product; it can proceed to products or return to reactants.",
+              "At the same temperature, a reaction with a lower activation energy has a greater fraction of particles able to react.",
+              "Therefore, at the same temperature and under comparable conditions, lowering activation energy increases the reaction rate.",
+              "A catalyst provides an alternative reaction pathway with lower activation energy and is not consumed overall."
+            ],
+            "workedExample": "Two reactions occur at the same temperature. Reaction X has Ea = 50 kJ mol^-1 and reaction Y has Ea = 80 kJ mol^-1. Reaction X has the lower energy barrier, so a greater fraction of its particles can form the activated complex in effective collisions. Therefore, reaction X is faster under comparable conditions.",
+            "evidencePages": [
+              11
+            ]
+          },
+          {
+            "title": "The rate constant in rate calculations",
+            "objective": "Describe how the rate constant relates concentration to reaction rate and use it in a rate-law calculation.",
+            "outcomeRefs": [
+              4
+            ],
+            "keyPoints": [
+              "The rate constant k is the proportionality constant in the rate law.",
+              "For rate = k[A]^m[B]^n, k allows the rate to be found when the reactant concentrations and reaction orders are known.",
+              "At a fixed temperature and for a specified reaction, k is constant, while the rate changes when reactant concentrations change.",
+              "The units of k depend on the overall reaction order.",
+              "The numerical value of k is not itself the rate unless the concentration factor in the rate law equals 1."
+            ],
+            "workedExample": "For a first-order reaction, rate = k[A]. If k = 0.20 s^-1 and [A] = 0.50 mol dm^-3, then rate = (0.20 s^-1)(0.50 mol dm^-3) = 0.10 mol dm^-3 s^-1. Thus, k converts the concentration term into the reaction rate for this reaction.",
+            "evidencePages": [
+              11
+            ]
+          }
+        ],
+        "checkpoint": [
+          {
+            "question": "A reaction has the rate law rate = k[X]^2[Y]. What are the order with respect to X, the order with respect to Y, and the overall order?",
+            "answer": "Order with respect to X = 2; order with respect to Y = 1; overall order = 3.",
+            "outcomeRef": 1
+          },
+          {
+            "question": "Define activation energy and the activated complex.",
+            "answer": "Activation energy is the minimum energy required for an effective collision and reaction. The activated complex is the short-lived, high-energy arrangement of atoms at the maximum-energy point of the reaction.",
+            "outcomeRef": 2
+          },
+          {
+            "question": "Two reactions occur at the same temperature. Reaction A has a lower activation energy than reaction B. Which reaction is faster, and why?",
+            "answer": "Reaction A is faster because a greater fraction of its particles has enough energy to overcome the lower activation-energy barrier and form the activated complex.",
+            "outcomeRef": 3
+          },
+          {
+            "question": "For rate = k[A]^2, k = 0.40 dm^3 mol^-1 s^-1 and [A] = 0.50 mol dm^-3. Calculate the rate.",
+            "answer": "Rate = 0.40(0.50)^2 = 0.40(0.25) = 0.10 mol dm^-3 s^-1.",
+            "outcomeRef": 4
+          }
+        ],
+        "courseLabel": "PMDC MDCAT Biology, Chemistry, Physics, English, Logical Reasoning",
+        "level": "MDCAT",
+        "lessonTitle": "Order and activation energy",
+        "outcomes": [
+          {
+            "code": "7.4",
+            "text": "Give reaction order and write the rate law."
+          },
+          {
+            "code": "7.5",
+            "text": "Explain activation energy and activated complex."
+          },
+          {
+            "code": "7.6",
+            "text": "Relate activation energy and activated complex to rate."
+          },
+          {
+            "code": "7.7",
+            "text": "Describe the rate constant's role in finding reaction rate."
+          }
+        ]
+      }
+    },
+    {
+      "key": "all/chemistry-10-chemical-bonding/molecular-shape/sigma-pi-bonds-and-hybridisation",
+      "unit": "Chemistry: 10 Chemical Bonding",
+      "topic": "Molecular shape",
+      "evidencePages": [
+        12
+      ],
+      "modelGaps": [],
+      "attempts": 1,
+      "usd": 0.00205,
+      "ms": 15526,
+      "spec": {
+        "prerequisites": [
+          "Atomic orbitals, especially s and p orbitals",
+          "Valence electrons and covalent bonding",
+          "Lewis structures and single, double, and triple covalent bonds",
+          "Basic molecular geometry terminology"
+        ],
+        "requiredTerms": [
+          "sigma (σ) bond",
+          "pi (π) bond",
+          "head-on overlap",
+          "sideways overlap",
+          "hybridisation",
+          "hybrid orbital",
+          "sp hybridisation",
+          "sp2 hybridisation",
+          "sp3 hybridisation",
+          "linear",
+          "trigonal planar",
+          "tetrahedral",
+          "bond axis"
+        ],
+        "requiredMethods": [
+          "Identify whether a bond is single, double, or triple from a structural formula",
+          "Relate the number and type of bonds to the number of sigma and pi bonds",
+          "Determine the hybridisation and simple molecular shape from the number of electron domains around a central atom"
+        ],
+        "commandWords": [
+          "Describe"
+        ],
+        "depth": "Students should describe sigma and pi bonding in terms of orbital overlap and identify the usual simple shapes associated with sp, sp2, and sp3 hybridisation. Use basic structural formulas and simple three-dimensional descriptions; detailed molecular-orbital theory, quantitative bond angles beyond the standard shapes, and advanced hybridisation models are not required.",
+        "misconceptions": [
+          "A double bond is not two sigma bonds; it consists of one sigma bond and one pi bond.",
+          "A triple bond consists of one sigma bond and two pi bonds.",
+          "A pi bond is formed by sideways overlap of parallel orbitals, not by head-on overlap along the bond axis.",
+          "Sigma bonding occurs along the internuclear axis and is generally the first bond formed between two bonded atoms.",
+          "Hybridisation does not mean that an atom changes into a different element; it describes mixing of atomic orbitals to form hybrid orbitals.",
+          "sp hybridisation gives a linear arrangement, sp2 gives a trigonal planar arrangement, and sp3 gives a tetrahedral arrangement.",
+          "The presence of a lone pair can affect the observed molecular shape, so the number of electron domains must be considered when applying simple hybridisation ideas."
+        ],
+        "outOfScope": [
+          "Detailed molecular orbital energy-level diagrams",
+          "d-orbital hybridisation such as sp3d and sp3d2",
+          "Advanced VSEPR exceptions and expanded-octet geometries",
+          "Quantitative calculation of bond angles beyond the standard simple shapes",
+          "Detailed mathematical treatment of wave functions and orbital phases",
+          "Molecular polarity, ionic character, bond energy, bond length, and periodic trends, which are separate syllabus outcomes"
+        ],
+        "boards": [
+          {
+            "title": "Sigma and pi bonding",
+            "objective": "Describe how sigma and pi bonds form and identify their occurrence in single, double, and triple covalent bonds.",
+            "outcomeRefs": [
+              1
+            ],
+            "keyPoints": [
+              "A sigma (σ) bond is formed by head-on overlap of orbitals along the internuclear or bond axis.",
+              "A sigma bond has electron density concentrated along the bond axis and allows free rotation in an isolated single bond.",
+              "A pi (π) bond is formed by sideways overlap of parallel p orbitals above and below the bond axis.",
+              "A pi bond occurs only in addition to a sigma bond and restricts rotation because the sidewise overlap must be maintained.",
+              "A single covalent bond contains one sigma bond.",
+              "A double covalent bond contains one sigma bond and one pi bond.",
+              "A triple covalent bond contains one sigma bond and two pi bonds."
+            ],
+            "workedExample": "Determine the numbers of sigma and pi bonds in ethene, C2H4, represented as H2C=CH2. The C=C double bond contains 1 sigma and 1 pi bond. Each of the four C–H single bonds contains 1 sigma bond, giving 4 sigma bonds. Total: sigma bonds = 1 + 4 = 5; pi bonds = 1.",
+            "evidencePages": [
+              12
+            ]
+          },
+          {
+            "title": "Hybridisation and simple molecular shapes",
+            "objective": "Describe simple molecular shapes by relating the hybridisation of a central atom to the arrangement of its hybrid orbitals.",
+            "outcomeRefs": [
+              2
+            ],
+            "keyPoints": [
+              "Hybridisation is the mixing of suitable atomic orbitals on the same atom to form equivalent hybrid orbitals used in bonding.",
+              "sp hybridisation produces two hybrid orbitals arranged linearly at approximately 180°; a simple example is the central carbon atom in BeCl2 or each carbon atom in C2H2.",
+              "sp2 hybridisation produces three hybrid orbitals arranged in a trigonal planar arrangement at approximately 120°; a simple example is the central carbon atom in BF3 or each carbon atom in C2H4.",
+              "sp3 hybridisation produces four hybrid orbitals arranged tetrahedrally at approximately 109.5°; a simple example is the carbon atom in CH4.",
+              "The number of electron domains around the central atom is used at this level to select the simple hybridisation: 2 domains correspond to sp, 3 to sp2, and 4 to sp3.",
+              "A multiple bond counts as one electron domain around the atom for determining the basic arrangement, although it contains additional pi bond(s).",
+              "The simple molecular shape is described from the arrangement of bonding pairs and, where relevant, lone pairs around the central atom."
+            ],
+            "workedExample": "Determine the hybridisation and simple shape of the central carbon atom in CO2. The Lewis structure is O=C=O. Around the carbon atom there are two electron domains because each C=O double bond counts as one domain. Two domains correspond to sp hybridisation. The two hybrid orbitals point in opposite directions, so CO2 is linear with a bond angle of approximately 180°.",
+            "evidencePages": [
+              12
+            ]
+          }
+        ],
+        "checkpoint": [
+          {
+            "question": "How many sigma and pi bonds are present in a carbon–carbon double bond?",
+            "answer": "One sigma bond and one pi bond.",
+            "outcomeRef": 1
+          },
+          {
+            "question": "What is the hybridisation and simple shape of the central carbon atom in CH4?",
+            "answer": "The carbon is sp3 hybridised and the molecule has a tetrahedral shape.",
+            "outcomeRef": 2
+          }
+        ],
+        "courseLabel": "PMDC MDCAT Biology, Chemistry, Physics, English, Logical Reasoning",
+        "level": "MDCAT",
+        "lessonTitle": "Sigma, pi bonds and hybridisation",
+        "outcomes": [
+          {
+            "code": null,
+            "text": "Describe sigma and pi bonds."
+          },
+          {
+            "code": null,
+            "text": "Describe simple molecular shapes by hybridisation."
+          }
+        ]
+      }
+    },
+    {
+      "key": "all/chemistry-13-fundamental-principles-of-organic-c/isomerism/isomerism",
+      "unit": "Chemistry: 13 Fundamental Principles of Organic Chemistry",
+      "topic": "Isomerism",
+      "evidencePages": [
+        12
+      ],
+      "modelGaps": [],
+      "attempts": 1,
+      "usd": 0.00139,
+      "ms": 12341,
+      "spec": {
+        "prerequisites": [
+          "Basic structure and bonding in organic compounds",
+          "Structural formulae and the meaning of connectivity between atoms",
+          "The idea that carbon can form four covalent bonds",
+          "Basic understanding of mirror images"
+        ],
+        "requiredTerms": [
+          "isomerism",
+          "stereoisomerism",
+          "three-dimensional arrangement",
+          "geometrical isomerism",
+          "optical isomerism",
+          "restricted rotation",
+          "cis",
+          "trans",
+          "chiral centre",
+          "non-superimposable mirror images",
+          "enantiomers"
+        ],
+        "requiredMethods": [
+          "Identify whether compounds have the same connectivity but different three-dimensional arrangements",
+          "Recognise restricted rotation around a carbon–carbon double bond or within a ring",
+          "Test whether mirror-image structures are superimposable",
+          "Classify stereoisomers as geometrical or optical"
+        ],
+        "commandWords": [
+          "explain"
+        ],
+        "depth": "Students should define stereoisomerism and explain its two main types at the introductory MDCAT level. Use structural and simple three-dimensional representations, including cis/trans and chiral-centre terminology, without requiring advanced stereochemical notation or optical-rotation calculations.",
+        "misconceptions": [
+          "Stereoisomers do not differ in the connectivity or order of bonding of their atoms; they differ in three-dimensional arrangement.",
+          "Geometrical isomerism is not caused by free rotation around a single carbon–carbon bond; it requires restricted rotation, commonly around C=C bonds or in rings.",
+          "Cis means similar groups are on the same side, while trans means they are on opposite sides; cis/trans labels are not based simply on molecular size.",
+          "Optical isomers are non-superimposable mirror images, not merely any two molecules that look different.",
+          "A molecule must have an appropriate chiral centre or another source of chirality to show optical isomerism; not every molecule with carbon is optically active."
+        ],
+        "outOfScope": [
+          "Detailed R/S priority rules and absolute configuration",
+          "E/Z nomenclature and advanced alkene stereochemistry",
+          "Meso compounds and detailed symmetry analysis",
+          "Specific rotation, polarimetry and quantitative optical activity",
+          "Reaction mechanisms for producing stereoisomers",
+          "Conformational analysis and Newman projections"
+        ],
+        "boards": [
+          {
+            "title": "Same Bonds, Different 3D Shapes",
+            "objective": "Explain what stereoisomerism is and distinguish it from differences in atom connectivity.",
+            "outcomeRefs": [
+              1
+            ],
+            "keyPoints": [
+              "Isomers are compounds with the same molecular formula but different arrangements of atoms.",
+              "Stereoisomers have the same molecular formula and the same connectivity of atoms, but different three-dimensional arrangements.",
+              "The different spatial arrangements can give stereoisomers different physical or biological properties.",
+              "Stereoisomerism is divided at this level into geometrical isomerism and optical isomerism."
+            ],
+            "workedExample": "",
+            "evidencePages": [
+              12
+            ]
+          },
+          {
+            "title": "Geometrical and Optical Isomerism",
+            "objective": "Explain the two types of stereoisomerism using their defining structural features.",
+            "outcomeRefs": [
+              1
+            ],
+            "keyPoints": [
+              "Geometrical isomerism results from restricted rotation, usually about a carbon–carbon double bond or within a ring.",
+              "In cis isomers, corresponding groups are on the same side; in trans isomers, they are on opposite sides.",
+              "Optical isomerism occurs when compounds exist as non-superimposable mirror images.",
+              "Optical isomers are called enantiomers and commonly arise when a carbon atom is attached to four different groups, forming a chiral centre.",
+              "Enantiomers have the same connectivity but different three-dimensional arrangements and are mirror images of each other."
+            ],
+            "workedExample": "",
+            "evidencePages": [
+              12
+            ]
+          }
+        ],
+        "checkpoint": [
+          {
+            "question": "What is stereoisomerism?",
+            "answer": "Stereoisomerism is the existence of compounds with the same molecular formula and the same connectivity of atoms but different three-dimensional arrangements.",
+            "outcomeRef": 1
+          }
+        ],
+        "courseLabel": "PMDC MDCAT Biology, Chemistry, Physics, English, Logical Reasoning",
+        "level": "MDCAT",
+        "lessonTitle": "Isomerism",
+        "outcomes": [
+          {
+            "code": "13.4",
+            "text": "Explain stereoisomerism and its types."
+          }
+        ]
+      }
+    },
+    {
+      "key": "all/chemistry-15-alkyl-halides/alkyl-halides/alkyl-halides",
+      "unit": "Chemistry: 15 Alkyl Halides",
+      "topic": "Alkyl halides",
+      "evidencePages": [
+        13
+      ],
+      "modelGaps": [],
+      "attempts": 1,
+      "usd": 0.00303,
+      "ms": 26524,
+      "spec": {
+        "prerequisites": [
+          "Knowledge of covalent bonding and electronegativity",
+          "Recognition of carbon chains and functional groups",
+          "Basic understanding of Lewis structures and reaction equations",
+          "Understanding that a reaction mechanism shows the movement of electrons in individual steps"
+        ],
+        "requiredTerms": [
+          "alkyl halide",
+          "haloalkane",
+          "halogen",
+          "halide ion",
+          "C–X bond",
+          "nucleophile",
+          "electrophile",
+          "leaving group",
+          "substitution",
+          "elimination",
+          "primary",
+          "secondary",
+          "tertiary",
+          "SN1",
+          "SN2",
+          "E1",
+          "E2",
+          "carbocation",
+          "dehydrohalogenation"
+        ],
+        "requiredMethods": [
+          "Applying IUPAC rules to name haloalkanes",
+          "Identifying the carbon bonded to the halogen as primary, secondary, or tertiary",
+          "Drawing curved-arrow mechanisms for nucleophilic substitution and elimination",
+          "Writing balanced organic reaction equations"
+        ],
+        "commandWords": [
+          "name",
+          "discuss",
+          "describe"
+        ],
+        "depth": "Students should use standard IUPAC naming, structural formulae, reaction equations, and simple curved-arrow mechanisms. They should distinguish SN1 from SN2 and E1 from E2 using substrate type, number of mechanistic steps, and the role of the nucleophile or base, without requiring advanced kinetics, stereochemistry, or detailed energy calculations.",
+        "misconceptions": [
+          "The halogen is named as the parent functional group rather than as a fluoro-, chloro-, bromo-, or iodo-substituent.",
+          "Numbering the carbon chain from the wrong end gives an unnecessarily large locant.",
+          "All alkyl halides undergo substitution by the same mechanism.",
+          "SN1 means that one reactant molecule is involved in the overall reaction; it refers to the rate-determining step.",
+          "SN2 occurs in two steps; in fact, it is a one-step concerted mechanism.",
+          "The halide ion attacks the alkyl halide during nucleophilic substitution; the nucleophile attacks the carbon bonded to the halogen.",
+          "Elimination removes the halogen and a hydrogen from the same carbon; the hydrogen must usually be removed from an adjacent carbon.",
+          "Substitution and elimination always give the same major product.",
+          "A stronger C–X bond makes an alkyl halide more reactive toward substitution.",
+          "A tertiary alkyl halide is generally more suitable for SN1/E1, whereas a primary alkyl halide is generally more suitable for SN2."
+        ],
+        "outOfScope": [
+          "Detailed preparation of alkyl halides",
+          "Detailed stereochemical consequences such as inversion of configuration and racemisation",
+          "Detailed transition-state theory and reaction-coordinate diagrams",
+          "Quantitative rate laws and activation-energy calculations",
+          "Advanced rearrangements of carbocations",
+          "Detailed regioselectivity rules beyond identifying the alkene formed by elimination",
+          "Organometallic reactions of alkyl halides",
+          "Spectroscopic identification of alkyl halides"
+        ],
+        "boards": [
+          {
+            "title": "Naming Alkyl Halides",
+            "objective": "Name alkyl halides correctly using the IUPAC system.",
+            "outcomeRefs": [
+              1
+            ],
+            "keyPoints": [
+              "An alkyl halide, or haloalkane, contains a halogen atom bonded to an sp3-hybridised carbon of an alkyl group; common halogens are fluoro, chloro, bromo, and iodo.",
+              "Select the longest continuous carbon chain as the parent alkane.",
+              "Number the chain from the end nearest the first substituent, giving the lowest possible locants.",
+              "Name halogens as prefixes: fluoro-, chloro-, bromo-, and iodo-.",
+              "Use a locant to show the position of each halogen; list different substituents alphabetically.",
+              "Use di-, tri-, and similar prefixes for identical halogen substituents, and separate numbers with commas and numbers from words with hyphens."
+            ],
+            "workedExample": "Name CH3–CHBr–CH2–CH3. The longest chain has four carbons, so the parent is butane. Numbering from the nearer end places bromo at carbon 2 rather than carbon 3. Therefore, the IUPAC name is 2-bromobutane.",
+            "evidencePages": [
+              13
+            ]
+          },
+          {
+            "title": "Structure and Reactivity",
+            "objective": "Relate the structure of alkyl halides to their reactivity in substitution and elimination reactions.",
+            "outcomeRefs": [
+              2
+            ],
+            "keyPoints": [
+              "The carbon–halogen bond is polar because halogens are more electronegative than carbon: carbon is partially positive and the halogen is partially negative.",
+              "The carbon bonded to the halogen is the electrophilic centre attacked by a nucleophile.",
+              "A nucleophile is an electron-pair donor; a halide ion is the leaving group in many alkyl-halide reactions.",
+              "Classify alkyl halides according to the carbon bearing the halogen: primary has one carbon neighbour, secondary has two, and tertiary has three.",
+              "The C–X bond must break during substitution or elimination; the ease of leaving-group departure affects reactivity.",
+              "Primary alkyl halides generally favour SN2, while tertiary alkyl halides generally favour SN1 and elimination; secondary alkyl halides can undergo more than one pathway depending on conditions.",
+              "The reaction type also depends on the reagent and conditions: a nucleophile favours substitution, while a strong base and suitable heating favour elimination."
+            ],
+            "workedExample": "For CH3CH2Br, the carbon attached to Br is bonded to only one other carbon, so it is a primary alkyl halide. The C–Br bond is polar, with Cδ+–Brδ−. A nucleophile can attack the δ+ carbon and displace Br−, so this substrate commonly undergoes an SN2 substitution.",
+            "evidencePages": [
+              13
+            ]
+          },
+          {
+            "title": "Nucleophilic Substitution",
+            "objective": "Describe the SN1 and SN2 mechanisms and distinguish the main types of nucleophilic substitution.",
+            "outcomeRefs": [
+              3
+            ],
+            "keyPoints": [
+              "In nucleophilic substitution, a nucleophile replaces the halide or another leaving group attached to carbon.",
+              "SN2 is a one-step, concerted mechanism: the nucleophile attacks the carbon from the side opposite the leaving group while the C–X bond breaks.",
+              "SN2 is favoured by primary substrates because there is less steric hindrance; its overall rate depends on both the alkyl halide and the nucleophile.",
+              "SN1 is a two-step mechanism. First, the C–X bond breaks to form a carbocation and a halide ion; second, the nucleophile attacks the carbocation.",
+              "SN1 is favoured by tertiary substrates because the tertiary carbocation is relatively stable; its slow first step involves only the alkyl halide.",
+              "In both mechanisms, the product results from replacement of the halogen by the nucleophile."
+            ],
+            "workedExample": "Mechanism for the SN2 reaction of bromoethane with hydroxide: CH3CH2Br + OH− → CH3CH2OH + Br−. Draw a curved arrow from an oxygen lone pair in OH− to the carbon bonded to Br, and at the same time draw a curved arrow from the C–Br bond to Br. The one-step product is ethanol plus Br−. For comparison, a tertiary substrate such as (CH3)3CBr first loses Br− to form (CH3)3C+, then OH− attacks the carbocation to form (CH3)3COH; this is SN1.",
+            "evidencePages": [
+              13
+            ]
+          },
+          {
+            "title": "Elimination Reactions",
+            "objective": "Describe E1 and E2 elimination mechanisms and distinguish elimination from substitution.",
+            "outcomeRefs": [
+              4
+            ],
+            "keyPoints": [
+              "Elimination removes a halide ion and a hydrogen atom from adjacent carbon atoms, forming a carbon–carbon double bond.",
+              "Dehydrohalogenation is an elimination reaction in which HX is removed from an alkyl halide.",
+              "E2 is a one-step, concerted mechanism: a base removes a hydrogen from a carbon adjacent to the carbon bearing the halogen, the C–H electrons form the C=C bond, and the C–X bond breaks to give X−.",
+              "E1 is a two-step mechanism: the halide leaves first to form a carbocation, followed by removal of a proton from an adjacent carbon to form the alkene.",
+              "E1 is favoured by tertiary substrates because they form more stable carbocations; E2 can occur with a strong base and is commonly important for secondary or tertiary substrates.",
+              "Substitution replaces the halogen with a nucleophile, whereas elimination forms an alkene by loss of HX."
+            ],
+            "workedExample": "For 2-bromopropane, CH3–CHBr–CH3, with a strong base, elimination gives propene: CH3–CHBr–CH3 + Base− → CH2=CH–CH3 + HBase + Br−. In the E2 mechanism, the base removes a hydrogen from either adjacent methyl group; the C–H bond electrons form the C=C bond while the C–Br bond breaks to Br−. The product is propene.",
+            "evidencePages": [
+              13
+            ]
+          }
+        ],
+        "checkpoint": [
+          {
+            "question": "Name CH3–CHCl–CH2–CH3 using IUPAC nomenclature.",
+            "answer": "2-chlorobutane.",
+            "outcomeRef": 1
+          },
+          {
+            "question": "Is (CH3)3CBr a primary, secondary, or tertiary alkyl halide, and why is its carbon–halogen bond reactive toward substitution?",
+            "answer": "It is a tertiary alkyl halide because the carbon bonded to Br is attached to three other carbons. The C–Br bond is polar, leaving the carbon partially positive and susceptible to nucleophilic attack.",
+            "outcomeRef": 2
+          },
+          {
+            "question": "Which mechanism is most likely when hydroxide reacts with bromoethane: SN1 or SN2? State why.",
+            "answer": "SN2, because bromoethane is a primary alkyl halide and the nucleophile can attack the relatively unhindered carbon in one concerted step.",
+            "outcomeRef": 3
+          },
+          {
+            "question": "What alkene is formed when 2-bromopropane undergoes dehydrohalogenation?",
+            "answer": "Propene, CH2=CH–CH3.",
+            "outcomeRef": 4
+          }
+        ],
+        "courseLabel": "PMDC MDCAT Biology, Chemistry, Physics, English, Logical Reasoning",
+        "level": "MDCAT",
+        "lessonTitle": "Alkyl halides",
+        "outcomes": [
+          {
+            "code": null,
+            "text": "Name alkyl halides by IUPAC."
+          },
+          {
+            "code": null,
+            "text": "Discuss structure and reactivity of alkyl halides."
+          },
+          {
+            "code": null,
+            "text": "Describe nucleophilic substitution mechanisms and types."
+          },
+          {
+            "code": null,
+            "text": "Describe elimination mechanisms and types."
+          }
+        ]
+      }
+    },
+    {
+      "key": "all/chemistry-20-industrial-chemistry/industrial-products/adhesives-dyes-and-polymers",
+      "unit": "Chemistry: 20 Industrial Chemistry",
+      "topic": "Industrial products",
+      "evidencePages": [
+        15
+      ],
+      "modelGaps": [],
+      "attempts": 1,
+      "usd": 0.00249,
+      "ms": 18829,
+      "spec": {
+        "prerequisites": [
+          "Basic knowledge of organic compounds and functional groups",
+          "Understanding that small molecules can join to form larger molecules",
+          "Familiarity with common materials such as wood, paper, cotton, wool, plastics and rubber"
+        ],
+        "requiredTerms": [
+          "adhesive",
+          "natural adhesive",
+          "synthetic adhesive",
+          "dye",
+          "natural dye",
+          "synthetic dye",
+          "polymer",
+          "monomer",
+          "addition polymer",
+          "condensation polymer",
+          "thermoplastic",
+          "thermosetting polymer",
+          "elastomer",
+          "copolymer"
+        ],
+        "requiredMethods": [
+          "Classify adhesives and dyes by type",
+          "Match an adhesive or dye with an appropriate use",
+          "Distinguish addition polymerisation from condensation polymerisation",
+          "Classify polymers as thermoplastics, thermosetting polymers or elastomers"
+        ],
+        "commandWords": [
+          "Know"
+        ],
+        "depth": "Students should know the main definitions, types and common uses of adhesives, dyes and polymers at a descriptive level. Polymerisation should be understood using simple monomer-to-polymer representations and the distinction between addition and condensation, without detailed reaction mechanisms or calculations.",
+        "misconceptions": [
+          "An adhesive is not itself necessarily a polymer; adhesives may be natural or synthetic materials that bond surfaces.",
+          "A dye colours a material by dissolving or dispersing in it; a pigment is generally insoluble and is not the same as a dye.",
+          "Addition polymerisation does not eliminate a small molecule such as water or HCl.",
+          "Condensation polymerisation produces a polymer and a small molecule as by-product.",
+          "Thermoplastics soften on heating and can generally be reshaped, whereas thermosetting polymers do not soften repeatedly after setting.",
+          "An elastomer is flexible and elastic; it is not simply any polymer that can stretch slightly.",
+          "A polymer may be formed from one type of monomer or from more than one type of monomer."
+        ],
+        "outOfScope": [
+          "Detailed industrial manufacturing conditions for adhesives, dyes or polymers",
+          "Detailed mechanisms of polymerisation",
+          "Polymer molecular-mass calculations and degree of polymerisation",
+          "Detailed stereochemistry and polymer tacticity",
+          "Detailed dye structures, chromophores and auxochromes",
+          "Environmental and toxicological analysis of individual industrial chemicals",
+          "Advanced polymer processing and engineering properties"
+        ],
+        "boards": [
+          {
+            "title": "Adhesives: bonding materials in everyday life",
+            "objective": "Recognise the main types of adhesives and relate them to common applications.",
+            "outcomeRefs": [
+              1
+            ],
+            "keyPoints": [
+              "An adhesive is a substance used to join two surfaces by forming a bond between them.",
+              "Natural adhesives include starch paste, animal glue and natural rubber-based materials.",
+              "Synthetic adhesives are manufactured polymers or polymer-based materials, including epoxy resin, polyvinyl acetate (PVA) glue and cyanoacrylate glue.",
+              "Drying or solvent-based adhesives harden when water or solvent evaporates; examples include PVA glue.",
+              "Hot-melt adhesives are applied when molten and bond when they cool.",
+              "Pressure-sensitive adhesives form a bond when pressure is applied; they are used on labels and adhesive tapes.",
+              "Epoxy adhesives are used for strong bonding of materials such as metals, ceramics, wood and plastics.",
+              "Adhesives are used in construction, furniture, packaging, bookbinding, footwear, tapes, labels and household repairs."
+            ],
+            "workedExample": "",
+            "evidencePages": [
+              15
+            ]
+          },
+          {
+            "title": "Dyes: colouring materials",
+            "objective": "Identify the main types of dyes and state suitable uses for them.",
+            "outcomeRefs": [
+              2
+            ],
+            "keyPoints": [
+              "A dye is a coloured substance that dissolves or disperses in a medium and gives colour to a material, usually by bonding to or penetrating its fibres.",
+              "Natural dyes are obtained from plants, animals or minerals; examples include indigo and dyes obtained from henna or cochineal.",
+              "Synthetic dyes are manufactured chemically and provide a wide range of colours with more consistent properties.",
+              "Acid dyes are commonly used for protein fibres such as wool, silk and nylon.",
+              "Basic dyes are used mainly for acrylic fibres and some other materials.",
+              "Direct dyes can be applied directly to cellulose fibres such as cotton.",
+              "Reactive dyes form a strong chemical bond with cellulose fibres and are widely used for cotton and other cellulosic fabrics.",
+              "Dyes are used to colour textiles and fabrics, paper, leather, inks, plastics, foods and some biological specimens."
+            ],
+            "workedExample": "",
+            "evidencePages": [
+              15
+            ]
+          },
+          {
+            "title": "Polymers: addition, condensation and sub-types",
+            "objective": "Distinguish addition and condensation polymers and classify important polymer sub-types.",
+            "outcomeRefs": [
+              3
+            ],
+            "keyPoints": [
+              "A polymer is a very large molecule made by joining many smaller molecules called monomers.",
+              "Addition polymerisation joins unsaturated monomers, usually containing a carbon-carbon double bond, without producing a small molecule as a by-product.",
+              "Ethene forms poly(ethene): nCH2=CH2 → [–CH2–CH2–]n.",
+              "Other addition polymers include poly(propene), poly(chloroethene) (PVC) and polystyrene.",
+              "Condensation polymerisation joins monomers with two or more reactive functional groups and eliminates a small molecule, commonly water or HCl.",
+              "Polyesters form when diols react with dicarboxylic acids, with water eliminated; nylon is a polyamide formed from suitable diamine and dicarboxylic acid or acyl chloride monomers.",
+              "Homopolymers are made from one type of monomer, while copolymers contain more than one type of monomer.",
+              "Thermoplastics soften on heating and can be reshaped; examples include poly(ethene), PVC and nylon.",
+              "Thermosetting polymers form cross-linked structures, set permanently and do not soften for reshaping when reheated; examples include Bakelite and melamine-formaldehyde resin.",
+              "Elastomers are lightly cross-linked polymers that can stretch and return approximately to their original shape; natural rubber and synthetic rubber are examples."
+            ],
+            "workedExample": "Classify each polymerisation description: (a) ethene molecules join and no small molecule is eliminated; (b) a diol and a dicarboxylic acid join and water is eliminated. Answer: (a) addition polymerisation, producing an addition polymer such as poly(ethene); (b) condensation polymerisation, producing a polyester and water.",
+            "evidencePages": [
+              15
+            ]
+          }
+        ],
+        "checkpoint": [
+          {
+            "question": "Name one natural adhesive and one synthetic adhesive, and give one use of either adhesive.",
+            "answer": "A natural adhesive is starch paste and a synthetic adhesive is epoxy resin. Epoxy resin can be used to bond metal, wood or ceramic surfaces.",
+            "outcomeRef": 1
+          },
+          {
+            "question": "Which type of dye is commonly used for cotton when a strong chemical bond with the fibre is required?",
+            "answer": "A reactive dye.",
+            "outcomeRef": 2
+          },
+          {
+            "question": "State whether the formation of poly(ethene) from ethene is addition or condensation polymerisation, and give one difference between the two types.",
+            "answer": "It is addition polymerisation. Addition polymerisation does not produce a small molecule as a by-product, whereas condensation polymerisation produces a small molecule such as water or HCl.",
+            "outcomeRef": 3
+          }
+        ],
+        "courseLabel": "PMDC MDCAT Biology, Chemistry, Physics, English, Logical Reasoning",
+        "level": "MDCAT",
+        "lessonTitle": "Adhesives, dyes and polymers",
+        "outcomes": [
+          {
+            "code": "20.1",
+            "text": "Know types and uses of adhesives."
+          },
+          {
+            "code": "20.2",
+            "text": "Know types and uses of dyes."
+          },
+          {
+            "code": "20.3",
+            "text": "Know condensation and addition polymers and their sub-types."
+          }
+        ]
+      }
+    },
+    {
+      "key": "all/physics-2-force-and-motion/newton-s-laws-and-momentum/collisions-and-momentum",
+      "unit": "Physics: 2 Force and Motion",
+      "topic": "Newton's laws and momentum",
+      "evidencePages": [
+        17
+      ],
+      "modelGaps": [],
+      "attempts": 1,
+      "usd": 0.00269,
+      "ms": 20884,
+      "spec": {
+        "prerequisites": [
+          "One-dimensional motion and velocity, including positive and negative directions",
+          "Mass, force and Newton's laws at an introductory level",
+          "Basic algebra and solving simultaneous linear equations",
+          "Kinetic energy and the meaning of a closed or isolated system"
+        ],
+        "requiredTerms": [
+          "momentum",
+          "mass",
+          "velocity",
+          "total momentum",
+          "conservation of momentum",
+          "collision",
+          "elastic collision",
+          "inelastic collision",
+          "perfectly inelastic collision",
+          "explosion",
+          "relative speed of approach",
+          "relative speed of separation",
+          "isolated system"
+        ],
+        "requiredMethods": [
+          "Choose a positive direction and assign signs to all one-dimensional velocities.",
+          "Calculate momentum using p = mv.",
+          "Apply conservation of momentum: total momentum before = total momentum after.",
+          "For objects that stick together, use a common final velocity.",
+          "For an elastic collision, use conservation of momentum together with equality of relative speed of approach and separation, or an equivalent elastic-collision relation.",
+          "For an explosion, set the total momentum after the explosion equal to the total momentum before it."
+        ],
+        "commandWords": [
+          "solve",
+          "describe",
+          "identify"
+        ],
+        "depth": "Students should use signed one-dimensional velocities and the equation p = mv, with algebra suitable for solving linear simultaneous equations. They should distinguish elastic, inelastic and perfectly inelastic collisions and apply momentum conservation; advanced collision theory, two-dimensional vectors and calculus are not required.",
+        "misconceptions": [
+          "Treating momentum as a scalar and ignoring the signs of velocities.",
+          "Assuming that momentum of each individual object is conserved during a collision rather than total system momentum.",
+          "Using conservation of momentum when an external resultant force significantly acts on the chosen system.",
+          "Assuming that all collisions conserve kinetic energy; only elastic collisions do so.",
+          "For a perfectly inelastic collision, using two different final velocities instead of one common velocity.",
+          "Confusing speed with velocity when calculating relative approach or separation.",
+          "In an explosion from rest, expecting the fragments to have equal speeds rather than equal and opposite momenta when their masses differ.",
+          "Using the wrong order for relative speed: approach is the closing speed before impact, while separation is the opening speed after impact."
+        ],
+        "outOfScope": [
+          "Two-dimensional collisions and vector component analysis",
+          "Coefficient of restitution and its formal derivation",
+          "Impulse and force-time graphs",
+          "Detailed deformation, sound and thermal energy calculations during inelastic collisions",
+          "Relativistic momentum",
+          "Advanced centre-of-mass methods"
+        ],
+        "boards": [
+          {
+            "title": "Conserving momentum in collisions",
+            "objective": "Solve one-dimensional elastic and inelastic collision problems by applying conservation of total momentum and using a consistent sign convention.",
+            "outcomeRefs": [
+              1
+            ],
+            "keyPoints": [
+              "Momentum is p = mv and has direction because velocity has direction.",
+              "For an isolated system, total momentum before a collision equals total momentum after the collision: m1u1 + m2u2 = m1v1 + m2v2.",
+              "Take one direction as positive; velocities in the opposite direction are negative.",
+              "In an inelastic collision, kinetic energy is not conserved. In a perfectly inelastic collision, the bodies stick together and have one common final velocity.",
+              "In an elastic collision, total momentum and kinetic energy are conserved; equivalently in one dimension, relative speed of approach equals relative speed of separation.",
+              "For a perfectly inelastic collision, the common final velocity is v = (m1u1 + m2u2) / (m1 + m2)."
+            ],
+            "workedExample": "A 2.0 kg trolley moving at +6.0 m/s collides with a 3.0 kg trolley moving at -2.0 m/s. They stick together. Find their common velocity after collision. Take the first trolley's direction as positive. Momentum before = (2.0)(+6.0) + (3.0)(-2.0) = 12 - 6 = 6 kg m/s. If their common final velocity is v, momentum after = (2.0 + 3.0)v = 5v. By conservation of momentum, 5v = 6, so v = +1.2 m/s. Therefore, the joined trolleys move at 1.2 m/s in the original direction of the first trolley.",
+            "evidencePages": [
+              17
+            ]
+          },
+          {
+            "title": "Momentum in explosions",
+            "objective": "Describe how total momentum is conserved when an object or system explodes into separate parts.",
+            "outcomeRefs": [
+              2
+            ],
+            "keyPoints": [
+              "An explosion produces internal forces that push parts of a system apart.",
+              "If external forces are negligible during the explosion, total momentum of the system is conserved.",
+              "For an object initially at rest, total momentum before the explosion is zero, so the vector sum of the momenta of all fragments after the explosion is also zero.",
+              "For two fragments moving in opposite directions, m1v1 + m2v2 = 0 when signs are assigned to the velocities.",
+              "The fragments have equal and opposite momenta, not necessarily equal and opposite speeds.",
+              "A larger fragment generally has a smaller speed than a smaller fragment when their momenta are equal in magnitude."
+            ],
+            "workedExample": "A stationary 6.0 kg object explodes into two fragments. A 2.0 kg fragment moves at +9.0 m/s. Find the velocity of the 4.0 kg fragment. Initial momentum is 0. Let the second fragment's velocity be v. By conservation of momentum, 0 = (2.0)(+9.0) + (4.0)v. Thus 0 = 18 + 4v, so v = -4.5 m/s. The 4.0 kg fragment moves at 4.5 m/s in the direction opposite to the 2.0 kg fragment.",
+            "evidencePages": [
+              17
+            ]
+          },
+          {
+            "title": "Approach and separation speeds",
+            "objective": "Identify the relationship between relative speeds before and after a perfectly elastic one-dimensional collision.",
+            "outcomeRefs": [
+              3
+            ],
+            "keyPoints": [
+              "Relative speed of approach is the speed at which the two bodies close together before collision.",
+              "Relative speed of separation is the speed at which the two bodies move apart after collision.",
+              "For a perfectly elastic collision in one dimension, relative speed of approach equals relative speed of separation.",
+              "If body 1 is moving faster than body 2 before collision, approach speed is u1 - u2 when both are moving in the same positive direction.",
+              "After collision, separation speed is v2 - v1 when body 2 moves faster than body 1.",
+              "This relationship can be used with conservation of momentum to solve elastic collision problems."
+            ],
+            "workedExample": "",
+            "evidencePages": [
+              17
+            ]
+          }
+        ],
+        "checkpoint": [
+          {
+            "question": "A 1.5 kg trolley moving at +4.0 m/s collides with a 2.5 kg trolley at rest. They stick together. What is their common velocity after collision?",
+            "answer": "Using conservation of momentum: (1.5)(4.0) + (2.5)(0) = (1.5 + 2.5)v, so 6.0 = 4.0v and v = +1.5 m/s.",
+            "outcomeRef": 1
+          },
+          {
+            "question": "A firework initially at rest explodes into two fragments. The first fragment has momentum +240 kg m/s. What is the momentum of the second fragment?",
+            "answer": "The second fragment has momentum -240 kg m/s, so that total momentum remains zero.",
+            "outcomeRef": 2
+          },
+          {
+            "question": "In a perfectly elastic collision, the relative speed of approach is 7.0 m/s. What is the relative speed of separation?",
+            "answer": "7.0 m/s.",
+            "outcomeRef": 3
+          }
+        ],
+        "courseLabel": "PMDC MDCAT Biology, Chemistry, Physics, English, Logical Reasoning",
+        "level": "MDCAT",
+        "lessonTitle": "Collisions and momentum",
+        "outcomes": [
+          {
+            "code": "2.15",
+            "text": "Solve elastic and inelastic collision problems in one dimension."
+          },
+          {
+            "code": "2.16",
+            "text": "Describe momentum conservation in situations such as explosions."
+          },
+          {
+            "code": "2.17",
+            "text": "Identify that in elastic collisions approach speed equals separation speed."
+          }
+        ]
+      }
+    },
+    {
+      "key": "all/physics-5-fluid-dynamics/drag-and-flow/terminal-velocity-and-drag",
+      "unit": "Physics: 5 Fluid Dynamics",
+      "topic": "Drag and flow",
+      "evidencePages": [
+        17
+      ],
+      "modelGaps": [],
+      "attempts": 1,
+      "usd": 0.00138,
+      "ms": 12891,
+      "spec": {
+        "prerequisites": [
+          "Newton’s laws of motion, especially the relationship between resultant force and acceleration",
+          "The meaning of weight, force, acceleration and constant velocity",
+          "The idea that fluids include liquids and gases",
+          "Recognition that resistive forces act opposite to motion"
+        ],
+        "requiredTerms": [
+          "terminal velocity",
+          "fluid",
+          "drag",
+          "resistive force",
+          "weight",
+          "resultant force",
+          "acceleration",
+          "constant velocity"
+        ],
+        "requiredMethods": [
+          "Identify the forces acting on a moving object in a fluid",
+          "Compare the direction and relative size of weight and drag",
+          "Explain changes in motion using the resultant force"
+        ],
+        "commandWords": [
+          "describe",
+          "define",
+          "explain"
+        ],
+        "depth": "Students should use qualitative force reasoning and correct terms. They should explain that terminal velocity is constant velocity reached when drag balances weight; no drag equations, graphical analysis or advanced fluid mechanics is required.",
+        "misconceptions": [
+          "Terminal velocity means that the object has stopped moving; it actually continues moving at constant speed.",
+          "An object at terminal velocity has no forces acting on it; weight and drag still act but are equal and opposite.",
+          "Drag always has a fixed value; it generally changes with the object’s speed and depends on the fluid and object’s shape.",
+          "Drag acts in the same direction as motion; it acts opposite to relative motion through the fluid.",
+          "Zero acceleration means zero velocity; at terminal velocity the velocity is non-zero but the acceleration is zero."
+        ],
+        "outOfScope": [
+          "Numerical calculations using drag equations",
+          "The drag coefficient and equations such as F = 1/2 rho C_d A v^2",
+          "Laminar and turbulent flow, Reynolds number and boundary layers",
+          "Detailed parachute design or experimental determination of terminal velocity",
+          "Derivation of terminal velocity from differential equations"
+        ],
+        "boards": [
+          {
+            "title": "What is terminal velocity?",
+            "objective": "Describe how a falling object reaches terminal velocity and state the force condition at terminal velocity.",
+            "outcomeRefs": [
+              1
+            ],
+            "keyPoints": [
+              "Terminal velocity is the constant speed reached by an object moving through a fluid when the forces on it are balanced.",
+              "For a falling object, weight acts downward and drag acts upward.",
+              "Initially, the object accelerates because its weight is greater than its drag.",
+              "As the object speeds up, drag increases, so the resultant downward force and acceleration decrease.",
+              "At terminal velocity, drag equals weight, the resultant force is zero, acceleration is zero, and the object continues at constant downward velocity."
+            ],
+            "workedExample": "",
+            "evidencePages": []
+          },
+          {
+            "title": "Fluid drag",
+            "objective": "Define fluid drag and explain its direction and effect on moving objects.",
+            "outcomeRefs": [
+              2
+            ],
+            "keyPoints": [
+              "Fluid drag is the resistive force exerted by a fluid on an object moving through it, or on a fluid moving past the object.",
+              "A fluid can be a liquid or a gas.",
+              "Drag acts opposite to the relative motion between the object and the fluid.",
+              "Drag reduces the resultant force in the direction of motion and tends to reduce the object’s speed or oppose its movement.",
+              "The size of drag is affected by factors such as the object’s speed, shape and exposed area, and the nature of the fluid."
+            ],
+            "workedExample": "",
+            "evidencePages": []
+          }
+        ],
+        "checkpoint": [
+          {
+            "question": "A falling object has reached terminal velocity. Describe its motion and compare its weight with the drag force.",
+            "answer": "It moves downward at constant velocity. Its acceleration is zero because the upward drag force is equal in magnitude to its downward weight.",
+            "outcomeRef": 1
+          },
+          {
+            "question": "Define fluid drag and state its direction for an object moving through air.",
+            "answer": "Fluid drag is the resistive force exerted by a fluid on an object moving through it. For an object moving through air, it acts opposite to the object’s motion relative to the air.",
+            "outcomeRef": 2
+          }
+        ],
+        "courseLabel": "PMDC MDCAT Biology, Chemistry, Physics, English, Logical Reasoning",
+        "level": "MDCAT",
+        "lessonTitle": "Terminal velocity and drag",
+        "outcomes": [
+          {
+            "code": null,
+            "text": "Describe terminal velocity."
+          },
+          {
+            "code": null,
+            "text": "Define and explain fluid drag."
+          }
+        ]
+      }
+    },
+    {
+      "key": "all/physics-6-waves/superposition-and-standing-waves/stationary-waves",
+      "unit": "Physics: 6 Waves",
+      "topic": "Superposition and standing waves",
+      "evidencePages": [
+        19
+      ],
+      "modelGaps": [],
+      "attempts": 2,
+      "usd": 0.00568,
+      "ms": 46004,
+      "spec": {
+        "prerequisites": [
+          "Transverse and longitudinal waves",
+          "Wavelength, frequency, amplitude and phase",
+          "Reflection of waves",
+          "Interference and the principle that the resultant displacement is the sum of individual displacements",
+          "Basic wave diagrams and notation"
+        ],
+        "requiredTerms": [
+          "stationary wave",
+          "progressive wave",
+          "node",
+          "antinode",
+          "amplitude",
+          "wavelength",
+          "phase",
+          "interference",
+          "reflection",
+          "fixed end",
+          "free end",
+          "string",
+          "air column",
+          "organ pipe",
+          "open end",
+          "closed end",
+          "fundamental mode",
+          "harmonic"
+        ],
+        "requiredMethods": [
+          "Draw successive wave positions and add their displacements graphically",
+          "Identify nodes as points of zero displacement and antinodes as points of maximum displacement",
+          "Represent string modes using loops between fixed-end nodes",
+          "Represent air-column modes using nodes and antinodes at closed and open ends"
+        ],
+        "commandWords": [
+          "explain",
+          "define",
+          "describe"
+        ],
+        "depth": "Students should use labelled wave diagrams and the terms node, antinode, wavelength, amplitude and mode of vibration accurately. Mathematical treatment is limited to simple wavelength relationships for string and air-column modes; derivations and advanced harmonic analysis are not required.",
+        "misconceptions": [
+          "A stationary wave travels along the medium like a progressive wave; in a stationary wave the nodes and antinodes remain fixed.",
+          "Nodes have maximum displacement; nodes have zero displacement while antinodes have maximum displacement.",
+          "The distance from a node to the next node is one wavelength; it is half a wavelength.",
+          "An antinode is an end of every string; antinodes occur between adjacent nodes and depend on the mode.",
+          "An open end of an air column is a node; an open end is an antinode and a closed end is a node.",
+          "All organ pipes have the same end conditions; pipes may be open at both ends or closed at one end."
+        ],
+        "outOfScope": [
+          "Detailed derivation of the superposition equation",
+          "Energy transport and power calculations for stationary waves",
+          "Doppler effect, beats and resonance beyond the formation of the stated stationary-wave modes",
+          "End correction and detailed organ-pipe acoustics",
+          "Complex harmonic spectra, Fourier analysis and advanced boundary-condition mathematics"
+        ],
+        "boards": [
+          {
+            "title": "Graphical formation of stationary waves",
+            "objective": "Explain, using successive graphical positions, how two identical waves travelling in opposite directions form a stationary wave.",
+            "outcomeRefs": [
+              1
+            ],
+            "keyPoints": [
+              "A stationary wave is formed when two waves of the same frequency, wavelength and amplitude travel through the same medium in opposite directions, usually because one wave is reflected.",
+              "Use the principle of superposition: the displacement at any point is the sum of the displacements of the two waves.",
+              "At some fixed positions the two waves always cancel, giving zero displacement; these positions are nodes.",
+              "At positions halfway between adjacent nodes, the waves reinforce and produce maximum displacement; these positions are antinodes.",
+              "The wave pattern does not move along the medium: nodes and antinodes remain at fixed positions, although the particles between them vibrate.",
+              "In a graphical method, draw the two opposite-travelling waves at successive instants and add their vertical displacements to obtain the resultant pattern."
+            ],
+            "workedExample": "Two equal waves meet on a stretched string. At one instant, their displacements at four points are: A: +2 cm and -2 cm; B: +1 cm and +1 cm; C: 0 cm and 0 cm; D: -1 cm and -1 cm. Add the displacements at each point: A = 0 cm, B = +2 cm, C = 0 cm, D = -2 cm. The points A and C have zero resultant displacement and are possible nodes. Points such as B and D have large resultant displacement and lie near antinodes. Repeating this construction at successive instants shows that the positions of the zero-displacement points remain fixed, so the resulting pattern is stationary rather than travelling.",
+            "evidencePages": [
+              19
+            ]
+          },
+          {
+            "title": "Nodes and antinodes",
+            "objective": "Define and distinguish nodes and antinodes in a stationary-wave pattern.",
+            "outcomeRefs": [
+              2
+            ],
+            "keyPoints": [
+              "A node is a point in a stationary wave that always has zero displacement.",
+              "An antinode is a point in a stationary wave that has maximum displacement or maximum amplitude.",
+              "Nodes and antinodes are fixed in position.",
+              "Adjacent nodes are separated by half a wavelength, λ/2.",
+              "Adjacent antinodes are separated by half a wavelength, λ/2.",
+              "The distance from a node to the nearest antinode is one quarter of a wavelength, λ/4."
+            ],
+            "workedExample": "A stationary wave has wavelength 40 cm. The distance from a node to the next antinode is λ/4 = 40 cm ÷ 4 = 10 cm. The distance between adjacent nodes is λ/2 = 40 cm ÷ 2 = 20 cm. Therefore, the nearest antinode is 10 cm from a node, and the next node is 20 cm from that node.",
+            "evidencePages": [
+              19
+            ]
+          },
+          {
+            "title": "Modes of vibration of strings",
+            "objective": "Describe the patterns formed when a stretched string vibrates in its different modes.",
+            "outcomeRefs": [
+              3
+            ],
+            "keyPoints": [
+              "A stretched string fixed at both ends has a node at each fixed end.",
+              "A mode of vibration is one possible stationary-wave pattern on the string.",
+              "The fundamental mode, or first harmonic, has one loop, one antinode and a node at each end; the string length is half a wavelength, L = λ/2.",
+              "The second harmonic has two loops and an additional node at the centre; L = λ.",
+              "The third harmonic has three loops and two internal nodes; L = 3λ/2.",
+              "In general, the nth harmonic has n loops and n antinodes, with nodes at both ends and L = nλ/2.",
+              "Higher modes have shorter wavelengths and higher frequencies than the fundamental mode."
+            ],
+            "workedExample": "A string fixed at both ends is 1.2 m long and vibrates in its second harmonic. For the second harmonic, L = λ, so λ = 1.2 m. The pattern has two loops, two antinodes and three nodes: one at each end and one at the centre. The distance between neighbouring nodes is λ/2 = 0.6 m. Thus the second-harmonic wavelength is 1.2 m and the string contains two equal loops.",
+            "evidencePages": [
+              19
+            ]
+          },
+          {
+            "title": "Stationary waves in air columns",
+            "objective": "Describe how stationary waves form in vibrating air columns in organ pipes.",
+            "outcomeRefs": [
+              4
+            ],
+            "keyPoints": [
+              "A stationary wave in an air column forms when sound waves travelling along the column interfere with waves reflected from the end of the pipe.",
+              "At a closed end, the air cannot move, so there is a displacement node.",
+              "At an open end, the air can move with maximum displacement, so there is a displacement antinode.",
+              "An open pipe has an antinode at each end. Its fundamental mode has one half-wavelength in the pipe, so L = λ/2.",
+              "A pipe closed at one end has a node at the closed end and an antinode at the open end. Its fundamental mode has one quarter-wavelength in the pipe, so L = λ/4.",
+              "The stationary-wave pattern determines the possible modes of vibration of the air column."
+            ],
+            "workedExample": "An organ pipe is closed at one end and open at the other. In its fundamental mode, draw or describe a node at the closed end and an antinode at the open end. The shortest pattern joining a node to an antinode is one quarter of a wavelength, so L = λ/4. If the pipe length is 0.80 m, then λ = 4L = 4 × 0.80 m = 3.20 m. Therefore, the fundamental stationary wave has wavelength 3.20 m, with a node at the closed end and an antinode at the open end.",
+            "evidencePages": [
+              19
+            ]
+          }
+        ],
+        "checkpoint": [
+          {
+            "question": "Two waves of equal amplitude and frequency travel in opposite directions on a string. What is formed, and why does its pattern remain fixed?",
+            "answer": "A stationary wave is formed because the waves interfere by superposition; nodes and antinodes remain at fixed positions.",
+            "outcomeRef": 1
+          },
+          {
+            "question": "Define a node and an antinode in a stationary wave.",
+            "answer": "A node is a point of always-zero displacement. An antinode is a point of maximum displacement.",
+            "outcomeRef": 2
+          },
+          {
+            "question": "A string fixed at both ends vibrates in its third harmonic. How many loops and internal nodes are present?",
+            "answer": "There are three loops and two internal nodes, in addition to the nodes at the two ends.",
+            "outcomeRef": 3
+          },
+          {
+            "question": "In a pipe closed at one end and open at the other, where are the displacement node and antinode in the fundamental mode?",
+            "answer": "The displacement node is at the closed end and the displacement antinode is at the open end.",
+            "outcomeRef": 4
+          }
+        ],
+        "courseLabel": "PMDC MDCAT Biology, Chemistry, Physics, English, Logical Reasoning",
+        "level": "MDCAT",
+        "lessonTitle": "Stationary waves",
+        "outcomes": [
+          {
+            "code": "6.12",
+            "text": "Explain stationary waves graphically."
+          },
+          {
+            "code": "6.13",
+            "text": "Define nodes and antinodes."
+          },
+          {
+            "code": "6.14",
+            "text": "Describe modes of vibration of strings."
+          },
+          {
+            "code": "6.15",
+            "text": "Describe stationary waves in air columns."
+          }
+        ]
+      }
+    },
+    {
+      "key": "all/physics-8-electrostatics/capacitors/charging-a-capacitor",
+      "unit": "Physics: 8 Electrostatics",
+      "topic": "Capacitors",
+      "evidencePages": [
+        20
+      ],
+      "modelGaps": [],
+      "attempts": 1,
+      "usd": 0.00176,
+      "ms": 14488,
+      "spec": {
+        "prerequisites": [
+          "Potential difference and current in a circuit",
+          "Resistance and use of a resistor",
+          "Capacitor as a component that stores charge",
+          "Reading simple circuit diagrams",
+          "Using a voltmeter and ammeter safely"
+        ],
+        "requiredTerms": [
+          "capacitor",
+          "capacitance",
+          "charge",
+          "potential difference",
+          "resistor",
+          "resistance",
+          "charging",
+          "discharging",
+          "time",
+          "current",
+          "circuit",
+          "switch"
+        ],
+        "requiredMethods": [
+          "Drawing a simple capacitor–resistor circuit",
+          "Connecting a capacitor, resistor, cell and switch in series",
+          "Observing voltage and current while the capacitor charges",
+          "Discharging the capacitor through a resistor and observing the decrease in voltage and current",
+          "Plotting or interpreting voltage/current against time"
+        ],
+        "commandWords": [
+          "demonstrate"
+        ],
+        "depth": "Students should understand and demonstrate the circuit behavior qualitatively: during charging, capacitor voltage and charge increase while current decreases; during discharging, voltage, charge and current decrease. Use simple circuit diagrams and time graphs; detailed exponential derivations and calculus are not required.",
+        "misconceptions": [
+          "A capacitor allows steady direct current to flow indefinitely; in a DC charging circuit, the current falls to approximately zero after charging.",
+          "The capacitor is charged instantly; charging takes time and depends on the resistance and capacitance.",
+          "The resistor stores the charge; the capacitor stores charge, while the resistor limits current and controls the rate of charging or discharging.",
+          "Current continues in the same way during charging and discharging; its direction and behavior depend on the circuit connection.",
+          "A discharged capacitor has maximum potential difference; initially, an uncharged capacitor has approximately zero potential difference across it.",
+          "The capacitor is destroyed when it is connected to a suitable DC source; it stores energy provided its voltage rating is not exceeded."
+        ],
+        "outOfScope": [
+          "Derivation of exponential charging and discharging equations",
+          "Calculus-based treatment of the time constant",
+          "Detailed capacitor construction and dielectric polarization",
+          "Series and parallel capacitor networks",
+          "Alternating-current capacitive reactance and phase relationships",
+          "Kirchhoff-law analysis beyond the simple charging and discharging circuit"
+        ],
+        "boards": [
+          {
+            "title": "Charging a capacitor through a resistor",
+            "objective": "Demonstrate how a capacitor charges when connected to a DC supply through a resistor, and identify the changes in current, charge and capacitor potential difference with time.",
+            "outcomeRefs": [
+              1
+            ],
+            "keyPoints": [
+              "Connect a cell, switch, resistor and capacitor in series, with a voltmeter across the capacitor if measurements are required.",
+              "When the switch is closed, an initially uncharged capacitor begins to charge.",
+              "At the start of charging, the capacitor potential difference is approximately zero and the current is greatest.",
+              "As charge accumulates, the potential difference across the capacitor increases and the charging current decreases.",
+              "After sufficient time, the capacitor is approximately fully charged: its potential difference is close to the supply voltage and the current is approximately zero.",
+              "The resistor limits the charging current and makes the charging process take a measurable time.",
+              "A charging graph shows capacitor potential difference increasing with time, while the current decreases with time."
+            ],
+            "workedExample": "Set up a 6 V cell, a 1 kΩ resistor and an initially uncharged capacitor in series. Close the switch and measure the potential difference across the capacitor at regular time intervals. At the instant of closing, record V_C ≈ 0 V and the current as maximum. Later, V_C rises toward 6 V and the current falls toward 0 A. Therefore, the demonstration shows that charging is not instantaneous: capacitor voltage increases while charging current decreases, and the final capacitor voltage is approximately the supply voltage.",
+            "evidencePages": [
+              20
+            ]
+          },
+          {
+            "title": "Discharging a capacitor through a resistor",
+            "objective": "Demonstrate how a charged capacitor discharges through a resistor and identify the changes in current, charge and potential difference with time.",
+            "outcomeRefs": [
+              1
+            ],
+            "keyPoints": [
+              "First charge the capacitor using a DC supply; then disconnect the supply and connect the charged capacitor across a resistor.",
+              "At the beginning of discharge, the capacitor has its greatest potential difference and the discharge current is greatest.",
+              "Charge flows through the resistor in the discharge circuit, so the capacitor's stored charge and potential difference decrease with time.",
+              "The discharge current decreases as the capacitor becomes less charged and eventually becomes approximately zero.",
+              "The direction of discharge current is opposite to the charging current in the external circuit.",
+              "A discharge graph shows capacitor potential difference and current decreasing with time toward zero.",
+              "A larger resistance makes the charging or discharging process slower because it limits the current."
+            ],
+            "workedExample": "A capacitor is first charged to 6 V and then connected across a 1 kΩ resistor without the cell. At the instant the discharge switch is closed, the capacitor potential difference is 6 V and the initial current is I = V/R = 6/1000 = 0.006 A = 6 mA. As discharge proceeds, the capacitor voltage falls below 6 V, so I = V/R also falls; when the capacitor is effectively discharged, both voltage and current are approximately zero. Thus the resistor provides the path for discharge and limits the discharge current.",
+            "evidencePages": [
+              20
+            ]
+          }
+        ],
+        "checkpoint": [
+          {
+            "question": "In a circuit containing a cell, resistor and initially uncharged capacitor, what happens to the capacitor potential difference and current immediately after the switch is closed and after a long time?",
+            "answer": "Immediately after closing, the capacitor potential difference is approximately zero and the current is greatest. After a long time, the capacitor potential difference is close to the cell voltage and the current is approximately zero.",
+            "outcomeRef": 1
+          },
+          {
+            "question": "A charged 6 V capacitor is discharged through a 2 kΩ resistor. What is the initial discharge current?",
+            "answer": "I = V/R = 6/2000 = 0.003 A = 3 mA. The current then decreases as the capacitor discharges.",
+            "outcomeRef": 1
+          },
+          {
+            "question": "Describe how to demonstrate discharging of a capacitor through a resistor.",
+            "answer": "Charge the capacitor from a DC supply, disconnect the supply, connect the charged capacitor across a resistor, and observe that the capacitor voltage and current decrease with time toward zero.",
+            "outcomeRef": 1
+          }
+        ],
+        "courseLabel": "PMDC MDCAT Biology, Chemistry, Physics, English, Logical Reasoning",
+        "level": "MDCAT",
+        "lessonTitle": "Charging a capacitor",
+        "outcomes": [
+          {
+            "code": "8.9",
+            "text": "Demonstrate charging and discharging a capacitor through a resistor."
+          }
+        ]
+      }
+    },
+    {
+      "key": "all/physics-11-electromagnetic-induction/transformers/transformers",
+      "unit": "Physics: 11 Electromagnetic Induction",
+      "topic": "Transformers",
+      "evidencePages": [
+        21
+      ],
+      "modelGaps": [],
+      "attempts": 1,
+      "usd": 0.00208,
+      "ms": 15359,
+      "spec": {
+        "prerequisites": [
+          "Magnetic fields and electromagnetism",
+          "Electromagnetic induction: a changing magnetic field can induce an emf",
+          "Alternating current and voltage",
+          "Voltage, current, power and resistance in electrical circuits",
+          "The relationship P = VI and the idea of energy loss in cables"
+        ],
+        "requiredTerms": [
+          "transformer",
+          "primary coil",
+          "secondary coil",
+          "soft iron core",
+          "laminated core",
+          "mutual induction",
+          "alternating current",
+          "step-up transformer",
+          "step-down transformer",
+          "turns",
+          "voltage",
+          "current",
+          "transmission cables",
+          "power loss"
+        ],
+        "requiredMethods": [
+          "Identify the primary and secondary coils and the core in a transformer diagram",
+          "Use the turns ratio relationship Vs/Vp = Ns/Np",
+          "Explain transformer operation as mutual induction caused by a changing magnetic flux",
+          "Use P = VI to explain why high-voltage transmission reduces current and cable losses"
+        ],
+        "commandWords": [
+          "describe",
+          "explain"
+        ],
+        "depth": "Students should know the construction, purpose of the main parts, and the sequence by which alternating current produces an induced alternating voltage. They should distinguish step-up from step-down transformers and use the basic turns-ratio relationship at an introductory mathematical level; detailed electromagnetic-field equations, transformer design, and non-ideal losses are not required.",
+        "misconceptions": [
+          "A transformer cannot operate from steady direct current because its operation requires a changing magnetic field.",
+          "The primary coil is not necessarily the coil with more turns; its role is determined by which side receives the input.",
+          "A step-up transformer increases voltage but, ideally, decreases current rather than increasing both.",
+          "A step-down transformer decreases voltage and, ideally, increases current.",
+          "The iron core does not supply electrical energy; it transfers changing magnetic flux between the coils.",
+          "The voltage ratio follows the turns ratio: Vs/Vp = Ns/Np, not the reverse.",
+          "High transmission voltage reduces current for a given power, so cable heating losses are reduced."
+        ],
+        "outOfScope": [
+          "Detailed derivation of the transformer equations from Faraday's law",
+          "Transformer efficiency calculations and detailed causes of energy loss",
+          "Eddy-current and hysteresis-loss calculations",
+          "Complex transformer circuits and three-phase transmission",
+          "Voltage regulation, impedance matching and transformer design specifications",
+          "Operation of transformers with direct current"
+        ],
+        "boards": [
+          {
+            "title": "Construction and operation of a transformer",
+            "objective": "Describe how a transformer is built and explain how alternating current produces an induced voltage in the secondary coil.",
+            "outcomeRefs": [
+              1
+            ],
+            "keyPoints": [
+              "A transformer consists of two coils, called the primary coil and secondary coil, wound on a common laminated soft iron core.",
+              "The primary coil is connected to the alternating-current input and the secondary coil supplies the output.",
+              "The coils are electrically insulated from each other; energy is transferred through the changing magnetic field in the core.",
+              "Alternating current in the primary coil produces a changing magnetic flux in the soft iron core.",
+              "The changing magnetic flux passes through the secondary coil and induces an alternating emf and voltage in it by electromagnetic induction.",
+              "A soft iron core provides a good path for magnetic flux, while laminating the core helps reduce unwanted induced currents and energy loss.",
+              "The voltage change depends on the relative numbers of turns on the primary and secondary coils."
+            ],
+            "workedExample": "A transformer has an alternating-current supply connected to its primary coil. The primary coil produces a changing magnetic field in the laminated soft iron core. This changing flux links the secondary coil, so an alternating emf is induced across the secondary coil. The coils are not electrically connected; the energy is transferred by mutual induction through the core.",
+            "evidencePages": [
+              21
+            ]
+          },
+          {
+            "title": "Step-up and step-down transmission",
+            "objective": "Describe how step-up and step-down transformers are used to transfer electricity efficiently along cables.",
+            "outcomeRefs": [
+              2
+            ],
+            "keyPoints": [
+              "A step-up transformer has more turns on the secondary coil than on the primary coil: Ns > Np. It increases the output voltage.",
+              "A step-down transformer has fewer turns on the secondary coil than on the primary coil: Ns < Np. It decreases the output voltage.",
+              "For an ideal transformer, the voltage ratio is related to the turns ratio: Vs/Vp = Ns/Np.",
+              "For an ideal transformer, input power is approximately equal to output power: VpIp ≈ VsIs. Therefore, increasing voltage reduces current for the same transmitted power.",
+              "Electricity is stepped up to a high voltage before transmission along cables.",
+              "For a given transmitted power, the high voltage means a smaller current in the cables.",
+              "Cable heating loss is proportional to I²R, so reducing the current greatly reduces energy loss during transmission.",
+              "Near consumers, a step-down transformer reduces the high transmission voltage to a safer, useful voltage."
+            ],
+            "workedExample": "A transformer raises the transmission voltage from 25 kV to 250 kV. For the same transmitted power, use P = VI: I2/I1 = V1/V2 = 25/250 = 0.10. Thus the transmission current becomes one-tenth of its original value. Since cable heating loss is proportional to I²R, the loss becomes (0.10)² = 0.01 of the original loss, or 1%. This is why a step-up transformer makes transmission more efficient. A step-down transformer can then reduce the voltage near consumers.",
+            "evidencePages": [
+              21
+            ]
+          }
+        ],
+        "checkpoint": [
+          {
+            "question": "A transformer has two coils wound on a laminated soft iron core. What is the function of the changing current in the primary coil?",
+            "answer": "It produces changing magnetic flux in the core, which induces an alternating emf in the secondary coil by mutual induction.",
+            "outcomeRef": 1
+          },
+          {
+            "question": "Why is a step-up transformer used before electricity is transmitted along cables?",
+            "answer": "It increases the voltage, so for the same transmitted power the current is lower. The lower current reduces cable heating loss, which is proportional to I²R.",
+            "outcomeRef": 2
+          }
+        ],
+        "courseLabel": "PMDC MDCAT Biology, Chemistry, Physics, English, Logical Reasoning",
+        "level": "MDCAT",
+        "lessonTitle": "Transformers",
+        "outcomes": [
+          {
+            "code": null,
+            "text": "Describe how a transformer is built and works."
+          },
+          {
+            "code": null,
+            "text": "Describe step-up and step-down transformers for efficient transmission."
+          }
+        ]
+      }
+    },
+    {
+      "key": "all/physics-16-nuclear-physics/radiation/radiation-effects-and-uses",
+      "unit": "Physics: 16 Nuclear Physics",
+      "topic": "Radiation",
+      "evidencePages": [
+        21
+      ],
+      "modelGaps": [],
+      "attempts": 1,
+      "usd": 0.0013,
+      "ms": 10059,
+      "spec": {
+        "prerequisites": [
+          "The electromagnetic spectrum includes radio waves through to gamma rays.",
+          "Different types of electromagnetic radiation have different frequencies, wavelengths and energies.",
+          "Gamma rays and X-rays are high-energy electromagnetic radiation."
+        ],
+        "requiredTerms": [
+          "radiation",
+          "electromagnetic spectrum",
+          "ionising radiation",
+          "X-rays",
+          "gamma rays",
+          "cell",
+          "tissue",
+          "DNA",
+          "mutation",
+          "cancer",
+          "radiotherapy",
+          "medical imaging",
+          "radioisotope",
+          "tracer"
+        ],
+        "requiredMethods": [
+          "Link the biological effect of radiation to its ability to ionise atoms and damage cells or DNA.",
+          "Match a type of radiation with an appropriate medical use and explain the purpose of that use."
+        ],
+        "commandWords": [
+          "describe"
+        ],
+        "depth": "Students should describe the main harmful biological effects of ionising radiation and its principal medical uses using accurate everyday scientific vocabulary. No quantitative dose calculations, detailed cellular mechanisms, or treatment planning are required.",
+        "misconceptions": [
+          "All radiation is equally harmful; biological damage depends on the type, energy and exposure of the radiation.",
+          "Radiation makes a person radioactive in every situation; exposure to X-rays does not normally make the person radioactive.",
+          "Radiotherapy is used only for diagnosis; it uses high-energy radiation to damage and destroy cancer cells.",
+          "Medical uses of radiation have no risks; excessive or unnecessary exposure can damage healthy tissue.",
+          "Gamma rays and X-rays are identical in origin and use, although both are ionising electromagnetic radiation."
+        ],
+        "outOfScope": [
+          "Detailed molecular mechanisms of DNA repair and mutation.",
+          "Radiation dose calculations, absorbed dose, equivalent dose and dose limits.",
+          "Nuclear decay equations, half-life calculations and nuclear reactor operation.",
+          "Detailed radiotherapy treatment planning and radiation shielding calculations.",
+          "Non-ionising radiation effects such as the detailed thermal effects of microwaves or infrared radiation."
+        ],
+        "boards": [
+          {
+            "title": "How radiation affects living tissue",
+            "objective": "Describe the biological effects of ionising radiation on cells, tissues and the body.",
+            "outcomeRefs": [
+              1
+            ],
+            "keyPoints": [
+              "Ionising radiation has enough energy to remove electrons from atoms and molecules.",
+              "Ionisation can damage molecules in cells, including DNA.",
+              "Damage to DNA may cause mutations; mutations can contribute to the development of cancer.",
+              "Large or intense exposure can kill cells and damage tissues, producing harmful effects such as burns or tissue injury.",
+              "The biological effect depends on the type and energy of the radiation, the exposure received and which tissue is exposed.",
+              "Radiation can also damage rapidly dividing cells, which is relevant to both harmful effects and medical treatment."
+            ],
+            "workedExample": "",
+            "evidencePages": [
+              21
+            ]
+          },
+          {
+            "title": "Radiation in medicine",
+            "objective": "Describe how radiation is used for medical imaging, treatment and tracing processes in the body.",
+            "outcomeRefs": [
+              1
+            ],
+            "keyPoints": [
+              "X-rays pass through the body to different extents and are used to produce images of internal structures, especially bones.",
+              "Gamma rays can be used in radiotherapy to damage and destroy cancer cells.",
+              "Radiotherapy must be directed carefully because it can also damage healthy cells.",
+              "Radioactive tracers can be introduced into the body in controlled amounts and detected to show the function or location of organs and tissues.",
+              "The medical benefit of radiation must be balanced against the risk of damage to healthy tissue.",
+              "Radiation is used under controlled conditions and with appropriate protection to reduce unnecessary exposure."
+            ],
+            "workedExample": "",
+            "evidencePages": [
+              21
+            ]
+          }
+        ],
+        "checkpoint": [
+          {
+            "question": "State one harmful biological effect of ionising radiation and one medical use of radiation.",
+            "answer": "Ionising radiation can damage DNA and cause mutations or cancer. X-rays can be used for medical imaging, or gamma rays can be used in radiotherapy to destroy cancer cells.",
+            "outcomeRef": 1
+          }
+        ],
+        "courseLabel": "PMDC MDCAT Biology, Chemistry, Physics, English, Logical Reasoning",
+        "level": "MDCAT",
+        "lessonTitle": "Radiation effects and uses",
+        "outcomes": [
+          {
+            "code": null,
+            "text": "Describe biological effects and medical uses of radiation."
+          }
+        ]
+      }
+    },
+    {
+      "key": "all/english-3-writing-skills/writing/proofreading-and-error-correction",
+      "unit": "English: 3 Writing Skills",
+      "topic": "Writing",
+      "evidencePages": [
+        22
+      ],
+      "modelGaps": [],
+      "attempts": 1,
+      "usd": 0.00232,
+      "ms": 17141,
+      "spec": {
+        "prerequisites": [
+          "Basic reading comprehension",
+          "Knowledge of words, sentences and paragraphs",
+          "Recognition of subjects and verbs",
+          "Basic knowledge of standard English spelling and grammar"
+        ],
+        "requiredTerms": [
+          "proofread",
+          "edit",
+          "sentence structure",
+          "subject",
+          "verb",
+          "subject-verb agreement",
+          "function word",
+          "spelling error",
+          "fragment",
+          "run-on sentence"
+        ],
+        "requiredMethods": [
+          "Read a text carefully more than once.",
+          "Check sentence structure, subject-verb agreement, function words and spelling separately.",
+          "Identify the subject and main verb before checking their agreement.",
+          "Rewrite the faulty sentence in standard English.",
+          "Compare a peer's or given text with the intended meaning and mark corrections clearly."
+        ],
+        "commandWords": [
+          "proofread",
+          "edit",
+          "correct"
+        ],
+        "depth": "Students should apply standard English proofreading and editing at sentence and short-text level. They should use basic grammatical terms and correct common structural, agreement, function-word and spelling errors without advanced grammatical analysis.",
+        "misconceptions": [
+          "Thinking that proofreading means checking spelling only.",
+          "Changing a sentence's meaning while editing it.",
+          "Choosing the verb form according to the nearest noun instead of the actual subject.",
+          "Assuming that a long group of words is automatically a complete sentence.",
+          "Treating punctuation alone as a correction for every run-on sentence.",
+          "Confusing function words such as articles, prepositions, pronouns and conjunctions.",
+          "Using a spelling that sounds correct without checking the word's standard form."
+        ],
+        "outOfScope": [
+          "Advanced stylistic editing or rewriting for literary effect",
+          "Detailed analysis of all parts of speech and phrase types",
+          "Pronoun-antecedent agreement, tenses, infinitives, gerunds, adverbs, prepositions, transitional devices and punctuation as separate topics",
+          "Dialectal variation and specialist editorial conventions",
+          "Computer-assisted proofreading tools"
+        ],
+        "boards": [
+          {
+            "title": "A systematic proofreading routine",
+            "objective": "Proofread and edit own, peers' and given text by locating and correcting errors without changing the intended meaning.",
+            "outcomeRefs": [
+              1
+            ],
+            "keyPoints": [
+              "Proofreading is careful checking of written text for errors.",
+              "Editing includes identifying an error, deciding the required correction and rewriting the text accurately.",
+              "Use separate checks for sentence structure, subject-verb agreement, function words and spelling.",
+              "Read the text once for meaning and again for individual errors.",
+              "Check own writing, a peer's writing and a supplied passage using the same careful process."
+            ],
+            "workedExample": "Given text: \"The students was preparing there notes, but one student forget to bring his book.\" Step 1, read for meaning. Step 2, check structure and agreement: change \"was\" to \"were\" because \"students\" is plural. Step 3, check function and spelling: change \"there\" to \"their\" and \"forget\" to \"forgot\". Corrected text: \"The students were preparing their notes, but one student forgot to bring his book.\"",
+            "evidencePages": [
+              22
+            ]
+          },
+          {
+            "title": "Building complete sentences",
+            "objective": "Correct faulty sentence structure in given sentences.",
+            "outcomeRefs": [
+              2
+            ],
+            "keyPoints": [
+              "A complete sentence should express a complete thought.",
+              "A sentence normally requires a subject and a verb.",
+              "Correct sentence fragments by supplying or joining the missing part when the intended meaning is clear.",
+              "Correct run-on sentences by separating complete thoughts or joining them appropriately.",
+              "Keep the original meaning while making the sentence grammatically complete and clear."
+            ],
+            "workedExample": "Faulty sentence: \"Because the road was flooded.\" This is a fragment because it does not express a complete thought. Correction: \"The bus was late because the road was flooded.\" Faulty sentence: \"The bell rang the students left the room.\" This is a run-on sentence. Correction: \"The bell rang, and the students left the room.\"",
+            "evidencePages": [
+              22
+            ]
+          },
+          {
+            "title": "Matching subjects and verbs",
+            "objective": "Correct subject-verb agreement errors in sentences.",
+            "outcomeRefs": [
+              3
+            ],
+            "keyPoints": [
+              "The verb must agree with its subject in number.",
+              "A singular subject takes a singular verb in the present tense; a plural subject takes a plural verb.",
+              "Do not choose the verb according to a noun placed between the subject and the verb.",
+              "Identify the main subject first, then select the correct verb form.",
+              "Check agreement in both original writing and edited text."
+            ],
+            "workedExample": "Faulty sentence: \"The group of players are practicing.\" The subject is \"group,\" which is singular; \"of players\" is a modifying phrase. Correct sentence: \"The group of players is practicing.\" Another example: \"The players in the group is practicing\" is corrected to \"The players in the group are practicing\" because the subject \"players\" is plural.",
+            "evidencePages": [
+              22
+            ]
+          },
+          {
+            "title": "Checking function and spelling",
+            "objective": "Correct errors in the use of function words and in spelling.",
+            "outcomeRefs": [
+              4
+            ],
+            "keyPoints": [
+              "Function words help show grammatical relationships and include common articles, pronouns, prepositions, conjunctions and auxiliary words.",
+              "Select the function word that fits the sentence's meaning and grammatical structure.",
+              "Check commonly confused words in context rather than choosing only by sound.",
+              "Correct misspelled words using the standard spelling required by the sentence.",
+              "After correction, reread the whole sentence to ensure that it is both grammatical and meaningful."
+            ],
+            "workedExample": "Faulty sentence: \"She went too the library and borrowed a book about grammer.\" The function word \"too\" is incorrect; the required preposition is \"to.\" The spelling \"grammer\" is incorrect; the standard spelling is \"grammar.\" Correct sentence: \"She went to the library and borrowed a book about grammar.\"",
+            "evidencePages": [
+              22
+            ]
+          }
+        ],
+        "checkpoint": [
+          {
+            "question": "Proofread and edit the sentence: \"The boys was playing in there garden.\"",
+            "answer": "The boys were playing in their garden.",
+            "outcomeRef": 1
+          },
+          {
+            "question": "Correct the faulty sentence structure: \"Although the examination was difficult.\"",
+            "answer": "Although the examination was difficult, the students completed it.",
+            "outcomeRef": 2
+          },
+          {
+            "question": "Correct the subject-verb agreement error: \"The list of items are on the table.\"",
+            "answer": "The list of items is on the table.",
+            "outcomeRef": 3
+          },
+          {
+            "question": "Correct the function-word and spelling errors: \"He is interested on scince.\"",
+            "answer": "He is interested in science.",
+            "outcomeRef": 4
+          }
+        ],
+        "courseLabel": "PMDC MDCAT Biology, Chemistry, Physics, English, Logical Reasoning",
+        "level": "MDCAT",
+        "lessonTitle": "Proofreading and error correction",
+        "outcomes": [
+          {
+            "code": null,
+            "text": "Proofread and edit own, peers' and given text."
+          },
+          {
+            "code": null,
+            "text": "Correct faulty sentence structure."
+          },
+          {
+            "code": null,
+            "text": "Correct subject-verb agreement."
+          },
+          {
+            "code": null,
+            "text": "Correct errors of function and spelling."
+          }
+        ]
+      }
+    }
+  ]
+}

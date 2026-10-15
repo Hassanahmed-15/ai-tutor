@@ -1,0 +1,733 @@
+{
+ "id": "cie-igcse-mathematics-additional-0606-2025-2027",
+ "region": "INTL",
+ "framework": "Cambridge IGCSE Mathematics - Additional (0606) syllabus 2025–2027",
+ "board": "Cambridge",
+ "qualification": "IGCSE",
+ "subject": "Mathematics - Additional",
+ "syllabusCode": "0606",
+ "gradeSystem": "course",
+ "source": {
+  "urls": [
+   "https://www.cambridgeinternational.org/Images/662470-2025-2027-syllabus.pdf",
+   "https://www.cambridgeinternational.org/programmes-and-qualifications/cambridge-igcse-mathematics-additional-0606/"
+  ],
+  "publisher": "Cambridge University Press & Assessment (Cambridge International Education)",
+  "licence": "© Cambridge University Press & Assessment; structure + our own wording only",
+  "firstExam": "2025"
+ },
+ "grades": [
+  {
+   "grade": "all",
+   "units": [
+    {
+     "id": "3-subject-content",
+     "title": "3 Subject content",
+     "topics": [
+      {
+       "id": "1-functions",
+       "title": "1 Functions",
+       "subtopics": [
+        {
+         "id": "function-language-and-notation",
+         "title": "Function Language and Notation",
+         "outcomes": [
+          {
+           "code": "1.1",
+           "text": "Define function terminology, including domain, range, one-to-one, many-to-one, inverse, and composite functions."
+          },
+          {
+           "code": "1.3",
+           "text": "Use standard notation for functions, inverses, composites, and repeated function composition."
+          }
+         ]
+        },
+        {
+         "id": "domains-and-ranges",
+         "title": "Domains and Ranges",
+         "outcomes": [
+          {
+           "code": "1.2",
+           "text": "Determine domains and ranges of functions, including inverse and composite functions, with restrictions where necessary."
+          }
+         ]
+        },
+        {
+         "id": "function-and-absolute-value-graphs",
+         "title": "Function and Absolute Value Graphs",
+         "outcomes": [
+          {
+           "code": "1.4",
+           "text": "Understand how the graphs of a function and its absolute value are related."
+          }
+         ]
+        },
+        {
+         "id": "inverses-and-one-to-one-functions",
+         "title": "Inverses and One-to-One Functions",
+         "outcomes": [
+          {
+           "code": "1.5",
+           "text": "Explain why a specified function has no inverse."
+          },
+          {
+           "code": "1.6",
+           "text": "Find the inverse of a one-to-one function using correct notation."
+          },
+          {
+           "code": "1.8",
+           "text": "Use sketches to show that a function and its inverse reflect across y = x."
+          }
+         ]
+        },
+        {
+         "id": "composite-functions",
+         "title": "Composite Functions",
+         "outcomes": [
+          {
+           "code": "1.7",
+           "text": "Construct and use composite functions, recognising that composition order matters."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "2-quadratic-functions",
+       "title": "2 Quadratic functions",
+       "subtopics": [
+        {
+         "id": "quadratic-extrema-and-range",
+         "title": "Quadratic Extrema and Range",
+         "outcomes": [
+          {
+           "code": "2.1",
+           "text": "Find the maximum or minimum of a quadratic by completing the square or differentiating."
+          },
+          {
+           "code": "2.2",
+           "text": "Use a quadratic’s extremum to sketch its graph or determine its range on a specified domain."
+          }
+         ]
+        },
+        {
+         "id": "discriminants-and-intersections",
+         "title": "Discriminants and Intersections",
+         "outcomes": [
+          {
+           "code": "2.3",
+           "text": "Relate discriminant conditions to roots and to line intersections, tangency, or non-intersection with curves."
+          }
+         ]
+        },
+        {
+         "id": "solving-quadratic-equations",
+         "title": "Solving Quadratic Equations",
+         "outcomes": [
+          {
+           "code": "2.4",
+           "text": "Solve quadratic equations for real roots by factorising, using the formula, or completing the square."
+          }
+         ]
+        },
+        {
+         "id": "quadratic-inequalities",
+         "title": "Quadratic Inequalities",
+         "outcomes": [
+          {
+           "code": "2.5",
+           "text": "Solve quadratic inequalities graphically or algebraically and express the solution set correctly."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "3-factors-of-polynomials",
+       "title": "3 Factors of polynomials",
+       "subtopics": [
+        {
+         "id": "remainder-and-factor-theorems",
+         "title": "Remainder and Factor Theorems",
+         "outcomes": [
+          {
+           "code": "3.1",
+           "text": "Apply the remainder theorem and factor theorem."
+          }
+         ]
+        },
+        {
+         "id": "factoring-cubic-polynomials",
+         "title": "Factoring Cubic Polynomials",
+         "outcomes": [
+          {
+           "code": "3.2",
+           "text": "Factorise polynomials, including obtaining linear and quadratic factors of cubics."
+          }
+         ]
+        },
+        {
+         "id": "solving-cubic-equations",
+         "title": "Solving Cubic Equations",
+         "outcomes": [
+          {
+           "code": "3.3",
+           "text": "Solve cubic equations."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "4-equations-inequalities-and-graphs",
+       "title": "4 Equations, inequalities and graphs",
+       "subtopics": [
+        {
+         "id": "absolute-value-equations",
+         "title": "Absolute-Value Equations",
+         "outcomes": [
+          {
+           "code": "4.1",
+           "text": "Solve specified equations involving linear or quadratic expressions inside absolute-value signs, graphically or algebraically."
+          }
+         ]
+        },
+        {
+         "id": "absolute-value-inequalities",
+         "title": "Absolute-Value Inequalities",
+         "outcomes": [
+          {
+           "code": "4.2",
+           "text": "Solve specified absolute-value inequalities graphically or algebraically."
+          }
+         ]
+        },
+        {
+         "id": "substitutions-for-quadratics",
+         "title": "Substitutions for Quadratics",
+         "outcomes": [
+          {
+           "code": "4.3",
+           "text": "Choose substitutions that convert related equations into quadratics, then solve them."
+          }
+         ]
+        },
+        {
+         "id": "cubic-and-absolute-value-graphs",
+         "title": "Cubic and Absolute-Value Graphs",
+         "outcomes": [
+          {
+           "code": "4.4",
+           "text": "Sketch cubic polynomial graphs and their absolute values when given as products of three linear factors."
+          }
+         ]
+        },
+        {
+         "id": "cubic-inequalities",
+         "title": "Cubic Inequalities",
+         "outcomes": [
+          {
+           "code": "4.5",
+           "text": "Solve cubic inequalities graphically when the cubic is a product of three linear factors."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "5-simultaneous-equations",
+       "title": "5 Simultaneous equations",
+       "subtopics": [
+        {
+         "id": "5-simultaneous-equations",
+         "title": "5 Simultaneous equations",
+         "outcomes": [
+          {
+           "code": "5.1",
+           "text": "Solve simultaneous equations in two unknowns using elimination or substitution, including nonlinear systems."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "6-logarithmic-and-exponential-functions",
+       "title": "6 Logarithmic and exponential functions",
+       "subtopics": [
+        {
+         "id": "logarithmic-and-exponential-graphs",
+         "title": "Logarithmic and Exponential Graphs",
+         "outcomes": [
+          {
+           "code": "6.1",
+           "text": "Use properties and graphs of logarithmic and exponential functions, including inverses and asymptotes."
+          }
+         ]
+        },
+        {
+         "id": "logarithm-laws",
+         "title": "Logarithm Laws",
+         "outcomes": [
+          {
+           "code": "6.2",
+           "text": "Apply logarithm laws, including changing the base and combining or separating logarithmic expressions."
+          }
+         ]
+        },
+        {
+         "id": "exponential-equations",
+         "title": "Exponential Equations",
+         "outcomes": [
+          {
+           "code": "6.3",
+           "text": "Solve exponential equations of the form a raised to x equals b."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "7-straight-line-graphs",
+       "title": "7 Straight-line graphs",
+       "subtopics": [
+        {
+         "id": "equations-of-straight-lines",
+         "title": "Equations of Straight Lines",
+         "outcomes": [
+          {
+           "code": "7.1",
+           "text": "Use equations of straight lines."
+          }
+         ]
+        },
+        {
+         "id": "parallel-and-perpendicular-lines",
+         "title": "Parallel and Perpendicular Lines",
+         "outcomes": [
+          {
+           "code": "7.2",
+           "text": "Use gradient conditions to identify parallel and perpendicular lines."
+          }
+         ]
+        },
+        {
+         "id": "midpoints-and-distances",
+         "title": "Midpoints and Distances",
+         "outcomes": [
+          {
+           "code": "7.3",
+           "text": "Solve midpoint and distance problems, including finding and using a perpendicular bisector’s equation."
+          }
+         ]
+        },
+        {
+         "id": "linearising-relationships",
+         "title": "Linearising Relationships",
+         "outcomes": [
+          {
+           "code": "7.4",
+           "text": "Transform relationships into or from straight-line form and determine constants from gradients or intercepts."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "8-coordinate-geometry-of-the-circle",
+       "title": "8 Coordinate geometry of the circle",
+       "subtopics": [
+        {
+         "id": "circle-equations",
+         "title": "Circle Equations",
+         "outcomes": [
+          {
+           "code": "8.1",
+           "text": "Use circle equations and identify a circle’s centre and radius from any given form."
+          }
+         ]
+        },
+        {
+         "id": "lines-and-circles",
+         "title": "Lines and Circles",
+         "outcomes": [
+          {
+           "code": "8.2",
+           "text": "Find intersections of circles and lines and classify a line as a tangent, chord, or non-intersecting."
+          }
+         ]
+        },
+        {
+         "id": "tangents-to-circles",
+         "title": "Tangents to Circles",
+         "outcomes": [
+          {
+           "code": "8.3",
+           "text": "Solve tangent-to-circle problems, including finding tangent equations, without calculus."
+          }
+         ]
+        },
+        {
+         "id": "intersections-of-two-circles",
+         "title": "Intersections of Two Circles",
+         "outcomes": [
+          {
+           "code": "8.4",
+           "text": "Solve two-circle intersection problems, including common chords and whether circles intersect, touch, or miss."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "9-circular-measure",
+       "title": "9 Circular measure",
+       "subtopics": [
+        {
+         "id": "9-circular-measure",
+         "title": "9 Circular measure",
+         "outcomes": [
+          {
+           "code": "9.1",
+           "text": "Use radians to solve problems involving arc lengths and sector areas, including compound shapes."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "10-trigonometry",
+       "title": "10 Trigonometry",
+       "subtopics": [
+        {
+         "id": "six-trigonometric-functions",
+         "title": "Six Trigonometric Functions",
+         "outcomes": [
+          {
+           "code": "10.1",
+           "text": "Use all six trigonometric functions for angles of any magnitude."
+          }
+         ]
+        },
+        {
+         "id": "trigonometric-graphs",
+         "title": "Trigonometric Graphs",
+         "outcomes": [
+          {
+           "code": "10.2",
+           "text": "Understand amplitude and period and relate the graphs of trigonometric functions."
+          },
+          {
+           "code": "10.3",
+           "text": "Draw and interpret graphs of transformed sine, cosine, and tangent functions."
+          }
+         ]
+        },
+        {
+         "id": "fundamental-trigonometric-identities",
+         "title": "Fundamental Trigonometric Identities",
+         "outcomes": [
+          {
+           "code": "10.4",
+           "text": "Use the fundamental identities connecting sine, cosine, tangent, secant, cosecant, and cotangent."
+          }
+         ]
+        },
+        {
+         "id": "solving-trigonometric-equations",
+         "title": "Solving Trigonometric Equations",
+         "outcomes": [
+          {
+           "code": "10.5",
+           "text": "Solve trigonometric equations involving any of the six functions over a specified domain."
+          }
+         ]
+        },
+        {
+         "id": "proving-trigonometric-identities",
+         "title": "Proving Trigonometric Identities",
+         "outcomes": [
+          {
+           "code": "10.6",
+           "text": "Prove trigonometric identities involving the six trigonometric functions."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "11-permutations-and-combinations",
+       "title": "11 Permutations and combinations",
+       "subtopics": [
+        {
+         "id": "permutations-or-combinations",
+         "title": "Permutations or Combinations",
+         "outcomes": [
+          {
+           "code": "11.1",
+           "text": "Distinguish permutations from combinations and choose the appropriate method."
+          },
+          {
+           "code": "11.2",
+           "text": "Use factorial notation and formulas for arrangements and selections of r items from n."
+          }
+         ]
+        },
+        {
+         "id": "arrangement-and-selection-problems",
+         "title": "Arrangement and Selection Problems",
+         "outcomes": [
+          {
+           "code": "11.3",
+           "text": "Solve arrangement and selection problems using permutations or combinations."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "12-series",
+       "title": "12 Series",
+       "subtopics": [
+        {
+         "id": "binomial-expansions",
+         "title": "Binomial Expansions",
+         "outcomes": [
+          {
+           "code": "12.1",
+           "text": "Expand a binomial raised to a positive integer power using the binomial theorem."
+          },
+          {
+           "code": "12.2",
+           "text": "Use the general binomial term to find specified terms, including terms independent of a variable."
+          }
+         ]
+        },
+        {
+         "id": "arithmetic-and-geometric-progressions",
+         "title": "Arithmetic and Geometric Progressions",
+         "outcomes": [
+          {
+           "code": "12.3",
+           "text": "Identify arithmetic and geometric progressions and distinguish between them."
+          }
+         ]
+        },
+        {
+         "id": "progression-terms-and-sums",
+         "title": "Progression Terms and Sums",
+         "outcomes": [
+          {
+           "code": "12.4",
+           "text": "Use nth-term and finite-sum formulas to solve arithmetic and geometric progression problems."
+          }
+         ]
+        },
+        {
+         "id": "convergent-geometric-series",
+         "title": "Convergent Geometric Series",
+         "outcomes": [
+          {
+           "code": "12.5",
+           "text": "Determine when a geometric progression converges and calculate its infinite sum when it does."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "13-vectors-in-two-dimensions",
+       "title": "13 Vectors in two dimensions",
+       "subtopics": [
+        {
+         "id": "vector-notation-and-position",
+         "title": "Vector Notation and Position",
+         "outcomes": [
+          {
+           "code": "13.1",
+           "text": "Understand and correctly use different forms of vector notation."
+          },
+          {
+           "code": "13.2",
+           "text": "Use position vectors and find unit vectors in specified directions."
+          }
+         ]
+        },
+        {
+         "id": "vector-operations-and-magnitudes",
+         "title": "Vector Operations and Magnitudes",
+         "outcomes": [
+          {
+           "code": "13.3",
+           "text": "Find vector magnitudes, perform vector addition and subtraction, and multiply vectors by scalars."
+          }
+         ]
+        },
+        {
+         "id": "resultant-motion-and-collisions",
+         "title": "Resultant Motion and Collisions",
+         "outcomes": [
+          {
+           "code": "13.4",
+           "text": "Compose and resolve velocities to determine resultant motion, positions, and collision outcomes."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "14-calculus",
+       "title": "14 Calculus",
+       "subtopics": [
+        {
+         "id": "derivative-concepts-and-notation",
+         "title": "Derivative Concepts and Notation",
+         "outcomes": [
+          {
+           "code": "14.1",
+           "text": "Understand the concept of a derived function, including an informal understanding of limits."
+          },
+          {
+           "code": "14.2",
+           "text": "Use standard derivative notation, including f′(x), f″(x), dy/dx, d²y/dx², δx and limits."
+          }
+         ]
+        },
+        {
+         "id": "basic-differentiation-rules",
+         "title": "Basic Differentiation Rules",
+         "outcomes": [
+          {
+           "code": "14.3",
+           "text": "Differentiate standard functions, including powers, trigonometric functions, exponentials and logarithms, using sums, constants and the chain rule."
+          }
+         ]
+        },
+        {
+         "id": "products-and-quotients",
+         "title": "Products and Quotients",
+         "outcomes": [
+          {
+           "code": "14.4",
+           "text": "Differentiate products and quotients of functions."
+          }
+         ]
+        },
+        {
+         "id": "tangents-and-normals",
+         "title": "Tangents and Normals",
+         "outcomes": [
+          {
+           "code": "14.5",
+           "text": "Use differentiation to determine gradients, tangent lines and normal lines."
+          }
+         ]
+        },
+        {
+         "id": "stationary-points",
+         "title": "Stationary Points",
+         "outcomes": [
+          {
+           "code": "14.6",
+           "text": "Use differentiation to locate stationary points."
+          },
+          {
+           "code": "14.9",
+           "text": "Use first- and second-derivative tests to classify stationary points as maxima or minima, with justification."
+          }
+         ]
+        },
+        {
+         "id": "rates-and-approximations",
+         "title": "Rates and Approximations",
+         "outcomes": [
+          {
+           "code": "14.7",
+           "text": "Apply differentiation to related rates, small changes and approximations."
+          }
+         ]
+        },
+        {
+         "id": "optimisation-problems",
+         "title": "Optimisation Problems",
+         "outcomes": [
+          {
+           "code": "14.8",
+           "text": "Use differentiation to solve practical maximum and minimum problems."
+          }
+         ]
+        },
+        {
+         "id": "integration-as-inverse-differentiation",
+         "title": "Integration as Inverse Differentiation",
+         "outcomes": [
+          {
+           "code": "14.10",
+           "text": "Understand integration as the inverse operation to differentiation."
+          }
+         ]
+        },
+        {
+         "id": "basic-indefinite-integration",
+         "title": "Basic Indefinite Integration",
+         "outcomes": [
+          {
+           "code": "14.11",
+           "text": "Integrate sums of powers of x, including 1/x and 1/(ax+b), using an arbitrary constant for indefinite integrals."
+          },
+          {
+           "code": "14.12",
+           "text": "Integrate functions involving powers, sine, cosine, sec² and exponentials of linear expressions, including the n = −1 case."
+          }
+         ]
+        },
+        {
+         "id": "definite-integrals-and-areas",
+         "title": "Definite Integrals and Areas",
+         "outcomes": [
+          {
+           "code": "14.13",
+           "text": "Evaluate definite integrals and use integration to calculate plane areas between lines and curves or between curves."
+          }
+         ]
+        },
+        {
+         "id": "kinematics-with-calculus",
+         "title": "Kinematics with Calculus",
+         "outcomes": [
+          {
+           "code": "14.14",
+           "text": "Apply differentiation and integration to straight-line kinematics involving displacement, velocity and acceleration."
+          },
+          {
+           "code": "14.15",
+           "text": "Use displacement, distance, velocity, speed and acceleration relationships to draw and interpret the corresponding graphs."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "build": {
+  "builtAt": "2026-10-14T05:35:49.297Z",
+  "model": "gpt-5.6-luna",
+  "usd": 0.0087,
+  "expectedCodes": 67,
+  "coverage": 1,
+  "missingCodes": [],
+  "counts": {
+   "grades": 1,
+   "units": 1,
+   "topics": 14,
+   "subtopics": 55,
+   "outcomes": 67
+  },
+  "warnings": [
+   "grade IGCSE has no content",
+   "unexpected grade label \"all\""
+  ]
+ }
+}

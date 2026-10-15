@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { GRADE_ANSWER_RUBRIC_INSTRUCTION, GRADE_FEEDBACK_INSTRUCTION, type TestQuestion } from "@/lib/testPrompt";
+import { GRADE_ANSWER_RUBRIC_INSTRUCTION, GRADE_FEEDBACK_INSTRUCTION, MARK_SCHEME_INSTRUCTION, type TestQuestion } from "@/lib/testPrompt";
 import { sanitizeGradeResults } from "@/lib/testSanitize";
 import { createOpenAI } from "@/lib/openaiClient";
 
@@ -38,8 +38,8 @@ export async function POST(req: Request) {
           role: "system",
           content:
             `You are grading a completed LIVE ORAL EXAM from its transcript. The examiner asked these questions, in this order, and the student answered by voice (the transcript may contain minor transcription errors — judge intent, not exact wording).\n` +
-            `Return JSON only: { "results": [{ "id": string, "correct": boolean, "feedback": string }] }\n` +
-            `${GRADE_ANSWER_RUBRIC_INSTRUCTION}\nMatch each question to the student's corresponding answer in the transcript by the order the questions were asked.\n${GRADE_FEEDBACK_INSTRUCTION}`,
+            `Return JSON only: { "results": [{ "id": string, "status": "correct" | "partial" | "misconception", "pointsEarned": number, "awarded": boolean[], "missingKeyPoints": string[], "misconception": string|null, "feedback": string }] }\nAward one point per rubric key point explicitly requested by the question. Report missingKeyPoints only for requested content absent from the answer; optional enrichment never loses credit. Name a specific wrong model in misconception and do not call a missing detail a misconception.\n` +
+            `${GRADE_ANSWER_RUBRIC_INSTRUCTION}\n${MARK_SCHEME_INSTRUCTION}\nMatch each question to the student's corresponding answer in the transcript by the order the questions were asked.\n${GRADE_FEEDBACK_INSTRUCTION}`,
         },
         {
           role: "user",
@@ -53,7 +53,7 @@ export async function POST(req: Request) {
       max_tokens: 2000,
       response_format: { type: "json_object" },
     });
-    const results = sanitizeGradeResults(JSON.parse(completion.choices[0]?.message?.content ?? "{}"), questions.map((q) => q.id));
+    const results = sanitizeGradeResults(JSON.parse(completion.choices[0]?.message?.content ?? "{}"), questions.map((q) => q.id), questions);
     const usage = completion.usage;
     const costUsd = usage ? usage.prompt_tokens * (2.5 / 1_000_000) + usage.completion_tokens * (10.0 / 1_000_000) : 0;
     return NextResponse.json({ results, costUsd });

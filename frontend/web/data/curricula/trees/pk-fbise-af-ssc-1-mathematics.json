@@ -1,0 +1,581 @@
+{
+ "id": "pk-fbise-af-ssc-1-mathematics",
+ "region": "PK",
+ "framework": "FBISE Assessment Framework (National Curriculum of Pakistan 2022-23)",
+ "board": "FBISE",
+ "qualification": "SSC-I",
+ "subject": "Mathematics",
+ "syllabusCode": null,
+ "gradeSystem": "grade",
+ "source": {
+  "urls": [
+   "https://www.fbise.edu.pk/ModelPaper/2024New/maths/Final_Assessment_Framework_Model_Question_Paper_Mathematics_SSC-I.pdf"
+  ],
+  "publisher": "Federal Board of Intermediate and Secondary Education",
+  "licence": "Government publication; structure + our own wording only",
+  "firstExam": "2025"
+ },
+ "grades": [
+  {
+   "grade": "9",
+   "units": [
+    {
+     "id": "domain-a-numbers-and-algebra",
+     "title": "Domain A: Numbers and Algebra",
+     "topics": [
+      {
+       "id": "real-numbers",
+       "title": "Real numbers",
+       "subtopics": [
+        {
+         "id": "real-numbers-and-their-properties",
+         "title": "Real numbers and their properties",
+         "outcomes": [
+          {
+           "code": "M-09-A-01",
+           "text": "Describe how number systems developed, from the Sumerians to the Arabic system."
+          },
+          {
+           "code": "M-09-A-02",
+           "text": "Describe real numbers as rational and irrational numbers together."
+          },
+          {
+           "code": "M-09-A-03",
+           "text": "Show the properties of equality and inequality of real numbers."
+          }
+         ]
+        },
+        {
+         "id": "indices-and-scientific-notation",
+         "title": "Indices and scientific notation",
+         "outcomes": [
+          {
+           "code": "M-09-A-04",
+           "text": "Use laws of indices to simplify radical expressions."
+          },
+          {
+           "code": "M-09-A-05",
+           "text": "Write numbers in scientific notation and back."
+          }
+         ]
+        },
+        {
+         "id": "logarithms",
+         "title": "Logarithms",
+         "outcomes": [
+          {
+           "code": "M-09-A-06",
+           "text": "Describe the logarithm of a number."
+          },
+          {
+           "code": "M-09-A-07",
+           "text": "Tell common logarithms from natural logarithms."
+          },
+          {
+           "code": "M-09-A-08",
+           "text": "Use log laws in growth, decay and loudness problems."
+          }
+         ]
+        },
+        {
+         "id": "rational-numbers-in-real-life",
+         "title": "Rational numbers in real life",
+         "outcomes": [
+          {
+           "code": "M-09-A-09",
+           "text": "Use rational numbers in stock, temperature, banking and money problems."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "sets-and-functions",
+       "title": "Sets and functions",
+       "subtopics": [
+        {
+         "id": "sets-and-venn-diagrams",
+         "title": "Sets and Venn diagrams",
+         "outcomes": [
+          {
+           "code": "M-09-A-10",
+           "text": "Describe mathematics as the study of pattern, structure and relationships."
+          },
+          {
+           "code": "M-09-A-11",
+           "text": "Use operations on three sets with Venn diagrams."
+          },
+          {
+           "code": "M-09-A-12",
+           "text": "Solve classification problems with two or three sets and Venn diagrams."
+          }
+         ]
+        },
+        {
+         "id": "laws-of-sets",
+         "title": "Laws of sets",
+         "outcomes": [
+          {
+           "code": "M-09-A-13",
+           "text": "Verify and use the laws of union and intersection of three sets."
+          },
+          {
+           "code": "M-09-A-14",
+           "text": "Apply set ideas to real-world sorting and grouping."
+          }
+         ]
+        },
+        {
+         "id": "relations",
+         "title": "Relations",
+         "outcomes": [
+          {
+           "code": "M-09-A-15",
+           "text": "Explain product sets and binary relations with domain and range."
+          },
+          {
+           "code": "M-09-A-16",
+           "text": "Show a relation as a table, ordered pairs or a graph."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "factorization",
+       "title": "Factorization",
+       "subtopics": [
+        {
+         "id": "factoring-expressions",
+         "title": "Factoring expressions",
+         "outcomes": [
+          {
+           "code": "M-09-A-17",
+           "text": "Find common factors and factor trinomials using pictures and symbols."
+          },
+          {
+           "code": "M-09-A-18",
+           "text": "Factorise quadratic and cubic expressions, including sums and differences of cubes."
+          }
+         ]
+        },
+        {
+         "id": "hcf-lcm-and-square-roots",
+         "title": "HCF, LCM and square roots",
+         "outcomes": [
+          {
+           "code": "M-09-A-19",
+           "text": "Find HCF and LCM of algebraic expressions and link them."
+          },
+          {
+           "code": "M-09-A-20",
+           "text": "Find square roots of algebraic expressions by factorising and division."
+          },
+          {
+           "code": "M-09-A-21",
+           "text": "Apply factorisation to engineering, physics and finance problems."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "linear-equations-and-inequalities",
+       "title": "Linear equations and inequalities",
+       "subtopics": [
+        {
+         "id": "linear-equations-and-inequalities-in-one-variabl",
+         "title": "Linear equations and inequalities in one variable",
+         "outcomes": [
+          {
+           "code": "M-09-A-22",
+           "text": "Solve linear equations and inequalities and show solutions on a number line."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "domain-b-geometry",
+     "title": "Domain B: Geometry",
+     "topics": [
+      {
+       "id": "coordinate-geometry",
+       "title": "Coordinate geometry",
+       "subtopics": [
+        {
+         "id": "distance-and-midpoint",
+         "title": "Distance and midpoint",
+         "outcomes": [
+          {
+           "code": "M-09-B-01",
+           "text": "Derive the distance formula for two points on the plane."
+          },
+          {
+           "code": "M-09-B-02",
+           "text": "Find the midpoint of a line segment."
+          },
+          {
+           "code": "M-09-B-06",
+           "text": "Use distance and midpoint formulas in real situations."
+          }
+         ]
+        },
+        {
+         "id": "gradient-and-equations-of-lines",
+         "title": "Gradient and equations of lines",
+         "outcomes": [
+          {
+           "code": "M-09-B-03",
+           "text": "Find the gradient of a line from two points."
+          },
+          {
+           "code": "M-09-B-04",
+           "text": "Write the equation of a line as y = mx + c."
+          },
+          {
+           "code": "M-09-B-05",
+           "text": "Find gradients of parallel and perpendicular lines."
+          },
+          {
+           "code": "M-09-B-08",
+           "text": "Derive the standard forms of a line equation."
+          },
+          {
+           "code": "M-09-B-09",
+           "text": "Show a linear equation is a line and convert between its forms."
+          }
+         ]
+        },
+        {
+         "id": "using-coordinate-geometry",
+         "title": "Using coordinate geometry",
+         "outcomes": [
+          {
+           "code": "M-09-B-07",
+           "text": "Apply coordinate geometry to navigation, mapping and landscaping."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "angle-between-lines",
+       "title": "Angle between lines",
+       "subtopics": [
+        {
+         "id": "angle-between-two-lines",
+         "title": "Angle between two lines",
+         "outcomes": [
+          {
+           "code": "M-09-B-10",
+           "text": "Find the angle between two intersecting lines."
+          },
+          {
+           "code": "M-09-B-11",
+           "text": "Find the family of lines through the intersection of two lines."
+          },
+          {
+           "code": "M-09-B-12",
+           "text": "Find triangle angles from the slopes of its sides."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "logic",
+       "title": "Logic",
+       "subtopics": [
+        {
+         "id": "statements-and-proof",
+         "title": "Statements and proof",
+         "outcomes": [
+          {
+           "code": "M-09-B-13",
+           "text": "Tell a mathematical statement from its proof."
+          },
+          {
+           "code": "M-09-B-14",
+           "text": "Tell an axiom, conjecture and theorem apart."
+          },
+          {
+           "code": "M-09-B-15",
+           "text": "Write simple algebraic proofs showing LHS equals RHS."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "similar-figures",
+       "title": "Similar figures",
+       "subtopics": [
+        {
+         "id": "similarity-area-and-volume",
+         "title": "Similarity, area and volume",
+         "outcomes": [
+          {
+           "code": "M-09-B-16",
+           "text": "Identify similar polygons."
+          },
+          {
+           "code": "M-09-B-17",
+           "text": "Solve problems linking areas and volumes of similar figures."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "polygons-triangles-and-parallelograms",
+       "title": "Polygons, triangles and parallelograms",
+       "subtopics": [
+        {
+         "id": "real-life-polygon-problems",
+         "title": "Real-life polygon problems",
+         "outcomes": [
+          {
+           "code": "M-09-B-18",
+           "text": "Solve real problems using properties of polygons, triangles and parallelograms."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "loci",
+       "title": "Loci",
+       "subtopics": [
+        {
+         "id": "loci",
+         "title": "Loci",
+         "outcomes": [
+          {
+           "code": "M-09-B-19",
+           "text": "Solve problems using loci and intersecting loci in two dimensions."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "trigonometry",
+       "title": "Trigonometry",
+       "subtopics": [
+        {
+         "id": "angles-and-right-triangles",
+         "title": "Angles and right triangles",
+         "outcomes": [
+          {
+           "code": "M-09-B-20",
+           "text": "Identify angles in standard position in degrees and radians."
+          },
+          {
+           "code": "M-09-B-21",
+           "text": "Use Pythagoras and sine, cosine, tangent to find sides and angles."
+          }
+         ]
+        },
+        {
+         "id": "elevation-and-depression",
+         "title": "Elevation and depression",
+         "outcomes": [
+          {
+           "code": "M-09-B-22",
+           "text": "Solve two-dimensional problems with angles of elevation and depression."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "trigonometric-identities",
+       "title": "Trigonometric identities",
+       "subtopics": [
+        {
+         "id": "identities",
+         "title": "Identities",
+         "outcomes": [
+          {
+           "code": "M-09-B-23",
+           "text": "Prove trigonometric identities and use them."
+          },
+          {
+           "code": "M-09-B-24",
+           "text": "Solve real problems using trigonometric identities."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "bearing",
+       "title": "Bearing",
+       "subtopics": [
+        {
+         "id": "bearings",
+         "title": "Bearings",
+         "outcomes": [
+          {
+           "code": "M-09-B-25",
+           "text": "Read and use three-figure bearings."
+          },
+          {
+           "code": "M-09-B-26",
+           "text": "Solve bearing problems."
+          },
+          {
+           "code": "M-09-B-27",
+           "text": "Apply trigonometry in bearing situations."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "construction-of-triangles",
+       "title": "Construction of triangles",
+       "subtopics": [
+        {
+         "id": "constructing-triangles",
+         "title": "Constructing triangles",
+         "outcomes": [
+          {
+           "code": "M-09-B-28",
+           "text": "Construct a triangle from two sides and the included angle."
+          },
+          {
+           "code": "M-09-B-29",
+           "text": "Construct a triangle from one side and two angles."
+          },
+          {
+           "code": "M-09-B-30",
+           "text": "Construct a triangle from two sides and a non-included angle."
+          }
+         ]
+        },
+        {
+         "id": "lines-in-a-triangle",
+         "title": "Lines in a triangle",
+         "outcomes": [
+          {
+           "code": "M-09-B-31",
+           "text": "Draw bisectors, medians and altitudes of a triangle and check they meet at a point."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "domain-c-information-handling",
+     "title": "Domain C: Information Handling",
+     "topics": [
+      {
+       "id": "frequency-distribution",
+       "title": "Frequency distribution",
+       "subtopics": [
+        {
+         "id": "grouped-data-displays",
+         "title": "Grouped data displays",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Build a grouped frequency table, histogram and frequency polygon."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "measures-of-central-tendency",
+       "title": "Measures of central tendency",
+       "subtopics": [
+        {
+         "id": "mean-median-and-mode",
+         "title": "Mean, median and mode",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Find the mean, modal class and median of grouped data."
+          },
+          {
+           "code": null,
+           "text": "Solve real problems using mean, weighted mean, median and mode."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "probability",
+       "title": "Probability",
+       "subtopics": [
+        {
+         "id": "probability-of-events",
+         "title": "Probability of events",
+         "outcomes": [
+          {
+           "code": "M-09-C-04",
+           "text": "Find the probability of an event and of it not happening."
+          },
+          {
+           "code": null,
+           "text": "Solve real problems using probability."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "relative-and-expected-frequencies",
+       "title": "Relative and expected frequencies",
+       "subtopics": [
+        {
+         "id": "relative-and-expected-frequency",
+         "title": "Relative and expected frequency",
+         "outcomes": [
+          {
+           "code": "M-09-C-06",
+           "text": "Use relative frequency to estimate probability."
+          },
+          {
+           "code": null,
+           "text": "Calculate expected frequencies."
+          },
+          {
+           "code": null,
+           "text": "Solve real problems with relative and expected frequency."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "build": {
+  "builtAt": "2026-10-14T08:16:31.700Z",
+  "model": "claude-agent",
+  "usd": 0,
+  "expectedCodes": 56,
+  "coverage": 0.9821428571428571,
+  "missingCodes": [
+   "M-10-A-23"
+  ],
+  "counts": {
+   "grades": 1,
+   "units": 3,
+   "topics": 18,
+   "subtopics": 28,
+   "outcomes": 61
+  },
+  "warnings": []
+ }
+}

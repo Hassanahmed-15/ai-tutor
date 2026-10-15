@@ -1,0 +1,166 @@
+{
+ "id": "cie-olevel-sinhala-3205-2026",
+ "region": "INTL",
+ "framework": "Cambridge O Level Sinhala (3205) syllabus 2026",
+ "board": "Cambridge",
+ "qualification": "O Level",
+ "subject": "Sinhala",
+ "syllabusCode": "3205",
+ "gradeSystem": "course",
+ "source": {
+  "urls": [
+   "https://www.cambridgeinternational.org/Images/697298-2026-syllabus.pdf",
+   "https://www.cambridgeinternational.org/programmes-and-qualifications/cambridge-o-level-sinhala-3205/"
+  ],
+  "publisher": "Cambridge University Press & Assessment (Cambridge International Education)",
+  "licence": "© Cambridge University Press & Assessment; structure + our own wording only",
+  "firstExam": "2026"
+ },
+ "grades": [
+  {
+   "grade": "O Level",
+   "units": [
+    {
+     "id": "paper-1-composition",
+     "title": "Paper 1: Composition",
+     "topics": [
+      {
+       "id": "section-a-short-composition",
+       "title": "Section A: Short composition",
+       "subtopics": [
+        {
+         "id": "letters-reports-speeches-and-dialogues",
+         "title": "Letters, reports, speeches and dialogues",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Write a letter in Sinhala for a given purpose and audience, about 120 words."
+          },
+          {
+           "code": null,
+           "text": "Write a report or a speech in Sinhala, about 120 words."
+          },
+          {
+           "code": null,
+           "text": "Write a dialogue in Sinhala, about 120 words."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "section-b-essay",
+       "title": "Section B: Essay",
+       "subtopics": [
+        {
+         "id": "narrative-descriptive-and-argumentative-essays",
+         "title": "Narrative, descriptive and argumentative essays",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Write a narrative essay of about 200 words in Sinhala."
+          },
+          {
+           "code": null,
+           "text": "Write a descriptive essay of about 200 words in Sinhala."
+          },
+          {
+           "code": null,
+           "text": "Write an argumentative essay of about 200 words in Sinhala."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "writing-skills",
+       "title": "Writing skills",
+       "subtopics": [
+        {
+         "id": "writing-well-in-sinhala",
+         "title": "Writing well in Sinhala",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Express experience, feelings and imagination, and order facts, ideas and opinions."
+          },
+          {
+           "code": null,
+           "text": "Use paragraphing, sentence structure, punctuation and spelling correctly."
+          },
+          {
+           "code": null,
+           "text": "Control vocabulary and grammar, and match register and style to the audience."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "paper-2-translation-and-reading-comprehension",
+     "title": "Paper 2: Translation and Reading Comprehension",
+     "topics": [
+      {
+       "id": "section-a-translation",
+       "title": "Section A: Translation",
+       "subtopics": [
+        {
+         "id": "translating-sinhala-and-english",
+         "title": "Translating Sinhala and English",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Translate a Sinhala passage into English."
+          },
+          {
+           "code": null,
+           "text": "Translate an English passage into Sinhala."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "section-b-reading-comprehension",
+       "title": "Section B: Reading comprehension",
+       "subtopics": [
+        {
+         "id": "understanding-a-set-passage",
+         "title": "Understanding a set passage",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Answer varied questions that test understanding of a set Sinhala passage."
+          },
+          {
+           "code": null,
+           "text": "Recognise implicit meaning and attitude, and express information in your own words."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "build": {
+  "builtAt": "2026-10-14T09:35:06.922Z",
+  "model": "claude-agent",
+  "usd": 0,
+  "expectedCodes": null,
+  "coverage": null,
+  "missingCodes": [],
+  "counts": {
+   "grades": 1,
+   "units": 2,
+   "topics": 5,
+   "subtopics": 5,
+   "outcomes": 13
+  },
+  "warnings": []
+ }
+}

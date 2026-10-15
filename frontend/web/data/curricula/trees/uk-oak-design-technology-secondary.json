@@ -1,0 +1,2390 @@
+{
+ "id": "uk-oak-design-technology-secondary",
+ "region": "UK",
+ "framework": "Oak National Academy curriculum",
+ "board": "Oak National Academy",
+ "qualification": "Secondary",
+ "subject": "Design and technology",
+ "syllabusCode": null,
+ "gradeSystem": "year",
+ "source": {
+  "urls": [
+   "https://www.thenational.academy/teachers/programmes/design-technology-secondary/units",
+   "https://open-api.thenational.academy/api/v0/sequences/design-technology-secondary/units"
+  ],
+  "publisher": "Oak National Academy",
+  "licence": "Contains Oak National Academy content licensed under the Open Government Licence v3.0",
+  "firstExam": null
+ },
+ "grades": [
+  {
+   "grade": "Year 7",
+   "units": [
+    {
+     "id": "design",
+     "title": "Design",
+     "topics": [
+      {
+       "id": "principles-of-materials-and-manufacturing",
+       "title": "Principles of materials and manufacturing",
+       "subtopics": [
+        {
+         "id": "materials-in-design",
+         "title": "Materials in design",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Materials in design"
+          }
+         ]
+        },
+        {
+         "id": "wasting-manufacturing-processes",
+         "title": "Wasting manufacturing processes",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Wasting manufacturing processes"
+          }
+         ]
+        },
+        {
+         "id": "material-selection",
+         "title": "Material selection",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Material selection"
+          }
+         ]
+        },
+        {
+         "id": "fabricating-manufacturing-processes",
+         "title": "Fabricating manufacturing processes",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Fabricating manufacturing processes"
+          }
+         ]
+        },
+        {
+         "id": "material-sustainability",
+         "title": "Material sustainability",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Material sustainability"
+          }
+         ]
+        },
+        {
+         "id": "deforming-manufacturing-processes",
+         "title": "Deforming manufacturing processes",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Deforming manufacturing processes"
+          }
+         ]
+        },
+        {
+         "id": "minimising-material-waste",
+         "title": "Minimising material waste",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Minimising material waste"
+          }
+         ]
+        },
+        {
+         "id": "reforming-manufacturing-processes",
+         "title": "Reforming manufacturing processes",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Reforming manufacturing processes"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "prototypes-with-mechanisms-robotics-and-automati",
+       "title": "Prototypes with mechanisms: robotics and automation",
+       "subtopics": [
+        {
+         "id": "paper-and-boards-properties-sources-and-stock-fo",
+         "title": "Paper and boards properties, sources and stock forms",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Paper and boards properties, sources and stock forms"
+          }
+         ]
+        },
+        {
+         "id": "3d-modelling-in-tinkercad",
+         "title": "3D Modelling in Tinkercad",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "3D Modelling in Tinkercad"
+          }
+         ]
+        },
+        {
+         "id": "modelling-and-assembling-complex-shapes-in-tinke",
+         "title": "Modelling and assembling complex shapes in Tinkercad",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Modelling and assembling complex shapes in Tinkercad"
+          }
+         ]
+        },
+        {
+         "id": "movement-with-mechanisms",
+         "title": "Movement with mechanisms",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Movement with mechanisms"
+          }
+         ]
+        },
+        {
+         "id": "model-a-moving-part-in-tinkercad",
+         "title": "Model a moving part in Tinkercad",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Model a moving part in Tinkercad"
+          }
+         ]
+        },
+        {
+         "id": "design-and-simulate-in-tinkercad",
+         "title": "Design and simulate in Tinkercad",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Design and simulate in Tinkercad"
+          }
+         ]
+        },
+        {
+         "id": "cad-to-cam-in-tinkercad",
+         "title": "CAD to CAM in Tinkercad",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "CAD to CAM in Tinkercad"
+          }
+         ]
+        },
+        {
+         "id": "cam-automation-and-laser-cutting",
+         "title": "CAM, automation and laser cutting",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "CAM, automation and laser cutting"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "communication",
+       "title": "Communication",
+       "subtopics": [
+        {
+         "id": "crating-techniques",
+         "title": "Crating techniques",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Crating techniques"
+          }
+         ]
+        },
+        {
+         "id": "rendering-techniques",
+         "title": "Rendering techniques",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Rendering techniques"
+          }
+         ]
+        },
+        {
+         "id": "realistic-rendering-techniques",
+         "title": "Realistic rendering techniques",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Realistic rendering techniques"
+          }
+         ]
+        },
+        {
+         "id": "one-point-perspective",
+         "title": "One point perspective",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "One point perspective"
+          }
+         ]
+        },
+        {
+         "id": "interpret-orthographic-projections",
+         "title": "Interpret orthographic projections",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Interpret orthographic projections"
+          }
+         ]
+        },
+        {
+         "id": "draw-orthographic-projections",
+         "title": "Draw orthographic projections",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Draw orthographic projections"
+          }
+         ]
+        },
+        {
+         "id": "cross-sectional-drawings",
+         "title": "Cross-sectional drawings",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Cross-sectional drawings"
+          }
+         ]
+        },
+        {
+         "id": "exploded-diagrams",
+         "title": "Exploded diagrams",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Exploded diagrams"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "Year 8",
+   "units": [
+    {
+     "id": "critique-and-evaluate",
+     "title": "Critique and evaluate",
+     "topics": [
+      {
+       "id": "collaborative-design-tactile-toys-to-teach",
+       "title": "Collaborative design: tactile toys to teach",
+       "subtopics": [
+        {
+         "id": "scales-of-production",
+         "title": "Scales of production",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Scales of production"
+          }
+         ]
+        },
+        {
+         "id": "timbers-properties-sources-and-stock-forms",
+         "title": "Timbers properties, sources and stock forms",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Timbers properties, sources and stock forms"
+          }
+         ]
+        },
+        {
+         "id": "collaborative-design-for-batch-production",
+         "title": "Collaborative design for batch production",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Collaborative design for batch production"
+          }
+         ]
+        },
+        {
+         "id": "manufacturing-specifications",
+         "title": "Manufacturing specifications",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Manufacturing specifications"
+          }
+         ]
+        },
+        {
+         "id": "quality-control-and-production-planning",
+         "title": "Quality control and production planning",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Quality control and production planning"
+          }
+         ]
+        },
+        {
+         "id": "batch-production",
+         "title": "Batch production",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Batch production"
+          }
+         ]
+        },
+        {
+         "id": "batch-assembly",
+         "title": "Batch assembly",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Batch assembly"
+          }
+         ]
+        },
+        {
+         "id": "evaluate-and-refine-processes",
+         "title": "Evaluate and refine processes",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Evaluate and refine processes"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "ergonomic-design-accessible-controllers",
+       "title": "Ergonomic design: accessible controllers",
+       "subtopics": [
+        {
+         "id": "ergonomics",
+         "title": "Ergonomics",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Ergonomics"
+          }
+         ]
+        },
+        {
+         "id": "anthropometrics",
+         "title": "Anthropometrics",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Anthropometrics"
+          }
+         ]
+        },
+        {
+         "id": "empathy",
+         "title": "Empathy",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Empathy"
+          }
+         ]
+        },
+        {
+         "id": "polymers-properties-sources-and-stock-forms",
+         "title": "Polymers properties, sources and stock forms",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Polymers properties, sources and stock forms"
+          }
+         ]
+        },
+        {
+         "id": "foam-modelling-techniques",
+         "title": "Foam modelling techniques",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Foam modelling techniques"
+          }
+         ]
+        },
+        {
+         "id": "cardboard-modelling-techniques",
+         "title": "Cardboard modelling techniques",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Cardboard modelling techniques"
+          }
+         ]
+        },
+        {
+         "id": "model-accessible-controllers",
+         "title": "Model accessible controllers",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Model accessible controllers"
+          }
+         ]
+        },
+        {
+         "id": "ergonomic-testing-and-design-development",
+         "title": "Ergonomic testing and design development",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Ergonomic testing and design development"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "material-testing",
+       "title": "Material testing",
+       "subtopics": [
+        {
+         "id": "physical-properties-of-materials",
+         "title": "Physical properties of materials",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Physical properties of materials"
+          }
+         ]
+        },
+        {
+         "id": "testing-physical-properties-of-materials",
+         "title": "Testing physical properties of materials",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Testing physical properties of materials"
+          }
+         ]
+        },
+        {
+         "id": "working-properties-of-materials",
+         "title": "Working properties of materials",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Working properties of materials"
+          }
+         ]
+        },
+        {
+         "id": "testing-working-properties-of-materials",
+         "title": "Testing working properties of materials",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Testing working properties of materials"
+          }
+         ]
+        },
+        {
+         "id": "metal-properties-sources-and-stock-forms",
+         "title": "Metal properties, sources and stock forms",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Metal properties, sources and stock forms"
+          }
+         ]
+        },
+        {
+         "id": "the-environmental-impact-of-materials",
+         "title": "The environmental impact of materials",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "The environmental impact of materials"
+          }
+         ]
+        },
+        {
+         "id": "selecting-materials-for-manufacture",
+         "title": "Selecting materials for manufacture",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Selecting materials for manufacture"
+          }
+         ]
+        },
+        {
+         "id": "modern-material-properties",
+         "title": "Modern material properties",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Modern material properties"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "Year 9",
+   "units": [
+    {
+     "id": "critique-and-evaluate",
+     "title": "Critique and evaluate",
+     "topics": [
+      {
+       "id": "functional-prototypes-wearable-technology",
+       "title": "Functional prototypes: wearable technology",
+       "subtopics": [
+        {
+         "id": "circuits-in-tinkercad",
+         "title": "Circuits in Tinkercad",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Circuits in Tinkercad"
+          }
+         ]
+        },
+        {
+         "id": "micro-bits-in-tinkercad",
+         "title": "Micro:bits in Tinkercad",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Micro:bits in Tinkercad"
+          }
+         ]
+        },
+        {
+         "id": "code-and-simulate-micro-bits-in-tinkercad",
+         "title": "Code and simulate Micro:bits in Tinkercad",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Code and simulate Micro:bits in Tinkercad"
+          }
+         ]
+        },
+        {
+         "id": "develop-and-modify-code",
+         "title": "Develop and modify code",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Develop and modify code"
+          }
+         ]
+        },
+        {
+         "id": "sustainable-fabrics-for-wearable-technology",
+         "title": "Sustainable fabrics for wearable technology",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Sustainable fabrics for wearable technology"
+          }
+         ]
+        },
+        {
+         "id": "integrate-a-micro-bit-into-a-wearable-product",
+         "title": "Integrate a micro:bit into a wearable product",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Integrate a micro:bit into a wearable product"
+          }
+         ]
+        },
+        {
+         "id": "manufacture-a-wearable-product",
+         "title": "Manufacture a wearable product",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Manufacture a wearable product"
+          }
+         ]
+        },
+        {
+         "id": "test-and-evaluate-a-wearable-product",
+         "title": "Test and evaluate a wearable product",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Test and evaluate a wearable product"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "developments-in-new-materials-supporting-new-par",
+       "title": "Developments in new materials: supporting new parents",
+       "subtopics": [
+        {
+         "id": "smart-materials-in-design",
+         "title": "Smart materials in design",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Smart materials in design"
+          }
+         ]
+        },
+        {
+         "id": "product-evolution-and-development",
+         "title": "Product evolution and development",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Product evolution and development"
+          }
+         ]
+        },
+        {
+         "id": "explore-contexts-and-empathise",
+         "title": "Explore contexts and empathise",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explore contexts and empathise"
+          }
+         ]
+        },
+        {
+         "id": "product-analysis-and-quality-standards",
+         "title": "Product analysis and quality standards",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Product analysis and quality standards"
+          }
+         ]
+        },
+        {
+         "id": "redesign",
+         "title": "Redesign",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Redesign"
+          }
+         ]
+        },
+        {
+         "id": "develop-ideas-using-feedback",
+         "title": "Develop ideas using feedback",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Develop ideas using feedback"
+          }
+         ]
+        },
+        {
+         "id": "design-optimisation",
+         "title": "Design optimisation",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Design optimisation"
+          }
+         ]
+        },
+        {
+         "id": "present-an-idea",
+         "title": "Present an idea",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Present an idea"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "the-circular-economy",
+       "title": "The circular economy",
+       "subtopics": [
+        {
+         "id": "linear-versus-circular-economy",
+         "title": "Linear versus circular economy",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Linear versus circular economy"
+          }
+         ]
+        },
+        {
+         "id": "life-cycle-assessment",
+         "title": "Life Cycle Assessment",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Life Cycle Assessment"
+          }
+         ]
+        },
+        {
+         "id": "design",
+         "title": "Design",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Design"
+          }
+         ]
+        },
+        {
+         "id": "manufacture-and-materials-processing",
+         "title": "Manufacture and materials processing",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Manufacture and materials processing"
+          }
+         ]
+        },
+        {
+         "id": "distribution",
+         "title": "Distribution",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Distribution"
+          }
+         ]
+        },
+        {
+         "id": "product-in-use",
+         "title": "Product in use",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Product in use"
+          }
+         ]
+        },
+        {
+         "id": "repair-maintenance-and-recycling",
+         "title": "Repair, maintenance and recycling",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Repair, maintenance and recycling"
+          }
+         ]
+        },
+        {
+         "id": "redesign-and-rethink",
+         "title": "Redesign and rethink",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Redesign and rethink"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "Year 10",
+   "units": [
+    {
+     "id": "critique-and-evaluate",
+     "title": "Critique and evaluate",
+     "topics": [
+      {
+       "id": "product-analysis-encouraging-healthy-lifestyles",
+       "title": "Product analysis: encouraging healthy lifestyles",
+       "subtopics": [
+        {
+         "id": "why-and-how-designers-analyse-products",
+         "title": "Why and how designers analyse products",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Why and how designers analyse products"
+          }
+         ]
+        },
+        {
+         "id": "timber-properties-and-processes",
+         "title": "Timber properties and processes",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Timber properties and processes"
+          }
+         ]
+        },
+        {
+         "id": "polymer-properties-and-processes",
+         "title": "Polymer properties and processes",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Polymer properties and processes"
+          }
+         ]
+        },
+        {
+         "id": "metal-properties-and-processes",
+         "title": "Metal properties and processes",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Metal properties and processes"
+          }
+         ]
+        },
+        {
+         "id": "testing-citrus-fruit-juicers",
+         "title": "Testing citrus fruit juicers",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Testing citrus fruit juicers"
+          }
+         ]
+        },
+        {
+         "id": "form-versus-function-fruit-juicers",
+         "title": "Form versus function fruit juicers",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Form versus function fruit juicers"
+          }
+         ]
+        },
+        {
+         "id": "the-work-of-other-designers",
+         "title": "The work of other designers",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "The work of other designers"
+          }
+         ]
+        },
+        {
+         "id": "anthropometrics-and-ergonomics",
+         "title": "Anthropometrics and ergonomics",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Anthropometrics and ergonomics"
+          }
+         ]
+        },
+        {
+         "id": "basic-3d-sketching",
+         "title": "Basic 3D sketching",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Basic 3D sketching"
+          }
+         ]
+        },
+        {
+         "id": "advanced-3d-sketching",
+         "title": "Advanced 3D sketching",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Advanced 3D sketching"
+          }
+         ]
+        },
+        {
+         "id": "mastering-3d-sketching",
+         "title": "Mastering 3D sketching",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Mastering 3D sketching"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "systems-approach-to-design-sustainable-futures",
+       "title": "Systems approach to design: Sustainable Futures",
+       "subtopics": [
+        {
+         "id": "systems-approach-to-design",
+         "title": "Systems approach to design",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Systems approach to design"
+          }
+         ]
+        },
+        {
+         "id": "input-components",
+         "title": "Input components",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Input components"
+          }
+         ]
+        },
+        {
+         "id": "leds",
+         "title": "LEDs",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "LEDs"
+          }
+         ]
+        },
+        {
+         "id": "buzzers",
+         "title": "Buzzers",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Buzzers"
+          }
+         ]
+        },
+        {
+         "id": "motors",
+         "title": "Motors",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Motors"
+          }
+         ]
+        },
+        {
+         "id": "data-logging",
+         "title": "Data logging",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Data logging"
+          }
+         ]
+        },
+        {
+         "id": "electronic-calculations",
+         "title": "Electronic calculations",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Electronic calculations"
+          }
+         ]
+        },
+        {
+         "id": "virtual-and-physical-testing-of-systems",
+         "title": "Virtual and physical testing of systems",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Virtual and physical testing of systems"
+          }
+         ]
+        },
+        {
+         "id": "fusion-fundamentals",
+         "title": "Fusion fundamentals",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Fusion fundamentals"
+          }
+         ]
+        },
+        {
+         "id": "create-modify-and-constrain-2d-sketches-in-fusio",
+         "title": "Create, modify and constrain 2D sketches in Fusion",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Create, modify and constrain 2D sketches in Fusion"
+          }
+         ]
+        },
+        {
+         "id": "3d-model-using-extrude-and-the-timeline-in-fusio",
+         "title": "3D model using Extrude and the Timeline in Fusion",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "3D model using Extrude and the Timeline in Fusion"
+          }
+         ]
+        },
+        {
+         "id": "design-for-additive-manufacturing-with-fusion",
+         "title": "Design for additive manufacturing with Fusion",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Design for additive manufacturing with Fusion"
+          }
+         ]
+        },
+        {
+         "id": "physical-materials-and-appearances-in-fusion",
+         "title": "Physical materials and appearances in Fusion",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Physical materials and appearances in Fusion"
+          }
+         ]
+        },
+        {
+         "id": "assembly-modelling-in-fusion",
+         "title": "Assembly modelling in Fusion",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Assembly modelling in Fusion"
+          }
+         ]
+        },
+        {
+         "id": "technical-drawings-in-fusion",
+         "title": "Technical drawings in Fusion",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Technical drawings in Fusion"
+          }
+         ]
+        },
+        {
+         "id": "assemble-test-and-refine-systems",
+         "title": "Assemble, test and refine systems",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Assemble, test and refine systems"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "iterative-design-nature",
+       "title": "Iterative design: Nature",
+       "subtopics": [
+        {
+         "id": "biomimicry",
+         "title": "Biomimicry",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Biomimicry"
+          }
+         ]
+        },
+        {
+         "id": "identify-environmental-impact",
+         "title": "Identify environmental impact",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Identify environmental impact"
+          }
+         ]
+        },
+        {
+         "id": "product-requirements",
+         "title": "Product requirements",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Product requirements"
+          }
+         ]
+        },
+        {
+         "id": "innovation-when-generating-ideas",
+         "title": "Innovation when generating ideas",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Innovation when generating ideas"
+          }
+         ]
+        },
+        {
+         "id": "generating-design-ideas-using-scamper",
+         "title": "Generating design ideas using SCAMPER",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Generating design ideas using SCAMPER"
+          }
+         ]
+        },
+        {
+         "id": "using-feedback-to-develop-ideas",
+         "title": "Using feedback to develop ideas",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Using feedback to develop ideas"
+          }
+         ]
+        },
+        {
+         "id": "ai-to-develop-ideas-polymers-and-timbers",
+         "title": "AI to develop ideas: polymers and timbers",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "AI to develop ideas: polymers and timbers"
+          }
+         ]
+        },
+        {
+         "id": "proportions-and-scale-polymers-and-timbers",
+         "title": "Proportions and scale: polymers and timbers",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Proportions and scale: polymers and timbers"
+          }
+         ]
+        },
+        {
+         "id": "materials-and-manufacturing-processes-polymers-a",
+         "title": "Materials and manufacturing processes: polymers and timbers",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Materials and manufacturing processes: polymers and timbers"
+          }
+         ]
+        },
+        {
+         "id": "plan-manufacture-using-orthographic-projection-p",
+         "title": "Plan manufacture using orthographic projection: polymers and timbers",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Plan manufacture using orthographic projection: polymers and timbers"
+          }
+         ]
+        },
+        {
+         "id": "parts-lists-polymers-and-timbers",
+         "title": "Parts lists: polymers and timbers",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Parts lists: polymers and timbers"
+          }
+         ]
+        },
+        {
+         "id": "time-planning-polymers-and-timbers",
+         "title": "Time planning: polymers and timbers",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Time planning: polymers and timbers"
+          }
+         ]
+        },
+        {
+         "id": "mark-out-and-prepare-materials-polymers-and-timb",
+         "title": "Mark out and prepare materials: polymers and timbers",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Mark out and prepare materials: polymers and timbers"
+          }
+         ]
+        },
+        {
+         "id": "tools-and-processes-polymers-and-timbers",
+         "title": "Tools and processes: polymers and timbers",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Tools and processes: polymers and timbers"
+          }
+         ]
+        },
+        {
+         "id": "equipment-and-machinery-polymers-and-timbers",
+         "title": "Equipment and machinery: polymers and timbers",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Equipment and machinery: polymers and timbers"
+          }
+         ]
+        },
+        {
+         "id": "quality-control-polymers-and-timbers",
+         "title": "Quality control: polymers and timbers",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Quality control: polymers and timbers"
+          }
+         ]
+        },
+        {
+         "id": "evaluate-with-user-feedback-polymers-and-timbers",
+         "title": "Evaluate with user feedback: polymers and timbers",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Evaluate with user feedback: polymers and timbers"
+          }
+         ]
+        },
+        {
+         "id": "testing-and-modifications-polymers-and-timbers",
+         "title": "Testing and modifications: polymers and timbers",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Testing and modifications: polymers and timbers"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "iterative-design-student-living",
+       "title": "Iterative design: Student Living",
+       "subtopics": [
+        {
+         "id": "explore-the-context-and-avoid-fixation",
+         "title": "Explore the context and avoid fixation",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explore the context and avoid fixation"
+          }
+         ]
+        },
+        {
+         "id": "disassemble-flat-pack-furniture",
+         "title": "Disassemble flat pack furniture",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Disassemble flat pack furniture"
+          }
+         ]
+        },
+        {
+         "id": "standardised-components",
+         "title": "Standardised components",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Standardised components"
+          }
+         ]
+        },
+        {
+         "id": "life-cycle-assessment-of-flat-pack-furniture",
+         "title": "Life cycle assessment of flat pack furniture",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Life cycle assessment of flat pack furniture"
+          }
+         ]
+        },
+        {
+         "id": "define-a-brief-from-design-opportunities-communa",
+         "title": "Define a brief from design opportunities: communal areas",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Define a brief from design opportunities: communal areas"
+          }
+         ]
+        },
+        {
+         "id": "sketch-modelling-communal-areas",
+         "title": "Sketch modelling: communal areas",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Sketch modelling: communal areas"
+          }
+         ]
+        },
+        {
+         "id": "iterate-with-modelling-communal-areas",
+         "title": "Iterate with modelling: communal areas",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Iterate with modelling: communal areas"
+          }
+         ]
+        },
+        {
+         "id": "design-development-with-cad-communal-areas",
+         "title": "Design development with CAD: communal areas",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Design development with CAD: communal areas"
+          }
+         ]
+        },
+        {
+         "id": "iterate-with-cad-communal-areas",
+         "title": "Iterate with CAD: communal areas",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Iterate with CAD: communal areas"
+          }
+         ]
+        },
+        {
+         "id": "design-for-manufacture-communal-areas",
+         "title": "Design for manufacture: communal areas",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Design for manufacture: communal areas"
+          }
+         ]
+        },
+        {
+         "id": "cam-communal-areas",
+         "title": "CAM: communal areas",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "CAM: communal areas"
+          }
+         ]
+        },
+        {
+         "id": "specialist-tools-and-equipment-for-manufacture-c",
+         "title": "Specialist tools and equipment for manufacture: communal areas",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Specialist tools and equipment for manufacture: communal areas"
+          }
+         ]
+        },
+        {
+         "id": "specialist-techniques-and-processes-for-manufact",
+         "title": "Specialist techniques and processes for manufacture: communal areas",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Specialist techniques and processes for manufacture: communal areas"
+          }
+         ]
+        },
+        {
+         "id": "quality-assurance-when-manufacturing-communal-ar",
+         "title": "Quality assurance when manufacturing: communal areas",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Quality assurance when manufacturing: communal areas"
+          }
+         ]
+        },
+        {
+         "id": "surface-treatments-and-finishes-communal-areas",
+         "title": "Surface treatments and finishes: communal areas",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Surface treatments and finishes: communal areas"
+          }
+         ]
+        },
+        {
+         "id": "commercial-viability-communal-areas",
+         "title": "Commercial viability: communal areas",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Commercial viability: communal areas"
+          }
+         ]
+        },
+        {
+         "id": "market-testing-communal-areas",
+         "title": "Market testing: communal areas",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Market testing: communal areas"
+          }
+         ]
+        },
+        {
+         "id": "digital-media-presentation-communal-areas",
+         "title": "Digital Media Presentation: communal areas",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Digital Media Presentation: communal areas"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "inclusive-design-mental-health-and-wellbeing",
+       "title": "Inclusive Design: Mental Health and Wellbeing",
+       "subtopics": [
+        {
+         "id": "what-is-inclusive-design",
+         "title": "What is inclusive design?",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "What is inclusive design?"
+          }
+         ]
+        },
+        {
+         "id": "identifying-challenges-and-opportunities",
+         "title": "Identifying challenges and opportunities",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Identifying challenges and opportunities"
+          }
+         ]
+        },
+        {
+         "id": "empathy-and-user-understanding",
+         "title": "Empathy and user understanding",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Empathy and user understanding"
+          }
+         ]
+        },
+        {
+         "id": "using-research-to-inform-design-requirements",
+         "title": "Using research to inform design requirements",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Using research to inform design requirements"
+          }
+         ]
+        },
+        {
+         "id": "idea-generation",
+         "title": "Idea generation",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Idea generation"
+          }
+         ]
+        },
+        {
+         "id": "idea-evaluation-and-selection",
+         "title": "Idea evaluation and selection",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Idea evaluation and selection"
+          }
+         ]
+        },
+        {
+         "id": "low-fidelity-prototyping",
+         "title": "Low-fidelity prototyping",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Low-fidelity prototyping"
+          }
+         ]
+        },
+        {
+         "id": "basic-testing-and-feedback",
+         "title": "Basic testing and feedback",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Basic testing and feedback"
+          }
+         ]
+        },
+        {
+         "id": "iteration-and-refinement",
+         "title": "Iteration and refinement",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Iteration and refinement"
+          }
+         ]
+        },
+        {
+         "id": "medium-fidelity-prototyping",
+         "title": "Medium-fidelity prototyping",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Medium-fidelity prototyping"
+          }
+         ]
+        },
+        {
+         "id": "advanced-testing-and-feedback",
+         "title": "Advanced testing and feedback",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Advanced testing and feedback"
+          }
+         ]
+        },
+        {
+         "id": "high-fidelity-prototyping",
+         "title": "High-fidelity prototyping",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "High-fidelity prototyping"
+          }
+         ]
+        },
+        {
+         "id": "considerations-for-production",
+         "title": "Considerations for production",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Considerations for production"
+          }
+         ]
+        },
+        {
+         "id": "inclusive-design-in-industry",
+         "title": "Inclusive design in industry",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Inclusive design in industry"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "the-circular-economy-developing-countries",
+       "title": "The circular economy: developing countries",
+       "subtopics": [
+        {
+         "id": "investigating-contexts",
+         "title": "Investigating contexts",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Investigating contexts"
+          }
+         ]
+        },
+        {
+         "id": "circular-economy-and-lca",
+         "title": "Circular economy and LCA",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Circular economy and LCA"
+          }
+         ]
+        },
+        {
+         "id": "design-spider-boot-and-jaipur-foot",
+         "title": "Design: Spider boot and Jaipur foot",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Design: Spider boot and Jaipur foot"
+          }
+         ]
+        },
+        {
+         "id": "manufacture-and-materials-processing-fairtrade",
+         "title": "Manufacture and materials processing: Fairtrade",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Manufacture and materials processing: Fairtrade"
+          }
+         ]
+        },
+        {
+         "id": "distribution-better-shelter-and-wind-up-radio",
+         "title": "Distribution: Better Shelter and wind-up radio",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Distribution: Better Shelter and wind-up radio"
+          }
+         ]
+        },
+        {
+         "id": "product-in-use-s-h-e-uniform-and-hippo-roller",
+         "title": "Product in use: S H E uniform and Hippo Roller",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Product in use: S H E uniform and Hippo Roller"
+          }
+         ]
+        },
+        {
+         "id": "repair-maintenance-and-recycling-energee-saw",
+         "title": "Repair, maintenance and recycling: Energee Saw",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Repair, maintenance and recycling: Energee Saw"
+          }
+         ]
+        },
+        {
+         "id": "redesign-the-washing-machine-project",
+         "title": "Redesign: The Washing Machine Project",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Redesign: The Washing Machine Project"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "design-and-technology",
+     "title": "Design and technology",
+     "topics": [
+      {
+       "id": "investigate-and-research-high-profile-event",
+       "title": "Investigate and research: High profile event",
+       "subtopics": [
+        {
+         "id": "people-and-places",
+         "title": "People and places",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "People and places"
+          }
+         ]
+        },
+        {
+         "id": "bisociation",
+         "title": "Bisociation",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Bisociation"
+          }
+         ]
+        },
+        {
+         "id": "interviews",
+         "title": "Interviews",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Interviews"
+          }
+         ]
+        },
+        {
+         "id": "questionnaires",
+         "title": "Questionnaires",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Questionnaires"
+          }
+         ]
+        },
+        {
+         "id": "present-data",
+         "title": "Present data",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Present data"
+          }
+         ]
+        },
+        {
+         "id": "data-analysis",
+         "title": "Data analysis",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Data analysis"
+          }
+         ]
+        },
+        {
+         "id": "design-security",
+         "title": "Design security",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Design security"
+          }
+         ]
+        },
+        {
+         "id": "branding",
+         "title": "Branding",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Branding"
+          }
+         ]
+        },
+        {
+         "id": "economic-viability",
+         "title": "Economic viability",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Economic viability"
+          }
+         ]
+        },
+        {
+         "id": "write-a-design-brief-based-on-research",
+         "title": "Write a design brief based on research",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Write a design brief based on research"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "Year 11",
+   "units": [
+    {
+     "id": "materials",
+     "title": "Materials",
+     "topics": [
+      {
+       "id": "core-principles",
+       "title": "Core principles",
+       "subtopics": [
+        {
+         "id": "new-and-emerging-technologies",
+         "title": "New and emerging technologies",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "New and emerging technologies"
+          }
+         ]
+        },
+        {
+         "id": "new-and-emerging-technologies-informing-design-d",
+         "title": "New and emerging technologies informing design decisions",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "New and emerging technologies informing design decisions"
+          }
+         ]
+        },
+        {
+         "id": "energy-generation-and-storage",
+         "title": "Energy generation and storage",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Energy generation and storage"
+          }
+         ]
+        },
+        {
+         "id": "energy-and-the-impact-on-designs",
+         "title": "Energy and the impact on designs",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Energy and the impact on designs"
+          }
+         ]
+        },
+        {
+         "id": "modern-materials",
+         "title": "Modern materials",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Modern materials"
+          }
+         ]
+        },
+        {
+         "id": "smart-materials",
+         "title": "Smart materials",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Smart materials"
+          }
+         ]
+        },
+        {
+         "id": "electronic-systems",
+         "title": "Electronic systems",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Electronic systems"
+          }
+         ]
+        },
+        {
+         "id": "programmable-systems",
+         "title": "Programmable systems",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Programmable systems"
+          }
+         ]
+        },
+        {
+         "id": "levers-and-linkages",
+         "title": "Levers and linkages",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Levers and linkages"
+          }
+         ]
+        },
+        {
+         "id": "cams-and-pulleys",
+         "title": "Cams and pulleys",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Cams and pulleys"
+          }
+         ]
+        },
+        {
+         "id": "gears",
+         "title": "Gears",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Gears"
+          }
+         ]
+        },
+        {
+         "id": "material-categories",
+         "title": "Material categories",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Material categories"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "manufacture",
+     "title": "Manufacture",
+     "topics": [
+      {
+       "id": "technical-principles",
+       "title": "Technical principles",
+       "subtopics": [
+        {
+         "id": "physical-and-working-properties-of-materials",
+         "title": "Physical and working properties of materials",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Physical and working properties of materials"
+          }
+         ]
+        },
+        {
+         "id": "enhancing-the-properties-of-polymers",
+         "title": "Enhancing the properties of polymers",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Enhancing the properties of polymers"
+          }
+         ]
+        },
+        {
+         "id": "sources-and-stock-forms-of-polymers",
+         "title": "Sources and stock forms of polymers",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Sources and stock forms of polymers"
+          }
+         ]
+        },
+        {
+         "id": "environmental-impact-of-materials",
+         "title": "Environmental impact of materials",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Environmental impact of materials"
+          }
+         ]
+        },
+        {
+         "id": "wasting-manufacturing-processes-for-polymers",
+         "title": "Wasting manufacturing processes for polymers",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Wasting manufacturing processes for polymers"
+          }
+         ]
+        },
+        {
+         "id": "deforming-manufacturing-processes-for-polymers",
+         "title": "Deforming manufacturing processes for polymers",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Deforming manufacturing processes for polymers"
+          }
+         ]
+        },
+        {
+         "id": "reforming-manufacturing-processes-for-polymers",
+         "title": "Reforming manufacturing processes for polymers",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Reforming manufacturing processes for polymers"
+          }
+         ]
+        },
+        {
+         "id": "joining-processes-for-polymers",
+         "title": "Joining processes for polymers",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Joining processes for polymers"
+          }
+         ]
+        },
+        {
+         "id": "finishing-processes-for-polymers",
+         "title": "Finishing processes for polymers",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Finishing processes for polymers"
+          }
+         ]
+        },
+        {
+         "id": "scales-of-production-in-manufacturing",
+         "title": "Scales of production in manufacturing",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Scales of production in manufacturing"
+          }
+         ]
+        },
+        {
+         "id": "production-aids",
+         "title": "Production aids",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Production aids"
+          }
+         ]
+        },
+        {
+         "id": "quality-control-methods",
+         "title": "Quality Control methods",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Quality Control methods"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "critique-and-evaluate",
+     "title": "Critique and evaluate",
+     "topics": [
+      {
+       "id": "designing-and-making-principles",
+       "title": "Designing and Making Principles",
+       "subtopics": [
+        {
+         "id": "research",
+         "title": "Research",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Research"
+          }
+         ]
+        },
+        {
+         "id": "product-analysis",
+         "title": "Product analysis",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Product analysis"
+          }
+         ]
+        },
+        {
+         "id": "design-brief",
+         "title": "Design brief",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Design brief"
+          }
+         ]
+        },
+        {
+         "id": "design-specification",
+         "title": "Design specification",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Design specification"
+          }
+         ]
+        },
+        {
+         "id": "costing",
+         "title": "Costing",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Costing"
+          }
+         ]
+        },
+        {
+         "id": "material-considerations-and-selection",
+         "title": "Material considerations and selection",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Material considerations and selection"
+          }
+         ]
+        },
+        {
+         "id": "manufacturing-considerations-and-selection",
+         "title": "Manufacturing considerations and selection",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Manufacturing considerations and selection"
+          }
+         ]
+        },
+        {
+         "id": "health-and-safety",
+         "title": "Health and Safety",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Health and Safety"
+          }
+         ]
+        },
+        {
+         "id": "quality",
+         "title": "Quality",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Quality"
+          }
+         ]
+        },
+        {
+         "id": "efficient-manufacturing-systems",
+         "title": "Efficient manufacturing systems",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Efficient manufacturing systems"
+          }
+         ]
+        },
+        {
+         "id": "feedback-and-evaluation",
+         "title": "Feedback and evaluation",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Feedback and evaluation"
+          }
+         ]
+        },
+        {
+         "id": "modifications-and-improvements",
+         "title": "Modifications and improvements",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Modifications and improvements"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "iterative-design-principles",
+       "title": "Iterative Design Principles",
+       "subtopics": [
+        {
+         "id": "design-opportunities",
+         "title": "Design opportunities",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Design opportunities"
+          }
+         ]
+        },
+        {
+         "id": "define-a-design-brief",
+         "title": "Define a design brief",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Define a design brief"
+          }
+         ]
+        },
+        {
+         "id": "user-needs-and-wants-considerations",
+         "title": "User needs and wants considerations",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "User needs and wants considerations"
+          }
+         ]
+        },
+        {
+         "id": "research-techniques",
+         "title": "Research techniques",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Research techniques"
+          }
+         ]
+        },
+        {
+         "id": "define-a-specification",
+         "title": "Define a specification",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Define a specification"
+          }
+         ]
+        },
+        {
+         "id": "communicate-ideas",
+         "title": "Communicate ideas",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Communicate ideas"
+          }
+         ]
+        },
+        {
+         "id": "innovation",
+         "title": "Innovation",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Innovation"
+          }
+         ]
+        },
+        {
+         "id": "iteration",
+         "title": "Iteration",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Iteration"
+          }
+         ]
+        },
+        {
+         "id": "manufacturing-specification",
+         "title": "Manufacturing specification",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Manufacturing specification"
+          }
+         ]
+        },
+        {
+         "id": "planning-manufacture",
+         "title": "Planning manufacture",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Planning manufacture"
+          }
+         ]
+        },
+        {
+         "id": "manufacture",
+         "title": "Manufacture",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Manufacture"
+          }
+         ]
+        },
+        {
+         "id": "testing",
+         "title": "Testing",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Testing"
+          }
+         ]
+        },
+        {
+         "id": "evaluation-and-modifications",
+         "title": "Evaluation and modifications",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Evaluation and modifications"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "build": {
+  "builtAt": "2026-10-14T07:54:14.120Z",
+  "model": "none",
+  "usd": 0,
+  "expectedCodes": null,
+  "coverage": null,
+  "missingCodes": [],
+  "counts": {
+   "grades": 5,
+   "units": 8,
+   "topics": 20,
+   "subtopics": 216,
+   "outcomes": 216
+  },
+  "warnings": []
+ }
+}

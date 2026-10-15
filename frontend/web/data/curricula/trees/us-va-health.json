@@ -1,0 +1,4914 @@
+{
+ "id": "us-va-health",
+ "region": "US",
+ "framework": "Virginia state academic standards: Health Education",
+ "board": null,
+ "qualification": "K-12",
+ "subject": "Health Education",
+ "syllabusCode": null,
+ "gradeSystem": "grade",
+ "source": {
+  "urls": [
+   "https://api.commonstandardsproject.com/api/v1/jurisdictions/27D1AF28D2F54DD3A69C057DDA772BD0",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/E119917D01654451BE324E12480B7C03",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/E0108DF3A8FE4734853C7E133435CB38",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/94502C84A57E4F19A4895AE9416F50B7",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/933EF3D9619B46E18FAA6918160D4DF2",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/F7154C37623D4CF788A989325734E07B",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/A8C1E274BBB44011BFE7F1F05CDF10FB",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/86F23D3170AE486B8FCFA4B3CEC16FED",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/ED52C04E15044A93ABEFFFF12873D191",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/6A1CCB422335426C8C98701D1BB9E345",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/E061743935914104925C124E1CE775DB",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/A32E8F0632F54245828A84A9FF3BD2CB"
+  ],
+  "publisher": "Virginia state education agency (machine-readable via Common Standards Project / ASN)",
+  "licence": "CC BY 4.0 US, Common Curriculum, Inc.",
+  "firstExam": "2020"
+ },
+ "grades": [
+  {
+   "grade": "K",
+   "units": [
+    {
+     "id": "essential-health-concepts",
+     "title": "Essential Health Concepts",
+     "topics": [
+      {
+       "id": "the-student-will-identify-and-describe-key-healt",
+       "title": "The student will identify and describe key health and safety concepts",
+       "subtopics": [
+        {
+         "id": "body-systems",
+         "title": "Body Systems",
+         "outcomes": [
+          {
+           "code": "K.1.a",
+           "text": "Identify major body parts (e.g., head, torso, arms, legs, hands, feet, muscles, bones)."
+          },
+          {
+           "code": "K.1.b",
+           "text": "Describe the five senses (i.e., sight, hearing, smell, taste, touch)."
+          }
+         ]
+        },
+        {
+         "id": "nutrition",
+         "title": "Nutrition",
+         "outcomes": [
+          {
+           "code": "K.1.c",
+           "text": "Identify the MyPlate food groups (i.e., dairy, proteins, vegetables, fruits, grains) and a variety of foods and beverages from each group."
+          },
+          {
+           "code": "K.1.d",
+           "text": "Explain what it means to have a food allergy."
+          }
+         ]
+        },
+        {
+         "id": "physical-health",
+         "title": "Physical Health",
+         "outcomes": [
+          {
+           "code": "K.1.e",
+           "text": "Describe different types of physical activity and recognize the need for regular physical activity."
+          },
+          {
+           "code": "K.1.f",
+           "text": "Recognize the importance of a regular bedtime routine and enough sleep."
+          }
+         ]
+        },
+        {
+         "id": "disease-prevention-health-promotion",
+         "title": "Disease Prevention/Health Promotion",
+         "outcomes": [
+          {
+           "code": "K.1.g",
+           "text": "Define germs and describe how germs (e.g., bacteria, viruses) may cause common diseases (e.g., cold, flu)."
+          },
+          {
+           "code": "K.1.h",
+           "text": "Describe the function of the teeth, how to take care of them, and the health professionals that help care for teeth (e.g., dentist, hygienist)."
+          }
+         ]
+        },
+        {
+         "id": "substance-abuse-prevention",
+         "title": "Substance Abuse Prevention",
+         "outcomes": [
+          {
+           "code": "K.1.i",
+           "text": "Identify medicine as a pill or liquid that can be taken to feel better when sick but can cause harm if misused."
+          },
+          {
+           "code": "K.1.j",
+           "text": "Describe how medicine and other substances can be helpful or harmful, and recognize poison warning labels."
+          }
+         ]
+        },
+        {
+         "id": "safety-injury-prevention",
+         "title": "Safety/Injury Prevention",
+         "outcomes": [
+          {
+           "code": "K.1.k",
+           "text": "Describe pedestrian, bike, bus, and playground safety practices."
+          },
+          {
+           "code": "K.1.l",
+           "text": "Describe emergency and nonemergency situations."
+          },
+          {
+           "code": "K.1.m",
+           "text": "Identify household products that are harmful or poisonous."
+          }
+         ]
+        },
+        {
+         "id": "mental-wellness-social-and-emotional-skills",
+         "title": "Mental Wellness/Social and Emotional Skills",
+         "outcomes": [
+          {
+           "code": "K.1.n",
+           "text": "Identify a variety of feelings (e.g., happiness, sadness, anger, fear, frustration, calmness)."
+          },
+          {
+           "code": "K.1.o",
+           "text": "Describe what it means to be a friend and how to show kindness, consideration, and concern for others (i.e., self-awareness, social awareness, and relationship skills)."
+          },
+          {
+           "code": "K.1.p",
+           "text": "Describe personal space."
+          }
+         ]
+        },
+        {
+         "id": "violence-prevention",
+         "title": "Violence Prevention",
+         "outcomes": [
+          {
+           "code": "K.1.q",
+           "text": "Recognize that classroom rules are important for school (e.g., sharing, respecting others)."
+          }
+         ]
+        },
+        {
+         "id": "community-environmental-health",
+         "title": "Community/Environmental Health",
+         "outcomes": [
+          {
+           "code": "K.1.r",
+           "text": "Identify items and materials that can be reused (e.g., grocery bags, paper, water bottles, other containers)."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "healthy-decisions",
+     "title": "Healthy Decisions",
+     "topics": [
+      {
+       "id": "the-student-will-identify-healthy-decisions",
+       "title": "The student will identify healthy decisions",
+       "subtopics": [
+        {
+         "id": "body-systems",
+         "title": "Body Systems",
+         "outcomes": [
+          {
+           "code": "K.2.a",
+           "text": "Recognize how the major body parts work together to move."
+          },
+          {
+           "code": "K.2.b",
+           "text": "Identify situations that require the use of each of the five senses."
+          }
+         ]
+        },
+        {
+         "id": "nutrition",
+         "title": "Nutrition",
+         "outcomes": [
+          {
+           "code": "K.2.c",
+           "text": "Describe healthy meal, snack, and beverage options that include food from the MyPlate food groups (i.e., dairy, proteins, vegetables, fruits, grains)."
+          },
+          {
+           "code": "K.2.d",
+           "text": "Identify foods that most often cause allergies."
+          }
+         ]
+        },
+        {
+         "id": "physical-health",
+         "title": "Physical Health",
+         "outcomes": [
+          {
+           "code": "K.2.e",
+           "text": "Identify positive physical activity options and the benefits of being physically active every day."
+          },
+          {
+           "code": "K.2.f",
+           "text": "Describe alternatives to screen time."
+          }
+         ]
+        },
+        {
+         "id": "disease-prevention-health-promotion",
+         "title": "Disease Prevention/Health Promotion",
+         "outcomes": [
+          {
+           "code": "K.2.g",
+           "text": "Explain how hand washing helps remove bacteria and viruses that can make people sick, and describe situations where it is important to wash hands."
+          },
+          {
+           "code": "K.2.h",
+           "text": "Discuss the benefits of personal hygiene practices (e.g., tooth brushing, flossing, hand washing, grooming)."
+          }
+         ]
+        },
+        {
+         "id": "substance-abuse-prevention",
+         "title": "Substance Abuse Prevention",
+         "outcomes": [
+          {
+           "code": "K.2.i",
+           "text": "Describe consequences of taking medications unsupervised."
+          },
+          {
+           "code": "K.2.j",
+           "text": "Identify the meaning of safety signs, symbols, and warning labels and understand the dangers of white powder and other unknown substances."
+          }
+         ]
+        },
+        {
+         "id": "safety-injury-prevention",
+         "title": "Safety/Injury Prevention",
+         "outcomes": [
+          {
+           "code": "K.2.k",
+           "text": "Describe how safety choices can prevent injuries (e.g., wearing a helmet, tying shoelaces, using seat belts and safety seats, sitting in the back seat of vehicles with airbags)."
+          },
+          {
+           "code": "K.2.l",
+           "text": "Identify people who can help in an emergency and in non-emergency situations."
+          },
+          {
+           "code": "K.2.m",
+           "text": "Recognize that not all products advertised or sold are healthy or safe."
+          }
+         ]
+        },
+        {
+         "id": "mental-wellness-social-and-emotional-skills",
+         "title": "Mental Wellness/Social and Emotional Skills",
+         "outcomes": [
+          {
+           "code": "K.2.n",
+           "text": "Describe how feelings can influence actions."
+          },
+          {
+           "code": "K.2.o",
+           "text": "Identify strategies for making friends and how to show kindness, consideration, and concern for others, including how to cooperate and share with others."
+          },
+          {
+           "code": "K.2.p",
+           "text": "Identify ways to tell someone they are entering one’s personal space."
+          }
+         ]
+        },
+        {
+         "id": "violence-prevention",
+         "title": "Violence Prevention",
+         "outcomes": [
+          {
+           "code": "K.2.q",
+           "text": "Explain how classmates can support one another at school."
+          }
+         ]
+        },
+        {
+         "id": "community-environmental-health",
+         "title": "Community/Environmental Health",
+         "outcomes": [
+          {
+           "code": "K.2.r",
+           "text": "Describe ways to reuse items and materials in the classroom."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "advocacy-and-health-promotion",
+     "title": "Advocacy and Health Promotion",
+     "topics": [
+      {
+       "id": "the-student-will-describe-and-demonstrate-behavi",
+       "title": "The student will describe and demonstrate behaviors that promote health and prevent injury and disease",
+       "subtopics": [
+        {
+         "id": "body-systems",
+         "title": "Body Systems",
+         "outcomes": [
+          {
+           "code": "K.3.a",
+           "text": "Describe the different body parts involved in one movement (e.g., jumping, walking, biking)."
+          },
+          {
+           "code": "K.3.b",
+           "text": "Describe ways to protect the five senses."
+          }
+         ]
+        },
+        {
+         "id": "nutrition",
+         "title": "Nutrition",
+         "outcomes": [
+          {
+           "code": "K.3.c",
+           "text": "Create a shopping list that includes foods from each MyPlate food group."
+          },
+          {
+           "code": "K.3.d",
+           "text": "Describe how to help people with food allergies (e.g., being respectful of restrictions in the classroom and cafeteria, not sharing food, getting help from an adult)."
+          }
+         ]
+        },
+        {
+         "id": "physical-health",
+         "title": "Physical Health",
+         "outcomes": [
+          {
+           "code": "K.3.e",
+           "text": "Describe ways to participate regularly in physical activities inside and outside of school."
+          },
+          {
+           "code": "K.3.f",
+           "text": "Describe ways to calm down before bed to prepare for sleeping."
+          }
+         ]
+        },
+        {
+         "id": "disease-prevention-health-promotion",
+         "title": "Disease Prevention/Health Promotion",
+         "outcomes": [
+          {
+           "code": "K.3.g",
+           "text": "Demonstrate proper hand washing."
+          },
+          {
+           "code": "K.3.h",
+           "text": "Demonstrate how to brush and floss teeth correctly."
+          }
+         ]
+        },
+        {
+         "id": "substance-abuse-prevention",
+         "title": "Substance Abuse Prevention",
+         "outcomes": [
+          {
+           "code": "K.3.i",
+           "text": "Discuss why medicines should only be taken under the supervision of a parent/guardian."
+          },
+          {
+           "code": "K.3.j",
+           "text": "Identify adults to ask for help and assistance with harmful and unknown substances."
+          }
+         ]
+        },
+        {
+         "id": "safety-injury-prevention",
+         "title": "Safety/Injury Prevention",
+         "outcomes": [
+          {
+           "code": "K.3.k",
+           "text": "Describe common safety rules and practices at home, at school, and in communities."
+          },
+          {
+           "code": "K.3.l",
+           "text": "Describe why it is important to ask adults for help in an emergency, how to ask for help, and how to call 911."
+          },
+          {
+           "code": "K.3.m",
+           "text": "Recognize that some household products are harmful if touched, ingested, or inhaled and the importance of asking adults before touching, ingesting, or inhaling white powder or other unknown substances."
+          }
+         ]
+        },
+        {
+         "id": "mental-wellness-social-and-emotional-skills",
+         "title": "Mental Wellness/Social and Emotional Skills",
+         "outcomes": [
+          {
+           "code": "K.3.n",
+           "text": "Demonstrate how to use words to express feelings."
+          },
+          {
+           "code": "K.3.o",
+           "text": "Demonstrate strategies for making friends and showing kindness, consideration, and concern for others."
+          },
+          {
+           "code": "K.3.p",
+           "text": "Demonstrate how to tell someone they are entering one’s personal space and when to ask an adult for help."
+          }
+         ]
+        },
+        {
+         "id": "violence-prevention",
+         "title": "Violence Prevention",
+         "outcomes": [
+          {
+           "code": "K.3.q",
+           "text": "Demonstrate acceptable behavior in classrooms and during play, including showing respect for the personal space of others."
+          }
+         ]
+        },
+        {
+         "id": "community-environmental-health",
+         "title": "Community/Environmental Health",
+         "outcomes": [
+          {
+           "code": "K.3.r",
+           "text": "Share the importance of reusing items and materials with school and family."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "1",
+   "units": [
+    {
+     "id": "essential-health-concepts",
+     "title": "Essential Health Concepts",
+     "topics": [
+      {
+       "id": "the-student-will-identify-the-basic-components-a",
+       "title": "The student will identify the basic components and functions of human body systems and the importance of safe practices, positive interpersonal relationships, and environmental health",
+       "subtopics": [
+        {
+         "id": "body-systems",
+         "title": "Body Systems",
+         "outcomes": [
+          {
+           "code": "1.1.a",
+           "text": "Identify major body organs (e.g., heart, brain, lungs, stomach) and location of the organs."
+          }
+         ]
+        },
+        {
+         "id": "nutrition",
+         "title": "Nutrition",
+         "outcomes": [
+          {
+           "code": "1.1.b",
+           "text": "Identify why it is important to consume a variety of foods and beverages from the five MyPlate food groups (i.e., fruits, vegetables, grains, protein, dairy)."
+          },
+          {
+           "code": "1.1.c",
+           "text": "Explain what physical reactions may occur if someone is having an allergic reaction."
+          }
+         ]
+        },
+        {
+         "id": "physical-health",
+         "title": "Physical Health",
+         "outcomes": [
+          {
+           "code": "1.1.d",
+           "text": "Recognize that physical activity is a form of healthy entertainment."
+          },
+          {
+           "code": "1.1.e",
+           "text": "Identify behaviors that promote health and wellness, including personal hygiene, sleep, physical activity, and healthy food choices."
+          }
+         ]
+        },
+        {
+         "id": "disease-prevention-health-promotion",
+         "title": "Disease Prevention/Health Promotion",
+         "outcomes": [
+          {
+           "code": "1.1.f",
+           "text": "Identify adults who keep children healthy (e.g., parents/guardians, teachers, school counselors, nurses, dentists, doctors)."
+          }
+         ]
+        },
+        {
+         "id": "substance-abuse-prevention",
+         "title": "Substance Abuse Prevention",
+         "outcomes": [
+          {
+           "code": "1.1.g",
+           "text": "Identify that medicines can be both helpful and harmful."
+          }
+         ]
+        },
+        {
+         "id": "safety-injury-prevention",
+         "title": "Safety/Injury Prevention",
+         "outcomes": [
+          {
+           "code": "1.1.h",
+           "text": "Identify safety rules and guidelines for bus and automobile safety, pedestrian safety, playground safety, fire safety, water safety, Internet safety, and safety when biking and using other recreational equipment."
+          },
+          {
+           "code": "1.1.i",
+           "text": "Compare and contrast personal safety behaviors at home, at school, and in the community."
+          },
+          {
+           "code": "1.1.j",
+           "text": "Describe sun safety practices."
+          }
+         ]
+        },
+        {
+         "id": "mental-wellness-social-and-emotional-skills",
+         "title": "Mental Wellness/Social and Emotional Skills",
+         "outcomes": [
+          {
+           "code": "1.1.k",
+           "text": "Identify comfortable and uncomfortable feelings and when one might experience these feelings."
+          },
+          {
+           "code": "1.1.l",
+           "text": "Describe positive characteristics that are unique to each individual."
+          },
+          {
+           "code": "1.1.m",
+           "text": "Identify effective listening skills."
+          },
+          {
+           "code": "1.1.n",
+           "text": "Identify cooperative and responsible behaviors, such as respect for others, adherence to school rules, acceptance of responsibility, and respect for the property of others."
+          }
+         ]
+        },
+        {
+         "id": "violence-prevention",
+         "title": "Violence Prevention",
+         "outcomes": [
+          {
+           "code": "1.1.o",
+           "text": "Describe feelings that may result from hearing kind and unkind words and when experiencing problems (e.g., someone not sharing)."
+          },
+          {
+           "code": "1.1.p",
+           "text": "Describe personal space and boundaries for oneself and others."
+          }
+         ]
+        },
+        {
+         "id": "community-environmental-health",
+         "title": "Community/Environmental Health",
+         "outcomes": [
+          {
+           "code": "1.1.q",
+           "text": "Identify items and materials that can be reduced, recycled, repurposed, or reused."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "healthy-decisions",
+     "title": "Healthy Decisions",
+     "topics": [
+      {
+       "id": "the-student-will-explain-that-good-health-is-rel",
+       "title": "The student will explain that good health is related to healthy decisions",
+       "subtopics": [
+        {
+         "id": "body-systems",
+         "title": "Body Systems",
+         "outcomes": [
+          {
+           "code": "1.2.a",
+           "text": "Describe the importance of having a healthy heart, brain, and lungs."
+          }
+         ]
+        },
+        {
+         "id": "nutrition",
+         "title": "Nutrition",
+         "outcomes": [
+          {
+           "code": "1.2.b",
+           "text": "Identify \"sometimes foods\" (e.g., candy, cookies, chips, ice cream, soda) and recognize that not all food products advertised or sold are healthy."
+          },
+          {
+           "code": "1.2.c",
+           "text": "Explain how allergens remain on surfaces and why it is important to clean surfaces and hands before and after eating."
+          }
+         ]
+        },
+        {
+         "id": "physical-health",
+         "title": "Physical Health",
+         "outcomes": [
+          {
+           "code": "1.2.d",
+           "text": "Identify ways to increase physical activity."
+          }
+         ]
+        },
+        {
+         "id": "disease-prevention-health-promotion",
+         "title": "Disease Prevention/Health Promotion",
+         "outcomes": [
+          {
+           "code": "1.2.e",
+           "text": "Determine how sleep habits affect mood and academic performance."
+          },
+          {
+           "code": "1.2.f",
+           "text": "Explain the need for regular health checkups and screenings (e.g., medical, dental)."
+          }
+         ]
+        },
+        {
+         "id": "substance-abuse-prevention",
+         "title": "Substance Abuse Prevention",
+         "outcomes": [
+          {
+           "code": "1.2.g",
+           "text": "Explain the harmful effects of misusing medicines and drugs."
+          }
+         ]
+        },
+        {
+         "id": "safety-injury-prevention",
+         "title": "Safety/Injury Prevention",
+         "outcomes": [
+          {
+           "code": "1.2.h",
+           "text": "Explain why it is important to follow safety rules and guidelines for personal safety."
+          },
+          {
+           "code": "1.2.i",
+           "text": "Describe how to report a dangerous situation."
+          },
+          {
+           "code": "1.2.j",
+           "text": "Identify the importance of sun safety."
+          }
+         ]
+        },
+        {
+         "id": "mental-wellness-social-and-emotional-skills",
+         "title": "Mental Wellness/Social and Emotional Skills",
+         "outcomes": [
+          {
+           "code": "1.2.k",
+           "text": "Identify appropriate ways a person may express feelings (e.g., happy, unhappy, mad) and trusted adults to share feelings with at school and at home."
+          },
+          {
+           "code": "1.2.l",
+           "text": "Explain the importance of showing kindness, consideration, and concern for others."
+          },
+          {
+           "code": "1.2.m",
+           "text": "Explain how listening is important for effective communication."
+          },
+          {
+           "code": "1.2.n",
+           "text": "Identify strategies for respecting others’ personal space, boundaries, and belongings."
+          }
+         ]
+        },
+        {
+         "id": "violence-prevention",
+         "title": "Violence Prevention",
+         "outcomes": [
+          {
+           "code": "1.2.o",
+           "text": "Explain the importance of responsible behaviors when interacting with others."
+          },
+          {
+           "code": "1.2.p",
+           "text": "Explain how to listen and use words to respond to and solve problems."
+          }
+         ]
+        },
+        {
+         "id": "community-environmental-health",
+         "title": "Community/Environmental Health",
+         "outcomes": [
+          {
+           "code": "1.2.q",
+           "text": "Explain why it is important to dispose of trash properly, recycle materials, conserve water, and prevent water pollution."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "advocacy-and-health-promotion",
+     "title": "Advocacy and Health Promotion",
+     "topics": [
+      {
+       "id": "the-student-will-identify-specific-rules-and-pra",
+       "title": "The student will identify specific rules and practices to promote personal safety and socially responsible behaviors",
+       "subtopics": [
+        {
+         "id": "body-systems",
+         "title": "Body Systems",
+         "outcomes": [
+          {
+           "code": "1.3.a",
+           "text": "Share ways to maintain a healthy heart, brain, and lungs for lifelong health."
+          }
+         ]
+        },
+        {
+         "id": "nutrition",
+         "title": "Nutrition",
+         "outcomes": [
+          {
+           "code": "1.3.b",
+           "text": "Explain that all foods can fit into a healthful diet through balance, variety, and moderation."
+          },
+          {
+           "code": "1.3.c",
+           "text": "Describe how one can get help from an adult if a classmate is having an allergic reaction."
+          }
+         ]
+        },
+        {
+         "id": "physical-health",
+         "title": "Physical Health",
+         "outcomes": [
+          {
+           "code": "1.3.d",
+           "text": "Encourage classmates to be physically active inside and outside of school."
+          }
+         ]
+        },
+        {
+         "id": "disease-prevention-health-promotion",
+         "title": "Disease Prevention/Health Promotion",
+         "outcomes": [
+          {
+           "code": "1.3.e",
+           "text": "Promote behaviors that impact health and wellness."
+          },
+          {
+           "code": "1.3.f",
+           "text": "Describe how one selected health professional/adult helps keep children healthy."
+          }
+         ]
+        },
+        {
+         "id": "substance-abuse-prevention",
+         "title": "Substance Abuse Prevention",
+         "outcomes": [
+          {
+           "code": "1.3.g",
+           "text": "Create safety rules for medications in the home."
+          }
+         ]
+        },
+        {
+         "id": "safety-injury-prevention",
+         "title": "Safety/Injury Prevention",
+         "outcomes": [
+          {
+           "code": "1.3.h",
+           "text": "Promote positive behaviors for personal safety, including bus and automobile safety, pedestrian safety, playground safety, fire safety, water safety, Internet safety, and safety when biking and using other recreational equipment."
+          },
+          {
+           "code": "1.3.i",
+           "text": "Practice fire safety and emergency/disaster procedures."
+          },
+          {
+           "code": "1.3.j",
+           "text": "Describe the proper way to apply sunscreen."
+          }
+         ]
+        },
+        {
+         "id": "mental-wellness-social-and-emotional-skills",
+         "title": "Mental Wellness/Social and Emotional Skills",
+         "outcomes": [
+          {
+           "code": "1.3.k",
+           "text": "Demonstrate ways to express feelings appropriately."
+          },
+          {
+           "code": "1.3.l",
+           "text": "Demonstrate cooperation with friends and classmates."
+          },
+          {
+           "code": "1.3.m",
+           "text": "Demonstrate effective listening skills."
+          },
+          {
+           "code": "1.3.n",
+           "text": "Apply strategies for establishing and respecting others' personal space, boundaries, and belongings."
+          }
+         ]
+        },
+        {
+         "id": "violence-prevention",
+         "title": "Violence Prevention",
+         "outcomes": [
+          {
+           "code": "1.3.o",
+           "text": "Demonstrate responsible behaviors when interacting with others."
+          },
+          {
+           "code": "1.3.p",
+           "text": "Demonstrate best ways to solve social problems."
+          }
+         ]
+        },
+        {
+         "id": "community-environmental-health",
+         "title": "Community/Environmental Health",
+         "outcomes": [
+          {
+           "code": "1.3.q",
+           "text": "Create strategies to keep the environment healthy, including proper disposal of trash, recycling or reusing, and water conservation."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "2",
+   "units": [
+    {
+     "id": "essential-health-concepts",
+     "title": "Essential Health Concepts",
+     "topics": [
+      {
+       "id": "the-student-will-identify-the-major-body-systems",
+       "title": "The student will identify the major body systems, healthy food and beverage choices, emotions, and social skills and explain how each is connected to personal health",
+       "subtopics": [
+        {
+         "id": "body-systems",
+         "title": "Body Systems",
+         "outcomes": [
+          {
+           "code": "2.1.a",
+           "text": "Identify structures that form body systems, including the heart and lungs (cardiorespiratory system), bones (skeletal system), and muscles (muscular system) and how the systems work together."
+          }
+         ]
+        },
+        {
+         "id": "nutrition",
+         "title": "Nutrition",
+         "outcomes": [
+          {
+           "code": "2.1.b",
+           "text": "Identify where and how fruits and vegetables are grown."
+          }
+         ]
+        },
+        {
+         "id": "physical-health",
+         "title": "Physical Health",
+         "outcomes": [
+          {
+           "code": "2.1.c",
+           "text": "Describe correct posture for sitting, standing, and walking"
+          }
+         ]
+        },
+        {
+         "id": "disease-prevention-health-promotion",
+         "title": "Disease Prevention/Health Promotion",
+         "outcomes": [
+          {
+           "code": "2.1.d",
+           "text": "Recognize that germs cause colds and flu, and define communicable as something that can be spread from person to person."
+          }
+         ]
+        },
+        {
+         "id": "substance-abuse-prevention",
+         "title": "Substance Abuse Prevention",
+         "outcomes": [
+          {
+           "code": "2.1.e",
+           "text": "Describe the harmful effects of medicine, alcohol, and tobacco, including poor concentration; impaired balance, vision, and memory; shortness of breath; cancer; lung and heart disease; and changes to the way a person feels, thinks, and acts."
+          },
+          {
+           "code": "2.1.f",
+           "text": "Identify refusal skills."
+          },
+          {
+           "code": "2.1.g",
+           "text": "Explain differences between prescription and nonprescription medications."
+          }
+         ]
+        },
+        {
+         "id": "safety",
+         "title": "Safety",
+         "outcomes": [
+          {
+           "code": "2.1.h",
+           "text": "Explain the importance of assuming responsibility for personal safety."
+          }
+         ]
+        },
+        {
+         "id": "mental-wellness-social-and-emotional-skills",
+         "title": "Mental Wellness/Social and Emotional Skills",
+         "outcomes": [
+          {
+           "code": "2.1.i",
+           "text": "Identify feelings associated with disappointment, loss, and grief."
+          },
+          {
+           "code": "2.1.j",
+           "text": "Describe personal strengths and identify how individuals are unique."
+          },
+          {
+           "code": "2.1.k",
+           "text": "Describe characteristics of a trusted friend and a trusted adult."
+          }
+         ]
+        },
+        {
+         "id": "violence-prevention",
+         "title": "Violence Prevention",
+         "outcomes": [
+          {
+           "code": "2.1.l",
+           "text": "Explain the difference between joking, teasing, and bullying, and identify how each may impact the recipient."
+          },
+          {
+           "code": "2.1.m",
+           "text": "Define conflict and describe situations in which conflict may occur."
+          }
+         ]
+        },
+        {
+         "id": "community-environmental-health",
+         "title": "Community/Environmental Health",
+         "outcomes": [
+          {
+           "code": "2.1.n",
+           "text": "Describe how the environment influences health."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "healthy-decisions",
+     "title": "Healthy Decisions",
+     "topics": [
+      {
+       "id": "the-student-will-identify-personal-health-decisi",
+       "title": "The student will identify personal health decisions and health habits that influence health and wellness throughout life",
+       "subtopics": [
+        {
+         "id": "body-systems",
+         "title": "Body Systems",
+         "outcomes": [
+          {
+           "code": "2.2.a",
+           "text": "Identify possible consequences of not caring for cardiorespiratory, skeletal, and muscular systems."
+          }
+         ]
+        },
+        {
+         "id": "nutrition",
+         "title": "Nutrition",
+         "outcomes": [
+          {
+           "code": "2.2.b",
+           "text": "Physical Health"
+          },
+          {
+           "code": "2.2.c",
+           "text": "Practice correct posture for sitting, standing, and walking."
+          }
+         ]
+        },
+        {
+         "id": "disease-prevention-health-promotion",
+         "title": "Disease Prevention/Health Promotion",
+         "outcomes": [
+          {
+           "code": "2.2.d",
+           "text": "Explain why it is important to cover the mouth and nose when sneezing and to wash hands to stay free of communicable disease."
+          }
+         ]
+        },
+        {
+         "id": "substance-abuse-prevention",
+         "title": "Substance Abuse Prevention",
+         "outcomes": [
+          {
+           "code": "2.2.e",
+           "text": "Recognize that tobacco smoke and nicotine products (e.g., electronic smoking devices) are harmful to one’s health and should be avoided."
+          },
+          {
+           "code": "2.2.f",
+           "text": "Describe the use of refusal skills based on good decisions."
+          },
+          {
+           "code": "2.2.g",
+           "text": "Identify why medicines should only be taken under the supervision of an adult and the importance of childproof caps on medicines."
+          }
+         ]
+        },
+        {
+         "id": "safety-injury-prevention",
+         "title": "Safety/Injury Prevention",
+         "outcomes": [
+          {
+           "code": "2.2.h",
+           "text": "Identify ways that students can take responsibility for personal safety at home, at school, and in the community."
+          }
+         ]
+        },
+        {
+         "id": "mental-wellness-social-and-emotional-skills",
+         "title": "Mental Wellness/Social and Emotional Skills",
+         "outcomes": [
+          {
+           "code": "2.2.i",
+           "text": "Explain healthy ways to express feelings associated with disappointment, loss, and grief."
+          },
+          {
+           "code": "2.2.j",
+           "text": "Discuss how empathy, compassion, and acceptance help one understand others."
+          },
+          {
+           "code": "2.2.k",
+           "text": "Identify trusted adults at school and at home."
+          }
+         ]
+        },
+        {
+         "id": "violence-prevention",
+         "title": "Violence Prevention",
+         "outcomes": [
+          {
+           "code": "2.2.l",
+           "text": "Identify ways to respond appropriately to joking, teasing, and bullying."
+          },
+          {
+           "code": "2.2.m",
+           "text": "Describe how to work and play cooperatively and how to use nonviolent strategies to resolve conflict."
+          }
+         ]
+        },
+        {
+         "id": "community-environmental-health",
+         "title": "Community/Environmental Health",
+         "outcomes": [
+          {
+           "code": "2.2.n",
+           "text": "Describe ways to protect the environment."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "advocacy-and-health-promotion",
+     "title": "Advocacy and Health Promotion",
+     "topics": [
+      {
+       "id": "advocacy-and-health-promotion",
+       "title": "Advocacy and Health Promotion",
+       "subtopics": [
+        {
+         "id": "body-systems",
+         "title": "Body Systems",
+         "outcomes": [
+          {
+           "code": "2.3.a",
+           "text": "Explain how daily physical activity and healthy eating habits contribute to healthy cardiorespiratory, skeletal, and muscular systems."
+          }
+         ]
+        },
+        {
+         "id": "nutrition",
+         "title": "Nutrition",
+         "outcomes": [
+          {
+           "code": "2.3.b",
+           "text": "Identify ways to incorporate fruits and vegetables into daily food choices (i.e., breakfast, lunch, dinner, snacks)."
+          }
+         ]
+        },
+        {
+         "id": "physical-health",
+         "title": "Physical Health",
+         "outcomes": [
+          {
+           "code": "2.3.c",
+           "text": "Demonstrate proper lifting and carrying techniques for handling backpacks and book bags."
+          }
+         ]
+        },
+        {
+         "id": "disease-prevention-health-promotion",
+         "title": "Disease Prevention/Health Promotion",
+         "outcomes": [
+          {
+           "code": "2.3.d",
+           "text": "Demonstrate techniques for reducing or preventing the spread of germs and communicable diseases."
+          }
+         ]
+        },
+        {
+         "id": "substance-abuse-prevention",
+         "title": "Substance Abuse Prevention",
+         "outcomes": [
+          {
+           "code": "2.3.e",
+           "text": "Explain why it is dangerous to sniff, taste, or swallow unknown substances."
+          },
+          {
+           "code": "2.3.f",
+           "text": "Demonstrate refusal skills in situations that involve harmful substances with peers and adults."
+          },
+          {
+           "code": "2.3.g",
+           "text": "Conduct an assessment of harmful substances in the home with a parent/guardian."
+          }
+         ]
+        },
+        {
+         "id": "safety-injury-prevention",
+         "title": "Safety/Injury Prevention",
+         "outcomes": [
+          {
+           "code": "2.3.h",
+           "text": "Identify emergency resources, services, and healthcare professionals in the community that influence health, safety, and wellness."
+          }
+         ]
+        },
+        {
+         "id": "mental-wellness-social-and-emotional-skills",
+         "title": "Mental Wellness/Social and Emotional Skills",
+         "outcomes": [
+          {
+           "code": "2.3.i",
+           "text": "Identify adults who can help with disappointment, loss, and grief"
+          },
+          {
+           "code": "2.3.j",
+           "text": "Identify and discuss how to show respect for similarities and differences between individuals."
+          },
+          {
+           "code": "2.3.k",
+           "text": "Identify situations where trusted friends and adults can help."
+          }
+         ]
+        },
+        {
+         "id": "violence-prevention",
+         "title": "Violence Prevention",
+         "outcomes": [
+          {
+           "code": "2.3.l",
+           "text": "Use appropriate strategies to safely stand up to teasing and to report bullying."
+          },
+          {
+           "code": "2.3.m",
+           "text": "Demonstrate nonviolent strategies to resolve conflict and support peers in school and in the community."
+          }
+         ]
+        },
+        {
+         "id": "community-environmental-health",
+         "title": "Community/Environmental Health",
+         "outcomes": [
+          {
+           "code": "2.3.n",
+           "text": "Promote a strategy to protect the environment."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "3",
+   "units": [
+    {
+     "id": "essential-health-concepts",
+     "title": "Essential Health Concepts",
+     "topics": [
+      {
+       "id": "the-student-will-explain-that-health-habits-and-",
+       "title": "The student will explain that health habits and practices impact personal growth and development",
+       "subtopics": [
+        {
+         "id": "body-systems",
+         "title": "Body Systems",
+         "outcomes": [
+          {
+           "code": "3.1.a",
+           "text": "Identify the major structures and functions of the digestive system."
+          }
+         ]
+        },
+        {
+         "id": "nutrition",
+         "title": "Nutrition",
+         "outcomes": [
+          {
+           "code": "3.1.b",
+           "text": "Explain the importance of water and healthy food choices for digestion and body function."
+          },
+          {
+           "code": "3.1.c",
+           "text": "Identify whole grain and refined grain food items."
+          },
+          {
+           "code": "3.1.d",
+           "text": "Identify foods that most often cause a food allergy."
+          }
+         ]
+        },
+        {
+         "id": "physical-health",
+         "title": "Physical Health",
+         "outcomes": [
+          {
+           "code": "3.1.e",
+           "text": "Describe the benefits of getting enough sleep and the consequences of the use of electronic devices (i.e., screen time) on sleep."
+          }
+         ]
+        },
+        {
+         "id": "disease-prevention-health-promotion",
+         "title": "Disease Prevention/Health Promotion",
+         "outcomes": [
+          {
+           "code": "3.1.f",
+           "text": "Identify the steps for goal setting to adopt positive health practices."
+          },
+          {
+           "code": "3.1.g",
+           "text": "Define noncommunicable and describe the difference between communicable and noncommunicable diseases."
+          }
+         ]
+        },
+        {
+         "id": "substance-abuse-prevention",
+         "title": "Substance Abuse Prevention",
+         "outcomes": [
+          {
+           "code": "3.1.h",
+           "text": "Describe proper and improper use of prescription (e.g., taking medication prescribed for someone else) and nonprescription medications."
+          },
+          {
+           "code": "3.1.i",
+           "text": "Identify body systems affected by the use of alcohol, tobacco, nicotine products (e.g., electronic smoking devices), inhalants, and other drugs."
+          }
+         ]
+        },
+        {
+         "id": "safety-injury-prevention",
+         "title": "Safety/Injury Prevention",
+         "outcomes": [
+          {
+           "code": "3.1.j",
+           "text": "Explain safety rules at home and when riding in a motor vehicle."
+          },
+          {
+           "code": "3.1.k",
+           "text": "Explain the need for personal safety strategies when interacting with others online."
+          },
+          {
+           "code": "3.1.l",
+           "text": "Identify different safety drills that are important for home and school."
+          }
+         ]
+        },
+        {
+         "id": "mental-wellness-social-and-emotional-skills",
+         "title": "Mental Wellness/Social and Emotional Skills",
+         "outcomes": [
+          {
+           "code": "3.1.m",
+           "text": "Describe feelings/emotions that result from experiencing change, such as the arrival of a new family member, making new friends, going to a new school, being accepted by peers, and losing a loved one."
+          },
+          {
+           "code": "3.1.n",
+           "text": "Describe the benefits of friendship and list the qualities of a good friend."
+          },
+          {
+           "code": "3.1.o",
+           "text": "Define conflict and identify possible situations where conflict can occur with family and friends."
+          }
+         ]
+        },
+        {
+         "id": "violence-prevention",
+         "title": "Violence Prevention",
+         "outcomes": [
+          {
+           "code": "3.1.p",
+           "text": "Describe what bullying is and how to identify it."
+          },
+          {
+           "code": "3.1.q",
+           "text": "Explain the benefits of positive communication on relationships with family and friends."
+          }
+         ]
+        },
+        {
+         "id": "community-environmental-health",
+         "title": "Community/Environmental Health",
+         "outcomes": [
+          {
+           "code": "3.1.r",
+           "text": "Explain what happens with waste and recycled materials."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "healthy-decisions",
+     "title": "Healthy Decisions",
+     "topics": [
+      {
+       "id": "the-student-will-demonstrate-the-ability-to-use-",
+       "title": "The student will demonstrate the ability to use essential health concepts to improve personal health",
+       "subtopics": [
+        {
+         "id": "body-systems",
+         "title": "Body Systems",
+         "outcomes": [
+          {
+           "code": "3.2.a",
+           "text": "Describe how the body uses digested food molecules."
+          }
+         ]
+        },
+        {
+         "id": "nutrition",
+         "title": "Nutrition",
+         "outcomes": [
+          {
+           "code": "3.2.b",
+           "text": "Describe why digestion is important for body function."
+          },
+          {
+           "code": "3.2.c",
+           "text": "Explain the difference between a whole grain and a refined grain and the nutritional benefits of eating whole grains."
+          },
+          {
+           "code": "3.2.d",
+           "text": "Explain your school's food policy as it relates to food allergens (e.g., peanut-free classrooms, cafeteria options for children with food allergies)."
+          }
+         ]
+        },
+        {
+         "id": "physical-health",
+         "title": "Physical Health",
+         "outcomes": [
+          {
+           "code": "3.2.e",
+           "text": "Evaluate how sleep, physical activity, screen time, and healthy food and beverage choices affect one’s personal health."
+          }
+         ]
+        },
+        {
+         "id": "disease-prevention-health-promotion",
+         "title": "Disease Prevention/Health Promotion",
+         "outcomes": [
+          {
+           "code": "3.2.f",
+           "text": "List the benefits of goal setting for personal health."
+          },
+          {
+           "code": "3.2.g",
+           "text": "Analyze the importance of prevention and early detection of communicable and noncommunicable diseases."
+          }
+         ]
+        },
+        {
+         "id": "substance-abuse-prevention",
+         "title": "Substance Abuse Prevention",
+         "outcomes": [
+          {
+           "code": "3.2.h",
+           "text": "Explain the consequences of disregarding medical recommendations for prescription and nonprescription medications."
+          },
+          {
+           "code": "3.2.i",
+           "text": "Analyze the harmful short- and long-term effects of alcohol, tobacco, nicotine products, common household inhalants, and other drugs on body systems."
+          }
+         ]
+        },
+        {
+         "id": "safety-injury-prevention",
+         "title": "Safety/Injury Prevention",
+         "outcomes": [
+          {
+           "code": "3.2.j",
+           "text": "Explain the importance of following safety rules at home and when riding in a motor vehicle."
+          },
+          {
+           "code": "3.2.k",
+           "text": "Identify situations when adult assistance may be needed with online interactions."
+          },
+          {
+           "code": "3.2.l",
+           "text": "Demonstrate proper behavior during safety drills at school."
+          }
+         ]
+        },
+        {
+         "id": "mental-wellness-social-and-emotional-skills",
+         "title": "Mental Wellness/Social and Emotional Skills",
+         "outcomes": [
+          {
+           "code": "3.2.m",
+           "text": "Explain how to identify, express, and respond to emotions in a healthy way."
+          },
+          {
+           "code": "3.2.n",
+           "text": "Describe how to make and keep a friend and behaviors that may cause the friendship to end (e.g., being unaware of the attitudes and feelings of others, using inappropriate language and behavior, excluding a friend from activities, breaking promises)."
+          },
+          {
+           "code": "3.2.o",
+           "text": "Describe how to make healthy decisions when dealing with conflict, including when help from an adult is needed."
+          }
+         ]
+        },
+        {
+         "id": "violence-prevention",
+         "title": "Violence Prevention",
+         "outcomes": [
+          {
+           "code": "3.2.p",
+           "text": "Identify ways to safely stand up to bullying and how to get help."
+          },
+          {
+           "code": "3.2.q",
+           "text": "Describe how to communicate directly, respectfully, and assertively with family and friends."
+          }
+         ]
+        },
+        {
+         "id": "community-environmental-health",
+         "title": "Community/Environmental Health",
+         "outcomes": [
+          {
+           "code": "3.2.r",
+           "text": "Analyze how reducing, reusing, and recycling products promotes a healthier environment."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "advocacy-and-health-promotion",
+     "title": "Advocacy and Health Promotion",
+     "topics": [
+      {
+       "id": "the-student-will-promote-health-and-safety-at-sc",
+       "title": "The student will promote health and safety at school and at home",
+       "subtopics": [
+        {
+         "id": "body-systems",
+         "title": "Body Systems",
+         "outcomes": [
+          {
+           "code": "3.3.a",
+           "text": "Evaluate the role of the digestive system in providing energy for the body."
+          }
+         ]
+        },
+        {
+         "id": "nutrition",
+         "title": "Nutrition",
+         "outcomes": [
+          {
+           "code": "3.3.b",
+           "text": "Identify healthy food and beverage choices to support digestion and body function."
+          },
+          {
+           "code": "3.3.c",
+           "text": "Explore how grains are grown and the careers related to it (e.g., agriculture, farming, food science, environmental science)."
+          },
+          {
+           "code": "3.3.d",
+           "text": "List alternatives (e.g., stickers, pencils, games) for school celebrations that are safe for someone with a food allergy."
+          }
+         ]
+        },
+        {
+         "id": "physical-health",
+         "title": "Physical Health",
+         "outcomes": [
+          {
+           "code": "3.3.e",
+           "text": "Set a goal for a positive health practice and monitor progress."
+          }
+         ]
+        },
+        {
+         "id": "disease-prevention-health-promotion",
+         "title": "Disease Prevention/Health Promotion",
+         "outcomes": [
+          {
+           "code": "3.3.f",
+           "text": "Identify areas for improving personal health."
+          },
+          {
+           "code": "3.3.g",
+           "text": "Identify healthcare professionals who can help prevent and detect health concerns."
+          }
+         ]
+        },
+        {
+         "id": "substance-abuse-prevention",
+         "title": "Substance Abuse Prevention",
+         "outcomes": [
+          {
+           "code": "3.3.h",
+           "text": "Create a health message about the proper use of prescription and nonprescription medications."
+          },
+          {
+           "code": "3.3.i",
+           "text": "Encourage others to use refusal skills to avoid alcohol, tobacco, nicotine products, inhalants, other drugs, and unknown substances."
+          }
+         ]
+        },
+        {
+         "id": "safety-injury-prevention",
+         "title": "Safety/Injury Prevention",
+         "outcomes": [
+          {
+           "code": "3.3.j",
+           "text": "Discuss and develop a family safety plan to prevent injuries at home and when riding in a motor vehicle."
+          },
+          {
+           "code": "3.3.k",
+           "text": "Create strategies for personal safety when online."
+          },
+          {
+           "code": "3.3.l",
+           "text": "Practice disaster-preparedness procedures at home and at school."
+          }
+         ]
+        },
+        {
+         "id": "mental-wellness-social-and-emotional-skills",
+         "title": "Mental Wellness/Social and Emotional Skills",
+         "outcomes": [
+          {
+           "code": "3.3.m",
+           "text": "Design and demonstrate effective strategies for expressing and managing emotions, which may include physical activity, talking about feelings, reading, or creative expressions such as writing, art, music, and dance."
+          },
+          {
+           "code": "3.3.n",
+           "text": "Demonstrate behaviors to make and keep friends (e.g., effective communication skills; awareness of the attitudes, feelings, and opinions of others; appropriate language and behavior; sharing; reciprocal helping behavior)."
+          },
+          {
+           "code": "3.3.o",
+           "text": "Demonstrate healthy ways to resolve conflict, including determining when adult help is needed."
+          }
+         ]
+        },
+        {
+         "id": "violence-prevention",
+         "title": "Violence Prevention",
+         "outcomes": [
+          {
+           "code": "3.3.p",
+           "text": "Describe how to report bullying and how to advocate for oneself and for others who are bullied."
+          },
+          {
+           "code": "3.3.q",
+           "text": "Demonstrate positive ways to communicate with family and friends."
+          }
+         ]
+        },
+        {
+         "id": "community-environmental-health",
+         "title": "Community/Environmental Health",
+         "outcomes": [
+          {
+           "code": "3.3.r",
+           "text": "Demonstrate ways to reduce, reuse, and recycle at home, at school, and in the community."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "4",
+   "units": [
+    {
+     "id": "essential-health-concepts",
+     "title": "Essential Health Concepts",
+     "topics": [
+      {
+       "id": "the-student-will-explain-how-nutrition-and-other",
+       "title": "The student will explain how nutrition and other health-enhancing behaviors affect personal health and academic achievement",
+       "subtopics": [
+        {
+         "id": "body-systems",
+         "title": "Body Systems",
+         "outcomes": [
+          {
+           "code": "4.1.a",
+           "text": "Identify the major structures and functions of the immune system."
+          }
+         ]
+        },
+        {
+         "id": "nutrition",
+         "title": "Nutrition",
+         "outcomes": [
+          {
+           "code": "4.1.b",
+           "text": "Identify foods that contain saturated and trans fat."
+          },
+          {
+           "code": "4.1.c",
+           "text": "Describe the importance of protein for growth and development."
+          },
+          {
+           "code": "4.1.d",
+           "text": "Determine how serving sizes, additives, preservatives, sodium, and added sugar content for a variety of foods and beverages affect health."
+          }
+         ]
+        },
+        {
+         "id": "physical-health",
+         "title": "Physical Health",
+         "outcomes": [
+          {
+           "code": "4.1.e",
+           "text": "Describe the benefits of rest, sleep, and a physically active lifestyle."
+          }
+         ]
+        },
+        {
+         "id": "disease-prevention-health-promotion",
+         "title": "Disease Prevention/Health Promotion",
+         "outcomes": [
+          {
+           "code": "4.1.f",
+           "text": "Describe causes of communicable disease (i.e., how viruses, bacteria, parasites, and fungi are spread)."
+          },
+          {
+           "code": "4.1.g",
+           "text": "Describe the types and causes of noncommunicable/chronic diseases."
+          }
+         ]
+        },
+        {
+         "id": "substance-abuse-prevention",
+         "title": "Substance Abuse Prevention",
+         "outcomes": [
+          {
+           "code": "4.1.h",
+           "text": "Compare the short- and long-term consequences of the use of alcohol, tobacco, nicotine products, marijuana, inhalants, and other drugs."
+          },
+          {
+           "code": "4.1.i",
+           "text": "Identify effective verbal and nonverbal communication skills to resist/refuse alcohol, tobacco, nicotine products, marijuana, inhalants, and other drugs."
+          }
+         ]
+        },
+        {
+         "id": "safety-injury-prevention",
+         "title": "Safety/Injury Prevention",
+         "outcomes": [
+          {
+           "code": "4.1.j",
+           "text": "Explain appropriate protective gear when engaged in physical activities such as cycling, rollerblading, skateboarding, and water sports."
+          },
+          {
+           "code": "4.1.k",
+           "text": "Describe safe and unsafe use of the Internet, including online gaming."
+          }
+         ]
+        },
+        {
+         "id": "mental-wellness-social-and-emotional-skills",
+         "title": "Mental Wellness/Social and Emotional Skills",
+         "outcomes": [
+          {
+           "code": "4.1.l",
+           "text": "Identify feelings and emotions associated with loss and grief and their impact on one’s health."
+          },
+          {
+           "code": "4.1.m",
+           "text": "Describe self-concept and how it can be influenced by internal and external factors."
+          },
+          {
+           "code": "4.1.n",
+           "text": "Identify effective verbal and nonverbal communication skills (e.g., speaking, listening, eye contact, body language)."
+          },
+          {
+           "code": "4.1.o",
+           "text": "Recognize that every person is different and has different needs."
+          }
+         ]
+        },
+        {
+         "id": "violence-prevention",
+         "title": "Violence Prevention",
+         "outcomes": [
+          {
+           "code": "4.1.p",
+           "text": "Explain the difference between teasing and taunting and when teasing and taunting can be considered bullying."
+          },
+          {
+           "code": "4.1.q",
+           "text": "Describe steps to resolve a conflict."
+          },
+          {
+           "code": "4.1.r",
+           "text": "Recognize harmful or abusive relationships."
+          }
+         ]
+        },
+        {
+         "id": "community-environmental-health",
+         "title": "Community/Environmental Health",
+         "outcomes": [
+          {
+           "code": "4.1.s",
+           "text": "Describe the effects of water pollution on health."
+          },
+          {
+           "code": "4.1.t",
+           "text": "Identify community health issues."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "healthy-decisions",
+     "title": "Healthy Decisions",
+     "topics": [
+      {
+       "id": "the-student-will-describe-health-concepts-and-be",
+       "title": "The student will describe health concepts and behaviors that prevent illness, disease, and injury and that promote positive relationships",
+       "subtopics": [
+        {
+         "id": "body-systems",
+         "title": "Body Systems",
+         "outcomes": [
+          {
+           "code": "4.2.a",
+           "text": "Describe how the immune system defends the body against germs and disease."
+          }
+         ]
+        },
+        {
+         "id": "nutrition",
+         "title": "Nutrition",
+         "outcomes": [
+          {
+           "code": "4.2.b",
+           "text": "Describe the effects of saturated and trans fat on overall health."
+          },
+          {
+           "code": "4.2.c",
+           "text": "Identify a variety of animal and plant-based protein foods."
+          },
+          {
+           "code": "4.2.d",
+           "text": "Compare the serving sizes, additives, preservatives, sodium, and added sugar content of a variety of foods and beverages."
+          }
+         ]
+        },
+        {
+         "id": "physical-health",
+         "title": "Physical Health",
+         "outcomes": [
+          {
+           "code": "4.2.e",
+           "text": "Explain how physical activity, rest, and sleep affect physical and mental health."
+          }
+         ]
+        },
+        {
+         "id": "disease-prevention-health-promotion",
+         "title": "Disease Prevention/Health Promotion",
+         "outcomes": [
+          {
+           "code": "4.2.f",
+           "text": "Analyze strategies for preventing communicable diseases."
+          },
+          {
+           "code": "4.2.g",
+           "text": "Explain the role of heredity in some chronic diseases."
+          }
+         ]
+        },
+        {
+         "id": "substance-abuse-prevention",
+         "title": "Substance Abuse Prevention",
+         "outcomes": [
+          {
+           "code": "4.2.h",
+           "text": "Examine factors that can influence an individual’s decision to use or avoid alcohol, tobacco, nicotine products, marijuana, inhalants, and other drugs."
+          },
+          {
+           "code": "4.2.i",
+           "text": "Describe the effects of peer pressure on use of alcohol, tobacco, nicotine products, marijuana, inhalants, and other drugs."
+          }
+         ]
+        },
+        {
+         "id": "safety-injury-prevention",
+         "title": "Safety/Injury Prevention",
+         "outcomes": [
+          {
+           "code": "4.2.j",
+           "text": "Explain the health consequences of not following safety practices for recreational activities."
+          },
+          {
+           "code": "4.2.k",
+           "text": "Explain the consequences of unsafe Internet use."
+          }
+         ]
+        },
+        {
+         "id": "mental-wellness-social-and-emotional-skills",
+         "title": "Mental Wellness/Social and Emotional Skills",
+         "outcomes": [
+          {
+           "code": "4.2.l",
+           "text": "Describe healthy coping skills for handling the emotions of loss and grief."
+          },
+          {
+           "code": "4.2.m",
+           "text": "Describe how developing a healthy self-concept is an ongoing and essential life skill."
+          },
+          {
+           "code": "4.2.n",
+           "text": "Explain how bullying impacts individuals and affects one’s health."
+          },
+          {
+           "code": "4.2.o",
+           "text": "Analyze positive strategies for resolving conflict."
+          }
+         ]
+        },
+        {
+         "id": "violence-prevention",
+         "title": "Violence Prevention",
+         "outcomes": [
+          {
+           "code": "4.2.p",
+           "text": "Explain the importance of seeking assistance from a trusted adult when in unsafe or uncomfortable situations."
+          },
+          {
+           "code": "4.2.q",
+           "text": "Demonstrate effective communication skills."
+          },
+          {
+           "code": "4.2.r",
+           "text": "Explain why bullying or teasing someone who may have different needs or abilities is inappropriate."
+          }
+         ]
+        },
+        {
+         "id": "community-environmental-health",
+         "title": "Community/Environmental Health",
+         "outcomes": [
+          {
+           "code": "4.2.s",
+           "text": "Explain the health consequences associated with water pollution."
+          },
+          {
+           "code": "4.2.t",
+           "text": "Discuss the benefits of volunteering, and identify local volunteer opportunities."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "advocacy-and-health-promotion",
+     "title": "Advocacy and Health Promotion",
+     "topics": [
+      {
+       "id": "the-student-will-describe-the-importance-of-iden",
+       "title": "The student will describe the importance of identifying and accessing health resources for personal and community health",
+       "subtopics": [
+        {
+         "id": "body-systems",
+         "title": "Body Systems",
+         "outcomes": [
+          {
+           "code": "4.3.a",
+           "text": "Describe the effects of nutrition, personal hygiene, and sleep on the immune system."
+          }
+         ]
+        },
+        {
+         "id": "nutrition",
+         "title": "Nutrition",
+         "outcomes": [
+          {
+           "code": "4.3.b",
+           "text": "Identify ways to moderate intake of foods high in saturated and trans fats, including understanding the role of serving sizes."
+          },
+          {
+           "code": "4.3.c",
+           "text": "Design snack options that include protein, vegetables, and fruit."
+          },
+          {
+           "code": "4.3.d",
+           "text": "Explain how serving sizes, additives, preservatives, and added sugar affect one’s health over time (e.g., increased vulnerability to disease and obesity)."
+          }
+         ]
+        },
+        {
+         "id": "physical-health",
+         "title": "Physical Health",
+         "outcomes": [
+          {
+           "code": "4.3.e",
+           "text": "Create a plan to meet the daily requirement for physical activity, rest, and sleep, using valid and reliable resources."
+          }
+         ]
+        },
+        {
+         "id": "disease-prevention-health-promotion",
+         "title": "Disease Prevention/Health Promotion",
+         "outcomes": [
+          {
+           "code": "4.3.f",
+           "text": "Develop a plan to prevent the spread of communicable disease."
+          },
+          {
+           "code": "4.3.g",
+           "text": "Explore methods to reduce risks associated with noncommunicable/chronic disease."
+          }
+         ]
+        },
+        {
+         "id": "substance-abuse-prevention",
+         "title": "Substance Abuse Prevention",
+         "outcomes": [
+          {
+           "code": "4.3.h",
+           "text": "Determine the importance of resistance/refusal skills in saying no to alcohol, tobacco, inhalants, and other drugs."
+          },
+          {
+           "code": "4.3.i",
+           "text": "Demonstrate effective refusal skills for situations involving peer pressure to use harmful substances."
+          }
+         ]
+        },
+        {
+         "id": "safety-injury-prevention",
+         "title": "Safety/Injury Prevention",
+         "outcomes": [
+          {
+           "code": "4.3.j",
+           "text": "Promote safe participation in recreational activities."
+          },
+          {
+           "code": "4.3.k",
+           "text": "Develop strategies for safe Internet and online gaming use."
+          }
+         ]
+        },
+        {
+         "id": "mental-wellness-social-and-emotional-skills",
+         "title": "Mental Wellness/Social and Emotional Skills",
+         "outcomes": [
+          {
+           "code": "4.3.l",
+           "text": "Identify strategies and resources, including understanding the role of school counselors, psychologists, and social workers, to manage feelings that may result from loss and grief."
+          },
+          {
+           "code": "4.3.m",
+           "text": "Explain how challenges and successes provide learning experiences to help develop a healthy self-concept."
+          },
+          {
+           "code": "4.3.n",
+           "text": "Practice initiating, sustaining, and ending conversations."
+          },
+          {
+           "code": "4.3.o",
+           "text": "Describe ways to show compassion for others."
+          }
+         ]
+        },
+        {
+         "id": "violence-prevention",
+         "title": "Violence Prevention",
+         "outcomes": [
+          {
+           "code": "4.3.p",
+           "text": "Promote strategies to report bullying and aggressive behaviors and to safely advocate and stand up for others."
+          },
+          {
+           "code": "4.3.q",
+           "text": "Demonstrate strategies to resolve conflict in a variety of situations."
+          },
+          {
+           "code": "4.3.r",
+           "text": "Identify trusted adults at home, in school, and in the community who can help with unsafe or uncomfortable situations."
+          }
+         ]
+        },
+        {
+         "id": "community-environmental-health",
+         "title": "Community/Environmental Health",
+         "outcomes": [
+          {
+           "code": "4.3.s",
+           "text": "Identify possible solutions for a community health issue and volunteer opportunities to address the issue."
+          },
+          {
+           "code": "4.3.t",
+           "text": "Develop strategies to reduce water pollution."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "5",
+   "units": [
+    {
+     "id": "essential-health-concepts",
+     "title": "Essential Health Concepts",
+     "topics": [
+      {
+       "id": "the-student-will-analyze-the-impact-of-positive-",
+       "title": "The student will analyze the impact of positive health behaviors and risky behaviors on personal health",
+       "subtopics": [
+        {
+         "id": "body-systems",
+         "title": "Body Systems",
+         "outcomes": [
+          {
+           "code": "5.1.a",
+           "text": "Identify the major structures and functions of the integumentary (skin, hair, and nails) system."
+          },
+          {
+           "code": "5.1.b",
+           "text": "Identify the major structures and functions of the eyes and ears."
+          }
+         ]
+        },
+        {
+         "id": "nutrition",
+         "title": "Nutrition",
+         "outcomes": [
+          {
+           "code": "5.1.c",
+           "text": "Define macronutrients and micronutrients and how the body uses each."
+          },
+          {
+           "code": "5.1.d",
+           "text": "Explain Recommended Dietary Allowance (RDA) and the concepts of eating in moderation and energy balance in relation to healthy weight."
+          },
+          {
+           "code": "5.1.e",
+           "text": "Describe the effects of caffeine on the body."
+          }
+         ]
+        },
+        {
+         "id": "physical-health-disease-prevention-health-promot",
+         "title": "Physical Health/Disease Prevention/Health Promotion",
+         "outcomes": [
+          {
+           "code": "5.1.f",
+           "text": "Explain the effects of physical activity, sleep, and personal health habits and behaviors on heart health."
+          },
+          {
+           "code": "5.1.g",
+           "text": "Examine the health risks associated with unprotected sun exposure."
+          },
+          {
+           "code": "5.1.h",
+           "text": "Describe hygiene habits that promote good health."
+          }
+         ]
+        },
+        {
+         "id": "substance-abuse-prevention",
+         "title": "Substance Abuse Prevention",
+         "outcomes": [
+          {
+           "code": "5.1.i",
+           "text": "Analyze the effects of the use of alcohol, tobacco, nicotine products, marijuana, inhalants, and other drugs on relationships with family, peers, and other individuals."
+          },
+          {
+           "code": "5.1.j",
+           "text": "Explain the connection between mental health and substance use."
+          }
+         ]
+        },
+        {
+         "id": "safety-injury-prevention",
+         "title": "Safety/Injury Prevention",
+         "outcomes": [
+          {
+           "code": "5.1.k",
+           "text": "Analyze why people choose to follow or not follow safety rules at school."
+          }
+         ]
+        },
+        {
+         "id": "mental-wellness-social-and-emotional-skills",
+         "title": "Mental Wellness/Social and Emotional Skills",
+         "outcomes": [
+          {
+           "code": "5.1.l",
+           "text": "Define stress and identify physical and emotional responses caused by stress."
+          },
+          {
+           "code": "5.1.m",
+           "text": "Define positive self-image."
+          },
+          {
+           "code": "5.1.n",
+           "text": "Identify components of healthy relationships and the social skills that are essential for building and sustaining relationships with family and friends."
+          }
+         ]
+        },
+        {
+         "id": "violence-prevention",
+         "title": "Violence Prevention",
+         "outcomes": [
+          {
+           "code": "5.1.o",
+           "text": "Identify effective verbal and nonverbal communication skills for resolving conflict situations."
+          },
+          {
+           "code": "5.1.p",
+           "text": "Define cyberbullying and its impact on one’s health and well-being."
+          },
+          {
+           "code": "5.1.q",
+           "text": "Recognize the influence of violence in the media on behaviors."
+          },
+          {
+           "code": "5.1.r",
+           "text": "Define and describe harassment."
+          }
+         ]
+        },
+        {
+         "id": "community-environmental-health",
+         "title": "Community/Environmental Health",
+         "outcomes": [
+          {
+           "code": "5.1.s",
+           "text": "Describe the effects of air and noise pollution on health and the environment."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "healthy-decisions",
+     "title": "Healthy Decisions",
+     "topics": [
+      {
+       "id": "the-student-will-demonstrate-responsibility-for-",
+       "title": "The student will demonstrate responsibility for developing personal health habits and practicing behaviors that promote an active, healthy lifestyle",
+       "subtopics": [
+        {
+         "id": "body-systems",
+         "title": "Body Systems",
+         "outcomes": [
+          {
+           "code": "5.2.a",
+           "text": "Describe the importance of maintaining a healthy integumentary system."
+          },
+          {
+           "code": "5.2.b",
+           "text": "Identify behaviors and environments that can lead to vision and hearing loss."
+          }
+         ]
+        },
+        {
+         "id": "nutrition",
+         "title": "Nutrition",
+         "outcomes": [
+          {
+           "code": "5.2.c",
+           "text": "Explain the RDA for macronutrients and micronutrients."
+          },
+          {
+           "code": "5.2.d",
+           "text": "Analyze food labels for a selected meal that meets RDA and energy balance for health."
+          },
+          {
+           "code": "5.2.e",
+           "text": "Identify the influence of marketing techniques on food and beverage choices (e.g., caffeinated beverages)."
+          }
+         ]
+        },
+        {
+         "id": "physical-health-disease-prevention-health-promot",
+         "title": "Physical Health/Disease Prevention/Health Promotion",
+         "outcomes": [
+          {
+           "code": "5.2.f",
+           "text": "Review personal health habits that support heart health and the ability to perform various physical activities."
+          },
+          {
+           "code": "5.2.g",
+           "text": "Determine strategies to protect against the harmful effects of the sun."
+          },
+          {
+           "code": "5.2.h",
+           "text": "Explain the importance of dental care, hand washing, and other personal hygiene habits for good health."
+          }
+         ]
+        },
+        {
+         "id": "substance-abuse-prevention",
+         "title": "Substance Abuse Prevention",
+         "outcomes": [
+          {
+           "code": "5.2.i",
+           "text": "Describe effective communication skills to request assistance in situations where alcohol, tobacco, nicotine products, marijuana, inhalants, and other drugs are being abused."
+          },
+          {
+           "code": "5.2.j",
+           "text": "Describe how to get help and assistance with mental health and substance use concerns."
+          }
+         ]
+        },
+        {
+         "id": "safety-injury-prevention",
+         "title": "Safety/Injury Prevention",
+         "outcomes": [
+          {
+           "code": "5.2.k",
+           "text": "Examine one’s role and the role of others in causing or preventing injuries at school."
+          }
+         ]
+        },
+        {
+         "id": "mental-wellness-social-and-emotional-skills",
+         "title": "Mental Wellness/Social and Emotional Skills",
+         "outcomes": [
+          {
+           "code": "5.2.l",
+           "text": "Identify positive and negative ways to manage stress in a variety of situations."
+          },
+          {
+           "code": "5.2.m",
+           "text": "Recognize the importance of developing and maintaining a positive self-image."
+          },
+          {
+           "code": "5.2.n",
+           "text": "Describe the benefits of healthy relationships with family, friends, and other adult mentors."
+          }
+         ]
+        },
+        {
+         "id": "violence-prevention",
+         "title": "Violence Prevention",
+         "outcomes": [
+          {
+           "code": "5.2.o",
+           "text": "Ability to analyze the role of feelings/emotions in conflict resolution situations."
+          },
+          {
+           "code": "5.2.p",
+           "text": "Describe how to report cyberbullying at school and at home."
+          },
+          {
+           "code": "5.2.q",
+           "text": "Demonstrate how to show respect for individual differences."
+          },
+          {
+           "code": "5.2.r",
+           "text": "Describe how to respond to and report harassing behaviors."
+          }
+         ]
+        },
+        {
+         "id": "community-environmental-health",
+         "title": "Community/Environmental Health",
+         "outcomes": [
+          {
+           "code": "5.2.s",
+           "text": "Describe strategies to decrease the impact of air quality and noise pollution on body function and the environment."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "advocacy-and-health-promotion",
+     "title": "Advocacy and Health Promotion",
+     "topics": [
+      {
+       "id": "the-student-will-explain-how-peers-families-and-",
+       "title": "The student will explain how peers, families, and community groups work together to promote health, prevent disease, and create a healthy community",
+       "subtopics": [
+        {
+         "id": "body-systems",
+         "title": "Body Systems",
+         "outcomes": [
+          {
+           "code": "5.3.a",
+           "text": "Describe ways to care for the integumentary system (e.g., personal hygiene, sun safety)."
+          },
+          {
+           "code": "5.3.b",
+           "text": "Describe ways to prevent vision and hearing loss and the associated healthcare professionals (e.g., optometrist, ophthalmologist, audiologist)."
+          }
+         ]
+        },
+        {
+         "id": "nutrition",
+         "title": "Nutrition",
+         "outcomes": [
+          {
+           "code": "5.3.c",
+           "text": "Analyze and interpret information on food packaging, including Nutrition Facts Labels, ingredient lists, and health claims."
+          },
+          {
+           "code": "5.3.d",
+           "text": "Design marketing materials to increase the sale and consumption of healthy foods and beverages that meet RDA and energy balance for health."
+          },
+          {
+           "code": "5.3.e",
+           "text": "Promote sale and consumption of healthy beverages."
+          }
+         ]
+        },
+        {
+         "id": "physical-health-disease-prevention-health-promot",
+         "title": "Physical Health/Disease Prevention/Health Promotion",
+         "outcomes": [
+          {
+           "code": "5.3.f",
+           "text": "Support family and peers in making positive food, physical activity, and sleep choices that promote heart health."
+          },
+          {
+           "code": "5.3.g",
+           "text": "Identify strategies to protect against the harmful effects of the sun."
+          },
+          {
+           "code": "5.3.h",
+           "text": "Explore the role of parents/guardians and health professionals as resources to promote health, prevent disease, and create a healthy community."
+          }
+         ]
+        },
+        {
+         "id": "substance-abuse-prevention",
+         "title": "Substance Abuse Prevention",
+         "outcomes": [
+          {
+           "code": "5.3.i",
+           "text": "Encourage others not to use alcohol, tobacco, nicotine products, marijuana, inhalants, or other harmful drugs."
+          },
+          {
+           "code": "5.3.j",
+           "text": "Identify prevention resources and strategies for avoiding alcohol, tobacco, inhalants, and other drugs."
+          }
+         ]
+        },
+        {
+         "id": "safety-injury-prevention",
+         "title": "Safety/Injury Prevention",
+         "outcomes": [
+          {
+           "code": "5.3.k",
+           "text": "Promote safety procedures school-wide."
+          }
+         ]
+        },
+        {
+         "id": "mental-wellness-social-and-emotional-skills",
+         "title": "Mental Wellness/Social and Emotional Skills",
+         "outcomes": [
+          {
+           "code": "5.3.l",
+           "text": "Practice strategies for managing stress."
+          },
+          {
+           "code": "5.3.m",
+           "text": "Analyze positive and negative influences on self-image (e.g., media, peers)."
+          },
+          {
+           "code": "5.3.n",
+           "text": "Identify healthy activities that students can do with friends and family to build positive relationships."
+          }
+         ]
+        },
+        {
+         "id": "violence-prevention",
+         "title": "Violence Prevention",
+         "outcomes": [
+          {
+           "code": "5.3.o",
+           "text": "Demonstrate effective communication skills to defuse or resolve conflict."
+          },
+          {
+           "code": "5.3.p",
+           "text": "Describe ways to offer friendship and support to someone who has been cyberbullied."
+          },
+          {
+           "code": "5.3.q",
+           "text": "Advocate for a caring school environment."
+          },
+          {
+           "code": "5.3.r",
+           "text": "Practice ways to respond to and report harassing behaviors."
+          }
+         ]
+        },
+        {
+         "id": "community-environmental-health",
+         "title": "Community/Environmental Health",
+         "outcomes": [
+          {
+           "code": "5.3.s",
+           "text": "Research community service opportunities to address air, noise, and other environmental health issues for peers and community groups to volunteer and work on together."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "6",
+   "units": [
+    {
+     "id": "essential-health-concepts",
+     "title": "Essential Health Concepts",
+     "topics": [
+      {
+       "id": "the-student-will-apply-critical-thinking-skills-",
+       "title": "The student will apply critical thinking skills and personal management strategies to address issues and concerns related to personal health and wellness",
+       "subtopics": [
+        {
+         "id": "body-systems",
+         "title": "Body Systems",
+         "outcomes": [
+          {
+           "code": "6.1.a",
+           "text": "Identify and describe the major structures and functions of the renal and urinary systems (kidneys, ureters, bladder, and urethra)."
+          }
+         ]
+        },
+        {
+         "id": "nutrition",
+         "title": "Nutrition",
+         "outcomes": [
+          {
+           "code": "6.1.b",
+           "text": "Compare the Recommended Daily Allowance (RDA) of macronutrients (i.e., carbohydrates, fat, protein) for adolescent males and females."
+          },
+          {
+           "code": "6.1.c",
+           "text": "Explain ingredients in foods that may cause an allergic reaction."
+          }
+         ]
+        },
+        {
+         "id": "physical-health-disease-prevention-health-promot",
+         "title": "Physical Health/Disease Prevention/Health Promotion",
+         "outcomes": [
+          {
+           "code": "6.1.d",
+           "text": "Describe causes of heart disease, cancer, and diabetes."
+          },
+          {
+           "code": "6.1.e",
+           "text": "Identify a variety of immunizations and vaccines available to prevent communicable disease and illness."
+          },
+          {
+           "code": "6.1.f",
+           "text": "Identify influences (e.g., family, peers, culture, screen time, media) on personal health choices."
+          },
+          {
+           "code": "6.1.g",
+           "text": "Describe persuasive tactics used by various types of media."
+          }
+         ]
+        },
+        {
+         "id": "substance-abuse-prevention",
+         "title": "Substance Abuse Prevention",
+         "outcomes": [
+          {
+           "code": "6.1.h",
+           "text": "Differentiate between proper use and misuse of prescription and nonprescription medications."
+          },
+          {
+           "code": "6.1.i",
+           "text": "Recognize social influences/influencers on both the reduction and promotion of the use of alcohol, tobacco, nicotine products, and other drugs."
+          },
+          {
+           "code": "6.1.j",
+           "text": "Define addiction and substance use disorder."
+          },
+          {
+           "code": "6.1.k",
+           "text": "Identify different types of opioids."
+          },
+          {
+           "code": "6.1.l",
+           "text": "Explain the importance of accepting responsibility for personal actions to avoid risktaking behaviors related to substance use."
+          }
+         ]
+        },
+        {
+         "id": "safety-injury-prevention",
+         "title": "Safety/Injury Prevention",
+         "outcomes": [
+          {
+           "code": "6.1.m",
+           "text": "Identify strategies to prevent injuries, including safety habits in vehicles, on the Internet, in public areas, and during recreational activities."
+          },
+          {
+           "code": "6.1.n",
+           "text": "Describe basic first aid and emergency procedures for common injuries, including sunburn, cuts, scrapes, and insect stings."
+          },
+          {
+           "code": "6.1.o",
+           "text": "List types and purposes of school safety drills."
+          }
+         ]
+        },
+        {
+         "id": "mental-wellness-social-and-emotional-skills",
+         "title": "Mental Wellness/Social and Emotional Skills",
+         "outcomes": [
+          {
+           "code": "6.1.p",
+           "text": "Define body image and explain the importance of having a positive body image."
+          },
+          {
+           "code": "6.1.q",
+           "text": "Analyze factors that contribute to group success (e.g., respecting individual differences and opinions, accepting responsibility, contributing positively, knowing when to lead and when to follow, dealing with conflict, using effective face-to-face and online communication skills)."
+          },
+          {
+           "code": "6.1.r",
+           "text": "Define mental health and describe what it means to be mentally healthy."
+          },
+          {
+           "code": "6.1.s",
+           "text": "Describe personal strengths and areas for growth."
+          },
+          {
+           "code": "6.1.t",
+           "text": "Identify potential positive and negative responses to stress and criticism."
+          },
+          {
+           "code": "6.1.u",
+           "text": "Explain the importance of personal boundaries for physical, emotional, and social health."
+          }
+         ]
+        },
+        {
+         "id": "violence-prevention",
+         "title": "Violence Prevention",
+         "outcomes": [
+          {
+           "code": "6.1.v",
+           "text": "Analyze the role of emotions and media influences on conflict and violence."
+          },
+          {
+           "code": "6.1.w",
+           "text": "Describe the possible effects of bullying and cyberbullying, including the increased risk for harm and violence when bullying aggression persists."
+          },
+          {
+           "code": "6.1.x",
+           "text": "Explain what a gang is and identify gang-related behaviors."
+          }
+         ]
+        },
+        {
+         "id": "community-environmental-health",
+         "title": "Community/Environmental Health",
+         "outcomes": [
+          {
+           "code": "6.1.y",
+           "text": "Assess environmental health and safety issues in the community."
+          },
+          {
+           "code": "6.1.z",
+           "text": "Recognize that all individuals have a responsibility to protect and preserve the environment."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "healthy-decisions",
+     "title": "Healthy Decisions",
+     "topics": [
+      {
+       "id": "the-student-will-describe-the-influence-of-famil",
+       "title": "The student will describe the influence of family, peers, and media on personal health decisions",
+       "subtopics": [
+        {
+         "id": "body-systems",
+         "title": "Body Systems",
+         "outcomes": [
+          {
+           "code": "6.2.a",
+           "text": "Describe the importance of proper hydration to support renal function."
+          }
+         ]
+        },
+        {
+         "id": "nutrition",
+         "title": "Nutrition",
+         "outcomes": [
+          {
+           "code": "6.2.b",
+           "text": "Analyze the benefits of following recommended daily allowances for macronutrients when selecting beverages and planning meals and snacks."
+          },
+          {
+           "code": "6.2.c",
+           "text": "Interpret information on a food label to identify a food product that may cause an allergic reaction."
+          }
+         ]
+        },
+        {
+         "id": "physical-health-disease-prevention-health-promot",
+         "title": "Physical Health/Disease Prevention/Health Promotion",
+         "outcomes": [
+          {
+           "code": "6.2.d",
+           "text": "Identify strategies to prevent heart disease, cancer, and diabetes."
+          },
+          {
+           "code": "6.2.e",
+           "text": "Describe the impact of immunizations and vaccines on individuals and others."
+          },
+          {
+           "code": "6.2.f",
+           "text": "Explain the impact of external influences (e.g., family, peers, screen time, social media) on personal health choices."
+          },
+          {
+           "code": "6.2.g",
+           "text": "Analyze a variety of media to identify tactics used to persuade consumers regarding physical activity, nutrition, sleep, or other areas of personal health products."
+          }
+         ]
+        },
+        {
+         "id": "substance-abuse-prevention",
+         "title": "Substance Abuse Prevention",
+         "outcomes": [
+          {
+           "code": "6.2.h",
+           "text": "Evaluate the influence of media and marketing techniques on prescription, nonprescription, and unregulated medication choices."
+          },
+          {
+           "code": "6.2.i",
+           "text": "Identify the benefits of a smoke and tobacco/nicotine-free environment."
+          },
+          {
+           "code": "6.2.j",
+           "text": "Describe characteristics of substance use disorder."
+          },
+          {
+           "code": "6.2.k",
+           "text": "Differentiate between legal and illegal drugs that fall into the opioid category."
+          },
+          {
+           "code": "6.2.l",
+           "text": "Analyze family and peer pressure as influences on the use and nonuse of opioids, alcohol, tobacco, inhalants, and other drugs."
+          }
+         ]
+        },
+        {
+         "id": "safety-injury-prevention",
+         "title": "Safety/Injury Prevention",
+         "outcomes": [
+          {
+           "code": "6.2.m",
+           "text": "Explain the importance of accepting responsibility for personal actions to avoid risktaking behaviors and injury."
+          },
+          {
+           "code": "6.2.n",
+           "text": "Use a decision-making process to determine when medical assistance is needed."
+          },
+          {
+           "code": "6.2.o",
+           "text": "Describe the consequences of not following school safety drill procedures."
+          }
+         ]
+        },
+        {
+         "id": "mental-wellness-social-and-emotional-skills",
+         "title": "Mental Wellness/Social and Emotional Skills",
+         "outcomes": [
+          {
+           "code": "6.2.p",
+           "text": "Describe how culture, media, and other external factors influence perceptions about body image."
+          },
+          {
+           "code": "6.2.q",
+           "text": "Explain the importance of understanding the feelings and perspectives of others."
+          },
+          {
+           "code": "6.2.r",
+           "text": "Identify protective and risk factors for mental illnesses and challenges."
+          },
+          {
+           "code": "6.2.s",
+           "text": "Describe strategies to work through adversity and challenges."
+          },
+          {
+           "code": "6.2.t",
+           "text": "Analyze internal factors, such as responses to criticism or stress, which influence emotional and social health."
+          },
+          {
+           "code": "6.2.u",
+           "text": "Identify ways to set and communicate personal boundaries and how to respect the boundaries of others."
+          }
+         ]
+        },
+        {
+         "id": "violence-prevention",
+         "title": "Violence Prevention",
+         "outcomes": [
+          {
+           "code": "6.2.v",
+           "text": "Explain methods to reduce violence and peacefully resolve conflict."
+          },
+          {
+           "code": "6.2.w",
+           "text": "Recognize the role of family, peers, community, and the media in preventing bullying and cyberbullying."
+          },
+          {
+           "code": "6.2.x",
+           "text": "Explain the importance of friends or adult mentors in avoiding gang involvement."
+          }
+         ]
+        },
+        {
+         "id": "community-environmental-health",
+         "title": "Community/Environmental Health",
+         "outcomes": [
+          {
+           "code": "6.2.y",
+           "text": "Explain the role of the Environmental Protection Agency (EPA) and local agencies in protecting the environment."
+          },
+          {
+           "code": "6.2.z",
+           "text": "Create and monitor progress toward a personal goal, service learning, or group project to protect the environment."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "advocacy-and-health-promotion",
+     "title": "Advocacy and Health Promotion",
+     "topics": [
+      {
+       "id": "the-student-will-develop-personal-strategies-and",
+       "title": "The student will develop personal strategies and skills for personal, social, and community health",
+       "subtopics": [
+        {
+         "id": "body-systems",
+         "title": "Body Systems",
+         "outcomes": [
+          {
+           "code": "6.3.a",
+           "text": "Describe strategies to promote renal health."
+          }
+         ]
+        },
+        {
+         "id": "nutrition",
+         "title": "Nutrition",
+         "outcomes": [
+          {
+           "code": "6.3.b",
+           "text": "Create a one-day plan for meals, snacks, and beverages that includes the daily recommended macronutrients."
+          },
+          {
+           "code": "6.3.c",
+           "text": "Promote the understanding of the impact of food allergies on individuals."
+          }
+         ]
+        },
+        {
+         "id": "physical-health-disease-prevention-health-promot",
+         "title": "Physical Health/Disease Prevention/Health Promotion",
+         "outcomes": [
+          {
+           "code": "6.3.d",
+           "text": "Promote strategies to prevent heart disease, cancer, and diabetes."
+          },
+          {
+           "code": "6.3.e",
+           "text": "Identify strategies to reduce illness at home and at school."
+          },
+          {
+           "code": "6.3.f",
+           "text": "Monitor personal progress toward physical activity, nutrition, and sleep goals."
+          },
+          {
+           "code": "6.3.g",
+           "text": "Analyze the reliability of health product claims for physical activity, nutrition, sleep, or other areas of personal health."
+          }
+         ]
+        },
+        {
+         "id": "substance-abuse-prevention",
+         "title": "Substance Abuse Prevention",
+         "outcomes": [
+          {
+           "code": "6.3.h",
+           "text": "Describe where to access accurate information on the proper use of prescription, nonprescription, and unregulated medications."
+          },
+          {
+           "code": "6.3.i",
+           "text": "Examine the changes in school and community policies and laws regarding tobacco/nicotine-free environments."
+          },
+          {
+           "code": "6.3.j",
+           "text": "Describe the types of support available at school and in the community for substance use disorders."
+          },
+          {
+           "code": "6.3.k",
+           "text": "Describe the dangers of opioids in the home and the community impact of the national opioid epidemic."
+          },
+          {
+           "code": "6.3.l",
+           "text": "Identify mental and health professionals and explain their role in preventing the use/abuse of prescription opioids and other drugs."
+          }
+         ]
+        },
+        {
+         "id": "safety-injury-prevention",
+         "title": "Safety/Injury Prevention",
+         "outcomes": [
+          {
+           "code": "6.3.m",
+           "text": "Develop a plan to remain injury-free, including avoiding risk-taking behaviors online and in the community and using safety equipment."
+          },
+          {
+           "code": "6.3.n",
+           "text": "Demonstrate basic first aid and emergency procedures for common injuries, including sunburn, cuts, scrapes, and insect stings."
+          },
+          {
+           "code": "6.3.o",
+           "text": "Demonstrate appropriate behaviors during lockdown, fire/evacuation, tornado, earthquake, and other safety drills."
+          }
+         ]
+        },
+        {
+         "id": "mental-wellness-social-and-emotional-skills",
+         "title": "Mental Wellness/Social and Emotional Skills",
+         "outcomes": [
+          {
+           "code": "6.3.p",
+           "text": "Analyze the influence of media on issues related to body image."
+          },
+          {
+           "code": "6.3.q",
+           "text": "Demonstrate ways to show respect for individual differences, opinions, and beliefs."
+          },
+          {
+           "code": "6.3.r",
+           "text": "Compile and promote personal, family, and community resources that can help oneself and others with mental illnesses and challenges."
+          },
+          {
+           "code": "6.3.s",
+           "text": "Ability to set and monitor a personal goal to address one area of growth."
+          },
+          {
+           "code": "6.3.t",
+           "text": "Ability to create a plan to manage stress."
+          },
+          {
+           "code": "6.3.u",
+           "text": "Practice ways to communicate personal boundaries for privacy, safety, and expression of emotions and opinions."
+          }
+         ]
+        },
+        {
+         "id": "violence-prevention",
+         "title": "Violence Prevention",
+         "outcomes": [
+          {
+           "code": "6.3.v",
+           "text": "Practice ways to resolve conflict peacefully."
+          },
+          {
+           "code": "6.3.w",
+           "text": "Evaluate a plan to prevent or manage the effects of bullying and cyberbullying."
+          },
+          {
+           "code": "6.3.x",
+           "text": "Identify resistance skills to avoid violence, gangs, weapons, alcohol, tobacco, and other drugs."
+          }
+         ]
+        },
+        {
+         "id": "community-environmental-health",
+         "title": "Community/Environmental Health",
+         "outcomes": [
+          {
+           "code": "6.3.y",
+           "text": "Identify careers and professions associated with environmental health."
+          },
+          {
+           "code": "6.3.z",
+           "text": "Develop a plan to work collaboratively with peers, families, and community groups to address community environmental health and safety issues."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "7",
+   "units": [
+    {
+     "id": "essential-health-concepts",
+     "title": "Essential Health Concepts",
+     "topics": [
+      {
+       "id": "the-student-will-identify-and-explain-essential-",
+       "title": "The student will identify and explain essential health concepts to understand personal health",
+       "subtopics": [
+        {
+         "id": "body-systems",
+         "title": "Body Systems",
+         "outcomes": [
+          {
+           "code": "7.1.a",
+           "text": "Identify and describe the major structures and functions of the circulatory system."
+          }
+         ]
+        },
+        {
+         "id": "nutrition",
+         "title": "Nutrition",
+         "outcomes": [
+          {
+           "code": "7.1.b",
+           "text": "Describe the value of nutrient-dense foods."
+          },
+          {
+           "code": "7.1.c",
+           "text": "Describe the benefit of eating foods to meet recommendations for iron, calcium, potassium, vitamin D, and dietary fiber."
+          },
+          {
+           "code": "7.1.d",
+           "text": "Identify decision-making steps for selecting healthy foods and beverages."
+          },
+          {
+           "code": "7.1.e",
+           "text": "Explain how allergens cause an allergic reaction."
+          }
+         ]
+        },
+        {
+         "id": "physical-health",
+         "title": "Physical Health",
+         "outcomes": [
+          {
+           "code": "7.1.f",
+           "text": "Explain the concept of active transportation (e.g., walking, biking)."
+          }
+         ]
+        },
+        {
+         "id": "disease-prevention-health-promotion",
+         "title": "Disease Prevention/Health Promotion",
+         "outcomes": [
+          {
+           "code": "7.1.g",
+           "text": "Evaluate the impact of sleep and rest on physical, social, and emotional health and on cognitive performance."
+          },
+          {
+           "code": "7.1.h",
+           "text": "Explain the impact of weather- or climate-related physical conditions on individuals, including allergies, asthma, sunburn, dehydration, heatstroke, heat exhaustion, and hypothermia."
+          },
+          {
+           "code": "7.1.i",
+           "text": "Describe how the school and the community can impact personal health practices and behaviors, including the availability of physical, emotional, and social health services; emergency response systems; healthcare products; and recreational and leisure opportunities."
+          },
+          {
+           "code": "7.1.j",
+           "text": "Identify government agencies that provide consumer protections for health products and services."
+          }
+         ]
+        },
+        {
+         "id": "substance-abuse-prevention",
+         "title": "Substance Abuse Prevention",
+         "outcomes": [
+          {
+           "code": "7.1.k",
+           "text": "Explain the link between addiction to alcohol, tobacco, and other drugs; chronic disease; and engaging in risky behaviors."
+          },
+          {
+           "code": "7.1.l",
+           "text": "Define prescriptions, controlled substances, nicotine vaping products, hemp, and marijuana-derived cannabidiol (CBD) products, and explain their uses."
+          },
+          {
+           "code": "7.1.m",
+           "text": "Identify the types of behavior associated with drug use and abuse that reflect positive norms (e.g., drug use is not cool, drunken driving is stupid, most teens do not use drugs)."
+          }
+         ]
+        },
+        {
+         "id": "safety-injury-prevention",
+         "title": "Safety/Injury Prevention",
+         "outcomes": [
+          {
+           "code": "7.1.n",
+           "text": "Identify potential safety issues related to babysitting, caring for younger siblings, being alone at home, in the neighborhood (e.g., water sports, recreation areas, shopping areas), and being online."
+          }
+         ]
+        },
+        {
+         "id": "mental-wellness-social-and-emotional-skills",
+         "title": "Mental Wellness/Social and Emotional Skills",
+         "outcomes": [
+          {
+           "code": "7.1.o",
+           "text": "Identify the body’s physical and psychological responses to stress."
+          },
+          {
+           "code": "7.1.p",
+           "text": "Identify the characteristics of healthy interpersonal relationships."
+          },
+          {
+           "code": "7.1.q",
+           "text": "Recognize the impact of disappointment or adversity on physical, social, and emotional health and how to cope effectively and change one’s feelings."
+          },
+          {
+           "code": "7.1.r",
+           "text": "Describe situations that can cause a range of emotions and feelings, and describe how to recognize these feelings and emotions and predict how long they may last."
+          },
+          {
+           "code": "7.1.s",
+           "text": "Identify healthy verbal, nonverbal, written, and visual communication."
+          },
+          {
+           "code": "7.1.t",
+           "text": "Define disordered eating and describe types of eating disorders."
+          },
+          {
+           "code": "7.1.u",
+           "text": "Define depression and describe the warning signs, risk factors, and protective factors for anxiety and depression."
+          }
+         ]
+        },
+        {
+         "id": "violence-prevention",
+         "title": "Violence Prevention",
+         "outcomes": [
+          {
+           "code": "7.1.v",
+           "text": "List the characteristics of and how to contribute to a positive (i.e., emotionally safe) school climate."
+          },
+          {
+           "code": "7.1.w",
+           "text": "Describe the role of empathy in preventing bullying and cyberbullying."
+          },
+          {
+           "code": "7.1.x",
+           "text": "Explain the myths and facts about gangs and gang-related behaviors."
+          }
+         ]
+        },
+        {
+         "id": "community-environmental-health",
+         "title": "Community/Environmental Health",
+         "outcomes": [
+          {
+           "code": "7.1.y",
+           "text": "Describe human behaviors that contribute to air, water, soil, and noise pollution."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "healthy-decisions",
+     "title": "Healthy Decisions",
+     "topics": [
+      {
+       "id": "the-student-will-use-decision-making-skills-to-p",
+       "title": "The student will use decision-making skills to promote health and personal wellness",
+       "subtopics": [
+        {
+         "id": "body-systems",
+         "title": "Body Systems",
+         "outcomes": [
+          {
+           "code": "7.2.a",
+           "text": "Describe how healthy food choices and physical activity keep the circulatory system healthy."
+          }
+         ]
+        },
+        {
+         "id": "nutrition",
+         "title": "Nutrition",
+         "outcomes": [
+          {
+           "code": "7.2.b",
+           "text": "Analyze the effects of nutrition on daily performance (i.e., mind and body)."
+          },
+          {
+           "code": "7.2.c",
+           "text": "Explain the cognitive and physical benefits of eating a healthy breakfast."
+          },
+          {
+           "code": "7.2.d",
+           "text": "Use a decision-making process to evaluate daily food intake and nutritional requirements."
+          },
+          {
+           "code": "7.2.e",
+           "text": "Discuss the concept of an allergen-safe zone."
+          }
+         ]
+        },
+        {
+         "id": "physical-health",
+         "title": "Physical Health",
+         "outcomes": [
+          {
+           "code": "7.2.f",
+           "text": "Analyze the physical and mental health benefits of active transportation."
+          }
+         ]
+        },
+        {
+         "id": "disease-prevention-health-promotion",
+         "title": "Disease Prevention/Health Promotion",
+         "outcomes": [
+          {
+           "code": "7.2.g",
+           "text": "Compare current personal sleep and rest habits with recommended guidelines for teenagers."
+          },
+          {
+           "code": "7.2.h",
+           "text": "Describe ways to prevent weather- or climate-related physical environmental conditions, such as allergies, asthma, sunburn, dehydration, heatstroke, heat exhaustion, and hypothermia."
+          },
+          {
+           "code": "7.2.i",
+           "text": "Identify resources in the community that are dedicated to promoting health."
+          },
+          {
+           "code": "7.2.j",
+           "text": "Identify state and federal laws that provide consumer protections."
+          }
+         ]
+        },
+        {
+         "id": "substance-abuse-prevention",
+         "title": "Substance Abuse Prevention",
+         "outcomes": [
+          {
+           "code": "7.2.k",
+           "text": "Understand that addiction is a compulsive physiological need for and use of a habitforming substance."
+          },
+          {
+           "code": "7.2.l",
+           "text": "Explain the purpose of the Food and Drug Administration (FDA), and differentiate between FDA-approved and non-FDA-approved substances."
+          },
+          {
+           "code": "7.2.m",
+           "text": "Identify short term, social and negative consequences of engaging in risky behaviors, including the use of alcohol, tobacco, nicotine products, marijuana, and other drugs."
+          }
+         ]
+        },
+        {
+         "id": "safety-injury-prevention",
+         "title": "Safety/Injury Prevention",
+         "outcomes": [
+          {
+           "code": "7.2.n",
+           "text": "Explain the importance of recognizing harmful and risky behaviors related to personal safety."
+          }
+         ]
+        },
+        {
+         "id": "mental-wellness-social-and-emotional-skills",
+         "title": "Mental Wellness/Social and Emotional Skills",
+         "outcomes": [
+          {
+           "code": "7.2.o",
+           "text": "Analyze and explain the benefits of emotional flexibility, stress management, and stress-reduction techniques for physical and emotional health."
+          },
+          {
+           "code": "7.2.p",
+           "text": "Explain how empathy, compassion, and acceptance of others support healthy relationships."
+          },
+          {
+           "code": "7.2.q",
+           "text": "Develop strategies for coping with disappointment, stress, anxiety, anger, and adversity."
+          },
+          {
+           "code": "7.2.r",
+           "text": "Develop healthy ways to identify, express, and respond to emotions and identify resources for help and support."
+          },
+          {
+           "code": "7.2.s",
+           "text": "Describe the relationship between healthy communication skills and healthy relationships."
+          },
+          {
+           "code": "7.2.t",
+           "text": "Describe the warning signs, risk factors, and protective factors for eating disorders."
+          },
+          {
+           "code": "7.2.u",
+           "text": "Explain when mental illnesses and mental challenges require support or assistance (e.g., when they affect one’s relationships, responsibilities, and involvement in activities)."
+          }
+         ]
+        },
+        {
+         "id": "violence-prevention",
+         "title": "Violence Prevention",
+         "outcomes": [
+          {
+           "code": "7.2.v",
+           "text": "Explain how violence, bullying, and harassment affect personal health and school safety."
+          },
+          {
+           "code": "7.2.w",
+           "text": "Explain why it is important to be able to identify bullying behavior to prevent bullying and cyberbullying."
+          },
+          {
+           "code": "7.2.x",
+           "text": "Explain why people may join gangs, including the relationship between self-image and gang-related behaviors."
+          }
+         ]
+        },
+        {
+         "id": "community-environmental-health",
+         "title": "Community/Environmental Health",
+         "outcomes": [
+          {
+           "code": "7.2.y",
+           "text": "Explain how environmental health is essential to personal and community health."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "advocacy-and-health-promotion",
+     "title": "Advocacy and Health Promotion",
+     "topics": [
+      {
+       "id": "the-student-will-promote-healthy-schools-familie",
+       "title": "The student will promote healthy schools, families, and communities",
+       "subtopics": [
+        {
+         "id": "body-systems",
+         "title": "Body Systems",
+         "outcomes": [
+          {
+           "code": "7.3.a",
+           "text": "Promote strategies for maintaining a healthy circulatory system."
+          }
+         ]
+        },
+        {
+         "id": "nutrition",
+         "title": "Nutrition",
+         "outcomes": [
+          {
+           "code": "7.3.b",
+           "text": "Encourage nutrient-dense food choices at home, at school, and in restaurants."
+          },
+          {
+           "code": "7.3.c",
+           "text": "Educate peers and family members on the importance of eating a healthy breakfast and being physically active."
+          },
+          {
+           "code": "7.3.d",
+           "text": "Explore opportunities to engage with local school wellness policy committees to advocate for nutritional food and beverage choices for all school-sponsored events."
+          },
+          {
+           "code": "7.3.e",
+           "text": "Promote understanding of the importance of handwashing, not sharing food, and allergen safe-zones."
+          }
+         ]
+        },
+        {
+         "id": "physical-health",
+         "title": "Physical Health",
+         "outcomes": [
+          {
+           "code": "7.3.f",
+           "text": "Design and promote safe walking and bike routes to and from school or another location in the community."
+          }
+         ]
+        },
+        {
+         "id": "disease-prevention-health-promotion",
+         "title": "Disease Prevention/Health Promotion",
+         "outcomes": [
+          {
+           "code": "7.3.g",
+           "text": "Engage family to create a personal plan to meet recommended guidelines for sleep and rest."
+          },
+          {
+           "code": "7.3.h",
+           "text": "Determine strategies to protect against the harmful effects of the sun, heat, and cold."
+          },
+          {
+           "code": "7.3.i",
+           "text": "Define public health, and describe the associated health and medical careers and the training required for these occupations."
+          },
+          {
+           "code": "7.3.j",
+           "text": "Evaluate and promote a healthcare product or service for students, families, schools, or communities that will help others to make positive health choices."
+          }
+         ]
+        },
+        {
+         "id": "substance-abuse-prevention",
+         "title": "Substance Abuse Prevention",
+         "outcomes": [
+          {
+           "code": "7.3.k",
+           "text": "Identify ways to participate in school and community efforts to promote a drug-free lifestyle."
+          },
+          {
+           "code": "7.3.l",
+           "text": "Create strategies to identify types of advertising techniques used in a variety of media, including social media that may influence adolescents’ decisions concerning alcohol, tobacco and nicotine products, and other drugs."
+          },
+          {
+           "code": "7.3.m",
+           "text": "Identify and demonstrate strategies and skills for avoiding alcohol, tobacco, inhalants, and other harmful substances (e.g., effective refusal skills)."
+          }
+         ]
+        },
+        {
+         "id": "safety-injury-prevention",
+         "title": "Safety/Injury Prevention",
+         "outcomes": [
+          {
+           "code": "7.3.n",
+           "text": "Describe ways to maintain a safe and healthy environment at school, in the community, at home, and online."
+          }
+         ]
+        },
+        {
+         "id": "mental-wellness-social-and-emotional-skills",
+         "title": "Mental Wellness/Social and Emotional Skills",
+         "outcomes": [
+          {
+           "code": "7.3.o",
+           "text": "Develop achievable goals for handling stressors in healthy ways."
+          },
+          {
+           "code": "7.3.p",
+           "text": "Design ways to demonstrate empathy, compassion, and acceptance for others to support healthy relationships."
+          },
+          {
+           "code": "7.3.q",
+           "text": "Promote strategies for coping with disappointment and adversity."
+          },
+          {
+           "code": "7.3.r",
+           "text": "Promote help-seeking for mental health concerns."
+          },
+          {
+           "code": "7.3.s",
+           "text": "Demonstrate healthy verbal, nonverbal, written, and visual communication skills."
+          },
+          {
+           "code": "7.3.t",
+           "text": "Identify school and community resources for help and support with eating disorders."
+          },
+          {
+           "code": "7.3.u",
+           "text": "Identify personal, family, school, community, and healthcare professional resources that can help oneself and others with mental illnesses and challenges."
+          }
+         ]
+        },
+        {
+         "id": "violence-prevention",
+         "title": "Violence Prevention",
+         "outcomes": [
+          {
+           "code": "7.3.v",
+           "text": "Assess your school’s safety protocols (e.g., reporting processes, support provided for a positive climate) and recommend suggestions for improvement."
+          },
+          {
+           "code": "7.3.w",
+           "text": "Create a campaign to prevent/stop bullying or cyberbullying."
+          },
+          {
+           "code": "7.3.x",
+           "text": "Create strategies to promote awareness of consequences associated with gang involvement and healthy alternatives to gang involvement."
+          }
+         ]
+        },
+        {
+         "id": "community-environmental-health",
+         "title": "Community/Environmental Health",
+         "outcomes": [
+          {
+           "code": "7.3.y",
+           "text": "Demonstrate ways to conserve and promote the conservation of natural resources."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "8",
+   "units": [
+    {
+     "id": "essential-health-concepts",
+     "title": "Essential Health Concepts",
+     "topics": [
+      {
+       "id": "the-student-will-identify-and-explain-essential-",
+       "title": "The student will identify and explain essential health concepts to demonstrate an understanding of personal health",
+       "subtopics": [
+        {
+         "id": "body-systems",
+         "title": "Body Systems",
+         "outcomes": [
+          {
+           "code": "8.1.a",
+           "text": "Identify and describe the major structures and functions of the brain and nervous system and identify brain and nervous system disorders."
+          }
+         ]
+        },
+        {
+         "id": "nutrition",
+         "title": "Nutrition",
+         "outcomes": [
+          {
+           "code": "8.1.b",
+           "text": "Determine the nutrients needed for proper brain function."
+          },
+          {
+           "code": "8.1.c",
+           "text": "Examine the health risks posed by food contaminants during food preparation and food storage."
+          },
+          {
+           "code": "8.1.d",
+           "text": "Identify the nutritional impact of disordered eating."
+          },
+          {
+           "code": "8.1.e",
+           "text": "Compare health benefits and risks associated with trending diets, dietary supplements, and popular beverages, including sugar-sweetened and caffeinated beverages."
+          }
+         ]
+        },
+        {
+         "id": "physical-health",
+         "title": "Physical Health",
+         "outcomes": [
+          {
+           "code": "8.1.f",
+           "text": "Evaluate the physical, mental, and social health benefits of physical activity."
+          }
+         ]
+        },
+        {
+         "id": "disease-prevention-health-promotion",
+         "title": "Disease Prevention/Health Promotion",
+         "outcomes": [
+          {
+           "code": "8.1.g",
+           "text": "Explain the difference between rest, sleep, sleep deprivation, and sleep debt."
+          },
+          {
+           "code": "8.1.h",
+           "text": "Identify environmental and personal factors that influence the degree of risk of diabetes, heart disease, cancer, obesity, and stroke."
+          }
+         ]
+        },
+        {
+         "id": "substance-abuse-prevention",
+         "title": "Substance Abuse Prevention",
+         "outcomes": [
+          {
+           "code": "8.1.i",
+           "text": "Describe the short- and long-term health issues and effects on the brain related to the use of alcohol, tobacco, nicotine products, and other drugs, including inhalants, marijuana, cocaine, stimulants, methamphetamines, opiates, steroids, and performanceenhancing drugs."
+          },
+          {
+           "code": "8.1.j",
+           "text": "Research the signs, symptoms, and causes of addiction and the impact of substance use disorder on relationships and behavior."
+          }
+         ]
+        },
+        {
+         "id": "safety-injury-prevention",
+         "title": "Safety/Injury Prevention",
+         "outcomes": [
+          {
+           "code": "8.1.k",
+           "text": "Explain the need for school safety drills and procedures."
+          },
+          {
+           "code": "8.1.l",
+           "text": "Identify risky behaviors associated with Internet use, online gaming, and social media use."
+          },
+          {
+           "code": "8.1.m",
+           "text": "Identify the benefits and risks of social media."
+          },
+          {
+           "code": "8.1.n",
+           "text": "Describe how to assess levels of stress based on physical and psychological responses."
+          },
+          {
+           "code": "8.1.o",
+           "text": "List the skills and strategies for refusal and negotiation."
+          }
+         ]
+        },
+        {
+         "id": "mental-wellness-social-and-emotional-skills",
+         "title": "Mental Wellness/Social and Emotional Skills",
+         "outcomes": [
+          {
+           "code": "8.1.p",
+           "text": "Describe characteristics of healthy and unhealthy relationships, including establishing and communicating boundaries."
+          },
+          {
+           "code": "8.1.q",
+           "text": "Describe the warning signs, risk factors, and protective factors for self-harm behaviors, depression, and suicide."
+          },
+          {
+           "code": "8.1.r",
+           "text": "Identify factors that can influence mental health (e.g., family, environment, trauma, genetics, brain chemistry, health behaviors, nutrition, personal values, peers, media, technology, culture, community)."
+          },
+          {
+           "code": "8.1.s",
+           "text": "Identify and describe careers associated with mental health care (e.g., social worker, psychologist, psychiatrist)."
+          }
+         ]
+        },
+        {
+         "id": "violence-prevention",
+         "title": "Violence Prevention",
+         "outcomes": [
+          {
+           "code": "8.1.t",
+           "text": "Differentiate between bullying behaviors, arguments, peer conflict, harassment, teasing, taunting, and joking situations."
+          },
+          {
+           "code": "8.1.u",
+           "text": "Identify the consequences of weapon use, physical violence, and gang involvement."
+          }
+         ]
+        },
+        {
+         "id": "community-environmental-health",
+         "title": "Community/Environmental Health",
+         "outcomes": [
+          {
+           "code": "8.1.v",
+           "text": "Define and describe renewable resources and sustainable energy."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "healthy-decisions",
+     "title": "Healthy Decisions",
+     "topics": [
+      {
+       "id": "the-student-will-apply-health-concepts-and-skill",
+       "title": "The student will apply health concepts and skills to the management of personal and family health",
+       "subtopics": [
+        {
+         "id": "body-systems",
+         "title": "Body Systems",
+         "outcomes": [
+          {
+           "code": "8.2.a",
+           "text": "Describe ways to maintain brain and nervous system health."
+          }
+         ]
+        },
+        {
+         "id": "nutrition",
+         "title": "Nutrition",
+         "outcomes": [
+          {
+           "code": "8.2.b",
+           "text": "Explain how nutrients contribute to brain function."
+          },
+          {
+           "code": "8.2.c",
+           "text": "Describe food safety techniques (e.g., hand washing, food washing, cross contamination, proper handling and storing of foods)."
+          },
+          {
+           "code": "8.2.d",
+           "text": "Analyze the impact of society (i.e., media, family, peers) on eating habits and attitudes toward weight and body size."
+          },
+          {
+           "code": "8.2.e",
+           "text": "Evaluate the accuracy of claims about trending diets, dietary supplements, and popular beverages."
+          }
+         ]
+        },
+        {
+         "id": "physical-health",
+         "title": "Physical Health",
+         "outcomes": [
+          {
+           "code": "8.2.f",
+           "text": "Assess the health risks of a sedentary lifestyle."
+          }
+         ]
+        },
+        {
+         "id": "disease-prevention-health-promotion",
+         "title": "Disease Prevention/Health Promotion",
+         "outcomes": [
+          {
+           "code": "8.2.g",
+           "text": "Identify sleep hygiene strategies to support recommendations for optimal sleep."
+          },
+          {
+           "code": "8.2.h",
+           "text": "Describe preventive health measures, including immunizations, regular health and medical screenings, nutrition, physical activity, sleep, and limiting personal technology use, in preventing diabetes, heart disease, stroke, cancer, obesity, and other chronic diseases."
+          }
+         ]
+        },
+        {
+         "id": "substance-abuse-prevention",
+         "title": "Substance Abuse Prevention",
+         "outcomes": [
+          {
+           "code": "8.2.i",
+           "text": "Analyze the social, economic, and family and peer pressure influences on the use of tobacco, nicotine products (e.g., e-cigarettes), alcohol, marijuana, and other drugs."
+          },
+          {
+           "code": "8.2.j",
+           "text": "Have and express positive norms regarding why most teenagers do not use alcohol, tobacco, prescription opioids, or other drugs (e.g., do not think use and abuse are acceptable or appropriate)."
+          }
+         ]
+        },
+        {
+         "id": "safety-injury-prevention",
+         "title": "Safety/Injury Prevention",
+         "outcomes": [
+          {
+           "code": "8.2.k",
+           "text": "Explain the potential consequences of following and not following safety protocols for school drills."
+          },
+          {
+           "code": "8.2.l",
+           "text": "Explain the role of decision making when faced with potentially harmful situations when using the Internet, online gaming, and social media."
+          },
+          {
+           "code": "8.2.m",
+           "text": "Develop strategies to assess and manage the effects of social media use."
+          },
+          {
+           "code": "8.2.n",
+           "text": "Identify personal stress-management skills that help respond to different kinds of stress."
+          },
+          {
+           "code": "8.2.o",
+           "text": "Explain the benefits of using refusal and negotiation skills for a variety of risk-taking situations."
+          }
+         ]
+        },
+        {
+         "id": "mental-wellness-social-and-emotional-skills",
+         "title": "Mental Wellness/Social and Emotional Skills",
+         "outcomes": [
+          {
+           "code": "8.2.p",
+           "text": "Explain the importance of developing relationships that are positive and promote wellness."
+          },
+          {
+           "code": "8.2.q",
+           "text": "Explain why mental health issues such as self-harm behaviors, depression, and suicide ideation cannot be managed independently and require support/assistance."
+          },
+          {
+           "code": "8.2.r",
+           "text": "Explain how negative perceptions of mental health promote a stigma about mental illnesses and emotional challenges."
+          },
+          {
+           "code": "8.2.s",
+           "text": "Describe the role of mental health professionals in schools (e.g., school counselors, psychologists, social workers)."
+          }
+         ]
+        },
+        {
+         "id": "violence-prevention",
+         "title": "Violence Prevention",
+         "outcomes": [
+          {
+           "code": "8.2.t",
+           "text": "Explain the effects of bullying on individuals, including vulnerable populations."
+          },
+          {
+           "code": "8.2.u",
+           "text": "Analyze the risks associated with weapon use, physical violence, and gang-related activities for oneself, the family, and the community."
+          }
+         ]
+        },
+        {
+         "id": "community-environmental-health",
+         "title": "Community/Environmental Health",
+         "outcomes": [
+          {
+           "code": "8.2.v",
+           "text": "Explain how humans and the environment are interdependent."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "advocacy-and-health-promotion",
+     "title": "Advocacy and Health Promotion",
+     "topics": [
+      {
+       "id": "the-student-will-undertake-health-promotion-acti",
+       "title": "The student will undertake health-promotion activities that demonstrate an understanding of the relationship between nutrition, physical activity, and emotional and physical health",
+       "subtopics": [
+        {
+         "id": "body-systems",
+         "title": "Body Systems",
+         "outcomes": [
+          {
+           "code": "8.3.a",
+           "text": "Design strategies to protect and promote brain and nervous system health."
+          }
+         ]
+        },
+        {
+         "id": "nutrition",
+         "title": "Nutrition",
+         "outcomes": [
+          {
+           "code": "8.3.b",
+           "text": "Create a plan to make healthy food choices, including choosing fruits and vegetables and increasing water and healthy beverage choices in a variety of settings."
+          },
+          {
+           "code": "8.3.c",
+           "text": "Create strategies to promote food safety at home."
+          },
+          {
+           "code": "8.3.d",
+           "text": "Identify and promote resources for help and assistance with disordered eating."
+          },
+          {
+           "code": "8.3.e",
+           "text": "Develop factual advertising to help family and peers evaluate healthy food and beverage choices."
+          }
+         ]
+        },
+        {
+         "id": "physical-health",
+         "title": "Physical Health",
+         "outcomes": [
+          {
+           "code": "8.3.f",
+           "text": "Create environmental design solutions that promote physical and mental health."
+          }
+         ]
+        },
+        {
+         "id": "disease-prevention-health-promotion",
+         "title": "Disease Prevention/Health Promotion",
+         "outcomes": [
+          {
+           "code": "8.3.g",
+           "text": "Create Specific, Measurable, Attainable, Relevant and Timely (S.M.A.R.T.) goals to get optimal sleep to promote cognitive performance and academic success."
+          },
+          {
+           "code": "8.3.h",
+           "text": "Design a plan of action with short- and long-term goals to prevent diabetes, heart disease, stroke, cancer, obesity, and other chronic diseases and conditions."
+          }
+         ]
+        },
+        {
+         "id": "substance-abuse-prevention",
+         "title": "Substance Abuse Prevention",
+         "outcomes": [
+          {
+           "code": "8.3.i",
+           "text": "Design persuasive advertising to eliminate drug use."
+          },
+          {
+           "code": "8.3.j",
+           "text": "Create a campaign that emphasizes the importance of prevention and early identification of drug use disorder."
+          }
+         ]
+        },
+        {
+         "id": "safety-injury-prevention",
+         "title": "Safety/Injury Prevention",
+         "outcomes": [
+          {
+           "code": "8.3.k",
+           "text": "Develop a personal action plan during an emergency situation for a variety of locations outside of school (e.g., shopping areas, recreation areas)."
+          },
+          {
+           "code": "8.3.l",
+           "text": "Develop appropriate personal guidelines for online gaming and social media use."
+          },
+          {
+           "code": "8.3.m",
+           "text": "Develop and promote guidelines for using social media."
+          },
+          {
+           "code": "8.3.n",
+           "text": "Practice and promote stress-management skills."
+          },
+          {
+           "code": "8.3.o",
+           "text": "Analyze a variety of situations to determine when to use refusal and negotiation skills to avoid risk."
+          }
+         ]
+        },
+        {
+         "id": "mental-wellness-social-and-emotional-skills",
+         "title": "Mental Wellness/Social and Emotional Skills",
+         "outcomes": [
+          {
+           "code": "8.3.p",
+           "text": "Ability to develop safe, respectful, and responsible relationships."
+          },
+          {
+           "code": "8.3.q",
+           "text": "Identify and recognize family, school, and community resources for helping oneself and others with mental health needs."
+          },
+          {
+           "code": "8.3.r",
+           "text": "Explain the effects of stigma on accessing help and assistance for mental illnesses and emotional challenges."
+          },
+          {
+           "code": "8.3.s",
+           "text": "Promote the availability of school and community mental health resources."
+          }
+         ]
+        },
+        {
+         "id": "violence-prevention",
+         "title": "Violence Prevention",
+         "outcomes": [
+          {
+           "code": "8.3.t",
+           "text": "Recommend strategies to prevent, safely defend oneself and others, or get help with bullying."
+          },
+          {
+           "code": "8.3.u",
+           "text": "Describe ways for students to develop relationships that are positive, promote wellness, and prevent weapon use, physical violence, and gang involvement."
+          }
+         ]
+        },
+        {
+         "id": "community-environmental-health",
+         "title": "Community/Environmental Health",
+         "outcomes": [
+          {
+           "code": "8.3.v",
+           "text": "Analyze opportunities for community service and advocacy for policies that promote environmental health."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "9",
+   "units": [
+    {
+     "id": "essential-health-concepts",
+     "title": "Essential Health Concepts",
+     "topics": [
+      {
+       "id": "the-student-will-apply-health-knowledge-and-skil",
+       "title": "The student will apply health knowledge and skills to achieve and maintain long-term health and wellness",
+       "subtopics": [
+        {
+         "id": "body-systems",
+         "title": "Body Systems",
+         "outcomes": [
+          {
+           "code": "9.1.a",
+           "text": "Identify and describe the major structures and functions of the endocrine system."
+          }
+         ]
+        },
+        {
+         "id": "nutrition",
+         "title": "Nutrition",
+         "outcomes": [
+          {
+           "code": "9.1.b",
+           "text": "Explain the differences between and fat-soluble and water-soluble vitamins, food and non-food sources of vitamins, the role of vitamin and mineral supplements, and associated dietary reference intakes (DRIs) to maintain health."
+          },
+          {
+           "code": "9.1.c",
+           "text": "Explain organic, fresh, farm-raised, “lite,” low-fat, and fat-free foods."
+          }
+         ]
+        },
+        {
+         "id": "physical-health",
+         "title": "Physical Health",
+         "outcomes": [
+          {
+           "code": "9.1.d",
+           "text": "Describe the prevalence, causes, and long-term consequences of unhealthy eating, sleep deprivation, extended screen time, and sedentary lifestyle."
+          }
+         ]
+        },
+        {
+         "id": "disease-prevention-health-promotion",
+         "title": "Disease Prevention/Health Promotion",
+         "outcomes": [
+          {
+           "code": "9.1.e",
+           "text": "Identify common types of chronic disease including diabetes, heart disease, cancer, obesity, and stroke."
+          },
+          {
+           "code": "9.1.f",
+           "text": "Define herd immunity and explain how immunizations can prevent the spread of diseases."
+          },
+          {
+           "code": "9.1.g",
+           "text": "Describe the importance of health habits that promote vision, hearing, and dental health."
+          }
+         ]
+        },
+        {
+         "id": "substance-abuse-prevention",
+         "title": "Substance Abuse Prevention",
+         "outcomes": [
+          {
+           "code": "9.1.h",
+           "text": "Explain how alcohol and other drugs increase the risk of injury."
+          },
+          {
+           "code": "9.1.i",
+           "text": "Analyze the consequences of binge drinking."
+          },
+          {
+           "code": "9.1.j",
+           "text": "Explain facts about opioids and why teens are more vulnerable to heroin and prescription opioids."
+          }
+         ]
+        },
+        {
+         "id": "safety-injury-prevention",
+         "title": "Safety/Injury Prevention",
+         "outcomes": [
+          {
+           "code": "9.1.k",
+           "text": "Identify behaviors that contribute to injuries and that may result in irreversible consequences."
+          },
+          {
+           "code": "9.1.l",
+           "text": "Define traumatic and non-traumatic brain injury and identify examples of each, including concussion."
+          },
+          {
+           "code": "9.1.m",
+           "text": "Describe actions, behaviors, and signs that may indicate potential threats to individuals or the school."
+          },
+          {
+           "code": "9.1.n",
+           "text": "Identify effective time-management and organizational skills."
+          }
+         ]
+        },
+        {
+         "id": "mental-wellness-social-and-emotional-skills",
+         "title": "Mental Wellness/Social and Emotional Skills",
+         "outcomes": [
+          {
+           "code": "9.1.o",
+           "text": "Describe the positive and negative effects of social media and of sharing personal information online."
+          },
+          {
+           "code": "9.1.p",
+           "text": "Identify signs and symptoms of mental illnesses or challenges (e.g., anxiety, depression, suicide, eating disorders, self-harm behaviors)."
+          },
+          {
+           "code": "9.1.q",
+           "text": "Identify causes of conflict with friends and family and feelings/emotions both sides might experience."
+          },
+          {
+           "code": "9.1.r",
+           "text": "Identify types of gangs, gang-related behaviors, and associated consequences."
+          }
+         ]
+        },
+        {
+         "id": "violence-prevention",
+         "title": "Violence Prevention",
+         "outcomes": [
+          {
+           "code": "9.1.s",
+           "text": "Identify risky behaviors adolescents engage in, including weapon use and gang involvement."
+          }
+         ]
+        },
+        {
+         "id": "community-environmental-health",
+         "title": "Community/Environmental Health",
+         "outcomes": [
+          {
+           "code": "9.1.t",
+           "text": "Identify health-related social issues, such as homelessness, underage drinking, and substance abuse."
+          },
+          {
+           "code": "9.1.u",
+           "text": "Identify global environmental health issues."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "healthy-decisions",
+     "title": "Healthy Decisions",
+     "topics": [
+      {
+       "id": "the-student-will-explain-the-impact-of-health-ri",
+       "title": "The student will explain the impact of health risks and identify strategies and resources to limit risk",
+       "subtopics": [
+        {
+         "id": "body-systems",
+         "title": "Body Systems",
+         "outcomes": [
+          {
+           "code": "9.2.a",
+           "text": "Identify health risks and other factors that affect the function of the endocrine system."
+          }
+         ]
+        },
+        {
+         "id": "nutrition",
+         "title": "Nutrition",
+         "outcomes": [
+          {
+           "code": "9.2.b",
+           "text": "Analyze personal daily intake to determine if one is meeting daily values for vitamins and minerals."
+          },
+          {
+           "code": "9.2.c",
+           "text": "Explore community resources for purchasing locally grown/sourced foods, including the concept of farm-to-table/restaurant."
+          }
+         ]
+        },
+        {
+         "id": "physical-health",
+         "title": "Physical Health",
+         "outcomes": [
+          {
+           "code": "9.2.d",
+           "text": "Explain the physical, mental, and academic benefits of proper nutrition, sleep and rest, physical activity, maintaining a healthy body weight, and other personal wellness behaviors."
+          }
+         ]
+        },
+        {
+         "id": "disease-prevention-health-promotion",
+         "title": "Disease Prevention/Health Promotion",
+         "outcomes": [
+          {
+           "code": "9.2.e",
+           "text": "Identify behaviors that contribute to heart disease, stroke, diabetes, cancer, obesity, and other chronic diseases and conditions."
+          },
+          {
+           "code": "9.2.f",
+           "text": "Understand the difference between an epidemic and a pandemic and how they impact populations."
+          },
+          {
+           "code": "9.2.g",
+           "text": "Determine strategies to protect vision, hearing, and dental health."
+          }
+         ]
+        },
+        {
+         "id": "substance-abuse-prevention",
+         "title": "Substance Abuse Prevention",
+         "outcomes": [
+          {
+           "code": "9.2.h",
+           "text": "Evaluate the effects of alcohol and other drugs on human body systems, brain function, and behavior, and describe health benefits associated with abstaining from alcohol, tobacco, or other drugs."
+          },
+          {
+           "code": "9.2.i",
+           "text": "Develop a set of personal standards to resist the use of alcohol, tobacco, and other harmful substances and behaviors."
+          },
+          {
+           "code": "9.2.j",
+           "text": "Analyze and draw inferences about behaviors connected to addiction and mental health."
+          }
+         ]
+        },
+        {
+         "id": "safety-injury-prevention",
+         "title": "Safety/Injury Prevention",
+         "outcomes": [
+          {
+           "code": "9.2.k",
+           "text": "Evaluate the long-term consequences of injury and describe controllable and uncontrollable risk factors."
+          },
+          {
+           "code": "9.2.l",
+           "text": "Identify common signs/symptoms (e.g., cognitive, emotional, physical, sleep) of a concussion."
+          },
+          {
+           "code": "9.2.m",
+           "text": "Analyze level of risk associated with a variety of behaviors, including weapon use and gang involvement."
+          },
+          {
+           "code": "9.2.n",
+           "text": "Identify strategies to respond to and report potential threats to individuals or the school."
+          }
+         ]
+        },
+        {
+         "id": "mental-wellness-social-and-emotional-skills",
+         "title": "Mental Wellness/Social and Emotional Skills",
+         "outcomes": [
+          {
+           "code": "9.2.o",
+           "text": "Analyze how time management might contribute to stress reduction."
+          },
+          {
+           "code": "9.2.p",
+           "text": "Explain limitations to effective communication online."
+          },
+          {
+           "code": "9.2.q",
+           "text": "Identify school and community mental health resources to help and assist with mental illnesses or challenges."
+          },
+          {
+           "code": "9.2.r",
+           "text": "Identify strategies for peaceful resolution of conflict."
+          }
+         ]
+        },
+        {
+         "id": "violence-prevention",
+         "title": "Violence Prevention",
+         "outcomes": [
+          {
+           "code": "9.2.s",
+           "text": "Examine how the consequences associated with gang involvement could affect oneself, the family, and the community in the present and the future."
+          }
+         ]
+        },
+        {
+         "id": "community-environmental-health",
+         "title": "Community/Environmental Health",
+         "outcomes": [
+          {
+           "code": "9.2.t",
+           "text": "Evaluate strategies for improving health-related social issues."
+          },
+          {
+           "code": "9.2.u",
+           "text": "Examine the impact of global environmental health issues on local communities."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "advocacy-and-health-promotion",
+     "title": "Advocacy and Health Promotion",
+     "topics": [
+      {
+       "id": "the-student-will-demonstrate-skills-to-advocate-",
+       "title": "The student will demonstrate skills to advocate for personal and community health",
+       "subtopics": [
+        {
+         "id": "body-systems",
+         "title": "Body Systems",
+         "outcomes": [
+          {
+           "code": "9.3.a",
+           "text": "Promote behaviors that protect endocrine system health."
+          }
+         ]
+        },
+        {
+         "id": "nutrition",
+         "title": "Nutrition",
+         "outcomes": [
+          {
+           "code": "9.3.b",
+           "text": "Create one or more S.M.A.R.T. goals for personal consumption of vitamins and minerals and develop a plan to meet them."
+          },
+          {
+           "code": "9.3.c",
+           "text": "Explore careers associated with healthy food choices (e.g., dietetics, nutrition, farming, environmental science, food production, food safety, restaurant ownership)."
+          }
+         ]
+        },
+        {
+         "id": "physical-health",
+         "title": "Physical Health",
+         "outcomes": [
+          {
+           "code": "9.3.d",
+           "text": "Design a wellness plan for physical activity, sleep, rest, and nutrition to meet current health goals."
+          }
+         ]
+        },
+        {
+         "id": "disease-prevention-health-promotion",
+         "title": "Disease Prevention/Health Promotion",
+         "outcomes": [
+          {
+           "code": "9.3.e",
+           "text": "Assess personal risk factors for diabetes, heart disease, cancer, obesity, and stroke, and develop personal prevention strategies."
+          },
+          {
+           "code": "9.3.f",
+           "text": "Analyze data on the spread of diseases, and develop personal prevention strategies based on information analyzed."
+          },
+          {
+           "code": "9.3.g",
+           "text": "Promote vision, hearing, and dental health."
+          }
+         ]
+        },
+        {
+         "id": "substance-abuse-prevention",
+         "title": "Substance Abuse Prevention",
+         "outcomes": [
+          {
+           "code": "9.3.h",
+           "text": "Promote ways to encourage reporting peer substance use to trusted adults (e.g., parents, teachers, coaches, doctors)."
+          },
+          {
+           "code": "9.3.i",
+           "text": "Develop a personal plan to prevent substance use."
+          },
+          {
+           "code": "9.3.j",
+           "text": "Research consequences of drug abuse, including stealing to support a drug habit, arrest, prosecution, and jail."
+          }
+         ]
+        },
+        {
+         "id": "safety-injury-prevention",
+         "title": "Safety/Injury Prevention",
+         "outcomes": [
+          {
+           "code": "9.3.k",
+           "text": "Demonstrate adult and child cardiopulmonary resuscitation (CPR), use of automated external defibrillator (AED), and first aid skills for choking, bleeding, contusions, fractures, and anaphylactic shock."
+          },
+          {
+           "code": "9.3.l",
+           "text": "Advocate for reporting signs and symptoms and for safety practices to prevent brain injury."
+          },
+          {
+           "code": "9.3.m",
+           "text": "Demonstrate healthy decision-making strategies related to risky behaviors."
+          },
+          {
+           "code": "9.3.n",
+           "text": "Develop action steps to promote a safe and inclusive school environment."
+          }
+         ]
+        },
+        {
+         "id": "mental-wellness-social-and-emotional-skills",
+         "title": "Mental Wellness/Social and Emotional Skills",
+         "outcomes": [
+          {
+           "code": "9.3.o",
+           "text": "Create strategies to manage deadlines for a school-related activity (e.g., studying for a test, completing a project)."
+          },
+          {
+           "code": "9.3.p",
+           "text": "Create strategies to manage personal information and communicate effectively online, and balance technology use with offline activities."
+          },
+          {
+           "code": "9.3.q",
+           "text": "Promote access to mental health resources to help oneself and others."
+          },
+          {
+           "code": "9.3.r",
+           "text": "Apply appropriate conflict-resolution skills to prevent, manage, de-escalate, defuse, and/or resolve conflict in a variety of situations."
+          }
+         ]
+        },
+        {
+         "id": "violence-prevention",
+         "title": "Violence Prevention",
+         "outcomes": [
+          {
+           "code": "9.3.s",
+           "text": "Create a message about the importance of avoiding gang involvement."
+          }
+         ]
+        },
+        {
+         "id": "community-environmental-health",
+         "title": "Community/Environmental Health",
+         "outcomes": [
+          {
+           "code": "9.3.t",
+           "text": "Develop a long-term plan for oneself and/or the family to positively impact a health-related social issue."
+          },
+          {
+           "code": "9.3.u",
+           "text": "Promote global environmental health and/or disease prevention projects."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "10",
+   "units": [
+    {
+     "id": "essential-health-concepts",
+     "title": "Essential Health Concepts",
+     "topics": [
+      {
+       "id": "the-student-will-demonstrate-an-understanding-of",
+       "title": "The student will demonstrate an understanding of health concepts, behaviors, and skills that reduce health risks and enhance the health and wellness of oneself and of others throughout life",
+       "subtopics": [
+        {
+         "id": "body-systems",
+         "title": "Body Systems",
+         "outcomes": [
+          {
+           "code": "10.1.a",
+           "text": "Identify and describe the major structures and functions of the lymphatic system."
+          }
+         ]
+        },
+        {
+         "id": "nutrition",
+         "title": "Nutrition",
+         "outcomes": [
+          {
+           "code": "10.1.b",
+           "text": "Identify a variety of diets (e.g., typical American, Mediterranean, vegetarian, vegan)."
+          }
+         ]
+        },
+        {
+         "id": "physical-health",
+         "title": "Physical Health",
+         "outcomes": [
+          {
+           "code": "10.1.c",
+           "text": "Explain the physical, mental, social, and academic benefits of sufficient sleep and the relationship between sleep deficiency, chronic disease, and the increased risk for injury and substance use."
+          }
+         ]
+        },
+        {
+         "id": "disease-prevention-health-promotion",
+         "title": "Disease Prevention/Health Promotion",
+         "outcomes": [
+          {
+           "code": "10.1.d",
+           "text": "Identify technologies individuals can use to assess, monitor, improve, and maintain health."
+          },
+          {
+           "code": "10.1.e",
+           "text": "Identify regular screenings, immunizations, vaccines, tests, and other medical examinations needed for different stages of life and their role in reducing health risks."
+          },
+          {
+           "code": "10.1.f",
+           "text": "Identify and research a selected personal, community, or global health issue."
+          }
+         ]
+        },
+        {
+         "id": "substance-abuse-prevention",
+         "title": "Substance Abuse Prevention",
+         "outcomes": [
+          {
+           "code": "10.1.g",
+           "text": "Research trends and factors that contribute to teen use/abuse and non-substance use of alcohol, tobacco, nicotine products (e.g., e-cigarettes), opioids, and other drugs and their impact on the community."
+          },
+          {
+           "code": "10.1.h",
+           "text": "Evaluate the causal relationship between tobacco, alcohol, inhalant, and other drug use and chronic disease."
+          },
+          {
+           "code": "10.1.i",
+           "text": "Identify unsafe behaviors that may result in unintentional injury while riding in or operating a vehicle."
+          }
+         ]
+        },
+        {
+         "id": "safety-injury-prevention",
+         "title": "Safety/Injury Prevention",
+         "outcomes": [
+          {
+           "code": "10.1.j",
+           "text": "List examples and describe the risks of sharing/posting personal information online."
+          }
+         ]
+        },
+        {
+         "id": "mental-wellness-social-and-emotional-skills",
+         "title": "Mental Wellness/Social and Emotional Skills",
+         "outcomes": [
+          {
+           "code": "10.1.k",
+           "text": "Identify factors that can influence an individual's mental health, including family, social environment, trauma, genetics, brain chemistry, health behaviors, personal values, peers, media, technology, culture, and community."
+          },
+          {
+           "code": "10.1.l",
+           "text": "Identify characteristics of healthy, unhealthy, and abusive peer, family, and dating relationships."
+          },
+          {
+           "code": "10.1.m",
+           "text": "Identify health professionals and types of services available for mental illnesses and emotional challenges."
+          },
+          {
+           "code": "10.1.n",
+           "text": "Identify different personal relationships teens are involved in and the characteristics of each."
+          }
+         ]
+        },
+        {
+         "id": "violence-prevention",
+         "title": "Violence Prevention",
+         "outcomes": [
+          {
+           "code": "10.1.o",
+           "text": "Identify the skills needed to effectively navigate peer pressure situations."
+          },
+          {
+           "code": "10.1.p",
+           "text": "Identify the consequences of using acts of violence to settle disputes."
+          },
+          {
+           "code": "10.1.q",
+           "text": "Compare and contrast assertive and aggressive communication and how they affect conflict resolution."
+          },
+          {
+           "code": "10.1.r",
+           "text": "Analyze the short- and long-term consequences of gang involvement on personal and community health now and in the future."
+          }
+         ]
+        },
+        {
+         "id": "community-environmental-health",
+         "title": "Community/Environmental Health",
+         "outcomes": [
+          {
+           "code": "10.1.s",
+           "text": "Investigate natural disasters and emergency situations that affect the community."
+          },
+          {
+           "code": "10.1.t",
+           "text": "Explain how the quality of the environment (e.g., secondhand smoke, carbon monoxide, allergens, lead, toxic chemicals) directly affects a person’s health status and quality and length of life."
+          },
+          {
+           "code": "10.1.u",
+           "text": "Identify health-related social issues, such as organ donation, homelessness, the spread of infectious diseases, underage drinking, substance abuse, and violence, and their impact on the community."
+          },
+          {
+           "code": "10.1.v",
+           "text": "Analyze how health literacy and health-science skills prepare one to become a productive citizen."
+          },
+          {
+           "code": "10.1.w",
+           "text": "Describe attributes, characteristics, and interests of individuals in health-related professions and the core academic skills needed for workplace skills in a health career."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "healthy-decisions",
+     "title": "Healthy Decisions",
+     "topics": [
+      {
+       "id": "the-student-will-analyze-synthesize-and-evaluate",
+       "title": "The student will analyze, synthesize, and evaluate the protective factors needed to make healthy decisions throughout life",
+       "subtopics": [
+        {
+         "id": "body-systems",
+         "title": "Body Systems",
+         "outcomes": [
+          {
+           "code": "10.2.a",
+           "text": "Describe the role of the lymphatic system in providing protection against the spread of disease and cancer."
+          }
+         ]
+        },
+        {
+         "id": "nutrition",
+         "title": "Nutrition",
+         "outcomes": [
+          {
+           "code": "10.2.b",
+           "text": "Compare and contrast diverse diets (e.g., typical American, Mediterranean, vegetarian, vegan)."
+          }
+         ]
+        },
+        {
+         "id": "physical-health",
+         "title": "Physical Health",
+         "outcomes": [
+          {
+           "code": "10.2.c",
+           "text": "Explain the role of the environment, individual behavior, family history, social norms, legislation, and policies in preventing chronic diseases."
+          }
+         ]
+        },
+        {
+         "id": "disease-prevention-health-promotion",
+         "title": "Disease Prevention/Health Promotion",
+         "outcomes": [
+          {
+           "code": "10.2.d",
+           "text": "Research the costs and benefits of various technologies that allow individuals to assess, monitor, improve, and maintain health."
+          },
+          {
+           "code": "10.2.e",
+           "text": "Explain the purpose of medical screenings, immunizations, vaccines, and tests for different stages of life and the importance of access to health care throughout life."
+          },
+          {
+           "code": "10.2.f",
+           "text": "Explain the impact of the social determinants of health on a selected personal, community, or global health issue."
+          }
+         ]
+        },
+        {
+         "id": "substance-abuse-prevention",
+         "title": "Substance Abuse Prevention",
+         "outcomes": [
+          {
+           "code": "10.2.g",
+           "text": "Explain reasons why teenagers use or avoid drugs or alcohol and how positive role models can influence that decision."
+          },
+          {
+           "code": "10.2.h",
+           "text": "Evaluate the protective factors needed to reduce or prevent risk-taking behaviors, acts of violence, and substance use."
+          },
+          {
+           "code": "10.2.i",
+           "text": "Explain the role of the environment, individual behavior, social norms, legislation, and polices in preventing motor vehicle-related injuries."
+          }
+         ]
+        },
+        {
+         "id": "safety-injury-prevention",
+         "title": "Safety/Injury Prevention",
+         "outcomes": [
+          {
+           "code": "10.2.j",
+           "text": "Identify what needs to be considered before posting pictures, videos, and communicating with others online."
+          }
+         ]
+        },
+        {
+         "id": "mental-wellness-social-and-emotional-skills",
+         "title": "Mental Wellness/Social and Emotional Skills",
+         "outcomes": [
+          {
+           "code": "10.2.k",
+           "text": "Describe the stigma surrounding mental illnesses and challenges and the impact of stigma and discrimination on help-seeking behavior."
+          },
+          {
+           "code": "10.2.l",
+           "text": "Explain the role of respecting the experiences of others; accepting differences; and establishing, communicating, and respecting boundaries for healthy relationships."
+          },
+          {
+           "code": "10.2.m",
+           "text": "Identify help-seeking strategies and resources and when to seek support for oneself and others with signs of mental illnesses or challenges (e.g., depression, suicide ideation)."
+          },
+          {
+           "code": "10.2.n",
+           "text": "Evaluate potentially harmful and abusive relationships, including dangerous dating situations."
+          }
+         ]
+        },
+        {
+         "id": "violence-prevention",
+         "title": "Violence Prevention",
+         "outcomes": [
+          {
+           "code": "10.2.o",
+           "text": "Examine the influences of peer approval and peer pressure on decision making."
+          },
+          {
+           "code": "10.2.p",
+           "text": "Identify protective factors and strategies that may prevent acts of violence."
+          },
+          {
+           "code": "10.2.q",
+           "text": "Identify strategies for the peaceful resolution of conflict."
+          },
+          {
+           "code": "10.2.r",
+           "text": "Evaluate protective factors needed to prevent gang involvement."
+          }
+         ]
+        },
+        {
+         "id": "community-environmental-health",
+         "title": "Community/Environmental Health",
+         "outcomes": [
+          {
+           "code": "10.2.s",
+           "text": "Identify life-threatening situations that may result from emergencies and natural disasters and community resources for emergency preparedness."
+          },
+          {
+           "code": "10.2.t",
+           "text": "Explain the role of health, wellness, education, safety, and business professionals in addressing environmental health concerns."
+          },
+          {
+           "code": "10.2.u",
+           "text": "Describe how and where to access community resources related to organ donation, homelessness, underage drinking, and/or substance abuse."
+          },
+          {
+           "code": "10.2.v",
+           "text": "Analyze how health literacy reduces health risks and enhances health and wellness of oneself and others throughout life."
+          },
+          {
+           "code": "10.2.w",
+           "text": "Research high school health and medical science industry-recognized credentials (e.g., personal trainer, athletic trainer, dietary aide, dental assistant, certified nurse assistant, home health aide, geriatric aide)."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "advocacy-and-health-promotion",
+     "title": "Advocacy and Health Promotion",
+     "topics": [
+      {
+       "id": "the-student-will-advocate-for-personal-health-an",
+       "title": "The student will advocate for personal health and well-being and promote health-enhancing behaviors for others",
+       "subtopics": [
+        {
+         "id": "body-systems",
+         "title": "Body Systems",
+         "outcomes": [
+          {
+           "code": "10.3.a",
+           "text": "Promote strategies for maintaining healthy cardiovascular and lymphatic systems."
+          }
+         ]
+        },
+        {
+         "id": "nutrition",
+         "title": "Nutrition",
+         "outcomes": [
+          {
+           "code": "10.3.b",
+           "text": "Create or modify a personal wellness plan (i.e., goals and action steps based on current guidelines) for healthy eating to meet current and future needs."
+          }
+         ]
+        },
+        {
+         "id": "physical-health",
+         "title": "Physical Health",
+         "outcomes": [
+          {
+           "code": "10.3.c",
+           "text": "Create or modify a personal wellness plan for physical activity, sleep, personal hygiene, and other health-enhancing behaviors to prevent communicable and chronic disease."
+          }
+         ]
+        },
+        {
+         "id": "disease-prevention-health-promotion",
+         "title": "Disease Prevention/Health Promotion",
+         "outcomes": [
+          {
+           "code": "10.3.d",
+           "text": "Promote strategies to help individuals select technologies to assess, monitor, improve, and maintain health."
+          },
+          {
+           "code": "10.3.e",
+           "text": "Determine strategies for improving access to health care and medical services for different stages of life."
+          },
+          {
+           "code": "10.3.f",
+           "text": "Design strategies to address and communicate to others about a selected personal, community, or global health issue."
+          }
+         ]
+        },
+        {
+         "id": "substance-abuse-prevention",
+         "title": "Substance Abuse Prevention",
+         "outcomes": [
+          {
+           "code": "10.3.g",
+           "text": "Demonstrate assertive communication skills to resist pressure to use alcohol, tobacco, and other drugs."
+          },
+          {
+           "code": "10.3.h",
+           "text": "Educate others about the dangers of electronic cigarettes through a brochure, social media campaign, or school club."
+          },
+          {
+           "code": "10.3.i",
+           "text": "Encourage responsible teen driving behaviors, and practice using refusal and negotiation skills to avoid riding in a car with someone who has been using alcohol or other drugs."
+          }
+         ]
+        },
+        {
+         "id": "safety-injury-prevention",
+         "title": "Safety/Injury Prevention",
+         "outcomes": [
+          {
+           "code": "10.3.j",
+           "text": "Promote safe practices related to online communication and in-person interactions with individuals one meets online."
+          }
+         ]
+        },
+        {
+         "id": "mental-wellness-social-and-emotional-skills",
+         "title": "Mental Wellness/Social and Emotional Skills",
+         "outcomes": [
+          {
+           "code": "10.3.k",
+           "text": "Explain how demonstrating empathy, compassion, and acceptance can support others who are dealing with mental illnesses and challenges and help reduce stigma."
+          },
+          {
+           "code": "10.3.l",
+           "text": "Promote resources and strategies to address unhealthy and abusive peer, family, and dating relationships."
+          },
+          {
+           "code": "10.3.m",
+           "text": "Advocate for the use of and the additional need for mental health resources at school and in the community."
+          },
+          {
+           "code": "10.3.n",
+           "text": "Describe strategies to set personal boundaries to reduce and prevent relationship and dating violence."
+          }
+         ]
+        },
+        {
+         "id": "violence-prevention",
+         "title": "Violence Prevention",
+         "outcomes": [
+          {
+           "code": "10.3.o",
+           "text": "Demonstrate effective communication in response to situations influenced by peer pressure and/or peer approval."
+          },
+          {
+           "code": "10.3.p",
+           "text": "Describe methods to avoid violent acts of aggression and use of weapons."
+          },
+          {
+           "code": "10.3.q",
+           "text": "Practice procedures for peaceful resolution of conflict."
+          },
+          {
+           "code": "10.3.r",
+           "text": "Describe and demonstrate methods of avoiding gang-related activity and gang involvement."
+          }
+         ]
+        },
+        {
+         "id": "community-environmental-health",
+         "title": "Community/Environmental Health",
+         "outcomes": [
+          {
+           "code": "10.3.s",
+           "text": "Design crisis-management strategies for natural disasters and emergency situations."
+          },
+          {
+           "code": "10.3.t",
+           "text": "Describe strategies to reduce risk to environmental health, and establish goals for improving environmental health."
+          },
+          {
+           "code": "10.3.u",
+           "text": "Identify and create a plan to address a community health-related social issue, such as organ donation, homelessness, underage drinking, or substance abuse."
+          },
+          {
+           "code": "10.3.v",
+           "text": "Identify health promotion opportunities to enhance the health and wellness of oneself and others."
+          },
+          {
+           "code": "10.3.w",
+           "text": "Identify high school courses that lead to health and medical science industry certifications."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "build": {
+  "builtAt": "2026-10-14T16:20:50.333Z",
+  "model": "none",
+  "usd": 0,
+  "expectedCodes": 669,
+  "coverage": 1,
+  "missingCodes": [],
+  "counts": {
+   "grades": 11,
+   "units": 33,
+   "topics": 33,
+   "subtopics": 290,
+   "outcomes": 669
+  },
+  "warnings": []
+ }
+}

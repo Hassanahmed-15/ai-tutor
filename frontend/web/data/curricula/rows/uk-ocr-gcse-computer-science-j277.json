@@ -1,0 +1,674 @@
+[
+ {
+  "grade": "all",
+  "unit": "Component 01: Computer systems",
+  "topic": "1.1 Systems architecture",
+  "subtopic": "CPU architecture",
+  "code": "1.1.1",
+  "outcome": "Explain the purpose of the CPU."
+ },
+ {
+  "grade": "all",
+  "unit": "Component 01: Computer systems",
+  "topic": "1.1 Systems architecture",
+  "subtopic": "CPU architecture",
+  "code": null,
+  "outcome": "Describe what happens at each stage of the fetch-execute cycle."
+ },
+ {
+  "grade": "all",
+  "unit": "Component 01: Computer systems",
+  "topic": "1.1 Systems architecture",
+  "subtopic": "CPU architecture",
+  "code": null,
+  "outcome": "Explain the role of the ALU, control unit, cache and registers, and what each manages during the cycle."
+ },
+ {
+  "grade": "all",
+  "unit": "Component 01: Computer systems",
+  "topic": "1.1 Systems architecture",
+  "subtopic": "CPU architecture",
+  "code": null,
+  "outcome": "Describe the Von Neumann architecture and what the MAR, MDR, program counter and accumulator each store (data versus address)."
+ },
+ {
+  "grade": "all",
+  "unit": "Component 01: Computer systems",
+  "topic": "1.1 Systems architecture",
+  "subtopic": "CPU performance",
+  "code": "1.1.2",
+  "outcome": "Explain how clock speed, cache size and number of cores affect CPU performance, alone or in combination."
+ },
+ {
+  "grade": "all",
+  "unit": "Component 01: Computer systems",
+  "topic": "1.1 Systems architecture",
+  "subtopic": "Embedded systems",
+  "code": "1.1.3",
+  "outcome": "Explain what an embedded system is and give examples."
+ },
+ {
+  "grade": "all",
+  "unit": "Component 01: Computer systems",
+  "topic": "1.1 Systems architecture",
+  "subtopic": "Embedded systems",
+  "code": null,
+  "outcome": "Describe typical characteristics of embedded systems."
+ },
+ {
+  "grade": "all",
+  "unit": "Component 01: Computer systems",
+  "topic": "1.2 Memory and storage",
+  "subtopic": "Primary storage",
+  "code": "1.2.1",
+  "outcome": "Explain why computers need primary storage and what it usually consists of."
+ },
+ {
+  "grade": "all",
+  "unit": "Component 01: Computer systems",
+  "topic": "1.2 Memory and storage",
+  "subtopic": "Primary storage",
+  "code": null,
+  "outcome": "Describe the purpose and key characteristics of RAM and ROM and how they differ."
+ },
+ {
+  "grade": "all",
+  "unit": "Component 01: Computer systems",
+  "topic": "1.2 Memory and storage",
+  "subtopic": "Primary storage",
+  "code": null,
+  "outcome": "Explain what virtual memory is, why it is needed and how data moves between RAM and secondary storage."
+ },
+ {
+  "grade": "all",
+  "unit": "Component 01: Computer systems",
+  "topic": "1.2 Memory and storage",
+  "subtopic": "Primary storage",
+  "code": null,
+  "outcome": "Describe the role of cache memory."
+ },
+ {
+  "grade": "all",
+  "unit": "Component 01: Computer systems",
+  "topic": "1.2 Memory and storage",
+  "subtopic": "Secondary storage",
+  "code": "1.2.2",
+  "outcome": "Explain why computers need secondary storage."
+ },
+ {
+  "grade": "all",
+  "unit": "Component 01: Computer systems",
+  "topic": "1.2 Memory and storage",
+  "subtopic": "Secondary storage",
+  "code": null,
+  "outcome": "Recognise optical, magnetic and solid state storage and compare them on capacity, speed, portability, durability, reliability and cost."
+ },
+ {
+  "grade": "all",
+  "unit": "Component 01: Computer systems",
+  "topic": "1.2 Memory and storage",
+  "subtopic": "Secondary storage",
+  "code": null,
+  "outcome": "Choose suitable storage devices and media for a given scenario."
+ },
+ {
+  "grade": "all",
+  "unit": "Component 01: Computer systems",
+  "topic": "1.2 Memory and storage",
+  "subtopic": "Units of data storage",
+  "code": "1.2.3",
+  "outcome": "Explain why data must be stored in binary and how data is converted to binary for processing."
+ },
+ {
+  "grade": "all",
+  "unit": "Component 01: Computer systems",
+  "topic": "1.2 Memory and storage",
+  "subtopic": "Units of data storage",
+  "code": null,
+  "outcome": "Use the units bit, nibble, byte, KB, MB, GB, TB and PB and convert between them."
+ },
+ {
+  "grade": "all",
+  "unit": "Component 01: Computer systems",
+  "topic": "1.2 Memory and storage",
+  "subtopic": "Units of data storage",
+  "code": null,
+  "outcome": "Calculate the storage capacity needed for a set of files."
+ },
+ {
+  "grade": "all",
+  "unit": "Component 01: Computer systems",
+  "topic": "1.2 Memory and storage",
+  "subtopic": "Units of data storage",
+  "code": null,
+  "outcome": "Calculate sound, image and text file sizes from their formulas."
+ },
+ {
+  "grade": "all",
+  "unit": "Component 01: Computer systems",
+  "topic": "1.2 Memory and storage",
+  "subtopic": "Binary and hexadecimal numbers",
+  "code": "1.2.4",
+  "outcome": "Convert positive whole numbers between denary and binary (up to 8 bits)."
+ },
+ {
+  "grade": "all",
+  "unit": "Component 01: Computer systems",
+  "topic": "1.2 Memory and storage",
+  "subtopic": "Binary and hexadecimal numbers",
+  "code": null,
+  "outcome": "Add two 8-bit binary integers and explain overflow errors."
+ },
+ {
+  "grade": "all",
+  "unit": "Component 01: Computer systems",
+  "topic": "1.2 Memory and storage",
+  "subtopic": "Binary and hexadecimal numbers",
+  "code": null,
+  "outcome": "Convert between denary and 2-digit hexadecimal."
+ },
+ {
+  "grade": "all",
+  "unit": "Component 01: Computer systems",
+  "topic": "1.2 Memory and storage",
+  "subtopic": "Binary and hexadecimal numbers",
+  "code": null,
+  "outcome": "Convert between binary and hexadecimal."
+ },
+ {
+  "grade": "all",
+  "unit": "Component 01: Computer systems",
+  "topic": "1.2 Memory and storage",
+  "subtopic": "Binary and hexadecimal numbers",
+  "code": null,
+  "outcome": "Carry out binary shifts left and right and describe their effect on a number."
+ },
+ {
+  "grade": "all",
+  "unit": "Component 01: Computer systems",
+  "topic": "1.2 Memory and storage",
+  "subtopic": "Representing characters, images and sound",
+  "code": null,
+  "outcome": "Explain how characters are represented in binary, including character sets and how bits per character limit the number of characters (ASCII, Unicode)."
+ },
+ {
+  "grade": "all",
+  "unit": "Component 01: Computer systems",
+  "topic": "1.2 Memory and storage",
+  "subtopic": "Representing characters, images and sound",
+  "code": null,
+  "outcome": "Explain how an image is stored as pixels and how colour depth and resolution affect its quality and size, including metadata."
+ },
+ {
+  "grade": "all",
+  "unit": "Component 01: Computer systems",
+  "topic": "1.2 Memory and storage",
+  "subtopic": "Representing characters, images and sound",
+  "code": null,
+  "outcome": "Explain how sound is sampled and stored digitally and how sample rate, duration and bit depth affect quality and file size."
+ },
+ {
+  "grade": "all",
+  "unit": "Component 01: Computer systems",
+  "topic": "1.2 Memory and storage",
+  "subtopic": "Compression",
+  "code": "1.2.5",
+  "outcome": "Explain why compression is needed."
+ },
+ {
+  "grade": "all",
+  "unit": "Component 01: Computer systems",
+  "topic": "1.2 Memory and storage",
+  "subtopic": "Compression",
+  "code": null,
+  "outcome": "Compare lossy and lossless compression, including their advantages, disadvantages and effects on files."
+ },
+ {
+  "grade": "all",
+  "unit": "Component 01: Computer systems",
+  "topic": "1.3 Computer networks, connections and protocols",
+  "subtopic": "Networks and topologies",
+  "code": "1.3.1",
+  "outcome": "Describe LANs and WANs and the factors that affect network performance."
+ },
+ {
+  "grade": "all",
+  "unit": "Component 01: Computer systems",
+  "topic": "1.3 Computer networks, connections and protocols",
+  "subtopic": "Networks and topologies",
+  "code": null,
+  "outcome": "Contrast client-server and peer-to-peer networks."
+ },
+ {
+  "grade": "all",
+  "unit": "Component 01: Computer systems",
+  "topic": "1.3 Computer networks, connections and protocols",
+  "subtopic": "Networks and topologies",
+  "code": null,
+  "outcome": "Describe the hardware that links computers into a LAN: wireless access points, routers, switches, NICs and transmission media."
+ },
+ {
+  "grade": "all",
+  "unit": "Component 01: Computer systems",
+  "topic": "1.3 Computer networks, connections and protocols",
+  "subtopic": "Networks and topologies",
+  "code": null,
+  "outcome": "Explain the Internet as a network of networks, including DNS, hosting, web servers and clients, and the Cloud with its pros and cons."
+ },
+ {
+  "grade": "all",
+  "unit": "Component 01: Computer systems",
+  "topic": "1.3 Computer networks, connections and protocols",
+  "subtopic": "Networks and topologies",
+  "code": null,
+  "outcome": "Compare star and mesh topologies."
+ },
+ {
+  "grade": "all",
+  "unit": "Component 01: Computer systems",
+  "topic": "1.3 Computer networks, connections and protocols",
+  "subtopic": "Connections, protocols and layers",
+  "code": "1.3.2",
+  "outcome": "Compare wired (Ethernet) and wireless (Wi-Fi, Bluetooth) connections and recommend one for a scenario."
+ },
+ {
+  "grade": "all",
+  "unit": "Component 01: Computer systems",
+  "topic": "1.3 Computer networks, connections and protocols",
+  "subtopic": "Connections, protocols and layers",
+  "code": null,
+  "outcome": "Explain the principle of encryption for securing network data."
+ },
+ {
+  "grade": "all",
+  "unit": "Component 01: Computer systems",
+  "topic": "1.3 Computer networks, connections and protocols",
+  "subtopic": "Connections, protocols and layers",
+  "code": null,
+  "outcome": "Describe IP addressing (IPv4, IPv6) and MAC addressing."
+ },
+ {
+  "grade": "all",
+  "unit": "Component 01: Computer systems",
+  "topic": "1.3 Computer networks, connections and protocols",
+  "subtopic": "Connections, protocols and layers",
+  "code": null,
+  "outcome": "Explain what standards are and why they let hardware and software from different makers work together."
+ },
+ {
+  "grade": "all",
+  "unit": "Component 01: Computer systems",
+  "topic": "1.3 Computer networks, connections and protocols",
+  "subtopic": "Connections, protocols and layers",
+  "code": null,
+  "outcome": "Describe the purpose of common protocols: TCP/IP, HTTP, HTTPS, FTP, POP, IMAP and SMTP."
+ },
+ {
+  "grade": "all",
+  "unit": "Component 01: Computer systems",
+  "topic": "1.3 Computer networks, connections and protocols",
+  "subtopic": "Connections, protocols and layers",
+  "code": null,
+  "outcome": "Explain how protocols use layers and the benefits of layering."
+ },
+ {
+  "grade": "all",
+  "unit": "Component 01: Computer systems",
+  "topic": "1.4 Network security",
+  "subtopic": "Threats to systems and networks",
+  "code": "1.4.1",
+  "outcome": "Describe how and why malware, social engineering (such as phishing), brute-force attacks, denial of service, data interception and theft, and SQL injection are carried out."
+ },
+ {
+  "grade": "all",
+  "unit": "Component 01: Computer systems",
+  "topic": "1.4 Network security",
+  "subtopic": "Preventing vulnerabilities",
+  "code": "1.4.2",
+  "outcome": "Explain how penetration testing, anti-malware, firewalls, user access levels, passwords, encryption and physical security limit threats."
+ },
+ {
+  "grade": "all",
+  "unit": "Component 01: Computer systems",
+  "topic": "1.5 Systems software",
+  "subtopic": "Operating systems",
+  "code": "1.5.1",
+  "outcome": "Describe the purpose of an operating system and its user interface."
+ },
+ {
+  "grade": "all",
+  "unit": "Component 01: Computer systems",
+  "topic": "1.5 Systems software",
+  "subtopic": "Operating systems",
+  "code": null,
+  "outcome": "Explain memory management and how it allows multitasking."
+ },
+ {
+  "grade": "all",
+  "unit": "Component 01: Computer systems",
+  "topic": "1.5 Systems software",
+  "subtopic": "Operating systems",
+  "code": null,
+  "outcome": "Explain peripheral management and drivers."
+ },
+ {
+  "grade": "all",
+  "unit": "Component 01: Computer systems",
+  "topic": "1.5 Systems software",
+  "subtopic": "Operating systems",
+  "code": null,
+  "outcome": "Describe user management, including accounts, access rights and security."
+ },
+ {
+  "grade": "all",
+  "unit": "Component 01: Computer systems",
+  "topic": "1.5 Systems software",
+  "subtopic": "Operating systems",
+  "code": null,
+  "outcome": "Describe file management: naming, folders, moving and saving files."
+ },
+ {
+  "grade": "all",
+  "unit": "Component 01: Computer systems",
+  "topic": "1.5 Systems software",
+  "subtopic": "Utility software",
+  "code": "1.5.2",
+  "outcome": "Explain what utility software is and why it is needed beyond the operating system."
+ },
+ {
+  "grade": "all",
+  "unit": "Component 01: Computer systems",
+  "topic": "1.5 Systems software",
+  "subtopic": "Utility software",
+  "code": null,
+  "outcome": "Describe the purpose of encryption, defragmentation and data compression software."
+ },
+ {
+  "grade": "all",
+  "unit": "Component 01: Computer systems",
+  "topic": "1.6 Ethical, legal, cultural and environmental impacts of digital technology",
+  "subtopic": "Impacts of digital technology",
+  "code": "1.6.1",
+  "outcome": "Discuss ethical, legal, cultural, environmental and privacy impacts of digital technology on society using examples."
+ },
+ {
+  "grade": "all",
+  "unit": "Component 01: Computer systems",
+  "topic": "1.6 Ethical, legal, cultural and environmental impacts of digital technology",
+  "subtopic": "Impacts of digital technology",
+  "code": null,
+  "outcome": "Describe the Data Protection Act 2018, the Computer Misuse Act 1990 and the Copyright Designs and Patents Act 1988, and what each allows or prohibits."
+ },
+ {
+  "grade": "all",
+  "unit": "Component 01: Computer systems",
+  "topic": "1.6 Ethical, legal, cultural and environmental impacts of digital technology",
+  "subtopic": "Impacts of digital technology",
+  "code": null,
+  "outcome": "Explain why software needs licences and compare open source and proprietary licences, recommending one for a scenario."
+ },
+ {
+  "grade": "all",
+  "unit": "Component 02: Computational thinking, algorithms and programming",
+  "topic": "2.1 Algorithms",
+  "subtopic": "Computational thinking",
+  "code": "2.1.1",
+  "outcome": "Explain abstraction, decomposition and algorithmic thinking and how they define and refine problems."
+ },
+ {
+  "grade": "all",
+  "unit": "Component 02: Computational thinking, algorithms and programming",
+  "topic": "2.1 Algorithms",
+  "subtopic": "Designing and refining algorithms",
+  "code": "2.1.2",
+  "outcome": "Identify the inputs, processes and outputs of a problem."
+ },
+ {
+  "grade": "all",
+  "unit": "Component 02: Computational thinking, algorithms and programming",
+  "topic": "2.1 Algorithms",
+  "subtopic": "Designing and refining algorithms",
+  "code": null,
+  "outcome": "Draw structure diagrams showing a problem's subsections and links."
+ },
+ {
+  "grade": "all",
+  "unit": "Component 02: Computational thinking, algorithms and programming",
+  "topic": "2.1 Algorithms",
+  "subtopic": "Designing and refining algorithms",
+  "code": null,
+  "outcome": "Create, interpret, complete and correct algorithms in pseudocode, flowcharts and a programming language, including nesting."
+ },
+ {
+  "grade": "all",
+  "unit": "Component 02: Computational thinking, algorithms and programming",
+  "topic": "2.1 Algorithms",
+  "subtopic": "Designing and refining algorithms",
+  "code": null,
+  "outcome": "Identify syntax and logic errors and suggest fixes."
+ },
+ {
+  "grade": "all",
+  "unit": "Component 02: Computational thinking, algorithms and programming",
+  "topic": "2.1 Algorithms",
+  "subtopic": "Designing and refining algorithms",
+  "code": null,
+  "outcome": "Use trace tables to follow an algorithm."
+ },
+ {
+  "grade": "all",
+  "unit": "Component 02: Computational thinking, algorithms and programming",
+  "topic": "2.1 Algorithms",
+  "subtopic": "Searching and sorting algorithms",
+  "code": "2.1.3",
+  "outcome": "Explain and apply binary search and linear search, including their prerequisites."
+ },
+ {
+  "grade": "all",
+  "unit": "Component 02: Computational thinking, algorithms and programming",
+  "topic": "2.1 Algorithms",
+  "subtopic": "Searching and sorting algorithms",
+  "code": null,
+  "outcome": "Explain and apply bubble sort, merge sort and insertion sort to a data set."
+ },
+ {
+  "grade": "all",
+  "unit": "Component 02: Computational thinking, algorithms and programming",
+  "topic": "2.1 Algorithms",
+  "subtopic": "Searching and sorting algorithms",
+  "code": null,
+  "outcome": "Identify a standard algorithm from its code or pseudocode."
+ },
+ {
+  "grade": "all",
+  "unit": "Component 02: Computational thinking, algorithms and programming",
+  "topic": "2.2 Programming fundamentals",
+  "subtopic": "Programming fundamentals",
+  "code": "2.2.1",
+  "outcome": "Use variables, constants, inputs, outputs and assignments."
+ },
+ {
+  "grade": "all",
+  "unit": "Component 02: Computational thinking, algorithms and programming",
+  "topic": "2.2 Programming fundamentals",
+  "subtopic": "Programming fundamentals",
+  "code": null,
+  "outcome": "Use sequence, selection and iteration (count- and condition-controlled loops)."
+ },
+ {
+  "grade": "all",
+  "unit": "Component 02: Computational thinking, algorithms and programming",
+  "topic": "2.2 Programming fundamentals",
+  "subtopic": "Programming fundamentals",
+  "code": null,
+  "outcome": "Use comparison and arithmetic operators, including MOD, DIV and exponentiation."
+ },
+ {
+  "grade": "all",
+  "unit": "Component 02: Computational thinking, algorithms and programming",
+  "topic": "2.2 Programming fundamentals",
+  "subtopic": "Programming fundamentals",
+  "code": null,
+  "outcome": "Use the Boolean operators AND, OR and NOT in programs."
+ },
+ {
+  "grade": "all",
+  "unit": "Component 02: Computational thinking, algorithms and programming",
+  "topic": "2.2 Programming fundamentals",
+  "subtopic": "Data types",
+  "code": "2.2.2",
+  "outcome": "Use integer, real, Boolean, character and string data types and choose suitable ones for a scenario."
+ },
+ {
+  "grade": "all",
+  "unit": "Component 02: Computational thinking, algorithms and programming",
+  "topic": "2.2 Programming fundamentals",
+  "subtopic": "Data types",
+  "code": null,
+  "outcome": "Explain and use casting to change a data type."
+ },
+ {
+  "grade": "all",
+  "unit": "Component 02: Computational thinking, algorithms and programming",
+  "topic": "2.2 Programming fundamentals",
+  "subtopic": "Additional programming techniques",
+  "code": "2.2.3",
+  "outcome": "Manipulate strings using concatenation and slicing."
+ },
+ {
+  "grade": "all",
+  "unit": "Component 02: Computational thinking, algorithms and programming",
+  "topic": "2.2 Programming fundamentals",
+  "subtopic": "Additional programming techniques",
+  "code": null,
+  "outcome": "Open, read, write and close files."
+ },
+ {
+  "grade": "all",
+  "unit": "Component 02: Computational thinking, algorithms and programming",
+  "topic": "2.2 Programming fundamentals",
+  "subtopic": "Additional programming techniques",
+  "code": null,
+  "outcome": "Use 1D and 2D arrays and records to store data."
+ },
+ {
+  "grade": "all",
+  "unit": "Component 02: Computational thinking, algorithms and programming",
+  "topic": "2.2 Programming fundamentals",
+  "subtopic": "Additional programming techniques",
+  "code": null,
+  "outcome": "Use SQL SELECT, FROM and WHERE to search for data."
+ },
+ {
+  "grade": "all",
+  "unit": "Component 02: Computational thinking, algorithms and programming",
+  "topic": "2.2 Programming fundamentals",
+  "subtopic": "Additional programming techniques",
+  "code": null,
+  "outcome": "Write functions and procedures with local and global variables and array passing."
+ },
+ {
+  "grade": "all",
+  "unit": "Component 02: Computational thinking, algorithms and programming",
+  "topic": "2.2 Programming fundamentals",
+  "subtopic": "Additional programming techniques",
+  "code": null,
+  "outcome": "Generate and use random numbers."
+ },
+ {
+  "grade": "all",
+  "unit": "Component 02: Computational thinking, algorithms and programming",
+  "topic": "2.3 Producing robust programs",
+  "subtopic": "Defensive design",
+  "code": "2.3.1",
+  "outcome": "Anticipate misuse and invalid inputs when designing programs."
+ },
+ {
+  "grade": "all",
+  "unit": "Component 02: Computational thinking, algorithms and programming",
+  "topic": "2.3 Producing robust programs",
+  "subtopic": "Defensive design",
+  "code": null,
+  "outcome": "Design input validation and simple authentication such as username and password."
+ },
+ {
+  "grade": "all",
+  "unit": "Component 02: Computational thinking, algorithms and programming",
+  "topic": "2.3 Producing robust programs",
+  "subtopic": "Defensive design",
+  "code": null,
+  "outcome": "Make code maintainable with sub programs, naming conventions, indentation and comments."
+ },
+ {
+  "grade": "all",
+  "unit": "Component 02: Computational thinking, algorithms and programming",
+  "topic": "2.3 Producing robust programs",
+  "subtopic": "Testing",
+  "code": "2.3.2",
+  "outcome": "Explain the purpose of testing and distinguish iterative from final testing."
+ },
+ {
+  "grade": "all",
+  "unit": "Component 02: Computational thinking, algorithms and programming",
+  "topic": "2.3 Producing robust programs",
+  "subtopic": "Testing",
+  "code": null,
+  "outcome": "Identify syntax errors and logic errors."
+ },
+ {
+  "grade": "all",
+  "unit": "Component 02: Computational thinking, algorithms and programming",
+  "topic": "2.3 Producing robust programs",
+  "subtopic": "Testing",
+  "code": null,
+  "outcome": "Choose normal, boundary, invalid and erroneous test data and complete a test plan."
+ },
+ {
+  "grade": "all",
+  "unit": "Component 02: Computational thinking, algorithms and programming",
+  "topic": "2.3 Producing robust programs",
+  "subtopic": "Testing",
+  "code": null,
+  "outcome": "Refine algorithms after testing."
+ },
+ {
+  "grade": "all",
+  "unit": "Component 02: Computational thinking, algorithms and programming",
+  "topic": "2.4 Boolean logic",
+  "subtopic": "Logic gates and truth tables",
+  "code": "2.4.1",
+  "outcome": "Recognise AND, OR and NOT gate symbols and complete their truth tables."
+ },
+ {
+  "grade": "all",
+  "unit": "Component 02: Computational thinking, algorithms and programming",
+  "topic": "2.4 Boolean logic",
+  "subtopic": "Logic gates and truth tables",
+  "code": null,
+  "outcome": "Create, complete and edit logic diagrams and truth tables, combining several gates, to solve problems."
+ },
+ {
+  "grade": "all",
+  "unit": "Component 02: Computational thinking, algorithms and programming",
+  "topic": "2.5 Programming languages and Integrated Development Environments",
+  "subtopic": "Programming languages and translators",
+  "code": "2.5.1",
+  "outcome": "Distinguish high-level from low-level languages and explain why translators are needed."
+ },
+ {
+  "grade": "all",
+  "unit": "Component 02: Computational thinking, algorithms and programming",
+  "topic": "2.5 Programming languages and Integrated Development Environments",
+  "subtopic": "Programming languages and translators",
+  "code": null,
+  "outcome": "Compare compilers and interpreters, with benefits and drawbacks."
+ },
+ {
+  "grade": "all",
+  "unit": "Component 02: Computational thinking, algorithms and programming",
+  "topic": "2.5 Programming languages and Integrated Development Environments",
+  "subtopic": "The IDE",
+  "code": "2.5.2",
+  "outcome": "Describe IDE tools (editors, error diagnostics, run-time environment, translators) and how they help a programmer."
+ }
+]

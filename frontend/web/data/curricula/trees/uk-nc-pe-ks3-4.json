@@ -1,0 +1,181 @@
+{
+ "id": "uk-nc-pe-ks3-4",
+ "region": "UK",
+ "framework": "National Curriculum in England (2014)",
+ "board": "Department for Education",
+ "qualification": "Secondary",
+ "subject": "Physical education",
+ "syllabusCode": null,
+ "gradeSystem": "key-stage",
+ "source": {
+  "urls": [
+   "https://assets.publishing.service.gov.uk/media/5a7c74e2e5274a5255bcec5f/SECONDARY_national_curriculum_-_Physical_education.pdf",
+   "https://www.gov.uk/government/publications/national-curriculum-in-england-physical-education-programmes-of-study"
+  ],
+  "publisher": "Department for Education",
+  "licence": "Open Government Licence v3.0 (Crown copyright)",
+  "firstExam": "2014"
+ },
+ "grades": [
+  {
+   "grade": "KS3",
+   "units": [
+    {
+     "id": "key-stage-3-physical-education",
+     "title": "Key stage 3 physical education",
+     "topics": [
+      {
+       "id": "key-stage-3-physical-education",
+       "title": "Key stage 3 physical education",
+       "subtopics": [
+        {
+         "id": "games-tactics",
+         "title": "Games tactics",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Use a range of tactics and strategies to overcome opponents in direct competition in team and individual games such as football, netball or tennis."
+          }
+         ]
+        },
+        {
+         "id": "competitive-sport-technique",
+         "title": "Competitive sport technique",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Develop technique and improve performance in other competitive sports such as athletics and gymnastics."
+          }
+         ]
+        },
+        {
+         "id": "dance",
+         "title": "Dance",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Perform dances using advanced techniques across a range of styles and forms."
+          }
+         ]
+        },
+        {
+         "id": "outdoor-and-adventurous-activity",
+         "title": "Outdoor and adventurous activity",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Take part in outdoor and adventurous activities that challenge mind and body, building trust, teamwork and problem solving."
+          }
+         ]
+        },
+        {
+         "id": "evaluating-performance",
+         "title": "Evaluating performance",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Analyse performances against previous ones and show improvement towards a personal best."
+          }
+         ]
+        },
+        {
+         "id": "sport-beyond-school",
+         "title": "Sport beyond school",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Take part in competitive sports and activities outside school through community links or sports clubs."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "KS4",
+   "units": [
+    {
+     "id": "key-stage-4-physical-education",
+     "title": "Key stage 4 physical education",
+     "topics": [
+      {
+       "id": "key-stage-4-physical-education",
+       "title": "Key stage 4 physical education",
+       "subtopics": [
+        {
+         "id": "games-tactics",
+         "title": "Games tactics",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Use and develop a variety of tactics and strategies to overcome opponents in team and individual games such as football, netball or tennis."
+          }
+         ]
+        },
+        {
+         "id": "competitive-sport-technique",
+         "title": "Competitive sport technique",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Develop technique and improve performance in other competitive sports or physical activities such as athletics, gymnastics or dance."
+          }
+         ]
+        },
+        {
+         "id": "outdoor-and-adventurous-activity",
+         "title": "Outdoor and adventurous activity",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Take part in further outdoor and adventurous activities in varied environments that challenge mind and body, building trust, teamwork and problem solving."
+          }
+         ]
+        },
+        {
+         "id": "evaluating-performance",
+         "title": "Evaluating performance",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Evaluate performances against previous ones and show improvement across a range of activities towards a personal best."
+          }
+         ]
+        },
+        {
+         "id": "sport-beyond-school",
+         "title": "Sport beyond school",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Continue to take part regularly in competitive sports and activities outside school through community links or clubs."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "build": {
+  "builtAt": "2026-10-14T10:38:13.044Z",
+  "model": "claude-agent",
+  "usd": 0,
+  "expectedCodes": null,
+  "coverage": null,
+  "missingCodes": [],
+  "counts": {
+   "grades": 2,
+   "units": 2,
+   "topics": 2,
+   "subtopics": 11,
+   "outcomes": 11
+  },
+  "warnings": []
+ }
+}

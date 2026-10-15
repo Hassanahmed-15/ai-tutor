@@ -1,0 +1,2300 @@
+{
+ "id": "us-ap-computer-science-a",
+ "region": "US",
+ "framework": "AP Computer Science A Course and Exam Description (effective fall 2025)",
+ "board": "College Board",
+ "qualification": "AP",
+ "subject": "Computer Science A",
+ "syllabusCode": null,
+ "gradeSystem": "course",
+ "source": {
+  "urls": [
+   "https://apcentral.collegeboard.org/media/pdf/ap-computer-science-a-course-and-exam-description.pdf",
+   "https://apcentral.collegeboard.org/courses/ap-computer-science-a"
+  ],
+  "publisher": "College Board",
+  "licence": "© College Board; structure + our own wording only",
+  "firstExam": "2026"
+ },
+ "grades": [
+  {
+   "grade": "all",
+   "units": [
+    {
+     "id": "unit-1-using-objects-and-methods",
+     "title": "Unit 1: Using Objects and Methods",
+     "topics": [
+      {
+       "id": "1-2-variables-and-data-types",
+       "title": "1.2 Variables and Data Types",
+       "subtopics": [
+        {
+         "id": "data-type-categories",
+         "title": "Data Type Categories",
+         "outcomes": [
+          {
+           "code": "1.2.A",
+           "text": "Choose the most suitable data type category for a given specification."
+          },
+          {
+           "code": "1.2.A.1",
+           "text": "A data type specifies values and operations, and is classified as primitive or reference."
+          },
+          {
+           "code": "1.2.A.2",
+           "text": "Primitive types in this course define numeric and Boolean values and the operations available for them."
+          },
+          {
+           "code": "1.2.A.3",
+           "text": "Reference types define objects rather than primitive values."
+          }
+         ]
+        },
+        {
+         "id": "variables-and-declarations",
+         "title": "Variables and Declarations",
+         "outcomes": [
+          {
+           "code": "1.2.B",
+           "text": "Write declarations for variables that store numbers and Boolean values."
+          },
+          {
+           "code": "1.2.B.1",
+           "text": "The course uses int for integers, double for real numbers, and boolean for true-or-false values."
+          },
+          {
+           "code": "1.2.B.2",
+           "text": "A variable is a named, typed storage location whose held value can change during execution."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "1-1-introduction-to-algorithms-programming-and-c",
+       "title": "1.1 Introduction to Algorithms, Programming, and Compilers",
+       "subtopics": [
+        {
+         "id": "algorithms-and-sequencing",
+         "title": "Algorithms and Sequencing",
+         "outcomes": [
+          {
+           "code": "1.1.A",
+           "text": "Represent everyday patterns and algorithms using written descriptions or diagrams."
+          },
+          {
+           "code": "1.1.A.1",
+           "text": "Understand that algorithms are step-by-step procedures represented with words or diagrams."
+          },
+          {
+           "code": "1.1.A.2",
+           "text": "Understand sequencing as completing process steps one at a time in a defined order."
+          }
+         ]
+        },
+        {
+         "id": "compiling-and-running-code",
+         "title": "Compiling and Running Code",
+         "outcomes": [
+          {
+           "code": "1.1.B",
+           "text": "Explain how source code is compiled and then executed."
+          },
+          {
+           "code": "1.1.B.1",
+           "text": "Understand that IDEs help programmers write, compile, and run code."
+          },
+          {
+           "code": "1.1.B.2",
+           "text": "Understand that compilers detect certain errors that must be corrected before execution."
+          }
+         ]
+        },
+        {
+         "id": "programming-error-types",
+         "title": "Programming Error Types",
+         "outcomes": [
+          {
+           "code": "1.1.C",
+           "text": "Identify different kinds of programming errors."
+          },
+          {
+           "code": "1.1.C.1",
+           "text": "Recognize syntax errors as violations of programming-language rules detected by the compiler."
+          },
+          {
+           "code": "1.1.C.2",
+           "text": "Recognize logic errors as incorrect behavior found by testing program results against expectations."
+          },
+          {
+           "code": "1.1.C.3",
+           "text": "Recognize run-time errors as mistakes occurring during execution that may terminate a program abnormally."
+          },
+          {
+           "code": "1.1.C.4",
+           "text": "Recognize exceptions as run-time errors that interrupt normal program execution."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "1-3-expressions-and-output",
+       "title": "1.3 Expressions and Output",
+       "subtopics": [
+        {
+         "id": "printing-strings",
+         "title": "Printing Strings",
+         "outcomes": [
+          {
+           "code": "1.3.A",
+           "text": "Write output code and determine what appears on the display."
+          },
+          {
+           "code": "1.3.A.1",
+           "text": "Distinguish print, which stays on the line, from println, which advances to the next line."
+          },
+          {
+           "code": "1.3.B",
+           "text": "Use string literals and determine their resulting values."
+          },
+          {
+           "code": "1.3.B.1",
+           "text": "Understand a literal as code representing a fixed value."
+          },
+          {
+           "code": "1.3.B.2",
+           "text": "Recognize a string literal as characters enclosed in double quotation marks."
+          },
+          {
+           "code": "1.3.B.3",
+           "text": "Use Java escape sequences for quotation marks, backslashes, and newlines."
+          }
+         ]
+        },
+        {
+         "id": "arithmetic-expressions",
+         "title": "Arithmetic Expressions",
+         "outcomes": [
+          {
+           "code": "1.3.C",
+           "text": "Write arithmetic expressions and determine their results."
+          },
+          {
+           "code": "1.3.C.1",
+           "text": "Understand arithmetic expressions as numeric values, variables, and operators producing int or double results."
+          },
+          {
+           "code": "1.3.C.2",
+           "text": "Apply arithmetic operators and determine whether operations produce int or double results."
+          },
+          {
+           "code": "1.3.C.3",
+           "text": "Distinguish integer division, which discards the fractional part, from division involving doubles."
+          },
+          {
+           "code": "1.3.C.4",
+           "text": "Use the remainder operator to find what remains after division."
+          }
+         ]
+        },
+        {
+         "id": "evaluation-and-division-errors",
+         "title": "Evaluation and Division Errors",
+         "outcomes": [
+          {
+           "code": "1.3.C.5",
+           "text": "Evaluate compound expressions using precedence, parentheses, and left-to-right evaluation for equal precedence."
+          },
+          {
+           "code": "1.3.C.6",
+           "text": "Recognize that integer division by zero causes an ArithmeticException."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "1-4-assignment-statements-and-input",
+       "title": "1.4 Assignment Statements and Input",
+       "subtopics": [
+        {
+         "id": "assignment-statements",
+         "title": "Assignment Statements",
+         "outcomes": [
+          {
+           "code": "1.4.A",
+           "text": "Write assignments and determine the resulting stored variable values."
+          },
+          {
+           "code": "1.4.A.1",
+           "text": "Assign compatible values before variables are used; references may hold objects or null."
+          },
+          {
+           "code": "1.4.A.2",
+           "text": "Use = to place the right-hand expression’s value into the left-hand variable."
+          },
+          {
+           "code": "1.4.A.3",
+           "text": "Understand that evaluating an expression produces one value with a resulting type."
+          }
+         ]
+        },
+        {
+         "id": "reading-keyboard-input",
+         "title": "Reading Keyboard Input",
+         "outcomes": [
+          {
+           "code": "1.4.B",
+           "text": "Write code that reads input."
+          },
+          {
+           "code": "1.4.B.1",
+           "text": "Understand that Scanner can obtain text typed at the keyboard."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "1-5-casting-and-range-of-variables",
+       "title": "1.5 Casting and Range of Variables",
+       "subtopics": [
+        {
+         "id": "casting-and-rounding",
+         "title": "Casting and Rounding",
+         "outcomes": [
+          {
+           "code": "1.5.A",
+           "text": "Cast primitive values in arithmetic expressions and determine the resulting value."
+          },
+          {
+           "code": "1.5.A.1",
+           "text": "Use int and double casts to convert between those primitive types."
+          },
+          {
+           "code": "1.5.A.2",
+           "text": "Understand that casting double to int removes digits after the decimal point."
+          },
+          {
+           "code": "1.5.A.3",
+           "text": "Recognize automatic widening of int values to double values."
+          },
+          {
+           "code": "1.5.A.4",
+           "text": "Round doubles to nearby integers using appropriate expressions for nonnegative and negative values."
+          }
+         ]
+        },
+        {
+         "id": "integer-range-and-overflow",
+         "title": "Integer Range and Overflow",
+         "outcomes": [
+          {
+           "code": "1.5.B",
+           "text": "Describe when integer expressions exceed the permitted range."
+          },
+          {
+           "code": "1.5.B.1",
+           "text": "Use Integer.MAX_VALUE and Integer.MIN_VALUE to identify int boundaries."
+          },
+          {
+           "code": "1.5.B.2",
+           "text": "Understand that int values occupy finite memory and range between the two Integer constants."
+          },
+          {
+           "code": "1.5.B.3",
+           "text": "Recognize integer overflow when a calculation exceeds the int range."
+          }
+         ]
+        },
+        {
+         "id": "floating-point-accuracy",
+         "title": "Floating-Point Accuracy",
+         "outcomes": [
+          {
+           "code": "1.5.C",
+           "text": "Describe conditions that reduce expression accuracy."
+          },
+          {
+           "code": "1.5.C.1",
+           "text": "Explain round-off error when a double requires more precision than available storage."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "1-6-compound-assignment-operators",
+       "title": "1.6 Compound Assignment Operators",
+       "subtopics": [
+        {
+         "id": "compound-assignments",
+         "title": "Compound Assignments",
+         "outcomes": [
+          {
+           "code": "1.6.A",
+           "text": "Write compound assignments and determine the resulting stored value."
+          },
+          {
+           "code": "1.6.A.1",
+           "text": "Use compound operators to perform arithmetic and assign the result back to the same variable."
+          },
+          {
+           "code": "1.6.A.2",
+           "text": "Use post-increment and post-decrement to add or subtract one from numeric variables."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "1-7-application-program-libraries",
+       "title": "1.7 Application Program Libraries",
+       "subtopics": [
+        {
+         "id": "classes-and-apis",
+         "title": "Classes and APIs",
+         "outcomes": [
+          {
+           "code": "1.7.A",
+           "text": "Identify library-class attributes and behaviors using API documentation."
+          },
+          {
+           "code": "1.7.A.1",
+           "text": "Understand libraries as class collections and APIs as instructions for using their classes."
+          },
+          {
+           "code": "1.7.A.2",
+           "text": "Distinguish class attributes, stored in variables, from behaviors, defined by methods."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "1-8-documentation-with-comments",
+       "title": "1.8 Documentation with Comments",
+       "subtopics": [
+        {
+         "id": "comments-in-java",
+         "title": "Comments in Java",
+         "outcomes": [
+          {
+           "code": "1.8.A",
+           "text": "Explain how comments document code and support its use."
+          },
+          {
+           "code": "1.8.A.1",
+           "text": "Understand Java block, single-line, and Javadoc comments and that comments are not executed."
+          }
+         ]
+        },
+        {
+         "id": "method-preconditions-and-postconditions",
+         "title": "Method Preconditions and Postconditions",
+         "outcomes": [
+          {
+           "code": "1.8.A.2",
+           "text": "Define a precondition as a requirement that must hold immediately before a method runs."
+          },
+          {
+           "code": "1.8.A.3",
+           "text": "Define a postcondition as a condition guaranteed after a method finishes."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "1-9-method-signatures",
+       "title": "1.9 Method Signatures",
+       "subtopics": [
+        {
+         "id": "methods-and-their-signatures",
+         "title": "Methods and Their Signatures",
+         "outcomes": [
+          {
+           "code": "1.9.A",
+           "text": "Identify which method to call using its documentation and signature."
+          },
+          {
+           "code": "1.9.A.1",
+           "text": "Understand methods as named code blocks that run when called and support procedural abstraction."
+          },
+          {
+           "code": "1.9.A.2",
+           "text": "Define parameters and method signatures using method names and ordered parameter types."
+          },
+          {
+           "code": "1.9.B",
+           "text": "Describe how to call methods."
+          }
+         ]
+        },
+        {
+         "id": "method-results-and-arguments",
+         "title": "Method Results and Arguments",
+         "outcomes": [
+          {
+           "code": "1.9.B.1",
+           "text": "Recognize that void methods return no value and cannot be used within expressions."
+          },
+          {
+           "code": "1.9.B.2",
+           "text": "Use a non-void method’s returned value in a variable or expression of the appropriate type."
+          },
+          {
+           "code": "1.9.B.3",
+           "text": "Pass compatible arguments in the required number and order; understand call-by-value parameter copying."
+          }
+         ]
+        },
+        {
+         "id": "overloading-and-control-flow",
+         "title": "Overloading and Control Flow",
+         "outcomes": [
+          {
+           "code": "1.9.B.4",
+           "text": "Recognize overloaded methods as methods sharing a name but having different signatures."
+          },
+          {
+           "code": "1.9.B.5",
+           "text": "Explain how a method call temporarily redirects control before returning to the following statement."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "1-10-calling-class-methods",
+       "title": "1.10 Calling Class Methods",
+       "subtopics": [
+        {
+         "id": "calling-class-methods",
+         "title": "Calling Class Methods",
+         "outcomes": [
+          {
+           "code": "1.10.A",
+           "text": "Write calls to class methods and determine their results."
+          },
+          {
+           "code": "1.10.A.1",
+           "text": "Recognize class methods as static methods associated with the class rather than its instances."
+          },
+          {
+           "code": "1.10.A.2",
+           "text": "Call class methods using the class name and dot operator, with the class name optional inside that class."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "1-11-math-class",
+       "title": "1.11 Math Class",
+       "subtopics": [
+        {
+         "id": "math-methods-and-results",
+         "title": "Math Methods and Results",
+         "outcomes": [
+          {
+           "code": "1.11.A",
+           "text": "Write expressions using built-in mathematical library calls and determine their results."
+          },
+          {
+           "code": "1.11.A.1",
+           "text": "Know that Math belongs to java.lang, whose classes are automatically available."
+          },
+          {
+           "code": "1.11.A.2",
+           "text": "Use Math.abs, Math.pow, Math.sqrt, and Math.random with their specified parameter and return behaviors."
+          }
+         ]
+        },
+        {
+         "id": "random-number-ranges",
+         "title": "Random Number Ranges",
+         "outcomes": [
+          {
+           "code": "1.11.A.3",
+           "text": "Transform Math.random results with arithmetic and casting to generate values in specified inclusive or exclusive ranges."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "1-12-objects-instances-of-classes",
+       "title": "1.12 Objects: Instances of Classes",
+       "subtopics": [
+        {
+         "id": "classes-and-objects",
+         "title": "Classes and Objects",
+         "outcomes": [
+          {
+           "code": "1.12.A",
+           "text": "Explain the relationship between classes and objects."
+          },
+          {
+           "code": "1.12.A.1",
+           "text": "Distinguish an object as a class instance with attributes and a class as its blueprint."
+          }
+         ]
+        },
+        {
+         "id": "inheritance-and-object",
+         "title": "Inheritance and Object",
+         "outcomes": [
+          {
+           "code": "1.12.A.2",
+           "text": "Describe superclass-subclass inheritance, including shared attributes and behaviors."
+          },
+          {
+           "code": "1.12.A.3",
+           "text": "Recognize that every Java class ultimately extends the Object class."
+          }
+         ]
+        },
+        {
+         "id": "object-references",
+         "title": "Object References",
+         "outcomes": [
+          {
+           "code": "1.12.B",
+           "text": "Declare variables that store references to objects."
+          },
+          {
+           "code": "1.12.B.1",
+           "text": "Understand that a reference variable stores an object reference, conceptually a memory address."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "1-13-object-creation-and-initialization",
+       "title": "1.13 Object Creation and Initialization",
+       "subtopics": [
+        {
+         "id": "constructor-signatures",
+         "title": "Constructor Signatures",
+         "outcomes": [
+          {
+           "code": "1.13.A",
+           "text": "Identify the constructor being called from its signature."
+          },
+          {
+           "code": "1.13.A.1",
+           "text": "Recognize constructors as class members named after the class and used to create objects."
+          },
+          {
+           "code": "1.13.A.2",
+           "text": "Identify constructor signatures by class name and ordered parameter types."
+          },
+          {
+           "code": "1.13.A.3",
+           "text": "Recognize overloaded constructors as constructors with the same name but different signatures."
+          }
+         ]
+        },
+        {
+         "id": "declaring-and-creating-objects",
+         "title": "Declaring and Creating Objects",
+         "outcomes": [
+          {
+           "code": "1.13.B",
+           "text": "Declare correctly typed variables for object references."
+          },
+          {
+           "code": "1.13.B.1",
+           "text": "Understand that a reference variable holds an object reference or null."
+          },
+          {
+           "code": "1.13.C",
+           "text": "Create objects by calling constructors."
+          },
+          {
+           "code": "1.13.C.1",
+           "text": "Create objects with new followed by a constructor call."
+          }
+         ]
+        },
+        {
+         "id": "initializing-objects",
+         "title": "Initializing Objects",
+         "outcomes": [
+          {
+           "code": "1.13.C.2",
+           "text": "Use constructor parameters to establish initial object attribute values."
+          },
+          {
+           "code": "1.13.C.3",
+           "text": "Pass constructor arguments matching the required number, order, and types; understand call-by-value copying."
+          },
+          {
+           "code": "1.13.C.4",
+           "text": "Explain how constructor calls interrupt sequential execution and then return control afterward."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "1-14-calling-instance-methods",
+       "title": "1.14 Calling Instance Methods",
+       "subtopics": [
+        {
+         "id": "calling-instance-methods",
+         "title": "Calling Instance Methods",
+         "outcomes": [
+          {
+           "code": "1.14.A",
+           "text": "Write calls to instance methods and determine their results."
+          },
+          {
+           "code": "1.14.A.1",
+           "text": "Call instance methods on objects using the object name and dot operator."
+          },
+          {
+           "code": "1.14.A.2",
+           "text": "Recognize that calling an instance method through null causes a NullPointerException."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "1-15-string-manipulation",
+       "title": "1.15 String Manipulation",
+       "subtopics": [
+        {
+         "id": "creating-and-combining-strings",
+         "title": "Creating and Combining Strings",
+         "outcomes": [
+          {
+           "code": "1.15.A",
+           "text": "Create and combine strings and determine the resulting values."
+          },
+          {
+           "code": "1.15.A.1",
+           "text": "Create String objects with literals or the String constructor to represent character sequences."
+          },
+          {
+           "code": "1.15.A.2",
+           "text": "Recognize String as a java.lang class available without an import."
+          },
+          {
+           "code": "1.15.A.3",
+           "text": "Understand that String objects are immutable and their methods do not alter existing content."
+          },
+          {
+           "code": "1.15.A.4",
+           "text": "Concatenate strings with + or +=; primitive values are implicitly converted to strings."
+          },
+          {
+           "code": "1.15.A.5",
+           "text": "Understand object concatenation invokes toString, which produces a textual representation of the object."
+          }
+         ]
+        },
+        {
+         "id": "string-indices-and-methods",
+         "title": "String Indices and Methods",
+         "outcomes": [
+          {
+           "code": "1.15.B",
+           "text": "Call String methods and determine their results."
+          },
+          {
+           "code": "1.15.B.1",
+           "text": "Use valid String indices from zero through length minus one; invalid indices cause an exception."
+          },
+          {
+           "code": "1.15.B.2",
+           "text": "Use length, substring, indexOf, equals, and compareTo according to their specified behaviors."
+          },
+          {
+           "code": "1.15.B.3",
+           "text": "Create the single-character string at an index with substring(index, index + 1)."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "unit-2-selection-and-iteration",
+     "title": "Unit 2: Selection and Iteration",
+     "topics": [
+      {
+       "id": "2-1-algorithms-with-repetition",
+       "title": "2.1 Algorithms with Repetition",
+       "subtopics": [
+        {
+         "id": "algorithm-building-blocks",
+         "title": "Algorithm Building Blocks",
+         "outcomes": [
+          {
+           "code": "2.1.A",
+           "text": "Represent everyday algorithms involving selection and repetition using written language or diagrams."
+          },
+          {
+           "code": "2.1.A.1",
+           "text": "Algorithms are built from sequencing, selection, and repetition."
+          },
+          {
+           "code": "2.1.A.2",
+           "text": "Algorithms may use decision-making for selection and looping for repetition."
+          }
+         ]
+        },
+        {
+         "id": "selection-and-repetition",
+         "title": "Selection and Repetition",
+         "outcomes": [
+          {
+           "code": "2.1.A.3",
+           "text": "Selection chooses the execution path according to a true-or-false decision."
+          },
+          {
+           "code": "2.1.A.4",
+           "text": "Repetition repeatedly performs a process until the desired result is achieved."
+          }
+         ]
+        },
+        {
+         "id": "algorithm-order-and-results",
+         "title": "Algorithm Order and Results",
+         "outcomes": [
+          {
+           "code": "2.1.A.5",
+           "text": "The arrangement of sequencing, selection, and repetition affects an algorithm’s result."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "2-2-boolean-expressions",
+       "title": "2.2 Boolean Expressions",
+       "subtopics": [
+        {
+         "id": "relational-boolean-expressions",
+         "title": "Relational Boolean Expressions",
+         "outcomes": [
+          {
+           "code": "2.2.A",
+           "text": "Write Boolean expressions with relational operators and determine their results."
+          },
+          {
+           "code": "2.2.A.1",
+           "text": "The operators == and != compare primitive values or object references, depending on the operand types."
+          },
+          {
+           "code": "2.2.A.2",
+           "text": "The operators <, >, <=, and >= compare numeric values."
+          },
+          {
+           "code": "2.2.A.3",
+           "text": "Relational expressions produce Boolean values."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "2-3-if-statements",
+       "title": "2.3 if Statements",
+       "subtopics": [
+        {
+         "id": "selection-and-program-flow",
+         "title": "Selection and Program Flow",
+         "outcomes": [
+          {
+           "code": "2.3.A",
+           "text": "Write selection statements and determine the results of branching processes."
+          },
+          {
+           "code": "2.3.A.1",
+           "text": "Selection statements alter the sequential flow of program execution."
+          }
+         ]
+        },
+        {
+         "id": "if-and-if-else-statements",
+         "title": "if and if-else Statements",
+         "outcomes": [
+          {
+           "code": "2.3.A.2",
+           "text": "An if statement executes different code depending on a Boolean expression."
+          },
+          {
+           "code": "2.3.A.3",
+           "text": "A one-way if executes its body only when its condition is true."
+          },
+          {
+           "code": "2.3.A.4",
+           "text": "An if-else chooses one of two code segments according to whether its condition is true or false."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "2-4-nested-if-statements",
+       "title": "2.4 Nested if Statements",
+       "subtopics": [
+        {
+         "id": "nested-selection-statements",
+         "title": "Nested Selection Statements",
+         "outcomes": [
+          {
+           "code": "2.4.A",
+           "text": "Write nested selection statements and determine the results of nested branching processes."
+          },
+          {
+           "code": "2.4.A.1",
+           "text": "Nested selection places if, if-else, or if-else-if statements inside other selection statements."
+          },
+          {
+           "code": "2.4.A.2",
+           "text": "An inner condition is evaluated only when the surrounding outer condition is true."
+          },
+          {
+           "code": "2.4.A.3",
+           "text": "An if-else-if chain selects at most one segment based on the first true condition, or else executes the trailing else."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "2-5-compound-boolean-expressions",
+       "title": "2.5 Compound Boolean Expressions",
+       "subtopics": [
+        {
+         "id": "compound-boolean-expressions",
+         "title": "Compound Boolean Expressions",
+         "outcomes": [
+          {
+           "code": "2.5.A",
+           "text": "Write compound Boolean expressions and determine their results."
+          },
+          {
+           "code": "2.5.A.1",
+           "text": "Use !, &&, and || with Boolean expressions; their precedence is !, then &&, then ||."
+          },
+          {
+           "code": "2.5.A.2",
+           "text": "Short-circuit evaluation skips the second operand when the first operand determines an && or || result."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "2-6-comparing-boolean-expressions",
+       "title": "2.6 Comparing Boolean Expressions",
+       "subtopics": [
+        {
+         "id": "equivalent-boolean-expressions",
+         "title": "Equivalent Boolean Expressions",
+         "outcomes": [
+          {
+           "code": "2.6.A",
+           "text": "Compare Boolean expressions that are equivalent."
+          },
+          {
+           "code": "2.6.A.1",
+           "text": "Equivalent Boolean expressions have identical values in every case; truth tables can demonstrate this."
+          },
+          {
+           "code": "2.6.A.2",
+           "text": "Apply De Morgan’s law to produce equivalent forms of negated conjunctions and disjunctions."
+          }
+         ]
+        },
+        {
+         "id": "comparing-object-references",
+         "title": "Comparing Object References",
+         "outcomes": [
+          {
+           "code": "2.6.B",
+           "text": "Compare object references with Boolean expressions and determine the results."
+          },
+          {
+           "code": "2.6.B.1",
+           "text": "Different variables can reference the same object, and == or != can compare those references."
+          },
+          {
+           "code": "2.6.B.2",
+           "text": "Compare an object reference with null using == or != to test whether it references an object."
+          }
+         ]
+        },
+        {
+         "id": "object-equivalence-with-equals",
+         "title": "Object Equivalence with equals",
+         "outcomes": [
+          {
+           "code": "2.6.B.3",
+           "text": "A class’s equals method can define object equivalence using attributes of the objects."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "2-7-while-loops",
+       "title": "2.7 while Loops",
+       "subtopics": [
+        {
+         "id": "iteration-and-loop-behavior",
+         "title": "Iteration and Loop Behavior",
+         "outcomes": [
+          {
+           "code": "2.7.A",
+           "text": "Recognize when iteration is needed to achieve a desired result."
+          },
+          {
+           "code": "2.7.A.1",
+           "text": "Iteration repeats code zero or more times while its controlling Boolean expression remains true."
+          },
+          {
+           "code": "2.7.A.2",
+           "text": "An infinite loop results when its controlling Boolean expression always remains true."
+          },
+          {
+           "code": "2.7.A.3",
+           "text": "An iterative body does not run when its initial Boolean condition is false."
+          },
+          {
+           "code": "2.7.A.4",
+           "text": "An off-by-one error makes a loop execute one time too many or too few."
+          }
+         ]
+        },
+        {
+         "id": "writing-while-loops",
+         "title": "Writing while Loops",
+         "outcomes": [
+          {
+           "code": "2.7.B",
+           "text": "Write while loops for iterative processes and determine their results."
+          },
+          {
+           "code": "2.7.B.1",
+           "text": "A while loop tests its condition before each iteration, including the first, and stops when the condition becomes false."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "2-8-for-loops",
+       "title": "2.8 for Loops",
+       "subtopics": [
+        {
+         "id": "writing-for-loops",
+         "title": "Writing for Loops",
+         "outcomes": [
+          {
+           "code": "2.8.A",
+           "text": "Write for loops for iterative processes and determine their results."
+          },
+          {
+           "code": "2.8.A.1",
+           "text": "A for-loop header contains initialization, a Boolean condition, and an update."
+          },
+          {
+           "code": "2.8.A.2",
+           "text": "A for loop initializes once, tests its condition before iterations, and updates after each complete body execution."
+          },
+          {
+           "code": "2.8.A.3",
+           "text": "A for loop can be converted to an equivalent while loop, and vice versa."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "2-9-implementing-selection-and-iteration-algorit",
+       "title": "2.9 Implementing Selection and Iteration Algorithms",
+       "subtopics": [
+        {
+         "id": "2-9-implementing-selection-and-iteration-algorit",
+         "title": "2.9 Implementing Selection and Iteration Algorithms",
+         "outcomes": [
+          {
+           "code": "2.9.A",
+           "text": "Write standard and original algorithms without data structures and determine their results."
+          },
+          {
+           "code": "2.9.A.1",
+           "text": "Standard algorithms test divisibility, extract digits, count criteria, find extrema, and calculate sums or averages."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "2-10-implementing-string-algorithms",
+       "title": "2.10 Implementing String Algorithms",
+       "subtopics": [
+        {
+         "id": "2-10-implementing-string-algorithms",
+         "title": "2.10 Implementing String Algorithms",
+         "outcomes": [
+          {
+           "code": "2.10.A",
+           "text": "Write and evaluate standard or original algorithms that process strings."
+          },
+          {
+           "code": "2.10.A.1",
+           "text": "Standard string algorithms test substring properties, count qualifying substrings, and reverse characters."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "2-11-nested-iteration",
+       "title": "2.11 Nested Iteration",
+       "subtopics": [
+        {
+         "id": "2-11-nested-iteration",
+         "title": "2.11 Nested Iteration",
+         "outcomes": [
+          {
+           "code": "2.11.A",
+           "text": "Write nested iterative processes and determine their results."
+          },
+          {
+           "code": "2.11.A.1",
+           "text": "In nested loops, the inner loop completes all iterations before the outer loop proceeds."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "2-12-informal-run-time-analysis",
+       "title": "2.12 Informal Run-Time Analysis",
+       "subtopics": [
+        {
+         "id": "2-12-informal-run-time-analysis",
+         "title": "2.12 Informal Run-Time Analysis",
+         "outcomes": [
+          {
+           "code": "2.12.A",
+           "text": "Calculate statement execution counts and informally compare iterative run times."
+          },
+          {
+           "code": "2.12.A.1",
+           "text": "A statement execution count records how many times a statement runs, often found by tracing loops."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "unit-3-class-creation",
+     "title": "Unit 3: Class Creation",
+     "topics": [
+      {
+       "id": "3-1-abstraction-and-program-design",
+       "title": "3.1 Abstraction and Program Design",
+       "subtopics": [
+        {
+         "id": "designing-classes",
+         "title": "Designing Classes",
+         "outcomes": [
+          {
+           "code": "3.1.A",
+           "text": "Represent program designs with natural language or diagrams showing classes, attributes, and behaviors."
+          },
+          {
+           "code": "3.1.A.7",
+           "text": "Design a class’s attributes and behaviors before implementation using language or diagrams."
+          }
+         ]
+        },
+        {
+         "id": "understanding-abstraction",
+         "title": "Understanding Abstraction",
+         "outcomes": [
+          {
+           "code": "3.1.A.1",
+           "text": "Understand abstraction as reducing complexity by emphasizing relevant ideas and hiding unnecessary details."
+          },
+          {
+           "code": "3.1.A.2",
+           "text": "Understand data abstraction as separating a data type’s abstract properties from its concrete representation."
+          }
+         ]
+        },
+        {
+         "id": "variables-and-attributes",
+         "title": "Variables and Attributes",
+         "outcomes": [
+          {
+           "code": "3.1.A.3",
+           "text": "Distinguish attributes, instance variables unique to objects, and class variables shared by all instances."
+          }
+         ]
+        },
+        {
+         "id": "breaking-behaviors-apart",
+         "title": "Breaking Behaviors Apart",
+         "outcomes": [
+          {
+           "code": "3.1.A.4",
+           "text": "Use procedural abstraction and method decomposition to break behaviors into reusable, smaller operations."
+          },
+          {
+           "code": "3.1.A.5",
+           "text": "Use parameters to generalize procedures for reuse with different input values."
+          }
+         ]
+        },
+        {
+         "id": "changing-implementations-safely",
+         "title": "Changing Implementations Safely",
+         "outcomes": [
+          {
+           "code": "3.1.A.6",
+           "text": "Change a method’s implementation without affecting users when its signature and behavior remain unchanged."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "3-2-impact-of-program-design",
+       "title": "3.2 Impact of Program Design",
+       "subtopics": [
+        {
+         "id": "computing-s-social-impact",
+         "title": "Computing’s Social Impact",
+         "outcomes": [
+          {
+           "code": "3.2.A",
+           "text": "Explain social and ethical implications of computing systems."
+          },
+          {
+           "code": "3.2.A.2",
+           "text": "Recognize that programs can produce beneficial or harmful effects on society, the economy, and culture."
+          }
+         ]
+        },
+        {
+         "id": "reliable-programs",
+         "title": "Reliable Programs",
+         "outcomes": [
+          {
+           "code": "3.2.A.1",
+           "text": "Understand system reliability as performing expected tasks under stated conditions, and maximize it through varied testing."
+          }
+         ]
+        },
+        {
+         "id": "reusing-code-legally",
+         "title": "Reusing Code Legally",
+         "outcomes": [
+          {
+           "code": "3.2.A.3",
+           "text": "Recognize legal and intellectual-property requirements when reusing code that is not openly licensed."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "3-3-anatomy-of-a-class",
+       "title": "3.3 Anatomy of a Class",
+       "subtopics": [
+        {
+         "id": "writing-a-class",
+         "title": "Writing a Class",
+         "outcomes": [
+          {
+           "code": "3.3.A",
+           "text": "Write classes, data, constructors, and methods with appropriate visibility and access restrictions."
+          },
+          {
+           "code": "3.3.A.2",
+           "text": "Declare course classes as public using the class keyword."
+          },
+          {
+           "code": "3.3.A.3",
+           "text": "Declare course constructors as public."
+          }
+         ]
+        },
+        {
+         "id": "encapsulation-and-access",
+         "title": "Encapsulation and Access",
+         "outcomes": [
+          {
+           "code": "3.3.A.1",
+           "text": "Use encapsulation to hide implementation details, applying public and private access appropriately."
+          },
+          {
+           "code": "3.3.A.5",
+           "text": "Usually declare instance variables private to preserve encapsulation."
+          },
+          {
+           "code": "3.3.A.6",
+           "text": "Distinguish public methods accessible internally and externally from private methods accessible only internally."
+          }
+         ]
+        },
+        {
+         "id": "object-instance-variables",
+         "title": "Object Instance Variables",
+         "outcomes": [
+          {
+           "code": "3.3.A.4",
+           "text": "Understand that each object owns its own copy of instance variables."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "3-4-constructors",
+       "title": "3.4 Constructors",
+       "subtopics": [
+        {
+         "id": "constructors-and-object-state",
+         "title": "Constructors and Object State",
+         "outcomes": [
+          {
+           "code": "3.4.A",
+           "text": "Write constructors that initialize instance variables representing an object’s attributes."
+          },
+          {
+           "code": "3.4.A.1",
+           "text": "Understand object state as the current values of its instance variables."
+          },
+          {
+           "code": "3.4.A.2",
+           "text": "Use constructors to allocate objects and establish initial instance-variable values, optionally from parameters."
+          }
+         ]
+        },
+        {
+         "id": "copying-mutable-arguments",
+         "title": "Copying Mutable Arguments",
+         "outcomes": [
+          {
+           "code": "3.4.A.3",
+           "text": "Copy mutable constructor arguments when initializing instance variables to prevent unintended changes to the original object."
+          }
+         ]
+        },
+        {
+         "id": "default-constructors-and-values",
+         "title": "Default Constructors and Values",
+         "outcomes": [
+          {
+           "code": "3.4.A.4",
+           "text": "Understand that Java supplies a no-parameter default constructor when none is written."
+          },
+          {
+           "code": "3.4.A.5",
+           "text": "Know default values: 0 for int, 0.0 for double, false for boolean, and null for references."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "3-5-methods-how-to-write-them",
+       "title": "3.5 Methods: How to Write Them",
+       "subtopics": [
+        {
+         "id": "writing-and-calling-methods",
+         "title": "Writing and Calling Methods",
+         "outcomes": [
+          {
+           "code": "3.5.A",
+           "text": "Write methods using primitive values and determine their results when called."
+          },
+          {
+           "code": "3.5.A.7",
+           "text": "Use parameter values within methods to perform their intended tasks."
+          }
+         ]
+        },
+        {
+         "id": "void-and-value-returns",
+         "title": "Void and Value Returns",
+         "outcomes": [
+          {
+           "code": "3.5.A.1",
+           "text": "Recognize that void methods do not return values and include void in their headers."
+          },
+          {
+           "code": "3.5.A.2",
+           "text": "Recognize that non-void methods return one value and specify its type in the header."
+          },
+          {
+           "code": "3.5.A.3",
+           "text": "Return an expression compatible with a non-void method’s declared return type."
+          }
+         ]
+        },
+        {
+         "id": "returning-from-methods",
+         "title": "Returning from Methods",
+         "outcomes": [
+          {
+           "code": "3.5.A.4",
+           "text": "Use return to exit a method or constructor; later statements and enclosing control flow may not execute."
+          }
+         ]
+        },
+        {
+         "id": "accessor-and-mutator-methods",
+         "title": "Accessor and Mutator Methods",
+         "outcomes": [
+          {
+           "code": "3.5.A.5",
+           "text": "Understand accessor methods as non-void methods that provide copies of variable values."
+          },
+          {
+           "code": "3.5.A.6",
+           "text": "Understand mutator methods as methods that change instance or class variable values, often returning void."
+          }
+         ]
+        },
+        {
+         "id": "primitive-parameter-copies",
+         "title": "Primitive Parameter Copies",
+         "outcomes": [
+          {
+           "code": "3.5.A.8",
+           "text": "Understand that primitive arguments initialize parameters with copies, so parameter changes do not affect arguments."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "3-6-methods-passing-and-returning-references-of-",
+       "title": "3.6 Methods: Passing and Returning References of Objects",
+       "subtopics": [
+        {
+         "id": "using-object-references",
+         "title": "Using Object References",
+         "outcomes": [
+          {
+           "code": "3.6.A",
+           "text": "Write methods using object references and determine their results when called."
+          },
+          {
+           "code": "3.6.A.1",
+           "text": "Understand that object-reference parameters alias the same object and can change mutable object state."
+          }
+         ]
+        },
+        {
+         "id": "returning-object-references",
+         "title": "Returning Object References",
+         "outcomes": [
+          {
+           "code": "3.6.A.2",
+           "text": "Understand that returning an object expression returns its reference, not a newly copied object."
+          }
+         ]
+        },
+        {
+         "id": "accessing-referenced-members",
+         "title": "Accessing Referenced Members",
+         "outcomes": [
+          {
+           "code": "3.6.A.3",
+           "text": "Access private members of a referenced parameter only when its type matches the enclosing class."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "3-7-class-variables-and-methods",
+       "title": "3.7 Class Variables and Methods",
+       "subtopics": [
+        {
+         "id": "writing-class-methods",
+         "title": "Writing Class Methods",
+         "outcomes": [
+          {
+           "code": "3.7.A",
+           "text": "Write class methods that define class-level behaviors."
+          },
+          {
+           "code": "3.7.A.1",
+           "text": "Understand that class methods need an instance parameter to access instance variables or methods."
+          },
+          {
+           "code": "3.7.A.2",
+           "text": "Understand that class methods can access class variables and call other class methods."
+          }
+         ]
+        },
+        {
+         "id": "shared-class-variables",
+         "title": "Shared Class Variables",
+         "outcomes": [
+          {
+           "code": "3.7.B",
+           "text": "Write declarations for class variables shared by a class’s objects."
+          },
+          {
+           "code": "3.7.B.1",
+           "text": "Declare shared class variables with static; all instances use one copy."
+          },
+          {
+           "code": "3.7.B.2",
+           "text": "Access public class variables externally through the class name and dot operator."
+          }
+         ]
+        },
+        {
+         "id": "final-variables",
+         "title": "Final Variables",
+         "outcomes": [
+          {
+           "code": "3.7.B.3",
+           "text": "Understand that final variables cannot be assigned new values."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "3-8-scope-and-access",
+       "title": "3.8 Scope and Access",
+       "subtopics": [
+        {
+         "id": "understanding-variable-scope",
+         "title": "Understanding Variable Scope",
+         "outcomes": [
+          {
+           "code": "3.8.A",
+           "text": "Explain where variables may be used within a program."
+          },
+          {
+           "code": "3.8.A.1",
+           "text": "Understand that local variables and parameters are usable only within their declaring method, constructor, or block."
+          }
+         ]
+        },
+        {
+         "id": "resolving-name-conflicts",
+         "title": "Resolving Name Conflicts",
+         "outcomes": [
+          {
+           "code": "3.8.A.2",
+           "text": "When names conflict, a local variable or parameter takes precedence over an instance variable."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "3-9-this-keyword",
+       "title": "3.9 this Keyword",
+       "subtopics": [
+        {
+         "id": "using-this-in-objects",
+         "title": "Using this in Objects",
+         "outcomes": [
+          {
+           "code": "3.9.A",
+           "text": "Write self-referencing expressions and determine their results."
+          },
+          {
+           "code": "3.9.A.1",
+           "text": "Within an instance method or constructor, this refers to the object whose code is executing."
+          },
+          {
+           "code": "3.9.A.2",
+           "text": "Use this to pass the current object as an argument in a method call."
+          }
+         ]
+        },
+        {
+         "id": "this-in-class-methods",
+         "title": "this in Class Methods",
+         "outcomes": [
+          {
+           "code": "3.9.A.3",
+           "text": "Recognize that class methods do not have access to a this reference."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "unit-4-data-collections",
+     "title": "Unit 4: Data Collections",
+     "topics": [
+      {
+       "id": "4-1-ethical-and-social-issues-around-data-collec",
+       "title": "4.1 Ethical and Social Issues Around Data Collection",
+       "subtopics": [
+        {
+         "id": "privacy-and-data-protection",
+         "title": "Privacy and Data Protection",
+         "outcomes": [
+          {
+           "code": "4.1.A",
+           "text": "Explain privacy risks when personal data is collected and stored on computer systems."
+          },
+          {
+           "code": "4.1.A.1",
+           "text": "Personal privacy can be endangered by computer use, so programs should protect users’ personal information."
+          }
+         ]
+        },
+        {
+         "id": "data-quality-and-bias",
+         "title": "Data Quality and Bias",
+         "outcomes": [
+          {
+           "code": "4.1.B",
+           "text": "Explain why data quality and possible problems must be considered when using a data set."
+          },
+          {
+           "code": "4.1.B.1",
+           "text": "Algorithmic bias consists of systematic, repeated programming errors that produce unfair outcomes for a particular user group."
+          },
+          {
+           "code": "4.1.B.2",
+           "text": "Consider how data-collection methods and their possible biases affect extrapolations and conclusions."
+          },
+          {
+           "code": "4.1.B.3",
+           "text": "Recognize that incomplete or inaccurate data can make programs incorrect or inefficient."
+          }
+         ]
+        },
+        {
+         "id": "choosing-suitable-data",
+         "title": "Choosing Suitable Data",
+         "outcomes": [
+          {
+           "code": "4.1.C",
+           "text": "Select a suitable data set for solving a problem or answering a particular question."
+          },
+          {
+           "code": "4.1.C.1",
+           "text": "A data set may fit one question or topic but be unsuitable for answering or extrapolating to another."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "4-2-introduction-to-using-data-sets",
+       "title": "4.2 Introduction to Using Data Sets",
+       "subtopics": [
+        {
+         "id": "data-sets-and-their-uses",
+         "title": "Data Sets and Their Uses",
+         "outcomes": [
+          {
+           "code": "4.2.A",
+           "text": "Represent everyday data-set patterns and algorithms using written descriptions or diagrams."
+          },
+          {
+           "code": "4.2.A.1",
+           "text": "A data set is a collection of specific information or data."
+          },
+          {
+           "code": "4.2.A.2",
+           "text": "Data sets can be analyzed and manipulated by processing individual values to solve problems or answer questions."
+          }
+         ]
+        },
+        {
+         "id": "tables-charts-and-algorithms",
+         "title": "Tables Charts and Algorithms",
+         "outcomes": [
+          {
+           "code": "4.2.A.3",
+           "text": "Charts and tables can depict data and help plan algorithms for manipulating it."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "4-3-array-creation-and-access",
+       "title": "4.3 Array Creation and Access",
+       "subtopics": [
+        {
+         "id": "creating-one-dimensional-arrays",
+         "title": "Creating One-Dimensional Arrays",
+         "outcomes": [
+          {
+           "code": "4.3.A",
+           "text": "Write code representing related collections with one-dimensional array objects."
+          },
+          {
+           "code": "4.3.A.1",
+           "text": "An array holds multiple values of one type, either primitive values or object references."
+          },
+          {
+           "code": "4.3.A.2",
+           "text": "An array’s fixed length is set at creation and retrieved through its length attribute."
+          },
+          {
+           "code": "4.3.A.3",
+           "text": "New arrays initialize elements with type-specific defaults: 0, 0.0, false, or null."
+          },
+          {
+           "code": "4.3.A.4",
+           "text": "Initializer lists can create and initialize arrays."
+          }
+         ]
+        },
+        {
+         "id": "accessing-array-elements",
+         "title": "Accessing Array Elements",
+         "outcomes": [
+          {
+           "code": "4.3.A.5",
+           "text": "Use square-bracket indices to access or change one-dimensional array elements."
+          },
+          {
+           "code": "4.3.A.6",
+           "text": "Valid array indices range from zero through length minus one; other indices cause ArrayIndexOutOfBoundsException."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "4-4-array-traversals",
+       "title": "4.4 Array Traversals",
+       "subtopics": [
+        {
+         "id": "indexed-array-traversals",
+         "title": "Indexed Array Traversals",
+         "outcomes": [
+          {
+           "code": "4.4.A",
+           "text": "Write traversals of one-dimensional arrays and determine their results."
+          },
+          {
+           "code": "4.4.A.1",
+           "text": "Array traversal uses repetition to access all elements or an ordered sequence of elements."
+          },
+          {
+           "code": "4.4.A.2",
+           "text": "Indexed for and while loops access array elements through their indices."
+          }
+         ]
+        },
+        {
+         "id": "enhanced-for-loops",
+         "title": "Enhanced For Loops",
+         "outcomes": [
+          {
+           "code": "4.4.A.3",
+           "text": "An enhanced for loop assigns each element’s copy to a loop variable without using an index."
+          },
+          {
+           "code": "4.4.A.4",
+           "text": "Changing an enhanced for loop variable does not alter the corresponding array element."
+          },
+          {
+           "code": "4.4.A.5",
+           "text": "For object-reference arrays, methods called through the enhanced loop variable can modify objects, not stored references."
+          }
+         ]
+        },
+        {
+         "id": "rewriting-array-traversals",
+         "title": "Rewriting Array Traversals",
+         "outcomes": [
+          {
+           "code": "4.4.A.6",
+           "text": "Rewrite an enhanced for traversal as an indexed for loop or while loop."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "4-5-implementing-array-algorithms",
+       "title": "4.5 Implementing Array Algorithms",
+       "subtopics": [
+        {
+         "id": "4-5-implementing-array-algorithms",
+         "title": "4.5 Implementing Array Algorithms",
+         "outcomes": [
+          {
+           "code": "4.5.A",
+           "text": "Develop and evaluate standard or original array algorithms for a specified context."
+          },
+          {
+           "code": "4.5.A.1",
+           "text": "Array-traversal algorithms can find extrema, calculate sums or averages, test properties, count matches, inspect pairs, detect duplicates, shift, rotate, or reverse elements."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "4-6-using-text-files",
+       "title": "4.6 Using Text Files",
+       "subtopics": [
+        {
+         "id": "open-files-in-java",
+         "title": "Open Files in Java",
+         "outcomes": [
+          {
+           "code": "4.6.A",
+           "text": "Write code that reads data from a text file."
+          },
+          {
+           "code": "4.6.A.1",
+           "text": "A file persistently stores data that programs can retrieve during execution."
+          },
+          {
+           "code": "4.6.A.2",
+           "text": "Connect a file to a program with the File and Scanner classes."
+          },
+          {
+           "code": "4.6.A.3",
+           "text": "Create a File object with the file pathname to open that file for reading."
+          },
+          {
+           "code": "4.6.A.4",
+           "text": "Handle failure to open a file, such as by declaring IOException; an invalid filename terminates the program."
+          },
+          {
+           "code": "4.6.A.5",
+           "text": "Import File and IOException from the java.io package before using them."
+          }
+         ]
+        },
+        {
+         "id": "read-with-scanner",
+         "title": "Read with Scanner",
+         "outcomes": [
+          {
+           "code": "4.6.A.6",
+           "text": "Use Scanner’s file constructor and methods to read typed values, lines, tokens, test availability, and close the scanner."
+          },
+          {
+           "code": "4.6.A.7",
+           "text": "Mixing nextLine with other Scanner methods may require adjustments for their different whitespace handling."
+          }
+         ]
+        },
+        {
+         "id": "split-text-into-parts",
+         "title": "Split Text into Parts",
+         "outcomes": [
+          {
+           "code": "4.6.A.8",
+           "text": "Use String.split to produce substrings separated around matches of a specified delimiter expression."
+          }
+         ]
+        },
+        {
+         "id": "finish-reading-files",
+         "title": "Finish Reading Files",
+         "outcomes": [
+          {
+           "code": "4.6.A.9",
+           "text": "Use hasNext as a while-loop condition to detect whether a file has more elements."
+          },
+          {
+           "code": "4.6.A.10",
+           "text": "Close the Scanner when finished reading the file."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "4-7-wrapper-classes",
+       "title": "4.7 Wrapper Classes",
+       "subtopics": [
+        {
+         "id": "wrapper-objects-and-conversions",
+         "title": "Wrapper Objects and Conversions",
+         "outcomes": [
+          {
+           "code": "4.7.A",
+           "text": "Use Integer and Double wrapper objects and determine the results of using them."
+          },
+          {
+           "code": "4.7.A.1",
+           "text": "Integer and Double objects are immutable classes in java.lang."
+          },
+          {
+           "code": "4.7.A.2",
+           "text": "Autoboxing automatically converts primitives to corresponding wrapper objects when required by assignments or method parameters."
+          },
+          {
+           "code": "4.7.A.3",
+           "text": "Unboxing automatically converts wrapper objects to corresponding primitives for assignments or method parameters."
+          }
+         ]
+        },
+        {
+         "id": "parsing-numeric-strings",
+         "title": "Parsing Numeric Strings",
+         "outcomes": [
+          {
+           "code": "4.7.A.4",
+           "text": "Integer.parseInt converts a String argument into an int."
+          },
+          {
+           "code": "4.7.A.5",
+           "text": "Double.parseDouble converts a String argument into a double."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "4-8-arraylist-methods",
+       "title": "4.8 ArrayList Methods",
+       "subtopics": [
+        {
+         "id": "use-arraylist-methods",
+         "title": "Use ArrayList Methods",
+         "outcomes": [
+          {
+           "code": "4.8.A",
+           "text": "Write code using ArrayList collections and predict the results of calling their methods."
+          }
+         ]
+        },
+        {
+         "id": "create-arraylists",
+         "title": "Create ArrayLists",
+         "outcomes": [
+          {
+           "code": "4.8.A.1",
+           "text": "Understand that ArrayList objects can change size and store references to objects."
+          },
+          {
+           "code": "4.8.A.2",
+           "text": "Know that ArrayList() creates an empty list."
+          },
+          {
+           "code": "4.8.A.3",
+           "text": "Use generic ArrayList<E> types to specify element, parameter, and return types and catch errors during compilation."
+          },
+          {
+           "code": "4.8.A.4",
+           "text": "Import ArrayList from the java.util package before using it."
+          }
+         ]
+        },
+        {
+         "id": "arraylist-methods-and-indices",
+         "title": "ArrayList Methods and Indices",
+         "outcomes": [
+          {
+           "code": "4.8.A.5",
+           "text": "Know how ArrayList size, add, get, set, and remove methods behave and what they return."
+          },
+          {
+           "code": "4.8.A.6",
+           "text": "Use ArrayList indices from zero through one less than the list size."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "4-9-arraylist-traversals",
+       "title": "4.9 ArrayList Traversals",
+       "subtopics": [
+        {
+         "id": "traversing-arraylists",
+         "title": "Traversing ArrayLists",
+         "outcomes": [
+          {
+           "code": "4.9.A",
+           "text": "Write ArrayList traversals and determine their results."
+          },
+          {
+           "code": "4.9.A.1",
+           "text": "Traverse an ArrayList by iterating or recursively accessing all or an ordered sequence of elements."
+          }
+         ]
+        },
+        {
+         "id": "changing-lists-during-traversal",
+         "title": "Changing Lists During Traversal",
+         "outcomes": [
+          {
+           "code": "4.9.A.2",
+           "text": "Use techniques that prevent skipped elements when deleting during an ArrayList traversal."
+          },
+          {
+           "code": "4.9.A.3",
+           "text": "Recognize that an invalid ArrayList index causes an IndexOutOfBoundsException."
+          },
+          {
+           "code": "4.9.A.4",
+           "text": "Avoid adding or removing elements during enhanced-for traversal because changing size can cause ConcurrentModificationException."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "4-10-implementing-arraylist-algorithms",
+       "title": "4.10 Implementing ArrayList Algorithms",
+       "subtopics": [
+        {
+         "id": "arraylist-algorithm-patterns",
+         "title": "ArrayList Algorithm Patterns",
+         "outcomes": [
+          {
+           "code": "4.10.A",
+           "text": "Develop and evaluate standard or original algorithms involving ArrayList traversals."
+          },
+          {
+           "code": "4.10.A.1",
+           "text": "Use ArrayList traversals for extrema, aggregates, property tests, counting, pairs, duplicates, shifts, reversals, insertion, and deletion."
+          }
+         ]
+        },
+        {
+         "id": "traversing-multiple-collections",
+         "title": "Traversing Multiple Collections",
+         "outcomes": [
+          {
+           "code": "4.10.A.2",
+           "text": "Traverse multiple String, array, or ArrayList objects simultaneously when an algorithm requires it."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "4-11-2d-array-creation-and-access",
+       "title": "4.11 2D Array Creation and Access",
+       "subtopics": [
+        {
+         "id": "create-2d-arrays",
+         "title": "Create 2D Arrays",
+         "outcomes": [
+          {
+           "code": "4.11.A",
+           "text": "Write code representing related data with two-dimensional array objects."
+          },
+          {
+           "code": "4.11.A.3",
+           "text": "Create and initialize 2D arrays with nested initializer lists representing rows."
+          }
+         ]
+        },
+        {
+         "id": "understand-2d-arrays",
+         "title": "Understand 2D Arrays",
+         "outcomes": [
+          {
+           "code": "4.11.A.1",
+           "text": "Understand 2D arrays as arrays of arrays with fixed size that can store primitives or object references."
+          },
+          {
+           "code": "4.11.A.2",
+           "text": "Know that newly created 2D array elements receive type-specific default values."
+          }
+         ]
+        },
+        {
+         "id": "access-rows-and-elements",
+         "title": "Access Rows and Elements",
+         "outcomes": [
+          {
+           "code": "4.11.A.4",
+           "text": "Use row and column indices to access or modify 2D array elements."
+          },
+          {
+           "code": "4.11.A.5",
+           "text": "Access a complete row of a 2D array using the array name and row index."
+          }
+         ]
+        },
+        {
+         "id": "use-length-and-indices",
+         "title": "Use Length and Indices",
+         "outcomes": [
+          {
+           "code": "4.11.A.6",
+           "text": "Use length to determine valid row and column indices and recognize invalid indices as exceptions."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "4-12-2d-array-traversals",
+       "title": "4.12 2D Array Traversals",
+       "subtopics": [
+        {
+         "id": "traverse-2d-arrays",
+         "title": "Traverse 2D Arrays",
+         "outcomes": [
+          {
+           "code": "4.12.A",
+           "text": "Write 2D array traversals and determine their results."
+          },
+          {
+           "code": "4.12.A.1",
+           "text": "Use nested iteration to traverse 2D arrays in row-major, column-major, or other specified orders."
+          }
+         ]
+        },
+        {
+         "id": "use-enhanced-for-loops",
+         "title": "Use Enhanced For Loops",
+         "outcomes": [
+          {
+           "code": "4.12.A.2",
+           "text": "Use correctly typed variables in nested enhanced-for loops and understand that changing loop variables does not modify array elements."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "4-13-implementing-2d-array-algorithms",
+       "title": "4.13 Implementing 2D Array Algorithms",
+       "subtopics": [
+        {
+         "id": "4-13-implementing-2d-array-algorithms",
+         "title": "4.13 Implementing 2D Array Algorithms",
+         "outcomes": [
+          {
+           "code": "4.13.A",
+           "text": "Develop and evaluate standard or original algorithms involving 2D array traversals."
+          },
+          {
+           "code": "4.13.A.1",
+           "text": "Use 2D traversals for extrema, aggregates, property tests, counting, pairs, duplicates, shifts, rotations, and reversals."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "4-14-searching-algorithms",
+       "title": "4.14 Searching Algorithms",
+       "subtopics": [
+        {
+         "id": "linear-search-basics",
+         "title": "Linear Search Basics",
+         "outcomes": [
+          {
+           "code": "4.14.A",
+           "text": "Write linear searches for information in collections and determine their results."
+          },
+          {
+           "code": "4.14.A.1",
+           "text": "Understand linear searches that check array or ArrayList elements sequentially from either end."
+          }
+         ]
+        },
+        {
+         "id": "search-2d-arrays",
+         "title": "Search 2D Arrays",
+         "outcomes": [
+          {
+           "code": "4.14.A.2",
+           "text": "Search a 2D array linearly by processing each row in turn."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "4-15-sorting-algorithms",
+       "title": "4.15 Sorting Algorithms",
+       "subtopics": [
+        {
+         "id": "recognize-sorting-algorithms",
+         "title": "Recognize Sorting Algorithms",
+         "outcomes": [
+          {
+           "code": "4.15.A",
+           "text": "Determine the result of each step when sorting collection elements."
+          },
+          {
+           "code": "4.15.A.1",
+           "text": "Recognize selection sort and insertion sort as iterative algorithms for arrays and ArrayLists."
+          }
+         ]
+        },
+        {
+         "id": "understand-selection-sort",
+         "title": "Understand Selection Sort",
+         "outcomes": [
+          {
+           "code": "4.15.A.2",
+           "text": "Understand selection sort selecting an extreme unsorted element and swapping it into its final position."
+          }
+         ]
+        },
+        {
+         "id": "understand-insertion-sort",
+         "title": "Understand Insertion Sort",
+         "outcomes": [
+          {
+           "code": "4.15.A.3",
+           "text": "Understand insertion sort shifting sorted elements to insert an unsorted element into its appropriate position."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "4-16-recursion",
+       "title": "4.16 Recursion",
+       "subtopics": [
+        {
+         "id": "understand-recursive-methods",
+         "title": "Understand Recursive Methods",
+         "outcomes": [
+          {
+           "code": "4.16.A",
+           "text": "Determine the results of calling recursive methods."
+          },
+          {
+           "code": "4.16.A.1",
+           "text": "Understand that recursive methods call themselves, include a stopping base case, and contain a recursive call."
+          }
+         ]
+        },
+        {
+         "id": "track-recursive-calls",
+         "title": "Track Recursive Calls",
+         "outcomes": [
+          {
+           "code": "4.16.A.2",
+           "text": "Understand that each recursive call has separate local variables and parameters tracking process progress."
+          }
+         ]
+        },
+        {
+         "id": "compare-recursion-and-iteration",
+         "title": "Compare Recursion and Iteration",
+         "outcomes": [
+          {
+           "code": "4.16.A.3",
+           "text": "Recognize that recursive and iterative approaches can implement equivalent solutions."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "4-17-recursive-searching-and-sorting",
+       "title": "4.17 Recursive Searching and Sorting",
+       "subtopics": [
+        {
+         "id": "trace-recursive-algorithms",
+         "title": "Trace Recursive Algorithms",
+         "outcomes": [
+          {
+           "code": "4.17.A",
+           "text": "Determine the result of executing recursive algorithms that use strings or collections."
+          },
+          {
+           "code": "4.17.A.1",
+           "text": "Recursion can traverse String objects, arrays, and ArrayList objects."
+          }
+         ]
+        },
+        {
+         "id": "understand-binary-search",
+         "title": "Understand Binary Search",
+         "outcomes": [
+          {
+           "code": "4.17.B",
+           "text": "Determine the result of each iteration of a binary search algorithm used on a collection."
+          },
+          {
+           "code": "4.17.B.1",
+           "text": "Binary search requires sorted data, examines the middle, and recursively eliminates half the remaining collection."
+          },
+          {
+           "code": "4.17.B.2",
+           "text": "Binary search is generally more efficient than linear search."
+          },
+          {
+           "code": "4.17.B.3",
+           "text": "Binary search may be implemented iteratively or recursively."
+          }
+         ]
+        },
+        {
+         "id": "understand-merge-sort",
+         "title": "Understand Merge Sort",
+         "outcomes": [
+          {
+           "code": "4.17.C",
+           "text": "Determine the result of each iteration of merge sort when sorting a collection."
+          },
+          {
+           "code": "4.17.C.1",
+           "text": "Merge sort recursively sorts elements in an array or ArrayList."
+          },
+          {
+           "code": "4.17.C.2",
+           "text": "Merge sort repeatedly splits arrays into single-element subarrays, then merges them into sorted order."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "build": {
+  "builtAt": "2026-10-14T07:54:52.785Z",
+  "model": "gpt-5.6-luna",
+  "usd": 0.0423,
+  "expectedCodes": 296,
+  "coverage": 1,
+  "missingCodes": [],
+  "counts": {
+   "grades": 1,
+   "units": 4,
+   "topics": 53,
+   "subtopics": 121,
+   "outcomes": 296
+  },
+  "warnings": [
+   "grade 9 has no content",
+   "grade 10 has no content",
+   "grade 11 has no content",
+   "grade 12 has no content",
+   "unexpected grade label \"all\""
+  ]
+ }
+}

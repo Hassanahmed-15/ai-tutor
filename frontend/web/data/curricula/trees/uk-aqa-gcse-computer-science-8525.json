@@ -1,0 +1,1122 @@
+{
+ "id": "uk-aqa-gcse-computer-science-8525",
+ "region": "UK",
+ "framework": "AQA GCSE (9-1)",
+ "board": "AQA",
+ "qualification": "GCSE",
+ "subject": "Computer Science",
+ "syllabusCode": "8525",
+ "gradeSystem": "year",
+ "source": {
+  "urls": [
+   "https://cdn.sanity.io/files/p28bar15/green/28f4f0d160b28d28dce8fb3b50304bbdbd305b1d.pdf"
+  ],
+  "publisher": "AQA",
+  "licence": "Exam board specification, (c) AQA; structure + our own wording only",
+  "firstExam": "2027"
+ },
+ "grades": [
+  {
+   "grade": "Year 10",
+   "units": [
+    {
+     "id": "3-1-fundamentals-of-algorithms",
+     "title": "3.1 Fundamentals of algorithms",
+     "topics": [
+      {
+       "id": "3-1-1-representing-algorithms",
+       "title": "3.1.1 Representing algorithms",
+       "subtopics": [
+        {
+         "id": "algorithms-decomposition-and-abstraction",
+         "title": "Algorithms, decomposition and abstraction",
+         "outcomes": [
+          {
+           "code": "3.1.1",
+           "text": "Explain what an algorithm is, and why a program implements one but is not one."
+          },
+          {
+           "code": "3.1",
+           "text": "Explain decomposition as splitting a problem into sub-problems."
+          },
+          {
+           "code": null,
+           "text": "Explain abstraction as removing unnecessary detail."
+          }
+         ]
+        },
+        {
+         "id": "writing-and-reading-algorithms",
+         "title": "Writing and reading algorithms",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Create algorithms systematically using pseudo-code, program code and flowcharts."
+          },
+          {
+           "code": null,
+           "text": "Identify the inputs, processing and outputs in a simple algorithm."
+          },
+          {
+           "code": null,
+           "text": "Work out an algorithm's purpose using trace tables and inspection."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "3-1-2-efficiency-of-algorithms",
+       "title": "3.1.2 Efficiency of algorithms",
+       "subtopics": [
+        {
+         "id": "comparing-efficiency",
+         "title": "Comparing efficiency",
+         "outcomes": [
+          {
+           "code": "3.1.2",
+           "text": "Recognise that one problem can be solved by several algorithms."
+          },
+          {
+           "code": null,
+           "text": "Compare the time efficiency of algorithms."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "3-1-3-searching-algorithms",
+       "title": "3.1.3 Searching algorithms",
+       "subtopics": [
+        {
+         "id": "searching",
+         "title": "Searching",
+         "outcomes": [
+          {
+           "code": "3.1.3",
+           "text": "Explain how linear search works."
+          },
+          {
+           "code": null,
+           "text": "Explain how binary search works."
+          },
+          {
+           "code": null,
+           "text": "Compare the strengths and weaknesses of linear and binary search."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "3-1-4-sorting-algorithms",
+       "title": "3.1.4 Sorting algorithms",
+       "subtopics": [
+        {
+         "id": "sorting",
+         "title": "Sorting",
+         "outcomes": [
+          {
+           "code": "3.1.4",
+           "text": "Explain how merge sort works."
+          },
+          {
+           "code": null,
+           "text": "Explain how bubble sort works."
+          },
+          {
+           "code": null,
+           "text": "Compare the strengths and weaknesses of merge sort and bubble sort."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "3-2-programming",
+     "title": "3.2 Programming",
+     "topics": [
+      {
+       "id": "3-2-1-data-types",
+       "title": "3.2.1 Data types",
+       "subtopics": [
+        {
+         "id": "data-types",
+         "title": "Data types",
+         "outcomes": [
+          {
+           "code": "3.2.1",
+           "text": "Explain what a data type is."
+          },
+          {
+           "code": "3.2",
+           "text": "Use integer, real, Boolean, character and string types appropriately."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "3-2-2-programming-concepts",
+       "title": "3.2.2 Programming concepts",
+       "subtopics": [
+        {
+         "id": "core-statements",
+         "title": "Core statements",
+         "outcomes": [
+          {
+           "code": "3.2.2",
+           "text": "Combine variable and constant declaration, assignment, iteration, selection and subroutines in programs."
+          },
+          {
+           "code": null,
+           "text": "Explain why named constants and variables are used."
+          }
+         ]
+        },
+        {
+         "id": "iteration-and-nesting",
+         "title": "Iteration and nesting",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Use count-controlled and condition-controlled iteration, with the condition at the start or end."
+          },
+          {
+           "code": null,
+           "text": "Use nested selection and nested iteration."
+          },
+          {
+           "code": null,
+           "text": "Choose meaningful identifier names and explain why."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "3-2-3-arithmetic-operations-in-a-programming-lan",
+       "title": "3.2.3 Arithmetic operations in a programming language",
+       "subtopics": [
+        {
+         "id": "operators",
+         "title": "Operators",
+         "outcomes": [
+          {
+           "code": "3.2.3",
+           "text": "Use addition, subtraction, multiplication, real division, integer division and remainders."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "3-2-4-relational-operations-in-a-programming-lan",
+       "title": "3.2.4 Relational operations in a programming language",
+       "subtopics": [
+        {
+         "id": "operators",
+         "title": "Operators",
+         "outcomes": [
+          {
+           "code": "3.2.4",
+           "text": "Use the six relational operators in programs and read them in algorithms."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "3-2-5-boolean-operations-in-a-programming-langua",
+       "title": "3.2.5 Boolean operations in a programming language",
+       "subtopics": [
+        {
+         "id": "operators",
+         "title": "Operators",
+         "outcomes": [
+          {
+           "code": "3.2.5",
+           "text": "Use NOT, AND and OR, alone and combined, in conditions."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "3-2-6-data-structures",
+       "title": "3.2.6 Data structures",
+       "subtopics": [
+        {
+         "id": "data-structures",
+         "title": "Data structures",
+         "outcomes": [
+          {
+           "code": "3.2.6",
+           "text": "Explain the concept of a data structure."
+          },
+          {
+           "code": null,
+           "text": "Use one- and two-dimensional arrays to solve simple problems."
+          },
+          {
+           "code": null,
+           "text": "Use records to solve simple problems."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "3-2-7-input-output",
+       "title": "3.2.7 Input/output",
+       "subtopics": [
+        {
+         "id": "input-and-output",
+         "title": "Input and output",
+         "outcomes": [
+          {
+           "code": "3.2.7",
+           "text": "Get user input from the keyboard."
+          },
+          {
+           "code": null,
+           "text": "Output data to the display."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "3-2-8-string-handling-operations-in-a-programmin",
+       "title": "3.2.8 String handling operations in a programming language",
+       "subtopics": [
+        {
+         "id": "string-handling",
+         "title": "String handling",
+         "outcomes": [
+          {
+           "code": "3.2.8",
+           "text": "Use string length, position, substring and concatenation."
+          },
+          {
+           "code": null,
+           "text": "Convert between characters and character codes."
+          },
+          {
+           "code": null,
+           "text": "Convert between strings and numbers."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "3-2-9-random-number-generation-in-a-programming-",
+       "title": "3.2.9 Random number generation in a programming language",
+       "subtopics": [
+        {
+         "id": "random-numbers",
+         "title": "Random numbers",
+         "outcomes": [
+          {
+           "code": "3.2.9",
+           "text": "Use random number generation in programs."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "3-2-10-structured-programming-and-subroutines-pr",
+       "title": "3.2.10 Structured programming and subroutines (procedures and functions)",
+       "subtopics": [
+        {
+         "id": "subroutines",
+         "title": "Subroutines",
+         "outcomes": [
+          {
+           "code": "3.2.10",
+           "text": "Explain what a subroutine is and the advantages of using them."
+          },
+          {
+           "code": null,
+           "text": "Pass data into subroutines with parameters, including more than one."
+          },
+          {
+           "code": null,
+           "text": "Use subroutines that return values to the caller."
+          },
+          {
+           "code": null,
+           "text": "Use local variables and explain why that is good practice."
+          }
+         ]
+        },
+        {
+         "id": "structured-approach",
+         "title": "Structured approach",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe the structured approach to programming."
+          },
+          {
+           "code": null,
+           "text": "Explain the advantages of the structured approach."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "3-2-11-robust-and-secure-programming",
+       "title": "3.2.11 Robust and secure programming",
+       "subtopics": [
+        {
+         "id": "validation-and-authentication",
+         "title": "Validation and authentication",
+         "outcomes": [
+          {
+           "code": "3.2.11",
+           "text": "Write simple data validation routines such as length, empty and range checks."
+          },
+          {
+           "code": null,
+           "text": "Write a simple username and password authentication routine."
+          }
+         ]
+        },
+        {
+         "id": "testing-and-errors",
+         "title": "Testing and errors",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain what testing is for algorithms and programs, and correct errors."
+          },
+          {
+           "code": null,
+           "text": "Describe normal, boundary and erroneous test data."
+          },
+          {
+           "code": null,
+           "text": "Choose and justify suitable test data for a problem."
+          },
+          {
+           "code": null,
+           "text": "Tell syntax errors from logic errors and categorise errors in code."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "3-3-fundamentals-of-data-representation",
+     "title": "3.3 Fundamentals of data representation",
+     "topics": [
+      {
+       "id": "3-3-1-number-bases",
+       "title": "3.3.1 Number bases",
+       "subtopics": [
+        {
+         "id": "number-bases",
+         "title": "Number bases",
+         "outcomes": [
+          {
+           "code": "3.3.1",
+           "text": "Explain decimal, binary and hexadecimal."
+          },
+          {
+           "code": "3.3",
+           "text": "Explain that computers use binary for all data and instructions."
+          },
+          {
+           "code": null,
+           "text": "Explain why hexadecimal is often used."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "3-3-2-converting-between-number-bases",
+       "title": "3.3.2 Converting between number bases",
+       "subtopics": [
+        {
+         "id": "converting-bases",
+         "title": "Converting bases",
+         "outcomes": [
+          {
+           "code": "3.3.2",
+           "text": "Represent whole numbers 0-255 in binary."
+          },
+          {
+           "code": null,
+           "text": "Represent whole numbers 0-255 in hexadecimal."
+          },
+          {
+           "code": null,
+           "text": "Convert between binary, decimal and hexadecimal in both directions."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "3-3-3-units-of-information",
+       "title": "3.3.3 Units of information",
+       "subtopics": [
+        {
+         "id": "units-of-information",
+         "title": "Units of information",
+         "outcomes": [
+          {
+           "code": "3.3.3",
+           "text": "State that a bit is the basic unit and a byte is 8 bits."
+          },
+          {
+           "code": null,
+           "text": "Use decimal prefixes kilo, mega, giga and tera, and compare byte quantities."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "3-3-4-binary-arithmetic",
+       "title": "3.3.4 Binary arithmetic",
+       "subtopics": [
+        {
+         "id": "binary-arithmetic",
+         "title": "Binary arithmetic",
+         "outcomes": [
+          {
+           "code": "3.3.4",
+           "text": "Add up to three binary numbers of up to 8 bits."
+          },
+          {
+           "code": null,
+           "text": "Apply a logical binary shift to an 8-bit number."
+          },
+          {
+           "code": null,
+           "text": "Describe how binary shifts multiply and divide by powers of 2."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "3-3-5-character-encoding",
+       "title": "3.3.5 Character encoding",
+       "subtopics": [
+        {
+         "id": "character-encoding",
+         "title": "Character encoding",
+         "outcomes": [
+          {
+           "code": "3.3.5",
+           "text": "Explain character sets and describe 7-bit ASCII and Unicode."
+          },
+          {
+           "code": null,
+           "text": "Convert between characters and codes using a table, and explain that codes run in sequence."
+          },
+          {
+           "code": null,
+           "text": "Explain why Unicode beats ASCII and that it matches ASCII up to 127."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "3-3-6-representing-images",
+       "title": "3.3.6 Representing images",
+       "subtopics": [
+        {
+         "id": "bitmaps",
+         "title": "Bitmaps",
+         "outcomes": [
+          {
+           "code": "3.3.6",
+           "text": "Explain pixels and how they make up a displayed image."
+          },
+          {
+           "code": null,
+           "text": "Describe bitmap size and colour depth."
+          },
+          {
+           "code": null,
+           "text": "Explain how pixel count and colour depth affect file size."
+          }
+         ]
+        },
+        {
+         "id": "image-calculations",
+         "title": "Image calculations",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Calculate bitmap file sizes from pixels and colour depth."
+          },
+          {
+           "code": null,
+           "text": "Turn binary data into a bitmap and a bitmap into binary."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "3-3-7-representing-sound",
+       "title": "3.3.7 Representing sound",
+       "subtopics": [
+        {
+         "id": "digital-sound",
+         "title": "Digital sound",
+         "outcomes": [
+          {
+           "code": "3.3.7",
+           "text": "Explain that sound is analogue and must be digitised by sampling."
+          },
+          {
+           "code": null,
+           "text": "Describe sampling rate and sample resolution."
+          },
+          {
+           "code": null,
+           "text": "Calculate sound file sizes."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "3-3-8-data-compression",
+       "title": "3.3.8 Data compression",
+       "subtopics": [
+        {
+         "id": "huffman-coding",
+         "title": "Huffman coding",
+         "outcomes": [
+          {
+           "code": "3.3.8",
+           "text": "Explain what compression is and why it is used."
+          },
+          {
+           "code": null,
+           "text": "Explain Huffman coding and interpret Huffman trees."
+          },
+          {
+           "code": null,
+           "text": "Calculate bits needed with Huffman coding and uncompressed ASCII."
+          }
+         ]
+        },
+        {
+         "id": "run-length-encoding",
+         "title": "Run length encoding",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain run length encoding."
+          },
+          {
+           "code": null,
+           "text": "Write data as RLE frequency and value pairs."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "3-4-computer-systems",
+     "title": "3.4 Computer systems",
+     "topics": [
+      {
+       "id": "3-4-1-hardware-and-software",
+       "title": "3.4.1 Hardware and software",
+       "subtopics": [
+        {
+         "id": "hardware-and-software",
+         "title": "Hardware and software",
+         "outcomes": [
+          {
+           "code": "3.4.1",
+           "text": "Define hardware and software and how they relate."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "3-4-2-boolean-logic",
+       "title": "3.4.2 Boolean logic",
+       "subtopics": [
+        {
+         "id": "truth-tables",
+         "title": "Truth tables",
+         "outcomes": [
+          {
+           "code": "3.4.2",
+           "text": "Build truth tables for NOT, AND, OR and XOR gates."
+          },
+          {
+           "code": "3.4",
+           "text": "Build truth tables for circuits of up to three inputs and interpret them."
+          }
+         ]
+        },
+        {
+         "id": "circuits-and-expressions",
+         "title": "Circuits and expressions",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Create, modify and interpret simple logic circuit diagrams."
+          },
+          {
+           "code": null,
+           "text": "Write and read Boolean expressions using NOT, AND, OR and XOR."
+          },
+          {
+           "code": null,
+           "text": "Move between a circuit and its Boolean expression."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "3-4-3-software-classification",
+       "title": "3.4.3 Software classification",
+       "subtopics": [
+        {
+         "id": "system-and-application-software",
+         "title": "System and application software",
+         "outcomes": [
+          {
+           "code": "3.4.3",
+           "text": "Explain system and application software with examples."
+          },
+          {
+           "code": null,
+           "text": "Explain why operating systems and utility programs exist and what they do."
+          },
+          {
+           "code": null,
+           "text": "Describe how the OS manages processors, memory, devices, applications and security."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "3-4-4-classification-of-programming-languages-an",
+       "title": "3.4.4 Classification of programming languages and translators",
+       "subtopics": [
+        {
+         "id": "language-levels",
+         "title": "Language levels",
+         "outcomes": [
+          {
+           "code": "3.4.4",
+           "text": "Tell low-level from high-level languages and why most programs use high-level."
+          },
+          {
+           "code": null,
+           "text": "Explain machine code and assembly language, including the one-to-one link."
+          },
+          {
+           "code": null,
+           "text": "Weigh advantages and disadvantages of low-level against high-level programming."
+          }
+         ]
+        },
+        {
+         "id": "translators",
+         "title": "Translators",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain that high-level and assembly code must be translated."
+          },
+          {
+           "code": null,
+           "text": "Tell interpreters, compilers and assemblers apart and when to use each."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "Year 11",
+   "units": [
+    {
+     "id": "3-4-computer-systems",
+     "title": "3.4 Computer systems",
+     "topics": [
+      {
+       "id": "3-4-5-systems-architecture",
+       "title": "3.4.5 Systems architecture",
+       "subtopics": [
+        {
+         "id": "cpu-and-fetch-execute",
+         "title": "CPU and fetch-execute",
+         "outcomes": [
+          {
+           "code": "3.4.5",
+           "text": "Explain main memory and the ALU, control unit, clock, registers and bus."
+          },
+          {
+           "code": null,
+           "text": "Explain how clock speed, cores and cache size affect CPU performance."
+          },
+          {
+           "code": null,
+           "text": "Explain the fetch-execute cycle."
+          }
+         ]
+        },
+        {
+         "id": "memory-and-storage",
+         "title": "Memory and storage",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain RAM, ROM, cache and register memory and their uses."
+          },
+          {
+           "code": null,
+           "text": "Distinguish main memory from secondary storage, and RAM from ROM, including volatility."
+          },
+          {
+           "code": null,
+           "text": "Explain why secondary storage is needed."
+          }
+         ]
+        },
+        {
+         "id": "storage-types",
+         "title": "Storage types",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain solid state and magnetic storage and compare them."
+          },
+          {
+           "code": null,
+           "text": "Explain cloud storage and compare it with local storage."
+          },
+          {
+           "code": null,
+           "text": "Explain embedded systems and how they differ from non-embedded ones."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "3-5-fundamentals-of-computer-networks",
+     "title": "3.5 Fundamentals of computer networks",
+     "topics": [
+      {
+       "id": "3-5-fundamentals-of-computer-networks",
+       "title": "3.5 Fundamentals of computer networks",
+       "subtopics": [
+        {
+         "id": "network-types",
+         "title": "Network types",
+         "outcomes": [
+          {
+           "code": "3.5",
+           "text": "Define a network and weigh its advantages and disadvantages."
+          },
+          {
+           "code": null,
+           "text": "Describe PANs, LANs and WANs."
+          },
+          {
+           "code": null,
+           "text": "Compare wired and wireless networks and cable types."
+          }
+         ]
+        },
+        {
+         "id": "protocols",
+         "title": "Protocols",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Define a network protocol."
+          },
+          {
+           "code": null,
+           "text": "Explain the purpose of TCP, IP, HTTP, HTTPS, SMTP and IMAP."
+          }
+         ]
+        },
+        {
+         "id": "network-security",
+         "title": "Network security",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain why network security matters."
+          },
+          {
+           "code": null,
+           "text": "Explain authentication, encryption, firewalls and MAC address filtering."
+          }
+         ]
+        },
+        {
+         "id": "tcp-ip-layers",
+         "title": "TCP/IP layers",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe the four TCP/IP layers and their functions."
+          },
+          {
+           "code": null,
+           "text": "State which layer each protocol works at."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "3-6-cyber-security",
+     "title": "3.6 Cyber security",
+     "topics": [
+      {
+       "id": "3-6-1-fundamentals-of-cyber-security",
+       "title": "3.6.1 Fundamentals of cyber security",
+       "subtopics": [
+        {
+         "id": "what-cyber-security-is",
+         "title": "What cyber security is",
+         "outcomes": [
+          {
+           "code": "3.6.1",
+           "text": "Define cyber security and describe its main purposes."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "3-6-2-cyber-security-threats",
+       "title": "3.6.2 Cyber security threats",
+       "subtopics": [
+        {
+         "id": "common-threats",
+         "title": "Common threats",
+         "outcomes": [
+          {
+           "code": "3.6.2",
+           "text": "Explain social engineering, malware, pharming, weak and default passwords, misconfigured access, removable media and outdated software."
+          }
+         ]
+        },
+        {
+         "id": "penetration-testing",
+         "title": "Penetration testing",
+         "outcomes": [
+          {
+           "code": "3.6",
+           "text": "Explain what penetration testing is and the insider and external types."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "3-6-2-1-social-engineering",
+       "title": "3.6.2.1 Social engineering",
+       "subtopics": [
+        {
+         "id": "social-engineering",
+         "title": "Social engineering",
+         "outcomes": [
+          {
+           "code": "3.6.2.1",
+           "text": "Define social engineering and how to protect against it."
+          },
+          {
+           "code": null,
+           "text": "Explain blagging, phishing and shouldering."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "3-6-2-2-malicious-code-malware",
+       "title": "3.6.2.2 Malicious code (malware)",
+       "subtopics": [
+        {
+         "id": "malware",
+         "title": "Malware",
+         "outcomes": [
+          {
+           "code": "3.6.2.2",
+           "text": "Define malware and how to protect against it."
+          },
+          {
+           "code": null,
+           "text": "Describe viruses, trojans and spyware."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "3-6-3-methods-to-detect-and-prevent-cyber-securi",
+       "title": "3.6.3 Methods to detect and prevent cyber security threats",
+       "subtopics": [
+        {
+         "id": "prevention-methods",
+         "title": "Prevention methods",
+         "outcomes": [
+          {
+           "code": "3.6.3",
+           "text": "Explain biometrics, password systems, CAPTCHA, email confirmation and automatic updates."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "3-7-relational-databases-and-structured-query-la",
+     "title": "3.7 Relational databases and structured query language (SQL)",
+     "topics": [
+      {
+       "id": "3-7-1-relational-databases",
+       "title": "3.7.1 Relational databases",
+       "subtopics": [
+        {
+         "id": "relational-databases",
+         "title": "Relational databases",
+         "outcomes": [
+          {
+           "code": "3.7.1",
+           "text": "Explain what a database and a relational database are."
+          },
+          {
+           "code": "3.7",
+           "text": "Explain tables, records, fields, data types, primary keys and foreign keys."
+          },
+          {
+           "code": null,
+           "text": "Explain how relational databases remove inconsistency and redundancy."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "3-7-2-structured-query-language-sql",
+       "title": "3.7.2 Structured query language (SQL)",
+       "subtopics": [
+        {
+         "id": "retrieving-data-with-sql",
+         "title": "Retrieving data with SQL",
+         "outcomes": [
+          {
+           "code": "3.7.2",
+           "text": "Retrieve data from up to two tables using SELECT, FROM, WHERE and ORDER BY."
+          }
+         ]
+        },
+        {
+         "id": "changing-data-with-sql",
+         "title": "Changing data with SQL",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Add records using INSERT INTO ... VALUES."
+          },
+          {
+           "code": null,
+           "text": "Edit and delete records using UPDATE ... SET ... WHERE and DELETE FROM ... WHERE."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "3-8-ethical-legal-and-environmental-impacts-of-d",
+     "title": "3.8 Ethical, legal and environmental impacts of digital technology",
+     "topics": [
+      {
+       "id": "impacts-of-digital-technology",
+       "title": "Impacts of digital technology",
+       "subtopics": [
+        {
+         "id": "impacts-and-risks",
+         "title": "Impacts and risks",
+         "outcomes": [
+          {
+           "code": "3.8",
+           "text": "Explain ethical, legal and environmental impacts and risks of digital technology, including data privacy."
+          },
+          {
+           "code": null,
+           "text": "Apply this to cyber security, mobile and wireless technology, cloud storage and hacking."
+          },
+          {
+           "code": null,
+           "text": "Apply this to wearables, computer-based implants and autonomous vehicles."
+          },
+          {
+           "code": null,
+           "text": "Explain the privacy versus security debate between citizens and governments."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "build": {
+  "builtAt": "2026-10-14T10:20:15.654Z",
+  "model": "claude-agent",
+  "usd": 0,
+  "expectedCodes": 43,
+  "coverage": 1,
+  "missingCodes": [],
+  "counts": {
+   "grades": 2,
+   "units": 9,
+   "topics": 37,
+   "subtopics": 52,
+   "outcomes": 122
+  },
+  "warnings": []
+ }
+}

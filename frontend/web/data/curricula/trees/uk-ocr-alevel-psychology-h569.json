@@ -1,0 +1,1125 @@
+{
+ "id": "uk-ocr-alevel-psychology-h569",
+ "region": "UK",
+ "framework": "OCR A Level",
+ "board": "OCR",
+ "qualification": "A Level",
+ "subject": "Psychology",
+ "syllabusCode": "H569",
+ "gradeSystem": "year",
+ "source": {
+  "urls": [
+   "https://www.ocr.org.uk/Images/711951-specification-a-level-gce-psychology-h569.pdf"
+  ],
+  "publisher": "OCR (Oxford Cambridge and RSA)",
+  "licence": "Exam board specification, (c) OCR; structure + our own wording only",
+  "firstExam": "2029"
+ },
+ "grades": [
+  {
+   "grade": "all",
+   "units": [
+    {
+     "id": "3-1-research-methods",
+     "title": "3.1 Research methods",
+     "topics": [
+      {
+       "id": "3-1-1-research-methods-and-techniques",
+       "title": "3.1.1 Research methods and techniques",
+       "subtopics": [
+        {
+         "id": "experiments",
+         "title": "Experiments",
+         "outcomes": [
+          {
+           "code": "3.1.1.1",
+           "text": "Describe laboratory experiments and judge their strengths and weaknesses."
+          },
+          {
+           "code": null,
+           "text": "Describe field experiments and judge their strengths and weaknesses."
+          },
+          {
+           "code": null,
+           "text": "Describe quasi experiments, where the independent variable is not manipulated, and judge their strengths and weaknesses."
+          }
+         ]
+        },
+        {
+         "id": "observations",
+         "title": "Observations",
+         "outcomes": [
+          {
+           "code": "3.1.1.2",
+           "text": "Tell structured from unstructured observation and judge strengths and weaknesses of each."
+          },
+          {
+           "code": null,
+           "text": "Tell naturalistic from controlled observation and judge their strengths and weaknesses."
+          },
+          {
+           "code": null,
+           "text": "Tell participant from non-participant observation and judge their strengths and weaknesses."
+          },
+          {
+           "code": null,
+           "text": "Tell overt from covert observation and judge their strengths and weaknesses."
+          }
+         ]
+        },
+        {
+         "id": "self-report-methods",
+         "title": "Self-report methods",
+         "outcomes": [
+          {
+           "code": "3.1.1.3",
+           "text": "Describe questionnaires as a self-report method and judge their strengths and weaknesses."
+          },
+          {
+           "code": null,
+           "text": "Tell structured, semi-structured and unstructured interviews apart and judge their strengths and weaknesses."
+          }
+         ]
+        },
+        {
+         "id": "correlation-case-studies-and-content-analysis",
+         "title": "Correlation, case studies and content analysis",
+         "outcomes": [
+          {
+           "code": "3.1.1.4",
+           "text": "Explain how data is obtained for correlational analysis and what a correlation coefficient shows."
+          },
+          {
+           "code": null,
+           "text": "Recognise positive, negative and no correlation and judge the strengths and weaknesses of correlational studies."
+          },
+          {
+           "code": "3.1.1.5",
+           "text": "Explain how data is obtained for a case study and judge its strengths and weaknesses."
+          },
+          {
+           "code": "3.1.1.6",
+           "text": "Explain how a content analysis is performed and judge its strengths and weaknesses."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "3-1-2-planning-and-conducting-research",
+       "title": "3.1.2 Planning and conducting research",
+       "subtopics": [
+        {
+         "id": "aims-and-hypotheses",
+         "title": "Aims and hypotheses",
+         "outcomes": [
+          {
+           "code": "3.1.2.1",
+           "text": "Write a research aim and a research question for a given topic."
+          },
+          {
+           "code": null,
+           "text": "Write alternative and null hypotheses for a study."
+          },
+          {
+           "code": null,
+           "text": "Tell one-tailed (directional) from two-tailed (non-directional) hypotheses and choose between them."
+          }
+         ]
+        },
+        {
+         "id": "populations-and-sampling",
+         "title": "Populations and sampling",
+         "outcomes": [
+          {
+           "code": "3.1.2.2",
+           "text": "Distinguish a target population from a sample."
+          },
+          {
+           "code": null,
+           "text": "Describe random sampling and judge its strengths and weaknesses."
+          },
+          {
+           "code": null,
+           "text": "Describe snowball, opportunity and self-selected sampling and judge their strengths and weaknesses."
+          }
+         ]
+        },
+        {
+         "id": "experimental-and-research-designs",
+         "title": "Experimental and research designs",
+         "outcomes": [
+          {
+           "code": "3.1.2.3",
+           "text": "Describe repeated measures design and judge its strengths and weaknesses."
+          },
+          {
+           "code": null,
+           "text": "Describe independent measures design and judge its strengths and weaknesses."
+          },
+          {
+           "code": null,
+           "text": "Describe matched participants design and judge its strengths and weaknesses."
+          },
+          {
+           "code": "3.1.2.4",
+           "text": "Compare longitudinal and cross-sectional research and judge their strengths and weaknesses."
+          }
+         ]
+        },
+        {
+         "id": "variables-and-control",
+         "title": "Variables and control",
+         "outcomes": [
+          {
+           "code": "3.1.2.5",
+           "text": "Identify and operationalise the independent and dependent variables, and co-variables in correlational work."
+          },
+          {
+           "code": null,
+           "text": "Explain how researcher, situational and participant extraneous variables are controlled."
+          }
+         ]
+        },
+        {
+         "id": "designing-observations",
+         "title": "Designing observations",
+         "outcomes": [
+          {
+           "code": "3.1.2.6",
+           "text": "Design behavioural categories for an observation."
+          },
+          {
+           "code": null,
+           "text": "Compare time sampling and event sampling in observations."
+          }
+         ]
+        },
+        {
+         "id": "designing-self-reports",
+         "title": "Designing self-reports",
+         "outcomes": [
+          {
+           "code": "3.1.2.7",
+           "text": "Write open and closed questions and judge their strengths and weaknesses."
+          },
+          {
+           "code": null,
+           "text": "Design numerical, Likert and semantic differential rating scales."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "3-1-3-data-recording-analysis-and-presentation",
+       "title": "3.1.3 Data recording, analysis and presentation",
+       "subtopics": [
+        {
+         "id": "raw-data-and-types-of-data",
+         "title": "Raw data and types of data",
+         "outcomes": [
+          {
+           "code": "3.1.3.1",
+           "text": "Design and use raw data recording tables."
+          },
+          {
+           "code": null,
+           "text": "Spot outliers and use standard form, decimal form and significant figures."
+          },
+          {
+           "code": null,
+           "text": "Make estimations from data collected."
+          }
+         ]
+        },
+        {
+         "id": "types-and-levels-of-data",
+         "title": "Types and levels of data",
+         "outcomes": [
+          {
+           "code": "3.1.3.2",
+           "text": "Tell quantitative from qualitative data, and primary from secondary data, with strengths and weaknesses."
+          },
+          {
+           "code": "3.1.3.3",
+           "text": "Tell nominal, ordinal and interval levels of data apart and judge their strengths and weaknesses."
+          },
+          {
+           "code": "3.1.3.4",
+           "text": "Explain how qualitative data can be converted to quantitative data."
+          }
+         ]
+        },
+        {
+         "id": "descriptive-statistics",
+         "title": "Descriptive statistics",
+         "outcomes": [
+          {
+           "code": "3.1.3.5",
+           "text": "Calculate and compare the mean, median and mode."
+          },
+          {
+           "code": null,
+           "text": "Calculate the range, variance and standard deviation and explain what each shows."
+          },
+          {
+           "code": null,
+           "text": "Work with ratios, percentages, percentage change and fractions."
+          },
+          {
+           "code": null,
+           "text": "Build frequency tables and tally charts."
+          }
+         ]
+        },
+        {
+         "id": "graphs",
+         "title": "Graphs",
+         "outcomes": [
+          {
+           "code": "3.1.3.6",
+           "text": "Choose and draw line graphs, pie charts and bar charts for given data."
+          },
+          {
+           "code": null,
+           "text": "Choose and draw histograms and scatter diagrams for given data."
+          }
+         ]
+        },
+        {
+         "id": "inferential-statistics",
+         "title": "Inferential statistics",
+         "outcomes": [
+          {
+           "code": "3.1.3.7",
+           "text": "Recognise normal and skewed distributions and explain probability and significance levels."
+          },
+          {
+           "code": null,
+           "text": "State the criteria for using a parametric test and for choosing between Mann-Whitney U, Wilcoxon, Chi-square, Binomial Sign and Spearman's Rho."
+          },
+          {
+           "code": null,
+           "text": "Use critical value tables for the five named tests."
+          },
+          {
+           "code": null,
+           "text": "Write a significance statement giving the calculated value, critical value, significance level and decision on the null hypothesis."
+          },
+          {
+           "code": null,
+           "text": "Calculate Chi-square."
+          },
+          {
+           "code": null,
+           "text": "Explain type 1 and type 2 errors and use the symbols =, <, <<, >>, >, proportional-to and ~."
+          }
+         ]
+        },
+        {
+         "id": "reliability-and-validity",
+         "title": "Reliability and validity",
+         "outcomes": [
+          {
+           "code": "3.1.3.8",
+           "text": "Explain representativeness and generalisability."
+          },
+          {
+           "code": null,
+           "text": "Explain internal, external, inter-rater, test-retest and split-half reliability."
+          },
+          {
+           "code": null,
+           "text": "Explain internal, face, construct, concurrent, predictive, external, population and ecological validity."
+          }
+         ]
+        },
+        {
+         "id": "bias-and-ethics-in-research",
+         "title": "Bias and ethics in research",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain demand characteristics, social desirability, and researcher or observer bias and effects."
+          },
+          {
+           "code": null,
+           "text": "Apply the BPS Code of Ethics and Conduct: respect, competence, responsibility and integrity."
+          },
+          {
+           "code": null,
+           "text": "Explain animal ethics and the 3Rs: replacement, reduction and refinement."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "3-1-4-report-writing",
+       "title": "3.1.4 Report writing",
+       "subtopics": [
+        {
+         "id": "sections-of-a-practical-report",
+         "title": "Sections of a practical report",
+         "outcomes": [
+          {
+           "code": "3.1.4.1",
+           "text": "Describe the role of the abstract, introduction, results, discussion, references and appendices."
+          },
+          {
+           "code": null,
+           "text": "Describe the method section and its design, sample, materials and procedure sub-sections."
+          }
+         ]
+        },
+        {
+         "id": "referencing-and-peer-review",
+         "title": "Referencing and peer review",
+         "outcomes": [
+          {
+           "code": "3.1.4.2",
+           "text": "Cite academic research using the Harvard referencing system."
+          },
+          {
+           "code": "3.1.4.3",
+           "text": "Explain how peer review validates new knowledge and keeps research honest."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "3-1-5-science-in-psychology",
+       "title": "3.1.5 Science in psychology",
+       "subtopics": [
+        {
+         "id": "scientific-enquiry",
+         "title": "Scientific enquiry",
+         "outcomes": [
+          {
+           "code": "3.1.5",
+           "text": "Explain cause-and-effect, hypothesis testing and manipulation of variables."
+          },
+          {
+           "code": null,
+           "text": "Explain falsification, replicability and objectivity."
+          },
+          {
+           "code": null,
+           "text": "Explain control, standardisation and quantifiable measurement, and how science informs society."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "3-1-6-practical-skills-developed-through-practic",
+       "title": "3.1.6 Practical skills developed through practical investigations",
+       "subtopics": [
+        {
+         "id": "practical-investigations",
+         "title": "Practical investigations",
+         "outcomes": [
+          {
+           "code": "3.1.6",
+           "text": "Carry out and be assessed on a practical experiment and observation."
+          },
+          {
+           "code": null,
+           "text": "Carry out and be assessed on a questionnaire and an interview."
+          },
+          {
+           "code": null,
+           "text": "Analyse practical data using correlational analysis and content analysis."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "3-2-core-studies-in-psychology",
+     "title": "3.2 Core studies in psychology",
+     "topics": [
+      {
+       "id": "3-2-1-section-a-core-studies",
+       "title": "3.2.1 Section A: Core studies",
+       "subtopics": [
+        {
+         "id": "social-core-studies",
+         "title": "Social core studies",
+         "outcomes": [
+          {
+           "code": "3.2.1.1",
+           "text": "Describe and evaluate Milgram (1963) on obedience to authority."
+          },
+          {
+           "code": null,
+           "text": "Describe and evaluate Piliavin et al. (1969) on helping behaviour."
+          },
+          {
+           "code": null,
+           "text": "Describe and evaluate Levine et al. (2001) on cross-cultural altruism."
+          }
+         ]
+        },
+        {
+         "id": "cognitive-core-studies",
+         "title": "Cognitive core studies",
+         "outcomes": [
+          {
+           "code": "3.2.1.2",
+           "text": "Describe and evaluate Loftus and Palmer (1974) on eyewitness testimony."
+          },
+          {
+           "code": null,
+           "text": "Describe and evaluate Grant et al. (1998) on context-dependent memory."
+          },
+          {
+           "code": null,
+           "text": "Describe and evaluate Simons and Chabris (1999) on visual inattention."
+          }
+         ]
+        },
+        {
+         "id": "developmental-core-studies",
+         "title": "Developmental core studies",
+         "outcomes": [
+          {
+           "code": "3.2.1.3",
+           "text": "Describe and evaluate Bandura et al. (1961) on transmission of aggression."
+          },
+          {
+           "code": null,
+           "text": "Describe and evaluate Chaney et al. (2004) on adherence to medical regimes."
+          },
+          {
+           "code": null,
+           "text": "Describe and evaluate Lee et al. (1997) on lying and truth telling."
+          }
+         ]
+        },
+        {
+         "id": "biological-core-studies",
+         "title": "Biological core studies",
+         "outcomes": [
+          {
+           "code": "3.2.1.4",
+           "text": "Describe and evaluate Sperry (1968) on lateralisation of brain function."
+          },
+          {
+           "code": null,
+           "text": "Describe and evaluate Casey et al. (2011) on delayed gratification."
+          },
+          {
+           "code": null,
+           "text": "Describe and evaluate Maguire et al. (2000) on brain plasticity."
+          }
+         ]
+        },
+        {
+         "id": "individual-differences-core-studies",
+         "title": "Individual differences core studies",
+         "outcomes": [
+          {
+           "code": "3.2.1.5",
+           "text": "Describe and evaluate Freud (1909) on phobias."
+          },
+          {
+           "code": null,
+           "text": "Describe and evaluate Baron-Cohen et al. (1997) on autism and theory of mind."
+          },
+          {
+           "code": null,
+           "text": "Describe and evaluate Van Leeuwen et al. (2008) on intelligence."
+          }
+         ]
+        },
+        {
+         "id": "analysing-a-core-study",
+         "title": "Analysing a core study",
+         "outcomes": [
+          {
+           "code": "3.2.1.6",
+           "text": "Give the aim of each core study."
+          },
+          {
+           "code": null,
+           "text": "Describe each study's design, sample, materials and procedure."
+          },
+          {
+           "code": null,
+           "text": "State each study's results and conclusions."
+          },
+          {
+           "code": null,
+           "text": "Explain how each study relates to its topic and how its methodology could be improved."
+          }
+         ]
+        },
+        {
+         "id": "core-studies-within-their-area",
+         "title": "Core studies within their area",
+         "outcomes": [
+          {
+           "code": "3.2.1.7",
+           "text": "Explain how each core study relates to its area, and compare similarities and differences between studies."
+          },
+          {
+           "code": null,
+           "text": "Judge how far studies add to understanding of individual, social and cultural diversity."
+          },
+          {
+           "code": null,
+           "text": "Evaluate the usefulness and current relevance of studies."
+          }
+         ]
+        },
+        {
+         "id": "methodological-issues-in-core-studies",
+         "title": "Methodological issues in core studies",
+         "outcomes": [
+          {
+           "code": "3.2.1.8",
+           "text": "Weigh strengths and weaknesses of research methods and types of data used in core studies."
+          },
+          {
+           "code": null,
+           "text": "Discuss representativeness, generalisability, sampling bias and ethnocentrism."
+          },
+          {
+           "code": null,
+           "text": "Discuss ethical issues, validity and reliability in core studies."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "3-2-2-section-b-areas-perspectives-issues-and-de",
+       "title": "3.2.2 Section B: Areas, perspectives, issues and debates",
+       "subtopics": [
+        {
+         "id": "areas-of-psychology",
+         "title": "Areas of psychology",
+         "outcomes": [
+          {
+           "code": "3.2.2.1",
+           "text": "Explain the key principles of the social, cognitive, developmental, biological and individual differences areas and how they explain behaviour."
+          },
+          {
+           "code": null,
+           "text": "Show how core studies illustrate each area and weigh each area's strengths and weaknesses."
+          },
+          {
+           "code": null,
+           "text": "Describe practical applications from each area and compare areas with each other."
+          }
+         ]
+        },
+        {
+         "id": "perspectives",
+         "title": "Perspectives",
+         "outcomes": [
+          {
+           "code": "3.2.2.2",
+           "text": "Explain the key principles of the behaviourist and psychodynamic perspectives."
+          },
+          {
+           "code": null,
+           "text": "Show how core studies illustrate each perspective and weigh strengths and weaknesses."
+          },
+          {
+           "code": null,
+           "text": "Describe practical applications of each perspective and compare them with each other and with the areas."
+          }
+         ]
+        },
+        {
+         "id": "issues-in-psychology",
+         "title": "Issues in psychology",
+         "outcomes": [
+          {
+           "code": "3.2.2.3",
+           "text": "Explain ethical issues and conducting socially sensitive research, with core study examples."
+          },
+          {
+           "code": null,
+           "text": "Explain the usefulness of research and weigh strengths and weaknesses of each issue."
+          }
+         ]
+        },
+        {
+         "id": "debates-in-psychology",
+         "title": "Debates in psychology",
+         "outcomes": [
+          {
+           "code": "3.2.2.4",
+           "text": "Explain the nature/nurture and freewill/determinism debates and their positions."
+          },
+          {
+           "code": null,
+           "text": "Explain the reductionism/holism and individual/situational explanation debates."
+          },
+          {
+           "code": null,
+           "text": "Discuss psychology as a science, with core studies illustrating each debate."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "3-2-3-section-c-practical-applications",
+       "title": "3.2.3 Section C: Practical applications",
+       "subtopics": [
+        {
+         "id": "applying-psychology-to-novel-sources",
+         "title": "Applying psychology to novel sources",
+         "outcomes": [
+          {
+           "code": "3.2.3",
+           "text": "Identify, apply and evaluate psychological content in unseen sources such as articles, blogs or scenarios."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "3-3-applied-psychology",
+     "title": "3.3 Applied psychology",
+     "topics": [
+      {
+       "id": "3-3-1-section-a-mental-health",
+       "title": "3.3.1 Section A: Mental health",
+       "subtopics": [
+        {
+         "id": "what-is-mental-health",
+         "title": "What is mental health?",
+         "outcomes": [
+          {
+           "code": "3.3.1.1",
+           "text": "Describe three historical views of mental illness: humoural, supernatural and the hospital movement."
+          },
+          {
+           "code": null,
+           "text": "Explain four definitions of abnormality: deviation from social norms, failure to function, statistical infrequency, deviation from ideal mental health."
+          },
+          {
+           "code": null,
+           "text": "Explain how the latest DSM categorises disorders, including cultural biases in diagnosis."
+          },
+          {
+           "code": null,
+           "text": "Describe Neighbors et al. (2003) on racial differences in DSM diagnosis."
+          },
+          {
+           "code": null,
+           "text": "Apply definitions of abnormality to identify mental illness."
+          },
+          {
+           "code": null,
+           "text": "Apply the latest DSM to diagnose depression, phobias and schizophrenia."
+          }
+         ]
+        },
+        {
+         "id": "the-medical-model",
+         "title": "The medical model",
+         "outcomes": [
+          {
+           "code": "3.3.1.2",
+           "text": "Explain biochemical, genetic and brain abnormality explanations of mental illness."
+          },
+          {
+           "code": null,
+           "text": "Describe Gottesman et al. (2010) on mental disorders in offspring of two ill parents."
+          },
+          {
+           "code": null,
+           "text": "Explain the use of antidepressants for depression."
+          },
+          {
+           "code": null,
+           "text": "Explain the use of antipsychotics for schizophrenia and anti-anxiety drugs for phobias."
+          }
+         ]
+        },
+        {
+         "id": "alternatives-to-the-medical-model",
+         "title": "Alternatives to the medical model",
+         "outcomes": [
+          {
+           "code": "3.3.1.3",
+           "text": "Explain behaviourist, cognitive and psychodynamic explanations of mental illness."
+          },
+          {
+           "code": null,
+           "text": "Describe Watson and Rayner (1920) on conditioned emotional reactions."
+          },
+          {
+           "code": null,
+           "text": "Explain CBT and psychoanalysis as treatments for mental illness."
+          },
+          {
+           "code": null,
+           "text": "Explain systematic desensitisation as a treatment for phobias."
+          }
+         ]
+        },
+        {
+         "id": "modern-approaches-to-mental-health",
+         "title": "Modern approaches to mental health",
+         "outcomes": [
+          {
+           "code": "3.3.1.4",
+           "text": "Describe the roles of psychologists and psychiatrists in treating mental illness."
+          },
+          {
+           "code": null,
+           "text": "Explain the role of technology in supporting mental health and promoting wellbeing."
+          },
+          {
+           "code": null,
+           "text": "Describe Fulmer et al. (2018) on the AI chatbot Tess for depression and anxiety."
+          },
+          {
+           "code": null,
+           "text": "Evaluate AI technology and digital media in supporting mental health and wellbeing."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "3-3-2-section-b-criminal-psychology",
+       "title": "3.3.2 Section B: Criminal psychology",
+       "subtopics": [
+        {
+         "id": "turning-to-crime",
+         "title": "Turning to crime",
+         "outcomes": [
+          {
+           "code": "3.3.2.1",
+           "text": "Explain the MAOA gene as a biological explanation of criminal behaviour."
+          },
+          {
+           "code": null,
+           "text": "Explain differential association as a social explanation of crime."
+          },
+          {
+           "code": null,
+           "text": "Explain rational choice theory as a cognitive explanation of crime."
+          },
+          {
+           "code": null,
+           "text": "Describe Raine et al. (1997) on brain abnormalities in murderers using PET scans."
+          },
+          {
+           "code": null,
+           "text": "Evaluate zero-tolerance policing and anger management in preventing crime."
+          }
+         ]
+        },
+        {
+         "id": "building-a-case",
+         "title": "Building a case",
+         "outcomes": [
+          {
+           "code": "3.3.2.2",
+           "text": "Explain how emotional context affects the processing of forensic evidence."
+          },
+          {
+           "code": null,
+           "text": "Explain cognitive biases in processing forensic evidence."
+          },
+          {
+           "code": null,
+           "text": "Explain biases linked to working for the prosecution or defence."
+          },
+          {
+           "code": null,
+           "text": "Describe Hall and Player (2008) on emotional context and fingerprint analysis."
+          },
+          {
+           "code": null,
+           "text": "Evaluate ACE-V and Linear Sequential Unmasking for reducing forensic bias."
+          }
+         ]
+        },
+        {
+         "id": "in-the-courtroom",
+         "title": "In the courtroom",
+         "outcomes": [
+          {
+           "code": "3.3.2.3",
+           "text": "Explain how witness and defendant characteristics (attractiveness, confidence, ethnicity) sway juries."
+          },
+          {
+           "code": null,
+           "text": "Explain how inadmissible evidence and pre-trial publicity influence juries."
+          },
+          {
+           "code": null,
+           "text": "Describe Dixon et al. (2002) on accent, race and crime type in judgments of guilt."
+          },
+          {
+           "code": null,
+           "text": "Evaluate expert witnesses and story-order testimony in reducing external influences on juries."
+          }
+         ]
+        },
+        {
+         "id": "managing-offenders",
+         "title": "Managing offenders",
+         "outcomes": [
+          {
+           "code": "3.3.2.4",
+           "text": "Evaluate imprisonment as a response to criminal behaviour."
+          },
+          {
+           "code": null,
+           "text": "Evaluate non-custodial punishment and rehabilitation as responses to crime."
+          },
+          {
+           "code": null,
+           "text": "Describe Haney, Banks and Zimbardo (1973) on the simulated prison."
+          },
+          {
+           "code": null,
+           "text": "Evaluate restorative justice and education or ex-offender employment programmes in reducing reoffending."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "3-3-3-section-c-options",
+       "title": "3.3.3 Section C: Options",
+       "subtopics": [
+        {
+         "id": "option-1-pre-adult-brain-development",
+         "title": "Option 1: Pre-adult brain development",
+         "outcomes": [
+          {
+           "code": "3.3.3.1",
+           "text": "Explain how brain development affects adolescent risk-taking such as substance misuse, unprotected sex and dangerous driving."
+          },
+          {
+           "code": null,
+           "text": "Explain the roles of the pre-frontal cortex, ventral striatum, amygdala and dopamine in risk-taking."
+          },
+          {
+           "code": null,
+           "text": "Describe Barkley-Levenson and Galvan (2014) on expected value in the adolescent brain."
+          },
+          {
+           "code": null,
+           "text": "Evaluate graduated driver licensing and education for reducing adolescent risk-taking."
+          }
+         ]
+        },
+        {
+         "id": "option-1-perceptual-development",
+         "title": "Option 1: Perceptual development",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain how perception can be studied in children and animals."
+          },
+          {
+           "code": null,
+           "text": "Describe the development of depth perception, shape and size constancy and colour perception."
+          },
+          {
+           "code": null,
+           "text": "Describe Gibson and Walk (1960) and the visual cliff."
+          },
+          {
+           "code": null,
+           "text": "Evaluate Sensory Integration Therapy and play strategies to support perceptual development."
+          }
+         ]
+        },
+        {
+         "id": "option-1-attachment",
+         "title": "Option 1: Attachment",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain Bowlby's evolutionary theory and the learning theory of attachment."
+          },
+          {
+           "code": null,
+           "text": "Explain the effects of privation and deprivation."
+          },
+          {
+           "code": null,
+           "text": "Describe Ainsworth and Bell (1970) and the Strange Situation."
+          },
+          {
+           "code": null,
+           "text": "Evaluate key workers and familiarisation in reducing the effects of separation from an attachment figure."
+          }
+         ]
+        },
+        {
+         "id": "option-2-biological-rhythms",
+         "title": "Option 2: Biological rhythms",
+         "outcomes": [
+          {
+           "code": "3.3.3.2",
+           "text": "Explain circadian and ultradian rhythms."
+          },
+          {
+           "code": null,
+           "text": "Explain endogenous pacemakers, exogenous zeitgebers, and the impact of disrupted rhythms."
+          },
+          {
+           "code": null,
+           "text": "Describe Czeisler et al. (1982) on rotating shift work schedules."
+          },
+          {
+           "code": null,
+           "text": "Evaluate melatonin and phototherapy for reducing the effect of disrupted rhythms."
+          }
+         ]
+        },
+        {
+         "id": "option-2-recycling-behaviour",
+         "title": "Option 2: Recycling behaviour",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain factors influencing the tendency to recycle, and light green versus dark green environmentalists."
+          },
+          {
+           "code": null,
+           "text": "Explain how the theory of planned behaviour explains recycling."
+          },
+          {
+           "code": null,
+           "text": "Describe Lord (1994) on message and source strategies for recycling."
+          },
+          {
+           "code": null,
+           "text": "Evaluate prompts and the Yale Model of Persuasion in increasing recycling."
+          }
+         ]
+        },
+        {
+         "id": "option-2-psychological-effects-of-the-built-envi",
+         "title": "Option 2: Psychological effects of the built environment",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain the effects of noise, overcrowding and green spaces on wellbeing."
+          },
+          {
+           "code": null,
+           "text": "Describe Elsadek et al. (2020) on window views of green space and wellbeing."
+          },
+          {
+           "code": null,
+           "text": "Evaluate town planning for walkability and defensible space for wellbeing."
+          }
+         ]
+        },
+        {
+         "id": "option-3-exercise-and-mental-health",
+         "title": "Option 3: Exercise and mental health",
+         "outcomes": [
+          {
+           "code": "3.3.3.3",
+           "text": "Explain the endorphin hypothesis and brain-derived neurotrophic factor."
+          },
+          {
+           "code": null,
+           "text": "Explain the social and cognitive impacts of exercise."
+          },
+          {
+           "code": null,
+           "text": "Describe Lewis et al. (2014) on mood after social dance sessions in Parkinson's disease."
+          },
+          {
+           "code": null,
+           "text": "Evaluate regular group exercise classes and green exercise for mental health."
+          }
+         ]
+        },
+        {
+         "id": "option-3-motivation-in-sport",
+         "title": "Option 3: Motivation in sport",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain how self-efficacy and sports confidence affect motivation."
+          },
+          {
+           "code": null,
+           "text": "Explain how the Sport Orientation Questionnaire measures sports motivation."
+          },
+          {
+           "code": null,
+           "text": "Describe Munroe-Chandler et al. (2008) on imagery, self-confidence and self-efficacy in youth soccer."
+          },
+          {
+           "code": null,
+           "text": "Evaluate positive self-talk and the PETTLEP model in improving performance."
+          }
+         ]
+        },
+        {
+         "id": "option-3-audience-effects",
+         "title": "Option 3: Audience effects",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain social facilitation and social inhibition in sport."
+          },
+          {
+           "code": null,
+           "text": "Explain drive theory in sports performance."
+          },
+          {
+           "code": null,
+           "text": "Describe Wunderlich et al. (2021) on spectator presence in football."
+          },
+          {
+           "code": null,
+           "text": "Evaluate selective attention training and biofeedback in reducing arousal from spectators."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "build": {
+  "builtAt": "2026-10-14T10:46:15.157Z",
+  "model": "claude-agent",
+  "usd": 0,
+  "expectedCodes": 59,
+  "coverage": 1,
+  "missingCodes": [],
+  "counts": {
+   "grades": 1,
+   "units": 3,
+   "topics": 12,
+   "subtopics": 51,
+   "outcomes": 171
+  },
+  "warnings": [
+   "grade Year 12 has no content",
+   "grade Year 13 has no content",
+   "unexpected grade label \"all\""
+  ]
+ }
+}

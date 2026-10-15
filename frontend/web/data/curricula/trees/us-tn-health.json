@@ -1,0 +1,1816 @@
+{
+ "id": "us-tn-health",
+ "region": "US",
+ "framework": "Tennessee state academic standards: Health Education",
+ "board": null,
+ "qualification": "K-12",
+ "subject": "Health Education",
+ "syllabusCode": null,
+ "gradeSystem": "grade",
+ "source": {
+  "urls": [
+   "https://api.commonstandardsproject.com/api/v1/jurisdictions/180878796A3C448D808F38BCCCFD26CF",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/180878796A3C448D808F38BCCCFD26CF_D2587692_grades-09-10-11-12",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/180878796A3C448D808F38BCCCFD26CF_D2585980_grades-03-04-05",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/180878796A3C448D808F38BCCCFD26CF_D2586532_grades-06-07-08",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/180878796A3C448D808F38BCCCFD26CF_D2585393_grades-01-02-k-pre-k"
+  ],
+  "publisher": "Tennessee state education agency (machine-readable via Common Standards Project / ASN)",
+  "licence": "CC BY 3.0 US, Desire2Learn Incorporated",
+  "firstExam": "2007"
+ },
+ "grades": [
+  {
+   "grade": "9-12",
+   "units": [
+    {
+     "id": "disease-prevention-and-control",
+     "title": "Disease Prevention and Control",
+     "topics": [
+      {
+       "id": "the-student-will-identify-the-causes-signs-and-s",
+       "title": "The student will identify the causes, signs and symptoms, treatments and prevention of communicable and non-communicable diseases related to total wellness and health maintenance",
+       "subtopics": [
+        {
+         "id": "the-student-will-identify-the-causes-signs-and-s",
+         "title": "The student will identify the causes, signs and symptoms, treatments and prevention of communicable and non-communicable diseases related to total wellness and health maintenance (1 of 2)",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "differentiate communicable and non-communicable diseases."
+          },
+          {
+           "code": null,
+           "text": "determine heredity, environmental and lifestyle factors which place the student at risk for disease."
+          },
+          {
+           "code": null,
+           "text": "describe different types of pathogens and how they affect health."
+          },
+          {
+           "code": null,
+           "text": "explain causes, modes of transmission, signs and symptoms, treatments and prevention of Communicable diseases (e.g., STIs, HIV/AIDS, mononucleosis)."
+          }
+         ]
+        },
+        {
+         "id": "the-student-will-identify-the-causes-signs-and-s-2",
+         "title": "The student will identify the causes, signs and symptoms, treatments and prevention of communicable and non-communicable diseases related to total wellness and health maintenance (2 of 2)",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "explain causes, signs and symptoms, treatments and prevention of non-communicable diseases (e.g., obesity, Type I and Type II diabetes, asthma, heart disease)."
+          },
+          {
+           "code": null,
+           "text": "identify appropriate community agencies providing resources for disease treatment, information and support (e.g., local health department, American Red Cross, American Lung Association, American Heart Association, American Cancer Society, local Crisis Pregnancy Center)."
+          },
+          {
+           "code": null,
+           "text": "recognize the need for annual physical exams."
+          },
+          {
+           "code": null,
+           "text": "identify the physician as a community resource and discuss ways to locate a physician. (e.g., local health departments, insurance provider lists, hospitals, clinics)"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "mental-emotional-and-social-health",
+     "title": "Mental, Emotional and Social Health",
+     "topics": [
+      {
+       "id": "the-student-will-acquire-the-knowledge-and-skill",
+       "title": "The student will acquire the knowledge and skills necessary to make informed decisions regarding their mental, emotional and social well-being",
+       "subtopics": [
+        {
+         "id": "the-student-will-acquire-the-knowledge-and-skill",
+         "title": "The student will acquire the knowledge and skills necessary to make informed decisions regarding their mental, emotional and social well-being (1 of 3)",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "identify and describe Maslow's Hierarchy of Needs."
+          },
+          {
+           "code": null,
+           "text": "describe characteristics of mental, emotional and social health."
+          },
+          {
+           "code": null,
+           "text": "identify various emotions and their effects on the mind and body."
+          },
+          {
+           "code": null,
+           "text": "explain how to develop and maintain a positive self-concept and high self-esteem."
+          }
+         ]
+        },
+        {
+         "id": "the-student-will-acquire-the-knowledge-and-skill-2",
+         "title": "The student will acquire the knowledge and skills necessary to make informed decisions regarding their mental, emotional and social well-being (2 of 3)",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "list the factors that affect personality development."
+          },
+          {
+           "code": null,
+           "text": "recognize stressors and formulate personal stress management techniques."
+          },
+          {
+           "code": null,
+           "text": "identify and practice coping, negotiation, delaying and refusal skills."
+          },
+          {
+           "code": null,
+           "text": "describe stages of the grief process."
+          }
+         ]
+        },
+        {
+         "id": "the-student-will-acquire-the-knowledge-and-skill-3",
+         "title": "The student will acquire the knowledge and skills necessary to make informed decisions regarding their mental, emotional and social well-being (3 of 3)",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "identify positive ways of resolving interpersonal conflict."
+          },
+          {
+           "code": null,
+           "text": "recognize the signs of potential suicide."
+          },
+          {
+           "code": null,
+           "text": "examine characteristics of mental disorders. anxiety disorders (e.g., phobias, obsessive-compulsive, panic, post-traumatic stress disorders). affective disorders (e.g., clinical depression, bipolar disorder). personality disorders (e.g., anti-social personality disorder, passive-aggressive personality disorder, schizophrenia). eating disorders (e.g., anorexia nervosa, bulimia nervosa)"
+          },
+          {
+           "code": null,
+           "text": "identify community resources providing information for mental health and suicide prevention."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "nutrition",
+     "title": "Nutrition",
+     "topics": [
+      {
+       "id": "the-student-will-assess-the-effects-of-nutrition",
+       "title": "The student will assess the effects of nutritional choices and incorporate strategies that contribute to an improved quality of life",
+       "subtopics": [
+        {
+         "id": "the-student-will-assess-the-effects-of-nutrition",
+         "title": "The student will assess the effects of nutritional choices and incorporate strategies that contribute to an improved quality of life (1 of 3)",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "identify the six classes of nutrients and describe their functions."
+          },
+          {
+           "code": null,
+           "text": "evaluate personal nutritional and energy needs."
+          },
+          {
+           "code": null,
+           "text": "compare and contrast dietary guidelines (e.g., USDA, Mayo, Harvard)."
+          },
+          {
+           "code": null,
+           "text": "identify the relationship between healthy eating and total wellness."
+          }
+         ]
+        },
+        {
+         "id": "the-student-will-assess-the-effects-of-nutrition-2",
+         "title": "The student will assess the effects of nutritional choices and incorporate strategies that contribute to an improved quality of life (2 of 3)",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "discuss eating disorders and their effects on the total wellness of the individual."
+          },
+          {
+           "code": null,
+           "text": "assess personal daily dietary practices to each of the categories to the current USDA Food Guide Pyramid."
+          },
+          {
+           "code": null,
+           "text": "interpret information provided on food labels."
+          },
+          {
+           "code": null,
+           "text": "identify \"fad diets\" and their impact on total wellness."
+          }
+         ]
+        },
+        {
+         "id": "the-student-will-assess-the-effects-of-nutrition-3",
+         "title": "The student will assess the effects of nutritional choices and incorporate strategies that contribute to an improved quality of life (3 of 3)",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "describe food safety including food storage, cooking and sanitation."
+          },
+          {
+           "code": null,
+           "text": "identify factors that influence food choices (e.g., culture, family/friends, advertising, time and money, emotions, taste, spiritual beliefs)."
+          },
+          {
+           "code": null,
+           "text": "examine the relationship between diet and disease (e.g., obesity, hypertension, diabetes, elevated cholesterol levels)."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "personal-fitness",
+     "title": "Personal Fitness",
+     "topics": [
+      {
+       "id": "the-student-will-acquire-the-knowledge-and-skill",
+       "title": "The student will acquire the knowledge and skills necessary to achieve and maintain a health-enhancing level of personal fitness",
+       "subtopics": [
+        {
+         "id": "the-student-will-acquire-the-knowledge-and-skill",
+         "title": "The student will acquire the knowledge and skills necessary to achieve and maintain a health-enhancing level of personal fitness (1 of 2)",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "identify and define concepts of physical fitness identify and describe the health-related components of physical fitness (i.e., cardiovascular endurance, muscular strength, muscular endurance, flexibility, body composition). identify and describe the skill-related components of physical fitness (i.e., balance, reaction time, speed, power, agility, coordination)."
+          },
+          {
+           "code": null,
+           "text": "identify the anatomy and the functions of the muscular, skeletal and cardiovascular systems."
+          },
+          {
+           "code": null,
+           "text": "describe and apply principles related to physical activity. describe and demonstrate proper warm-up and cool-down procedures when participating in physical activity. define the training principles of overload, progression, and specificity. describe the F.I.T.T. (frequency, intensity, time and type) principle. calculate resting, target and maximum heart rate as it relates to personal fitness planning."
+          },
+          {
+           "code": null,
+           "text": "apply proper safety practices when participating in physical activity."
+          },
+          {
+           "code": null,
+           "text": "analyze and engage in physical activities that are developmentally appropriate and support achievement of personal fitness and activity goals. assess individual health-related fitness levels by measuring flexibility, cardiovascular endurance, muscular strength, muscular endurance and body composition using appropriate methods. design a personal fitness plan and set goals based on the health-related fitness assessment results that will lead to, or maintain, a satisfactory fitness level. select aerobic and anaerobic activities needed for successful participation in lifetime activities (e.g., aerobic walking, circuit training, cycling, dance aerobics, racquet activities, rhythmic movement, rock climbing, rope jumping, rowing, running, skating, snow skiing, step aerobics, strength training, swimming, water aerobics). demonstrate improvement in the health-related fitness components."
+          }
+         ]
+        },
+        {
+         "id": "the-student-will-acquire-the-knowledge-and-skill-2",
+         "title": "The student will acquire the knowledge and skills necessary to achieve and maintain a health-enhancing level of personal fitness (2 of 2)",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "list the health problems associated with inadequate levels of health-related fitness."
+          },
+          {
+           "code": null,
+           "text": "distinguish between facts and fallacies as related to fitness products, services and marketing."
+          },
+          {
+           "code": null,
+           "text": "discuss the social, emotional, physical and mental benefits associated with participation in physical fitness activities."
+          },
+          {
+           "code": null,
+           "text": "identify resources and facilities in the community that promote physical fitness and wellness."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "safety-and-first-aid",
+     "title": "Safety and First-Aid",
+     "topics": [
+      {
+       "id": "the-student-will-acquire-the-knowledge-and-skill",
+       "title": "The student will acquire the knowledge and skills necessary to recognize, respond and apply appropriate procedures to accidental and life-threatening situations",
+       "subtopics": [
+        {
+         "id": "the-student-will-acquire-the-knowledge-and-skill",
+         "title": "The student will acquire the knowledge and skills necessary to recognize, respond and apply appropriate procedures to accidental and life-threatening situations",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "identify hazardous and life-threatening situations and the consequences of each."
+          },
+          {
+           "code": null,
+           "text": "explain how individual attitudes and behaviors affect personal safety and the safety of others. identify potential hazards associated with technology (e.g., internet, cell phones, digital cameras, video games). analyze and apply strategies to avoid or manage conflict associated with school violence and bullying (e.g., harassment, name calling, teasing, exploitation, physical contact). recognize and apply personal safety guidelines regarding modes of transportation (e.g., automobile, motorcycle, bicycle, all-terrain vehicles, marine vehicles, skateboards, utility vehicles). identify dangers associated with participating in high-risk behaviors (e.g., misuse of firearms, not using safety equipment including seatbelts, impaired driving)."
+          },
+          {
+           "code": null,
+           "text": "identify and demonstrate the skills necessary in responding to medical emergencies."
+          },
+          {
+           "code": null,
+           "text": "describe and demonstrate proper first aid techniques for common injuries."
+          },
+          {
+           "code": null,
+           "text": "identify and demonstrate the steps for aiding a choking victim."
+          },
+          {
+           "code": null,
+           "text": "explain and demonstrate the steps used in administering Cardiopulmonary Resuscitation (CPR), rescue breathing and the use of an Automated External Defibrillator (AED)."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "sexuality-and-family-life",
+     "title": "Sexuality and Family Life",
+     "topics": [
+      {
+       "id": "the-student-will-examine-human-sexuality-e-g-bio",
+       "title": "The student will examine human sexuality (e.g., biology, behavior, responsibilities, attitudes) and recognize the influence of society and family values on decision making",
+       "subtopics": [
+        {
+         "id": "the-student-will-examine-human-sexuality-e-g-bio",
+         "title": "The student will examine human sexuality (e.g., biology, behavior, responsibilities, attitudes) and recognize the influence of society and family values on decision making (1 of 3)",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "define the aspects of positive relationships (e.g., family, dating, friendship, professional, community)."
+          },
+          {
+           "code": null,
+           "text": "examine the influence of families, cultural traditions and economic factors on human development (e.g., personality, values, sexuality, self-esteem)."
+          },
+          {
+           "code": null,
+           "text": "describe gender differences, expectations and biases often encountered in today's society and compare them to the past."
+          },
+          {
+           "code": null,
+           "text": "explain human reproduction (i.e., male and female reproductive systems, pregnancy)."
+          },
+          {
+           "code": null,
+           "text": "Recognize the skills necessary for maintaining reproductive health (e.g., self-examinations, annual doctor visits, prenatal care)."
+          }
+         ]
+        },
+        {
+         "id": "the-student-will-examine-human-sexuality-e-g-bio-2",
+         "title": "The student will examine human sexuality (e.g., biology, behavior, responsibilities, attitudes) and recognize the influence of society and family values on decision making (2 of 3)",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "recognize abstinence from all sexual activity as a positive choice."
+          },
+          {
+           "code": null,
+           "text": "identify and practice skills needed to resist persuasive tactics regarding sexual activity."
+          },
+          {
+           "code": null,
+           "text": "identify the potential outcomes of engaging in sexual behaviors (e.g., pregnancy, STIs including HIV/AIDS, emotional).,"
+          },
+          {
+           "code": null,
+           "text": "compare various contraceptive methods."
+          },
+          {
+           "code": null,
+           "text": "identify short-term and long-term effects of sexual harassment and date rape."
+          }
+         ]
+        },
+        {
+         "id": "the-student-will-examine-human-sexuality-e-g-bio-3",
+         "title": "The student will examine human sexuality (e.g., biology, behavior, responsibilities, attitudes) and recognize the influence of society and family values on decision making (3 of 3)",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "discuss the alternatives of an unplanned pregnancy (e.g., adoption, single parenting, marriage, abortion)."
+          },
+          {
+           "code": null,
+           "text": "discuss the consequences associated with teen pregnancy (e.g., physical, mental, emotional, social, economical)."
+          },
+          {
+           "code": null,
+           "text": "examine the lifelong responsibilities and requirements of parenthood."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "substance-use-and-abuse",
+     "title": "Substance Use and Abuse",
+     "topics": [
+      {
+       "id": "the-student-will-differentiate-appropriate-and-i",
+       "title": "The student will differentiate appropriate and inappropriate use of chemical substances",
+       "subtopics": [
+        {
+         "id": "the-student-will-differentiate-appropriate-and-i",
+         "title": "The student will differentiate appropriate and inappropriate use of chemical substances (1 of 2)",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "describe the illegal use of alcohol, tobacco and other chemical substances."
+          },
+          {
+           "code": null,
+           "text": "identify the effects of substance misuse and abuse on society (e.g., school, crime, disease, pregnancy, STI, job, personal relationships, physical enhancement, athletic performance)."
+          },
+          {
+           "code": null,
+           "text": "recognize that combining chemical substances can have serious consequences (e.g., death, injury, sensory impairments)."
+          },
+          {
+           "code": null,
+           "text": "identify school and community resources for treatment and intervention (e.g., DARE, school counselor, teacher, local health department, hotlines, Alcoholics Anonymous)."
+          }
+         ]
+        },
+        {
+         "id": "the-student-will-differentiate-appropriate-and-i-2",
+         "title": "The student will differentiate appropriate and inappropriate use of chemical substances (2 of 2)",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "identify strategies to avoid misuse of chemical substances."
+          },
+          {
+           "code": null,
+           "text": "explain the effects of chemical substances on total wellness."
+          },
+          {
+           "code": null,
+           "text": "list the benefits of a lifestyle free from chemical misuse."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "3-5",
+   "units": [
+    {
+     "id": "personal-health-and-wellness",
+     "title": "Personal Health and Wellness",
+     "topics": [
+      {
+       "id": "the-student-will-demonstrate-the-ability-to-impl",
+       "title": "The student will demonstrate the ability to implement decision making and goal setting skills to promote his/her personal health and wellness, thereby enhancing quality of life for himself/herself and those around him/her",
+       "subtopics": [
+        {
+         "id": "the-student-will-demonstrate-the-ability-to-impl",
+         "title": "The student will demonstrate the ability to implement decision making and goal setting skills to promote his/her personal health and wellness, thereby enhancing quality of life for himself/herself and those around him/her",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "identify effective decision making techniques;"
+          },
+          {
+           "code": null,
+           "text": "identify the benefits of forming personal goals, values and standards;"
+          },
+          {
+           "code": null,
+           "text": "identify the influences that help an individuals form personal goals, values and standards;"
+          },
+          {
+           "code": null,
+           "text": "apply the decision-making process in developing personal goals and standards that affect family life;"
+          },
+          {
+           "code": null,
+           "text": "evaluate the influence of media on decision-making process related to healthy living."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "the-student-will-understand-the-importance-of-pe",
+       "title": "The student will understand the importance of personal hygiene practices as related to healthy living",
+       "subtopics": [
+        {
+         "id": "the-student-will-understand-the-importance-of-pe",
+         "title": "The student will understand the importance of personal hygiene practices as related to healthy living",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "demonstrate the importance of personal hygiene practices;"
+          },
+          {
+           "code": null,
+           "text": "describe physical/emotional/social health implications of personal hygiene;"
+          },
+          {
+           "code": null,
+           "text": "identify ways to take responsibility for our personal health;"
+          },
+          {
+           "code": null,
+           "text": "analyze the changes in health and hygiene needs related to adolescence."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "the-student-will-understand-the-role-of-body-sys",
+       "title": "The student will understand the role of body systems as related to healthy living",
+       "subtopics": [
+        {
+         "id": "the-student-will-understand-the-role-of-body-sys",
+         "title": "The student will understand the role of body systems as related to healthy living",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "describe the basic human body structures;"
+          },
+          {
+           "code": null,
+           "text": "describe the functions of the human body systems;"
+          },
+          {
+           "code": null,
+           "text": "explain how health is influenced by the interaction of human body systems."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "the-student-will-understand-the-relationship-of-",
+       "title": "The student will understand the relationship of physical activity and rest to healthy living",
+       "subtopics": [
+        {
+         "id": "the-student-will-understand-the-relationship-of-",
+         "title": "The student will understand the relationship of physical activity and rest to healthy living",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "explain the importance of participation in the recommended one hour of daily physical activity;"
+          },
+          {
+           "code": null,
+           "text": "identify personal physical activity goals needed to achieve overall wellness;"
+          },
+          {
+           "code": null,
+           "text": "explain the role of adequate sleep in health and performance of daily activities."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "nutrition",
+     "title": "Nutrition",
+     "topics": [
+      {
+       "id": "the-student-will-understand-the-relationship-of-",
+       "title": "The student will understand the relationship of nutrition to healthy living",
+       "subtopics": [
+        {
+         "id": "the-student-will-understand-the-relationship-of-",
+         "title": "The student will understand the relationship of nutrition to healthy living",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "use the \"My Pyramid\" as a guide for choosing a variety of foods necessary for good health;"
+          },
+          {
+           "code": null,
+           "text": "explain how personal health and body composition is influenced by balancing diet and physical exercise."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "family-life",
+     "title": "Family Life",
+     "topics": [
+      {
+       "id": "the-student-will-understand-the-contributions-of",
+       "title": "The student will understand the contributions of family relationships to healthy living",
+       "subtopics": [
+        {
+         "id": "the-student-will-understand-the-contributions-of",
+         "title": "The student will understand the contributions of family relationships to healthy living",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "identify all families as unique;"
+          },
+          {
+           "code": null,
+           "text": "demonstrate respect for the responsibilities of each person within the family;"
+          },
+          {
+           "code": null,
+           "text": "identify how to improve family relationships;"
+          },
+          {
+           "code": null,
+           "text": "describe how family structures change."
+          },
+          {
+           "code": null,
+           "text": "discuss ways that changes in the family can affect emotions;"
+          },
+          {
+           "code": null,
+           "text": "understand cultural differences exist and influence family customs."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "the-student-will-understand-the-stages-of-human-",
+       "title": "The student will understand the stages of human growth and development",
+       "subtopics": [
+        {
+         "id": "the-student-will-understand-the-stages-of-human-",
+         "title": "The student will understand the stages of human growth and development",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "identify changes in the body that occur throughout the life cycle;"
+          },
+          {
+           "code": null,
+           "text": "demonstrate respect for self and others as physical changes occur at varying rates."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "emotional-social-and-mental-health",
+     "title": "Emotional, Social, and Mental Health",
+     "topics": [
+      {
+       "id": "the-student-will-understand-the-importance-of-po",
+       "title": "The student will understand the importance of positive self-concept and interpersonal relationships for healthy living",
+       "subtopics": [
+        {
+         "id": "the-student-will-understand-the-importance-of-po",
+         "title": "The student will understand the importance of positive self-concept and interpersonal relationships for healthy living",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "describe how feelings affect behavior;"
+          },
+          {
+           "code": null,
+           "text": "demonstrate respect for the unique qualities of self and others;"
+          },
+          {
+           "code": null,
+           "text": "describe characteristics to be a responsible friend and family member;"
+          },
+          {
+           "code": null,
+           "text": "identify positive and negative stress."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "disease-prevention-and-control",
+     "title": "Disease Prevention and Control",
+     "topics": [
+      {
+       "id": "the-student-will-understand-attitudes-and-behavi",
+       "title": "The student will understand attitudes and behaviors for preventing and controlling disease",
+       "subtopics": [
+        {
+         "id": "the-student-will-understand-attitudes-and-behavi",
+         "title": "The student will understand attitudes and behaviors for preventing and controlling disease",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "identify common germs (pathogens);"
+          },
+          {
+           "code": null,
+           "text": "compare and contrast communicable and non-communicable diseases;"
+          },
+          {
+           "code": null,
+           "text": "describe ways diseases are spread and prevented;"
+          },
+          {
+           "code": null,
+           "text": "distinguish between safe and risky behaviors as related to disease prevention."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "injury-prevention-and-safety",
+     "title": "Injury Prevention and Safety",
+     "topics": [
+      {
+       "id": "the-student-will-understand-attitudes-and-behavi",
+       "title": "The student will understand attitudes and behaviors for preventing injuries and deaths from injury",
+       "subtopics": [
+        {
+         "id": "the-student-will-understand-attitudes-and-behavi",
+         "title": "The student will understand attitudes and behaviors for preventing injuries and deaths from injury",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "identify common causes of childhood injuries and methods of prevention (motor vehicles (includes buses and ATVs), fires and flames, drowning, hand gun injuries, falls, poisoning, choking, suffocation, strangulation, and bike/pedestrian injuries);"
+          },
+          {
+           "code": null,
+           "text": "explain the importance of safety rules and laws;"
+          },
+          {
+           "code": null,
+           "text": "demonstrate and explain appropriate choices related to reducing unintentional injuries."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "the-student-will-understand-appropriate-care-for",
+       "title": "The student will understand appropriate care for injuries and sudden illnesses",
+       "subtopics": [
+        {
+         "id": "the-student-will-understand-appropriate-care-for",
+         "title": "The student will understand appropriate care for injuries and sudden illnesses",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "describe appropriate actions for emergency and non-emergency situations;"
+          },
+          {
+           "code": null,
+           "text": "demonstrate first aid techniques."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "the-student-will-understand-the-appropriate-acti",
+       "title": "The student will understand the appropriate action to take when personal safety is threatened",
+       "subtopics": [
+        {
+         "id": "the-student-will-understand-the-appropriate-acti",
+         "title": "The student will understand the appropriate action to take when personal safety is threatened",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "identify situations that should be reported to a trusted adult;"
+          },
+          {
+           "code": null,
+           "text": "demonstrate self-protection skills and identify appropriate resources for help."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "substance-use-and-abuse-prevention",
+     "title": "Substance Use and Abuse Prevention",
+     "topics": [
+      {
+       "id": "the-student-will-understand-appropriate-and-inap",
+       "title": "The student will understand appropriate and inappropriate uses of chemical substances and the effects of substance use and abuse",
+       "subtopics": [
+        {
+         "id": "the-student-will-understand-appropriate-and-inap",
+         "title": "The student will understand appropriate and inappropriate uses of chemical substances and the effects of substance use and abuse",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "distinguish between appropriate use and the misuse/abuse of chemical substances for healthy living;"
+          },
+          {
+           "code": null,
+           "text": "analyze the influences of peers, family, and community on chemical substance use and abuse;"
+          },
+          {
+           "code": null,
+           "text": "evaluate the effects of substance use and abuse (e.g. tobacco, alcohol, over the counter and prescription medication, illegal drugs (including anabolic steroids and other performance enhancing drugs) on physical, mental, and social functioning;"
+          },
+          {
+           "code": null,
+           "text": "demonstrate decision making and refusal skills;"
+          },
+          {
+           "code": null,
+           "text": "explain how personal choices relate to health and wellness consequences;"
+          },
+          {
+           "code": null,
+           "text": "recognize certain behaviors can lead to drug abuse and addiction (e.g. huffing, inhalant abuse, smoking, alcohol consumption, over the counter and prescription medication)."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "environmental-and-community-health",
+     "title": "Environmental and Community Health",
+     "topics": [
+      {
+       "id": "the-student-will-recognize-environmental-practic",
+       "title": "The student will recognize environmental practices, products and resources that affect personal and community health and promotes healthy living",
+       "subtopics": [
+        {
+         "id": "the-student-will-recognize-environmental-practic",
+         "title": "The student will recognize environmental practices, products and resources that affect personal and community health and promotes healthy living (1 of 2)",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "identify the causes and effects of different types of pollution on health;"
+          },
+          {
+           "code": null,
+           "text": "apply the practices of \"reduce, reuse, and recycle\";"
+          },
+          {
+           "code": null,
+           "text": "evaluate and select environmentally safe products;"
+          },
+          {
+           "code": null,
+           "text": "describe ways health agencies assist in promoting health and the environment;"
+          }
+         ]
+        },
+        {
+         "id": "the-student-will-recognize-environmental-practic-2",
+         "title": "The student will recognize environmental practices, products and resources that affect personal and community health and promotes healthy living (2 of 2)",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "explain the importance of community organizations to healthy living;"
+          },
+          {
+           "code": null,
+           "text": "identify resources and facilities in the community that promote healthy living;"
+          },
+          {
+           "code": null,
+           "text": "evaluate the effect of media and technology on individual, family, and community health."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "6-8",
+   "units": [
+    {
+     "id": "personal-health-and-wellness",
+     "title": "Personal Health and Wellness",
+     "topics": [
+      {
+       "id": "the-student-will-demonstrate-the-ability-to-impl",
+       "title": "The student will demonstrate the ability to implement decision making and goal setting skills to promote his/her personal health and wellness, thereby enhancing quality of life for himself/herself and those around him/her",
+       "subtopics": [
+        {
+         "id": "the-student-will-demonstrate-the-ability-to-impl",
+         "title": "The student will demonstrate the ability to implement decision making and goal setting skills to promote his/her personal health and wellness, thereby enhancing quality of life for himself/herself and those around him/her",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "analyze the effectiveness of personal decision-making as it relates to future health and wellness outcomes;"
+          },
+          {
+           "code": null,
+           "text": "describe individual goals and aspirations for healthy living;"
+          },
+          {
+           "code": null,
+           "text": "determine how setting healthy living goals can promote lifetime wellness;"
+          },
+          {
+           "code": null,
+           "text": "develop a list of questions that influence the decision-making process;"
+          },
+          {
+           "code": null,
+           "text": "identify choices and examine alternatives and consequences of each choice when making decisions as it relates to healthy living;"
+          },
+          {
+           "code": null,
+           "text": "evaluate the influence of media on the decision-making process related to healthy living."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "the-student-will-understand-the-importance-of-pe",
+       "title": "The student will understand the importance of personal hygiene practices as related to healthy living",
+       "subtopics": [
+        {
+         "id": "the-student-will-understand-the-importance-of-pe",
+         "title": "The student will understand the importance of personal hygiene practices as related to healthy living",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "identify and evaluate basic personal hygiene habits;"
+          },
+          {
+           "code": null,
+           "text": "analyze the changes in health and hygiene needs related to adolescence;"
+          },
+          {
+           "code": null,
+           "text": "discuss physical/emotional/social health implications of personal hygiene."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "the-student-will-understand-the-role-of-body-sys",
+       "title": "The student will understand the role of body systems as related to healthy living",
+       "subtopics": [
+        {
+         "id": "the-student-will-understand-the-role-of-body-sys",
+         "title": "The student will understand the role of body systems as related to healthy living",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "describe and explain the basic body systems and their functions;"
+          },
+          {
+           "code": null,
+           "text": "analyze and explain the impact of personal health behaviors on the functioning of human body systems."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "the-student-will-understand-the-relationship-of-",
+       "title": "The student will understand the relationship of physical activity and rest to healthy living",
+       "subtopics": [
+        {
+         "id": "the-student-will-understand-the-relationship-of-",
+         "title": "The student will understand the relationship of physical activity and rest to healthy living",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "explain the importance of participation in the recommended one hour of daily physical activity;"
+          },
+          {
+           "code": null,
+           "text": "identify the components of health-related physical fitness;"
+          },
+          {
+           "code": null,
+           "text": "determine the benefits of exercise in relation to improved health during all stages of life;"
+          },
+          {
+           "code": null,
+           "text": "assess the relationship of physical activity to other areas of personal health (social, mental, and emotional well-being)."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "nutrition",
+     "title": "Nutrition",
+     "topics": [
+      {
+       "id": "the-student-will-understand-the-relationship-of-",
+       "title": "The student will understand the relationship of nutrition to healthy living",
+       "subtopics": [
+        {
+         "id": "the-student-will-understand-the-relationship-of-",
+         "title": "The student will understand the relationship of nutrition to healthy living",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "explain the relationship of a balanced nutrition program and essential nutrients to appropriate weight, appearance, energy level and total wellness;"
+          },
+          {
+           "code": null,
+           "text": "evaluate how individual food choices are influenced by multiple factors;"
+          },
+          {
+           "code": null,
+           "text": "describe body composition and eating disorders;"
+          },
+          {
+           "code": null,
+           "text": "practice principles of food safety."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "family-life",
+     "title": "Family Life",
+     "topics": [
+      {
+       "id": "the-student-will-understand-the-contributions-of",
+       "title": "The student will understand the contributions of family relationships to healthy living",
+       "subtopics": [
+        {
+         "id": "the-student-will-understand-the-contributions-of",
+         "title": "The student will understand the contributions of family relationships to healthy living",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "identify family influences in the development of personal values and beliefs and how they will affect future decisions;"
+          },
+          {
+           "code": null,
+           "text": "analyze changing roles and responsibilities (physically, socially and emotionally) throughout the life cycle as individuals and members of families;"
+          },
+          {
+           "code": null,
+           "text": "evaluate the influence of attitudes, emotions, and behaviors on healthy family relationships."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "the-student-will-understand-the-stages-of-human-",
+       "title": "The student will understand the stages of human growth and development",
+       "subtopics": [
+        {
+         "id": "the-student-will-understand-the-stages-of-human-",
+         "title": "The student will understand the stages of human growth and development",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "describe and demonstrate understanding of the developmental characteristics of adolescence including physical and emotional changes;"
+          },
+          {
+           "code": null,
+           "text": "exhibit respect for others as physical changes occur during adolescence;"
+          },
+          {
+           "code": null,
+           "text": "identify abstinence from sexual activity as the responsible and preferred choice for adolescents."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "emotional-social-and-mental-health",
+     "title": "Emotional, Social, and Mental Health",
+     "topics": [
+      {
+       "id": "the-student-will-understand-the-importance-of-po",
+       "title": "The student will understand the importance of positive self-concept and interpersonal relationships for healthy living",
+       "subtopics": [
+        {
+         "id": "the-student-will-understand-the-importance-of-po",
+         "title": "The student will understand the importance of positive self-concept and interpersonal relationships for healthy living",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "demonstrate healthy ways to express needs, wants, and feelings;"
+          },
+          {
+           "code": null,
+           "text": "demonstrate respect for individual and cultural differences that help develop healthy relationships;"
+          },
+          {
+           "code": null,
+           "text": "understand how mental, emotional, social and physical health dimensions are interrelated and that problems in one dimension can influence another;"
+          },
+          {
+           "code": null,
+           "text": "demonstrate skills to cope with attitudes and behaviors appropriately as related to social health;"
+          },
+          {
+           "code": null,
+           "text": "evaluate attitudes and behaviors as related to personal and mental health;"
+          },
+          {
+           "code": null,
+           "text": "recognize stress is a normal part of life and appropriate stress management should be a life-long skill."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "disease-prevention-and-control",
+     "title": "Disease Prevention and Control",
+     "topics": [
+      {
+       "id": "the-student-will-understand-attitudes-and-behavi",
+       "title": "The student will understand attitudes and behaviors for preventing and controlling disease",
+       "subtopics": [
+        {
+         "id": "the-student-will-understand-attitudes-and-behavi",
+         "title": "The student will understand attitudes and behaviors for preventing and controlling disease",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "identify and define common pathogens;"
+          },
+          {
+           "code": null,
+           "text": "describe ways pathogens and diseases are spread, prevented, and managed;"
+          },
+          {
+           "code": null,
+           "text": "describe signs, symptoms, and risk factors related to communicable and non-communicable diseases;"
+          },
+          {
+           "code": null,
+           "text": "evaluate how heredity, environment and lifestyle impact both the wellness and disease process."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "injury-prevention-and-safety",
+     "title": "Injury Prevention and Safety",
+     "topics": [
+      {
+       "id": "the-student-will-understand-attitudes-and-behavi",
+       "title": "The student will understand attitudes and behaviors for preventing injuries and deaths from injury",
+       "subtopics": [
+        {
+         "id": "the-student-will-understand-attitudes-and-behavi",
+         "title": "The student will understand attitudes and behaviors for preventing injuries and deaths from injury",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "evaluate ways to reduce the risks of injuries and deaths from injury (motor vehicles (includes buses and ATVs), fires and flames, drowning, hand gun injuries, falls, poisoning, choking, suffocation, strangulation, and bike/pedestrian injuries);"
+          },
+          {
+           "code": null,
+           "text": "analyze the importance of safety rules and laws;"
+          },
+          {
+           "code": null,
+           "text": "analyze the influences of media and internet which promote risky behavior;"
+          },
+          {
+           "code": null,
+           "text": "analyze how the choices an individual makes, which results in injuries, impacts the lives of individuals and families."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "the-student-will-understand-appropriate-care-for",
+       "title": "The student will understand appropriate care for injuries and sudden illness",
+       "subtopics": [
+        {
+         "id": "the-student-will-understand-appropriate-care-for",
+         "title": "The student will understand appropriate care for injuries and sudden illness",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "demonstrate appropriate actions for emergency and non-emergency situations;"
+          },
+          {
+           "code": null,
+           "text": "demonstrate first aid techniques."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "the-student-will-understand-the-appropriate-acti",
+       "title": "The student will understand the appropriate action to take when personal safety is threatened",
+       "subtopics": [
+        {
+         "id": "the-student-will-understand-the-appropriate-acti",
+         "title": "The student will understand the appropriate action to take when personal safety is threatened",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "identify situations that should be reported to a trusted adult;"
+          },
+          {
+           "code": null,
+           "text": "formulate a plan for self-protection skills and identify appropriate resources for help, before and after an offense has occurred;"
+          },
+          {
+           "code": null,
+           "text": "demonstrate techniques to assertively deal with peer pressure when personal safety is threatened (e.g., in car with drunk driver, pressured to take drugs, encouraged to participate in risky behaviors that can hurt others)."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "substance-use-and-abuse-prevention",
+     "title": "Substance Use and Abuse Prevention",
+     "topics": [
+      {
+       "id": "the-student-will-understand-appropriate-and-inap",
+       "title": "The student will understand appropriate and inappropriate uses of chemical substances and the effects of substance use and abuse",
+       "subtopics": [
+        {
+         "id": "the-student-will-understand-appropriate-and-inap",
+         "title": "The student will understand appropriate and inappropriate uses of chemical substances and the effects of substance use and abuse",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "distinguish between appropriate use and misuse of chemical substances for healthy living;"
+          },
+          {
+           "code": null,
+           "text": "assess the influences of family, peers, and community on chemical substance use and abuse"
+          },
+          {
+           "code": null,
+           "text": "identify how substance (e.g. tobacco, alcohol, and drugs) use and abuse affects people physically, emotionally, socially, financially, and legally;"
+          },
+          {
+           "code": null,
+           "text": "explain how choices relate to consequences;"
+          },
+          {
+           "code": null,
+           "text": "recognize treatment programs and support groups for those dealing with addiction;"
+          },
+          {
+           "code": null,
+           "text": "recognize certain behaviors can lead to drug abuse and addiction (e.g. huffing, inhalant abuse, smoking, alcohol consumption, over the counter and prescription medication)."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "environmental-and-community-health",
+     "title": "Environmental and Community Health",
+     "topics": [
+      {
+       "id": "the-student-will-recognize-environmental-practic",
+       "title": "The student will recognize environmental practices, products and resources that affect personal and community health and promotes healthy living",
+       "subtopics": [
+        {
+         "id": "the-student-will-recognize-environmental-practic",
+         "title": "The student will recognize environmental practices, products and resources that affect personal and community health and promotes healthy living (1 of 2)",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "identify major environmental health concerns that impact human health (e.g. air, water and noise pollution; negative social-emotional environment);"
+          },
+          {
+           "code": null,
+           "text": "demonstrate ways to reduce, reuse, and recycle solid waste;"
+          },
+          {
+           "code": null,
+           "text": "evaluate and critique products and their effects on the environment;"
+          },
+          {
+           "code": null,
+           "text": "demonstrate understanding of ways to promote a healthful environment;"
+          }
+         ]
+        },
+        {
+         "id": "the-student-will-recognize-environmental-practic-2",
+         "title": "The student will recognize environmental practices, products and resources that affect personal and community health and promotes healthy living (2 of 2)",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "assess various health care facilities and services;"
+          },
+          {
+           "code": null,
+           "text": "analyze the importance of community organizations to healthy living;"
+          },
+          {
+           "code": null,
+           "text": "identify different health professionals and their role in promoting community health;"
+          },
+          {
+           "code": null,
+           "text": "evaluate the effect of media and technology on individual, family, and community health."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "PK-2",
+   "units": [
+    {
+     "id": "personal-health-and-wellness",
+     "title": "Personal Health and Wellness",
+     "topics": [
+      {
+       "id": "the-student-will-demonstrate-the-ability-to-impl",
+       "title": "The student will demonstrate the ability to implement decision making and goal setting skills to promote his/her personal health and wellness, thereby enhancing quality of life for himself/herself and those around him/her",
+       "subtopics": [
+        {
+         "id": "the-student-will-demonstrate-the-ability-to-impl",
+         "title": "The student will demonstrate the ability to implement decision making and goal setting skills to promote his/her personal health and wellness, thereby enhancing quality of life for himself/herself and those around him/her",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "define \"choices\" and \"consequences\";"
+          },
+          {
+           "code": null,
+           "text": "identify trusted adult(s) to consult before making a choice;"
+          },
+          {
+           "code": null,
+           "text": "identify questions to ask during the process of making a choice (e.g. Is it healthful? Is it safe? Is it legal? Do I show respect for myself and others? Do I follow family rules? Do I show good character?);"
+          },
+          {
+           "code": null,
+           "text": "identify personal goals and standards for healthy living;"
+          },
+          {
+           "code": null,
+           "text": "explain how media influences thoughts, feelings, and behaviors related to personal health and community;"
+          },
+          {
+           "code": null,
+           "text": "evaluate the influence of media on the decision-making process related to healthy living."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "the-student-will-understand-the-importance-of-pe",
+       "title": "The student will understand the importance of personal hygiene practices as related to healthy living",
+       "subtopics": [
+        {
+         "id": "the-student-will-understand-the-importance-of-pe",
+         "title": "The student will understand the importance of personal hygiene practices as related to healthy living",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "demonstrate essential personal hygiene practices;"
+          },
+          {
+           "code": null,
+           "text": "identify the importance of good versus poor personal hygiene practices;"
+          },
+          {
+           "code": null,
+           "text": "explain the importance of not sharing personal hygiene items (toothbrush, combs, brushes);"
+          },
+          {
+           "code": null,
+           "text": "describe physical/emotional/social health implications of personal hygiene."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "the-student-will-understand-the-role-of-body-sys",
+       "title": "The student will understand the role of body systems as related to healthy living",
+       "subtopics": [
+        {
+         "id": "the-student-will-understand-the-role-of-body-sys",
+         "title": "The student will understand the role of body systems as related to healthy living",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "identify the basic body structure;"
+          },
+          {
+           "code": null,
+           "text": "identify the functions of the human body systems;"
+          },
+          {
+           "code": null,
+           "text": "explain the importance of the basic body systems."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "the-student-will-understand-the-relationship-of-",
+       "title": "The student will understand the relationship of physical activity and rest to healthy living",
+       "subtopics": [
+        {
+         "id": "the-student-will-understand-the-relationship-of-",
+         "title": "The student will understand the relationship of physical activity and rest to healthy living",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "describe the importance of participating in the recommended one hour of daily physical activity;"
+          },
+          {
+           "code": null,
+           "text": "identify physical activities used in daily life that promote healthy living."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "nutrition",
+     "title": "Nutrition",
+     "topics": [
+      {
+       "id": "the-student-will-understand-the-relationship-of-",
+       "title": "The student will understand the relationship of nutrition to healthy living",
+       "subtopics": [
+        {
+         "id": "the-student-will-understand-the-relationship-of-",
+         "title": "The student will understand the relationship of nutrition to healthy living",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "identify the basic food groups and foods;"
+          },
+          {
+           "code": null,
+           "text": "identify food as a source of energy and growth;"
+          },
+          {
+           "code": null,
+           "text": "describe the importance of healthy meals and snacks"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "family-life",
+     "title": "Family Life",
+     "topics": [
+      {
+       "id": "the-student-will-understand-the-contributions-of",
+       "title": "The student will understand the contributions of family relationships to healthy living",
+       "subtopics": [
+        {
+         "id": "the-student-will-understand-the-contributions-of",
+         "title": "The student will understand the contributions of family relationships to healthy living",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "describe the various types of family structures;"
+          },
+          {
+           "code": null,
+           "text": "explain that family structures vary and can change;"
+          },
+          {
+           "code": null,
+           "text": "identify common goals and values found in family structures;"
+          },
+          {
+           "code": null,
+           "text": "identify ways children can contribute to healthy family life;"
+          },
+          {
+           "code": null,
+           "text": "identify how changes in the family can influence emotions;"
+          },
+          {
+           "code": null,
+           "text": "understand that cultural differences exist and influence family customs."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "the-student-will-understand-the-stages-of-human-",
+       "title": "The student will understand the stages of human growth and development",
+       "subtopics": [
+        {
+         "id": "the-student-will-understand-the-stages-of-human-",
+         "title": "The student will understand the stages of human growth and development",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "identify human growth and development stages throughout the life cycle;"
+          },
+          {
+           "code": null,
+           "text": "describe the important differences in the stages of human growth and development."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "emotional-social-and-mental-health",
+     "title": "Emotional, Social, and Mental Health",
+     "topics": [
+      {
+       "id": "the-student-will-understand-the-importance-of-po",
+       "title": "The student will understand the importance of positive self-concept and interpersonal relationships for healthy living",
+       "subtopics": [
+        {
+         "id": "the-student-will-understand-the-importance-of-po",
+         "title": "The student will understand the importance of positive self-concept and interpersonal relationships for healthy living",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "explain that feelings can be expressed in different ways;"
+          },
+          {
+           "code": null,
+           "text": "name and describe qualities and characteristics that make all individuals unique;"
+          },
+          {
+           "code": null,
+           "text": "identify the importance of developing and maintaining healthy relationships."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "disease-prevention-and-control",
+     "title": "Disease Prevention and Control",
+     "topics": [
+      {
+       "id": "the-student-will-understand-attitudes-and-behavi",
+       "title": "The student will understand attitudes and behaviors for preventing and controlling disease",
+       "subtopics": [
+        {
+         "id": "the-student-will-understand-attitudes-and-behavi",
+         "title": "The student will understand attitudes and behaviors for preventing and controlling disease",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "identify and define common germs pathogens;"
+          },
+          {
+           "code": null,
+           "text": "identify how germs are spread;"
+          },
+          {
+           "code": null,
+           "text": "identify habits that will promote disease prevention;"
+          },
+          {
+           "code": null,
+           "text": "identify chronic health problems."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "injury-prevention-and-safety",
+     "title": "Injury Prevention and Safety",
+     "topics": [
+      {
+       "id": "the-student-will-understand-attitudes-and-behavi",
+       "title": "The student will understand attitudes and behaviors for preventing injuries and deaths from injury",
+       "subtopics": [
+        {
+         "id": "the-student-will-understand-attitudes-and-behavi",
+         "title": "The student will understand attitudes and behaviors for preventing injuries and deaths from injury",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "list the eight most common injury risks for children (motor vehicles (includes buses and ATVs), fires and flames, drowning, hand gun injuries, falls, poisoning, choking, suffocation, strangulation, and bike/pedestrian injuries);"
+          },
+          {
+           "code": null,
+           "text": "identify ways to reduce the risk of injuries and deaths from injury;"
+          },
+          {
+           "code": null,
+           "text": "discuss the importance of safety rules;"
+          },
+          {
+           "code": null,
+           "text": "demonstrate the appropriate choices related to reducing unintentional injuries."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "the-student-will-understand-appropriate-care-for",
+       "title": "The student will understand appropriate care for injuries and sudden illness",
+       "subtopics": [
+        {
+         "id": "the-student-will-understand-appropriate-care-for",
+         "title": "The student will understand appropriate care for injuries and sudden illness",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "report when someone is injured or ill to a responsible caregiver;"
+          },
+          {
+           "code": null,
+           "text": "demonstrate basic first aid techniques (\"Check, Call, Care\"; refer to American Red Cross first aid procedures)."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "the-student-will-understand-the-appropriate-acti",
+       "title": "The student will understand the appropriate action to take when personal safety is threatened",
+       "subtopics": [
+        {
+         "id": "the-student-will-understand-the-appropriate-acti",
+         "title": "The student will understand the appropriate action to take when personal safety is threatened",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "identify situations that should be reported to a trusted adult;"
+          },
+          {
+           "code": null,
+           "text": "demonstrate self-protection skills and identify appropriate resources for help."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "substance-use-and-abuse-prevention",
+     "title": "Substance Use and Abuse Prevention",
+     "topics": [
+      {
+       "id": "the-student-will-understand-appropriate-and-inap",
+       "title": "The student will understand appropriate and inappropriate uses of chemical substances and the effects of substance use and abuse",
+       "subtopics": [
+        {
+         "id": "the-student-will-understand-appropriate-and-inap",
+         "title": "The student will understand appropriate and inappropriate uses of chemical substances and the effects of substance use and abuse",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "describe the role of drugs and medicines in keeping people healthy;"
+          },
+          {
+           "code": null,
+           "text": "describe inappropriate use of drugs and medicines;"
+          },
+          {
+           "code": null,
+           "text": "identify the consequences of using tobacco products, alcohol, and drugs;"
+          },
+          {
+           "code": null,
+           "text": "practice refusal skills to avoid harmful substances;"
+          },
+          {
+           "code": null,
+           "text": "recognize the proper use of common household products (e.g. over the counter medicines, cleaners, gasoline, markers)"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "environmental-and-community-health",
+     "title": "Environmental and Community Health",
+     "topics": [
+      {
+       "id": "the-student-will-recognize-environmental-practic",
+       "title": "The student will recognize environmental practices, products and resources that affect personal and community health and promotes healthy living",
+       "subtopics": [
+        {
+         "id": "the-student-will-recognize-environmental-practic",
+         "title": "The student will recognize environmental practices, products and resources that affect personal and community health and promotes healthy living",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "describe different types of pollution and it's environmental affects;"
+          },
+          {
+           "code": null,
+           "text": "identify the importance of \"reduce, reuse, recycle\" practices,"
+          },
+          {
+           "code": null,
+           "text": "identify ways the environment affects a person's emotional, social and physical health;"
+          },
+          {
+           "code": null,
+           "text": "identify community health workers and the activities and programs they provide;"
+          },
+          {
+           "code": null,
+           "text": "describe the importance of community organizations to healthy living;"
+          },
+          {
+           "code": null,
+           "text": "identify resources and facilities in the community that promote healthy living."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "build": {
+  "builtAt": "2026-10-14T16:20:48.983Z",
+  "model": "none",
+  "usd": 0,
+  "expectedCodes": null,
+  "coverage": null,
+  "missingCodes": [],
+  "counts": {
+   "grades": 4,
+   "units": 31,
+   "topics": 49,
+   "subtopics": 60,
+   "outcomes": 229
+  },
+  "warnings": []
+ }
+}

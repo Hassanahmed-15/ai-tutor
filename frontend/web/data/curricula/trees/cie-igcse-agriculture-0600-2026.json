@@ -1,0 +1,914 @@
+{
+ "id": "cie-igcse-agriculture-0600-2026",
+ "region": "INTL",
+ "framework": "Cambridge IGCSE Agriculture (0600) syllabus 2026",
+ "board": "Cambridge",
+ "qualification": "IGCSE",
+ "subject": "Agriculture",
+ "syllabusCode": "0600",
+ "gradeSystem": "course",
+ "source": {
+  "urls": [
+   "https://www.cambridgeinternational.org/Images/697200-2026-syllabus.pdf",
+   "https://www.cambridgeinternational.org/programmes-and-qualifications/cambridge-igcse-agriculture-0600/"
+  ],
+  "publisher": "Cambridge University Press & Assessment (Cambridge International Education)",
+  "licence": "© Cambridge University Press & Assessment; structure + our own wording only",
+  "firstExam": "2026"
+ },
+ "grades": [
+  {
+   "grade": "IGCSE",
+   "units": [
+    {
+     "id": "1-general-agriculture",
+     "title": "1 General agriculture",
+     "topics": [
+      {
+       "id": "1-1-general-principles-of-land-use",
+       "title": "1.1 General principles of land use",
+       "subtopics": [
+        {
+         "id": "land-use",
+         "title": "Land use",
+         "outcomes": [
+          {
+           "code": "1.1",
+           "text": "Describe forms of land use: farming systems and practices (rotations, mixed farming, monoculture), forestry and aquaculture."
+          },
+          {
+           "code": null,
+           "text": "Explain how topography, climate and other environmental factors limit land use."
+          },
+          {
+           "code": null,
+           "text": "Explain why population growth needs efficient land use and farm planning."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "1-2-principles-of-agricultural-economics",
+       "title": "1.2 Principles of agricultural economics",
+       "subtopics": [
+        {
+         "id": "production-systems-and-gm-crops",
+         "title": "Production systems and GM crops",
+         "outcomes": [
+          {
+           "code": "1.2",
+           "text": "Describe organic production, hydroponics and GM crops, and discuss arguments for and against GM crops and organic production."
+          }
+         ]
+        },
+        {
+         "id": "farm-economics",
+         "title": "Farm economics",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain supply and demand, diminishing returns, the farmer's opportunities and choices, and economic decision-making."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "2-soil",
+     "title": "2 Soil",
+     "topics": [
+      {
+       "id": "2-1-soil-formation",
+       "title": "2.1 Soil formation",
+       "subtopics": [
+        {
+         "id": "soil-formation",
+         "title": "Soil formation",
+         "outcomes": [
+          {
+           "code": "2.1",
+           "text": "Explain how soil forms from parent material through physical, chemical and biological weathering."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "2-2-soil-types-composition-texture-and-temperatu",
+       "title": "2.2 Soil types, composition, texture and temperature",
+       "subtopics": [
+        {
+         "id": "soil-profile-and-texture",
+         "title": "Soil profile and texture",
+         "outcomes": [
+          {
+           "code": "2.2",
+           "text": "Describe the soil profile: topsoil, subsoil and underlying materials."
+          },
+          {
+           "code": null,
+           "text": "Describe soil texture by particle size: sand, silt and clay."
+          },
+          {
+           "code": null,
+           "text": "Describe sandy, loam and clay soils and their water-holding capacity and drainage."
+          }
+         ]
+        },
+        {
+         "id": "soil-structure-and-constituents",
+         "title": "Soil structure and constituents",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain soil structure: crumb structure, humus, organic matter, oxidation, and capping and soil pans."
+          },
+          {
+           "code": null,
+           "text": "Outline soil constituents: minerals, organic matter, air, water types and living organisms."
+          }
+         ]
+        },
+        {
+         "id": "soil-temperature",
+         "title": "Soil temperature",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain how soil temperature affects plant growth, heat and frost dangers, and mulching and shading to reduce extremes."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "2-3-soil-fertility",
+       "title": "2.3 Soil fertility",
+       "subtopics": [
+        {
+         "id": "nutrients-and-soil-ph",
+         "title": "Nutrients and soil pH",
+         "outcomes": [
+          {
+           "code": "2.3",
+           "text": "Explain the major nutrients (N, P, K, Ca, Mg, S) and the signs of deficiency in plants."
+          },
+          {
+           "code": null,
+           "text": "Carry out soil sampling and soil pH tests."
+          },
+          {
+           "code": null,
+           "text": "Explain how fertilising and liming affect soil pH."
+          }
+         ]
+        },
+        {
+         "id": "maintaining-fertility",
+         "title": "Maintaining fertility",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe the nitrogen cycle and its importance."
+          },
+          {
+           "code": null,
+           "text": "Explain the importance of legumes and organic fertilisers (manure, compost)."
+          },
+          {
+           "code": null,
+           "text": "Describe inorganic fertilisers: a phosphorus one, a potassium one and a compound one."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "2-4-soil-erosion-and-soil-conservation",
+       "title": "2.4 Soil erosion and soil conservation",
+       "subtopics": [
+        {
+         "id": "soil-erosion",
+         "title": "Soil erosion",
+         "outcomes": [
+          {
+           "code": "2.4",
+           "text": "Describe types of soil erosion, their causes, agents, prevention and control."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "2-5-drainage-and-irrigation",
+       "title": "2.5 Drainage and irrigation",
+       "subtopics": [
+        {
+         "id": "drainage",
+         "title": "Drainage",
+         "outcomes": [
+          {
+           "code": "2.5",
+           "text": "Describe drainage as downward movement of gravitational water, draining waterlogged land with ditches, and nutrient loss by leaching."
+          },
+          {
+           "code": null,
+           "text": "Explain the effects of poor drainage on soil organisms and root respiration."
+          }
+         ]
+        },
+        {
+         "id": "irrigation",
+         "title": "Irrigation",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain the need for irrigation and describe methods and their effects on yield and quality."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "2-6-water-cycle",
+       "title": "2.6 Water cycle",
+       "subtopics": [
+        {
+         "id": "water-cycle",
+         "title": "Water cycle",
+         "outcomes": [
+          {
+           "code": "2.6",
+           "text": "Describe the water cycle and ground-water resources and why they matter."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "3-principles-of-plant-growth",
+     "title": "3 Principles of plant growth",
+     "topics": [
+      {
+       "id": "3-1-movement-of-materials-through-plants",
+       "title": "3.1 Movement of materials through plants",
+       "subtopics": [
+        {
+         "id": "roots-and-uptake",
+         "title": "Roots and uptake",
+         "outcomes": [
+          {
+           "code": "3.1",
+           "text": "Describe the distribution and function of root tissues and root hairs."
+          },
+          {
+           "code": null,
+           "text": "Explain how plants absorb requirements from soil: diffusion, osmosis, and water and salts through vascular tissues."
+          }
+         ]
+        },
+        {
+         "id": "leaves-and-photosynthesis",
+         "title": "Leaves and photosynthesis",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain how leaf structure relates to function."
+          },
+          {
+           "code": null,
+           "text": "Outline gas exchange by diffusion through stomata."
+          },
+          {
+           "code": null,
+           "text": "Describe photosynthesis from carbon dioxide, water, light and chlorophyll to carbohydrates and oxygen."
+          }
+         ]
+        },
+        {
+         "id": "stems-and-storage",
+         "title": "Stems and storage",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe the tissues in a dicotyledon stem and their function."
+          },
+          {
+           "code": null,
+           "text": "Define translocation and explain modification of plant parts as food storage organs and the foods stored."
+          }
+         ]
+        },
+        {
+         "id": "transpiration",
+         "title": "Transpiration",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain transpiration: the stream, evaporation and water vapour diffusing through stomata."
+          },
+          {
+           "code": null,
+           "text": "Describe how temperature, humidity, wind and light intensity affect transpiration rate."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "3-2-reproduction-in-plants",
+       "title": "3.2 Reproduction in plants",
+       "subtopics": [
+        {
+         "id": "sexual-reproduction",
+         "title": "Sexual reproduction",
+         "outcomes": [
+          {
+           "code": "3.2",
+           "text": "Define sexual reproduction."
+          },
+          {
+           "code": null,
+           "text": "Describe the structure and functions of maize and bean flowers."
+          },
+          {
+           "code": null,
+           "text": "Define pollination."
+          },
+          {
+           "code": null,
+           "text": "Describe fertilisation in a named plant."
+          },
+          {
+           "code": null,
+           "text": "Describe seed and fruit dispersal and why it matters for weed control."
+          }
+         ]
+        },
+        {
+         "id": "asexual-reproduction",
+         "title": "Asexual reproduction",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe asexual reproduction from stem tubers (potato, yam) and stem cuttings (sweet potato, cassava, sugar cane)."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "3-3-germination",
+       "title": "3.3 Germination",
+       "subtopics": [
+        {
+         "id": "germination",
+         "title": "Germination",
+         "outcomes": [
+          {
+           "code": "3.3",
+           "text": "Describe seed structure and germination of maize and bean, and the conditions needed for germination."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "4-crop-production",
+     "title": "4 Crop production",
+     "topics": [
+      {
+       "id": "4-1-land-preparation",
+       "title": "4.1 Land preparation",
+       "subtopics": [
+        {
+         "id": "land-preparation",
+         "title": "Land preparation",
+         "outcomes": [
+          {
+           "code": "4.1",
+           "text": "Describe land preparation by stumping and clearing, and primary and secondary cultivation by hand or machine."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "4-2-cultivation-of-cash-crops",
+       "title": "4.2 Cultivation of cash crops",
+       "subtopics": [
+        {
+         "id": "crop-types",
+         "title": "Crop types",
+         "outcomes": [
+          {
+           "code": "4.2",
+           "text": "Name the main local crop types (legumes, roots and tubers, fruits, cereals) and their products."
+          }
+         ]
+        },
+        {
+         "id": "cultivating-one-local-crop",
+         "title": "Cultivating one local crop",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe cultivation of one local crop: soil and climate needs, soil preparation, sowing time and method, cultivars, seed rate and spacing."
+          },
+          {
+           "code": null,
+           "text": "Describe fertiliser and manure rates, pest, weed and disease control."
+          },
+          {
+           "code": null,
+           "text": "Describe recognising maturity, harvesting, yield, storage and record keeping."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "5-crop-protection",
+     "title": "5 Crop protection",
+     "topics": [
+      {
+       "id": "5-1-weed-control",
+       "title": "5.1 Weed control",
+       "subtopics": [
+        {
+         "id": "weeds-and-weed-control",
+         "title": "Weeds and weed control",
+         "outcomes": [
+          {
+           "code": "5.1",
+           "text": "Identify a named local weed, its harmful effects and how it spreads."
+          },
+          {
+           "code": null,
+           "text": "Explain cultural, mechanical and chemical weed control."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "5-2-pest-control",
+       "title": "5.2 Pest control",
+       "subtopics": [
+        {
+         "id": "types-of-pest",
+         "title": "Types of pest",
+         "outcomes": [
+          {
+           "code": "5.2",
+           "text": "Describe the life cycle, effect and spread of one biting and chewing pest."
+          },
+          {
+           "code": null,
+           "text": "Describe the life cycle, effect and spread of one piercing and sucking pest."
+          },
+          {
+           "code": null,
+           "text": "Describe the life cycle, effect and spread of one boring pest."
+          }
+         ]
+        },
+        {
+         "id": "controlling-pests",
+         "title": "Controlling pests",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe chemical pest control: contact and systemic pesticides, mode of action and appropriate use."
+          },
+          {
+           "code": null,
+           "text": "Describe biological and biotechnical pest control."
+          },
+          {
+           "code": null,
+           "text": "Describe cultural pest control including rotation and catch cropping."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "5-3-disease-control",
+       "title": "5.3 Disease control",
+       "subtopics": [
+        {
+         "id": "plant-diseases",
+         "title": "Plant diseases",
+         "outcomes": [
+          {
+           "code": "5.3",
+           "text": "Describe infection, harm, prevention and control of one bacterial disease, one fungal disease and one viral disease."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "5-4-the-use-of-farm-chemicals",
+       "title": "5.4 The use of farm chemicals",
+       "subtopics": [
+        {
+         "id": "farm-chemical-safety",
+         "title": "Farm chemical safety",
+         "outcomes": [
+          {
+           "code": "5.4",
+           "text": "Explain safe handling of farm chemicals: protective clothing, dilution and mixing, precautions, and avoiding pollution when cleaning sprayers."
+          },
+          {
+           "code": null,
+           "text": "Explain safe storage of toxic and flammable farm chemicals."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "6-livestock-anatomy-and-physiology",
+     "title": "6 Livestock anatomy and physiology",
+     "topics": [
+      {
+       "id": "6-1-digestion-in-ruminants-and-non-ruminants",
+       "title": "6.1 Digestion in ruminants and non-ruminants",
+       "subtopics": [
+        {
+         "id": "digestion-in-ruminants-and-non-ruminants",
+         "title": "Digestion in ruminants and non-ruminants",
+         "outcomes": [
+          {
+           "code": "6.1",
+           "text": "Describe the structure and function of the digestive system of a ruminant and a non-ruminant."
+          },
+          {
+           "code": null,
+           "text": "Describe digestion and absorption in the alimentary canals of both."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "6-2-sexual-reproduction-in-mammals",
+       "title": "6.2 Sexual reproduction in mammals",
+       "subtopics": [
+        {
+         "id": "reproduction-in-farm-mammals",
+         "title": "Reproduction in farm mammals",
+         "outcomes": [
+          {
+           "code": "6.2",
+           "text": "Describe the male and female reproductive systems of a named farm mammal."
+          },
+          {
+           "code": null,
+           "text": "Describe fertilisation and birth in a named farm mammal."
+          },
+          {
+           "code": null,
+           "text": "Define weaning and lactation and explain the importance of colostrum."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "7-livestock-production-and-health",
+     "title": "7 Livestock production and health",
+     "topics": [
+      {
+       "id": "7-1-livestock-housing",
+       "title": "7.1 Livestock housing",
+       "subtopics": [
+        {
+         "id": "housing-and-young-stock",
+         "title": "Housing and young stock",
+         "outcomes": [
+          {
+           "code": "7.1",
+           "text": "Describe suitable housing and living conditions for livestock."
+          },
+          {
+           "code": null,
+           "text": "Describe care and rearing of young stock."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "7-2-livestock-nutrition",
+       "title": "7.2 Livestock nutrition",
+       "subtopics": [
+        {
+         "id": "feeding-livestock",
+         "title": "Feeding livestock",
+         "outcomes": [
+          {
+           "code": "7.2",
+           "text": "Describe nutritional requirements, food materials, signs of deficiency and feeding practices, including a balanced ration."
+          },
+          {
+           "code": null,
+           "text": "Outline maintenance ration and production ration."
+          },
+          {
+           "code": null,
+           "text": "Explain the importance of adequate, clean water."
+          }
+         ]
+        },
+        {
+         "id": "stockmanship",
+         "title": "Stockmanship",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Demonstrate stockmanship: careful handling and keeping diaries and production records."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "7-3-livestock-health",
+       "title": "7.3 Livestock health",
+       "subtopics": [
+        {
+         "id": "health-and-disease",
+         "title": "Health and disease",
+         "outcomes": [
+          {
+           "code": "7.3",
+           "text": "Recognise signs of health and ill-health in livestock."
+          },
+          {
+           "code": null,
+           "text": "Explain how infectious and contagious diseases spread."
+          },
+          {
+           "code": null,
+           "text": "Explain the problems parasites cause."
+          },
+          {
+           "code": null,
+           "text": "Explain notifiable or scheduled diseases."
+          },
+          {
+           "code": null,
+           "text": "Explain livestock hygiene and isolation of sick animals."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "8-pasture-management",
+     "title": "8 Pasture management",
+     "topics": [
+      {
+       "id": "8-1-extensive-and-intensive-pasture-management",
+       "title": "8.1 Extensive and intensive pasture management",
+       "subtopics": [
+        {
+         "id": "grazing-lands-and-grazing-systems",
+         "title": "Grazing lands and grazing systems",
+         "outcomes": [
+          {
+           "code": "8.1",
+           "text": "Describe grazing land vegetation: grasses, legumes and browse bush."
+          },
+          {
+           "code": null,
+           "text": "Describe how improved pastures are established."
+          },
+          {
+           "code": null,
+           "text": "Explain rotational grazing, paddock, zero grazing, enclosed and unenclosed, intensive and extensive grazing."
+          }
+         ]
+        },
+        {
+         "id": "managing-pasture",
+         "title": "Managing pasture",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe extensive methods: stocking rate, carrying capacity, overstocking dangers, bush control and fire."
+          },
+          {
+           "code": null,
+           "text": "Explain how fencing and rotational grazing improve pasture use."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "9-livestock-and-crop-breeding",
+     "title": "9 Livestock and crop breeding",
+     "topics": [
+      {
+       "id": "9-1-monohybrid-inheritance",
+       "title": "9.1 Monohybrid inheritance",
+       "subtopics": [
+        {
+         "id": "monohybrid-inheritance",
+         "title": "Monohybrid inheritance",
+         "outcomes": [
+          {
+           "code": "9.1",
+           "text": "Define chromosome, gene, allele, homozygous, heterozygous, dominant and recessive."
+          },
+          {
+           "code": null,
+           "text": "Predict results of simple genetic crosses giving 1:1 and 3:1 ratios."
+          },
+          {
+           "code": null,
+           "text": "Explain genotype and phenotype and their importance in breeding."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "9-2-selective-breeding-in-animals-and-plants",
+       "title": "9.2 Selective breeding in animals and plants",
+       "subtopics": [
+        {
+         "id": "selective-breeding",
+         "title": "Selective breeding",
+         "outcomes": [
+          {
+           "code": "9.2",
+           "text": "Describe how breeding improves yield, disease resistance, hardiness and appearance."
+          },
+          {
+           "code": null,
+           "text": "Explain artificial selection in producing improved varieties."
+          },
+          {
+           "code": null,
+           "text": "Explain the benefits of artificial insemination."
+          },
+          {
+           "code": null,
+           "text": "Distinguish selective crop breeding from GM crops."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "10-farm-structures-and-tools",
+     "title": "10 Farm structures and tools",
+     "topics": [
+      {
+       "id": "10-1-fencing",
+       "title": "10.1 Fencing",
+       "subtopics": [
+        {
+         "id": "fencing",
+         "title": "Fencing",
+         "outcomes": [
+          {
+           "code": "10.1",
+           "text": "Describe fence post treatment, fence construction, fence types for different purposes, hedges and windbreaks."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "10-2-farm-buildings",
+       "title": "10.2 Farm buildings",
+       "subtopics": [
+        {
+         "id": "farm-building-materials",
+         "title": "Farm building materials",
+         "outcomes": [
+          {
+           "code": "10.2",
+           "text": "Outline the properties and uses of wood, concrete blocks, metal, stone, brick, earth and thatch in farm buildings."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "10-3-farm-water-supplies",
+       "title": "10.3 Farm water supplies",
+       "subtopics": [
+        {
+         "id": "water-sources-and-treatment",
+         "title": "Water sources and treatment",
+         "outcomes": [
+          {
+           "code": "10.3",
+           "text": "List suitable water sources for people, livestock and irrigation."
+          },
+          {
+           "code": null,
+           "text": "Outline water treatment by settling and filtration."
+          }
+         ]
+        },
+        {
+         "id": "storing-and-distributing-water",
+         "title": "Storing and distributing water",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Outline building storage dams to resist pressure that rises with depth."
+          },
+          {
+           "code": null,
+           "text": "Describe storage tanks, pipe distribution and simple plumbing, including joining pipes and fitting tap washers."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "10-4-farm-tools",
+       "title": "10.4 Farm tools",
+       "subtopics": [
+        {
+         "id": "farm-tools",
+         "title": "Farm tools",
+         "outcomes": [
+          {
+           "code": "10.4",
+           "text": "Describe the use and maintenance of saw, hammer, screwdriver, file, spanner, sprayers and hand cultivation tools."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "10-5-farm-machinery",
+       "title": "10.5 Farm machinery",
+       "subtopics": [
+        {
+         "id": "farm-machinery",
+         "title": "Farm machinery",
+         "outcomes": [
+          {
+           "code": "10.5",
+           "text": "Explain the advantages and disadvantages of mechanisation."
+          },
+          {
+           "code": null,
+           "text": "Describe use and maintenance of mould-board plough, cultivator, harrow, planter and ridger."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "build": {
+  "builtAt": "2026-10-14T09:44:00.274Z",
+  "model": "claude-agent",
+  "usd": 0,
+  "expectedCodes": 30,
+  "coverage": 1,
+  "missingCodes": [],
+  "counts": {
+   "grades": 1,
+   "units": 10,
+   "topics": 30,
+   "subtopics": 44,
+   "outcomes": 92
+  },
+  "warnings": []
+ }
+}

@@ -1,0 +1,1807 @@
+{
+ "id": "uk-aqa-alevel-chemistry-7405",
+ "region": "UK",
+ "framework": "AQA A-level",
+ "board": "AQA",
+ "qualification": "A Level",
+ "subject": "Chemistry",
+ "syllabusCode": "7405",
+ "gradeSystem": "year",
+ "source": {
+  "urls": [
+   "https://cdn.sanity.io/files/p28bar15/green/92d54bf5af45ea6fcdf91affd67c9cd8f3420f24.pdf"
+  ],
+  "publisher": "AQA",
+  "licence": "Exam board specification, (c) AQA; structure + our own wording only",
+  "firstExam": "2017"
+ },
+ "grades": [
+  {
+   "grade": "Year 12",
+   "units": [
+    {
+     "id": "3-1-physical-chemistry",
+     "title": "3.1 Physical chemistry",
+     "topics": [
+      {
+       "id": "3-1-1-atomic-structure",
+       "title": "3.1.1 Atomic structure",
+       "subtopics": [
+        {
+         "id": "fundamental-particles",
+         "title": "Fundamental particles",
+         "outcomes": [
+          {
+           "code": "3.1.1.1",
+           "text": "Know that ideas about atomic structure have changed over time."
+          },
+          {
+           "code": null,
+           "text": "State the relative charge and relative mass of protons, neutrons and electrons."
+          },
+          {
+           "code": null,
+           "text": "Describe an atom as a nucleus of protons and neutrons surrounded by electrons."
+          }
+         ]
+        },
+        {
+         "id": "mass-number-and-isotopes",
+         "title": "Mass number and isotopes",
+         "outcomes": [
+          {
+           "code": "3.1.1.2",
+           "text": "Use mass number and atomic number to find numbers of protons, neutrons and electrons in atoms and ions."
+          },
+          {
+           "code": null,
+           "text": "Explain why isotopes exist."
+          },
+          {
+           "code": null,
+           "text": "Describe how a time of flight mass spectrometer works: ionisation, acceleration, drift, detection and data analysis."
+          },
+          {
+           "code": null,
+           "text": "Explain that mass spectrometry gives isotopic masses and abundances and can identify elements and find relative molecular mass."
+          },
+          {
+           "code": null,
+           "text": "Interpret simple mass spectra of elements."
+          },
+          {
+           "code": null,
+           "text": "Calculate relative atomic mass from isotopic abundances."
+          }
+         ]
+        },
+        {
+         "id": "electron-configuration-and-ionisation-energy",
+         "title": "Electron configuration and ionisation energy",
+         "outcomes": [
+          {
+           "code": "3.1.1.3",
+           "text": "Write electron configurations of atoms and ions up to Z = 36 using shells and s, p, d sub-shells."
+          },
+          {
+           "code": null,
+           "text": "Define first ionisation energy and write equations for first and successive ionisation energies."
+          },
+          {
+           "code": null,
+           "text": "Explain how ionisation energies across Period 3 and down Group 2 give evidence for shells and sub-shells."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "3-1-2-amount-of-substance",
+       "title": "3.1.2 Amount of substance",
+       "subtopics": [
+        {
+         "id": "relative-atomic-and-molecular-mass",
+         "title": "Relative atomic and molecular mass",
+         "outcomes": [
+          {
+           "code": "3.1.2.1",
+           "text": "Define relative atomic mass and relative molecular mass using carbon-12, and relative formula mass for ionic compounds."
+          }
+         ]
+        },
+        {
+         "id": "the-mole-and-avogadro-constant",
+         "title": "The mole and Avogadro constant",
+         "outcomes": [
+          {
+           "code": "3.1.2.2",
+           "text": "Use the Avogadro constant and the mole for electrons, atoms, molecules and ions."
+          },
+          {
+           "code": null,
+           "text": "Calculate amounts from mass and Mr, and from concentration and volume of solution."
+          }
+         ]
+        },
+        {
+         "id": "the-ideal-gas-equation",
+         "title": "The ideal gas equation",
+         "outcomes": [
+          {
+           "code": "3.1.2.3",
+           "text": "Use pV = nRT in calculations with SI units."
+          }
+         ]
+        },
+        {
+         "id": "empirical-and-molecular-formulae",
+         "title": "Empirical and molecular formulae",
+         "outcomes": [
+          {
+           "code": "3.1.2.4",
+           "text": "Distinguish empirical and molecular formulae and relate them."
+          },
+          {
+           "code": null,
+           "text": "Calculate empirical formula from composition by mass or percentage."
+          },
+          {
+           "code": null,
+           "text": "Calculate molecular formula from empirical formula and relative molecular mass."
+          }
+         ]
+        },
+        {
+         "id": "balanced-equations-and-calculations",
+         "title": "Balanced equations and calculations",
+         "outcomes": [
+          {
+           "code": "3.1.2.5",
+           "text": "Write full and ionic equations and balance equations for unfamiliar reactions."
+          },
+          {
+           "code": null,
+           "text": "Calculate percentage atom economy and explain the economic, ethical and environmental benefits of high atom economy."
+          },
+          {
+           "code": null,
+           "text": "Use balanced equations to calculate masses, gas volumes, percentage yields and solution concentrations and volumes."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "3-1-3-bonding",
+       "title": "3.1.3 Bonding",
+       "subtopics": [
+        {
+         "id": "ionic-bonding",
+         "title": "Ionic bonding",
+         "outcomes": [
+          {
+           "code": "3.1.3.1",
+           "text": "Describe ionic bonding as electrostatic attraction between oppositely charged ions in a lattice, and know common compound ions."
+          },
+          {
+           "code": null,
+           "text": "Predict ion charges from Periodic Table position and write ionic formulas."
+          }
+         ]
+        },
+        {
+         "id": "covalent-and-dative-covalent-bonds",
+         "title": "Covalent and dative covalent bonds",
+         "outcomes": [
+          {
+           "code": "3.1.3.2",
+           "text": "Describe single and multiple covalent bonds as shared electron pairs, and dative bonds where one atom supplies both electrons."
+          },
+          {
+           "code": null,
+           "text": "Draw covalent bonds as lines and dative bonds as arrows."
+          }
+         ]
+        },
+        {
+         "id": "metallic-bonding",
+         "title": "Metallic bonding",
+         "outcomes": [
+          {
+           "code": "3.1.3.3",
+           "text": "Describe metallic bonding as attraction between delocalised electrons and positive ions in a lattice."
+          }
+         ]
+        },
+        {
+         "id": "bonding-and-physical-properties",
+         "title": "Bonding and physical properties",
+         "outcomes": [
+          {
+           "code": "3.1.3.4",
+           "text": "Know the four crystal structure types and examples: diamond, graphite, ice, iodine, magnesium and sodium chloride."
+          },
+          {
+           "code": null,
+           "text": "Relate melting point and conductivity to structure and bonding, and explain energy changes in changes of state."
+          },
+          {
+           "code": null,
+           "text": "Draw diagrams of these structures with specified numbers of particles."
+          }
+         ]
+        },
+        {
+         "id": "shapes-of-molecules-and-ions",
+         "title": "Shapes of molecules and ions",
+         "outcomes": [
+          {
+           "code": "3.1.3.5",
+           "text": "Describe electron pairs as repelling charge clouds, with lone pairs repelling more than bonding pairs."
+          },
+          {
+           "code": null,
+           "text": "Explain shapes and bond angles of molecules and ions with up to six electron pairs."
+          }
+         ]
+        },
+        {
+         "id": "bond-polarity",
+         "title": "Bond polarity",
+         "outcomes": [
+          {
+           "code": "3.1.3.6",
+           "text": "Define electronegativity and explain how unequal sharing gives polar bonds and permanent dipoles."
+          },
+          {
+           "code": null,
+           "text": "Show polarity with partial charges and explain why some molecules with polar bonds have no overall dipole."
+          }
+         ]
+        },
+        {
+         "id": "forces-between-molecules",
+         "title": "Forces between molecules",
+         "outcomes": [
+          {
+           "code": "3.1.3.7",
+           "text": "Describe permanent dipole, induced dipole (London) and hydrogen-bond forces between molecules."
+          },
+          {
+           "code": null,
+           "text": "Explain how these forces affect melting and boiling points, including hydrogen bonding in ice and anomalous boiling points."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "3-1-4-energetics",
+       "title": "3.1.4 Energetics",
+       "subtopics": [
+        {
+         "id": "enthalpy-change",
+         "title": "Enthalpy change",
+         "outcomes": [
+          {
+           "code": "3.1.4.1",
+           "text": "Distinguish endothermic and exothermic reactions and define enthalpy change at constant pressure under standard conditions."
+          },
+          {
+           "code": null,
+           "text": "Define standard enthalpy of combustion and of formation."
+          }
+         ]
+        },
+        {
+         "id": "calorimetry",
+         "title": "Calorimetry",
+         "outcomes": [
+          {
+           "code": "3.1.4.2",
+           "text": "Use q = mc delta T to calculate heat change and molar enthalpy change from experimental data."
+          }
+         ]
+        },
+        {
+         "id": "hess-s-law",
+         "title": "Hess's law",
+         "outcomes": [
+          {
+           "code": "3.1.4.3",
+           "text": "Use Hess's law to calculate enthalpy changes from enthalpies of combustion or formation."
+          }
+         ]
+        },
+        {
+         "id": "bond-enthalpies",
+         "title": "Bond enthalpies",
+         "outcomes": [
+          {
+           "code": "3.1.4.4",
+           "text": "Define mean bond enthalpy."
+          },
+          {
+           "code": null,
+           "text": "Use mean bond enthalpies to estimate enthalpy changes of gas-phase reactions."
+          },
+          {
+           "code": null,
+           "text": "Explain why mean-bond-enthalpy answers differ from those found using Hess's law."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "3-1-5-kinetics",
+       "title": "3.1.5 Kinetics",
+       "subtopics": [
+        {
+         "id": "collision-theory",
+         "title": "Collision theory",
+         "outcomes": [
+          {
+           "code": "3.1.5.1",
+           "text": "Explain that reactions need collisions with enough energy, called the activation energy, and define it."
+          },
+          {
+           "code": null,
+           "text": "Explain why most collisions do not lead to reaction."
+          }
+         ]
+        },
+        {
+         "id": "maxwell-boltzmann-distribution",
+         "title": "Maxwell-Boltzmann distribution",
+         "outcomes": [
+          {
+           "code": "3.1.5.2",
+           "text": "Draw and interpret Maxwell-Boltzmann energy distribution curves for gases at different temperatures."
+          }
+         ]
+        },
+        {
+         "id": "temperature-and-reaction-rate",
+         "title": "Temperature and reaction rate",
+         "outcomes": [
+          {
+           "code": "3.1.5.3",
+           "text": "Define rate of reaction and the qualitative effect of temperature on it."
+          },
+          {
+           "code": null,
+           "text": "Use the Maxwell-Boltzmann distribution to explain why a small temperature rise greatly increases rate."
+          }
+         ]
+        },
+        {
+         "id": "concentration-and-pressure",
+         "title": "Concentration and pressure",
+         "outcomes": [
+          {
+           "code": "3.1.5.4",
+           "text": "Explain how changing concentration or gas pressure changes collision frequency and so reaction rate."
+          }
+         ]
+        },
+        {
+         "id": "catalysts",
+         "title": "Catalysts",
+         "outcomes": [
+          {
+           "code": "3.1.5.5",
+           "text": "Describe a catalyst as speeding up a reaction without being used up, by giving a lower-activation-energy route."
+          },
+          {
+           "code": null,
+           "text": "Use a Maxwell-Boltzmann distribution to explain how a catalyst speeds up a gas reaction."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "3-1-6-chemical-equilibria-le-chatelier-s-princip",
+       "title": "3.1.6 Chemical equilibria, Le Chatelier's principle and Kc",
+       "subtopics": [
+        {
+         "id": "equilibrium-and-le-chatelier-s-principle",
+         "title": "Equilibrium and Le Chatelier's principle",
+         "outcomes": [
+          {
+           "code": "3.1.6.1",
+           "text": "Describe dynamic equilibrium: forward and reverse rates are equal and concentrations stay constant."
+          },
+          {
+           "code": null,
+           "text": "Use Le Chatelier's principle to predict effects of temperature, pressure and concentration changes on equilibrium position, noting catalysts do not shift it."
+          },
+          {
+           "code": null,
+           "text": "Explain why industrial reversible reactions use a compromise temperature and pressure."
+          }
+         ]
+        },
+        {
+         "id": "the-equilibrium-constant-kc",
+         "title": "The equilibrium constant Kc",
+         "outcomes": [
+          {
+           "code": "3.1.6.2",
+           "text": "Write Kc expressions for homogeneous equilibria and know Kc is unaffected by concentration changes or catalysts."
+          },
+          {
+           "code": null,
+           "text": "Calculate Kc from equilibrium concentrations and do related calculations."
+          },
+          {
+           "code": null,
+           "text": "Predict how a change in temperature affects the value of Kc."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "3-1-7-oxidation-reduction-and-redox-equations",
+       "title": "3.1.7 Oxidation, reduction and redox equations",
+       "subtopics": [
+        {
+         "id": "oxidation-states-and-redox-equations",
+         "title": "Oxidation states and redox equations",
+         "outcomes": [
+          {
+           "code": "3.1.7",
+           "text": "Define oxidation as electron loss and reduction as electron gain, with oxidising and reducing agents as acceptors and donors."
+          },
+          {
+           "code": null,
+           "text": "Work out oxidation states from formulas using the rules."
+          },
+          {
+           "code": null,
+           "text": "Write half-equations for oxidation and reduction and combine them into overall redox equations."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "3-2-inorganic-chemistry",
+     "title": "3.2 Inorganic chemistry",
+     "topics": [
+      {
+       "id": "3-2-1-periodicity",
+       "title": "3.2.1 Periodicity",
+       "subtopics": [
+        {
+         "id": "classification-of-elements",
+         "title": "Classification of elements",
+         "outcomes": [
+          {
+           "code": "3.2.1.1",
+           "text": "Classify elements as s, p, d or f block from their Periodic Table position."
+          }
+         ]
+        },
+        {
+         "id": "period-3-trends",
+         "title": "Period 3 trends",
+         "outcomes": [
+          {
+           "code": "3.2.1.2",
+           "text": "Explain trends in atomic radius and first ionisation energy across Na to Ar."
+          },
+          {
+           "code": null,
+           "text": "Explain melting point trends across Na to Ar in terms of structure and bonding."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "3-2-2-group-2-the-alkaline-earth-metals",
+       "title": "3.2.2 Group 2, the alkaline earth metals",
+       "subtopics": [
+        {
+         "id": "group-2-trends-and-reactions",
+         "title": "Group 2 trends and reactions",
+         "outcomes": [
+          {
+           "code": "3.2.2",
+           "text": "Explain trends in atomic radius, first ionisation energy and melting point from Mg to Ba."
+          },
+          {
+           "code": null,
+           "text": "Describe reactions of Mg to Ba with water and the use of magnesium to extract titanium from TiCl4."
+          },
+          {
+           "code": null,
+           "text": "Describe trends in solubility of Group 2 hydroxides and sulfates, and uses of Mg(OH)2, Ca(OH)2, CaO or CaCO3 (removing SO2) and BaSO4."
+          },
+          {
+           "code": null,
+           "text": "Explain why acidified barium chloride is used to test for sulfate ions."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "3-2-3-group-7-17-the-halogens",
+       "title": "3.2.3 Group 7(17), the halogens",
+       "subtopics": [
+        {
+         "id": "halogen-and-halide-trends",
+         "title": "Halogen and halide trends",
+         "outcomes": [
+          {
+           "code": "3.2.3.1",
+           "text": "Explain trends in electronegativity and boiling point of the halogens."
+          },
+          {
+           "code": null,
+           "text": "Describe the oxidising ability trend down the group, including halide displacement reactions."
+          },
+          {
+           "code": null,
+           "text": "Describe the reducing ability trend of halide ions, including reactions of solid sodium halides with concentrated sulfuric acid."
+          },
+          {
+           "code": null,
+           "text": "Explain use of acidified silver nitrate and then ammonia to identify halides and the solubility of silver halides."
+          }
+         ]
+        },
+        {
+         "id": "chlorine-and-chlorate-i",
+         "title": "Chlorine and chlorate(I)",
+         "outcomes": [
+          {
+           "code": "3.2.3.2",
+           "text": "Write reactions of chlorine with water forming chloride and chlorate(I), and chloride and oxygen."
+          },
+          {
+           "code": null,
+           "text": "Evaluate the benefits and risks of adding chlorine to water supplies."
+          },
+          {
+           "code": null,
+           "text": "Describe the reaction of chlorine with cold dilute sodium hydroxide and uses of the product."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "3-3-organic-chemistry",
+     "title": "3.3 Organic chemistry",
+     "topics": [
+      {
+       "id": "3-3-1-introduction-to-organic-chemistry",
+       "title": "3.3.1 Introduction to organic chemistry",
+       "subtopics": [
+        {
+         "id": "nomenclature",
+         "title": "Nomenclature",
+         "outcomes": [
+          {
+           "code": "3.3.1.1",
+           "text": "List the ways organic compounds are represented: empirical, molecular, general, structural, displayed and skeletal formulas."
+          },
+          {
+           "code": null,
+           "text": "Describe a homologous series and functional group."
+          },
+          {
+           "code": null,
+           "text": "Draw structural, displayed and skeletal formulas, and name organic compounds, using IUPAC rules for chains and rings up to six carbons."
+          },
+          {
+           "code": null,
+           "text": "Draw structures from IUPAC names for chains and rings up to six carbons."
+          }
+         ]
+        },
+        {
+         "id": "reaction-mechanisms",
+         "title": "Reaction mechanisms",
+         "outcomes": [
+          {
+           "code": "3.3.1.2",
+           "text": "Write balanced equations for the steps of a free-radical mechanism, showing the unpaired electron as a dot."
+          },
+          {
+           "code": null,
+           "text": "Outline other mechanisms with structures and curly arrows showing electron-pair movement, for bond formation and breaking."
+          }
+         ]
+        },
+        {
+         "id": "isomerism",
+         "title": "Isomerism",
+         "outcomes": [
+          {
+           "code": "3.3.1.3",
+           "text": "Define structural isomers and draw chain, position and functional group isomers."
+          },
+          {
+           "code": null,
+           "text": "Define stereoisomers and explain E-Z isomerism from restricted rotation about the C=C bond."
+          },
+          {
+           "code": null,
+           "text": "Draw E and Z isomers and apply Cahn-Ingold-Prelog priority rules."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "3-3-2-alkanes",
+       "title": "3.3.2 Alkanes",
+       "subtopics": [
+        {
+         "id": "fractional-distillation-of-crude-oil",
+         "title": "Fractional distillation of crude oil",
+         "outcomes": [
+          {
+           "code": "3.3.2.1",
+           "text": "Describe alkanes as saturated hydrocarbons and petroleum as a mixture separated by fractional distillation."
+          }
+         ]
+        },
+        {
+         "id": "cracking",
+         "title": "Cracking",
+         "outcomes": [
+          {
+           "code": "3.3.2.2",
+           "text": "Describe cracking as breaking C-C bonds in alkanes."
+          },
+          {
+           "code": null,
+           "text": "Compare thermal cracking (high pressure and temperature, many alkenes) and catalytic cracking (zeolite, motor fuels and aromatics)."
+          },
+          {
+           "code": null,
+           "text": "Explain the economic reasons for cracking."
+          }
+         ]
+        },
+        {
+         "id": "combustion-of-alkanes",
+         "title": "Combustion of alkanes",
+         "outcomes": [
+          {
+           "code": "3.3.2.3",
+           "text": "Describe complete and incomplete combustion of alkanes and other organic compounds."
+          },
+          {
+           "code": null,
+           "text": "List pollutants from internal combustion engines and how catalytic converters remove them."
+          },
+          {
+           "code": null,
+           "text": "Explain how sulfur dioxide from burning sulfur-containing hydrocarbons is removed from flue gases with calcium oxide or carbonate."
+          }
+         ]
+        },
+        {
+         "id": "chlorination-of-alkanes",
+         "title": "Chlorination of alkanes",
+         "outcomes": [
+          {
+           "code": "3.3.2.4",
+           "text": "Explain the reaction of methane with chlorine as free-radical substitution with initiation, propagation and termination steps."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "3-3-3-halogenoalkanes",
+       "title": "3.3.3 Halogenoalkanes",
+       "subtopics": [
+        {
+         "id": "nucleophilic-substitution",
+         "title": "Nucleophilic substitution",
+         "outcomes": [
+          {
+           "code": "3.3.3.1",
+           "text": "Describe halogenoalkanes as having polar bonds that undergo substitution with nucleophiles OH-, CN- and NH3."
+          },
+          {
+           "code": null,
+           "text": "Outline the nucleophilic substitution mechanisms."
+          },
+          {
+           "code": null,
+           "text": "Explain how carbon-halogen bond enthalpy affects reaction rate."
+          }
+         ]
+        },
+        {
+         "id": "elimination-from-halogenoalkanes",
+         "title": "Elimination from halogenoalkanes",
+         "outcomes": [
+          {
+           "code": "3.3.3.2",
+           "text": "Describe concurrent substitution and elimination, such as 2-bromopropane with potassium hydroxide."
+          },
+          {
+           "code": null,
+           "text": "Explain the reagent's dual role as nucleophile and base, and outline the mechanisms."
+          }
+         ]
+        },
+        {
+         "id": "ozone-depletion",
+         "title": "Ozone depletion",
+         "outcomes": [
+          {
+           "code": "3.3.3.3",
+           "text": "Explain that ozone absorbs ultraviolet radiation and that UV breaks C-Cl bonds in CFCs to form chlorine atoms."
+          },
+          {
+           "code": null,
+           "text": "Use equations to show chlorine atoms catalysing ozone decomposition."
+          },
+          {
+           "code": null,
+           "text": "Appreciate how scientific evidence led to CFC bans and chlorine-free alternatives."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "3-3-4-alkenes",
+       "title": "3.3.4 Alkenes",
+       "subtopics": [
+        {
+         "id": "structure-bonding-and-reactivity",
+         "title": "Structure, bonding and reactivity",
+         "outcomes": [
+          {
+           "code": "3.3.4.1",
+           "text": "Describe alkenes as unsaturated hydrocarbons with a C=C double bond, a centre of high electron density."
+          }
+         ]
+        },
+        {
+         "id": "addition-reactions-of-alkenes",
+         "title": "Addition reactions of alkenes",
+         "outcomes": [
+          {
+           "code": "3.3.4.2",
+           "text": "Outline electrophilic addition mechanisms of alkenes with HBr, H2SO4 and Br2, and the bromine test for unsaturation."
+          },
+          {
+           "code": null,
+           "text": "Explain major and minor products from unsymmetrical alkenes using carbocation stability."
+          }
+         ]
+        },
+        {
+         "id": "addition-polymers",
+         "title": "Addition polymers",
+         "outcomes": [
+          {
+           "code": "3.3.4.3",
+           "text": "Describe addition polymers from alkenes and substituted alkenes and name them by IUPAC rules."
+          },
+          {
+           "code": null,
+           "text": "Draw repeating units from monomers or polymer sections, and monomers from polymer sections."
+          },
+          {
+           "code": null,
+           "text": "Explain why addition polymers are unreactive and the intermolecular forces in polyalkenes."
+          },
+          {
+           "code": null,
+           "text": "Describe uses of PVC and how plasticisers modify it, and how polymer knowledge developed."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "3-3-5-alcohols",
+       "title": "3.3.5 Alcohols",
+       "subtopics": [
+        {
+         "id": "alcohol-production",
+         "title": "Alcohol production",
+         "outcomes": [
+          {
+           "code": "3.3.5.1",
+           "text": "Describe industrial hydration of alkenes with an acid catalyst and outline its mechanism."
+          },
+          {
+           "code": null,
+           "text": "Describe fermentation of glucose to ethanol, justify its conditions, and the use of ethanol as a biofuel."
+          },
+          {
+           "code": null,
+           "text": "Write equations showing why fermentation ethanol is called carbon neutral and why that claim is not fully valid."
+          },
+          {
+           "code": null,
+           "text": "Discuss environmental and ethical issues of biofuel use."
+          }
+         ]
+        },
+        {
+         "id": "oxidation-of-alcohols",
+         "title": "Oxidation of alcohols",
+         "outcomes": [
+          {
+           "code": "3.3.5.2",
+           "text": "Classify alcohols as primary, secondary or tertiary."
+          },
+          {
+           "code": null,
+           "text": "Describe oxidation of primary alcohols to aldehydes then carboxylic acids, secondary alcohols to ketones, and that tertiary alcohols resist oxidation, using acidified dichromate."
+          },
+          {
+           "code": null,
+           "text": "Write oxidation equations and explain how the method decides between aldehyde and acid."
+          },
+          {
+           "code": null,
+           "text": "Use Fehling's solution and Tollens' reagent to tell aldehydes from ketones."
+          }
+         ]
+        },
+        {
+         "id": "elimination-from-alcohols",
+         "title": "Elimination from alcohols",
+         "outcomes": [
+          {
+           "code": "3.3.5.3",
+           "text": "Describe acid-catalysed elimination of water from alcohols to make alkenes, usable for polymers without crude oil."
+          },
+          {
+           "code": null,
+           "text": "Outline the mechanism of the elimination."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "3-3-6-organic-analysis",
+       "title": "3.3.6 Organic analysis",
+       "subtopics": [
+        {
+         "id": "test-tube-tests-for-functional-groups",
+         "title": "Test-tube tests for functional groups",
+         "outcomes": [
+          {
+           "code": "3.3.6.1",
+           "text": "Identify functional groups in the specification using test-tube reactions for alcohols, aldehydes, alkenes and carboxylic acids."
+          }
+         ]
+        },
+        {
+         "id": "mass-spectrometry-in-organic-analysis",
+         "title": "Mass spectrometry in organic analysis",
+         "outcomes": [
+          {
+           "code": "3.3.6.2",
+           "text": "Use precise atomic masses and precise molecular mass to work out a molecular formula."
+          }
+         ]
+        },
+        {
+         "id": "infrared-spectroscopy",
+         "title": "Infrared spectroscopy",
+         "outcomes": [
+          {
+           "code": "3.3.6.3",
+           "text": "Explain that bonds absorb infrared at characteristic wavenumbers and that fingerprinting identifies molecules."
+          },
+          {
+           "code": null,
+           "text": "Use infrared spectra and the data sheet to identify bonds, functional groups and impurities."
+          },
+          {
+           "code": null,
+           "text": "Link infrared absorption by CO2, methane and water vapour to global warming."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "Year 13",
+   "units": [
+    {
+     "id": "3-1-physical-chemistry",
+     "title": "3.1 Physical chemistry",
+     "topics": [
+      {
+       "id": "3-1-8-thermodynamics",
+       "title": "3.1.8 Thermodynamics",
+       "subtopics": [
+        {
+         "id": "born-haber-cycles",
+         "title": "Born-Haber cycles",
+         "outcomes": [
+          {
+           "code": "3.1.8.1",
+           "text": "Define lattice enthalpy (dissociation or formation) and the related enthalpy terms: formation, ionisation, atomisation, bond enthalpy and electron affinity."
+          },
+          {
+           "code": null,
+           "text": "Construct Born-Haber cycles to find lattice enthalpies or another enthalpy change."
+          },
+          {
+           "code": null,
+           "text": "Compare Born-Haber lattice enthalpies with perfect ionic model values as evidence of covalent character."
+          },
+          {
+           "code": null,
+           "text": "Define enthalpy of hydration and use cycles to find enthalpies of solution."
+          }
+         ]
+        },
+        {
+         "id": "entropy-and-gibbs-free-energy",
+         "title": "Entropy and Gibbs free energy",
+         "outcomes": [
+          {
+           "code": "3.1.8.2",
+           "text": "Explain why enthalpy change alone cannot decide feasibility, and describe entropy as increasing disorder."
+          },
+          {
+           "code": null,
+           "text": "Calculate entropy changes from absolute entropy values."
+          },
+          {
+           "code": null,
+           "text": "Use delta G = delta H - T delta S to see how it varies with temperature and find when a reaction becomes feasible."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "3-1-9-rate-equations",
+       "title": "3.1.9 Rate equations",
+       "subtopics": [
+        {
+         "id": "rate-equations-and-the-rate-constant",
+         "title": "Rate equations and the rate constant",
+         "outcomes": [
+          {
+           "code": "3.1.9.1",
+           "text": "Define order of reaction and rate constant, and use rate equations of the form rate = k[A]^m[B]^n with orders 0, 1, 2."
+          },
+          {
+           "code": null,
+           "text": "Explain how temperature affects k and calculate with k = Ae^(-Ea/RT)."
+          },
+          {
+           "code": null,
+           "text": "Use ln k = -Ea/RT + ln A to plot a straight line of slope -Ea/R."
+          }
+         ]
+        },
+        {
+         "id": "determining-a-rate-equation",
+         "title": "Determining a rate equation",
+         "outcomes": [
+          {
+           "code": "3.1.9.2",
+           "text": "Find rates from concentration-time graphs and initial rates from initial concentration data."
+          },
+          {
+           "code": null,
+           "text": "Deduce orders from rate-concentration data or graphs and derive the rate equation."
+          },
+          {
+           "code": null,
+           "text": "Use orders to give information about the rate-determining step."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "3-1-10-equilibrium-constant-kp-for-homogeneous-s",
+       "title": "3.1.10 Equilibrium constant Kp for homogeneous systems",
+       "subtopics": [
+        {
+         "id": "the-equilibrium-constant-kp",
+         "title": "The equilibrium constant Kp",
+         "outcomes": [
+          {
+           "code": "3.1.10",
+           "text": "Derive partial pressure from mole fraction and total pressure."
+          },
+          {
+           "code": null,
+           "text": "Write Kp expressions for gas-phase equilibria and do Kp calculations."
+          },
+          {
+           "code": null,
+           "text": "Predict effects of temperature and pressure on equilibrium position, and of temperature on Kp."
+          },
+          {
+           "code": null,
+           "text": "Explain that a catalyst changes how fast equilibrium is reached but not Kp."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "3-1-11-electrode-potentials-and-electrochemical-",
+       "title": "3.1.11 Electrode potentials and electrochemical cells",
+       "subtopics": [
+        {
+         "id": "electrode-potentials-and-cells",
+         "title": "Electrode potentials and cells",
+         "outcomes": [
+          {
+           "code": "3.1.11.1",
+           "text": "Write electrode half-equations by the IUPAC convention and represent cells conventionally."
+          },
+          {
+           "code": null,
+           "text": "Explain how electrode potentials are measured against the standard hydrogen electrode and the standard conditions required."
+          },
+          {
+           "code": null,
+           "text": "Use standard electrode potentials to predict the direction of redox reactions and calculate cell EMF."
+          }
+         ]
+        },
+        {
+         "id": "commercial-electrochemical-cells",
+         "title": "Commercial electrochemical cells",
+         "outcomes": [
+          {
+           "code": "3.1.11.2",
+           "text": "Describe non-rechargeable, rechargeable and fuel cells and the lithium cell electrode reactions."
+          },
+          {
+           "code": null,
+           "text": "Describe the alkaline hydrogen-oxygen fuel cell and the benefits and risks to society of these cells."
+          },
+          {
+           "code": null,
+           "text": "Use electrode data to deduce reactions in cells and cell EMF, and explain how they generate current."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "3-1-12-acids-and-bases",
+       "title": "3.1.12 Acids and bases",
+       "subtopics": [
+        {
+         "id": "bronsted-lowry-acids-and-bases",
+         "title": "Bronsted-Lowry acids and bases",
+         "outcomes": [
+          {
+           "code": "3.1.12.1",
+           "text": "Define an acid as a proton donor and a base as a proton acceptor, with acid-base equilibria as proton transfer."
+          }
+         ]
+        },
+        {
+         "id": "ph",
+         "title": "pH",
+         "outcomes": [
+          {
+           "code": "3.1.12.2",
+           "text": "Convert hydrogen ion concentration to pH and back using pH = -log10[H+]."
+          },
+          {
+           "code": null,
+           "text": "Calculate the pH of a strong acid from its concentration."
+          }
+         ]
+        },
+        {
+         "id": "ionic-product-of-water",
+         "title": "Ionic product of water",
+         "outcomes": [
+          {
+           "code": "3.1.12.3",
+           "text": "Know that water is slightly dissociated, write Kw = [H+][OH-] and that Kw varies with temperature."
+          },
+          {
+           "code": null,
+           "text": "Use Kw to calculate the pH of a strong base."
+          }
+         ]
+        },
+        {
+         "id": "weak-acids-and-ka",
+         "title": "Weak acids and Ka",
+         "outcomes": [
+          {
+           "code": "3.1.12.4",
+           "text": "Construct Ka expressions for weak acids."
+          },
+          {
+           "code": null,
+           "text": "Calculate the pH of a weak acid from its concentration and Ka."
+          },
+          {
+           "code": null,
+           "text": "Convert between Ka and pKa."
+          }
+         ]
+        },
+        {
+         "id": "ph-curves-and-indicators",
+         "title": "pH curves and indicators",
+         "outcomes": [
+          {
+           "code": "3.1.12.5",
+           "text": "Do titration calculations from experimental results."
+          },
+          {
+           "code": null,
+           "text": "Sketch and explain pH curves for strong and weak monoprotic acid-base combinations."
+          },
+          {
+           "code": null,
+           "text": "Use pH curves to choose a suitable indicator."
+          }
+         ]
+        },
+        {
+         "id": "buffers",
+         "title": "Buffers",
+         "outcomes": [
+          {
+           "code": "3.1.12.6",
+           "text": "Describe acidic and basic buffers and what they contain, and how they keep pH nearly constant."
+          },
+          {
+           "code": null,
+           "text": "Explain qualitatively how buffers work, know their applications, and calculate the pH of acidic buffers."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "3-2-inorganic-chemistry",
+     "title": "3.2 Inorganic chemistry",
+     "topics": [
+      {
+       "id": "3-2-4-properties-of-period-3-elements-and-their-",
+       "title": "3.2.4 Properties of Period 3 elements and their oxides",
+       "subtopics": [
+        {
+         "id": "period-3-elements-and-oxides",
+         "title": "Period 3 elements and oxides",
+         "outcomes": [
+          {
+           "code": "3.2.4",
+           "text": "Describe reactions of Na and Mg with water and of Na to S with oxygen, forming the listed oxides."
+          },
+          {
+           "code": null,
+           "text": "Explain the melting-point trend of the highest oxides in terms of structure and bonding."
+          },
+          {
+           "code": null,
+           "text": "Describe reactions of the oxides with water, the pH of solutions formed and the acids and anions of P4O10, SO2 and SO3."
+          },
+          {
+           "code": null,
+           "text": "Explain oxide-water reaction trends from bonding type and write equations with acids and bases."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "3-2-5-transition-metals",
+       "title": "3.2.5 Transition metals",
+       "subtopics": [
+        {
+         "id": "general-properties-of-transition-metals",
+         "title": "General properties of transition metals",
+         "outcomes": [
+          {
+           "code": "3.2.5.1",
+           "text": "Explain that Ti to Cu characteristics come from an incomplete d sub-level."
+          },
+          {
+           "code": null,
+           "text": "List the characteristics: complexes, coloured ions, variable oxidation states and catalytic activity."
+          },
+          {
+           "code": null,
+           "text": "Define ligand, complex and co-ordination number."
+          }
+         ]
+        },
+        {
+         "id": "ligand-substitution",
+         "title": "Ligand substitution",
+         "outcomes": [
+          {
+           "code": "3.2.5.2",
+           "text": "Describe monodentate ligands H2O, NH3 and Cl- and when exchange changes co-ordination number."
+          },
+          {
+           "code": null,
+           "text": "Describe bidentate and multidentate ligands, haem and why carbon monoxide is toxic."
+          },
+          {
+           "code": null,
+           "text": "Explain the chelate effect in terms of entropy and enthalpy."
+          }
+         ]
+        },
+        {
+         "id": "shapes-of-complex-ions",
+         "title": "Shapes of complex ions",
+         "outcomes": [
+          {
+           "code": "3.2.5.3",
+           "text": "Describe octahedral, tetrahedral, square planar and linear complexes and when each forms."
+          },
+          {
+           "code": null,
+           "text": "Explain cis-trans and optical isomerism in complexes and that cisplatin is the cis isomer."
+          }
+         ]
+        },
+        {
+         "id": "coloured-ions",
+         "title": "Coloured ions",
+         "outcomes": [
+          {
+           "code": "3.2.5.4",
+           "text": "Explain colour as absorption of some visible wavelengths by d electrons moving to an excited state, using delta E = hv = hc/lambda."
+          },
+          {
+           "code": null,
+           "text": "Explain how oxidation state, co-ordination number and ligand change colour."
+          },
+          {
+           "code": null,
+           "text": "Describe how a colorimeter finds the concentration of coloured ions."
+          }
+         ]
+        },
+        {
+         "id": "variable-oxidation-states",
+         "title": "Variable oxidation states",
+         "outcomes": [
+          {
+           "code": "3.2.5.5",
+           "text": "Describe vanadium oxidation states IV, III, II formed by reducing vanadate(V) with zinc."
+          },
+          {
+           "code": null,
+           "text": "Explain how pH and ligand affect redox potentials, and the use of Tollens' reagent to tell aldehydes from ketones."
+          },
+          {
+           "code": null,
+           "text": "Do calculations for redox titrations of Fe2+ and C2O4^2- with MnO4-."
+          }
+         ]
+        },
+        {
+         "id": "transition-metal-catalysts",
+         "title": "Transition metal catalysts",
+         "outcomes": [
+          {
+           "code": "3.2.5.6",
+           "text": "Distinguish heterogeneous and homogeneous catalysts, supports and catalyst poisoning."
+          },
+          {
+           "code": null,
+           "text": "Explain V2O5 in the Contact process and iron in the Haber process."
+          },
+          {
+           "code": null,
+           "text": "Explain with equations how Fe2+ catalyses the I- and S2O8^2- reaction and Mn2+ autocatalyses the C2O4^2- and MnO4- reaction."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "3-2-6-reactions-of-ions-in-aqueous-solution",
+       "title": "3.2.6 Reactions of ions in aqueous solution",
+       "subtopics": [
+        {
+         "id": "reactions-of-metal-ions-in-solution",
+         "title": "Reactions of metal ions in solution",
+         "outcomes": [
+          {
+           "code": "3.2.6",
+           "text": "Name the metal-aqua ions formed in water: [M(H2O)6]2+ for Fe and Cu, [M(H2O)6]3+ for Al and Fe."
+          },
+          {
+           "code": null,
+           "text": "Explain, using charge/size ratio, why [M(H2O)6]3+ is more acidic than [M(H2O)6]2+."
+          },
+          {
+           "code": null,
+           "text": "Know that some hydroxides, such as aluminium hydroxide, are amphoteric."
+          },
+          {
+           "code": null,
+           "text": "Describe the test-tube reactions of Fe2+, Cu2+, Al3+ and Fe3+ ions with hydroxide, ammonia and carbonate ions."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "3-3-organic-chemistry",
+     "title": "3.3 Organic chemistry",
+     "topics": [
+      {
+       "id": "3-3-7-optical-isomerism",
+       "title": "3.3.7 Optical isomerism",
+       "subtopics": [
+        {
+         "id": "optical-isomerism",
+         "title": "Optical isomerism",
+         "outcomes": [
+          {
+           "code": "3.3.7",
+           "text": "Explain optical isomerism as chirality from an asymmetric carbon, limited to a single chiral centre."
+          },
+          {
+           "code": null,
+           "text": "Describe enantiomers as non-superimposable mirror images that differ in their effect on plane polarised light."
+          },
+          {
+           "code": null,
+           "text": "Draw structural and displayed formulas of enantiomers."
+          },
+          {
+           "code": null,
+           "text": "Explain how racemic mixtures form and why they are optically inactive."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "3-3-8-aldehydes-and-ketones",
+       "title": "3.3.8 Aldehydes and ketones",
+       "subtopics": [
+        {
+         "id": "aldehydes-and-ketones",
+         "title": "Aldehydes and ketones",
+         "outcomes": [
+          {
+           "code": "3.3.8",
+           "text": "Describe oxidation of aldehydes to carboxylic acids and tests with Fehling's solution and Tollens' reagent to tell them from ketones."
+          },
+          {
+           "code": null,
+           "text": "Describe NaBH4 reduction of aldehydes to primary and ketones to secondary alcohols, with overall equations using [H]."
+          },
+          {
+           "code": null,
+           "text": "Outline the nucleophilic addition mechanism for reduction, with H- as the nucleophile."
+          },
+          {
+           "code": null,
+           "text": "Write equations for hydroxynitrile formation with HCN and outline the mechanism with KCN then dilute acid, noting KCN hazards."
+          },
+          {
+           "code": null,
+           "text": "Explain why this addition gives a mixture of enantiomers."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "3-3-9-carboxylic-acids-and-derivatives",
+       "title": "3.3.9 Carboxylic acids and derivatives",
+       "subtopics": [
+        {
+         "id": "carboxylic-acids-and-esters",
+         "title": "Carboxylic acids and esters",
+         "outcomes": [
+          {
+           "code": "3.3.9.1",
+           "text": "Draw carboxylic acids and esters, and know acids are weak but release CO2 from carbonates."
+          },
+          {
+           "code": null,
+           "text": "Describe acid-catalysed ester formation from carboxylic acids and alcohols, and uses of esters in solvents, plasticisers, perfumes and flavourings."
+          },
+          {
+           "code": null,
+           "text": "Know vegetable oils and fats are esters of glycerol, and that esters hydrolyse in acid or alkali."
+          },
+          {
+           "code": null,
+           "text": "Describe alkaline hydrolysis of oils and fats to soap and glycerol, and biodiesel as methyl esters made with methanol."
+          }
+         ]
+        },
+        {
+         "id": "acylation",
+         "title": "Acylation",
+         "outcomes": [
+          {
+           "code": "3.3.9.2",
+           "text": "Draw acid anhydrides, acyl chlorides and amides."
+          },
+          {
+           "code": null,
+           "text": "Describe nucleophilic addition-elimination of acyl chlorides and anhydrides with water, alcohols, ammonia and primary amines, and outline the mechanism."
+          },
+          {
+           "code": null,
+           "text": "Explain the industrial advantages of ethanoic anhydride over ethanoyl chloride for aspirin."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "3-3-10-aromatic-chemistry",
+       "title": "3.3.10 Aromatic chemistry",
+       "subtopics": [
+        {
+         "id": "bonding-in-benzene",
+         "title": "Bonding in benzene",
+         "outcomes": [
+          {
+           "code": "3.3.10.1",
+           "text": "Describe benzene as planar with bond lengths between single and double, stabilised by delocalised pi electrons."
+          },
+          {
+           "code": null,
+           "text": "Use enthalpies of hydrogenation as evidence for the extra stability."
+          },
+          {
+           "code": null,
+           "text": "Explain why benzene undergoes substitution rather than addition."
+          }
+         ]
+        },
+        {
+         "id": "electrophilic-substitution",
+         "title": "Electrophilic substitution",
+         "outcomes": [
+          {
+           "code": "3.3.10.2",
+           "text": "Describe electrophilic monosubstitution of benzene, and the importance of nitration and Friedel-Crafts acylation in synthesis."
+          },
+          {
+           "code": null,
+           "text": "Outline the mechanisms of nitration, including the nitronium ion, and of acylation with an AlCl3 catalyst."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "3-3-11-amines",
+       "title": "3.3.11 Amines",
+       "subtopics": [
+        {
+         "id": "preparing-amines",
+         "title": "Preparing amines",
+         "outcomes": [
+          {
+           "code": "3.3.11.1",
+           "text": "Describe preparing primary aliphatic amines from ammonia and halogenoalkanes, and by reducing nitriles."
+          },
+          {
+           "code": null,
+           "text": "Describe preparing aromatic amines by reducing nitro compounds, used to make dyes."
+          }
+         ]
+        },
+        {
+         "id": "amines-as-bases",
+         "title": "Amines as bases",
+         "outcomes": [
+          {
+           "code": "3.3.11.2",
+           "text": "Describe amines as weak bases and compare base strength of ammonia, primary aliphatic and primary aromatic amines."
+          },
+          {
+           "code": null,
+           "text": "Explain the differences using availability of the nitrogen lone pair."
+          }
+         ]
+        },
+        {
+         "id": "amines-as-nucleophiles",
+         "title": "Amines as nucleophiles",
+         "outcomes": [
+          {
+           "code": "3.3.11.3",
+           "text": "Describe substitution of halogenoalkanes by ammonia and amines to give primary, secondary, tertiary amines and quaternary ammonium salts, and the use of the salts as cationic surfactants."
+          },
+          {
+           "code": null,
+           "text": "Describe addition-elimination reactions of ammonia and primary amines with acyl chlorides and anhydrides."
+          },
+          {
+           "code": null,
+           "text": "Outline the mechanisms of these substitution and addition-elimination reactions."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "3-3-12-polymers",
+       "title": "3.3.12 Polymers",
+       "subtopics": [
+        {
+         "id": "condensation-polymers",
+         "title": "Condensation polymers",
+         "outcomes": [
+          {
+           "code": "3.3.12.1",
+           "text": "Describe condensation polymers from dicarboxylic acids with diols or diamines, and from amino acids."
+          },
+          {
+           "code": null,
+           "text": "Name repeating units and linkages in polyesters and polyamides such as Terylene, nylon 6,6 and Kevlar, and their uses."
+          },
+          {
+           "code": null,
+           "text": "Draw repeating units from monomers or polymer sections, and monomers from polymer sections."
+          },
+          {
+           "code": null,
+           "text": "Explain the intermolecular forces between condensation polymer molecules."
+          }
+         ]
+        },
+        {
+         "id": "polymer-disposal-and-biodegradability",
+         "title": "Polymer disposal and biodegradability",
+         "outcomes": [
+          {
+           "code": "3.3.12.2",
+           "text": "Know polyalkenes are inert and non-biodegradable, while polyesters and polyamides can be hydrolysed and are biodegradable."
+          },
+          {
+           "code": null,
+           "text": "Explain why polyesters and polyamides hydrolyse but polyalkenes do not."
+          },
+          {
+           "code": null,
+           "text": "Weigh advantages and disadvantages of disposal methods including recycling."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "3-3-13-amino-acids-proteins-and-dna",
+       "title": "3.3.13 Amino acids, proteins and DNA",
+       "subtopics": [
+        {
+         "id": "amino-acids",
+         "title": "Amino acids",
+         "outcomes": [
+          {
+           "code": "3.3.13.1",
+           "text": "Explain that amino acids have acidic and basic properties and form zwitterions."
+          },
+          {
+           "code": null,
+           "text": "Draw amino acids as zwitterions and the ions formed in acid and alkaline solution."
+          }
+         ]
+        },
+        {
+         "id": "proteins",
+         "title": "Proteins",
+         "outcomes": [
+          {
+           "code": "3.3.13.2",
+           "text": "Describe proteins as amino acids joined by peptide links, and hydrolysis back to amino acids."
+          },
+          {
+           "code": null,
+           "text": "Describe primary, secondary (alpha-helix and beta-pleated sheet) and tertiary structure and the roles of hydrogen bonds and S-S bonds."
+          },
+          {
+           "code": null,
+           "text": "Draw peptides of up to three amino acids and the amino acids from hydrolysis, and identify structure levels in diagrams."
+          },
+          {
+           "code": null,
+           "text": "Describe separating amino acids by thin-layer chromatography, locating with ninhydrin or UV, and calculate Rf values."
+          }
+         ]
+        },
+        {
+         "id": "enzymes",
+         "title": "Enzymes",
+         "outcomes": [
+          {
+           "code": "3.3.13.3",
+           "text": "Describe enzymes as protein catalysts with a stereospecific active site that binds a substrate."
+          },
+          {
+           "code": null,
+           "text": "Explain how drugs act as enzyme inhibitors by blocking the active site and that computers help design them."
+          },
+          {
+           "code": null,
+           "text": "Explain why a stereospecific active site binds only one enantiomer."
+          }
+         ]
+        },
+        {
+         "id": "dna",
+         "title": "DNA",
+         "outcomes": [
+          {
+           "code": "3.3.13.4",
+           "text": "Describe a nucleotide as phosphate, 2-deoxyribose and one of four bases: adenine, cytosine, guanine, thymine."
+          },
+          {
+           "code": null,
+           "text": "Describe a DNA strand as a sugar-phosphate polymer with bases attached, and DNA as two complementary strands in a double helix."
+          },
+          {
+           "code": null,
+           "text": "Explain how hydrogen bonding between base pairs holds the two strands together."
+          }
+         ]
+        },
+        {
+         "id": "anticancer-drugs",
+         "title": "Anticancer drugs",
+         "outcomes": [
+          {
+           "code": "3.3.13.5",
+           "text": "Describe cisplatin as a Pt(II) anticancer drug that binds to guanine nitrogen by ligand replacement and prevents DNA replication."
+          },
+          {
+           "code": null,
+           "text": "Explain why such drugs have adverse effects and weigh benefits against them."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "3-3-14-organic-synthesis",
+       "title": "3.3.14 Organic synthesis",
+       "subtopics": [
+        {
+         "id": "organic-synthesis",
+         "title": "Organic synthesis",
+         "outcomes": [
+          {
+           "code": "3.3.14",
+           "text": "Explain why chemists aim for solvent-free processes with non-hazardous starting materials."
+          },
+          {
+           "code": null,
+           "text": "Explain why fewer steps and high atom economy are the aim in production methods."
+          },
+          {
+           "code": null,
+           "text": "Devise a synthesis of up to four steps using reactions in the specification."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "3-3-15-nuclear-magnetic-resonance-spectroscopy",
+       "title": "3.3.15 Nuclear magnetic resonance spectroscopy",
+       "subtopics": [
+        {
+         "id": "nmr-spectroscopy",
+         "title": "NMR spectroscopy",
+         "outcomes": [
+          {
+           "code": "3.3.15",
+           "text": "Appreciate that several analytical techniques together confirm the structures of new compounds."
+          },
+          {
+           "code": null,
+           "text": "Explain what NMR shows about 13C and 1H atoms, why 13C spectra are simpler, and the delta scale, chemical shift and environments."
+          },
+          {
+           "code": null,
+           "text": "Explain use of deuterated solvents or CCl4 and TMS as a standard."
+          },
+          {
+           "code": null,
+           "text": "Use 1H and 13C NMR spectra and data to suggest structures, and use integration for relative numbers of protons."
+          },
+          {
+           "code": null,
+           "text": "Use the n+1 rule for doublet, triplet and quartet splitting in aliphatic compounds."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "3-3-16-chromatography",
+       "title": "3.3.16 Chromatography",
+       "subtopics": [
+        {
+         "id": "chromatography",
+         "title": "Chromatography",
+         "outcomes": [
+          {
+           "code": "3.3.16",
+           "text": "Describe thin-layer, column and gas chromatography."
+          },
+          {
+           "code": null,
+           "text": "Explain separation as a balance between solubility in the moving phase and retention by the stationary phase."
+          },
+          {
+           "code": null,
+           "text": "Use retention times and Rf values compared with standards to identify substances."
+          },
+          {
+           "code": null,
+           "text": "Describe using mass spectrometry to analyse components separated by GC."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "build": {
+  "builtAt": "2026-10-14T10:13:37.469Z",
+  "model": "claude-agent",
+  "usd": 0,
+  "expectedCodes": 120,
+  "coverage": 0.9833333333333333,
+  "missingCodes": [
+   "3.4",
+   "3.5"
+  ],
+  "counts": {
+   "grades": 2,
+   "units": 6,
+   "topics": 34,
+   "subtopics": 91,
+   "outcomes": 243
+  },
+  "warnings": []
+ }
+}

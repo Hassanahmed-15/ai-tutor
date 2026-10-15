@@ -1,0 +1,2760 @@
+{
+ "id": "cie-igcse-physical-science-0652-2025-2026",
+ "region": "INTL",
+ "framework": "Cambridge IGCSE Physical Science (0652) syllabus 2025–2026",
+ "board": "Cambridge",
+ "qualification": "IGCSE",
+ "subject": "Physical Science",
+ "syllabusCode": "0652",
+ "gradeSystem": "course",
+ "source": {
+  "urls": [
+   "https://www.cambridgeinternational.org/Images/664641-2025-2026-syllabus.pdf",
+   "https://www.cambridgeinternational.org/programmes-and-qualifications/cambridge-igcse-physical-science-0652/"
+  ],
+  "publisher": "Cambridge University Press & Assessment (Cambridge International Education)",
+  "licence": "© Cambridge University Press & Assessment; structure + our own wording only",
+  "firstExam": "2025"
+ },
+ "grades": [
+  {
+   "grade": "IGCSE",
+   "units": [
+    {
+     "id": "c1-the-particulate-nature-of-matter",
+     "title": "C1 The particulate nature of matter",
+     "topics": [
+      {
+       "id": "c1-1-the-particulate-nature-of-matter",
+       "title": "C1.1 The particulate nature of matter",
+       "subtopics": [
+        {
+         "id": "states-of-matter",
+         "title": "States of matter",
+         "outcomes": [
+          {
+           "code": "C1.1",
+           "text": "Name the distinguishing properties of solids, liquids and gases."
+          },
+          {
+           "code": null,
+           "text": "Describe how particles are spaced, arranged and moving in each state."
+          },
+          {
+           "code": null,
+           "text": "Explain changes of state using kinetic particle theory and energy changes."
+          }
+         ]
+        },
+        {
+         "id": "diffusion",
+         "title": "Diffusion",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe and explain diffusion as movement of particles."
+          },
+          {
+           "code": null,
+           "text": "Explain how the rate of diffusion depends on molecular mass."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "c2-experimental-techniques",
+     "title": "C2 Experimental techniques",
+     "topics": [
+      {
+       "id": "c2-1-measurement",
+       "title": "C2.1 Measurement",
+       "subtopics": [
+        {
+         "id": "measuring-apparatus",
+         "title": "Measuring apparatus",
+         "outcomes": [
+          {
+           "code": "C2.1",
+           "text": "Name suitable apparatus for measuring time, temperature, mass and volume, including burettes, pipettes and measuring cylinders."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "c2-2-criteria-of-purity",
+       "title": "C2.2 Criteria of purity",
+       "subtopics": [
+        {
+         "id": "chromatography",
+         "title": "Chromatography",
+         "outcomes": [
+          {
+           "code": "C2.2",
+           "text": "Read simple chromatograms."
+          },
+          {
+           "code": null,
+           "text": "Read chromatograms and use Rf values."
+          },
+          {
+           "code": null,
+           "text": "Explain how locating agents let chromatography work on colourless substances."
+          }
+         ]
+        },
+        {
+         "id": "testing-purity",
+         "title": "Testing purity",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Recognise that mixtures melt and boil over a range of temperatures."
+          },
+          {
+           "code": null,
+           "text": "Judge a substance's identity and purity from melting and boiling points."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "c2-3-methods-of-purification",
+       "title": "C2.3 Methods of purification",
+       "subtopics": [
+        {
+         "id": "separation-methods",
+         "title": "Separation methods",
+         "outcomes": [
+          {
+           "code": "C2.3",
+           "text": "Describe and explain solvent use, filtration, crystallisation, distillation, fractional distillation and paper chromatography."
+          },
+          {
+           "code": null,
+           "text": "Choose suitable separation techniques given information about the substances."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "c3-atoms-elements-and-compounds",
+     "title": "C3 Atoms, elements and compounds",
+     "topics": [
+      {
+       "id": "c3-1-physical-and-chemical-changes",
+       "title": "C3.1 Physical and chemical changes",
+       "subtopics": [
+        {
+         "id": "physical-and-chemical-changes",
+         "title": "Physical and chemical changes",
+         "outcomes": [
+          {
+           "code": "C3.1",
+           "text": "Identify physical and chemical changes and explain how they differ."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "c3-2-elements-compounds-and-mixtures",
+       "title": "C3.2 Elements, compounds and mixtures",
+       "subtopics": [
+        {
+         "id": "elements-compounds-mixtures",
+         "title": "Elements, compounds, mixtures",
+         "outcomes": [
+          {
+           "code": "C3.2",
+           "text": "Describe how elements, mixtures and compounds differ, and how metals differ from non-metals."
+          },
+          {
+           "code": null,
+           "text": "Define solvent, solute, solution and concentration."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "c3-3-atomic-structure-and-the-periodic-table",
+       "title": "C3.3 Atomic structure and the Periodic Table",
+       "subtopics": [
+        {
+         "id": "structure-of-the-atom",
+         "title": "Structure of the atom",
+         "outcomes": [
+          {
+           "code": "C3.3",
+           "text": "Describe an atom as a nucleus of protons and neutrons surrounded by electron shells."
+          },
+          {
+           "code": null,
+           "text": "Describe how electrons fill shells and why noble gas structures and outer electrons matter."
+          },
+          {
+           "code": null,
+           "text": "Give the relative charge and approximate mass of protons, neutrons and electrons."
+          }
+         ]
+        },
+        {
+         "id": "atomic-and-mass-numbers",
+         "title": "Atomic and mass numbers",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Define and use proton (atomic) number."
+          },
+          {
+           "code": null,
+           "text": "Define and use nucleon (mass) number."
+          },
+          {
+           "code": null,
+           "text": "Use proton number and atomic structure to explain the Periodic Table for elements 1 to 20."
+          }
+         ]
+        },
+        {
+         "id": "isotopes",
+         "title": "Isotopes",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Define isotopes as atoms with the same proton number but different nucleon number."
+          },
+          {
+           "code": null,
+           "text": "Explain why isotopes of an element have the same properties: same outer-shell electrons."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "c3-4-ions-and-ionic-bonds",
+       "title": "C3.4 Ions and ionic bonds",
+       "subtopics": [
+        {
+         "id": "ions-and-ionic-bonding",
+         "title": "Ions and ionic bonding",
+         "outcomes": [
+          {
+           "code": "C3.4",
+           "text": "Describe how ions form by gaining or losing electrons."
+          },
+          {
+           "code": null,
+           "text": "Use dot-and-cross diagrams for ionic bonds between Group I and Group VII."
+          },
+          {
+           "code": null,
+           "text": "Describe ionic bond formation between metals and non-metals, with strong attraction between opposite charges."
+          }
+         ]
+        },
+        {
+         "id": "ionic-lattices",
+         "title": "Ionic lattices",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe the ionic lattice as alternating positive and negative ions, as in sodium chloride."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "c3-5-molecules-and-covalent-bonds",
+       "title": "C3.5 Molecules and covalent bonds",
+       "subtopics": [
+        {
+         "id": "covalent-bonding",
+         "title": "Covalent bonding",
+         "outcomes": [
+          {
+           "code": "C3.5",
+           "text": "State that non-metals form simple molecules with covalent bonds."
+          },
+          {
+           "code": null,
+           "text": "Describe single covalent bonds in H2, Cl2, H2O, CH4, NH3 and HCl as shared electron pairs, using dot-and-cross diagrams."
+          },
+          {
+           "code": null,
+           "text": "Draw dot-and-cross diagrams for N2, C2H4, CH3OH and CO2."
+          }
+         ]
+        },
+        {
+         "id": "ionic-versus-covalent-compounds",
+         "title": "Ionic versus covalent compounds",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Compare volatility, solubility and conductivity of ionic and covalent compounds."
+          },
+          {
+           "code": null,
+           "text": "Explain melting and boiling point differences between ionic and covalent compounds using attractive forces."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "c3-6-macromolecules",
+       "title": "C3.6 Macromolecules",
+       "subtopics": [
+        {
+         "id": "diamond-and-graphite",
+         "title": "Diamond and graphite",
+         "outcomes": [
+          {
+           "code": "C3.6",
+           "text": "State that carbon has several forms, including diamond and graphite."
+          },
+          {
+           "code": null,
+           "text": "Describe the giant covalent structures of diamond and graphite."
+          },
+          {
+           "code": null,
+           "text": "Link the structures of diamond and graphite to their uses."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "c4-stoichiometry",
+     "title": "C4 Stoichiometry",
+     "topics": [
+      {
+       "id": "c4-1-stoichiometry",
+       "title": "C4.1 Stoichiometry",
+       "subtopics": [
+        {
+         "id": "chemical-formulae",
+         "title": "Chemical formulae",
+         "outcomes": [
+          {
+           "code": "C4.1",
+           "text": "Use element symbols and write formulae of simple compounds."
+          },
+          {
+           "code": null,
+           "text": "Work out the formula of an ionic compound from the ion charges."
+          },
+          {
+           "code": null,
+           "text": "Work out a simple compound's formula from the numbers of atoms present."
+          },
+          {
+           "code": null,
+           "text": "Work out a simple compound's formula from a model or diagram."
+          }
+         ]
+        },
+        {
+         "id": "chemical-equations",
+         "title": "Chemical equations",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Write and use word equations."
+          },
+          {
+           "code": null,
+           "text": "Interpret and balance simple symbol equations."
+          },
+          {
+           "code": null,
+           "text": "Write symbol equations with state symbols, including ionic equations."
+          },
+          {
+           "code": null,
+           "text": "Deduce a balanced equation from given information."
+          }
+         ]
+        },
+        {
+         "id": "relative-masses",
+         "title": "Relative masses",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Define relative atomic mass Ar using the carbon-12 scale."
+          },
+          {
+           "code": null,
+           "text": "Define relative molecular (formula) mass Mr and calculate it from Ar values."
+          }
+         ]
+        },
+        {
+         "id": "reacting-quantities",
+         "title": "Reacting quantities",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Calculate reacting masses, gas volumes and solution volumes, and concentrations in g/dm3 and mol/dm3, including limiting reactants."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "c5-electricity-and-chemistry",
+     "title": "C5 Electricity and chemistry",
+     "topics": [
+      {
+       "id": "c5-1-electricity-and-chemistry",
+       "title": "C5.1 Electricity and chemistry",
+       "subtopics": [
+        {
+         "id": "electrolysis-basics",
+         "title": "Electrolysis basics",
+         "outcomes": [
+          {
+           "code": "C5.1",
+           "text": "Define electrolysis as breaking down a molten or dissolved ionic compound with electricity."
+          },
+          {
+           "code": null,
+           "text": "Use the terms inert electrode, electrolyte, anode and cathode."
+          },
+          {
+           "code": null,
+           "text": "Explain electrolysis through the ions present and electrode reactions: cations gain, anions lose electrons."
+          }
+         ]
+        },
+        {
+         "id": "electrolysis-products",
+         "title": "Electrolysis products",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe electrode products and observations in electrolysis of molten lead(II) bromide, concentrated aqueous sodium chloride and dilute sulfuric acid."
+          },
+          {
+           "code": null,
+           "text": "Predict the products of electrolysing a molten binary compound."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "c6-energy-changes-in-chemical-reactions",
+     "title": "C6 Energy changes in chemical reactions",
+     "topics": [
+      {
+       "id": "c6-1-energetics-of-a-reaction",
+       "title": "C6.1 Energetics of a reaction",
+       "subtopics": [
+        {
+         "id": "exothermic-and-endothermic",
+         "title": "Exothermic and endothermic",
+         "outcomes": [
+          {
+           "code": "C6.1",
+           "text": "Describe exothermic and endothermic reactions."
+          },
+          {
+           "code": null,
+           "text": "Describe bond breaking as endothermic and bond forming as exothermic."
+          }
+         ]
+        },
+        {
+         "id": "energy-level-diagrams",
+         "title": "Energy level diagrams",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Draw and label energy level diagrams from data."
+          },
+          {
+           "code": null,
+           "text": "Interpret energy level diagrams, including activation energy."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "c6-2-energy-transfer",
+       "title": "C6.2 Energy transfer",
+       "subtopics": [
+        {
+         "id": "fuels-and-energy",
+         "title": "Fuels and energy",
+         "outcomes": [
+          {
+           "code": "C6.2",
+           "text": "Describe the thermal energy released when fuels burn."
+          },
+          {
+           "code": null,
+           "text": "State hydrogen's use as a fuel."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "c6-3-rate-speed-of-reaction",
+       "title": "C6.3 Rate (speed) of reaction",
+       "subtopics": [
+        {
+         "id": "measuring-rate",
+         "title": "Measuring rate",
+         "outcomes": [
+          {
+           "code": "C6.3",
+           "text": "Describe practical ways to study the rate of a gas-producing reaction."
+          },
+          {
+           "code": null,
+           "text": "Interpret rate-of-reaction experimental data."
+          }
+         ]
+        },
+        {
+         "id": "factors-affecting-rate",
+         "title": "Factors affecting rate",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe how concentration, particle size, catalysts and temperature affect rate."
+          },
+          {
+           "code": null,
+           "text": "Explain the concentration effect through collision frequency."
+          },
+          {
+           "code": null,
+           "text": "Explain the temperature effect through collision frequency and more particles having activation energy."
+          }
+         ]
+        },
+        {
+         "id": "explosive-combustion",
+         "title": "Explosive combustion",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe how concentration, temperature and surface area create explosion danger in fine powders and gases."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "c6-4-redox",
+       "title": "C6.4 Redox",
+       "subtopics": [
+        {
+         "id": "oxidation-and-reduction",
+         "title": "Oxidation and reduction",
+         "outcomes": [
+          {
+           "code": "C6.4",
+           "text": "Describe oxidation and reduction as oxygen gain or loss."
+          },
+          {
+           "code": null,
+           "text": "Define and identify oxidising and reducing agents."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "c7-acids-bases-and-salts",
+     "title": "C7 Acids, bases and salts",
+     "topics": [
+      {
+       "id": "c7-1-the-characteristic-properties-of-acids-and-",
+       "title": "C7.1 The characteristic properties of acids and bases",
+       "subtopics": [
+        {
+         "id": "acids-and-bases",
+         "title": "Acids and bases",
+         "outcomes": [
+          {
+           "code": "C7.1",
+           "text": "Describe acid properties, including effects on litmus and reactions with metals, bases and carbonates."
+          },
+          {
+           "code": null,
+           "text": "Describe base properties, including litmus effect and reactions with acids and ammonium salts."
+          },
+          {
+           "code": null,
+           "text": "Define acids and bases by proton transfer in aqueous solution."
+          }
+         ]
+        },
+        {
+         "id": "ph-and-soil",
+         "title": "pH and soil",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe neutrality, acidity and alkalinity using pH and universal indicator."
+          },
+          {
+           "code": null,
+           "text": "Describe and explain why controlling soil acidity matters."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "c7-2-types-of-oxides",
+       "title": "C7.2 Types of oxides",
+       "subtopics": [
+        {
+         "id": "types-of-oxides",
+         "title": "Types of oxides",
+         "outcomes": [
+          {
+           "code": "C7.2",
+           "text": "Classify oxides as acidic or basic from metallic or non-metallic character."
+          },
+          {
+           "code": null,
+           "text": "Identify neutral and amphoteric oxides."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "c7-3-preparation-of-salts",
+       "title": "C7.3 Preparation of salts",
+       "subtopics": [
+        {
+         "id": "making-salts",
+         "title": "Making salts",
+         "outcomes": [
+          {
+           "code": "C7.3",
+           "text": "Describe preparing, separating and purifying salts using the C2 techniques and C7.1 reactions."
+          },
+          {
+           "code": null,
+           "text": "Suggest a method for making a given salt, including precipitation."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "c7-4-identification-of-ions-and-gases",
+       "title": "C7.4 Identification of ions and gases",
+       "subtopics": [
+        {
+         "id": "tests-for-ions-and-gases",
+         "title": "Tests for ions and gases",
+         "outcomes": [
+          {
+           "code": "C7.4",
+           "text": "Describe and use tests for aqueous cations, flame tests, anions and the common gases."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "c8-the-periodic-table",
+     "title": "C8 The Periodic Table",
+     "topics": [
+      {
+       "id": "c8-1-the-periodic-table",
+       "title": "C8.1 The Periodic Table",
+       "subtopics": [
+        {
+         "id": "periodic-table",
+         "title": "Periodic Table",
+         "outcomes": [
+          {
+           "code": "C8.1",
+           "text": "Describe the Periodic Table as a way to classify elements and predict properties."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "c8-2-periodic-trends",
+       "title": "C8.2 Periodic Trends",
+       "subtopics": [
+        {
+         "id": "periodic-trends",
+         "title": "Periodic trends",
+         "outcomes": [
+          {
+           "code": "C8.2",
+           "text": "Describe the change from metallic to non-metallic character across a period."
+          },
+          {
+           "code": null,
+           "text": "Explain how group number, outer electrons and metallic character are related."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "c8-3-group-properties",
+       "title": "C8.3 Group properties",
+       "subtopics": [
+        {
+         "id": "group-i-metals",
+         "title": "Group I metals",
+         "outcomes": [
+          {
+           "code": "C8.3",
+           "text": "Describe lithium, sodium and potassium as soft metals with trends in melting point, density and reaction with water."
+          },
+          {
+           "code": null,
+           "text": "Predict properties of other Group I elements from data."
+          }
+         ]
+        },
+        {
+         "id": "group-vii-halogens",
+         "title": "Group VII halogens",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe chlorine, bromine and iodine as diatomic non-metals with trends in colour and state."
+          },
+          {
+           "code": null,
+           "text": "State how halogens react with other halide ions."
+          },
+          {
+           "code": null,
+           "text": "Predict properties of other Group VII elements from data."
+          }
+         ]
+        },
+        {
+         "id": "other-groups",
+         "title": "Other groups",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Identify trends in other groups from data."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "c8-4-transition-elements",
+       "title": "C8.4 Transition elements",
+       "subtopics": [
+        {
+         "id": "transition-elements",
+         "title": "Transition elements",
+         "outcomes": [
+          {
+           "code": "C8.4",
+           "text": "Describe transition elements: dense, high melting points, coloured compounds, often catalysts."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "c8-5-noble-gases",
+       "title": "C8.5 Noble gases",
+       "subtopics": [
+        {
+         "id": "noble-gases",
+         "title": "Noble gases",
+         "outcomes": [
+          {
+           "code": "C8.5",
+           "text": "Describe noble gases as unreactive monoatomic gases and explain this using electronic structure."
+          },
+          {
+           "code": null,
+           "text": "State uses of noble gases for inert atmospheres, such as argon lamps and helium balloons."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "c9-metals",
+     "title": "C9 Metals",
+     "topics": [
+      {
+       "id": "c9-1-properties-of-metals",
+       "title": "C9.1 Properties of metals",
+       "subtopics": [
+        {
+         "id": "metal-properties",
+         "title": "Metal properties",
+         "outcomes": [
+          {
+           "code": "C9.1",
+           "text": "Describe the general physical properties of metals."
+          },
+          {
+           "code": null,
+           "text": "Describe metallic bonding as positive ions in a sea of electrons and use it to explain conductivity and malleability."
+          }
+         ]
+        },
+        {
+         "id": "alloys",
+         "title": "Alloys",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe alloys, such as brass, as mixtures of a metal with other elements."
+          },
+          {
+           "code": null,
+           "text": "Explain why alloys are used instead of pure metals."
+          },
+          {
+           "code": null,
+           "text": "Describe how additives change iron into steels such as mild and stainless steel."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "c9-2-reactivity-series",
+       "title": "C9.2 Reactivity series",
+       "subtopics": [
+        {
+         "id": "reactivity-series",
+         "title": "Reactivity series",
+         "outcomes": [
+          {
+           "code": "C9.2",
+           "text": "Order potassium, sodium, calcium, magnesium, aluminium, zinc, iron and copper by their reactions with water, acid and carbon."
+          },
+          {
+           "code": null,
+           "text": "Describe the reactivity series as the tendency to form positive ions, shown by displacement reactions."
+          },
+          {
+           "code": null,
+           "text": "Deduce an order of reactivity from experimental results."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "c9-3-extraction-of-metals",
+       "title": "C9.3 Extraction of metals",
+       "subtopics": [
+        {
+         "id": "extracting-metals",
+         "title": "Extracting metals",
+         "outcomes": [
+          {
+           "code": "C9.3",
+           "text": "Describe using carbon to extract some metals from their ores."
+          },
+          {
+           "code": null,
+           "text": "Know that aluminium is extracted from bauxite by electrolysis."
+          },
+          {
+           "code": null,
+           "text": "Describe and explain the main reactions in the blast furnace extraction of iron."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "c9-4-uses-of-metals",
+       "title": "C9.4 Uses of metals",
+       "subtopics": [
+        {
+         "id": "aluminium",
+         "title": "Aluminium",
+         "outcomes": [
+          {
+           "code": "C9.4",
+           "text": "Describe uses of aluminium in aircraft parts and food containers."
+          },
+          {
+           "code": null,
+           "text": "Explain aluminium's apparent unreactivity through its oxide layer."
+          }
+         ]
+        },
+        {
+         "id": "steel-and-zinc",
+         "title": "Steel and zinc",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "State uses of mild steel and stainless steel."
+          },
+          {
+           "code": null,
+           "text": "Explain zinc's use in galvanising steel and making brass."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "c10-air-and-water",
+     "title": "C10 Air and water",
+     "topics": [
+      {
+       "id": "c10-1-water",
+       "title": "C10.1 Water",
+       "subtopics": [
+        {
+         "id": "water-tests-and-treatment",
+         "title": "Water tests and treatment",
+         "outcomes": [
+          {
+           "code": "C10.1",
+           "text": "Describe chemical tests for water using copper(II) sulfate and cobalt(II) chloride."
+          },
+          {
+           "code": null,
+           "text": "Describe how hydration can be reversed by heating."
+          },
+          {
+           "code": null,
+           "text": "Describe and explain water supply treatment by filtration and chlorination."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "c10-2-air",
+       "title": "C10.2 Air",
+       "subtopics": [
+        {
+         "id": "composition-of-air",
+         "title": "Composition of air",
+         "outcomes": [
+          {
+           "code": "C10.2",
+           "text": "State the composition of clean air."
+          }
+         ]
+        },
+        {
+         "id": "air-pollutants",
+         "title": "Air pollutants",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Name the common air pollutants: carbon monoxide, sulfur dioxide and nitrogen oxides."
+          },
+          {
+           "code": null,
+           "text": "State the source of each pollutant."
+          },
+          {
+           "code": null,
+           "text": "Describe ways to reduce sulfur dioxide emissions."
+          },
+          {
+           "code": null,
+           "text": "Describe how a catalytic converter removes nitrogen monoxide and carbon monoxide."
+          },
+          {
+           "code": null,
+           "text": "State the harmful effects of these pollutants on buildings and health."
+          }
+         ]
+        },
+        {
+         "id": "rusting",
+         "title": "Rusting",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "State the conditions needed for iron to rust."
+          },
+          {
+           "code": null,
+           "text": "Describe and explain barrier methods of rust prevention."
+          },
+          {
+           "code": null,
+           "text": "Describe and explain sacrificial protection and galvanising."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "c10-3-carbon-dioxide-and-methane",
+       "title": "C10.3 Carbon dioxide and methane",
+       "subtopics": [
+        {
+         "id": "greenhouse-gases",
+         "title": "Greenhouse gases",
+         "outcomes": [
+          {
+           "code": "C10.3",
+           "text": "State how carbon dioxide forms in combustion, respiration, acid-carbonate reactions and thermal decomposition of calcium carbonate."
+          },
+          {
+           "code": null,
+           "text": "State that carbon dioxide and methane are greenhouse gases."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "c11-carbonates",
+     "title": "C11 Carbonates",
+     "topics": [
+      {
+       "id": "c11-1-carbonates",
+       "title": "C11.1 Carbonates",
+       "subtopics": [
+        {
+         "id": "limestone",
+         "title": "Limestone",
+         "outcomes": [
+          {
+           "code": "C11.1",
+           "text": "Describe making lime from limestone and uses of limestone in treating acidic soil and waste."
+          },
+          {
+           "code": null,
+           "text": "Describe the thermal decomposition of calcium carbonate."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "c12-organic-chemistry",
+     "title": "C12 Organic chemistry",
+     "topics": [
+      {
+       "id": "c12-1-names-of-compounds",
+       "title": "C12.1 Names of compounds",
+       "subtopics": [
+        {
+         "id": "naming-organic-compounds",
+         "title": "Naming organic compounds",
+         "outcomes": [
+          {
+           "code": "C12.1",
+           "text": "Name and draw methane, ethane, ethene and ethanol."
+          },
+          {
+           "code": null,
+           "text": "State the compound type from a name ending -ane, -ene or -ol, or from a structure."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "c12-2-fuels",
+       "title": "C12.2 Fuels",
+       "subtopics": [
+        {
+         "id": "fossil-fuels",
+         "title": "Fossil fuels",
+         "outcomes": [
+          {
+           "code": "C12.2",
+           "text": "State that coal, natural gas and petroleum are fossil fuels producing carbon dioxide when burned."
+          },
+          {
+           "code": null,
+           "text": "Name methane as the main constituent of natural gas."
+          }
+         ]
+        },
+        {
+         "id": "petroleum-fractions",
+         "title": "Petroleum fractions",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe petroleum as a hydrocarbon mixture separated by fractional distillation."
+          },
+          {
+           "code": null,
+           "text": "Describe the properties of molecules within a fraction."
+          },
+          {
+           "code": null,
+           "text": "Name the uses of the fractions."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "c12-3-homologous-series",
+       "title": "C12.3 Homologous series",
+       "subtopics": [
+        {
+         "id": "homologous-series",
+         "title": "Homologous series",
+         "outcomes": [
+          {
+           "code": "C12.3",
+           "text": "Describe alkanes and alkenes as families with a general formula and similar chemical properties."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "c12-4-alkanes",
+       "title": "C12.4 Alkanes",
+       "subtopics": [
+        {
+         "id": "alkanes",
+         "title": "Alkanes",
+         "outcomes": [
+          {
+           "code": "C12.4",
+           "text": "Describe alkanes as saturated hydrocarbons with only single covalent bonds."
+          },
+          {
+           "code": null,
+           "text": "Describe alkanes as generally unreactive except for burning."
+          },
+          {
+           "code": null,
+           "text": "Describe complete combustion of hydrocarbons to carbon dioxide and water."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "c12-5-alkenes",
+       "title": "C12.5 Alkenes",
+       "subtopics": [
+        {
+         "id": "alkenes-and-cracking",
+         "title": "Alkenes and cracking",
+         "outcomes": [
+          {
+           "code": "C12.5",
+           "text": "Describe alkenes as unsaturated hydrocarbons with one double bond."
+          },
+          {
+           "code": null,
+           "text": "State that cracking produces alkenes."
+          },
+          {
+           "code": null,
+           "text": "Describe cracking of large alkanes into smaller alkanes, alkenes and hydrogen, and the conditions."
+          }
+         ]
+        },
+        {
+         "id": "reactions-of-alkenes",
+         "title": "Reactions of alkenes",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Recognise saturated and unsaturated hydrocarbons from structure and bromine water."
+          },
+          {
+           "code": null,
+           "text": "Describe addition reactions of alkenes with bromine, hydrogen and steam."
+          },
+          {
+           "code": null,
+           "text": "Describe forming poly(ethene) by addition polymerisation."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "c12-6-alcohols",
+       "title": "C12.6 Alcohols",
+       "subtopics": [
+        {
+         "id": "ethanol",
+         "title": "Ethanol",
+         "outcomes": [
+          {
+           "code": "C12.6",
+           "text": "State that ethanol forms by fermentation and by ethene reacting with steam."
+          },
+          {
+           "code": null,
+           "text": "Describe ethanol formation by fermentation and catalytic addition of steam to ethene."
+          },
+          {
+           "code": null,
+           "text": "Describe complete combustion of ethanol."
+          },
+          {
+           "code": null,
+           "text": "State uses of ethanol as a solvent and fuel."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "p1-general-physics",
+     "title": "P1 General physics",
+     "topics": [
+      {
+       "id": "p1-1-length-and-time",
+       "title": "P1.1 Length and time",
+       "subtopics": [
+        {
+         "id": "measuring-length-and-time",
+         "title": "Measuring length and time",
+         "outcomes": [
+          {
+           "code": "P1.1",
+           "text": "Use rules and measuring cylinders to find length or volume."
+          },
+          {
+           "code": null,
+           "text": "Understand that a micrometer screw gauge measures very small distances."
+          },
+          {
+           "code": null,
+           "text": "Use analogue and digital clocks to measure time intervals."
+          },
+          {
+           "code": null,
+           "text": "Average small distances and short times by measuring multiples, including a pendulum period."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "p1-2-motion",
+       "title": "P1.2 Motion",
+       "subtopics": [
+        {
+         "id": "speed-and-velocity",
+         "title": "Speed and velocity",
+         "outcomes": [
+          {
+           "code": "P1.2",
+           "text": "Define speed and calculate average speed."
+          },
+          {
+           "code": null,
+           "text": "Distinguish speed from velocity."
+          },
+          {
+           "code": null,
+           "text": "Define and calculate acceleration from change in velocity."
+          }
+         ]
+        },
+        {
+         "id": "motion-graphs",
+         "title": "Motion graphs",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Plot and interpret speed-time and distance-time graphs."
+          },
+          {
+           "code": null,
+           "text": "Calculate acceleration from the gradient of a speed-time graph."
+          },
+          {
+           "code": null,
+           "text": "Recognise rest, constant speed and changing speed from graph shape."
+          },
+          {
+           "code": null,
+           "text": "Recognise linear motion with non-constant acceleration."
+          },
+          {
+           "code": null,
+           "text": "Calculate distance from the area under a speed-time graph."
+          },
+          {
+           "code": null,
+           "text": "Relate acceleration and deceleration to changing speed using graph gradient."
+          }
+         ]
+        },
+        {
+         "id": "free-fall",
+         "title": "Free fall",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "State that free-fall acceleration g near Earth is constant."
+          },
+          {
+           "code": null,
+           "text": "Describe falling with and without air resistance, including terminal velocity."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "p1-3-mass-and-weight",
+       "title": "P1.3 Mass and weight",
+       "subtopics": [
+        {
+         "id": "mass",
+         "title": "Mass",
+         "outcomes": [
+          {
+           "code": "P1.3",
+           "text": "Show familiarity with the idea of mass."
+          },
+          {
+           "code": null,
+           "text": "Understand that mass resists changes in motion."
+          },
+          {
+           "code": null,
+           "text": "Understand that weights (and masses) can be compared on a balance."
+          }
+         ]
+        },
+        {
+         "id": "weight",
+         "title": "Weight",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "State that weight is a gravitational force."
+          },
+          {
+           "code": null,
+           "text": "Distinguish between mass and weight."
+          },
+          {
+           "code": null,
+           "text": "Describe weight as the effect of a gravitational field on a mass."
+          },
+          {
+           "code": null,
+           "text": "Recognise g as force on unit mass, in N/kg, and use W = mg."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "p1-4-density",
+       "title": "P1.4 Density",
+       "subtopics": [
+        {
+         "id": "density",
+         "title": "Density",
+         "outcomes": [
+          {
+           "code": "P1.4",
+           "text": "Recall and use density = mass / volume."
+          },
+          {
+           "code": null,
+           "text": "Describe an experiment to find the density of a liquid or regular solid."
+          },
+          {
+           "code": null,
+           "text": "Find the density of an irregular solid by displacement."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "p1-5-1-effects-of-forces",
+       "title": "P1.5.1 Effects of forces",
+       "subtopics": [
+        {
+         "id": "forces-and-springs",
+         "title": "Forces and springs",
+         "outcomes": [
+          {
+           "code": "P1.5",
+           "text": "Recognise that a force can change size, shape or motion."
+          },
+          {
+           "code": null,
+           "text": "Plot and interpret extension-load graphs and describe the procedure."
+          },
+          {
+           "code": null,
+           "text": "State Hooke's law and use F = kx."
+          },
+          {
+           "code": null,
+           "text": "Recognise the limit of proportionality on an extension-load graph."
+          }
+         ]
+        },
+        {
+         "id": "resultant-force-and-friction",
+         "title": "Resultant force and friction",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Use F = ma linking resultant force, mass and acceleration."
+          },
+          {
+           "code": null,
+           "text": "Understand friction as a force between surfaces that impedes motion and heats."
+          },
+          {
+           "code": null,
+           "text": "Recognise air resistance as friction."
+          },
+          {
+           "code": null,
+           "text": "Find the resultant of forces acting along the same line."
+          },
+          {
+           "code": null,
+           "text": "Recognise that with no resultant force a body stays at rest or keeps constant speed in a straight line."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "p1-5-2-turning-effect",
+       "title": "P1.5.2 Turning effect",
+       "subtopics": [
+        {
+         "id": "moments",
+         "title": "Moments",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe a moment as a force's turning effect, with everyday examples."
+          },
+          {
+           "code": null,
+           "text": "Calculate moment as force times perpendicular distance from the pivot."
+          },
+          {
+           "code": null,
+           "text": "Apply the principle of moments to a balanced weightless beam."
+          },
+          {
+           "code": null,
+           "text": "Recognise equilibrium when there is no resultant force or turning effect."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "p1-5-3-centre-of-mass",
+       "title": "P1.5.3 Centre of mass",
+       "subtopics": [
+        {
+         "id": "centre-of-mass",
+         "title": "Centre of mass",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Perform an experiment to find the centre of mass of a plane lamina."
+          },
+          {
+           "code": null,
+           "text": "Describe how centre of mass position affects stability."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "p1-5-4-pressure",
+       "title": "P1.5.4 Pressure",
+       "subtopics": [
+        {
+         "id": "pressure",
+         "title": "Pressure",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Relate pressure qualitatively to force and area."
+          },
+          {
+           "code": null,
+           "text": "Recall and use p = F / A."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "p1-6-1-work",
+       "title": "P1.6.1 Work",
+       "subtopics": [
+        {
+         "id": "work-done",
+         "title": "Work done",
+         "outcomes": [
+          {
+           "code": "P1.6",
+           "text": "Relate work done to force and distance moved, without calculation."
+          },
+          {
+           "code": null,
+           "text": "Recall and use W = Fd = change in energy."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "p1-6-2-energy",
+       "title": "P1.6.2 Energy",
+       "subtopics": [
+        {
+         "id": "kinds-of-energy",
+         "title": "Kinds of energy",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Understand that work done equals energy transferred."
+          },
+          {
+           "code": null,
+           "text": "Understand that objects have kinetic or potential energy, and energy can be transferred and stored."
+          },
+          {
+           "code": null,
+           "text": "Give examples of changes between kinetic, gravitational, chemical, elastic, nuclear and thermal energy."
+          }
+         ]
+        },
+        {
+         "id": "energy-calculations",
+         "title": "Energy calculations",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Recall and use KE = 1/2 mv2 and GPE = mgh."
+          },
+          {
+           "code": null,
+           "text": "Recognise transfer by forces, electric currents, heating and waves."
+          },
+          {
+           "code": null,
+           "text": "Apply conservation of energy to simple examples."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "p1-6-3-power",
+       "title": "P1.6.3 Power",
+       "subtopics": [
+        {
+         "id": "power",
+         "title": "Power",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Relate power to work done and time, without calculation."
+          },
+          {
+           "code": null,
+           "text": "Recall and use P = change in E / t."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "p1-6-4-energy-resources",
+       "title": "P1.6.4 Energy resources",
+       "subtopics": [
+        {
+         "id": "energy-sources",
+         "title": "Energy sources",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Distinguish renewable from non-renewable energy sources."
+          },
+          {
+           "code": null,
+           "text": "Describe how energy is obtained from fuels, water, geothermal, nuclear fission, solar and wind."
+          },
+          {
+           "code": null,
+           "text": "Give advantages and disadvantages of each method."
+          },
+          {
+           "code": null,
+           "text": "Understand the Sun is the source of all resources except geothermal, nuclear and tidal."
+          },
+          {
+           "code": null,
+           "text": "Understand tidal energy mainly comes from the moon."
+          },
+          {
+           "code": null,
+           "text": "Show understanding that nuclear fusion releases energy in the Sun."
+          }
+         ]
+        },
+        {
+         "id": "efficiency",
+         "title": "Efficiency",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Show qualitative understanding of efficiency."
+          },
+          {
+           "code": null,
+           "text": "Recall and use the efficiency equations for energy and power."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "p2-thermal-physics",
+     "title": "P2 Thermal physics",
+     "topics": [
+      {
+       "id": "p2-1-1-thermal-expansion-of-solids-liquids-and-g",
+       "title": "P2.1.1 Thermal expansion of solids, liquids and gases",
+       "subtopics": [
+        {
+         "id": "states-and-particle-motion",
+         "title": "States and particle motion",
+         "outcomes": [
+          {
+           "code": "P2.1",
+           "text": "State the distinguishing properties of solids, liquids and gases."
+          },
+          {
+           "code": null,
+           "text": "Describe the molecular structure of solids, liquids and gases."
+          },
+          {
+           "code": null,
+           "text": "Describe gas pressure and temperature in terms of particle motion."
+          }
+         ]
+        },
+        {
+         "id": "thermal-expansion",
+         "title": "Thermal expansion",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe thermal expansion of solids, liquids and gases at constant pressure."
+          },
+          {
+           "code": null,
+           "text": "Explain everyday uses and consequences of expansion."
+          },
+          {
+           "code": null,
+           "text": "Know the relative size of expansion in solids, liquids and gases."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "p2-1-2-measurement-of-temperature",
+       "title": "P2.1.2 Measurement of temperature",
+       "subtopics": [
+        {
+         "id": "thermometers",
+         "title": "Thermometers",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe how a temperature-dependent property can measure temperature."
+          },
+          {
+           "code": null,
+           "text": "Understand sensitivity, range and linearity."
+          },
+          {
+           "code": null,
+           "text": "Recognise the need for fixed points."
+          },
+          {
+           "code": null,
+           "text": "Describe how liquid-in-glass thermometers work."
+          },
+          {
+           "code": null,
+           "text": "Use thermometers on the Celsius scale."
+          },
+          {
+           "code": null,
+           "text": "Describe a thermocouple and its use for high or rapidly changing temperatures."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "p2-1-3-melting-and-boiling",
+       "title": "P2.1.3 Melting and boiling",
+       "subtopics": [
+        {
+         "id": "melting-and-boiling",
+         "title": "Melting and boiling",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe melting and boiling as energy input without temperature change."
+          },
+          {
+           "code": null,
+           "text": "State melting and boiling point meanings and the values for water."
+          },
+          {
+           "code": null,
+           "text": "Distinguish boiling from evaporation."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "p2-2-1-conduction",
+       "title": "P2.2.1 Conduction",
+       "subtopics": [
+        {
+         "id": "conduction",
+         "title": "Conduction",
+         "outcomes": [
+          {
+           "code": "P2.2",
+           "text": "Name typical good and bad thermal conductors."
+          },
+          {
+           "code": null,
+           "text": "Describe experiments comparing thermal conductors."
+          },
+          {
+           "code": null,
+           "text": "Explain conduction through molecular vibrations and electron transfer."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "p2-2-2-convection",
+       "title": "P2.2.2 Convection",
+       "subtopics": [
+        {
+         "id": "convection",
+         "title": "Convection",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Recognise convection as the main energy transfer in fluids."
+          },
+          {
+           "code": null,
+           "text": "Relate convection to density changes."
+          },
+          {
+           "code": null,
+           "text": "Interpret experiments illustrating convection in liquids and gases."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "p2-2-3-radiation",
+       "title": "P2.2.3 Radiation",
+       "subtopics": [
+        {
+         "id": "radiation",
+         "title": "Radiation",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Recognise radiation as energy transfer needing no medium."
+          },
+          {
+           "code": null,
+           "text": "Identify infrared as the radiation involved in energy transfer."
+          },
+          {
+           "code": null,
+           "text": "Describe how surface colour and texture affect emission, absorption and reflection."
+          },
+          {
+           "code": null,
+           "text": "Interpret experiments on good and bad emitters and absorbers of infrared."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "p2-2-4-consequences-of-energy-transfer",
+       "title": "P2.2.4 Consequences of energy transfer",
+       "subtopics": [
+        {
+         "id": "everyday-heat-transfer",
+         "title": "Everyday heat transfer",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain everyday applications and consequences of conduction, convection and radiation."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "p3-properties-of-waves-including-light-and-sound",
+     "title": "P3 Properties of waves, including light and sound",
+     "topics": [
+      {
+       "id": "p3-1-general-wave-properties",
+       "title": "P3.1 General wave properties",
+       "subtopics": [
+        {
+         "id": "wave-basics",
+         "title": "Wave basics",
+         "outcomes": [
+          {
+           "code": "P3.1",
+           "text": "Understand that waves transfer energy without transferring matter."
+          },
+          {
+           "code": null,
+           "text": "Describe wave motion using ropes, springs and water waves."
+          },
+          {
+           "code": null,
+           "text": "Use the term wavefront."
+          },
+          {
+           "code": null,
+           "text": "State the meaning of speed, frequency, wavelength and amplitude."
+          },
+          {
+           "code": null,
+           "text": "Distinguish transverse from longitudinal waves with examples."
+          }
+         ]
+        },
+        {
+         "id": "wave-behaviour",
+         "title": "Wave behaviour",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe reflection at a plane surface and refraction from speed change."
+          },
+          {
+           "code": null,
+           "text": "Use water waves to demonstrate reflection and refraction."
+          },
+          {
+           "code": null,
+           "text": "Recall and use v = f x wavelength."
+          },
+          {
+           "code": null,
+           "text": "Understand refraction as caused by a change of speed between media."
+          },
+          {
+           "code": null,
+           "text": "Describe diffraction through a narrow gap, shown with water waves."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "p3-2-1-reflection-of-light",
+       "title": "P3.2.1 Reflection of light",
+       "subtopics": [
+        {
+         "id": "plane-mirrors",
+         "title": "Plane mirrors",
+         "outcomes": [
+          {
+           "code": "P3.2",
+           "text": "Describe image formation by a plane mirror and its characteristics."
+          },
+          {
+           "code": null,
+           "text": "Recall and use angle of incidence = angle of reflection, measured to the normal."
+          },
+          {
+           "code": null,
+           "text": "Do simple constructions and calculations for plane mirror reflection."
+          },
+          {
+           "code": null,
+           "text": "Recall that a plane mirror image is virtual."
+          }
+         ]
+        },
+        {
+         "id": "total-internal-reflection",
+         "title": "Total internal reflection",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Give the meaning of critical angle."
+          },
+          {
+           "code": null,
+           "text": "Describe internal and total internal reflection."
+          },
+          {
+           "code": null,
+           "text": "Describe how optical fibres work, in medicine and communications."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "p3-2-2-refraction-of-light",
+       "title": "P3.2.2 Refraction of light",
+       "subtopics": [
+        {
+         "id": "refraction",
+         "title": "Refraction",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe an experiment showing refraction of light."
+          },
+          {
+           "code": null,
+           "text": "Use the terms angle of incidence and refraction, and describe light through parallel-sided material."
+          },
+          {
+           "code": null,
+           "text": "Recall and use the definition of refractive index in terms of speed."
+          },
+          {
+           "code": null,
+           "text": "Recall and use n = sin i / sin r."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "p3-2-3-thin-converging-lens",
+       "title": "P3.2.3 Thin converging lens",
+       "subtopics": [
+        {
+         "id": "converging-lens-rays",
+         "title": "Converging lens rays",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe how a thin converging lens acts on a light beam."
+          },
+          {
+           "code": null,
+           "text": "Use the terms principal focus and focal length."
+          },
+          {
+           "code": null,
+           "text": "Draw ray diagrams for a real image by a single lens."
+          }
+         ]
+        },
+        {
+         "id": "images-and-magnifying",
+         "title": "Images and magnifying",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Understand real and virtual images."
+          },
+          {
+           "code": null,
+           "text": "Draw ray diagrams for a virtual image by a converging lens."
+          },
+          {
+           "code": null,
+           "text": "Describe images as enlarged, same size or diminished, and upright or inverted."
+          },
+          {
+           "code": null,
+           "text": "Describe using a single lens as a magnifying glass."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "p3-2-4-electromagnetic-spectrum",
+       "title": "P3.2.4 Electromagnetic spectrum",
+       "subtopics": [
+        {
+         "id": "electromagnetic-spectrum",
+         "title": "Electromagnetic spectrum",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe the electromagnetic spectrum in order of frequency, from radio waves to gamma rays."
+          },
+          {
+           "code": null,
+           "text": "State that all electromagnetic waves travel at the same high speed in a vacuum."
+          },
+          {
+           "code": null,
+           "text": "State that this speed is 3.0 x 10^8 m/s, about the same in air."
+          },
+          {
+           "code": null,
+           "text": "Describe properties and uses of radiation in each region, including radio, microwaves, infrared and X-rays."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "p3-3-sound",
+       "title": "P3.3 Sound",
+       "subtopics": [
+        {
+         "id": "sound",
+         "title": "Sound",
+         "outcomes": [
+          {
+           "code": "P3.3",
+           "text": "Describe how vibrating objects make sound and how sound makes objects, such as the eardrum, vibrate."
+          },
+          {
+           "code": null,
+           "text": "Describe the longitudinal nature of sound waves."
+          },
+          {
+           "code": null,
+           "text": "Describe sound in air through compressions and rarefactions."
+          },
+          {
+           "code": null,
+           "text": "State the audible frequency range of 20 Hz to 20 000 Hz."
+          },
+          {
+           "code": null,
+           "text": "Show understanding that sound needs a medium."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "p4-electricity-and-magnetism",
+     "title": "P4 Electricity and magnetism",
+     "topics": [
+      {
+       "id": "p4-1-simple-phenomena-of-magnetism",
+       "title": "P4.1 Simple phenomena of magnetism",
+       "subtopics": [
+        {
+         "id": "magnets-and-fields",
+         "title": "Magnets and fields",
+         "outcomes": [
+          {
+           "code": "P4.1",
+           "text": "Describe forces between magnets, and between magnets and magnetic materials."
+          },
+          {
+           "code": null,
+           "text": "Give an account of induced magnetism."
+          },
+          {
+           "code": null,
+           "text": "Distinguish magnetic from non-magnetic materials."
+          },
+          {
+           "code": null,
+           "text": "Draw and describe the field lines around a bar magnet."
+          }
+         ]
+        },
+        {
+         "id": "magnetic-materials-and-electromagnets",
+         "title": "Magnetic materials and electromagnets",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Distinguish magnetic properties of soft iron and steel."
+          },
+          {
+           "code": null,
+           "text": "Recognise that an electric current has a magnetic field."
+          },
+          {
+           "code": null,
+           "text": "Distinguish permanent magnets from electromagnets in design and use."
+          }
+         ]
+        },
+        {
+         "id": "magnetising-and-demagnetising",
+         "title": "Magnetising and demagnetising",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe magnetisation by stroking, d.c. in a coil and hammering."
+          },
+          {
+           "code": null,
+           "text": "Describe demagnetisation by hammering, heating and a.c. in a coil."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "p4-2-1-electric-charge",
+       "title": "P4.2.1 Electric charge",
+       "subtopics": [
+        {
+         "id": "electric-charge",
+         "title": "Electric charge",
+         "outcomes": [
+          {
+           "code": "P4.2",
+           "text": "State that there are positive and negative charges."
+          },
+          {
+           "code": null,
+           "text": "State that unlike charges attract and like charges repel."
+          },
+          {
+           "code": null,
+           "text": "Describe experiments producing and detecting charge by friction."
+          },
+          {
+           "code": null,
+           "text": "State that charging adds or removes electrons."
+          },
+          {
+           "code": null,
+           "text": "Describe an electric field as a region where a charge feels a force."
+          },
+          {
+           "code": null,
+           "text": "Distinguish conductors from insulators with examples."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "p4-2-2-current",
+       "title": "P4.2.2 Current",
+       "subtopics": [
+        {
+         "id": "electric-current",
+         "title": "Electric current",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "State that current is related to flow of charge."
+          },
+          {
+           "code": null,
+           "text": "Understand current as rate of flow of charge and use I = Q/t."
+          },
+          {
+           "code": null,
+           "text": "Distinguish electron flow from conventional current."
+          },
+          {
+           "code": null,
+           "text": "Use and describe analogue and digital ammeters."
+          },
+          {
+           "code": null,
+           "text": "State that current in metals is a flow of electrons."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "p4-2-3-electromotive-force-e-m-f-and-potential-d",
+       "title": "P4.2.3 Electromotive force (e.m.f.) and potential difference (p.d.)",
+       "subtopics": [
+        {
+         "id": "e-m-f-and-p-d",
+         "title": "E.m.f. and p.d.",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "State that p.d. across a component is measured in volts."
+          },
+          {
+           "code": null,
+           "text": "Understand e.m.f. as energy supplied by a source driving charge round a circuit."
+          },
+          {
+           "code": null,
+           "text": "Use and describe analogue and digital voltmeters."
+          },
+          {
+           "code": null,
+           "text": "State that e.m.f. is measured in volts."
+          },
+          {
+           "code": null,
+           "text": "Recall that 1 V is equivalent to 1 J/C."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "p4-2-4-resistance",
+       "title": "P4.2.4 Resistance",
+       "subtopics": [
+        {
+         "id": "resistance-and-ohm-s-law",
+         "title": "Resistance and Ohm's law",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "State resistance = p.d. / current and understand how changes in p.d. or resistance affect current."
+          },
+          {
+           "code": null,
+           "text": "Recall and use R = V / I."
+          },
+          {
+           "code": null,
+           "text": "Describe an experiment to find resistance with a voltmeter and ammeter."
+          }
+         ]
+        },
+        {
+         "id": "resistance-of-wires",
+         "title": "Resistance of wires",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Relate wire resistance to length and diameter without calculation."
+          },
+          {
+           "code": null,
+           "text": "Understand current, p.d., e.m.f. and resistance together."
+          },
+          {
+           "code": null,
+           "text": "Use proportionality of resistance to length and inverse proportionality to cross-sectional area."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "p4-3-1-circuit-diagrams",
+       "title": "P4.3.1 Circuit diagrams",
+       "subtopics": [
+        {
+         "id": "circuit-diagrams",
+         "title": "Circuit diagrams",
+         "outcomes": [
+          {
+           "code": "P4.3",
+           "text": "Draw and interpret circuit diagrams with sources, switches, resistors, lamps, ammeters, voltmeters and fuses."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "p4-3-2-series-and-parallel-circuits",
+       "title": "P4.3.2 Series and parallel circuits",
+       "subtopics": [
+        {
+         "id": "series-circuits",
+         "title": "Series circuits",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Understand that current is the same at every point in a series circuit."
+          },
+          {
+           "code": null,
+           "text": "Calculate combined resistance of resistors in series."
+          },
+          {
+           "code": null,
+           "text": "Use that p.d.s across series components sum to the supply p.d."
+          }
+         ]
+        },
+        {
+         "id": "parallel-circuits",
+         "title": "Parallel circuits",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "State that source current is larger than the current in each parallel branch."
+          },
+          {
+           "code": null,
+           "text": "Use that source current equals the sum of branch currents."
+          },
+          {
+           "code": null,
+           "text": "State that two resistors in parallel have less combined resistance than either alone."
+          },
+          {
+           "code": null,
+           "text": "Calculate combined resistance of two resistors in parallel."
+          },
+          {
+           "code": null,
+           "text": "State the advantages of parallel connection."
+          }
+         ]
+        },
+        {
+         "id": "thermistors-and-ldrs",
+         "title": "Thermistors and LDRs",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Draw and interpret circuits with NTC thermistors and LDRs."
+          },
+          {
+           "code": null,
+           "text": "Describe how NTC thermistors and LDRs act as input transducers."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "p4-4-electrical-energy",
+       "title": "P4.4 Electrical energy",
+       "subtopics": [
+        {
+         "id": "electrical-power-and-energy",
+         "title": "Electrical power and energy",
+         "outcomes": [
+          {
+           "code": "P4.4",
+           "text": "Recall and use P = IV and E = IVt."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "p4-5-dangers-of-electricity",
+       "title": "P4.5 Dangers of electricity",
+       "subtopics": [
+        {
+         "id": "electrical-safety",
+         "title": "Electrical safety",
+         "outcomes": [
+          {
+           "code": "P4.5",
+           "text": "State the hazards of damaged insulation, overheated cables and damp conditions."
+          },
+          {
+           "code": null,
+           "text": "State that a fuse protects a circuit."
+          },
+          {
+           "code": null,
+           "text": "Explain fuses and circuit breakers and choose suitable ratings."
+          },
+          {
+           "code": null,
+           "text": "Explain the benefits of earthing metal cases."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "p4-6-1-electromagnetic-induction",
+       "title": "P4.6.1 Electromagnetic induction",
+       "subtopics": [
+        {
+         "id": "electromagnetic-induction",
+         "title": "Electromagnetic induction",
+         "outcomes": [
+          {
+           "code": "P4.6",
+           "text": "Understand that a moving conductor or changing magnetic field can induce an e.m.f."
+          },
+          {
+           "code": null,
+           "text": "Describe an experiment demonstrating electromagnetic induction."
+          },
+          {
+           "code": null,
+           "text": "State the factors affecting the size of an induced e.m.f."
+          },
+          {
+           "code": null,
+           "text": "Understand that the induced e.m.f. direction opposes the change causing it."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "p4-6-2-a-c-generator",
+       "title": "P4.6.2 a.c. generator",
+       "subtopics": [
+        {
+         "id": "the-a-c-generator",
+         "title": "The a.c. generator",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Distinguish direct from alternating current."
+          },
+          {
+           "code": null,
+           "text": "Describe and explain a rotating-coil generator and slip rings."
+          },
+          {
+           "code": null,
+           "text": "Sketch a voltage-time graph for a simple a.c. generator."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "p4-6-3-transformers",
+       "title": "P4.6.3 Transformers",
+       "subtopics": [
+        {
+         "id": "how-transformers-work",
+         "title": "How transformers work",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe the construction of a basic transformer with a soft-iron core."
+          },
+          {
+           "code": null,
+           "text": "Describe the principle of transformer operation."
+          },
+          {
+           "code": null,
+           "text": "Use the terms step-up and step-down."
+          },
+          {
+           "code": null,
+           "text": "Recall and use Vp/Vs = Np/Ns (100% efficiency)."
+          },
+          {
+           "code": null,
+           "text": "Recall and use IpVp = IsVs (100% efficiency)."
+          }
+         ]
+        },
+        {
+         "id": "power-transmission",
+         "title": "Power transmission",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe transformers in high-voltage electricity transmission."
+          },
+          {
+           "code": null,
+           "text": "Explain why cable power losses are lower at high voltage."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "p4-6-4-force-on-a-current-carrying-conductor",
+       "title": "P4.6.4 Force on a current-carrying conductor",
+       "subtopics": [
+        {
+         "id": "force-on-a-conductor",
+         "title": "Force on a conductor",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe an experiment showing a force on a current-carrying conductor in a magnetic field, including reversing current and field."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "p4-6-5-d-c-motor",
+       "title": "P4.6.5 d.c. motor",
+       "subtopics": [
+        {
+         "id": "the-d-c-motor",
+         "title": "The d.c. motor",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "State that a current-carrying coil in a magnetic field turns, more with extra turns, current or field strength."
+          },
+          {
+           "code": null,
+           "text": "Relate the turning effect to an electric motor with a split-ring commutator."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "p5-atomic-physics",
+     "title": "P5 Atomic physics",
+     "topics": [
+      {
+       "id": "p5-1-the-nuclear-atom",
+       "title": "P5.1 The nuclear atom",
+       "subtopics": [
+        {
+         "id": "nuclear-atom",
+         "title": "Nuclear atom",
+         "outcomes": [
+          {
+           "code": "P5.1",
+           "text": "Describe the nucleus as protons and neutrons."
+          },
+          {
+           "code": null,
+           "text": "Use the terms proton number Z and nucleon number A."
+          },
+          {
+           "code": null,
+           "text": "Use and interpret nuclide notation."
+          },
+          {
+           "code": null,
+           "text": "Use and explain the term isotope."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "p5-2-1-detection-of-radioactivity",
+       "title": "P5.2.1 Detection of radioactivity",
+       "subtopics": [
+        {
+         "id": "detecting-radioactivity",
+         "title": "Detecting radioactivity",
+         "outcomes": [
+          {
+           "code": "P5.2",
+           "text": "Demonstrate understanding of background radiation."
+          },
+          {
+           "code": null,
+           "text": "Describe detecting alpha particles, beta particles and gamma rays."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "p5-2-2-characteristics-of-the-three-kinds-of-emi",
+       "title": "P5.2.2 Characteristics of the three kinds of emission",
+       "subtopics": [
+        {
+         "id": "alpha-beta-and-gamma",
+         "title": "Alpha, beta and gamma",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe the random nature of radioactive emission."
+          },
+          {
+           "code": null,
+           "text": "Identify alpha, beta and gamma by nature, ionising effect and penetrating ability."
+          },
+          {
+           "code": null,
+           "text": "Describe their deflection in electric and magnetic fields."
+          },
+          {
+           "code": null,
+           "text": "Give and explain practical applications of each emission."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "p5-2-3-radioactive-decay",
+       "title": "P5.2.3 Radioactive decay",
+       "subtopics": [
+        {
+         "id": "radioactive-decay",
+         "title": "Radioactive decay",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "State the meaning of radioactive decay."
+          },
+          {
+           "code": null,
+           "text": "Use word equations for nuclear changes when particles are emitted."
+          },
+          {
+           "code": null,
+           "text": "Use nuclide notation to show the effect of alpha and beta decay."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "p5-2-4-half-life",
+       "title": "P5.2.4 Half-life",
+       "subtopics": [
+        {
+         "id": "half-life",
+         "title": "Half-life",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Show understanding of half-life and use the term in context."
+          },
+          {
+           "code": null,
+           "text": "Use half-life in simple calculations from tables or decay curves."
+          },
+          {
+           "code": null,
+           "text": "Calculate half-life from data or decay curves, including unsubtracted background radiation."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "p5-2-5-safety-precautions",
+       "title": "P5.2.5 Safety precautions",
+       "subtopics": [
+        {
+         "id": "radiation-safety",
+         "title": "Radiation safety",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Recall the effects of ionising radiation on living things."
+          },
+          {
+           "code": null,
+           "text": "Describe safe handling, use and storage of radioactive materials."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "build": {
+  "builtAt": "2026-10-14T09:54:04.535Z",
+  "model": "claude-agent",
+  "usd": 0,
+  "expectedCodes": 58,
+  "coverage": 1,
+  "missingCodes": [],
+  "counts": {
+   "grades": 1,
+   "units": 17,
+   "topics": 84,
+   "subtopics": 122,
+   "outcomes": 345
+  },
+  "warnings": []
+ }
+}

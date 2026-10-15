@@ -1,0 +1,3890 @@
+{
+ "id": "us-hi-social-studies",
+ "region": "US",
+ "framework": "Hawaii state academic standards: Social Studies",
+ "board": null,
+ "qualification": "K-12",
+ "subject": "Social Studies",
+ "syllabusCode": null,
+ "gradeSystem": "grade",
+ "source": {
+  "urls": [
+   "https://api.commonstandardsproject.com/api/v1/jurisdictions/64B8E297AAEF42DA886248000B292DF1",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/D09B756E2D67449790501C694F663843",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/B2FB914DC57D46748ECC5AEADF9432C8",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/64B8E297AAEF42DA886248000B292DF1_D21012633_grade-01",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/64B8E297AAEF42DA886248000B292DF1_D21012634_grade-02",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/64B8E297AAEF42DA886248000B292DF1_D21012635_grade-03",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/64B8E297AAEF42DA886248000B292DF1_D21012636_grade-04",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/64B8E297AAEF42DA886248000B292DF1_D21012637_grade-05",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/64B8E297AAEF42DA886248000B292DF1_D21012638_grade-06",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/64B8E297AAEF42DA886248000B292DF1_D21012639_grade-07",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/64B8E297AAEF42DA886248000B292DF1_D21012640_grade-07",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/64B8E297AAEF42DA886248000B292DF1_D21012641_grade-08",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/64B8E297AAEF42DA886248000B292DF1_D21012644_grades-09-10-11-12",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/64B8E297AAEF42DA886248000B292DF1_D21012645_grades-09-10-11-12",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/64B8E297AAEF42DA886248000B292DF1_D21012643_grades-09-10-11-12",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/64B8E297AAEF42DA886248000B292DF1_D21012642_grades-09-10-11-12",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/64B8E297AAEF42DA886248000B292DF1_D21012632_grade-k"
+  ],
+  "publisher": "Hawaii state education agency (machine-readable via Common Standards Project / ASN)",
+  "licence": "CC BY 4.0 US, Common Curriculum, Inc.; CC BY 3.0 US, D2L Corporation",
+  "firstExam": "2018"
+ },
+ "grades": [
+  {
+   "grade": "K",
+   "units": [
+    {
+     "id": "anchor-and-inquiry-standards",
+     "title": "Anchor and Inquiry Standards",
+     "topics": [
+      {
+       "id": "developing-questions-and-planning-inquiries",
+       "title": "Developing Questions and Planning Inquiries",
+       "subtopics": [
+        {
+         "id": "developing-questions-and-planning-inquiries",
+         "title": "Developing Questions and Planning Inquiries",
+         "outcomes": [
+          {
+           "code": "SS.K-2.1.1",
+           "text": "Construct a variety of questions about social studies topics with guidance from adults and/or peers"
+          },
+          {
+           "code": "SS.K-2.1.2",
+           "text": "Construct supporting questions to help answer compelling questions with guidance from adults and/or peers"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "gathering-and-evaluating-sources",
+       "title": "Gathering and Evaluating Sources",
+       "subtopics": [
+        {
+         "id": "gathering-and-evaluating-sources",
+         "title": "Gathering and Evaluating Sources",
+         "outcomes": [
+          {
+           "code": "SS.K-2.2.1",
+           "text": "Determine whether a source is primarily fact or opinion"
+          },
+          {
+           "code": "SS.K-2.2.2",
+           "text": "Determine whether a source is primary or secondary"
+          },
+          {
+           "code": "SS.K-2.2.3",
+           "text": "Gather facts from teacher and/or adult-curated sources to answer questions"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "creating-claims",
+       "title": "Creating Claims",
+       "subtopics": [
+        {
+         "id": "creating-claims",
+         "title": "Creating Claims",
+         "outcomes": [
+          {
+           "code": "SS.K-2.3.1",
+           "text": "Begins in grades 3-5"
+          },
+          {
+           "code": "SS.K-2.3.2",
+           "text": "Begins in grades 3-5"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "communicating-conclusions",
+       "title": "Communicating Conclusions",
+       "subtopics": [
+        {
+         "id": "communicating-conclusions",
+         "title": "Communicating Conclusions",
+         "outcomes": [
+          {
+           "code": "SS.K-2.4.1",
+           "text": "Construct explanations using correct sequence and relevant information"
+          },
+          {
+           "code": "SS.K-2.4.2",
+           "text": "Respectfully ask and answer questions about arguments and explanations"
+          },
+          {
+           "code": "SS.K-2.4.3",
+           "text": "Present explanations using a variety of print, oral, and digital technologies"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "taking-informed-action",
+       "title": "Taking Informed Action",
+       "subtopics": [
+        {
+         "id": "taking-informed-action",
+         "title": "Taking Informed Action",
+         "outcomes": [
+          {
+           "code": "SS.K-2.5.1",
+           "text": "Identify problems or issues in classrooms, schools, or communities"
+          },
+          {
+           "code": "SS.K-2.5.2",
+           "text": "Identify ways in which people are trying to address problems or issues in classrooms, schools, or communities"
+          },
+          {
+           "code": "SS.K-2.5.3",
+           "text": "Use deliberative and democratic procedures (e.g., listening, consensus building, voting) to identify ways to take action on classroom, school, or community problems or issues"
+          },
+          {
+           "code": "SS.K-2.5.4",
+           "text": "Show evidence of taking individual or group action on one or more problems or issues"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "content-standards",
+     "title": "Content Standards",
+     "topics": [
+      {
+       "id": "content-standards",
+       "title": "Content Standards",
+       "subtopics": [
+        {
+         "id": "content-standards-1-of-2",
+         "title": "Content Standards (1 of 2)",
+         "outcomes": [
+          {
+           "code": "SS.K.1.8.1",
+           "text": "Compare rules that apply in different settings and evaluate the consequences of following or not following rules"
+          },
+          {
+           "code": "SS.K.1.8.2",
+           "text": "Determine ways that people can work together effectively to make decisions"
+          },
+          {
+           "code": "SS.K.1.7.3",
+           "text": "Compare roles and responsibilities of self and others at home, at school, and in neighborhood settings"
+          },
+          {
+           "code": "SS.K.2.17.1",
+           "text": "Sequence important events in your life"
+          },
+          {
+           "code": "SS.K.2.19.2",
+           "text": "Explain the effects of an event in your life"
+          }
+         ]
+        },
+        {
+         "id": "content-standards-2-of-2",
+         "title": "Content Standards (2 of 2)",
+         "outcomes": [
+          {
+           "code": "SS.K.2.18.3",
+           "text": "Describe an event from two different perspectives"
+          },
+          {
+           "code": "SS.K.3.9.1",
+           "text": "Give examples of how scarcity affects your daily choices"
+          },
+          {
+           "code": "SS.K.3.10.2",
+           "text": "Describe differences between needs and wants"
+          },
+          {
+           "code": "SS.K.3.13.3",
+           "text": "Examine physical characteristics on maps and globes using positional words"
+          },
+          {
+           "code": "SS.K.3.15.4",
+           "text": "Describe how and why people move from place to place"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "1",
+   "units": [
+    {
+     "id": "anchor-and-inquiry-standards",
+     "title": "Anchor and Inquiry Standards",
+     "topics": [
+      {
+       "id": "developing-questions-and-planning-inquiries",
+       "title": "Developing Questions and Planning Inquiries",
+       "subtopics": [
+        {
+         "id": "developing-questions-and-planning-inquiries",
+         "title": "Developing Questions and Planning Inquiries",
+         "outcomes": [
+          {
+           "code": "SS.K-2.1.1",
+           "text": "Construct a variety of questions about social studies topics with guidance from adults and/or peers"
+          },
+          {
+           "code": "SS.K-2.1.2",
+           "text": "Construct supporting questions to help answer compelling questions with guidance from adults and/or peers"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "gathering-and-evaluating-sources",
+       "title": "Gathering and Evaluating Sources",
+       "subtopics": [
+        {
+         "id": "gathering-and-evaluating-sources",
+         "title": "Gathering and Evaluating Sources",
+         "outcomes": [
+          {
+           "code": "SS.K-2.2.1",
+           "text": "Determine whether a source is primarily fact or opinion"
+          },
+          {
+           "code": "SS.K-2.2.2",
+           "text": "Determine whether a source is primary or secondary"
+          },
+          {
+           "code": "SS.K-2.2.3",
+           "text": "Gather facts from teacher and/or adult-curated sources to answer questions"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "creating-claims",
+       "title": "Creating Claims",
+       "subtopics": [
+        {
+         "id": "creating-claims",
+         "title": "Creating Claims",
+         "outcomes": [
+          {
+           "code": "SS.K-2.3.1",
+           "text": "Begins in grades 3-5"
+          },
+          {
+           "code": "SS.K-2.3.2",
+           "text": "Begins in grades 3-5"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "communicating-conclusions",
+       "title": "Communicating Conclusions",
+       "subtopics": [
+        {
+         "id": "communicating-conclusions",
+         "title": "Communicating Conclusions",
+         "outcomes": [
+          {
+           "code": "SS.K-2.4.1",
+           "text": "Construct explanations using correct sequence and relevant information"
+          },
+          {
+           "code": "SS.K-2.4.2",
+           "text": "Respectfully ask and answer questions about arguments and explanations"
+          },
+          {
+           "code": "SS.K-2.4.3",
+           "text": "Present explanations using a variety of print, oral, and digital technologies"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "taking-informed-action",
+       "title": "Taking Informed Action",
+       "subtopics": [
+        {
+         "id": "taking-informed-action",
+         "title": "Taking Informed Action",
+         "outcomes": [
+          {
+           "code": "SS.K-2.5.1",
+           "text": "Identify problems or issues in classrooms, schools, or communities"
+          },
+          {
+           "code": "SS.K-2.5.2",
+           "text": "Identify ways in which people are trying to address problems or issues in classrooms, schools, or communities"
+          },
+          {
+           "code": "SS.K-2.5.3",
+           "text": "Use deliberative and democratic procedures (e.g., listening, consensus building, voting) to identify ways to take action on classroom, school, or community problems or issues"
+          },
+          {
+           "code": "SS.K-2.5.4",
+           "text": "Show evidence of taking individual or group action on one or more problems or issues"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "content-standards",
+     "title": "Content Standards",
+     "topics": [
+      {
+       "id": "content-standards",
+       "title": "Content Standards",
+       "subtopics": [
+        {
+         "id": "content-standards-1-of-3",
+         "title": "Content Standards (1 of 3)",
+         "outcomes": [
+          {
+           "code": "SS.1.1.7.1",
+           "text": "Explain shared democratic values"
+          },
+          {
+           "code": "SS.1.1.8.2",
+           "text": "Follow agreed-upon rules for discussions and listen attentively to others"
+          },
+          {
+           "code": "SS.1.1.13.3",
+           "text": "Use maps and map features to describe places"
+          },
+          {
+           "code": "SS.1.2.9.1",
+           "text": "Explain how scarcity is a result of limited resources"
+          },
+          {
+           "code": "SS.1.2.13.2",
+           "text": "Describe some physical features of continents and oceans in the world"
+          }
+         ]
+        },
+        {
+         "id": "content-standards-2-of-3",
+         "title": "Content Standards (2 of 3)",
+         "outcomes": [
+          {
+           "code": "SS.1.2.14.3",
+           "text": "Investigate cultural and environmental characteristics of your community"
+          },
+          {
+           "code": "SS.1.2.14.4",
+           "text": "Describe the ways climate, weather, and natural disasters affect your community"
+          },
+          {
+           "code": "SS.1.2.8.5",
+           "text": "Explain how people improve their communities and the environment"
+          },
+          {
+           "code": "SS 1.3.17.1",
+           "text": "Investigate historically significant events, people, and observances in history"
+          },
+          {
+           "code": "SS.1.3.18.2",
+           "text": "Compare fact and opinion in stories and narratives from the past"
+          }
+         ]
+        },
+        {
+         "id": "content-standards-3-of-3",
+         "title": "Content Standards (3 of 3)",
+         "outcomes": [
+          {
+           "code": "SS.1.3.17.3",
+           "text": "Compare life in the past to life today"
+          },
+          {
+           "code": "SS.1.4.10.1",
+           "text": "Compare differences between goods and services"
+          },
+          {
+           "code": "SS.1.4.10.2",
+           "text": "Identify different ways of acquiring what you need and want"
+          },
+          {
+           "code": "SS.1.4.19.3",
+           "text": "Explain causes and effects of an event in your life or in your family's life"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "2",
+   "units": [
+    {
+     "id": "anchor-and-inquiry-standards",
+     "title": "Anchor and Inquiry Standards",
+     "topics": [
+      {
+       "id": "developing-questions-and-planning-inquiries",
+       "title": "Developing Questions and Planning Inquiries",
+       "subtopics": [
+        {
+         "id": "developing-questions-and-planning-inquiries",
+         "title": "Developing Questions and Planning Inquiries",
+         "outcomes": [
+          {
+           "code": "SS.K-2.1.1",
+           "text": "Construct a variety of questions about social studies topics with guidance from adults and/or peers"
+          },
+          {
+           "code": "SS.K-2.1.2",
+           "text": "Construct supporting questions to help answer compelling questions with guidance from adults and/or peers"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "gathering-and-evaluating-sources",
+       "title": "Gathering and Evaluating Sources",
+       "subtopics": [
+        {
+         "id": "gathering-and-evaluating-sources",
+         "title": "Gathering and Evaluating Sources",
+         "outcomes": [
+          {
+           "code": "SS.K-2.2.1",
+           "text": "Determine whether a source is primarily fact or opinion"
+          },
+          {
+           "code": "SS.K-2.2.2",
+           "text": "Determine whether a source is primary or secondary"
+          },
+          {
+           "code": "SS.K-2.2.3",
+           "text": "Gather facts from teacher and/or adult-curated sources to answer questions"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "creating-claims",
+       "title": "Creating Claims",
+       "subtopics": [
+        {
+         "id": "creating-claims",
+         "title": "Creating Claims",
+         "outcomes": [
+          {
+           "code": "SS.K-2.3.1",
+           "text": "Begins in grades 3-5"
+          },
+          {
+           "code": "SS.K-2.3.2",
+           "text": "Begins in grades 3-5"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "communicating-conclusions",
+       "title": "Communicating Conclusions",
+       "subtopics": [
+        {
+         "id": "communicating-conclusions",
+         "title": "Communicating Conclusions",
+         "outcomes": [
+          {
+           "code": "SS.K-2.4.1",
+           "text": "Construct explanations using correct sequence and relevant information"
+          },
+          {
+           "code": "SS.K-2.4.2",
+           "text": "Respectfully ask and answer questions about arguments and explanations"
+          },
+          {
+           "code": "SS.K-2.4.3",
+           "text": "Present explanations using a variety of print, oral, and digital technologies"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "taking-informed-action",
+       "title": "Taking Informed Action",
+       "subtopics": [
+        {
+         "id": "taking-informed-action",
+         "title": "Taking Informed Action",
+         "outcomes": [
+          {
+           "code": "SS.K-2.5.1",
+           "text": "Identify problems or issues in classrooms, schools, or communities"
+          },
+          {
+           "code": "SS.K-2.5.2",
+           "text": "Identify ways in which people are trying to address problems or issues in classrooms, schools, or communities"
+          },
+          {
+           "code": "SS.K-2.5.3",
+           "text": "Use deliberative and democratic procedures (e.g., listening, consensus building, voting) to identify ways to take action on classroom, school, or community problems or issues"
+          },
+          {
+           "code": "SS.K-2.5.4",
+           "text": "Show evidence of taking individual or group action on one or more problems or issues"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "content-standards",
+     "title": "Content Standards",
+     "topics": [
+      {
+       "id": "content-standards",
+       "title": "Content Standards",
+       "subtopics": [
+        {
+         "id": "content-standards-1-of-3",
+         "title": "Content Standards (1 of 3)",
+         "outcomes": [
+          {
+           "code": "SS.2.1.6.1",
+           "text": "Investigate school, community, and national leaders and their responsibilities"
+          },
+          {
+           "code": "SS.2.1.7.2",
+           "text": "Describe how historical figures exemplify our shared democratic values"
+          },
+          {
+           "code": "SS.2.1.18.3",
+           "text": "Describe how significant people and events have shaped communities and places now and in the past"
+          },
+          {
+           "code": "SS.2.2.14.1",
+           "text": "Explain how human activities impact the environment"
+          },
+          {
+           "code": "SS.2.2.17.2",
+           "text": "Construct timelines that sequence historical events"
+          }
+         ]
+        },
+        {
+         "id": "content-standards-2-of-3",
+         "title": "Content Standards (2 of 3)",
+         "outcomes": [
+          {
+           "code": "SS.2.2.18.3",
+           "text": "Compare varying perspectives on historical events"
+          },
+          {
+           "code": "SS.2.3.10.1",
+           "text": "Compare goods and services that are produced locally and globally"
+          },
+          {
+           "code": "SS.2.3.12.2",
+           "text": "Examine how people are dependent on others for goods and services they cannot produce themselves"
+          },
+          {
+           "code": "SS.2.3.11.3",
+           "text": "Describe public goods and services the government provides"
+          },
+          {
+           "code": "SS.2.3.13.4",
+           "text": "Describe major geographic features of places using maps, photos, and other geographic representations"
+          }
+         ]
+        },
+        {
+         "id": "content-standards-3-of-3",
+         "title": "Content Standards (3 of 3)",
+         "outcomes": [
+          {
+           "code": "SS.2.3.14.5",
+           "text": "Compare a variety of the Earth's natural resources and how people use them"
+          },
+          {
+           "code": "SS.2.4.9.1",
+           "text": "Explain how scarcity of resources affects the cost of goods and services"
+          },
+          {
+           "code": "SS.2.4.16.2",
+           "text": "Investigate how people in your community rely on local and global resources to meet their daily needs"
+          },
+          {
+           "code": "SS.2.4.8.3",
+           "text": "Develop logical solutions to various community problems"
+          },
+          {
+           "code": "SS.2.4.9.4",
+           "text": "Determine costs and benefits of saving money"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "3",
+   "units": [
+    {
+     "id": "anchor-and-inquiry-standards",
+     "title": "Anchor and Inquiry Standards",
+     "topics": [
+      {
+       "id": "developing-questions-and-planning-inquiries",
+       "title": "Developing Questions and Planning Inquiries",
+       "subtopics": [
+        {
+         "id": "developing-questions-and-planning-inquiries",
+         "title": "Developing Questions and Planning Inquiries",
+         "outcomes": [
+          {
+           "code": "SS.3-5.1.1",
+           "text": "Construct compelling questions and explain the importance of the questions to self and others"
+          },
+          {
+           "code": "SS.3-5.1.2",
+           "text": "Categorize questions according to the social studies disciplines"
+          },
+          {
+           "code": "SS.3-5.1.3",
+           "text": "Create supporting questions to help answer compelling questions"
+          },
+          {
+           "code": "SS.3-5.1.4",
+           "text": "Explain how supporting questions help answer compelling questions"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "gathering-and-evaluating-sources",
+       "title": "Gathering and Evaluating Sources",
+       "subtopics": [
+        {
+         "id": "gathering-and-evaluating-sources",
+         "title": "Gathering and Evaluating Sources",
+         "outcomes": [
+          {
+           "code": "SS.3-5.2.1",
+           "text": "Determine whether a source is primarily fact or opinion"
+          },
+          {
+           "code": "SS.3-5.2.2",
+           "text": "Determine whether a source is primary or secondary"
+          },
+          {
+           "code": "SS.3-5.2.3",
+           "text": "Gather relevant information from multiple sources that would be helpful in addressing compelling and supporting questions"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "creating-claims",
+       "title": "Creating Claims",
+       "subtopics": [
+        {
+         "id": "creating-claims",
+         "title": "Creating Claims",
+         "outcomes": [
+          {
+           "code": "SS.3-5.3.1",
+           "text": "Develop claims in response to compelling questions"
+          },
+          {
+           "code": "SS.3-5.3.2",
+           "text": "Identify specific evidence that supports the claims"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "communicating-conclusions",
+       "title": "Communicating Conclusions",
+       "subtopics": [
+        {
+         "id": "communicating-conclusions",
+         "title": "Communicating Conclusions",
+         "outcomes": [
+          {
+           "code": "SS.3-5.4.1",
+           "text": "Construct arguments and explanations about classroom, school, or community issues and use relevant reasons to support the arguments"
+          },
+          {
+           "code": "SS.3-5.4.2",
+           "text": "Respectfully ask and answer questions about the reasons others use in their arguments and explanations"
+          },
+          {
+           "code": "SS.3-5.4.3",
+           "text": "Present arguments and explanations using a variety of print, oral, and digital technologies"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "taking-informed-action",
+       "title": "Taking Informed Action",
+       "subtopics": [
+        {
+         "id": "taking-informed-action",
+         "title": "Taking Informed Action",
+         "outcomes": [
+          {
+           "code": "SS.3-5.5.1",
+           "text": "Identify local, regional, or global problems or issues in various times and places"
+          },
+          {
+           "code": "SS.3-5.5.2",
+           "text": "Explain different ways students could work individually or in collaboration with others (e.g., other students, teachers, community and/or global organizations) to address local, regional, or global problems or issues and predict possible results of their actions"
+          },
+          {
+           "code": "SS.3-5.5.3",
+           "text": "Use deliberative and democratic procedures (e.g., listening, consensus-building, voting) to identify ways to take action about local and/or regional problems or issues"
+          },
+          {
+           "code": "SS.3-5.5.4",
+           "text": "Show evidence of taking individual or group action on one or more problems or issues"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "content-standards",
+     "title": "Content Standards",
+     "topics": [
+      {
+       "id": "content-standards",
+       "title": "Content Standards",
+       "subtopics": [
+        {
+         "id": "content-standards-1-of-4",
+         "title": "Content Standards (1 of 4)",
+         "outcomes": [
+          {
+           "code": "SS.3.1.8.1",
+           "text": "Explore how people can change rules and laws, and how these changes affect society"
+          },
+          {
+           "code": "SS.3.1.7.2",
+           "text": "Describe the relationship between authority and power"
+          },
+          {
+           "code": "SS.3.1.19.3",
+           "text": "Explain how groups have worked to effect change in American society"
+          },
+          {
+           "code": "SS.3.1.10.1",
+           "text": "Explain the role of money in making exchange easier"
+          },
+          {
+           "code": "SS.3.2.10.2",
+           "text": "Explain how public goods and services support community needs"
+          }
+         ]
+        },
+        {
+         "id": "content-standards-2-of-4",
+         "title": "Content Standards (2 of 4)",
+         "outcomes": [
+          {
+           "code": "SS.3.2.7.3",
+           "text": "Explain how to be a responsible and active citizen in a democracy"
+          },
+          {
+           "code": "SS.3.2.7.4",
+           "text": "Explain how democratic rights promote equality and opportunity"
+          },
+          {
+           "code": "SS.3.2.6.5",
+           "text": "Explain the purpose of various government functions"
+          },
+          {
+           "code": "SS.3.3.13.1",
+           "text": "Analyze how geographical features affect human life in local communities and those around the world"
+          },
+          {
+           "code": "SS.3.3.15.2",
+           "text": "Investigate factors that influence why people migrate and where they settle"
+          }
+         ]
+        },
+        {
+         "id": "content-standards-3-of-4",
+         "title": "Content Standards (3 of 4)",
+         "outcomes": [
+          {
+           "code": "SS.3.3.16.3",
+           "text": "Compare the ways people, goods, and ideas move from place to place"
+          },
+          {
+           "code": "SS.3.3.14.4",
+           "text": "Analyze how cultural practices create and influence communities"
+          },
+          {
+           "code": "SS.3.3.17.5",
+           "text": "Analyze connections among historical events using a timeline"
+          },
+          {
+           "code": "SS.3.4.9.1",
+           "text": "Compare ways that people are addressing the issue of limited natural resources"
+          },
+          {
+           "code": "SS.3.4.14.2",
+           "text": "Analyze ways the environment of a community changes over time in various world regions"
+          }
+         ]
+        },
+        {
+         "id": "content-standards-4-of-4",
+         "title": "Content Standards (4 of 4)",
+         "outcomes": [
+          {
+           "code": "SS.3.4.16.3",
+           "text": "Analyze the effects of disasters on people around the world"
+          },
+          {
+           "code": "SS.3.4.18.4",
+           "text": "Assess the reliability and accuracy of differing historical accounts"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "4",
+   "units": [
+    {
+     "id": "anchor-and-inquiry-standards",
+     "title": "Anchor and Inquiry Standards",
+     "topics": [
+      {
+       "id": "developing-questions-and-planning-inquiries",
+       "title": "Developing Questions and Planning Inquiries",
+       "subtopics": [
+        {
+         "id": "developing-questions-and-planning-inquiries",
+         "title": "Developing Questions and Planning Inquiries",
+         "outcomes": [
+          {
+           "code": "SS.3-5.1.1",
+           "text": "Construct compelling questions and explain the importance of the questions to self and others"
+          },
+          {
+           "code": "SS.3-5.1.2",
+           "text": "Categorize questions according to the social studies disciplines"
+          },
+          {
+           "code": "SS.3-5.1.3",
+           "text": "Create supporting questions to help answer compelling questions"
+          },
+          {
+           "code": "SS.3-5.1.4",
+           "text": "Explain how supporting questions help answer compelling questions"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "gathering-and-evaluating-sources",
+       "title": "Gathering and Evaluating Sources",
+       "subtopics": [
+        {
+         "id": "gathering-and-evaluating-sources",
+         "title": "Gathering and Evaluating Sources",
+         "outcomes": [
+          {
+           "code": "SS.3-5.2.1",
+           "text": "Determine whether a source is primarily fact or opinion"
+          },
+          {
+           "code": "SS.3-5.2.2",
+           "text": "Determine whether a source is primary or secondary"
+          },
+          {
+           "code": "SS.3-5.2.3",
+           "text": "Gather relevant information from multiple sources that would be helpful in addressing compelling and supporting questions"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "creating-claims",
+       "title": "Creating Claims",
+       "subtopics": [
+        {
+         "id": "creating-claims",
+         "title": "Creating Claims",
+         "outcomes": [
+          {
+           "code": "SS.3-5.3.1",
+           "text": "Develop claims in response to compelling questions"
+          },
+          {
+           "code": "SS.3-5.3.2",
+           "text": "Identify specific evidence that supports the claims"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "communicating-conclusions",
+       "title": "Communicating Conclusions",
+       "subtopics": [
+        {
+         "id": "communicating-conclusions",
+         "title": "Communicating Conclusions",
+         "outcomes": [
+          {
+           "code": "SS.3-5.4.1",
+           "text": "Construct arguments and explanations about classroom, school, or community issues and use relevant reasons to support the arguments"
+          },
+          {
+           "code": "SS.3-5.4.2",
+           "text": "Respectfully ask and answer questions about the reasons others use in their arguments and explanations"
+          },
+          {
+           "code": "SS.3-5.4.3",
+           "text": "Present arguments and explanations using a variety of print, oral, and digital technologies"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "taking-informed-action",
+       "title": "Taking Informed Action",
+       "subtopics": [
+        {
+         "id": "taking-informed-action",
+         "title": "Taking Informed Action",
+         "outcomes": [
+          {
+           "code": "SS.3-5.5.1",
+           "text": "Identify local, regional, or global problems or issues in various times and places"
+          },
+          {
+           "code": "SS.3-5.5.2",
+           "text": "Explain different ways students could work individually or in collaboration with others (e.g., other students, teachers, community and/or global organizations) to address local, regional, or global problems or issues and predict possible results of their actions"
+          },
+          {
+           "code": "SS.3-5.5.3",
+           "text": "Use deliberative and democratic procedures (e.g., listening, consensus-building, voting) to identify ways to take action about local and/or regional problems or issues"
+          },
+          {
+           "code": "SS.3-5.5.4",
+           "text": "Show evidence of taking individual or group action on one or more problems or issues"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "content-standards",
+     "title": "Content Standards",
+     "topics": [
+      {
+       "id": "content-standards",
+       "title": "Content Standards",
+       "subtopics": [
+        {
+         "id": "content-standards-1-of-4",
+         "title": "Content Standards (1 of 4)",
+         "outcomes": [
+          {
+           "code": "SS.4.1.18.1",
+           "text": "Describe how early Hawaiians viewed the creation of the world and their environment through oral traditions"
+          },
+          {
+           "code": "SS.4.1.18.2",
+           "text": "Summarize migration stories passed down through Hawaiian oral tradition"
+          },
+          {
+           "code": "SS.4.1.15.3",
+           "text": "Explain how voyaging skills and canoe design allowed Polynesians to travel from Asia throughout the Pacific to Hawaiʻi"
+          },
+          {
+           "code": "SS.4.2.13.1",
+           "text": "Identify major geographic characteristics of the Hawaiian archipelago, including its relative location to other major land masses"
+          },
+          {
+           "code": "SS.4.2.16.2",
+           "text": "Explain how geographic characteristics of the islands influenced locations of early settlements"
+          }
+         ]
+        },
+        {
+         "id": "content-standards-2-of-4",
+         "title": "Content Standards (2 of 4)",
+         "outcomes": [
+          {
+           "code": "SS.4.2.14.3",
+           "text": "Describe how the original settlers modified their environment"
+          },
+          {
+           "code": "SS.4.3.10.1",
+           "text": "Analyze how early Hawaiians used natural resources to meet their needs"
+          },
+          {
+           "code": "SS.4.3.15.2",
+           "text": "Differentiate between native and non-native plants and animals used by early Hawaiians"
+          },
+          {
+           "code": "SS.4.4.16.1",
+           "text": "Compare aspects of early Hawaiian culture and other Polynesian cultures"
+          },
+          {
+           "code": "SS.4.4.7.2",
+           "text": "Explain how core values of the early Hawaiians are applicable to modern-day Hawaiʻi"
+          }
+         ]
+        },
+        {
+         "id": "content-standards-3-of-4",
+         "title": "Content Standards (3 of 4)",
+         "outcomes": [
+          {
+           "code": "SS.4.5.6.1",
+           "text": "Investigate the roles of gods in early Hawaiian society"
+          },
+          {
+           "code": "SS.4.5.6.2",
+           "text": "Summarize how the concept of mana and one's genealogy determined rights and responsibilities"
+          },
+          {
+           "code": "SS.4.6.8.1",
+           "text": "Explain how the kapu system regulated people's behavior and lives"
+          },
+          {
+           "code": "SS.4.6.9.2",
+           "text": "Analyze how the kapu system maintained natural resources"
+          },
+          {
+           "code": "SS.4.7.14.1",
+           "text": "Use maps and illustrations to explain how Hawaiians used and modified land in the ahupua'a"
+          }
+         ]
+        },
+        {
+         "id": "content-standards-4-of-4",
+         "title": "Content Standards (4 of 4)",
+         "outcomes": [
+          {
+           "code": "SS.4.7.10.2",
+           "text": "Analyze how specialization of labor and the exchange of goods and services created a successful interdependent society in the ahupua'a"
+          },
+          {
+           "code": "SS.4.8.8.1",
+           "text": "Explain the roles and responsibilities of the aliʻi in governing Hawaiian society"
+          },
+          {
+           "code": "SS.4.8.17.2",
+           "text": "Analyze major events that led to the unification of Hawaiʻi Island by Kamehameha I"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "5",
+   "units": [
+    {
+     "id": "anchor-and-inquiry-standards",
+     "title": "Anchor and Inquiry Standards",
+     "topics": [
+      {
+       "id": "developing-questions-and-planning-inquiries",
+       "title": "Developing Questions and Planning Inquiries",
+       "subtopics": [
+        {
+         "id": "developing-questions-and-planning-inquiries",
+         "title": "Developing Questions and Planning Inquiries",
+         "outcomes": [
+          {
+           "code": "SS.3-5.1.1",
+           "text": "Construct compelling questions and explain the importance of the questions to self and others"
+          },
+          {
+           "code": "SS.3-5.1.2",
+           "text": "Categorize questions according to the social studies disciplines"
+          },
+          {
+           "code": "SS.3-5.1.3",
+           "text": "Create supporting questions to help answer compelling questions"
+          },
+          {
+           "code": "SS.3-5.1.4",
+           "text": "Explain how supporting questions help answer compelling questions"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "gathering-and-evaluating-sources",
+       "title": "Gathering and Evaluating Sources",
+       "subtopics": [
+        {
+         "id": "gathering-and-evaluating-sources",
+         "title": "Gathering and Evaluating Sources",
+         "outcomes": [
+          {
+           "code": "SS.3-5.2.1",
+           "text": "Determine whether a source is primarily fact or opinion"
+          },
+          {
+           "code": "SS.3-5.2.2",
+           "text": "Determine whether a source is primary or secondary"
+          },
+          {
+           "code": "SS.3-5.2.3",
+           "text": "Gather relevant information from multiple sources that would be helpful in addressing compelling and supporting questions"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "creating-claims",
+       "title": "Creating Claims",
+       "subtopics": [
+        {
+         "id": "creating-claims",
+         "title": "Creating Claims",
+         "outcomes": [
+          {
+           "code": "SS.3-5.3.1",
+           "text": "Develop claims in response to compelling questions"
+          },
+          {
+           "code": "SS.3-5.3.2",
+           "text": "Identify specific evidence that supports the claims"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "communicating-conclusions",
+       "title": "Communicating Conclusions",
+       "subtopics": [
+        {
+         "id": "communicating-conclusions",
+         "title": "Communicating Conclusions",
+         "outcomes": [
+          {
+           "code": "SS.3-5.4.1",
+           "text": "Construct arguments and explanations about classroom, school, or community issues and use relevant reasons to support the arguments"
+          },
+          {
+           "code": "SS.3-5.4.2",
+           "text": "Respectfully ask and answer questions about the reasons others use in their arguments and explanations"
+          },
+          {
+           "code": "SS.3-5.4.3",
+           "text": "Present arguments and explanations using a variety of print, oral, and digital technologies"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "taking-informed-action",
+       "title": "Taking Informed Action",
+       "subtopics": [
+        {
+         "id": "taking-informed-action",
+         "title": "Taking Informed Action",
+         "outcomes": [
+          {
+           "code": "SS.3-5.5.1",
+           "text": "Identify local, regional, or global problems or issues in various times and places"
+          },
+          {
+           "code": "SS.3-5.5.2",
+           "text": "Explain different ways students could work individually or in collaboration with others (e.g., other students, teachers, community and/or global organizations) to address local, regional, or global problems or issues and predict possible results of their actions"
+          },
+          {
+           "code": "SS.3-5.5.3",
+           "text": "Use deliberative and democratic procedures (e.g., listening, consensus-building, voting) to identify ways to take action about local and/or regional problems or issues"
+          },
+          {
+           "code": "SS.3-5.5.4",
+           "text": "Show evidence of taking individual or group action on one or more problems or issues"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "content-standards",
+     "title": "Content Standards",
+     "topics": [
+      {
+       "id": "content-standards",
+       "title": "Content Standards",
+       "subtopics": [
+        {
+         "id": "content-standards-1-of-4",
+         "title": "Content Standards (1 of 4)",
+         "outcomes": [
+          {
+           "code": "SS.5.1.14.1",
+           "text": "Explain how the geography of North America shaped the development of Native American societies"
+          },
+          {
+           "code": "SS.5.1.17.2",
+           "text": "Compare elements of culture in early Native American societies"
+          },
+          {
+           "code": "SS.5.2.19.1",
+           "text": "Compare motivations of European powers in the exploration and conquest of the New World"
+          },
+          {
+           "code": "SS.5.2.19.2",
+           "text": "Analyze the impact of European discovery and settlement on Native Americans"
+          }
+         ]
+        },
+        {
+         "id": "content-standards-2-of-4",
+         "title": "Content Standards (2 of 4)",
+         "outcomes": [
+          {
+           "code": "SS.5.3.15.1",
+           "text": "Analyze how European culture influenced the development of settlements in North America"
+          },
+          {
+           "code": "SS.5.3.8.2",
+           "text": "Explain the role of government in the establishment of early English settlements"
+          },
+          {
+           "code": "SS.5.3.18.3",
+           "text": "Explain the role religion played in early colonial society"
+          },
+          {
+           "code": "SS.5.4.15.1",
+           "text": "Explain the system and impact of the transatlantic slave trade"
+          }
+         ]
+        },
+        {
+         "id": "content-standards-3-of-4",
+         "title": "Content Standards (3 of 4)",
+         "outcomes": [
+          {
+           "code": "SS.5.4.10.2",
+           "text": "Compare labor systems and their socioeconomic impact on Colonial America"
+          },
+          {
+           "code": "SS.5.4.18.3",
+           "text": "Draw conclusions about the lives of enslaved people in the American colonies"
+          },
+          {
+           "code": "SS.5.5.15.1",
+           "text": "Draw conclusions about how the physical geography of the New England, Mid-Atlantic, and Southern colonies shaped the development of their unique economies"
+          },
+          {
+           "code": "SS.5.5.18.2",
+           "text": "Explain the roles of women in Colonial America"
+          }
+         ]
+        },
+        {
+         "id": "content-standards-4-of-4",
+         "title": "Content Standards (4 of 4)",
+         "outcomes": [
+          {
+           "code": "SS.5.6.19.1",
+           "text": "Analyze how economic and political conflicts between the colonies and England led to the American Revolution"
+          },
+          {
+           "code": "SS.5.6.7.2",
+           "text": "Explain how principles in the Declaration of Independence became unifying ideas of American democracy"
+          },
+          {
+           "code": "SS.5.6.19.3",
+           "text": "Explain the significance of key battles, alliances, and people on the outcome of the Revolutionary War"
+          },
+          {
+           "code": "SS.5.6.18.4",
+           "text": "Compare diverse perspectives of participants during the Revolutionary War"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "6",
+   "units": [
+    {
+     "id": "anchor-and-inquiry-standards",
+     "title": "Anchor and Inquiry Standards",
+     "topics": [
+      {
+       "id": "developing-questions-and-planning-inquiries-i",
+       "title": "Developing Questions and Planning Inquiries I",
+       "subtopics": [
+        {
+         "id": "developing-questions-and-planning-inquiries-i",
+         "title": "Developing Questions and Planning Inquiries I",
+         "outcomes": [
+          {
+           "code": "SS.6-8.1.1",
+           "text": "Create compelling questions representing key ideas of the disciplines"
+          },
+          {
+           "code": "SS.6-8.1.2",
+           "text": "Explain how a question reflects an enduring issue in the field"
+          },
+          {
+           "code": "SS.6-8.1.3",
+           "text": "Create supporting questions that address key ideas identified in compelling questions"
+          },
+          {
+           "code": "SS.6-8.1.4",
+           "text": "Explain the relationship between compelling and supporting questions"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "gathering-and-evaluating-sources",
+       "title": "Gathering and Evaluating Sources",
+       "subtopics": [
+        {
+         "id": "gathering-and-evaluating-sources",
+         "title": "Gathering and Evaluating Sources",
+         "outcomes": [
+          {
+           "code": "SS.6-8.2.1",
+           "text": "Evaluate the credibility of a source by examining its origin, author, context, and content"
+          },
+          {
+           "code": "SS.6-8.2.2",
+           "text": "Gather relevant information from credible sources representing a wide range of view"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "creating-claims",
+       "title": "Creating Claims",
+       "subtopics": [
+        {
+         "id": "creating-claims",
+         "title": "Creating Claims",
+         "outcomes": [
+          {
+           "code": "SS.6-8.3.1",
+           "text": "Develop claims and counterclaims while pointing out the strengths and limitations of both"
+          },
+          {
+           "code": "SS.6-8.3.2",
+           "text": "Identify specific evidence that supports the claims and counterclaims"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "communicating-conclusions",
+       "title": "Communicating Conclusions",
+       "subtopics": [
+        {
+         "id": "communicating-conclusions",
+         "title": "Communicating Conclusions",
+         "outcomes": [
+          {
+           "code": "SS.6-8.4.1",
+           "text": "Construct arguments and explanations using claims and evidence from multiple sources while acknowledging the strengths and limitations of the arguments"
+          },
+          {
+           "code": "SS.6-8.4.2",
+           "text": "Present arguments and explanations using a variety of print and oral technologies (e.g., posters, essays, letters, debates, speeches, reports, maps) and digital technologies (e.g., Internet, social media, digital documentary)"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "taking-informed-action",
+       "title": "Taking Informed Action",
+       "subtopics": [
+        {
+         "id": "taking-informed-action",
+         "title": "Taking Informed Action",
+         "outcomes": [
+          {
+           "code": "SS.6-8.5.1",
+           "text": "Identify local, regional and/or global problems or issues using interdisciplinary lenses"
+          },
+          {
+           "code": "SS.6-8.5.2",
+           "text": "Examine the origins of a problem or issue and explain the challenges and opportunities faced by those trying to address it"
+          },
+          {
+           "code": "SS.6-8.5.3",
+           "text": "Apply a range of deliberative strategies and procedures to make decisions and propose feasible solutions to address local, regional, and/or global concerns"
+          },
+          {
+           "code": "SS.6-8.5.4",
+           "text": "Create an action plan to address a solution to the problem or issue and demonstrate evidence of implementation"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "content-standards",
+     "title": "Content Standards",
+     "topics": [
+      {
+       "id": "content-standards",
+       "title": "Content Standards",
+       "subtopics": [
+        {
+         "id": "content-standards-1-of-5",
+         "title": "Content Standards (1 of 5)",
+         "outcomes": [
+          {
+           "code": "SS.6.1.14.1",
+           "text": "Compare cultural characteristics of early river valley civilizations"
+          },
+          {
+           "code": "SS.6.1.6.2",
+           "text": "Explain the connection between politics and religion in the complex societies of Mesopotamia, Egypt, and China"
+          },
+          {
+           "code": "SS.6.1.19.3",
+           "text": "Analyze the role of technological change in early river valley civilizations"
+          },
+          {
+           "code": "SS.6.2.6.1",
+           "text": "Describe cultural and political structures in classical eastern societies"
+          },
+          {
+           "code": "SS.6.2.6.2",
+           "text": "Describe cultural and political structures in classical western societies"
+          }
+         ]
+        },
+        {
+         "id": "content-standards-2-of-5",
+         "title": "Content Standards (2 of 5)",
+         "outcomes": [
+          {
+           "code": "SS.6.2.16.3",
+           "text": "Evaluate the lasting impact of philosophy, art, science, and technology of Classical Greece, Rome, India, and China"
+          },
+          {
+           "code": "SS.6.2.19.4",
+           "text": "Compare causes of decline in the Roman, Han, and Gupta empires"
+          },
+          {
+           "code": "SS.6.3.14.1",
+           "text": "Explain how religion and philosophy shaped European, Asian, and Middle Eastern societies during the classical period"
+          },
+          {
+           "code": "SS.6.4.15.1",
+           "text": "Analyze the importance of innovations of the Middle Eastern Abbasid Dynasty, Indian Gupta Empire, and Chinese Tang and Song Dynasties"
+          },
+          {
+           "code": "SS.6.4.14.2",
+           "text": "Explain the reasons for expansion of Sub-Saharan African regions"
+          }
+         ]
+        },
+        {
+         "id": "content-standards-3-of-5",
+         "title": "Content Standards (3 of 5)",
+         "outcomes": [
+          {
+           "code": "SS.6.4.19.3",
+           "text": "Explain how the fall of the Roman Empire led to the emergence of European feudalism"
+          },
+          {
+           "code": "SS.6.4.9.4",
+           "text": "Describe the distribution of resources among classes in the feudal hierarchy"
+          },
+          {
+           "code": "SS.6.5.10.1",
+           "text": "Describe how trade networks and the transfer of goods and ideas linked post-classical societies"
+          },
+          {
+           "code": "SS.6.5.15.2",
+           "text": "Explain how the transfer of goods and ideas along trade routes affected ideas and cultures of different people in post-classical societies"
+          },
+          {
+           "code": "SS.6.6.15.1",
+           "text": "Explain how encounters and exchanges of the Mongols linked the world"
+          }
+         ]
+        },
+        {
+         "id": "content-standards-4-of-5",
+         "title": "Content Standards (4 of 5)",
+         "outcomes": [
+          {
+           "code": "SS.6.6.19.2",
+           "text": "Describe encounters between Christians, Muslims, and Jews during the Crusades"
+          },
+          {
+           "code": "SS.6.6.19.3",
+           "text": "Explain how the voyages of Zheng He contributed to the rise of the Ming Dynasty"
+          },
+          {
+           "code": "SS.6.7.16.1",
+           "text": "Compare cultural and technological innovations of the Olmec, Mayan, Aztec, and Inca civilizations"
+          },
+          {
+           "code": "SS.6.8.6.1",
+           "text": "Explain the reestablishment of Europe's political and social order in medieval times"
+          },
+          {
+           "code": "SS.6.8.17.2",
+           "text": "Analyze social, political, and economic effects of the Black Death on Europe"
+          }
+         ]
+        },
+        {
+         "id": "content-standards-5-of-5",
+         "title": "Content Standards (5 of 5)",
+         "outcomes": [
+          {
+           "code": "SS.6.8.19.3",
+           "text": "Explain the rise of the European Renaissance"
+          },
+          {
+           "code": "SS.6.8.19.4",
+           "text": "Explain how people, ideas, art, literature, science, and technology shaped the Renaissance"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "7",
+   "units": [
+    {
+     "id": "anchor-and-inquiry-standards",
+     "title": "Anchor and Inquiry Standards",
+     "topics": [
+      {
+       "id": "developing-questions-and-planning-inquiries",
+       "title": "Developing Questions and Planning Inquiries",
+       "subtopics": [
+        {
+         "id": "developing-questions-and-planning-inquiries-1-of",
+         "title": "Developing Questions and Planning Inquiries (1 of 2)",
+         "outcomes": [
+          {
+           "code": "SS.6-8.1.1",
+           "text": "Create compelling questions representing key ideas of the disciplines"
+          },
+          {
+           "code": "SS.6-8.1.2",
+           "text": "Explain how a question reflects an enduring issue in the field"
+          },
+          {
+           "code": "SS.6-8.1.3",
+           "text": "Create supporting questions that address key ideas identified in compelling questions"
+          },
+          {
+           "code": "SS.6-8.1.4",
+           "text": "Explain the relationship between compelling and supporting question"
+          }
+         ]
+        },
+        {
+         "id": "developing-questions-and-planning-inquiries-2-of",
+         "title": "Developing Questions and Planning Inquiries (2 of 2)",
+         "outcomes": [
+          {
+           "code": "SS.6-8.1.1",
+           "text": "Create compelling questions representing key ideas of the disciplines"
+          },
+          {
+           "code": "SS.6-8.1.2",
+           "text": "Explain how a question reflects an enduring issue in the field"
+          },
+          {
+           "code": "SS.6-8.1.3",
+           "text": "Create supporting questions that address key ideas identified in compelling questions"
+          },
+          {
+           "code": "SS.6-8.1.4",
+           "text": "Explain the relationship between compelling and supporting questions"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "gathering-and-evaluating-sources",
+       "title": "Gathering and Evaluating Sources",
+       "subtopics": [
+        {
+         "id": "gathering-and-evaluating-sources",
+         "title": "Gathering and Evaluating Sources",
+         "outcomes": [
+          {
+           "code": "SS.6-8.2.1",
+           "text": "Evaluate the credibility of a source by examining its origin, author, context, and content"
+          },
+          {
+           "code": "SS.6-8.2.2",
+           "text": "Gather relevant information from credible sources representing a wide range of views"
+          },
+          {
+           "code": "SS.6-8.2.1",
+           "text": "Evaluate the credibility of a source by examining its origin, author, context, and content"
+          },
+          {
+           "code": "SS.6-8.2.2",
+           "text": "Gather relevant information from credible sources representing a wide range of views"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "creating-claims",
+       "title": "Creating Claims",
+       "subtopics": [
+        {
+         "id": "creating-claims",
+         "title": "Creating Claims",
+         "outcomes": [
+          {
+           "code": "SS.6-8.3.1",
+           "text": "Develop claims and counterclaims while pointing out the strengths and limitations of both"
+          },
+          {
+           "code": "SS.6-8.3.2",
+           "text": "Identify specific evidence that supports the claims and counterclaims"
+          },
+          {
+           "code": "SS.6-8.3.1",
+           "text": "Develop claims and counterclaims while pointing out the strengths and limitations of both"
+          },
+          {
+           "code": "SS.6-8.3.2",
+           "text": "Identify specific evidence that supports the claims and counterclaims"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "communicating-conclusions",
+       "title": "Communicating Conclusions",
+       "subtopics": [
+        {
+         "id": "communicating-conclusions",
+         "title": "Communicating Conclusions",
+         "outcomes": [
+          {
+           "code": "SS.6-8.4.1",
+           "text": "Construct arguments and explanations using claims and evidence from multiple sources while acknowledging the strengths and limitations of the arguments"
+          },
+          {
+           "code": "SS.6-8.4.2",
+           "text": "Present arguments and explanations using a variety of print and oral technologies (e.g., posters, essays, letters, debates, speeches, reports, maps) and digital technologies (e.g., Internet, social media, digital documentary)"
+          },
+          {
+           "code": "SS.6-8.4.1",
+           "text": "Construct arguments and explanations using claims and evidence from multiple sources while acknowledging the strengths and limitations of the arguments"
+          },
+          {
+           "code": "SS.6-8.4.2",
+           "text": "Present arguments and explanations using a variety of print and oral technologies (e.g., posters, essays, letters, debates, speeches, reports, maps) and digital technologies (e.g., Internet, social media, digital documentary)"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "taking-informed-action",
+       "title": "Taking Informed Action",
+       "subtopics": [
+        {
+         "id": "taking-informed-action-1-of-2",
+         "title": "Taking Informed Action (1 of 2)",
+         "outcomes": [
+          {
+           "code": "SS.6-8.5.1",
+           "text": "Identify local, regional and/or global problems or issues using interdisciplinary lenses"
+          },
+          {
+           "code": "SS.6-8.5.2",
+           "text": "Examine the origins of a problem or issue and explain the challenges and opportunities faced by those trying to address it"
+          },
+          {
+           "code": "SS.6-8.5.3",
+           "text": "Apply a range of deliberative strategies and procedures to make decisions and propose feasible solutions to address local, regional, and/or global concerns"
+          },
+          {
+           "code": "SS.6-8.5.4",
+           "text": "Create an action plan to address a solution to the problem or issue and demonstrate evidence of implementation"
+          }
+         ]
+        },
+        {
+         "id": "taking-informed-action-2-of-2",
+         "title": "Taking Informed Action (2 of 2)",
+         "outcomes": [
+          {
+           "code": "SS.6-8.5.1",
+           "text": "Identify local, regional and/or global problems or issues by using interdisciplinary lenses"
+          },
+          {
+           "code": "SS.6-8.5.2",
+           "text": "Examine the origins of a problem or issue and explain the challenges and opportunities faced by those trying to address it"
+          },
+          {
+           "code": "SS.6-8.5.3",
+           "text": "Apply a range of deliberative strategies and procedures to make decisions and propose feasible solutions to address local, regional, and/or global concerns"
+          },
+          {
+           "code": "SS.6-8.5.4",
+           "text": "Create an action plan to address a solution to a problem or issue and demonstrate evidence of implementation"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "content-standards",
+     "title": "Content Standards",
+     "topics": [
+      {
+       "id": "content-standards",
+       "title": "Content Standards",
+       "subtopics": [
+        {
+         "id": "content-standards-1-of-5",
+         "title": "Content Standards (1 of 5)",
+         "outcomes": [
+          {
+           "code": "SS.7HHK.1.17.1",
+           "text": "Analyze the role of individuals, events, and ideas leading to the unification of the Hawaiian Kingdom"
+          },
+          {
+           "code": "SS.7HHK.1.18.2",
+           "text": "Compare and contrast Hawaiian and Western perspectives on the arrival of James Cook in Hawaiʻi"
+          },
+          {
+           "code": "SS.7HHK.1.6.3",
+           "text": "Assess the changes initiated by Kamehameha I on Hawaiian society after unification"
+          },
+          {
+           "code": "SS.7HHK.2.17.1",
+           "text": "Assess the impact of the abolishment of the kapu system"
+          },
+          {
+           "code": "SS.7HHK.2.17.2",
+           "text": "Assess the social and cultural changes resulting from missionary influence in Hawaiian society"
+          }
+         ]
+        },
+        {
+         "id": "content-standards-2-of-5",
+         "title": "Content Standards (2 of 5)",
+         "outcomes": [
+          {
+           "code": "SS.7HHK.2.9.3",
+           "text": "Analyze how the sandalwood and whaling industries impacted Hawaiʻi's economy"
+          },
+          {
+           "code": "SS.7HHK.2.14.4",
+           "text": "Explain the social and environmental changes resulting from foreign influence"
+          },
+          {
+           "code": "SS.7HHK.3.15.1",
+           "text": "Analyze the causes and impacts of immigration of various ethnic groups for plantation labor"
+          },
+          {
+           "code": "SS.7HHK.3.8.2",
+           "text": "Explain the processes, ideas, and people's roles involved in the transition from absolute monarchy to constitutional monarchy"
+          },
+          {
+           "code": "SS.7HHK.3.11.3",
+           "text": "Evaluate the impact of changing land tenure on Hawaiians"
+          }
+         ]
+        },
+        {
+         "id": "content-standards-3-of-5",
+         "title": "Content Standards (3 of 5)",
+         "outcomes": [
+          {
+           "code": "SS.7HHK.4.12.1",
+           "text": "Evaluate the political and economic developments leading to the overthrow of the Hawaiian Kingdom"
+          },
+          {
+           "code": "SS.7HHK.4.18.2",
+           "text": "Compare and contrast perspectives of proponents and opponents of the 1893 overthrow of the Hawaiian Kingdom"
+          },
+          {
+           "code": "SS.7PI.1.13.1",
+           "text": "Use geographic representations to explain the relationships between the origins, settlement, and languages of Pacific people"
+          },
+          {
+           "code": "SS.7PI.1.14.2",
+           "text": "Explain how early Pacific people adapted to and modified environments on low and high islands"
+          },
+          {
+           "code": "SS.7PI.1.8.3",
+           "text": "Explain how power and authority are represented in cultural expressions of the early Pacific people"
+          }
+         ]
+        },
+        {
+         "id": "content-standards-4-of-5",
+         "title": "Content Standards (4 of 5)",
+         "outcomes": [
+          {
+           "code": "SS.7PI.2.10.1",
+           "text": "Describe early encounters between Pacific Islanders and foreigners"
+          },
+          {
+           "code": "SS.7PI.2.19.2",
+           "text": "Explain how political and economic needs of foreigners changed Pacific Island societies"
+          },
+          {
+           "code": "SS.7PI.2.12.3",
+           "text": "Evaluate how Pacific Islander participation in global economies changed during the colonial era through World War II"
+          },
+          {
+           "code": "SS.7PI.2.7.4",
+           "text": "Analyze the interests and obligations of colonial powers in Pacific Island nations and entities since World War II"
+          },
+          {
+           "code": "SS.7PI.3.14.1",
+           "text": "Explain the social, environmental, and economic impacts of nuclear testing and militarization on Pacific Islander peoples and island environments"
+          }
+         ]
+        },
+        {
+         "id": "content-standards-5-of-5",
+         "title": "Content Standards (5 of 5)",
+         "outcomes": [
+          {
+           "code": "SS.7PI.3.17.2",
+           "text": "Analyze the reasons for contemporary migration of Pacific Islander populations"
+          },
+          {
+           "code": "SS.7PI.3.8.3",
+           "text": "Propose a research-based policy solution to a problem facing a Pacific Island nation"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "8",
+   "units": [
+    {
+     "id": "anchor-and-inquiry-standards",
+     "title": "Anchor and Inquiry Standards",
+     "topics": [
+      {
+       "id": "developing-questions-and-planning-inquiries",
+       "title": "Developing Questions and Planning Inquiries",
+       "subtopics": [
+        {
+         "id": "developing-questions-and-planning-inquiries",
+         "title": "Developing Questions and Planning Inquiries",
+         "outcomes": [
+          {
+           "code": "SS.6-8.1.1",
+           "text": "Create compelling questions representing key ideas of the disciplines"
+          },
+          {
+           "code": "SS.6-8.1.2",
+           "text": "Explain how a question reflects an enduring issue in the field"
+          },
+          {
+           "code": "SS.6-8.1.3",
+           "text": "Create supporting questions that address key ideas identified in compelling questions"
+          },
+          {
+           "code": "SS.6-8.1.4",
+           "text": "Explain the relationship between compelling and supporting questions"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "gathering-and-evaluating-sources",
+       "title": "Gathering and Evaluating Sources",
+       "subtopics": [
+        {
+         "id": "gathering-and-evaluating-sources",
+         "title": "Gathering and Evaluating Sources",
+         "outcomes": [
+          {
+           "code": "SS.6-8.2.1",
+           "text": "Evaluate the credibility of a source by examining its origin, author, context, and content"
+          },
+          {
+           "code": "SS.6-8.2.2",
+           "text": "Gather relevant information from credible sources representing a wide range of views"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "creating-claims",
+       "title": "Creating Claims",
+       "subtopics": [
+        {
+         "id": "creating-claims",
+         "title": "Creating Claims",
+         "outcomes": [
+          {
+           "code": "SS.6-8.3.1",
+           "text": "Develop claims and counterclaims while pointing out the strengths and limitations of both"
+          },
+          {
+           "code": "SS.6-8.3.2",
+           "text": "Identify specific evidence that supports the claims and counterclaims"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "communicating-conclusions",
+       "title": "Communicating Conclusions",
+       "subtopics": [
+        {
+         "id": "communicating-conclusions",
+         "title": "Communicating Conclusions",
+         "outcomes": [
+          {
+           "code": "SS.6-8.4.1",
+           "text": "Construct arguments and explanations using claims and evidence from multiple sources while acknowledging the strengths and limitations of the arguments"
+          },
+          {
+           "code": "SS.6-8.4.2",
+           "text": "Present arguments and explanations using a variety of print and oral technologies (e.g., posters, essays, letters, debates, speeches, reports, maps) and digital technologies (e.g., Internet, social media, digital documentary)"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "taking-informed-action",
+       "title": "Taking Informed Action",
+       "subtopics": [
+        {
+         "id": "taking-informed-action",
+         "title": "Taking Informed Action",
+         "outcomes": [
+          {
+           "code": "SS.6-8.5.1",
+           "text": "Identify local, regional and/or global problems or issues using interdisciplinary lenses"
+          },
+          {
+           "code": "SS.6-8.5.2",
+           "text": "Examine the origins of a problem or issue and explain the challenges and opportunities faced by those trying to address it"
+          },
+          {
+           "code": "SS.6-8.5.3",
+           "text": "Apply a range of deliberative strategies and procedures to make decisions and propose feasible solutions to address local, regional, and/or global concerns"
+          },
+          {
+           "code": "SS.6-8.5.4",
+           "text": "Create an action plan to address a solution to the problem or issue and demonstrate evidence of implementation"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "content-standards",
+     "title": "Content Standards",
+     "topics": [
+      {
+       "id": "content-standards",
+       "title": "Content Standards",
+       "subtopics": [
+        {
+         "id": "content-standards-1-of-4",
+         "title": "Content Standards (1 of 4)",
+         "outcomes": [
+          {
+           "code": "SS.8.1.6.1",
+           "text": "Examine how challenges the government faced were resolved at the Constitutional Convention"
+          },
+          {
+           "code": "SS.8.1.6.2",
+           "text": "Explain the structure and powers of the three branches of the federal government"
+          },
+          {
+           "code": "SS.8.1.7.3",
+           "text": "Analyze how the Bill of Rights protects individual liberties from the national government"
+          },
+          {
+           "code": "SS.8.2.17.1",
+           "text": "Analyze citizenship and voting rights in early America"
+          },
+          {
+           "code": "SS.8.2.6.2",
+           "text": "Explain how political parties developed out of conflicts in early America"
+          }
+         ]
+        },
+        {
+         "id": "content-standards-2-of-4",
+         "title": "Content Standards (2 of 4)",
+         "outcomes": [
+          {
+           "code": "SS.8.3.19.1",
+           "text": "Analyze the ideological and socioeconomic reasons for U.S. territorial expansion"
+          },
+          {
+           "code": "SS.8.3.16.2",
+           "text": "Trace how the United States acquired new territories, including purchases, annexation, treaties, and war"
+          },
+          {
+           "code": "SS.8.3.17.3",
+           "text": "Explain how Native Americans resisted U.S. territorial expansion"
+          },
+          {
+           "code": "SS.8.3.19.4",
+           "text": "Assess the effects of U.S. expansion on Native Americans in terms of population loss, land dispossession, and culture"
+          },
+          {
+           "code": "SS.8.4.9.1",
+           "text": "Analyze how economic growth and industrialization transformed daily life"
+          }
+         ]
+        },
+        {
+         "id": "content-standards-3-of-4",
+         "title": "Content Standards (3 of 4)",
+         "outcomes": [
+          {
+           "code": "SS.8.4.15.2",
+           "text": "Explain how innovations in transportation, communication, and production reshaped American society"
+          },
+          {
+           "code": "SS.8.4.10.3",
+           "text": "Analyze how the market revolution contributed to labor conflicts and divisions over slavery"
+          },
+          {
+           "code": "SS.8.5.9.1",
+           "text": "Analyze how slavery shaped the economic development of the North and South"
+          },
+          {
+           "code": "SS.8.5.14.2",
+           "text": "Examine how enslaved people adapted to and resisted slavery"
+          },
+          {
+           "code": "SS.8.6.18.1",
+           "text": "Analyze the religious and utopian movements that flourished around the Second Great Awakening"
+          }
+         ]
+        },
+        {
+         "id": "content-standards-4-of-4",
+         "title": "Content Standards (4 of 4)",
+         "outcomes": [
+          {
+           "code": "SS.8.6.7.2",
+           "text": "Evaluate the effectiveness of 19th-century reform movements"
+          },
+          {
+           "code": "SS.8.7.19.1",
+           "text": "Explain how conflicts over slavery led the North and South to war"
+          },
+          {
+           "code": "SS.8.7.17.2",
+           "text": "Analyze major factors that determined the outcome of the Civil War"
+          },
+          {
+           "code": "SS.8.8.8.1",
+           "text": "Assess the efforts of the federal government and African Americans to forge a new political and social order after emancipation"
+          },
+          {
+           "code": "SS.8.8.17.2",
+           "text": "Assess how the end of Reconstruction affected African Americans"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "9-12",
+   "units": [
+    {
+     "id": "understand-the-development-of-sociology-as-a-soc",
+     "title": "Understand the development of sociology as a social science",
+     "topics": [
+      {
+       "id": "origins-of-sociology",
+       "title": "Origins of Sociology",
+       "subtopics": [
+        {
+         "id": "describe-the-ideas-of-key-theorists-who-originat",
+         "title": "Describe the ideas of key theorists who originated the field of sociology (e.g., Auguste Comte, Max Weber, Emile Durkheim)",
+         "outcomes": [
+          {
+           "code": "SS.SOC.1.1.Adv",
+           "text": "Advanced: Describe, with clear and precise detail, the ideas of key theorists who originated the field of sociology"
+          },
+          {
+           "code": "SS.SOC.1.1.Prof",
+           "text": "Proficient: Describe, with detail, the ideas of key theorists who originated the field of sociology"
+          },
+          {
+           "code": "SS.SOC.1.1.P-Prof",
+           "text": "Partially Proficient: Describe, with minimal detail, the ideas of key theorists who originated the field of sociology"
+          },
+          {
+           "code": "SS.SOC.1.1.N",
+           "text": "Novice: Ineffectively describe the ideas of key theorists who originated the field of sociology"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "current-sociological-perspectives",
+       "title": "Current Sociological Perspectives",
+       "subtopics": [
+        {
+         "id": "compare-current-sociological-theories-e-g-functi",
+         "title": "Compare current sociological theories (e.g., functionalism, conflict theory, symbolic interaction)",
+         "outcomes": [
+          {
+           "code": "SS.SOC.1.2.Adv",
+           "text": "Advanced: Compare current sociological theories, drawing relevant conclusions supported by clear and precise detail"
+          },
+          {
+           "code": "SS.SOC.1.2.Prof",
+           "text": "Proficient: Compare current sociological theories, drawing relevant conclusions"
+          },
+          {
+           "code": "SS.SOC.1.2.P-Prof",
+           "text": "Partially Proficient: Compare current sociological theories, drawing partially relevant conclusions"
+          },
+          {
+           "code": "SS.SOC.1.2.N",
+           "text": "Novice: Ineffectively compare current sociological theories"
+          }
+         ]
+        },
+        {
+         "id": "explain-various-sociological-research-methods-e-",
+         "title": "Explain various sociological research methods (e.g., survey, questionnaire, secondary analysis) and the appropriate application of each method",
+         "outcomes": [
+          {
+           "code": "SS.SOC.1.3.Adv",
+           "text": "Advanced: Explain, with clear and precise detail, various sociological research methods and the appropriate application of each method"
+          },
+          {
+           "code": "SS.SOC.1.3.Prof",
+           "text": "Proficient: Explain, with detail, various sociological research methods and the appropriate application of each method"
+          },
+          {
+           "code": "SS.SOC.1.3.P-Prof",
+           "text": "Partially Proficient: Explain, with minimal detail, various sociological research methods and the appropriate application of each method"
+          },
+          {
+           "code": "SS.SOC.1.3.N",
+           "text": "Novice: Ineffectively explain various sociological research methods and the appropriate application of each method"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "develop-an-understanding-of-culture-as-it-affect",
+     "title": "Develop an understanding of culture as it affects individuals and groups",
+     "topics": [
+      {
+       "id": "traits-of-culture",
+       "title": "Traits of Culture",
+       "subtopics": [
+        {
+         "id": "describe-aspects-of-culture-e-g-artifacts-langua",
+         "title": "Describe aspects of culture (e.g., artifacts, language, values, mores) that result in recognizable differences between societies",
+         "outcomes": [
+          {
+           "code": "SS.SOC.2.1.Adv",
+           "text": "Advanced: Compare aspects of culture that result in recognizable differences between societies"
+          },
+          {
+           "code": "SS.SOC.2.1.Prof",
+           "text": "Proficient: Describe aspects of culture that result in recognizable differences between societies"
+          },
+          {
+           "code": "SS.SOC.2.1.P-Prof",
+           "text": "Partially Proficient: Provide examples of aspects of culture that result in recognizable differences between societies"
+          },
+          {
+           "code": "SS.SOC.2.1.N",
+           "text": "Novice: Recognize aspects of culture that result in recognizable differences between societies"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "cultural-identity",
+       "title": "Cultural Identity",
+       "subtopics": [
+        {
+         "id": "describe-how-cultural-diversity-occurs-and-the-i",
+         "title": "Describe how cultural diversity occurs and the impact on a host culture (e.g., subcultures, categorization, ethnocentrism)",
+         "outcomes": [
+          {
+           "code": "SS.SOC.2.2.Adv",
+           "text": "Advanced: Describe, with clear and precise detail, how cultural diversity occurs and the impact on a host culture"
+          },
+          {
+           "code": "SS.SOC.2.2.Prof",
+           "text": "Proficient: Describe, with detail, how cultural diversity occurs and the impact on a host culture"
+          },
+          {
+           "code": "SS.SOC.2.2.P-Prof",
+           "text": "Partially Proficient: Describe, with minimal detail, cultural diversity and the impact on a host culture"
+          },
+          {
+           "code": "SS.SOC.2.2.N",
+           "text": "Novice: Ineffectively describe how cultural diversity occurs and the impact on a host culture"
+          }
+         ]
+        },
+        {
+         "id": "explain-the-different-ways-culture-is-transmitte",
+         "title": "Explain the different ways culture is transmitted among groups, individuals and societies (e.g., education, media, socialization, globalization)",
+         "outcomes": [
+          {
+           "code": "SS.SOC.2.3.Adv",
+           "text": "Advanced: Explain, with clear and precise detail, the different ways culture is transmitted among groups, individuals, and societies"
+          },
+          {
+           "code": "SS.SOC.2.3.Prof",
+           "text": "Proficient: Explain, with detail, the different ways culture is transmitted among groups, individuals, and societies"
+          },
+          {
+           "code": "SS.SOC.2.3.P-Prof",
+           "text": "Partially Proficient: Explain, with minimal detail, the different ways culture is transmitted among groups, individuals, and societies"
+          },
+          {
+           "code": "SS.SOC.2.3.N",
+           "text": "Novice: Ineffectively explain the different ways culture is transmitted among groups, individuals, and societies"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "understand-the-types-characteristics-and-dynamic",
+     "title": "Understand the types, characteristics and dynamics of social groups and social institutions",
+     "topics": [
+      {
+       "id": "roles-of-groups",
+       "title": "Roles of Groups",
+       "subtopics": [
+        {
+         "id": "describe-the-behavior-of-social-groups-e-g-famil",
+         "title": "Describe the behavior of social groups (e.g., family, peers, co-workers, teams) and their function in society",
+         "outcomes": [
+          {
+           "code": "SS.SOC.3.1.Adv",
+           "text": "Advanced: Describe, with clear and precise detail, the behavior of social groups and their function in society"
+          },
+          {
+           "code": "SS.SOC.3.1.Prof",
+           "text": "Proficient: Describe, with detail, the behavior of social groups and their function in society"
+          },
+          {
+           "code": "SS.SOC.3.1.P-Prof",
+           "text": "Partially Proficient: Describe, with minimal detail, the behavior of social groups and their function in society"
+          },
+          {
+           "code": "SS.SOC.3.1.N",
+           "text": "Novice: Ineffectively describe the behavior of social groups and their function in society"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "roles-of-institutions",
+       "title": "Roles of Institutions",
+       "subtopics": [
+        {
+         "id": "describe-institutions-and-their-functions-e-g-sc",
+         "title": "Describe institutions and their functions (e.g., schools, corporations, agencies, hospitals, the military) in society",
+         "outcomes": [
+          {
+           "code": "SS.SOC.3.2.Adv",
+           "text": "Advanced: Describe, with clear and precise detail, institutions and their functions in society"
+          },
+          {
+           "code": "SS.SOC.3.2.Prof",
+           "text": "Proficient: Describe, with detail, institutions and their functions in society"
+          },
+          {
+           "code": "SS.SOC.3.2.P-Prof",
+           "text": "Partially Proficient: Describe, with minimal detail, institutions and their functions in society"
+          },
+          {
+           "code": "SS.SOC.3.2.N",
+           "text": "Novice: Ineffectively describe institutions and their functions in society"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "impact-of-groups-and-institutions",
+       "title": "Impact of Groups and Institutions",
+       "subtopics": [
+        {
+         "id": "evaluate-the-expectations-and-effects-that-socia",
+         "title": "Evaluate the expectations and effects that social groups and institutions have on individuals",
+         "outcomes": [
+          {
+           "code": "SS.SOC.3.3.Adv",
+           "text": "Advanced: Evaluate, with thorough documentation, the expectations and effects that social groups and institutions have on individuals"
+          },
+          {
+           "code": "SS.SOC.3.3.Prof",
+           "text": "Proficient: Evaluate, with documentation, the expectations and effects that social groups and institutions have on individuals"
+          },
+          {
+           "code": "SS.SOC.3.3.P-Prof",
+           "text": "Partially Proficient: Evaluate, with partial documentation, the expectations and effects that social groups and institutions have on individuals"
+          },
+          {
+           "code": "SS.SOC.3.3.N",
+           "text": "Novice: Evaluate, with very little documentation, the expectations and effects that social groups and institutions have on individuals"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "recognize-social-problems-and-underlying-causes",
+     "title": "Recognize social problems and underlying causes",
+     "topics": [
+      {
+       "id": "norms-and-problems",
+       "title": "Norms and Problems",
+       "subtopics": [
+        {
+         "id": "describe-the-effects-of-social-stratification-an",
+         "title": "Describe the effects of social stratification and social mobility on society",
+         "outcomes": [
+          {
+           "code": "SS.SOC.4.1.Adv",
+           "text": "Advanced: Describe the effects of social stratification and social mobility on society, using relevant examples supported by clear and precise detail"
+          },
+          {
+           "code": "SS.SOC.4.1.Prof",
+           "text": "Proficient: Describe the effects of social stratification and social mobility on society, using relevant examples,"
+          },
+          {
+           "code": "SS.SOC.4.1.P-Prof",
+           "text": "Partially Proficient: Describe the effects of social stratification and social mobility on society, using partially relevant examples"
+          },
+          {
+           "code": "SS.SOC.4.1.N",
+           "text": "Novice: Describe, using irrelevant or no examples, the effects of social stratification and social mobility on society"
+          }
+         ]
+        },
+        {
+         "id": "explain-the-concepts-of-deviance-conformity-norm",
+         "title": "Explain the concepts of deviance, conformity, norms, and crime and provide examples of each",
+         "outcomes": [
+          {
+           "code": "SS.SOC.4.2.Adv",
+           "text": "Advanced: Explain, with clear and precise detail, the concepts of deviance, conformity, norms, and crime and provide examples of each"
+          },
+          {
+           "code": "SS.SOC.4.2.Prof",
+           "text": "Proficient: Explain, with detail, the concepts of deviance, conformity, norms, and crime, and provide examples of each"
+          },
+          {
+           "code": "SS.SOC.4.2.P-Prof",
+           "text": "Partially Proficient: Explain, with minimal detail, the concepts of deviance, conformity, norms, and crime and provide examples of each"
+          },
+          {
+           "code": "SS.SOC.4.2.N",
+           "text": "Novice: Ineffectively explain the concepts of deviance, conformity, norms, and crime and provide examples of each"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "control",
+       "title": "Control",
+       "subtopics": [
+        {
+         "id": "evaluate-the-effectiveness-of-various-types-of-c",
+         "title": "Evaluate the effectiveness of various types of control over deviant and criminal behavior (e.g., deterrence, incarceration, sanction)",
+         "outcomes": [
+          {
+           "code": "SS.SOC.4.3.Adv",
+           "text": "Advanced: Evaluate the effectiveness of various types of control over deviant and criminal behavior, drawing relevant conclusions supported by clear and precise detail"
+          },
+          {
+           "code": "SS.SOC.4.3.Prof",
+           "text": "Proficient: Evaluate the effectiveness of various types of control over deviant and criminal behavior, drawing relevant conclusions"
+          },
+          {
+           "code": "SS.SOC.4.3.P-Prof",
+           "text": "Partially Proficient: Evaluate the effectiveness of various types of control over deviant and criminal behavior, drawing partially relevant conclusions"
+          },
+          {
+           "code": "SS.SOC.4.3.N",
+           "text": "Novice: Ineffectively evaluate the effectiveness of various types of control over deviant and criminal behavior"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "examine-social-change-for-causal-factors-and-res",
+     "title": "Examine social change for causal factors and results",
+     "topics": [
+      {
+       "id": "demographic-change",
+       "title": "Demographic Change",
+       "subtopics": [
+        {
+         "id": "describe-aspects-of-demography-which-lead-to-soc",
+         "title": "Describe aspects of demography which lead to social change (e.g., birth rates, life expectancy, urbanization, population shifts)",
+         "outcomes": [
+          {
+           "code": "SS.SOC.5.1.Adv",
+           "text": "Advanced: Describe, with clear and precise detail, aspects of demography which lead to social change"
+          },
+          {
+           "code": "SS.SOC.5.1.Prof",
+           "text": "Proficient: Describe, with detail, aspects of demography which lead to social change"
+          },
+          {
+           "code": "SS.SOC.5.1.P-Prof",
+           "text": "Partially Proficient: Describe, with minimal detail, aspects of demography which lead to social change"
+          },
+          {
+           "code": "SS.SOC.5.1.N",
+           "text": "Novice: Ineffectively describe aspects of demography which lead to social change"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "motivated-change",
+       "title": "Motivated Change",
+       "subtopics": [
+        {
+         "id": "describe-contemporary-social-movements-e-g-gay-r",
+         "title": "Describe contemporary social movements (e.g. gay rights, green movement) and explain how they contribute to social change",
+         "outcomes": [
+          {
+           "code": "SS.SOC.5.2.Adv",
+           "text": "Advanced: Describe, with clear and precise detail, contemporary social movements and explain how they contribute to social change"
+          },
+          {
+           "code": "SS.SOC.5.2.Prof",
+           "text": "Proficient: Describe, with detail, contemporary social movements and explain how they contribute to social change"
+          },
+          {
+           "code": "SS.SOC.5.2.P-Prof",
+           "text": "Partially Proficient: Describe, with minimal detail, contemporary social movements and explain how they contribute to social change"
+          },
+          {
+           "code": "SS.SOC.5.2.N",
+           "text": "Novice: Ineffectively describe contemporary social movements and explain how they contribute to social change"
+          }
+         ]
+        },
+        {
+         "id": "explain-the-impact-of-organizations-e-g-nonprofi",
+         "title": "Explain the impact of organizations (e.g., nonprofit, nongovernmental, local community) on social change",
+         "outcomes": [
+          {
+           "code": "SS.SOC.5.3.Adv",
+           "text": "Advanced: Explain, with clear and precise detail, the impact of organizations on social change"
+          },
+          {
+           "code": "SS.SOC.5.3.Prof",
+           "text": "Proficient: Explain, with detail, the impact of organizations on social change"
+          },
+          {
+           "code": "SS.SOC.5.3.P-Prof",
+           "text": "Partially Proficient: Explain, with minimal detail, the impact of organizations on social change"
+          },
+          {
+           "code": "SS.SOC.5.3.N",
+           "text": "Novice: Ineffectively describe the impact of organizations on social change"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "understand-that-scarcity-and-choice-impact-econo",
+     "title": "Understand that scarcity and choice impact economic activity of individuals, families, communities, and nations",
+     "topics": [
+      {
+       "id": "opportunity-costs-and-trade-offs",
+       "title": "Opportunity Costs and Trade-offs",
+       "subtopics": [
+        {
+         "id": "describe-how-individuals-families-communities-an",
+         "title": "Describe how individuals, families, communities, and/or nations use marginal costs and marginal benefits to make economic decisions",
+         "outcomes": [
+          {
+           "code": "SS.12E.1.1.Adv",
+           "text": "Advanced: Describe how individuals, families, communities, and/or nations use marginal costs and marginal benefits to make economic decisions, drawing highly relevant conclusions"
+          },
+          {
+           "code": "SS.12E.1.1.Prof",
+           "text": "Proficient: Describe how individuals, families, communities, and/or nations use marginal costs and marginal benefits to make economic decisions, drawing relevant conclusions"
+          },
+          {
+           "code": "SS.12E.1.1.P-Prof",
+           "text": "Partially Proficient: Describe how individuals, families, communities, and/or nations use marginal costs and marginal benefits to make economic decisions, drawing partially relevant conclusions"
+          },
+          {
+           "code": "SS.12E.1.1.N",
+           "text": "Novice: Ineffectively describe how individuals, families, communities, and/or nations use marginal costs and marginal benefits to make economic decisions"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "productivity",
+       "title": "Productivity",
+       "subtopics": [
+        {
+         "id": "identify-the-factors-of-production-e-g-land-labo",
+         "title": "Identify the factors of production (e.g., land, labor, capital) and explain how these factors influence the production of goods and services",
+         "outcomes": [
+          {
+           "code": "SS.12E.1.2.Adv",
+           "text": "Advanced: Identify the factors of production and explain, with clear and precise detail, how these factors influence the production of goods and services"
+          },
+          {
+           "code": "SS.12E.1.2.Prof",
+           "text": "Proficient: Identify the factors of production and explain, with detail, how these factors influence the production of goods and services"
+          },
+          {
+           "code": "SS.12E.1.2.P-Prof",
+           "text": "Partially Proficient: Identify the factors of production and explain, with minimal detail, how these factors influence the production of goods and services"
+          },
+          {
+           "code": "SS.12E.1.2.N",
+           "text": "Ineffectively identify the factors of production and ineffectively explain how these factors influence the production of goods and services"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "understand-markets-and-the-role-of-supply-and-de",
+     "title": "Understand markets and the role of supply and demand in determining price and resource allocation",
+     "topics": [
+      {
+       "id": "role-and-function-of-markets",
+       "title": "Role and Function of Markets",
+       "subtopics": [
+        {
+         "id": "explain-the-laws-of-supply-and-demand-and-illust",
+         "title": "Explain the laws of supply and demand and illustrate how their determinants affect the supply or demand curve (e.g., how changes in technology or price of inputs affect supply; how consumer income, tastes, and preferences affect demand)",
+         "outcomes": [
+          {
+           "code": "SS.12E.2.1.Adv",
+           "text": "Advanced: Explain the laws of supply and demand and illustrate how the determinants of supply or demand affect the supply or demand curve, drawing highly relevant conclusions"
+          },
+          {
+           "code": "SS.12E.2.1.Prof",
+           "text": "Proficient: Explain the laws of supply and demand and illustrate how the determinants of supply or demand affect the supply or demand curve, drawing relevant conclusions"
+          },
+          {
+           "code": "SS.12E.2.1.P-Prof",
+           "text": "Explain the laws of supply and demand and illustrate how the determinants of supply or demand affect the supply or demand curve, drawing partially relevant conclusions"
+          },
+          {
+           "code": "SS.12E.2.1.N",
+           "text": "Novice: Ineffectively explain the laws of supply and demand and poorly illustrate how the determinants of supply or demand affect the supply or demand curve"
+          }
+         ]
+        },
+        {
+         "id": "explain-how-money-makes-it-easier-for-countries-",
+         "title": "Explain how money makes it easier for countries to borrow, save, invest, and compare the value of goods and services",
+         "outcomes": [
+          {
+           "code": "SS.12E.2.2.Adv",
+           "text": "Advanced: Explain how money makes it easier for countries to borrow, save, invest, and compare the value of goods and services, drawing highly relevant conclusions"
+          },
+          {
+           "code": "SS.12E.2.2.Prof",
+           "text": "Proficient: Explain how money makes it easier for countries to borrow, save, invest, and compare the value of goods and services, drawing relevant conclusions"
+          },
+          {
+           "code": "SS.12E.2.2.P-Prof",
+           "text": "Partially Proficient: Explain how money makes it easier for countries to borrow, save, invest, and compare the value of goods and services, drawing partially relevant conclusions"
+          },
+          {
+           "code": "SS.12E.2.2.N",
+           "text": "Novice: Ineffectively explain how money makes it easier for countries to borrow, save, invest, and ineffectively compare the value of goods and services"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "understand-the-sources-of-income-and-growth-in-a",
+     "title": "Understand the sources of income and growth in a market-based economy",
+     "topics": [
+      {
+       "id": "economic-growth",
+       "title": "Economic Growth",
+       "subtopics": [
+        {
+         "id": "describe-the-characteristics-of-an-entrepreneur-",
+         "title": "Describe the characteristics of an entrepreneur (e.g., how he or she accepts business risks for profit) and explain the role of entrepreneurs in a market-based economy (e.g., how they introduce new products and production methods)",
+         "outcomes": [
+          {
+           "code": "SS.12E.3.1.Adv",
+           "text": "Advanced: Describe the characteristics of an entrepreneur and explain, with clear and precise detail, the role of entrepreneurs in a market-based economy"
+          },
+          {
+           "code": "SS.12E.3.1.Prof",
+           "text": "Proficient: Describe the characteristics of an entrepreneur and explain, with detail, the role of entrepreneurs in a a market-based economy"
+          },
+          {
+           "code": "SS.12E.3.1.P-Prof",
+           "text": "Partially Proficient: Describe the characteristics of an entrepreneur and explain, with minimal detail, the role of entrepreneurs in a market-based economy"
+          },
+          {
+           "code": "SS.12E.3.1.N",
+           "text": "Novice: Ineffectively describe the characteristics of an entrepreneur and ineffectively explain the role of entrepreneurs in a market-based economy"
+          }
+         ]
+        },
+        {
+         "id": "explain-how-stock-markets-function-what-influenc",
+         "title": "Explain how stock markets function, what influences their performance, and how they impact national economies",
+         "outcomes": [
+          {
+           "code": "SS.12E.3.2.Adv",
+           "text": "Advanced: Explain how stock markets function, what influences their performance, and how they impact national economies, using highly relevant examples"
+          },
+          {
+           "code": "SS.12E.3.2.Prof",
+           "text": "Proficient: Explain how stock markets function, what influences their performance, and how they impact national economies, using relevant examples"
+          },
+          {
+           "code": "SS.12E.3.2.P-Prof",
+           "text": "Explain how stock markets function, what influences their performance, and how they impact national economies, using partially relevant examples"
+          },
+          {
+           "code": "SS.12E.3.2.N",
+           "text": "Novice: Ineffectively explain how stock markets function, what influences their performance, and how they impact national economies"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "understand-how-to-use-personal-economic-decision",
+     "title": "Understand how to use personal economic decision-making to maximize the net benefits of personal income",
+     "topics": [
+      {
+       "id": "personal-economic-decisions",
+       "title": "Personal Economic Decisions",
+       "subtopics": [
+        {
+         "id": "analyze-the-types-of-personal-economic-decisions",
+         "title": "Analyze the types of personal economic decisions and choices that individuals make (e.g., determining how to budget money; establishing short- and long-term financial goals and plans related to income, saving, and spending; utilizing loans and credit cards; considering investment options)",
+         "outcomes": [
+          {
+           "code": "SS.12E.4.1.Adv",
+           "text": "Advanced: Analyze the types of personal economic decisions and choices that individuals make, drawing highly relevant conclusions"
+          },
+          {
+           "code": "SS.12E.4.1.Prof",
+           "text": "Proficient: Analyze the types of personal economic decisions and choices that individuals make, drawing relevant conclusions"
+          },
+          {
+           "code": "SS.12E.4.1.P-Prof",
+           "text": "Partially Proficient: Analyze the types of personal economic decisions and choices that individuals make, drawing partially relevant conclusions"
+          },
+          {
+           "code": "SS.12E.4.1.N",
+           "text": "Novice: Ineffectively analyze the types of personal economic decisions and choices that individuals make"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "economic-reasoning",
+       "title": "Economic Reasoning",
+       "subtopics": [
+        {
+         "id": "identify-how-economic-reasoning-is-used-to-make-",
+         "title": "Identify how economic reasoning is used to make to make personal decisions (e.g., purchasing a car; deciding on a college, career choices)",
+         "outcomes": [
+          {
+           "code": "SS.12E.4.2.Adv",
+           "text": "Advanced: Identify how economic reasoning is used to make personal decisions, using highly relevant examples"
+          },
+          {
+           "code": "SS.12E.4.2.Prof",
+           "text": "Proficient: Identify how economic reasoning is used to make personal decisions, using relevant examples"
+          },
+          {
+           "code": "SS.12E.4.2.P-Prof",
+           "text": "Partially Proficient: Identify how economic reasoning is used to make decisions, using partially relevant examples"
+          },
+          {
+           "code": "SS.12E.4.2.N",
+           "text": "Ineffectively identify how economic reasoning is used to make decisions"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "understand-the-various-economic-institutions-of-",
+     "title": "Understand the various economic institutions of a market-based economy",
+     "topics": [
+      {
+       "id": "economic-institutions",
+       "title": "Economic Institutions",
+       "subtopics": [
+        {
+         "id": "explain-the-significance-of-economic-institution",
+         "title": "Explain the significance of economic institutions (e.g., the banking system and its interaction with business firms and consumers; the function of financial and securities markets; the impact of labor unions on the American economy) in a market-based economy",
+         "outcomes": [
+          {
+           "code": "SS.12E.5.1.Adv",
+           "text": "Advanced: Describe, with clear and precise detail, how and why individuals utilize various financial institutions"
+          },
+          {
+           "code": "SS.12E.5.1.Prof",
+           "text": "Proficient: Describe, with detail, how and why individuals utilize various financial institutions"
+          },
+          {
+           "code": "SS.12E.5.1.P-Prof",
+           "text": "Partially Proficient: Describe, with minimal detail, how and why individuals utilize various financial institutions"
+          },
+          {
+           "code": "SS.12E.5.1.P-N",
+           "text": "Novice: Ineffectively describe how and why individuals utilize various financial institutions"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "competition",
+       "title": "Competition",
+       "subtopics": [
+        {
+         "id": "explain-the-nature-and-role-of-competition-in-a-",
+         "title": "Explain the nature and role of competition in a market-based economy (e.g., the determination of market price through competition among buyers and sellers; conditions that make industries more or less competitive; the effect of domestic and international competition in a market-based economy)",
+         "outcomes": [
+          {
+           "code": "SS.12E.5.2.Adv",
+           "text": "Advanced: Explain the nature and role of competition in a market-based economy, drawing highly relevant conclusions"
+          },
+          {
+           "code": "SS.12E.5.2.Prof",
+           "text": "Proficient: Explain the nature and role of competition in a market-based economy, drawing relevant conclusions"
+          },
+          {
+           "code": "SS.12E.5.2.P-Prof",
+           "text": "Partially Proficient: Describe the nature and role of competition in a market-based economy, drawing partially relevant conclusions"
+          },
+          {
+           "code": "SS.12E.5.2.N",
+           "text": "Novice: Identify the nature and role of competition in a market-based economy"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "understand-the-national-economy-and-economic-pol",
+     "title": "Understand the national economy and economic policies",
+     "topics": [
+      {
+       "id": "national-economy",
+       "title": "National Economy",
+       "subtopics": [
+        {
+         "id": "explain-various-measures-of-economic-health-e-g-",
+         "title": "Explain various measures of economic health (e.g., the Gross Domestic Product [GDP], consumer price indexes [CPI], personal income, disposable income, rates of inflation and deflation, unemployment rates)",
+         "outcomes": [
+          {
+           "code": "SS.12E.6.1.Adv",
+           "text": "Advanced: Explain, with clear and precise detail, various measures of economic health"
+          },
+          {
+           "code": "SS.12E.6.1.Prof",
+           "text": "Proficient: Explain, with detail, various measures of economic health"
+          },
+          {
+           "code": "SS.12E.6.1.P-Prof",
+           "text": "Partially Proficient"
+          },
+          {
+           "code": "SS.12E.6.1.N",
+           "text": "Novice: Ineffectively explain various measures of economic health"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "economic-policies",
+       "title": "Economic Policies",
+       "subtopics": [
+        {
+         "id": "explain-the-various-roles-government-plays-in-a-",
+         "title": "Explain the various roles government plays in a market-based economy, including monetary policy, market regulation and oversight, and fiscal policy",
+         "outcomes": [
+          {
+           "code": "SS.12E.6.2.Adv",
+           "text": "Advanced: Explain the various roles government plays in a market-based economy, including monetary policy, market regulation and oversight, and fiscal policy, using highly relevant examples"
+          },
+          {
+           "code": "SS.12E.6.2.Prof",
+           "text": "Proficient: Explain the various roles government plays in a market-based economy, including monetary policy, market regulation and oversight, and fiscal policy, using relevant examples"
+          },
+          {
+           "code": "SS.12E.6.2.P-Prof",
+           "text": "Partially Proficient: Explain the various roles government plays in a market-based economy, including monetary policy, market regulation and oversight, and fiscal policy, using partially relevant examples"
+          },
+          {
+           "code": "SS.12E.6.2.N",
+           "text": "Novice: Ineffectively explain the various roles government plays in a market-based economy, including monetary policy, market regulation and oversight, and fiscal policy"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "revenue",
+       "title": "Revenue",
+       "subtopics": [
+        {
+         "id": "explain-major-sources-of-government-revenue-e-g-",
+         "title": "Explain major sources of government revenue (e.g., personal income and payroll taxes, sales taxes, property taxes) at the federal, state, and local level",
+         "outcomes": [
+          {
+           "code": "SS.12E.6.3.Adv",
+           "text": "Advanced: Explain, with clear and precise detail, major sources of government revenue (e.g., personal income and payroll taxes, sales taxes, property taxes) at the federal, state, and local level"
+          },
+          {
+           "code": "SS.12E.6.3.Prof",
+           "text": "Proficient: Explain, with detail, major sources of government revenue (e.g., personal income and payroll taxes, sales taxes, property taxes) at the federal, state, and local level"
+          },
+          {
+           "code": "SS.12E.6.3.P-Prof",
+           "text": "Partially Proficient: Explain, with minimal detail, major sources of government revenue (e.g., personal income and payroll taxes, sales taxes, property taxes) at the federal, state, and local level"
+          },
+          {
+           "code": "SS.12E.6.3.N",
+           "text": "Novice: Ineffectively explain major sources of government revenue (e.g., personal income and payroll taxes, sales taxes, property taxes) at the federal, state, and local level"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "understand-the-principles-of-global-trade-and-ec",
+     "title": "Understand the principles of global trade and economic development",
+     "topics": [
+      {
+       "id": "characteristics-of-global-trade",
+       "title": "Characteristics of Global Trade",
+       "subtopics": [
+        {
+         "id": "explain-the-characteristics-of-global-trade-e-g-",
+         "title": "Explain the characteristics of global trade (e.g., tariffs, foreign exchange market, trade agreements, balance of payments, specialization)",
+         "outcomes": [
+          {
+           "code": "SS.12E.7.1.Adv",
+           "text": "Advanced: Explain, with clear and precise detail, the characteristics of global trade"
+          },
+          {
+           "code": "SS.12E.7.1.Prof",
+           "text": "Proficient: Explain, with detail, the characteristics of global trade"
+          },
+          {
+           "code": "SS.12E.7.1.P-Prof",
+           "text": "Partially Proficient: Explain, with minimal detail, the characteristics of global trade"
+          },
+          {
+           "code": "SS.12E.7.1.N",
+           "text": "Novice: Ineffectively explain the characteristics of global trade"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "economic-development",
+       "title": "Economic Development",
+       "subtopics": [
+        {
+         "id": "explain-how-global-trade-affects-a-nation-s-econ",
+         "title": "Explain how global trade affects a nation's economic development (e.g., increases in consumer choice, standards of living, production efficiencies)",
+         "outcomes": [
+          {
+           "code": "SS.12E.7.2.Adv",
+           "text": "Advanced: Explain, with clear and precise evidence, how global trade affects economic development"
+          },
+          {
+           "code": "SS.12E.7.2.Prof",
+           "text": "Proficient: Explain, with evidence, how global trade affects economic development"
+          },
+          {
+           "code": "SS.12E.7.2.P-Prof",
+           "text": "Partially Proficient: Explain, with weak evidence, how global trade affects economic development"
+          },
+          {
+           "code": "SS.12E.7.2.N",
+           "text": "Novice: Ineffectively explain how global trade affects economic development"
+          }
+         ]
+        },
+        {
+         "id": "compare-the-advantages-and-disadvantages-of-econ",
+         "title": "Compare the advantages and disadvantages of economic systems (i.e., traditional, command, market-based)",
+         "outcomes": [
+          {
+           "code": "SS.12E.7.3.Adv",
+           "text": "Advanced: Compare the advantages and disadvantages of economic systems (i.e., traditional, command, market-based), drawing highly relevant conclusions"
+          },
+          {
+           "code": "SS.12E.7.3.Prof",
+           "text": "Proficient: Compare the advantages and disadvantages of economic systems (i.e., traditional, command, market-based), drawing relevant conclusions"
+          },
+          {
+           "code": "SS.12E.7.3.P-Prof",
+           "text": "Partially Proficient: Compare the advantages and disadvantages of economic systems (i.e., traditional, command, market-based), drawing partially relevant conclusions"
+          },
+          {
+           "code": "SS.12E.7.3.N",
+           "text": "Novice: Ineffectively compare the advantages and disadvantages of economic systems (i.e., traditional, command, market-based)"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "anchor-and-inquiry-standards",
+     "title": "Anchor and Inquiry Standards",
+     "topics": [
+      {
+       "id": "developing-questions-and-planning-inquiries",
+       "title": "Developing Questions and Planning Inquiries",
+       "subtopics": [
+        {
+         "id": "developing-questions-and-planning-inquiries-1-of",
+         "title": "Developing Questions and Planning Inquiries (1 of 4)",
+         "outcomes": [
+          {
+           "code": "SS.9-12.1.1",
+           "text": "Create compelling questions representing key ideas of the disciplines"
+          },
+          {
+           "code": "SS.9-12.1.2",
+           "text": "Critique compelling questions that reflect an enduring issue in the field"
+          },
+          {
+           "code": "SS.9-12.1.3",
+           "text": "Create supporting questions that address key ideas identified in compelling questions"
+          },
+          {
+           "code": "SS.9-12.1.4",
+           "text": "Explain how new compelling and supporting questions emerge"
+          }
+         ]
+        },
+        {
+         "id": "developing-questions-and-planning-inquiries-2-of",
+         "title": "Developing Questions and Planning Inquiries (2 of 4)",
+         "outcomes": [
+          {
+           "code": "SS.9-12.1.1",
+           "text": "Create compelling questions representing key ideas of the disciplines"
+          },
+          {
+           "code": "SS.9-12.1.2",
+           "text": "Critique compelling questions that reflect an enduring issue in the field"
+          },
+          {
+           "code": "SS.9-12.1.3",
+           "text": "Create supporting questions that address key ideas identified in compelling questions"
+          },
+          {
+           "code": "SS.9-12.1.4",
+           "text": "Explain how new compelling and supporting questions emerge"
+          }
+         ]
+        },
+        {
+         "id": "developing-questions-and-planning-inquiries-3-of",
+         "title": "Developing Questions and Planning Inquiries (3 of 4)",
+         "outcomes": [
+          {
+           "code": "SS.9-12.1.1",
+           "text": "Create compelling questions representing key ideas of the disciplines"
+          },
+          {
+           "code": "SS.9-12.1.2",
+           "text": "Critique compelling questions that reflect an enduring issue in the field"
+          },
+          {
+           "code": "SS.9-12.1.3",
+           "text": "Create supporting questions that address key ideas identified in compelling questions"
+          },
+          {
+           "code": "SS.9-12.1.4",
+           "text": "Explain how new compelling and supporting questions emerge"
+          }
+         ]
+        },
+        {
+         "id": "developing-questions-and-planning-inquiries-4-of",
+         "title": "Developing Questions and Planning Inquiries (4 of 4)",
+         "outcomes": [
+          {
+           "code": "SS.9-12.1.1",
+           "text": "Create compelling questions representing key ideas of the disciplines"
+          },
+          {
+           "code": "SS.9-12.1.2",
+           "text": "Critique compelling questions that reflect an enduring issue in the field"
+          },
+          {
+           "code": "SS.9-12.1.3",
+           "text": "Create supporting questions that address key ideas identified in compelling questions"
+          },
+          {
+           "code": "SS.9-12.1.4",
+           "text": "Explain how new compelling and supporting questions emerge"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "gathering-and-evaluating-sources",
+       "title": "Gathering and Evaluating Sources",
+       "subtopics": [
+        {
+         "id": "gathering-and-evaluating-sources-1-of-2",
+         "title": "Gathering and Evaluating Sources (1 of 2)",
+         "outcomes": [
+          {
+           "code": "SS.9-12.2.1",
+           "text": "Evaluate the credibility of a source by examining its origin, author, context, content, and corroborative value"
+          },
+          {
+           "code": "SS.9-12.2.2",
+           "text": "Gather relevant information from credible sources representing a wide range of views, and note any inconsistencies in the information"
+          },
+          {
+           "code": "SS.9-12.2.1",
+           "text": "Evaluate the credibility of a source by examining its origin, author, context, content, and corroborative value"
+          },
+          {
+           "code": "SS.9-12.2.2",
+           "text": "Gather relevant information from credible sources representing a wide range of views, and note any inconsistencies in the information"
+          }
+         ]
+        },
+        {
+         "id": "gathering-and-evaluating-sources-2-of-2",
+         "title": "Gathering and Evaluating Sources (2 of 2)",
+         "outcomes": [
+          {
+           "code": "SS.9-12.2.1",
+           "text": "Evaluate the credibility of a source by examining its origin, author, context, content, and corroborative value"
+          },
+          {
+           "code": "SS.9-12.2.2",
+           "text": "Gather relevant information from credible sources representing a wide range of views, and note any inconsistencies in the information"
+          },
+          {
+           "code": "SS.9-12.2.1",
+           "text": "Evaluate the credibility of a source by examining its origin, author, context, content, and corroborative value"
+          },
+          {
+           "code": "SS.9-12.2.2",
+           "text": "Gather relevant information from credible sources representing a wide range of views, and note any inconsistencies in the information"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "creating-claims",
+       "title": "Creating Claims",
+       "subtopics": [
+        {
+         "id": "creating-claims-1-of-2",
+         "title": "Creating Claims (1 of 2)",
+         "outcomes": [
+          {
+           "code": "SS.9-12.3.1",
+           "text": "Develop claims and counterclaims using evidence that draws directly and substantively from multiple sources while pointing out the strengths and limitations of both"
+          },
+          {
+           "code": "SS.9-12.3.2",
+           "text": "Analyze evidence to detect inconsistencies within the evidence in order to revise or strengthen claims"
+          },
+          {
+           "code": "SS.9-12.3.1",
+           "text": "Develop claims and counterclaims using evidence that draws directly and substantively from multiple sources while pointing out the strengths and limitations of both"
+          },
+          {
+           "code": "SS.9-12.3.2",
+           "text": "Analyze evidence to detect inconsistencies within the evidence in order to revise or strengthen claims"
+          }
+         ]
+        },
+        {
+         "id": "creating-claims-2-of-2",
+         "title": "Creating Claims (2 of 2)",
+         "outcomes": [
+          {
+           "code": "SS.9-12.3.1",
+           "text": "Develop claims and counterclaims using evidence that draws directly and substantively from multiple sources while pointing out the strengths and limitations of both"
+          },
+          {
+           "code": "SS.9-12.3.2",
+           "text": "Analyze evidence to detect inconsistencies within the evidence in order to revise or strengthen claims"
+          },
+          {
+           "code": "SS.9-12.3.1",
+           "text": "Develop claims and counterclaims using evidence that draws directly and substantively from multiple sources while pointing out the strengths and limitations of both"
+          },
+          {
+           "code": "SS.9-12.3.2",
+           "text": "Analyze evidence to detect inconsistencies within the evidence in order to revise or strengthen claims"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "communicating-conclusions",
+       "title": "Communicating Conclusions",
+       "subtopics": [
+        {
+         "id": "communicating-conclusions-1-of-2",
+         "title": "Communicating Conclusions (1 of 2)",
+         "outcomes": [
+          {
+           "code": "SS.9-12.4.1",
+           "text": "Construct arguments and explanations using sound reasoning, appropriate structure, and examples and details while acknowledging counterclaims and evidentiary weaknesses"
+          },
+          {
+           "code": "SS.9-12.4.2",
+           "text": "Present arguments and explanations that reach a range of audiences using print and oral technologies (e.g., posters, essays, letters, debates, speeches, reports, maps) and digital technologies (e.g., Internet, social media, digital documentary)"
+          },
+          {
+           "code": "SS.9-12.4.1",
+           "text": "Construct arguments and explanations using sound reasoning, appropriate structure, and examples and details while acknowledging counterclaims and evidentiary weaknesses"
+          },
+          {
+           "code": "SS.9-12.4.2",
+           "text": "Present arguments and explanations that reach a range of audiences using print and oral technologies (e.g., posters, essays, letters, debates, speeches, reports, maps) and digital technologies (e.g., Internet, social media, digital documentary)"
+          }
+         ]
+        },
+        {
+         "id": "communicating-conclusions-2-of-2",
+         "title": "Communicating Conclusions (2 of 2)",
+         "outcomes": [
+          {
+           "code": "SS.9-12.4.1",
+           "text": "Construct arguments and explanations using sound reasoning, appropriate structure, and examples and details while acknowledging counterclaims and evidentiary weaknesses"
+          },
+          {
+           "code": "SS.9-12.4.2",
+           "text": "Present arguments and explanations that reach a range of audiences using print and oral technologies (e.g., posters, essays, letters, debates, speeches, reports, maps) and digital technologies (e.g., Internet, social media, and digital documentary)"
+          },
+          {
+           "code": "SS.9-12.4.1",
+           "text": "Construct arguments and explanations using sound reasoning, appropriate structure, and examples and details while acknowledging counterclaims and evidentiary weaknesses"
+          },
+          {
+           "code": "SS.9-12.4.2",
+           "text": "Present arguments and explanations that reach a range of audiences using print and oral technologies (e.g., posters, essays, letters, debates, speeches, reports, maps) and digital technologies (e.g., Internet, social media, digital documentary)"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "taking-informed-action",
+       "title": "Taking Informed Action",
+       "subtopics": [
+        {
+         "id": "taking-informed-action-1-of-4",
+         "title": "Taking Informed Action (1 of 4)",
+         "outcomes": [
+          {
+           "code": "SS.9-12.5.1",
+           "text": "Identify local, regional and/or global problems or issues by using interdisciplinary lenses"
+          },
+          {
+           "code": "SS.9-12.5.2",
+           "text": "Analyze the origins of a problem or issue and explain the challenges and opportunities faced by those trying to address it"
+          },
+          {
+           "code": "SS.9-12.5.3",
+           "text": "Apply a range of deliberative strategies and procedures to make decisions and propose feasible solutions to address local, regional, and/or global concerns"
+          },
+          {
+           "code": "SS.9-12.5.4",
+           "text": "Create an action plan to address a solution to a problem or issue and demonstrate substantive evidence of implementation"
+          }
+         ]
+        },
+        {
+         "id": "taking-informed-action-2-of-4",
+         "title": "Taking Informed Action (2 of 4)",
+         "outcomes": [
+          {
+           "code": "SS.9-12.5.1",
+           "text": "Identify local, regional and/or global problems or issues by using interdisciplinary lenses"
+          },
+          {
+           "code": "SS.9-12.5.2",
+           "text": "Analyze the origins of a problem or issue and explain the challenges and opportunities faced by those trying to address it"
+          },
+          {
+           "code": "SS.9-12.5.3",
+           "text": "Apply a range of deliberative strategies and procedures to make decisions and propose feasible solutions to address local, regional, and/or global concerns"
+          },
+          {
+           "code": "SS.9-12.5.4",
+           "text": "Create an action plan to address a solution to the problem or issue and demonstrate substantive evidence of implementation"
+          }
+         ]
+        },
+        {
+         "id": "taking-informed-action-3-of-4",
+         "title": "Taking Informed Action (3 of 4)",
+         "outcomes": [
+          {
+           "code": "SS.9-12.5.1",
+           "text": "Identify local, regional and/or global problems or issues by using interdisciplinary lenses"
+          },
+          {
+           "code": "SS.9-12.5.2",
+           "text": "Analyze the origins of a problem or issue and explain the challenges and opportunities faced by those trying to address it"
+          },
+          {
+           "code": "SS.9-12.5.3",
+           "text": "Apply a range of deliberative strategies and procedures to make decisions and propose feasible solutions to address local, regional, and/or global concerns"
+          },
+          {
+           "code": "SS.9-12.5.4",
+           "text": "Create an action plan to address a solution to the problem or issue and demonstrate substantive evidence of implementation"
+          }
+         ]
+        },
+        {
+         "id": "taking-informed-action-4-of-4",
+         "title": "Taking Informed Action (4 of 4)",
+         "outcomes": [
+          {
+           "code": "SS.9-12.5.1",
+           "text": "Identify local, regional and/or global problems or issues by using interdisciplinary lenses"
+          },
+          {
+           "code": "SS.9-12.5.2",
+           "text": "Analyze the origins of a problem or issue and explain the challenges and opportunities faced by those trying to address it"
+          },
+          {
+           "code": "SS.9-12.5.3",
+           "text": "Apply a range of deliberative strategies and procedures to make decisions and propose feasible solutions to address local, regional, and/or global concerns"
+          },
+          {
+           "code": "SS.9-12.5.4",
+           "text": "Create an action plan to address a solution to a problem or issue and demonstrate substantive evidence of implementation"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "content-standards",
+     "title": "Content Standards",
+     "topics": [
+      {
+       "id": "content-standards",
+       "title": "Content Standards",
+       "subtopics": [
+        {
+         "id": "content-standards-1-of-16",
+         "title": "Content Standards (1 of 16)",
+         "outcomes": [
+          {
+           "code": "SS.MHH.1.19.1",
+           "text": "Examine the long-term causes and triggering events, people, and ideas behind the overthrow of the Hawaiian monarchy"
+          },
+          {
+           "code": "SS.MHH.1.19.2",
+           "text": "Analyze the political issues that emerged from the overthrow of the Hawaiian monarchy"
+          },
+          {
+           "code": "SS.MHH.1.19.3",
+           "text": "Assess the argument over the legality of the annexation of Hawaiʻi"
+          },
+          {
+           "code": "SS.MHH.1.18.4",
+           "text": "Analyze multiple perspectives on the overthrow of the Hawaiian monarchy and annexation"
+          },
+          {
+           "code": "SS.MHH.2.15.1",
+           "text": "Compare the causes and effects of migration to and from Hawaiʻi before and after the overthrow"
+          }
+         ]
+        },
+        {
+         "id": "content-standards-2-of-16",
+         "title": "Content Standards (2 of 16)",
+         "outcomes": [
+          {
+           "code": "SS.MHH.2.10.2",
+           "text": "Explain the development of organized labor on plantations"
+          },
+          {
+           "code": "SS.MHH.2.14.3",
+           "text": "Analyze environmental changes that resulted from the plantation system"
+          },
+          {
+           "code": "SS.MHH.3.16.1",
+           "text": "Analyze Hawaiʻi's position in the geopolitics surrounding the bombing of Pearl Harbor"
+          },
+          {
+           "code": "SS.MHH.3.19.2",
+           "text": "Analyze the local sociopolitical effects of the bombing of Pearl Harbor"
+          },
+          {
+           "code": "SS.MHH.3.17.3",
+           "text": "Compare and contrast the internment of Japanese Americans on the West Coast with those in Hawaiʻi"
+          }
+         ]
+        },
+        {
+         "id": "content-standards-3-of-16",
+         "title": "Content Standards (3 of 16)",
+         "outcomes": [
+          {
+           "code": "SS.MHH.3.19.4",
+           "text": "Analyze the causes and effects of the Democratic Revolution of 1954"
+          },
+          {
+           "code": "SS.MHH.4.9.1",
+           "text": "Determine the socioeconomic effects of the decline of agriculture, growth of the tourism industry, and continued military presence"
+          },
+          {
+           "code": "SS.MHH.4.19.2",
+           "text": "Analyze the causes and sociopolitical impact of the Hawaiian Renaissance"
+          },
+          {
+           "code": "SS.PID.1.17.1",
+           "text": "Evaluate the extent to which classical philosophy, natural rights philosophy, and English common law informed the thinking of the American Founders"
+          },
+          {
+           "code": "SS.PID.1.19.2",
+           "text": "Analyze the problems and compromises that shaped the United States Constitution"
+          }
+         ]
+        },
+        {
+         "id": "content-standards-4-of-16",
+         "title": "Content Standards (4 of 16)",
+         "outcomes": [
+          {
+           "code": "SS.PID.1.11.3",
+           "text": "Explain the perspective of both Hamilton and Jefferson on the optimal strength of the federal government and its role in the national economy"
+          },
+          {
+           "code": "SS.PID.2.6.1",
+           "text": "Explain how the American Constitution embodies the principles of the rule of law, popular sovereignty, separation of powers, checks and balances, and limited government"
+          },
+          {
+           "code": "SS.PID.2.8.2",
+           "text": "Analyze the role of the three branches of government in the lawmaking process"
+          },
+          {
+           "code": "SS.PID.3.17.1",
+           "text": "Explain the significance and impact of landmark Supreme Court cases in American history"
+          },
+          {
+           "code": "SS.PID.3.7.2",
+           "text": "Assess the importance of exercising the rights and responsibilities of citizenship in a democracy"
+          }
+         ]
+        },
+        {
+         "id": "content-standards-5-of-16",
+         "title": "Content Standards (5 of 16)",
+         "outcomes": [
+          {
+           "code": "SS.PID.4.7.1",
+           "text": "Draw conclusions about the role of policy makers, interest groups, and the media in shaping public policy"
+          },
+          {
+           "code": "SS.PID.4.10.2",
+           "text": "Analyze how the government affects the economic well-being of its citizens"
+          },
+          {
+           "code": "SS.PID.4.16.3",
+           "text": "Evaluate the degree to which the United States affects and is affected by geopolitics and international economics"
+          },
+          {
+           "code": "SS.PID.5.7.1",
+           "text": "Plan and demonstrate some ways in which an active citizen can effect change in the community, state, nation, or world"
+          },
+          {
+           "code": "SS.US.1.16.1",
+           "text": "Analyze reasons groups migrated to and within the United States"
+          }
+         ]
+        },
+        {
+         "id": "content-standards-6-of-16",
+         "title": "Content Standards (6 of 16)",
+         "outcomes": [
+          {
+           "code": "SS.US.1.8.2",
+           "text": "Assess effects of anti-immigrant politics on public policy"
+          },
+          {
+           "code": "SS.US.2.10.1",
+           "text": "Analyze features of distinct market structures and government efforts to influence them"
+          },
+          {
+           "code": "SS.US.2.7.2",
+           "text": "Assess how business magnates came to dominate politics in the Gilded Age"
+          },
+          {
+           "code": "SS.US.2.7.3",
+           "text": "Evaluate the effectiveness of labor unions and populists in shaping public policy"
+          },
+          {
+           "code": "SS.US.3.15.1",
+           "text": "Analyze the benefits and challenges associated with rapidly growing urban areas"
+          }
+         ]
+        },
+        {
+         "id": "content-standards-7-of-16",
+         "title": "Content Standards (7 of 16)",
+         "outcomes": [
+          {
+           "code": "SS.US.3.8.2",
+           "text": "Assess the efforts of Progressive Era reform movements to improve society, government, business, and the environment"
+          },
+          {
+           "code": "SS.US.3.7.3",
+           "text": "Analyze the development of the women's suffrage movement over time and its legacy"
+          },
+          {
+           "code": "SS.US.4.19.1",
+           "text": "Analyze the factors that enabled the United States to become an imperial power"
+          },
+          {
+           "code": "SS.US.4.16.2",
+           "text": "Evaluate the effects of U.S. foreign policy in Latin America, Asia, and the Pacific"
+          },
+          {
+           "code": "SS.US.5.19.1",
+           "text": "Distinguish between the long-term causes and triggering events that led the United States into World War I"
+          }
+         ]
+        },
+        {
+         "id": "content-standards-8-of-16",
+         "title": "Content Standards (8 of 16)",
+         "outcomes": [
+          {
+           "code": "SS.US.5.8.2",
+           "text": "Evaluate wartime restrictions on civil liberties"
+          },
+          {
+           "code": "SS.US.5.18.3",
+           "text": "Analyze how internationalism and isolationism shaped U.S. foreign policy after World War I"
+          },
+          {
+           "code": "SS.US.6.11.1",
+           "text": "Assess how innovations in transportation, communication, and finance changed American society"
+          },
+          {
+           "code": "SS.US.6.18.2",
+           "text": "Compare rival perspectives on economic, social, and religious conflicts in the 1920s"
+          },
+          {
+           "code": "SS.US.6.17.3",
+           "text": "Analyze the cultural contributions of modernism, the Harlem Renaissance, and the New Woman"
+          }
+         ]
+        },
+        {
+         "id": "content-standards-9-of-16",
+         "title": "Content Standards (9 of 16)",
+         "outcomes": [
+          {
+           "code": "SS.US.7.19.1",
+           "text": "Analyze the conditions and policies that led to the Great Depression"
+          },
+          {
+           "code": "SS.US.7.11.2",
+           "text": "Analyze how the decline in production and spending affected Americans during the Great Depression"
+          },
+          {
+           "code": "SS.US.7.10.3",
+           "text": "Assess the impact and legacy of New Deal relief, recovery, and reform programs"
+          },
+          {
+           "code": "SS.US.8.19.1",
+           "text": "Explain the historical developments and policies that resulted in the United States entering World War II"
+          },
+          {
+           "code": "SS.US.8.17.2",
+           "text": "Assess the social, political, and economic transformation of the United States during World War II"
+          }
+         ]
+        },
+        {
+         "id": "content-standards-10-of-16",
+         "title": "Content Standards (10 of 16)",
+         "outcomes": [
+          {
+           "code": "SS.US.8.19.3",
+           "text": "Analyze the role of the United States in the outcome of World War II in the European and the Pacific theaters"
+          },
+          {
+           "code": "SS.US.9.19.1",
+           "text": "Explain how political ideology shaped the post-war order and led to the Soviet-U.S. arms race"
+          },
+          {
+           "code": "SS.US.9.17.2",
+           "text": "Analyze how U.S. foreign policy during the Cold War shaped conflicts in Asia and the Americas"
+          },
+          {
+           "code": "SS.US.9.7.3",
+           "text": "Analyze how anti-communism and the Cold War affected civil liberties, labor, and technology"
+          },
+          {
+           "code": "SS.US.10.6.1",
+           "text": "Evaluate the effectiveness of civil rights organizations and actions in overcoming racial segregation"
+          }
+         ]
+        },
+        {
+         "id": "content-standards-11-of-16",
+         "title": "Content Standards (11 of 16)",
+         "outcomes": [
+          {
+           "code": "SS.US.10.11.2",
+           "text": "Evaluate the impact of Great Society-era policies in addressing economic, social,and environmental conditions"
+          },
+          {
+           "code": "SS.US.10.6.3",
+           "text": "Assess the impact of student movements and counter culture on American politics and society"
+          },
+          {
+           "code": "SS.US.10.6.4",
+           "text": "Examine other movements that emerged in the late civil rights era"
+          },
+          {
+           "code": "SS.US.11.17.1",
+           "text": "Analyze the rise of modern conservatism in the United States"
+          },
+          {
+           "code": "SS.US.11.8.2",
+           "text": "Assess the social and political impact of conservatism in the United States"
+          }
+         ]
+        },
+        {
+         "id": "content-standards-12-of-16",
+         "title": "Content Standards (12 of 16)",
+         "outcomes": [
+          {
+           "code": "SS.US.12.8.1",
+           "text": "Evaluate popular and government responses to emerging domestic challenges"
+          },
+          {
+           "code": "SS.US.12.16.2",
+           "text": "Analyze U.S. responses to global challenges and crises"
+          },
+          {
+           "code": "SS.WH.1.17.1",
+           "text": "Explain how the ideas of the Renaissance and Reformation motivated exploration and conquest"
+          },
+          {
+           "code": "SS.WH.1.19.2",
+           "text": "Analyze the political and economic impacts of European expeditions in the 15th and 16th centuries"
+          },
+          {
+           "code": "SS.WH.1.15.3",
+           "text": "Assess the effects of the Atlantic slave trade"
+          }
+         ]
+        },
+        {
+         "id": "content-standards-13-of-16",
+         "title": "Content Standards (13 of 16)",
+         "outcomes": [
+          {
+           "code": "SS.WH.1.16.4",
+           "text": "Evaluate the impact of the Columbian Exchange of food crops, diseases, and trade goods between Europe and the Americas"
+          },
+          {
+           "code": "SS.WH.2.16.2",
+           "text": "Explain the economic motives of the British and Dutch empires in the conquest of India and Southeast Asia"
+          },
+          {
+           "code": "SS.WH.3.19.1",
+           "text": "Explain how social changes and technological innovations in Britain led to the rise and spread of the Industrial Revolution in the late 1700s"
+          },
+          {
+           "code": "SS.WH.3.12.2",
+           "text": "Analyze the positive and negative impacts of the Industrial Revolution in the Americas, Asia, and Africa"
+          },
+          {
+           "code": "SS.WH.4.17.1",
+           "text": "Analyze the motives that drove European and Japanese imperialism"
+          }
+         ]
+        },
+        {
+         "id": "content-standards-14-of-16",
+         "title": "Content Standards (14 of 16)",
+         "outcomes": [
+          {
+           "code": "SS.WH.4.16.2",
+           "text": "Compare methods of imperialism during the late 1800s in Asia and Africa"
+          },
+          {
+           "code": "SS.WH.4.16.3",
+           "text": "Analyze the impact of colonial rule in Asia and Africa"
+          },
+          {
+           "code": "SS.WH.5.19.1",
+           "text": "Explain the impact of the Scientific Revolution on the rise of the Enlightenment"
+          },
+          {
+           "code": "SS.WH.5.18.2",
+           "text": "Explain how Enlightenment ideas influenced the rule of monarchies"
+          },
+          {
+           "code": "SS.WH.5.19.3",
+           "text": "Compare causes and effects of modern revolutions"
+          }
+         ]
+        },
+        {
+         "id": "content-standards-15-of-16",
+         "title": "Content Standards (15 of 16)",
+         "outcomes": [
+          {
+           "code": "SS.WH.6.19.1",
+           "text": "Distinguish between short and long-term causes leading to WWI"
+          },
+          {
+           "code": "SS.WH.6.19.2",
+           "text": "Explain the causes of the rise of totalitarian regimes during the post-WWI period"
+          },
+          {
+           "code": "SS.WH.6.17.3",
+           "text": "Analyze the turning points in the Pacific and European theatres of combat during WWII"
+          },
+          {
+           "code": "SS.WH.6.17.4",
+           "text": "Explain the significance of the Holocaust and other atrocities in WWII and subsequent war crimes tribunals"
+          },
+          {
+           "code": "SS.WH.7.19.1",
+           "text": "Analyze the causes and effects of decolonization in India, Algeria, and Kenya after WWII"
+          }
+         ]
+        },
+        {
+         "id": "content-standards-16-of-16",
+         "title": "Content Standards (16 of 16)",
+         "outcomes": [
+          {
+           "code": "SS.WH.7.17.2",
+           "text": "Analyze the impacts of nationalist revolutionary leaders and movements in achieving independence"
+          },
+          {
+           "code": "SS.WH.7.17.3",
+           "text": "Analyze the role of the United Nations on state-building and negotiation of conflicts after WWII"
+          },
+          {
+           "code": "SS.WH.7.18.4",
+           "text": "Analyze how the Cold War led to global conflict in Asia, the Middle East, and Latin America"
+          },
+          {
+           "code": "SS.WH.8.12.1",
+           "text": "Analyze the factors affecting climate change and global sustainability"
+          },
+          {
+           "code": "SS.WH.8.7.2",
+           "text": "Analyze human rights violations and propose solutions to them"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "build": {
+  "builtAt": "2026-10-14T16:20:41.326Z",
+  "model": "none",
+  "usd": 0,
+  "expectedCodes": 416,
+  "coverage": 1,
+  "missingCodes": [],
+  "counts": {
+   "grades": 10,
+   "units": 32,
+   "topics": 84,
+   "subtopics": 142,
+   "outcomes": 560
+  },
+  "warnings": []
+ }
+}

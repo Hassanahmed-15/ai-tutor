@@ -1,0 +1,4183 @@
+{
+ "id": "us-az-computer-science",
+ "region": "US",
+ "framework": "Arizona state academic standards: Computer Science & Technology",
+ "board": null,
+ "qualification": "K-12",
+ "subject": "Computer Science & Technology",
+ "syllabusCode": null,
+ "gradeSystem": "grade",
+ "source": {
+  "urls": [
+   "https://api.commonstandardsproject.com/api/v1/jurisdictions/0B41FFF6B5114EB0B8A89CE0E70E22D8",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/31128EF8790648128923C85E42B3080B",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/94895595B97345458A0BBEF8336DB457",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/108F803FDC624C3A9E12EAA9FEE32471",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/647F48B28D754FC3BDA8D90627FCDB10",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/034BBC9220C14E4A8C3B716008B5CE1E",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/931456133A7542569871D4A1E90463C6",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/90A33CDB5C3D445EBEA0BC17AAC99EFD",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/03E247FB06204C9B9946D73722CA8585",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/9947F6DDE1F648AD8D53ECB2519320DF",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/0A3181FBC67648C98BE83EB8394EDD46",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/5A7654B42EE94838ABCCE0EDB987E6BC",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/12BA62B1A4774C03938D36A0049F3DAE",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/A38912624B3044828925C048F05B60C3",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/DF801D217EE947FDB80904D46C286027"
+  ],
+  "publisher": "Arizona state education agency (machine-readable via Common Standards Project / ASN)",
+  "licence": "CC BY 4.0 US, Common Curriculum, Inc.",
+  "firstExam": "2022"
+ },
+ "grades": [
+  {
+   "grade": "K",
+   "units": [
+    {
+     "id": "concept-computing-systems-cs",
+     "title": "Concept: Computing Systems (CS)",
+     "topics": [
+      {
+       "id": "subconcept-devices-d",
+       "title": "Subconcept: Devices (D)",
+       "subtopics": [
+        {
+         "id": "subconcept-devices-d",
+         "title": "Subconcept: Devices (D)",
+         "outcomes": [
+          {
+           "code": "K.CS.D.1",
+           "text": "With teacher guidance, select and operate an appropriate device to perform a task."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "subconcept-hardware-and-software-hs",
+       "title": "Subconcept: Hardware and Software (HS)",
+       "subtopics": [
+        {
+         "id": "subconcept-hardware-and-software-hs",
+         "title": "Subconcept: Hardware and Software (HS)",
+         "outcomes": [
+          {
+           "code": "K.CS.HS.1",
+           "text": "Use appropriate terminology in identifying and describing the function of common physical components of computing systems."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "subconcept-troubleshooting-t",
+       "title": "Subconcept: Troubleshooting (T)",
+       "subtopics": [
+        {
+         "id": "subconcept-troubleshooting-t",
+         "title": "Subconcept: Troubleshooting (T)",
+         "outcomes": [
+          {
+           "code": "K.CS.T.1",
+           "text": "Discuss basic hardware and software problems."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "concept-networks-and-the-internet-ni",
+     "title": "Concept: Networks and the Internet (NI)",
+     "topics": [
+      {
+       "id": "subconcept-cybersecurity-c",
+       "title": "Subconcept: Cybersecurity (C)",
+       "subtopics": [
+        {
+         "id": "subconcept-cybersecurity-c",
+         "title": "Subconcept: Cybersecurity (C)",
+         "outcomes": [
+          {
+           "code": "K.NI.C.1",
+           "text": "Explain that a password helps protect the privacy of information."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "subconcept-network-communication-and-organizatio",
+       "title": "Subconcept: Network, Communication, and Organization (NCO)",
+       "subtopics": [
+        {
+         "id": "subconcept-network-communication-and-organizatio",
+         "title": "Subconcept: Network, Communication, and Organization (NCO)",
+         "outcomes": [
+          {
+           "code": "K.NI.NCO.1",
+           "text": "With teacher guidance, students define computer networks and how they can be used to connect people to other people, places, information, and ideas."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "concept-data-and-analysis-da",
+     "title": "Concept: Data and Analysis (DA)",
+     "topics": [
+      {
+       "id": "subconcept-collection-visualization-and-transfor",
+       "title": "Subconcept: Collection, Visualization and Transformation (CVT)",
+       "subtopics": [
+        {
+         "id": "subconcept-collection-visualization-and-transfor",
+         "title": "Subconcept: Collection, Visualization and Transformation (CVT)",
+         "outcomes": [
+          {
+           "code": "K.DA.CVT.1",
+           "text": "With teacher guidance, collect and transform data using digital devices; Display data for communication in various visual formats."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "subconcept-storage-s",
+       "title": "Subconcept: Storage (S)",
+       "subtopics": [
+        {
+         "id": "subconcept-storage-s",
+         "title": "Subconcept: Storage (S)",
+         "outcomes": [
+          {
+           "code": "K.DA.S.1",
+           "text": "Recognize that data can be collected and stored on different computing devices over time and retrieved later."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "subconcept-inference-and-models-im",
+       "title": "Subconcept: Inference and Models (IM)",
+       "subtopics": [
+        {
+         "id": "subconcept-inference-and-models-im",
+         "title": "Subconcept: Inference and Models (IM)",
+         "outcomes": [
+          {
+           "code": "K.DA.IM.1",
+           "text": "Discuss patterns in data to make inferences or predictions."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "concept-algorithms-and-programming-ap",
+     "title": "Concept: Algorithms and Programming (AP)",
+     "topics": [
+      {
+       "id": "subconcept-algorithms-a",
+       "title": "Subconcept: Algorithms (A)",
+       "subtopics": [
+        {
+         "id": "subconcept-algorithms-a",
+         "title": "Subconcept: Algorithms (A)",
+         "outcomes": [
+          {
+           "code": "K.AP.A.1",
+           "text": "With teacher assistance, model daily processes by following algorithms (sets of step-by-step instructions) to complete tasks."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "subconcept-variables-v",
+       "title": "Subconcept: Variables (V)",
+       "subtopics": [
+        {
+         "id": "subconcept-variables-v",
+         "title": "Subconcept: Variables (V)",
+         "outcomes": [
+          {
+           "code": "K.AP.V.1",
+           "text": "With teacher assistance, model the way programs store and manipulate data by using numbers or other symbols to represent information."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "subconcept-control-c",
+       "title": "Subconcept: Control (C)",
+       "subtopics": [
+        {
+         "id": "subconcept-control-c",
+         "title": "Subconcept: Control (C)",
+         "outcomes": [
+          {
+           "code": "K.AP.C.1",
+           "text": "With teacher assistance, identify programs with sequences and simple loops, to express ideas or address a problem."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "subconcept-modularity-m",
+       "title": "Subconcept: Modularity (M)",
+       "subtopics": [
+        {
+         "id": "subconcept-modularity-m",
+         "title": "Subconcept: Modularity (M)",
+         "outcomes": [
+          {
+           "code": "K.AP.M.1",
+           "text": "With teacher assistance, solve a problem by breaking it down into smaller parts."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "subconcept-program-development-pd",
+       "title": "Subconcept: Program Development (PD)",
+       "subtopics": [
+        {
+         "id": "subconcept-program-development-pd",
+         "title": "Subconcept: Program Development (PD)",
+         "outcomes": [
+          {
+           "code": "K.AP.PD.1",
+           "text": "With teacher assistance, develop plans that describe a program’s sequence of events, goals, and expected outcomes."
+          },
+          {
+           "code": "K.AP.PD.2",
+           "text": "With teacher assistance, identify attribution (credit) when using the ideas and creations of others while developing programs."
+          },
+          {
+           "code": "K.AP.PD.3",
+           "text": "With teacher assistance, debug (identify and fix) errors in an algorithm or program that includes sequences and simple loops."
+          },
+          {
+           "code": "K.AP.PD.4",
+           "text": "With teacher assistance, using correct terminology, describe steps taken and choices made during program development."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "concept-impacts-of-computing-ic",
+     "title": "Concept: Impacts of Computing (IC)",
+     "topics": [
+      {
+       "id": "subconcept-culture-c",
+       "title": "Subconcept: Culture (C)",
+       "subtopics": [
+        {
+         "id": "subconcept-culture-c",
+         "title": "Subconcept: Culture (C)",
+         "outcomes": [
+          {
+           "code": "K.IC.C.1",
+           "text": "Discuss how people lived and worked before and after the implementation or adoption of new computing technology."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "subconcept-social-interactions-si",
+       "title": "Subconcept: Social Interactions (SI)",
+       "subtopics": [
+        {
+         "id": "subconcept-social-interactions-si",
+         "title": "Subconcept: Social Interactions (SI)",
+         "outcomes": [
+          {
+           "code": "K.IC.SI.1",
+           "text": "Work respectfully and responsibly with others online."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "subconcept-safety-law-and-ethics-sle",
+       "title": "Subconcept: Safety, Law, and Ethics (SLE)",
+       "subtopics": [
+        {
+         "id": "subconcept-safety-law-and-ethics-sle",
+         "title": "Subconcept: Safety, Law, and Ethics (SLE)",
+         "outcomes": [
+          {
+           "code": "K.IC.SLE.1",
+           "text": "Keep login information private, and log off of devices appropriately."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "1",
+   "units": [
+    {
+     "id": "concept-computing-systems-cs",
+     "title": "Concept: Computing Systems (CS)",
+     "topics": [
+      {
+       "id": "subconcept-devices-d",
+       "title": "Subconcept: Devices (D)",
+       "subtopics": [
+        {
+         "id": "subconcept-devices-d",
+         "title": "Subconcept: Devices (D)",
+         "outcomes": [
+          {
+           "code": "1.CS.D.1",
+           "text": "With teacher guidance, select and operate appropriate devices and software to perform a task."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "subconcept-hardware-and-software-hs",
+       "title": "Subconcept: Hardware and Software (HS)",
+       "subtopics": [
+        {
+         "id": "subconcept-hardware-and-software-hs",
+         "title": "Subconcept: Hardware and Software (HS)",
+         "outcomes": [
+          {
+           "code": "1.CS.HS.1",
+           "text": "Use appropriate terminology in identifying and describing the function of common physical components of computing systems."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "subconcept-troubleshooting-t",
+       "title": "Subconcept: Troubleshooting (T)",
+       "subtopics": [
+        {
+         "id": "subconcept-troubleshooting-t",
+         "title": "Subconcept: Troubleshooting (T)",
+         "outcomes": [
+          {
+           "code": "1.CS.T.1",
+           "text": "Identify basic hardware and software problems using accurate terminology."
+          },
+          {
+           "code": "1.CS.T.2",
+           "text": "With teacher guidance, begin to use basic troubleshooting strategies."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "concept-networks-and-the-internet-ni",
+     "title": "Concept: Networks and the Internet (NI)",
+     "topics": [
+      {
+       "id": "subconcept-cybersecurity-c",
+       "title": "Subconcept: Cybersecurity (C)",
+       "subtopics": [
+        {
+         "id": "subconcept-cybersecurity-c",
+         "title": "Subconcept: Cybersecurity (C)",
+         "outcomes": [
+          {
+           "code": "1.NI.C.1",
+           "text": "Explain what passwords are and why we use them to protect personal information (e.g., name, location, phone number, home address) and keep it private."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "subconcept-network-communication-and-organizatio",
+       "title": "Subconcept: Network, Communication, and Organization (NCO)",
+       "subtopics": [
+        {
+         "id": "subconcept-network-communication-and-organizatio",
+         "title": "Subconcept: Network, Communication, and Organization (NCO)",
+         "outcomes": [
+          {
+           "code": "1.NI.NCO.1",
+           "text": "With teacher guidance, students discuss how computer networks can be used to connect people to other people, places, information, and ideas."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "concept-data-and-analysis-da",
+     "title": "Concept: Data and Analysis (DA)",
+     "topics": [
+      {
+       "id": "subconcept-collection-visualization-and-transfor",
+       "title": "Subconcept: Collection, Visualization and Transformation (CVT)",
+       "subtopics": [
+        {
+         "id": "subconcept-collection-visualization-and-transfor",
+         "title": "Subconcept: Collection, Visualization and Transformation (CVT)",
+         "outcomes": [
+          {
+           "code": "1.DA.CVT.1",
+           "text": "With teacher guidance, collect and transform data using digital devices; Display data for communication in various visual formats."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "subconcept-storage-s",
+       "title": "Subconcept: Storage (S)",
+       "subtopics": [
+        {
+         "id": "subconcept-storage-s",
+         "title": "Subconcept: Storage (S)",
+         "outcomes": [
+          {
+           "code": "1.DA.S.1",
+           "text": "Explain that a variety of data (e.g., music, video, images, and text) can be stored in and retrieved from a computing device."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "subconcept-inference-and-models-im",
+       "title": "Subconcept: Inference and Models (IM)",
+       "subtopics": [
+        {
+         "id": "subconcept-inference-and-models-im",
+         "title": "Subconcept: Inference and Models (IM)",
+         "outcomes": [
+          {
+           "code": "1.DA.IM.1",
+           "text": "Identify patterns in data to make inferences or predictions."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "concept-algorithms-and-programming-ap",
+     "title": "Concept: Algorithms and Programming (AP)",
+     "topics": [
+      {
+       "id": "subconcept-algorithms-a",
+       "title": "Subconcept: Algorithms (A)",
+       "subtopics": [
+        {
+         "id": "subconcept-algorithms-a",
+         "title": "Subconcept: Algorithms (A)",
+         "outcomes": [
+          {
+           "code": "1.AP.A.1",
+           "text": "Model daily processes by following algorithms (sets of step-by-step instructions) to complete tasks."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "subconcept-variables-v",
+       "title": "Subconcept: Variables (V)",
+       "subtopics": [
+        {
+         "id": "subconcept-variables-v",
+         "title": "Subconcept: Variables (V)",
+         "outcomes": [
+          {
+           "code": "1.AP.V.1",
+           "text": "Model the way programs store and manipulate data by using numbers or other symbols to represent information."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "subconcept-control-c",
+       "title": "Subconcept: Control (C)",
+       "subtopics": [
+        {
+         "id": "subconcept-control-c",
+         "title": "Subconcept: Control (C)",
+         "outcomes": [
+          {
+           "code": "1.AP.C.1",
+           "text": "Identify programs with sequences and simple loops, to express ideas or address a problem."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "subconcept-modularity-m",
+       "title": "Subconcept: Modularity (M)",
+       "subtopics": [
+        {
+         "id": "subconcept-modularity-m",
+         "title": "Subconcept: Modularity (M)",
+         "outcomes": [
+          {
+           "code": "1.AP.M.1",
+           "text": "Solve a problem by breaking it down into smaller parts."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "subconcept-program-development-pd",
+       "title": "Subconcept: Program Development (PD)",
+       "subtopics": [
+        {
+         "id": "subconcept-program-development-pd",
+         "title": "Subconcept: Program Development (PD)",
+         "outcomes": [
+          {
+           "code": "1.AP.PD.1",
+           "text": "With teacher assistance identify plans that describe a program’s sequence of events, goals, and expected outcomes."
+          },
+          {
+           "code": "1.AP.PD.2",
+           "text": "With teacher assistance, give attribution (credit) when using the ideas and creations of others while developing programs."
+          },
+          {
+           "code": "1.AP.PD.3",
+           "text": "With teacher assistance, debug (identify and fix) errors in an algorithm or program that includes sequences and simple loops."
+          },
+          {
+           "code": "1.AP.PD.4",
+           "text": "Using correct terminology, describe steps taken and choices made during program development."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "concept-impacts-of-computing-ic",
+     "title": "Concept: Impacts of Computing (IC)",
+     "topics": [
+      {
+       "id": "subconcept-culture-c",
+       "title": "Subconcept: Culture (C)",
+       "subtopics": [
+        {
+         "id": "subconcept-culture-c",
+         "title": "Subconcept: Culture (C)",
+         "outcomes": [
+          {
+           "code": "1.IC.C.1",
+           "text": "Discuss how people live and work before and after the implementation or adoption of new computing technology."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "subconcept-social-interactions-si",
+       "title": "Subconcept: Social Interactions (SI)",
+       "subtopics": [
+        {
+         "id": "subconcept-social-interactions-si",
+         "title": "Subconcept: Social Interactions (SI)",
+         "outcomes": [
+          {
+           "code": "1.IC.SI.1",
+           "text": "Work respectfully and responsibly with others online."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "subconcept-safety-law-and-ethics-sle",
+       "title": "Subconcept: Safety, Law, and Ethics (SLE)",
+       "subtopics": [
+        {
+         "id": "subconcept-safety-law-and-ethics-sle",
+         "title": "Subconcept: Safety, Law, and Ethics (SLE)",
+         "outcomes": [
+          {
+           "code": "1.IC.SLE.1",
+           "text": "Keep login information private, and log off devices appropriately."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "2",
+   "units": [
+    {
+     "id": "concept-computing-systems-cs",
+     "title": "Concept: Computing Systems (CS)",
+     "topics": [
+      {
+       "id": "subconcept-devices-d",
+       "title": "Subconcept: Devices (D)",
+       "subtopics": [
+        {
+         "id": "subconcept-devices-d",
+         "title": "Subconcept: Devices (D)",
+         "outcomes": [
+          {
+           "code": "2.CS.D.1",
+           "text": "Recognize that users have different needs and preferences for technology they used by selecting and operating appropriate devices."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "subconcept-hardware-and-software-hs",
+       "title": "Subconcept: Hardware and Software (HS)",
+       "subtopics": [
+        {
+         "id": "subconcept-hardware-and-software-hs",
+         "title": "Subconcept: Hardware and Software (HS)",
+         "outcomes": [
+          {
+           "code": "2.CS.HS.1",
+           "text": "Understand how computing systems use both hardware (device) and software (program/app) to process information."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "subconcept-troubleshooting-t",
+       "title": "Subconcept: Troubleshooting (T)",
+       "subtopics": [
+        {
+         "id": "subconcept-troubleshooting-t",
+         "title": "Subconcept: Troubleshooting (T)",
+         "outcomes": [
+          {
+           "code": "2.CS.T.1",
+           "text": "Explain basic hardware (device) and software (program/app) problems using accurate terminology."
+          },
+          {
+           "code": "2.CS.T.2",
+           "text": "With teacher guidance, use basic troubleshooting strategies."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "concept-networks-and-the-internet-ni",
+     "title": "Concept: Networks and the Internet (NI)",
+     "topics": [
+      {
+       "id": "subconcept-cybersecurity-c",
+       "title": "Subconcept: Cybersecurity (C)",
+       "subtopics": [
+        {
+         "id": "subconcept-cybersecurity-c",
+         "title": "Subconcept: Cybersecurity (C)",
+         "outcomes": [
+          {
+           "code": "2.NI.C.1",
+           "text": "Explain what passwords are and why we use them, and use strong passwords to protect devices and information from unauthorized access."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "subconcept-network-communication-and-organizatio",
+       "title": "Subconcept: Network, Communication, and Organization (NCO)",
+       "subtopics": [
+        {
+         "id": "subconcept-network-communication-and-organizatio",
+         "title": "Subconcept: Network, Communication, and Organization (NCO)",
+         "outcomes": [
+          {
+           "code": "2.NI.NCO.1",
+           "text": "Students can discuss how computer networks can be used to connect people to other people, places, information, and ideas."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "concept-data-and-analysis-da",
+     "title": "Concept: Data and Analysis (DA)",
+     "topics": [
+      {
+       "id": "subconcept-collection-visualization-and-transfor",
+       "title": "Subconcept: Collection, Visualization and Transformation (CVT)",
+       "subtopics": [
+        {
+         "id": "subconcept-collection-visualization-and-transfor",
+         "title": "Subconcept: Collection, Visualization and Transformation (CVT)",
+         "outcomes": [
+          {
+           "code": "2.DA.CVT.1",
+           "text": "Collect and transform data using digital devices; Display data for communication in various visual formats."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "subconcept-storage-s",
+       "title": "Subconcept: Storage (S)",
+       "subtopics": [
+        {
+         "id": "subconcept-storage-s",
+         "title": "Subconcept: Storage (S)",
+         "outcomes": [
+          {
+           "code": "2.DA.S.1",
+           "text": "Store, copy, search, retrieve, modify, and delete information using a computing device and define the information stored as data."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "subconcept-inference-and-models-im",
+       "title": "Subconcept: Inference and Models (IM)",
+       "subtopics": [
+        {
+         "id": "subconcept-inference-and-models-im",
+         "title": "Subconcept: Inference and Models (IM)",
+         "outcomes": [
+          {
+           "code": "2.DA.IM.1",
+           "text": "Describe patterns in data to make inferences or predictions."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "concept-algorithms-and-programming-ap",
+     "title": "Concept: Algorithms and Programming (AP)",
+     "topics": [
+      {
+       "id": "subconcept-algorithms-a",
+       "title": "Subconcept: Algorithms (A)",
+       "subtopics": [
+        {
+         "id": "subconcept-algorithms-a",
+         "title": "Subconcept: Algorithms (A)",
+         "outcomes": [
+          {
+           "code": "2.AP.A.1",
+           "text": "Model daily processes by creating and following algorithms (sets of step-by-step instructions to complete tasks."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "subconcept-variables-v",
+       "title": "Subconcept: Variables (V)",
+       "subtopics": [
+        {
+         "id": "subconcept-variables-v",
+         "title": "Subconcept: Variables (V)",
+         "outcomes": [
+          {
+           "code": "2.AP.V.1",
+           "text": "Model the way programs store and manipulate data by using numbers or other symbols to represent information."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "subconcept-control-c",
+       "title": "Subconcept: Control (C)",
+       "subtopics": [
+        {
+         "id": "subconcept-control-c",
+         "title": "Subconcept: Control (C)",
+         "outcomes": [
+          {
+           "code": "2.AP.C.1",
+           "text": "Develop programs with sequences and simple loops, to express ideas or address a problem."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "subconcept-modularity-m",
+       "title": "Subconcept: Modularity (M)",
+       "subtopics": [
+        {
+         "id": "subconcept-modularity-m",
+         "title": "Subconcept: Modularity (M)",
+         "outcomes": [
+          {
+           "code": "2.AP.M.1",
+           "text": "Decompose (break down) the steps needed to solve a problem into a precise sequence of instructions."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "subconcept-program-development-pd",
+       "title": "Subconcept: Program Development (PD)",
+       "subtopics": [
+        {
+         "id": "subconcept-program-development-pd",
+         "title": "Subconcept: Program Development (PD)",
+         "outcomes": [
+          {
+           "code": "2.AP.PD.1",
+           "text": "Develop plans that describe a program’s sequence of events, goals, and expected outcomes."
+          },
+          {
+           "code": "2.AP.PD.2",
+           "text": "Give attribution (credit) when using the ideas and creations of others while developing programs."
+          },
+          {
+           "code": "2.AP.PD.3",
+           "text": "Debug (identify and fix) errors in an algorithm or program that includes sequences and simple loops."
+          },
+          {
+           "code": "2.AP.PD.4",
+           "text": "Using correct terminology, describe steps taken and choices made during the iterative process of program (procedure) development."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "concept-impacts-of-computing-ic",
+     "title": "Concept: Impacts of Computing (IC)",
+     "topics": [
+      {
+       "id": "subconcept-culture-c",
+       "title": "Subconcept: Culture (C)",
+       "subtopics": [
+        {
+         "id": "subconcept-culture-c",
+         "title": "Subconcept: Culture (C)",
+         "outcomes": [
+          {
+           "code": "2.IC.C.1",
+           "text": "Compare how people live and work before and after the implementation or adoption of new computing technology."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "subconcept-social-interactions-si",
+       "title": "Subconcept: Social Interactions (SI)",
+       "subtopics": [
+        {
+         "id": "subconcept-social-interactions-si",
+         "title": "Subconcept: Social Interactions (SI)",
+         "outcomes": [
+          {
+           "code": "2.IC.SI.1",
+           "text": "Work respectfully and responsibly with others online."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "subconcept-safety-law-and-ethics-sle",
+       "title": "Subconcept: Safety, Law, and Ethics (SLE)",
+       "subtopics": [
+        {
+         "id": "subconcept-safety-law-and-ethics-sle",
+         "title": "Subconcept: Safety, Law, and Ethics (SLE)",
+         "outcomes": [
+          {
+           "code": "2.IC.SLE.1",
+           "text": "Keep login information private, and log off of devices appropriately."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "3",
+   "units": [
+    {
+     "id": "concept-computing-systems-cs",
+     "title": "Concept: Computing Systems (CS)",
+     "topics": [
+      {
+       "id": "subconcept-devices-d",
+       "title": "Subconcept: Devices (D)",
+       "subtopics": [
+        {
+         "id": "subconcept-devices-d",
+         "title": "Subconcept: Devices (D)",
+         "outcomes": [
+          {
+           "code": "3.CS.D.1",
+           "text": "Identify how internal and external parts of computing devices function to form a system within a single device and hardware that connects to the device to extend capability."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "subconcept-hardware-and-software-hs",
+       "title": "Subconcept: Hardware and Software (HS)",
+       "subtopics": [
+        {
+         "id": "subconcept-hardware-and-software-hs",
+         "title": "Subconcept: Hardware and Software (HS)",
+         "outcomes": [
+          {
+           "code": "3.CS.HS.1",
+           "text": "Recognize that hardware (devices) and software (programs/apps) communicate in a special language that the computing system can understand."
+          },
+          {
+           "code": "3.CS.HS.2",
+           "text": "Recognize that hardware (devices) can only accomplish the specific tasks the software (programs/apps) is designed to accomplish."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "subconcept-troubleshooting-t",
+       "title": "Subconcept: Troubleshooting (T)",
+       "subtopics": [
+        {
+         "id": "subconcept-troubleshooting-t",
+         "title": "Subconcept: Troubleshooting (T)",
+         "outcomes": [
+          {
+           "code": "3.CS.T.1",
+           "text": "Identify and use common troubleshooting strategies to solve simple hardware and software problems."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "concept-networks-and-the-internet-ni",
+     "title": "Concept: Networks and the Internet (NI)",
+     "topics": [
+      {
+       "id": "subconcept-cybersecurity-c",
+       "title": "Subconcept: Cybersecurity (C)",
+       "subtopics": [
+        {
+         "id": "subconcept-cybersecurity-c",
+         "title": "Subconcept: Cybersecurity (C)",
+         "outcomes": [
+          {
+           "code": "3.NI.C.1",
+           "text": "Identify real-world cybersecurity problems and how personal information can be protected."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "subconcept-network-communication-and-organizatio",
+       "title": "Subconcept: Network, Communication, and Organization (NCO)",
+       "subtopics": [
+        {
+         "id": "subconcept-network-communication-and-organizatio",
+         "title": "Subconcept: Network, Communication, and Organization (NCO)",
+         "outcomes": [
+          {
+           "code": "3.NI.NCO.1",
+           "text": "Model how information flows in a physical or wireless path to travel to be sent and received is sent and received through a physical or wireless path."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "concept-data-and-analysis-da",
+     "title": "Concept: Data and Analysis (DA)",
+     "topics": [
+      {
+       "id": "subconcept-collection-visualization-and-transfor",
+       "title": "Subconcept: Collection, Visualization and Transformation (CVT)",
+       "subtopics": [
+        {
+         "id": "subconcept-collection-visualization-and-transfor",
+         "title": "Subconcept: Collection, Visualization and Transformation (CVT)",
+         "outcomes": [
+          {
+           "code": "3.DA.CVT.1",
+           "text": "Select tools from a specified list to collect, organize, and present data visually to highlight relationships and support a claim."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "subconcept-storage-s",
+       "title": "Subconcept: Storage (S)",
+       "subtopics": [
+        {
+         "id": "subconcept-storage-s",
+         "title": "Subconcept: Storage (S)",
+         "outcomes": [
+          {
+           "code": "3.DA.S.1",
+           "text": "Recognize different file extensions."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "subconcept-inference-and-models-im",
+       "title": "Subconcept: Inference and Models (IM)",
+       "subtopics": [
+        {
+         "id": "subconcept-inference-and-models-im",
+         "title": "Subconcept: Inference and Models (IM)",
+         "outcomes": [
+          {
+           "code": "3.DA.IM.1",
+           "text": "Use a computational tool to draw conclusions, make predictions, and answer questions utilizing a specified data set."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "concept-algorithms-and-programming-ap",
+     "title": "Concept: Algorithms and Programming (AP)",
+     "topics": [
+      {
+       "id": "subconcept-algorithms-a",
+       "title": "Subconcept: Algorithms (A)",
+       "subtopics": [
+        {
+         "id": "subconcept-algorithms-a",
+         "title": "Subconcept: Algorithms (A)",
+         "outcomes": [
+          {
+           "code": "3.AP.A.1",
+           "text": "Recognize and compare multiple algorithms for the same task and determine which are effective."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "subconcept-variables-v",
+       "title": "Subconcept: Variables (V)",
+       "subtopics": [
+        {
+         "id": "subconcept-variables-v",
+         "title": "Subconcept: Variables (V)",
+         "outcomes": [
+          {
+           "code": "3.AP.V.1",
+           "text": "Create programs that use variables to store and modify data."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "subconcept-control-c",
+       "title": "Subconcept: Control (C)",
+       "subtopics": [
+        {
+         "id": "subconcept-control-c",
+         "title": "Subconcept: Control (C)",
+         "outcomes": [
+          {
+           "code": "3.AP.C.1",
+           "text": "Create programs that include sequences, events, loops, and/or conditionals."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "subconcept-modularity-m",
+       "title": "Subconcept: Modularity (M)",
+       "subtopics": [
+        {
+         "id": "subconcept-modularity-m",
+         "title": "Subconcept: Modularity (M)",
+         "outcomes": [
+          {
+           "code": "3.AP.M.1",
+           "text": "Decompose problems into smaller, manageable subproblems to facilitate the program development process."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "subconcept-program-development-pd",
+       "title": "Subconcept: Program Development (PD)",
+       "subtopics": [
+        {
+         "id": "subconcept-program-development-pd",
+         "title": "Subconcept: Program Development (PD)",
+         "outcomes": [
+          {
+           "code": "3.AP.PD.1",
+           "text": "With teacher guidance, use an iterative process to plan the development of a program by including others' perspectives and considering user preferences."
+          },
+          {
+           "code": "3.AP.PD.2",
+           "text": "Observe intellectual property rights and give appropriate attribution when creating or remixing programs."
+          },
+          {
+           "code": "3.AP.PD.3",
+           "text": "Test and debug (identify and fix errors) a program or algorithm to ensure it runs as intended."
+          },
+          {
+           "code": "3.AP.PD.4",
+           "text": "With teacher guidance, students take on varying roles, when collaborating with peers during the design, implementation, and review stages of program development."
+          },
+          {
+           "code": "3.AP.PD.5",
+           "text": "Describe choices made during program (procedure) development using code comments, presentations, and/or demonstrations."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "concept-impacts-of-computing-ic",
+     "title": "Concept: Impacts of Computing (IC)",
+     "topics": [
+      {
+       "id": "subconcept-culture-c",
+       "title": "Subconcept: Culture (C)",
+       "subtopics": [
+        {
+         "id": "subconcept-culture-c",
+         "title": "Subconcept: Culture (C)",
+         "outcomes": [
+          {
+           "code": "3.IC.C.1",
+           "text": "Identify computing technologies that have changed the world."
+          },
+          {
+           "code": "3.IC.C.2",
+           "text": "With teacher guidance, brainstorm ways to improve the accessibility and usability of technology products for the diverse needs and wants of users."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "subconcept-social-interactions-si",
+       "title": "Subconcept: Social Interactions (SI)",
+       "subtopics": [
+        {
+         "id": "subconcept-social-interactions-si",
+         "title": "Subconcept: Social Interactions (SI)",
+         "outcomes": [
+          {
+           "code": "3.IC.SI.1",
+           "text": "Seek opportunities for local collaboration to facilitate communication and innovation."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "subconcept-safety-law-and-ethics-sle",
+       "title": "Subconcept: Safety, Law, and Ethics (SLE)",
+       "subtopics": [
+        {
+         "id": "subconcept-safety-law-and-ethics-sle",
+         "title": "Subconcept: Safety, Law, and Ethics (SLE)",
+         "outcomes": [
+          {
+           "code": "3.IC.SLE.1",
+           "text": "Use material that is publicly available and/or permissible to use."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "4",
+   "units": [
+    {
+     "id": "concept-computing-systems-cs",
+     "title": "Concept: Computing Systems (CS)",
+     "topics": [
+      {
+       "id": "subconcept-devices-d",
+       "title": "Subconcept: Devices (D)",
+       "subtopics": [
+        {
+         "id": "subconcept-devices-d",
+         "title": "Subconcept: Devices (D)",
+         "outcomes": [
+          {
+           "code": "4.CS.D.1",
+           "text": "With teacher guidance, model how internal and external parts of computing connect multiple devices in a computing system."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "subconcept-hardware-and-software-hs",
+       "title": "Subconcept: Hardware and Software (HS)",
+       "subtopics": [
+        {
+         "id": "subconcept-hardware-and-software-hs",
+         "title": "Subconcept: Hardware and Software (HS)",
+         "outcomes": [
+          {
+           "code": "4.CS.HS.1",
+           "text": "Recognize that bits serve as the basic unit of data in computing systems and can represent a variety of information."
+          },
+          {
+           "code": "4.CS.HS.2",
+           "text": "Recognize that a single piece of hardware can accomplish different tasks depending on its software."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "subconcept-troubleshooting-t",
+       "title": "Subconcept: Troubleshooting (T)",
+       "subtopics": [
+        {
+         "id": "subconcept-troubleshooting-t",
+         "title": "Subconcept: Troubleshooting (T)",
+         "outcomes": [
+          {
+           "code": "4.CS.T.1",
+           "text": "Develop and apply simple troubleshooting strategies to solve simple hardware and software problems."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "concept-networks-and-the-internet-ni",
+     "title": "Concept: Networks and the Internet (NI)",
+     "topics": [
+      {
+       "id": "subconcept-cybersecurity-c",
+       "title": "Subconcept: Cybersecurity (C)",
+       "subtopics": [
+        {
+         "id": "subconcept-cybersecurity-c",
+         "title": "Subconcept: Cybersecurity (C)",
+         "outcomes": [
+          {
+           "code": "4.NI.C.1",
+           "text": "Discuss real-world cybersecurity problems and how personal information can be protected."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "subconcept-network-communication-and-organizatio",
+       "title": "Subconcept: Network, Communication, and Organization (NCO)",
+       "subtopics": [
+        {
+         "id": "subconcept-network-communication-and-organizatio",
+         "title": "Subconcept: Network, Communication, and Organization (NCO)",
+         "outcomes": [
+          {
+           "code": "4.NI.NCO.1",
+           "text": "Model how information is decomposed, transmitted as packets through multiple devices over networks and reassembled at the destination."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "concept-data-and-analysis-da",
+     "title": "Concept: Data and Analysis (DA)",
+     "topics": [
+      {
+       "id": "subconcept-collection-visualization-and-transfor",
+       "title": "Subconcept: Collection, Visualization and Transformation (CVT)",
+       "subtopics": [
+        {
+         "id": "subconcept-collection-visualization-and-transfor",
+         "title": "Subconcept: Collection, Visualization and Transformation (CVT)",
+         "outcomes": [
+          {
+           "code": "4.DA.CVT.1",
+           "text": "Select tools to collect, organize, and present data visually to highlight relationships and support a claim."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "subconcept-storage-s",
+       "title": "Subconcept: Storage (S)",
+       "subtopics": [
+        {
+         "id": "subconcept-storage-s",
+         "title": "Subconcept: Storage (S)",
+         "outcomes": [
+          {
+           "code": "4.DA.S.1",
+           "text": "Recognize different file extensions and the different amounts of storage required for each type."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "subconcept-inference-and-models-im",
+       "title": "Subconcept: Inference and Models (IM)",
+       "subtopics": [
+        {
+         "id": "subconcept-inference-and-models-im",
+         "title": "Subconcept: Inference and Models (IM)",
+         "outcomes": [
+          {
+           "code": "4.DA.IM.1",
+           "text": "Use a computational tool to manipulate data to draw conclusions, make predictions, and answer questions."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "concept-algorithms-and-programming-ap",
+     "title": "Concept: Algorithms and Programming (AP)",
+     "topics": [
+      {
+       "id": "subconcept-algorithms-a",
+       "title": "Subconcept: Algorithms (A)",
+       "subtopics": [
+        {
+         "id": "subconcept-algorithms-a",
+         "title": "Subconcept: Algorithms (A)",
+         "outcomes": [
+          {
+           "code": "4.AP.A.1",
+           "text": "Compare and refine multiple algorithms for the same task and determine which is the most effective."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "subconcept-variables-v",
+       "title": "Subconcept: Variables (V)",
+       "subtopics": [
+        {
+         "id": "subconcept-variables-v",
+         "title": "Subconcept: Variables (V)",
+         "outcomes": [
+          {
+           "code": "4.AP.V.1",
+           "text": "Create programs that use variables to store and modify data"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "subconcept-control-c",
+       "title": "Subconcept: Control (C)",
+       "subtopics": [
+        {
+         "id": "subconcept-control-c",
+         "title": "Subconcept: Control (C)",
+         "outcomes": [
+          {
+           "code": "4.AP.C.1",
+           "text": "Create programs that include sequences, events, loops, and/or conditionals."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "subconcept-modularity-m",
+       "title": "Subconcept: Modularity (M)",
+       "subtopics": [
+        {
+         "id": "subconcept-modularity-m",
+         "title": "Subconcept: Modularity (M)",
+         "outcomes": [
+          {
+           "code": "4.AP.M.1",
+           "text": "Decompose problems into smaller, manageable subproblems to facilitate the program development process."
+          },
+          {
+           "code": "4.AP.M.2",
+           "text": "Modify, remix, or incorporate portions of an existing program into one's own work to add more advanced features."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "subconcept-program-development-pd",
+       "title": "Subconcept: Program Development (PD)",
+       "subtopics": [
+        {
+         "id": "subconcept-program-development-pd",
+         "title": "Subconcept: Program Development (PD)",
+         "outcomes": [
+          {
+           "code": "4.AP.PD.1",
+           "text": "Use an iterative process to plan the development of a program by including others' perspectives and considering user preferences."
+          },
+          {
+           "code": "4.AP.PD.2",
+           "text": "Observe intellectual property rights and give appropriate attribution when creating or remixing programs."
+          },
+          {
+           "code": "4.AP.PD.3",
+           "text": "Test and debug (identify and fix errors) a program/app or algorithm to ensure it runs as intended."
+          },
+          {
+           "code": "4.AP.PD.4",
+           "text": "With teacher guidance, students take on varying roles when collaborating with peers during the design, implementation, and review stages of program development."
+          },
+          {
+           "code": "4.AP.PD.5",
+           "text": "Describe choices made during program development using code comments, presentations, and/or demonstrations."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "concept-impacts-of-computing-ic",
+     "title": "Concept: Impacts of Computing (IC)",
+     "topics": [
+      {
+       "id": "subconcept-culture-c",
+       "title": "Subconcept: Culture (C)",
+       "subtopics": [
+        {
+         "id": "subconcept-culture-c",
+         "title": "Subconcept: Culture (C)",
+         "outcomes": [
+          {
+           "code": "4.IC.C.1",
+           "text": "Identify and discuss computing technologies that have changed the world."
+          },
+          {
+           "code": "4.IC.C.2",
+           "text": "Brainstorm ways to improve the accessibility and usability of technology products for the diverse needs and wants of users."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "subconcept-social-interactions-si",
+       "title": "Subconcept: Social Interactions (SI)",
+       "subtopics": [
+        {
+         "id": "subconcept-social-interactions-si",
+         "title": "Subconcept: Social Interactions (SI)",
+         "outcomes": [
+          {
+           "code": "4.IC.SI.1",
+           "text": "Seek opportunities for local and nationally collaboration to facilitate communication and innovation."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "subconcept-safety-law-and-ethics-sle",
+       "title": "Subconcept: Safety, Law, and Ethics (SLE)",
+       "subtopics": [
+        {
+         "id": "subconcept-safety-law-and-ethics-sle",
+         "title": "Subconcept: Safety, Law, and Ethics (SLE)",
+         "outcomes": [
+          {
+           "code": "4.IC.SLE.1",
+           "text": "Use material that is publicly available and/or permissible to use."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "5",
+   "units": [
+    {
+     "id": "concept-computing-systems-cs",
+     "title": "Concept: Computing Systems (CS)",
+     "topics": [
+      {
+       "id": "subconcept-devices-d",
+       "title": "Subconcept: Devices (D)",
+       "subtopics": [
+        {
+         "id": "subconcept-devices-d",
+         "title": "Subconcept: Devices (D)",
+         "outcomes": [
+          {
+           "code": "5.CS.D.1",
+           "text": "Analyze and model how internal and external parts of computing devices communicate as a system."
+          },
+          {
+           "code": "5.CS.D.2",
+           "text": "Explain how computing devices affect humans in positive and negative ways."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "subconcept-hardware-and-software-hs",
+       "title": "Subconcept: Hardware and Software (HS)",
+       "subtopics": [
+        {
+         "id": "subconcept-hardware-and-software-hs",
+         "title": "Subconcept: Hardware and Software (HS)",
+         "outcomes": [
+          {
+           "code": "5.CS.HS.1",
+           "text": "Model how information is transformed into binary digits to be stored or processed."
+          },
+          {
+           "code": "5.CS.HS.2",
+           "text": "Demonstrate and explain how hardware can accomplish different tasks depending on the software."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "subconcept-troubleshooting-t",
+       "title": "Subconcept: Troubleshooting (T)",
+       "subtopics": [
+        {
+         "id": "subconcept-troubleshooting-t",
+         "title": "Subconcept: Troubleshooting (T)",
+         "outcomes": [
+          {
+           "code": "5.CS.T.1",
+           "text": "Apply potential solutions and solve simple hardware and software problems using common troubleshooting strategies."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "concept-networks-and-the-internet-ni",
+     "title": "Concept: Networks and the Internet (NI)",
+     "topics": [
+      {
+       "id": "subconcept-cybersecurity-c",
+       "title": "Subconcept: Cybersecurity (C)",
+       "subtopics": [
+        {
+         "id": "subconcept-cybersecurity-c",
+         "title": "Subconcept: Cybersecurity (C)",
+         "outcomes": [
+          {
+           "code": "5.NI.C.1",
+           "text": "Identify solutions to real-world cybersecurity problems and how personal information can be protected."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "subconcept-network-communication-and-organizatio",
+       "title": "Subconcept: Network, Communication, and Organization (NCO)",
+       "subtopics": [
+        {
+         "id": "subconcept-network-communication-and-organizatio",
+         "title": "Subconcept: Network, Communication, and Organization (NCO)",
+         "outcomes": [
+          {
+           "code": "5.NI.NCO.1",
+           "text": "Analyze the advantages and disadvantages of various network types."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "concept-data-and-analysis-da",
+     "title": "Concept: Data and Analysis (DA)",
+     "topics": [
+      {
+       "id": "subconcept-collection-visualization-and-transfor",
+       "title": "Subconcept: Collection, Visualization and Transformation (CVT)",
+       "subtopics": [
+        {
+         "id": "subconcept-collection-visualization-and-transfor",
+         "title": "Subconcept: Collection, Visualization and Transformation (CVT)",
+         "outcomes": [
+          {
+           "code": "5.DA.CVT.1",
+           "text": "Select tools to collect, organize, manipulate, and present data visually through multiple representations to highlight relationships and support a claim."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "subconcept-storage-s",
+       "title": "Subconcept: Storage (S)",
+       "subtopics": [
+        {
+         "id": "subconcept-storage-s",
+         "title": "Subconcept: Storage (S)",
+         "outcomes": [
+          {
+           "code": "5.DA.S.1",
+           "text": "Discuss different file extensions and how they are stored and retrieved on a computing device."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "subconcept-inference-and-models-im",
+       "title": "Subconcept: Inference and Models (IM)",
+       "subtopics": [
+        {
+         "id": "subconcept-inference-and-models-im",
+         "title": "Subconcept: Inference and Models (IM)",
+         "outcomes": [
+          {
+           "code": "5.DA.IM.1",
+           "text": "Use data to propose cause-and-effect relationships, predict outcomes, or communicate an idea."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "concept-algorithms-and-programming-ap",
+     "title": "Concept: Algorithms and Programming (AP)",
+     "topics": [
+      {
+       "id": "subconcept-algorithms-a",
+       "title": "Subconcept: Algorithms (A)",
+       "subtopics": [
+        {
+         "id": "subconcept-algorithms-a",
+         "title": "Subconcept: Algorithms (A)",
+         "outcomes": [
+          {
+           "code": "5.AP.A.1",
+           "text": "Compare, test, and refine multiple algorithms for the same task and determine which is the most effective."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "subconcept-variables-v",
+       "title": "Subconcept: Variables (V)",
+       "subtopics": [
+        {
+         "id": "subconcept-variables-v",
+         "title": "Subconcept: Variables (V)",
+         "outcomes": [
+          {
+           "code": "5.AP.V.1",
+           "text": "Recognizing that the data type determines the values that can be stored and the operations that can be performed on the data."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "subconcept-control-c",
+       "title": "Subconcept: Control (C)",
+       "subtopics": [
+        {
+         "id": "subconcept-control-c",
+         "title": "Subconcept: Control (C)",
+         "outcomes": [
+          {
+           "code": "5.AP.C.1",
+           "text": "Create programs that include sequences, events, loops, and conditionals."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "subconcept-modularity-m",
+       "title": "Subconcept: Modularity (M)",
+       "subtopics": [
+        {
+         "id": "subconcept-modularity-m",
+         "title": "Subconcept: Modularity (M)",
+         "outcomes": [
+          {
+           "code": "5.AP.M.1",
+           "text": "Decompose problems into manageable subproblems to facilitate the program development process."
+          },
+          {
+           "code": "5.AP.M.2",
+           "text": "Modify, remix, or incorporate portions of an existing program into one's own work, to develop something new or add more advanced features."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "subconcept-program-development-pd",
+       "title": "Subconcept: Program Development (PD)",
+       "subtopics": [
+        {
+         "id": "subconcept-program-development-pd",
+         "title": "Subconcept: Program Development (PD)",
+         "outcomes": [
+          {
+           "code": "5.AP.PD.1",
+           "text": "Use an iterative process to plan the development of a program by including others' perspectives and considering user preferences."
+          },
+          {
+           "code": "5.AP.PD.2",
+           "text": "Observe intellectual property rights and give appropriate attribution when creating or remixing programs."
+          },
+          {
+           "code": "5.AP.PD.3",
+           "text": "Test and debug (identify and fix errors) a program or algorithm to ensure it runs as intended."
+          },
+          {
+           "code": "5.AP.PD.4",
+           "text": "Take on varying roles when collaborating with peers during the design, implementation, and review stages of program development."
+          },
+          {
+           "code": "5.AP.PD.5",
+           "text": "Describe choices made during program development using code comments, presentations, and demonstrations."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "concept-impacts-of-computing-ic",
+     "title": "Concept: Impacts of Computing (IC)",
+     "topics": [
+      {
+       "id": "subconcept-culture-c",
+       "title": "Subconcept: Culture (C)",
+       "subtopics": [
+        {
+         "id": "subconcept-culture-c",
+         "title": "Subconcept: Culture (C)",
+         "outcomes": [
+          {
+           "code": "5.IC.C.1",
+           "text": "Discuss computing technologies that have changed the world."
+          },
+          {
+           "code": "5.IC.C.2",
+           "text": "Design ways to improve the accessibility and usability of technology products for the diverse needs and wants of users."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "subconcept-social-interactions-si",
+       "title": "Subconcept: Social Interactions (SI)",
+       "subtopics": [
+        {
+         "id": "subconcept-social-interactions-si",
+         "title": "Subconcept: Social Interactions (SI)",
+         "outcomes": [
+          {
+           "code": "5.IC.SI.1",
+           "text": "Seek opportunities for local and global collaboration to facilitate communication and innovation."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "subconcept-safety-law-and-ethics-sle",
+       "title": "Subconcept: Safety, Law, and Ethics (SLE)",
+       "subtopics": [
+        {
+         "id": "subconcept-safety-law-and-ethics-sle",
+         "title": "Subconcept: Safety, Law, and Ethics (SLE)",
+         "outcomes": [
+          {
+           "code": "5.IC.SLE.1",
+           "text": "Use public domain or creative commons media, and refrain from copying or using material created by others without permission."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "6",
+   "units": [
+    {
+     "id": "concept-computing-systems-cs",
+     "title": "Concept: Computing Systems (CS)",
+     "topics": [
+      {
+       "id": "subconcept-devices-d",
+       "title": "Subconcept: Devices (D)",
+       "subtopics": [
+        {
+         "id": "subconcept-devices-d",
+         "title": "Subconcept: Devices (D)",
+         "outcomes": [
+          {
+           "code": "6.CS.D.1",
+           "text": "Compare computing device designs based on how humans interact with them."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "subconcept-hardware-and-software-hs",
+       "title": "Subconcept: Hardware and Software (HS)",
+       "subtopics": [
+        {
+         "id": "subconcept-hardware-and-software-hs",
+         "title": "Subconcept: Hardware and Software (HS)",
+         "outcomes": [
+          {
+           "code": "6.CS.HS.1",
+           "text": "Explain how hardware and software can be used to collect and exchange data."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "subconcept-troubleshooting-t",
+       "title": "Subconcept: Troubleshooting (T)",
+       "subtopics": [
+        {
+         "id": "subconcept-troubleshooting-t",
+         "title": "Subconcept: Troubleshooting (T)",
+         "outcomes": [
+          {
+           "code": "6.CS.T.1",
+           "text": "Identify problems that can occur in computing devices and their components within a system."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "concept-networks-and-the-internet-ni",
+     "title": "Concept: Networks and the Internet (NI)",
+     "topics": [
+      {
+       "id": "subconcept-cybersecurity-c",
+       "title": "Subconcept: Cybersecurity (C)",
+       "subtopics": [
+        {
+         "id": "subconcept-cybersecurity-c",
+         "title": "Subconcept: Cybersecurity (C)",
+         "outcomes": [
+          {
+           "code": "6.NI.C.1",
+           "text": "Identify multiple methods of encryption to secure the transmission of information."
+          },
+          {
+           "code": "6.NI.C.2",
+           "text": "Identify different physical and digital security measures that protect electronic information."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "subconcept-network-communication-and-organizatio",
+       "title": "Subconcept: Network, Communication, and Organization (NCO)",
+       "subtopics": [
+        {
+         "id": "subconcept-network-communication-and-organizatio",
+         "title": "Subconcept: Network, Communication, and Organization (NCO)",
+         "outcomes": [
+          {
+           "code": "6.NI.NCO.1",
+           "text": "Discuss how protocols are used in transmitting data across networks and the Internet."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "concept-data-and-analysis-da",
+     "title": "Concept: Data and Analysis (DA)",
+     "topics": [
+      {
+       "id": "subconcept-collection-visualization-and-transfor",
+       "title": "Subconcept: Collection, Visualization and Transformation (CVT)",
+       "subtopics": [
+        {
+         "id": "subconcept-collection-visualization-and-transfor",
+         "title": "Subconcept: Collection, Visualization and Transformation (CVT)",
+         "outcomes": [
+          {
+           "code": "6.DA.CVT.1",
+           "text": "Compare different computational tools used to collect, analyze and present data that is meaningful and useful."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "subconcept-storage-s",
+       "title": "Subconcept: Storage (S)",
+       "subtopics": [
+        {
+         "id": "subconcept-storage-s",
+         "title": "Subconcept: Storage (S)",
+         "outcomes": [
+          {
+           "code": "6.DA.S.1",
+           "text": "Identify multiple encoding schemes used to represent data, including binary and ASCII."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "subconcept-inference-and-models-im",
+       "title": "Subconcept: Inference and Models (IM)",
+       "subtopics": [
+        {
+         "id": "subconcept-inference-and-models-im",
+         "title": "Subconcept: Inference and Models (IM)",
+         "outcomes": [
+          {
+           "code": "6.DA.IM.1",
+           "text": "Discuss the validity of a computational model based on the reliability of the data."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "concept-algorithms-and-programming-ap",
+     "title": "Concept: Algorithms and Programming (AP)",
+     "topics": [
+      {
+       "id": "subconcept-algorithms-a",
+       "title": "Subconcept: Algorithms (A)",
+       "subtopics": [
+        {
+         "id": "subconcept-algorithms-a",
+         "title": "Subconcept: Algorithms (A)",
+         "outcomes": [
+          {
+           "code": "6.AP.A.1",
+           "text": "Identify planning strategies such as flowcharts or pseudocode, to simulate algorithms that solve problems."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "subconcept-variables-v",
+       "title": "Subconcept: Variables (V)",
+       "subtopics": [
+        {
+         "id": "subconcept-variables-v",
+         "title": "Subconcept: Variables (V)",
+         "outcomes": [
+          {
+           "code": "6.AP.V.1",
+           "text": "Identify variables that represent different data types and perform operations on their values."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "subconcept-control-c",
+       "title": "Subconcept: Control (C)",
+       "subtopics": [
+        {
+         "id": "subconcept-control-c",
+         "title": "Subconcept: Control (C)",
+         "outcomes": [
+          {
+           "code": "6.AP.C.1",
+           "text": "Design programs that combine control structures, including nested loops and compound conditionals."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "subconcept-modularity-m",
+       "title": "Subconcept: Modularity (M)",
+       "subtopics": [
+        {
+         "id": "subconcept-modularity-m",
+         "title": "Subconcept: Modularity (M)",
+         "outcomes": [
+          {
+           "code": "6.AP.IM.1",
+           "text": "Decompose problems into parts to facilitate the design, implementation, and review of programs."
+          },
+          {
+           "code": "6.AP.IM.2",
+           "text": "Use procedures to organize code and make it easier to reuse."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "subconcept-program-development-pd",
+       "title": "Subconcept: Program Development (PD)",
+       "subtopics": [
+        {
+         "id": "subconcept-program-development-pd",
+         "title": "Subconcept: Program Development (PD)",
+         "outcomes": [
+          {
+           "code": "6.AP.PD.1",
+           "text": "Seek and incorporate feedback from team members and users to refine a solution that meets user needs."
+          },
+          {
+           "code": "6.AP.PD.2",
+           "text": "Incorporate existing code into programs and give attribution."
+          },
+          {
+           "code": "6.AP.PD.3",
+           "text": "Test programs using a range of inputs and identify expected outputs."
+          },
+          {
+           "code": "6.AP.PD.4",
+           "text": "Maintain a timeline with specific tasks while collaboratively developing computational artifacts."
+          },
+          {
+           "code": "6.AP.PD.5",
+           "text": "Document programs in order to make them easier to follow, test, and debug."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "concept-impacts-of-computing-ic",
+     "title": "Concept: Impacts of Computing (IC)",
+     "topics": [
+      {
+       "id": "subconcept-culture-c",
+       "title": "Subconcept: Culture (C)",
+       "subtopics": [
+        {
+         "id": "subconcept-culture-c",
+         "title": "Subconcept: Culture (C)",
+         "outcomes": [
+          {
+           "code": "6.IC.C.1",
+           "text": "Identify some of the tradeoffs associated with computing technologies that can affect people's everyday activities and career options."
+          },
+          {
+           "code": "6.IC.C.2",
+           "text": "Identify issues of bias and accessibility in the design of existing technologies."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "subconcept-social-interactions-si",
+       "title": "Subconcept: Social Interactions (SI)",
+       "subtopics": [
+        {
+         "id": "subconcept-social-interactions-si",
+         "title": "Subconcept: Social Interactions (SI)",
+         "outcomes": [
+          {
+           "code": "6.IC.SI.1",
+           "text": "Identify the advantages of creating a computational product by collaborating with others using digital technologies."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "subconcept-safety-law-and-ethics-sle",
+       "title": "Subconcept: Safety, Law, and Ethics (SLE)",
+       "subtopics": [
+        {
+         "id": "subconcept-safety-law-and-ethics-sle",
+         "title": "Subconcept: Safety, Law, and Ethics (SLE)",
+         "outcomes": [
+          {
+           "code": "6.IC.SLE.1",
+           "text": "Describe how some digital information can be public or can be kept private and secure."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "7",
+   "units": [
+    {
+     "id": "concept-computing-systems-cs",
+     "title": "Concept: Computing Systems (CS)",
+     "topics": [
+      {
+       "id": "subconcept-devices-d",
+       "title": "Subconcept: Devices (D)",
+       "subtopics": [
+        {
+         "id": "subconcept-devices-d",
+         "title": "Subconcept: Devices (D)",
+         "outcomes": [
+          {
+           "code": "7.CS.D.1",
+           "text": "Identify some advantages, disadvantages, and consequences with the design of computer devices based on an analysis of how users interact with devices"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "subconcept-hardware-and-software-hs",
+       "title": "Subconcept: Hardware and Software (HS)",
+       "subtopics": [
+        {
+         "id": "subconcept-hardware-and-software-hs",
+         "title": "Subconcept: Hardware and Software (HS)",
+         "outcomes": [
+          {
+           "code": "7.CS.HS.1",
+           "text": "Design projects that combine hardware and software to collect and exchange data."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "subconcept-troubleshooting-t",
+       "title": "Subconcept: Troubleshooting (T)",
+       "subtopics": [
+        {
+         "id": "subconcept-troubleshooting-t",
+         "title": "Subconcept: Troubleshooting (T)",
+         "outcomes": [
+          {
+           "code": "7.CS.T.1",
+           "text": "Evaluate strategies to fix problems with computing devices and their components within a system."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "concept-networks-and-the-internet-ni",
+     "title": "Concept: Networks and the Internet (NI)",
+     "topics": [
+      {
+       "id": "subconcept-cybersecurity-c",
+       "title": "Subconcept: Cybersecurity (C)",
+       "subtopics": [
+        {
+         "id": "subconcept-cybersecurity-c",
+         "title": "Subconcept: Cybersecurity (C)",
+         "outcomes": [
+          {
+           "code": "7.NI.C.1",
+           "text": "Evaluate multiple methods of encryption for the secure transmission of information."
+          },
+          {
+           "code": "7.NI.C.2",
+           "text": "Explain how physical and digital security measures protect electronic information."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "subconcept-network-communication-and-organizatio",
+       "title": "Subconcept: Network, Communication, and Organization (NCO)",
+       "subtopics": [
+        {
+         "id": "subconcept-network-communication-and-organizatio",
+         "title": "Subconcept: Network, Communication, and Organization (NCO)",
+         "outcomes": [
+          {
+           "code": "7.NI.NCO.1",
+           "text": "Compare and contrast models to understand the many protocols used for data transmission."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "concept-data-and-analysis-da",
+     "title": "Concept: Data and Analysis (DA)",
+     "topics": [
+      {
+       "id": "subconcept-collection-visualization-and-transfor",
+       "title": "Subconcept: Collection, Visualization and Transformation (CVT)",
+       "subtopics": [
+        {
+         "id": "subconcept-collection-visualization-and-transfor",
+         "title": "Subconcept: Collection, Visualization and Transformation (CVT)",
+         "outcomes": [
+          {
+           "code": "7.DA.CVT.1",
+           "text": "Collect and analyze data using computational tools to create models that are meaningful and useful."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "subconcept-storage-s",
+       "title": "Subconcept: Storage (S)",
+       "subtopics": [
+        {
+         "id": "subconcept-storage-s",
+         "title": "Subconcept: Storage (S)",
+         "outcomes": [
+          {
+           "code": "7.DA.S.1",
+           "text": "Use multiple encoding schemes to represent data, including binary and ASCII."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "subconcept-inference-and-models-im",
+       "title": "Subconcept: Inference and Models (IM)",
+       "subtopics": [
+        {
+         "id": "subconcept-inference-and-models-im",
+         "title": "Subconcept: Inference and Models (IM)",
+         "outcomes": [
+          {
+           "code": "7.DA.IM.1",
+           "text": "Use computational models and determine the reliability and validity of data they generate."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "concept-algorithms-and-programming-ap",
+     "title": "Concept: Algorithms and Programming (AP)",
+     "topics": [
+      {
+       "id": "subconcept-algorithms-a",
+       "title": "Subconcept: Algorithms (A)",
+       "subtopics": [
+        {
+         "id": "subconcept-algorithms-a",
+         "title": "Subconcept: Algorithms (A)",
+         "outcomes": [
+          {
+           "code": "7.AP.A.1",
+           "text": "Use planning strategies, such as flowcharts or pseudocode, to develop algorithms to address complex problems."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "subconcept-variables-v",
+       "title": "Subconcept: Variables (V)",
+       "subtopics": [
+        {
+         "id": "subconcept-variables-v",
+         "title": "Subconcept: Variables (V)",
+         "outcomes": [
+          {
+           "code": "7.AP.V.1",
+           "text": "Compare and contrast variables that represent different data types and perform operations on their values."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "subconcept-control-c",
+       "title": "Subconcept: Control (C)",
+       "subtopics": [
+        {
+         "id": "subconcept-control-c",
+         "title": "Subconcept: Control (C)",
+         "outcomes": [
+          {
+           "code": "7.AP.C.1",
+           "text": "Design and develop programs that combine control structures, including nested loops and compound conditionals."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "subconcept-modularity-m",
+       "title": "Subconcept: Modularity (M)",
+       "subtopics": [
+        {
+         "id": "subconcept-modularity-m",
+         "title": "Subconcept: Modularity (M)",
+         "outcomes": [
+          {
+           "code": "7.AP.M.1",
+           "text": "Decompose problems into parts to facilitate the design, implementation, and review of programs."
+          },
+          {
+           "code": "7.AP.M.2",
+           "text": "Use procedures with parameters to organize code and make it easier to reuse."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "subconcept-program-development-pd",
+       "title": "Subconcept: Program Development (PD)",
+       "subtopics": [
+        {
+         "id": "subconcept-program-development-pd",
+         "title": "Subconcept: Program Development (PD)",
+         "outcomes": [
+          {
+           "code": "7.AP.PD.1",
+           "text": "Seek and incorporate feedback from team members and users to refine a solution that meets user needs."
+          },
+          {
+           "code": "7.AP.PD.2",
+           "text": "Incorporate existing code and media into programs, and give attribution."
+          },
+          {
+           "code": "7.AP.PD.3",
+           "text": "Systematically test and refine programs using a range of possible inputs."
+          },
+          {
+           "code": "7.AP.PD.4",
+           "text": "Distribute and execute tasks while maintaining a project timeline when collaboratively developing computational artifacts."
+          },
+          {
+           "code": "7.AP.PD.5",
+           "text": "Document programs to make them easier to follow, test, and debug."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "concept-impacts-of-computing-ic",
+     "title": "Concept: Impacts of Computing (IC)",
+     "topics": [
+      {
+       "id": "subconcept-culture-c",
+       "title": "Subconcept: Culture (C)",
+       "subtopics": [
+        {
+         "id": "subconcept-culture-c",
+         "title": "Subconcept: Culture (C)",
+         "outcomes": [
+          {
+           "code": "7.IC.C.1",
+           "text": "Explain how some of the tradeoffs associated with computing technologies can affect people's everyday activities and career options."
+          },
+          {
+           "code": "7.IC.C.2",
+           "text": "Discuss how bias and accessibility issues can impact the functionality of existing technologies."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "subconcept-social-interactions-si",
+       "title": "Subconcept: Social Interactions (SI)",
+       "subtopics": [
+        {
+         "id": "subconcept-social-interactions-si",
+         "title": "Subconcept: Social Interactions (SI)",
+         "outcomes": [
+          {
+           "code": "7.IC.SI.1",
+           "text": "Describe the process for creating a computational product by collaborating with others using digital technologies."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "subconcept-safety-law-and-ethics-sle",
+       "title": "Subconcept: Safety, Law, and Ethics (SLE)",
+       "subtopics": [
+        {
+         "id": "subconcept-safety-law-and-ethics-sle",
+         "title": "Subconcept: Safety, Law, and Ethics (SLE)",
+         "outcomes": [
+          {
+           "code": "7.IC.SLE.1",
+           "text": "Identify the benefits and risks associated with sharing information digitally."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "8",
+   "units": [
+    {
+     "id": "concept-computing-systems-cs",
+     "title": "Concept: Computing Systems (CS)",
+     "topics": [
+      {
+       "id": "subconcept-devices-d",
+       "title": "Subconcept: Devices (D)",
+       "subtopics": [
+        {
+         "id": "subconcept-devices-d",
+         "title": "Subconcept: Devices (D)",
+         "outcomes": [
+          {
+           "code": "8.CS.D.1",
+           "text": "Improve the design of computing devices based on an analysis of how users interact them, and consider unintended consequences."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "subconcept-hardware-and-software-hs",
+       "title": "Subconcept: Hardware and Software (HS)",
+       "subtopics": [
+        {
+         "id": "subconcept-hardware-and-software-hs",
+         "title": "Subconcept: Hardware and Software (HS)",
+         "outcomes": [
+          {
+           "code": "8.CS.HS.1",
+           "text": "Design and evaluate projects that combine hardware and software components to collect and exchange data."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "subconcept-troubleshooting-t",
+       "title": "Subconcept: Troubleshooting (T)",
+       "subtopics": [
+        {
+         "id": "subconcept-troubleshooting-t",
+         "title": "Subconcept: Troubleshooting (T)",
+         "outcomes": [
+          {
+           "code": "8.CS.T.",
+           "text": "Systematically identify and develop strategies to fix problems with computing devices and their components."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "concept-networks-and-the-internet-ni",
+     "title": "Concept: Networks and the Internet (NI)",
+     "topics": [
+      {
+       "id": "subconcept-cybersecurity-c",
+       "title": "Subconcept: Cybersecurity (C)",
+       "subtopics": [
+        {
+         "id": "subconcept-cybersecurity-c",
+         "title": "Subconcept: Cybersecurity (C)",
+         "outcomes": [
+          {
+           "code": "8.NI.C.1",
+           "text": "Apply multiple methods of encryption to model the secure transmission of information."
+          },
+          {
+           "code": "8.NI.C.2",
+           "text": "Evaluate how various physical and digital security measures protect electronic information and how a lack of such measures could lead to vulnerabilities."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "subconcept-network-communication-and-organizatio",
+       "title": "Subconcept: Network, Communication, and Organization (NCO)",
+       "subtopics": [
+        {
+         "id": "subconcept-network-communication-and-organizatio",
+         "title": "Subconcept: Network, Communication, and Organization (NCO)",
+         "outcomes": [
+          {
+           "code": "8.NI.NCO.1",
+           "text": "Develop models to illustrate the role of protocols in transmitting data across networks and the Internet."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "concept-data-and-analysis-da",
+     "title": "Concept: Data and Analysis (DA)",
+     "topics": [
+      {
+       "id": "subconcept-collection-visualization-and-transfor",
+       "title": "Subconcept: Collection, Visualization and Transformation (CVT)",
+       "subtopics": [
+        {
+         "id": "subconcept-collection-visualization-and-transfor",
+         "title": "Subconcept: Collection, Visualization and Transformation (CVT)",
+         "outcomes": [
+          {
+           "code": "8.DA.CVT.1",
+           "text": "Collect data using computational tools and transform the data to make it more meaningful and useful."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "subconcept-storage-s",
+       "title": "Subconcept: Storage (S)",
+       "subtopics": [
+        {
+         "id": "subconcept-storage-s",
+         "title": "Subconcept: Storage (S)",
+         "outcomes": [
+          {
+           "code": "8.DA.S.1",
+           "text": "Represent data using multiple encoding schemes including binary and ASCII."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "subconcept-inference-and-models-im",
+       "title": "Subconcept: Inference and Models (IM)",
+       "subtopics": [
+        {
+         "id": "subconcept-inference-and-models-im",
+         "title": "Subconcept: Inference and Models (IM)",
+         "outcomes": [
+          {
+           "code": "8.DA.IM.1",
+           "text": "Design computational models and evaluate them based on the reliability and validity of the data they generate."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "concept-algorithms-and-programming-ap",
+     "title": "Concept: Algorithms and Programming (AP)",
+     "topics": [
+      {
+       "id": "subconcept-algorithms-a",
+       "title": "Subconcept: Algorithms (A)",
+       "subtopics": [
+        {
+         "id": "subconcept-algorithms-a",
+         "title": "Subconcept: Algorithms (A)",
+         "outcomes": [
+          {
+           "code": "8.AP.A.1",
+           "text": "Develop planning strategies, such as flowcharts or pseudocode, to develop algorithms to address complex problems."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "subconcept-variables-v",
+       "title": "Subconcept: Variables (V)",
+       "subtopics": [
+        {
+         "id": "subconcept-variables-v",
+         "title": "Subconcept: Variables (V)",
+         "outcomes": [
+          {
+           "code": "8.AP.V.1",
+           "text": "Create named variables that represent different data types and perform operations on their values"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "subconcept-control-c",
+       "title": "Subconcept: Control (C)",
+       "subtopics": [
+        {
+         "id": "subconcept-control-c",
+         "title": "Subconcept: Control (C)",
+         "outcomes": [
+          {
+           "code": "8.AP.C.1",
+           "text": "Design and iteratively develop programs that combine control structures, including nested loops and compound conditionals."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "subconcept-modularity-m",
+       "title": "Subconcept: Modularity (M)",
+       "subtopics": [
+        {
+         "id": "subconcept-modularity-m",
+         "title": "Subconcept: Modularity (M)",
+         "outcomes": [
+          {
+           "code": "8.AP.M.1",
+           "text": "Decompose problems into parts to facilitate the design, implementation, and review of programs."
+          },
+          {
+           "code": "8.AP.M.2",
+           "text": "Create procedures with parameters to organize code and make it easier to reuse."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "subconcept-program-development-pd",
+       "title": "Subconcept: Program Development (PD)",
+       "subtopics": [
+        {
+         "id": "subconcept-program-development-pd",
+         "title": "Subconcept: Program Development (PD)",
+         "outcomes": [
+          {
+           "code": "8.AP.PD.1",
+           "text": "Seek and incorporate feedback from team members and users to refine a solution that meets user needs."
+          },
+          {
+           "code": "8.AP.PD.2",
+           "text": "Incorporate existing code, media, and libraries into original programs, and give attribution."
+          },
+          {
+           "code": "8.AP.PD.3",
+           "text": "Systematically test and refine programs using a range of possible inputs."
+          },
+          {
+           "code": "8.AP.PD.4",
+           "text": "Distribute and execute tasks while maintaining a project timeline when collaboratively developing computational artifacts."
+          },
+          {
+           "code": "8.AP.PD.5",
+           "text": "Document programs to make them easier to follow, test, and debug."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "concept-impacts-of-computing-ic",
+     "title": "Concept: Impacts of Computing (IC)",
+     "topics": [
+      {
+       "id": "subconcept-culture-c",
+       "title": "Subconcept: Culture (C)",
+       "subtopics": [
+        {
+         "id": "subconcept-culture-c",
+         "title": "Subconcept: Culture (C)",
+         "outcomes": [
+          {
+           "code": "8.IC.C\n1",
+           "text": "Compare and contrast tradeoffs associated with computing technologies that affect people's everyday activities and career options."
+          },
+          {
+           "code": "8.IC.C 2",
+           "text": "Develop a solution to address an issue of bias or accessibility in the design of existing technologies."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "subconcept-social-interactions-si",
+       "title": "Subconcept: Social Interactions (SI)",
+       "subtopics": [
+        {
+         "id": "subconcept-social-interactions-si",
+         "title": "Subconcept: Social Interactions (SI)",
+         "outcomes": [
+          {
+           "code": "8.IC.SI.1",
+           "text": "Collaborate with contributors by using digital technologies when creating a computational product."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "subconcept-safety-law-and-ethics-sle",
+       "title": "Subconcept: Safety, Law, and Ethics (SLE)",
+       "subtopics": [
+        {
+         "id": "subconcept-safety-law-and-ethics-sle",
+         "title": "Subconcept: Safety, Law, and Ethics (SLE)",
+         "outcomes": [
+          {
+           "code": "8.IC.SLE.1",
+           "text": "Evaluate the benefits and risks associated with sharing information digitally."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "9-12",
+   "units": [
+    {
+     "id": "concept-computing-systems-cs",
+     "title": "Concept: Computing Systems (CS)",
+     "topics": [
+      {
+       "id": "subconcept-devices-d",
+       "title": "Subconcept: Devices (D)",
+       "subtopics": [
+        {
+         "id": "subconcept-devices-d",
+         "title": "Subconcept: Devices (D)",
+         "outcomes": [
+          {
+           "code": "HS.CS.D.1",
+           "text": "Explain how abstractions hide the underlying implementation details of computing systems embedded in everyday objects."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "subconcept-hardware-and-software-hs",
+       "title": "Subconcept: Hardware and Software (HS)",
+       "subtopics": [
+        {
+         "id": "subconcept-hardware-and-software-hs",
+         "title": "Subconcept: Hardware and Software (HS)",
+         "outcomes": [
+          {
+           "code": "HS.CS.HS.1",
+           "text": "Describe levels of abstraction and interactions between application software, system software, and hardware layers."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "subconcept-troubleshooting-t",
+       "title": "Subconcept: Troubleshooting (T)",
+       "subtopics": [
+        {
+         "id": "subconcept-troubleshooting-t",
+         "title": "Subconcept: Troubleshooting (T)",
+         "outcomes": [
+          {
+           "code": "HS.CS.T.1",
+           "text": "Develop guidelines that convey systematic troubleshooting strategies that others can use to identify and fix errors."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "concept-networks-and-the-internet-ni",
+     "title": "Concept: Networks and the Internet (NI)",
+     "topics": [
+      {
+       "id": "subconcept-cybersecurity-c",
+       "title": "Subconcept: Cybersecurity (C)",
+       "subtopics": [
+        {
+         "id": "subconcept-cybersecurity-c",
+         "title": "Subconcept: Cybersecurity (C)",
+         "outcomes": [
+          {
+           "code": "HS.NI.C.1",
+           "text": "Describe how sensitive data can be affected by malware and other attacks."
+          },
+          {
+           "code": "HS.NI.C.2",
+           "text": "Recommend security measures to address various scenarios based on factors such as efficiency, feasibility, and ethical impacts."
+          },
+          {
+           "code": "HS.NI.C.3",
+           "text": "Compare various security measures, considering tradeoffs between the usability and security of a computing system."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "subconcept-network-communication-and-organizatio",
+       "title": "Subconcept: Network, Communication, and Organization (NCO)",
+       "subtopics": [
+        {
+         "id": "subconcept-network-communication-and-organizatio",
+         "title": "Subconcept: Network, Communication, and Organization (NCO)",
+         "outcomes": [
+          {
+           "code": "HS.NI.NCO.1",
+           "text": "Evaluate the scalability and reliability of networks, by describing the relationship between routers, switches, servers, topology, and addressing."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "concept-data-and-analysis-da",
+     "title": "Concept: Data and Analysis (DA)",
+     "topics": [
+      {
+       "id": "subconcept-collection-visualization-and-transfor",
+       "title": "Subconcept: Collection, Visualization and Transformation (CVT)",
+       "subtopics": [
+        {
+         "id": "subconcept-collection-visualization-and-transfor",
+         "title": "Subconcept: Collection, Visualization and Transformation (CVT)",
+         "outcomes": [
+          {
+           "code": "HS.DA.CVT.1",
+           "text": "Create interactive data visualizations using software tools to help others better understand real-world phenomena."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "subconcept-storage-s",
+       "title": "Subconcept: Storage (S)",
+       "subtopics": [
+        {
+         "id": "subconcept-storage-s",
+         "title": "Subconcept: Storage (S)",
+         "outcomes": [
+          {
+           "code": "HS.DA.S.1",
+           "text": "Translate between different bit representations of real-world phenomena, such as characters, numbers, and images."
+          },
+          {
+           "code": "HS.DA.S.2",
+           "text": "Evaluate the tradeoffs in how and where data is stored."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "subconcept-inference-and-models-im",
+       "title": "Subconcept: Inference and Models (IM)",
+       "subtopics": [
+        {
+         "id": "subconcept-inference-and-models-im",
+         "title": "Subconcept: Inference and Models (IM)",
+         "outcomes": [
+          {
+           "code": "HS.DA.IM.1",
+           "text": "Analyze computational models to better understand real-world phenomena."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "concept-algorithms-and-programming-ap",
+     "title": "Concept: Algorithms and Programming (AP)",
+     "topics": [
+      {
+       "id": "subconcept-algorithms-a",
+       "title": "Subconcept: Algorithms (A)",
+       "subtopics": [
+        {
+         "id": "subconcept-algorithms-a",
+         "title": "Subconcept: Algorithms (A)",
+         "outcomes": [
+          {
+           "code": "HS.AP.A.1",
+           "text": "Create prototypes that use algorithms for practical intent, personal expression, or to address a societal issue"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "subconcept-variables-v",
+       "title": "Subconcept: Variables (V)",
+       "subtopics": [
+        {
+         "id": "subconcept-variables-v",
+         "title": "Subconcept: Variables (V)",
+         "outcomes": [
+          {
+           "code": "HS.AP.V.1",
+           "text": "Use lists to simplify solutions, generalizing computational problems instead of repeatedly using simple variables."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "subconcept-control-c",
+       "title": "Subconcept: Control (C)",
+       "subtopics": [
+        {
+         "id": "subconcept-control-c",
+         "title": "Subconcept: Control (C)",
+         "outcomes": [
+          {
+           "code": "HS.AP.C.1",
+           "text": "Justify the selection of specific control structures and explain the benefits and drawbacks of choices made, when tradeoffs involve readability and program performance."
+          },
+          {
+           "code": "HS.AP.C.2",
+           "text": "Use events that initiate instructions to design and iteratively develop computational artifacts"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "subconcept-modularity-m",
+       "title": "Subconcept: Modularity (M)",
+       "subtopics": [
+        {
+         "id": "subconcept-modularity-m",
+         "title": "Subconcept: Modularity (M)",
+         "outcomes": [
+          {
+           "code": "HS.AP.M.1",
+           "text": "Decompose problems into smaller components using constructs such as procedures, modules, and/or objects."
+          },
+          {
+           "code": "HS.AP.M.2",
+           "text": "Use procedures within a program, combinations of data and procedures, or independent but interrelated programs to design and iteratively develop computational artifacts."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "subconcept-program-development-pd",
+       "title": "Subconcept: Program Development (PD)",
+       "subtopics": [
+        {
+         "id": "subconcept-program-development-pd",
+         "title": "Subconcept: Program Development (PD)",
+         "outcomes": [
+          {
+           "code": "HS.AP.PD.1",
+           "text": "Evaluate and refine computational artifacts to make them more usable and accessible."
+          },
+          {
+           "code": "HS.AP.PD.2",
+           "text": "Use team roles and collaborative tools to design and iteratively develop computational artifacts."
+          },
+          {
+           "code": "HS.AP.PD.",
+           "text": "Document design decisions using text, graphics, presentations, and/or demonstrations in the development of complex programs."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "concept-impacts-of-computing-ic",
+     "title": "Concept: Impacts of Computing (IC)",
+     "topics": [
+      {
+       "id": "subconcept-culture-c",
+       "title": "Subconcept: Culture (C)",
+       "subtopics": [
+        {
+         "id": "subconcept-culture-c",
+         "title": "Subconcept: Culture (C)",
+         "outcomes": [
+          {
+           "code": "HS.IC.C.1",
+           "text": "Evaluate the ways access to computing impacts personal, ethical, social, economic, and cultural practices."
+          },
+          {
+           "code": "HS.IC.C.2",
+           "text": "Test and refine computational artifacts to reduce bias and equity deficits."
+          },
+          {
+           "code": "HS.IC.C.3",
+           "text": "Demonstrate ways a given algorithm applies to problems across disciplines."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "subconcept-social-interactions-si",
+       "title": "Subconcept: Social Interactions (SI)",
+       "subtopics": [
+        {
+         "id": "subconcept-social-interactions-si",
+         "title": "Subconcept: Social Interactions (SI)",
+         "outcomes": [
+          {
+           "code": "HS.IC.SI.1",
+           "text": "Analyze the impact of collaborative tools and methods that increase social connectivity."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "subconcept-safety-law-and-ethics-sle",
+       "title": "Subconcept: Safety, Law, and Ethics (SLE)",
+       "subtopics": [
+        {
+         "id": "subconcept-safety-law-and-ethics-sle",
+         "title": "Subconcept: Safety, Law, and Ethics (SLE)",
+         "outcomes": [
+          {
+           "code": "HS.IC.SLE.1",
+           "text": "Explain the beneficial and harmful effects that intellectual property laws can have on innovation."
+          },
+          {
+           "code": "HS.IC.SLE.2",
+           "text": "Explain the privacy concerns related to the collection and generation of data through automated processes that may not be evident to users."
+          },
+          {
+           "code": "HS.IC.SLE.3",
+           "text": "Evaluate the social and economic implications of privacy in the context of safety, law, or ethics."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "empowered-learner-students-leverage-technology-t",
+     "title": "Empowered Learner - Students leverage technology to take an active role in choosing, achieving, and demonstrating competency in their learning goals, informed by the learning sciences",
+     "topics": [
+      {
+       "id": "empowered-learner-students-leverage-technology-t",
+       "title": "Empowered Learner - Students leverage technology to take an active role in choosing, achieving, and demonstrating competency in their learning goals, informed by the learning sciences",
+       "subtopics": [
+        {
+         "id": "empowered-learner-students-leverage-technology-t",
+         "title": "Empowered Learner - Students leverage technology to take an active role in choosing, achieving, and demonstrating competency in their learning goals, informed by the learning sciences",
+         "outcomes": [
+          {
+           "code": "9-12.1.a.",
+           "text": "Students articulate and set personal learning goals, develop strategies leveraging technology to achieve them, and reflect on the learning process itself to improve learning outcomes."
+          },
+          {
+           "code": "9-12.1.b.",
+           "text": "Students build networks of experts and peers to customize their learning environments in ways that support the learning process and in accordance with school policy."
+          },
+          {
+           "code": "9-12.1.c.",
+           "text": "Students actively use technology to seek feedback that informs and improves their practice and to demonstrate their learning in a variety of ways."
+          },
+          {
+           "code": "9-12.1.d.",
+           "text": "Students choose, use and troubleshoot current technologies, and are able to transfer their knowledge to explore new technologies."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "digital-citizen-students-recognize-the-rights-re",
+     "title": "Digital Citizen - Students recognize the rights, responsibilities, and opportunities of living, learning, and working in an interconnected digital world, and they act and model in ways that are safe, legal, and ethical",
+     "topics": [
+      {
+       "id": "digital-citizen-students-recognize-the-rights-re",
+       "title": "Digital Citizen - Students recognize the rights, responsibilities, and opportunities of living, learning, and working in an interconnected digital world, and they act and model in ways that are safe, legal, and ethical",
+       "subtopics": [
+        {
+         "id": "digital-citizen-students-recognize-the-rights-re",
+         "title": "Digital Citizen - Students recognize the rights, responsibilities, and opportunities of living, learning, and working in an interconnected digital world, and they act and model in ways that are safe, legal, and ethical",
+         "outcomes": [
+          {
+           "code": "9-12.2.a.",
+           "text": "Students cultivate and manage their digital identity and reputation and are aware of the permanence of their actions in the digital world."
+          },
+          {
+           "code": "9-12.2.b.",
+           "text": "Students engage in and advocate for positive, safe, legal, and ethical behavior when using technology, including social interactions online or when using networked devices."
+          },
+          {
+           "code": "9-12.2.c.",
+           "text": "Students demonstrate and advocate for an understanding of and respect for the rights and obligations of using and sharing intellectual property."
+          },
+          {
+           "code": "9-12.2.d.",
+           "text": "Students manage their personal data to maintain digital privacy and security, and are aware of data-collection technology used to track their navigation online."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "knowledge-constructor-students-critically-curate",
+     "title": "Knowledge Constructor - Students critically curate a variety of resources using digital tools to construct knowledge, produce creative artifacts, and make meaningful learning experiences for themselves and others",
+     "topics": [
+      {
+       "id": "knowledge-constructor-students-critically-curate",
+       "title": "Knowledge Constructor - Students critically curate a variety of resources using digital tools to construct knowledge, produce creative artifacts, and make meaningful learning experiences for themselves and others",
+       "subtopics": [
+        {
+         "id": "knowledge-constructor-students-critically-curate",
+         "title": "Knowledge Constructor - Students critically curate a variety of resources using digital tools to construct knowledge, produce creative artifacts, and make meaningful learning experiences for themselves and others",
+         "outcomes": [
+          {
+           "code": "9-12.3.a.",
+           "text": "Students plan and employ effective research strategies to locate information and other resources for their intellectual and/or creative pursuits."
+          },
+          {
+           "code": "9-12.b.",
+           "text": "Students evaluate the accuracy, perspective, credibility, and relevance of information, media, data or other resources."
+          },
+          {
+           "code": "9-12.3.c.",
+           "text": "Students curate information from digital resources using a variety of tools and methods to create collections of artifacts that demonstrate meaningful connections or conclusions."
+          },
+          {
+           "code": "9-12.3.d.",
+           "text": "Students build knowledge by actively exploring real-world issues and problems, developing ideas and theories, and pursuing answers and solutions."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "innovative-designer-students-use-a-variety-of-te",
+     "title": "Innovative Designer - Students use a variety of technologies within a design process to identify and solve problems by creating new, useful or imaginative solutions",
+     "topics": [
+      {
+       "id": "innovative-designer-students-use-a-variety-of-te",
+       "title": "Innovative Designer - Students use a variety of technologies within a design process to identify and solve problems by creating new, useful or imaginative solutions",
+       "subtopics": [
+        {
+         "id": "innovative-designer-students-use-a-variety-of-te",
+         "title": "Innovative Designer - Students use a variety of technologies within a design process to identify and solve problems by creating new, useful or imaginative solutions",
+         "outcomes": [
+          {
+           "code": "9-12.4.a.",
+           "text": "Students know and use a deliberate design process for generating ideas, testing theories, creating innovative artifacts or solving authentic problems."
+          },
+          {
+           "code": "9-12.4.b.",
+           "text": "Students select and use digital tools to plan and manage a design process that considers design constraints and calculated risks."
+          },
+          {
+           "code": "9-12.4.c.",
+           "text": "Students develop, test and refine prototypes as part of a cyclical design process."
+          },
+          {
+           "code": "9-12.4.d.",
+           "text": "Students exhibit a tolerance for ambiguity, perseverance and the capacity to work with open-ended problems."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "computational-thinker-students-exhibit-a-toleran",
+     "title": "Computational Thinker - Students exhibit a tolerance for ambiguity, perseverance and the capacity to work with open-ended problems",
+     "topics": [
+      {
+       "id": "computational-thinker-students-exhibit-a-toleran",
+       "title": "Computational Thinker - Students exhibit a tolerance for ambiguity, perseverance and the capacity to work with open-ended problems",
+       "subtopics": [
+        {
+         "id": "computational-thinker-students-exhibit-a-toleran",
+         "title": "Computational Thinker - Students exhibit a tolerance for ambiguity, perseverance and the capacity to work with open-ended problems",
+         "outcomes": [
+          {
+           "code": "9-12.5.a.",
+           "text": "Students formulate problem definitions suited for technology-assisted methods such as data analysis, abstract models, and algorithmic thinking in exploring and finding solutions."
+          },
+          {
+           "code": "9-12.5.b.",
+           "text": "Students collect data or identify relevant data sets, use digital tools to analyze them, and represent data in various ways to facilitate problem-solving and decision-making."
+          },
+          {
+           "code": "9-12.5.c.",
+           "text": "Students break problems into component parts, extract key information, and develop descriptive models to understand complex systems or facilitate problem-solving."
+          },
+          {
+           "code": "9-12.5.d.",
+           "text": "Students understand how automation works and use algorithmic thinking to develop a sequence of steps to create and test automated solutions."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "creative-communicator-students-communicate-clear",
+     "title": "Creative Communicator - Students communicate clearly and express themselves creatively for a variety of purposes using the platforms, tools, styles, formats and digital media appropriate to their goals",
+     "topics": [
+      {
+       "id": "creative-communicator-students-communicate-clear",
+       "title": "Creative Communicator - Students communicate clearly and express themselves creatively for a variety of purposes using the platforms, tools, styles, formats and digital media appropriate to their goals",
+       "subtopics": [
+        {
+         "id": "creative-communicator-students-communicate-clear",
+         "title": "Creative Communicator - Students communicate clearly and express themselves creatively for a variety of purposes using the platforms, tools, styles, formats and digital media appropriate to their goals",
+         "outcomes": [
+          {
+           "code": "9-12.6.a.",
+           "text": "Students choose the appropriate platforms and tools for meeting the desired objectives of their creation or communication."
+          },
+          {
+           "code": "9-12.6.b.",
+           "text": "Students create original works or responsibly repurpose or remix digital resources into new creations."
+          },
+          {
+           "code": "9-12.6.c.",
+           "text": "Students communicate complex ideas clearly using various digital tools to convey the concepts textually, visually, graphically, etc."
+          },
+          {
+           "code": "9-12.6.d.",
+           "text": "Students publish or present content that customizes the message and medium for their intended audiences."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "global-collaborator-students-use-digital-tools-t",
+     "title": "Global Collaborator - Students use digital tools to broaden their perspectives and enrich their learning by collaborating with others and working effectively in teams locally and globally",
+     "topics": [
+      {
+       "id": "global-collaborator-students-use-digital-tools-t",
+       "title": "Global Collaborator - Students use digital tools to broaden their perspectives and enrich their learning by collaborating with others and working effectively in teams locally and globally",
+       "subtopics": [
+        {
+         "id": "global-collaborator-students-use-digital-tools-t",
+         "title": "Global Collaborator - Students use digital tools to broaden their perspectives and enrich their learning by collaborating with others and working effectively in teams locally and globally",
+         "outcomes": [
+          {
+           "code": "9-12.7.a.",
+           "text": "Students use digital tools to connect with learners from a variety of backgrounds and cultures, engaging with them in various ways that broaden mutual understanding and learning."
+          },
+          {
+           "code": "9-12.7.b.",
+           "text": "Students use collaborative technologies to work with others, including peers, experts and or community members, to examine issues and problems from multiple viewpoints."
+          },
+          {
+           "code": "9-12.7.c.",
+           "text": "Students contribute constructively to project teams, choosing various roles and responsibilities to work effectively toward a common goal."
+          },
+          {
+           "code": "9-12.7.d.",
+           "text": "Students explore local and global issues and use collaborative technologies to work with others to investigate, develop, and advocate for solutions."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "K-2",
+   "units": [
+    {
+     "id": "empowered-learner-students-leverage-technology-t",
+     "title": "Empowered Learner - Students leverage technology to take an active role in choosing, achieving, and demonstrating competency in their learning goals, informed by the learning sciences",
+     "topics": [
+      {
+       "id": "empowered-learner-students-leverage-technology-t",
+       "title": "Empowered Learner - Students leverage technology to take an active role in choosing, achieving, and demonstrating competency in their learning goals, informed by the learning sciences",
+       "subtopics": [
+        {
+         "id": "empowered-learner-students-leverage-technology-t",
+         "title": "Empowered Learner - Students leverage technology to take an active role in choosing, achieving, and demonstrating competency in their learning goals, informed by the learning sciences",
+         "outcomes": [
+          {
+           "code": "K-2.1.a",
+           "text": "Students, with guidance, consider and set personal learning goals and utilize appropriate technology to demonstrate knowledge and reflect on the learning process."
+          },
+          {
+           "code": "K-2.1.b",
+           "text": "Students, with guidance, learn about technologies that can be used to connect to others and demonstrate the ability to link purpose with resource(s) to enhance and customize their learning."
+          },
+          {
+           "code": "K-2.1.c",
+           "text": "Students, with guidance, learn to recognize feedback from both people and features embedded in digital tools, and use age appropriate technology to share learning."
+          },
+          {
+           "code": "K-2.1.d",
+           "text": "Students, with guidance, learn to recognize commonalities and fundamental structures across digital tools and begin to transfer learning between tools or learning environments."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "digital-citizen-students-recognize-the-rights-re",
+     "title": "Digital Citizen - Students recognize the rights, responsibilities, and opportunities of living, learning, and working in an interconnected digital world, and they act and model in ways that are safe, legal, and ethical",
+     "topics": [
+      {
+       "id": "digital-citizen-students-recognize-the-rights-re",
+       "title": "Digital Citizen - Students recognize the rights, responsibilities, and opportunities of living, learning, and working in an interconnected digital world, and they act and model in ways that are safe, legal, and ethical",
+       "subtopics": [
+        {
+         "id": "digital-citizen-students-recognize-the-rights-re",
+         "title": "Digital Citizen - Students recognize the rights, responsibilities, and opportunities of living, learning, and working in an interconnected digital world, and they act and model in ways that are safe, legal, and ethical",
+         "outcomes": [
+          {
+           "code": "K-2.2.a",
+           "text": "Students, with guidance, discuss and develop their digital identity through responsible use of technology."
+          },
+          {
+           "code": "K-2.2.b",
+           "text": "Students, with guidance, engage in positive and safe behavior when using devices and working online with others."
+          },
+          {
+           "code": "K-2.2.c",
+           "text": "Students, with guidance, begin to develop an understanding of ownership, sharing of information, and how to respect the work of others."
+          },
+          {
+           "code": "K-2.2.d",
+           "text": "Students, with guidance, demonstrate the importance of keeping their information private."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "knowledge-constructor-students-critically-curate",
+     "title": "Knowledge Constructor - Students critically curate a variety of resources using digital tools to construct knowledge, produce creative artifacts, and make meaningful learning experiences for themselves and others",
+     "topics": [
+      {
+       "id": "knowledge-constructor-students-critically-curate",
+       "title": "Knowledge Constructor - Students critically curate a variety of resources using digital tools to construct knowledge, produce creative artifacts, and make meaningful learning experiences for themselves and others",
+       "subtopics": [
+        {
+         "id": "knowledge-constructor-students-critically-curate",
+         "title": "Knowledge Constructor - Students critically curate a variety of resources using digital tools to construct knowledge, produce creative artifacts, and make meaningful learning experiences for themselves and others",
+         "outcomes": [
+          {
+           "code": "K-2.3.a",
+           "text": "Students, with guidance, use provided digital tools and resources to find information on topics of interest."
+          },
+          {
+           "code": "K-2.3.b",
+           "text": "Students, with guidance, become familiar with age-appropriate criteria for evaluating digital content."
+          },
+          {
+           "code": "K-2.3.c",
+           "text": "Students, with guidance, use a variety of provided tools to organize information and make connections to their learning."
+          },
+          {
+           "code": "K-2.3.d",
+           "text": "Students, with guidance, explore real-world issues and share their ideas about them with others."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "innovative-designer-students-use-a-variety-of-te",
+     "title": "Innovative Designer - Students use a variety of technologies within a design process to identify and solve problems by creating new, useful or imaginative solutions",
+     "topics": [
+      {
+       "id": "innovative-designer-students-use-a-variety-of-te",
+       "title": "Innovative Designer - Students use a variety of technologies within a design process to identify and solve problems by creating new, useful or imaginative solutions",
+       "subtopics": [
+        {
+         "id": "innovative-designer-students-use-a-variety-of-te",
+         "title": "Innovative Designer - Students use a variety of technologies within a design process to identify and solve problems by creating new, useful or imaginative solutions",
+         "outcomes": [
+          {
+           "code": "K-2.4.a",
+           "text": "Students, with guidance, ask questions, suggest solutions, test ideas to solve problems, and share their learning."
+          },
+          {
+           "code": "K-2.4.b",
+           "text": "Students, with guidance, use age appropriate digital and/or nondigital tools to describe the steps in a design process."
+          },
+          {
+           "code": "K-2.4.c",
+           "text": "Students, with guidance, use a design process to develop ideas or creations, test their design, and redesign as necessary."
+          },
+          {
+           "code": "K-2.4.d",
+           "text": "Students demonstrate perseverance when working to complete a challenging task."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "computational-thinker-students-develop-and-emplo",
+     "title": "Computational Thinker - Students develop and employ strategies for understanding and solving problems in ways that leverage the power of technological methods to develop and test solutions",
+     "topics": [
+      {
+       "id": "computational-thinker-students-develop-and-emplo",
+       "title": "Computational Thinker - Students develop and employ strategies for understanding and solving problems in ways that leverage the power of technological methods to develop and test solutions",
+       "subtopics": [
+        {
+         "id": "computational-thinker-students-develop-and-emplo",
+         "title": "Computational Thinker - Students develop and employ strategies for understanding and solving problems in ways that leverage the power of technological methods to develop and test solutions",
+         "outcomes": [
+          {
+           "code": "K-2.5.a",
+           "text": "Students, with guidance, identify a problem and select appropriate technology tools to explore and find solutions."
+          },
+          {
+           "code": "K-2.5.b",
+           "text": "Students, with guidance, analyze age appropriate data and look for similarities in order to identify patterns and categories."
+          },
+          {
+           "code": "K-2.5.c",
+           "text": "Students, with guidance, break a problem into parts and identify ways to solve the problem."
+          },
+          {
+           "code": "K-2.5.d",
+           "text": "Students discuss and develop an understanding of how technology is used to make a task easier or repeatable and can identify real-world examples."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "creative-communicator-students-communicate-clear",
+     "title": "Creative Communicator - Students communicate clearly and express themselves creatively for a variety of purposes using the platforms, tools, styles, formats and digital media appropriate to their goals",
+     "topics": [
+      {
+       "id": "creative-communicator-students-communicate-clear",
+       "title": "Creative Communicator - Students communicate clearly and express themselves creatively for a variety of purposes using the platforms, tools, styles, formats and digital media appropriate to their goals",
+       "subtopics": [
+        {
+         "id": "creative-communicator-students-communicate-clear",
+         "title": "Creative Communicator - Students communicate clearly and express themselves creatively for a variety of purposes using the platforms, tools, styles, formats and digital media appropriate to their goals",
+         "outcomes": [
+          {
+           "code": "K-2.6.a",
+           "text": "Students, with guidance, use a variety of tools for creating something new and communicating with others."
+          },
+          {
+           "code": "K-2.6.b",
+           "text": "Students, with guidance, create original works using digital tools and resources."
+          },
+          {
+           "code": "K-2.6.c",
+           "text": "Students, with guidance, create digital artifacts to share ideas in multiple formats."
+          },
+          {
+           "code": "K-2.6.d",
+           "text": "Students, with guidance, select the appropriate technology for sharing their ideas with intended audiences."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "global-collaborator-students-use-digital-tools-t",
+     "title": "Global Collaborator - Students use digital tools to broaden their perspectives and enrich their learning by collaborating with others and working effectively in teams locally and globally",
+     "topics": [
+      {
+       "id": "global-collaborator-students-use-digital-tools-t",
+       "title": "Global Collaborator - Students use digital tools to broaden their perspectives and enrich their learning by collaborating with others and working effectively in teams locally and globally",
+       "subtopics": [
+        {
+         "id": "global-collaborator-students-use-digital-tools-t",
+         "title": "Global Collaborator - Students use digital tools to broaden their perspectives and enrich their learning by collaborating with others and working effectively in teams locally and globally",
+         "outcomes": [
+          {
+           "code": "K-2.7.a",
+           "text": "Students, with guidance, use digital tools to work with other learners and get to know people within their local community and beyond."
+          },
+          {
+           "code": "K-2.7.b",
+           "text": "Students, with guidance, use technology to communicate with others and to look at problems from different perspectives."
+          },
+          {
+           "code": "K-2.7.c",
+           "text": "Students, with guidance, take on various team roles and use age appropriate technology to complete projects."
+          },
+          {
+           "code": "K-2.7.d",
+           "text": "Students, with guidance, use age appropriate technology to work together to demonstrate an understanding of local or global issues and suggest possible solutions."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "3-5",
+   "units": [
+    {
+     "id": "empowered-learner-students-leverage-technology-t",
+     "title": "Empowered Learner - Students leverage technology to take an active role in choosing, achieving, and demonstrating competency in their learning goals, informed by the learning sciences",
+     "topics": [
+      {
+       "id": "empowered-learner-students-leverage-technology-t",
+       "title": "Empowered Learner - Students leverage technology to take an active role in choosing, achieving, and demonstrating competency in their learning goals, informed by the learning sciences",
+       "subtopics": [
+        {
+         "id": "empowered-learner-students-leverage-technology-t",
+         "title": "Empowered Learner - Students leverage technology to take an active role in choosing, achieving, and demonstrating competency in their learning goals, informed by the learning sciences",
+         "outcomes": [
+          {
+           "code": "3-5.1.a",
+           "text": "Students, in collaboration with an educator, develop learning goals, select the technology tools to achieve them, and reflect on and revise the learning process as needed to achieve goals."
+          },
+          {
+           "code": "3-5.1.b",
+           "text": "Students, in collaboration with an educator, build a network of experts and peers to customize their environments to enhance their learning, in accordance with school policy."
+          },
+          {
+           "code": "3-5.1.c",
+           "text": "Students, in collaboration with an educator, examine feedback from both people and the features embedded in digital tools, and use age appropriate technology to share learning."
+          },
+          {
+           "code": "3-5.1.d",
+           "text": "Students explore age appropriate technologies and begin to transfer their learning to different tools or learning environments."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "digital-citizen-students-recognize-the-rights-re",
+     "title": "Digital Citizen - Students recognize the rights, responsibilities, and opportunities of living, learning, and working in an interconnected digital world, and they act and model in ways that are safe, legal, and ethical",
+     "topics": [
+      {
+       "id": "digital-citizen-students-recognize-the-rights-re",
+       "title": "Digital Citizen - Students recognize the rights, responsibilities, and opportunities of living, learning, and working in an interconnected digital world, and they act and model in ways that are safe, legal, and ethical",
+       "subtopics": [
+        {
+         "id": "digital-citizen-students-recognize-the-rights-re",
+         "title": "Digital Citizen - Students recognize the rights, responsibilities, and opportunities of living, learning, and working in an interconnected digital world, and they act and model in ways that are safe, legal, and ethical",
+         "outcomes": [
+          {
+           "code": "3-5.2.a",
+           "text": "Students demonstrate an understanding of the role a digital identity plays in the digital world and learn the permanence of their decisions when interacting online."
+          },
+          {
+           "code": "3-5.2.b",
+           "text": "Students, in collaboration with an educator, identify and practice safe, legal, and ethical behavior when using technology and interacting online."
+          },
+          {
+           "code": "3-5.2.c",
+           "text": "Students, in collaboration with an educator, examine, use, and demonstrate respect for intellectual property including copyright, permission, and fair use, with both print and digital media when using and sharing the work of others."
+          },
+          {
+           "code": "3-5.2.d",
+           "text": "Students, in collaboration with an educator, demonstrate an understanding of what personal data is, how to keep it private, and how it might be shared online."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "knowledge-constructor-students-critically-curate",
+     "title": "Knowledge Constructor - Students critically curate a variety of resources using digital tools to construct knowledge, produce creative artifacts, and make meaningful learning experiences for themselves and others",
+     "topics": [
+      {
+       "id": "knowledge-constructor-students-critically-curate",
+       "title": "Knowledge Constructor - Students critically curate a variety of resources using digital tools to construct knowledge, produce creative artifacts, and make meaningful learning experiences for themselves and others",
+       "subtopics": [
+        {
+         "id": "knowledge-constructor-students-critically-curate",
+         "title": "Knowledge Constructor - Students critically curate a variety of resources using digital tools to construct knowledge, produce creative artifacts, and make meaningful learning experiences for themselves and others",
+         "outcomes": [
+          {
+           "code": "3-5.3.a",
+           "text": "Students, in collaboration with an educator, employ appropriate research techniques to locate digital resources that will help them in their learning process."
+          },
+          {
+           "code": "3-5.3.b",
+           "text": "Students, in collaboration with an educator, learn how to evaluate sources for accuracy, perspective, credibility, and relevance."
+          },
+          {
+           "code": "3-5.3.c",
+           "text": "Students, in collaboration with an educator, use a variety of strategies to collect and organize information and make meaningful connections between resources."
+          },
+          {
+           "code": "3-5.3.d",
+           "text": "Students, in collaboration with an educator, explore real world problems and issues and collaborate with others to find answers or solutions."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "innovative-designer-students-use-a-variety-of-te",
+     "title": "Innovative Designer - Students use a variety of technologies within a design process to identify and solve problems by creating new, useful or imaginative solutions",
+     "topics": [
+      {
+       "id": "innovative-designer-students-use-a-variety-of-te",
+       "title": "Innovative Designer - Students use a variety of technologies within a design process to identify and solve problems by creating new, useful or imaginative solutions",
+       "subtopics": [
+        {
+         "id": "innovative-designer-students-use-a-variety-of-te",
+         "title": "Innovative Designer - Students use a variety of technologies within a design process to identify and solve problems by creating new, useful or imaginative solutions",
+         "outcomes": [
+          {
+           "code": "3-5.4.a",
+           "text": "Students, in collaboration with an educator, explore and practice a design process by generating ideas to solve a problem by planning, creating and testing innovative products that are shared with others."
+          },
+          {
+           "code": "3-5.4.b",
+           "text": "Students, in collaboration with an educator, use digital and/or non-digital tools to plan and manage a design process."
+          },
+          {
+           "code": "3-5.4.c",
+           "text": "Students, in collaboration with an educator, engage in a cyclical design process to develop, test and refine prototypes and reflect on the role that trial and error plays."
+          },
+          {
+           "code": "3-5.4.d",
+           "text": "Students demonstrate perseverance when working with open-ended problems."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "computational-thinker-students-develop-and-emplo",
+     "title": "Computational Thinker - Students develop and employ strategies for understanding and solving problems in ways that leverage the power of technological methods to develop and test solutions",
+     "topics": [
+      {
+       "id": "computational-thinker-students-develop-and-emplo",
+       "title": "Computational Thinker - Students develop and employ strategies for understanding and solving problems in ways that leverage the power of technological methods to develop and test solutions",
+       "subtopics": [
+        {
+         "id": "computational-thinker-students-develop-and-emplo",
+         "title": "Computational Thinker - Students develop and employ strategies for understanding and solving problems in ways that leverage the power of technological methods to develop and test solutions",
+         "outcomes": [
+          {
+           "code": "3-5.5.a",
+           "text": "Students, in collaboration with an educator, identify, explore or solve problems by selecting technology for data analysis, modeling, and algorithmic thinking."
+          },
+          {
+           "code": "3-5.5.b",
+           "text": "Students, in collaboration with an educator, select effective technology to represent and organize data."
+          },
+          {
+           "code": "3-5.5.c",
+           "text": "Students, in collaboration with an educator, break down problems into smaller parts, identify key information, and propose solutions."
+          },
+          {
+           "code": "3-5.5.d",
+           "text": "Students understand and explore basic concepts related to automation, patterns, and algorithmic thinking."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "creative-communicator-students-communicate-clear",
+     "title": "Creative Communicator - Students communicate clearly and express themselves creatively for a variety of purposes using the platforms, tools, styles, formats and digital media appropriate to their goals",
+     "topics": [
+      {
+       "id": "creative-communicator-students-communicate-clear",
+       "title": "Creative Communicator - Students communicate clearly and express themselves creatively for a variety of purposes using the platforms, tools, styles, formats and digital media appropriate to their goals",
+       "subtopics": [
+        {
+         "id": "creative-communicator-students-communicate-clear",
+         "title": "Creative Communicator - Students communicate clearly and express themselves creatively for a variety of purposes using the platforms, tools, styles, formats and digital media appropriate to their goals",
+         "outcomes": [
+          {
+           "code": "3-5.6.a",
+           "text": "Students, in collaboration with an educator, recognize and utilize the features and functions of a variety of creation or communication tools."
+          },
+          {
+           "code": "3-5.6.b",
+           "text": "Students, in collaboration with an educator, create original works and learn strategies for responsibly repurposing and remixing to create new artifacts."
+          },
+          {
+           "code": "3-5.6.c",
+           "text": "Students, in collaboration with an educator, create digital artifacts using digital tools to communicate ideas visually, graphically, and/or auditorily."
+          },
+          {
+           "code": "3-5.6.d",
+           "text": "Students, in collaboration with an educator, learn about and consider the intended audience when creating and publishing digital artifacts and presentations."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "global-collaborator-students-use-digital-tools-t",
+     "title": "Global Collaborator - Students use digital tools to broaden their perspectives and enrich their learning by collaborating with others and working effectively in teams locally and globally",
+     "topics": [
+      {
+       "id": "global-collaborator-students-use-digital-tools-t",
+       "title": "Global Collaborator - Students use digital tools to broaden their perspectives and enrich their learning by collaborating with others and working effectively in teams locally and globally",
+       "subtopics": [
+        {
+         "id": "global-collaborator-students-use-digital-tools-t",
+         "title": "Global Collaborator - Students use digital tools to broaden their perspectives and enrich their learning by collaborating with others and working effectively in teams locally and globally",
+         "outcomes": [
+          {
+           "code": "3-5.7.a",
+           "text": "Students, in collaboration with an educator, use digital tools to work with other learners, including those from a variety of backgrounds and cultures."
+          },
+          {
+           "code": "3-5.7.b",
+           "text": "Students, in collaboration with an educator, use technology to connect with others, including peers, experts, and community members, to explore different points of view on various topics."
+          },
+          {
+           "code": "3-5.7.c",
+           "text": "Students, in collaboration with an educator, take on various assigned team roles, contributing their knowledge of technology and content to complete a project or solve a problem."
+          },
+          {
+           "code": "3-5.7.d",
+           "text": "Students, in collaboration with an educator, work with others, using technology to explore local and global issues and identify possible solutions."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "6-8",
+   "units": [
+    {
+     "id": "empowered-learner-students-leverage-technology-t",
+     "title": "Empowered Learner - Students leverage technology to take an active role in choosing, achieving, and demonstrating competency in their learning goals, informed by the learning sciences",
+     "topics": [
+      {
+       "id": "empowered-learner-students-leverage-technology-t",
+       "title": "Empowered Learner - Students leverage technology to take an active role in choosing, achieving, and demonstrating competency in their learning goals, informed by the learning sciences",
+       "subtopics": [
+        {
+         "id": "empowered-learner-students-leverage-technology-t",
+         "title": "Empowered Learner - Students leverage technology to take an active role in choosing, achieving, and demonstrating competency in their learning goals, informed by the learning sciences",
+         "outcomes": [
+          {
+           "code": "6-8.1.a.",
+           "text": "Students articulate personal learning goals, select, and manage appropriate technologies to achieve them, and reflect on their successes and areas of improvement in working toward their goals."
+          },
+          {
+           "code": "6-8.1.b.",
+           "text": "Students identify and begin to develop online networks of experts and peers to customize their learning environments in accordance with school policy."
+          },
+          {
+           "code": "6-8.1.c.",
+           "text": "Students integrate feedback from people and digital tools to improve their learning process, and they select technology to demonstrate their learning in a variety of ways."
+          },
+          {
+           "code": "6-8.1.d.",
+           "text": "Students navigate a variety of technologies and transfer their skills to troubleshoot and learn how to use new technologies."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "digital-citizen-students-recognize-the-rights-re",
+     "title": "Digital Citizen - Students recognize the rights, responsibilities, and opportunities of living, learning, and working in an interconnected digital world, and they act and model in ways that are safe, legal, and ethical",
+     "topics": [
+      {
+       "id": "digital-citizen-students-recognize-the-rights-re",
+       "title": "Digital Citizen - Students recognize the rights, responsibilities, and opportunities of living, learning, and working in an interconnected digital world, and they act and model in ways that are safe, legal, and ethical",
+       "subtopics": [
+        {
+         "id": "digital-citizen-students-recognize-the-rights-re",
+         "title": "Digital Citizen - Students recognize the rights, responsibilities, and opportunities of living, learning, and working in an interconnected digital world, and they act and model in ways that are safe, legal, and ethical",
+         "outcomes": [
+          {
+           "code": "6-8.2.a.",
+           "text": "Students cultivate their digital identities and reputations within a digital environment and understand that digital actions are permanent."
+          },
+          {
+           "code": "6-8.2.b.",
+           "text": "Students demonstrate and advocate for positive, safe, legal, and ethical behavior when using technology and when interacting with others online."
+          },
+          {
+           "code": "6-8.2.c.",
+           "text": "Students demonstrate and advocate for an understanding of intellectual property including copyright, permission, and fair use by including appropriate citation and attribution elements."
+          },
+          {
+           "code": "6-8.2.d.",
+           "text": "Students demonstrate an understanding of what personal data is, how it is collected, and how to keep it private and secure, including the awareness of current technology terms and processes."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "knowledge-constructor-students-critically-curate",
+     "title": "Knowledge Constructor - Students critically curate a variety of resources using digital tools to construct knowledge, produce creative artifacts, and make meaningful learning experiences for themselves and others",
+     "topics": [
+      {
+       "id": "knowledge-constructor-students-critically-curate",
+       "title": "Knowledge Constructor - Students critically curate a variety of resources using digital tools to construct knowledge, produce creative artifacts, and make meaningful learning experiences for themselves and others",
+       "subtopics": [
+        {
+         "id": "knowledge-constructor-students-critically-curate",
+         "title": "Knowledge Constructor - Students critically curate a variety of resources using digital tools to construct knowledge, produce creative artifacts, and make meaningful learning experiences for themselves and others",
+         "outcomes": [
+          {
+           "code": "6-8.3.a.",
+           "text": "Students practice and improve research strategies to locate information and other resources for their intellectual or creative pursuits."
+          },
+          {
+           "code": "6-8.3.b.",
+           "text": "Students practice evaluating the accuracy, perspective, credibility, and relevance of information, media, data or other resources."
+          },
+          {
+           "code": "6-8.3.c.",
+           "text": "Students locate and collect a variety of resources and organize information to make meaningful connections."
+          },
+          {
+           "code": "6-8.3.d.",
+           "text": "Students explore real-world problems and issues and actively pursue solutions for them."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "innovative-designer-students-use-a-variety-of-te",
+     "title": "Innovative Designer - Students use a variety of technologies within a design process to identify and solve problems by creating new, useful or imaginative solutions",
+     "topics": [
+      {
+       "id": "innovative-designer-students-use-a-variety-of-te",
+       "title": "Innovative Designer - Students use a variety of technologies within a design process to identify and solve problems by creating new, useful or imaginative solutions",
+       "subtopics": [
+        {
+         "id": "innovative-designer-students-use-a-variety-of-te",
+         "title": "Innovative Designer - Students use a variety of technologies within a design process to identify and solve problems by creating new, useful or imaginative solutions",
+         "outcomes": [
+          {
+           "code": "6-8.4.a.",
+           "text": "Students engage in a design process for generating and testing ideas and developing innovative products to solve problems."
+          },
+          {
+           "code": "6-8.4.b.",
+           "text": "Students select and use digital tools to support a design process and expand their understanding to identify constraints and trade-offs and to weigh risks."
+          },
+          {
+           "code": "6-8.4.c.",
+           "text": "Students engage in a design process to develop, test, and revise prototypes, embrace the iterative process of trial and error, and understand setbacks as potential opportunities for improvement."
+          },
+          {
+           "code": "6-8.4.d.",
+           "text": "Students demonstrate an ability to persevere and handle greater ambiguity as they work to solve open-ended problems."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "computational-thinker-students-develop-and-emplo",
+     "title": "Computational Thinker - Students develop and employ strategies for understanding and solving problems in ways that leverage the power of technological methods to develop and test solutions",
+     "topics": [
+      {
+       "id": "computational-thinker-students-develop-and-emplo",
+       "title": "Computational Thinker - Students develop and employ strategies for understanding and solving problems in ways that leverage the power of technological methods to develop and test solutions",
+       "subtopics": [
+        {
+         "id": "computational-thinker-students-develop-and-emplo",
+         "title": "Computational Thinker - Students develop and employ strategies for understanding and solving problems in ways that leverage the power of technological methods to develop and test solutions",
+         "outcomes": [
+          {
+           "code": "6-8.5.a.",
+           "text": "Students practice defining and solving problems by selecting technology for data analysis, modeling, and algorithmic thinking."
+          },
+          {
+           "code": "6-8.5.b.",
+           "text": "Students find and organize data and use technology to analyze and represent it to solve problems and make decisions."
+          },
+          {
+           "code": "6-8.5.c.",
+           "text": "Students break problems into component parts, identify key pieces, and use that information to solve problems."
+          },
+          {
+           "code": "6-8.5.d.",
+           "text": "Students understand how automation works and apply algorithmic thinking to design and automate solutions."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "creative-communicator-students-communicate-clear",
+     "title": "Creative Communicator - Students communicate clearly and express themselves creatively for a variety of purposes using the platforms, tools, styles, formats and digital media appropriate to their goals",
+     "topics": [
+      {
+       "id": "creative-communicator-students-communicate-clear",
+       "title": "Creative Communicator - Students communicate clearly and express themselves creatively for a variety of purposes using the platforms, tools, styles, formats and digital media appropriate to their goals",
+       "subtopics": [
+        {
+         "id": "creative-communicator-students-communicate-clear",
+         "title": "Creative Communicator - Students communicate clearly and express themselves creatively for a variety of purposes using the platforms, tools, styles, formats and digital media appropriate to their goals",
+         "outcomes": [
+          {
+           "code": "6-8.6.a.",
+           "text": "Students select appropriate platforms and tools to create, share, and communicate their work effectively."
+          },
+          {
+           "code": "6-8.6.b.",
+           "text": "Students create original works or responsibly repurpose digital resources into new creative works."
+          },
+          {
+           "code": "6-8.6.c.",
+           "text": "Students create artifacts using digital tools to communicate complex ideas textually, visually, graphically, and auditorily."
+          },
+          {
+           "code": "6-8.6.d.",
+           "text": "Students publish or present content designed for intended audiences and select platforms that effectively convey their ideas."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "standard-7-global-collaborator-students-use-digi",
+     "title": "Standard 7. Global Collaborator - Students use digital tools to broaden their perspectives and enrich their learning by collaborating with others and working effectively in teams locally and globally",
+     "topics": [
+      {
+       "id": "standard-7-global-collaborator-students-use-digi",
+       "title": "Standard 7. Global Collaborator - Students use digital tools to broaden their perspectives and enrich their learning by collaborating with others and working effectively in teams locally and globally",
+       "subtopics": [
+        {
+         "id": "standard-7-global-collaborator-students-use-digi",
+         "title": "Standard 7. Global Collaborator - Students use digital tools to broaden their perspectives and enrich their learning by collaborating with others and working effectively in teams locally and globally",
+         "outcomes": [
+          {
+           "code": "6-8.7.a.",
+           "text": "Students use digital tools to interact with others to develop a richer understanding of different perspectives and cultures."
+          },
+          {
+           "code": "6-8.7.b.",
+           "text": "Students use collaborative technologies to connect with others, including peers, experts and community members, to learn about issues and problems or to gain a broader perspective."
+          },
+          {
+           "code": "6-8.7.c.",
+           "text": "Students perform a variety of roles within a team, using age-appropriate technology to complete a project or solve a problem."
+          },
+          {
+           "code": "6-8.7.d.",
+           "text": "Students work with others, using collaborative technologies to explore local and global issues and investigate and advocate for possible solutions."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "build": {
+  "builtAt": "2026-10-14T16:20:38.622Z",
+  "model": "none",
+  "usd": 0,
+  "expectedCodes": 336,
+  "coverage": 1,
+  "missingCodes": [],
+  "counts": {
+   "grades": 13,
+   "units": 78,
+   "topics": 188,
+   "subtopics": 188,
+   "outcomes": 336
+  },
+  "warnings": []
+ }
+}

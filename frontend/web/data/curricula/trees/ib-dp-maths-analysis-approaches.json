@@ -1,0 +1,428 @@
+{
+ "id": "ib-dp-maths-analysis-approaches",
+ "region": "INTL",
+ "framework": "International Baccalaureate Diploma Programme (DP)",
+ "board": "IB",
+ "qualification": "IB Diploma Programme",
+ "subject": "Mathematics: Analysis and approaches (SL and HL)",
+ "syllabusCode": null,
+ "gradeSystem": "course",
+ "source": {
+  "urls": [
+   "https://www.ibo.org/globalassets/new-structure/programmes/dp/pdfs/sb_maths_analysis_en.pdf",
+   "https://web.archive.org/web/20260313002033id_/https://www.ibo.org/globalassets/new-structure/programmes/dp/pdfs/sb_maths_analysis_en.pdf"
+  ],
+  "publisher": "International Baccalaureate Organization",
+  "licence": "(c) International Baccalaureate Organization; all rights reserved, no open licence. ibo.org terms 1.8: IB copyrighted materials are licensed only under the IB's terms or a signed agreement; 'Any use not expressly permitted is prohibited unless special permission is obtained in writing from the IB'; 1.9: nothing on the IB websites confers any licence. Briefs are free public marketing summaries: take topic structure only, write everything in our own words, never reproduce brief text, and do not use IB logos/trade marks. Full subject guides are sold to schools and were NOT used. Terms: https://www.ibo.org/terms-and-conditions/ and https://www.ibo.org/copyright",
+  "firstExam": "2029"
+ },
+ "grades": [
+  {
+   "grade": "all",
+   "units": [
+    {
+     "id": "topic-a-number-and-algebra",
+     "title": "Topic A: Number and algebra",
+     "topics": [
+      {
+       "id": "sequences",
+       "title": "Sequences",
+       "subtopics": [
+        {
+         "id": "sequences",
+         "title": "Sequences",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Work with arithmetic and geometric sequences and series, including sums and growth applications."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "exponents-and-logarithms",
+       "title": "Exponents and logarithms",
+       "subtopics": [
+        {
+         "id": "exponents-and-logarithms",
+         "title": "Exponents and logarithms",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Apply laws of exponents and logarithms to simplify expressions and solve exponential equations."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "combinatorics",
+       "title": "Combinatorics",
+       "subtopics": [
+        {
+         "id": "combinatorics",
+         "title": "Combinatorics",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Count arrangements and selections using permutations, combinations and the binomial theorem."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "complex-numbers-hl-only",
+       "title": "Complex numbers (HL only)",
+       "subtopics": [
+        {
+         "id": "complex-numbers-hl-only",
+         "title": "Complex numbers (HL only)",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Compute with complex numbers in Cartesian and polar forms (higher level only)."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "proof-and-algebraic-manipulation",
+       "title": "Proof and algebraic manipulation",
+       "subtopics": [
+        {
+         "id": "proof-and-algebraic-manipulation",
+         "title": "Proof and algebraic manipulation",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Construct and follow mathematical proofs and manipulate algebraic expressions."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "topic-b-functions",
+     "title": "Topic B: Functions",
+     "topics": [
+      {
+       "id": "representation-of-functions",
+       "title": "Representation of functions",
+       "subtopics": [
+        {
+         "id": "representation-of-functions",
+         "title": "Representation of functions",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe functions by graph, formula and table, with domain, range, composition and inverses."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "polynomial-functions",
+       "title": "Polynomial functions",
+       "subtopics": [
+        {
+         "id": "polynomial-functions",
+         "title": "Polynomial functions",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Analyse quadratic and higher polynomial functions, their graphs, roots and factorisation."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "functions-with-asymptotes",
+       "title": "Functions with asymptotes",
+       "subtopics": [
+        {
+         "id": "functions-with-asymptotes",
+         "title": "Functions with asymptotes",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Sketch and analyse rational, exponential and logarithmic functions that have asymptotes."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "trigonometric-functions",
+       "title": "Trigonometric functions",
+       "subtopics": [
+        {
+         "id": "trigonometric-functions",
+         "title": "Trigonometric functions",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Use the graphs, periods and equations of sine, cosine and tangent functions."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "transformations-of-graphs-and-functions",
+       "title": "Transformations of graphs and functions",
+       "subtopics": [
+        {
+         "id": "transformations-of-graphs-and-functions",
+         "title": "Transformations of graphs and functions",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe and apply translations, stretches and reflections of function graphs."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "topic-c-geometry",
+     "title": "Topic C: Geometry",
+     "topics": [
+      {
+       "id": "surface-areas-volumes-and-measurement-in-circles",
+       "title": "Surface areas, volumes and measurement in circles",
+       "subtopics": [
+        {
+         "id": "surface-areas-volumes-and-measurement-in-circles",
+         "title": "Surface areas, volumes and measurement in circles",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Calculate areas, volumes, arc lengths and sector areas of common shapes."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "trigonometry-and-its-applications",
+       "title": "Trigonometry and its applications",
+       "subtopics": [
+        {
+         "id": "trigonometry-and-its-applications",
+         "title": "Trigonometry and its applications",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Solve triangles with sine and cosine rules and apply trigonometry to real problems."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "vectors-hl-only",
+       "title": "Vectors (HL only)",
+       "subtopics": [
+        {
+         "id": "vectors-hl-only",
+         "title": "Vectors (HL only)",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Use vectors, lines and planes in space to solve geometry problems (higher level only)."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "topic-d-probability-and-statistics",
+     "title": "Topic D: Probability and statistics",
+     "topics": [
+      {
+       "id": "univariate-data",
+       "title": "Univariate data",
+       "subtopics": [
+        {
+         "id": "univariate-data",
+         "title": "Univariate data",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Summarise and compare single-variable data with averages, spread and graphs."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "probability",
+       "title": "Probability",
+       "subtopics": [
+        {
+         "id": "probability",
+         "title": "Probability",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Find probabilities of events, including conditional and independent events."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "probability-distributions",
+       "title": "Probability distributions",
+       "subtopics": [
+        {
+         "id": "probability-distributions",
+         "title": "Probability distributions",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Use discrete and continuous distributions such as binomial and normal to model data."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "topic-e-calculus",
+     "title": "Topic E: Calculus",
+     "topics": [
+      {
+       "id": "principles-of-differential-calculus",
+       "title": "Principles of differential calculus",
+       "subtopics": [
+        {
+         "id": "principles-of-differential-calculus",
+         "title": "Principles of differential calculus",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Understand limits and the derivative as rate of change and gradient."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "techniques-of-differential-calculus",
+       "title": "Techniques of differential calculus",
+       "subtopics": [
+        {
+         "id": "techniques-of-differential-calculus",
+         "title": "Techniques of differential calculus",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Differentiate functions using standard rules and find tangents and stationary points."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "techniques-of-integral-calculus",
+       "title": "Techniques of integral calculus",
+       "subtopics": [
+        {
+         "id": "techniques-of-integral-calculus",
+         "title": "Techniques of integral calculus",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Integrate functions and use definite integrals for areas."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "problem-solving-using-calculus",
+       "title": "Problem-solving using calculus",
+       "subtopics": [
+        {
+         "id": "problem-solving-using-calculus",
+         "title": "Problem-solving using calculus",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Apply differentiation and integration to optimisation, motion and modelling problems."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "differential-equations-hl-only",
+       "title": "Differential equations (HL only)",
+       "subtopics": [
+        {
+         "id": "differential-equations-hl-only",
+         "title": "Differential equations (HL only)",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Solve and apply differential equations (higher level only)."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "maclaurin-series-hl-only",
+       "title": "Maclaurin series (HL only)",
+       "subtopics": [
+        {
+         "id": "maclaurin-series-hl-only",
+         "title": "Maclaurin series (HL only)",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Build and use Maclaurin series approximations (higher level only)."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "build": {
+  "builtAt": "2026-10-14T10:53:53.041Z",
+  "model": "claude-agent",
+  "usd": 0,
+  "expectedCodes": null,
+  "coverage": null,
+  "missingCodes": [],
+  "counts": {
+   "grades": 1,
+   "units": 5,
+   "topics": 22,
+   "subtopics": 22,
+   "outcomes": 22
+  },
+  "warnings": [
+   "grade DP year 1 has no content",
+   "grade DP year 2 has no content",
+   "unexpected grade label \"all\""
+  ]
+ }
+}

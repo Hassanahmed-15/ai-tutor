@@ -3,10 +3,11 @@
 import { createContext, useContext, useEffect, useId, useLayoutEffect, useMemo, useRef } from "react";
 import { evalExpr } from "@/lib/canvas/expr";
 import { arcKeyframes, arrowHead, centreLine, quadPoints, roughEllipse, roughRect, taperedStroke } from "@/lib/canvas/ink";
-import { graphPoint, INK, type Mark, type PanelLayout, type Pt, type Rect } from "@/lib/canvas/layout";
+import { graphPoint, INK, textWidth, type Mark, type PanelLayout, type Pt, type Rect } from "@/lib/canvas/layout";
 import { PANEL_H, PANEL_W, type CanvasBoardSpec, type GraphStage } from "@/lib/canvas/types";
 import { CHALK, type BoardTheme } from "@/lib/canvas/theme";
 import { IconGlyph } from "./icons";
+import { figureAssetHref } from "@/lib/figures/assetHref";
 
 /**
  * ONE PANEL OF THE LESSON CANVAS, drawn from its layout (lib/canvas/layout.ts).
@@ -45,11 +46,13 @@ type PanelProps = {
   reducedMotion: boolean;
   /** The surface this board is drawn on (lib/canvas/theme.ts). */
   theme?: BoardTheme;
+  /** Prediction-first boards keep the answer-bearing diagram hidden until the student commits. */
+  concealStage?: boolean;
 };
 
-export function CanvasPanel({ layout, spec, shownThrough, sentenceProgress, live, vars, ghostVars, focusId, carryFrom, reducedMotion, theme = "paper" }: PanelProps) {
+export function CanvasPanel({ layout, spec, shownThrough, sentenceProgress, live, vars, ghostVars, focusId, carryFrom, reducedMotion, theme = "paper", concealStage = false }: PanelProps) {
   const chalk = theme === "chalk";
-  const visible = layout.marks.filter((m) => m.s <= shownThrough);
+  const visible = layout.marks.filter((m) => m.s <= shownThrough && (!concealStage || m.type === "heading" || m.type === "note"));
   const headingW = layout.targets.heading?.w ?? 200;
   return (
     <InkDrawing.Provider value={live && !reducedMotion}>
@@ -71,6 +74,7 @@ export function CanvasPanel({ layout, spec, shownThrough, sentenceProgress, live
             <text x={PANEL_W - 121} y={44.5} textAnchor="middle" fontSize={15} fontWeight={800} fill="#ffffff">↺ Quick refresher</text>
           </g>
         )}
+        {spec.visualFallback && <title>{spec.visualFallback.message}</title>}
         {visible.map((mark) => (
           <MarkView key={mark.id} mark={mark} layout={layout} spec={spec} shownThrough={shownThrough} sentenceProgress={sentenceProgress} vars={vars} ghostVars={ghostVars} focused={focusId === mark.id} focusId={focusId} carry={carryFrom[mark.id]} targetRect={layout.targets[mark.id]} reducedMotion={reducedMotion} chalk={chalk} />
         ))}
@@ -341,22 +345,49 @@ function renderMark({ mark, shownThrough, sentenceProgress, vars, ghostVars, foc
       return <Ink points={pts} width={2.6} color={MUTED} opacity={0.75} dash />;
     }
     case "box":
+      if (!mark.icon) {
+        // A card: a hand-drawn outline, its title, and its content lines.
+        const top = mark.rect.y + (mark.detail?.length ? 26 : mark.rect.h / 2 + 6);
+        return (
+          <g className={`cv-in${focus}`}>
+            <rect x={mark.rect.x} y={mark.rect.y} width={mark.rect.w} height={mark.rect.h} rx={14} fill={mark.color} fillOpacity={0.08} />
+            <Sketch d={roughRect(`box-${mark.id}`, mark.rect.x, mark.rect.y, mark.rect.w, mark.rect.h, 14)} color={mark.color} width={2.2} opacity={0.75} />
+            {mark.label && (
+              <text x={mark.rect.x + mark.rect.w / 2} y={top} textAnchor="middle" fontSize={mark.size} fontWeight={800} fill={INK}>
+                {mark.label}
+              </text>
+            )}
+            {mark.detail?.map((line, i) => (
+              <text key={i} x={mark.rect.x + mark.rect.w / 2} y={top + 22 + i * 19} textAnchor="middle" fontSize={15} fontWeight={600} fill={INK} opacity={0.85}>
+                {line}
+              </text>
+            ))}
+          </g>
+        );
+      }
       return (
         <g className={`cv-in${focus}`}>
-          <rect x={mark.rect.x} y={mark.rect.y} width={mark.rect.w} height={mark.rect.h} rx={16} fill={mark.color} fillOpacity={0.1} />
-          <Sketch d={roughRect(`bx-${mark.id}`, mark.rect.x, mark.rect.y, mark.rect.w, mark.rect.h, 16)} color={mark.color} width={2.2} />
+          <circle cx={mark.rect.x + mark.rect.w / 2} cy={mark.rect.y + mark.rect.h / 2 - (mark.label ? 18 : 0)} r={Math.min(34, mark.rect.w * 0.16, mark.rect.h * 0.22)} fill={mark.color} fillOpacity={0.14} stroke={mark.color} strokeWidth={3} />
           {mark.icon && (
-            <g transform={`translate(${mark.rect.x + mark.rect.w / 2},${mark.rect.y + mark.rect.h / 2 - 12}) scale(${Math.min(mark.rect.w, mark.rect.h) / 180})`}>
+            <g transform={`translate(${mark.rect.x + mark.rect.w / 2},${mark.rect.y + mark.rect.h / 2 - 18}) scale(${Math.min(mark.rect.w, mark.rect.h) / 220})`}>
               <IconGlyph name={mark.icon} color={mark.color} />
             </g>
           )}
           {mark.label && (
-            <text x={mark.rect.x + mark.rect.w / 2} y={mark.icon ? mark.rect.y + mark.rect.h - 14 : mark.rect.y + mark.rect.h / 2 + mark.size * 0.35} textAnchor="middle" fontSize={mark.size} fontWeight={700} fill={INK}>
+            <text x={mark.rect.x + mark.rect.w / 2} y={mark.rect.y + mark.rect.h / 2 + 42} textAnchor="middle" fontSize={mark.size} fontWeight={700} fill={INK}>
               {mark.label}
             </text>
           )}
         </g>
       );
+    case "figure":
+      return <FigureView mark={mark} chalk={Boolean(chalk)} focusId={focusId} />;
+    case "figure-label":
+      return <FigureLabelView mark={mark} chalk={Boolean(chalk)} shownThrough={shownThrough} focused={focusId === mark.part} />;
+    case "free-body":
+      return <FreeBodyView mark={mark} shownThrough={shownThrough} focusId={focusId} chalk={Boolean(chalk)} />;
+    case "electrolytic-cell":
+      return <ElectrolyticCellView mark={mark} shownThrough={shownThrough} focusId={focusId} reducedMotion={reducedMotion} chalk={Boolean(chalk)} />;
     case "text":
       return (
         <text x={mark.rect.x + mark.rect.w / 2} y={mark.rect.y + mark.rect.h / 2 + mark.size * 0.35} textAnchor="middle" fontSize={mark.size} fontWeight={700} fill={mark.color} className={`cv-write${focus}`}>
@@ -381,7 +412,239 @@ function renderMark({ mark, shownThrough, sentenceProgress, vars, ghostVars, foc
           ))}
         </g>
       );
+    case "molecule":
+      return <MoleculeView mark={mark} rotation={vars.rotation ?? 0} />;
+    case "atom-map":
+      return <AtomMapView mark={mark} />;
   }
+}
+
+/** A real apparatus drawing for the common generated/fallback scene of an electrolytic cell. */
+/** Figure colours by meaning, for paper and for the chalkboard. */
+function figureInk(ink: string | undefined, chalk: boolean): string {
+  if (!ink || ink === "none") return "none";
+  if (ink.startsWith("#")) return ink;
+  const paper: Record<string, string> = { ink: INK, glass: "rgba(186,230,253,0.28)", metal: "#9ca3af", wood: "#a8a29e", muted: MUTED, paper: "#ffffff" };
+  const slate: Record<string, string> = { ink: "#f1eee4", glass: "rgba(241,238,228,0.10)", metal: "#94a3b8", wood: "#78716c", muted: "#b9c3be", paper: "#e8e4d8" };
+  return (chalk ? slate : paper)[ink] ?? INK;
+}
+
+/** A code-drawn textbook figure (lib/figures): its shapes, scaled into place; the focused part is drawn bolder. */
+function FigureView({ mark, chalk, focusId }: { mark: Extract<Mark, { type: "figure" }>; chalk: boolean; focusId?: string }) {
+  const { rect, scale, drawing } = mark;
+  if (mark.asset) return <LibraryFigureView mark={mark} chalk={chalk} />;
+  return (
+    <g className="cv-in" role="img" aria-label={`Figure with parts: ${drawing.parts.map((p) => p.name).join(", ")}`}>
+      <g transform={`translate(${rect.x},${rect.y}) scale(${scale})`}>
+        {drawing.shapes.map((sh, i) => {
+          const focused = Boolean(sh.part && sh.part === focusId);
+          const common = { fill: figureInk(sh.fill ?? "none", chalk), stroke: focused ? ARIA_INK : figureInk(sh.stroke ?? "none", chalk), strokeWidth: (sh.width ?? 1) * (focused ? 1.6 : 1), strokeDasharray: sh.dash, opacity: sh.opacity, strokeLinecap: "round" as const, strokeLinejoin: "round" as const };
+          if (sh.t === "path") return <path key={i} d={sh.d} {...common} />;
+          if (sh.t === "circle") return <circle key={i} cx={sh.cx} cy={sh.cy} r={sh.r} {...common} />;
+          return (
+            <text key={i} x={sh.x} y={sh.y} fontSize={sh.size} textAnchor={sh.anchor ?? "start"} fill={figureInk(sh.fill ?? "ink", chalk)} fontWeight={600}>
+              {sh.text}
+            </text>
+          );
+        })}
+      </g>
+      {drawing.credit && (
+        <text x={rect.x + rect.w} y={rect.y + rect.h + 16} textAnchor="end" fontSize={11} fill={chalk ? "#b9c3be" : MUTED}>
+          {drawing.credit}
+        </text>
+      )}
+    </g>
+  );
+}
+
+/**
+ * A real textbook diagram from the library (lib/figures/library.ts): the art as an image, its own
+ * words already taken off so the board's labels are the only ones. On the chalkboard it sits on a
+ * paper card — the diagram's colours were drawn for white. The credit is required by its licence.
+ */
+function LibraryFigureView({ mark, chalk }: { mark: Extract<Mark, { type: "figure" }>; chalk: boolean }) {
+  const { rect, drawing } = mark;
+  return (
+    <g className="cv-in" role="img" aria-label={`Diagram with parts: ${drawing.parts.map((p) => p.name).join(", ")}`}>
+      {chalk && <rect x={rect.x - 6} y={rect.y - 6} width={rect.w + 12} height={rect.h + 12} rx={10} fill="#f6f3ea" opacity={0.96} />}
+      <image href={figureAssetHref(mark.asset!)} x={rect.x} y={rect.y} width={rect.w} height={rect.h} preserveAspectRatio="xMidYMid meet" />
+      {drawing.credit && (
+        <text x={rect.x + rect.w} y={rect.y + rect.h + 16} textAnchor="end" fontSize={10.5} fill={chalk ? "#b9c3be" : MUTED}>
+          {drawing.credit}
+        </text>
+      )}
+    </g>
+  );
+}
+
+/**
+ * A textbook label: its words in the margin column, a leader drawn out from the words, and a dot on
+ * the part. The label being spoken is full strength; earlier ones step back (signalling).
+ */
+function FigureLabelView({ mark, chalk, shownThrough, focused }: { mark: Extract<Mark, { type: "figure-label" }>; chalk: boolean; shownThrough: number; focused: boolean }) {
+  const ink = chalk ? "#f1eee4" : INK;
+  const earlier = Number.isFinite(shownThrough) && mark.s < shownThrough && !focused;
+  const end = mark.leader[mark.leader.length - 1];
+  const d = mark.leader.map((p, i) => `${i ? "L" : "M"}${p.x.toFixed(1)} ${p.y.toFixed(1)}`).join(" ");
+  return (
+    <g className="cv-in" opacity={earlier ? 0.62 : 1}>
+      <path d={d} fill="none" stroke={chalk ? "rgba(34,48,42,0.9)" : "#ffffff"} strokeWidth={3} strokeLinecap="round" strokeLinejoin="round" opacity={0.45} />
+      <path d={d} fill="none" stroke={focused ? ARIA_INK : ink} strokeWidth={1.8} strokeLinecap="round" strokeLinejoin="round" className="cv-stroke" pathLength={1} />
+      <circle cx={end.x} cy={end.y} r={4.2} fill={focused ? ARIA_INK : ink} stroke={chalk ? "#22302a" : "#ffffff"} strokeWidth={1.5} />
+      {mark.lines.map((line, i) => (
+        <text key={i} x={mark.at.x} y={mark.at.y + i * mark.size * 1.25} textAnchor={mark.side === "left" ? "end" : "start"} fontSize={mark.size} fontWeight={focused ? 800 : 700} fill={focused ? ARIA_INK : ink}>
+          {line}
+        </text>
+      ))}
+    </g>
+  );
+}
+
+/** A free-body diagram (lib/canvas/layout.ts freeBodyParts): the object, then one arrow per force as it is named. */
+function FreeBodyView({ mark, shownThrough, focusId, chalk }: { mark: Extract<Mark, { type: "free-body" }>; shownThrough: number; focusId?: string; chalk: boolean }) {
+  const { body, bodyRect: r, forces } = mark;
+  const palette = chalk ? ["#fda4af", "#93c5fd", "#86efac", "#fcd34d", "#c4b5fd", "#67e8f9"] : ["#be123c", "#2563eb", "#15803d", "#b45309", "#7c3aed", "#0e7490"];
+  return (
+    <g role="img" aria-label={`Free-body diagram of ${body.label ?? body.id}`}>
+      {body.s <= shownThrough && (
+        <g className={`cv-in${focusId === body.id ? " cv-focus" : ""}`}>
+          <rect x={r.x} y={r.y} width={r.w} height={r.h} rx={12} fill={chalk ? "rgba(255,255,255,0.06)" : "#f8f5ee"} stroke={INK} strokeWidth={3.5} />
+          <text x={r.x + r.w / 2} y={r.y + r.h / 2 + 7} textAnchor="middle" fontSize={19} fontWeight={800} fill={INK}>{body.label ?? body.id}</text>
+        </g>
+      )}
+      {forces.filter((f) => f.item.s <= shownThrough).map((f, i) => {
+        const color = f.item.color ?? palette[i % palette.length];
+        const dx = Math.sign(f.end.x - f.start.x), dy = Math.sign(f.end.y - f.start.y);
+        // Arrowhead: a filled triangle at the tip, pointing along the force.
+        const head = `M${f.end.x + dx * 4} ${f.end.y + dy * 4} L${f.end.x - dx * 16 - dy * 9} ${f.end.y - dy * 16 - dx * 9} L${f.end.x - dx * 16 + dy * 9} ${f.end.y - dy * 16 + dx * 9} Z`;
+        const horizontal = dx !== 0;
+        const lx = horizontal ? f.end.x + dx * 14 : f.end.x + 14;
+        const ly = horizontal ? f.end.y - 12 : f.end.y + (dy < 0 ? -10 : 24);
+        return (
+          <g key={f.item.id} className={`cv-in${focusId === f.item.id ? " cv-focus" : ""}`}>
+            <line x1={f.start.x} y1={f.start.y} x2={f.end.x - dx * 14} y2={f.end.y - dy * 14} stroke={color} strokeWidth={6} strokeLinecap="round" className="cv-stroke" pathLength={1} />
+            <path d={head} fill={color} />
+            <text x={lx} y={ly} textAnchor={horizontal ? (dx < 0 ? "end" : "start") : "start"} fontSize={17} fontWeight={800} fill={color}>{f.item.label ?? f.item.id}</text>
+          </g>
+        );
+      })}
+    </g>
+  );
+}
+
+function ElectrolyticCellView({ mark, shownThrough, focusId, reducedMotion, chalk }: {
+  mark: Extract<Mark, { type: "electrolytic-cell" }>;
+  shownThrough: number;
+  focusId?: string;
+  reducedMotion: boolean;
+  chalk: boolean;
+}) {
+  const { rect, parts } = mark;
+  const beaker = { x: rect.x + rect.w * 0.22, y: rect.y + rect.h * 0.25, w: rect.w * 0.56, h: rect.h * 0.68 };
+  const supply = { x: rect.x + rect.w * 0.37, y: rect.y + 8, w: rect.w * 0.26, h: 68 };
+  const anodeX = beaker.x + beaker.w * 0.25;
+  const cathodeX = beaker.x + beaker.w * 0.75;
+  const electrodeTop = beaker.y + 48;
+  const electrodeBottom = beaker.y + beaker.h - 30;
+  const liquidY = beaker.y + beaker.h * 0.48;
+  const visible = (s: number) => s <= shownThrough;
+  const anodeColor = chalk ? "#fda4af" : "#be123c";
+  const cathodeColor = chalk ? "#93c5fd" : "#2563eb";
+  const electrolyteColor = chalk ? "#67e8f9" : "#0e7490";
+  const wireVisible = visible(parts.power.s) && visible(parts.anode.s) && visible(parts.cathode.s);
+  const allVisible = wireVisible && visible(parts.electrolyte.s);
+  const label = (value: string | undefined, fallback: string) => value?.trim() || fallback;
+  return (
+    <g className="cv-in" role="img" aria-label="Labelled electrolytic cell apparatus">
+      {visible(parts.power.s) && (
+        <g className={focusId === parts.power.id ? "cv-focus" : undefined}>
+          <rect x={supply.x} y={supply.y} width={supply.w} height={supply.h} rx={10} fill="none" stroke={INK} strokeWidth={3} />
+          <line x1={supply.x + supply.w * 0.44} y1={supply.y + 18} x2={supply.x + supply.w * 0.44} y2={supply.y + 51} stroke={INK} strokeWidth={3} />
+          <line x1={supply.x + supply.w * 0.56} y1={supply.y + 12} x2={supply.x + supply.w * 0.56} y2={supply.y + 57} stroke={INK} strokeWidth={6} />
+          <text x={supply.x + 19} y={supply.y + 24} textAnchor="middle" fontSize={22} fontWeight={900} fill={anodeColor}>+</text>
+          <text x={supply.x + supply.w - 19} y={supply.y + 23} textAnchor="middle" fontSize={26} fontWeight={900} fill={cathodeColor}>−</text>
+          <text x={supply.x + supply.w / 2} y={supply.y - 9} textAnchor="middle" fontSize={17} fontWeight={800} fill={INK}>{label(parts.power.label, "power supply")}</text>
+        </g>
+      )}
+      {wireVisible && (
+        <g fill="none" stroke={INK} strokeWidth={4} strokeLinecap="round" strokeLinejoin="round">
+          <path d={`M${supply.x + 19} ${supply.y + supply.h / 2} H${anodeX} V${electrodeTop}`} />
+          <path d={`M${supply.x + supply.w - 19} ${supply.y + supply.h / 2} H${cathodeX} V${electrodeTop}`} />
+        </g>
+      )}
+      <path d={`M${beaker.x} ${beaker.y} V${beaker.y + beaker.h - 18} Q${beaker.x} ${beaker.y + beaker.h} ${beaker.x + 18} ${beaker.y + beaker.h} H${beaker.x + beaker.w - 18} Q${beaker.x + beaker.w} ${beaker.y + beaker.h} ${beaker.x + beaker.w} ${beaker.y + beaker.h - 18} V${beaker.y}`} fill="none" stroke={INK} strokeWidth={5} strokeLinecap="round" />
+      {visible(parts.electrolyte.s) && (
+        <g className={focusId === parts.electrolyte.id ? "cv-focus" : undefined}>
+          <path d={`M${beaker.x + 4} ${liquidY} H${beaker.x + beaker.w - 4} V${beaker.y + beaker.h - 20} Q${beaker.x + beaker.w - 4} ${beaker.y + beaker.h - 4} ${beaker.x + beaker.w - 20} ${beaker.y + beaker.h - 4} H${beaker.x + 20} Q${beaker.x + 4} ${beaker.y + beaker.h - 4} ${beaker.x + 4} ${beaker.y + beaker.h - 20} Z`} fill="#38bdf8" fillOpacity={0.18} />
+          <path d={`M${beaker.x + 6} ${liquidY} Q${beaker.x + beaker.w * 0.25} ${liquidY - 5} ${beaker.x + beaker.w * 0.5} ${liquidY} T${beaker.x + beaker.w - 6} ${liquidY}`} fill="none" stroke={electrolyteColor} strokeWidth={3} />
+          <text x={beaker.x + 30} y={liquidY + 34} textAnchor="start" fontSize={18} fontWeight={800} fill={electrolyteColor}>{label(parts.electrolyte.label, "electrolyte")}</text>
+        </g>
+      )}
+      {visible(parts.anode.s) && (
+        <g className={focusId === parts.anode.id ? "cv-focus" : undefined}>
+          <rect x={anodeX - 13} y={electrodeTop} width={26} height={electrodeBottom - electrodeTop} rx={5} fill={anodeColor} fillOpacity={0.23} stroke={anodeColor} strokeWidth={3} />
+          <text x={anodeX - 34} y={electrodeTop + 22} textAnchor="end" fontSize={18} fontWeight={850} fill={anodeColor}>{label(parts.anode.label, "anode")} (+)</text>
+          <line x1={anodeX - 28} y1={electrodeTop + 27} x2={anodeX - 4} y2={electrodeTop + 37} stroke={anodeColor} strokeWidth={2.5} />
+        </g>
+      )}
+      {visible(parts.cathode.s) && (
+        <g className={focusId === parts.cathode.id ? "cv-focus" : undefined}>
+          <rect x={cathodeX - 13} y={electrodeTop} width={26} height={electrodeBottom - electrodeTop} rx={5} fill={cathodeColor} fillOpacity={0.20} stroke={cathodeColor} strokeWidth={3} />
+          <text x={cathodeX + 34} y={electrodeTop + 22} textAnchor="start" fontSize={18} fontWeight={850} fill={cathodeColor}>{label(parts.cathode.label, "cathode")} (−)</text>
+          <line x1={cathodeX + 28} y1={electrodeTop + 27} x2={cathodeX + 4} y2={electrodeTop + 37} stroke={cathodeColor} strokeWidth={2.5} />
+        </g>
+      )}
+      {allVisible && (
+        <g aria-label="Positive ions move to the cathode; negative ions move to the anode">
+          <IonPath fromX={beaker.x + beaker.w * 0.48} toX={cathodeX - 18} y={liquidY + 74} charge="+" color={cathodeColor} animate={!reducedMotion} />
+          <IonPath fromX={beaker.x + beaker.w * 0.52} toX={anodeX + 18} y={liquidY + 118} charge="−" color={anodeColor} animate={!reducedMotion} />
+        </g>
+      )}
+    </g>
+  );
+}
+
+function IonPath({ fromX, toX, y, charge, color, animate }: { fromX: number; toX: number; y: number; charge: string; color: string; animate: boolean }) {
+  const end = toX > fromX ? toX - 8 : toX + 8;
+  const direction = Math.sign(toX - fromX) || 1;
+  return (
+    <g>
+      <line x1={fromX} y1={y} x2={end} y2={y} stroke={color} strokeWidth={2.5} strokeDasharray="7 7" opacity={0.72} />
+      <path d={`M${end} ${y} l${-direction * 10} -6 v12 Z`} fill={color} />
+      <g>
+        <circle cx={fromX} cy={y} r={12} fill="#fff" stroke={color} strokeWidth={3} />
+        <text x={fromX} y={y + 5} textAnchor="middle" fontSize={16} fontWeight={900} fill={color}>{charge}</text>
+        {animate && <animateTransform attributeName="transform" type="translate" values={`0 0; ${end - fromX} 0; 0 0`} dur="3.2s" repeatCount="indefinite" />}
+      </g>
+    </g>
+  );
+}
+
+const ELEMENT_COLOR: Record<string, string> = { C: "#334155", H: "#e2e8f0", O: "#dc2626", N: "#2563eb", P: "#f97316", S: "#eab308", F: "#16a34a", Cl: "#16a34a" };
+
+function MoleculeView({ mark, rotation }: { mark: Extract<Mark, { type: "molecule" }>; rotation: number }) {
+  const angle = (rotation * Math.PI) / 180;
+  const scale = Math.min(mark.rect.w, mark.rect.h) * 0.3;
+  const cx = mark.rect.x + mark.rect.w / 2;
+  const cy = mark.rect.y + mark.rect.h * 0.46;
+  const points = new Map(mark.molecule.atoms.map((atom) => {
+    const rx = atom.x * Math.cos(angle) - atom.z * Math.sin(angle);
+    const rz = atom.x * Math.sin(angle) + atom.z * Math.cos(angle);
+    return [atom.id, { x: cx + rx * scale, y: cy + (atom.y * 0.82 - rz * 0.18) * scale, z: rz }];
+  }));
+  return <g className="cv-in"><rect x={mark.rect.x} y={mark.rect.y} width={mark.rect.w} height={mark.rect.h} rx={18} fill="#fff" opacity={0.64} stroke="#cbd5e1" />
+    {mark.molecule.bonds.map((bond, index) => { const a = points.get(bond.from); const b = points.get(bond.to); if (!a || !b) return null; if (bond.style === "wedge") return <path key={index} d={`M${a.x} ${a.y} L${b.x - 8} ${b.y + 7} L${b.x + 8} ${b.y - 7} Z`} fill="#475569" opacity={0.82} />; const offsets = bond.order === 1 ? [0] : bond.order === 2 ? [-4, 4] : [-6, 0, 6]; return <g key={index}>{offsets.map((offset) => <line key={offset} x1={a.x} y1={a.y + offset} x2={b.x} y2={b.y + offset} stroke="#475569" strokeWidth={3} strokeDasharray={bond.style === "dash" ? "5 8" : undefined} strokeLinecap="round" />)}</g>; })}
+    {[...mark.molecule.atoms].sort((a, b) => (points.get(a.id)?.z ?? 0) - (points.get(b.id)?.z ?? 0)).map((atom) => { const p = points.get(atom.id)!; const r = 20 + Math.max(-4, Math.min(5, p.z * 4)); return <g key={atom.id}><circle cx={p.x} cy={p.y} r={r} fill={atom.color ?? ELEMENT_COLOR[atom.element] ?? "#8b5cf6"} stroke="#fff" strokeWidth={3} /><text x={p.x} y={p.y + 6} textAnchor="middle" fontSize={17} fontWeight={900} fill={atom.element === "H" ? "#334155" : "#fff"}>{atom.element}</text>{Array.from({ length: atom.lonePairs ?? 0 }, (_, i) => <g key={i} transform={`rotate(${i * 90} ${p.x} ${p.y})`}><circle cx={p.x - 4} cy={p.y - r - 9} r={2.5} fill="#334155" /><circle cx={p.x + 4} cy={p.y - r - 9} r={2.5} fill="#334155" /></g>)}</g>; })}
+    <text x={cx} y={mark.rect.y + mark.rect.h - 48} textAnchor="middle" fontSize={22} fontWeight={850} fill={INK}>{mark.molecule.label}</text><text x={cx} y={mark.rect.y + mark.rect.h - 22} textAnchor="middle" fontSize={16} fontWeight={700} fill={MUTED}>{[mark.molecule.geometry, mark.molecule.bondAngle].filter(Boolean).join(" · ")}</text>
+  </g>;
+}
+
+function AtomMapView({ mark }: { mark: Extract<Mark, { type: "atom-map" }> }) {
+  const groupW = Math.min(170, (mark.rect.w - 130) / Math.max(mark.stage.reactants.length, mark.stage.products.length));
+  const renderSide = (items: typeof mark.stage.reactants, x0: number) => items.map((group, i) => { const x = x0 + i * (groupW + 12); const y = mark.rect.y + 72; return <g key={group.id} className="cv-in"><rect x={x} y={y} width={groupW} height={116} rx={16} fill="#fff" stroke="#cbd5e1" strokeWidth={2} /><text x={x + groupW / 2} y={y + 27} textAnchor="middle" fontSize={17} fontWeight={850} fill={INK}>{group.label}</text>{group.atoms.map((atom, j) => <g key={atom.element} transform={`translate(${x + 25 + j * ((groupW - 50) / Math.max(1, group.atoms.length - 1))},${y + 69})`}><circle r={18} fill={ELEMENT_COLOR[atom.element] ?? "#8b5cf6"} stroke="#fff" strokeWidth={2} /><text y={5} textAnchor="middle" fontSize={14} fontWeight={900} fill={atom.element === "H" ? "#334155" : "#fff"}>{atom.element}</text><text y={37} textAnchor="middle" fontSize={13} fontWeight={800} fill={MUTED}>×{atom.count}</text></g>)}</g>; });
+  const productsX = mark.rect.x + mark.rect.w - mark.stage.products.length * groupW - (mark.stage.products.length - 1) * 12;
+  const mid = mark.rect.x + mark.rect.w / 2;
+  return <g>{renderSide(mark.stage.reactants, mark.rect.x)}{renderSide(mark.stage.products, productsX)}<path d={`M${mid - 42} ${mark.rect.y + 130}H${mid + 42}`} stroke="#475569" strokeWidth={4} /><path d={`M${mid + 42} ${mark.rect.y + 130}l-14 -8v16z`} fill="#475569" /><text x={mid} y={mark.rect.y + 52} textAnchor="middle" fontSize={14} fontWeight={900} fill={MUTED}>MATTER · atoms conserved</text>{mark.stage.energy && <g><rect x={mark.rect.x + 20} y={mark.rect.y + 250} width={mark.rect.w - 40} height={82} rx={18} fill="#fef3c7" stroke="#f59e0b" strokeWidth={2} /><text x={mark.rect.x + 40} y={mark.rect.y + 280} fontSize={14} fontWeight={900} fill="#92400e">ENERGY · separate lane</text><text x={mark.rect.x + 40} y={mark.rect.y + 310} fontSize={18} fontWeight={750} fill="#92400e">{mark.stage.energy.input} → {mark.stage.energy.output}</text></g>}</g>;
 }
 
 /* ── code: a listing walked through, line by line ─────────────────────────────────────────── */
@@ -642,7 +905,7 @@ function ArrowView({ mark, vars, focused, reducedMotion }: { mark: Extract<Mark,
       {mark.flow && !reducedMotion && <FlowParticles p0={p0} c={c} p1={p1} color={mark.color} rate={rate} />}
       {mark.label && (
         <g className="cv-in cv-late">
-          <rect x={mark.labelAt.x - (mark.label.length * 7.4) / 2 - 8} y={mark.labelAt.y - 15} width={mark.label.length * 7.4 + 16} height={22} rx={11} fill={PAPER} opacity={0.92} />
+          <rect x={mark.labelAt.x - textWidth(mark.label, 14) / 2 - 8} y={mark.labelAt.y - 15} width={textWidth(mark.label, 14) + 16} height={22} rx={11} fill={PAPER} opacity={0.92} />
           <text x={mark.labelAt.x} y={mark.labelAt.y + 1} textAnchor="middle" fontSize={14} fontWeight={700} fill={mark.color}>
             {mark.label}
           </text>
@@ -818,9 +1081,10 @@ function curvePath(plot: Rect, spec: GraphStage, expr: string, vars: Record<stri
 }
 
 function GraphView({ mark, shownThrough, sentenceProgress, vars, ghostVars, focusId }: { mark: Extract<Mark, { type: "graph" }>; shownThrough: number; sentenceProgress: number; vars: Record<string, number>; ghostVars?: Record<string, number>; focusId?: string }) {
-  const { plot, spec } = mark;
+  const { plot, spec, stacked } = mark;
   const xTicks = useMemo(() => niceTicks(spec.x.min, spec.x.max), [spec.x.min, spec.x.max]);
-  const yTicks = useMemo(() => niceTicks(spec.y.min, spec.y.max), [spec.y.min, spec.y.max]);
+  const yTicks = useMemo(() => niceTicks(spec.y.min, spec.y.max, stacked ? 2 : 5), [spec.y.min, spec.y.max, stacked]);
+  const showX = !stacked || stacked.showX;
   const px = (x: number) => graphPoint(plot, spec, x, spec.y.min).x;
   const py = (y: number) => graphPoint(plot, spec, spec.x.min, y).y;
   const traceActive = spec.trace && spec.trace.s === shownThrough;
@@ -836,19 +1100,28 @@ function GraphView({ mark, shownThrough, sentenceProgress, vars, ghostVars, focu
           </text>
         </g>
       ))}
-      {xTicks.map((v) => (
+      {showX && xTicks.map((v) => (
         <text key={`x${v}`} x={px(v)} y={plot.y + plot.h + 22} textAnchor="middle" fontSize={13} fill={MUTED} fontWeight={600}>
           {v}
         </text>
       ))}
       <line x1={plot.x} y1={plot.y + plot.h} x2={plot.x + plot.w + 8} y2={plot.y + plot.h} stroke={INK} strokeWidth={2.5} />
       <line x1={plot.x} y1={plot.y + plot.h} x2={plot.x} y2={plot.y - 8} stroke={INK} strokeWidth={2.5} />
-      <text x={plot.x + plot.w / 2} y={plot.y + plot.h + 50} textAnchor="middle" fontSize={17} fontWeight={700} fill={INK}>
-        {spec.x.label}
-      </text>
-      <text transform={`translate(${plot.x - 50},${plot.y + plot.h / 2}) rotate(-90)`} textAnchor="middle" fontSize={17} fontWeight={700} fill={INK}>
-        {spec.y.label}
-      </text>
+      {showX && (
+        <text x={plot.x + plot.w / 2} y={plot.y + plot.h + 50} textAnchor="middle" fontSize={17} fontWeight={700} fill={INK}>
+          {spec.x.label}
+        </text>
+      )}
+      {stacked ? (
+        // A stacked panel is too short for a rotated label: its quantity is written across its top.
+        <text x={plot.x + 12} y={plot.y + 4} fontSize={15} fontWeight={800} fill={spec.curves[0]?.color ?? ["#15803d", "#2563eb", "#d97706"][0]}>
+          {stacked.title}
+        </text>
+      ) : (
+        <text transform={`translate(${plot.x - 50},${plot.y + plot.h / 2}) rotate(-90)`} textAnchor="middle" fontSize={17} fontWeight={700} fill={INK}>
+          {spec.y.label}
+        </text>
+      )}
       {(spec.guides ?? []).filter((g) => g.s <= shownThrough).map((g) => (
         <g key={g.id} className={`cv-in${focusId === g.id ? " cv-focus" : ""}`}>
           <line x1={px(g.x)} y1={plot.y} x2={px(g.x)} y2={plot.y + plot.h} stroke="#94a3b8" strokeWidth={2} strokeDasharray="7 6" />
@@ -880,7 +1153,7 @@ function GraphView({ mark, shownThrough, sentenceProgress, vars, ghostVars, focu
         return (
           <g key={c.id} className={focusId === c.id ? "cv-focus" : undefined}>
             <path d={d} stroke={color} strokeWidth={4} fill="none" strokeLinecap="round" strokeLinejoin="round" className="cv-stroke cv-slow" pathLength={1} />
-            {c.label && (
+            {c.label && !stacked && (
               <text x={Math.min(end.x, plot.x + plot.w - 4)} y={y ?? end.y - 12} textAnchor="end" fontSize={15} fontWeight={800} fill={color} className="cv-in cv-late">
                 {c.label}
               </text>
@@ -924,7 +1197,8 @@ function GraphView({ mark, shownThrough, sentenceProgress, vars, ghostVars, focu
 
 /** Where the pointer should aim for a graph marker right now (markers move with the sliders). */
 export function markerPoint(layout: PanelLayout, id: string, vars: Record<string, number>): Pt | null {
-  const graph = layout.marks.find((m) => m.type === "graph") as Extract<Mark, { type: "graph" }> | undefined;
+  const graphs = layout.marks.filter((m): m is Extract<Mark, { type: "graph" }> => m.type === "graph");
+  const graph = graphs.find((g) => g.spec.markers?.some((m) => m.id === id)) ?? graphs[0];
   const marker = graph?.spec.markers?.find((m) => m.id === id);
   const curve = marker && graph?.spec.curves.find((c) => c.id === marker.curve);
   if (!graph || !marker || !curve) return null;

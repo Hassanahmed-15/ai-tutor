@@ -1,0 +1,1103 @@
+{
+ "id": "uk-edexcel-gcse-psychology-1ps0",
+ "region": "UK",
+ "framework": "Pearson Edexcel GCSE (9-1)",
+ "board": "Pearson Edexcel",
+ "qualification": "GCSE",
+ "subject": "Psychology",
+ "syllabusCode": "1PS0",
+ "gradeSystem": "year",
+ "source": {
+  "urls": [
+   "https://qualifications.pearson.com/content/dam/pdf/GCSE/Psychology/2017/Specification%20and%20sample%20assessments/gcse-psychology-specification.pdf"
+  ],
+  "publisher": "Pearson Education",
+  "licence": "Exam board specification, (c) Pearson; structure + our own wording only",
+  "firstExam": "2019"
+ },
+ "grades": [
+  {
+   "grade": "all",
+   "units": [
+    {
+     "id": "section-a-compulsory-topics",
+     "title": "Section A: Compulsory topics",
+     "topics": [
+      {
+       "id": "topic-1-development",
+       "title": "Topic 1: Development",
+       "subtopics": [
+        {
+         "id": "early-brain-development",
+         "title": "Early brain development",
+         "outcomes": [
+          {
+           "code": "1.1.1",
+           "text": "Describe how the forebrain, midbrain, hindbrain, cerebellum and medulla develop early in life."
+          }
+         ]
+        },
+        {
+         "id": "piaget-s-cognitive-development",
+         "title": "Piaget's cognitive development",
+         "outcomes": [
+          {
+           "code": "1.1.2",
+           "text": "Explain Piaget's four stages: sensorimotor, pre-operational, concrete operational and formal operational."
+          },
+          {
+           "code": null,
+           "text": "Explain schemas, assimilation, accommodation and equilibrium, and evaluate the theory."
+          }
+         ]
+        },
+        {
+         "id": "dweck-s-mindset-theory",
+         "title": "Dweck's mindset theory",
+         "outcomes": [
+          {
+           "code": "1.1.3",
+           "text": "Explain fixed and growth mindsets and the roles of ability and effort, with strengths and weaknesses."
+          }
+         ]
+        },
+        {
+         "id": "willingham-s-learning-theory",
+         "title": "Willingham's learning theory",
+         "outcomes": [
+          {
+           "code": "1.1.4",
+           "text": "Explain that factual knowledge precedes skill and that practice and effort matter, and evaluate the theory."
+          },
+          {
+           "code": null,
+           "text": "Describe strategies to support cognitive, physical and social development."
+          }
+         ]
+        },
+        {
+         "id": "piaget-and-inhelder-s-three-mountains-study",
+         "title": "Piaget and Inhelder's three mountains study",
+         "outcomes": [
+          {
+           "code": "1.2.1",
+           "text": "Give the aims, procedure, findings, strengths and weaknesses of the Three Mountains task."
+          }
+         ]
+        },
+        {
+         "id": "gunderson-s-parent-praise-study",
+         "title": "Gunderson's parent praise study",
+         "outcomes": [
+          {
+           "code": "1.2.2",
+           "text": "Give the aims, procedure, findings, strengths and weaknesses of Gunderson et al. on parent praise."
+          }
+         ]
+        },
+        {
+         "id": "morality-debate",
+         "title": "Morality debate",
+         "outcomes": [
+          {
+           "code": "1.3.1",
+           "text": "Explain morality and the pre-conventional, conventional and post-conventional stages."
+          },
+          {
+           "code": null,
+           "text": "Use cognitive development content and research to explain how morality develops."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "topic-2-memory",
+       "title": "Topic 2: Memory",
+       "subtopics": [
+        {
+         "id": "how-memory-works",
+         "title": "How memory works",
+         "outcomes": [
+          {
+           "code": "2.1.1",
+           "text": "Describe memory as input, processing, output, using encoding, storage and retrieval."
+          },
+          {
+           "code": "2.1.2",
+           "text": "Compare short-term and long-term memory by duration and capacity."
+          }
+         ]
+        },
+        {
+         "id": "amnesia",
+         "title": "Amnesia",
+         "outcomes": [
+          {
+           "code": "2.1.3",
+           "text": "Explain retrograde and anterograde amnesia and their symptoms."
+          }
+         ]
+        },
+        {
+         "id": "reconstructive-memory",
+         "title": "Reconstructive memory",
+         "outcomes": [
+          {
+           "code": "2.1.4",
+           "text": "Explain Bartlett's theory, how schemas form and how they influence memory, with evaluation."
+          }
+         ]
+        },
+        {
+         "id": "multi-store-model",
+         "title": "Multi-store model",
+         "outcomes": [
+          {
+           "code": "2.1.5",
+           "text": "Describe the Atkinson and Shiffrin model: sensory register, short- and long-term stores, capacity and duration."
+          },
+          {
+           "code": null,
+           "text": "Explain the roles of attention and rehearsal, and evaluate the model."
+          }
+         ]
+        },
+        {
+         "id": "bartlett-s-war-of-the-ghosts",
+         "title": "Bartlett's War of the Ghosts",
+         "outcomes": [
+          {
+           "code": "2.2.1",
+           "text": "Give the aims, procedure, findings, strengths and weaknesses of Bartlett's War of the Ghosts study."
+          }
+         ]
+        },
+        {
+         "id": "peterson-and-peterson-s-study",
+         "title": "Peterson and Peterson's study",
+         "outcomes": [
+          {
+           "code": "2.2.2",
+           "text": "Give the aims, procedure, findings, strengths and weaknesses of Peterson and Peterson's short-term retention study."
+          }
+         ]
+        },
+        {
+         "id": "reductionism-and-holism-debate",
+         "title": "Reductionism and holism debate",
+         "outcomes": [
+          {
+           "code": "2.3.1",
+           "text": "Explain reductionism and holism using content, theories and research from human memory."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "topic-3-psychological-problems",
+       "title": "Topic 3: Psychological problems",
+       "subtopics": [
+        {
+         "id": "symptoms-of-depression-and-addiction",
+         "title": "Symptoms of depression and addiction",
+         "outcomes": [
+          {
+           "code": "3.1.1",
+           "text": "Describe symptoms and features of depression and addiction according to the ICD."
+          }
+         ]
+        },
+        {
+         "id": "incidence-and-impact",
+         "title": "Incidence and impact",
+         "outcomes": [
+          {
+           "code": "3.1.2",
+           "text": "Explain how the incidence of mental health problems changes over time."
+          },
+          {
+           "code": "3.1.3",
+           "text": "Explain how mental health problems affect individuals and society."
+          }
+         ]
+        },
+        {
+         "id": "genes-as-explanation",
+         "title": "Genes as explanation",
+         "outcomes": [
+          {
+           "code": "3.1.4",
+           "text": "Evaluate the genetic explanation of depression and of addiction."
+          }
+         ]
+        },
+        {
+         "id": "cognitive-and-learning-theory-explanations",
+         "title": "Cognitive and learning theory explanations",
+         "outcomes": [
+          {
+           "code": "3.1.5",
+           "text": "Explain and evaluate the cognitive theory of depression."
+          },
+          {
+           "code": "3.1.6",
+           "text": "Explain and evaluate learning theory as an explanation of addiction."
+          }
+         ]
+        },
+        {
+         "id": "treatments",
+         "title": "Treatments",
+         "outcomes": [
+          {
+           "code": "3.1.7",
+           "text": "Explain and evaluate CBT as a treatment for depression and for addiction."
+          },
+          {
+           "code": "3.1.8",
+           "text": "Explain and evaluate drug treatment for depression and for addiction."
+          }
+         ]
+        },
+        {
+         "id": "caspi-s-depression-study",
+         "title": "Caspi's depression study",
+         "outcomes": [
+          {
+           "code": "3.2.1",
+           "text": "Give the aims, procedure, findings, strengths and weaknesses of Caspi et al. on life stress and the 5-HTT gene."
+          }
+         ]
+        },
+        {
+         "id": "young-s-internet-addiction-study",
+         "title": "Young's internet addiction study",
+         "outcomes": [
+          {
+           "code": "3.2.2",
+           "text": "Give the aims, procedure, findings, strengths and weaknesses of Young's CBT study with internet addicts."
+          }
+         ]
+        },
+        {
+         "id": "nature-and-nurture-debate",
+         "title": "Nature and nurture debate",
+         "outcomes": [
+          {
+           "code": "3.3.1",
+           "text": "Explain nature and nurture using content, theories and research from psychological problems."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "topic-4-the-brain-and-neuropsychology",
+       "title": "Topic 4: The brain and neuropsychology",
+       "subtopics": [
+        {
+         "id": "structure-of-the-brain",
+         "title": "Structure of the brain",
+         "outcomes": [
+          {
+           "code": "4.1.1",
+           "text": "Name the structure and function of the temporal, occipital, frontal and parietal lobes and the cerebellum."
+          }
+         ]
+        },
+        {
+         "id": "lateralisation",
+         "title": "Lateralisation",
+         "outcomes": [
+          {
+           "code": "4.1.2",
+           "text": "Explain lateralisation, the roles of the left and right hemispheres and the corpus callosum."
+          },
+          {
+           "code": null,
+           "text": "Evaluate lateralisation as an explanation of sex differences between males and females."
+          }
+         ]
+        },
+        {
+         "id": "neurons-and-synapses",
+         "title": "Neurons and synapses",
+         "outcomes": [
+          {
+           "code": "4.1.3",
+           "text": "Explain neurons, synapses, neurotransmitters, how they interact, and the role of the central nervous system."
+          }
+         ]
+        },
+        {
+         "id": "neurological-damage",
+         "title": "Neurological damage",
+         "outcomes": [
+          {
+           "code": "4.1.4",
+           "text": "Describe visual agnosia and prosopagnosia and their symptoms."
+          },
+          {
+           "code": null,
+           "text": "Explain the impact of damage to the pre-frontal cortex."
+          }
+         ]
+        },
+        {
+         "id": "damasio-s-phineas-gage-study",
+         "title": "Damasio's Phineas Gage study",
+         "outcomes": [
+          {
+           "code": "4.2.1",
+           "text": "Give the aims, procedure, findings, strengths and weaknesses of Damasio et al. on Phineas Gage."
+          }
+         ]
+        },
+        {
+         "id": "sperry-s-split-brain-study",
+         "title": "Sperry's split-brain study",
+         "outcomes": [
+          {
+           "code": "4.2.2",
+           "text": "Give the aims, procedure, findings, strengths and weaknesses of Sperry's hemisphere deconnection study."
+          }
+         ]
+        },
+        {
+         "id": "psychology-changing-over-time",
+         "title": "Psychology changing over time",
+         "outcomes": [
+          {
+           "code": "4.3.1",
+           "text": "Use brain research and theories to explain how psychology has changed over time."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "topic-5-social-influence",
+       "title": "Topic 5: Social influence",
+       "subtopics": [
+        {
+         "id": "key-terms",
+         "title": "Key terms",
+         "outcomes": [
+          {
+           "code": "5.1.1",
+           "text": "Define obedience, conformity, deindividuation and the bystander effect."
+          }
+         ]
+        },
+        {
+         "id": "bystander-intervention",
+         "title": "Bystander intervention",
+         "outcomes": [
+          {
+           "code": "5.1.2",
+           "text": "Explain personal and situational factors affecting bystander intervention."
+          }
+         ]
+        },
+        {
+         "id": "conformity",
+         "title": "Conformity",
+         "outcomes": [
+          {
+           "code": "5.1.3",
+           "text": "Explain conformity to majority influence and how personality and the situation affect it."
+          }
+         ]
+        },
+        {
+         "id": "obedience",
+         "title": "Obedience",
+         "outcomes": [
+          {
+           "code": "5.1.4",
+           "text": "Explain obedience to authority and how personality and the situation affect it."
+          }
+         ]
+        },
+        {
+         "id": "crowd-behaviour",
+         "title": "Crowd behaviour",
+         "outcomes": [
+          {
+           "code": "5.1.5",
+           "text": "Explain crowd behaviour, individuals within crowds, and pro- and anti-social collective behaviour."
+          }
+         ]
+        },
+        {
+         "id": "preventing-blind-obedience",
+         "title": "Preventing blind obedience",
+         "outcomes": [
+          {
+           "code": "5.1.6",
+           "text": "Describe ways to prevent blind obedience to authority figures."
+          }
+         ]
+        },
+        {
+         "id": "piliavin-s-subway-study",
+         "title": "Piliavin's subway study",
+         "outcomes": [
+          {
+           "code": "5.2.1",
+           "text": "Give the aims, procedure, findings, strengths and weaknesses of Piliavin et al.'s Good Samaritan study."
+          }
+         ]
+        },
+        {
+         "id": "zimbardo-s-prison-study",
+         "title": "Zimbardo's prison study",
+         "outcomes": [
+          {
+           "code": "5.2.2",
+           "text": "Give the aims, procedure, findings, strengths and weaknesses of Haney, Banks and Zimbardo's prison simulation."
+          }
+         ]
+        },
+        {
+         "id": "social-and-cultural-issues",
+         "title": "Social and cultural issues",
+         "outcomes": [
+          {
+           "code": "5.3.1",
+           "text": "Explain society, social issues and culture using content and research from social influence."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "section-b-optional-topics",
+     "title": "Section B: Optional topics",
+     "topics": [
+      {
+       "id": "topic-6-criminal-psychology",
+       "title": "Topic 6: Criminal psychology",
+       "subtopics": [
+        {
+         "id": "operant-conditioning-and-crime",
+         "title": "Operant conditioning and crime",
+         "outcomes": [
+          {
+           "code": "6.1.1",
+           "text": "Explain operant conditioning: positive and negative reinforcement, punishment, and primary and secondary reinforcers."
+          }
+         ]
+        },
+        {
+         "id": "social-learning-theory-and-crime",
+         "title": "Social learning theory and crime",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain social learning theory: role models, modelling, identification, observational learning and vicarious reinforcement, with evaluation."
+          }
+         ]
+        },
+        {
+         "id": "eysenck-s-personality-types",
+         "title": "Eysenck's personality types",
+         "outcomes": [
+          {
+           "code": "6.1.2",
+           "text": "Explain Eysenck's extraversion, introversion, neuroticism and psychoticism as a biological explanation of crime."
+          }
+         ]
+        },
+        {
+         "id": "punishment-and-recidivism",
+         "title": "Punishment and recidivism",
+         "outcomes": [
+          {
+           "code": "6.1.3",
+           "text": "Evaluate prison, community sentencing and restorative justice for reducing reoffending."
+          }
+         ]
+        },
+        {
+         "id": "rehabilitation",
+         "title": "Rehabilitation",
+         "outcomes": [
+          {
+           "code": "6.1.4",
+           "text": "Explain and evaluate token economy and anger-management programmes."
+          }
+         ]
+        },
+        {
+         "id": "bandura-s-bobo-doll-study",
+         "title": "Bandura's Bobo doll study",
+         "outcomes": [
+          {
+           "code": "6.2.1",
+           "text": "Give the aims, procedure, findings, strengths and weaknesses of Bandura, Ross and Ross (1961)."
+          }
+         ]
+        },
+        {
+         "id": "charlton-s-playground-study",
+         "title": "Charlton's playground study",
+         "outcomes": [
+          {
+           "code": "6.2.2",
+           "text": "Give the aims, procedure, findings, strengths and weaknesses of Charlton et al. on television and playground behaviour."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "topic-7-the-self",
+       "title": "Topic 7: The self",
+       "subtopics": [
+        {
+         "id": "self-and-self-concept",
+         "title": "Self and self-concept",
+         "outcomes": [
+          {
+           "code": "7.1.1",
+           "text": "Explain Lewis's existential and categorical self."
+          },
+          {
+           "code": null,
+           "text": "Explain Rogers's self-image, self-esteem, ideal self, self-actualisation, congruence and incongruence."
+          }
+         ]
+        },
+        {
+         "id": "identity-and-free-will",
+         "title": "Identity and free will",
+         "outcomes": [
+          {
+           "code": "7.1.2",
+           "text": "Evaluate Erikson's eight stages of identity and Baumeister's research on belief in free will."
+          }
+         ]
+        },
+        {
+         "id": "humanistic-theory-of-self",
+         "title": "Humanistic theory of self",
+         "outcomes": [
+          {
+           "code": "7.1.3",
+           "text": "Explain Rogers's conditional and unconditional positive regard and conditions of worth."
+          },
+          {
+           "code": null,
+           "text": "Explain Maslow's hierarchy of needs and evaluate humanistic theory."
+          }
+         ]
+        },
+        {
+         "id": "influences-on-the-self",
+         "title": "Influences on the self",
+         "outcomes": [
+          {
+           "code": "7.1.4",
+           "text": "Explain how temperament and experience influence the self and self-esteem."
+          }
+         ]
+        },
+        {
+         "id": "measuring-personality",
+         "title": "Measuring personality",
+         "outcomes": [
+          {
+           "code": "7.1.5",
+           "text": "Describe how personality is measured with personality scales and personality types."
+          }
+         ]
+        },
+        {
+         "id": "trait-theory",
+         "title": "Trait theory",
+         "outcomes": [
+          {
+           "code": "7.1.6",
+           "text": "Explain Allport's and Cattell's trait theories, with strengths and weaknesses."
+          }
+         ]
+        },
+        {
+         "id": "vohs-and-schooler-s-free-will-study",
+         "title": "Vohs and Schooler's free will study",
+         "outcomes": [
+          {
+           "code": "7.2.1",
+           "text": "Give the aims, procedure, findings, strengths and weaknesses of Vohs and Schooler on belief in determinism and cheating."
+          }
+         ]
+        },
+        {
+         "id": "van-houtte-and-jarvis-s-pets-study",
+         "title": "Van Houtte and Jarvis's pets study",
+         "outcomes": [
+          {
+           "code": "7.2.2",
+           "text": "Give the aims, procedure, findings, strengths and weaknesses of Van Houtte and Jarvis on pets and development."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "topic-8-perception",
+       "title": "Topic 8: Perception",
+       "subtopics": [
+        {
+         "id": "depth-cues",
+         "title": "Depth cues",
+         "outcomes": [
+          {
+           "code": "8.1.1",
+           "text": "Explain monocular and binocular depth cues: superimposition, relative size, linear perspective, stereopsis, texture gradient, height in the plane."
+          }
+         ]
+        },
+        {
+         "id": "illusions-and-constancies",
+         "title": "Illusions and constancies",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain visual illusions (fictions, ambiguous figures, distortions) and shape, colour and size constancies."
+          }
+         ]
+        },
+        {
+         "id": "gibson-s-direct-theory",
+         "title": "Gibson's direct theory",
+         "outcomes": [
+          {
+           "code": "8.1.2",
+           "text": "Explain Gibson's theory: sensory input, optic flow, invariants and affordances, with evaluation."
+          }
+         ]
+        },
+        {
+         "id": "gregory-s-constructivist-theory",
+         "title": "Gregory's constructivist theory",
+         "outcomes": [
+          {
+           "code": "8.1.3",
+           "text": "Explain Gregory's theory: perceptual hypotheses, inferences and prior knowledge, with evaluation."
+          }
+         ]
+        },
+        {
+         "id": "perceptual-set",
+         "title": "Perceptual set",
+         "outcomes": [
+          {
+           "code": "8.1.4",
+           "text": "Explain how motivation, expectation, emotion and culture affect perceptual set."
+          }
+         ]
+        },
+        {
+         "id": "haber-and-levin-s-size-study",
+         "title": "Haber and Levin's size study",
+         "outcomes": [
+          {
+           "code": "8.2.1",
+           "text": "Give the aims, procedure, findings, strengths and weaknesses of Haber and Levin on size and distance perception."
+          }
+         ]
+        },
+        {
+         "id": "carmichael-s-language-study",
+         "title": "Carmichael's language study",
+         "outcomes": [
+          {
+           "code": "8.2.2",
+           "text": "Give the aims, procedure, findings, strengths and weaknesses of Carmichael, Hogan and Walter on language and recall of form."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "topic-9-sleep-and-dreaming",
+       "title": "Topic 9: Sleep and dreaming",
+       "subtopics": [
+        {
+         "id": "sleep-stages-and-functions",
+         "title": "Sleep stages and functions",
+         "outcomes": [
+          {
+           "code": "9.1.1",
+           "text": "Describe the functions and benefits of sleep, the four sleep stages, REM and the sleep cycle."
+          }
+         ]
+        },
+        {
+         "id": "influences-on-sleep",
+         "title": "Influences on sleep",
+         "outcomes": [
+          {
+           "code": "9.1.2",
+           "text": "Explain circadian and ultradian rhythms, with strengths and weaknesses."
+          },
+          {
+           "code": null,
+           "text": "Explain the pineal gland, melatonin and light as a zeitgeber."
+          }
+         ]
+        },
+        {
+         "id": "sleep-disorders",
+         "title": "Sleep disorders",
+         "outcomes": [
+          {
+           "code": "9.1.3",
+           "text": "Describe symptoms and explanations of insomnia and narcolepsy."
+          }
+         ]
+        },
+        {
+         "id": "freud-s-theory-of-dreaming",
+         "title": "Freud's theory of dreaming",
+         "outcomes": [
+          {
+           "code": "9.1.4",
+           "text": "Explain manifest and latent content and dreamwork, with evaluation."
+          }
+         ]
+        },
+        {
+         "id": "activation-synthesis-theory",
+         "title": "Activation synthesis theory",
+         "outcomes": [
+          {
+           "code": "9.1.5",
+           "text": "Explain random activation, sensory blockade and movement inhibition, with evaluation."
+          }
+         ]
+        },
+        {
+         "id": "freud-s-little-hans-study",
+         "title": "Freud's Little Hans study",
+         "outcomes": [
+          {
+           "code": "9.2.1",
+           "text": "Give the aims, procedure, findings, strengths and weaknesses of Freud's Little Hans case."
+          }
+         ]
+        },
+        {
+         "id": "siffre-s-cave-study",
+         "title": "Siffre's cave study",
+         "outcomes": [
+          {
+           "code": "9.2.2",
+           "text": "Give the aims, procedure, findings, strengths and weaknesses of Siffre's six months in a cave."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "topic-10-language-thought-and-communication",
+       "title": "Topic 10: Language, thought and communication",
+       "subtopics": [
+        {
+         "id": "language-and-thought",
+         "title": "Language and thought",
+         "outcomes": [
+          {
+           "code": "10.1.1",
+           "text": "Compare Piaget's and Vygotsky's views on how language and thought relate, with evaluation."
+          }
+         ]
+        },
+        {
+         "id": "language-and-worldview",
+         "title": "Language and worldview",
+         "outcomes": [
+          {
+           "code": "10.1.2",
+           "text": "Explain linguistic relativism and linguistic determinism, with evaluation."
+          }
+         ]
+        },
+        {
+         "id": "human-and-animal-communication",
+         "title": "Human and animal communication",
+         "outcomes": [
+          {
+           "code": "10.1.3",
+           "text": "Use Aitchison's criteria to compare human and animal communication."
+          }
+         ]
+        },
+        {
+         "id": "non-verbal-communication",
+         "title": "Non-verbal communication",
+         "outcomes": [
+          {
+           "code": "10.1.4",
+           "text": "Describe facial expressions, eye contact, body language, personal space and cultural differences."
+          },
+          {
+           "code": "10.1.5",
+           "text": "Explain Darwin's theory of evolution as an explanation of non-verbal communication."
+          }
+         ]
+        },
+        {
+         "id": "yuki-s-emotion-cues-study",
+         "title": "Yuki's emotion cues study",
+         "outcomes": [
+          {
+           "code": "10.2.1",
+           "text": "Give the aims, procedure, findings, strengths and weaknesses of Yuki et al. on eyes and mouth in Japan and the US."
+          }
+         ]
+        },
+        {
+         "id": "boroditsky-s-language-and-time-study",
+         "title": "Boroditsky's language and time study",
+         "outcomes": [
+          {
+           "code": "10.2.2",
+           "text": "Give the aims, procedure, findings, strengths and weaknesses of Boroditsky's Mandarin and English time study."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "section-c-research-methods",
+     "title": "Section C: Research methods",
+     "topics": [
+      {
+       "id": "topic-11-research-methods",
+       "title": "Topic 11: Research methods",
+       "subtopics": [
+        {
+         "id": "variables",
+         "title": "Variables",
+         "outcomes": [
+          {
+           "code": "11.1.1",
+           "text": "Identify the independent, dependent and extraneous (situational and participant) variables."
+          }
+         ]
+        },
+        {
+         "id": "controlling-variables",
+         "title": "Controlling variables",
+         "outcomes": [
+          {
+           "code": "11.1.2",
+           "text": "Control extraneous variables using standardisation, counterbalancing, randomisation, single- and double-blind techniques."
+          }
+         ]
+        },
+        {
+         "id": "hypotheses",
+         "title": "Hypotheses",
+         "outcomes": [
+          {
+           "code": "11.1.3",
+           "text": "Write a null hypothesis."
+          },
+          {
+           "code": "11.1.4",
+           "text": "Write an alternative hypothesis."
+          }
+         ]
+        },
+        {
+         "id": "sampling",
+         "title": "Sampling",
+         "outcomes": [
+          {
+           "code": "11.1.5",
+           "text": "Describe target population, random, stratified, volunteer and opportunity sampling, with strengths and weaknesses."
+          }
+         ]
+        },
+        {
+         "id": "experimental-designs",
+         "title": "Experimental designs",
+         "outcomes": [
+          {
+           "code": "11.1.6",
+           "text": "Compare independent measures, repeated measures and matched pairs designs."
+          }
+         ]
+        },
+        {
+         "id": "reliability-and-validity",
+         "title": "Reliability and validity",
+         "outcomes": [
+          {
+           "code": "11.1.7",
+           "text": "Judge the reliability and validity of sampling, designs, and quantitative and qualitative methods."
+          }
+         ]
+        },
+        {
+         "id": "ethics-in-research",
+         "title": "Ethics in research",
+         "outcomes": [
+          {
+           "code": "11.1.8",
+           "text": "Explain informed consent, deception, confidentiality, right to withdraw and protection of participants."
+          }
+         ]
+        },
+        {
+         "id": "experiments",
+         "title": "Experiments",
+         "outcomes": [
+          {
+           "code": "11.1.9",
+           "text": "Describe the features, strengths and weaknesses of laboratory experiments."
+          },
+          {
+           "code": "11.1.10",
+           "text": "Describe the features, strengths and weaknesses of field experiments."
+          },
+          {
+           "code": "11.1.11",
+           "text": "Describe the features, strengths and weaknesses of natural experiments."
+          }
+         ]
+        },
+        {
+         "id": "interviews-and-questionnaires",
+         "title": "Interviews and questionnaires",
+         "outcomes": [
+          {
+           "code": "11.1.12",
+           "text": "Compare structured, semi-structured and unstructured interviews."
+          },
+          {
+           "code": "11.1.13",
+           "text": "Compare closed questions for quantitative data and open questions for qualitative data."
+          }
+         ]
+        },
+        {
+         "id": "other-methods",
+         "title": "Other methods",
+         "outcomes": [
+          {
+           "code": "11.1.14",
+           "text": "Describe correlation, with strengths, weaknesses and suitable uses."
+          },
+          {
+           "code": "11.1.15",
+           "text": "Describe case studies, with strengths, weaknesses and suitable uses."
+          },
+          {
+           "code": "11.1.16",
+           "text": "Describe observation, with strengths, weaknesses and suitable uses."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "data-analysis",
+       "title": "Data analysis",
+       "subtopics": [
+        {
+         "id": "arithmetic-skills",
+         "title": "Arithmetic skills",
+         "outcomes": [
+          {
+           "code": "11.2.1",
+           "text": "Use decimal and standard form, estimate results and use suitable significant figures."
+          }
+         ]
+        },
+        {
+         "id": "averages-and-spread",
+         "title": "Averages and spread",
+         "outcomes": [
+          {
+           "code": "11.2.2",
+           "text": "Calculate mean, median, mode, ratios, fractions, percentages and range, and know normal distributions."
+          }
+         ]
+        },
+        {
+         "id": "graphs-and-charts",
+         "title": "Graphs and charts",
+         "outcomes": [
+          {
+           "code": "11.2.3",
+           "text": "Construct and interpret frequency tables, bar charts, histograms and scatter diagrams to spot correlation."
+          },
+          {
+           "code": null,
+           "text": "Translate between graphical and numerical forms and plot and interpret graphs."
+          }
+         ]
+        },
+        {
+         "id": "types-of-data",
+         "title": "Types of data",
+         "outcomes": [
+          {
+           "code": "11.2.4",
+           "text": "Tell primary data from secondary data."
+          },
+          {
+           "code": "11.2.5",
+           "text": "Tell qualitative data from quantitative data."
+          }
+         ]
+        },
+        {
+         "id": "ethical-issues-debate",
+         "title": "Ethical issues debate",
+         "outcomes": [
+          {
+           "code": "11.3.1",
+           "text": "Explain ethical issues in research using content and studies from the compulsory topics."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "build": {
+  "builtAt": "2026-10-14T10:35:20.058Z",
+  "model": "claude-agent",
+  "usd": 0,
+  "expectedCodes": 82,
+  "coverage": 1,
+  "missingCodes": [],
+  "counts": {
+   "grades": 1,
+   "units": 3,
+   "topics": 12,
+   "subtopics": 88,
+   "outcomes": 110
+  },
+  "warnings": [
+   "grade Year 10 has no content",
+   "grade Year 11 has no content",
+   "unexpected grade label \"all\""
+  ]
+ }
+}

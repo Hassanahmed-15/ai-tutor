@@ -1,0 +1,280 @@
+{
+ "id": "us-ia-computer-science",
+ "region": "US",
+ "framework": "Iowa state academic standards: Computer Science & Technology",
+ "board": null,
+ "qualification": "K-12",
+ "subject": "Computer Science & Technology",
+ "syllabusCode": null,
+ "gradeSystem": "grade",
+ "source": {
+  "urls": [
+   "https://api.commonstandardsproject.com/api/v1/jurisdictions/78D8430CBE88474FAB3CDAAD9094C961",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/A70683C2C5814B8C83A7F3874F32A2F1"
+  ],
+  "publisher": "Iowa state education agency (machine-readable via Common Standards Project / ASN)",
+  "licence": "CC BY 4.0 US, Common Curriculum, Inc.",
+  "firstExam": "2016"
+ },
+ "grades": [
+  {
+   "grade": "PK-12",
+   "units": [
+    {
+     "id": "empowered-learner-students-leverage-technology-t",
+     "title": "Empowered Learner: Students leverage technology to take an active…",
+     "topics": [
+      {
+       "id": "empowered-learner-students-leverage-technology-t",
+       "title": "Empowered Learner: Students leverage technology to take an active…",
+       "subtopics": [
+        {
+         "id": "empowered-learner-students-leverage-technology-t",
+         "title": "Empowered Learner: Students leverage technology to take an active…",
+         "outcomes": [
+          {
+           "code": "EL1a",
+           "text": "Articulate and set personal learning goals, develop strategies leveraging technology to achieve them and reflect on the learning process itself to improve learning outcomes."
+          },
+          {
+           "code": "EL1b",
+           "text": "Students build networks and customize their learning environments in ways that support the learning process."
+          },
+          {
+           "code": "EL1c",
+           "text": "Students use technology to seek feedback that informs and improves their practice and to demonstrate their learning in a variety of ways."
+          },
+          {
+           "code": "EL1d",
+           "text": "Students understand the fundamental concepts of technology operations, demonstrate the ability to choose, use and troubleshoot current technologies and are able to transfer their knowledge to explore emerging technologies."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "digital-citizen-students-recognize-the-rights",
+     "title": "Digital Citizen: Students recognize the rights",
+     "topics": [
+      {
+       "id": "digital-citizen-students-recognize-the-rights",
+       "title": "Digital Citizen: Students recognize the rights",
+       "subtopics": [
+        {
+         "id": "digital-citizen-students-recognize-the-rights",
+         "title": "Digital Citizen: Students recognize the rights",
+         "outcomes": [
+          {
+           "code": "DC2a",
+           "text": "Students cultivate and manage their digital identity and reputation and are aware of the permanence of their actions in the digital world."
+          },
+          {
+           "code": "DC2b",
+           "text": "Students engage in positive, safe, legal and ethical behavior when using technology, including social interactions online or when using networked devices."
+          },
+          {
+           "code": "DC2c",
+           "text": "Students demonstrate an understanding of and respect for the rights and obligations of using and sharing intellectual property."
+          },
+          {
+           "code": "DC2d",
+           "text": "Students manage their personal data to maintain digital privacy and security and are aware of data-collection technology used to track their navigation online."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "knowledge-constructor-students-critically-curate",
+     "title": "Knowledge Constructor: Students critically curate a variety of…",
+     "topics": [
+      {
+       "id": "knowledge-constructor-students-critically-curate",
+       "title": "Knowledge Constructor: Students critically curate a variety of…",
+       "subtopics": [
+        {
+         "id": "knowledge-constructor-students-critically-curate",
+         "title": "Knowledge Constructor: Students critically curate a variety of…",
+         "outcomes": [
+          {
+           "code": "KC3a",
+           "text": "Students plan and employ effective research strategies to locate information and other resources for their intellectual or creative pursuits."
+          },
+          {
+           "code": "KC3b",
+           "text": "Students evaluate the accuracy, perspective, credibility and relevance of information, media, data or other resources."
+          },
+          {
+           "code": "KC3c",
+           "text": "Students curate information from digital resources using a variety of tools and methods to create collections of artifacts that demonstrate meaningful connections or conclusions."
+          },
+          {
+           "code": "KC3d",
+           "text": "Students build knowledge by actively exploring real-world issues and problems, developing ideas and theories and pursuing answers and solutions."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "innovative-designer-students-use-a-variety-of-te",
+     "title": "Innovative Designer: Students use a variety of technologies within a…",
+     "topics": [
+      {
+       "id": "innovative-designer-students-use-a-variety-of-te",
+       "title": "Innovative Designer: Students use a variety of technologies within a…",
+       "subtopics": [
+        {
+         "id": "innovative-designer-students-use-a-variety-of-te",
+         "title": "Innovative Designer: Students use a variety of technologies within a…",
+         "outcomes": [
+          {
+           "code": "ID4a",
+           "text": "Students know and use a deliberate design process for generating ideas, testing theories, creating innovative artifacts or solving authentic problems."
+          },
+          {
+           "code": "ID4b",
+           "text": "Students select and use digital tools to plan and manage a design process that considers design constraints and calculated risks."
+          },
+          {
+           "code": "ID4c",
+           "text": "Students develop, test and refine prototypes as part of a cyclical design process."
+          },
+          {
+           "code": "ID4d",
+           "text": "Students exhibit a tolerance for ambiguity, perseverance and the capacity to work with open-ended problems."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "computational-thinker-students-develop-and-emplo",
+     "title": "Computational Thinker: Students develop and employ strategies for…",
+     "topics": [
+      {
+       "id": "computational-thinker-students-develop-and-emplo",
+       "title": "Computational Thinker: Students develop and employ strategies for…",
+       "subtopics": [
+        {
+         "id": "computational-thinker-students-develop-and-emplo",
+         "title": "Computational Thinker: Students develop and employ strategies for…",
+         "outcomes": [
+          {
+           "code": "CT5a",
+           "text": "Students formulate problem definitions suited for technology-assisted methods such as data analysis, abstract models and algorithmic thinking in exploring and finding solutions."
+          },
+          {
+           "code": "CT5b",
+           "text": "Students collect data or identify relevant data sets, use digital tools to analyze them, and represent data in various ways to facilitate problem-solving and decision-making."
+          },
+          {
+           "code": "CT5c",
+           "text": "Students break problems into component parts, extract key information, and develop descriptive models to understand complex systems or facilitate problem-solving."
+          },
+          {
+           "code": "CT5d",
+           "text": "Students understand how automation works and use algorithmic thinking to develop a sequence of steps to create and test automated solutions."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "creative-communicator-students-communicate-clear",
+     "title": "Creative Communicator: Students communicate clearly and express…",
+     "topics": [
+      {
+       "id": "creative-communicator-students-communicate-clear",
+       "title": "Creative Communicator: Students communicate clearly and express…",
+       "subtopics": [
+        {
+         "id": "creative-communicator-students-communicate-clear",
+         "title": "Creative Communicator: Students communicate clearly and express…",
+         "outcomes": [
+          {
+           "code": "CC6a",
+           "text": "Students choose the appropriate platforms and tools for meeting the desired objectives of their creation or communication."
+          },
+          {
+           "code": "CC6b",
+           "text": "Students create original works or responsibly repurpose or remix digital resources into new creations."
+          },
+          {
+           "code": "CC6c",
+           "text": "Students communicate complex ideas clearly and effectively by creating or using a variety of digital objects such as visualizations, models or simulations."
+          },
+          {
+           "code": "CC6d",
+           "text": "Students publish or present content that customizes the message and medium for their intended audiences."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "global-collaborator-students-use-digital-tools-t",
+     "title": "Global Collaborator: Students use digital tools to broaden their…",
+     "topics": [
+      {
+       "id": "global-collaborator-students-use-digital-tools-t",
+       "title": "Global Collaborator: Students use digital tools to broaden their…",
+       "subtopics": [
+        {
+         "id": "global-collaborator-students-use-digital-tools-t",
+         "title": "Global Collaborator: Students use digital tools to broaden their…",
+         "outcomes": [
+          {
+           "code": "GC7a",
+           "text": "Students use digital tools to connect with learners from a variety of backgrounds and cultures, engaging with them in ways that broaden mutual understanding and learning."
+          },
+          {
+           "code": "GC7b",
+           "text": "Students use collaborative technologies to work with others, including peers, experts or community members, to examine issues and problems from multiple viewpoints."
+          },
+          {
+           "code": "GC7c",
+           "text": "Students contribute constructively to project teams, assuming various roles and responsibilities to work effectively toward a common goal."
+          },
+          {
+           "code": "GC7d",
+           "text": "Sudents explore local and global issues and use collaborative technologies to work with others to investigate solutions."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "build": {
+  "builtAt": "2026-10-14T08:03:18.294Z",
+  "model": "none",
+  "usd": 0,
+  "expectedCodes": 28,
+  "coverage": 1,
+  "missingCodes": [],
+  "counts": {
+   "grades": 1,
+   "units": 7,
+   "topics": 7,
+   "subtopics": 7,
+   "outcomes": 28
+  },
+  "warnings": []
+ }
+}

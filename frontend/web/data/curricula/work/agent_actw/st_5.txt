@@ -1,0 +1,53 @@
+U|Unit 5: Regression Analysis
+T|5.1 Graphical Representations Between Two Quantitative Variables
+S|Scatterplots
+5.1.A|Construct scatterplots of two quantitative variables
+5.1.A.1|Bivariate data are ordered pairs from two quantitative variables on the same individuals
+5.1.A.2|A scatterplot puts the explanatory variable on x and the response on y
+5.1.B|Describe the characteristics of a scatterplot
+5.1.B.1|Describe form, direction, strength and unusual features
+5.1.B.2|Form may be linear or non-linear
+5.1.B.3|Direction is positive or negative
+5.1.B.4|Strength is how closely points follow the pattern
+5.1.B.5|Unusual features include clusters and points off the pattern
+5.1.C|Justify a claim using scatterplots
+5.1.C.1|Scatterplots can justify claims in context
+T|5.2 Correlation
+S|The correlation coefficient
+5.2.A|Interpret the correlation for a linear relationship
+5.2.A.1|r summarises strength and direction of linear association, is unit-free and lies between -1 and 1
+5.2.A.2|Strength is how close r is to -1 or 1; 0 means no linear association
+5.2.A.3|An r near -1 or 1 does not guarantee a linear model fits
+5.2.A.4|Correlation does not imply causation
+T|5.3 Linear Regression Models
+S|Predicting with a regression line
+5.3.A|Calculate a predicted response using a linear regression model
+5.3.A.1|If the relationship looks linear, a regression line predicts y from x
+5.3.A.2|The prediction is y-hat equals a plus bx, with intercept a and slope b
+5.3.A.3|Extrapolation predicts beyond the x-values used and is less reliable
+5.3.A.4|Interpolation predicts within the range of x-values
+T|5.4 Residuals
+S|Computing and interpreting residuals
+5.4.A|Calculate differences between observed and predicted values
+5.4.A.1|A residual is observed minus predicted
+5.4.B|Interpret those differences
+5.4.B.1|Positive residuals mean underprediction; negative residuals mean overprediction
+S|Residual plots
+5.4.C|Describe the form of association using residual plots
+5.4.C.1|A residual plot graphs residuals against predicted values or the explanatory variable
+5.4.C.2|Residual plots test whether a linear model is appropriate
+5.4.C.3|Random scatter in the residual plot supports a linear model
+5.4.C.4|Curvature suggests the linear model is not best
+T|5.5 Least-Squares Regression
+S|The least-squares line
+5.5.A|Calculate coefficients for the least-squares regression line
+5.5.A.1|The LSRL minimises the sum of squared residuals and passes through (x-bar, y-bar)
+5.5.A.2|Compute the slope b with technology
+5.5.A.3|Compute the intercept a with technology
+5.5.A.4|Compute the correlation r with technology
+5.5.A.5|r squared is the proportion of variation in the response explained by the linear relationship
+S|Interpreting coefficients
+5.5.B|Interpret the coefficients of the least-squares line
+5.5.B.1|Slope and intercept are sample-based coefficients
+5.5.B.2|Interpret the slope as the predicted change in y for one unit of x, in context
+5.5.B.3|Interpret the intercept as the predicted y at x equals 0, noting when it is meaningless

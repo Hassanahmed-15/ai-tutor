@@ -1,0 +1,2324 @@
+{
+ "id": "us-mo-physical-education",
+ "region": "US",
+ "framework": "Missouri state academic standards: Physical Education",
+ "board": null,
+ "qualification": "K-12",
+ "subject": "Physical Education",
+ "syllabusCode": null,
+ "gradeSystem": "grade",
+ "source": {
+  "urls": [
+   "https://api.commonstandardsproject.com/api/v1/jurisdictions/175A144B44F94BFAB539F3B571A3A62C",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/175A144B44F94BFAB539F3B571A3A62C_D2583438_grade-01",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/175A144B44F94BFAB539F3B571A3A62C_D2583438_grade-02",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/175A144B44F94BFAB539F3B571A3A62C_D2583438_grade-03",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/175A144B44F94BFAB539F3B571A3A62C_D2583438_grade-04",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/175A144B44F94BFAB539F3B571A3A62C_D2583438_grade-05",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/175A144B44F94BFAB539F3B571A3A62C_D2583438_grade-06",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/175A144B44F94BFAB539F3B571A3A62C_D2583438_grade-07",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/175A144B44F94BFAB539F3B571A3A62C_D2583438_grade-08",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/175A144B44F94BFAB539F3B571A3A62C_D2583438_grades-09-10-11-12",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/175A144B44F94BFAB539F3B571A3A62C_D2583438_grade-k"
+  ],
+  "publisher": "Missouri state education agency (machine-readable via Common Standards Project / ASN)",
+  "licence": "CC BY 3.0 US, Desire2Learn Incorporated",
+  "firstExam": "2007"
+ },
+ "grades": [
+  {
+   "grade": "K",
+   "units": [
+    {
+     "id": "efficiency-of-human-movement-and-performance",
+     "title": "Efficiency of Human Movement and Performance",
+     "topics": [
+      {
+       "id": "personal-fitness-and-healthy-active-living",
+       "title": "Personal Fitness and Healthy Active Living",
+       "subtopics": [
+        {
+         "id": "health-related-and-skill-related-fitness",
+         "title": "Health-Related and Skill-Related Fitness",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Tell what it means to be fit."
+          }
+         ]
+        },
+        {
+         "id": "body-systems",
+         "title": "Body Systems",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Identify major body parts (e.g., head, neck, arm, shoulders, elbow, legs, knee, hip, feet, back, fingers, toes)."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "responsible-personal-and-social-behavior-in-the-",
+       "title": "Responsible Personal and Social Behavior in the Physical Activity Setting",
+       "subtopics": [
+        {
+         "id": "personal-social-responsibilities",
+         "title": "Personal/Social Responsibilities",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Demonstrate the ability to share, be cooperative and safe with others."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "injury-prevention-treatment-and-rehabilitation",
+       "title": "Injury Prevention, Treatment and Rehabilitation",
+       "subtopics": [
+        {
+         "id": "prevention",
+         "title": "Prevention",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Demonstrate safe use of general and personal space."
+          }
+         ]
+        },
+        {
+         "id": "treatment",
+         "title": "Treatment",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Demonstrate how to seek adult help when an injury has occurred (e.g., playground, field trips, lunch room)."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "physical-activity-and-lifetime-wellness",
+     "title": "Physical Activity and Lifetime Wellness",
+     "topics": [
+      {
+       "id": "fundamental-movement-skills-and-games",
+       "title": "Fundamental Movement Skills and Games",
+       "subtopics": [
+        {
+         "id": "locomotor",
+         "title": "Locomotor",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Demonstrate the correct form of three locomotor skills (e.g., walk, run, jump, hop, gallop)."
+          }
+         ]
+        },
+        {
+         "id": "non-locomotor",
+         "title": "Non-Locomotor",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Demonstrate selected non-locomotor skills (e.g., push, pull, bend, twist, stretch, turn)."
+          }
+         ]
+        },
+        {
+         "id": "manipulative-skills",
+         "title": "Manipulative Skills",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Demonstrate manipulative skills in a stationary position (e.g., rolling, throwing, catching, kicking)."
+          }
+         ]
+        },
+        {
+         "id": "body-management",
+         "title": "Body Management",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Demonstrate introductory individual stunts (e.g., crab walk, bear walk, inch worm)."
+          },
+          {
+           "code": null,
+           "text": "Demonstrate ways to balance on different body parts at different levels."
+          }
+         ]
+        },
+        {
+         "id": "movement-concepts",
+         "title": "Movement Concepts",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Identify relationship with body parts (e.g., left hand to left shoulder, right elbow to left knee)."
+          },
+          {
+           "code": null,
+           "text": "Demonstrate the difference between slow and fast movement when performing locomotor movements."
+          },
+          {
+           "code": null,
+           "text": "Recognize the difference between general and personal space."
+          }
+         ]
+        },
+        {
+         "id": "developmental-games",
+         "title": "Developmental Games",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Demonstrate cooperation with partners and small groups to accomplish a game objective."
+          },
+          {
+           "code": null,
+           "text": "Demonstrate chasing, fleeing, dodging."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "rhythms-and-dance",
+       "title": "Rhythms and Dance",
+       "subtopics": [
+        {
+         "id": "essential-elements-of-rhythm",
+         "title": "Essential Elements of Rhythm",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Demonstrate the concept of beat/rhythm pattern as it applies to music and movement (e.g., clap, drum)."
+          },
+          {
+           "code": null,
+           "text": "Demonstrate simple movements to music (e.g., march to beat)."
+          }
+         ]
+        },
+        {
+         "id": "creative-interpretive",
+         "title": "Creative/Interpretive",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Demonstrate the ability to use your body as a means of expression (e.g., snowman melting)."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "1",
+   "units": [
+    {
+     "id": "efficiency-of-human-movement-and-performance",
+     "title": "Efficiency of Human Movement and Performance",
+     "topics": [
+      {
+       "id": "personal-fitness-and-healthy-active-living",
+       "title": "Personal Fitness and Healthy Active Living",
+       "subtopics": [
+        {
+         "id": "health-related-and-skill-related-fitness",
+         "title": "Health-Related and Skill-Related Fitness",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Name three ways to stay fit."
+          }
+         ]
+        },
+        {
+         "id": "wellness",
+         "title": "Wellness",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Identify a variety of physical activities that promote wellness (e.g., walking, jogging)."
+          }
+         ]
+        },
+        {
+         "id": "fitness-principles",
+         "title": "Fitness Principles",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Recognize signs associated with physical activity (e.g., fast heart rate, heavy breathing, perspiration)."
+          }
+         ]
+        },
+        {
+         "id": "body-systems",
+         "title": "Body Systems",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Tell why muscles and bones are important to movement."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "injury-prevention-treatment-and-rehabilitation",
+       "title": "Injury Prevention, Treatment and Rehabilitation",
+       "subtopics": [
+        {
+         "id": "prevention",
+         "title": "Prevention",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Tell the difference between general space awareness and personal space awareness."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "physical-activity-and-lifetime-wellness",
+     "title": "Physical Activity and Lifetime Wellness",
+     "topics": [
+      {
+       "id": "fundamental-movement-skills-and-games",
+       "title": "Fundamental Movement Skills and Games",
+       "subtopics": [
+        {
+         "id": "locomotor",
+         "title": "Locomotor",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Demonstrate all locomotor skills (walk, run, leap, jump, hop, slide, gallop, skip)."
+          }
+         ]
+        },
+        {
+         "id": "non-locomotor",
+         "title": "Non-Locomotor",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Demonstrate non-locomotor skills in a variety of activities."
+          }
+         ]
+        },
+        {
+         "id": "manipulative-skills",
+         "title": "Manipulative Skills",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Demonstrate a variety of manipulative skills while stationary and moving."
+          },
+          {
+           "code": null,
+           "text": "Demonstrate fine motor skills while manipulating small objects (e.g., juggling scarves, small bean bags)."
+          }
+         ]
+        },
+        {
+         "id": "body-management",
+         "title": "Body Management",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Demonstrate static and dynamic balance activities (e.g., stork stand, lame dog)."
+          },
+          {
+           "code": null,
+           "text": "Demonstrate introductory stunts and tumbling skills (e.g., log, forward, egg rolls)."
+          }
+         ]
+        },
+        {
+         "id": "movement-concepts",
+         "title": "Movement Concepts",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Demonstrate a variety of pathways, speeds, directions and levels using locomotor movements."
+          },
+          {
+           "code": null,
+           "text": "Identify and demonstrate a variety of relationships (over, under, through) with objects (e.g., wands, hula hoops)."
+          }
+         ]
+        },
+        {
+         "id": "developmental-games",
+         "title": "Developmental Games",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Demonstrate motor skills while participating in low organized games."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "rhythms-and-dance",
+       "title": "Rhythms and Dance",
+       "subtopics": [
+        {
+         "id": "essential-elements-of-rhythm",
+         "title": "Essential Elements of Rhythm",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Demonstrate basic cues to music (e.g., hokey pokey)."
+          },
+          {
+           "code": null,
+           "text": "Demonstrate a simple dance step in keeping with a dance tempo."
+          }
+         ]
+        },
+        {
+         "id": "creative-interpretive",
+         "title": "Creative/Interpretive",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Create/interpret movements to a variety of music (e.g., locomotor/nonlocomotor skills to beat/rhythm pattern)."
+          }
+         ]
+        },
+        {
+         "id": "rhythmic-activities",
+         "title": "Rhythmic Activities",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Demonstrate rhythmic activities (e.g., lummi sticks, jump rope, parachute)."
+          }
+         ]
+        },
+        {
+         "id": "forms-of-dance",
+         "title": "Forms of Dance",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Demonstrate a simple dance."
+          }
+         ]
+        },
+        {
+         "id": "social-cultural-aspects-of-dance",
+         "title": "Social/Cultural Aspects of Dance",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Demonstrate appropriate social skills (e.g., responding to a partner in a positive manner)."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "2",
+   "units": [
+    {
+     "id": "efficiency-of-human-movement-and-performance",
+     "title": "Efficiency of Human Movement and Performance",
+     "topics": [
+      {
+       "id": "personal-fitness-and-healthy-active-living",
+       "title": "Personal Fitness and Healthy Active Living",
+       "subtopics": [
+        {
+         "id": "health-related-and-skill-related-fitness",
+         "title": "Health-Related and Skill-Related Fitness",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Tell why it is important to be physically active every day."
+          }
+         ]
+        },
+        {
+         "id": "wellness",
+         "title": "Wellness",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Identify opportunities outside of school to participate regularly in physical activities (e.g., dance practice, jogging, kick, dribble, throw and catch)."
+          }
+         ]
+        },
+        {
+         "id": "fitness-principles",
+         "title": "Fitness Principles",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe the benefits of appropriate warm-up and cool-down activity."
+          }
+         ]
+        },
+        {
+         "id": "body-systems",
+         "title": "Body Systems",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Identify the parts of the circulatory and respiratory systems of the body (circulatory - heart, blood, veins, arteries; respiratory - lungs, mouth, nose, bronchial tubes, trachea)."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "responsible-personal-and-social-behavior-in-the-",
+       "title": "Responsible Personal and Social Behavior in the Physical Activity Setting",
+       "subtopics": [
+        {
+         "id": "personal-social-responsibilities",
+         "title": "Personal/Social Responsibilities",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Demonstrate independence and good use of time while participating in physical activity."
+          },
+          {
+           "code": null,
+           "text": "Show appropriate sportsmanship and sensitivity to diversity and gender issues."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "injury-prevention-treatment-and-rehabilitation",
+       "title": "Injury Prevention, Treatment and Rehabilitation",
+       "subtopics": [
+        {
+         "id": "prevention",
+         "title": "Prevention",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Perform efficient movement in activities to prevent injuries."
+          }
+         ]
+        },
+        {
+         "id": "treatment",
+         "title": "Treatment",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Recognize the symptoms of breathing emergency (e.g., asthma, choking) and seek appropriate assistance."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "physical-activity-and-lifetime-wellness",
+     "title": "Physical Activity and Lifetime Wellness",
+     "topics": [
+      {
+       "id": "fundamental-movement-skills-and-games",
+       "title": "Fundamental Movement Skills and Games",
+       "subtopics": [
+        {
+         "id": "locomotor",
+         "title": "Locomotor",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Demonstrate locomotor skills in combinations."
+          },
+          {
+           "code": null,
+           "text": "Demonstrate locomotor skills using patterns, levels, tempo, directions, and pathways."
+          }
+         ]
+        },
+        {
+         "id": "non-locomotor",
+         "title": "Non-Locomotor",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Demonstrate non-locomotor skills in a variety of activities using different levels and speeds individually and with a partner."
+          }
+         ]
+        },
+        {
+         "id": "manipulative-skills",
+         "title": "Manipulative Skills",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Demonstrate individually and with a partner manipulative skills in a stationary position and while moving (e.g., throwing, catching, kicking, striking, volleying, and dribbling)."
+          }
+         ]
+        },
+        {
+         "id": "body-management",
+         "title": "Body Management",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Distinguish between static and dynamic balance (e.g., one leg balance, forward roll)."
+          }
+         ]
+        },
+        {
+         "id": "movement-concepts",
+         "title": "Movement Concepts",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Identify and demonstrate symmetrical and non-symmetrical shapes at different levels (e.g., body letters, rope spelling)."
+          },
+          {
+           "code": null,
+           "text": "Apply relationship experiences with a person (e.g., crawl under partner's bridge) or with objects."
+          },
+          {
+           "code": null,
+           "text": "Identify and apply concepts relating to force (e.g., hard, soft, heavy, light)."
+          }
+         ]
+        },
+        {
+         "id": "developmental-games",
+         "title": "Developmental Games",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Demonstrate motor skills and knowledge of rules while participating in low organized games."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "sport-skills-and-lifetime-activities",
+       "title": "Sport Skills and Lifetime Activities",
+       "subtopics": [
+        {
+         "id": "skill-techniques",
+         "title": "Skill Techniques",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Demonstrate proper techniques for a variety of fundamental skills."
+          }
+         ]
+        },
+        {
+         "id": "individual-dual-and-team-sports",
+         "title": "Individual, Dual and Team Sports",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Demonstrate a variety of sport specific lead-up games."
+          }
+         ]
+        },
+        {
+         "id": "specialized-activities",
+         "title": "Specialized Activities",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Demonstrate basic apparatus activities on a balance beam, climbing rope, cargo net, parallel bars, vault, and climbing wall."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "rhythms-and-dance",
+       "title": "Rhythms and Dance",
+       "subtopics": [
+        {
+         "id": "essential-elements-of-rhythm",
+         "title": "Essential Elements of Rhythm",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Demonstrate movements to different rhythms."
+          }
+         ]
+        },
+        {
+         "id": "creative-interpretive",
+         "title": "Creative/Interpretive",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Demonstrate the ability to create rhythmic movement patterns (e.g., float high, stomp, turn, crawl slow)."
+          }
+         ]
+        },
+        {
+         "id": "rhythmic-activities",
+         "title": "Rhythmic Activities",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Create personal rhythmic pattern with a manipulative (e.g., lummi stick)."
+          }
+         ]
+        },
+        {
+         "id": "forms-of-dance",
+         "title": "Forms of Dance",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Demonstrate a simple dance with a partner."
+          }
+         ]
+        },
+        {
+         "id": "social-cultural-aspects-of-dance",
+         "title": "Social/Cultural Aspects of Dance",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Identify historical origins of folk dances (e.g., Kinder polka - Germany)."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "3",
+   "units": [
+    {
+     "id": "efficiency-of-human-movement-and-performance",
+     "title": "Efficiency of Human Movement and Performance",
+     "topics": [
+      {
+       "id": "personal-fitness-and-healthy-active-living",
+       "title": "Personal Fitness and Healthy Active Living",
+       "subtopics": [
+        {
+         "id": "health-related-and-skill-related-fitness",
+         "title": "Health-Related and Skill-Related Fitness",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Recognize the components of health-related fitness (cardio respiratory endurance, muscular strength and endurance, flexibility, and body composition)."
+          },
+          {
+           "code": null,
+           "text": "Identify health related fitness components."
+          }
+         ]
+        },
+        {
+         "id": "wellness",
+         "title": "Wellness",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Identify benefits of regular participation in a variety of activities (e.g., stress management, weight control)."
+          }
+         ]
+        },
+        {
+         "id": "fitness-principles",
+         "title": "Fitness Principles",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe how the body responds to moderately vigorous physical activities (e.g., heart has to beat faster to meet blood supply demands)."
+          }
+         ]
+        },
+        {
+         "id": "body-systems",
+         "title": "Body Systems",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Show on the body a few of the major bones (e.g., patella, ribs, phalanges, femur)."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "responsible-personal-and-social-behavior-in-the-",
+       "title": "Responsible Personal and Social Behavior in the Physical Activity Setting",
+       "subtopics": [
+        {
+         "id": "personal-social-responsibilities",
+         "title": "Personal/Social Responsibilities",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Demonstrate respect for all students regardless of individual differences in skills and abilities."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "injury-prevention-treatment-and-rehabilitation",
+       "title": "Injury Prevention, Treatment and Rehabilitation",
+       "subtopics": [
+        {
+         "id": "prevention",
+         "title": "Prevention",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Recognize appropriate warm-up, cool-down and flexibility activities and the importance of each to injury prevention."
+          }
+         ]
+        },
+        {
+         "id": "treatment",
+         "title": "Treatment",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Recognize body signals that indicate injury and seek assistance."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "physical-activity-and-lifetime-wellness",
+     "title": "Physical Activity and Lifetime Wellness",
+     "topics": [
+      {
+       "id": "fundamental-movement-skills-and-games",
+       "title": "Fundamental Movement Skills and Games",
+       "subtopics": [
+        {
+         "id": "manipulative-skills",
+         "title": "Manipulative Skills",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Demonstrate critical elements for manipulative skills (e.g., step forward opposite foot, arm position, step and follow through)."
+          }
+         ]
+        },
+        {
+         "id": "body-management",
+         "title": "Body Management",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Demonstrate combination of tumbling skills."
+          },
+          {
+           "code": null,
+           "text": "Demonstrate basic inverted balances (e.g., tripod, headstand)."
+          }
+         ]
+        },
+        {
+         "id": "movement-concepts",
+         "title": "Movement Concepts",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Demonstrate a combination of movement concepts while performing various skills (e.g., skipping while dribbling a ball in a curved pathway in general space)."
+          },
+          {
+           "code": null,
+           "text": "Identify body parts and functions in relationship to movement (e.g., long jump - arms swing forward when legs extend)."
+          }
+         ]
+        },
+        {
+         "id": "developmental-games",
+         "title": "Developmental Games",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Apply fundamental and specialized skills in lead-up games."
+          },
+          {
+           "code": null,
+           "text": "Identify appropriate cooperative, social, and teamwork skills while participating in game situations."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "sport-skills-and-lifetime-activities",
+       "title": "Sport Skills and Lifetime Activities",
+       "subtopics": [
+        {
+         "id": "skill-techniques",
+         "title": "Skill Techniques",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Demonstrate proper techniques for a variety of fundamental skills while practicing with a partner (e.g., realize there was too much force when a ball was overthrown)."
+          }
+         ]
+        },
+        {
+         "id": "specialized-activities",
+         "title": "Specialized Activities",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Demonstrate basic apparatus activities (e.g., balance beam - a forward movement; climbing rope - from a supine position students ascend to a stand and descend to a sit; cargo net - ascending and descending climb to grade level height; parallel/even and uneven bars - under bar activities; horizontal bar - front support; spring board - jump and land)."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "rhythms-and-dance",
+       "title": "Rhythms and Dance",
+       "subtopics": [
+        {
+         "id": "essential-elements-of-rhythm",
+         "title": "Essential Elements of Rhythm",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Define and differentiate between tempo and beat."
+          }
+         ]
+        },
+        {
+         "id": "creative-interpretive",
+         "title": "Creative/Interpretive",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Demonstrate ability to interpret and move to a variety of music (e.g., fluid and smooth movements, strong and intense movements)."
+          }
+         ]
+        },
+        {
+         "id": "rhythmic-activities",
+         "title": "Rhythmic Activities",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Demonstrate rhythmic routines using fundamental movement skills and/or a manipulative (e.g., teacher-directed routine using streamers)."
+          }
+         ]
+        },
+        {
+         "id": "forms-of-dance",
+         "title": "Forms of Dance",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Demonstrate simple step patterns (e.g., step-together-step-touch), and scattered formations in dance."
+          },
+          {
+           "code": null,
+           "text": "Demonstrate simple dance mixers (changing partner)."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "4",
+   "units": [
+    {
+     "id": "efficiency-of-human-movement-and-performance",
+     "title": "Efficiency of Human Movement and Performance",
+     "topics": [
+      {
+       "id": "personal-fitness-and-healthy-active-living",
+       "title": "Personal Fitness and Healthy Active Living",
+       "subtopics": [
+        {
+         "id": "health-related-and-skill-related-fitness",
+         "title": "Health-Related and Skill-Related Fitness",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Name the components of health-related fitness (cardio respiratory endurance, muscular strength and endurance, flexibility, and body composition)."
+          },
+          {
+           "code": null,
+           "text": "Set personal fitness goals."
+          }
+         ]
+        },
+        {
+         "id": "wellness",
+         "title": "Wellness",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Identify food choice and how it relates to a healthy lifestyle (e.g., fruits, protein, dairy, energy-in, energy-out)."
+          },
+          {
+           "code": null,
+           "text": "Identify one activity designed to help reduce stress (e.g., aerobics, deep breathing)."
+          }
+         ]
+        },
+        {
+         "id": "fitness-principles",
+         "title": "Fitness Principles",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Identify the differences between anaerobic and aerobic activities (e.g., sprint vs. 15-minute jog)."
+          }
+         ]
+        },
+        {
+         "id": "body-systems",
+         "title": "Body Systems",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Recognize what systems work together to move your body (e.g., muscular and skeletal)."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "responsible-personal-and-social-behavior-in-the-",
+       "title": "Responsible Personal and Social Behavior in the Physical Activity Setting",
+       "subtopics": [
+        {
+         "id": "personal-social-responsibilities",
+         "title": "Personal/Social Responsibilities",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Apply rules and procedures to activities."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "injury-prevention-treatment-and-rehabilitation",
+       "title": "Injury Prevention, Treatment and Rehabilitation",
+       "subtopics": [
+        {
+         "id": "prevention",
+         "title": "Prevention",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Identify safe and unsafe situations and respond appropriately."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "physical-activity-and-lifetime-wellness",
+     "title": "Physical Activity and Lifetime Wellness",
+     "topics": [
+      {
+       "id": "fundamental-movement-skills-and-games",
+       "title": "Fundamental Movement Skills and Games",
+       "subtopics": [
+        {
+         "id": "manipulative-skills",
+         "title": "Manipulative Skills",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Demonstrate locomotor, non-locomotor and manipulative skill combinations during skill drills (e.g., throw to a partner while he/she runs to catch, dribble and pass a ball to moving receiver, catch thrown objects, continuously strike a ball against a backboard or wall with an implement)."
+          }
+         ]
+        },
+        {
+         "id": "movement-concepts",
+         "title": "Movement Concepts",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Identify body parts and functions in relationship to movement (e.g., long jump - arms swing forward when legs extend)."
+          }
+         ]
+        },
+        {
+         "id": "developmental-games",
+         "title": "Developmental Games",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Apply fundamental and specialized skills in game situations."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "sport-skills-and-lifetime-activities",
+       "title": "Sport Skills and Lifetime Activities",
+       "subtopics": [
+        {
+         "id": "skill-techniques",
+         "title": "Skill Techniques",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Identify the proper techniques of specialized skills (e.g., law of opposition."
+          }
+         ]
+        },
+        {
+         "id": "specialized-activities",
+         "title": "Specialized Activities",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Demonstrate competence in basic swimming strokes and safety skills in, on and around the water when facilities allow and is district approved (e.g., first-aid, water patrol, boater safety)."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "rhythms-and-dance",
+       "title": "Rhythms and Dance",
+       "subtopics": [
+        {
+         "id": "forms-of-dance",
+         "title": "Forms of Dance",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Demonstrate step patterns (e.g., do-si-do), simple positions (e.g., promenade) and formations (e.g., partner scattered) in dance."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "5",
+   "units": [
+    {
+     "id": "efficiency-of-human-movement-and-performance",
+     "title": "Efficiency of Human Movement and Performance",
+     "topics": [
+      {
+       "id": "personal-fitness-and-healthy-active-living",
+       "title": "Personal Fitness and Healthy Active Living",
+       "subtopics": [
+        {
+         "id": "health-related-and-skill-related-fitness",
+         "title": "Health-Related and Skill-Related Fitness",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Recognize the components of skill related fitness (agility, balance, coordination, reaction time, speed, power)."
+          },
+          {
+           "code": null,
+           "text": "Participate in health-related fitness assessments and interpret the results (e.g., Fitness gram, President's Challenge)."
+          }
+         ]
+        },
+        {
+         "id": "wellness",
+         "title": "Wellness",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Analyze food choices and the relationship between physical activity and food intake."
+          },
+          {
+           "code": null,
+           "text": "Explain the relationship between stress and physical activity (e.g., deep breathing calms nervous feelings)."
+          }
+         ]
+        },
+        {
+         "id": "fitness-principles",
+         "title": "Fitness Principles",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain the effects of aerobic and anaerobic activity (e.g., aerobic - heavy breathing, anaerobic - muscle fatigue)."
+          }
+         ]
+        },
+        {
+         "id": "body-systems",
+         "title": "Body Systems",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Identify the major function of these four body systems (circulatory - blood flow; respiratory - oxygen; muscular - strength and motor performance; skeletal - body support)."
+          },
+          {
+           "code": null,
+           "text": "Label major muscles (e.g., abdominals, quadriceps, biceps) and bones (e.g., tibia, fibula, radius)."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "responsible-personal-and-social-behavior-in-the-",
+       "title": "Responsible Personal and Social Behavior in the Physical Activity Setting",
+       "subtopics": [
+        {
+         "id": "personal-social-responsibilities",
+         "title": "Personal/Social Responsibilities",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Apply self-control in physical activity settings and differentiate between appropriate and inappropriate behaviors (e.g., sportsmanship, cooperation, diversity)."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "injury-prevention-treatment-and-rehabilitation",
+       "title": "Injury Prevention, Treatment and Rehabilitation",
+       "subtopics": [
+        {
+         "id": "prevention",
+         "title": "Prevention",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Differentiate between the terms warm-up, cool-down, stretching, and conditioning and demonstrate examples of each."
+          }
+         ]
+        },
+        {
+         "id": "treatment",
+         "title": "Treatment",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Recognize signals of sudden onset emergencies (e.g., high/low blood sugar, breathing, seizures) and seek appropriate assistance."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "physical-activity-and-lifetime-wellness",
+     "title": "Physical Activity and Lifetime Wellness",
+     "topics": [
+      {
+       "id": "fundamental-movement-skills-and-games",
+       "title": "Fundamental Movement Skills and Games",
+       "subtopics": [
+        {
+         "id": "manipulative-skills",
+         "title": "Manipulative Skills",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Demonstrate sport-specific manipulative skills in games and modified sports activities."
+          }
+         ]
+        },
+        {
+         "id": "body-management",
+         "title": "Body Management",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Demonstrate a tumbling routine."
+          },
+          {
+           "code": null,
+           "text": "Analyze and correct errors in movement patterns and skills that require balance, basic tumbling, and range of motion."
+          }
+         ]
+        },
+        {
+         "id": "movement-concepts",
+         "title": "Movement Concepts",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Connect the importance of posture and body positions with performance of various skills (e.g., swinging a bat, rope jumping, walking on a beam, throwing a ball)."
+          },
+          {
+           "code": null,
+           "text": "Demonstrate manipulative skills with increased force, accuracy and control at different speeds, levels and directions (e.g., hit a target using an overhand throw from a variety of distances)."
+          }
+         ]
+        },
+        {
+         "id": "developmental-games",
+         "title": "Developmental Games",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Apply fundamental and specialized skills in game situations with increased proficiency."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "sport-skills-and-lifetime-activities",
+       "title": "Sport Skills and Lifetime Activities",
+       "subtopics": [
+        {
+         "id": "skill-techniques",
+         "title": "Skill Techniques",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Critique techniques and provide feedback (e.g., throwing - throwing arm, side away from target, rotate hips) to teacher or partner."
+          }
+         ]
+        },
+        {
+         "id": "individual-dual-and-team-sports",
+         "title": "Individual, Dual and Team Sports",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Demonstrate ability to follow rules, cooperate with teammates and apply a simple strategy in a variety of sport specific lead-up games."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "rhythms-and-dance",
+       "title": "Rhythms and Dance",
+       "subtopics": [
+        {
+         "id": "essential-elements-of-rhythm",
+         "title": "Essential Elements of Rhythm",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Recognize and move to a tempo or beat with various intensity, mood, accent and rhythm patterns."
+          }
+         ]
+        },
+        {
+         "id": "creative-interpretive",
+         "title": "Creative/Interpretive",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Communicate ideas and feelings through dance movement (e.g., sports dance, joy, anger)."
+          }
+         ]
+        },
+        {
+         "id": "rhythmic-activities",
+         "title": "Rhythmic Activities",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Create simple rhythmic routines using fundamental movement skills in partner and small group situations."
+          }
+         ]
+        },
+        {
+         "id": "forms-of-dance",
+         "title": "Forms of Dance",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Perform a traditional folk or square dance (e.g., Cotton Eyed Joe and Patty Cake Polka)."
+          }
+         ]
+        },
+        {
+         "id": "social-cultural-aspects-of-dance",
+         "title": "Social/Cultural Aspects of Dance",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Identify the historical and cultural origin of various international folk dances (e.g., Teton Mountain Stomp - USA)."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "6",
+   "units": [
+    {
+     "id": "efficiency-of-human-movement-and-performance",
+     "title": "Efficiency of Human Movement and Performance",
+     "topics": [
+      {
+       "id": "personal-fitness-and-healthy-active-living",
+       "title": "Personal Fitness and Healthy Active Living",
+       "subtopics": [
+        {
+         "id": "health-related-and-skill-related-fitness",
+         "title": "Health-Related and Skill-Related Fitness",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Identify activities that develop skill-related fitness."
+          },
+          {
+           "code": null,
+           "text": "Interpret personal health-related fitness assessments and determine which fitness components need improvement (e.g., pedometers, heart rate monitors, pulse sticks)."
+          }
+         ]
+        },
+        {
+         "id": "wellness",
+         "title": "Wellness",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Evaluate decision-making behaviors as they affect wellness."
+          }
+         ]
+        },
+        {
+         "id": "fitness-principles",
+         "title": "Fitness Principles",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe target heart rate as it relates to cardio respiratory endurance."
+          }
+         ]
+        },
+        {
+         "id": "body-systems",
+         "title": "Body Systems",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain how the muscular system and skeletal system work together to move the body."
+          },
+          {
+           "code": null,
+           "text": "Explain how the circulatory system and respiratory system respond to physical activity."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "responsible-personal-and-social-behavior-in-the-",
+       "title": "Responsible Personal and Social Behavior in the Physical Activity Setting",
+       "subtopics": [
+        {
+         "id": "personal-social-responsibilities",
+         "title": "Personal/Social Responsibilities",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain how rules, safety and etiquette are important concepts in a physical activity setting."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "injury-prevention-treatment-and-rehabilitation",
+       "title": "Injury Prevention, Treatment and Rehabilitation",
+       "subtopics": [
+        {
+         "id": "prevention",
+         "title": "Prevention",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Identify and describe reasons for using proper warm-up, cool-down, stretching, and appropriate attire in a physical activity setting."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "physical-activity-and-lifetime-wellness",
+     "title": "Physical Activity and Lifetime Wellness",
+     "topics": [
+      {
+       "id": "fundamental-movement-skills-and-games",
+       "title": "Fundamental Movement Skills and Games",
+       "subtopics": [
+        {
+         "id": "body-management",
+         "title": "Body Management",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Apply mechanical principles of force, stability motion, and direction (e.g., lower the center of gravity)."
+          }
+         ]
+        },
+        {
+         "id": "movement-concepts",
+         "title": "Movement Concepts",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Identify critical elements to improve performance in selected skills (e.g., throw various objects)."
+          }
+         ]
+        },
+        {
+         "id": "developmental-games",
+         "title": "Developmental Games",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Apply fundamental and sequential skills in game situations with increased proficiency."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "sport-skills-and-lifetime-activities",
+       "title": "Sport Skills and Lifetime Activities",
+       "subtopics": [
+        {
+         "id": "skill-techniques",
+         "title": "Skill Techniques",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Demonstrate skills successfully in modified games of increased complexity."
+          }
+         ]
+        },
+        {
+         "id": "individual-dual-and-team-sports",
+         "title": "Individual, Dual and Team Sports",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Identify terminology, list rules and safety principles appropriate for individual, dual and team sports."
+          },
+          {
+           "code": null,
+           "text": "Demonstrate basic competence in a variety of individual, dual and team sports."
+          }
+         ]
+        },
+        {
+         "id": "outdoor-pursuits-recreational-activities",
+         "title": "Outdoor Pursuits/Recreational Activities",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Define terminology, list rules and safety principles appropriate for outdoor pursuits and recreational activities (e.g., table tennis, orienteering)."
+          },
+          {
+           "code": null,
+           "text": "Demonstrate basic competence in a variety of outdoor pursuits and recreational activities."
+          }
+         ]
+        },
+        {
+         "id": "specialized-activities",
+         "title": "Specialized Activities",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Define terminology, list rules and safety principles appropriate for specialized activities included in the instructional program."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "rhythms-and-dance",
+       "title": "Rhythms and Dance",
+       "subtopics": [
+        {
+         "id": "rhythmic-activities",
+         "title": "Rhythmic Activities",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe the benefits of dance as a lifetime activity as it relates to fitness (e.g., flexibility, muscle coordination)."
+          }
+         ]
+        },
+        {
+         "id": "forms-of-dance",
+         "title": "Forms of Dance",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Exhibit basic dance skills and fundamentals while demonstrating various dance forms (e.g., folk, line, square, social)."
+          }
+         ]
+        },
+        {
+         "id": "social-cultural-aspects-of-dance",
+         "title": "Social/Cultural Aspects of Dance",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Demonstrate appropriate social skills while participating in dance activities, including etiquette and courtesies appropriate to various dance forms."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "7",
+   "units": [
+    {
+     "id": "efficiency-of-human-movement-and-performance",
+     "title": "Efficiency of Human Movement and Performance",
+     "topics": [
+      {
+       "id": "personal-fitness-and-healthy-active-living",
+       "title": "Personal Fitness and Healthy Active Living",
+       "subtopics": [
+        {
+         "id": "health-related-and-skill-related-fitness",
+         "title": "Health-Related and Skill-Related Fitness",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Analyze activities to determine whether they promote health-related fitness, skill-related fitness, or both."
+          }
+         ]
+        },
+        {
+         "id": "wellness",
+         "title": "Wellness",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Identify caloric value of a variety of foods and determine exercise needed to expend this energy."
+          },
+          {
+           "code": null,
+           "text": "Identify physiological changes that occur in the body due to stress (e.g., sweating, eye twitching, rapid pulse, irregular heartbeat)."
+          }
+         ]
+        },
+        {
+         "id": "fitness-principles",
+         "title": "Fitness Principles",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Identify the FITT principle (frequency, intensity, time, type) and how it relates to exercise."
+          }
+         ]
+        },
+        {
+         "id": "body-systems",
+         "title": "Body Systems",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain how participation in specific activities improves the circulatory, respiratory, muscular, and skeletal systems (e.g., weight bearing exercises improve bone strength, how muscles are strengthened)."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "responsible-personal-and-social-behavior-in-the-",
+       "title": "Responsible Personal and Social Behavior in the Physical Activity Setting",
+       "subtopics": [
+        {
+         "id": "personal-social-responsibilities",
+         "title": "Personal/Social Responsibilities",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Select appropriate conflict resolution skills in a physical activity setting (e.g., self-control, respect, peer influence)."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "injury-prevention-treatment-and-rehabilitation",
+       "title": "Injury Prevention, Treatment and Rehabilitation",
+       "subtopics": [
+        {
+         "id": "prevention",
+         "title": "Prevention",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Identify proper protective equipment used in physical activities."
+          }
+         ]
+        },
+        {
+         "id": "treatment",
+         "title": "Treatment",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Recognize non-life threatening injuries and explain how to provide basic care inside and outside the physical activity setting (e.g., Heimlich Maneuver, RICE - Rest, Ice, Compression, Elevation)."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "physical-activity-and-lifetime-wellness",
+     "title": "Physical Activity and Lifetime Wellness",
+     "topics": [
+      {
+       "id": "fundamental-movement-skills-and-games",
+       "title": "Fundamental Movement Skills and Games",
+       "subtopics": [
+        {
+         "id": "movement-concepts",
+         "title": "Movement Concepts",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Apply critical elements of movement to various activities (e.g., transfer of learning, swing, throwing, strike, biomechanics)."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "sport-skills-and-lifetime-activities",
+       "title": "Sport Skills and Lifetime Activities",
+       "subtopics": [
+        {
+         "id": "individual-dual-and-team-sports",
+         "title": "Individual, Dual and Team Sports",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Apply terminology, scoring, etiquette, player position and equipment, safety principles and game rules for individual, dual and team sports."
+          },
+          {
+           "code": null,
+           "text": "Apply basic offensive and defensive strategies in a modified game setting."
+          }
+         ]
+        },
+        {
+         "id": "outdoor-pursuits-recreational-activities",
+         "title": "Outdoor Pursuits/Recreational Activities",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Apply terminology, scoring, etiquette, safety principles, and rules appropriate for outdoor pursuits and recreational activities."
+          }
+         ]
+        },
+        {
+         "id": "specialized-activities",
+         "title": "Specialized Activities",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Demonstrate an increased level of competence in a variety of physical activities (e.g., gymnastics, aquatics)."
+          }
+         ]
+        },
+        {
+         "id": "careers",
+         "title": "Careers",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Investigate the health, fitness and sport industry careers (e.g., panel of community members, personal interviews, internet research)."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "rhythms-and-dance",
+       "title": "Rhythms and Dance",
+       "subtopics": [
+        {
+         "id": "creative-interpretive",
+         "title": "Creative/Interpretive",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Apply fundamental movement skills to create a simple movement sequence (e.g., locomotor, non-locomotor, self-expression, self-evaluation)."
+          }
+         ]
+        },
+        {
+         "id": "rhythmic-activities",
+         "title": "Rhythmic Activities",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Design an exercise routine to accompany music that emphasizes fitness components (e.g., jump rope, aerobics, line dance)."
+          }
+         ]
+        },
+        {
+         "id": "social-cultural-aspects-of-dance",
+         "title": "Social/Cultural Aspects of Dance",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Discuss the cultural and historic context of at least one dance form."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "8",
+   "units": [
+    {
+     "id": "efficiency-of-human-movement-and-performance",
+     "title": "Efficiency of Human Movement and Performance",
+     "topics": [
+      {
+       "id": "personal-fitness-and-healthy-active-living",
+       "title": "Personal Fitness and Healthy Active Living",
+       "subtopics": [
+        {
+         "id": "health-related-and-skill-related-fitness",
+         "title": "Health-Related and Skill-Related Fitness",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Use the concepts of health-related and skill-related fitness to connect the benefits each offers to the development of total fitness."
+          }
+         ]
+        },
+        {
+         "id": "wellness",
+         "title": "Wellness",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe the cause/effect of nutrition and exercise in maintaining a healthy weight (calories in = calories out)."
+          },
+          {
+           "code": null,
+           "text": "Identify a variety of specific activities designed to reduce and manage stress (e.g., aerobics, Pilates, deep breathing, muscle relaxation)."
+          }
+         ]
+        },
+        {
+         "id": "fitness-principles",
+         "title": "Fitness Principles",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Identify exercise principles of overload, progression, and specificity and how they relate to exercise."
+          }
+         ]
+        },
+        {
+         "id": "body-systems",
+         "title": "Body Systems",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain the effects of a sedentary lifestyle on the circulatory, respiratory, muscular, and skeletal systems."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "responsible-personal-and-social-behavior-in-the-",
+       "title": "Responsible Personal and Social Behavior in the Physical Activity Setting",
+       "subtopics": [
+        {
+         "id": "personal-social-responsibilities",
+         "title": "Personal/Social Responsibilities",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Demonstrate the ability to solve problems by analyzing causes and potential solutions in a physical activity setting (e.g., checklist of conflict resolution skills)."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "injury-prevention-treatment-and-rehabilitation",
+       "title": "Injury Prevention, Treatment and Rehabilitation",
+       "subtopics": [
+        {
+         "id": "prevention",
+         "title": "Prevention",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Investigate the safe and unsafe practices of using fitness equipment (e.g., weight room, fitness balls, step aerobics)."
+          }
+         ]
+        },
+        {
+         "id": "treatment",
+         "title": "Treatment",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Apply knowledge of basic first aid for the treatment of injury inside and outside the physical activity setting (e.g., Asthma, CPR, RICE - Rest, Ice, Compression, Elevation)."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "physical-activity-and-lifetime-wellness",
+     "title": "Physical Activity and Lifetime Wellness",
+     "topics": [
+      {
+       "id": "sport-skills-and-lifetime-activities",
+       "title": "Sport Skills and Lifetime Activities",
+       "subtopics": [
+        {
+         "id": "skill-techniques",
+         "title": "Skill Techniques",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Analyze selected skills and correct errors to improve skill technique."
+          }
+         ]
+        },
+        {
+         "id": "individual-dual-and-team-sports",
+         "title": "Individual, Dual and Team Sports",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain sport history."
+          },
+          {
+           "code": null,
+           "text": "Demonstrate an increased level of competence in skill techniques, scoring, and safety practices in a variety of individual, dual and team sports."
+          },
+          {
+           "code": null,
+           "text": "Analyze play of their opponent and apply defensive and offensive techniques."
+          }
+         ]
+        },
+        {
+         "id": "outdoor-pursuits-recreational-activities",
+         "title": "Outdoor Pursuits/Recreational Activities",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Demonstrate an increased level of competence in a variety of outdoor pursuits and/or recreational activities."
+          }
+         ]
+        },
+        {
+         "id": "specialized-activities",
+         "title": "Specialized Activities",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Demonstrate an intermediate level of competence in a variety of physical activities (e.g., gymnastics, aquatics)."
+          },
+          {
+           "code": null,
+           "text": "Apply skill techniques, scoring and safety practices in a modified activity setting."
+          }
+         ]
+        },
+        {
+         "id": "careers",
+         "title": "Careers",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe the requirements for careers that can be pursued in outdoor pursuits and recreational activities."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "rhythms-and-dance",
+       "title": "Rhythms and Dance",
+       "subtopics": [
+        {
+         "id": "creative-interpretive",
+         "title": "Creative/Interpretive",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Analyze the creative and aesthetic aspects of a dance pattern (e.g., direction, time, flow, level, energy)."
+          }
+         ]
+        },
+        {
+         "id": "forms-of-dance",
+         "title": "Forms of Dance",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Analyze differences and similarities in dances from various cultures."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "9-12",
+   "units": [
+    {
+     "id": "efficiency-of-human-movement-and-performance",
+     "title": "Efficiency of Human Movement and Performance",
+     "topics": [
+      {
+       "id": "personal-fitness-and-healthy-active-living",
+       "title": "Personal Fitness and Healthy Active Living",
+       "subtopics": [
+        {
+         "id": "health-related-and-skill-related-fitness",
+         "title": "Health-Related and Skill-Related Fitness",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Use the concepts of health-related and skill-related fitness to connect the benefits each offers to the development of total lifetime fitness."
+          },
+          {
+           "code": null,
+           "text": "Analyze present fitness levels to create a long-term personal fitness plan which meets current and future needs necessary for the maintenance of health and fitness."
+          }
+         ]
+        },
+        {
+         "id": "wellness",
+         "title": "Wellness",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Analyze and compare health, skill, and fitness benefits derived from a variety of sports and lifetime activities (e.g., pedometers, pulse wands, heart rate wands, tri-fit machines)."
+          },
+          {
+           "code": null,
+           "text": "Describe the relationship between nutrition, exercise and body composition (MyPyramid.gov)."
+          },
+          {
+           "code": null,
+           "text": "Investigate the negative effects of performance enhancing drugs and alcohol on health and physical performance."
+          },
+          {
+           "code": null,
+           "text": "Categorize short and long-term effects of stress on the individual."
+          },
+          {
+           "code": null,
+           "text": "Analyze the benefits of an effective stress management plan."
+          }
+         ]
+        },
+        {
+         "id": "fitness-principles",
+         "title": "Fitness Principles",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Design a personal fitness plan utilizing the FITT (frequency, intensity, time, type) principle and the principles of overload, progression, and specificity that contributes to an active healthy lifestyle (American College of Sport Medicine guidelines)."
+          },
+          {
+           "code": null,
+           "text": "Differentiate between how oxygen is utilized aerobically and anaerobically."
+          }
+         ]
+        },
+        {
+         "id": "body-systems",
+         "title": "Body Systems",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Identify the major muscle groups that are engaged during specific exercises and activities (e.g., bicep - bicep curl)."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "responsible-personal-and-social-behavior-in-the-",
+       "title": "Responsible Personal and Social Behavior in the Physical Activity Setting",
+       "subtopics": [
+        {
+         "id": "personal-social-responsibilities",
+         "title": "Personal/Social Responsibilities",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Show personal etiquette, respect, and safety skills during physical activities."
+          },
+          {
+           "code": null,
+           "text": "Identify strategies for including persons of diverse backgrounds and abilities in physical activities."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "injury-prevention-treatment-and-rehabilitation",
+       "title": "Injury Prevention, Treatment and Rehabilitation",
+       "subtopics": [
+        {
+         "id": "prevention",
+         "title": "Prevention",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Identify the relationship between warm-up, cool-down, proper skill techniques, the use of protective equipment, and proper conditioning to exercise-related injuries."
+          },
+          {
+           "code": null,
+           "text": "Investigate and predict potential exercise-related injuries and medical conditions that could occur during a variety of physical activities."
+          }
+         ]
+        },
+        {
+         "id": "treatment",
+         "title": "Treatment",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Differentiate between life threatening and non-life threatening injuries and select the appropriate level of treatment (e.g., basic first aid, CPR, calling 911)."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "physical-activity-and-lifetime-wellness",
+     "title": "Physical Activity and Lifetime Wellness",
+     "topics": [
+      {
+       "id": "fundamental-movement-skills-and-games",
+       "title": "Fundamental Movement Skills and Games",
+       "subtopics": [
+        {
+         "id": "movement-concepts",
+         "title": "Movement Concepts",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Identify and analyze the critical elements of selected advanced skills (e.g., strength training, games)."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "sport-skills-and-lifetime-activities",
+       "title": "Sport Skills and Lifetime Activities",
+       "subtopics": [
+        {
+         "id": "skill-techniques",
+         "title": "Skill Techniques",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Analyze skill techniques of self and others, detect skill errors, and make corrections to show improvement (e.g., peer assessment)."
+          }
+         ]
+        },
+        {
+         "id": "individual-dual-and-team-sports",
+         "title": "Individual, Dual and Team Sports",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Summarize the history, rules, terminology, scoring and etiquette in a variety of individual, dual and team sports."
+          },
+          {
+           "code": null,
+           "text": "Identify and apply rules of play, skill techniques and basic game strategies in a variety of individual, dual and team sports."
+          },
+          {
+           "code": null,
+           "text": "Consistently demonstrate skill competency in a variety of individual, dual and team sports."
+          }
+         ]
+        },
+        {
+         "id": "outdoor-pursuits-recreational-activities",
+         "title": "Outdoor Pursuits/Recreational Activities",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Summarize and apply rules, etiquette, skill techniques, and basic strategies in a variety of outdoor pursuits and recreational activities."
+          },
+          {
+           "code": null,
+           "text": "Consistently demonstrate skill competency in a variety of outdoor pursuits and recreational activities."
+          }
+         ]
+        },
+        {
+         "id": "specialized-activities",
+         "title": "Specialized Activities",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Summarize the history, rules, terminology and etiquette in aquatics or gymnastics."
+          },
+          {
+           "code": null,
+           "text": "Identify and apply rules, skill techniques and basic strategies in aquatics or gymnastics."
+          },
+          {
+           "code": null,
+           "text": "Consistently demonstrate skill competency in aquatics or gymnastics."
+          }
+         ]
+        },
+        {
+         "id": "careers",
+         "title": "Careers",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Investigate and cite career opportunities available as related to physical education (e.g., panel, research paper)."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "rhythms-and-dance",
+       "title": "Rhythms and Dance",
+       "subtopics": [
+        {
+         "id": "rhythmic-activities",
+         "title": "Rhythmic Activities",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Demonstrate rhythmic activities that use a variety of equipment to develop various components of fitness (e.g., dumbbells, exercise bands, steps, balls, scarves)."
+          }
+         ]
+        },
+        {
+         "id": "forms-of-dance",
+         "title": "Forms of Dance",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Demonstrate basic skills and social etiquette in a variety of dance forms utilizing different cultural backgrounds (e.g., line dance, social, folk, aerobic, square, jazz, contemporary)."
+          }
+         ]
+        },
+        {
+         "id": "social-cultural-aspects-of-dance",
+         "title": "Social/Cultural Aspects of Dance",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Compare the recreational and social aspects of a variety of dances and their impact on cultural development."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "build": {
+  "builtAt": "2026-10-14T16:20:45.346Z",
+  "model": "none",
+  "usd": 0,
+  "expectedCodes": null,
+  "coverage": null,
+  "missingCodes": [],
+  "counts": {
+   "grades": 10,
+   "units": 20,
+   "topics": 56,
+   "subtopics": 158,
+   "outcomes": 206
+  },
+  "warnings": []
+ }
+}

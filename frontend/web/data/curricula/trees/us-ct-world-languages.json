@@ -1,0 +1,428 @@
+{
+ "id": "us-ct-world-languages",
+ "region": "US",
+ "framework": "Connecticut state academic standards: World Languages",
+ "board": null,
+ "qualification": "K-12",
+ "subject": "World Languages",
+ "syllabusCode": null,
+ "gradeSystem": "grade",
+ "source": {
+  "urls": [
+   "https://api.commonstandardsproject.com/api/v1/jurisdictions/7ED35031669E470B98EF63BEAD17286D",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/A2AE22A3BF7E4BDC986E68BF0B339EAF",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/4BFBF444DF824E0B878AE49615718430",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/6146A244108A45C89499621630BEF6F4"
+  ],
+  "publisher": "Connecticut state education agency (machine-readable via Common Standards Project / ASN)",
+  "licence": "CC BY 4.0 US, Common Curriculum, Inc.",
+  "firstExam": "2024"
+ },
+ "grades": [
+  {
+   "grade": "K-12",
+   "units": [
+    {
+     "id": "communication-learners-can-communicate-effective",
+     "title": "COMMUNICATION: Learners can communicate effectively in more than one language to function in a variety of situations and for multiple purposes",
+     "topics": [
+      {
+       "id": "interpersonal-communication-performance-descript",
+       "title": "Interpersonal Communication Performance Descriptors: Learners interact and negotiate meaning in spoken, signed, or written conversations to share information, reactions, feelings, and opinions",
+       "subtopics": [
+        {
+         "id": "interpersonal-communication-performance-descript",
+         "title": "Interpersonal Communication Performance Descriptors: Learners interact and negotiate meaning in spoken, signed, or written conversations to share information, reactions, feelings, and opinions (1 of 2)",
+         "outcomes": [
+          {
+           "code": "1.1.IL",
+           "text": "Intermediate Low learners can participate in conversations on a number of familiar topics using simple sentences and sometimes creating original sentences. They can handle short social interactions in everyday situations by asking and answering simple questions."
+          },
+          {
+           "code": "1.1.IM",
+           "text": "Intermediate Mid learners can participate in conversations on familiar topics using sentences and series of sentences. They can handle short social interactions in everyday situations by asking and answering a variety of questions. They can usually say what they want to say about themselves and their everyday lives."
+          },
+          {
+           "code": "1.1.IH",
+           "text": "Intermediate High learners can participate with ease and confidence in conversations on familiar or researched topics. They can usually talk about events and experiences in various time frames. They can usually describe people, places, and things. They can handle social interactions in everyday situations, sometimes even when there is an unexpected complication."
+          },
+          {
+           "code": "1.1.AL",
+           "text": "Advanced Low learners can participate in conversations about familiar topics that go beyond their everyday lives. They can talk in an organized way with some detail about events and experiences in various time frames. They can describe people, places, and things in an organized way with some detail. They can handle a familiar situation with an unexpected complication."
+          },
+          {
+           "code": "1.1.AM",
+           "text": "Advanced Mid learners can express themselves fully not only on familiar topics but also on some concrete social, academic, and professional topics. They can talk in detail and in an organized way about events and experiences in various time frames, and share their points of view on complex issues. They can confidently handle routine situations with an unexpected complication."
+          }
+         ]
+        },
+        {
+         "id": "interpersonal-communication-performance-descript-2",
+         "title": "Interpersonal Communication Performance Descriptors: Learners interact and negotiate meaning in spoken, signed, or written conversations to share information, reactions, feelings, and opinions (2 of 2)",
+         "outcomes": [
+          {
+           "code": "1.1.AH",
+           "text": "Advanced High learners can express themselves freely and spontaneously, and for the most part accurately, on concrete topics and on most complex issues. They can usually support their opinion and develop hypotheses on topics of particular interest or personal expertise."
+          },
+          {
+           "code": "1.1.NL",
+           "text": "Novice Low learners can communicate on some very familiar topics using simple and memorized words and phrases with support of gestures and visuals."
+          },
+          {
+           "code": "1.1.NM",
+           "text": "Novice Mid learners can communicate on very familiar topics using a variety of words and phrases that they have practiced and memorized."
+          },
+          {
+           "code": "1.1.NH",
+           "text": "Novice High learners can communicate and exchange information about familiar topics using phrases and simple memorized sentences. They can usually handle short social interactions in everyday situations by asking and answering simple, sometimes original questions."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "interpretive-communication-performance-descripto",
+       "title": "Interpretive Communication Performance Descriptors: Learners understand, interpret, and analyze what is heard, read, or viewed on a variety of topics",
+       "subtopics": [
+        {
+         "id": "interpretive-communication-performance-descripto",
+         "title": "Interpretive Communication Performance Descriptors: Learners understand, interpret, and analyze what is heard, read, or viewed on a variety of topics (1 of 2)",
+         "outcomes": [
+          {
+           "code": "1.2.IL",
+           "text": "Intermediate Low learners can understand the main idea and details in messages and presentations on a variety of topics related to everyday life and personal interests and studies. They can understand the main idea of simple conversations, and understand the main idea of short and simple texts when the topic is familiar."
+          },
+          {
+           "code": "1.2.IM",
+           "text": "Intermediate Mid learners can understand the main idea in messages and presentations on a variety of topics related to everyday life and personal interests and studies. They can understand the main idea in conversations, and understand the main idea of texts related to everyday life and personal interests or studies."
+          },
+          {
+           "code": "1.2.IH",
+           "text": "Intermediate High learners can easily understand the main idea in messages, texts, and presentations on a variety of topics related to everyday life, personal interests, and their studies. They can understand some details of what they hear, even when something unexpected is expressed."
+          },
+          {
+           "code": "1.2.AL",
+           "text": "Advanced Low learners can understand the main idea and some supporting details on a variety of topics of personal and general interest. They can follow stories and descriptions in various time frames. They can understand information presented in a variety of genres on familiar topics, even when something unexpected is expressed."
+          },
+          {
+           "code": "1.2.AM",
+           "text": "Advanced Mid learners can understand the main idea and most supporting detail on a variety of topics of personal and general interest, as well as some topics of professional interest. They can follow stories and descriptions in various time frames. They can understand information presented in most genres, even when not familiar with the topic."
+          }
+         ]
+        },
+        {
+         "id": "interpretive-communication-performance-descripto-2",
+         "title": "Interpretive Communication Performance Descriptors: Learners understand, interpret, and analyze what is heard, read, or viewed on a variety of topics (2 of 2)",
+         "outcomes": [
+          {
+           "code": "1.2.AH",
+           "text": "Advanced High learners can understand, with ease, narrative, informational, and descriptive speech and texts. They can understand most topics that deal with special interests, unfamiliar situations, and abstract concepts. They can sometimes follow extended arguments and different points of view."
+          },
+          {
+           "code": "1.2.NL",
+           "text": "Novice Low learners can identify memorized or familiar words that are supported by gestures or visuals related to everyday life that they hear, read, and view."
+          },
+          {
+           "code": "1.2.NM",
+           "text": "Novice Mid learners can identify some basic facts from memorized words or phrases that are supported by gestures or visuals on topics related to everyday life that they hear, read, and view."
+          },
+          {
+           "code": "1.2.NH",
+           "text": "Novice High learners can identify the topic and some facts from simple sentences, and understand simple questions on familiar topics that they hear, read, and view."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "presentational-communication-performance-descrip",
+       "title": "Presentational Communication Performance Descriptors: Learners present spoken, written, or signed information, concepts, and ideas to inform, explain, persuade, and narrate on a variety of topics using appropriate media and adapting to various audiences of listeners, readers, or viewers",
+       "subtopics": [
+        {
+         "id": "presentational-communication-performance-descrip",
+         "title": "Presentational Communication Performance Descriptors: Learners present spoken, written, or signed information, concepts, and ideas to inform, explain, persuade, and narrate on a variety of topics using appropriate media and adapting to various audiences of listeners, readers, or viewers (1 of 2)",
+         "outcomes": [
+          {
+           "code": "1.3.IL",
+           "text": "Intermediate Low learners can present information in a written, spoken, or signed format on most familiar topics using a series of self-created sentences with some detail."
+          },
+          {
+           "code": "1.3.IM",
+           "text": "Intermediate Mid learners can make written, spoken or signed presentations on a wide variety of familiar topics using connected sentences with detail."
+          },
+          {
+           "code": "1.3.IH",
+           "text": "Intermediate High learners can present information in a generally organized way on school, work, and community topics, and on topics they have researched. They can make presentations on some events and experiences in various time frames."
+          },
+          {
+           "code": "1.3.AL",
+           "text": "Advanced Low learners can deliver organized written or spoken presentations appropriate to their audience on a variety of topics. They can present information about events and experiences in various time frames."
+          },
+          {
+           "code": "1.3.AM",
+           "text": "Advanced Mid learners can deliver wellorganized written or spoken presentations on concrete social, academic, and professional topics. They can present detailed information about events and experiences in various time frames."
+          }
+         ]
+        },
+        {
+         "id": "presentational-communication-performance-descrip-2",
+         "title": "Presentational Communication Performance Descriptors: Learners present spoken, written, or signed information, concepts, and ideas to inform, explain, persuade, and narrate on a variety of topics using appropriate media and adapting to various audiences of listeners, readers, or viewers (2 of 2)",
+         "outcomes": [
+          {
+           "code": "1.3.AH",
+           "text": "Advanced High learners can deliver detailed written or spoken presentations, with accuracy, clarity, and precision on a variety of topics and issues related to community interests and some special fields of expertise."
+          },
+          {
+           "code": "1.3.NL",
+           "text": "Novice Low learners can present information about themselves and some other very familiar topics using practiced words or memorized phrases with the help of gestures or visuals."
+          },
+          {
+           "code": "1.3.NM",
+           "text": "Novice Mid learners can present information about themselves and some other very familiar topics using practiced words, phrases, and memorized expressions."
+          },
+          {
+           "code": "1.3.NH",
+           "text": "Novice High learners can present basic information about themselves and familiar topics using language they have practiced using memorized phrases, simple sentences, and sometimes creating meaning with language they know."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "cultures-learners-interact-with-cultural-compete",
+     "title": "CULTURES: Learners interact with cultural competence and understanding",
+     "topics": [
+      {
+       "id": "relating-cultural-practices-to-perspectives-perf",
+       "title": "Relating Cultural Practices to Perspectives Performance Descriptors: Learners use the language to investigate, explain, and reflect on the relationship between the practices and perspectives of the cultures studied",
+       "subtopics": [
+        {
+         "id": "relating-cultural-practices-to-perspectives-perf",
+         "title": "Relating Cultural Practices to Perspectives Performance Descriptors: Learners use the language to investigate, explain, and reflect on the relationship between the practices and perspectives of the cultures studied",
+         "outcomes": [
+          {
+           "code": "2.1.I",
+           "text": "Intermediate learners can identify and compare practices to help them understand perspectives in their own and other cultures."
+          },
+          {
+           "code": "2.1.A",
+           "text": "Advanced learners can identify, compare, and explain practices to help them understand perspectives in their own and other cultures."
+          },
+          {
+           "code": "2.1.N",
+           "text": "Novice learners can identify practices to help them understand perspectives in their own and other cultures."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "relating-cultural-products-to-perspectives-perfo",
+       "title": "Relating Cultural Products to Perspectives Performance Descriptors: Learners use the language to investigate, explain, and reflect on the relationship between the products and perspectives of the cultures studied",
+       "subtopics": [
+        {
+         "id": "relating-cultural-products-to-perspectives-perfo",
+         "title": "Relating Cultural Products to Perspectives Performance Descriptors: Learners use the language to investigate, explain, and reflect on the relationship between the products and perspectives of the cultures studied",
+         "outcomes": [
+          {
+           "code": "2.2.I",
+           "text": "Intermediate learners can identify and compare products to help them understand perspectives in their own and other cultures."
+          },
+          {
+           "code": "2.2.A",
+           "text": "Advanced learners can identify, compare, and explain products to help them understand perspectives in their own and other cultures."
+          },
+          {
+           "code": "2.2.N",
+           "text": "Novice learners can identify products to help them understand perspectives in their own and other cultures."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "connections-learners-connect-with-other-discipli",
+     "title": "CONNECTIONS: Learners connect with other disciplines and acquire information and diverse perspectives in order to use the language to function in academic- and career-related situations",
+     "topics": [
+      {
+       "id": "making-connections-performance-descriptors-learn",
+       "title": "Making Connections Performance Descriptors: Learners build, reinforce, and expand their knowledge of other disciplines while using the language to develop critical thinking and to solve problems creatively",
+       "subtopics": [
+        {
+         "id": "making-connections-performance-descriptors-learn",
+         "title": "Making Connections Performance Descriptors: Learners build, reinforce, and expand their knowledge of other disciplines while using the language to develop critical thinking and to solve problems creatively",
+         "outcomes": [
+          {
+           "code": "3.1.I",
+           "text": "Intermediate learners can acquire, exchange, and present information in the target language on topics related to self and the immediate environment and age-appropriate academic content across disciplines."
+          },
+          {
+           "code": "3.1.A",
+           "text": "Advanced learners can acquire, exchange, and present information in the target language on factual topics of public interest and general academic content across disciplines."
+          },
+          {
+           "code": "3.1.N",
+           "text": "Novice learners can acquire, exchange, and present information primarily in the target language about very familiar common daily elements of life and age-appropriate academic content across disciplines."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "acquiring-information-and-diverse-perspectives-p",
+       "title": "Acquiring Information and Diverse Perspectives Performance Descriptors: Learners access and evaluate information and diverse perspectives that are available through the language and its cultures",
+       "subtopics": [
+        {
+         "id": "acquiring-information-and-diverse-perspectives-p",
+         "title": "Acquiring Information and Diverse Perspectives Performance Descriptors: Learners access and evaluate information and diverse perspectives that are available through the language and its cultures",
+         "outcomes": [
+          {
+           "code": "3.2.I",
+           "text": "Intermediate learners can identify diverse perspectives and distinctive viewpoints on topics related to self and the immediate environment in the target language from age-appropriate authentic materials from the communities where the language is spoken."
+          },
+          {
+           "code": "3.2.A",
+           "text": "Advanced learners can research and explain diverse perspectives and distinctive viewpoints on topics of public interest and general academic content in the target language through authentic materials from the communities where the language is spoken."
+          },
+          {
+           "code": "3.2.N",
+           "text": "Novice learners can recognize diverse perspectives and distinctive viewpoints on very familiar common daily topics, primarily in the target language, from age-appropriate authentic materials from the communities where the language is spoken."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "comparisons-learners-develop-insight-into-the-na",
+     "title": "COMPARISONS: Learners develop insight into the nature of language and culture to interact with cultural competence",
+     "topics": [
+      {
+       "id": "language-comparisons-performance-descriptors-lea",
+       "title": "Language Comparisons Performance Descriptors: Learners use the language to investigate, reflect on, and explain the nature of language through comparisons of the language studied and their own",
+       "subtopics": [
+        {
+         "id": "language-comparisons-performance-descriptors-lea",
+         "title": "Language Comparisons Performance Descriptors: Learners use the language to investigate, reflect on, and explain the nature of language through comparisons of the language studied and their own",
+         "outcomes": [
+          {
+           "code": "4.1.I",
+           "text": "Intermediate learners can investigate and reflect on the nature and structure of language through comparisons of the language studied and their own."
+          },
+          {
+           "code": "4.1.A",
+           "text": "Advanced learners can investigate, reflect on, and explain the nature and structure of language through comparisons of the language studied and their own."
+          },
+          {
+           "code": "4.1.N",
+           "text": "Novice learners can investigate the nature and structure of language through comparisons of the language studied and their own."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "cultural-comparisons-performance-descriptors-lea",
+       "title": "Cultural Comparisons Performance Descriptors: Learners use the language to investigate, explain, and reflect on the concept of culture through comparisons of the cultures studied and their own",
+       "subtopics": [
+        {
+         "id": "cultural-comparisons-performance-descriptors-lea",
+         "title": "Cultural Comparisons Performance Descriptors: Learners use the language to investigate, explain, and reflect on the concept of culture through comparisons of the cultures studied and their own",
+         "outcomes": [
+          {
+           "code": "4.2.I",
+           "text": "Intermediate learners can investigate and explain the concept of culture through comparisons of the language culture(s) and their own."
+          },
+          {
+           "code": "4.2.A",
+           "text": "Advanced learners can investigate, explain, and reflect on the concept of culture through comparisons of the language culture(s) and their own."
+          },
+          {
+           "code": "4.2.N",
+           "text": "Novice learners can investigate the concept of culture through comparisons of the language culture(s) and their own."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "communities-learners-communicate-and-interact-wi",
+     "title": "COMMUNITIES: Learners communicate and interact with cultural competence to participate in multilingual communities at home and around the world",
+     "topics": [
+      {
+       "id": "school-and-global-communities-performance-descri",
+       "title": "School and Global Communities Performance Descriptors: Learners use the language both within and beyond the classroom to interact and collaborate in their community and the globalized world",
+       "subtopics": [
+        {
+         "id": "school-and-global-communities-performance-descri",
+         "title": "School and Global Communities Performance Descriptors: Learners use the language both within and beyond the classroom to interact and collaborate in their community and the globalized world",
+         "outcomes": [
+          {
+           "code": "5.1.I",
+           "text": "Intermediate learners can use the target language to connect and interact with members of their local, state, national, and global communities on topics related to themselves and familiar topics with cultural competence and understanding in order to participate in multilingual communities at home."
+          },
+          {
+           "code": "5.1.A",
+           "text": "Advanced learners can use the target language to connect and interact with members of their local, state, national, and global communities on topics of general public interest with cultural competence and understanding in order to participate in multilingual communities at home and around the world."
+          },
+          {
+           "code": "5.1.N",
+           "text": "Novice learners can use the target language, with support and scaffolding, to connect and interact with members of their local and global community on topics related to themselves, with cultural competence and understanding."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "lifelong-learning-performance-descriptors-learne",
+       "title": "Lifelong Learning Performance Descriptors: Learners set goals and reflect on their progress in using language for enjoyment, enrichment, and advancement",
+       "subtopics": [
+        {
+         "id": "lifelong-learning-performance-descriptors-learne",
+         "title": "Lifelong Learning Performance Descriptors: Learners set goals and reflect on their progress in using language for enjoyment, enrichment, and advancement",
+         "outcomes": [
+          {
+           "code": "5.2.I",
+           "text": "Intermediate learners can set language learning goals appropriate to their proficiency level, and goals for personal enjoyment and enrichment, and reflect on their progress toward meeting their goal(s)."
+          },
+          {
+           "code": "5.2.A",
+           "text": "Advanced learners can set goals appropriate to their proficiency level, for personal enjoyment and enrichment, and reflect upon their journey and how the language has enriched and enlivened their life."
+          },
+          {
+           "code": "5.2.N",
+           "text": "Novice learners can set language learning goals appropriate to their proficiency level and reflect upon their progress toward meeting their goal."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "build": {
+  "builtAt": "2026-10-14T16:20:39.673Z",
+  "model": "none",
+  "usd": 0,
+  "expectedCodes": 51,
+  "coverage": 1,
+  "missingCodes": [],
+  "counts": {
+   "grades": 1,
+   "units": 5,
+   "topics": 11,
+   "subtopics": 14,
+   "outcomes": 51
+  },
+  "warnings": []
+ }
+}

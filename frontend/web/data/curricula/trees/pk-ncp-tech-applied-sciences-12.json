@@ -1,0 +1,457 @@
+{
+ "id": "pk-ncp-tech-applied-sciences-12",
+ "region": "PK",
+ "framework": "National Curriculum of Pakistan 2022-23",
+ "board": null,
+ "qualification": "Technical stream",
+ "subject": "Applied Sciences",
+ "syllabusCode": null,
+ "gradeSystem": "grade",
+ "source": {
+  "urls": [
+   "https://ncc.gov.pk/SiteImage/Misc/files/63-%20Applied%20Science(2).pdf"
+  ],
+  "publisher": "National Curriculum Council, Ministry of Federal Education and Professional Training",
+  "licence": "Government publication; structure + our own wording only",
+  "firstExam": null
+ },
+ "grades": [
+  {
+   "grade": "12",
+   "units": [
+    {
+     "id": "domain-a-electrical-hazards",
+     "title": "Domain A: Electrical hazards",
+     "topics": [
+      {
+       "id": "patient-safety-theory",
+       "title": "Patient Safety (Theory)",
+       "subtopics": [
+        {
+         "id": "electric-shock-and-the-body",
+         "title": "Electric shock and the body",
+         "outcomes": [
+          {
+           "code": "APII-12-A-01",
+           "text": "Name how electric current affects body muscles."
+          },
+          {
+           "code": "APII-12-A-02",
+           "text": "Explain the dangers and consequences of electric shock to the body."
+          }
+         ]
+        },
+        {
+         "id": "defibrillators-and-pacemakers",
+         "title": "Defibrillators and pacemakers",
+         "outcomes": [
+          {
+           "code": "APII-12-A-03",
+           "text": "Describe how a defibrillator works and is used in medical settings."
+          },
+          {
+           "code": "APII-12-A-04",
+           "text": "Explain what pacemakers and similar devices do, with their risks and safety steps."
+          }
+         ]
+        },
+        {
+         "id": "medical-equipment-electrical-safety",
+         "title": "Medical equipment electrical safety",
+         "outcomes": [
+          {
+           "code": "APII-12-A-05",
+           "text": "Compare uses and safety points of high and low frequency electricity in medicine."
+          },
+          {
+           "code": "APII-12-A-06",
+           "text": "Sort medical equipment by electrical properties and safety needs."
+          },
+          {
+           "code": "APII-12-A-07",
+           "text": "Explain degrees of protection in equipment and why they prevent electrical hazards."
+          }
+         ]
+        },
+        {
+         "id": "leakage-current-and-hazard-control",
+         "title": "Leakage current and hazard control",
+         "outcomes": [
+          {
+           "code": "APII-12-A-08",
+           "text": "Explain earth leakage current and what it means for safety in hospitals."
+          },
+          {
+           "code": "APII-12-A-09",
+           "text": "Plan ways to reduce electrical hazards through design, installation and maintenance."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "domain-b-fire-and-explosion-in-hospitals",
+     "title": "Domain B: Fire and explosion in hospitals",
+     "topics": [
+      {
+       "id": "patient-safety-theory",
+       "title": "Patient Safety (Theory)",
+       "subtopics": [
+        {
+         "id": "fire-and-explosion-risks",
+         "title": "Fire and explosion risks",
+         "outcomes": [
+          {
+           "code": "APII-12-B-01",
+           "text": "Recognise flammable gases and liquids common in hospitals."
+          },
+          {
+           "code": "APII-12-B-02",
+           "text": "Explain how electricity can start fires and explosions in hospitals."
+          }
+         ]
+        },
+        {
+         "id": "preventing-fire-and-explosion",
+         "title": "Preventing fire and explosion",
+         "outcomes": [
+          {
+           "code": "APII-12-B-03",
+           "text": "Explain precautions that prevent fires and explosions in hospitals."
+          },
+          {
+           "code": "APII-12-B-04",
+           "text": "Describe safe handling of flammable gases and liquids."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "domain-c-surgical-diathermy",
+     "title": "Domain C: Surgical diathermy",
+     "topics": [
+      {
+       "id": "patient-safety-theory",
+       "title": "Patient Safety (Theory)",
+       "subtopics": [
+        {
+         "id": "surgical-diathermy",
+         "title": "Surgical diathermy",
+         "outcomes": [
+          {
+           "code": "APII-12-C-01",
+           "text": "Describe how surgical diathermy equipment works in hospitals."
+          },
+          {
+           "code": "APII-12-C-02",
+           "text": "Explain the precautions needed when using surgical diathermy."
+          }
+         ]
+        },
+        {
+         "id": "mechanical-heat-and-light-hazards",
+         "title": "Mechanical, heat and light hazards",
+         "outcomes": [
+          {
+           "code": "APII-12-C-03",
+           "text": "Describe common mechanical hazards in hospitals."
+          },
+          {
+           "code": "APII-12-C-04",
+           "text": "Define heat and light hazards at work and in the environment."
+          },
+          {
+           "code": "APII-12-C-05",
+           "text": "Identify common sources of heat and light hazards in workplaces."
+          },
+          {
+           "code": "APII-12-C-06",
+           "text": "Describe the physical properties of heat and light hazards."
+          }
+         ]
+        },
+        {
+         "id": "chemical-burns",
+         "title": "Chemical burns",
+         "outcomes": [
+          {
+           "code": "APII-12-C-07",
+           "text": "Define chemical burns and tell them apart from other burns."
+          },
+          {
+           "code": "APII-12-C-08",
+           "text": "Identify common chemicals that cause burns in hospitals."
+          },
+          {
+           "code": "APII-12-C-09",
+           "text": "Describe the signs and symptoms of chemical burns."
+          },
+          {
+           "code": "APII-12-C-10",
+           "text": "List suitable first aid steps for chemical burns."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "domain-d-radiation",
+     "title": "Domain D: Radiation",
+     "topics": [
+      {
+       "id": "patient-safety-theory",
+       "title": "Patient Safety (Theory)",
+       "subtopics": [
+        {
+         "id": "radiation-sources-and-effects",
+         "title": "Radiation sources and effects",
+         "outcomes": [
+          {
+           "code": "APII-12-D-01",
+           "text": "Explain sources, properties and biological effects of ionizing and non-ionizing radiation."
+          },
+          {
+           "code": "APII-12-D-02",
+           "text": "Explain safety guidelines for limiting exposure to both radiation types."
+          },
+          {
+           "code": "APII-12-D-03",
+           "text": "Describe health risks from exposure to ionizing and non-ionizing radiation."
+          }
+         ]
+        },
+        {
+         "id": "microwaves-and-ultrasound",
+         "title": "Microwaves and ultrasound",
+         "outcomes": [
+          {
+           "code": "APII-12-D-04",
+           "text": "Explain how microwave ovens work and their safety points."
+          },
+          {
+           "code": "APII-12-D-05",
+           "text": "Describe the possible hazards of microwave ovens."
+          },
+          {
+           "code": "APII-12-D-06",
+           "text": "Describe therapeutic uses of ultrasound equipment in healthcare."
+          }
+         ]
+        },
+        {
+         "id": "lasers",
+         "title": "Lasers",
+         "outcomes": [
+          {
+           "code": "APII-12-D-07",
+           "text": "Define lasers and describe their properties."
+          },
+          {
+           "code": "APII-12-D-08",
+           "text": "Identify types of lasers used in various applications."
+          },
+          {
+           "code": "APII-12-D-09",
+           "text": "Explain how lasers operate."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "domain-e-infection-in-hospitals",
+     "title": "Domain E: Infection in hospitals",
+     "topics": [
+      {
+       "id": "patient-safety-theory",
+       "title": "Patient Safety (Theory)",
+       "subtopics": [
+        {
+         "id": "microorganisms-and-infections",
+         "title": "Microorganisms and infections",
+         "outcomes": [
+          {
+           "code": "APII-12-E-01",
+           "text": "Identify parts of the hospital environment that help infections spread."
+          },
+          {
+           "code": "APII-12-E-02",
+           "text": "Explain pathogenic and non-pathogenic microorganisms and their role in infection."
+          },
+          {
+           "code": "APII-12-E-03",
+           "text": "Describe how infections spread in healthcare settings."
+          },
+          {
+           "code": "APII-12-E-04",
+           "text": "Classify the kinds of infections common in hospitals."
+          }
+         ]
+        },
+        {
+         "id": "cross-infection-and-control",
+         "title": "Cross-infection and control",
+         "outcomes": [
+          {
+           "code": "APII-12-E-05",
+           "text": "Explain cross-infection and why it matters for patient safety."
+          },
+          {
+           "code": "APII-12-E-06",
+           "text": "Explain infection prevention and control: standard and transmission-based precautions, environmental controls."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "domain-a-first-aid",
+     "title": "Domain A: First Aid",
+     "topics": [
+      {
+       "id": "first-aid-theory",
+       "title": "First Aid (Theory)",
+       "subtopics": [
+        {
+         "id": "principles-of-first-aid",
+         "title": "Principles of first aid",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Define first aid and why immediate help matters."
+          },
+          {
+           "code": null,
+           "text": "Explain how first aid prevents further injury."
+          },
+          {
+           "code": null,
+           "text": "Explain the principles of first aid."
+          }
+         ]
+        },
+        {
+         "id": "emergency-assessment-and-abc",
+         "title": "Emergency assessment and ABC",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Show the ABC principles (airway, breathing, circulation) in emergencies."
+          },
+          {
+           "code": null,
+           "text": "Show how to assess an emergency and give suitable first aid."
+          },
+          {
+           "code": null,
+           "text": "Explain how to dress wounds and apply different bandages."
+          }
+         ]
+        },
+        {
+         "id": "breathing-and-asphyxia",
+         "title": "Breathing and asphyxia",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe the structure and function of the respiratory system."
+          },
+          {
+           "code": null,
+           "text": "Define asphyxia and identify its common causes."
+          }
+         ]
+        },
+        {
+         "id": "shock",
+         "title": "Shock",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain the structure and function of the cardiovascular system."
+          },
+          {
+           "code": "APII-12-A-10",
+           "text": "Describe how shock develops in the body."
+          },
+          {
+           "code": "APII-12-A-11",
+           "text": "Show first aid for cardiogenic shock."
+          },
+          {
+           "code": "APII-12-A-12",
+           "text": "Explain causes and treatment of hypovolemic shock."
+          }
+         ]
+        },
+        {
+         "id": "abdominal-pain-and-choking",
+         "title": "Abdominal pain and choking",
+         "outcomes": [
+          {
+           "code": "APII-12-A-13",
+           "text": "Identify common causes of abdominal pain needing immediate first aid."
+          },
+          {
+           "code": "APII-12-A-14",
+           "text": "Show how to assess and manage a person with abdominal pain."
+          },
+          {
+           "code": "APII-12-A-15",
+           "text": "Show the Heimlich manoeuvre for choking in adults, children, infants and obese people."
+          }
+         ]
+        },
+        {
+         "id": "kitchen-and-bathroom-safety",
+         "title": "Kitchen and bathroom safety",
+         "outcomes": [
+          {
+           "code": "APII-12-A-16",
+           "text": "Show safe handling and storage of dangerous kitchen tools."
+          },
+          {
+           "code": "APII-12-A-17",
+           "text": "Identify common bathroom hazards."
+          },
+          {
+           "code": "APII-12-A-18",
+           "text": "Describe ways to prevent bathroom accidents."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "build": {
+  "builtAt": "2026-10-14T08:34:07.942Z",
+  "model": "claude-agent",
+  "usd": 0,
+  "expectedCodes": 47,
+  "coverage": 1,
+  "missingCodes": [],
+  "counts": {
+   "grades": 1,
+   "units": 6,
+   "topics": 6,
+   "subtopics": 20,
+   "outcomes": 56
+  },
+  "warnings": []
+ }
+}

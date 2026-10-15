@@ -1,0 +1,1719 @@
+{
+ "id": "us-tn-computer-science",
+ "region": "US",
+ "framework": "Tennessee state academic standards: Computer Science & Technology",
+ "board": null,
+ "qualification": "K-12",
+ "subject": "Computer Science & Technology",
+ "syllabusCode": null,
+ "gradeSystem": "grade",
+ "source": {
+  "urls": [
+   "https://api.commonstandardsproject.com/api/v1/jurisdictions/180878796A3C448D808F38BCCCFD26CF",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/180878796A3C448D808F38BCCCFD26CF_D2590256_grades-09-10",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/5CCE96B0098E4346BB659B6EC46B28BF",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/59EB9EEBF03C4417BC9EB24F9A234891",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/23A51CDA355841D2B863FC8C8C4D9AD1",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/9F7CEE83CCC54E4AAE18AD1AC79A2B00",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/5C0166196C7648BDBEA1803620004803",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/B840DDC38FD64463869FEF81693CE32E",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/AA25150C8A7D4422AF1E629A9BA27944",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/6C65DCABD7244FB6A15F2DE4EDDE4B4F",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/180878796A3C448D808F38BCCCFD26CF_D2590239_grades-04-05-06-07-08"
+  ],
+  "publisher": "Tennessee state education agency (machine-readable via Common Standards Project / ASN)",
+  "licence": "CC BY 3.0 US, Desire2Learn Incorporated; CC BY 4.0 US, Common Curriculum, Inc.",
+  "firstExam": "2022"
+ },
+ "grades": [
+  {
+   "grade": "K",
+   "units": [
+    {
+     "id": "foundational-concepts",
+     "title": "Foundational Concepts",
+     "topics": [
+      {
+       "id": "foundational-concepts",
+       "title": "Foundational Concepts",
+       "subtopics": [
+        {
+         "id": "foundational-concepts",
+         "title": "Foundational Concepts",
+         "outcomes": [
+          {
+           "code": "K.FC.1",
+           "text": "Locate letters and numbers on the keyboard."
+          },
+          {
+           "code": "K.FC.2",
+           "text": "Ask questions to conduct investigations, solve problems, and test solutions."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "algorithmic-thinking",
+     "title": "Algorithmic Thinking",
+     "topics": [
+      {
+       "id": "algorithmic-thinking",
+       "title": "Algorithmic Thinking",
+       "subtopics": [
+        {
+         "id": "algorithmic-thinking",
+         "title": "Algorithmic Thinking",
+         "outcomes": [
+          {
+           "code": "K.AT.1",
+           "text": "Construct sequential events step-by-step in a logical order."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "data-analysis",
+     "title": "Data Analysis",
+     "topics": [
+      {
+       "id": "data-analysis",
+       "title": "Data Analysis",
+       "subtopics": [
+        {
+         "id": "data-analysis",
+         "title": "Data Analysis",
+         "outcomes": [
+          {
+           "code": "K.DA.1",
+           "text": "Collect and organize data."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "networking-and-the-internet",
+     "title": "Networking and the Internet",
+     "topics": [
+      {
+       "id": "networking-and-the-internet",
+       "title": "Networking and the Internet",
+       "subtopics": [
+        {
+         "id": "networking-and-the-internet",
+         "title": "Networking and the Internet",
+         "outcomes": [
+          {
+           "code": "K.NI.1",
+           "text": "Demonstrate age-appropriate methods for keeping personal information private."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "1",
+   "units": [
+    {
+     "id": "foundational-concepts",
+     "title": "Foundational Concepts",
+     "topics": [
+      {
+       "id": "foundational-concepts",
+       "title": "Foundational Concepts",
+       "subtopics": [
+        {
+         "id": "foundational-concepts",
+         "title": "Foundational Concepts",
+         "outcomes": [
+          {
+           "code": "1.FC.1",
+           "text": "Navigate to applications and documents by using desktop icons, windows, and menus (e.g., open and close the browser window, find/use bookmark to store the website, recognize and use app on tablet)."
+          },
+          {
+           "code": "1.FC.2",
+           "text": "Demonstrate use of input devices (e.g., mouse, keyboard)."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "algorithmic-thinking",
+     "title": "Algorithmic Thinking",
+     "topics": [
+      {
+       "id": "algorithmic-thinking",
+       "title": "Algorithmic Thinking",
+       "subtopics": [
+        {
+         "id": "algorithmic-thinking",
+         "title": "Algorithmic Thinking",
+         "outcomes": [
+          {
+           "code": "1.AT.1",
+           "text": "Identify and revise problem-solving strategies to solve a simple problem."
+          },
+          {
+           "code": "1.AT.2",
+           "text": "Classify and sort information into logical order with and/or without a computer."
+          },
+          {
+           "code": "1.AT.3",
+           "text": "Utilize digital tools to illustrate potential solutions to a problem."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "data-analysis",
+     "title": "Data Analysis",
+     "topics": [
+      {
+       "id": "data-analysis",
+       "title": "Data Analysis",
+       "subtopics": [
+        {
+         "id": "data-analysis",
+         "title": "Data Analysis",
+         "outcomes": [
+          {
+           "code": "1.DA.1",
+           "text": "Interpret data displayed in a chart."
+          },
+          {
+           "code": "1.DA.2",
+           "text": "Organize data using similarities and differences."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "networking-and-the-internet",
+     "title": "Networking and the Internet",
+     "topics": [
+      {
+       "id": "networking-and-the-internet",
+       "title": "Networking and the Internet",
+       "subtopics": [
+        {
+         "id": "networking-and-the-internet",
+         "title": "Networking and the Internet",
+         "outcomes": [
+          {
+           "code": "1.NI.1",
+           "text": "Advocate, demonstrate, and routinely practice safe, legal, and responsible use of information and technology."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "2",
+   "units": [
+    {
+     "id": "foundational-concepts",
+     "title": "Foundational Concepts",
+     "topics": [
+      {
+       "id": "foundational-concepts",
+       "title": "Foundational Concepts",
+       "subtopics": [
+        {
+         "id": "foundational-concepts",
+         "title": "Foundational Concepts",
+         "outcomes": [
+          {
+           "code": "2.FC.1",
+           "text": "Use the menu and tool bar to navigate editing functions."
+          },
+          {
+           "code": "2.FC.2",
+           "text": "Use a variety of digital tools collaboratively to connect with other learners."
+          },
+          {
+           "code": "2.FC.3",
+           "text": "Ask questions to conduct investigations, solve problems, and test solutions."
+          },
+          {
+           "code": "2.FC.4",
+           "text": "Select technology or tools to solve a problem or design a solution."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "algorithmic-thinking",
+     "title": "Algorithmic Thinking",
+     "topics": [
+      {
+       "id": "algorithmic-thinking",
+       "title": "Algorithmic Thinking",
+       "subtopics": [
+        {
+         "id": "algorithmic-thinking",
+         "title": "Algorithmic Thinking",
+         "outcomes": [
+          {
+           "code": "2.AT.1",
+           "text": "Plan and create a design document to illustrate thoughts, ideas, and stories in a sequential (stepby-step) manner (e.g., story map, storyboard, sequential graphic organizer)."
+          },
+          {
+           "code": "2.AT.2",
+           "text": "Compare and evaluate multiple ways to get a solution."
+          },
+          {
+           "code": "2.AT.3",
+           "text": "Categorize a group of items based on the attributes of actions of each item, with or without a computing device."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "data-analysis",
+     "title": "Data Analysis",
+     "topics": [
+      {
+       "id": "data-analysis",
+       "title": "Data Analysis",
+       "subtopics": [
+        {
+         "id": "data-analysis",
+         "title": "Data Analysis",
+         "outcomes": [
+          {
+           "code": "2.DA.1",
+           "text": "Use data to make decisions, identify solutions, or determine relationships."
+          },
+          {
+           "code": "2.DA.2",
+           "text": "Use if/then reasoning to understand relationships with data."
+          },
+          {
+           "code": "2.DA.3",
+           "text": "Collect, create, and organize data in a digital chart or graph."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "networking-and-the-internet",
+     "title": "Networking and the Internet",
+     "topics": [
+      {
+       "id": "networking-and-the-internet",
+       "title": "Networking and the Internet",
+       "subtopics": [
+        {
+         "id": "networking-and-the-internet",
+         "title": "Networking and the Internet",
+         "outcomes": [
+          {
+           "code": "2.NI.1",
+           "text": "Identify appropriate and inappropriate behaviors for communicating in a digital environment."
+          },
+          {
+           "code": "2.NI.2",
+           "text": "Cite media and/or owners of digital content."
+          },
+          {
+           "code": "2.NI.3",
+           "text": "Create a research-based product using online digital tools."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "impacts-of-computing",
+     "title": "Impacts of Computing",
+     "topics": [
+      {
+       "id": "impacts-of-computing",
+       "title": "Impacts of Computing",
+       "subtopics": [
+        {
+         "id": "impacts-of-computing",
+         "title": "Impacts of Computing",
+         "outcomes": [
+          {
+           "code": "2.IC.1",
+           "text": "Recognize and describe the potential risks and dangers associated with various forms of online communications (e.g., cell phones, social media, digital photos)."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "3",
+   "units": [
+    {
+     "id": "foundational-concepts",
+     "title": "Foundational Concepts",
+     "topics": [
+      {
+       "id": "foundational-concepts",
+       "title": "Foundational Concepts",
+       "subtopics": [
+        {
+         "id": "foundational-concepts",
+         "title": "Foundational Concepts",
+         "outcomes": [
+          {
+           "code": "3.FC.1",
+           "text": "Locate and use appropriate online tools and resources to explore, research, and collect data on specific topics (e.g., applications, web browsers, and online tutorials)."
+          },
+          {
+           "code": "3.FC.2",
+           "text": "Communicate key ideas and details collaboratively in a way that informs, persuades, and/or entertains, using digital tools."
+          },
+          {
+           "code": "3.FC.",
+           "text": "Use basic features of digital tools to communicate key ideas and details in a way that informs and/or persuades."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "algorithmic-thinking",
+     "title": "Algorithmic Thinking",
+     "topics": [
+      {
+       "id": "algorithmic-thinking",
+       "title": "Algorithmic Thinking",
+       "subtopics": [
+        {
+         "id": "algorithmic-thinking",
+         "title": "Algorithmic Thinking",
+         "outcomes": [
+          {
+           "code": "3.AT.1",
+           "text": "Discuss the design process and use digital tools to illustrate potential solutions."
+          },
+          {
+           "code": "3.AT.2",
+           "text": "Create an algorithm to solve a problem as a collaborative team."
+          },
+          {
+           "code": "3.AT.3",
+           "text": "Identify problems to solve and generate questions for investigations."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "data-analysis",
+     "title": "Data Analysis",
+     "topics": [
+      {
+       "id": "data-analysis",
+       "title": "Data Analysis",
+       "subtopics": [
+        {
+         "id": "data-analysis",
+         "title": "Data Analysis",
+         "outcomes": [
+          {
+           "code": "3.DA.1",
+           "text": "Use data to highlight or propose cause-and-effect relationships, predict outcomes, or communicate an idea."
+          },
+          {
+           "code": "3.DA.2",
+           "text": "Describe examples of data sets or databases from everyday life."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "networking-and-the-internet",
+     "title": "Networking and the Internet",
+     "topics": [
+      {
+       "id": "networking-and-the-internet",
+       "title": "Networking and the Internet",
+       "subtopics": [
+        {
+         "id": "networking-and-the-internet",
+         "title": "Networking and the Internet",
+         "outcomes": [
+          {
+           "code": "3.NI.1",
+           "text": "Advocate, demonstrate, and routinely practice safe, legal, and responsible use of information and technology."
+          },
+          {
+           "code": "3.NI.2",
+           "text": "Conduct basic keyword searches to produce valid, appropriate results, and evaluate results for accuracy, relevance, and appropriateness."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "programming-concepts",
+     "title": "Programming Concepts",
+     "topics": [
+      {
+       "id": "programming-concepts",
+       "title": "Programming Concepts",
+       "subtopics": [
+        {
+         "id": "programming-concepts",
+         "title": "Programming Concepts",
+         "outcomes": [
+          {
+           "code": "3.PC.1",
+           "text": "Analyze a given list of sub-problems while addressing a larger problem."
+          },
+          {
+           "code": "3.PC.2",
+           "text": "Define a problem or task, decompose it into smaller sub-problems."
+          },
+          {
+           "code": "3.PC.3",
+           "text": "Use numbers or letters to represent information in another form."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "4",
+   "units": [
+    {
+     "id": "foundational-concepts",
+     "title": "Foundational Concepts",
+     "topics": [
+      {
+       "id": "foundational-concepts",
+       "title": "Foundational Concepts",
+       "subtopics": [
+        {
+         "id": "foundational-concepts",
+         "title": "Foundational Concepts",
+         "outcomes": [
+          {
+           "code": "4.FC.1",
+           "text": "Demonstrate an appropriate level of proficiency in performing tasks using a range of digital devices."
+          },
+          {
+           "code": "4.FC.2",
+           "text": "Use age-appropriate online tools and resources (e.g., learning management systems, grade and assignment record, tutorial, assessment, web browser)."
+          },
+          {
+           "code": "4.FC.3",
+           "text": "Create a simple digital model of a system and explain what the model shows and does not show."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "algorithmic-thinking",
+     "title": "Algorithmic Thinking",
+     "topics": [
+      {
+       "id": "algorithmic-thinking",
+       "title": "Algorithmic Thinking",
+       "subtopics": [
+        {
+         "id": "algorithmic-thinking",
+         "title": "Algorithmic Thinking",
+         "outcomes": [
+          {
+           "code": "4.AT.1",
+           "text": "Examine logical reasoning to predict outcomes of an algorithm."
+          },
+          {
+           "code": "4.AT.2",
+           "text": "Use flowcharts to create a plan or algorithm."
+          },
+          {
+           "code": "4.AT.3",
+           "text": "Construct a basic system of numbers, letters, or symbols to represent information as a cipher."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "data-analysis",
+     "title": "Data Analysis",
+     "topics": [
+      {
+       "id": "data-analysis",
+       "title": "Data Analysis",
+       "subtopics": [
+        {
+         "id": "data-analysis",
+         "title": "Data Analysis",
+         "outcomes": [
+          {
+           "code": "4.DA.1",
+           "text": "Collect, organize, analyze, and interpret data to identify solutions and/or make informed decisions."
+          },
+          {
+           "code": "4.DA.2",
+           "text": "Gather data to answer a question using a variety of computing and data visualization methods."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "networking-and-the-internet",
+     "title": "Networking and the Internet",
+     "topics": [
+      {
+       "id": "networking-and-the-internet",
+       "title": "Networking and the Internet",
+       "subtopics": [
+        {
+         "id": "networking-and-the-internet",
+         "title": "Networking and the Internet",
+         "outcomes": [
+          {
+           "code": "4.NI.1",
+           "text": "Identify appropriate and inappropriate uses of communication technology and discuss the permanence of actions in the digital world."
+          },
+          {
+           "code": "4.NI.2",
+           "text": "Conduct advanced keyword searches to produce valid, appropriate results and evaluate results for accuracy, relevance, and appropriateness."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "programming-concepts",
+     "title": "Programming Concepts",
+     "topics": [
+      {
+       "id": "programming-concepts",
+       "title": "Programming Concepts",
+       "subtopics": [
+        {
+         "id": "programming-concepts",
+         "title": "Programming Concepts",
+         "outcomes": [
+          {
+           "code": "4.PC.1",
+           "text": "Test and debug a given program in a block-based visual programming environment using arithmetic operators, conditionals, and repetition in programs, in collaboration with others."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "impacts-of-computing",
+     "title": "Impacts of Computing",
+     "topics": [
+      {
+       "id": "impacts-of-computing",
+       "title": "Impacts of Computing",
+       "subtopics": [
+        {
+         "id": "impacts-of-computing",
+         "title": "Impacts of Computing",
+         "outcomes": [
+          {
+           "code": "4.IC.1",
+           "text": "Identify laws and tools which help ensure that users of varying abilities can access electronic and information technology."
+          },
+          {
+           "code": "4.IC.2",
+           "text": "Explain how hardware and applications can enable everyone, including people with disabilities, to do things they could not do otherwise."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "5",
+   "units": [
+    {
+     "id": "foundational-concepts",
+     "title": "Foundational Concepts",
+     "topics": [
+      {
+       "id": "foundational-concepts",
+       "title": "Foundational Concepts",
+       "subtopics": [
+        {
+         "id": "foundational-concepts",
+         "title": "Foundational Concepts",
+         "outcomes": [
+          {
+           "code": "5.FC.1",
+           "text": "Use advanced features of digital tools and media-rich resources to communicate key ideas and details in a way that informs, persuades, and/or entertains."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "algorithmic-thinking",
+     "title": "Algorithmic Thinking",
+     "topics": [
+      {
+       "id": "algorithmic-thinking",
+       "title": "Algorithmic Thinking",
+       "subtopics": [
+        {
+         "id": "algorithmic-thinking",
+         "title": "Algorithmic Thinking",
+         "outcomes": [
+          {
+           "code": "5.AT.1",
+           "text": "Analyze and improve an algorithm that includes sequencing and simple patterns with or without a computing device."
+          },
+          {
+           "code": "5.AT.2",
+           "text": "Create an algorithm to solve a problem while detecting and debugging logical errors within the algorithm."
+          },
+          {
+           "code": "5.AT.3",
+           "text": "Develop and recommend solutions to a given problem and explain the process to an audience."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "data-analysis",
+     "title": "Data Analysis",
+     "topics": [
+      {
+       "id": "data-analysis",
+       "title": "Data Analysis",
+       "subtopics": [
+        {
+         "id": "data-analysis",
+         "title": "Data Analysis",
+         "outcomes": [
+          {
+           "code": "5.DA.1",
+           "text": "Manipulate data to answer a question using a variety of computing methods and tools to collect, organize, graph, analyze, and publish the resulting information."
+          },
+          {
+           "code": "5.DA.2",
+           "text": "Connect data from a simulation to real-life events."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "networking-and-the-internet",
+     "title": "Networking and the Internet",
+     "topics": [
+      {
+       "id": "networking-and-the-internet",
+       "title": "Networking and the Internet",
+       "subtopics": [
+        {
+         "id": "networking-and-the-internet",
+         "title": "Networking and the Internet",
+         "outcomes": [
+          {
+           "code": "5.NI.1",
+           "text": "Explain responsible uses of technology and digital information; describe possible consequences of inappropriate use such as copyright infringement and piracy."
+          },
+          {
+           "code": "5.NI.2",
+           "text": "Apply copyright principles to real life scenarios."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "programming-concepts",
+     "title": "Programming Concepts",
+     "topics": [
+      {
+       "id": "programming-concepts",
+       "title": "Programming Concepts",
+       "subtopics": [
+        {
+         "id": "programming-concepts",
+         "title": "Programming Concepts",
+         "outcomes": [
+          {
+           "code": "5.PC.1",
+           "text": "Create simple animated stories or solve pre-existing problems using a precise sequence of instructions and simple loops, collaboratively or individually."
+          },
+          {
+           "code": "5.PC.2",
+           "text": "Identify bugs (errors) in basic programming."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "impacts-of-computing",
+     "title": "Impacts of Computing",
+     "topics": [
+      {
+       "id": "impacts-of-computing",
+       "title": "Impacts of Computing",
+       "subtopics": [
+        {
+         "id": "impacts-of-computing",
+         "title": "Impacts of Computing",
+         "outcomes": [
+          {
+           "code": "5.IC.1",
+           "text": "Analyze the impact of social media on individuals, families, and society."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "9-10",
+   "units": [
+    {
+     "id": "the-student-will-develop-and-apply-concepts-rela",
+     "title": "The student will develop and apply concepts related to human relations, safety, career development, communications, and leadership skills for a global workplace",
+     "topics": [
+      {
+       "id": "the-student-will-develop-and-apply-concepts-rela",
+       "title": "The student will develop and apply concepts related to human relations, safety, career development, communications, and leadership skills for a global workplace",
+       "subtopics": [
+        {
+         "id": "the-student-will-develop-and-apply-concepts-rela",
+         "title": "The student will develop and apply concepts related to human relations, safety, career development, communications, and leadership skills for a global workplace (1 of 3)",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Demonstrate sensitivity to personal, societal, corporate, and governmental responsibility to community and global issues."
+          },
+          {
+           "code": null,
+           "text": "Demonstrate the interpersonal, teamwork, and leadership skills needed to function in diverse business settings, including the global marketplace."
+          },
+          {
+           "code": null,
+           "text": "Communicate effectively as writers, listeners, and speakers in diverse social and business settings."
+          },
+          {
+           "code": null,
+           "text": "Apply the critical-thinking and soft skills needed to function in students' multiple roles as citizens, consumers, workers, managers, business owners, and directors of their own futures."
+          }
+         ]
+        },
+        {
+         "id": "the-student-will-develop-and-apply-concepts-rela-2",
+         "title": "The student will develop and apply concepts related to human relations, safety, career development, communications, and leadership skills for a global workplace (2 of 3)",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Analyze and follow policies for managing legal and ethical issues in organizations and in a technology-based society."
+          },
+          {
+           "code": null,
+           "text": "Investigate the life-long learning skills that foster flexible career paths and confidence in adapting to a workplace that demands constant retooling."
+          },
+          {
+           "code": null,
+           "text": "Assess personal skills, abilities, aptitudes, and personal strengths and weaknesses as they relate to career exploration and apply knowledge gained from individual assessment to research and develop an individual career plan."
+          },
+          {
+           "code": null,
+           "text": "Examine the goals and principles of a professional organization."
+          }
+         ]
+        },
+        {
+         "id": "the-student-will-develop-and-apply-concepts-rela-3",
+         "title": "The student will develop and apply concepts related to human relations, safety, career development, communications, and leadership skills for a global workplace (3 of 3)",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Investigates online and office safety procedures and passes a written safety examination with 100% accuracy."
+          },
+          {
+           "code": null,
+           "text": "Demonstrates parliamentary procedure through office staff/chapter organizational meetings."
+          },
+          {
+           "code": null,
+           "text": "Apply appropriate typography concepts to industry documents."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "students-will-understand-basic-operations-and-co",
+     "title": "Students will understand basic operations and concepts of technology",
+     "topics": [
+      {
+       "id": "students-will-understand-basic-operations-and-co",
+       "title": "Students will understand basic operations and concepts of technology",
+       "subtopics": [
+        {
+         "id": "students-will-understand-basic-operations-and-co",
+         "title": "Students will understand basic operations and concepts of technology",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Students demonstrate a sound understanding of the nature and operation of technology systems."
+          },
+          {
+           "code": null,
+           "text": "Students are proficient in the use of technology."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "students-will-understand-the-importance-of-socia",
+     "title": "Students will understand the importance of social, ethical, and human issues associated with technology",
+     "topics": [
+      {
+       "id": "students-will-understand-the-importance-of-socia",
+       "title": "Students will understand the importance of social, ethical, and human issues associated with technology",
+       "subtopics": [
+        {
+         "id": "students-will-understand-the-importance-of-socia",
+         "title": "Students will understand the importance of social, ethical, and human issues associated with technology",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Students understand the ethical, cultural, and societal issues related to technology."
+          },
+          {
+           "code": null,
+           "text": "Students practice responsible use of technology systems, information, and software."
+          },
+          {
+           "code": null,
+           "text": "Students develop positive attitudes toward technology uses that support lifelong learning, collaboration, personal pursuits, and productivity."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "students-will-use-technology-productivity-tools",
+     "title": "Students will use technology productivity tools",
+     "topics": [
+      {
+       "id": "students-will-use-technology-productivity-tools",
+       "title": "Students will use technology productivity tools",
+       "subtopics": [
+        {
+         "id": "students-will-use-technology-productivity-tools",
+         "title": "Students will use technology productivity tools",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Students use technology tools to enhance learning, increase productivity, and promote creativity."
+          },
+          {
+           "code": null,
+           "text": "Students use productivity tools to collaborate in constructing technology-enhanced models, prepare publications, and produce other creative works."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "students-will-use-technology-communications-tool",
+     "title": "Students will use technology communications tools",
+     "topics": [
+      {
+       "id": "students-will-use-technology-communications-tool",
+       "title": "Students will use technology communications tools",
+       "subtopics": [
+        {
+         "id": "students-will-use-technology-communications-tool",
+         "title": "Students will use technology communications tools",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Students use telecommunications to collaborate, publish, and interact with peers, experts, and other audiences."
+          },
+          {
+           "code": null,
+           "text": "Students use a variety of media and formats to communicate information and ideas effectively to multiple audiences."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "students-will-select-and-use-appropriate-technol",
+     "title": "Students will select and use appropriate technology research tools",
+     "topics": [
+      {
+       "id": "students-will-select-and-use-appropriate-technol",
+       "title": "Students will select and use appropriate technology research tools",
+       "subtopics": [
+        {
+         "id": "students-will-select-and-use-appropriate-technol",
+         "title": "Students will select and use appropriate technology research tools",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Students use technology to locate, evaluate, and collect information from a variety of sources."
+          },
+          {
+           "code": null,
+           "text": "Students use technology tools to process data and report results."
+          },
+          {
+           "code": null,
+           "text": "Students evaluate and select new information resources and technological innovations based on the appropriateness for specific tasks."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "students-will-utilize-technology-problem-solving",
+     "title": "Students will utilize technology problem-solving and decision-making tools",
+     "topics": [
+      {
+       "id": "students-will-utilize-technology-problem-solving",
+       "title": "Students will utilize technology problem-solving and decision-making tools",
+       "subtopics": [
+        {
+         "id": "students-will-utilize-technology-problem-solving",
+         "title": "Students will utilize technology problem-solving and decision-making tools",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Students use technology resources for solving problems and making informed decisions."
+          },
+          {
+           "code": null,
+           "text": "Students employ technology in the development of strategies for solving problems in the real world."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "6-8",
+   "units": [
+    {
+     "id": "foundational-concepts",
+     "title": "Foundational Concepts",
+     "topics": [
+      {
+       "id": "foundational-concepts",
+       "title": "Foundational Concepts",
+       "subtopics": [
+        {
+         "id": "foundational-concepts",
+         "title": "Foundational Concepts",
+         "outcomes": [
+          {
+           "code": "MS.FC.1",
+           "text": "Analyze the advantages and limitations of existing computing devices to improve user experience."
+          },
+          {
+           "code": "MS.FC.2",
+           "text": "Demonstrate skills in identifying and solving hardware and software problems that can occur during regular usage."
+          },
+          {
+           "code": "MS.FC.3",
+           "text": "Apply computational thinking to a variety of problems across multiple disciplines."
+          },
+          {
+           "code": "MS.FC.4",
+           "text": "Understand how collaboration is essential to computer science and apply collaborative skills to develop computational solutions."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "algorithmic-thinking",
+     "title": "Algorithmic Thinking",
+     "topics": [
+      {
+       "id": "algorithmic-thinking",
+       "title": "Algorithmic Thinking",
+       "subtopics": [
+        {
+         "id": "algorithmic-thinking",
+         "title": "Algorithmic Thinking",
+         "outcomes": [
+          {
+           "code": "MS.AT.1",
+           "text": "Use clearly named variables of various data types to create generalized algorithms."
+          },
+          {
+           "code": "MS.AT.2",
+           "text": "Create algorithms which include methods of controlling the flow of computation using “if…then… else” type conditional statements to perform different operations depending on the values of inputs."
+          },
+          {
+           "code": "MS.AT.3",
+           "text": "Identify algorithms that make use of sequencing, selection, or iteration."
+          },
+          {
+           "code": "MS.AT.4",
+           "text": "Describe how algorithmic processes and automation increase efficiency."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "data-analysis",
+     "title": "Data Analysis",
+     "topics": [
+      {
+       "id": "data-analysis",
+       "title": "Data Analysis",
+       "subtopics": [
+        {
+         "id": "data-analysis",
+         "title": "Data Analysis",
+         "outcomes": [
+          {
+           "code": "MS.DA.1",
+           "text": "Represent data using multiple encoding schemes, such as decimal, binary, Unicode, Morse code, Shorthand, student-created codes."
+          },
+          {
+           "code": "MS.DA.2",
+           "text": "Refine computational models based on the data they have generated."
+          },
+          {
+           "code": "MS.DA.3",
+           "text": "Collect, analyze, transform, and refine computational data to make it more useful and reliable."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "networking-and-the-internet",
+     "title": "Networking and the Internet",
+     "topics": [
+      {
+       "id": "networking-and-the-internet",
+       "title": "Networking and the Internet",
+       "subtopics": [
+        {
+         "id": "networking-and-the-internet",
+         "title": "Networking and the Internet",
+         "outcomes": [
+          {
+           "code": "MS.NI.1",
+           "text": "Identify and employ appropriate troubleshooting techniques used to solve computing or connectivity issues."
+          },
+          {
+           "code": "MS.NI.2",
+           "text": "Differentiate between secure and non-secure websites and applications including how they affect and use personal data."
+          },
+          {
+           "code": "MS.NI.3",
+           "text": "Describe the causes and effects of intellectual property as it relates to print and digital media, considering copyright, fair use, licensing, sharing, and attribution."
+          },
+          {
+           "code": "MS.NI.4",
+           "text": "Compare and contrast common methods of securing data and cybersecurity."
+          },
+          {
+           "code": "MS.NI.5",
+           "text": "Analyze different modes of social engineering and their effectiveness."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "programming-concepts",
+     "title": "Programming Concepts",
+     "topics": [
+      {
+       "id": "programming-concepts",
+       "title": "Programming Concepts",
+       "subtopics": [
+        {
+         "id": "programming-concepts-1-of-2",
+         "title": "Programming Concepts (1 of 2)",
+         "outcomes": [
+          {
+           "code": "MS.PC.1",
+           "text": "Decompose problems and subproblems into parts to facilitate the design, implementation, and review of programs."
+          },
+          {
+           "code": "MS.PC.2",
+           "text": "Create procedures with parameters that hide the complexity of a task and can be reused to solve similar tasks."
+          },
+          {
+           "code": "MS.PC.3",
+           "text": "Seek and incorporate feedback from team members and users to refine a solution that meets user needs."
+          },
+          {
+           "code": "MS.PC.4",
+           "text": "Provide proper attribution when incorporating existing code, media, and libraries into original programs."
+          }
+         ]
+        },
+        {
+         "id": "programming-concepts-2-of-2",
+         "title": "Programming Concepts (2 of 2)",
+         "outcomes": [
+          {
+           "code": "MS.PC.5",
+           "text": "Use the iterative design process to systematically test and refine programs to improve performance and eliminate errors."
+          },
+          {
+           "code": "MS.PC.6",
+           "text": "Document programs using comments and/or README files to make them easier to follow, test, and debug."
+          },
+          {
+           "code": "MS.PC.7",
+           "text": "Design a function using a programming language."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "impacts-of-computing",
+     "title": "Impacts of Computing",
+     "topics": [
+      {
+       "id": "impacts-of-computing",
+       "title": "Impacts of Computing",
+       "subtopics": [
+        {
+         "id": "impacts-of-computing",
+         "title": "Impacts of Computing",
+         "outcomes": [
+          {
+           "code": "MS.IC.1",
+           "text": "Identify and evaluate the impacts computer science innovations have had on our society."
+          },
+          {
+           "code": "MS.IC.2",
+           "text": "Identify how computational systems are being used to collect and analyze information both public and private and understand the benefits and disadvantages of these systems for the user and developer."
+          },
+          {
+           "code": "MS.IC.3",
+           "text": "Cite evidence of the positive and negative effects of data permanence on personal and professional digital identity."
+          },
+          {
+           "code": "MS.IC.4",
+           "text": "Discuss digital globalization and Internet censorship."
+          },
+          {
+           "code": "MS.IC.5",
+           "text": "Investigate a variety of education pathways and career options that utilize computational thinking and/or computer science skills across the state of Tennessee and the world."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "9-12",
+   "units": [
+    {
+     "id": "algorithmic-thinking",
+     "title": "Algorithmic Thinking",
+     "topics": [
+      {
+       "id": "algorithmic-thinking",
+       "title": "Algorithmic Thinking",
+       "subtopics": [
+        {
+         "id": "algorithmic-thinking",
+         "title": "Algorithmic Thinking",
+         "outcomes": [
+          {
+           "code": "CS.AT.1",
+           "text": "Use lists to simplify solutions, generalizing computational problems instead of repeatedly using simple variables."
+          },
+          {
+           "code": "CS.AT.2",
+           "text": "Systematically design and develop programs for broad audiences by incorporating feedback from users."
+          },
+          {
+           "code": "CS.AT.3",
+           "text": "Create prototypes that use algorithms to solve computational problems by leveraging prior student knowledge and personal interests."
+          },
+          {
+           "code": "CS.AT.4",
+           "text": "Use effective communication and accurate computer science terminology to explain problem solving when completing a task."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "data-analysis",
+     "title": "Data Analysis",
+     "topics": [
+      {
+       "id": "data-analysis",
+       "title": "Data Analysis",
+       "subtopics": [
+        {
+         "id": "data-analysis",
+         "title": "Data Analysis",
+         "outcomes": [
+          {
+           "code": "CS.DA.1",
+           "text": "Create computational models that represent the relationships among different elements of data collected from a phenomenon or process."
+          },
+          {
+           "code": "MS.AT.2CS.DA.2",
+           "text": "Utilize data to answer a question using a variety of computing and data visualization methods."
+          },
+          {
+           "code": "MS.AT.3MS.AT.2CS.DA.3",
+           "text": "Use data analysis tools and techniques to identify patterns in data representing complex systems."
+          },
+          {
+           "code": "MS.DA.1",
+           "text": "Represent data using multiple encoding schemes, such as decimal, binary, Unicode, Morse code, Shorthand, student-created codes."
+          },
+          {
+           "code": "MS.DA.2",
+           "text": "Refine computational models based on the data they have generated."
+          },
+          {
+           "code": "MS.DA.3",
+           "text": "Collect, analyze, transform, and refine computational data to make it more useful and reliable."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "networking-and-the-internet",
+     "title": "Networking and the Internet",
+     "topics": [
+      {
+       "id": "networking-and-the-internet",
+       "title": "Networking and the Internet",
+       "subtopics": [
+        {
+         "id": "networking-and-the-internet-1-of-2",
+         "title": "Networking and the Internet (1 of 2)",
+         "outcomes": [
+          {
+           "code": "CS.NI.1",
+           "text": "Explain the tradeoffs when selecting and implementing cybersecurity recommendations."
+          },
+          {
+           "code": "CS.NI.2",
+           "text": "Identify laws regarding the use of technology and their consequences and implications."
+          },
+          {
+           "code": "CS.NI.3",
+           "text": "Evaluate strategies to manage digital identity and reputation with awareness of the permanent impact of actions in a digital world."
+          },
+          {
+           "code": "CS.NI.4",
+           "text": "Demonstrate how to apply techniques to mitigate effects of user tracking methods."
+          }
+         ]
+        },
+        {
+         "id": "networking-and-the-internet-2-of-2",
+         "title": "Networking and the Internet (2 of 2)",
+         "outcomes": [
+          {
+           "code": "CS.NI.7",
+           "text": "Demonstrate a fundamental understanding of API (Application Programming Interface)."
+          },
+          {
+           "code": "CS.NI.6",
+           "text": "Recommend security measures to address various scenarios based on factors such as efficiency, feasibility, and ethical impacts."
+          },
+          {
+           "code": "CS.NI.5",
+           "text": "Show an understanding of the ramifications of end-user license agreements and terms of service associated with granting rights to personal data and media to other entities."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "programming-concepts",
+     "title": "Programming Concepts",
+     "topics": [
+      {
+       "id": "programming-concepts",
+       "title": "Programming Concepts",
+       "subtopics": [
+        {
+         "id": "programming-concepts-1-of-2",
+         "title": "Programming Concepts (1 of 2)",
+         "outcomes": [
+          {
+           "code": "CS.PC.1",
+           "text": "Choose and apply an appropriate iterative design process to systematically test and refine a program to increase performance."
+          },
+          {
+           "code": "CS.PC.2",
+           "text": "Develop a plan to manage and assign data values of different types (strings, numeric, character, integer, and date) to a variable"
+          },
+          {
+           "code": "CS.PC.3",
+           "text": "Create and refine programs with Boolean conditionals to demonstrate the use of branches and logical operators."
+          },
+          {
+           "code": "CS.PC.4",
+           "text": "Design and develop iterative programs that combine control structures, including nested loops and compound conditionals."
+          }
+         ]
+        },
+        {
+         "id": "programming-concepts-2-of-2",
+         "title": "Programming Concepts (2 of 2)",
+         "outcomes": [
+          {
+           "code": "CS.PC.5",
+           "text": "Create parameters to organize a program to make it easier to follow, test, and debug."
+          },
+          {
+           "code": "CS.PC.6",
+           "text": "Incorporate existing code, media, and libraries into original programs, and give proper attribution."
+          },
+          {
+           "code": "CS.PC.7",
+           "text": "Debug (identify and fix) errors in an algorithm or program that includes sequences and simple and complex loops following a two-step debugging process."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "impacts-of-computing",
+     "title": "Impacts of Computing",
+     "topics": [
+      {
+       "id": "evaluate-and-debate-the-social-and-economic-impl",
+       "title": "Evaluate and debate the social and economic implications of computing in the context of safety, law, and ethics",
+       "subtopics": [
+        {
+         "id": "evaluate-and-debate-the-social-and-economic-impl",
+         "title": "Evaluate and debate the social and economic implications of computing in the context of safety, law, and ethics",
+         "outcomes": [
+          {
+           "code": "CS.IC.1.a",
+           "text": "Discuss the ethical ramifications of hacking and its impact on society."
+          },
+          {
+           "code": "CS.IC.1.b",
+           "text": "Explain the privacy concerns related to the collection and generation of data through automated processes that may not be evident to users (Bots, Chatbots, Spiders or Crawlers, Web Scraping, keyloggers etc.)."
+          },
+          {
+           "code": "CS.IC.1.c",
+           "text": "Explain the positive and negative consequences that intellectual property laws can have on innovation."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "impacts-of-computing",
+       "title": "Impacts of Computing",
+       "subtopics": [
+        {
+         "id": "impacts-of-computing",
+         "title": "Impacts of Computing",
+         "outcomes": [
+          {
+           "code": "CS.IC.2",
+           "text": "Use tools and methods for collaboration on a project to increase connectivity of people in different cultures and career fields."
+          },
+          {
+           "code": "CS.IC.3",
+           "text": "Research the impact of computing technology on possible education and career pathways."
+          },
+          {
+           "code": "CS.IC.4",
+           "text": "Predict how computational innovations that have revolutionized aspects of our culture might evolve."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "4-8",
+   "units": [
+    {
+     "id": "the-student-will-operate-and-maintain-the-workst",
+     "title": "The student will operate and maintain the workstation",
+     "topics": [
+      {
+       "id": "the-student-will-operate-and-maintain-the-workst",
+       "title": "The student will operate and maintain the workstation",
+       "subtopics": [
+        {
+         "id": "the-student-will-operate-and-maintain-the-workst",
+         "title": "The student will operate and maintain the workstation",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Interpret computer and keyboarding terminology."
+          },
+          {
+           "code": null,
+           "text": "Manage the computer system and related software."
+          },
+          {
+           "code": null,
+           "text": "Demonstrate appropriate lab safety skills."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "the-student-will-operate-the-alphabetic-numeric-",
+     "title": "The student will operate the alphabetic, numeric, and symbol keyboard using the touch system",
+     "topics": [
+      {
+       "id": "the-student-will-operate-the-alphabetic-numeric-",
+       "title": "The student will operate the alphabetic, numeric, and symbol keyboard using the touch system",
+       "subtopics": [
+        {
+         "id": "the-student-will-operate-the-alphabetic-numeric-",
+         "title": "The student will operate the alphabetic, numeric, and symbol keyboard using the touch system",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Demonstrate correct body and hand position for keyboarding."
+          },
+          {
+           "code": null,
+           "text": "Apply the touch system to develop keyboarding skills using the alphabetic, numeric, and symbol keys."
+          },
+          {
+           "code": null,
+           "text": "Observe a demonstration on voice input."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "the-student-will-format-simple-documents-letters",
+     "title": "The student will format simple documents (letters, reports, articles)",
+     "topics": [
+      {
+       "id": "the-student-will-format-simple-documents-letters",
+       "title": "The student will format simple documents (letters, reports, articles)",
+       "subtopics": [
+        {
+         "id": "the-student-will-format-simple-documents-letters",
+         "title": "The student will format simple documents (letters, reports, articles)",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Key documents applying formatting functions for setting margins, tabs, and paragraph spacing."
+          },
+          {
+           "code": null,
+           "text": "Demonstrate proper keying and formatting technique for simple letters, reports, and articles."
+          },
+          {
+           "code": null,
+           "text": "The student will apply typography guidelines."
+          },
+          {
+           "code": null,
+           "text": "Explore the gathering of information using a variety of electronic resources, including but not limited to the Internet."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "the-student-will-apply-standard-rules-of-spellin",
+     "title": "The student will apply standard rules of spelling, punctuation, grammar, and capitalization",
+     "topics": [
+      {
+       "id": "the-student-will-apply-standard-rules-of-spellin",
+       "title": "The student will apply standard rules of spelling, punctuation, grammar, and capitalization",
+       "subtopics": [
+        {
+         "id": "the-student-will-apply-standard-rules-of-spellin",
+         "title": "The student will apply standard rules of spelling, punctuation, grammar, and capitalization",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Demonstrate proper keying and formatting technique for written communications."
+          },
+          {
+           "code": null,
+           "text": "Compose and proofread documents for accuracy, content, grammar, spelling, and punctuation."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "build": {
+  "builtAt": "2026-10-14T16:20:48.844Z",
+  "model": "none",
+  "usd": 0,
+  "expectedCodes": 119,
+  "coverage": 1,
+  "missingCodes": [],
+  "counts": {
+   "grades": 10,
+   "units": 52,
+   "topics": 53,
+   "subtopics": 58,
+   "outcomes": 159
+  },
+  "warnings": [
+   "unit \"Algorithmic Thinking\" (grade K) has a single outcome",
+   "unit \"Data Analysis\" (grade K) has a single outcome",
+   "unit \"Networking and the Internet\" (grade K) has a single outcome",
+   "unit \"Networking and the Internet\" (grade 1) has a single outcome",
+   "unit \"Impacts of Computing\" (grade 2) has a single outcome",
+   "unit \"Programming Concepts\" (grade 4) has a single outcome",
+   "unit \"Foundational Concepts\" (grade 5) has a single outcome",
+   "unit \"Impacts of Computing\" (grade 5) has a single outcome"
+  ]
+ }
+}

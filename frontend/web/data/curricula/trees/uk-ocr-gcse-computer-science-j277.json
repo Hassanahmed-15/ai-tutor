@@ -1,0 +1,621 @@
+{
+ "id": "uk-ocr-gcse-computer-science-j277",
+ "region": "UK",
+ "framework": "OCR GCSE (9-1)",
+ "board": "OCR",
+ "qualification": "GCSE",
+ "subject": "Computer Science",
+ "syllabusCode": "J277",
+ "gradeSystem": "year",
+ "source": {
+  "urls": [
+   "https://www.ocr.org.uk/Images/558027-specification-gcse-computer-science-j277.pdf"
+  ],
+  "publisher": "OCR (Oxford Cambridge and RSA)",
+  "licence": "Exam board specification, (c) OCR; structure + our own wording only",
+  "firstExam": "2022"
+ },
+ "grades": [
+  {
+   "grade": "all",
+   "units": [
+    {
+     "id": "component-01-computer-systems",
+     "title": "Component 01: Computer systems",
+     "topics": [
+      {
+       "id": "1-1-systems-architecture",
+       "title": "1.1 Systems architecture",
+       "subtopics": [
+        {
+         "id": "cpu-architecture",
+         "title": "CPU architecture",
+         "outcomes": [
+          {
+           "code": "1.1.1",
+           "text": "Explain the purpose of the CPU."
+          },
+          {
+           "code": null,
+           "text": "Describe what happens at each stage of the fetch-execute cycle."
+          },
+          {
+           "code": null,
+           "text": "Explain the role of the ALU, control unit, cache and registers, and what each manages during the cycle."
+          },
+          {
+           "code": null,
+           "text": "Describe the Von Neumann architecture and what the MAR, MDR, program counter and accumulator each store (data versus address)."
+          }
+         ]
+        },
+        {
+         "id": "cpu-performance",
+         "title": "CPU performance",
+         "outcomes": [
+          {
+           "code": "1.1.2",
+           "text": "Explain how clock speed, cache size and number of cores affect CPU performance, alone or in combination."
+          }
+         ]
+        },
+        {
+         "id": "embedded-systems",
+         "title": "Embedded systems",
+         "outcomes": [
+          {
+           "code": "1.1.3",
+           "text": "Explain what an embedded system is and give examples."
+          },
+          {
+           "code": null,
+           "text": "Describe typical characteristics of embedded systems."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "1-2-memory-and-storage",
+       "title": "1.2 Memory and storage",
+       "subtopics": [
+        {
+         "id": "primary-storage",
+         "title": "Primary storage",
+         "outcomes": [
+          {
+           "code": "1.2.1",
+           "text": "Explain why computers need primary storage and what it usually consists of."
+          },
+          {
+           "code": null,
+           "text": "Describe the purpose and key characteristics of RAM and ROM and how they differ."
+          },
+          {
+           "code": null,
+           "text": "Explain what virtual memory is, why it is needed and how data moves between RAM and secondary storage."
+          },
+          {
+           "code": null,
+           "text": "Describe the role of cache memory."
+          }
+         ]
+        },
+        {
+         "id": "secondary-storage",
+         "title": "Secondary storage",
+         "outcomes": [
+          {
+           "code": "1.2.2",
+           "text": "Explain why computers need secondary storage."
+          },
+          {
+           "code": null,
+           "text": "Recognise optical, magnetic and solid state storage and compare them on capacity, speed, portability, durability, reliability and cost."
+          },
+          {
+           "code": null,
+           "text": "Choose suitable storage devices and media for a given scenario."
+          }
+         ]
+        },
+        {
+         "id": "units-of-data-storage",
+         "title": "Units of data storage",
+         "outcomes": [
+          {
+           "code": "1.2.3",
+           "text": "Explain why data must be stored in binary and how data is converted to binary for processing."
+          },
+          {
+           "code": null,
+           "text": "Use the units bit, nibble, byte, KB, MB, GB, TB and PB and convert between them."
+          },
+          {
+           "code": null,
+           "text": "Calculate the storage capacity needed for a set of files."
+          },
+          {
+           "code": null,
+           "text": "Calculate sound, image and text file sizes from their formulas."
+          }
+         ]
+        },
+        {
+         "id": "binary-and-hexadecimal-numbers",
+         "title": "Binary and hexadecimal numbers",
+         "outcomes": [
+          {
+           "code": "1.2.4",
+           "text": "Convert positive whole numbers between denary and binary (up to 8 bits)."
+          },
+          {
+           "code": null,
+           "text": "Add two 8-bit binary integers and explain overflow errors."
+          },
+          {
+           "code": null,
+           "text": "Convert between denary and 2-digit hexadecimal."
+          },
+          {
+           "code": null,
+           "text": "Convert between binary and hexadecimal."
+          },
+          {
+           "code": null,
+           "text": "Carry out binary shifts left and right and describe their effect on a number."
+          }
+         ]
+        },
+        {
+         "id": "representing-characters-images-and-sound",
+         "title": "Representing characters, images and sound",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain how characters are represented in binary, including character sets and how bits per character limit the number of characters (ASCII, Unicode)."
+          },
+          {
+           "code": null,
+           "text": "Explain how an image is stored as pixels and how colour depth and resolution affect its quality and size, including metadata."
+          },
+          {
+           "code": null,
+           "text": "Explain how sound is sampled and stored digitally and how sample rate, duration and bit depth affect quality and file size."
+          }
+         ]
+        },
+        {
+         "id": "compression",
+         "title": "Compression",
+         "outcomes": [
+          {
+           "code": "1.2.5",
+           "text": "Explain why compression is needed."
+          },
+          {
+           "code": null,
+           "text": "Compare lossy and lossless compression, including their advantages, disadvantages and effects on files."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "1-3-computer-networks-connections-and-protocols",
+       "title": "1.3 Computer networks, connections and protocols",
+       "subtopics": [
+        {
+         "id": "networks-and-topologies",
+         "title": "Networks and topologies",
+         "outcomes": [
+          {
+           "code": "1.3.1",
+           "text": "Describe LANs and WANs and the factors that affect network performance."
+          },
+          {
+           "code": null,
+           "text": "Contrast client-server and peer-to-peer networks."
+          },
+          {
+           "code": null,
+           "text": "Describe the hardware that links computers into a LAN: wireless access points, routers, switches, NICs and transmission media."
+          },
+          {
+           "code": null,
+           "text": "Explain the Internet as a network of networks, including DNS, hosting, web servers and clients, and the Cloud with its pros and cons."
+          },
+          {
+           "code": null,
+           "text": "Compare star and mesh topologies."
+          }
+         ]
+        },
+        {
+         "id": "connections-protocols-and-layers",
+         "title": "Connections, protocols and layers",
+         "outcomes": [
+          {
+           "code": "1.3.2",
+           "text": "Compare wired (Ethernet) and wireless (Wi-Fi, Bluetooth) connections and recommend one for a scenario."
+          },
+          {
+           "code": null,
+           "text": "Explain the principle of encryption for securing network data."
+          },
+          {
+           "code": null,
+           "text": "Describe IP addressing (IPv4, IPv6) and MAC addressing."
+          },
+          {
+           "code": null,
+           "text": "Explain what standards are and why they let hardware and software from different makers work together."
+          },
+          {
+           "code": null,
+           "text": "Describe the purpose of common protocols: TCP/IP, HTTP, HTTPS, FTP, POP, IMAP and SMTP."
+          },
+          {
+           "code": null,
+           "text": "Explain how protocols use layers and the benefits of layering."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "1-4-network-security",
+       "title": "1.4 Network security",
+       "subtopics": [
+        {
+         "id": "threats-to-systems-and-networks",
+         "title": "Threats to systems and networks",
+         "outcomes": [
+          {
+           "code": "1.4.1",
+           "text": "Describe how and why malware, social engineering (such as phishing), brute-force attacks, denial of service, data interception and theft, and SQL injection are carried out."
+          }
+         ]
+        },
+        {
+         "id": "preventing-vulnerabilities",
+         "title": "Preventing vulnerabilities",
+         "outcomes": [
+          {
+           "code": "1.4.2",
+           "text": "Explain how penetration testing, anti-malware, firewalls, user access levels, passwords, encryption and physical security limit threats."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "1-5-systems-software",
+       "title": "1.5 Systems software",
+       "subtopics": [
+        {
+         "id": "operating-systems",
+         "title": "Operating systems",
+         "outcomes": [
+          {
+           "code": "1.5.1",
+           "text": "Describe the purpose of an operating system and its user interface."
+          },
+          {
+           "code": null,
+           "text": "Explain memory management and how it allows multitasking."
+          },
+          {
+           "code": null,
+           "text": "Explain peripheral management and drivers."
+          },
+          {
+           "code": null,
+           "text": "Describe user management, including accounts, access rights and security."
+          },
+          {
+           "code": null,
+           "text": "Describe file management: naming, folders, moving and saving files."
+          }
+         ]
+        },
+        {
+         "id": "utility-software",
+         "title": "Utility software",
+         "outcomes": [
+          {
+           "code": "1.5.2",
+           "text": "Explain what utility software is and why it is needed beyond the operating system."
+          },
+          {
+           "code": null,
+           "text": "Describe the purpose of encryption, defragmentation and data compression software."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "1-6-ethical-legal-cultural-and-environmental-imp",
+       "title": "1.6 Ethical, legal, cultural and environmental impacts of digital technology",
+       "subtopics": [
+        {
+         "id": "impacts-of-digital-technology",
+         "title": "Impacts of digital technology",
+         "outcomes": [
+          {
+           "code": "1.6.1",
+           "text": "Discuss ethical, legal, cultural, environmental and privacy impacts of digital technology on society using examples."
+          },
+          {
+           "code": null,
+           "text": "Describe the Data Protection Act 2018, the Computer Misuse Act 1990 and the Copyright Designs and Patents Act 1988, and what each allows or prohibits."
+          },
+          {
+           "code": null,
+           "text": "Explain why software needs licences and compare open source and proprietary licences, recommending one for a scenario."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "component-02-computational-thinking-algorithms-a",
+     "title": "Component 02: Computational thinking, algorithms and programming",
+     "topics": [
+      {
+       "id": "2-1-algorithms",
+       "title": "2.1 Algorithms",
+       "subtopics": [
+        {
+         "id": "computational-thinking",
+         "title": "Computational thinking",
+         "outcomes": [
+          {
+           "code": "2.1.1",
+           "text": "Explain abstraction, decomposition and algorithmic thinking and how they define and refine problems."
+          }
+         ]
+        },
+        {
+         "id": "designing-and-refining-algorithms",
+         "title": "Designing and refining algorithms",
+         "outcomes": [
+          {
+           "code": "2.1.2",
+           "text": "Identify the inputs, processes and outputs of a problem."
+          },
+          {
+           "code": null,
+           "text": "Draw structure diagrams showing a problem's subsections and links."
+          },
+          {
+           "code": null,
+           "text": "Create, interpret, complete and correct algorithms in pseudocode, flowcharts and a programming language, including nesting."
+          },
+          {
+           "code": null,
+           "text": "Identify syntax and logic errors and suggest fixes."
+          },
+          {
+           "code": null,
+           "text": "Use trace tables to follow an algorithm."
+          }
+         ]
+        },
+        {
+         "id": "searching-and-sorting-algorithms",
+         "title": "Searching and sorting algorithms",
+         "outcomes": [
+          {
+           "code": "2.1.3",
+           "text": "Explain and apply binary search and linear search, including their prerequisites."
+          },
+          {
+           "code": null,
+           "text": "Explain and apply bubble sort, merge sort and insertion sort to a data set."
+          },
+          {
+           "code": null,
+           "text": "Identify a standard algorithm from its code or pseudocode."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "2-2-programming-fundamentals",
+       "title": "2.2 Programming fundamentals",
+       "subtopics": [
+        {
+         "id": "programming-fundamentals",
+         "title": "Programming fundamentals",
+         "outcomes": [
+          {
+           "code": "2.2.1",
+           "text": "Use variables, constants, inputs, outputs and assignments."
+          },
+          {
+           "code": null,
+           "text": "Use sequence, selection and iteration (count- and condition-controlled loops)."
+          },
+          {
+           "code": null,
+           "text": "Use comparison and arithmetic operators, including MOD, DIV and exponentiation."
+          },
+          {
+           "code": null,
+           "text": "Use the Boolean operators AND, OR and NOT in programs."
+          }
+         ]
+        },
+        {
+         "id": "data-types",
+         "title": "Data types",
+         "outcomes": [
+          {
+           "code": "2.2.2",
+           "text": "Use integer, real, Boolean, character and string data types and choose suitable ones for a scenario."
+          },
+          {
+           "code": null,
+           "text": "Explain and use casting to change a data type."
+          }
+         ]
+        },
+        {
+         "id": "additional-programming-techniques",
+         "title": "Additional programming techniques",
+         "outcomes": [
+          {
+           "code": "2.2.3",
+           "text": "Manipulate strings using concatenation and slicing."
+          },
+          {
+           "code": null,
+           "text": "Open, read, write and close files."
+          },
+          {
+           "code": null,
+           "text": "Use 1D and 2D arrays and records to store data."
+          },
+          {
+           "code": null,
+           "text": "Use SQL SELECT, FROM and WHERE to search for data."
+          },
+          {
+           "code": null,
+           "text": "Write functions and procedures with local and global variables and array passing."
+          },
+          {
+           "code": null,
+           "text": "Generate and use random numbers."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "2-3-producing-robust-programs",
+       "title": "2.3 Producing robust programs",
+       "subtopics": [
+        {
+         "id": "defensive-design",
+         "title": "Defensive design",
+         "outcomes": [
+          {
+           "code": "2.3.1",
+           "text": "Anticipate misuse and invalid inputs when designing programs."
+          },
+          {
+           "code": null,
+           "text": "Design input validation and simple authentication such as username and password."
+          },
+          {
+           "code": null,
+           "text": "Make code maintainable with sub programs, naming conventions, indentation and comments."
+          }
+         ]
+        },
+        {
+         "id": "testing",
+         "title": "Testing",
+         "outcomes": [
+          {
+           "code": "2.3.2",
+           "text": "Explain the purpose of testing and distinguish iterative from final testing."
+          },
+          {
+           "code": null,
+           "text": "Identify syntax errors and logic errors."
+          },
+          {
+           "code": null,
+           "text": "Choose normal, boundary, invalid and erroneous test data and complete a test plan."
+          },
+          {
+           "code": null,
+           "text": "Refine algorithms after testing."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "2-4-boolean-logic",
+       "title": "2.4 Boolean logic",
+       "subtopics": [
+        {
+         "id": "logic-gates-and-truth-tables",
+         "title": "Logic gates and truth tables",
+         "outcomes": [
+          {
+           "code": "2.4.1",
+           "text": "Recognise AND, OR and NOT gate symbols and complete their truth tables."
+          },
+          {
+           "code": null,
+           "text": "Create, complete and edit logic diagrams and truth tables, combining several gates, to solve problems."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "2-5-programming-languages-and-integrated-develop",
+       "title": "2.5 Programming languages and Integrated Development Environments",
+       "subtopics": [
+        {
+         "id": "programming-languages-and-translators",
+         "title": "Programming languages and translators",
+         "outcomes": [
+          {
+           "code": "2.5.1",
+           "text": "Distinguish high-level from low-level languages and explain why translators are needed."
+          },
+          {
+           "code": null,
+           "text": "Compare compilers and interpreters, with benefits and drawbacks."
+          }
+         ]
+        },
+        {
+         "id": "the-ide",
+         "title": "The IDE",
+         "outcomes": [
+          {
+           "code": "2.5.2",
+           "text": "Describe IDE tools (editors, error diagnostics, run-time environment, translators) and how they help a programmer."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "build": {
+  "builtAt": "2026-10-14T10:49:17.217Z",
+  "model": "claude-agent",
+  "usd": 0,
+  "expectedCodes": 26,
+  "coverage": 1,
+  "missingCodes": [],
+  "counts": {
+   "grades": 1,
+   "units": 2,
+   "topics": 11,
+   "subtopics": 27,
+   "outcomes": 84
+  },
+  "warnings": [
+   "grade Year 10 has no content",
+   "grade Year 11 has no content",
+   "unexpected grade label \"all\""
+  ]
+ }
+}

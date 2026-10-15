@@ -1,0 +1,1263 @@
+{
+ "id": "pk-fbise-af-hssc-2-biology",
+ "region": "PK",
+ "framework": "FBISE Assessment Framework (National Curriculum of Pakistan 2022-23)",
+ "board": "FBISE",
+ "qualification": "HSSC-II",
+ "subject": "Biology",
+ "syllabusCode": null,
+ "gradeSystem": "grade",
+ "source": {
+  "urls": [
+   "https://www.fbise.edu.pk/ModelPaper/2025/Assessment%20Frameworks/HSSC-II/Final%20Assessment%20Framework%20%2B%20Model%20Question%20Paper%20Biology%20HSSC-II.pdf"
+  ],
+  "publisher": "Federal Board of Intermediate and Secondary Education",
+  "licence": "Government publication; structure + our own wording only",
+  "firstExam": "2026"
+ },
+ "grades": [
+  {
+   "grade": "12",
+   "units": [
+    {
+     "id": "domain-g-nervous-system",
+     "title": "Domain G: Nervous system",
+     "topics": [
+      {
+       "id": "nervous-system",
+       "title": "Nervous system",
+       "subtopics": [
+        {
+         "id": "receptors-and-the-reflex-path",
+         "title": "Receptors and the reflex path",
+         "outcomes": [
+          {
+           "code": "B-12-G-01",
+           "text": "Recognise receptors as transducers that turn stimuli into nerve signals."
+          },
+          {
+           "code": "B-12-G-02",
+           "text": "Trace a message from receptor through the nervous system to the response."
+          },
+          {
+           "code": "B-12-G-03",
+           "text": "Name the three kinds of neurons and their jobs in signal transmission."
+          },
+          {
+           "code": "B-12-G-04",
+           "text": "Identify muscles and glands as the effectors."
+          }
+         ]
+        },
+        {
+         "id": "structure-of-neurons",
+         "title": "Structure of neurons",
+         "outcomes": [
+          {
+           "code": "B-12-G-05",
+           "text": "Label the detailed structure of a neuron."
+          },
+          {
+           "code": "B-12-G-06",
+           "text": "Link the structure of each neuron type to its function."
+          },
+          {
+           "code": "B-12-G-07",
+           "text": "Tell myelinated from non-myelinated neurons."
+          },
+          {
+           "code": "B-12-G-08",
+           "text": "Explain what the three neuron types do."
+          }
+         ]
+        },
+        {
+         "id": "nerve-impulse",
+         "title": "Nerve impulse",
+         "outcomes": [
+          {
+           "code": "B-12-G-09",
+           "text": "Define a nerve impulse."
+          },
+          {
+           "code": "B-12-G-10",
+           "text": "Describe how a resting potential and an action potential are generated."
+          },
+          {
+           "code": "B-12-G-11",
+           "text": "Name the factors behind depolarisation and repolarisation."
+          },
+          {
+           "code": "B-12-G-12",
+           "text": "Read a voltage graph to find depolarisation, repolarisation and hyperpolarisation."
+          },
+          {
+           "code": "B-12-G-13",
+           "text": "Compare impulse speed in myelinated and non-myelinated fibres."
+          },
+          {
+           "code": "B-12-G-14",
+           "text": "Describe the role of local circuits in spreading an impulse."
+          }
+         ]
+        },
+        {
+         "id": "synapse-and-neurotransmitters",
+         "title": "Synapse and neurotransmitters",
+         "outcomes": [
+          {
+           "code": "B-12-G-15",
+           "text": "Outline the structure of a synapse."
+          },
+          {
+           "code": "B-12-G-16",
+           "text": "Explain how a signal crosses a synapse by neurotransmitter release."
+          },
+          {
+           "code": "B-12-G-17",
+           "text": "Sort neurotransmitters into excitatory and inhibitory with examples."
+          }
+         ]
+        },
+        {
+         "id": "brain-and-nerves",
+         "title": "Brain and nerves",
+         "outcomes": [
+          {
+           "code": "B-12-G-18",
+           "text": "Identify the main parts of the human nervous system."
+          },
+          {
+           "code": "B-12-G-19",
+           "text": "Explain briefly the major parts of the brain and what they do."
+          },
+          {
+           "code": "B-12-G-20",
+           "text": "Describe the layout of the spinal cord."
+          },
+          {
+           "code": "B-12-G-21",
+           "text": "Describe cranial and spinal nerves."
+          },
+          {
+           "code": "B-12-G-22",
+           "text": "Explain the structure, types and functions of the autonomic nervous system."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "endocrine-system",
+       "title": "Endocrine system",
+       "subtopics": [
+        {
+         "id": "hormones-and-endocrine-glands",
+         "title": "Hormones and endocrine glands",
+         "outcomes": [
+          {
+           "code": "B-12-G-23",
+           "text": "State the role of hormones as chemical messengers."
+          },
+          {
+           "code": "B-12-G-24",
+           "text": "Describe the chemical nature of hormones."
+          },
+          {
+           "code": "B-12-G-25",
+           "text": "Locate the main endocrine glands and state what each does."
+          },
+          {
+           "code": "B-12-G-26",
+           "text": "Relate hormone imbalance to the disorders it causes."
+          }
+         ]
+        },
+        {
+         "id": "neuroendocrine-control-and-feedback",
+         "title": "Neuroendocrine control and feedback",
+         "outcomes": [
+          {
+           "code": "B-12-G-27",
+           "text": "Explain the neurosecretory role of the hypothalamus."
+          },
+          {
+           "code": "B-12-G-28",
+           "text": "Outline positive feedback with oxytocin and negative feedback with insulin and glucagon."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "pain-drugs-and-nervous-disorders",
+       "title": "Pain, drugs and nervous disorders",
+       "subtopics": [
+        {
+         "id": "pain-and-pain-relief",
+         "title": "Pain and pain relief",
+         "outcomes": [
+          {
+           "code": "B-12-G-29",
+           "text": "Explain the structure and working of pain receptors and pain pathways."
+          },
+          {
+           "code": "B-12-G-34",
+           "text": "Describe how pain signals are carried to the brain and body."
+          },
+          {
+           "code": "B-12-G-35",
+           "text": "Discuss why some pain relief methods work."
+          }
+         ]
+        },
+        {
+         "id": "narcotic-drugs-and-addiction",
+         "title": "Narcotic drugs and addiction",
+         "outcomes": [
+          {
+           "code": "B-12-G-30",
+           "text": "Define narcotic drugs as agents that dull pain and alter mood."
+          },
+          {
+           "code": "B-12-G-31",
+           "text": "Compare the use and abuse of heroin, cannabis, nicotine, alcohol and inhalants."
+          },
+          {
+           "code": "B-12-G-32",
+           "text": "Explain drug addiction, tolerance and the harms of nicotine."
+          },
+          {
+           "code": "B-12-G-33",
+           "text": "Link the effects of drugs to changes in the nervous system."
+          }
+         ]
+        },
+        {
+         "id": "nervous-disorders-and-brain-scans",
+         "title": "Nervous disorders and brain scans",
+         "outcomes": [
+          {
+           "code": "B-12-G-36",
+           "text": "Group nervous disorders as vascular, infectious, structural, functional or degenerative."
+          },
+          {
+           "code": "B-12-G-37",
+           "text": "Describe causes and symptoms of stroke, meningitis, brain tumour, headache and Alzheimer disease."
+          },
+          {
+           "code": "B-12-G-38",
+           "text": "Explain the principles of EEG, CT scan and MRI."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "domain-i-immunity",
+     "title": "Domain I: Immunity",
+     "topics": [
+      {
+       "id": "immunity",
+       "title": "Immunity",
+       "subtopics": [
+        {
+         "id": "first-line-of-defence",
+         "title": "First line of defence",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "List the body features that keep microbes out."
+          },
+          {
+           "code": null,
+           "text": "Explain how oil and sweat glands protect against microorganisms."
+          },
+          {
+           "code": null,
+           "text": "Recognise the protective role of acids in stomach, skin and vagina."
+          },
+          {
+           "code": null,
+           "text": "State how cilia in the airways trap airborne microbes."
+          }
+         ]
+        },
+        {
+         "id": "second-line-of-defence",
+         "title": "Second line of defence",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe how macrophages engulf invaders."
+          },
+          {
+           "code": null,
+           "text": "Explain how natural killer cells destroy infected cells."
+          },
+          {
+           "code": null,
+           "text": "State how interferons stop viruses infecting cells."
+          },
+          {
+           "code": null,
+           "text": "State the events of the inflammatory defence."
+          },
+          {
+           "code": null,
+           "text": "Outline how pyrogens raise body temperature."
+          },
+          {
+           "code": null,
+           "text": "List how fever helps fight infection."
+          }
+         ]
+        },
+        {
+         "id": "specific-immunity-and-cells",
+         "title": "Specific immunity and cells",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Define the specific immune system as a powerful means of resisting infection."
+          },
+          {
+           "code": null,
+           "text": "Identify monocytes, T-cells and B-cells."
+          },
+          {
+           "code": null,
+           "text": "State inborn and acquired immunity."
+          },
+          {
+           "code": null,
+           "text": "Tell active from passive immunity."
+          }
+         ]
+        },
+        {
+         "id": "t-cells-b-cells-and-antibodies",
+         "title": "T-cells, B-cells and antibodies",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe the role of T-cells in cell-mediated immunity."
+          },
+          {
+           "code": "B-12-I-16",
+           "text": "Describe the role of B-cells in antibody-mediated immunity."
+          },
+          {
+           "code": null,
+           "text": "Discuss how T-cells and B-cells work together."
+          },
+          {
+           "code": null,
+           "text": "Draw the structural model of an antibody."
+          }
+         ]
+        },
+        {
+         "id": "monoclonal-antibodies-and-vaccination",
+         "title": "Monoclonal antibodies and vaccination",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Evaluate how the discovery of monoclonal antibodies changed biological research."
+          },
+          {
+           "code": "B-12-I-19",
+           "text": "Identify how vaccination gives immunity."
+          },
+          {
+           "code": "B-12-I-21",
+           "text": "Explain the role of memory cells in immunity."
+          }
+         ]
+        },
+        {
+         "id": "allergies-and-autoimmune-disease",
+         "title": "Allergies and autoimmune disease",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Define allergies and relate them to immune responses."
+          },
+          {
+           "code": null,
+           "text": "Describe autoimmune diseases."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "domain-j-biotechnology",
+     "title": "Domain J: Biotechnology",
+     "topics": [
+      {
+       "id": "biotechnology",
+       "title": "Biotechnology",
+       "subtopics": [
+        {
+         "id": "genetic-engineering-tools",
+         "title": "Genetic engineering tools",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Introduce genetic engineering."
+          },
+          {
+           "code": "B-12-J-02",
+           "text": "Explain the polymerase chain reaction."
+          },
+          {
+           "code": "B-12-J-03",
+           "text": "Outline the function of restriction enzymes."
+          },
+          {
+           "code": "B-12-J-04",
+           "text": "Describe a plasmid as a vector and how recombinant DNA is formed."
+          }
+         ]
+        },
+        {
+         "id": "gm-organisms-and-insulin",
+         "title": "GM organisms and insulin",
+         "outcomes": [
+          {
+           "code": "B-12-J-05",
+           "text": "Define genetically modified organisms."
+          },
+          {
+           "code": "B-12-J-06",
+           "text": "Explain how human insulin is made using bacteria."
+          }
+         ]
+        },
+        {
+         "id": "vertical-food-farms",
+         "title": "Vertical food farms",
+         "outcomes": [
+          {
+           "code": "B-12-J-07",
+           "text": "Describe how soil-free vertical food farms work."
+          },
+          {
+           "code": "B-12-J-08",
+           "text": "Compare vertical farms with common farming in Pakistan."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "domain-k-biostatistics-and-data-handling",
+     "title": "Domain K: Biostatistics and Data Handling",
+     "topics": [
+      {
+       "id": "biostatistics",
+       "title": "Biostatistics",
+       "subtopics": [
+        {
+         "id": "averages-and-biostatistics",
+         "title": "Averages and biostatistics",
+         "outcomes": [
+          {
+           "code": "B-12-K-01",
+           "text": "Define biostatistics and what it is used for."
+          },
+          {
+           "code": "B-12-K-02",
+           "text": "Define mean, median, mode, range and standard deviation."
+          },
+          {
+           "code": "B-12-K-03",
+           "text": "Calculate mean, median, mode and spread for a data set."
+          }
+         ]
+        },
+        {
+         "id": "charts-and-experiment-design",
+         "title": "Charts and experiment design",
+         "outcomes": [
+          {
+           "code": "B-12-K-04",
+           "text": "Sketch a bar chart for a given data set."
+          },
+          {
+           "code": "B-12-K-05",
+           "text": "Add error bars from range or standard deviation to a bar chart."
+          },
+          {
+           "code": "B-12-K-06",
+           "text": "Choose the right chart type for an experiment."
+          },
+          {
+           "code": "B-12-K-07",
+           "text": "Make a suitable chart from data."
+          },
+          {
+           "code": "B-12-K-08",
+           "text": "Design an experiment with a control group and dependent, independent and control variables."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "domain-l-structural-biology-and-computational-bi",
+     "title": "Domain L: Structural Biology and Computational Biology",
+     "topics": [
+      {
+       "id": "structural-and-computational-biology",
+       "title": "Structural and computational biology",
+       "subtopics": [
+        {
+         "id": "structural-biology",
+         "title": "Structural biology",
+         "outcomes": [
+          {
+           "code": "B-12-L-01",
+           "text": "Define structural biology."
+          },
+          {
+           "code": "B-12-L-02",
+           "text": "Explain why finding the structure of biomolecules matters."
+          },
+          {
+           "code": "B-12-L-03",
+           "text": "Describe how X-ray crystallography works."
+          }
+         ]
+        },
+        {
+         "id": "computational-biology-and-homology",
+         "title": "Computational biology and homology",
+         "outcomes": [
+          {
+           "code": "B-12-L-04",
+           "text": "Outline the online databases that store biological sequences and structures."
+          },
+          {
+           "code": "B-12-L-05",
+           "text": "Describe computational biology."
+          },
+          {
+           "code": "B-12-L-06",
+           "text": "Define sequence homology."
+          },
+          {
+           "code": "B-12-L-07",
+           "text": "Define structural homology."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "domain-r-human-physiology",
+     "title": "Domain R: Human Physiology",
+     "topics": [
+      {
+       "id": "respiratory-system",
+       "title": "Respiratory system",
+       "subtopics": [
+        {
+         "id": "respiratory-surface-and-organs",
+         "title": "Respiratory surface and organs",
+         "outcomes": [
+          {
+           "code": "B-12-R-01",
+           "text": "Define the respiratory surface and list its properties."
+          },
+          {
+           "code": "B-12-R-02",
+           "text": "Describe the structure and function of each part of the human respiratory system."
+          }
+         ]
+        },
+        {
+         "id": "breathing-and-gas-transport",
+         "title": "Breathing and gas transport",
+         "outcomes": [
+          {
+           "code": "B-12-R-03",
+           "text": "Explain how ventilation works in humans."
+          },
+          {
+           "code": "B-12-R-04",
+           "text": "Discuss how oxygen and carbon dioxide are carried in blood."
+          },
+          {
+           "code": "B-12-R-05",
+           "text": "Outline the role of respiratory pigments."
+          }
+         ]
+        },
+        {
+         "id": "respiratory-disorders-and-smoking",
+         "title": "Respiratory disorders and smoking",
+         "outcomes": [
+          {
+           "code": "B-12-R-06",
+           "text": "State the causes, symptoms and treatment of upper and lower respiratory infections."
+          },
+          {
+           "code": "B-12-R-07",
+           "text": "Describe disorders of the lungs."
+          },
+          {
+           "code": "B-12-R-08",
+           "text": "List the effects of smoking on the body."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "urinary-system",
+       "title": "Urinary system",
+       "subtopics": [
+        {
+         "id": "excretion-and-the-urinary-organs",
+         "title": "Excretion and the urinary organs",
+         "outcomes": [
+          {
+           "code": "B-12-R-09",
+           "text": "List the nitrogenous wastes and where they come from."
+          },
+          {
+           "code": "B-12-R-10",
+           "text": "Explain the nature of excretory products in different animals."
+          },
+          {
+           "code": "B-12-R-11",
+           "text": "Outline the organs of the human urinary system."
+          },
+          {
+           "code": "B-12-R-12",
+           "text": "Describe the structure of the kidney."
+          }
+         ]
+        },
+        {
+         "id": "the-nephron",
+         "title": "The nephron",
+         "outcomes": [
+          {
+           "code": "B-12-R-13",
+           "text": "Relate kidney structure to its function."
+          },
+          {
+           "code": "B-12-R-14",
+           "text": "Explain the detailed structure of a nephron."
+          },
+          {
+           "code": "B-12-R-18",
+           "text": "Compare the roles of glomerular and peritubular capillaries."
+          }
+         ]
+        },
+        {
+         "id": "urine-formation",
+         "title": "Urine formation",
+         "outcomes": [
+          {
+           "code": "B-12-R-15",
+           "text": "Explain ultrafiltration, selective reabsorption and tubular secretion."
+          },
+          {
+           "code": "B-12-R-16",
+           "text": "Explain how the kidney regulates water and salts."
+          },
+          {
+           "code": "B-12-R-17",
+           "text": "Justify how the kidney keeps blood composition steady."
+          }
+         ]
+        },
+        {
+         "id": "kidney-disease-and-dialysis",
+         "title": "Kidney disease and dialysis",
+         "outcomes": [
+          {
+           "code": "B-12-R-19",
+           "text": "List urinary tract infections and their effects."
+          },
+          {
+           "code": "B-12-R-20",
+           "text": "Explain causes and treatments of kidney stones."
+          },
+          {
+           "code": "B-12-R-21",
+           "text": "Outline the causes of kidney failure."
+          },
+          {
+           "code": "B-12-R-22",
+           "text": "Explain in detail how dialysis works."
+          },
+          {
+           "code": "B-12-R-23",
+           "text": "Describe the principles and steps of kidney transplant."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "digestive-system",
+       "title": "Digestive system",
+       "subtopics": [
+        {
+         "id": "mouth-swallowing-and-stomach",
+         "title": "Mouth, swallowing and stomach",
+         "outcomes": [
+          {
+           "code": "B-12-R-24",
+           "text": "Describe the mechanical and chemical digestion in the mouth."
+          },
+          {
+           "code": "B-12-R-25",
+           "text": "Explain swallowing and movement of food down the oesophagus."
+          },
+          {
+           "code": "B-12-R-26",
+           "text": "Draw the structure of the stomach and link it to digestion there."
+          },
+          {
+           "code": "B-12-R-27",
+           "text": "Identify how nerves and hormones control gastric juice release."
+          }
+         ]
+        },
+        {
+         "id": "small-intestine-and-absorption",
+         "title": "Small intestine and absorption",
+         "outcomes": [
+          {
+           "code": "B-12-R-28",
+           "text": "Describe the main actions of the small intestine."
+          },
+          {
+           "code": "B-12-R-29",
+           "text": "Trace absorption of digested food through villi into capillaries and lacteals."
+          }
+         ]
+        },
+        {
+         "id": "large-intestine-and-defecation",
+         "title": "Large intestine and defecation",
+         "outcomes": [
+          {
+           "code": "B-12-R-30",
+           "text": "Describe the parts of the large intestine and their role."
+          },
+          {
+           "code": "B-12-R-31",
+           "text": "Link the defecation reflex to its control in infants and adults."
+          }
+         ]
+        },
+        {
+         "id": "liver-bile-and-pancreas",
+         "title": "Liver, bile and pancreas",
+         "outcomes": [
+          {
+           "code": "B-12-R-32",
+           "text": "Explain the storage and metabolic roles of the liver."
+          },
+          {
+           "code": "B-12-R-33",
+           "text": "Describe the composition and function of bile."
+          },
+          {
+           "code": "B-12-R-34",
+           "text": "Outline the structure and secretions of the pancreas."
+          },
+          {
+           "code": "B-12-R-35",
+           "text": "Relate bile and pancreatic secretion to hormone control."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "blood-circulatory-system",
+       "title": "Blood circulatory system",
+       "subtopics": [
+        {
+         "id": "structure-of-the-heart",
+         "title": "Structure of the heart",
+         "outcomes": [
+          {
+           "code": "B-12-R-36",
+           "text": "State where the heart lies in the body."
+          },
+          {
+           "code": "B-12-R-37",
+           "text": "Describe the wall structure of the heart and each chamber."
+          }
+         ]
+        },
+        {
+         "id": "heartbeat-and-its-control",
+         "title": "Heartbeat and its control",
+         "outcomes": [
+          {
+           "code": "B-12-R-38",
+           "text": "Trace the flow of blood through the heart."
+          },
+          {
+           "code": "B-12-R-39",
+           "text": "State the phases of the heartbeat."
+          },
+          {
+           "code": "B-12-R-40",
+           "text": "Explain the role of the SA node, AV node and Purkinje fibres."
+          },
+          {
+           "code": "B-12-R-41",
+           "text": "List the principles and uses of the ECG."
+          }
+         ]
+        },
+        {
+         "id": "blood-vessels-and-circulation",
+         "title": "Blood vessels and circulation",
+         "outcomes": [
+          {
+           "code": "B-12-R-42",
+           "text": "Describe the detailed structure of arteries, veins and capillaries."
+          },
+          {
+           "code": "B-12-R-43",
+           "text": "Describe the role of arterioles in regulating blood flow."
+          },
+          {
+           "code": "B-12-R-44",
+           "text": "Describe the role of precapillary sphincters and capillary beds."
+          },
+          {
+           "code": "B-12-R-45",
+           "text": "Trace the path of blood in coronary, hepatic portal and renal circulation."
+          },
+          {
+           "code": "B-12-R-46",
+           "text": "Compare blood flow rate in arteries, capillaries and veins."
+          }
+         ]
+        },
+        {
+         "id": "blood-pressure",
+         "title": "Blood pressure",
+         "outcomes": [
+          {
+           "code": "B-12-R-47",
+           "text": "Define blood pressure and explain how it is measured."
+          },
+          {
+           "code": "B-12-R-48",
+           "text": "State how baroreceptors and chemoreceptors control blood pressure."
+          },
+          {
+           "code": "B-12-R-55",
+           "text": "Define hypertension and describe what leads to hypertension and hypotension."
+          }
+         ]
+        },
+        {
+         "id": "clots-and-heart-disease",
+         "title": "Clots and heart disease",
+         "outcomes": [
+          {
+           "code": "B-12-R-49",
+           "text": "Define thrombus and how clots form."
+          },
+          {
+           "code": "B-12-R-50",
+           "text": "Identify the factors that cause atherosclerosis."
+          },
+          {
+           "code": "B-12-R-51",
+           "text": "Group angina, heart attack and stroke as results of cardiovascular disease."
+          },
+          {
+           "code": "B-12-R-52",
+           "text": "State the congenital heart problems."
+          },
+          {
+           "code": "B-12-R-56",
+           "text": "List lifestyle changes that prevent heart problems."
+          }
+         ]
+        },
+        {
+         "id": "heart-treatments",
+         "title": "Heart treatments",
+         "outcomes": [
+          {
+           "code": "B-12-R-53",
+           "text": "Describe the principles of bypass surgery and angioplasty."
+          },
+          {
+           "code": "B-12-R-54",
+           "text": "Outline the main principles of pacemakers and heart transplant."
+          }
+         ]
+        },
+        {
+         "id": "blood-and-lymph",
+         "title": "Blood and lymph",
+         "outcomes": [
+          {
+           "code": "B-12-R-57",
+           "text": "Describe the formation and role of tissue fluid."
+          },
+          {
+           "code": "B-12-R-58",
+           "text": "Compare the composition of blood, tissue fluid and lymph."
+          },
+          {
+           "code": "B-12-R-59",
+           "text": "State the structure and role of lymph vessels."
+          },
+          {
+           "code": "B-12-R-60",
+           "text": "Describe the functions of lymph nodes and lymphoid tissue."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "skeletal-and-muscular-system",
+       "title": "Skeletal and muscular system",
+       "subtopics": [
+        {
+         "id": "bone-and-skeleton",
+         "title": "Bone and skeleton",
+         "outcomes": [
+          {
+           "code": "B-12-R-61",
+           "text": "Describe the structure of bone and cartilage."
+          },
+          {
+           "code": "B-12-R-62",
+           "text": "Explain the functions of the skeleton."
+          },
+          {
+           "code": "B-12-R-63",
+           "text": "Identify the main divisions of the appendicular and axial skeleton."
+          }
+         ]
+        },
+        {
+         "id": "joints-and-skeletal-disorders",
+         "title": "Joints and skeletal disorders",
+         "outcomes": [
+          {
+           "code": "B-12-R-64",
+           "text": "Describe three types of joints with an example of each."
+          },
+          {
+           "code": "B-12-R-65",
+           "text": "Describe disorders of the skeleton such as arthritis and osteoporosis and their causes."
+          },
+          {
+           "code": "B-12-R-66",
+           "text": "State types of fractures and the repair process of a simple fracture."
+          },
+          {
+           "code": "B-12-R-67",
+           "text": "Describe joint injuries such as sprains and dislocations."
+          }
+         ]
+        },
+        {
+         "id": "muscle-types-and-structure",
+         "title": "Muscle types and structure",
+         "outcomes": [
+          {
+           "code": "B-12-R-68",
+           "text": "Compare smooth, cardiac and skeletal muscle."
+          },
+          {
+           "code": "B-12-R-69",
+           "text": "Label the ultrastructure of a skeletal muscle fibre."
+          }
+         ]
+        },
+        {
+         "id": "muscle-contraction",
+         "title": "Muscle contraction",
+         "outcomes": [
+          {
+           "code": "B-12-R-70",
+           "text": "Explain the sliding filament model of contraction."
+          },
+          {
+           "code": "B-12-R-71",
+           "text": "Describe how antagonistic muscles move a limb."
+          },
+          {
+           "code": "B-12-R-72",
+           "text": "Explain muscle fatigue, cramps and rigor."
+          },
+          {
+           "code": "B-12-R-73",
+           "text": "Tell tetanus from tetany and describe muscle disorders."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "thermoregulation-homeostasis-and-osmoregulation",
+       "title": "Thermoregulation, homeostasis and osmoregulation",
+       "subtopics": [
+        {
+         "id": "thermoregulation",
+         "title": "Thermoregulation",
+         "outcomes": [
+          {
+           "code": "B-12-R-74",
+           "text": "Define thermoregulation and why it matters."
+          },
+          {
+           "code": "B-12-R-75",
+           "text": "Group animals as ectotherms or endotherms."
+          },
+          {
+           "code": "B-12-R-76",
+           "text": "Group animals as poikilotherms or homeotherms."
+          },
+          {
+           "code": "B-12-R-77",
+           "text": "Describe the strategies animals use to regulate temperature."
+          }
+         ]
+        },
+        {
+         "id": "homeostasis",
+         "title": "Homeostasis",
+         "outcomes": [
+          {
+           "code": "B-12-R-78",
+           "text": "Describe the three elements of a homeostatic mechanism: receptor, control centre and effector."
+          },
+          {
+           "code": "B-12-R-79",
+           "text": "Relate homeostatic mechanisms to different body systems."
+          },
+          {
+           "code": "B-12-R-80",
+           "text": "Tell negative feedback from positive feedback."
+          }
+         ]
+        },
+        {
+         "id": "osmoregulation",
+         "title": "Osmoregulation",
+         "outcomes": [
+          {
+           "code": "B-12-R-81",
+           "text": "Define osmoregulation."
+          },
+          {
+           "code": "B-12-R-82",
+           "text": "Explain the water and salt problems faced by freshwater and marine animals."
+          },
+          {
+           "code": "B-12-R-83",
+           "text": "Explain how aquatic and terrestrial animals regulate water and salts."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "domain-t-pharmacological-drugs",
+     "title": "Domain T: Pharmacological Drugs",
+     "topics": [
+      {
+       "id": "pharmacological-drugs",
+       "title": "Pharmacological drugs",
+       "subtopics": [
+        {
+         "id": "drug-discovery-and-antibiotics",
+         "title": "Drug discovery and antibiotics",
+         "outcomes": [
+          {
+           "code": "B-12-T-01",
+           "text": "Explain how drugs are discovered and developed."
+          },
+          {
+           "code": "B-12-T-02",
+           "text": "Name four classes of antibiotics and describe how each acts."
+          }
+         ]
+        },
+        {
+         "id": "antivirals-and-monoclonal-antibody-drugs",
+         "title": "Antivirals and monoclonal antibody drugs",
+         "outcomes": [
+          {
+           "code": "B-12-T-04",
+           "text": "Define antivirals and antiretrovirals."
+          },
+          {
+           "code": "B-12-T-05",
+           "text": "Describe the advantages of monoclonal antibodies over other drug classes."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "domain-u-climate-change",
+     "title": "Domain U: Climate Change",
+     "topics": [
+      {
+       "id": "climate-change",
+       "title": "Climate change",
+       "subtopics": [
+        {
+         "id": "climate-change-and-living-things",
+         "title": "Climate change and living things",
+         "outcomes": [
+          {
+           "code": "B-12-U-01",
+           "text": "Describe how climate change affects plants and animals."
+          },
+          {
+           "code": "B-12-U-02",
+           "text": "Describe how climate change affects ocean temperature and acidity and the harm that follows."
+          },
+          {
+           "code": "B-12-U-03",
+           "text": "Name species that have gone extinct because of climate change."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "domain-v-selected-topics",
+     "title": "Domain V: Selected Topics",
+     "topics": [
+      {
+       "id": "selected-topics",
+       "title": "Selected topics",
+       "subtopics": [
+        {
+         "id": "biowarfare-biodefense-and-synthetic-biology",
+         "title": "Biowarfare, biodefense and synthetic biology",
+         "outcomes": [
+          {
+           "code": "B-12-V-01",
+           "text": "Explain biological warfare with examples."
+          },
+          {
+           "code": "B-12-V-02",
+           "text": "Describe how biodefense could protect people."
+          },
+          {
+           "code": "B-12-V-03",
+           "text": "Examine the hype around a current biological topic."
+          },
+          {
+           "code": "B-12-V-04",
+           "text": "Explain synthetic biology with examples."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "domain-x-experimentation-skills",
+     "title": "Domain X: Experimentation Skills",
+     "topics": [
+      {
+       "id": "practical-skills",
+       "title": "Practical skills",
+       "subtopics": [
+        {
+         "id": "planning-an-experiment",
+         "title": "Planning an experiment",
+         "outcomes": [
+          {
+           "code": "B-12-X-01",
+           "text": "State a prediction linked to a hypothesis and identify the variables to control."
+          },
+          {
+           "code": "B-12-X-02",
+           "text": "Describe how to vary and measure variables, run controls, dilute reagents and judge result quality and risk."
+          }
+         ]
+        },
+        {
+         "id": "data-conclusions-and-evaluation",
+         "title": "Data, conclusions and evaluation",
+         "outcomes": [
+          {
+           "code": "B-12-X-03",
+           "text": "Draw tables and graphs, calculate means and rates, and use standard deviation and statistical tests."
+          },
+          {
+           "code": "B-12-X-04",
+           "text": "Recognise the types of variable and data, such as categoric, ordinal and continuous."
+          },
+          {
+           "code": "B-12-X-05",
+           "text": "Summarise conclusions and judge how well the data supports the hypothesis."
+          },
+          {
+           "code": "B-12-X-06",
+           "text": "Find anomalous values and suggest explanations and fixes."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "build": {
+  "builtAt": "2026-10-14T08:06:31.981Z",
+  "model": "claude-agent",
+  "usd": 0,
+  "expectedCodes": 163,
+  "coverage": 1,
+  "missingCodes": [],
+  "counts": {
+   "grades": 1,
+   "units": 10,
+   "topics": 17,
+   "subtopics": 54,
+   "outcomes": 184
+  },
+  "warnings": []
+ }
+}

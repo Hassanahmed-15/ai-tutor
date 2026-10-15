@@ -1,0 +1,238 @@
+{
+ "id": "uk-nc-design-technology-ks3",
+ "region": "UK",
+ "framework": "National Curriculum in England (2014)",
+ "board": "Department for Education",
+ "qualification": "Secondary",
+ "subject": "Design and technology",
+ "syllabusCode": null,
+ "gradeSystem": "key-stage",
+ "source": {
+  "urls": [
+   "https://assets.publishing.service.gov.uk/media/5a7c99ebed915d6969f46087/SECONDARY_national_curriculum_-_Design_and_technology.pdf",
+   "https://www.gov.uk/government/publications/national-curriculum-in-england-design-and-technology-programmes-of-study"
+  ],
+  "publisher": "Department for Education",
+  "licence": "Open Government Licence v3.0 (Crown copyright)",
+  "firstExam": "2014"
+ },
+ "grades": [
+  {
+   "grade": "KS3",
+   "units": [
+    {
+     "id": "design-and-technology",
+     "title": "Design and technology",
+     "topics": [
+      {
+       "id": "design",
+       "title": "Design",
+       "subtopics": [
+        {
+         "id": "understanding-user-needs",
+         "title": "Understanding user needs",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Use research and exploration, including study of different cultures, to find and understand what users need."
+          },
+          {
+           "code": null,
+           "text": "Identify their own design problems and know how to reformulate problems they are given."
+          }
+         ]
+        },
+        {
+         "id": "specifications-and-ideas",
+         "title": "Specifications and ideas",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Write specifications that guide innovative, functional, appealing products meeting needs in varied situations."
+          },
+          {
+           "code": null,
+           "text": "Use varied approaches, such as biomimicry and user-centred design, to generate creative ideas and avoid stereotypes."
+          }
+         ]
+        },
+        {
+         "id": "communicating-designs",
+         "title": "Communicating designs",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Develop and communicate ideas using annotated sketches, detailed plans, 3-D and mathematical models, presentations and computer tools."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "make",
+       "title": "Make",
+       "subtopics": [
+        {
+         "id": "tools-and-processes",
+         "title": "Tools and processes",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Select and precisely use specialist tools, techniques, processes, equipment and machinery, including computer-aided manufacture."
+          }
+         ]
+        },
+        {
+         "id": "materials-and-components",
+         "title": "Materials and components",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Choose and use a wider, more complex range of materials, components and ingredients according to their properties."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "evaluate",
+       "title": "Evaluate",
+       "subtopics": [
+        {
+         "id": "learning-from-designers",
+         "title": "Learning from designers",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Analyse the work of past and present professionals and others to broaden understanding."
+          },
+          {
+           "code": null,
+           "text": "Investigate new and emerging technologies."
+          }
+         ]
+        },
+        {
+         "id": "testing-and-impact",
+         "title": "Testing and impact",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Test, evaluate and refine ideas and products against a specification, considering the views of users and other groups."
+          },
+          {
+           "code": null,
+           "text": "Understand how design and technology affects individuals, society and the environment, and what responsibilities designers, engineers and technologists have."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "technical-knowledge",
+       "title": "Technical knowledge",
+       "subtopics": [
+        {
+         "id": "materials-and-structures",
+         "title": "Materials and structures",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Understand and use material properties and the performance of structural elements to make working solutions."
+          }
+         ]
+        },
+        {
+         "id": "mechanical-systems",
+         "title": "Mechanical systems",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain how advanced mechanical systems in products change movement and force."
+          }
+         ]
+        },
+        {
+         "id": "electrical-and-electronic-systems",
+         "title": "Electrical and electronic systems",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain how advanced electrical and electronic systems are powered and used in products, such as circuits with heat, light, sound and movement inputs and outputs."
+          }
+         ]
+        },
+        {
+         "id": "programmable-products",
+         "title": "Programmable products",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Use computing and electronics to build intelligence into products, using sensors for inputs and actuators for outputs with programmable components such as microcontrollers."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "cooking-and-nutrition",
+       "title": "Cooking and nutrition",
+       "subtopics": [
+        {
+         "id": "nutrition-and-healthy-eating",
+         "title": "Nutrition and healthy eating",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Understand and apply the principles of nutrition and health."
+          }
+         ]
+        },
+        {
+         "id": "cooking-skills",
+         "title": "Cooking skills",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Cook a repertoire of mainly savoury dishes to feed themselves and others a healthy, varied diet."
+          },
+          {
+           "code": null,
+           "text": "Become competent in cooking techniques such as preparing ingredients, using equipment, applying heat, seasoning by taste and smell, and adapting recipes."
+          }
+         ]
+        },
+        {
+         "id": "ingredients",
+         "title": "Ingredients",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Understand the source, seasonality and characteristics of a broad range of ingredients."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "build": {
+  "builtAt": "2026-10-14T10:36:50.153Z",
+  "model": "claude-agent",
+  "usd": 0,
+  "expectedCodes": null,
+  "coverage": null,
+  "missingCodes": [],
+  "counts": {
+   "grades": 1,
+   "units": 1,
+   "topics": 5,
+   "subtopics": 14,
+   "outcomes": 19
+  },
+  "warnings": []
+ }
+}

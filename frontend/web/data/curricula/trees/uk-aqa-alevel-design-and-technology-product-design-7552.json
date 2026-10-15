@@ -1,0 +1,846 @@
+{
+ "id": "uk-aqa-alevel-design-and-technology-product-design-7552",
+ "region": "UK",
+ "framework": "AQA A-level",
+ "board": "AQA",
+ "qualification": "A Level",
+ "subject": "Design and Technology: Product Design",
+ "syllabusCode": "7552",
+ "gradeSystem": "year",
+ "source": {
+  "urls": [
+   "https://cdn.sanity.io/files/p28bar15/green/04bdff216c2025e10cdce371578ac885ad55fff7.pdf"
+  ],
+  "publisher": "AQA",
+  "licence": "Exam board specification, (c) AQA; structure + our own wording only",
+  "firstExam": "2019"
+ },
+ "grades": [
+  {
+   "grade": "Year 12",
+   "units": [
+    {
+     "id": "3-1-technical-principles",
+     "title": "3.1 Technical principles",
+     "topics": [
+      {
+       "id": "3-1-1-materials-and-their-applications",
+       "title": "3.1.1 Materials and their applications",
+       "subtopics": [
+        {
+         "id": "choosing-materials-for-applications",
+         "title": "Choosing materials for applications",
+         "outcomes": [
+          {
+           "code": "3.1",
+           "text": "Understand the technical principles content as a whole: materials, processes, industry practice, and product development."
+          },
+          {
+           "code": "3.1.1",
+           "text": "Name materials for many uses and justify choices using properties, function, looks, cost, manufacture and disposal."
+          },
+          {
+           "code": null,
+           "text": "Link working characteristics such as malleability, toughness, hardness, corrosion resistance and conductivity to material choice."
+          }
+         ]
+        },
+        {
+         "id": "classifying-materials",
+         "title": "Classifying materials",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Classify metals, woods, polymers, papers and boards, composites, smart and modern materials, with examples of each."
+          }
+         ]
+        },
+        {
+         "id": "testing-materials",
+         "title": "Testing materials",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe workshop and industrial tests for tensile strength, toughness, hardness, malleability, corrosion and conductivity."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "3-1-2-performance-characteristics-of-materials",
+       "title": "3.1.2 Performance characteristics of materials",
+       "subtopics": [
+        {
+         "id": "papers-and-boards",
+         "title": "Papers and boards",
+         "outcomes": [
+          {
+           "code": "3.1.2",
+           "text": "Name types of paper and board and describe scoring, cutting, folding, printing, impact and recycling qualities."
+          },
+          {
+           "code": null,
+           "text": "Explain which paper or board suits which use, such as cartridge for printing or duplex card for food packaging."
+          }
+         ]
+        },
+        {
+         "id": "polymer-sheet-and-film",
+         "title": "Polymer sheet and film",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe performance of polymer sheet and film such as foam board, fluted polypropylene and plastazote."
+          },
+          {
+           "code": null,
+           "text": "Explain why each polymer sheet or film suits a given application."
+          }
+         ]
+        },
+        {
+         "id": "woods",
+         "title": "Woods",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Name timber stock forms: rough sawn, PSE, PAR, natural, manufactured boards and mouldings."
+          },
+          {
+           "code": null,
+           "text": "Describe wood characteristics: grain, warping, shrinkage, splitting, forming, machining and decay resistance."
+          },
+          {
+           "code": null,
+           "text": "Recognise common softwoods, hardwoods and manufactured boards and their uses."
+          }
+         ]
+        },
+        {
+         "id": "metals",
+         "title": "Metals",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Name metal stock forms: sheet, plate, bar, tube and structural sections."
+          },
+          {
+           "code": null,
+           "text": "Describe metal characteristics: hardness, elasticity, density, conductivity, melting point, alloying and finishing."
+          },
+          {
+           "code": null,
+           "text": "Recognise ferrous, non-ferrous and alloy metals and their uses."
+          }
+         ]
+        },
+        {
+         "id": "polymers",
+         "title": "Polymers",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Name polymer stock forms such as sheet, film, granules, rod, foam and powder."
+          },
+          {
+           "code": null,
+           "text": "Describe polymer characteristics: toughness, insulation, UV resistance, moulding, chemical resistance and recyclability."
+          },
+          {
+           "code": null,
+           "text": "Recognise common thermoplastics and thermosets and their uses."
+          }
+         ]
+        },
+        {
+         "id": "elastomers-and-biodegradable-polymers",
+         "title": "Elastomers and biodegradable polymers",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain why elastomers suit given uses and how they improve products such as grips."
+          },
+          {
+           "code": null,
+           "text": "Recognise natural rubber, neoprene, silicone and TPE."
+          },
+          {
+           "code": null,
+           "text": "Explain how biodegradable polymers degrade and why they suit given uses."
+          },
+          {
+           "code": null,
+           "text": "Recognise corn starch polymers, PLA, PHA and water-soluble polymers."
+          }
+         ]
+        },
+        {
+         "id": "composites-and-new-materials",
+         "title": "Composites and new materials",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain how composites combine materials for better properties, with examples such as CFRP, GRP and reinforced concrete."
+          },
+          {
+           "code": null,
+           "text": "Explain smart materials that react to temperature, light or pressure, with examples such as Nitinol and piezo materials."
+          },
+          {
+           "code": null,
+           "text": "Explain modern materials such as Kevlar, precious metal clay and polymorph."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "3-1-3-enhancement-of-materials",
+       "title": "3.1.3 Enhancement of materials",
+       "subtopics": [
+        {
+         "id": "enhancing-materials",
+         "title": "Enhancing materials",
+         "outcomes": [
+          {
+           "code": "3.1.3",
+           "text": "Describe how enhancement methods suit given materials and products."
+          },
+          {
+           "code": null,
+           "text": "Explain polymer additives such as UV stabilisers and bio-batch for biodegradability."
+          },
+          {
+           "code": null,
+           "text": "Explain how resins, lamination, preservatives and finishes improve timber."
+          },
+          {
+           "code": null,
+           "text": "Describe heat treatments for metal: case hardening, hardening and tempering."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "3-1-4-forming-redistribution-and-addition-proces",
+       "title": "3.1.4 Forming, redistribution and addition processes",
+       "subtopics": [
+        {
+         "id": "paper-board-and-polymer-forming",
+         "title": "Paper, board and polymer forming",
+         "outcomes": [
+          {
+           "code": "3.1.4",
+           "text": "Describe die cutting, laser cutting, creasing and bending of paper and board."
+          },
+          {
+           "code": null,
+           "text": "Describe polymer forming methods such as vacuum forming, injection, blow and rotational moulding and extrusion, and match them to products and scales."
+          }
+         ]
+        },
+        {
+         "id": "metal-forming-and-joining",
+         "title": "Metal forming and joining",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe metal forming such as pressing, spinning, deep drawing, forging, rolling and casting, and match them to products."
+          },
+          {
+           "code": null,
+           "text": "Describe permanent and temporary metal joining: welding, soldering, brazing, riveting and screws and bolts."
+          },
+          {
+           "code": null,
+           "text": "Describe metal wasting processes: milling, turning, flame, plasma and laser cutting, and punching."
+          }
+         ]
+        },
+        {
+         "id": "wood-forming-and-joining",
+         "title": "Wood forming and joining",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe wood joints such as dovetail, comb, housing, half-lap, dowel and mortise and tenon, and knock-down fittings."
+          },
+          {
+           "code": null,
+           "text": "Describe timber forming: laminating, steam bending, turning, milling and routing."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "3-1-4-5-the-use-of-adhesives-and-fixings",
+       "title": "3.1.4.5 The use of adhesives and fixings",
+       "subtopics": [
+        {
+         "id": "adhesives-and-jigs",
+         "title": "Adhesives and jigs",
+         "outcomes": [
+          {
+           "code": "3.1.4.5",
+           "text": "Know common adhesives: PVA, contact, UV hardening, solvent cement and epoxy."
+          },
+          {
+           "code": null,
+           "text": "Explain how jigs and fixtures give accurate repeated manufacture."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "3-1-5-the-use-of-finishes",
+       "title": "3.1.5 The use of finishes",
+       "subtopics": [
+        {
+         "id": "paper-board-and-polymer-finishes",
+         "title": "Paper, board and polymer finishes",
+         "outcomes": [
+          {
+           "code": "3.1.5",
+           "text": "Describe finishes for paper and board: laminating, embossing, varnishing and foil blocking."
+          },
+          {
+           "code": null,
+           "text": "Compare screen, flexographic, offset lithographic and digital printing for products and scales."
+          },
+          {
+           "code": null,
+           "text": "Describe polymer finishes, self-finishing and pigments such as gel coats and smart pigments."
+          }
+         ]
+        },
+        {
+         "id": "metal-and-wood-finishes",
+         "title": "Metal and wood finishes",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe metal finishes that improve looks or prevent corrosion: paints, plating, powder coating, galvanising, anodising."
+          },
+          {
+           "code": null,
+           "text": "Describe wood finishes: varnishes, paints, stains, waxes, oils and preservatives."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "3-1-6-modern-industrial-and-commercial-practice",
+       "title": "3.1.6 Modern industrial and commercial practice",
+       "subtopics": [
+        {
+         "id": "scales-of-production",
+         "title": "Scales of production",
+         "outcomes": [
+          {
+           "code": "3.1.6",
+           "text": "Describe one-off, batch, mass, unit production, quick response and vertical in-house production with examples."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "3-1-6-2-efficient-use-of-materials",
+       "title": "3.1.6.2 Efficient use of materials",
+       "subtopics": [
+        {
+         "id": "efficient-production",
+         "title": "Efficient production",
+         "outcomes": [
+          {
+           "code": "3.1.6.2",
+           "text": "Relate material cost, form, process and scale; use materials economically and cut waste."
+          },
+          {
+           "code": null,
+           "text": "Compare bulk and one-off production savings and explain Just In Time manufacture."
+          },
+          {
+           "code": null,
+           "text": "Explain how computer systems plan production: modular cells, JIT, QRM and flexible systems."
+          },
+          {
+           "code": null,
+           "text": "Explain computer controlled production, distribution, storage and bought-in standard components."
+          },
+          {
+           "code": null,
+           "text": "Explain sub-assembly as a separate manufacturing line."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "3-1-7-digital-design-and-manufacture",
+       "title": "3.1.7 Digital design and manufacture",
+       "subtopics": [
+        {
+         "id": "cad-cam-and-prototyping",
+         "title": "CAD, CAM and prototyping",
+         "outcomes": [
+          {
+           "code": "3.1.7",
+           "text": "Compare CAD with manual drawing and describe 2D and 3D CAD uses."
+          },
+          {
+           "code": null,
+           "text": "Describe CAM processes: laser cutting, routing, milling, turning and plotter cutting."
+          },
+          {
+           "code": null,
+           "text": "Describe simulation, CFD and FEA testing before production."
+          },
+          {
+           "code": null,
+           "text": "Explain rapid prototyping and 3D printing and their benefits."
+          },
+          {
+           "code": null,
+           "text": "Describe EPOS for stock and customer data, and PPC networking for materials, scheduling and suppliers."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "3-1-8-the-requirements-for-product-design-and-de",
+       "title": "3.1.8 The requirements for product design and development",
+       "subtopics": [
+        {
+         "id": "developing-products",
+         "title": "Developing products",
+         "outcomes": [
+          {
+           "code": "3.1.8",
+           "text": "Analyse existing products for fitness for purpose, accuracy and meeting specifications, to propose new designs."
+          },
+          {
+           "code": null,
+           "text": "Consider aesthetics, ergonomics and anthropometrics when designing for a target market."
+          },
+          {
+           "code": null,
+           "text": "Explain inclusive design for disabled, child and elderly users."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "3-1-9-health-and-safety",
+       "title": "3.1.9 Health and safety",
+       "subtopics": [
+        {
+         "id": "safety-in-making-and-products",
+         "title": "Safety in making and products",
+         "outcomes": [
+          {
+           "code": "3.1.9",
+           "text": "Explain the Health and Safety at Work Act, COSHH, workshop hazards and risk assessment."
+          },
+          {
+           "code": null,
+           "text": "Explain consumer safety: consumer legislation, BSI testing, toy safety marks and instructions and warnings."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "3-1-10-protecting-designs-and-intellectual-prope",
+       "title": "3.1.10 Protecting designs and intellectual property",
+       "subtopics": [
+        {
+         "id": "intellectual-property",
+         "title": "Intellectual property",
+         "outcomes": [
+          {
+           "code": "3.1.10",
+           "text": "Explain copyright, design rights, patents, registered designs, trademarks and logos."
+          },
+          {
+           "code": null,
+           "text": "Explain open design and examples such as humanitarian projects and shared 3D print files."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "3-1-11-design-for-manufacturing-maintenance-repa",
+       "title": "3.1.11 Design for manufacturing, maintenance, repair and disposal",
+       "subtopics": [
+        {
+         "id": "efficient-manufacture-and-sustainability",
+         "title": "Efficient manufacture and sustainability",
+         "outcomes": [
+          {
+           "code": "3.1.11",
+           "text": "Modify designs to cut processes, label materials, ease disassembly and apply the six Rs."
+          },
+          {
+           "code": null,
+           "text": "Design for maintenance with standard parts, repairable fixings and software upgrades."
+          },
+          {
+           "code": null,
+           "text": "Explain ease-of-manufacture features: ribs, snap fittings, screw posts, standard parts and self-finishing."
+          },
+          {
+           "code": null,
+           "text": "Explain designing for disassembly, including integral fixings and smart materials."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "3-1-12-feasibility-studies",
+       "title": "3.1.12 Feasibility studies",
+       "subtopics": [
+        {
+         "id": "feasibility-studies",
+         "title": "Feasibility studies",
+         "outcomes": [
+          {
+           "code": "3.1.12",
+           "text": "Explain how feasibility studies and consumer prototype testing assess practicality of production."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "3-1-13-enterprise-and-marketing-in-the-developme",
+       "title": "3.1.13 Enterprise and marketing in the development of products",
+       "subtopics": [
+        {
+         "id": "enterprise-and-marketing",
+         "title": "Enterprise and marketing",
+         "outcomes": [
+          {
+           "code": "3.1.13",
+           "text": "Explain brand identity: customers, labelling, packaging, corporate identity and global marketing."
+          },
+          {
+           "code": null,
+           "text": "Explain product costing, profit and the role of entrepreneurs."
+          },
+          {
+           "code": null,
+           "text": "Explain collaborative design work, virtual and face to face."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "3-1-14-design-communication",
+       "title": "3.1.14 Design communication",
+       "subtopics": [
+        {
+         "id": "design-communication",
+         "title": "Design communication",
+         "outcomes": [
+          {
+           "code": "3.1.14",
+           "text": "Present proposals using reports, graphs, tables, sketches, rendering and dimensioned manufacturing detail."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "Year 13",
+   "units": [
+    {
+     "id": "3-2-designing-and-making-principles",
+     "title": "3.2 Designing and making principles",
+     "topics": [
+      {
+       "id": "3-2-1-design-methods-and-processes",
+       "title": "3.2.1 Design methods and processes",
+       "subtopics": [
+        {
+         "id": "iterative-design",
+         "title": "Iterative design",
+         "outcomes": [
+          {
+           "code": "3.2",
+           "text": "Understand designing and making principles as a whole: methods, theory, responsible design and project management."
+          },
+          {
+           "code": "3.2.1",
+           "text": "Explain user centred design that meets needs, wants and values with no single fixed process."
+          },
+          {
+           "code": null,
+           "text": "Use market research, interviews, focus groups, product analysis, anthropometric and ergonomic data."
+          },
+          {
+           "code": null,
+           "text": "Develop a proposal, plan and make a prototype, and evaluate it to refine the design."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "3-2-2-design-theory",
+       "title": "3.2.2 Design theory",
+       "subtopics": [
+        {
+         "id": "design-styles-and-designers",
+         "title": "Design styles and designers",
+         "outcomes": [
+          {
+           "code": "3.2.2",
+           "text": "Discuss how historical styles, movements and designers shaped products."
+          },
+          {
+           "code": null,
+           "text": "Discuss arts and crafts, Art Deco, Modernism and Post modernism principles."
+          },
+          {
+           "code": null,
+           "text": "Discuss Starck, Dyson, Calvert, Rams, the Eameses and Brandt and their movements."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "3-2-3-how-technology-and-cultural-changes-can-im",
+       "title": "3.2.3 How technology and cultural changes can impact on the work of designers",
+       "subtopics": [
+        {
+         "id": "technology-and-society",
+         "title": "Technology and society",
+         "outcomes": [
+          {
+           "code": "3.2.3",
+           "text": "Discuss socio-economic influences: Bauhaus, wartime utility goods and modern mass-produced furniture."
+          },
+          {
+           "code": null,
+           "text": "Discuss how microelectronics, new materials and CAD/CAM shape design."
+          }
+         ]
+        },
+        {
+         "id": "ethics-and-responsibility",
+         "title": "Ethics and responsibility",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Discuss sustainable, ethical, culturally acceptable and inclusive products, social problems and Fairtrade."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "3-2-3-4-product-life-cycle",
+       "title": "3.2.3.4 Product life cycle",
+       "subtopics": [
+        {
+         "id": "product-life-cycle",
+         "title": "Product life cycle",
+         "outcomes": [
+          {
+           "code": "3.2.3.4",
+           "text": "Describe introduction, growth, maturity, decline and replacement, and how designers redevelop products."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "3-2-4-design-processes",
+       "title": "3.2.4 Design processes",
+       "subtopics": [
+        {
+         "id": "design-processes",
+         "title": "Design processes",
+         "outcomes": [
+          {
+           "code": "3.2.4",
+           "text": "Carry out design stages: analysis, mood boards, ideas, illustration, specification, modelling, planning and testing."
+          },
+          {
+           "code": null,
+           "text": "Develop a prototype from design proposals for identified users."
+          },
+          {
+           "code": null,
+           "text": "Describe how companies use collaborative, cyclic design methods."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "3-2-5-critical-analysis-and-evaluation",
+       "title": "3.2.5 Critical analysis and evaluation",
+       "subtopics": [
+        {
+         "id": "evaluating-products",
+         "title": "Evaluating products",
+         "outcomes": [
+          {
+           "code": "3.2.5",
+           "text": "Critique own and commercial products to suggest improvements."
+          },
+          {
+           "code": null,
+           "text": "Describe rigorous testing of commercial products before sale."
+          },
+          {
+           "code": null,
+           "text": "Use third party feedback objectively to guide further development."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "3-2-6-selecting-appropriate-tools-equipment-and-",
+       "title": "3.2.6 Selecting appropriate tools, equipment and processes",
+       "subtopics": [
+        {
+         "id": "tools-and-processes",
+         "title": "Tools and processes",
+         "outcomes": [
+          {
+           "code": "3.2.6",
+           "text": "Choose correct tools and safe workshop practice for tasks."
+          },
+          {
+           "code": null,
+           "text": "Explain scaling from prototype to batch and mass manufacture, and picking suitable processes."
+          },
+          {
+           "code": null,
+           "text": "Explain commercial health and safety, training and national standards."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "3-2-7-accuracy-in-design-and-manufacture",
+       "title": "3.2.7 Accuracy in design and manufacture",
+       "subtopics": [
+        {
+         "id": "accuracy",
+         "title": "Accuracy",
+         "outcomes": [
+          {
+           "code": "3.2.7",
+           "text": "Explain how testing, templates, jigs and fixtures keep production accurate and reduce human error."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "3-2-8-responsible-design",
+       "title": "3.2.8 Responsible design",
+       "subtopics": [
+        {
+         "id": "environmental-responsibility",
+         "title": "Environmental responsibility",
+         "outcomes": [
+          {
+           "code": "3.2.8",
+           "text": "Discuss sustainable materials and the environmental impact of packaging."
+          },
+          {
+           "code": null,
+           "text": "Explain the circular economy, minimising energy, waste, extraction impact and product miles, and the costs of waste."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "3-2-9-design-for-manufacture-and-project-managem",
+       "title": "3.2.9 Design for manufacture and project management",
+       "subtopics": [
+        {
+         "id": "planning-and-quality",
+         "title": "Planning and quality",
+         "outcomes": [
+          {
+           "code": "3.2.9",
+           "text": "Plan for accuracy and efficiency in prototypes and for small, medium and large production runs."
+          },
+          {
+           "code": null,
+           "text": "Explain quality assurance systems: TQM, scrum, Six Sigma and critical path analysis."
+          },
+          {
+           "code": null,
+           "text": "Explain quality control: tolerance checks, go-no go gauges, scanning, vernier callipers, micrometers and non-destructive testing."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "3-2-10-national-and-international-standards-in-p",
+       "title": "3.2.10 National and international standards in product design",
+       "subtopics": [
+        {
+         "id": "standards-and-labelling",
+         "title": "Standards and labelling",
+         "outcomes": [
+          {
+           "code": "3.2.10",
+           "text": "Explain standards: BSI, ISO, RoHS, battery, packaging and WEEE directives."
+          },
+          {
+           "code": null,
+           "text": "Explain polymer recycling codes, energy ratings and eco-labels such as Mobius Loop, FSC and Energy Star."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "build": {
+  "builtAt": "2026-10-14T10:13:44.818Z",
+  "model": "claude-agent",
+  "usd": 0,
+  "expectedCodes": 29,
+  "coverage": 1,
+  "missingCodes": [],
+  "counts": {
+   "grades": 2,
+   "units": 2,
+   "topics": 27,
+   "subtopics": 39,
+   "outcomes": 98
+  },
+  "warnings": []
+ }
+}

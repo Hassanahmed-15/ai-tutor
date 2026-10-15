@@ -1,0 +1,2308 @@
+{
+ "id": "us-nd-health",
+ "region": "US",
+ "framework": "North Dakota state academic standards: Health Education",
+ "board": null,
+ "qualification": "K-12",
+ "subject": "Health Education",
+ "syllabusCode": null,
+ "gradeSystem": "grade",
+ "source": {
+  "urls": [
+   "https://api.commonstandardsproject.com/api/v1/jurisdictions/071477629D00405286BC6D79576AAB79",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/071477629D00405286BC6D79576AAB79_D2438253_grade-01",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/071477629D00405286BC6D79576AAB79_D2438253_grade-02",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/071477629D00405286BC6D79576AAB79_D2438253_grade-03",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/071477629D00405286BC6D79576AAB79_D2438253_grade-04",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/071477629D00405286BC6D79576AAB79_D2438253_grade-05",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/071477629D00405286BC6D79576AAB79_D2438253_grade-06",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/071477629D00405286BC6D79576AAB79_D2438253_grades-07-08",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/071477629D00405286BC6D79576AAB79_D2438253_grades-09-10-11-12",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/071477629D00405286BC6D79576AAB79_D2438253_grade-k"
+  ],
+  "publisher": "North Dakota state education agency (machine-readable via Common Standards Project / ASN)",
+  "licence": "CC BY 3.0 US, Desire2Learn Incorporated",
+  "firstExam": "2008"
+ },
+ "grades": [
+  {
+   "grade": "K",
+   "units": [
+    {
+     "id": "standard-1-growth-and-development",
+     "title": "Standard 1: Growth and Development",
+     "topics": [
+      {
+       "id": "students-understand-the-fundamental-concepts-of-",
+       "title": "Students understand the fundamental concepts of growth and development",
+       "subtopics": [
+        {
+         "id": "human-growth-and-development",
+         "title": "Human Growth and Development",
+         "outcomes": [
+          {
+           "code": "K.1.1",
+           "text": "Describe physical changes (e.g., teeth, hair, height, weight, coordination) that occur from infancy through adulthood"
+          }
+         ]
+        },
+        {
+         "id": "body-systems",
+         "title": "Body Systems",
+         "outcomes": [
+          {
+           "code": "K.1.2",
+           "text": "Locate basic parts of the human body (e.g., heart, lungs, muscles, eyes, ears)"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "standard-2-personal-health",
+     "title": "Standard 2: Personal Health",
+     "topics": [
+      {
+       "id": "students-understand-concepts-related-to-the-prom",
+       "title": "Students understand concepts related to the promotion of health and the prevention of disease",
+       "subtopics": [
+        {
+         "id": "personal-health",
+         "title": "Personal Health",
+         "outcomes": [
+          {
+           "code": "K.2.1",
+           "text": "Identify behaviors that contribute to emotional, social, and physical health (e.g., healthy eating, physical activity, sleep, personal hygiene, avoiding second hand smoke)"
+          },
+          {
+           "code": "K.2.2",
+           "text": "Identify potentially dangerous situations and ways to avoid personal harm (e.g., fire- don't play with matches, water- be with an adult, traffic- stay out of streets, medicine- take from a trusted adult, strangers- just say \"No\")"
+          }
+         ]
+        },
+        {
+         "id": "disease-and-illness",
+         "title": "Disease and Illness",
+         "outcomes": [
+          {
+           "code": "K.2.3",
+           "text": "Describe a variety of ways to prevent the spreading of illnesses (e.g., washing hands, covering mouth, using tissues)"
+          },
+          {
+           "code": "K.2.4",
+           "text": "Identify the types of check-ups (e.g., dental, vision, hearing, speech, wellness checks) needed for maintaining a healthy body"
+          }
+         ]
+        },
+        {
+         "id": "safety-and-injury-prevention",
+         "title": "Safety and Injury Prevention",
+         "outcomes": [
+          {
+           "code": "K.2.5",
+           "text": "Describe the safety rules/procedures used in home, school, and community settings (e.g., school drills, fire and tornado drills, water safety rules, calling 911 for emergencies, classroom rules, playground rules)"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "standard-3-external-health-factors",
+     "title": "Standard 3: External Health Factors",
+     "topics": [
+      {
+       "id": "students-understand-the-effect-of-external-facto",
+       "title": "Students understand the effect of external factors on the health of individuals, families, communities, and the environment",
+       "subtopics": [
+        {
+         "id": "external-influences-on-health",
+         "title": "External Influences on Health",
+         "outcomes": [
+          {
+           "code": "K.3.1",
+           "text": "Identify ways in which to keep the environment clean and healthy (e.g., participate in Earth Day activities, avoid littering, become aware of the Reduce/Reuse/Recycle Program)"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "standard-4-communication-skills",
+     "title": "Standard 4: Communication Skills",
+     "topics": [
+      {
+       "id": "students-demonstrate-the-ability-to-use-communic",
+       "title": "Students demonstrate the ability to use communication skills to enhance health",
+       "subtopics": [
+        {
+         "id": "interpersonal-communication",
+         "title": "Interpersonal Communication",
+         "outcomes": [
+          {
+           "code": "K.4.1",
+           "text": "Identify healthy ways to express needs, wants, feelings, and emotions (e.g., discuss how you are a special person, listen, take turns, happy laugh, happy-cry, sad-cry)"
+          }
+         ]
+        },
+        {
+         "id": "conflict-resolution",
+         "title": "Conflict Resolution",
+         "outcomes": [
+          {
+           "code": "K.4.2",
+           "text": "Identify ways to seek help when feeling threatened (e.g., strangers-yell and seek help from trusted adult, bullies/cliques/gangs-seek help from a trusted adult)"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "standard-5-decision-making-and-goal-setting",
+     "title": "Standard 5: Decision Making and Goal Setting",
+     "topics": [
+      {
+       "id": "students-demonstrate-the-ability-to-use-decision",
+       "title": "Students demonstrate the ability to use decision making and goal setting skills to enhance health",
+       "subtopics": [
+        {
+         "id": "goal-setting",
+         "title": "Goal Setting",
+         "outcomes": [
+          {
+           "code": "K.5.1",
+           "text": "Describe a short term personal health goal (e.g., nutritious choices, physical activity time per day)"
+          }
+         ]
+        },
+        {
+         "id": "assistance-with-decisions-and-goals",
+         "title": "Assistance with Decisions and Goals",
+         "outcomes": [
+          {
+           "code": "K.5.2",
+           "text": "Identify when to ask for help in making health-related decisions (e.g., universal precaution procedures, bumps, bruises, falls)"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "standard-6-consumer-health",
+     "title": "Standard 6: Consumer Health",
+     "topics": [
+      {
+       "id": "students-demonstrate-the-ability-to-access-use-a",
+       "title": "Students demonstrate the ability to access, use, and evaluate health-related information, products, and services",
+       "subtopics": [
+        {
+         "id": "access-and-use-of-health-information-products-an",
+         "title": "Access and Use of Health Information, Products, and Services",
+         "outcomes": [
+          {
+           "code": "K.6.1",
+           "text": "Identify the basic tasks of community health service providers (e.g., doctors, nurses, firefighters, police)"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "standard-7-health-advocacy",
+     "title": "Standard 7: Health Advocacy",
+     "topics": [
+      {
+       "id": "students-demonstrate-the-ability-to-advocate-for",
+       "title": "Students demonstrate the ability to advocate for personal, family, and community health",
+       "subtopics": [
+        {
+         "id": "advocating-for-health",
+         "title": "Advocating for Health",
+         "outcomes": [
+          {
+           "code": "K.7.1",
+           "text": "Identify positive health choices (e.g., eat fruits and vegetables, physical activity with friends, use medicine safely)"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "1",
+   "units": [
+    {
+     "id": "standard-1-growth-and-development",
+     "title": "Standard 1: Growth and Development",
+     "topics": [
+      {
+       "id": "students-understand-the-fundamental-concepts-of-",
+       "title": "Students understand the fundamental concepts of growth and development",
+       "subtopics": [
+        {
+         "id": "human-growth-and-development",
+         "title": "Human Growth and Development",
+         "outcomes": [
+          {
+           "code": "1.1.1",
+           "text": "Compare the diverse patterns of growth (e.g., body size-short/tall, overweight/underweight, baby teeth/permanent teeth) and development among individuals"
+          }
+         ]
+        },
+        {
+         "id": "body-systems",
+         "title": "Body Systems",
+         "outcomes": [
+          {
+           "code": "1.1.2",
+           "text": "Explain how to care for the major body parts (e.g., heart, lung, muscles, eyes, and ears)"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "standard-2-personal-health",
+     "title": "Standard 2: Personal Health",
+     "topics": [
+      {
+       "id": "students-understand-concepts-related-to-the-prom",
+       "title": "Students understand concepts related to the promotion of health and the prevention of disease",
+       "subtopics": [
+        {
+         "id": "personal-health",
+         "title": "Personal Health",
+         "outcomes": [
+          {
+           "code": "1.2.1",
+           "text": "Explain how healthy behaviors impact personal, emotional, social, and physical health (e.g., following new food pyramid guidelines – better nutrition and healthy weight, physical activity-more energy, sleepenergy and attention span, hygiene-self esteem)"
+          },
+          {
+           "code": "1.2.2",
+           "text": "Identify safe behaviors in a range of situations (e.g., fire-stop, drop, and roll, water-life jacket, bike-helmet, good touch/bad touch, technology-use computer with parent supervision)"
+          }
+         ]
+        },
+        {
+         "id": "disease-and-illness",
+         "title": "Disease and Illness",
+         "outcomes": [
+          {
+           "code": "1.2.3",
+           "text": "Identify symptoms of common illnesses/conditions (e.g., cold, flu, diabetes, asthma, allergies)"
+          },
+          {
+           "code": "1.2.4",
+           "text": "Explain the importance of regular health check-ups (e.g., dental-healthy teeth and gums, vision-glasses/no glasses, hearing ability to receive information, speech, communicate effectively, wellness checks maintenance of healthy body)"
+          }
+         ]
+        },
+        {
+         "id": "safety-and-injury-prevention",
+         "title": "Safety and Injury Prevention",
+         "outcomes": [
+          {
+           "code": "1.2.5",
+           "text": "Describe safe behaviors one can use to reduce the risk of injury (e.g., wearing seat belts, using protective equipment such as helmets, obeying pedestrian rules, checking traffic before crossing a road, calling 911, fire safety-stop, drop and roll)"
+          },
+          {
+           "code": "1.2.6",
+           "text": "Describe the purpose of safety rules for home, school, and community settings (e.g., school drills, fire and tornado drills, calling 911 for emergencies, water safety rules, technology safety)"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "standard-3-external-health-factors",
+     "title": "Standard 3: External Health Factors",
+     "topics": [
+      {
+       "id": "students-understand-the-effect-of-external-facto",
+       "title": "Students understand the effect of external factors on the health of individuals, families, communities, and the environment",
+       "subtopics": [
+        {
+         "id": "external-influences-on-health",
+         "title": "External Influences on Health",
+         "outcomes": [
+          {
+           "code": "1.3.1",
+           "text": "Identify the roles of family and community in keeping the environment clean and healthy (e.g., participation in a community recycling project, adopt a highway, second hand smoke)"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "standard-4-communication-skills",
+     "title": "Standard 4: Communication Skills",
+     "topics": [
+      {
+       "id": "students-demonstrate-the-ability-to-use-communic",
+       "title": "Students demonstrate the ability to use communication skills to enhance health",
+       "subtopics": [
+        {
+         "id": "interpersonal-communication",
+         "title": "Interpersonal Communication",
+         "outcomes": [
+          {
+           "code": "1.4.1",
+           "text": "Describe healthy ways to share feelings and emotions (e.g., happy-laughing, happy-crying, happy-smiling, sad-quiet, sad-crying, sad mad)"
+          },
+          {
+           "code": "1.4.2",
+           "text": "Describe characteristics (e.g., being helpful to a family in need, sharing) needed to be a responsible friend and family member"
+          }
+         ]
+        },
+        {
+         "id": "conflict-resolution",
+         "title": "Conflict Resolution",
+         "outcomes": [
+          {
+           "code": "1.4.3",
+           "text": "Identify ways to avoid threatening situations (e.g., avoid certain places, don't go alone, walk away)"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "standard-5-decision-making-and-goal-setting",
+     "title": "Standard 5: Decision Making and Goal Setting",
+     "topics": [
+      {
+       "id": "students-demonstrate-the-ability-to-use-decision",
+       "title": "Students demonstrate the ability to use decision making and goal setting skills to enhance health",
+       "subtopics": [
+        {
+         "id": "goal-setting",
+         "title": "Goal Setting",
+         "outcomes": [
+          {
+           "code": "1.5.1",
+           "text": "Set a short-term personal health goal (e.g., daily physical activity, watching less television, eating healthy foods) and describe a plan to achieve it"
+          }
+         ]
+        },
+        {
+         "id": "assistance-with-decisions-and-goals",
+         "title": "Assistance with Decisions and Goals",
+         "outcomes": [
+          {
+           "code": "1.5.2",
+           "text": "Describe situations for which it is appropriate to seek assistance in making health and safety-related decisions (e.g., going to school personnel in dealing with a school bully)"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "standard-6-consumer-health",
+     "title": "Standard 6: Consumer Health",
+     "topics": [
+      {
+       "id": "students-demonstrate-the-ability-to-access-use-a",
+       "title": "Students demonstrate the ability to access, use, and evaluate health-related information, products, and services",
+       "subtopics": [
+        {
+         "id": "access-and-use-of-health-information-products-an",
+         "title": "Access and Use of Health Information, Products, and Services",
+         "outcomes": [
+          {
+           "code": "1.6.1",
+           "text": "Explain from whom (e.g., doctors, nurses, firefighters, police, school counselors, school nurses) and where (e.g., nurse's office, counselor's office, fire station) to seek health-related assistance at school and in the community"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "standard-7-health-advocacy",
+     "title": "Standard 7: Health Advocacy",
+     "topics": [
+      {
+       "id": "students-demonstrate-the-ability-to-advocate-for",
+       "title": "Students demonstrate the ability to advocate for personal, family, and community health",
+       "subtopics": [
+        {
+         "id": "advocating-for-health",
+         "title": "Advocating for Health",
+         "outcomes": [
+          {
+           "code": "1.7.1",
+           "text": "Identify ways to encourage peers in making positive healthy choices (e.g., food choices, safety practices, saying no to harmful substances, participation in physical activity)"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "2",
+   "units": [
+    {
+     "id": "standard-1-growth-and-development",
+     "title": "Standard 1: Growth and Development",
+     "topics": [
+      {
+       "id": "students-understand-the-fundamental-concepts-of-",
+       "title": "Students understand the fundamental concepts of growth and development",
+       "subtopics": [
+        {
+         "id": "human-growth-and-development",
+         "title": "Human Growth and Development",
+         "outcomes": [
+          {
+           "code": "2.1.1",
+           "text": "Explain how responsibilities change as we grow older (e.g., tasks require more skill, strength, knowledge)"
+          }
+         ]
+        },
+        {
+         "id": "body-systems",
+         "title": "Body Systems",
+         "outcomes": [
+          {
+           "code": "2.1.2",
+           "text": "Explain the basic functions of the major parts of the body (e.g., heart, lungs, muscles, ears, eyes)"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "standard-2-personal-health",
+     "title": "Standard 2: Personal Health",
+     "topics": [
+      {
+       "id": "students-understand-concepts-related-to-the-prom",
+       "title": "Students understand concepts related to the promotion of health and the prevention of disease",
+       "subtopics": [
+        {
+         "id": "personal-health",
+         "title": "Personal Health",
+         "outcomes": [
+          {
+           "code": "2.2.1",
+           "text": "Describe how individuals can promote and protect their health (e.g., healthy eating planned meal, daily physical activity, wellness plan, sleep-regular patterns, personal hygiene daily routine, avoiding second hand smoke)"
+          },
+          {
+           "code": "2.2.2",
+           "text": "Identify appropriate and inappropriate responses in a range of situations (e.g., fire get out, call 911/don't hide; pedestrian-look both ways/don't dart into street; good touch/bad touch)"
+          }
+         ]
+        },
+        {
+         "id": "disease-and-illness",
+         "title": "Disease and Illness",
+         "outcomes": [
+          {
+           "code": "2.2.3",
+           "text": "Identify prevention strategies for common illnesses (e.g., cold, flu)"
+          }
+         ]
+        },
+        {
+         "id": "safety-and-injury-prevention",
+         "title": "Safety and Injury Prevention",
+         "outcomes": [
+          {
+           "code": "2.2.4",
+           "text": "Identify safe and unsafe situations (e.g., wearing seat belts/not in a booster chair, helmets/no helmets, life jacket/no life jacket)"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "standard-3-external-health-factors",
+     "title": "Standard 3: External Health Factors",
+     "topics": [
+      {
+       "id": "students-understand-the-effect-of-external-facto",
+       "title": "Students understand the effect of external factors on the health of individuals, families, communities, and the environment",
+       "subtopics": [
+        {
+         "id": "external-influences-on-health",
+         "title": "External Influences on Health",
+         "outcomes": [
+          {
+           "code": "2.3.1",
+           "text": "Identify ways in which the family influences and supports personal health practices and behaviors (e.g., preparing family meals using new food guide pyramid, portion control, basic hygiene, media/technology time, littering)"
+          },
+          {
+           "code": "2.3.2",
+           "text": "Identify ways the media can influence health behaviors (e.g., advertisements for food, product placement in television programs, product backing by athletes, noise pollution)"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "standard-4-communication-skills",
+     "title": "Standard 4: Communication Skills",
+     "topics": [
+      {
+       "id": "students-demonstrate-the-ability-to-use-communic",
+       "title": "Students demonstrate the ability to use communication skills to enhance health",
+       "subtopics": [
+        {
+         "id": "interpersonal-communication",
+         "title": "Interpersonal Communication",
+         "outcomes": [
+          {
+           "code": "2.4.1",
+           "text": "Distinguish between appropriate and inappropriate responses in a range of feelings and emotions (e.g., happy-laugh, sad-cry, sad-pouting)"
+          },
+          {
+           "code": "2.4.2",
+           "text": "Identify positive ways to get along with others (e.g., follow classroom and playground rules)"
+          },
+          {
+           "code": "2.4.3",
+           "text": "Describe ways in which people communicate without speaking (e.g., eye contact, body language, gestures)"
+          }
+         ]
+        },
+        {
+         "id": "conflict-resolution",
+         "title": "Conflict Resolution",
+         "outcomes": [
+          {
+           "code": "2.4.4",
+           "text": "Apply refusal skills (e.g., when to say no, when to walk away) that enhance health"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "standard-5-decision-making-and-goal-setting",
+     "title": "Standard 5: Decision Making and Goal Setting",
+     "topics": [
+      {
+       "id": "students-demonstrate-the-ability-to-use-decision",
+       "title": "Students demonstrate the ability to use decision making and goal setting skills to enhance health",
+       "subtopics": [
+        {
+         "id": "goal-setting",
+         "title": "Goal Setting",
+         "outcomes": [
+          {
+           "code": "2.5.1",
+           "text": "Describe the steps of goal setting (e.g., establish goal, explain how goals affect health, describe a plan to reach goal, evaluate progress)"
+          }
+         ]
+        },
+        {
+         "id": "assistance-with-decisions-and-goals",
+         "title": "Assistance with Decisions and Goals",
+         "outcomes": [
+          {
+           "code": "2.5.2",
+           "text": "Describe situations that require assistance for making health-related decisions (e.g., experienced peer pressure, bullied, injured, approached by a stranger)"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "standard-6-consumer-health",
+     "title": "Standard 6: Consumer Health",
+     "topics": [
+      {
+       "id": "students-demonstrate-the-ability-to-access-use-a",
+       "title": "Students demonstrate the ability to access, use, and evaluate health-related information, products, and services",
+       "subtopics": [
+        {
+         "id": "access-and-use-of-health-information-products-an",
+         "title": "Access and Use of Health Information, Products, and Services",
+         "outcomes": [
+          {
+           "code": "2.6.1",
+           "text": "Identify resources from home, school, and community that provide valid health information. (e.g., school counselor, health care providers, teachers, family members)"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "standard-7-health-advocacy",
+     "title": "Standard 7: Health Advocacy",
+     "topics": [
+      {
+       "id": "students-demonstrate-the-ability-to-advocate-for",
+       "title": "Students demonstrate the ability to advocate for personal, family, and community health",
+       "subtopics": [
+        {
+         "id": "advocating-for-health",
+         "title": "Advocating for Health",
+         "outcomes": [
+          {
+           "code": "2.7.1",
+           "text": "Describe ways to support peers and others in making positive health choices (e.g., helping a friend or family member choose healthy foods for a meal, physical activities instead of TV/computer/video games)"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "3",
+   "units": [
+    {
+     "id": "standard-1-growth-and-development",
+     "title": "Standard 1: Growth and Development",
+     "topics": [
+      {
+       "id": "students-understand-the-fundamental-concepts-of-",
+       "title": "Students understand the fundamental concepts of growth and development",
+       "subtopics": [
+        {
+         "id": "human-growth-and-development",
+         "title": "Human Growth and Development",
+         "outcomes": [
+          {
+           "code": "3.1.1",
+           "text": "Identify the stages of the life cycle (i.e., birth, infancy, childhood, adolescence, adulthood, late adulthood, death)"
+          },
+          {
+           "code": "3.1.2",
+           "text": "Identify examples of intellectual, emotional, social, and spiritual health during childhood (e.g., friendships, expression of feelings)"
+          }
+         ]
+        },
+        {
+         "id": "body-systems",
+         "title": "Body Systems",
+         "outcomes": [
+          {
+           "code": "3.1.3",
+           "text": "Identify basic human body systems and their functions (i.e., skeletal: gives body support and shape; muscular: helps body move; circulatory: moves blood throughout the body; respiratory: helps the body use the air we breathe; digestive: helps the body use food to make energy; nervous: controls all body actions)"
+          },
+          {
+           "code": "3.1.4",
+           "text": "Describe the effects of healthy and unhealthy foods on the body (e.g., healthy foods provide nutrients for growth and development; unhealthy foods contribute to a lack of energy and obesity)"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "standard-2-personal-health",
+     "title": "Standard 2: Personal Health",
+     "topics": [
+      {
+       "id": "students-understand-concepts-related-to-the-prom",
+       "title": "Students understand concepts related to the promotion of health and the prevention of disease",
+       "subtopics": [
+        {
+         "id": "personal-health",
+         "title": "Personal Health",
+         "outcomes": [
+          {
+           "code": "3.2.1",
+           "text": "Describe how personal health behaviors (e.g., grooming habits, wellness exams, proper nutrition, health fitness) affect individual well being"
+          },
+          {
+           "code": "3.2.2",
+           "text": "Explain how the family, school, and community influence personal health (e.g., family promotes personal health, school educates the youth, community provides resources)"
+          },
+          {
+           "code": "3.2.3",
+           "text": "Describe factors related to intellectual, emotional, social, and physical health (e.g., having trusted person to talk to, being physically active every day)"
+          }
+         ]
+        },
+        {
+         "id": "disease-and-illness",
+         "title": "Disease and Illness",
+         "outcomes": [
+          {
+           "code": "3.2.4",
+           "text": "Identify the differences between communicable and non-communicable illnesses and diseases (e.g., communicable: cold, flu, strep throat; non-communicable: asthma, allergies, cancer)"
+          }
+         ]
+        },
+        {
+         "id": "safety-and-injury-prevention",
+         "title": "Safety and Injury Prevention",
+         "outcomes": [
+          {
+           "code": "3.2.5",
+           "text": "Describe the characteristics of threatening situations (e.g., bullying, harassment, internet sites)"
+          },
+          {
+           "code": "3.2.6",
+           "text": "Explain personal safety procedures and use of equipment (e.g., life jackets, emergency exit routes, seatbelts)"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "standard-3-external-health-factors",
+     "title": "Standard 3: External Health Factors",
+     "topics": [
+      {
+       "id": "students-understand-the-effect-of-external-facto",
+       "title": "Students understand the effect of external factors on the health of individuals, families, communities, and the environment",
+       "subtopics": [
+        {
+         "id": "external-influences-on-health",
+         "title": "External Influences on Health",
+         "outcomes": [
+          {
+           "code": "3.3.1",
+           "text": "Identify different types of healthful community activities (e.g., hobbies, clubs, reading, physical activities, volunteering)"
+          },
+          {
+           "code": "3.3.2",
+           "text": "Explain the effects that peer pressure has on personal health (e.g., refusal skills)"
+          },
+          {
+           "code": "3.3.3",
+           "text": "Describe non-violent strategies to deal with conflicts and disputes (e.g., talking out the issue, controlling emotions, seeking a mediator)"
+          }
+         ]
+        },
+        {
+         "id": "health-and-the-environment",
+         "title": "Health and the Environment",
+         "outcomes": [
+          {
+           "code": "3.3.4",
+           "text": "Explain how people use natural resources (e.g., air, water, land)"
+          },
+          {
+           "code": "3.3.5",
+           "text": "Explain how pollution can affect the body (e.g., respiratory diseases, water borne diseases, chemical runoff)"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "standard-4-communication-skills",
+     "title": "Standard 4: Communication Skills",
+     "topics": [
+      {
+       "id": "students-demonstrate-the-ability-to-use-communic",
+       "title": "Students demonstrate the ability to use communication skills to enhance health",
+       "subtopics": [
+        {
+         "id": "interpersonal-communication",
+         "title": "Interpersonal Communication",
+         "outcomes": [
+          {
+           "code": "3.4.1",
+           "text": "Identify ways to communicate care, consideration, and respect of self and others (e.g., listening and encouraging others, using positive communication skills, demonstrating trust)"
+          }
+         ]
+        },
+        {
+         "id": "conflict-resolution",
+         "title": "Conflict Resolution",
+         "outcomes": [
+          {
+           "code": "3.4.2",
+           "text": "Explain when to communicate with responsible adults about health and safety decisions (e.g., stranger danger, good touch, bad touch, internet)"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "standard-5-decision-making-and-goal-setting",
+     "title": "Standard 5: Decision Making and Goal Setting",
+     "topics": [
+      {
+       "id": "students-demonstrate-the-ability-to-use-decision",
+       "title": "Students demonstrate the ability to use decision making and goal setting skills to enhance health",
+       "subtopics": [
+        {
+         "id": "goal-setting",
+         "title": "Goal Setting",
+         "outcomes": [
+          {
+           "code": "3.5.1",
+           "text": "Describe how to use goal setting to enhance personal health (e.g., increasing activity, making healthy food choices, improving endurance, flexibility, and strength)"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "standard-6-consumer-health",
+     "title": "Standard 6: Consumer Health",
+     "topics": [
+      {
+       "id": "students-demonstrate-the-ability-to-access-use-a",
+       "title": "Students demonstrate the ability to access, use, and evaluate health-related information, products, and services",
+       "subtopics": [
+        {
+         "id": "access-and-use-of-health-information-products-an",
+         "title": "Access and Use of Health Information, Products, and Services",
+         "outcomes": [
+          {
+           "code": "3.6.1",
+           "text": "Explain how to use resources from home, school, and community that provide valid health information (e.g., making an appointment with the school counselor, providing pertinent information to health care workers)"
+          },
+          {
+           "code": "3.6.2",
+           "text": "Identify ways to manage money in health-related decisions (e.g., fruit/candy, water/soda, roller blades/motorized scooter)"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "standard-7-health-advocacy",
+     "title": "Standard 7: Health Advocacy",
+     "topics": [
+      {
+       "id": "students-demonstrate-the-ability-to-advocate-for",
+       "title": "Students demonstrate the ability to advocate for personal, family, and community health",
+       "subtopics": [
+        {
+         "id": "advocating-for-health",
+         "title": "Advocating for Health",
+         "outcomes": [
+          {
+           "code": "3.7.1",
+           "text": "Identify ways to promote good health (e.g., positive role model, having a positive attitude about health)"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "4",
+   "units": [
+    {
+     "id": "standard-1-growth-and-development",
+     "title": "Standard 1: Growth and Development",
+     "topics": [
+      {
+       "id": "students-understand-the-fundamental-concepts-of-",
+       "title": "Students understand the fundamental concepts of growth and development",
+       "subtopics": [
+        {
+         "id": "human-growth-and-development",
+         "title": "Human Growth and Development",
+         "outcomes": [
+          {
+           "code": "4.1.1",
+           "text": "Explain the cycle of growth and development in humans from infancy to late adulthood"
+          },
+          {
+           "code": "4.1.2",
+           "text": "Explain the importance of intellectual, emotional, social, spiritual, and physical health during childhood (e.g., learning styles, healthy self-image, friendships, expression of feelings, fitness and wellness)"
+          }
+         ]
+        },
+        {
+         "id": "body-systems",
+         "title": "Body Systems",
+         "outcomes": [
+          {
+           "code": "4.1.3",
+           "text": "Describe how basic structure and functions of the human body systems are interrelated (e.g., skeletal system and muscular system work together to allow for movement)"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "standard-2-personal-health",
+     "title": "Standard 2: Personal Health",
+     "topics": [
+      {
+       "id": "students-understand-concepts-related-to-the-prom",
+       "title": "Students understand concepts related to the promotion of health and the prevention of disease",
+       "subtopics": [
+        {
+         "id": "personal-health",
+         "title": "Personal Health",
+         "outcomes": [
+          {
+           "code": "4.2.1",
+           "text": "Explain ways in which a safe and healthy school and community environment can promote personal health (e.g., classroom rules that promote safety)"
+          },
+          {
+           "code": "4.2.2",
+           "text": "Explain the relationship between food choices and personal health (e.g., unhealthy food choices contribute to high cholesterol, diabetes, heart disease, high risk of cancer, high blood pressure)"
+          }
+         ]
+        },
+        {
+         "id": "disease-and-illness",
+         "title": "Disease and Illness",
+         "outcomes": [
+          {
+           "code": "4.2.3",
+           "text": "Describe the different types of pathogens (e.g., bacteria, viruses, fungi, protists) and the diseases they cause"
+          }
+         ]
+        },
+        {
+         "id": "safety-and-injury-prevention",
+         "title": "Safety and Injury Prevention",
+         "outcomes": [
+          {
+           "code": "4.2.4",
+           "text": "Describe ways to identify risk taking situations (e.g., staying home alone) and how to avoid threatening situations (e.g., being approached by a stranger, internet sites)"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "standard-3-external-health-factors",
+     "title": "Standard 3: External Health Factors",
+     "topics": [
+      {
+       "id": "students-understand-the-effect-of-external-facto",
+       "title": "Students understand the effect of external factors on the health of individuals, families, communities, and the environment",
+       "subtopics": [
+        {
+         "id": "external-influences-on-health",
+         "title": "External Influences on Health",
+         "outcomes": [
+          {
+           "code": "4.3.1",
+           "text": "Explain how health careers (e.g., dietician, doctor, nurse) benefit an individual's community"
+          },
+          {
+           "code": "4.3.2",
+           "text": "Explain the importance of health care workers and how they benefit an individual's community (e.g., EMTs-monitoring participants in sporting events and ambulance rescue, school nurse-vision and hearing screenings)"
+          },
+          {
+           "code": "4.3.3",
+           "text": "Explain the purposes of advertisements and commercials for health-related products and services (e.g., motivate the consumer, promote goods and services)"
+          },
+          {
+           "code": "4.3.4",
+           "text": "Describe the different types of health-related advertisements and commercials in the media (e.g., testimonials, bandwagon)"
+          },
+          {
+           "code": "4.3.5",
+           "text": "Explain how a reduction in land, air, and water pollution can benefit our health (e.g., recycle, noise, plant trees)"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "standard-4-communication-skills",
+     "title": "Standard 4: Communication Skills",
+     "topics": [
+      {
+       "id": "students-demonstrate-the-ability-to-use-communic",
+       "title": "Students demonstrate the ability to use communication skills to enhance health",
+       "subtopics": [
+        {
+         "id": "interpersonal-communication",
+         "title": "Interpersonal Communication",
+         "outcomes": [
+          {
+           "code": "4.4.1",
+           "text": "Use appropriate communication skills (e.g., send a clear message through eye contact and body language, listen to each other, understand each other)"
+          }
+         ]
+        },
+        {
+         "id": "conflict-resolution",
+         "title": "Conflict Resolution",
+         "outcomes": [
+          {
+           "code": "4.4.2",
+           "text": "Develop and implement strategies for resolving conflicts (e.g., negotiation and compromise)"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "standard-5-decision-making-and-goal-setting",
+     "title": "Standard 5: Decision Making and Goal Setting",
+     "topics": [
+      {
+       "id": "students-demonstrate-the-ability-to-use-decision",
+       "title": "Students demonstrate the ability to use decision making and goal setting skills to enhance health",
+       "subtopics": [
+        {
+         "id": "goal-setting",
+         "title": "Goal Setting",
+         "outcomes": [
+          {
+           "code": "4.5.1",
+           "text": "Develop a long term plan to achieve a personal health goal (e.g., eating the proper servings from each group in the food pyramid)"
+          }
+         ]
+        },
+        {
+         "id": "decision-making",
+         "title": "Decision Making",
+         "outcomes": [
+          {
+           "code": "4.5.2",
+           "text": "Use communication and listening skills to enhance health, set personal boundaries, and develop and maintain positive relationships."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "standard-6-consumer-health",
+     "title": "Standard 6: Consumer Health",
+     "topics": [
+      {
+       "id": "students-demonstrate-the-ability-to-access-use-a",
+       "title": "Students demonstrate the ability to access, use, and evaluate health-related information, products, and services",
+       "subtopics": [
+        {
+         "id": "access-and-use-of-health-information-products-an",
+         "title": "Access and Use of Health Information, Products, and Services",
+         "outcomes": [
+          {
+           "code": "4.6.1",
+           "text": "Describe the characteristics of valid health information, products, and services (e.g., food pyramid, USDA, FDA, nutrition labels, CDC)"
+          },
+          {
+           "code": "4.6.2",
+           "text": "Describe ways to budget time and money to make health related decisions (e.g., recreation centers/movie, swimming/television)"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "standard-7-health-advocacy",
+     "title": "Standard 7: Health Advocacy",
+     "topics": [
+      {
+       "id": "students-demonstrate-the-ability-to-advocate-for",
+       "title": "Students demonstrate the ability to advocate for personal, family, and community health",
+       "subtopics": [
+        {
+         "id": "advocating-for-health",
+         "title": "Advocating for Health",
+         "outcomes": [
+          {
+           "code": "4.7.1",
+           "text": "Explain the importance of being a health advocate (e.g., positive role models, having a positive attitude about health, health fairs, posters)"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "5",
+   "units": [
+    {
+     "id": "standard-1-growth-and-development",
+     "title": "Standard 1: Growth and Development",
+     "topics": [
+      {
+       "id": "students-understand-the-fundamental-concepts-of-",
+       "title": "Students understand the fundamental concepts of growth and development",
+       "subtopics": [
+        {
+         "id": "human-growth-and-development",
+         "title": "Human Growth and Development",
+         "outcomes": [
+          {
+           "code": "5.1.1",
+           "text": "Describe changes that occur during puberty (e.g., changes in voice, hair growth, mood swings, sensitivity to peer influence)"
+          }
+         ]
+        },
+        {
+         "id": "body-systems",
+         "title": "Body Systems",
+         "outcomes": [
+          {
+           "code": "5.1.2",
+           "text": "Explain the maintenance of human body systems (e.g., skeletal: choose foods high in calcium and vitamin D, be physically active)"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "standard-2-personal-health",
+     "title": "Standard 2: Personal Health",
+     "topics": [
+      {
+       "id": "students-understand-concepts-related-to-the-prom",
+       "title": "Students understand concepts related to the promotion of health and the prevention of disease",
+       "subtopics": [
+        {
+         "id": "personal-health",
+         "title": "Personal Health",
+         "outcomes": [
+          {
+           "code": "5.2.1",
+           "text": "Describe how a range of differences between self and peers relate to intellectual, emotional, social, and physical health"
+          },
+          {
+           "code": "5.2.2",
+           "text": "Explain the benefits of nutrition and physical activity as they relate to total wellness"
+          }
+         ]
+        },
+        {
+         "id": "disease-and-illness",
+         "title": "Disease and Illness",
+         "outcomes": [
+          {
+           "code": "5.2.3",
+           "text": "Explain situations when it is appropriate to seek health care and explain the importance of early detection (e.g., skin cancer) in the treatment of illness and disease."
+          }
+         ]
+        },
+        {
+         "id": "safety-and-injury-prevention",
+         "title": "Safety and Injury Prevention",
+         "outcomes": [
+          {
+           "code": "5.2.4",
+           "text": "Identify basic first aid procedures for common emergencies (e.g., choking, minor burns, bleeding, shock, poisoning)"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "standard-3-external-health-factors",
+     "title": "Standard 3: External Health Factors",
+     "topics": [
+      {
+       "id": "students-understand-the-effect-of-external-facto",
+       "title": "Students understand the effect of external factors on the health of individuals, families, communities, and the environment",
+       "subtopics": [
+        {
+         "id": "external-influences-on-health",
+         "title": "External Influences on Health",
+         "outcomes": [
+          {
+           "code": "5.3.1",
+           "text": "Identify ways an individual's family, friends, and culture influence personal and community health practices"
+          },
+          {
+           "code": "5.3.2",
+           "text": "Describe ways the media can influence an individual's thoughts, feelings, and health behaviors"
+          },
+          {
+           "code": "5.3.3",
+           "text": "Identify ways in which technology can influence personal health (e.g., health related web sites, blood pressure cuffs, pedometers)"
+          }
+         ]
+        },
+        {
+         "id": "health-and-the-environment",
+         "title": "Health and the Environment",
+         "outcomes": [
+          {
+           "code": "5.3.4",
+           "text": "Describe ways the environment affects personal health (e.g., the importance of clean air, water, and land; the relationship between the sun and skin cancer)"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "standard-4-communication-skills",
+     "title": "Standard 4: Communication Skills",
+     "topics": [
+      {
+       "id": "students-demonstrate-the-ability-to-use-communic",
+       "title": "Students demonstrate the ability to use communication skills to enhance health",
+       "subtopics": [
+        {
+         "id": "interpersonal-communication",
+         "title": "Interpersonal Communication",
+         "outcomes": [
+          {
+           "code": "5.4.1",
+           "text": "Explain how to develop relationships with family and friends using appropriate communication skills (e.g., I messages and body language)"
+          }
+         ]
+        },
+        {
+         "id": "conflict-resolution",
+         "title": "Conflict Resolution",
+         "outcomes": [
+          {
+           "code": "5.4.2",
+           "text": "Describe refusal skills to avoid or reduce health risks (e.g., drugs, tobacco, alcohol, peer pressure)"
+          },
+          {
+           "code": "5.4.3",
+           "text": "Apply the basic conflict resolution skills (e.g., stay calm, identify the problem, list ways to settle the problem, agree on how to settle the problem, ask a responsible adult for help)"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "standard-5-decision-making-and-goal-setting",
+     "title": "Standard 5: Decision Making and Goal Setting",
+     "topics": [
+      {
+       "id": "students-demonstrate-the-ability-to-use-decision",
+       "title": "Students demonstrate the ability to use decision making and goal setting skills to enhance health",
+       "subtopics": [
+        {
+         "id": "goal-setting",
+         "title": "Goal Setting",
+         "outcomes": [
+          {
+           "code": "5.5.1",
+           "text": "Develop and implement short term and long term personal goals that enhance health (e.g., nutrition journal, fitness plan)"
+          }
+         ]
+        },
+        {
+         "id": "decision-making",
+         "title": "Decision Making",
+         "outcomes": [
+          {
+           "code": "5.5.2",
+           "text": "Describe risky situations that require adult assistance (e.g., strangers, internet, peer pressure)"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "standard-6-consumer-health",
+     "title": "Standard 6: Consumer Health",
+     "topics": [
+      {
+       "id": "students-demonstrate-the-ability-to-access-use-a",
+       "title": "Students demonstrate the ability to access, use, and evaluate health-related information, products, and services",
+       "subtopics": [
+        {
+         "id": "access-and-use-of-health-information-products-an",
+         "title": "Access and Use of Health Information, Products, and Services",
+         "outcomes": [
+          {
+           "code": "5.6.1",
+           "text": "Describe the factors (e.g., commercials, peers, media) that can influence choices about health care products and services"
+          },
+          {
+           "code": "5.6.2",
+           "text": "Describe how to budget time and money for work and leisure activities (e.g., prioritization, work/play)"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "standard-7-health-advocacy",
+     "title": "Standard 7: Health Advocacy",
+     "topics": [
+      {
+       "id": "students-demonstrate-the-ability-to-advocate-for",
+       "title": "Students demonstrate the ability to advocate for personal, family, and community health",
+       "subtopics": [
+        {
+         "id": "advocating-for-health",
+         "title": "Advocating for Health",
+         "outcomes": [
+          {
+           "code": "5.7.1",
+           "text": "Describe methods for assisting others in making positive health choices (e.g., offering encouragement, using positive peer pressure)"
+          },
+          {
+           "code": "5.7.2",
+           "text": "Identify people and groups who advocate for health (e.g., health and physical education teachers, police officers, nurses, American Cancer Society, local community organizations)"
+          }
+         ]
+        },
+        {
+         "id": "communicating-health-information",
+         "title": "Communicating Health Information",
+         "outcomes": [
+          {
+           "code": "5.7.3",
+           "text": "Identify ways to convey accurate health information and ideas to individuals and groups (e.g., setting an example as a role-model, health fairs, posters, school and community presenters)"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "6",
+   "units": [
+    {
+     "id": "standard-1-growth-and-development",
+     "title": "Standard 1: Growth and Development",
+     "topics": [
+      {
+       "id": "students-understand-the-fundamental-concepts-of-",
+       "title": "Students understand the fundamental concepts of growth and development",
+       "subtopics": [
+        {
+         "id": "human-growth-and-development",
+         "title": "Human Growth and Development",
+         "outcomes": [
+          {
+           "code": "6.1.1",
+           "text": "Identify physical, intellectual, social, and emotional changes that occur as the body ages throughout the life cycle"
+          },
+          {
+           "code": "6.1.2",
+           "text": "Describe the importance of intellectual, emotional, social, and physical health during adolescence (e.g., the effect of stress on mental performance, the effect of self-image on relationships)"
+          }
+         ]
+        },
+        {
+         "id": "body-systems",
+         "title": "Body Systems",
+         "outcomes": [
+          {
+           "code": "6.1.3",
+           "text": "Explain how body systems are affected by health behaviors (e.g., the effect of physical activity on the cardiovascular system)"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "standard-2-personal-health",
+     "title": "Standard 2: Personal Health",
+     "topics": [
+      {
+       "id": "students-understand-concepts-related-to-the-prom",
+       "title": "Students understand concepts related to the promotion of health and the prevention of disease",
+       "subtopics": [
+        {
+         "id": "personal-health",
+         "title": "Personal Health",
+         "outcomes": [
+          {
+           "code": "6.2.1",
+           "text": "Describe strategies for stress management (e.g., breathing and relaxation techniques, avoiding personal stressors, time management, physical activity)"
+          },
+          {
+           "code": "6.2.2",
+           "text": "Explain characteristics and conditions associated with positive self-esteem (e.g., confidence, self-worth)"
+          }
+         ]
+        },
+        {
+         "id": "disease-and-illness",
+         "title": "Disease and Illness",
+         "outcomes": [
+          {
+           "code": "6.2.3",
+           "text": "Identify the causes and prevention of common diseases and other health problems (e.g., asthma, diabetes, obesity, allergies, cardiovascular disease)"
+          }
+         ]
+        },
+        {
+         "id": "safety-and-injury-prevention",
+         "title": "Safety and Injury Prevention",
+         "outcomes": [
+          {
+           "code": "6.2.4",
+           "text": "Explain the relationship between healthy behaviors (e.g., riding bikes, skateboards, rollerblades) and health risks (with or without protective equipment)"
+          },
+          {
+           "code": "6.2.5",
+           "text": "Identify personal risks associated with harmful chemicals and drugs (e.g., accidents, addiction, depression, overdose)"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "standard-3-external-health-factors",
+     "title": "Standard 3: External Health Factors",
+     "topics": [
+      {
+       "id": "students-understand-the-effect-of-external-facto",
+       "title": "Students understand the effect of external factors on the health of individuals, families, communities, and the environment",
+       "subtopics": [
+        {
+         "id": "external-influences-on-health",
+         "title": "External Influences on Health",
+         "outcomes": [
+          {
+           "code": "6.3.1",
+           "text": "Describe ways external factors (e.g., family, peers, culture, media, technology) affect health in positive and negative ways (e.g., advertisements that promote or discourage tobacco and alcohol use; effects of TV, the internet and video games on physical activity)"
+          }
+         ]
+        },
+        {
+         "id": "health-and-the-environment",
+         "title": "Health and the Environment",
+         "outcomes": [
+          {
+           "code": "6.3.2",
+           "text": "Explain how the environment can affect personal health (e.g., second-hand smoke, available health care)"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "standard-4-communication-skills",
+     "title": "Standard 4: Communication Skills",
+     "topics": [
+      {
+       "id": "students-demonstrate-the-ability-to-use-communic",
+       "title": "Students demonstrate the ability to use communication skills to enhance health",
+       "subtopics": [
+        {
+         "id": "interpersonal-communication",
+         "title": "Interpersonal Communication",
+         "outcomes": [
+          {
+           "code": "6.4.1",
+           "text": "Describe social skills for building and maintaining positive relationships at school, work, and home (e.g., positive communication, cooperation, respect)"
+          }
+         ]
+        },
+        {
+         "id": "conflict-resolution",
+         "title": "Conflict Resolution",
+         "outcomes": [
+          {
+           "code": "6.4.2",
+           "text": "Identify strategies (e.g., refusal skills, negotiation skills) for coping with peer pressure"
+          },
+          {
+           "code": "6.4.3",
+           "text": "Identify conflicts (e.g., bullying, power plays or struggles, peer pressure, gangs) in schools, families, and communities"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "standard-5-decision-making-and-goal-setting",
+     "title": "Standard 5: Decision Making and Goal Setting",
+     "topics": [
+      {
+       "id": "students-demonstrate-the-ability-to-use-decision",
+       "title": "Students demonstrate the ability to use decision making and goal setting skills to enhance health",
+       "subtopics": [
+        {
+         "id": "goal-setting",
+         "title": "Goal Setting",
+         "outcomes": [
+          {
+           "code": "6.5.1",
+           "text": "Develop goals to sustain or improve personal health practices"
+          }
+         ]
+        },
+        {
+         "id": "decision-making",
+         "title": "Decision Making",
+         "outcomes": [
+          {
+           "code": "6.5.2",
+           "text": "Describe the consequences of decisions regarding health behaviors (e.g., tobacco, alcohol, drugs, nutrition and physical activity) for oneself and others"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "standard-6-consumer-health",
+     "title": "Standard 6: Consumer Health",
+     "topics": [
+      {
+       "id": "students-demonstrate-the-ability-to-access-use-a",
+       "title": "Students demonstrate the ability to access, use, and evaluate health-related information, products, and services",
+       "subtopics": [
+        {
+         "id": "access-and-use-of-health-information-products-an",
+         "title": "Access and Use of Health Information, Products, and Services",
+         "outcomes": [
+          {
+           "code": "6.6.1",
+           "text": "Identify situations that require professional health services (e.g., depression, eating disorders, drug or alcohol usage)"
+          },
+          {
+           "code": "6.6.2",
+           "text": "Develop a plan to prioritize time and money for work and leisure activities"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "standard-7-health-advocacy",
+     "title": "Standard 7: Health Advocacy",
+     "topics": [
+      {
+       "id": "students-demonstrate-the-ability-to-advocate-for",
+       "title": "Students demonstrate the ability to advocate for personal, family, and community health",
+       "subtopics": [
+        {
+         "id": "advocating-for-health",
+         "title": "Advocating for Health",
+         "outcomes": [
+          {
+           "code": "6.7.1",
+           "text": "Identify strategies (e.g., compromise, active listening, knowledge of facts and myths, assertiveness) to influence and support others in making positive health choices"
+          }
+         ]
+        },
+        {
+         "id": "communicating-health-information",
+         "title": "Communicating Health Information",
+         "outcomes": [
+          {
+           "code": "6.7.2",
+           "text": "Describe ways to convey (e.g., Power Point presentation, group projects, posters) health information and ideas to individuals and groups"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "7-8",
+   "units": [
+    {
+     "id": "standard-1-growth-and-development",
+     "title": "Standard 1: Growth and Development",
+     "topics": [
+      {
+       "id": "students-understand-the-fundamental-concepts-of-",
+       "title": "Students understand the fundamental concepts of growth and development",
+       "subtopics": [
+        {
+         "id": "human-growth-and-development",
+         "title": "Human Growth and Development",
+         "outcomes": [
+          {
+           "code": "7-8.1.1",
+           "text": "Describe physical, intellectual, social, and emotional changes that occur throughout the life cycle (e.g., body maturation, brain development, social awareness)"
+          },
+          {
+           "code": "7-8.1.2",
+           "text": "Describe the interrelationship of intellectual, emotional, social, and physical health during adolescence (e.g., the effect of stress on mental performance, the effect of self-image on relationships)"
+          },
+          {
+           "code": "7-8.1.3",
+           "text": "Explain the processes of conception, prenatal development, and birth"
+          }
+         ]
+        },
+        {
+         "id": "body-systems",
+         "title": "Body Systems",
+         "outcomes": [
+          {
+           "code": "7-8.1.4",
+           "text": "Identify the anatomical structures of the reproductive system"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "standard-2-personal-health",
+     "title": "Standard 2: Personal Health",
+     "topics": [
+      {
+       "id": "students-understand-concepts-related-to-the-prom",
+       "title": "Students understand concepts related to the promotion of health and the prevention of disease",
+       "subtopics": [
+        {
+         "id": "personal-health",
+         "title": "Personal Health",
+         "outcomes": [
+          {
+           "code": "7-8.2.1",
+           "text": "Develop strategies for managing stress in their own lives (e.g., breathing and relaxation techniques, avoiding personal stressors, time management, physical activity)"
+          },
+          {
+           "code": "7-8.2.2",
+           "text": "Describe ways (e.g., personal achievement, community involvement, physical activity) to improve self-esteem"
+          },
+          {
+           "code": "7-8.2.3",
+           "text": "Explain how personal values and beliefs influence individual health practices (e.g., nutrition, personal hygiene, abstinence) and behaviors"
+          },
+          {
+           "code": "7-8.2.4",
+           "text": "Describe ways in which family history can have an impact on personal health (e.g., hereditary diseases)"
+          },
+          {
+           "code": "7-8.2.5",
+           "text": "Explain the relationship between sexual behavior and personal health (e.g., STD/STI, pregnancy, HIV/AIDS)"
+          }
+         ]
+        },
+        {
+         "id": "disease-and-illness",
+         "title": "Disease and Illness",
+         "outcomes": [
+          {
+           "code": "7-8.2.6",
+           "text": "Identify the symptoms and treatment of common diseases and other health problems (e.g., allergies, communicable/non-communicable)"
+          },
+          {
+           "code": "7-8.2.7",
+           "text": "Explain ways in which school and public health policies can influence health promotion and disease prevention (e.g., tobacco and wellness policies)"
+          },
+          {
+           "code": "7-8.2.8",
+           "text": "Explain the benefits of nutrition and physical activity as they relate to the overall wellbeing of individuals (e.g., obesity)"
+          }
+         ]
+        },
+        {
+         "id": "safety-and-injury-prevention",
+         "title": "Safety and Injury Prevention",
+         "outcomes": [
+          {
+           "code": "7-8.2.9",
+           "text": "Describe ways to reduce or prevent injuries (e.g., water safety, the use of appropriate safety equipment, obeying laws and procedures, understanding basic first aid)"
+          },
+          {
+           "code": "7-8.2.10",
+           "text": "Describe personal risks associated with harmful chemicals and drugs (e.g., addiction, depression, withdrawal, loss of control, driving under the influence, overdose, death)"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "standard-3-external-health-factors",
+     "title": "Standard 3: External Health Factors",
+     "topics": [
+      {
+       "id": "students-understand-the-effect-of-external-facto",
+       "title": "Students understand the effect of external factors on the health of individuals, families, communities, and the environment",
+       "subtopics": [
+        {
+         "id": "external-influences-on-health",
+         "title": "External Influences on Health",
+         "outcomes": [
+          {
+           "code": "7-8.3.1",
+           "text": "Analyze how external factors (e.g., family, peers, culture, media, technology) affect physical, mental, and social health in positive and negative ways (e.g., the effect of advertising on food choices, peer influences on internet usage)"
+          }
+         ]
+        },
+        {
+         "id": "health-and-the-environment",
+         "title": "Health and the Environment",
+         "outcomes": [
+          {
+           "code": "7-8.3.2",
+           "text": "Identify ways that physical environment (e.g., natural and man-made disasters, pollutants) influences the health of individuals"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "standard-4-communication-skills",
+     "title": "Standard 4: Communication Skills",
+     "topics": [
+      {
+       "id": "students-demonstrate-the-ability-to-use-communic",
+       "title": "Students demonstrate the ability to use communication skills to enhance health",
+       "subtopics": [
+        {
+         "id": "interpersonal-communication",
+         "title": "Interpersonal Communication",
+         "outcomes": [
+          {
+           "code": "7-8.4.1",
+           "text": "Describe effective verbal and nonverbal communication skills to enhance health (e.g., passive, assertive and aggressive behaviors)"
+          },
+          {
+           "code": "7-8.4.2",
+           "text": "Apply strategies (e.g., refusal skills, negotiation skills) for coping with peer pressure"
+          },
+          {
+           "code": "7-8.4.3",
+           "text": "Describe causes of conflicts (e.g., bullying, power plays or struggles, peer pressure, gangs) in schools, families, and communities and strategies to prevent conflict in such situations"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "standard-5-decision-making-and-goal-setting",
+     "title": "Standard 5: Decision Making and Goal Setting",
+     "topics": [
+      {
+       "id": "students-demonstrate-the-ability-to-use-decision",
+       "title": "Students demonstrate the ability to use decision making and goal setting skills to enhance health",
+       "subtopics": [
+        {
+         "id": "goal-setting",
+         "title": "Goal Setting",
+         "outcomes": [
+          {
+           "code": "7-8.5.1",
+           "text": "Identify ways in which personal health goals can be influenced by abilities, priorities, and responsibilities (e.g., maturation, peers, values, and family)"
+          }
+         ]
+        },
+        {
+         "id": "decision-making",
+         "title": "Decision Making",
+         "outcomes": [
+          {
+           "code": "7-8.5.2",
+           "text": "Identify the steps (e.g., clarify, consider, choose) of the decision-making process (e.g., going to a game or doing your homework"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "standard-6-consumer-health",
+     "title": "Standard 6: Consumer Health",
+     "topics": [
+      {
+       "id": "students-demonstrate-the-ability-to-access-use-a",
+       "title": "Students demonstrate the ability to access, use, and evaluate health-related information, products, and services",
+       "subtopics": [
+        {
+         "id": "access-and-use-of-health-information-products-an",
+         "title": "Access and Use of Health Information, Products, and Services",
+         "outcomes": [
+          {
+           "code": "7-8.6.1",
+           "text": "Explain how to use community resources and services (e.g., phone book, hotlines, clinics/hospitals, local clergy, school counselor, trusted adults) that provide valid health information"
+          }
+         ]
+        },
+        {
+         "id": "selection-and-evaluation-of-health-information-p",
+         "title": "Selection and Evaluation of Health Information, Products, and Services",
+         "outcomes": [
+          {
+           "code": "7-8.6.2",
+           "text": "Analyze the validity of common health information, products, and services (e.g., brand-name versus generic medicine, health fads, weight loss fads, tanning booths)"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "standard-7-health-advocacy",
+     "title": "Standard 7: Health Advocacy",
+     "topics": [
+      {
+       "id": "students-demonstrate-the-ability-to-advocate-for",
+       "title": "Students demonstrate the ability to advocate for personal, family, and community health",
+       "subtopics": [
+        {
+         "id": "advocating-for-health",
+         "title": "Advocating for Health",
+         "outcomes": [
+          {
+           "code": "7-8.7.1",
+           "text": "Describe strategies (e.g., compromise, active listening, knowledge of facts, assertiveness) to influence and work cooperatively with others to advocate for healthy individuals, families, and communities"
+          }
+         ]
+        },
+        {
+         "id": "communicating-health-information",
+         "title": "Communicating Health Information",
+         "outcomes": [
+          {
+           "code": "7-8.7.2",
+           "text": "Identify myths and facts related to health issues (e.g., pregnancy, HIV transmission, drug use)"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "9-12",
+   "units": [
+    {
+     "id": "standard-1-growth-and-development",
+     "title": "Standard 1: Growth and Development",
+     "topics": [
+      {
+       "id": "students-understand-the-fundamental-concepts-of-",
+       "title": "Students understand the fundamental concepts of growth and development",
+       "subtopics": [
+        {
+         "id": "human-growth-and-development",
+         "title": "Human Growth and Development",
+         "outcomes": [
+          {
+           "code": "9-12.1.1",
+           "text": "Explain how the physical, intellectual, social, and spiritual changes that occur throughout life differ among individuals, families, and communities)"
+          },
+          {
+           "code": "9-12.1.2",
+           "text": "Explain how physical, intellectual, social, spiritual, and cultural factors influence attitudes toward sexuality"
+          },
+          {
+           "code": "9-12.1.3",
+           "text": "Describe the importance of prenatal and postnatal care to both parents and child"
+          }
+         ]
+        },
+        {
+         "id": "body-systems",
+         "title": "Body Systems",
+         "outcomes": [
+          {
+           "code": "9-12.1.4",
+           "text": "Explain how personal health behaviors impact the functioning of body systems (e.g., stress weakens the immune system, lack of exercise may lead to obesity, tobacco use may lead to cancer, risky behaviors may lead to HIV/AIDS or STD/STIs)"
+          },
+          {
+           "code": "9-12.1.5",
+           "text": "Explain the functions of the reproductive system"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "standard-2-personal-health",
+     "title": "Standard 2: Personal Health",
+     "topics": [
+      {
+       "id": "students-understand-concepts-related-to-the-prom",
+       "title": "Students understand concepts related to the promotion of health and the prevention of disease",
+       "subtopics": [
+        {
+         "id": "disease-and-illness",
+         "title": "Disease and Illness",
+         "outcomes": [
+          {
+           "code": "9-12.2.4",
+           "text": "Explain the importance of regular physical examinations (e.g., self-examination of breasts or testicles and physical examination by a physician) in detecting and treating diseases early"
+          },
+          {
+           "code": "9-12.2.5",
+           "text": "Describe how prevention and treatment of health problems are influenced by research and medical advances (e.g., recent improvements in the treatment of cancer, diabetes, and heart disease; advanced surgical techniques; HIV/AIDS)"
+          },
+          {
+           "code": "9-12.2.6",
+           "text": "Describe the social and economic effects of disease on individuals, families, and communities (e.g., absenteeism from work and school, loss of income, epidemics of infectious disease)"
+          }
+         ]
+        },
+        {
+         "id": "safety-and-injury-prevention",
+         "title": "Safety and Injury Prevention",
+         "outcomes": [
+          {
+           "code": "9-12.2.7",
+           "text": "Describe strategies for enhancing health and safety at home, in the community, and in the workplace (e.g., making an emergency evacuation plan for the home, locating and using an Automated External Defibrillator in the community, identifying proper lifting techniques for heavy objects, CPR/first aid training)"
+          }
+         ]
+        },
+        {
+         "id": "personal-health-wellness",
+         "title": "Personal Health & Wellness",
+         "outcomes": [
+          {
+           "code": "9-12.2.1",
+           "text": "Analyze healthy versus unhealthy behaviors and their relationships to health promotion and disease prevention (e.g., active lifestyle vs. sedentary lifestyle, healthy diet vs. fad diets)"
+          },
+          {
+           "code": "9-12.2.2",
+           "text": "Apply strategies for enhancing personal health (e.g., self-discipline, commitment, perseverance, support)"
+          },
+          {
+           "code": "9-12.2.3",
+           "text": "Explain ways individuals can take responsibility for enhancing their own health (e.g., personal responsibility for dietary choices and reading labels, participating in physical activities, stress reduction, abstinence)"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "standard-3-external-health-factors",
+     "title": "Standard 3: External Health Factors",
+     "topics": [
+      {
+       "id": "students-understand-the-effect-of-external-facto",
+       "title": "Students understand the effect of external factors on the health of individuals, families, communities, and the environment",
+       "subtopics": [
+        {
+         "id": "external-influences-on-health",
+         "title": "External Influences on Health",
+         "outcomes": [
+          {
+           "code": "9-12.3.1",
+           "text": "Explain how the community can influence the health of individuals (e.g., health information offered through community organizations, volunteer work at hospitals, community food banks)"
+          },
+          {
+           "code": "9-12.3.2",
+           "text": "Describe how cultural diversity enriches and challenges health behaviors (e.g., cultural differences related to health care and the treatment of disease, various food sources of nutrients available in different cultural and ethnic cuisines)"
+          },
+          {
+           "code": "9-12.3.3",
+           "text": "Explain how public health policies and government regulations (e.g., food and drug labeling, safe food handling and production regulations, community immunization programs, regulations regarding waste disposal) influence health"
+          }
+         ]
+        },
+        {
+         "id": "health-and-the-environment",
+         "title": "Health and the Environment",
+         "outcomes": [
+          {
+           "code": "9-12.3.4",
+           "text": "Evaluate how a physical environment influences the health of individuals and the community (e.g., the application of pesticides and herbicides on agricultural products; environmental issues that affect the water supply and nutritional quality of food)"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "standard-4-communication-skills",
+     "title": "Standard 4: Communication Skills",
+     "topics": [
+      {
+       "id": "students-demonstrate-the-ability-to-use-communic",
+       "title": "Students demonstrate the ability to use communication skills to enhance health",
+       "subtopics": [
+        {
+         "id": "interpersonal-communication",
+         "title": "Interpersonal Communication",
+         "outcomes": [
+          {
+           "code": "9-12.4.1",
+           "text": "Apply effective verbal and nonverbal communication skills to enhance health (e.g., send clear messages about the effects of tobacco use on health)"
+          }
+         ]
+        },
+        {
+         "id": "conflict-resolution",
+         "title": "Conflict Resolution",
+         "outcomes": [
+          {
+           "code": "9-12.4.2",
+           "text": "Apply refusal, negotiation, and collaboration skills to enhance health and avoid or reduce health risks"
+          },
+          {
+           "code": "9-12.4.3",
+           "text": "Explain why a particular strategy (e.g., role-play/group situations) is appropriate for a given situation (e.g., preventing, managing, or resolving interpersonal conflicts)"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "standard-5-decision-making-and-goal-setting",
+     "title": "Standard 5: Decision Making and Goal Setting",
+     "topics": [
+      {
+       "id": "students-demonstrate-the-ability-to-use-decision",
+       "title": "Students demonstrate the ability to use decision making and goal setting skills to enhance health",
+       "subtopics": [
+        {
+         "id": "goal-setting",
+         "title": "Goal Setting",
+         "outcomes": [
+          {
+           "code": "9-12.5.1",
+           "text": "Develop a life-long plan to sustain personal health (e.g., remaining drug-free, maintaining safe levels of cholesterol and blood pressure)"
+          },
+          {
+           "code": "9-12.5.2",
+           "text": "Assess the personal life-long plan to address individual strengths, needs, and risks and monitor progress toward the goal"
+          }
+         ]
+        },
+        {
+         "id": "decision-making",
+         "title": "Decision Making",
+         "outcomes": [
+          {
+           "code": "9-12.5.3",
+           "text": "Apply the decision making process (e.g., gathering facts, assessing the alternatives, implementing a decision, evaluating the outcome) as it relates to a healthy lifestyle"
+          },
+          {
+           "code": "9-12.5.4",
+           "text": "Identify situations (e.g., fluoridated water in a community, television ratings in the home, natural disasters) that require individuals to work together in a collaborative decision-making process"
+          },
+          {
+           "code": "9-12.5.5",
+           "text": "Compare the short and long term impacts of alternative choices (e.g., pop vs. water, smoking vs. nonsmoking, wearing a seatbelt vs. not wearing a seatbelt, abstinence vs. sexual activity) in health-related situations"
+          },
+          {
+           "code": "9-12.5.6",
+           "text": "Explain consequences regarding the use, misuse, and abuse of alcohol, tobacco, and other drugs (e.g., adverse consequences for individuals, families, and the community)"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "standard-6-consumer-health",
+     "title": "Standard 6: Consumer Health",
+     "topics": [
+      {
+       "id": "students-demonstrate-the-ability-to-access-use-a",
+       "title": "Students demonstrate the ability to access, use, and evaluate health-related information, products, and services",
+       "subtopics": [
+        {
+         "id": "access-and-use-of-health-information-products-an",
+         "title": "Access and Use of Health Information, Products, and Services",
+         "outcomes": [
+          {
+           "code": "9-12.6.1",
+           "text": "Describe situations (e.g., diabetes, chronic depression, prenatal and postnatal care, alcohol or drug related problems, child abuse) that require professional health services in the areas of prevention, treatment, and rehabilitation"
+          },
+          {
+           "code": "9-12.6.2",
+           "text": "Describe resources (e.g., reputable internet sites such as Centers for Disease Control, Surgeon General, and National Institute of Health, Chamber of Commerce, or public health organizations) to access valid and reliable health information, products, and services both in and outside of the community"
+          },
+          {
+           "code": "9-12.6.3",
+           "text": "Describe one's financial responsibility for health care services (e.g., health insurance coverage, deductibles, premiums, care options)"
+          }
+         ]
+        },
+        {
+         "id": "selection-and-evaluation-of-health-information-p",
+         "title": "Selection and Evaluation of Health Information, Products, and Services",
+         "outcomes": [
+          {
+           "code": "9-12.6.4",
+           "text": "Identify local, state, federal, and private agencies (e.g., Food and Drug Administration [FDA], Environmental Protection Agency [EPA], United States Department of Agriculture [USDA], North Dakota Department of Health, North Dakota Attorney General's Office, and County Health) that protect and inform consumers"
+          },
+          {
+           "code": "9-12.6.5",
+           "text": "Determine criteria (e.g., costs and benefits, consumer guide, advice from health professionals, the media) used to evaluate health information, products, and services (e.g., research using medical journals, consumer health sources, research institutes)"
+          },
+          {
+           "code": "9-12.6.6",
+           "text": "Evaluate resources, products, and services based on appropriate criteria (e.g., costs and benefits), consumer guides, and advice from health professionals."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "standard-7-health-advocacy",
+     "title": "Standard 7: Health Advocacy",
+     "topics": [
+      {
+       "id": "students-demonstrate-the-ability-to-advocate-for",
+       "title": "Students demonstrate the ability to advocate for personal, family, and community health",
+       "subtopics": [
+        {
+         "id": "advocating-for-health",
+         "title": "Advocating for Health",
+         "outcomes": [
+          {
+           "code": "9-12.7.1",
+           "text": "Explain how an individual can improve or sustain community health initiatives and or services (e.g., exercising voting privileges on health-related matters; assisting in the development of health policies or laws; evaluating community health services and presenting concerns to legislators)"
+          },
+          {
+           "code": "9-12.7.2",
+           "text": "Develop strategies to influence and support others in making positive health choices (e.g., working as a peer trainer, counseling others on health issues, gaining support of school administrators and community leaders, service learning and health fair projects)"
+          },
+          {
+           "code": "9-12.7.3",
+           "text": "Apply strategies to influence and support others in making positive health choices (e.g., working as a peer trainer, counseling others on health issues, gaining support of school administrators and community leaders, service learning and health fair projects)"
+          }
+         ]
+        },
+        {
+         "id": "communicating-health-information",
+         "title": "Communicating Health Information",
+         "outcomes": [
+          {
+           "code": "9-12.7.4",
+           "text": "Apply strategies (e.g., utilizing peer and societal norms, data, surveys) to express information and opinions about health issues"
+          },
+          {
+           "code": "9-12.7.5",
+           "text": "Apply strategies for adapting health messages and techniques to a specific target audience (e.g., translating information from a health text to language appropriate for peer education)"
+          },
+          {
+           "code": "9-12.7.6",
+           "text": "Evaluate the effectiveness of a communication method (e.g., public service announcements, television or magazine advertisements, web sites) used to deliver health information"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "build": {
+  "builtAt": "2026-10-14T16:20:47.064Z",
+  "model": "none",
+  "usd": 0,
+  "expectedCodes": 187,
+  "coverage": 1,
+  "missingCodes": [],
+  "counts": {
+   "grades": 9,
+   "units": 63,
+   "topics": 63,
+   "subtopics": 117,
+   "outcomes": 187
+  },
+  "warnings": [
+   "unit \"Standard 3: External Health Factors\" (grade K) has a single outcome",
+   "unit \"Standard 6: Consumer Health\" (grade K) has a single outcome",
+   "unit \"Standard 7: Health Advocacy\" (grade K) has a single outcome",
+   "unit \"Standard 3: External Health Factors\" (grade 1) has a single outcome",
+   "unit \"Standard 6: Consumer Health\" (grade 1) has a single outcome",
+   "unit \"Standard 7: Health Advocacy\" (grade 1) has a single outcome",
+   "unit \"Standard 6: Consumer Health\" (grade 2) has a single outcome",
+   "unit \"Standard 7: Health Advocacy\" (grade 2) has a single outcome",
+   "unit \"Standard 5: Decision Making and Goal Setting\" (grade 3) has a single outcome",
+   "unit \"Standard 7: Health Advocacy\" (grade 3) has a single outcome",
+   "unit \"Standard 7: Health Advocacy\" (grade 4) has a single outcome"
+  ]
+ }
+}

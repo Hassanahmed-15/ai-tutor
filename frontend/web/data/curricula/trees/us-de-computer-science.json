@@ -1,0 +1,1732 @@
+{
+ "id": "us-de-computer-science",
+ "region": "US",
+ "framework": "Delaware state academic standards: Computer Science & Technology",
+ "board": null,
+ "qualification": "K-12",
+ "subject": "Computer Science & Technology",
+ "syllabusCode": null,
+ "gradeSystem": "grade",
+ "source": {
+  "urls": [
+   "https://api.commonstandardsproject.com/api/v1/jurisdictions/4391EA3250C84205A251B6E1B60295D8",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/4391EA3250C84205A251B6E1B60295D8_D2589285_grades-01-02-k",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/4391EA3250C84205A251B6E1B60295D8_D2589285_grades-03-04-05",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/4391EA3250C84205A251B6E1B60295D8_D2589285_grades-06-07-08",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/4391EA3250C84205A251B6E1B60295D8_D2589285_grades-09-10-11-12"
+  ],
+  "publisher": "Delaware state education agency (machine-readable via Common Standards Project / ASN)",
+  "licence": "CC BY 3.0 US, Desire2Learn Incorporated",
+  "firstExam": "2007"
+ },
+ "grades": [
+  {
+   "grade": "K-2",
+   "units": [
+    {
+     "id": "methodology-of-technology-education",
+     "title": "Methodology of Technology Education",
+     "topics": [
+      {
+       "id": "students-will-recognize-the-nature-impacts-and-e",
+       "title": "Students will recognize The Nature, Impacts, and Evolution of Technology as they relate to the chronological human presence on Earth, as well as recognize the consequential influence of inventions and innovations that extend human capabilities",
+       "subtopics": [
+        {
+         "id": "develop-a-nascent-awareness-of-the-technological",
+         "title": "Develop a nascent awareness of the technological world in which they live",
+         "outcomes": [
+          {
+           "code": "M1.01.01",
+           "text": "Share ideas with peers and reflect on how technology affects their view of the world in which they live."
+          },
+          {
+           "code": "M1.01.07",
+           "text": "Understand the difference between a world with technology and a world without technology."
+          },
+          {
+           "code": "M1.01.08",
+           "text": "Develop a nascent awareness of technology existing as part of the past, present, and future."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "students-will-effectively-communicate-technologi",
+       "title": "Students will effectively communicate technological solutions by using Technology Education as an Interdisciplinary and Technological Link",
+       "subtopics": [
+        {
+         "id": "begin-to-use-skills-and-knowledge-from-various-c",
+         "title": "Begin to use skills and knowledge from various content areas to solve problems",
+         "outcomes": [
+          {
+           "code": "M2.01.01",
+           "text": "Demonstrate an awareness that various content areas can be used during the design process."
+          },
+          {
+           "code": "M2.01.03",
+           "text": "Begin to integrate the problem-solving process with areas of daily life."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "students-will-develop-and-apply-a-practical-unde",
+       "title": "Students will develop and apply a practical understanding of The Use and Management of Technological Resources and Systems",
+       "subtopics": [
+        {
+         "id": "begin-to-identify-the-resources-and-systems-avai",
+         "title": "Begin to identify the resources and systems available to solve technological problems",
+         "outcomes": [
+          {
+           "code": "M3.01.01",
+           "text": "Recognize that a variety of technological resources (e.g., people, information, materials, tools and machines, energy, capital, and time) are used to solve problems."
+          },
+          {
+           "code": "M3.01.02",
+           "text": "Explore the use of appropriate materials for a specific challenge."
+          },
+          {
+           "code": "M3.01.03",
+           "text": "Understand that people plan in order to accomplish tasks."
+          },
+          {
+           "code": "M3.01.05",
+           "text": "Begin to realize the ways things work and that different materials are used to manufacture things."
+          },
+          {
+           "code": "M3.01.06",
+           "text": "Identify differences between natural and man-made resources, renewable and nonrenewable resources, and natural and man-made systems."
+          },
+          {
+           "code": "M3.01.08",
+           "text": "Begin to name hand tools and use them correctly and safely."
+          },
+          {
+           "code": "M3.01.09",
+           "text": "Recognize and use everyday symbols."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "students-will-demonstrate-technological-problem-",
+       "title": "Students will demonstrate technological problem solving by applying The Design Process and The Systems Model",
+       "subtopics": [
+        {
+         "id": "begin-to-solve-technological-challenges-using-av",
+         "title": "Begin to solve technological challenges using available resources",
+         "outcomes": [
+          {
+           "code": "M4.01.01",
+           "text": "Use pictures, symbols, models, and words to communicate ideas."
+          },
+          {
+           "code": "M4.01.02",
+           "text": "Brainstorm, build, test, and evaluate their models against specific criteria, understanding that all products and systems are subject to failure."
+          },
+          {
+           "code": "M4.01.03",
+           "text": "Begin to question and make observations and identify and research sources of information (e.g., peers, teachers and school staff, parents, literature, educational video, electronic media, the Internet, and the library media center)."
+          },
+          {
+           "code": "M4.01.04",
+           "text": "Solve technological challenges by using simple design briefs."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "students-will-develop-an-operational-awareness-o",
+       "title": "Students will develop an operational awareness of Technological Concepts through focused invention and subsequent innovation",
+       "subtopics": [
+        {
+         "id": "begin-to-identify-technological-concepts",
+         "title": "Begin to identify technological concepts",
+         "outcomes": [
+          {
+           "code": "M5.01.01",
+           "text": "Build an awareness of technological concepts through hands-on exploration."
+          },
+          {
+           "code": "M5.01.02",
+           "text": "Demonstrate technological concepts through hands-on activities."
+          },
+          {
+           "code": "M5.01.04",
+           "text": "Identify technological concepts present in daily life."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "students-will-explore-technology-related-skills-",
+       "title": "Students will explore technology-related skills, leadership skills, personal growth, and careers through opportunities provided by Active Participation in the Technology Student Association (TSA)",
+       "subtopics": [
+        {
+         "id": "begin-to-explore-technology-applications-through",
+         "title": "Begin to explore technology applications through TSA activities",
+         "outcomes": [
+          {
+           "code": "M6.01.01",
+           "text": "Engage in activities designed to show how modern technology makes it easier to accomplish everyday tasks."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "technical-and-practical-application-of-technolog",
+     "title": "Technical and Practical Application of Technology Education",
+     "topics": [
+      {
+       "id": "students-will-develop-an-understanding-of-the-de",
+       "title": "Students will develop an understanding of The Design Process and be able to apply and transfer the related knowledge and skills to solve technological problems",
+       "subtopics": [
+        {
+         "id": "realize-that-everyone-can-design-solutions-to-te",
+         "title": "Realize that everyone can design solutions to technological process",
+         "outcomes": [
+          {
+           "code": "TPA1.01.01",
+           "text": "Design is a creative process."
+          },
+          {
+           "code": "TPA1.01.04",
+           "text": "The engineering design process includes identifying a problem, searching for ideas, and developing and sharing solutions."
+          },
+          {
+           "code": "TPA1.01.05",
+           "text": "Expressing ideas verbally and through sketches and models is an important part of the design process."
+          },
+          {
+           "code": "TPA1.01.08",
+           "text": "Asking questions and making observations helps a person to figure out how things work."
+          },
+          {
+           "code": "TPA1.01.09",
+           "text": "All products and systems are subject to failure but many can also be fixed."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "students-will-develop-an-understanding-of-agricu",
+       "title": "Students will develop an understanding of Agricultural, Bio-related, and Medical Technologies and be able to apply and transfer the related knowledge and skills",
+       "subtopics": [
+        {
+         "id": "begin-to-identify-and-recognize-the-differences-",
+         "title": "Begin to identify and recognize the differences between agricultural, bio-related, and medical technologies",
+         "outcomes": [
+          {
+           "code": "TPA2.01.01",
+           "text": "The use of agricultural technology makes it possible for food to be available year round."
+          },
+          {
+           "code": "TPA2.01.03",
+           "text": "Many different tools and materials are necessary to make up and control an ecosystem and its components."
+          },
+          {
+           "code": "TPA2.01.08",
+           "text": "Vaccinations protect people from contracting certain diseases, while medicines help people who are sick get better."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "students-will-develop-an-understanding-of-inform",
+       "title": "Students will develop an understanding of Information and Communication Technologies and be able to apply and transfer the related knowledge and skills",
+       "subtopics": [
+        {
+         "id": "begin-to-identify-and-recognize-the-differences-",
+         "title": "Begin to identify and recognize the differences between information and communication technologies",
+         "outcomes": [
+          {
+           "code": "TPA3.01.01",
+           "text": "Data that has been organized is information."
+          },
+          {
+           "code": "TPA3.01.02",
+           "text": "Information sent via technological systems can travel over a long distance."
+          },
+          {
+           "code": "TPA3.01.03",
+           "text": "Symbols are a message of communication technology."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "students-will-develop-an-understanding-of-drafti",
+       "title": "Students will develop an understanding of Drafting, Design, and CADD and be able to apply and transfer the related knowledge and skills",
+       "subtopics": [
+        {
+         "id": "begin-to-identify-and-recognize-the-differences-",
+         "title": "Begin to identify and recognize the differences between Drafting, Design, and CADD",
+         "outcomes": [
+          {
+           "code": "TPA4.01.01",
+           "text": "There is a set of primary design components."
+          },
+          {
+           "code": "TPA4.01.02",
+           "text": "Geometric shapes can be put together to form various objects."
+          },
+          {
+           "code": "TPA4.01.03",
+           "text": "There are size differences between objects."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "students-will-develop-an-understanding-of-energy",
+       "title": "Students will develop an understanding of Energy, Power, and Transportation Technologies and be able to apply and transfer the related knowledge and skills",
+       "subtopics": [
+        {
+         "id": "begin-to-identify-and-recognize-the-differences-",
+         "title": "Begin to identify and recognize the differences between Energy, Power, and Transportation Technologies",
+         "outcomes": [
+          {
+           "code": "TPA5.01.01",
+           "text": "Energy comes in many forms."
+          },
+          {
+           "code": "TPA5.01.02",
+           "text": "Energy should not be wasted."
+          },
+          {
+           "code": "TPA5.01.06",
+           "text": "A transportation system has many parts, which work together to help people travel."
+          },
+          {
+           "code": "TPA5.01.07",
+           "text": "Vehicles move people and goods from place to place, for instance, across the land or water or through the air or space."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "students-will-develop-an-understanding-of-constr",
+       "title": "Students will develop an understanding of Construction and Manufacturing Technologies and be able to apply and transfer the related knowledge and skills",
+       "subtopics": [
+        {
+         "id": "begin-to-identify-and-recognize-the-differences-",
+         "title": "Begin to identify and recognize the differences between Construction and Manufacturing Technologies",
+         "outcomes": [
+          {
+           "code": "TPA6.01.01",
+           "text": "Construction and manufacturing and construction systems change the form of natural materials in order to make those materials useful."
+          },
+          {
+           "code": "TPA6.01.03",
+           "text": "Constructed and manufactured products are designed."
+          },
+          {
+           "code": "TPA6.01.07",
+           "text": "People live, work, and attend school in different types of buildings."
+          },
+          {
+           "code": "TPA6.01.08",
+           "text": "The type of structure determines how the parts of the structure are assembled."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "3-5",
+   "units": [
+    {
+     "id": "methodology-of-technology-education",
+     "title": "Methodology of Technology Education",
+     "topics": [
+      {
+       "id": "students-will-recognize-the-nature-impacts-and-e",
+       "title": "Students will recognize The Nature, Impacts, and Evolution of Technology as they relate to the chronological human presence on Earth, as well as recognize the consequential influence of inventions and innovations that extend human capabilities",
+       "subtopics": [
+        {
+         "id": "begin-to-realize-that-technology-can-have-both-n",
+         "title": "Begin to realize that technology can have both negative and positive impacts and effects",
+         "outcomes": [
+          {
+           "code": "M1.01.01",
+           "text": "Recognize and identify technological trade-offs and the impact of technology on individuals, families, communities, geographic areas, Earth, and more."
+          },
+          {
+           "code": "M1.01.05",
+           "text": "Create models or pictorial representations of simple technological inventions."
+          },
+          {
+           "code": "M1.01.06",
+           "text": "Compare, contrast, and classify collected information in order to identify patterns."
+          },
+          {
+           "code": "M1.01.07",
+           "text": "Produce a written explanation of how various technological inventions work."
+          },
+          {
+           "code": "M1.01.08",
+           "text": "Describe the evolution of technological concepts, including changes in the provision of food, clothing, and protection."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "students-will-effectively-communicate-technologi",
+       "title": "Students will effectively communicate technological solutions by using Technology Education as an Interdisciplinary and Technological Link",
+       "subtopics": [
+        {
+         "id": "recognize-academic-content-areas-as-resources-th",
+         "title": "Recognize academic content areas as resources that can be used to help solve challenges within formal design briefs",
+         "outcomes": [
+          {
+           "code": "M2.01.01",
+           "text": "Use academic content areas as resources to help solve challenges."
+          },
+          {
+           "code": "M2.01.02",
+           "text": "Show how technologies are combined."
+          },
+          {
+           "code": "M2.01.03",
+           "text": "Show evidence of the Design Process in academic content-area work."
+          },
+          {
+           "code": "M2.01.04",
+           "text": "Identify the relationships between technology and other fields of study."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "students-will-develop-and-apply-a-practical-unde",
+       "title": "Students will develop and apply a practical understanding of The Use and Management of Technological Resources and Systems",
+       "subtopics": [
+        {
+         "id": "begin-to-investigate-design-test-and-evaluate-cr",
+         "title": "Begin to investigate, design, test, and evaluate creative solutions to technological problems",
+         "outcomes": [
+          {
+           "code": "M3.01.01",
+           "text": "Recognize that technological resources vary with geographic location and with such things as the industrialization, economic strength, and import activity of a community or nation."
+          },
+          {
+           "code": "M3.01.02",
+           "text": "Employ technological resources while generating solutions to a specific challenge."
+          },
+          {
+           "code": "M3.01.03",
+           "text": "Recognize that requirements act as limits on the design of a product or system."
+          },
+          {
+           "code": "M3.01.04",
+           "text": "Follow step-by-step directions to assemble a product."
+          },
+          {
+           "code": "M3.01.06",
+           "text": "Demonstrate, through oral and visual presentations, an understanding of how technological resources, systems, and subsystems affect the world in which they live."
+          },
+          {
+           "code": "M3.01.07",
+           "text": "Understand that technology affects the environment in good and bad ways and that waste must be appropriately recycled or disposed to prevent unnecessary environmental harm."
+          },
+          {
+           "code": "M3.01.08",
+           "text": "Design and test multiple solutions to stated challenges using available resources, and select and safely use tools, products and systems in the process of constructing and assessing their solutions."
+          },
+          {
+           "code": "M3.01.09",
+           "text": "Use computers to access and organize information and common symbols to communicate key ideas."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "students-will-demonstrate-technological-problem-",
+       "title": "Students will demonstrate technological problem solving by applying The Design Process and The Systems Model",
+       "subtopics": [
+        {
+         "id": "begin-to-investigate-design-test-and-evaluate-cr",
+         "title": "Begin to investigate, design, test and evaluate creative solutions to technological challenges",
+         "outcomes": [
+          {
+           "code": "M4.01.01",
+           "text": "Evaluate creative models and solutions according to established design criteria."
+          },
+          {
+           "code": "M4.01.02",
+           "text": "Identify and collect information and test and evaluate the effectiveness of their solutions, and if necessary, the need for modification."
+          },
+          {
+           "code": "M4.01.03",
+           "text": "Combine experience and knowledge to use the design process to generate sketches and models."
+          },
+          {
+           "code": "M4.01.04",
+           "text": "Use tools and materials safely and effectively in order to build and modify their models."
+          },
+          {
+           "code": "M4.01.07",
+           "text": "Investigate how things are made and the ways in which they can be improved."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "students-will-develop-an-operational-awareness-o",
+       "title": "Students will develop an operational awareness of Technological Concepts through focused invention and subsequent innovation",
+       "subtopics": [
+        {
+         "id": "begin-to-understand-technological-concepts-and-t",
+         "title": "Begin to understand technological concepts and their relationships to the design of solutions",
+         "outcomes": [
+          {
+           "code": "M5.01.01",
+           "text": "Investigate the applications of technological concepts."
+          },
+          {
+           "code": "M5.01.02",
+           "text": "Understand technological concepts and apply these concepts through the use of appropriate presentation models."
+          },
+          {
+           "code": "M5.01.03",
+           "text": "Begin to identify simple technological systems and components."
+          },
+          {
+           "code": "M5.01.04",
+           "text": "Apply and demonstrate technological concepts through the use of appropriate research methods and materials."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "students-will-explore-technology-related-skills-",
+       "title": "Students will explore technology-related skills, leadership skills, personal growth, and careers through opportunities provided by Active Participation in the Technology Student Association (TSA)",
+       "subtopics": [
+        {
+         "id": "begin-to-explore-technology-through-tsa-activiti",
+         "title": "Begin to explore technology through TSA activities",
+         "outcomes": [
+          {
+           "code": "M6.01.01",
+           "text": "Participate in class work designed according to TSA activities."
+          },
+          {
+           "code": "M6.01.02",
+           "text": "Demonstrate leadership during small group activities."
+          },
+          {
+           "code": "M6.01.03",
+           "text": "Work in groups to solve basic design problems."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "technical-and-practical-application-of-technolog",
+     "title": "Technical and Practical Application of Technology Education",
+     "topics": [
+      {
+       "id": "students-will-develop-an-understanding-of-the-de",
+       "title": "Students will develop an understanding of The Design Process and be able to apply and transfer the related knowledge and skills to solve technological problems",
+       "subtopics": [
+        {
+         "id": "understand-the-design-process-as-a-purposeful-me",
+         "title": "Understand the design process as a purposeful method of planning practical solutions to technological problems",
+         "outcomes": [
+          {
+           "code": "TPA1.01.01",
+           "text": "Requirements for a design include factors such as desired elements and features, the limits placed on the design, and more."
+          },
+          {
+           "code": "TPA1.01.04",
+           "text": "The engineering design process involves defining a problem, generating ideas, selecting a solution, testing the solution, making and evaluating the product, and presenting the results."
+          },
+          {
+           "code": "TPA1.01.05",
+           "text": "It is important to be creative and open to all ideas during the design process."
+          },
+          {
+           "code": "TPA1.01.06",
+           "text": "Models are used to communicate ideas and test design processes."
+          },
+          {
+           "code": "TPA1.01.08",
+           "text": "Troubleshooting is a way to find out the cause of problems in order to fix those problems."
+          },
+          {
+           "code": "TPA1.01.09",
+           "text": "Invention and innovation are creative methods to turn ideas into real things."
+          },
+          {
+           "code": "TPA1.01.10",
+           "text": "The process of experimentation, which is common in science, can be used to solve technological problems."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "students-will-develop-an-understanding-of-agricu",
+       "title": "Students will develop an understanding of Agricultural, Bio-related, and Medical Technologies and be able to apply and transfer the related knowledge and skills",
+       "subtopics": [
+        {
+         "id": "begin-to-explore-agricultural-bio-related-and-me",
+         "title": "Begin to explore agricultural, bio-related, and medical technologies",
+         "outcomes": [
+          {
+           "code": "TPA2.01.01",
+           "text": "Artificial ecosystems are man-made environments that are designed to function as a unit composed of humans, plants, and animals."
+          },
+          {
+           "code": "TPA2.01.03",
+           "text": "Many processes used in agriculture require different procedures, products, or systems."
+          },
+          {
+           "code": "TPA2.01.08",
+           "text": "Vaccines are designed to prevent diseases from developing and spreading, while medicines are designed to relieve symptoms and stop the progression of diseases."
+          },
+          {
+           "code": "TPA2.01.09",
+           "text": "There are many products specifically to help people care of themselves."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "students-will-develop-an-understanding-of-inform",
+       "title": "Students will develop an understanding of Information and Communication Technologies and be able to apply and transfer the related knowledge and skills",
+       "subtopics": [
+        {
+         "id": "begin-to-explore-information-and-communication-t",
+         "title": "Begin to explore information and communication technologies",
+         "outcomes": [
+          {
+           "code": "TPA3.01.01",
+           "text": "Humans use technology to process information, make decisions, and solve problems."
+          },
+          {
+           "code": "TPA3.01.02",
+           "text": "Information is sent and received by electronic and print devices."
+          },
+          {
+           "code": "TPA3.01.03",
+           "text": "Human or machines can send messages over long distances by using communication technology."
+          },
+          {
+           "code": "TPA3.01.04",
+           "text": "Signs and symbols are used to communicate ideas and information."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "students-will-develop-an-understanding-of-drafti",
+       "title": "Students will develop an understanding of Drafting, Design, and CADD and be able to apply and transfer the related knowledge and skills",
+       "subtopics": [
+        {
+         "id": "begin-to-explore-drafting-design-and-cadd",
+         "title": "Begin to explore Drafting, Design, and CADD",
+         "outcomes": [
+          {
+           "code": "TPA4.01.01",
+           "text": "It is possible to generate and convey two-dimensional solutions to technological challenges."
+          },
+          {
+           "code": "TPA4.01.02",
+           "text": "Shapes are the basic building blocks in the world of design."
+          },
+          {
+           "code": "TPA4.01.03",
+           "text": "Unit measurement relates to size differences."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "students-will-develop-an-understanding-of-energy",
+       "title": "Students will develop an understanding of Energy, Power, and Transportation Technologies and be able to apply and transfer the related knowledge and skills",
+       "subtopics": [
+        {
+         "id": "begin-to-explore-energy-power-and-transportation",
+         "title": "Begin to explore Energy, Power, and Transportation Technologies",
+         "outcomes": [
+          {
+           "code": "TPA5.01.01",
+           "text": "Energy comes in different forms."
+          },
+          {
+           "code": "TPA5.01.02",
+           "text": "Tools, machines, products, and systems use energy in order to perform work."
+          },
+          {
+           "code": "TPA5.01.06",
+           "text": "Transportation helps people and goods move from place to place."
+          },
+          {
+           "code": "TPA5.01.07",
+           "text": "A transportation system may lose efficiency or fail if just one part is missing or if one part or subsystem malfunctions."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "students-will-develop-an-understanding-of-constr",
+       "title": "Students will develop an understanding of Construction and Manufacturing Technologies and be able to apply and transfer the related knowledge and skills",
+       "subtopics": [
+        {
+         "id": "begin-to-explore-construction-and-manufacturing-",
+         "title": "Begin to explore Construction and Manufacturing Technologies",
+         "outcomes": [
+          {
+           "code": "TPA6.01.01",
+           "text": "Construction and manufacturing systems convert natural materials to products."
+          },
+          {
+           "code": "TPA6.01.02",
+           "text": "Construction and manufacturing enterprises exist because of a consumption of goods."
+          },
+          {
+           "code": "TPA6.01.03",
+           "text": "Construction and manufacturing processes include many steps (all of which help to yield products), such as creating designs, gathering resources, and using tools to separate, form, and combine materials."
+          },
+          {
+           "code": "TPA6.01.07",
+           "text": "Modern communities are usually planned according to specific guidelines."
+          },
+          {
+           "code": "TPA6.01.08",
+           "text": "It is necessary to maintain structures."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "6-8",
+   "units": [
+    {
+     "id": "methodology-of-technology-education",
+     "title": "Methodology of Technology Education",
+     "topics": [
+      {
+       "id": "students-will-recognize-the-nature-impacts-and-e",
+       "title": "Students will recognize The Nature, Impacts, and Evolution of Technology as they relate to the chronological human presence on Earth, as well as recognize the consequential influence of inventions and innovations that extend human capabilities",
+       "subtopics": [
+        {
+         "id": "understand-the-evolution-of-technology-and-socie",
+         "title": "Understand the evolution of technology and society and apply this understanding to predict impacts of current and future technology",
+         "outcomes": [
+          {
+           "code": "M1.01.01",
+           "text": "Explain and predict the impacts of current and future technology, addressing ethical, cultural, social, economic, and political ramifications."
+          },
+          {
+           "code": "M1.01.03",
+           "text": "Research and document technological inventions and their subsequent uses, recognizing that individuals, business and industry, or society often create the demand for a particular technological product."
+          },
+          {
+           "code": "M1.01.04",
+           "text": "Design and use instruments to gather data, analyze and interpret technological trends to ascertain their positive and negative impacts, and finally, evaluate the accuracy of the gathered information to determine its usefulness."
+          },
+          {
+           "code": "M1.01.05",
+           "text": "Understand that most inventions evolve through a slow and methodical process, with the specialization of function at the center of many technological improvements."
+          },
+          {
+           "code": "M1.01.06",
+           "text": "Identify and describe the difference between the positive and negative impacts of past, present, and future technology."
+          },
+          {
+           "code": "M1.01.07",
+           "text": "Recognize and demonstrate an understanding of the cultural and gender diversity reflected in technological inventions and innovations."
+          },
+          {
+           "code": "M1.01.08",
+           "text": "Demonstrate, through varied media, an understanding of the nature, impacts, and evolution of technology."
+          },
+          {
+           "code": "M1.01.09",
+           "text": "Identify the scientific knowledge on which a technological invention or innovation is typically predicated."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "students-will-effectively-communicate-technologi",
+       "title": "Students will effectively communicate technological solutions by using Technology Education as an Interdisciplinary and Technological Link",
+       "subtopics": [
+        {
+         "id": "use-knowledge-from-and-interactions-with-other-c",
+         "title": "Use knowledge from and interactions with other curricular areas as resources that can be used to help solve technological challenges",
+         "outcomes": [
+          {
+           "code": "M2.01.01",
+           "text": "Integrate other curricular skills (e.g., writing or measurement skills) with technological activities."
+          },
+          {
+           "code": "M2.01.02",
+           "text": "Illustrate the interactions between technological systems; the effects that other fields of study have on the technological development of products and systems; and how a product or system developed for one setting can be applied to another."
+          },
+          {
+           "code": "M2.01.03",
+           "text": "Apply problem-solving skills to enhance learning in other curricular areas."
+          },
+          {
+           "code": "M2.01.04",
+           "text": "Present technological solutions in an effective manner using skills and knowledge from other curricular areas as resources."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "students-will-develop-and-apply-a-practical-unde",
+       "title": "Students will develop and apply a practical understanding of The Use and Management of Technological Resources and Systems",
+       "subtopics": [
+        {
+         "id": "investigate-design-model-and-analyze-creative-so",
+         "title": "Investigate, design, model, and analyze creative solutions to increasingly complex technological challenges",
+         "outcomes": [
+          {
+           "code": "M3.01.01",
+           "text": "Differentiate between types of technological resources (e.g., available or scarce, renewable or nonrenewable, and natural or synthetic) and examine resources that place environmental and economic concerns in direct competition."
+          },
+          {
+           "code": "M3.01.02",
+           "text": "Describe the possible applications of technological resources to specific problem-solving activities (e.g., illustrate how to use technological resources to repair damage from natural disasters)."
+          },
+          {
+           "code": "M3.01.03",
+           "text": "Demonstrate responsible decision making in the use of resources and in the operation and maintenance of systems."
+          },
+          {
+           "code": "M3.01.04",
+           "text": "Use a variety of technological resources to create solutions and systems for different environments."
+          },
+          {
+           "code": "M3.01.06",
+           "text": "Recognize and identify existing technological resources (e.g., people, information, materials, tools and machines, energy, capital, and time)."
+          },
+          {
+           "code": "M3.01.07",
+           "text": "Recognize that waste management as related to technological systems is an important social issue."
+          },
+          {
+           "code": "M3.01.08",
+           "text": "Demonstrate the effective management of resources in the process of developing, creating and evaluating solutions."
+          },
+          {
+           "code": "M3.01.09",
+           "text": "Understand the concept of system maintenance and how people use controls as mechanisms to cause system change."
+          },
+          {
+           "code": "M3.01.10",
+           "text": "Discuss the difference between open-and-closed-loop systems, as well as how systems can be connected and how malfunctions within a system can affect system quality."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "students-will-demonstrate-technological-problem-",
+       "title": "Students will demonstrate technological problem solving by applying The Design Process and The Systems Model",
+       "subtopics": [
+        {
+         "id": "investigate-design-model-and-analyze-creative-so",
+         "title": "Investigate, design, model, and analyze creative solutions to increasingly complex technological challenges",
+         "outcomes": [
+          {
+           "code": "M4.01.01",
+           "text": "Evaluate and describe creative strategies that are appropriate to use when solving technological challenges."
+          },
+          {
+           "code": "M4.01.02",
+           "text": "Investigate and brainstorm potential solutions to a specific technological challenge by employing the Design Process."
+          },
+          {
+           "code": "M4.01.03",
+           "text": "Demonstrate appropriate use of the design process, giving heed to desired elements and features, the limits placed on the design, and more."
+          },
+          {
+           "code": "M4.01.04",
+           "text": "Design, model, modify, evaluate, document and present two- and three-dimensional solutions to specific technological challenges."
+          },
+          {
+           "code": "M4.01.06",
+           "text": "Recognize that not every problem is technological in nature and not every problem can be solved through technology."
+          },
+          {
+           "code": "M4.01.07",
+           "text": "Recognize that while there is no perfect design, the requirements for a design are made up of criteria and constraints."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "students-will-develop-an-operational-awareness-o",
+       "title": "Students will develop an operational awareness of Technological Concepts through focused invention and subsequent innovation",
+       "subtopics": [
+        {
+         "id": "recognize-how-technological-concepts-are-applied",
+         "title": "Recognize how technological concepts are applied to the various systems of a technological solution",
+         "outcomes": [
+          {
+           "code": "M5.01.01",
+           "text": "Recognize, investigate, and document how technological concepts are used in various technological systems."
+          },
+          {
+           "code": "M5.01.02",
+           "text": "Distinguish and describe the technological concepts that comprise the various systems of a solution."
+          },
+          {
+           "code": "M5.01.03",
+           "text": "Describe strategies to apply technological concepts to a design challenge."
+          },
+          {
+           "code": "M5.01.04",
+           "text": "Apply and demonstrate technological concepts through the use of appropriate documentation."
+          },
+          {
+           "code": "M5.01.05",
+           "text": "Describe the difference between invention and innovation."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "students-will-explore-technology-related-skills-",
+       "title": "Students will explore technology-related skills, leadership skills, personal growth, and careers through opportunities provided by Active Participation in the Technology Student Association (TSA)",
+       "subtopics": [
+        {
+         "id": "begin-to-explore-technology-related-skills-and-a",
+         "title": "Begin to explore technology-related skills and applications through TSA activities",
+         "outcomes": [
+          {
+           "code": "M6.01.01",
+           "text": "Participate in current competitive events and related programs at local, state, and national levels."
+          },
+          {
+           "code": "M6.01.02",
+           "text": "Participate in leadership training activities at local, state, and national levels."
+          },
+          {
+           "code": "M6.01.03",
+           "text": "Interact with each other on current competitive events and related programs in class, during which time they will be encouraged to examine the related political, ethical, cultural, and social issues."
+          },
+          {
+           "code": "M6.01.04",
+           "text": "Engage in, through competitive events and related programs, real-world simulations that incorporate technology, innovation, design, and engineering through competitive events and related programs."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "technical-and-practical-application-of-technolog",
+     "title": "Technical and Practical Application of Technology Education",
+     "topics": [
+      {
+       "id": "students-will-develop-an-understanding-of-the-de",
+       "title": "Students will develop an understanding of The Design Process and be able to apply and transfer the related knowledge and skills to solve technological problems",
+       "subtopics": [
+        {
+         "id": "recognize-design-as-a-creative-planning-process-",
+         "title": "Recognize design as a creative planning process that leads to useful products and systems",
+         "outcomes": [
+          {
+           "code": "TPA1.01.01",
+           "text": "There is no perfect design."
+          },
+          {
+           "code": "TPA1.01.02",
+           "text": "Criteria and constraints make up design requirements."
+          },
+          {
+           "code": "TPA1.01.04",
+           "text": "Design involves a set of steps, which can be performed in different sequences and repeated as needed."
+          },
+          {
+           "code": "TPA1.01.05",
+           "text": "Brainstorming is a group problem-solving design process in which each person of the group presents his or her ideas in an open forum."
+          },
+          {
+           "code": "TPA1.01.06",
+           "text": "Modeling, testing, evaluating, and modifying are used to transform ideas into practical solutions."
+          },
+          {
+           "code": "TPA1.01.08",
+           "text": "Troubleshooting is a problem-solving method used to identify the cause of a malfunction in a technological system."
+          },
+          {
+           "code": "TPA1.01.09",
+           "text": "Invention is a process to turn ideas and imagination into products and systems, while innovation is a process to modify an existing product or system."
+          },
+          {
+           "code": "TPA1.01.10",
+           "text": "Some technological problems are best solved through experimentation."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "students-will-develop-an-understanding-of-agricu",
+       "title": "Students will develop an understanding of Agricultural, Bio-related, and Medical Technologies and be able to apply and transfer the related knowledge and skills",
+       "subtopics": [
+        {
+         "id": "select-use-and-understand-agricultural-bio-relat",
+         "title": "Select, use, and understand agricultural, bio-related, and medical technologies",
+         "outcomes": [
+          {
+           "code": "TPA2.01.01",
+           "text": "Agricultural innovation and advancement directly affects the time and personnel required to produce food for a large population."
+          },
+          {
+           "code": "TPA2.01.02",
+           "text": "Most agricultural waste water can be recycled, and therefore, the use of agricultural technology is important in the conservation of water and other resources."
+          },
+          {
+           "code": "TPA2.01.03",
+           "text": "Artificial ecosystems are man-made environments that replicate many aspects of the natural world."
+          },
+          {
+           "code": "TPA2.01.05",
+           "text": "Genetic engineering involves modifying the structure of DNA to produce novel genetic material."
+          },
+          {
+           "code": "TPA2.01.06",
+           "text": "Biotechnology applies the principles of biology to create commercial products or processes."
+          },
+          {
+           "code": "TPA2.01.07",
+           "text": "Many tools and devices have been designed to help ascertain health information and provide a safe environment."
+          },
+          {
+           "code": "TPA2.01.08",
+           "text": "Medical advancements, innovation related to equipment, and the field of immunology are all critical to the improvement of the health care system."
+          },
+          {
+           "code": "TPA2.01.09",
+           "text": "Technological advances have made it possible to create new devices, repair or replace certain body parts, and develop means of mobility."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "students-will-develop-an-understanding-of-inform",
+       "title": "Students will develop an understanding of Information and Communication Technologies and be able to apply and transfer the related knowledge and skills",
+       "subtopics": [
+        {
+         "id": "select-use-and-understand-information-and-commun",
+         "title": "Select, use, and understand information and communication technologies",
+         "outcomes": [
+          {
+           "code": "TPA3.01.01",
+           "text": "Information and communication systems allow information to be transferred between humans or between humans and machines."
+          },
+          {
+           "code": "TPA3.01.02",
+           "text": "Information and communication technologies include the inputs and processes of information."
+          },
+          {
+           "code": "TPA3.01.03",
+           "text": "Many factors can affect the design of a message, such as the intended audience, the delivery medium, and the purpose or nature of the message."
+          },
+          {
+           "code": "TPA3.01.04",
+           "text": "Ideas are expressed through the use of a common language of symbols and drawings."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "students-will-develop-an-understanding-of-drafti",
+       "title": "Students will develop an understanding of Drafting, Design, and CADD and be able to apply and transfer the related knowledge and skills",
+       "subtopics": [
+        {
+         "id": "select-use-and-understand-drafting-design-and-ca",
+         "title": "Select, use, and understand Drafting, Design, and CADD",
+         "outcomes": [
+          {
+           "code": "TPA4.01.01",
+           "text": "Drafting skills can be used to generate and convey solutions to technological challenges."
+          },
+          {
+           "code": "TPA4.01.02",
+           "text": "Drafting techniques employ the use of tools and conventions in order to develop solutions to technological challenges."
+          },
+          {
+           "code": "TPA4.01.03",
+           "text": "The use of size description is essential to drafting and design conventions."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "students-will-develop-an-understanding-of-energy",
+       "title": "Students will develop an understanding of Energy, Power, and Transportation Technologies and be able to apply and transfer the related knowledge and skills",
+       "subtopics": [
+        {
+         "id": "select-use-and-understand-energy-power-and-trans",
+         "title": "Select, use, and understand Energy, Power, and Transportation Technologies",
+         "outcomes": [
+          {
+           "code": "TPA5.01.01",
+           "text": "Energy is the capacity to do work."
+          },
+          {
+           "code": "TPA5.01.02",
+           "text": "Energy, through a variety of processes, can be harnessed to help perform work."
+          },
+          {
+           "code": "TPA5.01.03",
+           "text": "Power is the rate at which energy is converted from one form to another; the rate at which energy is transferred from one place to another; or the rate at which work is done."
+          },
+          {
+           "code": "TPA5.01.04",
+           "text": "A great deal of the energy that comes from the environment is not used efficiently."
+          },
+          {
+           "code": "TPA5.01.05",
+           "text": "Power systems provide propulsion to and drive other technological products and systems."
+          },
+          {
+           "code": "TPA5.01.06",
+           "text": "Transporting either people or goods involves the combined use of individuals and vehicles."
+          },
+          {
+           "code": "TPA5.01.07",
+           "text": "Transportation vehicles are made up of subsystems (e.g., structural, propulsion, suspension, guidance, control, and support) that must function together for a system to operate effectively."
+          },
+          {
+           "code": "TPA5.01.08",
+           "text": "Governmental regulations often influence the design and operation of transportation systems."
+          },
+          {
+           "code": "TPA5.01.09",
+           "text": "Various processes, such as receiving, holding, storing, loading, moving, unloading, delivering, evaluating, marketing, managing, communicating, and using conventions, are necessary for a transportation system to operate efficiently."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "students-will-develop-an-understanding-of-constr",
+       "title": "Students will develop an understanding of Construction and Manufacturing Technologies and be able to apply and transfer the related knowledge and skills",
+       "subtopics": [
+        {
+         "id": "select-use-and-understand-construction-and-manuf",
+         "title": "Select, use, and understand Construction and Manufacturing Technologies",
+         "outcomes": [
+          {
+           "code": "TPA6.01.01",
+           "text": "Construction and manufacturing systems change the form of natural materials through the processes of separating, forming, combining, and conditioning."
+          },
+          {
+           "code": "TPA6.01.02",
+           "text": "Constructed and manufactured goods may be classified as durable (i.e., permanent) or nondurable (i.e., temporary)."
+          },
+          {
+           "code": "TPA6.01.03",
+           "text": "Construction and manufacturing processes include the design, development, assembly, and maintenance of products and systems."
+          },
+          {
+           "code": "TPA6.01.04",
+           "text": "Products, whether constructed or manufactured, contain a variety of subsystems (i.e., subassemblies)."
+          },
+          {
+           "code": "TPA6.01.05",
+           "text": "Natural (i.e., raw) materials are typically converted to standard stock items, which in turn become the resources that are used in construction and manufacturing."
+          },
+          {
+           "code": "TPA6.01.06",
+           "text": "Marketing involves informing the public of a product and assisting in product sales and distribution."
+          },
+          {
+           "code": "TPA6.01.07",
+           "text": "The design of a structure must address a number of requirements."
+          },
+          {
+           "code": "TPA6.01.08",
+           "text": "A structure rests on a foundation."
+          },
+          {
+           "code": "TPA6.01.09",
+           "text": "Some structures can include prefabricated materials and be either temporary or permanent."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "9-12",
+   "units": [
+    {
+     "id": "methodology-of-technology-education",
+     "title": "Methodology of Technology Education",
+     "topics": [
+      {
+       "id": "students-will-recognize-the-nature-impacts-and-e",
+       "title": "Students will recognize The Nature, Impacts, and Evolution of Technology as they relate to the chronological human presence on Earth, as well as recognize the consequential influence of inventions and innovations that extend human capabilities",
+       "subtopics": [
+        {
+         "id": "evaluate-the-impacts-that-technological-solution",
+         "title": "Evaluate the impacts that technological solutions can have upon the environments in which they are applied",
+         "outcomes": [
+          {
+           "code": "M1.01.01",
+           "text": "Analyze the impact, including the ethical, cultural, social, economic, and political ramifications, of a past or present technological trend on today's individuals and society."
+          },
+          {
+           "code": "M1.01.02",
+           "text": "Evaluate the safety aspects of a student-generated product or system."
+          },
+          {
+           "code": "M1.01.03",
+           "text": "Perform a market analysis to ascertain a product's potential impact or real impact on individuals and communities."
+          },
+          {
+           "code": "M1.01.04",
+           "text": "Develop and implement a performance-testing plan for a selected product or process."
+          },
+          {
+           "code": "M1.01.05",
+           "text": "Design a model, prototype, or process that improves or enhances the form or function of a product."
+          },
+          {
+           "code": "M1.01.06",
+           "text": "Understand that the evolutionary nature of technology is a function of setting and that technological development, which may be profit driven, is a result of specific goal-directed research."
+          },
+          {
+           "code": "M1.01.07",
+           "text": "Identify how cultures develop specific technologies to meet their own needs and understand that technological development is influenced by societal opinions and demands."
+          },
+          {
+           "code": "M1.01.08",
+           "text": "Understand the impacts of and relationships between the technological ages (i.e., Stone Age, Bronze Age, Iron Age, Pre-Industrial Revolution, Industrial Revolution, and Information Age) relative to advances in inventions, processes, and the use of available resources."
+          },
+          {
+           "code": "M1.01.09",
+           "text": "Collect and evaluate information, synthesize data, analyze trends, and draw conclusions; use assessment techniques to make decisions about future technologies; and design forecasting techniques to evaluate the results of altering natural systems."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "students-will-effectively-communicate-technologi",
+       "title": "Students will effectively communicate technological solutions by using Technology Education as an Interdisciplinary and Technological Link",
+       "subtopics": [
+        {
+         "id": "arrive-at-solutions-to-technological-challenges-",
+         "title": "Arrive at solutions to technological challenges by synthesizing and using knowledge from and interactions with applicable curricular areas",
+         "outcomes": [
+          {
+           "code": "M2.01.01",
+           "text": "Consult and collaborate with instructors from other disciplines to successfully complete a design challenge."
+          },
+          {
+           "code": "M2.01.02",
+           "text": "Generate a portfolio for the design challenge that contains evidence of cross-curricular information."
+          },
+          {
+           "code": "M2.01.03",
+           "text": "Identify cross-curricular concepts of technology, including technology transfer, the relationship of science and math to technology, and progress that results from technology."
+          },
+          {
+           "code": "M2.01.04",
+           "text": "Deliver a presentation and complete a technical document in the final stage of the design challenge."
+          },
+          {
+           "code": "M2.01.05",
+           "text": "Demonstrate knowledge of the patent process and how it protects technological ideas."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "students-will-develop-and-apply-a-practical-unde",
+       "title": "Students will develop and apply a practical understanding of The Use and Management of Technological Resources and Systems",
+       "subtopics": [
+        {
+         "id": "solve-complex-technological-challenges-and-model",
+         "title": "Solve complex technological challenges and model working solutions by employing the design process and the systems model",
+         "outcomes": [
+          {
+           "code": "M3.01.01",
+           "text": "Demonstrate the appropriate use and management of technological resources."
+          },
+          {
+           "code": "M3.01.02",
+           "text": "Identify criteria for evaluating the appropriateness of resources, processes, and products used to achieve an end goal."
+          },
+          {
+           "code": "M3.01.03",
+           "text": "Develop an evaluation plan for testing according to pre-established criteria."
+          },
+          {
+           "code": "M3.01.04",
+           "text": "Make decisions that result in optimal resource use and align technological processes with natural processes."
+          },
+          {
+           "code": "M3.01.05",
+           "text": "Compare a past technological process or product with a current technological process or product."
+          },
+          {
+           "code": "M3.01.06",
+           "text": "Contrast the technological resources used for and the environmental impacts of each selected example"
+          },
+          {
+           "code": "M3.01.07",
+           "text": "Identify new technologies used to reduce the environmental impact of other technologies and ways in which these new technologies can monitor the environment to guide optimal decisions."
+          },
+          {
+           "code": "M3.01.08",
+           "text": "Understand that complex systems have layers of controls and feedback loops and learn to diagnose, troubleshoot, analyze, operate, and maintain these systems."
+          },
+          {
+           "code": "M3.01.09",
+           "text": "Use electronic media to access, retrieve, organize, process, maintain, interpret, and evaluate data and information."
+          },
+          {
+           "code": "M3.01.10",
+           "text": "Demonstrate knowledge of systems relative to logic and creativity, stability, optimization, quality control, and management."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "students-will-demonstrate-technological-problem-",
+       "title": "Students will demonstrate technological problem solving by applying The Design Process and The Systems Model",
+       "subtopics": [
+        {
+         "id": "solve-complex-technological-challenges-and-model",
+         "title": "Solve complex technological challenges and model working solutions by employing the Design Process and the Systems Model",
+         "outcomes": [
+          {
+           "code": "M4.01.01",
+           "text": "Demonstrate a working knowledge of the Design Process, understanding that design requirements, such as criteria, constraints, and efficiency, sometimes compete with each other."
+          },
+          {
+           "code": "M4.01.02",
+           "text": "Achieve technological solutions by identifying problems, criteria, and constraints, then refining solutions to ensure quality, efficiency, and productivity."
+          },
+          {
+           "code": "M4.01.03",
+           "text": "Document revisions made during the design process by using verbal, graphic (including three-dimensional models), quantitative, virtual, and written means."
+          },
+          {
+           "code": "M4.01.04",
+           "text": "Produce a prototype that exemplifies the safe and effective use of technological resources."
+          },
+          {
+           "code": "M4.01.05",
+           "text": "Assume both a team approach and an individual approach to solve technological challenges."
+          },
+          {
+           "code": "M4.01.06",
+           "text": "Understand that design problems are seldom presented in a clearly defined form and a design needs to be continually checked, critiqued, refined, and improved."
+          },
+          {
+           "code": "M4.01.07",
+           "text": "Demonstrate that the engineering Design Process takes into account a range of factors and that design is influenced by personal characteristics."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "students-will-develop-an-operational-awareness-o",
+       "title": "Students will develop an operational awareness of Technological Concepts through focused invention and subsequent innovation",
+       "subtopics": [
+        {
+         "id": "synthesize-and-apply-discrete-technological-conc",
+         "title": "Synthesize and apply discrete technological concepts to arrive at innovative solutions",
+         "outcomes": [
+          {
+           "code": "M5.01.01",
+           "text": "Research and identify technological concepts."
+          },
+          {
+           "code": "M5.01.02",
+           "text": "Develop a successful product or prototype."
+          },
+          {
+           "code": "M5.01.03",
+           "text": "Generate plans or graphic displays to construct a solution."
+          },
+          {
+           "code": "M5.01.04",
+           "text": "Document the information resources used to solve a given problem."
+          },
+          {
+           "code": "M5.01.05",
+           "text": "Deliver a presentation to explain the rationale and operation of a product or prototype."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "students-will-explore-technology-related-skills-",
+       "title": "Students will explore technology-related skills, leadership skills, personal growth, and careers through opportunities provided by Active Participation in the Technology Student Association (TSA)",
+       "subtopics": [
+        {
+         "id": "explore-technology-related-skills-and-careers-th",
+         "title": "Explore technology-related skills and careers through TSA activities",
+         "outcomes": [
+          {
+           "code": "M6.01.01",
+           "text": "Participate in current competitive events and related programs at local, state, and national levels."
+          },
+          {
+           "code": "M6.01.02",
+           "text": "Participate in leadership training activities at local, state, and national levels."
+          },
+          {
+           "code": "M6.01.03",
+           "text": "Interact with each other on current competitive events and related programs in class, during which time they will be encouraged to examine the related political, ethical, cultural, and social issues."
+          },
+          {
+           "code": "M6.01.04",
+           "text": "Engage in, through competitive events and related programs, real-world simulations that incorporate technology, innovation, design, and engineering through competitive events and related programs."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "technical-and-practical-application-of-technolog",
+     "title": "Technical and Practical Application of Technology Education",
+     "topics": [
+      {
+       "id": "students-will-develop-an-understanding-of-the-de",
+       "title": "Students will develop an understanding of The Design Process and be able to apply and transfer the related knowledge and skills to solve technological problems",
+       "subtopics": [
+        {
+         "id": "understand-that-the-design-process-includes-defi",
+         "title": "Understand that the design process includes defining a problem; brainstorming, researching, and generating ideas; identifying criteria and specifying constraints; exploring possibilities and selecting an approach; developing a design proposal and making a model or prototype; testing and evaluating the design using specifications; refining the design and creating or making it; and communicating processes and results",
+         "outcomes": [
+          {
+           "code": "TPA1.01.01",
+           "text": "Design problems are seldom presented in a clearly defined form."
+          },
+          {
+           "code": "TPA1.01.02",
+           "text": "The design needs to be continually checked and critiqued, and the ideas of the design must be redefined and improved."
+          },
+          {
+           "code": "TPA1.01.03",
+           "text": "Design requirements, such as criteria, constraints, and efficiency, sometimes compete with each other."
+          },
+          {
+           "code": "TPA1.01.04",
+           "text": "Established design principles are used to evaluate existing designs, collect data, and guide the design process."
+          },
+          {
+           "code": "TPA1.01.05",
+           "text": "Engineering design is influenced by personal characteristics, such as creativity, resourcefulness, and an ability to visualize and think abstractly."
+          },
+          {
+           "code": "TPA1.01.06",
+           "text": "A prototype (or working model) helps an engineer test and observe a design in order to make necessary adjustments."
+          },
+          {
+           "code": "TPA1.01.07",
+           "text": "The process of engineering design takes into account a number of factors."
+          },
+          {
+           "code": "TPA1.01.08",
+           "text": "Research and development is a specific problem-solving approach that is intensively used in business and industry to prepare devices and systems for the marketplace."
+          },
+          {
+           "code": "TPA1.01.09",
+           "text": "Technological problems must be researched before they can be solved."
+          },
+          {
+           "code": "TPA1.01.10",
+           "text": "Not every problem is technological in nature, and not every problem can be solved through technology."
+          },
+          {
+           "code": "TPA1.01.11",
+           "text": "Many technological problems require a multidisciplinary approach."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "students-will-develop-an-understanding-of-agricu",
+       "title": "Students will develop an understanding of Agricultural, Bio-related, and Medical Technologies and be able to apply and transfer the related knowledge and skills",
+       "subtopics": [
+        {
+         "id": "understand-apply-and-transfer-knowledge-and-skil",
+         "title": "Understand, apply, and transfer knowledge and skills related to agricultural, bio-related, and medical technologies",
+         "outcomes": [
+          {
+           "code": "TPA2.01.01",
+           "text": "Agriculture collaborates with related businesses that use a wide array of products and systems to process and distribute such things as food, fiber, fuel, and chemicals."
+          },
+          {
+           "code": "TPA2.01.02",
+           "text": "Conservation, which is essential to the maintenance of the environment, is the process of controlling soil erosion, reducing sediment in waterways, conserving water, and improving water quality."
+          },
+          {
+           "code": "TPA2.01.03",
+           "text": "Engineering design and management of agricultural systems requires knowledge of artificial ecosystems and the effects of technological development on plant and animal sciences."
+          },
+          {
+           "code": "TPA2.01.04",
+           "text": "A variety of specialized equipment, techniques, and practices are used to care for animals and to improve the production of food, fuel, and other commodities."
+          },
+          {
+           "code": "TPA2.01.05",
+           "text": "Advances in biochemistry and molecular biology have made it possible to manipulate the genetic information of living creatures."
+          },
+          {
+           "code": "TPA2.01.06",
+           "text": "Biotechnology has applications in areas such as agriculture, pharmaceuticals, food and beverages, medicine, energy, genetic engineering, and the environment."
+          },
+          {
+           "code": "TPA2.01.07",
+           "text": "Processes used to manage, recycle, and dispose of hazardous materials help protect people from harmful organisms and disease and shape the ethics of environmental safety."
+          },
+          {
+           "code": "TPA2.01.08",
+           "text": "Medical practices used to maintain and protect health include prevention and rehabilitation, vaccines and pharmaceuticals, medical and surgical procedures, and genetic engineering."
+          },
+          {
+           "code": "TPA2.01.09",
+           "text": "The convergence of technological advances in a number of fields (e.g., medicine, telecommunications, virtual presence, computer engineering, informatics, artificial intelligence, robotics, materials science, and perceptual psychology) has created an emerging area called \"telemedicine.\""
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "students-will-develop-an-understanding-of-inform",
+       "title": "Students will develop an understanding of Information and Communication Technologies and be able to apply and transfer the related knowledge and skills",
+       "subtopics": [
+        {
+         "id": "understand-apply-and-transfer-knowledge-and-skil",
+         "title": "Understand, apply, and transfer knowledge and skills related to information and communication technologies",
+         "outcomes": [
+          {
+           "code": "TPA3.01.01",
+           "text": "Information and communication systems allow information to be transferred between humans and machines."
+          },
+          {
+           "code": "TPA3.01.02",
+           "text": "The components of a communication system are made up of symbols and drawings that include the source, encoder, transmitter, receiver, and decoder, and storage, retrieval, and destination."
+          },
+          {
+           "code": "TPA3.01.03",
+           "text": "People use information and communication systems for many purposes, for instance, to inform, persuade, entertain, control, manage, and educate."
+          },
+          {
+           "code": "TPA3.01.04",
+           "text": "Technological knowledge and processes are communicated through symbols, measurement, conventions, icons, and graphic images, as well as through languages that incorporate a variety of visual, auditory, and tactile stimuli."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "students-will-develop-an-understanding-of-drafti",
+       "title": "Students will develop an understanding of Drafting, Design, and CADD and be able to apply and transfer the related knowledge and skills",
+       "subtopics": [
+        {
+         "id": "understand-apply-and-transfer-knowledge-and-skil",
+         "title": "Understand, apply, and transfer knowledge and skills related to Drafting, Design, and CADD",
+         "outcomes": [
+          {
+           "code": "TPA4.01.01",
+           "text": "Drafting skills can be used to address design problems, accurately generating and conveying solutions to technological challenges."
+          },
+          {
+           "code": "TPA4.01.02",
+           "text": "Drafting and design conventions help to generate and communicate design ideas to appropriate stakeholders."
+          },
+          {
+           "code": "TPA4.01.03",
+           "text": "Precision measurements, accurate scale drawings, and proportion are essential to drafting and design conventions."
+          },
+          {
+           "code": "TPA4.01.04",
+           "text": "A working knowledge of CADD systems and software helps to communicate solutions to design challenges."
+          },
+          {
+           "code": "TPA4.01.05",
+           "text": "Applying the essential elements of design (i.e., research, design, development, and the integration of previous knowledge) is necessary to solve complex technological challenges."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "students-will-develop-an-understanding-of-energy",
+       "title": "Students will develop an understanding of Energy, Power, and Transportation Technologies and be able to apply and transfer the related knowledge and skills",
+       "subtopics": [
+        {
+         "id": "understand-apply-and-transfer-knowledge-and-skil",
+         "title": "Understand, apply, and transfer knowledge and skills related to Energy, Power, and Transportation Technologies",
+         "outcomes": [
+          {
+           "code": "TPA5.01.01",
+           "text": "Energy cannot be created or destroyed, yet it can be converted from one form to another."
+          },
+          {
+           "code": "TPA5.01.02",
+           "text": "Energy can be grouped into major forms, such as thermal, radiant, electrical, mechanical, chemical, and nuclear."
+          },
+          {
+           "code": "TPA5.01.03",
+           "text": "It is impossible to build an engine that does not release thermal energy."
+          },
+          {
+           "code": "TPA5.01.04",
+           "text": "Energy resources can be renewable or nonrenewable."
+          },
+          {
+           "code": "TPA5.01.05",
+           "text": "Power systems must have a source of energy, a process, and loads."
+          },
+          {
+           "code": "TPA5.01.06",
+           "text": "Transportation plays a vital role in the operation of other technologies, such as manufacturing, construction, communication, agriculture, and health and safety."
+          },
+          {
+           "code": "TPA5.01.07",
+           "text": "Intermodalism is the use of different modes of transportation (e.g., highways, railways, and waterways) to form an interconnected system in which people and goods can easily shift between modes."
+          },
+          {
+           "code": "TPA5.01.08",
+           "text": "Transportation services and methods have led to a population that is regularly in transit."
+          },
+          {
+           "code": "TPA5.01.09",
+           "text": "The design of intelligent and non-intelligent transportation systems depends on many processes and innovative techniques."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "students-will-develop-an-understanding-of-constr",
+       "title": "Students will develop an understanding of Construction and Manufacturing Technologies and be able to apply and transfer the related knowledge and skills",
+       "subtopics": [
+        {
+         "id": "understand-apply-and-transfer-knowledge-and-skil",
+         "title": "Understand, apply, and transfer knowledge and skills related to Construction and Manufacturing Technologies",
+         "outcomes": [
+          {
+           "code": "TPA6.01.01",
+           "text": "Manufacturing and construction and manufacturing infrastructures form the basic framework of a system."
+          },
+          {
+           "code": "TPA6.01.02",
+           "text": "Materials used in construction and manufacturing have different qualities and may be classified as natural, synthetic, or mixed."
+          },
+          {
+           "code": "TPA6.01.03",
+           "text": "Construction and manufacturing systems can be classified by type, such as customized or mass production."
+          },
+          {
+           "code": "TPA6.01.04",
+           "text": "The interchangeability of parts increases the effectiveness of construction and manufacturing and processes."
+          },
+          {
+           "code": "TPA6.01.05",
+           "text": "Emerging technology helps humans alter or modify natural materials to create new products."
+          },
+          {
+           "code": "TPA6.01.06",
+           "text": "Marketing involves establishing a product identity; conducting research on product potential; and then advertising, distributing, and selling a product."
+          },
+          {
+           "code": "TPA6.01.07",
+           "text": "The selection of design for structures is based on factors such as building laws and codes, style, convenience, cost, climate, and function."
+          },
+          {
+           "code": "TPA6.01.08",
+           "text": "Structures are constructed through a variety of processes and procedures."
+          },
+          {
+           "code": "TPA6.01.09",
+           "text": "Constructed and manufactured products periodically undergo maintenance, alterations, or renovations to improve and prolong their functions."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "build": {
+  "builtAt": "2026-10-14T16:20:39.841Z",
+  "model": "none",
+  "usd": 0,
+  "expectedCodes": 87,
+  "coverage": 1,
+  "missingCodes": [],
+  "counts": {
+   "grades": 4,
+   "units": 8,
+   "topics": 48,
+   "subtopics": 48,
+   "outcomes": 262
+  },
+  "warnings": []
+ }
+}

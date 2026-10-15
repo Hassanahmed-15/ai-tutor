@@ -1,0 +1,676 @@
+{
+ "id": "cie-igcse-enterprise-0454-2026",
+ "region": "INTL",
+ "framework": "Cambridge IGCSE Enterprise (0454) syllabus 2026",
+ "board": "Cambridge",
+ "qualification": "IGCSE",
+ "subject": "Enterprise",
+ "syllabusCode": "0454",
+ "gradeSystem": "course",
+ "source": {
+  "urls": [
+   "https://www.cambridgeinternational.org/Images/697151-2026-syllabus.pdf",
+   "https://www.cambridgeinternational.org/programmes-and-qualifications/cambridge-igcse-enterprise-0454/"
+  ],
+  "publisher": "Cambridge University Press & Assessment (Cambridge International Education)",
+  "licence": "© Cambridge University Press & Assessment; structure + our own wording only",
+  "firstExam": "2026"
+ },
+ "grades": [
+  {
+   "grade": "IGCSE",
+   "units": [
+    {
+     "id": "1-introduction-to-enterprise",
+     "title": "1 Introduction to enterprise",
+     "topics": [
+      {
+       "id": "1-1-what-is-meant-by-enterprise",
+       "title": "1.1 What is meant by enterprise",
+       "subtopics": [
+        {
+         "id": "what-enterprise-is",
+         "title": "What enterprise is",
+         "outcomes": [
+          {
+           "code": "1.1",
+           "text": "Explain what enterprise is, including enterprise capability, business enterprise and social enterprise."
+          },
+          {
+           "code": null,
+           "text": "Identify stakeholders such as customers, employees, suppliers, lenders and local government."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "1-2-ways-for-students-to-be-enterprising-in-ever",
+       "title": "1.2 Ways for students to be enterprising in everyday life",
+       "subtopics": [
+        {
+         "id": "being-enterprising-in-everyday-life",
+         "title": "Being enterprising in everyday life",
+         "outcomes": [
+          {
+           "code": "1.2",
+           "text": "Describe ways of being enterprising at school and at home."
+          },
+          {
+           "code": null,
+           "text": "Give examples such as teamwork, problem-solving, creativity, taking initiative and organising activities."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "2-setting-up-a-new-enterprise",
+     "title": "2 Setting up a new enterprise",
+     "topics": [
+      {
+       "id": "2-1-the-enterprise-process",
+       "title": "2.1 The enterprise process",
+       "subtopics": [
+        {
+         "id": "the-enterprise-process",
+         "title": "The enterprise process",
+         "outcomes": [
+          {
+           "code": "2.1",
+           "text": "Describe the six stages: identify a need, explore solutions, plan, implement, monitor, evaluate."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "2-2-types-of-business-organisation",
+       "title": "2.2 Types of business organisation",
+       "subtopics": [
+        {
+         "id": "types-of-business-organisation",
+         "title": "Types of business organisation",
+         "outcomes": [
+          {
+           "code": "2.2",
+           "text": "Describe sole traders, partnerships, limited companies, co-operatives and franchises."
+          },
+          {
+           "code": null,
+           "text": "State the legal status of each type of organisation."
+          },
+          {
+           "code": null,
+           "text": "Give advantages and disadvantages of each type for a new enterprise."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "3-enterprise-skills",
+     "title": "3 Enterprise skills",
+     "topics": [
+      {
+       "id": "3-1-skills-of-enterprising-people",
+       "title": "3.1 Skills of enterprising people",
+       "subtopics": [
+        {
+         "id": "enterprise-skills",
+         "title": "Enterprise skills",
+         "outcomes": [
+          {
+           "code": "3.1",
+           "text": "Describe enterprise skills such as leadership, influencing, team-building, delegation and problem-solving."
+          },
+          {
+           "code": null,
+           "text": "Describe skills such as time management, self-confidence, resourcefulness, innovation and perseverance."
+          },
+          {
+           "code": null,
+           "text": "Recognise that some people have these skills naturally and others develop them."
+          },
+          {
+           "code": null,
+           "text": "Identify and evaluate your own enterprise skills."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "3-2-behaviours-of-entrepreneurs",
+       "title": "3.2 Behaviours of entrepreneurs",
+       "subtopics": [
+        {
+         "id": "behaviours-of-entrepreneurs",
+         "title": "Behaviours of entrepreneurs",
+         "outcomes": [
+          {
+           "code": "3.2",
+           "text": "Explain how named entrepreneurs use their enterprise skills."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "4-enterprise-opportunities-risk-legal-obligation",
+     "title": "4 Enterprise opportunities, risk, legal obligations and ethical considerations",
+     "topics": [
+      {
+       "id": "4-1-opportunities",
+       "title": "4.1 Opportunities",
+       "subtopics": [
+        {
+         "id": "how-opportunities-arise",
+         "title": "How opportunities arise",
+         "outcomes": [
+          {
+           "code": "4.1",
+           "text": "Explain how enterprise opportunities arise from changing needs or wants for a product."
+          },
+          {
+           "code": null,
+           "text": "Describe reasons needs change: technology, taste, population, income, government policy."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "4-2-risk",
+       "title": "4.2 Risk",
+       "subtopics": [
+        {
+         "id": "identifying-and-analysing-risk",
+         "title": "Identifying and analysing risk",
+         "outcomes": [
+          {
+           "code": "4.2",
+           "text": "Describe risks in finance, economy, health and safety, human resources and production."
+          },
+          {
+           "code": null,
+           "text": "Identify risks using research methods such as SWOT and PEST."
+          },
+          {
+           "code": null,
+           "text": "Analyse each risk by balancing negative outcomes against rewards."
+          }
+         ]
+        },
+        {
+         "id": "managing-risk",
+         "title": "Managing risk",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Decide whether a risk is worth taking or means rejecting the idea."
+          },
+          {
+           "code": null,
+           "text": "Plan to manage risk by avoiding, minimising or maximising it."
+          },
+          {
+           "code": null,
+           "text": "Describe risk-averse, risk-reducer and risk-keen attitudes and how they change risk management."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "4-3-legal-obligations",
+       "title": "4.3 Legal obligations",
+       "subtopics": [
+        {
+         "id": "legal-obligations",
+         "title": "Legal obligations",
+         "outcomes": [
+          {
+           "code": "4.3",
+           "text": "Explain why laws protecting stakeholders are needed in employment, production, marketing and selling, and finance."
+          },
+          {
+           "code": null,
+           "text": "Describe the impact of these laws and regulations on all stakeholders."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "4-4-ethical-considerations",
+       "title": "4.4 Ethical considerations",
+       "subtopics": [
+        {
+         "id": "ethical-considerations",
+         "title": "Ethical considerations",
+         "outcomes": [
+          {
+           "code": "4.4",
+           "text": "Explain how an enterprise can affect communities and society, positively or negatively."
+          },
+          {
+           "code": null,
+           "text": "Explain ethical considerations in enterprise such as fair trade, organic farming and donating profits."
+          },
+          {
+           "code": null,
+           "text": "Explain how ethical considerations change how an enterprise operates."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "5-negotiation",
+     "title": "5 Negotiation",
+     "topics": [
+      {
+       "id": "5-1-the-negotiation-process",
+       "title": "5.1 The negotiation process",
+       "subtopics": [
+        {
+         "id": "the-negotiation-process",
+         "title": "The negotiation process",
+         "outcomes": [
+          {
+           "code": "5.1",
+           "text": "Explain what negotiation is, including resolving disputes and bargaining."
+          },
+          {
+           "code": null,
+           "text": "Plan a negotiation: set objectives, choose evidence, weigh a proposal's benefits and weaknesses."
+          },
+          {
+           "code": null,
+           "text": "Conduct a negotiation: set the tone, present, understand the other side, summarise, reach agreement."
+          },
+          {
+           "code": null,
+           "text": "Measure the success of a negotiation and how to improve next time."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "6-finance",
+     "title": "6 Finance",
+     "topics": [
+      {
+       "id": "6-1-sources-of-finance",
+       "title": "6.1 Sources of finance",
+       "subtopics": [
+        {
+         "id": "sources-of-finance",
+         "title": "Sources of finance",
+         "outcomes": [
+          {
+           "code": "6.1",
+           "text": "Give advantages and disadvantages of start-up funding sources such as savings, family, loans, grants and crowdfunding."
+          },
+          {
+           "code": null,
+           "text": "Give advantages and disadvantages of sources for continuing trade and expansion such as retained profit, venture capital and shares."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "6-2-the-concept-of-trade-credit",
+       "title": "6.2 The concept of trade credit",
+       "subtopics": [
+        {
+         "id": "trade-credit",
+         "title": "Trade credit",
+         "outcomes": [
+          {
+           "code": "6.2",
+           "text": "Give advantages and disadvantages of trade credit for entrepreneurs and suppliers."
+          },
+          {
+           "code": null,
+           "text": "Give advantages and disadvantages of trade credit for entrepreneurs and customers."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "6-3-financial-terms",
+       "title": "6.3 Financial terms",
+       "subtopics": [
+        {
+         "id": "financial-terms",
+         "title": "Financial terms",
+         "outcomes": [
+          {
+           "code": "6.3",
+           "text": "Define and calculate cash flow forecast terms: inflows, outflows, surplus and deficit."
+          },
+          {
+           "code": null,
+           "text": "Define and calculate break-even terms: variable cost, fixed cost, total cost, contribution."
+          },
+          {
+           "code": null,
+           "text": "Define income statement terms: profit and loss, income, revenue, expenditure, debt."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "6-4-financial-records",
+       "title": "6.4 Financial records",
+       "subtopics": [
+        {
+         "id": "financial-records",
+         "title": "Financial records",
+         "outcomes": [
+          {
+           "code": "6.4",
+           "text": "Explain the purpose and importance of keeping accurate financial records."
+          },
+          {
+           "code": null,
+           "text": "Give reasons for records: true and fair view, law and tax, forecasting, decisions."
+          },
+          {
+           "code": null,
+           "text": "Prepare a simple budget, cash flow forecast and income statement."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "7-business-planning",
+     "title": "7 Business planning",
+     "topics": [
+      {
+       "id": "7-1-business-objectives",
+       "title": "7.1 Business objectives",
+       "subtopics": [
+        {
+         "id": "business-objectives",
+         "title": "Business objectives",
+         "outcomes": [
+          {
+           "code": "7.1",
+           "text": "Explain that different enterprises have different aims and objectives."
+          },
+          {
+           "code": null,
+           "text": "Describe objectives such as profit, sales, cash flow, growth, survival and social aims."
+          },
+          {
+           "code": null,
+           "text": "Explain how aims influence the activities of enterprises."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "7-2-action-plans",
+       "title": "7.2 Action plans",
+       "subtopics": [
+        {
+         "id": "action-plans",
+         "title": "Action plans",
+         "outcomes": [
+          {
+           "code": "7.2",
+           "text": "Explain the purpose and importance of action plans."
+          },
+          {
+           "code": null,
+           "text": "Describe the contents of action plans."
+          },
+          {
+           "code": null,
+           "text": "Describe methods of monitoring action plans and why to update them."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "7-3-business-plans",
+       "title": "7.3 Business plans",
+       "subtopics": [
+        {
+         "id": "business-plans",
+         "title": "Business plans",
+         "outcomes": [
+          {
+           "code": "7.3",
+           "text": "Explain the purpose and importance of business plans."
+          },
+          {
+           "code": null,
+           "text": "Describe the contents of business plans."
+          },
+          {
+           "code": null,
+           "text": "Describe methods of monitoring business plans and reasons for updating them."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "8-markets-and-customers",
+     "title": "8 Markets and customers",
+     "topics": [
+      {
+       "id": "8-1-the-purpose-of-marketing",
+       "title": "8.1 The purpose of marketing",
+       "subtopics": [
+        {
+         "id": "the-purpose-of-marketing",
+         "title": "The purpose of marketing",
+         "outcomes": [
+          {
+           "code": "8.1",
+           "text": "Explain how marketing achieves enterprise aims: awareness, brand loyalty, sales, market share, profit."
+          },
+          {
+           "code": null,
+           "text": "Explain marketing from the customer's view: more knowledge and better-informed decisions."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "8-2-market-research",
+       "title": "8.2 Market research",
+       "subtopics": [
+        {
+         "id": "market-research",
+         "title": "Market research",
+         "outcomes": [
+          {
+           "code": "8.2",
+           "text": "Describe primary and secondary research methods to identify potential customers."
+          },
+          {
+           "code": null,
+           "text": "Judge the effectiveness of research methods by cost, availability and suitability."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "8-3-customer-retention",
+       "title": "8.3 Customer retention",
+       "subtopics": [
+        {
+         "id": "customer-retention",
+         "title": "Customer retention",
+         "outcomes": [
+          {
+           "code": "8.3",
+           "text": "Explain the reasons for retaining customers."
+          },
+          {
+           "code": null,
+           "text": "Describe ways to measure satisfaction and retention: sales, complaints, mystery shoppers, focus groups."
+          },
+          {
+           "code": null,
+           "text": "Describe ways to retain customers: service, resolving complaints, loyalty rewards, new products."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "8-4-marketing-communications",
+       "title": "8.4 Marketing communications",
+       "subtopics": [
+        {
+         "id": "marketing-communications",
+         "title": "Marketing communications",
+         "outcomes": [
+          {
+           "code": "8.4",
+           "text": "Describe methods of reaching customers: media, posters, online, word of mouth, sponsorship."
+          },
+          {
+           "code": null,
+           "text": "Select suitable methods for different enterprises using cost, availability and suitability."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "9-help-and-support-for-enterprise",
+     "title": "9 Help and support for enterprise",
+     "topics": [
+      {
+       "id": "9-1-sources-of-help-and-support",
+       "title": "9.1 Sources of help and support",
+       "subtopics": [
+        {
+         "id": "help-and-support",
+         "title": "Help and support",
+         "outcomes": [
+          {
+           "code": "9.1",
+           "text": "Describe formal sources of help and what each offers."
+          },
+          {
+           "code": null,
+           "text": "Describe informal sources of help, such as friends and family."
+          },
+          {
+           "code": null,
+           "text": "Judge how suitable different sources of help are for an enterprise."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "10-communication",
+     "title": "10 Communication",
+     "topics": [
+      {
+       "id": "10-1-types-of-communication",
+       "title": "10.1 Types of communication",
+       "subtopics": [
+        {
+         "id": "types-of-communication",
+         "title": "Types of communication",
+         "outcomes": [
+          {
+           "code": "10.1",
+           "text": "Distinguish formal and informal communication and how language differs."
+          },
+          {
+           "code": null,
+           "text": "Explain verbal and non-verbal communication, such as body language."
+          },
+          {
+           "code": null,
+           "text": "Judge appropriate communication for internal and external stakeholders."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "10-2-meetings-and-presentations",
+       "title": "10.2 Meetings and presentations",
+       "subtopics": [
+        {
+         "id": "meetings-and-presentations",
+         "title": "Meetings and presentations",
+         "outcomes": [
+          {
+           "code": "10.2",
+           "text": "Explain the need for careful planning before, during and after meetings and presentations."
+          },
+          {
+           "code": null,
+           "text": "Describe documents for meetings and presentations: notice, agenda, minutes, visual aids, handouts."
+          },
+          {
+           "code": null,
+           "text": "Analyse and evaluate whether a meeting or presentation succeeded."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "build": {
+  "builtAt": "2026-10-14T09:49:09.206Z",
+  "model": "claude-agent",
+  "usd": 0,
+  "expectedCodes": 25,
+  "coverage": 1,
+  "missingCodes": [],
+  "counts": {
+   "grades": 1,
+   "units": 10,
+   "topics": 25,
+   "subtopics": 26,
+   "outcomes": 67
+  },
+  "warnings": []
+ }
+}

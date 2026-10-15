@@ -1,0 +1,487 @@
+{
+ "id": "au-ss-chemistry-units-3-4",
+ "region": "AU",
+ "framework": "Australian Curriculum Senior Secondary, Version 8.4",
+ "board": "ACARA",
+ "qualification": "Senior Secondary (Years 11-12)",
+ "subject": "Chemistry (Units 3 and 4 only)",
+ "syllabusCode": null,
+ "gradeSystem": "course",
+ "source": {
+  "urls": [
+   "https://v8.australiancurriculum.edu.au/senior-secondary-curriculum/science/chemistry/?unit=Unit+3&unit=Unit+4",
+   "https://web.archive.org/web/2026/https://v8.australiancurriculum.edu.au/senior-secondary-curriculum/science/chemistry/?unit=Unit+3&unit=Unit+4"
+  ],
+  "publisher": "Australian Curriculum, Assessment and Reporting Authority (ACARA)",
+  "licence": "CC BY 4.0 (Creative Commons Attribution 4.0 International). (c) Australian Curriculum, Assessment and Reporting Authority (ACARA) 2010 to present, unless otherwise indicated; attribution required in ACARA's prescribed form (\"This material was downloaded from the Australian Curriculum website (accessed [date]) and [was/was not] modified. The material is licensed under CC BY 4.0\"). Excluded from CC BY: logos/trade marks, website design, third-party material, photographs, videos and teacher-support resources. ACARA does not endorse products; alignment claims must be to content descriptions and achievement standards, not elaborations. Aboriginal and Torres Strait Islander ICIP protocols apply (esp. the Framework for Aboriginal Languages and Torres Strait Islander Languages). Source: https://www.australiancurriculum.edu.au/copyright-and-terms-of-use",
+  "firstExam": null
+ },
+ "grades": [
+  {
+   "grade": "Unit 3",
+   "units": [
+    {
+     "id": "unit-3-equilibrium-acids-and-redox-reactions",
+     "title": "Unit 3: Equilibrium, acids and redox reactions",
+     "topics": [
+      {
+       "id": "science-inquiry-skills",
+       "title": "Science Inquiry Skills",
+       "subtopics": [
+        {
+         "id": "planning-investigations",
+         "title": "Planning investigations",
+         "outcomes": [
+          {
+           "code": "ACSCH074",
+           "text": "Ask researchable questions, propose hypotheses and predict outcomes."
+          },
+          {
+           "code": "ACSCH075",
+           "text": "Design investigations with procedures, materials and data plans, including risk assessment and research ethics."
+          }
+         ]
+        },
+        {
+         "id": "carrying-out-investigations",
+         "title": "Carrying out investigations",
+         "outcomes": [
+          {
+           "code": "ACSCH076",
+           "text": "Carry out investigations safely and methodically, including volumetric analysis and building electrochemical cells."
+          }
+         ]
+        },
+        {
+         "id": "handling-data-and-evidence",
+         "title": "Handling data and evidence",
+         "outcomes": [
+          {
+           "code": "ACSCH077",
+           "text": "Represent and process data to find patterns, separate random and systematic errors, and justify conclusions from evidence."
+          },
+          {
+           "code": "ACSCH078",
+           "text": "Interpret scientific texts and judge claims by the quality of evidence, building reasoned arguments."
+          }
+         ]
+        },
+        {
+         "id": "representing-and-communicating-chemistry",
+         "title": "Representing and communicating chemistry",
+         "outcomes": [
+          {
+           "code": "ACSCH079",
+           "text": "Use half-equations, balanced equations, equilibrium expressions, pH, oxidation numbers, electrode potentials and cell diagrams to explain and predict."
+          },
+          {
+           "code": "ACSCH080",
+           "text": "Calculate cell potentials, moles and concentrations from titration data, yields of incomplete reactions, and pH of strong acids and bases."
+          },
+          {
+           "code": "ACSCH081",
+           "text": "Communicate to specific audiences with proper nomenclature, including scientific reports."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "science-as-a-human-endeavour",
+       "title": "Science as a Human Endeavour",
+       "subtopics": [
+        {
+         "id": "chemistry-in-society",
+         "title": "Chemistry in society",
+         "outcomes": [
+          {
+           "code": "ACSCH082",
+           "text": "Describe how ICT has increased the size, accuracy and scope of scientific data sets."
+          },
+          {
+           "code": "ACSCH083",
+           "text": "Explain how models and theories are contested and refined or replaced when new evidence or greater explanatory power arises."
+          },
+          {
+           "code": "ACSCH084",
+           "text": "Explain how social, economic and cultural context influences acceptance of scientific knowledge."
+          },
+          {
+           "code": "ACSCH085",
+           "text": "Show how scientific knowledge informs the monitoring, assessment and evaluation of risk."
+          },
+          {
+           "code": "ACSCH086",
+           "text": "Recognise that science may be unable to give definitive answers to public debate."
+          },
+          {
+           "code": "ACSCH087",
+           "text": "Explain why large-scale science projects and regional issues need international collaboration."
+          },
+          {
+           "code": "ACSCH088",
+           "text": "Use scientific knowledge to project economic, social and environmental impacts and design action for sustainability."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "chemical-equilibrium-systems",
+       "title": "Chemical equilibrium systems",
+       "subtopics": [
+        {
+         "id": "reversible-reactions-and-equilibrium",
+         "title": "Reversible reactions and equilibrium",
+         "outcomes": [
+          {
+           "code": "ACSCH089",
+           "text": "Distinguish open and closed chemical systems and the observable changes of physical changes and reactions."
+          },
+          {
+           "code": "ACSCH090",
+           "text": "State that all physical changes are reversible while only some chemical reactions are."
+          },
+          {
+           "code": "ACSCH091",
+           "text": "Explain dynamic equilibrium in a closed system and how concentrations define the position of equilibrium."
+          },
+          {
+           "code": "ACSCH092",
+           "text": "Explain reversibility using the activation energies of the forward and reverse reactions."
+          }
+         ]
+        },
+        {
+         "id": "changing-equilibrium",
+         "title": "Changing equilibrium",
+         "outcomes": [
+          {
+           "code": "ACSCH093",
+           "text": "Explain the effect of temperature changes on equilibrium using enthalpy changes of the forward and reverse reactions."
+          },
+          {
+           "code": "ACSCH094",
+           "text": "Explain and predict effects of concentration and pressure changes using collision theory."
+          },
+          {
+           "code": "ACSCH095",
+           "text": "Predict the effects of temperature, concentration and pressure changes using Le Chatelier's Principle."
+          },
+          {
+           "code": "ACSCH096",
+           "text": "Predict equilibrium position qualitatively using equilibrium constants."
+          }
+         ]
+        },
+        {
+         "id": "acids-and-bases-in-equilibrium",
+         "title": "Acids and bases in equilibrium",
+         "outcomes": [
+          {
+           "code": "ACSCH097",
+           "text": "Describe acids as proton donors, classed as monoprotic or polyprotic."
+          },
+          {
+           "code": "ACSCH098",
+           "text": "Explain acid strength through degree of ionisation at equilibrium and Ka."
+          },
+          {
+           "code": "ACSCH099",
+           "text": "Explain acid-base relationships with the Bronsted-Lowry model and equations showing hydrogen ion transfer."
+          }
+         ]
+        },
+        {
+         "id": "ph-indicators-and-titration",
+         "title": "pH, indicators and titration",
+         "outcomes": [
+          {
+           "code": "ACSCH100",
+           "text": "Use the logarithmic pH scale, calculating pH from hydrogen ion concentration and using Kw to link hydroxide and hydrogen ion concentrations."
+          },
+          {
+           "code": "ACSCH101",
+           "text": "Explain that acid-base indicators are weak acids or bases whose acid and base forms differ in colour."
+          },
+          {
+           "code": "ACSCH102",
+           "text": "Explain volumetric analysis of acid-base reactions: equivalence point found by pH change, indicators or pH meters."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "oxidation-and-reduction",
+       "title": "Oxidation and reduction",
+       "subtopics": [
+        {
+         "id": "redox-reactions",
+         "title": "Redox reactions",
+         "outcomes": [
+          {
+           "code": "ACSCH103",
+           "text": "Model displacement, combustion, corrosion and electrochemical processes as redox reactions."
+          },
+          {
+           "code": "ACSCH104",
+           "text": "Model oxidation as loss and reduction as gain of electrons, using half-equations."
+          },
+          {
+           "code": "ACSCH105",
+           "text": "Explain an atom's tendency to gain or lose electrons using valence electrons, energy, stability and periodic table position."
+          },
+          {
+           "code": "ACSCH106",
+           "text": "Compare oxidising and reducing agents using standard electrode potentials."
+          }
+         ]
+        },
+        {
+         "id": "galvanic-and-electrolytic-cells",
+         "title": "Galvanic and electrolytic cells",
+         "outcomes": [
+          {
+           "code": "ACSCH107",
+           "text": "Describe electrochemical cells as half-reactions linked by an external circuit with electrons moving from anode to cathode."
+          },
+          {
+           "code": "ACSCH108",
+           "text": "Explain galvanic cells, including fuel cells, as spontaneous redox reactions, drawn as cell diagrams with half-equations."
+          },
+          {
+           "code": "ACSCH109",
+           "text": "Describe how metal nanoparticles as catalysts can improve fuel cell efficiency."
+          },
+          {
+           "code": "ACSCH110",
+           "text": "Calculate standard cell potentials from electrode potentials and compare cells of different materials."
+          },
+          {
+           "code": "ACSCH111",
+           "text": "Explain electrolytic cells using external potential difference for non-spontaneous reactions, small and industrial scale."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "Unit 4",
+   "units": [
+    {
+     "id": "unit-4-structure-synthesis-and-design",
+     "title": "Unit 4: Structure, synthesis and design",
+     "topics": [
+      {
+       "id": "science-inquiry-skills",
+       "title": "Science Inquiry Skills",
+       "subtopics": [
+        {
+         "id": "planning-investigations",
+         "title": "Planning investigations",
+         "outcomes": [
+          {
+           "code": "ACSCH112",
+           "text": "Ask researchable questions, propose hypotheses and predict outcomes."
+          },
+          {
+           "code": "ACSCH113",
+           "text": "Design investigations with procedures, materials and data plans, including risk assessment and research ethics."
+          }
+         ]
+        },
+        {
+         "id": "carrying-out-investigations",
+         "title": "Carrying out investigations",
+         "outcomes": [
+          {
+           "code": "ACSCH114",
+           "text": "Carry out investigations safely and methodically, including organic synthesis and collating data from chemical analyses."
+          }
+         ]
+        },
+        {
+         "id": "handling-data-and-evidence",
+         "title": "Handling data and evidence",
+         "outcomes": [
+          {
+           "code": "ACSCH115",
+           "text": "Represent and process data to find patterns, separate random and systematic errors, and justify conclusions from evidence."
+          },
+          {
+           "code": "ACSCH116",
+           "text": "Interpret scientific texts and judge claims by the quality of evidence, building reasoned arguments."
+          }
+         ]
+        },
+        {
+         "id": "representing-and-communicating-chemistry",
+         "title": "Representing and communicating chemistry",
+         "outcomes": [
+          {
+           "code": "ACSCH117",
+           "text": "Use molecular models, structural formulas, equations, IUPAC names and spectra to explain and predict."
+          },
+          {
+           "code": "ACSCH118",
+           "text": "Use the mole concept for quantities in reactions, including multi-step reactions and percentage yield."
+          },
+          {
+           "code": "ACSCH119",
+           "text": "Communicate to specific audiences with proper nomenclature, including scientific reports."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "science-as-a-human-endeavour",
+       "title": "Science as a Human Endeavour",
+       "subtopics": [
+        {
+         "id": "chemistry-in-society",
+         "title": "Chemistry in society",
+         "outcomes": [
+          {
+           "code": "ACSCH120",
+           "text": "Describe how ICT has increased the size, accuracy and scope of scientific data sets."
+          },
+          {
+           "code": "ACSCH121",
+           "text": "Explain how models and theories are contested and refined or replaced when new evidence or greater explanatory power arises."
+          },
+          {
+           "code": "ACSCH122",
+           "text": "Explain how social, economic and cultural context influences acceptance of scientific knowledge."
+          },
+          {
+           "code": "ACSCH123",
+           "text": "Show how scientific knowledge informs the monitoring, assessment and evaluation of risk."
+          },
+          {
+           "code": "ACSCH124",
+           "text": "Recognise that science may be unable to give definitive answers to public debate."
+          },
+          {
+           "code": "ACSCH125",
+           "text": "Explain why large-scale science projects and regional issues need international collaboration."
+          },
+          {
+           "code": "ACSCH126",
+           "text": "Use scientific knowledge to project economic, social and environmental impacts and design action for sustainability."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "properties-and-structure-of-organic-materials",
+       "title": "Properties and structure of organic materials",
+       "subtopics": [
+        {
+         "id": "functional-groups",
+         "title": "Functional groups",
+         "outcomes": [
+          {
+           "code": "ACSCH127",
+           "text": "Describe organic molecules as hydrocarbon skeletons with functional groups: alcohols, carboxylic acids, esters, amines and amides."
+          },
+          {
+           "code": "ACSCH128",
+           "text": "Use characteristic properties and reactions of each class, including acid-base and oxidation, to identify them."
+          }
+         ]
+        },
+        {
+         "id": "structure-and-analysis-of-organic-materials",
+         "title": "Structure and analysis of organic materials",
+         "outcomes": [
+          {
+           "code": "ACSCH129",
+           "text": "Explain strength, density and biodegradability of proteins, carbohydrates and polymers through primary, secondary and tertiary structure."
+          },
+          {
+           "code": "ACSCH130",
+           "text": "Use mass spectrometry, x-ray crystallography and infrared spectroscopy together to determine molecular structure."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "chemical-synthesis-and-design",
+       "title": "Chemical synthesis and design",
+       "subtopics": [
+        {
+         "id": "designing-a-synthesis",
+         "title": "Designing a synthesis",
+         "outcomes": [
+          {
+           "code": "ACSCH131",
+           "text": "Select reagents to make a product with specific properties, such as pharmaceuticals, fuels, cosmetics and cleaning products."
+          },
+          {
+           "code": "ACSCH132",
+           "text": "Construct reaction pathways of more than one reaction."
+          },
+          {
+           "code": "ACSCH133",
+           "text": "Choose reagents and conditions that maximise yield and purity."
+          },
+          {
+           "code": "ACSCH134",
+           "text": "Calculate yield by comparing stoichiometric and actual quantities."
+          }
+         ]
+        },
+        {
+         "id": "green-chemistry-and-synthesis-methods",
+         "title": "Green chemistry and synthesis methods",
+         "outcomes": [
+          {
+           "code": "ACSCH135",
+           "text": "Apply green chemistry principles: renewable raw materials, limited harmful solvents and minimal waste."
+          },
+          {
+           "code": "ACSCH136",
+           "text": "Synthesise organic molecules and polymers by addition and condensation reactions."
+          },
+          {
+           "code": "ACSCH137",
+           "text": "Synthesise fuels such as biodiesel, ethanol and hydrogen using addition, oxidation and esterification."
+          },
+          {
+           "code": "ACSCH138",
+           "text": "Describe molecular manufacturing, including protein synthesis, positioning molecules to make specialised products such as nanotubes and sensors."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "build": {
+  "builtAt": "2026-10-14T10:55:16.356Z",
+  "model": "claude-agent",
+  "usd": 0,
+  "expectedCodes": 65,
+  "coverage": 1,
+  "missingCodes": [],
+  "counts": {
+   "grades": 2,
+   "units": 2,
+   "topics": 8,
+   "subtopics": 20,
+   "outcomes": 65
+  },
+  "warnings": []
+ }
+}

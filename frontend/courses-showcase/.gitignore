@@ -1,0 +1,9 @@
+node_modules
+.next
+out
+.vercel
+# Copied from ../web by scripts/sync.mts on every build: edit them there, not here.
+components
+lib
+app/globals.css
+public/data

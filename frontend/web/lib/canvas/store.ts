@@ -47,6 +47,7 @@ export function canvasStoreReady(): boolean {
 
 const lectureBlob = (userId: string, id: string) => `users/${userId}/canvas/lectures/${id}.json`;
 const imageBlob = (userId: string, name: string) => `users/${userId}/canvas/images/${name}.jpg`;
+const sharedImageBlob = (name: string) => `shared/canvas/images/${name}.jpg`;
 
 function check(...parts: string[]) {
   for (const p of parts) if (!SAFE.test(p)) throw new Error("invalid id");
@@ -117,7 +118,34 @@ export async function saveCanvasImage(userId: string, name: string, jpeg: Buffer
   await writeFile(path.join(CACHE_DIR, "images", `${name}.jpg`), jpeg);
 }
 
+/**
+ * Approved curriculum diagrams contain no student data, so identical subjects can share one cached
+ * asset across learners. Names are content hashes created by the illustration pipeline.
+ */
+export async function saveSharedCanvasImage(name: string, jpeg: Buffer): Promise<void> {
+  check(name);
+  if (!name.startsWith("asset-")) throw new Error("shared canvas pictures need an asset id");
+  if (blobBacked()) return uploadRawBlob(sharedImageBlob(name), jpeg, "image/jpeg");
+  await mkdir(path.join(CACHE_DIR, "shared-images"), { recursive: true });
+  await writeFile(path.join(CACHE_DIR, "shared-images", `${name}.jpg`), jpeg);
+}
+
+export async function loadSharedCanvasImage(name: string): Promise<Buffer | null> {
+  try {
+    check(name);
+    if (!name.startsWith("asset-")) return null;
+    if (blobBacked()) {
+      const container = await lectureBlobContainer();
+      return await container.getBlobClient(sharedImageBlob(name)).downloadToBuffer();
+    }
+    return await readFile(path.join(CACHE_DIR, "shared-images", `${name}.jpg`));
+  } catch {
+    return null;
+  }
+}
+
 export async function loadCanvasImage(userId: string, name: string): Promise<Buffer | null> {
+  if (name.startsWith("asset-")) return loadSharedCanvasImage(name);
   try {
     check(userId, name);
     if (blobBacked()) {

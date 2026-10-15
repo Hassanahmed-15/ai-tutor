@@ -1,0 +1,141 @@
+import type { Pt } from "./types";
+
+type Rect = { x: number; y: number; w: number; h: number };
+export type LabelInput = { id: string; text: string; anchor: Pt; s: number };
+export type PlacedLabel = {
+  id: string;
+  lines: string[];
+  side: "left" | "right";
+  /** Text position: x is the aligned edge, y the first line's baseline. */
+  at: Pt;
+  leader: Pt[];
+  box: Rect;
+  size: number;
+  s: number;
+};
+
+/**
+ * TEXTBOOK LABELS (boundary labelling — Bekos, Niedermann & Nöllenburg's survey; Barth et al.'s
+ * readability study). Labels stand in columns in the margins beside the figure, each on the side its
+ * part is nearer, in the same top-to-bottom order as their parts so no two leaders cross. Each leader
+ * leaves its label horizontally, then runs straight to a dot on the part. Text sits outside the art,
+ * never on it; a label too long for its margin wraps onto a second line.
+ */
+export function placeLabels(items: LabelInput[], fig: Rect, area: Rect, measure: (text: string, size: number) => number, size = 17, obstacles: Array<{ id: string; box: Rect }> = []): PlacedLabel[] {
+  const cx = fig.x + fig.w / 2;
+  // Each label takes the side and height whose leader is shortest WITHOUT passing another part on the
+  // way in (the circuit's "Fuse" leader crossed the variable resistor). Columns are not forced to
+  // balance: a label moved across the figure for symmetry drags its leader through the art.
+  const CLEAR = 14;
+  const edgeX = (side: "left" | "right") => (side === "left" ? fig.x - 14 : fig.x + fig.w + 14);
+  // Blocked: the leader passes near another label's anchor, or through another part's outline (its
+  // last few units, where it reaches its own part, are allowed to touch).
+  const clear = (item: LabelInput, from: Pt) =>
+    items.every((o) => o === item || distanceToSegment(o.anchor, from, item.anchor) >= CLEAR) &&
+    obstacles.every((o) => o.id === item.id || !segmentHitsBox(from, item.anchor, o.box, 3));
+  const choice = new Map<LabelInput, { side: "left" | "right"; dy: number }>();
+  for (const item of items) {
+    const near: "left" | "right" = item.anchor.x < cx ? "left" : "right";
+    const far: "left" | "right" = near === "left" ? "right" : "left";
+    let best: { side: "left" | "right"; dy: number; cost: number } | null = null;
+    for (const side of [near, far]) for (const dy of [0, -34, 34, -68, 68, -102, 102]) {
+      const from = { x: edgeX(side), y: item.anchor.y + dy };
+      if (from.y < area.y || from.y > area.y + area.h || !clear(item, from)) continue;
+      const cost = Math.abs(from.x - item.anchor.x) + Math.abs(dy) * 1.5 + (side === far ? 80 : 0);
+      if (!best || cost < best.cost) best = { side, dy, cost };
+    }
+    choice.set(item, best ?? { side: near, dy: 0 });
+  }
+  const left = items.filter((i) => choice.get(i)!.side === "left");
+  const right = items.filter((i) => choice.get(i)!.side === "right");
+  const gap = 10;
+  const lineH = size * 1.25;
+  const out: PlacedLabel[] = [];
+  for (const [side, list] of [["left", left], ["right", right]] as const) {
+    const room = side === "left" ? fig.x - area.x - 28 : area.x + area.w - (fig.x + fig.w) - 28;
+    const placed = [...list].map((item) => {
+      const lines = wrap(item.text, size, Math.max(60, room), measure);
+      const w = Math.max(...lines.map((l) => measure(l, size)));
+      return { item, lines, w, h: lines.length * lineH, y: item.anchor.y + choice.get(item)!.dy - (lines.length * lineH) / 2 };
+    }).sort((a, b) => a.y - b.y);
+    // Stack downwards without overlap, then pull back up if the column ran past the bottom.
+    for (let i = 0; i < placed.length; i++) placed[i].y = Math.max(placed[i].y, area.y, i ? placed[i - 1].y + placed[i - 1].h + gap : -Infinity);
+    for (let i = placed.length - 1; i >= 0; i--) placed[i].y = Math.min(placed[i].y, (i < placed.length - 1 ? placed[i + 1].y - gap : area.y + area.h) - placed[i].h);
+    for (const p of placed) {
+      const edge = side === "left" ? fig.x - 14 : fig.x + fig.w + 14;
+      const mid = p.y + p.h / 2;
+      const start = { x: side === "left" ? edge + 6 : edge - 6, y: mid };
+      const elbow = { x: side === "left" ? edge + 18 : edge - 18, y: mid };
+      out.push({
+        id: p.item.id,
+        lines: p.lines,
+        side,
+        at: { x: edge, y: p.y + size * 0.95 },
+        leader: [start, elbow, p.item.anchor],
+        box: { x: side === "left" ? edge - p.w : edge, y: p.y, w: p.w, h: p.h },
+        size,
+        s: p.item.s,
+      });
+    }
+  }
+  // Two leaders on one side that still cross trade label slots (a column is ordered by slot, so a
+  // swap uncrosses them); a few passes settle it.
+  for (let pass = 0; pass < 4; pass++) {
+    let swapped = false;
+    for (const side of ["left", "right"] as const) {
+      const col = out.filter((l) => l.side === side);
+      for (let i = 0; i < col.length; i++) for (let j = i + 1; j < col.length; j++) {
+        const a = col[i], b = col[j];
+        if (!leadersCross(a.leader, b.leader)) continue;
+        const [ea, eb] = [a.leader[2], b.leader[2]];
+        const slotA = { at: a.at, start: a.leader[0], elbow: a.leader[1], y: a.box.y }, slotB = { at: b.at, start: b.leader[0], elbow: b.leader[1], y: b.box.y };
+        Object.assign(a, { at: slotB.at, leader: [slotB.start, slotB.elbow, ea], box: { ...a.box, y: slotB.y } });
+        Object.assign(b, { at: slotA.at, leader: [slotA.start, slotA.elbow, eb], box: { ...b.box, y: slotA.y } });
+        swapped = true;
+      }
+    }
+    if (!swapped) break;
+  }
+  return out;
+}
+
+function wrap(text: string, size: number, maxW: number, measure: (t: string, s: number) => number): string[] {
+  if (measure(text, size) <= maxW) return [text];
+  const words = text.split(/\s+/);
+  let first = "";
+  for (const w of words) {
+    const next = first ? `${first} ${w}` : w;
+    if (measure(next, size) > maxW && first) break;
+    first = next;
+  }
+  const rest = text.slice(first.length).trim();
+  return rest ? [first, rest] : [first];
+}
+
+/** Do two leaders cross? Used by tests and by layout QA. */
+export function leadersCross(a: Pt[], b: Pt[]): boolean {
+  for (let i = 0; i < a.length - 1; i++) for (let j = 0; j < b.length - 1; j++) if (segmentsCross(a[i], a[i + 1], b[j], b[j + 1])) return true;
+  return false;
+}
+function segmentsCross(p: Pt, q: Pt, r: Pt, s: Pt): boolean {
+  const d = (a: Pt, b: Pt, c: Pt) => (b.x - a.x) * (c.y - a.y) - (b.y - a.y) * (c.x - a.x);
+  const d1 = d(r, s, p), d2 = d(r, s, q), d3 = d(p, q, r), d4 = d(p, q, s);
+  return d1 * d2 < 0 && d3 * d4 < 0;
+}
+
+function distanceToSegment(p: Pt, a: Pt, b: Pt): number {
+  const dx = b.x - a.x, dy = b.y - a.y;
+  const t = Math.max(0, Math.min(1, ((p.x - a.x) * dx + (p.y - a.y) * dy) / (dx * dx + dy * dy || 1)));
+  return Math.hypot(p.x - (a.x + t * dx), p.y - (a.y + t * dy));
+}
+
+/** Does the segment a→b pass through the box (inflated by pad), ignoring its final 10 units? */
+function segmentHitsBox(a: Pt, b: Pt, box: Rect, pad: number): boolean {
+  const len = Math.hypot(b.x - a.x, b.y - a.y) || 1;
+  const end = Math.max(0, 1 - 10 / len);
+  for (let t = 0; t <= end; t += Math.min(0.02, end / 4 || 0.02)) {
+    const x = a.x + (b.x - a.x) * t, y = a.y + (b.y - a.y) * t;
+    if (x > box.x - pad && x < box.x + box.w + pad && y > box.y - pad && y < box.y + box.h + pad) return true;
+  }
+  return false;
+}

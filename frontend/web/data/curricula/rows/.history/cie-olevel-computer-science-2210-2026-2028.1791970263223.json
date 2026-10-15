@@ -1,0 +1,506 @@
+[
+ {
+  "grade": "O Level",
+  "unit": "1 Data representation",
+  "topic": "1.1 Number systems",
+  "subtopic": "Binary and hexadecimal",
+  "code": "1.1",
+  "outcome": "Explain why computers use binary, and convert between denary, binary and hexadecimal up to 16 bits."
+ },
+ {
+  "grade": "O Level",
+  "unit": "1 Data representation",
+  "topic": "1.1 Number systems",
+  "subtopic": "Why hexadecimal is used",
+  "code": null,
+  "outcome": "Explain why hexadecimal is a shorter, more human-friendly form of binary and where it is used."
+ },
+ {
+  "grade": "O Level",
+  "unit": "1 Data representation",
+  "topic": "1.1 Number systems",
+  "subtopic": "Binary addition and overflow",
+  "code": null,
+  "outcome": "Add two 8-bit binary integers and explain overflow when a result exceeds the register."
+ },
+ {
+  "grade": "O Level",
+  "unit": "1 Data representation",
+  "topic": "1.1 Number systems",
+  "subtopic": "Logical binary shifts",
+  "code": null,
+  "outcome": "Perform left and right logical shifts on 8-bit integers and state the effect on value."
+ },
+ {
+  "grade": "O Level",
+  "unit": "1 Data representation",
+  "topic": "1.1 Number systems",
+  "subtopic": "Two's complement",
+  "code": null,
+  "outcome": "Represent positive and negative 8-bit integers in two's complement and convert back."
+ },
+ {
+  "grade": "O Level",
+  "unit": "1 Data representation",
+  "topic": "1.2 Text, sound and images",
+  "subtopic": "Representing text",
+  "code": "1.2",
+  "outcome": "Explain how ASCII and Unicode represent characters and why Unicode needs more bits."
+ },
+ {
+  "grade": "O Level",
+  "unit": "1 Data representation",
+  "topic": "1.2 Text, sound and images",
+  "subtopic": "Representing sound",
+  "code": null,
+  "outcome": "Explain sampling, and how sample rate and resolution affect quality and file size."
+ },
+ {
+  "grade": "O Level",
+  "unit": "1 Data representation",
+  "topic": "1.2 Text, sound and images",
+  "subtopic": "Representing images",
+  "code": null,
+  "outcome": "Explain pixels, resolution and colour depth and their effect on quality and file size."
+ },
+ {
+  "grade": "O Level",
+  "unit": "1 Data representation",
+  "topic": "1.3 Data storage and compression",
+  "subtopic": "Units of data storage",
+  "code": "1.3",
+  "outcome": "Name storage units from bit to exbibyte and convert between them using 1024."
+ },
+ {
+  "grade": "O Level",
+  "unit": "1 Data representation",
+  "topic": "1.3 Data storage and compression",
+  "subtopic": "File size calculations",
+  "code": null,
+  "outcome": "Calculate image and sound file sizes from resolution, colour depth, sample rate and length."
+ },
+ {
+  "grade": "O Level",
+  "unit": "1 Data representation",
+  "topic": "1.3 Data storage and compression",
+  "subtopic": "Data compression",
+  "code": null,
+  "outcome": "Explain why files are compressed and how lossy compression and lossless run length encoding work."
+ },
+ {
+  "grade": "O Level",
+  "unit": "2 Data transmission",
+  "topic": "2.1 Types and methods of data transmission",
+  "subtopic": "Packets and packet switching",
+  "code": "2.1",
+  "outcome": "Describe packet structure and how routers send packets by different routes before reordering."
+ },
+ {
+  "grade": "O Level",
+  "unit": "2 Data transmission",
+  "topic": "2.1 Types and methods of data transmission",
+  "subtopic": "Transmission methods and USB",
+  "code": null,
+  "outcome": "Compare serial, parallel, simplex, half-duplex and full-duplex transmission, and describe USB."
+ },
+ {
+  "grade": "O Level",
+  "unit": "2 Data transmission",
+  "topic": "2.2 Methods of error detection",
+  "subtopic": "Error detection methods",
+  "code": "2.2",
+  "outcome": "Explain causes of transmission errors, and parity, checksum, echo check, check digits and ARQ."
+ },
+ {
+  "grade": "O Level",
+  "unit": "2 Data transmission",
+  "topic": "2.3 Encryption",
+  "subtopic": "Encryption",
+  "code": "2.3",
+  "outcome": "Explain why data is encrypted and how symmetric and asymmetric keys work."
+ },
+ {
+  "grade": "O Level",
+  "unit": "3 Hardware",
+  "topic": "3.1 Computer architecture",
+  "subtopic": "The CPU and microprocessors",
+  "code": "3.1",
+  "outcome": "Describe the CPU's role and what a microprocessor is."
+ },
+ {
+  "grade": "O Level",
+  "unit": "3 Hardware",
+  "topic": "3.1 Computer architecture",
+  "subtopic": "Von Neumann architecture and the FDE cycle",
+  "code": null,
+  "outcome": "Describe the ALU, CU, registers and buses, and walk through the fetch-decode-execute cycle."
+ },
+ {
+  "grade": "O Level",
+  "unit": "3 Hardware",
+  "topic": "3.1 Computer architecture",
+  "subtopic": "CPU performance and instruction sets",
+  "code": null,
+  "outcome": "Explain how cores, cache and clock affect performance, and what an instruction set is."
+ },
+ {
+  "grade": "O Level",
+  "unit": "3 Hardware",
+  "topic": "3.1 Computer architecture",
+  "subtopic": "Embedded systems",
+  "code": null,
+  "outcome": "Describe embedded systems and how they differ from general-purpose computers."
+ },
+ {
+  "grade": "O Level",
+  "unit": "3 Hardware",
+  "topic": "3.2 Input and output devices",
+  "subtopic": "Input and output devices",
+  "code": "3.2",
+  "outcome": "Explain what input and output devices are and describe common examples."
+ },
+ {
+  "grade": "O Level",
+  "unit": "3 Hardware",
+  "topic": "3.2 Input and output devices",
+  "subtopic": "Sensors",
+  "code": null,
+  "outcome": "Describe sensors, the data each captures, and choose a suitable one for a context."
+ },
+ {
+  "grade": "O Level",
+  "unit": "3 Hardware",
+  "topic": "3.3 Data storage",
+  "subtopic": "Primary storage",
+  "code": "3.3",
+  "outcome": "Explain RAM and ROM and why a computer needs both."
+ },
+ {
+  "grade": "O Level",
+  "unit": "3 Hardware",
+  "topic": "3.3 Data storage",
+  "subtopic": "Secondary storage",
+  "code": null,
+  "outcome": "Describe magnetic, optical and solid-state storage with examples."
+ },
+ {
+  "grade": "O Level",
+  "unit": "3 Hardware",
+  "topic": "3.3 Data storage",
+  "subtopic": "Virtual memory",
+  "code": null,
+  "outcome": "Explain what virtual memory is and why it is needed."
+ },
+ {
+  "grade": "O Level",
+  "unit": "3 Hardware",
+  "topic": "3.3 Data storage",
+  "subtopic": "Cloud storage",
+  "code": null,
+  "outcome": "Compare cloud storage with local storage, including advantages and disadvantages."
+ },
+ {
+  "grade": "O Level",
+  "unit": "3 Hardware",
+  "topic": "3.4 Network hardware",
+  "subtopic": "NICs, MAC and IP addresses",
+  "code": "3.4",
+  "outcome": "Explain NICs, MAC address structure, and static, dynamic, IPv4 and IPv6 addresses."
+ },
+ {
+  "grade": "O Level",
+  "unit": "3 Hardware",
+  "topic": "3.4 Network hardware",
+  "subtopic": "Routers",
+  "code": null,
+  "outcome": "Describe the role of a router in a network."
+ },
+ {
+  "grade": "O Level",
+  "unit": "4 Software",
+  "topic": "4.1 Types of software and interrupts",
+  "subtopic": "System and application software",
+  "code": "4.1",
+  "outcome": "Distinguish system from application software and describe what an operating system does."
+ },
+ {
+  "grade": "O Level",
+  "unit": "4 Software",
+  "topic": "4.1 Types of software and interrupts",
+  "subtopic": "Running software and interrupts",
+  "code": null,
+  "outcome": "Explain how hardware, firmware and the OS run applications, and how interrupts are generated and handled."
+ },
+ {
+  "grade": "O Level",
+  "unit": "4 Software",
+  "topic": "4.2 Programming languages, translators and IDEs",
+  "subtopic": "High and low-level languages",
+  "code": "4.2",
+  "outcome": "Compare high-level and low-level languages and explain assembly language and assemblers."
+ },
+ {
+  "grade": "O Level",
+  "unit": "4 Software",
+  "topic": "4.2 Programming languages, translators and IDEs",
+  "subtopic": "Compilers and interpreters",
+  "code": null,
+  "outcome": "Explain how compilers and interpreters work, their error reporting, and their pros and cons."
+ },
+ {
+  "grade": "O Level",
+  "unit": "4 Software",
+  "topic": "4.2 Programming languages, translators and IDEs",
+  "subtopic": "IDEs",
+  "code": null,
+  "outcome": "Describe what an IDE provides to help write code."
+ },
+ {
+  "grade": "O Level",
+  "unit": "5 The internet and its uses",
+  "topic": "5.1 The internet and the world wide web",
+  "subtopic": "Internet, web, URLs and HTTP",
+  "code": "5.1",
+  "outcome": "Distinguish the internet from the web, and explain URLs, HTTP and HTTPS."
+ },
+ {
+  "grade": "O Level",
+  "unit": "5 The internet and its uses",
+  "topic": "5.1 The internet and the world wide web",
+  "subtopic": "Browsers and loading a web page",
+  "code": null,
+  "outcome": "Explain browser functions and how DNS, IP addresses, web servers and HTML deliver a page."
+ },
+ {
+  "grade": "O Level",
+  "unit": "5 The internet and its uses",
+  "topic": "5.1 The internet and the world wide web",
+  "subtopic": "Cookies",
+  "code": null,
+  "outcome": "Explain session and persistent cookies and what they are used for."
+ },
+ {
+  "grade": "O Level",
+  "unit": "5 The internet and its uses",
+  "topic": "5.2 Digital currency",
+  "subtopic": "Digital currency and blockchain",
+  "code": "5.2",
+  "outcome": "Explain digital currency and how a blockchain ledger records transactions."
+ },
+ {
+  "grade": "O Level",
+  "unit": "5 The internet and its uses",
+  "topic": "5.3 Cyber security",
+  "subtopic": "Cyber security threats",
+  "code": "5.3",
+  "outcome": "Describe attacks such as brute force, DDoS, phishing, pharming, malware and social engineering."
+ },
+ {
+  "grade": "O Level",
+  "unit": "5 The internet and its uses",
+  "topic": "5.3 Cyber security",
+  "subtopic": "Protecting data",
+  "code": null,
+  "outcome": "Explain solutions such as authentication, firewalls, anti-malware, SSL and access levels."
+ },
+ {
+  "grade": "O Level",
+  "unit": "6 Automated and emerging technologies",
+  "topic": "6.1 Automated systems",
+  "subtopic": "Automated systems",
+  "code": "6.1",
+  "outcome": "Explain how sensors, microprocessors and actuators combine, and weigh pros and cons for a scenario."
+ },
+ {
+  "grade": "O Level",
+  "unit": "6 Automated and emerging technologies",
+  "topic": "6.2 Robotics",
+  "subtopic": "Robotics",
+  "code": "6.2",
+  "outcome": "Describe robots, their characteristics, roles, advantages and disadvantages."
+ },
+ {
+  "grade": "O Level",
+  "unit": "6 Automated and emerging technologies",
+  "topic": "6.3 Artificial intelligence",
+  "subtopic": "Artificial intelligence",
+  "code": "6.3",
+  "outcome": "Describe AI, its characteristics, expert systems and machine learning."
+ },
+ {
+  "grade": "O Level",
+  "unit": "7 Algorithm design and problem-solving",
+  "topic": "Algorithm design and problem-solving",
+  "subtopic": "Program development life cycle",
+  "code": null,
+  "outcome": "Describe analysis, design, coding and testing stages and the tasks in each."
+ },
+ {
+  "grade": "O Level",
+  "unit": "7 Algorithm design and problem-solving",
+  "topic": "Algorithm design and problem-solving",
+  "subtopic": "Decomposition and designing solutions",
+  "code": null,
+  "outcome": "Break systems into sub-systems and design solutions with structure diagrams, flowcharts and pseudocode."
+ },
+ {
+  "grade": "O Level",
+  "unit": "7 Algorithm design and problem-solving",
+  "topic": "Algorithm design and problem-solving",
+  "subtopic": "Explaining and tracing algorithms",
+  "code": null,
+  "outcome": "Explain an algorithm's purpose, complete trace tables, and find and fix errors."
+ },
+ {
+  "grade": "O Level",
+  "unit": "7 Algorithm design and problem-solving",
+  "topic": "Algorithm design and problem-solving",
+  "subtopic": "Standard algorithms",
+  "code": null,
+  "outcome": "Use linear search, bubble sort, totalling, counting, and finding maximum, minimum and average."
+ },
+ {
+  "grade": "O Level",
+  "unit": "7 Algorithm design and problem-solving",
+  "topic": "Algorithm design and problem-solving",
+  "subtopic": "Validation and verification",
+  "code": null,
+  "outcome": "Choose validation checks and verification checks for input data."
+ },
+ {
+  "grade": "O Level",
+  "unit": "7 Algorithm design and problem-solving",
+  "topic": "Algorithm design and problem-solving",
+  "subtopic": "Test data",
+  "code": null,
+  "outcome": "Choose normal, abnormal, extreme and boundary test data."
+ },
+ {
+  "grade": "O Level",
+  "unit": "7 Algorithm design and problem-solving",
+  "topic": "Algorithm design and problem-solving",
+  "subtopic": "Writing algorithms",
+  "code": null,
+  "outcome": "Write and amend algorithms in pseudocode, code and flowcharts using precise conditions."
+ },
+ {
+  "grade": "O Level",
+  "unit": "8 Programming",
+  "topic": "8.1 Programming concepts",
+  "subtopic": "Variables, constants and data types",
+  "code": "8.1",
+  "outcome": "Declare variables and constants and use integer, real, char, string and Boolean types."
+ },
+ {
+  "grade": "O Level",
+  "unit": "8 Programming",
+  "topic": "8.1 Programming concepts",
+  "subtopic": "Input, output and sequence",
+  "code": null,
+  "outcome": "Use input, output and sequence in programs."
+ },
+ {
+  "grade": "O Level",
+  "unit": "8 Programming",
+  "topic": "8.1 Programming concepts",
+  "subtopic": "Selection",
+  "code": null,
+  "outcome": "Use IF and CASE statements."
+ },
+ {
+  "grade": "O Level",
+  "unit": "8 Programming",
+  "topic": "8.1 Programming concepts",
+  "subtopic": "Iteration",
+  "code": null,
+  "outcome": "Use count-controlled, pre-condition and post-condition loops, with totalling and counting."
+ },
+ {
+  "grade": "O Level",
+  "unit": "8 Programming",
+  "topic": "8.1 Programming concepts",
+  "subtopic": "String handling",
+  "code": null,
+  "outcome": "Use length, substring, upper and lower on strings."
+ },
+ {
+  "grade": "O Level",
+  "unit": "8 Programming",
+  "topic": "8.1 Programming concepts",
+  "subtopic": "Operators",
+  "code": null,
+  "outcome": "Use arithmetic, relational and logical operators, including MOD and DIV."
+ },
+ {
+  "grade": "O Level",
+  "unit": "8 Programming",
+  "topic": "8.1 Programming concepts",
+  "subtopic": "Nested statements",
+  "code": null,
+  "outcome": "Write nested selection and iteration up to three levels."
+ },
+ {
+  "grade": "O Level",
+  "unit": "8 Programming",
+  "topic": "8.1 Programming concepts",
+  "subtopic": "Procedures and functions",
+  "code": null,
+  "outcome": "Define and use procedures and functions with parameters, and local and global variables."
+ },
+ {
+  "grade": "O Level",
+  "unit": "8 Programming",
+  "topic": "8.1 Programming concepts",
+  "subtopic": "Library routines and maintainable code",
+  "code": null,
+  "outcome": "Use ROUND and RANDOM, and write maintainable code with meaningful names and comments."
+ },
+ {
+  "grade": "O Level",
+  "unit": "8 Programming",
+  "topic": "8.2 Arrays",
+  "subtopic": "Arrays",
+  "code": "8.2",
+  "outcome": "Declare and use 1D and 2D arrays, with variables as indexes and loops to read and write values."
+ },
+ {
+  "grade": "O Level",
+  "unit": "8 Programming",
+  "topic": "8.3 File handling",
+  "subtopic": "File handling",
+  "code": "8.3",
+  "outcome": "Explain why programs store data in files, and open, close, read and write files."
+ },
+ {
+  "grade": "O Level",
+  "unit": "9 Databases",
+  "topic": "Databases",
+  "subtopic": "Database tables, fields and keys",
+  "code": null,
+  "outcome": "Define a single-table database with fields, records, data types, validation and a primary key."
+ },
+ {
+  "grade": "O Level",
+  "unit": "9 Databases",
+  "topic": "Databases",
+  "subtopic": "SQL queries",
+  "code": null,
+  "outcome": "Read and complete SQL with SELECT, FROM, WHERE, ORDER BY, SUM and COUNT and predict output."
+ },
+ {
+  "grade": "O Level",
+  "unit": "10 Boolean logic",
+  "topic": "Boolean logic",
+  "subtopic": "Logic gates",
+  "code": null,
+  "outcome": "Know the symbols and truth behaviour of NOT, AND, OR, NAND, NOR and XOR."
+ },
+ {
+  "grade": "O Level",
+  "unit": "10 Boolean logic",
+  "topic": "Boolean logic",
+  "subtopic": "Logic circuits and truth tables",
+  "code": null,
+  "outcome": "Draw circuits from statements, expressions or tables, complete truth tables and write logic expressions."
+ }
+]

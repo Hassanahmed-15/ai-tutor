@@ -46,8 +46,28 @@ export const LECTURE_JOBS_CONTAINER = "lecture-jobs";
 export const KNOWLEDGE_GRAPH_CONTAINER = "knowledge-graph";
 /** One row per paid AI call (lib/spend/record.ts), so every lecture's cost and the day's total can be read back. */
 export const SPEND_EVENTS_CONTAINER = "spend-events";
+<<<<<<< HEAD
 /** What the web research found for a topic (lib/webResearch.ts), so the same topic is searched once for everyone. */
 export const WEB_RESEARCH_CONTAINER = "web-research";
+=======
+
+/** Per-account AI spend per day, for the accounts lib/spendTracking.ts tracks. */
+export const DAILY_SPEND_CONTAINER = "daily-spend";
+/** One reviewed lesson specification per curriculum lesson and course version (lib/curriculum/lessonSpec.ts). */
+export const CURRICULUM_LESSONS_CONTAINER = "curriculum-lessons";
+
+/** One tracked account's AI spend on one (Pakistan) day. */
+export type DailySpendDoc = {
+  /** `${userId}:${day}` */
+  id: string;
+  userId: string;
+  email: string;
+  /** YYYY-MM-DD in Pakistan time. */
+  day: string;
+  spentUsd: number;
+  updatedAt: string;
+};
+>>>>>>> d67c707b (courses added)
 
 /**
  * One board, so `board` is a constant rather than a real dimension.
@@ -408,11 +428,27 @@ export async function spendEvents(): Promise<Container> {
   return container;
 }
 
+<<<<<<< HEAD
 /** Cached web research by topic key; on the shared pool, rows retire after 90 days so material stays fresh. */
 export async function webResearch(): Promise<Container> {
   const { database } = await client().databases.createIfNotExists({ id: DATABASE_ID, throughput: SHARED_THROUGHPUT });
   const { container } = await database.containers.createIfNotExists({ id: WEB_RESEARCH_CONTAINER, partitionKey: { paths: ["/id"] }, defaultTtl: 90 * 24 * 3600 });
   return container;
+=======
+/**
+ * Curriculum lesson specs, keyed by course + version + lesson: written once, then every student who
+ * opens that lesson gets the same spec (and its verification result) for free. Created on first
+ * use in the shared-throughput database, so it costs nothing extra.
+ */
+export async function curriculumLessons(): Promise<Container> {
+  const { database } = await client().databases.createIfNotExists({ id: DATABASE_ID, throughput: SHARED_THROUGHPUT });
+  const { container } = await database.containers.createIfNotExists({ id: CURRICULUM_LESSONS_CONTAINER, partitionKey: { paths: ["/id"] } });
+  return container;
+}
+
+export function knowledgeGraph(): Container {
+  return client().database(DATABASE_ID).container(KNOWLEDGE_GRAPH_CONTAINER);
+>>>>>>> d67c707b (courses added)
 }
 
 export function knowledgeGraph(): Container {

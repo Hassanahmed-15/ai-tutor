@@ -1,0 +1,699 @@
+{
+ "id": "pk-ncp-tech-dental-hygiene-11-12",
+ "region": "PK",
+ "framework": "National Curriculum of Pakistan 2022-23",
+ "board": null,
+ "qualification": "Technical stream",
+ "subject": "Dental Hygiene",
+ "syllabusCode": null,
+ "gradeSystem": "grade",
+ "source": {
+  "urls": [
+   "https://ncc.gov.pk/SiteImage/Misc/files/50-Trade%20Medical%20Technology.pdf"
+  ],
+  "publisher": "National Curriculum Council, Ministry of Federal Education and Professional Training",
+  "licence": "Government publication; structure + our own wording only",
+  "firstExam": null
+ },
+ "grades": [
+  {
+   "grade": "11",
+   "units": [
+    {
+     "id": "domain-a-introduction-to-dental-hygiene",
+     "title": "Domain A: Introduction to Dental Hygiene",
+     "topics": [
+      {
+       "id": "oral-anatomy-and-pathology",
+       "title": "Oral anatomy and pathology",
+       "subtopics": [
+        {
+         "id": "oral-anatomy-and-tooth-structure",
+         "title": "Oral anatomy and tooth structure",
+         "outcomes": [
+          {
+           "code": "DH-11-A-01",
+           "text": "Explain basic anatomical terms and structures of the oral cavity."
+          },
+          {
+           "code": "DH-11-A-02",
+           "text": "Describe the structure and microscopic features of teeth and surrounding tissues."
+          },
+          {
+           "code": "DH-11-A-07",
+           "text": "Explain how a tooth and its supporting structures develop and erupt."
+          }
+         ]
+        },
+        {
+         "id": "pathology-and-microbiology-intro",
+         "title": "Pathology and microbiology intro",
+         "outcomes": [
+          {
+           "code": "DH-11-A-03",
+           "text": "Explain pathology and microbiology through study and lab work."
+          },
+          {
+           "code": "DH-11-A-06",
+           "text": "Explain how dental microorganisms are classified and how they cause disease."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "clinical-practice",
+       "title": "Clinical practice",
+       "subtopics": [
+        {
+         "id": "infection-control-and-emergencies",
+         "title": "Infection control and emergencies",
+         "outcomes": [
+          {
+           "code": "DH-11-A-04",
+           "text": "Describe how sterilization and disinfection remove or reduce microorganisms."
+          },
+          {
+           "code": "DH-11-A-05",
+           "text": "List what a dental hygienist does in an emergency, with correct protocols."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "domain-b-dental-anatomy",
+     "title": "Domain B: Dental Anatomy",
+     "topics": [
+      {
+       "id": "dental-anatomy",
+       "title": "Dental anatomy",
+       "subtopics": [
+        {
+         "id": "oral-and-facial-anatomy",
+         "title": "Oral and facial anatomy",
+         "outcomes": [
+          {
+           "code": "DH-11-B-01",
+           "text": "Define anatomical terms and structures of the oral cavity."
+          },
+          {
+           "code": "DH-11-B-02",
+           "text": "Describe lymphatic drainage of the head and neck."
+          },
+          {
+           "code": "DH-11-B-03",
+           "text": "Identify salivary glands, facial and chewing muscles, the jaw joint, facial skeleton and mandible."
+          }
+         ]
+        },
+        {
+         "id": "body-systems-and-nerves",
+         "title": "Body systems and nerves",
+         "outcomes": [
+          {
+           "code": "DH-11-B-04",
+           "text": "Describe how the respiratory, cardiovascular and digestive systems work."
+          },
+          {
+           "code": "DH-11-B-05",
+           "text": "Apply nerve principles to understand regional anesthesia."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "domain-c-dental-histology",
+     "title": "Domain C: Dental Histology",
+     "topics": [
+      {
+       "id": "dental-histology",
+       "title": "Dental histology",
+       "subtopics": [
+        {
+         "id": "teeth-and-their-tissues",
+         "title": "Teeth and their tissues",
+         "outcomes": [
+          {
+           "code": "DH-1-C-01",
+           "text": "Define dental anatomy and histology, including microscopic features of teeth and nearby tissues."
+          },
+          {
+           "code": "DH-11-C-02",
+           "text": "Mark deciduous and permanent teeth with eruption dates, crown and root formation, variations and jaw positions."
+          },
+          {
+           "code": "DH-11-C-03",
+           "text": "Describe the histology of enamel, dentine, pulp, cementum, periodontal membranes and gingivae."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "domain-d-pathology-and-microbiology",
+     "title": "Domain D: Pathology and Microbiology",
+     "topics": [
+      {
+       "id": "pathology-and-microbiology",
+       "title": "Pathology and microbiology",
+       "subtopics": [
+        {
+         "id": "inflammation-and-injury",
+         "title": "Inflammation and injury",
+         "outcomes": [
+          {
+           "code": "DH-11-D-01",
+           "text": "Define pathology and microbiology through study and lab work."
+          },
+          {
+           "code": "DH-11-D-02",
+           "text": "Illustrate how inflammation works in soft and hard dental tissues."
+          },
+          {
+           "code": "DH-11-D-06",
+           "text": "Describe pathology, bacteriology and parasitology: reaction to injury, harmful agents, signs and symptoms."
+          },
+          {
+           "code": "DH-11-D-07",
+           "text": "Explain acute inflammation, suppuration, immunity, fever, shock, syncope, repair and tissue changes like necrosis."
+          }
+         ]
+        },
+        {
+         "id": "oral-conditions-and-microorganisms",
+         "title": "Oral conditions and microorganisms",
+         "outcomes": [
+          {
+           "code": "DH-11-D-03",
+           "text": "Explain common oral pathological conditions and disorders."
+          },
+          {
+           "code": "DH-11-D-04",
+           "text": "Classify dental microorganisms and their roles in disease."
+          },
+          {
+           "code": "DH-11-D-05",
+           "text": "List infections in and around the oral cavity and common pathological conditions."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "domain-e-sterilization",
+     "title": "Domain E: Sterilization",
+     "topics": [
+      {
+       "id": "sterilization",
+       "title": "Sterilization",
+       "subtopics": [
+        {
+         "id": "sterilization-and-disinfection",
+         "title": "Sterilization and disinfection",
+         "outcomes": [
+          {
+           "code": "DH-11-E-01",
+           "text": "Define sterilization and disinfection."
+          },
+          {
+           "code": "DH-11-E-02",
+           "text": "Illustrate why disinfection and sterilization matter for removing microorganisms."
+          },
+          {
+           "code": "DH-11-E-03",
+           "text": "Describe sterilization and disinfection methods for dental instruments and materials."
+          }
+         ]
+        },
+        {
+         "id": "cross-infection-control",
+         "title": "Cross-infection control",
+         "outcomes": [
+          {
+           "code": "DH-11-E-04",
+           "text": "Describe principles for preventing cross-infection."
+          },
+          {
+           "code": "DH-11-E-05",
+           "text": "Illustrate how pathogens spread, and use hygiene, PPE and aseptic protocols."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "domain-f-nutrition",
+     "title": "Domain F: Nutrition",
+     "topics": [
+      {
+       "id": "nutrition",
+       "title": "Nutrition",
+       "subtopics": [
+        {
+         "id": "diet-and-dental-health",
+         "title": "Diet and dental health",
+         "outcomes": [
+          {
+           "code": "DH-11-F-01",
+           "text": "Discuss nutrition: food science, dietary guidelines and nutrients' effect on health."
+          },
+          {
+           "code": "DH-11-F-02",
+           "text": "Describe diet constituents: protein, fat, carbohydrates, minerals and vitamins."
+          },
+          {
+           "code": "DH-11-F-03",
+           "text": "Address nutritional deficiencies and how diet affects dental health."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "domain-g-patient-care",
+     "title": "Domain G: Patient Care",
+     "topics": [
+      {
+       "id": "patient-care",
+       "title": "Patient care",
+       "subtopics": [
+        {
+         "id": "communication-and-special-patients",
+         "title": "Communication and special patients",
+         "outcomes": [
+          {
+           "code": "DH-11-G-01",
+           "text": "Communicate clearly and kindly with patients about their concerns and treatment plans."
+          },
+          {
+           "code": "DH-11-G-02",
+           "text": "Care for patients needing special attention, such as oral surgery, orthodontic, cleft palate and disabled patients, and do scaling and polishing."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "domain-i-oral-medicine-and-pharmacology",
+     "title": "Domain I: Oral Medicine and Pharmacology",
+     "topics": [
+      {
+       "id": "oral-medicine-and-pharmacology",
+       "title": "Oral medicine and pharmacology",
+       "subtopics": [
+        {
+         "id": "medical-history-and-drugs",
+         "title": "Medical history and drugs",
+         "outcomes": [
+          {
+           "code": "DH-11-I-01",
+           "text": "Define oral medicine and pharmacology as applied to dentistry."
+          },
+          {
+           "code": "DH-11-I-02",
+           "text": "Record patient medical history, including medications, conditions, allergies, pregnancy, hepatitis, bleeding disorders, and drugs used in dentistry."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "domain-j-emergencies-and-identification-of-care-",
+     "title": "Domain J: Emergencies and Identification of Care Instruments",
+     "topics": [
+      {
+       "id": "emergencies-and-care-instruments",
+       "title": "Emergencies and care instruments",
+       "subtopics": [
+        {
+         "id": "emergency-care",
+         "title": "Emergency care",
+         "outcomes": [
+          {
+           "code": "DH-11-J-01",
+           "text": "List a dental hygienist's emergency responsibilities and protocols."
+          },
+          {
+           "code": "DH-11-J-02",
+           "text": "Manage an unconscious patient safely until medical help arrives."
+          }
+         ]
+        },
+        {
+         "id": "equipment-care",
+         "title": "Equipment care",
+         "outcomes": [
+          {
+           "code": "DH-11-J-03",
+           "text": "Care for hand pieces: maintenance, sterilization, safe handling and grasp."
+          },
+          {
+           "code": "DH-11-J-04",
+           "text": "Maintain dental equipment such as the chair, unit, evacuator, compressor, ultrasonic scaler, sterilizer and endodontic kit."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "12",
+   "units": [
+    {
+     "id": "domain-a-introduction-to-dental-hygiene",
+     "title": "Domain A: Introduction to Dental Hygiene",
+     "topics": [
+      {
+       "id": "dental-disease-and-treatment",
+       "title": "Dental disease and treatment",
+       "subtopics": [
+        {
+         "id": "caries-health-and-anesthesia",
+         "title": "Caries, health and anesthesia",
+         "outcomes": [
+          {
+           "code": "DH-12-A-01",
+           "text": "Describe dental caries as tooth decay caused by bacterial acid."
+          },
+          {
+           "code": "DH-12-A-02",
+           "text": "Define health, positive health, dental health and dental education."
+          },
+          {
+           "code": "DH-12-A-03",
+           "text": "Describe what local anesthesia is and how it works."
+          },
+          {
+           "code": "DH-12-A-04",
+           "text": "Describe the types of X-rays and when dentistry uses them."
+          }
+         ]
+        },
+        {
+         "id": "orthodontics-and-plaque",
+         "title": "Orthodontics and plaque",
+         "outcomes": [
+          {
+           "code": "DH-12-A-05",
+           "text": "Describe skull and jaw growth, tooth eruption, malocclusion, its causes and orthodontic treatment limits."
+          },
+          {
+           "code": "DH-12-A-06",
+           "text": "Describe plaque formation, calculus, and extrinsic versus intrinsic stains."
+          }
+         ]
+        },
+        {
+         "id": "gum-disease-and-oral-conditions",
+         "title": "Gum disease and oral conditions",
+         "outcomes": [
+          {
+           "code": "DH-12-A-07",
+           "text": "Classify gingival and periodontal conditions, including chronic periodontal disease."
+          },
+          {
+           "code": "DH-12-A-08",
+           "text": "Discuss oral conditions with their features, diagnosis and treatment."
+          }
+         ]
+        },
+        {
+         "id": "tooth-wear-restoration-and-minor-surgery",
+         "title": "Tooth wear, restoration and minor surgery",
+         "outcomes": [
+          {
+           "code": "DH-12-A-09",
+           "text": "Explain attrition, abrasion, erosion and developmental abnormalities as forms of tooth wear."
+          },
+          {
+           "code": "DH-12-A-10",
+           "text": "List ways to restore teeth: fillings, inlays, crowns and bridges."
+          },
+          {
+           "code": "DH-12-A-11",
+           "text": "Describe minor oral surgery, including extractions and pre- and post-operative care."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "domain-b-dental-anatomy",
+     "title": "Domain B: Dental Anatomy",
+     "topics": [
+      {
+       "id": "dental-anatomy",
+       "title": "Dental anatomy",
+       "subtopics": [
+        {
+         "id": "caries-and-anesthesia-in-practice",
+         "title": "Caries and anesthesia in practice",
+         "outcomes": [
+          {
+           "code": "DH-12-B-01",
+           "text": "Learn what dental caries is."
+          },
+          {
+           "code": "DH-12-B-02",
+           "text": "Describe the epidemiology of dental caries."
+          },
+          {
+           "code": "DH-12-B-03",
+           "text": "Define health, positive health, dental health and dental education."
+          },
+          {
+           "code": "DH-12-B-04",
+           "text": "Describe types of local anesthesia, including block and infiltration."
+          },
+          {
+           "code": "DH-12-B-05",
+           "text": "Learn injection sites, techniques and contraindications for local and general anesthetics."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "domain-c-dental-histology",
+     "title": "Domain C: Dental Histology",
+     "topics": [
+      {
+       "id": "dental-histology",
+       "title": "Dental histology",
+       "subtopics": [
+        {
+         "id": "periodontal-disease",
+         "title": "Periodontal disease",
+         "outcomes": [
+          {
+           "code": "DH-12-C-01",
+           "text": "Classify gingival and periodontal conditions, including chronic periodontal disease."
+          },
+          {
+           "code": "DH-12-C-02",
+           "text": "Explain the epidemiology of periodontal disease."
+          },
+          {
+           "code": "DH-12-C-03",
+           "text": "List preventive measures for chronic desquamative gingivitis."
+          },
+          {
+           "code": "DH-12-C-04",
+           "text": "Explain these conditions, how common they are, and how to prevent them."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "domain-d-pathology-and-microbiology",
+     "title": "Domain D: Pathology and Microbiology",
+     "topics": [
+      {
+       "id": "pathology-and-microbiology",
+       "title": "Pathology and microbiology",
+       "subtopics": [
+        {
+         "id": "tooth-wear-and-dentures",
+         "title": "Tooth wear and dentures",
+         "outcomes": [
+          {
+           "code": "DH-12-D-01",
+           "text": "Recall attrition, abrasion, erosion and developmental abnormalities as tooth wear and structural irregularities."
+          },
+          {
+           "code": "DH-12-D-02",
+           "text": "Explain how partial and full dentures are made, cared for and used, and the dental technician's role."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "domain-e-sterilization",
+     "title": "Domain E: Sterilization",
+     "topics": [
+      {
+       "id": "sterilization",
+       "title": "Sterilization",
+       "subtopics": [
+        {
+         "id": "surgical-instruments",
+         "title": "Surgical instruments",
+         "outcomes": [
+          {
+           "code": "DH-12-E-01",
+           "text": "List uses of instruments in oral and maxillofacial surgery."
+          },
+          {
+           "code": "DH-12-E-02",
+           "text": "Explain the uses of apparatus in minor and major oral surgery."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "domain-f-nutrition",
+     "title": "Domain F: Nutrition",
+     "topics": [
+      {
+       "id": "nutrition",
+       "title": "Nutrition",
+       "subtopics": [
+        {
+         "id": "dentures",
+         "title": "Dentures",
+         "outcomes": [
+          {
+           "code": "DH-12-F-01",
+           "text": "Describe how partial and full dentures are made, cared for and used, and the dental technician's role."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "domain-g-patient-care",
+     "title": "Domain G: Patient Care",
+     "topics": [
+      {
+       "id": "patient-care",
+       "title": "Patient care",
+       "subtopics": [
+        {
+         "id": "root-canal-therapy",
+         "title": "Root canal therapy",
+         "outcomes": [
+          {
+           "code": "DH-12-G-01",
+           "text": "Describe the principles and procedures of root canal therapy."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "domain-i-oral-medicine-and-pharmacology",
+     "title": "Domain I: Oral Medicine and Pharmacology",
+     "topics": [
+      {
+       "id": "oral-medicine-and-pharmacology",
+       "title": "Oral medicine and pharmacology",
+       "subtopics": [
+        {
+         "id": "periodontal-disease-prevention",
+         "title": "Periodontal disease prevention",
+         "outcomes": [
+          {
+           "code": "DH-12-I-01",
+           "text": "Explain periodontal disease epidemiology and ways to prevent chronic gingivitis."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "domain-j-emergencies-and-identification-of-care-",
+     "title": "Domain J: Emergencies and Identification of Care Instruments",
+     "topics": [
+      {
+       "id": "emergencies-and-care-instruments",
+       "title": "Emergencies and care instruments",
+       "subtopics": [
+        {
+         "id": "minor-oral-surgery",
+         "title": "Minor oral surgery",
+         "outcomes": [
+          {
+           "code": "DH-12-J-01",
+           "text": "Describe minor oral surgery: extractions, surgical tooth removal, and pre- and post-operative care."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "build": {
+  "builtAt": "2026-10-14T08:35:22.079Z",
+  "model": "claude-agent",
+  "usd": 0,
+  "expectedCodes": 66,
+  "coverage": 1,
+  "missingCodes": [],
+  "counts": {
+   "grades": 2,
+   "units": 18,
+   "topics": 19,
+   "subtopics": 27,
+   "outcomes": 66
+  },
+  "warnings": [
+   "unit \"Domain F: Nutrition\" (grade 12) has a single outcome",
+   "unit \"Domain G: Patient Care\" (grade 12) has a single outcome",
+   "unit \"Domain I: Oral Medicine and Pharmacology\" (grade 12) has a single outcome",
+   "unit \"Domain J: Emergencies and Identification of Care Instruments\" (grade 12) has a single outcome"
+  ]
+ }
+}

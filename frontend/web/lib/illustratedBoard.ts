@@ -27,6 +27,8 @@ import { chooseFocus, lectureState, rememberPictures, withPlanLock, type BoardPi
 const PLAN_MODEL = process.env.ILLUSTRATION_PLAN_MODEL ?? "gpt-5.6-luna";
 const LOCATE_MODEL = process.env.ILLUSTRATION_LOCATE_MODEL ?? "gpt-5.6-luna";
 const IMAGE_MODEL = process.env.ILLUSTRATION_IMAGE_MODEL ?? "gpt-image-1-mini";
+export const ILLUSTRATION_STYLE_VERSION = "clean-textbook-v2";
+export function illustrationImageModel(): string { return IMAGE_MODEL; }
 const STORE_W = 1200;
 const STORE_H = 800;
 
@@ -166,7 +168,7 @@ async function planBoardOnPicture(client: OpenAI, beat: Beat, sentences: string[
   }
 }
 
-const STYLE = "Style: a clean, accurate modern textbook illustration — smooth vector-like shapes, soft realistic shading and gentle highlights, bright saturated colours, crisp outlines. The subject is centred and fills about 70% of the frame. Plain very light warm off-white background, no border, no scenery. ABSOLUTELY NO TEXT: no labels, letters, numbers, arrows, leader lines, captions or watermark anywhere.";
+const STYLE = "Style: a clean, accurate modern textbook diagram — crisp controlled outlines, restrained flat scientific colours, conventional proportions, minimal shading only where it clarifies form, and no decorative scenery. The subject is centred and fills about 78% of the frame. Plain very light warm off-white background, no border. Make every named part visually distinct and easy to point to. ABSOLUTELY NO TEXT: no labels, letters, numbers, arrows, leader lines, captions or watermark anywhere.";
 
 /**
  * The picture's pixels only. gpt-image-1 embeds C2PA content credentials in a `caBX` chunk, and
@@ -187,11 +189,8 @@ export function pngPixelsOnly(png: Buffer): Buffer {
   return Buffer.concat(chunks);
 }
 
-export async function drawIllustration(client: OpenAI, subject: string): Promise<{ jpeg: Buffer; display: Buffer; paper: string; costUsd: number }> {
-  const res = await client.images.generate({ model: IMAGE_MODEL, prompt: `Scientific illustration of ${subject} ${STYLE}`, size: "1536x1024", quality: "medium" });
-  const b64 = res.data?.[0]?.b64_json;
-  if (!b64) throw new Error("the image model returned no picture");
-  const image = await loadImage(pngPixelsOnly(Buffer.from(b64, "base64")));
+async function prepareIllustration(bytes: Buffer): Promise<{ jpeg: Buffer; display: Buffer; paper: string }> {
+  const image = await loadImage(pngPixelsOnly(bytes));
   const canvas = createCanvas(STORE_W, STORE_H);
   const ctx = canvas.getContext("2d");
   ctx.drawImage(image, 0, 0, STORE_W, STORE_H);
@@ -201,9 +200,6 @@ export async function drawIllustration(client: OpenAI, subject: string): Promise
   for (let i = 0; i < corner.length; i += 4) { r += corner[i]; g += corner[i + 1]; b += corner[i + 2]; }
   const n = corner.length / 4;
   const paper = "#" + [r, g, b].map((v) => Math.round(v / n).toString(16).padStart(2, "0")).join("");
-  const usage = res.usage as { input_tokens?: number; output_tokens?: number } | undefined;
-  const price = priceFor(IMAGE_MODEL);
-  const costUsd = usage ? ((usage.input_tokens ?? 0) * price.input + (usage.output_tokens ?? 0) * price.output) / 1_000_000 : 0.06;
   /*
    * Two copies. The 1200x800 one is what the vision calls point at (their pixel grid is stated in
    * those units). The one the student SEES keeps the image model's full 1536x1024 at a high quality:
@@ -212,7 +208,30 @@ export async function drawIllustration(client: OpenAI, subject: string): Promise
    */
   const full = createCanvas(image.width, image.height);
   full.getContext("2d").drawImage(image, 0, 0);
-  return { jpeg: await canvas.encode("jpeg", 82), display: await full.encode("jpeg", 92), paper, costUsd };
+  return { jpeg: await canvas.encode("jpeg", 82), display: await full.encode("jpeg", 92), paper };
+}
+
+/** Rebuilds the locator-sized copy and paper colour from an already approved cached picture. */
+export async function prepareStoredIllustration(bytes: Buffer): Promise<{ jpeg: Buffer; display: Buffer; paper: string; costUsd: number }> {
+  return { ...(await prepareIllustration(bytes)), costUsd: 0 };
+}
+
+function outputCostFallback(model: string): number {
+  if (model.startsWith("gpt-image-1-mini")) return 0.015;
+  if (model.startsWith("gpt-image-1.5")) return 0.05;
+  if (model.startsWith("gpt-image-1")) return 0.063;
+  return 0.063;
+}
+
+export async function drawIllustration(client: OpenAI, subject: string): Promise<{ jpeg: Buffer; display: Buffer; paper: string; costUsd: number }> {
+  const res = await client.images.generate({ model: IMAGE_MODEL, prompt: `Scientific textbook diagram of ${subject} ${STYLE}`, size: "1536x1024", quality: "medium" });
+  const b64 = res.data?.[0]?.b64_json;
+  if (!b64) throw new Error("the image model returned no picture");
+  const picture = await prepareIllustration(Buffer.from(b64, "base64"));
+  const usage = res.usage as { input_tokens?: number; output_tokens?: number } | undefined;
+  const price = priceFor(IMAGE_MODEL);
+  const costUsd = usage ? ((usage.input_tokens ?? 0) * price.input + (usage.output_tokens ?? 0) * price.output) / 1_000_000 : outputCostFallback(IMAGE_MODEL);
+  return { ...picture, costUsd };
 }
 
 /**

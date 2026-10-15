@@ -1,0 +1,246 @@
+{
+ "id": "ib-dp-language-ab-initio",
+ "region": "INTL",
+ "framework": "International Baccalaureate Diploma Programme (DP)",
+ "board": "IB",
+ "qualification": "IB Diploma Programme",
+ "subject": "Language ab initio (SL)",
+ "syllabusCode": null,
+ "gradeSystem": "course",
+ "source": {
+  "urls": [
+   "https://www.ibo.org/globalassets/new-structure/programmes/dp/pdfs/sb_ab_initio_en.pdf",
+   "https://web.archive.org/web/20260606064903id_/https://www.ibo.org/globalassets/new-structure/programmes/dp/pdfs/sb_ab_initio_en.pdf"
+  ],
+  "publisher": "International Baccalaureate Organization",
+  "licence": "(c) International Baccalaureate Organization; all rights reserved, no open licence. ibo.org terms 1.8: IB copyrighted materials are licensed only under the IB's terms or a signed agreement; 'Any use not expressly permitted is prohibited unless special permission is obtained in writing from the IB'; 1.9: nothing on the IB websites confers any licence. Briefs are free public marketing summaries: take topic structure only, write everything in our own words, never reproduce brief text, and do not use IB logos/trade marks. Full subject guides are sold to schools and were NOT used. Terms: https://www.ibo.org/terms-and-conditions/ and https://www.ibo.org/copyright",
+  "firstExam": "2029"
+ },
+ "grades": [
+  {
+   "grade": "all",
+   "units": [
+    {
+     "id": "theme-experiences",
+     "title": "Theme: Experiences",
+     "topics": [
+      {
+       "id": "prescribed-topics",
+       "title": "Prescribed topics",
+       "subtopics": [
+        {
+         "id": "daily-life-and-leisure",
+         "title": "Daily life and leisure",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Communicate in the target language about daily routine."
+          },
+          {
+           "code": null,
+           "text": "Communicate about leisure activities."
+          }
+         ]
+        },
+        {
+         "id": "holidays-and-celebrations",
+         "title": "Holidays and celebrations",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Communicate about holidays and journeys."
+          },
+          {
+           "code": null,
+           "text": "Communicate about festivals and celebrations."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "theme-human-ingenuity",
+     "title": "Theme: Human ingenuity",
+     "topics": [
+      {
+       "id": "prescribed-topics",
+       "title": "Prescribed topics",
+       "subtopics": [
+        {
+         "id": "transport-and-entertainment",
+         "title": "Transport and entertainment",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Communicate about transport."
+          },
+          {
+           "code": null,
+           "text": "Communicate about entertainment."
+          }
+         ]
+        },
+        {
+         "id": "media-and-technology",
+         "title": "Media and technology",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Communicate about media."
+          },
+          {
+           "code": null,
+           "text": "Communicate about technology."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "theme-identities",
+     "title": "Theme: Identities",
+     "topics": [
+      {
+       "id": "prescribed-topics",
+       "title": "Prescribed topics",
+       "subtopics": [
+        {
+         "id": "self-and-relationships",
+         "title": "Self and relationships",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe personal attributes in the target language."
+          },
+          {
+           "code": null,
+           "text": "Communicate about personal relationships."
+          }
+         ]
+        },
+        {
+         "id": "food-and-wellbeing",
+         "title": "Food and wellbeing",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Communicate about eating and drinking."
+          },
+          {
+           "code": null,
+           "text": "Communicate about physical wellbeing."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "theme-sharing-the-planet",
+     "title": "Theme: Sharing the planet",
+     "topics": [
+      {
+       "id": "prescribed-topics",
+       "title": "Prescribed topics",
+       "subtopics": [
+        {
+         "id": "climate-and-geography",
+         "title": "Climate and geography",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Communicate about climate."
+          },
+          {
+           "code": null,
+           "text": "Communicate about physical geography."
+          }
+         ]
+        },
+        {
+         "id": "environment-and-global-issues",
+         "title": "Environment and global issues",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Communicate about the environment."
+          },
+          {
+           "code": null,
+           "text": "Communicate about global issues."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "theme-social-organization",
+     "title": "Theme: Social organization",
+     "topics": [
+      {
+       "id": "prescribed-topics",
+       "title": "Prescribed topics",
+       "subtopics": [
+        {
+         "id": "neighbourhood-and-education",
+         "title": "Neighbourhood and education",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Communicate about the neighbourhood."
+          },
+          {
+           "code": null,
+           "text": "Communicate about education."
+          }
+         ]
+        },
+        {
+         "id": "work-and-society",
+         "title": "Work and society",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Communicate about the workplace."
+          },
+          {
+           "code": null,
+           "text": "Communicate about social issues."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "build": {
+  "builtAt": "2026-10-14T10:53:30.550Z",
+  "model": "claude-agent",
+  "usd": 0,
+  "expectedCodes": null,
+  "coverage": null,
+  "missingCodes": [],
+  "counts": {
+   "grades": 1,
+   "units": 5,
+   "topics": 5,
+   "subtopics": 10,
+   "outcomes": 20
+  },
+  "warnings": [
+   "grade DP year 1 has no content",
+   "grade DP year 2 has no content",
+   "unexpected grade label \"all\""
+  ]
+ }
+}

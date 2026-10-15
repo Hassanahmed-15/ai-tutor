@@ -1,0 +1,1100 @@
+{
+ "id": "us-nc-physical-education",
+ "region": "US",
+ "framework": "North Carolina state academic standards: Physical Education",
+ "board": null,
+ "qualification": "K-12",
+ "subject": "Physical Education",
+ "syllabusCode": null,
+ "gradeSystem": "grade",
+ "source": {
+  "urls": [
+   "https://api.commonstandardsproject.com/api/v1/jurisdictions/8A257771396B4F0792EB9D6020CC9089",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/1C54E2B72E2C4B6BAB5B86193881064B",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/60181598BBF5476D9D2C3840C9F34192",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/6C2B8AF99ACD4C91A17DF75C0A9DAE99",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/8669BEAA389B4705982F43432C598D10",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/68CC1DA2DEAF416B980D0E70D1F35EAD",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/8912E6787D1C4BC796774B2EC63F48D9",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/118121D9E0414CA89D9CB2D8F2F0EC49",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/A73DEBD81AD643D1B5A876D2099D55C5"
+  ],
+  "publisher": "North Carolina state education agency (machine-readable via Common Standards Project / ASN)",
+  "licence": "CC BY 4.0 US, Common Curriculum, Inc.",
+  "firstExam": "2024"
+ },
+ "grades": [
+  {
+   "grade": "K",
+   "units": [
+    {
+     "id": "motor-skills",
+     "title": "Motor Skills",
+     "topics": [
+      {
+       "id": "demonstrate-motor-skills-and-movement-patterns-n",
+       "title": "Demonstrate motor skills and movement patterns needed to perform a variety of physical activities",
+       "subtopics": [
+        {
+         "id": "demonstrate-motor-skills-and-movement-patterns-n",
+         "title": "Demonstrate motor skills and movement patterns needed to perform a variety of physical activities",
+         "outcomes": [
+          {
+           "code": "PE.K.MS.1.1",
+           "text": "Demonstrate recognizable forms of the locomotor skills (walk, run, jump, hop, skip, gallop, leap, slide)."
+          },
+          {
+           "code": "PE.K.MS.1.2",
+           "text": "Demonstrate recognizable forms of manipulative skills (throwing, catching, dribbling, passing, volleying, striking, and kicking)."
+          },
+          {
+           "code": "PE.K.MS.1.3",
+           "text": "Demonstrate transitions between locomotor skills with recognizable forms."
+          },
+          {
+           "code": "PE.K.MS.1.4",
+           "text": "Demonstrate rhythmic locomotor and non-locomotor movements to a beat."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "movement-concepts",
+     "title": "Movement Concepts",
+     "topics": [
+      {
+       "id": "demonstrate-understanding-of-concepts-that-apply",
+       "title": "Demonstrate understanding of concepts that apply to the learning and performance of movement",
+       "subtopics": [
+        {
+         "id": "demonstrate-understanding-of-concepts-that-apply",
+         "title": "Demonstrate understanding of concepts that apply to the learning and performance of movement",
+         "outcomes": [
+          {
+           "code": "PE.K.MC.2.1",
+           "text": "Demonstrate understanding of the movement concepts of space, pathways, and speed through movement."
+          },
+          {
+           "code": "PE.K.MC.2.2",
+           "text": "Identify one or more of the critical elements for fundamental manipulative skills (throwing, catching, dribbling, passing, volleying, striking, and kicking)."
+          },
+          {
+           "code": "PE.K.MC.2.3",
+           "text": "Use teacher feedback to improve basic motor performance."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "health-related-fitness",
+     "title": "Health-Related Fitness",
+     "topics": [
+      {
+       "id": "demonstrate-the-knowledge-and-skills-needed-to-a",
+       "title": "Demonstrate the knowledge and skills needed to achieve a health-enhancing level of physical activity and fitness",
+       "subtopics": [
+        {
+         "id": "demonstrate-the-knowledge-and-skills-needed-to-a",
+         "title": "Demonstrate the knowledge and skills needed to achieve a health-enhancing level of physical activity and fitness",
+         "outcomes": [
+          {
+           "code": "PE.K.HF.3.1",
+           "text": "Identify one or more of the five health-related fitness components (cardiorespiratory endurance, muscular strength, muscular endurance, flexibility, or body composition) and their associated exercises."
+          },
+          {
+           "code": "PE.K.HF.3.2",
+           "text": "Identify opportunities for increased physical activity."
+          },
+          {
+           "code": "PE.K.HF.3.3",
+           "text": "Actively participate in physical education class."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "personal-social-responsibility",
+     "title": "Personal/Social Responsibility",
+     "topics": [
+      {
+       "id": "demonstrate-responsible-personal-and-social-beha",
+       "title": "Demonstrate responsible personal and social behavior that respects self and others",
+       "subtopics": [
+        {
+         "id": "demonstrate-responsible-personal-and-social-beha",
+         "title": "Demonstrate responsible personal and social behavior that respects self and others",
+         "outcomes": [
+          {
+           "code": "PE.K.PR.4.1",
+           "text": "Demonstrate cooperation by following directions in group settings."
+          },
+          {
+           "code": "PE.K.PR.4.2",
+           "text": "Identify physical activities that are personally enjoyable."
+          },
+          {
+           "code": "PE.K.PR.4.3",
+           "text": "Demonstrate safe practices when engaging in physical activities with minimal teacher reminders."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "1",
+   "units": [
+    {
+     "id": "motor-skills",
+     "title": "Motor Skills",
+     "topics": [
+      {
+       "id": "demonstrate-motor-skills-and-movement-patterns-n",
+       "title": "Demonstrate motor skills and movement patterns needed to perform a variety of physical activities",
+       "subtopics": [
+        {
+         "id": "demonstrate-motor-skills-and-movement-patterns-n",
+         "title": "Demonstrate motor skills and movement patterns needed to perform a variety of physical activities",
+         "outcomes": [
+          {
+           "code": "PE.1.MS.1.1",
+           "text": "Demonstrate emerging forms of all eight basic locomotor skills (walk, run, jump, hop, skip, gallop, leap, slide) in different pathways, levels, or directions."
+          },
+          {
+           "code": "PE.1.MS.1.2",
+           "text": "Demonstrate emerging forms of manipulative skills (throwing, catching, dribbling, passing, volleying, striking, and kicking)."
+          },
+          {
+           "code": "PE.1.MS.1.3",
+           "text": "Demonstrate transitions between sequential locomotor skills."
+          },
+          {
+           "code": "PE.1.MS.1.4",
+           "text": "Demonstrate a combination of rhythmic locomotor and non-locomotor movements to a beat."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "movement-concepts",
+     "title": "Movement Concepts",
+     "topics": [
+      {
+       "id": "demonstrate-understanding-of-concepts-that-apply",
+       "title": "Demonstrate understanding of concepts that apply to the learning and performance of movement",
+       "subtopics": [
+        {
+         "id": "demonstrate-understanding-of-concepts-that-apply",
+         "title": "Demonstrate understanding of concepts that apply to the learning and performance of movement",
+         "outcomes": [
+          {
+           "code": "PE.1.MC.2.1",
+           "text": "Demonstrate understanding of the movement concepts of space, pathways, and speed through movement."
+          },
+          {
+           "code": "PE.1.MC.2.2",
+           "text": "Identify two or more of the critical elements for fundamental manipulative skills (throwing, catching, dribbling, passing, volleying, striking, and kicking)."
+          },
+          {
+           "code": "PE.1.MC.2.3",
+           "text": "Use teacher and/or peer feedback to improve basic motor performance."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "health-related-fitness",
+     "title": "Health-Related Fitness",
+     "topics": [
+      {
+       "id": "demonstrate-the-knowledge-and-skills-needed-to-a",
+       "title": "Demonstrate the knowledge and skills needed to achieve a health-enhancing level of physical activity and fitness",
+       "subtopics": [
+        {
+         "id": "demonstrate-the-knowledge-and-skills-needed-to-a",
+         "title": "Demonstrate the knowledge and skills needed to achieve a health-enhancing level of physical activity and fitness",
+         "outcomes": [
+          {
+           "code": "PE.1.HF.3.1",
+           "text": "Identify two or more of the five health-related fitness components (cardiorespiratory endurance, muscular strength, muscular endurance, flexibility, or body composition) and their associated exercises."
+          },
+          {
+           "code": "PE.1.HF.3.2",
+           "text": "Identify benefits of being physically active."
+          },
+          {
+           "code": "PE.1.HF.3.3",
+           "text": "Actively engage in physical education class."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "personal-social-responsibility",
+     "title": "Personal/Social Responsibility",
+     "topics": [
+      {
+       "id": "demonstrate-responsible-personal-and-social-beha",
+       "title": "Demonstrate responsible personal and social behavior that respects self and others",
+       "subtopics": [
+        {
+         "id": "demonstrate-responsible-personal-and-social-beha",
+         "title": "Demonstrate responsible personal and social behavior that respects self and others",
+         "outcomes": [
+          {
+           "code": "PE.1.PR.4.1",
+           "text": "Demonstrate cooperation by following directions and accepting responsibility in group settings."
+          },
+          {
+           "code": "PE.1.PR.4.2",
+           "text": "Identify positive feelings that result from participation in physical activity."
+          },
+          {
+           "code": "PE.1.PR.4.3",
+           "text": "Demonstrate safe practices when engaging in physical activities with minimal teacher reminders."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "2",
+   "units": [
+    {
+     "id": "motor-skills",
+     "title": "Motor Skills",
+     "topics": [
+      {
+       "id": "demonstrate-motor-skills-and-movement-patterns-n",
+       "title": "Demonstrate motor skills and movement patterns needed to perform a variety of physical activities",
+       "subtopics": [
+        {
+         "id": "demonstrate-motor-skills-and-movement-patterns-n",
+         "title": "Demonstrate motor skills and movement patterns needed to perform a variety of physical activities",
+         "outcomes": [
+          {
+           "code": "PE.2.MS.1.1",
+           "text": "Demonstrate mature form of six or more locomotor skills (walk, run, jump, hop, skip, gallop, leap, slide) using different pathways, levels, or directions."
+          },
+          {
+           "code": "PE.2.MS.1.2",
+           "text": "Demonstrate emerging forms of a variety of manipulative skills (throwing, catching, dribbling, passing, volleying, striking, and kicking)."
+          },
+          {
+           "code": "PE.2.MS.1.3",
+           "text": "Demonstrate combinations of locomotor skills with emerging form."
+          },
+          {
+           "code": "PE.2.MS.1.4",
+           "text": "Perform a teacher and/or student designed rhythmic activity with correct response to simple rhythms."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "movement-concepts",
+     "title": "Movement Concepts",
+     "topics": [
+      {
+       "id": "demonstrate-understanding-of-concepts-that-apply",
+       "title": "Demonstrate understanding of concepts that apply to the learning and performance of movement",
+       "subtopics": [
+        {
+         "id": "demonstrate-understanding-of-concepts-that-apply",
+         "title": "Demonstrate understanding of concepts that apply to the learning and performance of movement",
+         "outcomes": [
+          {
+           "code": "PE.2.MC.2.1",
+           "text": "Demonstrate understanding of the movement concepts of space, pathways, levels, speed, and force through combined movement skills."
+          },
+          {
+           "code": "PE.2.MC.2.2",
+           "text": "Identify three or more of the critical elements for fundamental manipulative skills (throwing, catching, dribbling, passing, volleying, striking, and kicking)."
+          },
+          {
+           "code": "PE.2.MC.2.3",
+           "text": "Explain the value of feedback in improving motor performance."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "health-related-fitness",
+     "title": "Health-Related Fitness",
+     "topics": [
+      {
+       "id": "demonstrate-the-knowledge-and-skills-needed-to-a",
+       "title": "Demonstrate the knowledge and skills needed to achieve a health-enhancing level of physical activity and fitness",
+       "subtopics": [
+        {
+         "id": "demonstrate-the-knowledge-and-skills-needed-to-a",
+         "title": "Demonstrate the knowledge and skills needed to achieve a health-enhancing level of physical activity and fitness",
+         "outcomes": [
+          {
+           "code": "PE.2.HF.3.1",
+           "text": "Identify three or more of the five health-related fitness components (cardiorespiratory endurance, muscular strength, muscular endurance, flexibility, and body composition) and their associated exercises."
+          },
+          {
+           "code": "PE.2.HF.3.2",
+           "text": "Identify ways to be physically active outside of physical education class."
+          },
+          {
+           "code": "PE.2.HF.3.3",
+           "text": "Actively engage in physical education class in response to instruction and practice."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "personal-social-responsibility",
+     "title": "Personal/Social Responsibility",
+     "topics": [
+      {
+       "id": "demonstrate-responsible-personal-and-social-beha",
+       "title": "Demonstrate responsible personal and social behavior that respects self and others",
+       "subtopics": [
+        {
+         "id": "demonstrate-responsible-personal-and-social-beha",
+         "title": "Demonstrate responsible personal and social behavior that respects self and others",
+         "outcomes": [
+          {
+           "code": "PE.2.PR.4.1",
+           "text": "Demonstrate ability to work independently and cooperatively with others in a variety of class environments."
+          },
+          {
+           "code": "PE.2.PR.4.2",
+           "text": "Demonstrate understanding of physical activities that provide opportunities for selfexpression."
+          },
+          {
+           "code": "PE.2.PR.4.3",
+           "text": "Demonstrate the ability to work independently and safely in Physical Education"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "3",
+   "units": [
+    {
+     "id": "motor-skills",
+     "title": "Motor Skills",
+     "topics": [
+      {
+       "id": "demonstrate-motor-skills-and-movement-patterns-n",
+       "title": "Demonstrate motor skills and movement patterns needed to perform a variety of physical activities",
+       "subtopics": [
+        {
+         "id": "demonstrate-motor-skills-and-movement-patterns-n",
+         "title": "Demonstrate motor skills and movement patterns needed to perform a variety of physical activities",
+         "outcomes": [
+          {
+           "code": "PE.3.MS.1.1",
+           "text": "Demonstrate combinations of locomotor skills (walk, run, jump, hop, skip, gallop, leap, slide) with maturing form and smooth transitions."
+          },
+          {
+           "code": "PE.3.MS.1.2",
+           "text": "Demonstrate maturing form of a variety of manipulative skills (throwing, catching, dribbling, passing, volleying, striking, and kicking) using different pathways, levels, or directions."
+          },
+          {
+           "code": "PE.3.MS.1.3",
+           "text": "Demonstrate combinations of locomotor and manipulative skills with emerging form."
+          },
+          {
+           "code": "PE.3.MS.1.4",
+           "text": "Demonstrate rhythmic sequences with smooth transitions."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "movement-concepts",
+     "title": "Movement Concepts",
+     "topics": [
+      {
+       "id": "demonstrate-understanding-of-concepts-that-apply",
+       "title": "Demonstrate understanding of concepts that apply to the learning and performance of movement",
+       "subtopics": [
+        {
+         "id": "demonstrate-understanding-of-concepts-that-apply",
+         "title": "Demonstrate understanding of concepts that apply to the learning and performance of movement",
+         "outcomes": [
+          {
+           "code": "PE.3.MC.2.1",
+           "text": "Demonstrate combinations of the movement concepts of direction, levels, force, and time with skills as directed by the teacher."
+          },
+          {
+           "code": "PE.3.MC.2.2",
+           "text": "Demonstrate understanding of the critical elements of manipulative skills through successful performance."
+          },
+          {
+           "code": "PE.3.MC.2.3",
+           "text": "Use evaluative tools to demonstrate understanding of successful skill performance."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "health-related-fitness",
+     "title": "Health-Related Fitness",
+     "topics": [
+      {
+       "id": "demonstrate-the-knowledge-and-skills-needed-to-a",
+       "title": "Demonstrate the knowledge and skills needed to achieve a health-enhancing level of physical activity and fitness",
+       "subtopics": [
+        {
+         "id": "demonstrate-the-knowledge-and-skills-needed-to-a",
+         "title": "Demonstrate the knowledge and skills needed to achieve a health-enhancing level of physical activity and fitness",
+         "outcomes": [
+          {
+           "code": "PE.3.HF.3.1",
+           "text": "Identify four or more of the five health-related fitness components (cardiorespiratory endurance, muscular strength, muscular endurance, flexibility, and body composition) and their associated exercises."
+          },
+          {
+           "code": "PE.3.HF.3.2",
+           "text": "Demonstrate understanding of physical activity as a way to become healthier."
+          },
+          {
+           "code": "PE.3.HF.3.3",
+           "text": "Develop personal goals to improve one or more of the health-related fitness components."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "personal-social-responsibility",
+     "title": "Personal/Social Responsibility",
+     "topics": [
+      {
+       "id": "demonstrate-responsible-personal-and-social-beha",
+       "title": "Demonstrate responsible personal and social behavior that respects self and others",
+       "subtopics": [
+        {
+         "id": "demonstrate-responsible-personal-and-social-beha",
+         "title": "Demonstrate responsible personal and social behavior that respects self and others",
+         "outcomes": [
+          {
+           "code": "PE.3.PR.4.1",
+           "text": "Demonstrate personal and social responsibility in a variety of class environments."
+          },
+          {
+           "code": "PE.3.PR.4.2",
+           "text": "Demonstrate understanding of the positive social interactions that come when engaged with others in physical activity."
+          },
+          {
+           "code": "PE.3.PR.4.3",
+           "text": "Demonstrate independent and safe practices when engaging in various physical activities."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "4",
+   "units": [
+    {
+     "id": "motor-skills",
+     "title": "Motor Skills",
+     "topics": [
+      {
+       "id": "demonstrate-motor-skills-and-movement-patterns-n",
+       "title": "Demonstrate motor skills and movement patterns needed to perform a variety of physical activities",
+       "subtopics": [
+        {
+         "id": "demonstrate-motor-skills-and-movement-patterns-n",
+         "title": "Demonstrate motor skills and movement patterns needed to perform a variety of physical activities",
+         "outcomes": [
+          {
+           "code": "PE.4.MS.1.1",
+           "text": "Demonstrate mature form of locomotor skills required in a variety of physical activity settings."
+          },
+          {
+           "code": "PE.4.MS.1.2",
+           "text": "Demonstrate mature form of a variety of manipulative skills (throwing, catching, dribbling, passing, volleying, striking, and kicking) in varied physical activity settings."
+          },
+          {
+           "code": "PE.4.MS.1.3",
+           "text": "Demonstrate combinations of locomotor and manipulative skills in a variety of physical activity settings."
+          },
+          {
+           "code": "PE.4.MS.1.4",
+           "text": "Demonstrate combinations of movement patterns and/or dance steps in an original sequence."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "movement-concepts",
+     "title": "Movement Concepts",
+     "topics": [
+      {
+       "id": "demonstrate-understanding-of-concepts-that-apply",
+       "title": "Demonstrate understanding of concepts that apply to the learning and performance of movement",
+       "subtopics": [
+        {
+         "id": "demonstrate-understanding-of-concepts-that-apply",
+         "title": "Demonstrate understanding of concepts that apply to the learning and performance of movement",
+         "outcomes": [
+          {
+           "code": "PE.4.MC.2.1",
+           "text": "Demonstrate understanding of manipulative skill combinations in small-sided practice tasks."
+          },
+          {
+           "code": "PE.4.MC.2.2",
+           "text": "Demonstrate understanding of simple offensive and defensive strategies and tactics."
+          },
+          {
+           "code": "PE.4.MC.2.3",
+           "text": "Use evaluative tools to improve skill performance of self and others."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "health-related-fitness",
+     "title": "Health-Related Fitness",
+     "topics": [
+      {
+       "id": "demonstrate-the-knowledge-and-skills-needed-to-a",
+       "title": "Demonstrate the knowledge and skills needed to achieve a health-enhancing level of physical activity and fitness",
+       "subtopics": [
+        {
+         "id": "demonstrate-the-knowledge-and-skills-needed-to-a",
+         "title": "Demonstrate the knowledge and skills needed to achieve a health-enhancing level of physical activity and fitness",
+         "outcomes": [
+          {
+           "code": "PE.4.HF.3.1",
+           "text": "Identify each of the five health-related fitness components (cardiorespiratory endurance, muscular strength, muscular endurance, flexibility, and body composition) and their associated exercises."
+          },
+          {
+           "code": "PE.4.HF.3.2",
+           "text": "Identify personal opportunities for physical activity outside of physical education class."
+          },
+          {
+           "code": "PE.4.HF.3.3",
+           "text": "Develop personal goals to improve two or more of the health-related fitness components."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "personal-social-responsibility",
+     "title": "Personal/Social Responsibility",
+     "topics": [
+      {
+       "id": "demonstrate-responsible-personal-and-social-beha",
+       "title": "Demonstrate responsible personal and social behavior that respects self and others",
+       "subtopics": [
+        {
+         "id": "demonstrate-responsible-personal-and-social-beha",
+         "title": "Demonstrate responsible personal and social behavior that respects self and others",
+         "outcomes": [
+          {
+           "code": "PE.4.PR.4.1",
+           "text": "Demonstrate personal and social responsibility in independent group situations."
+          },
+          {
+           "code": "PE.4.PR.4.2",
+           "text": "Demonstrate understanding of how positive social interactions help achieve common goals when engaged with others in a variety of physical activities."
+          },
+          {
+           "code": "PE.4.PR.4.3",
+           "text": "Demonstrate independent and safe practices when working with peers and equipment in various physical activities."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "5",
+   "units": [
+    {
+     "id": "motor-skills",
+     "title": "Motor Skills",
+     "topics": [
+      {
+       "id": "demonstrate-motor-skills-and-movement-patterns-n",
+       "title": "Demonstrate motor skills and movement patterns needed to perform a variety of physical activities",
+       "subtopics": [
+        {
+         "id": "demonstrate-motor-skills-and-movement-patterns-n",
+         "title": "Demonstrate motor skills and movement patterns needed to perform a variety of physical activities",
+         "outcomes": [
+          {
+           "code": "PE.5.MS.1.1",
+           "text": "Demonstrate mature form in locomotor skills required in a variety of small-sided practice tasks."
+          },
+          {
+           "code": "PE.5.MS.1.2",
+           "text": "Demonstrate mature form of a variety of manipulative skills (throwing, catching, dribbling, passing, volleying, striking, and kicking) in small-sided practice tasks."
+          },
+          {
+           "code": "PE.5.MS.1.3",
+           "text": "Demonstrate combinations of locomotor and manipulative skills in small-sided practice tasks."
+          },
+          {
+           "code": "PE.5.MS.1.4",
+           "text": "Demonstrate combinations of rhythmic movement patterns and/or dance steps with smooth transitions."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "movement-concepts",
+     "title": "Movement Concepts",
+     "topics": [
+      {
+       "id": "demonstrate-understanding-of-concepts-that-apply",
+       "title": "Demonstrate understanding of concepts that apply to the learning and performance of movement",
+       "subtopics": [
+        {
+         "id": "demonstrate-understanding-of-concepts-that-apply",
+         "title": "Demonstrate understanding of concepts that apply to the learning and performance of movement",
+         "outcomes": [
+          {
+           "code": "PE.5.MC.2.1",
+           "text": "Apply combinations of movement concepts with skills to improve performance."
+          },
+          {
+           "code": "PE.5.MC.2.2",
+           "text": "Explain basic offensive and defensive strategies used in small-sided practice tasks."
+          },
+          {
+           "code": "PE.5.MC.2.3",
+           "text": "Demonstrate understanding of manipulative skills through successful evaluation of performance."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "health-related-fitness",
+     "title": "Health-Related Fitness",
+     "topics": [
+      {
+       "id": "demonstrate-the-knowledge-and-skills-needed-to-a",
+       "title": "Demonstrate the knowledge and skills needed to achieve a health-enhancing level of physical activity and fitness",
+       "subtopics": [
+        {
+         "id": "demonstrate-the-knowledge-and-skills-needed-to-a",
+         "title": "Demonstrate the knowledge and skills needed to achieve a health-enhancing level of physical activity and fitness",
+         "outcomes": [
+          {
+           "code": "PE.5.HF.3.1",
+           "text": "Identify differences between health-related and skill-related fitness components."
+          },
+          {
+           "code": "PE.5.HF.3.2",
+           "text": "Identify differences in aerobic and anaerobic activities."
+          },
+          {
+           "code": "PE.5.HF.3.3",
+           "text": "Develop personal goals to improve three or more of the health-related fitness components."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "personal-social-responsibility",
+     "title": "Personal/Social Responsibility",
+     "topics": [
+      {
+       "id": "demonstrate-responsible-personal-and-social-beha",
+       "title": "Demonstrate responsible personal and social behavior that respects self and others",
+       "subtopics": [
+        {
+         "id": "demonstrate-responsible-personal-and-social-beha",
+         "title": "Demonstrate responsible personal and social behavior that respects self and others",
+         "outcomes": [
+          {
+           "code": "PE.5.PR.4.1",
+           "text": "Demonstrate engagement in physical activity with responsible interpersonal behavior."
+          },
+          {
+           "code": "PE.5.PR.4.2",
+           "text": "Demonstrate understanding of the social benefits gained from participating in physical activities to achieve common goals."
+          },
+          {
+           "code": "PE.5.PR.4.3",
+           "text": "Demonstrate age-appropriate safety principles independently when engaging in various physical activities."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "9",
+   "units": [
+    {
+     "id": "motor-skills",
+     "title": "Motor Skills",
+     "topics": [
+      {
+       "id": "demonstrate-motor-skills-and-movement-patterns-n",
+       "title": "Demonstrate motor skills and movement patterns needed to perform a variety of physical activities",
+       "subtopics": [
+        {
+         "id": "demonstrate-motor-skills-and-movement-patterns-n",
+         "title": "Demonstrate motor skills and movement patterns needed to perform a variety of physical activities",
+         "outcomes": [
+          {
+           "code": "PE.9.MS.1.1",
+           "text": "Integrate specialized skills and combination skills appropriately during live game play."
+          },
+          {
+           "code": "PE.9.MS.1.2",
+           "text": "Implement appropriate strategies and tactics based on varying game conditions."
+          },
+          {
+           "code": "PE.9.MS.1.3",
+           "text": "Demonstrate basic and advanced skills to participate successfully in lifetime individual activities."
+          },
+          {
+           "code": "PE.9.MS.1.4",
+           "text": "Design and perform various movement combinations that demonstrate an understanding of rhythm and coordination to the beat of music."
+          },
+          {
+           "code": "PE.9.MS.1.5",
+           "text": "Apply correct technique for a variety of cardiorespiratory endurance, resistance training, and flexibility exercises that can lead into lifetime activity"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "movement-concepts",
+     "title": "Movement Concepts",
+     "topics": [
+      {
+       "id": "demonstrate-understanding-of-concepts-that-apply",
+       "title": "Demonstrate understanding of concepts that apply to the learning and performance of movement",
+       "subtopics": [
+        {
+         "id": "demonstrate-understanding-of-concepts-that-apply",
+         "title": "Demonstrate understanding of concepts that apply to the learning and performance of movement",
+         "outcomes": [
+          {
+           "code": "PE.9.MC.2.1",
+           "text": "Integrate concepts and principles related to movement and performance in static or dynamic settings."
+          },
+          {
+           "code": "PE.9.MC.2.2",
+           "text": "Adapt strategies and tactics based on game conditions and situations."
+          },
+          {
+           "code": "PE.9.MC.2.3",
+           "text": "Construct a plan to improve overall performance based on mechanics of movement principles."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "health-related-fitness",
+     "title": "Health-Related Fitness",
+     "topics": [
+      {
+       "id": "demonstrate-the-knowledge-and-skills-needed-to-a",
+       "title": "Demonstrate the knowledge and skills needed to achieve a health-enhancing level of physical activity and fitness",
+       "subtopics": [
+        {
+         "id": "demonstrate-the-knowledge-and-skills-needed-to-a",
+         "title": "Demonstrate the knowledge and skills needed to achieve a health-enhancing level of physical activity and fitness",
+         "outcomes": [
+          {
+           "code": "PE.9.HF.3.1",
+           "text": "Apply FITT and training principles to improve a self-selected component of health-related fitness."
+          },
+          {
+           "code": "PE.9.HF.3.2",
+           "text": "Analyze factors that affect personal health and physical activity behaviors to determine appropriate goals and strategies to improve health-related outcomes."
+          },
+          {
+           "code": "PE.9.HF.3.3",
+           "text": "Design and implement a personal physical activity program, based on current physical activity and fitness status, that applies SMART goal setting, FITT, and training principles."
+          },
+          {
+           "code": "PE.9.HF.3.4",
+           "text": "Participate in targeted activities based on interests, accessibility, and personal goals to improve health-related fitness."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "personal-social-responsibility",
+     "title": "Personal/Social Responsibility",
+     "topics": [
+      {
+       "id": "demonstrate-responsible-personal-and-social-beha",
+       "title": "Demonstrate responsible personal and social behavior that respects self and others",
+       "subtopics": [
+        {
+         "id": "demonstrate-responsible-personal-and-social-beha",
+         "title": "Demonstrate responsible personal and social behavior that respects self and others",
+         "outcomes": [
+          {
+           "code": "PE.9.PR.4.1",
+           "text": "Implement leadership skills to promote responsibility in self and others."
+          },
+          {
+           "code": "PE.9.PR.4.2",
+           "text": "Develop and execute group norms to establish and achieve group goals in competitive as well as cooperative physical activity settings."
+          },
+          {
+           "code": "PE.9.PR.4.3",
+           "text": "Apply relationship skills and strategies that promote team/group dynamics and inclusion."
+          },
+          {
+           "code": "PE.9.PR.4.4",
+           "text": "Model leadership skills, effective communication, problem solving, and conflict resolution to promote positive team/group dynamics."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "6-8",
+   "units": [
+    {
+     "id": "motor-skills",
+     "title": "Motor Skills",
+     "topics": [
+      {
+       "id": "demonstrate-motor-skills-and-movement-patterns-n",
+       "title": "Demonstrate motor skills and movement patterns needed to perform a variety of physical activities",
+       "subtopics": [
+        {
+         "id": "demonstrate-motor-skills-and-movement-patterns-n",
+         "title": "Demonstrate motor skills and movement patterns needed to perform a variety of physical activities",
+         "outcomes": [
+          {
+           "code": "PE.6-8.MS.1.1",
+           "text": "Demonstrate competency in specialized skills and combination skills for sports and games."
+          },
+          {
+           "code": "PE.6-8.MS.1.2",
+           "text": "Apply game strategies and tactics during game play."
+          },
+          {
+           "code": "PE.6-8.MS.1.3",
+           "text": "Demonstrate competency in specialized skills and/or combination skills for individual performance activities and/or outdoor pursuits."
+          },
+          {
+           "code": "PE.6-8.MS.1.4",
+           "text": "Perform various movement combinations that demonstrate an understanding of rhythm and coordination to the beat of music."
+          },
+          {
+           "code": "PE.6-8.MS.1.5",
+           "text": "Demonstrate correct technique for a variety of cardiorespiratory endurance, resistance training, and flexibility exercises."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "movement-concepts",
+     "title": "Movement Concepts",
+     "topics": [
+      {
+       "id": "demonstrate-understanding-of-concepts-that-apply",
+       "title": "Demonstrate understanding of concepts that apply to the learning and performance of movement",
+       "subtopics": [
+        {
+         "id": "demonstrate-understanding-of-concepts-that-apply",
+         "title": "Demonstrate understanding of concepts that apply to the learning and performance of movement",
+         "outcomes": [
+          {
+           "code": "PE.6-8.MC.2.1",
+           "text": "Apply concepts and principles related to movement and performance in static or dynamic settings."
+          },
+          {
+           "code": "PE.6-8.MC.2.2",
+           "text": "Understand and apply game strategies and tactics at appropriate times and in appropriate ways."
+          },
+          {
+           "code": "PE.6-8.MC.2.3",
+           "text": "Demonstrate understanding of the proper form and the mechanics of various skills or sequences of movement to improve performance."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "health-related-fitness",
+     "title": "Health-Related Fitness",
+     "topics": [
+      {
+       "id": "demonstrate-knowledge-and-skills-needed-to-achie",
+       "title": "Demonstrate knowledge and skills needed to achieve a health-enhancing level of physical activity and fitness",
+       "subtopics": [
+        {
+         "id": "demonstrate-knowledge-and-skills-needed-to-achie",
+         "title": "Demonstrate knowledge and skills needed to achieve a health-enhancing level of physical activity and fitness",
+         "outcomes": [
+          {
+           "code": "PE.6-8.HF.3.1",
+           "text": "Describe the FITT principle and training principles (frequency, intensity, time, type, overload, progression, specificity), and how they affect physical fitness for each of the five health-related fitness components."
+          },
+          {
+           "code": "PE.6-8.HF.3.2",
+           "text": "Summarize the potential short- and long-term physical, social, and emotional benefits of physical activity."
+          },
+          {
+           "code": "PE.6-8.HF.3.3",
+           "text": "Evaluate progress towards achieving physical activity and fitness guidelines."
+          },
+          {
+           "code": "PE.6-8.HF.3.4",
+           "text": "Participate in a variety of moderate to vigorous activities with the goal of accumulating at least 60 minutes of physical activity per day, either during or outside of school, at least 5 days per week."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "personal-social-responsibility",
+     "title": "Personal/Social Responsibility",
+     "topics": [
+      {
+       "id": "demonstrate-responsible-personal-and-social-beha",
+       "title": "Demonstrate responsible personal and social behavior that respects self and others",
+       "subtopics": [
+        {
+         "id": "demonstrate-responsible-personal-and-social-beha",
+         "title": "Demonstrate responsible personal and social behavior that respects self and others",
+         "outcomes": [
+          {
+           "code": "PE.6-8.PR.4.1",
+           "text": "Demonstrate self-management, responsible decision making, and problem-solving skills in a physical activity setting."
+          },
+          {
+           "code": "PE.6-8.PR.4.2",
+           "text": "Demonstrate skills to work cooperatively within a group to establish and achieve group goals in physical activity settings."
+          },
+          {
+           "code": "PE.6-8.PR.4.3",
+           "text": "Apply relationship skills and strategies that promote team/group dynamics and inclusion."
+          },
+          {
+           "code": "PE.6-8.PR.4.4",
+           "text": "Implement the skills needed to avoid and resolve conflicts independently."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "build": {
+  "builtAt": "2026-10-14T16:20:46.896Z",
+  "model": "none",
+  "usd": 0,
+  "expectedCodes": 110,
+  "coverage": 1,
+  "missingCodes": [],
+  "counts": {
+   "grades": 8,
+   "units": 32,
+   "topics": 32,
+   "subtopics": 32,
+   "outcomes": 110
+  },
+  "warnings": []
+ }
+}

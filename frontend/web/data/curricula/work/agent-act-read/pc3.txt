@@ -1,0 +1,127 @@
+# Unit 3: Trigonometric and Polar Functions
+## 3.1 Periodic Phenomena
+@ Periodic relationships
+3.1.A|Build graphs of periodic relationships from verbal descriptions.
+3.1.A.1|Recognize a periodic relationship as outputs repeating over successive equal-length input intervals.
+3.1.A.2|Build a periodic graph from one cycle.
+3.1.B|Describe key features of a periodic function from a verbal description.
+3.1.B.1|Define the period as the smallest positive k with f(x + k) = f(x).
+3.1.B.2|Estimate the period by finding where the output pattern repeats.
+3.1.B.3|Know every characteristic in one period appears in every period.
+## 3.2 Sine, Cosine, and Tangent
+@ Angles and the unit circle
+3.2.A|Find sine, cosine and tangent of an angle using the unit circle.
+3.2.A.1|Place angles in standard position; use positive and negative rotation and coterminal angles.
+3.2.A.2|Define radian measure as arc length divided by radius.
+3.2.A.3|Define sine as the vertical displacement ratio, the y-coordinate on the unit circle.
+3.2.A.4|Define cosine as the horizontal displacement ratio, the x-coordinate on the unit circle.
+3.2.A.5|Define tangent as the slope of the terminal ray, sine over cosine.
+## 3.3 Sine and Cosine Function Values
+@ Coordinates and exact values
+3.3.A|Find coordinates of points on a circle centered at the origin.
+3.3.A.1|Write the terminal-ray point on a circle of radius r as (r cos t, r sin t).
+3.3.A.2|Use special triangles and quadrant signs to find exact values for multiples of pi/4 and pi/6.
+## 3.4 Sine and Cosine Function Graphs
+@ Graphing sine and cosine
+3.4.A|Build representations of sine and cosine using the unit circle.
+3.4.A.1|Define sin t as the y-coordinate of the unit circle point, with domain all reals.
+3.4.A.2|See sine oscillate between -1 and 1 as the angle grows.
+3.4.A.3|Define cos t as the x-coordinate of the unit circle point, with domain all reals.
+3.4.A.4|See cosine oscillate between -1 and 1 as the angle grows.
+## 3.5 Sinusoidal Functions
+@ Features of sinusoidal functions
+3.5.A|Identify key features of sine and cosine.
+3.5.A.1|Define sinusoidal functions as transformations of sine; cosine is sine shifted by pi/2.
+3.5.A.2|Treat period and frequency as reciprocals; the period of sine and cosine is 2 pi.
+3.5.A.3|Define amplitude as half the max-min difference.
+3.5.A.4|Find the midline as the average of max and min.
+3.5.A.5|Know sinusoids alternate between concave down and concave up.
+3.5.A.6|Know sine is odd and cosine is even.
+## 3.6 Sinusoidal Function Transformations
+@ Transforming sinusoids
+3.6.A|Identify amplitude, vertical shift, period and phase shift of a sinusoid.
+3.6.A.1|Recognize the form a sin(b(t + c)) + d, with the same transformations for sine and cosine.
+3.6.A.2|Treat adding d as a vertical translation that moves the midline.
+3.6.A.3|Treat adding c inside as a phase shift of -c units.
+3.6.A.4|Treat the factor a as a vertical dilation that changes amplitude.
+3.6.A.5|Treat the factor b as a horizontal dilation that changes period.
+3.6.A.6|Read amplitude |a|, period 2 pi/|b|, vertical shift d and phase shift -c from the form.
+## 3.7 Sinusoidal Function Context and Data Modeling
+@ Modeling with sinusoids
+3.7.A|Build sinusoidal models of periodic phenomena.
+3.7.A.1|Estimate period and frequency from consecutive maxima or minima.
+3.7.A.2|Find amplitude and vertical shift from the maximum and minimum.
+3.7.A.3|Estimate phase shift by comparing an actual data pair to the model.
+3.7.A.4|Build models with technology by estimating key values or using sinusoidal regression.
+3.7.A.5|Use sinusoidal models within their contextual domain to predict values and solve for inputs.
+## 3.8 The Tangent Function
+@ Tangent function and its graph
+3.8.A|Build representations of tangent using the unit circle.
+3.8.A.1|Define tan t as the slope of the terminal ray.
+3.8.A.2|Write tan t = sin t / cos t where cosine is nonzero.
+3.8.B|Describe key features of tangent.
+3.8.B.1|Know tangent has period pi.
+3.8.B.2|Locate vertical asymptotes at pi/2 + k pi.
+3.8.B.3|Know tangent increases and switches from concave down to concave up between asymptotes.
+@ Transforming tangent
+3.8.C|Describe additive and multiplicative transformations of tangent.
+3.8.C.1|Treat adding d as a vertical translation of the graph and its inflection line.
+3.8.C.2|Treat adding c inside as a phase shift of -c units.
+3.8.C.3|Treat a as a vertical dilation, reflecting over the x-axis if negative.
+3.8.C.4|Treat b as a horizontal dilation that changes the period, reflecting over the y-axis if negative.
+3.8.C.5|Read the form a tan(b(t + c)) + d: dilation a, period pi/|b|, shift d, phase shift -c.
+## 3.9 Inverse Trigonometric Functions
+@ Arcsine, arccosine, arctangent
+3.9.A|Build equations and graphs of the inverses of sine, cosine and tangent on restricted domains.
+3.9.A.1|Know inverse trig functions swap input and output, giving an angle from a trig value.
+3.9.A.2|Name arcsine, arccosine and arctangent, invertible only on restricted domains.
+3.9.A.3|Use the standard restricted domains for sine, cosine and tangent.
+## 3.10 Trigonometric Equations and Inequalities
+@ Solving trig equations
+3.10.A|Solve equations and inequalities involving trigonometric functions.
+3.10.A.1|Use inverse trig functions to solve, adjusting solutions for domain restrictions.
+3.10.A.2|Expect infinitely many solutions because of periodicity.
+3.10.A.3|Use context to restrict the domain and limit the solutions.
+## 3.11 The Secant, Cosecant, and Cotangent Functions
+@ Reciprocal trig functions
+3.11.A|Identify key features of functions made from quotients of sine and cosine.
+3.11.A.1|Define secant as the reciprocal of cosine.
+3.11.A.2|Define cosecant as the reciprocal of sine.
+3.11.A.3|Find vertical asymptotes of secant and cosecant, with range (-inf, -1] or [1, inf).
+3.11.A.4|Define cotangent as the reciprocal of tangent, or cos over sin.
+3.11.A.5|Know cotangent has asymptotes where tangent is zero and decreases between them.
+## 3.12 Equivalent Representations of Trigonometric Functions
+@ Pythagorean and sum identities
+3.12.A|Rewrite trig expressions in equivalent forms using the Pythagorean identity.
+3.12.A.1|Derive and use sin^2 t + cos^2 t = 1 from the unit circle.
+3.12.A.2|Rearrange the Pythagorean identity into other forms, such as tan^2 = sec^2 - 1.
+3.12.B|Rewrite trig expressions in equivalent forms using sine and cosine sum identities.
+3.12.B.1|Use the sum identity for sine.
+3.12.B.2|Use the sum identity for cosine.
+3.12.B.3|Use the sum identities to get difference and double-angle identities.
+3.12.B.4|Verify new identities using known identities and algebra.
+@ Solving with equivalent forms
+3.12.C|Solve equations using equivalent analytic forms of trig functions.
+3.12.C.1|Choose equivalent trig forms that make information easier to access.
+3.12.C.2|Use equivalent forms to solve trig equations and inequalities.
+## 3.13 Trigonometry and Polar Coordinates
+@ Polar coordinates
+3.13.A|Locate a point using both rectangular and polar coordinates.
+3.13.A.1|Define polar coordinates (r, t), including negative r and multiple names for one point.
+3.13.A.2|Convert polar to rectangular with x = r cos t and y = r sin t.
+3.13.A.3|Convert rectangular to polar using r = sqrt(x^2 + y^2) and an arctangent, adjusted for quadrant.
+3.13.A.4|Treat a complex number as a point in the plane, in rectangular or polar form.
+## 3.14 Polar Function Graphs
+@ Graphing polar functions
+3.14.A|Build graphs of polar functions.
+3.14.A.1|Graph r = f(t) with angles as inputs and radii as outputs.
+3.14.A.2|Restrict a polar function's domain by choosing endpoints of angle and radius.
+3.14.A.3|Relate input changes to angle changes and output changes to signed radial displacement.
+## 3.15 Rates of Change in Polar Functions
+@ Polar rates of change
+3.15.A|Describe features of polar function graphs.
+3.15.A.1|Know the distance to the origin grows when r is positive and increasing or negative and decreasing.
+3.15.A.2|Know the distance shrinks when r is positive and decreasing or negative and increasing.
+3.15.A.3|Find relative extrema as the points closest to or farthest from the origin.
+3.15.A.4|Define the average rate of change of r with respect to the angle as signed radius change per radian.
+3.15.A.5|Use average rate of change of r to estimate values in an interval.

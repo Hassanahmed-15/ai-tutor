@@ -1,0 +1,1817 @@
+{
+ "id": "us-ap-psychology",
+ "region": "US",
+ "framework": "AP Psychology Course and Exam Description (effective fall 2025)",
+ "board": "College Board",
+ "qualification": "AP",
+ "subject": "Psychology",
+ "syllabusCode": null,
+ "gradeSystem": "course",
+ "source": {
+  "urls": [
+   "https://apcentral.collegeboard.org/media/pdf/ap-psychology-course-and-exam-description.pdf",
+   "https://apcentral.collegeboard.org/courses/ap-psychology"
+  ],
+  "publisher": "College Board",
+  "licence": "© College Board; structure + our own wording only",
+  "firstExam": "2026"
+ },
+ "grades": [
+  {
+   "grade": "all",
+   "units": [
+    {
+     "id": "unit-1-biological-bases-of-behavior",
+     "title": "Unit 1: Biological Bases of Behavior",
+     "topics": [
+      {
+       "id": "1-1-interaction-of-heredity-and-environment",
+       "title": "1.1 Interaction of Heredity and Environment",
+       "subtopics": [
+        {
+         "id": "interaction-of-heredity-and-environment",
+         "title": "Interaction of Heredity and Environment",
+         "outcomes": [
+          {
+           "code": "1.1.A",
+           "text": "Explain how heredity and environment together shape behavior and mental processes."
+          },
+          {
+           "code": "1.1.A.1",
+           "text": "Explain that heredity (nature) and environment (nurture) interact to shape behavior."
+          },
+          {
+           "code": "1.1.A.2",
+           "text": "Describe the evolutionary perspective on natural selection and behavior, and its misuse in eugenics."
+          },
+          {
+           "code": "1.1.A.3",
+           "text": "Identify twin, family and adoption studies as methods for studying gene effects."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "1-2-overview-of-the-nervous-system",
+       "title": "1.2 Overview of the Nervous System",
+       "subtopics": [
+        {
+         "id": "overview-of-the-nervous-system",
+         "title": "Overview of the Nervous System",
+         "outcomes": [
+          {
+           "code": "1.2.A",
+           "text": "Differentiate the subsystems of the human nervous system and their functions."
+          },
+          {
+           "code": "1.2.A.1",
+           "text": "Describe the central nervous system as the brain and spinal cord."
+          },
+          {
+           "code": "1.2.A.2",
+           "text": "Describe the peripheral nervous system, with autonomic (sympathetic and parasympathetic, involuntary) and somatic (voluntary) parts."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "1-3-the-neuron-and-neural-firing",
+       "title": "1.3 The Neuron and Neural Firing",
+       "subtopics": [
+        {
+         "id": "the-neuron-and-neural-firing-part-1",
+         "title": "The Neuron and Neural Firing, part 1",
+         "outcomes": [
+          {
+           "code": "1.3.A",
+           "text": "Explain how typical central nervous system neurons' structure and function affect behavior."
+          },
+          {
+           "code": "1.3.A.1",
+           "text": "Distinguish neurons from glial cells."
+          },
+          {
+           "code": "1.3.A.2",
+           "text": "Describe the spinal-cord reflex arc of sensory, motor and interneurons."
+          },
+          {
+           "code": "1.3.B",
+           "text": "Explain how neural transmission relates to behavior."
+          },
+          {
+           "code": "1.3.B.1",
+           "text": "Explain neural transmission: all-or-none principle, threshold, depolarization, resting potential, refractory period and reuptake, and disorders when disrupted."
+          },
+          {
+           "code": "1.3.B.2",
+           "text": "Describe excitatory and inhibitory neurotransmitters such as dopamine, serotonin, glutamate and GABA."
+          },
+          {
+           "code": "1.3.B.3",
+           "text": "Describe hormones such as adrenaline, leptin, ghrelin, melatonin and oxytocin."
+          }
+         ]
+        },
+        {
+         "id": "the-neuron-and-neural-firing-part-2",
+         "title": "The Neuron and Neural Firing, part 2",
+         "outcomes": [
+          {
+           "code": "1.3.C",
+           "text": "Explain how psychoactive drugs affect behavior and mental processes."
+          },
+          {
+           "code": "1.3.C.1",
+           "text": "Explain how drugs act as agonists, antagonists or reuptake inhibitors."
+          },
+          {
+           "code": "1.3.C.2",
+           "text": "Compare stimulants, depressants, hallucinogens and opioids."
+          },
+          {
+           "code": "1.3.C.3",
+           "text": "Describe tolerance, addiction and withdrawal."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "1-4-the-brain",
+       "title": "1.4 The Brain",
+       "subtopics": [
+        {
+         "id": "the-brain",
+         "title": "The Brain",
+         "outcomes": [
+          {
+           "code": "1.4.A",
+           "text": "Explain how brain structures and functions apply to behavior and mental processes."
+          },
+          {
+           "code": "1.4.A.1",
+           "text": "Identify the brain stem and medulla as controlling breathing and heart rate."
+          },
+          {
+           "code": "1.4.A.2",
+           "text": "Identify the reticular activating system and reward center as controlling alertness, movement, learning and emotion."
+          },
+          {
+           "code": "1.4.A.3",
+           "text": "Identify the cerebellum as controlling coordination, balance and procedural learning."
+          },
+          {
+           "code": "1.4.A.4",
+           "text": "Describe the cortex hemispheres, limbic system, corpus callosum and the occipital, temporal, parietal and frontal lobes."
+          },
+          {
+           "code": "1.4.A.5",
+           "text": "Explain split-brain research and left-hemisphere language areas Broca's and Wernicke's, and aphasia."
+          },
+          {
+           "code": "1.4.A.6",
+           "text": "Define brain plasticity, rewiring that lets other areas assume damaged functions."
+          },
+          {
+           "code": "1.4.A.7",
+           "text": "Name brain research methods: EEG, fMRI scans, case studies and lesioning."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "1-5-sleep",
+       "title": "1.5 Sleep",
+       "subtopics": [
+        {
+         "id": "sleep",
+         "title": "Sleep",
+         "outcomes": [
+          {
+           "code": "1.5.A",
+           "text": "Explain how the sleep/wake cycle affects behavior and mental processes."
+          },
+          {
+           "code": "1.5.A.1",
+           "text": "Describe consciousness as varying awareness, with sleep and wakefulness as two types."
+          },
+          {
+           "code": "1.5.A.2",
+           "text": "Describe circadian rhythm, a roughly 24-hour cycle disrupted by jet lag and shift work."
+          },
+          {
+           "code": "1.5.A.3",
+           "text": "Describe sleep stages by EEG pattern, NREM stages 1 to 3 and paradoxical REM sleep with dreaming and rebound."
+          },
+          {
+           "code": "1.5.A.4",
+           "text": "Compare activation-synthesis and consolidation theories of dreams."
+          },
+          {
+           "code": "1.5.A.5",
+           "text": "Describe memory consolidation and restoration theories of why we sleep."
+          },
+          {
+           "code": "1.5.A.6",
+           "text": "Describe sleep disorders such as insomnia, narcolepsy, sleep apnea and somnambulism and their effects."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "1-6-sensation",
+       "title": "1.6 Sensation",
+       "subtopics": [
+        {
+         "id": "sensation-part-1",
+         "title": "Sensation, part 1",
+         "outcomes": [
+          {
+           "code": "1.6.A",
+           "text": "Explain how sensation relates to behavior and mental processes."
+          },
+          {
+           "code": "1.6.A.1",
+           "text": "Define sensation as detecting and transducing stimuli, with the absolute threshold at 50 percent detection."
+          },
+          {
+           "code": "1.6.A.2",
+           "text": "Explain just-noticeable difference, sensory adaptation and Weber's law."
+          },
+          {
+           "code": "1.6.A.3",
+           "text": "Describe sensory interaction and synesthesia."
+          }
+         ]
+        },
+        {
+         "id": "sensation-part-2",
+         "title": "Sensation, part 2",
+         "outcomes": [
+          {
+           "code": "1.6.B",
+           "text": "Explain how the visual system relates to behavior and mental processes."
+          },
+          {
+           "code": "1.6.B.1",
+           "text": "Describe the retina, the blind spot and the brain filling in gaps."
+          },
+          {
+           "code": "1.6.B.2",
+           "text": "Explain accommodation by the lens and nearsightedness or farsightedness."
+          },
+          {
+           "code": "1.6.B.3",
+           "text": "Describe rods, which detect shape and movement in low light."
+          },
+          {
+           "code": "1.6.B.4",
+           "text": "Explain color vision with trichromatic and opponent-process theories, cones, afterimages and color deficiency."
+          },
+          {
+           "code": "1.6.B.5",
+           "text": "Describe vision disorders from brain damage, such as prosopagnosia and blindsight."
+          }
+         ]
+        },
+        {
+         "id": "sensation-part-3",
+         "title": "Sensation, part 3",
+         "outcomes": [
+          {
+           "code": "1.6.C",
+           "text": "Explain how the auditory system relates to behavior and mental processes."
+          },
+          {
+           "code": "1.6.C.1",
+           "text": "Relate sound pitch and loudness to wave frequency and amplitude."
+          },
+          {
+           "code": "1.6.C.2",
+           "text": "Compare place, volley and frequency theories of pitch."
+          },
+          {
+           "code": "1.6.C.3",
+           "text": "Describe sound localization."
+          },
+          {
+           "code": "1.6.C.4",
+           "text": "Distinguish conduction and sensorineural hearing loss."
+          }
+         ]
+        },
+        {
+         "id": "sensation-part-4",
+         "title": "Sensation, part 4",
+         "outcomes": [
+          {
+           "code": "1.6.D",
+           "text": "Explain how the chemical senses relate to behavior and mental processes."
+          },
+          {
+           "code": "1.6.D.1",
+           "text": "Describe olfaction, its bypass of the thalamus, and pheromones."
+          },
+          {
+           "code": "1.6.D.2",
+           "text": "List the tastes: sweet, sour, salty, bitter, umami and oleogustus."
+          },
+          {
+           "code": "1.6.D.3",
+           "text": "Explain taste receptors and supertasters, medium tasters and nontasters."
+          },
+          {
+           "code": "1.6.D.4",
+           "text": "Explain how smell and taste interact."
+          },
+          {
+           "code": "1.6.E",
+           "text": "Explain how the touch system relates to behavior and mental processes."
+          },
+          {
+           "code": "1.6.E.1",
+           "text": "Describe skin and brain processing of touch, and hot as warm plus cold receptor activation."
+          }
+         ]
+        },
+        {
+         "id": "sensation-part-5",
+         "title": "Sensation, part 5",
+         "outcomes": [
+          {
+           "code": "1.6.F",
+           "text": "Explain how the pain system relates to behavior and mental processes."
+          },
+          {
+           "code": "1.6.F.1",
+           "text": "Describe gate control theory and phantom limb sensation."
+          },
+          {
+           "code": "1.6.G",
+           "text": "Explain how the vestibular and kinesthetic senses relate to behavior."
+          },
+          {
+           "code": "1.6.G.1",
+           "text": "Describe the vestibular sense of balance via the semicircular canals."
+          },
+          {
+           "code": "1.6.G.2",
+           "text": "Describe kinesthesis as sense of body movement."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "unit-2-cognition",
+     "title": "Unit 2: Cognition",
+     "topics": [
+      {
+       "id": "2-1-perception",
+       "title": "2.1 Perception",
+       "subtopics": [
+        {
+         "id": "perception-part-1",
+         "title": "Perception, part 1",
+         "outcomes": [
+          {
+           "code": "2.1.A",
+           "text": "Explain how internal and external factors influence perception."
+          },
+          {
+           "code": "2.1.A.1",
+           "text": "Contrast bottom-up and top-down processing."
+          },
+          {
+           "code": "2.1.A.2",
+           "text": "Identify schemas and perceptual sets as internal perception filters."
+          },
+          {
+           "code": "2.1.A.3",
+           "text": "Identify context, experience and culture as external perception filters."
+          },
+          {
+           "code": "2.1.A.4",
+           "text": "Apply Gestalt principles: closure, figure-ground, proximity and similarity."
+          },
+          {
+           "code": "2.1.A.5",
+           "text": "Explain attention, selective attention such as the cocktail party effect, and change blindness."
+          }
+         ]
+        },
+        {
+         "id": "perception-part-2",
+         "title": "Perception, part 2",
+         "outcomes": [
+          {
+           "code": "2.1.B",
+           "text": "Explain how visual perception produces correct or incorrect interpretations."
+          },
+          {
+           "code": "2.1.B.1",
+           "text": "Explain binocular depth cues: retinal disparity and convergence."
+          },
+          {
+           "code": "2.1.B.2",
+           "text": "Explain monocular depth cues such as relative size, texture gradient, linear perspective and interposition."
+          },
+          {
+           "code": "2.1.B.3",
+           "text": "Explain perceptual constancies."
+          },
+          {
+           "code": "2.1.B.4",
+           "text": "Explain apparent movement."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "2-2-thinking-problem-solving-judgments-and-decis",
+       "title": "2.2 Thinking, Problem-Solving, Judgments, and Decision-Making",
+       "subtopics": [
+        {
+         "id": "thinking-problem-solving-judgments-and-decision-",
+         "title": "Thinking, Problem-Solving, Judgments, and Decision-Making",
+         "outcomes": [
+          {
+           "code": "2.2.A",
+           "text": "Explain how concepts and theories account for thinking, problem-solving, judgment and decisions."
+          },
+          {
+           "code": "2.2.A.1",
+           "text": "Describe concepts and prototypes as the basis of thought."
+          },
+          {
+           "code": "2.2.A.2",
+           "text": "Contrast assimilation and accommodation in forming schemas."
+          },
+          {
+           "code": "2.2.A.3",
+           "text": "Define algorithms as trying all possible solutions."
+          },
+          {
+           "code": "2.2.A.4",
+           "text": "Explain heuristics and the representativeness and availability heuristics."
+          },
+          {
+           "code": "2.2.A.5",
+           "text": "Explain mental set, priming and framing in decisions."
+          },
+          {
+           "code": "2.2.A.6",
+           "text": "Identify gambler's and sunk-cost fallacies."
+          },
+          {
+           "code": "2.2.A.7",
+           "text": "Define executive functions as planning and goal-directed cognitive control."
+          },
+          {
+           "code": "2.2.A.8",
+           "text": "Describe creativity, divergent versus convergent thinking, and functional fixedness."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "2-3-introduction-to-memory",
+       "title": "2.3 Introduction to Memory",
+       "subtopics": [
+        {
+         "id": "introduction-to-memory",
+         "title": "Introduction to Memory",
+         "outcomes": [
+          {
+           "code": "2.3.A",
+           "text": "Explain how the types, structures and processes of memory work."
+          },
+          {
+           "code": "2.3.A.1",
+           "text": "Distinguish explicit (episodic, semantic), implicit (procedural) and prospective memory."
+          },
+          {
+           "code": "2.3.A.2",
+           "text": "Describe long-term potentiation as strengthening synapses through use."
+          },
+          {
+           "code": "2.3.A.3",
+           "text": "Describe the working memory model: central executive, phonological loop and visuospatial sketchpad."
+          },
+          {
+           "code": "2.3.A.4",
+           "text": "Describe the multi-store model: sensory, short-term and long-term memory with automatic and effortful processing."
+          },
+          {
+           "code": "2.3.A.5",
+           "text": "Describe the levels of processing model: structural, phonemic and semantic."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "2-4-encoding-memories",
+       "title": "2.4 Encoding Memories",
+       "subtopics": [
+        {
+         "id": "encoding-memories",
+         "title": "Encoding Memories",
+         "outcomes": [
+          {
+           "code": "2.4.A",
+           "text": "Explain how different encoding processes get information into memory."
+          },
+          {
+           "code": "2.4.A.1",
+           "text": "Explain that how information is encoded affects storage and retrieval."
+          },
+          {
+           "code": "2.4.A.2",
+           "text": "Use mnemonic devices such as method of loci."
+          },
+          {
+           "code": "2.4.A.3",
+           "text": "Improve encoding by chunking, categories and hierarchies."
+          },
+          {
+           "code": "2.4.A.4",
+           "text": "Explain the spacing effect, massed versus distributed practice."
+          },
+          {
+           "code": "2.4.A.5",
+           "text": "Explain the serial position effect, primacy and recency."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "2-5-storing-memories",
+       "title": "2.5 Storing Memories",
+       "subtopics": [
+        {
+         "id": "storing-memories",
+         "title": "Storing Memories",
+         "outcomes": [
+          {
+           "code": "2.5.A",
+           "text": "Explain how memory storage retains information."
+          },
+          {
+           "code": "2.5.A.1",
+           "text": "Compare sensory, short-term, working and long-term memory in duration, capacity and content."
+          },
+          {
+           "code": "2.5.A.2",
+           "text": "Contrast maintenance and elaborative rehearsal."
+          },
+          {
+           "code": "2.5.A.3",
+           "text": "Describe highly superior autobiographical memory and self-relevant memories."
+          },
+          {
+           "code": "2.5.A.4",
+           "text": "Describe storage problems: amnesia types, Alzheimer's disease and infantile amnesia."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "2-6-retrieving-memories",
+       "title": "2.6 Retrieving Memories",
+       "subtopics": [
+        {
+         "id": "retrieving-memories",
+         "title": "Retrieving Memories",
+         "outcomes": [
+          {
+           "code": "2.6.A",
+           "text": "Explain how memory retrieval gets information out of memory."
+          },
+          {
+           "code": "2.6.A.1",
+           "text": "Contrast recall with recognition."
+          },
+          {
+           "code": "2.6.A.2",
+           "text": "Explain context-, mood-congruent and state-dependent memory."
+          },
+          {
+           "code": "2.6.A.3",
+           "text": "Explain retrieval practice, the testing effect and metacognition."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "2-7-forgetting-and-other-memory-challenges",
+       "title": "2.7 Forgetting and Other Memory Challenges",
+       "subtopics": [
+        {
+         "id": "forgetting-and-other-memory-challenges",
+         "title": "Forgetting and Other Memory Challenges",
+         "outcomes": [
+          {
+           "code": "2.7.A",
+           "text": "Explain possible reasons why memory failures or errors occur."
+          },
+          {
+           "code": "2.7.A.1",
+           "text": "Describe the forgetting curve: rapid forgetting that levels off."
+          },
+          {
+           "code": "2.7.A.2",
+           "text": "Explain encoding failure, proactive and retroactive interference, and tip-of-the-tongue retrieval failure."
+          },
+          {
+           "code": "2.7.A.3",
+           "text": "Describe repression as forgetting to defend the ego."
+          },
+          {
+           "code": "2.7.A.4",
+           "text": "Explain the misinformation effect, source amnesia and constructive memory."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "2-8-intelligence-and-achievement",
+       "title": "2.8 Intelligence and Achievement",
+       "subtopics": [
+        {
+         "id": "intelligence-and-achievement-part-1",
+         "title": "Intelligence and Achievement, part 1",
+         "outcomes": [
+          {
+           "code": "2.8.A",
+           "text": "Explain how modern and historical theories describe intelligence."
+          },
+          {
+           "code": "2.8.A.1",
+           "text": "Explain the debate over general intelligence g versus multiple abilities, and bias in measuring it."
+          },
+          {
+           "code": "2.8.B",
+           "text": "Explain how intelligence is measured."
+          },
+          {
+           "code": "2.8.B.1",
+           "text": "Describe IQ as mental age over chronological age and its educational uses."
+          },
+          {
+           "code": "2.8.B.2",
+           "text": "Define standardization, validity (construct, predictive) and reliability (test-retest, split-half)."
+          },
+          {
+           "code": "2.8.B.3",
+           "text": "Explain socio-culturally responsive assessments and stereotype threat and lift."
+          }
+         ]
+        },
+        {
+         "id": "intelligence-and-achievement-part-2",
+         "title": "Intelligence and Achievement, part 2",
+         "outcomes": [
+          {
+           "code": "2.8.C",
+           "text": "Explain how systemic issues relate to uses of intelligence assessments."
+          },
+          {
+           "code": "2.8.C.1",
+           "text": "Explain the Flynn effect as rising IQ scores from societal factors."
+          },
+          {
+           "code": "2.8.C.2",
+           "text": "Explain that IQ varies more within than between groups and that bias and inequity affect scores."
+          },
+          {
+           "code": "2.8.C.3",
+           "text": "Describe how IQ scores have been used to limit access to jobs, military ranks, schools and immigration."
+          },
+          {
+           "code": "2.8.D",
+           "text": "Explain how academic achievement is measured compared to intelligence."
+          },
+          {
+           "code": "2.8.D.1",
+           "text": "Contrast achievement tests with aptitude tests."
+          },
+          {
+           "code": "2.8.D.2",
+           "text": "Contrast fixed and growth mindsets and their effect on achievement."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "unit-3-development-and-learning",
+     "title": "Unit 3: Development and Learning",
+     "topics": [
+      {
+       "id": "3-1-themes-and-methods-in-developmental-psycholo",
+       "title": "3.1 Themes and Methods in Developmental Psychology",
+       "subtopics": [
+        {
+         "id": "themes-and-methods-in-developmental-psychology",
+         "title": "Themes and Methods in Developmental Psychology",
+         "outcomes": [
+          {
+           "code": "3.1.A",
+           "text": "Explain how enduring themes inform developmental psychology."
+          },
+          {
+           "code": "3.1.A.1",
+           "text": "Name developmental themes: stability and change, nature and nurture, continuous and discontinuous stages."
+          },
+          {
+           "code": "3.1.B",
+           "text": "Describe how cross-sectional and longitudinal designs inform understanding of development."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "3-2-physical-development-across-the-lifespan",
+       "title": "3.2 Physical Development Across the Lifespan",
+       "subtopics": [
+        {
+         "id": "physical-development-across-the-lifespan-part-1",
+         "title": "Physical Development Across the Lifespan, part 1",
+         "outcomes": [
+          {
+           "code": "3.2.A",
+           "text": "Explain how physical development before birth applies to behavior."
+          },
+          {
+           "code": "3.2.A.1",
+           "text": "Identify teratogens, illness, genetic and hormonal factors that shape prenatal milestones."
+          },
+          {
+           "code": "3.2.B",
+           "text": "Explain how physical development in infancy and childhood applies to behavior."
+          },
+          {
+           "code": "3.2.B.1",
+           "text": "Describe fine and gross motor milestones that follow a similar order with varying timing."
+          },
+          {
+           "code": "3.2.B.2",
+           "text": "Identify infant reflexes such as rooting as milestones."
+          },
+          {
+           "code": "3.2.B.3",
+           "text": "Explain what the visual cliff shows about infant depth perception."
+          },
+          {
+           "code": "3.2.B.4",
+           "text": "Explain critical and sensitive periods, such as for language, and imprinting."
+          }
+         ]
+        },
+        {
+         "id": "physical-development-across-the-lifespan-part-2",
+         "title": "Physical Development Across the Lifespan, part 2",
+         "outcomes": [
+          {
+           "code": "3.2.C",
+           "text": "Explain how physical development in adolescence applies to behavior."
+          },
+          {
+           "code": "3.2.C.1",
+           "text": "Describe the growth spurt, puberty and primary and secondary sex characteristics."
+          },
+          {
+           "code": "3.2.D",
+           "text": "Explain how physical development in adulthood applies to behavior."
+          },
+          {
+           "code": "3.2.D.1",
+           "text": "Describe adult declines in reproductive ability, mobility, reaction time and sensory acuity."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "3-3-gender-and-sexual-orientation",
+       "title": "3.3 Gender and Sexual Orientation",
+       "subtopics": [
+        {
+         "id": "gender-and-sexual-orientation",
+         "title": "Gender and Sexual Orientation",
+         "outcomes": [
+          {
+           "code": "3.3.A",
+           "text": "Describe how sex and gender influence socialization and other aspects of development."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "3-4-cognitive-development-across-the-lifespan",
+       "title": "3.4 Cognitive Development Across the Lifespan",
+       "subtopics": [
+        {
+         "id": "cognitive-development-across-the-lifespan",
+         "title": "Cognitive Development Across the Lifespan",
+         "outcomes": [
+          {
+           "code": "3.4.A",
+           "text": "Explain how theories of cognitive development apply to behavior and mental processes."
+          },
+          {
+           "code": "3.4.A.1",
+           "text": "Describe Piaget's stages: sensorimotor, preoperational, concrete operational and formal operational."
+          },
+          {
+           "code": "3.4.A.2",
+           "text": "Describe Vygotsky's social learning, scaffolding and zone of proximal development."
+          },
+          {
+           "code": "3.4.A.3",
+           "text": "Contrast adult crystallized and fluid intelligence, and dementia."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "3-5-communication-and-language-development",
+       "title": "3.5 Communication and Language Development",
+       "subtopics": [
+        {
+         "id": "communication-and-language-development",
+         "title": "Communication and Language Development",
+         "outcomes": [
+          {
+           "code": "3.5.A",
+           "text": "Explain how key components of language and communication apply to behavior."
+          },
+          {
+           "code": "3.5.A.1",
+           "text": "Describe language as rule-governed, generative symbols: phonemes, morphemes, semantics, grammar and syntax."
+          },
+          {
+           "code": "3.5.B",
+           "text": "Explain how language develops in humans."
+          },
+          {
+           "code": "3.5.B.1",
+           "text": "Describe language stages from cooing and babbling to telegraphic speech, and overgeneralization errors."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "3-6-social-emotional-development-across-the-life",
+       "title": "3.6 Social-Emotional Development Across the Lifespan",
+       "subtopics": [
+        {
+         "id": "social-emotional-development-across-the-lifespan",
+         "title": "Social-Emotional Development Across the Lifespan",
+         "outcomes": [
+          {
+           "code": "3.6.A",
+           "text": "Explain how social development relates to behavior and mental processes."
+          },
+          {
+           "code": "3.6.A.1",
+           "text": "Describe Bronfenbrenner's ecological systems: micro, meso, exo, macro and chronosystem."
+          },
+          {
+           "code": "3.6.A.2",
+           "text": "Compare authoritarian, authoritative and permissive parenting and cultural differences."
+          },
+          {
+           "code": "3.6.A.3",
+           "text": "Describe secure and insecure attachment styles, separation anxiety and comfort-versus-food research."
+          },
+          {
+           "code": "3.6.A.4",
+           "text": "Describe peer relationships from childhood play to adolescent imaginary audience and personal fable."
+          },
+          {
+           "code": "3.6.A.5",
+           "text": "Describe adult social development: the social clock, emerging adulthood and adult attachment."
+          },
+          {
+           "code": "3.6.A.6",
+           "text": "Describe Erikson's eight psychosocial stages."
+          },
+          {
+           "code": "3.6.A.7",
+           "text": "Explain adverse childhood experiences and their sociocultural variation."
+          },
+          {
+           "code": "3.6.A.8",
+           "text": "Describe identity development: achievement, diffusion, foreclosure and moratorium, and possible selves."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "3-7-classical-conditioning",
+       "title": "3.7 Classical Conditioning",
+       "subtopics": [
+        {
+         "id": "classical-conditioning",
+         "title": "Classical Conditioning",
+         "outcomes": [
+          {
+           "code": "3.7.A",
+           "text": "Explain how classical conditioning applies to behavior and mental processes."
+          },
+          {
+           "code": "3.7.A.1",
+           "text": "Describe the behaviorist focus on observable behavior and conditioning."
+          },
+          {
+           "code": "3.7.A.2",
+           "text": "Explain classical conditioning: UCS, UCR, CS, CR, timing, extinction, spontaneous recovery, generalization, discrimination and higher-order conditioning."
+          },
+          {
+           "code": "3.7.A.3",
+           "text": "Explain conditioned emotional responses and counterconditioning therapy."
+          },
+          {
+           "code": "3.7.A.4",
+           "text": "Explain taste aversion, one-trial learning and biological preparedness."
+          },
+          {
+           "code": "3.7.A.5",
+           "text": "Define habituation."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "3-8-operant-conditioning",
+       "title": "3.8 Operant Conditioning",
+       "subtopics": [
+        {
+         "id": "operant-conditioning",
+         "title": "Operant Conditioning",
+         "outcomes": [
+          {
+           "code": "3.8.A",
+           "text": "Explain how operant conditioning applies to behavior and mental processes."
+          },
+          {
+           "code": "3.8.A.1",
+           "text": "Explain the law of effect: reinforcement and punishment shape repeated behavior."
+          },
+          {
+           "code": "3.8.A.2",
+           "text": "Distinguish positive and negative reinforcement and punishment, and primary and secondary reinforcers."
+          },
+          {
+           "code": "3.8.A.3",
+           "text": "Explain shaping by successive approximations and instinctive drift."
+          },
+          {
+           "code": "3.8.A.4",
+           "text": "Explain superstitious behavior and learned helplessness."
+          },
+          {
+           "code": "3.8.A.5",
+           "text": "Compare continuous and partial reinforcement schedules, fixed and variable, interval and ratio."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "3-9-social-cognitive-and-neurological-factors-in",
+       "title": "3.9 Social, Cognitive, and Neurological Factors in Learning",
+       "subtopics": [
+        {
+         "id": "social-cognitive-and-neurological-factors-in-lea",
+         "title": "Social, Cognitive, and Neurological Factors in Learning",
+         "outcomes": [
+          {
+           "code": "3.9.A",
+           "text": "Explain how social learning applies to behavior and mental processes."
+          },
+          {
+           "code": "3.9.A.1",
+           "text": "Explain social learning theory, observation, vicarious conditioning and modeling."
+          },
+          {
+           "code": "3.9.B",
+           "text": "Explain how cognitive factors in learning apply to behavior and mental processes."
+          },
+          {
+           "code": "3.9.B.1",
+           "text": "Define insight learning."
+          },
+          {
+           "code": "3.9.B.2",
+           "text": "Define latent learning and cognitive maps."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "unit-4-social-psychology-and-personality",
+     "title": "Unit 4: Social Psychology and Personality",
+     "topics": [
+      {
+       "id": "4-1-attribution-theory-and-person-perception",
+       "title": "4.1 Attribution Theory and Person Perception",
+       "subtopics": [
+        {
+         "id": "attribution-theory-and-person-perception-part-1",
+         "title": "Attribution Theory and Person Perception, part 1",
+         "outcomes": [
+          {
+           "code": "4.1.A",
+           "text": "Explain how attribution theory applies to behavior and mental processes."
+          },
+          {
+           "code": "4.1.A.1",
+           "text": "Distinguish dispositional from situational attributions."
+          },
+          {
+           "code": "4.1.A.2",
+           "text": "Describe optimistic and pessimistic explanatory style."
+          },
+          {
+           "code": "4.1.A.3",
+           "text": "Identify actor/observer bias, the fundamental attribution error and self-serving bias."
+          },
+          {
+           "code": "4.1.B",
+           "text": "Explain how internal and external locus of control apply to behavior."
+          }
+         ]
+        },
+        {
+         "id": "attribution-theory-and-person-perception-part-2",
+         "title": "Attribution Theory and Person Perception, part 2",
+         "outcomes": [
+          {
+           "code": "4.1.C",
+           "text": "Explain how person perception applies to behavior and mental processes."
+          },
+          {
+           "code": "4.1.C.1",
+           "text": "Explain the mere exposure effect."
+          },
+          {
+           "code": "4.1.C.2",
+           "text": "Explain self-fulfilling prophecy."
+          },
+          {
+           "code": "4.1.C.3",
+           "text": "Explain upward and downward social comparison and relative deprivation."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "4-2-attitude-formation-and-attitude-change",
+       "title": "4.2 Attitude Formation and Attitude Change",
+       "subtopics": [
+        {
+         "id": "attitude-formation-and-attitude-change",
+         "title": "Attitude Formation and Attitude Change",
+         "outcomes": [
+          {
+           "code": "4.2.A",
+           "text": "Explain how stereotypes and implicit attitudes contribute to prejudice and discrimination."
+          },
+          {
+           "code": "4.2.A.1",
+           "text": "Define stereotypes, their cognitive-load role and link to prejudice and discrimination."
+          },
+          {
+           "code": "4.2.A.2",
+           "text": "Explain implicit attitudes, the just-world phenomenon, out-group homogeneity, in-group bias and ethnocentrism."
+          },
+          {
+           "code": "4.2.B",
+           "text": "Explain how belief perseverance and cognitive dissonance apply to attitude change."
+          },
+          {
+           "code": "4.2.B.1",
+           "text": "Explain belief perseverance and confirmation bias."
+          },
+          {
+           "code": "4.2.B.2",
+           "text": "Explain cognitive dissonance and how people reduce it."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "4-3-psychology-of-social-situations",
+       "title": "4.3 Psychology of Social Situations",
+       "subtopics": [
+        {
+         "id": "psychology-of-social-situations-part-1",
+         "title": "Psychology of Social Situations, part 1",
+         "outcomes": [
+          {
+           "code": "4.3.A",
+           "text": "Explain how the social situation affects behavior and mental processes."
+          },
+          {
+           "code": "4.3.A.1",
+           "text": "Define social norms as expectations and roles."
+          },
+          {
+           "code": "4.3.A.2",
+           "text": "Distinguish normative and informational social influence."
+          },
+          {
+           "code": "4.3.A.3",
+           "text": "Explain persuasion routes (central, peripheral), the halo effect, foot-in-the-door and door-in-the-face."
+          },
+          {
+           "code": "4.3.A.4",
+           "text": "Explain conditions that increase conformity."
+          },
+          {
+           "code": "4.3.A.5",
+           "text": "Explain conditions that increase obedience to authority."
+          }
+         ]
+        },
+        {
+         "id": "psychology-of-social-situations-part-2",
+         "title": "Psychology of Social Situations, part 2",
+         "outcomes": [
+          {
+           "code": "4.3.B",
+           "text": "Explain how being in a group affects an individual."
+          },
+          {
+           "code": "4.3.B.1",
+           "text": "Explain individualism, collectivism and multiculturalism."
+          },
+          {
+           "code": "4.3.B.2",
+           "text": "Explain group polarization, groupthink, diffusion of responsibility, social loafing and deindividuation."
+          },
+          {
+           "code": "4.3.B.3",
+           "text": "Define social facilitation."
+          },
+          {
+           "code": "4.3.B.4",
+           "text": "Define the false consensus effect."
+          },
+          {
+           "code": "4.3.B.5",
+           "text": "Explain superordinate goals and social traps."
+          },
+          {
+           "code": "4.3.B.6",
+           "text": "Describe industrial-organizational psychology and burnout."
+          }
+         ]
+        },
+        {
+         "id": "psychology-of-social-situations-part-3",
+         "title": "Psychology of Social Situations, part 3",
+         "outcomes": [
+          {
+           "code": "4.3.C",
+           "text": "Explain how prosocial behavior affects behavior and mental processes."
+          },
+          {
+           "code": "4.3.C.1",
+           "text": "Explain altruism, social reciprocity and social responsibility norms."
+          },
+          {
+           "code": "4.3.C.2",
+           "text": "Explain the bystander effect."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "4-4-psychodynamic-and-humanistic-theories-of-per",
+       "title": "4.4 Psychodynamic and Humanistic Theories of Personality",
+       "subtopics": [
+        {
+         "id": "psychodynamic-and-humanistic-theories-of-persona",
+         "title": "Psychodynamic and Humanistic Theories of Personality",
+         "outcomes": [
+          {
+           "code": "4.4.A",
+           "text": "Explain how psychodynamic theory defines and assesses personality."
+          },
+          {
+           "code": "4.4.A.1",
+           "text": "Explain that unconscious processes drive personality."
+          },
+          {
+           "code": "4.4.A.2",
+           "text": "Identify ego defense mechanisms such as denial, projection, regression and sublimation."
+          },
+          {
+           "code": "4.4.A.3",
+           "text": "Describe projective tests."
+          },
+          {
+           "code": "4.4.B",
+           "text": "Explain how humanistic theory defines and assesses personality."
+          },
+          {
+           "code": "4.4.B.1",
+           "text": "Explain unconditional regard and the self-actualizing tendency."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "4-5-social-cognitive-and-trait-theories-of-perso",
+       "title": "4.5 Social-Cognitive and Trait Theories of Personality",
+       "subtopics": [
+        {
+         "id": "social-cognitive-and-trait-theories-of-personali",
+         "title": "Social-Cognitive and Trait Theories of Personality",
+         "outcomes": [
+          {
+           "code": "4.5.A",
+           "text": "Explain how social-cognitive theory defines and assesses personality."
+          },
+          {
+           "code": "4.5.A.1",
+           "text": "Explain reciprocal determinism, self-concept, self-efficacy and self-esteem."
+          },
+          {
+           "code": "4.5.B",
+           "text": "Explain how trait theories define and assess personality."
+          },
+          {
+           "code": "4.5.B.1",
+           "text": "Describe traits as enduring characteristics."
+          },
+          {
+           "code": "4.5.B.2",
+           "text": "Describe the Big Five traits and factor-analysis based inventories."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "4-6-motivation",
+       "title": "4.6 Motivation",
+       "subtopics": [
+        {
+         "id": "motivation",
+         "title": "Motivation",
+         "outcomes": [
+          {
+           "code": "4.6.A",
+           "text": "Explain how motivation theories apply to behavior and mental processes."
+          },
+          {
+           "code": "4.6.A.1",
+           "text": "Explain drive-reduction (homeostasis) and arousal theory with the Yerkes-Dodson law."
+          },
+          {
+           "code": "4.6.A.2",
+           "text": "Contrast intrinsic and extrinsic motivation in self-determination and incentive theory."
+          },
+          {
+           "code": "4.6.A.3",
+           "text": "Explain instincts in animals but not humans."
+          },
+          {
+           "code": "4.6.A.4",
+           "text": "Describe Lewin's approach and avoidance motivational conflicts."
+          },
+          {
+           "code": "4.6.A.5",
+           "text": "Describe sensation-seeking theory and its types."
+          },
+          {
+           "code": "4.6.B",
+           "text": "Explain how eating and belongingness motivate behavior."
+          },
+          {
+           "code": "4.6.B.1",
+           "text": "Explain hunger regulation by ghrelin and leptin plus external influences on eating."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "4-7-emotion",
+       "title": "4.7 Emotion",
+       "subtopics": [
+        {
+         "id": "emotion",
+         "title": "Emotion",
+         "outcomes": [
+          {
+           "code": "4.7.A",
+           "text": "Explain how theories of emotion apply to behavior and mental processes."
+          },
+          {
+           "code": "4.7.A.1",
+           "text": "Describe emotion as physiology plus cognition, the facial-feedback hypothesis and ordering of the two."
+          },
+          {
+           "code": "4.7.A.2",
+           "text": "Explain the broaden-and-build theory of positive emotions."
+          },
+          {
+           "code": "4.7.B",
+           "text": "Explain how social norms and experiences influence emotional expression."
+          },
+          {
+           "code": "4.7.B.1",
+           "text": "Discuss universality of emotions like anger, disgust, sadness, happiness, surprise and fear."
+          },
+          {
+           "code": "4.7.B.2",
+           "text": "Explain cultural display rules and elicitors."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "unit-5-mental-and-physical-health",
+     "title": "Unit 5: Mental and Physical Health",
+     "topics": [
+      {
+       "id": "5-1-introduction-to-health-psychology",
+       "title": "5.1 Introduction to Health Psychology",
+       "subtopics": [
+        {
+         "id": "introduction-to-health-psychology-part-1",
+         "title": "Introduction to Health Psychology, part 1",
+         "outcomes": [
+          {
+           "code": "5.1.A",
+           "text": "Explain how health psychology addresses physical health and wellness."
+          },
+          {
+           "code": "5.1.B",
+           "text": "Explain how stress applies to behavior and mental processes."
+          },
+          {
+           "code": "5.1.B.1",
+           "text": "Link stress to hypertension, headaches, immune suppression and disease susceptibility."
+          },
+          {
+           "code": "5.1.B.2",
+           "text": "Distinguish eustress from distress, trauma from daily hassles, and ACEs as stressors."
+          },
+          {
+           "code": "5.1.C",
+           "text": "Explain how reactions to stress apply to behavior and mental processes."
+          },
+          {
+           "code": "5.1.C.1",
+           "text": "Describe the general adaptation syndrome: alarm, resistance and exhaustion."
+          },
+          {
+           "code": "5.1.C.2",
+           "text": "Describe the tend-and-befriend response to stress."
+          }
+         ]
+        },
+        {
+         "id": "introduction-to-health-psychology-part-2",
+         "title": "Introduction to Health Psychology, part 2",
+         "outcomes": [
+          {
+           "code": "5.1.D",
+           "text": "Explain how coping with stress applies to behavior and mental processes."
+          },
+          {
+           "code": "5.1.D.1",
+           "text": "Describe problem-focused coping."
+          },
+          {
+           "code": "5.1.D.2",
+           "text": "Describe emotion-focused coping such as breathing, meditation or medication."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "5-2-positive-psychology",
+       "title": "5.2 Positive Psychology",
+       "subtopics": [
+        {
+         "id": "positive-psychology",
+         "title": "Positive Psychology",
+         "outcomes": [
+          {
+           "code": "5.2.A",
+           "text": "Explain how positive psychology studies behavior and mental processes."
+          },
+          {
+           "code": "5.2.A.1",
+           "text": "Describe positive psychology's focus on well-being, resilience and positive emotions."
+          },
+          {
+           "code": "5.2.B",
+           "text": "Explain how positive subjective experiences apply to behavior and mental processes."
+          },
+          {
+           "code": "5.2.B.1",
+           "text": "Explain that gratitude raises subjective well-being."
+          },
+          {
+           "code": "5.2.B.2",
+           "text": "Describe signature strengths and the six virtues."
+          },
+          {
+           "code": "5.2.B.3",
+           "text": "Describe posttraumatic growth."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "5-3-explaining-and-classifying-psychological-dis",
+       "title": "5.3 Explaining and Classifying Psychological Disorders",
+       "subtopics": [
+        {
+         "id": "explaining-and-classifying-psychological-disorde",
+         "title": "Explaining and Classifying Psychological Disorders, part 1",
+         "outcomes": [
+          {
+           "code": "5.3.A",
+           "text": "Describe the approaches used to define psychological disorders."
+          },
+          {
+           "code": "5.3.A.1",
+           "text": "Use dysfunction, distress and deviation from norms to identify disorders."
+          },
+          {
+           "code": "5.3.A.2",
+           "text": "Weigh the positive and negative consequences of diagnosis, including stigma and bias."
+          },
+          {
+           "code": "5.3.A.3",
+           "text": "Explain that diagnosis needs training and tools such as the DSM and ICD."
+          }
+         ]
+        },
+        {
+         "id": "explaining-and-classifying-psychological-disorde-2",
+         "title": "Explaining and Classifying Psychological Disorders, part 2",
+         "outcomes": [
+          {
+           "code": "5.3.B",
+           "text": "Explain how psychological perspectives define psychological disorders."
+          },
+          {
+           "code": "5.3.B.1",
+           "text": "Describe the eclectic approach."
+          },
+          {
+           "code": "5.3.B.2",
+           "text": "Explain the behavioral perspective on disorders."
+          },
+          {
+           "code": "5.3.B.3",
+           "text": "Explain the psychodynamic perspective on disorders."
+          },
+          {
+           "code": "5.3.B.4",
+           "text": "Explain the humanistic perspective on disorders."
+          },
+          {
+           "code": "5.3.B.5",
+           "text": "Explain the cognitive perspective on disorders."
+          },
+          {
+           "code": "5.3.B.6",
+           "text": "Explain the evolutionary perspective on disorders."
+          },
+          {
+           "code": "5.3.B.7",
+           "text": "Explain the sociocultural perspective on disorders."
+          },
+          {
+           "code": "5.3.B.8",
+           "text": "Explain the biological perspective on disorders."
+          }
+         ]
+        },
+        {
+         "id": "explaining-and-classifying-psychological-disorde-3",
+         "title": "Explaining and Classifying Psychological Disorders, part 3",
+         "outcomes": [
+          {
+           "code": "5.3.C",
+           "text": "Explain how interaction models define psychological disorders."
+          },
+          {
+           "code": "5.3.C.1",
+           "text": "Describe the biopsychosocial model."
+          },
+          {
+           "code": "5.3.C.2",
+           "text": "Describe the diathesis-stress model."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "5-4-selection-of-categories-of-psychological-dis",
+       "title": "5.4 Selection of Categories of Psychological Disorders",
+       "subtopics": [
+        {
+         "id": "neurodevelopmental-schizophrenia-and-mood-disord",
+         "title": "Neurodevelopmental, schizophrenia and mood disorders",
+         "outcomes": [
+          {
+           "code": "5.4.A",
+           "text": "Describe symptoms and causes of selected neurodevelopmental disorders."
+          },
+          {
+           "code": "5.4.A.1",
+           "text": "Describe ADHD and autism spectrum disorder as neurodevelopmental disorders."
+          },
+          {
+           "code": "5.4.A.2",
+           "text": "Name environmental, physiological and genetic causes of these disorders."
+          },
+          {
+           "code": "5.4.B",
+           "text": "Describe symptoms and causes of selected schizophrenic spectrum disorders."
+          },
+          {
+           "code": "5.4.B.1",
+           "text": "Describe delusions, hallucinations, disorganized thinking and motor behavior, catatonia, and negative symptoms."
+          },
+          {
+           "code": "5.4.B.2",
+           "text": "Describe genetic and biological causes, such as the dopamine hypothesis."
+          },
+          {
+           "code": "5.4.C",
+           "text": "Describe symptoms and causes of selected depressive disorders."
+          },
+          {
+           "code": "5.4.C.1",
+           "text": "Describe major depressive disorder and persistent depressive disorder."
+          },
+          {
+           "code": "5.4.C.2",
+           "text": "Name biological, genetic, social, cultural, behavioral and cognitive causes."
+          },
+          {
+           "code": "5.4.D",
+           "text": "Describe symptoms and causes of selected bipolar disorders."
+          },
+          {
+           "code": "5.4.D.1",
+           "text": "Describe Bipolar I and II with mania, depression and cycling."
+          },
+          {
+           "code": "5.4.D.2",
+           "text": "Name possible causes of bipolar disorders."
+          }
+         ]
+        },
+        {
+         "id": "anxiety-trauma-and-other-disorders",
+         "title": "Anxiety, trauma and other disorders",
+         "outcomes": [
+          {
+           "code": "5.4.E",
+           "text": "Describe symptoms and causes of selected anxiety disorders."
+          },
+          {
+           "code": "5.4.E.1",
+           "text": "Describe specific phobia, agoraphobia, panic disorder, social anxiety disorder and generalized anxiety disorder, including culture-bound forms."
+          },
+          {
+           "code": "5.4.E.2",
+           "text": "Name learned, cognitive and biological causes of anxiety disorders."
+          },
+          {
+           "code": "5.4.F",
+           "text": "Describe symptoms and causes of selected obsessive-compulsive and related disorders."
+          },
+          {
+           "code": "5.4.F.1",
+           "text": "Describe obsessions, compulsions, OCD and hoarding disorder."
+          },
+          {
+           "code": "5.4.F.2",
+           "text": "Name causes of obsessive-compulsive disorders."
+          },
+          {
+           "code": "5.4.G",
+           "text": "Describe symptoms and causes of selected dissociative disorders."
+          },
+          {
+           "code": "5.4.G.1",
+           "text": "Describe dissociative amnesia and dissociative identity disorder."
+          },
+          {
+           "code": "5.4.G.2",
+           "text": "Link dissociative disorders to trauma or stress."
+          },
+          {
+           "code": "5.4.H",
+           "text": "Describe symptoms and causes of selected trauma and stressor-related disorders."
+          },
+          {
+           "code": "5.4.H.1",
+           "text": "Describe PTSD symptoms such as hypervigilance and flashbacks."
+          },
+          {
+           "code": "5.4.H.2",
+           "text": "Link PTSD to trauma or stress."
+          },
+          {
+           "code": "5.4.I",
+           "text": "Describe symptoms and causes of selected feeding and eating disorders."
+          },
+          {
+           "code": "5.4.I.1",
+           "text": "Describe anorexia nervosa and bulimia nervosa."
+          },
+          {
+           "code": "5.4.I.2",
+           "text": "Name causes of feeding and eating disorders."
+          },
+          {
+           "code": "5.4.J",
+           "text": "Describe symptoms and causes of selected personality disorders."
+          },
+          {
+           "code": "5.4.J.1",
+           "text": "Describe personality disorders and Clusters A, B and C."
+          },
+          {
+           "code": "5.4.J.2",
+           "text": "Name causes of personality disorders."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "5-5-treatment-of-psychological-disorders",
+       "title": "5.5 Treatment of Psychological Disorders",
+       "subtopics": [
+        {
+         "id": "treatment-of-psychological-disorders-part-1",
+         "title": "Treatment of Psychological Disorders, part 1",
+         "outcomes": [
+          {
+           "code": "5.5.A",
+           "text": "Describe research and trends in treating psychological disorders."
+          },
+          {
+           "code": "5.5.A.1",
+           "text": "Explain psychotherapy effectiveness, evidence-based practice, cultural humility and therapeutic alliance."
+          },
+          {
+           "code": "5.5.B",
+           "text": "Describe research and trends in treatment settings."
+          },
+          {
+           "code": "5.5.B.1",
+           "text": "Explain deinstitutionalization and combined medication and therapy."
+          },
+          {
+           "code": "5.5.C",
+           "text": "Describe ethical principles in treating psychological disorders."
+          },
+          {
+           "code": "5.5.C.1",
+           "text": "List APA ethical principles: nonmaleficence, fidelity, integrity and respect for rights."
+          }
+         ]
+        },
+        {
+         "id": "treatment-of-psychological-disorders-part-2",
+         "title": "Treatment of Psychological Disorders, part 2",
+         "outcomes": [
+          {
+           "code": "5.5.D",
+           "text": "Describe techniques used with psychological therapies."
+          },
+          {
+           "code": "5.5.D.1",
+           "text": "Describe psychodynamic free association and dream interpretation."
+          },
+          {
+           "code": "5.5.D.2",
+           "text": "Describe cognitive restructuring, fear hierarchies and the cognitive triad."
+          },
+          {
+           "code": "5.5.D.3",
+           "text": "Describe applied behavior analysis: exposure therapy, aversion therapy, token economies and biofeedback."
+          },
+          {
+           "code": "5.5.D.4",
+           "text": "Describe cognitive-behavioral therapies such as DBT and REBT."
+          },
+          {
+           "code": "5.5.D.5",
+           "text": "Describe person-centered therapy: active listening and unconditional positive regard."
+          },
+          {
+           "code": "5.5.E",
+           "text": "Explain how group therapy differs from individual therapy."
+          }
+         ]
+        },
+        {
+         "id": "treatment-of-psychological-disorders-part-3",
+         "title": "Treatment of Psychological Disorders, part 3",
+         "outcomes": [
+          {
+           "code": "5.5.F",
+           "text": "Describe effective uses of hypnosis."
+          },
+          {
+           "code": "5.5.F.1",
+           "text": "Explain that hypnosis helps with pain and anxiety but not accurate memory retrieval."
+          },
+          {
+           "code": "5.5.G",
+           "text": "Describe interventions derived from the biological perspective."
+          },
+          {
+           "code": "5.5.G.1",
+           "text": "Describe psychoactive medications, targeted neurotransmitters and side effects like tardive dyskinesia."
+          },
+          {
+           "code": "5.5.G.2",
+           "text": "Describe psychosurgery, TMS and electroconvulsive therapy, and lobotomy history."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "build": {
+  "builtAt": "2026-10-14T10:05:47.077Z",
+  "model": "claude-agent",
+  "usd": 0,
+  "expectedCodes": 304,
+  "coverage": 1,
+  "missingCodes": [],
+  "counts": {
+   "grades": 1,
+   "units": 5,
+   "topics": 35,
+   "subtopics": 52,
+   "outcomes": 304
+  },
+  "warnings": [
+   "grade 9 has no content",
+   "grade 10 has no content",
+   "grade 11 has no content",
+   "grade 12 has no content",
+   "unexpected grade label \"all\"",
+   "subtopic \"Anxiety, trauma and other disorders\" has 18 outcomes — too big for one lesson"
+  ]
+ }
+}

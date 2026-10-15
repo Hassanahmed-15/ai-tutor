@@ -1,0 +1,546 @@
+{
+ "id": "us-ar-physical-education",
+ "region": "US",
+ "framework": "Arkansas state academic standards: Physical Education",
+ "board": null,
+ "qualification": "K-12",
+ "subject": "Physical Education",
+ "syllabusCode": null,
+ "gradeSystem": "grade",
+ "source": {
+  "urls": [
+   "https://api.commonstandardsproject.com/api/v1/jurisdictions/2E9F2A0F3440479492D152F02F081AF1",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/B822C869D0FA4386B1E241DCD164FB5E",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/DA181205DF884C08A5A810F944B43793",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/3FF7BA34C82842C6BB368B9D6F2BBC9B"
+  ],
+  "publisher": "Arkansas state education agency (machine-readable via Common Standards Project / ASN)",
+  "licence": "CC BY 4.0 US, Common Curriculum, Inc.",
+  "firstExam": "2019"
+ },
+ "grades": [
+  {
+   "grade": "K-2",
+   "units": [
+    {
+     "id": "physical-competence",
+     "title": "Physical Competence",
+     "topics": [
+      {
+       "id": "students-will-demonstrate-proficiency-in-motor-s",
+       "title": "Students will demonstrate proficiency in motor skills and movement patterns needed to perform a variety of activities",
+       "subtopics": [
+        {
+         "id": "students-will-demonstrate-proficiency-in-motor-s",
+         "title": "Students will demonstrate proficiency in motor skills and movement patterns needed to perform a variety of activities",
+         "outcomes": [
+          {
+           "code": "1.1.A1",
+           "text": "I can demonstrate emerging locomotor and non-locomotor skills, movement patterns, and basic manipulative skills with beginning weight transfer and travel."
+          },
+          {
+           "code": "1.1.A2",
+           "text": "I can distinguish the differences between locomotor, nonlocomotor, and manipulative skills."
+          },
+          {
+           "code": "1.1.B1",
+           "text": "I can execute mature patterns of locomotor and non-locomotor skills, and patterns utilizing different pathways, speed, and levels."
+          },
+          {
+           "code": "1.1.B2",
+           "text": "I can perform basic manipulative skills in a mature pattern."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "students-will-apply-the-knowledge-of-concepts-pr",
+       "title": "Students will apply the knowledge of concepts, principles, strategies, and tactics related to movement and performance",
+       "subtopics": [
+        {
+         "id": "students-will-apply-the-knowledge-of-concepts-pr",
+         "title": "Students will apply the knowledge of concepts, principles, strategies, and tactics related to movement and performance",
+         "outcomes": [
+          {
+           "code": "1.2.A1",
+           "text": "I can differentiate my personal space from the personal space of others in general space when I use locomotor and non-locomotor skills."
+          },
+          {
+           "code": "1.2.A2",
+           "text": "I can use locomotor skills to travel different pathways, at varying levels and different speeds."
+          },
+          {
+           "code": "1.2.B1",
+           "text": "I can combine locomotor skills, pathways, levels, direction, and speed in general space with rhythm."
+          },
+          {
+           "code": "1.2.B2",
+           "text": "I can demonstrate emerging understanding of chasing and fleeing activities."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "knowledge-and-understanding",
+     "title": "Knowledge and Understanding",
+     "topics": [
+      {
+       "id": "students-will-demonstrate-physical-literacy-need",
+       "title": "Students will demonstrate physical literacy needed to achieve and maintain a health-enhancing level of physical activity",
+       "subtopics": [
+        {
+         "id": "students-will-demonstrate-physical-literacy-need",
+         "title": "Students will demonstrate physical literacy needed to achieve and maintain a health-enhancing level of physical activity",
+         "outcomes": [
+          {
+           "code": "2.1.A1",
+           "text": "I can identify active play opportunities outside of physical education."
+          },
+          {
+           "code": "2.1.A2",
+           "text": "I can recognize that my heart rate and breathing speed up as I move harder and faster."
+          },
+          {
+           "code": "2.1.B1",
+           "text": "I can discuss the benefits of being active through play and/or exercise."
+          },
+          {
+           "code": "2.1.B2",
+           "text": "I can identify the heart as a muscle that grows stronger with exercise, play, and other physical activity."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "motivation-and-confidence",
+     "title": "Motivation and Confidence",
+     "topics": [
+      {
+       "id": "students-will-exhibit-responsible-personal-and-s",
+       "title": "Students will exhibit responsible personal and social behavior that respects self and others",
+       "subtopics": [
+        {
+         "id": "students-will-exhibit-responsible-personal-and-s",
+         "title": "Students will exhibit responsible personal and social behavior that respects self and others",
+         "outcomes": [
+          {
+           "code": "3.1.A1",
+           "text": "I can follow instruction and directions for myself and/or my group when prompted."
+          },
+          {
+           "code": "3.1.A2",
+           "text": "I can share equipment and space with others."
+          },
+          {
+           "code": "3.1.B1",
+           "text": "I can accept specific corrective feedback and responsibility for class protocols."
+          },
+          {
+           "code": "3.1.B2",
+           "text": "I can work safely and responsibly in physical education class."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "students-will-demonstrate-physical-literacy-thro",
+       "title": "Students will demonstrate physical literacy through physical activity for health, enjoyment, challenge, self-expression, and/or social interaction",
+       "subtopics": [
+        {
+         "id": "students-will-demonstrate-physical-literacy-thro",
+         "title": "Students will demonstrate physical literacy through physical activity for health, enjoyment, challenge, self-expression, and/or social interaction",
+         "outcomes": [
+          {
+           "code": "3.2.A",
+           "text": "I can recognize that physical activities can be enjoyed individually or with others."
+          },
+          {
+           "code": "3.2.B1",
+           "text": "I can recognize that some physical activities will be challenging, but can be enjoyable."
+          },
+          {
+           "code": "3.2.B2",
+           "text": "I can explain how cooperating with others can lead to success."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "3-5",
+   "units": [
+    {
+     "id": "physical-competence",
+     "title": "Physical Competence",
+     "topics": [
+      {
+       "id": "students-will-demonstrate-proficiency-in-motor-s",
+       "title": "Students will demonstrate proficiency in motor skills and movement patterns needed to perform a variety of activities",
+       "subtopics": [
+        {
+         "id": "students-will-demonstrate-proficiency-in-motor-s",
+         "title": "Students will demonstrate proficiency in motor skills and movement patterns needed to perform a variety of activities",
+         "outcomes": [
+          {
+           "code": "1.1.C1",
+           "text": "I can combine various locomotor and non-locomotor skills and manipulative skills within activities (small-sided activities and for skills requiring accuracy to a target)."
+          },
+          {
+           "code": "1.1.C2",
+           "text": "I can demonstrate emerging patterns of passing with the hands and feet, volleying, and striking with implements."
+          },
+          {
+           "code": "1.1.D1",
+           "text": "I can determine force, distance, and height needed for accuracy with basic manipulative skills."
+          },
+          {
+           "code": "1.1.D2",
+           "text": "I can combine traveling with manipulative skills in a mature pattern."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "students-will-apply-the-knowledge-of-concepts-pr",
+       "title": "Students will apply the knowledge of concepts, principles, strategies, and tactics related to movement and performance",
+       "subtopics": [
+        {
+         "id": "students-will-apply-the-knowledge-of-concepts-pr",
+         "title": "Students will apply the knowledge of concepts, principles, strategies, and tactics related to movement and performance",
+         "outcomes": [
+          {
+           "code": "1.2.C1",
+           "text": "I can recognize spatial needs, pathways, directions, and speed as instructed by the teacher (movement concepts)."
+          },
+          {
+           "code": "1.2.C2",
+           "text": "I can determine my path and speed for running and fleeing activities."
+          },
+          {
+           "code": "1.2.D1",
+           "text": "I can apply spatial and movement concepts for strategy in games and activities."
+          },
+          {
+           "code": "1.2.D2",
+           "text": "I can analyze game/activity situations for needed movement concepts."
+          },
+          {
+           "code": "1.2.D3",
+           "text": "I can apply basic offensive and defensive strategies and tactics in various games and activities."
+          },
+          {
+           "code": "1.2.D4",
+           "text": "I can recognize the type of manipulative skills needed for different games and activities."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "knowledge-and-understanding",
+     "title": "Knowledge and Understanding",
+     "topics": [
+      {
+       "id": "students-will-demonstrate-physical-literacy-need",
+       "title": "Students will demonstrate physical literacy needed to achieve and maintain a health-enhancing level of physical activity",
+       "subtopics": [
+        {
+         "id": "students-will-demonstrate-physical-literacy-need",
+         "title": "Students will demonstrate physical literacy needed to achieve and maintain a health-enhancing level of physical activity",
+         "outcomes": [
+          {
+           "code": "2.1.C",
+           "text": "I can describe the concept of fitness and provide examples of how physical activity enhances health."
+          },
+          {
+           "code": "2.1.D",
+           "text": "I can differentiate between skill-related and health-related fitness."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "motivation-and-confidence",
+     "title": "Motivation and Confidence",
+     "topics": [
+      {
+       "id": "students-will-exhibit-responsible-personal-and-s",
+       "title": "Students will exhibit responsible personal and social behavior that respects self and others",
+       "subtopics": [
+        {
+         "id": "students-will-exhibit-responsible-personal-and-s",
+         "title": "Students will exhibit responsible personal and social behavior that respects self and others",
+         "outcomes": [
+          {
+           "code": "3.1.C1",
+           "text": "I can work cooperatively and praise others for their successes."
+          },
+          {
+           "code": "3.1.C2",
+           "text": "I can accept players of all skill levels in various physical activities."
+          },
+          {
+           "code": "3.1.D1",
+           "text": "I can engage in physical activities with responsible interpersonal behavior."
+          },
+          {
+           "code": "3.1.D2",
+           "text": "I can apply safety principles."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "students-will-demonstrate-physical-literacy-thro",
+       "title": "Students will demonstrate physical literacy through physical activity for health, enjoyment, challenge, self-expression, and/or social interaction",
+       "subtopics": [
+        {
+         "id": "students-will-demonstrate-physical-literacy-thro",
+         "title": "Students will demonstrate physical literacy through physical activity for health, enjoyment, challenge, self-expression, and/or social interaction",
+         "outcomes": [
+          {
+           "code": "3.2.C",
+           "text": "I can discuss how practice develops confidence when working on challenging physical activity."
+          },
+          {
+           "code": "3.2.D",
+           "text": "I can describe how the benefits of physical activity at school can be replicated in other settings."
+          },
+          {
+           "code": "3.2.D",
+           "text": "I can explain how cooperating with others can lead to success."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "6-8",
+   "units": [
+    {
+     "id": "physical-competence",
+     "title": "Physical Competence",
+     "topics": [
+      {
+       "id": "students-will-demonstrate-proficiency-in-motor-s",
+       "title": "Students will demonstrate proficiency in motor skills and movement patterns needed to perform a variety of activities",
+       "subtopics": [
+        {
+         "id": "students-will-demonstrate-proficiency-in-motor-s",
+         "title": "Students will demonstrate proficiency in motor skills and movement patterns needed to perform a variety of activities",
+         "outcomes": [
+          {
+           "code": "1.1.E1",
+           "text": "I can apply locomotor, non-locomotor, and manipulative skills to games and sports with an emphasis on executing the skills with correct fundamental technique."
+          },
+          {
+           "code": "1.1.E2",
+           "text": "I can integrate change of direction and speed while maintaining control of the body and manipulative."
+          },
+          {
+           "code": "1.1.E3",
+           "text": "I can differentiate offensive and defensive skills for various games and sports."
+          },
+          {
+           "code": "1.1.E4",
+           "text": "I can identify various games and sports and the skills needed for each."
+          },
+          {
+           "code": "1.1.F1",
+           "text": "I can execute the skills required for a variety of games and sports."
+          },
+          {
+           "code": "1.1.F2",
+           "text": "I can demonstrate correct technique for basic skills in at least two outdoor recreation activities."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "students-will-apply-the-knowledge-of-concepts-pr",
+       "title": "Students will apply the knowledge of concepts, principles, strategies, and tactics related to movement and performance",
+       "subtopics": [
+        {
+         "id": "students-will-apply-the-knowledge-of-concepts-pr",
+         "title": "Students will apply the knowledge of concepts, principles, strategies, and tactics related to movement and performance",
+         "outcomes": [
+          {
+           "code": "1.2.E1",
+           "text": "I can judge when I need to transition between offense and defense, minimizing options for opponents, and correcting defensive play based on the situation."
+          },
+          {
+           "code": "1.2.E2",
+           "text": "I can implement varying force and direction for games and activities."
+          },
+          {
+           "code": "1.2.E3",
+           "text": "I can recognize the strategic relationship between open spaces and manipulative skills."
+          },
+          {
+           "code": "1.2.F1",
+           "text": "I can communicate to advance a partner/teammate or to capitalize on an advantage during transitions between offense and defense and/ or reduce open spaces."
+          },
+          {
+           "code": "1.2.F2",
+           "text": "I can describe and apply mechanical advantages to vary force or direction in the game/activity situation."
+          },
+          {
+           "code": "1.2.F3",
+           "text": "I can evaluate the weather and other situations to make adjustments regarding safety during outdoor recreation activities."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "knowledge-and-understanding",
+     "title": "Knowledge and Understanding",
+     "topics": [
+      {
+       "id": "students-will-demonstrate-physical-literacy-need",
+       "title": "Students will demonstrate physical literacy needed to achieve and maintain a health-enhancing level of physical activity",
+       "subtopics": [
+        {
+         "id": "students-will-demonstrate-physical-literacy-need",
+         "title": "Students will demonstrate physical literacy needed to achieve and maintain a health-enhancing level of physical activity (1 of 2)",
+         "outcomes": [
+          {
+           "code": "2.1.E1",
+           "text": "I can describe how being physically active leads to a healthy body."
+          },
+          {
+           "code": "2.1.E2",
+           "text": "I can analyze the difference between aerobic and non-aerobic exercise and the difference between muscular strength and endurance."
+          },
+          {
+           "code": "2.1.E3",
+           "text": "I can describe the relationship between resting heart rate and aerobic fitness."
+          },
+          {
+           "code": "2.1.E4",
+           "text": "I can recognize factors that influence personal physical activity."
+          }
+         ]
+        },
+        {
+         "id": "students-will-demonstrate-physical-literacy-need-2",
+         "title": "Students will demonstrate physical literacy needed to achieve and maintain a health-enhancing level of physical activity (2 of 2)",
+         "outcomes": [
+          {
+           "code": "2.1.E5",
+           "text": "I can use technology to enhance the benefits of exercise."
+          },
+          {
+           "code": "2.1.F1",
+           "text": "I can create and implement a personal workout plan using the overload principle, or FITT formula, to improve levels of health-related fitness and nutrition."
+          },
+          {
+           "code": "2.1.F2",
+           "text": "I can apply strategies for dealing with stress, such as deep breathing, guided visualization, and aerobic exercise."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "motivation-and-confidence",
+     "title": "Motivation and Confidence",
+     "topics": [
+      {
+       "id": "students-will-exhibit-responsible-personal-and-s",
+       "title": "Students will exhibit responsible personal and social behavior that respects self and others",
+       "subtopics": [
+        {
+         "id": "students-will-exhibit-responsible-personal-and-s",
+         "title": "Students will exhibit responsible personal and social behavior that respects self and others",
+         "outcomes": [
+          {
+           "code": "3.1.E1",
+           "text": "I can demonstrate personal responsibility for collaboration and safe behaviors."
+          },
+          {
+           "code": "3.1.E2",
+           "text": "I can provide encouragement and positive feedback to those with differences in physical development, maturation, and skill level."
+          },
+          {
+           "code": "3.1.F",
+           "text": "I can use rules and guidelines for addressing ethical and unethical behavior during physical activity."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "students-will-demonstrate-physical-literacy-thro",
+       "title": "Students will demonstrate physical literacy through physical activity for health, enjoyment, challenge, self-expression, and/or social interaction",
+       "subtopics": [
+        {
+         "id": "students-will-demonstrate-physical-literacy-thro",
+         "title": "Students will demonstrate physical literacy through physical activity for health, enjoyment, challenge, self-expression, and/or social interaction",
+         "outcomes": [
+          {
+           "code": "3.2.E",
+           "text": "I can discuss how lifelong physical activity benefits physical, social, and emotional health."
+          },
+          {
+           "code": "3.2.F1",
+           "text": "I can apply the five components of health-related fitness and explain the connections between fitness and overall mental and physical health."
+          },
+          {
+           "code": "3.2.F2",
+           "text": "I can ask for help and help others in various physical activities."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "build": {
+  "builtAt": "2026-10-14T16:20:38.992Z",
+  "model": "none",
+  "usd": 0,
+  "expectedCodes": 62,
+  "coverage": 1,
+  "missingCodes": [],
+  "counts": {
+   "grades": 3,
+   "units": 9,
+   "topics": 15,
+   "subtopics": 16,
+   "outcomes": 63
+  },
+  "warnings": []
+ }
+}

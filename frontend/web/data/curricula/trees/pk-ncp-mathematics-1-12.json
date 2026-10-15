@@ -1,0 +1,5531 @@
+{
+ "id": "pk-ncp-mathematics-1-12",
+ "region": "PK",
+ "framework": "National Curriculum of Pakistan 2022-23",
+ "board": "FBISE",
+ "qualification": null,
+ "subject": "Mathematics",
+ "syllabusCode": null,
+ "gradeSystem": "grade",
+ "source": {
+  "urls": [
+   "https://ncc.gov.pk/SiteImage/Misc/files/4_%20NCP%20Mathematics%20PG%201-12.pdf"
+  ],
+  "publisher": "National Curriculum Council, Ministry of Federal Education and Professional Training",
+  "licence": "Government publication; structure + our own wording only",
+  "firstExam": null
+ },
+ "grades": [
+  {
+   "grade": "1",
+   "units": [
+    {
+     "id": "domain-c-measurement",
+     "title": "Domain C: Measurement",
+     "topics": [
+      {
+       "id": "length",
+       "title": "Length",
+       "subtopics": [
+        {
+         "id": "length",
+         "title": "Length",
+         "outcomes": [
+          {
+           "code": "M-01-C-01",
+           "text": "Use informal units to measure and compare lengths."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "capacity",
+       "title": "Capacity",
+       "subtopics": [
+        {
+         "id": "capacity",
+         "title": "Capacity",
+         "outcomes": [
+          {
+           "code": "M-01-C-06",
+           "text": "Measure and compare capacities using informal units."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "temperature",
+       "title": "Temperature",
+       "subtopics": [
+        {
+         "id": "temperature",
+         "title": "Temperature",
+         "outcomes": [
+          {
+           "code": "M-01-C-07",
+           "text": "Read and write temperatures in degrees Celsius using pictures and a number line."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "time",
+       "title": "Time",
+       "subtopics": [
+        {
+         "id": "time",
+         "title": "Time",
+         "outcomes": [
+          {
+           "code": "M-01-C-08",
+           "text": "Read and write whole-hour times on analogue and digital clocks."
+          },
+          {
+           "code": "M-01-C-09",
+           "text": "Show whole-hour times on an analogue clock."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "2",
+   "units": [
+    {
+     "id": "domain-c-measurement",
+     "title": "Domain C: Measurement",
+     "topics": [
+      {
+       "id": "length",
+       "title": "Length",
+       "subtopics": [
+        {
+         "id": "compare-lengths",
+         "title": "Compare Lengths",
+         "outcomes": [
+          {
+           "code": "M-02-C-01",
+           "text": "Compare object lengths in metres or centimetres using <, >, and =."
+          }
+         ]
+        },
+        {
+         "id": "measure-lengths",
+         "title": "Measure Lengths",
+         "outcomes": [
+          {
+           "code": "M-02-C-02",
+           "text": "Measure and record lengths using metres and centimetres."
+          }
+         ]
+        },
+        {
+         "id": "add-and-subtract-lengths",
+         "title": "Add and Subtract Lengths",
+         "outcomes": [
+          {
+           "code": "M-02-C-03",
+           "text": "Add and subtract lengths in matching units to solve practical problems."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "mass",
+       "title": "Mass",
+       "subtopics": [
+        {
+         "id": "compare-masses",
+         "title": "Compare Masses",
+         "outcomes": [
+          {
+           "code": "M-02-C-04",
+           "text": "Compare masses in kilograms and grams using <, >, and =."
+          }
+         ]
+        },
+        {
+         "id": "measure-mass",
+         "title": "Measure Mass",
+         "outcomes": [
+          {
+           "code": "M-02-C-05",
+           "text": "Measure and record mass using kilograms and grams."
+          }
+         ]
+        },
+        {
+         "id": "add-and-subtract-masses",
+         "title": "Add and Subtract Masses",
+         "outcomes": [
+          {
+           "code": "M-02-C-06",
+           "text": "Add and subtract masses in matching units to solve word problems."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "capacity",
+       "title": "Capacity",
+       "subtopics": [
+        {
+         "id": "compare-capacities",
+         "title": "Compare Capacities",
+         "outcomes": [
+          {
+           "code": "M-02-C-07",
+           "text": "Compare capacities in litres and millilitres using <, >, and =."
+          }
+         ]
+        },
+        {
+         "id": "measure-capacity",
+         "title": "Measure Capacity",
+         "outcomes": [
+          {
+           "code": "M-02-C-08",
+           "text": "Measure and record capacity using litres and millilitres."
+          }
+         ]
+        },
+        {
+         "id": "add-and-subtract-capacities",
+         "title": "Add and Subtract Capacities",
+         "outcomes": [
+          {
+           "code": "M-02-C-11",
+           "text": "Add and subtract capacities in the same units to solve practical problems."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "temperature",
+       "title": "Temperature",
+       "subtopics": [
+        {
+         "id": "temperature",
+         "title": "Temperature",
+         "outcomes": [
+          {
+           "code": "M-02-C-09",
+           "text": "Read and write temperatures in degrees Celsius using pictorial scales."
+          },
+          {
+           "code": "M-02-C-10",
+           "text": "Compare and order temperatures using <, >, and =."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "time",
+       "title": "Time",
+       "subtopics": [
+        {
+         "id": "time",
+         "title": "Time",
+         "outcomes": [
+          {
+           "code": "M-02-C-12",
+           "text": "Read and write times in hours and minutes from analogue and digital clocks."
+          },
+          {
+           "code": "M-02-C-14",
+           "text": "Recognise time intervals and estimate how long activities take."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "calendar",
+       "title": "Calendar",
+       "subtopics": [
+        {
+         "id": "calendar",
+         "title": "Calendar",
+         "outcomes": [
+          {
+           "code": "M-02-C-15",
+           "text": "Use Solar and Islamic calendars to locate particular dates."
+          },
+          {
+           "code": "M-02-C-16",
+           "text": "Use Solar and Islamic calendars to identify days and months in daily situations."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "3",
+   "units": [
+    {
+     "id": "domain-c-measurement",
+     "title": "Domain C: Measurement",
+     "topics": [
+      {
+       "id": "length",
+       "title": "Length",
+       "subtopics": [
+        {
+         "id": "length",
+         "title": "Length",
+         "outcomes": [
+          {
+           "code": "M-03-C-01",
+           "text": "Measure and record lengths using kilometres, metres, centimetres, and millimetres."
+          },
+          {
+           "code": "M-03-C-02",
+           "text": "Add and subtract lengths in the same units in word problems."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "mass",
+       "title": "Mass",
+       "subtopics": [
+        {
+         "id": "mass",
+         "title": "Mass",
+         "outcomes": [
+          {
+           "code": "M-03-C-03",
+           "text": "Measure and record mass using kilograms, grams, and milligrams."
+          },
+          {
+           "code": "M-03-C-04",
+           "text": "Add and subtract mass in the same units in practical problems."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "capacity",
+       "title": "Capacity",
+       "subtopics": [
+        {
+         "id": "capacity",
+         "title": "Capacity",
+         "outcomes": [
+          {
+           "code": "M-03-C-05",
+           "text": "Measure and record capacity using litres and millilitres."
+          },
+          {
+           "code": "M-03-C-08",
+           "text": "Add and subtract capacities in matching units in real-life problems."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "temperature",
+       "title": "Temperature",
+       "subtopics": [
+        {
+         "id": "temperature",
+         "title": "Temperature",
+         "outcomes": [
+          {
+           "code": "M-03-C-06",
+           "text": "Read and write temperatures in Celsius using pictorial representations and a number line."
+          },
+          {
+           "code": "M-03-C-07",
+           "text": "Compare and order temperatures using <, >, and =."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "time",
+       "title": "Time",
+       "subtopics": [
+        {
+         "id": "read-clocks",
+         "title": "Read Clocks",
+         "outcomes": [
+          {
+           "code": "M-03-C-09",
+           "text": "Read and write hours and minutes from analogue and digital clocks."
+          }
+         ]
+        },
+        {
+         "id": "use-a-m-and-p-m",
+         "title": "Use a.m. and p.m.",
+         "outcomes": [
+          {
+           "code": "M-03-C-10",
+           "text": "Use a.m. and p.m. correctly."
+          }
+         ]
+        },
+        {
+         "id": "add-and-subtract-time",
+         "title": "Add and Subtract Time",
+         "outcomes": [
+          {
+           "code": "M-03-C-11",
+           "text": "Add and subtract time measures in the same units in practical problems."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "calendar",
+       "title": "Calendar",
+       "subtopics": [
+        {
+         "id": "calendar",
+         "title": "Calendar",
+         "outcomes": [
+          {
+           "code": "M-03-C-12",
+           "text": "Read and write dates from the Solar calendar."
+          },
+          {
+           "code": "M-03-C-13",
+           "text": "Read and write dates from the Solar calendar."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "4",
+   "units": [
+    {
+     "id": "domain-c-measurement",
+     "title": "Domain C: Measurement",
+     "topics": [
+      {
+       "id": "length",
+       "title": "Length",
+       "subtopics": [
+        {
+         "id": "length",
+         "title": "Length",
+         "outcomes": [
+          {
+           "code": "M-04-C-01",
+           "text": "Convert larger length units into smaller units."
+          },
+          {
+           "code": "M-04-C-02",
+           "text": "Convert, add, and subtract lengths in real-world problems."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "mass",
+       "title": "Mass",
+       "subtopics": [
+        {
+         "id": "mass",
+         "title": "Mass",
+         "outcomes": [
+          {
+           "code": "M-04-C-03",
+           "text": "Convert kilograms into grams."
+          },
+          {
+           "code": "M-04-C-04",
+           "text": "Convert, add, and subtract mass in real-world problems."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "capacity",
+       "title": "Capacity",
+       "subtopics": [
+        {
+         "id": "capacity",
+         "title": "Capacity",
+         "outcomes": [
+          {
+           "code": "M-04-C-05",
+           "text": "Convert litres into millilitres."
+          },
+          {
+           "code": "M-04-C-07",
+           "text": "Convert, add, and subtract capacities in practical problems."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "temperature",
+       "title": "Temperature",
+       "subtopics": [
+        {
+         "id": "temperature",
+         "title": "Temperature",
+         "outcomes": [
+          {
+           "code": "M-04-C-06",
+           "text": "Recognise Kelvin, Celsius, and Fahrenheit temperature scales."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "time",
+       "title": "Time",
+       "subtopics": [
+        {
+         "id": "convert-time-units",
+         "title": "Convert Time Units",
+         "outcomes": [
+          {
+           "code": "M-04-C-09",
+           "text": "Convert larger time units into smaller units."
+          }
+         ]
+        },
+        {
+         "id": "find-event-durations",
+         "title": "Find Event Durations",
+         "outcomes": [
+          {
+           "code": "M-04-C-10",
+           "text": "Find event durations from start and finish times."
+          }
+         ]
+        },
+        {
+         "id": "solve-time-problems",
+         "title": "Solve Time Problems",
+         "outcomes": [
+          {
+           "code": "M-04-C-11",
+           "text": "Add, subtract, and convert time measures in real-life problems."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "area-and-perimeter",
+       "title": "Area and Perimeter",
+       "subtopics": [
+        {
+         "id": "area-and-perimeter",
+         "title": "Area and Perimeter",
+         "outcomes": [
+          {
+           "code": "M-04-C-12",
+           "text": "Identify measurement units for perimeter and area."
+          },
+          {
+           "code": "M-04-C-14",
+           "text": "Apply formulas for square, rectangle, and rectilinear-shape perimeter and area."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "measurement",
+     "title": "Measurement",
+     "topics": [
+      {
+       "id": "capacity",
+       "title": "Capacity",
+       "subtopics": [
+        {
+         "id": "capacity",
+         "title": "Capacity",
+         "outcomes": [
+          {
+           "code": "M-04-C-08",
+           "text": "Convert, add, and subtract capacities to solve real-life word problems."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "5",
+   "units": [
+    {
+     "id": "domain-c-measurement",
+     "title": "Domain C: Measurement",
+     "topics": [
+      {
+       "id": "length",
+       "title": "Length",
+       "subtopics": [
+        {
+         "id": "length",
+         "title": "Length",
+         "outcomes": [
+          {
+           "code": "M-05-C-01",
+           "text": "Convert lengths between larger and smaller units."
+          },
+          {
+           "code": "M-05-C-02",
+           "text": "Convert, add, and subtract lengths to solve practical problems."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "mass",
+       "title": "Mass",
+       "subtopics": [
+        {
+         "id": "mass",
+         "title": "Mass",
+         "outcomes": [
+          {
+           "code": "M-05-C-03",
+           "text": "Convert mass between larger and smaller units."
+          },
+          {
+           "code": "M-05-C-04",
+           "text": "Convert, add, and subtract mass to solve practical problems."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "capacity",
+       "title": "Capacity",
+       "subtopics": [
+        {
+         "id": "capacity",
+         "title": "Capacity",
+         "outcomes": [
+          {
+           "code": "M-05-C-05",
+           "text": "Convert capacity between larger and smaller units."
+          },
+          {
+           "code": "M-05-C-06",
+           "text": "Convert, add, and subtract capacities to solve practical problems."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "time",
+       "title": "Time",
+       "subtopics": [
+        {
+         "id": "time",
+         "title": "Time",
+         "outcomes": [
+          {
+           "code": "M-05-C-07",
+           "text": "Convert time units in both directions."
+          },
+          {
+           "code": "M-05-C-08",
+           "text": "Add, subtract, and convert time measures to solve practical problems."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "area-and-perimeter",
+       "title": "Area and Perimeter",
+       "subtopics": [
+        {
+         "id": "compare-area-and-perimeter",
+         "title": "Compare Area and Perimeter",
+         "outcomes": [
+          {
+           "code": "M-05-C-09",
+           "text": "Relate equal areas to potentially different perimeters."
+          }
+         ]
+        },
+        {
+         "id": "parallelogram-and-triangle-area",
+         "title": "Parallelogram and Triangle Area",
+         "outcomes": [
+          {
+           "code": "M-05-C-10",
+           "text": "Calculate areas of parallelograms and triangles."
+          }
+         ]
+        },
+        {
+         "id": "solve-area-and-perimeter-problems",
+         "title": "Solve Area and Perimeter Problems",
+         "outcomes": [
+          {
+           "code": "M-05-C-11",
+           "text": "Solve practical problems involving square and rectangular perimeters and areas."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "6",
+   "units": [
+    {
+     "id": "domain-c-measurement",
+     "title": "Domain C: Measurement",
+     "topics": [
+      {
+       "id": "area-and-perimeter",
+       "title": "Area and Perimeter",
+       "subtopics": [
+        {
+         "id": "area-and-perimeter",
+         "title": "Area and Perimeter",
+         "outcomes": [
+          {
+           "code": "M-06-C-01",
+           "text": "Find areas of paths and composite shaded or unshaded regions."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "surface-area-and-volume",
+       "title": "Surface Area and Volume",
+       "subtopics": [
+        {
+         "id": "use-pythagorean-theorem",
+         "title": "Use Pythagorean Theorem",
+         "outcomes": [
+          {
+           "code": "M-06-C-02",
+           "text": "Solve practical problems using the Pythagorean theorem."
+          }
+         ]
+        },
+        {
+         "id": "find-surface-area-and-volume",
+         "title": "Find Surface Area and Volume",
+         "outcomes": [
+          {
+           "code": "M-06-C-03",
+           "text": "Calculate cube and cuboid surface areas and volumes."
+          },
+          {
+           "code": "M-06-C-04",
+           "text": "Solve practical cube and cuboid surface-area and volume problems."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "7",
+   "units": [
+    {
+     "id": "domain-c-measurement",
+     "title": "Domain C: Measurement",
+     "topics": [
+      {
+       "id": "length",
+       "title": "Length",
+       "subtopics": [
+        {
+         "id": "length",
+         "title": "Length",
+         "outcomes": [
+          {
+           "code": "M-07-C-01",
+           "text": "Convert between different units of distance."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "time",
+       "title": "Time",
+       "subtopics": [
+        {
+         "id": "twelve-and-twenty-four-hour-time",
+         "title": "Twelve- and Twenty-Four-Hour Time",
+         "outcomes": [
+          {
+           "code": "M-07-C-02",
+           "text": "Convert between twelve-hour and twenty-four-hour time."
+          }
+         ]
+        },
+        {
+         "id": "journey-times",
+         "title": "Journey Times",
+         "outcomes": [
+          {
+           "code": "M-07-C-04",
+           "text": "Determine departure, arrival, and journey times across consecutive days."
+          }
+         ]
+        },
+        {
+         "id": "speed-and-distance",
+         "title": "Speed and Distance",
+         "outcomes": [
+          {
+           "code": "M-07-C-05",
+           "text": "Solve distance-time-speed problems and distinguish uniform from average speed."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "area-and-perimeter",
+       "title": "Area and Perimeter",
+       "subtopics": [
+        {
+         "id": "area-and-perimeter",
+         "title": "Area and Perimeter",
+         "outcomes": [
+          {
+           "code": "M-07-C-07",
+           "text": "State and apply the Pythagorean theorem."
+          },
+          {
+           "code": "M-07-C-08",
+           "text": "Calculate circle circumference and the areas of sectors."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "surface-area-and-volume",
+       "title": "Surface Area and Volume",
+       "subtopics": [
+        {
+         "id": "simple-shapes",
+         "title": "Simple Shapes",
+         "outcomes": [
+          {
+           "code": "M-07-C-09",
+           "text": "Calculate surface area and volume of simple three-dimensional shapes."
+          }
+         ]
+        },
+        {
+         "id": "square-and-cubic-units",
+         "title": "Square and Cubic Units",
+         "outcomes": [
+          {
+           "code": "M-07-C-10",
+           "text": "Convert between standard square and cubic units."
+          }
+         ]
+        },
+        {
+         "id": "prisms-and-cylinders",
+         "title": "Prisms and Cylinders",
+         "outcomes": [
+          {
+           "code": "M-07-C-11",
+           "text": "Solve surface-area and volume problems involving prisms and cylinders."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "9",
+   "units": [
+    {
+     "id": "domain-a-numbers-and-algebra",
+     "title": "Domain A: Numbers and Algebra",
+     "topics": [
+      {
+       "id": "real-numbers",
+       "title": "Real Numbers",
+       "subtopics": [
+        {
+         "id": "basic-fractions",
+         "title": "Basic Fractions",
+         "outcomes": [
+          {
+           "code": "M-01-A-21",
+           "text": "Recognise, name, write, and represent halves, quarters, and three-quarters of lengths, shapes, sets, or quantities."
+          },
+          {
+           "code": "M-02-A-30",
+           "text": "Identify unit, non-unit, like, and unlike fractions using pictorial representations."
+          },
+          {
+           "code": "M-03-A-20",
+           "text": "Distinguish proper, improper, and mixed-number fractions."
+          },
+          {
+           "code": "M-04-A-20",
+           "text": "Distinguish proper, improper, and mixed-number fractions."
+          }
+         ]
+        },
+        {
+         "id": "number-lines-and-absolute-value",
+         "title": "Number Lines and Absolute Value",
+         "outcomes": [
+          {
+           "code": "M-06-A-06",
+           "text": "Represent whole numbers, integers, and decimals on a number line and find a real number’s absolute value."
+          }
+         ]
+        },
+        {
+         "id": "equivalent-and-mixed-fractions",
+         "title": "Equivalent and Mixed Fractions",
+         "outcomes": [
+          {
+           "code": "M-03-A-21",
+           "text": "Identify equivalent fractions and display groups of equivalent fractions."
+          },
+          {
+           "code": "M-04-A-21",
+           "text": "Convert improper fractions into mixed numbers and convert mixed numbers back."
+          },
+          {
+           "code": "M-03-A-22",
+           "text": "Reduce fractions to their simplest form."
+          }
+         ]
+        },
+        {
+         "id": "comparing-fractions",
+         "title": "Comparing Fractions",
+         "outcomes": [
+          {
+           "code": "M-02-A-31",
+           "text": "Compare and order like unit fractions using less-than, greater-than, and equality signs."
+          },
+          {
+           "code": "M-03-A-23",
+           "text": "Compare and arrange like fractions using comparison symbols."
+          },
+          {
+           "code": "M-04-A-22",
+           "text": "Compare and order unlike fractions."
+          },
+          {
+           "code": "M-05-A-16",
+           "text": "Compare and arrange whole numbers, proper and improper fractions, and mixed numbers in order."
+          }
+         ]
+        },
+        {
+         "id": "adding-and-subtracting-fractions",
+         "title": "Adding and Subtracting Fractions",
+         "outcomes": [
+          {
+           "code": "M-02-A-32",
+           "text": "Add and subtract like fractions whose total is at most one whole."
+          },
+          {
+           "code": "M-03-A-24",
+           "text": "Add and subtract like and unlike fractions with compatible denominators."
+          },
+          {
+           "code": "M-04-A-23",
+           "text": "Add and subtract like and unlike fractions, expressing answers as mixed numbers when needed."
+          },
+          {
+           "code": "M-05-A-17",
+           "text": "Add and subtract two or three unlike fractions and mixed numbers."
+          }
+         ]
+        },
+        {
+         "id": "multiplying-and-dividing-fractions",
+         "title": "Multiplying and Dividing Fractions",
+         "outcomes": [
+          {
+           "code": "M-04-A-24",
+           "text": "Multiply and divide proper, improper, and mixed fractions by whole numbers."
+          },
+          {
+           "code": "M-05-A-18",
+           "text": "Multiply and divide fractions and mixed numbers, simplifying answers where applicable."
+          },
+          {
+           "code": "M-04-A-25",
+           "text": "Multiply two fractions or mixed numbers."
+          }
+         ]
+        },
+        {
+         "id": "fraction-problems",
+         "title": "Fraction Problems",
+         "outcomes": [
+          {
+           "code": "M-04-A-26",
+           "text": "Solve everyday problems involving fractions by selecting appropriate operations."
+          },
+          {
+           "code": "M-05-A-19",
+           "text": "Solve real-world problems involving fractions."
+          }
+         ]
+        },
+        {
+         "id": "tenths-and-hundredths",
+         "title": "Tenths and Hundredths",
+         "outcomes": [
+          {
+           "code": "M-02-A-33",
+           "text": "Understand tenths as one of ten equal parts and as division by ten."
+          },
+          {
+           "code": "M-03-A-25",
+           "text": "Understand hundredths as one of one hundred equal parts and as division by one hundred."
+          },
+          {
+           "code": "M-03-A-26",
+           "text": "Understand tenths as the result of dividing objects, numbers, or quantities into ten equal parts."
+          }
+         ]
+        },
+        {
+         "id": "decimal-place-value",
+         "title": "Decimal Place Value",
+         "outcomes": [
+          {
+           "code": "M-04-A-27",
+           "text": "Read, write, and identify place values in decimals through three decimal places."
+          },
+          {
+           "code": "M-04-A-28",
+           "text": "Find the result of dividing one- or two-digit numbers by ten or one hundred and identify digit place values."
+          }
+         ]
+        },
+        {
+         "id": "fractions-and-decimals",
+         "title": "Fractions and Decimals",
+         "outcomes": [
+          {
+           "code": "M-04-A-29",
+           "text": "Convert fractions with suitable denominators into decimal numbers, and express decimals as fractions."
+          },
+          {
+           "code": "M-05-A-20",
+           "text": "Convert fractions to decimals and decimals to fractions."
+          },
+          {
+           "code": "M-04-A-30",
+           "text": "Convert quarters, halves, and three-quarters into their decimal equivalents."
+          }
+         ]
+        },
+        {
+         "id": "comparing-decimals",
+         "title": "Comparing Decimals",
+         "outcomes": [
+          {
+           "code": "M-04-A-31",
+           "text": "Compare and order decimals to two decimal places."
+          },
+          {
+           "code": "M-05-A-21",
+           "text": "Compare and order numbers with up to three decimal places using symbols and ascending or descending order."
+          }
+         ]
+        },
+        {
+         "id": "rounding-decimals",
+         "title": "Rounding Decimals",
+         "outcomes": [
+          {
+           "code": "M-04-A-32",
+           "text": "Round decimals to the nearest whole number, tenth, and hundredth."
+          },
+          {
+           "code": "M-05-A-22",
+           "text": "Round decimals with up to three decimal places to the nearest whole number, tenth, and hundredth."
+          }
+         ]
+        },
+        {
+         "id": "decimal-addition-and-subtraction",
+         "title": "Decimal Addition and Subtraction",
+         "outcomes": [
+          {
+           "code": "M-04-A-33",
+           "text": "Add and subtract three-digit numbers with up to two decimal places."
+          },
+          {
+           "code": "M-05-A-23",
+           "text": "Add and subtract numbers with up to three decimal places."
+          }
+         ]
+        },
+        {
+         "id": "decimal-multiplication",
+         "title": "Decimal Multiplication",
+         "outcomes": [
+          {
+           "code": "M-04-A-34",
+           "text": "Multiply and divide a two-digit number with one decimal place by one- or two-digit whole numbers."
+          },
+          {
+           "code": "M-05-A-24",
+           "text": "Multiply numbers with up to two decimal places by whole numbers or three-digit decimals."
+          }
+         ]
+        },
+        {
+         "id": "decimal-division",
+         "title": "Decimal Division",
+         "outcomes": [
+          {
+           "code": "M-05-A-25",
+           "text": "Divide numbers with up to two decimal places by whole numbers or two-digit numbers with one decimal place."
+          }
+         ]
+        },
+        {
+         "id": "multiplying-by-powers-of-ten",
+         "title": "Multiplying by Powers of Ten",
+         "outcomes": [
+          {
+           "code": "M-04-A-35",
+           "text": "Multiply and divide a two-digit number with one decimal place by ten and one hundred."
+          },
+          {
+           "code": "M-05-A-26",
+           "text": "Multiply and divide numbers with up to two decimal places by ten, one hundred, and one thousand."
+          }
+         ]
+        },
+        {
+         "id": "decimal-word-problems",
+         "title": "Decimal Word Problems",
+         "outcomes": [
+          {
+           "code": "M-04-A-36",
+           "text": "Solve real-world problems involving two-digit decimals, including money, quantities, and measurements."
+          },
+          {
+           "code": "M-05-A-27",
+           "text": "Solve real-world problems involving numbers with up to two decimal places, including money, quantities, and measurements."
+          }
+         ]
+        },
+        {
+         "id": "order-of-operations",
+         "title": "Order of Operations",
+         "outcomes": [
+          {
+           "code": "M-04-A-37",
+           "text": "Apply operation precedence to expressions containing whole numbers, decimals, and fractions."
+          },
+          {
+           "code": "M-05-A-28",
+           "text": "Apply operation precedence to mathematical expressions involving whole numbers, decimals, and fractions."
+          }
+         ]
+        },
+        {
+         "id": "percent-basics",
+         "title": "Percent Basics",
+         "outcomes": [
+          {
+           "code": "M-04-A-38",
+           "text": "Recognise the percent sign and understand percent as parts per hundred."
+          },
+          {
+           "code": "M-05-A-29",
+           "text": "Express percentages as fractions over one hundred and as decimals."
+          }
+         ]
+        },
+        {
+         "id": "percent-equivalences",
+         "title": "Percent Equivalences",
+         "outcomes": [
+          {
+           "code": "M-05-A-30",
+           "text": "Use simple fraction, decimal, and percentage equivalences in real-life contexts."
+          },
+          {
+           "code": "M-05-A-31",
+           "text": "Solve real-world problems involving conversions among percentages, fractions, and decimals."
+          },
+          {
+           "code": "M-05-A-32",
+           "text": "Solve problems using percentage and decimal equivalents of selected common fractions."
+          }
+         ]
+        },
+        {
+         "id": "unitary-method",
+         "title": "Unitary Method",
+         "outcomes": [
+          {
+           "code": "M-05-A-33",
+           "text": "Use the unitary method to find the value of one or many objects in related real-world situations."
+          }
+         ]
+        },
+        {
+         "id": "squares-and-square-roots",
+         "title": "Squares and Square Roots",
+         "outcomes": [
+          {
+           "code": "M-05-A-34",
+           "text": "Recognise and use square numbers and square roots."
+          }
+         ]
+        },
+        {
+         "id": "number-systems",
+         "title": "Number Systems",
+         "outcomes": [
+          {
+           "code": "M-09-A-01",
+           "text": "Explain how civilizations developed number systems, including the modern Arabic system."
+          },
+          {
+           "code": "M-09-A-02",
+           "text": "Describe real numbers as the union of rational and irrational numbers."
+          }
+         ]
+        },
+        {
+         "id": "real-number-properties",
+         "title": "Real Number Properties",
+         "outcomes": [
+          {
+           "code": "M-09-A-03",
+           "text": "Verify equality and inequality properties for real numbers."
+          },
+          {
+           "code": "M-09-A-04",
+           "text": "Use index laws to simplify radical expressions."
+          }
+         ]
+        },
+        {
+         "id": "scientific-notation",
+         "title": "Scientific Notation",
+         "outcomes": [
+          {
+           "code": "M-09-A-05",
+           "text": "Convert numbers between ordinary and scientific notation."
+          }
+         ]
+        },
+        {
+         "id": "understanding-logarithms",
+         "title": "Understanding Logarithms",
+         "outcomes": [
+          {
+           "code": "M-09-A-06",
+           "text": "Explain the logarithm of a number."
+          },
+          {
+           "code": "M-09-A-07",
+           "text": "Distinguish between common and natural logarithms."
+          }
+         ]
+        },
+        {
+         "id": "logarithm-applications",
+         "title": "Logarithm Applications",
+         "outcomes": [
+          {
+           "code": "M-09-A-08",
+           "text": "Apply logarithm laws to real-life growth, decay, and sound problems."
+          }
+         ]
+        },
+        {
+         "id": "rational-number-problems",
+         "title": "Rational Number Problems",
+         "outcomes": [
+          {
+           "code": "M-09-A-09",
+           "text": "Use rational-number concepts to solve real-world problems."
+          }
+         ]
+        },
+        {
+         "id": "place-value-to-thousands",
+         "title": "Place Value to Thousands",
+         "outcomes": [
+          {
+           "code": "M-01-A-03",
+           "text": "Identify the place value of each digit in two-digit numbers, including tens and ones."
+          },
+          {
+           "code": "M-02-A-03",
+           "text": "Identify the place value of digits in three-digit numbers, including hundreds, tens, and ones."
+          },
+          {
+           "code": "M-03-A-03",
+           "text": "Identify the place value of each digit in four-digit numbers."
+          }
+         ]
+        },
+        {
+         "id": "place-value-to-millions",
+         "title": "Place Value to Millions",
+         "outcomes": [
+          {
+           "code": "M-04-A-03",
+           "text": "Identify the place value of each digit in five-digit numbers."
+          },
+          {
+           "code": "M-05-A-03",
+           "text": "Identify the place value of digits in six- and seven-digit numbers."
+          }
+         ]
+        },
+        {
+         "id": "comparing-whole-numbers",
+         "title": "Comparing Whole Numbers",
+         "outcomes": [
+          {
+           "code": "M-01-A-04",
+           "text": "Compare and order numbers up to 99 using words such as before, after, and between."
+          },
+          {
+           "code": "M-02-A-04",
+           "text": "Compare and order numbers up to 999 using appropriate language and the symbols less than, greater than, and equal to."
+          },
+          {
+           "code": "M-03-A-04",
+           "text": "Compare numbers and arrange numbers up to 9,999 using suitable comparison language."
+          },
+          {
+           "code": "M-04-A-04",
+           "text": "Compare and arrange numbers up to 99,999 using comparison symbols."
+          }
+         ]
+        },
+        {
+         "id": "rounding-whole-numbers",
+         "title": "Rounding Whole Numbers",
+         "outcomes": [
+          {
+           "code": "M-02-A-05",
+           "text": "Round numbers to the nearest tens using concrete objects and pictorial representations."
+          },
+          {
+           "code": "M-03-A-05",
+           "text": "Round numbers to the nearest tens, hundreds, and thousands using concrete and pictorial representations."
+          },
+          {
+           "code": "M-04-A-05",
+           "text": "Recall and apply rounding to the nearest tens, hundreds, and thousands."
+          },
+          {
+           "code": "M-04-A-06",
+           "text": "Round numbers to the nearest ten thousands."
+          }
+         ]
+        },
+        {
+         "id": "ordinal-numbers",
+         "title": "Ordinal Numbers",
+         "outcomes": [
+          {
+           "code": "M-02-A-06",
+           "text": "Identify object positions and express them using ordinal numbers up to twentieth."
+          }
+         ]
+        },
+        {
+         "id": "addition-and-subtraction-problems",
+         "title": "Addition and Subtraction Problems",
+         "outcomes": [
+          {
+           "code": "M-01-A-11",
+           "text": "Solve everyday addition and subtraction word problems using objects and pictures, including unknown quantities."
+          },
+          {
+           "code": "M-02-A-10",
+           "text": "Solve real-world addition and subtraction problems involving unknowns, money, quantities, and measurements."
+          },
+          {
+           "code": "M-03-A-08",
+           "text": "Solve real-world problems, including missing-number and money problems, using addition and subtraction."
+          },
+          {
+           "code": "M-04-A-09",
+           "text": "Solve one-step and multi-step real-world problems involving addition and subtraction."
+          },
+          {
+           "code": "M-05-A-05",
+           "text": "Solve multi-step real-world problems involving addition and subtraction."
+          }
+         ]
+        },
+        {
+         "id": "skip-counting",
+         "title": "Skip Counting",
+         "outcomes": [
+          {
+           "code": "M-01-A-14",
+           "text": "Count and write numbers in 2s, 5s, and 10s using objects and visual representations."
+          },
+          {
+           "code": "M-02-A-15",
+           "text": "Count and write numbers in 3s, 4s, 5s, 10s, and 100s."
+          }
+         ]
+        },
+        {
+         "id": "multiplication-patterns",
+         "title": "Multiplication Patterns",
+         "outcomes": [
+          {
+           "code": "M-03-A-11",
+           "text": "Count in repeated steps and develop multiplication facts for 6, 7, 8, and 9 using representations."
+          },
+          {
+           "code": "M-01-A-15",
+           "text": "Recognise counting in 3s and 4s as the multiplication tables of three and four."
+          },
+          {
+           "code": "M-02-A-16",
+           "text": "Recognise counting in 3s and 4s as multiplication tables."
+          },
+          {
+           "code": "M-02-A-17",
+           "text": "Understand multiplication as repeated addition and learn the tables for 2, 3, 4, 5, and 10."
+          }
+         ]
+        },
+        {
+         "id": "multiplication-statements",
+         "title": "Multiplication Statements",
+         "outcomes": [
+          {
+           "code": "M-02-A-18",
+           "text": "Write multiplication statements using concrete objects and pictorial representations."
+          },
+          {
+           "code": "M-01-A-17",
+           "text": "Use objects and pictures to show that multiplying two numbers works in either order."
+          },
+          {
+           "code": "M-02-A-19",
+           "text": "Use objects and pictures to show that multiplying two numbers works in either order."
+          },
+          {
+           "code": "M-03-A-12",
+           "text": "Use concrete and pictorial models to reinforce that multiplication works in either order."
+          }
+         ]
+        },
+        {
+         "id": "written-multiplication",
+         "title": "Written Multiplication",
+         "outcomes": [
+          {
+           "code": "M-02-A-20",
+           "text": "Multiply mentally and in writing using known tables, including one-digit numbers multiplied by one-digit numbers."
+          },
+          {
+           "code": "M-03-A-13",
+           "text": "Multiply mentally and in writing two-digit numbers by one-digit numbers."
+          },
+          {
+           "code": "M-04-A-11",
+           "text": "Multiply numbers up to four digits by one- and two-digit numbers mentally and in writing."
+          },
+          {
+           "code": "M-05-A-07",
+           "text": "Multiply numbers up to five digits by one-, two-, and three-digit numbers in writing."
+          },
+          {
+           "code": "M-02-A-21",
+           "text": "Multiply a two-digit number by a one-digit number using a multiplication grid."
+          }
+         ]
+        },
+        {
+         "id": "mixed-operation-problems",
+         "title": "Mixed Operation Problems",
+         "outcomes": [
+          {
+           "code": "M-02-A-29",
+           "text": "Solve real-world problems involving addition, subtraction, multiplication, and division, including Pakistani currency."
+          },
+          {
+           "code": "M-03-A-19",
+           "text": "Solve real-world problems involving addition, subtraction, multiplication, and division."
+          },
+          {
+           "code": "M-04-A-15",
+           "text": "Choose suitable operations to solve real-world problems involving addition, subtraction, multiplication, and division."
+          },
+          {
+           "code": "M-05-A-11",
+           "text": "Choose suitable operations to solve real-world problems involving addition, subtraction, multiplication, and division."
+          }
+         ]
+        },
+        {
+         "id": "divisibility-rules",
+         "title": "Divisibility Rules",
+         "outcomes": [
+          {
+           "code": "M-04-A-16",
+           "text": "Identify divisibility rules for 2, 3, 5, and 10 and apply them to numbers up to four digits."
+          },
+          {
+           "code": "M-05-A-12",
+           "text": "Identify divisibility rules for 7 and 11 and apply them to numbers up to five digits."
+          }
+         ]
+        },
+        {
+         "id": "factors-and-common-factors",
+         "title": "Factors and Common Factors",
+         "outcomes": [
+          {
+           "code": "M-04-A-17",
+           "text": "Distinguish multiples from factors and find all factor pairs of a number and common factors of two numbers."
+          },
+          {
+           "code": "M-05-A-15",
+           "text": "Solve real-world problems involving the highest common factor and least common multiple."
+          }
+         ]
+        },
+        {
+         "id": "roman-numerals",
+         "title": "Roman Numerals",
+         "outcomes": [
+          {
+           "code": "M-02-A-07",
+           "text": "Read and write Roman numerals from 1 to 20."
+          },
+          {
+           "code": "M-03-A-06",
+           "text": "Read and write Roman numerals from 1 to 20."
+          },
+          {
+           "code": "M-04-A-07",
+           "text": "Read and write Roman numerals from 1 to 100."
+          }
+         ]
+        },
+        {
+         "id": "addition-and-subtraction-facts",
+         "title": "Addition and Subtraction Facts",
+         "outcomes": [
+          {
+           "code": "M-01-A-07",
+           "text": "Recall and apply addition and subtraction facts within 20."
+          },
+          {
+           "code": "M-02-A-08",
+           "text": "Recall and apply addition and subtraction facts within 100."
+          },
+          {
+           "code": "M-01-A-08",
+           "text": "Compare numbers to determine how many more or fewer one number is than another."
+          }
+         ]
+        },
+        {
+         "id": "written-addition-and-subtraction",
+         "title": "Written Addition and Subtraction",
+         "outcomes": [
+          {
+           "code": "M-02-A-09",
+           "text": "Add and subtract numbers mentally and in writing, with or without regrouping, in specified combinations."
+          },
+          {
+           "code": "M-03-A-07",
+           "text": "Add and subtract numbers mentally and in writing, including specified three-digit combinations."
+          },
+          {
+           "code": "M-04-A-08",
+           "text": "Add and subtract numbers up to five digits mentally and in writing, with or without regrouping."
+          },
+          {
+           "code": "M-05-A-04",
+           "text": "Add and subtract numbers up to six digits mentally and in writing, with or without regrouping."
+          }
+         ]
+        },
+        {
+         "id": "addition-and-subtraction-models",
+         "title": "Addition and Subtraction Models",
+         "outcomes": [
+          {
+           "code": "M-01-A-09",
+           "text": "Solve addition and subtraction problems using concrete or pictorial representations."
+          }
+         ]
+        },
+        {
+         "id": "estimating-sums-and-differences",
+         "title": "Estimating Sums and Differences",
+         "outcomes": [
+          {
+           "code": "M-02-A-11",
+           "text": "Estimate answers to addition and subtraction problems using different methods."
+          },
+          {
+           "code": "M-03-A-09",
+           "text": "Estimate answers to addition and subtraction problems using various approaches."
+          },
+          {
+           "code": "M-04-A-10",
+           "text": "Estimate addition and subtraction answers using different strategies."
+          },
+          {
+           "code": "M-05-A-06",
+           "text": "Estimate addition and subtraction answers using various approaches."
+          }
+         ]
+        },
+        {
+         "id": "even-and-odd-numbers",
+         "title": "Even and Odd Numbers",
+         "outcomes": [
+          {
+           "code": "M-02-A-12",
+           "text": "Identify even and odd numbers."
+          },
+          {
+           "code": "M-03-A-10",
+           "text": "Distinguish between even and odd numbers."
+          }
+         ]
+        },
+        {
+         "id": "currencies-and-pakistani-money",
+         "title": "Currencies and Pakistani Money",
+         "outcomes": [
+          {
+           "code": "M-02-A-13",
+           "text": "Recognize international currencies and their denominations."
+          },
+          {
+           "code": "M-02-A-14",
+           "text": "Solve addition and subtraction problems involving Pakistani money."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "patterns",
+       "title": "Patterns",
+       "subtopics": [
+        {
+         "id": "shape-patterns",
+         "title": "Shape Patterns",
+         "outcomes": [
+          {
+           "code": "M-01-B-01",
+           "text": "Identify and continue shape patterns involving two or three orientations."
+          },
+          {
+           "code": "M-02-B-01",
+           "text": "Complete geometrical patterns on a square grid using shape, size, or colour."
+          },
+          {
+           "code": "M-01-B-02",
+           "text": "Identify and extend patterns made with two-dimensional and three-dimensional shapes or pictures."
+          },
+          {
+           "code": "M-02-B-02",
+           "text": "Explore patterns in different ways using two-dimensional and three-dimensional shapes."
+          }
+         ]
+        },
+        {
+         "id": "number-pattern-types",
+         "title": "Number Pattern Types",
+         "outcomes": [
+          {
+           "code": "M-02-B-03",
+           "text": "Recognise and extend repeating, increasing, and decreasing number patterns."
+          },
+          {
+           "code": "M-03-B-01",
+           "text": "Recognise and continue increasing or decreasing number patterns."
+          },
+          {
+           "code": "M-06-B-01",
+           "text": "Recognise simple patterns in different number sequences."
+          }
+         ]
+        },
+        {
+         "id": "pattern-rules",
+         "title": "Pattern Rules",
+         "outcomes": [
+          {
+           "code": "M-04-B-01",
+           "text": "Use a pattern rule to describe patterns shown in a table or chart."
+          },
+          {
+           "code": "M-05-B-01",
+           "text": "Use a pattern rule to describe patterns shown in a table."
+          },
+          {
+           "code": "M-04-B-02",
+           "text": "Apply a rule for increasing or decreasing patterns to extend them and find missing elements."
+          }
+         ]
+        },
+        {
+         "id": "sequence-rules",
+         "title": "Sequence Rules",
+         "outcomes": [
+          {
+           "code": "M-05-B-02",
+           "text": "Continue number sequences and determine term-to-term and position-to-term rules."
+          },
+          {
+           "code": "M-06-B-02",
+           "text": "Continue a number sequence and determine its term-to-term and position-to-term rules."
+          }
+         ]
+        },
+        {
+         "id": "pattern-problems",
+         "title": "Pattern Problems",
+         "outcomes": [
+          {
+           "code": "M-06-B-03",
+           "text": "Solve real-life problems involving number sequences and patterns."
+          },
+          {
+           "code": "M-04-B-04",
+           "text": "Identify relationships in defined patterns and generate number pairs using a rule."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "algebra",
+       "title": "Algebra",
+       "subtopics": [
+        {
+         "id": "missing-numbers-and-operations",
+         "title": "Missing Numbers and Operations",
+         "outcomes": [
+          {
+           "code": "M-03-B-02",
+           "text": "Find a missing number or operation in a number sentence."
+          },
+          {
+           "code": "M-04-B-03",
+           "text": "Write expressions or number sentences to represent problems involving unknowns."
+          }
+         ]
+        },
+        {
+         "id": "algebraic-language",
+         "title": "Algebraic Language",
+         "outcomes": [
+          {
+           "code": "M-07-B-07",
+           "text": "Distinguish open and closed sentences, terms, variables, constants, expressions, equations, and inequalities."
+          }
+         ]
+        },
+        {
+         "id": "polynomials",
+         "title": "Polynomials",
+         "outcomes": [
+          {
+           "code": "M-07-B-08",
+           "text": "Recognise polynomials as expressions whose variable powers are whole numbers."
+          },
+          {
+           "code": "M-07-B-09",
+           "text": "Identify monomials, binomials, and trinomials as types of algebraic expressions."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "sets-and-functions",
+       "title": "Sets and Functions",
+       "subtopics": [
+        {
+         "id": "patterns-and-sets",
+         "title": "Patterns and Sets",
+         "outcomes": [
+          {
+           "code": "M-09-A-10",
+           "text": "Describe mathematics as the study of patterns, structures, and relationships."
+          },
+          {
+           "code": "M-09-A-11",
+           "text": "Identify sets and perform operations on three sets using Venn diagrams."
+          },
+          {
+           "code": "M-09-A-12",
+           "text": "Use Venn diagrams to solve classification and cataloguing problems."
+          }
+         ]
+        },
+        {
+         "id": "set-laws-and-applications",
+         "title": "Set Laws and Applications",
+         "outcomes": [
+          {
+           "code": "M-09-A-13",
+           "text": "Verify union and intersection laws for three sets analytically and with Venn diagrams."
+          },
+          {
+           "code": "M-09-A-14",
+           "text": "Apply set theory to practical classification and categorization problems."
+          }
+         ]
+        },
+        {
+         "id": "relations-and-functions",
+         "title": "Relations and Functions",
+         "outcomes": [
+          {
+           "code": "M-09-A-15",
+           "text": "Explain Cartesian products, binary relations, domains, and ranges."
+          },
+          {
+           "code": "M-09-A-16",
+           "text": "Represent relations using tables, ordered pairs, and graphs."
+          }
+         ]
+        },
+        {
+         "id": "set-operations",
+         "title": "Set Operations",
+         "outcomes": [
+          {
+           "code": "M-07-A-25",
+           "text": "Describe and carry out set operations: union, intersection, difference, and complement."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "factorization",
+       "title": "Factorization",
+       "subtopics": [
+        {
+         "id": "common-factors",
+         "title": "Common Factors",
+         "outcomes": [
+          {
+           "code": "M-09-A-17",
+           "text": "Identify common factors and factor trinomials concretely, pictorially, and symbolically."
+          }
+         ]
+        },
+        {
+         "id": "factoring-expressions",
+         "title": "Factoring Expressions",
+         "outcomes": [
+          {
+           "code": "M-09-A-18",
+           "text": "Factorize quadratic and cubic algebraic expressions."
+          },
+          {
+           "code": "M-08-B-14",
+           "text": "Factorize expressions using common factors, regrouping, and standard algebraic identities."
+          }
+         ]
+        },
+        {
+         "id": "hcf-and-lcm-of-expressions",
+         "title": "HCF and LCM of Expressions",
+         "outcomes": [
+          {
+           "code": "M-09-A-19",
+           "text": "Find the highest common factor and least common multiple of algebraic expressions."
+          }
+         ]
+        },
+        {
+         "id": "algebraic-square-roots",
+         "title": "Algebraic Square Roots",
+         "outcomes": [
+          {
+           "code": "M-09-A-20",
+           "text": "Find the square root of an algebraic expression by factorization and division."
+          }
+         ]
+        },
+        {
+         "id": "factorization-applications",
+         "title": "Factorization Applications",
+         "outcomes": [
+          {
+           "code": "M-09-A-21",
+           "text": "Apply factorization of quadratic and cubic expressions to practical problems."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "linear-equations-and-inequalities-in-two-variabl",
+       "title": "Linear Equations and Inequalities in Two Variables",
+       "subtopics": [
+        {
+         "id": "solving-linear-equations",
+         "title": "Solving Linear Equations",
+         "outcomes": [
+          {
+           "code": "M-09-A-22",
+           "text": "Solve linear equations and inequalities with rational coefficients and represent solutions on a real line."
+          },
+          {
+           "code": "M-06-B-09",
+           "text": "Solve linear equations with integer, fractional, and decimal coefficients."
+          }
+         ]
+        },
+        {
+         "id": "writing-linear-equations",
+         "title": "Writing Linear Equations",
+         "outcomes": [
+          {
+           "code": "M-06-B-08",
+           "text": "Recognize and construct linear equations involving one variable."
+          }
+         ]
+        },
+        {
+         "id": "linear-equation-problems",
+         "title": "Linear Equation Problems",
+         "outcomes": [
+          {
+           "code": "M-06-B-10",
+           "text": "Solve real-world problems using linear equations."
+          }
+         ]
+        },
+        {
+         "id": "graphing-inequalities",
+         "title": "Graphing Inequalities",
+         "outcomes": [
+          {
+           "code": "M-07-B-18",
+           "text": "Represent the solution of a linear inequality on a number line."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "multiplication-and-division",
+       "title": "Multiplication and Division",
+       "subtopics": [
+        {
+         "id": "multiplying-by-zero-and-one",
+         "title": "Multiplying by Zero and One",
+         "outcomes": [
+          {
+           "code": "M-02-A-22",
+           "text": "Multiply any number by 0 or 1."
+          }
+         ]
+        },
+        {
+         "id": "multiplication-word-problems",
+         "title": "Multiplication Word Problems",
+         "outcomes": [
+          {
+           "code": "M-02-A-23",
+           "text": "Solve everyday word problems involving multiplication."
+          },
+          {
+           "code": "M-03-A-14",
+           "text": "Solve real-world word problems involving multiplication."
+          },
+          {
+           "code": "M-04-A-12",
+           "text": "Solve real-world word problems involving multiplication."
+          },
+          {
+           "code": "M-05-A-08",
+           "text": "Solve real-world word problems involving multiplication."
+          }
+         ]
+        },
+        {
+         "id": "understanding-division",
+         "title": "Understanding Division",
+         "outcomes": [
+          {
+           "code": "M-01-A-18",
+           "text": "Recognise division through concrete objects and pictorial representations."
+          },
+          {
+           "code": "M-02-A-24",
+           "text": "Recognise division as repeated subtraction using concrete and pictorial representations."
+          },
+          {
+           "code": "M-02-A-25",
+           "text": "Write division statements using concrete and pictorial representations."
+          }
+         ]
+        },
+        {
+         "id": "division-is-not-commutative",
+         "title": "Division Is Not Commutative",
+         "outcomes": [
+          {
+           "code": "M-01-A-19",
+           "text": "Use objects and pictures to understand that division is not commutative."
+          },
+          {
+           "code": "M-02-A-26",
+           "text": "Use concrete and pictorial models to understand that division cannot be performed in either order."
+          },
+          {
+           "code": "M-03-A-15",
+           "text": "Use models to reinforce that dividing two numbers in reverse order gives a different result."
+          }
+         ]
+        },
+        {
+         "id": "short-division",
+         "title": "Short Division",
+         "outcomes": [
+          {
+           "code": "M-02-A-27",
+           "text": "Mentally and in writing divide one-digit numbers by one-digit numbers, and two-digit numbers by one-digit numbers without remainders."
+          },
+          {
+           "code": "M-03-A-16",
+           "text": "Mentally and in writing divide two-digit numbers by one-digit numbers and three-digit numbers by one-digit numbers, with or without remainders."
+          }
+         ]
+        },
+        {
+         "id": "long-division",
+         "title": "Long Division",
+         "outcomes": [
+          {
+           "code": "M-04-A-13",
+           "text": "Divide numbers up to four digits by one- and two-digit numbers in written form."
+          },
+          {
+           "code": "M-05-A-09",
+           "text": "Divide numbers up to five digits by one- and two-digit numbers in written form."
+          }
+         ]
+        },
+        {
+         "id": "dividing-by-one-and-itself",
+         "title": "Dividing by One and Itself",
+         "outcomes": [
+          {
+           "code": "M-03-A-17",
+           "text": "Divide a number by one and by itself."
+          }
+         ]
+        },
+        {
+         "id": "multiplication-and-division-problems",
+         "title": "Multiplication and Division Problems",
+         "outcomes": [
+          {
+           "code": "M-02-A-28",
+           "text": "Solve everyday problems involving multiplication and division using suitable methods."
+          },
+          {
+           "code": "M-03-A-18",
+           "text": "Solve real-world problems involving division."
+          },
+          {
+           "code": "M-04-A-14",
+           "text": "Solve real-world word problems involving division."
+          },
+          {
+           "code": "M-05-A-10",
+           "text": "Solve real-world word problems involving division."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "factors-and-multiples",
+       "title": "Factors and Multiples",
+       "subtopics": [
+        {
+         "id": "factors-and-multiples",
+         "title": "Factors and Multiples",
+         "outcomes": [
+          {
+           "code": "M-04-A-18",
+           "text": "Distinguish multiples from factors and determine common multiples of two or more numbers."
+          }
+         ]
+        },
+        {
+         "id": "prime-and-composite-numbers",
+         "title": "Prime and Composite Numbers",
+         "outcomes": [
+          {
+           "code": "M-04-A-19",
+           "text": "Classify two-digit numbers up to 50 as prime or composite."
+          },
+          {
+           "code": "M-05-A-13",
+           "text": "Classify two-digit numbers up to 100 as prime or composite."
+          }
+         ]
+        },
+        {
+         "id": "hcf-and-lcm",
+         "title": "HCF and LCM",
+         "outcomes": [
+          {
+           "code": "M-05-A-14",
+           "text": "Calculate the H.C.F. and L.C.M. of two numbers using different methods."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "domain-b-geometry",
+     "title": "Domain B: Geometry",
+     "topics": [
+      {
+       "id": "two-dimensional-shapes",
+       "title": "Two-Dimensional Shapes",
+       "subtopics": [
+        {
+         "id": "two-dimensional-shapes",
+         "title": "Two-Dimensional Shapes",
+         "outcomes": [
+          {
+           "code": "M-02-D-01",
+           "text": "Recognise, identify, and draw rectangles, squares, circles, triangles, semicircles, and quarter-circles."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "polygons",
+       "title": "Polygons",
+       "subtopics": [
+        {
+         "id": "polygons",
+         "title": "Polygons",
+         "outcomes": [
+          {
+           "code": "M-03-D-01",
+           "text": "Classify polygons by attributes such as sides and angles."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "quadrilaterals",
+       "title": "Quadrilaterals",
+       "subtopics": [
+        {
+         "id": "quadrilaterals",
+         "title": "Quadrilaterals",
+         "outcomes": [
+          {
+           "code": "M-05-D-01",
+           "text": "Classify quadrilaterals by parallel sides, equal sides, angles, and symmetry."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "lines",
+       "title": "Lines",
+       "subtopics": [
+        {
+         "id": "lines",
+         "title": "Lines",
+         "outcomes": [
+          {
+           "code": "M-02-D-02",
+           "text": "Identify pairs of parallel and perpendicular lines."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "three-dimensional-shapes",
+       "title": "Three-Dimensional Shapes",
+       "subtopics": [
+        {
+         "id": "recognise-3d-shapes",
+         "title": "Recognise 3D Shapes",
+         "outcomes": [
+          {
+           "code": "M-01-D-02",
+           "text": "Recognise and identify three-dimensional shapes in different orientations."
+          },
+          {
+           "code": "M-02-D-03",
+           "text": "Distinguish prisms and pyramids by their attributes."
+          }
+         ]
+        },
+        {
+         "id": "nets-of-3d-shapes",
+         "title": "Nets of 3D Shapes",
+         "outcomes": [
+          {
+           "code": "M-03-D-02",
+           "text": "Recognise and draw nets of prisms and pyramids."
+          },
+          {
+           "code": "M-05-D-02",
+           "text": "Identify cubes, cuboids, cones, cylinders, spheres, hemispheres, and pyramids by characteristics."
+          }
+         ]
+        },
+        {
+         "id": "build-3d-shapes",
+         "title": "Build 3D Shapes",
+         "outcomes": [
+          {
+           "code": "M-02-D-04",
+           "text": "Construct three-dimensional shapes using modelling materials."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "coordinate-geometry",
+       "title": "Coordinate Geometry",
+       "subtopics": [
+        {
+         "id": "distance-and-midpoint",
+         "title": "Distance and Midpoint",
+         "outcomes": [
+          {
+           "code": "M-09-B-01",
+           "text": "Derive the distance formula by locating two points on the coordinate plane."
+          },
+          {
+           "code": "M-09-B-02",
+           "text": "Calculate the midpoint of a line segment."
+          }
+         ]
+        },
+        {
+         "id": "gradients-and-line-equations",
+         "title": "Gradients and Line Equations",
+         "outcomes": [
+          {
+           "code": "M-09-B-03",
+           "text": "Determine a line’s gradient from the coordinates of two points."
+          },
+          {
+           "code": "M-09-B-04",
+           "text": "Find a straight line’s equation in slope-intercept form, y = mx + c."
+          }
+         ]
+        },
+        {
+         "id": "parallel-and-perpendicular-lines",
+         "title": "Parallel and Perpendicular Lines",
+         "outcomes": [
+          {
+           "code": "M-09-B-05",
+           "text": "Determine gradients of parallel and perpendicular lines."
+          }
+         ]
+        },
+        {
+         "id": "coordinate-measurement-problems",
+         "title": "Coordinate Measurement Problems",
+         "outcomes": [
+          {
+           "code": "M-09-B-06",
+           "text": "Use distance and midpoint formulas to solve practical measurement and location problems."
+          }
+         ]
+        },
+        {
+         "id": "practical-coordinate-geometry",
+         "title": "Practical Coordinate Geometry",
+         "outcomes": [
+          {
+           "code": "M-09-B-07",
+           "text": "Apply coordinate geometry to practical aviation, navigation, mapping, and geographic problems."
+          }
+         ]
+        },
+        {
+         "id": "forms-of-line-equations",
+         "title": "Forms of Line Equations",
+         "outcomes": [
+          {
+           "code": "M-09-B-08",
+           "text": "Derive straight-line equations in slope-intercept, point-slope, two-point, intercept, symmetric, and normal forms."
+          }
+         ]
+        },
+        {
+         "id": "linear-equations-as-lines",
+         "title": "Linear Equations as Lines",
+         "outcomes": [
+          {
+           "code": "M-09-B-09",
+           "text": "Show that a two-variable linear equation represents a line and convert its general form to standard forms."
+          }
+         ]
+        },
+        {
+         "id": "angles-between-lines",
+         "title": "Angles Between Lines",
+         "outcomes": [
+          {
+           "code": "M-09-B-10",
+           "text": "Find the angle between two intersecting coplanar straight lines."
+          },
+          {
+           "code": "M-09-B-11",
+           "text": "Find the family of lines passing through the intersection of two given lines."
+          },
+          {
+           "code": "M-09-B-12",
+           "text": "Calculate triangle angles when the slopes of its sides are known."
+          }
+         ]
+        },
+        {
+         "id": "plot-linear-graphs",
+         "title": "Plot Linear Graphs",
+         "outcomes": [
+          {
+           "code": "M-07-B-19",
+           "text": "Plot graphs of linear equations in one and two variables."
+          },
+          {
+           "code": "M-02-D-08",
+           "text": "Identify horizontal and vertical lines."
+          }
+         ]
+        },
+        {
+         "id": "circle-measurements",
+         "title": "Circle Measurements",
+         "outcomes": [
+          {
+           "code": "M-03-D-05",
+           "text": "Identify a circle’s centre, radius, and diameter."
+          },
+          {
+           "code": "M-04-D-02",
+           "text": "Describe a circle’s radius, diameter, and circumference."
+          }
+         ]
+        },
+        {
+         "id": "recognise-basic-angles",
+         "title": "Recognise Basic Angles",
+         "outcomes": [
+          {
+           "code": "M-02-D-09",
+           "text": "Identify quarter turns and recognise them as right angles."
+          },
+          {
+           "code": "M-03-D-06",
+           "text": "Recognise acute, right, and obtuse angles."
+          },
+          {
+           "code": "M-04-D-03",
+           "text": "Recognise angles at points, on straight lines, and in half turns."
+          }
+         ]
+        },
+        {
+         "id": "circle-features",
+         "title": "Circle Features",
+         "outcomes": [
+          {
+           "code": "M-05-D-03",
+           "text": "Identify and describe circle features including centre, radius, diameter, chord, arcs, sectors, segments, and tangents."
+          }
+         ]
+        },
+        {
+         "id": "compare-angle-sizes",
+         "title": "Compare Angle Sizes",
+         "outcomes": [
+          {
+           "code": "M-04-D-04",
+           "text": "Compare and order angles up to 180 degrees by size."
+          },
+          {
+           "code": "M-03-D-07",
+           "text": "Recognise half and three-quarter turns as two and three right angles."
+          }
+         ]
+        },
+        {
+         "id": "complementary-and-supplementary-angles",
+         "title": "Complementary and Supplementary Angles",
+         "outcomes": [
+          {
+           "code": "M-05-D-04",
+           "text": "Describe and calculate complementary and supplementary angles."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "logic",
+       "title": "Logic",
+       "subtopics": [
+        {
+         "id": "statements-and-proofs",
+         "title": "Statements and Proofs",
+         "outcomes": [
+          {
+           "code": "M-09-B-13",
+           "text": "Distinguish a mathematical statement from its proof."
+          },
+          {
+           "code": "M-09-B-14",
+           "text": "Differentiate among axioms, conjectures, and theorems."
+          }
+         ]
+        },
+        {
+         "id": "algebraic-proofs",
+         "title": "Algebraic Proofs",
+         "outcomes": [
+          {
+           "code": "M-09-B-15",
+           "text": "Construct simple deductive algebraic proofs by showing both sides are equal."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "similar-figures",
+       "title": "Similar Figures",
+       "subtopics": [
+        {
+         "id": "similar-figures",
+         "title": "Similar Figures",
+         "outcomes": [
+          {
+           "code": "M-09-B-16",
+           "text": "Identify whether polygons are similar."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "volume-of-similar-figures",
+       "title": "Volume of Similar Figures",
+       "subtopics": [
+        {
+         "id": "area-and-volume-of-similar-figures",
+         "title": "Area and Volume of Similar Figures",
+         "outcomes": [
+          {
+           "code": "M-09-B-17",
+           "text": "Solve problems relating areas of similar figures to volumes of solids."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "geometrical-properties-of-parallelograms",
+       "title": "Geometrical Properties of Parallelograms",
+       "subtopics": [
+        {
+         "id": "geometrical-properties-of-regular-polygons-trian",
+         "title": "Geometrical Properties of regular polygons, Triangles and Parallelograms",
+         "outcomes": [
+          {
+           "code": "M-09-B-18",
+           "text": "Solve practical problems using properties of regular polygons, triangles, and parallelograms."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "loci",
+       "title": "Loci",
+       "subtopics": [
+        {
+         "id": "loci",
+         "title": "Loci",
+         "outcomes": [
+          {
+           "code": "M-09-B-19",
+           "text": "Solve practical two-dimensional loci problems using intersecting loci."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "trigonometry",
+       "title": "Trigonometry",
+       "subtopics": [
+        {
+         "id": "angles-and-right-triangles",
+         "title": "Angles and Right Triangles",
+         "outcomes": [
+          {
+           "code": "M-09-B-20",
+           "text": "Identify angles in standard position expressed in degrees and radians."
+          },
+          {
+           "code": "M-09-B-21",
+           "text": "Use Pythagoras’ theorem and sine, cosine, and tangent ratios to find sides or angles in right triangles."
+          }
+         ]
+        },
+        {
+         "id": "elevation-and-depression",
+         "title": "Elevation and Depression",
+         "outcomes": [
+          {
+           "code": "M-09-B-22",
+           "text": "Solve two-dimensional practical problems involving angles of elevation and depression."
+          }
+         ]
+        },
+        {
+         "id": "prove-trigonometric-identities",
+         "title": "Prove Trigonometric Identities",
+         "outcomes": [
+          {
+           "code": "M-09-B-23",
+           "text": "Prove trigonometric identities and use them to establish relationships among trigonometric ratios."
+          },
+          {
+           "code": "M-09-B-24",
+           "text": "Solve practical problems involving trigonometric identities."
+          }
+         ]
+        },
+        {
+         "id": "use-three-figure-bearings",
+         "title": "Use Three-Figure Bearings",
+         "outcomes": [
+          {
+           "code": "M-09-B-25",
+           "text": "Interpret and use three-figure bearings."
+          },
+          {
+           "code": "M-09-B-26",
+           "text": "Solve problems involving bearings."
+          }
+         ]
+        },
+        {
+         "id": "practical-trigonometry",
+         "title": "Practical Trigonometry",
+         "outcomes": [
+          {
+           "code": "M-09-B-27",
+           "text": "Apply trigonometry to practical problems involving distance, elevation, direction, and periodic patterns."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "practical-geometry-of-circles",
+       "title": "Practical Geometry of Circles",
+       "subtopics": [
+        {
+         "id": "construct-triangles",
+         "title": "Construct Triangles",
+         "outcomes": [
+          {
+           "code": "M-09-B-28",
+           "text": "Construct a triangle from two sides and their included angle."
+          },
+          {
+           "code": "M-09-B-29",
+           "text": "Construct a triangle from one side and its two adjacent angles."
+          },
+          {
+           "code": "M-09-B-30",
+           "text": "Construct a triangle from two sides and the angle opposite one of them."
+          }
+         ]
+        },
+        {
+         "id": "triangle-centres",
+         "title": "Triangle Centres",
+         "outcomes": [
+          {
+           "code": "M-09-B-31",
+           "text": "Construct triangle bisectors, medians, and altitudes, and verify their common intersection."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "triangles",
+       "title": "Triangles",
+       "subtopics": [
+        {
+         "id": "triangles",
+         "title": "Triangles",
+         "outcomes": [
+          {
+           "code": "M-05-D-06",
+           "text": "Identify and classify triangles by sides and angles, and measure or calculate their unknown angles."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "domain-c-information-handling",
+     "title": "Domain C: Information Handling",
+     "topics": [
+      {
+       "id": "frequency-distribution",
+       "title": "Frequency Distribution",
+       "subtopics": [
+        {
+         "id": "read-and-make-charts",
+         "title": "Read and Make Charts",
+         "outcomes": [
+          {
+           "code": "M-01-E-01",
+           "text": "Read and interpret information shown in pictographs, block graphs, and tally charts, including real-world examples."
+          },
+          {
+           "code": "M-02-E-01",
+           "text": "Read pictographs, bar graphs, and tally charts, and represent information using tally charts in real-world contexts."
+          }
+         ]
+        },
+        {
+         "id": "carroll-diagrams",
+         "title": "Carroll Diagrams",
+         "outcomes": [
+          {
+           "code": "M-03-E-01",
+           "text": "Represent, read, and interpret data using Carroll diagrams, including data from real-world situations."
+          }
+         ]
+        },
+        {
+         "id": "bar-and-line-graphs",
+         "title": "Bar and Line Graphs",
+         "outcomes": [
+          {
+           "code": "M-04-E-01",
+           "text": "Draw and interpret horizontal and vertical single and double bar graphs using real-world data."
+          },
+          {
+           "code": "M-05-E-01",
+           "text": "Draw and interpret bar and line graphs, including graphs based on real-world information."
+          }
+         ]
+        },
+        {
+         "id": "describe-likelihood",
+         "title": "Describe Likelihood",
+         "outcomes": [
+          {
+           "code": "M-01-E-02",
+           "text": "Describe how likely everyday events are using terms such as impossible, unlikely, likely, and certain."
+          },
+          {
+           "code": "M-02-E-02",
+           "text": "Describe everyday event likelihood using mathematical terms including impossible, possible, unlikely, likely, and certain."
+          }
+         ]
+        },
+        {
+         "id": "grouped-frequency-displays",
+         "title": "Grouped Frequency Displays",
+         "outcomes": [
+          {
+           "code": "M-09-C-01",
+           "text": "Construct grouped frequency tables, unequal-interval histograms, and frequency polygons."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "measure-of-central-tendency",
+       "title": "Measure of Central Tendency",
+       "subtopics": [
+        {
+         "id": "calculate-and-use-averages",
+         "title": "Calculate and Use Averages",
+         "outcomes": [
+          {
+           "code": "M-05-E-02",
+           "text": "Calculate averages for given quantities, measurements, and numbers."
+          },
+          {
+           "code": "M-05-E-03",
+           "text": "Solve real-world problems involving averages of quantities, measurements, and numbers."
+          }
+         ]
+        },
+        {
+         "id": "grouped-data-averages",
+         "title": "Grouped Data Averages",
+         "outcomes": [
+          {
+           "code": "M-09-C-02",
+           "text": "Calculate grouped-data mean, modal class, and median."
+          }
+         ]
+        },
+        {
+         "id": "solve-average-problems",
+         "title": "Solve Average Problems",
+         "outcomes": [
+          {
+           "code": "M-09-C-03",
+           "text": "Solve real-life problems using mean, weighted mean, median, and mode."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "probability",
+       "title": "Probability",
+       "subtopics": [
+        {
+         "id": "outcomes-and-sample-spaces",
+         "title": "Outcomes and Sample Spaces",
+         "outcomes": [
+          {
+           "code": "M-03-E-02",
+           "text": "Describe simple experiment outcomes and compare events that are equally or unequally likely."
+          },
+          {
+           "code": "M-04-E-02",
+           "text": "Describe experiment outcomes and express the probability of events as fractions in simple games and experiments."
+          },
+          {
+           "code": "M-05-E-04",
+           "text": "Explain experiments, outcomes, sample spaces, equally likely events, and the probability of a single event."
+          }
+         ]
+        },
+        {
+         "id": "events-and-complements",
+         "title": "Events and Complements",
+         "outcomes": [
+          {
+           "code": "M-09-C-04",
+           "text": "Calculate the probabilities of an event and its complement."
+          },
+          {
+           "code": "M-09-C-05",
+           "text": "Solve real-life problems involving probability."
+          }
+         ]
+        },
+        {
+         "id": "relative-and-expected-frequencies",
+         "title": "Relative and Expected Frequencies",
+         "outcomes": [
+          {
+           "code": "M-09-C-06",
+           "text": "Calculate relative frequency as an estimate of probability."
+          },
+          {
+           "code": "M-09-C-07",
+           "text": "Calculate expected frequencies."
+          }
+         ]
+        },
+        {
+         "id": "frequency-problems",
+         "title": "Frequency Problems",
+         "outcomes": [
+          {
+           "code": "M-09-C-08",
+           "text": "Solve real-life problems involving relative and expected frequencies."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "10",
+   "units": [
+    {
+     "id": "domain-a-numbers-and-algebra",
+     "title": "Domain A: Numbers and Algebra",
+     "topics": [
+      {
+       "id": "complex-number",
+       "title": "Complex Number",
+       "subtopics": [
+        {
+         "id": "complex-number-basics",
+         "title": "Complex Number Basics",
+         "outcomes": [
+          {
+           "code": "M-10-A-01",
+           "text": "Identify complex numbers, their conjugates, and their moduli."
+          },
+          {
+           "code": "M-10-A-03",
+           "text": "Show the additive and multiplicative identity properties of complex numbers."
+          },
+          {
+           "code": "M-10-A-04",
+           "text": "Find the additive and multiplicative inverses of a complex number."
+          },
+          {
+           "code": "M-10-A-05",
+           "text": "Demonstrate standard properties of complex numbers."
+          }
+         ]
+        },
+        {
+         "id": "complex-fractions-and-models",
+         "title": "Complex Fractions and Models",
+         "outcomes": [
+          {
+           "code": "M-10-A-06",
+           "text": "Determine the real and imaginary parts of complex fractions."
+          },
+          {
+           "code": "M-10-A-07",
+           "text": "Explain how mathematical models and equations support prediction and scientific hypotheses."
+          }
+         ]
+        },
+        {
+         "id": "complex-simultaneous-equations",
+         "title": "Complex Simultaneous Equations",
+         "outcomes": [
+          {
+           "code": "M-10-A-08",
+           "text": "Solve simultaneous linear equations having complex coefficients."
+          }
+         ]
+        },
+        {
+         "id": "complex-numbers-geometrically",
+         "title": "Complex Numbers Geometrically",
+         "outcomes": [
+          {
+           "code": "M-10-A-09",
+           "text": "Interpret a complex number geometrically."
+          },
+          {
+           "code": "M-10-A-10",
+           "text": "Interpret the modulus of a complex number geometrically."
+          },
+          {
+           "code": "M-10-A-11",
+           "text": "Interpret algebraic operations on complex numbers geometrically."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "quadratic-equations",
+       "title": "Quadratic Equations",
+       "subtopics": [
+        {
+         "id": "solving-quadratic-equations",
+         "title": "Solving Quadratic Equations",
+         "outcomes": [
+          {
+           "code": "M-10-A-12",
+           "text": "Solve quadratic equations by factorization, the quadratic formula, completing the square, and graphing."
+          },
+          {
+           "code": "M-10-A-13",
+           "text": "Graph quadratic functions."
+          },
+          {
+           "code": "M-10-A-14",
+           "text": "Relate the roots of a quadratic equation to its coefficients."
+          },
+          {
+           "code": "M-10-A-15",
+           "text": "Construct a quadratic equation from its roots."
+          }
+         ]
+        },
+        {
+         "id": "discriminant-and-roots",
+         "title": "Discriminant and Roots",
+         "outcomes": [
+          {
+           "code": "M-10-A-16",
+           "text": "Calculate the discriminant of a quadratic equation."
+          },
+          {
+           "code": "M-10-A-17",
+           "text": "Determine the nature of quadratic roots using the discriminant."
+          }
+         ]
+        },
+        {
+         "id": "linear-quadratic-systems",
+         "title": "Linear Quadratic Systems",
+         "outcomes": [
+          {
+           "code": "M-10-A-18",
+           "text": "Solve a linear and quadratic equation simultaneously."
+          },
+          {
+           "code": "M-10-A-19",
+           "text": "Solve word problems involving quadratic equations."
+          }
+         ]
+        },
+        {
+         "id": "quadratic-inequalities",
+         "title": "Quadratic Inequalities",
+         "outcomes": [
+          {
+           "code": "M-10-A-20",
+           "text": "Solve quadratic inequalities in one unknown."
+          },
+          {
+           "code": "M-10-A-21",
+           "text": "Apply quadratic equations and inequalities to practical problems."
+          }
+         ]
+        },
+        {
+         "id": "more-quadratic-equations",
+         "title": "More Quadratic Equations",
+         "outcomes": [
+          {
+           "code": "M-10-A-46",
+           "text": "Solve quadratic equations by factorization, completing the square, and the quadratic formula."
+          },
+          {
+           "code": "M-10-A-47",
+           "text": "Solve problems involving changing the subject of a formula."
+          },
+          {
+           "code": "M-10-A-48",
+           "text": "Solve fractional equations reducible to quadratic equations."
+          },
+          {
+           "code": "M-10-A-49",
+           "text": "Formulate and solve quadratic equations for real-world situations."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "matrices-determinants",
+       "title": "Matrices & Determinants",
+       "subtopics": [
+        {
+         "id": "matrix-basics-and-operations",
+         "title": "Matrix Basics and Operations",
+         "outcomes": [
+          {
+           "code": "M-10-A-22",
+           "text": "Represent information using a matrix of order two."
+          },
+          {
+           "code": "M-10-A-23",
+           "text": "Solve problems involving sums, differences, and products of two matrices."
+          },
+          {
+           "code": "M-10-A-24",
+           "text": "Multiply a matrix by a scalar."
+          }
+         ]
+        },
+        {
+         "id": "determinants-and-inverses",
+         "title": "Determinants and Inverses",
+         "outcomes": [
+          {
+           "code": "M-10-A-25",
+           "text": "Find the determinant and inverse of a two-by-two matrix."
+          },
+          {
+           "code": "M-10-A-26",
+           "text": "Solve two-variable simultaneous equations using matrix inversion and Cramer’s rule."
+          }
+         ]
+        },
+        {
+         "id": "matrices-in-applications",
+         "title": "Matrices in Applications",
+         "outcomes": [
+          {
+           "code": "M-10-A-27",
+           "text": "Explain mathematics’ role in developing scientific theories and technologies."
+          },
+          {
+           "code": "M-10-A-28",
+           "text": "Apply matrices to practical engineering, economic, computer, and physics problems."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "functions-and-graphs",
+       "title": "Functions and Graphs",
+       "subtopics": [
+        {
+         "id": "function-notation-and-types",
+         "title": "Function Notation and Types",
+         "outcomes": [
+          {
+           "code": "M-10-A-29",
+           "text": "Use function notation and calculate function values."
+          },
+          {
+           "code": "M-10-A-30",
+           "text": "Classify functions using Venn diagrams."
+          }
+         ]
+        },
+        {
+         "id": "function-operations-and-inverses",
+         "title": "Function Operations and Inverses",
+         "outcomes": [
+          {
+           "code": "M-10-A-31",
+           "text": "Explain operations on functions and function composition."
+          },
+          {
+           "code": "M-10-A-32",
+           "text": "Find the inverse of a function."
+          },
+          {
+           "code": "M-10-A-33",
+           "text": "Form composite functions using function composition."
+          }
+         ]
+        },
+        {
+         "id": "functions-in-real-life",
+         "title": "Functions in Real Life",
+         "outcomes": [
+          {
+           "code": "M-10-A-34",
+           "text": "Apply functions to real-world finance, transport, and sales problems."
+          }
+         ]
+        },
+        {
+         "id": "basic-function-graphs",
+         "title": "Basic Function Graphs",
+         "outcomes": [
+          {
+           "code": "M-10-A-35",
+           "text": "Plot constant, identity, linear, and absolute-value function graphs."
+          },
+          {
+           "code": "M-10-A-36",
+           "text": "Solve absolute-value equations and inequalities and show solutions on a number line."
+          },
+          {
+           "code": "M-10-A-37",
+           "text": "Apply absolute-value functions to practical magnitude and distance problems."
+          },
+          {
+           "code": "M-10-A-38",
+           "text": "Apply functions to practical finance, transportation, and sales problems."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "algebraic-fractions",
+       "title": "Algebraic Fractions",
+       "subtopics": [
+        {
+         "id": "rational-expressions",
+         "title": "Rational Expressions",
+         "outcomes": [
+          {
+           "code": "M-10-A-39",
+           "text": "Describe rational expressions."
+          },
+          {
+           "code": "M-10-A-40",
+           "text": "Factorize and simplify rational expressions."
+          }
+         ]
+        },
+        {
+         "id": "algebraic-fraction-operations",
+         "title": "Algebraic Fraction Operations",
+         "outcomes": [
+          {
+           "code": "M-10-A-41",
+           "text": "Manipulate algebraic fractions."
+          },
+          {
+           "code": "M-10-A-42",
+           "text": "Perform operations on rational expressions with simple polynomial numerators and denominators."
+          }
+         ]
+        },
+        {
+         "id": "rational-equations-in-practice",
+         "title": "Rational Equations in Practice",
+         "outcomes": [
+          {
+           "code": "M-10-A-43",
+           "text": "Apply rational equations with simple polynomial numerators and denominators to practical problems."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "linear-equations-and-inequalities-in-two-variabl",
+       "title": "Linear Equations and Inequalities in Two Variables",
+       "subtopics": [
+        {
+         "id": "linear-inequalities-in-one-variable",
+         "title": "Linear Inequalities in one variable",
+         "outcomes": [
+          {
+           "code": "M-10-A-44",
+           "text": "Solve two linear inequalities in two unknowns simultaneously."
+          }
+         ]
+        },
+        {
+         "id": "linear-inequalities-in-two-variables",
+         "title": "Linear Inequalities in two variables",
+         "outcomes": [
+          {
+           "code": "M-10-A-45",
+           "text": "Identify and interpret regions bounded by two linear inequalities in two unknowns."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "plotting-and-interpreting-graphs",
+       "title": "Plotting and Interpreting Graphs",
+       "subtopics": [
+        {
+         "id": "power-function-graphs",
+         "title": "Power Function Graphs",
+         "outcomes": [
+          {
+           "code": "M-10-A-50",
+           "text": "Draw graphs of functions y=ax^n, including sums of such functions."
+          }
+         ]
+        },
+        {
+         "id": "linear-quadratic-graphs",
+         "title": "Linear Quadratic Graphs",
+         "outcomes": [
+          {
+           "code": "M-10-A-51",
+           "text": "Solve and interpret a system containing one linear and one quadratic equation graphically."
+          }
+         ]
+        },
+        {
+         "id": "exponential-growth-and-decay",
+         "title": "Exponential Growth and Decay",
+         "outcomes": [
+          {
+           "code": "M-10-A-52",
+           "text": "Discover exponential growth or decay of a practical phenomenon through its graph."
+          }
+         ]
+        },
+        {
+         "id": "gradients-through-tangents",
+         "title": "Gradients Through Tangents",
+         "outcomes": [
+          {
+           "code": "M-10-A-53",
+           "text": "Determine curve gradients through tangents."
+          }
+         ]
+        },
+        {
+         "id": "sketching-common-curves",
+         "title": "Sketching Common Curves",
+         "outcomes": [
+          {
+           "code": "M-10-A-54",
+           "text": "Identify, sketch, and interpret linear-function graphs."
+          },
+          {
+           "code": "M-10-A-55",
+           "text": "Identify, sketch, and interpret quadratic, cubic, reciprocal, and exponential graphs."
+          },
+          {
+           "code": "M-10-A-56",
+           "text": "Sketch y=x^n for positive, negative, and rational integer exponents when x is positive."
+          }
+         ]
+        },
+        {
+         "id": "graphs-in-financial-problems",
+         "title": "Graphs in Financial Problems",
+         "outcomes": [
+          {
+           "code": "M-10-A-57",
+           "text": "Apply graphing concepts to practical tax, income, salary, cost, and profit problems."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "domain-b-geometry",
+     "title": "Domain B: Geometry",
+     "topics": [
+      {
+       "id": "analytical-geometry",
+       "title": "Analytical Geometry",
+       "subtopics": [
+        {
+         "id": "vectors-in-plane",
+         "title": "Vectors in Plane",
+         "outcomes": [
+          {
+           "code": "M-10-B-01",
+           "text": "Introduce and use a rectangular coordinate system in the plane."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "vectors-in-plane",
+       "title": "Vectors in Plane",
+       "subtopics": [
+        {
+         "id": "representing-vectors",
+         "title": "Representing Vectors",
+         "outcomes": [
+          {
+           "code": "M-10-B-02",
+           "text": "Represent vectors as directed line segments."
+          },
+          {
+           "code": "M-10-B-03",
+           "text": "Express a vector using two nonzero, nonparallel coplanar vectors."
+          },
+          {
+           "code": "M-10-B-04",
+           "text": "Express a vector in terms of its position vector."
+          },
+          {
+           "code": "M-10-B-05",
+           "text": "Represent translation by a vector."
+          }
+         ]
+        },
+        {
+         "id": "vector-operations",
+         "title": "Vector Operations",
+         "outcomes": [
+          {
+           "code": "M-10-B-06",
+           "text": "Find the magnitude of a vector."
+          },
+          {
+           "code": "M-10-B-07",
+           "text": "Add and subtract vectors."
+          },
+          {
+           "code": "M-10-B-08",
+           "text": "Multiply a vector by a scalar."
+          }
+         ]
+        },
+        {
+         "id": "using-vectors",
+         "title": "Using Vectors",
+         "outcomes": [
+          {
+           "code": "M-10-B-09",
+           "text": "Solve geometrical problems using vectors."
+          },
+          {
+           "code": "M-10-B-10",
+           "text": "Apply vectors to problems involving parallel or perpendicular lines and practical motion situations."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "trigonometry",
+       "title": "Trigonometry",
+       "subtopics": [
+        {
+         "id": "angles-beyond-90",
+         "title": "Angles Beyond 90°",
+         "outcomes": [
+          {
+           "code": "M-10-B-11",
+           "text": "Extend sine and cosine functions to angles between 90° and 180°."
+          }
+         ]
+        },
+        {
+         "id": "triangle-trigonometry",
+         "title": "Triangle Trigonometry",
+         "outcomes": [
+          {
+           "code": "M-10-B-12",
+           "text": "Solve problems using the sine rule, cosine rule, and area formula for arbitrary triangles."
+          }
+         ]
+        },
+        {
+         "id": "three-dimensional-trigonometry",
+         "title": "Three-Dimensional Trigonometry",
+         "outcomes": [
+          {
+           "code": "M-10-B-13",
+           "text": "Solve simple three-dimensional trigonometric problems."
+          }
+         ]
+        },
+        {
+         "id": "practical-trigonometry",
+         "title": "Practical Trigonometry",
+         "outcomes": [
+          {
+           "code": "M-10-B-14",
+           "text": "Apply trigonometry to practical situations such as games, engineering, navigation, and sound."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "circle",
+       "title": "Circle",
+       "subtopics": [
+        {
+         "id": "chords-and-arcs",
+         "title": "Chords and Arcs",
+         "outcomes": [
+          {
+           "code": "M-10-B-15",
+           "text": "Use the fact that exactly one circle passes through three noncollinear points."
+          },
+          {
+           "code": "M-10-B-16",
+           "text": "Use the theorem that a radius bisecting a non-diameter chord is perpendicular to that chord."
+          },
+          {
+           "code": "M-10-B-17",
+           "text": "Use the theorem that a perpendicular from the centre to a chord bisects the chord."
+          },
+          {
+           "code": "M-10-B-18",
+           "text": "Use the theorem that congruent chords are equidistant from the centre."
+          },
+          {
+           "code": "M-10-B-19",
+           "text": "Use the theorem that chords equidistant from the centre are congruent."
+          },
+          {
+           "code": "M-10-B-20",
+           "text": "Use the theorem that congruent arcs have equal corresponding chords."
+          },
+          {
+           "code": "M-10-B-21",
+           "text": "Use the theorem that equal chords have equal corresponding arcs."
+          },
+          {
+           "code": "M-10-B-22",
+           "text": "Use the theorem that equal chords subtend equal angles at the centre."
+          },
+          {
+           "code": "M-10-B-23",
+           "text": "Use the converse theorem that equal central angles subtended by chords imply equal chords."
+          }
+         ]
+        },
+        {
+         "id": "tangents-and-radii",
+         "title": "Tangents and Radii",
+         "outcomes": [
+          {
+           "code": "M-10-B-25",
+           "text": "Use the perpendicular relationship between a circle’s tangent and radius to solve problems."
+          },
+          {
+           "code": "M-10-B-26",
+           "text": "Use the perpendicularity of a tangent and radius at the contact point."
+          },
+          {
+           "code": "M-10-B-27",
+           "text": "Use the equality of tangents drawn from an external point to a circle."
+          },
+          {
+           "code": "M-10-B-28",
+           "text": "Relate the distance between centres of touching circles to their radii."
+          }
+         ]
+        },
+        {
+         "id": "arcs-and-circle-angles",
+         "title": "Arcs and Circle Angles",
+         "outcomes": [
+          {
+           "code": "M-10-B-29",
+           "text": "Relate the central angles subtending minor and major arcs."
+          },
+          {
+           "code": "M-10-B-30",
+           "text": "Use the theorem that angles in the same segment of a circle are equal."
+          },
+          {
+           "code": "M-10-B-32",
+           "text": "Use the theorem that opposite angles of a cyclic quadrilateral are supplementary."
+          }
+         ]
+        },
+        {
+         "id": "circle-angle-applications",
+         "title": "Circle Angle Applications",
+         "outcomes": [
+          {
+           "code": "M-10-B-33",
+           "text": "Apply circle tangent and angle concepts to practical situations."
+          },
+          {
+           "code": "M-10-B-31",
+           "text": "Apply angle theorems for semicircles and segments smaller or larger than a semicircle."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "ellipse",
+       "title": "Ellipse",
+       "subtopics": [
+        {
+         "id": "ellipse",
+         "title": "Ellipse",
+         "outcomes": [
+          {
+           "code": "M-10-B-24",
+           "text": "Apply concepts and properties of circles and their chords and arcs to solve geometrical problems."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "practical-geometry-of-circles",
+       "title": "Practical Geometry of Circles",
+       "subtopics": [
+        {
+         "id": "constructing-circles",
+         "title": "Constructing Circles",
+         "outcomes": [
+          {
+           "code": "M-10-B-34",
+           "text": "Locate the centre of a given circle."
+          },
+          {
+           "code": "M-10-B-35",
+           "text": "Draw a circle through three given noncollinear points."
+          },
+          {
+           "code": "M-10-B-36",
+           "text": "Complete a circle from part of its circumference, with or without finding its centre."
+          }
+         ]
+        },
+        {
+         "id": "constructing-tangents",
+         "title": "Constructing Tangents",
+         "outcomes": [
+          {
+           "code": "M-10-B-37",
+           "text": "Construct a tangent to an arc through specified points in different positions."
+          },
+          {
+           "code": "M-10-B-38",
+           "text": "Draw tangents to a circle from a point on or outside the circle."
+          },
+          {
+           "code": "M-10-B-39",
+           "text": "Construct two tangents to a circle meeting at a specified angle."
+          }
+         ]
+        },
+        {
+         "id": "practical-circle-constructions",
+         "title": "Practical Circle Constructions",
+         "outcomes": [
+          {
+           "code": "M-10-B-40",
+           "text": "Apply practical circle-construction methods to real-world situations."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "domain-c-information-handling",
+     "title": "Domain C: Information Handling",
+     "topics": [
+      {
+       "id": "cumulative-frequency",
+       "title": "Cumulative Frequency",
+       "subtopics": [
+        {
+         "id": "cumulative-frequency-graphs",
+         "title": "Cumulative Frequency Graphs",
+         "outcomes": [
+          {
+           "code": "M-10-C-01",
+           "text": "Construct cumulative-frequency tables, polygons, and ogives."
+          }
+         ]
+        },
+        {
+         "id": "reading-cumulative-curves",
+         "title": "Reading Cumulative Curves",
+         "outcomes": [
+          {
+           "code": "M-10-C-02",
+           "text": "Interpret median, quartiles, deciles, percentiles, and interquartile range from cumulative curves."
+          }
+         ]
+        },
+        {
+         "id": "box-and-whisker-plots",
+         "title": "Box-and-Whisker Plots",
+         "outcomes": [
+          {
+           "code": "M-10-C-03",
+           "text": "Interpret and analyse box-and-whisker plots."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "correlation",
+       "title": "Correlation",
+       "subtopics": [
+        {
+         "id": "correlation",
+         "title": "Correlation",
+         "outcomes": [
+          {
+           "code": "M-10-C-04",
+           "text": "Construct and interpret scatter diagrams and draw lines of best fit."
+          },
+          {
+           "code": "M-10-C-05",
+           "text": "Measure correlation using a scatter diagram."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "measure-of-dispersion",
+       "title": "Measure of Dispersion",
+       "subtopics": [
+        {
+         "id": "grouped-data-dispersion",
+         "title": "Grouped-Data Dispersion",
+         "outcomes": [
+          {
+           "code": "M-10-C-06",
+           "text": "Calculate range, standard deviation, and variance for grouped data."
+          }
+         ]
+        },
+        {
+         "id": "comparing-data-sets",
+         "title": "Comparing Data Sets",
+         "outcomes": [
+          {
+           "code": "M-10-C-07",
+           "text": "Compare two data sets using their means and standard deviations."
+          }
+         ]
+        },
+        {
+         "id": "variance-and-standard-deviation-problems",
+         "title": "Variance and Standard Deviation Problems",
+         "outcomes": [
+          {
+           "code": "M-10-C-08",
+           "text": "Solve real-life problems involving grouped-data variance and standard deviation."
+          },
+          {
+           "code": "M-10-C-09",
+           "text": "Apply dispersion measures to real-life variability and consistency problems."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "probability",
+       "title": "Probability",
+       "subtopics": [
+        {
+         "id": "combined-event-diagrams",
+         "title": "Combined-Event Diagrams",
+         "outcomes": [
+          {
+           "code": "M-10-C-10",
+           "text": "Calculate combined-event probabilities using sample spaces, possibility diagrams, trees, or Venn diagrams."
+          }
+         ]
+        },
+        {
+         "id": "addition-law",
+         "title": "Addition Law",
+         "outcomes": [
+          {
+           "code": "M-10-C-11",
+           "text": "Use the addition law of probability for mutually exclusive events."
+          }
+         ]
+        },
+        {
+         "id": "multiplication-law",
+         "title": "Multiplication Law",
+         "outcomes": [
+          {
+           "code": "M-10-C-12",
+           "text": "Use the multiplication law of probability for independent and dependent events."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "11",
+   "units": [
+    {
+     "id": "domain-a-numbers-and-algebra",
+     "title": "Domain A: Numbers and Algebra",
+     "topics": [
+      {
+       "id": "complex-number",
+       "title": "Complex Number",
+       "subtopics": [
+        {
+         "id": "complex-number-basics",
+         "title": "Complex Number Basics",
+         "outcomes": [
+          {
+           "code": "M-11-A-01",
+           "text": "Recall the standard representation of a complex number using real and imaginary parts."
+          },
+          {
+           "code": "M-11-A-02",
+           "text": "Identify the real and imaginary parts of a complex number."
+          },
+          {
+           "code": "M-11-A-03",
+           "text": "State when two complex numbers are equal."
+          },
+          {
+           "code": "M-11-A-04",
+           "text": "Perform basic operations on complex numbers."
+          }
+         ]
+        },
+        {
+         "id": "conjugates-and-modulus",
+         "title": "Conjugates and Modulus",
+         "outcomes": [
+          {
+           "code": "M-11-A-05",
+           "text": "Define the conjugate of a complex number."
+          },
+          {
+           "code": "M-11-A-06",
+           "text": "Define the modulus of a complex number."
+          }
+         ]
+        },
+        {
+         "id": "complex-equations",
+         "title": "Complex Equations",
+         "outcomes": [
+          {
+           "code": "M-11-A-07",
+           "text": "Solve simultaneous linear equations with complex coefficients."
+          },
+          {
+           "code": "M-11-A-08",
+           "text": "Express a polynomial in complex form as a product of linear factors."
+          },
+          {
+           "code": "M-11-A-09",
+           "text": "Solve complex quadratic equations with real coefficients."
+          }
+         ]
+        },
+        {
+         "id": "polar-complex-numbers",
+         "title": "Polar Complex Numbers",
+         "outcomes": [
+          {
+           "code": "M-11-A-10",
+           "text": "Explain the polar coordinate system."
+          },
+          {
+           "code": "M-11-A-11",
+           "text": "Describe the polar form of a complex number."
+          },
+          {
+           "code": "M-11-A-12",
+           "text": "Perform complex-number operations in polar form."
+          },
+          {
+           "code": "M-11-A-13",
+           "text": "Solve simple complex equations and inequalities in polar form."
+          }
+         ]
+        },
+        {
+         "id": "complex-number-applications",
+         "title": "Complex Number Applications",
+         "outcomes": [
+          {
+           "code": "M-11-A-14",
+           "text": "Apply complex numbers to practical problems such as cryptography and wave phenomena."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "matrices-determinants",
+       "title": "Matrices & Determinants",
+       "subtopics": [
+        {
+         "id": "matrix-operations",
+         "title": "Matrix Operations",
+         "outcomes": [
+          {
+           "code": "M-11-A-15",
+           "text": "Add, subtract, and multiply matrices containing real or complex entries."
+          }
+         ]
+        },
+        {
+         "id": "determinants-and-inverses",
+         "title": "Determinants and Inverses",
+         "outcomes": [
+          {
+           "code": "M-11-A-16",
+           "text": "Evaluate a three-by-three determinant using cofactors and determinant properties."
+          },
+          {
+           "code": "M-11-A-17",
+           "text": "Use row operations to find a matrix inverse and rank."
+          }
+         ]
+        },
+        {
+         "id": "linear-system-consistency",
+         "title": "Linear System Consistency",
+         "outcomes": [
+          {
+           "code": "M-11-A-18",
+           "text": "Distinguish consistent and inconsistent systems of linear equations."
+          }
+         ]
+        },
+        {
+         "id": "solving-linear-systems",
+         "title": "Solving Linear Systems",
+         "outcomes": [
+          {
+           "code": "M-11-A-19",
+           "text": "Solve three-by-three nonhomogeneous linear systems using matrix inversion and Cramer’s rule."
+          },
+          {
+           "code": "M-11-A-20",
+           "text": "Solve three-variable homogeneous linear systems by Gaussian elimination."
+          }
+         ]
+        },
+        {
+         "id": "matrix-applications",
+         "title": "Matrix Applications",
+         "outcomes": [
+          {
+           "code": "M-11-A-21",
+           "text": "Apply matrices to real-world problems such as graphics, encryption, and data analysis."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "sequences-and-series",
+       "title": "Sequences and Series",
+       "subtopics": [
+        {
+         "id": "arithmetic-and-geometric-sequences",
+         "title": "Arithmetic and Geometric Sequences",
+         "outcomes": [
+          {
+           "code": "M-11-A-22",
+           "text": "Solve problems involving arithmetic sequences and series through n terms."
+          },
+          {
+           "code": "M-11-A-23",
+           "text": "Solve problems involving geometric sequences and series through n terms."
+          },
+          {
+           "code": "M-11-A-24",
+           "text": "Identify arithmetic or geometric sequences through n terms."
+          }
+         ]
+        },
+        {
+         "id": "harmonic-and-special-series",
+         "title": "Harmonic and Special Series",
+         "outcomes": [
+          {
+           "code": "M-11-A-25",
+           "text": "Solve problems involving harmonic sequences and series through n terms."
+          },
+          {
+           "code": "M-11-A-26",
+           "text": "Find sums of the first n natural numbers, squares, and cubes."
+          }
+         ]
+        },
+        {
+         "id": "sequence-notation-and-sums",
+         "title": "Sequence Notation and Sums",
+         "outcomes": [
+          {
+           "code": "M-11-A-27",
+           "text": "Recognize arithmetic and geometric sequences, find general terms and sums, and use sigma notation."
+          }
+         ]
+        },
+        {
+         "id": "vehicle-leasing-basics",
+         "title": "Vehicle Leasing Basics",
+         "outcomes": [
+          {
+           "code": "M-11-A-28",
+           "text": "Understand vehicle leasing, instalments, insurance, and related charges."
+          }
+         ]
+        },
+        {
+         "id": "vehicle-leasing-problems",
+         "title": "Vehicle Leasing Problems",
+         "outcomes": [
+          {
+           "code": "M-11-A-29",
+           "text": "Solve vehicle-leasing problems under different conditions."
+          }
+         ]
+        },
+        {
+         "id": "series-applications",
+         "title": "Series Applications",
+         "outcomes": [
+          {
+           "code": "M-11-A-30",
+           "text": "Apply sequences and series to interest, investment, depreciation, motion, and modelling problems."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "mathematical-induction",
+       "title": "Mathematical Induction",
+       "subtopics": [
+        {
+         "id": "induction-structure-and-proof",
+         "title": "Induction Structure and Proof",
+         "outcomes": [
+          {
+           "code": "M-11-A-31",
+           "text": "Explain mathematical arguments by identifying the base case, induction hypothesis, and precise conclusion."
+          },
+          {
+           "code": "M-11-A-32",
+           "text": "Use mathematical induction to prove statements, identities, divisibility results, and summation formulas."
+          },
+          {
+           "code": "M-11-A-33",
+           "text": "Evaluate and justify conclusions using clear, appropriate mathematical communication."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "binomial-theorem",
+       "title": "Binomial Theorem",
+       "subtopics": [
+        {
+         "id": "binomial-expansion-basics",
+         "title": "Binomial Expansion Basics",
+         "outcomes": [
+          {
+           "code": "M-11-A-34",
+           "text": "State and apply the binomial theorem to expand expressions of the form (a+b)^n."
+          },
+          {
+           "code": "M-11-A-35",
+           "text": "Describe the binomial theorem as an expansion of natural-number binomial powers."
+          },
+          {
+           "code": "M-11-A-36",
+           "text": "Calculate binomial coefficients using Pascal’s triangle."
+          },
+          {
+           "code": "M-11-A-37",
+           "text": "Expand expressions with the binomial theorem and simplify them using suitable techniques."
+          }
+         ]
+        },
+        {
+         "id": "binomial-approximations-and-remainders",
+         "title": "Binomial Approximations and Remainders",
+         "outcomes": [
+          {
+           "code": "M-11-A-38",
+           "text": "Approximate a value using the binomial theorem."
+          },
+          {
+           "code": "M-11-A-39",
+           "text": "Use the binomial theorem to find remainders when large powers are divided by a number."
+          },
+          {
+           "code": "M-11-A-40",
+           "text": "Use the binomial theorem to find last digits, test divisibility, and compare large numbers."
+          }
+         ]
+        },
+        {
+         "id": "binomial-applications",
+         "title": "Binomial Applications",
+         "outcomes": [
+          {
+           "code": "M-11-A-41",
+           "text": "Apply induction and the binomial theorem to practical problems."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "division-of-polynomial",
+       "title": "Division of polynomial",
+       "subtopics": [
+        {
+         "id": "polynomial-division",
+         "title": "Polynomial Division",
+         "outcomes": [
+          {
+           "code": "M-11-A-42",
+           "text": "Divide polynomials of degree up to four by linear or quadratic polynomials, finding quotient and remainder."
+          }
+         ]
+        },
+        {
+         "id": "remainder-and-factor-theorems",
+         "title": "Remainder and Factor Theorems",
+         "outcomes": [
+          {
+           "code": "M-11-A-43",
+           "text": "Demonstrate and apply the remainder theorem."
+          },
+          {
+           "code": "M-11-A-44",
+           "text": "Use the factor theorem to factorize a cubic polynomial."
+          }
+         ]
+        },
+        {
+         "id": "theorem-applications",
+         "title": "Theorem Applications",
+         "outcomes": [
+          {
+           "code": "M-11-A-45",
+           "text": "Apply remainder and factor theorems to practical problems."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "domain-b-geometry",
+     "title": "Domain B: Geometry",
+     "topics": [
+      {
+       "id": "vectors-in-space",
+       "title": "Vectors in Space",
+       "subtopics": [
+        {
+         "id": "coordinates-and-unit-vectors",
+         "title": "Coordinates and Unit Vectors",
+         "outcomes": [
+          {
+           "code": "M-11-B-01",
+           "text": "Recognize the rectangular coordinate system in three-dimensional space."
+          },
+          {
+           "code": "M-11-B-02",
+           "text": "Recognize unit vectors and the components of a vector."
+          }
+         ]
+        },
+        {
+         "id": "vector-magnitude-and-operations",
+         "title": "Vector Magnitude and Operations",
+         "outcomes": [
+          {
+           "code": "M-11-B-03",
+           "text": "Find the magnitude of a vector."
+          },
+          {
+           "code": "M-11-B-04",
+           "text": "Perform fundamental vector operations in three-dimensional space."
+          }
+         ]
+        },
+        {
+         "id": "vector-addition-laws",
+         "title": "Vector Addition Laws",
+         "outcomes": [
+          {
+           "code": "M-11-B-05",
+           "text": "Demonstrate and prove commutative, associative, identity, and inverse laws for vector addition."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "dot-or-scalar-product",
+       "title": "Dot or Scalar Product",
+       "subtopics": [
+        {
+         "id": "dot-product-meaning",
+         "title": "Dot Product Meaning",
+         "outcomes": [
+          {
+           "code": "M-11-B-06",
+           "text": "Explain the dot product of two vectors and interpret it geometrically."
+          },
+          {
+           "code": "M-11-B-07",
+           "text": "Express the dot product using vector components."
+          }
+         ]
+        },
+        {
+         "id": "perpendicular-vectors",
+         "title": "Perpendicular Vectors",
+         "outcomes": [
+          {
+           "code": "M-11-B-08",
+           "text": "Find the condition for two vectors to be perpendicular."
+          }
+         ]
+        },
+        {
+         "id": "angles-and-projections",
+         "title": "Angles and Projections",
+         "outcomes": [
+          {
+           "code": "M-11-B-09",
+           "text": "Use the dot product to find the angle between two vectors."
+          },
+          {
+           "code": "M-11-B-10",
+           "text": "Find the projection of one vector along another."
+          }
+         ]
+        },
+        {
+         "id": "work-and-applications",
+         "title": "Work and Applications",
+         "outcomes": [
+          {
+           "code": "M-11-B-11",
+           "text": "Calculate work done by a constant force moving an object along a vector."
+          },
+          {
+           "code": "M-11-B-12",
+           "text": "Solve everyday problems involving vectors."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "vector-product",
+       "title": "Vector Product",
+       "subtopics": [
+        {
+         "id": "cross-product-meaning",
+         "title": "Cross Product Meaning",
+         "outcomes": [
+          {
+           "code": "M-11-B-13",
+           "text": "Explain the cross product of two vectors and interpret it geometrically."
+          }
+         ]
+        },
+        {
+         "id": "cross-product-angles",
+         "title": "Cross Product Angles",
+         "outcomes": [
+          {
+           "code": "M-11-B-14",
+           "text": "Use the cross product to find the angle between two vectors."
+          }
+         ]
+        },
+        {
+         "id": "vector-product-applications",
+         "title": "Vector Product Applications",
+         "outcomes": [
+          {
+           "code": "M-11-B-15",
+           "text": "Solve practical situations using cross or dot products."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "scalar-triple-product",
+       "title": "Scalar Triple Product",
+       "subtopics": [
+        {
+         "id": "scalar-triple-product",
+         "title": "Scalar Triple Product",
+         "outcomes": [
+          {
+           "code": "M-11-B-16",
+           "text": "Describe the scalar triple product of vectors."
+          },
+          {
+           "code": "M-11-B-17",
+           "text": "Express the scalar triple product in determinant component form."
+          }
+         ]
+        },
+        {
+         "id": "interchanging-products",
+         "title": "Interchanging Products",
+         "outcomes": [
+          {
+           "code": "M-11-B-18",
+           "text": "Prove that dot and cross products are interchangeable within a scalar triple product."
+          }
+         ]
+        },
+        {
+         "id": "volumes-from-vectors",
+         "title": "Volumes from Vectors",
+         "outcomes": [
+          {
+           "code": "M-11-B-19",
+           "text": "Find the volumes of a parallelepiped and tetrahedron determined by three vectors."
+          }
+         ]
+        },
+        {
+         "id": "coplanar-vectors",
+         "title": "Coplanar Vectors",
+         "outcomes": [
+          {
+           "code": "M-11-B-20",
+           "text": "Define coplanar vectors and determine the condition for three vectors to be coplanar."
+          }
+         ]
+        },
+        {
+         "id": "triple-product-applications",
+         "title": "Triple Product Applications",
+         "outcomes": [
+          {
+           "code": "M-11-B-21",
+           "text": "Apply vectors in space to practical navigation, motion, engineering, and computer graphics problems."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "trigonometry",
+       "title": "Trigonometry",
+       "subtopics": [
+        {
+         "id": "graphs-of-trigonometric-functions",
+         "title": "Graphs of Trigonometric Functions",
+         "outcomes": [
+          {
+           "code": "M-11-B-28",
+           "text": "Graph and analyze the sine, cosine, and tangent functions."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "domain-c-information-handling",
+     "title": "Domain C: Information Handling",
+     "topics": [
+      {
+       "id": "probability",
+       "title": "Probability",
+       "subtopics": [
+        {
+         "id": "probability-of-combined-events",
+         "title": "Probability of Combined Events",
+         "outcomes": [
+          {
+           "code": "M-11-C-01",
+           "text": "Explain and solve problems using the fundamental counting principle."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "combination",
+       "title": "Combination",
+       "subtopics": [
+        {
+         "id": "permutations",
+         "title": "Permutations",
+         "outcomes": [
+          {
+           "code": "M-11-C-02",
+           "text": "Explain and solve problems involving permutations."
+          }
+         ]
+        },
+        {
+         "id": "combinations",
+         "title": "Combinations",
+         "outcomes": [
+          {
+           "code": "M-11-C-03",
+           "text": "Explain and solve problems involving combinations."
+          }
+         ]
+        },
+        {
+         "id": "real-world-counting",
+         "title": "Real-World Counting",
+         "outcomes": [
+          {
+           "code": "M-11-C-04",
+           "text": "Apply permutations and combinations to real-world problems."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "12",
+   "units": [
+    {
+     "id": "domain-a-numbers-and-algebra",
+     "title": "Domain A: Numbers and Algebra",
+     "topics": [
+      {
+       "id": "functions-and-graphs",
+       "title": "Functions and Graphs",
+       "subtopics": [
+        {
+         "id": "function-types-and-features",
+         "title": "Function Types and Features",
+         "outcomes": [
+          {
+           "code": "M-12-A-01",
+           "text": "Define functions as correspondence rules and identify domain, codomain, range, one-to-one, and onto functions."
+          },
+          {
+           "code": "M-12-A-02",
+           "text": "Recognize linear, quadratic, and square-root functions."
+          }
+         ]
+        },
+        {
+         "id": "inverse-functions",
+         "title": "Inverse Functions",
+         "outcomes": [
+          {
+           "code": "M-12-A-03",
+           "text": "Define inverse functions and determine their domains and ranges."
+          }
+         ]
+        },
+        {
+         "id": "linear-and-power-graphs",
+         "title": "Linear and Power Graphs",
+         "outcomes": [
+          {
+           "code": "M-12-A-04",
+           "text": "Sketch graphs of linear functions."
+          },
+          {
+           "code": "M-12-A-05",
+           "text": "Sketch graphs of nonlinear power functions with integer, rational, and negative exponents."
+          }
+         ]
+        },
+        {
+         "id": "quadratic-graphs",
+         "title": "Quadratic Graphs",
+         "outcomes": [
+          {
+           "code": "M-12-A-06",
+           "text": "Plot quadratic functions in standard form."
+          },
+          {
+           "code": "M-12-A-07",
+           "text": "Draw function graphs using their factors."
+          },
+          {
+           "code": "M-12-A-08",
+           "text": "Predict a quadratic function from graph intercepts and another point."
+          }
+         ]
+        },
+        {
+         "id": "intersections-and-applications",
+         "title": "Intersections and Applications",
+         "outcomes": [
+          {
+           "code": "M-12-A-09",
+           "text": "Find graphically where linear and quadratic functions intersect coordinate axes or one another."
+          },
+          {
+           "code": "M-12-A-10",
+           "text": "Solve suitable everyday problems graphically."
+          }
+         ]
+        },
+        {
+         "id": "transcendental-functions",
+         "title": "Transcendental Functions",
+         "outcomes": [
+          {
+           "code": "M-12-A-11",
+           "text": "Classify functions as algebraic or transcendental."
+          },
+          {
+           "code": "M-12-A-12",
+           "text": "Describe trigonometric, inverse trigonometric, logarithmic, and exponential functions."
+          }
+         ]
+        },
+        {
+         "id": "logarithms-and-their-laws",
+         "title": "Logarithms and Their Laws",
+         "outcomes": [
+          {
+           "code": "M-12-A-13",
+           "text": "Demonstrate understanding of logarithms."
+          },
+          {
+           "code": "M-12-A-14",
+           "text": "Derive and use product, quotient, and power laws of logarithms."
+          }
+         ]
+        },
+        {
+         "id": "exponential-and-logarithmic-equations",
+         "title": "Exponential and Logarithmic Equations",
+         "outcomes": [
+          {
+           "code": "M-12-A-15",
+           "text": "Graph and analyse exponential and logarithmic functions and apply exponentials to compound interest."
+          },
+          {
+           "code": "M-12-A-16",
+           "text": "Solve exponential and logarithmic equations."
+          }
+         ]
+        },
+        {
+         "id": "transcendental-domains-and-ranges",
+         "title": "Transcendental Domains and Ranges",
+         "outcomes": [
+          {
+           "code": "M-12-A-17",
+           "text": "Identify domains and ranges of fundamental transcendental functions."
+          }
+         ]
+        },
+        {
+         "id": "modulus-graphs",
+         "title": "Modulus Graphs",
+         "outcomes": [
+          {
+           "code": "M-12-A-18",
+           "text": "Draw the graph of the modulus function."
+          }
+         ]
+        },
+        {
+         "id": "functions-and-inverse-graphs",
+         "title": "Functions and Inverse Graphs",
+         "outcomes": [
+          {
+           "code": "M-12-A-19",
+           "text": "Show graphically the relationship between a one-to-one function and its inverse."
+          }
+         ]
+        },
+        {
+         "id": "transforming-graphs",
+         "title": "Transforming Graphs",
+         "outcomes": [
+          {
+           "code": "M-12-A-20",
+           "text": "Demonstrate horizontal shifts, vertical shifts, and scaling of graphs."
+          }
+         ]
+        },
+        {
+         "id": "limits-and-limit-laws",
+         "title": "Limits and Limit Laws",
+         "outcomes": [
+          {
+           "code": "M-12-A-21",
+           "text": "Find limits of sequences and functions."
+          },
+          {
+           "code": "M-12-A-22",
+           "text": "Apply limit laws for sums, differences, products, and quotients of functions."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "discontinuous-functions",
+       "title": "Discontinuous Functions",
+       "subtopics": [
+        {
+         "id": "continuity-and-discontinuity",
+         "title": "Continuity and Discontinuity",
+         "outcomes": [
+          {
+           "code": "M-12-A-23",
+           "text": "Test continuity and discontinuity at a point and over an interval."
+          }
+         ]
+        },
+        {
+         "id": "continuity-in-applications",
+         "title": "Continuity in Applications",
+         "outcomes": [
+          {
+           "code": "M-12-A-24",
+           "text": "Apply transcendental functions, limits, and continuity to real-world problems."
+          }
+         ]
+        },
+        {
+         "id": "inflation-over-time",
+         "title": "Inflation Over Time",
+         "outcomes": [
+          {
+           "code": "M-12-A-25",
+           "text": "Calculate inflation over time."
+          }
+         ]
+        },
+        {
+         "id": "depreciation-methods",
+         "title": "Depreciation Methods",
+         "outcomes": [
+          {
+           "code": "M-12-A-26",
+           "text": "Calculate depreciation using straight-line, sum-of-years-digits, and production-unit methods."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "differentiation-rules",
+       "title": "Differentiation Rules",
+       "subtopics": [
+        {
+         "id": "tangents-and-curve-gradients",
+         "title": "Tangents and Curve Gradients",
+         "outcomes": [
+          {
+           "code": "M-12-A-27",
+           "text": "Explain the meaning of a tangent to a curve at a point."
+          },
+          {
+           "code": "M-12-A-28",
+           "text": "Calculate the gradient of a curve at a specified point."
+          }
+         ]
+        },
+        {
+         "id": "derivative-at-a-point",
+         "title": "Derivative at a Point",
+         "outcomes": [
+          {
+           "code": "M-12-A-30",
+           "text": "Calculate a given function’s derivative at a specified point."
+          },
+          {
+           "code": "M-12-A-31",
+           "text": "Estimate derivatives as rates of change for velocity, temperature, and profit."
+          }
+         ]
+        },
+        {
+         "id": "derivative-functions",
+         "title": "Derivative Functions",
+         "outcomes": [
+          {
+           "code": "M-12-A-32",
+           "text": "Recognize the derivative function."
+          },
+          {
+           "code": "M-12-A-33",
+           "text": "Differentiate a square-root function."
+          },
+          {
+           "code": "M-12-A-34",
+           "text": "Differentiate a quadratic function."
+          }
+         ]
+        },
+        {
+         "id": "derivatives-and-continuity",
+         "title": "Derivatives and Continuity",
+         "outcomes": [
+          {
+           "code": "M-12-A-35",
+           "text": "State the relationship between derivatives and continuity."
+          }
+         ]
+        },
+        {
+         "id": "basic-differentiation-rules",
+         "title": "Basic Differentiation Rules",
+         "outcomes": [
+          {
+           "code": "M-12-A-36",
+           "text": "State, prove, and apply constant, coefficient, power, sum, difference, product, and quotient differentiation rules."
+          },
+          {
+           "code": "M-12-A-37",
+           "text": "Extend the power rule to functions with negative exponents."
+          }
+         ]
+        },
+        {
+         "id": "differentiating-combined-functions",
+         "title": "Differentiating Combined Functions",
+         "outcomes": [
+          {
+           "code": "M-12-A-38",
+           "text": "Combine differentiation rules to differentiate polynomial or rational functions."
+          }
+         ]
+        },
+        {
+         "id": "motion-and-rates-of-change",
+         "title": "Motion and Rates of Change",
+         "outcomes": [
+          {
+           "code": "M-12-A-39",
+           "text": "Apply rates of change to displacement, velocity, and acceleration along a straight line."
+          }
+         ]
+        },
+        {
+         "id": "difference-quotient",
+         "title": "Difference Quotient",
+         "outcomes": [
+          {
+           "code": "M-12-A-29",
+           "text": "Identify the derivative as the limit of a difference quotient."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "further-on-differentiation",
+       "title": "Further on Differentiation",
+       "subtopics": [
+        {
+         "id": "trigonometric-derivatives",
+         "title": "Trigonometric Derivatives",
+         "outcomes": [
+          {
+           "code": "M-12-A-40",
+           "text": "Differentiate trigonometric and inverse trigonometric functions."
+          }
+         ]
+        },
+        {
+         "id": "exponential-and-logarithmic-derivatives",
+         "title": "Exponential and Logarithmic Derivatives",
+         "outcomes": [
+          {
+           "code": "M-12-A-41",
+           "text": "Differentiate exponential functions."
+          },
+          {
+           "code": "M-12-A-42",
+           "text": "Differentiate logarithmic functions."
+          }
+         ]
+        },
+        {
+         "id": "increasing-and-decreasing-functions",
+         "title": "Increasing and Decreasing Functions",
+         "outcomes": [
+          {
+           "code": "M-12-A-43",
+           "text": "Use differentiation to determine where functions increase or decrease."
+          }
+         ]
+        },
+        {
+         "id": "tangent-and-normal-equations",
+         "title": "Tangent and Normal Equations",
+         "outcomes": [
+          {
+           "code": "M-12-A-44",
+           "text": "Find tangent and normal equations to a curve at a point using differentiation."
+          }
+         ]
+        },
+        {
+         "id": "changing-quantities",
+         "title": "Changing Quantities",
+         "outcomes": [
+          {
+           "code": "M-12-A-45",
+           "text": "Apply differentiation to practical problems involving changing quantities."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "higher-order-derivatives",
+       "title": "Higher-Order Derivatives",
+       "subtopics": [
+        {
+         "id": "higher-order-derivatives",
+         "title": "Higher-Order Derivatives",
+         "outcomes": [
+          {
+           "code": "M-12-A-46",
+           "text": "Find higher-order derivatives of algebraic, implicit, parametric, trigonometric, exponential, and logarithmic functions."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "applications-of-derivatives",
+       "title": "Applications of Derivatives",
+       "subtopics": [
+        {
+         "id": "local-linear-approximation",
+         "title": "Local Linear Approximation",
+         "outcomes": [
+          {
+           "code": "M-12-A-47",
+           "text": "Explain how functions can be approximated locally by linear functions."
+          }
+         ]
+        },
+        {
+         "id": "differentials-and-approximations",
+         "title": "Differentials and Approximations",
+         "outcomes": [
+          {
+           "code": "M-12-A-48",
+           "text": "Explain differentials and graph their use in approximating changes in quantities."
+          }
+         ]
+        },
+        {
+         "id": "relative-and-percentage-error",
+         "title": "Relative and Percentage Error",
+         "outcomes": [
+          {
+           "code": "M-12-A-49",
+           "text": "Calculate relative and percentage errors using differential approximations."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "extreme-values",
+       "title": "Extreme Values",
+       "subtopics": [
+        {
+         "id": "global-and-local-extrema",
+         "title": "Global and Local Extrema",
+         "outcomes": [
+          {
+           "code": "M-12-A-50",
+           "text": "Distinguish global and local extrema."
+          }
+         ]
+        },
+        {
+         "id": "second-derivative-test",
+         "title": "Second-Derivative Test",
+         "outcomes": [
+          {
+           "code": "M-12-A-51",
+           "text": "Find extreme values using the second-derivative test."
+          }
+         ]
+        },
+        {
+         "id": "critical-points-on-intervals",
+         "title": "Critical Points on Intervals",
+         "outcomes": [
+          {
+           "code": "M-12-A-52",
+           "text": "Explain how to find a function’s critical points on a closed interval."
+          }
+         ]
+        },
+        {
+         "id": "absolute-extrema",
+         "title": "Absolute Extrema",
+         "outcomes": [
+          {
+           "code": "M-12-A-53",
+           "text": "Use critical points to locate absolute extrema on a closed interval."
+          }
+         ]
+        },
+        {
+         "id": "maximum-and-minimum-values",
+         "title": "Maximum and Minimum Values",
+         "outcomes": [
+          {
+           "code": "M-12-A-54",
+           "text": "Apply derivatives to find maximum and minimum function values under stated conditions."
+          }
+         ]
+        },
+        {
+         "id": "higher-derivatives-in-applications",
+         "title": "Higher Derivatives in Applications",
+         "outcomes": [
+          {
+           "code": "M-12-A-55",
+           "text": "Apply higher-order derivatives to practical problems."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "integration-i",
+       "title": "Integration I",
+       "subtopics": [
+        {
+         "id": "antiderivatives-and-notation",
+         "title": "Antiderivatives and Notation",
+         "outcomes": [
+          {
+           "code": "M-12-A-56",
+           "text": "Find the general antiderivative of a given function."
+          },
+          {
+           "code": "M-12-A-57",
+           "text": "Recognize and use antiderivative terminology and notation."
+          }
+         ]
+        },
+        {
+         "id": "power-rule-and-indefinite-integrals",
+         "title": "Power Rule and Indefinite Integrals",
+         "outcomes": [
+          {
+           "code": "M-12-A-58",
+           "text": "State the power rule for integration."
+          },
+          {
+           "code": "M-12-A-59",
+           "text": "State and apply properties of indefinite integrals."
+          }
+         ]
+        },
+        {
+         "id": "definite-integral-notation",
+         "title": "Definite Integral Notation",
+         "outcomes": [
+          {
+           "code": "M-12-A-60",
+           "text": "State the definition of a definite integral."
+          },
+          {
+           "code": "M-12-A-61",
+           "text": "Explain integrand, integration limits, and variable of integration."
+          }
+         ]
+        },
+        {
+         "id": "properties-of-definite-integrals",
+         "title": "Properties of Definite Integrals",
+         "outcomes": [
+          {
+           "code": "M-12-A-62",
+           "text": "State and apply properties of definite integrals."
+          }
+         ]
+        },
+        {
+         "id": "fundamental-theorem-of-calculus",
+         "title": "Fundamental Theorem of Calculus",
+         "outcomes": [
+          {
+           "code": "M-12-A-63",
+           "text": "Use the Fundamental Theorem of Calculus to evaluate definite integrals."
+          }
+         ]
+        },
+        {
+         "id": "definite-integrals-and-area",
+         "title": "Definite Integrals and Area",
+         "outcomes": [
+          {
+           "code": "M-12-A-64",
+           "text": "Describe the relationship between definite integrals and net area."
+          }
+         ]
+        },
+        {
+         "id": "areas-between-curves",
+         "title": "Areas Between Curves",
+         "outcomes": [
+          {
+           "code": "M-12-A-65",
+           "text": "Find areas bounded by curves, lines parallel to axes, or pairs of curves."
+          }
+         ]
+        },
+        {
+         "id": "volumes-of-revolution",
+         "title": "Volumes of Revolution",
+         "outcomes": [
+          {
+           "code": "M-12-A-66",
+           "text": "Find volumes of revolution about a coordinate axis."
+          }
+         ]
+        },
+        {
+         "id": "trapezium-rule",
+         "title": "Trapezium Rule",
+         "outcomes": [
+          {
+           "code": "M-12-A-67",
+           "text": "Use the trapezium rule to estimate a definite integral."
+          }
+         ]
+        },
+        {
+         "id": "integration-applications",
+         "title": "Integration Applications",
+         "outcomes": [
+          {
+           "code": "M-12-A-68",
+           "text": "Apply integration to practical problems."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "mechanics-kinematics-of",
+       "title": "Mechanics Kinematics of",
+       "subtopics": [
+        {
+         "id": "motion-quantities",
+         "title": "Motion Quantities",
+         "outcomes": [
+          {
+           "code": "M-12-A-69",
+           "text": "Distinguish scalar distance and speed from vector displacement, velocity, and acceleration."
+          }
+         ]
+        },
+        {
+         "id": "motion-graphs",
+         "title": "Motion Graphs",
+         "outcomes": [
+          {
+           "code": "M-12-A-70",
+           "text": "Sketch and interpret displacement-time and velocity-time graphs."
+          }
+         ]
+        },
+        {
+         "id": "calculus-and-motion",
+         "title": "Calculus and Motion",
+         "outcomes": [
+          {
+           "code": "M-12-A-71",
+           "text": "Use differentiation and integration with time to solve basic displacement, velocity, and acceleration problems."
+          }
+         ]
+        },
+        {
+         "id": "constant-acceleration",
+         "title": "Constant Acceleration",
+         "outcomes": [
+          {
+           "code": "M-12-A-72",
+           "text": "Use appropriate constant-acceleration formulas for straight-line motion."
+          }
+         ]
+        },
+        {
+         "id": "practical-motion-problems",
+         "title": "Practical Motion Problems",
+         "outcomes": [
+          {
+           "code": "M-12-A-73",
+           "text": "Apply mechanics concepts to practical motion problems."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "integration-ii-techniques",
+       "title": "Integration II Techniques",
+       "subtopics": [
+        {
+         "id": "trigonometric-integrals",
+         "title": "Trigonometric Integrals",
+         "outcomes": [
+          {
+           "code": "M-12-A-74",
+           "text": "Use trigonometric relationships to evaluate integrals."
+          }
+         ]
+        },
+        {
+         "id": "exponential-and-logarithmic-integrals",
+         "title": "Exponential and Logarithmic Integrals",
+         "outcomes": [
+          {
+           "code": "M-12-A-75",
+           "text": "Integrate functions involving exponential and logarithmic functions."
+          }
+         ]
+        },
+        {
+         "id": "integration-by-parts",
+         "title": "Integration by Parts",
+         "outcomes": [
+          {
+           "code": "M-12-A-76",
+           "text": "Identify when integration by parts is appropriate."
+          },
+          {
+           "code": "M-12-A-77",
+           "text": "Apply integration by parts to definite integrals."
+          }
+         ]
+        },
+        {
+         "id": "trigonometric-substitution",
+         "title": "Trigonometric Substitution",
+         "outcomes": [
+          {
+           "code": "M-12-A-78",
+           "text": "Solve integrals using trigonometric substitution."
+          }
+         ]
+        },
+        {
+         "id": "partial-fractions",
+         "title": "Partial Fractions",
+         "outcomes": [
+          {
+           "code": "M-12-A-79",
+           "text": "Integrate rational functions using partial fractions."
+          }
+         ]
+        },
+        {
+         "id": "applied-integration-techniques",
+         "title": "Applied Integration Techniques",
+         "outcomes": [
+          {
+           "code": "M-12-A-80",
+           "text": "Apply integration to practical area, average-value, motion, population, inertia, and sensor-network problems."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "differential-equations",
+       "title": "Differential Equations",
+       "subtopics": [
+        {
+         "id": "constructing-differential-equations",
+         "title": "Constructing Differential Equations",
+         "outcomes": [
+          {
+           "code": "M-12-A-81",
+           "text": "Identify and construct first-order differential equations from practical situations."
+          }
+         ]
+        },
+        {
+         "id": "separable-differential-equations",
+         "title": "Separable Differential Equations",
+         "outcomes": [
+          {
+           "code": "M-12-A-82",
+           "text": "Solve separable first-order, first-degree differential equations, including homogeneous equations."
+          }
+         ]
+        },
+        {
+         "id": "applied-differential-equations",
+         "title": "Applied Differential Equations",
+         "outcomes": [
+          {
+           "code": "M-12-A-83",
+           "text": "Apply first-order differential equations to practical growth, cooling, electrical, economic, and radioactive-decay problems."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "numerical-solution-of-nonlinear-equations",
+       "title": "Numerical Solution of Nonlinear Equations",
+       "subtopics": [
+        {
+         "id": "graphical-root-searches",
+         "title": "Graphical Root Searches",
+         "outcomes": [
+          {
+           "code": "M-12-A-84",
+           "text": "Analyze graphical and sign-change methods for searching for equation roots."
+          },
+          {
+           "code": "M-12-A-85",
+           "text": "Explain basic principles for solving a nonlinear equation in one variable."
+          }
+         ]
+        },
+        {
+         "id": "numerical-root-methods",
+         "title": "Numerical Root Methods",
+         "outcomes": [
+          {
+           "code": "M-12-A-86",
+           "text": "Find real roots using bisection, regula falsi, and Newton-Raphson methods."
+          }
+         ]
+        },
+        {
+         "id": "applied-nonlinear-equations",
+         "title": "Applied Nonlinear Equations",
+         "outcomes": [
+          {
+           "code": "M-12-A-87",
+           "text": "Apply nonlinear equations to practical chemical, medical, electronic, and cryptographic problems."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "domain-b-geometry",
+     "title": "Domain B: Geometry",
+     "topics": [
+      {
+       "id": "analytical-geometry",
+       "title": "Analytical Geometry",
+       "subtopics": [
+        {
+         "id": "concurrency-of-straight-lines",
+         "title": "Concurrency of Straight lines",
+         "outcomes": [
+          {
+           "code": "M-12-B-01",
+           "text": "Find the condition under which three straight lines are concurrent."
+          }
+         ]
+        },
+        {
+         "id": "analytical-geometry",
+         "title": "Analytical Geometry",
+         "outcomes": [
+          {
+           "code": "M-12-B-07",
+           "text": "Apply analytical geometry to practical aviation, astronomy, space science, and engineering problems."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "vector-valued-function",
+       "title": "Vector Valued Function",
+       "subtopics": [
+        {
+         "id": "domain-and-range",
+         "title": "Domain and Range",
+         "outcomes": [
+          {
+           "code": "M-12-B-10",
+           "text": "Identify the domain and range of vector-valued functions."
+          }
+         ]
+        },
+        {
+         "id": "derivatives-of-vector-functions",
+         "title": "Derivatives of Vector Functions",
+         "outcomes": [
+          {
+           "code": "M-12-B-12",
+           "text": "Explain and derive the derivative of a vector function of one scalar variable."
+          },
+          {
+           "code": "M-12-B-13",
+           "text": "Use vector differentiation to calculate velocity and acceleration from a position vector."
+          }
+         ]
+        },
+        {
+         "id": "engineering-applications",
+         "title": "Engineering Applications",
+         "outcomes": [
+          {
+           "code": "M-12-B-14",
+           "text": "Apply vector-valued functions to practical engineering and transportation problems."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "inverse-trigonometric-functions",
+       "title": "Inverse Trigonometric Functions",
+       "subtopics": [
+        {
+         "id": "principal-inverse-functions",
+         "title": "Principal Inverse Functions",
+         "outcomes": [
+          {
+           "code": "M-12-B-15",
+           "text": "Find domains and ranges of principal inverse trigonometric functions."
+          }
+         ]
+        },
+        {
+         "id": "inverse-trigonometric-identities",
+         "title": "Inverse Trigonometric Identities",
+         "outcomes": [
+          {
+           "code": "M-12-B-17",
+           "text": "State, prove, and apply addition and subtraction formulas for inverse trigonometric functions."
+          }
+         ]
+        },
+        {
+         "id": "trigonometric-equations",
+         "title": "Trigonometric Equations",
+         "outcomes": [
+          {
+           "code": "M-12-B-18",
+           "text": "Solve trigonometric equations involving sine, cosine, tangent, and their reciprocals."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "graphs-of-trigonometric-functions",
+       "title": "Graphs of Trigonometric Functions",
+       "subtopics": [
+        {
+         "id": "graphs-of-trigonometric-functions",
+         "title": "Graphs of Trigonometric Functions",
+         "outcomes": [
+          {
+           "code": "M-12-B-16",
+           "text": "Graph inverse trigonometric functions including cosine, sine, tangent, secant, cosecant, and cotangent."
+          }
+         ]
+        },
+        {
+         "id": "graphical-equation-solving",
+         "title": "Graphical Equation Solving",
+         "outcomes": [
+          {
+           "code": "M-12-B-19",
+           "text": "Solve graphically trigonometric equations involving sine, cosine, and tangent."
+          }
+         ]
+        },
+        {
+         "id": "practical-trigonometry",
+         "title": "Practical Trigonometry",
+         "outcomes": [
+          {
+           "code": "M-12-B-21",
+           "text": "Apply inverse trigonometric functions to practical problems involving heights, elevations, depressions, and bridge design."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "tangent-and-normal",
+       "title": "Tangent and Normal",
+       "subtopics": [
+        {
+         "id": "equations-of-tangent-and-normal",
+         "title": "Equations of Tangent and Normal",
+         "outcomes": [
+          {
+           "code": "M-12-B-31",
+           "text": "Find the condition for a line to be tangent to a parabola and write its tangent equation in slope form."
+          },
+          {
+           "code": "M-12-B-32",
+           "text": "Find the equations of a tangent and normal to a parabola at a given point."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "parabola",
+       "title": "Parabola",
+       "subtopics": [
+        {
+         "id": "equations-of-tangent-and-normal",
+         "title": "Equations of Tangent and Normal",
+         "outcomes": [
+          {
+           "code": "M-12-B-30",
+           "text": "Find a parabola’s equation from specified elements such as focus, vertex, or directrix."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "ellipse",
+       "title": "Ellipse",
+       "subtopics": [
+        {
+         "id": "ellipse-equation-and-elements",
+         "title": "Ellipse Equation and Elements",
+         "outcomes": [
+          {
+           "code": "M-12-B-33",
+           "text": "Derive and use the standard ellipse equation and identify its elements."
+          },
+          {
+           "code": "M-12-B-34",
+           "text": "Convert an ellipse equation to standard form, identify its elements, and sketch its graph."
+          }
+         ]
+        },
+        {
+         "id": "ellipse-intersections-and-tangency",
+         "title": "Ellipse Intersections and Tangency",
+         "outcomes": [
+          {
+           "code": "M-12-B-35",
+           "text": "Find line–ellipse intersection points and determine the condition for tangency."
+          }
+         ]
+        },
+        {
+         "id": "tangent-in-slope-form",
+         "title": "Tangent in Slope Form",
+         "outcomes": [
+          {
+           "code": "M-12-B-36",
+           "text": "Find the equation of an ellipse tangent in slope form."
+          }
+         ]
+        },
+        {
+         "id": "ellipse-tangents-and-normals",
+         "title": "Ellipse Tangents and Normals",
+         "outcomes": [
+          {
+           "code": "M-12-B-37",
+           "text": "Find tangent and normal equations to an ellipse at a specified point."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "equation-of-hyperbola",
+       "title": "Equation of Hyperbola",
+       "subtopics": [
+        {
+         "id": "hyperbola-equation-and-elements",
+         "title": "Hyperbola Equation and Elements",
+         "outcomes": [
+          {
+           "code": "M-12-B-38",
+           "text": "Derive and apply the standard hyperbola equation and identify its elements."
+          },
+          {
+           "code": "M-12-B-39",
+           "text": "Find a hyperbola equation from specified axes, centre, focus, eccentricity, or directrix."
+          }
+         ]
+        },
+        {
+         "id": "hyperbola-intersections-and-tangency",
+         "title": "Hyperbola Intersections and Tangency",
+         "outcomes": [
+          {
+           "code": "M-12-B-40",
+           "text": "Find line–hyperbola intersection points and determine the condition for tangency."
+          }
+         ]
+        },
+        {
+         "id": "hyperbola-tangent-in-slope-form",
+         "title": "Hyperbola Tangent in Slope Form",
+         "outcomes": [
+          {
+           "code": "M-12-B-41",
+           "text": "Find the equation of a hyperbola tangent in slope form."
+          }
+         ]
+        },
+        {
+         "id": "hyperbola-tangents-and-normals",
+         "title": "Hyperbola Tangents and Normals",
+         "outcomes": [
+          {
+           "code": "M-12-B-42",
+           "text": "Find tangent and normal equations to a hyperbola at a specified point."
+          }
+         ]
+        },
+        {
+         "id": "real-world-hyperbolas",
+         "title": "Real-World Hyperbolas",
+         "outcomes": [
+          {
+           "code": "M-12-B-43",
+           "text": "Apply conic-section concepts to real-world contexts."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "build": {
+  "builtAt": "2026-10-14T05:26:48.941Z",
+  "model": "gpt-5.6-luna",
+  "usd": 0.1014,
+  "expectedCodes": 622,
+  "coverage": 0.9646302250803859,
+  "missingCodes": [
+   "M-01-A-01",
+   "M-02-A-01",
+   "M-03-A-01",
+   "M-04-A-01",
+   "M-05-A-01",
+   "M-01-A-02",
+   "M-02-A-02",
+   "M-03-A-02",
+   "M-04-A-02",
+   "M-05-A-02",
+   "M-08-B-141",
+   "M-01-D-03",
+   "M-02-D-05",
+   "M-03-D-03",
+   "M-02-D-06",
+   "M-02-D-07",
+   "M-03-D-04",
+   "M-04-D-01",
+   "M-04-D-05",
+   "M-03-D-08",
+   "M-04-D-06",
+   "M-05-D-05"
+  ],
+  "counts": {
+   "grades": 11,
+   "units": 19,
+   "topics": 109,
+   "subtopics": 363,
+   "outcomes": 617
+  },
+  "warnings": [
+   "grade 8 has no content",
+   "unit \"Measurement\" (grade 4) has a single outcome"
+  ]
+ }
+}

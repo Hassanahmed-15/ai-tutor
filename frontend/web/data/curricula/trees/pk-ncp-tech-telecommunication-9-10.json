@@ -1,0 +1,542 @@
+{
+ "id": "pk-ncp-tech-telecommunication-9-10",
+ "region": "PK",
+ "framework": "National Curriculum of Pakistan 2022-23",
+ "board": null,
+ "qualification": "Technical stream",
+ "subject": "Telecommunication",
+ "syllabusCode": null,
+ "gradeSystem": "grade",
+ "source": {
+  "urls": [
+   "https://ncc.gov.pk/SiteImage/Misc/files/58-Telecommunications%20and%20Technology.pdf"
+  ],
+  "publisher": "National Curriculum Council, Ministry of Federal Education and Professional Training",
+  "licence": "Government publication; structure + our own wording only",
+  "firstExam": null
+ },
+ "grades": [
+  {
+   "grade": "9",
+   "units": [
+    {
+     "id": "domain-a-telecommunication-engineering-fundament",
+     "title": "Domain A: Telecommunication Engineering Fundamentals",
+     "topics": [
+      {
+       "id": "components-of-a-telecommunication-system",
+       "title": "Components of a telecommunication system",
+       "subtopics": [
+        {
+         "id": "system-components",
+         "title": "System components",
+         "outcomes": [
+          {
+           "code": "Tel-9-A-01",
+           "text": "Name the basic parts of a telecom system: signals, transmitter, receiver, medium."
+          },
+          {
+           "code": "Tel-9-A-02",
+           "text": "Describe what each component does."
+          },
+          {
+           "code": "Tel-9-A-03",
+           "text": "Define the key terms of telecom systems."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "functions-of-components",
+       "title": "Functions of components",
+       "subtopics": [
+        {
+         "id": "roles-and-block-diagrams",
+         "title": "Roles and block diagrams",
+         "outcomes": [
+          {
+           "code": "Tel-9-A-04",
+           "text": "Group telecom components by the role they play."
+          },
+          {
+           "code": "Tel-9-A-05",
+           "text": "Draw a block diagram linking the components."
+          },
+          {
+           "code": "Tel-9-A-06",
+           "text": "Compare what different components do."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "domain-b-analog-electronics",
+     "title": "Domain B: Analog Electronics",
+     "topics": [
+      {
+       "id": "analog-components-and-circuits",
+       "title": "Analog components and circuits",
+       "subtopics": [
+        {
+         "id": "resistors-capacitors-inductors",
+         "title": "Resistors, capacitors, inductors",
+         "outcomes": [
+          {
+           "code": "Tel-9-B-01",
+           "text": "Recognize resistors, capacitors and inductors."
+          },
+          {
+           "code": "Tel-9-B-02",
+           "text": "List the characteristics of common analog components."
+          }
+         ]
+        },
+        {
+         "id": "measuring-with-a-multimeter",
+         "title": "Measuring with a multimeter",
+         "outcomes": [
+          {
+           "code": "Tel-9-B-03",
+           "text": "Measure resistance, capacitance and inductance with a multimeter."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "domain-c-digital-electronics",
+     "title": "Domain C: Digital Electronics",
+     "topics": [
+      {
+       "id": "logic-gates-and-truth-tables",
+       "title": "Logic gates and truth tables",
+       "subtopics": [
+        {
+         "id": "gates-and-truth-tables",
+         "title": "Gates and truth tables",
+         "outcomes": [
+          {
+           "code": "Tel-9-C-01",
+           "text": "Identify symbols and truth tables of AND, OR and NOT gates."
+          },
+          {
+           "code": "Tel-9-C-02",
+           "text": "Build truth tables for logic expressions."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "domain-d-signals-and-noise",
+     "title": "Domain D: Signals and Noise",
+     "topics": [
+      {
+       "id": "sinusoidal-signals",
+       "title": "Sinusoidal signals",
+       "subtopics": [
+        {
+         "id": "properties-of-sinusoids",
+         "title": "Properties of sinusoids",
+         "outcomes": [
+          {
+           "code": "Tel-09-D-01",
+           "text": "State amplitude, frequency and phase of a sine signal."
+          },
+          {
+           "code": "Tel-09-D-02",
+           "text": "Relate wavelength, frequency and period."
+          }
+         ]
+        },
+        {
+         "id": "working-with-sinusoids",
+         "title": "Working with sinusoids",
+         "outcomes": [
+          {
+           "code": "Tel-09-D-03",
+           "text": "Apply time shift and amplitude scaling to sine signals."
+          },
+          {
+           "code": "Tel-09-D-04",
+           "text": "Sketch sine signals in the time domain."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "noise",
+       "title": "Noise",
+       "subtopics": [
+        {
+         "id": "noise-and-its-effect",
+         "title": "Noise and its effect",
+         "outcomes": [
+          {
+           "code": "Tel-09-D-05",
+           "text": "Explain noise and where it comes from."
+          },
+          {
+           "code": "Tel-09-D-06",
+           "text": "Show noise added to a sine signal and sketch its impact."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "domain-e-fundamentals-of-communication-systems",
+     "title": "Domain E: Fundamentals of Communication Systems",
+     "topics": [
+      {
+       "id": "communication-system-block-diagrams",
+       "title": "Communication system block diagrams",
+       "subtopics": [
+        {
+         "id": "block-diagram-and-parts",
+         "title": "Block diagram and parts",
+         "outcomes": [
+          {
+           "code": "Tel-09-E-01",
+           "text": "Draw a basic communication system with transmitter, medium and receiver."
+          },
+          {
+           "code": "Tel-09-E-02",
+           "text": "Describe the purpose of each block."
+          }
+         ]
+        },
+        {
+         "id": "transducers-media-and-receivers",
+         "title": "Transducers, media and receivers",
+         "outcomes": [
+          {
+           "code": "Tel-09-E-03",
+           "text": "List transducers, transmitters, media and receivers for wired and wireless systems."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "domain-f-wireless-communication",
+     "title": "Domain F: Wireless Communication",
+     "topics": [
+      {
+       "id": "wireless-communication",
+       "title": "Wireless communication",
+       "subtopics": [
+        {
+         "id": "wireless-basics",
+         "title": "Wireless basics",
+         "outcomes": [
+          {
+           "code": "Tel-09-F-01",
+           "text": "Identify what sets wireless systems apart from wired ones."
+          },
+          {
+           "code": "Tel-09-F-02",
+           "text": "List wireless technologies: AM/FM radio, cellular, WiFi, Bluetooth."
+          },
+          {
+           "code": "Tel-09-F-03",
+           "text": "Recognize that wireless systems use modulation to send information."
+          },
+          {
+           "code": "Tel-09-F-04",
+           "text": "Identify the electromagnetic spectrum parts used for wireless."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "10",
+   "units": [
+    {
+     "id": "domain-b-analog-electronics",
+     "title": "Domain B: Analog Electronics",
+     "topics": [
+      {
+       "id": "analog-components-and-circuits",
+       "title": "Analog components and circuits",
+       "subtopics": [
+        {
+         "id": "circuit-diagrams-and-laws",
+         "title": "Circuit diagrams and laws",
+         "outcomes": [
+          {
+           "code": "Tel-10-B-01",
+           "text": "Draw circuit diagrams using component symbols."
+          },
+          {
+           "code": "Tel-10-B-02",
+           "text": "Find current, voltage and power in resistive circuits with Ohm's and Kirchhoff's laws."
+          }
+         ]
+        },
+        {
+         "id": "series-and-parallel-circuits",
+         "title": "Series and parallel circuits",
+         "outcomes": [
+          {
+           "code": "Tel-10-B-03",
+           "text": "Compare series and parallel combinations of components."
+          }
+         ]
+        },
+        {
+         "id": "rc-and-rl-circuits",
+         "title": "RC and RL circuits",
+         "outcomes": [
+          {
+           "code": "Tel-10-B-04",
+           "text": "Analyze RC and RL circuits to find their output behaviour (optional)."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "domain-c-digital-electronics",
+     "title": "Domain C: Digital Electronics",
+     "topics": [
+      {
+       "id": "combinational-logic-design",
+       "title": "Combinational logic design",
+       "subtopics": [
+        {
+         "id": "designing-gate-circuits",
+         "title": "Designing gate circuits",
+         "outcomes": [
+          {
+           "code": "Tel-10-C-01",
+           "text": "Design simple combinational circuits from AND, OR and NOT gates."
+          },
+          {
+           "code": "Tel-10-C-02",
+           "text": "Turn logic expressions into gate circuits."
+          }
+         ]
+        },
+        {
+         "id": "testing-and-simplifying",
+         "title": "Testing and simplifying",
+         "outcomes": [
+          {
+           "code": "Tel-10-C-03",
+           "text": "Analyze and debug circuits to check outputs."
+          },
+          {
+           "code": "Tel-10-C-04",
+           "text": "Simplify logic expressions with Boolean algebra laws."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "domain-f-wireless-communication",
+     "title": "Domain F: Wireless Communication",
+     "topics": [
+      {
+       "id": "wireless-communication",
+       "title": "Wireless communication",
+       "subtopics": [
+        {
+         "id": "wireless-standards",
+         "title": "Wireless standards",
+         "outcomes": [
+          {
+           "code": "Tel-10-F-01",
+           "text": "Compare 2G, 3G, 4G, 5G and WiFi by frequency band, data rate and modulation."
+          },
+          {
+           "code": "Tel-10-F-02",
+           "text": "Classify wireless technologies by coverage area and data rate."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "domain-g-optical-communication",
+     "title": "Domain G: Optical Communication",
+     "topics": [
+      {
+       "id": "fiber-optic-communication",
+       "title": "Fiber optic communication",
+       "subtopics": [
+        {
+         "id": "fiber-optic-system-parts",
+         "title": "Fiber optic system parts",
+         "outcomes": [
+          {
+           "code": "Tel-10-G-01",
+           "text": "Identify transmitter, optical fiber and receiver in a fiber system."
+          },
+          {
+           "code": "Tel-10-G-02",
+           "text": "Recognize the types of optical fiber."
+          },
+          {
+           "code": "Tel-10-G-03",
+           "text": "List advantages and disadvantages of fiber over copper cable."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "light-in-optical-fiber",
+       "title": "Light in optical fiber",
+       "subtopics": [
+        {
+         "id": "total-internal-reflection-and-modes",
+         "title": "Total internal reflection and modes",
+         "outcomes": [
+          {
+           "code": "Tel-10-G-04",
+           "text": "Explain total internal reflection in a fiber."
+          },
+          {
+           "code": "Tel-10-G-05",
+           "text": "Discuss propagation modes in single-mode and multi-mode fiber."
+          }
+         ]
+        },
+        {
+         "id": "numerical-aperture-and-loss",
+         "title": "Numerical aperture and loss",
+         "outcomes": [
+          {
+           "code": "Tel-10-G-06",
+           "text": "Calculate numerical aperture and acceptance angle."
+          },
+          {
+           "code": "Tel-10-G-07",
+           "text": "Discuss loss from absorption and scattering in fiber."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "domain-h-telecommunication-applications-for-soci",
+     "title": "Domain H: Telecommunication Applications for Social Good",
+     "topics": [
+      {
+       "id": "telecom-applications",
+       "title": "Telecom applications",
+       "subtopics": [
+        {
+         "id": "common-applications",
+         "title": "Common applications",
+         "outcomes": [
+          {
+           "code": "Tel-10-H-01",
+           "text": "List telecom uses: telephony, radio, television, internet."
+          },
+          {
+           "code": "Tel-10-H-02",
+           "text": "Recognize telecom use in education, business and entertainment."
+          },
+          {
+           "code": "Tel-10-H-03",
+           "text": "Identify telecom's role in weather forecasting and disaster management."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "emerging-applications",
+       "title": "Emerging applications",
+       "subtopics": [
+        {
+         "id": "emerging-telecom-uses",
+         "title": "Emerging telecom uses",
+         "outcomes": [
+          {
+           "code": "Tel-10-H-04",
+           "text": "Discuss emerging uses like IoT, smart cities and self-driving vehicles."
+          },
+          {
+           "code": "Tel-10-H-05",
+           "text": "Explain telecom in e-governance, telemedicine and agriculture."
+          },
+          {
+           "code": "Tel-10-H-06",
+           "text": "Analyze how 5G boosts augmented reality and robotics."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "societal-impact",
+       "title": "Societal impact",
+       "subtopics": [
+        {
+         "id": "impact-and-innovation",
+         "title": "Impact and innovation",
+         "outcomes": [
+          {
+           "code": "Tel-10-H-07",
+           "text": "Evaluate the social impacts of telecom technologies."
+          },
+          {
+           "code": "Tel-10-H-08",
+           "text": "Propose telecom ideas that improve quality of life, environment and education."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "build": {
+  "builtAt": "2026-10-14T08:39:58.604Z",
+  "model": "claude-agent",
+  "usd": 0,
+  "expectedCodes": 49,
+  "coverage": 1,
+  "missingCodes": [],
+  "counts": {
+   "grades": 2,
+   "units": 11,
+   "topics": 16,
+   "subtopics": 23,
+   "outcomes": 49
+  },
+  "warnings": []
+ }
+}

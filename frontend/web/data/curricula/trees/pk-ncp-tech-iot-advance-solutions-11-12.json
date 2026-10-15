@@ -1,0 +1,574 @@
+{
+ "id": "pk-ncp-tech-iot-advance-solutions-11-12",
+ "region": "PK",
+ "framework": "National Curriculum of Pakistan 2022-23",
+ "board": null,
+ "qualification": "Technical stream",
+ "subject": "IoT Advance Solutions",
+ "syllabusCode": null,
+ "gradeSystem": "grade",
+ "source": {
+  "urls": [
+   "https://ncc.gov.pk/SiteImage/Misc/files/47-IoT%20Advance%20Solutions.pdf"
+  ],
+  "publisher": "National Curriculum Council, Ministry of Federal Education and Professional Training",
+  "licence": "Government publication; structure + our own wording only",
+  "firstExam": null
+ },
+ "grades": [
+  {
+   "grade": "11",
+   "units": [
+    {
+     "id": "domain-a-introduction-to-iot-advanced-solutions",
+     "title": "Domain A: Introduction to IoT Advanced Solutions",
+     "topics": [
+      {
+       "id": "iot-basics",
+       "title": "IoT basics",
+       "subtopics": [
+        {
+         "id": "what-iot-is-and-why-it-matters",
+         "title": "What IoT is and why it matters",
+         "outcomes": [
+          {
+           "code": "IoTF-11-A-01",
+           "text": "Define IoT and describe its basic concept."
+          },
+          {
+           "code": "IoTF-11-A-02",
+           "text": "Explain why IoT matters and its real-world impact."
+          },
+          {
+           "code": "IoTF-11-A-03",
+           "text": "Identify future trends of IoT."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "iot-architecture",
+       "title": "IoT architecture",
+       "subtopics": [
+        {
+         "id": "layers-and-sensing",
+         "title": "Layers and sensing",
+         "outcomes": [
+          {
+           "code": "IoTF-11-A-04",
+           "text": "List the layers of IoT architecture."
+          },
+          {
+           "code": "IoTF-11-A-05",
+           "text": "Explain how sensors collect environmental data as input to IoT systems."
+          },
+          {
+           "code": "IoTF-11-A-06",
+           "text": "List protocols, standards and technologies for device-to-cloud communication."
+          }
+         ]
+        },
+        {
+         "id": "cloud-application-and-analytics-layers",
+         "title": "Cloud, application and analytics layers",
+         "outcomes": [
+          {
+           "code": "IoTF-11-A-07",
+           "text": "Explain how the cloud layer links the device layer to the application layer."
+          },
+          {
+           "code": "IoTF-11-A-08",
+           "text": "Describe how the application layer handles user interfaces, data management and application-specific functions."
+          },
+          {
+           "code": "IoTF-11-A-09",
+           "text": "Explain how analytics and insights are built from collected data."
+          },
+          {
+           "code": "IoTF-11-A-10",
+           "text": "Identify how automation driven by analytics improves operations, efficiency and business models."
+          }
+         ]
+        },
+        {
+         "id": "designing-iot-systems",
+         "title": "Designing IoT systems",
+         "outcomes": [
+          {
+           "code": "IoTF-11-A-11",
+           "text": "Design IoT systems using block diagrams."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "domain-b-microcontrollers",
+     "title": "Domain B: Microcontrollers",
+     "topics": [
+      {
+       "id": "microcontroller-architecture",
+       "title": "Microcontroller architecture",
+       "subtopics": [
+        {
+         "id": "microcontrollers-and-boards",
+         "title": "Microcontrollers and boards",
+         "outcomes": [
+          {
+           "code": "IoTF-11-B-01",
+           "text": "Identify basic features and applications of microcontrollers."
+          },
+          {
+           "code": "IoTF-11-B-02",
+           "text": "List common IoT boards such as ESP8266, ESP32 and Raspberry Pi."
+          },
+          {
+           "code": "IoTF-11-B-03",
+           "text": "Tell microcontrollers from single-board computers."
+          },
+          {
+           "code": "IoTF-11-B-04",
+           "text": "Learn the components and architecture of ESP8266 and Raspberry Pi."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "programming-with-arduino-and-python",
+       "title": "Programming with Arduino and Python",
+       "subtopics": [
+        {
+         "id": "arduino-programming",
+         "title": "Arduino programming",
+         "outcomes": [
+          {
+           "code": "IoTF-11-B-05",
+           "text": "Understand the role of a compiler."
+          },
+          {
+           "code": "IoTF-11-B-06",
+           "text": "Set up the Arduino IDE."
+          },
+          {
+           "code": "IoTF-11-B-07",
+           "text": "Identify the structure and syntax of Arduino's C/C++-based language."
+          },
+          {
+           "code": "IoTF-11-B-08",
+           "text": "Write Arduino code to control digital input and output."
+          }
+         ]
+        },
+        {
+         "id": "raspberry-pi-with-python",
+         "title": "Raspberry Pi with Python",
+         "outcomes": [
+          {
+           "code": "IoTF-11-B-09",
+           "text": "Set up Raspberry Pi with an operating system such as Raspbian."
+          },
+          {
+           "code": "IoTF-11-B-10",
+           "text": "Write Python code for Raspberry Pi."
+          },
+          {
+           "code": "IoTF-11-B-11",
+           "text": "Initialise and control digital outputs with GPIO libraries on Raspberry Pi."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "sensors-and-actuators",
+       "title": "Sensors and actuators",
+       "subtopics": [
+        {
+         "id": "sensors-actuators-and-interfaces",
+         "title": "Sensors, actuators and interfaces",
+         "outcomes": [
+          {
+           "code": "IoTF-11-B-12",
+           "text": "Describe analog and digital sensors."
+          },
+          {
+           "code": "IoTF-11-B-13",
+           "text": "Match physical quantities to the sensors that measure them."
+          },
+          {
+           "code": "IoTF-11-B-14",
+           "text": "Define actuators and identify their types."
+          },
+          {
+           "code": "IoTF-11-B-15",
+           "text": "Define ADC and describe how an analog pin turns readings into digital values."
+          },
+          {
+           "code": "IoTF-11-B-16",
+           "text": "List and describe interface protocols such as I2C, SPI and UART."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "domain-c-communication",
+     "title": "Domain C: Communication",
+     "topics": [
+      {
+       "id": "connecting-a-microcontroller",
+       "title": "Connecting a microcontroller",
+       "subtopics": [
+        {
+         "id": "internet-connectivity-and-arduino-cloud",
+         "title": "Internet connectivity and Arduino Cloud",
+         "outcomes": [
+          {
+           "code": "IoTF-11-C-01",
+           "text": "Identify the layers of internet connectivity."
+          },
+          {
+           "code": null,
+           "text": "Write a program to connect ESP8266 to WiFi."
+          },
+          {
+           "code": "IoTF-11-C-03",
+           "text": "Understand configuring Arduino Cloud."
+          },
+          {
+           "code": "IoTF-11-C-04",
+           "text": "Write a program to control a relay with ESP8266 over the internet."
+          },
+          {
+           "code": "IoTF-11-C-05",
+           "text": "Build a program that sends temperature data to Arduino Cloud."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "connectivity-topologies",
+       "title": "Connectivity topologies",
+       "subtopics": [
+        {
+         "id": "topologies-and-radios",
+         "title": "Topologies and radios",
+         "outcomes": [
+          {
+           "code": "IoTF-11-C-06",
+           "text": "List different connectivity topologies."
+          },
+          {
+           "code": "IoTF-11-C-07",
+           "text": "Understand connecting to the internet by cellular or WiFi."
+          },
+          {
+           "code": "IoTF-11-C-08",
+           "text": "Build a sensor mesh with Zigbee, BLE or nRF24 radios."
+          },
+          {
+           "code": "IoTF-11-C-09",
+           "text": "Explain long-range radio communication with LPWAN."
+          }
+         ]
+        },
+        {
+         "id": "protocols-and-cloud-platforms",
+         "title": "Protocols and cloud platforms",
+         "outcomes": [
+          {
+           "code": "IoTF-11-C-10",
+           "text": "Explain different internet communication protocols."
+          },
+          {
+           "code": "IoTF-11-C-11",
+           "text": "Describe the principles of MQTT."
+          },
+          {
+           "code": "IoTF-11-C-12",
+           "text": "Describe the client-server topology for CoAP."
+          },
+          {
+           "code": "IoTF-11-C-13",
+           "text": "Distinguish cloud platforms such as Arduino Cloud, Blynk, Grandeur, AWS IoT, Particle, Helium and Things Stack."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "domain-d-application-layer",
+     "title": "Domain D: Application layer",
+     "topics": [
+      {
+       "id": "visualising-iot-data",
+       "title": "Visualising IoT data",
+       "subtopics": [
+        {
+         "id": "dashboards-and-visualisation",
+         "title": "Dashboards and visualisation",
+         "outcomes": [
+          {
+           "code": "IoTF-11-D-01",
+           "text": "Illustrate visualisation techniques and tools for IoT data analytics."
+          },
+          {
+           "code": "IoTF-11-D-02",
+           "text": "Explain how Grafana builds custom dashboards."
+          },
+          {
+           "code": "IoTF-11-D-03",
+           "text": "Use a display widget to show live ESP8266 readings."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "custom-user-interfaces",
+       "title": "Custom user interfaces",
+       "subtopics": [
+        {
+         "id": "web-dashboards-and-apis",
+         "title": "Web dashboards and APIs",
+         "outcomes": [
+          {
+           "code": "IoTF-11-D-04",
+           "text": "Explain the purpose and benefits of a web or mobile dashboard."
+          },
+          {
+           "code": "IoTF-11-D-05",
+           "text": "List web technologies for custom web pages."
+          },
+          {
+           "code": "IoTF-11-D-06",
+           "text": "Describe RESTful architecture for talking to servers."
+          },
+          {
+           "code": "IoTF-11-D-07",
+           "text": "Use the Arduino Cloud API with Postman."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "12",
+   "units": [
+    {
+     "id": "domain-c-communication",
+     "title": "Domain C: Communication",
+     "topics": [
+      {
+       "id": "deploying-a-custom-mqtt-broker",
+       "title": "Deploying a custom MQTT broker",
+       "subtopics": [
+        {
+         "id": "cloud-and-version-control-basics",
+         "title": "Cloud and version control basics",
+         "outcomes": [
+          {
+           "code": "IoTF-12-C-01",
+           "text": "Understand the basic concepts of cloud computing."
+          },
+          {
+           "code": "IoTF-12-C-02",
+           "text": "Explain cloud virtual machines."
+          },
+          {
+           "code": "IoTF-12-C-03",
+           "text": "Explain networking on the cloud with virtual private networks."
+          },
+          {
+           "code": "IoTF-12-C-04",
+           "text": "Configure the Railway platform."
+          },
+          {
+           "code": "IoTF-12-C-05",
+           "text": "Describe the core idea of version management with GitHub."
+          }
+         ]
+        },
+        {
+         "id": "building-the-broker",
+         "title": "Building the broker",
+         "outcomes": [
+          {
+           "code": "IoTF-12-C-06",
+           "text": "Build an MQTT server with Python."
+          },
+          {
+           "code": "IoTF-12-C-07",
+           "text": "Add a database to store messages."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "domain-d-application-layer",
+     "title": "Domain D: Application layer",
+     "topics": [
+      {
+       "id": "data-science-and-machine-learning",
+       "title": "Data science and machine learning",
+       "subtopics": [
+        {
+         "id": "analytics-techniques",
+         "title": "Analytics techniques",
+         "outcomes": [
+          {
+           "code": "IoTF-12-D-01",
+           "text": "Give an overview of data analytics techniques."
+          },
+          {
+           "code": "IoTF-12-D-02",
+           "text": "Apply descriptive analytics, such as summary statistics and visualisation, to find patterns and trends."
+          },
+          {
+           "code": "IoTF-12-D-03",
+           "text": "Apply predictive analytics, such as regression or forecasting, to build a model and predict."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "data-pipelines",
+       "title": "Data pipelines",
+       "subtopics": [
+        {
+         "id": "real-time-anomaly-detection",
+         "title": "Real-time anomaly detection",
+         "outcomes": [
+          {
+           "code": "IoTF-12-D-04",
+           "text": "Apply predictive analytics to detect anomalies in real time."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "domain-e-building-for-scale",
+     "title": "Domain E: Building for scale",
+     "topics": [
+      {
+       "id": "edge-computing",
+       "title": "Edge computing",
+       "subtopics": [
+        {
+         "id": "edge-computing-basics",
+         "title": "Edge computing basics",
+         "outcomes": [
+          {
+           "code": "IoTF-12-E-01",
+           "text": "Explain the purpose of edge computing."
+          },
+          {
+           "code": "IoTF-12-E-02",
+           "text": "Describe the components of an edge computing architecture."
+          },
+          {
+           "code": "IoTF-12-E-03",
+           "text": "Explore real-world edge computing use cases."
+          },
+          {
+           "code": "IoTF-12-E-04",
+           "text": "Use modern smart home protocols like Matter and Thread."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "real-time-decisions-at-the-edge",
+       "title": "Real-time decisions at the edge",
+       "subtopics": [
+        {
+         "id": "edge-analytics-and-ml",
+         "title": "Edge analytics and ML",
+         "outcomes": [
+          {
+           "code": "IoTF-12-E-05",
+           "text": "Explain how edge computing enables data processing and analytics at the network edge."
+          },
+          {
+           "code": "IoTF-12-E-06",
+           "text": "Use Edge Impulse for edge machine learning with Raspberry Pi."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "continuous-delivery",
+       "title": "Continuous delivery",
+       "subtopics": [
+        {
+         "id": "security-and-software-updates",
+         "title": "Security and software updates",
+         "outcomes": [
+          {
+           "code": "IoTF-12-E-07",
+           "text": "Understand the importance of security in production."
+          },
+          {
+           "code": "IoTF-12-E-08",
+           "text": "Send software patches on different platforms."
+          },
+          {
+           "code": "IoTF-12-E-09",
+           "text": "Use Arduino Cloud for Arduino-based controllers."
+          },
+          {
+           "code": "IoTF-12-E-10",
+           "text": "Use AWS Greengrass for Raspberry Pi."
+          },
+          {
+           "code": "IoTF-12-E-11",
+           "text": "Use Particle for cellular devices."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "build": {
+  "builtAt": "2026-10-14T08:37:55.811Z",
+  "model": "claude-agent",
+  "usd": 0,
+  "expectedCodes": 68,
+  "coverage": 1,
+  "missingCodes": [],
+  "counts": {
+   "grades": 2,
+   "units": 7,
+   "topics": 15,
+   "subtopics": 20,
+   "outcomes": 69
+  },
+  "warnings": []
+ }
+}

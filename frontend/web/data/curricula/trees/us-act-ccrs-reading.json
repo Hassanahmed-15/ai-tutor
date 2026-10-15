@@ -1,0 +1,1531 @@
+{
+ "id": "us-act-ccrs-reading",
+ "region": "US",
+ "framework": "ACT College and Career Readiness Standards",
+ "board": "ACT",
+ "qualification": "ACT",
+ "subject": "Reading",
+ "syllabusCode": null,
+ "gradeSystem": "grade",
+ "source": {
+  "urls": [
+   "https://www.act.org/content/dam/act/unsecured/documents/CCRS-ReadingStandards.pdf",
+   "https://www.act.org/standard"
+  ],
+  "publisher": "ACT, Inc.",
+  "licence": "\u00a9 ACT, Inc.; structure + our own wording only",
+  "firstExam": null
+ },
+ "grades": [
+  {
+   "grade": "8",
+   "units": [
+    {
+     "id": "close-reading-clr",
+     "title": "Close Reading (CLR)",
+     "topics": [
+      {
+       "id": "score-range-13-15",
+       "title": "Score range 13-15",
+       "subtopics": [
+        {
+         "id": "finding-facts-and-simple-conclusions",
+         "title": "Finding facts and simple conclusions",
+         "outcomes": [
+          {
+           "code": "CLR 201",
+           "text": "Find basic facts stated plainly in a passage, such as names, dates and events."
+          },
+          {
+           "code": "CLR 202",
+           "text": "Draw simple conclusions about main characters in fairly demanding stories."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "central-ideas-themes-and-summaries-idt",
+     "title": "Central Ideas, Themes, and Summaries (IDT)",
+     "topics": [
+      {
+       "id": "score-range-13-15",
+       "title": "Score range 13-15",
+       "subtopics": [
+        {
+         "id": "topic-central-idea-and-theme",
+         "title": "Topic, central idea and theme",
+         "outcomes": [
+          {
+           "code": "IDT 201",
+           "text": "Identify a passage's topic and tell it apart from its central idea or theme."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "relationships-rel",
+     "title": "Relationships (REL)",
+     "topics": [
+      {
+       "id": "score-range-13-15",
+       "title": "Score range 13-15",
+       "subtopics": [
+        {
+         "id": "sequence-and-simple-cause-effect",
+         "title": "Sequence and simple cause-effect",
+         "outcomes": [
+          {
+           "code": "REL 201",
+           "text": "Say when an event happens (first, last, before, after) in fairly demanding passages."
+          },
+          {
+           "code": "REL 202",
+           "text": "Spot a simple cause-effect link within one sentence."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "word-meanings-and-word-choice-wme",
+     "title": "Word Meanings and Word Choice (WME)",
+     "topics": [
+      {
+       "id": "score-range-13-15",
+       "title": "Score range 13-15",
+       "subtopics": [
+        {
+         "id": "word-choice-and-tone",
+         "title": "Word choice and tone",
+         "outcomes": [
+          {
+           "code": "WME 201",
+           "text": "Understand what a familiar word, phrase or simple description implies."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "text-structure-tst",
+     "title": "Text Structure (TST)",
+     "topics": [
+      {
+       "id": "score-range-13-15",
+       "title": "Score range 13-15",
+       "subtopics": [
+        {
+         "id": "sentence-and-paragraph-functions",
+         "title": "Sentence and paragraph functions",
+         "outcomes": [
+          {
+           "code": "TST 201",
+           "text": "Explain how sentences relate to the whole passage when their function is stated or obvious."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "purpose-and-point-of-view-ppv",
+     "title": "Purpose and Point of View (PPV)",
+     "topics": [
+      {
+       "id": "score-range-13-15",
+       "title": "Score range 13-15",
+       "subtopics": [
+        {
+         "id": "author-s-purpose-and-viewpoint",
+         "title": "Author's purpose and viewpoint",
+         "outcomes": [
+          {
+           "code": "PPV 201",
+           "text": "Recognize a clear intent of an author or narrator in fairly demanding stories."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "arguments-arg",
+     "title": "Arguments (ARG)",
+     "topics": [
+      {
+       "id": "score-range-13-15",
+       "title": "Score range 13-15",
+       "subtopics": [
+        {
+         "id": "reasons-and-support-for-claims",
+         "title": "Reasons and support for claims",
+         "outcomes": [
+          {
+           "code": "ARG 201",
+           "text": "Analyze how sentences give reasons for or support a claim when the link is clearly shown."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "multiple-texts-syn",
+     "title": "Multiple Texts (SYN)",
+     "topics": [
+      {
+       "id": "score-range-13-15",
+       "title": "Score range 13-15",
+       "subtopics": [
+        {
+         "id": "comparing-and-combining-two-texts",
+         "title": "Comparing and combining two texts",
+         "outcomes": [
+          {
+           "code": "SYN 201",
+           "text": "Make simple comparisons between two passages."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "9",
+   "units": [
+    {
+     "id": "close-reading-clr",
+     "title": "Close Reading (CLR)",
+     "topics": [
+      {
+       "id": "score-range-16-19",
+       "title": "Score range 16-19",
+       "subtopics": [
+        {
+         "id": "finding-facts-and-simple-conclusions",
+         "title": "Finding facts and simple conclusions",
+         "outcomes": [
+          {
+           "code": "CLR 301",
+           "text": "Find simple details within a sentence or paragraph of a fairly demanding passage."
+          },
+          {
+           "code": "CLR 302",
+           "text": "Draw simple conclusions from fairly demanding passages."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "central-ideas-themes-and-summaries-idt",
+     "title": "Central Ideas, Themes, and Summaries (IDT)",
+     "topics": [
+      {
+       "id": "score-range-16-19",
+       "title": "Score range 16-19",
+       "subtopics": [
+        {
+         "id": "topic-central-idea-and-theme",
+         "title": "Topic, central idea and theme",
+         "outcomes": [
+          {
+           "code": "IDT 301",
+           "text": "Identify a clear central idea in straightforward paragraphs of fairly demanding stories."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "relationships-rel",
+     "title": "Relationships (REL)",
+     "topics": [
+      {
+       "id": "score-range-16-19",
+       "title": "Score range 16-19",
+       "subtopics": [
+        {
+         "id": "comparisons-and-cause-effect",
+         "title": "Comparisons and cause-effect",
+         "outcomes": [
+          {
+           "code": "REL 301",
+           "text": "Identify clear comparisons between main characters in fairly demanding stories."
+          }
+         ]
+        },
+        {
+         "id": "sequence-and-simple-cause-effect",
+         "title": "Sequence and simple cause-effect",
+         "outcomes": [
+          {
+           "code": "REL 302",
+           "text": "Spot simple cause-effect links within a paragraph of a fairly demanding story."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "word-meanings-and-word-choice-wme",
+     "title": "Word Meanings and Word Choice (WME)",
+     "topics": [
+      {
+       "id": "score-range-16-19",
+       "title": "Score range 16-19",
+       "subtopics": [
+        {
+         "id": "word-choice-and-tone",
+         "title": "Word choice and tone",
+         "outcomes": [
+          {
+           "code": "WME 301",
+           "text": "Explain how a specific word or phrase shapes meaning or tone when the effect is simple."
+          }
+         ]
+        },
+        {
+         "id": "figurative-and-technical-meaning",
+         "title": "Figurative and technical meaning",
+         "outcomes": [
+          {
+           "code": "WME 302",
+           "text": "Interpret basic figurative language in a passage."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "text-structure-tst",
+     "title": "Text Structure (TST)",
+     "topics": [
+      {
+       "id": "score-range-16-19",
+       "title": "Score range 16-19",
+       "subtopics": [
+        {
+         "id": "sentence-and-paragraph-functions",
+         "title": "Sentence and paragraph functions",
+         "outcomes": [
+          {
+           "code": "TST 301",
+           "text": "Explain how sentences relate to the whole passage when their function is simple."
+          },
+          {
+           "code": "TST 302",
+           "text": "Identify a clear function of straightforward paragraphs in fairly demanding stories."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "purpose-and-point-of-view-ppv",
+     "title": "Purpose and Point of View (PPV)",
+     "topics": [
+      {
+       "id": "score-range-16-19",
+       "title": "Score range 16-19",
+       "subtopics": [
+        {
+         "id": "author-s-purpose-and-viewpoint",
+         "title": "Author's purpose and viewpoint",
+         "outcomes": [
+          {
+           "code": "PPV 301",
+           "text": "Recognize a clear intent of an author or narrator in fairly demanding passages."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "arguments-arg",
+     "title": "Arguments (ARG)",
+     "topics": [
+      {
+       "id": "score-range-16-19",
+       "title": "Score range 16-19",
+       "subtopics": [
+        {
+         "id": "reasons-and-support-for-claims",
+         "title": "Reasons and support for claims",
+         "outcomes": [
+          {
+           "code": "ARG 301",
+           "text": "Analyze how sentences support a claim in fairly demanding passages when the link is simple."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "multiple-texts-syn",
+     "title": "Multiple Texts (SYN)",
+     "topics": [
+      {
+       "id": "score-range-16-19",
+       "title": "Score range 16-19",
+       "subtopics": [
+        {
+         "id": "comparing-and-combining-two-texts",
+         "title": "Comparing and combining two texts",
+         "outcomes": [
+          {
+           "code": "SYN 301",
+           "text": "Make straightforward comparisons between two passages."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "10",
+   "units": [
+    {
+     "id": "close-reading-clr",
+     "title": "Close Reading (CLR)",
+     "topics": [
+      {
+       "id": "score-range-20-23",
+       "title": "Score range 20-23",
+       "subtopics": [
+        {
+         "id": "details-conclusions-and-paraphrase",
+         "title": "Details, conclusions and paraphrase",
+         "outcomes": [
+          {
+           "code": "CLR 401",
+           "text": "Find important details in fairly demanding passages."
+          },
+          {
+           "code": "CLR 402",
+           "text": "Draw logical conclusions from fairly demanding passages."
+          },
+          {
+           "code": "CLR 403",
+           "text": "Draw simple conclusions from more demanding passages."
+          },
+          {
+           "code": "CLR 404",
+           "text": "Restate some statements in your own words in fairly demanding passages."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "central-ideas-themes-and-summaries-idt",
+     "title": "Central Ideas, Themes, and Summaries (IDT)",
+     "topics": [
+      {
+       "id": "score-range-20-23",
+       "title": "Score range 20-23",
+       "subtopics": [
+        {
+         "id": "topic-central-idea-and-theme",
+         "title": "Topic, central idea and theme",
+         "outcomes": [
+          {
+           "code": "IDT 401",
+           "text": "Infer a central idea in straightforward paragraphs of fairly demanding stories."
+          },
+          {
+           "code": "IDT 402",
+           "text": "Identify a clear central idea or theme in fairly demanding passages or paragraphs."
+          }
+         ]
+        },
+        {
+         "id": "summarizing-supporting-ideas",
+         "title": "Summarizing supporting ideas",
+         "outcomes": [
+          {
+           "code": "IDT 403",
+           "text": "Summarize key supporting ideas and details in fairly demanding passages."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "relationships-rel",
+     "title": "Relationships (REL)",
+     "topics": [
+      {
+       "id": "score-range-20-23",
+       "title": "Score range 20-23",
+       "subtopics": [
+        {
+         "id": "sequence-and-simple-cause-effect",
+         "title": "Sequence and simple cause-effect",
+         "outcomes": [
+          {
+           "code": "REL 401",
+           "text": "Put simple sequences of events in order in fairly demanding stories."
+          }
+         ]
+        },
+        {
+         "id": "comparisons-and-cause-effect",
+         "title": "Comparisons and cause-effect",
+         "outcomes": [
+          {
+           "code": "REL 402",
+           "text": "Identify clear comparisons in fairly demanding passages."
+          },
+          {
+           "code": "REL 403",
+           "text": "Identify clear cause-effect relationships in fairly demanding passages."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "word-meanings-and-word-choice-wme",
+     "title": "Word Meanings and Word Choice (WME)",
+     "topics": [
+      {
+       "id": "score-range-20-23",
+       "title": "Score range 20-23",
+       "subtopics": [
+        {
+         "id": "word-choice-and-tone",
+         "title": "Word choice and tone",
+         "outcomes": [
+          {
+           "code": "WME 401",
+           "text": "Analyze how word choice shapes meaning or tone in fairly demanding passages."
+          }
+         ]
+        },
+        {
+         "id": "figurative-and-technical-meaning",
+         "title": "Figurative and technical meaning",
+         "outcomes": [
+          {
+           "code": "WME 402",
+           "text": "Interpret most words and phrases, including technical, connotative and figurative meanings, in fairly demanding passages."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "text-structure-tst",
+     "title": "Text Structure (TST)",
+     "topics": [
+      {
+       "id": "score-range-20-23",
+       "title": "Score range 20-23",
+       "subtopics": [
+        {
+         "id": "sentence-and-paragraph-functions",
+         "title": "Sentence and paragraph functions",
+         "outcomes": [
+          {
+           "code": "TST 401",
+           "text": "Analyze how sentences relate to the whole in fairly demanding passages."
+          },
+          {
+           "code": "TST 402",
+           "text": "Infer the function of straightforward paragraphs in fairly demanding stories."
+          },
+          {
+           "code": "TST 403",
+           "text": "Identify a clear function of paragraphs in fairly demanding passages."
+          }
+         ]
+        },
+        {
+         "id": "overall-structure",
+         "title": "Overall structure",
+         "outcomes": [
+          {
+           "code": "TST 404",
+           "text": "Analyze the overall structure of fairly demanding passages."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "purpose-and-point-of-view-ppv",
+     "title": "Purpose and Point of View (PPV)",
+     "topics": [
+      {
+       "id": "score-range-20-23",
+       "title": "Score range 20-23",
+       "subtopics": [
+        {
+         "id": "author-s-purpose-and-viewpoint",
+         "title": "Author's purpose and viewpoint",
+         "outcomes": [
+          {
+           "code": "PPV 401",
+           "text": "Identify a clear purpose of a fairly demanding passage and how it shapes content and style."
+          }
+         ]
+        },
+        {
+         "id": "point-of-view",
+         "title": "Point of view",
+         "outcomes": [
+          {
+           "code": "PPV 402",
+           "text": "Understand point of view in fairly demanding passages."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "arguments-arg",
+     "title": "Arguments (ARG)",
+     "topics": [
+      {
+       "id": "score-range-20-23",
+       "title": "Score range 20-23",
+       "subtopics": [
+        {
+         "id": "reasons-and-support-for-claims",
+         "title": "Reasons and support for claims",
+         "outcomes": [
+          {
+           "code": "ARG 401",
+           "text": "Analyze how sentences give reasons for or support a claim in fairly demanding passages."
+          }
+         ]
+        },
+        {
+         "id": "central-claim",
+         "title": "Central claim",
+         "outcomes": [
+          {
+           "code": "ARG 402",
+           "text": "Identify a clear central claim in fairly demanding passages."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "multiple-texts-syn",
+     "title": "Multiple Texts (SYN)",
+     "topics": [
+      {
+       "id": "score-range-20-23",
+       "title": "Score range 20-23",
+       "subtopics": [
+        {
+         "id": "comparing-and-combining-two-texts",
+         "title": "Comparing and combining two texts",
+         "outcomes": [
+          {
+           "code": "SYN 401",
+           "text": "Draw conclusions using information from two literary narratives."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "11",
+   "units": [
+    {
+     "id": "close-reading-clr",
+     "title": "Close Reading (CLR)",
+     "topics": [
+      {
+       "id": "score-range-24-27",
+       "title": "Score range 24-27",
+       "subtopics": [
+        {
+         "id": "details-conclusions-and-paraphrase",
+         "title": "Details, conclusions and paraphrase",
+         "outcomes": [
+          {
+           "code": "CLR 501",
+           "text": "Find and interpret minor or subtly stated details in fairly demanding passages."
+          },
+          {
+           "code": "CLR 502",
+           "text": "Find important details in more demanding passages."
+          },
+          {
+           "code": "CLR 503",
+           "text": "Draw subtle conclusions from fairly demanding passages."
+          },
+          {
+           "code": "CLR 504",
+           "text": "Draw logical conclusions from more demanding passages."
+          },
+          {
+           "code": "CLR 505",
+           "text": "Paraphrase almost any statement in fairly demanding passages."
+          },
+          {
+           "code": "CLR 506",
+           "text": "Paraphrase some statements in more demanding passages."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "central-ideas-themes-and-summaries-idt",
+     "title": "Central Ideas, Themes, and Summaries (IDT)",
+     "topics": [
+      {
+       "id": "score-range-24-27",
+       "title": "Score range 24-27",
+       "subtopics": [
+        {
+         "id": "topic-central-idea-and-theme",
+         "title": "Topic, central idea and theme",
+         "outcomes": [
+          {
+           "code": "IDT 501",
+           "text": "Infer a central idea or theme in fairly demanding passages or paragraphs."
+          },
+          {
+           "code": "IDT 502",
+           "text": "Identify a clear central idea or theme in more demanding passages or paragraphs."
+          }
+         ]
+        },
+        {
+         "id": "summarizing-supporting-ideas",
+         "title": "Summarizing supporting ideas",
+         "outcomes": [
+          {
+           "code": "IDT 503",
+           "text": "Summarize key supporting ideas and details in more demanding passages."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "relationships-rel",
+     "title": "Relationships (REL)",
+     "topics": [
+      {
+       "id": "score-range-24-27",
+       "title": "Score range 24-27",
+       "subtopics": [
+        {
+         "id": "sequence-and-simple-cause-effect",
+         "title": "Sequence and simple cause-effect",
+         "outcomes": [
+          {
+           "code": "REL 501",
+           "text": "Order sequences of events in fairly demanding passages."
+          }
+         ]
+        },
+        {
+         "id": "comparisons-and-cause-effect",
+         "title": "Comparisons and cause-effect",
+         "outcomes": [
+          {
+           "code": "REL 502",
+           "text": "Understand implied or subtle comparisons in fairly demanding passages."
+          },
+          {
+           "code": "REL 503",
+           "text": "Identify clear comparisons in more demanding passages."
+          },
+          {
+           "code": "REL 504",
+           "text": "Understand implied or subtle cause-effect links in fairly demanding passages."
+          },
+          {
+           "code": "REL 505",
+           "text": "Identify clear cause-effect links in more demanding passages."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "word-meanings-and-word-choice-wme",
+     "title": "Word Meanings and Word Choice (WME)",
+     "topics": [
+      {
+       "id": "score-range-24-27",
+       "title": "Score range 24-27",
+       "subtopics": [
+        {
+         "id": "word-choice-and-tone",
+         "title": "Word choice and tone",
+         "outcomes": [
+          {
+           "code": "WME 501",
+           "text": "Analyze how word choice shapes meaning or tone when the effect is subtle."
+          },
+          {
+           "code": "WME 502",
+           "text": "Analyze how word choice shapes meaning or tone in more demanding passages."
+          }
+         ]
+        },
+        {
+         "id": "figurative-and-technical-meaning",
+         "title": "Figurative and technical meaning",
+         "outcomes": [
+          {
+           "code": "WME 503",
+           "text": "Interpret almost any word or phrase, including technical, connotative and figurative meanings, in fairly demanding passages."
+          },
+          {
+           "code": "WME 504",
+           "text": "Interpret most words and phrases, including technical, connotative and figurative meanings, in more demanding passages."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "text-structure-tst",
+     "title": "Text Structure (TST)",
+     "topics": [
+      {
+       "id": "score-range-24-27",
+       "title": "Score range 24-27",
+       "subtopics": [
+        {
+         "id": "sentence-and-paragraph-functions",
+         "title": "Sentence and paragraph functions",
+         "outcomes": [
+          {
+           "code": "TST 501",
+           "text": "Analyze how sentences relate to the whole when the function is subtle."
+          },
+          {
+           "code": "TST 502",
+           "text": "Analyze how sentences relate to the whole in more demanding passages."
+          },
+          {
+           "code": "TST 503",
+           "text": "Infer the function of paragraphs in fairly demanding passages."
+          },
+          {
+           "code": "TST 504",
+           "text": "Identify a clear function of paragraphs in more demanding passages."
+          }
+         ]
+        },
+        {
+         "id": "overall-structure",
+         "title": "Overall structure",
+         "outcomes": [
+          {
+           "code": "TST 505",
+           "text": "Analyze the overall structure of more demanding passages."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "purpose-and-point-of-view-ppv",
+     "title": "Purpose and Point of View (PPV)",
+     "topics": [
+      {
+       "id": "score-range-24-27",
+       "title": "Score range 24-27",
+       "subtopics": [
+        {
+         "id": "author-s-purpose-and-viewpoint",
+         "title": "Author's purpose and viewpoint",
+         "outcomes": [
+          {
+           "code": "PPV 501",
+           "text": "Infer a purpose in fairly demanding passages and how it shapes content and style."
+          },
+          {
+           "code": "PPV 502",
+           "text": "Identify a clear purpose in more demanding passages and how it shapes content and style."
+          }
+         ]
+        },
+        {
+         "id": "point-of-view",
+         "title": "Point of view",
+         "outcomes": [
+          {
+           "code": "PPV 503",
+           "text": "Understand point of view in more demanding passages."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "arguments-arg",
+     "title": "Arguments (ARG)",
+     "topics": [
+      {
+       "id": "score-range-24-27",
+       "title": "Score range 24-27",
+       "subtopics": [
+        {
+         "id": "reasons-and-support-for-claims",
+         "title": "Reasons and support for claims",
+         "outcomes": [
+          {
+           "code": "ARG 501",
+           "text": "Analyze how sentences give reasons for or support a claim in more demanding passages."
+          }
+         ]
+        },
+        {
+         "id": "central-claim",
+         "title": "Central claim",
+         "outcomes": [
+          {
+           "code": "ARG 502",
+           "text": "Infer a central claim in fairly demanding passages."
+          },
+          {
+           "code": "ARG 503",
+           "text": "Identify a clear central claim in more demanding passages."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "multiple-texts-syn",
+     "title": "Multiple Texts (SYN)",
+     "topics": [
+      {
+       "id": "score-range-24-27",
+       "title": "Score range 24-27",
+       "subtopics": [
+        {
+         "id": "comparing-and-combining-two-texts",
+         "title": "Comparing and combining two texts",
+         "outcomes": [
+          {
+           "code": "SYN 501",
+           "text": "Draw conclusions using information from two informational texts."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "12",
+   "units": [
+    {
+     "id": "close-reading-clr",
+     "title": "Close Reading (CLR)",
+     "topics": [
+      {
+       "id": "score-range-28-32",
+       "title": "Score range 28-32",
+       "subtopics": [
+        {
+         "id": "details-conclusions-and-paraphrase",
+         "title": "Details, conclusions and paraphrase: Score range 28-32",
+         "outcomes": [
+          {
+           "code": "CLR 601",
+           "text": "Find and interpret minor or subtle details in more demanding passages."
+          },
+          {
+           "code": "CLR 602",
+           "text": "Find important details in complex passages."
+          },
+          {
+           "code": "CLR 603",
+           "text": "Draw subtle conclusions from more demanding passages."
+          },
+          {
+           "code": "CLR 604",
+           "text": "Draw simple conclusions from complex passages."
+          },
+          {
+           "code": "CLR 605",
+           "text": "Paraphrase almost any statement in more demanding passages."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "score-range-33-36",
+       "title": "Score range 33-36",
+       "subtopics": [
+        {
+         "id": "details-conclusions-and-paraphrase",
+         "title": "Details, conclusions and paraphrase: Score range 33-36",
+         "outcomes": [
+          {
+           "code": "CLR 701",
+           "text": "Find and interpret minor or subtle details in complex passages."
+          },
+          {
+           "code": "CLR 702",
+           "text": "Find important details in highly complex passages."
+          },
+          {
+           "code": "CLR 703",
+           "text": "Draw logical conclusions from complex passages."
+          },
+          {
+           "code": "CLR 704",
+           "text": "Draw simple conclusions from highly complex passages."
+          },
+          {
+           "code": "CLR 705",
+           "text": "Draw complex or subtle conclusions by combining information from different parts of a passage."
+          },
+          {
+           "code": "CLR 706",
+           "text": "Paraphrase statements in complex passages."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "central-ideas-themes-and-summaries-idt",
+     "title": "Central Ideas, Themes, and Summaries (IDT)",
+     "topics": [
+      {
+       "id": "score-range-28-32",
+       "title": "Score range 28-32",
+       "subtopics": [
+        {
+         "id": "topic-central-idea-and-theme",
+         "title": "Topic, central idea and theme: Score range 28-32",
+         "outcomes": [
+          {
+           "code": "IDT 601",
+           "text": "Infer a central idea or theme in more demanding passages or paragraphs."
+          }
+         ]
+        },
+        {
+         "id": "summarizing-supporting-ideas",
+         "title": "Summarizing supporting ideas: Score range 28-32",
+         "outcomes": [
+          {
+           "code": "IDT 602",
+           "text": "Summarize key supporting ideas and details in complex passages."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "score-range-33-36",
+       "title": "Score range 33-36",
+       "subtopics": [
+        {
+         "id": "topic-central-idea-and-theme",
+         "title": "Topic, central idea and theme: Score range 33-36",
+         "outcomes": [
+          {
+           "code": "IDT 701",
+           "text": "Identify or infer a central idea or theme in complex passages or paragraphs."
+          }
+         ]
+        },
+        {
+         "id": "summarizing-supporting-ideas",
+         "title": "Summarizing supporting ideas: Score range 33-36",
+         "outcomes": [
+          {
+           "code": "IDT 702",
+           "text": "Summarize key supporting ideas and details in highly complex passages."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "relationships-rel",
+     "title": "Relationships (REL)",
+     "topics": [
+      {
+       "id": "score-range-28-32",
+       "title": "Score range 28-32",
+       "subtopics": [
+        {
+         "id": "sequence-and-simple-cause-effect",
+         "title": "Sequence and simple cause-effect: Score range 28-32",
+         "outcomes": [
+          {
+           "code": "REL 601",
+           "text": "Order sequences of events in more demanding passages."
+          }
+         ]
+        },
+        {
+         "id": "comparisons-and-cause-effect",
+         "title": "Comparisons and cause-effect: Score range 28-32",
+         "outcomes": [
+          {
+           "code": "REL 602",
+           "text": "Understand implied or subtle comparisons in more demanding passages."
+          },
+          {
+           "code": "REL 603",
+           "text": "Identify clear comparisons in complex passages."
+          },
+          {
+           "code": "REL 604",
+           "text": "Understand implied or subtle cause-effect links in more demanding passages."
+          },
+          {
+           "code": "REL 605",
+           "text": "Identify clear cause-effect links in complex passages."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "score-range-33-36",
+       "title": "Score range 33-36",
+       "subtopics": [
+        {
+         "id": "sequence-and-simple-cause-effect",
+         "title": "Sequence and simple cause-effect: Score range 33-36",
+         "outcomes": [
+          {
+           "code": "REL 701",
+           "text": "Order sequences of events in complex passages."
+          }
+         ]
+        },
+        {
+         "id": "comparisons-and-cause-effect",
+         "title": "Comparisons and cause-effect: Score range 33-36",
+         "outcomes": [
+          {
+           "code": "REL 702",
+           "text": "Understand implied or subtle comparisons in complex passages."
+          },
+          {
+           "code": "REL 703",
+           "text": "Identify clear comparisons in highly complex passages."
+          },
+          {
+           "code": "REL 704",
+           "text": "Understand implied or subtle cause-effect links in complex passages."
+          },
+          {
+           "code": "REL 705",
+           "text": "Identify clear cause-effect links in highly complex passages."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "word-meanings-and-word-choice-wme",
+     "title": "Word Meanings and Word Choice (WME)",
+     "topics": [
+      {
+       "id": "score-range-28-32",
+       "title": "Score range 28-32",
+       "subtopics": [
+        {
+         "id": "word-choice-and-tone",
+         "title": "Word choice and tone: Score range 28-32",
+         "outcomes": [
+          {
+           "code": "WME 601",
+           "text": "Analyze how word choice shapes meaning or tone in complex passages."
+          }
+         ]
+        },
+        {
+         "id": "figurative-and-technical-meaning",
+         "title": "Figurative and technical meaning: Score range 28-32",
+         "outcomes": [
+          {
+           "code": "WME 602",
+           "text": "Interpret almost any word or phrase in more demanding passages, including technical, connotative and figurative uses."
+          },
+          {
+           "code": "WME 603",
+           "text": "Interpret words in passages that consistently use figurative, academic, domain-specific or difficult language."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "score-range-33-36",
+       "title": "Score range 33-36",
+       "subtopics": [
+        {
+         "id": "word-choice-and-tone",
+         "title": "Word choice and tone: Score range 33-36",
+         "outcomes": [
+          {
+           "code": "WME 701",
+           "text": "Analyze how word choice shapes meaning or tone when the effect is subtle or complex."
+          }
+         ]
+        },
+        {
+         "id": "figurative-and-technical-meaning",
+         "title": "Figurative and technical meaning: Score range 33-36",
+         "outcomes": [
+          {
+           "code": "WME 702",
+           "text": "Interpret words and phrases in complex passages, including technical, connotative and figurative meanings."
+          },
+          {
+           "code": "WME 703",
+           "text": "Interpret words in passages that make extensive use of figurative, academic, domain-specific or difficult language."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "text-structure-tst",
+     "title": "Text Structure (TST)",
+     "topics": [
+      {
+       "id": "score-range-28-32",
+       "title": "Score range 28-32",
+       "subtopics": [
+        {
+         "id": "sentence-and-paragraph-functions",
+         "title": "Sentence and paragraph functions: Score range 28-32",
+         "outcomes": [
+          {
+           "code": "TST 601",
+           "text": "Analyze how sentences relate to the whole in complex passages."
+          },
+          {
+           "code": "TST 602",
+           "text": "Infer the function of paragraphs in more demanding passages."
+          }
+         ]
+        },
+        {
+         "id": "overall-structure",
+         "title": "Overall structure: Score range 28-32",
+         "outcomes": [
+          {
+           "code": "TST 603",
+           "text": "Analyze the overall structure of complex passages."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "score-range-33-36",
+       "title": "Score range 33-36",
+       "subtopics": [
+        {
+         "id": "sentence-and-paragraph-functions",
+         "title": "Sentence and paragraph functions: Score range 33-36",
+         "outcomes": [
+          {
+           "code": "TST 701",
+           "text": "Analyze how sentences relate to the whole when the function is subtle or complex."
+          },
+          {
+           "code": "TST 702",
+           "text": "Identify or infer the function of paragraphs in complex passages."
+          }
+         ]
+        },
+        {
+         "id": "overall-structure",
+         "title": "Overall structure: Score range 33-36",
+         "outcomes": [
+          {
+           "code": "TST 703",
+           "text": "Analyze the overall structure of highly complex passages."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "purpose-and-point-of-view-ppv",
+     "title": "Purpose and Point of View (PPV)",
+     "topics": [
+      {
+       "id": "score-range-28-32",
+       "title": "Score range 28-32",
+       "subtopics": [
+        {
+         "id": "author-s-purpose-and-viewpoint",
+         "title": "Author's purpose and viewpoint: Score range 28-32",
+         "outcomes": [
+          {
+           "code": "PPV 601",
+           "text": "Infer a purpose in more demanding passages and how it shapes content and style."
+          }
+         ]
+        },
+        {
+         "id": "point-of-view",
+         "title": "Point of view: Score range 28-32",
+         "outcomes": [
+          {
+           "code": "PPV 602",
+           "text": "Understand point of view in complex passages."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "score-range-33-36",
+       "title": "Score range 33-36",
+       "subtopics": [
+        {
+         "id": "author-s-purpose-and-viewpoint",
+         "title": "Author's purpose and viewpoint: Score range 33-36",
+         "outcomes": [
+          {
+           "code": "PPV 701",
+           "text": "Identify or infer a purpose in complex passages and how it shapes content and style."
+          }
+         ]
+        },
+        {
+         "id": "point-of-view",
+         "title": "Point of view: Score range 33-36",
+         "outcomes": [
+          {
+           "code": "PPV 702",
+           "text": "Understand point of view in highly complex passages."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "arguments-arg",
+     "title": "Arguments (ARG)",
+     "topics": [
+      {
+       "id": "score-range-28-32",
+       "title": "Score range 28-32",
+       "subtopics": [
+        {
+         "id": "reasons-and-support-for-claims",
+         "title": "Reasons and support for claims: Score range 28-32",
+         "outcomes": [
+          {
+           "code": "ARG 601",
+           "text": "Analyze how sentences give reasons for or support a claim in complex passages."
+          }
+         ]
+        },
+        {
+         "id": "central-claim",
+         "title": "Central claim: Score range 28-32",
+         "outcomes": [
+          {
+           "code": "ARG 602",
+           "text": "Infer a central claim in more demanding passages."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "score-range-33-36",
+       "title": "Score range 33-36",
+       "subtopics": [
+        {
+         "id": "reasons-and-support-for-claims",
+         "title": "Reasons and support for claims: Score range 33-36",
+         "outcomes": [
+          {
+           "code": "ARG 701",
+           "text": "Analyze how sentences support a claim when the relationship is subtle or complex."
+          }
+         ]
+        },
+        {
+         "id": "central-claim",
+         "title": "Central claim: Score range 33-36",
+         "outcomes": [
+          {
+           "code": "ARG 702",
+           "text": "Identify or infer a central claim in complex passages."
+          },
+          {
+           "code": "ARG 703",
+           "text": "Identify a clear central claim in highly complex passages."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "multiple-texts-syn",
+     "title": "Multiple Texts (SYN)",
+     "topics": [
+      {
+       "id": "score-range-28-32",
+       "title": "Score range 28-32",
+       "subtopics": [
+        {
+         "id": "comparing-and-combining-two-texts",
+         "title": "Comparing and combining two texts: Score range 28-32",
+         "outcomes": [
+          {
+           "code": "SYN 601",
+           "text": "Draw conclusions using information from multiple parts of two literary narratives."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "score-range-33-36",
+       "title": "Score range 33-36",
+       "subtopics": [
+        {
+         "id": "comparing-and-combining-two-texts",
+         "title": "Comparing and combining two texts: Score range 33-36",
+         "outcomes": [
+          {
+           "code": "SYN 701",
+           "text": "Draw conclusions using information from multiple parts of two informational texts."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "build": {
+  "builtAt": "2026-10-14T09:59:56.079Z",
+  "model": "claude-agent",
+  "usd": 0,
+  "expectedCodes": 121,
+  "coverage": 1,
+  "missingCodes": [],
+  "counts": {
+   "grades": 5,
+   "units": 40,
+   "topics": 48,
+   "subtopics": 74,
+   "outcomes": 121
+  },
+  "warnings": [
+   "unit \"Central Ideas, Themes, and Summaries (IDT)\" (grade 8) has a single outcome",
+   "unit \"Word Meanings and Word Choice (WME)\" (grade 8) has a single outcome",
+   "unit \"Text Structure (TST)\" (grade 8) has a single outcome",
+   "unit \"Purpose and Point of View (PPV)\" (grade 8) has a single outcome",
+   "unit \"Arguments (ARG)\" (grade 8) has a single outcome",
+   "unit \"Multiple Texts (SYN)\" (grade 8) has a single outcome",
+   "unit \"Central Ideas, Themes, and Summaries (IDT)\" (grade 9) has a single outcome",
+   "unit \"Purpose and Point of View (PPV)\" (grade 9) has a single outcome",
+   "unit \"Arguments (ARG)\" (grade 9) has a single outcome",
+   "unit \"Multiple Texts (SYN)\" (grade 9) has a single outcome",
+   "unit \"Multiple Texts (SYN)\" (grade 10) has a single outcome",
+   "unit \"Multiple Texts (SYN)\" (grade 11) has a single outcome"
+  ]
+ }
+}

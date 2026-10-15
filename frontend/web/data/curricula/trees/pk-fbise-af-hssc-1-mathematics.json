@@ -1,0 +1,639 @@
+{
+ "id": "pk-fbise-af-hssc-1-mathematics",
+ "region": "PK",
+ "framework": "FBISE Assessment Framework (National Curriculum of Pakistan 2022-23)",
+ "board": "FBISE",
+ "qualification": "HSSC-I",
+ "subject": "Mathematics",
+ "syllabusCode": null,
+ "gradeSystem": "grade",
+ "source": {
+  "urls": [
+   "https://www.fbise.edu.pk/ModelPaper/2024New/maths/Final_Assessment_Framework_Model_Question_Paper_Mathematics_HSSC-I_.pdf"
+  ],
+  "publisher": "Federal Board of Intermediate and Secondary Education",
+  "licence": "Government publication; structure + our own wording only",
+  "firstExam": "2025"
+ },
+ "grades": [
+  {
+   "grade": "11",
+   "units": [
+    {
+     "id": "domain-a-numbers-and-algebra",
+     "title": "Domain A: Numbers and Algebra",
+     "topics": [
+      {
+       "id": "complex-numbers",
+       "title": "Complex Numbers",
+       "subtopics": [
+        {
+         "id": "complex-number-basics",
+         "title": "Complex number basics",
+         "outcomes": [
+          {
+           "code": "M-11-A-01",
+           "text": "Recall that a complex number is written a + ib, or as the pair (a, b), with i the square root of minus one."
+          },
+          {
+           "code": "M-11-A-02",
+           "text": "Name the real part and the imaginary part of a complex number."
+          },
+          {
+           "code": "M-11-A-03",
+           "text": "State when two complex numbers are equal."
+          },
+          {
+           "code": "M-11-A-04",
+           "text": "Add, subtract, multiply and divide complex numbers."
+          }
+         ]
+        },
+        {
+         "id": "conjugate-and-modulus",
+         "title": "Conjugate and modulus",
+         "outcomes": [
+          {
+           "code": "M-11-A-05",
+           "text": "Define the conjugate of a complex number as a - ib."
+          },
+          {
+           "code": "M-11-A-06",
+           "text": "Define and find the modulus of a complex number, the square root of a squared plus b squared."
+          }
+         ]
+        },
+        {
+         "id": "complex-equations-and-factors",
+         "title": "Complex equations and factors",
+         "outcomes": [
+          {
+           "code": "M-11-A-07",
+           "text": "Solve a pair of linear equations whose coefficients are complex numbers."
+          },
+          {
+           "code": "M-11-A-08",
+           "text": "Write a polynomial as a product of linear factors using complex roots."
+          },
+          {
+           "code": "M-11-A-09",
+           "text": "Solve a quadratic with real coefficients over the complex numbers by completing the square."
+          }
+         ]
+        },
+        {
+         "id": "polar-form-of-complex-numbers",
+         "title": "Polar form of complex numbers",
+         "outcomes": [
+          {
+           "code": "M-11-A-10",
+           "text": "Explain how the polar coordinate system locates a point."
+          },
+          {
+           "code": "M-11-A-11",
+           "text": "Write a complex number in polar form with modulus and argument."
+          },
+          {
+           "code": "M-11-A-12",
+           "text": "Multiply, divide and take powers of complex numbers in polar form."
+          },
+          {
+           "code": "M-11-A-13",
+           "text": "Handle simple equations and inequalities with complex numbers in polar form."
+          }
+         ]
+        },
+        {
+         "id": "complex-numbers-in-real-life",
+         "title": "Complex numbers in real life",
+         "outcomes": [
+          {
+           "code": "M-11-A-14",
+           "text": "Use complex numbers on real problems such as cryptography, waves, circuits and fluid flow."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "matrices-and-determinants",
+       "title": "Matrices and Determinants",
+       "subtopics": [
+        {
+         "id": "matrix-operations",
+         "title": "Matrix operations",
+         "outcomes": [
+          {
+           "code": "M-11-A-15",
+           "text": "Add, subtract and multiply matrices with real or complex entries."
+          }
+         ]
+        },
+        {
+         "id": "determinants",
+         "title": "Determinants",
+         "outcomes": [
+          {
+           "code": "M-11-A-16",
+           "text": "Find a 3 by 3 determinant using cofactors and the properties of determinants."
+          }
+         ]
+        },
+        {
+         "id": "inverse-and-rank-of-a-matrix",
+         "title": "Inverse and rank of a matrix",
+         "outcomes": [
+          {
+           "code": "M-11-A-17",
+           "text": "Use row operations to find the inverse and the rank of a matrix."
+          }
+         ]
+        },
+        {
+         "id": "solving-linear-systems-with-matrices",
+         "title": "Solving linear systems with matrices",
+         "outcomes": [
+          {
+           "code": "M-11-A-18",
+           "text": "Explain consistent and inconsistent linear systems with examples."
+          },
+          {
+           "code": "M-11-A-19",
+           "text": "Solve a 3 by 3 non-homogeneous system by matrix inverse and by Cramer's rule."
+          },
+          {
+           "code": "M-11-A-20",
+           "text": "Solve three homogeneous equations in three unknowns by Gaussian elimination."
+          }
+         ]
+        },
+        {
+         "id": "matrices-in-real-life",
+         "title": "Matrices in real life",
+         "outcomes": [
+          {
+           "code": "M-11-A-21",
+           "text": "Apply matrices to problems such as graphics, encryption, seismic analysis and networks."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "sequences-and-series",
+       "title": "Sequences and Series",
+       "subtopics": [
+        {
+         "id": "arithmetic-and-geometric-sequences",
+         "title": "Arithmetic and geometric sequences",
+         "outcomes": [
+          {
+           "code": "M-11-A-22",
+           "text": "Solve problems on arithmetic sequences and series up to n terms."
+          },
+          {
+           "code": "M-11-A-23",
+           "text": "Solve problems on geometric sequences and series up to n terms."
+          },
+          {
+           "code": "M-11-A-24",
+           "text": "Tell whether a sequence is arithmetic or geometric."
+          }
+         ]
+        },
+        {
+         "id": "harmonic-sequences-and-special-sums",
+         "title": "Harmonic sequences and special sums",
+         "outcomes": [
+          {
+           "code": "M-11-A-25",
+           "text": "Solve problems on harmonic sequences and series up to n terms."
+          },
+          {
+           "code": "M-11-A-26",
+           "text": "Find the sums of the first n natural numbers, their squares and their cubes."
+          }
+         ]
+        },
+        {
+         "id": "arithmetico-geometric-series",
+         "title": "Arithmetico-geometric series",
+         "outcomes": [
+          {
+           "code": "M-11-A-27",
+           "text": "Recognise an arithmetico-geometric sequence, find its general term and its sum to n terms and to infinity using sigma notation."
+          }
+         ]
+        },
+        {
+         "id": "vehicle-leasing",
+         "title": "Vehicle leasing",
+         "outcomes": [
+          {
+           "code": "M-11-A-28",
+           "text": "Identify the parts of a motor vehicle lease: down payment, insurance, charges and monthly instalments."
+          },
+          {
+           "code": "M-11-A-29",
+           "text": "Solve vehicle leasing problems under different conditions."
+          }
+         ]
+        },
+        {
+         "id": "series-in-real-life",
+         "title": "Series in real life",
+         "outcomes": [
+          {
+           "code": "M-11-A-30",
+           "text": "Apply sequences and series to loans, interest, depreciation, investment and other real problems."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "mathematical-induction-and-binomial-theorem",
+       "title": "Mathematical Induction and Binomial Theorem",
+       "subtopics": [
+        {
+         "id": "mathematical-induction",
+         "title": "Mathematical induction",
+         "outcomes": [
+          {
+           "code": "M-11-A-31",
+           "text": "Describe an induction argument: base case, hypothesis and conclusion."
+          },
+          {
+           "code": "M-11-A-32",
+           "text": "Prove statements, identities, divisibility and summation formulae by induction."
+          },
+          {
+           "code": "M-11-A-33",
+           "text": "Judge and communicate a mathematical conclusion clearly in everyday settings."
+          }
+         ]
+        },
+        {
+         "id": "binomial-theorem-expansion",
+         "title": "Binomial theorem expansion",
+         "outcomes": [
+          {
+           "code": "M-11-A-34",
+           "text": "State and use the binomial theorem to expand a binomial raised to a positive integer power."
+          },
+          {
+           "code": "M-11-A-35",
+           "text": "Describe the binomial theorem as the expansion of binomial powers over natural numbers."
+          },
+          {
+           "code": "M-11-A-36",
+           "text": "Read binomial coefficients from Pascal's triangle."
+          },
+          {
+           "code": "M-11-A-37",
+           "text": "Expand with the binomial theorem and simplify the result."
+          }
+         ]
+        },
+        {
+         "id": "applications-of-the-binomial-theorem",
+         "title": "Applications of the binomial theorem",
+         "outcomes": [
+          {
+           "code": "M-11-A-38",
+           "text": "Find approximate values using the binomial theorem."
+          },
+          {
+           "code": "M-11-A-39",
+           "text": "Find remainders of large powers using the binomial theorem."
+          },
+          {
+           "code": "M-11-A-40",
+           "text": "Use the binomial theorem for last digits, divisibility and comparing large numbers."
+          },
+          {
+           "code": "M-11-A-41",
+           "text": "Apply induction and the binomial theorem to real problems such as puzzles and forecasting."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "division-of-polynomials",
+       "title": "Division of Polynomials",
+       "subtopics": [
+        {
+         "id": "polynomial-division-and-remainder-theorem",
+         "title": "Polynomial division and remainder theorem",
+         "outcomes": [
+          {
+           "code": "M-11-A-42",
+           "text": "Divide a polynomial of degree up to 4 by a linear or quadratic polynomial to get quotient and remainder."
+          },
+          {
+           "code": "M-11-A-43",
+           "text": "State and use the remainder theorem."
+          }
+         ]
+        },
+        {
+         "id": "factor-theorem",
+         "title": "Factor theorem",
+         "outcomes": [
+          {
+           "code": "M-11-A-44",
+           "text": "Use the factor theorem to factorise a cubic polynomial."
+          },
+          {
+           "code": "M-11-A-45",
+           "text": "Apply the remainder and factor theorems to real problems such as regression and signal processing."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "domain-b-geometry",
+     "title": "Domain B: Geometry",
+     "topics": [
+      {
+       "id": "vectors-in-space",
+       "title": "Vectors in Space",
+       "subtopics": [
+        {
+         "id": "vectors-in-space-basics",
+         "title": "Vectors in space basics",
+         "outcomes": [
+          {
+           "code": "M-11-B-01",
+           "text": "Recognise the rectangular coordinate system in space."
+          },
+          {
+           "code": "M-11-B-02",
+           "text": "Define unit vectors i, j and k and write the components of a vector."
+          },
+          {
+           "code": "M-11-B-03",
+           "text": "Find the magnitude of a vector."
+          },
+          {
+           "code": "M-11-B-04",
+           "text": "Carry plane vector operations over to space."
+          },
+          {
+           "code": "M-11-B-05",
+           "text": "Prove the commutative and associative laws, the null vector and the additive inverse for vector addition."
+          }
+         ]
+        },
+        {
+         "id": "dot-product",
+         "title": "Dot product",
+         "outcomes": [
+          {
+           "code": "M-11-B-06",
+           "text": "Explain the dot product and its geometric meaning."
+          },
+          {
+           "code": "M-11-B-07",
+           "text": "Write the dot product in terms of components."
+          },
+          {
+           "code": "M-11-B-08",
+           "text": "State the condition for two vectors to be orthogonal."
+          },
+          {
+           "code": "M-11-B-09",
+           "text": "Use the dot product to find the angle between two vectors."
+          }
+         ]
+        },
+        {
+         "id": "projection-and-work",
+         "title": "Projection and work",
+         "outcomes": [
+          {
+           "code": "M-11-B-10",
+           "text": "Find the projection of one vector along another."
+          },
+          {
+           "code": "M-11-B-11",
+           "text": "Find the work done by a constant force along a given vector."
+          },
+          {
+           "code": "M-11-B-12",
+           "text": "Solve everyday problems with the dot product."
+          }
+         ]
+        },
+        {
+         "id": "cross-product",
+         "title": "Cross product",
+         "outcomes": [
+          {
+           "code": "M-11-B-13",
+           "text": "Explain the cross product and its geometric meaning."
+          },
+          {
+           "code": "M-11-B-14",
+           "text": "Use the cross product to find the angle between two vectors."
+          },
+          {
+           "code": "M-11-B-15",
+           "text": "Solve everyday problems with the cross and dot products."
+          }
+         ]
+        },
+        {
+         "id": "scalar-triple-product",
+         "title": "Scalar triple product",
+         "outcomes": [
+          {
+           "code": "M-11-B-16",
+           "text": "Describe the scalar triple product."
+          },
+          {
+           "code": "M-11-B-17",
+           "text": "Write the scalar triple product as a determinant of components."
+          },
+          {
+           "code": "M-11-B-18",
+           "text": "Prove the triple product identities and that dot and cross can be swapped."
+          }
+         ]
+        },
+        {
+         "id": "volume-and-coplanar-vectors",
+         "title": "Volume and coplanar vectors",
+         "outcomes": [
+          {
+           "code": "M-11-B-19",
+           "text": "Find the volume of a parallelepiped or tetrahedron from three vectors."
+          },
+          {
+           "code": "M-11-B-20",
+           "text": "Define coplanar vectors and state the condition for three vectors to be coplanar."
+          },
+          {
+           "code": "M-11-B-21",
+           "text": "Apply vectors in space to navigation, graphics and engineering problems."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "fundamental-law-of-trigonometry",
+       "title": "Fundamental Law of Trigonometry",
+       "subtopics": [
+        {
+         "id": "fundamental-law-of-trigonometry",
+         "title": "Fundamental law of trigonometry",
+         "outcomes": [
+          {
+           "code": "M-11-B-22",
+           "text": "Establish the fundamental law cos(a - b) = cos a cos b + sin a sin b."
+          }
+         ]
+        },
+        {
+         "id": "allied-double-and-half-angles",
+         "title": "Allied, double and half angles",
+         "outcomes": [
+          {
+           "code": "M-11-B-23",
+           "text": "Derive allied-angle ratios and double, half and triple angle identities from the fundamental law."
+          }
+         ]
+        },
+        {
+         "id": "sum-and-product-formulas",
+         "title": "Sum and product formulas",
+         "outcomes": [
+          {
+           "code": "M-11-B-24",
+           "text": "Change products of sines and cosines into sums or differences."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "trigonometric-functions",
+       "title": "Trigonometric Functions",
+       "subtopics": [
+        {
+         "id": "domain-range-even-and-odd",
+         "title": "Domain, range, even and odd",
+         "outcomes": [
+          {
+           "code": "M-11-B-25",
+           "text": "Find the domain and range of trigonometric functions."
+          },
+          {
+           "code": "M-11-B-26",
+           "text": "Tell even and odd trigonometric functions apart and find their periods."
+          }
+         ]
+        },
+        {
+         "id": "maximum-and-minimum-values",
+         "title": "Maximum and minimum values",
+         "outcomes": [
+          {
+           "code": "M-11-B-27",
+           "text": "Find the maximum and minimum of functions such as a + b sin(c theta + d) and their reciprocals."
+          }
+         ]
+        },
+        {
+         "id": "graphs-of-trigonometric-functions",
+         "title": "Graphs of trigonometric functions",
+         "outcomes": [
+          {
+           "code": "M-11-B-28",
+           "text": "Graph and analyse sine, cosine and tangent to solve problems."
+          },
+          {
+           "code": "M-11-B-29",
+           "text": "Explain the properties of the graphs of sine, cosine and tangent."
+          }
+         ]
+        },
+        {
+         "id": "trigonometry-in-real-life",
+         "title": "Trigonometry in real life",
+         "outcomes": [
+          {
+           "code": "M-11-B-30",
+           "text": "Apply trigonometric functions, identities, graphs and extreme values to real problems such as heights, navigation and periodic motion."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "domain-c-information-handling",
+     "title": "Domain C: Information Handling",
+     "topics": [
+      {
+       "id": "permutation-and-combination",
+       "title": "Permutation and Combination",
+       "subtopics": [
+        {
+         "id": "counting-principle-and-permutations",
+         "title": "Counting principle and permutations",
+         "outcomes": [
+          {
+           "code": "M-11-C-01",
+           "text": "Explain and use the fundamental counting principle."
+          },
+          {
+           "code": "M-11-C-02",
+           "text": "Explain and solve problems on permutations."
+          }
+         ]
+        },
+        {
+         "id": "combinations",
+         "title": "Combinations",
+         "outcomes": [
+          {
+           "code": "M-11-C-03",
+           "text": "Explain and solve problems on combinations."
+          },
+          {
+           "code": "M-11-C-04",
+           "text": "Apply permutations and combinations to real problems such as lotteries, DNA sequences and playlists."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "build": {
+  "builtAt": "2026-10-14T08:04:53.099Z",
+  "model": "claude-agent",
+  "usd": 0,
+  "expectedCodes": 75,
+  "coverage": 1,
+  "missingCodes": [],
+  "counts": {
+   "grades": 1,
+   "units": 3,
+   "topics": 9,
+   "subtopics": 35,
+   "outcomes": 79
+  },
+  "warnings": []
+ }
+}

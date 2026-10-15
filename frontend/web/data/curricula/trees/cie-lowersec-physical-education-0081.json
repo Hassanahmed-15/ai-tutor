@@ -1,0 +1,173 @@
+{
+ "id": "cie-lowersec-physical-education-0081",
+ "region": "INTL",
+ "framework": "Cambridge Lower Secondary Physical Education curriculum framework (0081)",
+ "board": "Cambridge",
+ "qualification": "Lower Secondary",
+ "subject": "Physical Education",
+ "syllabusCode": "0081",
+ "gradeSystem": "stage",
+ "source": {
+  "urls": [
+   "https://www.cambridgeinternational.org/Images/554154-cambridge-lower-secondary-curriculum-outline-physical-education.pdf",
+   "https://www.cambridgeinternational.org/programmes-and-qualifications/cambridge-lower-secondary/curriculum/physical-education/"
+  ],
+  "publisher": "Cambridge University Press & Assessment (Cambridge International Education)",
+  "licence": "© Cambridge University Press & Assessment; structure + our own wording only",
+  "firstExam": null
+ },
+ "grades": [
+  {
+   "grade": "all",
+   "units": [
+    {
+     "id": "physical-education-strands",
+     "title": "Physical Education strands",
+     "topics": [
+      {
+       "id": "moving-well",
+       "title": "Moving well",
+       "subtopics": [
+        {
+         "id": "movement-skills",
+         "title": "Movement skills",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Move with growing control, fluency and variety across games, gymnastics, dance and athletics."
+          }
+         ]
+        },
+        {
+         "id": "complex-sequences",
+         "title": "Complex sequences",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Perform, combine and apply movement skills in complex sequences, revisited in different activities."
+          }
+         ]
+        },
+        {
+         "id": "fitness",
+         "title": "Fitness",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Improve coordination, flexibility, speed, stamina and strength through varied activities."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "understanding-movement",
+       "title": "Understanding movement",
+       "subtopics": [
+        {
+         "id": "rules-and-tactics",
+         "title": "Rules and tactics",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Understand rules, tactics and strategies and use them in games and team sports."
+          }
+         ]
+        },
+        {
+         "id": "healthy-active-lifestyle",
+         "title": "Healthy active lifestyle",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain how physical education contributes to a healthy, active lifestyle."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "moving-creatively",
+       "title": "Moving creatively",
+       "subtopics": [
+        {
+         "id": "compositional-ideas",
+         "title": "Compositional ideas",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Use compositional ideas to create and refine movement in gymnastics and dance."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "taking-part",
+       "title": "Taking part",
+       "subtopics": [
+        {
+         "id": "safe-respectful-participation",
+         "title": "Safe respectful participation",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Take part as individuals and team members in respectful, responsible and safe ways."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "taking-responsibility",
+       "title": "Taking responsibility",
+       "subtopics": [
+        {
+         "id": "leadership-and-fair-play",
+         "title": "Leadership and fair play",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Show leadership, collaboration, turn-taking and fair play within activities."
+          }
+         ]
+        },
+        {
+         "id": "reflecting-on-performance",
+         "title": "Reflecting on performance",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Reflect on what went well and how to improve own performance, as an independent critical mover."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "build": {
+  "builtAt": "2026-10-14T09:29:53.861Z",
+  "model": "claude-agent",
+  "usd": 0,
+  "expectedCodes": null,
+  "coverage": null,
+  "missingCodes": [],
+  "counts": {
+   "grades": 1,
+   "units": 1,
+   "topics": 5,
+   "subtopics": 9,
+   "outcomes": 9
+  },
+  "warnings": [
+   "grade 7 has no content",
+   "grade 8 has no content",
+   "grade 9 has no content",
+   "unexpected grade label \"all\""
+  ]
+ }
+}

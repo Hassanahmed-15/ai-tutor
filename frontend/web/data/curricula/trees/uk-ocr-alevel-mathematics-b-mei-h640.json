@@ -1,0 +1,1663 @@
+{
+ "id": "uk-ocr-alevel-mathematics-b-mei-h640",
+ "region": "UK",
+ "framework": "OCR A Level",
+ "board": "OCR",
+ "qualification": "A Level",
+ "subject": "Mathematics B (MEI)",
+ "syllabusCode": "H640",
+ "gradeSystem": "year",
+ "source": {
+  "urls": [
+   "https://www.ocr.org.uk/Images/308740-specification-accredited-a-level-gce-mathematics-b-mei-h640.pdf"
+  ],
+  "publisher": "OCR (Oxford Cambridge and RSA)",
+  "licence": "Exam board specification, (c) OCR; structure + our own wording only",
+  "firstExam": "2018"
+ },
+ "grades": [
+  {
+   "grade": "all",
+   "units": [
+    {
+     "id": "pure-mathematics",
+     "title": "Pure Mathematics",
+     "topics": [
+      {
+       "id": "proof",
+       "title": "Proof",
+       "subtopics": [
+        {
+         "id": "methods-of-proof",
+         "title": "Methods of proof",
+         "outcomes": [
+          {
+           "code": "Mp1",
+           "text": "Understand and use the structure of mathematical proof, including proof by deduction and by exhaustion."
+          },
+          {
+           "code": "Mp2",
+           "text": "Disprove a conjecture using a counter example."
+          }
+         ]
+        },
+        {
+         "id": "proof-by-contradiction",
+         "title": "Proof by contradiction",
+         "outcomes": [
+          {
+           "code": "Mp3",
+           "text": "Use proof by contradiction, such as the irrationality of root 2 and the infinity of primes, and apply it to unfamiliar proofs."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "algebra",
+       "title": "Algebra",
+       "subtopics": [
+        {
+         "id": "algebraic-language-and-quadratics",
+         "title": "Algebraic language and quadratics",
+         "outcomes": [
+          {
+           "code": "Ma1",
+           "text": "Know and use the vocabulary and notation of algebra at this level."
+          },
+          {
+           "code": "Ma2",
+           "text": "Solve quadratic equations by factorising, completing the square, the formula and graphs, including quadratics in a function of the unknown."
+          },
+          {
+           "code": null,
+           "text": "Find the discriminant of a quadratic and use it to tell whether roots are distinct, repeated or absent."
+          }
+         ]
+        },
+        {
+         "id": "simultaneous-equations",
+         "title": "Simultaneous equations",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Solve two linear simultaneous equations by elimination and substitution."
+          },
+          {
+           "code": null,
+           "text": "Solve simultaneous equations where one is linear and one is quadratic."
+          },
+          {
+           "code": null,
+           "text": "Explain how intersections of two graphs relate to solutions of equations."
+          }
+         ]
+        },
+        {
+         "id": "inequalities",
+         "title": "Inequalities",
+         "outcomes": [
+          {
+           "code": "Ma7",
+           "text": "Solve linear inequalities and show them graphically."
+          },
+          {
+           "code": null,
+           "text": "Solve quadratic inequalities algebraically and graphically and show regions defined by inequalities."
+          },
+          {
+           "code": null,
+           "text": "Write inequality solutions using 'and', 'or' or set notation."
+          }
+         ]
+        },
+        {
+         "id": "surds-and-indices",
+         "title": "Surds and indices",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Use and manipulate surds."
+          },
+          {
+           "code": null,
+           "text": "Rationalise the denominator of a surd."
+          },
+          {
+           "code": null,
+           "text": "Use the laws of indices for all rational exponents."
+          },
+          {
+           "code": null,
+           "text": "Use negative, fractional and zero indices."
+          }
+         ]
+        },
+        {
+         "id": "proportion",
+         "title": "Proportion",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Use proportional relationships and their graphs, including direct and inverse proportion to powers or roots."
+          }
+         ]
+        },
+        {
+         "id": "partial-fractions-and-rational-expressions",
+         "title": "Partial fractions and rational expressions",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Express algebraic fractions as partial fractions."
+          },
+          {
+           "code": null,
+           "text": "Simplify rational expressions by factorising, cancelling and simple algebraic division."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "functions",
+       "title": "Functions",
+       "subtopics": [
+        {
+         "id": "polynomials",
+         "title": "Polynomials",
+         "outcomes": [
+          {
+           "code": "Mf1",
+           "text": "Add, subtract, multiply and divide polynomials."
+          },
+          {
+           "code": null,
+           "text": "Use the factor theorem to factorise polynomials and find their zeros."
+          }
+         ]
+        },
+        {
+         "id": "functions-and-their-language",
+         "title": "Functions and their language",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Understand the definition of a function, domain and range, and the language of mappings."
+          },
+          {
+           "code": null,
+           "text": "Understand and use composite functions, including their domains."
+          },
+          {
+           "code": null,
+           "text": "Find and use inverse functions and their graphs, and know when an inverse exists."
+          }
+         ]
+        },
+        {
+         "id": "modulus-function",
+         "title": "Modulus function",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Use the modulus function and graph the modulus of linear functions."
+          },
+          {
+           "code": null,
+           "text": "Solve simple inequalities containing a modulus sign."
+          }
+         ]
+        },
+        {
+         "id": "functions-in-modelling",
+         "title": "Functions in modelling",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Use functions in modelling, including limitations and refinements."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "graphs",
+       "title": "Graphs",
+       "subtopics": [
+        {
+         "id": "graphs-and-curve-sketching",
+         "title": "Graphs and curve sketching",
+         "outcomes": [
+          {
+           "code": "MC1",
+           "text": "Understand and use graphs of functions."
+          },
+          {
+           "code": null,
+           "text": "Find where a curve meets the coordinate axes and relate this to equation solutions."
+          },
+          {
+           "code": null,
+           "text": "Complete the square to find a quadratic's line of symmetry and turning point and sketch the parabola."
+          },
+          {
+           "code": null,
+           "text": "Sketch and interpret graphs of simple functions including polynomials with repeated roots."
+          },
+          {
+           "code": null,
+           "text": "Use stationary points when sketching curves."
+          },
+          {
+           "code": null,
+           "text": "Sketch the graphs of y = a/x and y = a/x squared, with asymptotes, as proportional relationships."
+          }
+         ]
+        },
+        {
+         "id": "transformations-of-graphs",
+         "title": "Transformations of graphs",
+         "outcomes": [
+          {
+           "code": "MC7",
+           "text": "Sketch y = af(x), f(x)+a, f(x+a) and f(ax) from y = f(x), and describe each transformation."
+          },
+          {
+           "code": null,
+           "text": "Combine transformations, form the new equation, sketch it, and recognise the transformations applied."
+          },
+          {
+           "code": null,
+           "text": "Use stationary points of inflection when sketching curves."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "coordinate-geometry",
+       "title": "Coordinate Geometry",
+       "subtopics": [
+        {
+         "id": "straight-lines",
+         "title": "Straight lines",
+         "outcomes": [
+          {
+           "code": "Mg1",
+           "text": "Use the gradient relationships for parallel and perpendicular lines."
+          },
+          {
+           "code": null,
+           "text": "Calculate the distance between two points."
+          },
+          {
+           "code": null,
+           "text": "Find the midpoint of a line segment."
+          },
+          {
+           "code": null,
+           "text": "Form the equation of a straight line in different forms."
+          },
+          {
+           "code": null,
+           "text": "Draw a line from its equation using gradient and intercept, intercepts or points."
+          },
+          {
+           "code": null,
+           "text": "Find the intersection of two lines by simultaneous equations."
+          },
+          {
+           "code": null,
+           "text": "Use straight line models and consider their assumptions."
+          }
+         ]
+        },
+        {
+         "id": "circles-and-intersections",
+         "title": "Circles and intersections",
+         "outcomes": [
+          {
+           "code": "Mg8",
+           "text": "Find intersection points of a line and a curve, or two curves."
+          },
+          {
+           "code": null,
+           "text": "Find intersection points of a line and a circle."
+          },
+          {
+           "code": null,
+           "text": "Use the circle equation (x-a)^2+(y-b)^2=r^2, completing the square to find centre and radius."
+          },
+          {
+           "code": null,
+           "text": "Use circle properties: angle in a semicircle, chord bisector and radius perpendicular to tangent."
+          }
+         ]
+        },
+        {
+         "id": "parametric-equations",
+         "title": "Parametric equations",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Understand parameters and parametric equations."
+          },
+          {
+           "code": null,
+           "text": "Convert between cartesian and parametric forms."
+          },
+          {
+           "code": null,
+           "text": "Use the parametric form of a circle."
+          },
+          {
+           "code": null,
+           "text": "Find the gradient of a parametric curve by differentiation."
+          },
+          {
+           "code": null,
+           "text": "Use parametric equations in modelling, such as kinematics and projectiles."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "sequences-and-series",
+       "title": "Sequences and Series",
+       "subtopics": [
+        {
+         "id": "binomial-expansion-for-positive-powers",
+         "title": "Binomial expansion for positive powers",
+         "outcomes": [
+          {
+           "code": "Ms1",
+           "text": "Expand (a+bx)^n for positive integer n."
+          },
+          {
+           "code": null,
+           "text": "Use n! and nCr notation and know nCr counts selections of r objects from n."
+          }
+         ]
+        },
+        {
+         "id": "binomial-expansion-for-rational-powers",
+         "title": "Binomial expansion for rational powers",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Expand (1+x)^n for any rational n when |x|<1."
+          },
+          {
+           "code": null,
+           "text": "Rewrite (a+bx)^n in the form a^n(1+bx/a)^n and expand it."
+          },
+          {
+           "code": null,
+           "text": "Use binomial expansions with rational n to approximate (a+bx)^n."
+          }
+         ]
+        },
+        {
+         "id": "sequences",
+         "title": "Sequences",
+         "outcomes": [
+          {
+           "code": "Ms6",
+           "text": "Know what a sequence is and the meaning of finite and infinite."
+          },
+          {
+           "code": null,
+           "text": "Generate a sequence from a kth-term formula or a recurrence relation."
+          },
+          {
+           "code": null,
+           "text": "Know that a series is the sum of consecutive terms of a sequence."
+          },
+          {
+           "code": null,
+           "text": "Understand and use sigma notation."
+          },
+          {
+           "code": null,
+           "text": "Recognise increasing, decreasing and periodic sequences."
+          },
+          {
+           "code": null,
+           "text": "Know the difference between convergent and divergent sequences."
+          }
+         ]
+        },
+        {
+         "id": "arithmetic-series",
+         "title": "Arithmetic series",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Understand and use arithmetic sequences and series."
+          },
+          {
+           "code": null,
+           "text": "Use the formulae for the nth term and sum to n terms of arithmetic series."
+          }
+         ]
+        },
+        {
+         "id": "geometric-series",
+         "title": "Geometric series",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Understand and use geometric sequences and series."
+          },
+          {
+           "code": null,
+           "text": "Use the formulae for the nth term and sum to n terms of geometric series."
+          },
+          {
+           "code": null,
+           "text": "Know when a geometric series converges and find its sum to infinity."
+          },
+          {
+           "code": null,
+           "text": "Use sequences and series in modelling."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "trigonometry",
+       "title": "Trigonometry",
+       "subtopics": [
+        {
+         "id": "trigonometric-functions-and-graphs",
+         "title": "Trigonometric functions and graphs",
+         "outcomes": [
+          {
+           "code": "Mt1",
+           "text": "Use the definitions of sin, cos and tan for any angle via the unit circle."
+          },
+          {
+           "code": null,
+           "text": "Know the graphs of sin, cos and tan, their symmetries and periods, and transformations of them."
+          }
+         ]
+        },
+        {
+         "id": "triangles",
+         "title": "Triangles",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Use area of a triangle = half ab sin C."
+          },
+          {
+           "code": null,
+           "text": "Use the sine and cosine rules, including bearings."
+          }
+         ]
+        },
+        {
+         "id": "basic-identities-and-equations",
+         "title": "Basic identities and equations",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Use tan θ = sin θ / cos θ."
+          },
+          {
+           "code": null,
+           "text": "Use sin squared plus cos squared equals 1."
+          },
+          {
+           "code": null,
+           "text": "Solve simple trigonometric equations in given intervals and know principal values of inverse functions."
+          }
+         ]
+        },
+        {
+         "id": "radians",
+         "title": "Radians",
+         "outcomes": [
+          {
+           "code": "Mt8",
+           "text": "Know exact values of sin, cos and tan for multiples of pi/6, pi/4 and pi/3 and in radians."
+          },
+          {
+           "code": null,
+           "text": "Understand arcsin, arccos and arctan, their graphs, domains and ranges."
+          },
+          {
+           "code": null,
+           "text": "Define the radian and convert between radians and degrees."
+          },
+          {
+           "code": null,
+           "text": "Find arc length and sector area with radian angles."
+          },
+          {
+           "code": null,
+           "text": "Use small angle approximations for sine, cosine and tangent."
+          }
+         ]
+        },
+        {
+         "id": "secant-cosecant-and-cotangent",
+         "title": "Secant, cosecant and cotangent",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Use the definitions of sec, cosec and cot, including where they are undefined."
+          },
+          {
+           "code": null,
+           "text": "Relate the graphs of sin, cos, tan, cosec, sec and cot, including domains and ranges."
+          },
+          {
+           "code": null,
+           "text": "Use tan squared + 1 = sec squared and cot squared + 1 = cosec squared."
+          }
+         ]
+        },
+        {
+         "id": "compound-and-double-angle-formulae",
+         "title": "Compound and double angle formulae",
+         "outcomes": [
+          {
+           "code": "Mt16",
+           "text": "Use identities for sin, cos and tan of (A plus or minus B)."
+          },
+          {
+           "code": null,
+           "text": "Use identities for sin 2θ, cos 2θ and tan 2θ."
+          },
+          {
+           "code": null,
+           "text": "Write a cos θ plus or minus b sin θ as R sin(θ ± α) or R cos(θ ± α) and use it."
+          }
+         ]
+        },
+        {
+         "id": "trigonometric-equations-proof-and-problems",
+         "title": "Trigonometric equations, proof and problems",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Use trigonometric identities and definitions to solve equations."
+          },
+          {
+           "code": null,
+           "text": "Construct proofs involving trigonometric functions and identities."
+          },
+          {
+           "code": null,
+           "text": "Use trigonometric functions to solve contextual problems involving vectors, kinematics and forces."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "exponentials-and-logarithms",
+       "title": "Exponentials and Logarithms",
+       "subtopics": [
+        {
+         "id": "logarithms-and-their-laws",
+         "title": "Logarithms and their laws",
+         "outcomes": [
+          {
+           "code": "ME1",
+           "text": "Use the function y = a^x and its graph."
+          },
+          {
+           "code": null,
+           "text": "Convert between index and logarithmic form."
+          },
+          {
+           "code": null,
+           "text": "Understand a logarithm as the inverse of an exponential and sketch both graphs."
+          },
+          {
+           "code": null,
+           "text": "Apply the laws of logarithms, including taking logs of both sides of an equation."
+          },
+          {
+           "code": null,
+           "text": "Know that log base a of a is 1 and log of 1 is 0."
+          }
+         ]
+        },
+        {
+         "id": "using-logarithms",
+         "title": "Using logarithms",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Solve equations of the form a^x = b."
+          },
+          {
+           "code": null,
+           "text": "Reduce y = ax^n and y = ab^x to linear form and estimate parameters from a graph."
+          }
+         ]
+        },
+        {
+         "id": "the-exponential-function-and-natural-logs",
+         "title": "The exponential function and natural logs",
+         "outcomes": [
+          {
+           "code": "ME8",
+           "text": "Use the function y = e^x and its graph."
+          },
+          {
+           "code": null,
+           "text": "Know the gradient of e^kx is k e^kx and why exponentials model many situations."
+          },
+          {
+           "code": null,
+           "text": "Use ln x and its graph, and its inverse relationship with e^x."
+          }
+         ]
+        },
+        {
+         "id": "exponential-growth-and-decay",
+         "title": "Exponential growth and decay",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Solve growth and decay problems and consider limitations and refinements of exponential models."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "calculus",
+       "title": "Calculus",
+       "subtopics": [
+        {
+         "id": "gradient-and-the-derivative",
+         "title": "Gradient and the derivative",
+         "outcomes": [
+          {
+           "code": "Mc1",
+           "text": "Know the gradient of a curve at a point is the gradient of its tangent."
+          },
+          {
+           "code": "Mc2",
+           "text": "Know the tangent gradient is the limit of chord gradients as P approaches A."
+          },
+          {
+           "code": "Mc3",
+           "text": "Understand the derivative as the gradient function and rate of change."
+          },
+          {
+           "code": null,
+           "text": "Sketch the gradient function from a given curve."
+          }
+         ]
+        },
+        {
+         "id": "differentiating-powers",
+         "title": "Differentiating powers",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Differentiate kx^n for rational n, including sums and differences."
+          }
+         ]
+        },
+        {
+         "id": "applications-of-differentiation",
+         "title": "Applications of differentiation",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Use the second derivative as the rate of change of gradient."
+          },
+          {
+           "code": null,
+           "text": "Find and classify stationary points as maxima or minima."
+          },
+          {
+           "code": null,
+           "text": "Identify where a function is increasing or decreasing."
+          },
+          {
+           "code": null,
+           "text": "Find the equation of the tangent and normal at a point on a curve."
+          }
+         ]
+        },
+        {
+         "id": "differentiating-exponentials-and-trig-functions",
+         "title": "Differentiating exponentials and trig functions",
+         "outcomes": [
+          {
+           "code": "Mc10",
+           "text": "Differentiate e^kx, a^kx and ln x with sums, differences and multiples."
+          },
+          {
+           "code": null,
+           "text": "Differentiate sin kx, cos kx and tan kx, with x in radians."
+          }
+         ]
+        },
+        {
+         "id": "product-quotient-and-chain-rules",
+         "title": "Product, quotient and chain rules",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Differentiate a product using the product rule."
+          },
+          {
+           "code": null,
+           "text": "Differentiate a quotient using the quotient rule."
+          },
+          {
+           "code": null,
+           "text": "Differentiate composite functions using the chain rule."
+          },
+          {
+           "code": null,
+           "text": "Find rates of change with the chain rule, including connected rates and inverse functions."
+          }
+         ]
+        },
+        {
+         "id": "implicit-differentiation",
+         "title": "Implicit differentiation",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Differentiate a function or relation defined implicitly."
+          }
+         ]
+        },
+        {
+         "id": "concavity-and-points-of-inflection",
+         "title": "Concavity and points of inflection",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain concave upwards and downwards sections using the sign of the second derivative."
+          },
+          {
+           "code": null,
+           "text": "Find and classify stationary and non-stationary points of inflection using the second derivative."
+          }
+         ]
+        },
+        {
+         "id": "integration-as-reverse-differentiation",
+         "title": "Integration as reverse differentiation",
+         "outcomes": [
+          {
+           "code": "Mc19",
+           "text": "Know integration reverses differentiation, the Fundamental Theorem of Calculus."
+          },
+          {
+           "code": null,
+           "text": "Integrate kx^n for n not equal to -1, including sums and differences."
+          },
+          {
+           "code": null,
+           "text": "Find a constant of integration from given information."
+          }
+         ]
+        },
+        {
+         "id": "area-under-a-curve",
+         "title": "Area under a curve",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Distinguish indefinite and definite integrals and evaluate definite integrals."
+          },
+          {
+           "code": null,
+           "text": "Use integration to find the area between a graph and the x-axis, including regions above and below it."
+          },
+          {
+           "code": null,
+           "text": "Understand integration as the limit of a sum."
+          },
+          {
+           "code": null,
+           "text": "Use integration to find the area between two curves or between a curve and the y-axis."
+          }
+         ]
+        },
+        {
+         "id": "integrating-standard-functions",
+         "title": "Integrating standard functions",
+         "outcomes": [
+          {
+           "code": "Mc24",
+           "text": "Integrate e^kx, 1/x, sin kx and cos kx with sums, differences and multiples."
+          }
+         ]
+        },
+        {
+         "id": "integration-by-substitution",
+         "title": "Integration by substitution",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Integrate by substitution where it reverses the chain rule."
+          },
+          {
+           "code": null,
+           "text": "Integrate by substitution in other simple cases, choosing a suitable substitution."
+          }
+         ]
+        },
+        {
+         "id": "integration-by-parts-and-partial-fractions",
+         "title": "Integration by parts and partial fractions",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Integrate by parts in simple cases, including ln x and repeated use."
+          },
+          {
+           "code": null,
+           "text": "Integrate using partial fractions with linear denominators."
+          }
+         ]
+        },
+        {
+         "id": "differential-equations",
+         "title": "Differential equations",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Formulate first order differential equations from information about rates of change."
+          },
+          {
+           "code": null,
+           "text": "Find general or particular solutions of first order differential equations by separating variables."
+          },
+          {
+           "code": null,
+           "text": "Interpret a differential equation solution in context and identify its limitations."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "numerical-methods",
+       "title": "Numerical Methods",
+       "subtopics": [
+        {
+         "id": "locating-roots",
+         "title": "Locating roots",
+         "outcomes": [
+          {
+           "code": "Me1",
+           "text": "Locate roots of f(x)=0 by sign changes in an interval."
+          },
+          {
+           "code": null,
+           "text": "Recognise when change of sign methods fail."
+          }
+         ]
+        },
+        {
+         "id": "iterative-methods",
+         "title": "Iterative methods",
+         "outcomes": [
+          {
+           "code": "Me3",
+           "text": "Carry out fixed point iteration and draw staircase and cobweb diagrams."
+          },
+          {
+           "code": "Me4",
+           "text": "Use the Newton-Raphson method and represent it on a graph."
+          },
+          {
+           "code": null,
+           "text": "Explain that iterations may not converge and show failures graphically."
+          }
+         ]
+        },
+        {
+         "id": "numerical-integration",
+         "title": "Numerical integration",
+         "outcomes": [
+          {
+           "code": "Mc34",
+           "text": "Approximate a definite integral by the trapezium rule and judge over- or under-estimate."
+          },
+          {
+           "code": null,
+           "text": "Use rectangles to find upper and lower bounds on area under a curve."
+          }
+         ]
+        },
+        {
+         "id": "numerical-methods-in-context",
+         "title": "Numerical methods in context",
+         "outcomes": [
+          {
+           "code": "Me6",
+           "text": "Use numerical methods to solve problems in context."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "vectors",
+       "title": "Vectors",
+       "subtopics": [
+        {
+         "id": "vectors-in-two-dimensions",
+         "title": "Vectors in two dimensions",
+         "outcomes": [
+          {
+           "code": "Mv1",
+           "text": "Understand the language of 2D vectors: scalar, magnitude, direction, position and unit vectors."
+          },
+          {
+           "code": "Mv2",
+           "text": "Add, subtract and scale vectors by diagram or algebra and express a vector as a combination of others."
+          },
+          {
+           "code": null,
+           "text": "Find the magnitude and direction of a vector and convert between component and magnitude-direction forms."
+          }
+         ]
+        },
+        {
+         "id": "position-vectors-and-problems",
+         "title": "Position vectors and problems",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Use position vectors and interpret components as coordinates."
+          },
+          {
+           "code": null,
+           "text": "Calculate the distance between points given by position vectors."
+          },
+          {
+           "code": "Mv6",
+           "text": "Use vectors to solve problems in pure maths and context, including resultant forces."
+          }
+         ]
+        },
+        {
+         "id": "vectors-in-three-dimensions",
+         "title": "Vectors in three dimensions",
+         "outcomes": [
+          {
+           "code": "Mv7",
+           "text": "Extend vector language and methods to three dimensions with i, j, k."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "statistics",
+     "title": "Statistics",
+     "topics": [
+      {
+       "id": "sampling",
+       "title": "Sampling",
+       "subtopics": [
+        {
+         "id": "population-and-sample",
+         "title": "Population and sample",
+         "outcomes": [
+          {
+           "code": "Mp21",
+           "text": "Understand and use the terms population and sample."
+          },
+          {
+           "code": null,
+           "text": "Use samples to make informal inferences about a population, recognising that different samples may differ."
+          }
+         ]
+        },
+        {
+         "id": "sampling-techniques",
+         "title": "Sampling techniques",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Understand and use random sampling."
+          },
+          {
+           "code": null,
+           "text": "Use sampling techniques: opportunity, systematic, stratified, quota, cluster and self-selected."
+          },
+          {
+           "code": null,
+           "text": "Select or evaluate sampling techniques, recognising bias and practicalities."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "data-presentation-and-interpretation",
+       "title": "Data Presentation and Interpretation",
+       "subtopics": [
+        {
+         "id": "single-variable-data-diagrams",
+         "title": "Single-variable data diagrams",
+         "outcomes": [
+          {
+           "code": "MD1",
+           "text": "Recognise categorical, discrete, continuous and ranked data and interpret standard diagrams for single-variable data."
+          },
+          {
+           "code": null,
+           "text": "Use histograms with area proportional to frequency, frequency density, and estimate probabilities from them."
+          },
+          {
+           "code": null,
+           "text": "Interpret a cumulative frequency diagram."
+          },
+          {
+           "code": null,
+           "text": "Describe frequency distributions: symmetry, modes and skewness."
+          },
+          {
+           "code": "MD5",
+           "text": "Explain that unbiased sample diagrams approach theoretical distributions as sample size grows."
+          }
+         ]
+        },
+        {
+         "id": "bivariate-data",
+         "title": "Bivariate data",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Interpret scatter diagrams and regression lines, including interpolation and extrapolation."
+          },
+          {
+           "code": null,
+           "text": "Spot distinct sections and outliers in scatter diagrams."
+          },
+          {
+           "code": null,
+           "text": "Describe correlation and know correlation does not imply causation."
+          },
+          {
+           "code": null,
+           "text": "Select or critique data presentation techniques, including time series graphs."
+          }
+         ]
+        },
+        {
+         "id": "averages-and-spread",
+         "title": "Averages and spread",
+         "outcomes": [
+          {
+           "code": "MD10",
+           "text": "Calculate and interpret median, mode, mean and midrange, and choose between them."
+          },
+          {
+           "code": null,
+           "text": "Use and interpret range, percentiles, quartiles and interquartile range."
+          },
+          {
+           "code": "MD12",
+           "text": "Calculate and interpret variance and standard deviation for raw, frequency and grouped data."
+          }
+         ]
+        },
+        {
+         "id": "outliers-and-cleaning-data",
+         "title": "Outliers and cleaning data",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Identify outliers using 2 standard deviations or 1.5 times the IQR rules."
+          },
+          {
+           "code": null,
+           "text": "Clean data by handling missing data, errors and outliers."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "probability",
+       "title": "Probability",
+       "subtopics": [
+        {
+         "id": "combining-events",
+         "title": "Combining events",
+         "outcomes": [
+          {
+           "code": "Mu1",
+           "text": "Understand mutually exclusive events and independent events."
+          },
+          {
+           "code": null,
+           "text": "Add probabilities for mutually exclusive events."
+          },
+          {
+           "code": null,
+           "text": "Multiply probabilities for independent events, using complements for 'at least one' problems."
+          },
+          {
+           "code": null,
+           "text": "Use notation and definitions for mutually exclusive and independent events."
+          },
+          {
+           "code": null,
+           "text": "Use Venn diagrams, including P(A or B) = P(A)+P(B)-P(A and B) for events that are not mutually exclusive."
+          }
+         ]
+        },
+        {
+         "id": "conditional-probability",
+         "title": "Conditional probability",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Calculate conditional probabilities from the formula, tree diagrams, two-way tables, Venn diagrams or sample spaces."
+          },
+          {
+           "code": null,
+           "text": "Know that independence means P(B|A) = P(B), so P(A and B) = P(A)P(B)."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "probability-distributions",
+       "title": "Probability Distributions",
+       "subtopics": [
+        {
+         "id": "binomial-distribution",
+         "title": "Binomial distribution",
+         "outcomes": [
+          {
+           "code": "MR1",
+           "text": "Recognise situations that give rise to a binomial distribution."
+          },
+          {
+           "code": null,
+           "text": "Identify the probability of success p for a binomial model."
+          },
+          {
+           "code": null,
+           "text": "Calculate binomial probabilities, using a calculator."
+          },
+          {
+           "code": null,
+           "text": "Use mean = np."
+          },
+          {
+           "code": null,
+           "text": "Calculate expected frequencies for a binomial distribution."
+          }
+         ]
+        },
+        {
+         "id": "discrete-probability-distributions",
+         "title": "Discrete probability distributions",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Use probability functions given algebraically or in tables, and know the term discrete random variable."
+          },
+          {
+           "code": null,
+           "text": "Calculate probabilities for simple distributions and understand the discrete uniform distribution."
+          }
+         ]
+        },
+        {
+         "id": "normal-distribution",
+         "title": "Normal distribution",
+         "outcomes": [
+          {
+           "code": "MR8",
+           "text": "Use the Normal distribution as a model, with continuity correction and normal approximation to the binomial."
+          },
+          {
+           "code": null,
+           "text": "Know the Normal curve's shape and that area under it represents probability."
+          },
+          {
+           "code": null,
+           "text": "Apply linear transformations to a Normal variable and standardise it."
+          },
+          {
+           "code": null,
+           "text": "Know the Normal curve is symmetric about the mean with inflection one standard deviation away."
+          },
+          {
+           "code": null,
+           "text": "Calculate probabilities from a Normal distribution, using a calculator."
+          }
+         ]
+        },
+        {
+         "id": "modelling-with-probability",
+         "title": "Modelling with probability",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Model with probability distributions, and critique binomial or Normal assumptions."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "statistical-hypothesis-testing",
+       "title": "Statistical Hypothesis Testing",
+       "subtopics": [
+        {
+         "id": "hypothesis-testing-ideas",
+         "title": "Hypothesis testing ideas",
+         "outcomes": [
+          {
+           "code": "MH1",
+           "text": "Understand the hypothesis testing process and its language: null, alternative, significance level, critical region, p-value."
+          },
+          {
+           "code": null,
+           "text": "Know when to use 1-tail and 2-tail tests."
+          },
+          {
+           "code": null,
+           "text": "Explain that a test uses a sample to infer about a population and the significance level is the chance of wrongly rejecting the null hypothesis."
+          }
+         ]
+        },
+        {
+         "id": "testing-a-binomial-probability",
+         "title": "Testing a binomial probability",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Write null and alternative hypotheses for a binomial probability test."
+          },
+          {
+           "code": null,
+           "text": "Carry out a binomial hypothesis test at a given significance level and conclude in context."
+          },
+          {
+           "code": null,
+           "text": "Identify the critical and acceptance regions of a binomial test."
+          }
+         ]
+        },
+        {
+         "id": "testing-a-normal-mean",
+         "title": "Testing a Normal mean",
+         "outcomes": [
+          {
+           "code": "MH7",
+           "text": "Know that sample means from a Normal population are Normal with mean mu and variance sigma squared over n."
+          },
+          {
+           "code": null,
+           "text": "Carry out a hypothesis test for a single mean using the Normal distribution and interpret in context."
+          },
+          {
+           "code": null,
+           "text": "Identify the critical and acceptance regions of a test for a mean."
+          }
+         ]
+        },
+        {
+         "id": "testing-correlation",
+         "title": "Testing correlation",
+         "outcomes": [
+          {
+           "code": "MH10",
+           "text": "Understand correlation as closeness to a straight line and rank correlation as correlation between ranks."
+          },
+          {
+           "code": null,
+           "text": "Use a given correlation coefficient and p-value or critical value to infer correlation or association in the population."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "mechanics",
+     "title": "Mechanics",
+     "topics": [
+      {
+       "id": "models-and-quantities",
+       "title": "Models and Quantities",
+       "subtopics": [
+        {
+         "id": "modelling-assumptions-and-units",
+         "title": "Modelling assumptions and units",
+         "outcomes": [
+          {
+           "code": "Mp31",
+           "text": "Know the language of simplifying assumptions: light, smooth, uniform, particle, inextensible, thin, rigid."
+          },
+          {
+           "code": null,
+           "text": "Use the particle model."
+          },
+          {
+           "code": null,
+           "text": "Use the SI fundamental units of length, time and mass."
+          },
+          {
+           "code": null,
+           "text": "Use derived quantities and units: velocity, acceleration, force and weight."
+          },
+          {
+           "code": null,
+           "text": "Use the derived quantity moment and its unit."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "kinematics",
+       "title": "Kinematics",
+       "subtopics": [
+        {
+         "id": "describing-motion-in-one-dimension",
+         "title": "Describing motion in one dimension",
+         "outcomes": [
+          {
+           "code": "Mk1",
+           "text": "Use the language of kinematics: position, displacement, distance, speed, velocity, acceleration, relative velocity."
+          },
+          {
+           "code": null,
+           "text": "Distinguish position, displacement, distance and distance travelled."
+          },
+          {
+           "code": null,
+           "text": "Distinguish velocity from speed and acceleration from its magnitude."
+          }
+         ]
+        },
+        {
+         "id": "kinematics-graphs",
+         "title": "Kinematics graphs",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Draw and interpret motion graphs, using gradients and areas under them."
+          }
+         ]
+        },
+        {
+         "id": "calculus-in-kinematics",
+         "title": "Calculus in kinematics",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Differentiate position and velocity with respect to time and know the quantities obtained."
+          },
+          {
+           "code": null,
+           "text": "Integrate acceleration and velocity with respect to time and know the quantities obtained."
+          }
+         ]
+        },
+        {
+         "id": "constant-acceleration",
+         "title": "Constant acceleration",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Recognise when constant acceleration formulae apply and derive them."
+          },
+          {
+           "code": null,
+           "text": "Solve straight-line kinematics problems using constant acceleration formulae and calculus."
+          }
+         ]
+        },
+        {
+         "id": "motion-in-two-dimensions",
+         "title": "Motion in two dimensions",
+         "outcomes": [
+          {
+           "code": "Mk9",
+           "text": "Use the language of 2D kinematics: position vector, relative position, distance, velocity, speed and acceleration."
+          },
+          {
+           "code": null,
+           "text": "Extend calculus and constant acceleration methods to 2D using vectors."
+          },
+          {
+           "code": null,
+           "text": "Find the cartesian equation of a particle's path from position components in time."
+          },
+          {
+           "code": null,
+           "text": "Use vectors to solve kinematics problems including relative position, direction of motion and resultant force."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "projectiles",
+       "title": "Projectiles",
+       "subtopics": [
+        {
+         "id": "projectile-motion",
+         "title": "Projectile motion",
+         "outcomes": [
+          {
+           "code": "My1",
+           "text": "Model motion under gravity in a vertical plane with vectors and state projectile modelling assumptions."
+          },
+          {
+           "code": null,
+           "text": "Find a projectile's position, velocity, range and maximum height at any time."
+          },
+          {
+           "code": null,
+           "text": "Find a projectile's initial velocity from given information."
+          },
+          {
+           "code": null,
+           "text": "Eliminate time to obtain the trajectory equation."
+          },
+          {
+           "code": null,
+           "text": "Solve simple projectile problems."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "forces",
+       "title": "Forces",
+       "subtopics": [
+        {
+         "id": "identifying-and-representing-forces",
+         "title": "Identifying and representing forces",
+         "outcomes": [
+          {
+           "code": "MF1",
+           "text": "Use force language: weight, tension, thrust, normal reaction, friction, resistance and driving force."
+          },
+          {
+           "code": null,
+           "text": "Know that gravitational acceleration varies by location and is modelled as constant g on Earth."
+          },
+          {
+           "code": null,
+           "text": "Draw force diagrams for a system, distinguishing external and internal forces."
+          }
+         ]
+        },
+        {
+         "id": "resultant-forces-and-equilibrium",
+         "title": "Resultant forces and equilibrium",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Find the resultant of concurrent forces that are parallel, perpendicular or given as 2D vectors."
+          },
+          {
+           "code": null,
+           "text": "Know that a particle is in equilibrium when the vector sum of forces is zero."
+          },
+          {
+           "code": "MF6",
+           "text": "Resolve a force into components in suitable directions and add components for a resultant."
+          },
+          {
+           "code": null,
+           "text": "Know the resultant of forces is zero for a particle or body in equilibrium."
+          },
+          {
+           "code": null,
+           "text": "Know equilibrium forces sum to zero and can be drawn as a closed polygon."
+          },
+          {
+           "code": null,
+           "text": "Solve equilibrium problems by resolving forces or using a force polygon."
+          }
+         ]
+        },
+        {
+         "id": "friction",
+         "title": "Friction",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Express contact force as friction plus normal reaction and draw a force diagram, knowing normal reaction cannot be negative."
+          },
+          {
+           "code": null,
+           "text": "Model friction as at most mu R, opposing sliding, with F = mu R when sliding."
+          },
+          {
+           "code": null,
+           "text": "Apply Newton's laws to problems with friction."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "newton-s-laws-of-motion",
+       "title": "Newton's Laws of Motion",
+       "subtopics": [
+        {
+         "id": "newton-s-laws-for-a-particle",
+         "title": "Newton's laws for a particle",
+         "outcomes": [
+          {
+           "code": "Mn1",
+           "text": "Know and apply Newton's three laws."
+          },
+          {
+           "code": null,
+           "text": "Understand the term equation of motion."
+          },
+          {
+           "code": null,
+           "text": "Write the equation of motion for a particle in a straight line, including motion under gravity."
+          },
+          {
+           "code": null,
+           "text": "Write the equation of motion for a particle moving in a straight line or in a plane."
+          }
+         ]
+        },
+        {
+         "id": "connected-particles",
+         "title": "Connected particles",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Model a system as connected particles, such as pulley systems and trains."
+          },
+          {
+           "code": null,
+           "text": "Write equations of motion for the individual particles in a system."
+          },
+          {
+           "code": null,
+           "text": "Know a system with no relative motion can be treated as a single particle."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "rigid-bodies",
+       "title": "Rigid Bodies",
+       "subtopics": [
+        {
+         "id": "moments-and-equilibrium",
+         "title": "Moments and equilibrium",
+         "outcomes": [
+          {
+           "code": "MF13",
+           "text": "Calculate the moment of a force about a point."
+          },
+          {
+           "code": null,
+           "text": "Know a rigid body is in equilibrium when the resultant force and total moment about any point are zero."
+          },
+          {
+           "code": null,
+           "text": "Understand that a system of forces can turn a rigid body."
+          },
+          {
+           "code": null,
+           "text": "Treat weight as acting at the centre of mass when calculating moments."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "build": {
+  "builtAt": "2026-10-14T10:45:32.249Z",
+  "model": "claude-agent",
+  "usd": 0,
+  "expectedCodes": null,
+  "coverage": null,
+  "missingCodes": [],
+  "counts": {
+   "grades": 1,
+   "units": 3,
+   "topics": 22,
+   "subtopics": 82,
+   "outcomes": 244
+  },
+  "warnings": [
+   "grade Year 12 has no content",
+   "grade Year 13 has no content",
+   "unexpected grade label \"all\""
+  ]
+ }
+}

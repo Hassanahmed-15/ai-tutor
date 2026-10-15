@@ -1,0 +1,179 @@
+{
+ "id": "us-nm-science",
+ "region": "US",
+ "framework": "New Mexico state academic standards: Science",
+ "board": null,
+ "qualification": "K-12",
+ "subject": "Science",
+ "syllabusCode": null,
+ "gradeSystem": "grade",
+ "source": {
+  "urls": [
+   "https://api.commonstandardsproject.com/api/v1/jurisdictions/C558A97651934F3989D0D0A41196060C",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/C558A97651934F3989D0D0A41196060C_D2980345_grades-01-02",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/C558A97651934F3989D0D0A41196060C_D2980345_grades-03-04-05",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/C558A97651934F3989D0D0A41196060C_D2980345_grades-06-07-08",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/C558A97651934F3989D0D0A41196060C_D2980345_grades-09-10-11-12"
+  ],
+  "publisher": "New Mexico state education agency (machine-readable via Common Standards Project / ASN)",
+  "licence": "CC BY 3.0 US, D2L Corporation",
+  "firstExam": "2018"
+ },
+ "grades": [
+  {
+   "grade": "1-2",
+   "units": [
+    {
+     "id": "science-and-society",
+     "title": "Science and Society",
+     "topics": [
+      {
+       "id": "science-and-society",
+       "title": "Science and Society",
+       "subtopics": [
+        {
+         "id": "science-and-society",
+         "title": "Science and Society",
+         "outcomes": [
+          {
+           "code": "1-SS-1.NM",
+           "text": "Obtain information about how men and women of all ethnic and social backgrounds in New Mexico have worked together to advance science and technology."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "3-5",
+   "units": [
+    {
+     "id": "science-and-society",
+     "title": "Science and Society",
+     "topics": [
+      {
+       "id": "science-and-society",
+       "title": "Science and Society",
+       "subtopics": [
+        {
+         "id": "science-and-society",
+         "title": "Science and Society",
+         "outcomes": [
+          {
+           "code": "5-SS-1.NM",
+           "text": "Communicate information gathered from books, reliable media, or outside sources, that describes how a variety of scientists and engineers across New Mexico have improved existing technologies, developed new ones, or improved society through applications of science."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "6-8",
+   "units": [
+    {
+     "id": "human-impacts",
+     "title": "Human Impacts",
+     "topics": [
+      {
+       "id": "human-impacts",
+       "title": "Human Impacts",
+       "subtopics": [
+        {
+         "id": "human-impacts",
+         "title": "Human Impacts",
+         "outcomes": [
+          {
+           "code": "MS-ESS3-3.NM",
+           "text": "Describe the advantages and disadvantages associated with technologies related to local industries and energy production."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "9-12",
+   "units": [
+    {
+     "id": "interdependent-relationships-in-ecosystems",
+     "title": "Interdependent Relationships in Ecosystems",
+     "topics": [
+      {
+       "id": "interdependent-relationships-in-ecosystems",
+       "title": "Interdependent Relationships in Ecosystems",
+       "subtopics": [
+        {
+         "id": "interdependent-relationships-in-ecosystems",
+         "title": "Interdependent Relationships in Ecosystems",
+         "outcomes": [
+          {
+           "code": "HS-LS2-7.NM",
+           "text": "Using a local issue in your solution design, describe and analyze the advantages and disadvantages of human activities that support the local population such as reclamation projects, building dams, and habitat restoration."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "science-and-society",
+     "title": "Science and Society",
+     "topics": [
+      {
+       "id": "science-and-society",
+       "title": "Science and Society",
+       "subtopics": [
+        {
+         "id": "science-and-society",
+         "title": "Science and Society",
+         "outcomes": [
+          {
+           "code": "HS-SS-1.NM",
+           "text": "Obtain and communicate information about the role of New Mexico in nuclear science and 21st century innovations including how the national laboratories have contributed to theoretical, experimental, and applied science; have illustrated the interdependence of science, engineering, and technology; and have used systems involving hardware, software, production, simulation, and information flow."
+          },
+          {
+           "code": "HS-SS-2.NM",
+           "text": "Construct an argument using claims, scientific evidence, and reasoning that helps decision makers with a New Mexico challenge or opportunity as it relates to science."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "build": {
+  "builtAt": "2026-10-14T08:04:50.081Z",
+  "model": "none",
+  "usd": 0,
+  "expectedCodes": 6,
+  "coverage": 1,
+  "missingCodes": [],
+  "counts": {
+   "grades": 4,
+   "units": 5,
+   "topics": 5,
+   "subtopics": 5,
+   "outcomes": 6
+  },
+  "warnings": [
+   "unit \"Science and Society\" (grade 1-2) has a single outcome",
+   "unit \"Science and Society\" (grade 3-5) has a single outcome",
+   "unit \"Human Impacts\" (grade 6-8) has a single outcome",
+   "unit \"Interdependent Relationships in Ecosystems\" (grade 9-12) has a single outcome"
+  ]
+ }
+}

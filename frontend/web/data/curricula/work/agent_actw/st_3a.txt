@@ -1,0 +1,96 @@
+U|Unit 3: Inference for Categorical Data: Proportions
+T|3.1 Estimators
+S|Unbiased estimators and point estimates
+3.1.A|Justify why an estimator is or is not unbiased
+3.1.A.1|An estimator is unbiased if on average it neither under- nor overestimates the parameter
+3.1.B|Calculate estimates for a population parameter
+3.1.B.1|A sample statistic is a point estimator of its parameter, such as p-hat for p
+T|3.2 Sampling Distributions for Sample Proportions
+S|Mean and standard deviation of p-hat
+3.2.A|Calculate the mean and standard deviation of the sampling distribution of a sample proportion
+3.2.A.1|With independent values, p-hat has mean p and standard deviation square root of p(1-p)/n
+S|Conditions for the sampling distribution
+3.2.B|Justify the conditions for the sampling distribution of a sample proportion
+3.2.B.1|Without replacement, check randomization and the 10 percent condition
+3.2.B.2|The distribution is approximately normal when np and n(1-p) are both at least 10
+3.2.C|Interpret the mean, standard deviation and probabilities of this sampling distribution
+3.2.C.1|Interpret in the context of the specific population
+T|3.3 Constructing a Confidence Interval for a Population Proportion
+S|Choosing the procedure and checking conditions
+3.3.A|Identify the confidence interval procedure and parameter for a proportion
+3.3.A.1|A confidence interval estimates a parameter; use a one-sample z-interval for a proportion
+3.3.A.2|State the parameter with the proportion, response variable and population
+3.3.B|Verify conditions for a one-proportion z-interval
+3.3.B.1|Check randomization, 10 percent condition and at least 10 observed successes and failures
+S|Computing the interval
+3.3.C|Calculate a confidence interval for a population proportion
+3.3.C.1|The critical value z-star bounds the middle C percent of the standard normal
+3.3.C.2|The interval is point estimate plus or minus margin of error
+S|Standard error and margin of error
+3.3.D|Calculate standard error and margin of error, and estimate a sample size
+3.3.D.1|Standard error estimates the standard deviation of the sampling distribution
+3.3.D.2|Standard error is the typical variation of a statistic from the parameter
+3.3.D.3|Margin of error is the critical value times the standard error
+3.3.D.4|Rearrange the margin-of-error formula to find the minimum n, using 0.5 if p-hat is unknown
+T|3.4 Justifying a Claim Based on a Confidence Interval for a Population Proportion
+S|Interpreting a confidence interval
+3.4.A|Interpret a confidence interval for a population proportion in context
+3.4.A.1|A computed interval may or may not contain the true proportion
+3.4.A.2|Confidence level is the long-run percentage of such intervals that capture the parameter
+3.4.A.3|Say we are C percent confident the interval contains the parameter, stated in context
+3.4.B|Justify a claim from a confidence interval
+3.4.B.1|The interval gives plausible values that can support a claim
+S|What affects interval width
+3.4.C|Identify how sample size, width, confidence level and margin of error relate
+3.4.C.1|Raising the confidence level raises the critical value, margin of error and width
+3.4.C.2|Larger samples lower standard error and narrow the interval, roughly in proportion to one over root n
+T|3.5 Setting Up a Test for a Population Proportion
+S|Procedure and hypotheses
+3.5.A|Identify the testing method and parameter for a proportion
+3.5.A.1|A hypothesis test makes a decision about a parameter; use a one-sample z-test for a proportion
+3.5.A.2|State the parameter with the proportion, response variable and population
+3.5.B|Identify null and alternative hypotheses for a proportion
+3.5.B.1|The null is the status quo assumed unless evidence suggests otherwise; the alternative is the claim under study
+3.5.B.2|The null includes equality; alternatives are one-sided or two-sided
+3.5.B.3|Write H0 as p equals p0 and Ha as p less than, greater than or not equal to p0
+S|Conditions for the test
+3.5.C|Verify conditions for a one-proportion z-test
+3.5.C.1|Check randomization, 10 percent condition and expected successes and failures at least 10
+T|3.6 p-Values
+S|Interpreting a p-value
+3.6.A|Interpret the p-value of a test for a proportion
+3.6.A.1|The p-value is the probability, assuming the null is true, of a test statistic as extreme as observed, in the direction of Ha
+3.6.A.2|With a simulated null distribution, the p-value is the proportion of simulated values as extreme
+3.6.A.3|State that the p-value assumes the null hypothesis is true
+3.6.A.4|Small p-values give evidence for the alternative
+3.6.A.5|Large p-values are not evidence for the null
+T|3.7 Carrying Out a Test for a Population Proportion
+S|Test statistic and p-value
+3.7.A|Calculate a test statistic and p-value for a proportion
+3.7.A.1|The z-statistic is (p-hat minus p0) over the standard error under the null
+3.7.A.2|The null distribution can be approximated by a probability model such as the standard normal
+3.7.A.3|Find the p-value from the standard normal using a table or technology
+S|Decisions and conclusions
+3.7.B|Justify a claim from the results of a test for a proportion
+3.7.B.1|The significance level alpha is the preset probability of rejecting a true null
+3.7.B.2|Reject the null if the p-value is below alpha; otherwise fail to reject
+3.7.B.3|Rejecting means convincing evidence for the alternative; failing to reject means not convincing
+3.7.B.4|A test never proves the null true
+3.7.B.5|Test results support answers to the investigative question
+3.7.B.6|State the conclusion in context, tied to the alternative, with non-definitive language
+T|3.8 Potential Errors When Performing Tests
+S|Type I and Type II errors
+3.8.A|Identify Type I and Type II errors
+3.8.A.1|Type I error: convincing evidence for Ha when Ha is false
+3.8.A.2|Type II error: not convincing evidence for Ha when Ha is true
+3.8.A.3|Power is the probability of correctly rejecting a false null
+3.8.B|Calculate the probability of Type I and Type II errors
+3.8.B.1|Type I error probability equals the significance level alpha
+3.8.B.2|Type II error probability is 1 minus power
+S|Factors and consequences
+3.8.C|Identify factors affecting the probability of errors
+3.8.C.1|Type II error falls and power rises with larger samples, smaller standard error, a parameter farther from the null, or larger alpha
+3.8.D|Interpret Type I and Type II errors
+3.8.D.1|Either error may be more serious depending on the study
+3.8.D.2|Type I consequences influence the choice of alpha
+3.8.D.3|Type II consequences influence the choice of sample size

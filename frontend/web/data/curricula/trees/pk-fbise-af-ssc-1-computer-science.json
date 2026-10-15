@@ -1,0 +1,433 @@
+{
+ "id": "pk-fbise-af-ssc-1-computer-science",
+ "region": "PK",
+ "framework": "FBISE Assessment Framework (National Curriculum of Pakistan 2022-23)",
+ "board": "FBISE",
+ "qualification": "SSC-I",
+ "subject": "Computer Science",
+ "syllabusCode": null,
+ "gradeSystem": "grade",
+ "source": {
+  "urls": [
+   "https://www.fbise.edu.pk/ModelPaper/2025/Assessment%20Frameworks/SSC-I/Final%20Assessment%20Framework%20Model%20Question%20Paper%20Computer%20Science%20SSC-I.pdf"
+  ],
+  "publisher": "Federal Board of Intermediate and Secondary Education",
+  "licence": "Government publication; structure + our own wording only",
+  "firstExam": "2025"
+ },
+ "grades": [
+  {
+   "grade": "9",
+   "units": [
+    {
+     "id": "domain-a-computer-systems",
+     "title": "Domain A: Computer Systems",
+     "topics": [
+      {
+       "id": "computer-systems",
+       "title": "Computer systems",
+       "subtopics": [
+        {
+         "id": "parts-of-a-computer",
+         "title": "Parts of a computer",
+         "outcomes": [
+          {
+           "code": "CS-09-A-01",
+           "text": "Name the core hardware parts of a computer and how they work together."
+          }
+         ]
+        },
+        {
+         "id": "systems-and-computer-history",
+         "title": "Systems and computer history",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Tell natural from artificial systems and outline how computers developed."
+          }
+         ]
+        },
+        {
+         "id": "data-representation",
+         "title": "Data representation",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain bits, bytes, binary, denary and hexadecimal."
+          }
+         ]
+        },
+        {
+         "id": "cpu-and-von-neumann-design",
+         "title": "CPU and Von Neumann design",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Outline the CPU, ALU, control unit, registers and the Von Neumann design."
+          }
+         ]
+        },
+        {
+         "id": "memory-and-storage",
+         "title": "Memory and storage",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Compare primary memory, cache and secondary storage by speed, cost and volatility."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "software-and-languages",
+       "title": "Software and languages",
+       "subtopics": [
+        {
+         "id": "system-and-application-software",
+         "title": "System and application software",
+         "outcomes": [
+          {
+           "code": "CS-09-A-02",
+           "text": "Describe what system and application software do, with examples."
+          }
+         ]
+        },
+        {
+         "id": "programming-languages",
+         "title": "Programming languages",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Tell low-level from high-level languages and their uses."
+          }
+         ]
+        },
+        {
+         "id": "digital-tools-for-documents",
+         "title": "Digital tools for documents",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Pick suitable tools such as word processors, slides and spreadsheets to share ideas."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "networks-and-the-internet",
+       "title": "Networks and the Internet",
+       "subtopics": [
+        {
+         "id": "how-data-moves-in-a-network",
+         "title": "How data moves in a network",
+         "outcomes": [
+          {
+           "code": "CS-09-A-03",
+           "text": "Explain packet switching, protocols and layering in data transmission."
+          }
+         ]
+        },
+        {
+         "id": "network-layouts",
+         "title": "Network layouts",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Compare network topologies and transmission modes."
+          }
+         ]
+        },
+        {
+         "id": "wireless-networks-and-the-internet",
+         "title": "Wireless networks and the Internet",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Outline wireless pros and cons and how the Internet grew and works."
+          }
+         ]
+        },
+        {
+         "id": "fixing-network-problems",
+         "title": "Fixing network problems",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Identify common network faults and suggest fixes."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "domain-b-computational-thinking-and-algorithms",
+     "title": "Domain B: Computational Thinking and Algorithms",
+     "topics": [
+      {
+       "id": "computational-thinking",
+       "title": "Computational thinking",
+       "subtopics": [
+        {
+         "id": "breaking-problems-down",
+         "title": "Breaking problems down",
+         "outcomes": [
+          {
+           "code": "CS-09-B-01",
+           "text": "Break a problem into smaller parts and show how the parts link."
+          }
+         ]
+        },
+        {
+         "id": "solving-problems-step-by-step",
+         "title": "Solving problems step by step",
+         "outcomes": [
+          {
+           "code": "CS-09-B-02",
+           "text": "Apply logical and algorithmic thinking, inputs-process-output and flowcharts to solve problems."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "domain-c-programming-fundamentals",
+     "title": "Domain C: Programming Fundamentals",
+     "topics": [
+      {
+       "id": "web-development",
+       "title": "Web development",
+       "subtopics": [
+        {
+         "id": "websites-and-web-applications",
+         "title": "Websites and web applications",
+         "outcomes": [
+          {
+           "code": "CS-09-C-01",
+           "text": "Tell websites from web applications and front end from back end."
+          }
+         ]
+        },
+        {
+         "id": "building-a-static-website",
+         "title": "Building a static website",
+         "outcomes": [
+          {
+           "code": "CS-09-C-02",
+           "text": "Explain HTML structure and DOM, then build a static site with HTML and CSS."
+          }
+         ]
+        },
+        {
+         "id": "making-pages-dynamic",
+         "title": "Making pages dynamic",
+         "outcomes": [
+          {
+           "code": "CS-09-C-03",
+           "text": "Use JavaScript variables to change HTML and CSS on a page."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "programming-in-javascript",
+       "title": "Programming in JavaScript",
+       "subtopics": [
+        {
+         "id": "sequence-selection-and-repetition",
+         "title": "Sequence, selection and repetition",
+         "outcomes": [
+          {
+           "code": "CS-09-C-04",
+           "text": "Write JavaScript using sequence, selection and loops."
+          }
+         ]
+        },
+        {
+         "id": "arrays",
+         "title": "Arrays",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Build an array and fill it using a loop."
+          }
+         ]
+        },
+        {
+         "id": "testing-and-debugging",
+         "title": "Testing and debugging",
+         "outcomes": [
+          {
+           "code": "CS-09-C-05",
+           "text": "Test functions by checking return values and debug with breakpoints."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "domain-d-data-and-analysis",
+     "title": "Domain D: Data and Analysis",
+     "topics": [
+      {
+       "id": "data-science",
+       "title": "Data science",
+       "subtopics": [
+        {
+         "id": "what-data-science-is",
+         "title": "What data science is",
+         "outcomes": [
+          {
+           "code": "CS-09-D-01",
+           "text": "Explain data science as a mix of computing, maths, statistics and business knowledge."
+          }
+         ]
+        },
+        {
+         "id": "data-and-datasets",
+         "title": "Data and datasets",
+         "outcomes": [
+          {
+           "code": "CS-09-D-02",
+           "text": "Tell data from a dataset, and describe rows, columns and attribute types."
+          }
+         ]
+        },
+        {
+         "id": "collecting-and-summarising-data",
+         "title": "Collecting and summarising data",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Collect data, spot missing values and write summary statements."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "big-data",
+       "title": "Big data",
+       "subtopics": [
+        {
+         "id": "big-data-and-its-uses",
+         "title": "Big data and its uses",
+         "outcomes": [
+          {
+           "code": "CS-09-D-03",
+           "text": "Describe big data, its features, business uses, IoT and the cloud."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "domain-e-applications-of-computer-science",
+     "title": "Domain E: Applications of Computer Science",
+     "topics": [
+      {
+       "id": "modern-computing",
+       "title": "Modern computing",
+       "subtopics": [
+        {
+         "id": "ai-machine-learning-and-cloud",
+         "title": "AI, machine learning and cloud",
+         "outcomes": [
+          {
+           "code": "CS-09-E-01",
+           "text": "Describe AI, machine learning and cloud computing and where they are used."
+          }
+         ]
+        },
+        {
+         "id": "ethics-of-ai-decisions",
+         "title": "Ethics of AI decisions",
+         "outcomes": [
+          {
+           "code": "CS-09-E-02",
+           "text": "Discuss bias and harm when AI makes decisions about people."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "domain-f-impacts-of-computing",
+     "title": "Domain F: Impacts of Computing",
+     "topics": [
+      {
+       "id": "safe-and-responsible-computing",
+       "title": "Safe and responsible computing",
+       "subtopics": [
+        {
+         "id": "responsible-use-and-the-law",
+         "title": "Responsible use and the law",
+         "outcomes": [
+          {
+           "code": "CS-09-F-01",
+           "text": "Explain data ethics, privacy, software piracy laws and safe online habits."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "effects-of-computing",
+       "title": "Effects of computing",
+       "subtopics": [
+        {
+         "id": "benefits-and-harms-of-innovations",
+         "title": "Benefits and harms of innovations",
+         "outcomes": [
+          {
+           "code": "CS-09-F-02",
+           "text": "Weigh benefits and harms of computing, including scams, malware, fake news and privacy."
+          }
+         ]
+        },
+        {
+         "id": "social-economic-and-environmental-impact",
+         "title": "Social, economic and environmental impact",
+         "outcomes": [
+          {
+           "code": "CS-09-F-03",
+           "text": "Evaluate computing impact on society, business, culture and environment, including patents and copyright."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "build": {
+  "builtAt": "2026-10-14T08:13:33.382Z",
+  "model": "claude-agent",
+  "usd": 0,
+  "expectedCodes": 18,
+  "coverage": 1,
+  "missingCodes": [],
+  "counts": {
+   "grades": 1,
+   "units": 6,
+   "topics": 11,
+   "subtopics": 29,
+   "outcomes": 29
+  },
+  "warnings": []
+ }
+}

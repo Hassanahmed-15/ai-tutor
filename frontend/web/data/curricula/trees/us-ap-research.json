@@ -1,0 +1,1132 @@
+{
+ "id": "us-ap-research",
+ "region": "US",
+ "framework": "AP Research (AP Capstone) Course and Exam Description (effective fall 2024)",
+ "board": "College Board",
+ "qualification": "AP",
+ "subject": "Research (AP Capstone)",
+ "syllabusCode": null,
+ "gradeSystem": "course",
+ "source": {
+  "urls": [
+   "https://apcentral.collegeboard.org/media/pdf/ap-research-course-and-exam-description.pdf",
+   "https://apcentral.collegeboard.org/courses/ap-research"
+  ],
+  "publisher": "College Board",
+  "licence": "© College Board; structure + our own wording only",
+  "firstExam": "2025"
+ },
+ "grades": [
+  {
+   "grade": "all",
+   "units": [
+    {
+     "id": "big-idea-1-question-and-explore",
+     "title": "Big Idea 1: Question and Explore",
+     "topics": [
+      {
+       "id": "eu-1-1-curiosity-drives-investigation",
+       "title": "EU 1.1 Curiosity drives investigation",
+       "subtopics": [
+        {
+         "id": "contextualizing-a-problem",
+         "title": "Contextualizing a problem",
+         "outcomes": [
+          {
+           "code": "LO 1.1A",
+           "text": "Place a problem or issue in context and identify its complexities"
+          },
+          {
+           "code": "EK 1.1A1",
+           "text": "Others' perspectives prompt new questions; inquiry starts by narrowing interest, finding the problem and its origins, and situating it in a larger context"
+          }
+         ]
+        },
+        {
+         "id": "posing-questions-with-multiple-perspectives",
+         "title": "Posing questions with multiple perspectives",
+         "outcomes": [
+          {
+           "code": "LO 1.1B",
+           "text": "Ask questions and seek answers reflecting multiple, divergent or contradictory perspectives"
+          },
+          {
+           "code": "EK 1.1B1",
+           "text": "Good research questions account for the complexity of the issue"
+          },
+          {
+           "code": "EK 1.1B2",
+           "text": "Inquiry uses curiosity and imagination to explore approaches to complex issues"
+          }
+         ]
+        },
+        {
+         "id": "choosing-a-topic-of-inquiry",
+         "title": "Choosing a topic of inquiry",
+         "outcomes": [
+          {
+           "code": "LO 1.1C",
+           "text": "Identify a topic of inquiry"
+          },
+          {
+           "code": "EK 1.1C1",
+           "text": "Topics come from personal interest, passion for a field, wanting to understand more, or addressing a real-world issue"
+          },
+          {
+           "code": "EK 1.1C2",
+           "text": "Explore the knowledge base and perspectives, then adjust scope to the project's limits and resources"
+          },
+          {
+           "code": "EK 1.1C3",
+           "text": "Inquiry reveals connections that raise curiosity and further questions"
+          }
+         ]
+        },
+        {
+         "id": "purpose-and-significance-of-inquiry",
+         "title": "Purpose and significance of inquiry",
+         "outcomes": [
+          {
+           "code": "LO 1.1D",
+           "text": "Explain the purpose and significance of scholarly inquiry"
+          },
+          {
+           "code": "EK 1.1D1",
+           "text": "Scholars explore, explain and create"
+          },
+          {
+           "code": "EK 1.1D2",
+           "text": "Inquiry addresses practical, theoretical, interpretive or aesthetic problems, or confirms, challenges or extends ideas"
+          },
+          {
+           "code": "EK 1.1D3",
+           "text": "Situate inquiry within the scholarly community it matters to"
+          }
+         ]
+        },
+        {
+         "id": "writing-a-research-question",
+         "title": "Writing a research question",
+         "outcomes": [
+          {
+           "code": "LO 1.1E",
+           "text": "Develop and revise a focused research question or project goal"
+          },
+          {
+           "code": "EK 1.1E1",
+           "text": "The question or goal grows from the scholar's purpose"
+          },
+          {
+           "code": "EK 1.1E2",
+           "text": "Questions usually need several revisions for scope and feasibility"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "eu-1-2-building-on-what-is-known",
+       "title": "EU 1.2 Building on what is known",
+       "subtopics": [
+        {
+         "id": "using-prior-knowledge",
+         "title": "Using prior knowledge",
+         "outcomes": [
+          {
+           "code": "LO 1.2A",
+           "text": "Retrieve, question, organise and use prior knowledge about a topic"
+          },
+          {
+           "code": "EK 1.2A1",
+           "text": "Understanding comes from experience, sources, culture and assumptions, not just collecting information"
+          },
+          {
+           "code": "EK 1.2A2",
+           "text": "Brainstorming, concept maps, prewriting and drafting help organise and connect ideas"
+          },
+          {
+           "code": "EK 1.2A3",
+           "text": "Inquiry confirms or challenges existing understanding and assumptions"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "eu-1-3-managing-resources-and-information",
+       "title": "EU 1.3 Managing resources and information",
+       "subtopics": [
+        {
+         "id": "accessing-and-managing-information",
+         "title": "Accessing and managing information",
+         "outcomes": [
+          {
+           "code": "LO 1.3A",
+           "text": "Access and manage information with effective strategies"
+          },
+          {
+           "code": "EK 1.3A1",
+           "text": "Information comes from secondary sources and from primary sources such as original works or collected data"
+          },
+          {
+           "code": "EK 1.3A2",
+           "text": "Online databases and libraries hold secondary and some primary sources"
+          },
+          {
+           "code": "EK 1.3A3",
+           "text": "Advanced search tools, Boolean logic and keywords refine searches"
+          },
+          {
+           "code": "EK 1.3A4",
+           "text": "Source bibliographies can lead to more resources"
+          },
+          {
+           "code": "EK 1.3A5",
+           "text": "Social media can be a source if its limitations are understood"
+          },
+          {
+           "code": "EK 1.3A6",
+           "text": "Citation and reference software helps manage sources and bibliographies"
+          },
+          {
+           "code": "EK 1.3A7",
+           "text": "Survey and statistics tools help collect and analyse large data sets"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "eu-1-4-relevance-and-credibility-of-sources",
+       "title": "EU 1.4 Relevance and credibility of sources",
+       "subtopics": [
+        {
+         "id": "evaluating-sources",
+         "title": "Evaluating sources",
+         "outcomes": [
+          {
+           "code": "LO 1.4A",
+           "text": "Evaluate the relevance and credibility of sources and data for the inquiry"
+          },
+          {
+           "code": "EK 1.4A1",
+           "text": "Research scope, purpose and source credibility affect the generalisability and reliability of conclusions"
+          },
+          {
+           "code": "EK 1.4A2",
+           "text": "Credible evidence comes from relevant, reliable, current and authoritative sources"
+          },
+          {
+           "code": "EK 1.4A3",
+           "text": "Judge credibility by the author's reputation, perspective and methods, and peer review"
+          },
+          {
+           "code": "EK 1.4A4",
+           "text": "Survey data accuracy depends on respondent honesty and memory and on instrument design"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "eu-1-5-methods-aligned-with-purpose",
+       "title": "EU 1.5 Methods aligned with purpose",
+       "subtopics": [
+        {
+         "id": "identifying-needed-information",
+         "title": "Identifying needed information",
+         "outcomes": [
+          {
+           "code": "LO 1.5A",
+           "text": "Identify the information needed for the inquiry's context"
+          },
+          {
+           "code": "EK 1.5A1",
+           "text": "How a problem is framed guides the information and methods needed"
+          }
+         ]
+        },
+        {
+         "id": "designing-and-carrying-out-inquiry",
+         "title": "Designing and carrying out inquiry",
+         "outcomes": [
+          {
+           "code": "LO 1.5B",
+           "text": "Design, plan and carry out a scholarly inquiry"
+          },
+          {
+           "code": "EK 1.5B1",
+           "text": "Align methods of collection, analysis, innovation or interpretation with the question or goal"
+          },
+          {
+           "code": "EK 1.5B2",
+           "text": "Methods may be qualitative, quantitative, mixed, or artistic processes"
+          },
+          {
+           "code": "EK 1.5B3",
+           "text": "Adjust the course, tools and methods as scope and feasibility become clear"
+          },
+          {
+           "code": "EK 1.5B4",
+           "text": "Artistic processes combine research methods with shaping media and form"
+          },
+          {
+           "code": "EK 1.5B5",
+           "text": "Choose qualitative, quantitative or mixed data collection to fit the question"
+          }
+         ]
+        },
+        {
+         "id": "analysing-and-combining-data",
+         "title": "Analysing and combining data",
+         "outcomes": [
+          {
+           "code": "EK 1.5B6",
+           "text": "Analyse data in ways suited to the inquiry"
+          },
+          {
+           "code": "EK 1.5B7",
+           "text": "Justify the sample chosen and know the limits of conclusions drawn from it"
+          },
+          {
+           "code": "EK 1.5B8",
+           "text": "Use descriptive or inferential statistics to display and analyse data"
+          },
+          {
+           "code": "EK 1.5B9",
+           "text": "Code and categorise data to find patterns or themes"
+          },
+          {
+           "code": "EK 1.5B10",
+           "text": "Combine qualitative and quantitative data to triangulate trends and patterns"
+          }
+         ]
+        },
+        {
+         "id": "perseverance-on-long-projects",
+         "title": "Perseverance on long projects",
+         "outcomes": [
+          {
+           "code": "LO 1.5C",
+           "text": "Show perseverance by setting goals, managing time and working independently"
+          },
+          {
+           "code": "EK 1.5C1",
+           "text": "Plan methods and activities around deadlines, priorities, risks and others' availability"
+          },
+          {
+           "code": "EK 1.5C2",
+           "text": "Expect setbacks, keep to essential goals and try alternatives"
+          },
+          {
+           "code": "EK 1.5C3",
+           "text": "Seek expert guidance while staying self-sufficient"
+          }
+         ]
+        },
+        {
+         "id": "ethical-research",
+         "title": "Ethical research",
+         "outcomes": [
+          {
+           "code": "LO 1.5D",
+           "text": "Use ethical research practices"
+          },
+          {
+           "code": "EK 1.5D1",
+           "text": "Researchers have ethical and moral responsibilities"
+          },
+          {
+           "code": "EK 1.5D2",
+           "text": "Laws and rules govern research on humans and animals, including institutional review board approval"
+          },
+          {
+           "code": "EK 1.5D3",
+           "text": "Copyright and patent rules govern use of others' work and information"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "big-idea-2-understand-and-analyze",
+     "title": "Big Idea 2: Understand and Analyze",
+     "topics": [
+      {
+       "id": "eu-2-1-comprehending-an-author-s-perspective",
+       "title": "EU 2.1 Comprehending an author's perspective",
+       "subtopics": [
+        {
+         "id": "reading-critically",
+         "title": "Reading critically",
+         "outcomes": [
+          {
+           "code": "LO 2.1A",
+           "text": "Use suitable reading strategies and read critically for a purpose"
+          },
+          {
+           "code": "EK 2.1A1",
+           "text": "Read closely for main idea, tone, assumptions, context, perspective, reasoning and evidence"
+          },
+          {
+           "code": "EK 2.1A2",
+           "text": "Preview and prioritise text by skimming, scanning, rereading and questioning"
+          },
+          {
+           "code": "EK 2.1A3",
+           "text": "Make meaning by annotating, note-taking, highlighting and reading aloud"
+          },
+          {
+           "code": "EK 2.1A4",
+           "text": "Perspectives are shared through written, spoken, visual or performance texts and include attitude or tone"
+          }
+         ]
+        },
+        {
+         "id": "summarizing-a-text-s-main-idea",
+         "title": "Summarizing a text's main idea",
+         "outcomes": [
+          {
+           "code": "LO 2.1B",
+           "text": "Summarise and explain a text's main idea or aim without oversimplifying"
+          },
+          {
+           "code": "EK 2.1B1",
+           "text": "The main idea sits in the thesis, claim or conclusion, or is implied"
+          },
+          {
+           "code": "EK 2.1B2",
+           "text": "Artistic works convey a perspective; analyse context, subject, structure, style and aesthetic"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "eu-2-2-evidence-and-reasoning-in-arguments",
+       "title": "EU 2.2 Evidence and reasoning in arguments",
+       "subtopics": [
+        {
+         "id": "line-of-reasoning",
+         "title": "Line of reasoning",
+         "outcomes": [
+          {
+           "code": "LO 2.2A",
+           "text": "Explain and analyse the logic and line of reasoning of an argument"
+          },
+          {
+           "code": "EK 2.2A1",
+           "text": "A line of reasoning is claims justified by evidence"
+          },
+          {
+           "code": "EK 2.2A2",
+           "text": "Reasoning is organised by purpose, such as causality, definition or solution"
+          },
+          {
+           "code": "EK 2.2A3",
+           "text": "Distinguish inductive reasoning from deductive reasoning"
+          },
+          {
+           "code": "EK 2.2A4",
+           "text": "Missing the complexity of an argument leads to oversimplification"
+          },
+          {
+           "code": "EK 2.2A5",
+           "text": "Strong arguments acknowledge and answer other arguments with concession, refutation or rebuttal"
+          }
+         ]
+        },
+        {
+         "id": "evaluating-evidence",
+         "title": "Evaluating evidence",
+         "outcomes": [
+          {
+           "code": "LO 2.2B",
+           "text": "Evaluate the relevance and credibility of evidence in context"
+          },
+          {
+           "code": "EK 2.2B1",
+           "text": "Context and situation relative to other arguments shape interpretation"
+          },
+          {
+           "code": "EK 2.2B2",
+           "text": "Qualitative and quantitative evidence vary in validity"
+          },
+          {
+           "code": "EK 2.2B3",
+           "text": "Authors choose evidence strategically"
+          },
+          {
+           "code": "EK 2.2B4",
+           "text": "Writers may appeal to or manipulate readers through language, authority, qualifiers, fallacies and emphasis"
+          },
+          {
+           "code": "EK 2.2B5",
+           "text": "Evidence can show comparative, causal or correlational relationships and trends"
+          },
+          {
+           "code": "EK 2.2B6",
+           "text": "Credibility drops when authors ignore limitations, opposing views or their own biases"
+          }
+         ]
+        },
+        {
+         "id": "validity-of-an-argument",
+         "title": "Validity of an argument",
+         "outcomes": [
+          {
+           "code": "LO 2.2C",
+           "text": "Evaluate the validity of an argument"
+          },
+          {
+           "code": "EK 2.2C1",
+           "text": "An argument is valid when reasoning and conclusion align logically"
+          },
+          {
+           "code": "EK 2.2C2",
+           "text": "Validity needs evidence aligned with conclusions and acknowledged limits"
+          },
+          {
+           "code": "EK 2.2C3",
+           "text": "Conclusions are contextual and must be affirmed, qualified or refuted"
+          }
+         ]
+        },
+        {
+         "id": "critiquing-others-work",
+         "title": "Critiquing others' work",
+         "outcomes": [
+          {
+           "code": "LO 2.2D",
+           "text": "Evaluate and critique others' inquiries, studies, works and perspectives"
+          },
+          {
+           "code": "EK 2.2D1",
+           "text": "Judge studies on internal coherence and alignment of purpose, goals and methods"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "eu-2-3-implications-of-arguments",
+       "title": "EU 2.3 Implications of arguments",
+       "subtopics": [
+        {
+         "id": "implications-of-a-claim",
+         "title": "Implications of a claim",
+         "outcomes": [
+          {
+           "code": "LO 2.3A",
+           "text": "Connect an argument to broader issues through the implications of its claim"
+          },
+          {
+           "code": "EK 2.3A1",
+           "text": "Arguments' consequences may be intended or unintended"
+          }
+         ]
+        },
+        {
+         "id": "evaluating-resolutions",
+         "title": "Evaluating resolutions",
+         "outcomes": [
+          {
+           "code": "LO 2.3B",
+           "text": "Evaluate potential resolutions or solutions raised by an argument"
+          },
+          {
+           "code": "EK 2.3B1",
+           "text": "Arguments can change behaviour and have real-world impact"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "big-idea-3-evaluate-multiple-perspectives",
+     "title": "Big Idea 3: Evaluate Multiple Perspectives",
+     "topics": [
+      {
+       "id": "eu-3-1-competing-perspectives",
+       "title": "EU 3.1 Competing perspectives",
+       "subtopics": [
+        {
+         "id": "comparing-perspectives",
+         "title": "Comparing perspectives",
+         "outcomes": [
+          {
+           "code": "LO 3.1A",
+           "text": "Identify, compare and interpret multiple perspectives or arguments on an issue"
+          },
+          {
+           "code": "EK 3.1A1",
+           "text": "Perspective is shaped by background, assumptions, worldview and outside sources"
+          },
+          {
+           "code": "EK 3.1A2",
+           "text": "Perspectives may concur, complement or compete"
+          },
+          {
+           "code": "EK 3.1A3",
+           "text": "Some perspectives are ambiguous, so interpretation may not give a definite answer"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "eu-3-2-not-all-arguments-are-equal",
+       "title": "EU 3.2 Not all arguments are equal",
+       "subtopics": [
+        {
+         "id": "evaluating-competing-arguments",
+         "title": "Evaluating competing arguments",
+         "outcomes": [
+          {
+           "code": "LO 3.2A",
+           "text": "Evaluate alternate, opposing or competing arguments by their implications and limitations"
+          },
+          {
+           "code": "EK 3.2A1",
+           "text": "Arguments may appeal to emotion, values, bias, assumptions and logic"
+          },
+          {
+           "code": "EK 3.2A2",
+           "text": "Consider how your own biases and assumptions influence judgment"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "big-idea-4-synthesize-ideas",
+     "title": "Big Idea 4: Synthesize Ideas",
+     "topics": [
+      {
+       "id": "eu-4-1-scholarly-works-convey-perspectives",
+       "title": "EU 4.1 Scholarly works convey perspectives",
+       "subtopics": [
+        {
+         "id": "building-a-well-reasoned-argument",
+         "title": "Building a well-reasoned argument",
+         "outcomes": [
+          {
+           "code": "LO 4.1A",
+           "text": "Build a well-reasoned argument that accounts for the problem's complexity"
+          },
+          {
+           "code": "EK 4.1A1",
+           "text": "Effective arguments use reason and evidence to convey a perspective stated in the thesis or conclusion"
+          },
+          {
+           "code": "EK 4.1A2",
+           "text": "Carefully chosen, connected claims, reasons and evidence unify an argument"
+          },
+          {
+           "code": "EK 4.1A3",
+           "text": "Qualifiers limit a claim and avoid overgeneralising"
+          },
+          {
+           "code": "EK 4.1A4",
+           "text": "Answer other arguments with concession, refutation or rebuttal"
+          },
+          {
+           "code": "EK 4.1A5",
+           "text": "A line of reasoning is a clear logical path to a conclusion"
+          },
+          {
+           "code": "EK 4.1A6",
+           "text": "Reasoning can be deductive or inductive"
+          }
+         ]
+        },
+        {
+         "id": "organizing-reasoning-and-process",
+         "title": "Organizing reasoning and process",
+         "outcomes": [
+          {
+           "code": "EK 4.1A7",
+           "text": "Organise the line of reasoning by the argument's purpose"
+          },
+          {
+           "code": "EK 4.1A8",
+           "text": "Arrange claims and evidence spatially, chronologically or by importance to show relationships"
+          },
+          {
+           "code": "EK 4.1A9",
+           "text": "The same argument can be organised differently for different audiences"
+          },
+          {
+           "code": "EK 4.1A10",
+           "text": "Choose a process aligned with the inquiry or project goal"
+          },
+          {
+           "code": "EK 4.1A11",
+           "text": "Articulate your choices, even where they leave ambiguity"
+          },
+          {
+           "code": "EK 4.1A12",
+           "text": "An aesthetic rationale is a reasoned argument for formal and stylistic choices in an artwork"
+          }
+         ]
+        },
+        {
+         "id": "disciplinary-approaches",
+         "title": "Disciplinary approaches",
+         "outcomes": [
+          {
+           "code": "LO 4.1B",
+           "text": "Select and apply a disciplinary or interdisciplinary approach to a scholarly argument or aesthetic rationale"
+          },
+          {
+           "code": "EK 4.1B1",
+           "text": "Each discipline has its own conventions for knowing, questioning and communicating"
+          },
+          {
+           "code": "EK 4.1B2",
+           "text": "Use discipline-specific terminology in analysis"
+          },
+          {
+           "code": "EK 4.1B3",
+           "text": "Foundational texts reveal a discipline's ways of knowing and valuing information"
+          },
+          {
+           "code": "EK 4.1B4",
+           "text": "Disciplines can be broad, narrow, intersecting or combined"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "eu-4-2-engaging-responsibly-with-evidence",
+       "title": "EU 4.2 Engaging responsibly with evidence",
+       "subtopics": [
+        {
+         "id": "synthesizing-evidence",
+         "title": "Synthesizing evidence",
+         "outcomes": [
+          {
+           "code": "LO 4.2A",
+           "text": "Interpret, use and synthesise qualitative and quantitative information from varied sources to support an argument"
+          },
+          {
+           "code": "EK 4.2A1",
+           "text": "Evidence comes from print and nonprint sources, experts and field data"
+          },
+          {
+           "code": "EK 4.2A2",
+           "text": "Compelling evidence is sufficient, accurate, relevant, current and credible"
+          },
+          {
+           "code": "EK 4.2A3",
+           "text": "Choose evidence by context, purpose and audience"
+          },
+          {
+           "code": "EK 4.2A4",
+           "text": "Selected and attributed evidence builds your argument's credibility"
+          }
+         ]
+        },
+        {
+         "id": "linking-evidence-with-claims",
+         "title": "Linking evidence with claims",
+         "outcomes": [
+          {
+           "code": "LO 4.2B",
+           "text": "Write insightful commentary that links evidence with claims"
+          },
+          {
+           "code": "EK 4.2B1",
+           "text": "Commentary connects evidence to the claim by interpretation or inference, patterns, trends and relationships"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "eu-4-3-acknowledging-others-contributions",
+       "title": "EU 4.3 Acknowledging others' contributions",
+       "subtopics": [
+        {
+         "id": "attribution-and-citation",
+         "title": "Attribution and citation",
+         "outcomes": [
+          {
+           "code": "LO 4.3A",
+           "text": "Attribute knowledge and ideas accurately and ethically with a citation style"
+          },
+          {
+           "code": "EK 4.3A1",
+           "text": "Accurate attribution enhances credibility"
+          },
+          {
+           "code": "EK 4.3A2",
+           "text": "Avoid plagiarism by acknowledging sources thoroughly"
+          },
+          {
+           "code": "EK 4.3A3",
+           "text": "Introduce, integrate or embed source material in the argument"
+          },
+          {
+           "code": "EK 4.3A4",
+           "text": "Cite quoted and paraphrased material following a style manual"
+          },
+          {
+           "code": "EK 4.3A5",
+           "text": "Disciplines use specific style guides such as APA, MLA or Chicago"
+          },
+          {
+           "code": "EK 4.3A6",
+           "text": "Appropriation in art has legal and ethical implications"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "eu-4-4-forming-one-s-own-perspective",
+       "title": "EU 4.4 Forming one's own perspective",
+       "subtopics": [
+        {
+         "id": "innovating-and-extending-ideas",
+         "title": "Innovating and extending ideas",
+         "outcomes": [
+          {
+           "code": "LO 4.4A",
+           "text": "Extend an idea, question, process or product to create new understanding"
+          },
+          {
+           "code": "EK 4.4A1",
+           "text": "Innovative solutions challenge assumptions, imagine alternatives and use reflective skepticism"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "eu-4-5-consequences-of-arguments-and-choices",
+       "title": "EU 4.5 Consequences of arguments and choices",
+       "subtopics": [
+        {
+         "id": "resolutions-and-conclusions",
+         "title": "Resolutions and conclusions",
+         "outcomes": [
+          {
+           "code": "LO 4.5A",
+           "text": "Offer resolutions or solutions based on evidence, limitations and implications"
+          },
+          {
+           "code": "EK 4.5A1",
+           "text": "Weigh advantages and disadvantages of options against the goal in context"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "big-idea-5-team-transform-and-transmit",
+     "title": "Big Idea 5: Team, Transform, and Transmit",
+     "topics": [
+      {
+       "id": "eu-5-1-how-presentation-affects-interpretation",
+       "title": "EU 5.1 How presentation affects interpretation",
+       "subtopics": [
+        {
+         "id": "producing-a-cohesive-academic-paper",
+         "title": "Producing a cohesive academic paper",
+         "outcomes": [
+          {
+           "code": "LO 5.1A",
+           "text": "Plan and produce a cohesive academic paper for an audience, context and purpose"
+          },
+          {
+           "code": "EK 5.1A1",
+           "text": "Present conclusions with introduction and gap, method, results, discussion, conclusion and bibliography"
+          },
+          {
+           "code": "EK 5.1A2",
+           "text": "Achieve coherence with logical flow and transitions"
+          }
+         ]
+        },
+        {
+         "id": "grammar-usage-style-and-mechanics",
+         "title": "Grammar, usage, style and mechanics",
+         "outcomes": [
+          {
+           "code": "LO 5.1B",
+           "text": "Follow conventions of grammar, usage, style and mechanics"
+          },
+          {
+           "code": "EK 5.1B1",
+           "text": "Express tone through word choice, sentence structure and imagery"
+          },
+          {
+           "code": "EK 5.1B2",
+           "text": "Vary sentences for emphasis with agreement, modifier placement and tense consistency"
+          },
+          {
+           "code": "EK 5.1B3",
+           "text": "Precise word choice cuts confusion and wordiness"
+          },
+          {
+           "code": "EK 5.1B4",
+           "text": "Spelling and grammar errors weaken credibility"
+          }
+         ]
+        },
+        {
+         "id": "media-and-design",
+         "title": "Media and design",
+         "outcomes": [
+          {
+           "code": "LO 5.1C",
+           "text": "Communicate through suitable media using effective design"
+          },
+          {
+           "code": "EK 5.1C1",
+           "text": "Headings, layout, illustrations and captions aid engagement when used well"
+          },
+          {
+           "code": "EK 5.1C2",
+           "text": "Present data graphically to aid understanding"
+          },
+          {
+           "code": "EK 5.1C3",
+           "text": "Choose the medium by context, purpose and audience"
+          }
+         ]
+        },
+        {
+         "id": "adapting-for-audience",
+         "title": "Adapting for audience",
+         "outcomes": [
+          {
+           "code": "LO 5.1D",
+           "text": "Adapt an argument to context, purpose and audience"
+          },
+          {
+           "code": "EK 5.1D1",
+           "text": "Adapt by selecting and emphasising information for audience, situation, medium and purpose"
+          },
+          {
+           "code": "EK 5.1D2",
+           "text": "Explain choices in non-specialist language for outsiders"
+          }
+         ]
+        },
+        {
+         "id": "delivery-and-performance",
+         "title": "Delivery and performance",
+         "outcomes": [
+          {
+           "code": "LO 5.1E",
+           "text": "Engage an audience with effective delivery or performance"
+          },
+          {
+           "code": "EK 5.1E1",
+           "text": "Vary volume, tempo, movement, eye contact and energy to emphasise and engage"
+          },
+          {
+           "code": "EK 5.1E2",
+           "text": "Present work in discipline-specific or cross-disciplinary forms"
+          },
+          {
+           "code": "EK 5.1E3",
+           "text": "Present after revision and rehearsal, using feedback and self-critique"
+          }
+         ]
+        },
+        {
+         "id": "defending-inquiry-choices",
+         "title": "Defending inquiry choices",
+         "outcomes": [
+          {
+           "code": "LO 5.1F",
+           "text": "Defend inquiry choices and the final product with clarity and conviction"
+          },
+          {
+           "code": "EK 5.1F1",
+           "text": "Explain the rationale for choices in relation to the finished work"
+          },
+          {
+           "code": "EK 5.1F2",
+           "text": "Respond thoughtfully to audience critiques and questions"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "eu-5-2-effective-teams",
+       "title": "EU 5.2 Effective teams",
+       "subtopics": [
+        {
+         "id": "contributing-to-a-team",
+         "title": "Contributing to a team",
+         "outcomes": [
+          {
+           "code": "LO 5.2A",
+           "text": "Contribute individually to a collaborative effort"
+          },
+          {
+           "code": "EK 5.2A1",
+           "text": "Sharing your strengths and challenges makes contributions more effective"
+          }
+         ]
+        },
+        {
+         "id": "team-climate-and-conflict",
+         "title": "Team climate and conflict",
+         "outcomes": [
+          {
+           "code": "LO 5.2B",
+           "text": "Build a constructive team climate, resolve conflicts and include all members"
+          },
+          {
+           "code": "EK 5.2B1",
+           "text": "Teams are built around tasks; low-risk teambuilding helps"
+          },
+          {
+           "code": "EK 5.2B2",
+           "text": "Teams work best when they understand their diverse perspectives, talents and skills"
+          },
+          {
+           "code": "EK 5.2B3",
+           "text": "Use interpersonal communication, consensus building, conflict resolution and negotiation"
+          },
+          {
+           "code": "EK 5.2B4",
+           "text": "Consider online collaboration tools"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "eu-5-3-reflection",
+       "title": "EU 5.3 Reflection",
+       "subtopics": [
+        {
+         "id": "reflecting-on-your-own-work",
+         "title": "Reflecting on your own work",
+         "outcomes": [
+          {
+           "code": "LO 5.3A",
+           "text": "Reflect on and revise your writing, thinking and creative processes"
+          },
+          {
+           "code": "EK 5.3A1",
+           "text": "Reflection is ongoing and may use journals, self-questioning or drawing"
+          },
+          {
+           "code": "EK 5.3A2",
+           "text": "Learning needs iterative rethinking, revising and rewriting"
+          },
+          {
+           "code": "EK 5.3A3",
+           "text": "Stay mindful of the rationale behind chosen methods"
+          },
+          {
+           "code": "EK 5.3A4",
+           "text": "Reflect on how inquiry deepened understanding and self-direction"
+          }
+         ]
+        },
+        {
+         "id": "reflecting-on-collaboration-and-significance",
+         "title": "Reflecting on collaboration and significance",
+         "outcomes": [
+          {
+           "code": "LO 5.3B",
+           "text": "Reflect on collaborative experiences"
+          },
+          {
+           "code": "EK 5.3B1",
+           "text": "Note how actions and assumptions helped or hindered group and individual tasks"
+          },
+          {
+           "code": "LO 5.3C",
+           "text": "Reflect on the larger significance of the inquiry process and finished work"
+          },
+          {
+           "code": "EK 5.3C1",
+           "text": "Explore future directions for inquiry and scholarship"
+          },
+          {
+           "code": "EK 5.3C2",
+           "text": "Inquiry can transform understanding and one's identity as a scholar"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "eu-5-4-scholarly-community-and-peer-review",
+       "title": "EU 5.4 Scholarly community and peer review",
+       "subtopics": [
+        {
+         "id": "peer-review",
+         "title": "Peer review",
+         "outcomes": [
+          {
+           "code": "LO 5.4A",
+           "text": "Give constructive peer review suited to a project's stage"
+          },
+          {
+           "code": "EK 5.4A1",
+           "text": "Peer review follows guidelines and criteria suited to the work"
+          },
+          {
+           "code": "LO 5.4B",
+           "text": "Receive and consider peer review of your work"
+          },
+          {
+           "code": "EK 5.4B1",
+           "text": "Peer review sharpens your critical eye and your work"
+          },
+          {
+           "code": "EK 5.4B2",
+           "text": "Scholarly communities do best when members seek and give feedback"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "build": {
+  "builtAt": "2026-10-14T10:05:13.819Z",
+  "model": "claude-agent",
+  "usd": 0,
+  "expectedCodes": 172,
+  "coverage": 1,
+  "missingCodes": [],
+  "counts": {
+   "grades": 1,
+   "units": 5,
+   "topics": 19,
+   "subtopics": 42,
+   "outcomes": 172
+  },
+  "warnings": [
+   "grade 9 has no content",
+   "grade 10 has no content",
+   "grade 11 has no content",
+   "grade 12 has no content",
+   "unexpected grade label \"all\""
+  ]
+ }
+}

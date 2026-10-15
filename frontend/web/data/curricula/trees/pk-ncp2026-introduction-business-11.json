@@ -1,0 +1,89 @@
+{
+ "id": "pk-ncp2026-introduction-business-11",
+ "region": "PK",
+ "framework": "National Curriculum of Pakistan 2026 (Commerce Group, Grades 11-12)",
+ "board": null,
+ "qualification": "HSSC",
+ "subject": "Introduction to Business",
+ "syllabusCode": null,
+ "gradeSystem": "grade",
+ "source": {
+  "urls": [
+   "https://ncc.gov.pk/SiteImage/Misc/files/Introduction%20to%20Business_11zon%20(1).pdf"
+  ],
+  "publisher": "National Curriculum Council, Ministry of Federal Education and Professional Training",
+  "licence": "Government publication; structure + our own wording only",
+  "firstExam": null
+ },
+ "grades": [
+  {
+   "grade": "11",
+   "units": [
+    {
+     "id": "domain-a-understanding-business-activity",
+     "title": "Domain A: Understanding Business Activity",
+     "topics": [
+      {
+       "id": "understanding-business-activity",
+       "title": "Understanding Business Activity",
+       "subtopics": [
+        {
+         "id": "understanding-business-activity",
+         "title": "Understanding Business Activity",
+         "outcomes": [
+          {
+           "code": "ITB-11-A-05",
+           "text": "Create a chart illustrating economic sectors with examples of local businesses."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "domain-b-forms-of-business-and-joint-stock-compa",
+     "title": "Domain B: Forms of Business and Joint Stock Companies",
+     "topics": [
+      {
+       "id": "forms-of-business-and-joint-stock-companies",
+       "title": "Forms of Business and Joint Stock Companies",
+       "subtopics": [
+        {
+         "id": "forms-of-business-and-joint-stock-companies",
+         "title": "Forms of Business and Joint Stock Companies",
+         "outcomes": [
+          {
+           "code": "ITB-11-B-03",
+           "text": "Describe joint stock company registration and incorporation, including promotion, constitutional documents, and required certificates."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "build": {
+  "builtAt": "2026-10-14T07:53:13.634Z",
+  "model": "gpt-5.6-luna",
+  "usd": 0.0084,
+  "expectedCodes": null,
+  "coverage": null,
+  "missingCodes": [],
+  "counts": {
+   "grades": 1,
+   "units": 2,
+   "topics": 2,
+   "subtopics": 2,
+   "outcomes": 2
+  },
+  "warnings": [
+   "12 invented code(s) dropped: ITB-11-A-01, ITB-11-A-02, ITB-11-A-03, ITB-11-A-04, ITB-11-A-06, ITB-11-A-07, ITB-11-B-01, ITB-11-B-02",
+   "unit \"Domain A: Understanding Business Activity\" (grade 11) has a single outcome",
+   "unit \"Domain B: Forms of Business and Joint Stock Companies\" (grade 11) has a single outcome"
+  ]
+ }
+}

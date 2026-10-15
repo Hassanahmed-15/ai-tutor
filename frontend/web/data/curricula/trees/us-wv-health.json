@@ -1,0 +1,3404 @@
+{
+ "id": "us-wv-health",
+ "region": "US",
+ "framework": "West Virginia state academic standards: Health Education",
+ "board": null,
+ "qualification": "K-12",
+ "subject": "Health Education",
+ "syllabusCode": null,
+ "gradeSystem": "grade",
+ "source": {
+  "urls": [
+   "https://api.commonstandardsproject.com/api/v1/jurisdictions/F1D13BFFB41F4FC6B4D6132D1B6792F7",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/BDDF3753B8D04325A73EAEECEFB2AE1A",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/9B71833E4DE04FC99F6E5321200BACBA",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/81279BDB143241A288B307254184B36E",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/34302733CD11425FA4A0774B0A1FB42F",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/43C3730DA19743189CFCA4494FE35793",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/B0CA50DA559E47DB8A7300722D6DEF5B",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/957FC62CF8464A3D9E137F30D59937DA",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/E32F4B3E8C174224AFED693D52FCDB9E",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/DD0C401C6A074FD3BF9E36B9F69605A5",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/4373852DFC214E1D9D97B2337D8ACF08",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/2CB5F9FF7F584D1E9CB55C8C92B966E9",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/98F6149536C94BD6966988F052A00005",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/3B8BA08F358946309124D3A67B9F5431",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/A1A7ECD1B09F4A2B93E8BA8245089C83",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/17BF1C9EEE414117942FD0B4DECD5A1E",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/6300089B0A4E43CAB697F894945B187B",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/56D01CD913BD423FAC77FDAEE83C8E3F",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/82D7A34D709B4C6F9F519BA5BD06EDF4",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/0068844AF3FD448EAE84523C2C045B9A",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/87937C17BF5E4955BB823352A5E4731F"
+  ],
+  "publisher": "West Virginia state education agency (machine-readable via Common Standards Project / ASN)",
+  "licence": "CC BY 4.0 US, Common Curriculum, Inc.",
+  "firstExam": "2018"
+ },
+ "grades": [
+  {
+   "grade": "K",
+   "units": [
+    {
+     "id": "wellness-promotion-and-disease-prevention",
+     "title": "Wellness Promotion and Disease Prevention",
+     "topics": [
+      {
+       "id": "wellness-promotion-and-disease-prevention",
+       "title": "Wellness Promotion and Disease Prevention",
+       "subtopics": [
+        {
+         "id": "wellness-promotion-and-disease-prevention",
+         "title": "Wellness Promotion and Disease Prevention",
+         "outcomes": [
+          {
+           "code": "WE.K.1",
+           "text": "Identify and discuss the functions of sensory organs."
+          },
+          {
+           "code": "WE.K.2",
+           "text": "Identify proper personal hygiene skills (e.g., brushing teeth, hand washing)."
+          },
+          {
+           "code": "WE.K.3",
+           "text": "Identify healthy foods."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "wellness-information-and-services",
+     "title": "Wellness Information and Services",
+     "topics": [
+      {
+       "id": "wellness-information-and-services",
+       "title": "Wellness Information and Services",
+       "subtopics": [
+        {
+         "id": "wellness-information-and-services",
+         "title": "Wellness Information and Services",
+         "outcomes": [
+          {
+           "code": "WE.K.4",
+           "text": "Identify healthcare/safety professionals (e.g., teachers, policemen, school nurses, dentists, doctors)."
+          },
+          {
+           "code": "WE.K.5",
+           "text": "Demonstrate when and how to call 9-1-1 emergency services."
+          },
+          {
+           "code": "WE.K.6",
+           "text": "Identify healthy and unhealthy household products and recognize danger symbols (e.g., Mr. Yuck, skull and crossbones)."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "wellness-behaviors",
+     "title": "Wellness Behaviors",
+     "topics": [
+      {
+       "id": "wellness-behaviors",
+       "title": "Wellness Behaviors",
+       "subtopics": [
+        {
+         "id": "wellness-behaviors-1-of-2",
+         "title": "Wellness Behaviors (1 of 2)",
+         "outcomes": [
+          {
+           "code": "WE.K.7",
+           "text": "Identify proper clothing to wear for different weather conditions and activities."
+          },
+          {
+           "code": "WE.K.8",
+           "text": "Describe the function of safety equipment used during play (e.g., helmets, knee pads, elbow pads)."
+          },
+          {
+           "code": "WE.K.9",
+           "text": "Demonstrate safety procedures (e.g., street crossing, fire drills, transportation safety)."
+          },
+          {
+           "code": "WE.K.10",
+           "text": "Explain medication should be avoided without supervised use."
+          },
+          {
+           "code": "WE.K.11",
+           "text": "Identify unsafe actions that might lead to injuries."
+          }
+         ]
+        },
+        {
+         "id": "wellness-behaviors-2-of-2",
+         "title": "Wellness Behaviors (2 of 2)",
+         "outcomes": [
+          {
+           "code": "WE.K.12",
+           "text": "Explain that all people, including children, have the right to tell others not to touch their body."
+          },
+          {
+           "code": "WE.K.13",
+           "text": "Identify adults to notify when uncomfortable with certain touches."
+          },
+          {
+           "code": "WE.K.14",
+           "text": "Recognize tobacco, alcohol, and other drugs as harmful substances."
+          },
+          {
+           "code": "WE.K.15",
+           "text": "Identify feelings and ways to deal with difficult emotions."
+          },
+          {
+           "code": "WE.K.16",
+           "text": "Recognize potentially harmful or dangerous situations and explore appropriate refusal skills (e.g., meeting strangers, using harmful substances)."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "development-of-motor-skills-movement-forms",
+     "title": "Development of Motor Skills/Movement Forms",
+     "topics": [
+      {
+       "id": "development-of-motor-skills-movement-forms",
+       "title": "Development of Motor Skills/Movement Forms",
+       "subtopics": [
+        {
+         "id": "development-of-motor-skills-movement-forms-1-of-",
+         "title": "Development of Motor Skills/Movement Forms (1 of 2)",
+         "outcomes": [
+          {
+           "code": "WE.K.17",
+           "text": "Develop a beginning movement vocabulary for body and spatial awareness (e.g., general/self-space, left, right, up, down, high, low)."
+          },
+          {
+           "code": "WE.K.18",
+           "text": "Distinguish between personal space and general space."
+          },
+          {
+           "code": "WE.K.19",
+           "text": "Distinguish between and perform locomotor movements of running, hopping, jumping, galloping, and sliding."
+          },
+          {
+           "code": "WE.K.20",
+           "text": "Travel in straight, curved, and zigzag pathways."
+          },
+          {
+           "code": "WE.K.21",
+           "text": "Perform movements that promote cross lateral development."
+          }
+         ]
+        },
+        {
+         "id": "development-of-motor-skills-movement-forms-2-of-",
+         "title": "Development of Motor Skills/Movement Forms (2 of 2)",
+         "outcomes": [
+          {
+           "code": "WE.K.22",
+           "text": "Make wide, narrow, round, and twisted body shapes."
+          },
+          {
+           "code": "WE.K.23",
+           "text": "Move the body at high, medium, and low levels."
+          },
+          {
+           "code": "WE.K.24",
+           "text": "Move to a variety of beats, tempos, and rhythms."
+          },
+          {
+           "code": "WE.K.25",
+           "text": "Transfer weight to balance on different body parts or combinations of body parts (e.g., beginner gymnastics, yoga)."
+          },
+          {
+           "code": "WE.K.26",
+           "text": "Develop spatial awareness of an object or person (e.g., beside, under, near, far)."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "physical-fitness",
+     "title": "Physical Fitness",
+     "topics": [
+      {
+       "id": "physical-fitness",
+       "title": "Physical Fitness",
+       "subtopics": [
+        {
+         "id": "physical-fitness",
+         "title": "Physical Fitness",
+         "outcomes": [
+          {
+           "code": "WE.K.27",
+           "text": "Recognize body responses to physical activities (e.g., increased heart rate, faster breathing, perspiration)."
+          },
+          {
+           "code": "WE.K.28",
+           "text": "Discuss the need for proper rest and exercise."
+          },
+          {
+           "code": "WE.K.29",
+           "text": "Locate and identify a variety of body parts."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "responsible-personal-and-social-behaviors",
+     "title": "Responsible, Personal, and Social Behaviors",
+     "topics": [
+      {
+       "id": "responsible-personal-and-social-behaviors",
+       "title": "Responsible, Personal, and Social Behaviors",
+       "subtopics": [
+        {
+         "id": "responsible-personal-and-social-behaviors",
+         "title": "Responsible, Personal, and Social Behaviors",
+         "outcomes": [
+          {
+           "code": "WE.K.30",
+           "text": "Demonstrate appropriate interactions with others (e.g., partners, small groups and large groups)."
+          },
+          {
+           "code": "WE.K.31",
+           "text": "Identify and participate in physical activities outside of school that enhance health."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "1",
+   "units": [
+    {
+     "id": "wellness-promotion-and-disease-prevention",
+     "title": "Wellness Promotion and Disease Prevention",
+     "topics": [
+      {
+       "id": "wellness-promotion-and-disease-prevention",
+       "title": "Wellness Promotion and Disease Prevention",
+       "subtopics": [
+        {
+         "id": "wellness-promotion-and-disease-prevention",
+         "title": "Wellness Promotion and Disease Prevention",
+         "outcomes": [
+          {
+           "code": "WE.1.1",
+           "text": "Identify ways germs enter the body and how to prevent the spread of illnesses."
+          },
+          {
+           "code": "WE.1.2",
+           "text": "Describe the effects of healthy and less healthy foods on the body."
+          },
+          {
+           "code": "WE.1.3",
+           "text": "Explain the need for medical checkups and other health-care procedures (e.g., eye, dental exams)."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "wellness-information-and-services",
+     "title": "Wellness Information and Services",
+     "topics": [
+      {
+       "id": "wellness-information-and-services",
+       "title": "Wellness Information and Services",
+       "subtopics": [
+        {
+         "id": "wellness-information-and-services",
+         "title": "Wellness Information and Services",
+         "outcomes": [
+          {
+           "code": "WE.1.4",
+           "text": "Identify which “safety” helpers (e.g., police and teachers) to contact for different problems."
+          },
+          {
+           "code": "WE.1.5",
+           "text": "Demonstrate when and how to use 9-1-1 emergency services."
+          },
+          {
+           "code": "WE.1.6",
+           "text": "Classify household products (e.g., harmful, safe)."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "wellness-behaviors",
+     "title": "Wellness Behaviors",
+     "topics": [
+      {
+       "id": "wellness-behaviors",
+       "title": "Wellness Behaviors",
+       "subtopics": [
+        {
+         "id": "wellness-behaviors-1-of-2",
+         "title": "Wellness Behaviors (1 of 2)",
+         "outcomes": [
+          {
+           "code": "WE.1.7",
+           "text": "Identify the proper safety equipment for different activities (e.g., rollerblading, bicycling, skateboarding, seatbelts and positioning when riding in a car)."
+          },
+          {
+           "code": "WE.1.8",
+           "text": "Discuss and follow safety rules (e.g., sharp objects, bodily fluids, playground, water, electrical)."
+          },
+          {
+           "code": "WE.1.9",
+           "text": "Identify escape routes at home and school."
+          },
+          {
+           "code": "WE.1.10",
+           "text": "Explain why medication should be avoided without adult supervision."
+          },
+          {
+           "code": "WE.1.11",
+           "text": "Recognize tobacco, alcohol, and other drugs as harmful substances."
+          }
+         ]
+        },
+        {
+         "id": "wellness-behaviors-2-of-2",
+         "title": "Wellness Behaviors (2 of 2)",
+         "outcomes": [
+          {
+           "code": "WE.1.12",
+           "text": "Discuss how using televisions, computers, video games and other technology can affect personal health."
+          },
+          {
+           "code": "WE.1.13",
+           "text": "Identify a variety of feelings and demonstrate healthy ways to act on feelings and stressful situations (e.g., coping skills)."
+          },
+          {
+           "code": "WE.1.14",
+           "text": "Discuss appropriate refusal skills in potentially harmful or dangerous situations (e.g., meeting strangers, using harmful substances)."
+          },
+          {
+           "code": "WE.1.15",
+           "text": "Understand it is acceptable to tell parents and/or other trusted adults when feeling uncomfortable about being touched."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "development-of-motor-skills-movement-forms",
+     "title": "Development of Motor Skills/Movement Forms",
+     "topics": [
+      {
+       "id": "development-of-motor-skills-movement-forms",
+       "title": "Development of Motor Skills/Movement Forms",
+       "subtopics": [
+        {
+         "id": "development-of-motor-skills-movement-forms-1-of-",
+         "title": "Development of Motor Skills/Movement Forms (1 of 2)",
+         "outcomes": [
+          {
+           "code": "WE.1.16",
+           "text": "Develop a beginning movement vocabulary for body and spatial awareness (e.g., general/self-space, zig-zag, curve, straight, diagonal)."
+          },
+          {
+           "code": "WE.1.17",
+           "text": "Distinguish and perform locomotor movements of skip and leap."
+          },
+          {
+           "code": "WE.1.18",
+           "text": "Demonstrate directional movements of forward, backward, sideways, up, down, left, and right."
+          },
+          {
+           "code": "WE.1.19",
+           "text": "Balance an object on various body parts (e.g., ball on hand, bean bag on foot)."
+          }
+         ]
+        },
+        {
+         "id": "development-of-motor-skills-movement-forms-2-of-",
+         "title": "Development of Motor Skills/Movement Forms (2 of 2)",
+         "outcomes": [
+          {
+           "code": "WE.1.20",
+           "text": "Bounce and catch a ball."
+          },
+          {
+           "code": "WE.1.21",
+           "text": "Combine locomotor skills with pathways (e.g., straight, zigzag, and curved)."
+          },
+          {
+           "code": "WE.1.22",
+           "text": "Create expressive movement sequences to a variety of beats, tempos, and rhythms."
+          },
+          {
+           "code": "WE.1.23",
+           "text": "Recognize basic movement concepts of personal and general space (e.g., directional movements of forward, backward, sideways, up and down)."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "physical-fitness",
+     "title": "Physical Fitness",
+     "topics": [
+      {
+       "id": "physical-fitness",
+       "title": "Physical Fitness",
+       "subtopics": [
+        {
+         "id": "physical-fitness",
+         "title": "Physical Fitness",
+         "outcomes": [
+          {
+           "code": "WE.1.24",
+           "text": "Recognize the body responses to physical activity (e.g., increased heart/breathing rate, muscle fatigue, exhaustion levels)."
+          },
+          {
+           "code": "WE.1.25",
+           "text": "Explain the importance of proper rest and exercise."
+          },
+          {
+           "code": "WE.1.26",
+           "text": "Identify and explore large muscle groups."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "responsible-personal-and-social-behaviors",
+     "title": "Responsible, Personal and Social Behaviors",
+     "topics": [
+      {
+       "id": "responsible-personal-and-social-behaviors",
+       "title": "Responsible, Personal and Social Behaviors",
+       "subtopics": [
+        {
+         "id": "responsible-personal-and-social-behaviors",
+         "title": "Responsible, Personal and Social Behaviors",
+         "outcomes": [
+          {
+           "code": "WE.1.27",
+           "text": "Describe and participate in appropriate physical activities during recess and outside of school."
+          },
+          {
+           "code": "WE.1.28",
+           "text": "Demonstrate appropriate interactions with others (e.g., partners, small groups, and large groups)."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "2",
+   "units": [
+    {
+     "id": "wellness-promotion-and-disease-prevention",
+     "title": "Wellness Promotion and Disease Prevention",
+     "topics": [
+      {
+       "id": "wellness-promotion-and-disease-prevention",
+       "title": "Wellness Promotion and Disease Prevention",
+       "subtopics": [
+        {
+         "id": "wellness-promotion-and-disease-prevention",
+         "title": "Wellness Promotion and Disease Prevention",
+         "outcomes": [
+          {
+           "code": "WE.2.1",
+           "text": "Identify foods in each food group."
+          },
+          {
+           "code": "WE.2.2",
+           "text": "Explain the importance of good dental care and demonstrate good dental hygiene."
+          },
+          {
+           "code": "WE.2.3",
+           "text": "Discuss how community agencies work to prevent and control diseases."
+          },
+          {
+           "code": "WE.2.4",
+           "text": "Describe how immunizations and medicines help fight disease."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "wellness-information-and-services",
+     "title": "Wellness Information and Services",
+     "topics": [
+      {
+       "id": "wellness-information-and-services",
+       "title": "Wellness Information and Services",
+       "subtopics": [
+        {
+         "id": "wellness-information-and-services",
+         "title": "Wellness Information and Services",
+         "outcomes": [
+          {
+           "code": "WE.2.5",
+           "text": "Explore basic first aid."
+          },
+          {
+           "code": "WE.2.6",
+           "text": "Demonstrate when and how to use 9-1-1 emergency services."
+          },
+          {
+           "code": "WE.2.7",
+           "text": "Identify symptoms of poisoning and how to get help."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "wellness-behaviors",
+     "title": "Wellness Behaviors",
+     "topics": [
+      {
+       "id": "wellness-behaviors",
+       "title": "Wellness Behaviors",
+       "subtopics": [
+        {
+         "id": "wellness-behaviors-1-of-3",
+         "title": "Wellness Behaviors (1 of 3)",
+         "outcomes": [
+          {
+           "code": "WE.2.8",
+           "text": "Demonstrate knowledge of appropriate safety skills and equipment for recreational activities."
+          },
+          {
+           "code": "WE.2.9",
+           "text": "Describe behaviors and habits which may be dangerous at home, on the playground, or in the community."
+          },
+          {
+           "code": "WE.2.10",
+           "text": "Demonstrate proper food handling techniques (e.g., washing apples, washing hands, using clean utensils)."
+          },
+          {
+           "code": "WE.2.11",
+           "text": "Describe the harmful effects of tobacco, alcohol, and other drugs."
+          }
+         ]
+        },
+        {
+         "id": "wellness-behaviors-2-of-3",
+         "title": "Wellness Behaviors (2 of 3)",
+         "outcomes": [
+          {
+           "code": "WE.2.12",
+           "text": "Describe the importance of following directions for taking medicine and only taking medication under adult supervision."
+          },
+          {
+           "code": "WE.2.13",
+           "text": "Understand the influence digital and print media can have on health behavior."
+          },
+          {
+           "code": "WE.2.14",
+           "text": "Describe how to plan a healthy family meal."
+          },
+          {
+           "code": "WE.2.15",
+           "text": "Practice positive communication skills (e.g., healthy ways to express needs, wants, and feelings)."
+          }
+         ]
+        },
+        {
+         "id": "wellness-behaviors-3-of-3",
+         "title": "Wellness Behaviors (3 of 3)",
+         "outcomes": [
+          {
+           "code": "WE.2.16",
+           "text": "Demonstrate how to respond appropriately when being touched in an uncomfortable manner."
+          },
+          {
+           "code": "WE.2.17",
+           "text": "Discuss possible risky situations in various environments."
+          },
+          {
+           "code": "WE.2.18",
+           "text": "Identify situations resulting in hurt feelings and demonstrate appropriate coping skills."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "development-of-motor-skills-movement-forms",
+     "title": "Development of Motor Skills/Movement Forms",
+     "topics": [
+      {
+       "id": "development-of-motor-skills-movement-forms",
+       "title": "Development of Motor Skills/Movement Forms",
+       "subtopics": [
+        {
+         "id": "development-of-motor-skills-movement-forms",
+         "title": "Development of Motor Skills/Movement Forms",
+         "outcomes": [
+          {
+           "code": "WE.2.19",
+           "text": "Combine locomotor skills with pathways (e.g., straight, zigzag, and curved) and levels (e.g., high, medium, and low)."
+          },
+          {
+           "code": "WE.2.20",
+           "text": "Practice chasing, fleeing, and evading in a variety of physical activities."
+          },
+          {
+           "code": "WE.2.21",
+           "text": "Combine balance, transfer of weight, and rolling movements in a repeatable sequence (e.g., beginner gymnastics, animal movements, yoga)."
+          },
+          {
+           "code": "WE.2.22",
+           "text": "Perform dance sequences to a variety of beats, tempos, and rhythms."
+          },
+          {
+           "code": "WE.2.23",
+           "text": "Demonstrate directional movements of forward, backward, sideways, up, down, left, and right."
+          },
+          {
+           "code": "WE.2.24",
+           "text": "Kick, throw, catch, and strike an object from a stationary position."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "physical-fitness",
+     "title": "Physical Fitness",
+     "topics": [
+      {
+       "id": "physical-fitness",
+       "title": "Physical Fitness",
+       "subtopics": [
+        {
+         "id": "physical-fitness",
+         "title": "Physical Fitness",
+         "outcomes": [
+          {
+           "code": "WE.2.25",
+           "text": "Identify and discuss the components associated with health-related fitness (e.g., cardiovascular endurance, muscular strength and endurance, flexibility and body composition) and participate in activities to improve fitness."
+          },
+          {
+           "code": "WE.2.26",
+           "text": "Locate and discuss large muscle groups."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "responsible-personal-and-social-behaviors",
+     "title": "Responsible Personal and Social Behaviors",
+     "topics": [
+      {
+       "id": "responsible-personal-and-social-behaviors",
+       "title": "Responsible Personal and Social Behaviors",
+       "subtopics": [
+        {
+         "id": "responsible-personal-and-social-behaviors",
+         "title": "Responsible Personal and Social Behaviors",
+         "outcomes": [
+          {
+           "code": "WE.2.27",
+           "text": "Follow rules, procedures, and safe practices individually and when in a group."
+          },
+          {
+           "code": "WE.2.28",
+           "text": "Participate in two physical activities that bring personal enjoyment during recess or outside of the school environment."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "3",
+   "units": [
+    {
+     "id": "wellness-promotion-and-disease-prevention",
+     "title": "Wellness Promotion and Disease Prevention",
+     "topics": [
+      {
+       "id": "wellness-promotion-and-disease-prevention",
+       "title": "Wellness Promotion and Disease Prevention",
+       "subtopics": [
+        {
+         "id": "wellness-promotion-and-disease-prevention",
+         "title": "Wellness Promotion and Disease Prevention",
+         "outcomes": [
+          {
+           "code": "WE.3.1",
+           "text": "Identify the major organs of the body systems."
+          },
+          {
+           "code": "WE.3.2",
+           "text": "Explain the importance of preventing the spread of germs, bacteria, and diseases."
+          },
+          {
+           "code": "WE.3.3",
+           "text": "Demonstrate good dental hygiene and discuss potential consequences of poor oral health."
+          },
+          {
+           "code": "WE.3.4",
+           "text": "Identify the food groups and recognize food provides energy and nutrients for growth and development."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "wellness-information-and-services",
+     "title": "Wellness Information and Services",
+     "topics": [
+      {
+       "id": "wellness-information-and-services",
+       "title": "Wellness Information and Services",
+       "subtopics": [
+        {
+         "id": "wellness-information-and-services",
+         "title": "Wellness Information and Services",
+         "outcomes": [
+          {
+           "code": "WE.3.5",
+           "text": "Define and demonstrate basic first aid procedures."
+          },
+          {
+           "code": "WE.3.6",
+           "text": "Distinguish between situations that warrant contacting emergency services and situations that do not."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "wellness-behaviors",
+     "title": "Wellness Behaviors",
+     "topics": [
+      {
+       "id": "wellness-behaviors",
+       "title": "Wellness Behaviors",
+       "subtopics": [
+        {
+         "id": "wellness-behaviors-1-of-2",
+         "title": "Wellness Behaviors (1 of 2)",
+         "outcomes": [
+          {
+           "code": "WE.3.7",
+           "text": "Explain the importance of using appropriate protective gear for self and others (e.g., helmets, goggles, sunscreen, seatbelts and other safety protocols in various modes of transportation including seat positioning)."
+          },
+          {
+           "code": "WE.3.8",
+           "text": "Discuss and practice personal responsibility for hygiene."
+          },
+          {
+           "code": "WE.3.9",
+           "text": "Demonstrate decision-making skills to avoid unhealthy risk-taking behaviors (e.g., swimming alone, talking with strangers, taking medicines without adult supervision)."
+          },
+          {
+           "code": "WE.3.10",
+           "text": "Model and practice ways to reduce stress (e.g., deep breathing, mindfulness)."
+          },
+          {
+           "code": "WE.3.11",
+           "text": "Discuss appropriate and inappropriate uses of over the counter (OTC) and prescription medication."
+          }
+         ]
+        },
+        {
+         "id": "wellness-behaviors-2-of-2",
+         "title": "Wellness Behaviors (2 of 2)",
+         "outcomes": [
+          {
+           "code": "WE.3.12",
+           "text": "Compare food choices based on nutritional value, recommended portion, and serving size."
+          },
+          {
+           "code": "WE.3.13",
+           "text": "Demonstrate appropriate refusal skills (e.g., clear \"no\" statement, walk away, repeat refusal)."
+          },
+          {
+           "code": "WE.3.14",
+           "text": "Assess factors that contribute to achieving and maintaining a healthy body (e.g., food choices, physical activity)."
+          },
+          {
+           "code": "WE.3.15",
+           "text": "Understand how overall health is affected by different levels of passive technology use (e.g., minimal, moderate, or excessive screen time, video games)."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "development-of-motor-skills-movement-form",
+     "title": "Development of Motor Skills/Movement Form",
+     "topics": [
+      {
+       "id": "development-of-motor-skills-movement-form",
+       "title": "Development of Motor Skills/Movement Form",
+       "subtopics": [
+        {
+         "id": "development-of-motor-skills-movement-form-1-of-2",
+         "title": "Development of Motor Skills/Movement Form (1 of 2)",
+         "outcomes": [
+          {
+           "code": "WE.3.16",
+           "text": "Throw an object in an underhand and overhand method."
+          },
+          {
+           "code": "WE.3.17",
+           "text": "Catch a moving object."
+          },
+          {
+           "code": "WE.3.18",
+           "text": "Dribble a ball with hands from a stationary and a moving position."
+          },
+          {
+           "code": "WE.3.19",
+           "text": "Direct an object to a target (e.g., kick, roll, throw, and strike)."
+          }
+         ]
+        },
+        {
+         "id": "development-of-motor-skills-movement-form-2-of-2",
+         "title": "Development of Motor Skills/Movement Form (2 of 2)",
+         "outcomes": [
+          {
+           "code": "WE.3.20",
+           "text": "Jump to an established rhythm continuously."
+          },
+          {
+           "code": "WE.3.21",
+           "text": "Perform simple sequences in time to music."
+          },
+          {
+           "code": "WE.3.22",
+           "text": "Continuously strike an object (e.g., balloon with hand, ball with foot)."
+          },
+          {
+           "code": "WE.3.23",
+           "text": "Demonstrate strategies for chasing, fleeing, and evading."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "physical-fitness",
+     "title": "Physical Fitness",
+     "topics": [
+      {
+       "id": "physical-fitness",
+       "title": "Physical Fitness",
+       "subtopics": [
+        {
+         "id": "physical-fitness-1-of-2",
+         "title": "Physical Fitness (1 of 2)",
+         "outcomes": [
+          {
+           "code": "WE.3.24",
+           "text": "Practice proper form when performing the following muscular strength and endurance exercises (e.g., curl up, sit up, plank, push up)."
+          },
+          {
+           "code": "WE.3.25",
+           "text": "Practice proper form when developing flexibility (e.g., trunk lift, sit and reach, shoulder stretch)."
+          },
+          {
+           "code": "WE.3.26",
+           "text": "Practice proper pacing technique when running for various periods of time or distance (e.g., sprint, jog, mile-run)."
+          },
+          {
+           "code": "WE.3.27",
+           "text": "Demonstrate a procedure for monitoring heart rate."
+          }
+         ]
+        },
+        {
+         "id": "physical-fitness-2-of-2",
+         "title": "Physical Fitness (2 of 2)",
+         "outcomes": [
+          {
+           "code": "WE.3.28",
+           "text": "Distinguish between physical activities that are moderate-to-vigorous in intensity."
+          },
+          {
+           "code": "WE.3.29",
+           "text": "Identify personally enjoyable physical activities."
+          },
+          {
+           "code": "WE.3.30",
+           "text": "Explain the benefits of different kinds of fitness (e.g., cardiovascular endurance, muscular strength and endurance, flexibility, and body composition) and demonstrate exercises/activities for each."
+          },
+          {
+           "code": "WE.3.31",
+           "text": "Explore the components of the F.I.T.T. Principle: Frequency, Intensity, Time, and Type."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "responsible-personal-and-social-behaviors",
+     "title": "Responsible Personal and Social Behaviors",
+     "topics": [
+      {
+       "id": "responsible-personal-and-social-behaviors",
+       "title": "Responsible Personal and Social Behaviors",
+       "subtopics": [
+        {
+         "id": "responsible-personal-and-social-behaviors",
+         "title": "Responsible Personal and Social Behaviors",
+         "outcomes": [
+          {
+           "code": "WE.3.32",
+           "text": "Work cooperatively, productively, and safely with a partner or small group."
+          },
+          {
+           "code": "WE.3.33",
+           "text": "Use specific feedback to improve performance."
+          },
+          {
+           "code": "WE.3.34",
+           "text": "Explain the importance of rules and etiquette in physical activities."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "4",
+   "units": [
+    {
+     "id": "wellness-promotion-and-disease-prevention",
+     "title": "Wellness Promotion and Disease Prevention",
+     "topics": [
+      {
+       "id": "wellness-promotion-and-disease-prevention",
+       "title": "Wellness Promotion and Disease Prevention",
+       "subtopics": [
+        {
+         "id": "wellness-promotion-and-disease-prevention",
+         "title": "Wellness Promotion and Disease Prevention",
+         "outcomes": [
+          {
+           "code": "WE.4.1",
+           "text": "Identify responsible health behaviors to avoid the spread of contagious diseases."
+          },
+          {
+           "code": "WE.4.2",
+           "text": "Describe the functions of the circulatory, respiratory, nervous, endocrine systems of the human body."
+          },
+          {
+           "code": "WE.4.3",
+           "text": "Describe the harmful effects of excessive sun exposure and identify ways to reduce overexposure."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "wellness-information-and-services",
+     "title": "Wellness Information and Services",
+     "topics": [
+      {
+       "id": "wellness-information-and-services",
+       "title": "Wellness Information and Services",
+       "subtopics": [
+        {
+         "id": "wellness-information-and-services",
+         "title": "Wellness Information and Services",
+         "outcomes": [
+          {
+           "code": "WE.4.4",
+           "text": "Identify specific community resources providing health care, health information, and health enhancing activities."
+          },
+          {
+           "code": "WE.4.5",
+           "text": "Explore how the media attempts to influence thoughts, feelings, and health behaviors."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "wellness-behaviors",
+     "title": "Wellness Behaviors",
+     "topics": [
+      {
+       "id": "wellness-behaviors",
+       "title": "Wellness Behaviors",
+       "subtopics": [
+        {
+         "id": "wellness-behaviors-1-of-2",
+         "title": "Wellness Behaviors (1 of 2)",
+         "outcomes": [
+          {
+           "code": "WE.4.6",
+           "text": "Develop and practice a personal hygiene plan."
+          },
+          {
+           "code": "WE.4.7",
+           "text": "Recognize and accept individual differences in others (e.g., skills, appearance, gender)."
+          },
+          {
+           "code": "WE.4.8",
+           "text": "Discuss the improper use and abuse of drugs."
+          },
+          {
+           "code": "WE.4.9",
+           "text": "Examine food labels and nutritional value."
+          },
+          {
+           "code": "WE.4.10",
+           "text": "Discuss examples for food advertising and influences on personal health."
+          }
+         ]
+        },
+        {
+         "id": "wellness-behaviors-2-of-2",
+         "title": "Wellness Behaviors (2 of 2)",
+         "outcomes": [
+          {
+           "code": "WE.4.11",
+           "text": "Identify and discuss TV and other media programs exemplifying healthy family relationships."
+          },
+          {
+           "code": "WE.4.12",
+           "text": "Examine the consequences of not using appropriate safety skills and equipment for recreational purposes."
+          },
+          {
+           "code": "WE.4.13",
+           "text": "Plan a balanced meal using proper nutrition guides."
+          },
+          {
+           "code": "WE.4.14",
+           "text": "Define risk-taking behaviors and resulting consequences."
+          },
+          {
+           "code": "WE.4.15",
+           "text": "Explain the physical, social, and emotional changes that occur during puberty and adolescence."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "development-of-motor-skills-movement-forms",
+     "title": "Development of Motor Skills/Movement Forms",
+     "topics": [
+      {
+       "id": "development-of-motor-skills-movement-forms",
+       "title": "Development of Motor Skills/Movement Forms",
+       "subtopics": [
+        {
+         "id": "development-of-motor-skills-movement-forms-1-of-",
+         "title": "Development of Motor Skills/Movement Forms (1 of 2)",
+         "outcomes": [
+          {
+           "code": "WE.4.16",
+           "text": "Demonstrate critical elements or components for the kick, catch, throw, dribble with hands and feet, and jump/land."
+          },
+          {
+           "code": "WE.4.17",
+           "text": "Strike, toss, and catch objects using short and long-handled implements."
+          },
+          {
+           "code": "WE.4.18",
+           "text": "Volley an object to self."
+          },
+          {
+           "code": "WE.4.19",
+           "text": "Jump a single rope continuously using a variety of jump skills."
+          }
+         ]
+        },
+        {
+         "id": "development-of-motor-skills-movement-forms-2-of-",
+         "title": "Development of Motor Skills/Movement Forms (2 of 2)",
+         "outcomes": [
+          {
+           "code": "WE.4.20",
+           "text": "Apply strategies for chasing, fleeing, and evading in a variety of activities."
+          },
+          {
+           "code": "WE.4.21",
+           "text": "Perform rhythmic sequences using equipment."
+          },
+          {
+           "code": "WE.4.22",
+           "text": "Dribble and kick an object while moving."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "physical-fitness",
+     "title": "Physical Fitness",
+     "topics": [
+      {
+       "id": "physical-fitness",
+       "title": "Physical Fitness",
+       "subtopics": [
+        {
+         "id": "physical-fitness-1-of-2",
+         "title": "Physical Fitness (1 of 2)",
+         "outcomes": [
+          {
+           "code": "WE.4.23",
+           "text": "Demonstrate proper form when performing the following muscular strength and endurance exercises (e.g., curl up, sit up, plank, push up)."
+          },
+          {
+           "code": "WE.4.24",
+           "text": "Demonstrate proper form when developing flexibility (e.g., trunk lift, sit and reach, shoulder stretch)."
+          },
+          {
+           "code": "WE.4.25",
+           "text": "Demonstrate proper pacing technique when running for various periods of time or distance (e.g., sprint, jog, mile-run)."
+          },
+          {
+           "code": "WE.4.26",
+           "text": "Use fitness assessment results to identify personal strengths and weaknesses and plan for personal improvement."
+          }
+         ]
+        },
+        {
+         "id": "physical-fitness-2-of-2",
+         "title": "Physical Fitness (2 of 2)",
+         "outcomes": [
+          {
+           "code": "WE.4.27",
+           "text": "Match various exercises to the appropriate fitness components (e.g., push-up to upper body strength, curl up to abdominal strength)."
+          },
+          {
+           "code": "WE.4.28",
+           "text": "Identify the components of the F.I.T.T. principle of exercise: frequency, intensity, time, and type."
+          },
+          {
+           "code": "WE.4.29",
+           "text": "Identify the characteristics of activities needed to maintain health-related fitness."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "responsible-personal-and-social-behaviors",
+     "title": "Responsible Personal and Social Behaviors",
+     "topics": [
+      {
+       "id": "responsible-personal-and-social-behaviors",
+       "title": "Responsible Personal and Social Behaviors",
+       "subtopics": [
+        {
+         "id": "responsible-personal-and-social-behaviors",
+         "title": "Responsible Personal and Social Behaviors",
+         "outcomes": [
+          {
+           "code": "WE.4.30",
+           "text": "Work cooperatively, productively, and safely with a partner or small group."
+          },
+          {
+           "code": "WE.4.31",
+           "text": "Demonstrates the importance of rules and etiquette in physical activities."
+          },
+          {
+           "code": "WE.4.32",
+           "text": "Define fair play and provide examples of fair play in a variety of activities."
+          },
+          {
+           "code": "WE.4.33",
+           "text": "Identify examples of appropriate feedback."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "5",
+   "units": [
+    {
+     "id": "wellness-promotion-and-disease-prevention",
+     "title": "Wellness Promotion and Disease Prevention",
+     "topics": [
+      {
+       "id": "wellness-promotion-and-disease-prevention",
+       "title": "Wellness Promotion and Disease Prevention",
+       "subtopics": [
+        {
+         "id": "wellness-promotion-and-disease-prevention",
+         "title": "Wellness Promotion and Disease Prevention",
+         "outcomes": [
+          {
+           "code": "WE.5.1",
+           "text": "Identify seven dimensions of total wellness (e.g., physical, emotional, social, intellectual, spiritual, environmental, and occupational)."
+          },
+          {
+           "code": "WE.5.2",
+           "text": "Describe the importance of proper nutrition and appropriate food choice."
+          },
+          {
+           "code": "WE.5.3",
+           "text": "Recognize potentially dangerous situations (e.g., bullying, harassment, drug use, criminal activities) and know how to obtain help."
+          },
+          {
+           "code": "WE.5.4",
+           "text": "Identify environmental hazards (e.g., poisonous plants, insect bites/stings, pollution)."
+          },
+          {
+           "code": "WE.5.5",
+           "text": "Describe precautions and reactions to extreme weather conditions."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "wellness-information-and-service",
+     "title": "Wellness Information and Service",
+     "topics": [
+      {
+       "id": "wellness-information-and-service",
+       "title": "Wellness Information and Service",
+       "subtopics": [
+        {
+         "id": "wellness-information-and-service",
+         "title": "Wellness Information and Service",
+         "outcomes": [
+          {
+           "code": "WE.5.6",
+           "text": "Describe how family, peers, community, and culture influence and support personal health practices and behaviors."
+          },
+          {
+           "code": "WE.5.7",
+           "text": "Identify legal and illegal drugs."
+          },
+          {
+           "code": "WE.5.8",
+           "text": "Discuss ways that technology can have a positive and negative influence on personal health."
+          },
+          {
+           "code": "WE.5.9",
+           "text": "Discuss how media may influence future behaviors (e.g., tobacco and alcohol use, violence, relationships)."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "wellness-behaviors",
+     "title": "Wellness Behaviors",
+     "topics": [
+      {
+       "id": "wellness-behaviors",
+       "title": "Wellness Behaviors",
+       "subtopics": [
+        {
+         "id": "wellness-behaviors-1-of-2",
+         "title": "Wellness Behaviors (1 of 2)",
+         "outcomes": [
+          {
+           "code": "WE.5.10",
+           "text": "Analyze and interpret nutritional value food labels."
+          },
+          {
+           "code": "WE.5.11",
+           "text": "Identify effective verbal and non-verbal communication skills (e.g., body language, restating, listening)."
+          },
+          {
+           "code": "WE.5.12",
+           "text": "Demonstrate refusal skills to avoid risky behaviors or situations (e.g., drug use, criminal activity, being alone with a stranger, inappropriate digital communication)."
+          },
+          {
+           "code": "WE.5.13",
+           "text": "Demonstrate assertive responses when asking for help in an emergency."
+          }
+         ]
+        },
+        {
+         "id": "wellness-behaviors-2-of-2",
+         "title": "Wellness Behaviors (2 of 2)",
+         "outcomes": [
+          {
+           "code": "WE.5.14",
+           "text": "Set a personal health goal, identify resources to assist in achieving the goal, and track progress toward its achievement."
+          },
+          {
+           "code": "WE.5.15",
+           "text": "Distinguish between safe, risky, or harmful relationships and list strategies to reduce threatening situations (e.g., anger management, positive peer-pressure)."
+          },
+          {
+           "code": "WE.5.16",
+           "text": "Demonstrate techniques for managing stress (e.g., exercising, meditation)."
+          },
+          {
+           "code": "WE.5.17",
+           "text": "Identify strategies to change unhealthy behaviors."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "development-of-movement-forms-motor-skills",
+     "title": "Development of Movement Forms / Motor Skills",
+     "topics": [
+      {
+       "id": "development-of-movement-forms-motor-skills",
+       "title": "Development of Movement Forms / Motor Skills",
+       "subtopics": [
+        {
+         "id": "development-of-movement-forms-motor-skills-1-of-",
+         "title": "Development of Movement Forms / Motor Skills (1 of 2)",
+         "outcomes": [
+          {
+           "code": "WE.5.18",
+           "text": "Perform various motor skill techniques to independently develop/improve coordination."
+          },
+          {
+           "code": "WE.5.19",
+           "text": "Perform simple dance sequences using smooth transitions in speed, level, and direction in time to music."
+          },
+          {
+           "code": "WE.5.20",
+           "text": "Perform jump sequences with partner(s) using equipment."
+          },
+          {
+           "code": "WE.5.21",
+           "text": "Throw overhand with force and accuracy."
+          }
+         ]
+        },
+        {
+         "id": "development-of-movement-forms-motor-skills-2-of-",
+         "title": "Development of Movement Forms / Motor Skills (2 of 2)",
+         "outcomes": [
+          {
+           "code": "WE.5.22",
+           "text": "Dribble with hands or feet while evading an opponent."
+          },
+          {
+           "code": "WE.5.23",
+           "text": "Utilize critical elements or components for dribbling with feet and hands and striking with short and long-handled implements to improve performance in a game setting."
+          },
+          {
+           "code": "WE.5.24",
+           "text": "Use an implement to strike an object with force and accuracy."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "physical-fitness",
+     "title": "Physical Fitness",
+     "topics": [
+      {
+       "id": "physical-fitness",
+       "title": "Physical Fitness",
+       "subtopics": [
+        {
+         "id": "physical-fitness-1-of-3",
+         "title": "Physical Fitness (1 of 3)",
+         "outcomes": [
+          {
+           "code": "WE.5.25",
+           "text": "Demonstrate proper form when performing the following muscular strength and endurance exercises (e.g., curl up, sit up, plank, push up)."
+          },
+          {
+           "code": "WE.5.26",
+           "text": "Demonstrate proper form when developing flexibility (e.g., trunk lift, sit and reach, shoulder stretch)."
+          },
+          {
+           "code": "WE.5.27",
+           "text": "Demonstrate proper pacing technique when running for various periods of time or distance (e.g., sprint, jog, mile-run)."
+          },
+          {
+           "code": "WE.5.28",
+           "text": "Use fitness assessment results to identify personal strengths and weaknesses and plan for personal improvement."
+          }
+         ]
+        },
+        {
+         "id": "physical-fitness-2-of-3",
+         "title": "Physical Fitness (2 of 3)",
+         "outcomes": [
+          {
+           "code": "WE.5.29",
+           "text": "Participate in warm-up and cool-down procedures before and after vigorous activities."
+          },
+          {
+           "code": "WE.5.30",
+           "text": "Describe the health benefits of regular participation in physical activity."
+          },
+          {
+           "code": "WE.5.31",
+           "text": "Define the components of the F.I.T.T. principle of exercise (e.g., frequency, intensity, time, and type)."
+          },
+          {
+           "code": "WE.5.32",
+           "text": "Demonstrate knowledge of the five health related fitness components (e.g., cardiovascular fitness, muscular strength, muscular endurance, body composition, flexibility)."
+          }
+         ]
+        },
+        {
+         "id": "physical-fitness-3-of-3",
+         "title": "Physical Fitness (3 of 3)",
+         "outcomes": [
+          {
+           "code": "WE.5.33",
+           "text": "Demonstrate knowledge of skill related fitness (e.g., speed, agility, balance, reaction time, power, coordination)."
+          },
+          {
+           "code": "WE.5.34",
+           "text": "Identify school and community programs promoting lifelong physical activity."
+          },
+          {
+           "code": "WE.5.35",
+           "text": "Engage in lifestyle behaviors to increase physical activity outside of the physical education setting."
+          },
+          {
+           "code": "WE.5.36",
+           "text": "Record physical activity participation (e.g., in and outside physical education)."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "responsible-personal-and-social-behavior",
+     "title": "Responsible Personal and Social Behavior",
+     "topics": [
+      {
+       "id": "responsible-personal-and-social-behavior",
+       "title": "Responsible Personal and Social Behavior",
+       "subtopics": [
+        {
+         "id": "responsible-personal-and-social-behavior",
+         "title": "Responsible Personal and Social Behavior",
+         "outcomes": [
+          {
+           "code": "WE.5.37",
+           "text": "Work collaboratively, productively, and safely with a partner or small group."
+          },
+          {
+           "code": "WE.5.38",
+           "text": "Participate appropriately with those having different skills and abilities."
+          },
+          {
+           "code": "WE.5.39",
+           "text": "Demonstrate fair play in competitive settings regardless of the outcome."
+          },
+          {
+           "code": "WE.5.40",
+           "text": "Respectfully provide appropriate feedback to others."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "6",
+   "units": [
+    {
+     "id": "health-promotion-and-disease-prevention",
+     "title": "Health Promotion and Disease Prevention",
+     "topics": [
+      {
+       "id": "health-promotion-and-disease-prevention",
+       "title": "Health Promotion and Disease Prevention",
+       "subtopics": [
+        {
+         "id": "health-promotion-and-disease-prevention-1-of-2",
+         "title": "Health Promotion and Disease Prevention (1 of 2)",
+         "outcomes": [
+          {
+           "code": "WE.6.1",
+           "text": "Investigate personal diet, create an understanding of serving size versus portion size, and analyze nutritional needs of adolescents."
+          },
+          {
+           "code": "WE.6.2",
+           "text": "List short-term and long-term effects of alcohol, drugs, and tobacco."
+          },
+          {
+           "code": "WE.6.3",
+           "text": "List short-term and long-term effects of sedentary lifestyle."
+          },
+          {
+           "code": "WE.6.4",
+           "text": "Examine healthy behaviors and practices beneficial to each body system and help lead to a healthy lifestyle."
+          }
+         ]
+        },
+        {
+         "id": "health-promotion-and-disease-prevention-2-of-2",
+         "title": "Health Promotion and Disease Prevention (2 of 2)",
+         "outcomes": [
+          {
+           "code": "WE.6.5",
+           "text": "Describe how family health history, hereditary factors, and personal lifestyle choices impact personal health."
+          },
+          {
+           "code": "WE.6.6",
+           "text": "Analyze the seven dimensions of wellness and how to maintain or improve them (e.g., physical, emotional, social, intellectual, spiritual, environmental, and occupational)."
+          },
+          {
+           "code": "WE.6.7",
+           "text": "Recognize medical terminology, anatomical landmarks, and functions of the reproductive system."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "culture-media-and-technology",
+     "title": "Culture, Media, and Technology",
+     "topics": [
+      {
+       "id": "culture-media-and-technology",
+       "title": "Culture, Media, and Technology",
+       "subtopics": [
+        {
+         "id": "culture-media-and-technology-1-of-2",
+         "title": "Culture, Media, and Technology (1 of 2)",
+         "outcomes": [
+          {
+           "code": "WE.6.8",
+           "text": "Analyze how media messages influence choices on health behaviors (e.g., tobacco, drugs, alcohol, eating disorders, etc.)."
+          },
+          {
+           "code": "WE.6.9",
+           "text": "Analyze advertiser influences on consumer choices (e.g., brand names, fads)."
+          },
+          {
+           "code": "WE.6.10",
+           "text": "Explain how families influence the health of adolescents (e.g., family time, meal preparation, religious practices, weight control)."
+          },
+          {
+           "code": "WE.6.11",
+           "text": "Explain the influence of personal values, beliefs, and culture on health practices and behaviors."
+          }
+         ]
+        },
+        {
+         "id": "culture-media-and-technology-2-of-2",
+         "title": "Culture, Media, and Technology (2 of 2)",
+         "outcomes": [
+          {
+           "code": "WE.6.12",
+           "text": "Explain how peers, school, and community can impact personal health practices and behaviors."
+          },
+          {
+           "code": "WE.6.13",
+           "text": "Explain how technology has advanced health promotion and disease prevention."
+          },
+          {
+           "code": "WE.6.14",
+           "text": "Discuss the importance of respecting individual differences (e.g., race, religion, size, age, sex, gender identity)."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "health-information-and-service",
+     "title": "Health Information and Service",
+     "topics": [
+      {
+       "id": "health-information-and-service",
+       "title": "Health Information and Service",
+       "subtopics": [
+        {
+         "id": "health-information-and-service",
+         "title": "Health Information and Service",
+         "outcomes": [
+          {
+           "code": "WE.6.15",
+           "text": "Analyze the validity of health information, products, and services."
+          },
+          {
+           "code": "WE.6.16",
+           "text": "Identify sources of valid health information."
+          },
+          {
+           "code": "WE.6.17",
+           "text": "Describe situations that may require professional health services (e.g., drug addiction, suicide prevention, sudden illness, accidents)."
+          },
+          {
+           "code": "WE.6.18",
+           "text": "Recognize the dangers of opioid use, the addictive characteristics of opioids, and safer alternatives to treat pain."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "communication",
+     "title": "Communication",
+     "topics": [
+      {
+       "id": "communication",
+       "title": "Communication",
+       "subtopics": [
+        {
+         "id": "communication",
+         "title": "Communication",
+         "outcomes": [
+          {
+           "code": "WE.6.19",
+           "text": "Demonstrate effective verbal and non-verbal communication skills (e.g., refusal skills, body language, restating)."
+          },
+          {
+           "code": "WE.6.20",
+           "text": "Describe a variety of positive coping mechanisms and conflict resolution skills to deal with difficult situations."
+          },
+          {
+           "code": "WE.6.21",
+           "text": "Use positive communication skills to build and maintain healthy relationships."
+          },
+          {
+           "code": "WE.6.22",
+           "text": "Explain refusal and negotiation skills to avoid or reduce risks of dangerous situations."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "decision-making",
+     "title": "Decision Making",
+     "topics": [
+      {
+       "id": "decision-making",
+       "title": "Decision Making",
+       "subtopics": [
+        {
+         "id": "decision-making",
+         "title": "Decision Making",
+         "outcomes": [
+          {
+           "code": "WE.6.23",
+           "text": "List the steps of the decision-making process to solve problems."
+          },
+          {
+           "code": "WE.6.24",
+           "text": "Select healthy options that benefit health-related issues or problems."
+          },
+          {
+           "code": "WE.6.25",
+           "text": "Describe potential outcomes when making health-related decisions (obesity, alcoholism, drug dependence) for self and others."
+          },
+          {
+           "code": "WE.6.26",
+           "text": "Select decision-making skills that protect against communicable and non-communicable diseases."
+          },
+          {
+           "code": "WE.6.27",
+           "text": "Examine multiple options and differentiate between healthy and unhealthy choices when making decisions."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "goal-setting",
+     "title": "Goal Setting",
+     "topics": [
+      {
+       "id": "goal-setting",
+       "title": "Goal Setting",
+       "subtopics": [
+        {
+         "id": "goal-setting",
+         "title": "Goal Setting",
+         "outcomes": [
+          {
+           "code": "WE.6.28",
+           "text": "Explain how the goal setting process is important in designing strategies to avoid risky behaviors."
+          },
+          {
+           "code": "WE.6.29",
+           "text": "Select a personal health goal and track progress toward achievement."
+          },
+          {
+           "code": "WE.6.30",
+           "text": "Describe how personal health goals and practices can change (e.g., maturity, peer influences, environment)."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "health-behaviors",
+     "title": "Health Behaviors",
+     "topics": [
+      {
+       "id": "health-behaviors",
+       "title": "Health Behaviors",
+       "subtopics": [
+        {
+         "id": "health-behaviors",
+         "title": "Health Behaviors",
+         "outcomes": [
+          {
+           "code": "WE.6.31",
+           "text": "Differentiate between safe and risky behaviors in relationships."
+          },
+          {
+           "code": "WE.6.32",
+           "text": "Discuss healthy lifestyle practices to improve personal and family health."
+          },
+          {
+           "code": "WE.6.33",
+           "text": "List protective behaviors used to avoid and reduce threatening situations (e.g., be with a group, confide in trusted adults)."
+          },
+          {
+           "code": "WE.6.34",
+           "text": "Identify appropriate strategies used to reduce stress, anxiety, and depression."
+          },
+          {
+           "code": "WE.6.35",
+           "text": "Contrast the differences between safe and risky behaviors for preventing pregnancy and STDs/STIs."
+          },
+          {
+           "code": "WE.6.36",
+           "text": "Demonstrate CPR, hands only CPR, AED, and basic first aid."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "advocacy",
+     "title": "Advocacy",
+     "topics": [
+      {
+       "id": "advocacy",
+       "title": "Advocacy",
+       "subtopics": [
+        {
+         "id": "advocacy",
+         "title": "Advocacy",
+         "outcomes": [
+          {
+           "code": "WE.6.37",
+           "text": "Advocate for healthy lifestyles."
+          },
+          {
+           "code": "WE.6.38",
+           "text": "Discuss ways health messages can be altered depending on the audience."
+          },
+          {
+           "code": "WE.6.39",
+           "text": "Explain how to influence others to make positive health choices."
+          },
+          {
+           "code": "WE.6.40",
+           "text": "Discuss results of national or state youth risk behavior survey information."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "movement-forms-motor-skills",
+     "title": "Movement Forms / Motor Skills",
+     "topics": [
+      {
+       "id": "movement-forms-motor-skills",
+       "title": "Movement Forms / Motor Skills",
+       "subtopics": [
+        {
+         "id": "movement-forms-motor-skills",
+         "title": "Movement Forms / Motor Skills",
+         "outcomes": [
+          {
+           "code": "WE.6.41",
+           "text": "Perform independently in physical activity to improve skills and fitness."
+          },
+          {
+           "code": "WE.6.42",
+           "text": "Perform basic skills necessary to participate in individual, dual, team, and lifetime activities."
+          },
+          {
+           "code": "WE.6.43",
+           "text": "Perform social and/or multicultural dances."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "physical-activity",
+     "title": "Physical Activity",
+     "topics": [
+      {
+       "id": "physical-activity",
+       "title": "Physical Activity",
+       "subtopics": [
+        {
+         "id": "physical-activity",
+         "title": "Physical Activity",
+         "outcomes": [
+          {
+           "code": "WE.6.44",
+           "text": "Participate in physical activity in addition to physical education class."
+          },
+          {
+           "code": "WE.6.45",
+           "text": "Identify lifelong physical activity opportunities (e.g., walk/run, bike, hike, dance, strength training)."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "physical-fitness",
+     "title": "Physical Fitness",
+     "topics": [
+      {
+       "id": "physical-fitness",
+       "title": "Physical Fitness",
+       "subtopics": [
+        {
+         "id": "physical-fitness",
+         "title": "Physical Fitness",
+         "outcomes": [
+          {
+           "code": "WE.6.46",
+           "text": "Demonstrate proper form when performing the following muscular strength and endurance exercises (e.g., curl up, sit up, plank, push up)."
+          },
+          {
+           "code": "WE.6.47",
+           "text": "Demonstrate proper form when developing flexibility (e.g., trunk lift, sit and reach, shoulder stretch)."
+          },
+          {
+           "code": "WE.6.48",
+           "text": "Demonstrate proper pacing technique when running for various periods of time or distance (e.g., sprint, jog, mile-run)."
+          },
+          {
+           "code": "WE.6.49",
+           "text": "Use fitness assessment results to identify personal strengths and weaknesses and plan for personal improvement."
+          },
+          {
+           "code": "WE.6.50",
+           "text": "Describe the fitness benefits of a variety of physical activities (e.g., stretching, cardio, strength training)."
+          },
+          {
+           "code": "WE.6.51",
+           "text": "Describe the importance of warm-up and cool-down activities when participating in physical fitness."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "responsible-personal-and-social-behavior",
+     "title": "Responsible Personal and Social Behavior",
+     "topics": [
+      {
+       "id": "responsible-personal-and-social-behavior",
+       "title": "Responsible Personal and Social Behavior",
+       "subtopics": [
+        {
+         "id": "responsible-personal-and-social-behavior",
+         "title": "Responsible Personal and Social Behavior",
+         "outcomes": [
+          {
+           "code": "WE.6.52",
+           "text": "Work cooperatively and productively in a group to accomplish a set goal/task."
+          },
+          {
+           "code": "WE.6.53",
+           "text": "Follow rules, procedures, etiquette for safety and fair play."
+          },
+          {
+           "code": "WE.6.54",
+           "text": "Practice behaviors that are supportive and inclusive in physical activity."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "7",
+   "units": [
+    {
+     "id": "health-promotion-and-disease-prevention",
+     "title": "Health Promotion and Disease Prevention",
+     "topics": [
+      {
+       "id": "health-promotion-and-disease-prevention",
+       "title": "Health Promotion and Disease Prevention",
+       "subtopics": [
+        {
+         "id": "health-promotion-and-disease-prevention",
+         "title": "Health Promotion and Disease Prevention",
+         "outcomes": [
+          {
+           "code": "WE.7.1",
+           "text": "List the six essential nutrients; determine their sources and functions."
+          },
+          {
+           "code": "WE.7.2",
+           "text": "Analyze the effects of risky lifestyle behaviors on body systems and general wellness."
+          },
+          {
+           "code": "WE.7.3",
+           "text": "Describe the anatomy and functions of the reproductive system."
+          },
+          {
+           "code": "WE.7.4",
+           "text": "Identify general symptoms and potentially long-term health consequences of STDs/STIs."
+          },
+          {
+           "code": "WE.7.5",
+           "text": "Explain short-term and long-term effects of alcohol, drug, and tobacco use."
+          },
+          {
+           "code": "WE.7.8",
+           "text": "Research the dangers of opioid use, the addictive characteristics of opioids, and safer alternatives to treat pain."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "culture-media-and-technology",
+     "title": "Culture, Media, and Technology",
+     "topics": [
+      {
+       "id": "culture-media-and-technology",
+       "title": "Culture, Media, and Technology",
+       "subtopics": [
+        {
+         "id": "culture-media-and-technology-1-of-2",
+         "title": "Culture, Media, and Technology (1 of 2)",
+         "outcomes": [
+          {
+           "code": "WE.7.9",
+           "text": "Compare and contrast the influence of peers, community, and cultural beliefs on health behaviors."
+          },
+          {
+           "code": "WE.7.10",
+           "text": "Debate how messages from the media and advertising can influence health behaviors."
+          },
+          {
+           "code": "WE.7.11",
+           "text": "Describe the impact of different types of bullying and identify necessary coping skills."
+          },
+          {
+           "code": "WE.7.12",
+           "text": "Explain the importance of respecting individual differences (e.g., race, religion, size, age, sex, gender identity)."
+          }
+         ]
+        },
+        {
+         "id": "culture-media-and-technology-2-of-2",
+         "title": "Culture, Media, and Technology (2 of 2)",
+         "outcomes": [
+          {
+           "code": "WE.7.13",
+           "text": "Determine the intent of media messages about alcohol, tobacco, and other drugs (e.g., alcoholic beverage commercials, prescription, and OTC drugs)."
+          },
+          {
+           "code": "WE.7.14",
+           "text": "Analyze the food industry and how it affects the health of society."
+          },
+          {
+           "code": "WE.7.15",
+           "text": "Examine the influence of the family on the health of adolescents (e.g., smoking, drinking, drug use, meal plans)."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "health-information-and-service",
+     "title": "Health Information and Service",
+     "topics": [
+      {
+       "id": "health-information-and-service",
+       "title": "Health Information and Service",
+       "subtopics": [
+        {
+         "id": "health-information-and-service",
+         "title": "Health Information and Service",
+         "outcomes": [
+          {
+           "code": "WE.7.16",
+           "text": "Research the costs of health information, insurance, products, and services."
+          },
+          {
+           "code": "WE.7.17",
+           "text": "Identify valid health information from a variety of sources (e.g., home, community, internet)."
+          },
+          {
+           "code": "WE.7.18",
+           "text": "Explain why a situation might require professional and community health services."
+          },
+          {
+           "code": "WE.7.19",
+           "text": "Identify misinformation and stereotyping associated with food industries and/or health service."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "communication",
+     "title": "Communication",
+     "topics": [
+      {
+       "id": "communication",
+       "title": "Communication",
+       "subtopics": [
+        {
+         "id": "communication",
+         "title": "Communication",
+         "outcomes": [
+          {
+           "code": "WE.7.20",
+           "text": "Analyze effective verbal and non-verbal communication skills (e.g., body language, restating, individual/group conversation)."
+          },
+          {
+           "code": "WE.7.21",
+           "text": "Analyze the effectiveness of a variety of positive coping mechanisms/conflict resolution skills (e.g., peer mediation, non-violent strategies to deal with upset feelings and difficult situations)."
+          },
+          {
+           "code": "WE.7.22",
+           "text": "Give examples of refusal and negotiation skills to avoid health risks."
+          },
+          {
+           "code": "WE.7.23",
+           "text": "Discuss ways to develop and maintain healthy family relationships."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "decision-making",
+     "title": "Decision Making",
+     "topics": [
+      {
+       "id": "decision-making",
+       "title": "Decision Making",
+       "subtopics": [
+        {
+         "id": "decision-making",
+         "title": "Decision Making",
+         "outcomes": [
+          {
+           "code": "WE.7.24",
+           "text": "Apply established dietary guidelines in meal planning."
+          },
+          {
+           "code": "WE.7.25",
+           "text": "Discuss the consequences of poor nutritional choices."
+          },
+          {
+           "code": "WE.7.26",
+           "text": "Role-play situations and practice positive decision-making concerning alcohol, tobacco and other drugs."
+          },
+          {
+           "code": "WE.7.27",
+           "text": "Apply the steps of a decision-making process to solve a problem."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "goal-setting",
+     "title": "Goal Setting",
+     "topics": [
+      {
+       "id": "goal-setting",
+       "title": "Goal Setting",
+       "subtopics": [
+        {
+         "id": "goal-setting",
+         "title": "Goal Setting",
+         "outcomes": [
+          {
+           "code": "WE.7.28",
+           "text": "Develop a personal health plan to address strengths and weaknesses (e.g., diet, exercise, sleep, relationships)."
+          },
+          {
+           "code": "WE.7.29",
+           "text": "Explain the importance of the goal setting process when planning future events."
+          },
+          {
+           "code": "WE.7.30",
+           "text": "Discuss the impact of multiple factors on personal health goals (e.g., change of schools, getting older, new interests, family alteration)."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "health-behaviors",
+     "title": "Health Behaviors",
+     "topics": [
+      {
+       "id": "health-behaviors",
+       "title": "Health Behaviors",
+       "subtopics": [
+        {
+         "id": "health-behaviors",
+         "title": "Health Behaviors",
+         "outcomes": [
+          {
+           "code": "WE.7.31",
+           "text": "Recognize risky or harmful behaviors that may occur in relationships (e.g., abuse, date rape, sexual activity)."
+          },
+          {
+           "code": "WE.7.32",
+           "text": "Analyze the differences between safe and risky behaviors, including methods for preventing pregnancy and STDs/STIs, including Hepatitis B virus (HBV), HIV/AIDS, (e.g., abstinence, birth control, disease control)."
+          },
+          {
+           "code": "WE.7.33",
+           "text": "Role-play protective behaviors used to avoid and reduce threatening situations (e.g., anger, bullying, harassment)."
+          },
+          {
+           "code": "WE.7.34",
+           "text": "Identify strategies to reduce stress, anxiety, and depression."
+          },
+          {
+           "code": "WE.7.35",
+           "text": "Demonstrate CPR, hands only CPR, AED and basic first aid procedures."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "advocacy",
+     "title": "Advocacy",
+     "topics": [
+      {
+       "id": "advocacy",
+       "title": "Advocacy",
+       "subtopics": [
+        {
+         "id": "advocacy",
+         "title": "Advocacy",
+         "outcomes": [
+          {
+           "code": "WE.7.36",
+           "text": "Advocate to work cooperatively with family for healthy lifestyles (e.g., exercise together, diet plans, food preparation, spend time together)."
+          },
+          {
+           "code": "WE.7.37",
+           "text": "Explain why making positive health choices will influence others."
+          },
+          {
+           "code": "WE.7.38",
+           "text": "Analyze results of national or state youth risk behavior survey information."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "movement-forms-development-of-motor-skills",
+     "title": "Movement Forms/Development of Motor Skills",
+     "topics": [
+      {
+       "id": "movement-forms-development-of-motor-skills",
+       "title": "Movement Forms/Development of Motor Skills",
+       "subtopics": [
+        {
+         "id": "movement-forms-development-of-motor-skills",
+         "title": "Movement Forms/Development of Motor Skills",
+         "outcomes": [
+          {
+           "code": "WE.7.39",
+           "text": "Participate in a variety of individual, dual, and team sports."
+          },
+          {
+           "code": "WE.7.40",
+           "text": "Participate in a variety of non-competitive individual activities."
+          },
+          {
+           "code": "WE.7.41",
+           "text": "Create and perform a dance sequence in time to music."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "physical-activity",
+     "title": "Physical Activity",
+     "topics": [
+      {
+       "id": "physical-activity",
+       "title": "Physical Activity",
+       "subtopics": [
+        {
+         "id": "physical-activity",
+         "title": "Physical Activity",
+         "outcomes": [
+          {
+           "code": "WE.7.42",
+           "text": "Identify opportunities for physical activity available in the community and/or state (e.g., bicycling, golfing, white water rafting, kayaking, hunting, fishing, skiing, mountain biking, hiking, rock climbing)."
+          },
+          {
+           "code": "WE.7.43",
+           "text": "Participate in physical activities both in and outside school."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "physical-fitness",
+     "title": "Physical Fitness",
+     "topics": [
+      {
+       "id": "physical-fitness",
+       "title": "Physical Fitness",
+       "subtopics": [
+        {
+         "id": "physical-fitness-1-of-2",
+         "title": "Physical Fitness (1 of 2)",
+         "outcomes": [
+          {
+           "code": "WE.7.44",
+           "text": "Demonstrate proper form when performing the following muscular strength and endurance exercises (e.g., curl up, sit up, plank, push up)."
+          },
+          {
+           "code": "WE.7.45",
+           "text": "Demonstrate proper form when developing flexibility (e.g., trunk lift, sit and reach, shoulder stretch)."
+          },
+          {
+           "code": "WE.7.46",
+           "text": "Demonstrate proper pacing technique when running for various periods of time or distance (e.g., sprint, jog, mile-run)."
+          },
+          {
+           "code": "WE.7.47",
+           "text": "Use fitness assessment results to identify personal strengths and weaknesses and plan for personal improvement."
+          }
+         ]
+        },
+        {
+         "id": "physical-fitness-2-of-2",
+         "title": "Physical Fitness (2 of 2)",
+         "outcomes": [
+          {
+           "code": "WE.7.48",
+           "text": "Identify personal fitness needs and participate in physical activities to improve individualized goals."
+          },
+          {
+           "code": "WE.7.49",
+           "text": "Explain how the principles of progression and overload improve personal fitness performance."
+          },
+          {
+           "code": "WE.7.50",
+           "text": "Differentiate between health-related fitness (e.g. cardiovascular fitness, muscular strength, muscular endurance, body composition, flexibility) and skill related fitness (e.g. speed, agility, balance, reaction time, power, coordination)."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "responsible-personal-and-social-behavior",
+     "title": "Responsible Personal and Social Behavior",
+     "topics": [
+      {
+       "id": "responsible-personal-and-social-behavior",
+       "title": "Responsible Personal and Social Behavior",
+       "subtopics": [
+        {
+         "id": "responsible-personal-and-social-behavior",
+         "title": "Responsible Personal and Social Behavior",
+         "outcomes": [
+          {
+           "code": "WE.7.51",
+           "text": "Demonstrate cooperative team building skills appropriate for physical activity (e.g., equal opportunity for participation)."
+          },
+          {
+           "code": "WE.7.52",
+           "text": "Demonstrate appropriate conflict resolution skills (e.g., peer mediation)."
+          },
+          {
+           "code": "WE.7.53",
+           "text": "Demonstrate knowledge of rules, etiquette, and safety while participating in various physical activities (e.g. sportsmanship, fair play)."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "8",
+   "units": [
+    {
+     "id": "health-promotion-and-disease-prevention",
+     "title": "Health Promotion and Disease Prevention",
+     "topics": [
+      {
+       "id": "health-promotion-and-disease-prevention",
+       "title": "Health Promotion and Disease Prevention",
+       "subtopics": [
+        {
+         "id": "health-promotion-and-disease-prevention",
+         "title": "Health Promotion and Disease Prevention",
+         "outcomes": [
+          {
+           "code": "WE.8.1",
+           "text": "Apply sound nutritional principles to healthy food choices (e.g., whole foods, menu preparation, nutrition labels)."
+          },
+          {
+           "code": "WE.8.2",
+           "text": "Analyze the effects of risky behaviors on body systems and wellness (e.g., substance abuse, processed and high sugar foods)."
+          },
+          {
+           "code": "WE.8.3",
+           "text": "Label and explain the functions of the body systems (e.g., circulatory, skeletal, reproductive, digestive)."
+          },
+          {
+           "code": "WE.8.4",
+           "text": "Determine the risk factors that lead to teen pregnancy, HIV/AIDS, HBV, and other STDs/STIs."
+          },
+          {
+           "code": "WE.8.5",
+           "text": "Recognize behaviors that protect and keep the male and female reproductive systems healthy."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "culture-media-and-technology",
+     "title": "Culture, Media, and Technology",
+     "topics": [
+      {
+       "id": "culture-media-and-technology",
+       "title": "Culture, Media, and Technology",
+       "subtopics": [
+        {
+         "id": "culture-media-and-technology",
+         "title": "Culture, Media, and Technology",
+         "outcomes": [
+          {
+           "code": "WE.8.6",
+           "text": "Identify cultural influences on health behaviors (e.g., nutrition, hygiene, relationships, medical, drug use)."
+          },
+          {
+           "code": "WE.8.7",
+           "text": "Discuss the use of technology and its positive and negative impact on health (e.g., video games, computers, cell phones, medical information and advancements)."
+          },
+          {
+           "code": "WE.8.8",
+           "text": "Describe how bullying can have a negative impact on quality of life."
+          },
+          {
+           "code": "WE.8.9",
+           "text": "Discuss the importance of respecting individual differences (e.g., race, religion, size, age, sex, gender identity)."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "health-information-and-service",
+     "title": "Health Information and Service",
+     "topics": [
+      {
+       "id": "health-information-and-service",
+       "title": "Health Information and Service",
+       "subtopics": [
+        {
+         "id": "health-information-and-service",
+         "title": "Health Information and Service",
+         "outcomes": [
+          {
+           "code": "WE.8.10",
+           "text": "Research how health information, products, and services are financed (e.g., government, consumers, trusts)."
+          },
+          {
+           "code": "WE.8.11",
+           "text": "Research products advertised to enhance health and analyze the accuracy of information provided (e.g., vitamins, supplements, dietary aids)."
+          },
+          {
+           "code": "WE.8.12",
+           "text": "Evaluate the dangers of opioid use, the addictive characteristics of opioids, and safer alternatives to treat pain."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "communication",
+     "title": "Communication",
+     "topics": [
+      {
+       "id": "communication",
+       "title": "Communication",
+       "subtopics": [
+        {
+         "id": "communication",
+         "title": "Communication",
+         "outcomes": [
+          {
+           "code": "WE.8.13",
+           "text": "Demonstrate ways to exhibit care, consideration, and respect for self and others."
+          },
+          {
+           "code": "WE.8.14",
+           "text": "Develop a variety of positive coping mechanisms/conflict resolution skills (e.g., negotiation, peer-mediation, non-violent strategies)."
+          },
+          {
+           "code": "WE.8.15",
+           "text": "Compare and contrast various refusal and negotiation skills to avoid or reduce risky and harmful health behaviors (e.g., pregnancy, drunk driving, STDs/STIs, dating violence, harassment, alcohol, tobacco, and other drugs)."
+          },
+          {
+           "code": "WE.8.16",
+           "text": "Practice communication skills necessary for healthy relationships (e.g., courtesy, manners, respect, conflict resolution)."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "decision-making",
+     "title": "Decision Making",
+     "topics": [
+      {
+       "id": "decision-making",
+       "title": "Decision Making",
+       "subtopics": [
+        {
+         "id": "decision-making",
+         "title": "Decision Making",
+         "outcomes": [
+          {
+           "code": "WE.8.17",
+           "text": "Develop healthy practices regarding health-related issues (e.g., nutrition, weight control, exercise, prescription drugs)."
+          },
+          {
+           "code": "WE.8.18",
+           "text": "Predict potential outcomes of health-related decisions (e.g., alcohol, tobacco, and other drug use, nutrition, seatbelts and positioning in various modes of transportation)."
+          },
+          {
+           "code": "WE.8.19",
+           "text": "Develop decision-making skills needed to protect against communicable and noncommunicable diseases."
+          },
+          {
+           "code": "WE.8.20",
+           "text": "Distinguish between options that are healthy and unhealthy."
+          },
+          {
+           "code": "WE.8.21",
+           "text": "Apply the steps to the decision-making process to solve problems."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "goal-setting",
+     "title": "Goal Setting",
+     "topics": [
+      {
+       "id": "goal-setting",
+       "title": "Goal Setting",
+       "subtopics": [
+        {
+         "id": "goal-setting",
+         "title": "Goal Setting",
+         "outcomes": [
+          {
+           "code": "WE.8.22",
+           "text": "Assess personal health practices (e.g., safety, diet, exercise, sleep, alcohol, tobacco, and other drug use)."
+          },
+          {
+           "code": "WE.8.23",
+           "text": "Discuss the importance of the goal setting process in designing strategies to quit unhealthy and risky behaviors."
+          },
+          {
+           "code": "WE.8.24",
+           "text": "Design a personal health goal and track progress toward its achievement (e.g., exercise, weight control, dental care)."
+          },
+          {
+           "code": "WE.8.25",
+           "text": "Determine how personal health goals and practices can vary as priorities change (e.g., family illness, death of close friend, personal tragedy, maturity)."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "health-behaviors",
+     "title": "Health Behaviors",
+     "topics": [
+      {
+       "id": "health-behaviors",
+       "title": "Health Behaviors",
+       "subtopics": [
+        {
+         "id": "health-behaviors",
+         "title": "Health Behaviors",
+         "outcomes": [
+          {
+           "code": "WE.8.26",
+           "text": "Distinguish between safe and risky or harmful behaviors in relationships (e.g., abuse, date rape, peer pressure, gang membership)."
+          },
+          {
+           "code": "WE.8.27",
+           "text": "Examine the differences between safe and risky behaviors, including methods for preventing pregnancy and STDs/STIs (e.g., abstinence, birth control)."
+          },
+          {
+           "code": "WE.8.28",
+           "text": "Explain protective behaviors used to avoid and reduce threatening situations (e.g., anger, bullying, harassment, gang membership, eating disorders)."
+          },
+          {
+           "code": "WE.8.29",
+           "text": "Design strategies to reduce stress, anxiety, and depression."
+          },
+          {
+           "code": "WE.8.30",
+           "text": "Create good health practices to improve personal and family health (e.g., hygiene, nutrition, food preparation, family time)."
+          },
+          {
+           "code": "WE.8.31",
+           "text": "Demonstrate hands only CPR, AED, and first aid procedures."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "advocacy",
+     "title": "Advocacy",
+     "topics": [
+      {
+       "id": "advocacy",
+       "title": "Advocacy",
+       "subtopics": [
+        {
+         "id": "advocacy",
+         "title": "Advocacy",
+         "outcomes": [
+          {
+           "code": "WE.8.32",
+           "text": "Work cooperatively to advocate for healthy individuals, families, communities, and schools (e.g., health organizations, local health fairs)."
+          },
+          {
+           "code": "WE.8.33",
+           "text": "Identify ways in which health messages and communication techniques can be altered for different audiences (e.g., age, gender, life experiences)."
+          },
+          {
+           "code": "WE.8.34",
+           "text": "Explain how to encourage others to make positive health choices"
+          },
+          {
+           "code": "WE.8.35",
+           "text": "Explain the need for legislation to protect and promote personal safety and health (e.g., traffic laws, health departments)."
+          },
+          {
+           "code": "WE.8.36",
+           "text": "Recognize and promote environmental practices that will preserve natural resources for personal and community health."
+          },
+          {
+           "code": "WE.8.37",
+           "text": "Analyze results of national or state youth risk behavior survey information."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "movement-forms-development-of-motor-skills",
+     "title": "Movement Forms/Development of Motor Skills",
+     "topics": [
+      {
+       "id": "movement-forms-development-of-motor-skills",
+       "title": "Movement Forms/Development of Motor Skills",
+       "subtopics": [
+        {
+         "id": "movement-forms-development-of-motor-skills",
+         "title": "Movement Forms/Development of Motor Skills",
+         "outcomes": [
+          {
+           "code": "WE.8.38",
+           "text": "Demonstrate basic offensive and defensive strategy while participating in individual, dual, and team sports (e.g., lead-up games/activities)"
+          },
+          {
+           "code": "WE.8.39",
+           "text": "Practice basic techniques and safety procedures while participating in non-competitive lifetime physical activity (e.g., wear helmet and other protective gear, practice safe use of equipment)."
+          },
+          {
+           "code": "WE.8.40",
+           "text": "Participate in a variety of rhythm and movement skills (e.g., social dance, line dance)."
+          },
+          {
+           "code": "WE.8.41",
+           "text": "Identify characteristics of skilled performance in a sport or activity (e.g., rubric, self/peer assessment)."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "physical-activity",
+     "title": "Physical Activity",
+     "topics": [
+      {
+       "id": "physical-activity",
+       "title": "Physical Activity",
+       "subtopics": [
+        {
+         "id": "physical-activity",
+         "title": "Physical Activity",
+         "outcomes": [
+          {
+           "code": "WE.8.42",
+           "text": "Evaluate the health benefits of two or more physical activities."
+          },
+          {
+           "code": "WE.8.43",
+           "text": "Develop and implement a personal physical activity plan (e.g., where, when, cost, equipment, procedures)."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "physical-fitness",
+     "title": "Physical Fitness",
+     "topics": [
+      {
+       "id": "physical-fitness",
+       "title": "Physical Fitness",
+       "subtopics": [
+        {
+         "id": "physical-fitness",
+         "title": "Physical Fitness",
+         "outcomes": [
+          {
+           "code": "WE.8.44",
+           "text": "Demonstrate proper form when performing the following muscular strength and endurance exercises (e.g., curl up, sit up, plank, push up)."
+          },
+          {
+           "code": "WE.8.45",
+           "text": "Demonstrate proper form when developing flexibility (e.g., trunk lift, sit and reach, shoulder stretch)."
+          },
+          {
+           "code": "WE.8.46",
+           "text": "Demonstrate proper pacing technique when running for various periods of time or distance (e.g., sprint, jog, mile-run)."
+          },
+          {
+           "code": "WE.8.47",
+           "text": "Use fitness assessment results to identify personal strengths and weaknesses and plan for personal improvement."
+          },
+          {
+           "code": "WE.8.49",
+           "text": "Implement personal fitness goals related to health related fitness (e.g., cardiovascular fitness, muscular strength, muscular endurance, body composition, flexibility) and skill related fitness (e.g., speed, agility, balance, reaction time, power, coordination)."
+          },
+          {
+           "code": "WE.8.50",
+           "text": "Apply knowledge of progression and overload (e.g., gradual increase in F.I.T.T.) in the development of a personal fitness program."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "responsible-personal-and-social-behavior",
+     "title": "Responsible Personal and Social Behavior",
+     "topics": [
+      {
+       "id": "responsible-personal-and-social-behavior",
+       "title": "Responsible Personal and Social Behavior",
+       "subtopics": [
+        {
+         "id": "responsible-personal-and-social-behavior",
+         "title": "Responsible Personal and Social Behavior",
+         "outcomes": [
+          {
+           "code": "WE.8.51",
+           "text": "Demonstrate appropriate, responsible behaviors in physical activity settings including proper rules, etiquette and safety (e.g., sportsmanship, fair play, use of safety equipment-goggles, helmets)."
+          },
+          {
+           "code": "WE.8.52",
+           "text": "Discuss situations that may lead to conflict and practice mediation skills (e.g., compromise, “I” messages)."
+          },
+          {
+           "code": "WE.8.53",
+           "text": "Discuss the effects of peer pressure on physical activity participation and performance."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "9-12",
+   "units": [
+    {
+     "id": "health-promotion-and-disease-prevention",
+     "title": "Health Promotion and Disease Prevention",
+     "topics": [
+      {
+       "id": "health-promotion-and-disease-prevention",
+       "title": "Health Promotion and Disease Prevention",
+       "subtopics": [
+        {
+         "id": "health-promotion-and-disease-prevention-1-of-2",
+         "title": "Health Promotion and Disease Prevention (1 of 2)",
+         "outcomes": [
+          {
+           "code": "HE.1",
+           "text": "Compare and contrast components of total wellness (e.g., physical, mental, emotional, social, spiritual, occupational, intellectual)."
+          },
+          {
+           "code": "HE.2",
+           "text": "Differentiate between the positive and potentially negative effects of local and global environmental health problems (e.g. pollution/hazards, food production, energy, disease, public health issues)."
+          },
+          {
+           "code": "HE.3",
+           "text": "Analyze and interpret ways public health and social policies, along with government regulations, influence health promotion and disease prevention (e.g., local, state, federal, and world health organizations)."
+          },
+          {
+           "code": "HE.4",
+           "text": "Differentiate between the causes of communicable and non-communicable diseases and identify/apply skills to prevent them (e.g. STDs/STIs, HIV/AIDS, bacteria/viral infections, universal precaution)."
+          }
+         ]
+        },
+        {
+         "id": "health-promotion-and-disease-prevention-2-of-2",
+         "title": "Health Promotion and Disease Prevention (2 of 2)",
+         "outcomes": [
+          {
+           "code": "HE.5",
+           "text": "Analyze the impact of genetics and family history on personal health (e.g. genetic disease/disorders, body composition, mental/emotional health)."
+          },
+          {
+           "code": "HE.6",
+           "text": "Explain how the environment (e.g., cultural, community, physical, social, etc.) affects and interacts with growth and development."
+          },
+          {
+           "code": "HE.7",
+           "text": "Analyze how personal health behaviors/choices affect the function of body systems in preventing premature death (e.g. lifestyle choices, chronic disease)."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "culture-media-and-technology",
+     "title": "Culture, Media, and Technology",
+     "topics": [
+      {
+       "id": "culture-media-and-technology",
+       "title": "Culture, Media, and Technology",
+       "subtopics": [
+        {
+         "id": "culture-media-and-technology",
+         "title": "Culture, Media, and Technology",
+         "outcomes": [
+          {
+           "code": "HE.8",
+           "text": "Evaluate how media of all forms can impact personal, family, community and national health (e.g. validation of sources, technology’s impact on modern communication)."
+          },
+          {
+           "code": "HE.9",
+           "text": "Debate the potential influences of technology on personal, family, and community health (e.g. smartphone technology, apps, fitness trackers, personal appropriate uses of technology, responsible reporting of misuse)."
+          },
+          {
+           "code": "HE.10",
+           "text": "Identify factors in the community that influence health (e.g. such as schools, resources, socioeconomic factors, geography, values, culture)."
+          },
+          {
+           "code": "HE.11",
+           "text": "Analyze the impact peer influences have on healthy and unhealthy behaviors."
+          },
+          {
+           "code": "HE.12",
+           "text": "Analyze the influence of friends, family, media, society and culture on the expression of gender, sexual orientation, and identity."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "health-information-and-services",
+     "title": "Health Information and Services",
+     "topics": [
+      {
+       "id": "health-information-and-services",
+       "title": "Health Information and Services",
+       "subtopics": [
+        {
+         "id": "health-information-and-services",
+         "title": "Health Information and Services",
+         "outcomes": [
+          {
+           "code": "HE.13",
+           "text": "Analyze and interpret health information/data to promote healthy decision making (e.g. quackery, food labels, websites, media)."
+          },
+          {
+           "code": "HE.14",
+           "text": "Use information systems to locate and utilize health care services that provide optimal health care."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "communication",
+     "title": "Communication",
+     "topics": [
+      {
+       "id": "communication",
+       "title": "Communication",
+       "subtopics": [
+        {
+         "id": "communication",
+         "title": "Communication",
+         "outcomes": [
+          {
+           "code": "HE.15",
+           "text": "Utilize effective communication skills in a variety of situations."
+          },
+          {
+           "code": "HE.16",
+           "text": "Describe healthy ways to express emotions, needs, and desires in different situations (e.g. sportsmanship, relationships, death, dying and grief)."
+          },
+          {
+           "code": "HE.17",
+           "text": "Demonstrate a variety of communication skills (e.g. verbal, non-verbal, listening, writing, technology, workplace)."
+          },
+          {
+           "code": "HE.18",
+           "text": "Identify potentially harmful situations and devise strategies and develop skills to avoid such situations through refusal, negotiation, and collaboration skills (e.g., violence and abuse situations, peer mediation, conflict resolution, support groups, “I” statements)."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "decision-making",
+     "title": "Decision Making",
+     "topics": [
+      {
+       "id": "decision-making",
+       "title": "Decision Making",
+       "subtopics": [
+        {
+         "id": "decision-making",
+         "title": "Decision Making",
+         "outcomes": [
+          {
+           "code": "HE.19",
+           "text": "Apply and practice a decision-making process for various life situations (e.g., DECIDE process, SMART goals, goods and services purchases, relationships)."
+          },
+          {
+           "code": "HE.20",
+           "text": "Identify and discuss health concerns that require collaborative decision-making (e.g. sex, STDs/STIs, contraception)."
+          },
+          {
+           "code": "HE.21",
+           "text": "Analyze the effects of potentially harmful decisions that impact health and the effect these decisions have on family, community, and self (e.g., drugs, STDs/STIs, teen pregnancy/parenting)."
+          },
+          {
+           "code": "HE.22",
+           "text": "Evaluate mechanisms and decision making processes to formulate alternatives to healthrelated issues or problems (e.g., refusal skills, defense/coping mechanisms)."
+          },
+          {
+           "code": "HE.23",
+           "text": "Evaluate the effectiveness of health-related decisions (e.g., risk behavior inventories, Youth Risk Behavior Survey- YRBS data)."
+          },
+          {
+           "code": "HE.24",
+           "text": "Construction of personal boundaries as related to intimacy and sexual behaviors and effective communication skills concerning boundary invasion."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "goal-setting-standards",
+     "title": "Goal Setting Standards",
+     "topics": [
+      {
+       "id": "goal-setting-standards",
+       "title": "Goal Setting Standards",
+       "subtopics": [
+        {
+         "id": "goal-setting-standards",
+         "title": "Goal Setting Standards",
+         "outcomes": [
+          {
+           "code": "HE.25",
+           "text": "Assess personal health practices and overall health status."
+          },
+          {
+           "code": "HE.26",
+           "text": "Develop a plan to attain a personal health goal that addresses strengths, needs, and risks (e.g., SMART Goals, F.I.T.T)."
+          },
+          {
+           "code": "HE.27",
+           "text": "Implement strategies and monitor progress in achieving a personal health goal."
+          },
+          {
+           "code": "HE.28",
+           "text": "Design an effective long-term personal health plan (e.g., individualized/group projects)."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "health-behaviors",
+     "title": "Health Behaviors",
+     "topics": [
+      {
+       "id": "health-behaviors",
+       "title": "Health Behaviors",
+       "subtopics": [
+        {
+         "id": "health-behaviors-1-of-2",
+         "title": "Health Behaviors (1 of 2)",
+         "outcomes": [
+          {
+           "code": "HE.29",
+           "text": "Recognize and demonstrate the positive effects of nutrition and physical activity on health."
+          },
+          {
+           "code": "HE.30",
+           "text": "List examples and explain short and long-term impacts of health decisions on the individual, family and community."
+          },
+          {
+           "code": "HE.31",
+           "text": "Identify signs of stress and common stressors and develop effective stress management techniques."
+          },
+          {
+           "code": "HE.32",
+           "text": "Identify causes, warning signs, and prevention strategies for depression and suicide."
+          }
+         ]
+        },
+        {
+         "id": "health-behaviors-2-of-2",
+         "title": "Health Behaviors (2 of 2)",
+         "outcomes": [
+          {
+           "code": "HE.33",
+           "text": "Identify causes, preventions, and treatments for injuries and list responsible actions to create a safe and healthy environment."
+          },
+          {
+           "code": "HE.34",
+           "text": "Demonstrate basic first aid skills."
+          },
+          {
+           "code": "HE.35",
+           "text": "Complete training on the proper administration of CPR through hands-on practice that is based on an instructional program established by the American Heart Association, Red Cross or another program that is nationally recognized and used the most current national evidence-based CPR guidelines that incorporates psychomotor skills development."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "advocacy",
+     "title": "Advocacy",
+     "topics": [
+      {
+       "id": "advocacy",
+       "title": "Advocacy",
+       "subtopics": [
+        {
+         "id": "advocacy-1-of-2",
+         "title": "Advocacy (1 of 2)",
+         "outcomes": [
+          {
+           "code": "HE.36",
+           "text": "Present on the dangers of opioid use, the addictive characteristics of opioids, and explore safer alternatives to treat pain."
+          },
+          {
+           "code": "HE.37",
+           "text": "Use written, audio/visual, and technology communication methods to express health messages."
+          },
+          {
+           "code": "HE.38",
+           "text": "Demonstrate the ability to adapt health messages to characteristics of a particular audience (e.g. peer education, projects, role play)."
+          },
+          {
+           "code": "HE.39",
+           "text": "Promote the use of personal, family and community resources in health care situation. (e.g. general practitioners, medical facilities, internet)."
+          }
+         ]
+        },
+        {
+         "id": "advocacy-2-of-2",
+         "title": "Advocacy (2 of 2)",
+         "outcomes": [
+          {
+           "code": "HE.40",
+           "text": "Identify school support staff and community health services and describe the impact this service has on individual school and community (e.g. school nurse, civic organizations, volunteering opportunities)."
+          },
+          {
+           "code": "HE.41",
+           "text": "Interpret the relationship between acts of responsible and productive citizenship and the health, safety, and security of a community."
+          },
+          {
+           "code": "HE.42",
+           "text": "Analyze the results of national youth risk behavior surveys."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "development-of-movement-forms-motor-skills",
+     "title": "Development of Movement Forms/Motor Skills",
+     "topics": [
+      {
+       "id": "development-of-movement-forms-motor-skills",
+       "title": "Development of Movement Forms/Motor Skills",
+       "subtopics": [
+        {
+         "id": "development-of-movement-forms-motor-skills",
+         "title": "Development of Movement Forms/Motor Skills",
+         "outcomes": [
+          {
+           "code": "PE.1",
+           "text": "Identify, practice and apply general skills and activity-specific skills to enhance motor proficiency."
+          },
+          {
+           "code": "PE.2",
+           "text": "Participate in a variety of competitive/non-competitive individual, dual, and team sports/activities."
+          },
+          {
+           "code": "PE.3",
+           "text": "Demonstrate offensive and defensive strategies while participating in individual, dual, and team sports/activities."
+          },
+          {
+           "code": "PE.4",
+           "text": "Perform a variety of dance and rhythmic activities."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "physical-activity",
+     "title": "Physical Activity",
+     "topics": [
+      {
+       "id": "physical-activity",
+       "title": "Physical Activity",
+       "subtopics": [
+        {
+         "id": "physical-activity",
+         "title": "Physical Activity",
+         "outcomes": [
+          {
+           "code": "PE.5",
+           "text": "Identify physical activities that increase fitness levels in addition to physical education class."
+          },
+          {
+           "code": "PE.6",
+           "text": "Explain how physical activity participation patterns are likely to change throughout one’s life span."
+          },
+          {
+           "code": "PE.7",
+           "text": "Identify a variety of regional outdoor adventure activities."
+          },
+          {
+           "code": "PE.8",
+           "text": "Identify and describe local, state, national and/or international fitness and recreational resources and organizations."
+          },
+          {
+           "code": "PE.9",
+           "text": "Assess the social, economic, cultural and environmental factors that impact physical activity."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "physical-fitness",
+     "title": "Physical Fitness",
+     "topics": [
+      {
+       "id": "physical-fitness",
+       "title": "Physical Fitness",
+       "subtopics": [
+        {
+         "id": "physical-fitness",
+         "title": "Physical Fitness",
+         "outcomes": [
+          {
+           "code": "PE.10",
+           "text": "Demonstrate proper form when performing the following muscular strength and endurance exercises (e.g., curl up, sit up, plank, push up)."
+          },
+          {
+           "code": "PE.11",
+           "text": "Demonstrate proper form when developing flexibility (e.g., trunk lift, sit and reach, shoulder stretch)."
+          },
+          {
+           "code": "PE.12",
+           "text": "Demonstrate proper pacing technique when running for various periods of time or distance (e.g., sprint, jog, mile-run)."
+          },
+          {
+           "code": "PE.13",
+           "text": "Use fitness assessment results to identify personal strengths and weaknesses and plan for personal improvement."
+          },
+          {
+           "code": "PE.14",
+           "text": "Practice principles of training in the design and implementation of a personal fitness program (e.g. F.I.T.T. Principle, Progressive Overload, Muscle Recovery)."
+          },
+          {
+           "code": "PE.15",
+           "text": "Compare and contrast the fitness values of various physical activities."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "responsible-personal-and-social-behavior",
+     "title": "Responsible Personal and Social Behavior",
+     "topics": [
+      {
+       "id": "responsible-personal-and-social-behavior",
+       "title": "Responsible Personal and Social Behavior",
+       "subtopics": [
+        {
+         "id": "responsible-personal-and-social-behavior",
+         "title": "Responsible Personal and Social Behavior",
+         "outcomes": [
+          {
+           "code": "PE.16",
+           "text": "Examine potential risks of physical activity and determine how to minimize those risks."
+          },
+          {
+           "code": "PE.17",
+           "text": "Utilize responsible, considerate personal behaviors in physical activity settings."
+          },
+          {
+           "code": "PE.18",
+           "text": "Practice proper procedures and demonstrate etiquette and fair play in physical activity settings."
+          },
+          {
+           "code": "PE.19",
+           "text": "Explain the influence of peers on physical activity participation and performance."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "build": {
+  "builtAt": "2026-10-14T16:20:51.112Z",
+  "model": "none",
+  "usd": 0,
+  "expectedCodes": 412,
+  "coverage": 1,
+  "missingCodes": [],
+  "counts": {
+   "grades": 10,
+   "units": 84,
+   "topics": 84,
+   "subtopics": 107,
+   "outcomes": 412
+  },
+  "warnings": []
+ }
+}

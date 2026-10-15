@@ -1,0 +1,4109 @@
+{
+ "id": "us-va-computer-science",
+ "region": "US",
+ "framework": "Virginia state academic standards: Computer Science & Technology",
+ "board": null,
+ "qualification": "K-12",
+ "subject": "Computer Science & Technology",
+ "syllabusCode": null,
+ "gradeSystem": "grade",
+ "source": {
+  "urls": [
+   "https://api.commonstandardsproject.com/api/v1/jurisdictions/27D1AF28D2F54DD3A69C057DDA772BD0",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/27D1AF28D2F54DD3A69C057DDA772BD0_D2956024_grades-09-10-11-12",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/27D1AF28D2F54DD3A69C057DDA772BD0_D2956023_grades-09-10-11-12",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/27D1AF28D2F54DD3A69C057DDA772BD0_D2956022_grades-09-10-11-12",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/27D1AF28D2F54DD3A69C057DDA772BD0_D2956025_grades-06-07-08",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/27D1AF28D2F54DD3A69C057DDA772BD0_D2956026_grade-01",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/27D1AF28D2F54DD3A69C057DDA772BD0_D2956026_grade-02",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/27D1AF28D2F54DD3A69C057DDA772BD0_D2956026_grade-03",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/27D1AF28D2F54DD3A69C057DDA772BD0_D2956026_grade-04",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/27D1AF28D2F54DD3A69C057DDA772BD0_D2956026_grade-05",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/27D1AF28D2F54DD3A69C057DDA772BD0_D2956026_grade-06",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/27D1AF28D2F54DD3A69C057DDA772BD0_D2956026_grade-07",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/27D1AF28D2F54DD3A69C057DDA772BD0_D2956026_grade-08",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/27D1AF28D2F54DD3A69C057DDA772BD0_D2956026_grade-k",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/DEF85E57B77E4137B8A94191A295979C",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/8E77540F3B724CD6BAF481FFE56B3B83",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/829FF6073EC14739BE3320444052FB40",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/9F0EBF45CED94073BA482185D0E5C051"
+  ],
+  "publisher": "Virginia state education agency (machine-readable via Common Standards Project / ASN)",
+  "licence": "CC BY 3.0 US, D2L Corporation; CC BY 4.0 US, Common Curriculum, Inc.",
+  "firstExam": "2020"
+ },
+ "grades": [
+  {
+   "grade": "K",
+   "units": [
+    {
+     "id": "algorithms-and-programming",
+     "title": "Algorithms and Programming",
+     "topics": [
+      {
+       "id": "algorithms-and-programming",
+       "title": "Algorithms and Programming",
+       "subtopics": [
+        {
+         "id": "algorithms-and-programming",
+         "title": "Algorithms and Programming",
+         "outcomes": [
+          {
+           "code": "K.1",
+           "text": "The student will construct sets of step-by-step instructions (algorithms) either independently or collaboratively including sequencing, emphasizing the beginning, middle, and end."
+          },
+          {
+           "code": "K.2",
+           "text": "The student will construct programs to accomplish tasks as a means of creative expression using a block based programming language or unplugged activities, either independently or collaboratively, including sequencing, emphasizing the beginning, middle, and end."
+          },
+          {
+           "code": "K.3",
+           "text": "The student will create a design document to illustrate thoughts, ideas, and stories in a sequential (step-by-step) manner (e.g., story map, storyboard, and sequential graphic organizer)."
+          },
+          {
+           "code": "K.4",
+           "text": "The student will categorize a group of items based on one attribute or the action of each item, with or without a computing device."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "computing-systems",
+     "title": "Computing Systems",
+     "topics": [
+      {
+       "id": "computing-systems",
+       "title": "Computing Systems",
+       "subtopics": [
+        {
+         "id": "computing-systems",
+         "title": "Computing Systems",
+         "outcomes": [
+          {
+           "code": "K.5",
+           "text": "The student will identify components of computing systems (e.g., keyboard, mouse, desktop computer, laptop computer, tablet, and printer)."
+          },
+          {
+           "code": "K.6",
+           "text": "The student will identify, using accurate terminology, simple hardware and software problems that may occur during use (e.g., app or program is not working as expected, no sound is coming from a device, device will not turn on)."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "cybersecurity",
+     "title": "Cybersecurity",
+     "topics": [
+      {
+       "id": "cybersecurity",
+       "title": "Cybersecurity",
+       "subtopics": [
+        {
+         "id": "cybersecurity",
+         "title": "Cybersecurity",
+         "outcomes": [
+          {
+           "code": "K.7",
+           "text": "The student will identify what is allowed and what is not allowed at school when using technology."
+          },
+          {
+           "code": "K.8",
+           "text": "The student will identify personal information (e.g., address, telephone number, and name) and the importance of protecting personal information online."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "data-and-analysis",
+     "title": "Data and Analysis",
+     "topics": [
+      {
+       "id": "data-and-analysis",
+       "title": "Data and Analysis",
+       "subtopics": [
+        {
+         "id": "data-and-analysis",
+         "title": "Data and Analysis",
+         "outcomes": [
+          {
+           "code": "K.9",
+           "text": "The student will gather and display data and organize it in a chart or graph in order to answer questions about the data, with or without a computing device."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "impacts-of-computing",
+     "title": "Impacts of Computing",
+     "topics": [
+      {
+       "id": "impacts-of-computing",
+       "title": "Impacts of Computing",
+       "subtopics": [
+        {
+         "id": "impacts-of-computing",
+         "title": "Impacts of Computing",
+         "outcomes": [
+          {
+           "code": "K.10",
+           "text": "The student will identify responsible behaviors associated with using information and technology."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "networking-and-the-internet",
+     "title": "Networking and the Internet",
+     "topics": [
+      {
+       "id": "networking-and-the-internet",
+       "title": "Networking and the Internet",
+       "subtopics": [
+        {
+         "id": "networking-and-the-internet",
+         "title": "Networking and the Internet",
+         "outcomes": [
+          {
+           "code": "K.11",
+           "text": "The student will discuss, in a whole class setting, how information can be communicated electronically (e.g., email, social media)."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "1",
+   "units": [
+    {
+     "id": "algorithms-and-programming",
+     "title": "Algorithms and Programming",
+     "topics": [
+      {
+       "id": "the-student-will-construct-sets-of-step-by-step-",
+       "title": "The student will construct sets of step-by-step instructions (algorithms) either independently or collaboratively, including",
+       "subtopics": [
+        {
+         "id": "the-student-will-construct-sets-of-step-by-step-",
+         "title": "The student will construct sets of step-by-step instructions (algorithms) either independently or collaboratively, including",
+         "outcomes": [
+          {
+           "code": "1.1.a",
+           "text": "sequencing (including ordinal numbers) and;"
+          },
+          {
+           "code": "1.1.b",
+           "text": "simple loops (patterns and repetition)."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "the-student-will-construct-programs-to-accomplis",
+       "title": "The student will construct programs to accomplish tasks as a means of creative expression using a block based programming language or unplugged activities, either independently or collaboratively including",
+       "subtopics": [
+        {
+         "id": "the-student-will-construct-programs-to-accomplis",
+         "title": "The student will construct programs to accomplish tasks as a means of creative expression using a block based programming language or unplugged activities, either independently or collaboratively including",
+         "outcomes": [
+          {
+           "code": "1.2.a",
+           "text": "sequencing, ordinal numbers; and"
+          },
+          {
+           "code": "1.2.b",
+           "text": "simple loops (patterns and repetition)."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "algorithms-and-programming",
+       "title": "Algorithms and Programming",
+       "subtopics": [
+        {
+         "id": "algorithms-and-programming",
+         "title": "Algorithms and Programming",
+         "outcomes": [
+          {
+           "code": "1.3",
+           "text": "The student will analyze, correct, and improve (debug) an algorithm that includes sequencing."
+          },
+          {
+           "code": "1.4",
+           "text": "The student will plan and create a design document to illustrate thoughts, ideas, and stories in a sequential (step-by-step) manner (e.g., story map, storyboard, sequential graphic organizer)."
+          },
+          {
+           "code": "1.5",
+           "text": "The student will categorize a group of items based on one or two attributes or the actions of each item, with or without a computing device."
+          },
+          {
+           "code": "1.6",
+           "text": "The student will acknowledge that materials are created by others (e.g., author, illustrator)."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "computing-systems",
+     "title": "Computing Systems",
+     "topics": [
+      {
+       "id": "computing-systems",
+       "title": "Computing Systems",
+       "subtopics": [
+        {
+         "id": "computing-systems",
+         "title": "Computing Systems",
+         "outcomes": [
+          {
+           "code": "1.7",
+           "text": "The student will identify components of computing systems that are common among different types of computing devices including desktop and laptop computers, tablets, and mobile phones."
+          },
+          {
+           "code": "1.8",
+           "text": "The student will identify, using accurate terminology, simple hardware and software problems that may occur during use (e.g., app or program is not working as expected, no sound is coming from the device, the device won't turn on)."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "cybersecurity",
+     "title": "Cybersecurity",
+     "topics": [
+      {
+       "id": "cybersecurity",
+       "title": "Cybersecurity",
+       "subtopics": [
+        {
+         "id": "cybersecurity",
+         "title": "Cybersecurity",
+         "outcomes": [
+          {
+           "code": "1.9",
+           "text": "The student will describe what is allowed and what is not allowed at school associated with the use of technology."
+          },
+          {
+           "code": "1.10",
+           "text": "The student will identify and use strong passwords, explain why strong passwords should be used (e.g., protect name, address, and telephone number)."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "data-and-analysis",
+     "title": "Data and Analysis",
+     "topics": [
+      {
+       "id": "data-and-analysis",
+       "title": "Data and Analysis",
+       "subtopics": [
+        {
+         "id": "data-and-analysis",
+         "title": "Data and Analysis",
+         "outcomes": [
+          {
+           "code": "1.11",
+           "text": "The student will identify and interpret data and organize it in a chart or graph in order to make a prediction, with or without a computing device."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "impacts-of-computing",
+     "title": "Impacts of Computing",
+     "topics": [
+      {
+       "id": "impacts-of-computing",
+       "title": "Impacts of Computing",
+       "subtopics": [
+        {
+         "id": "impacts-of-computing",
+         "title": "Impacts of Computing",
+         "outcomes": [
+          {
+           "code": "1.12",
+           "text": "The student will identify and explain responsible behaviors associated with using information and technology."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "networking-and-the-internet",
+     "title": "Networking and the Internet",
+     "topics": [
+      {
+       "id": "networking-and-the-internet",
+       "title": "Networking and the Internet",
+       "subtopics": [
+        {
+         "id": "networking-and-the-internet",
+         "title": "Networking and the Internet",
+         "outcomes": [
+          {
+           "code": "1.13",
+           "text": "The student will, in a whole class environment, discuss how information can be communicated electronically (e.g., email, social media)."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "2",
+   "units": [
+    {
+     "id": "algorithms-and-programming",
+     "title": "Algorithms and Programming",
+     "topics": [
+      {
+       "id": "the-student-will-construct-sets-of-step-by-step-",
+       "title": "The student will construct sets of step-by-step instructions (algorithms) both independently and collaboratively",
+       "subtopics": [
+        {
+         "id": "the-student-will-construct-sets-of-step-by-step-",
+         "title": "The student will construct sets of step-by-step instructions (algorithms) both independently and collaboratively",
+         "outcomes": [
+          {
+           "code": "2.1.a",
+           "text": "using sequencing;"
+          },
+          {
+           "code": "2.1.b",
+           "text": "using loops (a wide variety of patterns such as repeating patterns or growing patterns); and"
+          },
+          {
+           "code": "2.1.c",
+           "text": "identifying events."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "the-student-will-construct-programs-to-accomplis",
+       "title": "The student will construct programs to accomplish tasks as a means of creative expression using a block based programming language or unplugged activities, both independently and collaboratively",
+       "subtopics": [
+        {
+         "id": "the-student-will-construct-programs-to-accomplis",
+         "title": "The student will construct programs to accomplish tasks as a means of creative expression using a block based programming language or unplugged activities, both independently and collaboratively",
+         "outcomes": [
+          {
+           "code": "2.2.a",
+           "text": "using sequencing;"
+          },
+          {
+           "code": "2.2.b",
+           "text": "using loops (a wide variety of patterns, such as repeating patterns or growing patterns); and"
+          },
+          {
+           "code": "2.2.c",
+           "text": "identifying events."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "algorithms-and-programming",
+       "title": "Algorithms and Programming",
+       "subtopics": [
+        {
+         "id": "algorithms-and-programming",
+         "title": "Algorithms and Programming",
+         "outcomes": [
+          {
+           "code": "2.3",
+           "text": "The student will analyze, correct, and improve (debug) an algorithm that includes sequencing and simple loops, with or without a computing device."
+          },
+          {
+           "code": "2.4",
+           "text": "The student will plan and create a design document to illustrate thoughts, ideas, and stories in a sequential (step-by-step) manner (e.g., story map, storyboard, sequential graphic organizer)."
+          },
+          {
+           "code": "2.5",
+           "text": "The student will compare and contrast a group of items based on the attributes or actions of each item, with or without a computing device."
+          },
+          {
+           "code": "2.6",
+           "text": "The student will acknowledge that materials are created by others (e.g., author, illustrator, and website)."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "computing-systems",
+     "title": "Computing Systems",
+     "topics": [
+      {
+       "id": "computing-systems",
+       "title": "Computing Systems",
+       "subtopics": [
+        {
+         "id": "computing-systems",
+         "title": "Computing Systems",
+         "outcomes": [
+          {
+           "code": "2.7",
+           "text": "The student will describe the characteristics of computing systems to include hardware, software, input, and output."
+          },
+          {
+           "code": "2.8",
+           "text": "The student will identify, using accurate terminology, simple hardware and software problems that may occur during use (e.g., app or program not working as expected, no sound, device won't turn on)."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "cybersecurity",
+     "title": "Cybersecurity",
+     "topics": [
+      {
+       "id": "cybersecurity",
+       "title": "Cybersecurity",
+       "subtopics": [
+        {
+         "id": "cybersecurity",
+         "title": "Cybersecurity",
+         "outcomes": [
+          {
+           "code": "2.9",
+           "text": "The student will explain what is allowed and what is not allowed at school associated with the use of technology (e.g., class rules)."
+          },
+          {
+           "code": "2.10",
+           "text": "The student will identify and create strong passwords, explain why strong passwords should be used. (e.g., protect name, address, and telephone number)."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "data-and-analysis",
+     "title": "Data and Analysis",
+     "topics": [
+      {
+       "id": "data-and-analysis",
+       "title": "Data and Analysis",
+       "subtopics": [
+        {
+         "id": "data-and-analysis",
+         "title": "Data and Analysis",
+         "outcomes": [
+          {
+           "code": "2.11",
+           "text": "The student will construct and analyze data and organize it in a chart or graph in order to make a prediction, with or without a computing device."
+          },
+          {
+           "code": "2.12",
+           "text": "The student will create a model of a physical object or process in order to show relationships with or without a computing device (e.g., water cycle, butterfly life cycle, seasonal weather patterns)."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "impacts-of-computing",
+     "title": "Impacts of Computing",
+     "topics": [
+      {
+       "id": "impacts-of-computing",
+       "title": "Impacts of Computing",
+       "subtopics": [
+        {
+         "id": "impacts-of-computing",
+         "title": "Impacts of Computing",
+         "outcomes": [
+          {
+           "code": "2.13",
+           "text": "The student will compare and contrast examples of how computing technology has changed and improved the way people live, work, and interact."
+          },
+          {
+           "code": "2.14",
+           "text": "The student will identify and model responsible behaviors when using information and technology."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "networking-and-the-internet",
+     "title": "Networking and the Internet",
+     "topics": [
+      {
+       "id": "networking-and-the-internet",
+       "title": "Networking and the Internet",
+       "subtopics": [
+        {
+         "id": "networking-and-the-internet",
+         "title": "Networking and the Internet",
+         "outcomes": [
+          {
+           "code": "2.15",
+           "text": "The students will discuss in partners and as a class how information can be communicated electronically (e.g., email, social media, video conferencing, blogging)."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "3",
+   "units": [
+    {
+     "id": "algorithms-and-programming",
+     "title": "Algorithms and Programming",
+     "topics": [
+      {
+       "id": "the-student-will-construct-sets-of-step-by-step-",
+       "title": "The student will construct sets of step-by-step instructions (algorithms), both independently and collaboratively",
+       "subtopics": [
+        {
+         "id": "the-student-will-construct-sets-of-step-by-step-",
+         "title": "The student will construct sets of step-by-step instructions (algorithms), both independently and collaboratively",
+         "outcomes": [
+          {
+           "code": "3.1.a",
+           "text": "using sequencing;"
+          },
+          {
+           "code": "3.1.b",
+           "text": "using loops (a wide variety of patterns such as repeating patterns or growing patterns); and [Related SOL: Math 3.16]"
+          },
+          {
+           "code": "3.1.c",
+           "text": "using events."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "the-student-will-construct-programs-to-accomplis",
+       "title": "The student will construct programs to accomplish tasks as a means of creative expression using a block or text based programming language, both independently and collaboratively",
+       "subtopics": [
+        {
+         "id": "the-student-will-construct-programs-to-accomplis",
+         "title": "The student will construct programs to accomplish tasks as a means of creative expression using a block or text based programming language, both independently and collaboratively",
+         "outcomes": [
+          {
+           "code": "3.2.a",
+           "text": "using sequencing;"
+          },
+          {
+           "code": "3.2.b",
+           "text": "using loops (a wide variety of patterns such as repeating patterns or growing patterns); and"
+          },
+          {
+           "code": "3.2.c",
+           "text": "identifying events."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "algorithms-and-programming",
+       "title": "Algorithms and Programming",
+       "subtopics": [
+        {
+         "id": "algorithms-and-programming",
+         "title": "Algorithms and Programming",
+         "outcomes": [
+          {
+           "code": "3.3",
+           "text": "The student will analyze, correct, and improve (debug) an algorithm that includes sequencing, events, and loops. [Related SOL areas – Math: Problem Solving, English: Editing]"
+          },
+          {
+           "code": "3.4",
+           "text": "The student will create a plan as part of the iterative design process, independently and/or collaboratively using strategies such as pair programming (e.g., storyboard, flowchart, pseudo-code, story map. [Related SOL: English 3.8c]"
+          },
+          {
+           "code": "3.5",
+           "text": "The student will compare and contrast a group of items based on attributes or actions classified into at least two sets and two subsets. [Related SOL: Science 3.1c]"
+          },
+          {
+           "code": "3.6",
+           "text": "The student will break down (decompose) a larger problem into smaller sub-problems, independently or collaboratively. [Related SOL: Math 3.3b]"
+          },
+          {
+           "code": "3.7",
+           "text": "The student will give credit to sources when borrowing or changing ideas (e.g., using information and pictures created by others, using music created by others, remixing programming projects)."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "computing-systems",
+     "title": "Computing Systems",
+     "topics": [
+      {
+       "id": "computing-systems",
+       "title": "Computing Systems",
+       "subtopics": [
+        {
+         "id": "computing-systems",
+         "title": "Computing Systems",
+         "outcomes": [
+          {
+           "code": "3.8",
+           "text": "The student will model how a computing system works including input and output."
+          },
+          {
+           "code": "3.9",
+           "text": "The student will identify, using accurate terminology, simple hardware and software problems that may occur during use, and apply strategies for solving problems (e.g., rebooting the device, checking for power, checking network availability, closing and reopening an app)."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "cybersecurity",
+     "title": "Cybersecurity",
+     "topics": [
+      {
+       "id": "cybersecurity",
+       "title": "Cybersecurity",
+       "subtopics": [
+        {
+         "id": "cybersecurity",
+         "title": "Cybersecurity",
+         "outcomes": [
+          {
+           "code": "3.10",
+           "text": "The student will identify problems that relate to inappropriate use of computing devices and networks."
+          },
+          {
+           "code": "3.11",
+           "text": "The student will create examples of strong passwords, explain why strong passwords should be used, and demonstrate proper use and protection of personal passwords."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "data-and-analysis",
+     "title": "Data and Analysis",
+     "topics": [
+      {
+       "id": "data-and-analysis",
+       "title": "Data and Analysis",
+       "subtopics": [
+        {
+         "id": "data-and-analysis",
+         "title": "Data and Analysis",
+         "outcomes": [
+          {
+           "code": "3.12",
+           "text": "The student will answer questions by using a computer to observe data in order for the student to draw conclusions and make predictions."
+          },
+          {
+           "code": "3.13",
+           "text": "The student will create an artifact using computing systems to model the attributes and behaviors associated with a concept (e.g., day and night, animal life cycles, plant life cycles)."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "impacts-of-computing",
+     "title": "Impacts of Computing",
+     "topics": [
+      {
+       "id": "impacts-of-computing",
+       "title": "Impacts of Computing",
+       "subtopics": [
+        {
+         "id": "impacts-of-computing",
+         "title": "Impacts of Computing",
+         "outcomes": [
+          {
+           "code": "3.14",
+           "text": "The student will identify computing technologies that have changed the world and express how those technologies influence, and are influenced by, cultural practices."
+          },
+          {
+           "code": "3.15",
+           "text": "The student will identify the positive and negative impacts of the pervasiveness of computers and computing in daily life (e.g., downloading videos and audio files, electronic appliances, wireless Internet, mobile computing devices, GPS systems, wearable computing)."
+          },
+          {
+           "code": "3.16",
+           "text": "The student will identify social and ethical issues that relate to computing devices and networks."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "networking-and-the-internet",
+     "title": "Networking and the Internet",
+     "topics": [
+      {
+       "id": "networking-and-the-internet",
+       "title": "Networking and the Internet",
+       "subtopics": [
+        {
+         "id": "networking-and-the-internet",
+         "title": "Networking and the Internet",
+         "outcomes": [
+          {
+           "code": "3.17",
+           "text": "The students will discuss in partners and as a class that information can be transmitted using computing devices via a network (e.g., email, blogging, video messaging)."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "4",
+   "units": [
+    {
+     "id": "algorithms-and-programming",
+     "title": "Algorithms and Programming",
+     "topics": [
+      {
+       "id": "the-student-will-construct-sets-of-step-by-step-",
+       "title": "The student will construct sets of step-by-step instructions (algorithms) both independently and collaboratively",
+       "subtopics": [
+        {
+         "id": "the-student-will-construct-sets-of-step-by-step-",
+         "title": "The student will construct sets of step-by-step instructions (algorithms) both independently and collaboratively",
+         "outcomes": [
+          {
+           "code": "4.1.a",
+           "text": "using sequencing;"
+          },
+          {
+           "code": "4.1.b",
+           "text": "using loops;"
+          },
+          {
+           "code": "4.1.c",
+           "text": "using variables to store and process data; and"
+          },
+          {
+           "code": "4.1.d",
+           "text": "performing number calculations on variables (e.g., addition, subtraction, multiplication and division). [Related SOL: Math 4.4, 4.5, 4.6]"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "the-student-will-construct-programs-to-accomplis",
+       "title": "The student will construct programs to accomplish a task as a means of creative expression using a block or text based programming language, both independently and collaboratively",
+       "subtopics": [
+        {
+         "id": "the-student-will-construct-programs-to-accomplis",
+         "title": "The student will construct programs to accomplish a task as a means of creative expression using a block or text based programming language, both independently and collaboratively",
+         "outcomes": [
+          {
+           "code": "4.2.a",
+           "text": "using sequencing;"
+          },
+          {
+           "code": "4.2.b",
+           "text": "using loops;"
+          },
+          {
+           "code": "4.2.c",
+           "text": "using variables; and"
+          },
+          {
+           "code": "4.2.d",
+           "text": "performing number calculations (e.g., addition, subtraction, multiplication and division) on variables. [Related SOL: Math 4.4, 4.5, 4.6]"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "algorithms-and-programming",
+       "title": "Algorithms and Programming",
+       "subtopics": [
+        {
+         "id": "algorithms-and-programming",
+         "title": "Algorithms and Programming",
+         "outcomes": [
+          {
+           "code": "4.3",
+           "text": "The student will analyze, correct, and improve (debug) an algorithm that includes sequencing, events, loops and variables. [Related SOL areas – Math: Problem Solving, English: Editing]"
+          },
+          {
+           "code": "4.4",
+           "text": "The student will create a plan as part of the iterative design process, both independently and collaboratively using strategies such as pair programming (e.g., storyboard, flowchart, pseudo-code, story map). [Related SOL: English: 4.7d, f]"
+          },
+          {
+           "code": "4.5",
+           "text": "The student will classify and arrange a group of items based on the attributes or actions. [Related SOL: Science 4.1.b]"
+          },
+          {
+           "code": "4.6",
+           "text": "The student will break down (decompose) a larger problem into smaller sub-problems, both independently and collaboratively. [Related SOL: Math 4.4d]"
+          },
+          {
+           "code": "4.7",
+           "text": "The student will give credit to sources when borrowing or changing ideas (e.g., using information, pictures created by others, using music created by others, remixing programming projects)."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "computing-systems",
+     "title": "Computing Systems",
+     "topics": [
+      {
+       "id": "computing-systems",
+       "title": "Computing Systems",
+       "subtopics": [
+        {
+         "id": "computing-systems",
+         "title": "Computing Systems",
+         "outcomes": [
+          {
+           "code": "4.8",
+           "text": "The student will model how a computing system works including input and output, processors and sensors."
+          },
+          {
+           "code": "4.9",
+           "text": "The student will identify, using accurate terminology, simple hardware and software problems that may occur during use, and apply strategies for solving problems (e.g., rebooting the device, checking for power, checking for network availability, closing and reopening an app)."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "cybersecurity",
+     "title": "Cybersecurity",
+     "topics": [
+      {
+       "id": "cybersecurity",
+       "title": "Cybersecurity",
+       "subtopics": [
+        {
+         "id": "cybersecurity",
+         "title": "Cybersecurity",
+         "outcomes": [
+          {
+           "code": "4.10",
+           "text": "The student will identify and explain problems that relate to inappropriate use of computing devices and networks."
+          },
+          {
+           "code": "4.11",
+           "text": "The student will create examples of strong passwords, explain why strong passwords should be used, and demonstrate proper use and protection of personal passwords."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "data-and-analysis",
+     "title": "Data and Analysis",
+     "topics": [
+      {
+       "id": "data-and-analysis",
+       "title": "Data and Analysis",
+       "subtopics": [
+        {
+         "id": "data-and-analysis",
+         "title": "Data and Analysis",
+         "outcomes": [
+          {
+           "code": "4.12",
+           "text": "The student will answer questions by using a computer to manipulate data in order for the student to draw conclusions and make predictions."
+          },
+          {
+           "code": "4.13",
+           "text": "The student will create an artifact using computing systems to model the attributes and behaviors associated with a concept (e.g., solar system)."
+          },
+          {
+           "code": "4.14",
+           "text": "The student will use numeric values to represent non-numeric ideas in the computer (binary, ASCII, pixel attributes such as RGB)."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "impacts-of-computing",
+     "title": "Impacts of Computing",
+     "topics": [
+      {
+       "id": "impacts-of-computing",
+       "title": "Impacts of Computing",
+       "subtopics": [
+        {
+         "id": "impacts-of-computing",
+         "title": "Impacts of Computing",
+         "outcomes": [
+          {
+           "code": "4.15",
+           "text": "The student will give examples of computing technologies that have changed the world and express how those technologies influence, and are influenced by, cultural practices."
+          },
+          {
+           "code": "4.16",
+           "text": "The student will describe the positive and negative impacts of the pervasiveness of computers and computing in daily life (e.g., downloading videos and audio files, electronic appliances, wireless Internet, mobile computing devices, GPS systems, wearable computing)."
+          },
+          {
+           "code": "4.17",
+           "text": "The student will describe social and ethical issues that relate to computing devices and networks."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "networking-and-the-internet",
+     "title": "Networking and the Internet",
+     "topics": [
+      {
+       "id": "networking-and-the-internet",
+       "title": "Networking and the Internet",
+       "subtopics": [
+        {
+         "id": "networking-and-the-internet",
+         "title": "Networking and the Internet",
+         "outcomes": [
+          {
+           "code": "4.18",
+           "text": "The student will identify and explain how information can be transmitted using computing devices via a network (e.g., email, images, and videos)."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "5",
+   "units": [
+    {
+     "id": "algorithms-and-programming",
+     "title": "Algorithms and Programming",
+     "topics": [
+      {
+       "id": "the-student-will-construct-sets-of-step-by-step-",
+       "title": "The student will construct sets of step-by-step instructions (algorithms) both independently and collaboratively,",
+       "subtopics": [
+        {
+         "id": "the-student-will-construct-sets-of-step-by-step-",
+         "title": "The student will construct sets of step-by-step instructions (algorithms) both independently and collaboratively,",
+         "outcomes": [
+          {
+           "code": "5.1.a",
+           "text": "using sequencing;"
+          },
+          {
+           "code": "5.1.b",
+           "text": "using loops; [Related SOL: Math 5.18]"
+          },
+          {
+           "code": "5.1.c",
+           "text": "using variables to store and process data; [Related SOL: Math 5.19]"
+          },
+          {
+           "code": "5.1.d",
+           "text": "performing number calculations on variables (addition, subtraction, multiplication and division); and [Related SOL: Math 5.5, 5.7]"
+          },
+          {
+           "code": "5.1.e",
+           "text": "using conditionals (if-statements). [Related SOL: M 5.2, 5.3]"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "the-student-will-construct-programs-to-accomplis",
+       "title": "The student will construct programs to accomplish a task as a means of creative expression using a block or text based programming language, both independently and collaboratively",
+       "subtopics": [
+        {
+         "id": "the-student-will-construct-programs-to-accomplis",
+         "title": "The student will construct programs to accomplish a task as a means of creative expression using a block or text based programming language, both independently and collaboratively",
+         "outcomes": [
+          {
+           "code": "5.2.a",
+           "text": "using sequencing;"
+          },
+          {
+           "code": "5.2.b",
+           "text": "using loops;"
+          },
+          {
+           "code": "5.2.c",
+           "text": "using variables;"
+          },
+          {
+           "code": "5.2.d",
+           "text": "using mathematical operations (addition, subtraction, multiplication and division) variable to manipulate a variable; and"
+          },
+          {
+           "code": "5.2.e",
+           "text": "using conditionals (if-statements)."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "algorithms-and-programming",
+       "title": "Algorithms and Programming",
+       "subtopics": [
+        {
+         "id": "algorithms-and-programming",
+         "title": "Algorithms and Programming",
+         "outcomes": [
+          {
+           "code": "5.3",
+           "text": "The student will analyze, correct, and improve (debug) an algorithm that includes sequencing, events, loops, conditionals, and variables."
+          },
+          {
+           "code": "5.4",
+           "text": "The student will create a plan as part of the iterative design process, both independently and collaboratively using strategies such as pair programming (e.g., storyboard, flowchart, pseudo-code, story map)."
+          },
+          {
+           "code": "5.5",
+           "text": "The student will break down (decompose) a larger problem into smaller sub-problems, both independently and collaboratively."
+          },
+          {
+           "code": "5.6",
+           "text": "The student will give credit to sources when borrowing or changing ideas (e.g., using information, pictures created by others, using music created by others, remixing programming projects)."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "computing-systems",
+     "title": "Computing Systems",
+     "topics": [
+      {
+       "id": "computing-systems",
+       "title": "Computing Systems",
+       "subtopics": [
+        {
+         "id": "computing-systems",
+         "title": "Computing Systems",
+         "outcomes": [
+          {
+           "code": "5.7",
+           "text": "The student will model how a computing system works including input and output, processors, sensors and storage."
+          },
+          {
+           "code": "5.8",
+           "text": "The student will identify, using accurate terminology, simple hardware and software problems that may occur during use, and apply strategies for solving problems (e.g., rebooting the device, checking for power, checking network availability, closing and reopening an app)."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "cybersecurity",
+     "title": "Cybersecurity",
+     "topics": [
+      {
+       "id": "cybersecurity",
+       "title": "Cybersecurity",
+       "subtopics": [
+        {
+         "id": "cybersecurity",
+         "title": "Cybersecurity",
+         "outcomes": [
+          {
+           "code": "5.9",
+           "text": "The student will evaluate and solve problems that relate to inappropriate use of computing devices and networks."
+          },
+          {
+           "code": "5.10",
+           "text": "The student will determine whether passwords are strong, explain why strong passwords should be used, and demonstrate proper use and protection of personal passwords."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "data-and-analysis",
+     "title": "Data and Analysis",
+     "topics": [
+      {
+       "id": "data-and-analysis",
+       "title": "Data and Analysis",
+       "subtopics": [
+        {
+         "id": "data-and-analysis",
+         "title": "Data and Analysis",
+         "outcomes": [
+          {
+           "code": "5.11",
+           "text": "The student will answer a question by using a computer to manipulate data in order for the student to draw conclusions and make predictions."
+          },
+          {
+           "code": "5.12",
+           "text": "The student will create an artifact using computing systems to model the attributes and behaviors associated with a concept (e.g., rocks)."
+          },
+          {
+           "code": "5.13",
+           "text": "The student will use numeric values to represent non-numeric ideas in the computer (e.g., binary, ASCII, pixel attributes such as RGB)."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "impacts-of-computing",
+     "title": "Impacts of Computing",
+     "topics": [
+      {
+       "id": "impacts-of-computing",
+       "title": "Impacts of Computing",
+       "subtopics": [
+        {
+         "id": "impacts-of-computing",
+         "title": "Impacts of Computing",
+         "outcomes": [
+          {
+           "code": "5.14",
+           "text": "The student will give examples and explain how computer science had changed the world and express how computing technologies influence, and are influenced by, cultural practices."
+          },
+          {
+           "code": "5.15",
+           "text": "The student will evaluate and describe the positive and negative impacts of the pervasiveness of computers and computing in daily life (e.g., downloading videos and audio files, electronic appliances, wireless Internet, mobile computing devices, GPS systems, wearable computing)."
+          },
+          {
+           "code": "5.16",
+           "text": "The student will explain social and ethical issues that relate to computing devices and networks."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "networking-and-the-internet",
+     "title": "Networking and the Internet",
+     "topics": [
+      {
+       "id": "networking-and-the-internet",
+       "title": "Networking and the Internet",
+       "subtopics": [
+        {
+         "id": "networking-and-the-internet",
+         "title": "Networking and the Internet",
+         "outcomes": [
+          {
+           "code": "5.17",
+           "text": "The student will compare and contrast the difference between a local network and a worldwide network."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "6",
+   "units": [
+    {
+     "id": "algorithms-and-programming",
+     "title": "Algorithms and Programming",
+     "topics": [
+      {
+       "id": "the-student-will-construct-programs-to-accomplis",
+       "title": "The student will construct programs to accomplish a task as a means of creative expression or scientific exploration using a block based or text based programming language, both independently and collaboratively,",
+       "subtopics": [
+        {
+         "id": "the-student-will-construct-programs-to-accomplis",
+         "title": "The student will construct programs to accomplish a task as a means of creative expression or scientific exploration using a block based or text based programming language, both independently and collaboratively,",
+         "outcomes": [
+          {
+           "code": "6.1.a",
+           "text": "combining control structures such as if-statements and loops; and"
+          },
+          {
+           "code": "6.1.b",
+           "text": "creating clearly named variables that represent different data types, including numeric and non-numeric data, and perform operations on their values."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "algorithms-and-programming",
+       "title": "Algorithms and Programming",
+       "subtopics": [
+        {
+         "id": "algorithms-and-programming",
+         "title": "Algorithms and Programming",
+         "outcomes": [
+          {
+           "code": "6.2",
+           "text": "The student will trace programs to predict outcomes and debug (correct and improve) for correctness."
+          },
+          {
+           "code": "6.3",
+           "text": "The student will seek and incorporate feedback from team members and users to refine a program that meets user needs."
+          },
+          {
+           "code": "6.4",
+           "text": "The student will incorporate existing code, media, and libraries into original programs, and give attribution."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "computing-systems",
+     "title": "Computing Systems",
+     "topics": [
+      {
+       "id": "computing-systems",
+       "title": "Computing Systems",
+       "subtopics": [
+        {
+         "id": "computing-systems",
+         "title": "Computing Systems",
+         "outcomes": [
+          {
+           "code": "6.5",
+           "text": "The student will design projects that combine hardware and software components to collect and exchange data."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "cybersecurity",
+     "title": "Cybersecurity",
+     "topics": [
+      {
+       "id": "cybersecurity",
+       "title": "Cybersecurity",
+       "subtopics": [
+        {
+         "id": "cybersecurity",
+         "title": "Cybersecurity",
+         "outcomes": [
+          {
+           "code": "6.6",
+           "text": "The student will identify physical and digital security measures used protect electronic information."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "data-and-analysis",
+     "title": "Data and Analysis",
+     "topics": [
+      {
+       "id": "data-and-analysis",
+       "title": "Data and Analysis",
+       "subtopics": [
+        {
+         "id": "data-and-analysis",
+         "title": "Data and Analysis",
+         "outcomes": [
+          {
+           "code": "6.7",
+           "text": "The student will explain how binary sequences are used to represent digital data. Exclusion: Conversions between binary and base-ten numbers are beyond the scope of these standards."
+          },
+          {
+           "code": "6.8",
+           "text": "The student will collect data using computational tools then clean and organize to make it more useful and reliable."
+          },
+          {
+           "code": "6.9",
+           "text": "The student will explain the insight and knowledge gained from digitally processed data by using appropriate visualizations."
+          },
+          {
+           "code": "6.10",
+           "text": "The student will use models and simulations to formulate, refine, and test hypotheses."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "impacts-of-computing",
+     "title": "Impacts of Computing",
+     "topics": [
+      {
+       "id": "impacts-of-computing",
+       "title": "Impacts of Computing",
+       "subtopics": [
+        {
+         "id": "impacts-of-computing",
+         "title": "Impacts of Computing",
+         "outcomes": [
+          {
+           "code": "6.11",
+           "text": "The student will explain how computing has impacted innovations in other fields."
+          },
+          {
+           "code": "6.12",
+           "text": "The student will explore careers related to data."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "networking-and-the-internet",
+     "title": "Networking and the Internet",
+     "topics": [
+      {
+       "id": "networking-and-the-internet",
+       "title": "Networking and the Internet",
+       "subtopics": [
+        {
+         "id": "networking-and-the-internet",
+         "title": "Networking and the Internet",
+         "outcomes": [
+          {
+           "code": "6.13",
+           "text": "The student will explain why the speed of data transmission across the Internet can vary depending on the type of data being transmitted."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "7",
+   "units": [
+    {
+     "id": "algorithms-and-programming",
+     "title": "Algorithms and Programming",
+     "topics": [
+      {
+       "id": "the-student-will-construct-programs-to-accomplis",
+       "title": "The student will construct programs to accomplish a task as a means of creative expression or scientific exploration using a block based or text based programming language, both independently and collaboratively,",
+       "subtopics": [
+        {
+         "id": "the-student-will-construct-programs-to-accomplis",
+         "title": "The student will construct programs to accomplish a task as a means of creative expression or scientific exploration using a block based or text based programming language, both independently and collaboratively,",
+         "outcomes": [
+          {
+           "code": "7.1.a",
+           "text": "combining control structures such as if-statements and loops including compound conditionals; and"
+          },
+          {
+           "code": "7.1.b",
+           "text": "creating clearly named variables that represent different data types, including numeric and non-numeric data, and perform operations on their values."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "algorithms-and-programming",
+       "title": "Algorithms and Programming",
+       "subtopics": [
+        {
+         "id": "algorithms-and-programming",
+         "title": "Algorithms and Programming",
+         "outcomes": [
+          {
+           "code": "7.2",
+           "text": "The student will document programs to make them easier to follow, test, and debug."
+          },
+          {
+           "code": "7.3",
+           "text": "The student will distribute tasks and maintain a project timeline when collaboratively developing computational artifacts."
+          },
+          {
+           "code": "7.4",
+           "text": "The student will decompose problems and subproblems into parts to facilitate the design, implementation, and review of programs."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "computing-systems",
+     "title": "Computing Systems",
+     "topics": [
+      {
+       "id": "computing-systems",
+       "title": "Computing Systems",
+       "subtopics": [
+        {
+         "id": "computing-systems",
+         "title": "Computing Systems",
+         "outcomes": [
+          {
+           "code": "7.5",
+           "text": "The student will describe how the Internet connects devices and networks all over the world. Exclusion: Specific devices used to implement the Internet are beyond the scope of these standards."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "cybersecurity",
+     "title": "Cybersecurity",
+     "topics": [
+      {
+       "id": "cybersecurity",
+       "title": "Cybersecurity",
+       "subtopics": [
+        {
+         "id": "cybersecurity",
+         "title": "Cybersecurity",
+         "outcomes": [
+          {
+           "code": "7.6",
+           "text": "The student will explain how physical and digital security measures protect electronic information."
+          },
+          {
+           "code": "7.7",
+           "text": "The student will identify existing cybersecurity concerns associated with Internet use and Internet-based systems and potential options to address these issues."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "data-and-analysis",
+     "title": "Data and Analysis",
+     "topics": [
+      {
+       "id": "data-and-analysis",
+       "title": "Data and Analysis",
+       "subtopics": [
+        {
+         "id": "data-and-analysis",
+         "title": "Data and Analysis",
+         "outcomes": [
+          {
+           "code": "7.8",
+           "text": "The student will discuss the correctness of a model representing a system by comparing the model's generated results with data that were observed in the system being modeled."
+          },
+          {
+           "code": "7.9",
+           "text": "The student will refine computational models based on the data they have generated."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "impacts-of-computing",
+     "title": "Impacts of Computing",
+     "topics": [
+      {
+       "id": "impacts-of-computing",
+       "title": "Impacts of Computing",
+       "subtopics": [
+        {
+         "id": "impacts-of-computing",
+         "title": "Impacts of Computing",
+         "outcomes": [
+          {
+           "code": "7.10",
+           "text": "The student will explain how advances in technology have contributed to Virginia's prosperity and role in the global economy."
+          },
+          {
+           "code": "7.11",
+           "text": "The student will describe the development of new technologies in communication, entertainment, and business and their impact on American life."
+          },
+          {
+           "code": "7.12",
+           "text": "The student will explore careers related to the Internet."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "networking-and-the-internet",
+     "title": "Networking and the Internet",
+     "topics": [
+      {
+       "id": "networking-and-the-internet",
+       "title": "Networking and the Internet",
+       "subtopics": [
+        {
+         "id": "networking-and-the-internet",
+         "title": "Networking and the Internet",
+         "outcomes": [
+          {
+           "code": "7.13",
+           "text": "The student will outline the advantages and disadvantages of transmitting information over the Internet, including speed, reliability, cost and security."
+          },
+          {
+           "code": "7.14",
+           "text": "The student will explain why protocols are necessary in data transmission. Model the role of protocols in transmitting data across networks and the Internet."
+          },
+          {
+           "code": "7.15",
+           "text": "The student will model how information is broken down into smaller pieces, transmitted as packets through multiple devices over networks and the Internet, and reassembled at the destination."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "8",
+   "units": [
+    {
+     "id": "algorithms-and-programming",
+     "title": "Algorithms and Programming",
+     "topics": [
+      {
+       "id": "the-student-will-construct-programs-to-accomplis",
+       "title": "The student will construct programs to accomplish a task as a means of creative expression or scientific exploration using a block based or text based programming language, both independently and collaboratively,",
+       "subtopics": [
+        {
+         "id": "the-student-will-construct-programs-to-accomplis",
+         "title": "The student will construct programs to accomplish a task as a means of creative expression or scientific exploration using a block based or text based programming language, both independently and collaboratively,",
+         "outcomes": [
+          {
+           "code": "8.1.a",
+           "text": "combining control structures such as if-statements and loops including nested conditionals and loops;"
+          },
+          {
+           "code": "8.1.b",
+           "text": "Using clearly named variables that represent different data types, including numeric and non-numeric data, and perform operations on their values; and [Related SOL: Math 7.1, 7.2]"
+          },
+          {
+           "code": "8.1.c",
+           "text": "Create procedures with parameters."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "algorithms-and-programming",
+       "title": "Algorithms and Programming",
+       "subtopics": [
+        {
+         "id": "algorithms-and-programming",
+         "title": "Algorithms and Programming",
+         "outcomes": [
+          {
+           "code": "8.2",
+           "text": "The student will systematically test and refine programs using a range of test cases."
+          },
+          {
+           "code": "8.3",
+           "text": "The student will explain how effective communication between participants is required for successful collaboration when developing programs."
+          },
+          {
+           "code": "8.4",
+           "text": "The student will use flowcharts and/or pseudo code to address complex problems as algorithms."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "computing-systems",
+     "title": "Computing Systems",
+     "topics": [
+      {
+       "id": "computing-systems",
+       "title": "Computing Systems",
+       "subtopics": [
+        {
+         "id": "computing-systems",
+         "title": "Computing Systems",
+         "outcomes": [
+          {
+           "code": "8.5",
+           "text": "The student will, using the elements of computing devices such as primary memory, secondary storage, processor, input and output devices, and network connectivity; analyze the advantages and limitations of a given computing system."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "cybersecurity",
+     "title": "Cybersecurity",
+     "topics": [
+      {
+       "id": "cybersecurity",
+       "title": "Cybersecurity",
+       "subtopics": [
+        {
+         "id": "cybersecurity",
+         "title": "Cybersecurity",
+         "outcomes": [
+          {
+           "code": "8.6",
+           "text": "The student will identify physical and digital security measures used protect electronic information."
+          },
+          {
+           "code": "8.7",
+           "text": "The student will identify impacts of hacking, ransomware, scams, fake vulnerability scans, and the ethical and legal concerns involved."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "data-and-analysis",
+     "title": "Data and Analysis",
+     "topics": [
+      {
+       "id": "the-student-will",
+       "title": "The student will",
+       "subtopics": [
+        {
+         "id": "the-student-will",
+         "title": "The student will",
+         "outcomes": [
+          {
+           "code": "8.8.a",
+           "text": "explain the difference between a model and a simulation, and"
+          },
+          {
+           "code": "8.8.b",
+           "text": "create computational models to conduct simulations."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "impacts-of-computing",
+     "title": "Impacts of Computing",
+     "topics": [
+      {
+       "id": "impacts-of-computing",
+       "title": "Impacts of Computing",
+       "subtopics": [
+        {
+         "id": "impacts-of-computing",
+         "title": "Impacts of Computing",
+         "outcomes": [
+          {
+           "code": "8.9",
+           "text": "The student will describe tradeoffs between allowing information to be public, and keeping information private."
+          },
+          {
+           "code": "8.10",
+           "text": "The student will evaluate online and print sources for appropriateness and credibility."
+          },
+          {
+           "code": "8.11",
+           "text": "The student will discuss the social impacts and ethical considerations associated with the field of cybersecurity."
+          },
+          {
+           "code": "8.12",
+           "text": "The student will explore careers related to the field of cybersecurity."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "networking-and-the-internet",
+     "title": "Networking and the Internet",
+     "topics": [
+      {
+       "id": "networking-and-the-internet",
+       "title": "Networking and the Internet",
+       "subtopics": [
+        {
+         "id": "networking-and-the-internet",
+         "title": "Networking and the Internet",
+         "outcomes": [
+          {
+           "code": "8.13",
+           "text": "The student will identify existing cybersecurity concerns associated with Internet use and Internet-based systems and potential options to address these issues."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "9-12",
+   "units": [
+    {
+     "id": "computing-systems",
+     "title": "Computing Systems",
+     "topics": [
+      {
+       "id": "the-student-will",
+       "title": "The student will",
+       "subtopics": [
+        {
+         "id": "the-student-will",
+         "title": "The student will",
+         "outcomes": [
+          {
+           "code": "CSF.1.a",
+           "text": "compare the structures, functions, and interactions between application software, system software, and hardware; and"
+          },
+          {
+           "code": "CSF.1.b",
+           "text": "explore the relationship between hardware and software using the Internet of Things."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "computing-systems",
+       "title": "Computing Systems",
+       "subtopics": [
+        {
+         "id": "computing-systems",
+         "title": "Computing Systems",
+         "outcomes": [
+          {
+           "code": "CSP.1",
+           "text": "The student will develop and apply criteria for evaluating a computer system for a given purpose."
+          },
+          {
+           "code": "CSP.2",
+           "text": "The student will illustrate ways computing systems implement logic, input, and output through hardware components."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "networks-and-the-internet",
+     "title": "Networks and the Internet",
+     "topics": [
+      {
+       "id": "networks-and-the-internet",
+       "title": "Networks and the Internet",
+       "subtopics": [
+        {
+         "id": "networks-and-the-internet",
+         "title": "Networks and the Internet",
+         "outcomes": [
+          {
+           "code": "CSF.2",
+           "text": "The student will model how information is broken down into smaller pieces, transmitted as packets through multiple devices over networks and the Internet, and reassembled at the destination."
+          },
+          {
+           "code": "CSF.3",
+           "text": "The student will explain the role of protocols in transmitting data across networks and the Internet."
+          },
+          {
+           "code": "CSF.4",
+           "text": "The student will evaluate the scalability and reliability of networks, by describing the relationship between routers, switches, servers, topology and addressing."
+          },
+          {
+           "code": "CSP.4",
+           "text": "The student will explain design principles enabling large-scale operation of the Internet to connect devices and networks all over the world."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "the-student-will-explain-abstractions-enabling",
+       "title": "The student will explain abstractions enabling",
+       "subtopics": [
+        {
+         "id": "the-student-will-explain-abstractions-enabling",
+         "title": "The student will explain abstractions enabling",
+         "outcomes": [
+          {
+           "code": "CSP.3.a",
+           "text": "one computer to communicate with another over an Internet connection; and"
+          },
+          {
+           "code": "CSP.3.b",
+           "text": "different layers of Internet technology to build on one another."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "cybersecurity",
+     "title": "Cybersecurity",
+     "topics": [
+      {
+       "id": "cybersecurity",
+       "title": "Cybersecurity",
+       "subtopics": [
+        {
+         "id": "cybersecurity",
+         "title": "Cybersecurity",
+         "outcomes": [
+          {
+           "code": "CSF.5",
+           "text": "The student will identify and explain ways that sensitive data (assets) can be threatened by malware and other computer attacks, using appropriate terminology."
+          },
+          {
+           "code": "CSF.6",
+           "text": "The student will give examples of ways to protect sensitive data (assets) from malware and other computer attacks and evaluate them according to multiple criteria."
+          },
+          {
+           "code": "CSF.7",
+           "text": "The student will explain typical tradeoffs between usability and security and recommend security measures in a given scenario based on these (or other) tradeoffs."
+          },
+          {
+           "code": "CSF.8",
+           "text": "The student will write or adapt a program to validate its input and to avoid certain kinds of vulnerabilities."
+          },
+          {
+           "code": "CSP.5",
+           "text": "The student will explain symmetric and asymmetric encryption as they pertain to messages being sent on a network."
+          },
+          {
+           "code": "PRG.1",
+           "text": "The student will describe and use best practices of program development that make some common flaws less likely and explain how this improves computer security."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "data-and-analysis",
+     "title": "Data and Analysis",
+     "topics": [
+      {
+       "id": "data-and-analysis",
+       "title": "Data and Analysis",
+       "subtopics": [
+        {
+         "id": "data-and-analysis-1-of-2",
+         "title": "Data and Analysis (1 of 2)",
+         "outcomes": [
+          {
+           "code": "CSF.9",
+           "text": "The student will evaluate the tradeoffs in how data elements are organized and where data is stored."
+          },
+          {
+           "code": "CSF.10",
+           "text": "The student will create interactive data visualizations using software tools to help others better understand real-world phenomena."
+          },
+          {
+           "code": "CSF.11",
+           "text": "The student will use data analysis tools and techniques to identify patterns in data representing complex systems."
+          },
+          {
+           "code": "CSP.6",
+           "text": "The student will discuss the methods and tradeoffs of collecting and analyzing data elements on a large scale."
+          }
+         ]
+        },
+        {
+         "id": "data-and-analysis-2-of-2",
+         "title": "Data and Analysis (2 of 2)",
+         "outcomes": [
+          {
+           "code": "CSP.7",
+           "text": "The student will select data collection tools and techniques to generate data sets that support a claim or communicate information. Implement a relational database to work with data."
+          },
+          {
+           "code": "CSP.8",
+           "text": "The student will discuss how data representations can be interpreted in a variety of forms, convert between data representations, and analyze the representation tradeoffs among various forms of digital information."
+          },
+          {
+           "code": "PRG.2",
+           "text": "The student will create programs that model the relationships among different elements in collections of real-world data."
+          },
+          {
+           "code": "PRG.3",
+           "text": "The student will translate numbers between machine representations and human-accessible representations."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "algorithms-and-programming",
+     "title": "Algorithms and Programming",
+     "topics": [
+      {
+       "id": "algorithms-and-programming",
+       "title": "Algorithms and Programming",
+       "subtopics": [
+        {
+         "id": "algorithms-and-programming-1-of-6",
+         "title": "Algorithms and Programming (1 of 6)",
+         "outcomes": [
+          {
+           "code": "CSF.12",
+           "text": "The student will develop a program working individually and in teams using a text-based language."
+          },
+          {
+           "code": "CSF.13",
+           "text": "The student will identify the expected output of a program given a problem and some input."
+          },
+          {
+           "code": "CSF.14",
+           "text": "The student will design and iteratively develop programs for practical intent or personal expression, incorporating feedback from users."
+          },
+          {
+           "code": "CSF.16",
+           "text": "The student will implement a program that accepts input values, stores them in appropriately named variables, and produces output."
+          },
+          {
+           "code": "CSF.17",
+           "text": "The student will trace the execution of an algorithm, illustrating output and changes in values of named variables."
+          }
+         ]
+        },
+        {
+         "id": "algorithms-and-programming-2-of-6",
+         "title": "Algorithms and Programming (2 of 6)",
+         "outcomes": [
+          {
+           "code": "CSF.18",
+           "text": "The student will apply the basic operations used with numeric and non-numeric data types in developing programs."
+          },
+          {
+           "code": "CSF.19",
+           "text": "The student will use predefined functions to simplify the solution of a complex problem."
+          },
+          {
+           "code": "CSF.20",
+           "text": "The student will apply simple algorithms to a collection of data."
+          },
+          {
+           "code": "CSP.10",
+           "text": "The student will solve a complex problem by decomposing it into subtasks consisting of predefined functions and user-defined functions."
+          },
+          {
+           "code": "CSP.11",
+           "text": "The student will store, process, and manipulate data contained in a data structure."
+          }
+         ]
+        },
+        {
+         "id": "algorithms-and-programming-3-of-6",
+         "title": "Algorithms and Programming (3 of 6)",
+         "outcomes": [
+          {
+           "code": "CSP.12",
+           "text": "The student will systematically debug a program using an appropriate set of data."
+          },
+          {
+           "code": "PRG.4",
+           "text": "The student will design and implement a program working individually and in teams using a text-based language."
+          },
+          {
+           "code": "PRG.5",
+           "text": "The student will explain the software life cycle and how it applies to iterative development processes."
+          },
+          {
+           "code": "PRG.7",
+           "text": "The student will implement programs that accept input from a variety of sources and produce output based on that input."
+          },
+          {
+           "code": "PRG.8",
+           "text": "The student will trace the execution of iterative and recursive algorithms, illustrating output and changes in values of named variables."
+          }
+         ]
+        },
+        {
+         "id": "algorithms-and-programming-4-of-6",
+         "title": "Algorithms and Programming (4 of 6)",
+         "outcomes": [
+          {
+           "code": "PRG.10",
+           "text": "The student will demonstrate an understanding of different data types by using appropriate constructs to convert between them when appropriate."
+          },
+          {
+           "code": "PRG.11",
+           "text": "The student will analyze a large-scale computational problem, identify generalizable patterns, and implement a solution."
+          },
+          {
+           "code": "PRG.12",
+           "text": "The student will implement an algorithm that uses existing functions and accesses existing libraries or APIs to satisfy its requirements."
+          },
+          {
+           "code": "PRG.13",
+           "text": "The student will write functions, both with and without parameters, and both with and without return values, that represent abstractions useful to the solution of a larger problem."
+          },
+          {
+           "code": "PRG.14",
+           "text": "The student will create programs demonstrating an understanding of the interactions between classes in object-oriented design, and by implementing classes with instance data and methods to satisfy a design specification."
+          }
+         ]
+        },
+        {
+         "id": "algorithms-and-programming-5-of-6",
+         "title": "Algorithms and Programming (5 of 6)",
+         "outcomes": [
+          {
+           "code": "PRG.15",
+           "text": "The student will use code written by others by reading the documentation and incorporating it into their programs using proper citation of the reused code."
+          },
+          {
+           "code": "PRG.16",
+           "text": "The student will read and store data in 1D and 2D collections, and design and implement algorithms to process and manipulate those collections."
+          },
+          {
+           "code": "PRG.17",
+           "text": "The student will adapt classic algorithms for use in a particular context and analyze them for effectiveness and efficiency."
+          },
+          {
+           "code": "PRG.18",
+           "text": "The student will develop and use a series of test cases to verify that a program performs according to its design specifications, including edge cases and all branches."
+          },
+          {
+           "code": "PRG.19",
+           "text": "The student will, through the process of code review, evaluate a program's correctness, readability, usability, and other factors."
+          }
+         ]
+        },
+        {
+         "id": "algorithms-and-programming-6-of-6",
+         "title": "Algorithms and Programming (6 of 6)",
+         "outcomes": [
+          {
+           "code": "PRG.20",
+           "text": "The student will use a systematic approach"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "the-student-will-design-and-implement-algorithms",
+       "title": "The student will design and implement algorithms using",
+       "subtopics": [
+        {
+         "id": "the-student-will-design-and-implement-algorithms",
+         "title": "The student will design and implement algorithms using",
+         "outcomes": [
+          {
+           "code": "CSF.15.a",
+           "text": "sequencing of instructions;"
+          },
+          {
+           "code": "CSF.15.b",
+           "text": "conditional execution; and"
+          },
+          {
+           "code": "CSF.15.c",
+           "text": "iteration."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "the-student-will-create-programs",
+       "title": "The student will create programs",
+       "subtopics": [
+        {
+         "id": "the-student-will-create-programs",
+         "title": "The student will create programs",
+         "outcomes": [
+          {
+           "code": "CSF.21.a",
+           "text": "demonstrating an understanding that program development is an ongoing process that requires adjusting and debugging along the way; and"
+          },
+          {
+           "code": "CSF.21.b",
+           "text": "using version control to create and refine programs."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "the-student-will-design-and-implement-algorithms-2",
+       "title": "The student will design and implement algorithms with",
+       "subtopics": [
+        {
+         "id": "the-student-will-design-and-implement-algorithms",
+         "title": "The student will design and implement algorithms with",
+         "outcomes": [
+          {
+           "code": "CSP.9.a",
+           "text": "compound conditional execution; and"
+          },
+          {
+           "code": "CSP.9.b",
+           "text": "a variety of loop control structures."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "the-student-will-design-and-implement-an-algorit",
+       "title": "The student will design and implement an algorithm",
+       "subtopics": [
+        {
+         "id": "the-student-will-design-and-implement-an-algorit",
+         "title": "The student will design and implement an algorithm",
+         "outcomes": [
+          {
+           "code": "PRG.6.a",
+           "text": "with compound conditional execution, and analyze and evaluate complex Boolean conditions; and"
+          },
+          {
+           "code": "PRG.6.b",
+           "text": "using complex iteration, including nested loops."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "the-student-will-perform-complex-computations",
+       "title": "The student will perform complex computations",
+       "subtopics": [
+        {
+         "id": "the-student-will-perform-complex-computations",
+         "title": "The student will perform complex computations",
+         "outcomes": [
+          {
+           "code": "PRG.9.a",
+           "text": "on numbers, including modular division and random number generation; and"
+          },
+          {
+           "code": "PRG.9.b",
+           "text": "on strings, including substring manipulation and processing individual characters."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "impacts-of-computing",
+     "title": "Impacts of Computing",
+     "topics": [
+      {
+       "id": "impacts-of-computing",
+       "title": "Impacts of Computing",
+       "subtopics": [
+        {
+         "id": "impacts-of-computing-1-of-2",
+         "title": "Impacts of Computing (1 of 2)",
+         "outcomes": [
+          {
+           "code": "CSF.22",
+           "text": "The student will use tools and methods for collaboration on a project to increase connectivity of people in different cultures and career fields."
+          },
+          {
+           "code": "CSF.23",
+           "text": "The student will evaluate the ways computing impacts personal, ethical, social, economic, and cultural practices."
+          },
+          {
+           "code": "CSF.24",
+           "text": "The student will explain the beneficial and harmful effects that intellectual property laws can have on innovation, including the impact of open source software."
+          },
+          {
+           "code": "CSF.25",
+           "text": "The student will explain the privacy concerns related to the collection and generation of data through automated processes that are not always evident to users."
+          },
+          {
+           "code": "CSP.13",
+           "text": "The student will explain how computing has impacted innovations in other fields positively and negatively, and enables collaboration between a variety of people."
+          }
+         ]
+        },
+        {
+         "id": "impacts-of-computing-2-of-2",
+         "title": "Impacts of Computing (2 of 2)",
+         "outcomes": [
+          {
+           "code": "CSP.14",
+           "text": "The student will evaluate the impact of equity, access, and influence on the distribution of computing resources in a global society, including the impacts of cloud computing."
+          },
+          {
+           "code": "CSP.15",
+           "text": "The student will explain how intellectual property concerns affect the tools for and products of computing, including combining existing content to create new artifacts and the impact of open source and free software."
+          },
+          {
+           "code": "CSP.16",
+           "text": "The student will evaluate the social and economic implications of privacy in the context of safety, law or ethics."
+          },
+          {
+           "code": "PRG.21",
+           "text": "The student will identify some of the practical, business, and ethical impacts of open source and free software and the widespread access they provide."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "empowered-learner-el",
+     "title": "Empowered Learner (EL)",
+     "topics": [
+      {
+       "id": "students-leverage-technologies-including-assisti",
+       "title": "Students leverage technologies, including assistive technologies, to take an active role in choosing, achieving, and demonstrating competency in their learning goals, informed by the learning sciences",
+       "subtopics": [
+        {
+         "id": "students-articulate-and-set-personal-learning-go",
+         "title": "Students articulate and set personal learning goals, develop strategies leveraging technology to achieve them, and reflect on the learning process itself to improve learning outcomes",
+         "outcomes": [
+          {
+           "code": "9-12.1.1.A.1",
+           "text": "Students articulate and set personal learning goals, develop strategies, advocate for the appropriate technologies needed to achieve them, and reflect on the learning process itself to improve learning outcomes."
+          }
+         ]
+        },
+        {
+         "id": "build-networks-and-customize-their-learning-envi",
+         "title": "Build networks and customize their learning environments in ways that support the learning process",
+         "outcomes": [
+          {
+           "code": "9-12.1.1.B.1",
+           "text": "Students autonomously customize and build their learning community and environments in ways that support the learning process."
+          }
+         ]
+        },
+        {
+         "id": "use-technology-to-seek-feedback-that-informs-and",
+         "title": "Use technology to seek feedback that informs and improves their practice and to demonstrate their learning in a variety of ways",
+         "outcomes": [
+          {
+           "code": "9-12.1.1.C.1",
+           "text": "Students seek feedback from people and staff familiar with assistive technologies, and evaluate and use appropriate technologies for additional feedback to make changes to improve and demonstrate their learning."
+          }
+         ]
+        },
+        {
+         "id": "understand-the-various-fundamental-concepts-of-t",
+         "title": "Understand the various fundamental concepts of technology operations, demonstrate the ability to choose, use, and troubleshoot technologies and transfer knowledge to explore emerging technologies",
+         "outcomes": [
+          {
+           "code": "9-12.1.1.D.1",
+           "text": "Students understand the various fundamental concepts of appropriate technologies; demonstrate the ability to choose, use, and troubleshoot technologies, and transfer knowledge to explore emerging technologies."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "digital-citizen-dc",
+     "title": "Digital Citizen (DC)",
+     "topics": [
+      {
+       "id": "students-recognize-the-rights-responsibilities-a",
+       "title": "Students recognize the rights, responsibilities and opportunities of living, learning and working in an interconnected digital world, and they act in ways that are safe, legal, and ethical",
+       "subtopics": [
+        {
+         "id": "cultivate-and-manage-their-digital-identity-and-",
+         "title": "Cultivate and manage their digital identity and reputation and are aware of the permanence of their actions in the digital world",
+         "outcomes": [
+          {
+           "code": "9-12.2.1.A.1",
+           "text": "Students autonomously curate their digital identities and portfolio while acknowledging and understanding the long-term effects of their virtual actions."
+          }
+         ]
+        },
+        {
+         "id": "engage-in-positive-safe-legal-and-ethical-behavi",
+         "title": "Engage in positive, safe, legal, and ethical behavior when using technology, including social interactions online or when using networked devices",
+         "outcomes": [
+          {
+           "code": "9-12.2.1.B.1",
+           "text": "Students participate in collaboration and communication with local and/or global communities using positive, safe, legal, and ethical habits (established behaviors)."
+          }
+         ]
+        },
+        {
+         "id": "demonstrate-an-understanding-of-and-respect-for-",
+         "title": "Demonstrate an understanding of and respect for the rights and obligations of using and sharing intellectual property",
+         "outcomes": [
+          {
+           "code": "9-12.2.1.C.1",
+           "text": "Students appropriately use, cite, and share digital and print intellectual property according to copyright / Fair Use Doctrine."
+          }
+         ]
+        },
+        {
+         "id": "manage-their-personal-data-to-maintain-digital-p",
+         "title": "Manage their personal data to maintain digital privacy and security and are aware of datacollection technology used to track their activity online",
+         "outcomes": [
+          {
+           "code": "9-12.2.1.D.1",
+           "text": "Students practice safe and responsible sharing of their personal data online while learning how it is collected, stored online, and what is publicly available."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "knowledge-constructor-kc",
+     "title": "Knowledge Constructor (KC)",
+     "topics": [
+      {
+       "id": "students-critically-curate-a-variety-of-digital-",
+       "title": "Students critically curate a variety of digital resources using appropriate technologies, including assistive technologies, to construct knowledge, produce creative digital works, and make meaningful learning experiences for themselves and others",
+       "subtopics": [
+        {
+         "id": "plan-and-employ-effective-research-strategies-to",
+         "title": "Plan and employ effective research strategies to locate information and other digital sources for their intellectual or creative pursuits",
+         "outcomes": [
+          {
+           "code": "9-12.3.1.A.1",
+           "text": "Students plan and employ effective research strategies to deepen content knowledge, connect academic learning with the real world, pursue personal interests, and investigate opportunities for personal growth."
+          }
+         ]
+        },
+        {
+         "id": "evaluate-the-accuracy-perspective-credibility-an",
+         "title": "Evaluate the accuracy, perspective, credibility, and relevance of information, media, data, and other digital sources",
+         "outcomes": [
+          {
+           "code": "9-12.3.1.B.1",
+           "text": "Students assess the quality of evidence and data found in selected digital sources based on accuracy, validity, appropriateness for needs, importance, and social and cultural context. Students evaluate information and graphics for prejudice, false data."
+          }
+         ]
+        },
+        {
+         "id": "curate-information-from-digital-sources-using-a-",
+         "title": "Curate information from digital sources using a variety of tools and methods to create collections of resources that demonstrate meaningful connections or conclusions",
+         "outcomes": [
+          {
+           "code": "9-12.3.1.C.1",
+           "text": "Students locate, collect, and evaluate a variety of digital sources and organize resources into themes in ways that are coherent and shareable to multiple audiences."
+          }
+         ]
+        },
+        {
+         "id": "actively-explore-real-world-issues-and-problems-",
+         "title": "Actively explore real-world issues and problems, develop ideas and theories, and pursue answers and solutions",
+         "outcomes": [
+          {
+           "code": "9-12.3.1.D.1",
+           "text": "Students use knowledge, information skills, and digital resources and tools to engage in public conversation and/or debate realworld issues."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "innovative-designer-id",
+     "title": "Innovative Designer (ID)",
+     "topics": [
+      {
+       "id": "students-use-a-variety-of-technologies-including",
+       "title": "Students use a variety of technologies, including assistive technologies, within a design process to identify and solve problems by creating new, useful or imaginative solutions or iterations",
+       "subtopics": [
+        {
+         "id": "know-and-use-appropriate-technologies-in-a-purpo",
+         "title": "Know and use appropriate technologies in a purposeful design process for generating ideas, testing theories, creating innovative digital works, or solving authentic problems",
+         "outcomes": [
+          {
+           "code": "9-12.4.1.A.1",
+           "text": "Students autonomously select and use appropriate technologies in a design process to generate ideas, create, document, test, revise, and present innovative products or solve authentic problems."
+          }
+         ]
+        },
+        {
+         "id": "select-and-use-appropriate-technologies-to-plan-",
+         "title": "Select and use appropriate technologies to plan and manage a design process that considers design constraints and calculated risks",
+         "outcomes": [
+          {
+           "code": "9-12.4.1.B.1",
+           "text": "Students autonomously select and use appropriate technologies to plan and manage a design process that identifies design constraints and trade-offs and weighs risks."
+          }
+         ]
+        },
+        {
+         "id": "use-appropriate-technologies-to-develop-test-and",
+         "title": "Use appropriate technologies to develop, test, and refine prototypes as part of a cyclical design process",
+         "outcomes": [
+          {
+           "code": "9-12.4.1.C.1",
+           "text": "Students autonomously select and use appropriate technologies in a cyclical design process to develop, test, and refine prototypes understanding the role of trial and error and setbacks as potential opportunities for improvement."
+          }
+         ]
+        },
+        {
+         "id": "exhibit-a-tolerance-for-ambiguity-perseverance-a",
+         "title": "Exhibit a tolerance for ambiguity, perseverance, and the capacity to work with open-ended problems",
+         "outcomes": [
+          {
+           "code": "9-12.4.1.D.1",
+           "text": "Students autonomously demonstrate an ability to persevere through difficulties and ambiguity in solving openended problems."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "computational-thinker-ct",
+     "title": "Computational Thinker (CT)",
+     "topics": [
+      {
+       "id": "students-develop-and-employ-strategies-for-under",
+       "title": "Students develop and employ strategies for understanding and solving problems in ways that leverage the power of technological methods, including those that leverage assistive technologies, to develop and test solutions",
+       "subtopics": [
+        {
+         "id": "formulate-problem-definitions-suited-for-technol",
+         "title": "Formulate problem definitions suited for technologyassisted methods such as data analysis, modeling and algorithmic thinking in exploring and finding solutions",
+         "outcomes": [
+          {
+           "code": "9-12.5.1.A.1",
+           "text": "Students demonstrate how to identify, explore, and solve a real-world problem using technologyassisted methods such as data analysis, modeling, or algorithmic thinking."
+          }
+         ]
+        },
+        {
+         "id": "collect-data-or-identify-relevant-data-sets-use-",
+         "title": "Collect data or identify relevant data sets, use appropriate technologies to analyze them, and represent data in various ways to facilitate problemsolving and decision-making",
+         "outcomes": [
+          {
+           "code": "9-12.5.1.B.1",
+           "text": "Students use appropriate technologies to collect, organize, interpret, and analyze data sets to predict outcomes, draw conclusions, solve problems, and make evidence-based decisions."
+          }
+         ]
+        },
+        {
+         "id": "break-problems-into-component-parts-extract-key-",
+         "title": "Break problems into component parts, extract key information, and develop descriptive models, using technologies when appropriate, to understand complex systems or facilitate problem-solving",
+         "outcomes": [
+          {
+           "code": "9-12.5.1.C.1",
+           "text": "Students evaluate a task in terms of sub problems needed and make changes to address issues or changing task needs using technologies, when appropriate."
+          }
+         ]
+        },
+        {
+         "id": "understand-how-automation-works-and-use-algorith",
+         "title": "Understand how automation works and use algorithmic thinking to develop a sequence of steps to create and test automated solutions",
+         "outcomes": [
+          {
+           "code": "9-12.5.1.D.1",
+           "text": "Students evaluate a task to be automated and describe the technology used in the process."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "creative-communicator-cc",
+     "title": "Creative Communicator (CC)",
+     "topics": [
+      {
+       "id": "students-communicate-clearly-and-express-themsel",
+       "title": "Students communicate clearly and express themselves creatively for a variety of purposes using appropriate technologies (including assistive technologies), styles, formats, and digital media appropriate to their goals",
+       "subtopics": [
+        {
+         "id": "choose-the-appropriate-technologies-and-resource",
+         "title": "Choose the appropriate technologies and resources for meeting the desired objectives of their creation or communication",
+         "outcomes": [
+          {
+           "code": "9-12.6.1.A.1",
+           "text": "Students select and use appropriate technologies to meet their communication needs considering goals, audience, content, available technologies or devices, and timing of communication."
+          }
+         ]
+        },
+        {
+         "id": "create-original-works-or-responsibly-repurpose-o",
+         "title": "Create original works or responsibly repurpose or remix digital resources into new creations",
+         "outcomes": [
+          {
+           "code": "9-12.6.1.B.1",
+           "text": "Students use multiple appropriate technologies to create new digital work or repurpose/remix other digital work into new digital works to support a point of view."
+          }
+         ]
+        },
+        {
+         "id": "communicate-complex-ideas-clearly-and-effectivel",
+         "title": "Communicate complex ideas clearly and effectively by creating or using a variety of digital objects such as visualizations, models, or simulations",
+         "outcomes": [
+          {
+           "code": "9-12.6.1.C.1",
+           "text": "Students use design technologies to create and communicate various representations of a complex idea in a subject area."
+          }
+         ]
+        },
+        {
+         "id": "publish-or-present-content-that-customizes-the-m",
+         "title": "Publish or present content that customizes the message and medium for the intended audiences",
+         "outcomes": [
+          {
+           "code": "9-12.6.1.D.1",
+           "text": "Students collaborate with available experts on final presentations, especially with the analysis and evaluation of how audiences receive or interpret content."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "global-collaborator-gc",
+     "title": "Global Collaborator (GC)",
+     "topics": [
+      {
+       "id": "students-use-appropriate-technologies-including-",
+       "title": "Students use appropriate technologies, including assistive technologies, to broaden their perspectives and enrich their learning by collaborating with others and working effectively in teams locally and globally",
+       "subtopics": [
+        {
+         "id": "use-appropriate-technologies-to-connect-with-lea",
+         "title": "Use appropriate technologies to connect with learners from a variety of backgrounds and cultures, engaging with them in ways that broaden mutual understanding and learning",
+         "outcomes": [
+          {
+           "code": "9-12.7.1.A.1",
+           "text": "Students use appropriate technologies to connect with others in places around the world for broader understanding and learning toward common goals."
+          }
+         ]
+        },
+        {
+         "id": "use-collaborative-technologies-to-work-with-othe",
+         "title": "Use collaborative technologies to work with others, including peers, experts, and community members to examine issues and problems from multiple viewpoints",
+         "outcomes": [
+          {
+           "code": "9-12.7.1.B.1",
+           "text": "Students use collaborative technologies to work with others, including peers, experts, and online community members to gain global perspectives as they examine issues, problems, and opportunities."
+          }
+         ]
+        },
+        {
+         "id": "contribute-constructively-to-project-teams-assum",
+         "title": "Contribute constructively to project teams, assuming various roles and responsibilities to work effectively toward a common goal",
+         "outcomes": [
+          {
+           "code": "9-12.7.1.C.1",
+           "text": "Students determine their role on a team and use project management tools to organize and monitor individual and group work and reflect on participation and completion of a common goal."
+          }
+         ]
+        },
+        {
+         "id": "explore-local-and-global-issues-and-use-collabor",
+         "title": "Explore local and global issues and use collaborative technologies to work with others to investigate solutions",
+         "outcomes": [
+          {
+           "code": "9-12.7.1.D.1",
+           "text": "Students use collaborative technologies to understand problems, investigate, and develop solutions related to local and global issues, and advocate for implementation of solutions."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "6-8",
+   "units": [
+    {
+     "id": "6-9-and-18-week-module",
+     "title": "6, 9, and 18-Week Module",
+     "topics": [
+      {
+       "id": "algorithms-and-programming",
+       "title": "Algorithms and Programming",
+       "subtopics": [
+        {
+         "id": "algorithms-and-programming-1-of-2",
+         "title": "Algorithms and Programming (1 of 2)",
+         "outcomes": [
+          {
+           "code": "MSCSE.1",
+           "text": "The student will design and iteratively develop programs that combine control structures, including loops and conditionals."
+          },
+          {
+           "code": "MSCSE.2",
+           "text": "The student will investigate variables and data types, including simple operations on strings."
+          },
+          {
+           "code": "MSCSE.3",
+           "text": "The student will implement a program that accepts input values, stores them in appropriately named variables, and produces output."
+          },
+          {
+           "code": "MSCSE.4",
+           "text": "The student will document programs in order to make them easier to trace, test, and debug."
+          }
+         ]
+        },
+        {
+         "id": "algorithms-and-programming-2-of-2",
+         "title": "Algorithms and Programming (2 of 2)",
+         "outcomes": [
+          {
+           "code": "MSCSE.7",
+           "text": "The student will use flowcharts and/or pseudo code to address complex problems as algorithms."
+          },
+          {
+           "code": "MSCSE.8",
+           "text": "The student will incorporate existing code, media, and libraries into original programs, and give attribution."
+          },
+          {
+           "code": "MSCSE.9",
+           "text": "The student will systematically test and refine programs using a range of test cases."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "impacts-of-computing",
+       "title": "Impacts of Computing",
+       "subtopics": [
+        {
+         "id": "impacts-of-computing",
+         "title": "Impacts of Computing",
+         "outcomes": [
+          {
+           "code": "MSCSE.5",
+           "text": "The student will discuss issues of bias and accessibility in the design of existing technologies."
+          },
+          {
+           "code": "MSCSE.6",
+           "text": "The student will describe and explain the history of computer science, including naming significant historical figures and describing their impact on the field."
+          },
+          {
+           "code": "MSCSE.16",
+           "text": "The student will discuss issues of bias and accessibility in the design of existing technologies."
+          },
+          {
+           "code": "MSCSE.17",
+           "text": "The student will compare tradeoffs associated with computing technologies that affect people's everyday activities and career options."
+          },
+          {
+           "code": "MSCSE.18",
+           "text": "The student will collaborate with many contributors through strategies such as crowdsourcing or surveys when creating a computational artifact or visualization."
+          },
+          {
+           "code": "MSCSE.19",
+           "text": "The student will describe tradeoffs between allowing information to be public and keeping information private and secure."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "networks-and-the-internet",
+       "title": "Networks and the Internet",
+       "subtopics": [
+        {
+         "id": "networks-and-the-internet",
+         "title": "Networks and the Internet",
+         "outcomes": [
+          {
+           "code": "MSCSE.10",
+           "text": "The student will model the role of protocols in transmitting data across networks and the Internet."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "cybersecurity",
+       "title": "Cybersecurity",
+       "subtopics": [
+        {
+         "id": "cybersecurity",
+         "title": "Cybersecurity",
+         "outcomes": [
+          {
+           "code": "MSCSE.11",
+           "text": "The student will apply multiple methods of encryption to model the secure transmission of information."
+          },
+          {
+           "code": "MSCSE.12",
+           "text": "The student will explain how physical and digital security measures protect electronic information."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "data-and-analysis",
+       "title": "Data and Analysis",
+       "subtopics": [
+        {
+         "id": "data-and-analysis",
+         "title": "Data and Analysis",
+         "outcomes": [
+          {
+           "code": "MSCSE.13",
+           "text": "The student will collect data using computational tools and transform the data to make it more useful and reliable."
+          },
+          {
+           "code": "MSCSE.14",
+           "text": "The student will refine computational models based on the data they have generated."
+          },
+          {
+           "code": "MSCSE.15",
+           "text": "The student will represent data using multiple encoding schemes."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "computing-systems",
+       "title": "Computing Systems",
+       "subtopics": [
+        {
+         "id": "computing-systems",
+         "title": "Computing Systems",
+         "outcomes": [
+          {
+           "code": "MSCSE.20",
+           "text": "The student will systematically identify and correct problems with computing devices and their components."
+          },
+          {
+           "code": "MSCSE.21",
+           "text": "The student will explore the relationship between hardware and software using the Internet of Things."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "module",
+     "title": "Module",
+     "topics": [
+      {
+       "id": "algorithms-and-programming",
+       "title": "Algorithms and Programming",
+       "subtopics": [
+        {
+         "id": "the-student-will",
+         "title": "The student will",
+         "outcomes": [
+          {
+           "code": "MSCSE.22.a",
+           "text": "work in a team to distribute tasks;"
+          },
+          {
+           "code": "MSCSE.22.b",
+           "text": "maintain a timeline; and"
+          },
+          {
+           "code": "MSCSE.22.c",
+           "text": "use iterative design to solve problems, including peer review and feedback."
+          }
+         ]
+        },
+        {
+         "id": "algorithms-and-programming",
+         "title": "Algorithms and Programming",
+         "outcomes": [
+          {
+           "code": "MSCSE.23",
+           "text": "The student will decompose problems and subproblems into parts to facilitate the design, implementation, and review of programs."
+          },
+          {
+           "code": "MSCSE.24",
+           "text": "The student will create procedures with parameters to organize code and make it easier to reuse."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "computing-systems",
+       "title": "Computing Systems",
+       "subtopics": [
+        {
+         "id": "computing-systems",
+         "title": "Computing Systems",
+         "outcomes": [
+          {
+           "code": "MSCSE.25",
+           "text": "The student will recommend improvements to the design of computing devices, based on an analysis of how users interact with the devices."
+          },
+          {
+           "code": "MSCSE.26",
+           "text": "The student will design projects that combine hardware and software components to collect and exchange data."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "empowered-learner-el",
+     "title": "Empowered Learner (EL)",
+     "topics": [
+      {
+       "id": "students-leverage-technologies-including-assisti",
+       "title": "Students leverage technologies, including assistive technologies, to take an active role in choosing, achieving, and demonstrating competency in their learning goals, informed by the learning sciences",
+       "subtopics": [
+        {
+         "id": "students-articulate-and-set-personal-learning-go",
+         "title": "Students articulate and set personal learning goals, develop strategies leveraging technology to achieve them, and reflect on the learning process itself to improve learning outcomes",
+         "outcomes": [
+          {
+           "code": "6-8.1.1.A.1",
+           "text": "Students articulate personal learning goals, select and use appropriate technologies to achieve them, and reflect on their successes and different areas of improvement in working toward their goals."
+          }
+         ]
+        },
+        {
+         "id": "build-networks-and-customize-their-learning-envi",
+         "title": "Build networks and customize their learning environments in ways that support the learning process",
+         "outcomes": [
+          {
+           "code": "6-8.1.1.B.1",
+           "text": "In collaboration with an educator, students identify and develop digital learning communities and customize their learning environments in ways that support their learning."
+          }
+         ]
+        },
+        {
+         "id": "use-technology-to-seek-feedback-that-informs-and",
+         "title": "Use technology to seek feedback that informs and improves their practice and to demonstrate their learning in a variety of ways",
+         "outcomes": [
+          {
+           "code": "6-8.1.1.C.1",
+           "text": "Students seek feedback from people, including peers, teachers, staff familiar with assistive technologies, and functionalities embedded in technologies to make changes to improve and demonstrate their learning."
+          }
+         ]
+        },
+        {
+         "id": "understand-the-various-fundamental-concepts-of-t",
+         "title": "Understand the various fundamental concepts of technology operations, demonstrate the ability to choose, use, and troubleshoot technologies and transfer knowledge to explore emerging technologies",
+         "outcomes": [
+          {
+           "code": "6-8.1.1.D.1",
+           "text": "Students use a variety of appropriate technologies, troubleshoot appropriate technologies, and transfer their knowledge to explore emerging technologies."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "digital-citizen-dc",
+     "title": "Digital Citizen (DC)",
+     "topics": [
+      {
+       "id": "students-recognize-the-rights-responsibilities-a",
+       "title": "Students recognize the rights, responsibilities and opportunities of living, learning and working in an interconnected digital world, and they act in ways that are safe, legal, and ethical",
+       "subtopics": [
+        {
+         "id": "cultivate-and-manage-their-digital-identity-and-",
+         "title": "Cultivate and manage their digital identity and reputation and are aware of the permanence of their actions in the digital world",
+         "outcomes": [
+          {
+           "code": "6-8.2.1.A.1",
+           "text": "Students manage their digital identities and reputations, including demonstrating an understanding of their digital footprints."
+          }
+         ]
+        },
+        {
+         "id": "engage-in-positive-safe-legal-and-ethical-behavi",
+         "title": "Engage in positive, safe, legal, and ethical behavior when using technology, including social interactions online or when using networked devices",
+         "outcomes": [
+          {
+           "code": "6-8.2.1.B.1",
+           "text": "Students demonstrate and advocate for positive, safe, legal, and ethical habits (established behaviors) when using technology and interacting with others online."
+          }
+         ]
+        },
+        {
+         "id": "demonstrate-an-understanding-of-and-respect-for-",
+         "title": "Demonstrate an understanding of and respect for the rights and obligations of using and sharing intellectual property",
+         "outcomes": [
+          {
+           "code": "6-8.2.1.C.1",
+           "text": "Students demonstrate and advocate for an understanding of intellectual property with both print and digital media—including copyright, permission, and fair use."
+          }
+         ]
+        },
+        {
+         "id": "manage-their-personal-data-to-maintain-digital-p",
+         "title": "Manage their personal data to maintain digital privacy and security and are aware of datacollection technology used to track their activity online",
+         "outcomes": [
+          {
+           "code": "6-8.2.1.D.1",
+           "text": "Students demonstrate an understanding of what personal data is, how data collection technologies work, tradeoffs of sharing personal data, and best practices for keeping it private and secure."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "knowledge-constructor-kc",
+     "title": "Knowledge Constructor (KC)",
+     "topics": [
+      {
+       "id": "students-critically-curate-a-variety-of-digital-",
+       "title": "Students critically curate a variety of digital resources using appropriate technologies, including assistive technologies, to construct knowledge, produce creative digital works, and make meaningful learning experiences for themselves and others",
+       "subtopics": [
+        {
+         "id": "plan-and-employ-effective-research-strategies-to",
+         "title": "Plan and employ effective research strategies to locate information and other digital sources for their intellectual or creative pursuits",
+         "outcomes": [
+          {
+           "code": "6-8.3.1.A.1",
+           "text": "Students practice and demonstrate the ability to effectively use research strategies to locate appropriate primary and secondary digital sources in a variety of formats to support their academic and personal learning and create a research product."
+          }
+         ]
+        },
+        {
+         "id": "evaluate-the-accuracy-perspective-credibility-an",
+         "title": "Evaluate the accuracy, perspective, credibility, and relevance of information, media, data, and other digital sources",
+         "outcomes": [
+          {
+           "code": "6-8.3.1.B.1",
+           "text": "Students practice and demonstrate the ability to evaluate digital sources for accuracy, perspective, credibility, and relevance, including considerations of social and cultural context and bias."
+          }
+         ]
+        },
+        {
+         "id": "curate-information-from-digital-sources-using-a-",
+         "title": "Curate information from digital sources using a variety of tools and methods to create collections of resources that demonstrate meaningful connections or conclusions",
+         "outcomes": [
+          {
+           "code": "6-8.3.1.C.1",
+           "text": "Students locate and collect digital resources from a variety of digital sources and organize resources into collections for a wide range of projects and purposes."
+          }
+         ]
+        },
+        {
+         "id": "actively-explore-real-world-issues-and-problems-",
+         "title": "Actively explore real-world issues and problems, develop ideas and theories, and pursue answers and solutions",
+         "outcomes": [
+          {
+           "code": "6-8.3.1.D.1",
+           "text": "Students use digital resources and tools to explore real-world issues and problems and actively pursue solutions."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "innovative-designer-id",
+     "title": "Innovative Designer (ID)",
+     "topics": [
+      {
+       "id": "students-use-a-variety-of-technologies-including",
+       "title": "Students use a variety of technologies, including assistive technologies, within a design process to identify and solve problems by creating new, useful or imaginative solutions or iterations",
+       "subtopics": [
+        {
+         "id": "know-and-use-appropriate-technologies-in-a-purpo",
+         "title": "Know and use appropriate technologies in a purposeful design process for generating ideas, testing theories, creating innovative digital works, or solving authentic problems",
+         "outcomes": [
+          {
+           "code": "6-8.4.1.A.1",
+           "text": "In collaboration with an educator, students use appropriate technologies in a design process to generate ideas, create innovative products, or solve authentic problems."
+          }
+         ]
+        },
+        {
+         "id": "select-and-use-appropriate-technologies-to-plan-",
+         "title": "Select and use appropriate technologies to plan and manage a design process that considers design constraints and calculated risks",
+         "outcomes": [
+          {
+           "code": "6-8.4.1.B.1",
+           "text": "In collaboration with an educator, students select and use appropriate technologies to plan and manage a design process that identifies design constraints and trade-offs and weighs risks."
+          }
+         ]
+        },
+        {
+         "id": "use-appropriate-technologies-to-develop-test-and",
+         "title": "Use appropriate technologies to develop, test, and refine prototypes as part of a cyclical design process",
+         "outcomes": [
+          {
+           "code": "6-8.4.1.C.1",
+           "text": "In collaboration with an educator, students use appropriate technologies in a cyclical design process to develop prototypes and demonstrate the use of setbacks as potential opportunities for improvement."
+          }
+         ]
+        },
+        {
+         "id": "exhibit-a-tolerance-for-ambiguity-perseverance-a",
+         "title": "Exhibit a tolerance for ambiguity, perseverance, and the capacity to work with open-ended problems",
+         "outcomes": [
+          {
+           "code": "6-8.4.1.D.1",
+           "text": "In collaboration with an educator, students demonstrate an ability to persevere and handle greater ambiguity as they work to solve open-ended problems."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "computational-thinker-ct",
+     "title": "Computational Thinker (CT)",
+     "topics": [
+      {
+       "id": "students-develop-and-employ-strategies-for-under",
+       "title": "Students develop and employ strategies for understanding and solving problems in ways that leverage the power of technological methods, including those that leverage assistive technologies, to develop and test solutions",
+       "subtopics": [
+        {
+         "id": "formulate-problem-definitions-suited-for-technol",
+         "title": "Formulate problem definitions suited for technologyassisted methods such as data analysis, modeling and algorithmic thinking in exploring and finding solutions",
+         "outcomes": [
+          {
+           "code": "6-8.5.1.A.1",
+           "text": "Students create, identify, explore, and solve problems using technologyassisted methods such as data analysis, modeling, or algorithmic thinking."
+          }
+         ]
+        },
+        {
+         "id": "collect-data-or-identify-relevant-data-sets-use-",
+         "title": "Collect data or identify relevant data sets, use appropriate technologies to analyze them, and represent data in various ways to facilitate problemsolving and decision-making",
+         "outcomes": [
+          {
+           "code": "6-8.5.1.B.1",
+           "text": "Students find or organize data and use appropriate technologies to interpret, analyze, and represent data to construct models, predict outcomes, solve problems, and make evidencebased decisions."
+          }
+         ]
+        },
+        {
+         "id": "break-problems-into-component-parts-extract-key-",
+         "title": "Break problems into component parts, extract key information, and develop descriptive models, using technologies when appropriate, to understand complex systems or facilitate problem-solving",
+         "outcomes": [
+          {
+           "code": "6-8.5.1.C.1",
+           "text": "Students break problems into component parts, identify key pieces and use that information to problem solve using technologies, when appropriate."
+          }
+         ]
+        },
+        {
+         "id": "understand-how-automation-works-and-use-algorith",
+         "title": "Understand how automation works and use algorithmic thinking to develop a sequence of steps to create and test automated solutions",
+         "outcomes": [
+          {
+           "code": "6-8.5.1.D.1",
+           "text": "Students demonstrate an understanding of how automation works and use algorithmic thinking to design and automate solutions."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "creative-communicator-cc",
+     "title": "Creative Communicator (CC)",
+     "topics": [
+      {
+       "id": "students-communicate-clearly-and-express-themsel",
+       "title": "Students communicate clearly and express themselves creatively for a variety of purposes using appropriate technologies (including assistive technologies), styles, formats, and digital media appropriate to their goals",
+       "subtopics": [
+        {
+         "id": "choose-the-appropriate-technologies-and-resource",
+         "title": "Choose the appropriate technologies and resources for meeting the desired objectives of their creation or communication",
+         "outcomes": [
+          {
+           "code": "6-8.6.1.A.1",
+           "text": "Students select and use appropriate technologies to create, share, and communicate their work effectively, considering the audience."
+          }
+         ]
+        },
+        {
+         "id": "create-original-works-or-responsibly-repurpose-o",
+         "title": "Create original works or responsibly repurpose or remix digital resources into new creations",
+         "outcomes": [
+          {
+           "code": "6-8.6.1.B.1",
+           "text": "Students use appropriate technologies to create new digital works or responsibly repurpose or remix other digital works into new digital works."
+          }
+         ]
+        },
+        {
+         "id": "communicate-complex-ideas-clearly-and-effectivel",
+         "title": "Communicate complex ideas clearly and effectively by creating or using a variety of digital objects such as visualizations, models, or simulations",
+         "outcomes": [
+          {
+           "code": "6-8.6.1.C.1",
+           "text": "Students communicate complex ideas clearly using appropriate technologies to convey the concepts orally, textually, visually, graphically, etc."
+          }
+         ]
+        },
+        {
+         "id": "publish-or-present-content-that-customizes-the-m",
+         "title": "Publish or present content that customizes the message and medium for the intended audiences",
+         "outcomes": [
+          {
+           "code": "6-8.6.1.D.1",
+           "text": "Students select and use appropriate technologies to design, publish, and present content that effectively convey their ideas, conclusions, and evidence for specific audiences."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "global-collaborator-gc",
+     "title": "Global Collaborator (GC)",
+     "topics": [
+      {
+       "id": "students-use-appropriate-technologies-including-",
+       "title": "Students use appropriate technologies, including assistive technologies, to broaden their perspectives and enrich their learning by collaborating with others and working effectively in teams locally and globally",
+       "subtopics": [
+        {
+         "id": "use-appropriate-technologies-to-connect-with-lea",
+         "title": "Use appropriate technologies to connect with learners from a variety of backgrounds and cultures, engaging with them in ways that broaden mutual understanding and learning",
+         "outcomes": [
+          {
+           "code": "6-8.7.1.A.1",
+           "text": "Students use appropriate technologies to connect with others to develop a richer understanding of different perspectives, backgrounds, and cultures."
+          }
+         ]
+        },
+        {
+         "id": "use-collaborative-technologies-to-work-with-othe",
+         "title": "Use collaborative technologies to work with others, including peers, experts, and community members to examine issues and problems from multiple viewpoints",
+         "outcomes": [
+          {
+           "code": "6-8.7.1.B.1",
+           "text": "Students use collaborative technologies to work with others, including peers, experts, and online community members to gain broader perspectives as they examine issues, problems, and opportunities."
+          }
+         ]
+        },
+        {
+         "id": "contribute-constructively-to-project-teams-assum",
+         "title": "Contribute constructively to project teams, assuming various roles and responsibilities to work effectively toward a common goal",
+         "outcomes": [
+          {
+           "code": "6-8.7.1.C.D1",
+           "text": "Students determine their role on a team based on their knowledge of content and technologies, as well as personal preference, and use appropriate technologies to track team progress toward a common goal."
+          }
+         ]
+        },
+        {
+         "id": "explore-local-and-global-issues-and-use-collabor",
+         "title": "Explore local and global issues and use collaborative technologies to work with others to investigate solutions",
+         "outcomes": [
+          {
+           "code": "6-8.7.1.D.1",
+           "text": "Students use collaborative technologies to work with others to understand problems, investigate and develop solutions related to local and global issues."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "K-2",
+   "units": [
+    {
+     "id": "empowered-learner-el",
+     "title": "Empowered Learner (EL)",
+     "topics": [
+      {
+       "id": "students-leverage-technologies-including-assisti",
+       "title": "Students leverage technologies, including assistive technologies, to take an active role in choosing, achieving, and demonstrating competency in their learning goals, informed by the learning sciences",
+       "subtopics": [
+        {
+         "id": "students-articulate-and-set-personal-learning-go",
+         "title": "Students articulate and set personal learning goals, develop strategies leveraging technology to achieve them, and reflect on the learning process itself to improve learning outcomes",
+         "outcomes": [
+          {
+           "code": "K-2.1.1.A.1",
+           "text": "In collaboration with an educator, students consider and set personal learning goals and use appropriate technologies to demonstrate knowledge and reflection of the learning process."
+          }
+         ]
+        },
+        {
+         "id": "build-networks-and-customize-their-learning-envi",
+         "title": "Build networks and customize their learning environments in ways that support the learning process",
+         "outcomes": [
+          {
+           "code": "K-2.1.1.B.1",
+           "text": "With guidance from an educator, students explore various technologies that can be used to connect to others or customize learning environments to enhance their learning."
+          }
+         ]
+        },
+        {
+         "id": "use-technology-to-seek-feedback-that-informs-and",
+         "title": "Use technology to seek feedback that informs and improves their practice and to demonstrate their learning in a variety of ways",
+         "outcomes": [
+          {
+           "code": "K-2.1.1.C.1",
+           "text": "With guidance from an educator, students recognize feedback from both people and technologies, make improvements, and use appropriate technologies to share their learning."
+          }
+         ]
+        },
+        {
+         "id": "understand-the-various-fundamental-concepts-of-t",
+         "title": "Understand the various fundamental concepts of technology operations, demonstrate the ability to choose, use, and troubleshoot technologies and transfer knowledge to explore emerging technologies",
+         "outcomes": [
+          {
+           "code": "K-2.1.1.D.1",
+           "text": "With guidance from an educator, students use a variety of appropriate technologies that help them in their learning and begin to demonstrate an understanding of how knowledge can be transferred between technologies."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "digital-citizen-dc",
+     "title": "Digital Citizen (DC)",
+     "topics": [
+      {
+       "id": "students-recognize-the-rights-responsibilities-a",
+       "title": "Students recognize the rights, responsibilities and opportunities of living, learning and working in an interconnected digital world, and they act in ways that are safe, legal, and ethical",
+       "subtopics": [
+        {
+         "id": "cultivate-and-manage-their-digital-identity-and-",
+         "title": "Cultivate and manage their digital identity and reputation and are aware of the permanence of their actions in the digital world",
+         "outcomes": [
+          {
+           "code": "K-2.2.1.A.1",
+           "text": "Students practice responsible use of technology through teacherguided online activities and interactions to understand how the digital space impacts their life."
+          }
+         ]
+        },
+        {
+         "id": "engage-in-positive-safe-legal-and-ethical-behavi",
+         "title": "Engage in positive, safe, legal, and ethical behavior when using technology, including social interactions online or when using networked devices",
+         "outcomes": [
+          {
+           "code": "K-2.2.1.B.1",
+           "text": "Students learn how to be careful when using devices and how to be safe online, follow safety rules when using the Internet, and collaborate with others."
+          }
+         ]
+        },
+        {
+         "id": "demonstrate-an-understanding-of-and-respect-for-",
+         "title": "Demonstrate an understanding of and respect for the rights and obligations of using and sharing intellectual property",
+         "outcomes": [
+          {
+           "code": "K-2.2.1.C.1",
+           "text": "Students learn about ownership and sharing of information, and how to respect the work of others."
+          }
+         ]
+        },
+        {
+         "id": "manage-their-personal-data-to-maintain-digital-p",
+         "title": "Manage their personal data to maintain digital privacy and security and are aware of datacollection technology used to track their activity online",
+         "outcomes": [
+          {
+           "code": "K-2.2.1.D.1",
+           "text": "Students learn about personal data and demonstrate an understanding that technology is all around them and the importance of keeping their personal data private."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "knowledge-constructor-kc",
+     "title": "Knowledge Constructor (KC)",
+     "topics": [
+      {
+       "id": "students-critically-curate-a-variety-of-digital-",
+       "title": "Students critically curate a variety of digital resources using appropriate technologies, including assistive technologies, to construct knowledge, produce creative digital works, and make meaningful learning experiences for themselves and others",
+       "subtopics": [
+        {
+         "id": "plan-and-employ-effective-research-strategies-to",
+         "title": "Plan and employ effective research strategies to locate information and other digital sources for their intellectual or creative pursuits",
+         "outcomes": [
+          {
+           "code": "K-2.3.1.A.1",
+           "text": "Students learn how to use digital sources contained within a classroom platform or otherwise provided by the teacher, to find information on topics of academic and personal interests."
+          }
+         ]
+        },
+        {
+         "id": "evaluate-the-accuracy-perspective-credibility-an",
+         "title": "Evaluate the accuracy, perspective, credibility, and relevance of information, media, data, and other digital sources",
+         "outcomes": [
+          {
+           "code": "K-2.3.1.B.1",
+           "text": "Students learn how to evaluate digital sources using an age appropriate criteria."
+          }
+         ]
+        },
+        {
+         "id": "curate-information-from-digital-sources-using-a-",
+         "title": "Curate information from digital sources using a variety of tools and methods to create collections of resources that demonstrate meaningful connections or conclusions",
+         "outcomes": [
+          {
+           "code": "K-2.3.1.C.1",
+           "text": "Students have opportunities to explore a variety of teacher-selected tools to organize information and make connections to their learning."
+          }
+         ]
+        },
+        {
+         "id": "actively-explore-real-world-issues-and-problems-",
+         "title": "Actively explore real-world issues and problems, develop ideas and theories, and pursue answers and solutions",
+         "outcomes": [
+          {
+           "code": "K-2.3.1.D.1",
+           "text": "Students explore and discuss realworld issues and problems and share their ideas about them with others."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "innovative-designer-id",
+     "title": "Innovative Designer (ID)",
+     "topics": [
+      {
+       "id": "students-use-a-variety-of-technologies-including",
+       "title": "Students use a variety of technologies, including assistive technologies, within a design process to identify and solve problems by creating new, useful or imaginative solutions or iterations",
+       "subtopics": [
+        {
+         "id": "know-and-use-appropriate-technologies-in-a-purpo",
+         "title": "Know and use appropriate technologies in a purposeful design process for generating ideas, testing theories, creating innovative digital works, or solving authentic problems",
+         "outcomes": [
+          {
+           "code": "K-2.4.1.A.1",
+           "text": "With guidance from an educator, students use appropriate digital and nondigital technologies to ask questions, suggest solutions, test ideas to solve problems, and share their learning through a creative artifact."
+          }
+         ]
+        },
+        {
+         "id": "select-and-use-appropriate-technologies-to-plan-",
+         "title": "Select and use appropriate technologies to plan and manage a design process that considers design constraints and calculated risks",
+         "outcomes": [
+          {
+           "code": "K-2.4.1.B.1",
+           "text": "With guidance from an educator, students select and use appropriate digital and nondigital technologies in a design process and are aware of the systematic process of designing."
+          }
+         ]
+        },
+        {
+         "id": "use-appropriate-technologies-to-develop-test-and",
+         "title": "Use appropriate technologies to develop, test, and refine prototypes as part of a cyclical design process",
+         "outcomes": [
+          {
+           "code": "K-2.4.1.C.1",
+           "text": "With guidance from an educator, students use the appropriate digital and nondigital technologies in a cyclical design process to develop ideas or creations, test, and refine if necessary."
+          }
+         ]
+        },
+        {
+         "id": "exhibit-a-tolerance-for-ambiguity-perseverance-a",
+         "title": "Exhibit a tolerance for ambiguity, perseverance, and the capacity to work with open-ended problems",
+         "outcomes": [
+          {
+           "code": "K-2.4.1.D.1",
+           "text": "With guidance from an educator, students learn how to persevere when working to complete a challenging task."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "computational-thinker-ct",
+     "title": "Computational Thinker (CT)",
+     "topics": [
+      {
+       "id": "students-develop-and-employ-strategies-for-under",
+       "title": "Students develop and employ strategies for understanding and solving problems in ways that leverage the power of technological methods, including those that leverage assistive technologies, to develop and test solutions",
+       "subtopics": [
+        {
+         "id": "formulate-problem-definitions-suited-for-technol",
+         "title": "Formulate problem definitions suited for technologyassisted methods such as data analysis, modeling and algorithmic thinking in exploring and finding solutions",
+         "outcomes": [
+          {
+           "code": "K-2.5.1.A.1",
+           "text": "With the guidance of an educator, students create, identify, explore, and solve problems by using appropriate technologies to design and test their solutions."
+          }
+         ]
+        },
+        {
+         "id": "collect-data-or-identify-relevant-data-sets-use-",
+         "title": "Collect data or identify relevant data sets, use appropriate technologies to analyze them, and represent data in various ways to facilitate problemsolving and decision-making",
+         "outcomes": [
+          {
+           "code": "K-2.5.1.B.1",
+           "text": "Students analyze appropriate data and look for similarities in order to identify patterns and categories."
+          }
+         ]
+        },
+        {
+         "id": "break-problems-into-component-parts-extract-key-",
+         "title": "Break problems into component parts, extract key information, and develop descriptive models, using technologies when appropriate, to understand complex systems or facilitate problem-solving",
+         "outcomes": [
+          {
+           "code": "K-2.5.1.C.1",
+           "text": "Students learn strategies to break a problem into parts and identify ways to solve the problem using digital and nondigital technologies, when appropriate."
+          }
+         ]
+        },
+        {
+         "id": "understand-how-automation-works-and-use-algorith",
+         "title": "Understand how automation works and use algorithmic thinking to develop a sequence of steps to create and test automated solutions",
+         "outcomes": [
+          {
+           "code": "K-2.5.1.D.1",
+           "text": "Students understand how technology is used to make a task easier or repeatable and can identify real-world examples."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "creative-communicator-cc",
+     "title": "Creative Communicator (CC)",
+     "topics": [
+      {
+       "id": "students-communicate-clearly-and-express-themsel",
+       "title": "Students communicate clearly and express themselves creatively for a variety of purposes using appropriate technologies (including assistive technologies), styles, formats, and digital media appropriate to their goals",
+       "subtopics": [
+        {
+         "id": "choose-the-appropriate-technologies-and-resource",
+         "title": "Choose the appropriate technologies and resources for meeting the desired objectives of their creation or communication",
+         "outcomes": [
+          {
+           "code": "K-2.6.1.A.1",
+           "text": "Students learn how to select and use appropriate technologies to create products or for communicating with others."
+          }
+         ]
+        },
+        {
+         "id": "create-original-works-or-responsibly-repurpose-o",
+         "title": "Create original works or responsibly repurpose or remix digital resources into new creations",
+         "outcomes": [
+          {
+           "code": "K-2.6.1.B.1",
+           "text": "Students use appropriate technologies to create original works."
+          }
+         ]
+        },
+        {
+         "id": "communicate-complex-ideas-clearly-and-effectivel",
+         "title": "Communicate complex ideas clearly and effectively by creating or using a variety of digital objects such as visualizations, models, or simulations",
+         "outcomes": [
+          {
+           "code": "K-2.6.1.C.1",
+           "text": "Students share and communicate ideas in a variety of ways—visual, audio, etc."
+          }
+         ]
+        },
+        {
+         "id": "publish-or-present-content-that-customizes-the-m",
+         "title": "Publish or present content that customizes the message and medium for the intended audiences",
+         "outcomes": [
+          {
+           "code": "K-2.6.1.D.1",
+           "text": "Students select and use appropriate technologies to share ideas with different people."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "global-collaborator-gc",
+     "title": "Global Collaborator (GC)",
+     "topics": [
+      {
+       "id": "students-use-appropriate-technologies-including-",
+       "title": "Students use appropriate technologies, including assistive technologies, to broaden their perspectives and enrich their learning by collaborating with others and working effectively in teams locally and globally",
+       "subtopics": [
+        {
+         "id": "use-appropriate-technologies-to-connect-with-lea",
+         "title": "Use appropriate technologies to connect with learners from a variety of backgrounds and cultures, engaging with them in ways that broaden mutual understanding and learning",
+         "outcomes": [
+          {
+           "code": "K-2.7.1.A.1",
+           "text": "With the guidance of an educator, students explore appropriate technologies to safely connect with friends and people outside their neighborhood, city, and areas beyond."
+          }
+         ]
+        },
+        {
+         "id": "use-collaborative-technologies-to-work-with-othe",
+         "title": "Use collaborative technologies to work with others, including peers, experts, and community members to examine issues and problems from multiple viewpoints",
+         "outcomes": [
+          {
+           "code": "K-2.7.1.B.1",
+           "text": "Students use collaborative technologies to work with others, including peers, school/division personnel, experts, and local community members to consider the perspective of others."
+          }
+         ]
+        },
+        {
+         "id": "contribute-constructively-to-project-teams-assum",
+         "title": "Contribute constructively to project teams, assuming various roles and responsibilities to work effectively toward a common goal",
+         "outcomes": [
+          {
+           "code": "K-2.7.1.C.1",
+           "text": "Students take on different team roles and use appropriate technologies to complete projects."
+          }
+         ]
+        },
+        {
+         "id": "explore-local-and-global-issues-and-use-collabor",
+         "title": "Explore local and global issues and use collaborative technologies to work with others to investigate solutions",
+         "outcomes": [
+          {
+           "code": "K-2.7.1.D.1",
+           "text": "Students use collaborative technologies to work with others to understand problems and suggest solutions."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "3-5",
+   "units": [
+    {
+     "id": "empowered-learner-el",
+     "title": "Empowered Learner (EL)",
+     "topics": [
+      {
+       "id": "students-leverage-technologies-including-assisti",
+       "title": "Students leverage technologies, including assistive technologies, to take an active role in choosing, achieving, and demonstrating competency in their learning goals, informed by the learning sciences",
+       "subtopics": [
+        {
+         "id": "students-articulate-and-set-personal-learning-go",
+         "title": "Students articulate and set personal learning goals, develop strategies leveraging technology to achieve them, and reflect on the learning process itself to improve learning outcomes",
+         "outcomes": [
+          {
+           "code": "3-5.1.1.A.1",
+           "text": "In collaboration with an educator, students develop and articulate personal learning goals to achieve their goals reflecting on and revising the learning process as needed."
+          }
+         ]
+        },
+        {
+         "id": "build-networks-and-customize-their-learning-envi",
+         "title": "Build networks and customize their learning environments in ways that support the learning process",
+         "outcomes": [
+          {
+           "code": "3-5.1.1.B.1",
+           "text": "With guidance from an educator, students use a network of experts and peers and customize their learning environment to enhance their learning."
+          }
+         ]
+        },
+        {
+         "id": "use-technology-to-seek-feedback-that-informs-and",
+         "title": "Use technology to seek feedback that informs and improves their practice and to demonstrate their learning in a variety of ways",
+         "outcomes": [
+          {
+           "code": "3-5.1.1.C.1",
+           "text": "Students seek feedback from people, technologies, and staff familiar with assistive technologies to make improvements, and use appropriate technologies to share and demonstrate learning."
+          }
+         ]
+        },
+        {
+         "id": "understand-the-various-fundamental-concepts-of-t",
+         "title": "Understand the various fundamental concepts of technology operations, demonstrate the ability to choose, use, and troubleshoot technologies and transfer knowledge to explore emerging technologies",
+         "outcomes": [
+          {
+           "code": "3-5.1.1.D.1",
+           "text": "Students use a variety of appropriate technologies, collaborate with each other to troubleshoot technologies, and begin to transfer their knowledge to explore emerging technologies."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "digital-citizen-dc",
+     "title": "Digital Citizen (DC)",
+     "topics": [
+      {
+       "id": "students-recognize-the-rights-responsibilities-a",
+       "title": "Students recognize the rights, responsibilities and opportunities of living, learning and working in an interconnected digital world, and they act in ways that are safe, legal, and ethical",
+       "subtopics": [
+        {
+         "id": "cultivate-and-manage-their-digital-identity-and-",
+         "title": "Cultivate and manage their digital identity and reputation and are aware of the permanence of their actions in the digital world",
+         "outcomes": [
+          {
+           "code": "3-5.2.1.A.1",
+           "text": "Students demonstrate an understanding of a digital identity, the role it plays in the digital world, and learn the permanence of their decisions when interacting online."
+          }
+         ]
+        },
+        {
+         "id": "engage-in-positive-safe-legal-and-ethical-behavi",
+         "title": "Engage in positive, safe, legal, and ethical behavior when using technology, including social interactions online or when using networked devices",
+         "outcomes": [
+          {
+           "code": "3-5.2.1.B.1",
+           "text": "Students engage, identify, and advocate in positive, safe, legal, and ethical behavior with support from an educator when using technology and interacting online."
+          }
+         ]
+        },
+        {
+         "id": "demonstrate-an-understanding-of-and-respect-for-",
+         "title": "Demonstrate an understanding of and respect for the rights and obligations of using and sharing intellectual property",
+         "outcomes": [
+          {
+           "code": "3-5.2.1.C.1",
+           "text": "Students articulate, demonstrate, and respect intellectual property with both print and digital media when using and sharing the work of others."
+          }
+         ]
+        },
+        {
+         "id": "manage-their-personal-data-to-maintain-digital-p",
+         "title": "Manage their personal data to maintain digital privacy and security and are aware of datacollection technology used to track their activity online",
+         "outcomes": [
+          {
+           "code": "3-5.2.1.D.1",
+           "text": "Students identify personal data, demonstrate how to keep it private, and understand how it might be shared, such as data collection and tracking, within a variety of networks."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "knowledge-constructor-kc",
+     "title": "Knowledge Constructor (KC)",
+     "topics": [
+      {
+       "id": "students-critically-curate-a-variety-of-digital-",
+       "title": "Students critically curate a variety of digital resources using appropriate technologies, including assistive technologies, to construct knowledge, produce creative digital works, and make meaningful learning experiences for themselves and others",
+       "subtopics": [
+        {
+         "id": "plan-and-employ-effective-research-strategies-to",
+         "title": "Plan and employ effective research strategies to locate information and other digital sources for their intellectual or creative pursuits",
+         "outcomes": [
+          {
+           "code": "3-5.3.1.A.1",
+           "text": "Students plan and employ appropriate research techniques with guidance to locate digital sources that support the learning process on topics of academic and personal interest."
+          }
+         ]
+        },
+        {
+         "id": "evaluate-the-accuracy-perspective-credibility-an",
+         "title": "Evaluate the accuracy, perspective, credibility, and relevance of information, media, data, and other digital sources",
+         "outcomes": [
+          {
+           "code": "3-5.3.1.B.1",
+           "text": "Students learn how to evaluate digital sources for accuracy, perspective, credibility, and relevance."
+          }
+         ]
+        },
+        {
+         "id": "curate-information-from-digital-sources-using-a-",
+         "title": "Curate information from digital sources using a variety of tools and methods to create collections of resources that demonstrate meaningful connections or conclusions",
+         "outcomes": [
+          {
+           "code": "3-5.3.1.C.1",
+           "text": "Students use a variety of strategies to organize information and make meaningful connections between digital resources."
+          }
+         ]
+        },
+        {
+         "id": "actively-explore-real-world-issues-and-problems-",
+         "title": "Actively explore real-world issues and problems, develop ideas and theories, and pursue answers and solutions",
+         "outcomes": [
+          {
+           "code": "3-5.3.1.D.1",
+           "text": "Students use digital resources and tools to explore real-world issues and problems and collaborate with others to find answers or solutions."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "innovative-designer-id",
+     "title": "Innovative Designer (ID)",
+     "topics": [
+      {
+       "id": "students-use-a-variety-of-technologies-including",
+       "title": "Students use a variety of technologies, including assistive technologies, within a design process to identify and solve problems by creating new, useful or imaginative solutions or iterations",
+       "subtopics": [
+        {
+         "id": "know-and-use-appropriate-technologies-in-a-purpo",
+         "title": "Know and use appropriate technologies in a purposeful design process for generating ideas, testing theories, creating innovative digital works, or solving authentic problems",
+         "outcomes": [
+          {
+           "code": "3-5.4.1.A.1",
+           "text": "With guidance from an educator, students use appropriate technologies to explore and practice how a design process works to generate ideas, consider solutions, plan to solve a problem, or create innovative products that are shared with others."
+          }
+         ]
+        },
+        {
+         "id": "select-and-use-appropriate-technologies-to-plan-",
+         "title": "Select and use appropriate technologies to plan and manage a design process that considers design constraints and calculated risks",
+         "outcomes": [
+          {
+           "code": "3-5.4.1.B.1",
+           "text": "With guidance from an educator, students select and use appropriate technologies to plan and manage a design process."
+          }
+         ]
+        },
+        {
+         "id": "use-appropriate-technologies-to-develop-test-and",
+         "title": "Use appropriate technologies to develop, test, and refine prototypes as part of a cyclical design process",
+         "outcomes": [
+          {
+           "code": "3-5.4.1.C.1",
+           "text": "With guidance from an educator, students use appropriate technologies in a cyclical design process to develop prototypes and reflect on the role of trial and error."
+          }
+         ]
+        },
+        {
+         "id": "exhibit-a-tolerance-for-ambiguity-perseverance-a",
+         "title": "Exhibit a tolerance for ambiguity, perseverance, and the capacity to work with open-ended problems",
+         "outcomes": [
+          {
+           "code": "3-5.4.1.D.1",
+           "text": "With guidance from an educator, students demonstrate perseverance when working with open-ended problem."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "computational-thinker-ct",
+     "title": "Computational Thinker (CT)",
+     "topics": [
+      {
+       "id": "students-develop-and-employ-strategies-for-under",
+       "title": "Students develop and employ strategies for understanding and solving problems in ways that leverage the power of technological methods, including those that leverage assistive technologies, to develop and test solutions",
+       "subtopics": [
+        {
+         "id": "formulate-problem-definitions-suited-for-technol",
+         "title": "Formulate problem definitions suited for technologyassisted methods such as data analysis, modeling and algorithmic thinking in exploring and finding solutions",
+         "outcomes": [
+          {
+           "code": "3-5.5.1.A.1",
+           "text": "With guidance from an educator, students create, identify, explore, and solve problems by selecting technologyassisted methods such as data analysis, modeling, and algorithmic thinking."
+          }
+         ]
+        },
+        {
+         "id": "collect-data-or-identify-relevant-data-sets-use-",
+         "title": "Collect data or identify relevant data sets, use appropriate technologies to analyze them, and represent data in various ways to facilitate problemsolving and decision-making",
+         "outcomes": [
+          {
+           "code": "3-5.5.1.B.1",
+           "text": "Students select and use appropriate technologies to represent data, which will be used for interpretation and evidencebased decision making."
+          }
+         ]
+        },
+        {
+         "id": "break-problems-into-component-parts-extract-key-",
+         "title": "Break problems into component parts, extract key information, and develop descriptive models, using technologies when appropriate, to understand complex systems or facilitate problem-solving",
+         "outcomes": [
+          {
+           "code": "3-5.5.1.C.1",
+           "text": "Students break down problems into smaller parts, identify key information, and propose solutions using technologies, when appropriate."
+          }
+         ]
+        },
+        {
+         "id": "understand-how-automation-works-and-use-algorith",
+         "title": "Understand how automation works and use algorithmic thinking to develop a sequence of steps to create and test automated solutions",
+         "outcomes": [
+          {
+           "code": "3-5.5.1.D.1",
+           "text": "Students explore and understand basic concepts related to automation, patterns, and algorithmic thinking."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "creative-communicator-cc",
+     "title": "Creative Communicator (CC)",
+     "topics": [
+      {
+       "id": "students-communicate-clearly-and-express-themsel",
+       "title": "Students communicate clearly and express themselves creatively for a variety of purposes using appropriate technologies (including assistive technologies), styles, formats, and digital media appropriate to their goals",
+       "subtopics": [
+        {
+         "id": "choose-the-appropriate-technologies-and-resource",
+         "title": "Choose the appropriate technologies and resources for meeting the desired objectives of their creation or communication",
+         "outcomes": [
+          {
+           "code": "3-5.6.1.A.1",
+           "text": "Students recognize, select, and use the features and functions of a variety of appropriate creation and communication technologies to create products or communicate with others."
+          }
+         ]
+        },
+        {
+         "id": "create-original-works-or-responsibly-repurpose-o",
+         "title": "Create original works or responsibly repurpose or remix digital resources into new creations",
+         "outcomes": [
+          {
+           "code": "3-5.6.1.B.1",
+           "text": "Students use appropriate technologies to create original works and learn strategies for remixing other digital works to create new digital works."
+          }
+         ]
+        },
+        {
+         "id": "communicate-complex-ideas-clearly-and-effectivel",
+         "title": "Communicate complex ideas clearly and effectively by creating or using a variety of digital objects such as visualizations, models, or simulations",
+         "outcomes": [
+          {
+           "code": "3-5.6.1.C.1",
+           "text": "Students create digital works to communicate ideas visually and graphically."
+          }
+         ]
+        },
+        {
+         "id": "publish-or-present-content-that-customizes-the-m",
+         "title": "Publish or present content that customizes the message and medium for the intended audiences",
+         "outcomes": [
+          {
+           "code": "3-5.6.1.D.1",
+           "text": "Students select and use appropriate technologies to design and publish content while considering the audience when creating digital works and presentations."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "global-collaborator-gc",
+     "title": "Global Collaborator (GC)",
+     "topics": [
+      {
+       "id": "students-use-appropriate-technologies-including-",
+       "title": "Students use appropriate technologies, including assistive technologies, to broaden their perspectives and enrich their learning by collaborating with others and working effectively in teams locally and globally",
+       "subtopics": [
+        {
+         "id": "use-appropriate-technologies-to-connect-with-lea",
+         "title": "Use appropriate technologies to connect with learners from a variety of backgrounds and cultures, engaging with them in ways that broaden mutual understanding and learning",
+         "outcomes": [
+          {
+           "code": "3-5.7.1.A.1",
+           "text": "Students use appropriate technologies to connect with a digital community that includes different backgrounds and cultures."
+          }
+         ]
+        },
+        {
+         "id": "use-collaborative-technologies-to-work-with-othe",
+         "title": "Use collaborative technologies to work with others, including peers, experts, and community members to examine issues and problems from multiple viewpoints",
+         "outcomes": [
+          {
+           "code": "3-5.7.1.B.1",
+           "text": "Students use collaborative technologies to work with others, including peers, experts, and online community members to learn the perspective of others."
+          }
+         ]
+        },
+        {
+         "id": "contribute-constructively-to-project-teams-assum",
+         "title": "Contribute constructively to project teams, assuming various roles and responsibilities to work effectively toward a common goal",
+         "outcomes": [
+          {
+           "code": "3-5.7.1.C.1",
+           "text": "Students take on a variety of assigned team roles and use appropriate technologies to complete a project and work toward a common goal."
+          }
+         ]
+        },
+        {
+         "id": "explore-local-and-global-issues-and-use-collabor",
+         "title": "Explore local and global issues and use collaborative technologies to work with others to investigate solutions",
+         "outcomes": [
+          {
+           "code": "3-5.7.1.D.1",
+           "text": "Students use collaborative technologies to work with others to understand problems and investigate solutions to local and global issues."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "build": {
+  "builtAt": "2026-10-14T16:20:50.213Z",
+  "model": "none",
+  "usd": 0,
+  "expectedCodes": 371,
+  "coverage": 1,
+  "missingCodes": [],
+  "counts": {
+   "grades": 13,
+   "units": 90,
+   "topics": 116,
+   "subtopics": 209,
+   "outcomes": 371
+  },
+  "warnings": [
+   "unit \"Data and Analysis\" (grade K) has a single outcome",
+   "unit \"Impacts of Computing\" (grade K) has a single outcome",
+   "unit \"Networking and the Internet\" (grade K) has a single outcome",
+   "unit \"Data and Analysis\" (grade 1) has a single outcome",
+   "unit \"Impacts of Computing\" (grade 1) has a single outcome",
+   "unit \"Networking and the Internet\" (grade 1) has a single outcome",
+   "unit \"Networking and the Internet\" (grade 2) has a single outcome",
+   "unit \"Networking and the Internet\" (grade 3) has a single outcome",
+   "unit \"Networking and the Internet\" (grade 4) has a single outcome",
+   "unit \"Networking and the Internet\" (grade 5) has a single outcome",
+   "unit \"Computing Systems\" (grade 6) has a single outcome",
+   "unit \"Cybersecurity\" (grade 6) has a single outcome",
+   "unit \"Networking and the Internet\" (grade 6) has a single outcome",
+   "unit \"Computing Systems\" (grade 7) has a single outcome",
+   "unit \"Computing Systems\" (grade 8) has a single outcome",
+   "unit \"Networking and the Internet\" (grade 8) has a single outcome"
+  ]
+ }
+}

@@ -1,0 +1,168 @@
+{
+ "id": "cie-igcse-malay-0696-2025-2027",
+ "region": "INTL",
+ "framework": "Cambridge IGCSE Malay - First Language (0696) syllabus 2025–2027",
+ "board": "Cambridge",
+ "qualification": "IGCSE",
+ "subject": "Malay - First Language",
+ "syllabusCode": "0696",
+ "gradeSystem": "course",
+ "source": {
+  "urls": [
+   "https://www.cambridgeinternational.org/Images/664645-2025-2027-syllabus.pdf",
+   "https://www.cambridgeinternational.org/programmes-and-qualifications/cambridge-igcse-malay-0696/"
+  ],
+  "publisher": "Cambridge University Press & Assessment (Cambridge International Education)",
+  "licence": "© Cambridge University Press & Assessment; structure + our own wording only",
+  "firstExam": "2025"
+ },
+ "grades": [
+  {
+   "grade": "IGCSE",
+   "units": [
+    {
+     "id": "3-subject-content",
+     "title": "3 Subject content",
+     "topics": [
+      {
+       "id": "reading",
+       "title": "Reading",
+       "subtopics": [
+        {
+         "id": "understand-and-analyse-texts",
+         "title": "Understand and Analyse Texts",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Understand written texts, including the meanings of individual words and phrases."
+          },
+          {
+           "code": null,
+           "text": "Summarise material and adapt it for a specific context."
+          },
+          {
+           "code": null,
+           "text": "Develop, analyse and evaluate facts, ideas and opinions."
+          }
+         ]
+        },
+        {
+         "id": "language-and-reader-effects",
+         "title": "Language and Reader Effects",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain how writers create effects and influence their readers."
+          },
+          {
+           "code": null,
+           "text": "Select suitable information for particular purposes."
+          },
+          {
+           "code": null,
+           "text": "Recognise and respond to linguistic devices, figurative language and imagery."
+          }
+         ]
+        },
+        {
+         "id": "study-genres-and-writers",
+         "title": "Study Genres and Writers",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Study twentieth- and twenty-first-century literature, fiction, non-fiction and other genres and text types."
+          },
+          {
+           "code": null,
+           "text": "Examine writers’ language, style, effects, influence, facts, ideas, perspectives, opinions and bias."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "writing",
+       "title": "Writing",
+       "subtopics": [
+        {
+         "id": "build-effective-writing",
+         "title": "Build Effective Writing",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Express thoughts, feelings and imagined experiences."
+          },
+          {
+           "code": null,
+           "text": "Organise and communicate facts, ideas and opinions effectively."
+          },
+          {
+           "code": null,
+           "text": "Use varied vocabulary suited to the context."
+          },
+          {
+           "code": null,
+           "text": "Use sentence structures effectively and with variety."
+          },
+          {
+           "code": null,
+           "text": "Adapt writing to its audience, purpose and form."
+          },
+          {
+           "code": null,
+           "text": "Use accurate spelling, punctuation and grammar."
+          }
+         ]
+        },
+        {
+         "id": "write-different-text-forms",
+         "title": "Write Different Text Forms",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Create texts in descriptive, narrative, discursive, argumentative and persuasive forms for varied purposes."
+          },
+          {
+           "code": null,
+           "text": "Summarise material through letters, reports, newspaper reports, magazine articles, journals and speeches."
+          }
+         ]
+        },
+        {
+         "id": "write-specific-text-types",
+         "title": "Write Specific Text Types",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Write discursive or argumentative letters and articles."
+          },
+          {
+           "code": null,
+           "text": "Write descriptive or narrative compositions."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "build": {
+  "builtAt": "2026-10-14T05:34:21.263Z",
+  "model": "gpt-5.6-luna",
+  "usd": 0.0037,
+  "expectedCodes": null,
+  "coverage": null,
+  "missingCodes": [],
+  "counts": {
+   "grades": 1,
+   "units": 1,
+   "topics": 2,
+   "subtopics": 6,
+   "outcomes": 18
+  },
+  "warnings": []
+ }
+}

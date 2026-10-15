@@ -1,0 +1,6200 @@
+{
+ "id": "us-al-computer-science",
+ "region": "US",
+ "framework": "Alabama state academic standards: Computer Science & Technology",
+ "board": null,
+ "qualification": "K-12",
+ "subject": "Computer Science & Technology",
+ "syllabusCode": null,
+ "gradeSystem": "grade",
+ "source": {
+  "urls": [
+   "https://api.commonstandardsproject.com/api/v1/jurisdictions/B838B98D043045748F3814B9E43CAC85",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/0B9C57311D6F43D5BE0491DF5D549B82",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/7BB007C8036F45F6ABDF649988FC7FCA",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/65DF03B83AE9425EBA1A93BFDCD58971",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/57424DD0B97D4E5DA8F23768711F210F",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/E2E12922595B455A9C1CB42D7F965019",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/C28E01A7577E4A1AAD3B659F0CA3C474",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/1BD7F010E1F5480C8808086306FD01CC",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/374EE7FF6EF34D39BA410A145FDD3ED2",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/9F284FD0F25E477AA3E631A9AE891364",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/8DC75A870ECF4013B34FBEC019B3AFE0",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/F4085A62F918412F92E20A537E95AB4B",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/8D922C91BB6C41668378CB632FD07099",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/444FA9A1C5AB4D7194791202127539C6",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/84F5EB00A59849279AFEE66E9EDE0118",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/6E36EDB7BBC34A8BA5CEB03029F7F568",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/F2AE46AB215048CBB9198B414C2A789F",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/8A1670B01634434E99DDE346689FCB91",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/CB4876D8054E44FFB2EB0F5A7AEBC20A",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/961F67FB4A48415F82838AB44F5D70C7",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/67AE9333A2AB49809662FF583A857D64"
+  ],
+  "publisher": "Alabama state education agency (machine-readable via Common Standards Project / ASN)",
+  "licence": "CC BY 4.0 US, Common Curriculum, Inc.",
+  "firstExam": "2025"
+ },
+ "grades": [
+  {
+   "grade": "K",
+   "units": [
+    {
+     "id": "computational-thinker",
+     "title": "Computational Thinker",
+     "topics": [
+      {
+       "id": "algorithms",
+       "title": "Algorithms",
+       "subtopics": [
+        {
+         "id": "algorithms",
+         "title": "Algorithms",
+         "outcomes": [
+          {
+           "code": "k.1",
+           "text": "List the sequence of events required to solve problems. Examples: Tying shoes, making a sandwich, brushing teeth."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "programming-and-development",
+       "title": "Programming and Development",
+       "subtopics": [
+        {
+         "id": "programming-and-development",
+         "title": "Programming and Development",
+         "outcomes": [
+          {
+           "code": "k.2",
+           "text": "Demonstrate use of input devices. Examples: Mouse, touch screen, keyboard."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "citizen-of-a-digital-culture",
+     "title": "Citizen of a Digital Culture",
+     "topics": [
+      {
+       "id": "safety-privacy-and-security",
+       "title": "Safety, Privacy, and Security",
+       "subtopics": [
+        {
+         "id": "safety-privacy-and-security",
+         "title": "Safety, Privacy, and Security",
+         "outcomes": [
+          {
+           "code": "K.3",
+           "text": "Distinguish between private and public information. Example: Your birth date is private; your shirt color is public."
+          },
+          {
+           "code": "K.4",
+           "text": "Identify age-appropriate methods for keeping personal information private. Example: Keeping passwords, name, address, and phone number confidential."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "legal-and-ethical-behavior",
+       "title": "Legal and Ethical Behavior",
+       "subtopics": [
+        {
+         "id": "legal-and-ethical-behavior",
+         "title": "Legal and Ethical Behavior",
+         "outcomes": [
+          {
+           "code": "K.5",
+           "text": "Demonstrate appropriate behaviors for working with others responsibly and kindly. Examples: Face-to-face collaborative groups or interactions, online interactions, role play."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "impact-of-computing",
+       "title": "Impact of Computing",
+       "subtopics": [
+        {
+         "id": "impact-of-computing",
+         "title": "Impact of Computing",
+         "outcomes": [
+          {
+           "code": "K.6",
+           "text": "Recognize ways in which computing devices make certain tasks easier. Examples: Communication, doctor’s visits/medical records, maps and directions."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "global-collaborator",
+     "title": "Global Collaborator",
+     "topics": [
+      {
+       "id": "digital-tools",
+       "title": "Digital Tools",
+       "subtopics": [
+        {
+         "id": "digital-tools",
+         "title": "Digital Tools",
+         "outcomes": [
+          {
+           "code": "K.7",
+           "text": "Locate letters and numbers on the keyboard."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "collaborative-research",
+       "title": "Collaborative Research",
+       "subtopics": [
+        {
+         "id": "collaborative-research",
+         "title": "Collaborative Research",
+         "outcomes": [
+          {
+           "code": "K.8",
+           "text": "Present information from a variety of digital resources."
+          },
+          {
+           "code": "K.9",
+           "text": "Create a research-based product collaboratively using online digital tools, given specific guidance. Examples: Find simple facts about a specific topic, create a slide that contains facts located in trade books or other sources as a group or with a partner."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "computing-analyst",
+     "title": "Computing Analyst",
+     "topics": [
+      {
+       "id": "data",
+       "title": "Data",
+       "subtopics": [
+        {
+         "id": "data",
+         "title": "Data",
+         "outcomes": [
+          {
+           "code": "K.10",
+           "text": "Collect data and organize it in a chart or graph collaboratively."
+          },
+          {
+           "code": "K.11",
+           "text": "Describe how digital devices save information."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "systems",
+       "title": "Systems",
+       "subtopics": [
+        {
+         "id": "systems",
+         "title": "Systems",
+         "outcomes": [
+          {
+           "code": "K.12",
+           "text": "Use a variety of digital devices, in both independent and collaborative settings. Examples: Interactive boards, tablets, laptops, other handheld devices."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "innovative-designer",
+     "title": "Innovative Designer",
+     "topics": [
+      {
+       "id": "design-thinking",
+       "title": "Design Thinking",
+       "subtopics": [
+        {
+         "id": "design-thinking",
+         "title": "Design Thinking",
+         "outcomes": [
+          {
+           "code": "K.13",
+           "text": "Use a design process in a guided setting to create an artifact or solve a problem. Example: Problem - understanding locations on the school campus. Solution - draw paper or digital maps of the school."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "computational-thinking",
+     "title": "Computational Thinking",
+     "topics": [
+      {
+       "id": "algorithms-abstraction-and-decomposition",
+       "title": "Algorithms, Abstraction, and Decomposition",
+       "subtopics": [
+        {
+         "id": "algorithms-abstraction-and-decomposition",
+         "title": "Algorithms, Abstraction, and Decomposition",
+         "outcomes": [
+          {
+           "code": "DLCS25.K.1",
+           "text": "Create a plan that outlines the steps needed to complete a task, with guidance and support."
+          },
+          {
+           "code": "DLCS25.K.2",
+           "text": "Identify information in a given problem as essential or non-essential."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "programming",
+       "title": "Programming",
+       "subtopics": [
+        {
+         "id": "programming",
+         "title": "Programming",
+         "outcomes": [
+          {
+           "code": "DLCS25.K.3",
+           "text": "Model a simple algorithm using unplugged or plugged activities, with guidance and support."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "data-science",
+     "title": "Data Science",
+     "topics": [
+      {
+       "id": "data-collection-and-representation",
+       "title": "Data Collection and Representation",
+       "subtopics": [
+        {
+         "id": "data-collection-and-representation",
+         "title": "Data Collection and Representation",
+         "outcomes": [
+          {
+           "code": "DLCS25.K.4",
+           "text": "Collect and organize data in a logical way, with guidance and support."
+          },
+          {
+           "code": "DLCS25.K.5",
+           "text": "Sort objects into groups and label them to help a computer find patterns and make predictions. [AI]"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "computing-systems",
+     "title": "Computing Systems",
+     "topics": [
+      {
+       "id": "networks-and-internet",
+       "title": "Networks and Internet",
+       "subtopics": [
+        {
+         "id": "networks-and-internet",
+         "title": "Networks and Internet",
+         "outcomes": [
+          {
+           "code": "DLCS25.K.6",
+           "text": "Explain what it means to be connected to the Internet."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "cybersecurity",
+       "title": "Cybersecurity",
+       "subtopics": [
+        {
+         "id": "cybersecurity",
+         "title": "Cybersecurity",
+         "outcomes": [
+          {
+           "code": "DLCS25.K.7",
+           "text": "Distinguish between personal and public information and identify ways to keep personal information secure."
+          },
+          {
+           "code": "DLCS25.K.8",
+           "text": "Identify ways to use online resources safely."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "hardware-and-software",
+       "title": "Hardware and Software",
+       "subtopics": [
+        {
+         "id": "hardware-and-software",
+         "title": "Hardware and Software",
+         "outcomes": [
+          {
+           "code": "DLCS25.K.9",
+           "text": "Identify the functions of basic hardware components of a digital device, including input and output devices."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "impact-of-computing",
+     "title": "Impact of Computing",
+     "topics": [
+      {
+       "id": "impact-of-computing",
+       "title": "Impact of Computing",
+       "subtopics": [
+        {
+         "id": "impact-of-computing",
+         "title": "Impact of Computing",
+         "outcomes": [
+          {
+           "code": "DLCS25.K.IC.S",
+           "text": "Society"
+          },
+          {
+           "code": "DLCS25.K.IC.A",
+           "text": "Accessibility"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "emerging-technology",
+       "title": "Emerging Technology",
+       "subtopics": [
+        {
+         "id": "emerging-technology",
+         "title": "Emerging Technology",
+         "outcomes": [
+          {
+           "code": "DLCS25.K.10",
+           "text": "Explore examples of emerging technologies and their purposes. [AI]"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "digital-proficiency",
+     "title": "Digital Proficiency",
+     "topics": [
+      {
+       "id": "information-literacy",
+       "title": "Information Literacy",
+       "subtopics": [
+        {
+         "id": "information-literacy",
+         "title": "Information Literacy",
+         "outcomes": [
+          {
+           "code": "DLCS25.K.11",
+           "text": "Use age-appropriate online sources to find answers to simple questions, with guidance and support."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "digital-life",
+       "title": "Digital Life",
+       "subtopics": [
+        {
+         "id": "digital-life",
+         "title": "Digital Life",
+         "outcomes": [
+          {
+           "code": "DLCS25.K.12",
+           "text": "Identify ways people communicate using technology."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "digital-tools",
+       "title": "Digital Tools",
+       "subtopics": [
+        {
+         "id": "digital-tools",
+         "title": "Digital Tools",
+         "outcomes": [
+          {
+           "code": "DLCS25.K.13",
+           "text": "Use basic input and output devices to interact with digital platforms, with guidance and support."
+          },
+          {
+           "code": "DLCS25.K.14",
+           "text": "Identify an appropriate digital tool to complete a given task, with guidance and support."
+          },
+          {
+           "code": "DLCS25.K.15",
+           "text": "Compare intelligent and non-intelligent machines, and discuss what makes a machine intelligent, with guidance and support. [AI]"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "1",
+   "units": [
+    {
+     "id": "computational-thinker",
+     "title": "Computational Thinker",
+     "topics": [
+      {
+       "id": "abstraction",
+       "title": "Abstraction",
+       "subtopics": [
+        {
+         "id": "abstraction",
+         "title": "Abstraction",
+         "outcomes": [
+          {
+           "code": "1.1",
+           "text": "Classify and sort information into logical order with and without a computer. Examples: Sort by shape, color, or other attribute; sort A-Z."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "algorithms",
+       "title": "Algorithms",
+       "subtopics": [
+        {
+         "id": "algorithms",
+         "title": "Algorithms",
+         "outcomes": [
+          {
+           "code": "1.2",
+           "text": "Order events into a logical sequence or algorithm. Examples: Unplugged coding activities, sequence of instruction."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "programming-and-development",
+       "title": "Programming and Development",
+       "subtopics": [
+        {
+         "id": "programming-and-development",
+         "title": "Programming and Development",
+         "outcomes": [
+          {
+           "code": "1.3",
+           "text": "Construct elements of a simple computer program in collaboration with others. Examples: Block programming, basic robotics, unplugged programming."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "citizen-of-a-digital-culture",
+     "title": "Citizen of a Digital Culture",
+     "topics": [
+      {
+       "id": "safety-privacy-and-security",
+       "title": "Safety, Privacy, and Security",
+       "subtopics": [
+        {
+         "id": "safety-privacy-and-security",
+         "title": "Safety, Privacy, and Security",
+         "outcomes": [
+          {
+           "code": "1.4",
+           "text": "Demonstrate age-appropriate methods for keeping personal information private. Example: Keep passwords confidential, use anonymous profile picture or avatar, develop user names that are non-identifying or do not include actual name."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "legal-and-ethical-behavior",
+       "title": "Legal and Ethical Behavior",
+       "subtopics": [
+        {
+         "id": "legal-and-ethical-behavior",
+         "title": "Legal and Ethical Behavior",
+         "outcomes": [
+          {
+           "code": "1.5",
+           "text": "Differentiate between prior knowledge and ideas or thoughts gained from others."
+          },
+          {
+           "code": "1.6",
+           "text": "Identify appropriate and inappropriate behaviors for communicating in a digital environment. Examples: Cyberbullying, online etiquette."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "digital-identity",
+       "title": "Digital Identity",
+       "subtopics": [
+        {
+         "id": "digital-identity",
+         "title": "Digital Identity",
+         "outcomes": [
+          {
+           "code": "1.7",
+           "text": "Recognize that a person has a digital identity."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "impact-of-computing",
+       "title": "Impact of Computing",
+       "subtopics": [
+        {
+         "id": "impact-of-computing",
+         "title": "Impact of Computing",
+         "outcomes": [
+          {
+           "code": "1.8",
+           "text": "Identify ways in which computing devices have impacted people’s lives. Example: Location services, instantaneous access to information."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "global-collaborator",
+     "title": "Global Collaborator",
+     "topics": [
+      {
+       "id": "communication",
+       "title": "Communication",
+       "subtopics": [
+        {
+         "id": "communication",
+         "title": "Communication",
+         "outcomes": [
+          {
+           "code": "1.9",
+           "text": "Use a variety of digital tools collaboratively to connect with other learners. Examples: Video calling, blogs, collaborative documents."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "digital-tools",
+       "title": "Digital Tools",
+       "subtopics": [
+        {
+         "id": "digital-tools",
+         "title": "Digital Tools",
+         "outcomes": [
+          {
+           "code": "1.10",
+           "text": "Identify an appropriate tool to complete a task when given guidance and support. Examples: Choosing a word processing tool to write a story, choosing a spreadsheet for a budget."
+          },
+          {
+           "code": "1.11",
+           "text": "Type five words per minute minimum with 95% accuracy using appropriate keyboarding techniques."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "collaborative-research",
+       "title": "Collaborative Research",
+       "subtopics": [
+        {
+         "id": "collaborative-research",
+         "title": "Collaborative Research",
+         "outcomes": [
+          {
+           "code": "1.12",
+           "text": "Identify keywords in a search and discuss how they may be used to gather information."
+          },
+          {
+           "code": "1.13",
+           "text": "Create a research-based product collaboratively using online digital tools. Examples: Find simple facts about a specific topic, create a slide that contains facts located in trade books or other sources"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "computing-analyst",
+     "title": "Computing Analyst",
+     "topics": [
+      {
+       "id": "data",
+       "title": "Data",
+       "subtopics": [
+        {
+         "id": "data",
+         "title": "Data",
+         "outcomes": [
+          {
+           "code": "1.14",
+           "text": "Discuss the purpose of collecting and organizing data."
+          },
+          {
+           "code": "1.15",
+           "text": "Interpret data displayed in a chart. Example: Using charts which depict data students interpret the data either verbally or in written form (which has more, less, are equal)."
+          },
+          {
+           "code": "1.16",
+           "text": "Demonstrate how digital devices can save information as data that can be stored, searched, retrieved, and deleted."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "systems",
+       "title": "Systems",
+       "subtopics": [
+        {
+         "id": "systems",
+         "title": "Systems",
+         "outcomes": [
+          {
+           "code": "1.17",
+           "text": "Use digital devices with a variety of operating systems. Examples: Interactive boards, tablets, laptops, other handheld devices"
+          },
+          {
+           "code": "1.18",
+           "text": "Label visible components of digital devices. Examples: Visible input and output components such as USB, touch screen, keyboard, audio and video connectors, speakers."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "innovative-designer",
+     "title": "Innovative Designer",
+     "topics": [
+      {
+       "id": "design-thinking",
+       "title": "Design Thinking",
+       "subtopics": [
+        {
+         "id": "design-thinking",
+         "title": "Design Thinking",
+         "outcomes": [
+          {
+           "code": "1.19",
+           "text": "Identify and revise problem-solving strategies to solve a simple problem. Examples: Scientific method, visual images or mind pictures, look for patterns, systematic list."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "computational-thinking",
+     "title": "Computational Thinking",
+     "topics": [
+      {
+       "id": "algorithms-abstraction-and-decomposition",
+       "title": "Algorithms, Abstraction, and Decomposition",
+       "subtopics": [
+        {
+         "id": "algorithms-abstraction-and-decomposition",
+         "title": "Algorithms, Abstraction, and Decomposition",
+         "outcomes": [
+          {
+           "code": "DLCS25.1.1",
+           "text": "Create an algorithm to complete a task."
+          },
+          {
+           "code": "DLCS25.1.2",
+           "text": "Identify a bug in a given program and debug the program, with guidance and support."
+          },
+          {
+           "code": "DLCS25.1.3",
+           "text": "Organize essential information to solve a problem, with or without digital tools. [AI]"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "programming",
+       "title": "Programming",
+       "subtopics": [
+        {
+         "id": "programming",
+         "title": "Programming",
+         "outcomes": [
+          {
+           "code": "DLCS25.1.4",
+           "text": "Construct elements of a simple program in collaboration with others."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "data-science",
+     "title": "Data Science",
+     "topics": [
+      {
+       "id": "data-collection-and-representation",
+       "title": "Data Collection and Representation",
+       "subtopics": [
+        {
+         "id": "data-collection-and-representation",
+         "title": "Data Collection and Representation",
+         "outcomes": [
+          {
+           "code": "DLCS25.1.5",
+           "text": "Collect data and organize data into categories using a variety of tools, with guidance and support."
+          },
+          {
+           "code": "DLCS25.1.6",
+           "text": "Create a simple chart with labels and features to help a computer sort items by recognizing patterns. [AI]"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "computing-systems",
+     "title": "Computing Systems",
+     "topics": [
+      {
+       "id": "networks-and-internet",
+       "title": "Networks and Internet",
+       "subtopics": [
+        {
+         "id": "networks-and-internet",
+         "title": "Networks and Internet",
+         "outcomes": [
+          {
+           "code": "DLCS25.1.7",
+           "text": "Describe how devices connect and interact with other devices to perform specific functions."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "cybersecurity",
+       "title": "Cybersecurity",
+       "subtopics": [
+        {
+         "id": "cybersecurity",
+         "title": "Cybersecurity",
+         "outcomes": [
+          {
+           "code": "DLCS25.1.8",
+           "text": "Demonstrate age-appropriate methods for keeping personal information secure."
+          },
+          {
+           "code": "DLCS25.1.9",
+           "text": "Demonstrate safe use of online resources, with guidance and support."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "hardware-and-software",
+       "title": "Hardware and Software",
+       "subtopics": [
+        {
+         "id": "hardware-and-software",
+         "title": "Hardware and Software",
+         "outcomes": [
+          {
+           "code": "DLCS25.1.10",
+           "text": "Locate and identify sensors on electronic devices."
+          },
+          {
+           "code": "DLCS25.1.11",
+           "text": "Describe and attempt troubleshooting steps to solve a technology problem, with guidance and support."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "impact-of-computing",
+     "title": "Impact of Computing",
+     "topics": [
+      {
+       "id": "impact-of-computing",
+       "title": "Impact of Computing",
+       "subtopics": [
+        {
+         "id": "impact-of-computing",
+         "title": "Impact of Computing",
+         "outcomes": [
+          {
+           "code": "DLCS25.1.IC.S",
+           "text": "Society"
+          },
+          {
+           "code": "DLCS25.1.IC.A",
+           "text": "Accessibility"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "emerging-technology",
+       "title": "Emerging Technology",
+       "subtopics": [
+        {
+         "id": "emerging-technology",
+         "title": "Emerging Technology",
+         "outcomes": [
+          {
+           "code": "DLCS25.1.12",
+           "text": "Identify ways that new technology is designed to solve problems and make tasks easier or more efficient. [AI]"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "digital-proficiency",
+     "title": "Digital Proficiency",
+     "topics": [
+      {
+       "id": "information-literacy",
+       "title": "Information Literacy",
+       "subtopics": [
+        {
+         "id": "information-literacy",
+         "title": "Information Literacy",
+         "outcomes": [
+          {
+           "code": "DLCS25.1.13",
+           "text": "Identify keywords from a question or topic and use age-appropriate digital resources to conduct research, with guidance and support."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "digital-life",
+       "title": "Digital Life",
+       "subtopics": [
+        {
+         "id": "digital-life",
+         "title": "Digital Life",
+         "outcomes": [
+          {
+           "code": "DLCS25.1.14",
+           "text": "Differentiate between appropriate and inappropriate behaviors for communicating with others in a digital environment."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "digital-tools",
+       "title": "Digital Tools",
+       "subtopics": [
+        {
+         "id": "digital-tools",
+         "title": "Digital Tools",
+         "outcomes": [
+          {
+           "code": "DLCS25.1.15",
+           "text": "Independently use basic input and output devices to interact with digital platforms."
+          },
+          {
+           "code": "DLCS25.1.16",
+           "text": "Use online digital tools to create a collaborative product, with guidance and support."
+          },
+          {
+           "code": "DLCS25.1.17",
+           "text": "Locate letters and numbers on the keyboard."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "2",
+   "units": [
+    {
+     "id": "computational-thinker",
+     "title": "Computational Thinker",
+     "topics": [
+      {
+       "id": "abstraction",
+       "title": "Abstraction",
+       "subtopics": [
+        {
+         "id": "abstraction",
+         "title": "Abstraction",
+         "outcomes": [
+          {
+           "code": "2.1",
+           "text": "Create and sort information into useful order using digital tools. Examples: Sort data spreadsheets A-Z, simple filters, and tables."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "algorithms",
+       "title": "Algorithms",
+       "subtopics": [
+        {
+         "id": "algorithms",
+         "title": "Algorithms",
+         "outcomes": [
+          {
+           "code": "2.2",
+           "text": "Create an algorithm for other learners to follow. Examples: Unplugged coding activities, illustrate sequence of a process such as baking a cake."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "programming-and-development",
+       "title": "Programming and Development",
+       "subtopics": [
+        {
+         "id": "programming-and-development",
+         "title": "Programming and Development",
+         "outcomes": [
+          {
+           "code": "2.3",
+           "text": "Construct elements of a simple computer program using basic commands. Examples: Digital block-based programming, basic robotics."
+          },
+          {
+           "code": "2.4",
+           "text": "Identify bugs in basic programming. Examples: Problem-solving, trial and error."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "citizen-of-a-digital-culture",
+     "title": "Citizen of a Digital Culture",
+     "topics": [
+      {
+       "id": "legal-and-ethical-behavior",
+       "title": "Legal and Ethical Behavior",
+       "subtopics": [
+        {
+         "id": "legal-and-ethical-behavior",
+         "title": "Legal and Ethical Behavior",
+         "outcomes": [
+          {
+           "code": "2.5",
+           "text": "Cite media and/or owners of digital content at an age-appropriate level. Example: Basic website citation."
+          },
+          {
+           "code": "2.6",
+           "text": "Demonstrate appropriate behaviors for communicating in a digital environment. Example: netiquette."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "digital-identity",
+       "title": "Digital Identity",
+       "subtopics": [
+        {
+         "id": "digital-identity",
+         "title": "Digital Identity",
+         "outcomes": [
+          {
+           "code": "2.7",
+           "text": "List positive and negative impacts of digital communication. Example: Anything posted or communicated electronically may be easily reproduced and could remain a positive or negative part of your digital identity/footprint."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "impact-of-computing",
+       "title": "Impact of Computing",
+       "subtopics": [
+        {
+         "id": "impact-of-computing",
+         "title": "Impact of Computing",
+         "outcomes": [
+          {
+           "code": "2.8",
+           "text": "Interpret ways in which computing devices have influenced people’s lives. Example: Discuss tasks completed daily in which some type of device is used to make the tasks easier (calculator, microwave to quickly heat food, mobile phone for instant communication)."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "global-collaborator",
+     "title": "Global Collaborator",
+     "topics": [
+      {
+       "id": "communication",
+       "title": "Communication",
+       "subtopics": [
+        {
+         "id": "communication",
+         "title": "Communication",
+         "outcomes": [
+          {
+           "code": "2.9",
+           "text": "Use a variety of digital tools to connect with other learners. Examples: Online conferences, blogs, collaborative documents."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "digital-tools",
+       "title": "Digital Tools",
+       "subtopics": [
+        {
+         "id": "digital-tools",
+         "title": "Digital Tools",
+         "outcomes": [
+          {
+           "code": "2.10",
+           "text": "Identify multiple tools which could be used to complete a task."
+          },
+          {
+           "code": "2.11",
+           "text": "Type 10 words per minute with 95% accuracy using appropriate keyboarding techniques."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "collaborative-research",
+       "title": "Collaborative Research",
+       "subtopics": [
+        {
+         "id": "collaborative-research",
+         "title": "Collaborative Research",
+         "outcomes": [
+          {
+           "code": "2.12",
+           "text": "Conduct basic keyword searches to gather information."
+          },
+          {
+           "code": "2.13",
+           "text": "Create a research-based product using online digital tools."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "computing-analyst",
+     "title": "Computing Analyst",
+     "topics": [
+      {
+       "id": "data",
+       "title": "Data",
+       "subtopics": [
+        {
+         "id": "data",
+         "title": "Data",
+         "outcomes": [
+          {
+           "code": "2.14",
+           "text": "Collect, create, and organize data in a digital chart or graph."
+          },
+          {
+           "code": "2.15",
+           "text": "Explain how users control the ways digital devices save information in an organized manner. Examples: Folders, cloud-based, pictures, chronologically, naming files."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "systems",
+       "title": "Systems",
+       "subtopics": [
+        {
+         "id": "systems",
+         "title": "Systems",
+         "outcomes": [
+          {
+           "code": "2.16",
+           "text": "Compare the different operating systems used on digital devices."
+          },
+          {
+           "code": "2.17",
+           "text": "Explain the purposes of visible input and output components of digital devices. Examples: Purpose of keyboard, mouse, ports, printers, etc."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "innovative-designer",
+     "title": "Innovative Designer",
+     "topics": [
+      {
+       "id": "design-thinking",
+       "title": "Design Thinking",
+       "subtopics": [
+        {
+         "id": "design-thinking",
+         "title": "Design Thinking",
+         "outcomes": [
+          {
+           "code": "2.18",
+           "text": "Investigate the design process and use digital tools to illustrate potential solutions to a problem, given guidance and support. Examples: Create a presentation, drawing or graphic, audio tool, or video."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "computational-thinking",
+     "title": "Computational Thinking",
+     "topics": [
+      {
+       "id": "algorithms-abstraction-and-decomposition",
+       "title": "Algorithms, Abstraction, and Decomposition",
+       "subtopics": [
+        {
+         "id": "algorithms-abstraction-and-decomposition",
+         "title": "Algorithms, Abstraction, and Decomposition",
+         "outcomes": [
+          {
+           "code": "DLCS25.2.1",
+           "text": "Create an algorithm to solve a problem collaboratively and explain alternative ways to solve the same problem."
+          },
+          {
+           "code": "DLCS25.2.2",
+           "text": "Test and debug a given program."
+          },
+          {
+           "code": "DLCS25.2.3",
+           "text": "Classify, evaluate, and represent essential information to solve a problem, using digital tools. [AI]"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "programming",
+       "title": "Programming",
+       "subtopics": [
+        {
+         "id": "programming",
+         "title": "Programming",
+         "outcomes": [
+          {
+           "code": "DLCS25.2.4",
+           "text": "Construct or modify a simple program, using basic commands."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "data-science",
+     "title": "Data Science",
+     "topics": [
+      {
+       "id": "data-collection-and-representation",
+       "title": "Data Collection and Representation",
+       "subtopics": [
+        {
+         "id": "data-collection-and-representation",
+         "title": "Data Collection and Representation",
+         "outcomes": [
+          {
+           "code": "DLCS25.2.5",
+           "text": "Collect, create, and logically organize data in a digital format."
+          },
+          {
+           "code": "DLCS25.2.6",
+           "text": "Create a labeled dataset that includes features to help a computer classify items. [AI]"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "computing-systems",
+     "title": "Computing Systems",
+     "topics": [
+      {
+       "id": "networks-and-internet",
+       "title": "Networks and Internet",
+       "subtopics": [
+        {
+         "id": "networks-and-internet",
+         "title": "Networks and Internet",
+         "outcomes": [
+          {
+           "code": "DLCS25.2.7",
+           "text": "Explain that information on the Internet comes from many different computers (servers)."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "cybersecurity",
+       "title": "Cybersecurity",
+       "subtopics": [
+        {
+         "id": "cybersecurity",
+         "title": "Cybersecurity",
+         "outcomes": [
+          {
+           "code": "DLCS25.2.8",
+           "text": "Explain the need for secure passwords and create one that meets simple criteria."
+          },
+          {
+           "code": "DLCS25.2.9",
+           "text": "Use online resources safely in individual and collaborative settings."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "hardware-and-software",
+       "title": "Hardware and Software",
+       "subtopics": [
+        {
+         "id": "hardware-and-software",
+         "title": "Hardware and Software",
+         "outcomes": [
+          {
+           "code": "DLCS25.2.10",
+           "text": "Use basic software features within familiar applications."
+          },
+          {
+           "code": "DLCS25.2.11",
+           "text": "Describe and attempt troubleshooting steps to solve a technology problem."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "impact-of-computing",
+     "title": "Impact of Computing",
+     "topics": [
+      {
+       "id": "society",
+       "title": "Society",
+       "subtopics": [
+        {
+         "id": "society",
+         "title": "Society",
+         "outcomes": [
+          {
+           "code": "DLCS25.2.12",
+           "text": "Explain how technology impacts the way people live and work."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "emerging-technology",
+       "title": "Emerging Technology",
+       "subtopics": [
+        {
+         "id": "emerging-technology",
+         "title": "Emerging Technology",
+         "outcomes": [
+          {
+           "code": "DLCS25.2.13",
+           "text": "Describe the types of tasks emerging technology can and cannot perform. [AI]"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "accessibility",
+       "title": "Accessibility",
+       "subtopics": [
+        {
+         "id": "accessibility",
+         "title": "Accessibility",
+         "outcomes": [
+          {
+           "code": "DLCS25.2.14",
+           "text": "Identify tools that make technology more accessible for everyone."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "digital-proficiency",
+     "title": "Digital Proficiency",
+     "topics": [
+      {
+       "id": "information-literacy",
+       "title": "Information Literacy",
+       "subtopics": [
+        {
+         "id": "information-literacy",
+         "title": "Information Literacy",
+         "outcomes": [
+          {
+           "code": "DLCS25.2.15",
+           "text": "Perform an Internet search within a search engine or website to conduct research."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "digital-life",
+       "title": "Digital Life",
+       "subtopics": [
+        {
+         "id": "digital-life",
+         "title": "Digital Life",
+         "outcomes": [
+          {
+           "code": "DLCS25.2.16",
+           "text": "Explain how sharing information online contributes to a user’s digital footprint."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "digital-tools",
+       "title": "Digital Tools",
+       "subtopics": [
+        {
+         "id": "digital-tools",
+         "title": "Digital Tools",
+         "outcomes": [
+          {
+           "code": "DLCS25.2.17",
+           "text": "Explain the purposes of input and output components of digital devices."
+          },
+          {
+           "code": "DLCS25.2.18",
+           "text": "Identify and use multiple digital tools to complete a project, with guidance and support."
+          },
+          {
+           "code": "DLCS25.2.19",
+           "text": "Explain that AI uses data to find patterns but can make a mistake if the data is biased, incomplete, or incorrect. [AI]"
+          },
+          {
+           "code": "DLCS25.2.20",
+           "text": "Type five words per minute, using efficient keyboarding techniques."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "3",
+   "units": [
+    {
+     "id": "computational-thinker",
+     "title": "Computational Thinker",
+     "topics": [
+      {
+       "id": "abstraction",
+       "title": "Abstraction",
+       "subtopics": [
+        {
+         "id": "abstraction",
+         "title": "Abstraction",
+         "outcomes": [
+          {
+           "code": "3.1",
+           "text": "Use numbers or letters to represent information in another form. Examples: Secret codes/encryption, Roman numerals, or abbreviations."
+          },
+          {
+           "code": "3.2",
+           "text": "Analyze a given list of sub-problems while addressing a larger problem. Example: Problem - making a peanut butter sandwich; sub-problem - opening jar, finding a knife, getting the bread. Problem - design and share a brochure; sub-problem - selecting font, choosing layout."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "algorithms",
+       "title": "Algorithms",
+       "subtopics": [
+        {
+         "id": "algorithms",
+         "title": "Algorithms",
+         "outcomes": [
+          {
+           "code": "3.3",
+           "text": "Explain that different solutions exist for the same problem or sub-problem. Example: Multiple paths exist to get home from school; one may be a shorter distance while one may encounter less traffic."
+          },
+          {
+           "code": "3.4",
+           "text": "Examine logical reasoning to predict outcomes of an algorithm."
+          },
+          {
+           "code": "3.5",
+           "text": "Create an algorithm to solve a problem as a collaborative team. Examples: Move a character/robot/person through a maze. List steps to build a sandwich."
+          },
+          {
+           "code": "3.6",
+           "text": "Describe the function of a flowchart."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "programming-and-development",
+       "title": "Programming and Development",
+       "subtopics": [
+        {
+         "id": "programming-and-development",
+         "title": "Programming and Development",
+         "outcomes": [
+          {
+           "code": "3.7",
+           "text": "Test and debug a given program in a block-based visual programming environment using arithmetic operators, conditionals, and repetition in programs, in collaboration with others. Examples: Sequencing cards for unplugged activities, online coding practice."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "citizen-of-a-digital-culture",
+     "title": "Citizen of a Digital Culture",
+     "topics": [
+      {
+       "id": "safety-privacy-and-security",
+       "title": "Safety, Privacy, and Security",
+       "subtopics": [
+        {
+         "id": "safety-privacy-and-security",
+         "title": "Safety, Privacy, and Security",
+         "outcomes": [
+          {
+           "code": "3.8",
+           "text": "Describe how to use proper ergonomics when using devices. Examples: Body position, lighting, positioning of equipment, taking breaks."
+          },
+          {
+           "code": "3.9",
+           "text": "Identify the proper use and operation of security technologies. Examples: Passwords, virus protection software, spam filters, pop-up blockers."
+          },
+          {
+           "code": "3.10",
+           "text": "Describe ways web advertising collects personal information. Examples: Search ads, b"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "impact-of-computing",
+       "title": "Impact of Computing",
+       "subtopics": [
+        {
+         "id": "impact-of-computing",
+         "title": "Impact of Computing",
+         "outcomes": [
+          {
+           "code": "3.11",
+           "text": "Identify resources in the community that offer technology access. Examples: Libraries, community centers, restaurants, education programs, schools, or hardware/software donation programs."
+          },
+          {
+           "code": "3.12",
+           "text": "Identify and discuss ways that access to technology helps empower individuals and groups. Examples: Gives access to information; provides the ability to communicate with others around the world; enables people to buy and sell things."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "global-collaborator",
+     "title": "Global Collaborator",
+     "topics": [
+      {
+       "id": "communication",
+       "title": "Communication",
+       "subtopics": [
+        {
+         "id": "communication",
+         "title": "Communication",
+         "outcomes": [
+          {
+           "code": "3.13",
+           "text": "Communicate key ideas and details collaboratively in a way that informs, persuades, and/or entertains, using digital tools. Example: Create a digital presentation to persuade school administrators to allow additional time for lunch."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "digital-tools",
+       "title": "Digital Tools",
+       "subtopics": [
+        {
+         "id": "digital-tools",
+         "title": "Digital Tools",
+         "outcomes": [
+          {
+           "code": "3.14",
+           "text": "Type 15 words per minute with 95% accuracy using appropriate keyboarding techniques."
+          },
+          {
+           "code": "3.15",
+           "text": "Describe local, networked, and online or cloud environments."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "collaborative-research",
+       "title": "Collaborative Research",
+       "subtopics": [
+        {
+         "id": "collaborative-research",
+         "title": "Collaborative Research",
+         "outcomes": [
+          {
+           "code": "3.16",
+           "text": "Conduct basic keyword searches to produce valid, appropriate results, and evaluate results for accuracy, relevance, and appropriateness. Examples: Use search techniques, check for credibility and validity."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "computing-analyst",
+     "title": "Computing Analyst",
+     "topics": [
+      {
+       "id": "data",
+       "title": "Data",
+       "subtopics": [
+        {
+         "id": "data",
+         "title": "Data",
+         "outcomes": [
+          {
+           "code": "3.17",
+           "text": "Describe examples of data sets or databases from everyday life. Examples: Library catalogs, school records, telephone directories, or contact lists."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "systems",
+       "title": "Systems",
+       "subtopics": [
+        {
+         "id": "systems",
+         "title": "Systems",
+         "outcomes": [
+          {
+           "code": "3.18",
+           "text": "Identify a broad range of digital devices, the services they provide, and appropriate uses for them. Examples: Computers, smartphones, tablets, robots, e-textiles, driving directions apps that access remote map services, digital personal assistants that access remote information services."
+          },
+          {
+           "code": "3.19",
+           "text": "Describe the differences between hardware and software."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "innovative-designer",
+     "title": "Innovative Designer",
+     "topics": [
+      {
+       "id": "human-computer-partnerships",
+       "title": "Human/Computer Partnerships",
+       "subtopics": [
+        {
+         "id": "human-computer-partnerships",
+         "title": "Human/Computer Partnerships",
+         "outcomes": [
+          {
+           "code": "3.20",
+           "text": "Compare and contrast human and computer performance on similar tasks to understand which is better suited to the task. Examples: Sorting alphabetically, finding a path across a cluttered room."
+          },
+          {
+           "code": "3.21",
+           "text": "Explain advantages and limitations of technology. Example: A spell-checker can check thousands of words faster than a human could look them up; however, a spell-checker might not know whether underserved is correct or if the author’s intent was to type undeserved."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "design-thinking",
+       "title": "Design Thinking",
+       "subtopics": [
+        {
+         "id": "design-thinking",
+         "title": "Design Thinking",
+         "outcomes": [
+          {
+           "code": "3.22",
+           "text": "Discuss the design process and use digital tools to illustrate potential solutions."
+          },
+          {
+           "code": "3.23",
+           "text": "Implement the design process to solve a simple problem. Examples: Uneven table leg, noise in the cafeteria, tallying the collection of food drive donations."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "computational-thinking",
+     "title": "Computational Thinking",
+     "topics": [
+      {
+       "id": "algorithms-abstraction-and-decomposition",
+       "title": "Algorithms, Abstraction, and Decomposition",
+       "subtopics": [
+        {
+         "id": "algorithms-abstraction-and-decomposition",
+         "title": "Algorithms, Abstraction, and Decomposition",
+         "outcomes": [
+          {
+           "code": "DLCS25.3.1",
+           "text": "Develop and document an algorithm that outlines specific steps to complete a project for other learners to follow."
+          },
+          {
+           "code": "DLCS25.3.2",
+           "text": "Use numbers or letters to represent information in another form."
+          },
+          {
+           "code": "DLCS25.3.3",
+           "text": "Demonstrate how a larger problem can be broken into sub-problems."
+          },
+          {
+           "code": "DLCS25.3.4",
+           "text": "Explain the function of a flowchart."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "programming",
+       "title": "Programming",
+       "subtopics": [
+        {
+         "id": "programming",
+         "title": "Programming",
+         "outcomes": [
+          {
+           "code": "DLCS25.3.5",
+           "text": "Create a working program using sequencing and events in a visual programming environment, working in collaboration with others."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "data-science",
+     "title": "Data Science",
+     "topics": [
+      {
+       "id": "data-collection-and-representation",
+       "title": "Data Collection and Representation",
+       "subtopics": [
+        {
+         "id": "data-collection-and-representation",
+         "title": "Data Collection and Representation",
+         "outcomes": [
+          {
+           "code": "DLCS25.3.6",
+           "text": "Organize data to answer a question, using a variety of computing and data visualization methods."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "computing-systems",
+     "title": "Computing Systems",
+     "topics": [
+      {
+       "id": "networks-and-internet",
+       "title": "Networks and Internet",
+       "subtopics": [
+        {
+         "id": "networks-and-internet",
+         "title": "Networks and Internet",
+         "outcomes": [
+          {
+           "code": "DLCS25.3.7",
+           "text": "Explain what makes the Internet a global network."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "cybersecurity",
+       "title": "Cybersecurity",
+       "subtopics": [
+        {
+         "id": "cybersecurity",
+         "title": "Cybersecurity",
+         "outcomes": [
+          {
+           "code": "DLCS25.3.8",
+           "text": "Apply strategies to create and manage passwords."
+          },
+          {
+           "code": "DLCS25.3.9",
+           "text": "Identify examples of suspicious activity of applications and devices that should be reported."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "hardware-and-software",
+       "title": "Hardware and Software",
+       "subtopics": [
+        {
+         "id": "hardware-and-software",
+         "title": "Hardware and Software",
+         "outcomes": [
+          {
+           "code": "DLCS25.3.10",
+           "text": "Describe the differences between hardware and software."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "impact-of-computing",
+     "title": "Impact of Computing",
+     "topics": [
+      {
+       "id": "impact-of-computing",
+       "title": "Impact of Computing",
+       "subtopics": [
+        {
+         "id": "impact-of-computing",
+         "title": "Impact of Computing",
+         "outcomes": [
+          {
+           "code": "DLCS25.3.IC.E",
+           "text": "Ethics"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "society",
+       "title": "Society",
+       "subtopics": [
+        {
+         "id": "society",
+         "title": "Society",
+         "outcomes": [
+          {
+           "code": "DLCS25.3.11",
+           "text": "Identify technological inventions and contributions that have impacted society"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "emerging-technology",
+       "title": "Emerging Technology",
+       "subtopics": [
+        {
+         "id": "emerging-technology",
+         "title": "Emerging Technology",
+         "outcomes": [
+          {
+           "code": "DLCS25.3.12",
+           "text": "Explore and describe how emerging technologies can be used for learning and in daily life. [AI]"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "accessibility",
+       "title": "Accessibility",
+       "subtopics": [
+        {
+         "id": "accessibility",
+         "title": "Accessibility",
+         "outcomes": [
+          {
+           "code": "DLCS25.3.13",
+           "text": "Explain how technology can be designed to support people with different needs."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "digital-proficiency",
+     "title": "Digital Proficiency",
+     "topics": [
+      {
+       "id": "information-literacy",
+       "title": "Information Literacy",
+       "subtopics": [
+        {
+         "id": "information-literacy",
+         "title": "Information Literacy",
+         "outcomes": [
+          {
+           "code": "DLCS25.3.14",
+           "text": "Use keywords in an Internet search to find accurate and relevant information to a specific question. [AI]"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "digital-life",
+       "title": "Digital Life",
+       "subtopics": [
+        {
+         "id": "digital-life",
+         "title": "Digital Life",
+         "outcomes": [
+          {
+           "code": "DLCS25.3.15",
+           "text": "Describe ways digital platforms collect personal information."
+          },
+          {
+           "code": "DLCS25.3.16",
+           "text": "Demonstrate appropriate behaviors that reflect a positive and responsible digital footprint when communicating in a digital environment."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "digital-tools",
+       "title": "Digital Tools",
+       "subtopics": [
+        {
+         "id": "digital-tools",
+         "title": "Digital Tools",
+         "outcomes": [
+          {
+           "code": "DLCS25.3.17",
+           "text": "Select and use multiple digital tools to complete a project. [AI]"
+          },
+          {
+           "code": "DLCS25.3.18",
+           "text": "Write a prompt to guide AI tools in generating useful responses, and explain how different prompts affect the results. [AI]"
+          },
+          {
+           "code": "DLCS25.3.19",
+           "text": "Type ten words per minute using efficient keyboarding techniques."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "4",
+   "units": [
+    {
+     "id": "computational-thinker",
+     "title": "Computational Thinker",
+     "topics": [
+      {
+       "id": "abstraction",
+       "title": "Abstraction",
+       "subtopics": [
+        {
+         "id": "abstraction",
+         "title": "Abstraction",
+         "outcomes": [
+          {
+           "code": "4.1",
+           "text": "Construct a basic system of numbers, letters, or symbols to represent information as a cipher. Examples: Combine data from multiple sources, sorting multi-level."
+          },
+          {
+           "code": "4.2",
+           "text": "Formulate a list of sub-problems to consider while addressing a larger problem. Examples: Problem - a multi-step math problem; sub-problem - steps to solve. Problem - light bulb does not light; sub-problem - steps to resolve why."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "algorithms",
+       "title": "Algorithms",
+       "subtopics": [
+        {
+         "id": "algorithms",
+         "title": "Algorithms",
+         "outcomes": [
+          {
+           "code": "4.3",
+           "text": "Show that different solutions exist for the same problem or sub-problem."
+          },
+          {
+           "code": "4.4",
+           "text": "Detect and debug logical errors in various basic algorithms. Example: Trace the path of a set of directions to determine success or failure."
+          },
+          {
+           "code": "4.5",
+           "text": "Use flowcharts to create a plan or algorithm."
+          },
+          {
+           "code": "4.6",
+           "text": "Define a simple pseudocode."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "programming-and-development",
+       "title": "Programming and Development",
+       "subtopics": [
+        {
+         "id": "programming-and-development",
+         "title": "Programming and Development",
+         "outcomes": [
+          {
+           "code": "4.7",
+           "text": "Create a working program in a block-based visual programming environment using arithmetic operators, conditionals, and repetition in programs, in collaboration with others."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "citizen-of-a-digital-culture",
+     "title": "Citizen of a Digital Culture",
+     "topics": [
+      {
+       "id": "safety-privacy-and-security",
+       "title": "Safety, Privacy, and Security",
+       "subtopics": [
+        {
+         "id": "safety-privacy-and-security",
+         "title": "Safety, Privacy, and Security",
+         "outcomes": [
+          {
+           "code": "4.8",
+           "text": "Demonstrate the proper use and operation of security technologies. Examples: Passwords, virus protection software, spam filters, pop-up blockers."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "legal-and-ethical-behavior",
+       "title": "Legal and Ethical Behavior",
+       "subtopics": [
+        {
+         "id": "legal-and-ethical-behavior",
+         "title": "Legal and Ethical Behavior",
+         "outcomes": [
+          {
+           "code": "4.9",
+           "text": "Identify laws and tools which help ensure that users of varying abilities can access electronic and information technology. Examples: ADA Laws"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "digital-identity",
+       "title": "Digital Identity",
+       "subtopics": [
+        {
+         "id": "digital-identity",
+         "title": "Digital Identity",
+         "outcomes": [
+          {
+           "code": "4.10",
+           "text": "Identify the different forms of web advertising and why websites, digital resources, and artifacts may include advertisements and collect personal information. Examples: Search ads, pay-per-click ads, banner ads, targeted ads, in-game ads, email ads."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "impact-of-computing",
+       "title": "Impact of Computing",
+       "subtopics": [
+        {
+         "id": "impact-of-computing",
+         "title": "Impact of Computing",
+         "outcomes": [
+          {
+           "code": "4.11",
+           "text": "Discuss the digital divide as unequal access to technology based on differences such as income, education, age, or geographic location and locate resources in the community that can give people access to technology."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "global-collaborator",
+     "title": "Global Collaborator",
+     "topics": [
+      {
+       "id": "communication",
+       "title": "Communication",
+       "subtopics": [
+        {
+         "id": "communication",
+         "title": "Communication",
+         "outcomes": [
+          {
+           "code": "4.12",
+           "text": "Use basic features of digital tools to communicate key ideas and details in a way that informs and/or persuades."
+          },
+          {
+           "code": "4.13",
+           "text": "Synthesize complex information from multiple sources in different ways to make it more useful and/or relevant."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "digital-tools",
+       "title": "Digital Tools",
+       "subtopics": [
+        {
+         "id": "digital-tools",
+         "title": "Digital Tools",
+         "outcomes": [
+          {
+           "code": "4.14",
+           "text": "Type 20 words per minute with 95% accuracy using appropriate keyboarding techniques."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "collaborative-research",
+       "title": "Collaborative Research",
+       "subtopics": [
+        {
+         "id": "collaborative-research",
+         "title": "Collaborative Research",
+         "outcomes": [
+          {
+           "code": "4.15",
+           "text": "Conduct complex keyword searches to produce valid, appropriate results and evaluate results for accuracy, relevance, and appropriateness. Examples: Search techniques, check for credibility and validity."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "computing-analyst",
+     "title": "Computing Analyst",
+     "topics": [
+      {
+       "id": "data",
+       "title": "Data",
+       "subtopics": [
+        {
+         "id": "data",
+         "title": "Data",
+         "outcomes": [
+          {
+           "code": "4.16",
+           "text": "Gather and organize data to answer a question using a variety of computing and data visualization methods. Examples: Sorting, totaling, averaging, charts, and graphs."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "systems",
+       "title": "Systems",
+       "subtopics": [
+        {
+         "id": "systems",
+         "title": "Systems",
+         "outcomes": [
+          {
+           "code": "4.17",
+           "text": "Demonstrate an appropriate level of proficiency in performing tasks using a range of digital devices. Examples: Collect and record data, print, use send command, connect to Internet, or search; use probes, sensors, printers, robots, or computers."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "modeling-and-simulation",
+       "title": "Modeling and Simulation",
+       "subtopics": [
+        {
+         "id": "modeling-and-simulation",
+         "title": "Modeling and Simulation",
+         "outcomes": [
+          {
+           "code": "4.18",
+           "text": "Create a simple digital model of a system, individually and collaboratively, and explain what the model shows and does not show. Examples: Create a model of the water cycle and indicate that it shows how precipitation forms but does not indicate how pesticides get into rivers."
+          },
+          {
+           "code": "4.19",
+           "text": "Use data from a simulation to answer a question collaboratively."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "innovative-designer",
+     "title": "Innovative Designer",
+     "topics": [
+      {
+       "id": "human-computer-partnerships",
+       "title": "Human/Computer Partnerships",
+       "subtopics": [
+        {
+         "id": "human-computer-partnerships",
+         "title": "Human/Computer Partnerships",
+         "outcomes": [
+          {
+           "code": "4.20",
+           "text": "Explain how hardware and applications can enable everyone, including people with disabilities, to do things they could not do otherwise. Examples: Global Positioning System [GPS] to navigate, text-to-speech feature to read aloud from a digital resource, translate a digital resource to a different language."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "design-thinking",
+       "title": "Design Thinking",
+       "subtopics": [
+        {
+         "id": "design-thinking",
+         "title": "Design Thinking",
+         "outcomes": [
+          {
+           "code": "4.21",
+           "text": "Develop, test, and refine prototypes as part of a cyclical design process to solve a simple problem."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "computational-thinking",
+     "title": "Computational Thinking",
+     "topics": [
+      {
+       "id": "algorithms-abstraction-and-decomposition",
+       "title": "Algorithms, Abstraction, and Decomposition",
+       "subtopics": [
+        {
+         "id": "algorithms-abstraction-and-decomposition",
+         "title": "Algorithms, Abstraction, and Decomposition",
+         "outcomes": [
+          {
+           "code": "DLCS25.4.1",
+           "text": "Build and revise an algorithm and defend the choices made during the process."
+          },
+          {
+           "code": "DLCS25.4.2",
+           "text": "Construct a system of numbers, letters, or symbols to represent information."
+          },
+          {
+           "code": "DLCS25.4.3",
+           "text": "Analyze given sub-problems while addressing a larger problem."
+          },
+          {
+           "code": "DLCS25.4.4",
+           "text": "Use flowcharts to create a plan or algorithm."
+          },
+          {
+           "code": "DLCS25.4.5",
+           "text": "Describe the structure and function of a simple pseudocode."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "programming",
+       "title": "Programming",
+       "subtopics": [
+        {
+         "id": "programming",
+         "title": "Programming",
+         "outcomes": [
+          {
+           "code": "DLCS25.4.6",
+           "text": "Create a working program using conditional statements and loops in a visual programming environment, working in collaboration with others."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "data-science",
+     "title": "Data Science",
+     "topics": [
+      {
+       "id": "data-collection-and-representation",
+       "title": "Data Collection and Representation",
+       "subtopics": [
+        {
+         "id": "data-collection-and-representation",
+         "title": "Data Collection and Representation",
+         "outcomes": [
+          {
+           "code": "DLCS25.4.7",
+           "text": "Collect and organize data to answer a question, using a variety of computing and data visualization methods."
+          },
+          {
+           "code": "DLCS25.4.8",
+           "text": "Explain how AI systems use data to make predictions or decisions. [AI]"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "computing-systems",
+     "title": "Computing Systems",
+     "topics": [
+      {
+       "id": "networks-and-internet",
+       "title": "Networks and Internet",
+       "subtopics": [
+        {
+         "id": "networks-and-internet",
+         "title": "Networks and Internet",
+         "outcomes": [
+          {
+           "code": "DLCS25.4.9",
+           "text": "Explain how cloud computing allows users to access files and programs over the Internet."
+          },
+          {
+           "code": "DLCS25.4.10",
+           "text": "Identify the domain name and protocol in a URL."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "cybersecurity",
+       "title": "Cybersecurity",
+       "subtopics": [
+        {
+         "id": "cybersecurity",
+         "title": "Cybersecurity",
+         "outcomes": [
+          {
+           "code": "DLCS25.4.11",
+           "text": "Describe various forms of suspicious online activity."
+          },
+          {
+           "code": "DLCS25.4.12",
+           "text": "Discuss possible strategies to protect themselves from malicious online activity."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "hardware-and-software",
+       "title": "Hardware and Software",
+       "subtopics": [
+        {
+         "id": "hardware-and-software",
+         "title": "Hardware and Software",
+         "outcomes": [
+          {
+           "code": "DLCS25.4.13",
+           "text": "Describe how hardware and software work together as a system to accomplish tasks."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "impact-of-computing",
+     "title": "Impact of Computing",
+     "topics": [
+      {
+       "id": "ethics",
+       "title": "Ethics",
+       "subtopics": [
+        {
+         "id": "ethics",
+         "title": "Ethics",
+         "outcomes": [
+          {
+           "code": "DLCS25.4.14",
+           "text": "Explain the potential consequences of inappropriate online behavior and identify strategies for prevention and response."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "society",
+       "title": "Society",
+       "subtopics": [
+        {
+         "id": "society",
+         "title": "Society",
+         "outcomes": [
+          {
+           "code": "DLCS25.4.15",
+           "text": "Explain how technology has changed the ways people communicate and interact, and describe the positive and negative effects of these changes."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "emerging-technology",
+       "title": "Emerging Technology",
+       "subtopics": [
+        {
+         "id": "emerging-technology",
+         "title": "Emerging Technology",
+         "outcomes": [
+          {
+           "code": "DLCS25.4.16",
+           "text": "Analyze and discuss the benefits and challenges of using emerging technologies in learning and daily life. [AI]"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "accessibility",
+       "title": "Accessibility",
+       "subtopics": [
+        {
+         "id": "accessibility",
+         "title": "Accessibility",
+         "outcomes": [
+          {
+           "code": "DLCS25.4.17",
+           "text": "Explain how creating digital content with accessibility in mind (Universal Design Principles) can benefit all users."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "digital-proficiency",
+     "title": "Digital Proficiency",
+     "topics": [
+      {
+       "id": "information-literacy",
+       "title": "Information Literacy",
+       "subtopics": [
+        {
+         "id": "information-literacy",
+         "title": "Information Literacy",
+         "outcomes": [
+          {
+           "code": "DLCS25.4.18",
+           "text": "Utilize search strategies to find accurate and relevant online information. [AI]"
+          },
+          {
+           "code": "DLCS25.4.19",
+           "text": "Evaluate the credibility of an online source based on given criteria."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "digital-life",
+       "title": "Digital Life",
+       "subtopics": [
+        {
+         "id": "digital-life",
+         "title": "Digital Life",
+         "outcomes": [
+          {
+           "code": "DLCS25.4.20",
+           "text": "Explain why digital platforms may include advertisements and collect personal information"
+          },
+          {
+           "code": "DLCS25.4.21",
+           "text": "Create and share digital content that reflects respectful communication to demonstrate responsible online interactions."
+          },
+          {
+           "code": "DLCS25.4.22",
+           "text": "Describe the user’s responsibilities for digital footprints, both their own and those of others."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "digital-tools",
+       "title": "Digital Tools",
+       "subtopics": [
+        {
+         "id": "digital-tools",
+         "title": "Digital Tools",
+         "outcomes": [
+          {
+           "code": "DLCS25.4.23",
+           "text": "Use digital tools to create images, audio files, or videos to complete assignments or share ideas."
+          },
+          {
+           "code": "DLCS25.4.24",
+           "text": "Explain the ways users save information in an organized manner on digital devices."
+          },
+          {
+           "code": "DLCS25.4.25",
+           "text": "Craft a process for creating prompts which includes testing them, getting feedback, and refining them over time based on how well the AI performs. [AI]"
+          },
+          {
+           "code": "DLCS25.4.26",
+           "text": "Type 15 words per minute using efficient keyboarding techniques."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "5",
+   "units": [
+    {
+     "id": "computational-thinker",
+     "title": "Computational Thinker",
+     "topics": [
+      {
+       "id": "abstraction",
+       "title": "Abstraction",
+       "subtopics": [
+        {
+         "id": "abstraction",
+         "title": "Abstraction",
+         "outcomes": [
+          {
+           "code": "5.1",
+           "text": "Construct a complex system of numbers or letters to represent information. Example: Student-created complex secret codes using more than one form to solve a problem or answer a question."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "algorithms",
+       "title": "Algorithms",
+       "subtopics": [
+        {
+         "id": "algorithms",
+         "title": "Algorithms",
+         "outcomes": [
+          {
+           "code": "5.2",
+           "text": "Create an algorithm to solve a problem while detecting and debugging logical errors within the algorithm. Examples: Program the movement of a character, robot, or person through a maze. Define a variable that can be changed or updated."
+          },
+          {
+           "code": "5.3",
+           "text": "Create an algorithm that is defined by simple pseudocode."
+          },
+          {
+           "code": "5.4",
+           "text": "Create a simple pseudocode."
+          },
+          {
+           "code": "5.5",
+           "text": "Develop and recommend solutions to a given problem and explain the process to an audience."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "programming-and-development",
+       "title": "Programming and Development",
+       "subtopics": [
+        {
+         "id": "programming-and-development",
+         "title": "Programming and Development",
+         "outcomes": [
+          {
+           "code": "5.6",
+           "text": "Create a working program in a block-based visual programming environment using arithmetic operators, conditionals, and repetition in programs."
+          },
+          {
+           "code": "5.7",
+           "text": "Identify variables."
+          },
+          {
+           "code": "5.8",
+           "text": "Demonstrate that programs require known starting values that may need to be updated appropriately during the execution of programs. Examples: Set initial value of a variable, updating variables."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "citizen-of-a-digital-culture",
+     "title": "Citizen of a Digital Culture",
+     "topics": [
+      {
+       "id": "safety-privacy-and-security",
+       "title": "Safety, Privacy, and Security",
+       "subtopics": [
+        {
+         "id": "safety-privacy-and-security",
+         "title": "Safety, Privacy, and Security",
+         "outcomes": [
+          {
+           "code": "5.9",
+           "text": "Explain the proper use and operation of security technologies. Examples: Passwords, virus protection software, spam filters, pop-up blockers, cookies."
+          },
+          {
+           "code": "5.10",
+           "text": "Identify appropriate and inappropriate uses of communication technology and discuss the permanence of actions in the digital world."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "legal-and-ethical-behavior",
+       "title": "Legal and Ethical Behavior",
+       "subtopics": [
+        {
+         "id": "legal-and-ethical-behavior",
+         "title": "Legal and Ethical Behavior",
+         "outcomes": [
+          {
+           "code": "5.11",
+           "text": "Explain that laws and tools exist to help ensure that people of varying abilities can access electronic and information technology. Examples: Section 508, Telecommunication Act of 1996, Braille, closed captioning, text to speech."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "digital-identity",
+       "title": "Digital Identity",
+       "subtopics": [
+        {
+         "id": "digital-identity",
+         "title": "Digital Identity",
+         "outcomes": [
+          {
+           "code": "5.12",
+           "text": "Explain the different forms of web advertising and why websites, digital resources, and artifacts may include advertisements that may collect personal information. Examples: personalized web experiences based on tailored web searches, maintaining search history, quicker access to relevant information."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "impact-of-computing",
+       "title": "Impact of Computing",
+       "subtopics": [
+        {
+         "id": "impact-of-computing",
+         "title": "Impact of Computing",
+         "outcomes": [
+          {
+           "code": "5.13",
+           "text": "Share knowledge of resources in the community that can give people access to technology. Example: student created print and/or digital resource to share WiFi or other connectivity opportunities within the community."
+          },
+          {
+           "code": "5.14",
+           "text": "Analyze the impact of social media on individuals, families, and society."
+          },
+          {
+           "code": "5.15",
+           "text": "Explore and predict how advances in computing technologies affect job opportunities and/or processes now and in the future."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "global-collaborator",
+     "title": "Global Collaborator",
+     "topics": [
+      {
+       "id": "communication",
+       "title": "Communication",
+       "subtopics": [
+        {
+         "id": "communication",
+         "title": "Communication",
+         "outcomes": [
+          {
+           "code": "5.16",
+           "text": "Use advanced features of digital tools and media-rich resources to communicate key ideas and details in a way that informs, persuades, and/or entertains."
+          },
+          {
+           "code": "5.17",
+           "text": "Publish organized information in different ways to make it more useful or relevant. Examples: Infographic, student created website."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "digital-tools",
+       "title": "Digital Tools",
+       "subtopics": [
+        {
+         "id": "digital-tools",
+         "title": "Digital Tools",
+         "outcomes": [
+          {
+           "code": "5.18",
+           "text": "Type 25 words per minute with 95% accuracy using appropriate keyboarding techniques."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "collaborative-research",
+       "title": "Collaborative Research",
+       "subtopics": [
+        {
+         "id": "collaborative-research",
+         "title": "Collaborative Research",
+         "outcomes": [
+          {
+           "code": "5.19",
+           "text": "Conduct advanced keyword searches to produce valid, appropriate results and evaluate results for accuracy, relevance, and appropriateness. Examples: Search techniques, check for credibility and validity."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "social-interactions",
+       "title": "Social Interactions",
+       "subtopics": [
+        {
+         "id": "social-interactions",
+         "title": "Social Interactions",
+         "outcomes": [
+          {
+           "code": "5.20",
+           "text": "Collaborate locally and globally using online digital tools under teacher supervision."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "computing-analyst",
+     "title": "Computing Analyst",
+     "topics": [
+      {
+       "id": "data",
+       "title": "Data",
+       "subtopics": [
+        {
+         "id": "data",
+         "title": "Data",
+         "outcomes": [
+          {
+           "code": "5.21",
+           "text": "Manipulate data to answer a question using a variety of computing methods and tools to collect, organize, graph, analyze, and publish the resulting information."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "systems",
+       "title": "Systems",
+       "subtopics": [
+        {
+         "id": "systems",
+         "title": "Systems",
+         "outcomes": [
+          {
+           "code": "5.22",
+           "text": "Identify computing services that may be initially turned on by default. Examples: Geolocations, geotagging."
+          },
+          {
+           "code": "5.23",
+           "text": "Identify the key components of a network. Examples: Links, nodes, networking devices."
+          },
+          {
+           "code": "5.24",
+           "text": "Describe the need for authentication of users and devices as it relates to access permissions, privacy, and security. Examples: Logging in at school, logging personal devices to public networks."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "modeling-and-simulations",
+       "title": "Modeling and Simulations",
+       "subtopics": [
+        {
+         "id": "modeling-and-simulations",
+         "title": "Modeling and Simulations",
+         "outcomes": [
+          {
+           "code": "5.25",
+           "text": "Analyze the concepts, features, and behaviors illustrated by a simulation. Examples: Object motion, weather, ecosystem, predator/prey."
+          },
+          {
+           "code": "5.26",
+           "text": "Connect data from a simulation to real-life events."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "innovative-designer",
+     "title": "Innovative Designer",
+     "topics": [
+      {
+       "id": "human-computer-partnerships",
+       "title": "Human/Computer Partnerships",
+       "subtopics": [
+        {
+         "id": "human-computer-partnerships",
+         "title": "Human/Computer Partnerships",
+         "outcomes": [
+          {
+           "code": "5.27",
+           "text": "Define social engineering and discuss possible defenses. Examples: Phishing, impersonating"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "design-thinking",
+       "title": "Design Thinking",
+       "subtopics": [
+        {
+         "id": "design-thinking",
+         "title": "Design Thinking",
+         "outcomes": [
+          {
+           "code": "5.28",
+           "text": "Develop, test, and refine prototypes as part of a cyclical design process to solve a complex problem. Examples: Design backpack for a specific user’s needs; design a method to collect and transport water without the benefit of faucets; design boats that need to hold as much payload as possible before sinking; design models of chairs based on specific user needs."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "computational-thinking",
+     "title": "Computational Thinking",
+     "topics": [
+      {
+       "id": "algorithms-abstraction-and-decomposition",
+       "title": "Algorithms, Abstraction, and Decomposition",
+       "subtopics": [
+        {
+         "id": "algorithms-abstraction-and-decomposition",
+         "title": "Algorithms, Abstraction, and Decomposition",
+         "outcomes": [
+          {
+           "code": "DLCS25.5.1",
+           "text": "Compare two or more algorithms and discuss each one’s advantages and disadvantages for a specific task."
+          },
+          {
+           "code": "DLCS25.5.2",
+           "text": "Create and use a system of representative letters, numbers, or symbols, including binary numbers, to identify patterns in related data."
+          },
+          {
+           "code": "DLCS25.5.3",
+           "text": "Create pseudocode using sequencing and a simple IF/THEN selection."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "programming",
+       "title": "Programming",
+       "subtopics": [
+        {
+         "id": "programming",
+         "title": "Programming",
+         "outcomes": [
+          {
+           "code": "DLCS25.5.4",
+           "text": "Create a working program using variables in a visual programming environment, independently or collaboratively."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "data-science",
+     "title": "Data Science",
+     "topics": [
+      {
+       "id": "data-collection-and-representation",
+       "title": "Data Collection and Representation",
+       "subtopics": [
+        {
+         "id": "data-collection-and-representation",
+         "title": "Data Collection and Representation",
+         "outcomes": [
+          {
+           "code": "DLCS25.5.5",
+           "text": "Create clear and accurate data visualizations using digital tools to communicate findings to an audience, including labels and titles."
+          },
+          {
+           "code": "DLCS25.5.6",
+           "text": "Evaluate how AI uses data to create representations of the world as a basis for making predictions or decisions. [AI]"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "computing-systems",
+     "title": "Computing Systems",
+     "topics": [
+      {
+       "id": "networks-and-internet",
+       "title": "Networks and Internet",
+       "subtopics": [
+        {
+         "id": "networks-and-internet",
+         "title": "Networks and Internet",
+         "outcomes": [
+          {
+           "code": "DLCS25.5.7",
+           "text": "Explain how devices connect and communicate in a simple network."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "cybersecurity",
+       "title": "Cybersecurity",
+       "subtopics": [
+        {
+         "id": "cybersecurity",
+         "title": "Cybersecurity",
+         "outcomes": [
+          {
+           "code": "DLCS25.5.8",
+           "text": "Research and discuss the purposes and potential privacy implications of online tracking methods."
+          },
+          {
+           "code": "DLCS25.5.9",
+           "text": "Discuss possible defenses against forms of online manipulation and impersonation"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "hardware-and-software",
+       "title": "Hardware and Software",
+       "subtopics": [
+        {
+         "id": "hardware-and-software",
+         "title": "Hardware and Software",
+         "outcomes": [
+          {
+           "code": "DLCS25.5.10",
+           "text": "Explain the purpose and importance of regular software updates."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "impact-of-computing",
+     "title": "Impact of Computing",
+     "topics": [
+      {
+       "id": "ethics",
+       "title": "Ethics",
+       "subtopics": [
+        {
+         "id": "ethics",
+         "title": "Ethics",
+         "outcomes": [
+          {
+           "code": "DLCS25.5.11",
+           "text": "Analyze scenarios involving online ethical dilemmas and propose responsible actions based on ethical principles and the school or district’s acceptable use policy."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "society",
+       "title": "Society",
+       "subtopics": [
+        {
+         "id": "society",
+         "title": "Society",
+         "outcomes": [
+          {
+           "code": "DLCS25.5.12",
+           "text": "Explain how technology can be used to raise awareness, help others, or solve a problem in society. [AI]"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "emerging-technology",
+       "title": "Emerging Technology",
+       "subtopics": [
+        {
+         "id": "emerging-technology",
+         "title": "Emerging Technology",
+         "outcomes": [
+          {
+           "code": "DLCS25.5.13",
+           "text": "Evaluate the positive and negative impacts of emerging technologies on society. [AI]"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "accessibility",
+       "title": "Accessibility",
+       "subtopics": [
+        {
+         "id": "accessibility",
+         "title": "Accessibility",
+         "outcomes": [
+          {
+           "code": "DLCS25.5.14",
+           "text": "Identify basic accessibility features in websites and digital tools and explain how they support users with different needs."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "digital-proficiency",
+     "title": "Digital Proficiency",
+     "topics": [
+      {
+       "id": "information-literacy",
+       "title": "Information Literacy",
+       "subtopics": [
+        {
+         "id": "information-literacy",
+         "title": "Information Literacy",
+         "outcomes": [
+          {
+           "code": "DLCS25.5.15",
+           "text": "Develop search queries and refine them based on results."
+          },
+          {
+           "code": "DLCS25.5.16",
+           "text": "Compare and evaluate multiple sources of online information to determine whether the information is factual. [AI]"
+          },
+          {
+           "code": "DLCS25.5.17",
+           "text": "Differentiate among quoting, paraphrasing, and plagiarizing, and demonstrate responsible use of information obtained from other sources."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "digital-life",
+       "title": "Digital Life",
+       "subtopics": [
+        {
+         "id": "digital-life",
+         "title": "Digital Life",
+         "outcomes": [
+          {
+           "code": "DLCS25.5.18",
+           "text": "Describe how communicating and sharing information online can affect individuals, families, and communities in both positive and negative ways."
+          },
+          {
+           "code": "DLCS25.5.19",
+           "text": "Discuss the long-term implications of online actions for reputation and safety."
+          },
+          {
+           "code": "DLCS25.5.20",
+           "text": "Evaluate the appropriateness of using AI versus seeking human support. [AI]"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "digital-tools",
+       "title": "Digital Tools",
+       "subtopics": [
+        {
+         "id": "digital-tools",
+         "title": "Digital Tools",
+         "outcomes": [
+          {
+           "code": "DLCS25.5.21",
+           "text": "Use digital tools to work with peers, provide feedback, and manage shared projects"
+          },
+          {
+           "code": "DLCS25.5.22",
+           "text": "Organize and manage digital files and folders, using file system navigation and naming conventions"
+          },
+          {
+           "code": "DLCS25.5.23",
+           "text": "Collaborate on projects that use digital tools for creative problem-solving by applying appropriate prompting strategies. [AI]"
+          },
+          {
+           "code": "DLCS25.5.24",
+           "text": "Type 20 words per minute using efficient keyboarding techniques."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "6",
+   "units": [
+    {
+     "id": "computational-thinker",
+     "title": "Computational Thinker",
+     "topics": [
+      {
+       "id": "abstraction",
+       "title": "Abstraction",
+       "subtopics": [
+        {
+         "id": "abstraction",
+         "title": "Abstraction",
+         "outcomes": [
+          {
+           "code": "6.1",
+           "text": "Remove background details from an everyday process to highlight essential properties. Examples: When making a sandwich, the type of bread, condiments, meats, and/or vegetables do not affect the fact that one is making a sandwich."
+          },
+          {
+           "code": "6.2",
+           "text": "Define a process as a function. Example: Functions or sets of steps combined to produce a process: turning off your alarm + getting out of bed + brushing your teeth + getting dressed = morning routine."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "algorithms",
+       "title": "Algorithms",
+       "subtopics": [
+        {
+         "id": "algorithms",
+         "title": "Algorithms",
+         "outcomes": [
+          {
+           "code": "6.3",
+           "text": "Create pseudocode that uses conditionals. Examples: Using if/then/else (If it is raining then bring an umbrella else get wet)."
+          },
+          {
+           "code": "6.4",
+           "text": "Differentiate between flowcharts and pseudocode. Example: Flowcharts use shapes to indicate what to do at each step while pseudocode uses text."
+          },
+          {
+           "code": "6.5",
+           "text": "Identify algorithms that make use of sequencing, selection or iteration. Examples: Sequencing is doing steps in order (put on socks, put on shoes, tie laces); selection uses a Boolean condition to determine which of two parts of an algorithm are used (hair is dirty? True, wash hair; false, do not); iteration is the repetition of part of an algorithm until a condition is met (if you’re happy and you know it clap your hands, when you’re no longer happy you stop clapping)."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "programming-and-development",
+       "title": "Programming and Development",
+       "subtopics": [
+        {
+         "id": "programming-and-development",
+         "title": "Programming and Development",
+         "outcomes": [
+          {
+           "code": "6.6",
+           "text": "Identify steps in developing solutions to complex problems using computational thinking."
+          },
+          {
+           "code": "6.7",
+           "text": "Describe how automation works to increase efficiency. Example: Compare the amount of time/work to hand wash a car vs. using an automated car wash."
+          },
+          {
+           "code": "6.8",
+           "text": "Create a program that initializes a variable. Example: Create a flowchart in which the variable or object returns to a starting position upon completion of a task."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "citizen-of-a-digital-culture",
+     "title": "Citizen of a Digital Culture",
+     "topics": [
+      {
+       "id": "safety-privacy-and-security",
+       "title": "Safety, Privacy, and Security",
+       "subtopics": [
+        {
+         "id": "safety-privacy-and-security",
+         "title": "Safety, Privacy, and Security",
+         "outcomes": [
+          {
+           "code": "6.9",
+           "text": "Differentiate between a secure and a non-secure website including how they affect personal data. Example: HTTP vs. HTTPS."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "legal-and-ethical-behavior",
+       "title": "Legal and Ethical Behavior",
+       "subtopics": [
+        {
+         "id": "legal-and-ethical-behavior",
+         "title": "Legal and Ethical Behavior",
+         "outcomes": [
+          {
+           "code": "6.10",
+           "text": "Describe the causes and effects of illegal use of intellectual property as it relates to print and digital media, considering copyright, fair use, licensing, sharing, and attribution."
+          },
+          {
+           "code": "6.11",
+           "text": "Differentiate between appropriate and inappropriate digital content and the use of that content."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "digital-identity",
+       "title": "Digital Identity",
+       "subtopics": [
+        {
+         "id": "digital-identity",
+         "title": "Digital Identity",
+         "outcomes": [
+          {
+           "code": "6.12",
+           "text": "Define digital permanence."
+          },
+          {
+           "code": "6.13",
+           "text": "Define personal privacy, digital footprint, and open communication."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "impact-of-computing",
+       "title": "Impact of Computing",
+       "subtopics": [
+        {
+         "id": "impact-of-computing",
+         "title": "Impact of Computing",
+         "outcomes": [
+          {
+           "code": "6.14",
+           "text": "Discuss digital globalization and Internet censorship. Examples: Software that scans a website for posts about potential threats; a person’s ability to order a product directly from a manufacturer in another part of the world; a student in Africa can take an online math course created in the United States; web-hosting company prevents posting of content."
+          },
+          {
+           "code": "6.15",
+           "text": "Identify emerging technologies in computing."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "global-collaborator",
+     "title": "Global Collaborator",
+     "topics": [
+      {
+       "id": "creative-communications",
+       "title": "Creative Communications",
+       "subtopics": [
+        {
+         "id": "creative-communications",
+         "title": "Creative Communications",
+         "outcomes": [
+          {
+           "code": "6.16",
+           "text": "Communicate and/or publish collaboratively to inform others from a variety of backgrounds and cultures about issues and problems."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "digital-tools",
+       "title": "Digital Tools",
+       "subtopics": [
+        {
+         "id": "digital-tools",
+         "title": "Digital Tools",
+         "outcomes": [
+          {
+           "code": "6.17",
+           "text": "Type 30 words per minute with 95% accuracy using appropriate keyboarding techniques."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "social-interactions",
+       "title": "Social Interactions",
+       "subtopics": [
+        {
+         "id": "social-interactions",
+         "title": "Social Interactions",
+         "outcomes": [
+          {
+           "code": "6.18",
+           "text": "Define censorship."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "computing-analyst",
+     "title": "Computing Analyst",
+     "topics": [
+      {
+       "id": "data",
+       "title": "Data",
+       "subtopics": [
+        {
+         "id": "data",
+         "title": "Data",
+         "outcomes": [
+          {
+           "code": "6.19",
+           "text": "Track data change from a variety of sources. Example: Use editing or versioning tools to track changes to data."
+          },
+          {
+           "code": "6.20",
+           "text": "Identify data transferring protocols, visualization, and the purpose of data and methods of storage. Examples: Using an online collection tool or form to collect data that is then stored in a spreadsheet or database."
+          },
+          {
+           "code": "6.21",
+           "text": "Identify varying data structures/systems and methods of classification, including decimal and binary. Examples: Difference between a bit and a byte, bit representation, pixels."
+          },
+          {
+           "code": "6.22",
+           "text": "Summarize the purpose of the American Standard Code for Information Interchange (ASCII)."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "systems",
+       "title": "Systems",
+       "subtopics": [
+        {
+         "id": "systems",
+         "title": "Systems",
+         "outcomes": [
+          {
+           "code": "6.23",
+           "text": "Discuss how digital devices may be used to collect, analyze, and present information."
+          },
+          {
+           "code": "6.24",
+           "text": "Compare and contrast types of networks. Examples: Wired, wireless (WiFi), local, wide area, mobile, Internet, and intranet."
+          },
+          {
+           "code": "6.25",
+           "text": "Differentiate between secure and non-secure systems."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "modeling-and-simulation",
+       "title": "Modeling and Simulation",
+       "subtopics": [
+        {
+         "id": "modeling-and-simulation",
+         "title": "Modeling and Simulation",
+         "outcomes": [
+          {
+           "code": "6.26",
+           "text": "Explain why professionals may use models as logical representations of physical, mathematical, or logical systems or processes. Example: Students will discuss why an engineer may build a model of a building before actually constructing the building."
+          },
+          {
+           "code": "6.27",
+           "text": "Explain how simulations serve to implement models."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "innovative-designer",
+     "title": "Innovative Designer",
+     "topics": [
+      {
+       "id": "human-computer-partnerships",
+       "title": "Human/Computer Partnerships",
+       "subtopics": [
+        {
+         "id": "human-computer-partnerships",
+         "title": "Human/Computer Partnerships",
+         "outcomes": [
+          {
+           "code": "6.28",
+           "text": "Define assistive technologies and state reasons they may be needed."
+          },
+          {
+           "code": "6.29",
+           "text": "Define artificial intelligence and identify examples of artificial intelligence in the community. Examples: Image recognition, voice assistants."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "design-thinking",
+       "title": "Design Thinking",
+       "subtopics": [
+        {
+         "id": "design-thinking",
+         "title": "Design Thinking",
+         "outcomes": [
+          {
+           "code": "6.30",
+           "text": "Discuss and apply the components of the problem-solving process. Example: Students will devise a plan to alleviate traffic congestion around the school during drop-off and pick-up."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "computational-thinking",
+     "title": "Computational Thinking",
+     "topics": [
+      {
+       "id": "algorithms-abstraction-and-decomposition",
+       "title": "Algorithms, Abstraction, and Decomposition",
+       "subtopics": [
+        {
+         "id": "algorithms-abstraction-and-decomposition",
+         "title": "Algorithms, Abstraction, and Decomposition",
+         "outcomes": [
+          {
+           "code": "DLCS25.6.1",
+           "text": "Create pseudocode using sequencing, selection, and iteration applying relational and logical operators to control program flow."
+          },
+          {
+           "code": "DLCS25.6.2",
+           "text": "Differentiate between flowcharts and pseudocode and create both to solve a task."
+          },
+          {
+           "code": "DLCS25.6.3",
+           "text": "Trace and debug pseudocode to identify outcomes and correct logic errors."
+          },
+          {
+           "code": "DLCS25.6.4",
+           "text": "Break a task into smaller steps and evaluate the purpose and effectiveness of each step to solve a problem."
+          },
+          {
+           "code": "DLCS25.6.5",
+           "text": "Explain how abstraction simplifies tasks, using real-life examples."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "programming",
+       "title": "Programming",
+       "subtopics": [
+        {
+         "id": "programming",
+         "title": "Programming",
+         "outcomes": [
+          {
+           "code": "DLCS25.6.6",
+           "text": "Create a program that includes sequencing, selection, and iteration."
+          },
+          {
+           "code": "DLCS25.6.7",
+           "text": "Create an interactive program using sequential commands and user input to control basic program actions, like movement or responses."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "data-science",
+     "title": "Data Science",
+     "topics": [
+      {
+       "id": "data-collection-and-representation",
+       "title": "Data Collection and Representation",
+       "subtopics": [
+        {
+         "id": "data-collection-and-representation",
+         "title": "Data Collection and Representation",
+         "outcomes": [
+          {
+           "code": "DLCS25.6.8",
+           "text": "Differentiate between numeric and text data types and construct simple data structures."
+          },
+          {
+           "code": "DLCS25.6.9",
+           "text": "Explain why computers use a binary system."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "data-analysis",
+       "title": "Data Analysis",
+       "subtopics": [
+        {
+         "id": "data-analysis",
+         "title": "Data Analysis",
+         "outcomes": [
+          {
+           "code": "DLCS25.6.10",
+           "text": "Create graphs or charts from simple datasets to identify patterns, and describe key findings."
+          },
+          {
+           "code": "DLCS25.6.11",
+           "text": "Generate and interpret descriptive statistics, including mean, median, and mode, to summarize data."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "modeling-and-simulation",
+       "title": "Modeling and Simulation",
+       "subtopics": [
+        {
+         "id": "modeling-and-simulation",
+         "title": "Modeling and Simulation",
+         "outcomes": [
+          {
+           "code": "DLCS25.6.12",
+           "text": "Use basic models or simulations to test how changes in input affect outcomes."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "computing-systems",
+     "title": "Computing Systems",
+     "topics": [
+      {
+       "id": "networks-and-internet",
+       "title": "Networks and Internet",
+       "subtopics": [
+        {
+         "id": "networks-and-internet",
+         "title": "Networks and Internet",
+         "outcomes": [
+          {
+           "code": "DLCS25.6.13",
+           "text": "Explain the basic roles of routers, IP addresses, domain names, and servers in network communication."
+          },
+          {
+           "code": "DLCS25.6.14",
+           "text": "Differentiate between the Internet and the World Wide Web."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "cybersecurity",
+       "title": "Cybersecurity",
+       "subtopics": [
+        {
+         "id": "cybersecurity",
+         "title": "Cybersecurity",
+         "outcomes": [
+          {
+           "code": "DLCS25.6.15",
+           "text": "Identify common online threats, including social engineering, and describe safe practices to protect personal information."
+          },
+          {
+           "code": "DLCS25.6.16",
+           "text": "Explain how strong passwords and multi-factor authentication help protect data."
+          },
+          {
+           "code": "DLCS25.6.17",
+           "text": "Compare safe and unsafe online behaviors related to social media use, personal identifiable information, and cyberbullying."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "hardware-and-software",
+       "title": "Hardware and Software",
+       "subtopics": [
+        {
+         "id": "hardware-and-software",
+         "title": "Hardware and Software",
+         "outcomes": [
+          {
+           "code": "DLCS25.6.18",
+           "text": "Perform basic troubleshooting to solve hardware problems."
+          },
+          {
+           "code": "DLCS25.6.19",
+           "text": "Identify examples of system and application software, and match common applications to appropriate tasks"
+          },
+          {
+           "code": "DLCS25.6.20",
+           "text": "Explain the purpose of an operating system and describe how it manages hardware and software resources."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "impact-of-computing",
+     "title": "Impact of Computing",
+     "topics": [
+      {
+       "id": "career-paths",
+       "title": "Career Paths",
+       "subtopics": [
+        {
+         "id": "career-paths",
+         "title": "Career Paths",
+         "outcomes": [
+          {
+           "code": "DLCS25.6.21",
+           "text": "Identify a variety of careers that relate to or utilize computer science skills."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "ethics",
+       "title": "Ethics",
+       "subtopics": [
+        {
+         "id": "ethics",
+         "title": "Ethics",
+         "outcomes": [
+          {
+           "code": "DLCS25.6.22",
+           "text": "Summarize major state and federal laws related to technology use, including those regulating copyright and intellectual property."
+          },
+          {
+           "code": "DLCS25.6.23",
+           "text": "Describe how AI systems are used in everyday life and examine the ethical considerations they raise. [AI]"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "society",
+       "title": "Society",
+       "subtopics": [
+        {
+         "id": "society",
+         "title": "Society",
+         "outcomes": [
+          {
+           "code": "DLCS25.6.24",
+           "text": "Explain how computing technologies have changed and will continue to change the way people communicate, learn, and work in their daily lives and communities"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "emerging-technology",
+       "title": "Emerging Technology",
+       "subtopics": [
+        {
+         "id": "emerging-technology",
+         "title": "Emerging Technology",
+         "outcomes": [
+          {
+           "code": "DLCS25.6.25",
+           "text": "Identify examples of relevant emerging technologies and describe their purposes. [AI]"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "accessibility",
+       "title": "Accessibility",
+       "subtopics": [
+        {
+         "id": "accessibility",
+         "title": "Accessibility",
+         "outcomes": [
+          {
+           "code": "DLCS25.6.26",
+           "text": "Evaluate accessibility features in digital tools and explain how they improve usability for individuals with diverse abilities."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "digital-proficiency",
+     "title": "Digital Proficiency",
+     "topics": [
+      {
+       "id": "information-literacy",
+       "title": "Information Literacy",
+       "subtopics": [
+        {
+         "id": "information-literacy",
+         "title": "Information Literacy",
+         "outcomes": [
+          {
+           "code": "DLCS25.6.27",
+           "text": "Analyze digital content for reliability and cite sources properly."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "digital-life",
+       "title": "Digital Life",
+       "subtopics": [
+        {
+         "id": "digital-life",
+         "title": "Digital Life",
+         "outcomes": [
+          {
+           "code": "DLCS25.6.28",
+           "text": "Investigate their own digital footprints and describe the effects digital footprints can have on themselves and others."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "digital-tools",
+       "title": "Digital Tools",
+       "subtopics": [
+        {
+         "id": "digital-tools",
+         "title": "Digital Tools",
+         "outcomes": [
+          {
+           "code": "DLCS25.6.29",
+           "text": "Create and apply a structured system for organizing files, folders, and subfolders to manage and retrieve digital work efficiently."
+          },
+          {
+           "code": "DLCS25.6.30",
+           "text": "Identify AI and non-AI technologies and features when using digital tools. [AI]"
+          },
+          {
+           "code": "DLCS25.6.31",
+           "text": "Input text at a rate of 25 words per minute via keyboard or alternative text input method."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "7",
+   "units": [
+    {
+     "id": "computational-thinker",
+     "title": "Computational Thinker",
+     "topics": [
+      {
+       "id": "abstraction",
+       "title": "Abstraction",
+       "subtopics": [
+        {
+         "id": "abstraction",
+         "title": "Abstraction",
+         "outcomes": [
+          {
+           "code": "7.1",
+           "text": "Create a function to simplify a task. Example: Getting a writing utensil, getting paper, jotting notes can collectively be named “note taking”."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "algorithms",
+       "title": "Algorithms",
+       "subtopics": [
+        {
+         "id": "algorithms",
+         "title": "Algorithms",
+         "outcomes": [
+          {
+           "code": "7.2",
+           "text": "Create complex pseudocode using conditionals and Boolean statements. Example: Automated vacuum pseudocode – drive forward until the unit encounters an obstacle; reverse 2”; rotate 30 degrees to the left, repeat."
+          },
+          {
+           "code": "7.3",
+           "text": "Create algorithms that demonstrate sequencing, selection or iteration. Examples: Debit card transactions are approved until the account balance is insufficient to fund the transaction = iteration, do until."
+          },
+          {
+           "code": "7.4",
+           "text": "Design a complex algorithm that contains sequencing, selection or iteration. Examples: Lunch line algorithm that contains parameters for bringing your lunch and multiple options available in the lunch line."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "programming-and-development",
+       "title": "Programming and Development",
+       "subtopics": [
+        {
+         "id": "programming-and-development",
+         "title": "Programming and Development",
+         "outcomes": [
+          {
+           "code": "7.5",
+           "text": "Solve a complex problem using computational thinking."
+          },
+          {
+           "code": "7.6",
+           "text": "Create and organize algorithms in order to automate a process efficiently. Example: Set of recipes (algorithms) for preparing a complete meal."
+          },
+          {
+           "code": "7.7",
+           "text": "Create a program that updates the value of a variable in the program. Examples: Update the value of score when a coin is collected (in a flowchart, pseudocode or program)."
+          },
+          {
+           "code": "7.8",
+           "text": "Formulate a narrative for each step of a process and its intended result, given pseudocode or code."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "citizen-of-a-digital-culture",
+     "title": "Citizen of a Digital Culture",
+     "topics": [
+      {
+       "id": "safety-privacy-and-security",
+       "title": "Safety, Privacy, and Security",
+       "subtopics": [
+        {
+         "id": "safety-privacy-and-security",
+         "title": "Safety, Privacy, and Security",
+         "outcomes": [
+          {
+           "code": "7.9",
+           "text": "Identify common methods of securing data. Examples: Permissions, encryption, vault, locked closet."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "legal-and-ethical-behavior",
+       "title": "Legal and Ethical Behavior",
+       "subtopics": [
+        {
+         "id": "legal-and-ethical-behavior",
+         "title": "Legal and Ethical Behavior",
+         "outcomes": [
+          {
+           "code": "7.10",
+           "text": "Explain social engineering, including countermeasures, and its impact on a digital society. Examples: Phishing, hoaxes, impersonation, baiting, spoofing."
+          },
+          {
+           "code": "7.11",
+           "text": "Demonstrate positive, safe, legal, and ethical habits when creating and sharing digital content and identify the consequences of failing to act responsibly."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "digital-identity",
+       "title": "Digital Identity",
+       "subtopics": [
+        {
+         "id": "digital-identity",
+         "title": "Digital Identity",
+         "outcomes": [
+          {
+           "code": "7.12",
+           "text": "Discuss the impact of data permanence on digital identity including best practices to protect personal digital footprint."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "impact-of-computing",
+       "title": "Impact of Computing",
+       "subtopics": [
+        {
+         "id": "impact-of-computing",
+         "title": "Impact of Computing",
+         "outcomes": [
+          {
+           "code": "7.13",
+           "text": "Compare and contrast information available locally and globally. Example: Review an article published in the United States and compare to an article on the same subject published in China."
+          },
+          {
+           "code": "7.14",
+           "text": "Discuss current events related to emerging technologies in computing and the effects such events have on individuals and the global society."
+          },
+          {
+           "code": "7.15",
+           "text": "Discuss unique perspectives and needs of a global culture when developing computational artifacts, including options for accessibility for all users. Example: Would students create a webpage aimed at reaching a village of users that have no access to the Internet?"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "global-collaborator",
+     "title": "Global Collaborator",
+     "topics": [
+      {
+       "id": "creative-communications",
+       "title": "Creative Communications",
+       "subtopics": [
+        {
+         "id": "creative-communications",
+         "title": "Creative Communications",
+         "outcomes": [
+          {
+           "code": "7.16",
+           "text": "Construct content designed for specific audiences through an appropriate medium. Examples: Design a multi-media children’s e-book with an appropriate readability level."
+          },
+          {
+           "code": "7.17",
+           "text": "Publish content to be available for external feedback."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "digital-tools",
+       "title": "Digital Tools",
+       "subtopics": [
+        {
+         "id": "digital-tools",
+         "title": "Digital Tools",
+         "outcomes": [
+          {
+           "code": "7.18",
+           "text": "Type 35 words per minute with 95% accuracy using appropriate keyboarding techniques."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "social-interactions",
+       "title": "Social Interactions",
+       "subtopics": [
+        {
+         "id": "social-interactions",
+         "title": "Social Interactions",
+         "outcomes": [
+          {
+           "code": "7.19",
+           "text": "Discuss the benefits and limitations of censorship."
+          },
+          {
+           "code": "7.20",
+           "text": "Evaluate the validity and accuracy of a data set."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "computing-analyst",
+     "title": "Computing Analyst",
+     "topics": [
+      {
+       "id": "data",
+       "title": "Data",
+       "subtopics": [
+        {
+         "id": "data",
+         "title": "Data",
+         "outcomes": [
+          {
+           "code": "7.21",
+           "text": "Compare common transfer protocols. Examples: FTP, HTTP"
+          },
+          {
+           "code": "7.22",
+           "text": "Compare data storage structures. Examples: Stack, array, queue, table, database."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "systems",
+       "title": "Systems",
+       "subtopics": [
+        {
+         "id": "systems",
+         "title": "Systems",
+         "outcomes": [
+          {
+           "code": "7.23",
+           "text": "Demonstrate the use of a variety of digital devices individually and collaboratively to collect, analyze, and present information for content-related problems."
+          },
+          {
+           "code": "7.24",
+           "text": "Diagram a network given a specific setup or need. Examples: Home network, public network, business network."
+          },
+          {
+           "code": "7.25",
+           "text": "List common methods of system cybersecurity. Examples: Various password requirements, two factor authentication, biometric, geolocation."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "modeling-and-simulation",
+       "title": "Modeling and Simulation",
+       "subtopics": [
+        {
+         "id": "modeling-and-simulation",
+         "title": "Modeling and Simulation",
+         "outcomes": [
+          {
+           "code": "7.26",
+           "text": "Categorize models based on the most appropriate representation of various systems."
+          },
+          {
+           "code": "7.27",
+           "text": "Identify data needed to create a model or simulation of a given event Examples: When creating a random name generator, the program needs access to a list of possible names."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "innovative-designer",
+     "title": "Innovative Designer",
+     "topics": [
+      {
+       "id": "human-computer-partnerships",
+       "title": "Human/Computer Partnerships",
+       "subtopics": [
+        {
+         "id": "human-computer-partnerships",
+         "title": "Human/Computer Partnerships",
+         "outcomes": [
+          {
+           "code": "7.28",
+           "text": "Classify types of assistive technologies. Examples: Hardware, software, stylus, sticky keys."
+          },
+          {
+           "code": "7.29",
+           "text": "Compare and contrast human intelligence and artificial intelligence."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "design-thinking",
+       "title": "Design Thinking",
+       "subtopics": [
+        {
+         "id": "design-thinking",
+         "title": "Design Thinking",
+         "outcomes": [
+          {
+           "code": "7.30",
+           "text": "Apply the problem-solving process to solve real-world problems."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "computational-thinking",
+     "title": "Computational Thinking",
+     "topics": [
+      {
+       "id": "algorithms-abstraction-and-decomposition",
+       "title": "Algorithms, Abstraction, and Decomposition",
+       "subtopics": [
+        {
+         "id": "algorithms-abstraction-and-decomposition",
+         "title": "Algorithms, Abstraction, and Decomposition",
+         "outcomes": [
+          {
+           "code": "DLCS25.7.1",
+           "text": "Design and test algorithms using pseudocode with sequencing, selection, and iteration applying relational and logical operators to control program flow and produce appropriate outcomes."
+          },
+          {
+           "code": "DLCS25.7.2",
+           "text": "Create a flowchart and corresponding pseudocode to plan and explain a process."
+          },
+          {
+           "code": "DLCS25.7.3",
+           "text": "Debug algorithms containing selection and iteration and explain improvements."
+          },
+          {
+           "code": "DLCS25.7.4",
+           "text": "Analyze a multi-step problem by dividing it into its key components that can be completed collaboratively."
+          },
+          {
+           "code": "DLCS25.7.5",
+           "text": "Create functions to reduce complexity in programming."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "programming",
+       "title": "Programming",
+       "subtopics": [
+        {
+         "id": "programming",
+         "title": "Programming",
+         "outcomes": [
+          {
+           "code": "DLCS25.7.6",
+           "text": "Design and implement a program that solves a problem, using sequencing, selection, and iteration, and user input to control the program’s behavior."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "data-science",
+     "title": "Data Science",
+     "topics": [
+      {
+       "id": "data-collection-and-representation",
+       "title": "Data Collection and Representation",
+       "subtopics": [
+        {
+         "id": "data-collection-and-representation",
+         "title": "Data Collection and Representation",
+         "outcomes": [
+          {
+           "code": "DLCS25.7.7",
+           "text": "Write a program that utilizes multiple data types and structures."
+          },
+          {
+           "code": "DLCS25.7.8",
+           "text": "Convert simple text and numbers into binary, manually or using digital tools."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "data-analysis",
+       "title": "Data Analysis",
+       "subtopics": [
+        {
+         "id": "data-analysis",
+         "title": "Data Analysis",
+         "outcomes": [
+          {
+           "code": "DLCS25.7.9",
+           "text": "Apply basic data analysis techniques to draw conclusions from structured datasets."
+          },
+          {
+           "code": "DLCS25.7.10",
+           "text": "Use evidence from multiple data sources to support claims or decisions related to real-world problems."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "modeling-and-simulation",
+       "title": "Modeling and Simulation",
+       "subtopics": [
+        {
+         "id": "modeling-and-simulation",
+         "title": "Modeling and Simulation",
+         "outcomes": [
+          {
+           "code": "DLCS25.7.11",
+           "text": "Modify a model or simulation to improve its accuracy and describe how changes in input affect the results."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "computing-systems",
+     "title": "Computing Systems",
+     "topics": [
+      {
+       "id": "networks-and-internet",
+       "title": "Networks and Internet",
+       "subtopics": [
+        {
+         "id": "networks-and-internet",
+         "title": "Networks and Internet",
+         "outcomes": [
+          {
+           "code": "DLCS25.7.12",
+           "text": "Compare and contrast different types of networks, including LAN, WAN, and wireless."
+          },
+          {
+           "code": "DLCS25.7.13",
+           "text": "Describe how data travels between devices using basic protocols."
+          },
+          {
+           "code": "DLCS25.7.14",
+           "text": "Identify Internet of Things (IoT) devices and explain how they communicate with other devices over a network."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "cybersecurity",
+       "title": "Cybersecurity",
+       "subtopics": [
+        {
+         "id": "cybersecurity",
+         "title": "Cybersecurity",
+         "outcomes": [
+          {
+           "code": "DLCS25.7.15",
+           "text": "Explain how sensitive data can be compromised by threats and analyze how strong security practices can reduce these risks."
+          },
+          {
+           "code": "DLCS25.7.16",
+           "text": "Outline cybersecurity practices, including firewalls, antivirus software, and secure passwords, and explain how to identify and reduce system vulnerabilities."
+          },
+          {
+           "code": "DLCS25.7.17",
+           "text": "Demonstrate strategies for protecting personal information and digital identity."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "hardware-and-software",
+       "title": "Hardware and Software",
+       "subtopics": [
+        {
+         "id": "hardware-and-software",
+         "title": "Hardware and Software",
+         "outcomes": [
+          {
+           "code": "DLCS25.7.18",
+           "text": "Evaluate the benefits and limitations of hardware components for different users and computing needs."
+          },
+          {
+           "code": "DLCS25.7.19",
+           "text": "Complete a specific task using appropriate application software."
+          },
+          {
+           "code": "DLCS25.7.20",
+           "text": "Analyze how different operating systems work for various types of devices."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "impact-of-computing",
+     "title": "Impact of Computing",
+     "topics": [
+      {
+       "id": "career-paths",
+       "title": "Career Paths",
+       "subtopics": [
+        {
+         "id": "career-paths",
+         "title": "Career Paths",
+         "outcomes": [
+          {
+           "code": "DLCS25.7.21",
+           "text": "Investigate various careers in computer science and related fields, and identify the skills commonly required for those roles."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "ethics",
+       "title": "Ethics",
+       "subtopics": [
+        {
+         "id": "ethics",
+         "title": "Ethics",
+         "outcomes": [
+          {
+           "code": "DLCS25.7.22",
+           "text": "Explain the importance of intellectual property, copyright, and fair use in digital media."
+          },
+          {
+           "code": "DLCS25.7.23",
+           "text": "Analyze ethical dilemmas involving the use of technology or data, including AI bias and misuse. [AI]"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "society",
+       "title": "Society",
+       "subtopics": [
+        {
+         "id": "society",
+         "title": "Society",
+         "outcomes": [
+          {
+           "code": "DLCS25.7.24",
+           "text": "Describe ways computing technologies can transform and impact the environment, culture, economies, and society"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "emerging-technology",
+       "title": "Emerging Technology",
+       "subtopics": [
+        {
+         "id": "emerging-technology",
+         "title": "Emerging Technology",
+         "outcomes": [
+          {
+           "code": "DLCS25.7.25",
+           "text": "Assess and predict the impact of emerging technologies. [AI]"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "accessibility",
+       "title": "Accessibility",
+       "subtopics": [
+        {
+         "id": "accessibility",
+         "title": "Accessibility",
+         "outcomes": [
+          {
+           "code": "DLCS25.7.26",
+           "text": "Apply basic accessibility principles when creating digital content."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "digital-proficiency",
+     "title": "Digital Proficiency",
+     "topics": [
+      {
+       "id": "information-literacy",
+       "title": "Information Literacy",
+       "subtopics": [
+        {
+         "id": "information-literacy",
+         "title": "Information Literacy",
+         "outcomes": [
+          {
+           "code": "DLCS25.7.27",
+           "text": "Apply strategies for verifying digital information, cross-referencing sources and using digital tools to assess credibility and accuracy. [AI]"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "digital-life",
+       "title": "Digital Life",
+       "subtopics": [
+        {
+         "id": "digital-life",
+         "title": "Digital Life",
+         "outcomes": [
+          {
+           "code": "DLCS25.7.28",
+           "text": "Analyze their own technology use and explain the impact of online activities on their lives and well-being."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "digital-tools",
+       "title": "Digital Tools",
+       "subtopics": [
+        {
+         "id": "digital-tools",
+         "title": "Digital Tools",
+         "outcomes": [
+          {
+           "code": "DLCS25.7.29",
+           "text": "Select and apply appropriate online tools and file types for a variety of tasks."
+          },
+          {
+           "code": "DLCS25.7.30",
+           "text": "Collaborate with peers using online platforms to create and revise multimedia content, adjusting tone and format for audience and purpose."
+          },
+          {
+           "code": "DLCS25.7.31",
+           "text": "Compare and contrast AI-generated artifacts with human-generated artifacts. [AI]"
+          },
+          {
+           "code": "DLCS25.7.32",
+           "text": "Input text at a rate of 30 words per minute via keyboard or alternative text input method."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "8",
+   "units": [
+    {
+     "id": "computational-thinker",
+     "title": "Computational Thinker",
+     "topics": [
+      {
+       "id": "abstraction",
+       "title": "Abstraction",
+       "subtopics": [
+        {
+         "id": "abstraction",
+         "title": "Abstraction",
+         "outcomes": [
+          {
+           "code": "8.1",
+           "text": "Design a function using a programming language that demonstrates abstraction. Example: Create a program that utilizes functions in an effort remove repetitive sequences of steps."
+          },
+          {
+           "code": "8.2",
+           "text": "Explain how abstraction is used in a given function. Example: Examine a set of block-based code and explain how abstraction was used."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "algorithms",
+       "title": "Algorithms",
+       "subtopics": [
+        {
+         "id": "algorithms",
+         "title": "Algorithms",
+         "outcomes": [
+          {
+           "code": "8.3",
+           "text": "Create an algorithm using a programming language that includes the use of sequencing, selections, or iterations. Example: Use a block-based or script programming language Step 1: Start Step 2: Declare variables a, b and c. Step 3: Read variables a, b and c. Step 4: If a>b If a>c Display a is the largest number. Else Display c is the largest number. Else If b>c Display b is the largest number. Else Display c is the greatest number. Step 5: Stop"
+          },
+          {
+           "code": "8.4",
+           "text": "Create a function to simplify a task. Example: (3) 8= 3*3*3*3*3*3*3*3; = (Average) used in a spreadsheet to average a given list of grades."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "programming-and-development",
+       "title": "Programming and Development",
+       "subtopics": [
+        {
+         "id": "programming-and-development",
+         "title": "Programming and Development",
+         "outcomes": [
+          {
+           "code": "8.5",
+           "text": "Discuss the efficiency of an algorithm or technology used to solve complex problems."
+          },
+          {
+           "code": "8.6",
+           "text": "Describe how algorithmic processes and automation increase efficiency."
+          },
+          {
+           "code": "8.7",
+           "text": "Create a program that includes selection, iteration, or abstraction, and initializes, and updates, at least two variables. Examples: Make a game, interactive card, story, or adventure game."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "citizen-of-a-digital-culture",
+     "title": "Citizen of a Digital Culture",
+     "topics": [
+      {
+       "id": "safety-privacy-and-security",
+       "title": "Safety, Privacy, and Security",
+       "subtopics": [
+        {
+         "id": "safety-privacy-and-security",
+         "title": "Safety, Privacy, and Security",
+         "outcomes": [
+          {
+           "code": "8.8",
+           "text": "Compare and contrast common methods of securing data."
+          },
+          {
+           "code": "8.9",
+           "text": "Secure a file or other data. Examples: lock spreadsheet cell(s), password protect, encrypt."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "legal-and-ethical-behavior",
+       "title": "Legal and Ethical Behavior",
+       "subtopics": [
+        {
+         "id": "legal-and-ethical-behavior",
+         "title": "Legal and Ethical Behavior",
+         "outcomes": [
+          {
+           "code": "8.10",
+           "text": "Analyze different modes of social engineering and their effectiveness. Examples: Phishing, hoaxes, impersonation, baiting, spoofing."
+          },
+          {
+           "code": "8.11",
+           "text": "Advocate for positive, safe, legal, and ethical habits when creating and sharing digital content. Example: Students create a brochure that highlights the consequences of illegally downloading media."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "digital-identity",
+       "title": "Digital Identity",
+       "subtopics": [
+        {
+         "id": "digital-identity",
+         "title": "Digital Identity",
+         "outcomes": [
+          {
+           "code": "8.12",
+           "text": "Cite evidence of the positive and negative effects of data permanence on personal and professional digital identity."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "impact-of-computing",
+       "title": "Impact of Computing",
+       "subtopics": [
+        {
+         "id": "impact-of-computing",
+         "title": "Impact of Computing",
+         "outcomes": [
+          {
+           "code": "8.13",
+           "text": "Evaluate the impact of digital globalization on public perception and ways Internet censorship can affect free and equitable access to information."
+          },
+          {
+           "code": "8.14",
+           "text": "Analyze current events related to computing and their effects on education, the workplace, individuals, communities, and global society."
+          },
+          {
+           "code": "8.15",
+           "text": "Critique computational artifacts, including options for accessibility for all users, with respect to the needs of a global culture."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "global-collaborator",
+     "title": "Global Collaborator",
+     "topics": [
+      {
+       "id": "creative-communications",
+       "title": "Creative Communications",
+       "subtopics": [
+        {
+         "id": "creative-communications",
+         "title": "Creative Communications",
+         "outcomes": [
+          {
+           "code": "8.16",
+           "text": "Present content designed for specific audiences through an appropriate medium. Example: Create and share a help video for a senior's center that provides tips for online safety."
+          },
+          {
+           "code": "8.17",
+           "text": "Communicate and publish individually or collaboratively to persuade peers, experts, or community about issues and problems."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "digital-tools",
+       "title": "Digital Tools",
+       "subtopics": [
+        {
+         "id": "digital-tools",
+         "title": "Digital Tools",
+         "outcomes": [
+          {
+           "code": "8.18",
+           "text": "Type 40 words per minute with 95% accuracy using appropriate keyboarding techniques."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "social-interactions",
+       "title": "Social Interactions",
+       "subtopics": [
+        {
+         "id": "social-interactions",
+         "title": "Social Interactions",
+         "outcomes": [
+          {
+           "code": "8.19",
+           "text": "Critique the impacts of censorship as it impacts global society. Example: Create a presentation outlining the social implications of limiting access to web content by favoring or blocking particular products or websites."
+          },
+          {
+           "code": "8.20",
+           "text": "Examine an artifact that demonstrates bias through distorting, exaggerating, or misrepresenting data and redesign it using factual, relevant, unbiased content to more accurately reflect the truth."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "computing-analyst",
+     "title": "Computing Analyst",
+     "topics": [
+      {
+       "id": "data",
+       "title": "Data",
+       "subtopics": [
+        {
+         "id": "data",
+         "title": "Data",
+         "outcomes": [
+          {
+           "code": "8.21",
+           "text": "Differentiate types of data storage and apply most efficient structure. Examples: Stack, array, queue, table, database."
+          },
+          {
+           "code": "8.22",
+           "text": "Encrypt and decrypt various data. Example: Create and decipher a message sent in a secret code."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "systems",
+       "title": "Systems",
+       "subtopics": [
+        {
+         "id": "systems",
+         "title": "Systems",
+         "outcomes": [
+          {
+           "code": "8.23",
+           "text": "Design a digital artifact to propose a solution for a content-related problem. Example: Create a presentation outlining how to create a cost-efficient method to melt snow on roads during the winter."
+          },
+          {
+           "code": "8.24",
+           "text": "Compare and contrast common methods of cybersecurity. Example: Discuss how password protections and encryption are similar and different."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "modeling-and-simulation",
+       "title": "Modeling and Simulation",
+       "subtopics": [
+        {
+         "id": "modeling-and-simulation",
+         "title": "Modeling and Simulation",
+         "outcomes": [
+          {
+           "code": "8.25",
+           "text": "Create a model that represents a system. Example: Food chain, supply and demand."
+          },
+          {
+           "code": "8.26",
+           "text": "Create a simulation that tests a specific model. Examples: Demonstrate that pressure changes with temperature in a controlled environment; demonstrate that rocket design affects the height of a rocket’s launch; demonstrate that the amount of water changes the height of a plant."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "innovative-designer",
+     "title": "Innovative Designer",
+     "topics": [
+      {
+       "id": "human-computer-partnerships",
+       "title": "Human/Computer Partnerships",
+       "subtopics": [
+        {
+         "id": "human-computer-partnerships",
+         "title": "Human/Computer Partnerships",
+         "outcomes": [
+          {
+           "code": "8.27",
+           "text": "Analyze assistive technologies and how they improve the quality of life for users. Example: Research multiple speech to text technologies and write a persuasive essay in favor of one over another."
+          },
+          {
+           "code": "8.28",
+           "text": "Develop a logical argument for and against artificial intelligence. Examples: Students debate the use of artificial intelligence in self-driving vehicles. Students write a persuasive essay to argue for or against digital personal assistants."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "design-thinking",
+       "title": "Design Thinking",
+       "subtopics": [
+        {
+         "id": "design-thinking",
+         "title": "Design Thinking",
+         "outcomes": [
+          {
+           "code": "8.29",
+           "text": "Create an artifact to solve a problem using ideation and iteration in the problem-solving process. Examples: Create a public service announcement or design a computer program, game, or application."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "computational-thinking",
+     "title": "Computational Thinking",
+     "topics": [
+      {
+       "id": "algorithms-abstraction-and-decomposition",
+       "title": "Algorithms, Abstraction, and Decomposition",
+       "subtopics": [
+        {
+         "id": "algorithms-abstraction-and-decomposition",
+         "title": "Algorithms, Abstraction, and Decomposition",
+         "outcomes": [
+          {
+           "code": "DLCS25.8.1",
+           "text": "Utilize a programming language to create algorithms that include sequencing, selection, and iteration."
+          },
+          {
+           "code": "DLCS25.8.2",
+           "text": "Design multi-branched flowcharts and corresponding pseudocode."
+          },
+          {
+           "code": "DLCS25.8.3",
+           "text": "Evaluate programs containing nested logic by applying relational and logical operators to trace conditions, and debug when those conditions do not behave as expected."
+          },
+          {
+           "code": "DLCS25.8.4",
+           "text": "Decompose a problem into multiple parts to identify each part’s functionality and support maintenance and future improvements."
+          },
+          {
+           "code": "DLCS25.8.5",
+           "text": "Create reusable functions that include inputs to change how the function works and explain how using functions makes code easier to reuse and understand."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "programming",
+       "title": "Programming",
+       "subtopics": [
+        {
+         "id": "programming",
+         "title": "Programming",
+         "outcomes": [
+          {
+           "code": "DLCS25.8.6",
+           "text": "Improve an existing program by adding new features or increase its efficiency."
+          },
+          {
+           "code": "DLCS25.8.7",
+           "text": "Explain how software is developed, tested, and maintained to ensure quality."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "data-science",
+     "title": "Data Science",
+     "topics": [
+      {
+       "id": "data-collection-and-representation",
+       "title": "Data Collection and Representation",
+       "subtopics": [
+        {
+         "id": "data-collection-and-representation",
+         "title": "Data Collection and Representation",
+         "outcomes": [
+          {
+           "code": "DLCS25.8.8",
+           "text": "Design a data store and apply validation techniques."
+          },
+          {
+           "code": "DLCS25.8.9",
+           "text": "Explain how binary data is used in computing systems to represent and process different types of information."
+          },
+          {
+           "code": "DLCS25.8.10",
+           "text": "Explain how data size and format affect storage and performance."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "data-analysis",
+       "title": "Data Analysis",
+       "subtopics": [
+        {
+         "id": "data-analysis",
+         "title": "Data Analysis",
+         "outcomes": [
+          {
+           "code": "DLCS25.8.11",
+           "text": "Use digital tools or visualizations to analyze datasets, detect anomalies, and develop narratives based on findings."
+          },
+          {
+           "code": "DLCS25.8.12",
+           "text": "Explain how AI systems use data to make decisions and predictions. [AI]"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "modeling-and-simulation",
+       "title": "Modeling and Simulation",
+       "subtopics": [
+        {
+         "id": "modeling-and-simulation",
+         "title": "Modeling and Simulation",
+         "outcomes": [
+          {
+           "code": "DLCS25.8.13",
+           "text": "Develop a model or simulation and evaluate its accuracy and limitations."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "computing-systems",
+     "title": "Computing Systems",
+     "topics": [
+      {
+       "id": "networks-and-internet",
+       "title": "Networks and Internet",
+       "subtopics": [
+        {
+         "id": "networks-and-internet",
+         "title": "Networks and Internet",
+         "outcomes": [
+          {
+           "code": "DLCS25.8.14",
+           "text": "Create a diagram of a network to meet specific needs, including modems, routers, and servers."
+          },
+          {
+           "code": "DLCS25.8.15",
+           "text": "Explain how data is broken into packets, sent across the Internet, and reassembled, including how multiple protocols work together for communication."
+          },
+          {
+           "code": "DLCS25.8.16",
+           "text": "Explain how cloud computing enables data access, including the advantages and limitations of technologies that enable data access."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "cybersecurity",
+       "title": "Cybersecurity",
+       "subtopics": [
+        {
+         "id": "cybersecurity",
+         "title": "Cybersecurity",
+         "outcomes": [
+          {
+           "code": "DLCS25.8.17",
+           "text": "Dissect a previously occurred cybersecurity breach, identify failure points, and explain how better safeguards could have prevented the attack."
+          },
+          {
+           "code": "DLCS25.8.18",
+           "text": "Evaluate cybersecurity risks across networks, applications, and cloud-based systems and recommend improvements."
+          },
+          {
+           "code": "DLCS25.8.19",
+           "text": "Create a personal cybersecurity plan which includes identifying online risks, evaluating their own digital footprint, adjusting privacy settings, and describing steps to protect their accounts and personal information."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "hardware-and-software",
+       "title": "Hardware and Software",
+       "subtopics": [
+        {
+         "id": "hardware-and-software",
+         "title": "Hardware and Software",
+         "outcomes": [
+          {
+           "code": "DLCS25.8.20",
+           "text": "Demonstrate how hardware components work together in the data processing cycle to perform computing tasks."
+          },
+          {
+           "code": "DLCS25.8.21",
+           "text": "Complete a project by combining multiple software applications."
+          },
+          {
+           "code": "DLCS25.8.22",
+           "text": "Evaluate the advantages and disadvantages of open-source and proprietary software in different scenarios."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "impact-of-computing",
+     "title": "Impact of Computing",
+     "topics": [
+      {
+       "id": "career-paths",
+       "title": "Career Paths",
+       "subtopics": [
+        {
+         "id": "career-paths",
+         "title": "Career Paths",
+         "outcomes": [
+          {
+           "code": "DLCS25.8.23",
+           "text": "Research and report on the responsibilities of various careers that use computer science expertise."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "ethics",
+       "title": "Ethics",
+       "subtopics": [
+        {
+         "id": "ethics",
+         "title": "Ethics",
+         "outcomes": [
+          {
+           "code": "DLCS25.8.24",
+           "text": "Demonstrate safe, legal, and ethical habits when creating and sharing digital content."
+          },
+          {
+           "code": "DLCS25.8.25",
+           "text": "Evaluate ethical dimensions and societal impacts of AI technologies. [AI]"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "society",
+       "title": "Society",
+       "subtopics": [
+        {
+         "id": "society",
+         "title": "Society",
+         "outcomes": [
+          {
+           "code": "DLCS25.8.26",
+           "text": "Analyze how computing technologies impact laws and influence social structures over time."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "emerging-technology",
+       "title": "Emerging Technology",
+       "subtopics": [
+        {
+         "id": "emerging-technology",
+         "title": "Emerging Technology",
+         "outcomes": [
+          {
+           "code": "DLCS25.8.27",
+           "text": "Research the use of emerging technologies in everyday life, and report on their benefits and limitations. [AI]"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "accessibility",
+       "title": "Accessibility",
+       "subtopics": [
+        {
+         "id": "accessibility",
+         "title": "Accessibility",
+         "outcomes": [
+          {
+           "code": "DLCS25.8.28",
+           "text": "Design and implement solutions that address specific accessibility needs, considering feedback and making adjustments."
+          },
+          {
+           "code": "DLCS25.8.29",
+           "text": "Research and report on provisions of the Americans with Disabilities Act (ADA) regarding the accessibility of technology."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "digital-proficiency",
+     "title": "Digital Proficiency",
+     "topics": [
+      {
+       "id": "information-literacy",
+       "title": "Information Literacy",
+       "subtopics": [
+        {
+         "id": "information-literacy",
+         "title": "Information Literacy",
+         "outcomes": [
+          {
+           "code": "DLCS25.8.30",
+           "text": "Synthesize information from credible sources to create an original product."
+          },
+          {
+           "code": "DLCS25.8.31",
+           "text": "Explain how digital manipulation influences actions, perceptions, and public opinion. [AI]"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "digital-life",
+       "title": "Digital Life",
+       "subtopics": [
+        {
+         "id": "digital-life",
+         "title": "Digital Life",
+         "outcomes": [
+          {
+           "code": "DLCS25.8.32",
+           "text": "Develop strategies to manage screen time, handle multitasking, and balance the use of technology in daily life."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "digital-tools",
+       "title": "Digital Tools",
+       "subtopics": [
+        {
+         "id": "digital-tools",
+         "title": "Digital Tools",
+         "outcomes": [
+          {
+           "code": "DLCS25.8.33",
+           "text": "Evaluate the effectiveness of digital tools for communication and project-based collaboration."
+          },
+          {
+           "code": "DLCS25.8.34",
+           "text": "Compose professional emails and presentations, demonstrating clear purpose, tone, and etiquette across digital platforms."
+          },
+          {
+           "code": "DLCS25.8.35",
+           "text": "Produce new content through guided collaboration with AI systems. [AI]"
+          },
+          {
+           "code": "DLCS25.8.36",
+           "text": "Input text at a rate of 35 words per minute via keyboard or alternative text input method."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "9-11",
+   "units": [
+    {
+     "id": "computational-thinker",
+     "title": "Computational Thinker",
+     "topics": [
+      {
+       "id": "abstraction",
+       "title": "Abstraction",
+       "subtopics": [
+        {
+         "id": "abstraction",
+         "title": "Abstraction",
+         "outcomes": [
+          {
+           "code": "9-12.1",
+           "text": "Decompose problems into component parts, extract key information, and develop descriptive models to understand the levels of abstractions in complex systems."
+          },
+          {
+           "code": "9-12.2",
+           "text": "Explain how computing systems are often integrated with other systems and embedded in ways that may not be apparent to the user. Examples: Millions of lines of code control the subsystems within an automobile (e.g., antilock braking systems, lane detection, and self-parking)."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "algorithms",
+       "title": "Algorithms",
+       "subtopics": [
+        {
+         "id": "differentiate-between-a-generalized-expression-o",
+         "title": "Differentiate between a generalized expression of an algorithm in pseudocode and its concrete implementation in a programming language",
+         "outcomes": [
+          {
+           "code": "9-12.3.a",
+           "text": "Explain that some algorithms do not lead to exact solutions in a reasonable amount of time and thus approximations are acceptable."
+          },
+          {
+           "code": "9-12.3.b",
+           "text": "Compare and contrast the difference between specific control structures such as sequential statements, conditional, iteration, and explain the benefits and drawbacks of choices made. Examples: Tradeoffs involving implementation, readability, and program performance."
+          },
+          {
+           "code": "9-12.3.c",
+           "text": "Distinguish when a problem solution requires decisions to be made among alternatives, such as selection constructs, or when a solution needs to be iteratively processed to arrive at a result, such as iterative “loop” constructs or recursion."
+          },
+          {
+           "code": "9-12.3.d",
+           "text": "Evaluate and select algorithms based on performance, reusability, and ease of implementation."
+          },
+          {
+           "code": "9-12.3.e",
+           "text": "Explain how more than one algorithm may solve the same problem and yet be characterized with different priorities. Examples: All self-driving cars have a common goal of taking a passenger to a designation but may have different priorities such as safety, speed, or conservation; web search engines have their own algorithms for search with their own priorities."
+          }
+         ]
+        },
+        {
+         "id": "algorithms",
+         "title": "Algorithms",
+         "outcomes": [
+          {
+           "code": "9-12.4",
+           "text": "Use and adapt classic algorithms to solve computational problems. Examples: Sorting, searching, shortest path, and data compression."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "programming-and-development",
+       "title": "Programming and Development",
+       "subtopics": [
+        {
+         "id": "programming-and-development",
+         "title": "Programming and Development",
+         "outcomes": [
+          {
+           "code": "9-12.5",
+           "text": "Design and iteratively develop computational artifacts for practical intent, personal expression, or to address a societal issue by using current events."
+          },
+          {
+           "code": "9-12.6",
+           "text": "Decompose problems into smaller components through systematic analysis, using constructs such as procedures, modules, and/or objects, with parameters, and which return a result."
+          },
+          {
+           "code": "9-12.7",
+           "text": "Compare and contrast fundamental data structures and their uses. Examples: Strings, lists, arrays, stacks, queues."
+          },
+          {
+           "code": "9-12.8",
+           "text": "Demonstrate code reuse by creating programming solutions using libraries and Application Programming Interfaces."
+          },
+          {
+           "code": "9-12.10",
+           "text": "Resolve or debug errors encountered during testing using iterative design process. Examples: Test for infinite loops, check for bad input, check edge-cases."
+          }
+         ]
+        },
+        {
+         "id": "demonstrate-the-ability-to-verify-the-correctnes",
+         "title": "Demonstrate the ability to verify the correctness of a program",
+         "outcomes": [
+          {
+           "code": "9-12.9.a",
+           "text": "Develop and use a series of test cases to verify that a program performs according to its design specifications"
+          },
+          {
+           "code": "9-12.9.b",
+           "text": "Collaborate in a code review process to identify correctness, efficiency, scalability and readability of program code."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "citizen-of-a-digital-culture",
+     "title": "Citizen of a Digital Culture",
+     "topics": [
+      {
+       "id": "safety-privacy-and-security",
+       "title": "Safety, Privacy, and Security",
+       "subtopics": [
+        {
+         "id": "model-and-demonstrate-behaviors-that-are-safe-le",
+         "title": "Model and demonstrate behaviors that are safe, legal, and ethical while living, learning, and working in an interconnected digital world",
+         "outcomes": [
+          {
+           "code": "9-12.11.a",
+           "text": "Recognize user tracking methods and hazards. Examples: Cookies, WiFi packet sniffing."
+          },
+          {
+           "code": "9-12.11.b",
+           "text": "Understand how to apply techniques to mitigate effects of user tracking methods."
+          },
+          {
+           "code": "9-12.11.c",
+           "text": "Understand the ramifications of end-user license agreements and terms of service associated with granting rights to personal data and media to other entities."
+          },
+          {
+           "code": "9-12.11.d",
+           "text": "Explain the relationship between online privacy and personal security. Examples: Convenience and accessibility, data mining, digital marketing, online wallets, theft of personal information."
+          },
+          {
+           "code": "9-12.11.e",
+           "text": "Identify physical, legal, and ethical consequences of inappropriate digital behaviors. Examples: Cyberbullying/harassment, inappropriate sexual communications."
+          },
+          {
+           "code": "9-12.11.f",
+           "text": "Explain strategies to lessen the impact of negative digital behaviors and assess when to apply them."
+          }
+         ]
+        },
+        {
+         "id": "safety-privacy-and-security",
+         "title": "Safety, Privacy, and Security",
+         "outcomes": [
+          {
+           "code": "9-12.12",
+           "text": "Describe how sensitive data can be affected by malware and other attacks."
+          },
+          {
+           "code": "9-12.13",
+           "text": "Compare various security measures of a computer system. Examples: Usability, security, portability, and scalability."
+          },
+          {
+           "code": "9-12.14",
+           "text": "Compare ways to protect devices, software, and data."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "legal-and-ethical-behavior",
+       "title": "Legal and Ethical Behavior",
+       "subtopics": [
+        {
+         "id": "legal-and-ethical-behavior",
+         "title": "Legal and Ethical Behavior",
+         "outcomes": [
+          {
+           "code": "9-12.15",
+           "text": "Explain the necessity for the school’s Acceptable Use Policy."
+          },
+          {
+           "code": "9-12.16",
+           "text": "Identify laws regarding the use of technology and their consequences and implications. Examples: Unmanned vehicles, net neutrality/common carriers, hacking, intellectual property, piracy, plagiarism."
+          },
+          {
+           "code": "9-12.17",
+           "text": "Discuss the ethical ramifications of malicious hacking and its impact on society. Examples: Dissemination of privileged information, ransomware."
+          },
+          {
+           "code": "9-12.18",
+           "text": "Explain the beneficial and harmful effects that intellectual property laws can have on innovation."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "digital-identity",
+       "title": "Digital Identity",
+       "subtopics": [
+        {
+         "id": "digital-identity",
+         "title": "Digital Identity",
+         "outcomes": [
+          {
+           "code": "9-12.19",
+           "text": "Prove that digital identity is a reflection of persistent, publicly available artifacts."
+          },
+          {
+           "code": "9-12.20",
+           "text": "Evaluate strategies to manage digital identity and reputation with awareness of the permanent impact of actions in a digital world."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "impact-of-computing",
+       "title": "Impact of Computing",
+       "subtopics": [
+        {
+         "id": "impact-of-computing",
+         "title": "Impact of Computing",
+         "outcomes": [
+          {
+           "code": "9-12.21",
+           "text": "Explain how technology facilitates the disruption of traditional institutions and services. Examples: Digital currencies, ridesharing, autonomous vehicles, retail, Internet of Things."
+          },
+          {
+           "code": "9-12.22",
+           "text": "Research the impact of computing technology on possible career pathways. Examples: Government, business, medicine, entertainment, education, transportation."
+          },
+          {
+           "code": "9-12.23",
+           "text": "Debate the positive and negative effects of computing innovations in personal, ethical, social, economic, and cultural spheres. Examples: Artificial Intelligence/machine learning, mobile applications, automation of traditional occupational skills."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "global-collaborator",
+     "title": "Global Collaborator",
+     "topics": [
+      {
+       "id": "creative-communication",
+       "title": "Creative Communication",
+       "subtopics": [
+        {
+         "id": "compare-and-contrast-internet-publishing-platfor",
+         "title": "Compare and contrast Internet publishing platforms, including suitability for media types, target audience, and feedback mechanism",
+         "outcomes": [
+          {
+           "code": "9-12.24.a",
+           "text": "Apply version control capabilities within a digital tool to understand the importance of managing historical changes across suggestions made by a collaborative team."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "digital-tools",
+       "title": "Digital Tools",
+       "subtopics": [
+        {
+         "id": "digital-tools",
+         "title": "Digital Tools",
+         "outcomes": [
+          {
+           "code": "9-12.25",
+           "text": "Utilize a variety of digital tools to create digital artifacts across content areas."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "collaborative-research",
+       "title": "Collaborative Research",
+       "subtopics": [
+        {
+         "id": "collaborative-research",
+         "title": "Collaborative Research",
+         "outcomes": [
+          {
+           "code": "9-12.26",
+           "text": "Use collaborative technologies to work with others including peers, experts, or community members to examine local, national, and global issues and problems from multiple viewpoints."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "social-interactions",
+       "title": "Social Interactions",
+       "subtopics": [
+        {
+         "id": "social-interactions",
+         "title": "Social Interactions",
+         "outcomes": [
+          {
+           "code": "9-12.27",
+           "text": "Apply tools and methods for collaboration on a project to increase connectivity among people in different cultures and career fields. Examples: Collaborative documents, webinars, teleconferencing, and virtual fieldtrips"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "computing-analyst",
+     "title": "Computing Analyst",
+     "topics": [
+      {
+       "id": "data",
+       "title": "Data",
+       "subtopics": [
+        {
+         "id": "data",
+         "title": "Data",
+         "outcomes": [
+          {
+           "code": "9-12.28",
+           "text": "Develop a model that reflects the methods, procedures and concepts used by computing devices in translating digital bits as real-world phenomena, such as print characters, sound, images, and video."
+          },
+          {
+           "code": "9-12.29",
+           "text": "Summarize the role of compression and encryption in modifying the structure of digital artifacts and the varieties of information carried in the metadata of these artifacts."
+          },
+          {
+           "code": "9-12.30",
+           "text": "Evaluate the tradeoffs involved in choosing methods for the organization of data elements and the location of data storage, including the advantages and disadvantages of networked computing. Examples: Client server, peer-to-peer, cloud computing."
+          },
+          {
+           "code": "9-12.31",
+           "text": "Create interactive data visualizations using software tools to help others understand real-world phenomena."
+          },
+          {
+           "code": "9-12.32",
+           "text": "Use data analysis tools and techniques to identify patterns in data representing complex systems."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "systems",
+       "title": "Systems",
+       "subtopics": [
+        {
+         "id": "evaluate-the-scalability-and-reliability-of-netw",
+         "title": "Evaluate the scalability and reliability of networks by describing the relationship between routers, switches, servers, topology, packets, or addressing, as well as the issues that impact network functionality. Examples: Bandwidth, load, delay",
+         "outcomes": [
+          {
+           "code": "9-12.33.a",
+           "text": "Explain the purpose of Internet Protocol addresses and how domain names are resolved to IP addresses through a Domain Name System server."
+          },
+          {
+           "code": "9-12.33.b",
+           "text": "Understand the need for networking protocols and examples of common protocols. Examples: HTTP, SMTP, and FTP"
+          }
+         ]
+        },
+        {
+         "id": "systems",
+         "title": "Systems",
+         "outcomes": [
+          {
+           "code": "9-12.34",
+           "text": "Categorize the roles of operating system software."
+          },
+          {
+           "code": "9-12.35",
+           "text": "Appraise the role of artificial intelligence in guiding software and physical systems. Examples: predictive modeling, self-driving cars."
+          },
+          {
+           "code": "9-12.36",
+           "text": "Explain the tradeoffs when selecting and implementing cybersecurity recommendations. Examples: Two-factor authentication, password requirements, geolocation requirements."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "modeling-and-simulation",
+       "title": "Modeling and Simulation",
+       "subtopics": [
+        {
+         "id": "evaluate-the-ability-of-models-and-simulations-t",
+         "title": "Evaluate the ability of models and simulations to test and support the refinement of hypotheses",
+         "outcomes": [
+          {
+           "code": "9-12.37.a",
+           "text": "Create and utilize models and simulations to help formulate, test, and refine a hypothesis."
+          },
+          {
+           "code": "9-12.37.b",
+           "text": "Form a model of a hypothesis, testing the hypothesis by the collection and analysis of data generated by simulations. Examples: Science lab, robotics lab, manufacturing, space exploration."
+          },
+          {
+           "code": "9-12.37.c",
+           "text": "Explore situations where a flawed model provided an incorrect answer."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "innovative-designer",
+     "title": "Innovative Designer",
+     "topics": [
+      {
+       "id": "human-computer-partnerships",
+       "title": "Human/Computer Partnerships",
+       "subtopics": [
+        {
+         "id": "human-computer-partnerships",
+         "title": "Human/Computer Partnerships",
+         "outcomes": [
+          {
+           "code": "9-12.38",
+           "text": "Systematically design and develop programs for broad audiences by incorporating feedback from users. Examples: Games, utilities, mobile applications."
+          },
+          {
+           "code": "9-12.39",
+           "text": "Identify a problem that cannot be solved by either humans or machines alone and discuss a solution for it by decomposing the task into sub-problems suited for a human or machine to accomplish. Examples: Forecasting weather, piloting airplanes."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "design-thinking",
+       "title": "Design Thinking",
+       "subtopics": [
+        {
+         "id": "design-thinking",
+         "title": "Design Thinking",
+         "outcomes": [
+          {
+           "code": "9-12.40",
+           "text": "Use an iterative design process, including learning from mistakes, to gain a better understanding of a problem domain."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "9-12",
+   "units": [
+    {
+     "id": "computational-thinking",
+     "title": "Computational Thinking",
+     "topics": [
+      {
+       "id": "algorithms-abstraction-and-decomposition",
+       "title": "Algorithms, Abstraction, and Decomposition",
+       "subtopics": [
+        {
+         "id": "algorithms-abstraction-and-decomposition-1-of-2",
+         "title": "Algorithms, Abstraction, and Decomposition (1 of 2)",
+         "outcomes": [
+          {
+           "code": "DLCS25.HS.1",
+           "text": "Compare and contrast a generalized algorithm in pseudocode and its concrete implementation in a programming language."
+          },
+          {
+           "code": "DLCS25.HS.2",
+           "text": "Translate pseudocode, flowcharts, or other planning tools into multiple programming languages."
+          },
+          {
+           "code": "DLCS25.HS.3",
+           "text": "Explain the characteristics of algorithms, including speed, accuracy, and storage requirements."
+          },
+          {
+           "code": "DLCS25.HS.4",
+           "text": "Model and adapt classic algorithms, including sorting and searching, to solve computational problems."
+          }
+         ]
+        },
+        {
+         "id": "algorithms-abstraction-and-decomposition-2-of-2",
+         "title": "Algorithms, Abstraction, and Decomposition (2 of 2)",
+         "outcomes": [
+          {
+           "code": "DLCS25.HS.5",
+           "text": "Decompose problems into component parts, extract key information, and model levels of abstraction in complex systems."
+          },
+          {
+           "code": "DLCS25.HS.6",
+           "text": "Compare different data compression algorithms by analyzing their main features, including their compression speed and whether they preserve data exactly (lossless) or reduce data quality for higher compression (lossy)."
+          },
+          {
+           "code": "DLCS25.HS.7",
+           "text": "Create software solutions using libraries and application programming interfaces (APIs) that demonstrate code reuse."
+          },
+          {
+           "code": "DLCS25.HS.8",
+           "text": "Compare and contrast the major categories of machine learning, including supervised, unsupervised, and reinforcement learning. [AI]"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "programming",
+       "title": "Programming",
+       "subtopics": [
+        {
+         "id": "programming-1-of-2",
+         "title": "Programming (1 of 2)",
+         "outcomes": [
+          {
+           "code": "DLCS25.HS.9",
+           "text": "Compare and contrast fundamental data structures and their uses."
+          },
+          {
+           "code": "DLCS25.HS.10",
+           "text": "Develop and use a series of test cases to verify that a program performs according to its design specifications."
+          },
+          {
+           "code": "DLCS25.HS.11",
+           "text": "Utilize an iterative and incremental software design process, including learning from mistakes, to improve a program."
+          },
+          {
+           "code": "DLCS25.HS.12",
+           "text": "Improve existing code by restructuring (refactoring) it to enhance readability and/or increase efficiency without changing its overall behavior."
+          }
+         ]
+        },
+        {
+         "id": "programming-2-of-2",
+         "title": "Programming (2 of 2)",
+         "outcomes": [
+          {
+           "code": "DLCS25.HS.13",
+           "text": "Select and utilize effective debugging techniques to correct problems in software."
+          },
+          {
+           "code": "DLCS25.HS.14",
+           "text": "Create a complete program to solve a problem or explore personal interests, using a text-based programming language."
+          },
+          {
+           "code": "DLCS25.HS.15",
+           "text": "Design and implement a program that processes user input, applies relational and logical operators within conditional logic, maintains program state, and produces appropriate responses."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "data-science",
+     "title": "Data Science",
+     "topics": [
+      {
+       "id": "data-collection-and-representation",
+       "title": "Data Collection and Representation",
+       "subtopics": [
+        {
+         "id": "data-collection-and-representation",
+         "title": "Data Collection and Representation",
+         "outcomes": [
+          {
+           "code": "DLCS25.HS.16",
+           "text": "Create interactive data visualizations to help others understand real-world phenomena. [AI]"
+          },
+          {
+           "code": "DLCS25.HS.17",
+           "text": "Verify the validity of a dataset by identifying missing, out-of-range, inconsistent, or invalid data and distinguishing these from statistical outliers using basic measures such as range, mean, or standard deviation."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "data-analysis",
+       "title": "Data Analysis",
+       "subtopics": [
+        {
+         "id": "data-analysis",
+         "title": "Data Analysis",
+         "outcomes": [
+          {
+           "code": "DLCS25.HS.18",
+           "text": "Correct or remove entries containing missing, out-of-range, inconsistent, or invalid data from a dataset to prepare it for analysis."
+          },
+          {
+           "code": "DLCS25.HS.19",
+           "text": "Utilize data analysis tools and statistical methods on a dataset to discover useful information, identify patterns, or make an informed decision."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "modeling-and-simulation",
+       "title": "Modeling and Simulation",
+       "subtopics": [
+        {
+         "id": "modeling-and-simulation",
+         "title": "Modeling and Simulation",
+         "outcomes": [
+          {
+           "code": "DLCS25.HS.20",
+           "text": "Create and utilize models and simulations to help formulate, test, and refine a hypothesis."
+          },
+          {
+           "code": "DLCS25.HS.21",
+           "text": "Update an existing model to address flaws and improve precision."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "computing-systems",
+     "title": "Computing Systems",
+     "topics": [
+      {
+       "id": "networks-and-internet",
+       "title": "Networks and Internet",
+       "subtopics": [
+        {
+         "id": "networks-and-internet",
+         "title": "Networks and Internet",
+         "outcomes": [
+          {
+           "code": "DLCS25.HS.22",
+           "text": "Analyze how network infrastructure impacts the speed, reliability, and scalability of services."
+          },
+          {
+           "code": "DLCS25.HS.23",
+           "text": "Explain how security protocols in networked systems protect or expose data and assess the risks associated with IoT devices and cloud services."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "cybersecurity",
+       "title": "Cybersecurity",
+       "subtopics": [
+        {
+         "id": "cybersecurity",
+         "title": "Cybersecurity",
+         "outcomes": [
+          {
+           "code": "DLCS25.HS.24",
+           "text": "Explain the tradeoffs when selecting and implementing cybersecurity recommendations, balancing cost, performance, usability, and security."
+          },
+          {
+           "code": "DLCS25.HS.25",
+           "text": "Summarize the mechanisms and purposes of various tracking technologies and identify strategies to manage them."
+          },
+          {
+           "code": "DLCS25.HS.26",
+           "text": "Investigate the purpose of and relationship among various computer security measures."
+          },
+          {
+           "code": "DLCS25.HS.27",
+           "text": "Create a personal cybersecurity plan incorporating the CIA Triad *(confidentiality, integrity, and availability)* to safeguard sensitive information and ensure its trustworthiness and accessibility."
+          },
+          {
+           "code": "DLCS25.HS.28",
+           "text": "Investigate the motivations behind hacking and examine the associated ethical considerations."
+          },
+          {
+           "code": "DLCS25.HS.29",
+           "text": "Appraise the trustworthiness of new or unfamiliar resources in order to make safe choices when downloading, installing, and using software."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "hardware-and-software",
+       "title": "Hardware and Software",
+       "subtopics": [
+        {
+         "id": "hardware-and-software",
+         "title": "Hardware and Software",
+         "outcomes": [
+          {
+           "code": "DLCS25.HS.30",
+           "text": "Compare alternative computing architectures, including cluster and quantum computing, to classical computing systems."
+          },
+          {
+           "code": "DLCS25.HS.31",
+           "text": "Explain the interactions between application software, operating systems, drivers, and hardware."
+          },
+          {
+           "code": "DLCS25.HS.32",
+           "text": "Compare and contrast the common metadata elements of various file types."
+          },
+          {
+           "code": "DLCS25.HS.33",
+           "text": "Develop and implement troubleshooting strategies to identify and correct problems with computing devices."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "impact-of-computing",
+     "title": "Impact of Computing",
+     "topics": [
+      {
+       "id": "career-paths",
+       "title": "Career Paths",
+       "subtopics": [
+        {
+         "id": "career-paths",
+         "title": "Career Paths",
+         "outcomes": [
+          {
+           "code": "DLCS25.HS.34",
+           "text": "Research and explain the impact of computing technology on career pathways across different industries and career fields."
+          },
+          {
+           "code": "DLCS25.HS.35",
+           "text": "Research and share information regarding current AI applications in various career fields. [AI]"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "ethics",
+       "title": "Ethics",
+       "subtopics": [
+        {
+         "id": "ethics",
+         "title": "Ethics",
+         "outcomes": [
+          {
+           "code": "DLCS25.HS.36",
+           "text": "Analyze the implications of data privacy and consent for making informed decisions about personal data security."
+          },
+          {
+           "code": "DLCS25.HS.37",
+           "text": "Identify and evaluate the consequences of technology-related laws and policies, including those addressing privacy, accessibility, and intellectual property."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "society",
+       "title": "Society",
+       "subtopics": [
+        {
+         "id": "society",
+         "title": "Society",
+         "outcomes": [
+          {
+           "code": "DLCS25.HS.38",
+           "text": "Analyze the ethical issues related to AI technologies and evaluate their societal and ecological impacts. [AI]"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "emerging-technology",
+       "title": "Emerging Technology",
+       "subtopics": [
+        {
+         "id": "emerging-technology",
+         "title": "Emerging Technology",
+         "outcomes": [
+          {
+           "code": "DLCS25.HS.39",
+           "text": "Predict the transformative effects of hypothetical future technologies. [AI]"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "accessibility",
+       "title": "Accessibility",
+       "subtopics": [
+        {
+         "id": "accessibility",
+         "title": "Accessibility",
+         "outcomes": [
+          {
+           "code": "DLCS25.HS.40",
+           "text": "Follow Americans with Disabilities Act (ADA) standards to design digital artifacts that reduce barriers caused by the digital divide, disability, or bias."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "digital-proficiency",
+     "title": "Digital Proficiency",
+     "topics": [
+      {
+       "id": "information-literacy",
+       "title": "Information Literacy",
+       "subtopics": [
+        {
+         "id": "information-literacy",
+         "title": "Information Literacy",
+         "outcomes": [
+          {
+           "code": "DLCS25.HS.41",
+           "text": "Research and report potential dangers and unintended consequences of over-reliance on AI tools. [AI]"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "digital-life",
+       "title": "Digital Life",
+       "subtopics": [
+        {
+         "id": "digital-life",
+         "title": "Digital Life",
+         "outcomes": [
+          {
+           "code": "DLCS25.HS.42",
+           "text": "Explain how systems learn user preferences and behaviors to deliver personalized content and targeted advertisements. [AI]"
+          },
+          {
+           "code": "DLCS25.HS.43",
+           "text": "Investigate the mental health risks associated with excessive technology use, including social isolation, anxiety, and depression, and develop strategies to mitigate them."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "digital-tools",
+       "title": "Digital Tools",
+       "subtopics": [
+        {
+         "id": "digital-tools",
+         "title": "Digital Tools",
+         "outcomes": [
+          {
+           "code": "DLCS25.HS.44",
+           "text": "Evaluate the usability of software applications for broad audiences by considering feedback from real-world users."
+          },
+          {
+           "code": "DLCS25.HS.45",
+           "text": "Identify a problem best solved through human-machine collaboration, decomposing it into tasks suited for each."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "build": {
+  "builtAt": "2026-10-14T16:20:38.112Z",
+  "model": "none",
+  "usd": 0,
+  "expectedCodes": 534,
+  "coverage": 1,
+  "missingCodes": [],
+  "counts": {
+   "grades": 11,
+   "units": 100,
+   "topics": 276,
+   "subtopics": 282,
+   "outcomes": 534
+  },
+  "warnings": [
+   "unit \"Innovative Designer\" (grade K) has a single outcome",
+   "unit \"Innovative Designer\" (grade 1) has a single outcome",
+   "unit \"Innovative Designer\" (grade 2) has a single outcome",
+   "unit \"Data Science\" (grade 3) has a single outcome"
+  ]
+ }
+}

@@ -1,0 +1,171 @@
+{
+ "id": "uk-nc-music-ks1-2",
+ "region": "UK",
+ "framework": "National Curriculum in England (2014)",
+ "board": "Department for Education",
+ "qualification": "Primary",
+ "subject": "Music",
+ "syllabusCode": null,
+ "gradeSystem": "key-stage",
+ "source": {
+  "urls": [
+   "https://assets.publishing.service.gov.uk/media/5a7b7f8c40f0b645ba3c4b8a/PRIMARY_national_curriculum_-_Music.pdf",
+   "https://www.gov.uk/government/publications/national-curriculum-in-england-music-programmes-of-study"
+  ],
+  "publisher": "Department for Education",
+  "licence": "Open Government Licence v3.0 (Crown copyright)",
+  "firstExam": "2014"
+ },
+ "grades": [
+  {
+   "grade": "KS1",
+   "units": [
+    {
+     "id": "music-programme-of-study",
+     "title": "Music programme of study",
+     "topics": [
+      {
+       "id": "key-stage-1",
+       "title": "Key stage 1",
+       "subtopics": [
+        {
+         "id": "singing-and-chanting",
+         "title": "Singing and chanting",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Use the voice expressively and creatively by singing songs and speaking chants and rhymes."
+          }
+         ]
+        },
+        {
+         "id": "playing-instruments",
+         "title": "Playing instruments",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Play tuned and untuned instruments musically."
+          }
+         ]
+        },
+        {
+         "id": "listening",
+         "title": "Listening",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Listen with concentration and understanding to a range of high-quality live and recorded music."
+          }
+         ]
+        },
+        {
+         "id": "making-sounds",
+         "title": "Making sounds",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Experiment with, create, select and combine sounds using the inter-related dimensions of music."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "KS2",
+   "units": [
+    {
+     "id": "music-programme-of-study",
+     "title": "Music programme of study",
+     "topics": [
+      {
+       "id": "key-stage-2",
+       "title": "Key stage 2",
+       "subtopics": [
+        {
+         "id": "performing",
+         "title": "Performing",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Play and perform in solo and ensemble contexts, using voices and instruments with increasing accuracy, fluency, control and expression."
+          }
+         ]
+        },
+        {
+         "id": "improvising-and-composing",
+         "title": "Improvising and composing",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Improvise and compose music for a range of purposes using the inter-related dimensions of music."
+          }
+         ]
+        },
+        {
+         "id": "listening-and-aural-memory",
+         "title": "Listening and aural memory",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Listen with attention to detail and recall sounds with increasing aural memory."
+          }
+         ]
+        },
+        {
+         "id": "musical-notation",
+         "title": "Musical notation",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Use and understand staff notation and other musical notations."
+          }
+         ]
+        },
+        {
+         "id": "appreciating-music",
+         "title": "Appreciating music",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Appreciate and understand a wide range of high-quality live and recorded music from different traditions and great composers and musicians."
+          }
+         ]
+        },
+        {
+         "id": "history-of-music",
+         "title": "History of music",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Develop an understanding of the history of music."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "build": {
+  "builtAt": "2026-10-14T10:37:56.351Z",
+  "model": "claude-agent",
+  "usd": 0,
+  "expectedCodes": null,
+  "coverage": null,
+  "missingCodes": [],
+  "counts": {
+   "grades": 2,
+   "units": 2,
+   "topics": 2,
+   "subtopics": 10,
+   "outcomes": 10
+  },
+  "warnings": []
+ }
+}

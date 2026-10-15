@@ -1,0 +1,3726 @@
+{
+ "id": "us-az-physical-education",
+ "region": "US",
+ "framework": "Arizona state academic standards: Physical Education",
+ "board": null,
+ "qualification": "K-12",
+ "subject": "Physical Education",
+ "syllabusCode": null,
+ "gradeSystem": "grade",
+ "source": {
+  "urls": [
+   "https://api.commonstandardsproject.com/api/v1/jurisdictions/0B41FFF6B5114EB0B8A89CE0E70E22D8",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/0B41FFF6B5114EB0B8A89CE0E70E22D8_D2634204_grade-01",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/0B41FFF6B5114EB0B8A89CE0E70E22D8_D2634204_grade-02",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/0B41FFF6B5114EB0B8A89CE0E70E22D8_D2634204_grade-03",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/0B41FFF6B5114EB0B8A89CE0E70E22D8_D2634204_grade-04",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/0B41FFF6B5114EB0B8A89CE0E70E22D8_D2634204_grade-05",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/0B41FFF6B5114EB0B8A89CE0E70E22D8_D2634204_grade-06",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/0B41FFF6B5114EB0B8A89CE0E70E22D8_D2634204_grade-07",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/0B41FFF6B5114EB0B8A89CE0E70E22D8_D2634204_grade-08",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/0B41FFF6B5114EB0B8A89CE0E70E22D8_D2634204_grades-09-10-11-12",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/0B41FFF6B5114EB0B8A89CE0E70E22D8_D2634204_grade-k"
+  ],
+  "publisher": "Arizona state education agency (machine-readable via Common Standards Project / ASN)",
+  "licence": "CC BY 3.0 US, Desire2Learn Incorporated",
+  "firstExam": "2015"
+ },
+ "grades": [
+  {
+   "grade": "K",
+   "units": [
+    {
+     "id": "the-physically-literate-individual-demonstrates-",
+     "title": "The physically literate individual demonstrates competency in a variety of motor skills and movement patterns",
+     "topics": [
+      {
+       "id": "the-physically-literate-individual-demonstrates-",
+       "title": "The physically literate individual demonstrates competency in a variety of motor skills and movement patterns",
+       "subtopics": [
+        {
+         "id": "the-physically-literate-individual-demonstrates-",
+         "title": "The physically literate individual demonstrates competency in a variety of motor skills and movement patterns (1 of 4)",
+         "outcomes": [
+          {
+           "code": "S1.E1.K.a",
+           "text": "Performs locomotor skills (hopping, galloping, running, sliding, skipping, jumping) while maintaining balance."
+          },
+          {
+           "code": "S1.E3.K.a",
+           "text": "Jumps and lands with balance."
+          },
+          {
+           "code": "S1.E4.K.a",
+           "text": "Performs locomotor skills in response to teacher-led creative dance."
+          },
+          {
+           "code": "S1.E6.K.a",
+           "text": "Maintains momentary stillness on bases of support."
+          }
+         ]
+        },
+        {
+         "id": "the-physically-literate-individual-demonstrates--2",
+         "title": "The physically literate individual demonstrates competency in a variety of motor skills and movement patterns (2 of 4)",
+         "outcomes": [
+          {
+           "code": "S1.E6.K.b",
+           "text": "Forms wide, curled, and twisted body shapes."
+          },
+          {
+           "code": "S1.E7.K.b",
+           "text": "Rolls sideways in a narrow body shape"
+          },
+          {
+           "code": "S1.E8.K.a",
+           "text": "Contrasts the actions of curling and stretching."
+          },
+          {
+           "code": "S1.E10.K.a",
+           "text": "Opposite foot forward."
+          }
+         ]
+        },
+        {
+         "id": "the-physically-literate-individual-demonstrates--3",
+         "title": "The physically literate individual demonstrates competency in a variety of motor skills and movement patterns (3 of 4)",
+         "outcomes": [
+          {
+           "code": "S1.E12.K.a",
+           "text": "Drops a ball and catches it before it bounces twice. Catches a large ball tossed by a skilled thrower."
+          },
+          {
+           "code": "S1.E13.K.a",
+           "text": "Dribbles a ball using with 1 hand, attempting the second contact."
+          },
+          {
+           "code": "S1.E14.K.a",
+           "text": "Taps a ball using the inside of the foot, sending it forward."
+          },
+          {
+           "code": "S1.E17.K.a",
+           "text": "Kicks a stationary ball from a stationary position, demonstrating 2 of the 5 elements of mature kicking pattern."
+          }
+         ]
+        },
+        {
+         "id": "the-physically-literate-individual-demonstrates--4",
+         "title": "The physically literate individual demonstrates competency in a variety of motor skills and movement patterns (4 of 4)",
+         "outcomes": [
+          {
+           "code": "S1.E18.K.a",
+           "text": "Volleys a light weight object (balloon), sending it upward."
+          },
+          {
+           "code": "S1.E20.K.a",
+           "text": "Strikes a light weight object with a paddle or short-handled racket."
+          },
+          {
+           "code": "S1.E22.K.a",
+           "text": "Executes a single jump with self-turned rope."
+          },
+          {
+           "code": "S1.E22.K.b",
+           "text": "Jumps a long rope with teacher-assisted turning."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "the-physically-literate-individual-applies-knowl",
+     "title": "The physically literate individual applies knowledge of concepts, principles, strategies and tactics related to movement and performance",
+     "topics": [
+      {
+       "id": "the-physically-literate-individual-applies-knowl",
+       "title": "The physically literate individual applies knowledge of concepts, principles, strategies and tactics related to movement and performance",
+       "subtopics": [
+        {
+         "id": "the-physically-literate-individual-applies-knowl",
+         "title": "The physically literate individual applies knowledge of concepts, principles, strategies and tactics related to movement and performance",
+         "outcomes": [
+          {
+           "code": "S2.E1.K.a",
+           "text": "Differentiates between movement in personal (self-space) and general space."
+          },
+          {
+           "code": "S2.E1.K.b",
+           "text": "Moves in personal space to a rhythm."
+          },
+          {
+           "code": "S2.E2.K.a",
+           "text": "Travels in three different pathways."
+          },
+          {
+           "code": "S2.E3.K.a",
+           "text": "Travels in general space with different speeds."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "the-physically-literate-individual-demonstrates--2",
+     "title": "The physically literate individual demonstrates the knowledge and skills to achieve and maintain a health-enhancing level of physical activity and fitness",
+     "topics": [
+      {
+       "id": "the-physically-literate-individual-demonstrates-",
+       "title": "The physically literate individual demonstrates the knowledge and skills to achieve and maintain a health-enhancing level of physical activity and fitness",
+       "subtopics": [
+        {
+         "id": "the-physically-literate-individual-demonstrates-",
+         "title": "The physically literate individual demonstrates the knowledge and skills to achieve and maintain a health-enhancing level of physical activity and fitness",
+         "outcomes": [
+          {
+           "code": "S3.E1.K.a",
+           "text": "Identifies active play opportunities outside physical education class."
+          },
+          {
+           "code": "S3.E2.K.a",
+           "text": "Actively participates in physical education class."
+          },
+          {
+           "code": "S3.E3.K.a",
+           "text": "Recognizes that when you move fast, your heart beats faster and you breathe faster."
+          },
+          {
+           "code": "S3.E7.K.a",
+           "text": "Recognizes that food provides energy for physical activity."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "the-physically-literate-individual-exhibits-resp",
+     "title": "The physically literate individual exhibits responsible personal and social behavior that respects self and others",
+     "topics": [
+      {
+       "id": "the-physically-literate-individual-exhibits-resp",
+       "title": "The physically literate individual exhibits responsible personal and social behavior that respects self and others",
+       "subtopics": [
+        {
+         "id": "the-physically-literate-individual-exhibits-resp",
+         "title": "The physically literate individual exhibits responsible personal and social behavior that respects self and others",
+         "outcomes": [
+          {
+           "code": "S4.E1.K.a",
+           "text": "Follows directions in group settings (e.g., safe behaviors, following rules, taking turns)."
+          },
+          {
+           "code": "S4.E1.K.b",
+           "text": "Acknowledges responsibility for behavior when prompted."
+          },
+          {
+           "code": "S4.E2.K.a",
+           "text": "Follows instruction/directions when prompted."
+          },
+          {
+           "code": "S4.E3.K.a",
+           "text": "Shares equipment and space with others."
+          },
+          {
+           "code": "S4.E4.K.a",
+           "text": "Recognizes the established protocols for class activities."
+          },
+          {
+           "code": "S4.E5.K.a",
+           "text": "Follows teacher directions for safe participation and proper use of equipment with minimal reminders."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "the-physically-literate-individual-recognizes-th",
+     "title": "The physically literate individual recognizes the value of physical activity for health, enjoyment, challenge, self-expression and/or social interaction",
+     "topics": [
+      {
+       "id": "the-physically-literate-individual-recognizes-th",
+       "title": "The physically literate individual recognizes the value of physical activity for health, enjoyment, challenge, self-expression and/or social interaction",
+       "subtopics": [
+        {
+         "id": "the-physically-literate-individual-recognizes-th",
+         "title": "The physically literate individual recognizes the value of physical activity for health, enjoyment, challenge, self-expression and/or social interaction",
+         "outcomes": [
+          {
+           "code": "S5.E1.K.a",
+           "text": "Recognizes that physical activity is important for good health."
+          },
+          {
+           "code": "S5.E2.K.a",
+           "text": "Acknowledges that some physical activities are challenging/difficult."
+          },
+          {
+           "code": "S5.E3.K.a",
+           "text": "Identifies physical activities that are enjoyable."
+          },
+          {
+           "code": "S5.E3.K.b",
+           "text": "Discuss the enjoyment of playing with friends."
+          },
+          {
+           "code": "S5.E4.K-2.a",
+           "text": "Demonstrates socially acceptable conflict resolution skills."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "1",
+   "units": [
+    {
+     "id": "the-physically-literate-individual-demonstrates-",
+     "title": "The physically literate individual demonstrates competency in a variety of motor skills and movement patterns",
+     "topics": [
+      {
+       "id": "the-physically-literate-individual-demonstrates-",
+       "title": "The physically literate individual demonstrates competency in a variety of motor skills and movement patterns",
+       "subtopics": [
+        {
+         "id": "the-physically-literate-individual-demonstrates-",
+         "title": "The physically literate individual demonstrates competency in a variety of motor skills and movement patterns (1 of 4)",
+         "outcomes": [
+          {
+           "code": "S1.E1.1.a",
+           "text": "Hops, gallops, jogs and slides using a mature pattern."
+          },
+          {
+           "code": "S1.E3.1.a",
+           "text": "Demonstrates 2 of 5 critical elements for jumping & landing in a horizontal plane using 2-foot take-offs and landings."
+          },
+          {
+           "code": "S1.E4.1.a",
+           "text": "Combines locomotor and nonlocomotor skills in a teacher-led designed dance."
+          },
+          {
+           "code": "S1.E6.1.a",
+           "text": "Maintains stillness on different bases of support with different body shapes."
+          }
+         ]
+        },
+        {
+         "id": "the-physically-literate-individual-demonstrates--2",
+         "title": "The physically literate individual demonstrates competency in a variety of motor skills and movement patterns (2 of 4)",
+         "outcomes": [
+          {
+           "code": "S1.E7.1.a",
+           "text": "Transfers weight from one body part to another in self-space in dance and gymnastics environments"
+          },
+          {
+           "code": "S1.E7.1.b",
+           "text": "Rolls with either narrow or curled body shape"
+          },
+          {
+           "code": "S1.E8.1.a",
+           "text": "Demonstrates twisting, curling, bending & stretching actions."
+          },
+          {
+           "code": "S1.E10.1.a",
+           "text": "Demonstrates 2 of the 5 critical elements of mature pattern."
+          }
+         ]
+        },
+        {
+         "id": "the-physically-literate-individual-demonstrates--3",
+         "title": "The physically literate individual demonstrates competency in a variety of motor skills and movement patterns (3 of 4)",
+         "outcomes": [
+          {
+           "code": "S1.E12.1.a",
+           "text": "Catches a soft object from a self-toss before it bounces."
+          },
+          {
+           "code": "S1.E13.1.a",
+           "text": "Dribbles continuously in self-space using the preferred hand."
+          },
+          {
+           "code": "S1.E14.1.a",
+           "text": "Taps or dribbles a ball using the inside of the foot while walking in general space."
+          },
+          {
+           "code": "S1.E17.1.a",
+           "text": "Approaches a stationary ball and kicks it forward, demonstrating 2 of the 5 critical elements of a mature pattern."
+          }
+         ]
+        },
+        {
+         "id": "the-physically-literate-individual-demonstrates--4",
+         "title": "The physically literate individual demonstrates competency in a variety of motor skills and movement patterns (4 of 4)",
+         "outcomes": [
+          {
+           "code": "S1.E18.1.a",
+           "text": "Volleys an object with an open palm, sending it upward."
+          },
+          {
+           "code": "S1.E20.1.a",
+           "text": "Strikes a ball with a short-handled implement, sending it upward."
+          },
+          {
+           "code": "S1.E22.1.a",
+           "text": "Jumps forward and backward consecutively using a self-turned rope."
+          },
+          {
+           "code": "S1.E22.1.b",
+           "text": "Jumps a long rope up to five times consecutively with teacher-assisted turning."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "the-physically-literate-individual-applies-knowl",
+     "title": "The physically literate individual applies knowledge of concepts, principles, strategies and tactics related to movement and performance",
+     "topics": [
+      {
+       "id": "the-physically-literate-individual-applies-knowl",
+       "title": "The physically literate individual applies knowledge of concepts, principles, strategies and tactics related to movement and performance",
+       "subtopics": [
+        {
+         "id": "the-physically-literate-individual-applies-knowl",
+         "title": "The physically literate individual applies knowledge of concepts, principles, strategies and tactics related to movement and performance",
+         "outcomes": [
+          {
+           "code": "S2.E1.1.a",
+           "text": "Moves in self-space and general space in response to designated beats/rhythms."
+          },
+          {
+           "code": "S2.E2.1.a",
+           "text": "Travels demonstrating a low, middle and high levels."
+          },
+          {
+           "code": "S2.E2.1.b",
+           "text": "Travels demonstrating a variety of relationships with objects (e.g., over, under, around, through)."
+          },
+          {
+           "code": "S2.E3.1.a",
+           "text": "Differentiates between fast and slow speeds."
+          },
+          {
+           "code": "S2.E3.1.b",
+           "text": "Differentiates between strong and light force."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "the-physically-literate-individual-demonstrates--2",
+     "title": "The physically literate individual demonstrates the knowledge and skills to achieve and maintain a health-enhancing level of physical activity and fitness",
+     "topics": [
+      {
+       "id": "the-physically-literate-individual-demonstrates-",
+       "title": "The physically literate individual demonstrates the knowledge and skills to achieve and maintain a health-enhancing level of physical activity and fitness",
+       "subtopics": [
+        {
+         "id": "the-physically-literate-individual-demonstrates-",
+         "title": "The physically literate individual demonstrates the knowledge and skills to achieve and maintain a health-enhancing level of physical activity and fitness",
+         "outcomes": [
+          {
+           "code": "S3.E1.1.a",
+           "text": "Discuss the benefits of being active and/or playing."
+          },
+          {
+           "code": "S3.E2.1.a",
+           "text": "Actively engages in physical education class."
+          },
+          {
+           "code": "S3.E3.1.a",
+           "text": "Identifies the heart as a muscle that gets stronger with exercise, play, and physical activity."
+          },
+          {
+           "code": "S3.E7.1.a",
+           "text": "Differentiates between healthy and unhealthy foods."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "the-physically-literate-individual-exhibits-resp",
+     "title": "The physically literate individual exhibits responsible personal and social behavior that respects self and others",
+     "topics": [
+      {
+       "id": "the-physically-literate-individual-exhibits-resp",
+       "title": "The physically literate individual exhibits responsible personal and social behavior that respects self and others",
+       "subtopics": [
+        {
+         "id": "the-physically-literate-individual-exhibits-resp",
+         "title": "The physically literate individual exhibits responsible personal and social behavior that respects self and others",
+         "outcomes": [
+          {
+           "code": "S4.E1.1.a",
+           "text": "Follows the rules & parameters of the learning environment."
+          },
+          {
+           "code": "S4.E2.1.a",
+           "text": "Responds appropriately to general feedback from the teacher."
+          },
+          {
+           "code": "S4.E3.1.a",
+           "text": "Works independently with others in a variety of class environments (e.g., partners, small group & large groups)."
+          },
+          {
+           "code": "S4.E4.1.a",
+           "text": "Exhibits the established protocols for class activities."
+          },
+          {
+           "code": "S4.E5.1.a",
+           "text": "Follows teacher directions for safe participation and proper use of equipment without teacher reminders."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "the-physically-literate-individual-recognizes-th",
+     "title": "The physically literate individual recognizes the value of physical activity for health, enjoyment, challenge, self-expression and/or social interaction",
+     "topics": [
+      {
+       "id": "the-physically-literate-individual-recognizes-th",
+       "title": "The physically literate individual recognizes the value of physical activity for health, enjoyment, challenge, self-expression and/or social interaction",
+       "subtopics": [
+        {
+         "id": "the-physically-literate-individual-recognizes-th",
+         "title": "The physically literate individual recognizes the value of physical activity for health, enjoyment, challenge, self-expression and/or social interaction",
+         "outcomes": [
+          {
+           "code": "S5.E1.1.a",
+           "text": "Identifies physical activity as a component of good health."
+          },
+          {
+           "code": "S5.E2.1.a",
+           "text": "Recognizes that challenge in physical activities can lead to success."
+          },
+          {
+           "code": "S5.E3.1.a",
+           "text": "Describes positive feelings that result from participating in physical activities."
+          },
+          {
+           "code": "S5.E3.1.b",
+           "text": "Discuss personal reasons (i.e., the \"why\") for enjoying physical activities."
+          },
+          {
+           "code": "S5.E4.K-2.a",
+           "text": "Demonstrates socially acceptable conflict resolution skills."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "2",
+   "units": [
+    {
+     "id": "the-physically-literate-individual-demonstrates-",
+     "title": "The physically literate individual demonstrates competency in a variety of motor skills and movement patterns",
+     "topics": [
+      {
+       "id": "the-physically-literate-individual-demonstrates-",
+       "title": "The physically literate individual demonstrates competency in a variety of motor skills and movement patterns",
+       "subtopics": [
+        {
+         "id": "the-physically-literate-individual-demonstrates-",
+         "title": "The physically literate individual demonstrates competency in a variety of motor skills and movement patterns (1 of 5)",
+         "outcomes": [
+          {
+           "code": "S1.E1.2.a",
+           "text": "Skips using a mature pattern."
+          },
+          {
+           "code": "S1.E2.2.a",
+           "text": "Runs with a mature pattern."
+          },
+          {
+           "code": "S1.E3.2.a",
+           "text": "Demonstrates 4 of the 5 critical elements for jumping and landing in a horizontal plane using a variety of take-offs and landings"
+          },
+          {
+           "code": "S1.E3.2.b",
+           "text": "Demonstrates 4 of the 5 critical elements for jumping and landing in a vertical plane"
+          },
+          {
+           "code": "S1.E4.2.a",
+           "text": "Performs a teacher and/or student designed rhythmic activity with correct response to simple rhythms."
+          }
+         ]
+        },
+        {
+         "id": "the-physically-literate-individual-demonstrates--2",
+         "title": "The physically literate individual demonstrates competency in a variety of motor skills and movement patterns (2 of 5)",
+         "outcomes": [
+          {
+           "code": "S1.E6.2.a",
+           "text": "Balances on different bases of support, combining levels and shapes"
+          },
+          {
+           "code": "S1.E6.2.b",
+           "text": "Balances in an inverted position with stillness and supportive base"
+          },
+          {
+           "code": "S1.E7.2.a",
+           "text": "Transfers weight from feet to different body parts/bases of support for balance and/or travel"
+          },
+          {
+           "code": "S1.E7.2.b",
+           "text": "Rolls in different directions with either a narrow or curled body shape"
+          },
+          {
+           "code": "S1.E8.2.a",
+           "text": "Differentiates among twisting, curling, bending, and stretching."
+          }
+         ]
+        },
+        {
+         "id": "the-physically-literate-individual-demonstrates--3",
+         "title": "The physically literate individual demonstrates competency in a variety of motor skills and movement patterns (3 of 5)",
+         "outcomes": [
+          {
+           "code": "S1.E8.2.b",
+           "text": "Performs various activities that involve crossing the mid-line."
+          },
+          {
+           "code": "S1.E9.2.a",
+           "text": "Combines balances and transfers into a three-part sequence, i.e., dance or gymnastics."
+          },
+          {
+           "code": "S1.E10.2.a",
+           "text": "Throws underhand using a mature pattern."
+          },
+          {
+           "code": "S1.E11.2.a",
+           "text": "Throws overhand demonstrating 2 of the 5 critical elements of a mature pattern."
+          },
+          {
+           "code": "S1.E12.2.a",
+           "text": "Catches various sizes of balls self-tossed or tossed by a skilled thrower."
+          }
+         ]
+        },
+        {
+         "id": "the-physically-literate-individual-demonstrates--4",
+         "title": "The physically literate individual demonstrates competency in a variety of motor skills and movement patterns (4 of 5)",
+         "outcomes": [
+          {
+           "code": "S1.E12.2.b",
+           "text": "Catches a self-tossed or well-thrown large ball with hands, not trapping or cradling against the body."
+          },
+          {
+           "code": "S1.E13.2.a",
+           "text": "Dribbles in self-space with preferred hand demonstrating a mature pattern."
+          },
+          {
+           "code": "S1.E13.2.b",
+           "text": "Dribbles using preferred hand while in general space."
+          },
+          {
+           "code": "S1.E14.2.a",
+           "text": "Dribbles with feet in general space with control of ball and body."
+          },
+          {
+           "code": "S1.E17.2.a",
+           "text": "Uses a continuous running approach and kicks a moving ball, demonstrating 3 of the 5 critical elements of a mature pattern."
+          }
+         ]
+        },
+        {
+         "id": "the-physically-literate-individual-demonstrates--5",
+         "title": "The physically literate individual demonstrates competency in a variety of motor skills and movement patterns (5 of 5)",
+         "outcomes": [
+          {
+           "code": "S1.E18.2.a",
+           "text": "Volleys an object upward with consecutive hits."
+          },
+          {
+           "code": "S1.E20.2.a",
+           "text": "Strikes and object upward with a short-handled implement, using consecutive hits."
+          },
+          {
+           "code": "S1.E21.2.a",
+           "text": "Strikes a ball off a tee or cone with a bat, using correct grip and side-orientation/proper body orientation."
+          },
+          {
+           "code": "S1.E22.2.a",
+           "text": "Jumps a self-turned (short) rope forward and backward with a mature form."
+          },
+          {
+           "code": "S1.E22.2.b",
+           "text": "Jumps a long rope consecutively with student and/or teacher turners."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "the-physically-literate-individual-applies-knowl",
+     "title": "The physically literate individual applies knowledge of concepts, principles, strategies and tactics related to movement and performance",
+     "topics": [
+      {
+       "id": "the-physically-literate-individual-applies-knowl",
+       "title": "The physically literate individual applies knowledge of concepts, principles, strategies and tactics related to movement and performance",
+       "subtopics": [
+        {
+         "id": "the-physically-literate-individual-applies-knowl",
+         "title": "The physically literate individual applies knowledge of concepts, principles, strategies and tactics related to movement and performance",
+         "outcomes": [
+          {
+           "code": "S2.E1.2.a",
+           "text": "Combines locomotor skills in general and self-space to a rhythm."
+          },
+          {
+           "code": "S2.E2.2.a",
+           "text": "Combines shapes, levels and pathways into simple travel, dance, and gymnastic sequences."
+          },
+          {
+           "code": "S2.E3.2.a",
+           "text": "Varies time and force with gradual increases and decreases."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "the-physically-literate-individual-demonstrates--2",
+     "title": "The physically literate individual demonstrates the knowledge and skills to achieve and maintain a health-enhancing level of physical activity and fitness",
+     "topics": [
+      {
+       "id": "the-physically-literate-individual-demonstrates-",
+       "title": "The physically literate individual demonstrates the knowledge and skills to achieve and maintain a health-enhancing level of physical activity and fitness",
+       "subtopics": [
+        {
+         "id": "the-physically-literate-individual-demonstrates-",
+         "title": "The physically literate individual demonstrates the knowledge and skills to achieve and maintain a health-enhancing level of physical activity and fitness",
+         "outcomes": [
+          {
+           "code": "S3.E1.2.a",
+           "text": "Describes large motor and/or manipulative physical activities for participation outside of physical education class. (e.g., before and after school, at home, at the park, with friends, with family)."
+          },
+          {
+           "code": "S3.E2.2.a",
+           "text": "Actively engages in physical education class in response to instruction and practice."
+          },
+          {
+           "code": "S3.E3.2.a",
+           "text": "Identifies the heart as a muscle that gets stronger with exercise, play, and physical activity."
+          },
+          {
+           "code": "S3.E4.2.a",
+           "text": "Uses own body resistance for developing strength"
+          },
+          {
+           "code": "S3.E4.2.b",
+           "text": "Identifies physical activities that contribute to health-related fitness"
+          },
+          {
+           "code": "S3.E7.2.a",
+           "text": "Recognizes the good health balance of nutrition and physical activity."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "the-physically-literate-individual-exhibits-resp",
+     "title": "The physically literate individual exhibits responsible personal and social behavior that respects self and others",
+     "topics": [
+      {
+       "id": "the-physically-literate-individual-exhibits-resp",
+       "title": "The physically literate individual exhibits responsible personal and social behavior that respects self and others",
+       "subtopics": [
+        {
+         "id": "the-physically-literate-individual-exhibits-resp",
+         "title": "The physically literate individual exhibits responsible personal and social behavior that respects self and others (1 of 2)",
+         "outcomes": [
+          {
+           "code": "S4.E1.2.a",
+           "text": "Accepts personal responsibility by using equipment and space appropriately with minimal teacher prompting."
+          },
+          {
+           "code": "S4.E1.2.b",
+           "text": "Accepts responsibilities by following the rules and parameters of the learning environment."
+          },
+          {
+           "code": "S4.E2.2.a",
+           "text": "Accepts and responds appropriately to specific corrective feedback from the teacher."
+          },
+          {
+           "code": "S4.E3.2.a",
+           "text": "Works independently with others in partner environments"
+          },
+          {
+           "code": "S4.E3.2.b",
+           "text": "Actively participates with classmates without regard to personal differences."
+          }
+         ]
+        },
+        {
+         "id": "the-physically-literate-individual-exhibits-resp-2",
+         "title": "The physically literate individual exhibits responsible personal and social behavior that respects self and others (2 of 2)",
+         "outcomes": [
+          {
+           "code": "S4.E4.2.a",
+           "text": "Recognizes the role of rules and fair play in teacher designed physical activities."
+          },
+          {
+           "code": "S4.E5.2.a",
+           "text": "Works independently and safely in physical education."
+          },
+          {
+           "code": "S4.E5.2.b",
+           "text": "Work safely with physical education equipment."
+          },
+          {
+           "code": "S4.E6.2.a",
+           "text": "Recognizes sun safe practices"
+          },
+          {
+           "code": "S4.E6.2.b",
+           "text": "Recognizes aquatic safety practices"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "the-physically-literate-individual-recognizes-th",
+     "title": "The physically literate individual recognizes the value of physical activity for health, enjoyment, challenge, self-expression and/or social interaction",
+     "topics": [
+      {
+       "id": "the-physically-literate-individual-recognizes-th",
+       "title": "The physically literate individual recognizes the value of physical activity for health, enjoyment, challenge, self-expression and/or social interaction",
+       "subtopics": [
+        {
+         "id": "the-physically-literate-individual-recognizes-th",
+         "title": "The physically literate individual recognizes the value of physical activity for health, enjoyment, challenge, self-expression and/or social interaction",
+         "outcomes": [
+          {
+           "code": "S5.E1.2.a",
+           "text": "Recognizes the value of good health balance."
+          },
+          {
+           "code": "S5.E2.2.a",
+           "text": "Compares physical activities that build confidence and provide challenge."
+          },
+          {
+           "code": "S5.E3.2.a",
+           "text": "Identifies and discusses physical activities that provide enjoyment and/or self-expression."
+          },
+          {
+           "code": "S5.E4.K-2.a",
+           "text": "Demonstrates socially acceptable conflict resolution skills."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "3",
+   "units": [
+    {
+     "id": "the-physically-literate-individual-demonstrates-",
+     "title": "The physically literate individual demonstrates competency in a variety of motor skills and movement patterns",
+     "topics": [
+      {
+       "id": "the-physically-literate-individual-demonstrates-",
+       "title": "The physically literate individual demonstrates competency in a variety of motor skills and movement patterns",
+       "subtopics": [
+        {
+         "id": "the-physically-literate-individual-demonstrates-",
+         "title": "The physically literate individual demonstrates competency in a variety of motor skills and movement patterns (1 of 5)",
+         "outcomes": [
+          {
+           "code": "S1.E1.3.a",
+           "text": "Leaps using mature pattern."
+          },
+          {
+           "code": "S1.E2.3.a",
+           "text": "Travels showing differentiation between sprinting and running."
+          },
+          {
+           "code": "S1.E3.3.a",
+           "text": "Jumps and lands in the horizontal & vertical planes using a mature pattern."
+          },
+          {
+           "code": "S1.E4.3.a",
+           "text": "Performs teacher-selected and developmentally appropriate dance steps and movement pattern."
+          },
+          {
+           "code": "S1.E5.3.a",
+           "text": "Performs a sequence of locomotor skills, transitioning from one skill to another smoothly and without hesitation."
+          }
+         ]
+        },
+        {
+         "id": "the-physically-literate-individual-demonstrates--2",
+         "title": "The physically literate individual demonstrates competency in a variety of motor skills and movement patterns (2 of 5)",
+         "outcomes": [
+          {
+           "code": "S1.E6.3.a",
+           "text": "Balances on different bases of support, demonstrating muscular tension and extension of free body parts."
+          },
+          {
+           "code": "S1.E7.3.a",
+           "text": "Transfers weight from feet to hands for momentary weight support."
+          },
+          {
+           "code": "S1.E8.3.a",
+           "text": "Moves into and out of gymnastics balances with curling, twisting and stretching actions."
+          },
+          {
+           "code": "S1.E9.3.a",
+           "text": "Combines locomotor skills and movement concepts (levels, shapes, extensions, pathways, force, time, flow) to create and perform a dance."
+          },
+          {
+           "code": "S1.E10.3.a",
+           "text": "Throws underhand to a partner or target with reasonable accuracy."
+          }
+         ]
+        },
+        {
+         "id": "the-physically-literate-individual-demonstrates--3",
+         "title": "The physically literate individual demonstrates competency in a variety of motor skills and movement patterns (3 of 5)",
+         "outcomes": [
+          {
+           "code": "S1.E11.3.a",
+           "text": "Throws overhand, demonstrating 3 of the 5 critical elements of a mature pattern, in non-dynamic environments (closed skills), for distance and/or force."
+          },
+          {
+           "code": "S1.E13.3.a",
+           "text": "Catches a gently tossed hand-size ball from a partner, demonstrating 4 of the 5 critical elements of mature pattern."
+          },
+          {
+           "code": "S1.E14.3.a",
+           "text": "Dribbles and travels in general space at slow to moderate jogging speed with control of ball and body."
+          },
+          {
+           "code": "S1.E15.3.a",
+           "text": "Dribbles with the feet in general space at slow to moderate jogging speed with control of ball and body."
+          },
+          {
+           "code": "S1.E16.3.a",
+           "text": "Passes & receives ball with the insides of the feet to a stationary partner, \"giving\" on reception before returning the pass."
+          }
+         ]
+        },
+        {
+         "id": "the-physically-literate-individual-demonstrates--4",
+         "title": "The physically literate individual demonstrates competency in a variety of motor skills and movement patterns (4 of 5)",
+         "outcomes": [
+          {
+           "code": "S1.E18.3.a",
+           "text": "Uses a continuous running approach and intentionally performs a kick along the ground and a kick in the air, demonstrating 4 of the 5 critical elements of a mature pattern for each. Uses a continuous running approach and kicks a stationary ball for accuracy."
+          },
+          {
+           "code": "S1.E19.3.a",
+           "text": "Volleys an object with an underhand or sidearm striking pattern, sending it forward over a net, to the wall or over a line to a partner, while demonstrating 4 of the 5 critical elements of a mature pattern."
+          },
+          {
+           "code": "S1.E21.3.a",
+           "text": "Strikes an object with a short-handled implement sending it forward over a low net or to a wall."
+          },
+          {
+           "code": "S1.E21.3.b",
+           "text": "Strikes an object with a short-handled implement while demonstrating 3 of the 5 critical elements of a mature pattern."
+          },
+          {
+           "code": "S1.E22.3.a",
+           "text": "Strikes a ball with a long-handled implement (e.g., hockey stick, bat, golf club), sending it forward, while using proper grip for the implement."
+          }
+         ]
+        },
+        {
+         "id": "the-physically-literate-individual-demonstrates--5",
+         "title": "The physically literate individual demonstrates competency in a variety of motor skills and movement patterns (5 of 5)",
+         "outcomes": [
+          {
+           "code": "S1.E24.3.a",
+           "text": "Performs intermediate jump rope skills (e.g., a variety of tricks, running in & out of long rope) for both long and short ropes."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "the-physically-literate-individual-applies-knowl",
+     "title": "The physically literate individual applies knowledge of concepts, principles, strategies and tactics related to movement and performance",
+     "topics": [
+      {
+       "id": "the-physically-literate-individual-applies-knowl",
+       "title": "The physically literate individual applies knowledge of concepts, principles, strategies and tactics related to movement and performance",
+       "subtopics": [
+        {
+         "id": "the-physically-literate-individual-applies-knowl",
+         "title": "The physically literate individual applies knowledge of concepts, principles, strategies and tactics related to movement and performance (1 of 2)",
+         "outcomes": [
+          {
+           "code": "S2.E1.3.a",
+           "text": "Recognizes the concept of open spaces in a movement context."
+          },
+          {
+           "code": "S2.E2.3.a",
+           "text": "Recognizes locomotor skills specific to a wide variety of physical activities."
+          },
+          {
+           "code": "S2.E3.3.a",
+           "text": "Combined movement concepts (direction, levels, force, time) with skills as directed by the teacher."
+          },
+          {
+           "code": "S2.E4.3.a",
+           "text": "Employs the concept of alignment in gymnastics and dance."
+          }
+         ]
+        },
+        {
+         "id": "the-physically-literate-individual-applies-knowl-2",
+         "title": "The physically literate individual applies knowledge of concepts, principles, strategies and tactics related to movement and performance (2 of 2)",
+         "outcomes": [
+          {
+           "code": "S2.E4.3.b",
+           "text": "Employs the concept of muscular tension with balance in gymnastics and dance."
+          },
+          {
+           "code": "S2.E5.3.a",
+           "text": "Applies simple strategies & tactics in chasing activities."
+          },
+          {
+           "code": "S2.E5.3.b",
+           "text": "Applies simple strategies in fleeing activities."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "the-physically-literate-individual-demonstrates--2",
+     "title": "The physically literate individual demonstrates the knowledge and skills to achieve and maintain a health-enhancing level of physical activity and fitness",
+     "topics": [
+      {
+       "id": "the-physically-literate-individual-demonstrates-",
+       "title": "The physically literate individual demonstrates the knowledge and skills to achieve and maintain a health-enhancing level of physical activity and fitness",
+       "subtopics": [
+        {
+         "id": "the-physically-literate-individual-demonstrates-",
+         "title": "The physically literate individual demonstrates the knowledge and skills to achieve and maintain a health-enhancing level of physical activity and fitness (1 of 2)",
+         "outcomes": [
+          {
+           "code": "S3.E1.3.a",
+           "text": "Charts participation in physical activities outside physical education class."
+          },
+          {
+           "code": "S3.E1.3.b",
+           "text": "Identifies physical activity benefits as a way to become healthier."
+          },
+          {
+           "code": "S3.E2.3.a",
+           "text": "Engages in the activities of physical education class with minimal teacher prompting."
+          },
+          {
+           "code": "S3.E3.3.a",
+           "text": "Describes the concept of fitness and provides examples of heart rate evaluation methods."
+          }
+         ]
+        },
+        {
+         "id": "the-physically-literate-individual-demonstrates--2",
+         "title": "The physically literate individual demonstrates the knowledge and skills to achieve and maintain a health-enhancing level of physical activity and fitness (2 of 2)",
+         "outcomes": [
+          {
+           "code": "S3.E4.3.a",
+           "text": "Recognizes the importance of warm-up & cool-down relative to vigorous physical activity."
+          },
+          {
+           "code": "S3.E5.3-5.a",
+           "text": "Identifies the six components of skill related fitness (agility, balance, coordination, speed, reaction time, power)."
+          },
+          {
+           "code": "S3.E6.3.a",
+           "text": "Demonstrates, with teacher direction, the health-related fitness components."
+          },
+          {
+           "code": "S3.E7.3.a",
+           "text": "Identifies foods that are beneficial for before and after physical activity."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "the-physically-literate-individual-exhibits-resp",
+     "title": "The physically literate individual exhibits responsible personal and social behavior that respects self and others",
+     "topics": [
+      {
+       "id": "the-physically-literate-individual-exhibits-resp",
+       "title": "The physically literate individual exhibits responsible personal and social behavior that respects self and others",
+       "subtopics": [
+        {
+         "id": "the-physically-literate-individual-exhibits-resp",
+         "title": "The physically literate individual exhibits responsible personal and social behavior that respects self and others (1 of 2)",
+         "outcomes": [
+          {
+           "code": "S4.E1.3.a",
+           "text": "Exhibits personal responsibility in teacher-directed activities."
+          },
+          {
+           "code": "S4.E2.3.a",
+           "text": "Accepts and implements specific corrective feedback from the teacher."
+          },
+          {
+           "code": "S4.E3.3.a",
+           "text": "Works cooperatively with others."
+          },
+          {
+           "code": "S4.E3.3.b",
+           "text": "Praises others for their success in movement performance."
+          }
+         ]
+        },
+        {
+         "id": "the-physically-literate-individual-exhibits-resp-2",
+         "title": "The physically literate individual exhibits responsible personal and social behavior that respects self and others (2 of 2)",
+         "outcomes": [
+          {
+           "code": "S4.E4.3.a",
+           "text": "Recognizes the role of rules and etiquette in physical activity with peers."
+          },
+          {
+           "code": "S4.E5.3.a",
+           "text": "Works independently and safely in physical activity settings."
+          },
+          {
+           "code": "S4.E6.3-5.a",
+           "text": "Apply sun safe practices."
+          },
+          {
+           "code": "S4.E6.3-5.b",
+           "text": "Identify appropriate water safety practices."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "the-physically-literate-individual-recognizes-th",
+     "title": "The physically literate individual recognizes the value of physical activity for health, enjoyment, challenge, self-expression and/or social interaction",
+     "topics": [
+      {
+       "id": "the-physically-literate-individual-recognizes-th",
+       "title": "The physically literate individual recognizes the value of physical activity for health, enjoyment, challenge, self-expression and/or social interaction",
+       "subtopics": [
+        {
+         "id": "the-physically-literate-individual-recognizes-th",
+         "title": "The physically literate individual recognizes the value of physical activity for health, enjoyment, challenge, self-expression and/or social interaction",
+         "outcomes": [
+          {
+           "code": "S5.E1.3.a",
+           "text": "Discusses the relationship between physical activity and good health."
+          },
+          {
+           "code": "S5.E2.3.a",
+           "text": "Discusses the challenge that comes from learning a new physical activity."
+          },
+          {
+           "code": "S5.E3.3.a",
+           "text": "Reflects on the reasons for enjoying selected physical activities."
+          },
+          {
+           "code": "S5.E4.3.a",
+           "text": "Describes the positive social interactions that come when engaged with others in physical activity."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "4",
+   "units": [
+    {
+     "id": "the-physically-literate-individual-demonstrates-",
+     "title": "The physically literate individual demonstrates competency in a variety of motor skills and movement patterns",
+     "topics": [
+      {
+       "id": "the-physically-literate-individual-demonstrates-",
+       "title": "The physically literate individual demonstrates competency in a variety of motor skills and movement patterns",
+       "subtopics": [
+        {
+         "id": "the-physically-literate-individual-demonstrates-",
+         "title": "The physically literate individual demonstrates competency in a variety of motor skills and movement patterns (1 of 6)",
+         "outcomes": [
+          {
+           "code": "S1.E1.4.a",
+           "text": "Uses various locomotor skills in a variety of small-sided practice tasks, dance and educational gymnastics experiences."
+          },
+          {
+           "code": "S1.E2.4.a",
+           "text": "Runs for distance using a mature pattern."
+          },
+          {
+           "code": "S1.E3.4.a",
+           "text": "Uses spring-and-step takeoffs and landings in gymnastic based skills."
+          },
+          {
+           "code": "S1.E4.4.a",
+           "text": "Combines locomotor movement patterns and dance steps to create and perform an original dance."
+          },
+          {
+           "code": "S1.E5.4.a",
+           "text": "Combines traveling with manipulative skills of dribbling, throwing, catching and striking in teacher- and/or student-designed small-sided practice tasks and games."
+          }
+         ]
+        },
+        {
+         "id": "the-physically-literate-individual-demonstrates--2",
+         "title": "The physically literate individual demonstrates competency in a variety of motor skills and movement patterns (2 of 6)",
+         "outcomes": [
+          {
+           "code": "S1.E6.4.a",
+           "text": "Balances on different bases of support on apparatus, demonstrating levels and shapes."
+          },
+          {
+           "code": "S1.E7.4.a",
+           "text": "Transfer weight by rolling in a variety directions using different body shapes."
+          },
+          {
+           "code": "S1.E8.4.a",
+           "text": "Moves into and out of balances on apparatus with curling, twisting and stretching actions."
+          },
+          {
+           "code": "S1.E9.4.a",
+           "text": "Combines locomotor skills and movement concepts (levels, shapes, extensions, pathways, force, time, flow) to create and perform a dance with a partner."
+          },
+          {
+           "code": "S1.E11.4.a",
+           "text": "Throws overhand using mature pattern in a non-dynamic environment (closed skills)."
+          }
+         ]
+        },
+        {
+         "id": "the-physically-literate-individual-demonstrates--3",
+         "title": "The physically literate individual demonstrates competency in a variety of motor skills and movement patterns (3 of 6)",
+         "outcomes": [
+          {
+           "code": "S1.E11.4.b",
+           "text": "Throws overhand to a partner or at a target with accuracy at a reasonable distance."
+          },
+          {
+           "code": "S1.E12.4.a",
+           "text": "Throws to a moving partner with reasonable accuracy in non-dynamic environment (closed skills)."
+          },
+          {
+           "code": "S1.E13.4.a",
+           "text": "Catches a thrown ball above the head, at chest or waist level, and below the waist using a mature pattern in a non-dynamic environment (closed skills)."
+          },
+          {
+           "code": "S1.E14.4.a",
+           "text": "Dribbles in self-space with both the preferred and non-preferred hand using a mature pattern."
+          },
+          {
+           "code": "S1.E14.4.b",
+           "text": "Dribbles in general space with control of ball and body while increasing and decreasing speed."
+          }
+         ]
+        },
+        {
+         "id": "the-physically-literate-individual-demonstrates--4",
+         "title": "The physically literate individual demonstrates competency in a variety of motor skills and movement patterns (4 of 6)",
+         "outcomes": [
+          {
+           "code": "S1.E15.4.a",
+           "text": "Dribbles with the feet in general space with control of ball and body while increasing and decreasing speed."
+          },
+          {
+           "code": "S1.E16.4.a",
+           "text": "Passes & receives ball with the insides of the feet to a moving partner in a non-dynamic environment (closed skills)."
+          },
+          {
+           "code": "S1.E16.4.b",
+           "text": "Receives and passes a ball with the outsides and insides of the feet to a stationary partner, \"giving\" on reception before returning the pass."
+          },
+          {
+           "code": "S1.E17.4.a",
+           "text": "Dribbles with hands or feet in combination with other skills (e.g., passing, receiving, shooting)."
+          },
+          {
+           "code": "S1.E18.4.a",
+           "text": "Kicks along the ground and in the air, and punts using mature patterns."
+          }
+         ]
+        },
+        {
+         "id": "the-physically-literate-individual-demonstrates--5",
+         "title": "The physically literate individual demonstrates competency in a variety of motor skills and movement patterns (5 of 6)",
+         "outcomes": [
+          {
+           "code": "S1.E19.4.a",
+           "text": "Volleys underhand using a mature pattern, in a dynamic environment using small modified games."
+          },
+          {
+           "code": "S1.E20.4.a",
+           "text": "Volleys a ball with a two-hand overhead pattern, sending it upward, demonstrating 4 of the 5 critical elements of a mature pattern."
+          },
+          {
+           "code": "S1.E21.4.a",
+           "text": "Strikes an object with a short-handled implement while demonstrating a mature pattern."
+          },
+          {
+           "code": "S1.E21.4.b",
+           "text": "Strikes an object with a short-handled implement, alternating hits with a partner over a low net or against a wall."
+          },
+          {
+           "code": "S1.E22.4.a",
+           "text": "Strikes an object with a long-handled implement (e.g., hockey stick, golf club, bat, tennis or badminton racket) while demonstrating 3 to 5 critical elements of a mature pattern for the implement (grip, stance, body orientation, swing plane, and follow-through)."
+          }
+         ]
+        },
+        {
+         "id": "the-physically-literate-individual-demonstrates--6",
+         "title": "The physically literate individual demonstrates competency in a variety of motor skills and movement patterns (6 of 6)",
+         "outcomes": [
+          {
+           "code": "S1.E23.4.a",
+           "text": "Combines traveling with the manipulative skills of dribbling, throwing, catching and striking in teacher and/or student designed small-sided practice-task environments."
+          },
+          {
+           "code": "S1.E24.4.a",
+           "text": "Creates a jump rope routine with either a short or long rope."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "the-physically-literate-individual-applies-knowl",
+     "title": "The physically literate individual applies knowledge of concepts, principles, strategies and tactics related to movement and performance",
+     "topics": [
+      {
+       "id": "the-physically-literate-individual-applies-knowl",
+       "title": "The physically literate individual applies knowledge of concepts, principles, strategies and tactics related to movement and performance",
+       "subtopics": [
+        {
+         "id": "the-physically-literate-individual-applies-knowl",
+         "title": "The physically literate individual applies knowledge of concepts, principles, strategies and tactics related to movement and performance (1 of 2)",
+         "outcomes": [
+          {
+           "code": "S2.E1.4.a",
+           "text": "Applies the concept of open spaces to combination skills involving traveling (e.g., dribbling and traveling)."
+          },
+          {
+           "code": "S2.E1.4.b",
+           "text": "Applies the concept of closing spaces in small sided practices."
+          },
+          {
+           "code": "S2.E1.4.c",
+           "text": "Dribbles in general space with changes in direction and speed."
+          },
+          {
+           "code": "S2.E2.4.a",
+           "text": "Combines movement concepts with skills in small-sided practice tasks, gymnastics and dance environments."
+          },
+          {
+           "code": "S2.E3.4.a",
+           "text": "Applies movement concepts of speed, endurance and pacing for running."
+          }
+         ]
+        },
+        {
+         "id": "the-physically-literate-individual-applies-knowl-2",
+         "title": "The physically literate individual applies knowledge of concepts, principles, strategies and tactics related to movement and performance (2 of 2)",
+         "outcomes": [
+          {
+           "code": "S2.E3.4.b",
+           "text": "Applies the concept of direction and force when striking an object with a short-handled implement, sending it toward a designated target."
+          },
+          {
+           "code": "S2.E4.4.a",
+           "text": "Applies skill."
+          },
+          {
+           "code": "S2.E5.4.a",
+           "text": "Applies simple offensive strategies & tactics in chasing & fleeing activities."
+          },
+          {
+           "code": "S2.E5.4.b",
+           "text": "Applies simple defensive strategies & tactics in chasing & fleeing activities."
+          },
+          {
+           "code": "S2.E5.4.c",
+           "text": "Recognizes the type of kicks needed for different games and sports situations."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "the-physically-literate-individual-demonstrates--2",
+     "title": "The physically literate individual demonstrates the knowledge and skills to achieve and maintain a health-enhancing level of physical activity and fitness",
+     "topics": [
+      {
+       "id": "the-physically-literate-individual-demonstrates-",
+       "title": "The physically literate individual demonstrates the knowledge and skills to achieve and maintain a health-enhancing level of physical activity and fitness",
+       "subtopics": [
+        {
+         "id": "the-physically-literate-individual-demonstrates-",
+         "title": "The physically literate individual demonstrates the knowledge and skills to achieve and maintain a health-enhancing level of physical activity and fitness (1 of 2)",
+         "outcomes": [
+          {
+           "code": "S3.E1.4.a",
+           "text": "Analyzes opportunities for participating in physical activity outside physical education class."
+          },
+          {
+           "code": "S3.E2.4.a",
+           "text": "Actively engages in the activities of physical education class, both teacher-directed and independent."
+          },
+          {
+           "code": "S3.E3.4.a",
+           "text": "Identifies the components of health-related fitness."
+          },
+          {
+           "code": "S3.E3.4.b",
+           "text": "Evaluate heart rate during exercise utilizing methods such as manual, pulse checking, perceived exertion index or heart rate monitors."
+          },
+          {
+           "code": "S3.E4.4.a",
+           "text": "Demonstrates warm-up & cool-down relative to cardiorespiratory fitness assessment."
+          }
+         ]
+        },
+        {
+         "id": "the-physically-literate-individual-demonstrates--2",
+         "title": "The physically literate individual demonstrates the knowledge and skills to achieve and maintain a health-enhancing level of physical activity and fitness (2 of 2)",
+         "outcomes": [
+          {
+           "code": "S3.E5.3-5.a",
+           "text": "Identifies the six components of skill related fitness (agility, balance, coordination, speed, reaction time, power)."
+          },
+          {
+           "code": "S3.E6.4.a",
+           "text": "Completes fitness assessments (pre & post)."
+          },
+          {
+           "code": "S3.E6.4.b",
+           "text": "Identifies areas of needed remediation from personal test and, with teacher assistance, identifies strategies for progress in those areas."
+          },
+          {
+           "code": "S3.E7.4.a",
+           "text": "Discusses the importance of hydration and hydration choices relative to physical activities."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "the-physically-literate-individual-exhibits-resp",
+     "title": "The physically literate individual exhibits responsible personal and social behavior that respects self and others",
+     "topics": [
+      {
+       "id": "the-physically-literate-individual-exhibits-resp",
+       "title": "The physically literate individual exhibits responsible personal and social behavior that respects self and others",
+       "subtopics": [
+        {
+         "id": "the-physically-literate-individual-exhibits-resp",
+         "title": "The physically literate individual exhibits responsible personal and social behavior that respects self and others (1 of 2)",
+         "outcomes": [
+          {
+           "code": "S4.E1.4.a",
+           "text": "Exhibits responsible behavior in independent group situations."
+          },
+          {
+           "code": "S4.E2.4.a",
+           "text": "Listens respectfully to corrective feedback from others (e.g., peers, adults)."
+          },
+          {
+           "code": "S4.E3.4.a",
+           "text": "Praises the movement performance of others both more and less-skilled."
+          },
+          {
+           "code": "S4.E3.4.b",
+           "text": "Accepts players of all skill levels into the physical activity."
+          }
+         ]
+        },
+        {
+         "id": "the-physically-literate-individual-exhibits-resp-2",
+         "title": "The physically literate individual exhibits responsible personal and social behavior that respects self and others (2 of 2)",
+         "outcomes": [
+          {
+           "code": "S4.E4.4.a",
+           "text": "Exhibits etiquette and adherence to rules in a variety of physical activities."
+          },
+          {
+           "code": "S4.E5.4.a",
+           "text": "Works safely with peers and equipment in physical activity settings."
+          },
+          {
+           "code": "S4.E6.3-5.a",
+           "text": "Apply sun safe practices."
+          },
+          {
+           "code": "S4.E6.3-5.b",
+           "text": "Identify appropriate water safety practices."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "the-physically-literate-individual-recognizes-th",
+     "title": "The physically literate individual recognizes the value of physical activity for health, enjoyment, challenge, self-expression and/or social interaction",
+     "topics": [
+      {
+       "id": "the-physically-literate-individual-recognizes-th",
+       "title": "The physically literate individual recognizes the value of physical activity for health, enjoyment, challenge, self-expression and/or social interaction",
+       "subtopics": [
+        {
+         "id": "the-physically-literate-individual-recognizes-th",
+         "title": "The physically literate individual recognizes the value of physical activity for health, enjoyment, challenge, self-expression and/or social interaction",
+         "outcomes": [
+          {
+           "code": "S5.E1.4.a",
+           "text": "Examines the health benefits of participating in physical activity."
+          },
+          {
+           "code": "S5.E2.4.a",
+           "text": "Rates the enjoyment of participating in challenging and mastered physical activities."
+          },
+          {
+           "code": "S5.E3.4.a",
+           "text": "Ranks the enjoyment of participating in different physical activities."
+          },
+          {
+           "code": "S5.E4.4.a",
+           "text": "Describes & compares the positive social interactions when engaged in partner, small group and large group physical activities."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "5",
+   "units": [
+    {
+     "id": "the-physically-literate-individual-demonstrates-",
+     "title": "The physically literate individual demonstrates competency in a variety of motor skills and movement patterns",
+     "topics": [
+      {
+       "id": "the-physically-literate-individual-demonstrates-",
+       "title": "The physically literate individual demonstrates competency in a variety of motor skills and movement patterns",
+       "subtopics": [
+        {
+         "id": "the-physically-literate-individual-demonstrates-",
+         "title": "The physically literate individual demonstrates competency in a variety of motor skills and movement patterns (1 of 8)",
+         "outcomes": [
+          {
+           "code": "S1.E1.5.a",
+           "text": "Demonstrates mature patterns of locomotor skills in dynamic small-sided games, practice tasks, gymnastics and dance."
+          },
+          {
+           "code": "S1.E1.5.b",
+           "text": "Combines locomotor and manipulative skills in a variety of small-sided practice tasks in game environments."
+          },
+          {
+           "code": "S1.E1.5.c",
+           "text": "Combines traveling with manipulative skills for execution to a target."
+          },
+          {
+           "code": "S1.E1.5.d",
+           "text": "Combines locomotor and non-locomotor skills to create rhythmic and gymnastics routines."
+          },
+          {
+           "code": "S1.E2.5.a",
+           "text": "Applies appropriate pacing for a variety of running distances."
+          }
+         ]
+        },
+        {
+         "id": "the-physically-literate-individual-demonstrates--2",
+         "title": "The physically literate individual demonstrates competency in a variety of motor skills and movement patterns (2 of 8)",
+         "outcomes": [
+          {
+           "code": "S1.E3.5.a",
+           "text": "Combines jumping and landing patterns with locomotors and manipulative skills in dance, educational gymnastics and small modified games and games environments."
+          },
+          {
+           "code": "S1.E4.5.a",
+           "text": "Combines locomotor skills in cultural as well as creative dances (self and group) with correct rhythm and pattern."
+          },
+          {
+           "code": "S1.E4.5.b",
+           "text": "Combines locomotor movement patterns and dance steps to create and perform an original dance."
+          },
+          {
+           "code": "S1.E4.5.c",
+           "text": "Combines locomotor skills and movement concepts (levels, shapes, extensions, pathways, force, and time, flow) to create and perform a dance with a group."
+          },
+          {
+           "code": "S1.E6.5.a",
+           "text": "Demonstrates a sequence of balance and weight transfer movements in gymnastics or dance sequence with a partner."
+          }
+         ]
+        },
+        {
+         "id": "the-physically-literate-individual-demonstrates--3",
+         "title": "The physically literate individual demonstrates competency in a variety of motor skills and movement patterns (3 of 8)",
+         "outcomes": [
+          {
+           "code": "S1.E6.5.b",
+           "text": "Combines actions, balances and weight transfers to create a gymnastics sequence with a partner on equipment or apparatus."
+          },
+          {
+           "code": "S1.E7.5.a",
+           "text": "Transfers weight from feet to hands, varying speed and using large extensions. (e.g., mule kick, handstand, cartwheel)"
+          },
+          {
+           "code": "S1.E8.5.a",
+           "text": "Performs curling, twisting & stretching actions with correct application in dance, gymnastics, and small modified games in games environments."
+          },
+          {
+           "code": "S1.E9.5.a",
+           "text": "Combines locomotor skills and movement concepts (levels, shapes, extensions, pathways, force, time, flow) to create and perform a dance with a group."
+          },
+          {
+           "code": "S1.E10.5.a",
+           "text": "Throws underhand using a mature pattern in non-dynamic environments (closed skills), with different sizes and types of objects."
+          }
+         ]
+        },
+        {
+         "id": "the-physically-literate-individual-demonstrates--4",
+         "title": "The physically literate individual demonstrates competency in a variety of motor skills and movement patterns (4 of 8)",
+         "outcomes": [
+          {
+           "code": "S1.E10.5.b",
+           "text": "Throws underhand to a large target with accuracy."
+          },
+          {
+           "code": "S1.E11.5.a",
+           "text": "Throws overhand using a mature pattern in non-dynamic environments (closed skills), with different sizes and types of objects."
+          },
+          {
+           "code": "S1.E11.5.b",
+           "text": "Throws overhand to large target with accuracy."
+          },
+          {
+           "code": "S1.E12.5.a",
+           "text": "Throws with accuracy, both partners moving."
+          },
+          {
+           "code": "S1.E12.5.b",
+           "text": "Throws with reasonable accuracy in dynamic, small modified games."
+          }
+         ]
+        },
+        {
+         "id": "the-physically-literate-individual-demonstrates--5",
+         "title": "The physically literate individual demonstrates competency in a variety of motor skills and movement patterns (5 of 8)",
+         "outcomes": [
+          {
+           "code": "S1.E13.5.a",
+           "text": "Catches a batted ball above the head, at chest or waist level, and along the ground using a mature pattern in a non-dynamic environment(closed skills)."
+          },
+          {
+           "code": "S1.E13.5.b",
+           "text": "Catches with accuracy, both partners moving."
+          },
+          {
+           "code": "S1.E13.5.c",
+           "text": "Catches with reasonable accuracy in dynamic, small-sided games."
+          },
+          {
+           "code": "S1.E14.5.a",
+           "text": "Combines hand dribbling with other skills during 1v1 practice tasks."
+          },
+          {
+           "code": "S1.E14.5.b",
+           "text": "Dribbling with an implement while showing change of direction, speed and control."
+          }
+         ]
+        },
+        {
+         "id": "the-physically-literate-individual-demonstrates--6",
+         "title": "The physically literate individual demonstrates competency in a variety of motor skills and movement patterns (6 of 8)",
+         "outcomes": [
+          {
+           "code": "S1.E15.5.a",
+           "text": "Combines foot dribbling with other skills in 1v1 practice tasks."
+          },
+          {
+           "code": "S1.E16.5.a",
+           "text": "Passes with the feet using a mature pattern as both partners travel."
+          },
+          {
+           "code": "S1.E16.5.b",
+           "text": "Receives a pass with the foot using a mature pattern as both partners travel."
+          },
+          {
+           "code": "S1.E17.5.a",
+           "text": "Dribbles with hands or feet with mature patterns in a variety of small-sided games."
+          },
+          {
+           "code": "S1.E18.5.a",
+           "text": "Demonstrates mature patterns in kicking and punting in small-sided practice task environments."
+          }
+         ]
+        },
+        {
+         "id": "the-physically-literate-individual-demonstrates--7",
+         "title": "The physically literate individual demonstrates competency in a variety of motor skills and movement patterns (7 of 8)",
+         "outcomes": [
+          {
+           "code": "S1.E20.5.a",
+           "text": "Volleys a ball using a mature two-hand overhead pattern sending it upward to a target."
+          },
+          {
+           "code": "S1.E21.5.a",
+           "text": "Strikes an object consecutively, with a partner, using a short-handled implement, over a net or against a wall, in either a competitive or cooperative game environment."
+          },
+          {
+           "code": "S1.E22.5.a",
+           "text": "Strikes a pitched ball with a bat using a mature pattern."
+          },
+          {
+           "code": "S1.E22.5.b",
+           "text": "Combines striking with a long implement (e.g., bat, hockey stick) with receiving and traveling skills in a small-sided game."
+          },
+          {
+           "code": "S1.E23.5.a",
+           "text": "Combines manipulative skills and traveling for execution to a target (e.g., scoring in soccer, hockey, and basketball)."
+          }
+         ]
+        },
+        {
+         "id": "the-physically-literate-individual-demonstrates--8",
+         "title": "The physically literate individual demonstrates competency in a variety of motor skills and movement patterns (8 of 8)",
+         "outcomes": [
+          {
+           "code": "S1.E24.5.a",
+           "text": "Creates a jump rope routine with a partner, using either a short or long rope."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "the-physically-literate-individual-applies-knowl",
+     "title": "The physically literate individual applies knowledge of concepts, principles, strategies and tactics related to movement and performance",
+     "topics": [
+      {
+       "id": "the-physically-literate-individual-applies-knowl",
+       "title": "The physically literate individual applies knowledge of concepts, principles, strategies and tactics related to movement and performance",
+       "subtopics": [
+        {
+         "id": "the-physically-literate-individual-applies-knowl",
+         "title": "The physically literate individual applies knowledge of concepts, principles, strategies and tactics related to movement and performance (1 of 3)",
+         "outcomes": [
+          {
+           "code": "S2.E1.5.a",
+           "text": "Applies the concept of open spaces to combination skills involving locomotor and non locomotor movements for small groups."
+          },
+          {
+           "code": "S2.E1.5.b",
+           "text": "Applies the concept of closing spaces in small sided practices."
+          },
+          {
+           "code": "S2.E1.5.c",
+           "text": "Identify boundaries and apply knowledge to small games."
+          },
+          {
+           "code": "S2.E2.5.a",
+           "text": "Combines movement concepts with skills in small sided practice tasks in game environments, gymnastics and dance with self-direction."
+          }
+         ]
+        },
+        {
+         "id": "the-physically-literate-individual-applies-knowl-2",
+         "title": "The physically literate individual applies knowledge of concepts, principles, strategies and tactics related to movement and performance (2 of 3)",
+         "outcomes": [
+          {
+           "code": "S2.E3.5.a",
+           "text": "Applies movement concepts to strategy in game situations."
+          },
+          {
+           "code": "S2.E3.5.b",
+           "text": "Applies the concept of direction and force to strike an object with a long handled implement."
+          },
+          {
+           "code": "S2.E3.5.c",
+           "text": "Analyze movement situations and applies movement concepts (e.g., force, direction, speed, pathways, extensions) in small sided practice tasks in game environments, dance and gymnastics."
+          },
+          {
+           "code": "S2.E4.5.a",
+           "text": "Applies skills of alignment in all forms of movement."
+          }
+         ]
+        },
+        {
+         "id": "the-physically-literate-individual-applies-knowl-3",
+         "title": "The physically literate individual applies knowledge of concepts, principles, strategies and tactics related to movement and performance (3 of 3)",
+         "outcomes": [
+          {
+           "code": "S2.E4.5.b",
+           "text": "Employs the concept of muscular tension with balance in all forms of movement."
+          },
+          {
+           "code": "S2.E5.5.a",
+           "text": "Applies basic offensive and defensive strategies and tactics in invasion small-sided practice tasks."
+          },
+          {
+           "code": "S2.E5.5.b",
+           "text": "Applies basic offensive and defensive strategies and tactics in net/wall small-sided practice tasks."
+          },
+          {
+           "code": "S2.E5.5.c",
+           "text": "Recognizes the type of throw, volley or striking action needed for different games and sports situations."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "the-physically-literate-individual-demonstrates--2",
+     "title": "The physically literate individual demonstrates the knowledge and skills to achieve and maintain a health-enhancing level of physical activity and fitness",
+     "topics": [
+      {
+       "id": "the-physically-literate-individual-demonstrates-",
+       "title": "The physically literate individual demonstrates the knowledge and skills to achieve and maintain a health-enhancing level of physical activity and fitness",
+       "subtopics": [
+        {
+         "id": "the-physically-literate-individual-demonstrates-",
+         "title": "The physically literate individual demonstrates the knowledge and skills to achieve and maintain a health-enhancing level of physical activity and fitness (1 of 3)",
+         "outcomes": [
+          {
+           "code": "S3.E1.5.a",
+           "text": "Charts and analyzes physical activity outside physical education class for fitness benefits of activities."
+          },
+          {
+           "code": "S3.E2.5.a",
+           "text": "Actively engages in all the activities of physical education."
+          },
+          {
+           "code": "S3.E4.5.a",
+           "text": "List, define, and demonstrates the five components of health related fitness."
+          },
+          {
+           "code": "S3.E4.5.b",
+           "text": "Identifies the need for warm-up & cool-down relative to various physical activities."
+          }
+         ]
+        },
+        {
+         "id": "the-physically-literate-individual-demonstrates--2",
+         "title": "The physically literate individual demonstrates the knowledge and skills to achieve and maintain a health-enhancing level of physical activity and fitness (2 of 3)",
+         "outcomes": [
+          {
+           "code": "S3.E4.5.c",
+           "text": "Identify and apply FITT to a fitness plan (frequency, intensity, time, type)."
+          },
+          {
+           "code": "S3.E4.5.d",
+           "text": "Identify major muscles."
+          },
+          {
+           "code": "S3.E4.5.e",
+           "text": "Experience how the muscular and skeletal systems work together to allow movement."
+          },
+          {
+           "code": "S3.E5.3-5.a",
+           "text": "Identifies the six components of skill related fitness (agility, balance, coordination, speed, reaction time, power)."
+          }
+         ]
+        },
+        {
+         "id": "the-physically-literate-individual-demonstrates--3",
+         "title": "The physically literate individual demonstrates the knowledge and skills to achieve and maintain a health-enhancing level of physical activity and fitness (3 of 3)",
+         "outcomes": [
+          {
+           "code": "S3.E6.5.a",
+           "text": "Analyzes results of fitness assessment (pre- & post-), comparing results to fitness components for good health."
+          },
+          {
+           "code": "S3.E6.5.b",
+           "text": "Perform a nationally recognized, criterion references, health related fitness assessment that includes muscular strength, muscular endurance, flexibility, cardiovascular endurance, body composition."
+          },
+          {
+           "code": "S3.E6.5.c",
+           "text": "Identify strategies for progress in fitness areas using FITT strategies."
+          },
+          {
+           "code": "S3.E7.5.a",
+           "text": "Analyzes the impact of food choices relative to physical activity, youth sports & personal health."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "the-physically-literate-individual-exhibits-resp",
+     "title": "The physically literate individual exhibits responsible personal and social behavior that respects self and others",
+     "topics": [
+      {
+       "id": "the-physically-literate-individual-exhibits-resp",
+       "title": "The physically literate individual exhibits responsible personal and social behavior that respects self and others",
+       "subtopics": [
+        {
+         "id": "the-physically-literate-individual-exhibits-resp",
+         "title": "The physically literate individual exhibits responsible personal and social behavior that respects self and others (1 of 2)",
+         "outcomes": [
+          {
+           "code": "S4.E1.5.a",
+           "text": "Engages in physical activity with responsible interpersonal behavior (e.g., peer to peer, student to teacher, student to referee)."
+          },
+          {
+           "code": "S4.E2.5.a",
+           "text": "Gives and receives corrective feedback respectfully to peers and adults."
+          },
+          {
+           "code": "S4.E3.5.a",
+           "text": "Praises the movement performance of others both more and less-skilled."
+          },
+          {
+           "code": "S4.E3.5.b",
+           "text": "Accepts players of all skill levels into the physical activity."
+          }
+         ]
+        },
+        {
+         "id": "the-physically-literate-individual-exhibits-resp-2",
+         "title": "The physically literate individual exhibits responsible personal and social behavior that respects self and others (2 of 2)",
+         "outcomes": [
+          {
+           "code": "S4.E4.5.a",
+           "text": "Assesses adherence to rules, etiquette, and fair play of various games and activities."
+          },
+          {
+           "code": "S4.E5.5.a",
+           "text": "Applies safety principles with age-appropriate physical activities."
+          },
+          {
+           "code": "S4.E6.3-5.a",
+           "text": "Apply sun safe practices."
+          },
+          {
+           "code": "S4.E6.3-5.b",
+           "text": "Identify appropriate water safety practices."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "the-physically-literate-individual-recognizes-th",
+     "title": "The physically literate individual recognizes the value of physical activity for health, enjoyment, challenge, self-expression and/or social interaction",
+     "topics": [
+      {
+       "id": "the-physically-literate-individual-recognizes-th",
+       "title": "The physically literate individual recognizes the value of physical activity for health, enjoyment, challenge, self-expression and/or social interaction",
+       "subtopics": [
+        {
+         "id": "the-physically-literate-individual-recognizes-th",
+         "title": "The physically literate individual recognizes the value of physical activity for health, enjoyment, challenge, self-expression and/or social interaction",
+         "outcomes": [
+          {
+           "code": "S5.E1.5.a",
+           "text": "Compares the health benefits of participation in selected physical activities."
+          },
+          {
+           "code": "S5.E2.5.a",
+           "text": "Analyzes the personal benefits to participating in an activity that is challenging."
+          },
+          {
+           "code": "S5.E3.5.a",
+           "text": "Analyzes the personal benefits to participating in an activity that is enjoyable."
+          },
+          {
+           "code": "S5.E4.5.a",
+           "text": "Analyzes the positive impact of verbal and non-verbal encouragement in physical activity."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "6",
+   "units": [
+    {
+     "id": "the-physically-literate-individual-demonstrates-",
+     "title": "The physically literate individual demonstrates competency in a variety of motor skills and movement patterns",
+     "topics": [
+      {
+       "id": "the-physically-literate-individual-demonstrates-",
+       "title": "The physically literate individual demonstrates competency in a variety of motor skills and movement patterns",
+       "subtopics": [
+        {
+         "id": "the-physically-literate-individual-demonstrates-",
+         "title": "The physically literate individual demonstrates competency in a variety of motor skills and movement patterns (1 of 5)",
+         "outcomes": [
+          {
+           "code": "S1.M1.6.a",
+           "text": "Demonstrates correct rhythm and pattern for 1 of the following dance forms: folk, social, creative, line or world dance."
+          },
+          {
+           "code": "S1.M2.6.a",
+           "text": "Throws with a mature pattern for distance or power appropriate to the practice task (e.g., distance = outfield to home plate; power = 2nd base to 1st base)."
+          },
+          {
+           "code": "S1.M3.6.a",
+           "text": "Catches with a mature pattern from a variety of trajectories using different objects in varying practice tasks."
+          },
+          {
+           "code": "S1.M4.6.a",
+           "text": "Passes and receives with hands in combination with locomotor patterns of running and change of direction & speed with competency in modified invasion games such as basketball, flag football, speedball, or team handball."
+          },
+          {
+           "code": "S1.M5.6.a",
+           "text": "Throws, while stationary, a lead pass to a moving target."
+          }
+         ]
+        },
+        {
+         "id": "the-physically-literate-individual-demonstrates--2",
+         "title": "The physically literate individual demonstrates competency in a variety of motor skills and movement patterns (2 of 5)",
+         "outcomes": [
+          {
+           "code": "S1.M6.6.a",
+           "text": "Performs pivots, fakes and jab steps designed to create open space during practice tasks."
+          },
+          {
+           "code": "S1.M7.6.a",
+           "text": "Performs the following offensive skills without defensive pressure: pivot, give & go, and fakes."
+          },
+          {
+           "code": "S1.M8.6.a",
+           "text": "Dribbles with dominant hand using a change of speed and direction in a variety of practice tasks."
+          },
+          {
+           "code": "S1.M9.6.a",
+           "text": "Foot-dribbles or dribbles with an implement with control, changing speed and direction in a variety of practice tasks."
+          },
+          {
+           "code": "S1.M10.6.a",
+           "text": "Shoots on goal with power in a dynamic environment as appropriate to the activity."
+          }
+         ]
+        },
+        {
+         "id": "the-physically-literate-individual-demonstrates--3",
+         "title": "The physically literate individual demonstrates competency in a variety of motor skills and movement patterns (3 of 5)",
+         "outcomes": [
+          {
+           "code": "S1.M11.6.a",
+           "text": "Maintains defensive ready position with weight on balls of feet, arms extended, and eyes on midsection of the offensive player."
+          },
+          {
+           "code": "S1.M12.6.a",
+           "text": "Performs a legal underhand serve with control for net/wall games such as badminton, volleyball, pickleball."
+          },
+          {
+           "code": "S1.M13.6.a",
+           "text": "Strikes, with a mature overarm pattern in a non-dynamic environment (closed skills) for net/wall games such as volleyball, handball, badminton or tennis."
+          },
+          {
+           "code": "S1.M14.6.a",
+           "text": "Demonstrates the mature form of forehand and backhand strokes with a short-handled implement in net games such as paddleball, pickleball or short-handled racket tennis."
+          },
+          {
+           "code": "S1.M15.6.a",
+           "text": "Transfers weight with correct timing for the striking pattern."
+          }
+         ]
+        },
+        {
+         "id": "the-physically-literate-individual-demonstrates--4",
+         "title": "The physically literate individual demonstrates competency in a variety of motor skills and movement patterns (4 of 5)",
+         "outcomes": [
+          {
+           "code": "S1.M16.6.a",
+           "text": "Forehand volleys with mature form and control using a short-handled implement."
+          },
+          {
+           "code": "S1.M17.6.a",
+           "text": "Two-hand volleys with control in a variety of practice tasks."
+          },
+          {
+           "code": "S1.M18.6.a",
+           "text": "Demonstrates a mature underhand pattern for a modified target games such as bowling, bocce, or horseshoes."
+          },
+          {
+           "code": "S1.M19.6.a",
+           "text": "Strikes, with an implement, a stationary object for accuracy in activities such as croquet, shuffleboard or golf."
+          },
+          {
+           "code": "S1.M20.6.a",
+           "text": "Strikes a pitched ball with an implement with force in a variety of practice tasks."
+          }
+         ]
+        },
+        {
+         "id": "the-physically-literate-individual-demonstrates--5",
+         "title": "The physically literate individual demonstrates competency in a variety of motor skills and movement patterns (5 of 5)",
+         "outcomes": [
+          {
+           "code": "S1.M21.6.a",
+           "text": "Catches, with mature pattern, from different trajectories using a variety of objects in varying practice tasks."
+          },
+          {
+           "code": "S1.M22.6.a",
+           "text": "Demonstrates correct technique for basic skills in at least 1 self-selected outdoor activity."
+          },
+          {
+           "code": "S1.M23.6-8.a",
+           "text": "Preferably taught at elementary or secondary levels. However, availability of facilities might dictate when swimming and water safety are offered in the curriculum."
+          },
+          {
+           "code": "S1.M24.6.a",
+           "text": "Demonstrates correct technique for basic skills in at 1 self-selected individual-performance activity."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "the-physically-literate-individual-applies-knowl",
+     "title": "The physically literate individual applies knowledge of concepts, principles, strategies and tactics related to movement and performance",
+     "topics": [
+      {
+       "id": "the-physically-literate-individual-applies-knowl",
+       "title": "The physically literate individual applies knowledge of concepts, principles, strategies and tactics related to movement and performance",
+       "subtopics": [
+        {
+         "id": "the-physically-literate-individual-applies-knowl",
+         "title": "The physically literate individual applies knowledge of concepts, principles, strategies and tactics related to movement and performance (1 of 3)",
+         "outcomes": [
+          {
+           "code": "S2.M1.6.a",
+           "text": "Creates open space by using locomotor movements (e.g., walking, running, jumping & landing) in combination with movement (e.g., varying pathways; change of speed, direction or pace)."
+          },
+          {
+           "code": "S2.M2.6.a",
+           "text": "Executes at least 1 of the following offensive tactics to create open space: moves to open space without the ball; uses a variety of passes, pivots and fakes; give & go."
+          },
+          {
+           "code": "S2.M3.6.a",
+           "text": "Creates open space by using the width and length of the field/court on offense."
+          },
+          {
+           "code": "S2.M4.6.a",
+           "text": "Reduces open space on defense by making the body larger and reducing passing angles."
+          },
+          {
+           "code": "S2.M5.6.a",
+           "text": "Reduces open space by not allowing the catch (denial) or by allowing the catch but not the return pass."
+          }
+         ]
+        },
+        {
+         "id": "the-physically-literate-individual-applies-knowl-2",
+         "title": "The physically literate individual applies knowledge of concepts, principles, strategies and tactics related to movement and performance (2 of 3)",
+         "outcomes": [
+          {
+           "code": "S2.M6.6.a",
+           "text": "Transitions from offense to defense or defense to offense by recovering quickly."
+          },
+          {
+           "code": "S2.M7.6.a",
+           "text": "Creates open space in net/wall games with short-handled implement by varying force and direction"
+          },
+          {
+           "code": "S2.M8.6.a",
+           "text": "Reduces offensive options for opponents by returning to midcourt position."
+          },
+          {
+           "code": "S2.M9.6.a",
+           "text": "Selects appropriate shot and/or club based on location of the object in relation to the target."
+          },
+          {
+           "code": "S2.M10.6.a",
+           "text": "Identifies open spaces and attempts to strike object into that space."
+          }
+         ]
+        },
+        {
+         "id": "the-physically-literate-individual-applies-knowl-3",
+         "title": "The physically literate individual applies knowledge of concepts, principles, strategies and tactics related to movement and performance (3 of 3)",
+         "outcomes": [
+          {
+           "code": "S2.M11.6.a",
+           "text": "Identifies the correct defensive play based on the situation (e.g., number of outs)."
+          },
+          {
+           "code": "S2.M12.6.a",
+           "text": "Varies application of force during dance or gymnastic activities."
+          },
+          {
+           "code": "S2.M13.6.a",
+           "text": "Makes appropriate decisions based on weather, level of difficulty due to the conditions, or ability to ensure safety of self and others."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "the-physically-literate-individual-demonstrates--2",
+     "title": "The physically literate individual demonstrates the knowledge and skills to achieve and maintain a health-enhancing level of physical activity and fitness",
+     "topics": [
+      {
+       "id": "the-physically-literate-individual-demonstrates-",
+       "title": "The physically literate individual demonstrates the knowledge and skills to achieve and maintain a health-enhancing level of physical activity and fitness",
+       "subtopics": [
+        {
+         "id": "the-physically-literate-individual-demonstrates-",
+         "title": "The physically literate individual demonstrates the knowledge and skills to achieve and maintain a health-enhancing level of physical activity and fitness (1 of 4)",
+         "outcomes": [
+          {
+           "code": "S3.M1.6.a",
+           "text": "Describes how being physically active leads to a healthy body."
+          },
+          {
+           "code": "S3.M2.6.a",
+           "text": "Participates in self-selected physical activity outside of physical education class."
+          },
+          {
+           "code": "S3.M3.6.a",
+           "text": "Participates in a variety of self-selected aerobic-fitness activities."
+          },
+          {
+           "code": "S3.M4.6.a",
+           "text": "Participates in a variety of aerobic-fitness activities using technology such as Dance Dance Revolution or Wii Fit."
+          },
+          {
+           "code": "S3.M5.6.a",
+           "text": "Participates in a variety of lifetime recreational team sports, outdoor pursuits or dance activities."
+          }
+         ]
+        },
+        {
+         "id": "the-physically-literate-individual-demonstrates--2",
+         "title": "The physically literate individual demonstrates the knowledge and skills to achieve and maintain a health-enhancing level of physical activity and fitness (2 of 4)",
+         "outcomes": [
+          {
+           "code": "S3.M6.6.a",
+           "text": "Participates in moderate to vigorous physical activity that includes intermittent or continuous aerobic physical activity of both moderate and vigorous intensity for at least 60 minutes per day."
+          },
+          {
+           "code": "S3.M7.6.a",
+           "text": "Identifies the components of skill-related fitness."
+          },
+          {
+           "code": "S3.M8.6.a",
+           "text": "Sets and monitors a self-selected physical-activity goal for aerobic and/or muscle- and bone-strengthening activity based on current fitness level."
+          },
+          {
+           "code": "S3.M9.6.a",
+           "text": "Employs correct techniques and methods of stretching."
+          },
+          {
+           "code": "S3.M10.6.a",
+           "text": "Differentiates between aerobic and anaerobic capacity and between muscular strength and endurance."
+          }
+         ]
+        },
+        {
+         "id": "the-physically-literate-individual-demonstrates--3",
+         "title": "The physically literate individual demonstrates the knowledge and skills to achieve and maintain a health-enhancing level of physical activity and fitness (3 of 4)",
+         "outcomes": [
+          {
+           "code": "S3.M11.6.a",
+           "text": "Identifies each of the components of the overload principle (FITT formula: frequency, intensity, time & type) for different types of physical activity (aerobic, muscular fitness, and flexibility)."
+          },
+          {
+           "code": "S3.M12.6.a",
+           "text": "Describes the role of warm-up/cool-down regimen for a self-selected physical activity."
+          },
+          {
+           "code": "S3.M13.6.a",
+           "text": "Defines resting heart rate and describes its relationship to aerobic fitness and the Borg Rating of Perceived Exertion (RPE) Scale."
+          },
+          {
+           "code": "S3.M14.6.a",
+           "text": "Identifies major muscles used in selected physical activities."
+          },
+          {
+           "code": "S3.M15.6.a",
+           "text": "Designs and implements a program of remediation for any areas of weakness based on the results of health-related fitness assessment."
+          }
+         ]
+        },
+        {
+         "id": "the-physically-literate-individual-demonstrates--4",
+         "title": "The physically literate individual demonstrates the knowledge and skills to achieve and maintain a health-enhancing level of physical activity and fitness (4 of 4)",
+         "outcomes": [
+          {
+           "code": "S3.M16.6.a",
+           "text": "Maintains physical activity log for at least 2 weeks and reflects on activity levels as documented in the log."
+          },
+          {
+           "code": "S3.M17.6.a",
+           "text": "Identifies foods within each of the basic food groups and selects appropriate servings and portions for his/her age and physical activity levels."
+          },
+          {
+           "code": "S3.M18.6.a",
+           "text": "Identifies positive and negative results of stress and appropriate ways of dealing with each."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "the-physically-literate-individual-exhibits-resp",
+     "title": "The physically literate individual exhibits responsible personal and social behavior that respects self and others",
+     "topics": [
+      {
+       "id": "the-physically-literate-individual-exhibits-resp",
+       "title": "The physically literate individual exhibits responsible personal and social behavior that respects self and others",
+       "subtopics": [
+        {
+         "id": "the-physically-literate-individual-exhibits-resp",
+         "title": "The physically literate individual exhibits responsible personal and social behavior that respects self and others (1 of 2)",
+         "outcomes": [
+          {
+           "code": "S4.M1.6.a",
+           "text": "Exhibits personal responsibility by using appropriate etiquette, demonstrating respect for facilities, and exhibiting safe behaviors."
+          },
+          {
+           "code": "S4.M2.6.a",
+           "text": "Identifies and uses appropriate strategies to self-reinforce positive fitness behaviors, such as positive self-talk."
+          },
+          {
+           "code": "S4.M3.6.a",
+           "text": "Demonstrates self-responsibility by implementing specific corrective feedback to improve performance."
+          },
+          {
+           "code": "S4.M4.6.a",
+           "text": "Accepts differences among classmates in physical development, maturation, and varying skill levels by providing encouragement and positive feedback."
+          },
+          {
+           "code": "S4.M5.6.a",
+           "text": "Cooperates with a small group of classmates during adventure activities, game play, or team-building activities."
+          }
+         ]
+        },
+        {
+         "id": "the-physically-literate-individual-exhibits-resp-2",
+         "title": "The physically literate individual exhibits responsible personal and social behavior that respects self and others (2 of 2)",
+         "outcomes": [
+          {
+           "code": "S4.M6.6.a",
+           "text": "Identifies the rules and etiquette for physical activities, games and dance activities."
+          },
+          {
+           "code": "S4.M7.6.a",
+           "text": "Uses physical activity and fitness equipment appropriately and safely, with the teacher's guidance."
+          },
+          {
+           "code": "S4.M8.6-8.a",
+           "text": "Applies sun safe practices."
+          },
+          {
+           "code": "S4.M8.6-8.b",
+           "text": "Applies water safety practices."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "the-physically-literate-individual-recognizes-th",
+     "title": "The physically literate individual recognizes the value of physical activity for health, enjoyment, challenge, self-expression and/or social interaction",
+     "topics": [
+      {
+       "id": "the-physically-literate-individual-recognizes-th",
+       "title": "The physically literate individual recognizes the value of physical activity for health, enjoyment, challenge, self-expression and/or social interaction",
+       "subtopics": [
+        {
+         "id": "the-physically-literate-individual-recognizes-th",
+         "title": "The physically literate individual recognizes the value of physical activity for health, enjoyment, challenge, self-expression and/or social interaction",
+         "outcomes": [
+          {
+           "code": "S5.M1.6.a",
+           "text": "Describes how being physically active leads to a healthy body."
+          },
+          {
+           "code": "S5.M2.6.a",
+           "text": "Identifies components of physical activity that provide opportunities for reducing stress and for social interaction."
+          },
+          {
+           "code": "S5.M3.6.a",
+           "text": "Recognizes individual challenges and copes in a positive way, such as extending effort, asking for help or feedback, or modifying the task."
+          },
+          {
+           "code": "S5.M4.6.a",
+           "text": "Describes how moving competently in a physical activity setting creates enjoyment."
+          },
+          {
+           "code": "S5.M5.6.a",
+           "text": "Identifies how self-expression and physical activity are related."
+          },
+          {
+           "code": "S5.M6.6.a",
+           "text": "Demonstrate respect for self and others in activities and games by following the rules, encouraging others and playing in the spirit of the game or activity."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "7",
+   "units": [
+    {
+     "id": "the-physically-literate-individual-demonstrates-",
+     "title": "The physically literate individual demonstrates competency in a variety of motor skills and movement patterns",
+     "topics": [
+      {
+       "id": "the-physically-literate-individual-demonstrates-",
+       "title": "The physically literate individual demonstrates competency in a variety of motor skills and movement patterns",
+       "subtopics": [
+        {
+         "id": "the-physically-literate-individual-demonstrates-",
+         "title": "The physically literate individual demonstrates competency in a variety of motor skills and movement patterns (1 of 5)",
+         "outcomes": [
+          {
+           "code": "S1.M1.7.a",
+           "text": "Demonstrates correct rhythm and pattern for a different dance form from among folk, social, creative, line or world dance."
+          },
+          {
+           "code": "S1.M2.7.a",
+           "text": "Throws with a mature pattern for distance or power appropriate to the activity in a dynamic environment."
+          },
+          {
+           "code": "S1.M3.7.a",
+           "text": "Catches with a mature pattern from a variety of trajectories using different objects in small-sided game play."
+          },
+          {
+           "code": "S1.M4.7.a",
+           "text": "Passes and receives with feet in combination with locomotor patterns of running and change of direction and speed with competency in modified invasion games such as soccer or speedball."
+          },
+          {
+           "code": "S1.M5.7.a",
+           "text": "Throws, while moving, a leading pass to a moving target."
+          }
+         ]
+        },
+        {
+         "id": "the-physically-literate-individual-demonstrates--2",
+         "title": "The physically literate individual demonstrates competency in a variety of motor skills and movement patterns (2 of 5)",
+         "outcomes": [
+          {
+           "code": "S1.M6.7.a",
+           "text": "Executes at least 1 of the following designed to create open space during small-sided game play: pivots, fakes, jab steps."
+          },
+          {
+           "code": "S1.M7.7.a",
+           "text": "Performs the following offensive skills with defensive pressure: pivot, give and go, and fakes."
+          },
+          {
+           "code": "S1.M8.7.a",
+           "text": "Dribbles with dominant and non-dominant hand using a change of speed and direction in a variety of practice tasks."
+          },
+          {
+           "code": "S1.M9.7.a",
+           "text": "Foot-dribbles or dribbles with an implement combined with passing in a variety of practice tasks."
+          },
+          {
+           "code": "S1.M10.7.a",
+           "text": "Shoots on goal with power and accuracy during small-sided game play."
+          }
+         ]
+        },
+        {
+         "id": "the-physically-literate-individual-demonstrates--3",
+         "title": "The physically literate individual demonstrates competency in a variety of motor skills and movement patterns (3 of 5)",
+         "outcomes": [
+          {
+           "code": "S1.M11.7.a",
+           "text": "Slides in all directions while on defense without crossing feet."
+          },
+          {
+           "code": "S1.M12.7.a",
+           "text": "Executes consistently (at least 70% of the time) a legal underhand serve to a predetermined target for net/wall games such as badminton, volleyball, pickleball."
+          },
+          {
+           "code": "S1.M13.7.a",
+           "text": "Strikes, with a mature overarm pattern in a dynamic environment for net/wall games such as volleyball, handball, badminton or tennis."
+          },
+          {
+           "code": "S1.M14.7.a",
+           "text": "Demonstrates the mature form of forehand and backhand strokes with a long-handled implement in net games such as badminton or tennis."
+          },
+          {
+           "code": "S1.M15.7.a",
+           "text": "Transfer weight with correct timing using low-to-high striking pattern with a short-handled implement on the forehand side."
+          }
+         ]
+        },
+        {
+         "id": "the-physically-literate-individual-demonstrates--4",
+         "title": "The physically literate individual demonstrates competency in a variety of motor skills and movement patterns (4 of 5)",
+         "outcomes": [
+          {
+           "code": "S1.M16.7.a",
+           "text": "Forehand and backhand volleys with a mature form and control using a short-handled implement."
+          },
+          {
+           "code": "S1.M17.7.a",
+           "text": "Two-hand volleys with control in a dynamic environment."
+          },
+          {
+           "code": "S1.M18.7.a",
+           "text": "Executes consistently (70% of the time) a mature underhand pattern for target games such as bowling, bocce, or horseshoes."
+          },
+          {
+           "code": "S1.M19.7.a",
+           "text": "Strikes, with an implement, a stationary object for accuracy and distance in activities such as croquet, shuffleboard or golf."
+          },
+          {
+           "code": "S1.M20.7.a",
+           "text": "Strikes a pitched ball with an implement for power to open space in a variety of practice tasks."
+          }
+         ]
+        },
+        {
+         "id": "the-physically-literate-individual-demonstrates--5",
+         "title": "The physically literate individual demonstrates competency in a variety of motor skills and movement patterns (5 of 5)",
+         "outcomes": [
+          {
+           "code": "S1.M21.7.a",
+           "text": "Catches, with a mature pattern, from different trajectories using a variety of objects in a small-sided game play."
+          },
+          {
+           "code": "S1.M22.7.a",
+           "text": "Demonstrates correct technique for a variety of skills in at least 1 self-selected outdoor activity."
+          },
+          {
+           "code": "S1.M23.6-8.a",
+           "text": "Preferably taught at elementary or secondary levels. However, availability of facilities might dictate when swimming and water safety are offered in the curriculum."
+          },
+          {
+           "code": "S1.M24.7.a",
+           "text": "Demonstrates correct technique for a variety of skills in 1 self-selected individual-performance activity."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "the-physically-literate-individual-applies-knowl",
+     "title": "The physically literate individual applies knowledge of concepts, principles, strategies and tactics related to movement and performance",
+     "topics": [
+      {
+       "id": "the-physically-literate-individual-applies-knowl",
+       "title": "The physically literate individual applies knowledge of concepts, principles, strategies and tactics related to movement and performance",
+       "subtopics": [
+        {
+         "id": "the-physically-literate-individual-applies-knowl",
+         "title": "The physically literate individual applies knowledge of concepts, principles, strategies and tactics related to movement and performance (1 of 3)",
+         "outcomes": [
+          {
+           "code": "S2.M1.7.a",
+           "text": "Reduces open space by using locomotor movements (e.g., walking, running, jumping & landing, changing size and shape of body) in combination with movement concepts (e.g., reducing the angle in space, reducing the angle in the space, reducing distance between player and goal)."
+          },
+          {
+           "code": "S2.M2.7.a",
+           "text": "Executes at least 2 of the following offensive tactics to create open space: uses a variety of passes, pivots and fakes; give & go."
+          },
+          {
+           "code": "S2.M3.7.a",
+           "text": "Creates open space by staying spread on offense, cutting and passing quickly."
+          },
+          {
+           "code": "S2.M4.7.a",
+           "text": "Reduces open space on defense by staying close to the opponent as he/she nears the goal."
+          },
+          {
+           "code": "S2.M5.7.a",
+           "text": "Reduces open space by not allowing the catch (denial) and anticipating the speed of the object or person for the purpose of interception or deflection."
+          }
+         ]
+        },
+        {
+         "id": "the-physically-literate-individual-applies-knowl-2",
+         "title": "The physically literate individual applies knowledge of concepts, principles, strategies and tactics related to movement and performance (2 of 3)",
+         "outcomes": [
+          {
+           "code": "S2.M6.7.a",
+           "text": "Transitions from offense to defense or defense to offense by recovering quickly, communicating with teammates."
+          },
+          {
+           "code": "S2.M7.7.a",
+           "text": "Creates open space in net/wall games with long-handled implement by varying force and direction, and moving opponent from side to side."
+          },
+          {
+           "code": "S2.M8.7.a",
+           "text": "Selects offensive shot based on opponent's location (hit where opponent is not)."
+          },
+          {
+           "code": "S2.M9.7.a",
+           "text": "Varies the speed and/or trajectory of the shot based on location of the object in relation to the target."
+          },
+          {
+           "code": "S2.M10.7.a",
+           "text": "Uses a variety of shots (e.g., slap & run, bunt, line drive, high arc) to hit to open space."
+          }
+         ]
+        },
+        {
+         "id": "the-physically-literate-individual-applies-knowl-3",
+         "title": "The physically literate individual applies knowledge of concepts, principles, strategies and tactics related to movement and performance (3 of 3)",
+         "outcomes": [
+          {
+           "code": "S2.M11.7.a",
+           "text": "Selects the correct defensive play based on the situation (e.g., number of outs)."
+          },
+          {
+           "code": "S2.M12.7.a",
+           "text": "Identifies and applies Newton's law of motion to various dance or movement activities."
+          },
+          {
+           "code": "S2.M13.7.a",
+           "text": "Analyzes the situation and makes adjustments to ensure safety of self and others."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "the-physically-literate-individual-demonstrates--2",
+     "title": "The physically literate individual demonstrates the knowledge and skills to achieve and maintain a health-enhancing level of physical activity and fitness",
+     "topics": [
+      {
+       "id": "the-physically-literate-individual-demonstrates-",
+       "title": "The physically literate individual demonstrates the knowledge and skills to achieve and maintain a health-enhancing level of physical activity and fitness",
+       "subtopics": [
+        {
+         "id": "the-physically-literate-individual-demonstrates-",
+         "title": "The physically literate individual demonstrates the knowledge and skills to achieve and maintain a health-enhancing level of physical activity and fitness (1 of 4)",
+         "outcomes": [
+          {
+           "code": "S3.M1.7.a",
+           "text": "Identifies barriers related to maintaining a physically active lifestyle and seeks solutions for eliminating those barriers."
+          },
+          {
+           "code": "S3.M2.7.a",
+           "text": "Participates in a physical activity twice a week outside of physical education class."
+          },
+          {
+           "code": "S3.M3.7.a",
+           "text": "Participates in a variety of strength and endurance-fitness activities such as weight or resistance training."
+          },
+          {
+           "code": "S3.M4.7.a",
+           "text": "Participates in a variety of strength and endurance-fitness activities such as weight or resistance training."
+          },
+          {
+           "code": "S3.M5.7.a",
+           "text": "Participates in a variety of lifetime dual and individual sports, martial arts or aquatic activities."
+          }
+         ]
+        },
+        {
+         "id": "the-physically-literate-individual-demonstrates--2",
+         "title": "The physically literate individual demonstrates the knowledge and skills to achieve and maintain a health-enhancing level of physical activity and fitness (2 of 4)",
+         "outcomes": [
+          {
+           "code": "S3.M6.7.a",
+           "text": "Participates in moderate to vigorous muscle- and bone-strengthening physical activity at least 3 times a week."
+          },
+          {
+           "code": "S3.M7.7.a",
+           "text": "Distinguishes between health- and skill-related fitness."
+          },
+          {
+           "code": "S3.M8.7.a",
+           "text": "Adjusts physical activity based on quantity of exercise need for a minimal health standard and/or optimal functioning based on current fitness level."
+          },
+          {
+           "code": "S3.M9.7.a",
+           "text": "Describes and demonstrates the difference between dynamic and static stretches."
+          },
+          {
+           "code": "S3.M10.7.a",
+           "text": "Describes the role of exercise and nutrition in weight management."
+          }
+         ]
+        },
+        {
+         "id": "the-physically-literate-individual-demonstrates--3",
+         "title": "The physically literate individual demonstrates the knowledge and skills to achieve and maintain a health-enhancing level of physical activity and fitness (3 of 4)",
+         "outcomes": [
+          {
+           "code": "S3.M11.7.a",
+           "text": "Describes the overload principle (FITT formula) for different types of physical activity, the training principles on which the formula is based and how the formula and principles affect fitness."
+          },
+          {
+           "code": "S3.M12.7.a",
+           "text": "Designs a warm up/cool down regimen for a self-selected physical activity."
+          },
+          {
+           "code": "S3.M13.7.a",
+           "text": "Defines how the RPE scale can be used to determine the perception of the work effort or intensity of exercise."
+          },
+          {
+           "code": "S3.M14.7.a",
+           "text": "Describes how muscles pull on bones to create movement in pairs by relaxing and contracting."
+          },
+          {
+           "code": "S3.M15.7.a",
+           "text": "Designs and implements a program of remediation for 2 areas of weakness based on the results of health-related fitness assessment."
+          }
+         ]
+        },
+        {
+         "id": "the-physically-literate-individual-demonstrates--4",
+         "title": "The physically literate individual demonstrates the knowledge and skills to achieve and maintain a health-enhancing level of physical activity and fitness (4 of 4)",
+         "outcomes": [
+          {
+           "code": "S3.M16.7.a",
+           "text": "Maintains physical activity and nutrition log for at least 2 weeks and reflects on activity levels and nutrition as documented in the log."
+          },
+          {
+           "code": "S3.M17.7.a",
+           "text": "Develops strategies for balancing healthy food, snacks and water intake, along with daily physical activity."
+          },
+          {
+           "code": "S3.M18.7.a",
+           "text": "Practices strategies for dealing with stress, such as deep breathing, guided visualization, and aerobic exercise."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "the-physically-literate-individual-exhibits-resp",
+     "title": "The physically literate individual exhibits responsible personal and social behavior that respects self and others",
+     "topics": [
+      {
+       "id": "the-physically-literate-individual-exhibits-resp",
+       "title": "The physically literate individual exhibits responsible personal and social behavior that respects self and others",
+       "subtopics": [
+        {
+         "id": "the-physically-literate-individual-exhibits-resp",
+         "title": "The physically literate individual exhibits responsible personal and social behavior that respects self and others (1 of 2)",
+         "outcomes": [
+          {
+           "code": "S4.M1.7.a",
+           "text": "Exhibits responsible social behaviors by cooperating with classmates, demonstrating inclusive behaviors, and supporting classmates."
+          },
+          {
+           "code": "S4.M2.7.a",
+           "text": "Demonstrates both intrinsic and extrinsic motivation by selecting opportunities to participate in physical activity outside of class."
+          },
+          {
+           "code": "S4.M3.7.a",
+           "text": "Provides corrective feedback to a peer using teacher-generated guidelines and incorporating appropriate tone and other communication skills."
+          },
+          {
+           "code": "S4.M4.7.a",
+           "text": "Demonstrates cooperation skills by establishing rules and guidelines for resolving conflicts."
+          },
+          {
+           "code": "S4.M5.7.a",
+           "text": "Problem solves with a small group of classmates during adventure activities, small-group initiatives, or game play."
+          }
+         ]
+        },
+        {
+         "id": "the-physically-literate-individual-exhibits-resp-2",
+         "title": "The physically literate individual exhibits responsible personal and social behavior that respects self and others (2 of 2)",
+         "outcomes": [
+          {
+           "code": "S4.M6.7.a",
+           "text": "Demonstrates knowledge of rules and etiquette by self-officiating modified physical activities and games or following parameters to create or modify a dance."
+          },
+          {
+           "code": "S4.M7.7.a",
+           "text": "Independently uses physical activity and exercises equipment appropriately and safely."
+          },
+          {
+           "code": "S4.M8.6-8.a",
+           "text": "Applies sun safe practices."
+          },
+          {
+           "code": "S4.M8.6-8.b",
+           "text": "Applies water safety practices."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "the-physically-literate-individual-recognizes-th",
+     "title": "The physically literate individual recognizes the value of physical activity for health, enjoyment, challenge, self-expression and/or social interaction",
+     "topics": [
+      {
+       "id": "the-physically-literate-individual-recognizes-th",
+       "title": "The physically literate individual recognizes the value of physical activity for health, enjoyment, challenge, self-expression and/or social interaction",
+       "subtopics": [
+        {
+         "id": "the-physically-literate-individual-recognizes-th",
+         "title": "The physically literate individual recognizes the value of physical activity for health, enjoyment, challenge, self-expression and/or social interaction",
+         "outcomes": [
+          {
+           "code": "S5.M1.7.a",
+           "text": "Identifies different types of physical activities and describes how each exerts a positive impact on health."
+          },
+          {
+           "code": "S5.M2.7.a",
+           "text": "Identifies positive mental and emotional aspects of participating in a variety of physical activities."
+          },
+          {
+           "code": "S5.M3.7.a",
+           "text": "Generates positive strategies such as offering suggestions or assistance, leading or following others and providing possible solutions when faced with a group challenge."
+          },
+          {
+           "code": "S5.M4.7.a",
+           "text": "Identifies why self-selected physical activities create enjoyment."
+          },
+          {
+           "code": "S5.M5.7.a",
+           "text": "Explains the relationship between self-expression and lifelong enjoyment through physical activity."
+          },
+          {
+           "code": "S5.M6.7.a",
+           "text": "Demonstrates the importance of social interaction by helping and encouraging others, avoiding trash talk and providing support to classmates."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "8",
+   "units": [
+    {
+     "id": "the-physically-literate-individual-demonstrates-",
+     "title": "The physically literate individual demonstrates competency in a variety of motor skills and movement patterns",
+     "topics": [
+      {
+       "id": "the-physically-literate-individual-demonstrates-",
+       "title": "The physically literate individual demonstrates competency in a variety of motor skills and movement patterns",
+       "subtopics": [
+        {
+         "id": "the-physically-literate-individual-demonstrates-",
+         "title": "The physically literate individual demonstrates competency in a variety of motor skills and movement patterns (1 of 5)",
+         "outcomes": [
+          {
+           "code": "S1.M1.8.a",
+           "text": "Exhibits command of rhythm and timing by creating a movement sequence to music as an individual or in a group."
+          },
+          {
+           "code": "S1.M2.8.a",
+           "text": "Throws with a mature pattern for distance or power appropriate to the activity during small-sided game play."
+          },
+          {
+           "code": "S1.M3.8.a",
+           "text": "Catches using an implement in a dynamic environment or modified game play."
+          },
+          {
+           "code": "S1.M4.8.a",
+           "text": "Passes and receives with an implement in combination with locomotor patterns of running and change of direction, speed, and/or level with competency in modified invasion games, such as lacrosse or hockey."
+          },
+          {
+           "code": "S1.M5.8.a",
+           "text": "Throws a lead pass to a moving target off a dribble or pass with hands, feet, or an implement."
+          }
+         ]
+        },
+        {
+         "id": "the-physically-literate-individual-demonstrates--2",
+         "title": "The physically literate individual demonstrates competency in a variety of motor skills and movement patterns (2 of 5)",
+         "outcomes": [
+          {
+           "code": "S1.M6.8.a",
+           "text": "Executes at least 2 of the following to create open space during modified game play: pivots, fakes, jab steps, and/or screens."
+          },
+          {
+           "code": "S1.M7.8.a",
+           "text": "Executes the following offensive skills during small-sided game play: pivots, give and go, and fakes."
+          },
+          {
+           "code": "S1.M8.8.a",
+           "text": "Dribbles with dominant and non-dominant hand using a change of speed and direction in small-sided game play."
+          },
+          {
+           "code": "S1.M9.8.a",
+           "text": "Foot dribbles or dribbles with an implement with control changing speed and direction during small-sided game play."
+          },
+          {
+           "code": "S1.M10.8.a",
+           "text": "Shots on goal with power and accuracy during small-sided game play."
+          }
+         ]
+        },
+        {
+         "id": "the-physically-literate-individual-demonstrates--3",
+         "title": "The physically literate individual demonstrates competency in a variety of motor skills and movement patterns (3 of 5)",
+         "outcomes": [
+          {
+           "code": "S1.M11.8.a",
+           "text": "Maintains defensive ready position appropriate to the sport in a small-sided invasion game."
+          },
+          {
+           "code": "S1.M12.8.a",
+           "text": "Executes consistently (at least 70%of the time) a legal underhand serve for distance and accuracy for net/wall games such as badminton, volleyball, pickleball."
+          },
+          {
+           "code": "S1.M13.8.a",
+           "text": "Strikes, with a mature overarm pattern, in a modified game for one of the following net/wall games; volleyball, handball, badminton, tennis, pickleball, spikeball, etc."
+          },
+          {
+           "code": "S1.M14.8.a",
+           "text": "Demonstrates the mature form of forehand and backhand strokes with a short- or long-handled implement with power and accuracy in net games such as pickleball, tennis, badminton, or paddle ball."
+          },
+          {
+           "code": "S1.M15.8.a",
+           "text": "Transfers weight with correct timing using low to high striking pattern with a short- or long-handed implement on the forehand or backhand side."
+          }
+         ]
+        },
+        {
+         "id": "the-physically-literate-individual-demonstrates--4",
+         "title": "The physically literate individual demonstrates competency in a variety of motor skills and movement patterns (4 of 5)",
+         "outcomes": [
+          {
+           "code": "S1.M16.8.a",
+           "text": "Forehand and backhand volleys with a mature form and control using a short-handed implement during modified game play."
+          },
+          {
+           "code": "S1.M17.8.a",
+           "text": "Two-handed volleys with control in a small-sided game."
+          },
+          {
+           "code": "S1.M18.8.a",
+           "text": "Performs consistently (70% of the time) a mature underhand pattern with accuracy and control for target games such as bowling or bocce."
+          },
+          {
+           "code": "S1.M19.8.a",
+           "text": "Strikes, with an implement, a stationary object for accuracy, distance, and power in such activities as croquet, shuffleboard or golf."
+          },
+          {
+           "code": "S1.M20.8.a",
+           "text": "Strikes pitched ball with an implement for power to open space in a variety of small-sided games."
+          }
+         ]
+        },
+        {
+         "id": "the-physically-literate-individual-demonstrates--5",
+         "title": "The physically literate individual demonstrates competency in a variety of motor skills and movement patterns (5 of 5)",
+         "outcomes": [
+          {
+           "code": "S1.M21.8.a",
+           "text": "Catches, with or without an implement, from different trajectories and speeds in a dynamic environment or modified game play."
+          },
+          {
+           "code": "S1.M22.8.a",
+           "text": "Demonstrates correct technique for basic skills on at least 2 self-selected outdoor activities."
+          },
+          {
+           "code": "S1.M23.6-8.a",
+           "text": "Preferably taught at elementary or secondary levels. However, availability of facilities might dictate when swimming and water safety are offered in the curriculum."
+          },
+          {
+           "code": "S1.M24.8.a",
+           "text": "Demonstrates correct technique for basic skills in at least 2 self-selected individual performance activities."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "the-physically-literate-individual-applies-knowl",
+     "title": "The physically literate individual applies knowledge of concepts, principles, strategies and tactics related to movement and performance",
+     "topics": [
+      {
+       "id": "the-physically-literate-individual-applies-knowl",
+       "title": "The physically literate individual applies knowledge of concepts, principles, strategies and tactics related to movement and performance",
+       "subtopics": [
+        {
+         "id": "the-physically-literate-individual-applies-knowl",
+         "title": "The physically literate individual applies knowledge of concepts, principles, strategies and tactics related to movement and performance (1 of 3)",
+         "outcomes": [
+          {
+           "code": "S2.M1.8.a",
+           "text": "Opens and closes space during small-sided game play by combining locomotor movements with movement concepts."
+          },
+          {
+           "code": "S2.M2.8.a",
+           "text": "Executes at least 3 of the following offensive tactics to create open space: moves to create open space on and off the ball; uses a variety of passes, fakes, and pathways, and give and go."
+          },
+          {
+           "code": "S2.M3.8.a",
+           "text": "Creates open space by staying spread on offense, cutting and passing quickly, and using fakes off the ball."
+          },
+          {
+           "code": "S2.M4.8.a",
+           "text": "Reduces open space on defense by staying on the goal side of the offensive player and reducing the distance between you and your opponent (3rd party perspective)."
+          },
+          {
+           "code": "S2.M5.8.a",
+           "text": "Reduces open space by not allowing the catch (denial) and anticipating the speed of the object or person for the purpose of interception or deflection."
+          }
+         ]
+        },
+        {
+         "id": "the-physically-literate-individual-applies-knowl-2",
+         "title": "The physically literate individual applies knowledge of concepts, principles, strategies and tactics related to movement and performance (2 of 3)",
+         "outcomes": [
+          {
+           "code": "S2.M6.8.a",
+           "text": "Transitions from offense to defense or defense to offense by recovering quickly, communicating with teammates, and capitalizing on the advantage."
+          },
+          {
+           "code": "S2.M7.8.a",
+           "text": "Creates open space in net/wall games with a long- or short-handled implement by varying force or direction or by, moving opponent side to side and/or forward and back."
+          },
+          {
+           "code": "S2.M8.8.a",
+           "text": "Varies placement, force, and timing of return to prevent anticipation by opponent."
+          },
+          {
+           "code": "S2.M9.8.a",
+           "text": "Varies the speed, force and trajectory of the shot based on location of the object in relation to the target."
+          },
+          {
+           "code": "S2.M10.8.a",
+           "text": "Identifies sacrifice situations and attempts to advance a teammate."
+          }
+         ]
+        },
+        {
+         "id": "the-physically-literate-individual-applies-knowl-3",
+         "title": "The physically literate individual applies knowledge of concepts, principles, strategies and tactics related to movement and performance (3 of 3)",
+         "outcomes": [
+          {
+           "code": "S2.M11.8.a",
+           "text": "Reduces open spaces in the field by working with teammates to maximize coverage."
+          },
+          {
+           "code": "S2.M12.8.a",
+           "text": "Describes and applies the mechanical principles for a variety of movement patterns."
+          },
+          {
+           "code": "S2.M13.8.a",
+           "text": "Implements safe protocols in self-selected outdoor activities."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "the-physically-literate-individual-demonstrates--2",
+     "title": "The physically literate individual demonstrates the knowledge and skills to achieve and maintain a health-enhancing level of physical activity and fitness",
+     "topics": [
+      {
+       "id": "the-physically-literate-individual-demonstrates-",
+       "title": "The physically literate individual demonstrates the knowledge and skills to achieve and maintain a health-enhancing level of physical activity and fitness",
+       "subtopics": [
+        {
+         "id": "the-physically-literate-individual-demonstrates-",
+         "title": "The physically literate individual demonstrates the knowledge and skills to achieve and maintain a health-enhancing level of physical activity and fitness (1 of 4)",
+         "outcomes": [
+          {
+           "code": "S3.M1.8.a",
+           "text": "Identifies the 5 components of health-related fitness (muscular strength, muscular endurance, flexibility, cardiovascular endurance, body composition) and explains the connections between fitness and overall physical and mental health."
+          },
+          {
+           "code": "S3.M2.8.a",
+           "text": "Values participation in physical activity three times a week outside of physical education class."
+          },
+          {
+           "code": "S3.M3.8.a",
+           "text": "Values participation in a variety of self-selected aerobic fitness activities outside of school such as walking, jogging, biking, skating, dancing, and swimming."
+          },
+          {
+           "code": "S3.M4.8.a",
+           "text": "Plans and implements a program which may include the use of technology, aerobic, strength and endurance, and flexibility."
+          },
+          {
+           "code": "S3.M5.8.a",
+           "text": "Values participation in a variety of self-selected lifetime activities outside of the school day. E.g. Recreational team sports, outdoor pursuits, martial arts, aquatic activities, dance, etc."
+          }
+         ]
+        },
+        {
+         "id": "the-physically-literate-individual-demonstrates--2",
+         "title": "The physically literate individual demonstrates the knowledge and skills to achieve and maintain a health-enhancing level of physical activity and fitness (2 of 4)",
+         "outcomes": [
+          {
+           "code": "S3.M6.8.a",
+           "text": "Values participation in moderate to vigorous aerobic and/or muscle and bone-strengthening physical activity at least 60 minutes per day at least three times a week."
+          },
+          {
+           "code": "S3.M7.8.a",
+           "text": "Compares and contrasts health- and skill-related fitness components."
+          },
+          {
+           "code": "S3.M8.8.a",
+           "text": "Uses available technology to self-monitor quantity of exercise needed for a minimal health standard and/or optimal functioning based current fitness level."
+          },
+          {
+           "code": "S3.M9.8.a",
+           "text": "Describes, demonstrates, and employs a variety of appropriate static stretching techniques for all major muscle groups."
+          },
+          {
+           "code": "S3.M10.8.a",
+           "text": "Describes the role of a variety of fitness-related concepts. E.g. Aerobic and anaerobic capacity, muscular strength and endurance, nutrition and weight management, flexibility and injury prevention."
+          }
+         ]
+        },
+        {
+         "id": "the-physically-literate-individual-demonstrates--3",
+         "title": "The physically literate individual demonstrates the knowledge and skills to achieve and maintain a health-enhancing level of physical activity and fitness (3 of 4)",
+         "outcomes": [
+          {
+           "code": "S3.M11.8.a",
+           "text": "Uses the overload principle (FITT formula) in preparing a personal workout."
+          },
+          {
+           "code": "S3.M12.8.a",
+           "text": "Designs and implements a warm up/cool down regimen for a self-selected physical activity."
+          },
+          {
+           "code": "S3.M13.8.a",
+           "text": "Defines resting heart rate and how the RPE scale can be used to adjust workout intensity during physical activity."
+          },
+          {
+           "code": "S3.M14.8.a",
+           "text": "Explains how body systems interact with each other (e.g. Blood transports nutrients from the respiratory system during physical activity)."
+          },
+          {
+           "code": "S3.M15.8.a",
+           "text": "Designs and implements a program of remediation for 3 areas of weakness based on the results of health-related fitness assessment."
+          }
+         ]
+        },
+        {
+         "id": "the-physically-literate-individual-demonstrates--4",
+         "title": "The physically literate individual demonstrates the knowledge and skills to achieve and maintain a health-enhancing level of physical activity and fitness (4 of 4)",
+         "outcomes": [
+          {
+           "code": "S3.M16.8.a",
+           "text": "Designs and implements a program to improve levels of health related fitness and nutrition."
+          },
+          {
+           "code": "S3.M17.8.a",
+           "text": "Describe the relationship between poor nutrition and health risk factors."
+          },
+          {
+           "code": "S3.M18.8.a",
+           "text": "Demonstrates basic movements used in other stress reducing activities such as yoga, tai chi, and deep breathing."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "the-physically-literate-individual-exhibits-resp",
+     "title": "The physically literate individual exhibits responsible personal and social behavior that respects self and others",
+     "topics": [
+      {
+       "id": "the-physically-literate-individual-exhibits-resp",
+       "title": "The physically literate individual exhibits responsible personal and social behavior that respects self and others",
+       "subtopics": [
+        {
+         "id": "the-physically-literate-individual-exhibits-resp",
+         "title": "The physically literate individual exhibits responsible personal and social behavior that respects self and others (1 of 2)",
+         "outcomes": [
+          {
+           "code": "S4.M1.8.a",
+           "text": "Accepts responsibility for individual improvement of levels of physical activity and fitness (physical, emotional, and social)."
+          },
+          {
+           "code": "S4.M2.8.a",
+           "text": "Uses effective self-monitoring skills to incorporate opportunities for physical activity in and outside of school."
+          },
+          {
+           "code": "S4.M3.8.a",
+           "text": "Provides encouragement and corrective feedback to peers without prompting from the teacher."
+          },
+          {
+           "code": "S4.M4.8.a",
+           "text": "Responds appropriately to ethical and unethical behavior of participants during physical activity by using the rules and guidelines for conflict resolution."
+          },
+          {
+           "code": "S4.M4.8.b",
+           "text": "Accepts differences among classmates in physical development, maturation, and varying skill levels by providing encouragement and positive feedback."
+          }
+         ]
+        },
+        {
+         "id": "the-physically-literate-individual-exhibits-resp-2",
+         "title": "The physically literate individual exhibits responsible personal and social behavior that respects self and others (2 of 2)",
+         "outcomes": [
+          {
+           "code": "S4.M5.8.a",
+           "text": "Cooperates with multiple classmates on problem solving initiatives including adventure activities, large group initiatives, and game play."
+          },
+          {
+           "code": "S4.M6.8.a",
+           "text": "Applies rules and fair play by acting as an official for modified physical activities, games and/or creating dance routines within a given set of parameters."
+          },
+          {
+           "code": "S4.M7.8.a",
+           "text": "Independently uses physical activity and fitness equipment appropriately and identifies specific safety concerns associated with the activity."
+          },
+          {
+           "code": "S4.M8.6-8.a",
+           "text": "Applies sun safe practices."
+          },
+          {
+           "code": "S4.M8.6-8.b",
+           "text": "Applies water safety practices."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "the-physically-literate-individual-recognizes-th",
+     "title": "The physically literate individual recognizes the value of physical activity for health, enjoyment, challenge, self-expression and/or social interaction",
+     "topics": [
+      {
+       "id": "the-physically-literate-individual-recognizes-th",
+       "title": "The physically literate individual recognizes the value of physical activity for health, enjoyment, challenge, self-expression and/or social interaction",
+       "subtopics": [
+        {
+         "id": "the-physically-literate-individual-recognizes-th",
+         "title": "The physically literate individual recognizes the value of physical activity for health, enjoyment, challenge, self-expression and/or social interaction",
+         "outcomes": [
+          {
+           "code": "S5.M1.8.a",
+           "text": "Identifies the 5 components of health-related fitness (muscular strength, muscular endurance, flexibility, CV endurance, and body composition) and explains the connections between fitness and overall physical and mental health."
+          },
+          {
+           "code": "S5.M2.8.a",
+           "text": "Analyzes the empowering consequences of being physically active."
+          },
+          {
+           "code": "S5.M3.8.a",
+           "text": "Develops a plan of action and makes appropriate decisions based on that plan when faced with an individual challenge."
+          },
+          {
+           "code": "S5.M4.8.a",
+           "text": "Discusses how enjoyment could be increased in self-selected physical activities."
+          },
+          {
+           "code": "S5.M5.8.a",
+           "text": "Identifies and participates in an enjoyable activity that prompts individual self-expression."
+          },
+          {
+           "code": "S5.M6.8.a",
+           "text": "Demonstrates respect for self and others by asking for help and helping others, following the rules, playing in the spirit of the game, encouraging others, and providing support to classmates in various physical activities."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "9-12",
+   "units": [
+    {
+     "id": "the-physically-literate-individual-demonstrates-",
+     "title": "The physically literate individual demonstrates competency in a variety of motor skills and movement patterns",
+     "topics": [
+      {
+       "id": "the-physically-literate-individual-demonstrates-",
+       "title": "The physically literate individual demonstrates competency in a variety of motor skills and movement patterns",
+       "subtopics": [
+        {
+         "id": "the-physically-literate-individual-demonstrates-",
+         "title": "The physically literate individual demonstrates competency in a variety of motor skills and movement patterns (1 of 2)",
+         "outcomes": [
+          {
+           "code": "S1.H1.L1.a",
+           "text": "Demonstrates competency and/or refines activity-specific movement skills in two or more lifetime activities (outdoor pursuits, individual-performance activities, aquatics, net/wall games or target games)."
+          },
+          {
+           "code": "S1.H1.L2.a",
+           "text": "Refines activity-specific movement skills in one or more lifetime activities. (outdoor pursuits, individual-performance activities, aquatics, net/wall games or target games)"
+          },
+          {
+           "code": "S1.H2.L1.a",
+           "text": "Demonstrates competency in dance forms and rhythmic movements to include dynamic warmups, agility drills as wells as cultural and social occasions such as weddings and parties."
+          },
+          {
+           "code": "S1.H2.L1.b",
+           "text": "Demonstrating competency in 1 form of dance (e.g., ballet, modern, hip hop, tap, etc.)."
+          }
+         ]
+        },
+        {
+         "id": "the-physically-literate-individual-demonstrates--2",
+         "title": "The physically literate individual demonstrates competency in a variety of motor skills and movement patterns (2 of 2)",
+         "outcomes": [
+          {
+           "code": "S1.H2.L2.a",
+           "text": "Demonstrates competency in dance forms and rhythmic movements by choreographing a dance, designing a workout routine or by giving a performance."
+          },
+          {
+           "code": "S1.H3.L1.a",
+           "text": "Demonstrates competency in one or more specialized skills to include demonstration, application and evaluation in health and skill-related fitness activities."
+          },
+          {
+           "code": "S1.H3.L2.a",
+           "text": "Demonstrates competency in 2 or more specialized skills including demonstration, application and evaluation in health related fitness activities."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "the-physically-literate-individual-applies-knowl",
+     "title": "The physically literate individual applies knowledge of concepts, principles, strategies and tactics related to movement and performance",
+     "topics": [
+      {
+       "id": "the-physically-literate-individual-applies-knowl",
+       "title": "The physically literate individual applies knowledge of concepts, principles, strategies and tactics related to movement and performance",
+       "subtopics": [
+        {
+         "id": "the-physically-literate-individual-applies-knowl",
+         "title": "The physically literate individual applies knowledge of concepts, principles, strategies and tactics related to movement and performance (1 of 2)",
+         "outcomes": [
+          {
+           "code": "S2.H1.L1.a",
+           "text": "Identifies examples of social and technical dance forms and rhythmic movements."
+          },
+          {
+           "code": "S2.H1.L2.a",
+           "text": "Identifies and discusses the historical and cultural roles of games, sports and dance in a society."
+          },
+          {
+           "code": "S2.H2.L1.a",
+           "text": "Uses movement concepts and principles (e.g., force, motion, rotation) to analyze and improve performance of self and/or others in a selected skill."
+          },
+          {
+           "code": "S2.H2.L2.a",
+           "text": "Describes the speed/accuracy trade-off in throwing and striking skills."
+          }
+         ]
+        },
+        {
+         "id": "the-physically-literate-individual-applies-knowl-2",
+         "title": "The physically literate individual applies knowledge of concepts, principles, strategies and tactics related to movement and performance (2 of 2)",
+         "outcomes": [
+          {
+           "code": "S2.H3.L1.a",
+           "text": "Create a practice plan to improve performance for a self-selected skill."
+          },
+          {
+           "code": "S2.H3.L2.a",
+           "text": "Identifies the stages of learning a motor skill."
+          },
+          {
+           "code": "S2.H4.L1.a",
+           "text": "Identifies examples of social and technical dance forms."
+          },
+          {
+           "code": "S2.H4.L2.a",
+           "text": "Compares similarities and differences in various dance forms."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "the-physically-literate-individual-demonstrates--2",
+     "title": "The physically literate individual demonstrates the knowledge and skills to achieve and maintain a health-enhancing level of physical activity and fitness",
+     "topics": [
+      {
+       "id": "the-physically-literate-individual-demonstrates-",
+       "title": "The physically literate individual demonstrates the knowledge and skills to achieve and maintain a health-enhancing level of physical activity and fitness",
+       "subtopics": [
+        {
+         "id": "the-physically-literate-individual-demonstrates-",
+         "title": "The physically literate individual demonstrates the knowledge and skills to achieve and maintain a health-enhancing level of physical activity and fitness (1 of 6)",
+         "outcomes": [
+          {
+           "code": "S3.H1.L1.a",
+           "text": "Discusses the benefits of a physically active lifestyle as it relates to college or career productivity."
+          },
+          {
+           "code": "S3.H1.L2.a",
+           "text": "Investigates the relationships among physical activity, nutrition, and body composition."
+          },
+          {
+           "code": "S3.H2.L1.a",
+           "text": "Evaluates the validity of claims made by commercial products and programs pertaining to fitness and a healthy, active lifestyle."
+          },
+          {
+           "code": "S3.H2.L2.a",
+           "text": "Analyzes and applies technology and social media as tools for supporting a healthy, active lifestyle."
+          },
+          {
+           "code": "S3.H3.L1.a",
+           "text": "Identifies issues associated with exercising in heat, humidity, and cold."
+          }
+         ]
+        },
+        {
+         "id": "the-physically-literate-individual-demonstrates--2",
+         "title": "The physically literate individual demonstrates the knowledge and skills to achieve and maintain a health-enhancing level of physical activity and fitness (2 of 6)",
+         "outcomes": [
+          {
+           "code": "S3.H3.L2.a",
+           "text": "Applies rates of perceived exertion and pacing."
+          },
+          {
+           "code": "S3.H4.L1.a",
+           "text": "Evaluates the validity of claims made by commercial products and programs pertaining to fitness and a healthy active lifestyle."
+          },
+          {
+           "code": "S3.H4.L2.a",
+           "text": "Apply, analyze and evaluate technology and social media as a tool to support a healthy active lifestyle."
+          },
+          {
+           "code": "S3.H5.L1.a",
+           "text": "Evaluates risks and safety factors that might affect physical activity preferences throughout the life cycle."
+          },
+          {
+           "code": "S3.H5.L2.a",
+           "text": "Analyzes the impact of risks and safety factors in life choices, economics, motivation, and accessibility on exercise adherence and successful participation in physical activity in college or career settings."
+          }
+         ]
+        },
+        {
+         "id": "the-physically-literate-individual-demonstrates--3",
+         "title": "The physically literate individual demonstrates the knowledge and skills to achieve and maintain a health-enhancing level of physical activity and fitness (3 of 6)",
+         "outcomes": [
+          {
+           "code": "S3.H6.L1.a",
+           "text": "Participates several times a week in a self-selected lifetime activity, dance or fitness activity outside of the school day."
+          },
+          {
+           "code": "S3.H6.L2.a",
+           "text": "Creates a plan, trains for and participates in a community event with a focus on physical activity (e.g., 5K, triathlon, tournament, dance performance, cycling event)."
+          },
+          {
+           "code": "S3.H7.L1.a",
+           "text": "Demonstrates appropriate technique in resistance training."
+          },
+          {
+           "code": "S3.H7.L2.a",
+           "text": "Designs and implements a strength and conditioning program that develops balance in opposing muscles groups (agonist-antagonist) and supports a healthy, active lifestyle."
+          },
+          {
+           "code": "S3.H8.L1.a",
+           "text": "Relates physiological responses to individual levels of fitness and nutritional balance."
+          }
+         ]
+        },
+        {
+         "id": "the-physically-literate-individual-demonstrates--4",
+         "title": "The physically literate individual demonstrates the knowledge and skills to achieve and maintain a health-enhancing level of physical activity and fitness (4 of 6)",
+         "outcomes": [
+          {
+           "code": "S3.H8.L2.a",
+           "text": "Identifies the different energy systems used in a selected physical activity (e.g., adenosine triphosphate and phosphocreatine, anaerobic/glycolysis, aerobic)."
+          },
+          {
+           "code": "S3.H9.L1.a",
+           "text": "Understands types of strength exercises (e.g. isometric, isotonic, isokinetic, concentric, eccentric etc.) and stretching exercises (e.g. static, dynamic, PNF, etc.) for personal fitness development (e.g. strength, endurance, range of motion)."
+          },
+          {
+           "code": "S3.H9.L2.a",
+           "text": "Identifies the structure of skeletal muscle and fiber types as they relate to muscle development."
+          },
+          {
+           "code": "S3.H10.L1.a",
+           "text": "Calculates target heart rate and applies that information to a personal fitness plan."
+          },
+          {
+           "code": "S3.H10.L2.a",
+           "text": "Adjusts pacing to keep heart rate in the target zone, using available technology (e.g., pedometer, heart rate monitor), to self-monitor aerobic intensity."
+          }
+         ]
+        },
+        {
+         "id": "the-physically-literate-individual-demonstrates--5",
+         "title": "The physically literate individual demonstrates the knowledge and skills to achieve and maintain a health-enhancing level of physical activity and fitness (5 of 6)",
+         "outcomes": [
+          {
+           "code": "S3.H11.L1.a",
+           "text": "Designs a fitness program including all components of health-related fitness that relates to college/career productivity."
+          },
+          {
+           "code": "S3.H11.L2.a",
+           "text": "Develops and maintains a fitness portfolio (e.g., assessment scores, goals for improvement , plan of activities for improvement, log of activities being done to reach goals, timeline for improvement)."
+          },
+          {
+           "code": "S3.H12.L1.a",
+           "text": "Designs a fitness program, including all components of health-related fitness, for a college student and an employee in the learner's chosen field of work."
+          },
+          {
+           "code": "S3.H12.L2.a",
+           "text": "Analyzes the components of skill-related fitness in relation to life and career goals and designs an appropriate fitness program for those goals."
+          },
+          {
+           "code": "S3.H13.L1.a",
+           "text": "Creates a meal plan that demonstrates understanding of the impact of nutrition on the effect of each phase of exercise (e.g. pre, during and post-activity)."
+          }
+         ]
+        },
+        {
+         "id": "the-physically-literate-individual-demonstrates--6",
+         "title": "The physically literate individual demonstrates the knowledge and skills to achieve and maintain a health-enhancing level of physical activity and fitness (6 of 6)",
+         "outcomes": [
+          {
+           "code": "S3.H14.L1.a",
+           "text": "Identifies stress-management strategies (e.g., mental imagery, relaxation techniques, deep breathing, aerobic exercise, meditation) to reduce stress."
+          },
+          {
+           "code": "S3.H14.L2.a",
+           "text": "Applies stress-management strategies (e.g., mental imagery, relaxation techniques, deep breathing, aerobic exercise, meditation) to reduce stress."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "the-physically-literate-individual-exhibits-resp",
+     "title": "The physically literate individual exhibits responsible personal and social behavior that respects self and others",
+     "topics": [
+      {
+       "id": "the-physically-literate-individual-exhibits-resp",
+       "title": "The physically literate individual exhibits responsible personal and social behavior that respects self and others",
+       "subtopics": [
+        {
+         "id": "the-physically-literate-individual-exhibits-resp",
+         "title": "The physically literate individual exhibits responsible personal and social behavior that respects self and others (1 of 2)",
+         "outcomes": [
+          {
+           "code": "S4.H1.L1.a",
+           "text": "Employs effective self-management skills to analyze barriers and modify physical activity patterns appropriately as needed."
+          },
+          {
+           "code": "S4.H1.L2.a",
+           "text": "Accepts differences between personal characteristics and the idealized body images and elite performance levels portrayed in various media."
+          },
+          {
+           "code": "S4.H2.L1.a",
+           "text": "Exhibits proper etiquette, respect for others and teamwork while engaging in physical activity and/or social dance"
+          },
+          {
+           "code": "S4.H2.L2.a",
+           "text": "Examines moral and ethical conduct in specific competitive situations (e.g., intentional fouls, performance-enhancing substances, gambling, current events in sport)."
+          },
+          {
+           "code": "S4.H3.L1.a",
+           "text": "Uses communication skills and strategies that promote team or group dynamics."
+          }
+         ]
+        },
+        {
+         "id": "the-physically-literate-individual-exhibits-resp-2",
+         "title": "The physically literate individual exhibits responsible personal and social behavior that respects self and others (2 of 2)",
+         "outcomes": [
+          {
+           "code": "S4.H3.L2.a",
+           "text": "Assumes leadership role (e.g., task or group leader, referee, coach) in a physical activity setting."
+          },
+          {
+           "code": "S4.H4.L1.a",
+           "text": "Solves problems and thinks critically in physical activity or dance settings, both as an individual and in groups."
+          },
+          {
+           "code": "S4.H4.L2.a",
+           "text": "Accepts others' ideas, cultural diversity, and body types by engaging in cooperative and collaborative movement projects."
+          },
+          {
+           "code": "S4.H5.L1.a",
+           "text": "Understands best practices for safe participation in physical activity, exercise and dance (e.g. injury prevention, proper alignment, hydration, use of equipment, implementation of rules, sun protection, aquatic safety, etc.)."
+          },
+          {
+           "code": "S4.H5.L2.a",
+           "text": "Applies best practices for safe participation in physical activity, exercise and dance (e.g. injury prevention, proper alignment, hydration, use of equipment, implementation of rules, sun protection, aquatic safety, etc.)."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "the-physically-literate-individual-recognizes-th",
+     "title": "The physically literate individual recognizes the value of physical activity for health, enjoyment, challenge, self-expression and/or social interaction",
+     "topics": [
+      {
+       "id": "the-physically-literate-individual-recognizes-th",
+       "title": "The physically literate individual recognizes the value of physical activity for health, enjoyment, challenge, self-expression and/or social interaction",
+       "subtopics": [
+        {
+         "id": "the-physically-literate-individual-recognizes-th",
+         "title": "The physically literate individual recognizes the value of physical activity for health, enjoyment, challenge, self-expression and/or social interaction (1 of 2)",
+         "outcomes": [
+          {
+           "code": "S5.H1.L1.a",
+           "text": "Analyzes the health benefits of a self-selected physical activity."
+          },
+          {
+           "code": "S5.H1.L2.a",
+           "text": "If the outcome was not achieved in Level 1, it should be a focus in Level 2."
+          },
+          {
+           "code": "S5.H2.L1.a",
+           "text": "Challenge is a focus in Level 2 only."
+          },
+          {
+           "code": "S5.H2.L2.a",
+           "text": "Chooses an appropriate level of challenge to experience success and desire to participate in a self-selected physical activity."
+          }
+         ]
+        },
+        {
+         "id": "the-physically-literate-individual-recognizes-th-2",
+         "title": "The physically literate individual recognizes the value of physical activity for health, enjoyment, challenge, self-expression and/or social interaction (2 of 2)",
+         "outcomes": [
+          {
+           "code": "S5.H4.L1.a",
+           "text": "Shows respect and acceptance of others with varying ability levels to support a cooperative learning environment."
+          },
+          {
+           "code": "S5.H4.L2.a",
+           "text": "Participates in inclusive programs that combine students of all ability levels."
+          },
+          {
+           "code": "S5.H3.L1.a",
+           "text": "Selects and participates in physical activities or dance that meet the need for self-expression and enjoyment."
+          },
+          {
+           "code": "S5.H3.L2.a",
+           "text": "Identifies the uniqueness of creative dance and rhythmic movement as a means of self-expression."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "build": {
+  "builtAt": "2026-10-14T16:20:38.698Z",
+  "model": "none",
+  "usd": 0,
+  "expectedCodes": 553,
+  "coverage": 1,
+  "missingCodes": [],
+  "counts": {
+   "grades": 10,
+   "units": 50,
+   "topics": 50,
+   "subtopics": 127,
+   "outcomes": 567
+  },
+  "warnings": []
+ }
+}

@@ -1,0 +1,162 @@
+{
+ "id": "ib-dp-extended-essay",
+ "region": "INTL",
+ "framework": "International Baccalaureate Diploma Programme (DP)",
+ "board": "IB",
+ "qualification": "IB Diploma Programme",
+ "subject": "Extended essay (DP core)",
+ "syllabusCode": null,
+ "gradeSystem": "course",
+ "source": {
+  "urls": [
+   "https://www.ibo.org/globalassets/new-structure/university-admission/pdfs/ee_subjectbrief_en.pdf",
+   "https://web.archive.org/web/20240809181325id_/https://www.ibo.org/globalassets/new-structure/university-admission/pdfs/ee_subjectbrief_en.pdf"
+  ],
+  "publisher": "International Baccalaureate Organization",
+  "licence": "(c) International Baccalaureate Organization; all rights reserved, no open licence. ibo.org terms 1.8: IB copyrighted materials are licensed only under the IB's terms or a signed agreement; 'Any use not expressly permitted is prohibited unless special permission is obtained in writing from the IB'; 1.9: nothing on the IB websites confers any licence. Briefs are free public marketing summaries: take topic structure only, write everything in our own words, never reproduce brief text, and do not use IB logos/trade marks. Full subject guides are sold to schools and were NOT used. Terms: https://www.ibo.org/terms-and-conditions/ and https://www.ibo.org/copyright",
+  "firstExam": "2027"
+ },
+ "grades": [
+  {
+   "grade": "all",
+   "units": [
+    {
+     "id": "ii-overview-of-the-extended-essay-process",
+     "title": "II. Overview of the extended essay process",
+     "topics": [
+      {
+       "id": "the-research-process",
+       "title": "The research process",
+       "subtopics": [
+        {
+         "id": "choosing-a-pathway-and-topic",
+         "title": "Choosing a pathway and topic",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Choose a broad topic, then narrow and focus it."
+          },
+          {
+           "code": null,
+           "text": "Decide between a subject-focused and an interdisciplinary pathway."
+          },
+          {
+           "code": null,
+           "text": "Choose the approved Diploma subject or subjects for the essay."
+          },
+          {
+           "code": null,
+           "text": "Do preparatory reading to build background knowledge."
+          }
+         ]
+        },
+        {
+         "id": "question-plan-and-research",
+         "title": "Question, plan and research",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Form a well-focused research question."
+          },
+          {
+           "code": null,
+           "text": "Plan the research and writing process."
+          },
+          {
+           "code": null,
+           "text": "Plan a structure for the essay and adjust it as the research develops."
+          },
+          {
+           "code": null,
+           "text": "Carry out the research."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "writing-and-formal-presentation",
+       "title": "Writing and formal presentation",
+       "subtopics": [
+        {
+         "id": "structure-of-the-essay",
+         "title": "Structure of the essay",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Include a title page and contents page."
+          },
+          {
+           "code": null,
+           "text": "Write an introduction, body and conclusion."
+          },
+          {
+           "code": null,
+           "text": "Add references and a bibliography."
+          },
+          {
+           "code": null,
+           "text": "Keep within the 4,000-word limit, which counts introduction, body, conclusion and quotations."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "reflection-process",
+       "title": "Reflection process",
+       "subtopics": [
+        {
+         "id": "reflection-and-the-viva-voce",
+         "title": "Reflection and the viva voce",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain reflection as recapturing experience and thinking about its impact on you as a learner."
+          },
+          {
+           "code": null,
+           "text": "Take part in three formal reflection sessions with the supervisor."
+          },
+          {
+           "code": null,
+           "text": "Use reflection sessions to review choices and decide whether ideas need changing."
+          },
+          {
+           "code": null,
+           "text": "Describe the viva voce as a 10-15 minute interview checking academic integrity and reflecting on what was learned."
+          },
+          {
+           "code": null,
+           "text": "Record reflection in a 500-word reflective statement on the Reflection and progress form."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "build": {
+  "builtAt": "2026-10-14T10:53:21.526Z",
+  "model": "claude-agent",
+  "usd": 0,
+  "expectedCodes": null,
+  "coverage": null,
+  "missingCodes": [],
+  "counts": {
+   "grades": 1,
+   "units": 1,
+   "topics": 3,
+   "subtopics": 4,
+   "outcomes": 17
+  },
+  "warnings": [
+   "grade DP year 1 has no content",
+   "grade DP year 2 has no content",
+   "unexpected grade label \"all\""
+  ]
+ }
+}

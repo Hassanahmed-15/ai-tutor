@@ -1,0 +1,2377 @@
+{
+ "id": "pk-nc2006-computer-science-9-12",
+ "region": "PK",
+ "framework": "National Curriculum 2009",
+ "board": "FBISE",
+ "qualification": "SSC/HSSC",
+ "subject": "Computer Science",
+ "syllabusCode": null,
+ "gradeSystem": "grade",
+ "source": {
+  "urls": [
+   "https://www.fbise.edu.pk/notifications/ssc/Curriculum%20of%20Computer%20Science%20IX-X-XI-XIIalong%20with%20SLOs.pdf",
+   "https://www.fbise.edu.pk/notifications/hssc/Curriculum%20of%20Computer%20Science%20%20IX-X-XI-XII%20along%20with%20SLOs.pdf"
+  ],
+  "publisher": "Ministry of Education, Government of Pakistan (hosted by FBISE)",
+  "licence": "Government publication; structure + our own wording only",
+  "firstExam": null
+ },
+ "grades": [
+  {
+   "grade": "IX",
+   "units": [
+    {
+     "id": "unit-1-fundamentals-of-computer",
+     "title": "Unit 1: Fundamentals of Computer",
+     "topics": [
+      {
+       "id": "introduction-to-computer",
+       "title": "Introduction to Computer",
+       "subtopics": [
+        {
+         "id": "evolution-and-types-of-computers",
+         "title": "Evolution and types of computers",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Trace how computers evolved and name the generations."
+          },
+          {
+           "code": null,
+           "text": "Tell analog, digital and hybrid computers apart."
+          },
+          {
+           "code": null,
+           "text": "Classify digital computers as mainframe, mini and micro."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "role-of-computer",
+       "title": "Role of computer",
+       "subtopics": [
+        {
+         "id": "uses-of-computers",
+         "title": "Uses of computers",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe how computers are used in education, business, defence, media and manufacturing."
+          }
+         ]
+        },
+        {
+         "id": "it-careers",
+         "title": "IT careers",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe the scope of IT careers such as software engineer, network administrator, database administrator and web designer."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "computer-hardware",
+       "title": "Computer hardware",
+       "subtopics": [
+        {
+         "id": "hardware-components",
+         "title": "Hardware components",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe input devices, system unit, processor parts, storage and output devices."
+          },
+          {
+           "code": null,
+           "text": "Describe memory units, ROM, RAM and cache."
+          },
+          {
+           "code": null,
+           "text": "Distinguish a port, an expansion slot and an expansion card."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "how-a-computer-works",
+       "title": "How a computer works",
+       "subtopics": [
+        {
+         "id": "basic-computer-operations",
+         "title": "Basic computer operations",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Draw block diagrams of the input, processing, storage and output operations."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "computer-software",
+       "title": "Computer software",
+       "subtopics": [
+        {
+         "id": "system-and-application-software",
+         "title": "System and application software",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Define the OS, device drivers, utility programs and language processors."
+          },
+          {
+           "code": null,
+           "text": "Identify productivity, business, entertainment and education software."
+          },
+          {
+           "code": null,
+           "text": "Explain open source software, shareware and freeware."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "unit-2-fundamentals-of-operating-system",
+     "title": "Unit 2: Fundamentals of Operating System",
+     "topics": [
+      {
+       "id": "introduction",
+       "title": "Introduction",
+       "subtopics": [
+        {
+         "id": "purpose-and-functions-of-an-os",
+         "title": "Purpose and functions of an OS",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "State the objectives and main functions of an OS."
+          },
+          {
+           "code": null,
+           "text": "Compare command line, menu driven and graphical interfaces with examples."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "operating-system",
+       "title": "Operating System",
+       "subtopics": [
+        {
+         "id": "types-of-operating-systems",
+         "title": "Types of operating systems",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Classify single-user and multi-user systems."
+          },
+          {
+           "code": null,
+           "text": "Describe batch, time sharing and real time processing."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "getting-started-with-gui-o-s",
+       "title": "Getting started with GUI O.S.",
+       "subtopics": [
+        {
+         "id": "using-a-graphical-os",
+         "title": "Using a graphical OS",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Recognize basic GUI icons and manage files and folders."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "system-installation",
+       "title": "System Installation",
+       "subtopics": [
+        {
+         "id": "installing-system-software",
+         "title": "Installing system software",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Install an operating system, office software and antivirus."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "unit-3-office-automation",
+     "title": "Unit 3: Office Automation",
+     "topics": [
+      {
+       "id": "word-processing",
+       "title": "Word Processing",
+       "subtopics": [
+        {
+         "id": "documents-and-text-editing",
+         "title": "Documents and text editing",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Define a word processor and manage documents (create, open, save, print)."
+          },
+          {
+           "code": null,
+           "text": "Edit text by selecting, copying, cutting, pasting, moving and deleting."
+          },
+          {
+           "code": null,
+           "text": "Show or hide toolbars and insert symbols and equations."
+          }
+         ]
+        },
+        {
+         "id": "formatting-a-document",
+         "title": "Formatting a document",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Format text, paragraphs and pages and set margins."
+          },
+          {
+           "code": null,
+           "text": "Insert page breaks, section breaks, headers, footers and page numbers."
+          }
+         ]
+        },
+        {
+         "id": "pictures-tables-and-links",
+         "title": "Pictures, tables and links",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Insert and position pictures and Word Art."
+          },
+          {
+           "code": null,
+           "text": "Create and format tables including merging and splitting cells."
+          },
+          {
+           "code": null,
+           "text": "Add hyperlinks."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "spreadsheet",
+       "title": "Spreadsheet",
+       "subtopics": [
+        {
+         "id": "spreadsheet-basics",
+         "title": "Spreadsheet basics",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Name cells and sheets, fill rows and columns, use relative and absolute addresses and paste special."
+          }
+         ]
+        },
+        {
+         "id": "formulas-charts-and-data-tools",
+         "title": "Formulas, charts and data tools",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Use functions and formulas."
+          },
+          {
+           "code": null,
+           "text": "Show data as charts."
+          },
+          {
+           "code": null,
+           "text": "Filter, validate, protect and conditionally format data."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "urdu-editor",
+       "title": "Urdu editor",
+       "subtopics": [
+        {
+         "id": "urdu-editor",
+         "title": "Urdu editor",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Use an Urdu editor to type text."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "unit-4-data-communication",
+     "title": "Unit 4: Data Communication",
+     "topics": [
+      {
+       "id": "basics-of-communication",
+       "title": "Basics of Communication",
+       "subtopics": [
+        {
+         "id": "communication-system-basics",
+         "title": "Communication system basics",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Define data, data transmission, analog and digital signals."
+          },
+          {
+           "code": null,
+           "text": "Name the components of a communication system: sender, receiver, message, protocol and medium."
+          },
+          {
+           "code": null,
+           "text": "State the properties of good communication: delivery, accuracy, timeliness."
+          },
+          {
+           "code": null,
+           "text": "Describe synchronous and asynchronous transmission."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "transmission-medium",
+       "title": "Transmission Medium",
+       "subtopics": [
+        {
+         "id": "guided-and-unguided-media",
+         "title": "Guided and unguided media",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Distinguish guided from unguided media."
+          },
+          {
+           "code": null,
+           "text": "Describe twisted pair, coaxial and fiber optic cable."
+          },
+          {
+           "code": null,
+           "text": "Describe radio waves, microwave, infra-red and satellite."
+          }
+         ]
+        },
+        {
+         "id": "transmission-impairments",
+         "title": "Transmission impairments",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain attenuation, amplification, distortion and cross talk."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "communication-devices",
+       "title": "Communication Devices",
+       "subtopics": [
+        {
+         "id": "communication-devices",
+         "title": "Communication devices",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe the uses of a dialup modem, NIC, router and switch/access point."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "communication-terminologies",
+       "title": "Communication Terminologies",
+       "subtopics": [
+        {
+         "id": "data-rate-and-bandwidth",
+         "title": "Data rate and bandwidth",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain data rate, baud rate, bandwidth and signal to noise ratio with units."
+          },
+          {
+           "code": null,
+           "text": "Use formulae to work out characteristics of a channel."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "unit-5-computer-networks",
+     "title": "Unit 5: Computer Networks",
+     "topics": [
+      {
+       "id": "networks",
+       "title": "Networks",
+       "subtopics": [
+        {
+         "id": "networks-and-architecture",
+         "title": "Networks and architecture",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Define a computer network, its uses, transmission modes and architecture."
+          },
+          {
+           "code": null,
+           "text": "Explain client/server, peer-to-peer and point-to-point networks."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "types-of-networks",
+       "title": "Types of Networks",
+       "subtopics": [
+        {
+         "id": "network-types-and-topologies",
+         "title": "Network types and topologies",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain LAN, MAN and WAN by distance."
+          },
+          {
+           "code": null,
+           "text": "Define topology and draw bus, ring, star and mesh topologies."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "communication-over-networks",
+       "title": "Communication over Networks",
+       "subtopics": [
+        {
+         "id": "telephone-data-lines-and-modems",
+         "title": "Telephone data lines and modems",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain dial-up, DSL, ISDN and CDMA lines."
+          },
+          {
+           "code": null,
+           "text": "Explain dial-up, DSL and ISDN modems."
+          },
+          {
+           "code": null,
+           "text": "Compare these lines on speed, monthly cost, advantages and disadvantages."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "unit-6-computer-security-and-ethics",
+     "title": "Unit 6: Computer Security and Ethics",
+     "topics": [
+      {
+       "id": "computer-security",
+       "title": "Computer Security",
+       "subtopics": [
+        {
+         "id": "threats-to-computers",
+         "title": "Threats to computers",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain why computer security matters."
+          },
+          {
+           "code": null,
+           "text": "Define cyber crime, hacker and cracker."
+          },
+          {
+           "code": null,
+           "text": "Explain viruses, worms, adware, spyware and malware."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "computer-viruses",
+       "title": "Computer Viruses",
+       "subtopics": [
+        {
+         "id": "virus-spread-and-protection",
+         "title": "Virus spread and protection",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Know how malware spreads: flash drives, pirated software, networks and email."
+          },
+          {
+           "code": null,
+           "text": "Recognize symptoms of malware attacks."
+          },
+          {
+           "code": null,
+           "text": "Know that antivirus and anti-spyware software protect a computer."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "authentication-mechanisms",
+       "title": "Authentication Mechanisms",
+       "subtopics": [
+        {
+         "id": "authentication-methods",
+         "title": "Authentication methods",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Distinguish authentication from authorization and authorized from unauthorized access."
+          },
+          {
+           "code": null,
+           "text": "Explain passwords, PINs, access cards, biometrics and multimodal authentication."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "computer-ethics",
+       "title": "Computer Ethics",
+       "subtopics": [
+        {
+         "id": "computer-ethics",
+         "title": "Computer ethics",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain computer ethics as moral guidelines for using computers."
+          },
+          {
+           "code": null,
+           "text": "Discuss information accuracy, intellectual property, software piracy and privacy."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "X",
+   "units": [
+    {
+     "id": "unit-1-programming-techniques",
+     "title": "Unit 1: Programming Techniques",
+     "topics": [
+      {
+       "id": "understanding-the-problem",
+       "title": "Understanding the Problem",
+       "subtopics": [
+        {
+         "id": "defining-and-solving-a-problem",
+         "title": "Defining and solving a problem",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Define, analyse and plan the solution to a problem."
+          },
+          {
+           "code": null,
+           "text": "Pick the best solution by speed, cost and complexity."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "algorithm",
+       "title": "Algorithm",
+       "subtopics": [
+        {
+         "id": "what-an-algorithm-is",
+         "title": "What an algorithm is",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Define an algorithm and its role in solving problems."
+          },
+          {
+           "code": null,
+           "text": "Judge efficiency by inputs, processing, decisions and outputs."
+          }
+         ]
+        },
+        {
+         "id": "writing-algorithms-for-arithmetic-problems",
+         "title": "Writing algorithms for arithmetic problems",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Write algorithms for sum, product and average of numbers, the larger of three numbers, and acceleration from force and mass."
+          },
+          {
+           "code": null,
+           "text": "Write algorithms for volumes, areas, grades from marks and interest."
+          }
+         ]
+        },
+        {
+         "id": "writing-algorithms-for-number-problems",
+         "title": "Writing algorithms for number problems",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Write algorithms for exponents, odd sequences, multiples counting and multiplication tables."
+          },
+          {
+           "code": null,
+           "text": "Write algorithms for temperature conversion, even numbers in a range and adding two lists."
+          },
+          {
+           "code": null,
+           "text": "Write algorithms for GCD, prime test and primes in a range."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "flow-chart",
+       "title": "Flow Chart",
+       "subtopics": [
+        {
+         "id": "flow-charts",
+         "title": "Flow charts",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Define a flow chart and explain why it helps."
+          },
+          {
+           "code": null,
+           "text": "Find inputs, processing, decisions and outputs from a problem."
+          },
+          {
+           "code": null,
+           "text": "Use flow chart symbols and draw flow charts for the earlier algorithms."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "unit-2-programming-in-c",
+     "title": "Unit 2: Programming in C",
+     "topics": [
+      {
+       "id": "introduction",
+       "title": "Introduction",
+       "subtopics": [
+        {
+         "id": "programming-languages",
+         "title": "Programming languages",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Define a program, its syntax and semantics."
+          },
+          {
+           "code": null,
+           "text": "Explain low level and high level languages and their features."
+          },
+          {
+           "code": null,
+           "text": "Name popular languages like C/C++, Visual Basic, C# and Java."
+          },
+          {
+           "code": null,
+           "text": "Explain how a compiler differs from an interpreter."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "programming-environment",
+       "title": "Programming Environment",
+       "subtopics": [
+        {
+         "id": "ide-and-c-tools",
+         "title": "IDE and C tools",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe an IDE."
+          },
+          {
+           "code": null,
+           "text": "Explain the editor, compiler, linker, loader and debugger."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "programming-basics",
+       "title": "Programming Basics",
+       "subtopics": [
+        {
+         "id": "structure-of-a-c-program",
+         "title": "Structure of a C program",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Define header files and reserved words."
+          },
+          {
+           "code": null,
+           "text": "Describe a C program's preprocessor directives and main function."
+          },
+          {
+           "code": null,
+           "text": "Explain the purpose and syntax of comments."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "constants-and-variables",
+       "title": "Constants and Variables",
+       "subtopics": [
+        {
+         "id": "variables-and-data-types",
+         "title": "Variables and data types",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Tell constants from variables and apply variable naming rules."
+          },
+          {
+           "code": null,
+           "text": "Know C data types and their sizes."
+          },
+          {
+           "code": null,
+           "text": "Use type casting and the const qualifier."
+          },
+          {
+           "code": null,
+           "text": "Declare and initialize variables and constants."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "unit-3-input-output-handling",
+     "title": "Unit 3: Input / Output Handling",
+     "topics": [
+      {
+       "id": "input-output-functions",
+       "title": "Input / Output functions",
+       "subtopics": [
+        {
+         "id": "output-and-input-functions",
+         "title": "Output and input functions",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Use printf, puts and cout for output."
+          },
+          {
+           "code": null,
+           "text": "Use scanf, getch, getche, getchar, gets and cin for input."
+          },
+          {
+           "code": null,
+           "text": "Use the semicolon statement terminator."
+          }
+         ]
+        },
+        {
+         "id": "format-specifiers-and-escape-sequences",
+         "title": "Format specifiers and escape sequences",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Use format specifiers for int, float, double, char and long."
+          },
+          {
+           "code": null,
+           "text": "Use escape sequences such as \\n, \\t, \\a, \\b, \\r and quote characters."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "operators",
+       "title": "Operators",
+       "subtopics": [
+        {
+         "id": "arithmetic-and-assignment-operators",
+         "title": "Arithmetic and assignment operators",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Use arithmetic operators and the remainder operator."
+          },
+          {
+           "code": null,
+           "text": "Use assignment, compound assignment, and prefix/postfix increment and decrement."
+          }
+         ]
+        },
+        {
+         "id": "relational-logical-and-other-operators",
+         "title": "Relational, logical and other operators",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Use relational and logical operators."
+          },
+          {
+           "code": null,
+           "text": "Distinguish = from == and unary from binary operators."
+          },
+          {
+           "code": null,
+           "text": "Use the ternary operator and apply operator precedence."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "unit-4-control-structure",
+     "title": "Unit 4: Control Structure",
+     "topics": [
+      {
+       "id": "control-structure",
+       "title": "Control Structure",
+       "subtopics": [
+        {
+         "id": "selection-statements",
+         "title": "Selection statements",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Define control and conditional statements."
+          },
+          {
+           "code": null,
+           "text": "Use if and if-else statements."
+          },
+          {
+           "code": null,
+           "text": "Use switch with case, default and break."
+          },
+          {
+           "code": null,
+           "text": "Use nested selection and compare selection structures."
+          },
+          {
+           "code": null,
+           "text": "Write code for earlier flowcharts."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "unit-5-loop-structure",
+     "title": "Unit 5: Loop Structure",
+     "topics": [
+      {
+       "id": "loop-structure",
+       "title": "Loop Structure",
+       "subtopics": [
+        {
+         "id": "loops-in-c",
+         "title": "Loops in C",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain the concept of a loop."
+          },
+          {
+           "code": null,
+           "text": "Know the parts of for, while and do-while loops."
+          },
+          {
+           "code": null,
+           "text": "Use break and continue and compare the loop types."
+          },
+          {
+           "code": null,
+           "text": "Explain nested loops and write code for earlier flowcharts."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "unit-6-computer-logic-and-gates",
+     "title": "Unit 6: Computer Logic and Gates",
+     "topics": [
+      {
+       "id": "data-representation",
+       "title": "Data Representation",
+       "subtopics": [
+        {
+         "id": "binary-data-representation",
+         "title": "Binary data representation",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Recall that data uses binary 0 and 1, matching low and high voltage."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "logic-gates",
+       "title": "Logic Gates",
+       "subtopics": [
+        {
+         "id": "logic-gates-and-truth-tables",
+         "title": "Logic gates and truth tables",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain digital logic and the AND, OR and NOT gates."
+          },
+          {
+           "code": null,
+           "text": "Explain a truth table."
+          },
+          {
+           "code": null,
+           "text": "Use truth tables for AND, OR, NAND, NOR, NOT, XOR and XNOR."
+          }
+         ]
+        },
+        {
+         "id": "boolean-expressions-to-circuits",
+         "title": "Boolean expressions to circuits",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Know that other gates can be built from basic gates."
+          },
+          {
+           "code": null,
+           "text": "Convert a Boolean expression to a logic circuit."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "simplification-using-k-maps",
+       "title": "Simplification using K Maps",
+       "subtopics": [
+        {
+         "id": "k-map-simplification",
+         "title": "K-map simplification",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe a K-map."
+          },
+          {
+           "code": null,
+           "text": "Simplify two and three variable Boolean functions."
+          },
+          {
+           "code": null,
+           "text": "Build circuits from simplified expressions."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "unit-7-world-wide-web-and-html",
+     "title": "Unit 7: World Wide Web and HTML",
+     "topics": [
+      {
+       "id": "introduction",
+       "title": "Introduction",
+       "subtopics": [
+        {
+         "id": "the-web-and-web-sites",
+         "title": "The web and web sites",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Define WWW, web page, web site, browser, server, URL, search engine, home page and hosting."
+          },
+          {
+           "code": null,
+           "text": "Describe types of web sites such as portal, news, educational and business."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "introduction-to-html",
+       "title": "Introduction to HTML",
+       "subtopics": [
+        {
+         "id": "html-basics",
+         "title": "HTML basics",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Define HTML, create and save an HTML file and display a page."
+          },
+          {
+           "code": null,
+           "text": "Identify tags and the html, head and body elements."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "text-formatting",
+       "title": "Text Formatting",
+       "subtopics": [
+        {
+         "id": "text-and-headings",
+         "title": "Text and headings",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Set a page title, paragraphs, line breaks, spaces and headings."
+          }
+         ]
+        },
+        {
+         "id": "font-styling-tags",
+         "title": "Font styling tags",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Use tags for font size, colour, face, bold, italic, subscript, superscript and underline."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "creating-lists",
+       "title": "Creating Lists",
+       "subtopics": [
+        {
+         "id": "html-lists",
+         "title": "HTML lists",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Tell unordered, ordered, definition and nested lists apart and create them."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "images-and-backgrounds",
+       "title": "Images and Backgrounds",
+       "subtopics": [
+        {
+         "id": "images-and-colours",
+         "title": "Images and colours",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Add images with borders, width, height and alternate text."
+          },
+          {
+           "code": null,
+           "text": "Set background and foreground colours and a background image."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "hyperlinks",
+       "title": "Hyperlinks",
+       "subtopics": [
+        {
+         "id": "links-and-anchors",
+         "title": "Links and anchors",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Define hyperlinks and anchors and create links to pages, within a page, and graphical links."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "creating-tables",
+       "title": "Creating Tables",
+       "subtopics": [
+        {
+         "id": "html-tables",
+         "title": "HTML tables",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Create a table and apply border, cellspacing, cellpadding, align, valign, nowrap, colspan and rowspan."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "creating-frames",
+       "title": "Creating Frames",
+       "subtopics": [
+        {
+         "id": "frames",
+         "title": "Frames",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Define frames and framesets and create framesets with several frames."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "XI",
+   "units": [
+    {
+     "id": "unit-1-overview-of-computer-system",
+     "title": "Unit 1: Overview of Computer System",
+     "topics": [
+      {
+       "id": "introduction-to-computer",
+       "title": "Introduction to Computer",
+       "subtopics": [
+        {
+         "id": "what-a-computer-is",
+         "title": "What a computer is",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Identify computing devices and define a computer and its basic operations."
+          },
+          {
+           "code": null,
+           "text": "Classify micro, mainframe, super and mobile computing."
+          },
+          {
+           "code": null,
+           "text": "Differentiate hardware and software."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "computer-software",
+       "title": "Computer Software",
+       "subtopics": [
+        {
+         "id": "types-of-software",
+         "title": "Types of software",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe system and application software."
+          },
+          {
+           "code": null,
+           "text": "Describe operating systems, drivers, utilities and language processors."
+          },
+          {
+           "code": null,
+           "text": "Describe productivity, business, entertainment and education software."
+          }
+         ]
+        },
+        {
+         "id": "software-licences-and-firmware",
+         "title": "Software licences and firmware",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain licensed, open source, shareware and freeware software."
+          },
+          {
+           "code": null,
+           "text": "Define firmware."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "computer-hardware",
+       "title": "Computer Hardware",
+       "subtopics": [
+        {
+         "id": "input-devices",
+         "title": "Input devices",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe keyboards, pointing devices, microphones, cameras, scanners and card systems."
+          }
+         ]
+        },
+        {
+         "id": "output-devices",
+         "title": "Output devices",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe monitors, printers, plotters and speakers."
+          },
+          {
+           "code": null,
+           "text": "Tell soft copy from hard copy."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "unit-2-computer-memory",
+     "title": "Unit 2: Computer Memory",
+     "topics": [
+      {
+       "id": "introduction",
+       "title": "Introduction",
+       "subtopics": [
+        {
+         "id": "memory-units",
+         "title": "Memory units",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Define bit, byte and its multiples, and memory word."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "main-memory",
+       "title": "Main Memory",
+       "subtopics": [
+        {
+         "id": "memory-types",
+         "title": "Memory types",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Differentiate chip and magnetic memory, volatile and nonvolatile memory."
+          },
+          {
+           "code": null,
+           "text": "Explain cache, registers, static and dynamic RAM."
+          },
+          {
+           "code": null,
+           "text": "Explain ROM, PROM, EPROM and EEPROM."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "secondary-memory",
+       "title": "Secondary Memory",
+       "subtopics": [
+        {
+         "id": "secondary-storage",
+         "title": "Secondary storage",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain secondary storage and sequential versus direct access."
+          },
+          {
+           "code": null,
+           "text": "Describe magnetic tapes and disks and optical disks with pros and cons."
+          },
+          {
+           "code": null,
+           "text": "Describe flash memory and memory cards."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "unit-3-central-processing-unit",
+     "title": "Unit 3: Central Processing Unit",
+     "topics": [
+      {
+       "id": "inside-cpu",
+       "title": "Inside CPU",
+       "subtopics": [
+        {
+         "id": "cpu-components-and-registers",
+         "title": "CPU components and registers",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe the ALU, control unit, registers, cache and internal buses."
+          },
+          {
+           "code": null,
+           "text": "Describe general purpose and special purpose registers."
+          },
+          {
+           "code": null,
+           "text": "Explain the data, address and control buses."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "cpu-operations",
+       "title": "CPU Operations",
+       "subtopics": [
+        {
+         "id": "instructions-and-processors",
+         "title": "Instructions and processors",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Define instructions, their types and formats."
+          },
+          {
+           "code": null,
+           "text": "Describe the fetch, decode, execute cycle."
+          },
+          {
+           "code": null,
+           "text": "Describe CISC and RISC architecture."
+          },
+          {
+           "code": null,
+           "text": "Compare processors like Intel P4 and AMD Athlon."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "unit-4-inside-system-unit",
+     "title": "Unit 4: Inside System Unit",
+     "topics": [
+      {
+       "id": "computer-casing-system-unit",
+       "title": "Computer Casing/System Unit",
+       "subtopics": [
+        {
+         "id": "system-unit-and-motherboard",
+         "title": "System unit and motherboard",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Tell the CPU from the system unit and identify casing types."
+          },
+          {
+           "code": null,
+           "text": "Explore the power supply and motherboard parts: BIOS, ports, slots, cables, memory slots, controller, cooling and buses."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "ports-and-slots-on-the-motherboard",
+       "title": "Ports and Slots on the Motherboard",
+       "subtopics": [
+        {
+         "id": "ports-cards-and-memory-chips",
+         "title": "Ports, cards and memory chips",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe serial, parallel, PS/2, USB and FireWire ports."
+          },
+          {
+           "code": null,
+           "text": "Identify sound, video, modem and network cards."
+          },
+          {
+           "code": null,
+           "text": "Identify SIMM, DIMM, SDRAM and DDR memory chips."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "unit-5-network-communication-and-protocols",
+     "title": "Unit 5: Network Communication and Protocols",
+     "topics": [
+      {
+       "id": "introduction",
+       "title": "Introduction",
+       "subtopics": [
+        {
+         "id": "network-components-and-types",
+         "title": "Network components and types",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain network components, modes of communication and media."
+          },
+          {
+           "code": null,
+           "text": "Explain switches, routers, gateways, architectures, LAN/MAN/WAN/VPN and topologies."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "data-communication-standards",
+       "title": "Data Communication standards",
+       "subtopics": [
+        {
+         "id": "osi-model",
+         "title": "OSI model",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "State the purpose of communication standards."
+          },
+          {
+           "code": null,
+           "text": "Explain the OSI model layers with example protocols and devices."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "tcp-ip",
+       "title": "TCP/IP",
+       "subtopics": [
+        {
+         "id": "tcp-ip-and-ip-addressing",
+         "title": "TCP/IP and IP addressing",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe TCP/IP architecture, ports and applications and compare with OSI."
+          },
+          {
+           "code": null,
+           "text": "Differentiate circuit and packet switching."
+          },
+          {
+           "code": null,
+           "text": "Describe IP addressing: classes, subnets and masks."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "unit-6-wireless-communications",
+     "title": "Unit 6: Wireless Communications",
+     "topics": [
+      {
+       "id": "introduction",
+       "title": "Introduction",
+       "subtopics": [
+        {
+         "id": "wireless-networks",
+         "title": "Wireless networks",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain wireless networks, their pros and cons."
+          },
+          {
+           "code": null,
+           "text": "Define radio signals, transceiver, access point and line of sight."
+          },
+          {
+           "code": null,
+           "text": "Contrast short and long distance wireless."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "short-distance-wireless-communications",
+       "title": "Short Distance Wireless Communications",
+       "subtopics": [
+        {
+         "id": "short-range-wireless",
+         "title": "Short range wireless",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain Wi-Fi, WiMax, Bluetooth and infra-red."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "long-distance-wireless-communication",
+       "title": "Long Distance Wireless Communication",
+       "subtopics": [
+        {
+         "id": "long-range-wireless",
+         "title": "Long range wireless",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain cellular communication."
+          },
+          {
+           "code": null,
+           "text": "Explain GPS and GEO, MEO and LEO satellites."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "mobile-device-communication",
+       "title": "Mobile Device communication",
+       "subtopics": [
+        {
+         "id": "mobile-communication",
+         "title": "Mobile communication",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain requirements, features and limits of mobile communication."
+          },
+          {
+           "code": null,
+           "text": "Explain the mobile architecture: HTTP/TCP/IP stack, WML and WAP."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "unit-7-database-fundamentals",
+     "title": "Unit 7: Database Fundamentals",
+     "topics": [
+      {
+       "id": "introduction",
+       "title": "Introduction",
+       "subtopics": [
+        {
+         "id": "databases-and-dbms",
+         "title": "Databases and DBMS",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Distinguish data from information and explain file management systems."
+          },
+          {
+           "code": null,
+           "text": "Define database and DBMS and their advantages over file systems."
+          },
+          {
+           "code": null,
+           "text": "Identify the role of a DBA."
+          }
+         ]
+        },
+        {
+         "id": "database-models-and-languages",
+         "title": "Database models and languages",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe hierarchical, network, relational, object-oriented and object-relational models."
+          },
+          {
+           "code": null,
+           "text": "Explain DDL, DML and DCL."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "basic-database-terminologies",
+       "title": "Basic Database Terminologies",
+       "subtopics": [
+        {
+         "id": "relational-terms",
+         "title": "Relational terms",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Define field, record, table, view, data type and key."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "planning-a-database",
+       "title": "Planning a Database",
+       "subtopics": [
+        {
+         "id": "steps-in-designing-a-database",
+         "title": "Steps in designing a database",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain problem definition, feasibility, requirement analysis, finding entities and attributes, and naming tables and columns."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "data-modeling-and-entity-relationship-diagram",
+       "title": "Data Modeling and Entity-Relationship Diagram",
+       "subtopics": [
+        {
+         "id": "er-diagrams",
+         "title": "ER diagrams",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain entity, attribute, relationship and keys with pictures."
+          },
+          {
+           "code": null,
+           "text": "Explain cardinality and modality."
+          },
+          {
+           "code": null,
+           "text": "Draw ER diagrams for library, student and ticket booking systems."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "relational-schema",
+       "title": "Relational Schema",
+       "subtopics": [
+        {
+         "id": "schema-and-normalization",
+         "title": "Schema and normalization",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Transform ER models to relational schema."
+          },
+          {
+           "code": null,
+           "text": "Normalize relations up to third normal form with integrity rules."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "unit-8-database-development",
+     "title": "Unit 8: Database Development",
+     "topics": [
+      {
+       "id": "introduction",
+       "title": "Introduction",
+       "subtopics": [
+        {
+         "id": "database-environment",
+         "title": "Database environment",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Identify relational DBMSs such as MS Access, Open Office Base and SQL Server."
+          },
+          {
+           "code": null,
+           "text": "Create and save a database."
+          },
+          {
+           "code": null,
+           "text": "Explain the toolbar, window and objects: tables, queries, forms, reports."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "working-with-tables",
+       "title": "Working with Tables",
+       "subtopics": [
+        {
+         "id": "tables-and-keys",
+         "title": "Tables and keys",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Create, save and edit tables and know data types."
+          },
+          {
+           "code": null,
+           "text": "Create primary and foreign keys and table relationships."
+          },
+          {
+           "code": null,
+           "text": "Navigate, add, modify and delete records."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "working-with-forms",
+       "title": "Working with Forms",
+       "subtopics": [
+        {
+         "id": "forms",
+         "title": "Forms",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Create, save and edit forms and know form views."
+          },
+          {
+           "code": null,
+           "text": "Navigate, add, modify and delete records in a form and use controls."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "working-with-queries-and-commands",
+       "title": "Working with queries and commands",
+       "subtopics": [
+        {
+         "id": "queries",
+         "title": "Queries",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Create, save and edit queries."
+          },
+          {
+           "code": null,
+           "text": "Use SELECT with Where, Group by and Order by, UPDATE, DELETE, INSERT and ALTER."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "generating-reports",
+       "title": "Generating Reports",
+       "subtopics": [
+        {
+         "id": "reports",
+         "title": "Reports",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Use the report wizard and layouts, sort records, customize reports with queries, and save, view and print."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "XII",
+   "units": [
+    {
+     "id": "unit-1-operating-system",
+     "title": "Unit 1: Operating System",
+     "topics": [
+      {
+       "id": "introduction-to-operating-system",
+       "title": "Introduction to Operating System",
+       "subtopics": [
+        {
+         "id": "operating-systems-and-their-types",
+         "title": "Operating systems and their types",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Define an OS and describe DOS, Windows, Unix and Macintosh."
+          },
+          {
+           "code": null,
+           "text": "Explain batch, multi-programming, multi-tasking, time-sharing, real-time, multi-processor, parallel, distributed and embedded systems."
+          },
+          {
+           "code": null,
+           "text": "Define single-user and multi-user systems."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "operating-system-functions",
+       "title": "Operating System Functions",
+       "subtopics": [
+        {
+         "id": "os-functions",
+         "title": "OS functions",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe process, memory, file, I/O, secondary storage and network management, protection and the command interpreter."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "process-management",
+       "title": "Process Management",
+       "subtopics": [
+        {
+         "id": "processes-and-threads",
+         "title": "Processes and threads",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Define a process and its five states."
+          },
+          {
+           "code": null,
+           "text": "Differentiate thread and process, multi-threading and multi-tasking, multi-tasking and multi-programming."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "unit-2-system-development-life-cycle",
+     "title": "Unit 2: System Development Life Cycle",
+     "topics": [
+      {
+       "id": "system-development-life-cycle",
+       "title": "System Development Life Cycle",
+       "subtopics": [
+        {
+         "id": "sdlc-and-its-phases",
+         "title": "SDLC and its phases",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Define a system, SDLC, its importance and objectives, and stakeholders."
+          },
+          {
+           "code": null,
+           "text": "Explain planning, feasibility, analysis and requirement engineering."
+          },
+          {
+           "code": null,
+           "text": "Explain design, coding, testing, deployment and maintenance."
+          }
+         ]
+        },
+        {
+         "id": "roles-in-sdlc",
+         "title": "Roles in SDLC",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain the roles of management, project manager, analyst, programmer, tester and customer."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "unit-3-object-oriented-programming-using-c",
+     "title": "Unit 3: Object Oriented Programming Using C++",
+     "topics": [
+      {
+       "id": "introduction",
+       "title": "Introduction",
+       "subtopics": [
+        {
+         "id": "structure-of-a-c-program",
+         "title": "Structure of a C++ program",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Define program, header files and reserved words."
+          },
+          {
+           "code": null,
+           "text": "Describe a C++ program's structure, the semicolon terminator and comments."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "c-constants-and-variables",
+       "title": "C++ Constants and Variables",
+       "subtopics": [
+        {
+         "id": "variables-and-data-types-in-c",
+         "title": "Variables and data types in C++",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Tell constants from variables and apply naming rules."
+          },
+          {
+           "code": null,
+           "text": "Know C++ data types and sizes."
+          },
+          {
+           "code": null,
+           "text": "Use const, declare and initialize variables and type cast."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "input-output-handling",
+       "title": "Input/ Output Handling",
+       "subtopics": [
+        {
+         "id": "cout-cin-and-escape-sequences",
+         "title": "cout, cin and escape sequences",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Use cout and cin."
+          },
+          {
+           "code": null,
+           "text": "Define getch, gets and puts."
+          },
+          {
+           "code": null,
+           "text": "Use escape sequences and common I/O functions and the endl and setw manipulators."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "operators-in-c",
+       "title": "Operators in C++",
+       "subtopics": [
+        {
+         "id": "c-operators",
+         "title": "C++ operators",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Use assignment, arithmetic, compound, increment/decrement, relational, logical and ternary operators."
+          },
+          {
+           "code": null,
+           "text": "Identify unary, binary and ternary operators."
+          },
+          {
+           "code": null,
+           "text": "Define expressions, precedence and compound expressions."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "unit-4-control-structures",
+     "title": "Unit 4: Control Structures",
+     "topics": [
+      {
+       "id": "decisions",
+       "title": "Decisions",
+       "subtopics": [
+        {
+         "id": "decision-statements",
+         "title": "Decision statements",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Use if, if-else, else-if and switch-default."
+          },
+          {
+           "code": null,
+           "text": "Use nested if, break and exit."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "loops",
+       "title": "Loops",
+       "subtopics": [
+        {
+         "id": "looping-in-c",
+         "title": "Looping in C++",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Use for, while and do-while loops, continue, and nested loops."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "unit-5-arrays-and-strings",
+     "title": "Unit 5: Arrays and Strings",
+     "topics": [
+      {
+       "id": "introduction",
+       "title": "Introduction",
+       "subtopics": [
+        {
+         "id": "arrays",
+         "title": "Arrays",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain arrays, their memory layout, size, name and index."
+          },
+          {
+           "code": null,
+           "text": "Define and initialize arrays, access elements and traverse with loops, and use sizeof."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "two-dimensional-arrays",
+       "title": "Two dimensional Arrays",
+       "subtopics": [
+        {
+         "id": "two-dimensional-arrays",
+         "title": "Two dimensional arrays",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain, define, initialize and access two dimensional arrays."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "strings",
+       "title": "Strings",
+       "subtopics": [
+        {
+         "id": "strings",
+         "title": "Strings",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain, define and initialize strings and use common string functions."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "unit-6-functions",
+     "title": "Unit 6: Functions",
+     "topics": [
+      {
+       "id": "functions",
+       "title": "Functions",
+       "subtopics": [
+        {
+         "id": "functions-and-their-parts",
+         "title": "Functions and their parts",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain function concept, types and advantages."
+          },
+          {
+           "code": null,
+           "text": "Explain signature, prototype, definition and call."
+          },
+          {
+           "code": null,
+           "text": "Tell local, global and static variables and formal and actual parameters apart."
+          },
+          {
+           "code": null,
+           "text": "Know local and global functions and use inline functions."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "passing-arguments-and-returning-values",
+       "title": "Passing arguments and returning values",
+       "subtopics": [
+        {
+         "id": "arguments-and-return",
+         "title": "Arguments and return",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Pass constants, by value and by reference."
+          },
+          {
+           "code": null,
+           "text": "Use default arguments and the return statement."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "function-overloading",
+       "title": "Function overloading",
+       "subtopics": [
+        {
+         "id": "function-overloading",
+         "title": "Function overloading",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Define overloading and its advantages."
+          },
+          {
+           "code": null,
+           "text": "Overload by number and data types of arguments, and return types."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "unit-7-pointers",
+     "title": "Unit 7: Pointers",
+     "topics": [
+      {
+       "id": "pointers",
+       "title": "Pointers",
+       "subtopics": [
+        {
+         "id": "pointers",
+         "title": "Pointers",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Define pointers and memory addresses."
+          },
+          {
+           "code": null,
+           "text": "Use the reference (&) and dereference (*) operators."
+          },
+          {
+           "code": null,
+           "text": "Declare and initialize pointers."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "unit-8-objects-and-classes",
+     "title": "Unit 8: Objects and Classes",
+     "topics": [
+      {
+       "id": "classes",
+       "title": "Classes",
+       "subtopics": [
+        {
+         "id": "classes-and-objects",
+         "title": "Classes and objects",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Define class and object, members, private and public specifiers and data hiding."
+          },
+          {
+           "code": null,
+           "text": "Define constructors and destructors, default, user defined and overloaded."
+          },
+          {
+           "code": null,
+           "text": "Access data members and member functions through objects."
+          }
+         ]
+        },
+        {
+         "id": "inheritance-and-polymorphism-ideas",
+         "title": "Inheritance and polymorphism ideas",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Grasp inheritance and polymorphism through daily life examples."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "unit-9-file-handling",
+     "title": "Unit 9: File Handling",
+     "topics": [
+      {
+       "id": "file-handling",
+       "title": "File Handling",
+       "subtopics": [
+        {
+         "id": "files-and-streams",
+         "title": "Files and streams",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Know binary and text files and file opening modes."
+          },
+          {
+           "code": null,
+           "text": "Know BOF and EOF and define streams."
+          },
+          {
+           "code": null,
+           "text": "Use character and string streams."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "build": {
+  "builtAt": "2026-10-14T08:16:22.146Z",
+  "model": "claude-agent",
+  "usd": 0,
+  "expectedCodes": null,
+  "coverage": null,
+  "missingCodes": [],
+  "counts": {
+   "grades": 4,
+   "units": 30,
+   "topics": 91,
+   "subtopics": 107,
+   "outcomes": 238
+  },
+  "warnings": []
+ }
+}

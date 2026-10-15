@@ -1,0 +1,1130 @@
+{
+ "id": "au-ac9-hass-f-6",
+ "region": "AU",
+ "framework": "Australian Curriculum Version 9.0 (F-10)",
+ "board": "ACARA",
+ "qualification": null,
+ "subject": "HASS F-6",
+ "syllabusCode": "HASHAS",
+ "gradeSystem": "year",
+ "source": {
+  "urls": [
+   "https://vocabulary.curriculum.edu.au/MRAC/2024/04/LA/HASS/export/MRAC/2024/04/LA/HASS.jsonld",
+   "https://www.australiancurriculum.edu.au/content/dam/en/curriculum/ac-version-9/downloads/curriculum-workbook.xlsx"
+  ],
+  "publisher": "Australian Curriculum, Assessment and Reporting Authority (ACARA)",
+  "licence": "© ACARA, Australian Curriculum v9.0, CC BY 4.0",
+  "firstExam": null
+ },
+ "grades": [
+  {
+   "grade": "Foundation",
+   "units": [
+    {
+     "id": "knowledge-and-understanding",
+     "title": "Knowledge and understanding",
+     "topics": [
+      {
+       "id": "history",
+       "title": "History",
+       "subtopics": [
+        {
+         "id": "history",
+         "title": "History",
+         "outcomes": [
+          {
+           "code": "AC9HSFK01",
+           "text": "the people in their family, where they were born and raised, and how they are related to each other"
+          },
+          {
+           "code": "AC9HSFK02",
+           "text": "the celebrations and commemorations of significant events shared with their families and others"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "geography",
+       "title": "Geography",
+       "subtopics": [
+        {
+         "id": "geography",
+         "title": "Geography",
+         "outcomes": [
+          {
+           "code": "AC9HSFK03",
+           "text": "the features of familiar places they belong to, why some places are special and how places can be looked after"
+          },
+          {
+           "code": "AC9HSFK04",
+           "text": "the importance of Country/Place to First Nations Australians and the Country/Place on which the school is located"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "skills",
+     "title": "Skills",
+     "topics": [
+      {
+       "id": "questioning-and-researching",
+       "title": "Questioning and researching",
+       "subtopics": [
+        {
+         "id": "questioning-and-researching",
+         "title": "Questioning and researching",
+         "outcomes": [
+          {
+           "code": "AC9HSFS01",
+           "text": "pose questions about familiar objects, people, places and events"
+          },
+          {
+           "code": "AC9HSFS02",
+           "text": "sort and record information including pictorial timelines and locations on pictorial maps or models"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "interpreting-analysing-and-evaluating",
+       "title": "Interpreting, analysing and evaluating",
+       "subtopics": [
+        {
+         "id": "interpreting-analysing-and-evaluating",
+         "title": "Interpreting, analysing and evaluating",
+         "outcomes": [
+          {
+           "code": "AC9HSFS03",
+           "text": "share a perspective on information, such as stories about significant events and special places"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "concluding-and-decision-making",
+       "title": "Concluding and decision-making",
+       "subtopics": [
+        {
+         "id": "concluding-and-decision-making",
+         "title": "Concluding and decision-making",
+         "outcomes": [
+          {
+           "code": "AC9HSFS04",
+           "text": "draw conclusions in response to questions"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "communicating",
+       "title": "Communicating",
+       "subtopics": [
+        {
+         "id": "communicating",
+         "title": "Communicating",
+         "outcomes": [
+          {
+           "code": "AC9HSFS05",
+           "text": "share narratives and observations, using sources and terms about the past and places"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "1",
+   "units": [
+    {
+     "id": "knowledge-and-understanding",
+     "title": "Knowledge and understanding",
+     "topics": [
+      {
+       "id": "history",
+       "title": "History",
+       "subtopics": [
+        {
+         "id": "history",
+         "title": "History",
+         "outcomes": [
+          {
+           "code": "AC9HS1K01",
+           "text": "differences in family structures and roles today, and how these have changed or remained the same over time"
+          },
+          {
+           "code": "AC9HS1K02",
+           "text": "continuity and change between aspects of their daily lives and their parents’ and grandparents’ childhoods"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "geography",
+       "title": "Geography",
+       "subtopics": [
+        {
+         "id": "geography",
+         "title": "Geography",
+         "outcomes": [
+          {
+           "code": "AC9HS1K03",
+           "text": "the natural, managed and constructed features of local places, and their location"
+          },
+          {
+           "code": "AC9HS1K04",
+           "text": "how places change and how they can be cared for by different groups including First Nations Australians"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "skills",
+     "title": "Skills",
+     "topics": [
+      {
+       "id": "questioning-and-researching",
+       "title": "Questioning and researching",
+       "subtopics": [
+        {
+         "id": "questioning-and-researching",
+         "title": "Questioning and researching",
+         "outcomes": [
+          {
+           "code": "AC9HS1S01",
+           "text": "develop questions about objects, people, places and events in the past and present"
+          },
+          {
+           "code": "AC9HS1S02",
+           "text": "collect, sort and record information and data from observations and from provided sources, including unscaled timelines and labelled maps or models"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "interpreting-analysing-and-evaluating",
+       "title": "Interpreting, analysing and evaluating",
+       "subtopics": [
+        {
+         "id": "interpreting-analysing-and-evaluating",
+         "title": "Interpreting, analysing and evaluating",
+         "outcomes": [
+          {
+           "code": "AC9HS1S03",
+           "text": "interpret information and data from observations and provided sources, including the comparison of objects from the past and present"
+          },
+          {
+           "code": "AC9HS1S04",
+           "text": "discuss perspectives related to objects, people, places and events"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "concluding-and-decision-making",
+       "title": "Concluding and decision-making",
+       "subtopics": [
+        {
+         "id": "concluding-and-decision-making",
+         "title": "Concluding and decision-making",
+         "outcomes": [
+          {
+           "code": "AC9HS1S05",
+           "text": "draw conclusions and make proposals"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "communicating",
+       "title": "Communicating",
+       "subtopics": [
+        {
+         "id": "communicating",
+         "title": "Communicating",
+         "outcomes": [
+          {
+           "code": "AC9HS1S06",
+           "text": "develop narratives and share observations, using sources, and subject-specific terms"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "2",
+   "units": [
+    {
+     "id": "knowledge-and-understanding",
+     "title": "Knowledge and understanding",
+     "topics": [
+      {
+       "id": "history",
+       "title": "History",
+       "subtopics": [
+        {
+         "id": "history",
+         "title": "History",
+         "outcomes": [
+          {
+           "code": "AC9HS2K01",
+           "text": "a local individual, group, place or building and the reasons for their importance, including social, cultural or spiritual significance"
+          },
+          {
+           "code": "AC9HS2K02",
+           "text": "how technological developments changed people’s lives at home, and in the ways they worked, travelled and communicated"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "geography",
+       "title": "Geography",
+       "subtopics": [
+        {
+         "id": "geography",
+         "title": "Geography",
+         "outcomes": [
+          {
+           "code": "AC9HS2K03",
+           "text": "how places can be spatially represented in geographical divisions from local to regional to state/territory, and how people and places are interconnected across those scales"
+          },
+          {
+           "code": "AC9HS2K04",
+           "text": "the interconnections of First Nations Australians to a local Country/Place"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "skills",
+     "title": "Skills",
+     "topics": [
+      {
+       "id": "questioning-and-researching",
+       "title": "Questioning and researching",
+       "subtopics": [
+        {
+         "id": "questioning-and-researching",
+         "title": "Questioning and researching",
+         "outcomes": [
+          {
+           "code": "AC9HS2S01",
+           "text": "develop questions about objects, people, places and events in the past and present"
+          },
+          {
+           "code": "AC9HS2S02",
+           "text": "collect, sort and record information and data from observations and from provided sources, including unscaled timelines and labelled maps or models"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "interpreting-analysing-and-evaluating",
+       "title": "Interpreting, analysing and evaluating",
+       "subtopics": [
+        {
+         "id": "interpreting-analysing-and-evaluating",
+         "title": "Interpreting, analysing and evaluating",
+         "outcomes": [
+          {
+           "code": "AC9HS2S03",
+           "text": "interpret information and data from observations and provided sources, including the comparison of objects from the past and present"
+          },
+          {
+           "code": "AC9HS2S04",
+           "text": "discuss perspectives related to objects, people, places and events"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "concluding-and-decision-making",
+       "title": "Concluding and decision-making",
+       "subtopics": [
+        {
+         "id": "concluding-and-decision-making",
+         "title": "Concluding and decision-making",
+         "outcomes": [
+          {
+           "code": "AC9HS2S05",
+           "text": "draw conclusions and make proposals"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "communicating",
+       "title": "Communicating",
+       "subtopics": [
+        {
+         "id": "communicating",
+         "title": "Communicating",
+         "outcomes": [
+          {
+           "code": "AC9HS2S06",
+           "text": "develop narratives and share observations, using sources, and subject-specific terms"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "3",
+   "units": [
+    {
+     "id": "knowledge-and-understanding",
+     "title": "Knowledge and understanding",
+     "topics": [
+      {
+       "id": "history",
+       "title": "History",
+       "subtopics": [
+        {
+         "id": "history",
+         "title": "History",
+         "outcomes": [
+          {
+           "code": "AC9HS3K01",
+           "text": "causes and effects of changes to the local community, and how people who may be from diverse backgrounds have contributed to these changes"
+          },
+          {
+           "code": "AC9HS3K02",
+           "text": "significant events, symbols and emblems that are important to Australia’s identity and diversity, and how they are celebrated, commemorated or recognised in Australia, including Australia Day, Anzac Day, NAIDOC Week, National Sorry Day, Easter, Christmas, and other religious and cultural festivals"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "geography",
+       "title": "Geography",
+       "subtopics": [
+        {
+         "id": "australia-and-its-neighbours",
+         "title": "Australia and Its Neighbours",
+         "outcomes": [
+          {
+           "code": "AC9HS3K03",
+           "text": "the representation of contemporary Australia as states and territories, and as the Countries/Places of First Nations Australians prior to colonisation, and the locations of Australia’s neighbouring regions and countries"
+          }
+         ]
+        },
+        {
+         "id": "country-place-connections",
+         "title": "Country Place Connections",
+         "outcomes": [
+          {
+           "code": "AC9HS3K04",
+           "text": "the ways First Nations Australians in different parts of Australia are interconnected with Country/Place"
+          },
+          {
+           "code": "AC9HS3K05",
+           "text": "the similarities and differences between places in Australia and neighbouring countries in terms of their natural, managed and constructed features"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "civics-and-citizenship",
+       "title": "Civics and Citizenship",
+       "subtopics": [
+        {
+         "id": "civics-and-citizenship",
+         "title": "Civics and Citizenship",
+         "outcomes": [
+          {
+           "code": "AC9HS3K06",
+           "text": "who makes rules, why rules are important in the school and/or the local community, and the consequences of rules not being followed"
+          },
+          {
+           "code": "AC9HS3K07",
+           "text": "why people participate within communities and how students can actively participate and contribute to communities"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "skills",
+     "title": "Skills",
+     "topics": [
+      {
+       "id": "questioning-and-researching",
+       "title": "Questioning and researching",
+       "subtopics": [
+        {
+         "id": "questioning-and-researching",
+         "title": "Questioning and researching",
+         "outcomes": [
+          {
+           "code": "AC9HS3S01",
+           "text": "develop questions to guide investigations about people, events, places and issues"
+          },
+          {
+           "code": "AC9HS3S02",
+           "text": "locate, collect and record information and data from a range of sources, including annotated timelines and maps"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "interpreting-analysing-and-evaluating",
+       "title": "Interpreting, analysing and evaluating",
+       "subtopics": [
+        {
+         "id": "interpreting-analysing-and-evaluating",
+         "title": "Interpreting, analysing and evaluating",
+         "outcomes": [
+          {
+           "code": "AC9HS3S03",
+           "text": "interpret information and data displayed in different formats"
+          },
+          {
+           "code": "AC9HS3S04",
+           "text": "analyse information and data, and identify perspectives"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "concluding-and-decision-making",
+       "title": "Concluding and decision-making",
+       "subtopics": [
+        {
+         "id": "concluding-and-decision-making",
+         "title": "Concluding and decision-making",
+         "outcomes": [
+          {
+           "code": "AC9HS3S05",
+           "text": "draw conclusions based on analysis of information"
+          },
+          {
+           "code": "AC9HS3S06",
+           "text": "propose actions or responses to an issue or challenge that consider possible effects of actions"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "communicating",
+       "title": "Communicating",
+       "subtopics": [
+        {
+         "id": "communicating",
+         "title": "Communicating",
+         "outcomes": [
+          {
+           "code": "AC9HS3S07",
+           "text": "present descriptions and explanations, using ideas from sources and relevant subject-specific terms"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "4",
+   "units": [
+    {
+     "id": "knowledge-and-understanding",
+     "title": "Knowledge and understanding",
+     "topics": [
+      {
+       "id": "history",
+       "title": "History",
+       "subtopics": [
+        {
+         "id": "first-nations-diversity",
+         "title": "First Nations Diversity",
+         "outcomes": [
+          {
+           "code": "AC9HS4K01",
+           "text": "the diversity of First Nations Australians, their social organisation and their continuous connection to Country/Place"
+          }
+         ]
+        },
+        {
+         "id": "the-first-british-colony",
+         "title": "The First British Colony",
+         "outcomes": [
+          {
+           "code": "AC9HS4K02",
+           "text": "the causes of the establishment of the first British colony in Australia in 1788"
+          },
+          {
+           "code": "AC9HS4K03",
+           "text": "the experiences of individuals and groups, including military and civilian officials, and convicts involved in the establishment of the first British colony"
+          }
+         ]
+        },
+        {
+         "id": "invasion-and-its-effects",
+         "title": "Invasion and Its Effects",
+         "outcomes": [
+          {
+           "code": "AC9HS4K04",
+           "text": "the effects of contact with other people on First Nations Australians and their Countries/Places following the arrival of the First Fleet and how this was viewed by First Nations Australians as an invasion"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "geography",
+       "title": "Geography",
+       "subtopics": [
+        {
+         "id": "geography",
+         "title": "Geography",
+         "outcomes": [
+          {
+           "code": "AC9HS4K05",
+           "text": "the importance of environments, including natural vegetation and water sources, to people and animals in Australia and on another continent"
+          },
+          {
+           "code": "AC9HS4K06",
+           "text": "sustainable use and management of renewable and non-renewable resources, including the custodial responsibility First Nations Australians have for Country/Place"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "civics-and-citizenship",
+       "title": "Civics and Citizenship",
+       "subtopics": [
+        {
+         "id": "rules-laws-and-services",
+         "title": "Rules Laws and Services",
+         "outcomes": [
+          {
+           "code": "AC9HS4K07",
+           "text": "the differences between “rules” and “laws”, why laws are important and how they affect the lives of people"
+          },
+          {
+           "code": "AC9HS4K08",
+           "text": "the roles of local government and how members of the community use and contribute to local services"
+          }
+         ]
+        },
+        {
+         "id": "community-groups-and-identity",
+         "title": "Community Groups and Identity",
+         "outcomes": [
+          {
+           "code": "AC9HS4K09",
+           "text": "diversity of cultural, religious and/or social groups to which they and others in the community belong, and their importance to identity"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "skills",
+     "title": "Skills",
+     "topics": [
+      {
+       "id": "questioning-and-researching",
+       "title": "Questioning and researching",
+       "subtopics": [
+        {
+         "id": "questioning-and-researching",
+         "title": "Questioning and researching",
+         "outcomes": [
+          {
+           "code": "AC9HS4S01",
+           "text": "develop questions to guide investigations about people, events, places and issues"
+          },
+          {
+           "code": "AC9HS4S02",
+           "text": "locate, collect and record information and data from a range of sources, including annotated timelines and maps"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "interpreting-analysing-and-evaluating",
+       "title": "Interpreting, analysing and evaluating",
+       "subtopics": [
+        {
+         "id": "interpreting-analysing-and-evaluating",
+         "title": "Interpreting, analysing and evaluating",
+         "outcomes": [
+          {
+           "code": "AC9HS4S03",
+           "text": "interpret information and data displayed in different formats"
+          },
+          {
+           "code": "AC9HS4S04",
+           "text": "analyse information and data, and identify perspectives"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "concluding-and-decision-making",
+       "title": "Concluding and decision-making",
+       "subtopics": [
+        {
+         "id": "concluding-and-decision-making",
+         "title": "Concluding and decision-making",
+         "outcomes": [
+          {
+           "code": "AC9HS4S05",
+           "text": "draw conclusions based on analysis of information"
+          },
+          {
+           "code": "AC9HS4S06",
+           "text": "propose actions or responses to an issue or challenge that consider possible effects of actions"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "communicating",
+       "title": "Communicating",
+       "subtopics": [
+        {
+         "id": "communicating",
+         "title": "Communicating",
+         "outcomes": [
+          {
+           "code": "AC9HS4S07",
+           "text": "present descriptions and explanations, using ideas from sources and relevant subject-specific terms"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "5",
+   "units": [
+    {
+     "id": "knowledge-and-understanding",
+     "title": "Knowledge and understanding",
+     "topics": [
+      {
+       "id": "history",
+       "title": "History",
+       "subtopics": [
+        {
+         "id": "british-colonies-after-1800",
+         "title": "British Colonies After 1800",
+         "outcomes": [
+          {
+           "code": "AC9HS5K01",
+           "text": "the economic, political and social causes of the establishment of British colonies in Australia after 1800"
+          },
+          {
+           "code": "AC9HS5K02",
+           "text": "the impact of the development of British colonies in Australia on the lives of First Nations Australians, the colonists and convicts, and on the natural environment"
+          }
+         ]
+        },
+        {
+         "id": "people-who-shaped-colonies",
+         "title": "People Who Shaped Colonies",
+         "outcomes": [
+          {
+           "code": "AC9HS5K03",
+           "text": "the role of a significant individual or group, including First Nations Australians and those who migrated to Australia, in the development of events in an Australian colony"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "geography",
+       "title": "Geography",
+       "subtopics": [
+        {
+         "id": "geography",
+         "title": "Geography",
+         "outcomes": [
+          {
+           "code": "AC9HS5K04",
+           "text": "the influence of people, including First Nations Australians and people in other countries, on the characteristics of a place"
+          },
+          {
+           "code": "AC9HS5K05",
+           "text": "the management of Australian environments, including managing severe weather events such as bushfires, floods, droughts or cyclones, and their consequences"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "civics-and-citizenship",
+       "title": "Civics and Citizenship",
+       "subtopics": [
+        {
+         "id": "civics-and-citizenship",
+         "title": "Civics and Citizenship",
+         "outcomes": [
+          {
+           "code": "AC9HS5K06",
+           "text": "the key values and features of Australia’s democracy, including elections, and the roles and responsibilities of elected representatives"
+          },
+          {
+           "code": "AC9HS5K07",
+           "text": "how citizens (members of communities) with shared beliefs and values work together to achieve a civic goal"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "economics-and-business",
+       "title": "Economics and Business",
+       "subtopics": [
+        {
+         "id": "economics-and-business",
+         "title": "Economics and Business",
+         "outcomes": [
+          {
+           "code": "AC9HS5K08",
+           "text": "types of resources, including natural, human and capital, and how they satisfy needs and wants"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "skills",
+     "title": "Skills",
+     "topics": [
+      {
+       "id": "questioning-and-researching",
+       "title": "Questioning and researching",
+       "subtopics": [
+        {
+         "id": "questioning-and-researching",
+         "title": "Questioning and researching",
+         "outcomes": [
+          {
+           "code": "AC9HS5S01",
+           "text": "develop questions to investigate people, events, developments, places and systems"
+          },
+          {
+           "code": "AC9HS5S02",
+           "text": "locate, collect and organise information and data from primary and secondary sources in a range of formats"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "interpreting-analysing-and-evaluating",
+       "title": "Interpreting, analysing and evaluating",
+       "subtopics": [
+        {
+         "id": "interpreting-analysing-and-evaluating",
+         "title": "Interpreting, analysing and evaluating",
+         "outcomes": [
+          {
+           "code": "AC9HS5S03",
+           "text": "evaluate information and data in a range of formats to identify and describe patterns and trends, or to infer relationships"
+          },
+          {
+           "code": "AC9HS5S04",
+           "text": "evaluate primary and secondary sources to determine origin, purpose and perspectives"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "concluding-and-decision-making",
+       "title": "Concluding and decision-making",
+       "subtopics": [
+        {
+         "id": "concluding-and-decision-making",
+         "title": "Concluding and decision-making",
+         "outcomes": [
+          {
+           "code": "AC9HS5S05",
+           "text": "develop evidence-based conclusions"
+          },
+          {
+           "code": "AC9HS5S06",
+           "text": "propose actions or responses to issues or challenges and use criteria to assess the possible effects"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "communicating",
+       "title": "Communicating",
+       "subtopics": [
+        {
+         "id": "communicating",
+         "title": "Communicating",
+         "outcomes": [
+          {
+           "code": "AC9HS5S07",
+           "text": "present descriptions and explanations, drawing ideas, findings and viewpoints from sources, and using relevant terms and conventions"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "6",
+   "units": [
+    {
+     "id": "knowledge-and-understanding",
+     "title": "Knowledge and understanding",
+     "topics": [
+      {
+       "id": "history",
+       "title": "History",
+       "subtopics": [
+        {
+         "id": "federation-and-democracy",
+         "title": "Federation and Democracy",
+         "outcomes": [
+          {
+           "code": "AC9HS6K01",
+           "text": "significant individuals, events and ideas that led to Australia’s Federation, the Constitution and democratic system of government"
+          }
+         ]
+        },
+        {
+         "id": "political-and-citizenship-change",
+         "title": "Political and Citizenship Change",
+         "outcomes": [
+          {
+           "code": "AC9HS6K02",
+           "text": "changes in Australia's political system and to Australian citizenship after Federation and throughout the 20th century that impacted First Nations Australians, migrants, women and children"
+          }
+         ]
+        },
+        {
+         "id": "migration-since-federation",
+         "title": "Migration Since Federation",
+         "outcomes": [
+          {
+           "code": "AC9HS6K03",
+           "text": "the motivation of people migrating to Australia since Federation and throughout the 20th century, their stories and effects on Australian society, including migrants from the Asia region"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "geography",
+       "title": "Geography",
+       "subtopics": [
+        {
+         "id": "geography",
+         "title": "Geography",
+         "outcomes": [
+          {
+           "code": "AC9HS6K04",
+           "text": "the geographical diversity and location of places in the Asia region, and its location in relation to Australia"
+          },
+          {
+           "code": "AC9HS6K05",
+           "text": "Australia’s interconnections with other countries and how these change people and places"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "civics-and-citizenship",
+       "title": "Civics and Citizenship",
+       "subtopics": [
+        {
+         "id": "civics-and-citizenship",
+         "title": "Civics and Citizenship",
+         "outcomes": [
+          {
+           "code": "AC9HS6K06",
+           "text": "the key institutions of Australia’s system of government, how it is based on the Westminster system, and the key values and beliefs of Western democracies"
+          },
+          {
+           "code": "AC9HS6K07",
+           "text": "the roles and responsibilities of the 3 levels of government in Australia"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "economics-and-business",
+       "title": "Economics and Business",
+       "subtopics": [
+        {
+         "id": "economics-and-business",
+         "title": "Economics and Business",
+         "outcomes": [
+          {
+           "code": "AC9HS6K08",
+           "text": "influences on consumer choices and strategies that can be used to help make informed personal consumer and financial choices"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "skills",
+     "title": "Skills",
+     "topics": [
+      {
+       "id": "questioning-and-researching",
+       "title": "Questioning and researching",
+       "subtopics": [
+        {
+         "id": "questioning-and-researching",
+         "title": "Questioning and researching",
+         "outcomes": [
+          {
+           "code": "AC9HS6S01",
+           "text": "develop questions to investigate people, events, developments, places and systems"
+          },
+          {
+           "code": "AC9HS6S02",
+           "text": "locate, collect and organise information and data from primary and secondary sources in a range of formats"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "interpreting-analysing-and-evaluating",
+       "title": "Interpreting, analysing and evaluating",
+       "subtopics": [
+        {
+         "id": "interpreting-analysing-and-evaluating",
+         "title": "Interpreting, analysing and evaluating",
+         "outcomes": [
+          {
+           "code": "AC9HS6S03",
+           "text": "evaluate information and data in a range of formats to identify and describe patterns and trends, or to infer relationships"
+          },
+          {
+           "code": "AC9HS6S04",
+           "text": "evaluate primary and secondary sources to determine origin, purpose and perspectives"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "concluding-and-decision-making",
+       "title": "Concluding and decision-making",
+       "subtopics": [
+        {
+         "id": "concluding-and-decision-making",
+         "title": "Concluding and decision-making",
+         "outcomes": [
+          {
+           "code": "AC9HS6S05",
+           "text": "develop evidence-based conclusions"
+          },
+          {
+           "code": "AC9HS6S06",
+           "text": "propose actions or responses to issues or challenges and use criteria to assess the possible effects"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "communicating",
+       "title": "Communicating",
+       "subtopics": [
+        {
+         "id": "communicating",
+         "title": "Communicating",
+         "outcomes": [
+          {
+           "code": "AC9HS6S07",
+           "text": "present descriptions and explanations, drawing ideas, findings and viewpoints from sources, and using relevant terms and conventions"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "build": {
+  "builtAt": "2026-10-14T07:54:34.761Z",
+  "model": "gpt-5.6-luna",
+  "usd": 0.0006,
+  "expectedCodes": 89,
+  "coverage": 1,
+  "missingCodes": [],
+  "counts": {
+   "grades": 7,
+   "units": 14,
+   "topics": 48,
+   "subtopics": 55,
+   "outcomes": 89
+  },
+  "warnings": []
+ }
+}

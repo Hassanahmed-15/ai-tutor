@@ -1,0 +1,554 @@
+[
+ {
+  "grade": "11",
+  "unit": "Domain A: Introduction to IoT Advanced Solutions",
+  "topic": "IoT basics",
+  "subtopic": "What IoT is and why it matters",
+  "code": "IoTF-11-A-01",
+  "outcome": "Define IoT and describe its basic concept."
+ },
+ {
+  "grade": "11",
+  "unit": "Domain A: Introduction to IoT Advanced Solutions",
+  "topic": "IoT basics",
+  "subtopic": "What IoT is and why it matters",
+  "code": "IoTF-11-A-02",
+  "outcome": "Explain why IoT matters and its real-world impact."
+ },
+ {
+  "grade": "11",
+  "unit": "Domain A: Introduction to IoT Advanced Solutions",
+  "topic": "IoT basics",
+  "subtopic": "What IoT is and why it matters",
+  "code": "IoTF-11-A-03",
+  "outcome": "Identify future trends of IoT."
+ },
+ {
+  "grade": "11",
+  "unit": "Domain A: Introduction to IoT Advanced Solutions",
+  "topic": "IoT architecture",
+  "subtopic": "Layers and sensing",
+  "code": "IoTF-11-A-04",
+  "outcome": "List the layers of IoT architecture."
+ },
+ {
+  "grade": "11",
+  "unit": "Domain A: Introduction to IoT Advanced Solutions",
+  "topic": "IoT architecture",
+  "subtopic": "Layers and sensing",
+  "code": "IoTF-11-A-05",
+  "outcome": "Explain how sensors collect environmental data as input to IoT systems."
+ },
+ {
+  "grade": "11",
+  "unit": "Domain A: Introduction to IoT Advanced Solutions",
+  "topic": "IoT architecture",
+  "subtopic": "Layers and sensing",
+  "code": "IoTF-11-A-06",
+  "outcome": "List protocols, standards and technologies for device-to-cloud communication."
+ },
+ {
+  "grade": "11",
+  "unit": "Domain A: Introduction to IoT Advanced Solutions",
+  "topic": "IoT architecture",
+  "subtopic": "Cloud, application and analytics layers",
+  "code": "IoTF-11-A-07",
+  "outcome": "Explain how the cloud layer links the device layer to the application layer."
+ },
+ {
+  "grade": "11",
+  "unit": "Domain A: Introduction to IoT Advanced Solutions",
+  "topic": "IoT architecture",
+  "subtopic": "Cloud, application and analytics layers",
+  "code": "IoTF-11-A-08",
+  "outcome": "Describe how the application layer handles user interfaces, data management and application-specific functions."
+ },
+ {
+  "grade": "11",
+  "unit": "Domain A: Introduction to IoT Advanced Solutions",
+  "topic": "IoT architecture",
+  "subtopic": "Cloud, application and analytics layers",
+  "code": "IoTF-11-A-09",
+  "outcome": "Explain how analytics and insights are built from collected data."
+ },
+ {
+  "grade": "11",
+  "unit": "Domain A: Introduction to IoT Advanced Solutions",
+  "topic": "IoT architecture",
+  "subtopic": "Cloud, application and analytics layers",
+  "code": "IoTF-11-A-10",
+  "outcome": "Identify how automation driven by analytics improves operations, efficiency and business models."
+ },
+ {
+  "grade": "11",
+  "unit": "Domain A: Introduction to IoT Advanced Solutions",
+  "topic": "IoT architecture",
+  "subtopic": "Designing IoT systems",
+  "code": "IoTF-11-A-11",
+  "outcome": "Design IoT systems using block diagrams."
+ },
+ {
+  "grade": "11",
+  "unit": "Domain B: Microcontrollers",
+  "topic": "Microcontroller architecture",
+  "subtopic": "Microcontrollers and boards",
+  "code": "IoTF-11-B-01",
+  "outcome": "Identify basic features and applications of microcontrollers."
+ },
+ {
+  "grade": "11",
+  "unit": "Domain B: Microcontrollers",
+  "topic": "Microcontroller architecture",
+  "subtopic": "Microcontrollers and boards",
+  "code": "IoTF-11-B-02",
+  "outcome": "List common IoT boards such as ESP8266, ESP32 and Raspberry Pi."
+ },
+ {
+  "grade": "11",
+  "unit": "Domain B: Microcontrollers",
+  "topic": "Microcontroller architecture",
+  "subtopic": "Microcontrollers and boards",
+  "code": "IoTF-11-B-03",
+  "outcome": "Tell microcontrollers from single-board computers."
+ },
+ {
+  "grade": "11",
+  "unit": "Domain B: Microcontrollers",
+  "topic": "Microcontroller architecture",
+  "subtopic": "Microcontrollers and boards",
+  "code": "IoTF-11-B-04",
+  "outcome": "Learn the components and architecture of ESP8266 and Raspberry Pi."
+ },
+ {
+  "grade": "11",
+  "unit": "Domain B: Microcontrollers",
+  "topic": "Programming with Arduino and Python",
+  "subtopic": "Arduino programming",
+  "code": "IoTF-11-B-05",
+  "outcome": "Understand the role of a compiler."
+ },
+ {
+  "grade": "11",
+  "unit": "Domain B: Microcontrollers",
+  "topic": "Programming with Arduino and Python",
+  "subtopic": "Arduino programming",
+  "code": "IoTF-11-B-06",
+  "outcome": "Set up the Arduino IDE."
+ },
+ {
+  "grade": "11",
+  "unit": "Domain B: Microcontrollers",
+  "topic": "Programming with Arduino and Python",
+  "subtopic": "Arduino programming",
+  "code": "IoTF-11-B-07",
+  "outcome": "Identify the structure and syntax of Arduino's C/C++-based language."
+ },
+ {
+  "grade": "11",
+  "unit": "Domain B: Microcontrollers",
+  "topic": "Programming with Arduino and Python",
+  "subtopic": "Arduino programming",
+  "code": "IoTF-11-B-08",
+  "outcome": "Write Arduino code to control digital input and output."
+ },
+ {
+  "grade": "11",
+  "unit": "Domain B: Microcontrollers",
+  "topic": "Programming with Arduino and Python",
+  "subtopic": "Raspberry Pi with Python",
+  "code": "IoTF-11-B-09",
+  "outcome": "Set up Raspberry Pi with an operating system such as Raspbian."
+ },
+ {
+  "grade": "11",
+  "unit": "Domain B: Microcontrollers",
+  "topic": "Programming with Arduino and Python",
+  "subtopic": "Raspberry Pi with Python",
+  "code": "IoTF-11-B-10",
+  "outcome": "Write Python code for Raspberry Pi."
+ },
+ {
+  "grade": "11",
+  "unit": "Domain B: Microcontrollers",
+  "topic": "Programming with Arduino and Python",
+  "subtopic": "Raspberry Pi with Python",
+  "code": "IoTF-11-B-11",
+  "outcome": "Initialise and control digital outputs with GPIO libraries on Raspberry Pi."
+ },
+ {
+  "grade": "11",
+  "unit": "Domain B: Microcontrollers",
+  "topic": "Sensors and actuators",
+  "subtopic": "Sensors, actuators and interfaces",
+  "code": "IoTF-11-B-12",
+  "outcome": "Describe analog and digital sensors."
+ },
+ {
+  "grade": "11",
+  "unit": "Domain B: Microcontrollers",
+  "topic": "Sensors and actuators",
+  "subtopic": "Sensors, actuators and interfaces",
+  "code": "IoTF-11-B-13",
+  "outcome": "Match physical quantities to the sensors that measure them."
+ },
+ {
+  "grade": "11",
+  "unit": "Domain B: Microcontrollers",
+  "topic": "Sensors and actuators",
+  "subtopic": "Sensors, actuators and interfaces",
+  "code": "IoTF-11-B-14",
+  "outcome": "Define actuators and identify their types."
+ },
+ {
+  "grade": "11",
+  "unit": "Domain B: Microcontrollers",
+  "topic": "Sensors and actuators",
+  "subtopic": "Sensors, actuators and interfaces",
+  "code": "IoTF-11-B-15",
+  "outcome": "Define ADC and describe how an analog pin turns readings into digital values."
+ },
+ {
+  "grade": "11",
+  "unit": "Domain B: Microcontrollers",
+  "topic": "Sensors and actuators",
+  "subtopic": "Sensors, actuators and interfaces",
+  "code": "IoTF-11-B-16",
+  "outcome": "List and describe interface protocols such as I2C, SPI and UART."
+ },
+ {
+  "grade": "11",
+  "unit": "Domain C: Communication",
+  "topic": "Connecting a microcontroller",
+  "subtopic": "Internet connectivity and Arduino Cloud",
+  "code": "IoTF-11-C-01",
+  "outcome": "Identify the layers of internet connectivity."
+ },
+ {
+  "grade": "11",
+  "unit": "Domain C: Communication",
+  "topic": "Connecting a microcontroller",
+  "subtopic": "Internet connectivity and Arduino Cloud",
+  "code": null,
+  "outcome": "Write a program to connect ESP8266 to WiFi."
+ },
+ {
+  "grade": "11",
+  "unit": "Domain C: Communication",
+  "topic": "Connecting a microcontroller",
+  "subtopic": "Internet connectivity and Arduino Cloud",
+  "code": "IoTF-11-C-03",
+  "outcome": "Understand configuring Arduino Cloud."
+ },
+ {
+  "grade": "11",
+  "unit": "Domain C: Communication",
+  "topic": "Connecting a microcontroller",
+  "subtopic": "Internet connectivity and Arduino Cloud",
+  "code": "IoTF-11-C-04",
+  "outcome": "Write a program to control a relay with ESP8266 over the internet."
+ },
+ {
+  "grade": "11",
+  "unit": "Domain C: Communication",
+  "topic": "Connecting a microcontroller",
+  "subtopic": "Internet connectivity and Arduino Cloud",
+  "code": "IoTF-11-C-05",
+  "outcome": "Build a program that sends temperature data to Arduino Cloud."
+ },
+ {
+  "grade": "11",
+  "unit": "Domain C: Communication",
+  "topic": "Connectivity topologies",
+  "subtopic": "Topologies and radios",
+  "code": "IoTF-11-C-06",
+  "outcome": "List different connectivity topologies."
+ },
+ {
+  "grade": "11",
+  "unit": "Domain C: Communication",
+  "topic": "Connectivity topologies",
+  "subtopic": "Topologies and radios",
+  "code": "IoTF-11-C-07",
+  "outcome": "Understand connecting to the internet by cellular or WiFi."
+ },
+ {
+  "grade": "11",
+  "unit": "Domain C: Communication",
+  "topic": "Connectivity topologies",
+  "subtopic": "Topologies and radios",
+  "code": "IoTF-11-C-08",
+  "outcome": "Build a sensor mesh with Zigbee, BLE or nRF24 radios."
+ },
+ {
+  "grade": "11",
+  "unit": "Domain C: Communication",
+  "topic": "Connectivity topologies",
+  "subtopic": "Topologies and radios",
+  "code": "IoTF-11-C-09",
+  "outcome": "Explain long-range radio communication with LPWAN."
+ },
+ {
+  "grade": "11",
+  "unit": "Domain C: Communication",
+  "topic": "Connectivity topologies",
+  "subtopic": "Protocols and cloud platforms",
+  "code": "IoTF-11-C-10",
+  "outcome": "Explain different internet communication protocols."
+ },
+ {
+  "grade": "11",
+  "unit": "Domain C: Communication",
+  "topic": "Connectivity topologies",
+  "subtopic": "Protocols and cloud platforms",
+  "code": "IoTF-11-C-11",
+  "outcome": "Describe the principles of MQTT."
+ },
+ {
+  "grade": "11",
+  "unit": "Domain C: Communication",
+  "topic": "Connectivity topologies",
+  "subtopic": "Protocols and cloud platforms",
+  "code": "IoTF-11-C-12",
+  "outcome": "Describe the client-server topology for CoAP."
+ },
+ {
+  "grade": "11",
+  "unit": "Domain C: Communication",
+  "topic": "Connectivity topologies",
+  "subtopic": "Protocols and cloud platforms",
+  "code": "IoTF-11-C-13",
+  "outcome": "Distinguish cloud platforms such as Arduino Cloud, Blynk, Grandeur, AWS IoT, Particle, Helium and Things Stack."
+ },
+ {
+  "grade": "12",
+  "unit": "Domain C: Communication",
+  "topic": "Deploying a custom MQTT broker",
+  "subtopic": "Cloud and version control basics",
+  "code": "IoTF-12-C-01",
+  "outcome": "Understand the basic concepts of cloud computing."
+ },
+ {
+  "grade": "12",
+  "unit": "Domain C: Communication",
+  "topic": "Deploying a custom MQTT broker",
+  "subtopic": "Cloud and version control basics",
+  "code": "IoTF-12-C-02",
+  "outcome": "Explain cloud virtual machines."
+ },
+ {
+  "grade": "12",
+  "unit": "Domain C: Communication",
+  "topic": "Deploying a custom MQTT broker",
+  "subtopic": "Cloud and version control basics",
+  "code": "IoTF-12-C-03",
+  "outcome": "Explain networking on the cloud with virtual private networks."
+ },
+ {
+  "grade": "12",
+  "unit": "Domain C: Communication",
+  "topic": "Deploying a custom MQTT broker",
+  "subtopic": "Cloud and version control basics",
+  "code": "IoTF-12-C-04",
+  "outcome": "Configure the Railway platform."
+ },
+ {
+  "grade": "12",
+  "unit": "Domain C: Communication",
+  "topic": "Deploying a custom MQTT broker",
+  "subtopic": "Cloud and version control basics",
+  "code": "IoTF-12-C-05",
+  "outcome": "Describe the core idea of version management with GitHub."
+ },
+ {
+  "grade": "12",
+  "unit": "Domain C: Communication",
+  "topic": "Deploying a custom MQTT broker",
+  "subtopic": "Building the broker",
+  "code": "IoTF-12-C-06",
+  "outcome": "Build an MQTT server with Python."
+ },
+ {
+  "grade": "12",
+  "unit": "Domain C: Communication",
+  "topic": "Deploying a custom MQTT broker",
+  "subtopic": "Building the broker",
+  "code": "IoTF-12-C-07",
+  "outcome": "Add a database to store messages."
+ },
+ {
+  "grade": "11",
+  "unit": "Domain D: Application layer",
+  "topic": "Visualising IoT data",
+  "subtopic": "Dashboards and visualisation",
+  "code": "IoTF-11-D-01",
+  "outcome": "Illustrate visualisation techniques and tools for IoT data analytics."
+ },
+ {
+  "grade": "11",
+  "unit": "Domain D: Application layer",
+  "topic": "Visualising IoT data",
+  "subtopic": "Dashboards and visualisation",
+  "code": "IoTF-11-D-02",
+  "outcome": "Explain how Grafana builds custom dashboards."
+ },
+ {
+  "grade": "11",
+  "unit": "Domain D: Application layer",
+  "topic": "Visualising IoT data",
+  "subtopic": "Dashboards and visualisation",
+  "code": "IoTF-11-D-03",
+  "outcome": "Use a display widget to show live ESP8266 readings."
+ },
+ {
+  "grade": "11",
+  "unit": "Domain D: Application layer",
+  "topic": "Custom user interfaces",
+  "subtopic": "Web dashboards and APIs",
+  "code": "IoTF-11-D-04",
+  "outcome": "Explain the purpose and benefits of a web or mobile dashboard."
+ },
+ {
+  "grade": "11",
+  "unit": "Domain D: Application layer",
+  "topic": "Custom user interfaces",
+  "subtopic": "Web dashboards and APIs",
+  "code": "IoTF-11-D-05",
+  "outcome": "List web technologies for custom web pages."
+ },
+ {
+  "grade": "11",
+  "unit": "Domain D: Application layer",
+  "topic": "Custom user interfaces",
+  "subtopic": "Web dashboards and APIs",
+  "code": "IoTF-11-D-06",
+  "outcome": "Describe RESTful architecture for talking to servers."
+ },
+ {
+  "grade": "11",
+  "unit": "Domain D: Application layer",
+  "topic": "Custom user interfaces",
+  "subtopic": "Web dashboards and APIs",
+  "code": "IoTF-11-D-07",
+  "outcome": "Use the Arduino Cloud API with Postman."
+ },
+ {
+  "grade": "12",
+  "unit": "Domain D: Application layer",
+  "topic": "Data science and machine learning",
+  "subtopic": "Analytics techniques",
+  "code": "IoTF-12-D-01",
+  "outcome": "Give an overview of data analytics techniques."
+ },
+ {
+  "grade": "12",
+  "unit": "Domain D: Application layer",
+  "topic": "Data science and machine learning",
+  "subtopic": "Analytics techniques",
+  "code": "IoTF-12-D-02",
+  "outcome": "Apply descriptive analytics, such as summary statistics and visualisation, to find patterns and trends."
+ },
+ {
+  "grade": "12",
+  "unit": "Domain D: Application layer",
+  "topic": "Data science and machine learning",
+  "subtopic": "Analytics techniques",
+  "code": "IoTF-12-D-03",
+  "outcome": "Apply predictive analytics, such as regression or forecasting, to build a model and predict."
+ },
+ {
+  "grade": "12",
+  "unit": "Domain D: Application layer",
+  "topic": "Data pipelines",
+  "subtopic": "Real-time anomaly detection",
+  "code": "IoTF-12-D-04",
+  "outcome": "Apply predictive analytics to detect anomalies in real time."
+ },
+ {
+  "grade": "12",
+  "unit": "Domain E: Building for scale",
+  "topic": "Edge computing",
+  "subtopic": "Edge computing basics",
+  "code": "IoTF-12-E-01",
+  "outcome": "Explain the purpose of edge computing."
+ },
+ {
+  "grade": "12",
+  "unit": "Domain E: Building for scale",
+  "topic": "Edge computing",
+  "subtopic": "Edge computing basics",
+  "code": "IoTF-12-E-02",
+  "outcome": "Describe the components of an edge computing architecture."
+ },
+ {
+  "grade": "12",
+  "unit": "Domain E: Building for scale",
+  "topic": "Edge computing",
+  "subtopic": "Edge computing basics",
+  "code": "IoTF-12-E-03",
+  "outcome": "Explore real-world edge computing use cases."
+ },
+ {
+  "grade": "12",
+  "unit": "Domain E: Building for scale",
+  "topic": "Edge computing",
+  "subtopic": "Edge computing basics",
+  "code": "IoTF-12-E-04",
+  "outcome": "Use modern smart home protocols like Matter and Thread."
+ },
+ {
+  "grade": "12",
+  "unit": "Domain E: Building for scale",
+  "topic": "Real-time decisions at the edge",
+  "subtopic": "Edge analytics and ML",
+  "code": "IoTF-12-E-05",
+  "outcome": "Explain how edge computing enables data processing and analytics at the network edge."
+ },
+ {
+  "grade": "12",
+  "unit": "Domain E: Building for scale",
+  "topic": "Real-time decisions at the edge",
+  "subtopic": "Edge analytics and ML",
+  "code": "IoTF-12-E-06",
+  "outcome": "Use Edge Impulse for edge machine learning with Raspberry Pi."
+ },
+ {
+  "grade": "12",
+  "unit": "Domain E: Building for scale",
+  "topic": "Continuous delivery",
+  "subtopic": "Security and software updates",
+  "code": "IoTF-12-E-07",
+  "outcome": "Understand the importance of security in production."
+ },
+ {
+  "grade": "12",
+  "unit": "Domain E: Building for scale",
+  "topic": "Continuous delivery",
+  "subtopic": "Security and software updates",
+  "code": "IoTF-12-E-08",
+  "outcome": "Send software patches on different platforms."
+ },
+ {
+  "grade": "12",
+  "unit": "Domain E: Building for scale",
+  "topic": "Continuous delivery",
+  "subtopic": "Security and software updates",
+  "code": "IoTF-12-E-09",
+  "outcome": "Use Arduino Cloud for Arduino-based controllers."
+ },
+ {
+  "grade": "12",
+  "unit": "Domain E: Building for scale",
+  "topic": "Continuous delivery",
+  "subtopic": "Security and software updates",
+  "code": "IoTF-12-E-10",
+  "outcome": "Use AWS Greengrass for Raspberry Pi."
+ },
+ {
+  "grade": "12",
+  "unit": "Domain E: Building for scale",
+  "topic": "Continuous delivery",
+  "subtopic": "Security and software updates",
+  "code": "IoTF-12-E-11",
+  "outcome": "Use Particle for cellular devices."
+ }
+]

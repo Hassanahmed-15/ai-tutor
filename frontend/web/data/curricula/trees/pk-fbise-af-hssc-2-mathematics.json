@@ -1,0 +1,905 @@
+{
+ "id": "pk-fbise-af-hssc-2-mathematics",
+ "region": "PK",
+ "framework": "FBISE Assessment Framework (National Curriculum of Pakistan 2022-23)",
+ "board": "FBISE",
+ "qualification": "HSSC-II",
+ "subject": "Mathematics",
+ "syllabusCode": null,
+ "gradeSystem": "grade",
+ "source": {
+  "urls": [
+   "https://www.fbise.edu.pk/ModelPaper/2025/Assessment%20Frameworks/HSSC-II/Final%20Assessment%20Framework%20%2B%20Model%20Question%20Paper%20Mathematics%20HSSC-II.pdf"
+  ],
+  "publisher": "Federal Board of Intermediate and Secondary Education",
+  "licence": "Government publication; structure + our own wording only",
+  "firstExam": "2026"
+ },
+ "grades": [
+  {
+   "grade": "12",
+   "units": [
+    {
+     "id": "a-numbers-and-algebra",
+     "title": "A: Numbers and Algebra",
+     "topics": [
+      {
+       "id": "functions-and-graphs",
+       "title": "Functions and graphs",
+       "subtopics": [
+        {
+         "id": "functions-and-inverse-functions",
+         "title": "Functions and inverse functions",
+         "outcomes": [
+          {
+           "code": "M-12-A-01",
+           "text": "Recall function as a rule, with domain, co-domain, range, one-one and onto."
+          },
+          {
+           "code": "M-12-A-02",
+           "text": "Know linear, quadratic and square root functions."
+          },
+          {
+           "code": "M-12-A-03",
+           "text": "Define inverse functions and show their domain and range."
+          },
+          {
+           "code": "M-12-A-19",
+           "text": "Interpret the relation between a one-one function and its inverse on a graph."
+          }
+         ]
+        },
+        {
+         "id": "sketching-graphs",
+         "title": "Sketching graphs",
+         "outcomes": [
+          {
+           "code": "M-12-A-04",
+           "text": "Sketch graphs of linear and non-linear functions."
+          },
+          {
+           "code": "M-12-A-05",
+           "text": "Plot y = x^n for integer and rational n."
+          },
+          {
+           "code": "M-12-A-06",
+           "text": "Plot quadratic functions of the form ax^2+bx+c."
+          },
+          {
+           "code": "M-12-A-07",
+           "text": "Draw a graph using factors."
+          },
+          {
+           "code": "M-12-A-08",
+           "text": "Predict a quadratic function from its graph using the factor form."
+          }
+         ]
+        },
+        {
+         "id": "intersecting-graphs",
+         "title": "Intersecting graphs",
+         "outcomes": [
+          {
+           "code": "M-12-A-09",
+           "text": "Find intersection points graphically of lines, and of a line with a quadratic."
+          },
+          {
+           "code": "M-12-A-10",
+           "text": "Solve everyday problems graphically."
+          }
+         ]
+        },
+        {
+         "id": "graph-transformations",
+         "title": "Graph transformations",
+         "outcomes": [
+          {
+           "code": "M-12-A-18",
+           "text": "Draw the graph of the modulus function."
+          },
+          {
+           "code": "M-12-A-20",
+           "text": "Show graph transformations: horizontal shift, vertical shift and scaling."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "transcendental-functions",
+       "title": "Transcendental functions",
+       "subtopics": [
+        {
+         "id": "types-of-functions",
+         "title": "Types of functions",
+         "outcomes": [
+          {
+           "code": "M-12-A-11",
+           "text": "Classify functions as algebraic or transcendental."
+          },
+          {
+           "code": "M-12-A-12",
+           "text": "Describe trigonometric, inverse trigonometric, logarithmic and exponential functions."
+          },
+          {
+           "code": "M-12-A-17",
+           "text": "Identify domain and range of basic transcendental functions."
+          }
+         ]
+        },
+        {
+         "id": "logarithms",
+         "title": "Logarithms",
+         "outcomes": [
+          {
+           "code": "M-12-A-13",
+           "text": "Show understanding of logarithms."
+          },
+          {
+           "code": "M-12-A-14",
+           "text": "Derive and apply product, quotient and power laws of logarithms."
+          }
+         ]
+        },
+        {
+         "id": "exponential-and-logarithmic-equations",
+         "title": "Exponential and logarithmic equations",
+         "outcomes": [
+          {
+           "code": "M-12-A-15",
+           "text": "Graph exponential and logarithmic functions and use them for compound interest."
+          },
+          {
+           "code": "M-12-A-16",
+           "text": "Solve exponential and logarithmic equations."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "limits-and-continuity",
+       "title": "Limits and continuity",
+       "subtopics": [
+        {
+         "id": "limits",
+         "title": "Limits",
+         "outcomes": [
+          {
+           "code": "M-12-A-21",
+           "text": "Find the limit of a sequence and of a function."
+          },
+          {
+           "code": "M-12-A-22",
+           "text": "Apply limit theorems for sum, difference, product and quotient to algebraic, exponential and trigonometric functions."
+          }
+         ]
+        },
+        {
+         "id": "continuity",
+         "title": "Continuity",
+         "outcomes": [
+          {
+           "code": "M-12-A-23",
+           "text": "Test continuity and discontinuity of a function at a point and on an interval."
+          },
+          {
+           "code": "M-12-A-24",
+           "text": "Apply transcendental functions, limits and continuity to real-world problems."
+          }
+         ]
+        },
+        {
+         "id": "inflation-and-depreciation",
+         "title": "Inflation and depreciation",
+         "outcomes": [
+          {
+           "code": "M-12-A-25",
+           "text": "Calculate inflation over time."
+          },
+          {
+           "code": "M-12-A-26",
+           "text": "Calculate depreciation by straight-line, sum-of-years-digits and production-unit methods."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "differentiation",
+       "title": "Differentiation",
+       "subtopics": [
+        {
+         "id": "gradient-and-derivative-at-a-point",
+         "title": "Gradient and derivative at a point",
+         "outcomes": [
+          {
+           "code": "M-12-A-27",
+           "text": "Recognise the tangent to a curve at a point."
+          },
+          {
+           "code": "M-12-A-28",
+           "text": "Calculate the gradient of a curve at a point."
+          },
+          {
+           "code": "M-12-A-29",
+           "text": "Identify the derivative as the limit of a difference quotient."
+          },
+          {
+           "code": "M-12-A-30",
+           "text": "Calculate the derivative of a function at a point."
+          },
+          {
+           "code": "M-12-A-31",
+           "text": "Estimate the derivative as a rate of change."
+          }
+         ]
+        },
+        {
+         "id": "derivative-of-a-function",
+         "title": "Derivative of a function",
+         "outcomes": [
+          {
+           "code": "M-12-A-32",
+           "text": "Recognise the derivative function."
+          },
+          {
+           "code": "M-12-A-33",
+           "text": "Find the derivative of a square root function."
+          },
+          {
+           "code": "M-12-A-34",
+           "text": "Find the derivative of a quadratic function."
+          }
+         ]
+        },
+        {
+         "id": "differentiation-rules",
+         "title": "Differentiation rules",
+         "outcomes": [
+          {
+           "code": "M-12-A-35",
+           "text": "State the link between derivatives and continuity."
+          },
+          {
+           "code": "M-12-A-36",
+           "text": "State, prove and apply the constant, coefficient, power, sum, product and quotient rules."
+          },
+          {
+           "code": "M-12-A-37",
+           "text": "Extend the power rule to negative exponents."
+          },
+          {
+           "code": "M-12-A-38",
+           "text": "Combine rules to differentiate polynomial and rational functions."
+          },
+          {
+           "code": "M-12-A-39",
+           "text": "Apply rates of change to displacement, velocity and acceleration."
+          }
+         ]
+        },
+        {
+         "id": "derivatives-of-transcendental-functions",
+         "title": "Derivatives of transcendental functions",
+         "outcomes": [
+          {
+           "code": "M-12-A-40",
+           "text": "Differentiate trigonometric and inverse trigonometric functions."
+          },
+          {
+           "code": "M-12-A-41",
+           "text": "Differentiate exponential functions."
+          },
+          {
+           "code": "M-12-A-42",
+           "text": "Differentiate logarithmic functions."
+          }
+         ]
+        },
+        {
+         "id": "increasing-decreasing-and-tangent-lines",
+         "title": "Increasing, decreasing and tangent lines",
+         "outcomes": [
+          {
+           "code": "M-12-A-43",
+           "text": "Use differentiation to find where functions increase or decrease."
+          },
+          {
+           "code": "M-12-A-44",
+           "text": "Find equations of tangent and normal to a curve."
+          },
+          {
+           "code": "M-12-A-45",
+           "text": "Apply differentiation to real-world problems."
+          }
+         ]
+        },
+        {
+         "id": "higher-order-derivatives",
+         "title": "Higher order derivatives",
+         "outcomes": [
+          {
+           "code": "M-12-A-46",
+           "text": "Find higher order derivatives of algebraic, implicit, parametric and transcendental functions."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "applications-of-derivatives",
+       "title": "Applications of derivatives",
+       "subtopics": [
+        {
+         "id": "linear-approximation-and-differentials",
+         "title": "Linear approximation and differentials",
+         "outcomes": [
+          {
+           "code": "M-12-A-47",
+           "text": "Approximate functions locally by linear functions."
+          },
+          {
+           "code": "M-12-A-48",
+           "text": "Explain differentials and use them to approximate change."
+          },
+          {
+           "code": "M-12-A-49",
+           "text": "Calculate relative and percentage error from a differential approximation."
+          }
+         ]
+        },
+        {
+         "id": "extreme-values",
+         "title": "Extreme values",
+         "outcomes": [
+          {
+           "code": "M-12-A-50",
+           "text": "Illustrate global and local extrema."
+          },
+          {
+           "code": "M-12-A-51",
+           "text": "Find extreme values with the second derivative test."
+          },
+          {
+           "code": "M-12-A-52",
+           "text": "Explain how to find critical points over a closed interval."
+          },
+          {
+           "code": "M-12-A-53",
+           "text": "Use critical points to locate absolute extrema."
+          },
+          {
+           "code": "M-12-A-54",
+           "text": "Apply derivatives to maximum and minimum problems."
+          },
+          {
+           "code": "M-12-A-55",
+           "text": "Apply higher order derivatives to real-life problems."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "integration",
+       "title": "Integration",
+       "subtopics": [
+        {
+         "id": "antiderivatives",
+         "title": "Antiderivatives",
+         "outcomes": [
+          {
+           "code": "M-12-A-56",
+           "text": "Find the general antiderivative of a function."
+          },
+          {
+           "code": "M-12-A-57",
+           "text": "Recognise terms and notation for antiderivatives."
+          },
+          {
+           "code": "M-12-A-58",
+           "text": "State the power rule for integrals."
+          },
+          {
+           "code": "M-12-A-59",
+           "text": "State and apply properties of indefinite integrals."
+          }
+         ]
+        },
+        {
+         "id": "definite-integrals",
+         "title": "Definite integrals",
+         "outcomes": [
+          {
+           "code": "M-12-A-60",
+           "text": "State the definition of the definite integral."
+          },
+          {
+           "code": "M-12-A-61",
+           "text": "Explain integrand, limits and variable of integration."
+          },
+          {
+           "code": "M-12-A-62",
+           "text": "State and apply properties of definite integrals."
+          },
+          {
+           "code": "M-12-A-63",
+           "text": "Use the Fundamental Theorem of Calculus to evaluate definite integrals."
+          },
+          {
+           "code": "M-12-A-64",
+           "text": "Describe the link between definite integral and net area."
+          }
+         ]
+        },
+        {
+         "id": "area-volume-and-numerical-integration",
+         "title": "Area, volume and numerical integration",
+         "outcomes": [
+          {
+           "code": "M-12-A-65",
+           "text": "Find area bounded by curves and lines."
+          },
+          {
+           "code": "M-12-A-66",
+           "text": "Find volume of revolution about an axis."
+          },
+          {
+           "code": "M-12-A-67",
+           "text": "Use the trapezium rule to estimate a definite integral."
+          },
+          {
+           "code": "M-12-A-68",
+           "text": "Apply integration to real-world problems."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "mechanics",
+       "title": "Mechanics",
+       "subtopics": [
+        {
+         "id": "kinematics-in-a-straight-line",
+         "title": "Kinematics in a straight line",
+         "outcomes": [
+          {
+           "code": "M-12-A-69",
+           "text": "Distinguish scalar distance and speed from vector displacement, velocity and acceleration."
+          },
+          {
+           "code": "M-12-A-70",
+           "text": "Sketch and interpret displacement-time and velocity-time graphs."
+          },
+          {
+           "code": "M-12-A-71",
+           "text": "Use differentiation and integration in time to solve motion problems."
+          },
+          {
+           "code": "M-12-A-72",
+           "text": "Use formulae for constant acceleration in a straight line."
+          },
+          {
+           "code": "M-12-A-73",
+           "text": "Apply mechanics to real-life problems."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "techniques-of-integration",
+       "title": "Techniques of integration",
+       "subtopics": [
+        {
+         "id": "trigonometric-and-exponential-integrals",
+         "title": "Trigonometric and exponential integrals",
+         "outcomes": [
+          {
+           "code": "M-12-B-74",
+           "text": "Use trigonometric relationships to evaluate integrals."
+          },
+          {
+           "code": "M-12-A-75",
+           "text": "Integrate exponential and logarithmic functions."
+          }
+         ]
+        },
+        {
+         "id": "integration-by-parts-and-substitution",
+         "title": "Integration by parts and substitution",
+         "outcomes": [
+          {
+           "code": "M-12-A-76",
+           "text": "Identify when to use integration by parts."
+          },
+          {
+           "code": "M-12-A-77",
+           "text": "Apply integration by parts to definite integrals."
+          },
+          {
+           "code": "M-12-A-78",
+           "text": "Solve integrals using trigonometric substitution."
+          }
+         ]
+        },
+        {
+         "id": "partial-fractions",
+         "title": "Partial fractions",
+         "outcomes": [
+          {
+           "code": "M-12-A-79",
+           "text": "Integrate a rational function by partial fractions."
+          },
+          {
+           "code": "M-12-A-80",
+           "text": "Apply integration to real-life problems."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "differential-equations",
+       "title": "Differential equations",
+       "subtopics": [
+        {
+         "id": "first-order-differential-equations",
+         "title": "First order differential equations",
+         "outcomes": [
+          {
+           "code": "M-12-A-81",
+           "text": "Identify and construct first order differential equations from practical situations."
+          },
+          {
+           "code": "M-12-A-82",
+           "text": "Solve separable and homogeneous first order equations."
+          },
+          {
+           "code": "M-12-A-83",
+           "text": "Apply first order equations to growth, decay, cooling and circuits."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "numerical-solution-of-equations",
+       "title": "Numerical solution of equations",
+       "subtopics": [
+        {
+         "id": "finding-roots-numerically",
+         "title": "Finding roots numerically",
+         "outcomes": [
+          {
+           "code": "M-12-A-84",
+           "text": "Search for roots of an equation graphically or by sign change."
+          },
+          {
+           "code": "M-12-A-85",
+           "text": "Explain basic principles of solving a nonlinear equation in one variable."
+          },
+          {
+           "code": "M-12-A-86",
+           "text": "Find real roots by bisection, regula falsi and Newton-Raphson methods."
+          },
+          {
+           "code": "M-12-A-87",
+           "text": "Apply nonlinear equation solving to real-world problems."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "b-geometry",
+     "title": "B: Geometry",
+     "topics": [
+      {
+       "id": "analytical-geometry",
+       "title": "Analytical geometry",
+       "subtopics": [
+        {
+         "id": "concurrency-of-lines",
+         "title": "Concurrency of lines",
+         "outcomes": [
+          {
+           "code": "M-12-B-01",
+           "text": "Find the condition for three lines to be concurrent."
+          },
+          {
+           "code": "M-12-B-02",
+           "text": "Find equations of the median, altitude and right bisector of a triangle."
+          },
+          {
+           "code": "M-12-B-03",
+           "text": "Show that medians, altitudes and right bisectors of a triangle are concurrent."
+          }
+         ]
+        },
+        {
+         "id": "area-and-homogeneous-equations",
+         "title": "Area and homogeneous equations",
+         "outcomes": [
+          {
+           "code": "M-12-B-04",
+           "text": "Find the area of a triangle from its vertices."
+          },
+          {
+           "code": "M-12-B-05",
+           "text": "Recognise homogeneous linear and quadratic equations in two variables."
+          },
+          {
+           "code": "M-12-B-06",
+           "text": "Show that a homogeneous second degree equation gives two lines through the origin and find the angle between them."
+          },
+          {
+           "code": "M-12-B-07",
+           "text": "Apply analytical geometry to real-world problems."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "vector-functions",
+       "title": "Vector functions",
+       "subtopics": [
+        {
+         "id": "vector-valued-functions",
+         "title": "Vector valued functions",
+         "outcomes": [
+          {
+           "code": "M-12-B-08",
+           "text": "Explain the need for vector valued functions."
+          },
+          {
+           "code": "M-12-B-09",
+           "text": "Construct a vector valued function."
+          },
+          {
+           "code": "M-12-B-10",
+           "text": "Identify domain and range of vector valued functions."
+          },
+          {
+           "code": "M-12-B-11",
+           "text": "Tell scalar valued from vector valued functions."
+          }
+         ]
+        },
+        {
+         "id": "derivative-of-a-vector-function",
+         "title": "Derivative of a vector function",
+         "outcomes": [
+          {
+           "code": "M-12-B-12",
+           "text": "Explain the derivative of a vector function of one variable."
+          },
+          {
+           "code": "M-12-B-13",
+           "text": "Use vector differentiation for velocity and acceleration."
+          },
+          {
+           "code": "M-12-B-14",
+           "text": "Apply vector valued functions to real-world problems."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "inverse-trigonometric-functions",
+       "title": "Inverse trigonometric functions",
+       "subtopics": [
+        {
+         "id": "inverse-trigonometric-functions-and-graphs",
+         "title": "Inverse trigonometric functions and graphs",
+         "outcomes": [
+          {
+           "code": "M-12-B-15",
+           "text": "Find domains and ranges of principal and inverse trigonometric functions."
+          },
+          {
+           "code": "M-12-B-16",
+           "text": "Draw graphs of the six inverse trigonometric functions."
+          },
+          {
+           "code": "M-12-B-17",
+           "text": "State, prove and apply addition and subtraction formulae for inverse trig functions."
+          }
+         ]
+        },
+        {
+         "id": "trigonometric-equations",
+         "title": "Trigonometric equations",
+         "outcomes": [
+          {
+           "code": "M-12-B-18",
+           "text": "Solve equations like sin x = k using periodic, even/odd and translation properties."
+          },
+          {
+           "code": "M-12-B-19",
+           "text": "Solve basic trigonometric equations graphically."
+          },
+          {
+           "code": "M-12-B-20",
+           "text": "Use periods to find general solutions of trigonometric equations."
+          },
+          {
+           "code": "M-12-B-21",
+           "text": "Apply inverse trigonometric functions to real-world problems."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "conic-sections",
+       "title": "Conic sections",
+       "subtopics": [
+        {
+         "id": "conics-and-the-circle",
+         "title": "Conics and the circle",
+         "outcomes": [
+          {
+           "code": "M-12-B-22",
+           "text": "Demonstrate conics: circle, parabola, ellipse and hyperbola."
+          },
+          {
+           "code": "M-12-B-23",
+           "text": "Derive and apply the standard equation of a circle."
+          },
+          {
+           "code": "M-12-B-24",
+           "text": "Find the equation of a circle from three points or other given conditions."
+          }
+         ]
+        },
+        {
+         "id": "tangent-and-normal-to-a-circle",
+         "title": "Tangent and normal to a circle",
+         "outcomes": [
+          {
+           "code": "M-12-B-25",
+           "text": "Find conditions for a line to meet or touch a circle."
+          },
+          {
+           "code": "M-12-B-26",
+           "text": "Find the tangent in slope form and the normal to a circle."
+          },
+          {
+           "code": "M-12-B-27",
+           "text": "Find the length of a tangent from an external point."
+          }
+         ]
+        },
+        {
+         "id": "parabola",
+         "title": "Parabola",
+         "outcomes": [
+          {
+           "code": "M-12-B-28",
+           "text": "Derive and apply the standard equation of a parabola."
+          },
+          {
+           "code": "M-12-B-29",
+           "text": "Sketch parabolas and find their elements."
+          },
+          {
+           "code": "M-12-B-30",
+           "text": "Find the equation of a parabola from focus, vertex or directrix."
+          }
+         ]
+        },
+        {
+         "id": "tangent-and-normal-to-a-parabola",
+         "title": "Tangent and normal to a parabola",
+         "outcomes": [
+          {
+           "code": "M-12-B-31",
+           "text": "Find the tangency condition for a line and parabola and write the slope-form tangent."
+          },
+          {
+           "code": "M-12-B-32",
+           "text": "Find the tangent and normal to a parabola at a point."
+          }
+         ]
+        },
+        {
+         "id": "ellipse",
+         "title": "Ellipse",
+         "outcomes": [
+          {
+           "code": "M-12-B-33",
+           "text": "Derive and apply the standard equation of an ellipse and identify its elements."
+          },
+          {
+           "code": "M-12-B-34",
+           "text": "Convert to standard ellipse form, find elements and draw the graph."
+          }
+         ]
+        },
+        {
+         "id": "tangent-and-normal-to-an-ellipse",
+         "title": "Tangent and normal to an ellipse",
+         "outcomes": [
+          {
+           "code": "M-12-B-35",
+           "text": "Find intersections of an ellipse with a line, including tangency."
+          },
+          {
+           "code": "M-12-B-36",
+           "text": "Find the tangent to an ellipse in point-slope form."
+          },
+          {
+           "code": "M-12-B-37",
+           "text": "Find the tangent and normal to an ellipse at a point."
+          }
+         ]
+        },
+        {
+         "id": "hyperbola",
+         "title": "Hyperbola",
+         "outcomes": [
+          {
+           "code": "M-12-B-38",
+           "text": "Derive and apply the standard equation of a hyperbola and identify its elements."
+          },
+          {
+           "code": "M-12-B-39",
+           "text": "Find the equation of a hyperbola from given elements."
+          }
+         ]
+        },
+        {
+         "id": "tangent-and-normal-to-a-hyperbola",
+         "title": "Tangent and normal to a hyperbola",
+         "outcomes": [
+          {
+           "code": "M-12-B-40",
+           "text": "Find intersections of a hyperbola with a line, including tangency."
+          },
+          {
+           "code": "M-12-B-41",
+           "text": "Find the tangent to a hyperbola in point-slope form."
+          },
+          {
+           "code": "M-12-B-42",
+           "text": "Find the tangent and normal to a hyperbola at a point."
+          },
+          {
+           "code": "M-12-B-43",
+           "text": "Apply conics to real-world problems."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "build": {
+  "builtAt": "2026-10-14T08:06:05.113Z",
+  "model": "claude-agent",
+  "usd": 0,
+  "expectedCodes": 130,
+  "coverage": 0.9923076923076923,
+  "missingCodes": [
+   "M-11-B-21"
+  ],
+  "counts": {
+   "grades": 1,
+   "units": 2,
+   "topics": 14,
+   "subtopics": 41,
+   "outcomes": 130
+  },
+  "warnings": []
+ }
+}

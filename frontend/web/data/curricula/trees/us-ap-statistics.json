@@ -1,0 +1,2934 @@
+{
+ "id": "us-ap-statistics",
+ "region": "US",
+ "framework": "AP Statistics Course and Exam Description (effective fall 2026)",
+ "board": "College Board",
+ "qualification": "AP",
+ "subject": "Statistics",
+ "syllabusCode": null,
+ "gradeSystem": "course",
+ "source": {
+  "urls": [
+   "https://apcentral.collegeboard.org/media/pdf/ap-statistics-course-and-exam-description.pdf",
+   "https://apcentral.collegeboard.org/courses/ap-statistics"
+  ],
+  "publisher": "College Board",
+  "licence": "\u00a9 College Board; structure + our own wording only",
+  "firstExam": "2027"
+ },
+ "grades": [
+  {
+   "grade": "all",
+   "units": [
+    {
+     "id": "unit-1-exploring-one-variable-data-and-collectin",
+     "title": "Unit 1: Exploring One-Variable Data and Collecting Data",
+     "topics": [
+      {
+       "id": "1-1-introducing-statistics-what-can-we-learn-fro",
+       "title": "1.1 Introducing Statistics: What Can We Learn from Data?",
+       "subtopics": [
+        {
+         "id": "parts-of-a-statistical-study",
+         "title": "Parts of a statistical study",
+         "outcomes": [
+          {
+           "code": "1.1.A",
+           "text": "Identify the components of a statistical study"
+          },
+          {
+           "code": "1.1.A.1",
+           "text": "A statistical study collects sample data to answer a question about a larger population"
+          },
+          {
+           "code": "1.1.A.2",
+           "text": "Studies are needed when surveying the whole population is too hard"
+          },
+          {
+           "code": "1.1.A.3",
+           "text": "A datum is one piece of information; many data form a data set"
+          },
+          {
+           "code": "1.1.A.4",
+           "text": "A population is everything of interest; its size is N"
+          },
+          {
+           "code": "1.1.A.5",
+           "text": "A sample is a subset of the population; its size is n"
+          },
+          {
+           "code": "1.1.A.6",
+           "text": "Relate every part of a study and its results to the real-world context (\"in context\")"
+          }
+         ]
+        },
+        {
+         "id": "investigative-questions",
+         "title": "Investigative questions",
+         "outcomes": [
+          {
+           "code": "1.1.B",
+           "text": "Determine an investigative question within a statistical study"
+          },
+          {
+           "code": "1.1.B.1",
+           "text": "A question has a defined purpose and is not changed after seeing results"
+          },
+          {
+           "code": "1.1.B.2",
+           "text": "Pose the question so the needed data can be collected and analysed"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "1-2-variables",
+       "title": "1.2 Variables",
+       "subtopics": [
+        {
+         "id": "units-variables-parameters-and-statistics",
+         "title": "Units, variables, parameters and statistics",
+         "outcomes": [
+          {
+           "code": "1.2.A",
+           "text": "Identify observational units, variables, parameters and statistics"
+          },
+          {
+           "code": "1.2.A.1",
+           "text": "An observational unit is an item or individual from which data are collected"
+          },
+          {
+           "code": "1.2.A.2",
+           "text": "A variable is a characteristic that can differ between units"
+          },
+          {
+           "code": "1.2.A.3",
+           "text": "Numerical and categorical data, including images, sounds and text, can carry information"
+          },
+          {
+           "code": "1.2.A.4",
+           "text": "A parameter summarises a variable for a population"
+          },
+          {
+           "code": "1.2.A.5",
+           "text": "A statistic summarises a variable for a sample and is used to infer the parameter"
+          }
+         ]
+        },
+        {
+         "id": "types-of-variables",
+         "title": "Types of variables",
+         "outcomes": [
+          {
+           "code": "1.2.B",
+           "text": "Identify types of variables"
+          },
+          {
+           "code": "1.2.B.1",
+           "text": "Categorical variables take category names or group labels"
+          },
+          {
+           "code": "1.2.B.2",
+           "text": "Quantitative variables take measured or counted numerical values, usually with units"
+          },
+          {
+           "code": "1.2.C",
+           "text": "Identify types of quantitative variables"
+          },
+          {
+           "code": "1.2.C.1",
+           "text": "Discrete variables take countable values"
+          },
+          {
+           "code": "1.2.C.2",
+           "text": "Continuous variables take any value within an interval"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "1-3-tabular-representation-and-summary-statistic",
+       "title": "1.3 Tabular Representation and Summary Statistics for One Categorical Variable",
+       "subtopics": [
+        {
+         "id": "frequency-tables",
+         "title": "Frequency tables",
+         "outcomes": [
+          {
+           "code": "1.3.A",
+           "text": "Construct tables for one categorical variable"
+          },
+          {
+           "code": "1.3.A.1",
+           "text": "A frequency table counts units in each category"
+          },
+          {
+           "code": "1.3.A.2",
+           "text": "A relative frequency table gives the proportion in each category"
+          },
+          {
+           "code": "1.3.B",
+           "text": "Describe categorical tables with summary statistics"
+          },
+          {
+           "code": "1.3.B.1",
+           "text": "Percentages, relative frequencies and ratios carry the same information as proportions"
+          },
+          {
+           "code": "1.3.B.2",
+           "text": "Counts and relative frequencies can justify claims in context"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "1-4-graphical-representations-for-one-categorica",
+       "title": "1.4 Graphical Representations for One Categorical Variable",
+       "subtopics": [
+        {
+         "id": "bar-charts-and-pie-charts",
+         "title": "Bar charts and pie charts",
+         "outcomes": [
+          {
+           "code": "1.4.A",
+           "text": "Construct graphs for one categorical variable"
+          },
+          {
+           "code": "1.4.A.1",
+           "text": "Bar charts show frequency or relative frequency per category by bar height"
+          },
+          {
+           "code": "1.4.A.2",
+           "text": "Pie charts show relative frequencies as slice areas totaling 100 percent"
+          }
+         ]
+        },
+        {
+         "id": "justifying-and-comparing-with-categorical-graphs",
+         "title": "Justifying and comparing with categorical graphs",
+         "outcomes": [
+          {
+           "code": "1.4.B",
+           "text": "Justify a claim using categorical graphs"
+          },
+          {
+           "code": "1.4.B.1",
+           "text": "Graphs of a categorical variable can justify claims in context"
+          },
+          {
+           "code": "1.4.C",
+           "text": "Compare multiple categorical tables and graphs"
+          },
+          {
+           "code": "1.4.C.1",
+           "text": "Use tables, bar charts and pie charts to compare data sets on the same categorical variable"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "1-5-graphical-representations-for-one-quantitati",
+       "title": "1.5 Graphical Representations for One Quantitative Variable",
+       "subtopics": [
+        {
+         "id": "histograms-stem-plots-and-dotplots",
+         "title": "Histograms, stem plots and dotplots",
+         "outcomes": [
+          {
+           "code": "1.5.A",
+           "text": "Construct graphs for one quantitative variable"
+          },
+          {
+           "code": "1.5.A.1",
+           "text": "Histograms, stem-and-leaf plots and dotplots display a distribution in natural order"
+          },
+          {
+           "code": "1.5.A.2",
+           "text": "A histogram groups values into bins whose heights show frequency; bin width changes its look"
+          },
+          {
+           "code": "1.5.A.3",
+           "text": "A stem-and-leaf plot splits each value into stem and leaf, both ordered"
+          },
+          {
+           "code": "1.5.A.4",
+           "text": "A dotplot places one dot per value, stacking near-identical values"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "1-6-descriptions-for-one-quantitative-variable-d",
+       "title": "1.6 Descriptions for One Quantitative Variable Distributions",
+       "subtopics": [
+        {
+         "id": "describing-a-distribution",
+         "title": "Describing a distribution",
+         "outcomes": [
+          {
+           "code": "1.6.A",
+           "text": "Describe distributions shown in graphs of one quantitative variable"
+          },
+          {
+           "code": "1.6.A.1",
+           "text": "Describe shape, center, variability and unusual features in context"
+          },
+          {
+           "code": "1.6.A.2",
+           "text": "Classify shape as skewed right, skewed left or approximately symmetric"
+          },
+          {
+           "code": "1.6.A.3",
+           "text": "Distinguish unimodal, bimodal and approximately uniform distributions"
+          },
+          {
+           "code": "1.6.A.4",
+           "text": "Outliers are unusually small or large values"
+          },
+          {
+           "code": "1.6.A.5",
+           "text": "A gap is a region with no observed data"
+          },
+          {
+           "code": "1.6.A.6",
+           "text": "Clusters are concentrations of values separated by gaps"
+          },
+          {
+           "code": "1.6.B",
+           "text": "Justify a claim using a distribution graph"
+          },
+          {
+           "code": "1.6.B.1",
+           "text": "Graphs of a quantitative variable can justify claims in context"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "1-7-summary-statistics-for-one-quantitative-vari",
+       "title": "1.7 Summary Statistics for One Quantitative Variable",
+       "subtopics": [
+        {
+         "id": "center-and-position",
+         "title": "Center and position",
+         "outcomes": [
+          {
+           "code": "1.7.A",
+           "text": "Calculate measures of center and position"
+          },
+          {
+           "code": "1.7.A.1",
+           "text": "Mean and median are the common measures of center"
+          },
+          {
+           "code": "1.7.A.2",
+           "text": "The mean is the sum of values divided by their count"
+          },
+          {
+           "code": "1.7.A.3",
+           "text": "The median is the middle value of the ordered data"
+          },
+          {
+           "code": "1.7.A.4",
+           "text": "Minimum and maximum are the smallest and largest values"
+          },
+          {
+           "code": "1.7.A.5",
+           "text": "Quartiles Q1, Q2, Q3 split the ordered data into quarters"
+          },
+          {
+           "code": "1.7.A.6",
+           "text": "The pth percentile has p percent of values at or below it"
+          }
+         ]
+        },
+        {
+         "id": "variability",
+         "title": "Variability",
+         "outcomes": [
+          {
+           "code": "1.7.B",
+           "text": "Calculate measures of variability"
+          },
+          {
+           "code": "1.7.B.1",
+           "text": "Range, IQR and standard deviation measure spread"
+          },
+          {
+           "code": "1.7.B.2",
+           "text": "Range is maximum minus minimum"
+          },
+          {
+           "code": "1.7.B.3",
+           "text": "IQR is Q3 minus Q1"
+          },
+          {
+           "code": "1.7.B.4",
+           "text": "Standard deviation is a typical distance from the mean; its square is the variance"
+          }
+         ]
+        },
+        {
+         "id": "units-outliers-and-comparison",
+         "title": "Units, outliers and comparison",
+         "outcomes": [
+          {
+           "code": "1.7.C",
+           "text": "Calculate effects of different units of measurement"
+          },
+          {
+           "code": "1.7.C.1",
+           "text": "Changing measurement units changes the statistics"
+          },
+          {
+           "code": "1.7.D",
+           "text": "Calculate outliers"
+          },
+          {
+           "code": "1.7.D.1",
+           "text": "Flag outliers by the 1.5 times IQR rule or by 2 standard deviations from the mean"
+          },
+          {
+           "code": "1.7.E",
+           "text": "Compare summary statistics across samples"
+          },
+          {
+           "code": "1.7.E.1",
+           "text": "Compare center, variability, shape and outliers between independent samples"
+          }
+         ]
+        },
+        {
+         "id": "choosing-a-summary-statistic",
+         "title": "Choosing a summary statistic",
+         "outcomes": [
+          {
+           "code": "1.7.F",
+           "text": "Justify the choice of summary statistic"
+          },
+          {
+           "code": "1.7.F.1",
+           "text": "Median and IQR are resistant to outliers; mean, range and standard deviation are not"
+          },
+          {
+           "code": "1.7.F.2",
+           "text": "Summary statistics can justify claims in context"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "1-8-graphical-representations-of-summary-statist",
+       "title": "1.8 Graphical Representations of Summary Statistics for One Quantitative Variable",
+       "subtopics": [
+        {
+         "id": "five-number-summary-and-boxplots",
+         "title": "Five-number summary and boxplots",
+         "outcomes": [
+          {
+           "code": "1.8.A",
+           "text": "Construct graphs of summary statistics"
+          },
+          {
+           "code": "1.8.A.1",
+           "text": "The five-number summary is minimum, Q1, median, Q3, maximum"
+          },
+          {
+           "code": "1.8.A.2",
+           "text": "A boxplot shows the five-number summary, with whiskers and outliers marked separately"
+          },
+          {
+           "code": "1.8.B",
+           "text": "Describe graphs using the mean-median relationship"
+          },
+          {
+           "code": "1.8.B.1",
+           "text": "Symmetric: mean near median; right skew: mean above median; left skew: mean below"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "1-9-comparisons-of-the-distributions-for-one-qua",
+       "title": "1.9 Comparisons of the Distributions for One Quantitative Variable",
+       "subtopics": [
+        {
+         "id": "comparing-distributions",
+         "title": "Comparing distributions",
+         "outcomes": [
+          {
+           "code": "1.9.A",
+           "text": "Compare graphs of a quantitative variable"
+          },
+          {
+           "code": "1.9.A.1",
+           "text": "Compare center, variability, shape, outliers, clusters and gaps using histograms, dotplots, stem plots and boxplots"
+          },
+          {
+           "code": "1.9.B",
+           "text": "Compare graphs of summary statistics"
+          },
+          {
+           "code": "1.9.B.1",
+           "text": "Comparisons can include numerical summaries such as mean and standard deviation"
+          },
+          {
+           "code": "1.9.C",
+           "text": "Justify a claim using several graphs"
+          },
+          {
+           "code": "1.9.C.1",
+           "text": "Multiple graphs can justify claims in context"
+          }
+         ]
+        },
+        {
+         "id": "z-scores",
+         "title": "z-scores",
+         "outcomes": [
+          {
+           "code": "1.9.D",
+           "text": "Calculate z-scores using population parameters"
+          },
+          {
+           "code": "1.9.D.1",
+           "text": "A standardised score counts standard deviations from the mean"
+          },
+          {
+           "code": "1.9.D.2",
+           "text": "z equals the value minus the mean, divided by the standard deviation; sample statistics can substitute"
+          },
+          {
+           "code": "1.9.E",
+           "text": "Compare z-scores as relative position"
+          },
+          {
+           "code": "1.9.E.1",
+           "text": "Use z-scores to compare positions within or between distributions"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "1-10-the-investigative-question-revisited-and-da",
+       "title": "1.10 The Investigative Question Revisited and Data Collection",
+       "subtopics": [
+        {
+         "id": "components-of-an-investigative-question",
+         "title": "Components of an investigative question",
+         "outcomes": [
+          {
+           "code": "1.10.A",
+           "text": "Determine the components of an investigative question"
+          },
+          {
+           "code": "1.10.A.1",
+           "text": "The first part guides data collection and names the variables"
+          },
+          {
+           "code": "1.10.A.2",
+           "text": "The second part guides the analysis, naming the parameter and the alternative direction or estimation goal"
+          },
+          {
+           "code": "1.10.A.3",
+           "text": "The third part states the population and any cause-and-effect conclusion"
+          }
+         ]
+        },
+        {
+         "id": "census-experiments-and-observational-studies",
+         "title": "Census, experiments and observational studies",
+         "outcomes": [
+          {
+           "code": "1.10.B",
+           "text": "Identify a census"
+          },
+          {
+           "code": "1.10.B.1",
+           "text": "A census records information from every unit in the population"
+          },
+          {
+           "code": "1.10.C",
+           "text": "Identify an experiment"
+          },
+          {
+           "code": "1.10.C.1",
+           "text": "An experiment assigns treatments to experimental units"
+          },
+          {
+           "code": "1.10.C.2",
+           "text": "The experimental unit is the unit receiving the treatment"
+          },
+          {
+           "code": "1.10.C.3",
+           "text": "Explanatory variables (factors) have levels that are the treatments"
+          },
+          {
+           "code": "1.10.C.4",
+           "text": "The response variable is measured after treatment"
+          },
+          {
+           "code": "1.10.D",
+           "text": "Identify an observational study"
+          },
+          {
+           "code": "1.10.D.1",
+           "text": "Observational studies do not impose treatments"
+          },
+          {
+           "code": "1.10.D.2",
+           "text": "Prospective studies gather data now and in the future"
+          },
+          {
+           "code": "1.10.D.3",
+           "text": "Retrospective studies gather past data"
+          },
+          {
+           "code": "1.10.D.4",
+           "text": "A survey asks humans a standard set of questions"
+          },
+          {
+           "code": "1.10.D.5",
+           "text": "A confounding variable linked to both explanatory and response variables offers an alternative explanation"
+          }
+         ]
+        },
+        {
+         "id": "justifying-generalizations",
+         "title": "Justifying generalizations",
+         "outcomes": [
+          {
+           "code": "1.10.E",
+           "text": "Justify the appropriateness of generalizations"
+          },
+          {
+           "code": "1.10.E.1",
+           "text": "A random sample is chosen by a random mechanism"
+          },
+          {
+           "code": "1.10.E.2",
+           "text": "Random selection allows generalising to the whole population"
+          },
+          {
+           "code": "1.10.E.3",
+           "text": "Volunteer or deliberately chosen samples are not random"
+          },
+          {
+           "code": "1.10.E.4",
+           "text": "Without random selection generalise only to similar individuals"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "1-11-random-sampling",
+       "title": "1.11 Random Sampling",
+       "subtopics": [
+        {
+         "id": "sampling-methods",
+         "title": "Sampling methods",
+         "outcomes": [
+          {
+           "code": "1.11.A",
+           "text": "Identify a sampling method from a study description"
+          },
+          {
+           "code": "1.11.A.1",
+           "text": "Sampling without replacement selects each unit at most once"
+          },
+          {
+           "code": "1.11.A.2",
+           "text": "Sampling with replacement can select a unit more than once"
+          },
+          {
+           "code": "1.11.A.3",
+           "text": "In a simple random sample every sample of size n is equally likely"
+          },
+          {
+           "code": "1.11.A.4",
+           "text": "A stratified sample takes a simple random sample from each stratum"
+          },
+          {
+           "code": "1.11.A.5",
+           "text": "A cluster sample randomly selects clusters and surveys everyone in them"
+          },
+          {
+           "code": "1.11.A.6",
+           "text": "A systematic sample uses a random start and fixed interval"
+          },
+          {
+           "code": "1.11.B",
+           "text": "Justify the appropriateness of a sampling method"
+          },
+          {
+           "code": "1.11.B.1",
+           "text": "Each method suits different populations and questions"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "1-12-potential-problems-with-sampling",
+       "title": "1.12 Potential Problems with Sampling",
+       "subtopics": [
+        {
+         "id": "sources-of-bias",
+         "title": "Sources of bias",
+         "outcomes": [
+          {
+           "code": "1.12.A",
+           "text": "Identify potential sources of bias in sampling"
+          },
+          {
+           "code": "1.12.A.1",
+           "text": "Bias is systematic error pushing a statistic consistently high or low"
+          },
+          {
+           "code": "1.12.A.2",
+           "text": "Voluntary response bias arises when the sample is all volunteers"
+          },
+          {
+           "code": "1.12.A.3",
+           "text": "Undercoverage bias arises when part of the population is missed"
+          },
+          {
+           "code": "1.12.A.4",
+           "text": "Nonresponse bias arises when chosen individuals do not respond"
+          },
+          {
+           "code": "1.12.A.5",
+           "text": "Response bias arises from confusing or leading questions or self-reports"
+          },
+          {
+           "code": "1.12.A.6",
+           "text": "Nonrandom methods such as convenience samples risk bias"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "1-13-experimental-design",
+       "title": "1.13 Experimental Design",
+       "subtopics": [
+        {
+         "id": "elements-of-a-good-experiment",
+         "title": "Elements of a good experiment",
+         "outcomes": [
+          {
+           "code": "1.13.A",
+           "text": "Identify elements of a well-designed experiment"
+          },
+          {
+           "code": "1.13.A.1",
+           "text": "Include comparison of treatments, random assignment, replication and direct control"
+          },
+          {
+           "code": "1.13.A.2",
+           "text": "A control group provides a comparison, sometimes with a placebo"
+          },
+          {
+           "code": "1.13.A.3",
+           "text": "The placebo effect is the response to a placebo compared with no treatment"
+          },
+          {
+           "code": "1.13.A.4",
+           "text": "In a single-blind experiment only participants or only the research team know the treatments"
+          },
+          {
+           "code": "1.13.A.5",
+           "text": "In a double-blind experiment neither group knows the treatments"
+          },
+          {
+           "code": "1.13.A.6",
+           "text": "An extraneous variable affects the response but is not studied"
+          }
+         ]
+        },
+        {
+         "id": "random-assignment-confounding-replication",
+         "title": "Random assignment, confounding, replication",
+         "outcomes": [
+          {
+           "code": "1.13.A.7",
+           "text": "Random assignment makes treatment groups similar on extraneous variables"
+          },
+          {
+           "code": "1.13.A.8",
+           "text": "A confounding variable is tangled with the explanatory variable; good design reduces it"
+          },
+          {
+           "code": "1.13.A.9",
+           "text": "Replication means more than one unit per treatment"
+          },
+          {
+           "code": "1.13.A.10",
+           "text": "Direct control holds extraneous settings the same across units"
+          }
+         ]
+        },
+        {
+         "id": "experimental-designs",
+         "title": "Experimental designs",
+         "outcomes": [
+          {
+           "code": "1.13.B",
+           "text": "Identify experimental designs"
+          },
+          {
+           "code": "1.13.B.1",
+           "text": "In a completely randomized design treatments are assigned entirely at random"
+          },
+          {
+           "code": "1.13.B.2",
+           "text": "A randomized block design groups similar units into blocks and randomises within each"
+          },
+          {
+           "code": "1.13.B.3",
+           "text": "Blocking separates blocking-variable variation to compare treatments more precisely"
+          },
+          {
+           "code": "1.13.B.4",
+           "text": "A matched pairs design is a two-treatment block design on pairs or on repeated units"
+          },
+          {
+           "code": "1.13.C",
+           "text": "Justify an experimental design"
+          },
+          {
+           "code": "1.13.C.1",
+           "text": "The best design depends on goals, population, sample and variables"
+          },
+          {
+           "code": "1.13.D",
+           "text": "Justify conclusions from an experiment"
+          },
+          {
+           "code": "1.13.D.1",
+           "text": "Random assignment permits cause-and-effect conclusions"
+          },
+          {
+           "code": "1.13.D.2",
+           "text": "When random selection is impractical or unethical, volunteers represent similar units"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "unit-2-probability-random-variables-and-probabil",
+     "title": "Unit 2: Probability, Random Variables, and Probability Distributions",
+     "topics": [
+      {
+       "id": "2-1-tabular-and-graphical-representations-for-th",
+       "title": "2.1 Tabular and Graphical Representations for the Distributions of Two Categorical Variables",
+       "subtopics": [
+        {
+         "id": "two-way-tables-and-graphs",
+         "title": "Two-way tables and graphs",
+         "outcomes": [
+          {
+           "code": "2.1.A",
+           "text": "Compare tables and graphs showing the relationship between two categorical variables"
+          },
+          {
+           "code": "2.1.A.1",
+           "text": "A two-way table summarises two categorical variables with counts or proportions"
+          },
+          {
+           "code": "2.1.A.2",
+           "text": "Side-by-side bar charts, segmented bar charts and mosaic plots display two categorical variables"
+          },
+          {
+           "code": "2.1.A.3",
+           "text": "Use these graphs to compare across levels and judge association"
+          },
+          {
+           "code": "2.1.B",
+           "text": "Justify a claim using tables and graphs for two categorical variables"
+          },
+          {
+           "code": "2.1.B.1",
+           "text": "These representations can justify claims in context"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "2-2-summary-statistics-for-two-categorical-varia",
+       "title": "2.2 Summary Statistics for Two Categorical Variables",
+       "subtopics": [
+        {
+         "id": "joint-marginal-and-conditional-frequencies",
+         "title": "Joint, marginal and conditional frequencies",
+         "outcomes": [
+          {
+           "code": "2.2.A",
+           "text": "Calculate summary statistics from two-way tables"
+          },
+          {
+           "code": "2.2.A.1",
+           "text": "A joint relative frequency is a cell count over the table total"
+          },
+          {
+           "code": "2.2.A.2",
+           "text": "A marginal relative frequency is a row or column total over the table total"
+          },
+          {
+           "code": "2.2.A.3",
+           "text": "A conditional relative frequency is a cell over its row or column total"
+          },
+          {
+           "code": "2.2.B",
+           "text": "Compare summary statistics for two categorical variables"
+          },
+          {
+           "code": "2.2.B.1",
+           "text": "Compare distributions for evidence of association"
+          },
+          {
+           "code": "2.2.C",
+           "text": "Justify a claim using summary statistics for two categorical variables"
+          },
+          {
+           "code": "2.2.C.1",
+           "text": "These statistics can justify claims in context"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "2-3-estimating-probabilities-using-simulation",
+       "title": "2.3 Estimating Probabilities Using Simulation",
+       "subtopics": [
+        {
+         "id": "simulation-and-long-run-frequency",
+         "title": "Simulation and long-run frequency",
+         "outcomes": [
+          {
+           "code": "2.3.A",
+           "text": "Estimate probabilities using simulations"
+          },
+          {
+           "code": "2.3.A.1",
+           "text": "A random process produces chance results"
+          },
+          {
+           "code": "2.3.A.2",
+           "text": "An outcome is the result of one trial"
+          },
+          {
+           "code": "2.3.A.3",
+           "text": "An event is a collection of outcomes"
+          },
+          {
+           "code": "2.3.A.4",
+           "text": "Simulation models random events and records counts of simulated outcomes"
+          },
+          {
+           "code": "2.3.A.5",
+           "text": "Probability is long-run relative frequency"
+          },
+          {
+           "code": "2.3.A.6",
+           "text": "Empirical relative frequency estimates the true probability"
+          },
+          {
+           "code": "2.3.A.7",
+           "text": "The law of large numbers: relative frequency settles near one value as trials increase"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "2-4-introduction-to-probability",
+       "title": "2.4 Introduction to Probability",
+       "subtopics": [
+        {
+         "id": "probability-of-events-and-complements",
+         "title": "Probability of events and complements",
+         "outcomes": [
+          {
+           "code": "2.4.A",
+           "text": "Calculate probabilities for events and their complements"
+          },
+          {
+           "code": "2.4.A.1",
+           "text": "The sample space is all nonoverlapping outcomes and has probability 1"
+          },
+          {
+           "code": "2.4.A.2",
+           "text": "With equally likely outcomes, P(E) is outcomes in E over total outcomes"
+          },
+          {
+           "code": "2.4.A.3",
+           "text": "Probabilities lie between 0 and 1"
+          },
+          {
+           "code": "2.4.A.4",
+           "text": "The complement has probability 1 minus P(E)"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "2-5-mutually-exclusive-events",
+       "title": "2.5 Mutually Exclusive Events",
+       "subtopics": [
+        {
+         "id": "joint-probability-and-disjoint-events",
+         "title": "Joint probability and disjoint events",
+         "outcomes": [
+          {
+           "code": "2.5.A",
+           "text": "Justify why two events are mutually exclusive using joint probability"
+          },
+          {
+           "code": "2.5.A.1",
+           "text": "Joint probability is the probability of the intersection of A and B"
+          },
+          {
+           "code": "2.5.A.2",
+           "text": "Mutually exclusive events cannot happen together, so P(A and B) is 0"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "2-6-conditional-probability",
+       "title": "2.6 Conditional Probability",
+       "subtopics": [
+        {
+         "id": "conditional-probability-and-multiplication-rule",
+         "title": "Conditional probability and multiplication rule",
+         "outcomes": [
+          {
+           "code": "2.6.A",
+           "text": "Calculate conditional probabilities"
+          },
+          {
+           "code": "2.6.A.1",
+           "text": "P(A given B) equals P(A and B) divided by P(B)"
+          },
+          {
+           "code": "2.6.A.2",
+           "text": "The general multiplication rule: P(A and B) equals P(A) times P(B given A)"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "2-7-independent-events-and-unions-of-events",
+       "title": "2.7 Independent Events and Unions of Events",
+       "subtopics": [
+        {
+         "id": "independence-and-unions",
+         "title": "Independence and unions",
+         "outcomes": [
+          {
+           "code": "2.7.A",
+           "text": "Calculate probabilities for independent events and for the union of two events"
+          },
+          {
+           "code": "2.7.A.1",
+           "text": "Independent events do not change each other's probabilities, so P(A and B) equals P(A)P(B)"
+          },
+          {
+           "code": "2.7.A.2",
+           "text": "The union is the probability that A or B or both occur"
+          },
+          {
+           "code": "2.7.A.3",
+           "text": "P(A or B) equals P(A) plus P(B) minus P(A and B)"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "2-8-introduction-to-random-variables-and-probabi",
+       "title": "2.8 Introduction to Random Variables and Probability Distributions",
+       "subtopics": [
+        {
+         "id": "discrete-probability-distributions",
+         "title": "Discrete probability distributions",
+         "outcomes": [
+          {
+           "code": "2.8.A",
+           "text": "Construct a probability distribution for a discrete random variable"
+          },
+          {
+           "code": "2.8.A.1",
+           "text": "A random variable has numerical values resulting from a random phenomenon"
+          },
+          {
+           "code": "2.8.A.2",
+           "text": "A distribution lists the probability of every value, summing to 1"
+          },
+          {
+           "code": "2.8.A.3",
+           "text": "Build a distribution from probability rules or simulation"
+          },
+          {
+           "code": "2.8.A.4",
+           "text": "Show a distribution as a graph, table or function"
+          },
+          {
+           "code": "2.8.A.5",
+           "text": "A cumulative distribution gives probability of at most each value"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "2-9-parameters-of-random-variables",
+       "title": "2.9 Parameters of Random Variables",
+       "subtopics": [
+        {
+         "id": "mean-and-standard-deviation-of-a-random-variable",
+         "title": "Mean and standard deviation of a random variable",
+         "outcomes": [
+          {
+           "code": "2.9.A",
+           "text": "Calculate the mean and standard deviation for a discrete random variable"
+          },
+          {
+           "code": "2.9.A.1",
+           "text": "A parameter is a single fixed value describing a distribution or population"
+          },
+          {
+           "code": "2.9.A.2",
+           "text": "Expected value is the sum of each value times its probability, the long-run average"
+          },
+          {
+           "code": "2.9.A.3",
+           "text": "Standard deviation is the typical deviation from the expected value; variance is its square"
+          },
+          {
+           "code": "2.9.B",
+           "text": "Interpret the mean and standard deviation for a discrete random variable"
+          },
+          {
+           "code": "2.9.B.1",
+           "text": "Interpret them in the context of the population"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "2-10-the-binomial-distribution",
+       "title": "2.10 The Binomial Distribution",
+       "subtopics": [
+        {
+         "id": "recognizing-a-binomial-variable",
+         "title": "Recognizing a binomial variable",
+         "outcomes": [
+          {
+           "code": "2.10.A",
+           "text": "Justify why a random variable is or is not binomial"
+          },
+          {
+           "code": "2.10.A.1",
+           "text": "Binomial counts successes in n independent trials with two outcomes and success probability p"
+          }
+         ]
+        },
+        {
+         "id": "binomial-mean-deviation-and-probabilities",
+         "title": "Binomial mean, deviation and probabilities",
+         "outcomes": [
+          {
+           "code": "2.10.B",
+           "text": "Calculate the mean and standard deviation for a binomial distribution"
+          },
+          {
+           "code": "2.10.B.1",
+           "text": "The mean is np and the standard deviation is the square root of np(1-p)"
+          },
+          {
+           "code": "2.10.C",
+           "text": "Interpret the mean, standard deviation and probabilities for a binomial distribution"
+          },
+          {
+           "code": "2.10.C.1",
+           "text": "Interpret them in context"
+          },
+          {
+           "code": "2.10.D",
+           "text": "Estimate binomial probabilities using simulation data"
+          },
+          {
+           "code": "2.10.D.1",
+           "text": "Build a distribution by probability rules or estimate it by simulation"
+          },
+          {
+           "code": "2.10.E",
+           "text": "Calculate probabilities for a binomial distribution"
+          },
+          {
+           "code": "2.10.E.1",
+           "text": "Use the binomial probability function for exactly x successes"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "2-11-the-normal-distribution",
+       "title": "2.11 The Normal Distribution",
+       "subtopics": [
+        {
+         "id": "describing-a-normal-distribution",
+         "title": "Describing a normal distribution",
+         "outcomes": [
+          {
+           "code": "2.11.A",
+           "text": "Describe a normal distribution"
+          },
+          {
+           "code": "2.11.A.1",
+           "text": "A continuous random variable takes any value in a domain; intervals carry probability"
+          },
+          {
+           "code": "2.11.A.2",
+           "text": "Many continuous variables are well modelled by a normal distribution"
+          },
+          {
+           "code": "2.11.A.3",
+           "text": "A normal curve is continuous, unimodal, bell-shaped and symmetric"
+          },
+          {
+           "code": "2.11.A.4",
+           "text": "Use a normal curve to model data or a continuous variable"
+          },
+          {
+           "code": "2.11.A.5",
+           "text": "Mean and standard deviation identify a normal curve; larger deviation means a flatter, wider curve"
+          },
+          {
+           "code": "2.11.B",
+           "text": "Identify mean and standard deviation of a normal distribution"
+          },
+          {
+           "code": "2.11.B.1",
+           "text": "The standard normal has mean 0 and standard deviation 1"
+          }
+         ]
+        },
+        {
+         "id": "empirical-rule-and-areas",
+         "title": "Empirical rule and areas",
+         "outcomes": [
+          {
+           "code": "2.11.C",
+           "text": "Calculate percentages using the empirical rule"
+          },
+          {
+           "code": "2.11.C.1",
+           "text": "About 68, 95 and 99.7 percent lie within 1, 2 and 3 standard deviations of the mean"
+          },
+          {
+           "code": "2.11.D",
+           "text": "Calculate the probability of a value in an interval"
+          },
+          {
+           "code": "2.11.D.1",
+           "text": "Probability is the area under the normal curve over the interval; total area is 1"
+          }
+         ]
+        },
+        {
+         "id": "intervals-and-relative-position",
+         "title": "Intervals and relative position",
+         "outcomes": [
+          {
+           "code": "2.11.E",
+           "text": "Calculate intervals and areas of a normal distribution"
+          },
+          {
+           "code": "2.11.E.1",
+           "text": "Find interval boundaries for a given area with technology or z-scores and a table"
+          },
+          {
+           "code": "2.11.E.2",
+           "text": "Translate statements about lowest, middle, highest or most extreme p percent into inequalities and areas"
+          },
+          {
+           "code": "2.11.F",
+           "text": "Compare measures of relative position"
+          },
+          {
+           "code": "2.11.F.1",
+           "text": "Compare positions using percentiles and proportions within or between normal distributions"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "2-12-sampling-distributions-and-the-central-limi",
+       "title": "2.12 Sampling Distributions and the Central Limit Theorem",
+       "subtopics": [
+        {
+         "id": "sampling-distributions",
+         "title": "Sampling distributions",
+         "outcomes": [
+          {
+           "code": "2.12.A",
+           "text": "Describe sampling distributions with simulations"
+          },
+          {
+           "code": "2.12.A.1",
+           "text": "A sampling distribution is the distribution of a statistic over all samples of a given size"
+          },
+          {
+           "code": "2.12.A.2",
+           "text": "Simulate it by drawing many random samples and recording the statistic"
+          },
+          {
+           "code": "2.12.A.3",
+           "text": "A randomization distribution comes from repeatedly reassigning responses to treatment groups"
+          },
+          {
+           "code": "2.12.A.4",
+           "text": "The central limit theorem: the sampling distribution of a mean is approximately normal, better with larger samples"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "unit-3-inference-for-categorical-data-proportion",
+     "title": "Unit 3: Inference for Categorical Data: Proportions",
+     "topics": [
+      {
+       "id": "3-1-estimators",
+       "title": "3.1 Estimators",
+       "subtopics": [
+        {
+         "id": "unbiased-estimators-and-point-estimates",
+         "title": "Unbiased estimators and point estimates",
+         "outcomes": [
+          {
+           "code": "3.1.A",
+           "text": "Justify why an estimator is or is not unbiased"
+          },
+          {
+           "code": "3.1.A.1",
+           "text": "An estimator is unbiased if on average it neither under- nor overestimates the parameter"
+          },
+          {
+           "code": "3.1.B",
+           "text": "Calculate estimates for a population parameter"
+          },
+          {
+           "code": "3.1.B.1",
+           "text": "A sample statistic is a point estimator of its parameter, such as p-hat for p"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "3-2-sampling-distributions-for-sample-proportion",
+       "title": "3.2 Sampling Distributions for Sample Proportions",
+       "subtopics": [
+        {
+         "id": "mean-and-standard-deviation-of-p-hat",
+         "title": "Mean and standard deviation of p-hat",
+         "outcomes": [
+          {
+           "code": "3.2.A",
+           "text": "Calculate the mean and standard deviation of the sampling distribution of a sample proportion"
+          },
+          {
+           "code": "3.2.A.1",
+           "text": "With independent values, p-hat has mean p and standard deviation square root of p(1-p)/n"
+          }
+         ]
+        },
+        {
+         "id": "conditions-for-the-sampling-distribution",
+         "title": "Conditions for the sampling distribution",
+         "outcomes": [
+          {
+           "code": "3.2.B",
+           "text": "Justify the conditions for the sampling distribution of a sample proportion"
+          },
+          {
+           "code": "3.2.B.1",
+           "text": "Without replacement, check randomization and the 10 percent condition"
+          },
+          {
+           "code": "3.2.B.2",
+           "text": "The distribution is approximately normal when np and n(1-p) are both at least 10"
+          },
+          {
+           "code": "3.2.C",
+           "text": "Interpret the mean, standard deviation and probabilities of this sampling distribution"
+          },
+          {
+           "code": "3.2.C.1",
+           "text": "Interpret in the context of the specific population"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "3-3-constructing-a-confidence-interval-for-a-pop",
+       "title": "3.3 Constructing a Confidence Interval for a Population Proportion",
+       "subtopics": [
+        {
+         "id": "choosing-the-procedure-and-checking-conditions",
+         "title": "Choosing the procedure and checking conditions",
+         "outcomes": [
+          {
+           "code": "3.3.A",
+           "text": "Identify the confidence interval procedure and parameter for a proportion"
+          },
+          {
+           "code": "3.3.A.1",
+           "text": "A confidence interval estimates a parameter; use a one-sample z-interval for a proportion"
+          },
+          {
+           "code": "3.3.A.2",
+           "text": "State the parameter with the proportion, response variable and population"
+          },
+          {
+           "code": "3.3.B",
+           "text": "Verify conditions for a one-proportion z-interval"
+          },
+          {
+           "code": "3.3.B.1",
+           "text": "Check randomization, 10 percent condition and at least 10 observed successes and failures"
+          }
+         ]
+        },
+        {
+         "id": "computing-the-interval",
+         "title": "Computing the interval (part 1)",
+         "outcomes": [
+          {
+           "code": "3.3.C",
+           "text": "Calculate a confidence interval for a population proportion"
+          },
+          {
+           "code": "3.3.C.1",
+           "text": "The critical value z-star bounds the middle C percent of the standard normal"
+          },
+          {
+           "code": "3.3.C.2",
+           "text": "The interval is point estimate plus or minus margin of error"
+          }
+         ]
+        },
+        {
+         "id": "standard-error-and-margin-of-error",
+         "title": "Standard error and margin of error",
+         "outcomes": [
+          {
+           "code": "3.3.D",
+           "text": "Calculate standard error and margin of error, and estimate a sample size"
+          },
+          {
+           "code": "3.3.D.1",
+           "text": "Standard error estimates the standard deviation of the sampling distribution"
+          },
+          {
+           "code": "3.3.D.2",
+           "text": "Standard error is the typical variation of a statistic from the parameter"
+          },
+          {
+           "code": "3.3.D.3",
+           "text": "Margin of error is the critical value times the standard error"
+          },
+          {
+           "code": "3.3.D.4",
+           "text": "Rearrange the margin-of-error formula to find the minimum n, using 0.5 if p-hat is unknown"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "3-4-justifying-a-claim-based-on-a-confidence-int",
+       "title": "3.4 Justifying a Claim Based on a Confidence Interval for a Population Proportion",
+       "subtopics": [
+        {
+         "id": "interpreting-a-confidence-interval",
+         "title": "Interpreting a confidence interval (part 1)",
+         "outcomes": [
+          {
+           "code": "3.4.A",
+           "text": "Interpret a confidence interval for a population proportion in context"
+          },
+          {
+           "code": "3.4.A.1",
+           "text": "A computed interval may or may not contain the true proportion"
+          },
+          {
+           "code": "3.4.A.2",
+           "text": "Confidence level is the long-run percentage of such intervals that capture the parameter"
+          },
+          {
+           "code": "3.4.A.3",
+           "text": "Say we are C percent confident the interval contains the parameter, stated in context"
+          },
+          {
+           "code": "3.4.B",
+           "text": "Justify a claim from a confidence interval"
+          },
+          {
+           "code": "3.4.B.1",
+           "text": "The interval gives plausible values that can support a claim"
+          }
+         ]
+        },
+        {
+         "id": "what-affects-interval-width",
+         "title": "What affects interval width",
+         "outcomes": [
+          {
+           "code": "3.4.C",
+           "text": "Identify how sample size, width, confidence level and margin of error relate"
+          },
+          {
+           "code": "3.4.C.1",
+           "text": "Raising the confidence level raises the critical value, margin of error and width"
+          },
+          {
+           "code": "3.4.C.2",
+           "text": "Larger samples lower standard error and narrow the interval, roughly in proportion to one over root n"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "3-5-setting-up-a-test-for-a-population-proportio",
+       "title": "3.5 Setting Up a Test for a Population Proportion",
+       "subtopics": [
+        {
+         "id": "procedure-and-hypotheses",
+         "title": "Procedure and hypotheses (part 1)",
+         "outcomes": [
+          {
+           "code": "3.5.A",
+           "text": "Identify the testing method and parameter for a proportion"
+          },
+          {
+           "code": "3.5.A.1",
+           "text": "A hypothesis test makes a decision about a parameter; use a one-sample z-test for a proportion"
+          },
+          {
+           "code": "3.5.A.2",
+           "text": "State the parameter with the proportion, response variable and population"
+          },
+          {
+           "code": "3.5.B",
+           "text": "Identify null and alternative hypotheses for a proportion"
+          },
+          {
+           "code": "3.5.B.1",
+           "text": "The null is the status quo assumed unless evidence suggests otherwise; the alternative is the claim under study"
+          },
+          {
+           "code": "3.5.B.2",
+           "text": "The null includes equality; alternatives are one-sided or two-sided"
+          },
+          {
+           "code": "3.5.B.3",
+           "text": "Write H0 as p equals p0 and Ha as p less than, greater than or not equal to p0"
+          }
+         ]
+        },
+        {
+         "id": "conditions-for-the-test",
+         "title": "Conditions for the test (part 1)",
+         "outcomes": [
+          {
+           "code": "3.5.C",
+           "text": "Verify conditions for a one-proportion z-test"
+          },
+          {
+           "code": "3.5.C.1",
+           "text": "Check randomization, 10 percent condition and expected successes and failures at least 10"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "3-6-p-values",
+       "title": "3.6 p-Values",
+       "subtopics": [
+        {
+         "id": "interpreting-a-p-value",
+         "title": "Interpreting a p-value",
+         "outcomes": [
+          {
+           "code": "3.6.A",
+           "text": "Interpret the p-value of a test for a proportion"
+          },
+          {
+           "code": "3.6.A.1",
+           "text": "The p-value is the probability, assuming the null is true, of a test statistic as extreme as observed, in the direction of Ha"
+          },
+          {
+           "code": "3.6.A.2",
+           "text": "With a simulated null distribution, the p-value is the proportion of simulated values as extreme"
+          },
+          {
+           "code": "3.6.A.3",
+           "text": "State that the p-value assumes the null hypothesis is true"
+          },
+          {
+           "code": "3.6.A.4",
+           "text": "Small p-values give evidence for the alternative"
+          },
+          {
+           "code": "3.6.A.5",
+           "text": "Large p-values are not evidence for the null"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "3-7-carrying-out-a-test-for-a-population-proport",
+       "title": "3.7 Carrying Out a Test for a Population Proportion",
+       "subtopics": [
+        {
+         "id": "test-statistic-and-p-value",
+         "title": "Test statistic and p-value (part 1)",
+         "outcomes": [
+          {
+           "code": "3.7.A",
+           "text": "Calculate a test statistic and p-value for a proportion"
+          },
+          {
+           "code": "3.7.A.1",
+           "text": "The z-statistic is (p-hat minus p0) over the standard error under the null"
+          },
+          {
+           "code": "3.7.A.2",
+           "text": "The null distribution can be approximated by a probability model such as the standard normal"
+          },
+          {
+           "code": "3.7.A.3",
+           "text": "Find the p-value from the standard normal using a table or technology"
+          }
+         ]
+        },
+        {
+         "id": "decisions-and-conclusions",
+         "title": "Decisions and conclusions (part 1)",
+         "outcomes": [
+          {
+           "code": "3.7.B",
+           "text": "Justify a claim from the results of a test for a proportion"
+          },
+          {
+           "code": "3.7.B.1",
+           "text": "The significance level alpha is the preset probability of rejecting a true null"
+          },
+          {
+           "code": "3.7.B.2",
+           "text": "Reject the null if the p-value is below alpha; otherwise fail to reject"
+          },
+          {
+           "code": "3.7.B.3",
+           "text": "Rejecting means convincing evidence for the alternative; failing to reject means not convincing"
+          },
+          {
+           "code": "3.7.B.4",
+           "text": "A test never proves the null true"
+          },
+          {
+           "code": "3.7.B.5",
+           "text": "Test results support answers to the investigative question"
+          },
+          {
+           "code": "3.7.B.6",
+           "text": "State the conclusion in context, tied to the alternative, with non-definitive language"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "3-8-potential-errors-when-performing-tests",
+       "title": "3.8 Potential Errors When Performing Tests",
+       "subtopics": [
+        {
+         "id": "type-i-and-type-ii-errors",
+         "title": "Type I and Type II errors",
+         "outcomes": [
+          {
+           "code": "3.8.A",
+           "text": "Identify Type I and Type II errors"
+          },
+          {
+           "code": "3.8.A.1",
+           "text": "Type I error: convincing evidence for Ha when Ha is false"
+          },
+          {
+           "code": "3.8.A.2",
+           "text": "Type II error: not convincing evidence for Ha when Ha is true"
+          },
+          {
+           "code": "3.8.A.3",
+           "text": "Power is the probability of correctly rejecting a false null"
+          },
+          {
+           "code": "3.8.B",
+           "text": "Calculate the probability of Type I and Type II errors"
+          },
+          {
+           "code": "3.8.B.1",
+           "text": "Type I error probability equals the significance level alpha"
+          },
+          {
+           "code": "3.8.B.2",
+           "text": "Type II error probability is 1 minus power"
+          }
+         ]
+        },
+        {
+         "id": "factors-and-consequences",
+         "title": "Factors and consequences",
+         "outcomes": [
+          {
+           "code": "3.8.C",
+           "text": "Identify factors affecting the probability of errors"
+          },
+          {
+           "code": "3.8.C.1",
+           "text": "Type II error falls and power rises with larger samples, smaller standard error, a parameter farther from the null, or larger alpha"
+          },
+          {
+           "code": "3.8.D",
+           "text": "Interpret Type I and Type II errors"
+          },
+          {
+           "code": "3.8.D.1",
+           "text": "Either error may be more serious depending on the study"
+          },
+          {
+           "code": "3.8.D.2",
+           "text": "Type I consequences influence the choice of alpha"
+          },
+          {
+           "code": "3.8.D.3",
+           "text": "Type II consequences influence the choice of sample size"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "3-9-sampling-distributions-for-the-difference-be",
+       "title": "3.9 Sampling Distributions for the Difference Between Sample Proportions",
+       "subtopics": [
+        {
+         "id": "difference-of-two-sample-proportions",
+         "title": "Difference of two sample proportions",
+         "outcomes": [
+          {
+           "code": "3.9.A",
+           "text": "Calculate the mean and standard deviation of the sampling distribution of a difference of two sample proportions"
+          },
+          {
+           "code": "3.9.A.1",
+           "text": "The difference has mean p1 minus p2 and standard deviation from the two variances added"
+          },
+          {
+           "code": "3.9.B",
+           "text": "Justify the conditions for this sampling distribution"
+          },
+          {
+           "code": "3.9.B.1",
+           "text": "Check two independent random samples and the 10 percent condition for each"
+          },
+          {
+           "code": "3.9.B.2",
+           "text": "For experiments only random assignment is needed"
+          },
+          {
+           "code": "3.9.B.3",
+           "text": "The distribution is approximately normal when all expected successes and failures are at least 10"
+          },
+          {
+           "code": "3.9.C",
+           "text": "Interpret the mean, standard deviation and probabilities"
+          },
+          {
+           "code": "3.9.C.1",
+           "text": "Interpret within the context of the two populations"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "3-10-constructing-a-confidence-interval-for-the-",
+       "title": "3.10 Constructing a Confidence Interval for the Difference Between Two Population Proportions",
+       "subtopics": [
+        {
+         "id": "procedure-and-conditions",
+         "title": "Procedure and conditions (part 1)",
+         "outcomes": [
+          {
+           "code": "3.10.A",
+           "text": "Identify the interval procedure and parameters for a difference of proportions"
+          },
+          {
+           "code": "3.10.A.1",
+           "text": "Use a two-sample z-interval for a difference between proportions"
+          },
+          {
+           "code": "3.10.A.2",
+           "text": "Parameters refer to the difference, the response variable and the populations"
+          },
+          {
+           "code": "3.10.B",
+           "text": "Verify conditions for a two-proportion z-interval"
+          },
+          {
+           "code": "3.10.B.1",
+           "text": "Check randomization, the 10 percent condition (not needed in experiments) and at least 10 observed successes and failures in each sample"
+          }
+         ]
+        },
+        {
+         "id": "computing-the-interval",
+         "title": "Computing the interval (part 2)",
+         "outcomes": [
+          {
+           "code": "3.10.C",
+           "text": "Calculate a confidence interval for the difference of two proportions"
+          },
+          {
+           "code": "3.10.C.1",
+           "text": "The point estimate is p1-hat minus p2-hat"
+          },
+          {
+           "code": "3.10.C.2",
+           "text": "The interval is the point estimate plus or minus margin of error"
+          },
+          {
+           "code": "3.10.D",
+           "text": "Calculate standard error and margin of error for the difference"
+          },
+          {
+           "code": "3.10.D.1",
+           "text": "Standard error combines the two proportion variances"
+          },
+          {
+           "code": "3.10.D.2",
+           "text": "Margin of error is critical value times standard error"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "3-11-justifying-a-claim-based-on-a-confidence-in",
+       "title": "3.11 Justifying a Claim Based on a Confidence Interval for the Difference Between Two Population Proportions",
+       "subtopics": [
+        {
+         "id": "interpreting-and-using-the-interval",
+         "title": "Interpreting and using the interval (part 1)",
+         "outcomes": [
+          {
+           "code": "3.11.A",
+           "text": "Interpret a confidence interval for a difference of proportions in context"
+          },
+          {
+           "code": "3.11.A.1",
+           "text": "The computed interval may or may not contain the true difference"
+          },
+          {
+           "code": "3.11.A.2",
+           "text": "Confidence level is the long-run percentage of such intervals that capture the difference"
+          },
+          {
+           "code": "3.11.A.3",
+           "text": "State we are C percent confident the interval contains the difference, in context"
+          },
+          {
+           "code": "3.11.B",
+           "text": "Justify a claim from the interval"
+          },
+          {
+           "code": "3.11.B.1",
+           "text": "An interval containing 0 gives insufficient evidence of a difference; one without 0 gives sufficient evidence"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "3-12-setting-up-a-test-for-the-difference-betwee",
+       "title": "3.12 Setting Up a Test for the Difference Between Two Population Proportions",
+       "subtopics": [
+        {
+         "id": "procedure-and-hypotheses",
+         "title": "Procedure and hypotheses (part 2)",
+         "outcomes": [
+          {
+           "code": "3.12.A",
+           "text": "Identify the testing method and parameters for a difference of proportions"
+          },
+          {
+           "code": "3.12.A.1",
+           "text": "Use a two-sample z-test for the difference between proportions"
+          },
+          {
+           "code": "3.12.A.2",
+           "text": "Parameters refer to the population parameters, response variables and populations"
+          },
+          {
+           "code": "3.12.B",
+           "text": "Identify null and alternative hypotheses"
+          },
+          {
+           "code": "3.12.B.1",
+           "text": "The null says no difference (p1 equals p2); alternatives are one-sided or two-sided"
+          }
+         ]
+        },
+        {
+         "id": "conditions-for-the-test",
+         "title": "Conditions for the test (part 2)",
+         "outcomes": [
+          {
+           "code": "3.12.C",
+           "text": "Verify conditions for a two-proportion z-test"
+          },
+          {
+           "code": "3.12.C.1",
+           "text": "Check randomization, the 10 percent condition and combined-proportion expected counts of at least 10"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "3-13-carrying-out-a-test-for-the-difference-betw",
+       "title": "3.13 Carrying Out a Test for the Difference Between Two Population Proportions",
+       "subtopics": [
+        {
+         "id": "test-statistic-and-p-value",
+         "title": "Test statistic and p-value (part 2)",
+         "outcomes": [
+          {
+           "code": "3.13.A",
+           "text": "Calculate the test statistic and p-value for a difference of proportions"
+          },
+          {
+           "code": "3.13.A.1",
+           "text": "The z-statistic uses the pooled proportion and is standard normal under the null"
+          },
+          {
+           "code": "3.13.A.2",
+           "text": "Find the p-value from the standard normal using a table or technology"
+          },
+          {
+           "code": "3.13.B",
+           "text": "Interpret the p-value"
+          },
+          {
+           "code": "3.13.B.1",
+           "text": "The p-value assumes the true proportions are equal"
+          }
+         ]
+        },
+        {
+         "id": "decisions-and-conclusions",
+         "title": "Decisions and conclusions (part 2)",
+         "outcomes": [
+          {
+           "code": "3.13.C",
+           "text": "Justify a claim from the test"
+          },
+          {
+           "code": "3.13.C.1",
+           "text": "Compare the p-value with alpha to reject or fail to reject"
+          },
+          {
+           "code": "3.13.C.2",
+           "text": "Results support the answer to the investigative question about both populations"
+          },
+          {
+           "code": "3.13.C.3",
+           "text": "State the conclusion in context, tied to Ha, with non-definitive language"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "3-14-setting-up-a-chi-square-test-for-homogeneit",
+       "title": "3.14 Setting Up a Chi-Square Test for Homogeneity or Independence",
+       "subtopics": [
+        {
+         "id": "chi-square-distributions",
+         "title": "Chi-square distributions",
+         "outcomes": [
+          {
+           "code": "3.14.A",
+           "text": "Describe chi-square distributions"
+          },
+          {
+           "code": "3.14.A.1",
+           "text": "The chi-square statistic measures observed versus expected counts relative to expected counts"
+          },
+          {
+           "code": "3.14.A.2",
+           "text": "Chi-square curves are positive and right-skewed, less so with more degrees of freedom"
+          }
+         ]
+        },
+        {
+         "id": "choosing-the-test",
+         "title": "Choosing the test",
+         "outcomes": [
+          {
+           "code": "3.14.B",
+           "text": "Identify the testing method for two-way tables"
+          },
+          {
+           "code": "3.14.B.1",
+           "text": "Use a chi-square test for homogeneity to compare distributions across populations"
+          },
+          {
+           "code": "3.14.B.2",
+           "text": "Reference the variable and populations in context"
+          },
+          {
+           "code": "3.14.B.3",
+           "text": "Use a chi-square test for independence to check association within one population"
+          },
+          {
+           "code": "3.14.B.4",
+           "text": "Reference the variables and population in context"
+          }
+         ]
+        },
+        {
+         "id": "hypotheses-and-conditions",
+         "title": "Hypotheses and conditions",
+         "outcomes": [
+          {
+           "code": "3.14.C",
+           "text": "Identify hypotheses for chi-square tests"
+          },
+          {
+           "code": "3.14.C.1",
+           "text": "Homogeneity: H0 no difference in distributions; Ha a difference"
+          },
+          {
+           "code": "3.14.C.2",
+           "text": "Independence: H0 no association; Ha an association"
+          },
+          {
+           "code": "3.14.D",
+           "text": "Verify conditions for chi-square tests"
+          },
+          {
+           "code": "3.14.D.1",
+           "text": "Check randomization, the 10 percent condition and all expected counts above 5"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "3-15-carrying-out-a-chi-square-test-for-homogene",
+       "title": "3.15 Carrying Out a Chi-Square Test for Homogeneity or Independence",
+       "subtopics": [
+        {
+         "id": "expected-counts-statistic-and-p-value",
+         "title": "Expected counts, statistic and p-value",
+         "outcomes": [
+          {
+           "code": "3.15.A",
+           "text": "Calculate expected counts for two-way tables"
+          },
+          {
+           "code": "3.15.A.1",
+           "text": "Expected count is row total times column total over table total"
+          },
+          {
+           "code": "3.15.B",
+           "text": "Calculate the chi-square statistic and p-value"
+          },
+          {
+           "code": "3.15.B.1",
+           "text": "Sum observed minus expected squared over expected; df is (rows-1)(columns-1)"
+          },
+          {
+           "code": "3.15.B.2",
+           "text": "Find the p-value from the chi-square distribution"
+          },
+          {
+           "code": "3.15.C",
+           "text": "Interpret the p-value"
+          },
+          {
+           "code": "3.15.C.1",
+           "text": "The p-value assumes the null is true"
+          }
+         ]
+        },
+        {
+         "id": "decisions-and-conclusions",
+         "title": "Decisions and conclusions (part 3)",
+         "outcomes": [
+          {
+           "code": "3.15.D",
+           "text": "Justify a claim from a chi-square test"
+          },
+          {
+           "code": "3.15.D.1",
+           "text": "Compare the p-value with alpha to reject or fail to reject"
+          },
+          {
+           "code": "3.15.D.2",
+           "text": "Results support the answer to the investigative question"
+          },
+          {
+           "code": "3.15.D.3",
+           "text": "State the conclusion in context, tied to Ha, with non-definitive language"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "unit-4-inference-for-quantitative-data-means",
+     "title": "Unit 4: Inference for Quantitative Data: Means",
+     "topics": [
+      {
+       "id": "4-1-sampling-distributions-for-sample-means",
+       "title": "4.1 Sampling Distributions for Sample Means",
+       "subtopics": [
+        {
+         "id": "sampling-distribution-of-a-sample-mean",
+         "title": "Sampling distribution of a sample mean",
+         "outcomes": [
+          {
+           "code": "4.1.A",
+           "text": "Calculate the mean and standard deviation of the sampling distribution of a sample mean"
+          },
+          {
+           "code": "4.1.A.1",
+           "text": "The sample mean has mean mu and standard deviation sigma over root n"
+          },
+          {
+           "code": "4.1.B",
+           "text": "Justify the conditions for the sampling distribution of a sample mean"
+          },
+          {
+           "code": "4.1.B.1",
+           "text": "Check randomization and the 10 percent condition when sampling without replacement"
+          },
+          {
+           "code": "4.1.B.2",
+           "text": "With a normal population, the sample mean is normal at any sample size"
+          },
+          {
+           "code": "4.1.B.3",
+           "text": "Otherwise it is approximately normal when n is at least 30, and more for extreme skew"
+          },
+          {
+           "code": "4.1.C",
+           "text": "Interpret the mean, standard deviation and probabilities of this sampling distribution"
+          },
+          {
+           "code": "4.1.C.1",
+           "text": "Interpret in the context of the population"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "4-2-constructing-a-confidence-interval-for-a-pop",
+       "title": "4.2 Constructing a Confidence Interval for a Population Mean or Population Mean Difference",
+       "subtopics": [
+        {
+         "id": "t-distributions-and-choosing-a-procedure",
+         "title": "t-distributions and choosing a procedure",
+         "outcomes": [
+          {
+           "code": "4.2.A",
+           "text": "Describe t-distributions"
+          },
+          {
+           "code": "4.2.A.1",
+           "text": "t-distributions are symmetric, bell-shaped with heavier tails, set by degrees of freedom, approaching the standard normal as df grows"
+          },
+          {
+           "code": "4.2.A.2",
+           "text": "Use t when sigma is unknown and s must be used"
+          },
+          {
+           "code": "4.2.B",
+           "text": "Identify the interval procedure and parameter for a mean or mean difference"
+          },
+          {
+           "code": "4.2.B.1",
+           "text": "Use a one-sample t-interval for a population mean"
+          },
+          {
+           "code": "4.2.B.2",
+           "text": "For matched pairs, take differences and use a one-sample t-interval for the mean difference"
+          },
+          {
+           "code": "4.2.B.3",
+           "text": "State the parameter in context, including the order of subtraction for differences"
+          }
+         ]
+        },
+        {
+         "id": "conditions-for-the-t-interval",
+         "title": "Conditions for the t-interval",
+         "outcomes": [
+          {
+           "code": "4.2.C",
+           "text": "Verify conditions for a one-sample t-interval"
+          },
+          {
+           "code": "4.2.C.1",
+           "text": "Check randomization, the 10 percent condition, and the sample data condition (normal population, n at least 30, or no strong skew or outliers)"
+          }
+         ]
+        },
+        {
+         "id": "computing-the-interval",
+         "title": "Computing the interval (part 3)",
+         "outcomes": [
+          {
+           "code": "4.2.D",
+           "text": "Calculate a confidence interval for a mean or mean difference"
+          },
+          {
+           "code": "4.2.D.1",
+           "text": "The point estimate is the sample mean or mean difference"
+          },
+          {
+           "code": "4.2.D.2",
+           "text": "The interval is x-bar plus or minus t-star times s over root n, with n-1 degrees of freedom"
+          },
+          {
+           "code": "4.2.E",
+           "text": "Calculate standard error and margin of error for a one-sample t-interval"
+          },
+          {
+           "code": "4.2.E.1",
+           "text": "Standard error of the mean is s over root n"
+          },
+          {
+           "code": "4.2.E.2",
+           "text": "Margin of error is t-star times the standard error"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "4-3-justifying-a-claim-based-on-a-confidence-int",
+       "title": "4.3 Justifying a Claim Based on a Confidence Interval for a Population Mean or Population Mean Difference",
+       "subtopics": [
+        {
+         "id": "interpreting-a-confidence-interval",
+         "title": "Interpreting a confidence interval (part 2)",
+         "outcomes": [
+          {
+           "code": "4.3.A",
+           "text": "Interpret a confidence interval for a mean or mean difference in context"
+          },
+          {
+           "code": "4.3.A.1",
+           "text": "The computed interval may or may not contain the true value"
+          },
+          {
+           "code": "4.3.A.2",
+           "text": "Confidence level is the long-run percentage of intervals that capture the parameter"
+          },
+          {
+           "code": "4.3.A.3",
+           "text": "State we are C percent confident the interval contains the parameter, in context"
+          }
+         ]
+        },
+        {
+         "id": "claims-and-interval-width",
+         "title": "Claims and interval width",
+         "outcomes": [
+          {
+           "code": "4.3.B",
+           "text": "Justify a claim from the interval"
+          },
+          {
+           "code": "4.3.B.1",
+           "text": "The interval gives plausible values that can support a claim"
+          },
+          {
+           "code": "4.3.C",
+           "text": "Relate sample size, width, confidence level and margin of error"
+          },
+          {
+           "code": "4.3.C.1",
+           "text": "Higher confidence raises the critical value, margin of error and width"
+          },
+          {
+           "code": "4.3.C.2",
+           "text": "Larger samples shrink standard error and narrow the interval, about one over root n"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "4-4-setting-up-a-test-for-a-population-mean-or-p",
+       "title": "4.4 Setting Up a Test for a Population Mean or Population Mean Difference",
+       "subtopics": [
+        {
+         "id": "procedure-and-hypotheses",
+         "title": "Procedure and hypotheses (part 3)",
+         "outcomes": [
+          {
+           "code": "4.4.A",
+           "text": "Identify the testing method and parameter for a mean or mean difference with unknown sigma"
+          },
+          {
+           "code": "4.4.A.1",
+           "text": "Use a one-sample t-test for a population mean"
+          },
+          {
+           "code": "4.4.A.2",
+           "text": "For matched pairs, take differences and use a one-sample t-test for the mean difference"
+          },
+          {
+           "code": "4.4.A.3",
+           "text": "State the parameter in context"
+          },
+          {
+           "code": "4.4.B",
+           "text": "Identify null and alternative hypotheses"
+          },
+          {
+           "code": "4.4.B.1",
+           "text": "H0: mu equals mu0, with one-sided or two-sided Ha"
+          },
+          {
+           "code": "4.4.B.2",
+           "text": "For differences, H0: mu-d equals 0, with one-sided or two-sided Ha"
+          }
+         ]
+        },
+        {
+         "id": "conditions-for-the-t-test",
+         "title": "Conditions for the t-test",
+         "outcomes": [
+          {
+           "code": "4.4.C",
+           "text": "Verify conditions for a one-sample t-test"
+          },
+          {
+           "code": "4.4.C.1",
+           "text": "Check randomization, the 10 percent condition and the sample data condition"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "4-5-carrying-out-a-test-for-a-population-mean-or",
+       "title": "4.5 Carrying Out a Test for a Population Mean or Population Mean Difference",
+       "subtopics": [
+        {
+         "id": "test-statistic-and-p-value",
+         "title": "Test statistic and p-value (part 3)",
+         "outcomes": [
+          {
+           "code": "4.5.A",
+           "text": "Calculate the test statistic and p-value for a mean or mean difference"
+          },
+          {
+           "code": "4.5.A.1",
+           "text": "t equals (x-bar minus mu0) over (s over root n) with n-1 degrees of freedom"
+          },
+          {
+           "code": "4.5.A.2",
+           "text": "Find the p-value from the t-distribution using a table or technology"
+          },
+          {
+           "code": "4.5.B",
+           "text": "Interpret the p-value"
+          },
+          {
+           "code": "4.5.B.1",
+           "text": "The p-value assumes the null hypothesis is true"
+          }
+         ]
+        },
+        {
+         "id": "decisions-and-conclusions",
+         "title": "Decisions and conclusions (part 4)",
+         "outcomes": [
+          {
+           "code": "4.5.C",
+           "text": "Justify a claim from the test"
+          },
+          {
+           "code": "4.5.C.1",
+           "text": "Reject if the p-value is at most alpha; otherwise fail to reject"
+          },
+          {
+           "code": "4.5.C.2",
+           "text": "Results support the answer to the investigative question"
+          },
+          {
+           "code": "4.5.C.3",
+           "text": "State the conclusion in context, tied to Ha, with non-definitive language"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "4-6-sampling-distributions-for-the-difference-be",
+       "title": "4.6 Sampling Distributions for the Difference Between Two Sample Means",
+       "subtopics": [
+        {
+         "id": "difference-of-two-sample-means",
+         "title": "Difference of two sample means",
+         "outcomes": [
+          {
+           "code": "4.6.A",
+           "text": "Calculate the mean and standard deviation of the sampling distribution of a difference of sample means"
+          },
+          {
+           "code": "4.6.A.1",
+           "text": "The difference has mean mu1 minus mu2 and standard deviation root of sigma1 squared over n1 plus sigma2 squared over n2"
+          },
+          {
+           "code": "4.6.B",
+           "text": "Justify conditions for this sampling distribution"
+          },
+          {
+           "code": "4.6.B.1",
+           "text": "Check two independent random samples and the 10 percent condition for each"
+          },
+          {
+           "code": "4.6.B.2",
+           "text": "For experiments only random assignment is needed"
+          },
+          {
+           "code": "4.6.B.3",
+           "text": "It is normal if both populations are normal"
+          },
+          {
+           "code": "4.6.B.4",
+           "text": "Otherwise it is approximately normal if both n are at least 30"
+          },
+          {
+           "code": "4.6.C",
+           "text": "Interpret the mean, standard deviation and probabilities"
+          },
+          {
+           "code": "4.6.C.1",
+           "text": "Interpret within the context of the specific populations"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "4-7-constructing-a-confidence-interval-for-the-d",
+       "title": "4.7 Constructing a Confidence Interval for the Difference Between Two Population Means",
+       "subtopics": [
+        {
+         "id": "procedure-and-conditions",
+         "title": "Procedure and conditions (part 2)",
+         "outcomes": [
+          {
+           "code": "4.7.A",
+           "text": "Identify the interval procedure and parameter for a difference of means"
+          },
+          {
+           "code": "4.7.A.1",
+           "text": "Use a two-sample t-interval for independent samples"
+          },
+          {
+           "code": "4.7.A.2",
+           "text": "State the parameter as the difference in means, response variable and populations"
+          },
+          {
+           "code": "4.7.B",
+           "text": "Verify conditions for a two-sample t-interval"
+          },
+          {
+           "code": "4.7.B.1",
+           "text": "Check randomization, the 10 percent condition (not needed in experiments) and the sample data condition for both samples"
+          }
+         ]
+        },
+        {
+         "id": "computing-the-interval",
+         "title": "Computing the interval (part 4)",
+         "outcomes": [
+          {
+           "code": "4.7.C",
+           "text": "Calculate the interval for a difference of means"
+          },
+          {
+           "code": "4.7.C.1",
+           "text": "The point estimate is x1-bar minus x2-bar"
+          },
+          {
+           "code": "4.7.C.2",
+           "text": "The interval is the point estimate plus or minus t-star times the standard error, with df found by technology"
+          },
+          {
+           "code": "4.7.D",
+           "text": "Calculate standard error and margin of error for a difference of means"
+          },
+          {
+           "code": "4.7.D.1",
+           "text": "Standard error is root of s1 squared over n1 plus s2 squared over n2"
+          },
+          {
+           "code": "4.7.D.2",
+           "text": "Margin of error is t-star times standard error"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "4-8-justifying-a-claim-based-on-a-confidence-int",
+       "title": "4.8 Justifying a Claim Based on a Confidence Interval for the Difference Between Two Population Means",
+       "subtopics": [
+        {
+         "id": "interpreting-and-using-the-interval",
+         "title": "Interpreting and using the interval (part 2)",
+         "outcomes": [
+          {
+           "code": "4.8.A",
+           "text": "Interpret an interval for a difference of means in context"
+          },
+          {
+           "code": "4.8.A.1",
+           "text": "The computed interval may or may not contain the true difference"
+          },
+          {
+           "code": "4.8.A.2",
+           "text": "Confidence level is the long-run capture rate of such intervals"
+          },
+          {
+           "code": "4.8.A.3",
+           "text": "State we are C percent confident the interval contains the difference, in context"
+          },
+          {
+           "code": "4.8.B",
+           "text": "Justify a claim from the interval"
+          },
+          {
+           "code": "4.8.B.1",
+           "text": "An interval containing 0 means insufficient evidence of a difference; one without 0 means sufficient evidence"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "4-9-setting-up-a-test-for-the-difference-between",
+       "title": "4.9 Setting Up a Test for the Difference Between Two Population Means",
+       "subtopics": [
+        {
+         "id": "procedure-hypotheses-and-conditions",
+         "title": "Procedure, hypotheses and conditions",
+         "outcomes": [
+          {
+           "code": "4.9.A",
+           "text": "Identify the testing method and parameters for a difference of means"
+          },
+          {
+           "code": "4.9.A.1",
+           "text": "Use a two-sample t-test for a difference between means"
+          },
+          {
+           "code": "4.9.A.2",
+           "text": "Parameters refer to the population parameters, response variables and populations"
+          },
+          {
+           "code": "4.9.B",
+           "text": "Identify null and alternative hypotheses"
+          },
+          {
+           "code": "4.9.B.1",
+           "text": "H0: mu1 equals mu2, with one-sided or two-sided Ha"
+          },
+          {
+           "code": "4.9.C",
+           "text": "Verify conditions for a two-sample t-test"
+          },
+          {
+           "code": "4.9.C.1",
+           "text": "Check randomization, the 10 percent condition and the sample data condition for both samples"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "4-10-carrying-out-a-test-for-the-difference-betw",
+       "title": "4.10 Carrying Out a Test for the Difference Between Two Population Means",
+       "subtopics": [
+        {
+         "id": "test-statistic-and-p-value",
+         "title": "Test statistic and p-value (part 4)",
+         "outcomes": [
+          {
+           "code": "4.10.A",
+           "text": "Calculate the test statistic and p-value for a difference of means"
+          },
+          {
+           "code": "4.10.A.1",
+           "text": "The t-statistic is the observed difference minus the hypothesised difference over the standard error, with df by technology"
+          },
+          {
+           "code": "4.10.A.2",
+           "text": "Find the p-value from the t-distribution"
+          },
+          {
+           "code": "4.10.B",
+           "text": "Interpret the p-value"
+          },
+          {
+           "code": "4.10.B.1",
+           "text": "The p-value assumes the population means are equal"
+          }
+         ]
+        },
+        {
+         "id": "decisions-and-conclusions",
+         "title": "Decisions and conclusions (part 5)",
+         "outcomes": [
+          {
+           "code": "4.10.C",
+           "text": "Justify a claim from the test"
+          },
+          {
+           "code": "4.10.C.1",
+           "text": "Reject if the p-value is at most alpha; otherwise fail to reject"
+          },
+          {
+           "code": "4.10.C.2",
+           "text": "Results support the answer to the investigative question"
+          },
+          {
+           "code": "4.10.C.3",
+           "text": "State the conclusion in context, tied to Ha, with non-definitive language"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "unit-5-regression-analysis",
+     "title": "Unit 5: Regression Analysis",
+     "topics": [
+      {
+       "id": "5-1-graphical-representations-between-two-quanti",
+       "title": "5.1 Graphical Representations Between Two Quantitative Variables",
+       "subtopics": [
+        {
+         "id": "scatterplots",
+         "title": "Scatterplots",
+         "outcomes": [
+          {
+           "code": "5.1.A",
+           "text": "Construct scatterplots of two quantitative variables"
+          },
+          {
+           "code": "5.1.A.1",
+           "text": "Bivariate data are ordered pairs from two quantitative variables on the same individuals"
+          },
+          {
+           "code": "5.1.A.2",
+           "text": "A scatterplot puts the explanatory variable on x and the response on y"
+          },
+          {
+           "code": "5.1.B",
+           "text": "Describe the characteristics of a scatterplot"
+          },
+          {
+           "code": "5.1.B.1",
+           "text": "Describe form, direction, strength and unusual features"
+          },
+          {
+           "code": "5.1.B.2",
+           "text": "Form may be linear or non-linear"
+          },
+          {
+           "code": "5.1.B.3",
+           "text": "Direction is positive or negative"
+          },
+          {
+           "code": "5.1.B.4",
+           "text": "Strength is how closely points follow the pattern"
+          },
+          {
+           "code": "5.1.B.5",
+           "text": "Unusual features include clusters and points off the pattern"
+          },
+          {
+           "code": "5.1.C",
+           "text": "Justify a claim using scatterplots"
+          },
+          {
+           "code": "5.1.C.1",
+           "text": "Scatterplots can justify claims in context"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "5-2-correlation",
+       "title": "5.2 Correlation",
+       "subtopics": [
+        {
+         "id": "the-correlation-coefficient",
+         "title": "The correlation coefficient",
+         "outcomes": [
+          {
+           "code": "5.2.A",
+           "text": "Interpret the correlation for a linear relationship"
+          },
+          {
+           "code": "5.2.A.1",
+           "text": "r summarises strength and direction of linear association, is unit-free and lies between -1 and 1"
+          },
+          {
+           "code": "5.2.A.2",
+           "text": "Strength is how close r is to -1 or 1; 0 means no linear association"
+          },
+          {
+           "code": "5.2.A.3",
+           "text": "An r near -1 or 1 does not guarantee a linear model fits"
+          },
+          {
+           "code": "5.2.A.4",
+           "text": "Correlation does not imply causation"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "5-3-linear-regression-models",
+       "title": "5.3 Linear Regression Models",
+       "subtopics": [
+        {
+         "id": "predicting-with-a-regression-line",
+         "title": "Predicting with a regression line",
+         "outcomes": [
+          {
+           "code": "5.3.A",
+           "text": "Calculate a predicted response using a linear regression model"
+          },
+          {
+           "code": "5.3.A.1",
+           "text": "If the relationship looks linear, a regression line predicts y from x"
+          },
+          {
+           "code": "5.3.A.2",
+           "text": "The prediction is y-hat equals a plus bx, with intercept a and slope b"
+          },
+          {
+           "code": "5.3.A.3",
+           "text": "Extrapolation predicts beyond the x-values used and is less reliable"
+          },
+          {
+           "code": "5.3.A.4",
+           "text": "Interpolation predicts within the range of x-values"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "5-4-residuals",
+       "title": "5.4 Residuals",
+       "subtopics": [
+        {
+         "id": "computing-and-interpreting-residuals",
+         "title": "Computing and interpreting residuals",
+         "outcomes": [
+          {
+           "code": "5.4.A",
+           "text": "Calculate differences between observed and predicted values"
+          },
+          {
+           "code": "5.4.A.1",
+           "text": "A residual is observed minus predicted"
+          },
+          {
+           "code": "5.4.B",
+           "text": "Interpret those differences"
+          },
+          {
+           "code": "5.4.B.1",
+           "text": "Positive residuals mean underprediction; negative residuals mean overprediction"
+          }
+         ]
+        },
+        {
+         "id": "residual-plots",
+         "title": "Residual plots",
+         "outcomes": [
+          {
+           "code": "5.4.C",
+           "text": "Describe the form of association using residual plots"
+          },
+          {
+           "code": "5.4.C.1",
+           "text": "A residual plot graphs residuals against predicted values or the explanatory variable"
+          },
+          {
+           "code": "5.4.C.2",
+           "text": "Residual plots test whether a linear model is appropriate"
+          },
+          {
+           "code": "5.4.C.3",
+           "text": "Random scatter in the residual plot supports a linear model"
+          },
+          {
+           "code": "5.4.C.4",
+           "text": "Curvature suggests the linear model is not best"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "5-5-least-squares-regression",
+       "title": "5.5 Least-Squares Regression",
+       "subtopics": [
+        {
+         "id": "the-least-squares-line",
+         "title": "The least-squares line",
+         "outcomes": [
+          {
+           "code": "5.5.A",
+           "text": "Calculate coefficients for the least-squares regression line"
+          },
+          {
+           "code": "5.5.A.1",
+           "text": "The LSRL minimises the sum of squared residuals and passes through (x-bar, y-bar)"
+          },
+          {
+           "code": "5.5.A.2",
+           "text": "Compute the slope b with technology"
+          },
+          {
+           "code": "5.5.A.3",
+           "text": "Compute the intercept a with technology"
+          },
+          {
+           "code": "5.5.A.4",
+           "text": "Compute the correlation r with technology"
+          },
+          {
+           "code": "5.5.A.5",
+           "text": "r squared is the proportion of variation in the response explained by the linear relationship"
+          }
+         ]
+        },
+        {
+         "id": "interpreting-coefficients",
+         "title": "Interpreting coefficients",
+         "outcomes": [
+          {
+           "code": "5.5.B",
+           "text": "Interpret the coefficients of the least-squares line"
+          },
+          {
+           "code": "5.5.B.1",
+           "text": "Slope and intercept are sample-based coefficients"
+          },
+          {
+           "code": "5.5.B.2",
+           "text": "Interpret the slope as the predicted change in y for one unit of x, in context"
+          },
+          {
+           "code": "5.5.B.3",
+           "text": "Interpret the intercept as the predicted y at x equals 0, noting when it is meaningless"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "build": {
+  "builtAt": "2026-10-14T10:07:12.215Z",
+  "model": "claude-agent",
+  "usd": 0,
+  "expectedCodes": 495,
+  "coverage": 1,
+  "missingCodes": [],
+  "counts": {
+   "grades": 1,
+   "units": 5,
+   "topics": 55,
+   "subtopics": 91,
+   "outcomes": 495
+  },
+  "warnings": [
+   "grade 9 has no content",
+   "grade 10 has no content",
+   "grade 11 has no content",
+   "grade 12 has no content",
+   "unexpected grade label \"all\""
+  ]
+ }
+}

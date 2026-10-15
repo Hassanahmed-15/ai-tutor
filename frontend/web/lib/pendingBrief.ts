@@ -12,11 +12,15 @@
  *
  * This is not state anyone should subscribe to. It exists for exactly one hop.
  */
+import type { CurriculumLessonRequest } from "@/lib/curriculum/lessonSpec";
+
 export type PendingBrief = {
   topic: string;
   file: File | null;
   /** A YouTube link pasted into the prompt box: the lesson is a short version of that video. */
   videoUrl?: string;
+  /** A course lesson by address: the builder fetches its spec + syllabus pages from the server. */
+  curriculum?: CurriculumLessonRequest;
 };
 
 let pending: PendingBrief | null = null;

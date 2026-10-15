@@ -1,0 +1,3021 @@
+{
+ "id": "us-nv-computer-science",
+ "region": "US",
+ "framework": "Nevada state academic standards: Computer Science & Technology",
+ "board": null,
+ "qualification": "K-12",
+ "subject": "Computer Science & Technology",
+ "syllabusCode": null,
+ "gradeSystem": "grade",
+ "source": {
+  "urls": [
+   "https://api.commonstandardsproject.com/api/v1/jurisdictions/A7F156ECF40D4DFDB9DE1E3541550B20",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/6385190AF4E548DBAF1B819992F771BA",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/6AA46390A8CE4A59AFDB929127CC5D06",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/6190535CF26C4B338D06AE90BCDFDA4B",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/88F98FE1164F4ABE9EF2DE091D612079",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/665CECDC58E949539F0C14301FA04187",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/BF7BA06E5E1F4627AF7DAB2D511A29CC",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/53CFB84A2D374A2F90D9866EB57AB856",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/2C193FF07EAD40319A5890D9D02715E2",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/2F4EDE5233354B6788FC8759FEB63B1C",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/F7FA30C4944A4EB3A42E1A3FC4E4C22E",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/1C747CE7349E4D21A3BD026F899D41E6",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/E277A8EF77C9409A821D86781D605879",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/9B01A933BCEA451A849650F414E3B23D",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/EF6FEEEDEEA74C7B8F86C4FD62EF1540",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/838AFAAF191B45D3A2FA50EC1524AA9B",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/B6C02C38962D4F4B93CBDD18B99A3A34",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/D1BE64508F014A87B5F213BBC7A7AF21"
+  ],
+  "publisher": "Nevada state education agency (machine-readable via Common Standards Project / ASN)",
+  "licence": "CC BY 4.0 US, Common Curriculum, Inc.",
+  "firstExam": "2019"
+ },
+ "grades": [
+  {
+   "grade": "K",
+   "units": [
+    {
+     "id": "algorithms-and-programming",
+     "title": "Algorithms and Programming",
+     "topics": [
+      {
+       "id": "algorithms-and-programming",
+       "title": "Algorithms and Programming",
+       "subtopics": [
+        {
+         "id": "algorithms-and-programming",
+         "title": "Algorithms and Programming",
+         "outcomes": [
+          {
+           "code": "K.AP.A.1",
+           "text": "Model daily processes by creating and following sets of step-by-step instructions (algorithms) to complete tasks."
+          },
+          {
+           "code": "K.AP.PD.1",
+           "text": "Identify and fix (debug) errors in a sequence of instructions (algorithms) that includes loops."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "computing-systems",
+     "title": "Computing Systems",
+     "topics": [
+      {
+       "id": "computing-systems",
+       "title": "Computing Systems",
+       "subtopics": [
+        {
+         "id": "computing-systems",
+         "title": "Computing Systems",
+         "outcomes": [
+          {
+           "code": "K.CS.HS.1",
+           "text": "Use appropriate terminology in identifying and describing the function of common physical components of computing systems (hardware). For example: monitor, keyboard, mouse, earbuds, headphones, printer."
+          },
+          {
+           "code": "K.CS.HS.2",
+           "text": "Recognize some computing devices (e.g., computer, smartphone) can perform a variety of tasks and some computing devices are specialized (e.g., navigation system, game controller)."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "data-and-analysis",
+     "title": "Data and Analysis",
+     "topics": [
+      {
+       "id": "data-and-analysis",
+       "title": "Data and Analysis",
+       "subtopics": [
+        {
+         "id": "data-and-analysis",
+         "title": "Data and Analysis",
+         "outcomes": [
+          {
+           "code": "K.DA.S.1",
+           "text": "Recognize that data can be collected and stored on different computing devices over time."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "impacts-of-computing",
+     "title": "Impacts of Computing",
+     "topics": [
+      {
+       "id": "impacts-of-computing",
+       "title": "Impacts of Computing",
+       "subtopics": [
+        {
+         "id": "impacts-of-computing",
+         "title": "Impacts of Computing",
+         "outcomes": [
+          {
+           "code": "K.IC.C.1",
+           "text": "Understand how computing devices have changed people’s lives."
+          },
+          {
+           "code": "K.IC.SI.1",
+           "text": "Exhibit good digital citizenship using technology safely, responsibly, and ethically."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "networks-and-the-internet",
+     "title": "Networks and the Internet",
+     "topics": [
+      {
+       "id": "networks-and-the-internet",
+       "title": "Networks and the Internet",
+       "subtopics": [
+        {
+         "id": "networks-and-the-internet",
+         "title": "Networks and the Internet",
+         "outcomes": [
+          {
+           "code": "K.NI.C.1",
+           "text": "Explain that a password helps protect the privacy of information."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "empowered-learner",
+     "title": "Empowered Learner",
+     "topics": [
+      {
+       "id": "empowered-learner",
+       "title": "Empowered Learner",
+       "subtopics": [
+        {
+         "id": "empowered-learner",
+         "title": "Empowered Learner",
+         "outcomes": [
+          {
+           "code": "K.EL.A.1",
+           "text": "Participate as a collaborative group to utilize digital and non-digital planning tools."
+          },
+          {
+           "code": "K.EL.D.1",
+           "text": "Locate and use letter and number keys and the space bar."
+          },
+          {
+           "code": "K.EL.D.2",
+           "text": "Demonstrate proper care and use of equipment."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "digital-citizen",
+     "title": "Digital Citizen",
+     "topics": [
+      {
+       "id": "digital-citizen",
+       "title": "Digital Citizen",
+       "subtopics": [
+        {
+         "id": "digital-citizen",
+         "title": "Digital Citizen",
+         "outcomes": [
+          {
+           "code": "K.IC.C.1*",
+           "text": "*Refer to Nevada Academic Content Standards for Computer Science – Understand how computing devices have changed people’s lives."
+          },
+          {
+           "code": "K.IC.SI.1*",
+           "text": "*Refer to Nevada Academic Content Standards for Computer Science - Exhibit good digital citizenship using technology safely, responsibly, and ethically."
+          },
+          {
+           "code": "K.DC.B.1",
+           "text": "Describe potential dangers in digital environments and how to report potentially unsafe situations."
+          },
+          {
+           "code": "K.DC.C.1",
+           "text": "Describe the meaning and responsibilities of digital citizenship."
+          },
+          {
+           "code": "K.NI.C.1*",
+           "text": "*Refer to Nevada Academic Content Standards for Computer Science – Explain that a password helps protect the privacy of information."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "knowledge-constructor",
+     "title": "Knowledge Constructor",
+     "topics": [
+      {
+       "id": "knowledge-constructor",
+       "title": "Knowledge Constructor",
+       "subtopics": [
+        {
+         "id": "knowledge-constructor",
+         "title": "Knowledge Constructor",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "There are no standards for this focus area at this grade level"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "innovative-designer",
+     "title": "Innovative Designer",
+     "topics": [
+      {
+       "id": "innovative-designer",
+       "title": "Innovative Designer",
+       "subtopics": [
+        {
+         "id": "innovative-designer",
+         "title": "Innovative Designer",
+         "outcomes": [
+          {
+           "code": "K.ID.A.1",
+           "text": "With teacher guidance, ask questions, suggest solutions, test ideas to solve problems, and share their learning."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "computational-thinker",
+     "title": "Computational Thinker",
+     "topics": [
+      {
+       "id": "computational-thinker",
+       "title": "Computational Thinker",
+       "subtopics": [
+        {
+         "id": "computational-thinker",
+         "title": "Computational Thinker",
+         "outcomes": [
+          {
+           "code": "K.CT.A.1",
+           "text": "With teacher guidance, explore alternative solutions to and diverse perspectives on authentic problems using digital tools."
+          },
+          {
+           "code": "K.CT.C.1",
+           "text": "With teacher guidance, work in a team to solve problems using digital tools."
+          },
+          {
+           "code": "K.CT.C.2",
+           "text": "With teacher guidance, reboot a device correctly."
+          },
+          {
+           "code": "K.AP.A.1*",
+           "text": "*Refer to Nevada Academic Content Standards for Computer Science – Model daily processes by creating and following sets of step-by-step instructions (algorithms) to complete tasks."
+          },
+          {
+           "code": "K.AP.PD.1*",
+           "text": "*Refer to Nevada Academic Content Standards for Computer Science – Identify and fix (debug) errors in a sequence of instructions (algorithms) that includes loops."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "creative-communicator",
+     "title": "Creative Communicator",
+     "topics": [
+      {
+       "id": "creative-communicator",
+       "title": "Creative Communicator",
+       "subtopics": [
+        {
+         "id": "creative-communicator",
+         "title": "Creative Communicator",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "There are no standards for this focus area at this grade level"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "global-collaborator",
+     "title": "Global Collaborator",
+     "topics": [
+      {
+       "id": "global-collaborator",
+       "title": "Global Collaborator",
+       "subtopics": [
+        {
+         "id": "global-collaborator",
+         "title": "Global Collaborator",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "There are no standards for this focus area at this grade level"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "1",
+   "units": [
+    {
+     "id": "algorithms-and-programming",
+     "title": "Algorithms and Programming",
+     "topics": [
+      {
+       "id": "algorithms-and-programming",
+       "title": "Algorithms and Programming",
+       "subtopics": [
+        {
+         "id": "algorithms-and-programming",
+         "title": "Algorithms and Programming",
+         "outcomes": [
+          {
+           "code": "1.AP.PD.1",
+           "text": "Describe the iterative process of program development (including terminology, steps taken, and the logic of choices)."
+          },
+          {
+           "code": "1.AP.V.1",
+           "text": "Model the way programs store and manipulate data by using numbers or other symbols to represent information."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "computing-systems",
+     "title": "Computing Systems",
+     "topics": [
+      {
+       "id": "computing-systems",
+       "title": "Computing Systems",
+       "subtopics": [
+        {
+         "id": "computing-systems",
+         "title": "Computing Systems",
+         "outcomes": [
+          {
+           "code": "1.CS.D.1",
+           "text": "Select and operate appropriate device and software to perform a variety of tasks, and recognize that users have different needs and preferences for the technology they use."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "data-and-analysis",
+     "title": "Data and Analysis",
+     "topics": [
+      {
+       "id": "data-and-analysis",
+       "title": "Data and Analysis",
+       "subtopics": [
+        {
+         "id": "data-and-analysis",
+         "title": "Data and Analysis",
+         "outcomes": [
+          {
+           "code": "1.DA.S.1",
+           "text": "Recognize that a variety of data (e.g., music, video, images, text) can be stored in and retrieved from a computing device."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "impacts-of-computing",
+     "title": "Impacts of Computing",
+     "topics": [
+      {
+       "id": "impacts-of-computing",
+       "title": "Impacts of Computing",
+       "subtopics": [
+        {
+         "id": "impacts-of-computing",
+         "title": "Impacts of Computing",
+         "outcomes": [
+          {
+           "code": "1.IC.SI.1",
+           "text": "Work respectfully and responsibly with others online."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "networks-and-the-internet",
+     "title": "Networks and the Internet",
+     "topics": [
+      {
+       "id": "networks-and-the-internet",
+       "title": "Networks and the Internet",
+       "subtopics": [
+        {
+         "id": "networks-and-the-internet",
+         "title": "Networks and the Internet",
+         "outcomes": [
+          {
+           "code": "1.NI.C.1",
+           "text": "Explain why we keep personal information (e.g., name, location, phone number, home address) private."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "empowered-learner",
+     "title": "Empowered Learner",
+     "topics": [
+      {
+       "id": "empowered-learner",
+       "title": "Empowered Learner",
+       "subtopics": [
+        {
+         "id": "empowered-learner",
+         "title": "Empowered Learner",
+         "outcomes": [
+          {
+           "code": "1.EL.B.1",
+           "text": "With teacher guidance, create a non-digital personal learning network of peers who can provide support."
+          },
+          {
+           "code": "1.EL.D.1",
+           "text": "Locate and use letter, number, punctuation, and use of special function keys (e.g. shift, backspace, delete)."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "digital-citizen",
+     "title": "Digital Citizen",
+     "topics": [
+      {
+       "id": "digital-citizen",
+       "title": "Digital Citizen",
+       "subtopics": [
+        {
+         "id": "digital-citizen",
+         "title": "Digital Citizen",
+         "outcomes": [
+          {
+           "code": "1.DC.C.1",
+           "text": "Articulate what is allowed and what is not allowed at school when using technology."
+          },
+          {
+           "code": "1.NI.C.1*",
+           "text": "* Refer to Nevada Academic Content Standards for Computer Science – 1.NI.C.1: Explain why we keep personal information (e.g., name, location, phone number, home address) private."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "knowledge-constructor",
+     "title": "Knowledge Constructor",
+     "topics": [
+      {
+       "id": "knowledge-constructor",
+       "title": "Knowledge Constructor",
+       "subtopics": [
+        {
+         "id": "knowledge-constructor",
+         "title": "Knowledge Constructor",
+         "outcomes": [
+          {
+           "code": "1.KC.A.1",
+           "text": "Collaborate with others using digital resources to learn about high interest topics."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "innovative-designer",
+     "title": "Innovative Designer",
+     "topics": [
+      {
+       "id": "innovative-designer",
+       "title": "Innovative Designer",
+       "subtopics": [
+        {
+         "id": "innovative-designer",
+         "title": "Innovative Designer",
+         "outcomes": [
+          {
+           "code": "1.ID.C.1",
+           "text": "Use a design process to develop ideas or creations, and they test their design and redesign if necessary."
+          },
+          {
+           "code": "1.ID.D.1",
+           "text": "Demonstrate perseverance when working to complete a challenging task."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "computational-thinker",
+     "title": "Computational Thinker",
+     "topics": [
+      {
+       "id": "computational-thinker",
+       "title": "Computational Thinker",
+       "subtopics": [
+        {
+         "id": "computational-thinker",
+         "title": "Computational Thinker",
+         "outcomes": [
+          {
+           "code": "1.CT.A.1",
+           "text": "With teacher guidance, use data to answer an authentic problem using digital tools."
+          },
+          {
+           "code": "1.CT.B.1",
+           "text": "With teacher guidance, identify patterns and predict possibilities with classroom data using digital tools."
+          },
+          {
+           "code": "1.CT.C.1",
+           "text": "With teacher guidance, identify and describe simple hardware and software problems (e.g., headphones, keyboard, and/or mouse not plugged into the port, volume too soft/loud)."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "creative-communicator",
+     "title": "Creative Communicator",
+     "topics": [
+      {
+       "id": "creative-communicator",
+       "title": "Creative Communicator",
+       "subtopics": [
+        {
+         "id": "creative-communicator",
+         "title": "Creative Communicator",
+         "outcomes": [
+          {
+           "code": "1.CC.A.1",
+           "text": "With teacher guidance, choose different tools for creating something new or for communicating with others."
+          },
+          {
+           "code": "1.CC.B.1",
+           "text": "With teacher guidance, create an original work using a variety of digital tools as a means of personal or group expression."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "global-collaborator",
+     "title": "Global Collaborator",
+     "topics": [
+      {
+       "id": "global-collaborator",
+       "title": "Global Collaborator",
+       "subtopics": [
+        {
+         "id": "global-collaborator",
+         "title": "Global Collaborator",
+         "outcomes": [
+          {
+           "code": "1.GC.A.1",
+           "text": "With teacher guidance, use digital tools to work with friends and with people outside their neighborhood, city, and beyond"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "2",
+   "units": [
+    {
+     "id": "algorithms-and-programming",
+     "title": "Algorithms and Programming",
+     "topics": [
+      {
+       "id": "algorithms-and-programming",
+       "title": "Algorithms and Programming",
+       "subtopics": [
+        {
+         "id": "algorithms-and-programming",
+         "title": "Algorithms and Programming",
+         "outcomes": [
+          {
+           "code": "2.AP.C.1",
+           "text": "Develop programs with sequences and loops, to express ideas or address a problem."
+          },
+          {
+           "code": "2.AP.M.1",
+           "text": "Break down (decompose) the steps needed to solve a problem into a precise sequence of instructions."
+          },
+          {
+           "code": "2.AP.PD.1",
+           "text": "Develop plans that describe a program’s sequence of events, goals, and expected outcomes."
+          },
+          {
+           "code": "2.AP.PD.2",
+           "text": "Give attribution (credit) when using the ideas and creations of others while developing programs."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "computing-systems",
+     "title": "Computing Systems",
+     "topics": [
+      {
+       "id": "computing-systems",
+       "title": "Computing Systems",
+       "subtopics": [
+        {
+         "id": "computing-systems",
+         "title": "Computing Systems",
+         "outcomes": [
+          {
+           "code": "2.CS.T.1",
+           "text": "Describe basic hardware and software problems using accurate terminology."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "data-and-analysis",
+     "title": "Data and Analysis",
+     "topics": [
+      {
+       "id": "data-and-analysis",
+       "title": "Data and Analysis",
+       "subtopics": [
+        {
+         "id": "data-and-analysis",
+         "title": "Data and Analysis",
+         "outcomes": [
+          {
+           "code": "2.DA.S.1",
+           "text": "Store, copy, search, retrieve, modify, and delete information using a computing device and define the information stored as data."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "impacts-of-computing",
+     "title": "Impacts of Computing",
+     "topics": [
+      {
+       "id": "impacts-of-computing",
+       "title": "Impacts of Computing",
+       "subtopics": [
+        {
+         "id": "impacts-of-computing",
+         "title": "Impacts of Computing",
+         "outcomes": [
+          {
+           "code": "2.IC.C.1",
+           "text": "Compare how people live and work before and after the implementation or adoption of new computing technology."
+          },
+          {
+           "code": "2.IC.SLE.1",
+           "text": "Identify safe and unsafe examples of online communications."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "networks-and-the-internet",
+     "title": "Networks and the Internet",
+     "topics": [
+      {
+       "id": "networks-and-the-internet",
+       "title": "Networks and the Internet",
+       "subtopics": [
+        {
+         "id": "networks-and-the-internet",
+         "title": "Networks and the Internet",
+         "outcomes": [
+          {
+           "code": "2.NI.C.1",
+           "text": "Explain what passwords are and why we use them; use strong passwords to protect devices and information from unauthorized access."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "empowered-learner",
+     "title": "Empowered Learner",
+     "topics": [
+      {
+       "id": "empowered-learner",
+       "title": "Empowered Learner",
+       "subtopics": [
+        {
+         "id": "empowered-learner",
+         "title": "Empowered Learner",
+         "outcomes": [
+          {
+           "code": "2.EL.A.1",
+           "text": "With teacher guidance, utilize digital and non-digital planning tools."
+          },
+          {
+           "code": "2.EL.D.1",
+           "text": "Master location and use of special function keys (e.g., shift, backspace, delete)"
+          },
+          {
+           "code": "2.EL.D.2",
+           "text": "Demonstrate the use of drag and drop, copy, paste, undo, and editing and correction techniques."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "digital-citizen",
+     "title": "Digital Citizen",
+     "topics": [
+      {
+       "id": "digital-citizen",
+       "title": "Digital Citizen",
+       "subtopics": [
+        {
+         "id": "digital-citizen",
+         "title": "Digital Citizen",
+         "outcomes": [
+          {
+           "code": "2.DC.C.1",
+           "text": "Make responsible decisions – grounded in knowledge of digital safety and security best practices."
+          },
+          {
+           "code": "2.NI.C.1*",
+           "text": "* Refer to Nevada Academic Content Standards for Computer Science – 2.NI.C.1: Explain what passwords are and why we use them; use strong passwords to protect devices and information from unauthorized access."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "knowledge-constructor",
+     "title": "Knowledge Constructor",
+     "topics": [
+      {
+       "id": "knowledge-constructor",
+       "title": "Knowledge Constructor",
+       "subtopics": [
+        {
+         "id": "knowledge-constructor",
+         "title": "Knowledge Constructor",
+         "outcomes": [
+          {
+           "code": "2.KC.A.1",
+           "text": "Identify and organize keywords and use multiple sources used to answer an essential question."
+          },
+          {
+           "code": "2.KC.D.1",
+           "text": "Use digital models and simulations to explore complex systems and issues."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "innovative-designer",
+     "title": "Innovative Designer",
+     "topics": [
+      {
+       "id": "innovative-designer",
+       "title": "Innovative Designer",
+       "subtopics": [
+        {
+         "id": "innovative-designer",
+         "title": "Innovative Designer",
+         "outcomes": [
+          {
+           "code": "2.ID.B.1",
+           "text": "Plan and manage projects using a digital and/or non-digital planning tool."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "computational-thinker",
+     "title": "Computational Thinker",
+     "topics": [
+      {
+       "id": "computational-thinker",
+       "title": "Computational Thinker",
+       "subtopics": [
+        {
+         "id": "computational-thinker",
+         "title": "Computational Thinker",
+         "outcomes": [
+          {
+           "code": "2.CT.B.1",
+           "text": "Identify patterns and predict possibilities with classroom data using digital tools."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "creative-communicator",
+     "title": "Creative Communicator",
+     "topics": [
+      {
+       "id": "creative-communicator",
+       "title": "Creative Communicator",
+       "subtopics": [
+        {
+         "id": "creative-communicator",
+         "title": "Creative Communicator",
+         "outcomes": [
+          {
+           "code": "2.CC.C.1",
+           "text": "With teacher guidance, communicate information and ideas to an intended audience using digital text, images, and audio."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "global-collaborator",
+     "title": "Global Collaborator",
+     "topics": [
+      {
+       "id": "global-collaborator",
+       "title": "Global Collaborator",
+       "subtopics": [
+        {
+         "id": "global-collaborator",
+         "title": "Global Collaborator",
+         "outcomes": [
+          {
+           "code": "2.GC.B.1",
+           "text": "With teacher guidance, use technology to communicate with others and to look at problems from different perspectives."
+          },
+          {
+           "code": "2.GC.C.1",
+           "text": "With teacher guidance, take on different team roles and use age-appropriate technologies to complete projects."
+          },
+          {
+           "code": "2.GC.D.1",
+           "text": "With teacher guidance, use age-appropriate technologies to work together to understand problems and suggest solutions."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "3",
+   "units": [
+    {
+     "id": "algorithms-and-programming",
+     "title": "Algorithms and Programming",
+     "topics": [
+      {
+       "id": "algorithms-and-programming",
+       "title": "Algorithms and Programming",
+       "subtopics": [
+        {
+         "id": "algorithms-and-programming",
+         "title": "Algorithms and Programming",
+         "outcomes": [
+          {
+           "code": "3.AP.PD.1",
+           "text": "Debug (identify and fix) errors in an algorithm or program that includes sequences and loops."
+          },
+          {
+           "code": "3.AP.PD.2",
+           "text": "Take on varying roles (e.g., researcher, programmer, test developer, designer, recorder) with teacher guidance, when collaborating with peers during the design, implementation, and review stages of program development."
+          },
+          {
+           "code": "3.AP.V.1",
+           "text": "Create programs that use variables to store and modify data."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "computing-systems",
+     "title": "Computing Systems",
+     "topics": [
+      {
+       "id": "computing-systems",
+       "title": "Computing Systems",
+       "subtopics": [
+        {
+         "id": "computing-systems",
+         "title": "Computing Systems",
+         "outcomes": [
+          {
+           "code": "3.CS.D.1",
+           "text": "Describe how internal and external parts of computing devices function to form a system."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "data-and-analysis",
+     "title": "Data and Analysis",
+     "topics": [
+      {
+       "id": "data-and-analysis",
+       "title": "Data and Analysis",
+       "subtopics": [
+        {
+         "id": "data-and-analysis",
+         "title": "Data and Analysis",
+         "outcomes": [
+          {
+           "code": "3.DA.CVT.1",
+           "text": "Organize and present collected data visually to highlight relationships and support a claim."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "impacts-of-computing",
+     "title": "Impacts of Computing",
+     "topics": [
+      {
+       "id": "impacts-of-computing",
+       "title": "Impacts of Computing",
+       "subtopics": [
+        {
+         "id": "impacts-of-computing",
+         "title": "Impacts of Computing",
+         "outcomes": [
+          {
+           "code": "3.IC.C.1",
+           "text": "Discuss computing technologies that have changed the world, and express how those technologies influence and are influenced by cultural practices."
+          },
+          {
+           "code": "3.IC.SLE.1",
+           "text": "Use public domain or creative commons media, and refrain from copying or using material created by others without permission."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "networks-and-the-internet",
+     "title": "Networks and the Internet",
+     "topics": [
+      {
+       "id": "networks-and-the-internet",
+       "title": "Networks and the Internet",
+       "subtopics": [
+        {
+         "id": "networks-and-the-internet",
+         "title": "Networks and the Internet",
+         "outcomes": [
+          {
+           "code": "3.NI.C.1",
+           "text": "Discuss real-world cybersecurity problems and how personal information can be protected."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "empowered-learner",
+     "title": "Empowered Learner",
+     "topics": [
+      {
+       "id": "empowered-learner",
+       "title": "Empowered Learner",
+       "subtopics": [
+        {
+         "id": "empowered-learner",
+         "title": "Empowered Learner",
+         "outcomes": [
+          {
+           "code": "3.EL.A.1",
+           "text": "Independently utilize digital and non-digital planning tools."
+          },
+          {
+           "code": "3.EL.D.1",
+           "text": "Demonstrate appropriate touch (blind) typing with speed and accuracy."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "digital-citizen",
+     "title": "Digital Citizen",
+     "topics": [
+      {
+       "id": "digital-citizen",
+       "title": "Digital Citizen",
+       "subtopics": [
+        {
+         "id": "digital-citizen",
+         "title": "Digital Citizen",
+         "outcomes": [
+          {
+           "code": "3.DC.A.1",
+           "text": "Demonstrate an understanding of the role an online identity plays in the digital world and learn the permanence of their decisions when interacting online."
+          },
+          {
+           "code": "3.DC.B.1",
+           "text": "Describe codes of conduct for using technology at school and the consequences for breaking those rules."
+          },
+          {
+           "code": "3.IC.SLE.1*",
+           "text": "* Refer to Nevada Academic Content Standards for Computer Science – 3.IC.SLE1: Identify safe and unsafe examples of online communications."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "knowledge-constructor",
+     "title": "Knowledge Constructor",
+     "topics": [
+      {
+       "id": "knowledge-constructor",
+       "title": "Knowledge Constructor",
+       "subtopics": [
+        {
+         "id": "knowledge-constructor",
+         "title": "Knowledge Constructor",
+         "outcomes": [
+          {
+           "code": "3.KC.B.1",
+           "text": "With teacher guidance, become familiar with age-appropriate criteria for evaluating digital content."
+          },
+          {
+           "code": "3.KC.C.1",
+           "text": "Organize information and make meaningful connections between resources."
+          },
+          {
+           "code": "3.KC.D.1",
+           "text": "Create essential questions to guide investigation of a real-world problem using digital resources."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "innovative-designer",
+     "title": "Innovative Designer",
+     "topics": [
+      {
+       "id": "innovative-designer",
+       "title": "Innovative Designer",
+       "subtopics": [
+        {
+         "id": "innovative-designer",
+         "title": "Innovative Designer",
+         "outcomes": [
+          {
+           "code": "3.ID.A.1",
+           "text": "Explore and practice how a design process works to generate ideas, consider solutions, plan to solve a problem, or create innovative products that are shared with others."
+          },
+          {
+           "code": "3.ID.B.1",
+           "text": "Describe a variety of ways to interact and contribute to a digital product."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "computational-thinker",
+     "title": "Computational Thinker",
+     "topics": [
+      {
+       "id": "computational-thinker",
+       "title": "Computational Thinker",
+       "subtopics": [
+        {
+         "id": "computational-thinker",
+         "title": "Computational Thinker",
+         "outcomes": [
+          {
+           "code": "3.CT.C.1",
+           "text": "Work in a team to solve problems using digital tools."
+          },
+          {
+           "code": "3.CT.C.2",
+           "text": "With teacher guidance, identify and describe the cause of hardware (e.g., wiring), connectivity (e.g., no internet connection), and software (e.g., frozen screen) problems."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "creative-communicator",
+     "title": "Creative Communicator",
+     "topics": [
+      {
+       "id": "creative-communicator",
+       "title": "Creative Communicator",
+       "subtopics": [
+        {
+         "id": "creative-communicator",
+         "title": "Creative Communicator",
+         "outcomes": [
+          {
+           "code": "3.CC.A.1",
+           "text": "Describe appropriate media and formats for specific audiences."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "global-collaborator",
+     "title": "Global Collaborator",
+     "topics": [
+      {
+       "id": "global-collaborator",
+       "title": "Global Collaborator",
+       "subtopics": [
+        {
+         "id": "global-collaborator",
+         "title": "Global Collaborator",
+         "outcomes": [
+          {
+           "code": "3.GC.A.1",
+           "text": "Explore alternative solutions to and diverse perspectives on authentic problems and propose a solution using digital tools."
+          },
+          {
+           "code": "3.GC.D.1",
+           "text": "Work with others using collaborative technologies to explore local and global issues."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "4",
+   "units": [
+    {
+     "id": "algorithms-and-programming",
+     "title": "Algorithms and Programming",
+     "topics": [
+      {
+       "id": "algorithms-and-programming",
+       "title": "Algorithms and Programming",
+       "subtopics": [
+        {
+         "id": "algorithms-and-programming",
+         "title": "Algorithms and Programming",
+         "outcomes": [
+          {
+           "code": "4.AP.A.1",
+           "text": "Test, compare, and refine multiple algorithms for the same task and determine which is the most appropriate."
+          },
+          {
+           "code": "4.AP.C.1",
+           "text": "Develop programs that include sequences, events, loops, and conditionals."
+          },
+          {
+           "code": "4.AP.M.1",
+           "text": "Explore how complex tasks can be decomposed into simple tasks and how simple tasks can be composed into complex tasks."
+          },
+          {
+           "code": "4.AP.PD.1",
+           "text": "Test and debug (identify and fix) errors in a program or algorithm to ensure it runs as intended."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "computing-systems",
+     "title": "Computing Systems",
+     "topics": [
+      {
+       "id": "computing-systems",
+       "title": "Computing Systems",
+       "subtopics": [
+        {
+         "id": "computing-systems",
+         "title": "Computing Systems",
+         "outcomes": [
+          {
+           "code": "4.CS.HS.1",
+           "text": "Model how computer hardware and software work together as a system to accomplish tasks."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "data-and-analysis",
+     "title": "Data and Analysis",
+     "topics": [
+      {
+       "id": "data-and-analysis",
+       "title": "Data and Analysis",
+       "subtopics": [
+        {
+         "id": "data-and-analysis",
+         "title": "Data and Analysis",
+         "outcomes": [
+          {
+           "code": "4.DA.IM.1",
+           "text": "Use data to highlight or propose cause-and-effect relationships, predict outcomes, or communicate ideas."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "impacts-of-computing",
+     "title": "Impacts of Computing",
+     "topics": [
+      {
+       "id": "impacts-of-computing",
+       "title": "Impacts of Computing",
+       "subtopics": [
+        {
+         "id": "impacts-of-computing",
+         "title": "Impacts of Computing",
+         "outcomes": [
+          {
+           "code": "4.IC.C.1",
+           "text": "Compare and contrast how computing has changed society from the past to the present."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "networks-and-the-internet",
+     "title": "Networks and the Internet",
+     "topics": [
+      {
+       "id": "networks-and-the-internet",
+       "title": "Networks and the Internet",
+       "subtopics": [
+        {
+         "id": "networks-and-the-internet",
+         "title": "Networks and the Internet",
+         "outcomes": [
+          {
+           "code": "4.NI.NCO.1",
+           "text": "Model how information is broken down into smaller pieces, transmitted as packets through multiple devices over networks and the internet, and reassembled at the destination."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "empowered-learner",
+     "title": "Empowered Learner",
+     "topics": [
+      {
+       "id": "empowered-learner",
+       "title": "Empowered Learner",
+       "subtopics": [
+        {
+         "id": "empowered-learner",
+         "title": "Empowered Learner",
+         "outcomes": [
+          {
+           "code": "4.EL.A.1",
+           "text": "With teacher guidance, develop learning goals, select tools to achieve them, and reflect on and revise the learning process as needed to achieve goals."
+          },
+          {
+           "code": "4.EL.B.1",
+           "text": "Create a digital or non-digital personal learning network of peers who can provide support."
+          },
+          {
+           "code": "4.EL.C.1",
+           "text": "Seek feedback from both people and digital tools, and use age-appropriate technology to share learning."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "digital-citizen",
+     "title": "Digital Citizen",
+     "topics": [
+      {
+       "id": "digital-citizen",
+       "title": "Digital Citizen",
+       "subtopics": [
+        {
+         "id": "digital-citizen",
+         "title": "Digital Citizen",
+         "outcomes": [
+          {
+           "code": "4.DC.B.1",
+           "text": "Practice and encourage others in a safe, legal, and ethical behavior when using technology and interacting online."
+          },
+          {
+           "code": "4.DC.C.1",
+           "text": "Demonstrate how to paraphrase the information learned from online sources into their own words."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "knowledge-constructor",
+     "title": "Knowledge Constructor",
+     "topics": [
+      {
+       "id": "knowledge-constructor",
+       "title": "Knowledge Constructor",
+       "subtopics": [
+        {
+         "id": "knowledge-constructor",
+         "title": "Knowledge Constructor",
+         "outcomes": [
+          {
+           "code": "4.KC.A.1",
+           "text": "Use keywords to search, organize, locate, and synthesize information in multiple sources to create an original product."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "innovative-designer",
+     "title": "Innovative Designer",
+     "topics": [
+      {
+       "id": "innovative-designer",
+       "title": "Innovative Designer",
+       "subtopics": [
+        {
+         "id": "innovative-designer",
+         "title": "Innovative Designer",
+         "outcomes": [
+          {
+           "code": "4.ID.A.1",
+           "text": "Demonstrate how a design process works to generate ideas, consider solutions, plan to solve a problem, or create innovative products that are shared with others."
+          },
+          {
+           "code": "4.ID.D.1",
+           "text": "Demonstrate perseverance when working with open-ended problems."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "computational-thinker",
+     "title": "Computational Thinker",
+     "topics": [
+      {
+       "id": "computational-thinker",
+       "title": "Computational Thinker",
+       "subtopics": [
+        {
+         "id": "computational-thinker",
+         "title": "Computational Thinker",
+         "outcomes": [
+          {
+           "code": "4.CT.B.1",
+           "text": "Identify and represent trends and make predictions using classroom data."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "creative-communicator",
+     "title": "Creative Communicator",
+     "topics": [
+      {
+       "id": "creative-communicator",
+       "title": "Creative Communicator",
+       "subtopics": [
+        {
+         "id": "creative-communicator",
+         "title": "Creative Communicator",
+         "outcomes": [
+          {
+           "code": "4.CC.A.1",
+           "text": "Demonstrate appropriate media and formats for specific audiences."
+          },
+          {
+           "code": "4.CC.B.1",
+           "text": "Create an original, digital work as a form of personal or group expression."
+          },
+          {
+           "code": "4.CC.C.1",
+           "text": "Communicate information and ideas to an intended audience using digital text, images, and audio."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "global-collaborator",
+     "title": "Global Collaborator",
+     "topics": [
+      {
+       "id": "global-collaborator",
+       "title": "Global Collaborator",
+       "subtopics": [
+        {
+         "id": "global-collaborator",
+         "title": "Global Collaborator",
+         "outcomes": [
+          {
+           "code": "4.GC.C.1",
+           "text": "Perform a variety of roles within a team using age-appropriate technology to complete a project or solve a problem."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "5",
+   "units": [
+    {
+     "id": "algorithms-and-programming",
+     "title": "Algorithms and Programming",
+     "topics": [
+      {
+       "id": "algorithms-and-programming",
+       "title": "Algorithms and Programming",
+       "subtopics": [
+        {
+         "id": "algorithms-and-programming",
+         "title": "Algorithms and Programming",
+         "outcomes": [
+          {
+           "code": "5.AP.M.1",
+           "text": "Demonstrate how to decompose a task of complexity into simple tasks and compose a simple task into tasks of complexity."
+          },
+          {
+           "code": "5.AP.M.2",
+           "text": "Modify, incorporate, and test portions of an existing program into their own work, to develop something new or add more advanced features."
+          },
+          {
+           "code": "5.AP.PD.1",
+           "text": "Use the iterative process to develop a program to express an idea or address a problem while considering others’ perspectives and preferences."
+          },
+          {
+           "code": "5.AP.PD.2",
+           "text": "Describe choices made during program development using code comments, presentations, and demonstrations."
+          },
+          {
+           "code": "5.AP.PD.3",
+           "text": "Observe intellectual property rights and give appropriate attribution (credit) when creating or remixing programs."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "computing-systems",
+     "title": "Computing Systems",
+     "topics": [
+      {
+       "id": "computing-systems",
+       "title": "Computing Systems",
+       "subtopics": [
+        {
+         "id": "computing-systems",
+         "title": "Computing Systems",
+         "outcomes": [
+          {
+           "code": "5.CS.T.1",
+           "text": "Determine potential solutions to solve simple hardware and software problems using common troubleshooting strategies."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "data-and-analysis",
+     "title": "Data and Analysis",
+     "topics": [
+      {
+       "id": "data-and-analysis",
+       "title": "Data and Analysis",
+       "subtopics": [
+        {
+         "id": "data-and-analysis",
+         "title": "Data and Analysis",
+         "outcomes": [
+          {
+           "code": "5.DA.IM.1",
+           "text": "Recognize how text, images, and sounds are represented as binary numbers in computing devices."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "impacts-of-computing",
+     "title": "Impacts of Computing",
+     "topics": [
+      {
+       "id": "impacts-of-computing",
+       "title": "Impacts of Computing",
+       "subtopics": [
+        {
+         "id": "impacts-of-computing",
+         "title": "Impacts of Computing",
+         "outcomes": [
+          {
+           "code": "5.IC.C.1",
+           "text": "Brainstorm ways to improve the accessibility and usability of technology products for the diverse needs and wants of users."
+          },
+          {
+           "code": "5.IC.SI.1",
+           "text": "Seek diverse perspectives for the purpose of improving computational artifacts."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "networks-and-the-internet",
+     "title": "Networks and the Internet",
+     "topics": [
+      {
+       "id": "networks-and-the-internet",
+       "title": "Networks and the Internet",
+       "subtopics": [
+        {
+         "id": "networks-and-the-internet",
+         "title": "Networks and the Internet",
+         "outcomes": [
+          {
+           "code": "5.NI.NCO.1",
+           "text": "Explain the concept of network protocols."
+          },
+          {
+           "code": "5.NI.NCO.2",
+           "text": "Identify the advantages and disadvantages of various network types (e.g., wire, WiFi, cellular data)."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "empowered-learner",
+     "title": "Empowered Learner",
+     "topics": [
+      {
+       "id": "empowered-learner",
+       "title": "Empowered Learner",
+       "subtopics": [
+        {
+         "id": "empowered-learner",
+         "title": "Empowered Learner",
+         "outcomes": [
+          {
+           "code": "5.EL.A.1",
+           "text": "Develop learning goals, select the technology tools to achieve them, and reflect on and revise the learning process as needed to achieve goals."
+          },
+          {
+           "code": "5.EL.D.1",
+           "text": "Demonstrate proficient touch (blind) typing with speed and accuracy."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "digital-citizen",
+     "title": "Digital Citizen",
+     "topics": [
+      {
+       "id": "digital-citizen",
+       "title": "Digital Citizen",
+       "subtopics": [
+        {
+         "id": "digital-citizen",
+         "title": "Digital Citizen",
+         "outcomes": [
+          {
+           "code": "5.DC.A.1",
+           "text": "Understand the notion of “digital footprint” and the permanence and traceability associated with online communication (e.g., email, social media)."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "knowledge-constructor",
+     "title": "Knowledge Constructor",
+     "topics": [
+      {
+       "id": "knowledge-constructor",
+       "title": "Knowledge Constructor",
+       "subtopics": [
+        {
+         "id": "knowledge-constructor",
+         "title": "Knowledge Constructor",
+         "outcomes": [
+          {
+           "code": "5.KC.B.1",
+           "text": "Explain the importance of using more than one source and recognize possible bias in digital resources."
+          },
+          {
+           "code": "5.KC.D.1",
+           "text": "Propose solutions to real-world problems using collected data and digital tools."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "innovative-designer",
+     "title": "Innovative Designer",
+     "topics": [
+      {
+       "id": "innovative-designer",
+       "title": "Innovative Designer",
+       "subtopics": [
+        {
+         "id": "innovative-designer",
+         "title": "Innovative Designer",
+         "outcomes": [
+          {
+           "code": "5.ID.B.1",
+           "text": "Plan and manage projects using digital planning tools."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "computational-thinker",
+     "title": "Computational Thinker",
+     "topics": [
+      {
+       "id": "computational-thinker",
+       "title": "Computational Thinker",
+       "subtopics": [
+        {
+         "id": "computational-thinker",
+         "title": "Computational Thinker",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "There are no standards for this focus area at this grade level"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "creative-communicator",
+     "title": "Creative Communicator",
+     "topics": [
+      {
+       "id": "creative-communicator",
+       "title": "Creative Communicator",
+       "subtopics": [
+        {
+         "id": "creative-communicator",
+         "title": "Creative Communicator",
+         "outcomes": [
+          {
+           "code": "5.CC.A.1",
+           "text": "Recognize and utilize appropriate media and formats for specific audiences."
+          },
+          {
+           "code": "5.CC.B.1",
+           "text": "Create original works and learn strategies for responsibly remixing or repurposing to create new artifacts."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "global-collaborator",
+     "title": "Global Collaborator",
+     "topics": [
+      {
+       "id": "global-collaborator",
+       "title": "Global Collaborator",
+       "subtopics": [
+        {
+         "id": "global-collaborator",
+         "title": "Global Collaborator",
+         "outcomes": [
+          {
+           "code": "5.GC.B.1",
+           "text": "Use collaborative technologies to connect with others, including peers, experts, and community members, to explore different points of view on various topics."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "6-8",
+   "units": [
+    {
+     "id": "algorithms-and-programming",
+     "title": "Algorithms and Programming",
+     "topics": [
+      {
+       "id": "algorithms-and-programming",
+       "title": "Algorithms and Programming",
+       "subtopics": [
+        {
+         "id": "algorithms-and-programming-1-of-2",
+         "title": "Algorithms and Programming (1 of 2)",
+         "outcomes": [
+          {
+           "code": "6-8.AP.A.1",
+           "text": "Use flowcharts and/or pseudocode to address complex problems as algorithms."
+          },
+          {
+           "code": "6-8.AP.V.1",
+           "text": "Create clearly named variables that represent different data types and perform operations on their values."
+          },
+          {
+           "code": "6-8.AP.C.1",
+           "text": "Design and iteratively develop programs that combine control structures, including nested loops and compound conditionals."
+          },
+          {
+           "code": "6-8.AP.M.1",
+           "text": "Decompose problems and subproblems into parts to facilitate the design, implementation, and review of programs."
+          },
+          {
+           "code": "6-8.AP.M.2",
+           "text": "Create procedures with parameters to organize code and make it easier to reuse."
+          }
+         ]
+        },
+        {
+         "id": "algorithms-and-programming-2-of-2",
+         "title": "Algorithms and Programming (2 of 2)",
+         "outcomes": [
+          {
+           "code": "6-8.AP.PD.1",
+           "text": "Design meaningful solutions for others, incorporating data from collaborative team members and the end user, to meet the end user’s needs."
+          },
+          {
+           "code": "6-8.AP.PD.2",
+           "text": "Incorporate existing code, media, and libraries into original programs, and give attribution."
+          },
+          {
+           "code": "6-8.AP.PD.3",
+           "text": "Systematically test and refine programs using a range of test cases."
+          },
+          {
+           "code": "6-8.AP.PD.4",
+           "text": "Distribute tasks and maintain a project timeline when collaboratively developing computational artifacts."
+          },
+          {
+           "code": "6-8.AP.PD.5",
+           "text": "Document programs (throughout the design, development, troubleshooting, and user experience phases) in order to make them easier to follow, test, and debug by others."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "computing-systems",
+     "title": "Computing Systems",
+     "topics": [
+      {
+       "id": "computing-systems",
+       "title": "Computing Systems",
+       "subtopics": [
+        {
+         "id": "computing-systems",
+         "title": "Computing Systems",
+         "outcomes": [
+          {
+           "code": "6-8.CS.D.1",
+           "text": "Recommend improvements to the design of computing devices based on an analysis of how users interact with the devices, noting that advantages may have disadvantages and unintended consequences."
+          },
+          {
+           "code": "6-8.CS.HS.1",
+           "text": "Design and evaluate projects that combine hardware and software components to collect and exchange data."
+          },
+          {
+           "code": "6-8.CS.T.1",
+           "text": "Systematically identify and fix problems with computing devices and their components."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "data-and-analysis",
+     "title": "Data and Analysis",
+     "topics": [
+      {
+       "id": "data-and-analysis",
+       "title": "Data and Analysis",
+       "subtopics": [
+        {
+         "id": "data-and-analysis",
+         "title": "Data and Analysis",
+         "outcomes": [
+          {
+           "code": "6-8.DA.S.1",
+           "text": "Model encoding schema used by software tools to access data, stored as bits, into forms more easily understood by people (e.g., encoding schema include binary and ASCII)."
+          },
+          {
+           "code": "6-8.DA.CVT.1",
+           "text": "Collect data using computational tools and transform the data to make it more meaningful and useful."
+          },
+          {
+           "code": "6-8.DA.IM.1",
+           "text": "Refine computational models based on the reliability and validity of the data they generate."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "impacts-of-computing",
+     "title": "Impacts of Computing",
+     "topics": [
+      {
+       "id": "impacts-of-computing",
+       "title": "Impacts of Computing",
+       "subtopics": [
+        {
+         "id": "impacts-of-computing",
+         "title": "Impacts of Computing",
+         "outcomes": [
+          {
+           "code": "6-8.IC.C.1",
+           "text": "Compare tradeoffs associated with computing technologies that affect people’s everyday activities and career options."
+          },
+          {
+           "code": "6-8.IC.C.2",
+           "text": "Discuss and evaluate issues of bias and accessibility in the design of existing technologies."
+          },
+          {
+           "code": "6-8.IC.SI.1",
+           "text": "Collaborate with many contributors through strategies such as crowdsourcing or surveys when creating a computational artifact."
+          },
+          {
+           "code": "6-8.IC.SLE.1",
+           "text": "Identify risks associated with sharing information digitally (e.g., phishing, identity theft, hacking)."
+          },
+          {
+           "code": "6-8.IC.SLE.2",
+           "text": "Evaluate how legal and ethical issues shape computing practices."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "networks-and-the-internet",
+     "title": "Networks and the Internet",
+     "topics": [
+      {
+       "id": "networks-and-the-internet",
+       "title": "Networks and the Internet",
+       "subtopics": [
+        {
+         "id": "networks-and-the-internet",
+         "title": "Networks and the Internet",
+         "outcomes": [
+          {
+           "code": "6-8.NI.NCO.1",
+           "text": "Compare and contrast modeled protocols used in transmitting data across networks and the Internet."
+          },
+          {
+           "code": "6-8.NI.C.1",
+           "text": "Explain how physical and digital security measures protect electronic information."
+          },
+          {
+           "code": "6-8.NI.C.2",
+           "text": "Apply multiple methods of encryption to model the secure transmission of information."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "empowered-learner",
+     "title": "Empowered Learner",
+     "topics": [
+      {
+       "id": "empowered-learner",
+       "title": "Empowered Learner",
+       "subtopics": [
+        {
+         "id": "empowered-learner",
+         "title": "Empowered Learner",
+         "outcomes": [
+          {
+           "code": "6-8.EL.A.1",
+           "text": "Articulate personal learning goals, select and manage appropriate technologies to achieve them, and reflect on their successes and areas of improvement in working toward their goals."
+          },
+          {
+           "code": "6-8.EL.B.1",
+           "text": "Identify and develop online networks within school policy, and customize their learning environments in ways that support their learning, in collaboration with an educator."
+          },
+          {
+           "code": "6-8.EL.C.1",
+           "text": "Actively seek performance feedback from people, including teachers, and from functionalities embedded in digital tools to improve their learning process, and they select technology to demonstrate their learning in a variety of ways."
+          },
+          {
+           "code": "6-8.EL.D.1",
+           "text": "Navigate a variety of technologies and transfer their knowledge and skills to learn how to use new technologies."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "digital-citizen",
+     "title": "Digital Citizen",
+     "topics": [
+      {
+       "id": "digital-citizen",
+       "title": "Digital Citizen",
+       "subtopics": [
+        {
+         "id": "digital-citizen",
+         "title": "Digital Citizen",
+         "outcomes": [
+          {
+           "code": "6-8.DC.A.1",
+           "text": "Describe how to manage digital identities and reputations within school policy, including demonstrating an understanding of how digital actions may have positive or negative implications for their future."
+          },
+          {
+           "code": "6-8.DC.B.1",
+           "text": "Demonstrate and advocate for positive, safe, legal, and ethical habits when using technology and when interacting with others online."
+          },
+          {
+           "code": "6-8.DC.B.2",
+           "text": "Demonstrate an awareness of potential dangers while online (e.g., cyberbullying, child predators, phishing) and understand how to get help."
+          },
+          {
+           "code": "6-8.DC.C.1",
+           "text": "Advocate and demonstrate a respect for intellectual property with both print and digital media—including copyright, permission and fair use—by creating a variety of media products that include appropriate citation and attribution elements."
+          },
+          {
+           "code": "6-8.DC.D.1",
+           "text": "Demonstrate an understanding of what personal data is and how to keep it private and secure, including the awareness of terms such as encryption, HTTPS, password strength, cookies, phishing, and computer viruses; understand the limitations of data management and how data-collection technologies work."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "knowledge-constructor",
+     "title": "Knowledge Constructor",
+     "topics": [
+      {
+       "id": "knowledge-constructor",
+       "title": "Knowledge Constructor",
+       "subtopics": [
+        {
+         "id": "knowledge-constructor",
+         "title": "Knowledge Constructor",
+         "outcomes": [
+          {
+           "code": "6-8.KC.A.1",
+           "text": "Demonstrate and practice the ability to effectively utilize research strategies to locate appropriate digital resources in support of their learning."
+          },
+          {
+           "code": "6-8.KC.B.1",
+           "text": "Practice and demonstrate the ability to evaluate resources for accuracy, perspective, credibility, and relevance."
+          },
+          {
+           "code": "6-8.KC.C.1",
+           "text": "Locate and collect resources from a variety of sources and organize assets into collections for a wide range of projects and purposes."
+          },
+          {
+           "code": "6-8.KC.D.1",
+           "text": "Explore real-world issues and problems through inquiry and analysis, develop ideas, actively create solutions for them, and evaluate and revise through the use of digital tools."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "innovative-designer",
+     "title": "Innovative Designer",
+     "topics": [
+      {
+       "id": "innovative-designer",
+       "title": "Innovative Designer",
+       "subtopics": [
+        {
+         "id": "innovative-designer",
+         "title": "Innovative Designer",
+         "outcomes": [
+          {
+           "code": "6-8.ID.A.1",
+           "text": "Engage in a design process and employ it to inquire and analyze, generate ideas, create innovative products or solve authentic problems, and evaluate the process to revise if needed."
+          },
+          {
+           "code": "6-8.ID.B.1",
+           "text": "Select and use digital tools to support a design process and expand their understanding to identify constraints, trade-offs, and to weigh risks."
+          },
+          {
+           "code": "6-8.ID.C.1",
+           "text": "Engage in a design process to inquire and analyze, develop ideas, test and revise prototypes, embracing the cyclical process of trial and error, and understanding problems or setbacks as potential opportunities for improvement."
+          },
+          {
+           "code": "6-8.ID.D.1",
+           "text": "Demonstrate an ability to persevere and handle greater ambiguity as they work to solve open-ended problems."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "computational-thinker",
+     "title": "Computational Thinker",
+     "topics": [
+      {
+       "id": "computational-thinker",
+       "title": "Computational Thinker",
+       "subtopics": [
+        {
+         "id": "computational-thinker",
+         "title": "Computational Thinker",
+         "outcomes": [
+          {
+           "code": "6-8.CT.A.1",
+           "text": "Practice defining problems to solve by computing for data analysis, modeling, or algorithmic thinking."
+          },
+          {
+           "code": "6-8.CT.B.1",
+           "text": "Find or organize data and use technology to analyze and represent the data to solve problems and make decisions."
+          },
+          {
+           "code": "6-8.CT.C.1",
+           "text": "Break problems into component parts, identify key pieces, and use that information to problem solve."
+          },
+          {
+           "code": "6-8.CT.D.1",
+           "text": "Demonstrate an understanding of how automation works and use algorithmic thinking to design and automate solutions."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "creative-communicator",
+     "title": "Creative Communicator",
+     "topics": [
+      {
+       "id": "creative-communicator",
+       "title": "Creative Communicator",
+       "subtopics": [
+        {
+         "id": "creative-communicator",
+         "title": "Creative Communicator",
+         "outcomes": [
+          {
+           "code": "6-8.CC.A.1",
+           "text": "Select appropriate platforms and tools to create, share, and communicate their work effectively."
+          },
+          {
+           "code": "6-8.CC.A.2",
+           "text": "Understand and demonstrate how to construct an email to the appropriate audience, including replying to individual, groups, BCC, and CC."
+          },
+          {
+           "code": "6-8.CC.B.1",
+           "text": "Create original works and apply strategies for responsibly remixing or repurposing to create new artifacts."
+          },
+          {
+           "code": "6-8.CC.C.1",
+           "text": "Communicate complex ideas clearly using various digital tools to convey the concepts textually, visually, graphically, etc."
+          },
+          {
+           "code": "6-8.CC.D.1",
+           "text": "Publish or present content designed for specific audiences and select platforms that will effectively convey their ideas to those audiences."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "global-collaborator",
+     "title": "Global Collaborator",
+     "topics": [
+      {
+       "id": "global-collaborator",
+       "title": "Global Collaborator",
+       "subtopics": [
+        {
+         "id": "global-collaborator",
+         "title": "Global Collaborator",
+         "outcomes": [
+          {
+           "code": "6-8.GC.A.1",
+           "text": "Use digital tools to interact with others to develop a richer understanding of different perspectives and cultures."
+          },
+          {
+           "code": "6-8.GC.B.1",
+           "text": "Use collaborative technologies to connect with others, including peers, experts, and community members, to learn about issues and problems or to gain broader perspectives."
+          },
+          {
+           "code": "6-8.GC.C.1",
+           "text": "Determine their role on a team to meet goals, based on their knowledge of technology and content, as well as personal preference."
+          },
+          {
+           "code": "6-8.GC.D.1",
+           "text": "Select collaborative technologies and use them to work with others to investigate and develop solutions related to local and global issues."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "9-12",
+   "units": [
+    {
+     "id": "algorithms-and-programming",
+     "title": "Algorithms and Programming",
+     "topics": [
+      {
+       "id": "algorithms-and-programming",
+       "title": "Algorithms and Programming",
+       "subtopics": [
+        {
+         "id": "algorithms-and-programming-1-of-6",
+         "title": "Algorithms and Programming (1 of 6)",
+         "outcomes": [
+          {
+           "code": "9-12.AP.A.1",
+           "text": "Create prototypes that use algorithms to solve computational problems by leveraging prior student knowledge and personal interests."
+          },
+          {
+           "code": "9-12.AP.V.1",
+           "text": "Demonstrate the use of both linked lists and arrays to simplify solutions, generalizing computational problems instead of repeatedly using simple variables."
+          },
+          {
+           "code": "9-12.AP.C.1",
+           "text": "Justify the selection of specific control structures when tradeoffs involve implementation, readability, and program performance, and explain the benefits and drawbacks of choices made."
+          },
+          {
+           "code": "9-12.AP.C.2",
+           "text": "Design and iteratively develop computational artifacts for practical intent, personal expression, or to address a societal issue by using events to initiate instructions."
+          },
+          {
+           "code": "9-12.AP.M.1",
+           "text": "Decompose problems into smaller components through systematic analysis, using constructs such as procedures, modules, and/or objects."
+          }
+         ]
+        },
+        {
+         "id": "algorithms-and-programming-2-of-6",
+         "title": "Algorithms and Programming (2 of 6)",
+         "outcomes": [
+          {
+           "code": "9-12.AP.M.2",
+           "text": "Create artifacts by using procedures within a program, combinations of data and procedures, or independent but interrelated programs."
+          },
+          {
+           "code": "9-12.AP.PD.1",
+           "text": "Systematically design and develop programs for broad audiences by incorporating feedback from users."
+          },
+          {
+           "code": "9-12.AP.PD.2",
+           "text": "Evaluate licenses that limit or restrict use of computational artifacts when using resources such as libraries."
+          },
+          {
+           "code": "9-12.AP.PD.3",
+           "text": "Evaluate and refine computational artifacts to make them more usable by all and accessible to people with disabilities."
+          },
+          {
+           "code": "9-12.AP.PD.4",
+           "text": "Design and develop computational artifacts working in team roles using collaborative tools."
+          }
+         ]
+        },
+        {
+         "id": "algorithms-and-programming-3-of-6",
+         "title": "Algorithms and Programming (3 of 6)",
+         "outcomes": [
+          {
+           "code": "9-12.AP.PD.5",
+           "text": "Document design decisions using text, graphics, presentations, and/or demonstrations in the development of complex programs."
+          },
+          {
+           "code": "A9-12.AP.A.1",
+           "text": "Describe how artificial intelligence drives many software and physical systems."
+          },
+          {
+           "code": "A9-12.AP.A.2",
+           "text": "Implement an artificial intelligence algorithm to play a game against a human opponent or solve a problem."
+          },
+          {
+           "code": "A9-12.AP.A.3",
+           "text": "Use and adapt classic algorithms to solve computational problems."
+          },
+          {
+           "code": "A9-12.AP.A.4",
+           "text": "Evaluate algorithms in terms of their efficiency, correctness, and clarity."
+          }
+         ]
+        },
+        {
+         "id": "algorithms-and-programming-4-of-6",
+         "title": "Algorithms and Programming (4 of 6)",
+         "outcomes": [
+          {
+           "code": "A9-12.AP.V.1",
+           "text": "Compare and contrast fundamental data structures and their uses."
+          },
+          {
+           "code": "A9-12.AP.C.1",
+           "text": "Illustrate the flow of execution of a recursive algorithm."
+          },
+          {
+           "code": "A9-12.AP.M.1",
+           "text": "Construct solutions to problems using student-created components, such as procedures, modules and/or objects."
+          },
+          {
+           "code": "A9-12.AP.M.2",
+           "text": "Analyze a large-scale computational problem and identify generalizable patterns that can be applied to a solution."
+          },
+          {
+           "code": "A9-12.AP.M.3",
+           "text": "Demonstrate code reuse by creating programming solutions using libraries and APIs."
+          }
+         ]
+        },
+        {
+         "id": "algorithms-and-programming-5-of-6",
+         "title": "Algorithms and Programming (5 of 6)",
+         "outcomes": [
+          {
+           "code": "A9-12.AP.PD.1",
+           "text": "Plan and develop programs for broad audiences using a software life cycle process."
+          },
+          {
+           "code": "A9-12.AP.PD.2",
+           "text": "Explain security issues that might lead to compromised computer programs."
+          },
+          {
+           "code": "A9-12.AP.PD.3",
+           "text": "Develop programs for multiple computing platforms."
+          },
+          {
+           "code": "A9-12.AP.PD.4",
+           "text": "Use version control systems, integrated development environments (IDEs), and collaborative tools and practices (code documentation) in a group software project."
+          },
+          {
+           "code": "A9-12.AP.PD.5",
+           "text": "Develop and use a series of test cases to verify that a program performs according to its design specifications."
+          }
+         ]
+        },
+        {
+         "id": "algorithms-and-programming-6-of-6",
+         "title": "Algorithms and Programming (6 of 6)",
+         "outcomes": [
+          {
+           "code": "A9-12.AP.PD.6",
+           "text": "Modify an existing program to add additional functionality and discuss intended and unintended implications (e.g., breaking other functionality)."
+          },
+          {
+           "code": "A9-12.AP.PD.7",
+           "text": "Evaluate key qualities of a program through a process such as a code review."
+          },
+          {
+           "code": "A9-12.AP.PD.8",
+           "text": "Compare multiple programming languages and discuss how their features make them suitable for solving different types of problems."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "computing-systems",
+     "title": "Computing Systems",
+     "topics": [
+      {
+       "id": "computing-systems",
+       "title": "Computing Systems",
+       "subtopics": [
+        {
+         "id": "computing-systems",
+         "title": "Computing Systems",
+         "outcomes": [
+          {
+           "code": "9-12.CS.D.1",
+           "text": "Explain how abstractions hide the underlying implementation details of computing systems embedded in everyday objects."
+          },
+          {
+           "code": "9-12.CS.HS.1",
+           "text": "Compare levels of abstraction and interactions between application software, system software, and hardware layers."
+          },
+          {
+           "code": "9-12.CS.T.1",
+           "text": "Develop guidelines that convey systematic troubleshooting strategies that others can use to identify and fix errors."
+          },
+          {
+           "code": "A9-12.CS.HS.1",
+           "text": "Categorize the roles of operating system software."
+          },
+          {
+           "code": "A9-12.CS.T.1",
+           "text": "Illustrate ways computing systems implement logic, input, and output through hardware components."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "data-and-analysis",
+     "title": "Data and Analysis",
+     "topics": [
+      {
+       "id": "data-and-analysis",
+       "title": "Data and Analysis",
+       "subtopics": [
+        {
+         "id": "data-and-analysis-1-of-2",
+         "title": "Data and Analysis (1 of 2)",
+         "outcomes": [
+          {
+           "code": "9-12.DA.S.1",
+           "text": "Translate between different bit representations of real-world phenomena, such as characters, numbers, and images (e.g., convert hexadecimal colors to decimal percentages, ASCII/Unicode representation)."
+          },
+          {
+           "code": "9-12.DA.S.2",
+           "text": "Evaluate the tradeoffs in how data elements are organized and where data is stored."
+          },
+          {
+           "code": "9-12.DA.CVT.1",
+           "text": "Create interactive data visualizations or alternative representations using software tools to help others better understand real-world phenomena."
+          },
+          {
+           "code": "9-12.DA.IM.1",
+           "text": "Create computational models that represent the relationships among different elements of data collected from a phenomenon, process, or model."
+          }
+         ]
+        },
+        {
+         "id": "data-and-analysis-2-of-2",
+         "title": "Data and Analysis (2 of 2)",
+         "outcomes": [
+          {
+           "code": "A9-12.DA.CVT.1",
+           "text": "Use data analysis tools and techniques to identify patterns in data representing complex systems."
+          },
+          {
+           "code": "A9-12.DA.CVT.2",
+           "text": "Select data collection tools and techniques to generate data sets that support a claim or communicate information."
+          },
+          {
+           "code": "A9-12.DA.IM.1",
+           "text": "Evaluate the ability of models and simulations to test and support the refinement of hypotheses."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "impacts-of-computing",
+     "title": "Impacts of Computing",
+     "topics": [
+      {
+       "id": "impacts-of-computing",
+       "title": "Impacts of Computing",
+       "subtopics": [
+        {
+         "id": "impacts-of-computing-1-of-3",
+         "title": "Impacts of Computing (1 of 3)",
+         "outcomes": [
+          {
+           "code": "9-12.IC.C.1",
+           "text": "Evaluate the ways computing impacts personal, ethical, social, economic, and cultural practices."
+          },
+          {
+           "code": "9-12.IC.C.2",
+           "text": "Test and refine computational artifacts to reduce bias and equity deficits."
+          },
+          {
+           "code": "9-12.IC.C.3",
+           "text": "Demonstrate ways a given algorithm applies to problems across disciplines."
+          },
+          {
+           "code": "9-12.IC.C.4",
+           "text": "Explain the potential impacts of artificial intelligence on society."
+          }
+         ]
+        },
+        {
+         "id": "impacts-of-computing-2-of-3",
+         "title": "Impacts of Computing (2 of 3)",
+         "outcomes": [
+          {
+           "code": "9-12.IC.SI.1",
+           "text": "Use tools and methods for collaboration on a project to increase connectivity of people in different cultures and career fields."
+          },
+          {
+           "code": "9-12.IC.SLE.1",
+           "text": "Explain the beneficial and harmful effects that intellectual property laws can have on innovation."
+          },
+          {
+           "code": "9-12.IC.SLE.2",
+           "text": "Explain the privacy concerns related to the collection and generation of data through automated processes that may not be evident to users."
+          },
+          {
+           "code": "9-12.IC.SLE.3",
+           "text": "Evaluate the social and economic implications of privacy in the context of safety, law, or ethics."
+          }
+         ]
+        },
+        {
+         "id": "impacts-of-computing-3-of-3",
+         "title": "Impacts of Computing (3 of 3)",
+         "outcomes": [
+          {
+           "code": "A9-12.IC.C.1",
+           "text": "Evaluate computational artifacts to maximize their beneficial effects and minimize harmful effects on society."
+          },
+          {
+           "code": "A9-12.IC.C.2",
+           "text": "Evaluate the impact of equity, access, and influence on the distribution of computing resources in a global society."
+          },
+          {
+           "code": "A9-12.IC.C.3",
+           "text": "Predict how computational innovations that have revolutionized aspects of our culture might evolve."
+          },
+          {
+           "code": "A9-12.IC.SLE.1",
+           "text": "Debate laws and regulations that impact the development and use of software."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "networks-and-the-internet",
+     "title": "Networks and the Internet",
+     "topics": [
+      {
+       "id": "networks-and-the-internet",
+       "title": "Networks and the Internet",
+       "subtopics": [
+        {
+         "id": "networks-and-the-internet-1-of-2",
+         "title": "Networks and the Internet (1 of 2)",
+         "outcomes": [
+          {
+           "code": "9-12.NI.NCO.1",
+           "text": "Evaluate the scalability and reliability of networks, by describing the relationship between routers, switches, servers, topology, and addressing."
+          },
+          {
+           "code": "9-12.NI.C.1",
+           "text": "Give examples to illustrate how sensitive data can be affected by malware and other attacks."
+          },
+          {
+           "code": "9-12.NI.C.2",
+           "text": "Recommend security measures to address various scenarios based on factors such as efficiency, feasibility, and ethical impacts."
+          },
+          {
+           "code": "9-12.NI.C.3",
+           "text": "Compare various security measures, considering tradeoffs between the usability and security of a computing system."
+          }
+         ]
+        },
+        {
+         "id": "networks-and-the-internet-2-of-2",
+         "title": "Networks and the Internet (2 of 2)",
+         "outcomes": [
+          {
+           "code": "9-12.NI.C.4",
+           "text": "Explain tradeoffs when selecting and implementing cybersecurity recommendations."
+          },
+          {
+           "code": "A9-12.NI.NCO.1",
+           "text": "Describe the issues that impact network functionality (e.g., bandwidth, load, delay, and topology)."
+          },
+          {
+           "code": "A9-12.NI.C.1",
+           "text": "Compare ways software developers protect devices and information from unauthorized access."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "empowered-learner",
+     "title": "Empowered Learner",
+     "topics": [
+      {
+       "id": "empowered-learner",
+       "title": "Empowered Learner",
+       "subtopics": [
+        {
+         "id": "empowered-learner",
+         "title": "Empowered Learner",
+         "outcomes": [
+          {
+           "code": "9-12.EL.A.1",
+           "text": "Actively assimilate and revise personal and career goals, select and manage current and emerging technologies to achieve them, and reflect on their successes and areas of improvement in working toward their goals."
+          },
+          {
+           "code": "9-12.EL.B.1",
+           "text": "Consistently engage in online social networks as a means to access and promote lifelong learning in collaboration with global peers."
+          },
+          {
+           "code": "9-12.EL.C.1",
+           "text": "Regularly revise their work habits and attitudes based on feedback from others and from functionalities embedded in digital tools to improve their learning process, and they select or creatively use technologies to share their learning in ways that are useful to others."
+          },
+          {
+           "code": "9-12.EL.D.1",
+           "text": "Successfully use a variety of existing technologies to develop criteria and identify new digital tools and resources from emerging technologies to accomplish a defined task with fluency and ease."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "digital-citizen",
+     "title": "Digital Citizen",
+     "topics": [
+      {
+       "id": "digital-citizen",
+       "title": "Digital Citizen",
+       "subtopics": [
+        {
+         "id": "digital-citizen",
+         "title": "Digital Citizen",
+         "outcomes": [
+          {
+           "code": "9-12.DC.A.1",
+           "text": "Analyze their digital identities and reputations within school policy to consider social media's impact on society, including demonstrating an understanding of how digital actions may have positive or negative implications for their future."
+          },
+          {
+           "code": "9-12.DC.B.1",
+           "text": "Demonstrate and advocate for positive, safe, legal, and ethical habits when using technology and when interacting with others online."
+          },
+          {
+           "code": "9-12.DC.B.2",
+           "text": "Distinguish potential dangers while online (e.g., malicious actors, phishing, impersonation) to prevent, detect, and combat cybersecurity threats while practicing safe and secure techniques, tactics, and practices recognizing cybersecurity is everyone's responsibility."
+          },
+          {
+           "code": "9-12.DC.C.1",
+           "text": "Advocate and demonstrate a respect for intellectual property with both print and digital media—including copyright, permission and fair use—by creating a variety of media products that include appropriate citation and attribution elements."
+          },
+          {
+           "code": "9-12.DC.D.1",
+           "text": "Demonstrate an understanding of what personal data is and how to keep it private and secure, including the awareness of terms such as encryption, HTTPS, password strength, cookies, phishing, and computer viruses; understand the limitations of data management and how data-collection technologies work."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "knowledge-constructor",
+     "title": "Knowledge Constructor",
+     "topics": [
+      {
+       "id": "knowledge-constructor",
+       "title": "Knowledge Constructor",
+       "subtopics": [
+        {
+         "id": "knowledge-constructor",
+         "title": "Knowledge Constructor",
+         "outcomes": [
+          {
+           "code": "9-12.KC.A.1",
+           "text": "Plan and employ effective research strategies to locate information and other resources for their intellectual or creative pursuits."
+          },
+          {
+           "code": "9-12.KC.B.1",
+           "text": "Evaluate the accuracy, perspective, credibility, and relevance of information, media, data, or other resources in the school and career setting."
+          },
+          {
+           "code": "9-12.KC.C.1",
+           "text": "Curate information from digital resources, including online databases and catalogs, for research using a variety of tools and methods to create collections of artifacts that support their learning and career goals."
+          },
+          {
+           "code": "9-12.KC.D.1",
+           "text": "Explore real-world issues and problems through inquiry and analysis, develop ideas, actively create solutions for them, and evaluate and revise through the use of digital tools."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "innovative-designer",
+     "title": "Innovative Designer",
+     "topics": [
+      {
+       "id": "innovative-designer",
+       "title": "Innovative Designer",
+       "subtopics": [
+        {
+         "id": "innovative-designer",
+         "title": "Innovative Designer",
+         "outcomes": [
+          {
+           "code": "9-12.ID.A.1",
+           "text": "Engage in a design process and employ it to inquire and analyze, generate ideas, create innovative products or solve authentic problems, and evaluate the process to revise if needed."
+          },
+          {
+           "code": "9-12.ID.B.1",
+           "text": "Creatively use digital tools to support a design process and expand their understanding to identify constraints, trade-offs, and to weigh risks."
+          },
+          {
+           "code": "9-12.ID.C.1",
+           "text": "Engage in a cyclical design process to inquire and analyze, develop ideas, test, and revise prototypes, presenting finished products and best practices learned during the development."
+          },
+          {
+           "code": "9-12.ID.D.1",
+           "text": "Demonstrate an ability to persevere and handle greater ambiguity as they work to solve open-ended problems."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "computational-thinker",
+     "title": "Computational Thinker",
+     "topics": [
+      {
+       "id": "computational-thinker",
+       "title": "Computational Thinker",
+       "subtopics": [
+        {
+         "id": "computational-thinker",
+         "title": "Computational Thinker",
+         "outcomes": [
+          {
+           "code": "9-12.CT.A.1",
+           "text": "Define complex issues, create a plan, and select appropriate technology-assisted methods such as data analysis, abstract models, and algorithmic thinking in exploring and finding solutions."
+          },
+          {
+           "code": "9-12.CT.B.1",
+           "text": "Evaluate created or given data sets, use digital tools to analyze them, and represent data in various ways to facilitate problem-solving and decision-making."
+          },
+          {
+           "code": "9-12.CT.B.2",
+           "text": "Evaluate and justify the formats for reporting results to a variety of audiences."
+          },
+          {
+           "code": "9-12.CT.C.1",
+           "text": "Collaborate to break problems into component parts, identify key pieces, and use that information to problem-solve."
+          },
+          {
+           "code": "9-12.CT.C.2",
+           "text": "Use 3D design tools to create prototypes, models, and simulations to demonstrate solutions and ideas."
+          },
+          {
+           "code": "9-12.CT.D.1",
+           "text": "Collaborate to develop an automated process by using algorithmic thinking to develop a sequence of steps to create and test automated solutions."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "creative-communicator",
+     "title": "Creative Communicator",
+     "topics": [
+      {
+       "id": "creative-communicator",
+       "title": "Creative Communicator",
+       "subtopics": [
+        {
+         "id": "creative-communicator",
+         "title": "Creative Communicator",
+         "outcomes": [
+          {
+           "code": "9-12.CC.A.1",
+           "text": "Use digital learning tools and resources to identify communication needs considering goals, audience, content, access to tools or devices, and timing of communication, to involve teams in diverse locales for effective communication."
+          },
+          {
+           "code": "9-12.CC.B.1",
+           "text": "Create an original work using multiple digital tools, including planning, research, editing, and production."
+          },
+          {
+           "code": "9-12.CC.C.1",
+           "text": "Create digital graphic visualizations, data driven models, and simulations to succinctly communicate complex ideas and problems; justify methods and tools used."
+          },
+          {
+           "code": "9-12.CC.D.1",
+           "text": "Publish or present content designed for specific audiences using online meeting tools to asynchronous and synchronous audiences."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "global-collaborator",
+     "title": "Global Collaborator",
+     "topics": [
+      {
+       "id": "global-collaborator",
+       "title": "Global Collaborator",
+       "subtopics": [
+        {
+         "id": "global-collaborator",
+         "title": "Global Collaborator",
+         "outcomes": [
+          {
+           "code": "9-12.GC.A.1",
+           "text": "Use digital tools to interact with others to develop a richer understanding of different perspectives and cultures; publish electronic artifacts that communicate to a culturally diverse and global community."
+          },
+          {
+           "code": "9-12.GC.B.1",
+           "text": "Use collaborative technologies (live and recorded) to connect with global stakeholders including peers, not excluding other languages, experts, and community members, to learn about issues and problems or to gain a broader perspective; develop multiple viewpoints that may be electronically published and accessible to all audiences."
+          },
+          {
+           "code": "9-12.GC.C.1",
+           "text": "Learn project management roles on a team to meet goals, based on their knowledge of technology and content, as well as personal preference; goals in project, timelines and milestones, will be monitored with tools and shared globally."
+          },
+          {
+           "code": "9-12.GC.D.1",
+           "text": "Select and justify the effective collaborative technologies (live video conference, online forums, social media and other emerging communication methods) to investigate, develop, and publish solutions related to local and global issues."
+          },
+          {
+           "code": "9-12.GC.D.2",
+           "text": "Understand that digital tools such as blogs and social media can be used to crowd source, crowd fund, and mobilize a community toward a goal."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "build": {
+  "builtAt": "2026-10-14T16:20:45.839Z",
+  "model": "none",
+  "usd": 0,
+  "expectedCodes": 272,
+  "coverage": 1,
+  "missingCodes": [],
+  "counts": {
+   "grades": 8,
+   "units": 96,
+   "topics": 96,
+   "subtopics": 106,
+   "outcomes": 276
+  },
+  "warnings": [
+   "unit \"Data and Analysis\" (grade K) has a single outcome",
+   "unit \"Networks and the Internet\" (grade K) has a single outcome",
+   "unit \"Knowledge Constructor\" (grade K) has a single outcome",
+   "unit \"Innovative Designer\" (grade K) has a single outcome",
+   "unit \"Creative Communicator\" (grade K) has a single outcome",
+   "unit \"Global Collaborator\" (grade K) has a single outcome",
+   "unit \"Computing Systems\" (grade 1) has a single outcome",
+   "unit \"Data and Analysis\" (grade 1) has a single outcome",
+   "unit \"Impacts of Computing\" (grade 1) has a single outcome",
+   "unit \"Networks and the Internet\" (grade 1) has a single outcome",
+   "unit \"Knowledge Constructor\" (grade 1) has a single outcome",
+   "unit \"Global Collaborator\" (grade 1) has a single outcome",
+   "unit \"Computing Systems\" (grade 2) has a single outcome",
+   "unit \"Data and Analysis\" (grade 2) has a single outcome",
+   "unit \"Networks and the Internet\" (grade 2) has a single outcome",
+   "unit \"Innovative Designer\" (grade 2) has a single outcome",
+   "unit \"Computational Thinker\" (grade 2) has a single outcome",
+   "unit \"Creative Communicator\" (grade 2) has a single outcome",
+   "unit \"Computing Systems\" (grade 3) has a single outcome",
+   "unit \"Data and Analysis\" (grade 3) has a single outcome",
+   "unit \"Networks and the Internet\" (grade 3) has a single outcome",
+   "unit \"Creative Communicator\" (grade 3) has a single outcome",
+   "unit \"Computing Systems\" (grade 4) has a single outcome",
+   "unit \"Data and Analysis\" (grade 4) has a single outcome",
+   "unit \"Impacts of Computing\" (grade 4) has a single outcome",
+   "unit \"Networks and the Internet\" (grade 4) has a single outcome",
+   "unit \"Knowledge Constructor\" (grade 4) has a single outcome",
+   "unit \"Computational Thinker\" (grade 4) has a single outcome",
+   "unit \"Global Collaborator\" (grade 4) has a single outcome",
+   "unit \"Computing Systems\" (grade 5) has a single outcome",
+   "unit \"Data and Analysis\" (grade 5) has a single outcome",
+   "unit \"Digital Citizen\" (grade 5) has a single outcome",
+   "unit \"Innovative Designer\" (grade 5) has a single outcome",
+   "unit \"Computational Thinker\" (grade 5) has a single outcome",
+   "unit \"Global Collaborator\" (grade 5) has a single outcome"
+  ]
+ }
+}

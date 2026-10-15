@@ -1,0 +1,1353 @@
+{
+ "id": "uk-ocr-gcse-biology-b-j257",
+ "region": "UK",
+ "framework": "OCR GCSE (9-1)",
+ "board": "OCR",
+ "qualification": "GCSE",
+ "subject": "Biology B (Twenty First Century Science)",
+ "syllabusCode": "J257",
+ "gradeSystem": "year",
+ "source": {
+  "urls": [
+   "https://www.ocr.org.uk/Images/234595-specification-accredited-gcse-twenty-first-century-science-suite-biology-b-j257.pdf"
+  ],
+  "publisher": "OCR (Oxford Cambridge and RSA)",
+  "licence": "Exam board specification, (c) OCR; structure + our own wording only",
+  "firstExam": "2018"
+ },
+ "grades": [
+  {
+   "grade": "all",
+   "units": [
+    {
+     "id": "chapter-b1-you-and-your-genes",
+     "title": "Chapter B1: You and your genes",
+     "topics": [
+      {
+       "id": "b1-1-what-is-the-genome-and-what-does-it-do",
+       "title": "B1.1 What is the genome and what does it do?",
+       "subtopics": [
+        {
+         "id": "genome-dna-and-genes",
+         "title": "Genome, DNA and genes",
+         "outcomes": [
+          {
+           "code": "B1.1",
+           "text": "Explain how the nucleus and genetic material of eukaryotic cells, and plasmids of prokaryotes, relate to cell function."
+          },
+          {
+           "code": null,
+           "text": "Describe how to use a light microscope to observe plant and animal cells."
+          },
+          {
+           "code": null,
+           "text": "Describe the genome as the entire genetic material of an organism."
+          },
+          {
+           "code": null,
+           "text": "Describe DNA as a polymer of nucleotides in a double helix."
+          },
+          {
+           "code": null,
+           "text": "Describe how the genome and environment together shape the phenotype."
+          },
+          {
+           "code": null,
+           "text": "Explain chromosome, gene, allele, variant, genotype and phenotype."
+          },
+          {
+           "code": null,
+           "text": "Explain how amino acids are polymerised into proteins under instructions from the genome."
+          }
+         ]
+        },
+        {
+         "id": "the-genetic-code-and-mutation",
+         "title": "The genetic code and mutation",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe DNA nucleotides: a sugar and phosphate with one of four bases (separate science)."
+          },
+          {
+           "code": null,
+           "text": "Explain how base sequence codes for proteins, three nucleotides per amino acid (separate science)."
+          },
+          {
+           "code": null,
+           "text": "Recall a simple description of protein synthesis involving mRNA and ribosomes (separate science)."
+          },
+          {
+           "code": null,
+           "text": "Recall that all genetic variants arise from mutations (separate science)."
+          },
+          {
+           "code": null,
+           "text": "Describe how variants in coding DNA alter protein activity and phenotype (separate science)."
+          },
+          {
+           "code": null,
+           "text": "Describe how variants in non-coding DNA alter gene expression and phenotype (separate science)."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "b1-2-how-is-genetic-information-inherited",
+       "title": "B1.2 How is genetic information inherited?",
+       "subtopics": [
+        {
+         "id": "single-gene-inheritance",
+         "title": "Single gene inheritance",
+         "outcomes": [
+          {
+           "code": "B1.2",
+           "text": "Explain gamete, homozygous, heterozygous, dominant and recessive."
+          },
+          {
+           "code": null,
+           "text": "Explain single gene inheritance, including genetic diagrams."
+          },
+          {
+           "code": null,
+           "text": "Predict the results of single gene crosses."
+          },
+          {
+           "code": null,
+           "text": "Use direct proportions and simple ratios in genetic crosses."
+          },
+          {
+           "code": null,
+           "text": "Use probability to predict the outcome of genetic crosses."
+          },
+          {
+           "code": null,
+           "text": "Recall that most features result from multiple genes."
+          }
+         ]
+        },
+        {
+         "id": "mendel-genomes-and-sex-determination",
+         "title": "Mendel, genomes and sex determination",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe the development of genetics, including Mendel and genome sequencing (separate science)."
+          },
+          {
+           "code": null,
+           "text": "Describe sex determination in humans."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "b1-3-how-can-and-should-gene-technology-be-used",
+       "title": "B1.3 How can and should gene technology be used?",
+       "subtopics": [
+        {
+         "id": "genetic-testing-and-genetic-engineering",
+         "title": "Genetic testing and genetic engineering",
+         "outcomes": [
+          {
+           "code": "B1.3",
+           "text": "Discuss the importance for medicine of understanding the human genome, including disease alleles and genetic testing for family planning and healthcare."
+          },
+          {
+           "code": null,
+           "text": "Describe genetic engineering as modifying an organism's genome to introduce desirable characteristics."
+          },
+          {
+           "code": null,
+           "text": "Describe the main steps of genetic engineering: isolating the gene, putting it in a vector such as a plasmid, inserting it in cells and selecting modified cells."
+          },
+          {
+           "code": null,
+           "text": "Explain the benefits and risks, practical and ethical, of gene technology in agriculture and medicine."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "chapter-b2-keeping-healthy",
+     "title": "Chapter B2: Keeping healthy",
+     "topics": [
+      {
+       "id": "b2-1-what-are-the-causes-of-disease",
+       "title": "B2.1 What are the causes of disease?",
+       "subtopics": [
+        {
+         "id": "health-disease-and-pathogens",
+         "title": "Health, disease and pathogens",
+         "outcomes": [
+          {
+           "code": "B2.1",
+           "text": "Describe the relationship between health and disease."
+          },
+          {
+           "code": null,
+           "text": "Describe communicable and non-communicable diseases."
+          },
+          {
+           "code": null,
+           "text": "Explain how communicable diseases from viruses, bacteria, protists and fungi spread in animals and plants."
+          },
+          {
+           "code": null,
+           "text": "Describe influenza, Salmonella, athlete's foot, malaria and sexually transmitted infections including HIV/AIDS."
+          },
+          {
+           "code": null,
+           "text": "Describe the plant diseases tobacco mosaic virus, ash dieback and crown gall."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "b2-2-how-do-organisms-protect-themselves-against",
+       "title": "B2.2 How do organisms protect themselves against pathogens?",
+       "subtopics": [
+        {
+         "id": "defences-against-pathogens",
+         "title": "Defences against pathogens",
+         "outcomes": [
+          {
+           "code": "B2.2",
+           "text": "Describe non-specific human defences: physical, chemical and microbial."
+          },
+          {
+           "code": null,
+           "text": "Explain how platelets are adapted to their function."
+          },
+          {
+           "code": null,
+           "text": "Explain the role of the immune system in defence."
+          },
+          {
+           "code": null,
+           "text": "Explain how white blood cells are adapted: ingesting pathogens, antibodies, antigens and memory cells."
+          },
+          {
+           "code": null,
+           "text": "Describe physical plant defences, including the leaf cuticle and cell wall (separate science)."
+          },
+          {
+           "code": null,
+           "text": "Describe chemical plant defences such as antimicrobial substances (separate science)."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "b2-3-how-can-we-prevent-the-spread-of-infections",
+       "title": "B2.3 How can we prevent the spread of infections?",
+       "subtopics": [
+        {
+         "id": "preventing-and-controlling-infections",
+         "title": "Preventing and controlling infections",
+         "outcomes": [
+          {
+           "code": "B2.3",
+           "text": "Explain how the spread of communicable diseases is reduced in animals and plants, including a human infection, a plant disease and STIs such as HIV/AIDS."
+          },
+          {
+           "code": null,
+           "text": "Explain how vaccines prevent disease, using safe forms of pathogens, and why a large share of the population must be vaccinated."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "b2-4-how-can-we-identify-the-cause-of-an-infecti",
+       "title": "B2.4 How can we identify the cause of an infection? (separate science only)",
+       "subtopics": [
+        {
+         "id": "identifying-infections",
+         "title": "Identifying infections",
+         "outcomes": [
+          {
+           "code": "B2.4",
+           "text": "Describe ways of detecting and identifying disease, including plant disease, in the lab and field."
+          },
+          {
+           "code": null,
+           "text": "Describe how to use a light microscope to observe microorganisms."
+          },
+          {
+           "code": null,
+           "text": "Explain the aseptic techniques used in culturing organisms."
+          },
+          {
+           "code": null,
+           "text": "Calculate cross-sectional areas of cultures and clear zones around antibiotic discs using pi r^2."
+          }
+         ]
+        },
+        {
+         "id": "monoclonal-antibodies-in-diagnosis",
+         "title": "Monoclonal antibodies in diagnosis",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe how monoclonal antibodies are produced."
+          },
+          {
+           "code": null,
+           "text": "Describe how monoclonal antibodies are used in diagnostic tests."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "b2-5-how-can-lifestyle-genes-and-the-environment",
+       "title": "B2.5 How can lifestyle, genes and the environment affect health?",
+       "subtopics": [
+        {
+         "id": "lifestyle-genes-and-non-communicable-disease",
+         "title": "Lifestyle, genes and non-communicable disease",
+         "outcomes": [
+          {
+           "code": "B2.5",
+           "text": "Describe how genetic and lifestyle factors increase or decrease the risk of non-communicable diseases such as cardiovascular disease, cancer and type 2 diabetes."
+          },
+          {
+           "code": null,
+           "text": "Describe how to investigate the effect of exercise on pulse and recovery rate."
+          },
+          {
+           "code": null,
+           "text": "Use data to explain the incidence of non-communicable diseases locally, nationally and globally in terms of exercise, diet, alcohol and smoking."
+          },
+          {
+           "code": null,
+           "text": "Translate between graphical and numerical forms and construct frequency tables, bar charts and histograms."
+          },
+          {
+           "code": null,
+           "text": "Understand sampling and use scatter diagrams to identify correlation."
+          },
+          {
+           "code": null,
+           "text": "Describe interactions between different types of disease."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "b2-6-how-can-we-treat-disease",
+       "title": "B2.6 How can we treat disease?",
+       "subtopics": [
+        {
+         "id": "medicines-and-treatment",
+         "title": "Medicines and treatment",
+         "outcomes": [
+          {
+           "code": "B2.6",
+           "text": "Explain the use of medicines, including antibiotics, in treating disease."
+          },
+          {
+           "code": null,
+           "text": "Calculate cross-sectional areas of bacterial cultures and clear zones using pi r^2."
+          },
+          {
+           "code": null,
+           "text": "Evaluate treatments for cardiovascular disease: lifestyle changes, medicines and surgery."
+          }
+         ]
+        },
+        {
+         "id": "developing-new-medicines",
+         "title": "Developing new medicines",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe discovery and development of new medicines, including preclinical and clinical testing."
+          },
+          {
+           "code": null,
+           "text": "Describe how monoclonal antibodies treat cancer, including tagging cells and delivering radioactive or toxic substances (separate science)."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "chapter-b3-living-together-food-and-ecosystems",
+     "title": "Chapter B3: Living together - food and ecosystems",
+     "topics": [
+      {
+       "id": "b3-1-what-happens-during-photosynthesis",
+       "title": "B3.1 What happens during photosynthesis?",
+       "subtopics": [
+        {
+         "id": "the-process-of-photosynthesis",
+         "title": "The process of photosynthesis",
+         "outcomes": [
+          {
+           "code": "B3.1",
+           "text": "Describe photosynthesis, its two stages, the need for light and its endothermic nature."
+          },
+          {
+           "code": null,
+           "text": "Describe investigations into the requirements and products of photosynthesis."
+          },
+          {
+           "code": null,
+           "text": "Explain how chloroplasts are related to photosynthesis."
+          }
+         ]
+        },
+        {
+         "id": "enzymes",
+         "title": "Enzymes",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain enzyme action: active site, specificity and the lock and key model."
+          },
+          {
+           "code": null,
+           "text": "Explain the effects of substrate concentration, temperature and pH on enzyme-catalysed reactions."
+          },
+          {
+           "code": null,
+           "text": "Describe investigations into those effects."
+          }
+         ]
+        },
+        {
+         "id": "rate-of-photosynthesis",
+         "title": "Rate of photosynthesis",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain how temperature, light intensity and carbon dioxide concentration affect photosynthesis rate."
+          },
+          {
+           "code": null,
+           "text": "Describe investigations into environmental factors affecting photosynthesis."
+          },
+          {
+           "code": null,
+           "text": "Use the inverse square law to explain changes in rate with distance from a light source."
+          },
+          {
+           "code": null,
+           "text": "Explain how factors interact to limit photosynthesis, using graphs."
+          },
+          {
+           "code": null,
+           "text": "Calculate rates, plot graphs and interpret graphs, charts and tables for photosynthesis data."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "b3-2-how-do-producers-get-the-substances-they-ne",
+       "title": "B3.2 How do producers get the substances they need?",
+       "subtopics": [
+        {
+         "id": "moving-substances-in-producers",
+         "title": "Moving substances in producers",
+         "outcomes": [
+          {
+           "code": "B3.2",
+           "text": "Describe the substances transported into and out of photosynthetic organisms."
+          },
+          {
+           "code": null,
+           "text": "Explain transport into and out of cells by diffusion, osmosis and active transport."
+          },
+          {
+           "code": null,
+           "text": "Describe investigations into diffusion and osmosis."
+          },
+          {
+           "code": null,
+           "text": "Explain how partially permeable membranes relate to diffusion, osmosis and active transport."
+          },
+          {
+           "code": null,
+           "text": "Explain uptake of water and mineral ions, relating root hair cells to function."
+          }
+         ]
+        },
+        {
+         "id": "transport-in-plants",
+         "title": "Transport in plants",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain how xylem and phloem are adapted, and how to observe them with a microscope."
+          },
+          {
+           "code": null,
+           "text": "Describe transpiration and translocation, and the structure and function of stomata."
+          },
+          {
+           "code": null,
+           "text": "Describe how to use a simple potometer."
+          },
+          {
+           "code": null,
+           "text": "Explain how light intensity, air movement and temperature affect water uptake, and investigate it."
+          },
+          {
+           "code": null,
+           "text": "Calculate rates, plot graphs and calculate percentage mass gain and loss for water uptake."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "b3-3-how-are-organisms-in-an-ecosystem-interdepe",
+       "title": "B3.3 How are organisms in an ecosystem interdependent?",
+       "subtopics": [
+        {
+         "id": "food-molecules-and-biomass",
+         "title": "Food molecules and biomass",
+         "outcomes": [
+          {
+           "code": "B3.3",
+           "text": "Explain the importance of sugars, fatty acids, glycerol and amino acids in building and breaking down carbohydrates, lipids and proteins."
+          },
+          {
+           "code": null,
+           "text": "Describe qualitative tests for biological molecules."
+          },
+          {
+           "code": null,
+           "text": "Describe photosynthetic organisms as the main producers of food and biomass."
+          },
+          {
+           "code": null,
+           "text": "Describe substances, including dissolved food molecules, transported into organisms."
+          }
+         ]
+        },
+        {
+         "id": "interdependence-in-ecosystems",
+         "title": "Interdependence in ecosystems",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe levels of organisation from individual organism to whole ecosystem."
+          },
+          {
+           "code": null,
+           "text": "Explain the importance of interdependence and competition in a community."
+          },
+          {
+           "code": null,
+           "text": "Describe differences between trophic levels (separate science)."
+          },
+          {
+           "code": null,
+           "text": "Describe pyramids of biomass and how biomass is lost between levels (separate science)."
+          },
+          {
+           "code": null,
+           "text": "Calculate the efficiency of biomass transfer between trophic levels (separate science)."
+          }
+         ]
+        },
+        {
+         "id": "cycling-of-substances",
+         "title": "Cycling of substances",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Recall that substances such as carbon and water cycle through abiotic and biotic parts of an ecosystem."
+          },
+          {
+           "code": null,
+           "text": "Explain the importance of the carbon cycle and water cycle."
+          },
+          {
+           "code": null,
+           "text": "Explain the role of microorganisms in cycling substances."
+          },
+          {
+           "code": null,
+           "text": "Calculate percentages of mass in the use and cycling of substances."
+          },
+          {
+           "code": null,
+           "text": "Explain how temperature and water content affect decomposition rate in aerobic and anaerobic conditions (separate science)."
+          },
+          {
+           "code": null,
+           "text": "Calculate rate changes in decay of biological material (separate science)."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "b3-4-how-are-populations-affected-by-conditions-",
+       "title": "B3.4 How are populations affected by conditions in an ecosystem?",
+       "subtopics": [
+        {
+         "id": "populations-and-ecosystem-conditions",
+         "title": "Populations and ecosystem conditions",
+         "outcomes": [
+          {
+           "code": "B3.4",
+           "text": "Explain how abiotic and biotic factors affect communities: conditions, toxic chemicals, resources, predators and pathogens."
+          },
+          {
+           "code": null,
+           "text": "Describe a field investigation of distribution and abundance and how to determine numbers in an area."
+          },
+          {
+           "code": null,
+           "text": "Calculate means, use fractions and percentages, and plot and interpret population data."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "chapter-b4-using-food-and-controlling-growth",
+     "title": "Chapter B4: Using food and controlling growth",
+     "topics": [
+      {
+       "id": "b4-1-what-happens-during-cellular-respiration",
+       "title": "B4.1 What happens during cellular respiration?",
+       "subtopics": [
+        {
+         "id": "aerobic-and-anaerobic-respiration",
+         "title": "Aerobic and anaerobic respiration",
+         "outcomes": [
+          {
+           "code": "B4.1",
+           "text": "Compare aerobic and anaerobic respiration: conditions, inputs, outputs and ATP yields."
+          },
+          {
+           "code": null,
+           "text": "Explain why cellular respiration occurs continuously in all living cells."
+          },
+          {
+           "code": null,
+           "text": "Explain how mitochondria relate to cellular respiration."
+          },
+          {
+           "code": null,
+           "text": "Describe cellular respiration as an exothermic process."
+          },
+          {
+           "code": null,
+           "text": "Describe investigations into the effect of substrates on respiration rate in yeast."
+          },
+          {
+           "code": null,
+           "text": "Carry out rate calculations for respiration."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "b4-2-how-do-we-know-about-mitochondria-and-other",
+       "title": "B4.2 How do we know about mitochondria and other cell structures?",
+       "subtopics": [
+        {
+         "id": "electron-microscopy-and-cell-structures",
+         "title": "Electron microscopy and cell structures",
+         "outcomes": [
+          {
+           "code": "B4.2",
+           "text": "Explain how electron microscopy increased understanding of sub-cellular structures."
+          },
+          {
+           "code": null,
+           "text": "Use number, size, scale and units for cells and sub-cellular structures."
+          },
+          {
+           "code": null,
+           "text": "Use estimation and calculate with numbers in standard form."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "b4-3-how-do-organisms-grow-and-develop",
+       "title": "B4.3 How do organisms grow and develop?",
+       "subtopics": [
+        {
+         "id": "cell-division",
+         "title": "Cell division",
+         "outcomes": [
+          {
+           "code": "B4.3",
+           "text": "Describe the cell cycle in growth, including interphase and mitosis, and how to observe mitosis."
+          },
+          {
+           "code": null,
+           "text": "Describe cancer as uncontrolled growth and division from changes in cells."
+          },
+          {
+           "code": null,
+           "text": "Explain how meiosis halves the chromosome number to form gametes."
+          }
+         ]
+        },
+        {
+         "id": "stem-cells-and-differentiation",
+         "title": "Stem cells and differentiation",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe the function of stem cells in embryonic and adult animals and meristems in plants."
+          },
+          {
+           "code": null,
+           "text": "Explain cell differentiation by switching genes on and off."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "b4-4-how-is-plant-growth-controlled-separate-sci",
+       "title": "B4.4 How is plant growth controlled? (separate science only)",
+       "subtopics": [
+        {
+         "id": "plant-hormones",
+         "title": "Plant hormones",
+         "outcomes": [
+          {
+           "code": "B4.4",
+           "text": "Explain the role of plant hormones, including auxins in phototropism and gravitropism, and investigate auxin in phototropism."
+          },
+          {
+           "code": null,
+           "text": "Describe effects of gibberellins and ethene."
+          },
+          {
+           "code": null,
+           "text": "Describe ways people use plant hormones to control plant growth."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "b4-5-should-we-use-stem-cells-to-treat-damage-an",
+       "title": "B4.5 Should we use stem cells to treat damage and disease?",
+       "subtopics": [
+        {
+         "id": "stem-cells-in-medicine",
+         "title": "Stem cells in medicine",
+         "outcomes": [
+          {
+           "code": "B4.5",
+           "text": "Discuss benefits, risks and ethical issues of using stem cells in medicine."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "chapter-b5-the-human-body-staying-alive",
+     "title": "Chapter B5: The human body - staying alive",
+     "topics": [
+      {
+       "id": "b5-1-how-do-substances-get-into-out-of-and-aroun",
+       "title": "B5.1 How do substances get into, out of and around our bodies?",
+       "subtopics": [
+        {
+         "id": "transporting-substances-in-the-body",
+         "title": "Transporting substances in the body",
+         "outcomes": [
+          {
+           "code": "B5.1",
+           "text": "Describe substances moved into and out of the body: oxygen, carbon dioxide, water, dissolved food and urea."
+          },
+          {
+           "code": null,
+           "text": "Explain how partially permeable animal cell membranes relate to diffusion, osmosis and active transport."
+          },
+          {
+           "code": null,
+           "text": "Describe the circulatory system and its links with gaseous exchange, digestive and excretory systems."
+          },
+          {
+           "code": null,
+           "text": "Explain how the heart is adapted: cardiac muscle, chambers and valves."
+          },
+          {
+           "code": null,
+           "text": "Explain how arteries, veins and capillaries are adapted to their functions."
+          },
+          {
+           "code": null,
+           "text": "Explain how red blood cells and plasma are adapted to their functions."
+          }
+         ]
+        },
+        {
+         "id": "exchange-surfaces",
+         "title": "Exchange surfaces",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain the need for exchange surfaces and a transport system in terms of surface area to volume ratio."
+          },
+          {
+           "code": null,
+           "text": "Calculate surface area to volume ratios."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "b5-2-how-does-the-nervous-system-help-us-respond",
+       "title": "B5.2 How does the nervous system help us respond to changes?",
+       "subtopics": [
+        {
+         "id": "nerves-and-reflexes",
+         "title": "Nerves and reflexes",
+         "outcomes": [
+          {
+           "code": "B5.2",
+           "text": "Explain how receptors, sensory neurons, the CNS, motor neurons and effectors work together."
+          },
+          {
+           "code": null,
+           "text": "Explain how nerve cells and synapses relate to their functions."
+          },
+          {
+           "code": null,
+           "text": "Explain the structure of a reflex arc, including the relay neuron, and describe investigations into reflexes."
+          }
+         ]
+        },
+        {
+         "id": "the-brain",
+         "title": "The brain",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe the brain's structure and the roles of cerebral cortex, cerebellum and brain stem (separate science)."
+          },
+          {
+           "code": null,
+           "text": "Explain difficulties of investigating brain function, including fMRI and ethics (separate science)."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "b5-3-how-do-hormones-control-responses-in-the-hu",
+       "title": "B5.3 How do hormones control responses in the human body?",
+       "subtopics": [
+        {
+         "id": "hormonal-coordination",
+         "title": "Hormonal coordination",
+         "outcomes": [
+          {
+           "code": "B5.3",
+           "text": "Describe the principles of hormonal coordination by the endocrine system."
+          },
+          {
+           "code": null,
+           "text": "Explain the roles of thyroxine, as a negative feedback example, and adrenaline."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "b5-4-why-do-we-need-to-maintain-a-constant-inter",
+       "title": "B5.4 Why do we need to maintain a constant internal environment?",
+       "subtopics": [
+        {
+         "id": "homeostasis-and-temperature-control",
+         "title": "Homeostasis and temperature control",
+         "outcomes": [
+          {
+           "code": "B5.4",
+           "text": "Explain the importance of a constant internal environment."
+          },
+          {
+           "code": null,
+           "text": "Describe the function of the skin in temperature control: sweating, hair erection and blood flow (separate science)."
+          },
+          {
+           "code": null,
+           "text": "Explain the body's responses to temperature challenges, including negative feedback (separate science)."
+          },
+          {
+           "code": null,
+           "text": "Explain the effect on cells of osmotic changes in body fluids."
+          }
+         ]
+        },
+        {
+         "id": "water-balance-and-the-kidneys",
+         "title": "Water balance and the kidneys",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe how the kidneys filter water and urea and maintain water balance (separate science)."
+          },
+          {
+           "code": null,
+           "text": "Describe the effect of ADH on kidney tubule permeability (separate science)."
+          },
+          {
+           "code": null,
+           "text": "Explain the body's response to osmotic challenges (separate science)."
+          },
+          {
+           "code": null,
+           "text": "Extract, interpret and translate data in graphs, charts and tables."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "b5-5-what-role-do-hormones-play-in-human-reprodu",
+       "title": "B5.5 What role do hormones play in human reproduction?",
+       "subtopics": [
+        {
+         "id": "hormones-and-reproduction",
+         "title": "Hormones and reproduction",
+         "outcomes": [
+          {
+           "code": "B5.5",
+           "text": "Describe the role of hormones in human reproduction, including the menstrual cycle."
+          },
+          {
+           "code": null,
+           "text": "Explain the interactions of FSH, LH, oestrogen and progesterone."
+          },
+          {
+           "code": null,
+           "text": "Explain hormonal contraception and evaluate hormonal and non-hormonal methods."
+          },
+          {
+           "code": null,
+           "text": "Explain the use of hormones in treating infertility."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "b5-6-what-can-happen-when-organs-and-control-sys",
+       "title": "B5.6 What can happen when organs and control systems stop working?",
+       "subtopics": [
+        {
+         "id": "blood-sugar-and-diabetes",
+         "title": "Blood sugar and diabetes",
+         "outcomes": [
+          {
+           "code": "B5.6",
+           "text": "Explain how insulin controls blood sugar."
+          },
+          {
+           "code": null,
+           "text": "Explain how glucagon and insulin work together."
+          },
+          {
+           "code": null,
+           "text": "Compare type 1 and type 2 diabetes and their treatment."
+          }
+         ]
+        },
+        {
+         "id": "the-eye-and-nervous-system-damage",
+         "title": "The eye and nervous system damage",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain how eye structures relate to function, using ray diagrams: cornea, iris, lens, ciliary muscle and retina."
+          },
+          {
+           "code": null,
+           "text": "Describe investigations into pupil response to light (separate science)."
+          },
+          {
+           "code": null,
+           "text": "Describe eye defects and how they are overcome, using ray diagrams (separate science)."
+          },
+          {
+           "code": null,
+           "text": "Explain limitations in treating nervous system damage and the potential of stem cells (separate science)."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "chapter-b6-life-on-earth-past-present-and-future",
+     "title": "Chapter B6: Life on Earth - past, present and future",
+     "topics": [
+      {
+       "id": "b6-1-how-was-the-theory-of-evolution-developed",
+       "title": "B6.1 How was the theory of evolution developed?",
+       "subtopics": [
+        {
+         "id": "evolution-by-natural-selection",
+         "title": "Evolution by natural selection",
+         "outcomes": [
+          {
+           "code": "B6.1",
+           "text": "State that populations usually show extensive genetic variation."
+          },
+          {
+           "code": null,
+           "text": "Recall that variants arise from mutations, most with no effect on phenotype."
+          },
+          {
+           "code": null,
+           "text": "Explain evolution through natural selection of variants suited to the environment."
+          },
+          {
+           "code": null,
+           "text": "Explain the importance of competition for natural selection."
+          },
+          {
+           "code": null,
+           "text": "Describe evolution as change in inherited characteristics over generations, possibly forming new species."
+          },
+          {
+           "code": null,
+           "text": "Explain the impact of selective breeding of food plants and domesticated animals."
+          }
+         ]
+        },
+        {
+         "id": "evidence-for-evolution",
+         "title": "Evidence for evolution",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe how fossils provide evidence for evolution."
+          },
+          {
+           "code": null,
+           "text": "Describe the work of Darwin and Wallace (separate science)."
+          },
+          {
+           "code": null,
+           "text": "Describe modern evidence for evolution, such as antibiotic resistance in bacteria."
+          },
+          {
+           "code": null,
+           "text": "Explain the impact of these ideas on modern biology and society (separate science)."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "b6-2-how-do-sexual-and-asexual-reproduction-affe",
+       "title": "B6.2 How do sexual and asexual reproduction affect evolution? (separate science only)",
+       "subtopics": [
+        {
+         "id": "sexual-and-asexual-reproduction",
+         "title": "Sexual and asexual reproduction",
+         "outcomes": [
+          {
+           "code": "B6.2",
+           "text": "Explain advantages and disadvantages of asexual and sexual reproduction in a range of organisms."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "b6-3-how-does-our-understanding-of-biology-help-",
+       "title": "B6.3 How does our understanding of biology help us classify the diversity of organisms on Earth?",
+       "subtopics": [
+        {
+         "id": "classifying-organisms",
+         "title": "Classifying organisms",
+         "outcomes": [
+          {
+           "code": "B6.3",
+           "text": "Describe the impact of developments in biology on classification, including DNA analysis."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "b6-4-how-is-biodiversity-threatened-and-how-can-",
+       "title": "B6.4 How is biodiversity threatened and how can we protect it?",
+       "subtopics": [
+        {
+         "id": "biodiversity-and-human-impact",
+         "title": "Biodiversity and human impact",
+         "outcomes": [
+          {
+           "code": "B6.4",
+           "text": "Describe positive and negative human interactions within ecosystems and their impact on biodiversity."
+          },
+          {
+           "code": null,
+           "text": "Evaluate evidence for environmental change affecting distribution of organisms (separate science)."
+          },
+          {
+           "code": null,
+           "text": "Describe biological factors affecting food security (separate science)."
+          },
+          {
+           "code": null,
+           "text": "Explain benefits and challenges of maintaining local and global biodiversity."
+          },
+          {
+           "code": null,
+           "text": "Extract and interpret biodiversity data from charts, graphs and tables."
+          },
+          {
+           "code": null,
+           "text": "Describe biotechnological and agricultural solutions, including genetic modification, to feed a growing population (separate science)."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "chapter-b7-ideas-about-science",
+     "title": "Chapter B7: Ideas about Science",
+     "topics": [
+      {
+       "id": "ias1-what-needs-to-be-considered-when-investigat",
+       "title": "IaS1 What needs to be considered when investigating a phenomenon scientifically?",
+       "subtopics": [
+        {
+         "id": "hypotheses-and-planning-investigations",
+         "title": "Hypotheses and planning investigations",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Use scientific theories to develop and justify hypotheses and predictions."
+          },
+          {
+           "code": null,
+           "text": "Suggest apparatus, materials and techniques, justified by precision, accuracy and validity."
+          },
+          {
+           "code": null,
+           "text": "Recognise scientific quantities and how they are determined."
+          },
+          {
+           "code": null,
+           "text": "Identify factors to be controlled and how to control them."
+          },
+          {
+           "code": null,
+           "text": "Suggest and justify a sample size or range of values."
+          },
+          {
+           "code": null,
+           "text": "Plan clear, logically sequenced experiments or procedures."
+          },
+          {
+           "code": null,
+           "text": "Identify hazards and ways of minimising risk."
+          },
+          {
+           "code": null,
+           "text": "Use scientific vocabulary to communicate the rationale and methods of an investigation."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "ias2-what-conclusions-can-we-make-from-data",
+       "title": "IaS2 What conclusions can we make from data?",
+       "subtopics": [
+        {
+         "id": "processing-and-presenting-data",
+         "title": "Processing and presenting data",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Present observations and data in appropriate formats."
+          },
+          {
+           "code": null,
+           "text": "Use SI units, prefixes and powers of ten, and interconvert units."
+          },
+          {
+           "code": null,
+           "text": "Translate data between forms and use suitable significant figures."
+          },
+          {
+           "code": null,
+           "text": "Choose graph forms, scales and lines of best fit, and show uncertainty."
+          },
+          {
+           "code": null,
+           "text": "Identify patterns, use range and mean, and read gradients, interpolation and extrapolation from graphs."
+          }
+         ]
+        },
+        {
+         "id": "evaluating-data-and-drawing-conclusions",
+         "title": "Evaluating data and drawing conclusions",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Evaluate data for accuracy, precision, repeatability and reproducibility, identify random and systematic error, and judge outliers."
+          },
+          {
+           "code": null,
+           "text": "Evaluate an experimental strategy, suggest improvements and further investigations."
+          },
+          {
+           "code": null,
+           "text": "Interpret data to make inferences and reasoned conclusions."
+          },
+          {
+           "code": null,
+           "text": "Explain how far data raise or lower confidence in a prediction or hypothesis."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "ias3-how-are-scientific-explanations-developed",
+       "title": "IaS3 How are scientific explanations developed?",
+       "subtopics": [
+        {
+         "id": "correlation-cause-and-theories",
+         "title": "Correlation, cause and theories",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Identify correlations and distinguish correlation from cause-effect."
+          },
+          {
+           "code": null,
+           "text": "Suggest risk factors that increase the chance of an outcome without guaranteeing it."
+          },
+          {
+           "code": null,
+           "text": "Explain why individual cases are not convincing evidence, and why a plausible mechanism matters."
+          },
+          {
+           "code": null,
+           "text": "Describe examples of theories developing and being modified when new evidence arises."
+          }
+         ]
+        },
+        {
+         "id": "peer-review-and-models",
+         "title": "Peer review and models",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe in outline the peer review process."
+          },
+          {
+           "code": null,
+           "text": "Use representational, spatial, descriptive, computational and mathematical models to solve problems, predict, explain and identify limits."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "ias4-how-do-science-and-technology-impact-societ",
+       "title": "IaS4 How do science and technology impact society?",
+       "subtopics": [
+        {
+         "id": "applications-risk-and-ethics",
+         "title": "Applications, risk and ethics",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe and explain applications of science that made significant positive differences to lives."
+          },
+          {
+           "code": null,
+           "text": "Identify risks arising from new scientific or technological advances."
+          },
+          {
+           "code": null,
+           "text": "Identify risks and benefits for different groups, discuss courses of action, and distinguish perceived from calculated risk."
+          },
+          {
+           "code": null,
+           "text": "Suggest why different decisions on the same issue may suit different contexts and make evidence-based decisions."
+          }
+         ]
+        },
+        {
+         "id": "science-questions-and-communication",
+         "title": "Science questions and communication",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Distinguish questions answerable by science from those that are not, and summarise differing views on ethical issues."
+          },
+          {
+           "code": null,
+           "text": "Explain why scientists should communicate their work to a range of audiences."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "build": {
+  "builtAt": "2026-10-14T10:48:14.595Z",
+  "model": "claude-agent",
+  "usd": 0,
+  "expectedCodes": 29,
+  "coverage": 0.9655172413793104,
+  "missingCodes": [
+   "B4.7"
+  ],
+  "counts": {
+   "grades": 1,
+   "units": 7,
+   "topics": 32,
+   "subtopics": 50,
+   "outcomes": 193
+  },
+  "warnings": [
+   "grade Year 10 has no content",
+   "grade Year 11 has no content",
+   "unexpected grade label \"all\""
+  ]
+ }
+}

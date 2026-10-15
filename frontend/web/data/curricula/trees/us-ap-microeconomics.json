@@ -1,0 +1,1338 @@
+{
+ "id": "us-ap-microeconomics",
+ "region": "US",
+ "framework": "AP Microeconomics Course and Exam Description (effective fall 2026)",
+ "board": "College Board",
+ "qualification": "AP",
+ "subject": "Microeconomics",
+ "syllabusCode": null,
+ "gradeSystem": "course",
+ "source": {
+  "urls": [
+   "https://apcentral.collegeboard.org/media/pdf/ap-microeconomics-course-and-exam-description.pdf",
+   "https://apcentral.collegeboard.org/courses/ap-microeconomics"
+  ],
+  "publisher": "College Board",
+  "licence": "© College Board; structure + our own wording only",
+  "firstExam": "2027"
+ },
+ "grades": [
+  {
+   "grade": "all",
+   "units": [
+    {
+     "id": "unit-1-basic-economic-concepts",
+     "title": "Unit 1: Basic Economic Concepts",
+     "topics": [
+      {
+       "id": "1-1-scarcity",
+       "title": "1.1 Scarcity",
+       "subtopics": [
+        {
+         "id": "scarcity",
+         "title": "Scarcity",
+         "outcomes": [
+          {
+           "code": "MKT-1.A",
+           "text": "Define resources and explain what causes them to be scarce."
+          },
+          {
+           "code": "MKT-1.A.1",
+           "text": "Explain that trade-offs arise because resources cannot meet all wants and needs."
+          },
+          {
+           "code": "MKT-1.A.2",
+           "text": "Note most factors of production are scarce, but non-rival knowledge may not be."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "1-2-resource-allocation-and-economic-systems",
+       "title": "1.2 Resource Allocation and Economic Systems",
+       "subtopics": [
+        {
+         "id": "economic-systems",
+         "title": "Economic systems",
+         "outcomes": [
+          {
+           "code": "MKT-1.B",
+           "text": "Define how the economic system shapes resource allocation."
+          },
+          {
+           "code": "MKT-1.B.1",
+           "text": "State the three allocation questions: what, how and for whom to produce."
+          },
+          {
+           "code": "MKT-1.B.2",
+           "text": "Compare command, market and mixed economies as ways to allocate scarce resources."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "1-3-production-possibilities-curve",
+       "title": "1.3 Production Possibilities Curve",
+       "subtopics": [
+        {
+         "id": "production-possibilities-curve",
+         "title": "Production possibilities curve",
+         "outcomes": [
+          {
+           "code": "MKT-1.C",
+           "text": "Define and graph the PPC, explain what it shows, and calculate opportunity cost from it."
+          },
+          {
+           "code": "MKT-1.C.1",
+           "text": "Explain the PPC as a model of trade-offs in allocating resources."
+          },
+          {
+           "code": "MKT-1.C.2",
+           "text": "Use the PPC to show scarcity, opportunity cost, efficiency, idle resources and growth."
+          },
+          {
+           "code": "MKT-1.C.3",
+           "text": "Relate the PPC's shape to constant, increasing or decreasing opportunity costs."
+          },
+          {
+           "code": "MKT-1.C.4",
+           "text": "Explain PPC shifts from changes in factors of production, productivity or technology."
+          },
+          {
+           "code": "MKT-1.C.5",
+           "text": "Explain that economic growth shifts the PPC outward."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "1-4-comparative-advantage-and-trade",
+       "title": "1.4 Comparative Advantage and Trade",
+       "subtopics": [
+        {
+         "id": "comparative-advantage",
+         "title": "Comparative advantage",
+         "outcomes": [
+          {
+           "code": "MKT-2.A",
+           "text": "Define and determine absolute and comparative advantage from PPCs or tables."
+          },
+          {
+           "code": "MKT-2.A.1",
+           "text": "Define absolute advantage as producing more with the same resources."
+          },
+          {
+           "code": "MKT-2.A.2",
+           "text": "Define comparative advantage as producing at a lower opportunity cost."
+          }
+         ]
+        },
+        {
+         "id": "gains-from-trade",
+         "title": "Gains from trade",
+         "outcomes": [
+          {
+           "code": "MKT-2.B",
+           "text": "Explain gains from specialization and calculate mutually beneficial terms of trade."
+          },
+          {
+           "code": "MKT-2.B.1",
+           "text": "Explain that specializing by comparative advantage lets consumption go beyond the PPC."
+          },
+          {
+           "code": "MKT-2.B.2",
+           "text": "Explain that opportunity costs set the range of terms of trade that benefit both sides."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "1-5-cost-benefit-analysis",
+       "title": "1.5 Cost-Benefit Analysis",
+       "subtopics": [
+        {
+         "id": "opportunity-cost",
+         "title": "Opportunity cost",
+         "outcomes": [
+          {
+           "code": "CBA-1.A",
+           "text": "Define, explain and calculate the opportunity cost of choices."
+          },
+          {
+           "code": "CBA-1.A.1",
+           "text": "Explain rational agents count implicit and explicit opportunity costs in total economic cost."
+          },
+          {
+           "code": "CBA-1.A.2",
+           "text": "Explain total benefits are utility for consumers and total revenue for firms."
+          }
+         ]
+        },
+        {
+         "id": "total-benefits-and-costs",
+         "title": "Total benefits and costs",
+         "outcomes": [
+          {
+           "code": "CBA-1.B",
+           "text": "Explain and calculate a decision by comparing total benefits and total costs."
+          },
+          {
+           "code": "CBA-1.B.1",
+           "text": "Explain net benefit, benefits minus costs, is maximized at the optimal choice."
+          },
+          {
+           "code": "CBA-1.B.2",
+           "text": "Tell decisions that can use marginal analysis from those needing total comparison."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "1-6-marginal-analysis-and-consumer-choice",
+       "title": "1.6 Marginal Analysis and Consumer Choice",
+       "subtopics": [
+        {
+         "id": "consumer-choice",
+         "title": "Consumer choice",
+         "outcomes": [
+          {
+           "code": "CBA-2.A",
+           "text": "Define consumer-choice assumptions and explain and calculate decisions using marginal benefit and cost."
+          },
+          {
+           "code": "CBA-2.A.1",
+           "text": "Explain that consumers decide optimally under constraints."
+          },
+          {
+           "code": "CBA-2.A.2",
+           "text": "Explain the model assumes consumers maximize total utility."
+          },
+          {
+           "code": "CBA-2.A.3",
+           "text": "Explain diminishing marginal utility."
+          },
+          {
+           "code": "CBA-2.A.4",
+           "text": "Allocate income by equating marginal utility per dollar across goods."
+          }
+         ]
+        },
+        {
+         "id": "marginal-analysis",
+         "title": "Marginal analysis",
+         "outcomes": [
+          {
+           "code": "CBA-2.B",
+           "text": "Define marginal analysis and use it to explain decisions with tables or graphs."
+          },
+          {
+           "code": "CBA-2.B.1",
+           "text": "Compare marginal benefit with marginal cost to raise, lower or keep an activity level."
+          },
+          {
+           "code": "CBA-2.B.2",
+           "text": "Explain the optimal quantity ignores sunk costs and fixed benefits from past choices."
+          },
+          {
+           "code": "CBA-2.B.3",
+           "text": "Explain the optimum is where marginal benefit equals marginal cost or total benefit peaks."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "unit-2-supply-and-demand",
+     "title": "Unit 2: Supply and Demand",
+     "topics": [
+      {
+       "id": "2-1-demand",
+       "title": "2.1 Demand",
+       "subtopics": [
+        {
+         "id": "law-of-demand",
+         "title": "Law of demand",
+         "outcomes": [
+          {
+           "code": "MKT-3.A",
+           "text": "Define demand terms and explain how price changes quantity demanded under incentives and constraints."
+          },
+          {
+           "code": "MKT-3.A.1",
+           "text": "Explain a clear system of property rights is needed for markets to work well."
+          },
+          {
+           "code": "MKT-3.A.2",
+           "text": "Explain that economic agents respond to incentives."
+          },
+          {
+           "code": "MKT-3.A.3",
+           "text": "Explain that people respond to prices but face limits like income, time and regulation."
+          },
+          {
+           "code": "MKT-3.A.4",
+           "text": "State the law of demand: own-price changes move quantity demanded the opposite way along the curve."
+          },
+          {
+           "code": "MKT-3.A.5",
+           "text": "Explain the downward slope via income effect, substitution effect and diminishing marginal utility."
+          },
+          {
+           "code": "MKT-3.A.6",
+           "text": "Build market demand by summing individual demand curves."
+          }
+         ]
+        },
+        {
+         "id": "shifts-in-demand",
+         "title": "Shifts in demand",
+         "outcomes": [
+          {
+           "code": "MKT-3.B",
+           "text": "Explain how changes in demand determinants shift the demand curve."
+          },
+          {
+           "code": "MKT-3.B.1",
+           "text": "Show that changes in determinants of demand shift the curve."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "2-2-supply",
+       "title": "2.2 Supply",
+       "subtopics": [
+        {
+         "id": "law-of-supply",
+         "title": "Law of supply",
+         "outcomes": [
+          {
+           "code": "MKT-3.C",
+           "text": "Define the law of supply and explain the price and quantity supplied link."
+          },
+          {
+           "code": "MKT-3.C.1",
+           "text": "Explain that own-price changes move quantity supplied the same way along the supply curve."
+          },
+          {
+           "code": "MKT-3.C.2",
+           "text": "Build market supply by summing individual supply and see it slopes upward."
+          }
+         ]
+        },
+        {
+         "id": "shifts-in-supply",
+         "title": "Shifts in supply",
+         "outcomes": [
+          {
+           "code": "MKT-3.D",
+           "text": "Explain how producers respond to changes in incentives and technology."
+          },
+          {
+           "code": "MKT-3.D.1",
+           "text": "Show that changes in determinants of supply shift the curve."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "2-3-price-elasticity-of-demand",
+       "title": "2.3 Price Elasticity of Demand",
+       "subtopics": [
+        {
+         "id": "price-elasticity-of-demand",
+         "title": "Price elasticity of demand",
+         "outcomes": [
+          {
+           "code": "MKT-3.E",
+           "text": "Define, explain and calculate elasticity measures and how price changes affect total revenue."
+          },
+          {
+           "code": "MKT-3.E.1",
+           "text": "Describe elasticity as the size of the percentage quantity response to own-price, income and related-price changes."
+          },
+          {
+           "code": "MKT-3.E.2",
+           "text": "Calculate price elasticity of demand as percent change in quantity over percent change in price; slope is not elasticity."
+          },
+          {
+           "code": "MKT-3.E.3",
+           "text": "Classify demand as elastic, inelastic or unit elastic using a magnitude of 1."
+          },
+          {
+           "code": "MKT-3.E.4",
+           "text": "Name factors such as substitutes that affect price elasticity of demand."
+          },
+          {
+           "code": "MKT-3.E.5",
+           "text": "Predict how a price change affects total revenue given the elasticity type."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "2-4-price-elasticity-of-supply",
+       "title": "2.4 Price Elasticity of Supply",
+       "subtopics": [
+        {
+         "id": "price-elasticity-of-supply",
+         "title": "Price elasticity of supply",
+         "outcomes": [
+          {
+           "code": "MKT-3.E.6",
+           "text": "Calculate price elasticity of supply as percent change in quantity supplied over percent change in price."
+          },
+          {
+           "code": "MKT-3.E.7",
+           "text": "Classify supply as elastic, inelastic or unit elastic using a magnitude of 1."
+          },
+          {
+           "code": "MKT-3.E.8",
+           "text": "Name factors such as alternative input prices that affect supply elasticity."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "2-5-other-elasticities",
+       "title": "2.5 Other Elasticities",
+       "subtopics": [
+        {
+         "id": "income-and-cross-price-elasticity",
+         "title": "Income and cross-price elasticity",
+         "outcomes": [
+          {
+           "code": "MKT-3.E.9",
+           "text": "Recognize elasticity can be measured for any determinant of demand or supply."
+          },
+          {
+           "code": "MKT-3.E.10",
+           "text": "Use income elasticity of demand to tell normal from inferior goods."
+          },
+          {
+           "code": "MKT-3.E.11",
+           "text": "Use cross-price elasticity to tell substitutes, complements or unrelated goods."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "2-6-market-equilibrium-and-consumer-and-producer",
+       "title": "2.6 Market Equilibrium and Consumer and Producer Surplus",
+       "subtopics": [
+        {
+         "id": "equilibrium-and-surplus",
+         "title": "Equilibrium and surplus",
+         "outcomes": [
+          {
+           "code": "MKT-4.A",
+           "text": "Define and calculate equilibrium, consumer surplus and producer surplus from graphs or tables."
+          },
+          {
+           "code": "MKT-4.A.1",
+           "text": "Use supply and demand to explain what drives prices and quantities across markets and time."
+          },
+          {
+           "code": "MKT-4.A.2",
+           "text": "Explain that in perfect competition the price clears the market with no shortage or surplus."
+          },
+          {
+           "code": "MKT-4.A.3",
+           "text": "Explain that equilibrium price guides resource allocation."
+          },
+          {
+           "code": "MKT-4.A.4",
+           "text": "Use consumer and producer surplus to measure market benefits and efficiency."
+          },
+          {
+           "code": "MKT-4.A.5",
+           "text": "Explain equilibrium maximizes total surplus absent market failures, so competitive markets are efficient."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "2-7-market-disequilibrium-and-changes-in-equilib",
+       "title": "2.7 Market Disequilibrium and Changes in Equilibrium",
+       "subtopics": [
+        {
+         "id": "disequilibrium-and-shifts",
+         "title": "Disequilibrium and shifts",
+         "outcomes": [
+          {
+           "code": "MKT-4.B",
+           "text": "Define surplus and shortage, and explain and calculate effects of shocks on price, quantity and surplus."
+          },
+          {
+           "code": "MKT-4.B.1",
+           "text": "Explain that shortages and surpluses push price and quantity toward equilibrium."
+          },
+          {
+           "code": "MKT-4.B.2",
+           "text": "Explain that supply or demand shifts change price, quantity and surplus, depending on elasticities."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "2-8-the-effects-of-government-intervention-in-ma",
+       "title": "2.8 The Effects of Government Intervention in Markets",
+       "subtopics": [
+        {
+         "id": "price-controls-taxes-and-subsidies",
+         "title": "Price controls, taxes and subsidies",
+         "outcomes": [
+          {
+           "code": "POL-1.A",
+           "text": "Define government price and quantity interventions and explain and calculate their market effects."
+          },
+          {
+           "code": "POL-1.A.1",
+           "text": "Explain price floors, ceilings and quantity regulations change incentives and outcomes."
+          },
+          {
+           "code": "POL-1.A.2",
+           "text": "Explain taxes and subsidies shift supply and demand curves."
+          },
+          {
+           "code": "POL-1.A.3",
+           "text": "Note taxes and subsidies change government revenues or costs."
+          }
+         ]
+        },
+        {
+         "id": "deadweight-loss-and-tax-incidence",
+         "title": "Deadweight loss and tax incidence",
+         "outcomes": [
+          {
+           "code": "POL-1.A.4",
+           "text": "Explain intervention in an already efficient market can only lower allocative efficiency."
+          },
+          {
+           "code": "POL-1.A.5",
+           "text": "Define deadweight loss as buyers' and sellers' losses from intervention."
+          },
+          {
+           "code": "POL-1.A.6",
+           "text": "Explain tax and subsidy incidence depends on supply and demand elasticity."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "2-9-international-trade-and-public-policy",
+       "title": "2.9 International Trade and Public Policy",
+       "subtopics": [
+        {
+         "id": "trade-policy",
+         "title": "Trade policy",
+         "outcomes": [
+          {
+           "code": "POL-1.B",
+           "text": "Define tariffs and quotas and explain and calculate how they change market outcomes."
+          },
+          {
+           "code": "POL-1.B.1",
+           "text": "Explain how opening to trade changes price, surplus and total surplus compared with autarky."
+          },
+          {
+           "code": "POL-1.B.2",
+           "text": "Explain tariffs' effects on price, quantity, government revenue and surplus."
+          },
+          {
+           "code": "POL-1.B.3",
+           "text": "Explain quotas' effects on quantity, price and surplus."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "unit-3-production-cost-and-the-perfect-competiti",
+     "title": "Unit 3: Production, Cost, and the Perfect Competition Model",
+     "topics": [
+      {
+       "id": "3-1-the-production-function",
+       "title": "3.1 The Production Function",
+       "subtopics": [
+        {
+         "id": "production-and-cost",
+         "title": "Production and cost",
+         "outcomes": [
+          {
+           "code": "PRD-1.A",
+           "text": "Define production and cost terms, explain how they relate in short and long run, and calculate productivity and costs."
+          }
+         ]
+        },
+        {
+         "id": "production-function",
+         "title": "Production function",
+         "outcomes": [
+          {
+           "code": "PRD-1.A.1",
+           "text": "Explain the production function links inputs to outputs in short and long run."
+          },
+          {
+           "code": "PRD-1.A.2",
+           "text": "Explain how marginal and average product change with input use, and total product with them."
+          },
+          {
+           "code": "PRD-1.A.3",
+           "text": "Explain diminishing marginal returns when one input rises with others fixed."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "3-2-short-run-production-costs",
+       "title": "3.2 Short-Run Production Costs",
+       "subtopics": [
+        {
+         "id": "short-run-costs",
+         "title": "Short-run costs",
+         "outcomes": [
+          {
+           "code": "PRD-1.A.4",
+           "text": "Explain fixed plus variable costs make total cost."
+          },
+          {
+           "code": "PRD-1.A.5",
+           "text": "Describe how marginal, average and variable costs change with output while total fixed cost stays constant."
+          },
+          {
+           "code": "PRD-1.A.6",
+           "text": "Explain diminishing returns give an upward-sloping marginal cost curve."
+          },
+          {
+           "code": "PRD-1.A.7",
+           "text": "Explain specialization and division of labor lower marginal cost."
+          },
+          {
+           "code": "PRD-1.A.8",
+           "text": "Explain cost curves shift with input costs and productivity."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "3-3-long-run-production-costs",
+       "title": "3.3 Long-Run Production Costs",
+       "subtopics": [
+        {
+         "id": "long-run-costs-and-scale",
+         "title": "Long-run costs and scale",
+         "outcomes": [
+          {
+           "code": "PRD-1.A.9",
+           "text": "Explain that in the long run all inputs adjust, so all costs are variable."
+          },
+          {
+           "code": "PRD-1.A.10",
+           "text": "Describe increasing, decreasing and constant returns to scale."
+          },
+          {
+           "code": "PRD-1.A.11",
+           "text": "Describe economies, diseconomies and constant returns to scale on long-run average total cost."
+          },
+          {
+           "code": "PRD-1.A.12",
+           "text": "Explain minimum efficient scale shapes firm concentration and market structure."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "3-4-types-of-profit",
+       "title": "3.4 Types of Profit",
+       "subtopics": [
+        {
+         "id": "types-of-profit",
+         "title": "Types of profit",
+         "outcomes": [
+          {
+           "code": "CBA-2.C",
+           "text": "Define profit types, explain firm responses to profit, and calculate profit or loss."
+          },
+          {
+           "code": "CBA-2.C.1",
+           "text": "Explain firms respond to economic profit or loss, not accounting profit."
+          },
+          {
+           "code": "CBA-2.C.2",
+           "text": "Explain accounting profit omits implicit costs; covering them gives normal profit."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "3-5-profit-maximization",
+       "title": "3.5 Profit Maximization",
+       "subtopics": [
+        {
+         "id": "profit-maximization",
+         "title": "Profit maximization",
+         "outcomes": [
+          {
+           "code": "CBA-2.D",
+           "text": "Define and explain the profit-maximizing rule and output level."
+          },
+          {
+           "code": "CBA-2.D.1",
+           "text": "Explain firms maximize profit by comparing marginal revenue with marginal cost."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "3-6-firms-short-run-decisions-to-produce-and-lon",
+       "title": "3.6 Firms' Short-Run Decisions to Produce and Long-Run Decisions to Enter or Exit a Market",
+       "subtopics": [
+        {
+         "id": "shutdown-entry-and-exit",
+         "title": "Shutdown, entry and exit",
+         "outcomes": [
+          {
+           "code": "PRD-2.A",
+           "text": "Explain short-run produce-or-shut-down decisions and long-run entry and exit."
+          },
+          {
+           "code": "PRD-2.A.1",
+           "text": "Decide to operate or shut down by comparing total revenue to variable cost, or price to AVC."
+          },
+          {
+           "code": "PRD-2.A.2",
+           "text": "Explain with free entry and exit, firms enter for profits and exit when expecting losses."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "3-7-perfect-competition",
+       "title": "3.7 Perfect Competition",
+       "subtopics": [
+        {
+         "id": "perfect-competition",
+         "title": "Perfect competition",
+         "outcomes": [
+          {
+           "code": "PRD-3.A",
+           "text": "Define perfect competition and efficiency, explain equilibrium and firm decisions, and calculate profit or loss."
+          },
+          {
+           "code": "PRD-3.A.1",
+           "text": "State that perfect competition is efficient: no barriers to entry and no market power."
+          },
+          {
+           "code": "PRD-3.A.2",
+           "text": "Explain prices signal marginal costs and benefits, so price equals marginal cost when efficient."
+          },
+          {
+           "code": "PRD-3.A.3",
+           "text": "Explain competitive firms sell all output at the market price."
+          },
+          {
+           "code": "PRD-3.A.4",
+           "text": "Explain price-taking firms produce where marginal cost equals marginal revenue."
+          },
+          {
+           "code": "PRD-3.A.5",
+           "text": "Explain price equals marginal benefit and marginal cost, giving allocative efficiency."
+          }
+         ]
+        },
+        {
+         "id": "short-run-to-long-run-equilibrium",
+         "title": "Short-run to long-run equilibrium",
+         "outcomes": [
+          {
+           "code": "PRD-3.A.6",
+           "text": "Explain short-run profits or losses lead to entry or exit toward long-run equilibrium."
+          },
+          {
+           "code": "PRD-3.A.7",
+           "text": "Describe long-run equilibrium: efficient scale, price equals MC and minimum ATC, zero economic profit."
+          },
+          {
+           "code": "PRD-3.A.8",
+           "text": "Distinguish constant, increasing and decreasing cost industries and their long-run prices."
+          },
+          {
+           "code": "PRD-3.A.9",
+           "text": "State long-run perfect competition is allocatively and productively efficient."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "unit-4-imperfect-competition",
+     "title": "Unit 4: Imperfect Competition",
+     "topics": [
+      {
+       "id": "4-1-introduction-to-imperfectly-competitive-mark",
+       "title": "4.1 Introduction to Imperfectly Competitive Markets",
+       "subtopics": [
+        {
+         "id": "imperfect-competition",
+         "title": "Imperfect competition",
+         "outcomes": [
+          {
+           "code": "PRD-3.B",
+           "text": "Define imperfect competition and explain equilibrium, surplus, profit and deadweight loss, and why prices fail to coordinate efficiently."
+          },
+          {
+           "code": "PRD-3.B.1",
+           "text": "List monopoly, oligopoly and monopolistic competition in product markets and monopsony in factor markets."
+          },
+          {
+           "code": "PRD-3.B.2",
+           "text": "Explain an imperfect competitor must lower price to sell more units."
+          },
+          {
+           "code": "PRD-3.B.3",
+           "text": "Explain that price exceeds marginal cost and marginal benefit in inefficient markets."
+          },
+          {
+           "code": "PRD-3.B.4",
+           "text": "Explain barriers to entry (start-up costs, law, key resource ownership) sustain imperfect markets."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "4-2-monopoly",
+       "title": "4.2 Monopoly",
+       "subtopics": [
+        {
+         "id": "monopoly",
+         "title": "Monopoly",
+         "outcomes": [
+          {
+           "code": "PRD-3.B.5",
+           "text": "Explain a monopoly exists because of barriers to entry."
+          },
+          {
+           "code": "PRD-3.B.6",
+           "text": "Find monopoly output where MR equals MC, with price above marginal cost."
+          },
+          {
+           "code": "PRD-3.B.7",
+           "text": "Describe a natural monopoly as one with economies of scale across all demand."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "4-3-price-discrimination",
+       "title": "4.3 Price Discrimination",
+       "subtopics": [
+        {
+         "id": "price-discrimination",
+         "title": "Price discrimination",
+         "outcomes": [
+          {
+           "code": "PRD-3.B.8",
+           "text": "Explain how a firm with market power uses price discrimination to raise profit or capture surplus."
+          },
+          {
+           "code": "PRD-3.B.9",
+           "text": "Explain perfect price discrimination: output where price equals MC, all surplus captured, no deadweight loss."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "4-4-monopolistic-competition",
+       "title": "4.4 Monopolistic Competition",
+       "subtopics": [
+        {
+         "id": "monopolistic-competition",
+         "title": "Monopolistic competition",
+         "outcomes": [
+          {
+           "code": "PRD-3.B.10",
+           "text": "Explain short-run profit patterns, advertising, zero long-run profit, excess capacity and allocative inefficiency."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "4-5-oligopoly-and-game-theory",
+       "title": "4.5 Oligopoly and Game Theory",
+       "subtopics": [
+        {
+         "id": "oligopoly-and-games",
+         "title": "Oligopoly and games",
+         "outcomes": [
+          {
+           "code": "PRD-3.C",
+           "text": "Define oligopoly and game terms and explain and calculate strategies and equilibria in simple games."
+          }
+         ]
+        },
+        {
+         "id": "oligopoly",
+         "title": "Oligopoly",
+         "outcomes": [
+          {
+           "code": "PRD-3.C.1",
+           "text": "Describe oligopoly as inefficient, with few interdependent firms and high entry barriers."
+          },
+          {
+           "code": "PRD-3.C.2",
+           "text": "Explain oligopolists have an incentive to collude and form cartels."
+          }
+         ]
+        },
+        {
+         "id": "game-theory",
+         "title": "Game theory",
+         "outcomes": [
+          {
+           "code": "PRD-3.C.3",
+           "text": "Define a game as actions whose payoffs depend on one's own and others' choices."
+          },
+          {
+           "code": "PRD-3.C.4",
+           "text": "Define a strategy and read a normal-form payoff table."
+          },
+          {
+           "code": "PRD-3.C.5",
+           "text": "Identify a dominant strategy as the always-better action regardless of the other player."
+          },
+          {
+           "code": "PRD-3.C.6",
+           "text": "Define a Nash equilibrium where no player gains by changing action alone."
+          },
+          {
+           "code": "PRD-3.C.7",
+           "text": "Explain why oligopolists struggle to reach the monopoly outcome, like the Prisoner's Dilemma, yet prices stay higher than in perfect competition."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "unit-5-factor-markets",
+     "title": "Unit 5: Factor Markets",
+     "topics": [
+      {
+       "id": "5-1-introduction-to-factor-markets",
+       "title": "5.1 Introduction to Factor Markets",
+       "subtopics": [
+        {
+         "id": "factor-markets",
+         "title": "Factor markets",
+         "outcomes": [
+          {
+           "code": "PRD-4.A",
+           "text": "Define factor-market terms, explain links among factors, firms and factor prices, and calculate MRP and marginal resource cost."
+          },
+          {
+           "code": "PRD-4.A.1",
+           "text": "Explain factors respond to wages, interest and rent, and hiring depends on productivity, output price and factor cost."
+          },
+          {
+           "code": "PRD-4.A.2",
+           "text": "Explain labor demand falls and labor supply rises with the wage."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "5-2-changes-in-factor-demand-and-factor-supply",
+       "title": "5.2 Changes in Factor Demand and Factor Supply",
+       "subtopics": [
+        {
+         "id": "shifts-in-labor-markets",
+         "title": "Shifts in labor markets",
+         "outcomes": [
+          {
+           "code": "PRD-4.B",
+           "text": "Explain firm and factor responses to changes in incentives and constraints."
+          },
+          {
+           "code": "PRD-4.B.1",
+           "text": "Name labor-demand determinants such as output price and worker productivity that shift demand."
+          },
+          {
+           "code": "PRD-4.B.2",
+           "text": "Name labor-supply determinants such as immigration, education, conditions and preferences that shift supply."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "5-3-profit-maximizing-behavior-in-perfectly-comp",
+       "title": "5.3 Profit-Maximizing Behavior in Perfectly Competitive Factor Markets",
+       "subtopics": [
+        {
+         "id": "hiring-in-competitive-labor-markets",
+         "title": "Hiring in competitive labor markets",
+         "outcomes": [
+          {
+           "code": "PRD-4.C",
+           "text": "Define competitive factor markets and explain and calculate profit-maximizing labor hiring."
+          },
+          {
+           "code": "PRD-4.C.1",
+           "text": "Explain firms hire where wage equals marginal revenue product of labor."
+          },
+          {
+           "code": "PRD-4.C.2",
+           "text": "Explain firms hire while MRP of labor exceeds the market wage."
+          },
+          {
+           "code": "PRD-4.C.3",
+           "text": "Explain firms equalize marginal product per dollar across inputs to minimize cost."
+          }
+         ]
+        },
+        {
+         "id": "marginal-revenue-product",
+         "title": "Marginal revenue product",
+         "outcomes": [
+          {
+           "code": "PRD-4.C.4",
+           "text": "Define MRP = MP x MR and VMPL = MPL x P for competitive output markets."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "5-4-monopsonistic-markets",
+       "title": "5.4 Monopsonistic Markets",
+       "subtopics": [
+        {
+         "id": "monopsony",
+         "title": "Monopsony",
+         "outcomes": [
+          {
+           "code": "PRD-4.D",
+           "text": "Define monopsony and explain and calculate its profit-maximizing hiring."
+          },
+          {
+           "code": "PRD-4.D.1",
+           "text": "Explain a monopsonist hires while MRP exceeds marginal factor cost."
+          },
+          {
+           "code": "PRD-4.D.2",
+           "text": "Explain marginal factor cost exceeds the labor supply price for a monopsonist."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "unit-6-market-failure-and-the-role-of-government",
+     "title": "Unit 6: Market Failure and the Role of Government",
+     "topics": [
+      {
+       "id": "6-1-socially-efficient-and-inefficient-market-ou",
+       "title": "6.1 Socially Efficient and Inefficient Market Outcomes",
+       "subtopics": [
+        {
+         "id": "social-efficiency",
+         "title": "Social efficiency",
+         "outcomes": [
+          {
+           "code": "POL-2.A",
+           "text": "Define social efficiency and explain why perfectly competitive allocation is socially efficient."
+          },
+          {
+           "code": "POL-2.A.1",
+           "text": "Explain the optimal quantity is where marginal benefit equals marginal cost, maximizing total surplus."
+          },
+          {
+           "code": "POL-2.A.2",
+           "text": "Explain market quantity is socially optimal only when social costs and benefits are internalized."
+          }
+         ]
+        },
+        {
+         "id": "private-incentives-and-inefficiency",
+         "title": "Private incentives and inefficiency",
+         "outcomes": [
+          {
+           "code": "POL-2.B",
+           "text": "Explain how private incentives can cause socially inefficient outcomes."
+          },
+          {
+           "code": "POL-2.B.1",
+           "text": "Explain rational agents can exploit market power."
+          },
+          {
+           "code": "POL-2.B.2",
+           "text": "Explain equating private marginal benefit and cost can cause market inefficiency."
+          },
+          {
+           "code": "POL-2.B.3",
+           "text": "Explain policymakers use cost-benefit analysis to weigh actions against inefficiency."
+          },
+          {
+           "code": "POL-2.B.4",
+           "text": "Explain policies equating marginal social benefit and cost can remove inefficiency."
+          }
+         ]
+        },
+        {
+         "id": "deadweight-loss",
+         "title": "Deadweight loss",
+         "outcomes": [
+          {
+           "code": "POL-2.C",
+           "text": "Explain imperfect-market allocations versus efficient ones and calculate deadweight loss."
+          },
+          {
+           "code": "POL-2.C.1",
+           "text": "Name causes of inefficient equilibria: market power, externalities, asymmetric information, too few public goods."
+          },
+          {
+           "code": "POL-2.C.2",
+           "text": "Explain any non-efficient quantity creates deadweight loss."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "6-2-externalities",
+       "title": "6.2 Externalities",
+       "subtopics": [
+        {
+         "id": "externalities",
+         "title": "Externalities",
+         "outcomes": [
+          {
+           "code": "POL-3.A",
+           "text": "Define externalities and explain why private markets ignore social costs and benefits."
+          },
+          {
+           "code": "POL-3.A.1",
+           "text": "Explain the social optimum is where marginal social benefit equals marginal social cost."
+          },
+          {
+           "code": "POL-3.A.2",
+           "text": "Describe positive and negative externalities arising from unclear property rights or high transaction costs."
+          },
+          {
+           "code": "POL-3.A.3",
+           "text": "Explain agents respond to private, not external, costs and benefits."
+          },
+          {
+           "code": "POL-3.A.4",
+           "text": "Explain the incentive to free ride when a good is non-excludable."
+          }
+         ]
+        },
+        {
+         "id": "policies-for-externalities",
+         "title": "Policies for externalities",
+         "outcomes": [
+          {
+           "code": "POL-3.B",
+           "text": "Explain how public policy addresses positive and negative externalities."
+          },
+          {
+           "code": "POL-3.B.1",
+           "text": "List policies: taxes, subsidies, regulation, public provision and property rights assignment."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "6-3-public-and-private-goods",
+       "title": "6.3 Public and Private Goods",
+       "subtopics": [
+        {
+         "id": "public-and-private-goods",
+         "title": "Public and private goods",
+         "outcomes": [
+          {
+           "code": "POL-3.C",
+           "text": "Classify goods as rival and/or excludable and explain how this shapes behavior."
+          },
+          {
+           "code": "POL-3.C.1",
+           "text": "Define private goods as rival and excludable, public goods as non-rival and non-excludable."
+          },
+          {
+           "code": "POL-3.C.2",
+           "text": "Explain the free rider problem leaves government to produce public goods."
+          },
+          {
+           "code": "POL-3.C.3",
+           "text": "Note governments sometimes provide private goods like education freely."
+          },
+          {
+           "code": "POL-3.C.4",
+           "text": "Explain open-access resources, rival but non-excludable, get overconsumed."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "6-4-the-effects-of-government-intervention-in-di",
+       "title": "6.4 The Effects of Government Intervention in Different Market Structures",
+       "subtopics": [
+        {
+         "id": "government-intervention",
+         "title": "Government intervention",
+         "outcomes": [
+          {
+           "code": "POL-4.A",
+           "text": "Define policy interventions in imperfect markets and explain and calculate their effects."
+          }
+         ]
+        },
+        {
+         "id": "taxes-subsidies-and-price-limits",
+         "title": "Taxes, subsidies and price limits",
+         "outcomes": [
+          {
+           "code": "POL-4.A.1",
+           "text": "Explain per-unit taxes and subsidies affect prices, quantity, surplus, deadweight loss and revenue, depending on elasticity."
+          },
+          {
+           "code": "POL-4.A.2",
+           "text": "Explain lump-sum taxes and subsidies change only fixed costs."
+          },
+          {
+           "code": "POL-4.A.3",
+           "text": "Explain binding price ceilings and floors act differently across market structures."
+          }
+         ]
+        },
+        {
+         "id": "monopoly-regulation-and-antitrust",
+         "title": "Monopoly regulation and antitrust",
+         "outcomes": [
+          {
+           "code": "POL-4.A.4",
+           "text": "Explain intervention can raise efficiency if it fixes the incentives behind the failure."
+          },
+          {
+           "code": "POL-4.A.5",
+           "text": "Explain price regulation can address monopoly inefficiency."
+          },
+          {
+           "code": "POL-4.A.6",
+           "text": "Explain a natural monopoly needs a lump-sum subsidy to produce the efficient quantity."
+          },
+          {
+           "code": "POL-4.A.7",
+           "text": "Explain antitrust policy aims to make markets more competitive."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "6-5-inequality",
+       "title": "6.5 Inequality",
+       "subtopics": [
+        {
+         "id": "measuring-inequality",
+         "title": "Measuring inequality",
+         "outcomes": [
+          {
+           "code": "POL-5.A",
+           "text": "Define measures of income and wealth inequality."
+          },
+          {
+           "code": "POL-5.A.1",
+           "text": "Note income and poverty rates vary across and within groups and countries."
+          },
+          {
+           "code": "POL-5.A.2",
+           "text": "Explain the Lorenz curve and Gini coefficient represent and compare inequality."
+          }
+         ]
+        },
+        {
+         "id": "sources-of-inequality",
+         "title": "Sources of inequality",
+         "outcomes": [
+          {
+           "code": "POL-5.B",
+           "text": "Explain sources of income and wealth inequality."
+          },
+          {
+           "code": "POL-5.B.1",
+           "text": "Explain factors earning their marginal product can contribute to inequality."
+          },
+          {
+           "code": "POL-5.B.2",
+           "text": "List sources: tax structures, human and social capital, inheritance, discrimination, finance access, mobility, bargaining power."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "build": {
+  "builtAt": "2026-10-14T10:02:42.281Z",
+  "model": "claude-agent",
+  "usd": 0,
+  "expectedCodes": 180,
+  "coverage": 1,
+  "missingCodes": [],
+  "counts": {
+   "grades": 1,
+   "units": 6,
+   "topics": 36,
+   "subtopics": 53,
+   "outcomes": 180
+  },
+  "warnings": [
+   "grade 9 has no content",
+   "grade 10 has no content",
+   "grade 11 has no content",
+   "grade 12 has no content",
+   "unexpected grade label \"all\""
+  ]
+ }
+}

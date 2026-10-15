@@ -1,0 +1,2178 @@
+{
+ "id": "us-hi-arts",
+ "region": "US",
+ "framework": "Hawaii state academic standards: Fine Arts",
+ "board": null,
+ "qualification": "K-12",
+ "subject": "Fine Arts",
+ "syllabusCode": null,
+ "gradeSystem": "grade",
+ "source": {
+  "urls": [
+   "https://api.commonstandardsproject.com/api/v1/jurisdictions/64B8E297AAEF42DA886248000B292DF1",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/64B8E297AAEF42DA886248000B292DF1_D10002F6_grade-01",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/64B8E297AAEF42DA886248000B292DF1_D10002F6_grade-02",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/64B8E297AAEF42DA886248000B292DF1_D10002F6_grade-03",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/64B8E297AAEF42DA886248000B292DF1_D10002F6_grade-04",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/64B8E297AAEF42DA886248000B292DF1_D10002F6_grade-05",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/64B8E297AAEF42DA886248000B292DF1_D10002F6_grades-06-07-08",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/64B8E297AAEF42DA886248000B292DF1_D10002F6_grades-09-10-11-12",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/64B8E297AAEF42DA886248000B292DF1_D10002F6_grade-k"
+  ],
+  "publisher": "Hawaii state education agency (machine-readable via Common Standards Project / ASN)",
+  "licence": "CC BY 3.0 US, Desire2Learn Incorporated",
+  "firstExam": "2006"
+ },
+ "grades": [
+  {
+   "grade": "K",
+   "units": [
+    {
+     "id": "visual-arts-understand-and-apply-art-materials-t",
+     "title": "Visual Arts — Understand and apply art materials, techniques, and processes in the creation of original works of art and understand how the visual arts communicate a variety of ideas, feelings, and experiences",
+     "topics": [
+      {
+       "id": "how-the-arts-are-organized",
+       "title": "How the Arts are Organized",
+       "subtopics": [
+        {
+         "id": "how-the-arts-are-organized",
+         "title": "How the Arts are Organized",
+         "outcomes": [
+          {
+           "code": "FA.K.1.1",
+           "text": "Use developmentally appropriate art vocabulary"
+          },
+          {
+           "code": "FA.K.1.2",
+           "text": "Use developmentally appropriate art media, tools, and processes"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "how-the-arts-communicate",
+       "title": "How the Arts Communicate",
+       "subtopics": [
+        {
+         "id": "how-the-arts-communicate",
+         "title": "How the Arts Communicate",
+         "outcomes": [
+          {
+           "code": "FA.K.1.3",
+           "text": "Create art that expresses feelings about a familiar subject"
+          },
+          {
+           "code": "FA.K.1.4",
+           "text": "Explain preferences for particular works of art"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "how-the-arts-shape-and-reflect-culture",
+       "title": "How the Arts Shape and Reflect Culture",
+       "subtopics": [
+        {
+         "id": "how-the-arts-shape-and-reflect-culture",
+         "title": "How the Arts Shape and Reflect Culture",
+         "outcomes": [
+          {
+           "code": "FA.K.1.5",
+           "text": "Explain the concept that all artwork is meant to be appreciated and some artwork is also meant to be useful"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "music-understand-and-apply-elements-of-music-and",
+     "title": "Music — Understand and apply elements of music and understand how music communicates ideas, feelings, and experiences across cultures",
+     "topics": [
+      {
+       "id": "how-the-arts-are-organized",
+       "title": "How the Arts are Organized",
+       "subtopics": [
+        {
+         "id": "how-the-arts-are-organized",
+         "title": "How the Arts are Organized",
+         "outcomes": [
+          {
+           "code": "FA.K.2.1",
+           "text": "Use singing voice to echo short melodic patterns in appropriate range"
+          },
+          {
+           "code": "FA.K.2.2",
+           "text": "Demonstrate simple representation of high and low, short and long, loud and soft, fast and slow"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "how-the-arts-communicate",
+       "title": "How the Arts Communicate",
+       "subtopics": [
+        {
+         "id": "how-the-arts-communicate",
+         "title": "How the Arts Communicate",
+         "outcomes": [
+          {
+           "code": "FA.K.2.3",
+           "text": "Use an instrument to maintain a steady beat using quarter notes and quarter rests"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "how-the-arts-shape-and-reflect-culture",
+       "title": "How the Arts Shape and Reflect Culture",
+       "subtopics": [
+        {
+         "id": "how-the-arts-shape-and-reflect-culture",
+         "title": "How the Arts Shape and Reflect Culture",
+         "outcomes": [
+          {
+           "code": "FA.K.2.4",
+           "text": "Identify various sources of music that can be heard in daily life and their purpose"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "drama-and-theatre-understand-and-apply-the-skill",
+     "title": "Drama and Theatre — Understand and apply the skills of acting, design, and technical theatre and understand the role of drama in various cultures throughout history",
+     "topics": [
+      {
+       "id": "how-the-arts-are-organized",
+       "title": "How the Arts are Organized",
+       "subtopics": [
+        {
+         "id": "how-the-arts-are-organized",
+         "title": "How the Arts are Organized",
+         "outcomes": [
+          {
+           "code": "FA.K.3.1",
+           "text": "Perform imitative movements"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "how-the-arts-communicate",
+       "title": "How the Arts Communicate",
+       "subtopics": [
+        {
+         "id": "how-the-arts-communicate",
+         "title": "How the Arts Communicate",
+         "outcomes": [
+          {
+           "code": "FA.K.3.2",
+           "text": "Explain how theatrical performances often cause emotional reactions"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "how-the-arts-shape-and-reflect-culture",
+       "title": "How the Arts Shape and Reflect Culture",
+       "subtopics": [
+        {
+         "id": "how-the-arts-shape-and-reflect-culture",
+         "title": "How the Arts Shape and Reflect Culture",
+         "outcomes": [
+          {
+           "code": "FA.K.3.3",
+           "text": "Demonstrate how cultures have used dramatic play to express human experience"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "dance-understand-and-apply-elements-of-dance-app",
+     "title": "Dance — Understand and apply elements of dance, appreciate how dance communicates meaning, and recognize its role across cultures and throughout history",
+     "topics": [
+      {
+       "id": "how-the-arts-are-organized",
+       "title": "How the Arts are Organized",
+       "subtopics": [
+        {
+         "id": "how-the-arts-are-organized",
+         "title": "How the Arts are Organized",
+         "outcomes": [
+          {
+           "code": "FA.K.4.1",
+           "text": "Use body, energy, space, and time to move in different ways"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "how-the-arts-communicate",
+       "title": "How the Arts Communicate",
+       "subtopics": [
+        {
+         "id": "how-the-arts-communicate",
+         "title": "How the Arts Communicate",
+         "outcomes": [
+          {
+           "code": "FA.K.4.2",
+           "text": "Create movements that represent ideas, persons, and places"
+          },
+          {
+           "code": "FA.K.4.3",
+           "text": "Use movement to respond to a variety of stimuli, such as observed dance, words, sounds and songs"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "how-the-arts-shape-and-reflect-culture",
+       "title": "How the Arts Shape and Reflect Culture",
+       "subtopics": [
+        {
+         "id": "how-the-arts-shape-and-reflect-culture",
+         "title": "How the Arts Shape and Reflect Culture",
+         "outcomes": [
+          {
+           "code": "FA.K.4.4",
+           "text": "Perform a folk/traditional dance from another culture"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "1",
+   "units": [
+    {
+     "id": "visual-arts-understand-and-apply-art-materials-t",
+     "title": "Visual Arts — Understand and apply art materials, techniques, and processes in the creation of original works of art and understand how the visual arts communicate a variety of ideas, feelings, and experiences",
+     "topics": [
+      {
+       "id": "how-the-arts-are-organized",
+       "title": "How the Arts are Organized",
+       "subtopics": [
+        {
+         "id": "how-the-arts-are-organized",
+         "title": "How the Arts are Organized",
+         "outcomes": [
+          {
+           "code": "FA.1.1.1",
+           "text": "Use various types of art media"
+          },
+          {
+           "code": "FA.1.1.2",
+           "text": "Use the elements of line, shape, form, texture, color, and the principles of repetition and variety in artwork using a variety of art mediums"
+          },
+          {
+           "code": "FA.1.1.3",
+           "text": "Differentiate between two-dimensional and three-dimensional artwork"
+          },
+          {
+           "code": "FA.1.1.4",
+           "text": "Demonstrate how mixing primary colors can create secondary colors"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "how-the-arts-communicate",
+       "title": "How the Arts Communicate",
+       "subtopics": [
+        {
+         "id": "how-the-arts-communicate",
+         "title": "How the Arts Communicate",
+         "outcomes": [
+          {
+           "code": "FA.1.1.5",
+           "text": "Use familiar subjects and experiences to create original works of art"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "how-the-arts-shape-and-reflect-culture",
+       "title": "How the Arts Shape and Reflect Culture",
+       "subtopics": [
+        {
+         "id": "how-the-arts-shape-and-reflect-culture",
+         "title": "How the Arts Shape and Reflect Culture",
+         "outcomes": [
+          {
+           "code": "FA.1.1.6",
+           "text": "Compare artwork from various cultures that have similar themes and subject matter"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "music-understand-and-apply-elements-of-music-and",
+     "title": "Music — Understand and apply elements of music and understand how music communicates ideas, feelings, and experiences across cultures",
+     "topics": [
+      {
+       "id": "how-the-arts-are-organized",
+       "title": "How the Arts are Organized",
+       "subtopics": [
+        {
+         "id": "how-the-arts-are-organized",
+         "title": "How the Arts are Organized",
+         "outcomes": [
+          {
+           "code": "FA.1.2.1",
+           "text": "Use simple patterns of rhythm and pitch using quarter notes, quarter rest, and eighth notes"
+          },
+          {
+           "code": "FA.1.2.2",
+           "text": "Use the notations for four-beat rhythmic patterns using quarter notes, quarter rests, and eighth notes"
+          },
+          {
+           "code": "FA.1.2.3",
+           "text": "Use a four-beat melodic or rhythmic pattern to demonstrate the simple musical form of \"echo\""
+          },
+          {
+           "code": "FA.1.2.4",
+           "text": "Recognize, by sound quality, various characteristics of instruments and vocal sounds"
+          },
+          {
+           "code": "FA.1.2.5",
+           "text": "Sing a simple song with appropriate vocal range from memory"
+          },
+          {
+           "code": "FA.1.2.6",
+           "text": "Identify families of instruments and how each sound is produced"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "how-the-arts-communicate",
+       "title": "How the Arts Communicate",
+       "subtopics": [
+        {
+         "id": "how-the-arts-communicate",
+         "title": "How the Arts Communicate",
+         "outcomes": [
+          {
+           "code": "FA.1.2.7",
+           "text": "Explain how music can communicate ideas and moods"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "how-the-arts-shape-and-reflect-culture",
+       "title": "How the Arts Shape and Reflect Culture",
+       "subtopics": [
+        {
+         "id": "how-the-arts-shape-and-reflect-culture",
+         "title": "How the Arts Shape and Reflect Culture",
+         "outcomes": [
+          {
+           "code": "FA.1.2.8",
+           "text": "Compare music used for special occasions from various cultures"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "drama-and-theatre-understand-and-apply-the-skill",
+     "title": "Drama and Theatre — Understand and apply the skills of acting, design, and technical theatre and understand the role of drama in various cultures throughout history",
+     "topics": [
+      {
+       "id": "how-the-arts-are-organized",
+       "title": "How the Arts are Organized",
+       "subtopics": [
+        {
+         "id": "how-the-arts-are-organized",
+         "title": "How the Arts are Organized",
+         "outcomes": [
+          {
+           "code": "FA.1.3.1",
+           "text": "Recognize theatrical vocabulary"
+          },
+          {
+           "code": "FA.1.3.2",
+           "text": "Adapt and dramatize a familiar story"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "how-the-arts-communicate",
+       "title": "How the Arts Communicate",
+       "subtopics": [
+        {
+         "id": "how-the-arts-communicate",
+         "title": "How the Arts Communicate",
+         "outcomes": [
+          {
+           "code": "FA.1.3.3",
+           "text": "Evaluate personal feelings about a theatrical work"
+          },
+          {
+           "code": "FA.1.3.4",
+           "text": "Critique characterization in a theatrical work"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "how-the-arts-shape-and-reflect-culture",
+       "title": "How the Arts Shape and Reflect Culture",
+       "subtopics": [
+        {
+         "id": "how-the-arts-shape-and-reflect-culture",
+         "title": "How the Arts Shape and Reflect Culture",
+         "outcomes": [
+          {
+           "code": "FA.1.3.5",
+           "text": "Analyze the dramatic elements of culture that exist in stories, songs, fairy tales, fables, and nursery rhymes"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "dance-understand-and-apply-elements-of-dance-app",
+     "title": "Dance — Understand and apply elements of dance, appreciate how dance communicates meaning, and recognize its role across cultures and throughout history",
+     "topics": [
+      {
+       "id": "how-the-arts-are-organized",
+       "title": "How the Arts are Organized",
+       "subtopics": [
+        {
+         "id": "how-the-arts-are-organized",
+         "title": "How the Arts are Organized",
+         "outcomes": [
+          {
+           "code": "FA.1.4.1",
+           "text": "Create a dance that consists of a beginning, middle, and end"
+          },
+          {
+           "code": "FA.1.4.2",
+           "text": "Apply the element of space (e.g., place, size, level, direction) to create simple movement sequences"
+          },
+          {
+           "code": "FA.1.4.3",
+           "text": "Apply the element of energy – smooth/sharp (attack), heavy/light (weight), tight/loose (flow) – to create simple movement sequences"
+          },
+          {
+           "code": "FA.1.4.4",
+           "text": "Repeat a simple movement sequence by imitation"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "how-the-arts-communicate",
+       "title": "How the Arts Communicate",
+       "subtopics": [
+        {
+         "id": "how-the-arts-communicate",
+         "title": "How the Arts Communicate",
+         "outcomes": [
+          {
+           "code": "FA.1.4.5",
+           "text": "Describe how an idea is communicated through dance"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "how-the-arts-shape-and-reflect-culture",
+       "title": "How the Arts Shape and Reflect Culture",
+       "subtopics": [
+        {
+         "id": "how-the-arts-shape-and-reflect-culture",
+         "title": "How the Arts Shape and Reflect Culture",
+         "outcomes": [
+          {
+           "code": "FA.1.4.6",
+           "text": "Describe the role of dance from a variety of cultures"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "2",
+   "units": [
+    {
+     "id": "visual-arts-understand-and-apply-art-materials-t",
+     "title": "Visual Arts — Understand and apply art materials, techniques, and processes in the creation of original works of art and understand how the visual arts communicate a variety of ideas, feelings, and experiences",
+     "topics": [
+      {
+       "id": "how-the-arts-are-organized",
+       "title": "How the Arts are Organized",
+       "subtopics": [
+        {
+         "id": "how-the-arts-are-organized",
+         "title": "How the Arts are Organized",
+         "outcomes": [
+          {
+           "code": "FA.2.1.1",
+           "text": "Use the element of space and the principles of repetition and variety, with a variety of art media"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "how-the-arts-communicate",
+       "title": "How the Arts Communicate",
+       "subtopics": [
+        {
+         "id": "how-the-arts-communicate",
+         "title": "How the Arts Communicate",
+         "outcomes": [
+          {
+           "code": "FA.2.1.2",
+           "text": "Use color to convey mood in works of art"
+          },
+          {
+           "code": "FA.2.1.3",
+           "text": "Describe different responses to the same work of art"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "how-the-arts-shape-and-reflect-culture",
+       "title": "How the Arts Shape and Reflect Culture",
+       "subtopics": [
+        {
+         "id": "how-the-arts-shape-and-reflect-culture",
+         "title": "How the Arts Shape and Reflect Culture",
+         "outcomes": [
+          {
+           "code": "FA.2.1.4",
+           "text": "Investigate how art is used in celebrations, festivals, and customs of selected cultures from the past and present"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "music-understand-and-apply-elements-of-music-and",
+     "title": "Music — Understand and apply elements of music and understand how music communicates ideas, feelings, and experiences across cultures",
+     "topics": [
+      {
+       "id": "how-the-arts-are-organized",
+       "title": "How the Arts are Organized",
+       "subtopics": [
+        {
+         "id": "how-the-arts-are-organized",
+         "title": "How the Arts are Organized",
+         "outcomes": [
+          {
+           "code": "FA.2.2.1",
+           "text": "Demonstrate rhythmic notation of whole notes, half notes, quarter notes, eighth notes and quarter rests"
+          },
+          {
+           "code": "FA.2.2.2",
+           "text": "Use melodic notation of simple four-beat patterns using three different pitches on a staff"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "how-the-arts-communicate",
+       "title": "How the Arts Communicate",
+       "subtopics": [
+        {
+         "id": "how-the-arts-communicate",
+         "title": "How the Arts Communicate",
+         "outcomes": [
+          {
+           "code": "FA.2.2.3",
+           "text": "Sing or play repeating rhythmic or melodic patterns"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "how-the-arts-shape-and-reflect-culture",
+       "title": "How the Arts Shape and Reflect Culture",
+       "subtopics": [
+        {
+         "id": "how-the-arts-shape-and-reflect-culture",
+         "title": "How the Arts Shape and Reflect Culture",
+         "outcomes": [
+          {
+           "code": "FA.2.2.4",
+           "text": "Describe instrument families and sounds from various cultures"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "drama-and-theatre-understand-and-apply-the-skill",
+     "title": "Drama and Theatre — Understand and apply the skills of acting, design, and technical theatre and understand the role of drama in various cultures throughout history",
+     "topics": [
+      {
+       "id": "how-the-arts-are-organized",
+       "title": "How the Arts are Organized",
+       "subtopics": [
+        {
+         "id": "how-the-arts-are-organized",
+         "title": "How the Arts are Organized",
+         "outcomes": [
+          {
+           "code": "FA.2.3.1",
+           "text": "Use physical movements, rhythms, and voice, to express simple feelings, character, and plot"
+          },
+          {
+           "code": "FA.2.3.2",
+           "text": "Create simple costumes, scenery, and props"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "how-the-arts-communicate",
+       "title": "How the Arts Communicate",
+       "subtopics": [
+        {
+         "id": "how-the-arts-communicate",
+         "title": "How the Arts Communicate",
+         "outcomes": [
+          {
+           "code": "FA.2.3.3",
+           "text": "Interpret the ideas and morals of theatrical works"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "how-the-arts-shape-and-reflect-culture",
+       "title": "How the Arts Shape and Reflect Culture",
+       "subtopics": [
+        {
+         "id": "how-the-arts-shape-and-reflect-culture",
+         "title": "How the Arts Shape and Reflect Culture",
+         "outcomes": [
+          {
+           "code": "FA.2.3.4",
+           "text": "Assess how various styles of theatrical production relate to culture"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "dance-understand-and-apply-elements-of-dance-app",
+     "title": "Dance — Understand and apply elements of dance, appreciate how dance communicates meaning, and recognize its role across cultures and throughout history",
+     "topics": [
+      {
+       "id": "how-the-arts-are-organized",
+       "title": "How the Arts are Organized",
+       "subtopics": [
+        {
+         "id": "how-the-arts-are-organized",
+         "title": "How the Arts are Organized",
+         "outcomes": [
+          {
+           "code": "FA.2.4.1",
+           "text": "Apply the element of space and pathways to create simple movement sequences"
+          },
+          {
+           "code": "FA.2.4.2",
+           "text": "Demonstrate the element of time, tempo, beat, duration, and rhythm"
+          },
+          {
+           "code": "FA.2.4.3",
+           "text": "Use simple partner skills during movement sequences"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "how-the-arts-communicate",
+       "title": "How the Arts Communicate",
+       "subtopics": [
+        {
+         "id": "how-the-arts-communicate",
+         "title": "How the Arts Communicate",
+         "outcomes": [
+          {
+           "code": "FA.2.4.4",
+           "text": "Create movement sequences that express a mood"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "how-the-arts-shape-and-reflect-culture",
+       "title": "How the Arts Shape and Reflect Culture",
+       "subtopics": [
+        {
+         "id": "how-the-arts-shape-and-reflect-culture",
+         "title": "How the Arts Shape and Reflect Culture",
+         "outcomes": [
+          {
+           "code": "FA.2.4.5",
+           "text": "Compare dances from a variety of cultures"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "3",
+   "units": [
+    {
+     "id": "visual-arts-understand-and-apply-art-materials-t",
+     "title": "Visual Arts — Understand and apply art materials, techniques, and processes in the creation of original works of art and understand how the visual arts communicate a variety of ideas, feelings, and experiences",
+     "topics": [
+      {
+       "id": "how-the-arts-are-organized",
+       "title": "How the Arts are Organized",
+       "subtopics": [
+        {
+         "id": "how-the-arts-are-organized",
+         "title": "How the Arts are Organized",
+         "outcomes": [
+          {
+           "code": "FA.3.1.1",
+           "text": "Use the elements and principles of art and design, including, value (i.e., tints and shades, analogous colors), line, rhythm, movement, proportion, and balance"
+          },
+          {
+           "code": "FA.3.1.2",
+           "text": "Use a variety of art and technology media to create an original work of art"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "how-the-arts-communicate",
+       "title": "How the Arts Communicate",
+       "subtopics": [
+        {
+         "id": "how-the-arts-communicate",
+         "title": "How the Arts Communicate",
+         "outcomes": [
+          {
+           "code": "FA.3.1.3",
+           "text": "Use observational skills in creating an original work of art"
+          },
+          {
+           "code": "FA.3.1.4",
+           "text": "Use visual arts vocabulary to discuss and compare works of art"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "how-the-arts-shape-and-reflect-culture",
+       "title": "How the Arts Shape and Reflect Culture",
+       "subtopics": [
+        {
+         "id": "how-the-arts-shape-and-reflect-culture",
+         "title": "How the Arts Shape and Reflect Culture",
+         "outcomes": [
+          {
+           "code": "FA.3.1.5",
+           "text": "Compare themes and subject matter in works of art from different time periods"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "music-understand-and-apply-elements-of-music-and",
+     "title": "Music — Understand and apply elements of music and understand how music communicates ideas, feelings, and experiences across cultures",
+     "topics": [
+      {
+       "id": "how-the-arts-are-organized",
+       "title": "How the Arts are Organized",
+       "subtopics": [
+        {
+         "id": "how-the-arts-are-organized-1-of-2",
+         "title": "How the Arts are Organized (1 of 2)",
+         "outcomes": [
+          {
+           "code": "FA.3.2.1",
+           "text": "Use the notation of whole, half, quarter, eighth, dotted-half notes, and rests"
+          },
+          {
+           "code": "FA.3.2.2",
+           "text": "Read the notes of a \"C\" major scale on a staff"
+          },
+          {
+           "code": "FA.3.2.3",
+           "text": "Identify simple musical forms and melodic or rhythmic ostinato (repeated) pattern"
+          },
+          {
+           "code": "FA.3.2.4",
+           "text": "Identify the basic instruments of the orchestra by sight, sound, and category (e.g., brass, woodwind, percussion, strings)"
+          }
+         ]
+        },
+        {
+         "id": "how-the-arts-are-organized-2-of-2",
+         "title": "How the Arts are Organized (2 of 2)",
+         "outcomes": [
+          {
+           "code": "FA.3.2.5",
+           "text": "Sing rounds and partner songs from memory"
+          },
+          {
+           "code": "FA.3.2.6",
+           "text": "Compare elements of music, such as form, pattern, or rhythm, to other art forms"
+          },
+          {
+           "code": "FA.3.2.7",
+           "text": "Create short rhythmic and melodic phrases using two to four measure phrases and five different pitches on a staff"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "how-the-arts-communicate",
+       "title": "How the Arts Communicate",
+       "subtopics": [
+        {
+         "id": "how-the-arts-communicate",
+         "title": "How the Arts Communicate",
+         "outcomes": [
+          {
+           "code": "FA.3.2.8",
+           "text": "Use specific musical terms to respond to elements of a musical performance"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "how-the-arts-shape-and-reflect-culture",
+       "title": "How the Arts Shape and Reflect Culture",
+       "subtopics": [
+        {
+         "id": "how-the-arts-shape-and-reflect-culture",
+         "title": "How the Arts Shape and Reflect Culture",
+         "outcomes": [
+          {
+           "code": "FA.3.2.9",
+           "text": "Identify developmentally appropriate pieces of music representing various time periods"
+          },
+          {
+           "code": "FA.3.2.10",
+           "text": "Perform songs from various cultures within their cultural context"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "drama-and-theatre-understand-and-apply-the-skill",
+     "title": "Drama and Theatre — Understand and apply the skills of acting, design, and technical theatre and understand the role of drama in various cultures throughout history",
+     "topics": [
+      {
+       "id": "how-the-arts-are-organized",
+       "title": "How the Arts are Organized",
+       "subtopics": [
+        {
+         "id": "how-the-arts-are-organized",
+         "title": "How the Arts are Organized",
+         "outcomes": [
+          {
+           "code": "FA.3.3.1",
+           "text": "Create a dramatization based on a story"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "how-the-arts-communicate",
+       "title": "How the Arts Communicate",
+       "subtopics": [
+        {
+         "id": "how-the-arts-communicate",
+         "title": "How the Arts Communicate",
+         "outcomes": [
+          {
+           "code": "FA.3.3.2",
+           "text": "Use appropriate audience etiquette while listening and watching a theatrical performance"
+          },
+          {
+           "code": "FA.3.3.3",
+           "text": "Use the elements of theatre to create a critique of a theatrical performance"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "how-the-arts-shape-and-reflect-culture",
+       "title": "How the Arts Shape and Reflect Culture",
+       "subtopics": [
+        {
+         "id": "how-the-arts-shape-and-reflect-culture",
+         "title": "How the Arts Shape and Reflect Culture",
+         "outcomes": [
+          {
+           "code": "FA.3.3.4",
+           "text": "Compare similar dramatic themes between works from various cultures"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "dance-understand-and-apply-elements-of-dance-app",
+     "title": "Dance — Understand and apply elements of dance, appreciate how dance communicates meaning, and recognize its role across cultures and throughout history",
+     "topics": [
+      {
+       "id": "how-the-arts-are-organized",
+       "title": "How the Arts are Organized",
+       "subtopics": [
+        {
+         "id": "how-the-arts-are-organized",
+         "title": "How the Arts are Organized",
+         "outcomes": [
+          {
+           "code": "FA.3.4.1",
+           "text": "Apply dance elements to create a simple movement sequence"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "how-the-arts-communicate",
+       "title": "How the Arts Communicate",
+       "subtopics": [
+        {
+         "id": "how-the-arts-communicate",
+         "title": "How the Arts Communicate",
+         "outcomes": [
+          {
+           "code": "FA.3.4.2",
+           "text": "Explain personal interpretations of a variety of dances"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "how-the-arts-shape-and-reflect-culture",
+       "title": "How the Arts Shape and Reflect Culture",
+       "subtopics": [
+        {
+         "id": "how-the-arts-shape-and-reflect-culture",
+         "title": "How the Arts Shape and Reflect Culture",
+         "outcomes": [
+          {
+           "code": "FA.3.4.3",
+           "text": "Perform dance movements of different styles (e.g. ballet, jazz), cultures, and time periods"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "4",
+   "units": [
+    {
+     "id": "visual-arts-understand-and-apply-art-materials-t",
+     "title": "Visual Arts — Understand and apply art materials, techniques, and processes in the creation of original works of art and understand how the visual arts communicate a variety of ideas, feelings, and experiences",
+     "topics": [
+      {
+       "id": "how-the-arts-are-organized",
+       "title": "How the Arts are Organized",
+       "subtopics": [
+        {
+         "id": "how-the-arts-are-organized",
+         "title": "How the Arts are Organized",
+         "outcomes": [
+          {
+           "code": "FA.4.1.1",
+           "text": "Use the elements and principles of art and design, such as emphasis, proportion, complementary colors, positive and negative space, and depth, to communicate an idea or mood"
+          },
+          {
+           "code": "FA.4.1.2",
+           "text": "Use a combination of visual and performing arts to create an original artwork"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "how-the-arts-communicate",
+       "title": "How the Arts Communicate",
+       "subtopics": [
+        {
+         "id": "how-the-arts-communicate",
+         "title": "How the Arts Communicate",
+         "outcomes": [
+          {
+           "code": "FA.4.1.3",
+           "text": "Use properties, personal response, and research to make informed judgments about artwork"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "how-the-arts-shape-and-reflect-culture",
+       "title": "How the Arts Shape and Reflect Culture",
+       "subtopics": [
+        {
+         "id": "how-the-arts-shape-and-reflect-culture",
+         "title": "How the Arts Shape and Reflect Culture",
+         "outcomes": [
+          {
+           "code": "FA.4.1.4",
+           "text": "Explain how art reflects life, culture, attitudes, and beliefs of the artist"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "music-understand-and-apply-elements-of-music-and",
+     "title": "Music — Understand and apply elements of music and understand how music communicates ideas, feelings, and experiences across cultures",
+     "topics": [
+      {
+       "id": "how-the-arts-are-organized",
+       "title": "How the Arts are Organized",
+       "subtopics": [
+        {
+         "id": "how-the-arts-are-organized",
+         "title": "How the Arts are Organized",
+         "outcomes": [
+          {
+           "code": "FA.4.2.1",
+           "text": "Read simple staff notation (e.g., key signature, time signature, clef)"
+          },
+          {
+           "code": "FA.4.2.2",
+           "text": "Use notation of sixteenth notes and rests"
+          },
+          {
+           "code": "FA.4.2.3",
+           "text": "Sing or play an independent part of a song with two or more parts"
+          },
+          {
+           "code": "FA.4.2.4",
+           "text": "Identify musical forms (e.g., rondos), theme, and variations"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "how-the-arts-communicate",
+       "title": "How the Arts Communicate",
+       "subtopics": [
+        {
+         "id": "how-the-arts-communicate",
+         "title": "How the Arts Communicate",
+         "outcomes": [
+          {
+           "code": "FA.4.2.5",
+           "text": "Develop criteria used to analyze a musical performance"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "how-the-arts-shape-and-reflect-culture",
+       "title": "How the Arts Shape and Reflect Culture",
+       "subtopics": [
+        {
+         "id": "how-the-arts-shape-and-reflect-culture",
+         "title": "How the Arts Shape and Reflect Culture",
+         "outcomes": [
+          {
+           "code": "FA.4.2.6",
+           "text": "Compare and contrast musical styles from two or more cultures"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "drama-and-theatre-understand-and-apply-the-skill",
+     "title": "Drama and Theatre — Understand and apply the skills of acting, design, and technical theatre and understand the role of drama in various cultures throughout history",
+     "topics": [
+      {
+       "id": "how-the-arts-are-organized",
+       "title": "How the Arts are Organized",
+       "subtopics": [
+        {
+         "id": "how-the-arts-are-organized",
+         "title": "How the Arts are Organized",
+         "outcomes": [
+          {
+           "code": "FA.4.3.1",
+           "text": "Interpret a character's external motivations"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "how-the-arts-communicate",
+       "title": "How the Arts Communicate",
+       "subtopics": [
+        {
+         "id": "how-the-arts-communicate",
+         "title": "How the Arts Communicate",
+         "outcomes": [
+          {
+           "code": "FA.4.3.2",
+           "text": "Use the voice to express emotion"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "how-the-arts-shape-and-reflect-culture",
+       "title": "How the Arts Shape and Reflect Culture",
+       "subtopics": [
+        {
+         "id": "how-the-arts-shape-and-reflect-culture",
+         "title": "How the Arts Shape and Reflect Culture",
+         "outcomes": [
+          {
+           "code": "FA.4.3.3",
+           "text": "Evaluate theatrical traditions of various cultures"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "dance-understand-and-apply-elements-of-dance-app",
+     "title": "Dance — Understand and apply elements of dance, appreciate how dance communicates meaning, and recognize its role across cultures and throughout history",
+     "topics": [
+      {
+       "id": "how-the-arts-are-organized",
+       "title": "How the Arts are Organized",
+       "subtopics": [
+        {
+         "id": "how-the-arts-are-organized",
+         "title": "How the Arts are Organized",
+         "outcomes": [
+          {
+           "code": "FA.4.4.1",
+           "text": "Combine dance elements to create a simple dance with a partner or small group"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "how-the-arts-communicate",
+       "title": "How the Arts Communicate",
+       "subtopics": [
+        {
+         "id": "how-the-arts-communicate",
+         "title": "How the Arts Communicate",
+         "outcomes": [
+          {
+           "code": "FA.4.4.2",
+           "text": "Create simple dances that communicate abstract ideas or feelings"
+          },
+          {
+           "code": "FA.4.4.3",
+           "text": "Justify personal opinions and interpretations of works of dance"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "how-the-arts-shape-and-reflect-culture",
+       "title": "How the Arts Shape and Reflect Culture",
+       "subtopics": [
+        {
+         "id": "how-the-arts-shape-and-reflect-culture",
+         "title": "How the Arts Shape and Reflect Culture",
+         "outcomes": [
+          {
+           "code": "FA.4.4.4",
+           "text": "Describe how the dances of Hawaii reflect the Hawaiian history and culture"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "5",
+   "units": [
+    {
+     "id": "visual-arts-understand-and-apply-art-materials-t",
+     "title": "Visual Arts — Understand and apply art materials, techniques, and processes in the creation of original works of art and understand how the visual arts communicate a variety of ideas, feelings, and experiences",
+     "topics": [
+      {
+       "id": "how-the-arts-are-organized",
+       "title": "How the Arts are Organized",
+       "subtopics": [
+        {
+         "id": "how-the-arts-are-organized",
+         "title": "How the Arts are Organized",
+         "outcomes": [
+          {
+           "code": "FA.5.1.1",
+           "text": "Use the principles of art and design, including unity and harmony, in works of art"
+          },
+          {
+           "code": "FA.5.1.2",
+           "text": "Analyze, using evidence, the element of space (perspective, overlapping, foreground, background) and how it is developed in works of art"
+          },
+          {
+           "code": "FA.5.1.3",
+           "text": "Analyze, using evidence, the characteristics of representational and/or non-representational art"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "how-the-arts-communicate",
+       "title": "How the Arts Communicate",
+       "subtopics": [
+        {
+         "id": "how-the-arts-communicate",
+         "title": "How the Arts Communicate",
+         "outcomes": [
+          {
+           "code": "FA.5.1.4",
+           "text": "Explain how an original artwork demonstrates a concept or idea from another discipline"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "how-the-arts-shape-and-reflect-culture",
+       "title": "How the Arts Shape and Reflect Culture",
+       "subtopics": [
+        {
+         "id": "how-the-arts-shape-and-reflect-culture",
+         "title": "How the Arts Shape and Reflect Culture",
+         "outcomes": [
+          {
+           "code": "FA.5.1.5",
+           "text": "Analyze works of art from selected historical periods"
+          },
+          {
+           "code": "FA.5.1.6",
+           "text": "Compare works of art from various regions of the United States"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "music-understand-and-apply-elements-of-music-and",
+     "title": "Music — Understand and apply elements of music and understand how music communicates ideas, feelings, and experiences across cultures",
+     "topics": [
+      {
+       "id": "how-the-arts-are-organized",
+       "title": "How the Arts are Organized",
+       "subtopics": [
+        {
+         "id": "how-the-arts-are-organized",
+         "title": "How the Arts are Organized",
+         "outcomes": [
+          {
+           "code": "FA.5.2.1",
+           "text": "Use notation of dotted rhythms with dotted quarter and dotted eighths"
+          },
+          {
+           "code": "FA.5.2.2",
+           "text": "Perform an accompaniment for a piece of music"
+          },
+          {
+           "code": "FA.5.2.3",
+           "text": "Use music of various styles/genres in performances"
+          },
+          {
+           "code": "FA.5.2.4",
+           "text": "Integrate several arts disciplines into a presentation or performance"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "how-the-arts-communicate",
+       "title": "How the Arts Communicate",
+       "subtopics": [
+        {
+         "id": "how-the-arts-communicate",
+         "title": "How the Arts Communicate",
+         "outcomes": [
+          {
+           "code": "FA.5.2.5",
+           "text": "Analyze musical elements when explaining or critiquing a musical selection or musical performance"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "how-the-arts-shape-and-reflect-culture",
+       "title": "How the Arts Shape and Reflect Culture",
+       "subtopics": [
+        {
+         "id": "how-the-arts-shape-and-reflect-culture",
+         "title": "How the Arts Shape and Reflect Culture",
+         "outcomes": [
+          {
+           "code": "FA.5.2.6",
+           "text": "Compare the use of musical elements in aural examples of American music and in music from other cultures"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "drama-and-theatre-understand-and-apply-the-skill",
+     "title": "Drama and Theatre — Understand and apply the skills of acting, design, and technical theatre and understand the role of drama in various cultures throughout history",
+     "topics": [
+      {
+       "id": "how-the-arts-are-organized",
+       "title": "How the Arts are Organized",
+       "subtopics": [
+        {
+         "id": "how-the-arts-are-organized",
+         "title": "How the Arts are Organized",
+         "outcomes": [
+          {
+           "code": "FA.5.3.1",
+           "text": "Create a class dramatization by collaborating as actors, directors, scriptwriters, and technical artists"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "how-the-arts-communicate",
+       "title": "How the Arts Communicate",
+       "subtopics": [
+        {
+         "id": "how-the-arts-communicate",
+         "title": "How the Arts Communicate",
+         "outcomes": [
+          {
+           "code": "FA.5.3.2",
+           "text": "Dramatize an historical event or social issue"
+          },
+          {
+           "code": "FA.5.3.3",
+           "text": "Analyze a character using knowledge of performance and acting skills in a theatrical production"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "how-the-arts-shape-and-reflect-culture",
+       "title": "How the Arts Shape and Reflect Culture",
+       "subtopics": [
+        {
+         "id": "how-the-arts-shape-and-reflect-culture",
+         "title": "How the Arts Shape and Reflect Culture",
+         "outcomes": [
+          {
+           "code": "FA.5.3.4",
+           "text": "Analyze, using evidence, the role of dramatic productions which are part of American history"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "dance-understand-and-apply-elements-of-dance-app",
+     "title": "Dance — Understand and apply elements of dance, appreciate how dance communicates meaning, and recognize its role across cultures and throughout history",
+     "topics": [
+      {
+       "id": "how-the-arts-are-organized",
+       "title": "How the Arts are Organized",
+       "subtopics": [
+        {
+         "id": "how-the-arts-are-organized",
+         "title": "How the Arts are Organized",
+         "outcomes": [
+          {
+           "code": "FA.5.4.1",
+           "text": "Modify a simple dance using the elements of dance"
+          },
+          {
+           "code": "FA.5.4.2",
+           "text": "Use simple dance forms"
+          },
+          {
+           "code": "FA.5.4.3",
+           "text": "Explain how the elements of dance relate to elements of other art forms"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "how-the-arts-communicate",
+       "title": "How the Arts Communicate",
+       "subtopics": [
+        {
+         "id": "how-the-arts-communicate",
+         "title": "How the Arts Communicate",
+         "outcomes": [
+          {
+           "code": "FA.5.4.4",
+           "text": "Use criteria to assess the quality of a dance performance"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "how-the-arts-shape-and-reflect-culture",
+       "title": "How the Arts Shape and Reflect Culture",
+       "subtopics": [
+        {
+         "id": "how-the-arts-shape-and-reflect-culture",
+         "title": "How the Arts Shape and Reflect Culture",
+         "outcomes": [
+          {
+           "code": "FA.5.4.5",
+           "text": "Analyze American dances from different periods of history"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "6-8",
+   "units": [
+    {
+     "id": "visual-arts-understand-and-apply-art-materials-t",
+     "title": "Visual Arts — Understand and apply art materials, techniques, and processes in the creation of original works of art and understand how the visual arts communicate a variety of ideas, feelings, and experiences",
+     "topics": [
+      {
+       "id": "how-the-arts-are-organized",
+       "title": "How the Arts are Organized",
+       "subtopics": [
+        {
+         "id": "how-the-arts-are-organized",
+         "title": "How the Arts are Organized",
+         "outcomes": [
+          {
+           "code": "FA.6-8.1.1",
+           "text": "Create an original integrated art product or performance and explain how this process enhances a specific art work"
+          },
+          {
+           "code": "FA.6-8.1.2",
+           "text": "Apply selected elements and principles of art and design to communicate a particular message or opinion in an original work of art"
+          },
+          {
+           "code": "FA.6-8.1.3",
+           "text": "Use art vocabulary when evaluating intent and content of works of art"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "how-the-arts-communicate",
+       "title": "How the Arts Communicate",
+       "subtopics": [
+        {
+         "id": "how-the-arts-communicate",
+         "title": "How the Arts Communicate",
+         "outcomes": [
+          {
+           "code": "FA.6-8.1.4",
+           "text": "Apply different qualities and characteristics of art materials, techniques, and processes to convey effectively different experiences, ideas, and opinions"
+          },
+          {
+           "code": "FA.6-8.1.5",
+           "text": "Describe how different elements and principles of art and design and styles can be used to express a variety of moods, feelings, themes, and ideas"
+          },
+          {
+           "code": "FA.6-8.1.6",
+           "text": "Use subjects, themes, or symbols from life experiences to convey personal ideas"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "how-the-arts-shape-and-reflect-culture",
+       "title": "How the Arts Shape and Reflect Culture",
+       "subtopics": [
+        {
+         "id": "how-the-arts-shape-and-reflect-culture",
+         "title": "How the Arts Shape and Reflect Culture",
+         "outcomes": [
+          {
+           "code": "FA.6-8.1.7",
+           "text": "Compare the characteristics of artwork from various historical periods and/or cultures"
+          },
+          {
+           "code": "FA.6-8.1.8",
+           "text": "Analyze, using evidence, how cultural factors have affected works of art now and in the past"
+          },
+          {
+           "code": "FA.6-8.1.9",
+           "text": "Analyze, using evidence, why specific works of art were created"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "music-understand-and-apply-elements-of-music-and",
+     "title": "Music — Understand and apply elements of music and understand how music communicates ideas, feelings, and experiences across cultures",
+     "topics": [
+      {
+       "id": "how-the-arts-are-organized",
+       "title": "How the Arts are Organized",
+       "subtopics": [
+        {
+         "id": "how-the-arts-are-organized",
+         "title": "How the Arts are Organized",
+         "outcomes": [
+          {
+           "code": "FA.6-8.2.1",
+           "text": "Perform a variety of musical elements (e.g., tone, rhythm) with understanding and accuracy"
+          },
+          {
+           "code": "FA.6-8.2.2",
+           "text": "Perform music from a variety of cultures, styles, and genres individually as well as in small and/or large ensembles"
+          },
+          {
+           "code": "FA.6-8.2.3",
+           "text": "Compose, arrange, or notate music using specified guidelines"
+          },
+          {
+           "code": "FA.6-8.2.4",
+           "text": "Improvise a short pattern or melody to be performed with a rhythmic and/or melodic accompaniment"
+          },
+          {
+           "code": "FA.6-8.2.5",
+           "text": "Compare terms and elements used in music, the other arts, and other content areas"
+          },
+          {
+           "code": "FA.6-8.2.6",
+           "text": "Perform music in various meters"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "how-the-arts-communicate",
+       "title": "How the Arts Communicate",
+       "subtopics": [
+        {
+         "id": "how-the-arts-communicate",
+         "title": "How the Arts Communicate",
+         "outcomes": [
+          {
+           "code": "FA.6-8.2.7",
+           "text": "Evaluate the effectiveness of a musical performance or composition"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "how-the-arts-shape-and-reflect-culture",
+       "title": "How the Arts Shape and Reflect Culture",
+       "subtopics": [
+        {
+         "id": "how-the-arts-shape-and-reflect-culture",
+         "title": "How the Arts Shape and Reflect Culture",
+         "outcomes": [
+          {
+           "code": "FA.6-8.2.8",
+           "text": "Compare the role of music and composers in various cultures and time periods"
+          },
+          {
+           "code": "FA.6-8.2.9",
+           "text": "Analyze the use of musical elements in various cultures with an emphasis on melody and harmonic progressions"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "drama-and-theatre-understand-and-apply-the-skill",
+     "title": "Drama and Theatre — Understand and apply the skills of acting, design, and technical theatre and understand the role of drama in various cultures throughout history",
+     "topics": [
+      {
+       "id": "how-the-arts-are-organized",
+       "title": "How the Arts are Organized",
+       "subtopics": [
+        {
+         "id": "how-the-arts-are-organized",
+         "title": "How the Arts are Organized",
+         "outcomes": [
+          {
+           "code": "FA.6-8.3.1",
+           "text": "Perform various roles and responsibilities in theatre productions"
+          },
+          {
+           "code": "FA.6-8.3.2",
+           "text": "Develop dialogue for a scene or one-act play"
+          },
+          {
+           "code": "FA.6-8.3.3",
+           "text": "Apply basic stage movement"
+          },
+          {
+           "code": "FA.6-8.3.4",
+           "text": "Design scenery that establishes an environment for a character"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "how-the-arts-communicate",
+       "title": "How the Arts Communicate",
+       "subtopics": [
+        {
+         "id": "how-the-arts-communicate",
+         "title": "How the Arts Communicate",
+         "outcomes": [
+          {
+           "code": "FA.6-8.3.5",
+           "text": "Demonstrate how theatre can be used to communicate concepts from another content area"
+          },
+          {
+           "code": "FA.6-8.3.6",
+           "text": "Explain the effect and impact of sets, make-up, costumes, sound, light, and props in a theatrical performance"
+          },
+          {
+           "code": "FA.6-8.3.7",
+           "text": "Evaluate the use of technical elements (e.g., sets, makeup, costumes, sound and light, props) and their effect on the meaning of the production"
+          },
+          {
+           "code": "FA.6-8.3.8",
+           "text": "Demonstrate various elements that contribute to the overall impact of a theatrical presentation on an audience"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "how-the-arts-shape-and-reflect-culture",
+       "title": "How the Arts Shape and Reflect Culture",
+       "subtopics": [
+        {
+         "id": "how-the-arts-shape-and-reflect-culture",
+         "title": "How the Arts Shape and Reflect Culture",
+         "outcomes": [
+          {
+           "code": "FA.6-8.3.9",
+           "text": "Explain the role of an audience in a theatrical production"
+          },
+          {
+           "code": "FA.6-8.3.10",
+           "text": "Compare theatrical styles common to certain historical and cultural periods"
+          },
+          {
+           "code": "FA.6-8.3.11",
+           "text": "Apply theatrical traditions of various cultures"
+          },
+          {
+           "code": "FA.6-8.3.12",
+           "text": "Explain how theatre has depicted the history of America"
+          },
+          {
+           "code": "FA.6-8.3.13",
+           "text": "Evaluate how technology has impacted theatre production"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "dance-understand-and-apply-elements-of-dance-app",
+     "title": "Dance — Understand and apply elements of dance, appreciate how dance communicates meaning, and recognize its role across cultures and throughout history",
+     "topics": [
+      {
+       "id": "how-the-arts-are-organized",
+       "title": "How the Arts are Organized",
+       "subtopics": [
+        {
+         "id": "how-the-arts-are-organized",
+         "title": "How the Arts are Organized",
+         "outcomes": [
+          {
+           "code": "FA.6-8.4.1",
+           "text": "Use kinesthetic awareness, concentration, and focus in performing movement skills"
+          },
+          {
+           "code": "FA.6-8.4.2",
+           "text": "Apply the use of choreographic principles with partners or in groups"
+          },
+          {
+           "code": "FA.6-8.4.3",
+           "text": "Use a variety of dance elements to develop dance phrases"
+          },
+          {
+           "code": "FA.6-8.4.4",
+           "text": "Use a variety of choreographic structures or forms to develop movement studies"
+          },
+          {
+           "code": "FA.6-8.4.5",
+           "text": "Use kinesthetic awareness and spatial awareness in combination with time or force elements"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "how-the-arts-communicate",
+       "title": "How the Arts Communicate",
+       "subtopics": [
+        {
+         "id": "how-the-arts-communicate",
+         "title": "How the Arts Communicate",
+         "outcomes": [
+          {
+           "code": "FA.6-8.4.6",
+           "text": "Evaluate a dance for dance elements, choreographic principles, processes, and structures"
+          },
+          {
+           "code": "FA.6-8.4.7",
+           "text": "Evaluate a dance using personal preferences and personal knowledge of dance composition and impact"
+          },
+          {
+           "code": "FA.6-8.4.8",
+           "text": "Communicate daily life experiences and ideas through dance"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "how-the-arts-shape-and-reflect-culture",
+       "title": "How the Arts Shape and Reflect Culture",
+       "subtopics": [
+        {
+         "id": "how-the-arts-shape-and-reflect-culture",
+         "title": "How the Arts Shape and Reflect Culture",
+         "outcomes": [
+          {
+           "code": "FA.6-8.4.9",
+           "text": "Compare types of dances from different cultures and historical periods"
+          },
+          {
+           "code": "FA.6-8.4.10",
+           "text": "Analyze the historical evolution of dance from the lives of people in a community over time"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "9-12",
+   "units": [
+    {
+     "id": "visual-arts-understand-and-apply-art-materials-t",
+     "title": "Visual Arts — Understand and apply art materials, techniques, and processes in the creation of original works of art and understand how the visual arts communicate a variety of ideas, feelings, and experiences",
+     "topics": [
+      {
+       "id": "how-the-arts-are-organized",
+       "title": "How the Arts are Organized",
+       "subtopics": [
+        {
+         "id": "how-the-arts-are-organized",
+         "title": "How the Arts are Organized",
+         "outcomes": [
+          {
+           "code": "FA.9-12.1.1",
+           "text": "Create original works of art using a variety of visual arts materials, techniques, and processes"
+          },
+          {
+           "code": "FA.9-12.1.2",
+           "text": "Demonstrate how the composition of a work of art is affected by the use of elements or principles of art and design"
+          },
+          {
+           "code": "FA.9-12.1.3",
+           "text": "Analyze, using evidence, the relationship between themes explored in the visual arts and those explored in other content areas"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "how-the-arts-communicate",
+       "title": "How the Arts Communicate",
+       "subtopics": [
+        {
+         "id": "how-the-arts-communicate",
+         "title": "How the Arts Communicate",
+         "outcomes": [
+          {
+           "code": "FA.9-12.1.4",
+           "text": "Evaluate the effectiveness of the use of elements and principles of art and design in works of art"
+          },
+          {
+           "code": "FA.9-12.1.5",
+           "text": "Create works of art that contain one or more symbols, themes, and metaphors"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "how-the-arts-shape-and-reflect-culture",
+       "title": "How the Arts Shape and Reflect Culture",
+       "subtopics": [
+        {
+         "id": "how-the-arts-shape-and-reflect-culture",
+         "title": "How the Arts Shape and Reflect Culture",
+         "outcomes": [
+          {
+           "code": "FA.9-12.1.6",
+           "text": "Evaluate the function of artwork in different cultures, careers, and historical periods"
+          },
+          {
+           "code": "FA.9-12.1.7",
+           "text": "Analyze common characteristics of works of art and artifacts across time periods and among cultural groups to identify influences"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "music-understand-and-apply-elements-of-music-and",
+     "title": "Music — Understand and apply elements of music and understand how music communicates ideas, feelings, and experiences across cultures",
+     "topics": [
+      {
+       "id": "how-the-arts-are-organized",
+       "title": "How the Arts are Organized",
+       "subtopics": [
+        {
+         "id": "how-the-arts-are-organized",
+         "title": "How the Arts are Organized",
+         "outcomes": [
+          {
+           "code": "FA.9-12.2.1",
+           "text": "Perform a variety of musical elements with appropriate understanding, expression and style individually and in a group"
+          },
+          {
+           "code": "FA.9-12.2.2",
+           "text": "Improvise short melodies based on a chord pattern"
+          },
+          {
+           "code": "FA.9-12.2.3",
+           "text": "Apply knowledge of music theory to compose and arrange music within specified guidelines"
+          },
+          {
+           "code": "FA.9-12.2.4",
+           "text": "Analyze compositional devices and techniques"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "how-the-arts-communicate",
+       "title": "How the Arts Communicate",
+       "subtopics": [
+        {
+         "id": "how-the-arts-communicate",
+         "title": "How the Arts Communicate",
+         "outcomes": [
+          {
+           "code": "FA.9-12.2.5",
+           "text": "Critique music using specific criteria"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "how-the-arts-shape-and-reflect-culture",
+       "title": "How the Arts Shape and Reflect Culture",
+       "subtopics": [
+        {
+         "id": "how-the-arts-shape-and-reflect-culture",
+         "title": "How the Arts Shape and Reflect Culture",
+         "outcomes": [
+          {
+           "code": "FA.9-12.2.6",
+           "text": "Describe how various elements and roles of music integrate with other content areas"
+          },
+          {
+           "code": "FA.9-12.2.7",
+           "text": "Analyze the significance of music and composers in various cultures and time periods"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "drama-and-theatre-understand-and-apply-the-skill",
+     "title": "Drama and Theatre — Understand and apply the skills of acting, design, and technical theatre and understand the role of drama in various cultures throughout history",
+     "topics": [
+      {
+       "id": "how-the-arts-are-organized",
+       "title": "How the Arts are Organized",
+       "subtopics": [
+        {
+         "id": "how-the-arts-are-organized",
+         "title": "How the Arts are Organized",
+         "outcomes": [
+          {
+           "code": "FA.9-12.3.1",
+           "text": "Create a script or scene incorporating characters, dialogue, scenery, props, costumes, lighting, and sound"
+          },
+          {
+           "code": "FA.9-12.3.2",
+           "text": "Use collaboration and revision to develop and produce a play or scene"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "how-the-arts-communicate",
+       "title": "How the Arts Communicate",
+       "subtopics": [
+        {
+         "id": "how-the-arts-communicate",
+         "title": "How the Arts Communicate",
+         "outcomes": [
+          {
+           "code": "FA.9-12.3.3",
+           "text": "Analyze the physical, emotional, and social dimensions of characters in texts and performances"
+          },
+          {
+           "code": "FA.9-12.3.4",
+           "text": "Implement artistic choices for informal and formal productions"
+          },
+          {
+           "code": "FA.9-12.3.5",
+           "text": "Develop and apply criteria to critique all aspects of a live theatrical production"
+          },
+          {
+           "code": "FA.9-12.3.6",
+           "text": "Assess the role of the audience in relation to the overall live theatrical experience"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "how-the-arts-shape-and-reflect-culture",
+       "title": "How the Arts Shape and Reflect Culture",
+       "subtopics": [
+        {
+         "id": "how-the-arts-shape-and-reflect-culture",
+         "title": "How the Arts Shape and Reflect Culture",
+         "outcomes": [
+          {
+           "code": "FA.9-12.3.7",
+           "text": "Apply period style to dramatic forms, production practices, and theatrical traditions from various cultures and historical periods"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "dance-understand-and-apply-elements-of-dance-app",
+     "title": "Dance — Understand and apply elements of dance, appreciate how dance communicates meaning, and recognize its role across cultures and throughout history",
+     "topics": [
+      {
+       "id": "how-the-arts-are-organized",
+       "title": "How the Arts are Organized",
+       "subtopics": [
+        {
+         "id": "how-the-arts-are-organized",
+         "title": "How the Arts are Organized",
+         "outcomes": [
+          {
+           "code": "FA.9-12.4.1",
+           "text": "Use all of the dance elements in creating dance sequences"
+          },
+          {
+           "code": "FA.9-12.4.2",
+           "text": "Demonstrate choreographic principles, processes, and structures"
+          },
+          {
+           "code": "FA.9-12.4.3",
+           "text": "Analyze the effect of lifestyle choices on a dancer"
+          },
+          {
+           "code": "FA.9-12.4.4",
+           "text": "Synthesize dance with other disciplines"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "how-the-arts-communicate",
+       "title": "How the Arts Communicate",
+       "subtopics": [
+        {
+         "id": "how-the-arts-communicate",
+         "title": "How the Arts Communicate",
+         "outcomes": [
+          {
+           "code": "FA.9-12.4.5",
+           "text": "Use movement choices to communicate abstract ideas in dance"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "how-the-arts-shape-and-reflect-culture",
+       "title": "How the Arts Shape and Reflect Culture",
+       "subtopics": [
+        {
+         "id": "how-the-arts-shape-and-reflect-culture",
+         "title": "How the Arts Shape and Reflect Culture",
+         "outcomes": [
+          {
+           "code": "FA.9-12.4.6",
+           "text": "Apply complex steps and patterns of dances from a number of styles, genres, and cultures"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "build": {
+  "builtAt": "2026-10-14T16:20:41.355Z",
+  "model": "none",
+  "usd": 0,
+  "expectedCodes": 186,
+  "coverage": 1,
+  "missingCodes": [],
+  "counts": {
+   "grades": 8,
+   "units": 32,
+   "topics": 96,
+   "subtopics": 97,
+   "outcomes": 186
+  },
+  "warnings": []
+ }
+}

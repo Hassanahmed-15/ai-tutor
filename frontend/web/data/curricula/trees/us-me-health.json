@@ -1,0 +1,2428 @@
+{
+ "id": "us-me-health",
+ "region": "US",
+ "framework": "Maine state academic standards: Health Education",
+ "board": null,
+ "qualification": "K-12",
+ "subject": "Health Education",
+ "syllabusCode": null,
+ "gradeSystem": "grade",
+ "source": {
+  "urls": [
+   "https://api.commonstandardsproject.com/api/v1/jurisdictions/99301CAF70794BBCA568186C479A5DFC",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/99301CAF70794BBCA568186C479A5DFC_D2582693_grades-01-02-k-pre-k",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/99301CAF70794BBCA568186C479A5DFC_D2582693_grades-03-04-05",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/99301CAF70794BBCA568186C479A5DFC_D2582693_grades-06-07-08",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/99301CAF70794BBCA568186C479A5DFC_D2582693_grades-09-10-11-12"
+  ],
+  "publisher": "Maine state education agency (machine-readable via Common Standards Project / ASN)",
+  "licence": "CC BY 3.0 US, Desire2Learn Incorporated",
+  "firstExam": "2007"
+ },
+ "grades": [
+  {
+   "grade": "PK-2",
+   "units": [
+    {
+     "id": "health-concepts-students-comprehend-concepts-rel",
+     "title": "Health Concepts: Students comprehend concepts related to health promotion and disease prevention to enhance health",
+     "topics": [
+      {
+       "id": "healthy-behaviors-and-personal-health",
+       "title": "Healthy Behaviors and Personal Health",
+       "subtopics": [
+        {
+         "id": "healthy-behaviors-and-personal-health",
+         "title": "Healthy Behaviors and Personal Health",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Students recognize that healthy behaviors impact personal health."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "dimensions-of-health",
+       "title": "Dimensions of Health",
+       "subtopics": [
+        {
+         "id": "dimensions-of-health",
+         "title": "Dimensions of Health",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Students recognize that there are multiple dimensions of health."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "diseases-other-health-problems",
+       "title": "Diseases/Other Health Problems",
+       "subtopics": [
+        {
+         "id": "diseases-other-health-problems",
+         "title": "Diseases/Other Health Problems",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Students describe the transmission and prevention of common childhood communicable diseases."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "environment-and-personal-health",
+       "title": "Environment and Personal Health",
+       "subtopics": [
+        {
+         "id": "environment-and-personal-health",
+         "title": "Environment and Personal Health",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Students describe ways a safe and healthy school environment can promote personal health."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "basic-health-concepts",
+       "title": "Basic Health Concepts",
+       "subtopics": [
+        {
+         "id": "basic-health-concepts",
+         "title": "Basic Health Concepts",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Students identify basic health terms related to family life; nutrition; personal health; safety and injury prevention; and tobacco, alcohol, and other drug use prevention."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "health-information-products-and-services-student",
+     "title": "Health Information, Products and Services: Students demonstrate the ability to access valid health information, services, and products to enhance health",
+     "topics": [
+      {
+       "id": "validity-of-resources",
+       "title": "Validity of Resources",
+       "subtopics": [
+        {
+         "id": "validity-of-resources",
+         "title": "Validity of Resources",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Students identify trusted adults and professionals who can help promote health."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "locating-health-resources",
+       "title": "Locating Health Resources",
+       "subtopics": [
+        {
+         "id": "locating-health-resources",
+         "title": "Locating Health Resources",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Students identify ways to locate school and community health helpers."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "health-promotion-and-risk-reduction-students-dem",
+     "title": "Health Promotion and Risk Reduction: Students demonstrate the ability to practice health-enhancing behaviors and avoid or reduce health risks",
+     "topics": [
+      {
+       "id": "healthy-practices-and-behaviors",
+       "title": "Healthy Practices and Behaviors",
+       "subtopics": [
+        {
+         "id": "students-demonstrate-age-appropriate-healthy-pra",
+         "title": "Students demonstrate age-appropriate healthy practices to maintain or improve personal health",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Choose healthy foods."
+          },
+          {
+           "code": null,
+           "text": "Demonstrate personal hygiene skills, including hand-washing."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "avoiding-reducing-health-risks",
+       "title": "Avoiding/Reducing Health Risks",
+       "subtopics": [
+        {
+         "id": "students-demonstrate-behaviors-to-avoid-or-reduc",
+         "title": "Students demonstrate behaviors to avoid or reduce personal health risks",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Demonstrate a variety of safety skills for different situations."
+          },
+          {
+           "code": null,
+           "text": "Differentiate between safe and harmful substances found at home and school."
+          },
+          {
+           "code": null,
+           "text": "Recognize basic signs, symbols, and warning labels for health and safety."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "self-management",
+       "title": "Self-Management",
+       "subtopics": [
+        {
+         "id": "self-management",
+         "title": "Self-Management",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Students demonstrate coping strategies to use when feeling too excited, anxious, upset, angry, or out of control."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "influences-on-health-students-analyze-the-abilit",
+     "title": "Influences on Health: Students analyze the ability of family, peers, culture, media, technology, and other factors to enhance health",
+     "topics": [
+      {
+       "id": "influences-on-health-practices-behaviors",
+       "title": "Influences on Health Practices/Behaviors",
+       "subtopics": [
+        {
+         "id": "students-identify-influences-on-personal-health-",
+         "title": "Students identify influences on personal health practices and behaviors",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Identify family influences on personal health practices and behaviors."
+          },
+          {
+           "code": null,
+           "text": "Identify what the school can do to support personal health practices and behaviors."
+          },
+          {
+           "code": null,
+           "text": "Describe how the media can influence health behaviors."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "communication-and-advocacy-skills-students-demon",
+     "title": "Communication and Advocacy Skills: Students demonstrate the ability to use interpersonal communication and advocacy skills to enhance personal, family, and community health",
+     "topics": [
+      {
+       "id": "interpersonal-communication-skills",
+       "title": "Interpersonal Communication Skills",
+       "subtopics": [
+        {
+         "id": "students-demonstrate-healthy-ways-to-communicate",
+         "title": "Students demonstrate healthy ways to communicate",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Demonstrate healthy ways to express needs, wants, and feelings."
+          },
+          {
+           "code": null,
+           "text": "Distinguish between verbal and nonverbal communication."
+          },
+          {
+           "code": null,
+           "text": "Make requests to promote personal health."
+          },
+          {
+           "code": null,
+           "text": "Demonstrate listening skills to enhance health."
+          },
+          {
+           "code": null,
+           "text": "Demonstrate ways to respond to an unwanted, threatening, or dangerous situation including telling a trusted adult if threatened or harmed."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "advocacy-skills",
+       "title": "Advocacy Skills",
+       "subtopics": [
+        {
+         "id": "advocacy-skills",
+         "title": "Advocacy Skills",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Students encourage peers to make positive health choices."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "decision-making-and-goal-setting-skills-students",
+     "title": "Decision-Making and Goal-Setting Skills: Students demonstrate the ability to make decisions and set goals to enhance health",
+     "topics": [
+      {
+       "id": "decision-making",
+       "title": "Decision-Making",
+       "subtopics": [
+        {
+         "id": "students-identify-situations-where-a-health-rela",
+         "title": "Students identify situations where a health-related decision is needed",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Differentiate between situations when health-related decisions can appropriately be made by the individual and when assistance is needed."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "goal-setting",
+       "title": "Goal-Setting",
+       "subtopics": [
+        {
+         "id": "goal-setting",
+         "title": "Goal-Setting",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Students identify a short-term personal health goal and take action toward achieving the goal."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "movement-motor-skills-and-knowledge-students-dem",
+     "title": "Movement/Motor Skills and Knowledge: Students demonstrate the fundamental and specialized movement skills and apply principles of movement for improved performance",
+     "topics": [
+      {
+       "id": "stability-and-force",
+       "title": "Stability and Force",
+       "subtopics": [
+        {
+         "id": "students-demonstrate-positions-that-create-stabi",
+         "title": "Students demonstrate positions that create stability and force",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Show how base of support changes during static balances."
+          },
+          {
+           "code": null,
+           "text": "Demonstrate how body position can be adapted to pushing and pulling forces."
+          },
+          {
+           "code": null,
+           "text": "Demonstrate how to lift objects to prevent injuries."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "movement-skills",
+       "title": "Movement Skills",
+       "subtopics": [
+        {
+         "id": "students-demonstrate-a-variety-of-locomotor-skil",
+         "title": "Students demonstrate a variety of locomotor skills",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Demonstrate correct technique for a variety of locomotor skills."
+          },
+          {
+           "code": null,
+           "text": "Demonstrate a locomotor skill applying changes in direction, level, and/or pathway."
+          },
+          {
+           "code": null,
+           "text": "Demonstrate combinations of locomotor skills."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "skill-related-fitness-components",
+       "title": "Skill-Related Fitness Components",
+       "subtopics": [
+        {
+         "id": "skill-related-fitness-components",
+         "title": "Skill-Related Fitness Components",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Students identify the skill-related fitness components of balance and coordination."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "physical-fitness-activities-and-knowledge-studen",
+     "title": "Physical Fitness Activities and Knowledge: Students demonstrate and apply fitness concepts",
+     "topics": [
+      {
+       "id": "health-related-fitness-plan",
+       "title": "Health-Related Fitness Plan",
+       "subtopics": [
+        {
+         "id": "health-related-fitness-plan",
+         "title": "Health-Related Fitness Plan",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Students identify components of health-related fitness."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "fitness-activity",
+       "title": "Fitness Activity",
+       "subtopics": [
+        {
+         "id": "fitness-activity",
+         "title": "Fitness Activity",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Students participate in physical activities to introduce the health-related fitness components of flexibility, cardiovascular endurance, muscular endurance, and muscular strength."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "physical-activity-benefits",
+       "title": "Physical Activity Benefits",
+       "subtopics": [
+        {
+         "id": "physical-activity-benefits",
+         "title": "Physical Activity Benefits",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Students identify the physical benefits and bodily responses related to physical activities."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "personal-and-social-skills-and-knowledge-student",
+     "title": "Personal and Social Skills and Knowledge: Students demonstrate and explain responsible personal behavior and responsible social behavior in physical activity settings",
+     "topics": [
+      {
+       "id": "cooperative-skills",
+       "title": "Cooperative Skills",
+       "subtopics": [
+        {
+         "id": "cooperative-skills",
+         "title": "Cooperative Skills",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Students demonstrate taking turns and sharing while participating in physical activities."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "responsible-behavior",
+       "title": "Responsible Behavior",
+       "subtopics": [
+        {
+         "id": "responsible-behavior",
+         "title": "Responsible Behavior",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Students follow procedures for safe behaviors, including maintaining appropriate personal space, while participating in physical activities."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "safety-rules-and-rules-of-play",
+       "title": "Safety Rules and Rules of Play",
+       "subtopics": [
+        {
+         "id": "safety-rules-and-rules-of-play",
+         "title": "Safety Rules and Rules of Play",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Students identify safety rules and rule of play for games/physical activities."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "3-5",
+   "units": [
+    {
+     "id": "health-concepts-students-comprehend-concepts-rel",
+     "title": "Health Concepts: Students comprehend concepts related to health promotion and disease prevention to enhance health",
+     "topics": [
+      {
+       "id": "healthy-behaviors-and-personal-health",
+       "title": "Healthy Behaviors and Personal Health",
+       "subtopics": [
+        {
+         "id": "healthy-behaviors-and-personal-health",
+         "title": "Healthy Behaviors and Personal Health",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Students explain the relationship between healthy behaviors and personal health."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "dimensions-of-health",
+       "title": "Dimensions of Health",
+       "subtopics": [
+        {
+         "id": "dimensions-of-health",
+         "title": "Dimensions of Health",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Students identify examples of physical, mental, emotional, and social health during childhood."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "diseases-other-health-problems",
+       "title": "Diseases/Other Health Problems",
+       "subtopics": [
+        {
+         "id": "diseases-other-health-problems",
+         "title": "Diseases/Other Health Problems",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Students describe ways to detect and treat common childhood diseases and other health problems."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "environment-and-personal-health",
+       "title": "Environment and Personal Health",
+       "subtopics": [
+        {
+         "id": "environment-and-personal-health",
+         "title": "Environment and Personal Health",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Students describe ways a safe and healthy school and community environment can promote personal health."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "growth-and-development",
+       "title": "Growth and Development",
+       "subtopics": [
+        {
+         "id": "growth-and-development",
+         "title": "Growth and Development",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Students identify the general characteristics of human growth and development."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "basic-health-concepts",
+       "title": "Basic Health Concepts",
+       "subtopics": [
+        {
+         "id": "basic-health-concepts",
+         "title": "Basic Health Concepts",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Students define basic health concepts related to family life; nutrition; personal health; safety and injury prevention; and tobacco, alcohol, and other drug use prevention."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "health-information-products-and-services-student",
+     "title": "Health Information, Products and Services: Students demonstrate the ability to access valid health information, services, and products to enhance health",
+     "topics": [
+      {
+       "id": "validity-of-resources",
+       "title": "Validity of Resources",
+       "subtopics": [
+        {
+         "id": "validity-of-resources",
+         "title": "Validity of Resources",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Students identify characteristics of valid health information, products, and services."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "locating-health-resources",
+       "title": "Locating Health Resources",
+       "subtopics": [
+        {
+         "id": "locating-health-resources",
+         "title": "Locating Health Resources",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Students locate resources from home, school, and the community that provide valid health information."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "health-promotion-and-risk-reduction-students-dem",
+     "title": "Health Promotion and Risk Reduction: Students demonstrate the ability to practice health-enhancing behaviors and avoid or reduce health risks",
+     "topics": [
+      {
+       "id": "healthy-practices-and-behaviors",
+       "title": "Healthy Practices and Behaviors",
+       "subtopics": [
+        {
+         "id": "students-demonstrate-age-appropriate-healthy-pra",
+         "title": "Students demonstrate age-appropriate healthy practices and/or behaviors to maintain or improve personal health",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Design healthy menus."
+          },
+          {
+           "code": null,
+           "text": "Demonstrate basic care of the human body."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "avoiding-reducing-health-risks",
+       "title": "Avoiding/Reducing Health Risks",
+       "subtopics": [
+        {
+         "id": "students-demonstrate-a-variety-of-behaviors-to-a",
+         "title": "Students demonstrate a variety of behaviors to avoid or reduce personal health risks",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Demonstrate healthy and safe ways to recognize, deal with, or avoid threatening situations."
+          },
+          {
+           "code": null,
+           "text": "Develop injury prevention and safety strategies for personal health."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "self-management",
+       "title": "Self-Management",
+       "subtopics": [
+        {
+         "id": "self-management",
+         "title": "Self-Management",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Students demonstrate strategies that can be used to manage stress, anger, or grief."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "influences-on-health-students-analyze-the-abilit",
+     "title": "Influences on Health: Students analyze the ability of family, peers, culture, media, technology, and other factors to enhance health",
+     "topics": [
+      {
+       "id": "influences-on-health-practices-behaviors",
+       "title": "Influences on Health Practices/Behaviors",
+       "subtopics": [
+        {
+         "id": "students-describe-how-a-variety-of-factors-influ",
+         "title": "Students describe how a variety of factors influence personal health behaviors",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe how family, school, and community influence and support personal health practices and behaviors."
+          },
+          {
+           "code": null,
+           "text": "Describe how peers and culture can influence health practices and behaviors."
+          },
+          {
+           "code": null,
+           "text": "Explain how media influences thoughts, feelings, and health behaviors."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "technology-and-health",
+       "title": "Technology and Health",
+       "subtopics": [
+        {
+         "id": "technology-and-health",
+         "title": "Technology and Health",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Students describe ways technology can influence personal health."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "communication-and-advocacy-skills-students-demon",
+     "title": "Communication and Advocacy Skills: Students demonstrate the ability to use interpersonal communication and advocacy skills to enhance personal, family, and community health",
+     "topics": [
+      {
+       "id": "interpersonal-communication-skills",
+       "title": "Interpersonal Communication Skills",
+       "subtopics": [
+        {
+         "id": "students-demonstrate-effective-verbal-and-nonver",
+         "title": "Students demonstrate effective verbal and nonverbal interpersonal communication skills to enhance health",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Demonstrate appropriate listening skills to enhance health."
+          },
+          {
+           "code": null,
+           "text": "Demonstrate effective verbal and non-verbal communication skills including assertiveness skills to enhance health."
+          },
+          {
+           "code": null,
+           "text": "Demonstrate how to ask for assistance to enhance personal health."
+          },
+          {
+           "code": null,
+           "text": "Demonstrate refusal skills to avoid or reduce health risks."
+          },
+          {
+           "code": null,
+           "text": "Demonstrate non-violent strategies to manage or resolve conflict."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "advocacy-skills",
+       "title": "Advocacy Skills",
+       "subtopics": [
+        {
+         "id": "students-encourage-others-to-make-positive-healt",
+         "title": "Students encourage others to make positive health choices",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Express opinions about health issues."
+          },
+          {
+           "code": null,
+           "text": "Give accurate information about health issues."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "decision-making-and-goal-setting-skills-students",
+     "title": "Decision-Making and Goal-Setting Skills: Students demonstrate the ability to make decisions and set goals to enhance health",
+     "topics": [
+      {
+       "id": "decision-making",
+       "title": "Decision-Making",
+       "subtopics": [
+        {
+         "id": "students-apply-decision-making-steps-to-enhance-",
+         "title": "Students apply decision-making steps to enhance health",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Identify health-related situations that might require a thoughtful decision."
+          },
+          {
+           "code": null,
+           "text": "List healthy options to health-related issues or problems and predict the potential outcomes of each option when making a health-related decision."
+          },
+          {
+           "code": null,
+           "text": "Choose a healthy option when making a decision."
+          },
+          {
+           "code": null,
+           "text": "Describe the outcome of a health-related decision."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "goal-setting",
+       "title": "Goal-Setting",
+       "subtopics": [
+        {
+         "id": "students-utilize-goal-setting-skills-to-implemen",
+         "title": "Students utilize goal-setting skills to implement a short-term personal health goal",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Set a short-term personal health goal."
+          },
+          {
+           "code": null,
+           "text": "Identify resources to assist in achieving the health goal."
+          },
+          {
+           "code": null,
+           "text": "Track progress toward achieving the goal."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "movement-motor-skills-and-knowledge-students-dem",
+     "title": "Movement/Motor Skills and Knowledge: Students demonstrate the fundamental and specialized movement skills and apply principles of movement for improved performance",
+     "topics": [
+      {
+       "id": "stability-and-force",
+       "title": "Stability and Force",
+       "subtopics": [
+        {
+         "id": "students-demonstrate-a-variety-of-movements-that",
+         "title": "Students demonstrate a variety of movements that apply stability and force",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Demonstrate movements that change the center of gravity and line of gravity during dynamic balances."
+          },
+          {
+           "code": null,
+           "text": "Show how increasing speed and mass can change the force on an object."
+          },
+          {
+           "code": null,
+           "text": "Demonstrate how body position can be changed to absorb force and decrease risk for injury."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "movement-skills",
+       "title": "Movement Skills",
+       "subtopics": [
+        {
+         "id": "students-demonstrate-a-variety-of-locomotor-skil",
+         "title": "Students demonstrate a variety of locomotor skills and manipulative skills",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Demonstrate correct technique for a variety of manipulative skills."
+          },
+          {
+           "code": null,
+           "text": "Demonstrate locomotor skills and manipulative skills in combination using changes in direction, level, or pathway."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "skill-related-fitness-components",
+       "title": "Skill-Related Fitness Components",
+       "subtopics": [
+        {
+         "id": "skill-related-fitness-components",
+         "title": "Skill-Related Fitness Components",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Students identify the skill-related fitness components of balance, coordination, agility, and speed."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "skill-improvement",
+       "title": "Skill Improvement",
+       "subtopics": [
+        {
+         "id": "skill-improvement",
+         "title": "Skill Improvement",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Students describe why practice is important to skill improvement."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "physical-fitness-activities-and-knowledge-studen",
+     "title": "Physical Fitness Activities and Knowledge: Students demonstrate and apply fitness concepts",
+     "topics": [
+      {
+       "id": "fitness-assessment",
+       "title": "Fitness Assessment",
+       "subtopics": [
+        {
+         "id": "fitness-assessment",
+         "title": "Fitness Assessment",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Students participate in multiple health-related fitness assessments (including a cardiovascular assessment) and reassess to observe changes over time."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "health-related-fitness-plan",
+       "title": "Health-Related Fitness Plan",
+       "subtopics": [
+        {
+         "id": "health-related-fitness-plan",
+         "title": "Health-Related Fitness Plan",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Students describe and give examples of the five health-related fitness components."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "fitness-activity",
+       "title": "Fitness Activity",
+       "subtopics": [
+        {
+         "id": "fitness-activity",
+         "title": "Fitness Activity",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Students participate in physical activities that address each of the five health-related fitness components including flexibility, cardiovascular endurance, muscular endurance, muscular strength, and body composition."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "physical-activity-benefits",
+       "title": "Physical Activity Benefits",
+       "subtopics": [
+        {
+         "id": "physical-activity-benefits",
+         "title": "Physical Activity Benefits",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Students identify physical and mental benefits and bodily responses related to regular participation in physical activity."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "personal-and-social-skills-and-knowledge-student",
+     "title": "Personal and Social Skills and Knowledge: Students demonstrate and explain responsible personal behavior and responsible social behavior in physical activity settings",
+     "topics": [
+      {
+       "id": "cooperative-skills",
+       "title": "Cooperative Skills",
+       "subtopics": [
+        {
+         "id": "students-demonstrate-cooperative-skills-while-pa",
+         "title": "Students demonstrate cooperative skills while participating in physical activities",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Demonstrate active listening."
+          },
+          {
+           "code": null,
+           "text": "Get along with others."
+          },
+          {
+           "code": null,
+           "text": "Accept responsibility for personal behavior."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "responsible-behavior",
+       "title": "Responsible Behavior",
+       "subtopics": [
+        {
+         "id": "responsible-behavior",
+         "title": "Responsible Behavior",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Students demonstrate safe behaviors and appropriate equipment use while participating in physical activities."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "safety-rules-and-rules-of-play",
+       "title": "Safety Rules and Rules of Play",
+       "subtopics": [
+        {
+         "id": "safety-rules-and-rules-of-play",
+         "title": "Safety Rules and Rules of Play",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Students describe safety rules and rules of play for games/physical activities."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "6-8",
+   "units": [
+    {
+     "id": "health-concepts-students-comprehend-concepts-rel",
+     "title": "Health Concepts: Students comprehend concepts related to health promotion and disease prevention to enhance health",
+     "topics": [
+      {
+       "id": "healthy-behaviors-and-personal-health",
+       "title": "Healthy Behaviors and Personal Health",
+       "subtopics": [
+        {
+         "id": "students-examine-the-relationship-between-behavi",
+         "title": "Students examine the relationship between behaviors and personal health",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain the importance of assuming responsibility for personal health."
+          },
+          {
+           "code": null,
+           "text": "Examine the relationship between healthy and unhealthy behaviors and personal health."
+          },
+          {
+           "code": null,
+           "text": "Identify the possible barriers to practicing healthy behaviors."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "dimensions-of-health",
+       "title": "Dimensions of Health",
+       "subtopics": [
+        {
+         "id": "dimensions-of-health",
+         "title": "Dimensions of Health",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Students explain the interrelationship of physical, mental/intellectual, emotional, and social health."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "diseases-other-health-problems",
+       "title": "Diseases/Other Health Problems",
+       "subtopics": [
+        {
+         "id": "diseases-other-health-problems",
+         "title": "Diseases/Other Health Problems",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Students identify causes of common adolescent diseases and other health problems and describe ways to reduce, prevent, or treat them."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "environment-and-personal-health",
+       "title": "Environment and Personal Health",
+       "subtopics": [
+        {
+         "id": "students-determine-how-environment-and-other-fac",
+         "title": "Students determine how environment and other factors impact personal health",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Analyze how environment impacts personal health."
+          },
+          {
+           "code": null,
+           "text": "Describe how family history can impact personal health."
+          },
+          {
+           "code": null,
+           "text": "Explain how appropriate health care can promote personal health."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "growth-and-development",
+       "title": "Growth and Development",
+       "subtopics": [
+        {
+         "id": "growth-and-development",
+         "title": "Growth and Development",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Students describe specific characteristics of adolescent human growth and development."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "basic-health-concepts",
+       "title": "Basic Health Concepts",
+       "subtopics": [
+        {
+         "id": "basic-health-concepts",
+         "title": "Basic Health Concepts",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Students explain essential health concepts related to family life; nutrition; personal health; safety and injury prevention; and tobacco, alcohol, and other drug use prevention."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "health-information-products-and-services-student",
+     "title": "Health Information, Products and Services: Students demonstrate the ability to access valid health information, services, and products to enhance health",
+     "topics": [
+      {
+       "id": "validity-of-resources",
+       "title": "Validity of Resources",
+       "subtopics": [
+        {
+         "id": "validity-of-resources",
+         "title": "Validity of Resources",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Students analyze the validity of health information, products, and services."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "locating-health-resources",
+       "title": "Locating Health Resources",
+       "subtopics": [
+        {
+         "id": "students-locate-valid-and-reliable-health-inform",
+         "title": "Students locate valid and reliable health information, products, and services",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain situations requiring the use of valid and reliable health information, products, and services."
+          },
+          {
+           "code": null,
+           "text": "Locate valid and reliable health information."
+          },
+          {
+           "code": null,
+           "text": "Locate valid and reliable health products, and services."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "health-promotion-and-risk-reduction-students-dem",
+     "title": "Health Promotion and Risk Reduction: Students demonstrate the ability to practice health-enhancing behaviors and avoid or reduce health risks",
+     "topics": [
+      {
+       "id": "healthy-practices-and-behaviors",
+       "title": "Healthy Practices and Behaviors",
+       "subtopics": [
+        {
+         "id": "healthy-practices-and-behaviors",
+         "title": "Healthy Practices and Behaviors",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Students demonstrate a healthy practice and/or behavior to maintain or improve their own health in each of the following areas: personal hygiene, healthy eating; physical activity; and tobacco, alcohol, and other drug use prevention."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "avoiding-reducing-health-risks",
+       "title": "Avoiding/Reducing Health Risks",
+       "subtopics": [
+        {
+         "id": "students-demonstrate-behaviors-to-avoid-or-reduc",
+         "title": "Students demonstrate behaviors to avoid or reduce health risks to self and others",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Demonstrate ways to recognize, avoid, or change situations that threaten the safety of self and others."
+          },
+          {
+           "code": null,
+           "text": "Develop injury prevention and response strategies including first aid for personal and family health."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "self-management",
+       "title": "Self-Management",
+       "subtopics": [
+        {
+         "id": "self-management",
+         "title": "Self-Management",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Students distinguish between healthy and unhealthy strategies for stress, anger, and grief management."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "influences-on-health-students-analyze-the-abilit",
+     "title": "Influences on Health: Students analyze the ability of family, peers, culture, media, technology, and other factors to enhance health",
+     "topics": [
+      {
+       "id": "influences-on-health-practices-behaviors",
+       "title": "Influences on Health Practices/Behaviors",
+       "subtopics": [
+        {
+         "id": "students-explain-and-analyze-influences-on-adole",
+         "title": "Students explain and analyze influences on adolescent health behaviors",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Examine how the family, school, and community influence the health behaviors of adolescents."
+          },
+          {
+           "code": null,
+           "text": "Describe how peers influence healthy and unhealthy behaviors."
+          },
+          {
+           "code": null,
+           "text": "Analyze how messages from media influence health behaviors."
+          },
+          {
+           "code": null,
+           "text": "Explain how the perceptions of norms influence healthy and unhealthy behaviors."
+          },
+          {
+           "code": null,
+           "text": "Explain how culture and personal values and beliefs influence individual health behaviors."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "technology-and-health",
+       "title": "Technology and Health",
+       "subtopics": [
+        {
+         "id": "technology-and-health",
+         "title": "Technology and Health",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Students analyze the influence of technology, including medical technology, on personal and family health."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "compound-effect-of-risk-behavior",
+       "title": "Compound Effect of Risk Behavior",
+       "subtopics": [
+        {
+         "id": "students-describe-how-some-health-risk-behaviors",
+         "title": "Students describe how some health risk behaviors can influence the likelihood of engaging in unhealthy behaviors",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe how gateway drugs can lead to the use of other drugs."
+          },
+          {
+           "code": null,
+           "text": "Describe the influence of alcohol and other drug use on judgment and self-control."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "communication-and-advocacy-skills-students-demon",
+     "title": "Communication and Advocacy Skills: Students demonstrate the ability to use interpersonal communication and advocacy skills to enhance personal, family, and community health",
+     "topics": [
+      {
+       "id": "interpersonal-communication-skills",
+       "title": "Interpersonal Communication Skills",
+       "subtopics": [
+        {
+         "id": "students-apply-effective-verbal-and-nonverbal-in",
+         "title": "Students apply effective verbal and nonverbal interpersonal communication skills to enhance health",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Demonstrate communication skills to build and maintain healthy relationships."
+          },
+          {
+           "code": null,
+           "text": "Demonstrate effective communication skills including asking for assistance to enhance the health of self and others."
+          },
+          {
+           "code": null,
+           "text": "Demonstrate refusal and negotiation skills to avoid or reduce health risks."
+          },
+          {
+           "code": null,
+           "text": "Demonstrate effective conflict management or conflict resolution strategies."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "advocacy-skills",
+       "title": "Advocacy Skills",
+       "subtopics": [
+        {
+         "id": "students-describe-ways-to-influence-and-support-",
+         "title": "Students describe ways to influence and support others in making positive health choices",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Develop a health-enhancing position on a topic and support it with information."
+          },
+          {
+           "code": null,
+           "text": "Develop health-enhancing messages using communication techniques that target a specific audience."
+          },
+          {
+           "code": null,
+           "text": "Demonstrate an ability to work cooperatively as an advocate for healthy individuals, families, and schools."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "decision-making-and-goal-setting-skills-students",
+     "title": "Decision-Making and Goal-Setting Skills: Students demonstrate the ability to make decisions and set goals to enhance health",
+     "topics": [
+      {
+       "id": "decision-making",
+       "title": "Decision-Making",
+       "subtopics": [
+        {
+         "id": "students-apply-decision-making-skills-to-enhance",
+         "title": "Students apply decision-making skills to enhance health",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Determine when health-related situations require the application of a thoughtful decision-making process."
+          },
+          {
+           "code": null,
+           "text": "Determine when individual or collaborative decision-making is appropriate."
+          },
+          {
+           "code": null,
+           "text": "Distinguish between healthy and unhealthy alternatives to health-related issues or problems and predict the potential short-term impact of alternative decisions for themselves and others."
+          },
+          {
+           "code": null,
+           "text": "Choose healthy alternatives over unhealthy alternatives when making a decision."
+          },
+          {
+           "code": null,
+           "text": "Analyze the outcomes of a health-related decision."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "goal-setting",
+       "title": "Goal-Setting",
+       "subtopics": [
+        {
+         "id": "students-develop-and-apply-strategies-to-attain-",
+         "title": "Students develop and apply strategies to attain a short-term personal health goal",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Assess personal health practices."
+          },
+          {
+           "code": null,
+           "text": "Develop a short-term goal to adopt, maintain, or improve a personal health practice."
+          },
+          {
+           "code": null,
+           "text": "Develop and apply strategies and monitor progress toward a personal health goal."
+          },
+          {
+           "code": null,
+           "text": "Describe how personal health goals can vary with changing abilities, priorities, and responsibilities."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "movement-motor-skills-and-knowledge-students-dem",
+     "title": "Movement/Motor Skills and Knowledge: Students demonstrate the fundamental and specialized movement skills and apply principles of movement for improved performance",
+     "topics": [
+      {
+       "id": "stability-and-force",
+       "title": "Stability and Force",
+       "subtopics": [
+        {
+         "id": "students-change-their-motion-and-the-motion-of-o",
+         "title": "Students change their motion and the motion of objects by applying the principles of stability and force during skill practice",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Demonstrate the principle of opposition."
+          },
+          {
+           "code": null,
+           "text": "Demonstrate how the point of contact changes the path of an object."
+          },
+          {
+           "code": null,
+           "text": "Demonstrate how the point of release changes the path of an object."
+          },
+          {
+           "code": null,
+           "text": "Demonstrate lifts and actions that decrease risk for injury."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "movement-skills",
+       "title": "Movement Skills",
+       "subtopics": [
+        {
+         "id": "students-demonstrate-motor-skills-and-manipulati",
+         "title": "Students demonstrate motor skills and manipulative skills during drills or modified games/physical activities",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Demonstrate correct technique for motor skills and manipulative skills during drills or modified games/physical activities."
+          },
+          {
+           "code": null,
+           "text": "Combine manipulative skills with motor skills during drills or modified games/physical activities."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "skill-related-fitness-components",
+       "title": "Skill-Related Fitness Components",
+       "subtopics": [
+        {
+         "id": "skill-related-fitness-components",
+         "title": "Skill-Related Fitness Components",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Students describe the following skill-related fitness components: balance, coordination, agility, speed, and power."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "skill-improvement",
+       "title": "Skill Improvement",
+       "subtopics": [
+        {
+         "id": "skill-improvement",
+         "title": "Skill Improvement",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Students explain how specific, positive, and correct feedback affect skill improvement."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "physical-fitness-activities-and-knowledge-studen",
+     "title": "Physical Fitness Activities and Knowledge: Students demonstrate and apply fitness concepts",
+     "topics": [
+      {
+       "id": "fitness-assessment",
+       "title": "Fitness Assessment",
+       "subtopics": [
+        {
+         "id": "fitness-assessment",
+         "title": "Fitness Assessment",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Students participate in a health-related fitness assessment that addresses a variety of health-related fitness components to establish personal fitness goals."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "health-related-fitness-plan",
+       "title": "Health-Related Fitness Plan",
+       "subtopics": [
+        {
+         "id": "health-related-fitness-plan",
+         "title": "Health-Related Fitness Plan",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Students design a fitness program from established goals which addresses the five health-related fitness components and applies the frequency, intensity, time, and type (FITT) guidelines."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "fitness-activity",
+       "title": "Fitness Activity",
+       "subtopics": [
+        {
+         "id": "fitness-activity",
+         "title": "Fitness Activity",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Students participate in physical activities that address personal fitness goals for the health-related fitness components including flexibility, cardiovascular endurance, muscular endurance, muscular strength, and body composition."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "physical-activity-benefits",
+       "title": "Physical Activity Benefits",
+       "subtopics": [
+        {
+         "id": "physical-activity-benefits",
+         "title": "Physical Activity Benefits",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Students describe physiological responses and physical, mental/intellectual, emotional, and social benefits related to regular participation in physical activity."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "personal-and-social-skills-and-knowledge-student",
+     "title": "Personal and Social Skills and Knowledge: Students demonstrate and explain responsible personal behavior and responsible social behavior in physical activity settings",
+     "topics": [
+      {
+       "id": "cooperative-skills",
+       "title": "Cooperative Skills",
+       "subtopics": [
+        {
+         "id": "students-demonstrate-cooperative-and-inclusive-s",
+         "title": "Students demonstrate cooperative and inclusive skills while participating in physical activities",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Work together as a team."
+          },
+          {
+           "code": null,
+           "text": "Respond appropriately to peer pressure."
+          },
+          {
+           "code": null,
+           "text": "Manage conflict."
+          },
+          {
+           "code": null,
+           "text": "Engage peers respectfully in activities."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "responsible-behavior",
+       "title": "Responsible Behavior",
+       "subtopics": [
+        {
+         "id": "responsible-behavior",
+         "title": "Responsible Behavior",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Students demonstrate responsible personal behaviors while participating in physical activities."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "safety-rules-and-rules-of-play",
+       "title": "Safety Rules and Rules of Play",
+       "subtopics": [
+        {
+         "id": "students-describe-game-physical-activity-rules-a",
+         "title": "Students describe game/physical activity rules and safety rules and their purposes",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain the purposes for modifying playing rules in specified situations."
+          },
+          {
+           "code": null,
+           "text": "Explain the safety rules and possible risks associated with specific games/physical activities."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "9-12",
+   "units": [
+    {
+     "id": "health-concepts-students-comprehend-concepts-rel",
+     "title": "Health Concepts: Students comprehend concepts related to health promotion and disease prevention to enhance health",
+     "topics": [
+      {
+       "id": "healthy-behaviors-and-personal-health",
+       "title": "Healthy Behaviors and Personal Health",
+       "subtopics": [
+        {
+         "id": "healthy-behaviors-and-personal-health",
+         "title": "Healthy Behaviors and Personal Health",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Students predict how behaviors can impact health status."
+          },
+          {
+           "code": null,
+           "text": "Analyze individual responsibility for enhancing health."
+          },
+          {
+           "code": null,
+           "text": "Predict how healthy behaviors can positively impact health status."
+          },
+          {
+           "code": null,
+           "text": "Describe barriers to practicing healthy behaviors."
+          },
+          {
+           "code": null,
+           "text": "Examine personal susceptibility to, and the potential severity of, injury or illness if engaging in unhealthy behaviors."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "dimensions-of-health",
+       "title": "Dimensions of Health",
+       "subtopics": [
+        {
+         "id": "dimensions-of-health",
+         "title": "Dimensions of Health",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Students analyze the interrelationship of physical, mental/intellectual, emotional, and social health."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "diseases-other-health-problems",
+       "title": "Diseases/Other Health Problems",
+       "subtopics": [
+        {
+         "id": "diseases-other-health-problems",
+         "title": "Diseases/Other Health Problems",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Students explain causes of common diseases, disorders, and other health problems and propose ways to reduce, prevent, or treat them."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "environment-and-personal-health",
+       "title": "Environment and Personal Health",
+       "subtopics": [
+        {
+         "id": "students-determine-the-interrelationship-between",
+         "title": "Students determine the interrelationship between the environment and other factors and personal health",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Analyze how environment and personal health are interrelated."
+          },
+          {
+           "code": null,
+           "text": "Describe how genetics and family history can impact personal health."
+          },
+          {
+           "code": null,
+           "text": "Analyze the relationship between access to health care and health status."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "growth-and-development",
+       "title": "Growth and Development",
+       "subtopics": [
+        {
+         "id": "growth-and-development",
+         "title": "Growth and Development",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Students describe the characteristics of human growth and development throughout the various stages of life."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "basic-health-concepts",
+       "title": "Basic Health Concepts",
+       "subtopics": [
+        {
+         "id": "basic-health-concepts",
+         "title": "Basic Health Concepts",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Students analyze complex health concepts related to family life; nutrition; personal health; safety and injury prevention; and tobacco, alcohol, and other drug use prevention."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "health-information-products-and-services-student",
+     "title": "Health Information, Products and Services: Students demonstrate the ability to access valid health information, services, and products to enhance health",
+     "topics": [
+      {
+       "id": "validity-of-resources",
+       "title": "Validity of Resources",
+       "subtopics": [
+        {
+         "id": "validity-of-resources",
+         "title": "Validity of Resources",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Students evaluate the validity and accessibility of health information, products, and services."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "locating-health-resources",
+       "title": "Locating Health Resources",
+       "subtopics": [
+        {
+         "id": "students-access-valid-and-reliable-health-inform",
+         "title": "Students access valid and reliable health information, products, and services",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Determine when professional health services may be required."
+          },
+          {
+           "code": null,
+           "text": "Access valid and reliable health information."
+          },
+          {
+           "code": null,
+           "text": "Access valid and reliable health products, and services."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "health-promotion-and-risk-reduction-students-dem",
+     "title": "Health Promotion and Risk Reduction: Students demonstrate the ability to practice health-enhancing behaviors and avoid or reduce health risks",
+     "topics": [
+      {
+       "id": "healthy-practices-and-behaviors",
+       "title": "Healthy Practices and Behaviors",
+       "subtopics": [
+        {
+         "id": "healthy-practices-and-behaviors",
+         "title": "Healthy Practices and Behaviors",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Students demonstrate healthy practices and/or behaviors to maintain or improve the health of self and others in each of the following areas: healthy eating; physical activity; tobacco, alcohol, and other drug use prevention; and prevention of STDs, HIV and unintended pregnancy."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "avoiding-reducing-health-risks",
+       "title": "Avoiding/Reducing Health Risks",
+       "subtopics": [
+        {
+         "id": "students-demonstrate-a-variety-of-behaviors-to-a",
+         "title": "Students demonstrate a variety of behaviors to avoid or reduce health risks to self and others",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Develop ways to recognize, avoid, or change situations that threaten the safety of self and others."
+          },
+          {
+           "code": null,
+           "text": "Develop injury prevention and response strategies including first aid for personal, family, and community health."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "self-management",
+       "title": "Self-Management",
+       "subtopics": [
+        {
+         "id": "self-management",
+         "title": "Self-Management",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Students design, implement, and evaluate a plan for stress management."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "influences-on-health-students-analyze-the-abilit",
+     "title": "Influences on Health: Students analyze the ability of family, peers, culture, media, technology, and other factors to enhance health",
+     "topics": [
+      {
+       "id": "influences-on-health-practices-behaviors",
+       "title": "Influences on Health Practices/Behaviors",
+       "subtopics": [
+        {
+         "id": "students-analyze-and-evaluate-influences-on-heal",
+         "title": "Students analyze and evaluate influences on health and health behaviors",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Analyze how family, school and community influence the health of individuals."
+          },
+          {
+           "code": null,
+           "text": "Analyze how peers influence healthy and unhealthy behaviors."
+          },
+          {
+           "code": null,
+           "text": "Evaluate the effect of the media on personal and family health."
+          },
+          {
+           "code": null,
+           "text": "Analyze how the perceptions of norms influence healthy and unhealthy behaviors."
+          },
+          {
+           "code": null,
+           "text": "Analyze how culture and personal values and beliefs influence individual health behaviors."
+          },
+          {
+           "code": null,
+           "text": "Investigate how public health policies and government regulations can influence health promotion and disease prevention."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "technology-and-health",
+       "title": "Technology and Health",
+       "subtopics": [
+        {
+         "id": "technology-and-health",
+         "title": "Technology and Health",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Students evaluate the impact of technology, including medical technology, on personal, family, and community health."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "compound-effect-of-risk-behavior",
+       "title": "Compound Effect of Risk Behavior",
+       "subtopics": [
+        {
+         "id": "students-analyze-how-some-health-risk-behaviors-",
+         "title": "Students analyze how some health risk behaviors can influence the likelihood of engaging in unhealthy behaviors",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Analyze the influence of alcohol use on individual and group behavior."
+          },
+          {
+           "code": null,
+           "text": "Analyze the influence of drug use on individual and group behavior."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "communication-and-advocacy-skills-students-demon",
+     "title": "Communication and Advocacy Skills: Students demonstrate the ability to use interpersonal communication and advocacy skills to enhance personal, family, and community health",
+     "topics": [
+      {
+       "id": "interpersonal-communication-skills",
+       "title": "Interpersonal Communication Skills",
+       "subtopics": [
+        {
+         "id": "students-utilize-skills-for-communicating-effect",
+         "title": "Students utilize skills for communicating effectively with family, peers, and others to enhance health",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Demonstrate effective communication skills including asking for and offering assistance to enhance the health of self and others."
+          },
+          {
+           "code": null,
+           "text": "Demonstrate refusal, negotiation, and collaboration skills to enhance health and avoid and reduce health risks."
+          },
+          {
+           "code": null,
+           "text": "Demonstrate strategies to prevent, manage, or resolve interpersonal conflicts without harming self or others."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "advocacy-skills",
+       "title": "Advocacy Skills",
+       "subtopics": [
+        {
+         "id": "students-demonstrate-ways-to-influence-and-suppo",
+         "title": "Students demonstrate ways to influence and support others in making positive health choices",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Utilize accurate peer and societal norms to formulate a health-enhancing message."
+          },
+          {
+           "code": null,
+           "text": "Adapt health messages and communication techniques for different audiences."
+          },
+          {
+           "code": null,
+           "text": "Demonstrate an ability to work cooperatively as an advocate for improving personal, family, and community health."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "decision-making-and-goal-setting-skills-students",
+     "title": "Decision-Making and Goal-Setting Skills: Students demonstrate the ability to make decisions and set goals to enhance health",
+     "topics": [
+      {
+       "id": "decision-making",
+       "title": "Decision-Making",
+       "subtopics": [
+        {
+         "id": "students-apply-a-decision-making-process-to-enha",
+         "title": "Students apply a decision-making process to enhance health",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Compare the value of thoughtful decision-making to quick decision-making in a health-related situation."
+          },
+          {
+           "code": null,
+           "text": "Justify when individual or collaborative decision-making is appropriate."
+          },
+          {
+           "code": null,
+           "text": "Generate alternative approaches to situations involving health-related decisions and predict the potential short-term and long-term impact for themselves and others for each alternative."
+          },
+          {
+           "code": null,
+           "text": "Defend the healthy choice when making a decision."
+          },
+          {
+           "code": null,
+           "text": "Evaluate the effectiveness of a health-related decision."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "goal-setting",
+       "title": "Goal-Setting",
+       "subtopics": [
+        {
+         "id": "students-develop-and-analyze-a-plan-to-attain-a-",
+         "title": "Students develop and analyze a plan to attain a personal health goal",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Assess personal health practices and overall health status."
+          },
+          {
+           "code": null,
+           "text": "Develop a plan to attain a short-term personal health goal that addresses strengths, needs, and risks."
+          },
+          {
+           "code": null,
+           "text": "Implement strategies and analyze progress in achieving a personal health goal."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "long-term-health-plan",
+       "title": "Long-Term Health Plan",
+       "subtopics": [
+        {
+         "id": "long-term-health-plan",
+         "title": "Long-Term Health Plan",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Students formulate a long-term personal health plan, incorporating decision-making and goal-setting strategies."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "movement-motor-skills-and-knowledge-students-dem",
+     "title": "Movement/Motor Skills and Knowledge: Students demonstrate the fundamental and specialized movement skills and apply principles of movement for improved performance",
+     "topics": [
+      {
+       "id": "stability-and-force",
+       "title": "Stability and Force",
+       "subtopics": [
+        {
+         "id": "students-change-their-motion-and-the-motion-of-o",
+         "title": "Students change their motion and the motion of objects by applying the principles of stability and force to modify their performance in games/physical activities",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Demonstrate how spin and rebound affect the motion of an object."
+          },
+          {
+           "code": null,
+           "text": "Use the principle of opposition, point of contact, and point of release to change the path of an object during a game/physical activity."
+          },
+          {
+           "code": null,
+           "text": "Adjust movements to accommodate external forces that decrease risk for injury."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "movement-skills",
+       "title": "Movement Skills",
+       "subtopics": [
+        {
+         "id": "movement-skills",
+         "title": "Movement Skills",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Students demonstrate a variety of specialized movement skills specific to a game/physical activity while participating in a game/physical activity."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "skill-related-fitness-components",
+       "title": "Skill-Related Fitness Components",
+       "subtopics": [
+        {
+         "id": "skill-related-fitness-components",
+         "title": "Skill-Related Fitness Components",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Students explain the relationship of skill-related fitness components to specialized movement skills."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "skill-improvement",
+       "title": "Skill Improvement",
+       "subtopics": [
+        {
+         "id": "skill-improvement",
+         "title": "Skill Improvement",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Students design appropriate practice sessions, utilizing fundamental movement skills to improve performance."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "physical-fitness-activities-and-knowledge-studen",
+     "title": "Physical Fitness Activities and Knowledge: Students demonstrate and apply fitness concepts",
+     "topics": [
+      {
+       "id": "fitness-assessment",
+       "title": "Fitness Assessment",
+       "subtopics": [
+        {
+         "id": "fitness-assessment",
+         "title": "Fitness Assessment",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Students participate in a health-related fitness assessment to establish personal fitness goals and reassess their fitness over time."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "health-related-fitness-plan",
+       "title": "Health-Related Fitness Plan",
+       "subtopics": [
+        {
+         "id": "health-related-fitness-plan",
+         "title": "Health-Related Fitness Plan",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Students design and critique a personal fitness plan, from established goals, that applies the five health-related fitness components and the principles of training (specificity, overload, and progression)."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "fitness-activity",
+       "title": "Fitness Activity",
+       "subtopics": [
+        {
+         "id": "fitness-activity",
+         "title": "Fitness Activity",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Students select and participate in physical activities that address their personal fitness plans and apply the five health-related fitness components."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "physical-activity-benefits",
+       "title": "Physical Activity Benefits",
+       "subtopics": [
+        {
+         "id": "physical-activity-benefits",
+         "title": "Physical Activity Benefits",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Students explain the interrelationship of physiological responses and physical, mental/intellectual, emotional, and social benefits related to regular participation in physical activity."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "personal-and-social-skills-and-knowledge-student",
+     "title": "Personal and Social Skills and Knowledge: Students demonstrate and explain responsible personal behavior and responsible social behavior in physical activity settings",
+     "topics": [
+      {
+       "id": "cooperative-skills",
+       "title": "Cooperative Skills",
+       "subtopics": [
+        {
+         "id": "students-demonstrate-collaborative-skills-while-",
+         "title": "Students demonstrate collaborative skills while participating in physical activities",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Accept constructive feedback."
+          },
+          {
+           "code": null,
+           "text": "Give constructive feedback."
+          },
+          {
+           "code": null,
+           "text": "Include peers respectfully in activities."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "responsible-behavior",
+       "title": "Responsible Behavior",
+       "subtopics": [
+        {
+         "id": "responsible-behavior",
+         "title": "Responsible Behavior",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Students demonstrate responsible and ethical personal behavior while participating in physical activities."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "safety-rules-and-rules-of-play",
+       "title": "Safety Rules and Rules of Play",
+       "subtopics": [
+        {
+         "id": "students-predict-how-etiquette-rules-improve-gam",
+         "title": "Students predict how etiquette/rules improve games/activities",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain how etiquette/rules contribute to productive participation."
+          },
+          {
+           "code": null,
+           "text": "Predict how modifications to the environment can impact safety during games/physical activities."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "build": {
+  "builtAt": "2026-10-14T16:20:43.471Z",
+  "model": "none",
+  "usd": 0,
+  "expectedCodes": null,
+  "coverage": null,
+  "missingCodes": [],
+  "counts": {
+   "grades": 4,
+   "units": 36,
+   "topics": 111,
+   "subtopics": 111,
+   "outcomes": 205
+  },
+  "warnings": []
+ }
+}

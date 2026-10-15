@@ -1,0 +1,267 @@
+{
+ "id": "pk-ncp-computer-studies-home-economics",
+ "region": "PK",
+ "framework": "National Curriculum of Pakistan 2022-23",
+ "board": null,
+ "qualification": null,
+ "subject": "Computer Studies for Pre-Home Economics",
+ "syllabusCode": null,
+ "gradeSystem": "grade",
+ "source": {
+  "urls": [
+   "https://ncc.gov.pk/SiteImage/Misc/files/14-Computer%20Studies%20For%20Pre-Home%20Economics.pdf"
+  ],
+  "publisher": "National Curriculum Council, Ministry of Federal Education and Professional Training",
+  "licence": "Government publication; structure + our own wording only",
+  "firstExam": null
+ },
+ "grades": [
+  {
+   "grade": "12",
+   "units": [
+    {
+     "id": "domain-a-impacts-of-computing",
+     "title": "Domain A: Impacts of Computing",
+     "topics": [
+      {
+       "id": "ethics-and-safety",
+       "title": "Ethics and safety",
+       "subtopics": [
+        {
+         "id": "safe-computer-use",
+         "title": "Safe computer use",
+         "outcomes": [
+          {
+           "code": "CS-12-A-01",
+           "text": "Use hardware, software and digital platforms safely and responsibly."
+          }
+         ]
+        },
+        {
+         "id": "safe-internet-use",
+         "title": "Safe internet use",
+         "outcomes": [
+          {
+           "code": "CS-12-A-03",
+           "text": "Use the internet responsibly to avoid addiction and protect information and data."
+          }
+         ]
+        },
+        {
+         "id": "safe-online-collaboration",
+         "title": "Safe online collaboration",
+         "outcomes": [
+          {
+           "code": "CS-12-A-07",
+           "text": "Use safe practices when working together on digital platforms."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "effects-of-computing",
+       "title": "Effects of computing",
+       "subtopics": [
+        {
+         "id": "benefits-and-harms",
+         "title": "Benefits and harms",
+         "outcomes": [
+          {
+           "code": "CS-12-A-02",
+           "text": "Weigh the good and bad effects of social networking, fake news and similar tools."
+          },
+          {
+           "code": "CS-12-A-05",
+           "text": "Evaluate how computing changes personal, ethical, social, economic and cultural life."
+          }
+         ]
+        },
+        {
+         "id": "cyberbullying",
+         "title": "Cyberbullying",
+         "outcomes": [
+          {
+           "code": "CS-12-A-04",
+           "text": "Judge the effects of cyberbullying and use ways to prevent it."
+          }
+         ]
+        },
+        {
+         "id": "connectivity",
+         "title": "Connectivity",
+         "outcomes": [
+          {
+           "code": "CS-12-A-06",
+           "text": "Discuss how computing connects people and what that does to environment, culture and people."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "privacy-and-security",
+       "title": "Privacy and security",
+       "subtopics": [
+        {
+         "id": "security-threats",
+         "title": "Security threats",
+         "outcomes": [
+          {
+           "code": "CS-12-A-08",
+           "text": "Discuss threats and defences such as two-factor login, biometrics and secure data transfer."
+          }
+         ]
+        },
+        {
+         "id": "equal-access",
+         "title": "Equal access",
+         "outcomes": [
+          {
+           "code": "CS-12-A-09",
+           "text": "Work together on ways to give everyone fair access to information."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "domain-b-digital-literacy",
+     "title": "Domain B: Digital Literacy",
+     "topics": [
+      {
+       "id": "digital-research-and-artifacts",
+       "title": "Digital research and artifacts",
+       "subtopics": [
+        {
+         "id": "gathering-and-analysing-information",
+         "title": "Gathering and analysing information",
+         "outcomes": [
+          {
+           "code": "CS-12-B-01",
+           "text": "Collect, organise and analyse information with digital tools like word processors and spreadsheets."
+          },
+          {
+           "code": "CS-12-B-03",
+           "text": "Search in advanced ways and plan how to collect original data such as surveys."
+          }
+         ]
+        },
+        {
+         "id": "publishing-ideas",
+         "title": "Publishing ideas",
+         "outcomes": [
+          {
+           "code": "CS-12-B-02",
+           "text": "Share key ideas with different audiences using suitable digital tools."
+          },
+          {
+           "code": "CS-12-B-04",
+           "text": "Build a digital artifact that answers a research question and shares the findings."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "topic-c-entrepreneurship-in-the-digital-age",
+     "title": "Topic C: Entrepreneurship in the Digital Age",
+     "topics": [
+      {
+       "id": "starting-a-digital-business",
+       "title": "Starting a digital business",
+       "subtopics": [
+        {
+         "id": "design-thinking",
+         "title": "Design thinking",
+         "outcomes": [
+          {
+           "code": "CS-12-C-01",
+           "text": "Find a problem and form a business idea using design thinking."
+          }
+         ]
+        },
+        {
+         "id": "business-plan-and-research",
+         "title": "Business plan and research",
+         "outcomes": [
+          {
+           "code": "CS-12-C-02",
+           "text": "Make and present a business plan using digital tools."
+          },
+          {
+           "code": "CS-12-C-03",
+           "text": "Research the market and customers for a business idea with digital tools."
+          }
+         ]
+        },
+        {
+         "id": "pitching",
+         "title": "Pitching",
+         "outcomes": [
+          {
+           "code": "CS-12-C-04",
+           "text": "Pitch a business idea."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "prototype-and-product",
+       "title": "Prototype and product",
+       "subtopics": [
+        {
+         "id": "prototype-and-mvp",
+         "title": "Prototype and MVP",
+         "outcomes": [
+          {
+           "code": "CS-12-C-05",
+           "text": "Build, test and improve a prototype of a business idea."
+          },
+          {
+           "code": "CS-12-C-06",
+           "text": "Make and test a minimum viable product for the business."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "build": {
+  "builtAt": "2026-10-14T08:22:48.870Z",
+  "model": "claude-agent",
+  "usd": 0,
+  "expectedCodes": 19,
+  "coverage": 1,
+  "missingCodes": [],
+  "counts": {
+   "grades": 1,
+   "units": 3,
+   "topics": 6,
+   "subtopics": 14,
+   "outcomes": 19
+  },
+  "warnings": [
+   "grade 1 has no content",
+   "grade 2 has no content",
+   "grade 3 has no content",
+   "grade 4 has no content",
+   "grade 5 has no content",
+   "grade 6 has no content",
+   "grade 7 has no content",
+   "grade 8 has no content",
+   "grade 9 has no content",
+   "grade 10 has no content",
+   "grade 11 has no content"
+  ]
+ }
+}

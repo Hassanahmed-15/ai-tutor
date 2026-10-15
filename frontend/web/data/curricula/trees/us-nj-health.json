@@ -1,0 +1,2084 @@
+{
+ "id": "us-nj-health",
+ "region": "US",
+ "framework": "New Jersey state academic standards: Health Education",
+ "board": null,
+ "qualification": "K-12",
+ "subject": "Health Education",
+ "syllabusCode": null,
+ "gradeSystem": "grade",
+ "source": {
+  "urls": [
+   "https://api.commonstandardsproject.com/api/v1/jurisdictions/BD9F1823F64844E38377E11EB39F173B",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/8EFF2716D56E4B0D9AB00A5C8668EA4B",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/9882E703E6D94C64BF39F03EC4E8B363",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/8E4E164846964F0D860E7F6EB20CD177",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/48F10810C7AA45E3886C350BE7B1D24B"
+  ],
+  "publisher": "New Jersey state education agency (machine-readable via Common Standards Project / ASN)",
+  "licence": "CC BY 4.0 US, Common Curriculum, Inc.",
+  "firstExam": "2020"
+ },
+ "grades": [
+  {
+   "grade": "PK-2",
+   "units": [
+    {
+     "id": "personal-growth-and-development",
+     "title": "Personal Growth and Development",
+     "topics": [
+      {
+       "id": "individuals-enjoy-different-activities-and-grow-",
+       "title": "Individuals enjoy different activities and grow at different rates",
+       "subtopics": [
+        {
+         "id": "individuals-enjoy-different-activities-and-grow-",
+         "title": "Individuals enjoy different activities and grow at different rates",
+         "outcomes": [
+          {
+           "code": "2.1.2.PGD.1",
+           "text": "Explore how activity helps all human bodies stay healthy."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "personal-hygiene-and-self-help-skills-promote-he",
+       "title": "Personal hygiene and self-help skills promote healthy habits",
+       "subtopics": [
+        {
+         "id": "personal-hygiene-and-self-help-skills-promote-he",
+         "title": "Personal hygiene and self-help skills promote healthy habits",
+         "outcomes": [
+          {
+           "code": "2.1.2.PGD.2",
+           "text": "Develop an awareness of healthy habits (e.g., wash hands, cough in arm, brush teeth)."
+          },
+          {
+           "code": "2.1.2.PGD.3",
+           "text": "Explain what being “well” means and identify self-care practices that support wellness."
+          },
+          {
+           "code": "2.1.2.PGD.4",
+           "text": "Use correct terminology to identify body parts and explain how body parts work together to support wellness."
+          },
+          {
+           "code": "2.1.2.PGD.5",
+           "text": "List medically accurate names for body parts, including the genitals."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "pregnancy-and-parenting",
+     "title": "Pregnancy and Parenting",
+     "topics": [
+      {
+       "id": "all-living-things-may-have-the-capacity-to-repro",
+       "title": "All living things may have the capacity to reproduce",
+       "subtopics": [
+        {
+         "id": "all-living-things-may-have-the-capacity-to-repro",
+         "title": "All living things may have the capacity to reproduce",
+         "outcomes": [
+          {
+           "code": "2.1.2.PP.1",
+           "text": "Define reproduction."
+          },
+          {
+           "code": "2.1.2.PP.2",
+           "text": "Explain the ways in which parents may care for their offspring (e.g., animals, people, fish)."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "emotional-health",
+     "title": "Emotional Health",
+     "topics": [
+      {
+       "id": "many-factors-influence-how-we-think-about-oursel",
+       "title": "Many factors influence how we think about ourselves and others",
+       "subtopics": [
+        {
+         "id": "many-factors-influence-how-we-think-about-oursel",
+         "title": "Many factors influence how we think about ourselves and others",
+         "outcomes": [
+          {
+           "code": "2.1.2.EH.1",
+           "text": "Explain the meaning of character and how it is reflected in the thoughts, feelings and actions of oneself and others."
+          },
+          {
+           "code": "2.1.2.EH.2",
+           "text": "Identify what it means to be responsible and list personal responsibilities."
+          },
+          {
+           "code": "2.1.2.EH.3",
+           "text": "Demonstrate self-control in a variety of settings (e.g., classrooms, playgrounds, special programs)."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "there-are-different-ways-that-individuals-handle",
+       "title": "There are different ways that individuals handle stress, and some are healthier than others",
+       "subtopics": [
+        {
+         "id": "there-are-different-ways-that-individuals-handle",
+         "title": "There are different ways that individuals handle stress, and some are healthier than others",
+         "outcomes": [
+          {
+           "code": "2.1.2.EH.4",
+           "text": "Demonstrate strategies for managing one's own emotions, thoughts and behaviors."
+          },
+          {
+           "code": "2.1.2.EH.5",
+           "text": "Explain healthy ways of coping with stressful situations."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "social-and-sexual-health",
+     "title": "Social and Sexual Health",
+     "topics": [
+      {
+       "id": "every-individual-has-unique-skills-and-qualities",
+       "title": "Every individual has unique skills and qualities, which can include the activities they enjoy such as how they may dress, their mannerisms, things they like to do",
+       "subtopics": [
+        {
+         "id": "every-individual-has-unique-skills-and-qualities",
+         "title": "Every individual has unique skills and qualities, which can include the activities they enjoy such as how they may dress, their mannerisms, things they like to do",
+         "outcomes": [
+          {
+           "code": "2.1.2.SSH.1",
+           "text": "Discuss how individuals make their own choices about how to express themselves."
+          },
+          {
+           "code": "2.1.2.SSH.2",
+           "text": "Discuss the range of ways people express their gender and how gender-role stereotypes may limit behavior."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "families-shape-the-way-we-think-about-our-bodies",
+       "title": "Families shape the way we think about our bodies, our health and our behaviors",
+       "subtopics": [
+        {
+         "id": "families-shape-the-way-we-think-about-our-bodies",
+         "title": "Families shape the way we think about our bodies, our health and our behaviors",
+         "outcomes": [
+          {
+           "code": "2.1.2.SSH.3",
+           "text": "Describe different kinds of families locally, nationally and globally and note similarities in the ways in which they keep their children safe."
+          },
+          {
+           "code": "2.1.2.SSH.4",
+           "text": "Determine the factors that contribute to healthy relationships within a family."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "people-have-relationships-with-others-in-the-loc",
+       "title": "People have relationships with others in the local community and beyond",
+       "subtopics": [
+        {
+         "id": "people-have-relationships-with-others-in-the-loc",
+         "title": "People have relationships with others in the local community and beyond",
+         "outcomes": [
+          {
+           "code": "2.1.2.SSH.5",
+           "text": "Identify basic social needs of all people."
+          },
+          {
+           "code": "2.1.2.SSH.6",
+           "text": "Determine the factors that contribute to healthy relationships."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "communication-is-the-basis-for-strengthening-rel",
+       "title": "Communication is the basis for strengthening relationships and resolving conflict between people",
+       "subtopics": [
+        {
+         "id": "communication-is-the-basis-for-strengthening-rel",
+         "title": "Communication is the basis for strengthening relationships and resolving conflict between people",
+         "outcomes": [
+          {
+           "code": "2.1.2.SSH.7",
+           "text": "Explain healthy ways for friends to express feelings for and to one another"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "conflicts-between-people-occur-and-there-are-eff",
+       "title": "Conflicts between people occur, and there are effective ways to resolve them",
+       "subtopics": [
+        {
+         "id": "conflicts-between-people-occur-and-there-are-eff",
+         "title": "Conflicts between people occur, and there are effective ways to resolve them",
+         "outcomes": [
+          {
+           "code": "2.1.2.SSH.8",
+           "text": "Demonstrate healthy ways to respond to disagreements or conflicts with others (e.g., leave, talk to trusted adults, tell a sibling or peer)."
+          },
+          {
+           "code": "2.1.2.SSH.9",
+           "text": "Define bullying and teasing and explain why they are wrong and harmful."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "community-health-services-and-support",
+     "title": "Community Health Services and Support",
+     "topics": [
+      {
+       "id": "people-in-the-community-work-to-keep-us-safe",
+       "title": "People in the community work to keep us safe",
+       "subtopics": [
+        {
+         "id": "people-in-the-community-work-to-keep-us-safe",
+         "title": "People in the community work to keep us safe",
+         "outcomes": [
+          {
+           "code": "2.1.2.CHSS.1",
+           "text": "Identify community professionals and school personnel who address health emergencies and provide reliable health information to us."
+          },
+          {
+           "code": "2.1.2.CHSS.2",
+           "text": "Determine where to access home, school and community health professionals"
+          },
+          {
+           "code": "2.1.2.CHSS.3",
+           "text": "Demonstrate how to dial and text 911 in case of an emergency."
+          },
+          {
+           "code": "2.1.2.CHSS.4",
+           "text": "Describe how climate change affects the health of individuals, plants and animals."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "individuals-face-a-variety-of-situations-that-ma",
+       "title": "Individuals face a variety of situations that may result in different type of feelings and learning how to talk about their feelings is important",
+       "subtopics": [
+        {
+         "id": "individuals-face-a-variety-of-situations-that-ma",
+         "title": "Individuals face a variety of situations that may result in different type of feelings and learning how to talk about their feelings is important",
+         "outcomes": [
+          {
+           "code": "2.1.2.CHSS.5",
+           "text": "Identify situations that might result in individuals feeling sad, angry, frustrated, or scared."
+          },
+          {
+           "code": "2.1.2.CHSS.6",
+           "text": "Identify individuals who can assist with expressing one’s feelings (e.g., family members, teachers, counselors, medical professionals)"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "physical-wellness",
+     "title": "Physical Wellness",
+     "topics": [
+      {
+       "id": "movement-skills-and-concepts",
+       "title": "Movement Skills and Concepts",
+       "subtopics": [
+        {
+         "id": "movement-skills-and-concepts-1-of-2",
+         "title": "Movement Skills and Concepts (1 of 2)",
+         "outcomes": [
+          {
+           "code": "2.2.2.MSC.1",
+           "text": "Perform a combination of sequences of locomotor movements and rhythmic activities (e.g., walking, balancing, hoping, skipping, running)."
+          },
+          {
+           "code": "2.2.2.MSC.2",
+           "text": "Differentiate non-locomotor and locomotor movements as well transferring body weight (e.g., stretching, bending, twisting, curling)."
+          },
+          {
+           "code": "2.2.2.MSC.3",
+           "text": "Demonstrate manipulative movements (e.g., throwing, catching, dribbling, running, kicking) while moving in personal and general space, time, directions, pathways and ranges."
+          },
+          {
+           "code": "2.2.2.MSC.4",
+           "text": "Differentiate manipulative movements (e.g., throwing, catching, dribbling)."
+          }
+         ]
+        },
+        {
+         "id": "movement-skills-and-concepts-2-of-2",
+         "title": "Movement Skills and Concepts (2 of 2)",
+         "outcomes": [
+          {
+           "code": "2.2.2.MSC.5",
+           "text": "Adjust and correct movements and skill in response to feedback."
+          },
+          {
+           "code": "2.2.2.MSC.6",
+           "text": "Execute appropriate behaviors and etiquette while participating in and viewing activities, games, sports, and other events to contribute to a safe environment."
+          },
+          {
+           "code": "2.2.2.MSC.7",
+           "text": "Demonstrate kindness towards self and others during physical activity to create a safe and caring environment."
+          },
+          {
+           "code": "2.2.2.MSC.8",
+           "text": "Explain the difference between offense and defense."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "physical-fitness",
+       "title": "Physical Fitness",
+       "subtopics": [
+        {
+         "id": "physical-fitness",
+         "title": "Physical Fitness",
+         "outcomes": [
+          {
+           "code": "2.2.2.PF.1",
+           "text": "Explain the benefits of regular physical activity and what it means to be physically fit in relation to personal health. (e.g., healthy heart, strong bones, increased energy, strong muscles)."
+          },
+          {
+           "code": "2.2.2.PF.2",
+           "text": "Explore how to move different body parts in a controlled manner."
+          },
+          {
+           "code": "2.2.2.PF.3",
+           "text": "Engage in moderate to vigorous age-appropriate physical movement and physical activities that promote movement (e.g., games, challenges, team building)."
+          },
+          {
+           "code": "2.2.2.PF.4",
+           "text": "Demonstrate strategies and skills that enable team and group members to achieve goals."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "lifelong-fitness",
+       "title": "Lifelong Fitness",
+       "subtopics": [
+        {
+         "id": "lifelong-fitness",
+         "title": "Lifelong Fitness",
+         "outcomes": [
+          {
+           "code": "2.2.2.LF.1",
+           "text": "Express one's feeling and emotions when involved in movement and physical activities to increase positive behaviors."
+          },
+          {
+           "code": "2.2.2.LF.2",
+           "text": "Perform movement skills that involve controlling and adapting posture and balance, to successfully negotiate different environments (e.g., mats, turf fields, grass fields, hard surfaces, gym floors, sand, water, snow) during physical activity."
+          },
+          {
+           "code": "2.2.2.LF.3",
+           "text": "Explore the body's range of motion through participating in flexibility and breathing exercises (e.g., stretching, mindfulness, yoga)."
+          },
+          {
+           "code": "2.2.2.LF.4",
+           "text": "Identify physical activities available outside of school that are in the community."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "nutrition",
+       "title": "Nutrition",
+       "subtopics": [
+        {
+         "id": "nutrition",
+         "title": "Nutrition",
+         "outcomes": [
+          {
+           "code": "2.2.2.N.1",
+           "text": "Explore different types of foods and food groups."
+          },
+          {
+           "code": "2.2.2.N.2",
+           "text": "Explain why some foods are healthier to eat than others."
+          },
+          {
+           "code": "2.2.2.N.3",
+           "text": "Differentiate between healthy and unhealthy eating habits."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "personal-safety",
+       "title": "Personal Safety",
+       "subtopics": [
+        {
+         "id": "personal-safety-1-of-2",
+         "title": "Personal Safety (1 of 2)",
+         "outcomes": [
+          {
+           "code": "2.3.2.PS.1",
+           "text": "Demonstrate personal habits and behaviors that contribute to keeping oneself and others healthy and the environment clean and safe."
+          },
+          {
+           "code": "2.3.2.PS.2",
+           "text": "Discuss healthy and safe choices both indoors and outdoors (e.g., using equipment, wearing bike helmets, vehicle, water, weather safety)."
+          },
+          {
+           "code": "2.3.2.PS.3",
+           "text": "Recognize and demonstrate safety strategies to prevent injuries at home, school, in the community (e.g., traffic safety, bicycle/scooter safety, fire safety, poison safety, accident prevention)."
+          },
+          {
+           "code": "2.3.2.PS.4",
+           "text": "Develop an awareness of warning symbols and their meaning (e.g., red light, stop sign, poison symbol)."
+          }
+         ]
+        },
+        {
+         "id": "personal-safety-2-of-2",
+         "title": "Personal Safety (2 of 2)",
+         "outcomes": [
+          {
+           "code": "2.3.2.PS.5",
+           "text": "Define bodily autonomy and personal boundaries."
+          },
+          {
+           "code": "2.3.2.PS.6",
+           "text": "Demonstrate how to communicate personal boundaries and show respect for someone else’s personal boundaries including friends and family."
+          },
+          {
+           "code": "2.3.2.PS.7",
+           "text": "Identify behaviors that would be considered child abuse (e.g., emotional, physical, sexual)."
+          },
+          {
+           "code": "2.3.2.PS.8",
+           "text": "Identify trusted adults, including family members, caregivers, and school staff, that you can talk to about situations which may be uncomfortable or dangerous (e.g., bullying, teasing, child sexual abuse)."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "health-conditions-diseases-and-medicines",
+       "title": "Health Conditions, Diseases and Medicines",
+       "subtopics": [
+        {
+         "id": "health-conditions-diseases-and-medicines",
+         "title": "Health Conditions, Diseases and Medicines",
+         "outcomes": [
+          {
+           "code": "2.3.2.HCDM.1",
+           "text": "Explain the consequences on a person’s health if he or she does not have adequate food and a clean environment."
+          },
+          {
+           "code": "2.3.2.HCDM.2",
+           "text": "Demonstrate personal hygiene and the use of necessary and appropriate health-enhancing behaviors that can keep a person healthy (e.g., precautions to avoid illnesses, handle food hygienically, brush teeth, regular physical activity, adequate sleep, appropriate dress for various weather conditions)."
+          },
+          {
+           "code": "2.3.2.HCDM.3",
+           "text": "Explain strategies and develop skills to prevent the spread of communicable diseases and health conditions (e.g., Lyme disease, influenza, cardiovascular diseases)."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "alcohol-tobacco-and-other-drugs",
+       "title": "Alcohol, Tobacco and other Drugs",
+       "subtopics": [
+        {
+         "id": "alcohol-tobacco-and-other-drugs",
+         "title": "Alcohol, Tobacco and other Drugs",
+         "outcomes": [
+          {
+           "code": "2.3.2.ATD.1",
+           "text": "Explain what medicines are, how they are used, and the importance of utilizing medications properly."
+          },
+          {
+           "code": "2.3.2.ATD.2",
+           "text": "Identify ways in which drugs, including some medicines, can be harmful."
+          },
+          {
+           "code": "2.3.2.ATD.3",
+           "text": "Explain effects of tobacco use on personal hygiene, health, and safety."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "dependency-substances-disorder-and-treatment",
+       "title": "Dependency, Substances Disorder and Treatment",
+       "subtopics": [
+        {
+         "id": "dependency-substances-disorder-and-treatment",
+         "title": "Dependency, Substances Disorder and Treatment",
+         "outcomes": [
+          {
+           "code": "2.3.2.DSDT.1",
+           "text": "Recognize that some people may have difficulty controlling their use of alcohol, tobacco, and other drugs."
+          },
+          {
+           "code": "2.3.2.DSDT.2",
+           "text": "Explain that individuals who abuse alcohol, tobacco, and other drugs can get help."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "3-5",
+   "units": [
+    {
+     "id": "personal-and-mental-health",
+     "title": "Personal and Mental Health",
+     "topics": [
+      {
+       "id": "personal-growth-and-development",
+       "title": "Personal Growth and Development",
+       "subtopics": [
+        {
+         "id": "health-is-influenced-by-the-interaction-of-body-",
+         "title": "Health is influenced by the interaction of body systems",
+         "outcomes": [
+          {
+           "code": "2.1.5.PGD.1",
+           "text": "Identify effective personal health strategies and behaviors that reduce illness, prevent injuries, and maintain or enhance one’s wellness (e.g., adequate sleep, balanced nutrition, ergonomics, regular physical activity)."
+          }
+         ]
+        },
+        {
+         "id": "puberty-is-a-time-of-physical-social-and-emotion",
+         "title": "Puberty is a time of physical, social, and emotional changes",
+         "outcomes": [
+          {
+           "code": "2.1.5.PGD.2",
+           "text": "Examine how the body changes during puberty and how these changes influence personal self-care."
+          },
+          {
+           "code": "2.1.5.PGD.3",
+           "text": "Explain the physical, social, and emotional changes that occur during puberty and adolescence and why the onset and progression of puberty can vary."
+          },
+          {
+           "code": "2.1.5.PGD.4",
+           "text": "Explain common human sexual development and the role of hormones (e.g., romantic and sexual feelings, masturbation, mood swings, timing of pubertal onset)."
+          },
+          {
+           "code": "2.1.5.PGD.5",
+           "text": "Identify trusted adults, including family members, caregivers, school staff, and health care professionals, whom students can talk to about relationships and ask questions about puberty and adolescent health."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "pregnancy-and-parenting",
+       "title": "Pregnancy and Parenting",
+       "subtopics": [
+        {
+         "id": "pregnancy-can-be-achieved-through-a-variety-of-m",
+         "title": "Pregnancy can be achieved through a variety of methods",
+         "outcomes": [
+          {
+           "code": "2.1.5.PP.1",
+           "text": "Explain the relationship between sexual intercourse and human reproduction."
+          },
+          {
+           "code": "2.1.5.PP.2",
+           "text": "Explain the range of ways pregnancy can occur (e.g., IVF, surrogacy)."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "emotional-health",
+       "title": "Emotional Health",
+       "subtopics": [
+        {
+         "id": "self-management-skills-impact-an-individual-s-ab",
+         "title": "Self-management skills impact an individual’s ability to recognize, cope, and express emotions about difficult events",
+         "outcomes": [
+          {
+           "code": "2.1.5.EH.1",
+           "text": "Discuss the impact of one’s feelings and thoughts that lead to healthy and unhealthy behaviors."
+          },
+          {
+           "code": "2.1.5.EH.2",
+           "text": "Explain how to cope with rejection, loss, difficult learning situations and/or separation from family or others."
+          }
+         ]
+        },
+        {
+         "id": "resiliency-and-coping-practices-influence-an-ind",
+         "title": "Resiliency and coping practices influence an individual’s ability to respond positively to everyday challenges and difficult situations",
+         "outcomes": [
+          {
+           "code": "2.1.5.EH.3",
+           "text": "Identify different feelings and emotions that people may experience and how they might express these emotions (e.g., anger, fear, happiness, sadness, hopelessness, anxiety)."
+          },
+          {
+           "code": "2.1.5.EH.4",
+           "text": "Identify behaviors that help to deal with difficult situations that can occur at home, in school, and/or in the community and where to go for assistance."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "social-and-sexual-health",
+       "title": "Social and Sexual Health",
+       "subtopics": [
+        {
+         "id": "all-individuals-should-feel-welcome-and-included",
+         "title": "All individuals should feel welcome and included regardless of their gender, gender expression, or sexual orientation",
+         "outcomes": [
+          {
+           "code": "2.1.5.SSH.1",
+           "text": "Describe gender-role stereotypes and their potential impact on self and others"
+          },
+          {
+           "code": "2.1.5.SSH.2",
+           "text": "Differentiate between sexual orientation and gender identity."
+          },
+          {
+           "code": "2.1.5.SSH.3",
+           "text": "Demonstrate ways to promote dignity and respect for all people (e.g. sexual orientation, gender identity and expression, race, ethnicity, socio-economic status, differing ability, immigration status, family configuration)."
+          }
+         ]
+        },
+        {
+         "id": "family-members-impact-the-development-of-their-c",
+         "title": "Family members impact the development of their children physically, socially and emotionally",
+         "outcomes": [
+          {
+           "code": "2.1.5.SSH.4",
+           "text": "Describe how families can share common values, offer emotional support, and set boundaries and limits."
+          },
+          {
+           "code": "2.1.5.SSH.5",
+           "text": "Explain the importance of communication with family members, caregivers and other trusted adults about a variety of topics."
+          }
+         ]
+        },
+        {
+         "id": "people-in-healthy-relationships-share-thoughts-a",
+         "title": "People in healthy relationships share thoughts and feelings, as well as mutual respect",
+         "outcomes": [
+          {
+           "code": "2.1.5.SSH.6",
+           "text": "Describe the characteristics of healthy versus unhealthy relationships among friends and with family members."
+          },
+          {
+           "code": "2.1.5.SSH.7",
+           "text": "Define teasing, harassment and bullying and provide examples of inappropriate behaviors that are harmful to others."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "community-health-services-and-support",
+       "title": "Community Health Services and Support",
+       "subtopics": [
+        {
+         "id": "community-professionals-and-school-personnel-are",
+         "title": "Community professionals and school personnel are available to assist and address health emergencies as well as provide reliable information",
+         "outcomes": [
+          {
+           "code": "2.1.5.CHSS.1",
+           "text": "Identify health services and resources available and determine how each assist in addressing needs and emergencies in a school and in the community (e.g., counselors, medical professionals)."
+          },
+          {
+           "code": "2.1.5.CHSS.2",
+           "text": "Describe how business, non-profit organizations, and individuals can work cooperatively to address health problems that are affected by global issues, including climate change"
+          }
+         ]
+        },
+        {
+         "id": "individuals-will-benefit-from-an-awareness-of-co",
+         "title": "Individuals will benefit from an awareness of coping strategies that can be used when facing difficult situations",
+         "outcomes": [
+          {
+           "code": "2.1.5.CHSS.3",
+           "text": "Describe strategies that are useful for individuals who are feeling sadness, anger, anxiety, or stress."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "physical-wellness",
+     "title": "Physical Wellness",
+     "topics": [
+      {
+       "id": "movement-skills-and-concepts",
+       "title": "Movement Skills and Concepts",
+       "subtopics": [
+        {
+         "id": "movement-skills-and-concepts-1-of-2",
+         "title": "Movement Skills and Concepts (1 of 2)",
+         "outcomes": [
+          {
+           "code": "2.2.5.MSC.1",
+           "text": "Demonstrate body management skills and control when moving in relation to others, objects, and boundaries in personal and general space (e.g., coordination, balance, flexibility, agility)."
+          },
+          {
+           "code": "2.2.5.MSC.2",
+           "text": "Explain and demonstrate movement sequences, individually and with others, in response to various tempos, rhythms, and musical styles."
+          },
+          {
+           "code": "2.2.5.MSC.3",
+           "text": "Demonstrate and perform movement skills with developmentally appropriate control in isolated settings (e.g., skill practice) and applied settings (e.g., games, sports, dance, recreational activities)."
+          },
+          {
+           "code": "2.2.5.MSC.4",
+           "text": "Develop the necessary body control to improve stability and balance during movement and physical activity."
+          }
+         ]
+        },
+        {
+         "id": "movement-skills-and-concepts-2-of-2",
+         "title": "Movement Skills and Concepts (2 of 2)",
+         "outcomes": [
+          {
+           "code": "2.2.5.MSC.5",
+           "text": "Correct movement skills and analyze concepts in response to external feedback and self-evaluation with understanding and demonstrating how the change improves performance."
+          },
+          {
+           "code": "2.2.5.MSC.6",
+           "text": "Execute appropriate behaviors and etiquette while participating as a player and viewing as an observer during physical activity, games, and other events, contributes to a safe environment."
+          },
+          {
+           "code": "2.2.5.MSC.7",
+           "text": "Apply specific rules, strategies, and procedures for specific physical activity, games, and sports in a safe active environment."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "physical-fitness",
+       "title": "Physical Fitness",
+       "subtopics": [
+        {
+         "id": "physical-fitness",
+         "title": "Physical Fitness",
+         "outcomes": [
+          {
+           "code": "2.2.5.PF.1",
+           "text": "Identify the physical, social, emotional, and intellectual benefits of regular physical activity that effect personal health."
+          },
+          {
+           "code": "2.2.5.PF.2",
+           "text": "Accept and respect others of all skill levels and abilities during participation."
+          },
+          {
+           "code": "2.2.5.PF.3",
+           "text": "Participate in moderate to vigorous age-appropriate physical fitness activities and build the skills that address each component of health-related fitness (e.g., endurance, strength, speed, agility, flexibility, balance)."
+          },
+          {
+           "code": "2.2.5.PF.4",
+           "text": "Develop a short term and/or a long-term health-related fitness goal (e.g., cardiorespiratory endurance 'heart & lungs', muscular strength, muscular endurance, flexibility, body composition, nutrition) to evaluate personal health"
+          },
+          {
+           "code": "2.2.5.PF.5",
+           "text": "Determine how different factors influence personal fitness and other healthy lifestyle choices (e.g., heredity, physical activity, nutrition, sleep, technology)"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "lifelong-fitness",
+       "title": "Lifelong Fitness",
+       "subtopics": [
+        {
+         "id": "lifelong-fitness-1-of-2",
+         "title": "Lifelong Fitness (1 of 2)",
+         "outcomes": [
+          {
+           "code": "2.2.5.LF.1",
+           "text": "Explain the need to engage in physical activities on a voluntary basis for emotional and physical enjoyment."
+          },
+          {
+           "code": "2.2.5.LF.2",
+           "text": "Develop a movement vocabulary that is flexible and adaptable for personal physical activity and wellness."
+          },
+          {
+           "code": "2.2.5.LF.3",
+           "text": "Proactively engage in movement and physical activity for enjoyment individually or with others."
+          },
+          {
+           "code": "2.2.5.LF.4",
+           "text": "Perform and increase the range of motion in dynamic stretching and breathing exercises (e.g., dynamic cardiovascular warm-up exercises, martial arts, aerobics, yoga)."
+          }
+         ]
+        },
+        {
+         "id": "lifelong-fitness-2-of-2",
+         "title": "Lifelong Fitness (2 of 2)",
+         "outcomes": [
+          {
+           "code": "2.2.5.LF.5",
+           "text": "Describe how community resources could be used to support participation in a variety of physical activities, sports and wellness."
+          },
+          {
+           "code": "2.2.5.N.1",
+           "text": "Explain how healthy eating provides energy, helps to maintain healthy weight, lowers risk of disease, and keeps body systems functioning effectively."
+          },
+          {
+           "code": "2.2.5.N.2",
+           "text": "Create a healthy meal based on nutritional content, value, calories, and cost."
+          },
+          {
+           "code": "2.2.5.N.3",
+           "text": "Develop a plan to attain a personal nutrition health goal that addresses strengths, needs, and culture."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "safety",
+     "title": "Safety",
+     "topics": [
+      {
+       "id": "personal-safety",
+       "title": "Personal Safety",
+       "subtopics": [
+        {
+         "id": "personal-safety",
+         "title": "Personal Safety",
+         "outcomes": [
+          {
+           "code": "2.3.5.PS.1",
+           "text": "Develop strategies to reduce the risk of injuries at home, school, and in the community."
+          },
+          {
+           "code": "2.3.5.PS.2",
+           "text": "Demonstrate first aid procedures for choking, bleeding, burns, poisoning, and stroke (F.A.S.T.)."
+          },
+          {
+           "code": "2.3.5.PS.3",
+           "text": "Examine the impact of unsafe behaviors when traveling in motor vehicles and when using other modes of transportation."
+          },
+          {
+           "code": "2.3.5.PS.4",
+           "text": "Develop strategies to safely communicate through digital media with respect."
+          },
+          {
+           "code": "2.3.5.PS.5",
+           "text": "Communicate personal boundaries and demonstrate ways to respect other people’s personal boundaries."
+          },
+          {
+           "code": "2.3.5.PS.6",
+           "text": "Identify strategies a person could use to call attention to or leave an uncomfortable or dangerous situation, including bullying, teasing, teen dating violence, sexual harassment, sexual assault, and sexual abuse."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "health-conditions-diseases-and-medicines",
+       "title": "Health Conditions, Diseases and Medicines",
+       "subtopics": [
+        {
+         "id": "health-conditions-diseases-and-medicines",
+         "title": "Health Conditions, Diseases and Medicines",
+         "outcomes": [
+          {
+           "code": "2.3.5.HCDM.1",
+           "text": "Identify conditions that may keep the human body from working properly, and the ways in which the body responds."
+          },
+          {
+           "code": "2.3.5.HCDM.2",
+           "text": "Describe how to prevent the spread of communicable and infection diseases and conditions (e.g., Lyme Disease, influenza)"
+          },
+          {
+           "code": "2.3.5.HCDM.3",
+           "text": "Examine how mental health can impact one’s wellness (e.g., depression, anxiety, stress, phobias)."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "alcohol-tobacco-and-other-drugs",
+       "title": "Alcohol, Tobacco and other Drugs",
+       "subtopics": [
+        {
+         "id": "alcohol-tobacco-and-other-drugs",
+         "title": "Alcohol, Tobacco and other Drugs",
+         "outcomes": [
+          {
+           "code": "2.3.5.ATD.1",
+           "text": "Identify products that contain alcohol, tobacco, and drugs and explain potential unhealthy effects (e.g., substance disorder, cancer)."
+          },
+          {
+           "code": "2.3.5.ATD.2",
+           "text": "Describe health concerns associated with e-cigarettes, vaping products, inhalants, alcohol, opioids and other drugs, and non-prescribed cannabis products."
+          },
+          {
+           "code": "2.3.5.ATD.3",
+           "text": "Describe the behaviors of people who struggle with the use of alcohol and drugs and identify the type of assistance that is available."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "dependency-substances-disorder-and-treatment",
+       "title": "Dependency, Substances Disorder, and Treatment",
+       "subtopics": [
+        {
+         "id": "dependency-substances-disorder-and-treatment",
+         "title": "Dependency, Substances Disorder, and Treatment",
+         "outcomes": [
+          {
+           "code": "2.3.5.DSDT.1",
+           "text": "Differentiate between drug use, misuse, abuse, and, prescription and illicit drugs."
+          },
+          {
+           "code": "2.3.5.DSDT.2",
+           "text": "Identify signs and evaluate evidence that a person might have an alcohol, tobacco, and/or drug use problem."
+          },
+          {
+           "code": "2.3.5.DSDT.3",
+           "text": "Demonstrate effective refusal skills of alcohol, e-cigarettes, vaping products, cannabis products, opioids, and other substances that can negatively impact health."
+          },
+          {
+           "code": "2.3.5.DSDT.4",
+           "text": "Demonstrate strategies for seeking assistance for someone impacted by an individual who is struggling with the use/abuse of alcohol or drugs."
+          },
+          {
+           "code": "2.3.5.DSDT.5",
+           "text": "Identify the various types of resources that are available in the community and online to assist individuals who struggle with alcohol, tobacco, and drug use/abuse (e.g., school nurse, counselor, peer leadership group)."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "6-8",
+   "units": [
+    {
+     "id": "personal-and-mental-health",
+     "title": "Personal and Mental Health",
+     "topics": [
+      {
+       "id": "personal-growth-and-development",
+       "title": "Personal Growth and Development",
+       "subtopics": [
+        {
+         "id": "personal-growth-and-development",
+         "title": "Personal Growth and Development",
+         "outcomes": [
+          {
+           "code": "2.1.8.PGD.1",
+           "text": "Explain how appropriate health care can promote personal health."
+          },
+          {
+           "code": "2.1.8.PGD.2",
+           "text": "Analyze how genetics and family history can impact personal health."
+          },
+          {
+           "code": "2.1.8.PGD.3",
+           "text": "Describe the human reproductive systems, the external and internal body parts and their functions, and the natural variations that exist in human bodies."
+          },
+          {
+           "code": "2.1.8.PGD.4",
+           "text": "Analyze the relationship between healthy behaviors and personal health."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "pregnancy-and-parenting",
+       "title": "Pregnancy and Parenting",
+       "subtopics": [
+        {
+         "id": "pregnancy-and-parenting",
+         "title": "Pregnancy and Parenting",
+         "outcomes": [
+          {
+           "code": "2.1.8.PP.1",
+           "text": "Describe pregnancy testing, the signs of pregnancy, and pregnancy options, including parenting, abortion, and adoption."
+          },
+          {
+           "code": "2.1.8.PP.2",
+           "text": "Summarize the stages of pregnancy from fertilization to birth."
+          },
+          {
+           "code": "2.1.8.PP.3",
+           "text": "Identify prenatal practices that support a healthy pregnancy and identify where to find medically accurate sources of information about prenatal care."
+          },
+          {
+           "code": "2.1.8.PP.4",
+           "text": "Predict challenges that may be faced by adolescent parents and their families."
+          },
+          {
+           "code": "2.1.8.PP.5",
+           "text": "Identify resources to assist with parenting."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "emotional-health",
+       "title": "Emotional Health",
+       "subtopics": [
+        {
+         "id": "emotional-health",
+         "title": "Emotional Health",
+         "outcomes": [
+          {
+           "code": "2.1.8.EH.1",
+           "text": "Compare and contrast stress management strategies that are used to address various types of stress-induced situations (e.g., academics, family, personal relationships, finances, celebrations, violence)."
+          },
+          {
+           "code": "2.1.8.EH.2",
+           "text": "Analyze how personal attributes, resiliency, and protective factors support mental and emotional health."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "social-and-sexual-health",
+       "title": "Social and Sexual Health",
+       "subtopics": [
+        {
+         "id": "social-and-sexual-health-1-of-3",
+         "title": "Social and Sexual Health (1 of 3)",
+         "outcomes": [
+          {
+           "code": "2.1.8.SSH.1",
+           "text": "Differentiate between gender identity, gender expression and sexual orientation."
+          },
+          {
+           "code": "2.1.8.SSH.2",
+           "text": "Develop a plan for the school to promote dignity and respect for people of all genders, gender identities, gender expressions, and sexual orientations in the school community."
+          },
+          {
+           "code": "2.1.8.SSH.3",
+           "text": "Demonstrate communication skills that will support healthy relationships"
+          },
+          {
+           "code": "2.1.8.SSH.4",
+           "text": "Compare and contrast the characteristics of healthy and unhealthy relationships."
+          }
+         ]
+        },
+        {
+         "id": "social-and-sexual-health-2-of-3",
+         "title": "Social and Sexual Health (2 of 3)",
+         "outcomes": [
+          {
+           "code": "2.1.8.SSH.5",
+           "text": "Analyze the similarities and differences between friendships, romantic relationships and sexual relationships."
+          },
+          {
+           "code": "2.1.8.SSH.6",
+           "text": "Examine how culture influences the way families cope with traumatic situations, crisis, and change."
+          },
+          {
+           "code": "2.1.8.SSH.7",
+           "text": "Identify factors that are important in deciding whether and when to engage in sexual behaviors."
+          },
+          {
+           "code": "2.1.8.SSH.8",
+           "text": "Identify factors that can affect the ability to give or perceive consent to sexual activity (e.g., body image, self-esteem, alcohol, other substances)."
+          }
+         ]
+        },
+        {
+         "id": "social-and-sexual-health-3-of-3",
+         "title": "Social and Sexual Health (3 of 3)",
+         "outcomes": [
+          {
+           "code": "2.1.8.SSH.9",
+           "text": "Define vaginal, oral, and anal sex."
+          },
+          {
+           "code": "2.1.8.SSH.10",
+           "text": "Identify short and long-term contraception and safer sex methods that are effective and describe how to access and use them (e.g., abstinence, condom)."
+          },
+          {
+           "code": "2.1.8.SSH.11",
+           "text": "Develop a plan to eliminate or reduce risk of unintended pregnancy and STIs (including HIV)."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "community-health-services-and-support",
+       "title": "Community Health Services and Support",
+       "subtopics": [
+        {
+         "id": "community-health-services-and-support-1-of-2",
+         "title": "Community Health Services and Support (1 of 2)",
+         "outcomes": [
+          {
+           "code": "2.1.8.CHSS.1",
+           "text": "Identify professionals at school and in the community available to assist with health conditions and emergencies, sexual health services, life skills training and describe how they can be accessed (e.g., suicide prevention, CPR/AED, breast self-examination, traumatic stress)."
+          },
+          {
+           "code": "2.1.8.CHSS.2",
+           "text": "Describe the state and federal laws related to age of consent, minors’ ability to consent to health care, confidentiality in a healthcare setting, child pornography, sexting, safe haven and sex trafficking."
+          },
+          {
+           "code": "2.1.8.CHSS.3",
+           "text": "Identify the state and federal laws related to minors' access to sexual healthcare services, including pregnancy and STIs/HIV prevention, testing, care, and treatment."
+          },
+          {
+           "code": "2.1.8.CHSS.4",
+           "text": "Identify community resources and/or other sources of support, such as trusted adults, including family members, caregivers, and school staff, that students can go to if they are or someone they know is being sexually harassed, abused, assaulted, exploited, or trafficked."
+          }
+         ]
+        },
+        {
+         "id": "community-health-services-and-support-2-of-2",
+         "title": "Community Health Services and Support (2 of 2)",
+         "outcomes": [
+          {
+           "code": "2.1.8.CHSS.5",
+           "text": "Identify medically accurate sources of information about STIs, including HIV, such as local STIs /HIV prevention, steps to obtain PrEP and PEP, testing, and treatment resources."
+          },
+          {
+           "code": "2.1.8.CHSS.6",
+           "text": "Develop an advocacy plan regarding a health issue and share this information in an appropriate setting."
+          },
+          {
+           "code": "2.1.8.CHSS.7",
+           "text": "Collaborate with other students to develop a strategy to address health issues related to climate change."
+          },
+          {
+           "code": "2.1.8.CHSS.8",
+           "text": "Analyze difficult situations that might lead to feelings sadness, anxiety and or depression and identify individuals, agencies or places in the community where assistance may be available."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "physical-wellness",
+     "title": "Physical Wellness",
+     "topics": [
+      {
+       "id": "movement-skills-and-concepts",
+       "title": "Movement Skills and Concepts",
+       "subtopics": [
+        {
+         "id": "movement-skills-and-concepts-1-of-2",
+         "title": "Movement Skills and Concepts (1 of 2)",
+         "outcomes": [
+          {
+           "code": "2.2.8.MSC.1",
+           "text": "Explain and demonstrate the transition of movement skills from isolated settings (e.g., skill practice) into applied settings (e.g., games, sports, dance, recreational activities)."
+          },
+          {
+           "code": "2.2.8.MSC.2",
+           "text": "Demonstrate control of motion in relationship between force, flow, time, and space in interactive dynamic environments."
+          },
+          {
+           "code": "2.2.8.MSC.3",
+           "text": "Create and demonstrate planned movement sequences, individually and with others, based on tempo, beat, rhythm, music, and physical activities (e.g., creative, cultural, social, fitness aerobics, dance, yoga)."
+          },
+          {
+           "code": "2.2.8.MSC.4",
+           "text": "Analyze, and correct movements and apply to refine movement skills."
+          }
+         ]
+        },
+        {
+         "id": "movement-skills-and-concepts-2-of-2",
+         "title": "Movement Skills and Concepts (2 of 2)",
+         "outcomes": [
+          {
+           "code": "2.2.8.MSC.5",
+           "text": "Predict the impact of rules, etiquette, procedures, and sportsmanship on players' behavior in small groups and large teams during physical activities and games."
+          },
+          {
+           "code": "2.2.8.MSC.6",
+           "text": "Demonstrate offensive, defensive, and cooperative strategies in a variety of games and settings."
+          },
+          {
+           "code": "2.2.8.MSC.7",
+           "text": "Effectively manage emotions during physical activity (e.g., anger, frustration, excitement) in a safe manner to self and others."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "physical-fitness",
+       "title": "Physical Fitness",
+       "subtopics": [
+        {
+         "id": "physical-fitness",
+         "title": "Physical Fitness",
+         "outcomes": [
+          {
+           "code": "2.2.8.PF.1",
+           "text": "Summarize the short and long-term physical, social, mental, and emotional health benefits of regular physical fitness activity."
+          },
+          {
+           "code": "2.2.8.PF.2",
+           "text": "Recognize and involve others of all ability levels into a physical activity."
+          },
+          {
+           "code": "2.2.8.PF.3",
+           "text": "Execute the primary principals of training (FITT) and technology for the purpose of modifying personal levels of fitness (e.g., pedometers, heart rate monitors, health tracking systems, wearable technology, virtual classes, exergames)."
+          },
+          {
+           "code": "2.2.8.PF.5",
+           "text": "Use evidence to predict how factors such as health status, body composition, interests, environmental conditions, healthy eating, anabolic steroids, physical activity, and lifestyle behaviors impact personal fitness and health."
+          },
+          {
+           "code": "2.2.8.PF.4",
+           "text": "Implement and assess the effectiveness of a fitness plan based on health data, the assessment of one's personal fitness levels and monitor health/fitness indicators before, during, and after the workout program."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "lifelong-fitness",
+       "title": "Lifelong Fitness",
+       "subtopics": [
+        {
+         "id": "lifelong-fitness-1-of-2",
+         "title": "Lifelong Fitness (1 of 2)",
+         "outcomes": [
+          {
+           "code": "2.2.8.LF.1",
+           "text": "Develop and build an effective movement and physical fitness vocabulary for self, peers, and family members that can enhance wellness."
+          },
+          {
+           "code": "2.2.8.LF.2",
+           "text": "Explain the importance of assuming responsibility for personal health behaviors through physical activity throughout one’s lifetime."
+          },
+          {
+           "code": "2.2.8.LF.3",
+           "text": "Explore by leading self and others to experience and participate in different cultures' physical fitness activities."
+          },
+          {
+           "code": "2.2.8.LF.7",
+           "text": "Evaluate personal attributes as they relate to career options in physical activity and health professions."
+          }
+         ]
+        },
+        {
+         "id": "lifelong-fitness-2-of-2",
+         "title": "Lifelong Fitness (2 of 2)",
+         "outcomes": [
+          {
+           "code": "2.2.8.LF.6",
+           "text": "Develop a strategy to overcome barriers that allows for a visit in the community that promotes physical activities."
+          },
+          {
+           "code": "2.2.8.LF.5",
+           "text": "Engages in a variety of physical activities (e.g., aerobic-fitness, strengthen, endurance-fitness activities) using technology and cross-training, and lifetime activities."
+          },
+          {
+           "code": "2.2.8.LF.4",
+           "text": "Identify and recognize factors that generate positive emotions from participating in movement and physical fitness activities."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "nutrition",
+       "title": "Nutrition",
+       "subtopics": [
+        {
+         "id": "nutrition",
+         "title": "Nutrition",
+         "outcomes": [
+          {
+           "code": "2.2.8.N.1",
+           "text": "Analyze how culture, health status, age and access to healthy foods can influence personal eating habits."
+          },
+          {
+           "code": "2.2.8.N.2",
+           "text": "Identify skills and healthy behaviors that can support adolescents in losing, gaining, or maintaining healthy weights."
+          },
+          {
+           "code": "2.2.8.N.3",
+           "text": "Design sample nutritional plans for families with different lifestyles, resources, special needs, and cultural backgrounds; then consider the similarities and differences among the plans."
+          },
+          {
+           "code": "2.2.8.N.4",
+           "text": "Assess personal nutritional health and consider opportunities to improve health and performance (e.g., sports drinks, supplements, balance nutrition)."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "safety",
+     "title": "Safety",
+     "topics": [
+      {
+       "id": "personal-safety",
+       "title": "Personal Safety",
+       "subtopics": [
+        {
+         "id": "personal-safety-1-of-2",
+         "title": "Personal Safety (1 of 2)",
+         "outcomes": [
+          {
+           "code": "2.3.8.PS.1",
+           "text": "Assess the degree of risk in a variety of situations, and identify strategies needed to reduce deliberate and non-deliberate injuries to self and others (e.g., digital safety, sexting, dating violence, domestic violence, gang violence, human trafficking, nonconsensual sexual encounters, other threats of violence)."
+          },
+          {
+           "code": "2.3.8.PS.2",
+           "text": "Define sexual consent and sexual agency."
+          },
+          {
+           "code": "2.3.8.PS.3",
+           "text": "Define interpersonal and sexual violence and describe their impacts on sexual health (e.g., sexual harassment, sexual assault, sexual abuse, incest, rape, domestic violence, coercion, dating violence)."
+          },
+          {
+           "code": "2.3.8.PS.4",
+           "text": "Describe strategies that sex traffickers/exploiters employ to recruit youth."
+          }
+         ]
+        },
+        {
+         "id": "personal-safety-2-of-2",
+         "title": "Personal Safety (2 of 2)",
+         "outcomes": [
+          {
+           "code": "2.3.8.PS.5",
+           "text": "Determine the effectiveness of laws designed to keep children and adolescents healthy and safe (e.g., consent, child pornography, human trafficking, parental notification, drugs)."
+          },
+          {
+           "code": "2.3.8.PS.6",
+           "text": "Demonstrate strategies to use social media safely, legally, and respectfully (e.g., sexting, sextortion)."
+          },
+          {
+           "code": "2.3.8.PS.7",
+           "text": "Evaluate the impact of technology and social media on relationships (e.g., consent, communication, respect)."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "health-conditions-diseases-and-medicines",
+       "title": "Health Conditions, Diseases and Medicines",
+       "subtopics": [
+        {
+         "id": "health-conditions-diseases-and-medicines-1-of-2",
+         "title": "Health Conditions, Diseases and Medicines (1 of 2)",
+         "outcomes": [
+          {
+           "code": "2.3.8.HCDM.1",
+           "text": "Justify how the use of universal precautions, sanitation and waste disposal, proper food handling and storage, and environmental controls can prevent diseases and health conditions."
+          },
+          {
+           "code": "2.3.8.HCDM.2",
+           "text": "Determine the role of genetics in being susceptible to disease and health conditions and identify the types of behavior that might reduce the risk factors."
+          },
+          {
+           "code": "2.3.8.HCDM.3",
+           "text": "Describe behaviors which may contribute to or prevent a person from being susceptible to disease and illness (e.g., cardiovascular, stroke, hepatitis, sexually transmitted infections (STIs), HIV/AIDS, breast cancer, HPV, testicular cancer)."
+          },
+          {
+           "code": "2.3.8.HCDM.4",
+           "text": "Describe the signs, symptoms, and potential impacts of STIs (including HIV)."
+          }
+         ]
+        },
+        {
+         "id": "health-conditions-diseases-and-medicines-2-of-2",
+         "title": "Health Conditions, Diseases and Medicines (2 of 2)",
+         "outcomes": [
+          {
+           "code": "2.3.8.HCDM.5",
+           "text": "Compare and contrast behaviors, including abstinence, to determine the potential risk of pregnancy and/or STIs (including HIV) transmission."
+          },
+          {
+           "code": "2.3.8.HCDM.6",
+           "text": "Explain how the immune system fights disease."
+          },
+          {
+           "code": "2.3.8.HCDM.7",
+           "text": "Explain how certain methods of disease prevention, treatment strategies, and appropriate medicine use promote health-enhancing behaviors."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "alcohol-tobacco-and-other-drugs",
+       "title": "Alcohol, Tobacco and other Drugs",
+       "subtopics": [
+        {
+         "id": "alcohol-tobacco-and-other-drugs",
+         "title": "Alcohol, Tobacco and other Drugs",
+         "outcomes": [
+          {
+           "code": "2.3.8.ATD.1",
+           "text": "Examine how the use of alcohol, tobacco, and other drugs by adolescents has impacted their lives and the lives of family members socially, emotionally, and physically."
+          },
+          {
+           "code": "2.3.8.ATD.2",
+           "text": "Relate the use of alcohol and other drugs to decision-making, consent, and risk for sexual assault and abuse."
+          },
+          {
+           "code": "2.3.8.ATD.3",
+           "text": "Determine the factors that contribute to different rules, laws, and policies in schools, communities, and states regarding alcohol, tobacco (including e-cigarettes, vaping, cannabis products), and other drugs."
+          },
+          {
+           "code": "2.3.8.ATD.4",
+           "text": "Explain the impact of alcohol and other drugs on areas of the brain that control vision, sleep, coordination, reaction time, judgment, and memory."
+          },
+          {
+           "code": "2.3.8.ATD.5",
+           "text": "Analyze how the influence of peers and different social settings (e.g., home, school, party) can result in positive and/or negative outcomes."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "dependency-substances-disorder-and-treatment",
+       "title": "Dependency, Substances Disorder and Treatment",
+       "subtopics": [
+        {
+         "id": "dependency-substances-disorder-and-treatment",
+         "title": "Dependency, Substances Disorder and Treatment",
+         "outcomes": [
+          {
+           "code": "2.3.8.DSDT.1",
+           "text": "Summarize the signs and symptoms of alcohol, tobacco, and drug disorders."
+          },
+          {
+           "code": "2.3.8.DSDT.2",
+           "text": "Compare and contrast the various services that are available for individuals affected by substance disorders in the community and at the state level."
+          },
+          {
+           "code": "2.3.8.DSDT.3",
+           "text": "Determine the impact that alcohol and drugs can have on an individual’s social, emotional, and physical well-being."
+          },
+          {
+           "code": "2.3.8.DSDT.4",
+           "text": "Examine how alcohol and drug disorders can impact the social, emotional, and physical lives of friends and family members."
+          },
+          {
+           "code": "2.3.8.DSDT.5",
+           "text": "Compare and contrast the various services that are available for family members and others affected by substance disorders in the community and at the state level."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "9-12",
+   "units": [
+    {
+     "id": "personal-and-mental-health",
+     "title": "Personal and Mental Health",
+     "topics": [
+      {
+       "id": "personal-growth-and-development",
+       "title": "Personal Growth and Development",
+       "subtopics": [
+        {
+         "id": "personal-growth-and-development",
+         "title": "Personal Growth and Development",
+         "outcomes": [
+          {
+           "code": "2.1.12.PGD.1",
+           "text": "Develop a health care plan that includes practices and strategies designed to support an active lifestyle, attend to mental health, and foster a healthy, social and emotional life."
+          },
+          {
+           "code": "2.1.12.PGD.2",
+           "text": "Predict how healthy and unhealthy behaviors can affect brain development and impact physical, social and emotional stages of early adulthood."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "pregnancy-and-parenting",
+       "title": "Pregnancy and Parenting",
+       "subtopics": [
+        {
+         "id": "pregnancy-and-parenting-1-of-2",
+         "title": "Pregnancy and Parenting (1 of 2)",
+         "outcomes": [
+          {
+           "code": "2.1.12.PP.1",
+           "text": "Compare and contrast the advantages and disadvantages of contraceptive and disease prevention methods (e.g., abstinence, condoms, emergency contraception, dental dams)."
+          },
+          {
+           "code": "2.1.12.PP.2",
+           "text": "Develop a plan to eliminate or reduce risk for unintended pregnancy and/or STIs (including HIV) and identify ways to overcome potential barriers to prevention."
+          },
+          {
+           "code": "2.1.12.PP.3",
+           "text": "Identify trusted adults, including family members, caregivers, school staff, and health care professionals to ask questions and discuss pregnancy and other health topics."
+          },
+          {
+           "code": "2.1.12.PP.4",
+           "text": "List the major milestones of each trimester of fetal development utilizing medically accurate information."
+          },
+          {
+           "code": "2.1.12.PP.5",
+           "text": "Analyze factors that can impact the health of a baby (e.g., fetal alcohol syndrome, sudden infant death syndrome, low birth weight, premature birth, genetics)."
+          }
+         ]
+        },
+        {
+         "id": "pregnancy-and-parenting-2-of-2",
+         "title": "Pregnancy and Parenting (2 of 2)",
+         "outcomes": [
+          {
+           "code": "2.1.12.PP.6",
+           "text": "Analyze personal and societal factors that can influence decisions about pregnancy options, including parenting, abortion, safe haven, and adoption."
+          },
+          {
+           "code": "2.1.12.PP.7",
+           "text": "Analyze the emotional, social, physical, and financial effects of being a teen or young adult parent."
+          },
+          {
+           "code": "2.1.12.PP.8",
+           "text": "Assess the skills needed to be an effective parent."
+          },
+          {
+           "code": "2.1.12.PP.9",
+           "text": "Evaluate parenting strategies used at various stages of child development based on reliable sources of information."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "emotional-health",
+       "title": "Emotional Health",
+       "subtopics": [
+        {
+         "id": "emotional-health",
+         "title": "Emotional Health",
+         "outcomes": [
+          {
+           "code": "2.1.12.EH.1",
+           "text": "Recognize one’s personal traits, strengths, and limitations and identify how to develop skills to support a healthy lifestyle."
+          },
+          {
+           "code": "2.1.12.EH.2",
+           "text": "Analyze factors that influence the emotional and social impact of mental health illness on the family."
+          },
+          {
+           "code": "2.1.12.EH.3",
+           "text": "Describe strategies to appropriately respond to stressors in a variety of situations (e.g., academics, relationships, shootings, death, car accidents, illness)."
+          },
+          {
+           "code": "2.1.12.EH.4",
+           "text": "Analyze and adapt mental and emotional health messages and communication techniques to peers and other specific target audience (e.g., dimensions of health)."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "social-and-sexual-health",
+       "title": "Social and Sexual Health",
+       "subtopics": [
+        {
+         "id": "social-and-sexual-health-1-of-2",
+         "title": "Social and Sexual Health (1 of 2)",
+         "outcomes": [
+          {
+           "code": "2.1.12.SSH.1",
+           "text": "Analyze the influences of peers, family, media, social norms and culture on the expression of gender, sexual orientation, and identity."
+          },
+          {
+           "code": "2.1.12.SSH.2",
+           "text": "Advocate for school and community policies and programs that promote dignity and respect for people of all genders, gender expressions, gender identities, and sexual orientations."
+          },
+          {
+           "code": "2.1.12.SSH.3",
+           "text": "Analyze current social issues affecting perceptions of sexuality, culture, ethnicity, disability status and make recommendations to address those issues."
+          },
+          {
+           "code": "2.1.12.SSH.4",
+           "text": "Demonstrate strategies to prevent, manage, or resolve interpersonal conflicts without harming self or others (defining and understanding the laws of consent and dating violence)."
+          },
+          {
+           "code": "2.1.12.SSH.5",
+           "text": "Demonstrate ways to show respect for the boundaries of others as they relate to intimacy and sexual behavior."
+          }
+         ]
+        },
+        {
+         "id": "social-and-sexual-health-2-of-2",
+         "title": "Social and Sexual Health (2 of 2)",
+         "outcomes": [
+          {
+           "code": "2.1.12.SSH.6",
+           "text": "Analyze the benefits of abstinence from sexual activity using reliable resources."
+          },
+          {
+           "code": "2.1.12.SSH.7",
+           "text": "Analyze factors that influence the choices, and effectiveness of safer sex methods and contraception, including risk-reduction and risk-elimination strategies."
+          },
+          {
+           "code": "2.1.12.SSH.8",
+           "text": "Describe the human sexual response cycle, including the role of hormones and pleasure."
+          },
+          {
+           "code": "2.1.12.SSH.9",
+           "text": "Analyze the personal and societal factors that could keep someone from leaving an unhealthy relationship."
+          },
+          {
+           "code": "2.1.12.SSH.10",
+           "text": "Analyze the state and federal laws related to minors’ ability to give and receive sexual consent and their association with sexually explicit media."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "community-health-services-and-support",
+       "title": "Community Health Services and Support",
+       "subtopics": [
+        {
+         "id": "community-health-services-and-support-1-of-2",
+         "title": "Community Health Services and Support (1 of 2)",
+         "outcomes": [
+          {
+           "code": "2.1.12.CHSS.1",
+           "text": "Analyze the opportunities available at home, in school, and in the community to support the mental health of oneself or an individual."
+          },
+          {
+           "code": "2.1.12.CHSS.2",
+           "text": "Develop an advocacy plan for a health issue and share this information with others who can benefit."
+          },
+          {
+           "code": "2.1.12.CHSS.3",
+           "text": "Explain the purpose of the Safe Haven Law and identify locations in your community."
+          },
+          {
+           "code": "2.1.12.CHSS.4",
+           "text": "Identify medically accurate sources of information and local services that provide contraceptive methods (including emergency contraception and condoms) and pregnancy options (including parenting, abortion, safe haven, adoption, and prenatal care)."
+          },
+          {
+           "code": "2.1.12.CHSS.5",
+           "text": "Analyze a variety of health products and services based on cost, availability, accessibility, benefits and accreditation in the home, school, and in the community (e.g., suicide prevention, breast/testicular self-examination, CPR/AED, life skills training, menstrual products)."
+          }
+         ]
+        },
+        {
+         "id": "community-health-services-and-support-2-of-2",
+         "title": "Community Health Services and Support (2 of 2)",
+         "outcomes": [
+          {
+           "code": "2.1.12.CHSS.6",
+           "text": "Evaluate the validity of health information, resources, services, in school, home and in the community."
+          },
+          {
+           "code": "2.1.12.CHSS.7",
+           "text": "Describe how individuals and local, state, and global advocacy organizations can collaborate to address common local and global health and social issues (e.g., hunger, clean water, organ/tissue donation)."
+          },
+          {
+           "code": "2.1.12.CHSS.8",
+           "text": "Investigate how local, state, and global agencies are addressing health issues caused by climate change and share this information in an appropriate setting."
+          },
+          {
+           "code": "2.1.12.CHSS.9",
+           "text": "Develop an action plan to assist individuals who have feelings of sadness, anxiety, stress, trauma, or depression and share this information with individuals who will benefit."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "physical-wellness",
+     "title": "Physical Wellness",
+     "topics": [
+      {
+       "id": "movement-skills-and-concepts",
+       "title": "Movement Skills and Concepts",
+       "subtopics": [
+        {
+         "id": "movement-skills-and-concepts",
+         "title": "Movement Skills and Concepts",
+         "outcomes": [
+          {
+           "code": "2.2.12.MSC.1",
+           "text": "Explain and demonstrate ways to apply movement skills from one game, sport, aerobics, or recreational activity to another including striking skills (e.g., tennis, badminton, ping pong, racquetball, pickle ball)."
+          },
+          {
+           "code": "2.2.12.MSC.2",
+           "text": "Analyze application of force and motion (e.g., weight transfer, power, speed, agility, range of motion) and modify movement to impact performance."
+          },
+          {
+           "code": "2.2.12.MSC.3",
+           "text": "Design, lead and critique rhythmic and physical activity that includes variations in time, space, force, flow, and relationships (e.g., creative, cultural, social, aerobics dance, fitness)."
+          },
+          {
+           "code": "2.2.12.MSC.4",
+           "text": "Analyze etiquette, responsibilities, and preparation of players, officials, trainers, and other participants and recommend strategies to improve their performance, participation, and behavior."
+          },
+          {
+           "code": "2.2.12.MSC.5",
+           "text": "Develop rule changes to existing games, sports, and activities that enhance participation, safety, and enjoyment."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "physical-fitness",
+       "title": "Physical Fitness",
+       "subtopics": [
+        {
+         "id": "physical-fitness",
+         "title": "Physical Fitness",
+         "outcomes": [
+          {
+           "code": "2.2.12.PF.1",
+           "text": "Compare the short- and long-term benefits of physical activity and the impact on wellness associated with physical, mental, emotional fitness through one's lifetime."
+          },
+          {
+           "code": "2.2.12.PF.2",
+           "text": "Respect and appreciate all levels of ability and encourage with care during all physical activities."
+          },
+          {
+           "code": "2.2.12.PF.3",
+           "text": "Design and implement a personal fitness plan, using evidence and evaluate how that reflects knowledge and application of fitness-training principals (FITT) and the components of skill related fitness."
+          },
+          {
+           "code": "2.2.12.PF.4",
+           "text": "Determine the role of genetics, age, nutrition, sleep, the environment, and exercise type on body composition and personal health (e.g., anabolic steroids, human growth hormones, stimulants)."
+          },
+          {
+           "code": "2.2.12.PF.5",
+           "text": "Analyze fitness knowledge in strength, conditioning, agility, and the physiological responses of the energy systems effects on the mind and body before, during, and after physical fitness activities."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "lifelong-fitness",
+       "title": "Lifelong Fitness",
+       "subtopics": [
+        {
+         "id": "lifelong-fitness-1-of-2",
+         "title": "Lifelong Fitness (1 of 2)",
+         "outcomes": [
+          {
+           "code": "2.2.12.LF.1",
+           "text": "Apply and share a movement and physical fitness vocabulary that is intrinsic to motivate oneself, to impact family, and others in a community."
+          },
+          {
+           "code": "2.2.12.LF.2",
+           "text": "Develop a sense of openness and willingness when participating in physical fitness activity to share and learn experiences from your own and other cultures."
+          },
+          {
+           "code": "2.2.12.LF.3",
+           "text": "Examine building to a level of fitness to successfully participate in a range of different physical activities during a lifetime."
+          },
+          {
+           "code": "2.2.12.LF.4",
+           "text": "Exhibit responsible social behavior by including and cooperating with classmates of all skill levels, assisting when needed, and collaborating respectfully to solve problems in groups, teams, and in pairs during physical activity."
+          }
+         ]
+        },
+        {
+         "id": "lifelong-fitness-2-of-2",
+         "title": "Lifelong Fitness (2 of 2)",
+         "outcomes": [
+          {
+           "code": "2.2.12.LF.5",
+           "text": "Describe the social benefits gained from participating in physical activity (e.g., meeting someone, making friends, team work, building trust, experiencing something new)."
+          },
+          {
+           "code": "2.2.12.LF.6",
+           "text": "Implement a financial plan for participation in physical activity in the community for self and family members."
+          },
+          {
+           "code": "2.2.12.LF.7",
+           "text": "Analyze the current and future impact of globalization and technology on the influences of participation in sports, games, physical fitness activities, dance, gaming, outdoor adventure, viewing sports, and social and emotional connections."
+          },
+          {
+           "code": "2.2.12.LF.8",
+           "text": "Identify personal and community resources to explore career options related to physical activity and health."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "nutrition",
+       "title": "Nutrition",
+       "subtopics": [
+        {
+         "id": "nutrition",
+         "title": "Nutrition",
+         "outcomes": [
+          {
+           "code": "2.2.12.N.1",
+           "text": "Compare and contrast the nutritional trends, eating habits, and the impact of marketing foods on adolescents and young adults nationally and worldwide."
+          },
+          {
+           "code": "2.2.12.N.2",
+           "text": "Determine the relationship of nutrition and physical activity to weight loss, gain, and maintenance."
+          },
+          {
+           "code": "2.2.12.N.3",
+           "text": "Analyze the unique contributions of each nutrient class (e.g., fats, carbohydrates, protein, water, vitamins, minerals) to one’s health and fitness."
+          },
+          {
+           "code": "2.2.12.N.4",
+           "text": "Implement strategies and monitor progress in achieving a personal nutritional health plan."
+          },
+          {
+           "code": "2.2.12.N.5",
+           "text": "Research present trends in plant based and organic food choices and industries that have shown an impact on lowering heart, cancer, diabetes, and other diseases."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "safety",
+     "title": "Safety",
+     "topics": [
+      {
+       "id": "personal-safety",
+       "title": "Personal Safety",
+       "subtopics": [
+        {
+         "id": "personal-safety-1-of-2",
+         "title": "Personal Safety (1 of 2)",
+         "outcomes": [
+          {
+           "code": "2.3.12.PS.1",
+           "text": "Apply a thoughtful decision-making process to evaluate situations and influences that could lead to healthy or unhealthy consequences (e.g., peers, media)."
+          },
+          {
+           "code": "2.3.12.PS.2",
+           "text": "Analyze the short- and long-term consequences of sharing sexually explicit images (sexting) or messages with individuals or posting online."
+          },
+          {
+           "code": "2.3.12.PS.3",
+           "text": "Summarize New Jersey motor vehicle laws and regulations, Safe Stops, and determine their impact on health and safety (e.g., organ/tissue donation, traffic safety, avoid driving distractors, seatbelt use, the use of hand-held devices)."
+          },
+          {
+           "code": "2.3.12.PS.4",
+           "text": "Investigate the relationship between alcohol, drug use, and motor vehicle crashes and analyze the short- and long-term consequences of these actions."
+          },
+          {
+           "code": "2.3.12.PS.5",
+           "text": "Identify the state and federal laws related to intimate partner and sexual violence (e.g., sexual harassment, sexual abuse, sexual assault, domestic violence)."
+          }
+         ]
+        },
+        {
+         "id": "personal-safety-2-of-2",
+         "title": "Personal Safety (2 of 2)",
+         "outcomes": [
+          {
+           "code": "2.3.12.PS.6",
+           "text": "Describe the types of abuse (e.g., physical, emotional, psychological, financial, sexual) and the cycle of violence as it relates to sexual abuse, domestic violence, dating violence, and gender-based violence."
+          },
+          {
+           "code": "2.3.12.PS.7",
+           "text": "Analyze recruitment tactics that sex traffickers/exploiters use to exploit vulnerabilities and recruit youth."
+          },
+          {
+           "code": "2.3.12.PS.8",
+           "text": "Develop strategies to communicate effectively, safely, and with empathy when using digital devices in a variety of situations (e.g., cyberbullying, sexting)."
+          },
+          {
+           "code": "2.3.12.PS.9",
+           "text": "Evaluate strategies to use social media safely, legally, and respectfully."
+          },
+          {
+           "code": "2.3.12.PS.10",
+           "text": "Analyze the short- and long-term consequences of sharing sexually explicit images (sexting) or messages with individuals or posting online."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "health-conditions-diseases-and-medicines",
+       "title": "Health Conditions, Diseases and Medicines",
+       "subtopics": [
+        {
+         "id": "health-conditions-diseases-and-medicines",
+         "title": "Health Conditions, Diseases and Medicines",
+         "outcomes": [
+          {
+           "code": "2.3.12.HCDM.1",
+           "text": "Develop a health care plan to help prevent and treat diseases and health conditions one may encounter (e.g., breast/testicular exams, Pap smear, regular STIs testing, HPV vaccine)."
+          },
+          {
+           "code": "2.3.12.HCDM.2",
+           "text": "Provide examples of how drugs and medication mimic or block the action of certain cells in the body, and how abusing drugs can affect the human body."
+          },
+          {
+           "code": "2.3.12.HCDM.3",
+           "text": "Evaluate the benefits of biomedical approaches to prevent STIs (e.g., hepatitis B vaccine, HPV vaccine) and HIV (e.g., PrEP, PEP)."
+          },
+          {
+           "code": "2.3.12.HCDM.4",
+           "text": "Evaluate emerging methods to diagnose and treat diseases and health conditions that are common in young adults in the United States and in other countries (e.g., hepatitis, stroke, heart attacks, cancer,)."
+          },
+          {
+           "code": "2.3.12.HCDM.5",
+           "text": "Analyze local, state, and international public health efforts to prevent and control diseases and health conditions (e.g., vaccinations, immunizations, medical exams, gene editing, artificial organ systems, prosthesis)."
+          },
+          {
+           "code": "2.3.12.HCDM.6",
+           "text": "Analyze and discuss the evidence of the emotional and social impact of mental health illness on families, communities, and states (e.g., depression, anxiety, Alzheimer’s, panic disorders, eating disorders, impulse disorders)."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "alcohol-tobacco-and-other-drugs",
+       "title": "Alcohol, Tobacco and other Drugs",
+       "subtopics": [
+        {
+         "id": "alcohol-tobacco-and-other-drugs",
+         "title": "Alcohol, Tobacco and other Drugs",
+         "outcomes": [
+          {
+           "code": "2.3.12.ATD.1",
+           "text": "Examine the influences of drug use and misuse on an individual’s social, emotional and mental wellness."
+          },
+          {
+           "code": "2.3.12.ATD.2",
+           "text": "Compare and contrast the incidence and impact of commonly abused substances on individuals and communities in the United States and other countries (e.g., tobacco, e-cigarettes, vaping products, alcohol, marijuana products, inhalants, anabolic steroids, other drugs)."
+          },
+          {
+           "code": "2.3.12.ATD.3",
+           "text": "Explore the relationship between individuals who abuse alcohol, tobacco, and other drugs with an increase in intentional and unintentional health-risk behaviors."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "dependency-substances-disorder-and-treatment",
+       "title": "Dependency, Substances Disorder and Treatment",
+       "subtopics": [
+        {
+         "id": "dependency-substances-disorder-and-treatment",
+         "title": "Dependency, Substances Disorder and Treatment",
+         "outcomes": [
+          {
+           "code": "2.3.12.DSDT.1",
+           "text": "Correlate duration of drug use and abuse to the incidence of drug-related deaths, injuries, illness, and academic performance."
+          },
+          {
+           "code": "2.3.12.DSDT.2",
+           "text": "Analyze personal choices and behaviors related to substance use and misuse to determine if they align with personal values and beliefs."
+          },
+          {
+           "code": "2.3.12.DSDT.3",
+           "text": "Examine the drug laws, and regulations of the State of New Jersey, other states and the affects; healthy and unhealthy on individuals, families, schools, and communities (e.g., vaping products, e-cigarettes, cannabis and CBD products, opioids)."
+          },
+          {
+           "code": "2.3.12.DSDT.4",
+           "text": "Utilize peer support and societal norms to formulate a health-enhancing message to remain drug free."
+          },
+          {
+           "code": "2.3.12.DSDT.5",
+           "text": "Evaluate the effectiveness of various strategies and skills that support an individual’s ability to stop misusing and abusing drugs and remain drug free (counseling, peer coaching, professional peer support group, and family counseling and support)."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "build": {
+  "builtAt": "2026-10-14T16:20:46.150Z",
+  "model": "none",
+  "usd": 0,
+  "expectedCodes": 278,
+  "coverage": 1,
+  "missingCodes": [],
+  "counts": {
+   "grades": 4,
+   "units": 15,
+   "topics": 58,
+   "subtopics": 79,
+   "outcomes": 278
+  },
+  "warnings": []
+ }
+}

@@ -1,0 +1,3930 @@
+{
+ "id": "pk-ncp2026-chemistry-9-12",
+ "region": "PK",
+ "framework": "National Curriculum of Pakistan 2026 (Rationalized Curricula 9-12)",
+ "board": null,
+ "qualification": "SSC/HSSC",
+ "subject": "Chemistry",
+ "syllabusCode": null,
+ "gradeSystem": "grade",
+ "source": {
+  "urls": [
+   "https://ncc.gov.pk/SiteImage/Misc/files/Chemistry.pdf"
+  ],
+  "publisher": "National Curriculum Council, Ministry of Federal Education and Professional Training",
+  "licence": "Government publication; structure + our own wording only",
+  "firstExam": null
+ },
+ "grades": [
+  {
+   "grade": "9",
+   "units": [
+    {
+     "id": "domain-a-nature-of-science-in-chemistry",
+     "title": "Domain A: Nature of Science in Chemistry",
+     "topics": [
+      {
+       "id": "introduction-to-chemistry",
+       "title": "Introduction to Chemistry",
+       "subtopics": [
+        {
+         "id": "what-chemistry-studies",
+         "title": "What chemistry studies",
+         "outcomes": [
+          {
+           "code": "C-09-A-01",
+           "text": "Say what chemistry is: the study of matter, its properties, makeup and how it interacts with energy."
+          },
+          {
+           "code": "C-09-A-02",
+           "text": "Give examples showing chemistry has many sub-fields and links to other sciences."
+          },
+          {
+           "code": "C-09-A-03",
+           "text": "Compare the branches of chemistry by focus, giving two everyday examples of each."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "domain-b-physical-chemistry",
+     "title": "Domain B: Physical Chemistry",
+     "topics": [
+      {
+       "id": "matter-and-its-composition",
+       "title": "Matter and its Composition",
+       "subtopics": [
+        {
+         "id": "states-and-types-of-matter",
+         "title": "States and types of matter",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Define matter."
+          },
+          {
+           "code": "C-09-B-02",
+           "text": "Tell solids, liquids and gases apart by density, compressibility and fluidity."
+          },
+          {
+           "code": "C-09-B-03",
+           "text": "Recognise states of matter beyond the usual three, such as plasma and liquid crystals."
+          },
+          {
+           "code": "C-09-B-04",
+           "text": "Explain the allotropes of carbon: diamond, graphite and fullerenes."
+          }
+         ]
+        },
+        {
+         "id": "elements-compounds-and-mixtures",
+         "title": "Elements, compounds and mixtures",
+         "outcomes": [
+          {
+           "code": "C-09-B-05",
+           "text": "Explain how elements, compounds and mixtures differ."
+          },
+          {
+           "code": "C-09-B-06",
+           "text": "Identify solutions, colloids and suspensions as mixtures and distinguish them with an example each."
+          },
+          {
+           "code": "C-09-B-07",
+           "text": "Explain how temperature affects solubility and how saturated and unsaturated solutions form."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "atomic-structure",
+       "title": "Atomic Structure",
+       "subtopics": [
+        {
+         "id": "inside-the-atom",
+         "title": "Inside the atom",
+         "outcomes": [
+          {
+           "code": "C-09-B-08",
+           "text": "Describe an atom as a central nucleus of protons and neutrons surrounded by electrons."
+          },
+          {
+           "code": "C-09-B-09",
+           "text": "State that electron shells are discrete energy levels, higher ones having more energy and lying farther out."
+          },
+          {
+           "code": "C-09-B-10",
+           "text": "Explain that the nucleus is held together by the strong nuclear force."
+          },
+          {
+           "code": "C-09-B-11",
+           "text": "State the relative charge and mass of the electron, proton and neutron."
+          },
+          {
+           "code": "C-09-B-12",
+           "text": "Link subatomic particles to their mass and charge."
+          },
+          {
+           "code": "C-09-B-13",
+           "text": "Sketch how charged particles move in a uniform electric field."
+          }
+         ]
+        },
+        {
+         "id": "proton-number-and-nucleon-number",
+         "title": "Proton number and nucleon number",
+         "outcomes": [
+          {
+           "code": "C-09-B-14",
+           "text": "Define proton (atomic) number as the number of protons in the nucleus."
+          },
+          {
+           "code": "C-09-B-15",
+           "text": "Explain that proton number is unique to each element and orders the periodic table."
+          },
+          {
+           "code": "C-09-B-16",
+           "text": "State that radioactive decay can change the proton number and so the element."
+          },
+          {
+           "code": "C-09-B-17",
+           "text": "Define nucleon (mass) number."
+          }
+         ]
+        },
+        {
+         "id": "isotopes",
+         "title": "Isotopes",
+         "outcomes": [
+          {
+           "code": "C-09-B-18",
+           "text": "Define isotopes."
+          },
+          {
+           "code": "C-09-B-19",
+           "text": "State that isotopes change atomic mass but not chemical properties much."
+          },
+          {
+           "code": "C-09-B-20",
+           "text": "Work out protons and neutrons in isotopes from atomic and mass numbers."
+          },
+          {
+           "code": "C-09-B-21",
+           "text": "Define relative atomic mass against one twelfth of a carbon-12 atom."
+          },
+          {
+           "code": "C-09-B-22",
+           "text": "State that some isotopes are radioactive."
+          },
+          {
+           "code": "C-09-B-23",
+           "text": "Discuss uses of isotopes such as carbon-14 dating and technetium-99 imaging."
+          },
+          {
+           "code": "C-09-B-26",
+           "text": "Calculate relative atomic mass from isotope masses and abundances."
+          }
+         ]
+        },
+        {
+         "id": "ions-symbols-and-configurations",
+         "title": "Ions, symbols and configurations",
+         "outcomes": [
+          {
+           "code": "C-09-B-24",
+           "text": "Describe how atoms form cations and anions."
+          },
+          {
+           "code": "C-09-B-25",
+           "text": "Write atoms and ions with atomic number, mass number and charge notation."
+          },
+          {
+           "code": "C-09-B-27",
+           "text": "Write electronic configurations of elements and ions up to proton number 20."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "chemical-bonding",
+       "title": "Chemical Bonding",
+       "subtopics": [
+        {
+         "id": "octet-rule-and-types-of-bond",
+         "title": "Octet rule and types of bond",
+         "outcomes": [
+          {
+           "code": "C-09-B-28",
+           "text": "Use noble gas configurations and the octet and duplet rules to predict stability."
+          },
+          {
+           "code": "C-09-B-29",
+           "text": "Compare cation and anion formation by electron loss and gain."
+          },
+          {
+           "code": "C-09-B-30",
+           "text": "Explain why metals are electropositive and nonmetals electronegative."
+          },
+          {
+           "code": "C-09-B-31",
+           "text": "Define ionic, covalent, coordinate covalent and metallic bonds."
+          }
+         ]
+        },
+        {
+         "id": "structure-and-properties-of-compounds",
+         "title": "Structure and properties of compounds",
+         "outcomes": [
+          {
+           "code": "C-09-B-32",
+           "text": "Differentiate ionic and covalent compounds by bonding, structure and properties."
+          },
+          {
+           "code": "C-09-B-33",
+           "text": "Explain physical properties of compounds from their bonding and structure."
+          },
+          {
+           "code": "C-09-B-34",
+           "text": "Compare materials' strength and conductivity by bond type; know bonds beat intermolecular forces."
+          },
+          {
+           "code": "C-09-B-35",
+           "text": "Interpret how intermolecular and electrostatic forces affect melting and boiling points."
+          },
+          {
+           "code": "C-09-B-36",
+           "text": "Explain which free charged particles allow conduction in ionic, covalent and metallic substances."
+          },
+          {
+           "code": "C-09-B-37",
+           "text": "Recognise that some substances ionise in water and conduct electricity."
+          },
+          {
+           "code": "C-09-B-38",
+           "text": "Justify industrial uses of graphite, diamond and metals from their structure."
+          }
+         ]
+        },
+        {
+         "id": "dot-and-cross-diagrams",
+         "title": "Dot-and-cross diagrams",
+         "outcomes": [
+          {
+           "code": "C-09-B-39",
+           "text": "Draw dot-and-cross and Lewis structures for common ionic and covalent compounds."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "stoichiometry",
+       "title": "Stoichiometry",
+       "subtopics": [
+        {
+         "id": "formulae-and-the-mole",
+         "title": "Formulae and the mole",
+         "outcomes": [
+          {
+           "code": "C-09-B-40",
+           "text": "Write chemical formulae of common elements and compounds."
+          },
+          {
+           "code": "C-09-B-41",
+           "text": "Define molecular formula as the number and type of atoms in a molecule."
+          },
+          {
+           "code": "C-09-B-42",
+           "text": "Define empirical formula as the simplest whole-number ratio of atoms."
+          },
+          {
+           "code": "C-09-B-43",
+           "text": "Deduce formulae and names of binary ionic compounds from ion charges."
+          },
+          {
+           "code": "C-09-B-44",
+           "text": "Deduce a molecular formula from a given molecular structure."
+          },
+          {
+           "code": "C-09-B-45",
+           "text": "Define the mole as the amount of substance containing Avogadro's number of particles."
+          },
+          {
+           "code": "C-09-B-46",
+           "text": "Use n = m/M and n = N/NA to find moles, mass and particle numbers."
+          },
+          {
+           "code": "C-09-B-47",
+           "text": "Explain how the mole relates to Avogadro's constant."
+          }
+         ]
+        },
+        {
+         "id": "balanced-equations",
+         "title": "Balanced equations",
+         "outcomes": [
+          {
+           "code": "C-09-B-48",
+           "text": "Write balanced equations with state symbols."
+          },
+          {
+           "code": "C-09-B-49",
+           "text": "Write balanced ionic equations with state symbols for reactions in solution."
+          },
+          {
+           "code": "C-09-B-50",
+           "text": "Write balanced symbol equations from a written description of a reaction."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "chemical-energetics",
+       "title": "Chemical Energetics",
+       "subtopics": [
+        {
+         "id": "energy-changes-in-reactions",
+         "title": "Energy changes in reactions",
+         "outcomes": [
+          {
+           "code": "C-09-B-51",
+           "text": "Explain a chemical system and its surroundings and how energy moves between them."
+          },
+          {
+           "code": "C-09-B-52",
+           "text": "Tell exothermic from endothermic reactions with examples."
+          },
+          {
+           "code": "C-09-B-53",
+           "text": "State that heat at constant pressure is enthalpy change, negative if exothermic and positive if endothermic."
+          },
+          {
+           "code": "C-09-B-54",
+           "text": "Define activation energy as the minimum energy for an effective collision."
+          },
+          {
+           "code": "C-09-B-55",
+           "text": "Explain that catalysts or enzymes change the pathway and so the activation energy."
+          },
+          {
+           "code": "C-09-B-56",
+           "text": "Draw and label reaction pathway diagrams, with and without a catalyst."
+          }
+         ]
+        },
+        {
+         "id": "bond-energies",
+         "title": "Bond energies",
+         "outcomes": [
+          {
+           "code": "C-09-B-57",
+           "text": "Recognise that bond breaking takes in energy and bond making releases it."
+          },
+          {
+           "code": null,
+           "text": "Explain enthalpy change as energy absorbed breaking bonds minus energy released making bonds."
+          },
+          {
+           "code": "C-09-B-59",
+           "text": "Calculate a reaction's enthalpy change from bond energy data."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "equilibria",
+       "title": "Equilibria",
+       "subtopics": [
+        {
+         "id": "reversible-reactions",
+         "title": "Reversible reactions",
+         "outcomes": [
+          {
+           "code": "C-09-B-60",
+           "text": "Recognise that reversible reactions use the symbol for reversibility and may not go to completion."
+          },
+          {
+           "code": "C-09-B-61",
+           "text": "Describe how changing conditions redirects a reversible reaction, e.g. hydrated copper(II) sulfate."
+          },
+          {
+           "code": "C-09-B-62",
+           "text": "State that a reversible reaction reaches equilibrium in a closed system when forward and backward rates are equal."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "acids-bases-and-salts",
+       "title": "Acids, Bases and Salts",
+       "subtopics": [
+        {
+         "id": "acids-and-bases",
+         "title": "Acids and bases",
+         "outcomes": [
+          {
+           "code": "C-09-B-63",
+           "text": "Define Bronsted-Lowry acids as proton donors and bases as proton acceptors."
+          },
+          {
+           "code": "C-09-B-64",
+           "text": "Recognise that acids give H+ ions and alkalis give OH- ions in water."
+          },
+          {
+           "code": "C-09-B-65",
+           "text": "Define strong and weak acids and bases by complete or partial dissociation, with examples."
+          },
+          {
+           "code": "C-09-B-66",
+           "text": "Write dissociation equations for acids and bases in water."
+          },
+          {
+           "code": null,
+           "text": "Recognise bases as metal oxides or hydroxides and alkalis as soluble bases."
+          }
+         ]
+        },
+        {
+         "id": "properties-of-acids-and-bases-acid-rain",
+         "title": "Properties of acids and bases, acid rain",
+         "outcomes": [
+          {
+           "code": "C-09-B-68",
+           "text": "Describe how acids react with metals, bases and carbonates."
+          },
+          {
+           "code": "C-09-B-69",
+           "text": "Identify how bases react with acids and ammonium salts."
+          },
+          {
+           "code": "C-09-B-70",
+           "text": "Define acid rain."
+          },
+          {
+           "code": null,
+           "text": "Discuss acid rain's effects and link them to acid properties."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "domain-c-inorganic-chemistry",
+     "title": "Domain C: Inorganic Chemistry",
+     "topics": [
+      {
+       "id": "the-periodic-table",
+       "title": "The Periodic Table",
+       "subtopics": [
+        {
+         "id": "structure-of-the-periodic-table",
+         "title": "Structure of the periodic table",
+         "outcomes": [
+          {
+           "code": "C-09-C-01",
+           "text": "Define the periodic table as elements in periods and groups by increasing proton number."
+          },
+          {
+           "code": "C-09-C-02",
+           "text": "Find an element's group, period or block from its electronic configuration."
+          },
+          {
+           "code": "C-09-C-03",
+           "text": "Link group number to the charge of the ions an element forms."
+          },
+          {
+           "code": "C-09-C-04",
+           "text": "Explain similar chemistry within a group through electronic configuration."
+          }
+         ]
+        },
+        {
+         "id": "trends-and-group-names",
+         "title": "Trends and group names",
+         "outcomes": [
+          {
+           "code": "C-09-C-05",
+           "text": "Identify trends across groups and periods in radius, electron affinity, electronegativity, ionisation energy, metallic character, reactivity and density."
+          },
+          {
+           "code": "C-09-C-06",
+           "text": "Use names such as alkali metals, halogens, noble gases and transition metals."
+          },
+          {
+           "code": "C-09-C-07",
+           "text": "Predict an element's properties from its group."
+          },
+          {
+           "code": null,
+           "text": "Predict an unknown element's place in the table from its electronic configuration."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "group-chemistry",
+       "title": "Group Chemistry",
+       "subtopics": [
+        {
+         "id": "alkali-metals",
+         "title": "Alkali metals",
+         "outcomes": [
+          {
+           "code": "C-09-C-09",
+           "text": "Describe alkali metals as soft metals with trends down the group."
+          },
+          {
+           "code": "C-09-C-10",
+           "text": "Predict properties of other group 1 elements from given information."
+          },
+          {
+           "code": "C-09-C-11",
+           "text": "Order group 1 elements by reactivity from given information."
+          }
+         ]
+        },
+        {
+         "id": "halogens",
+         "title": "Halogens",
+         "outcomes": [
+          {
+           "code": "C-09-C-12",
+           "text": "Describe halogens as diatomic non-metals with trends in density and reactivity."
+          },
+          {
+           "code": "C-09-C-13",
+           "text": "Identify the appearance of the halogens at room temperature."
+          },
+          {
+           "code": "C-09-C-14",
+           "text": "Explain halogen displacement reactions and halogens as oxidising agents."
+          },
+          {
+           "code": "C-09-C-15",
+           "text": "Predict properties of group 17 elements from given information."
+          },
+          {
+           "code": "C-09-C-16",
+           "text": "Explain the thermal stability of hydrogen halides through bond strength."
+          }
+         ]
+        },
+        {
+         "id": "transition-elements-and-noble-gases",
+         "title": "Transition elements and noble gases",
+         "outcomes": [
+          {
+           "code": "C-09-C-17",
+           "text": "Describe transition elements: dense, high melting, variable oxidation states, coloured compounds, catalysts."
+          },
+          {
+           "code": "C-09-C-18",
+           "text": "Describe noble gases as unreactive monatomic gases."
+          },
+          {
+           "code": "C-09-C-19",
+           "text": "Explain noble gas unreactivity through electronic configuration."
+          }
+         ]
+        },
+        {
+         "id": "metals-and-non-metals",
+         "title": "Metals and non-metals",
+         "outcomes": [
+          {
+           "code": "C-09-C-20",
+           "text": "Compare physical properties of metals and non-metals."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "domain-e-organic-chemistry",
+     "title": "Domain E: Organic Chemistry",
+     "topics": [
+      {
+       "id": "introduction-to-organic-compounds",
+       "title": "Introduction to Organic Compounds",
+       "subtopics": [
+        {
+         "id": "organic-molecules-and-formulae",
+         "title": "Organic molecules and formulae",
+         "outcomes": [
+          {
+           "code": "C-09-E-01",
+           "text": "Describe organic molecules as straight-chain, branched or cyclic."
+          },
+          {
+           "code": "C-09-E-02",
+           "text": "State that a structural formula shows unambiguously how atoms are arranged."
+          },
+          {
+           "code": "C-09-E-03",
+           "text": "Identify and draw structural formulae for molecules."
+          },
+          {
+           "code": "C-09-E-08",
+           "text": "State that a saturated compound has only single carbon-carbon bonds."
+          },
+          {
+           "code": null,
+           "text": "State that an unsaturated compound has one or more non-single carbon-carbon bonds."
+          }
+         ]
+        },
+        {
+         "id": "homologous-series-and-functional-groups",
+         "title": "Homologous series and functional groups",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe the general formula of compounds in a homologous series."
+          },
+          {
+           "code": "C-09-E-06",
+           "text": "Identify a functional group as the atoms that fix a series' chemical properties."
+          },
+          {
+           "code": null,
+           "text": "Describe the general characteristics of a homologous series."
+          }
+         ]
+        },
+        {
+         "id": "structural-isomers",
+         "title": "Structural isomers",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Define structural isomers, with C4H10 and C4H8 examples."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "hydrocarbons",
+       "title": "Hydrocarbons",
+       "subtopics": [
+        {
+         "id": "alkanes",
+         "title": "Alkanes",
+         "outcomes": [
+          {
+           "code": "C-09-E-10",
+           "text": "State that alkanes have single covalent bonds and are saturated."
+          },
+          {
+           "code": "C-09-E-11",
+           "text": "Describe alkane combustion and chlorine substitution as a photochemical reaction."
+          },
+          {
+           "code": "C-09-E-12",
+           "text": "Write equations for preparing alkanes by cracking, hydrogenation and reduction of halides."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "domain-g-activities-lab-skills-and-practical-mod",
+     "title": "Domain G: Activities, Lab Skills, and Practical Modules",
+     "topics": [
+      {
+       "id": "practical-skills",
+       "title": "Practical Skills",
+       "subtopics": [
+        {
+         "id": "apparatus-and-measurement",
+         "title": "Apparatus and measurement",
+         "outcomes": [
+          {
+           "code": "C-09-10-G-01",
+           "text": "Identify apparatus from diagrams or descriptions."
+          },
+          {
+           "code": "C-09-10-G-02",
+           "text": "Draw, complete or label diagrams of apparatus."
+          },
+          {
+           "code": "C-09-10-G-03",
+           "text": "Explain the use of common techniques, apparatus and materials."
+          },
+          {
+           "code": "C-09-10-G-04",
+           "text": "Choose the most appropriate apparatus or method and justify it."
+          },
+          {
+           "code": "C-09-10-G-05",
+           "text": "Identify apparatus for measuring time, temperature, mass and volume."
+          },
+          {
+           "code": "C-09-10-G-06",
+           "text": "Justify cm3, g and s as practical units for small amounts."
+          }
+         ]
+        },
+        {
+         "id": "separation-and-purification",
+         "title": "Separation and purification",
+         "outcomes": [
+          {
+           "code": "C-09-10-G-07",
+           "text": "Separate a mixture by sublimation."
+          },
+          {
+           "code": "C-09-10-G-09",
+           "text": "Explain separation methods: solvent, filtration, crystallisation, simple and fractional distillation."
+          },
+          {
+           "code": "C-09-10-G-10",
+           "text": "Suggest separation techniques for given substances and their daily-life use."
+          },
+          {
+           "code": "C-09-10-G-14",
+           "text": "Carry out separation and purification techniques including chromatography and electrolysis."
+          }
+         ]
+        },
+        {
+         "id": "chromatography",
+         "title": "Chromatography",
+         "outcomes": [
+          {
+           "code": "C-09-10-G-15",
+           "text": "Describe paper chromatography to separate soluble mixtures."
+          },
+          {
+           "code": "C-09-10-G-16",
+           "text": "Describe locating agents for colourless substances."
+          },
+          {
+           "code": "C-09-10-G-17",
+           "text": "Interpret simple chromatograms."
+          },
+          {
+           "code": "C-09-10-G-18",
+           "text": "State and use the equation for Rf."
+          }
+         ]
+        },
+        {
+         "id": "titration-calculations-and-tests",
+         "title": "Titration calculations and tests",
+         "outcomes": [
+          {
+           "code": "C-09-10-G-08",
+           "text": "Calculate concentration of an acid or base from titration data."
+          },
+          {
+           "code": "C-09-10-G-11",
+           "text": "Assess purity from melting and boiling point information."
+          },
+          {
+           "code": "C-09-10-G-12",
+           "text": "Describe gas tests for ammonia, CO2, chlorine, hydrogen, oxygen and SO2."
+          },
+          {
+           "code": "C-09-10-G-13",
+           "text": "Explain flame tests for lithium, sodium, potassium, calcium, copper and barium."
+          }
+         ]
+        },
+        {
+         "id": "testing-water",
+         "title": "Testing water",
+         "outcomes": [
+          {
+           "code": "C-09-10-G-19",
+           "text": "Test for water with anhydrous copper(II) sulfate."
+          },
+          {
+           "code": "C-09-10-G-20",
+           "text": "Explain testing water purity by melting and boiling point."
+          },
+          {
+           "code": "C-09-10-G-21",
+           "text": "Distinguish distilled water from tap water."
+          }
+         ]
+        },
+        {
+         "id": "carrying-out-experiments",
+         "title": "Carrying out experiments",
+         "outcomes": [
+          {
+           "code": "C-09-10-G-22",
+           "text": "Suggest the best apparatus or technique and justify the choice."
+          },
+          {
+           "code": "C-09-10-G-23",
+           "text": "Describe experimental procedures."
+          },
+          {
+           "code": "C-09-10-G-24",
+           "text": "Take readings from apparatus with suitable precision."
+          },
+          {
+           "code": "C-09-10-G-25",
+           "text": "Take sufficient observations, repeating where appropriate."
+          },
+          {
+           "code": "C-09-10-G-26",
+           "text": "Record qualitative observations from tests."
+          },
+          {
+           "code": "C-09-10-G-27",
+           "text": "Record observations and measurements systematically in a table."
+          }
+         ]
+        },
+        {
+         "id": "presenting-and-analysing-data",
+         "title": "Presenting and analysing data",
+         "outcomes": [
+          {
+           "code": "C-09-10-G-28",
+           "text": "Record experiment results in a table."
+          },
+          {
+           "code": "C-09-10-G-29",
+           "text": "Process data, including calculations for graph plotting."
+          },
+          {
+           "code": "C-09-10-G-30",
+           "text": "Present data graphically with best-fit lines."
+          },
+          {
+           "code": "C-09-10-G-31",
+           "text": "Analyse and interpret observations and graph data."
+          },
+          {
+           "code": "C-09-10-G-32",
+           "text": "Evaluate data quality and identify anomalous results."
+          },
+          {
+           "code": "C-09-10-G-33",
+           "text": "Identify possible sources of error in an experimental design."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "10",
+   "units": [
+    {
+     "id": "domain-b-physical-chemistry",
+     "title": "Domain B: Physical Chemistry",
+     "topics": [
+      {
+       "id": "states-of-matter",
+       "title": "States of Matter",
+       "subtopics": [
+        {
+         "id": "kinetic-theory-and-phase-changes",
+         "title": "Kinetic theory and phase changes",
+         "outcomes": [
+          {
+           "code": "C-10-B-01",
+           "text": "State the kinetic theory assumptions and explain phase changes through particle behaviour and energy."
+          },
+          {
+           "code": "C-10-B-02",
+           "text": "Distinguish evaporation from boiling."
+          },
+          {
+           "code": "C-10-B-03",
+           "text": "Read heating and cooling curves using kinetic theory."
+          },
+          {
+           "code": "C-10-B-05",
+           "text": "Explain qualitatively how external pressure changes boiling and evaporation."
+          }
+         ]
+        },
+        {
+         "id": "gas-laws-and-diffusion",
+         "title": "Gas laws and diffusion",
+         "outcomes": [
+          {
+           "code": "C-10-B-04",
+           "text": "State Boyle's, Charles's and Avogadro's laws."
+          },
+          {
+           "code": "C-10-B-06",
+           "text": "Explain gas diffusion using kinetic particle theory."
+          },
+          {
+           "code": "C-10-B-07",
+           "text": "Explain how molecular mass and temperature affect the rate of diffusion."
+          },
+          {
+           "code": "C-10-B-08",
+           "text": "Use kinetic theory to explain why diffusion rates matter for medicines in the body."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "stoichiometry",
+       "title": "Stoichiometry",
+       "subtopics": [
+        {
+         "id": "gas-volumes-and-solution-concentration",
+         "title": "Gas volumes and solution concentration",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Use the molar gas volume of 24 dm3 at r.t.p. to find gas volumes and moles."
+          },
+          {
+           "code": "C-10-B-10",
+           "text": "Define concentration as solute per unit volume in g/dm3 or mol/dm3."
+          },
+          {
+           "code": "C-10-B-11",
+           "text": "Calculate concentration and convert between g/dm3 and mol/dm3."
+          }
+         ]
+        },
+        {
+         "id": "reacting-quantities",
+         "title": "Reacting quantities",
+         "outcomes": [
+          {
+           "code": "C-10-B-12",
+           "text": "Calculate reacting masses, gas volumes and solution quantities from balanced equations."
+          },
+          {
+           "code": "C-10-B-13",
+           "text": "Find empirical and molecular formulae from percentage composition."
+          },
+          {
+           "code": "C-10-B-14",
+           "text": "Calculate percentage yield, percentage composition and percentage purity."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "electrochemistry",
+       "title": "Electrochemistry",
+       "subtopics": [
+        {
+         "id": "oxidation-numbers-and-redox",
+         "title": "Oxidation numbers and redox",
+         "outcomes": [
+          {
+           "code": "C-10-B-15",
+           "text": "Define redox in terms of oxygen, hydrogen, electrons and oxidation state changes."
+          },
+          {
+           "code": "C-10-B-16",
+           "text": "Assign oxidation numbers and use Roman numerals in names of variable-valency metals."
+          },
+          {
+           "code": "C-10-B-17",
+           "text": "Identify oxidising and reducing agents in a reaction."
+          },
+          {
+           "code": "C-10-B-18",
+           "text": "State that uncombined elements have oxidation number zero."
+          },
+          {
+           "code": "C-10-B-19",
+           "text": "Deduce ionic formulae by balancing ion charges."
+          },
+          {
+           "code": "C-10-B-20",
+           "text": "State that a monatomic ion's oxidation number equals its charge."
+          },
+          {
+           "code": null,
+           "text": "Explain that oxidation numbers in a neutral compound sum to zero."
+          },
+          {
+           "code": "C-10-B-22",
+           "text": "Explain that oxidation numbers in an ion sum to its charge."
+          },
+          {
+           "code": "C-10-B-23",
+           "text": "Test for oxidising or reducing agents using acidified permanganate or iodide colour changes."
+          }
+         ]
+        },
+        {
+         "id": "electrolysis",
+         "title": "Electrolysis",
+         "outcomes": [
+          {
+           "code": "C-10-B-24",
+           "text": "Define electrolysis as breaking down an ionic compound with electric current."
+          },
+          {
+           "code": "C-10-B-25",
+           "text": "Label the parts of a simple electrolytic cell and show electron and ion movement."
+          },
+          {
+           "code": "C-10-B-26",
+           "text": "Describe electron flow, ion movement and electrode transfers during electrolysis."
+          },
+          {
+           "code": "C-10-B-27",
+           "text": "Predict products and observations for electrolysis of molten PbCl2, brine and dilute sulfuric acid."
+          },
+          {
+           "code": null,
+           "text": "Describe products and observations in electrolysis of copper(II) sulfate."
+          },
+          {
+           "code": "C-10-B-32",
+           "text": "Write half-ionic equations for electrode reactions."
+          },
+          {
+           "code": "C-10-B-33",
+           "text": "Describe electroplating and its uses."
+          }
+         ]
+        },
+        {
+         "id": "fuel-cells-voltaic-cells-and-corrosion",
+         "title": "Fuel cells, voltaic cells and corrosion",
+         "outcomes": [
+          {
+           "code": "C-10-B-28",
+           "text": "State that a hydrogen-oxygen fuel cell makes electricity with water as the only product."
+          },
+          {
+           "code": "C-10-B-29",
+           "text": "Compare hydrogen-oxygen fuel cells with petrol engines."
+          },
+          {
+           "code": "C-10-B-30",
+           "text": "Define corrosion and describe barrier and sacrificial protection."
+          },
+          {
+           "code": "C-10-B-34",
+           "text": "Sketch a schematic diagram of a voltaic cell such as the Daniell cell."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "acids-bases-and-salts",
+       "title": "Acids, Bases and Salts",
+       "subtopics": [
+        {
+         "id": "salts",
+         "title": "Salts",
+         "outcomes": [
+          {
+           "code": "C-10-B-35",
+           "text": "Explain salts as ionic compounds of ions from bases and acids."
+          },
+          {
+           "code": "C-10-B-36",
+           "text": "Explain why salts are solids with high melting points at STP."
+          },
+          {
+           "code": "C-10-B-37",
+           "text": "Describe ionic compounds as usually solid lattice structures."
+          },
+          {
+           "code": "C-10-B-38",
+           "text": "Explain why molten and dissolved salts conduct, using mobile ions."
+          },
+          {
+           "code": "C-10-B-39",
+           "text": "Describe solubility trends of common salts in water."
+          },
+          {
+           "code": "C-10-B-40",
+           "text": "Describe preparing, separating and purifying soluble salts from acids with alkali, metal, insoluble base or carbonate."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "domain-c-inorganic-chemistry",
+     "title": "Domain C: Inorganic Chemistry",
+     "topics": [
+      {
+       "id": "group-chemistry",
+       "title": "Group Chemistry",
+       "subtopics": [
+        {
+         "id": "metals-and-non-metals",
+         "title": "Metals and non-metals",
+         "outcomes": [
+          {
+           "code": "C-10-C-10",
+           "text": "Describe metal reactions with dilute acids, cold water, steam and oxygen."
+          },
+          {
+           "code": "C-10-C-11",
+           "text": "Order metals by reactivity from given information."
+          }
+         ]
+        },
+        {
+         "id": "nitrogen-sulfur-and-industrial-processes",
+         "title": "Nitrogen, sulfur and industrial processes",
+         "outcomes": [
+          {
+           "code": "C-10-C-01",
+           "text": "Describe the catalytic role of NO and NO2 in oxidising SO2 to SO3 in the air."
+          },
+          {
+           "code": "C-10-C-02",
+           "text": "State the equation for ammonia in the Haber process."
+          },
+          {
+           "code": "C-10-C-03",
+           "text": "State the sources of hydrogen and nitrogen in the Haber process."
+          },
+          {
+           "code": "C-10-C-04",
+           "text": "State the Haber process conditions: 450 C, 200 atm, iron catalyst."
+          },
+          {
+           "code": "C-10-C-05",
+           "text": "State the equation for SO2 to SO3 in the Contact process."
+          },
+          {
+           "code": "C-10-C-06",
+           "text": "State the sources of sulfur dioxide and oxygen in the Contact process."
+          },
+          {
+           "code": "C-10-C-07",
+           "text": "State the Contact process conditions and vanadium(V) oxide catalyst."
+          }
+         ]
+        },
+        {
+         "id": "oxides",
+         "title": "Oxides",
+         "outcomes": [
+          {
+           "code": "C-10-C-08",
+           "text": "Describe amphoteric oxides as reacting with both acids and bases."
+          },
+          {
+           "code": "C-10-C-09",
+           "text": "Classify oxides as acidic, basic or amphoteric, including Al2O3 and ZnO."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "domain-d-environmental-chemistry",
+     "title": "Domain D: Environmental Chemistry",
+     "topics": [
+      {
+       "id": "atmosphere",
+       "title": "Atmosphere",
+       "subtopics": [
+        {
+         "id": "air-and-its-pollutants",
+         "title": "Air and its pollutants",
+         "outcomes": [
+          {
+           "code": "C-10-D-01",
+           "text": "State the composition of clean dry air: about 78% nitrogen, 21% oxygen, rest noble gases and CO2."
+          },
+          {
+           "code": "C-10-D-02",
+           "text": "State the main sources of air pollutants."
+          },
+          {
+           "code": "C-10-D-03",
+           "text": "State the harmful effects of CO2, CO, particulates, methane, nitrogen oxides and SO2."
+          }
+         ]
+        },
+        {
+         "id": "climate-change-and-acid-rain",
+         "title": "Climate change and acid rain",
+         "outcomes": [
+          {
+           "code": "C-10-D-04",
+           "text": "Explain how CO2 and methane cause global warming."
+          },
+          {
+           "code": "C-10-D-05",
+           "text": "Describe sulfur's role in acid rain and its impact."
+          },
+          {
+           "code": "C-10-D-06",
+           "text": "Describe strategies against climate change and acid rain."
+          },
+          {
+           "code": "C-10-D-07",
+           "text": "Describe the role of NO and NO2 in forming acid rain."
+          },
+          {
+           "code": null,
+           "text": "Explain how nitrogen oxides form in car engines and are removed by catalytic converters."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "water",
+       "title": "Water",
+       "subtopics": [
+        {
+         "id": "water-quality-and-treatment",
+         "title": "Water quality and treatment",
+         "outcomes": [
+          {
+           "code": "C-10-D-09",
+           "text": "State that natural water may contain useful and harmful substances."
+          },
+          {
+           "code": "C-10-D-10",
+           "text": "Recognise that some natural substances in water are beneficial."
+          },
+          {
+           "code": "C-10-D-11",
+           "text": "Recognise that some natural substances in water are harmful."
+          },
+          {
+           "code": "C-10-D-12",
+           "text": "Explain domestic water treatment: sedimentation, filtration, carbon, chlorination."
+          },
+          {
+           "code": "C-10-D-13",
+           "text": "Identify negative effects of water pollutants and ways to avoid them."
+          },
+          {
+           "code": "C-10-D-14",
+           "text": "Explain water scarcity in Pakistan and ways to resolve it."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "fertilizers",
+       "title": "Fertilizers",
+       "subtopics": [
+        {
+         "id": "fertilizers",
+         "title": "Fertilizers",
+         "outcomes": [
+          {
+           "code": "C-10-D-15",
+           "text": "State that urea, ammonium salts and nitrates are used as fertilizers."
+          },
+          {
+           "code": "C-10-D-16",
+           "text": "Explain how NPK fertilizers supply nitrogen, phosphorus and potassium."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "domain-e-organic-chemistry",
+     "title": "Domain E: Organic Chemistry",
+     "topics": [
+      {
+       "id": "introduction-to-organic-compounds",
+       "title": "Introduction to Organic Compounds",
+       "subtopics": [
+        {
+         "id": "naming-simple-compounds",
+         "title": "Naming simple compounds",
+         "outcomes": [
+          {
+           "code": "C-10-E-01",
+           "text": "Name and draw unbranched alkanes, alkenes, alcohols and carboxylic acids."
+          },
+          {
+           "code": "C-10-E-02",
+           "text": "State the compound type from the name ending (-ane, -ene, -yne, -ol, -oic acid)."
+          },
+          {
+           "code": "C-10-E-03",
+           "text": "Name and draw unbranched esters made from short alcohols and acids."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "hydrocarbons",
+       "title": "Hydrocarbons",
+       "subtopics": [
+        {
+         "id": "alkenes-and-cracking",
+         "title": "Alkenes and cracking",
+         "outcomes": [
+          {
+           "code": "C-10-E-04",
+           "text": "State that alkenes have a carbon-carbon double bond and are unsaturated."
+          },
+          {
+           "code": "C-10-E-05",
+           "text": "Describe making alkenes by cracking large alkanes with heat and a catalyst."
+          },
+          {
+           "code": "C-10-E-06",
+           "text": "Describe the reasons for cracking large alkanes."
+          },
+          {
+           "code": "C-10-E-07",
+           "text": "Describe the test for unsaturation with aqueous bromine and KMnO4."
+          },
+          {
+           "code": "C-10-E-08",
+           "text": "Describe alkene addition reactions with bromine, hydrogen and steam, and draw the products."
+          },
+          {
+           "code": "C-10-E-09",
+           "text": "Write equations for making alkenes by elimination from halogenoalkanes and alcohols."
+          }
+         ]
+        },
+        {
+         "id": "alkynes-and-petroleum",
+         "title": "Alkynes and petroleum",
+         "outcomes": [
+          {
+           "code": "C-10-E-10",
+           "text": "Identify alkynes as unsaturated hydrocarbons with a carbon-carbon triple bond."
+          },
+          {
+           "code": "C-10-E-11",
+           "text": "Describe uses of ethyne: welding fuel and ripening fruit."
+          },
+          {
+           "code": null,
+           "text": "Describe separating petroleum into fractions by fractional distillation."
+          },
+          {
+           "code": "C-10-E-13",
+           "text": "Describe how fraction properties change up the column: shorter chains, more volatile, lower boiling point, less viscous."
+          },
+          {
+           "code": null,
+           "text": "Name the uses of petroleum fractions from refinery gas to bitumen."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "alcohols",
+       "title": "Alcohols",
+       "subtopics": [
+        {
+         "id": "making-and-using-alcohols",
+         "title": "Making and using alcohols",
+         "outcomes": [
+          {
+           "code": "C-10-E-15",
+           "text": "Describe making ethanol by fermentation and catalytic hydration, comparing both methods."
+          },
+          {
+           "code": "C-10-E-16",
+           "text": "Describe the combustion of alcohols."
+          },
+          {
+           "code": "C-10-E-17",
+           "text": "Discuss alcohols as fuels with advantages and disadvantages against fossil fuels."
+          },
+          {
+           "code": "C-10-E-18",
+           "text": "Explain alcohols' role in pharmaceuticals, cosmetics and fuel industries."
+          },
+          {
+           "code": "C-10-E-19",
+           "text": "Discuss alcohols in daily life, as solvents and disinfectants."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "carboxylic-acids-and-esters",
+       "title": "Carboxylic Acids and Esters",
+       "subtopics": [
+        {
+         "id": "reactions-and-uses-of-carboxylic-acids",
+         "title": "Reactions and uses of carboxylic acids",
+         "outcomes": [
+          {
+           "code": "C-10-E-20",
+           "text": "Describe reactions of carboxylic acids with metals, bases and carbonates."
+          },
+          {
+           "code": "C-10-E-21",
+           "text": "Describe forming ethanoic acid by oxidising ethanol, including vinegar."
+          },
+          {
+           "code": null,
+           "text": "Describe forming an ester from an acid and an alcohol."
+          },
+          {
+           "code": "C-10-E-23",
+           "text": "Describe industrial uses of carboxylic acids and esters."
+          },
+          {
+           "code": "C-10-E-24",
+           "text": "Explain the role of carboxylic acids and esters in daily life."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "polymers",
+       "title": "Polymers",
+       "subtopics": [
+        {
+         "id": "addition-polymers-and-plastics",
+         "title": "Addition polymers and plastics",
+         "outcomes": [
+          {
+           "code": "C-10-E-25",
+           "text": "Define polymers as large molecules built from monomers."
+          },
+          {
+           "code": "C-10-E-26",
+           "text": "Identify repeating units and linkages in addition polymers."
+          },
+          {
+           "code": "C-10-E-27",
+           "text": "Deduce the repeat unit of an addition polymer from its alkene and the reverse."
+          },
+          {
+           "code": "C-10-E-28",
+           "text": "State that plastics are made from polymers."
+          },
+          {
+           "code": "C-10-E-29",
+           "text": "Describe how plastic properties affect disposal."
+          },
+          {
+           "code": "C-10-E-30",
+           "text": "Describe environmental challenges of plastics: landfill, oceans, toxic gases from burning."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "biomolecules",
+       "title": "Biomolecules",
+       "subtopics": [
+        {
+         "id": "proteins-lipids-and-carbohydrates",
+         "title": "Proteins, lipids and carbohydrates",
+         "outcomes": [
+          {
+           "code": "C-10-E-31",
+           "text": "Describe proteins as natural polyamides built from amino acids."
+          },
+          {
+           "code": "C-10-E-32",
+           "text": "Draw the general structure of proteins."
+          },
+          {
+           "code": "C-10-E-33",
+           "text": "Draw the structure of lipids and carbohydrates."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "11",
+   "units": [
+    {
+     "id": "domain-b-physical-chemistry",
+     "title": "Domain B: Physical Chemistry",
+     "topics": [
+      {
+       "id": "atomic-structure",
+       "title": "Atomic Structure",
+       "subtopics": [
+        {
+         "id": "particles-and-charge-in-atoms",
+         "title": "Particles and charge in atoms",
+         "outcomes": [
+          {
+           "code": "C-11-B-02",
+           "text": "Describe protons, neutrons and electrons by relative charge and mass."
+          },
+          {
+           "code": "C-11-B-03",
+           "text": "Describe how beams of protons, neutrons and electrons deflect in an electric field."
+          },
+          {
+           "code": "C-11-B-04",
+           "text": "Find the numbers of protons, neutrons and electrons in atoms and ions."
+          }
+         ]
+        },
+        {
+         "id": "shells-subshells-and-orbitals",
+         "title": "Shells, subshells and orbitals",
+         "outcomes": [
+          {
+           "code": "C-11-B-01",
+           "text": "Describe how shells and subshells divide into degenerate orbitals of equal energy."
+          },
+          {
+           "code": "C-11-B-06",
+           "text": "Define shell, subshell, orbital, principal quantum number and ground state."
+          },
+          {
+           "code": "C-11-B-07",
+           "text": "Relate quantum numbers to how electrons are arranged in atoms."
+          },
+          {
+           "code": null,
+           "text": "State how many orbitals s, p, d and f subshells hold and their electron capacity."
+          },
+          {
+           "code": "C-11-B-09",
+           "text": "Describe the shapes and orientations of s, p and d orbitals."
+          }
+         ]
+        },
+        {
+         "id": "filling-orbitals-with-electrons",
+         "title": "Filling orbitals with electrons",
+         "outcomes": [
+          {
+           "code": "C-11-B-05",
+           "text": "Write electronic configurations of elements and ions in shell and subshell notation."
+          },
+          {
+           "code": "C-11-B-10",
+           "text": "Apply the Aufbau principle, Pauli exclusion and Hund's rule to orbital filling."
+          },
+          {
+           "code": "C-11-B-11",
+           "text": "Explain the energy order and filling order of s, p, d and f subshells."
+          },
+          {
+           "code": "C-11-B-12",
+           "text": "Interpret configurations in terms of energy, stability and electron repulsion."
+          },
+          {
+           "code": "C-11-B-13",
+           "text": "Define free radicals as species with unpaired electrons."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "chemical-bonding",
+       "title": "Chemical Bonding",
+       "subtopics": [
+        {
+         "id": "hybridisation-and-molecular-shape",
+         "title": "Hybridisation and molecular shape",
+         "outcomes": [
+          {
+           "code": "C-11-B-14",
+           "text": "Describe covalent bonding using sp, sp2 and sp3 hybridisation."
+          },
+          {
+           "code": "C-11-B-15",
+           "text": "Compare reactivity of covalent molecules using bond energy and bond length."
+          },
+          {
+           "code": null,
+           "text": "Describe molecular shapes and bond angles with VSEPR theory and sketches."
+          },
+          {
+           "code": null,
+           "text": "Predict shapes and bond angles of molecules and ions with VSEPR."
+          },
+          {
+           "code": "C-11-B-18",
+           "text": "Explain hybridisation and its types in covalent bonding."
+          }
+         ]
+        },
+        {
+         "id": "bonding-theories",
+         "title": "Bonding theories",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain valence bond theory."
+          },
+          {
+           "code": "C-11-B-20",
+           "text": "Explain the main features of molecular orbital theory."
+          },
+          {
+           "code": "C-11-B-21",
+           "text": "Explain oxygen's paramagnetism using molecular orbital theory."
+          },
+          {
+           "code": "C-11-B-22",
+           "text": "Calculate bond order of simple diatomic molecules."
+          }
+         ]
+        },
+        {
+         "id": "polarity-and-dative-bonds",
+         "title": "Polarity and dative bonds",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Use electronegativity to explain bond polarity and molecular dipole moments."
+          },
+          {
+           "code": null,
+           "text": "State that ionic, covalent and metallic bonds are stronger than intermolecular forces."
+          },
+          {
+           "code": "C-11-B-25",
+           "text": "Recognise expanded octets in polyatomic ions such as sulfate and nitrate."
+          },
+          {
+           "code": "C-11-B-26",
+           "text": "Explain dative bond formation in CO, ozone and the hydronium ion."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "stoichiometry",
+       "title": "Stoichiometry",
+       "subtopics": [
+        {
+         "id": "limiting-reagent-and-yield",
+         "title": "Limiting reagent and yield",
+         "outcomes": [
+          {
+           "code": "C-11-B-27",
+           "text": "Interpret a balanced equation in moles, masses and gas volumes at STP."
+          },
+          {
+           "code": null,
+           "text": "Identify the limiting reagent by comparing mole ratios."
+          },
+          {
+           "code": "C-11-B-29",
+           "text": "Find the maximum product and leftover excess reagent."
+          },
+          {
+           "code": "C-11-B-30",
+           "text": "Calculate percentage yield from actual and theoretical yield."
+          }
+         ]
+        },
+        {
+         "id": "molar-volume-at-stp",
+         "title": "Molar volume at STP",
+         "outcomes": [
+          {
+           "code": "C-11-B-31",
+           "text": "State the volume of one mole of gas at STP."
+          },
+          {
+           "code": "C-11-B-32",
+           "text": "Use molar volume at STP to find gas volume and moles."
+          },
+          {
+           "code": "C-11-B-33",
+           "text": "Calculate gram molecular mass of gases from measurements at STP."
+          },
+          {
+           "code": "C-11-B-34",
+           "text": "Convert between moles, mass, STP volume and particle number."
+          },
+          {
+           "code": "C-11-B-35",
+           "text": "Solve multi-step stoichiometry problems using limiting reagent and yield data."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "intermolecular-forces-and-liquids",
+       "title": "Intermolecular Forces and Liquids",
+       "subtopics": [
+        {
+         "id": "intermolecular-forces",
+         "title": "Intermolecular forces",
+         "outcomes": [
+          {
+           "code": "C-11-B-36",
+           "text": "Describe London forces, permanent dipole forces and hydrogen bonding."
+          },
+          {
+           "code": "C-11-B-37",
+           "text": "Describe hydrogen bonding in N-H, O-H and H-F molecules."
+          },
+          {
+           "code": "C-11-B-38",
+           "text": "Use hydrogen bonding to explain water's anomalies, such as ice floating."
+          },
+          {
+           "code": "C-11-B-39",
+           "text": "Explain the strength and applications of dipole forces, hydrogen bonds and London forces."
+          }
+         ]
+        },
+        {
+         "id": "properties-of-liquids",
+         "title": "Properties of liquids",
+         "outcomes": [
+          {
+           "code": "C-11-B-40",
+           "text": "Describe evaporation, vapour pressure, boiling point, viscosity and surface tension."
+          },
+          {
+           "code": "C-11-B-41",
+           "text": "Explain water's properties using hydrogen bonding."
+          },
+          {
+           "code": "C-11-B-42",
+           "text": "Define molar heat of fusion and of vaporisation."
+          },
+          {
+           "code": "C-11-B-43",
+           "text": "Relate heats of fusion and vaporisation to particle arrangement and energy in phase changes."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "gases-and-solids",
+       "title": "Gases and Solids",
+       "subtopics": [
+        {
+         "id": "gas-laws",
+         "title": "Gas laws",
+         "outcomes": [
+          {
+           "code": "C-11-B-44",
+           "text": "State the kinetic molecular theory assumptions for gases."
+          },
+          {
+           "code": "C-11-B-45",
+           "text": "State Boyle's, Charles's and Avogadro's laws and read them graphically."
+          },
+          {
+           "code": "C-11-B-46",
+           "text": "Use PV = nRT in calculations including density and Mr."
+          }
+         ]
+        },
+        {
+         "id": "types-of-solid",
+         "title": "Types of solid",
+         "outcomes": [
+          {
+           "code": "C-11-B-47",
+           "text": "Differentiate amorphous from crystalline solids by structure and properties."
+          },
+          {
+           "code": null,
+           "text": "Describe crystalline solid properties: shape, melting point and cleavage planes."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "chemical-energetics",
+       "title": "Chemical Energetics",
+       "subtopics": [
+        {
+         "id": "enthalpy-and-reaction-pathways",
+         "title": "Enthalpy and reaction pathways",
+         "outcomes": [
+          {
+           "code": "C-11-B-49",
+           "text": "Describe reactions as exothermic or endothermic by the sign of the enthalpy change."
+          },
+          {
+           "code": "C-11-B-50",
+           "text": "Interpret reaction pathway diagrams showing enthalpy change and activation energy."
+          },
+          {
+           "code": null,
+           "text": "Define standard conditions and the enthalpies of reaction, formation, combustion and neutralisation."
+          },
+          {
+           "code": "C-11-B-52",
+           "text": "Explain from bond breaking and making whether a reaction is endothermic or exothermic."
+          },
+          {
+           "code": "C-11-B-53",
+           "text": "Calculate enthalpy change of reaction from bond energies."
+          },
+          {
+           "code": "C-11-B-54",
+           "text": "Describe how some bond energies are exact and others are averages."
+          },
+          {
+           "code": "C-11-B-55",
+           "text": "Calculate enthalpy changes from experiments using q = mc deltaT."
+          }
+         ]
+        },
+        {
+         "id": "lattice-energy-and-born-haber-cycles",
+         "title": "Lattice energy and Born-Haber cycles",
+         "outcomes": [
+          {
+           "code": "C-11-B-56",
+           "text": "Define enthalpy of atomisation and lattice energy."
+          },
+          {
+           "code": "C-11-B-57",
+           "text": "Build Born-Haber cycles for ionic solids to find lattice energy."
+          },
+          {
+           "code": null,
+           "text": "Do calculations with Born-Haber cycles."
+          },
+          {
+           "code": "C-11-B-59",
+           "text": "Explain how ionic charge and radius affect lattice energy."
+          }
+         ]
+        },
+        {
+         "id": "hydration-and-enthalpy-of-solution",
+         "title": "Hydration and enthalpy of solution",
+         "outcomes": [
+          {
+           "code": "C-11-B-60",
+           "text": "Apply enthalpy of hydration and enthalpy of solution."
+          },
+          {
+           "code": "C-11-B-61",
+           "text": "Build an energy cycle linking enthalpy of solution, lattice energy and hydration."
+          },
+          {
+           "code": null,
+           "text": "Do calculations with energy cycles."
+          },
+          {
+           "code": "C-11-B-63",
+           "text": "Explain how ionic charge and radius affect enthalpy of hydration."
+          }
+         ]
+        },
+        {
+         "id": "entropy",
+         "title": "Entropy",
+         "outcomes": [
+          {
+           "code": "C-11-B-64",
+           "text": "Define entropy as a measure of possible arrangements of particles and energy."
+          },
+          {
+           "code": null,
+           "text": "Explain the sign of entropy change in state changes, heating and gas-count changes."
+          },
+          {
+           "code": "C-11-B-66",
+           "text": "Calculate a reaction's entropy change from standard entropies."
+          }
+         ]
+        },
+        {
+         "id": "hess-s-law",
+         "title": "Hess's law",
+         "outcomes": [
+          {
+           "code": "C-11-B-67",
+           "text": "Explain heat as a form of energy transfer."
+          },
+          {
+           "code": "C-11-B-68",
+           "text": "Explain standard conditions and standard states for energy changes."
+          },
+          {
+           "code": "C-11-B-69",
+           "text": "Explain Hess's law."
+          },
+          {
+           "code": "C-11-B-70",
+           "text": "Apply Hess's law to multi-step reactions."
+          }
+         ]
+        },
+        {
+         "id": "gibbs-free-energy",
+         "title": "Gibbs free energy",
+         "outcomes": [
+          {
+           "code": "C-11-B-71",
+           "text": "Define Gibbs free energy."
+          },
+          {
+           "code": "C-11-B-72",
+           "text": "Use delta G = delta H - T delta S in problems."
+          },
+          {
+           "code": "C-11-B-73",
+           "text": "Relate Gibbs free energy change to whether a reaction is feasible."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "reaction-kinetics",
+       "title": "Reaction Kinetics",
+       "subtopics": [
+        {
+         "id": "rate-of-reaction-and-activation-energy",
+         "title": "Rate of reaction and activation energy",
+         "outcomes": [
+          {
+           "code": "C-11-B-74",
+           "text": "Explain rate of reaction and rate constant."
+          },
+          {
+           "code": "C-11-B-75",
+           "text": "Calculate a reaction rate from experimental data."
+          },
+          {
+           "code": "C-11-B-76",
+           "text": "Explain activation energy and its role in reactions."
+          },
+          {
+           "code": "C-11-B-77",
+           "text": "Use the Boltzmann distribution to explain how temperature affects rate."
+          },
+          {
+           "code": null,
+           "text": "Explain how catalysts speed reactions by lowering activation energy."
+          },
+          {
+           "code": "C-11-B-79",
+           "text": "Interpret reaction pathway diagrams with and without catalysts."
+          }
+         ]
+        },
+        {
+         "id": "rate-equations-and-mechanisms",
+         "title": "Rate equations and mechanisms",
+         "outcomes": [
+          {
+           "code": "C-11-B-80",
+           "text": "Use rate equations to find orders of reaction and rate constants."
+          },
+          {
+           "code": "C-11-B-81",
+           "text": "Calculate rate constants from initial rates and half-life."
+          },
+          {
+           "code": "C-11-B-82",
+           "text": "Deduce units of the rate constant for zero, first and second order."
+          },
+          {
+           "code": "C-11-B-83",
+           "text": "Suggest a mechanism consistent with a rate equation and rate-determining step."
+          },
+          {
+           "code": null,
+           "text": "Describe how temperature changes the rate constant and rate."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "equilibria",
+       "title": "Equilibria",
+       "subtopics": [
+        {
+         "id": "dynamic-equilibrium",
+         "title": "Dynamic equilibrium",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe reversible reactions and dynamic equilibrium as equal rates and constant concentrations."
+          },
+          {
+           "code": "C-11-B-86",
+           "text": "Define dynamic equilibrium between two physical states."
+          },
+          {
+           "code": null,
+           "text": "State the conditions for equilibrium and how to recognise it."
+          },
+          {
+           "code": null,
+           "text": "Describe the microscopic events in a system at equilibrium."
+          }
+         ]
+        },
+        {
+         "id": "equilibrium-constants",
+         "title": "Equilibrium constants",
+         "outcomes": [
+          {
+           "code": "C-11-B-89",
+           "text": "Deduce the Kc expression for a homogeneous reaction."
+          },
+          {
+           "code": "C-11-B-90",
+           "text": "Write equilibrium expressions using concentration, partial pressure and mole fraction."
+          },
+          {
+           "code": "C-11-B-91",
+           "text": "Calculate with Kp and Kc for equilibrium concentrations and pressures."
+          },
+          {
+           "code": "C-11-B-92",
+           "text": "Decide whether the equilibrium constant rises or falls with temperature."
+          }
+         ]
+        },
+        {
+         "id": "le-chatelier-s-principle",
+         "title": "Le Chatelier's principle",
+         "outcomes": [
+          {
+           "code": "C-11-B-93",
+           "text": "Apply Le Chatelier's principle to changes in concentration, pressure, temperature or catalyst."
+          },
+          {
+           "code": "C-11-B-94",
+           "text": "Explain the Haber and Contact processes using Le Chatelier's principle."
+          },
+          {
+           "code": "C-11-B-95",
+           "text": "Discuss using equilibrium to raise yields and cut waste in industry."
+          }
+         ]
+        },
+        {
+         "id": "solubility-product",
+         "title": "Solubility product",
+         "outcomes": [
+          {
+           "code": "C-11-B-96",
+           "text": "Explain the common ion effect with examples."
+          },
+          {
+           "code": "C-11-B-97",
+           "text": "Understand and apply the solubility product."
+          },
+          {
+           "code": "C-11-B-98",
+           "text": "Write expressions for Ksp."
+          },
+          {
+           "code": "C-11-B-99",
+           "text": "Calculate Ksp from concentrations and the reverse."
+          },
+          {
+           "code": "C-11-B-100",
+           "text": "Use the common ion effect to explain solubility changes."
+          },
+          {
+           "code": "C-11-B-101",
+           "text": "Calculate with Ksp and a common ion's concentration."
+          }
+         ]
+        },
+        {
+         "id": "partition-coefficient",
+         "title": "Partition coefficient",
+         "outcomes": [
+          {
+           "code": "C-11-B-102",
+           "text": "State the meaning of the partition coefficient."
+          },
+          {
+           "code": "C-11-B-103",
+           "text": "Calculate the partition coefficient for a solute in two immiscible solvents."
+          },
+          {
+           "code": "C-11-B-104",
+           "text": "Explain how solute and solvent polarity affect the partition coefficient."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "domain-c-inorganic-chemistry",
+     "title": "Domain C: Inorganic Chemistry",
+     "topics": [
+      {
+       "id": "the-periodic-table",
+       "title": "The Periodic Table",
+       "subtopics": [
+        {
+         "id": "periodic-table-blocks-and-ionisation-energy",
+         "title": "Periodic table, blocks and ionisation energy",
+         "outcomes": [
+          {
+           "code": "C-11-C-01",
+           "text": "Explain how elements are arranged in the periodic table."
+          },
+          {
+           "code": "C-11-C-02",
+           "text": "Explain that the table has s, p, d and f blocks."
+          },
+          {
+           "code": "C-11-C-03",
+           "text": "Recognise that period number matches the outermost principal energy level."
+          },
+          {
+           "code": "C-11-C-04",
+           "text": "Deduce the outer shell and valence electrons from table position."
+          },
+          {
+           "code": "C-11-C-05",
+           "text": "Locate metals, non-metals and metalloids."
+          },
+          {
+           "code": "C-11-C-06",
+           "text": "Explain ionisation energy as nuclear attraction on the outermost electron."
+          },
+          {
+           "code": "C-11-C-07",
+           "text": "Explain the pattern in successive ionisation energies."
+          },
+          {
+           "code": "C-11-C-08",
+           "text": "Explain what influences ionisation energy: nuclear charge, radius, shielding and spin-pair repulsion."
+          },
+          {
+           "code": "C-11-C-09",
+           "text": "Deduce an electronic configuration from successive ionisation energies."
+          },
+          {
+           "code": "C-11-C-10",
+           "text": "Deduce an element's table position from successive ionisation energies."
+          }
+         ]
+        },
+        {
+         "id": "electronegativity-electron-affinity-and-trends",
+         "title": "Electronegativity, electron affinity and trends",
+         "outcomes": [
+          {
+           "code": "C-11-C-11",
+           "text": "Define electronegativity."
+          },
+          {
+           "code": "C-11-C-12",
+           "text": "Explain factors affecting electronegativity."
+          },
+          {
+           "code": "C-11-C-13",
+           "text": "Use Pauling electronegativity differences to predict ionic or covalent bonding."
+          },
+          {
+           "code": "C-11-C-14",
+           "text": "Define first electron affinity."
+          },
+          {
+           "code": "C-11-C-15",
+           "text": "Explain factors affecting electron affinity."
+          },
+          {
+           "code": "C-11-C-16",
+           "text": "Explain vertical and horizontal trends in radius, ionisation energy, electron affinity and electronegativity."
+          },
+          {
+           "code": "C-11-C-17",
+           "text": "Link metallic and non-metallic character to valence electron trends."
+          },
+          {
+           "code": "C-11-C-18",
+           "text": "Deduce an electron configuration from table position and the reverse."
+          }
+         ]
+        },
+        {
+         "id": "period-3-oxides",
+         "title": "Period 3 oxides",
+         "outcomes": [
+          {
+           "code": "C-11-C-19",
+           "text": "Describe reactions of third-period oxides with water and the resulting pH."
+          },
+          {
+           "code": "C-11-C-20",
+           "text": "Explain the acidic, basic and amphoteric behaviour of third-period oxides with equations."
+          },
+          {
+           "code": "C-11-C-21",
+           "text": "Predict an element's properties from its group using periodicity."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "group-17-the-halogens",
+       "title": "Group 17: The Halogens",
+       "subtopics": [
+        {
+         "id": "halogen-trends-and-reactions",
+         "title": "Halogen trends and reactions",
+         "outcomes": [
+          {
+           "code": "C-11-C-22",
+           "text": "Describe the colours and volatility trend of chlorine, bromine and iodine."
+          },
+          {
+           "code": "C-11-C-23",
+           "text": "Describe halogens' relative strength as oxidising agents."
+          },
+          {
+           "code": "C-11-C-24",
+           "text": "Describe halogen reactions with hydrogen and their relative reactivity."
+          },
+          {
+           "code": "C-11-C-25",
+           "text": "Describe the thermal stability of hydrogen halides through bond strength."
+          },
+          {
+           "code": "C-11-C-26",
+           "text": "Describe halide ions' relative strength as reducing agents."
+          },
+          {
+           "code": "C-11-C-27",
+           "text": "Explain halide ion reactions with concentrated sulfuric acid."
+          },
+          {
+           "code": null,
+           "text": "Interpret chlorine with cold and hot sodium hydroxide as disproportionation."
+          },
+          {
+           "code": "C-11-C-29",
+           "text": "Explain chlorine in water purification and the active species HOCl and ClO-."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "nitrogen-and-sulfur",
+       "title": "Nitrogen and Sulfur",
+       "subtopics": [
+        {
+         "id": "nitrogen-and-sulfur-chemistry",
+         "title": "Nitrogen and sulfur chemistry",
+         "outcomes": [
+          {
+           "code": "C-11-C-30",
+           "text": "Explain nitrogen's low reactivity from its strong, non-polar triple bond."
+          },
+          {
+           "code": "C-11-C-31",
+           "text": "Explain sulfur's low reactivity through bonding and compound stability."
+          },
+          {
+           "code": "C-11-C-32",
+           "text": "Describe sulfur's oxidation states and their stability."
+          },
+          {
+           "code": "C-11-C-33",
+           "text": "Describe sulfur reactions such as combustion and oxidation."
+          },
+          {
+           "code": "C-11-C-34",
+           "text": "Explain uses of sulfur compounds in fertilisers, gunpowder, rubber and more."
+          },
+          {
+           "code": null,
+           "text": "Describe synthetic organic uses of sulfur compounds, including dyes and drugs."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "domain-d-environmental-chemistry",
+     "title": "Domain D: Environmental Chemistry",
+     "topics": [
+      {
+       "id": "atmosphere",
+       "title": "Atmosphere",
+       "subtopics": [
+        {
+         "id": "air-and-its-pollutants",
+         "title": "Air and its pollutants",
+         "outcomes": [
+          {
+           "code": "C-11-D-01",
+           "text": "Identify the properties and composition of the atmosphere and its layers."
+          },
+          {
+           "code": "C-11-D-02",
+           "text": "Describe sources and effects of ozone, PAHs, POPs, CFCs and heavy metals in air pollution."
+          },
+          {
+           "code": "C-11-D-03",
+           "text": "Design experiments testing hypotheses about air quality, such as an antismog gun."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "water",
+       "title": "Water",
+       "subtopics": [
+        {
+         "id": "water-pollution-and-resources",
+         "title": "Water pollution and resources",
+         "outcomes": [
+          {
+           "code": "C-11-D-04",
+           "text": "Identify point-source and nonpoint-source water pollution."
+          },
+          {
+           "code": "C-11-D-05",
+           "text": "Identify common water pollutants such as oil, pesticides and heavy metals."
+          },
+          {
+           "code": "C-11-D-06",
+           "text": "Evaluate the impact of agriculture and industry on water resources."
+          },
+          {
+           "code": null,
+           "text": "Explain conservation and management strategies for water resources."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "domain-e-organic-chemistry",
+     "title": "Domain E: Organic Chemistry",
+     "topics": [
+      {
+       "id": "introduction-to-organic-compounds",
+       "title": "Introduction to Organic Compounds",
+       "subtopics": [
+        {
+         "id": "catenation-hydrocarbons-and-nomenclature",
+         "title": "Catenation, hydrocarbons and nomenclature",
+         "outcomes": [
+          {
+           "code": "C-11-E-01",
+           "text": "Define catenation and explain its importance in organic chemistry."
+          },
+          {
+           "code": "C-11-E-02",
+           "text": "Recognise hydrocarbons as compounds of only carbon and hydrogen."
+          },
+          {
+           "code": "C-11-E-03",
+           "text": "Recognise alkanes as single-bonded hydrocarbons without a functional group."
+          },
+          {
+           "code": "C-11-E-04",
+           "text": "Recognise that functional groups decide physical and chemical properties."
+          },
+          {
+           "code": "C-11-E-05",
+           "text": "Interpret general, structural, displayed and skeletal formulae."
+          },
+          {
+           "code": "C-11-E-06",
+           "text": "Use systematic nomenclature for simple aliphatic molecules."
+          },
+          {
+           "code": "C-11-E-07",
+           "text": "Deduce molecular or empirical formulae from structural, displayed or skeletal formulae."
+          },
+          {
+           "code": null,
+           "text": "Describe structural isomerism: chain, positional, functional group, metamerism, tautomerism."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "hydrocarbons",
+       "title": "Hydrocarbons",
+       "subtopics": [
+        {
+         "id": "classes-and-shapes-of-hydrocarbons",
+         "title": "Classes and shapes of hydrocarbons",
+         "outcomes": [
+          {
+           "code": "C-11-E-09",
+           "text": "Classify hydrocarbons as aliphatic or aromatic."
+          },
+          {
+           "code": "C-11-E-10",
+           "text": "Explain shapes of alkanes and cycloalkanes such as ethane and cyclopropane."
+          },
+          {
+           "code": "C-11-E-11",
+           "text": "Explain why alkanes are unreactive to polar reagents."
+          },
+          {
+           "code": "C-11-E-12",
+           "text": "Define homolytic and heterolytic fission."
+          },
+          {
+           "code": null,
+           "text": "Describe radical substitution in alkanes, e.g. methane."
+          }
+         ]
+        },
+        {
+         "id": "alkenes-and-alkynes-in-depth",
+         "title": "Alkenes and alkynes in depth",
+         "outcomes": [
+          {
+           "code": "C-11-E-14",
+           "text": "Explain IUPAC names of alkenes and alkynes."
+          },
+          {
+           "code": "C-11-E-15",
+           "text": "Explain the shape of ethene and ethyne from structure and bonding."
+          },
+          {
+           "code": "C-11-E-16",
+           "text": "Compare alkene and alkyne reactivity using hybridisation."
+          },
+          {
+           "code": "C-11-E-17",
+           "text": "Explain making ethene by dehydrating alcohols and dehydrohalogenating halogenoalkanes."
+          },
+          {
+           "code": null,
+           "text": "Explain making alkynes by dehydrohalogenating dihalides."
+          },
+          {
+           "code": "C-11-E-19",
+           "text": "Describe alkene reactions of ethene: hydrogenation, hydrohalogenation, hydration, halogenation, oxidation, ozonolysis, polymerisation."
+          },
+          {
+           "code": null,
+           "text": "Describe alkyne reactions: hydrogenation, hydrohalogenation, hydration, halogenation, oxidation."
+          },
+          {
+           "code": "C-11-E-21",
+           "text": "Explain the acidic nature of terminal alkynes with ammoniacal silver nitrate and cuprous chloride."
+          },
+          {
+           "code": "C-11-E-22",
+           "text": "Explain conjugation in alkenes with alternating double bonds."
+          },
+          {
+           "code": "C-11-E-23",
+           "text": "Describe electrophilic addition in alkenes with bromine and HBr examples."
+          },
+          {
+           "code": "C-11-E-24",
+           "text": "Explain the inductive effect on carbocation stability and Markovnikov's rule."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "halogenoalkanes",
+       "title": "Halogenoalkanes",
+       "subtopics": [
+        {
+         "id": "classification-and-synthesis",
+         "title": "Classification and synthesis",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Classify halogenoalkanes by halogen and position and link structure to reactivity."
+          },
+          {
+           "code": "C-11-E-26",
+           "text": "Explain how halogenoalkanes are made and predict the major products."
+          }
+         ]
+        },
+        {
+         "id": "nucleophilic-substitution",
+         "title": "Nucleophilic substitution",
+         "outcomes": [
+          {
+           "code": "C-11-E-27",
+           "text": "Describe nucleophilic substitution with NaOH, KCN, NH3 and silver nitrate."
+          },
+          {
+           "code": "C-11-E-28",
+           "text": "Describe elimination from halogenoalkanes with ethanolic NaOH to make alkenes."
+          },
+          {
+           "code": null,
+           "text": "Describe SN1 and SN2 mechanisms including inductive effects."
+          },
+          {
+           "code": null,
+           "text": "Identify primary halogenoalkanes as SN2, tertiary as SN1 and secondary as mixed."
+          },
+          {
+           "code": "C-11-E-31",
+           "text": "Explain the differing reactivity of halogenoalkanes through C-X bond strength."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "domain-g-activities-lab-skills-and-practical-mod",
+     "title": "Domain G: Activities, Lab Skills, and Practical Modules",
+     "topics": [
+      {
+       "id": "practical-skills",
+       "title": "Practical Skills",
+       "subtopics": [
+        {
+         "id": "collecting-data-grade-11",
+         "title": "Collecting data (Grade 11)",
+         "outcomes": [
+          {
+           "code": "C-11-G-01",
+           "text": "Set up apparatus from written or diagram instructions."
+          },
+          {
+           "code": "C-11-G-02",
+           "text": "Use apparatus to collect an appropriate quantity of data."
+          },
+          {
+           "code": "C-11-G-03",
+           "text": "Make observations such as colour and solubility differences."
+          },
+          {
+           "code": null,
+           "text": "Take measurements with pipettes, burettes, cylinders and thermometers."
+          },
+          {
+           "code": "C-11-G-05",
+           "text": "Decide how many tests or observations to perform."
+          },
+          {
+           "code": null,
+           "text": "Identify where repeated readings are appropriate."
+          },
+          {
+           "code": null,
+           "text": "Replicate readings as needed and deal with anomalies."
+          },
+          {
+           "code": "C-11-G-08",
+           "text": "Identify where confirmatory tests are appropriate."
+          },
+          {
+           "code": "C-11-G-09",
+           "text": "Select reagents to distinguish between given substances."
+          },
+          {
+           "code": "C-11-G-10",
+           "text": "Carry out procedures with simple apparatus in unfamiliar situations."
+          }
+         ]
+        },
+        {
+         "id": "acid-base-titrations-grade-11",
+         "title": "Acid-base titrations (Grade 11)",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe an acid-base titration with burette, pipette and indicator."
+          },
+          {
+           "code": "C-11-G-12",
+           "text": "Describe finding the end-point with an indicator."
+          },
+          {
+           "code": "C-11-G-13",
+           "text": "Perform acid-base titrations to find molarity and strength."
+          },
+          {
+           "code": "C-11-G-14",
+           "text": "Select suitable indicators for acid-alkali titrations."
+          }
+         ]
+        },
+        {
+         "id": "identifying-ions-and-gases-grade-11",
+         "title": "Identifying ions and gases (Grade 11)",
+         "outcomes": [
+          {
+           "code": "C-11-G-15",
+           "text": "Follow proper methods for qualitative analysis tests."
+          },
+          {
+           "code": "C-11-G-16",
+           "text": "Describe tests for carbonate, nitrate, sulfate, sulfite and halide anions."
+          },
+          {
+           "code": "C-11-G-17",
+           "text": "Describe NaOH and ammonia tests for common cations."
+          }
+         ]
+        },
+        {
+         "id": "data-and-evaluation-grade-11",
+         "title": "Data and evaluation (Grade 11)",
+         "outcomes": [
+          {
+           "code": "C-11-G-18",
+           "text": "Present results in a table with headings and units."
+          },
+          {
+           "code": "C-11-G-19",
+           "text": "Draw a table in advance and record all data in it."
+          },
+          {
+           "code": "C-11-G-20",
+           "text": "Plot variables on clearly labelled axes with suitable scales."
+          },
+          {
+           "code": "C-11-G-21",
+           "text": "Draw straight or smooth best-fit lines."
+          },
+          {
+           "code": null,
+           "text": "Describe patterns and trends in tables and graphs."
+          },
+          {
+           "code": "C-11-G-23",
+           "text": "Find the gradient of a line and extrapolate."
+          },
+          {
+           "code": "C-11-G-24",
+           "text": "Draw conclusions from observations, data and calculated values."
+          },
+          {
+           "code": "C-11-G-25",
+           "text": "Make scientific explanations of data and conclusions."
+          },
+          {
+           "code": "C-11-G-26",
+           "text": "Describe systematic errors."
+          },
+          {
+           "code": "C-11-G-27",
+           "text": "Identify the most significant sources of error."
+          },
+          {
+           "code": "C-11-G-28",
+           "text": "State uncertainty in a measurement as actual or percentage error."
+          },
+          {
+           "code": "C-11-G-29",
+           "text": "Suggest alternative chemicals that support green chemistry."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "12",
+   "units": [
+    {
+     "id": "domain-b-physical-chemistry",
+     "title": "Domain B: Physical Chemistry",
+     "topics": [
+      {
+       "id": "electrochemistry",
+       "title": "Electrochemistry",
+       "subtopics": [
+        {
+         "id": "redox-calculations-and-the-activity-series",
+         "title": "Redox calculations and the activity series",
+         "outcomes": [
+          {
+           "code": "C-12-B-01",
+           "text": "Use oxidation numbers to identify oxidation and reduction."
+          },
+          {
+           "code": "C-12-B-02",
+           "text": "Use oxidation number changes to balance equations."
+          },
+          {
+           "code": "C-12-B-03",
+           "text": "Define redox, oxidation, reduction and disproportionation."
+          },
+          {
+           "code": "C-12-B-04",
+           "text": "Identify oxidising and reducing agents in a redox reaction."
+          },
+          {
+           "code": "C-12-B-05",
+           "text": "Describe the roles of oxidising and reducing agents."
+          },
+          {
+           "code": "C-12-B-06",
+           "text": "Explain the activity series and ease of oxidation."
+          },
+          {
+           "code": "C-12-B-07",
+           "text": "Judge whether a redox reaction is feasible from the activity series."
+          }
+         ]
+        },
+        {
+         "id": "electrolytic-cells-and-faraday",
+         "title": "Electrolytic cells and Faraday",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain electrolytic cells turning electrical into chemical energy, with oxidation at the anode and reduction at the cathode."
+          },
+          {
+           "code": "C-12-B-09",
+           "text": "Predict what is liberated at electrodes from electrolyte state, concentration and the electrochemical series."
+          },
+          {
+           "code": "C-12-B-10",
+           "text": "Use the Faraday constant, Avogadro constant and electron charge in problems."
+          },
+          {
+           "code": "C-12-B-11",
+           "text": "Calculate charge passed and mass or volume liberated in electrolysis."
+          },
+          {
+           "code": "C-12-B-12",
+           "text": "Deduce the Avogadro constant by an electrolytic method."
+          }
+         ]
+        },
+        {
+         "id": "electrode-potentials",
+         "title": "Electrode potentials",
+         "outcomes": [
+          {
+           "code": "C-12-B-13",
+           "text": "Define standard electrode potential and standard cell potential."
+          },
+          {
+           "code": "C-12-B-14",
+           "text": "Describe the standard hydrogen electrode and how it measures electrode potentials."
+          },
+          {
+           "code": null,
+           "text": "Calculate standard cell potentials and predict feasibility and electron flow."
+          },
+          {
+           "code": "C-12-B-16",
+           "text": "Deduce relative strengths of oxidising and reducing agents from electrode potentials."
+          },
+          {
+           "code": "C-12-B-17",
+           "text": "Build redox equations from half-equations."
+          },
+          {
+           "code": "C-12-B-18",
+           "text": "Explain how concentration affects electrode potential and use the Nernst equation."
+          }
+         ]
+        },
+        {
+         "id": "voltaic-cells",
+         "title": "Voltaic cells",
+         "outcomes": [
+          {
+           "code": "C-12-B-19",
+           "text": "Explain how voltaic cells turn spontaneous redox energy into electricity."
+          },
+          {
+           "code": "C-12-B-20",
+           "text": "Explain a Cu-Zn galvanic cell converting chemical to electrical energy."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "acid-base-equilibria-and-ph",
+       "title": "Acid-Base Equilibria and pH",
+       "subtopics": [
+        {
+         "id": "conjugate-pairs-and-ph",
+         "title": "Conjugate pairs and pH",
+         "outcomes": [
+          {
+           "code": "C-12-B-21",
+           "text": "Define conjugate acid-base pairs."
+          },
+          {
+           "code": "C-12-B-22",
+           "text": "Identify conjugate acid-base pairs in reactions."
+          },
+          {
+           "code": "C-12-B-23",
+           "text": "Use conjugate acids and bases in salt hydrolysis."
+          },
+          {
+           "code": "C-12-B-24",
+           "text": "Define pH, Ka, pKa and Kw and use them in calculations."
+          },
+          {
+           "code": "C-12-B-25",
+           "text": "Calculate [H+] and pH of strong and weak acids and alkalis."
+          },
+          {
+           "code": "C-12-B-26",
+           "text": "Calculate [H3O+] from Ka and concentration of a weak acid."
+          }
+         ]
+        },
+        {
+         "id": "lewis-theory-and-strength",
+         "title": "Lewis theory and strength",
+         "outcomes": [
+          {
+           "code": "C-12-B-27",
+           "text": "Distinguish Lewis acids as electron-pair acceptors and Lewis bases as donors."
+          },
+          {
+           "code": "C-12-B-28",
+           "text": "Use ionisation extent and Ka to tell strong from weak acids."
+          },
+          {
+           "code": "C-12-B-29",
+           "text": "Use ionisation extent and Kb to tell strong from weak bases."
+          }
+         ]
+        },
+        {
+         "id": "buffers-and-titration-curves",
+         "title": "Buffers and titration curves",
+         "outcomes": [
+          {
+           "code": "C-12-B-30",
+           "text": "Explain what a buffer is, how it works and its uses, including blood."
+          },
+          {
+           "code": "C-12-B-31",
+           "text": "Calculate the pH of buffer solutions."
+          },
+          {
+           "code": "C-12-B-32",
+           "text": "Sketch pH titration curves for strong and weak acids with strong and weak alkalis."
+          },
+          {
+           "code": "C-12-B-33",
+           "text": "Use hydrolysis to explain why some salt solutions are acidic or basic."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "domain-c-inorganic-chemistry",
+     "title": "Domain C: Inorganic Chemistry",
+     "topics": [
+      {
+       "id": "group-1-and-group-2-elements",
+       "title": "Group 1 and Group 2 Elements",
+       "subtopics": [
+        {
+         "id": "properties-and-reactivity",
+         "title": "Properties and reactivity",
+         "outcomes": [
+          {
+           "code": "C-12-C-01",
+           "text": "Describe properties and trends of Group 1 and 2 elements and their common compounds."
+          },
+          {
+           "code": "C-12-C-02",
+           "text": "Explain reactions of Group 1 and 2 elements with oxygen, water and acids."
+          },
+          {
+           "code": "C-12-C-03",
+           "text": "Explain oxidation numbers in the oxides and chlorides through valence electrons."
+          },
+          {
+           "code": "C-12-C-04",
+           "text": "Explain group 1 and 2 reactivity through electron configuration."
+          },
+          {
+           "code": "C-12-C-05",
+           "text": "Describe uses of Group 2 compounds in industry, medicine and agriculture."
+          }
+         ]
+        },
+        {
+         "id": "reactivity-series-and-extraction",
+         "title": "Reactivity series and extraction",
+         "outcomes": [
+          {
+           "code": "C-12-C-06",
+           "text": "Explain the reactivity series and how it predicts reactions."
+          },
+          {
+           "code": "C-12-C-07",
+           "text": "Use the reactivity series to predict outcomes of reactions."
+          },
+          {
+           "code": null,
+           "text": "Explain extraction and purification of Group 2 elements and compounds."
+          }
+         ]
+        },
+        {
+         "id": "thermal-stability-and-solubility",
+         "title": "Thermal stability and solubility",
+         "outcomes": [
+          {
+           "code": "C-12-C-09",
+           "text": "Understand thermal decomposition, especially of Group 2 carbonates and nitrates."
+          },
+          {
+           "code": "C-12-C-10",
+           "text": "Explain solubility trends of Group 2 sulfates and hydroxides using hydration and solution enthalpies."
+          },
+          {
+           "code": null,
+           "text": "Compare Group 2 properties and reactivity with Group 1."
+          },
+          {
+           "code": "C-12-C-12",
+           "text": "Describe thermal stability trends of nitrates and carbonates, including ionic radius and polarisation."
+          },
+          {
+           "code": "C-12-C-13",
+           "text": "Describe solubility and enthalpy of solution trends for hydroxides and sulfates."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "transition-elements",
+       "title": "Transition Elements",
+       "subtopics": [
+        {
+         "id": "what-transition-elements-are",
+         "title": "What transition elements are",
+         "outcomes": [
+          {
+           "code": "C-12-C-14",
+           "text": "Identify general physical and chemical properties of the first-row transition elements, titanium to copper."
+          },
+          {
+           "code": "C-12-C-15",
+           "text": "Define a transition element as a d-block element forming ions with incomplete d orbitals."
+          },
+          {
+           "code": "C-12-C-16",
+           "text": "Identify transition element properties: variable oxidation states, catalysis, complex ions, coloured compounds."
+          }
+         ]
+        },
+        {
+         "id": "why-they-behave-this-way",
+         "title": "Why they behave this way",
+         "outcomes": [
+          {
+           "code": "C-12-C-17",
+           "text": "Explain variable oxidation states through the similar energies of 3d and 4s subshells."
+          },
+          {
+           "code": "C-12-C-18",
+           "text": "Explain catalytic action through multiple oxidation states and accessible vacant d orbitals."
+          },
+          {
+           "code": "C-12-C-19",
+           "text": "Explain complex ion formation through accessible vacant d orbitals."
+          }
+         ]
+        },
+        {
+         "id": "ligands-and-complex-ions",
+         "title": "Ligands and complex ions",
+         "outcomes": [
+          {
+           "code": "C-12-C-20",
+           "text": "Explain how copper(II) and cobalt(II) ions form complexes with water, ammonia, hydroxide and chloride."
+          },
+          {
+           "code": "C-12-C-21",
+           "text": "Define a ligand as a lone-pair donor forming a dative bond to a metal."
+          },
+          {
+           "code": "C-12-C-22",
+           "text": "Use the term monodentate ligand with examples."
+          },
+          {
+           "code": "C-12-C-23",
+           "text": "Use the terms bidentate and polydentate ligand with examples."
+          },
+          {
+           "code": "C-12-C-24",
+           "text": "Define a complex as a central metal atom or ion surrounded by ligands."
+          }
+         ]
+        },
+        {
+         "id": "shape-and-formula-of-complexes",
+         "title": "Shape and formula of complexes",
+         "outcomes": [
+          {
+           "code": "C-12-C-25",
+           "text": "Describe linear, tetrahedral and octahedral complex geometry and bond angles."
+          },
+          {
+           "code": "C-12-C-26",
+           "text": "State what coordination number means."
+          },
+          {
+           "code": "C-12-C-27",
+           "text": "Predict a complex ion's formula and charge from metal, ligand and coordination number."
+          },
+          {
+           "code": "C-12-C-28",
+           "text": "Explain qualitatively that ligand exchange occurs in copper(II) and cobalt(II) complexes."
+          }
+         ]
+        },
+        {
+         "id": "colour-of-complexes",
+         "title": "Colour of complexes",
+         "outcomes": [
+          {
+           "code": "C-12-C-29",
+           "text": "Use the terms degenerate and non-degenerate d orbitals."
+          },
+          {
+           "code": "C-12-C-30",
+           "text": "Describe d-orbital splitting in octahedral and tetrahedral complexes and use delta E."
+          },
+          {
+           "code": "C-12-C-31",
+           "text": "Explain coloured compounds through light absorbed as electrons move between d orbitals."
+          },
+          {
+           "code": "C-12-C-32",
+           "text": "Describe how different ligands change delta E, absorbed frequency and observed colour."
+          },
+          {
+           "code": "C-12-C-33",
+           "text": "Use copper(II) and cobalt(II) ligand exchange to show colour change."
+          }
+         ]
+        },
+        {
+         "id": "stability-constants",
+         "title": "Stability constants",
+         "outcomes": [
+          {
+           "code": "C-12-C-34",
+           "text": "Define the stability constant of a complex."
+          },
+          {
+           "code": "C-12-C-35",
+           "text": "Write a Kstab expression for a complex, leaving out water."
+          },
+          {
+           "code": "C-12-C-36",
+           "text": "Calculate using Kstab expressions."
+          },
+          {
+           "code": "C-12-C-37",
+           "text": "Explain ligand exchange through Kstab values; large Kstab means a more stable complex."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "domain-e-organic-chemistry",
+     "title": "Domain E: Organic Chemistry",
+     "topics": [
+      {
+       "id": "introduction-to-organic-compounds",
+       "title": "Introduction to Organic Compounds",
+       "subtopics": [
+        {
+         "id": "stereoisomerism",
+         "title": "Stereoisomerism",
+         "outcomes": [
+          {
+           "code": "C-12-E-01",
+           "text": "Explain stereoisomerism as geometric and optical isomerism."
+          },
+          {
+           "code": "C-12-E-02",
+           "text": "Describe cis/trans isomerism in alkenes from restricted rotation."
+          },
+          {
+           "code": "C-12-E-03",
+           "text": "Explain a chiral centre giving two optical isomers."
+          },
+          {
+           "code": "C-12-E-04",
+           "text": "Describe how enantiomers share properties except rotating polarised light."
+          },
+          {
+           "code": "C-12-E-05",
+           "text": "Apply the terms optically active and racemic mixture to compounds."
+          },
+          {
+           "code": "C-12-E-06",
+           "text": "Describe how optical isomers affect plane-polarised light."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "hydrocarbons",
+       "title": "Hydrocarbons",
+       "subtopics": [
+        {
+         "id": "benzene",
+         "title": "Benzene",
+         "outcomes": [
+          {
+           "code": "C-12-E-07",
+           "text": "Explain benzene's shape, sp2 hybridisation, sigma bonds and delocalised pi system."
+          },
+          {
+           "code": null,
+           "text": "Define resonance, resonance energy and benzene's relative stability."
+          },
+          {
+           "code": null,
+           "text": "Compare benzene's reactivity with alkanes and alkenes."
+          },
+          {
+           "code": "C-12-E-10",
+           "text": "Describe electrophilic substitution of benzene with chlorine and bromine, including isomer products."
+          }
+         ]
+        },
+        {
+         "id": "substituted-benzenes",
+         "title": "Substituted benzenes",
+         "outcomes": [
+          {
+           "code": "C-12-E-11",
+           "text": "Compare reactivity of halogenoalkanes and halogenoarenes."
+          },
+          {
+           "code": "C-12-E-12",
+           "text": "Explain nitration of benzene including the nitronium ion and predict products."
+          },
+          {
+           "code": null,
+           "text": "Explain Friedel-Crafts alkylation and acylation and the Lewis acid catalyst."
+          },
+          {
+           "code": "C-12-E-14",
+           "text": "Explain side-chain oxidation of alkylbenzenes giving benzoic acid."
+          },
+          {
+           "code": "C-12-E-15",
+           "text": "Describe the directing effects of substituents in electrophilic substitution of benzene."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "alcohols",
+       "title": "Alcohols",
+       "subtopics": [
+        {
+         "id": "preparing-alcohols",
+         "title": "Preparing alcohols",
+         "outcomes": [
+          {
+           "code": "C-12-E-16",
+           "text": "State the reagents and conditions that produce alcohols."
+          },
+          {
+           "code": "C-12-E-17",
+           "text": "Describe the combustion of organic hydroxy compounds."
+          },
+          {
+           "code": null,
+           "text": "Describe substituting alcohols to halogenoalkanes with HX, PCl5, PCl3 or SOCl2."
+          }
+         ]
+        },
+        {
+         "id": "reactions-of-alcohols",
+         "title": "Reactions of alcohols",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe the reaction of alcohols with sodium."
+          },
+          {
+           "code": "C-12-E-20",
+           "text": "Describe oxidation of alcohols with acidified dichromate or permanganate."
+          },
+          {
+           "code": "C-12-E-21",
+           "text": "Describe dehydration of alcohols to alkenes."
+          },
+          {
+           "code": "C-12-E-22",
+           "text": "Describe forming esters from alcohols and carboxylic acids."
+          },
+          {
+           "code": null,
+           "text": "Classify alcohols as primary, secondary and tertiary."
+          },
+          {
+           "code": null,
+           "text": "State reactions distinguishing primary, secondary and tertiary alcohols."
+          },
+          {
+           "code": null,
+           "text": "Deduce a CH3CH(OH)- group from the tri-iodomethane test."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "phenols",
+       "title": "Phenols",
+       "subtopics": [
+        {
+         "id": "phenol-preparation-and-reactions",
+         "title": "Phenol preparation and reactions",
+         "outcomes": [
+          {
+           "code": "C-12-E-26",
+           "text": "Recall how phenol is made from phenylamine through a diazonium salt."
+          },
+          {
+           "code": null,
+           "text": "Recall phenol's reactions with sodium, NaOH, nitric acid and bromine."
+          },
+          {
+           "code": "C-12-E-28",
+           "text": "Explain the acidity of phenol."
+          },
+          {
+           "code": "C-12-E-29",
+           "text": "Describe the relative acidities of water, phenol and ethanol."
+          },
+          {
+           "code": "C-12-E-30",
+           "text": "Explain why phenol reacts under milder conditions than benzene."
+          },
+          {
+           "code": "C-12-E-31",
+           "text": "Recall that the hydroxyl group directs to the 2-, 4- and 6-positions."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "aldehydes-and-ketones",
+       "title": "Aldehydes and Ketones",
+       "subtopics": [
+        {
+         "id": "making-and-reducing-carbonyls",
+         "title": "Making and reducing carbonyls",
+         "outcomes": [
+          {
+           "code": "C-12-E-32",
+           "text": "State how aldehydes and ketones are made by oxidising alcohols."
+          },
+          {
+           "code": "C-12-E-33",
+           "text": "Describe reduction of aldehydes and ketones and their reaction with HCN."
+          }
+         ]
+        },
+        {
+         "id": "reactions-and-tests",
+         "title": "Reactions and tests",
+         "outcomes": [
+          {
+           "code": "C-12-E-34",
+           "text": "Describe nucleophilic addition of HCN to aldehydes and ketones."
+          },
+          {
+           "code": "C-12-E-35",
+           "text": "Describe the use of 2,4-DNPH to detect carbonyl compounds."
+          },
+          {
+           "code": null,
+           "text": "Tell aldehyde from ketone using Fehling's and Tollens' tests."
+          },
+          {
+           "code": null,
+           "text": "Deduce a CH3CO- group from the tri-iodomethane test."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "carboxylic-acids-and-esters",
+       "title": "Carboxylic Acids and Esters",
+       "subtopics": [
+        {
+         "id": "carboxylic-acids-in-depth",
+         "title": "Carboxylic acids in depth",
+         "outcomes": [
+          {
+           "code": "C-12-E-38",
+           "text": "Recall how carboxylic acids are made by oxidation and hydrolysis."
+          },
+          {
+           "code": "C-12-E-39",
+           "text": "Describe reactions of carboxylic acids with metals, alkalis, carbonates, alcohols and LiAlH4."
+          },
+          {
+           "code": "C-12-E-40",
+           "text": "Describe hydrolysis of esters by acid and alkali."
+          },
+          {
+           "code": "C-12-E-41",
+           "text": "Describe forming acyl chlorides from carboxylic acids."
+          },
+          {
+           "code": "C-12-E-42",
+           "text": "Explain relative acidities of carboxylic acids, phenols and alcohols."
+          },
+          {
+           "code": "C-12-E-43",
+           "text": "Explain relative acidities of chlorine-substituted carboxylic acids."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "acyl-chlorides",
+       "title": "Acyl Chlorides",
+       "subtopics": [
+        {
+         "id": "acyl-chlorides",
+         "title": "Acyl chlorides",
+         "outcomes": [
+          {
+           "code": "C-12-E-44",
+           "text": "Recall making esters from alcohols and acyl chlorides."
+          },
+          {
+           "code": null,
+           "text": "Describe acyl chloride reactions with water, alcohols, phenol and ammonia."
+          },
+          {
+           "code": null,
+           "text": "Describe the addition-elimination mechanism of acyl chlorides."
+          },
+          {
+           "code": "C-12-E-47",
+           "text": "Explain the relative ease of hydrolysis of acyl chlorides, alkyl chlorides and halogenoarenes."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "amines-and-nitrogen-compounds",
+       "title": "Amines and Nitrogen Compounds",
+       "subtopics": [
+        {
+         "id": "primary-and-secondary-amines",
+         "title": "Primary and secondary amines",
+         "outcomes": [
+          {
+           "code": "C-12-E-48",
+           "text": "Define primary and secondary amines and explain their basicity."
+          },
+          {
+           "code": "C-12-E-49",
+           "text": "Identify differences between primary and secondary amines."
+          },
+          {
+           "code": "C-12-E-50",
+           "text": "Describe how primary and secondary amines are made."
+          },
+          {
+           "code": "C-12-E-51",
+           "text": "Describe making nitriles from halogenoalkanes and KCN."
+          },
+          {
+           "code": "C-12-E-52",
+           "text": "Describe hydrolysis of nitriles."
+          },
+          {
+           "code": "C-12-E-53",
+           "text": "Describe the basicity of aqueous amine solutions."
+          }
+         ]
+        },
+        {
+         "id": "phenylamine-and-azo-compounds",
+         "title": "Phenylamine and azo compounds",
+         "outcomes": [
+          {
+           "code": "C-12-E-54",
+           "text": "Describe the reaction of phenylamine with aqueous bromine."
+          },
+          {
+           "code": "C-12-E-55",
+           "text": "Describe making a diazonium salt from phenylamine with nitrous acid below 1 C."
+          },
+          {
+           "code": "C-12-E-56",
+           "text": "Explain the relative basicity of ammonia, ethylamine and phenylamine."
+          },
+          {
+           "code": null,
+           "text": "Identify azo compounds, coupling with phenol, and their use as dyes."
+          }
+         ]
+        },
+        {
+         "id": "amides-amino-acids-and-peptides",
+         "title": "Amides, amino acids and peptides",
+         "outcomes": [
+          {
+           "code": "C-12-E-58",
+           "text": "Identify how amides are made from acyl chlorides with ammonia or amines."
+          },
+          {
+           "code": null,
+           "text": "Describe amide hydrolysis and reduction with LiAlH4."
+          },
+          {
+           "code": null,
+           "text": "Explain why amides are much weaker bases than amines."
+          },
+          {
+           "code": null,
+           "text": "Describe the acid-base behaviour of amino acids and zwitterions."
+          },
+          {
+           "code": null,
+           "text": "Describe forming peptide bonds in di- and tripeptides."
+          },
+          {
+           "code": "C-12-E-63",
+           "text": "Describe electrophoresis and predict results for amino acid mixtures."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "polymers",
+       "title": "Polymers",
+       "subtopics": [
+        {
+         "id": "polymerisation-in-depth",
+         "title": "Polymerisation in depth",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain the processes, properties and uses of PVC and nylon."
+          },
+          {
+           "code": "C-12-E-65",
+           "text": "Describe addition and condensation polymerisation and how they differ."
+          },
+          {
+           "code": "C-12-E-66",
+           "text": "Identify polymers and monomers in a polymer section and classify them."
+          },
+          {
+           "code": "C-12-E-67",
+           "text": "Deduce a polymer's repeating unit from its monomers and the reverse."
+          },
+          {
+           "code": "C-12-E-68",
+           "text": "Predict the polymerisation type for given monomers."
+          },
+          {
+           "code": "C-12-E-69",
+           "text": "Recognise that poly(alkenes) are inert and hard to biodegrade."
+          },
+          {
+           "code": "C-12-E-70",
+           "text": "Recognise that some polymers degrade in light."
+          },
+          {
+           "code": "C-12-E-71",
+           "text": "Recognise that polyesters and polyamides break down by hydrolysis."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "organic-synthesis",
+       "title": "Organic Synthesis",
+       "subtopics": [
+        {
+         "id": "planning-synthesis",
+         "title": "Planning synthesis",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain organic synthesis and functional group interconversions."
+          },
+          {
+           "code": "C-12-E-73",
+           "text": "Identify functional groups using the reactions in the grid."
+          },
+          {
+           "code": "C-12-E-74",
+           "text": "Predict properties and reactions from functional groups."
+          },
+          {
+           "code": "C-12-E-75",
+           "text": "Devise multi-step synthetic routes."
+          },
+          {
+           "code": null,
+           "text": "Analyse a synthetic route by reaction type, reagents and by-products."
+          },
+          {
+           "code": "C-12-E-77",
+           "text": "Describe AI tools designing medicine molecules, with Halicin as an example."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "biomolecules",
+       "title": "Biomolecules",
+       "subtopics": [
+        {
+         "id": "proteins-lipids-and-carbohydrates",
+         "title": "Proteins, lipids and carbohydrates",
+         "outcomes": [
+          {
+           "code": "C-12-E-78",
+           "text": "Explain how carbohydrates are classified and structured."
+          },
+          {
+           "code": "C-12-E-79",
+           "text": "Explain how proteins are classified and structured."
+          },
+          {
+           "code": "C-12-E-80",
+           "text": "Describe enzymes as biocatalysts and their functions such as digestion."
+          },
+          {
+           "code": "C-12-E-81",
+           "text": "Describe how lipids are classified and structured."
+          }
+         ]
+        },
+        {
+         "id": "nucleic-acids",
+         "title": "Nucleic acids",
+         "outcomes": [
+          {
+           "code": "C-12-E-82",
+           "text": "Identify the structural components of DNA and RNA."
+          },
+          {
+           "code": "C-12-E-83",
+           "text": "Differentiate DNA (double strand) from RNA (single strand)."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "domain-f-analytical-and-industrial-chemistry",
+     "title": "Domain F: Analytical and Industrial Chemistry",
+     "topics": [
+      {
+       "id": "mass-spectrometry",
+       "title": "Mass Spectrometry",
+       "subtopics": [
+        {
+         "id": "reading-mass-spectra",
+         "title": "Reading mass spectra",
+         "outcomes": [
+          {
+           "code": "C-12-F-01",
+           "text": "Analyse mass spectra by m/e values and isotopic abundances."
+          },
+          {
+           "code": "C-12-F-02",
+           "text": "Calculate relative atomic mass from isotope abundances or a mass spectrum."
+          },
+          {
+           "code": "C-12-F-03",
+           "text": "Deduce molecular mass from the molecular ion peak."
+          },
+          {
+           "code": "C-12-F-04",
+           "text": "Suggest molecules formed by simple fragmentation in a spectrum."
+          },
+          {
+           "code": "C-12-F-05",
+           "text": "Deduce the number of carbon atoms from the M+1 peak."
+          },
+          {
+           "code": "C-12-F-06",
+           "text": "Deduce bromine or chlorine from the M and M+2 peak ratio."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "spectroscopy",
+       "title": "Spectroscopy",
+       "subtopics": [
+        {
+         "id": "infrared-and-uv-visible",
+         "title": "Infrared and UV-visible",
+         "outcomes": [
+          {
+           "code": "C-12-F-07",
+           "text": "Interpret an IR spectrum of a simple molecule to identify functional groups."
+          },
+          {
+           "code": "C-12-F-08",
+           "text": "Deduce possible structures from an IR spectrum and molecular formula."
+          },
+          {
+           "code": "C-12-F-09",
+           "text": "Predict whether a molecule absorbs in the UV-visible region."
+          }
+         ]
+        },
+        {
+         "id": "carbon-13-nmr",
+         "title": "Carbon-13 NMR",
+         "outcomes": [
+          {
+           "code": "C-12-F-10",
+           "text": "Analyse carbon environments in a molecule using a 13C NMR spectrum."
+          },
+          {
+           "code": "C-12-F-11",
+           "text": "Use a 13C NMR spectrum to deduce possible structures."
+          },
+          {
+           "code": "C-12-F-12",
+           "text": "Predict the number of peaks in a 13C NMR spectrum."
+          }
+         ]
+        },
+        {
+         "id": "proton-nmr",
+         "title": "Proton NMR",
+         "outcomes": [
+          {
+           "code": "C-12-F-13",
+           "text": "Analyse proton environments using a proton NMR spectrum."
+          },
+          {
+           "code": "C-12-F-14",
+           "text": "Use proton NMR to find relative numbers of protons and neighbouring protons."
+          },
+          {
+           "code": "C-12-F-15",
+           "text": "Deduce possible structures from proton NMR data."
+          },
+          {
+           "code": "C-12-F-16",
+           "text": "Predict chemical shifts and splitting patterns for a molecule."
+          },
+          {
+           "code": "C-12-F-17",
+           "text": "Explain TMS as the chemical shift standard."
+          },
+          {
+           "code": "C-12-F-18",
+           "text": "Recognise the need for deuterated solvents in proton NMR."
+          },
+          {
+           "code": "C-12-F-19",
+           "text": "Describe finding O-H and N-H protons by D2O exchange."
+          },
+          {
+           "code": "C-12-F-20",
+           "text": "Explore how MS, proton NMR and IR together identify compounds and structures."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "domain-g-activities-lab-skills-and-practical-mod",
+     "title": "Domain G: Activities, Lab Skills, and Practical Modules",
+     "topics": [
+      {
+       "id": "practical-skills",
+       "title": "Practical Skills",
+       "subtopics": [
+        {
+         "id": "titration-grade-12",
+         "title": "Titration (Grade 12)",
+         "outcomes": [
+          {
+           "code": "C-12-G-01",
+           "text": "Explain the principle of titration using acid-alkali, permanganate, and thiosulfate-iodine examples."
+          },
+          {
+           "code": null,
+           "text": "Analyse permanganate and ethanedioate reactions in acid from data."
+          },
+          {
+           "code": "C-12-G-03",
+           "text": "Analyse permanganate and iron(II) reactions in acid from data."
+          },
+          {
+           "code": "C-12-G-04",
+           "text": "Set up a burette correctly for titration."
+          },
+          {
+           "code": "C-12-G-05",
+           "text": "Explain the importance of a rough titration first."
+          },
+          {
+           "code": null,
+           "text": "Record titration readings and obtain consistent results."
+          },
+          {
+           "code": null,
+           "text": "Choose and use suitable indicators in a titration."
+          }
+         ]
+        },
+        {
+         "id": "rate-and-gravimetric-experiments-grade-12",
+         "title": "Rate and gravimetric experiments (Grade 12)",
+         "outcomes": [
+          {
+           "code": "C-12-G-08",
+           "text": "Carry out a rate investigation timing an observation."
+          },
+          {
+           "code": "C-12-G-09",
+           "text": "Suggest experimental designs to measure reaction rate."
+          },
+          {
+           "code": "C-12-G-10",
+           "text": "Prepare a sample for gravimetric analysis."
+          },
+          {
+           "code": "C-12-G-11",
+           "text": "Perform gravimetric analysis using suitable techniques."
+          },
+          {
+           "code": "C-12-G-12",
+           "text": "Control variables and make precise measurements, e.g. heating a solid in a crucible."
+          }
+         ]
+        },
+        {
+         "id": "thermometric-and-gas-volume-experiments-grade-12",
+         "title": "Thermometric and gas volume experiments (Grade 12)",
+         "outcomes": [
+          {
+           "code": "C-12-G-13",
+           "text": "Set up a thermometric analysis to find enthalpy of neutralisation."
+          },
+          {
+           "code": "C-12-G-14",
+           "text": "Use thermometers and take accurate readings."
+          },
+          {
+           "code": "C-12-G-15",
+           "text": "Calculate enthalpy of neutralisation with delta H = mc deltaT / n."
+          },
+          {
+           "code": "C-12-G-16",
+           "text": "Set up a gas volume experiment with suitable apparatus."
+          },
+          {
+           "code": "C-12-G-17",
+           "text": "Measure gas volume with a gas syringe or burette."
+          }
+         ]
+        },
+        {
+         "id": "organic-analysis-and-data-handling-grade-12",
+         "title": "Organic analysis and data handling (Grade 12)",
+         "outcomes": [
+          {
+           "code": "C-12-G-18",
+           "text": "Perform Fehling's, Tollens', alkaline iodine and permanganate tests and interpret them."
+          },
+          {
+           "code": "C-12-G-19",
+           "text": "Choose the best way to present collected data."
+          },
+          {
+           "code": "C-12-G-20",
+           "text": "Record raw readings to consistent precision."
+          },
+          {
+           "code": "C-12-G-21",
+           "text": "Show working and key reasoning steps in calculations."
+          },
+          {
+           "code": "C-12-G-22",
+           "text": "Use correct significant figures for calculated quantities."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "build": {
+  "builtAt": "2026-10-14T09:33:03.530Z",
+  "model": "claude-agent",
+  "usd": 0,
+  "expectedCodes": null,
+  "coverage": null,
+  "missingCodes": [],
+  "counts": {
+   "grades": 4,
+   "units": 19,
+   "topics": 62,
+   "subtopics": 138,
+   "outcomes": 640
+  },
+  "warnings": []
+ }
+}

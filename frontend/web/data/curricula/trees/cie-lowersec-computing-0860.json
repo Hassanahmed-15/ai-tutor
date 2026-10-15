@@ -1,0 +1,209 @@
+{
+ "id": "cie-lowersec-computing-0860",
+ "region": "INTL",
+ "framework": "Cambridge Lower Secondary Computing curriculum framework (0860)",
+ "board": "Cambridge",
+ "qualification": "Lower Secondary",
+ "subject": "Computing",
+ "syllabusCode": "0860",
+ "gradeSystem": "stage",
+ "source": {
+  "urls": [
+   "https://www.cambridgeinternational.org/programmes-and-qualifications/cambridge-lower-secondary/curriculum/computing/"
+  ],
+  "publisher": "Cambridge University Press & Assessment (Cambridge International Education)",
+  "licence": "© Cambridge University Press & Assessment; structure + our own wording only",
+  "firstExam": null
+ },
+ "grades": [
+  {
+   "grade": "all",
+   "units": [
+    {
+     "id": "computational-thinking",
+     "title": "Computational Thinking",
+     "topics": [
+      {
+       "id": "solving-problems-with-algorithms",
+       "title": "Solving problems with algorithms",
+       "subtopics": [
+        {
+         "id": "solving-problems-with-algorithms",
+         "title": "Solving problems with algorithms",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Pull key information out of a set of instructions."
+          },
+          {
+           "code": null,
+           "text": "Break a problem into smaller parts and spot patterns in sequences of instructions."
+          },
+          {
+           "code": null,
+           "text": "Present instruction sequences in words and in diagrams with growing precision."
+          },
+          {
+           "code": null,
+           "text": "Think logically to find and fix errors in increasingly complex computing situations."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "algorithms-and-logic",
+       "title": "Algorithms and logic",
+       "subtopics": [
+        {
+         "id": "algorithms-and-logic",
+         "title": "Algorithms and logic",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Create and present solutions using algorithms, logic and precision."
+          },
+          {
+           "code": null,
+           "text": "Show decision-making away from the computer, using flowcharts and pseudocode."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "programming",
+     "title": "Programming",
+     "topics": [
+      {
+       "id": "programming-constructs",
+       "title": "Programming constructs",
+       "subtopics": [
+        {
+         "id": "programming-constructs",
+         "title": "Programming constructs",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Understand common constructs of text-based languages such as Python."
+          },
+          {
+           "code": null,
+           "text": "Create programs such as interfaces, quizzes and data input and output systems."
+          },
+          {
+           "code": null,
+           "text": "Appreciate what computer scientists contribute to our lives."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "managing-data",
+     "title": "Managing Data",
+     "topics": [
+      {
+       "id": "how-computers-store-and-analyse-data",
+       "title": "How computers store and analyse data",
+       "subtopics": [
+        {
+         "id": "how-computers-store-and-analyse-data",
+         "title": "How computers store and analyse data",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Reflect on how computers store and analyse data at ever-larger scale."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "networks-and-digital-communication",
+     "title": "Networks and Digital Communication",
+     "topics": [
+      {
+       "id": "how-machines-communicate",
+       "title": "How machines communicate",
+       "subtopics": [
+        {
+         "id": "how-machines-communicate",
+         "title": "How machines communicate",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain how computers and other machines communicate across networks."
+          },
+          {
+           "code": null,
+           "text": "Explain how networks are built from hardware and data transmission protocols."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "computer-systems",
+     "title": "Computer Systems",
+     "topics": [
+      {
+       "id": "inside-a-computer",
+       "title": "Inside a computer",
+       "subtopics": [
+        {
+         "id": "inside-a-computer",
+         "title": "Inside a computer",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe the purpose of the different components inside a computer."
+          },
+          {
+           "code": null,
+           "text": "Explain that computers follow precise instructions to process human inputs, make decisions and produce outputs."
+          },
+          {
+           "code": null,
+           "text": "Understand that computers only do what humans ask them to do, and the role of computers, machines and data in our lives."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "build": {
+  "builtAt": "2026-10-14T08:44:54.780Z",
+  "model": "claude-agent",
+  "usd": 0,
+  "expectedCodes": null,
+  "coverage": null,
+  "missingCodes": [],
+  "counts": {
+   "grades": 1,
+   "units": 5,
+   "topics": 6,
+   "subtopics": 6,
+   "outcomes": 15
+  },
+  "warnings": [
+   "grade 7 has no content",
+   "grade 8 has no content",
+   "grade 9 has no content",
+   "unexpected grade label \"all\"",
+   "unit \"Managing Data\" (grade all) has a single outcome"
+  ]
+ }
+}

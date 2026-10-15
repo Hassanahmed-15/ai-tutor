@@ -1,0 +1,25 @@
+{
+  "name": "aria-courses-showcase",
+  "private": true,
+  "version": "0.1.0",
+  "scripts": {
+    "sync": "node --import tsx scripts/sync.mts",
+    "build": "npm run sync && next build",
+    "dev": "next dev -p 3400"
+  },
+  "dependencies": {
+    "lucide-react": "^1.31.0",
+    "next": "16.2.9",
+    "react": "19.2.4",
+    "react-dom": "19.2.4"
+  },
+  "devDependencies": {
+    "@tailwindcss/postcss": "^4",
+    "@types/node": "^20",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "tailwindcss": "^4",
+    "tsx": "^4",
+    "typescript": "^5"
+  }
+}

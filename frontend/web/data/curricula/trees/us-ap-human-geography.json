@@ -1,0 +1,1786 @@
+{
+ "id": "us-ap-human-geography",
+ "region": "US",
+ "framework": "AP Human Geography Course and Exam Description (effective fall 2020)",
+ "board": "College Board",
+ "qualification": "AP",
+ "subject": "Human Geography",
+ "syllabusCode": null,
+ "gradeSystem": "course",
+ "source": {
+  "urls": [
+   "https://apcentral.collegeboard.org/media/pdf/ap-human-geography-course-and-exam-description.pdf",
+   "https://apcentral.collegeboard.org/courses/ap-human-geography"
+  ],
+  "publisher": "College Board",
+  "licence": "© College Board; structure + our own wording only",
+  "firstExam": "2021"
+ },
+ "grades": [
+  {
+   "grade": "all",
+   "units": [
+    {
+     "id": "unit-1-thinking-geographically",
+     "title": "Unit 1: Thinking Geographically",
+     "topics": [
+      {
+       "id": "1-1-introduction-to-maps",
+       "title": "1.1 Introduction to Maps",
+       "subtopics": [
+        {
+         "id": "introduction-to-maps",
+         "title": "Introduction to Maps",
+         "outcomes": [
+          {
+           "code": "IMP-1.A",
+           "text": "Identify map types, the information maps show, and the spatial patterns and relationships they portray."
+          },
+          {
+           "code": "IMP-1.A.1",
+           "text": "Tell reference maps from thematic maps."
+          },
+          {
+           "code": "IMP-1.A.2",
+           "text": "Describe spatial patterns on maps: absolute and relative distance and direction, clustering, dispersal, elevation."
+          },
+          {
+           "code": "IMP-1.A.3",
+           "text": "Explain that every map is selective and map projections distort shape, area, distance and direction."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "1-2-geographic-data",
+       "title": "1.2 Geographic Data",
+       "subtopics": [
+        {
+         "id": "geographic-data",
+         "title": "Geographic Data",
+         "outcomes": [
+          {
+           "code": "IMP-1.B",
+           "text": "Identify the different methods of collecting geographic data."
+          },
+          {
+           "code": "IMP-1.B.1",
+           "text": "Recognise that data can be gathered in the field by organisations or individuals."
+          },
+          {
+           "code": "IMP-1.B.2",
+           "text": "Name geospatial technologies: GIS, satellite navigation, remote sensing, online mapping and visualisation."
+          },
+          {
+           "code": "IMP-1.B.3",
+           "text": "List written sources of spatial information such as field notes, media, narratives, policy documents, interviews, landscape and photo analysis."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "1-3-the-power-of-geographic-data",
+       "title": "1.3 The Power of Geographic Data",
+       "subtopics": [
+        {
+         "id": "the-power-of-geographic-data",
+         "title": "The Power of Geographic Data",
+         "outcomes": [
+          {
+           "code": "IMP-1.C",
+           "text": "Explain the effects of decisions made using geographic information."
+          },
+          {
+           "code": "IMP-1.C.1",
+           "text": "Describe how census data and satellite imagery guide personal, business, organisational and government decisions at every scale."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "1-4-spatial-concepts",
+       "title": "1.4 Spatial Concepts",
+       "subtopics": [
+        {
+         "id": "spatial-concepts",
+         "title": "Spatial Concepts",
+         "outcomes": [
+          {
+           "code": "PSO-1.A",
+           "text": "Define major geographic concepts that show spatial relationships."
+          },
+          {
+           "code": "PSO-1.A.1",
+           "text": "Define absolute and relative location, space, place, flows, distance decay, time-space compression and pattern."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "1-5-human-environmental-interaction",
+       "title": "1.5 Human-Environmental Interaction",
+       "subtopics": [
+        {
+         "id": "human-environmental-interaction",
+         "title": "Human-Environmental Interaction",
+         "outcomes": [
+          {
+           "code": "PSO-1.B",
+           "text": "Explain how major geographic concepts illustrate spatial relationships."
+          },
+          {
+           "code": "PSO-1.B.1",
+           "text": "Explain nature-and-society concepts: sustainability, natural resources and land use."
+          },
+          {
+           "code": "PSO-1.B.2",
+           "text": "Trace how ideas about people and environment moved from environmental determinism to possibilism."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "1-6-scales-of-analysis",
+       "title": "1.6 Scales of Analysis",
+       "subtopics": [
+        {
+         "id": "scales-of-analysis",
+         "title": "Scales of Analysis",
+         "outcomes": [
+          {
+           "code": "PSO-1.C",
+           "text": "Define the scales of analysis geographers use."
+          },
+          {
+           "code": "PSO-1.C.1",
+           "text": "Name the scales: global, regional, national and local."
+          },
+          {
+           "code": "PSO-1.D",
+           "text": "Explain what different scales of analysis reveal."
+          },
+          {
+           "code": "PSO-1.D.1",
+           "text": "Show how patterns and processes at different scales give different readings of data."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "1-7-regional-analysis",
+       "title": "1.7 Regional Analysis",
+       "subtopics": [
+        {
+         "id": "regional-analysis",
+         "title": "Regional Analysis",
+         "outcomes": [
+          {
+           "code": "SPS-1.A",
+           "text": "Describe the different ways geographers define regions."
+          },
+          {
+           "code": "SPS-1.A.1",
+           "text": "Explain that regions are defined by unifying characteristics or patterns of activity."
+          },
+          {
+           "code": "SPS-1.A.2",
+           "text": "Distinguish formal, functional and perceptual (vernacular) regions."
+          },
+          {
+           "code": "SPS-1.A.3",
+           "text": "Explain that regional boundaries are transitional, often contested and overlapping."
+          },
+          {
+           "code": "SPS-1.A.4",
+           "text": "Apply regional analysis at local, national and global scales."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "unit-2-population-and-migration-patterns-and-pro",
+     "title": "Unit 2: Population and Migration Patterns and Processes",
+     "topics": [
+      {
+       "id": "2-1-population-distribution",
+       "title": "2.1 Population Distribution",
+       "subtopics": [
+        {
+         "id": "population-distribution",
+         "title": "Population Distribution",
+         "outcomes": [
+          {
+           "code": "PSO-2.A",
+           "text": "Identify the factors that influence where people live at different scales."
+          },
+          {
+           "code": "PSO-2.A.1",
+           "text": "Explain how physical factors (climate, landforms, water) and human factors (culture, economics, history, politics) shape population distribution."
+          },
+          {
+           "code": "PSO-2.A.2",
+           "text": "Recognise that the factors explaining distribution patterns change with the scale of analysis."
+          },
+          {
+           "code": "PSO-2.B",
+           "text": "Define the methods geographers use to calculate population density."
+          },
+          {
+           "code": "PSO-2.B.1",
+           "text": "Name and distinguish arithmetic, physiological and agricultural density."
+          },
+          {
+           "code": "PSO-2.C",
+           "text": "Explain how density methods differ and what each shows."
+          },
+          {
+           "code": "PSO-2.C.1",
+           "text": "Explain that each density method reveals a different level of pressure on the land."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "2-2-consequences-of-population-distribution",
+       "title": "2.2 Consequences of Population Distribution",
+       "subtopics": [
+        {
+         "id": "consequences-of-population-distribution",
+         "title": "Consequences of Population Distribution",
+         "outcomes": [
+          {
+           "code": "PSO-2.D",
+           "text": "Explain how population distribution and density affect society and the environment."
+          },
+          {
+           "code": "PSO-2.D.1",
+           "text": "Explain how distribution and density affect politics, economies, social life and service provision such as health care."
+          },
+          {
+           "code": "PSO-2.D.2",
+           "text": "Explain how distribution and density affect the environment and resources, as in carrying capacity."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "2-3-population-composition",
+       "title": "2.3 Population Composition",
+       "subtopics": [
+        {
+         "id": "population-composition",
+         "title": "Population Composition",
+         "outcomes": [
+          {
+           "code": "PSO-2.E",
+           "text": "Describe the elements of population composition geographers use."
+          },
+          {
+           "code": "PSO-2.E.1",
+           "text": "Describe how age structure and sex ratio vary across regions and scales."
+          },
+          {
+           "code": "PSO-2.F",
+           "text": "Explain how geographers depict and analyse population composition."
+          },
+          {
+           "code": "PSO-2.F.1",
+           "text": "Use population pyramids to assess growth and decline and to predict markets for goods and services."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "2-4-population-dynamics",
+       "title": "2.4 Population Dynamics",
+       "subtopics": [
+        {
+         "id": "population-dynamics",
+         "title": "Population Dynamics",
+         "outcomes": [
+          {
+           "code": "IMP-2.A",
+           "text": "Explain factors behind historical and current population growth and decline."
+          },
+          {
+           "code": "IMP-2.A.1",
+           "text": "Name fertility, mortality and migration as the demographic factors of growth and decline."
+          },
+          {
+           "code": "IMP-2.A.2",
+           "text": "Use rate of natural increase and population-doubling time to explain growth and decline."
+          },
+          {
+           "code": "IMP-2.A.3",
+           "text": "Explain how social, cultural, political and economic factors influence fertility, mortality and migration rates."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "2-5-the-demographic-transition-model",
+       "title": "2.5 The Demographic Transition Model",
+       "subtopics": [
+        {
+         "id": "the-demographic-transition-model",
+         "title": "The Demographic Transition Model",
+         "outcomes": [
+          {
+           "code": "IMP-2.B",
+           "text": "Explain theories of population growth and decline."
+          },
+          {
+           "code": "IMP-2.B.1",
+           "text": "Use the demographic transition model to explain population change over time."
+          },
+          {
+           "code": "IMP-2.B.2",
+           "text": "Explain how the epidemiological transition accounts for changing death rates."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "2-6-malthusian-theory",
+       "title": "2.6 Malthusian Theory",
+       "subtopics": [
+        {
+         "id": "malthusian-theory",
+         "title": "Malthusian Theory",
+         "outcomes": [
+          {
+           "code": "IMP-2.B.3",
+           "text": "Use Malthusian theory and its critiques to analyse population change and its consequences."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "2-7-population-policies",
+       "title": "2.7 Population Policies",
+       "subtopics": [
+        {
+         "id": "population-policies",
+         "title": "Population Policies",
+         "outcomes": [
+          {
+           "code": "SPS-2.A",
+           "text": "Explain the intent and effects of population and immigration policies."
+          },
+          {
+           "code": "SPS-2.A.1",
+           "text": "Distinguish pronatalist, antinatalist and immigration policies that promote or discourage growth."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "2-8-women-and-demographic-change",
+       "title": "2.8 Women and Demographic Change",
+       "subtopics": [
+        {
+         "id": "women-and-demographic-change",
+         "title": "Women and Demographic Change",
+         "outcomes": [
+          {
+           "code": "SPS-2.B",
+           "text": "Explain the demographic consequences of the changing role of women in different parts of the world."
+          },
+          {
+           "code": "SPS-2.B.1",
+           "text": "Explain how changing values and access to education, jobs, health care and contraception reduced fertility in most regions."
+          },
+          {
+           "code": "SPS-2.B.2",
+           "text": "Explain how changing roles for women affect fertility, mortality and migration, as in Ravenstein's laws of migration."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "2-9-aging-populations",
+       "title": "2.9 Aging Populations",
+       "subtopics": [
+        {
+         "id": "aging-populations",
+         "title": "Aging Populations",
+         "outcomes": [
+          {
+           "code": "SPS-2.C",
+           "text": "Explain the causes and consequences of an aging population."
+          },
+          {
+           "code": "SPS-2.C.1",
+           "text": "Explain that population aging depends on birth rates, death rates and life expectancy."
+          },
+          {
+           "code": "SPS-2.C.2",
+           "text": "Explain the political, social and economic consequences of aging, including the dependency ratio."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "2-10-causes-of-migration",
+       "title": "2.10 Causes of Migration",
+       "subtopics": [
+        {
+         "id": "causes-of-migration",
+         "title": "Causes of Migration",
+         "outcomes": [
+          {
+           "code": "IMP-2.C",
+           "text": "Explain how different factors encourage migration."
+          },
+          {
+           "code": "IMP-2.C.1",
+           "text": "Divide migration causes into push factors and pull factors."
+          },
+          {
+           "code": "IMP-2.C.2",
+           "text": "Recognise that push/pull factors and intervening opportunities or obstacles may be cultural, demographic, economic, environmental or political."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "2-11-forced-and-voluntary-migration",
+       "title": "2.11 Forced and Voluntary Migration",
+       "subtopics": [
+        {
+         "id": "forced-and-voluntary-migration",
+         "title": "Forced and Voluntary Migration",
+         "outcomes": [
+          {
+           "code": "IMP-2.D",
+           "text": "Describe types of forced and voluntary migration."
+          },
+          {
+           "code": "IMP-2.D.1",
+           "text": "Describe forced migrations: slavery and events producing refugees, internally displaced persons and asylum seekers."
+          },
+          {
+           "code": "IMP-2.D.2",
+           "text": "Describe voluntary migrations: transnational, transhumance, internal, chain, step, guest worker and rural-to-urban."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "2-12-effects-of-migration",
+       "title": "2.12 Effects of Migration",
+       "subtopics": [
+        {
+         "id": "effects-of-migration",
+         "title": "Effects of Migration",
+         "outcomes": [
+          {
+           "code": "IMP-2.E",
+           "text": "Explain historical and current geographic effects of migration."
+          },
+          {
+           "code": "IMP-2.E.1",
+           "text": "Explain the political, economic and cultural effects of migration."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "unit-3-cultural-patterns-and-processes",
+     "title": "Unit 3: Cultural Patterns and Processes",
+     "topics": [
+      {
+       "id": "3-1-introduction-to-culture",
+       "title": "3.1 Introduction to Culture",
+       "subtopics": [
+        {
+         "id": "introduction-to-culture",
+         "title": "Introduction to Culture",
+         "outcomes": [
+          {
+           "code": "PSO-3.A",
+           "text": "Define the characteristics and traits geographers consider when they study culture."
+          },
+          {
+           "code": "PSO-3.A.1",
+           "text": "Define culture as the shared practices, technologies, attitudes and behaviours a society passes on."
+          },
+          {
+           "code": "PSO-3.A.2",
+           "text": "Give examples of culture traits such as food preferences, architecture and land use."
+          },
+          {
+           "code": "PSO-3.A.3",
+           "text": "Contrast cultural relativism and ethnocentrism as attitudes to cultural difference."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "3-2-cultural-landscapes",
+       "title": "3.2 Cultural Landscapes",
+       "subtopics": [
+        {
+         "id": "cultural-landscapes",
+         "title": "Cultural Landscapes",
+         "outcomes": [
+          {
+           "code": "PSO-3.B",
+           "text": "Describe the characteristics of cultural landscapes."
+          },
+          {
+           "code": "PSO-3.B.1",
+           "text": "Describe cultural landscapes as mixes of physical features, farming and industry, religion and language, sequent occupance and architecture and land-use patterns."
+          },
+          {
+           "code": "PSO-3.C",
+           "text": "Explain how landscapes and land and resource use reflect cultural beliefs and identities."
+          },
+          {
+           "code": "PSO-3.C.1",
+           "text": "Explain how attitudes to ethnicity and gender, ethnic neighbourhoods and indigenous lands shape the use of space."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "3-3-cultural-patterns",
+       "title": "3.3 Cultural Patterns",
+       "subtopics": [
+        {
+         "id": "cultural-patterns",
+         "title": "Cultural Patterns",
+         "outcomes": [
+          {
+           "code": "PSO-3.D",
+           "text": "Explain patterns and landscapes of language, religion, ethnicity and gender."
+          },
+          {
+           "code": "PSO-3.D.1",
+           "text": "Explain how regional patterns of language, religion and ethnicity build sense of place, placemaking and the global cultural landscape."
+          },
+          {
+           "code": "PSO-3.D.2",
+           "text": "Explain how language, ethnicity and religion create centripetal and centrifugal forces."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "3-4-types-of-diffusion",
+       "title": "3.4 Types of Diffusion",
+       "subtopics": [
+        {
+         "id": "types-of-diffusion",
+         "title": "Types of Diffusion",
+         "outcomes": [
+          {
+           "code": "IMP-3.A",
+           "text": "Define the types of diffusion."
+          },
+          {
+           "code": "IMP-3.A.1",
+           "text": "Distinguish relocation diffusion from expansion diffusion (contagious, hierarchical, stimulus)."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "3-5-historical-causes-of-diffusion",
+       "title": "3.5 Historical Causes of Diffusion",
+       "subtopics": [
+        {
+         "id": "historical-causes-of-diffusion",
+         "title": "Historical Causes of Diffusion",
+         "outcomes": [
+          {
+           "code": "SPS-3.A",
+           "text": "Explain how historical processes shape present cultural patterns."
+          },
+          {
+           "code": "SPS-3.A.1",
+           "text": "Explain how culture traits meeting global forces create new cultural forms, as in creolization and lingua franca."
+          },
+          {
+           "code": "SPS-3.A.2",
+           "text": "Explain how colonialism, imperialism and trade shaped cultural patterns and practices."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "3-6-contemporary-causes-of-diffusion",
+       "title": "3.6 Contemporary Causes of Diffusion",
+       "subtopics": [
+        {
+         "id": "contemporary-causes-of-diffusion",
+         "title": "Contemporary Causes of Diffusion",
+         "outcomes": [
+          {
+           "code": "SPS-3.A.3",
+           "text": "Explain how cultural ideas are socially constructed and changed by urbanization, globalization, media, technology, politics and economics."
+          },
+          {
+           "code": "SPS-3.A.4",
+           "text": "Explain how the internet and time-space convergence reshape culture, spreading English, eroding indigenous languages, and causing convergence and divergence."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "3-7-diffusion-of-religion-and-language",
+       "title": "3.7 Diffusion of Religion and Language",
+       "subtopics": [
+        {
+         "id": "diffusion-of-religion-and-language",
+         "title": "Diffusion of Religion and Language",
+         "outcomes": [
+          {
+           "code": "IMP-3.B",
+           "text": "Explain what leads to the diffusion of universalizing and ethnic religions."
+          },
+          {
+           "code": "IMP-3.B.1",
+           "text": "Explain that language families, languages, dialects, religions, ethnic cultures and gender roles diffuse from cultural hearths."
+          },
+          {
+           "code": "IMP-3.B.2",
+           "text": "Read the diffusion of language families such as Indo-European and of religions on maps, charts and toponyms."
+          },
+          {
+           "code": "IMP-3.B.3",
+           "text": "Explain that religions have places of origin and spread by different processes shaped by their practices and beliefs."
+          },
+          {
+           "code": "IMP-3.B.4",
+           "text": "Explain that universalizing religions (Christianity, Islam, Buddhism, Sikhism) spread by expansion and relocation diffusion."
+          },
+          {
+           "code": "IMP-3.B.5",
+           "text": "Explain that ethnic religions (Hinduism, Judaism) stay near their hearth or spread by relocation diffusion."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "3-8-effects-of-diffusion",
+       "title": "3.8 Effects of Diffusion",
+       "subtopics": [
+        {
+         "id": "effects-of-diffusion",
+         "title": "Effects of Diffusion",
+         "outcomes": [
+          {
+           "code": "SPS-3.B",
+           "text": "Explain how diffusion changes the cultural landscape."
+          },
+          {
+           "code": "SPS-3.B.1",
+           "text": "Define acculturation, assimilation, syncretism and multiculturalism as effects of cultural diffusion."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "unit-4-political-patterns-and-processes",
+     "title": "Unit 4: Political Patterns and Processes",
+     "topics": [
+      {
+       "id": "4-1-introduction-to-political-geography",
+       "title": "4.1 Introduction to Political Geography",
+       "subtopics": [
+        {
+         "id": "introduction-to-political-geography",
+         "title": "Introduction to Political Geography",
+         "outcomes": [
+          {
+           "code": "PSO-4.A",
+           "text": "Define the types of political entities on world political maps."
+          },
+          {
+           "code": "PSO-4.A.1",
+           "text": "Explain that independent states are the main building blocks of the world political map."
+          },
+          {
+           "code": "PSO-4.A.2",
+           "text": "Distinguish nations, nation-states, stateless nations, multinational states, multistate nations and autonomous or semiautonomous regions."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "4-2-political-processes",
+       "title": "4.2 Political Processes",
+       "subtopics": [
+        {
+         "id": "political-processes",
+         "title": "Political Processes",
+         "outcomes": [
+          {
+           "code": "PSO-4.B",
+           "text": "Explain the processes that shaped modern political geography."
+          },
+          {
+           "code": "PSO-4.B.1",
+           "text": "Explain how sovereignty, nation-states and self-determination shape the contemporary world."
+          },
+          {
+           "code": "PSO-4.B.2",
+           "text": "Explain how colonialism, imperialism, independence movements and devolution shaped political boundaries."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "4-3-political-power-and-territoriality",
+       "title": "4.3 Political Power and Territoriality",
+       "subtopics": [
+        {
+         "id": "political-power-and-territoriality",
+         "title": "Political Power and Territoriality",
+         "outcomes": [
+          {
+           "code": "PSO-4.C",
+           "text": "Describe political power and territoriality as geographers use them."
+          },
+          {
+           "code": "PSO-4.C.1",
+           "text": "Explain political power as control over people, land and resources, as in neocolonialism, shatterbelts and choke points."
+          },
+          {
+           "code": "PSO-4.C.2",
+           "text": "Define territoriality as the link between people, their culture and economy, and the land."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "4-4-defining-political-boundaries",
+       "title": "4.4 Defining Political Boundaries",
+       "subtopics": [
+        {
+         "id": "defining-political-boundaries",
+         "title": "Defining Political Boundaries",
+         "outcomes": [
+          {
+           "code": "IMP-4.A",
+           "text": "Define the types of political boundaries geographers use."
+          },
+          {
+           "code": "IMP-4.A.1",
+           "text": "Distinguish relict, superimposed, subsequent, antecedent, geometric and consequent boundaries."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "4-5-the-function-of-political-boundaries",
+       "title": "4.5 The Function of Political Boundaries",
+       "subtopics": [
+        {
+         "id": "the-function-of-political-boundaries",
+         "title": "The Function of Political Boundaries",
+         "outcomes": [
+          {
+           "code": "IMP-4.B",
+           "text": "Explain the nature and function of international and internal boundaries."
+          },
+          {
+           "code": "IMP-4.B.1",
+           "text": "Explain that boundaries are defined, delimited, demarcated and administered to limit sovereignty but are often contested."
+          },
+          {
+           "code": "IMP-4.B.2",
+           "text": "Explain that boundaries often follow cultural, national or economic divisions, but some come from DMZs or policy such as the Berlin Conference."
+          },
+          {
+           "code": "IMP-4.B.3",
+           "text": "Explain how land and maritime boundaries and agreements influence identity, interaction and resource disputes."
+          },
+          {
+           "code": "IMP-4.B.4",
+           "text": "Explain how the UN Convention on the Law of the Sea sets rights over international waters, territorial seas and exclusive economic zones."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "4-6-internal-boundaries",
+       "title": "4.6 Internal Boundaries",
+       "subtopics": [
+        {
+         "id": "internal-boundaries",
+         "title": "Internal Boundaries",
+         "outcomes": [
+          {
+           "code": "IMP-4.B.5",
+           "text": "Explain how voting districts, redistricting and gerrymandering affect election results at various scales."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "4-7-forms-of-governance",
+       "title": "4.7 Forms of Governance",
+       "subtopics": [
+        {
+         "id": "forms-of-governance",
+         "title": "Forms of Governance",
+         "outcomes": [
+          {
+           "code": "IMP-4.C",
+           "text": "Define federal and unitary states."
+          },
+          {
+           "code": "IMP-4.C.1",
+           "text": "Distinguish unitary states from federal states as forms of governance."
+          },
+          {
+           "code": "IMP-4.D",
+           "text": "Explain how federal and unitary states affect spatial organization."
+          },
+          {
+           "code": "IMP-4.D.1",
+           "text": "Contrast top-down centralised unitary governance with locally based, dispersed power in federal states."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "4-8-defining-devolutionary-factors",
+       "title": "4.8 Defining Devolutionary Factors",
+       "subtopics": [
+        {
+         "id": "defining-devolutionary-factors",
+         "title": "Defining Devolutionary Factors",
+         "outcomes": [
+          {
+           "code": "SPS-4.A",
+           "text": "Define the factors that lead to the devolution of states."
+          },
+          {
+           "code": "SPS-4.A.1",
+           "text": "Name devolution factors: physical division of groups, ethnic separatism, ethnic cleansing, terrorism, economic and social problems and irredentism."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "4-9-challenges-to-sovereignty",
+       "title": "4.9 Challenges to Sovereignty",
+       "subtopics": [
+        {
+         "id": "challenges-to-sovereignty",
+         "title": "Challenges to Sovereignty",
+         "outcomes": [
+          {
+           "code": "SPS-4.B",
+           "text": "Explain how political, economic, cultural and technological change challenges state sovereignty."
+          },
+          {
+           "code": "SPS-4.B.1",
+           "text": "Explain devolution as states fragmenting into autonomous regions or units, or disintegrating as in Sudan and the former Soviet Union."
+          },
+          {
+           "code": "SPS-4.B.2",
+           "text": "Explain how communication technology has helped devolution, supranationalism and democratization."
+          },
+          {
+           "code": "SPS-4.B.3",
+           "text": "Explain how transnational challenges, economies of scale, trade agreements and military alliances promote supranationalism."
+          },
+          {
+           "code": "SPS-4.B.4",
+           "text": "Explain how supranational bodies (UN, NATO, EU, ASEAN, Arctic Council, African Union) can limit member states' actions and challenge sovereignty."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "4-10-consequences-of-centrifugal-and-centripetal",
+       "title": "4.10 Consequences of Centrifugal and Centripetal Forces",
+       "subtopics": [
+        {
+         "id": "consequences-of-centrifugal-and-centripetal-forc",
+         "title": "Consequences of Centrifugal and Centripetal Forces",
+         "outcomes": [
+          {
+           "code": "SPS-4.C",
+           "text": "Explain how centrifugal and centripetal forces apply at the state scale."
+          },
+          {
+           "code": "SPS-4.C.1",
+           "text": "Explain how centrifugal forces can lead to failed states, uneven development, stateless nations and ethnic nationalist movements."
+          },
+          {
+           "code": "SPS-4.C.2",
+           "text": "Explain how centripetal forces can lead to ethnonationalism, fairer infrastructure and greater cultural cohesion."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "unit-5-agriculture-and-rural-land-use-patterns-a",
+     "title": "Unit 5: Agriculture and Rural Land-Use Patterns and Processes",
+     "topics": [
+      {
+       "id": "5-1-introduction-to-agriculture",
+       "title": "5.1 Introduction to Agriculture",
+       "subtopics": [
+        {
+         "id": "introduction-to-agriculture",
+         "title": "Introduction to Agriculture",
+         "outcomes": [
+          {
+           "code": "PSO-5.A",
+           "text": "Explain the link between physical geography and agricultural practices."
+          },
+          {
+           "code": "PSO-5.A.1",
+           "text": "Explain how the physical environment and climates, such as Mediterranean and tropical, influence farming."
+          },
+          {
+           "code": "PSO-5.A.2",
+           "text": "Name intensive farming practices: market gardening, plantation agriculture and mixed crop-livestock systems."
+          },
+          {
+           "code": "PSO-5.A.3",
+           "text": "Name extensive farming practices: shifting cultivation, nomadic herding and ranching."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "5-2-settlement-patterns-and-survey-methods",
+       "title": "5.2 Settlement Patterns and Survey Methods",
+       "subtopics": [
+        {
+         "id": "settlement-patterns-and-survey-methods",
+         "title": "Settlement Patterns and Survey Methods",
+         "outcomes": [
+          {
+           "code": "PSO-5.B",
+           "text": "Identify rural settlement patterns and the methods used to survey rural land."
+          },
+          {
+           "code": "PSO-5.B.1",
+           "text": "Explain that specific farming practices shape different rural land-use patterns."
+          },
+          {
+           "code": "PSO-5.B.2",
+           "text": "Classify rural settlement patterns as clustered, dispersed or linear."
+          },
+          {
+           "code": "PSO-5.B.3",
+           "text": "Name rural survey methods: metes and bounds, township and range, and long lot."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "5-3-agricultural-origins-and-diffusions",
+       "title": "5.3 Agricultural Origins and Diffusions",
+       "subtopics": [
+        {
+         "id": "agricultural-origins-and-diffusions",
+         "title": "Agricultural Origins and Diffusions",
+         "outcomes": [
+          {
+           "code": "SPS-5.A",
+           "text": "Identify the major centres where plants and animals were domesticated."
+          },
+          {
+           "code": "SPS-5.A.1",
+           "text": "Locate early domestication hearths: Fertile Crescent, Indus Valley, Southeast Asia and Central America."
+          },
+          {
+           "code": "SPS-5.B",
+           "text": "Explain how plants and animals spread around the world."
+          },
+          {
+           "code": "SPS-5.B.1",
+           "text": "Explain how diffusion, such as the Columbian Exchange and agricultural revolutions, spread plants and animals globally."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "5-4-the-second-agricultural-revolution",
+       "title": "5.4 The Second Agricultural Revolution",
+       "subtopics": [
+        {
+         "id": "the-second-agricultural-revolution",
+         "title": "The Second Agricultural Revolution",
+         "outcomes": [
+          {
+           "code": "SPS-5.C",
+           "text": "Explain the advances and impacts of the second agricultural revolution."
+          },
+          {
+           "code": "SPS-5.C.1",
+           "text": "Explain how new technology and more food led to better diets, longer lives and more factory workers."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "5-5-the-green-revolution",
+       "title": "5.5 The Green Revolution",
+       "subtopics": [
+        {
+         "id": "the-green-revolution",
+         "title": "The Green Revolution",
+         "outcomes": [
+          {
+           "code": "SPS-5.D",
+           "text": "Explain the Green Revolution's consequences for food supply and the environment in developing regions."
+          },
+          {
+           "code": "SPS-5.D.1",
+           "text": "Describe the Green Revolution: high-yield seeds, more chemicals and mechanised farming."
+          },
+          {
+           "code": "SPS-5.D.2",
+           "text": "Weigh the positive and negative consequences of the Green Revolution for people and the environment."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "5-6-agricultural-production-regions",
+       "title": "5.6 Agricultural Production Regions",
+       "subtopics": [
+        {
+         "id": "agricultural-production-regions",
+         "title": "Agricultural Production Regions",
+         "outcomes": [
+          {
+           "code": "PSO-5.C",
+           "text": "Explain how economic forces influence agricultural practices."
+          },
+          {
+           "code": "PSO-5.C.1",
+           "text": "Explain that production regions are defined by subsistence or commercial practice, such as monocropping."
+          },
+          {
+           "code": "PSO-5.C.2",
+           "text": "Use bid-rent theory to explain how land costs determine intensive versus extensive farming."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "5-7-spatial-organization-of-agriculture",
+       "title": "5.7 Spatial Organization of Agriculture",
+       "subtopics": [
+        {
+         "id": "spatial-organization-of-agriculture",
+         "title": "Spatial Organization of Agriculture",
+         "outcomes": [
+          {
+           "code": "PSO-5.C.3",
+           "text": "Explain how large commercial operations are replacing small family farms."
+          },
+          {
+           "code": "PSO-5.C.4",
+           "text": "Explain how complex commodity chains link production and consumption of farm products."
+          },
+          {
+           "code": "PSO-5.C.5",
+           "text": "Explain how technology raised economies of scale and the land's carrying capacity."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "5-8-von-thunen-model",
+       "title": "5.8 Von Thunen Model",
+       "subtopics": [
+        {
+         "id": "von-thunen-model",
+         "title": "Von Thunen Model",
+         "outcomes": [
+          {
+           "code": "PSO-5.D",
+           "text": "Describe how the von Thunen model explains agricultural production patterns at various scales."
+          },
+          {
+           "code": "PSO-5.D.1",
+           "text": "Explain how von Thunen links land use to transport costs from market, and why specialty regions may not fit his rings."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "5-9-the-global-system-of-agriculture",
+       "title": "5.9 The Global System of Agriculture",
+       "subtopics": [
+        {
+         "id": "the-global-system-of-agriculture",
+         "title": "The Global System of Agriculture",
+         "outcomes": [
+          {
+           "code": "PSO-5.E",
+           "text": "Explain the interdependence among regions of agricultural production and consumption."
+          },
+          {
+           "code": "PSO-5.E.1",
+           "text": "Explain that food and farm products travel through a global supply chain."
+          },
+          {
+           "code": "PSO-5.E.2",
+           "text": "Explain how some countries depend heavily on one or more export commodities."
+          },
+          {
+           "code": "PSO-5.E.3",
+           "text": "Explain how politics, infrastructure and world trade patterns shape global food distribution."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "5-10-consequences-of-agricultural-practices",
+       "title": "5.10 Consequences of Agricultural Practices",
+       "subtopics": [
+        {
+         "id": "consequences-of-agricultural-practices",
+         "title": "Consequences of Agricultural Practices",
+         "outcomes": [
+          {
+           "code": "IMP-5.A",
+           "text": "Explain the environmental and societal consequences of agricultural practices."
+          },
+          {
+           "code": "IMP-5.A.1",
+           "text": "List environmental effects: pollution, land cover change, desertification, soil salinization and conservation efforts."
+          },
+          {
+           "code": "IMP-5.A.2",
+           "text": "Explain how slash and burn, terraces, irrigation, deforestation, draining wetlands, shifting cultivation and pastoral nomadism alter landscapes."
+          },
+          {
+           "code": "IMP-5.A.3",
+           "text": "Describe societal effects: changing diets, women's roles in production and economic purpose."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "5-11-challenges-of-contemporary-agriculture",
+       "title": "5.11 Challenges of Contemporary Agriculture",
+       "subtopics": [
+        {
+         "id": "challenges-of-contemporary-agriculture",
+         "title": "Challenges of Contemporary Agriculture",
+         "outcomes": [
+          {
+           "code": "IMP-5.B",
+           "text": "Explain challenges and debates around contemporary agriculture and food production."
+          },
+          {
+           "code": "IMP-5.B.1",
+           "text": "Explain debates over biotechnology, GMOs and aquaculture: sustainability, soil and water use, biodiversity and chemical use."
+          },
+          {
+           "code": "IMP-5.B.2",
+           "text": "Explain how food-choice movements (urban farming, CSA, organic, fair trade, local food, dietary shifts) shape production and consumption."
+          },
+          {
+           "code": "IMP-5.B.3",
+           "text": "Explain challenges of feeding the world: food insecurity, food deserts, distribution problems, weather and land lost to suburbs."
+          },
+          {
+           "code": "IMP-5.B.4",
+           "text": "Explain how processing and market locations, economies of scale, distribution and policy affect food production."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "5-12-women-in-agriculture",
+       "title": "5.12 Women in Agriculture",
+       "subtopics": [
+        {
+         "id": "women-in-agriculture",
+         "title": "Women in Agriculture",
+         "outcomes": [
+          {
+           "code": "IMP-5.C",
+           "text": "Explain geographic variations in women's roles in food production and consumption."
+          },
+          {
+           "code": "IMP-5.C.1",
+           "text": "Explain how women's roles in producing, distributing and consuming food vary with the type of production."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "unit-6-cities-and-urban-land-use-patterns-and-pr",
+     "title": "Unit 6: Cities and Urban Land-Use Patterns and Processes",
+     "topics": [
+      {
+       "id": "6-1-the-origin-and-influences-of-urbanization",
+       "title": "6.1 The Origin and Influences of Urbanization",
+       "subtopics": [
+        {
+         "id": "the-origin-and-influences-of-urbanization",
+         "title": "The Origin and Influences of Urbanization",
+         "outcomes": [
+          {
+           "code": "PSO-6.A",
+           "text": "Explain the processes that start and drive urbanization and suburbanization."
+          },
+          {
+           "code": "PSO-6.A.1",
+           "text": "Explain how site and situation influence a city's origin, function and growth."
+          },
+          {
+           "code": "PSO-6.A.2",
+           "text": "Explain how transport and communication, population growth, migration, economic development and policy drive urbanization."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "6-2-cities-across-the-world",
+       "title": "6.2 Cities Across the World",
+       "subtopics": [
+        {
+         "id": "cities-across-the-world",
+         "title": "Cities Across the World",
+         "outcomes": [
+          {
+           "code": "PSO-6.A.3",
+           "text": "Describe megacities and metacities as outcomes of urbanization, increasingly in periphery and semiperiphery countries."
+          },
+          {
+           "code": "PSO-6.A.4",
+           "text": "Describe how suburbanization, sprawl and decentralisation created edge cities, exurbs and boomburbs and new challenges."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "6-3-cities-and-globalization",
+       "title": "6.3 Cities and Globalization",
+       "subtopics": [
+        {
+         "id": "cities-and-globalization",
+         "title": "Cities and Globalization",
+         "outcomes": [
+          {
+           "code": "PSO-6.B",
+           "text": "Explain how cities embody globalization."
+          },
+          {
+           "code": "PSO-6.B.1",
+           "text": "Explain that world cities sit atop the urban hierarchy and drive globalization."
+          },
+          {
+           "code": "PSO-6.B.2",
+           "text": "Explain that cities are linked by global networks and mediate global processes."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "6-4-the-size-and-distribution-of-cities",
+       "title": "6.4 The Size and Distribution of Cities",
+       "subtopics": [
+        {
+         "id": "the-size-and-distribution-of-cities",
+         "title": "The Size and Distribution of Cities",
+         "outcomes": [
+          {
+           "code": "PSO-6.C",
+           "text": "Identify urban concepts such as hierarchy, interdependence, relative size and spacing that explain city distribution and interaction."
+          },
+          {
+           "code": "PSO-6.C.1",
+           "text": "Apply the rank-size rule, primate city, gravity and Christaller's central place theory to city size and distribution."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "6-5-the-internal-structure-of-cities",
+       "title": "6.5 The Internal Structure of Cities",
+       "subtopics": [
+        {
+         "id": "the-internal-structure-of-cities",
+         "title": "The Internal Structure of Cities",
+         "outcomes": [
+          {
+           "code": "PSO-6.D",
+           "text": "Explain the internal structure of cities using models and theories."
+          },
+          {
+           "code": "PSO-6.D.1",
+           "text": "Use the Burgess, Hoyt, Harris-Ullman, galactic city and bid-rent models and Latin American, Southeast Asian and African city models."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "6-6-density-and-land-use",
+       "title": "6.6 Density and Land Use",
+       "subtopics": [
+        {
+         "id": "density-and-land-use",
+         "title": "Density and Land Use",
+         "outcomes": [
+          {
+           "code": "IMP-6.A",
+           "text": "Explain how low-, medium- and high-density housing show different patterns of residential land use."
+          },
+          {
+           "code": "IMP-6.A.1",
+           "text": "Explain how residential buildings and land use reflect and shape a city's culture, technology, development cycles and infilling."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "6-7-infrastructure",
+       "title": "6.7 Infrastructure",
+       "subtopics": [
+        {
+         "id": "infrastructure",
+         "title": "Infrastructure",
+         "outcomes": [
+          {
+           "code": "IMP-6.B",
+           "text": "Explain how a city's infrastructure relates to local politics, society and the environment."
+          },
+          {
+           "code": "IMP-6.B.1",
+           "text": "Explain how infrastructure location and quality affect patterns of economic and social development."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "6-8-urban-sustainability",
+       "title": "6.8 Urban Sustainability",
+       "subtopics": [
+        {
+         "id": "urban-sustainability",
+         "title": "Urban Sustainability",
+         "outcomes": [
+          {
+           "code": "IMP-6.C",
+           "text": "Identify urban design initiatives and zoning practices."
+          },
+          {
+           "code": "IMP-6.C.1",
+           "text": "Name sustainable design ideas: mixed land use, walkability, transit-oriented development, smart growth, New Urbanism, greenbelts and slow-growth cities."
+          },
+          {
+           "code": "IMP-6.D",
+           "text": "Explain the effects of different urban design initiatives."
+          },
+          {
+           "code": "IMP-6.D.1",
+           "text": "Weigh praise (less sprawl, walkability, housing variety, livability) against criticism (costs, de facto segregation, lost character)."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "6-9-urban-data",
+       "title": "6.9 Urban Data",
+       "subtopics": [
+        {
+         "id": "urban-data",
+         "title": "Urban Data",
+         "outcomes": [
+          {
+           "code": "IMP-6.E",
+           "text": "Explain how qualitative and quantitative data show the causes and effects of change in cities."
+          },
+          {
+           "code": "IMP-6.E.1",
+           "text": "Use census and survey data to show changes in urban population size and composition."
+          },
+          {
+           "code": "IMP-6.E.2",
+           "text": "Use field studies and narratives to show individual attitudes to urban change."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "6-10-challenges-of-urban-changes",
+       "title": "6.10 Challenges of Urban Changes",
+       "subtopics": [
+        {
+         "id": "challenges-of-urban-changes",
+         "title": "Challenges of Urban Changes",
+         "outcomes": [
+          {
+           "code": "SPS-6.A",
+           "text": "Explain the causes and effects of geographic change within urban areas."
+          },
+          {
+           "code": "SPS-6.A.1",
+           "text": "Explain urban challenges: housing issues such as redlining, blockbusting and affordability; services; crime; environmental injustice; disamenity zones."
+          },
+          {
+           "code": "SPS-6.A.2",
+           "text": "Explain the growth of squatter settlements and land-tenure conflicts in large cities."
+          },
+          {
+           "code": "SPS-6.A.3",
+           "text": "Name responses such as inclusionary zoning and local food movements."
+          },
+          {
+           "code": "SPS-6.A.4",
+           "text": "Weigh the positive and negative consequences of urban renewal and gentrification."
+          },
+          {
+           "code": "SPS-6.A.5",
+           "text": "Explain how fragmented government across state, county, city and neighbourhood levels complicates urban problems."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "6-11-challenges-of-urban-sustainability",
+       "title": "6.11 Challenges of Urban Sustainability",
+       "subtopics": [
+        {
+         "id": "challenges-of-urban-sustainability",
+         "title": "Challenges of Urban Sustainability",
+         "outcomes": [
+          {
+           "code": "SPS-6.B",
+           "text": "Describe how effective different attempts to address urban sustainability are."
+          },
+          {
+           "code": "SPS-6.B.1",
+           "text": "List challenges: sprawl, sanitation, climate change, air and water quality, ecological footprint and energy use."
+          },
+          {
+           "code": "SPS-6.B.2",
+           "text": "List responses: regional planning, brownfield redevelopment, urban growth boundaries and farmland protection."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "unit-7-industrial-and-economic-development-patte",
+     "title": "Unit 7: Industrial and Economic Development Patterns and Processes",
+     "topics": [
+      {
+       "id": "7-1-the-industrial-revolution",
+       "title": "7.1 The Industrial Revolution",
+       "subtopics": [
+        {
+         "id": "the-industrial-revolution",
+         "title": "The Industrial Revolution",
+         "outcomes": [
+          {
+           "code": "SPS-7.A",
+           "text": "Explain how the Industrial Revolution drove the growth and spread of industrialization."
+          },
+          {
+           "code": "SPS-7.A.1",
+           "text": "Explain that industrialization began with new technologies and was helped by natural resources."
+          },
+          {
+           "code": "SPS-7.A.2",
+           "text": "Explain how industrialization raised food supplies and populations, moved workers to city jobs and changed class structures."
+          },
+          {
+           "code": "SPS-7.A.3",
+           "text": "Explain how industrial investors' hunt for raw materials and markets fed colonialism and imperialism."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "7-2-economic-sectors-and-patterns",
+       "title": "7.2 Economic Sectors and Patterns",
+       "subtopics": [
+        {
+         "id": "economic-sectors-and-patterns",
+         "title": "Economic Sectors and Patterns",
+         "outcomes": [
+          {
+           "code": "SPS-7.B",
+           "text": "Explain the spatial patterns of industrial production and development."
+          },
+          {
+           "code": "SPS-7.B.1",
+           "text": "Distinguish primary, secondary, tertiary, quaternary and quinary sectors and their development patterns."
+          },
+          {
+           "code": "SPS-7.B.2",
+           "text": "Explain how labour, transport, break-of-bulk points, least cost theory, markets and resources shape manufacturing location in core, semiperiphery and periphery."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "7-3-measures-of-development",
+       "title": "7.3 Measures of Development",
+       "subtopics": [
+        {
+         "id": "measures-of-development",
+         "title": "Measures of Development",
+         "outcomes": [
+          {
+           "code": "SPS-7.C",
+           "text": "Describe social and economic measures of development."
+          },
+          {
+           "code": "SPS-7.C.1",
+           "text": "List measures: GDP, GNP, GNI per capita, economy structure, income distribution, fertility, infant mortality, health care, energy use and literacy."
+          },
+          {
+           "code": "SPS-7.C.2",
+           "text": "Describe measures of gender inequality such as the Gender Inequality Index."
+          },
+          {
+           "code": "SPS-7.C.3",
+           "text": "Use the Human Development Index to show differences in development among states."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "7-4-women-and-economic-development",
+       "title": "7.4 Women and Economic Development",
+       "subtopics": [
+        {
+         "id": "women-and-economic-development",
+         "title": "Women and Economic Development",
+         "outcomes": [
+          {
+           "code": "SPS-7.D",
+           "text": "Explain how economic development has changed gender parity."
+          },
+          {
+           "code": "SPS-7.D.1",
+           "text": "Explain that women's roles change as countries develop."
+          },
+          {
+           "code": "SPS-7.D.2",
+           "text": "Explain that more women work but still lack equal pay and opportunities."
+          },
+          {
+           "code": "SPS-7.D.3",
+           "text": "Explain how microloans help women start local businesses and raise living standards."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "7-5-theories-of-development",
+       "title": "7.5 Theories of Development",
+       "subtopics": [
+        {
+         "id": "theories-of-development",
+         "title": "Theories of Development",
+         "outcomes": [
+          {
+           "code": "SPS-7.E",
+           "text": "Explain different theories of economic and social development."
+          },
+          {
+           "code": "SPS-7.E.1",
+           "text": "Use Rostow's stages, Wallerstein's world system, dependency theory and commodity dependence to explain uneven development."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "7-6-trade-and-the-world-economy",
+       "title": "7.6 Trade and the World Economy",
+       "subtopics": [
+        {
+         "id": "trade-and-the-world-economy",
+         "title": "Trade and the World Economy",
+         "outcomes": [
+          {
+           "code": "PSO-7.A",
+           "text": "Explain causes and consequences of recent economic change, such as trade growth, deindustrialisation and interdependence."
+          },
+          {
+           "code": "PSO-7.A.1",
+           "text": "Explain complementarity and comparative advantage as the basis of trade."
+          },
+          {
+           "code": "PSO-7.A.2",
+           "text": "Explain how neoliberal policies and free trade created bodies like the EU, WTO, Mercosur and OPEC that deepen globalisation."
+          },
+          {
+           "code": "PSO-7.A.3",
+           "text": "Explain how government initiatives such as tariffs affect development."
+          },
+          {
+           "code": "PSO-7.A.4",
+           "text": "Explain how debt crises, lenders like the IMF and strategies like microlending connect economies."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "7-7-changes-as-a-result-of-the-world-economy",
+       "title": "7.7 Changes as a Result of the World Economy",
+       "subtopics": [
+        {
+         "id": "changes-as-a-result-of-the-world-economy",
+         "title": "Changes as a Result of the World Economy",
+         "outcomes": [
+          {
+           "code": "PSO-7.A.5",
+           "text": "Explain how outsourcing and restructuring cut core-region jobs and raised jobs in newly industrialised countries."
+          },
+          {
+           "code": "PSO-7.A.6",
+           "text": "Explain special economic zones, free-trade zones, export-processing zones and the international division of labour."
+          },
+          {
+           "code": "PSO-7.A.7",
+           "text": "Explain post-Fordist production, multiplier effects, economies of scale, agglomeration, just-in-time delivery, service and high-tech sectors and growth poles."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "7-8-sustainable-development",
+       "title": "7.8 Sustainable Development",
+       "subtopics": [
+        {
+         "id": "sustainable-development",
+         "title": "Sustainable Development",
+         "outcomes": [
+          {
+           "code": "IMP-7.A",
+           "text": "Explain how sustainability principles relate to industrialisation and spatial development."
+          },
+          {
+           "code": "IMP-7.A.1",
+           "text": "Explain how sustainable development policy tackles resource depletion, mass consumption, pollution and climate change."
+          },
+          {
+           "code": "IMP-7.A.2",
+           "text": "Explain ecotourism as nature-based tourism that can protect threatened places while providing local jobs."
+          },
+          {
+           "code": "IMP-7.A.3",
+           "text": "Explain how the UN Sustainable Development Goals measure progress, such as small-scale finance and public transport."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "build": {
+  "builtAt": "2026-10-14T10:01:52.702Z",
+  "model": "claude-agent",
+  "usd": 0,
+  "expectedCodes": 220,
+  "coverage": 1,
+  "missingCodes": [],
+  "counts": {
+   "grades": 1,
+   "units": 7,
+   "topics": 68,
+   "subtopics": 68,
+   "outcomes": 220
+  },
+  "warnings": [
+   "grade 9 has no content",
+   "grade 10 has no content",
+   "grade 11 has no content",
+   "grade 12 has no content",
+   "unexpected grade label \"all\""
+  ]
+ }
+}

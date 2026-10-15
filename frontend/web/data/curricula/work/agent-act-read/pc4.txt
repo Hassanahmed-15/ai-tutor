@@ -1,0 +1,122 @@
+# Unit 4: Functions Involving Parameters, Vectors, and Matrices
+## 4.1 Parametric Functions
+@ Parametric functions
+4.1.A|Build a graph or table for an analytically given parametric function.
+4.1.A.1|Define parametric equations: x and y both depend on a parameter t.
+4.1.A.2|Write the pair as one function f(t) = (x(t), y(t)).
+4.1.A.3|Make a table of values by evaluating x and y at several t.
+4.1.A.4|Sketch the graph by joining points in order of increasing t.
+4.1.A.5|Know restricted domains give start and end points on the graph.
+## 4.2 Parametric Functions Modeling Planar Motion
+@ Position in planar motion
+4.2.A|Identify features of a parametric motion function related to position.
+4.2.A.1|Use f(t) = (x(t), y(t)) to model a particle's position at time t.
+4.2.A.2|Find horizontal and vertical extremes from the max and min of x(t) and y(t).
+4.2.A.3|Link zeros of x(t) to y-intercepts and zeros of y(t) to x-intercepts.
+## 4.3 Parametric Functions and Rates of Change
+@ Direction and rate of change
+4.3.A|Identify features of parametric motion related to direction and rate of change.
+4.3.A.1|Read direction from x(t) and y(t): right or left, up or down.
+4.3.A.2|Know direction at a point can differ for different t.
+4.3.A.3|Know one curve can be parametrized in different ways and directions.
+4.3.A.4|Find slope between two points as the ratio of average rates of change of y and x.
+## 4.4 Parametrically Defined Circles and Lines
+@ Circles and lines
+4.4.A|Express motion around a circle or along a segment parametrically.
+4.4.A.1|Model a full counterclockwise unit-circle revolution as (cos t, sin t) for 0 to 2 pi.
+4.4.A.2|Transform (cos t, sin t) to model any circular path.
+4.4.A.3|Parametrize a segment from one point to another using a start point and rates of change.
+## 4.5 Implicitly Defined Functions
+@ Graphing implicit equations
+4.5.A|Build a graph of an equation involving two variables.
+4.5.A.1|Know a two-variable equation can implicitly describe one or more functions.
+4.5.A.2|Graph an equation by finding its solutions.
+4.5.A.3|Solve for one variable to define a function that is part or all of the graph.
+4.5.B|Determine how the two quantities in an implicit function vary together.
+4.5.B.1|Read positive ratios of change as both increasing or both decreasing, negative as opposite.
+4.5.B.2|Know a zero rate of change marks vertical or horizontal intervals.
+## 4.6 Conic Sections
+@ Parabolas, ellipses and hyperbolas
+4.6.A|Represent conic sections with horizontal or vertical symmetry analytically.
+4.6.A.1|Write parabolas as x - h = a(y - k)^2 or y - k = a(x - h)^2.
+4.6.A.2|Write ellipses as (x-h)^2/a^2 + (y-k)^2/b^2 = 1; a circle is a = b.
+4.6.A.3|Write hyperbolas opening left-right or up-down, with asymptotes y - k = +/- (b/a)(x - h).
+## 4.7 Parametrization of Implicitly Defined Functions
+@ Parametrizing curves
+4.7.A|Represent a curve in the plane parametrically.
+4.7.A.1|Check a parametrization by substituting x(t), y(t) into the equation.
+4.7.A.2|Parametrize y = f(x) as (t, f(t)), and an inverse as (f(t), t).
+4.7.B|Represent conic sections parametrically.
+4.7.B.1|Parametrize a parabola by solving for one variable and setting the other to t.
+4.7.B.2|Parametrize an ellipse with x = h + a cos t and y = k + b sin t.
+4.7.B.3|Parametrize hyperbolas using secant and tangent.
+## 4.8 Vectors
+@ Vector basics
+4.8.A|Identify features of a vector.
+4.8.A.1|Define a vector's tail, head and magnitude.
+4.8.A.2|Write a plane vector as component form <a, b> from two points; know the zero vector.
+4.8.A.3|Find direction and magnitude from components.
+4.8.A.4|Use trigonometry to find components of a geometric vector.
+@ Vector operations
+4.8.B|Find sums and products involving vectors.
+4.8.B.1|Multiply a vector by a constant to get a parallel vector.
+4.8.B.2|Add vectors by adding components, tail-to-head.
+4.8.B.3|Compute the dot product as the sum of component products.
+4.8.C|Find a unit vector for a given vector.
+4.8.C.1|Divide a vector by its magnitude to get a unit vector.
+4.8.C.2|Write <a, b> as a i + b j with unit vectors i and j.
+4.8.D|Find angles between vectors and magnitudes in vector addition.
+4.8.D.1|Link the dot product to magnitudes and the cosine of the angle; zero means perpendicular.
+4.8.D.2|Use the Law of Sines and Law of Cosines for triangles from vector addition.
+## 4.9 Vector-Valued Functions
+@ Planar motion with vectors
+4.9.A|Represent planar motion with vector-valued functions.
+4.9.A.1|Write position as p(t) = <x(t), y(t)>; its magnitude is distance from the origin.
+4.9.A.2|Use v(t) = <x'(t), y'(t)> for velocity; its magnitude is speed.
+## 4.10 Matrices
+@ Matrix multiplication
+4.10.A|Find the product of two matrices.
+4.10.A.1|Define an n by m matrix as n rows and m columns.
+4.10.A.2|Multiply matrices when columns of the first match rows of the second, using row-column dot products.
+## 4.11 The Inverse and Determinant of a Matrix
+@ Inverse of a 2 by 2 matrix
+4.11.A|Find the inverse of a 2 by 2 matrix.
+4.11.A.1|Define the identity matrix.
+4.11.A.2|Know multiplying by the identity leaves a matrix unchanged.
+4.11.A.3|Know a matrix times its inverse is the identity.
+4.11.A.4|Compute a 2 by 2 inverse with or without technology.
+@ Determinants
+4.11.B|Apply the determinant to invertibility and vectors.
+4.11.B.1|Compute det(A) = ad - bc for a 2 by 2 matrix.
+4.11.B.2|Read the absolute determinant as the area of the parallelogram spanned by the vectors.
+4.11.B.3|Know a square matrix is invertible exactly when its determinant is nonzero.
+## 4.12 Linear Transformations and Matrices
+@ Linear transformations
+4.12.A|Find output vectors of a linear transformation using a 2 by 2 matrix.
+4.12.A.1|Define a linear transformation: each output component is a sum of constant multiples of input components.
+4.12.A.2|Know a linear transformation maps the zero vector to the zero vector.
+4.12.A.3|Write vectors as 2 by 1 matrices and sets of n vectors as 2 by n matrices.
+4.12.A.4|Know every linear transformation has a unique 2 by 2 matrix, L(v) = Av.
+4.12.A.5|Transform n vectors at once by multiplying A by a 2 by n matrix.
+## 4.13 Matrices as Functions
+@ Matrices and transformations
+4.13.A|Link a linear transformation to its matrix.
+4.13.A.1|Associate the map (x, y) to (a11 x + a12 y, a21 x + a22 y) with its matrix.
+4.13.A.2|Use images of the unit vectors to find the matrix.
+4.13.A.3|Use the rotation matrix to rotate vectors counterclockwise by an angle.
+4.13.A.4|Read the absolute determinant as the area scale factor.
+@ Composition and inverses of transformations
+4.13.B|Find the composition of two linear transformations.
+4.13.B.1|Know a composition of linear transformations is linear.
+4.13.B.2|Multiply the matrices to get the composition's matrix.
+4.13.C|Find the inverse of a linear transformation.
+4.13.C.1|Know inverse transformations compose to give back every vector.
+4.13.C.2|Use the inverse matrix A^-1 for the inverse transformation.
+## 4.14 Matrices Modeling Contexts
+@ Matrix models of transitions
+4.14.A|Build a matrix model of transitions between two states.
+4.14.A.1|Turn percent change rates into a transition matrix over discrete steps.
+4.14.B|Apply matrix models to predict future and past states.
+4.14.B.1|Multiply the transition matrix by the state vector to predict future states.
+4.14.B.2|Repeat multiplication to find the steady state.
+4.14.B.3|Multiply by the inverse matrix to predict past states.

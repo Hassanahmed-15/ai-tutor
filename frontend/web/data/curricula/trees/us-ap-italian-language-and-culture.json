@@ -1,0 +1,632 @@
+{
+ "id": "us-ap-italian-language-and-culture",
+ "region": "US",
+ "framework": "AP Italian Language and Culture Course and Exam Description (effective fall 2026)",
+ "board": "College Board",
+ "qualification": "AP",
+ "subject": "Italian Language and Culture",
+ "syllabusCode": null,
+ "gradeSystem": "course",
+ "source": {
+  "urls": [
+   "https://apcentral.collegeboard.org/media/pdf/ap-italian-language-and-culture-course-and-exam-description.pdf",
+   "https://apcentral.collegeboard.org/courses/ap-italian-language-and-culture"
+  ],
+  "publisher": "College Board",
+  "licence": "© College Board; structure + our own wording only",
+  "firstExam": "2027"
+ },
+ "grades": [
+  {
+   "grade": "all",
+   "units": [
+    {
+     "id": "skill-category-1-interpretive-communication",
+     "title": "Skill Category 1: Interpretive Communication",
+     "topics": [
+      {
+       "id": "1-a-recognize-explicit-meaning",
+       "title": "1.A Recognize explicit meaning",
+       "subtopics": [
+        {
+         "id": "spotting-explicit-meaning",
+         "title": "Spotting explicit meaning",
+         "outcomes": [
+          {
+           "code": "1.A",
+           "text": "Recognise what a text, recording or data display says outright"
+          },
+          {
+           "code": "1.A.1",
+           "text": "Pick out the supporting or relevant details in a source"
+          },
+          {
+           "code": "1.A.2",
+           "text": "Find data points, patterns and trends in charts and graphs"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "1-b-interpret-meaning",
+       "title": "1.B Interpret meaning",
+       "subtopics": [
+        {
+         "id": "interpreting-a-source",
+         "title": "Interpreting a source",
+         "outcomes": [
+          {
+           "code": "1.B",
+           "text": "Work out meaning beyond the surface of a source"
+          },
+          {
+           "code": "1.B.1",
+           "text": "Identify the main idea, theme or purpose"
+          },
+          {
+           "code": "1.B.2",
+           "text": "Work out who a source is meant for"
+          },
+          {
+           "code": "1.B.3",
+           "text": "Identify point of view, tone or attitude"
+          },
+          {
+           "code": "1.B.4",
+           "text": "Spot the organising and rhetorical structures or strategies used"
+          },
+          {
+           "code": "1.B.5",
+           "text": "Work out unknown words and phrases from textual cues"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "1-c-synthesize-and-infer-meaning",
+       "title": "1.C Synthesize and infer meaning",
+       "subtopics": [
+        {
+         "id": "synthesising-and-inferring",
+         "title": "Synthesising and inferring",
+         "outcomes": [
+          {
+           "code": "1.C",
+           "text": "Combine and infer meaning across sources"
+          },
+          {
+           "code": "1.C.1",
+           "text": "Link information within or between sources"
+          },
+          {
+           "code": "1.C.2",
+           "text": "Combine ideas from sources to reach logical conclusions"
+          },
+          {
+           "code": "1.C.3",
+           "text": "Infer unstated meaning from context"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "skill-category-2-interpersonal-and-presentationa",
+     "title": "Skill Category 2: Interpersonal and Presentational Communication",
+     "topics": [
+      {
+       "id": "2-a-use-language-that-fits-purpose-and-context",
+       "title": "2.A Use language that fits purpose and context",
+       "subtopics": [
+        {
+         "id": "fitting-language-to-purpose",
+         "title": "Fitting language to purpose",
+         "outcomes": [
+          {
+           "code": "2.A",
+           "text": "Use language suited to the purpose and setting of the communication"
+          },
+          {
+           "code": "2.A.1",
+           "text": "Use a range of grammatical structures"
+          },
+          {
+           "code": "2.A.2",
+           "text": "Use a range of vocabulary"
+          },
+          {
+           "code": "2.A.3",
+           "text": "Use idiomatic, culturally appropriate expressions"
+          },
+          {
+           "code": "2.A.4",
+           "text": "Choose a register suited to audience and situation"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "2-b-make-communication-comprehensible",
+       "title": "2.B Make communication comprehensible",
+       "subtopics": [
+        {
+         "id": "being-understood",
+         "title": "Being understood",
+         "outcomes": [
+          {
+           "code": "2.B",
+           "text": "Make speech and writing easy for the intended audience to understand"
+          },
+          {
+           "code": "2.B.1",
+           "text": "Use circumlocution and paraphrase to get around gaps"
+          },
+          {
+           "code": "2.B.2",
+           "text": "Monitor own speech, spot mistakes and self-correct"
+          },
+          {
+           "code": "2.B.3",
+           "text": "Pronounce clearly enough for varied speakers to understand"
+          },
+          {
+           "code": "2.B.4",
+           "text": "Use suitable speed and intonation when speaking"
+          },
+          {
+           "code": "2.B.5",
+           "text": "Follow written conventions: capitals, spelling, accents, punctuation"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "2-c-share-ideas-information-and-opinions",
+       "title": "2.C Share ideas, information and opinions",
+       "subtopics": [
+        {
+         "id": "sharing-ideas-and-opinions",
+         "title": "Sharing ideas and opinions",
+         "outcomes": [
+          {
+           "code": "2.C",
+           "text": "Share ideas, information and opinions on familiar and researched topics"
+          },
+          {
+           "code": "2.C.1",
+           "text": "Express ideas, preferences and opinions"
+          },
+          {
+           "code": "2.C.2",
+           "text": "Use research strategies to gather information and evidence"
+          },
+          {
+           "code": "2.C.3",
+           "text": "Give examples to advise, inform and explain opinions or feelings"
+          },
+          {
+           "code": "2.C.4",
+           "text": "Combine several sources to build and support a position"
+          },
+          {
+           "code": "2.C.5",
+           "text": "Refer to and cite sources properly"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "2-d-apply-organizational-and-rhetorical-strategi",
+       "title": "2.D Apply organizational and rhetorical strategies",
+       "subtopics": [
+        {
+         "id": "organising-and-connecting-ideas",
+         "title": "Organising and connecting ideas",
+         "outcomes": [
+          {
+           "code": "2.D",
+           "text": "Organise and connect ideas with suitable strategies"
+          },
+          {
+           "code": "2.D.1",
+           "text": "Use an appropriate organisational structure"
+          },
+          {
+           "code": "2.D.2",
+           "text": "Use cohesive devices such as relative pronouns, referents, conjunctions and transitions"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "skill-category-3-cultural-understanding",
+     "title": "Skill Category 3: Cultural Understanding",
+     "topics": [
+      {
+       "id": "3-a-make-connections-within-and-across-cultures",
+       "title": "3.A Make connections within and across cultures",
+       "subtopics": [
+        {
+         "id": "cultural-products-practices-perspectives",
+         "title": "Cultural products, practices, perspectives",
+         "outcomes": [
+          {
+           "code": "3.A",
+           "text": "Make connections within and across cultures"
+          },
+          {
+           "code": "3.A.1",
+           "text": "Describe cultural products, practices and perspectives"
+          },
+          {
+           "code": "3.A.2",
+           "text": "Compare products, practices and perspectives of different communities"
+          },
+          {
+           "code": "3.A.3",
+           "text": "Reflect on why cultural products, practices and perspectives matter"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "course-themes",
+     "title": "Course themes",
+     "topics": [
+      {
+       "id": "unit-1-families-and-communities",
+       "title": "Unit 1: Families and Communities",
+       "subtopics": [
+        {
+         "id": "community-activities",
+         "title": "Community Activities",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Use Italian to read, listen, speak and write about community activities while exploring families and communities in Italian-speaking societies"
+          }
+         ]
+        },
+        {
+         "id": "family-relationships",
+         "title": "Family Relationships",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Use Italian to read, listen, speak and write about family relationships while exploring families and communities in Italian-speaking societies"
+          }
+         ]
+        },
+        {
+         "id": "social-interactions-and-relationships",
+         "title": "Social Interactions and Relationships",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Use Italian to read, listen, speak and write about social interactions and relationships while exploring families and communities in Italian-speaking societies"
+          }
+         ]
+        },
+        {
+         "id": "urban-and-rural-communities",
+         "title": "Urban and Rural Communities",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Use Italian to read, listen, speak and write about urban and rural communities while exploring families and communities in Italian-speaking societies"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "unit-2-language-and-culture",
+       "title": "Unit 2: Language and Culture",
+       "subtopics": [
+        {
+         "id": "customs-and-celebrations",
+         "title": "Customs and Celebrations",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Use Italian to read, listen, speak and write about customs and celebrations while exploring how language and culture influence each other and change over time"
+          }
+         ]
+        },
+        {
+         "id": "linguistics",
+         "title": "Linguistics",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Use Italian to read, listen, speak and write about linguistics while exploring how language and culture influence each other and change over time"
+          }
+         ]
+        },
+        {
+         "id": "italian-in-the-world",
+         "title": "Italian in the World",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Use Italian to read, listen, speak and write about italian in the world while exploring how language and culture influence each other and change over time"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "unit-3-art-and-creativity",
+       "title": "Unit 3: Art and Creativity",
+       "subtopics": [
+        {
+         "id": "architecture",
+         "title": "Architecture",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Use Italian to read, listen, speak and write about architecture while exploring art and creativity in Italian-speaking cultures"
+          }
+         ]
+        },
+        {
+         "id": "artistic-heritage",
+         "title": "Artistic Heritage",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Use Italian to read, listen, speak and write about artistic heritage while exploring art and creativity in Italian-speaking cultures"
+          }
+         ]
+        },
+        {
+         "id": "beauty-and-aesthetics",
+         "title": "Beauty and Aesthetics",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Use Italian to read, listen, speak and write about beauty and aesthetics while exploring art and creativity in Italian-speaking cultures"
+          }
+         ]
+        },
+        {
+         "id": "fashion-and-design",
+         "title": "Fashion and Design",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Use Italian to read, listen, speak and write about fashion and design while exploring art and creativity in Italian-speaking cultures"
+          }
+         ]
+        },
+        {
+         "id": "literature",
+         "title": "Literature",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Use Italian to read, listen, speak and write about literature while exploring art and creativity in Italian-speaking cultures"
+          }
+         ]
+        },
+        {
+         "id": "visual-and-performing-arts",
+         "title": "Visual and Performing Arts",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Use Italian to read, listen, speak and write about visual and performing arts while exploring art and creativity in Italian-speaking cultures"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "unit-4-science-and-technology",
+       "title": "Unit 4: Science and Technology",
+       "subtopics": [
+        {
+         "id": "innovations-and-emerging-technologies",
+         "title": "Innovations and Emerging Technologies",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Use Italian to read, listen, speak and write about innovations and emerging technologies while exploring science and technology and their effect on society"
+          }
+         ]
+        },
+        {
+         "id": "personal-technology-and-communication",
+         "title": "Personal Technology and Communication",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Use Italian to read, listen, speak and write about personal technology and communication while exploring science and technology and their effect on society"
+          }
+         ]
+        },
+        {
+         "id": "science-in-everyday-life",
+         "title": "Science in Everyday Life",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Use Italian to read, listen, speak and write about science in everyday life while exploring science and technology and their effect on society"
+          }
+         ]
+        },
+        {
+         "id": "societal-impacts-of-science-and-technology",
+         "title": "Societal Impacts of Science and Technology",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Use Italian to read, listen, speak and write about societal impacts of science and technology while exploring science and technology and their effect on society"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "unit-5-contemporary-life",
+       "title": "Unit 5: Contemporary Life",
+       "subtopics": [
+        {
+         "id": "education-and-career",
+         "title": "Education and Career",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Use Italian to read, listen, speak and write about education and career while exploring contemporary life in Italian-speaking communities"
+          }
+         ]
+        },
+        {
+         "id": "entertainment-and-media",
+         "title": "Entertainment and Media",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Use Italian to read, listen, speak and write about entertainment and media while exploring contemporary life in Italian-speaking communities"
+          }
+         ]
+        },
+        {
+         "id": "food-and-health",
+         "title": "Food and Health",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Use Italian to read, listen, speak and write about food and health while exploring contemporary life in Italian-speaking communities"
+          }
+         ]
+        },
+        {
+         "id": "pop-culture",
+         "title": "Pop Culture",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Use Italian to read, listen, speak and write about pop culture while exploring contemporary life in Italian-speaking communities"
+          }
+         ]
+        },
+        {
+         "id": "sports-and-leisure",
+         "title": "Sports and Leisure",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Use Italian to read, listen, speak and write about sports and leisure while exploring contemporary life in Italian-speaking communities"
+          }
+         ]
+        },
+        {
+         "id": "travel-and-tourism",
+         "title": "Travel and Tourism",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Use Italian to read, listen, speak and write about travel and tourism while exploring contemporary life in Italian-speaking communities"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "unit-6-global-contexts",
+       "title": "Unit 6: Global Contexts",
+       "subtopics": [
+        {
+         "id": "global-communication",
+         "title": "Global Communication",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Use Italian to read, listen, speak and write about global communication while exploring global issues and the role of individuals and communities"
+          }
+         ]
+        },
+        {
+         "id": "natural-world",
+         "title": "Natural World",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Use Italian to read, listen, speak and write about natural world while exploring global issues and the role of individuals and communities"
+          }
+         ]
+        },
+        {
+         "id": "history",
+         "title": "History",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Use Italian to read, listen, speak and write about history while exploring global issues and the role of individuals and communities"
+          }
+         ]
+        },
+        {
+         "id": "policy-and-planning",
+         "title": "Policy and Planning",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Use Italian to read, listen, speak and write about policy and planning while exploring global issues and the role of individuals and communities"
+          }
+         ]
+        },
+        {
+         "id": "transportation",
+         "title": "Transportation",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Use Italian to read, listen, speak and write about transportation while exploring global issues and the role of individuals and communities"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "build": {
+  "builtAt": "2026-10-14T10:00:53.308Z",
+  "model": "claude-agent",
+  "usd": 0,
+  "expectedCodes": 37,
+  "coverage": 1,
+  "missingCodes": [],
+  "counts": {
+   "grades": 1,
+   "units": 4,
+   "topics": 14,
+   "subtopics": 36,
+   "outcomes": 65
+  },
+  "warnings": [
+   "grade 9 has no content",
+   "grade 10 has no content",
+   "grade 11 has no content",
+   "grade 12 has no content",
+   "unexpected grade label \"all\""
+  ]
+ }
+}

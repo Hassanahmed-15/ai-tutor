@@ -1,0 +1,191 @@
+{
+ "id": "cie-lowersec-music-0078",
+ "region": "INTL",
+ "framework": "Cambridge Lower Secondary Music curriculum framework (0078)",
+ "board": "Cambridge",
+ "qualification": "Lower Secondary",
+ "subject": "Music",
+ "syllabusCode": "0078",
+ "gradeSystem": "stage",
+ "source": {
+  "urls": [
+   "https://www.cambridgeinternational.org/Images/554153-cambridge-lower-secondary-curriculum-outline-music.pdf",
+   "https://www.cambridgeinternational.org/programmes-and-qualifications/cambridge-lower-secondary/curriculum/music/"
+  ],
+  "publisher": "Cambridge University Press & Assessment (Cambridge International Education)",
+  "licence": "© Cambridge University Press & Assessment; structure + our own wording only",
+  "firstExam": null
+ },
+ "grades": [
+  {
+   "grade": "7",
+   "units": [
+    {
+     "id": "making-music",
+     "title": "Making music",
+     "topics": [
+      {
+       "id": "composing-and-improvising",
+       "title": "Composing and improvising",
+       "subtopics": [
+        {
+         "id": "composing-and-improvising",
+         "title": "Composing and improvising",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Contribute to coherent, successful compositions and improvisations using sounds from many sources."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "making-sense-of-music",
+     "title": "Making sense of music",
+     "topics": [
+      {
+       "id": "styles-genres-and-context",
+       "title": "Styles, genres and context",
+       "subtopics": [
+        {
+         "id": "style-and-context",
+         "title": "Style and context",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Begin to spot features of particular styles, genres and traditions and link them to their setting."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "8",
+   "units": [
+    {
+     "id": "making-music",
+     "title": "Making music",
+     "topics": [
+      {
+       "id": "composing-and-improvising",
+       "title": "Composing and improvising",
+       "subtopics": [
+        {
+         "id": "composing-and-improvising",
+         "title": "Composing and improvising",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Contribute to coherent, successful compositions and improvisations using sounds from many sources."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "making-sense-of-music",
+     "title": "Making sense of music",
+     "topics": [
+      {
+       "id": "styles-genres-and-context",
+       "title": "Styles, genres and context",
+       "subtopics": [
+        {
+         "id": "style-and-context",
+         "title": "Style and context",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Begin to spot features of particular styles, genres and traditions and link them to their setting."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "9",
+   "units": [
+    {
+     "id": "making-music",
+     "title": "Making music",
+     "topics": [
+      {
+       "id": "composing-and-improvising",
+       "title": "Composing and improvising",
+       "subtopics": [
+        {
+         "id": "composing-and-improvising",
+         "title": "Composing and improvising",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Improvise and compose using a range of musical structures and devices, with growing independence."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "making-sense-of-music",
+     "title": "Making sense of music",
+     "topics": [
+      {
+       "id": "styles-genres-and-context",
+       "title": "Styles, genres and context",
+       "subtopics": [
+        {
+         "id": "style-and-context",
+         "title": "Style and context",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Identify, explain and demonstrate how specific musical features relate to their context."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "build": {
+  "builtAt": "2026-10-14T09:29:47.805Z",
+  "model": "claude-agent",
+  "usd": 0,
+  "expectedCodes": null,
+  "coverage": null,
+  "missingCodes": [],
+  "counts": {
+   "grades": 3,
+   "units": 6,
+   "topics": 6,
+   "subtopics": 6,
+   "outcomes": 6
+  },
+  "warnings": [
+   "unit \"Making music\" (grade 7) has a single outcome",
+   "unit \"Making sense of music\" (grade 7) has a single outcome",
+   "unit \"Making music\" (grade 8) has a single outcome",
+   "unit \"Making sense of music\" (grade 8) has a single outcome",
+   "unit \"Making music\" (grade 9) has a single outcome",
+   "unit \"Making sense of music\" (grade 9) has a single outcome"
+  ]
+ }
+}

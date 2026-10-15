@@ -1,0 +1,1374 @@
+{
+ "id": "us-mt-science",
+ "region": "US",
+ "framework": "Montana state academic standards: Science",
+ "board": null,
+ "qualification": "K-12",
+ "subject": "Science",
+ "syllabusCode": null,
+ "gradeSystem": "grade",
+ "source": {
+  "urls": [
+   "https://api.commonstandardsproject.com/api/v1/jurisdictions/7FAA3E0A782B498DB5E5EA255681706C",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/7FAA3E0A782B498DB5E5EA255681706C_D2765540_grade-01",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/7FAA3E0A782B498DB5E5EA255681706C_D2765540_grade-02",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/7FAA3E0A782B498DB5E5EA255681706C_D2765540_grade-03",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/7FAA3E0A782B498DB5E5EA255681706C_D2765540_grade-04",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/7FAA3E0A782B498DB5E5EA255681706C_D2765540_grade-05",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/7FAA3E0A782B498DB5E5EA255681706C_D2765540_grades-06-07-08",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/7FAA3E0A782B498DB5E5EA255681706C_D2765540_grades-09-10-11-12",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/7FAA3E0A782B498DB5E5EA255681706C_D2765540_grade-k"
+  ],
+  "publisher": "Montana state education agency (machine-readable via Common Standards Project / ASN)",
+  "licence": "CC BY 3.0 US, D2L Corporation",
+  "firstExam": "2016"
+ },
+ "grades": [
+  {
+   "grade": "K",
+   "units": [
+    {
+     "id": "physical-science",
+     "title": "Physical Science",
+     "topics": [
+      {
+       "id": "physical-science",
+       "title": "Physical Science",
+       "subtopics": [
+        {
+         "id": "physical-science",
+         "title": "Physical Science",
+         "outcomes": [
+          {
+           "code": "PS.K.1",
+           "text": "Plan and conduct an investigation to compare the effects of different strengths or different directions of pushes and pulls on the motion of an object."
+          },
+          {
+           "code": "PS.K.2",
+           "text": "Analyze data to determine whether a design solution works as intended to change the speed or direction of an object with a push or a pull."
+          },
+          {
+           "code": "PS.K.3",
+           "text": "Construct an explanation based on observations of the effect of sunlight on earth's surface."
+          },
+          {
+           "code": "PS.K.4",
+           "text": "Use tools and materials to design and build a structure to reduce the warming effect of sunlight on an area."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "life-science",
+     "title": "Life Science",
+     "topics": [
+      {
+       "id": "life-science",
+       "title": "Life Science",
+       "subtopics": [
+        {
+         "id": "life-science",
+         "title": "Life Science",
+         "outcomes": [
+          {
+           "code": "LS.K.1",
+           "text": "Use observations to describe patterns of what plants and animals, including humans, need to survive."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "earth-and-space-science",
+     "title": "Earth and Space Science",
+     "topics": [
+      {
+       "id": "earth-and-space-science",
+       "title": "Earth and Space Science",
+       "subtopics": [
+        {
+         "id": "earth-and-space-science",
+         "title": "Earth and Space Science",
+         "outcomes": [
+          {
+           "code": "ESS.K.1",
+           "text": "Construct an argument supported by evidence for how plants and animals, including humans, can change the environment to meet their needs."
+          },
+          {
+           "code": "ESS.K.2",
+           "text": "Use a model to represent the relationship between the needs of different plants or animals, including humans, and the places they live."
+          },
+          {
+           "code": "ESS.K.3",
+           "text": "Communicate ideas about the impact of humans on the land, water, air, or other living things in the local environment."
+          },
+          {
+           "code": "ESS.K.4",
+           "text": "Use and share observations of local weather conditions to describe patterns over time."
+          },
+          {
+           "code": "ESS.K.5",
+           "text": "Ask questions to obtain information about the purpose of weather forecasting to predict, prepare for, and respond to weather."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "1",
+   "units": [
+    {
+     "id": "physical-science",
+     "title": "Physical Science",
+     "topics": [
+      {
+       "id": "physical-science",
+       "title": "Physical Science",
+       "subtopics": [
+        {
+         "id": "physical-science",
+         "title": "Physical Science",
+         "outcomes": [
+          {
+           "code": "PS.1.1",
+           "text": "Plan and conduct investigations to provide evidence that vibrating materials can make sound and that sound can cause materials to vibrate."
+          },
+          {
+           "code": "PS.1.2",
+           "text": "Make observations to construct an evidence-based explanation that objects can be seen only when illuminated."
+          },
+          {
+           "code": "PS.1.3",
+           "text": "Plan and conduct an investigation to determine the effect of placing objects made with different materials in the path of a beam of light."
+          },
+          {
+           "code": "PS.1.4",
+           "text": "Design a solution or build a device that facilitates communication over distance using light or sound."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "life-science",
+     "title": "Life Science",
+     "topics": [
+      {
+       "id": "life-science",
+       "title": "Life Science",
+       "subtopics": [
+        {
+         "id": "life-science",
+         "title": "Life Science",
+         "outcomes": [
+          {
+           "code": "LS.1.1",
+           "text": "Use materials to design a solution to a human problem by mimicking plant and animal structures and functions that help them survive, grow, and meet their needs."
+          },
+          {
+           "code": "LS.1.2",
+           "text": "Use information from print and other media to identify patterns in behavior of parents and offspring that help offspring survive."
+          },
+          {
+           "code": "LS.1.3",
+           "text": "Make an evidence-based explanation of how young plants and animals are like, but not exactly like, their parents."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "earth-and-space-science",
+     "title": "Earth and Space Science",
+     "topics": [
+      {
+       "id": "earth-and-space-science",
+       "title": "Earth and Space Science",
+       "subtopics": [
+        {
+         "id": "earth-and-space-science",
+         "title": "Earth and Space Science",
+         "outcomes": [
+          {
+           "code": "ESS.1.1",
+           "text": "Use observations of the sun, moon, and stars to describe patterns that can be predicted."
+          },
+          {
+           "code": "ESS.1.2",
+           "text": "Make observations at different times of year to relate the amount of daylight to the time of year."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "2",
+   "units": [
+    {
+     "id": "physical-science",
+     "title": "Physical Science",
+     "topics": [
+      {
+       "id": "physical-science",
+       "title": "Physical Science",
+       "subtopics": [
+        {
+         "id": "physical-science",
+         "title": "Physical Science",
+         "outcomes": [
+          {
+           "code": "PS.2.1",
+           "text": "Plan and conduct an investigation to describe and classify various materials by their observable properties."
+          },
+          {
+           "code": "PS.2.2",
+           "text": "Conduct an investigation and analyze data to determine which materials have the properties best suited for an intended purpose."
+          },
+          {
+           "code": "PS.2.3",
+           "text": "Make observations to construct an evidence-based claim of how an object made of a small set of pieces can be disassembled and made into a new object."
+          },
+          {
+           "code": "PS.2.4",
+           "text": "Construct an argument with evidence that some changes caused by heating or cooling can be reversed and some cannot."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "life-science",
+     "title": "Life Science",
+     "topics": [
+      {
+       "id": "life-science",
+       "title": "Life Science",
+       "subtopics": [
+        {
+         "id": "life-science",
+         "title": "Life Science",
+         "outcomes": [
+          {
+           "code": "LS.2.1",
+           "text": "Plan and conduct a cause and effect investigation to determine whether plants need sunlight and water to grow."
+          },
+          {
+           "code": "LS.2.2",
+           "text": "Develop a simple model that mimics the structure and function of an animal in dispersing seeds or pollinating plants."
+          },
+          {
+           "code": "LS.2.3",
+           "text": "Make observations of plants and animals to compare and contrast the diversity of life in different habitats."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "earth-and-space-science",
+     "title": "Earth and Space Science",
+     "topics": [
+      {
+       "id": "earth-and-space-science",
+       "title": "Earth and Space Science",
+       "subtopics": [
+        {
+         "id": "earth-and-space-science",
+         "title": "Earth and Space Science",
+         "outcomes": [
+          {
+           "code": "ESS.2.1",
+           "text": "Use information from several sources to provide evidence that Earth events can occur quickly or slowly."
+          },
+          {
+           "code": "ESS.2.2",
+           "text": "Construct explanations to compare multiple physical and naturally built designs which impact wind or water's effect on the shape of the land."
+          },
+          {
+           "code": "ESS.2.3",
+           "text": "Develop models to represent the shapes and kinds of land and bodies of water in an area."
+          },
+          {
+           "code": "ESS.2.4",
+           "text": "Obtain information to identify where water is found on Earth and that water can be solid, liquid, or gas."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "3",
+   "units": [
+    {
+     "id": "physical-science",
+     "title": "Physical Science",
+     "topics": [
+      {
+       "id": "physical-science",
+       "title": "Physical Science",
+       "subtopics": [
+        {
+         "id": "physical-science",
+         "title": "Physical Science",
+         "outcomes": [
+          {
+           "code": "PS.3.1",
+           "text": "Plan and conduct an investigation to provide evidence of the effects of balanced and unbalanced forces on the motion of an object."
+          },
+          {
+           "code": "PS.3.2",
+           "text": "Observe and record qualitative and quantitative data about an object's motion to provide evidence that a pattern can be used to predict future motion."
+          },
+          {
+           "code": "PS.3.3",
+           "text": "Ask questions to determine cause and effect relationships of electric or magnetic interactions between two objects not in contact with each other."
+          },
+          {
+           "code": "PS.3.4",
+           "text": "Define a simple design problem that can be solved by applying scientific ideas about magnets."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "life-science",
+     "title": "Life Science",
+     "topics": [
+      {
+       "id": "life-science",
+       "title": "Life Science",
+       "subtopics": [
+        {
+         "id": "life-science-1-of-2",
+         "title": "Life Science (1 of 2)",
+         "outcomes": [
+          {
+           "code": "LS.3.1",
+           "text": "Construct an argument with evidence that in a particular habitat some organisms can survive well, some survive less well, and some cannot survive at all."
+          },
+          {
+           "code": "LS.3.2",
+           "text": "Make a claim about the effectiveness of a solution to a problem caused when the environment changes and that the types of plants and animals that live there may change."
+          },
+          {
+           "code": "LS.3.3",
+           "text": "Construct a cause and effect argument communicating some animals, including humans, form groups and communities that help members survive."
+          },
+          {
+           "code": "LS.3.4",
+           "text": "Analyze and interpret data from fossils to provide evidence of the organisms and the environments in which they lived long ago."
+          }
+         ]
+        },
+        {
+         "id": "life-science-2-of-2",
+         "title": "Life Science (2 of 2)",
+         "outcomes": [
+          {
+           "code": "LS.3.5",
+           "text": "Develop models to describe that organisms have unique and diverse life cycles but all have in common birth, growth, reproduction, and death."
+          },
+          {
+           "code": "LS.3.6",
+           "text": "Analyze and interpret data to provide evidence that plants and animals have traits inherited from parents and that variation of these traits exists in a group of similar organisms."
+          },
+          {
+           "code": "LS.3.7",
+           "text": "Use evidence to support the explanation that traits can be influenced by the environment."
+          },
+          {
+           "code": "LS.3.8",
+           "text": "Use evidence to construct an explanation for how the variations in characteristics among individuals of the same species may provide advantages in surviving, finding mates, and reproducing."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "earth-and-space-science",
+     "title": "Earth and Space Science",
+     "topics": [
+      {
+       "id": "earth-and-space-science",
+       "title": "Earth and Space Science",
+       "subtopics": [
+        {
+         "id": "earth-and-space-science",
+         "title": "Earth and Space Science",
+         "outcomes": [
+          {
+           "code": "ESS.3.1",
+           "text": "Obtain and represent data using tables and graphical displays to describe observed and predicted weather conditions during a particular season."
+          },
+          {
+           "code": "ESS.3.2",
+           "text": "Obtain and combine information to describe climate patterns in different regions of the world."
+          },
+          {
+           "code": "ESS.3.3",
+           "text": "Make a claim based on information about the merit of a design solution that reduces the impacts of a weather-related hazard."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "4",
+   "units": [
+    {
+     "id": "physical-science",
+     "title": "Physical Science",
+     "topics": [
+      {
+       "id": "physical-science",
+       "title": "Physical Science",
+       "subtopics": [
+        {
+         "id": "physical-science-1-of-2",
+         "title": "Physical Science (1 of 2)",
+         "outcomes": [
+          {
+           "code": "PS.4.1",
+           "text": "Use evidence to describe the relationship between the speed of an object and the energy of that object."
+          },
+          {
+           "code": "PS.4.2",
+           "text": "Make observations to provide evidence of transfer of energy from place to place by sound, light, heat, and electric currents."
+          },
+          {
+           "code": "PS.4.3",
+           "text": "Ask questions and predict outcomes about the changes in energy that occur when objects collide."
+          },
+          {
+           "code": "PS.4.4",
+           "text": "Apply scientific ideas to design, test, and refine a device that converts energy from one form to another."
+          }
+         ]
+        },
+        {
+         "id": "physical-science-2-of-2",
+         "title": "Physical Science (2 of 2)",
+         "outcomes": [
+          {
+           "code": "PS.4.5",
+           "text": "Develop a model of waves to describe patterns in terms of amplitude and wavelength and that waves can cause objects to move."
+          },
+          {
+           "code": "PS.4.6",
+           "text": "Develop a model communicating that light reflected from objects into the eye allows objects to be seen."
+          },
+          {
+           "code": "PS.4.7",
+           "text": "Generate and compare multiple solutions that use patterns to transfer information."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "life-science",
+     "title": "Life Science",
+     "topics": [
+      {
+       "id": "life-science",
+       "title": "Life Science",
+       "subtopics": [
+        {
+         "id": "life-science",
+         "title": "Life Science",
+         "outcomes": [
+          {
+           "code": "LS.4.1",
+           "text": "Construct an argument that plants and animals have internal and external structures that function to support survival, growth, behavior, and reproduction."
+          },
+          {
+           "code": "LS.4.2",
+           "text": "Use a model to describe that animals receive different types of information through their senses, process the information in their brain, and respond to the information in different ways."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "earth-and-space-science",
+     "title": "Earth and Space Science",
+     "topics": [
+      {
+       "id": "earth-and-space-science",
+       "title": "Earth and Space Science",
+       "subtopics": [
+        {
+         "id": "earth-and-space-science",
+         "title": "Earth and Space Science",
+         "outcomes": [
+          {
+           "code": "ESS.4.1",
+           "text": "Obtain and combine information from a variety of sources to communicate that energy and fuels are derived from natural resources and their uses affect the environment."
+          },
+          {
+           "code": "ESS.4.2",
+           "text": "Identify evidence from patterns in rock formations and fossils in rock layers to support an explanation for changes in a landscape over time."
+          },
+          {
+           "code": "ESS.4.3",
+           "text": "Make observations or measurements to provide evidence of the effects of weathering or the rate of erosion by water, ice, wind, or vegetation."
+          },
+          {
+           "code": "ESS.4.4",
+           "text": "Analyze and interpret data from maps as evidence to make a claim about patterns of Earth's features."
+          },
+          {
+           "code": "ESS.4.5",
+           "text": "Generate and compare multiple solutions to reduce the impacts of natural Earth processes on humans."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "5",
+   "units": [
+    {
+     "id": "physical-science",
+     "title": "Physical Science",
+     "topics": [
+      {
+       "id": "physical-science",
+       "title": "Physical Science",
+       "subtopics": [
+        {
+         "id": "physical-science",
+         "title": "Physical Science",
+         "outcomes": [
+          {
+           "code": "PS.5.1",
+           "text": "Develop a model to communicate that matter is made of particles too small to be seen."
+          },
+          {
+           "code": "PS.5.2",
+           "text": "Measure and graph quantities to provide evidence that the total mass of matter is conserved regardless of the type of change that occurs when heating, cooling, or mixing substances."
+          },
+          {
+           "code": "PS.5.3",
+           "text": "Observe and record qualitative and quantitative evidence to support identification of materials based on their properties."
+          },
+          {
+           "code": "PS.5.4",
+           "text": "Conduct an investigation that produces quantitative and qualitative data to analyze whether the mixing of two or more substances results in new substances."
+          },
+          {
+           "code": "PS.5.5",
+           "text": "Use models to describe that energy in animals' food was once energy from the sun."
+          },
+          {
+           "code": "PS.5.6",
+           "text": "Support an argument that the gravitational force exerted by Earth on objects is directed toward the center of the Earth."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "life-science",
+     "title": "Life Science",
+     "topics": [
+      {
+       "id": "life-science",
+       "title": "Life Science",
+       "subtopics": [
+        {
+         "id": "life-science",
+         "title": "Life Science",
+         "outcomes": [
+          {
+           "code": "LS.5.1",
+           "text": "Support an argument that plants get the materials they need for growth chiefly from air and water."
+          },
+          {
+           "code": "LS.5.2",
+           "text": "Develop and critique a model to describe the movement of matter among plants, animals, decomposers, and the environment."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "earth-and-space-science",
+     "title": "Earth and Space Science",
+     "topics": [
+      {
+       "id": "earth-and-space-science",
+       "title": "Earth and Space Science",
+       "subtopics": [
+        {
+         "id": "earth-and-space-science",
+         "title": "Earth and Space Science",
+         "outcomes": [
+          {
+           "code": "ESS.5.1",
+           "text": "Develop a model using an example to describe ways the geosphere, biosphere, hydrosphere, or atmosphere interact."
+          },
+          {
+           "code": "ESS.5.2",
+           "text": "Graph and explain the proportion and quantities of water and fresh water in various natural and human-made reservoirs to provide evidence about the distribution of water on Earth."
+          },
+          {
+           "code": "ESS.5.3",
+           "text": "Obtain and combine information from various sources about ways individual communities use science ideas to protect the Earth's resources, environment, and systems and describe examples of how American Indians use scientific knowledge and practices to maintain relationships with the natural world."
+          },
+          {
+           "code": "ESS.5.4",
+           "text": "Use evidence or models to support the claim that differences in the apparent brightness of the sun compared to other stars is due to their relative distances from Earth."
+          },
+          {
+           "code": "ESS.5.5",
+           "text": "Graph the daily changes in the length, shape, and direction of shadows; lengths of day and night; and the seasonal appearance of select stars to communicate the patterns of the Earth's movement and describe how astronomical knowledge is used by American Indians."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "6-8",
+   "units": [
+    {
+     "id": "physical-science",
+     "title": "Physical Science",
+     "topics": [
+      {
+       "id": "physical-science",
+       "title": "Physical Science",
+       "subtopics": [
+        {
+         "id": "physical-science-1-of-4",
+         "title": "Physical Science (1 of 4)",
+         "outcomes": [
+          {
+           "code": "PS.6-8.1",
+           "text": "Develop and critique models that describe the atomic composition of simple molecules and extended structures."
+          },
+          {
+           "code": "PS.6-8.2",
+           "text": "Analyze and interpret data on the properties of substances before and after the substances interact to determine if a chemical reaction has occurred."
+          },
+          {
+           "code": "PS.6-8.3",
+           "text": "Gather information to describe that synthetic materials come from natural resources and impact society."
+          },
+          {
+           "code": "PS.6-8.4",
+           "text": "Develop a model that predicts and describes changes in particle motion, temperature, and state of a pure substance when thermal energy is added or removed."
+          },
+          {
+           "code": "PS.6-8.5",
+           "text": "Develop, use, and critique a model to describe how the total number of atoms does not change in a chemical reaction and thus mass is conserved."
+          }
+         ]
+        },
+        {
+         "id": "physical-science-2-of-4",
+         "title": "Physical Science (2 of 4)",
+         "outcomes": [
+          {
+           "code": "PS.6-8.6",
+           "text": "Undertake a design project to construct, test, and modify a device that either releases or absorbs thermal energy by chemical processes."
+          },
+          {
+           "code": "PS.6-8.7",
+           "text": "Apply Newton's Third Law of Motion to design a solution to a problem involving the motion of two colliding objects."
+          },
+          {
+           "code": "PS.6-8.8",
+           "text": "Plan an investigation to provide evidence that the change in an object's motion depends on the sum of the forces on the object and the mass of the object."
+          },
+          {
+           "code": "PS.6-8.9",
+           "text": "Ask questions about data to determine the factors affecting electric and magnetic force strengths."
+          },
+          {
+           "code": "PS.6-8.10",
+           "text": "Construct and present arguments using evidence to support the claim that gravitational interactions are attractive and depend on the mass of interacting objects."
+          }
+         ]
+        },
+        {
+         "id": "physical-science-3-of-4",
+         "title": "Physical Science (3 of 4)",
+         "outcomes": [
+          {
+           "code": "PS.6-8.11",
+           "text": "Design and conduct an investigation to provide evidence that fields exist between objects exerting forces on each other even though the objects are not in contact."
+          },
+          {
+           "code": "PS.6-8.12",
+           "text": "Construct and interpret graphic displays of data to describe the relationships of kinetic energy to the mass of an object and to the speed of an object."
+          },
+          {
+           "code": "PS.6-8.13",
+           "text": "Develop and critique models to describe that when the arrangement of objects interacting at a distance changes, different amounts of potential energy are stored in the system."
+          },
+          {
+           "code": "PS.6-8.14",
+           "text": "Apply scientific principles to design, construct, and test a device that minimizes or maximizes thermal energy transfer."
+          },
+          {
+           "code": "PS.6-8.15",
+           "text": "Plan an investigation to determine the relationships among the energy transferred, the type of matter, the mass, and the change in the average kinetic energy of the particles as measured by the temperature of the sample."
+          }
+         ]
+        },
+        {
+         "id": "physical-science-4-of-4",
+         "title": "Physical Science (4 of 4)",
+         "outcomes": [
+          {
+           "code": "PS.6-8.16",
+           "text": "Construct, use, and present arguments to support the claim that when the kinetic energy of an object changes, energy is transferred to or from the object."
+          },
+          {
+           "code": "PS.6-8.17",
+           "text": "Use mathematical representations to describe a simple model for waves that includes how the amplitude and wavelength of a wave is related to the energy in a wave."
+          },
+          {
+           "code": "PS.6-8.18",
+           "text": "Develop and use a model to describe that waves are reflected, absorbed, or transmitted through various materials."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "life-science",
+     "title": "Life Science",
+     "topics": [
+      {
+       "id": "life-science",
+       "title": "Life Science",
+       "subtopics": [
+        {
+         "id": "life-science-1-of-4",
+         "title": "Life Science (1 of 4)",
+         "outcomes": [
+          {
+           "code": "LS.6-8.1",
+           "text": "Conduct an investigation to provide evidence that living things are made of cells, either one cell or many different numbers and types of cells."
+          },
+          {
+           "code": "LS.6-8.2",
+           "text": "Develop and use a model to describe the structure and function of a cell as a whole and ways parts of cells contribute to the function."
+          },
+          {
+           "code": "LS.6-8.3",
+           "text": "Use argument supported by evidence for how the body is a system of interacting subsystems composed of groups of cells."
+          },
+          {
+           "code": "LS.6-8.4",
+           "text": "Construct a scientific explanation based on evidence for the role of photosynthesis in the cycling of matter and flow of energy into and out of organisms."
+          },
+          {
+           "code": "LS.6-8.5",
+           "text": "Develop a model to describe how food is rearranged through chemical reactions forming new molecules that support growth, release energy, or both, as this matter moves through an organism."
+          }
+         ]
+        },
+        {
+         "id": "life-science-2-of-4",
+         "title": "Life Science (2 of 4)",
+         "outcomes": [
+          {
+           "code": "LS.6-8.6",
+           "text": "Analyze and interpret data to provide evidence for the effects of resource availability on organisms and populations of organisms in an ecosystem and analyze scientific concepts used by American Indians to maintain healthy relationships with environmental sources."
+          },
+          {
+           "code": "LS.6-8.7",
+           "text": "Develop a model to describe the cycling of matter and flow of energy among living and nonliving parts of an ecosystem."
+          },
+          {
+           "code": "LS.6-8.8",
+           "text": "Construct an explanation that predicts patterns of interactions among organisms across multiple ecosystems."
+          },
+          {
+           "code": "LS.6-8.9",
+           "text": "Evaluate competing design solutions for maintaining biodiversity and ecosystem services."
+          },
+          {
+           "code": "LS.6-8.10",
+           "text": "Use argument based on empirical evidence and scientific reasoning to support an explanation for how characteristic animal behaviors and specialized plant structures affect the probability of successful reproduction of animals and plants respectively."
+          }
+         ]
+        },
+        {
+         "id": "life-science-3-of-4",
+         "title": "Life Science (3 of 4)",
+         "outcomes": [
+          {
+           "code": "LS.6-8.11",
+           "text": "Construct a scientific explanation based on evidence for how environmental and genetic factors influence the growth and development of organisms."
+          },
+          {
+           "code": "LS.6-8.12",
+           "text": "Develop and use a model to describe why structural changes to genes, such as mutations, may affect proteins and may result in harmful, beneficial, or neutral effects to the structure and function of the organism."
+          },
+          {
+           "code": "LS.6-8.13",
+           "text": "Develop and use a model to describe why asexual reproduction results in offspring with identical genetic information and sexual reproduction results in offspring with genetic variation."
+          },
+          {
+           "code": "LS.6-8.14",
+           "text": "Gather and synthesize information about the technologies that have changed the way humans influence the inheritance of desired traits in organisms."
+          },
+          {
+           "code": "LS.6-8.15",
+           "text": "Analyze and interpret data for patterns in the fossil record that document the existence, diversity, extinction, and change of life forms throughout the history of life on Earth under the assumption that natural laws operate today as in the past."
+          }
+         ]
+        },
+        {
+         "id": "life-science-4-of-4",
+         "title": "Life Science (4 of 4)",
+         "outcomes": [
+          {
+           "code": "LS.6-8.16",
+           "text": "Apply scientific ideas to construct an explanation for the anatomical similarities and differences among modern organisms and between modern and fossil organisms to infer evolutionary relationships."
+          },
+          {
+           "code": "LS.6-8.17",
+           "text": "Analyze displays of pictorial data to compare patterns of similarities in the embryological development across multiple species to identify relationships not evident in the fully formed anatomy."
+          },
+          {
+           "code": "LS.6-8.18",
+           "text": "Construct an explanation based on evidence that describes how genetic variations of traits in a population increase some individuals' probability of surviving and reproducing in a specific environment."
+          },
+          {
+           "code": "LS.6-8.19",
+           "text": "Use mathematical representations to support explanations of how natural selection may lead to increases and decreases of specific traits in populations over time."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "earth-and-space-science",
+     "title": "Earth and Space Science",
+     "topics": [
+      {
+       "id": "earth-and-space-science",
+       "title": "Earth and Space Science",
+       "subtopics": [
+        {
+         "id": "earth-and-space-science-1-of-3",
+         "title": "Earth and Space Science (1 of 3)",
+         "outcomes": [
+          {
+           "code": "ESS.6-8.1",
+           "text": "Develop and use a model of the Earth-sun-moon system to describe the cyclic patterns of lunar phases, eclipses of the sun and moon, and seasons."
+          },
+          {
+           "code": "ESS.6-8.2",
+           "text": "Develop and use a model to describe the role of gravity in the motions within galaxies and the solar system."
+          },
+          {
+           "code": "ESS.6-8.3",
+           "text": "Analyze and interpret data to determine scale properties of objects in the solar system."
+          },
+          {
+           "code": "ESS.6-8.4",
+           "text": "Construct a scientific explanation based on evidence from rock strata for how the geologic time scale is used to organize Earth's 4.6 billion-year-old history."
+          },
+          {
+           "code": "ESS.6-8.5",
+           "text": "Construct an explanation based on evidence for how geoscience processes have changed Earth's surface at varying time scales and spatial scales."
+          }
+         ]
+        },
+        {
+         "id": "earth-and-space-science-2-of-3",
+         "title": "Earth and Space Science (2 of 3)",
+         "outcomes": [
+          {
+           "code": "ESS.6-8.6",
+           "text": "Analyze and interpret data on the distribution of fossils and rocks, continental shapes, and seafloor structures to provide evidence of the past plate motions."
+          },
+          {
+           "code": "ESS.6-8.7",
+           "text": "Develop a model to describe the cycling of earth's materials and the flow of energy that drives this process."
+          },
+          {
+           "code": "ESS.6-8.8",
+           "text": "Develop a model to describe the cycling of water through Earth's systems driven by energy from the sun and the force of gravity."
+          },
+          {
+           "code": "ESS.6-8.9",
+           "text": "Construct a scientific explanation based on evidence for how the uneven distributions of Earth's mineral, energy, and groundwater resources are the result of past and current geoscience processes."
+          },
+          {
+           "code": "ESS.6-8.10",
+           "text": "Collect data to provide evidence for how the motions and complex interactions of air masses result in changes in weather conditions."
+          }
+         ]
+        },
+        {
+         "id": "earth-and-space-science-3-of-3",
+         "title": "Earth and Space Science (3 of 3)",
+         "outcomes": [
+          {
+           "code": "ESS.6-8.11",
+           "text": "Develop and use a model to describe how unequal heating and rotation of the Earth cause patterns of atmospheric and oceanic circulation that determine regional climates."
+          },
+          {
+           "code": "ESS.6-8.12",
+           "text": "Ask questions to clarify evidence of the factors that have caused the rise in global temperatures over the past century."
+          },
+          {
+           "code": "ESS.6-8.13",
+           "text": "Analyze and interpret data on natural hazards to forecast future catastrophic events and inform the development of technologies to mitigate their effects."
+          },
+          {
+           "code": "ESS.6-8.14",
+           "text": "Apply scientific principles to design a method for monitoring and minimizing a human impact on the environment."
+          },
+          {
+           "code": "ESS.6-8.15",
+           "text": "Construct an argument supported by evidence for how increases in human population and per-capita consumption of natural resources impact Earth's systems including indigenous populations."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "9-12",
+   "units": [
+    {
+     "id": "physical-science",
+     "title": "Physical Science",
+     "topics": [
+      {
+       "id": "physical-science",
+       "title": "Physical Science",
+       "subtopics": [
+        {
+         "id": "physical-science-1-of-5",
+         "title": "Physical Science (1 of 5)",
+         "outcomes": [
+          {
+           "code": "PS.9-12.1",
+           "text": "Use the periodic table as a model to predict the relative properties of elements based on the patterns of electrons in the outermost energy level of atoms."
+          },
+          {
+           "code": "PS.9-12.2",
+           "text": "Plan and conduct an investigation to gather evidence to compare the structure of substances at the bulk scale to infer the strength of electrical forces between particles."
+          },
+          {
+           "code": "PS.9-12.3",
+           "text": "Develop models to illustrate the changes in the composition of the nucleus of the atom and the energy released during the processes of fission, fusion, and radioactive decay."
+          },
+          {
+           "code": "PS.9-12.4",
+           "text": "Communicate through scientific and technical information roles of molecular-level structure in the functioning of designed materials."
+          },
+          {
+           "code": "PS.9-12.5",
+           "text": "Construct and revise an explanation for outcomes of simple chemical reactions based on outer electron states of atoms, trends in the periodic table, and patterns of chemical properties."
+          }
+         ]
+        },
+        {
+         "id": "physical-science-2-of-5",
+         "title": "Physical Science (2 of 5)",
+         "outcomes": [
+          {
+           "code": "PS.9-12.6",
+           "text": "Develop a model to illustrate that the release or absorption of energy from chemical reactions is dependent upon changes in total bond energy."
+          },
+          {
+           "code": "PS.9-12.7",
+           "text": "Apply scientific principles and evidence to provide an explanation about the effects of changing the temperature or concentration of the reacting particles on the rate at which a reaction occurs."
+          },
+          {
+           "code": "PS.9-12.8",
+           "text": "Refine the design of a chemical system by specifying changes in conditions that would alter the amount of products at equilibrium."
+          },
+          {
+           "code": "PS.9-12.9",
+           "text": "Use mathematical representations to support the claim that atoms, and therefore mass, are conserved during a chemical reaction."
+          },
+          {
+           "code": "PS.9-12.10",
+           "text": "Analyze data to support the claim that Newton's Second Law of Motion describes the mathematical relationship among the net force on a macroscopic object, its mass, and its acceleration."
+          }
+         ]
+        },
+        {
+         "id": "physical-science-3-of-5",
+         "title": "Physical Science (3 of 5)",
+         "outcomes": [
+          {
+           "code": "PS.9-12.11",
+           "text": "Use mathematical representations to demonstrate how total momentum of a system is conserved when there is no net force on the system."
+          },
+          {
+           "code": "PS.9-12.12",
+           "text": "Apply scientific and engineering ideas to design, evaluate, and refine a device that minimizes forces on an object during collisions."
+          },
+          {
+           "code": "PS.9-12.13",
+           "text": "Use a mathematical representation of Newton's Law of Gravitation and Coulomb's Law to explain gravitational and electrostatic forces between objects."
+          },
+          {
+           "code": "PS.9-12.14",
+           "text": "Plan and conduct investigations to provide evidence that electric currents can produce magnetic fields and changing magnetic fields can produce electric currents."
+          },
+          {
+           "code": "PS.9-12.15",
+           "text": "Create a computational model to calculate the change in the energy of one component in a system when the change in energy of the other component and energy flows in and out of the system are known."
+          }
+         ]
+        },
+        {
+         "id": "physical-science-4-of-5",
+         "title": "Physical Science (4 of 5)",
+         "outcomes": [
+          {
+           "code": "PS.9-12.16",
+           "text": "Develop and use models to illustrate that energy at the macroscopic scale can be accounted for as a combination of energy associated with the motions of particles and energy associated with the relative position of particles."
+          },
+          {
+           "code": "PS.9-12.17",
+           "text": "Design, build, and refine a device that works within given constraints to convert one form of energy into another form of energy."
+          },
+          {
+           "code": "PS.9-12.18",
+           "text": "Plan and conduct an investigation to provide evidence that the transfer of thermal energy when two components of different temperature are combined within a closed system results in a more uniform energy distribution among the components in the system."
+          },
+          {
+           "code": "PS.9-12.19",
+           "text": "Develop and use a model of two objects interacting through electric or magnetic fields to illustrate the forces between objects and the change in energy of the objects due to the interaction."
+          },
+          {
+           "code": "PS.9-12.20",
+           "text": "Use mathematical representations to support a claim regarding relationships among the frequency, amplitude, wavelength, and speed of waves traveling in various media."
+          }
+         ]
+        },
+        {
+         "id": "physical-science-5-of-5",
+         "title": "Physical Science (5 of 5)",
+         "outcomes": [
+          {
+           "code": "PS.9-12.21",
+           "text": "Evaluate the claims, evidence, and reasoning behind the idea that electromagnetic radiation can be described either by a wave model or a particle model, and that for some situations one model is more useful than the other."
+          },
+          {
+           "code": "PS.9-12.22",
+           "text": "Evaluate the validity and reliability of claims in published materials of the effects that different frequencies of electromagnetic radiation have when absorbed by matter."
+          },
+          {
+           "code": "PS.9-12.23",
+           "text": "Communicate technical information about how some technological devices use the principles of wave behavior and wave interactions with matter to transmit and capture information and energy."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "life-science",
+     "title": "Life Science",
+     "topics": [
+      {
+       "id": "life-science",
+       "title": "Life Science",
+       "subtopics": [
+        {
+         "id": "life-science-1-of-4",
+         "title": "Life Science (1 of 4)",
+         "outcomes": [
+          {
+           "code": "LS.9-12.1",
+           "text": "Construct an explanation based on evidence for how the structure of DNA determines the structure of proteins which carry out the essential functions of life through systems of specialized cells."
+          },
+          {
+           "code": "LS.9-12.2",
+           "text": "Develop and use a model to illustrate the organizational structure of interacting systems that provide specific functions within multicellular organisms."
+          },
+          {
+           "code": "LS.9-12.3",
+           "text": "Plan and conduct an investigation to provide evidence that feedback mechanisms maintain homeostasis."
+          },
+          {
+           "code": "LS.9-12.4",
+           "text": "Use a model to illustrate how photosynthesis transforms light energy into stored chemical energy."
+          },
+          {
+           "code": "LS.9-12.5",
+           "text": "Construct an explanation based on evidence from multiple sources for how carbon, hydrogen, nitrogen, oxygen, phosphorus, and sulfur may combine with other elements to form organic macromolecules with different structures and functions."
+          }
+         ]
+        },
+        {
+         "id": "life-science-2-of-4",
+         "title": "Life Science (2 of 4)",
+         "outcomes": [
+          {
+           "code": "LS.9-12.6",
+           "text": "Use a model to illustrate that cellular respiration is a chemical process whereby the bonds of food molecules and oxygen molecules are broken and the bonds in new compounds are formed resulting in a net transfer of energy."
+          },
+          {
+           "code": "LS.9-12.7",
+           "text": "Construct and revise an explanation based on evidence for the cycling of matter and flow of energy in aerobic and anaerobic conditions."
+          },
+          {
+           "code": "LS.9-12.8",
+           "text": "Use mathematical representations to support claims for the cycling of matter and flow of energy among organisms in an ecosystem."
+          },
+          {
+           "code": "LS.9-12.9",
+           "text": "Use mathematical or computational representations to support arguments about environmental factors that affect carrying capacity, biodiversity, and populations in ecosystems."
+          },
+          {
+           "code": "LS.9-12.10",
+           "text": "Evaluate the claims, evidence, and reasoning that the complex interactions in ecosystems maintain relatively consistent numbers and types of organisms in stable conditions, but changing conditions may result in a new ecosystem."
+          }
+         ]
+        },
+        {
+         "id": "life-science-3-of-4",
+         "title": "Life Science (3 of 4)",
+         "outcomes": [
+          {
+           "code": "LS.9-12.11",
+           "text": "Design, evaluate, and refine a solution for reducing the direct and indirect impacts of human activities on the environment and biodiversity and analyze scientific concepts used by American Indians to maintain healthy relationships with environmental resources."
+          },
+          {
+           "code": "LS.9-12.12",
+           "text": "Construct an explanation using evidence from multiple sources to describe the role of cellular division and differentiation in producing and maintaining complex organisms."
+          },
+          {
+           "code": "LS.9-12.13",
+           "text": "Make and defend a claim based on evidence from multiple sources that inheritable genetic variations may result from: new genetic combinations through meiosis viable errors occurring during replication mutations caused by environmental factors"
+          },
+          {
+           "code": "LS.9-12.14",
+           "text": "Apply concepts of statistics and probability to explain the variation and distribution of expressed traits in a population."
+          },
+          {
+           "code": "LS.9-12.15",
+           "text": "Evaluate and communicate scientific information about how common ancestry and biological evolution are supported by multiple lines of empirical evidence."
+          }
+         ]
+        },
+        {
+         "id": "life-science-4-of-4",
+         "title": "Life Science (4 of 4)",
+         "outcomes": [
+          {
+           "code": "LS.9-12.16",
+           "text": "Construct an explanation based on evidence that the process of evolution by natural selection primarily results from four factors: the potential for a species to increase in number the heritable genetic variation of individuals in a species due to mutation and sexual reproduction competition for limited resources the proliferation of those organisms that are better able to survive and reproduce in the environment"
+          },
+          {
+           "code": "LS.9-12.17",
+           "text": "Apply concepts of statistics and probability to support explanations that organisms with an advantageous heritable trait tend to increase in proportion to organisms lacking this trait."
+          },
+          {
+           "code": "LS.9-12.18",
+           "text": "Construct an explanation based on evidence for how natural selection leads to adaptation of populations over time."
+          },
+          {
+           "code": "LS.9-12.19",
+           "text": "Evaluate the evidence supporting claims that changes in environmental conditions may result in: changes in the number of individuals of some species the emergence of new species over time the extinction of other species investigate and explain American Indian perspectives on changes in environmental conditions and their impacts"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "earth-and-space-science",
+     "title": "Earth and Space Science",
+     "topics": [
+      {
+       "id": "earth-and-space-science",
+       "title": "Earth and Space Science",
+       "subtopics": [
+        {
+         "id": "earth-and-space-science-1-of-4",
+         "title": "Earth and Space Science (1 of 4)",
+         "outcomes": [
+          {
+           "code": "ESS.9-12.1",
+           "text": "Develop a model based on evidence to illustrate the life span of the sun and the role of nuclear fusion in the sun's core to release energy that eventually reaches Earth in the form of radiation."
+          },
+          {
+           "code": "ESS.9-12.2",
+           "text": "Construct an explanation of the Big Bang theory based on astronomical evidence of light spectra, motion of distant galaxies, and composition of matter in the universe."
+          },
+          {
+           "code": "ESS.9-12.3",
+           "text": "Communicate scientific ideas about the way stars, over their life cycle, produce elements."
+          },
+          {
+           "code": "ESS.9-12.4",
+           "text": "Use mathematical or computational representations to predict the motion of orbiting objects in the solar system."
+          },
+          {
+           "code": "ESS.9-12.5",
+           "text": "Evaluate evidence of the past and current movements of continental and oceanic crust and the theory of plate tectonics to explain the ages of crustal rocks."
+          }
+         ]
+        },
+        {
+         "id": "earth-and-space-science-2-of-4",
+         "title": "Earth and Space Science (2 of 4)",
+         "outcomes": [
+          {
+           "code": "ESS.9-12.6",
+           "text": "Apply scientific reasoning and evidence from ancient Earth materials, meteorites, and other planetary surfaces to construct an account of Earth's formation and early history."
+          },
+          {
+           "code": "ESS.9-12.7",
+           "text": "Develop a model to illustrate how earth's internal and surface processes operate at different spatial and time scales to form continental and ocean-floor features."
+          },
+          {
+           "code": "ESS.9-12.8",
+           "text": "Analyze geoscience data to make the claim that one change to Earth's surface can create feedbacks that cause changes to other earth systems."
+          },
+          {
+           "code": "ESS.9-12.9",
+           "text": "Develop a model based on evidence of Earth's interior to describe the cycling of matter by thermal convection."
+          },
+          {
+           "code": "ESS.9-12.10",
+           "text": "Plan and conduct an investigation of the properties of water and its effects on earth materials and surface processes."
+          }
+         ]
+        },
+        {
+         "id": "earth-and-space-science-3-of-4",
+         "title": "Earth and Space Science (3 of 4)",
+         "outcomes": [
+          {
+           "code": "ESS.9-12.11",
+           "text": "Develop a quantitative model to describe the cycling of carbon among the hydrosphere, atmosphere, geosphere, and biosphere."
+          },
+          {
+           "code": "ESS.9-12.12",
+           "text": "Construct an argument based on evidence about the simultaneous coevolution of Earth's systems and life on Earth."
+          },
+          {
+           "code": "ESS.9-12.13",
+           "text": "Use a model to describe how variations in the flow of energy into and out of Earth's systems result in changes in climate."
+          },
+          {
+           "code": "ESS.9-12.14",
+           "text": "Analyze geoscience data and the results from global climate models to make an evidence-based forecast of the current rate of global or regional climate change and associated future impacts to Earth systems."
+          },
+          {
+           "code": "ESS.9-12.15",
+           "text": "Construct an explanation based on evidence for how the availability of natural resources, occurrence of natural hazards, and changes in climate have influenced human activity."
+          }
+         ]
+        },
+        {
+         "id": "earth-and-space-science-4-of-4",
+         "title": "Earth and Space Science (4 of 4)",
+         "outcomes": [
+          {
+           "code": "ESS.9-12.16",
+           "text": "Evaluate competing design solutions for developing, managing, and utilizing energy and mineral resources based on cost-benefit ratios."
+          },
+          {
+           "code": "ESS.9-12.17",
+           "text": "Create a computational simulation to illustrate the relationships among management of natural resources, the sustainability of human populations, biodiversity, and investigate and explain how some American Indian tribes use scientific knowledge and practices in managing natural resources."
+          },
+          {
+           "code": "ESS.9-12.18",
+           "text": "Evaluate or refine a technological solution that reduces impacts of human activities on natural systems."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "build": {
+  "builtAt": "2026-10-14T16:20:45.615Z",
+  "model": "none",
+  "usd": 0,
+  "expectedCodes": 184,
+  "coverage": 1,
+  "missingCodes": [],
+  "counts": {
+   "grades": 8,
+   "units": 24,
+   "topics": 24,
+   "subtopics": 44,
+   "outcomes": 184
+  },
+  "warnings": [
+   "unit \"Life Science\" (grade K) has a single outcome"
+  ]
+ }
+}

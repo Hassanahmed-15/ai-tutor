@@ -1,0 +1,2837 @@
+{
+ "id": "us-il-social-studies",
+ "region": "US",
+ "framework": "Illinois state academic standards: Social Studies",
+ "board": null,
+ "qualification": "K-12",
+ "subject": "Social Studies",
+ "syllabusCode": null,
+ "gradeSystem": "grade",
+ "source": {
+  "urls": [
+   "https://api.commonstandardsproject.com/api/v1/jurisdictions/549159D28465455FB144F5B67F3ACDFF",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/1B6F69C1A67B4E5FA8E03F7773FE6482",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/66727AAF238C49F4B067EC2E8B34D1CD",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/549159D28465455FB144F5B67F3ACDFF_D21268982_grade-01",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/549159D28465455FB144F5B67F3ACDFF_D21268982_grade-02",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/549159D28465455FB144F5B67F3ACDFF_D21268982_grade-03",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/549159D28465455FB144F5B67F3ACDFF_D21268982_grade-04",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/549159D28465455FB144F5B67F3ACDFF_D21268982_grade-05",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/549159D28465455FB144F5B67F3ACDFF_D21268982_grades-06-07-08",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/549159D28465455FB144F5B67F3ACDFF_D21268982_grades-09-10-11-12",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/549159D28465455FB144F5B67F3ACDFF_D21268982_grade-k",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/741145EC19954DD6A01F98975FBF4E2E"
+  ],
+  "publisher": "Illinois state education agency (machine-readable via Common Standards Project / ASN)",
+  "licence": "CC BY 4.0 US, Common Curriculum, Inc.; CC BY 3.0 US, D2L Corporation",
+  "firstExam": "2022"
+ },
+ "grades": [
+  {
+   "grade": "K",
+   "units": [
+    {
+     "id": "inquiry",
+     "title": "Inquiry",
+     "topics": [
+      {
+       "id": "developing-questions-and-planning-inquiries",
+       "title": "Developing Questions and Planning Inquiries",
+       "subtopics": [
+        {
+         "id": "developing-questions-and-planning-inquiries",
+         "title": "Developing Questions and Planning Inquiries",
+         "outcomes": [
+          {
+           "code": "SS.K-2.IS.1",
+           "text": "Create questions that are relevant to self as they relate to the content of the Social Science Standards."
+          },
+          {
+           "code": "SS.K-2.IS.2",
+           "text": "With guidance and support, students will use varied teacher-selected resources to learn procedures to locate evidence that assists with finding answers to their questions. Introduce the importance of informational resources that are reliable and distinguish fact from opinion."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "evaluating-sources-and-using-evidence",
+       "title": "Evaluating Sources and Using Evidence",
+       "subtopics": [
+        {
+         "id": "evaluating-sources-and-using-evidence",
+         "title": "Evaluating Sources and Using Evidence",
+         "outcomes": [
+          {
+           "code": "SS.K-2.IS.3",
+           "text": "With guidance and support, gather relevant information from multiple sources to analyze information."
+          },
+          {
+           "code": "SS.K-2.IS.4",
+           "text": "With guidance and support, evaluate a source by distinguishing between fact and opinion."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "communicating-conclusions-and-taking-informed-ac",
+       "title": "Communicating Conclusions and Taking Informed Action",
+       "subtopics": [
+        {
+         "id": "communicating-conclusions-and-taking-informed-ac",
+         "title": "Communicating Conclusions and Taking Informed Action",
+         "outcomes": [
+          {
+           "code": "SS.K-2.IS.5",
+           "text": "With guidance and support, students will share their findings on the asked and answered questions with peers."
+          },
+          {
+           "code": "SS.K-2.IS.6",
+           "text": "With guidance and support, reflect on one's inquiry process and findings."
+          },
+          {
+           "code": "SS.K-2.IS.7",
+           "text": "Using various viewpoints, students will engage in reflective conversations to draw conclusions on inquiry findings and create action steps."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "civics",
+     "title": "Civics",
+     "topics": [
+      {
+       "id": "civics",
+       "title": "Civics",
+       "subtopics": [
+        {
+         "id": "civics",
+         "title": "Civics",
+         "outcomes": [
+          {
+           "code": "SS.K.CV.1",
+           "text": "With guidance and support, identify the roles of individuals and leaders and their responsibility to meet the needs of different people and communities."
+          },
+          {
+           "code": "SS.K.CV.2",
+           "text": "With guidance and support, identify reasons for rules and explain how rules establish responsibilities and roles for various settings."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "economics-financial-literacy",
+     "title": "Economics/ Financial Literacy",
+     "topics": [
+      {
+       "id": "economics-financial-literacy",
+       "title": "Economics/ Financial Literacy",
+       "subtopics": [
+        {
+         "id": "economics-financial-literacy",
+         "title": "Economics/ Financial Literacy",
+         "outcomes": [
+          {
+           "code": "SS.K.EC.1",
+           "text": "Explain that choices are made because of scarcity (i.e., because individuals cannot have everything that they want)."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "geography",
+     "title": "Geography",
+     "topics": [
+      {
+       "id": "geography",
+       "title": "Geography",
+       "subtopics": [
+        {
+         "id": "geography",
+         "title": "Geography",
+         "outcomes": [
+          {
+           "code": "SS.K.G.1",
+           "text": "With guidance and support, explain how weather, climate, and other environmental factors affect people's lives and cultural identities in our region."
+          },
+          {
+           "code": "SS.K.G.2",
+           "text": "With guidance and support, explain how people and goods move from place to place."
+          },
+          {
+           "code": "SS.K.G.3",
+           "text": "With guidance and support, identify characteristics of print and digital maps, graphs, and other cultural representations of familiar places."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "history",
+     "title": "History",
+     "topics": [
+      {
+       "id": "history",
+       "title": "History",
+       "subtopics": [
+        {
+         "id": "history",
+         "title": "History",
+         "outcomes": [
+          {
+           "code": "SS.K.H.1",
+           "text": "With guidance and support, compare life in the past to life today, including the points of view of diverse groups of people."
+          },
+          {
+           "code": "SS.K.H.2",
+           "text": "Identify and describe the purpose of the national holidays of the United States, the major holidays of diverse groups, and the bravery or achievements of the diverse people who make these days special holidays."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "1",
+   "units": [
+    {
+     "id": "inquiry",
+     "title": "Inquiry",
+     "topics": [
+      {
+       "id": "developing-questions-and-planning-inquiries",
+       "title": "Developing Questions and Planning Inquiries",
+       "subtopics": [
+        {
+         "id": "developing-questions-and-planning-inquiries",
+         "title": "Developing Questions and Planning Inquiries",
+         "outcomes": [
+          {
+           "code": "SS.K-2.IS.1",
+           "text": "Create questions that are relevant to self as they relate to the content of the Social Science Standards."
+          },
+          {
+           "code": "SS.K-2.IS.2",
+           "text": "With guidance and support, students will use varied teacher-selected resources to learn procedures to locate evidence that assists with finding answers to their questions. Introduce the importance of informational resources that are reliable and distinguish fact from opinion."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "evaluating-sources-and-using-evidence",
+       "title": "Evaluating Sources and Using Evidence",
+       "subtopics": [
+        {
+         "id": "evaluating-sources-and-using-evidence",
+         "title": "Evaluating Sources and Using Evidence",
+         "outcomes": [
+          {
+           "code": "SS.K-2.IS.3",
+           "text": "With guidance and support, gather relevant information from multiple sources to analyze information."
+          },
+          {
+           "code": "SS.K-2.IS.4",
+           "text": "With guidance and support, evaluate a source by distinguishing between fact and opinion."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "communicating-conclusions-and-taking-informed-ac",
+       "title": "Communicating Conclusions and Taking Informed Action",
+       "subtopics": [
+        {
+         "id": "communicating-conclusions-and-taking-informed-ac",
+         "title": "Communicating Conclusions and Taking Informed Action",
+         "outcomes": [
+          {
+           "code": "SS.K-2.IS.5",
+           "text": "With guidance and support, students will share their findings on the asked and answered questions with peers."
+          },
+          {
+           "code": "SS.K-2.IS.6",
+           "text": "With guidance and support, reflect on one's inquiry process and findings."
+          },
+          {
+           "code": "SS.K-2.IS.7",
+           "text": "Using various viewpoints, students will engage in reflective conversations to draw conclusions on inquiry findings and create action steps."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "civics",
+     "title": "Civics",
+     "topics": [
+      {
+       "id": "civics",
+       "title": "Civics",
+       "subtopics": [
+        {
+         "id": "civics",
+         "title": "Civics",
+         "outcomes": [
+          {
+           "code": "SS.1.CV.1",
+           "text": "With guidance and support, explain how individuals who live, learn, and work together make important decisions, and the effect that these decisions have on a variety of diverse communities."
+          },
+          {
+           "code": "SS.1.CV.2",
+           "text": "Identify reasons for rules and explain how rules establish responsibilities and roles, and their effect on one's own and other groups and communities."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "economics-financial-literacy",
+     "title": "Economics/ Financial Literacy",
+     "topics": [
+      {
+       "id": "economics-financial-literacy",
+       "title": "Economics/ Financial Literacy",
+       "subtopics": [
+        {
+         "id": "economics-financial-literacy",
+         "title": "Economics/ Financial Literacy",
+         "outcomes": [
+          {
+           "code": "SS.1.EC.1",
+           "text": "Explain and give examples of when choices are made that something else is given up."
+          },
+          {
+           "code": "SS.1.EC.2",
+           "text": "Describe the skills and knowledge required to produce certain goods and services."
+          },
+          {
+           "code": "SS.1.EC.3",
+           "text": "Explain how people are compensated for work."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "geography",
+     "title": "Geography",
+     "topics": [
+      {
+       "id": "geography",
+       "title": "Geography",
+       "subtopics": [
+        {
+         "id": "geography",
+         "title": "Geography",
+         "outcomes": [
+          {
+           "code": "SS.1.G.1",
+           "text": "With guidance and support, construct and interpret print and digital maps and other cultural representations of familiar places."
+          },
+          {
+           "code": "SS.1.G.2",
+           "text": "With guidance and support, describe how human activities affect the cultural and environmental characteristics of places or regions."
+          },
+          {
+           "code": "SS.1.G.3",
+           "text": "Compare how people in different types of communities use local and worldwide environments to meet their daily needs."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "history",
+     "title": "History",
+     "topics": [
+      {
+       "id": "history",
+       "title": "History",
+       "subtopics": [
+        {
+         "id": "history",
+         "title": "History",
+         "outcomes": [
+          {
+           "code": "SS.1.H.1",
+           "text": "Create a chronological sequence of multiple events based on current learning."
+          },
+          {
+           "code": "SS.1 H.2",
+           "text": "Generate questions and investigate diverse individuals and groups who have shaped a significant historical change."
+          },
+          {
+           "code": "SS.1.H.3",
+           "text": "With guidance and support, investigate how our perspectives of historical events have changed over time."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "2",
+   "units": [
+    {
+     "id": "inquiry",
+     "title": "Inquiry",
+     "topics": [
+      {
+       "id": "developing-questions-and-planning-inquiries",
+       "title": "Developing Questions and Planning Inquiries",
+       "subtopics": [
+        {
+         "id": "developing-questions-and-planning-inquiries",
+         "title": "Developing Questions and Planning Inquiries",
+         "outcomes": [
+          {
+           "code": "SS.K-2.IS.1",
+           "text": "Create questions that are relevant to self as they relate to the content of the Social Science Standards."
+          },
+          {
+           "code": "SS.K-2.IS.2",
+           "text": "With guidance and support, students will use varied teacher-selected resources to learn procedures to locate evidence that assists with finding answers to their questions. Introduce the importance of informational resources that are reliable and distinguish fact from opinion."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "evaluating-sources-and-using-evidence",
+       "title": "Evaluating Sources and Using Evidence",
+       "subtopics": [
+        {
+         "id": "evaluating-sources-and-using-evidence",
+         "title": "Evaluating Sources and Using Evidence",
+         "outcomes": [
+          {
+           "code": "SS.K-2.IS.3",
+           "text": "With guidance and support, gather relevant information from multiple sources to analyze information."
+          },
+          {
+           "code": "SS.K-2.IS.4",
+           "text": "With guidance and support, evaluate a source by distinguishing between fact and opinion."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "communicating-conclusions-and-taking-informed-ac",
+       "title": "Communicating Conclusions and Taking Informed Action",
+       "subtopics": [
+        {
+         "id": "communicating-conclusions-and-taking-informed-ac",
+         "title": "Communicating Conclusions and Taking Informed Action",
+         "outcomes": [
+          {
+           "code": "SS.K-2.IS.5",
+           "text": "With guidance and support, students will share their findings on the asked and answered questions with peers."
+          },
+          {
+           "code": "SS.K-2.IS.6",
+           "text": "With guidance and support, reflect on one's inquiry process and findings."
+          },
+          {
+           "code": "SS.K-2.IS.7",
+           "text": "Using various viewpoints, students will engage in reflective conversations to draw conclusions on inquiry findings and create action steps."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "civics",
+     "title": "Civics",
+     "topics": [
+      {
+       "id": "civics",
+       "title": "Civics",
+       "subtopics": [
+        {
+         "id": "civics",
+         "title": "Civics",
+         "outcomes": [
+          {
+           "code": "SS.2.CV.1",
+           "text": "With guidance and support, identify features and functions of governments."
+          },
+          {
+           "code": "SS.2.CV.2",
+           "text": "With guidance and support, describe how communities can collaborate to accomplish tasks, establish roles and responsibilities, and achieve equitable outcomes for the community."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "economics-financial-literacy",
+     "title": "Economics/ Financial Literacy",
+     "topics": [
+      {
+       "id": "economics-financial-literacy",
+       "title": "Economics/ Financial Literacy",
+       "subtopics": [
+        {
+         "id": "economics-financial-literacy",
+         "title": "Economics/ Financial Literacy",
+         "outcomes": [
+          {
+           "code": "SS.2.EC.1",
+           "text": "Demonstrate how our choices can affect ourselves and others in positive and negative ways."
+          },
+          {
+           "code": "SS.2.EC.2",
+           "text": "Explain the role of money in making exchange easier."
+          },
+          {
+           "code": "SS.2.EC.3",
+           "text": "Compare the goods and services that people in the local community produce and those that are produced in other communities."
+          },
+          {
+           "code": "SS.2.EC.4",
+           "text": "Explain that money can be saved or spent on goods and services."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "geography",
+     "title": "Geography",
+     "topics": [
+      {
+       "id": "geography",
+       "title": "Geography",
+       "subtopics": [
+        {
+         "id": "geography",
+         "title": "Geography",
+         "outcomes": [
+          {
+           "code": "SS.2.G.1",
+           "text": "With guidance and support, use print and digital maps, globes, and other simple geographic models to identify cultural and environmental characteristics of places."
+          },
+          {
+           "code": "SS.2.G.2",
+           "text": "With guidance and support, identify some cultural and environmental characteristics of your community and compare to other places or regions."
+          },
+          {
+           "code": "SS.2.G.3",
+           "text": "Describe the connections between the physical environment of a place and the economic activities found there."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "history",
+     "title": "History",
+     "topics": [
+      {
+       "id": "history",
+       "title": "History",
+       "subtopics": [
+        {
+         "id": "history",
+         "title": "History",
+         "outcomes": [
+          {
+           "code": "SS.2.H.1",
+           "text": "Identify main ideas and changes that have occurred in the local community over time and retell how these changes impacted diverse groups in the community."
+          },
+          {
+           "code": "SS.2.H.2",
+           "text": "Examine key events that changed history from multiple perspectives, including the perspectives of diverse individuals, cultures, and groups."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "3",
+   "units": [
+    {
+     "id": "inquiry",
+     "title": "Inquiry",
+     "topics": [
+      {
+       "id": "developing-questions-and-planning-inquiries",
+       "title": "Developing Questions and Planning Inquiries",
+       "subtopics": [
+        {
+         "id": "developing-questions-and-planning-inquiries",
+         "title": "Developing Questions and Planning Inquiries",
+         "outcomes": [
+          {
+           "code": "SS.3-5.IS.1",
+           "text": "Develop essential questions and explain the importance of the questions to self and others."
+          },
+          {
+           "code": "SS.3-5.IS.2",
+           "text": "Students generate supporting questions that require investigation to help answer essential questions."
+          },
+          {
+           "code": "SS.3-5.IS.3",
+           "text": "Identify varied resources that answer essential and student-generated questions and that take into consideration multiple points of view."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "evaluating-sources-and-using-evidence",
+       "title": "Evaluating Sources and Using Evidence",
+       "subtopics": [
+        {
+         "id": "evaluating-sources-and-using-evidence",
+         "title": "Evaluating Sources and Using Evidence",
+         "outcomes": [
+          {
+           "code": "SS.3-5.IS.4",
+           "text": "Gather relevant information and distinguish between fact and opinion to determine credibility of multiple sources."
+          },
+          {
+           "code": "SS.3-5.IS.5",
+           "text": "Develop claims using evidence from multiple sources to answer essential questions."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "communicating-conclusions-and-taking-informed-ac",
+       "title": "Communicating Conclusions and Taking Informed Action",
+       "subtopics": [
+        {
+         "id": "communicating-conclusions-and-taking-informed-ac",
+         "title": "Communicating Conclusions and Taking Informed Action",
+         "outcomes": [
+          {
+           "code": "SS.3-5.IS.6",
+           "text": "Construct arguments using claims and evidence from multiple sources."
+          },
+          {
+           "code": "SS.3-5 IS.7",
+           "text": "Construct explanations using reasoning, correct sequences, examples, and details with relevant information and data."
+          },
+          {
+           "code": "SS.3-5.IS.8",
+           "text": "Present a summary of arguments and explanations to others inside and/or outside of the classroom using print and oral technologies."
+          },
+          {
+           "code": "SS.3-5.IS.9",
+           "text": "Explain the use of inquiry strategies, approaches, and relevant sources that will allow students to address local, regional, state, national, and global problems."
+          },
+          {
+           "code": "SS.3-5.IS.10",
+           "text": "Engage in reflective conversations to draw conclusions on inquiry findings and create action steps that consider multiple viewpoints."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "civics",
+     "title": "Civics",
+     "topics": [
+      {
+       "id": "civics",
+       "title": "Civics",
+       "subtopics": [
+        {
+         "id": "civics",
+         "title": "Civics",
+         "outcomes": [
+          {
+           "code": "SS.3.CV.1",
+           "text": "Explain how families, workplaces, organizations, and government entities interact and affect communities in multiple ways."
+          },
+          {
+           "code": "SS.3.CV.2",
+           "text": "Using evidence, describe how people have strived to improve communities over time to achieve equitable outcomes, practices, or policies."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "economics-financial-literacy",
+     "title": "Economics/ Financial Literacy",
+     "topics": [
+      {
+       "id": "economics-financial-literacy",
+       "title": "Economics/ Financial Literacy",
+       "subtopics": [
+        {
+         "id": "economics-financial-literacy",
+         "title": "Economics/ Financial Literacy",
+         "outcomes": [
+          {
+           "code": "SS.3.EC.1",
+           "text": "Compare the goods and services that people in the local community produce and those that are produced in other communities."
+          },
+          {
+           "code": "SS.3.EC.2",
+           "text": "Generate examples of the goods and services that governments provide."
+          },
+          {
+           "code": "SS.3.EC.3",
+           "text": "Describe the role of banks and other financial institutions in an economy."
+          },
+          {
+           "code": "SS.3.EC.4",
+           "text": "Explain that when people borrow, they receive something of value now and agree to repay the lender over time."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "geography",
+     "title": "Geography",
+     "topics": [
+      {
+       "id": "geography",
+       "title": "Geography",
+       "subtopics": [
+        {
+         "id": "geography",
+         "title": "Geography",
+         "outcomes": [
+          {
+           "code": "SS.3.G.1",
+           "text": "Use print and digital maps, globes, and other simple geographic models to identify topographic and other graphic representations of both familiar and unfamiliar locations."
+          },
+          {
+           "code": "SS.3.G.2",
+           "text": "Explain how culture influences the way people modify and adapt to the environment or the way people do not modify and adapt to their environments."
+          },
+          {
+           "code": "SS.3.G.3",
+           "text": "Describe the movement of goods, people, jobs, and/or information and the effect of the cultural and environmental characteristics on movement of goods."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "history",
+     "title": "History",
+     "topics": [
+      {
+       "id": "history",
+       "title": "History",
+       "subtopics": [
+        {
+         "id": "history",
+         "title": "History",
+         "outcomes": [
+          {
+           "code": "SS.3.H.1",
+           "text": "Create and use a chronological sequence of related events to compare developments that happened at the same time."
+          },
+          {
+           "code": "SS.3.H.2",
+           "text": "Explain how the diverse perspectives of people and events develop and shape communities and/or regions."
+          },
+          {
+           "code": "SS.3.H.3",
+           "text": "Identify and analyze how different kinds of historical sources are used to explain events in the past."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "4",
+   "units": [
+    {
+     "id": "inquiry",
+     "title": "Inquiry",
+     "topics": [
+      {
+       "id": "developing-questions-and-planning-inquiries",
+       "title": "Developing Questions and Planning Inquiries",
+       "subtopics": [
+        {
+         "id": "developing-questions-and-planning-inquiries",
+         "title": "Developing Questions and Planning Inquiries",
+         "outcomes": [
+          {
+           "code": "SS.3-5.IS.1",
+           "text": "Develop essential questions and explain the importance of the questions to self and others."
+          },
+          {
+           "code": "SS.3-5.IS.2",
+           "text": "Students generate supporting questions that require investigation to help answer essential questions."
+          },
+          {
+           "code": "SS.3-5.IS.3",
+           "text": "Identify varied resources that answer essential and student-generated questions and that take into consideration multiple points of view."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "evaluating-sources-and-using-evidence",
+       "title": "Evaluating Sources and Using Evidence",
+       "subtopics": [
+        {
+         "id": "evaluating-sources-and-using-evidence",
+         "title": "Evaluating Sources and Using Evidence",
+         "outcomes": [
+          {
+           "code": "SS.3-5.IS.4",
+           "text": "Gather relevant information and distinguish between fact and opinion to determine credibility of multiple sources."
+          },
+          {
+           "code": "SS.3-5.IS.5",
+           "text": "Develop claims using evidence from multiple sources to answer essential questions."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "communicating-conclusions-and-taking-informed-ac",
+       "title": "Communicating Conclusions and Taking Informed Action",
+       "subtopics": [
+        {
+         "id": "communicating-conclusions-and-taking-informed-ac",
+         "title": "Communicating Conclusions and Taking Informed Action",
+         "outcomes": [
+          {
+           "code": "SS.3-5.IS.6",
+           "text": "Construct arguments using claims and evidence from multiple sources."
+          },
+          {
+           "code": "SS.3-5 IS.7",
+           "text": "Construct explanations using reasoning, correct sequences, examples, and details with relevant information and data."
+          },
+          {
+           "code": "SS.3-5.IS.8",
+           "text": "Present a summary of arguments and explanations to others inside and/or outside of the classroom using print and oral technologies."
+          },
+          {
+           "code": "SS.3-5.IS.9",
+           "text": "Explain the use of inquiry strategies, approaches, and relevant sources that will allow students to address local, regional, state, national, and global problems."
+          },
+          {
+           "code": "SS.3-5.IS.10",
+           "text": "Engage in reflective conversations to draw conclusions on inquiry findings and create action steps that consider multiple viewpoints."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "civics",
+     "title": "Civics",
+     "topics": [
+      {
+       "id": "civics",
+       "title": "Civics",
+       "subtopics": [
+        {
+         "id": "civics",
+         "title": "Civics",
+         "outcomes": [
+          {
+           "code": "SS.4.CV.1",
+           "text": "Explain the roles and responsibilities of government officials at the local, state, and national levels and investigate how the roles and responsibilities of government have changed over time."
+          },
+          {
+           "code": "SS.4.CV.2",
+           "text": "Define democracy and explain how limited participation affects the political representation of multiple groups."
+          },
+          {
+           "code": "SS.4.CV.3",
+           "text": "Identify core civic virtues and democratic principles that guide governments, society, and communities."
+          },
+          {
+           "code": "SS.4.CV.4",
+           "text": "Using evidence, explain how rules, regulations, and laws alter or transform societies and how people from multiple communities influence and experience this transformation."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "economics-financial-literacy",
+     "title": "Economics/ Financial Literacy",
+     "topics": [
+      {
+       "id": "economics-financial-literacy",
+       "title": "Economics/ Financial Literacy",
+       "subtopics": [
+        {
+         "id": "economics-financial-literacy",
+         "title": "Economics/ Financial Literacy",
+         "outcomes": [
+          {
+           "code": "SS.4.EC.1",
+           "text": "Explain how profits reward and influence sellers."
+          },
+          {
+           "code": "SS.4.EC.2",
+           "text": "Describe how goods and services are produced using human, natural, and capital resources (e.g., tools, machines)."
+          },
+          {
+           "code": "SS.4.EC.3",
+           "text": "Analyze how spending choices are influenced by prices, as well as many other factors (e.g., advertising, peer pressure, options)."
+          },
+          {
+           "code": "SS.4.EC.4",
+           "text": "Explain that income can be saved, spent on goods and services, or used to pay taxes."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "geography",
+     "title": "Geography",
+     "topics": [
+      {
+       "id": "geography",
+       "title": "Geography",
+       "subtopics": [
+        {
+         "id": "geography",
+         "title": "Geography",
+         "outcomes": [
+          {
+           "code": "SS.4.G.1",
+           "text": "Construct print and digital maps and other topographic representations to show the details of places and regions and their environmental characteristics."
+          },
+          {
+           "code": "SS.4.G.2",
+           "text": "Explain how the cultural and environmental characteristics of places change over time."
+          },
+          {
+           "code": "SS.4.G.3",
+           "text": "Investigate the human effects on the physical environment over time."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "history",
+     "title": "History",
+     "topics": [
+      {
+       "id": "history",
+       "title": "History",
+       "subtopics": [
+        {
+         "id": "history",
+         "title": "History",
+         "outcomes": [
+          {
+           "code": "SS.4.H.1",
+           "text": "Study important individuals or major events in order to recognize and explain that there are multiple cultural perspectives."
+          },
+          {
+           "code": "SS.4.H.2",
+           "text": "Generate questions about multiple historical sources and their relationships to particular historical events and developments."
+          },
+          {
+           "code": "SS.4.H.3",
+           "text": "Explain probable causes and effects of events and developments in Illinois history."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "5",
+   "units": [
+    {
+     "id": "inquiry",
+     "title": "Inquiry",
+     "topics": [
+      {
+       "id": "developing-questions-and-planning-inquiries",
+       "title": "Developing Questions and Planning Inquiries",
+       "subtopics": [
+        {
+         "id": "developing-questions-and-planning-inquiries",
+         "title": "Developing Questions and Planning Inquiries",
+         "outcomes": [
+          {
+           "code": "SS.3-5.IS.1",
+           "text": "Develop essential questions and explain the importance of the questions to self and others."
+          },
+          {
+           "code": "SS.3-5.IS.2",
+           "text": "Students generate supporting questions that require investigation to help answer essential questions."
+          },
+          {
+           "code": "SS.3-5.IS.3",
+           "text": "Identify varied resources that answer essential and student-generated questions and that take into consideration multiple points of view."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "evaluating-sources-and-using-evidence",
+       "title": "Evaluating Sources and Using Evidence",
+       "subtopics": [
+        {
+         "id": "evaluating-sources-and-using-evidence",
+         "title": "Evaluating Sources and Using Evidence",
+         "outcomes": [
+          {
+           "code": "SS.3-5.IS.4",
+           "text": "Gather relevant information and distinguish between fact and opinion to determine credibility of multiple sources."
+          },
+          {
+           "code": "SS.3-5.IS.5",
+           "text": "Develop claims using evidence from multiple sources to answer essential questions."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "communicating-conclusions-and-taking-informed-ac",
+       "title": "Communicating Conclusions and Taking Informed Action",
+       "subtopics": [
+        {
+         "id": "communicating-conclusions-and-taking-informed-ac",
+         "title": "Communicating Conclusions and Taking Informed Action",
+         "outcomes": [
+          {
+           "code": "SS.3-5.IS.6",
+           "text": "Construct arguments using claims and evidence from multiple sources."
+          },
+          {
+           "code": "SS.3-5 IS.7",
+           "text": "Construct explanations using reasoning, correct sequences, examples, and details with relevant information and data."
+          },
+          {
+           "code": "SS.3-5.IS.8",
+           "text": "Present a summary of arguments and explanations to others inside and/or outside of the classroom using print and oral technologies."
+          },
+          {
+           "code": "SS.3-5.IS.9",
+           "text": "Explain the use of inquiry strategies, approaches, and relevant sources that will allow students to address local, regional, state, national, and global problems."
+          },
+          {
+           "code": "SS.3-5.IS.10",
+           "text": "Engage in reflective conversations to draw conclusions on inquiry findings and create action steps that consider multiple viewpoints."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "civics",
+     "title": "Civics",
+     "topics": [
+      {
+       "id": "civics",
+       "title": "Civics",
+       "subtopics": [
+        {
+         "id": "civics",
+         "title": "Civics",
+         "outcomes": [
+          {
+           "code": "SS.5.CV.1",
+           "text": "Explain the roles and responsibilities of government officials at the local, state, and national levels and investigate how the roles and responsibilities of the three branches of government have changed over time."
+          },
+          {
+           "code": "SS.5.CV.2",
+           "text": "Examine the origins and purposes of rules, laws, and key provisions of the U.S. Constitution and investigate the impact they had/have on multiple groups of people."
+          },
+          {
+           "code": "SS.5.CV.3",
+           "text": "Compare and contrast the U.S. government to other global governments in their structure and systems of governing with consideration for their impact on equitable outcomes."
+          },
+          {
+           "code": "SS.5.CV.4",
+           "text": "Using evidence, explain how policies are developed to address public problems and concerns and achieve equitable outcomes."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "economics-financial-literacy",
+     "title": "Economics/ Financial Literacy",
+     "topics": [
+      {
+       "id": "economics-financial-literacy",
+       "title": "Economics/ Financial Literacy",
+       "subtopics": [
+        {
+         "id": "economics-financial-literacy",
+         "title": "Economics/ Financial Literacy",
+         "outcomes": [
+          {
+           "code": "SS.5.EC.1",
+           "text": "Analyze why and how individuals, businesses, and nations around the world specialize and trade."
+          },
+          {
+           "code": "SS.5.EC.2",
+           "text": "Discover how positive incentives (e.g., sale prices, earning money) and negative consequences (e.g., library fines, parking tickets) influence behavior in the U.S. economy and around the world."
+          },
+          {
+           "code": "SS.5.EC.3",
+           "text": "Determine the ways in which government pays for goods and services it provides."
+          },
+          {
+           "code": "SS.5.EC.4",
+           "text": "Explain that interest is the price the borrower pays for using someone else's money."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "geography",
+     "title": "Geography",
+     "topics": [
+      {
+       "id": "geography",
+       "title": "Geography",
+       "subtopics": [
+        {
+         "id": "geography",
+         "title": "Geography",
+         "outcomes": [
+          {
+           "code": "SS.5.G.1",
+           "text": "Use print and digital maps of different scales to describe the locations of cultural and environmental characteristics."
+          },
+          {
+           "code": "SS.5.G.2",
+           "text": "Investigate and explain how the cultural and environmental characteristics of places within the United States change over time."
+          },
+          {
+           "code": "SS.5.G.3",
+           "text": "Explain how human settlements and technological advancements have impacted natural resources."
+          },
+          {
+           "code": "SS.5.G.4",
+           "text": "Analyze the effects of catastrophic environmental and technological events on human settlements and migration."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "history",
+     "title": "History",
+     "topics": [
+      {
+       "id": "history",
+       "title": "History",
+       "subtopics": [
+        {
+         "id": "history",
+         "title": "History",
+         "outcomes": [
+          {
+           "code": "SS.5.H.1",
+           "text": "Create and use a chronological sequence of related events to identify cause and effects of relationships in history and the impacts of underrepresented groups."
+          },
+          {
+           "code": "SS.5.H.2",
+           "text": "Use information about a historical source, including the creator (author), date, place of origin, intended audience, and purpose, to judge the extent to which the source is useful for studying a particular topic."
+          },
+          {
+           "code": "SS.5.H.3",
+           "text": "Summarize the central claim in a work of history."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "11",
+   "units": [
+    {
+     "id": "key-ideas-and-details",
+     "title": "Key Ideas and Details",
+     "topics": [
+      {
+       "id": "key-ideas-and-details",
+       "title": "Key Ideas and Details",
+       "subtopics": [
+        {
+         "id": "key-ideas-and-details",
+         "title": "Key Ideas and Details",
+         "outcomes": [
+          {
+           "code": "KID 1",
+           "text": "Summarize key details"
+          },
+          {
+           "code": "KID 2",
+           "text": "Identify or infer main ideas/themes"
+          },
+          {
+           "code": "KID 3",
+           "text": "Draw conclusions"
+          },
+          {
+           "code": "KID 4",
+           "text": "Explain cause and effect"
+          },
+          {
+           "code": "KID 5",
+           "text": "Paraphrase statements"
+          },
+          {
+           "code": "KID 6",
+           "text": "Analyze events and relationships"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "craft-and-structure",
+     "title": "Craft and Structure",
+     "topics": [
+      {
+       "id": "craft-and-structure",
+       "title": "Craft and Structure",
+       "subtopics": [
+        {
+         "id": "craft-and-structure",
+         "title": "Craft and Structure",
+         "outcomes": [
+          {
+           "code": "CS 1",
+           "text": "Analyze how word choice shapes meaning"
+          },
+          {
+           "code": "CS 3",
+           "text": "Determine point of view, purpose and audience"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "integration-of-knowledge-ideas",
+     "title": "Integration of Knowledge & Ideas",
+     "topics": [
+      {
+       "id": "integration-of-knowledge-ideas",
+       "title": "Integration of Knowledge & Ideas",
+       "subtopics": [
+        {
+         "id": "integration-of-knowledge-ideas",
+         "title": "Integration of Knowledge & Ideas",
+         "outcomes": [
+          {
+           "code": "IKI 1",
+           "text": "Identify central claim"
+          },
+          {
+           "code": "IKI 2",
+           "text": "Compare and draw conclusions across texts/time periods"
+          },
+          {
+           "code": "IKI 3",
+           "text": "Analyze and synthesize multiple texts"
+          },
+          {
+           "code": "IKI 4",
+           "text": "Evaluate evidence from multiple sources"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "modeling-numeracy",
+     "title": "Modeling (Numeracy)",
+     "topics": [
+      {
+       "id": "modeling-numeracy",
+       "title": "Modeling (Numeracy)",
+       "subtopics": [
+        {
+         "id": "modeling-numeracy",
+         "title": "Modeling (Numeracy)",
+         "outcomes": [
+          {
+           "code": "MOD 1",
+           "text": "Interpret Graphs, equations and functions in context"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "9-12",
+   "units": [
+    {
+     "id": "key-ideas-and-details",
+     "title": "Key Ideas and Details",
+     "topics": [
+      {
+       "id": "key-ideas-and-details",
+       "title": "Key Ideas and Details",
+       "subtopics": [
+        {
+         "id": "key-ideas-and-details",
+         "title": "Key Ideas and Details",
+         "outcomes": [
+          {
+           "code": "KID 1",
+           "text": "Summarize Key Details"
+          },
+          {
+           "code": "KID 2",
+           "text": "Identify or infer main ideas/themes"
+          },
+          {
+           "code": "KID 3",
+           "text": "Draw Conclusions"
+          },
+          {
+           "code": "KID 4",
+           "text": "Explain cause and effect"
+          },
+          {
+           "code": "KID 5",
+           "text": "Paraphrase statements"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "craft-and-structure",
+     "title": "Craft and Structure",
+     "topics": [
+      {
+       "id": "craft-and-structure",
+       "title": "Craft and Structure",
+       "subtopics": [
+        {
+         "id": "craft-and-structure",
+         "title": "Craft and Structure",
+         "outcomes": [
+          {
+           "code": "CS 1",
+           "text": "Analyze how word choice shapes meaning"
+          },
+          {
+           "code": "CS 2",
+           "text": "Explain how sentences connect to the passage"
+          },
+          {
+           "code": "CS 3",
+           "text": "Analyze purpose and/or audience"
+          },
+          {
+           "code": "CS 4",
+           "text": "Analyze context and perspective"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "integration-of-knowledge-and-ideas",
+     "title": "Integration of Knowledge and Ideas",
+     "topics": [
+      {
+       "id": "integration-of-knowledge-and-ideas",
+       "title": "Integration of Knowledge and Ideas",
+       "subtopics": [
+        {
+         "id": "integration-of-knowledge-and-ideas",
+         "title": "Integration of Knowledge and Ideas",
+         "outcomes": [
+          {
+           "code": "IKI 1",
+           "text": "Identify central claim"
+          },
+          {
+           "code": "IKI 2",
+           "text": "Compare and draw conclusions across texts/time periods"
+          },
+          {
+           "code": "IKI 3",
+           "text": "Evaluate evidence from multiple sources"
+          },
+          {
+           "code": "IKI 4",
+           "text": "Synthesize information"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "modeling",
+     "title": "Modeling",
+     "topics": [
+      {
+       "id": "modeling",
+       "title": "Modeling",
+       "subtopics": [
+        {
+         "id": "modeling",
+         "title": "Modeling",
+         "outcomes": [
+          {
+           "code": "MOD 1",
+           "text": "Interpret graphs, equations, and functions in context"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "inquiry",
+     "title": "Inquiry",
+     "topics": [
+      {
+       "id": "developing-questions-and-planning-inquiries",
+       "title": "Developing Questions and Planning Inquiries",
+       "subtopics": [
+        {
+         "id": "developing-questions-and-planning-inquiries",
+         "title": "Developing Questions and Planning Inquiries",
+         "outcomes": [
+          {
+           "code": "SS.9-12.IS.1",
+           "text": "Create actionable, student-driven (or student-informed) questions that lead to social studies investigations beyond one's immediate cultural environment or lens."
+          },
+          {
+           "code": "SS.9-12.IS.2",
+           "text": "Develop culturally informed, student-driven supporting questions that contribute to inquiry and evaluate the purpose of supporting questions in the research and inquiry process."
+          },
+          {
+           "code": "SS.9-12.IS.3",
+           "text": "Develop new supporting and essential questions by primary and secondary investigation, collaboration, and use of sources that reflect diverse perspectives (e.g., political, cultural, socioeconomic, race, religious, gender)."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "evaluating-sources-and-using-evidence",
+       "title": "Evaluating Sources and Using Evidence",
+       "subtopics": [
+        {
+         "id": "evaluating-sources-and-using-evidence",
+         "title": "Evaluating Sources and Using Evidence",
+         "outcomes": [
+          {
+           "code": "SS.9-12.IS.4",
+           "text": "Determine the kinds of sources that will be helpful in answering compelling and supporting questions, taking into consideration multiple points of view represented in the sources, the types of sources available, and the potential uses of the sources."
+          },
+          {
+           "code": "SS.9-12.IS.5",
+           "text": "Gather and evaluate information from multiple primary and secondary sources that reflect the perspectives and experiences of multiple groups, including marginalized groups."
+          },
+          {
+           "code": "SS.9-12.IS.6",
+           "text": "Analyze evidence and identify counter perspectives to revise or strengthen claims."
+          },
+          {
+           "code": "SS.9-12.IS.7",
+           "text": "Construct arguments using precise and knowledgeable claims with evidence from multiple sources, while acknowledging counterclaims, perspectives, and biases."
+          },
+          {
+           "code": "SS.9-12.IS.8",
+           "text": "Evaluate evidence to construct arguments and claims that use reasoning and account for multiple perspectives and value systems."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "communicating-conclusions-and-taking-informed-ac",
+       "title": "Communicating Conclusions and Taking Informed Action",
+       "subtopics": [
+        {
+         "id": "communicating-conclusions-and-taking-informed-ac",
+         "title": "Communicating Conclusions and Taking Informed Action (1 of 2)",
+         "outcomes": [
+          {
+           "code": "SS.9-12.IS.9",
+           "text": "Develop and prepare communication by identifying stakeholders (or audiences) and evaluate what messages and media are likely to result in stakeholder support or opposition."
+          },
+          {
+           "code": "SS.9-12.IS.10",
+           "text": "Solicit feedback from stakeholder representatives and revise communication and action plans accordingly."
+          },
+          {
+           "code": "SS.9-12.IS.11",
+           "text": "Use interdisciplinary lenses to identify local, regional, state, natural, or global concerns and anticipate the outcome possible solutions might have on all impacted communities, including marginalized communities."
+          },
+          {
+           "code": "SS.9-12.IS.12",
+           "text": "Analyze existing structures, systems, and methodologies to determine what types of interventions or informed action will lead to increased equity, inclusion, and community and civic good."
+          }
+         ]
+        },
+        {
+         "id": "communicating-conclusions-and-taking-informed-ac-2",
+         "title": "Communicating Conclusions and Taking Informed Action (2 of 2)",
+         "outcomes": [
+          {
+           "code": "SS.9-12.IS.13",
+           "text": "Use deliberative processes and apply appropriate civic engagement strategies and procedures to address local, regional, or global concerns, and take action in or out of school."
+          },
+          {
+           "code": "SS.9-12.IS.14",
+           "text": "Take measurable action to effect changes that bring about equity, inclusion, and the community and civic good."
+          },
+          {
+           "code": "SS.9-12.IS.15",
+           "text": "Evaluate the outcomes of informed action and reflect on successes and failures of interventions or informed action that will lead to increased equity, inclusion, and community and civic good."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "civics",
+     "title": "Civics",
+     "topics": [
+      {
+       "id": "civics",
+       "title": "Civics",
+       "subtopics": [
+        {
+         "id": "civics-1-of-2",
+         "title": "Civics (1 of 2)",
+         "outcomes": [
+          {
+           "code": "SS.9-12.CV.1",
+           "text": "Distinguish between the rights, roles, powers, and responsibilities of individuals and institutions in the political system and analyze the marginalization of multiple groups and perspectives in that system."
+          },
+          {
+           "code": "SS.9-12.CV.2",
+           "text": "Evaluate the opportunities and limitations of participation in elections, voting, and the electoral process, and the impact disenfranchisement has on these processes."
+          },
+          {
+           "code": "SS.9-12.CV.3",
+           "text": "Analyze constitutions, laws, and agreements to determine the degree to which they achieve justice, equality, and liberty."
+          },
+          {
+           "code": "SS.9-12.CV.4",
+           "text": "Evaluate the U.S. Constitution's ability to establish a system of government with power, responsibilities, and limits, and explain how the U.S. Constitution has evolved/changed over time and is still debated."
+          },
+          {
+           "code": "SS.9-12.CV.5",
+           "text": "Analyze civic dispositions, democratic principles, constitutional rights, and human rights and their impact on personal interests and multiple perspectives."
+          }
+         ]
+        },
+        {
+         "id": "civics-2-of-2",
+         "title": "Civics (2 of 2)",
+         "outcomes": [
+          {
+           "code": "SS.9-12.CV.6",
+           "text": "Identify and explain how political parties, the media, and public interest groups both influence and reflect social and political interests."
+          },
+          {
+           "code": "SS.9-12.CV.7",
+           "text": "Compare and contrast the democratic concepts and principles inherent to the U.S. system of government.."
+          },
+          {
+           "code": "SS.9-12.CV.8",
+           "text": "Analyze the methods individuals can use to challenge laws to address a variety of public issues."
+          },
+          {
+           "code": "SS.9-12.CV.9",
+           "text": "Evaluate public policies in terms of intended and unintended outcomes and related consequences on different communities, including the marginalization of multiple groups."
+          },
+          {
+           "code": "SS.9-12.CV.10",
+           "text": "Explain the role of compromise and deliberation in the legislative process."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "economics-financial-literacy",
+     "title": "Economics/ Financial Literacy",
+     "topics": [
+      {
+       "id": "economics-financial-literacy",
+       "title": "Economics/ Financial Literacy",
+       "subtopics": [
+        {
+         "id": "economics-financial-literacy-1-of-5",
+         "title": "Economics/ Financial Literacy (1 of 5)",
+         "outcomes": [
+          {
+           "code": "SS.9-12.EC.1",
+           "text": "Analyze how scarcity and incentives influence the consumption choices for goods and services made by different individuals and communities and evaluate the role of scarcity, both from nature and human-made."
+          },
+          {
+           "code": "SS.9-12.EC.2",
+           "text": "Use marginal benefits and marginal costs to propose solutions to a significant issue for an individual or community and evaluate the effectiveness of applying cost/marginal benefits to account for economic differences across multiple communities."
+          },
+          {
+           "code": "SS.9-12.EC.3",
+           "text": "Evaluate different market structures, including competitive markets, monopolies, and oligopolies; how those different market structures affect groups differently; examples of these markets in the United States; and the assumptions of each market type."
+          },
+          {
+           "code": "SS.9-12.EC.4",
+           "text": "Evaluate how much competition exists within and among sellers and buyers within the markets to which the students or school community belong and other specific markets."
+          },
+          {
+           "code": "SS.9-12.EC.5",
+           "text": "Use benefits and costs to evaluate the effectiveness of government policies to improve market outcomes."
+          }
+         ]
+        },
+        {
+         "id": "economics-financial-literacy-2-of-5",
+         "title": "Economics/ Financial Literacy (2 of 5)",
+         "outcomes": [
+          {
+           "code": "SS.9-12.EC.6",
+           "text": "Evaluate the extent to which specific government policies address inequalities, improve market outcomes, or reduce inefficiencies, and the unintended consequences of these policies for one's community and for diverse groups of people."
+          },
+          {
+           "code": "SS.9-12.EC.7",
+           "text": "Analyze the ways in which market structures influence what is produced and distributed in a market system while accounting for disparity in both implementation and outcomes in one's own and other communities."
+          },
+          {
+           "code": "SS.9-12.EC.8",
+           "text": "Use data and economic indicators to analyze past and current states of the economy and predict future trends and economic conditions among multiple, diverse communities."
+          },
+          {
+           "code": "SS.9-12.EC.9",
+           "text": "Compare the benefits and problems of different economic systems (e.g., capitalism, socialism, communism, mixed systems), particularly their impact on equitable outcomes."
+          },
+          {
+           "code": "SS.9-12.EC.10",
+           "text": "Evaluate how government policies are influenced by and impact a variety of stakeholders."
+          }
+         ]
+        },
+        {
+         "id": "economics-financial-literacy-3-of-5",
+         "title": "Economics/ Financial Literacy (3 of 5)",
+         "outcomes": [
+          {
+           "code": "SS.9-12.EC.11",
+           "text": "Analyze how advances in technology and investment in capital goods and human capital affect economic growth and standards of living."
+          },
+          {
+           "code": "SS.9-12.EC.12",
+           "text": "Analyze the role of comparative advantage in global trade of goods and services."
+          },
+          {
+           "code": "SS.9-12.EC.13",
+           "text": "Explain how current and past globalization trends and policies affect economic growth, labor markets, rights of citizens, the environment, and resource and income distribution."
+          },
+          {
+           "code": "SS.9-12.EC.FL.1",
+           "text": "Understand how costs and benefits can be subject to individual circumstances and factors outside of one's control."
+          },
+          {
+           "code": "SS.9-12.EC.FL.2",
+           "text": "Explain the importance of making informed financial decisions by collecting information, planning, and budgeting while accounting for individual circumstances that can limit access to capital."
+          }
+         ]
+        },
+        {
+         "id": "economics-financial-literacy-4-of-5",
+         "title": "Economics/ Financial Literacy (4 of 5)",
+         "outcomes": [
+          {
+           "code": "SS.9-12.EC.FL.3",
+           "text": "Explain how time, interest rates, and inflation influence saving patterns over a lifetime."
+          },
+          {
+           "code": "SS.9-12.EC.FL.4",
+           "text": "Analyze costs and benefits of different credit and payment options for goods and services, the role of lenders and interest, and the impact of each on individuals and multiple communities."
+          },
+          {
+           "code": "SS.9-12.EC.FL.5",
+           "text": "Evaluate risks and returns on diversified investments while accounting for the individual risk disposition among students."
+          },
+          {
+           "code": "SS.9-12.EC.FL.7",
+           "text": "Analyze how the cognitive biases, environmental influences, and access to resources and necessities of an individual can impact financial decision-making and the application of economic decision-making strategies."
+          },
+          {
+           "code": "SS.9-12.EC.FL.8",
+           "text": "Evaluate risk disposition and opportunity recognition for individual students and multiple communities, accounting for structural impacts on these dispositions."
+          }
+         ]
+        },
+        {
+         "id": "economics-financial-literacy-5-of-5",
+         "title": "Economics/ Financial Literacy (5 of 5)",
+         "outcomes": [
+          {
+           "code": "SS.9-12.EC.FL.9",
+           "text": "Evaluate the disparate impact of government and private business policies related to banking, credit, and mortgage lending in one's own and others' contexts while using current economic indicators to analyze or propose future policies."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "geography",
+     "title": "Geography",
+     "topics": [
+      {
+       "id": "geography",
+       "title": "Geography",
+       "subtopics": [
+        {
+         "id": "geography-1-of-4",
+         "title": "Geography (1 of 4)",
+         "outcomes": [
+          {
+           "code": "SS.9-12.G.1",
+           "text": "Use maps (created using geospatial and related technologies, if possible), satellite images, and photographs to display and explain the spatial patterns of physical, cultural, political, economic, and environmental characteristics."
+          },
+          {
+           "code": "SS.9-12.G.2",
+           "text": "Explain how mapping is used to claim political sovereignty and to obscure disagreements over the nature of space, human relationship with place, and power to determine how humans interact with landscapes, animals, and plants."
+          },
+          {
+           "code": "SS.9-12.G.3",
+           "text": "Use self-collected or pre-existing data sets to generate spatial patterns at multiple scales that can be used to conduct analysis or to take civic action."
+          },
+          {
+           "code": "SS.9-12.G.4",
+           "text": "Analyze data and trends at various scales to address inequalities in race, ethnicity, and gender across time and space."
+          },
+          {
+           "code": "SS.9-12.G.5",
+           "text": "Analyze different ways of representing geographic information in order to compare cartographers' perspectives, biases, and goals."
+          }
+         ]
+        },
+        {
+         "id": "geography-2-of-4",
+         "title": "Geography (2 of 4)",
+         "outcomes": [
+          {
+           "code": "SS.9-12.G.6",
+           "text": "Analyze and explain how humans affect and interact with the environment and vice versa."
+          },
+          {
+           "code": "SS.9-12.G.7",
+           "text": "Evaluate how political and economic decisions have influenced cultural and environmental characteristics of various places and regions."
+          },
+          {
+           "code": "SS.9-12.G.8",
+           "text": "Analyze how human societies plan for and respond to the consequences of human-made and naturally occurring catastrophes and how these events affect trade, politics, and migration."
+          },
+          {
+           "code": "SS.9-12.G.9",
+           "text": "Explain how landscape; use of land and resources; and means of interacting with land, animals, and plants each reflect cultural beliefs and identities."
+          },
+          {
+           "code": "SS.9-12.G.10",
+           "text": "Analyze how historical events and the diffusion of ideas, technologies, and cultural practices have influenced migration patterns and the distribution of the human population."
+          }
+         ]
+        },
+        {
+         "id": "geography-3-of-4",
+         "title": "Geography (3 of 4)",
+         "outcomes": [
+          {
+           "code": "SS.9-12.G.11",
+           "text": "Evaluate how economic activities and political decisions impact spatial patterns at various scales."
+          },
+          {
+           "code": "SS.9-12.G.12",
+           "text": "Evaluate how short- and long-term climate variability affects human migration and settlement patterns, use of land and resources, and relationship with the land."
+          },
+          {
+           "code": "SS.9-12.G.13",
+           "text": "Describe and explain the characteristics that constitute culture."
+          },
+          {
+           "code": "SS.9-12.G.14",
+           "text": "Explain how a person's identity (e.g., race, ethnicity, gender, sexuality, spirituality/religion, ability status, socioeconomic group) shapes and is shaped by worldview."
+          },
+          {
+           "code": "SS.9-12.G.15",
+           "text": "Explain how characteristics of culture and measures of development shape an individual's worldview."
+          }
+         ]
+        },
+        {
+         "id": "geography-4-of-4",
+         "title": "Geography (4 of 4)",
+         "outcomes": [
+          {
+           "code": "SS.9-12 G.16",
+           "text": "Explain how globalization affects the cultural, political, economic, and environmental characteristics of a place or region."
+          },
+          {
+           "code": "SS.9-12.G.17",
+           "text": "Evaluate how competition for scarce natural resources contributes to conflict and cooperation within and among countries."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "history",
+     "title": "History",
+     "topics": [
+      {
+       "id": "history",
+       "title": "History",
+       "subtopics": [
+        {
+         "id": "history-1-of-3",
+         "title": "History (1 of 3)",
+         "outcomes": [
+          {
+           "code": "SS.9-12.H.1",
+           "text": "Evaluate the context of time and place as well as structural factors that influence historical developments."
+          },
+          {
+           "code": "SS.9-12.H.2",
+           "text": "Analyze change and continuity across historical eras and identify what perspectives have typically influenced how historical eras are constructed."
+          },
+          {
+           "code": "SS.9-12.H.3",
+           "text": "Evaluate the methods used to promote change and the effects and outcomes of these methods on diverse groups of people."
+          },
+          {
+           "code": "SS.9-12.H.4",
+           "text": "Analyze how people and institutions have interacted with environmental, scientific, technological, and societal challenges."
+          },
+          {
+           "code": "SS.9-12.H.5",
+           "text": "Analyze the factors and historical context, including overarching movements, that influenced the perspectives of people during different historical eras."
+          }
+         ]
+        },
+        {
+         "id": "history-2-of-3",
+         "title": "History (2 of 3)",
+         "outcomes": [
+          {
+           "code": "SS.9-12.H.6",
+           "text": "Analyze the concept and pursuit of the \"American Dream\" and identify the factors that could promote or present barriers to the pursuit of the \"American Dream\" for multiple groups of people."
+          },
+          {
+           "code": "SS.9-12.H.7",
+           "text": "Identify and analyze the role of individuals, groups, and institutions in people's struggle for safety, freedom, equality, and justice."
+          },
+          {
+           "code": "SS.9-12.H.8",
+           "text": "Analyze key historical events and contributions of individuals through a variety of perspectives, including those of historically underrepresented groups."
+          },
+          {
+           "code": "SS.9-12.H.9",
+           "text": "Analyze the relationship between historical sources and the secondary interpretations made from them."
+          },
+          {
+           "code": "SS.9-12.H.10",
+           "text": "Identify and analyze ways in which marginalized communities are represented in historical sources and seek out sources created by historically oppressed peoples."
+          }
+         ]
+        },
+        {
+         "id": "history-3-of-3",
+         "title": "History (3 of 3)",
+         "outcomes": [
+          {
+           "code": "SS.9-12.H.11",
+           "text": "Analyze primary and secondary historical sources from multiple vantage points and perspectives to identify and explain dominant narratives and counternarratives of historical events."
+          },
+          {
+           "code": "SS.9-12.H.12",
+           "text": "Analyze the causes and effects of global conflicts and economic crises."
+          },
+          {
+           "code": "SS.9-12.H.13",
+           "text": "Analyze multiple and complex causes and effects of events in the past."
+          },
+          {
+           "code": "SS.9-12.H.14",
+           "text": "Analyze the geographic and cultural forces that have resulted in conflict and cooperation. Identify the cause and effects of imperialism and colonization."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "high-school-electives",
+     "title": "High School Electives",
+     "topics": [
+      {
+       "id": "anthropology",
+       "title": "Anthropology",
+       "subtopics": [
+        {
+         "id": "anthropology",
+         "title": "Anthropology",
+         "outcomes": [
+          {
+           "code": "SS.9-12.ANTH.1",
+           "text": "Analyze the elements of culture and explain the factors that shape these elements differently around the world."
+          },
+          {
+           "code": "SS.9-12.ANTH.2",
+           "text": "Explain how cultures develop and vary in response to their physical and social environment, including local, national, regional, and global patterns."
+          },
+          {
+           "code": "SS.9-12.ANTH.3",
+           "text": "Explain why anthropologists study culture from a holistic perspective."
+          },
+          {
+           "code": "SS.9-12.ANTH.4",
+           "text": "Evaluate one's own cultural assumptions using anthropological concepts."
+          },
+          {
+           "code": "SS.9-12.ANTH.5",
+           "text": "Apply anthropological concepts and anthropological knowledge to a variety of everyday, real-world situations."
+          },
+          {
+           "code": "SS.9-12.ANTH.6",
+           "text": "Explain how local actions can have global consequences and how global patterns and processes can affect seemingly unrelated local actions."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "psychology",
+       "title": "Psychology",
+       "subtopics": [
+        {
+         "id": "psychology-1-of-2",
+         "title": "Psychology (1 of 2)",
+         "outcomes": [
+          {
+           "code": "SS.9-12.PSY.1",
+           "text": "Identify scientific methodologies utilized in psychological research."
+          },
+          {
+           "code": "SS.9-12.PSY.2",
+           "text": "Evaluate the conclusions made by psychological research, including ethical concerns."
+          },
+          {
+           "code": "SS.9-12.PSY.3",
+           "text": "Understand a variety of psychological perspectives and apply their concepts and theoretical ideas to the investigation of similarities and differences in behavior and mental processes."
+          },
+          {
+           "code": "SS.9-12.PSY.4",
+           "text": "Analyze how biological, psychological, and sociocultural factors and their interactions influence individuals' behavior and mental processes."
+          }
+         ]
+        },
+        {
+         "id": "psychology-2-of-2",
+         "title": "Psychology (2 of 2)",
+         "outcomes": [
+          {
+           "code": "SS.9-12.PSY.5",
+           "text": "Evaluate the complexities of human thought and behavior, as well as the factors related to the individual differences among people."
+          },
+          {
+           "code": "SS.9-12.PSY.6",
+           "text": "Identify and apply psychological thinking to personal and societal experiences and issues."
+          },
+          {
+           "code": "SS.9-12.PSY.7",
+           "text": "Apply psychological knowledge to one's daily life."
+          },
+          {
+           "code": "SS.9-12.PSY.8",
+           "text": "Use appropriate psychological terminology with reference to psychologists and their experiments and theories in order to explain the possible causes of and impact on behavior and mental processes."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "sociology",
+       "title": "Sociology",
+       "subtopics": [
+        {
+         "id": "sociology",
+         "title": "Sociology",
+         "outcomes": [
+          {
+           "code": "SS.9-12.SOC.1",
+           "text": "Identify and apply sociological perspectives and a variety of sociological theories."
+          },
+          {
+           "code": "SS.9-12.SOC.2",
+           "text": "Analyze the impact of social structure, including culture, institutions, and societies."
+          },
+          {
+           "code": "SS.9-12.SOC.3",
+           "text": "Hypothesize how primary agents of socialization influence the individual."
+          },
+          {
+           "code": "SS.9-12.SOC.4",
+           "text": "Describe the impact of social relationships on the self and groups and on the socialization processes."
+          },
+          {
+           "code": "SS.9-12.SOC.5",
+           "text": "Explain the social construction of self and groups and their impact on the life changes of individuals."
+          },
+          {
+           "code": "SS.9-12.SOC.6",
+           "text": "Analyze the impact of stratification and inequality on groups and the individuals within them."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "religion",
+       "title": "Religion",
+       "subtopics": [
+        {
+         "id": "religion-1-of-2",
+         "title": "Religion (1 of 2)",
+         "outcomes": [
+          {
+           "code": "SS.9-12.REL.1",
+           "text": "Explain and analyze the distinction between a devotional assertion of religious beliefs and behaviors and the academic study of diverse devotional assertions from a nonsectarian perspective in specific social and historical contexts."
+          },
+          {
+           "code": "SS.9-12.REL.2",
+           "text": "Describe and analyze examples of how religions are internally diverse at both macro levels (sects and divisions within traditions) and micro levels (differences within specific religious communities)."
+          },
+          {
+           "code": "SS.9-12.REL.3",
+           "text": "Describe and analyze examples of how religions evolve and change over time in response to differing social, historical, and political contexts."
+          },
+          {
+           "code": "SS.9-12.REL.4",
+           "text": "Describe and analyze examples of how religions are embedded in all aspects of culture and cannot only be isolated to the \"private\" sphere."
+          },
+          {
+           "code": "SS.9-12.REL.5",
+           "text": "Explain how religious identities shape and are shaped by the beliefs people hold, the behaviors they exhibit, and the ways people experience membership in intersecting communities."
+          }
+         ]
+        },
+        {
+         "id": "religion-2-of-2",
+         "title": "Religion (2 of 2)",
+         "outcomes": [
+          {
+           "code": "SS.9-12.REL.6",
+           "text": "Identify how internal diversity is evident in beliefs, behaviors, and experiences of belonging to various communities."
+          },
+          {
+           "code": "SS.9-12.REL.7",
+           "text": "Analyze how beliefs, behaviors, and experiences of belonging to communities change over time."
+          },
+          {
+           "code": "SS.9-12.REL.8",
+           "text": "Interpret how beliefs, behaviors, and experiences of belonging to various communities affect and are affected by other social, political, and cultural forces."
+          },
+          {
+           "code": "SS.9-12.REL.9",
+           "text": "Give examples of how beliefs, behaviors, and community experiences shape and are shaped by one another in particular social and historical contexts."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "10-12",
+   "units": [
+    {
+     "id": "applying-disciplinary-knowledge",
+     "title": "Applying Disciplinary Knowledge",
+     "topics": [
+      {
+       "id": "applying-disciplinary-knowledge",
+       "title": "Applying Disciplinary Knowledge",
+       "subtopics": [
+        {
+         "id": "applying-disciplinary-knowledge",
+         "title": "Applying Disciplinary Knowledge",
+         "outcomes": [
+          {
+           "code": "ADK 1",
+           "text": "Identify and explain course concepts, developments, and processes."
+          },
+          {
+           "code": "ADK 2",
+           "text": "Identify and explain the context of a specific event, development, or process."
+          },
+          {
+           "code": "ADK 3",
+           "text": "Identify and explain patterns, connections, or other relationships (causation, changes, continuities, comparison)"
+          },
+          {
+           "code": "ADK 4",
+           "text": "Explain how course concepts, developments, and processes relate to the discipline of African American Studies."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "source-analysis",
+     "title": "Source Analysis",
+     "topics": [
+      {
+       "id": "source-analysis",
+       "title": "Source Analysis",
+       "subtopics": [
+        {
+         "id": "source-analysis",
+         "title": "Source Analysis",
+         "outcomes": [
+          {
+           "code": "SA1",
+           "text": "Identify and explain a source’s claim(s), evidence, and reasoning."
+          },
+          {
+           "code": "SA2",
+           "text": "Describe a source’s perspective, purpose, context, and audience."
+          },
+          {
+           "code": "SA 3",
+           "text": "Explain the significance of a source’s perspective, purpose, context, and audience."
+          },
+          {
+           "code": "SA 4",
+           "text": "Describe and draw conclusions from patterns, trends, and limitations in data, making connections to relevant course content."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "argumentation",
+     "title": "Argumentation",
+     "topics": [
+      {
+       "id": "argumentation",
+       "title": "Argumentation",
+       "subtopics": [
+        {
+         "id": "argumentation",
+         "title": "Argumentation",
+         "outcomes": [
+          {
+           "code": "ARG1",
+           "text": "Formulate a defensible claim."
+          },
+          {
+           "code": "ARG2",
+           "text": "Support a claim or argument using specific and relevant evidence."
+          },
+          {
+           "code": "ARG3",
+           "text": "Strategically select sources— evaluating the credibility of the evidence they present—to effectively support a claim."
+          },
+          {
+           "code": "ARG4",
+           "text": "Select and consistently apply an appropriate citation style."
+          },
+          {
+           "code": "ARG5",
+           "text": "Use a line of reasoning to develop a well-supported argument."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "6-8",
+   "units": [
+    {
+     "id": "inquiry",
+     "title": "Inquiry",
+     "topics": [
+      {
+       "id": "developing-questions-and-planning-inquiries",
+       "title": "Developing Questions and Planning Inquiries",
+       "subtopics": [
+        {
+         "id": "developing-questions-and-planning-inquiries",
+         "title": "Developing Questions and Planning Inquiries",
+         "outcomes": [
+          {
+           "code": "SS.6-8.IS.1",
+           "text": "Create essential questions that consider multiple perspectives to guide inquiry about a topic."
+          },
+          {
+           "code": "SS.6-8.IS.2",
+           "text": "Ask essential and focused questions that consider multiple perspectives and will lead to independent research."
+          },
+          {
+           "code": "SS.6-8.IS.3",
+           "text": "Determine sources representing multiple points of view and diversity of authorship that will assist in organizing a research plan."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "evaluating-sources-and-using-evidence",
+       "title": "Evaluating Sources and Using Evidence",
+       "subtopics": [
+        {
+         "id": "evaluating-sources-and-using-evidence",
+         "title": "Evaluating Sources and Using Evidence",
+         "outcomes": [
+          {
+           "code": "SS.6-8.IS.4.LC",
+           "text": "Determine the value of sources by evaluating their relevance and intended use."
+          },
+          {
+           "code": "SS.6-8.IS.4.MdC",
+           "text": "Determine the credibility of sources based upon their origin, authority, and context."
+          },
+          {
+           "code": "SS.6-8.IS.4.MC",
+           "text": "Gather relevant information from credible sources and determine whether they support each other."
+          },
+          {
+           "code": "SS.6-8.IS.5.LC",
+           "text": "Appropriately cite all the sources that are used."
+          },
+          {
+           "code": "SS.6-8.IS.5.Mdc",
+           "text": "Identify evidence from multiple sources to support claims, noting any limitations of the evidence."
+          },
+          {
+           "code": "SS.6-8.IS.5.MC",
+           "text": "Develop claims and counterclaims using evidence from credible sources while pointing out the strengths and limitations of both."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "communicating-conclusions-and-taking-informed-ac",
+       "title": "Communicating Conclusions and Taking Informed Action",
+       "subtopics": [
+        {
+         "id": "communicating-conclusions-and-taking-informed-ac",
+         "title": "Communicating Conclusions and Taking Informed Action (1 of 2)",
+         "outcomes": [
+          {
+           "code": "SS.6-8.IS.6.LC",
+           "text": "Construct arguments using claims and evidence from multiple sources, while acknowledging the arguments' strengths and limitations."
+          },
+          {
+           "code": "SS.6-8.IS.6.MdC",
+           "text": "Construct explanations for a specific audience using reasoning, correct sequences, examples, and details, while acknowledging their strengths and weaknesses."
+          },
+          {
+           "code": "SS.6-8.IS.6.MC",
+           "text": "Present arguments and explanations that would appeal to audiences and venues outside of the classroom, using a variety of media."
+          },
+          {
+           "code": "SS.6-8.IS.7.LC",
+           "text": "Critique the structure and credibility of arguments and explanations (self and others) about a topic."
+          }
+         ]
+        },
+        {
+         "id": "communicating-conclusions-and-taking-informed-ac-2",
+         "title": "Communicating Conclusions and Taking Informed Action (2 of 2)",
+         "outcomes": [
+          {
+           "code": "SS.6-8.IS.8.LC",
+           "text": "Analyze how a problem can manifest itself, identify the individuals and communities impacted by a problem, and address the challenges and opportunities faced by those trying to take action toward solutions."
+          },
+          {
+           "code": "SS.6-8.IS.8.MdC",
+           "text": "Assess individual and collective capacities within a given context to take action, address problems, and identify potential outcomes."
+          },
+          {
+           "code": "SS.6-8.IS.8.MC",
+           "text": "Apply a range of deliberative and democratic procedures to make decisions and take action in schools and community contexts."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "civics",
+     "title": "Civics",
+     "topics": [
+      {
+       "id": "civics",
+       "title": "Civics",
+       "subtopics": [
+        {
+         "id": "civics-1-of-4",
+         "title": "Civics (1 of 4)",
+         "outcomes": [
+          {
+           "code": "SS.6-8.CV.1.LC",
+           "text": "Identify different types of citizenship and immigration statuses of individuals in the United States and the different rights and roles (e.g., voters, jurors, taxpayers, military, protesters, and officeholders) based on citizenship or immigration status."
+          },
+          {
+           "code": "SS.6-8.CV.1.MdC",
+           "text": "Describe and analyze the roles of political, civil, and economic organizations from a national to local scale in impacting multiple individuals and communities."
+          },
+          {
+           "code": "SS.6-8.CV.1.MC",
+           "text": "Evaluate the powers and responsibilities of individuals, political parties, interest groups, and the media; how these have changed over time; and the impacts on multiple communities."
+          },
+          {
+           "code": "SS.6-8.CV.2.LC",
+           "text": "Describe the origins and purposes and impact of governing documents and policies (e.g., U.S. Constitution, Illinois Constitution, laws, treaties, and international agreements) and synthesize their application and impacts on multiple groups of people with how they have changed over time."
+          }
+         ]
+        },
+        {
+         "id": "civics-2-of-4",
+         "title": "Civics (2 of 4)",
+         "outcomes": [
+          {
+           "code": "SS.6-8.CV.2.MdC",
+           "text": "Explain the origins, functions, and structure of government with reference to the U.S. Constitution, Illinois Constitution, and other systems of government and how they have impacted multiple groups of people."
+          },
+          {
+           "code": "SS.6-8.CV.2.MCa",
+           "text": "Analyze how the application of laws and the protection, granting, or denial of individual and collective rights have impacted participation and powers of various groups of people."
+          },
+          {
+           "code": "SS.6-8.CV.2.MCb",
+           "text": "Synthesize how the changes over time in the application of laws and granting or denial of rights have impacted governments, public officials, and bureaucracies at different levels in the United States, U.S. territories, and tribal nations within the United States."
+          },
+          {
+           "code": "SS.6-8.CV.3.LC",
+           "text": "Identify the means used by individuals and groups to either maintain or change powers and protect, grant, or deny rights of individuals and communities in societies."
+          }
+         ]
+        },
+        {
+         "id": "civics-3-of-4",
+         "title": "Civics (3 of 4)",
+         "outcomes": [
+          {
+           "code": "SS.6-8.CV.3.MdC",
+           "text": "Analyze the origins, purposes, and processes connected to maintaining or changing powers and how individuals and societies protect, grant, or deny rights."
+          },
+          {
+           "code": "SS 6-8.CV.3.MC",
+           "text": "Explain how granting rights for individuals or communities does not reduce the ability of other individuals or communities to exercise the same rights and evaluate how efforts to maintain systems or initiate change within societies have worked for or against the benefit or oppression of multiple groups."
+          },
+          {
+           "code": "SS.6-8.CV.4.LC",
+           "text": "Analyze the relationships among democratic principles, civic virtues, special interests, and perspectives to the ideas and principles contained in the constitutions, laws, treaties, and international agreements of the United States and other countries."
+          },
+          {
+           "code": "SS.6-8.CV.4.MdC",
+           "text": "Analyze and synthesize ideas and principles contained in the founding and governing documents and practices of the United States, U.S. territories, and tribal nations within the United States."
+          }
+         ]
+        },
+        {
+         "id": "civics-4-of-4",
+         "title": "Civics (4 of 4)",
+         "outcomes": [
+          {
+           "code": "SS.6-8.CV.4.MC",
+           "text": "Evaluate and critique deliberative processes regarding the development and application of governing documents and policies and how they have changed over time."
+          },
+          {
+           "code": "SS.6-8.CV.5.LC",
+           "text": "Identify the impact of specific rules and laws (both those that are in effect and proposed) on multiple individuals and communities in relationship to the intended issues they were meant to address. Analyze cause-and-effect relationships of issues that resulted in specific rules and laws."
+          },
+          {
+           "code": "SS.6-8.CV.5.MdC",
+           "text": "Analyze the perspectives and positions of multiple individuals and communities impacted by specific rules and laws (both actual and proposed); the equitable application of rules and laws; and consequences for not abiding by rules and laws historic and contemporary settings."
+          },
+          {
+           "code": "SS.6-8.CV.5.MC",
+           "text": "Develop and evaluate procedures for making decisions in historic and contemporary settings (e.g., school; civil society; or local, state, or national governments)."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "economics-financial-literacy",
+     "title": "Economics/ Financial Literacy",
+     "topics": [
+      {
+       "id": "economics-financial-literacy",
+       "title": "Economics/ Financial Literacy",
+       "subtopics": [
+        {
+         "id": "economics-financial-literacy-1-of-4",
+         "title": "Economics/ Financial Literacy (1 of 4)",
+         "outcomes": [
+          {
+           "code": "SS.6-8.EC.1",
+           "text": "Explain how economic decisions affect the well-being of individuals, businesses, and society."
+          },
+          {
+           "code": "SS.6-8.EC.2",
+           "text": "Explain how external benefits and costs influence choices."
+          },
+          {
+           "code": "SS.6-8.EC.3",
+           "text": "Evaluate alternative approaches or solutions to current economic issues in terms of benefits and costs for different groups and society as a whole."
+          },
+          {
+           "code": "SS.6-8.EC.4",
+           "text": "Analyze the role of innovation and entrepreneurship in a market economy."
+          },
+          {
+           "code": "SS.6-8.EC.5",
+           "text": "Describe the roles of institutions, such as corporations, nonprofit organizations and labor unions, in a market economy."
+          }
+         ]
+        },
+        {
+         "id": "economics-financial-literacy-2-of-4",
+         "title": "Economics/ Financial Literacy (2 of 4)",
+         "outcomes": [
+          {
+           "code": "SS.6-8.EC.6",
+           "text": "Explain how changes in supply and demand cause changes in prices and quantities of goods and services, labor, credit, and foreign currencies."
+          },
+          {
+           "code": "SS.6-8.EC.7",
+           "text": "Explain why standards of living increase as productivity improves."
+          },
+          {
+           "code": "SS.6-8.EC.8",
+           "text": "Explain barriers to trade and how those barriers influence trade among nations."
+          },
+          {
+           "code": "SS.6-8.EC.9",
+           "text": "Evaluate employment, unemployment, inflation, total production, income, and economic growth data and how they affect different groups."
+          },
+          {
+           "code": "SS.6-8.EC.FL.10",
+           "text": "Analyze the relationship among skills, education, jobs, and income."
+          }
+         ]
+        },
+        {
+         "id": "economics-financial-literacy-3-of-4",
+         "title": "Economics/ Financial Literacy (3 of 4)",
+         "outcomes": [
+          {
+           "code": "SS.6-8.EC.FL.11",
+           "text": "Explain the roles and relationships among savers, borrowers, interest, time, and the purposes for saving."
+          },
+          {
+           "code": "SS.6-8.EC.FL.12",
+           "text": "Identify how people choose to buy goods and services while still maintaining a budget based on income, taxes, savings, and fixed and variable expenses."
+          },
+          {
+           "code": "SS.6-8.EC.FL.13",
+           "text": "Explain the correlation among investors, investment options (and associated risks), and income/wealth."
+          },
+          {
+           "code": "SS.6-8.EC.FL.14",
+           "text": "Describe the connection among credit, credit options, interest, and credit history."
+          },
+          {
+           "code": "SS.6-8.EC.FL.15",
+           "text": "Analyze the relationship between financial risks and protection, insurance, and costs"
+          }
+         ]
+        },
+        {
+         "id": "economics-financial-literacy-4-of-4",
+         "title": "Economics/ Financial Literacy (4 of 4)",
+         "outcomes": [
+          {
+           "code": "SS.6-8.EC.FL.1.LC",
+           "text": "Analyze the relationship among skills, education, jobs, and income."
+          },
+          {
+           "code": "SS.6-8.EC.FL.2.LC",
+           "text": "Explain the roles and relationships among savers, borrowers, interest, time, and the purposes for saving."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "explain-how-economic-decisions-affect-the-well-b",
+       "title": "Explain how economic decisions affect the well-being of individuals, businesses, and society",
+       "subtopics": [
+        {
+         "id": "explain-how-economic-decisions-affect-the-well-b",
+         "title": "Explain how economic decisions affect the well-being of individuals, businesses, and society",
+         "outcomes": [
+          {
+           "code": "SS.6-8.EC.1.LC",
+           "text": "Explain how economic decisions affect the well-being of individuals, businesses and society."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "explain-how-external-benefits-and-costs-influenc",
+       "title": "Explain how external benefits and costs influence choices",
+       "subtopics": [
+        {
+         "id": "explain-how-external-benefits-and-costs-influenc",
+         "title": "Explain how external benefits and costs influence choices",
+         "outcomes": [
+          {
+           "code": "SS.6-8.EC.2.MC",
+           "text": "Explain how changes in supply and demand cause changes in prices and quantities of goods and services, labor, credit and foreign currencies."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "evaluate-alternative-approaches-or-solutions-to-",
+       "title": "Evaluate alternative approaches or solutions to current economic issues in terms of benefits and costs for different groups and society as a whole",
+       "subtopics": [
+        {
+         "id": "evaluate-alternative-approaches-or-solutions-to-",
+         "title": "Evaluate alternative approaches or solutions to current economic issues in terms of benefits and costs for different groups and society as a whole",
+         "outcomes": [
+          {
+           "code": "SS.6-8.EC.3.MC",
+           "text": "Evaluate employment, unemployment, inflation, total production, income and economic growth data and how they affect different groups"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "geography",
+     "title": "Geography",
+     "topics": [
+      {
+       "id": "geography",
+       "title": "Geography",
+       "subtopics": [
+        {
+         "id": "geography-1-of-3",
+         "title": "Geography (1 of 3)",
+         "outcomes": [
+          {
+           "code": "SS.6-8.G.1",
+           "text": "Use geographic representations (e.g., maps, photographs, satellite images) to explain relationships between the locations (places and regions) and changes in their environment."
+          },
+          {
+           "code": "SS.6-8.G.2",
+           "text": "Use mapping and graphing to represent and analyze spatial patterns of different environmental and cultural characteristics."
+          },
+          {
+           "code": "SS.6-8.G.3",
+           "text": "Construct different representations to explain the spatial patterns of cultural and environmental characteristics."
+          },
+          {
+           "code": "SS.6-8.G.4",
+           "text": "Explain how humans and their environment affect one another."
+          }
+         ]
+        },
+        {
+         "id": "geography-2-of-3",
+         "title": "Geography (2 of 3)",
+         "outcomes": [
+          {
+           "code": "SS.6-8.G.5",
+           "text": "Compare and contrast the cultural and environmental characteristics of different places or regions."
+          },
+          {
+           "code": "SS.6-8.G.6",
+           "text": "Evaluate how cultural and economic decisions influence environments and the daily lives of people in both nearby and distant places."
+          },
+          {
+           "code": "SS.6-8.G.7",
+           "text": "Explain how environmental characteristics affect human migration and settlement."
+          },
+          {
+           "code": "SS.6-8.G.8",
+           "text": "Explain how changes in transportation and communication influence the spatial connections among human settlements and affect the spread of ideas and culture."
+          }
+         ]
+        },
+        {
+         "id": "geography-3-of-3",
+         "title": "Geography (3 of 3)",
+         "outcomes": [
+          {
+           "code": "SS.6-8.G.9",
+           "text": "Evaluate the influences of long-term, human-induced environmental change on spatial patterns of conflict and cooperation."
+          },
+          {
+           "code": "SS.6-8.G.10",
+           "text": "Identify how cultural and environmental characteristics vary among regions of the world."
+          },
+          {
+           "code": "SS.6-8.G.11",
+           "text": "Explain how global changes in population distribution patterns affect changes in land use."
+          },
+          {
+           "code": "SS.6-8.G.12",
+           "text": "Analyze how the environmental characteristics of places and production of goods influence patterns of world trade."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "use-mapping-and-graphing-to-represent-and-analyz",
+       "title": "Use mapping and graphing to represent and analyze spatial patterns of different environmental and cultural characteristics",
+       "subtopics": [
+        {
+         "id": "use-mapping-and-graphing-to-represent-and-analyz",
+         "title": "Use mapping and graphing to represent and analyze spatial patterns of different environmental and cultural characteristics",
+         "outcomes": [
+          {
+           "code": "SS.6-8.G.2.MdC",
+           "text": "COMPARE and CONTRAST the cultural and environmental characteristics of different places or regions."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "history",
+     "title": "History",
+     "topics": [
+      {
+       "id": "history",
+       "title": "History",
+       "subtopics": [
+        {
+         "id": "history-1-of-3",
+         "title": "History (1 of 3)",
+         "outcomes": [
+          {
+           "code": "SS.6-8.H.1.LC",
+           "text": "Identify and describe the contexts of a series of historical events and developments as examples of change and/or continuity based on the perspectives of multiple diverse groups."
+          },
+          {
+           "code": "SS.6-8.H.1.MdC",
+           "text": "Analyze connections and disconnections among events and developments in broader historical contexts and identify the effects of events on groups of people who have been marginalized."
+          },
+          {
+           "code": "SS.6-8.H.1.MC",
+           "text": "Evaluate the significance of historical events to multiple groups and the relationship to modern-day movements and events."
+          },
+          {
+           "code": "SS.6-8.H.2.LC",
+           "text": "Explain how and why perspectives of people have changed over time."
+          }
+         ]
+        },
+        {
+         "id": "history-2-of-3",
+         "title": "History (2 of 3)",
+         "outcomes": [
+          {
+           "code": "SS.6-8.H.2.MdC",
+           "text": "Analyze and compare multiple factors that influenced the perspectives of multiple groups of people during different historical eras relevant to the cultural groups."
+          },
+          {
+           "code": "SS.6-8.H.2.MC",
+           "text": "Evaluate how perspectives of multiple individuals and groups have impacted the availability of information and the creation of historical sources."
+          },
+          {
+           "code": "SS.6-8.H.3.LC",
+           "text": "Classify the kinds of historical sources used in a secondary interpretation to include sources representing multiple perspectives."
+          },
+          {
+           "code": "SS.6-8.H.3.MdC",
+           "text": "Detect possible biases and limitations in the historical record based on evidence collected from different kinds of historical sources by identifying the author, purpose, funding/source, type of publication/outlet, intended audience, etc."
+          }
+         ]
+        },
+        {
+         "id": "history-3-of-3",
+         "title": "History (3 of 3)",
+         "outcomes": [
+          {
+           "code": "SS.6-8.H.3.MC",
+           "text": "Evaluate the validity of claims made in historical sources representing a variety of perspectives, describe the possible or actual impact(s) of the sources on audiences, and determine uses and applications."
+          },
+          {
+           "code": "SS.6-8.H.4.LC",
+           "text": "Describe the differences between correlation and causation in historical events and explain multiple causes and effects of historical events."
+          },
+          {
+           "code": "SS.6-8.H.4.MdC",
+           "text": "Compare and contrast the central historical arguments in secondary works across multiple media."
+          },
+          {
+           "code": "SS.6-8.H.4.MC",
+           "text": "Organize and critique applicable evidence to develop a coherent argument about the past."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "build": {
+  "builtAt": "2026-10-14T16:20:42.257Z",
+  "model": "none",
+  "usd": 0,
+  "expectedCodes": 299,
+  "coverage": 1,
+  "missingCodes": [],
+  "counts": {
+   "grades": 10,
+   "units": 52,
+   "topics": 75,
+   "subtopics": 99,
+   "outcomes": 345
+  },
+  "warnings": [
+   "unit \"Economics/ Financial Literacy\" (grade K) has a single outcome",
+   "unit \"Modeling (Numeracy)\" (grade 11) has a single outcome",
+   "unit \"Modeling\" (grade 9-12) has a single outcome"
+  ]
+ }
+}

@@ -1,0 +1,3616 @@
+{
+ "id": "us-ap-environmental-science",
+ "region": "US",
+ "framework": "AP Environmental Science Course and Exam Description (effective fall 2026)",
+ "board": "College Board",
+ "qualification": "AP",
+ "subject": "Environmental Science",
+ "syllabusCode": null,
+ "gradeSystem": "course",
+ "source": {
+  "urls": [
+   "https://apcentral.collegeboard.org/media/pdf/ap-environmental-science-course-and-exam-description.pdf",
+   "https://apcentral.collegeboard.org/courses/ap-environmental-science"
+  ],
+  "publisher": "College Board",
+  "licence": "© College Board; structure + our own wording only",
+  "firstExam": "2027"
+ },
+ "grades": [
+  {
+   "grade": "all",
+   "units": [
+    {
+     "id": "unit-1-the-living-world-ecosystems",
+     "title": "UNIT 1: The Living World: Ecosystems",
+     "topics": [
+      {
+       "id": "1-2-terrestrial-biomes",
+       "title": "1.2 Terrestrial Biomes",
+       "subtopics": [
+        {
+         "id": "biome-distribution-and-characteristics",
+         "title": "Biome Distribution and Characteristics",
+         "outcomes": [
+          {
+           "code": "ERT-1.B",
+           "text": "Describe where terrestrial biomes occur globally and summarize their main environmental characteristics."
+          },
+          {
+           "code": "ERT-1.B.2",
+           "text": "Identify major terrestrial biomes, including taiga, forests, rainforest, shrubland, grassland, savanna, desert, and tundra."
+          }
+         ]
+        },
+        {
+         "id": "climate-and-biome-adaptations",
+         "title": "Climate and Biome Adaptations",
+         "outcomes": [
+          {
+           "code": "ERT-1.B.1",
+           "text": "Explain that biome plant and animal communities reflect adaptations to their climate."
+          },
+          {
+           "code": "ERT-1.B.3",
+           "text": "Explain how climate, geography, latitude, altitude, nutrients, and soil affect terrestrial resource distribution."
+          }
+         ]
+        },
+        {
+         "id": "changing-biome-locations",
+         "title": "Changing Biome Locations",
+         "outcomes": [
+          {
+           "code": "ERT-1.B.4",
+           "text": "Explain that biome locations change over time and may shift with global climate change."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "1-1-introduction-to-ecosystems",
+       "title": "1.1 Introduction to Ecosystems",
+       "subtopics": [
+        {
+         "id": "resources-and-species-interactions",
+         "title": "Resources and Species Interactions",
+         "outcomes": [
+          {
+           "code": "ERT-1.A",
+           "text": "Explain how resource availability affects interactions among species."
+          },
+          {
+           "code": "ERT-1.A.3",
+           "text": "Explain how resource partitioning reduces competition within or between species."
+          }
+         ]
+        },
+        {
+         "id": "symbiosis-and-predation",
+         "title": "Symbiosis and Predation",
+         "outcomes": [
+          {
+           "code": "ERT-1.A.2",
+           "text": "Define symbiosis as a long-term close relationship and identify mutualism, commensalism, and parasitism."
+          },
+          {
+           "code": "ERT-1.A.1",
+           "text": "Identify predators as organisms that consume prey in predator-prey relationships."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "1-3-aquatic-biomes",
+       "title": "1.3 Aquatic Biomes",
+       "subtopics": [
+        {
+         "id": "aquatic-biome-distribution",
+         "title": "Aquatic Biome Distribution",
+         "outcomes": [
+          {
+           "code": "ERT-1.C",
+           "text": "Describe the global distribution and key environmental features of aquatic biomes."
+          },
+          {
+           "code": "ERT-1.C.1",
+           "text": "Identify streams, rivers, ponds, and lakes as freshwater biomes important for drinking water."
+          }
+         ]
+        },
+        {
+         "id": "marine-biomes-and-algae",
+         "title": "Marine Biomes and Algae",
+         "outcomes": [
+          {
+           "code": "ERT-1.C.2",
+           "text": "Identify marine biomes and explain how algae contribute oxygen and remove atmospheric carbon dioxide."
+          },
+          {
+           "code": "ERT-1.C.3",
+           "text": "Explain how salinity, depth, turbidity, nutrients, and temperature affect marine resource distribution."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "1-4-the-carbon-cycle",
+       "title": "1.4 The Carbon Cycle",
+       "subtopics": [
+        {
+         "id": "carbon-cycle-and-reservoirs",
+         "title": "Carbon Cycle and Reservoirs",
+         "outcomes": [
+          {
+           "code": "ERT-1.D",
+           "text": "Explain carbon-cycle steps and interactions among its reservoirs."
+          },
+          {
+           "code": "ERT-1.D.1",
+           "text": "Describe carbon movement between sources and sinks."
+          }
+         ]
+        },
+        {
+         "id": "long-term-carbon-storage",
+         "title": "Long-Term Carbon Storage",
+         "outcomes": [
+          {
+           "code": "ERT-1.D.2",
+           "text": "Compare carbon reservoirs that retain compounds for long versus short periods."
+          }
+         ]
+        },
+        {
+         "id": "living-carbon-cycle",
+         "title": "Living Carbon Cycle",
+         "outcomes": [
+          {
+           "code": "ERT-1.D.3",
+           "text": "Explain how photosynthesis and cellular respiration cycle carbon through living organisms."
+          },
+          {
+           "code": "ERT-1.D.4",
+           "text": "Explain how decomposition stores carbon and fossil-fuel combustion rapidly releases it as carbon dioxide."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "1-5-the-nitrogen-cycle",
+       "title": "1.5 The Nitrogen Cycle",
+       "subtopics": [
+        {
+         "id": "nitrogen-cycle-overview",
+         "title": "Nitrogen Cycle Overview",
+         "outcomes": [
+          {
+           "code": "ERT-1.E",
+           "text": "Explain nitrogen-cycle steps and interactions among reservoirs."
+          },
+          {
+           "code": "ERT-1.E.1",
+           "text": "Describe nitrogen movement through fixation, assimilation, ammonification, nitrification, and denitrification."
+          }
+         ]
+        },
+        {
+         "id": "nitrogen-fixation-and-availability",
+         "title": "Nitrogen Fixation and Availability",
+         "outcomes": [
+          {
+           "code": "ERT-1.E.2",
+           "text": "Explain how soil bacteria convert atmospheric nitrogen into ammonia and biologically available ammonium."
+          },
+          {
+           "code": "ERT-1.E.3",
+           "text": "Explain how nitrogen fixation limits soil nitrogen availability and primary production."
+          }
+         ]
+        },
+        {
+         "id": "nitrogen-reservoirs",
+         "title": "Nitrogen Reservoirs",
+         "outcomes": [
+          {
+           "code": "ERT-1.E.4",
+           "text": "Identify the atmosphere as nitrogen’s largest reservoir and note that most reservoirs retain nitrogen briefly."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "1-6-the-phosphorus-cycle",
+       "title": "1.6 The Phosphorus Cycle",
+       "subtopics": [
+        {
+         "id": "phosphorus-cycle-overview",
+         "title": "Phosphorus Cycle Overview",
+         "outcomes": [
+          {
+           "code": "ERT-1.F",
+           "text": "Explain phosphorus-cycle steps and interactions among reservoirs."
+          },
+          {
+           "code": "ERT-1.F.1",
+           "text": "Describe phosphorus movement between sources and sinks."
+          }
+         ]
+        },
+        {
+         "id": "phosphorus-reservoirs-and-limits",
+         "title": "Phosphorus Reservoirs and Limits",
+         "outcomes": [
+          {
+           "code": "ERT-1.F.2",
+           "text": "Identify rocks and ocean sediments as major phosphorus reservoirs and note its lack of a significant atmospheric phase."
+          },
+          {
+           "code": "ERT-1.F.3",
+           "text": "Explain why slow weathering makes phosphorus scarce and often limiting for producers."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "1-7-the-hydrologic-cycle",
+       "title": "1.7 The Hydrologic Cycle",
+       "subtopics": [
+        {
+         "id": "water-cycle-processes",
+         "title": "Water Cycle Processes",
+         "outcomes": [
+          {
+           "code": "ERT-1.G",
+           "text": "Explain steps and reservoir interactions in the hydrologic cycle."
+          },
+          {
+           "code": "ERT-1.G.1",
+           "text": "Describe solar-powered movement of water among reservoirs and its solid, liquid, and gaseous phases."
+          }
+         ]
+        },
+        {
+         "id": "water-reservoirs",
+         "title": "Water Reservoirs",
+         "outcomes": [
+          {
+           "code": "ERT-1.G.2",
+           "text": "Identify oceans as the largest surface reservoir, with ice caps and groundwater as smaller reservoirs."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "1-8-primary-productivity",
+       "title": "1.8 Primary Productivity",
+       "subtopics": [
+        {
+         "id": "solar-energy-and-productivity",
+         "title": "Solar Energy and Productivity",
+         "outcomes": [
+          {
+           "code": "ENG-1.A",
+           "text": "Explain how living organisms acquire and transfer solar energy."
+          },
+          {
+           "code": "ENG-1.A.1",
+           "text": "Define primary productivity as the rate of converting sunlight into organic compounds through photosynthesis."
+          }
+         ]
+        },
+        {
+         "id": "gross-and-net-productivity",
+         "title": "Gross and Net Productivity",
+         "outcomes": [
+          {
+           "code": "ENG-1.A.2",
+           "text": "Define gross primary productivity as total photosynthetic activity in an area."
+          },
+          {
+           "code": "ENG-1.A.3",
+           "text": "Define net primary productivity as energy stored after subtracting respiratory losses."
+          },
+          {
+           "code": "ENG-1.A.4",
+           "text": "Express productivity using energy per area per time, such as kcal/m²/year."
+          }
+         ]
+        },
+        {
+         "id": "aquatic-photosynthesis",
+         "title": "Aquatic Photosynthesis",
+         "outcomes": [
+          {
+           "code": "ENG-1.A.5",
+           "text": "Explain how water-depth light penetration affects aquatic photosynthesis and drives adaptations."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "1-9-trophic-levels",
+       "title": "1.9 Trophic Levels",
+       "subtopics": [
+        {
+         "id": "energy-and-matter-flow",
+         "title": "Energy and Matter Flow",
+         "outcomes": [
+          {
+           "code": "ENG-1.B",
+           "text": "Explain energy flow and matter cycling through trophic levels."
+          },
+          {
+           "code": "ENG-1.B.3",
+           "text": "Describe energy transfer from the sun to producers and then to higher trophic levels."
+          }
+         ]
+        },
+        {
+         "id": "cycles-sustain-ecosystems",
+         "title": "Cycles Sustain Ecosystems",
+         "outcomes": [
+          {
+           "code": "ENG-1.B.1",
+           "text": "Explain ecosystems’ dependence on continuous high-quality energy and matter transfer through biogeochemical cycles."
+          },
+          {
+           "code": "ENG-1.B.2",
+           "text": "Explain that biogeochemical cycles sustain life while conserving matter."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "1-10-energy-flow-and-the-10-rule",
+       "title": "1.10 Energy Flow and the 10% Rule",
+       "subtopics": [
+        {
+         "id": "energy-transfer-and-losses",
+         "title": "Energy Transfer and Losses",
+         "outcomes": [
+          {
+           "code": "ENG-1.C",
+           "text": "Determine how energy declines as it moves through ecosystems."
+          },
+          {
+           "code": "ENG-1.C.1",
+           "text": "Apply the approximate 10% rule to energy transfers between adjacent trophic levels."
+          },
+          {
+           "code": "ENG-1.C.2",
+           "text": "Explain trophic-level energy losses using the laws of thermodynamics."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "1-11-food-chains-and-food-webs",
+       "title": "1.11 Food Chains and Food Webs",
+       "subtopics": [
+        {
+         "id": "chains-webs-and-trophic-levels",
+         "title": "Chains Webs and Trophic Levels",
+         "outcomes": [
+          {
+           "code": "ENG-1.D",
+           "text": "Describe food chains and food webs and identify members by trophic level."
+          },
+          {
+           "code": "ENG-1.D.1",
+           "text": "Explain energy and matter flow from producers through consumers, decomposers, and detritivores."
+          }
+         ]
+        },
+        {
+         "id": "food-web-feedback-effects",
+         "title": "Food Web Feedback Effects",
+         "outcomes": [
+          {
+           "code": "ENG-1.D.2",
+           "text": "Explain how adding or removing species can create positive or negative feedback effects within food webs."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "unit-2-the-living-world-biodiversity",
+     "title": "UNIT 2: The Living World: Biodiversity",
+     "topics": [
+      {
+       "id": "2-1-introduction-to-biodiversity",
+       "title": "2.1 Introduction to Biodiversity",
+       "subtopics": [
+        {
+         "id": "types-of-biodiversity",
+         "title": "Types of Biodiversity",
+         "outcomes": [
+          {
+           "code": "ERT-2.A",
+           "text": "Explain genetic, species, and habitat diversity and why each matters to ecosystems."
+          },
+          {
+           "code": "ERT-2.A.1",
+           "text": "Biodiversity includes genetic diversity, species diversity, and habitat diversity."
+          }
+         ]
+        },
+        {
+         "id": "diversity-builds-resilience",
+         "title": "Diversity Builds Resilience",
+         "outcomes": [
+          {
+           "code": "ERT-2.A.2",
+           "text": "Greater genetic diversity improves population resilience, while bottlenecks can reduce genetic variation."
+          },
+          {
+           "code": "ERT-2.A.3",
+           "text": "Species-rich ecosystems are generally more capable of recovering from disturbances."
+          }
+         ]
+        },
+        {
+         "id": "habitat-loss-and-richness",
+         "title": "Habitat Loss and Richness",
+         "outcomes": [
+          {
+           "code": "ERT-2.A.4",
+           "text": "Habitat loss first harms specialists, then generalists, and reduces species needing large territories."
+          },
+          {
+           "code": "ERT-2.A.5",
+           "text": "Species richness is the number of different species in an ecosystem."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "2-2-ecosystem-services",
+       "title": "2.2 Ecosystem Services",
+       "subtopics": [
+        {
+         "id": "types-of-ecosystem-services",
+         "title": "Types of Ecosystem Services",
+         "outcomes": [
+          {
+           "code": "ERT-2.B",
+           "text": "Describe the services ecosystems provide."
+          },
+          {
+           "code": "ERT-2.B.1",
+           "text": "Ecosystem services are provisioning, regulating, cultural, or supporting services."
+          }
+         ]
+        },
+        {
+         "id": "disrupted-ecosystem-services",
+         "title": "Disrupted Ecosystem Services",
+         "outcomes": [
+          {
+           "code": "ERT-2.C",
+           "text": "Describe consequences of human disruption to ecosystem services."
+          },
+          {
+           "code": "ERT-2.C.1",
+           "text": "Human activities can disrupt ecosystem services, causing ecological and economic consequences."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "2-3-island-biogeography",
+       "title": "2.3 Island Biogeography",
+       "subtopics": [
+        {
+         "id": "island-biogeography-basics",
+         "title": "Island Biogeography Basics",
+         "outcomes": [
+          {
+           "code": "ERT-2.D",
+           "text": "Describe island biogeography."
+          },
+          {
+           "code": "ERT-2.D.1",
+           "text": "Island biogeography examines organisms’ distributions, ecological relationships, and community structures on islands."
+          },
+          {
+           "code": "ERT-2.D.2",
+           "text": "New species have historically colonized islands by arriving from other locations."
+          }
+         ]
+        },
+        {
+         "id": "island-evolution-and-invasives",
+         "title": "Island Evolution and Invasives",
+         "outcomes": [
+          {
+           "code": "ERT-2.E",
+           "text": "Describe how island biogeography influences evolution."
+          },
+          {
+           "code": "ERT-2.E.1",
+           "text": "Limited island resources favor specialists, which invasive generalists may threaten through competition."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "2-4-ecological-tolerance",
+       "title": "2.4 Ecological Tolerance",
+       "subtopics": [
+        {
+         "id": "ecological-tolerance",
+         "title": "Ecological Tolerance",
+         "outcomes": [
+          {
+           "code": "ERT-2.F",
+           "text": "Describe ecological tolerance."
+          },
+          {
+           "code": "ERT-2.F.1",
+           "text": "Ecological tolerance is the range of environmental conditions an organism can withstand before injury or death."
+          },
+          {
+           "code": "ERT-2.F.2",
+           "text": "Ecological tolerance applies to both individual organisms and species."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "2-5-natural-disruptions-to-ecosystems",
+       "title": "2.5 Natural Disruptions to Ecosystems",
+       "subtopics": [
+        {
+         "id": "natural-disruptions-over-time",
+         "title": "Natural Disruptions Over Time",
+         "outcomes": [
+          {
+           "code": "ERT-2.G",
+           "text": "Explain how short- and long-term natural disruptions affect ecosystems."
+          },
+          {
+           "code": "ERT-2.G.1",
+           "text": "Natural disruptions can produce consequences as severe as or worse than human-caused disruptions."
+          },
+          {
+           "code": "ERT-2.G.2",
+           "text": "Earth processes occur across time scales and may be periodic, episodic, or random."
+          }
+         ]
+        },
+        {
+         "id": "climate-and-sea-levels",
+         "title": "Climate and Sea Levels",
+         "outcomes": [
+          {
+           "code": "ERT-2.G.3",
+           "text": "Earth’s climate has changed throughout geologic time for multiple reasons."
+          },
+          {
+           "code": "ERT-2.G.4",
+           "text": "Geologic changes in Earth’s glacial ice have caused substantial sea-level variation."
+          }
+         ]
+        },
+        {
+         "id": "habitat-change-and-migration",
+         "title": "Habitat Change and Migration",
+         "outcomes": [
+          {
+           "code": "ERT-2.G.5",
+           "text": "Major environmental changes commonly produce widespread habitat changes."
+          },
+          {
+           "code": "ERT-2.G.6",
+           "text": "Wildlife migrates over short or long periods for reasons including natural disturbances."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "2-6-adaptations",
+       "title": "2.6 Adaptations",
+       "subtopics": [
+        {
+         "id": "genetic-adaptation",
+         "title": "Genetic Adaptation",
+         "outcomes": [
+          {
+           "code": "ERT-2.H",
+           "text": "Explain how populations respond to environmental changes."
+          },
+          {
+           "code": "ERT-2.H.1",
+           "text": "Natural selection changes inherited traits across generations, enabling populations to adapt genetically."
+          }
+         ]
+        },
+        {
+         "id": "responses-to-change",
+         "title": "Responses to Change",
+         "outcomes": [
+          {
+           "code": "ERT-2.H.2",
+           "text": "Environmental change may force organisms to alter behavior, relocate, or die."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "2-7-ecological-succession",
+       "title": "2.7 Ecological Succession",
+       "subtopics": [
+        {
+         "id": "types-of-succession",
+         "title": "Types of Succession",
+         "outcomes": [
+          {
+           "code": "ERT-2.I",
+           "text": "Describe ecological succession."
+          },
+          {
+           "code": "ERT-2.I.1",
+           "text": "The two main succession types are primary succession and secondary succession."
+          }
+         ]
+        },
+        {
+         "id": "keystone-and-indicator-species",
+         "title": "Keystone and Indicator Species",
+         "outcomes": [
+          {
+           "code": "ERT-2.I.2",
+           "text": "A keystone species strongly influences the structure of its ecological community."
+          },
+          {
+           "code": "ERT-2.I.3",
+           "text": "An indicator species reveals ecosystem conditions through its presence, abundance, scarcity, or chemistry."
+          }
+         ]
+        },
+        {
+         "id": "succession-changes-ecosystems",
+         "title": "Succession Changes Ecosystems",
+         "outcomes": [
+          {
+           "code": "ERT-2.J",
+           "text": "Describe how ecological succession affects ecosystems."
+          },
+          {
+           "code": "ERT-2.J.1",
+           "text": "Early colonizers enter unoccupied habitats and may gradually adapt, contributing to new species formation."
+          },
+          {
+           "code": "ERT-2.J.2",
+           "text": "Succession changes total biomass, species richness, and net productivity in disturbed ecosystems over time."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "unit-3-populations",
+     "title": "UNIT 3: Populations",
+     "topics": [
+      {
+       "id": "3-1-generalist-and-specialist-species",
+       "title": "3.1 Generalist and Specialist Species",
+       "subtopics": [
+        {
+         "id": "3-1-generalist-and-specialist-species",
+         "title": "3.1 Generalist and Specialist Species",
+         "outcomes": [
+          {
+           "code": "ERT-3.A",
+           "text": "Distinguish between generalist and specialist species."
+          },
+          {
+           "code": "ERT-3.A.1",
+           "text": "Specialists benefit in stable habitats, whereas generalists benefit when habitats change."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "3-2-k-selected-r-selected-species",
+       "title": "3.2 K-Selected r-Selected Species",
+       "subtopics": [
+        {
+         "id": "k-and-r-selected-species",
+         "title": "K- and r-Selected Species",
+         "outcomes": [
+          {
+           "code": "ERT-3.B",
+           "text": "Distinguish between K-selected and r-selected species."
+          },
+          {
+           "code": "ERT-3.B.1",
+           "text": "K-selected species are generally large, long-lived, slow-maturing, and produce few offspring with substantial parental investment."
+          },
+          {
+           "code": "ERT-3.B.2",
+           "text": "r-selected species are generally small, short-lived, early-maturing, and produce many offspring with little investment."
+          }
+         ]
+        },
+        {
+         "id": "reproductive-strategies",
+         "title": "Reproductive Strategies",
+         "outcomes": [
+          {
+           "code": "ERT-3.B.3",
+           "text": "Biotic potential is a population’s maximum reproductive rate under ideal conditions."
+          },
+          {
+           "code": "ERT-3.B.4",
+           "text": "Some species combine K- and r-selected traits or change reproductive strategies with conditions."
+          }
+         ]
+        },
+        {
+         "id": "invasive-r-selected-species",
+         "title": "Invasive r-Selected Species",
+         "outcomes": [
+          {
+           "code": "ERT-3.B.5",
+           "text": "Invasive r-selected species are usually less affected by invasions than K-selected species."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "3-3-survivorship-curves",
+       "title": "3.3 Survivorship Curves",
+       "subtopics": [
+        {
+         "id": "survivorship-curves",
+         "title": "Survivorship Curves",
+         "outcomes": [
+          {
+           "code": "ERT-3.C",
+           "text": "Explain survivorship curves."
+          },
+          {
+           "code": "ERT-3.C.1",
+           "text": "A survivorship curve shows relative survival across a cohort’s lifespan and may be Type I, II, or III."
+          },
+          {
+           "code": "ERT-3.C.2",
+           "text": "K-selected species commonly show Type I or II curves, while r-selected species commonly show Type III curves."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "3-4-carrying-capacity",
+       "title": "3.4 Carrying Capacity",
+       "subtopics": [
+        {
+         "id": "carrying-capacity",
+         "title": "Carrying Capacity",
+         "outcomes": [
+          {
+           "code": "ERT-3.D",
+           "text": "Describe carrying capacity."
+          },
+          {
+           "code": "ERT-3.E",
+           "text": "Describe how carrying capacity affects ecosystems."
+          }
+         ]
+        },
+        {
+         "id": "overshoot-and-dieback",
+         "title": "Overshoot and Dieback",
+         "outcomes": [
+          {
+           "code": "ERT-3.D.1",
+           "text": "Exceeding carrying capacity causes overshoot and environmental effects such as resource depletion."
+          },
+          {
+           "code": "ERT-3.E.1",
+           "text": "Resource shortages after overshoot can cause severe population dieback through famine, disease, or conflict."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "3-5-population-growth-and-resource-availability",
+       "title": "3.5 Population Growth and Resource Availability",
+       "subtopics": [
+        {
+         "id": "resources-and-population-growth",
+         "title": "Resources and Population Growth",
+         "outcomes": [
+          {
+           "code": "ERT-3.F",
+           "text": "Explain how resource availability affects population growth."
+          },
+          {
+           "code": "ERT-3.F.1",
+           "text": "Environmental factors, especially resources and space, limit population growth."
+          },
+          {
+           "code": "ERT-3.F.2",
+           "text": "Resources and the total resource base are finite at every timescale."
+          },
+          {
+           "code": "ERT-3.F.3",
+           "text": "Abundant resources generally accelerate population growth."
+          }
+         ]
+        },
+        {
+         "id": "resource-shortages",
+         "title": "Resource Shortages",
+         "outcomes": [
+          {
+           "code": "ERT-3.F.4",
+           "text": "Shrinking resources can increase inequality, mortality, or lower fertility, reducing growth toward or below carrying capacity."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "3-6-age-structure-diagrams",
+       "title": "3.6 Age Structure Diagrams",
+       "subtopics": [
+        {
+         "id": "age-structure-diagrams",
+         "title": "Age Structure Diagrams",
+         "outcomes": [
+          {
+           "code": "EIN-1.A",
+           "text": "Explain age structure diagrams."
+          },
+          {
+           "code": "EIN-1.A.1",
+           "text": "The shape of an age structure diagram indicates a population’s growth rate."
+          },
+          {
+           "code": "EIN-1.A.2",
+           "text": "Rapidly growing populations generally contain more young people than stable or declining populations."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "3-7-total-fertility-rate",
+       "title": "3.7 Total Fertility Rate",
+       "subtopics": [
+        {
+         "id": "total-fertility-rate",
+         "title": "Total Fertility Rate",
+         "outcomes": [
+          {
+           "code": "EIN-1.B",
+           "text": "Explain factors affecting total fertility rate in human populations."
+          },
+          {
+           "code": "EIN-1.B.1",
+           "text": "TFR is influenced by mothers’ age at first birth, education, family planning access, and government policies."
+          }
+         ]
+        },
+        {
+         "id": "replacement-level-fertility",
+         "title": "Replacement-Level Fertility",
+         "outcomes": [
+          {
+           "code": "EIN-1.B.2",
+           "text": "Replacement-level fertility generally produces a relatively stable population."
+          },
+          {
+           "code": "EIN-1.B.3",
+           "text": "Healthcare and nutrition access affect infant mortality, which can change over time."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "3-8-human-population-dynamics",
+       "title": "3.8 Human Population Dynamics",
+       "subtopics": [
+        {
+         "id": "human-population-change",
+         "title": "Human Population Change",
+         "outcomes": [
+          {
+           "code": "EIN-1.C",
+           "text": "Explain how human populations grow and decline."
+          },
+          {
+           "code": "EIN-1.C.1",
+           "text": "Births, deaths, immigration, and emigration determine human population growth or decline; social services influence birth and death rates."
+          }
+         ]
+        },
+        {
+         "id": "population-limits",
+         "title": "Population Limits",
+         "outcomes": [
+          {
+           "code": "EIN-1.C.2",
+           "text": "Earth’s carrying capacity and Malthusian limits constrain global human population growth."
+          },
+          {
+           "code": "EIN-1.C.3",
+           "text": "Population growth responds to density-independent hazards and density-dependent limits such as disease, resources, and territory."
+          }
+         ]
+        },
+        {
+         "id": "growth-rates-and-doubling-time",
+         "title": "Growth Rates and Doubling Time",
+         "outcomes": [
+          {
+           "code": "EIN-1.C.4",
+           "text": "RNI equals crude birth rate minus crude death rate; doubling time can be estimated as 70 divided by annual growth percentage."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "3-9-demographic-transition",
+       "title": "3.9 Demographic Transition",
+       "subtopics": [
+        {
+         "id": "demographic-transition",
+         "title": "Demographic Transition",
+         "outcomes": [
+          {
+           "code": "EIN-1.D",
+           "text": "Define demographic transition."
+          },
+          {
+           "code": "EIN-1.D.1",
+           "text": "Demographic transition is the shift from high to lower birth and death rates as societies industrialize, often shown in four stages."
+          }
+         ]
+        },
+        {
+         "id": "developing-and-developed-countries",
+         "title": "Developing and Developed Countries",
+         "outcomes": [
+          {
+           "code": "EIN-1.D.2",
+           "text": "Developing countries typically have higher infant mortality and more children working than developed countries."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "unit-4-earth-systems-and-resources",
+     "title": "UNIT 4: Earth Systems and Resources",
+     "topics": [
+      {
+       "id": "4-1-plate-tectonics",
+       "title": "4.1 Plate Tectonics",
+       "subtopics": [
+        {
+         "id": "plate-boundary-changes",
+         "title": "Plate Boundary Changes",
+         "outcomes": [
+          {
+           "code": "ERT-4.A",
+           "text": "Describe geological changes and events associated with convergent, divergent, and transform plate boundaries."
+          },
+          {
+           "code": "ERT-4.A.1",
+           "text": "Convergent boundaries may produce mountains, island arcs, earthquakes, and volcanoes."
+          },
+          {
+           "code": "ERT-4.A.2",
+           "text": "Divergent boundaries may produce seafloor spreading, rift valleys, volcanoes, and earthquakes."
+          },
+          {
+           "code": "ERT-4.A.3",
+           "text": "Transform boundaries may produce earthquakes."
+          }
+         ]
+        },
+        {
+         "id": "earthquakes-and-plate-maps",
+         "title": "Earthquakes and Plate Maps",
+         "outcomes": [
+          {
+           "code": "ERT-4.A.4",
+           "text": "Plate-boundary maps help locate volcanoes, island arcs, earthquakes, hot spots, and faults."
+          },
+          {
+           "code": "ERT-4.A.5",
+           "text": "Earthquakes occur when stress breaks a locked fault and releases stored energy."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "4-2-soil-formation-and-erosion",
+       "title": "4.2 Soil Formation and Erosion",
+       "subtopics": [
+        {
+         "id": "how-soil-forms",
+         "title": "How Soil Forms",
+         "outcomes": [
+          {
+           "code": "ERT-4.B",
+           "text": "Describe soil characteristics and how soils form."
+          },
+          {
+           "code": "ERT-4.B.1",
+           "text": "Soil forms as parent material weathers, moves, and accumulates."
+          },
+          {
+           "code": "ERT-4.B.2",
+           "text": "Soils are classified into horizons according to composition and organic-material content."
+          }
+         ]
+        },
+        {
+         "id": "soil-erosion-and-protection",
+         "title": "Soil Erosion and Protection",
+         "outcomes": [
+          {
+           "code": "ERT-4.B.3",
+           "text": "Wind and water erode soil; protecting soil also helps maintain water quality through filtration."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "4-3-soil-composition-and-properties",
+       "title": "4.3 Soil Composition and Properties",
+       "subtopics": [
+        {
+         "id": "soil-types-and-water",
+         "title": "Soil Types and Water",
+         "outcomes": [
+          {
+           "code": "ERT-4.C",
+           "text": "Compare the properties of different soil types."
+          },
+          {
+           "code": "ERT-4.C.1",
+           "text": "Water-holding capacity differs among soils and affects their productivity and fertility."
+          },
+          {
+           "code": "ERT-4.C.2",
+           "text": "Particle size and composition within horizons influence soil porosity, permeability, and fertility."
+          }
+         ]
+        },
+        {
+         "id": "testing-and-comparing-soils",
+         "title": "Testing and Comparing Soils",
+         "outcomes": [
+          {
+           "code": "ERT-4.C.3",
+           "text": "Soil tests measure chemical, physical, and biological properties for irrigation and fertilizer decisions."
+          },
+          {
+           "code": "ERT-4.C.4",
+           "text": "Texture triangles identify and compare soils by clay, silt, and sand percentages; loam supports many crops."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "4-4-earth-s-atmosphere",
+       "title": "4.4 Earth’s Atmosphere",
+       "subtopics": [
+        {
+         "id": "atmospheric-gases-and-layers",
+         "title": "Atmospheric Gases and Layers",
+         "outcomes": [
+          {
+           "code": "ERT-4.D",
+           "text": "Describe Earth’s atmospheric structure and composition."
+          },
+          {
+           "code": "ERT-4.D.1",
+           "text": "The atmosphere contains several major gases in different relative abundances."
+          },
+          {
+           "code": "ERT-4.D.2",
+           "text": "Temperature-based atmospheric layers are the troposphere, stratosphere, mesosphere, thermosphere, and exosphere."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "4-5-global-wind-patterns",
+       "title": "4.5 Global Wind Patterns",
+       "subtopics": [
+        {
+         "id": "4-5-global-wind-patterns",
+         "title": "4.5 Global Wind Patterns",
+         "outcomes": [
+          {
+           "code": "ERT-4.E",
+           "text": "Explain how environmental factors drive atmospheric circulation."
+          },
+          {
+           "code": "ERT-4.E.1",
+           "text": "Unequal solar heating, density differences, and the Coriolis effect create global wind patterns."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "4-6-watersheds",
+       "title": "4.6 Watersheds",
+       "subtopics": [
+        {
+         "id": "4-6-watersheds",
+         "title": "4.6 Watersheds",
+         "outcomes": [
+          {
+           "code": "ERT-4.F",
+           "text": "Describe watershed characteristics."
+          },
+          {
+           "code": "ERT-4.F.1",
+           "text": "Watersheds vary in area, length, slope, soil, vegetation, and boundaries with neighboring watersheds."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "4-7-solar-radiation-and-earth-s-seasons",
+       "title": "4.7 Solar Radiation and Earth’s Seasons",
+       "subtopics": [
+        {
+         "id": "solar-energy-and-sunlight",
+         "title": "Solar Energy and Sunlight",
+         "outcomes": [
+          {
+           "code": "ENG-2.A",
+           "text": "Explain how solar energy affects Earth’s surface."
+          },
+          {
+           "code": "ENG-2.A.1",
+           "text": "Insolation is Earth’s primary energy source and varies with season and latitude."
+          },
+          {
+           "code": "ENG-2.A.2",
+           "text": "The angle of sunlight controls radiation intensity, with direct rays producing greater intensity."
+          }
+         ]
+        },
+        {
+         "id": "seasons-and-daylight",
+         "title": "Seasons and Daylight",
+         "outcomes": [
+          {
+           "code": "ENG-2.A.3",
+           "text": "Solar energy per unit area is greatest at the equator and declines toward the poles."
+          },
+          {
+           "code": "ENG-2.A.4",
+           "text": "Surface solar radiation changes seasonally, peaking on the longest summer day and reaching a minimum on the shortest winter day."
+          },
+          {
+           "code": "ENG-2.A.5",
+           "text": "Earth’s axial tilt produces seasons and changes daylight duration by location."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "4-8-earth-s-geography",
+       "title": "4.8 Earth’s Geography",
+       "subtopics": [
+        {
+         "id": "geography-weather-and-climate",
+         "title": "Geography, Weather, and Climate",
+         "outcomes": [
+          {
+           "code": "ENG-2.B",
+           "text": "Describe how Earth’s geography influences weather and climate."
+          },
+          {
+           "code": "ENG-2.B.1",
+           "text": "Weather and climate depend on solar energy and geographic or geologic features such as mountains and ocean temperatures."
+          },
+          {
+           "code": "ENG-2.B.2",
+           "text": "A rain shadow is a dry region sheltered from precipitation by higher land."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "4-9-el-nin-o-and-la-nin-a",
+       "title": "4.9 El Niño and La Niña",
+       "subtopics": [
+        {
+         "id": "el-nin-o-and-la-nin-a-effects",
+         "title": "El Niño and La Niña Effects",
+         "outcomes": [
+          {
+           "code": "ENG-2.C",
+           "text": "Describe environmental changes and effects caused by El Niño and La Niña events."
+          },
+          {
+           "code": "ENG-2.C.1",
+           "text": "Pacific Ocean surface-temperature changes can alter global rainfall, winds, and ocean circulation."
+          },
+          {
+           "code": "ENG-2.C.2",
+           "text": "Geological and geographic factors influence El Niño and La Niña effects, which vary by location."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "unit-5-land-and-water-use",
+     "title": "UNIT 5: Land and Water Use",
+     "topics": [
+      {
+       "id": "5-1-the-tragedy-of-the-commons",
+       "title": "5.1 The Tragedy of the Commons",
+       "subtopics": [
+        {
+         "id": "5-1-the-tragedy-of-the-commons",
+         "title": "5.1 The Tragedy of the Commons",
+         "outcomes": [
+          {
+           "code": "EIN-2.A",
+           "text": "Explain the tragedy of the commons concept."
+          },
+          {
+           "code": "EIN-2.A.1",
+           "text": "Shared resources may be depleted when individuals prioritize self-interest over collective welfare."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "5-2-clearcutting",
+       "title": "5.2 Clearcutting",
+       "subtopics": [
+        {
+         "id": "clearcutting-effects",
+         "title": "Clearcutting Effects",
+         "outcomes": [
+          {
+           "code": "EIN-2.B",
+           "text": "Describe how clearcutting affects forests."
+          },
+          {
+           "code": "EIN-2.B.1",
+           "text": "Clearcutting may be profitable but increases erosion, stream and soil temperatures, and flooding."
+          },
+          {
+           "code": "EIN-2.B.2",
+           "text": "Trees remove pollutants and store carbon; cutting or burning them releases carbon dioxide and worsens climate change."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "5-3-the-green-revolution",
+       "title": "5.3 The Green Revolution",
+       "subtopics": [
+        {
+         "id": "green-revolution-changes",
+         "title": "Green Revolution Changes",
+         "outcomes": [
+          {
+           "code": "EIN-2.C",
+           "text": "Describe changes in agricultural practices."
+          },
+          {
+           "code": "EIN-2.C.1",
+           "text": "The Green Revolution increased food production through mechanization, GMOs, fertilizers, irrigation, and pesticides, with mixed consequences."
+          },
+          {
+           "code": "EIN-2.C.2",
+           "text": "Farm mechanization can improve efficiency and profits but increases fossil-fuel dependence."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "5-4-impacts-of-agricultural-practices",
+       "title": "5.4 Impacts of Agricultural Practices",
+       "subtopics": [
+        {
+         "id": "5-4-impacts-of-agricultural-practices",
+         "title": "5.4 Impacts of Agricultural Practices",
+         "outcomes": [
+          {
+           "code": "EIN-2.D",
+           "text": "Describe farming practices that damage the environment."
+          },
+          {
+           "code": "EIN-2.D.1",
+           "text": "Tilling, slash-and-burn farming, and fertilizer use can harm the environment."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "5-5-irrigation-methods",
+       "title": "5.5 Irrigation Methods",
+       "subtopics": [
+        {
+         "id": "irrigation-methods",
+         "title": "Irrigation Methods",
+         "outcomes": [
+          {
+           "code": "EIN-2.E",
+           "text": "Describe different irrigation methods."
+          },
+          {
+           "code": "EIN-2.E.1",
+           "text": "Agriculture accounts for approximately 70% of human freshwater consumption worldwide."
+          },
+          {
+           "code": "EIN-2.E.2",
+           "text": "Irrigation methods include drip, flood, furrow, and spray systems."
+          },
+          {
+           "code": "EIN-2.F",
+           "text": "Describe advantages and disadvantages of irrigation methods."
+          }
+         ]
+        },
+        {
+         "id": "irrigation-problems",
+         "title": "Irrigation Problems",
+         "outcomes": [
+          {
+           "code": "EIN-2.F.1",
+           "text": "Waterlogging raises the groundwater table and prevents roots from obtaining sufficient oxygen."
+          },
+          {
+           "code": "EIN-2.F.2",
+           "text": "Furrow irrigation is inexpensive but loses roughly one-third of its water through evaporation and runoff."
+          },
+          {
+           "code": "EIN-2.F.3",
+           "text": "Flood irrigation loses about one-fifth of its water and can cause soil waterlogging."
+          },
+          {
+           "code": "EIN-2.F.4",
+           "text": "Spray irrigation wastes less water than flood or furrow systems but costs more and requires energy."
+          },
+          {
+           "code": "EIN-2.F.5",
+           "text": "Drip irrigation delivers water directly to roots efficiently but is expensive and uncommon."
+          }
+         ]
+        },
+        {
+         "id": "salinization-and-aquifer-depletion",
+         "title": "Salinization and Aquifer Depletion",
+         "outcomes": [
+          {
+           "code": "EIN-2.F.6",
+           "text": "Salinization leaves groundwater salts in soil, eventually making it toxic to plants."
+          },
+          {
+           "code": "EIN-2.F.7",
+           "text": "Excessive agricultural pumping can severely deplete aquifers, including the Ogallala Aquifer."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "5-6-pest-control-methods",
+       "title": "5.6 Pest Control Methods",
+       "subtopics": [
+        {
+         "id": "pest-control-tradeoffs",
+         "title": "Pest Control Tradeoffs",
+         "outcomes": [
+          {
+           "code": "EIN-2.G",
+           "text": "Describe benefits and drawbacks of pest-control methods."
+          },
+          {
+           "code": "EIN-2.G.1",
+           "text": "Pest controls reduce crop damage and increase yields, but artificial selection can produce resistant organisms."
+          },
+          {
+           "code": "EIN-2.G.2",
+           "text": "Genetically engineered pest-resistant crops may reduce losses but can decrease crop genetic diversity."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "5-7-meat-production-methods",
+       "title": "5.7 Meat Production Methods",
+       "subtopics": [
+        {
+         "id": "meat-production-methods",
+         "title": "Meat Production Methods",
+         "outcomes": [
+          {
+           "code": "EIN-2.H",
+           "text": "Identify methods used to produce meat."
+          },
+          {
+           "code": "EIN-2.H.1",
+           "text": "Meat production includes feedlots, CAFOs, rotational grazing, and free-range grazing."
+          },
+          {
+           "code": "EIN-2.I",
+           "text": "Describe benefits and drawbacks of meat-production methods."
+          }
+         ]
+        },
+        {
+         "id": "meat-production-impacts",
+         "title": "Meat Production Impacts",
+         "outcomes": [
+          {
+           "code": "EIN-2.I.1",
+           "text": "Meat generally requires more land, water, and energy than plant protein and increases nutrient pollution and greenhouse gases."
+          },
+          {
+           "code": "EIN-2.I.2",
+           "text": "CAFOs lower consumer costs but concentrate manure, threaten waterways, and may promote antibiotic resistance."
+          },
+          {
+           "code": "EIN-2.I.3",
+           "text": "Pasture systems provide forage and nutrients but require more land and may cause runoff, erosion, and higher costs."
+          },
+          {
+           "code": "EIN-2.I.4",
+           "text": "Overgrazing reduces vegetation, fertility, biodiversity, and carbon storage through erosion and compaction; rotational grazing can help."
+          }
+         ]
+        },
+        {
+         "id": "reducing-meat-impacts",
+         "title": "Reducing Meat Impacts",
+         "outcomes": [
+          {
+           "code": "EIN-2.I.5",
+           "text": "Overgrazing can cause desertification; restoration, soil conservation, and improved grazing can reduce it."
+          },
+          {
+           "code": "EIN-2.I.6",
+           "text": "Eating less meat and improving feed and farming technologies can reduce emissions, water use, antibiotics, and hormones."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "5-8-impacts-of-overfishing",
+       "title": "5.8 Impacts of Overfishing",
+       "subtopics": [
+        {
+         "id": "5-8-impacts-of-overfishing",
+         "title": "5.8 Impacts of Overfishing",
+         "outcomes": [
+          {
+           "code": "EIN-2.J",
+           "text": "Describe causes and consequences of overfishing."
+          },
+          {
+           "code": "EIN-2.J.1",
+           "text": "Overfishing depletes fish, reduces aquatic biodiversity, and harms fishing-dependent communities."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "5-9-impacts-of-mining",
+       "title": "5.9 Impacts of Mining",
+       "subtopics": [
+        {
+         "id": "mining-resource-extraction",
+         "title": "Mining Resource Extraction",
+         "outcomes": [
+          {
+           "code": "EIN-2.K",
+           "text": "Describe how mining extracts natural resources."
+          },
+          {
+           "code": "EIN-2.K.1",
+           "text": "Declining accessible ores force miners to use lower-grade deposits, increasing resource use, waste, and pollution."
+          },
+          {
+           "code": "EIN-2.K.2",
+           "text": "Surface mining removes overburden to reach ore; strip mining removes vegetation and increases erosion."
+          }
+         ]
+        },
+        {
+         "id": "mining-effects",
+         "title": "Mining Effects",
+         "outcomes": [
+          {
+           "code": "EIN-2.L",
+           "text": "Describe ecological and economic effects of mining."
+          },
+          {
+           "code": "EIN-2.L.1",
+           "text": "Mining supplies inexpensive materials and energy but can destroy habitat, pollute groundwater, and release dust and methane."
+          },
+          {
+           "code": "EIN-2.L.2",
+           "text": "Depleted accessible coal reserves make expensive subsurface mining necessary."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "5-10-impacts-of-urbanization",
+       "title": "5.10 Impacts of Urbanization",
+       "subtopics": [
+        {
+         "id": "urban-resource-and-climate-effects",
+         "title": "Urban Resource and Climate Effects",
+         "outcomes": [
+          {
+           "code": "EIN-2.M",
+           "text": "Describe urbanization’s environmental effects."
+          },
+          {
+           "code": "EIN-2.M.1",
+           "text": "Urbanization can deplete resources and cause saltwater intrusion."
+          },
+          {
+           "code": "EIN-2.M.2",
+           "text": "Fossil-fuel combustion and landfills in cities increase atmospheric carbon dioxide."
+          }
+         ]
+        },
+        {
+         "id": "urban-flooding-and-sprawl",
+         "title": "Urban Flooding and Sprawl",
+         "outcomes": [
+          {
+           "code": "EIN-2.M.3",
+           "text": "Impervious surfaces prevent infiltration and increase flooding."
+          },
+          {
+           "code": "EIN-2.M.4",
+           "text": "Urban sprawl extends low-density development into rural areas and can create environmental problems."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "5-11-ecological-footprints",
+       "title": "5.11 Ecological Footprints",
+       "subtopics": [
+        {
+         "id": "5-11-ecological-footprints",
+         "title": "5.11 Ecological Footprints",
+         "outcomes": [
+          {
+           "code": "EIN-2.N",
+           "text": "Explain what ecological footprints measure."
+          },
+          {
+           "code": "EIN-2.N.1",
+           "text": "Ecological footprints compare a person’s or society’s resource consumption and waste production."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "5-12-introduction-to-sustainability",
+       "title": "5.12 Introduction to Sustainability",
+       "subtopics": [
+        {
+         "id": "sustainability-and-sustainable-yield",
+         "title": "Sustainability and Sustainable Yield",
+         "outcomes": [
+          {
+           "code": "STB-1.A",
+           "text": "Explain sustainability as using resources without exhausting them for future generations."
+          },
+          {
+           "code": "STB-1.A.1",
+           "text": "Use biodiversity, food production, temperatures, CO2, population, and resource depletion as indicators of sustainability."
+          },
+          {
+           "code": "STB-1.A.2",
+           "text": "Define sustainable yield as harvesting a renewable resource without reducing its available supply."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "5-13-methods-to-reduce-urban-runoff",
+       "title": "5.13 Methods to Reduce Urban Runoff",
+       "subtopics": [
+        {
+         "id": "5-13-methods-to-reduce-urban-runoff",
+         "title": "5.13 Methods to Reduce Urban Runoff",
+         "outcomes": [
+          {
+           "code": "STB-1.B",
+           "text": "Describe ways to reduce problems caused by urban runoff."
+          },
+          {
+           "code": "STB-1.B.1",
+           "text": "Increase infiltration using permeable pavement, trees, public transportation, and compact development."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "5-14-integrated-pest-management",
+       "title": "5.14 Integrated Pest Management",
+       "subtopics": [
+        {
+         "id": "integrated-pest-management",
+         "title": "Integrated Pest Management",
+         "outcomes": [
+          {
+           "code": "STB-1.C",
+           "text": "Describe integrated pest management as combining methods to control pests while limiting environmental disruption."
+          },
+          {
+           "code": "STB-1.C.1",
+           "text": "Identify IPM methods including biocontrol, intercropping, crop rotation, natural predators, and limited chemical use."
+          },
+          {
+           "code": "STB-1.D",
+           "text": "Describe IPM's benefits and drawbacks."
+          }
+         ]
+        },
+        {
+         "id": "ipm-benefits-and-limits",
+         "title": "IPM Benefits and Limits",
+         "outcomes": [
+          {
+           "code": "STB-1.D.1",
+           "text": "Explain how IPM reduces pesticide risks to wildlife, water supplies, and human health."
+          },
+          {
+           "code": "STB-1.D.2",
+           "text": "Explain that IPM reduces environmental and health threats but may be complex and costly."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "5-15-sustainable-agriculture",
+       "title": "5.15 Sustainable Agriculture",
+       "subtopics": [
+        {
+         "id": "soil-conservation",
+         "title": "Soil Conservation",
+         "outcomes": [
+          {
+           "code": "STB-1.E",
+           "text": "Describe sustainable agricultural and food-production practices."
+          },
+          {
+           "code": "STB-1.E.1",
+           "text": "Describe soil-conservation practices such as contour plowing, windbreaks, terracing, no-till farming, and strip cropping."
+          }
+         ]
+        },
+        {
+         "id": "soil-fertility-and-grazing",
+         "title": "Soil Fertility and Grazing",
+         "outcomes": [
+          {
+           "code": "STB-1.E.2",
+           "text": "Improve soil fertility through crop rotation, green manure, and limestone."
+          },
+          {
+           "code": "STB-1.E.3",
+           "text": "Explain how rotating livestock among pastures prevents localized overgrazing."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "5-16-aquaculture",
+       "title": "5.16 Aquaculture",
+       "subtopics": [
+        {
+         "id": "aquaculture-benefits-and-drawbacks",
+         "title": "Aquaculture Benefits and Drawbacks",
+         "outcomes": [
+          {
+           "code": "STB-1.F",
+           "text": "Describe aquaculture's benefits and drawbacks."
+          },
+          {
+           "code": "STB-1.F.1",
+           "text": "Explain aquaculture's efficiency, limited water-space requirements, and low fuel use."
+          },
+          {
+           "code": "STB-1.F.2",
+           "text": "Explain how aquaculture can spread disease, pollute wastewater, and allow escaped fish to affect wild populations."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "5-17-sustainable-forestry",
+       "title": "5.17 Sustainable Forestry",
+       "subtopics": [
+        {
+         "id": "reducing-forest-impacts",
+         "title": "Reducing Forest Impacts",
+         "outcomes": [
+          {
+           "code": "STB-1.G",
+           "text": "Describe methods for reducing human impacts on forests."
+          },
+          {
+           "code": "STB-1.G.1",
+           "text": "Reduce deforestation through reforestation, sustainable wood use, and wood reuse."
+          }
+         ]
+        },
+        {
+         "id": "forest-protection-and-prescribed-burning",
+         "title": "Forest Protection and Prescribed Burning",
+         "outcomes": [
+          {
+           "code": "STB-1.G.2",
+           "text": "Protect forests from pathogens and insects through IPM and removing affected trees."
+          },
+          {
+           "code": "STB-1.G.3",
+           "text": "Explain prescribed burning as controlled fire used to reduce natural-fire occurrence."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "unit-6-energy-resources-and-consumption",
+     "title": "UNIT 6: Energy Resources and Consumption",
+     "topics": [
+      {
+       "id": "6-1-renewable-and-nonrenewable-resources",
+       "title": "6.1 Renewable and Nonrenewable Resources",
+       "subtopics": [
+        {
+         "id": "renewable-and-nonrenewable-resources",
+         "title": "Renewable and Nonrenewable Resources",
+         "outcomes": [
+          {
+           "code": "ENG-3.A",
+           "text": "Distinguish between renewable and nonrenewable energy sources."
+          },
+          {
+           "code": "ENG-3.A.1",
+           "text": "Nonrenewable resources are finite and cannot be readily replaced after energy transformation."
+          },
+          {
+           "code": "ENG-3.A.2",
+           "text": "Renewable resources naturally replenish at approximately their consumption rate and can be reused."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "6-2-global-energy-consumption",
+       "title": "6.2 Global Energy Consumption",
+       "subtopics": [
+        {
+         "id": "global-energy-patterns",
+         "title": "Global Energy Patterns",
+         "outcomes": [
+          {
+           "code": "ENG-3.B",
+           "text": "Describe patterns and trends in global energy consumption."
+          },
+          {
+           "code": "ENG-3.B.1",
+           "text": "Energy-resource use differs between developed and developing countries."
+          },
+          {
+           "code": "ENG-3.B.2",
+           "text": "Fossil fuels are the world’s most widely used energy sources."
+          }
+         ]
+        },
+        {
+         "id": "energy-use-and-development",
+         "title": "Energy Use and Development",
+         "outcomes": [
+          {
+           "code": "ENG-3.B.3",
+           "text": "Developing countries generally increase fossil-fuel dependence as they develop economically."
+          },
+          {
+           "code": "ENG-3.B.4",
+           "text": "Industrialization increases worldwide demand for energy."
+          },
+          {
+           "code": "ENG-3.B.5",
+           "text": "Availability, cost, and government rules affect energy-source choices and use."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "6-3-fuel-types-and-uses",
+       "title": "6.3 Fuel Types and Uses",
+       "subtopics": [
+        {
+         "id": "common-fuel-types",
+         "title": "Common Fuel Types",
+         "outcomes": [
+          {
+           "code": "ENG-3.C",
+           "text": "Identify fuel types and explain their uses."
+          },
+          {
+           "code": "ENG-3.C.1",
+           "text": "Wood is widely burned as firewood or charcoal, especially where it is readily available."
+          },
+          {
+           "code": "ENG-3.C.2",
+           "text": "Peat is partly decomposed organic matter that can be burned as fuel."
+          },
+          {
+           "code": "ENG-3.C.3",
+           "text": "Lignite, bituminous, and anthracite are coal types shaped by heat, pressure, and burial depth."
+          }
+         ]
+        },
+        {
+         "id": "fuel-processing-and-cogeneration",
+         "title": "Fuel Processing and Cogeneration",
+         "outcomes": [
+          {
+           "code": "ENG-3.C.4",
+           "text": "Natural gas is mostly methane and is the cleanest fossil fuel."
+          },
+          {
+           "code": "ENG-3.C.5",
+           "text": "Tar sands contain clay, sand, water, and bitumen and can yield crude oil."
+          },
+          {
+           "code": "ENG-3.C.6",
+           "text": "Fossil fuels can be refined into specialized fuels, including vehicle fuels."
+          },
+          {
+           "code": "ENG-3.C.7",
+           "text": "Cogeneration produces useful heat and electricity from one fuel source."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "6-4-distribution-of-natural-energy-resources",
+       "title": "6.4 Distribution of Natural Energy Resources",
+       "subtopics": [
+        {
+         "id": "6-4-distribution-of-natural-energy-resources",
+         "title": "6.4 Distribution of Natural Energy Resources",
+         "outcomes": [
+          {
+           "code": "ENG-3.D",
+           "text": "Identify the geographic locations of natural energy resources."
+          },
+          {
+           "code": "ENG-3.D.1",
+           "text": "Resource distribution, including ores, coal, oil, and gas, varies with regional geologic history."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "6-5-fossil-fuels",
+       "title": "6.5 Fossil Fuels",
+       "subtopics": [
+        {
+         "id": "fossil-fuel-power-generation",
+         "title": "Fossil Fuel Power Generation",
+         "outcomes": [
+          {
+           "code": "ENG-3.E",
+           "text": "Describe fossil-fuel use and extraction methods for generating power."
+          },
+          {
+           "code": "ENG-3.E.1",
+           "text": "Fossil-fuel combustion combines fuel with oxygen, producing carbon dioxide, water, and energy."
+          },
+          {
+           "code": "ENG-3.E.2",
+           "text": "Burning fuels creates steam that turns turbines and generators to produce electricity."
+          },
+          {
+           "code": "ENG-3.E.3",
+           "text": "Various extraction techniques remove fossil fuels from Earth for energy generation."
+          }
+         ]
+        },
+        {
+         "id": "fossil-fuel-environmental-effects",
+         "title": "Fossil Fuel Environmental Effects",
+         "outcomes": [
+          {
+           "code": "ENG-3.F",
+           "text": "Describe environmental effects of fossil-fuel use."
+          },
+          {
+           "code": "ENG-3.F.1",
+           "text": "Fracking can contaminate groundwater and release volatile organic compounds."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "6-6-nuclear-power",
+       "title": "6.6 Nuclear Power",
+       "subtopics": [
+        {
+         "id": "nuclear-electricity-and-radioactivity",
+         "title": "Nuclear Electricity and Radioactivity",
+         "outcomes": [
+          {
+           "code": "ENG-3.G",
+           "text": "Describe nuclear energy use in electricity generation."
+          },
+          {
+           "code": "ENG-3.G.1",
+           "text": "Fission splits Uranium-235 atoms, releasing heat that produces steam and electricity."
+          },
+          {
+           "code": "ENG-3.G.2",
+           "text": "Radioactivity occurs when unstable atomic nuclei release energy as radiation."
+          },
+          {
+           "code": "ENG-3.G.3",
+           "text": "Long-lived Uranium-235 radioactivity creates challenges for nuclear-waste disposal."
+          }
+         ]
+        },
+        {
+         "id": "nuclear-environmental-effects",
+         "title": "Nuclear Environmental Effects",
+         "outcomes": [
+          {
+           "code": "ENG-3.G.4",
+           "text": "Nuclear power is nonrenewable, produces little air pollution, but creates thermal pollution and hazardous waste."
+          },
+          {
+           "code": "ENG-3.H",
+           "text": "Describe environmental effects of nuclear-energy use."
+          },
+          {
+           "code": "ENG-3.H.1",
+           "text": "Major nuclear accidents have released radiation with short- and long-term environmental effects."
+          },
+          {
+           "code": "ENG-3.H.2",
+           "text": "A radioactive isotope’s half-life helps calculate decay rates and radioactivity at different times."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "6-7-energy-from-biomass",
+       "title": "6.7 Energy from Biomass",
+       "subtopics": [
+        {
+         "id": "biomass-energy-effects",
+         "title": "Biomass Energy Effects",
+         "outcomes": [
+          {
+           "code": "ENG-3.I",
+           "text": "Describe environmental effects of biomass use for power generation."
+          },
+          {
+           "code": "ENG-3.I.1",
+           "text": "Biomass burning releases several pollutants and overharvesting trees causes deforestation."
+          },
+          {
+           "code": "ENG-3.I.2",
+           "text": "Ethanol can replace gasoline, but provides a low energy return and does not add combustion carbon."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "6-8-solar-energy",
+       "title": "6.8 Solar Energy",
+       "subtopics": [
+        {
+         "id": "solar-power-systems",
+         "title": "Solar Power Systems",
+         "outcomes": [
+          {
+           "code": "ENG-3.J",
+           "text": "Describe solar-energy use in power generation."
+          },
+          {
+           "code": "ENG-3.J.1",
+           "text": "Photovoltaic cells convert sunlight directly into electricity, depending on available sunlight."
+          },
+          {
+           "code": "ENG-3.J.2",
+           "text": "Active solar systems mechanically collect and store solar heat in liquid."
+          },
+          {
+           "code": "ENG-3.J.3",
+           "text": "Passive solar systems directly absorb sunlight-derived heat without mechanical equipment or storage."
+          }
+         ]
+        },
+        {
+         "id": "solar-energy-effects",
+         "title": "Solar Energy Effects",
+         "outcomes": [
+          {
+           "code": "ENG-3.K",
+           "text": "Describe environmental effects of solar-energy power generation."
+          },
+          {
+           "code": "ENG-3.K.1",
+           "text": "Solar power is clean and low-impact but costly; large farms can damage desert ecosystems."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "6-9-hydroelectric-power",
+       "title": "6.9 Hydroelectric Power",
+       "subtopics": [
+        {
+         "id": "hydroelectric-power-systems",
+         "title": "Hydroelectric Power Systems",
+         "outcomes": [
+          {
+           "code": "ENG-3.L",
+           "text": "Describe hydroelectricity use in power generation."
+          },
+          {
+           "code": "ENG-3.L.1",
+           "text": "Dams or river turbines use moving water to turn turbines and generate electricity."
+          },
+          {
+           "code": "ENG-3.L.2",
+           "text": "Tidal systems use moving tidal water to turn turbines."
+          }
+         ]
+        },
+        {
+         "id": "hydroelectric-environmental-effects",
+         "title": "Hydroelectric Environmental Effects",
+         "outcomes": [
+          {
+           "code": "ENG-3.M",
+           "text": "Describe environmental effects of hydroelectric power generation."
+          },
+          {
+           "code": "ENG-3.M.1",
+           "text": "Hydroelectricity produces no air pollution or waste, but dams are costly and alter habitats."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "6-10-geothermal-energy",
+       "title": "6.10 Geothermal Energy",
+       "subtopics": [
+        {
+         "id": "geothermal-power-systems",
+         "title": "Geothermal Power Systems",
+         "outcomes": [
+          {
+           "code": "ENG-3.N",
+           "text": "Describe geothermal-energy use in power generation."
+          },
+          {
+           "code": "ENG-3.N.1",
+           "text": "Geothermal systems use Earth’s internal heat to create steam that drives electric generators."
+          },
+          {
+           "code": "ENG-3.O",
+           "text": "Describe environmental effects of geothermal power generation."
+          }
+         ]
+        },
+        {
+         "id": "geothermal-environmental-effects",
+         "title": "Geothermal Environmental Effects",
+         "outcomes": [
+          {
+           "code": "ENG-3.O.1",
+           "text": "Geothermal access can be expensive and may release hydrogen sulfide."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "6-11-hydrogen-fuel-cell",
+       "title": "6.11 Hydrogen Fuel Cell",
+       "subtopics": [
+        {
+         "id": "hydrogen-fuel-cell-systems",
+         "title": "Hydrogen Fuel Cell Systems",
+         "outcomes": [
+          {
+           "code": "ENG-3.P",
+           "text": "Describe hydrogen-fuel-cell use in power generation."
+          },
+          {
+           "code": "ENG-3.P.1",
+           "text": "Fuel cells combine hydrogen and oxygen to produce electricity and water."
+          }
+         ]
+        },
+        {
+         "id": "fuel-cell-environmental-effects",
+         "title": "Fuel Cell Environmental Effects",
+         "outcomes": [
+          {
+           "code": "ENG-3.Q",
+           "text": "Describe environmental effects of hydrogen-fuel-cell power generation."
+          },
+          {
+           "code": "ENG-3.Q.1",
+           "text": "Fuel cells can avoid carbon dioxide emissions but are expensive and require energy to produce hydrogen."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "6-12-wind-energy",
+       "title": "6.12 Wind Energy",
+       "subtopics": [
+        {
+         "id": "wind-power-systems",
+         "title": "Wind Power Systems",
+         "outcomes": [
+          {
+           "code": "ENG-3.R",
+           "text": "Describe wind-energy use in power generation."
+          },
+          {
+           "code": "ENG-3.R.1",
+           "text": "Wind turbines convert moving air’s kinetic energy into electricity through turbine rotation."
+          }
+         ]
+        },
+        {
+         "id": "wind-energy-environmental-effects",
+         "title": "Wind Energy Environmental Effects",
+         "outcomes": [
+          {
+           "code": "ENG-3.S",
+           "text": "Describe environmental effects of wind-energy power generation."
+          },
+          {
+           "code": "ENG-3.S.1",
+           "text": "Wind power is renewable and clean, but rotating blades can kill birds and bats."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "6-13-energy-conservation",
+       "title": "6.13 Energy Conservation",
+       "subtopics": [
+        {
+         "id": "household-energy-conservation",
+         "title": "Household Energy Conservation",
+         "outcomes": [
+          {
+           "code": "ENG-3.T",
+           "text": "Describe ways to conserve energy."
+          },
+          {
+           "code": "ENG-3.T.1",
+           "text": "Identify household energy-conservation methods, including thermostat adjustment, water conservation, efficient appliances, and conservation landscaping."
+          }
+         ]
+        },
+        {
+         "id": "large-scale-energy-conservation",
+         "title": "Large-Scale Energy Conservation",
+         "outcomes": [
+          {
+           "code": "ENG-3.T.2",
+           "text": "Identify large-scale energy-conservation methods, including efficient vehicles, electric and hybrid vehicles, public transit, and green building design."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "unit-7-atmospheric-pollution",
+     "title": "UNIT 7: Atmospheric Pollution",
+     "topics": [
+      {
+       "id": "7-1-introduction-to-air-pollution",
+       "title": "7.1 Introduction to Air Pollution",
+       "subtopics": [
+        {
+         "id": "air-pollution-sources",
+         "title": "Air Pollution Sources",
+         "outcomes": [
+          {
+           "code": "STB-2.A",
+           "text": "Identify major air-pollution sources and explain their effects."
+          },
+          {
+           "code": "STB-2.A.1",
+           "text": "Coal burning releases carbon dioxide, sulfur dioxide, toxic metals, and particulate pollution."
+          },
+          {
+           "code": "STB-2.A.2",
+           "text": "Fossil-fuel combustion produces nitrogen oxides, ozone, smog, nitric acid, carbon monoxide, hydrocarbons, and particulates."
+          }
+         ]
+        },
+        {
+         "id": "pollutants-and-air-quality",
+         "title": "Pollutants and Air Quality",
+         "outcomes": [
+          {
+           "code": "STB-2.A.3",
+           "text": "Burning fossil fuels, especially diesel, releases sulfur dioxide that degrades air quality."
+          },
+          {
+           "code": "STB-2.A.4",
+           "text": "EPA restrictions under the Clean Air Act greatly reduced lead emissions from fuels."
+          },
+          {
+           "code": "STB-2.A.5",
+           "text": "Distinguish between primary pollutants released directly and secondary pollutants formed in the atmosphere."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "7-2-photochemical-smog",
+       "title": "7.2 Photochemical Smog",
+       "subtopics": [
+        {
+         "id": "smog-formation-and-timing",
+         "title": "Smog Formation and Timing",
+         "outcomes": [
+          {
+           "code": "STB-2.B",
+           "text": "Explain photochemical smog’s causes, effects, and reduction methods."
+          },
+          {
+           "code": "STB-2.B.1",
+           "text": "Heat and sunlight drive reactions between nitrogen oxides and volatile organic compounds that create photochemical smog pollutants."
+          },
+          {
+           "code": "STB-2.B.2",
+           "text": "Environmental conditions influence how much photochemical smog forms."
+          },
+          {
+           "code": "STB-2.B.3",
+           "text": "Nitrogen oxides rise earlier, while ozone peaks in afternoons and summer through sunlight-driven reactions."
+          }
+         ]
+        },
+        {
+         "id": "smog-sources-effects-reduction",
+         "title": "Smog Sources Effects Reduction",
+         "outcomes": [
+          {
+           "code": "STB-2.B.4",
+           "text": "VOCs evaporate or sublime at room temperature; formaldehyde, gasoline, and trees are examples or sources."
+          },
+          {
+           "code": "STB-2.B.5",
+           "text": "Urban vehicle density makes cities common locations for photochemical smog."
+          },
+          {
+           "code": "STB-2.B.6",
+           "text": "Reducing nitrogen oxides and VOC emissions lowers photochemical smog."
+          },
+          {
+           "code": "STB-2.B.7",
+           "text": "Photochemical smog can cause respiratory difficulties and eye irritation."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "7-3-thermal-inversion",
+       "title": "7.3 Thermal Inversion",
+       "subtopics": [
+        {
+         "id": "thermal-inversions-and-pollution",
+         "title": "Thermal Inversions and Pollution",
+         "outcomes": [
+          {
+           "code": "STB-2.C",
+           "text": "Describe thermal inversions and explain their connection to pollution."
+          },
+          {
+           "code": "STB-2.C.1",
+           "text": "A thermal inversion occurs when surface air is cooler than air above, reversing the usual temperature pattern."
+          },
+          {
+           "code": "STB-2.C.2",
+           "text": "Thermal inversions trap smog and particulates near the ground."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "7-4-atmospheric-co2-and-particulates",
+       "title": "7.4 Atmospheric CO2 and Particulates",
+       "subtopics": [
+        {
+         "id": "natural-atmospheric-pollutants",
+         "title": "Natural Atmospheric Pollutants",
+         "outcomes": [
+          {
+           "code": "STB-2.D",
+           "text": "Describe natural sources of atmospheric carbon dioxide and particulate matter."
+          },
+          {
+           "code": "STB-2.D.1",
+           "text": "Respiration, decomposition, and volcanic eruptions naturally add carbon dioxide to the atmosphere."
+          },
+          {
+           "code": "STB-2.D.2",
+           "text": "Particulate matter has multiple natural sources."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "7-5-indoor-air-pollutants",
+       "title": "7.5 Indoor Air Pollutants",
+       "subtopics": [
+        {
+         "id": "common-indoor-pollutants",
+         "title": "Common Indoor Pollutants",
+         "outcomes": [
+          {
+           "code": "STB-2.E",
+           "text": "Identify common indoor air pollutants."
+          },
+          {
+           "code": "STB-2.E.1",
+           "text": "Carbon monoxide is an indoor asphyxiant pollutant."
+          },
+          {
+           "code": "STB-2.E.2",
+           "text": "Indoor particulate pollutants include asbestos, dust, and smoke."
+          },
+          {
+           "code": "STB-2.E.3",
+           "text": "Indoor pollutants originate from natural sources, manufactured materials, and combustion."
+          },
+          {
+           "code": "STB-2.E.4",
+           "text": "Natural indoor pollutants include radon, mold, and dust."
+          },
+          {
+           "code": "STB-2.E.5",
+           "text": "Manufactured indoor pollutants include insulation, VOCs, formaldehyde, and lead from building materials and furnishings."
+          },
+          {
+           "code": "STB-2.E.6",
+           "text": "Combustion indoors can release carbon monoxide, nitrogen oxides, sulfur dioxide, particulates, and tobacco smoke."
+          }
+         ]
+        },
+        {
+         "id": "radon-health-effects",
+         "title": "Radon Health Effects",
+         "outcomes": [
+          {
+           "code": "STB-2.E.7",
+           "text": "Radon-222 is radioactive gas produced when uranium in rocks and soils decays."
+          },
+          {
+           "code": "STB-2.F",
+           "text": "Describe health and environmental effects of indoor air pollutants."
+          },
+          {
+           "code": "STB-2.F.1",
+           "text": "Radon enters homes through soil, foundation openings, basements, or contaminated well water."
+          },
+          {
+           "code": "STB-2.F.2",
+           "text": "Radon exposure can cause lung cancer and is a major cause of the disease."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "7-6-reduction-of-air-pollutants",
+       "title": "7.6 Reduction of Air Pollutants",
+       "subtopics": [
+        {
+         "id": "source-control-methods",
+         "title": "Source Control Methods",
+         "outcomes": [
+          {
+           "code": "STB-2.G",
+           "text": "Explain how air pollution can be reduced at its source."
+          },
+          {
+           "code": "STB-2.G.1",
+           "text": "Source-control approaches include regulations, conservation, and alternative fuels."
+          },
+          {
+           "code": "STB-2.G.2",
+           "text": "Vapor-recovery nozzles capture gasoline fumes during vehicle refueling."
+          }
+         ]
+        },
+        {
+         "id": "pollution-control-equipment",
+         "title": "Pollution Control Equipment",
+         "outcomes": [
+          {
+           "code": "STB-2.G.3",
+           "text": "Catalytic converters transform carbon monoxide, nitrogen oxides, and hydrocarbons into less harmful substances."
+          },
+          {
+           "code": "STB-2.G.4",
+           "text": "Wet and dry scrubbers remove gases and particulates from industrial exhaust."
+          },
+          {
+           "code": "STB-2.G.5",
+           "text": "Coal power plants can reduce emissions using scrubbers and electrostatic precipitators."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "7-7-acid-rain",
+       "title": "7.7 Acid Rain",
+       "subtopics": [
+        {
+         "id": "acid-deposition-sources",
+         "title": "Acid Deposition Sources",
+         "outcomes": [
+          {
+           "code": "STB-2.H",
+           "text": "Describe acid deposition and its sources."
+          },
+          {
+           "code": "STB-2.H.1",
+           "text": "Natural and human sources of nitrogen and sulfur oxides produce acid rain and deposition."
+          },
+          {
+           "code": "STB-2.H.2",
+           "text": "Vehicles emit nitrogen oxides, while coal plants emit both nitrogen and sulfur oxides that cause deposition."
+          }
+         ]
+        },
+        {
+         "id": "acid-deposition-effects",
+         "title": "Acid Deposition Effects",
+         "outcomes": [
+          {
+           "code": "STB-2.I",
+           "text": "Describe acid deposition’s environmental effects."
+          },
+          {
+           "code": "STB-2.I.1",
+           "text": "Acid deposition primarily affects areas downwind of coal-fired power plants."
+          },
+          {
+           "code": "STB-2.I.2",
+           "text": "Acid deposition acidifies soils and waters and corrodes human-made structures."
+          },
+          {
+           "code": "STB-2.I.3",
+           "text": "Soil and bedrock characteristics, especially limestone’s neutralizing capacity, influence acid-deposition impacts."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "7-8-noise-pollution",
+       "title": "7.8 Noise Pollution",
+       "subtopics": [
+        {
+         "id": "noise-pollution-effects",
+         "title": "Noise Pollution Effects",
+         "outcomes": [
+          {
+           "code": "STB-2.J",
+           "text": "Describe human activities that create noise pollution and its effects."
+          },
+          {
+           "code": "STB-2.J.1",
+           "text": "Noise pollution is sufficiently loud sound that can cause physiological stress and hearing loss."
+          },
+          {
+           "code": "STB-2.J.2",
+           "text": "Urban noise comes from transportation, construction, households, and industry."
+          },
+          {
+           "code": "STB-2.J.3",
+           "text": "Animal effects include stress, impaired hearing, disrupted communication or hunting, and altered migration routes."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "unit-8-aquatic-and-terrestrial-pollution",
+     "title": "UNIT 8: Aquatic and Terrestrial Pollution",
+     "topics": [
+      {
+       "id": "8-1-sources-of-pollution",
+       "title": "8.1 Sources of Pollution",
+       "subtopics": [
+        {
+         "id": "point-and-nonpoint-sources",
+         "title": "Point and Nonpoint Sources",
+         "outcomes": [
+          {
+           "code": "STB-3.A",
+           "text": "Distinguish between point and nonpoint pollution sources."
+          },
+          {
+           "code": "STB-3.A.1",
+           "text": "A point source is one identifiable pollutant source, such as a smokestack or discharge pipe."
+          },
+          {
+           "code": "STB-3.A.2",
+           "text": "Nonpoint pollution comes from dispersed, difficult-to-identify sources such as pesticide applications or urban runoff."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "8-2-human-impacts-on-ecosystems",
+       "title": "8.2 Human Impacts on Ecosystems",
+       "subtopics": [
+        {
+         "id": "pollution-and-organism-health",
+         "title": "Pollution and Organism Health",
+         "outcomes": [
+          {
+           "code": "STB-3.B",
+           "text": "Describe how human activities affect aquatic ecosystems."
+          },
+          {
+           "code": "STB-3.B.1",
+           "text": "Pollutants outside an organism’s tolerance range can cause stress, poor growth, reduced reproduction, or death."
+          }
+         ]
+        },
+        {
+         "id": "damage-to-aquatic-ecosystems",
+         "title": "Damage to Aquatic Ecosystems",
+         "outcomes": [
+          {
+           "code": "STB-3.B.2",
+           "text": "Ocean warming, sediment runoff, and destructive fishing damage coral reefs."
+          },
+          {
+           "code": "STB-3.B.3",
+           "text": "Oil spills kill organisms, coat wildlife, and harm bottom-dwelling species."
+          },
+          {
+           "code": "STB-3.B.4",
+           "text": "Oil reaching beaches can damage fishing and tourism economies."
+          },
+          {
+           "code": "STB-3.B.5",
+           "text": "Nutrient pollution creates low-oxygen ocean dead zones."
+          },
+          {
+           "code": "STB-3.B.6",
+           "text": "An oxygen sag curve shows dissolved oxygen changing with distance from a pollution source."
+          }
+         ]
+        },
+        {
+         "id": "aquatic-toxins-and-sediment",
+         "title": "Aquatic Toxins and Sediment",
+         "outcomes": [
+          {
+           "code": "STB-3.B.7",
+           "text": "Industrial and fossil-fuel-related heavy metals can contaminate groundwater and drinking supplies."
+          },
+          {
+           "code": "STB-3.B.8",
+           "text": "Aquatic litter can injure wildlife through blockage, choking, and toxic food-chain contamination."
+          },
+          {
+           "code": "STB-3.B.9",
+           "text": "Sediment reduces water clarity, harms producers and visual predators, and disrupts habitats after settling."
+          },
+          {
+           "code": "STB-3.B.10",
+           "text": "Aquatic bacteria convert elemental mercury into highly toxic methylmercury."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "8-3-endocrine-disruptors",
+       "title": "8.3 Endocrine Disruptors",
+       "subtopics": [
+        {
+         "id": "endocrine-disruptors-and-ecosystems",
+         "title": "Endocrine Disruptors and Ecosystems",
+         "outcomes": [
+          {
+           "code": "STB-3.C",
+           "text": "Describe endocrine disruptors."
+          },
+          {
+           "code": "STB-3.C.1",
+           "text": "Endocrine disruptors are chemicals that interfere with animal hormone systems."
+          },
+          {
+           "code": "STB-3.D",
+           "text": "Describe how endocrine disruptors affect ecosystems."
+          },
+          {
+           "code": "STB-3.D.1",
+           "text": "Endocrine disruptors can cause birth defects, developmental problems, and abnormal sex ratios in aquatic species."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "8-4-human-impacts-on-wetlands-and-mangroves",
+       "title": "8.4 Human Impacts on Wetlands and Mangroves",
+       "subtopics": [
+        {
+         "id": "wetlands-and-mangrove-impacts",
+         "title": "Wetlands and Mangrove Impacts",
+         "outcomes": [
+          {
+           "code": "STB-3.E",
+           "text": "Describe human impacts on wetlands and mangroves."
+          },
+          {
+           "code": "STB-3.E.1",
+           "text": "Wetlands are areas whose soil is covered by water part or all of the time."
+          },
+          {
+           "code": "STB-3.E.2",
+           "text": "Wetlands provide water purification, flood protection, filtration, and habitat."
+          },
+          {
+           "code": "STB-3.E.3",
+           "text": "Development, dams, overfishing, agricultural pollutants, and industrial waste threaten wetlands and mangroves."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "8-5-eutrophication",
+       "title": "8.5 Eutrophication",
+       "subtopics": [
+        {
+         "id": "nutrients-and-algal-blooms",
+         "title": "Nutrients and Algal Blooms",
+         "outcomes": [
+          {
+           "code": "STB-3.F",
+           "text": "Explain how excessive fertilizers and detergents affect aquatic ecosystems."
+          },
+          {
+           "code": "STB-3.F.1",
+           "text": "Eutrophication occurs when excess nutrients enrich a water body."
+          },
+          {
+           "code": "STB-3.F.2",
+           "text": "Nutrient enrichment causes algal blooms; decomposition consumes oxygen and can kill aquatic organisms."
+          }
+         ]
+        },
+        {
+         "id": "oxygen-levels-and-causes",
+         "title": "Oxygen Levels and Causes",
+         "outcomes": [
+          {
+           "code": "STB-3.F.3",
+           "text": "Hypoxic waterways contain very little dissolved oxygen."
+          },
+          {
+           "code": "STB-3.F.4",
+           "text": "Oligotrophic waters have few nutrients, stable algae populations, and abundant dissolved oxygen."
+          },
+          {
+           "code": "STB-3.F.5",
+           "text": "Agricultural runoff and wastewater discharge are human causes of eutrophication."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "8-6-thermal-pollution",
+       "title": "8.6 Thermal Pollution",
+       "subtopics": [
+        {
+         "id": "thermal-pollution-effects",
+         "title": "Thermal Pollution Effects",
+         "outcomes": [
+          {
+           "code": "STB-3.G",
+           "text": "Describe how thermal pollution affects aquatic ecosystems."
+          },
+          {
+           "code": "STB-3.G.1",
+           "text": "Heat entering water can harm organisms in the affected ecosystem."
+          },
+          {
+           "code": "STB-3.G.2",
+           "text": "Warmer water holds less dissolved oxygen than colder water."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "8-7-persistent-organic-pollutants",
+       "title": "8.7 Persistent Organic Pollutants",
+       "subtopics": [
+        {
+         "id": "persistent-organic-pollutants",
+         "title": "Persistent Organic Pollutants",
+         "outcomes": [
+          {
+           "code": "STB-3.H",
+           "text": "Describe how persistent organic pollutants affect ecosystems."
+          },
+          {
+           "code": "STB-3.H.1",
+           "text": "POPs are synthetic carbon-based chemicals, such as DDT and PCBs, that resist environmental breakdown."
+          },
+          {
+           "code": "STB-3.H.2",
+           "text": "Fat-soluble POPs accumulate in organisms’ fatty tissues and can be toxic."
+          },
+          {
+           "code": "STB-3.H.3",
+           "text": "Wind and water can transport POPs long distances before redepositing them."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "8-8-bioaccumulation-and-biomagnification",
+       "title": "8.8 Bioaccumulation and Biomagnification",
+       "subtopics": [
+        {
+         "id": "bioaccumulation-and-biomagnification",
+         "title": "Bioaccumulation and Biomagnification",
+         "outcomes": [
+          {
+           "code": "STB-3.I",
+           "text": "Describe bioaccumulation and biomagnification."
+          },
+          {
+           "code": "STB-3.I.1",
+           "text": "Bioaccumulation is the selective buildup of compounds, especially fat-soluble ones, within an organism’s cells."
+          },
+          {
+           "code": "STB-3.I.2",
+           "text": "Biomagnification increases a substance’s concentration in organisms at successively higher trophic levels."
+          }
+         ]
+        },
+        {
+         "id": "effects-of-biomagnified-pollutants",
+         "title": "Effects of Biomagnified Pollutants",
+         "outcomes": [
+          {
+           "code": "STB-3.J",
+           "text": "Describe the effects of bioaccumulation and biomagnification."
+          },
+          {
+           "code": "STB-3.J.1",
+           "text": "Biomagnified pollutants can thin eggshells and cause developmental deformities in top predators."
+          },
+          {
+           "code": "STB-3.J.2",
+           "text": "Human biomagnification exposure can harm reproductive, nervous, and circulatory systems."
+          },
+          {
+           "code": "STB-3.J.3",
+           "text": "DDT, mercury, and PCBs bioaccumulate and cause significant environmental harm."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "8-9-solid-waste-disposal",
+       "title": "8.9 Solid Waste Disposal",
+       "subtopics": [
+        {
+         "id": "waste-and-landfills",
+         "title": "Waste and Landfills",
+         "outcomes": [
+          {
+           "code": "STB-3.K",
+           "text": "Describe methods for disposing of solid waste."
+          },
+          {
+           "code": "STB-3.K.1",
+           "text": "Solid waste is discarded material other than liquids or gases, produced by homes, industries, businesses, and farms."
+          },
+          {
+           "code": "STB-3.K.2",
+           "text": "Landfills are common disposal sites but may contaminate groundwater and release harmful gases."
+          },
+          {
+           "code": "STB-3.K.3",
+           "text": "E-waste consists of discarded electronics such as televisions, phones, and computers."
+          },
+          {
+           "code": "STB-3.K.4",
+           "text": "Sanitary landfills use liners, stormwater and leachate systems, caps, and methane collection."
+          }
+         ]
+        },
+        {
+         "id": "landfill-and-incineration-effects",
+         "title": "Landfill and Incineration Effects",
+         "outcomes": [
+          {
+           "code": "STB-3.L",
+           "text": "Describe the effects of solid waste disposal methods."
+          },
+          {
+           "code": "STB-3.L.1",
+           "text": "Landfill decomposition depends on waste composition and conditions supporting microbial breakdown."
+          },
+          {
+           "code": "STB-3.L.2",
+           "text": "Incineration reduces waste volume but releases air pollutants."
+          }
+         ]
+        },
+        {
+         "id": "dumping-and-plastic-waste",
+         "title": "Dumping and Plastic Waste",
+         "outcomes": [
+          {
+           "code": "STB-3.L.3",
+           "text": "Illegal disposal, including tire piles, creates environmental hazards such as mosquito-borne disease risks."
+          },
+          {
+           "code": "STB-3.L.4",
+           "text": "Ocean dumping and plastic waste form floating trash accumulations that entangle or are eaten by wildlife."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "8-10-waste-reduction-methods",
+       "title": "8.10 Waste Reduction Methods",
+       "subtopics": [
+        {
+         "id": "recycling-and-composting",
+         "title": "Recycling and Composting",
+         "outcomes": [
+          {
+           "code": "STB-3.M",
+           "text": "Describe waste-reduction practices and their benefits and drawbacks."
+          },
+          {
+           "code": "STB-3.M.1",
+           "text": "Recycling converts selected waste materials into new products."
+          },
+          {
+           "code": "STB-3.M.2",
+           "text": "Recycling reduces mineral demand but requires substantial energy and can be expensive."
+          },
+          {
+           "code": "STB-3.M.3",
+           "text": "Composting decomposes organic waste into fertilizer, but may cause odors and attract rodents."
+          }
+         ]
+        },
+        {
+         "id": "landfill-mitigation",
+         "title": "Landfill Mitigation",
+         "outcomes": [
+          {
+           "code": "STB-3.M.4",
+           "text": "Reusing and recycling e-waste reduces waste; improper disposal can release lead and mercury into groundwater."
+          },
+          {
+           "code": "STB-3.M.5",
+           "text": "Landfill mitigation includes energy recovery through burning and converting former landfills into parks."
+          },
+          {
+           "code": "STB-3.M.6",
+           "text": "Burning landfill decomposition gases can generate electricity and reduce landfill volume."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "8-11-sewage-treatment",
+       "title": "8.11 Sewage Treatment",
+       "subtopics": [
+        {
+         "id": "sewage-treatment-overview",
+         "title": "Sewage Treatment Overview",
+         "outcomes": [
+          {
+           "code": "STB-3.N",
+           "text": "Describe effective practices for treating sewage."
+          },
+          {
+           "code": "STB-3.N.1",
+           "text": "Primary treatment screens out large objects and settles solid waste in tanks."
+          }
+         ]
+        },
+        {
+         "id": "advanced-sewage-treatment",
+         "title": "Advanced Sewage Treatment",
+         "outcomes": [
+          {
+           "code": "STB-3.N.2",
+           "text": "Secondary treatment uses aerated bacteria to decompose organic matter into carbon dioxide and settling inorganic sludge."
+          },
+          {
+           "code": "STB-3.N.3",
+           "text": "Tertiary treatment uses ecological or chemical methods to remove remaining pollutants."
+          },
+          {
+           "code": "STB-3.N.4",
+           "text": "Before discharge, chlorine, ozone, or ultraviolet light disinfects treated water and kills bacteria."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "8-12-lethal-dose-50-ld50",
+       "title": "8.12 Lethal Dose 50% (LD50)",
+       "subtopics": [
+        {
+         "id": "8-12-lethal-dose-50-ld50",
+         "title": "8.12 Lethal Dose 50% (LD50)",
+         "outcomes": [
+          {
+           "code": "EIN-3.A",
+           "text": "Define the meaning of lethal dose 50%, or LD50."
+          },
+          {
+           "code": "EIN-3.A.1",
+           "text": "LD50 is the chemical dose that kills half of a particular species’ population."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "8-13-dose-response-curve",
+       "title": "8.13 Dose Response Curve",
+       "subtopics": [
+        {
+         "id": "8-13-dose-response-curve",
+         "title": "8.13 Dose Response Curve",
+         "outcomes": [
+          {
+           "code": "EIN-3.B",
+           "text": "Evaluate curves showing how toxin or drug doses affect organisms or population mortality."
+          },
+          {
+           "code": "EIN-3.B.1",
+           "text": "A dose-response curve relates toxin or drug quantity to organism effects or population mortality."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "8-14-pollution-and-human-health",
+       "title": "8.14 Pollution and Human Health",
+       "subtopics": [
+        {
+         "id": "pollution-and-health-causes",
+         "title": "Pollution and Health Causes",
+         "outcomes": [
+          {
+           "code": "EIN-3.C",
+           "text": "Identify pollution-related sources of human health problems."
+          },
+          {
+           "code": "EIN-3.C.1",
+           "text": "Multiple chemical exposures make pollution’s causal relationships with human health difficult to establish."
+          }
+         ]
+        },
+        {
+         "id": "pollution-health-examples",
+         "title": "Pollution Health Examples",
+         "outcomes": [
+          {
+           "code": "EIN-3.C.2",
+           "text": "Untreated sewage in streams and rivers can cause dysentery."
+          },
+          {
+           "code": "EIN-3.C.3",
+           "text": "Asbestos exposure is the primary cause of mesothelioma, a type of cancer."
+          },
+          {
+           "code": "EIN-3.C.4",
+           "text": "High tropospheric ozone concentrations can harm respiratory health and reduce lung function."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "8-15-pathogens-and-infectious-diseases",
+       "title": "8.15 Pathogens and Infectious Diseases",
+       "subtopics": [
+        {
+         "id": "pathogens-and-disease-spread",
+         "title": "Pathogens and Disease Spread",
+         "outcomes": [
+          {
+           "code": "EIN-3.D",
+           "text": "Explain human pathogens and how they move through the environment."
+          },
+          {
+           "code": "EIN-3.D.1",
+           "text": "Pathogens adapt to exploit new opportunities for infection and transmission among humans."
+          },
+          {
+           "code": "EIN-3.D.2",
+           "text": "Specific pathogens may exist in many environments despite apparently sanitary conditions."
+          },
+          {
+           "code": "EIN-3.D.3",
+           "text": "Warming climate zones can expand pathogens, diseases, and vectors into formerly subtropical and temperate regions."
+          },
+          {
+           "code": "EIN-3.D.4",
+           "text": "Poor sanitation and contaminated water in low-income areas create conditions for infectious-disease spread."
+          }
+         ]
+        },
+        {
+         "id": "major-infectious-diseases",
+         "title": "Major Infectious Diseases",
+         "outcomes": [
+          {
+           "code": "EIN-3.D.5",
+           "text": "Plague spreads through infected organisms’ bites or contact with contaminated fluids and tissues."
+          },
+          {
+           "code": "EIN-3.D.6",
+           "text": "Tuberculosis is a bacterial lung infection transmitted by inhaling an infected person’s bodily fluids."
+          },
+          {
+           "code": "EIN-3.D.7",
+           "text": "Malaria is a mosquito-transmitted parasitic disease especially prevalent in sub-Saharan Africa."
+          },
+          {
+           "code": "EIN-3.D.8",
+           "text": "Infected mosquitoes transmit West Nile virus to humans through bites."
+          }
+         ]
+        },
+        {
+         "id": "viral-and-waterborne-diseases",
+         "title": "Viral and Waterborne Diseases",
+         "outcomes": [
+          {
+           "code": "EIN-3.D.9",
+           "text": "SARS, a pneumonia, spreads through inhaling or touching infected fluids."
+          },
+          {
+           "code": "EIN-3.D.10",
+           "text": "MERS is a viral respiratory illness transmitted from animals to humans."
+          },
+          {
+           "code": "EIN-3.D.11",
+           "text": "Infected mosquitoes transmit Zika; sexual contact can also spread the virus."
+          },
+          {
+           "code": "EIN-3.D.12",
+           "text": "Cholera is a bacterial disease acquired through contaminated water."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "unit-9-global-change",
+     "title": "UNIT 9: Global Change",
+     "topics": [
+      {
+       "id": "9-1-stratospheric-ozone-depletion",
+       "title": "9.1 Stratospheric Ozone Depletion",
+       "subtopics": [
+        {
+         "id": "why-ozone-matters",
+         "title": "Why Ozone Matters",
+         "outcomes": [
+          {
+           "code": "STB-4.A",
+           "text": "Explain why stratospheric ozone is important for life and human health."
+          },
+          {
+           "code": "STB-4.A.1",
+           "text": "The stratospheric ozone layer supports life’s evolution and continued survival."
+          },
+          {
+           "code": "STB-4.A.3",
+           "text": "Less stratospheric ozone allows more UV radiation to reach Earth, increasing skin cancer and cataract risks."
+          }
+         ]
+        },
+        {
+         "id": "causes-of-ozone-depletion",
+         "title": "Causes of Ozone Depletion",
+         "outcomes": [
+          {
+           "code": "STB-4.A.2",
+           "text": "Human-made CFCs and natural Antarctic atmospheric ice processes contribute to ozone depletion."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "9-2-reducing-ozone-depletion",
+       "title": "9.2 Reducing Ozone Depletion",
+       "subtopics": [
+        {
+         "id": "9-2-reducing-ozone-depletion",
+         "title": "9.2 Reducing Ozone Depletion",
+         "outcomes": [
+          {
+           "code": "STB-4.B",
+           "text": "Describe chemicals that can replace ozone-depleting CFCs."
+          },
+          {
+           "code": "STB-4.B.1",
+           "text": "Replacing CFCs with substitutes such as HFCs reduces ozone depletion, though some HFCs strongly warm the climate."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "9-3-the-greenhouse-effect",
+       "title": "9.3 The Greenhouse Effect",
+       "subtopics": [
+        {
+         "id": "greenhouse-gases-and-earth",
+         "title": "Greenhouse Gases and Earth",
+         "outcomes": [
+          {
+           "code": "STB-4.C",
+           "text": "Identify the major greenhouse gases."
+          },
+          {
+           "code": "STB-4.C.1",
+           "text": "Major greenhouse gases include carbon dioxide, methane, water vapor, nitrous oxide, and CFCs."
+          },
+          {
+           "code": "STB-4.C.2",
+           "text": "Water vapor has little direct effect on long-term climate change because it remains briefly in the atmosphere."
+          },
+          {
+           "code": "STB-4.C.3",
+           "text": "The greenhouse effect keeps Earth’s surface warm enough to support life."
+          }
+         ]
+        },
+        {
+         "id": "sources-and-warming-strength",
+         "title": "Sources and Warming Strength",
+         "outcomes": [
+          {
+           "code": "STB-4.D",
+           "text": "Identify greenhouse-gas sources and compare their warming strengths."
+          },
+          {
+           "code": "STB-4.D.1",
+           "text": "Carbon dioxide defines GWP 1; CFCs have the greatest warming potency, followed by nitrous oxide and methane."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "9-4-increases-in-the-greenhouse-gases",
+       "title": "9.4 Increases in the Greenhouse Gases",
+       "subtopics": [
+        {
+         "id": "9-4-increases-in-the-greenhouse-gases",
+         "title": "9.4 Increases in the Greenhouse Gases",
+         "outcomes": [
+          {
+           "code": "STB-4.E",
+           "text": "Identify health and environmental threats resulting from increased greenhouse gases."
+          },
+          {
+           "code": "STB-4.E.1",
+           "text": "Excess greenhouse gases can raise seas, spread disease vectors poleward, and alter population distribution and movement."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "9-5-global-climate-change",
+       "title": "9.5 Global Climate Change",
+       "subtopics": [
+        {
+         "id": "climate-change-evidence-and-effects",
+         "title": "Climate Change Evidence and Effects",
+         "outcomes": [
+          {
+           "code": "STB-4.F",
+           "text": "Explain how short- and long-term climate changes affect ecosystems."
+          },
+          {
+           "code": "STB-4.F.1",
+           "text": "Earth’s climate has repeatedly shifted over geologic time, as shown by temperature, carbon dioxide, and ice-core records."
+          },
+          {
+           "code": "STB-4.F.2",
+           "text": "Climate change causes warming, permafrost and sea-ice loss, sea-level rise, and coastal population displacement."
+          },
+          {
+           "code": "STB-4.F.3",
+           "text": "Sea-level changes can benefit some marine habitats while harming communities pushed below the photic zone."
+          }
+         ]
+        },
+        {
+         "id": "atmospheric-and-ocean-circulation",
+         "title": "Atmospheric and Ocean Circulation",
+         "outcomes": [
+          {
+           "code": "STB-4.F.4",
+           "text": "Climate change may alter Hadley cells and jet streams, changing atmospheric heat transport."
+          },
+          {
+           "code": "STB-4.F.5",
+           "text": "Changes in ocean conveyor currents can redistribute heat and strongly affect global and coastal climates."
+          }
+         ]
+        },
+        {
+         "id": "climate-effects-on-soil",
+         "title": "Climate Effects on Soil",
+         "outcomes": [
+          {
+           "code": "STB-4.F.6",
+           "text": "Temperature and rainfall changes can reduce soil viability and increase erosion."
+          }
+         ]
+        },
+        {
+         "id": "polar-warming-feedbacks",
+         "title": "Polar Warming Feedbacks",
+         "outcomes": [
+          {
+           "code": "STB-4.F.7",
+           "text": "Polar regions respond rapidly because reflective snow and ice create a positive warming feedback."
+          },
+          {
+           "code": "STB-4.F.8",
+           "text": "Melting snow and ice reduce reflection, causing Earth’s surface to absorb more solar energy and warm further."
+          },
+          {
+           "code": "STB-4.F.9",
+           "text": "Arctic warming is amplified by sea-ice loss and tundra thaw releasing methane and other greenhouse gases."
+          },
+          {
+           "code": "STB-4.F.10",
+           "text": "Polar ice and snow loss removes habitat and food resources for dependent species."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "9-6-ocean-warming",
+       "title": "9.6 Ocean Warming",
+       "subtopics": [
+        {
+         "id": "causes-and-effects-of-ocean-warming",
+         "title": "Causes and Effects of Ocean Warming",
+         "outcomes": [
+          {
+           "code": "STB-4.G",
+           "text": "Explain the causes and effects of ocean warming."
+          },
+          {
+           "code": "STB-4.G.1",
+           "text": "Rising atmospheric greenhouse gases cause ocean warming."
+          },
+          {
+           "code": "STB-4.G.2",
+           "text": "Ocean warming can remove habitat and alter marine organisms’ metabolism and reproduction."
+          },
+          {
+           "code": "STB-4.G.3",
+           "text": "Warming causes coral bleaching by expelling symbiotic algae; some corals recover while others die."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "9-7-ocean-acidification",
+       "title": "9.7 Ocean Acidification",
+       "subtopics": [
+        {
+         "id": "causes-and-effects-of-acidification",
+         "title": "Causes and Effects of Acidification",
+         "outcomes": [
+          {
+           "code": "STB-4.H",
+           "text": "Explain the causes and effects of ocean acidification."
+          },
+          {
+           "code": "STB-4.H.1",
+           "text": "Ocean acidification is declining ocean pH caused mainly by atmospheric carbon dioxide increases."
+          },
+          {
+           "code": "STB-4.H.2",
+           "text": "As oceans absorb more atmospheric carbon dioxide, their acidity increases."
+          },
+          {
+           "code": "STB-4.H.3",
+           "text": "Fossil-fuel burning, vehicle emissions, and deforestation increase carbon dioxide and contribute to ocean acidification."
+          },
+          {
+           "code": "STB-4.H.4",
+           "text": "Acidification reduces calcium carbonate availability, making coral shell formation difficult."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "9-8-invasive-species",
+       "title": "9.8 Invasive Species",
+       "subtopics": [
+        {
+         "id": "invasive-species-and-control",
+         "title": "Invasive Species and Control",
+         "outcomes": [
+          {
+           "code": "EIN-4.A",
+           "text": "Explain problems caused by invasive species and methods for controlling them."
+          },
+          {
+           "code": "EIN-4.A.1",
+           "text": "Species living outside their normal habitat become invasive when they threaten native species."
+          },
+          {
+           "code": "EIN-4.A.2",
+           "text": "Many invasive species are generalists and r-selected, enabling them to outcompete natives for resources."
+          },
+          {
+           "code": "EIN-4.A.3",
+           "text": "Human interventions can control invasive species."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "9-9-endangered-species",
+       "title": "9.9 Endangered Species",
+       "subtopics": [
+        {
+         "id": "causes-of-endangerment",
+         "title": "Causes of Endangerment",
+         "outcomes": [
+          {
+           "code": "EIN-4.B",
+           "text": "Explain causes of endangerment and strategies for preventing extinction."
+          },
+          {
+           "code": "EIN-4.B.1",
+           "text": "Hunting, narrow diets, invasive competitors, and specialized habitats can threaten species with extinction."
+          },
+          {
+           "code": "EIN-4.B.2",
+           "text": "Adaptable or mobile species are generally less vulnerable to extinction after environmental change."
+          },
+          {
+           "code": "EIN-4.B.3",
+           "text": "Selective pressures alter organism behavior and fitness within an environment."
+          }
+         ]
+        },
+        {
+         "id": "competition-and-conservation",
+         "title": "Competition and Conservation",
+         "outcomes": [
+          {
+           "code": "EIN-4.B.4",
+           "text": "Competition for territory, food, mates, and habitat can contribute to endangerment and extinction."
+          },
+          {
+           "code": "EIN-4.B.5",
+           "text": "Protection strategies include anti-poaching laws, habitat conservation, and legislation."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "9-10-human-impacts-on-biodiversity",
+       "title": "9.10 Human Impacts on Biodiversity",
+       "subtopics": [
+        {
+         "id": "major-biodiversity-threats",
+         "title": "Major Biodiversity Threats",
+         "outcomes": [
+          {
+           "code": "EIN-4.C",
+           "text": "Explain how human activities reduce biodiversity and how those effects can be addressed."
+          },
+          {
+           "code": "EIN-4.C.1",
+           "text": "HIPPCO summarizes biodiversity threats: habitat loss, invasives, population growth, pollution, climate change, and overexploitation."
+          },
+          {
+           "code": "EIN-4.C.2",
+           "text": "Fragmentation divides large habitats into isolated areas through roads, development, agriculture, pipelines, and logging."
+          },
+          {
+           "code": "EIN-4.C.3",
+           "text": "The harmful fragmentation threshold differs among species sharing an ecosystem."
+          }
+         ]
+        },
+        {
+         "id": "reducing-biodiversity-loss",
+         "title": "Reducing Biodiversity Loss",
+         "outcomes": [
+          {
+           "code": "EIN-4.C.4",
+           "text": "Climate change causes habitat loss through altered temperature, precipitation, and sea levels."
+          },
+          {
+           "code": "EIN-4.C.5",
+           "text": "Domestication for economic purposes, including livestock and honeybees, can reduce a species’ biodiversity."
+          },
+          {
+           "code": "EIN-4.C.6",
+           "text": "Protected areas, habitat corridors, sustainable land use, and habitat restoration can reduce biodiversity loss."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "build": {
+  "builtAt": "2026-10-14T07:56:57.479Z",
+  "model": "gpt-5.6-luna",
+  "usd": 0.07,
+  "expectedCodes": 466,
+  "coverage": 1,
+  "missingCodes": [],
+  "counts": {
+   "grades": 1,
+   "units": 9,
+   "topics": 99,
+   "subtopics": 176,
+   "outcomes": 466
+  },
+  "warnings": [
+   "grade 9 has no content",
+   "grade 10 has no content",
+   "grade 11 has no content",
+   "grade 12 has no content",
+   "unexpected grade label \"all\""
+  ]
+ }
+}

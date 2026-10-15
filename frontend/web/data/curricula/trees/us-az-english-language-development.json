@@ -1,0 +1,4227 @@
+{
+ "id": "us-az-english-language-development",
+ "region": "US",
+ "framework": "Arizona state academic standards: English Language Development",
+ "board": null,
+ "qualification": "K-12",
+ "subject": "English Language Development",
+ "syllabusCode": null,
+ "gradeSystem": "grade",
+ "source": {
+  "urls": [
+   "https://api.commonstandardsproject.com/api/v1/jurisdictions/0B41FFF6B5114EB0B8A89CE0E70E22D8",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/256E556D92954C76882E4164347BFFF9",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/E16DAAEC523643DA9C7CDE3815648773",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/86830BB5E37A40AD8A639B660D95A997",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/C95F0663151442BBABE9CE42D004E198",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/B6A45729E2F54FACA3F8C5A31A3116F0",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/87586D9AE7404C90A48A283F49EEE99A",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/267E0D177F99450A8C3B59C6B7A3AD19",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/1464E05315D647349EED43993AADDA75"
+  ],
+  "publisher": "Arizona state education agency (machine-readable via Common Standards Project / ASN)",
+  "licence": "CC BY 4.0 US, Common Curriculum, Inc.",
+  "firstExam": "2019"
+ },
+ "grades": [
+  {
+   "grade": "K",
+   "units": [
+    {
+     "id": "phonological-awareness",
+     "title": "Phonological Awareness",
+     "topics": [
+      {
+       "id": "phonological-awareness",
+       "title": "Phonological Awareness",
+       "subtopics": [
+        {
+         "id": "phonological-awareness-1-of-3",
+         "title": "Phonological Awareness (1 of 3)",
+         "outcomes": [
+          {
+           "code": "EL.K.RF.1a",
+           "text": "Produce all individual phonemes in words using accurate articulation."
+          },
+          {
+           "code": "EL.K.RF.1b",
+           "text": "Produce initial and final sounds of words using accurate articulation."
+          },
+          {
+           "code": "EL.K.RF.1c",
+           "text": "Identify the initial and final sounds (not letters) of a spoken word."
+          },
+          {
+           "code": "EL.K.RF.1d",
+           "text": "Produce rhyming words and short, simple, rhyming phrases and songs using accurate pronunciation as well as expressive phrasing and intonation."
+          },
+          {
+           "code": "EL.K.RF.1e",
+           "text": "Identify rhyming words in response to an oral prompt."
+          }
+         ]
+        },
+        {
+         "id": "phonological-awareness-2-of-3",
+         "title": "Phonological Awareness (2 of 3)",
+         "outcomes": [
+          {
+           "code": "EL.K.RF.1f",
+           "text": "Segment one-syllable words into its phonemes."
+          },
+          {
+           "code": "EL.K.RF.1g",
+           "text": "Blend two or three spoken syllables to produce words."
+          },
+          {
+           "code": "El.K.RF.1h",
+           "text": "Produce and blend the initial, medial, and final sounds of CVC words using accurate articulation and pronunciation."
+          },
+          {
+           "code": "EL.K.RF.1i",
+           "text": "Blend spoken sounds to produce words."
+          },
+          {
+           "code": "EL.K.RF.1j",
+           "text": "Discriminate between initial, medial, and final spoken sounds within a word."
+          }
+         ]
+        },
+        {
+         "id": "phonological-awareness-3-of-3",
+         "title": "Phonological Awareness (3 of 3)",
+         "outcomes": [
+          {
+           "code": "El.K.RF.1k",
+           "text": "Produce and blend the initial, medial, and final sounds of grade appropriate words using accurate articulation and pronunciation."
+          },
+          {
+           "code": "EL.K..RF.1l",
+           "text": "Produce new words when initial sound(s), including digraphs, are changed (i.e., word families)."
+          },
+          {
+           "code": "EL.K.RF.1m",
+           "text": "Orally form words by substituting simple onsets (/c/) with given rimes (/at/)."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "print-concepts",
+     "title": "Print Concepts",
+     "topics": [
+      {
+       "id": "print-concepts",
+       "title": "Print Concepts",
+       "subtopics": [
+        {
+         "id": "print-concepts-1-of-2",
+         "title": "Print Concepts (1 of 2)",
+         "outcomes": [
+          {
+           "code": "EL.K.RF.2a",
+           "text": "Demonstrate the command of left to right, top to bottom directionality, and return sweep when \"reading\" books."
+          },
+          {
+           "code": "EL.K.RF.2b",
+           "text": "Recognize that words are represented by a sequence of letters."
+          },
+          {
+           "code": "EL.K.RF.2c",
+           "text": "Demonstrate the one-to-one correlation between a spoken word and a printed word."
+          },
+          {
+           "code": "EL.K.RF.2d",
+           "text": "Recognize that sentences are made up of separate words and symbols."
+          }
+         ]
+        },
+        {
+         "id": "print-concepts-2-of-2",
+         "title": "Print Concepts (2 of 2)",
+         "outcomes": [
+          {
+           "code": "EL.K.RF.2e",
+           "text": "Recognize the difference between a letter and a printed word."
+          },
+          {
+           "code": "EL.K.RF.2f",
+           "text": "Understand that words are separated by spaces in print."
+          },
+          {
+           "code": "EL.K.RF.2g",
+           "text": "Name all uppercase and lowercase letters of the alphabet with different fonts out of sequence."
+          },
+          {
+           "code": "EL.K.RF.2h",
+           "text": "Produce letter sounds represented by the single lettered consonants and vowels."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "phonics-and-word-recognition",
+     "title": "Phonics and Word Recognition",
+     "topics": [
+      {
+       "id": "phonics-and-word-recognition",
+       "title": "Phonics and Word Recognition",
+       "subtopics": [
+        {
+         "id": "phonics-and-word-recognition",
+         "title": "Phonics and Word Recognition",
+         "outcomes": [
+          {
+           "code": "EL.K.RF.3a",
+           "text": "Decode common CVC words."
+          },
+          {
+           "code": "EL.K.RF.3b",
+           "text": "Decode a new word when a specific letter is changed, added, or removed."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "fluency",
+     "title": "Fluency",
+     "topics": [
+      {
+       "id": "fluency",
+       "title": "Fluency",
+       "subtopics": [
+        {
+         "id": "fluency",
+         "title": "Fluency",
+         "outcomes": [
+          {
+           "code": "EL.K.RF.4a",
+           "text": "Read high frequency words with automaticity in context"
+          },
+          {
+           "code": "EL.K.RF.4b",
+           "text": "Read emergent-reader texts with purpose and understanding."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "listening-and-reading-intermediate-level",
+     "title": "Listening and Reading (Intermediate Level)",
+     "topics": [
+      {
+       "id": "listening-and-reading-intermediate-level",
+       "title": "Listening and Reading (Intermediate Level)",
+       "subtopics": [
+        {
+         "id": "listening-and-reading-intermediate-level",
+         "title": "Listening and Reading (Intermediate Level)",
+         "outcomes": [
+          {
+           "code": "EL.K.S1.I-1",
+           "text": "ask and answer questions about key details from a read-aloud, picture book, and oral presentation"
+          },
+          {
+           "code": "EL.K.S1.I-2",
+           "text": "identify the main topic and details from read-alouds, picture books, and/or oral presentation."
+          },
+          {
+           "code": "EL.K.S1.I-3",
+           "text": "retell familiar texts with details."
+          },
+          {
+           "code": "EL.K.S1.I-4",
+           "text": "identify basic similarities and differences within a text."
+          },
+          {
+           "code": "EL.K.S2.I-1",
+           "text": "answer and ask questions about the meaning of words and phrases in grade appropriate oral presentations and read-alouds about a variety of topics, experiences, or events."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "speaking-and-writing-intermediate-level",
+     "title": "Speaking and Writing (Intermediate Level)",
+     "topics": [
+      {
+       "id": "speaking-and-writing-intermediate-level",
+       "title": "Speaking and Writing (Intermediate Level)",
+       "subtopics": [
+        {
+         "id": "speaking-and-writing-intermediate-level-1-of-2",
+         "title": "Speaking and Writing (Intermediate Level) (1 of 2)",
+         "outcomes": [
+          {
+           "code": "EL.K.S3.I-1",
+           "text": "make simple oral presentations about a variety of topics, experiences, or events."
+          },
+          {
+           "code": "EL.K.S3.I-2",
+           "text": "add appropriate drawings or other visual displays to provide additional detail about a variety of topics, experiences, or events."
+          },
+          {
+           "code": "EL.K.S3.I-3",
+           "text": "compose short written texts using appropriate conventions about a variety of topics, experiences, or events."
+          },
+          {
+           "code": "EL.K.S3.I-4",
+           "text": "produce writing with appropriate organization about a variety of topics, experiences, or events."
+          }
+         ]
+        },
+        {
+         "id": "speaking-and-writing-intermediate-level-2-of-2",
+         "title": "Speaking and Writing (Intermediate Level) (2 of 2)",
+         "outcomes": [
+          {
+           "code": "EL.K.S4.I-1",
+           "text": "express an opinion or preference using appropriate structure and justification about a variety of topics or stories."
+          },
+          {
+           "code": "EL.K.S5.I-1",
+           "text": "respond to questions and suggestions from peers and add details to strengthen writing as needed."
+          },
+          {
+           "code": "EL.K.S5.I-2",
+           "text": "demonstrate increasing awareness of differences between informal “playground speech” and language appropriate to the classroom."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "listening-speaking-reading-and-writing-intermedi",
+     "title": "Listening, Speaking, Reading, and Writing (Intermediate Level)",
+     "topics": [
+      {
+       "id": "listening-speaking-reading-and-writing-intermedi",
+       "title": "Listening, Speaking, Reading, and Writing (Intermediate Level)",
+       "subtopics": [
+        {
+         "id": "listening-speaking-reading-and-writing-intermedi",
+         "title": "Listening, Speaking, Reading, and Writing (Intermediate Level) (1 of 2)",
+         "outcomes": [
+          {
+           "code": "EL.K.S6.I-1",
+           "text": "participate in conversations and discussions about a variety of topics with diverse partners."
+          },
+          {
+           "code": "EL.K.S6.I-2",
+           "text": "follow rules for discussion about a variety of topics."
+          },
+          {
+           "code": "EL.K.S6.I-3",
+           "text": "ask and answer questions about a variety of grade appropriate topics."
+          },
+          {
+           "code": "EL.K.S7.I-1",
+           "text": "recall and record information from experience or use information from provided sources to answer a question with increasing control."
+          }
+         ]
+        },
+        {
+         "id": "listening-speaking-reading-and-writing-intermedi-2",
+         "title": "Listening, Speaking, Reading, and Writing (Intermediate Level) (2 of 2)",
+         "outcomes": [
+          {
+           "code": "EL.K.S7.I-2",
+           "text": "participate in shared research and writing projects by evaluating and communicating findings."
+          },
+          {
+           "code": "EL.K.S8.I-1",
+           "text": "orally and/or in writing identify one or two reasons an author or speaker gives to support points in a text."
+          },
+          {
+           "code": "EL.K.S8.I-2",
+           "text": "ask and answer yes-no, either-or, and wh- questions in order to clarify what an author or speaker says."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "language-intermediate-level",
+     "title": "Language (Intermediate Level)",
+     "topics": [
+      {
+       "id": "language-intermediate-level",
+       "title": "Language (Intermediate Level)",
+       "subtopics": [
+        {
+         "id": "language-intermediate-level",
+         "title": "Language (Intermediate Level)",
+         "outcomes": [
+          {
+           "code": "EL.K.S9.I-1",
+           "text": "describe/express thoughts, feelings, and ideas about a short sequence of events from a familiar story, with a beginning, middle, and end including the use of frequently occurring linking words."
+          },
+          {
+           "code": "EL.K.S9.I-2",
+           "text": "use a combination of drawing, teacher dictation, and writing to produce a grade appropriate text for a given purpose."
+          },
+          {
+           "code": "EL.K.S10.I-1",
+           "text": "use frequently occurring regular plural nouns, verbs, prepositions, and question words in shared language activities."
+          },
+          {
+           "code": "EL.K.S10.I-2",
+           "text": "ask and answer interrogatives (wh questions) in shared language activities."
+          },
+          {
+           "code": "EL.K.S10.I-3",
+           "text": "produce and expand simple sentences in shared language activities."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "1",
+   "units": [
+    {
+     "id": "listening-and-reading",
+     "title": "Listening and Reading",
+     "topics": [
+      {
+       "id": "construct-meaning-from-oral-presentations-and-li",
+       "title": "Construct meaning from oral presentations and literary and informational text through grade appropriate listening, reading, and viewing",
+       "subtopics": [
+        {
+         "id": "pre-emergent-emergent",
+         "title": "Pre-Emergent/Emergent",
+         "outcomes": [
+          {
+           "code": "1.PE/E-1",
+           "text": "Respond to simple literal questions."
+          },
+          {
+           "code": "1.PE/E-2",
+           "text": "Identify key words and phrases in a variety of literary texts and presentations."
+          },
+          {
+           "code": "1.PE/E-3",
+           "text": "Restate a sequence of events using key words."
+          },
+          {
+           "code": "1.PE/E-4",
+           "text": "Identify the topic of literary texts and presentations."
+          },
+          {
+           "code": "1.PE/E-5",
+           "text": "Identify basic similarities and differences within a familiar text."
+          }
+         ]
+        },
+        {
+         "id": "basic",
+         "title": "Basic",
+         "outcomes": [
+          {
+           "code": "1.B-1",
+           "text": "Ask and answer questions such as who, what, where, why, when, and how about key details in a text."
+          },
+          {
+           "code": "1.B-2",
+           "text": "Identify key details in a variety of literary texts and presentations."
+          },
+          {
+           "code": "1.B-3",
+           "text": "Sequence a series of events using key words and phrases."
+          },
+          {
+           "code": "1.B-4",
+           "text": "Identify the central idea of literary texts and presentations."
+          },
+          {
+           "code": "1.B-5",
+           "text": "Identify and describe similarities and differences within a text."
+          }
+         ]
+        },
+        {
+         "id": "intermediate",
+         "title": "Intermediate",
+         "outcomes": [
+          {
+           "code": "1.I-1",
+           "text": "Ask and answer questions such as who, what, where, why, when, and how about key details in a text that support the main idea."
+          },
+          {
+           "code": "1.I-2",
+           "text": "Retell stories to include key details in a variety of literary texts and presentations."
+          },
+          {
+           "code": "1.I-3",
+           "text": "Sequence a series of events using transitions."
+          },
+          {
+           "code": "1.I-4",
+           "text": "Identify the central idea of literary texts and presentations."
+          },
+          {
+           "code": "1.I-5",
+           "text": "Identify and describe similarities and differences within a text."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "determine-the-meaning-of-words-and-phrases-in-or",
+       "title": "Determine the meaning of words and phrases in oral presentations and literary and informational text",
+       "subtopics": [
+        {
+         "id": "pre-emergent-emergent",
+         "title": "Pre-Emergent/Emergent",
+         "outcomes": [
+          {
+           "code": "2.PE/E-1",
+           "text": "Answer questions to help determine the meaning of some frequently occurring words and phrases in simple oral presentations and read-alouds about familiar topics, experiences, or events."
+          }
+         ]
+        },
+        {
+         "id": "basic",
+         "title": "Basic",
+         "outcomes": [
+          {
+           "code": "2.B-1",
+           "text": "Determine the meaning of general academic, and content-specific words and phrases, and some common expressions"
+          }
+         ]
+        },
+        {
+         "id": "intermediate",
+         "title": "Intermediate",
+         "outcomes": [
+          {
+           "code": "2.I-1",
+           "text": "Determine the meaning of less frequently occurring words and phrases and general academic and content-specific vocabulary, and some common idiomatic expressions."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "speaking-and-writing",
+     "title": "Speaking and Writing",
+     "topics": [
+      {
+       "id": "speak-and-write-about-grade-appropriate-complex-",
+       "title": "Speak and write about grade appropriate complex literary and informational texts and topics",
+       "subtopics": [
+        {
+         "id": "pre-emergent-emergent",
+         "title": "Pre-Emergent/Emergent",
+         "outcomes": [
+          {
+           "code": "3.PE/E-1",
+           "text": "Communicate simple information or feelings about familiar topics, experiences, or events."
+          },
+          {
+           "code": "3.PE/E-2",
+           "text": "Add appropriate drawings or other visual displays to provide additional detail to familiar topics, experiences, or events."
+          },
+          {
+           "code": "3.PE/E-3",
+           "text": "Compose written statements about familiar text and topics using appropriate conventions."
+          },
+          {
+           "code": "3.PE/E-4",
+           "text": "Produce writing about a variety of topics, experiences, or events using graphic organizers and sentence frames."
+          }
+         ]
+        },
+        {
+         "id": "basic",
+         "title": "Basic",
+         "outcomes": [
+          {
+           "code": "3.B-1",
+           "text": "Communicate simple messages about a variety of topics, experiences, or events."
+          },
+          {
+           "code": "3.B-2",
+           "text": "Add appropriate drawings or other visual displays to clarify thoughts and feelings about a variety of topics, experiences, or events."
+          },
+          {
+           "code": "3.B-3",
+           "text": "Compose short written texts using appropriate conventions (narrative and informational)."
+          },
+          {
+           "code": "3.B-4",
+           "text": "Produce writing with appropriate organization on a variety of topics, experiences, or events using sentence frames."
+          }
+         ]
+        },
+        {
+         "id": "intermediate",
+         "title": "Intermediate",
+         "outcomes": [
+          {
+           "code": "3.I-1",
+           "text": "Communicate oral presentations about a variety of topics, experiences, or events."
+          },
+          {
+           "code": "3.I-2",
+           "text": "Add appropriate drawings or other visual displays to clarify thoughts, feelings, and ideas about a variety of topics, experiences, or events."
+          },
+          {
+           "code": "3.I-3",
+           "text": "Compose written narratives and informational texts using appropriate conventions."
+          },
+          {
+           "code": "3.I-4",
+           "text": "Produce writing with appropriate organization on a variety of topics, experiences, or events."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "construct-grade-appropriate-oral-and-written-cla",
+       "title": "Construct grade appropriate oral and written claims and support them with reasoning and evidence",
+       "subtopics": [
+        {
+         "id": "pre-emergent",
+         "title": "Pre-Emergent",
+         "outcomes": [
+          {
+           "code": "4.PE/E.1",
+           "text": "Express an opinion using words and/or illustrations about a familiar topic."
+          },
+          {
+           "code": "4.PE/E.2",
+           "text": "Identify and use words that signal closure."
+          }
+         ]
+        },
+        {
+         "id": "basic",
+         "title": "Basic",
+         "outcomes": [
+          {
+           "code": "4.B.1",
+           "text": "Express an opinion or preference using phrases about a familiar topic or story"
+          },
+          {
+           "code": "4.B.2",
+           "text": "Identify and use phrases that signal closure."
+          }
+         ]
+        },
+        {
+         "id": "intermediate",
+         "title": "Intermediate",
+         "outcomes": [
+          {
+           "code": "4.I.1",
+           "text": "Express an opinion about a given topic or story and use justification."
+          },
+          {
+           "code": "4.I.2",
+           "text": "Provide a sense of closure to an opinion."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "adapt-language-choices-to-purpose-task-and-audie",
+       "title": "Adapt language choices to purpose, task, and audience when speaking and writing",
+       "subtopics": [
+        {
+         "id": "pre-emergent-emergent",
+         "title": "Pre-Emergent/Emergent",
+         "outcomes": [
+          {
+           "code": "5.PE/E-1",
+           "text": "Respond to questions and suggestions from peers and add details to writing."
+          },
+          {
+           "code": "5.PE/E-2",
+           "text": "Despond to questions and suggestions from peers and add details to writing."
+          }
+         ]
+        },
+        {
+         "id": "basic",
+         "title": "Basic",
+         "outcomes": [
+          {
+           "code": "5.B-1",
+           "text": "Respond to questions and suggestions from peers and add details to strengthen writing as needed."
+          },
+          {
+           "code": "5.B-2",
+           "text": "Demonstrate awareness of differences between informal playground speech and language appropriate to the classroom."
+          }
+         ]
+        },
+        {
+         "id": "intermediate",
+         "title": "Intermediate",
+         "outcomes": [
+          {
+           "code": "5.I-1",
+           "text": "Respond to questions and suggestions from peers and add details to strengthen writing as needed."
+          },
+          {
+           "code": "5.I-2",
+           "text": "Shift appropriately between informal “playground speech” and language appropriate to the classroom."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "listening-speaking-reading-and-writing",
+     "title": "Listening, Speaking, Reading, and Writing",
+     "topics": [
+      {
+       "id": "participate-in-grade-appropriate-oral-and-writte",
+       "title": "Participate in grade-appropriate oral and written exchanges of information, ideas, and analyses, responding to peer, audience, or reader comments and questions",
+       "subtopics": [
+        {
+         "id": "pre-emergent-emergent",
+         "title": "Pre-Emergent/Emergent",
+         "outcomes": [
+          {
+           "code": "6.PE/E-1",
+           "text": "Listen to short conversations about familiar topics and respond using gestures, words, and simple phrases."
+          },
+          {
+           "code": "6.PE/E-2",
+           "text": "Respond to simple yes-no and some wh- questions about familiar topics."
+          },
+          {
+           "code": "6.PE/E-3",
+           "text": "Follow basic rules of discussion about familiar topics."
+          }
+         ]
+        },
+        {
+         "id": "basic",
+         "title": "Basic",
+         "outcomes": [
+          {
+           "code": "6.B-1",
+           "text": "Participate in short discussions and/or written exchanges."
+          },
+          {
+           "code": "6.B-2",
+           "text": "Ask simple yes/no and wh- questions about familiar topics."
+          },
+          {
+           "code": "6.B-3",
+           "text": "Follow the rules for discussion."
+          }
+         ]
+        },
+        {
+         "id": "intermediate",
+         "title": "Intermediate",
+         "outcomes": [
+          {
+           "code": "6.I-1",
+           "text": "Participate in discussions and/or written exchanges about a variety of topics."
+          },
+          {
+           "code": "6.I-2",
+           "text": "Ask and answer questions about a variety of gradeappropriate topics."
+          },
+          {
+           "code": "6.I-3",
+           "text": "Follow the rules for discussion."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "conduct-research-and-evaluate-and-communicate-fi",
+       "title": "Conduct research and evaluate and communicate findings to answer questions or solve problems",
+       "subtopics": [
+        {
+         "id": "pre-emergent-emergent",
+         "title": "Pre-Emergent/Emergent",
+         "outcomes": [
+          {
+           "code": "7.PE/E-1",
+           "text": "Label information and observations in simple notes."
+          },
+          {
+           "code": "7.PE/E-2",
+           "text": "Respond to a question or problem based on provided information from resources."
+          }
+         ]
+        },
+        {
+         "id": "basic",
+         "title": "Basic",
+         "outcomes": [
+          {
+           "code": "7.B-1",
+           "text": "Record information and observations in guided notes."
+          },
+          {
+           "code": "7.B-2",
+           "text": "Respond to a question or problem based on gathered information from provided source."
+          }
+         ]
+        },
+        {
+         "id": "intermediate",
+         "title": "Intermediate",
+         "outcomes": [
+          {
+           "code": "7.I-1",
+           "text": "Record information and observations in organized notes."
+          },
+          {
+           "code": "7.I-2",
+           "text": "Respond to a question or problem based on relevant personal experience or gathered information."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "analyze-and-critique-the-arguments-of-others-ora",
+       "title": "Analyze and critique the arguments of others orally and in writing",
+       "subtopics": [
+        {
+         "id": "pre-emergent-emergent",
+         "title": "Pre-Emergent/Emergent",
+         "outcomes": [
+          {
+           "code": "8.PE/E-1",
+           "text": "Orally identify one reason an author or a speaker gives to support a point."
+          },
+          {
+           "code": "8.PE/E-2",
+           "text": "Respond to yes-no, either-or, and wh- questions about what an author or speaker says."
+          }
+         ]
+        },
+        {
+         "id": "basic",
+         "title": "Basic",
+         "outcomes": [
+          {
+           "code": "8.B-1",
+           "text": "Orally and/or in writing identify one or two reasons an author or speaker gives to support the points."
+          },
+          {
+           "code": "8.B-2",
+           "text": "Ask and answer yes-no, either-or, and wh- questions in order to gather more information about what an author or speaker says."
+          }
+         ]
+        },
+        {
+         "id": "intermediate",
+         "title": "Intermediate",
+         "outcomes": [
+          {
+           "code": "8.I-1",
+           "text": "Orally and/or in writing identify relevant reasons an author or speaker gives to support the points."
+          },
+          {
+           "code": "8.I-2",
+           "text": "Ask and answer yes-no, either-or, and wh- questions in order to clarify what an author or speaker says."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "language",
+     "title": "Language",
+     "topics": [
+      {
+       "id": "create-clear-and-coherent-grade-appropriate-spee",
+       "title": "Create clear and coherent grade-appropriate speech and text",
+       "subtopics": [
+        {
+         "id": "pre-emergent-emergent",
+         "title": "Pre-Emergent/Emergent",
+         "outcomes": [
+          {
+           "code": "9.PE/E-1",
+           "text": "Apply understanding of how text types are organized when writing and speaking in simple texts (e.g., how a story is organized sequentially versus how an informative text is organized by topic and details versus how an opinion text is organized by opinion and supporting reasons)."
+          },
+          {
+           "code": "9.PE/E-2",
+           "text": "Apply basic understanding of how ideas, events, or reasons are linked throughout a text by using frequently occurring linking words when writing and speaking."
+          }
+         ]
+        },
+        {
+         "id": "basic",
+         "title": "Basic",
+         "outcomes": [
+          {
+           "code": "9.B-1",
+           "text": "Apply understanding of how text types are organized in increasing complex texts (e.g., how a story is organized sequentially versus how an informative text is organized by topic and details versus how an opinion text is organized by opinion and supporting reasons)."
+          },
+          {
+           "code": "9.B-2",
+           "text": "Apply understanding of how ideas, events, or reasons are linked throughout a text by using frequently occurring linking words and temporal words when writing and speaking."
+          }
+         ]
+        },
+        {
+         "id": "intermediate",
+         "title": "Intermediate",
+         "outcomes": [
+          {
+           "code": "9.I-1",
+           "text": "Apply understanding of how text types are organized in complex texts (e.g., how a story is organized sequentially versus how an informative text is organized by topic and details versus how an opinion text is organized by opinion and supporting reasons)."
+          },
+          {
+           "code": "9.I-2",
+           "text": "Apply increasing understanding of how ideas, events, or reasons are linked throughout a text by using grade-appropriate linking words and temporal words when writing and speaking"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "make-accurate-use-of-standard-english-to-communi",
+       "title": "Make accurate use of standard English to communicate in grade appropriate speech and writing",
+       "subtopics": [
+        {
+         "id": "pre-emergent-emergent",
+         "title": "Pre-Emergent/Emergent",
+         "outcomes": [
+          {
+           "code": "10.PE/E-1",
+           "text": "Using some familiar singular and plural nouns."
+          },
+          {
+           "code": "10.PE/E-2",
+           "text": "Using some familiar common and proper nouns with appropriate determiners (e.g., articles and demonstratives)."
+          },
+          {
+           "code": "10.PE/E-3",
+           "text": "Recognizing possessive nouns (e.g., That is Mary’s backpack.)."
+          },
+          {
+           "code": "10.PE/E-4",
+           "text": "Beginning to use personal subject and object pronouns."
+          },
+          {
+           "code": "10.PE/E-5",
+           "text": "Using familiar verbs in the present progressive."
+          },
+          {
+           "code": "10.PE/E-6",
+           "text": "Using some familiar verbs in the simple present and simple past, including irregular past forms for frequently used verbs (e.g. , had, was, went)."
+          },
+          {
+           "code": "10.PE/E-7",
+           "text": "Using some familiar verbs in the future with “going to”"
+          },
+          {
+           "code": "10.PE/E-8",
+           "text": "Applying subject -verb agreement using familiar nouns and verbs"
+          },
+          {
+           "code": "10.PE/E-9",
+           "text": "Recognizing and use some frequently occurring adjectives (i.e. , descriptive, possessive, demonstrative)."
+          },
+          {
+           "code": "10.PE/E-10",
+           "text": "Beginning to use some frequently occurring prepositional phrases (e.g., on the table) to provide detail (e.g., time, manner, place, cause) about a familiar activity or process ."
+          },
+          {
+           "code": "10.PE/E-11",
+           "text": "Using some simple, frequently occurring conjunctions (e.g., and, but)."
+          },
+          {
+           "code": "10.PE/E-12",
+           "text": "Beginning to use appropriate word order (subject-verb-object) in basic declarative and imperative sentences."
+          }
+         ]
+        },
+        {
+         "id": "basic",
+         "title": "Basic",
+         "outcomes": [
+          {
+           "code": "10.B-1",
+           "text": "Using an increasing range of singular and plural nouns."
+          },
+          {
+           "code": "10.B-2",
+           "text": "Using an increasing range of common and proper nouns with appropriate determiners (e.g., articles and demonstratives)."
+          },
+          {
+           "code": "10.B-3",
+           "text": "Using possessive with some familiar nouns (e.g., That is Mary’s backpack.)."
+          },
+          {
+           "code": "10.B-4",
+           "text": "Using personal subject and object pronouns."
+          },
+          {
+           "code": "10.B-5",
+           "text": "Using verbs distinguishing present progressive and simple present."
+          },
+          {
+           "code": "10.B-6",
+           "text": "Using an increasing range of verbs in the simple present and simple past, including familiar irregular past forms (e.g. , ate, ran, sang)."
+          },
+          {
+           "code": "10.B-7",
+           "text": "Using an increasing range of verbs in the future with “going to” and “will”."
+          },
+          {
+           "code": "10.B-8",
+           "text": "Applying subject - verb agreement using an increasing range of nouns and verbs."
+          },
+          {
+           "code": "10.B-9",
+           "text": "Using an increasing number of frequently occurring adjectives (i.e. , descriptive, possessive, demonstrative)."
+          },
+          {
+           "code": "10.B-10",
+           "text": "Using a wider range of prepositional phrases (e.g. , after lunch) to provide detail (e.g., time, manner, place, cause) about a familiar or new activity or process ."
+          },
+          {
+           "code": "10.B-11",
+           "text": "Using a wider range of frequently occurring conjunctions (e.g., and, but, because)."
+          },
+          {
+           "code": "10.B-12",
+           "text": "Increasingly using appropriate word order (subject-verb-object) in declarative, imperative, and interrogative sentences."
+          }
+         ]
+        },
+        {
+         "id": "intermediate",
+         "title": "Intermediate",
+         "outcomes": [
+          {
+           "code": "10.I-1",
+           "text": "Using grade-appropriate singular and plural nouns."
+          },
+          {
+           "code": "10.I-2",
+           "text": "Using grade-appropriate common and proper nouns with appropriate determiners (e.g., articles and demonstratives)."
+          },
+          {
+           "code": "10.I-3",
+           "text": "Using possessives with grade-appropriate nouns. (e.g., That is Mary’s backpack)."
+          },
+          {
+           "code": "10.I-4",
+           "text": "Using personal (subject and object), possessive, and indefinite pronouns"
+          },
+          {
+           "code": "10.I-5",
+           "text": "Using verbs in the past progressive."
+          },
+          {
+           "code": "10.I-6",
+           "text": "Using grade - appropriate verbs in the simple present and simple past, including irregular past forms (e.g. , drank, sat, wrote)."
+          },
+          {
+           "code": "10.I-7",
+           "text": "Using grade - appropriate verbs in the future with “going to” and “will”."
+          },
+          {
+           "code": "10.I-8",
+           "text": "Applying subject - verb agreement using grade -appropriate nouns and verbs."
+          },
+          {
+           "code": "10.I-9",
+           "text": "Using a variety of frequently occurring adjectives (i.e. , descriptive, possessive, demonstrative)."
+          },
+          {
+           "code": "10.I-10",
+           "text": "Using a variety of prepositional phrases (e.g. , toward the playground) to provide detail (e.g., time, manner, place, cause) ."
+          },
+          {
+           "code": "10.I-11",
+           "text": "Using frequently occurring conjunctions (e.g., and, but, or, so, because)."
+          },
+          {
+           "code": "10.I-12",
+           "text": "Using appropriate word order (subject-verbobject) in declarative, imperative, and interrogative sentences."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "9-12",
+   "units": [
+    {
+     "id": "receptive-communication-listening-and-reading",
+     "title": "Receptive Communication: Listening and Reading",
+     "topics": [
+      {
+       "id": "construct-meaning-from-oral-presentations-and-li",
+       "title": "Construct meaning from oral presentations and literary and informational text through grade appropriate listening, reading, and viewing",
+       "subtopics": [
+        {
+         "id": "construct-meaning-from-oral-presentations-and-li",
+         "title": "Construct meaning from oral presentations and literary and informational text through grade appropriate listening, reading, and viewing (1 of 3)",
+         "outcomes": [
+          {
+           "code": "EL.9-12.S1.PE/E-1",
+           "text": "Identify the main topic and a few key details."
+          },
+          {
+           "code": "EL.9-12.S1.PE/E-2",
+           "text": "Retell a familiar text including specific details and information."
+          },
+          {
+           "code": "EL.9-12.S1.PE/E-3",
+           "text": "Identify key details and evidence."
+          },
+          {
+           "code": "EL.9-12.S1.PE/E-4",
+           "text": "Identify text structures and text types."
+          },
+          {
+           "code": "EL.9-12.S1.PE/E-5",
+           "text": "Establish connections between visual supports and text."
+          }
+         ]
+        },
+        {
+         "id": "construct-meaning-from-oral-presentations-and-li-2",
+         "title": "Construct meaning from oral presentations and literary and informational text through grade appropriate listening, reading, and viewing (2 of 3)",
+         "outcomes": [
+          {
+           "code": "EL9-12 St 1 B-1",
+           "text": "Determine the central idea or theme and explain how they are supported by using text evidence"
+          },
+          {
+           "code": "EL9-12 St 1 B-2",
+           "text": "Recount a text including specific details and information."
+          },
+          {
+           "code": "EL9-12 St 1 B-3",
+           "text": "Cite specific details and evidence from the texts to support the analysis"
+          },
+          {
+           "code": "EL9-12 St 1 B-4",
+           "text": "Determine which text structures and text types impact the central idea or theme."
+          },
+          {
+           "code": "EL9-12 St 1 B-5",
+           "text": "Utilize visual information to understand the text"
+          }
+         ]
+        },
+        {
+         "id": "construct-meaning-from-oral-presentations-and-li-3",
+         "title": "Construct meaning from oral presentations and literary and informational text through grade appropriate listening, reading, and viewing (3 of 3)",
+         "outcomes": [
+          {
+           "code": "EL9-12 St.1 I-1",
+           "text": "analyze central ideas or themes and justify how they are supported by using text evidence."
+          },
+          {
+           "code": "EL9-12 St. 1 I-2",
+           "text": "summarize a text including specific details and information."
+          },
+          {
+           "code": "EL9-12 St 1 I-3",
+           "text": "cite specific details and evidence from the texts to support the analysis."
+          },
+          {
+           "code": "EL9-12St 1  I-4",
+           "text": "explain how structure, text type, and other elements impacts the central idea or theme."
+          },
+          {
+           "code": "EL9-12 St 1 I-5",
+           "text": "explain how the visual information supports the text."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "determine-the-meaning-of-words-and-phrases-in-or",
+       "title": "Determine the meaning of words and phrases in oral presentations and literary and informational text",
+       "subtopics": [
+        {
+         "id": "determine-the-meaning-of-words-and-phrases-in-or",
+         "title": "Determine the meaning of words and phrases in oral presentations and literary and informational text (1 of 2)",
+         "outcomes": [
+          {
+           "code": "EL.9-12.S2.PE/E-1",
+           "text": "Recognize the meaning of frequently occurring words, phrases, and expressions."
+          },
+          {
+           "code": "EL.9-12.S2.PE/E-2",
+           "text": "Recognize the meanings of common idiomatic expressions."
+          },
+          {
+           "code": "EL.9-12.S2.PE/E-3",
+           "text": "Apply information from visual aids, reference materials, and a developing knowledge of grade- appropriate English morphology to determine meaning of unknown words."
+          },
+          {
+           "code": "EL9-12 St 2 B-1",
+           "text": "Determine the meaning of frequently occurring academic and content-specific words and phrases."
+          },
+          {
+           "code": "EL9-12 St 2 B-2",
+           "text": "Determine the meanings of some idiomatic expressions and figurative language (e.g., similes and proverbs) in familiar texts about a variety of topics, experiences, or events."
+          }
+         ]
+        },
+        {
+         "id": "determine-the-meaning-of-words-and-phrases-in-or-2",
+         "title": "Determine the meaning of words and phrases in oral presentations and literary and informational text (2 of 2)",
+         "outcomes": [
+          {
+           "code": "EL9-12 St 2 B-3",
+           "text": "Apply context clues, information from visual aids, reference materials, and a developing knowledge of gradeappropriate English morphology to determine meaning of unknown words."
+          },
+          {
+           "code": "EL9-12 St 2 I-1",
+           "text": "determine the meaning of lessfrequently occurring words and phrases and content specific words."
+          },
+          {
+           "code": "EL9-12 St 2 I-2",
+           "text": "determine the meaning of idiomatic expressions and figurative language (e.g., metaphors, similes, adages, and proverbs) in texts about a variety of topics, experiences, or events."
+          },
+          {
+           "code": "EL9-12 St 2 I-3",
+           "text": "apply context clues, information from visual aids, reference materials, and knowledge of grade-appropriate English morphology to determine meaning of unknown words"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "productive-communication-speaking-and-writing",
+     "title": "Productive Communication: Speaking and Writing",
+     "topics": [
+      {
+       "id": "speak-and-write-about-grade-appropriate-complex-",
+       "title": "Speak and write about grade appropriate complex literary and informational texts and topics",
+       "subtopics": [
+        {
+         "id": "speak-and-write-about-grade-appropriate-complex-",
+         "title": "Speak and write about grade appropriate complex literary and informational texts and topics (1 of 4)",
+         "outcomes": [
+          {
+           "code": "EL.9-12.S3.PE/E-1",
+           "text": "Deliver short oral presentations that include a few details."
+          },
+          {
+           "code": "EL.9-12.S3.PE/E-2",
+           "text": "Compose written narratives using appropriate conventions about familiar topics and experiences that include details."
+          },
+          {
+           "code": "EL.9-12.S3.PE/E-3",
+           "text": "Compose informational texts that include details to develop a topic while using appropriate conventions."
+          },
+          {
+           "code": "EL.9-12.S3.PE/E-4",
+           "text": "Identify ways in which graphics or multimedia supports the topic."
+          }
+         ]
+        },
+        {
+         "id": "speak-and-write-about-grade-appropriate-complex--2",
+         "title": "Speak and write about grade appropriate complex literary and informational texts and topics (2 of 4)",
+         "outcomes": [
+          {
+           "code": "EL9-12 St 3 B-1",
+           "text": "Deliver short oral presentations that include some details to develop a topic."
+          },
+          {
+           "code": "EL9-12 St 3 B-2",
+           "text": "Compose written narratives using appropriate conventions that include details and examples to develop a topic."
+          },
+          {
+           "code": "EL9-12 St 3 B-3",
+           "text": "Compose informational texts that include relevant details, concepts, and examples to develop a topic while using appropriate conventions."
+          },
+          {
+           "code": "EL9-12 St 3 B-4",
+           "text": "Integrate graphics or multimedia when useful."
+          }
+         ]
+        },
+        {
+         "id": "speak-and-write-about-grade-appropriate-complex--3",
+         "title": "Speak and write about grade appropriate complex literary and informational texts and topics (3 of 4)",
+         "outcomes": [
+          {
+           "code": "EL9-12 St 3 B-5",
+           "text": "Use examples of precise language and domain-specific vocabulary within informative texts."
+          },
+          {
+           "code": "EL9-12 St 3 B-6",
+           "text": "Use transition and sequencing words to create cohesion."
+          },
+          {
+           "code": "EL9-12 St 3 I-1",
+           "text": "deliver oral presentations that include details and examples to develop a topic."
+          },
+          {
+           "code": "EL9-12 St 3 I-2",
+           "text": "compose written narratives using appropriate conventions that include details, examples, narrative techniques, and precise language to develop a topic."
+          }
+         ]
+        },
+        {
+         "id": "speak-and-write-about-grade-appropriate-complex--4",
+         "title": "Speak and write about grade appropriate complex literary and informational texts and topics (4 of 4)",
+         "outcomes": [
+          {
+           "code": "EL9-12 St 3 I-3",
+           "text": "compose informational texts that include relevant details, concepts, and examples to develop a topic while using appropriate conventions."
+          },
+          {
+           "code": "EL9-12 St 3 I-4",
+           "text": "integrate graphics or multimedia when useful"
+          },
+          {
+           "code": "EL 9-12 St 3 I-5",
+           "text": "use precise language and domain specific vocabulary to inform about or explain the topic."
+          },
+          {
+           "code": "EL9-12 St 3 I-6",
+           "text": "use transition and sequencing words to create cohesion."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "construct-grade-appropriate-oral-and-written-cla",
+       "title": "Construct grade appropriate oral and written claims and support them with reasoning and evidence",
+       "subtopics": [
+        {
+         "id": "construct-grade-appropriate-oral-and-written-cla",
+         "title": "Construct grade appropriate oral and written claims and support them with reasoning and evidence (1 of 3)",
+         "outcomes": [
+          {
+           "code": "EL.9-12.S4.PE/E-1",
+           "text": "Express an opinion on a topic."
+          },
+          {
+           "code": "EL.9-12.S4.PE/E-2",
+           "text": "Introduce the topic and provide a few reasons or facts to support the claim."
+          },
+          {
+           "code": "EL.9-12.S4.PE/E-3",
+           "text": "Identify language indicating a contrasting opinion or viewpoint."
+          },
+          {
+           "code": "EL.9-12.S4.PE/E-4",
+           "text": "Provide a sense of closure to an argument."
+          }
+         ]
+        },
+        {
+         "id": "construct-grade-appropriate-oral-and-written-cla-2",
+         "title": "Construct grade appropriate oral and written claims and support them with reasoning and evidence (2 of 3)",
+         "outcomes": [
+          {
+           "code": "EL9-12 St 4 B-1",
+           "text": "Construct a claim about a topic or text"
+          },
+          {
+           "code": "EL9-12 St 4 B-2",
+           "text": "Introduce the claim and provide logically ordered reasons or facts that effectively support the claim."
+          },
+          {
+           "code": "EL9-12 St 4 B-3",
+           "text": "Distinguish the claim from a counterclaim."
+          },
+          {
+           "code": "EL9-12 St 4 B-4",
+           "text": "Provide a concluding statement to an argument."
+          }
+         ]
+        },
+        {
+         "id": "construct-grade-appropriate-oral-and-written-cla-3",
+         "title": "Construct grade appropriate oral and written claims and support them with reasoning and evidence (3 of 3)",
+         "outcomes": [
+          {
+           "code": "EL9-12 ST 4 I-1",
+           "text": "construct a claim about a topic or text."
+          },
+          {
+           "code": "EL9-12 St 4 I-2",
+           "text": "introduce the claim and provide logically ordered and relevant reasons and evidence to support the claim and to refute the counterclaim."
+          },
+          {
+           "code": "EL9-12 St 4 I-3",
+           "text": "distinguish the claim from a counterclaim and explain the relationship between them."
+          },
+          {
+           "code": "EL9-12 St 4 I-4",
+           "text": "provide a conclusion that summarizes the argument presented."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "adapt-language-choices-to-purpose-task-and-audie",
+       "title": "Adapt language choices to purpose, task, and audience when speaking and writing",
+       "subtopics": [
+        {
+         "id": "adapt-language-choices-to-purpose-task-and-audie",
+         "title": "Adapt language choices to purpose, task, and audience when speaking and writing (1 of 2)",
+         "outcomes": [
+          {
+           "code": "EL.9-12.S5.PE/E-1",
+           "text": "Demonstrate a developing awareness of the need to adapt language choices to different social and academic context."
+          },
+          {
+           "code": "EL.9-12.S5.PE/E-2",
+           "text": "Use frequently occurring general academic and content-specific words and phrases to express ideas."
+          },
+          {
+           "code": "EL.9-12.S5.PE/E-3",
+           "text": "Demonstrate developing control of style and tone in oral or written text."
+          },
+          {
+           "code": "EL9-12 St 5 B-1",
+           "text": "Demonstrate awareness of the need to adapt language choices according to purpose, task, and audience."
+          },
+          {
+           "code": "EL9-12 St 5 B-2",
+           "text": "Use general academic and domain-specific words and phrases to express ideas."
+          }
+         ]
+        },
+        {
+         "id": "adapt-language-choices-to-purpose-task-and-audie-2",
+         "title": "Adapt language choices to purpose, task, and audience when speaking and writing (2 of 2)",
+         "outcomes": [
+          {
+           "code": "EL9-12 St 5 B-3",
+           "text": "Utilize formal style and tone in speech and writing, as appropriate"
+          },
+          {
+           "code": "EL9-12 St 5 I-1",
+           "text": "adapt language choices and style (includes register) according to purpose, task, and audience"
+          },
+          {
+           "code": "EL9-12 St 5 I-2",
+           "text": "use a wide variety of general academic and domain-specific words to precisely express ideas."
+          },
+          {
+           "code": "EL9-12 St 5 I-3",
+           "text": "utilize and maintain formal style and tone effectively in speech and writing, as appropriate"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "interactive-communication-listening-speaking-rea",
+     "title": "Interactive Communication: Listening, Speaking, Reading, and Writing",
+     "topics": [
+      {
+       "id": "participate-in-grade-appropriate-oral-and-writte",
+       "title": "Participate in grade- appropriate oral and written exchanges of information, ideas, and analyses, responding to peer, audience, or reader comments and questions",
+       "subtopics": [
+        {
+         "id": "participate-in-grade-appropriate-oral-and-writte",
+         "title": "Participate in grade- appropriate oral and written exchanges of information, ideas, and analyses, responding to peer, audience, or reader comments and questions (1 of 2)",
+         "outcomes": [
+          {
+           "code": "EL.9-12.S6.PE/E-1",
+           "text": "Participate in conversations and discussions about familiar topics."
+          },
+          {
+           "code": "EL.9-12.S6.PE/E-2",
+           "text": "Participate in written exchanges about familiar topics."
+          },
+          {
+           "code": "EL.9-12.S6.PE/E-3",
+           "text": "Follow the basic rules for discussion."
+          },
+          {
+           "code": "EL.9-12.S6.PE/E-4",
+           "text": "Respond to simple yes-no and wh- questions."
+          }
+         ]
+        },
+        {
+         "id": "participate-in-grade-appropriate-oral-and-writte-2",
+         "title": "Participate in grade- appropriate oral and written exchanges of information, ideas, and analyses, responding to peer, audience, or reader comments and questions (2 of 2)",
+         "outcomes": [
+          {
+           "code": "EL.9-12.S6.PE/E-5",
+           "text": "Contribute own comments to collaborative oral and written discussions about familiar topics."
+          },
+          {
+           "code": "EL.9-12.S6.PE/E-7",
+           "text": "Refer to previously read information on familiar topic during collaborative oral and written discussions."
+          },
+          {
+           "code": null,
+           "text": "Restate some of the key ideas expressed."
+          }
+         ]
+        },
+        {
+         "id": "participate-in-grade-appropriate-oral-and-writte-3",
+         "title": "Participate in grade appropriate oral and written exchanges of information, ideas, and analyses, responding to peer, audience, or reader comments and questions (1 of 3)",
+         "outcomes": [
+          {
+           "code": "EL9-12 St 6 B-1",
+           "text": "Participate in discussions about familiar topics, texts, and issues."
+          },
+          {
+           "code": "EL9-12 St 6 B-2",
+           "text": "Participate in written exchanges about gradeappropriate topics and texts."
+          },
+          {
+           "code": "EL9-12 St 6 B-3",
+           "text": "Follow the rules for discussion and express his or her own ideas clearly"
+          },
+          {
+           "code": "EL9-12 St 6 B-4",
+           "text": "Ask questions to gain information or clarify understanding."
+          },
+          {
+           "code": "EL9-12 St 6 B-5",
+           "text": "Review information expressed by others and add relevant information and evidence to collaborative oral and written discussions."
+          }
+         ]
+        },
+        {
+         "id": "participate-in-grade-appropriate-oral-and-writte-4",
+         "title": "Participate in grade appropriate oral and written exchanges of information, ideas, and analyses, responding to peer, audience, or reader comments and questions (2 of 3)",
+         "outcomes": [
+          {
+           "code": "EL9-12 St 6 B-6",
+           "text": "Refer to previously read or researched information during collaborative oral and written discussions."
+          },
+          {
+           "code": "EL9-12 St 6 B-7",
+           "text": "Summarize the key points expressed."
+          },
+          {
+           "code": "EL9-12 St 6 I-1",
+           "text": "participate in extended conversations and discussions about a variety of topics, texts, and issues."
+          },
+          {
+           "code": "EL9-12 St 6 I-2",
+           "text": "participate in extended written exchanges about a variety of topics and texts."
+          },
+          {
+           "code": "EL9-12 St 6 I-3",
+           "text": "follow the rules for discussion and express his or her own ideas clearly and persuasively."
+          }
+         ]
+        },
+        {
+         "id": "participate-in-grade-appropriate-oral-and-writte-5",
+         "title": "Participate in grade appropriate oral and written exchanges of information, ideas, and analyses, responding to peer, audience, or reader comments and questions (3 of 3)",
+         "outcomes": [
+          {
+           "code": "EL9-12 St 6 I-4",
+           "text": "pose and respond to questions that probe reasoning and claims."
+          },
+          {
+           "code": "EL9-12 St 6 I-5",
+           "text": "acknowledge information expressed by others by paraphrasing key ideas & expressed and responding with relevant information in collaborative oral and written discussions"
+          },
+          {
+           "code": "EL9-12 St 6 I-6",
+           "text": "refer to previously read or researched information during collaborative oral and written discussions."
+          },
+          {
+           "code": "EL9-12 St 6 I-7",
+           "text": "summarize the key points and evidence discussed."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "conduct-research-and-evaluate-and-communicate-fi",
+       "title": "Conduct research and evaluate and communicate findings to answer questions or solve problems",
+       "subtopics": [
+        {
+         "id": "conduct-research-and-evaluate-and-communicate-fi",
+         "title": "Conduct research and evaluate and communicate findings to answer questions or solve problems (1 of 3)",
+         "outcomes": [
+          {
+           "code": "EL.9-12.S7.PE/E-1",
+           "text": "Gather information from provided resources to answer questions."
+          },
+          {
+           "code": "EL.9-12.S7.PE/E-3",
+           "text": "Record some information/ observations in simple notes."
+          },
+          {
+           "code": "EL.9-12.S7.PE/E-4",
+           "text": "Cite sources used in research appropriately."
+          },
+          {
+           "code": "EL9-12 St 7 B-1",
+           "text": "Gather information from multiple provided resources to answer questions."
+          }
+         ]
+        },
+        {
+         "id": "conduct-research-and-evaluate-and-communicate-fi-2",
+         "title": "Conduct research and evaluate and communicate findings to answer questions or solve problems (2 of 3)",
+         "outcomes": [
+          {
+           "code": "EL9-12 St 7 B-2",
+           "text": "Summarize the main idea using evidence from text or presentations."
+          },
+          {
+           "code": "EL9-12 St 7 B-3",
+           "text": "Paraphrase observations, information notes with labeled illustrations, diagrams, or other graphics, as appropriate."
+          },
+          {
+           "code": "EL9-12 St 7 B-3",
+           "text": "Cite sources used in research appropriately."
+          },
+          {
+           "code": "EL9-12 St 7 I-1",
+           "text": "gather information from print and digital provided resources to answer questions."
+          }
+         ]
+        },
+        {
+         "id": "conduct-research-and-evaluate-and-communicate-fi-3",
+         "title": "Conduct research and evaluate and communicate findings to answer questions or solve problems (3 of 3)",
+         "outcomes": [
+          {
+           "code": "EL9-12 St 7 I-2",
+           "text": "make inferences and draw conclusions using evidence from text or presentations."
+          },
+          {
+           "code": "EL9-12 St 7 I-3",
+           "text": "summarize key ideas and information in detailed and orderly notes, with charts, diagrams, or other graphics, as appropriate"
+          },
+          {
+           "code": "EL9-12 St 7 I-4",
+           "text": "cite sources used in research appropriately."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "analyze-and-critique-the-arguments-of-others-ora",
+       "title": "Analyze and critique the arguments of others orally and in writing",
+       "subtopics": [
+        {
+         "id": "analyze-and-critique-the-arguments-of-others-ora",
+         "title": "Analyze and critique the arguments of others orally and in writing (1 of 3)",
+         "outcomes": [
+          {
+           "code": "EL.9-12.S8.PE/E-1",
+           "text": "Identify the main argument an author or a speaker makes."
+          },
+          {
+           "code": "EL.9-12.S8.PE/E-2",
+           "text": "Identify reasons an author or a speaker gives to support the argument."
+          },
+          {
+           "code": "EL.9-12.S8.PE/E-3",
+           "text": "Cite textual evidence to support the analysis."
+          },
+          {
+           "code": "EL.9-12.S8.PE/E-4",
+           "text": "Use words and phrases to express ideas and opinions."
+          },
+          {
+           "code": "EL9-12 St 8 B-1",
+           "text": "Explain the reasons an author or a speaker gives to support a claim."
+          }
+         ]
+        },
+        {
+         "id": "analyze-and-critique-the-arguments-of-others-ora-2",
+         "title": "Analyze and critique the arguments of others orally and in writing (2 of 3)",
+         "outcomes": [
+          {
+           "code": "EL9-12 St 8 B-2",
+           "text": "Identify textual evidence that supports the claim."
+          },
+          {
+           "code": "EL9-12 St 8 B-3",
+           "text": "Cite textual evidence to support the analysis."
+          },
+          {
+           "code": "EL9-12 St 8 B-4",
+           "text": "Use academic words and phrases to make a claim."
+          },
+          {
+           "code": "EL9-12 St 8 B-5",
+           "text": "Demonstrate independence in gathering vocabulary knowledge when considering a word or phrase important to comprehension or expression."
+          },
+          {
+           "code": "EL9-12 St 8 I-1",
+           "text": "analyze the reasoning and use of rhetoric in texts."
+          }
+         ]
+        },
+        {
+         "id": "analyze-and-critique-the-arguments-of-others-ora-3",
+         "title": "Analyze and critique the arguments of others orally and in writing (3 of 3)",
+         "outcomes": [
+          {
+           "code": "EL9-12 St 8 I-2",
+           "text": "determine whether the evidence is sufficient to support the claim."
+          },
+          {
+           "code": "EL9-12 St 8 I-3",
+           "text": "cite textual evidence to support the analysis."
+          },
+          {
+           "code": "EL9-12 St 9 I-4",
+           "text": "use academic and domain-specific words and phrases to make a claim."
+          },
+          {
+           "code": "EL9-12 St 9 I-5",
+           "text": "demonstrate independence in gathering vocabulary knowledge when considering a word or phrase important to comprehension or expression."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "language-standards-9-and-10-are-to-be-used-acros",
+     "title": "Language: Standards 9 and 10 are to be used across Standards 1-8",
+     "topics": [
+      {
+       "id": "create-clear-and-coherent-grade-appropriate-spee",
+       "title": "Create clear and coherent grade-appropriate speech and text",
+       "subtopics": [
+        {
+         "id": "create-clear-and-coherent-grade-appropriate-spee",
+         "title": "Create clear and coherent grade-appropriate speech and text (1 of 2)",
+         "outcomes": [
+          {
+           "code": "EL.9-12.S9.PE/E-1",
+           "text": "Present information on a topic using frequently occurring linking words (e.g., and, then) when speaking and writing."
+          },
+          {
+           "code": "EL.9-12.S9.PE/E-2",
+           "text": "Present a simple sequence of events in order using frequently occurring linking words (e.g., and, then) when speaking and writing."
+          },
+          {
+           "code": "EL.9-12.S9.PE/E-3",
+           "text": "Identify signal words that indicate cause and effect. (e.g., so that, because of, since)"
+          },
+          {
+           "code": "EL9-12 St 9 B-1",
+           "text": "Introduce and develop an informational topic, using an increasing range of transition and other linking words (e.g., before, because, also) when speaking and writing."
+          },
+          {
+           "code": "EL9-12 St 9 B-2",
+           "text": "Introduce and present facts, using an increasing range of transition and other linking words to connect, compare, and contrast information (e.g., before, because, also) when speaking and writing"
+          }
+         ]
+        },
+        {
+         "id": "create-clear-and-coherent-grade-appropriate-spee-2",
+         "title": "Create clear and coherent grade-appropriate speech and text (2 of 2)",
+         "outcomes": [
+          {
+           "code": "EL9-12 St 9 B-3",
+           "text": "Locate and identify signal words that indicate cause and effect. (e.g., as a result of, so that, because of, since)"
+          },
+          {
+           "code": "EL9-12 St 9 I-1",
+           "text": "introduce and develop an informational topic using a variety of transition and linking words and phrases to connect ideas, information, or events when speaking and writing"
+          },
+          {
+           "code": "EL9-12 St 9 I-2",
+           "text": "introduce and, develop a more detailed sequence of events with a beginning, middle, and end, using a variety of transition and linking words and phrases to connect, compare, and contrast ideas, information, or events when speaking and writing."
+          },
+          {
+           "code": "EL9-12 St 9 I-3",
+           "text": "identify and use words that indicate cause and effect. (as a result of, consequently, so that, because of, since)"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "make-accurate-use-of-standard-english-to-communi",
+       "title": "Make accurate use of standard English to communicate in grade appropriate speech and writing",
+       "subtopics": [
+        {
+         "id": "make-accurate-use-of-standard-english-to-communi",
+         "title": "Make accurate use of standard English to communicate in grade appropriate speech and writing (1 of 9)",
+         "outcomes": [
+          {
+           "code": "EL.9-12.S10.PE/E-1",
+           "text": "Use some familiar singular and plural nouns."
+          },
+          {
+           "code": "EL.9-12.S10.PE/E-2",
+           "text": "Use some familiar common and proper nouns with appropriate determiners (e.g., articles and demonstratives)."
+          },
+          {
+           "code": "EL.9-12.S10.PE/E-3",
+           "text": "Recognize possessive nouns (e.g., That is Mary’s backpack.)."
+          },
+          {
+           "code": "EL.9-12.S10.PE/E-4",
+           "text": "Begin to use personal subject and object pronouns"
+          },
+          {
+           "code": "EL.9-12.S10.PE/E-5",
+           "text": "Use familiar verbs in the present progressive."
+          }
+         ]
+        },
+        {
+         "id": "make-accurate-use-of-standard-english-to-communi-2",
+         "title": "Make accurate use of standard English to communicate in grade appropriate speech and writing (2 of 9)",
+         "outcomes": [
+          {
+           "code": "EL.9-12.S10.PE/E-6",
+           "text": "Use some familiar verbs in the simple present and simple past, including irregular past forms for frequently used verbs (e.g., had, was, went)."
+          },
+          {
+           "code": "EL.9-12.S10.PE/E-7",
+           "text": "Use some familiar verbs in the future with “going to”."
+          },
+          {
+           "code": "EL.9-12.S10.PE/E-8",
+           "text": "Apply subject-verb agreement using familiar nouns and verbs."
+          },
+          {
+           "code": "EL.9-12.S10.PE/E-9",
+           "text": "Recognize and use some frequently occurring adjectives (i.e., descriptive, possessive, demonstrative)."
+          },
+          {
+           "code": "EL.9-12.S10.PE/E-10",
+           "text": "Begin to use some frequently occurring prepositional phrases (e.g., on the table) to provide detail (e.g., time, manner, place, cause) about a familiar activity or process."
+          }
+         ]
+        },
+        {
+         "id": "make-accurate-use-of-standard-english-to-communi-3",
+         "title": "Make accurate use of standard English to communicate in grade appropriate speech and writing (3 of 9)",
+         "outcomes": [
+          {
+           "code": "EL.9-12.S10.PE/E-11",
+           "text": "Use some simple, frequently occurring conjunctions (e.g., and, but)."
+          },
+          {
+           "code": "EL.9-12.S10.PE/E-12",
+           "text": "Use some simple, frequently occurring imperative sentences (e.g., Come in., Sit down.)."
+          },
+          {
+           "code": "EL.9-12.S10.PE/E-13",
+           "text": "Use some simple, frequently occurring modals (e.g., can, could, may, might)."
+          },
+          {
+           "code": "EL.9-12.S10.PE/E-14",
+           "text": "Begin to use appropriate word order (subject-verb- object) in basic declarative and imperative sentences."
+          },
+          {
+           "code": "EL9-12 St 10 B-1",
+           "text": "Using an increasing range of singular and plural nouns."
+          }
+         ]
+        },
+        {
+         "id": "make-accurate-use-of-standard-english-to-communi-4",
+         "title": "Make accurate use of standard English to communicate in grade appropriate speech and writing (4 of 9)",
+         "outcomes": [
+          {
+           "code": "EL9-12 St 10 B-2",
+           "text": "Using an increasing range of common and proper nouns with appropriate determiners (e.g., articles and demonstratives)."
+          },
+          {
+           "code": "EL9-12 St 10 B-3",
+           "text": "Using possessive with some familiar nouns (e.g., That is Mary’s backpack.)."
+          },
+          {
+           "code": "EL9-12 St 10 B-4",
+           "text": "Using personal subject and object pronouns."
+          },
+          {
+           "code": "EL9-12 St 10 B-5",
+           "text": "Using verbs distinguishing present progressive and simple present."
+          },
+          {
+           "code": "EL9-12 St 10 B-6",
+           "text": "Using an increasing range of verbs in the simple present and simple past, including familiar irregular past forms (e.g., ate, ran, sang)."
+          }
+         ]
+        },
+        {
+         "id": "make-accurate-use-of-standard-english-to-communi-5",
+         "title": "Make accurate use of standard English to communicate in grade appropriate speech and writing (5 of 9)",
+         "outcomes": [
+          {
+           "code": "EL9-12 St 10 B-7",
+           "text": "Using an increasing range of verbs in the future with “going to” and “will”."
+          },
+          {
+           "code": "EL9-12 St 10 B-8",
+           "text": "Applying subjectverb agreement using and increasing range of nouns and verbs."
+          },
+          {
+           "code": "EL9-12 St 10 B-9",
+           "text": "Using an increasing number of frequently occurring adjectives (i.e., descriptive, possessive, demonstrative)."
+          },
+          {
+           "code": "EL9-12 St 10 B-10",
+           "text": "Using a wider range of prepositional phrases (e.g. after lunch) to provide detail (e.g., time, manner, place, cause) about a familiar or new activity or process."
+          },
+          {
+           "code": "EL9-12 St 10 B-11",
+           "text": "Using a wider range of frequently occurring conjunctions (e.g., and, but, because)"
+          }
+         ]
+        },
+        {
+         "id": "make-accurate-use-of-standard-english-to-communi-6",
+         "title": "Make accurate use of standard English to communicate in grade appropriate speech and writing (6 of 9)",
+         "outcomes": [
+          {
+           "code": "EL9-12 St 10 B-12",
+           "text": "Using a wider range of frequently occurring imperative sentences (e.g., Share your opinion with a classmate., Provide support using textual evidence.)."
+          },
+          {
+           "code": "EL9-12 St 10 B-13",
+           "text": "Using a wider range of frequently occurring modals (e.g., shall, should, will, would)."
+          },
+          {
+           "code": "EL9-12 ST 10 B-14",
+           "text": "Increasingly using appropriate word order (subjectverb-object) in declarative, imperative, and interrogative sentences."
+          },
+          {
+           "code": "EL9-12 St 10 I-1",
+           "text": "using grade appropriate singular and plural nouns."
+          },
+          {
+           "code": "EL9-12 ST 10 I-2",
+           "text": "using gradeappropriate common and proper nouns with appropriate determiners (e.g., articles and demonstratives)."
+          }
+         ]
+        },
+        {
+         "id": "make-accurate-use-of-standard-english-to-communi-7",
+         "title": "Make accurate use of standard English to communicate in grade appropriate speech and writing (7 of 9)",
+         "outcomes": [
+          {
+           "code": "EL9-12 St 10 I-3",
+           "text": "using possessives with grade-appropriate nouns (e.g., That is Mary’s backpack.)."
+          },
+          {
+           "code": "EL9-12 ST 10 I-4",
+           "text": "using personal (subject and object), possessive, and indefinite pronouns."
+          },
+          {
+           "code": "EL9-12 St 10 I-5",
+           "text": "using verbs in the past progressive."
+          },
+          {
+           "code": "EL9-12 St 10 I-6",
+           "text": "using gradeappropriate verbs in the simple present and simple past, including irregular past forms (e.g., drank, sat, wrote)"
+          },
+          {
+           "code": "EL9-12 St 10 I-7",
+           "text": "using gradeappropriate verbs in the future with “going to” and “will”."
+          }
+         ]
+        },
+        {
+         "id": "make-accurate-use-of-standard-english-to-communi-8",
+         "title": "Make accurate use of standard English to communicate in grade appropriate speech and writing (8 of 9)",
+         "outcomes": [
+          {
+           "code": "EL9-12 St 10 I-8",
+           "text": "Applying subjectverb agreement using grade-appropriate nouns and verbs."
+          },
+          {
+           "code": "EL9-12 St 10 I-9",
+           "text": "using a variety of frequently occurring adjectives (i.e., descriptive, possessive, demonstrative)."
+          },
+          {
+           "code": "EL9-12 St 10 I-10",
+           "text": "using a variety of prepositional phrases (e.g. toward the playground) to provide detail (e.g., time, manner, place, cause)."
+          },
+          {
+           "code": "EL9-12 St 10 I-11",
+           "text": "using frequently occurring conjunctions (e.g., and, but, or, so, because)."
+          },
+          {
+           "code": "EL9-12 St 10 I-12",
+           "text": "using frequently occurring imperative sentences (e.g., Share your opinion with a classmate., Provide support using textual evidence.)."
+          }
+         ]
+        },
+        {
+         "id": "make-accurate-use-of-standard-english-to-communi-9",
+         "title": "Make accurate use of standard English to communicate in grade appropriate speech and writing (9 of 9)",
+         "outcomes": [
+          {
+           "code": "EL9-12 St 10 I-13",
+           "text": "using irregularly occurring modals (e.g., ought, had, better)."
+          },
+          {
+           "code": "EL9-12 St 10 I-14",
+           "text": "using appropriate word order (subject-verbobject) in declarative, imperative, and interrogative sentences"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "2-3",
+   "units": [
+    {
+     "id": "construct-meaning-from-oral-presentations-and-li",
+     "title": "Construct meaning from oral presentations and literary and informational text through grade appropriate listening, reading, and viewing",
+     "topics": [
+      {
+       "id": "construct-meaning-from-oral-presentations-and-li",
+       "title": "Construct meaning from oral presentations and literary and informational text through grade appropriate listening, reading, and viewing",
+       "subtopics": [
+        {
+         "id": "construct-meaning-from-oral-presentations-and-li",
+         "title": "Construct meaning from oral presentations and literary and informational text through grade appropriate listening, reading, and viewing",
+         "outcomes": [
+          {
+           "code": "AZ ELP 2-3.1.I-1",
+           "text": "Ask and answer questions about key details that support the main idea by using evidence from a text."
+          },
+          {
+           "code": "AZ ELP 2-3.1.I-2",
+           "text": "Explain the central idea, lesson, and moral using key details."
+          },
+          {
+           "code": "AZ ELP 2-3.1.I-3",
+           "text": "Explain how key details support the main idea or message."
+          },
+          {
+           "code": "AZ ELP 2-3.1.I-4",
+           "text": "Recount a variety of texts using key details."
+          },
+          {
+           "code": "AZ ELP 2-3.1.I-5",
+           "text": "Identify and describe similarities and differences between two texts."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "determine-the-meaning-of-words-and-phrases-in-or",
+     "title": "Determine the meaning of words and phrases in oral presentations and literary and informational text",
+     "topics": [
+      {
+       "id": "determine-the-meaning-of-words-and-phrases-in-or",
+       "title": "Determine the meaning of words and phrases in oral presentations and literary and informational text",
+       "subtopics": [
+        {
+         "id": "determine-the-meaning-of-words-and-phrases-in-or",
+         "title": "Determine the meaning of words and phrases in oral presentations and literary and informational text",
+         "outcomes": [
+          {
+           "code": "AZ ELP 2-3.2.I-1",
+           "text": "Determine the meaning of less frequently occurring words and phrases and content specific words."
+          },
+          {
+           "code": "AZ ELP 2-3.2.I-2",
+           "text": "Determine the meaning of idiomatic expressions and figurative language (e.g. metaphors, similes, adages, and proverbs) in texts about a variety of topics, experiences, or events."
+          },
+          {
+           "code": "AZ ELP 2-3.2.I-3",
+           "text": "Apply context clues, information from visual aids, reference materials, and knowledge of grade-appropriate English morphology to determine meaning of unknown words."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "speak-and-write-about-grade-appropriate-complex-",
+     "title": "Speak and write about grade appropriate complex literary and informational texts and topics",
+     "topics": [
+      {
+       "id": "speak-and-write-about-grade-appropriate-complex-",
+       "title": "Speak and write about grade appropriate complex literary and informational texts and topics",
+       "subtopics": [
+        {
+         "id": "speak-and-write-about-grade-appropriate-complex-",
+         "title": "Speak and write about grade appropriate complex literary and informational texts and topics",
+         "outcomes": [
+          {
+           "code": "AZ ELP 2-3.3.I-1",
+           "text": "deliver oral presentations that include details and examples to develop a topic."
+          },
+          {
+           "code": "AZ ELP 2-3.3.I-2",
+           "text": "compose written narratives using appropriate conventions that include details and examples to develop a topic."
+          },
+          {
+           "code": "AZ ELP 2-3.3.I-3",
+           "text": "compose informational texts that include details and examples to develop a topic while using appropriate conventions."
+          },
+          {
+           "code": "AZ ELP 2-3.3.I-4",
+           "text": "produce writing with appropriate organization on a variety of topics, experiences, or events."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "construct-grade-appropriate-oral-and-written-cla",
+     "title": "Construct grade appropriate oral and written claims and support them with reasoning and evidence",
+     "topics": [
+      {
+       "id": "construct-grade-appropriate-oral-and-written-cla",
+       "title": "Construct grade appropriate oral and written claims and support them with reasoning and evidence",
+       "subtopics": [
+        {
+         "id": "construct-grade-appropriate-oral-and-written-cla",
+         "title": "Construct grade appropriate oral and written claims and support them with reasoning and evidence",
+         "outcomes": [
+          {
+           "code": "AZ ELP 2-3.4.I-1",
+           "text": "express an opinion about a given topic or text."
+          },
+          {
+           "code": "AZ ELP 2-3.4.I-2",
+           "text": "supply a reason that supports the opinion and is based on more detailed textual evidence and relevant background knowledge."
+          },
+          {
+           "code": "AZ ELP 2-3.4.I-3",
+           "text": "use gradeappropriate general academic and domain-specific words and phrases, including adjectives, adverbs, and appropriate transition words."
+          },
+          {
+           "code": "AZ ELP 2-3.4.I-4",
+           "text": "provide a conclusion that summarizes the opinion presented"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "adapt-language-choices-to-purpose-task-and-audie",
+     "title": "Adapt language choices to purpose, task, and audience when speaking and writing",
+     "topics": [
+      {
+       "id": "adapt-language-choices-to-purpose-task-and-audie",
+       "title": "Adapt language choices to purpose, task, and audience when speaking and writing",
+       "subtopics": [
+        {
+         "id": "adapt-language-choices-to-purpose-task-and-audie",
+         "title": "Adapt language choices to purpose, task, and audience when speaking and writing",
+         "outcomes": [
+          {
+           "code": "AZ ELP 2-3.5.I-1",
+           "text": "shift appropriately between informal “playground speech” and language appropriate to the classroom."
+          },
+          {
+           "code": "AZ ELP 2-3.5.I-2",
+           "text": "use grade appropriate general academic and domain-specific words and phrases, including adjectives, adverbs, and appropriate transition words."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "participate-in-grade-appropriate-oral-and-writte",
+     "title": "Participate in grade appropriate oral and written exchanges of information, ideas, and analyses, responding to peer, audience, or reader comments and questions",
+     "topics": [
+      {
+       "id": "participate-in-grade-appropriate-oral-and-writte",
+       "title": "Participate in grade appropriate oral and written exchanges of information, ideas, and analyses, responding to peer, audience, or reader comments and questions",
+       "subtopics": [
+        {
+         "id": "participate-in-grade-appropriate-oral-and-writte",
+         "title": "Participate in grade appropriate oral and written exchanges of information, ideas, and analyses, responding to peer, audience, or reader comments and questions",
+         "outcomes": [
+          {
+           "code": "AZ ELP 2-3.6.I-1",
+           "text": "participate in extended conversations and discussions about a variety of topics and texts."
+          },
+          {
+           "code": "AZ ELP 2-3.6.I-2",
+           "text": "participate in extended written exchanges about a variety of topics and texts."
+          },
+          {
+           "code": "AZ ELP 2-3.6.I-3",
+           "text": "express own ideas using the rules for discussion."
+          },
+          {
+           "code": "AZ ELP 2-3.6.I-4",
+           "text": "pose and respond to relevant questions about a variety of topics and texts."
+          },
+          {
+           "code": "AZ ELP 2-3.6.I-5",
+           "text": "build on the ideas of others."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "conduct-research-and-evaluate-and-communicate-fi",
+     "title": "Conduct research and evaluate and communicate findings to answer questions or solve problems",
+     "topics": [
+      {
+       "id": "conduct-research-and-evaluate-and-communicate-fi",
+       "title": "Conduct research and evaluate and communicate findings to answer questions or solve problems",
+       "subtopics": [
+        {
+         "id": "conduct-research-and-evaluate-and-communicate-fi",
+         "title": "Conduct research and evaluate and communicate findings to answer questions or solve problems",
+         "outcomes": [
+          {
+           "code": "AZ ELP 2-3.7.I-1",
+           "text": "gather information from print and digital provided resources to answer questions."
+          },
+          {
+           "code": "AZ ELP 2-3.7.I-2",
+           "text": "respond to a question or problem based on gathered information from multiple (personal experience, digital, and print) sources."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "analyze-and-critique-the-arguments-of-others-ora",
+     "title": "Analyze and critique the arguments of others orally and in writing",
+     "topics": [
+      {
+       "id": "analyze-and-critique-the-arguments-of-others-ora",
+       "title": "Analyze and critique the arguments of others orally and in writing",
+       "subtopics": [
+        {
+         "id": "analyze-and-critique-the-arguments-of-others-ora",
+         "title": "Analyze and critique the arguments of others orally and in writing",
+         "outcomes": [
+          {
+           "code": "AZ ELP 2-3.8.I-1",
+           "text": "explain how an author or speaker uses reasons and evidence to support or fail to support specific points."
+          },
+          {
+           "code": "AZ ELP 2-3.8.I-2",
+           "text": "ask and answer yes-no, either-or, and wh- questions in order to clarify what an author or speaker says."
+          },
+          {
+           "code": "AZ ELP 2-3.8.I-3",
+           "text": "use general academic and domain-specific words and phrases that signal spatial and temporal relationships."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "create-clear-and-coherent-grade-appropriate-spee",
+     "title": "Create clear and coherent grade-appropriate speech and text",
+     "topics": [
+      {
+       "id": "create-clear-and-coherent-grade-appropriate-spee",
+       "title": "Create clear and coherent grade-appropriate speech and text",
+       "subtopics": [
+        {
+         "id": "create-clear-and-coherent-grade-appropriate-spee",
+         "title": "Create clear and coherent grade-appropriate speech and text",
+         "outcomes": [
+          {
+           "code": "AZ ELP 2-3.9.I-1",
+           "text": "apply understanding of how text types are organized when writing and speaking in complex texts (e.g., how a story is organized sequentially versus how an informative text is organized by topic and details versus how an opinion text is organized by opinion and supporting reasons)."
+          },
+          {
+           "code": "AZ ELP 2-3.9.I-2",
+           "text": "apply increasing understanding of how ideas, events, or reasons are linked throughout a text by using grade appropriate linking words and temporal words when writing and speaking."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "make-accurate-use-of-standard-english-to-communi",
+     "title": "Make accurate use of standard English to communicate in grade appropriate speech and writing",
+     "topics": [
+      {
+       "id": "make-accurate-use-of-standard-english-to-communi",
+       "title": "Make accurate use of standard English to communicate in grade appropriate speech and writing",
+       "subtopics": [
+        {
+         "id": "make-accurate-use-of-standard-english-to-communi",
+         "title": "Make accurate use of standard English to communicate in grade appropriate speech and writing (1 of 3)",
+         "outcomes": [
+          {
+           "code": "AZ ELP 2-3.10.I-1",
+           "text": "using grade appropriate singular and plural nouns."
+          },
+          {
+           "code": "AZ ELP 2-3.10.I-2",
+           "text": "using grade appropriate common and proper nouns with appropriate determiners (e.g., articles and demonstratives)."
+          },
+          {
+           "code": "AZ ELP 2-3.10.I-3",
+           "text": "using possessives with grade appropriate nouns. (e.g., That is Mary’s backpack.)."
+          },
+          {
+           "code": "AZ ELP 2-3.10.I-4",
+           "text": "using personal (subject and object), possessive, and indefinite pronouns."
+          }
+         ]
+        },
+        {
+         "id": "make-accurate-use-of-standard-english-to-communi-2",
+         "title": "Make accurate use of standard English to communicate in grade appropriate speech and writing (2 of 3)",
+         "outcomes": [
+          {
+           "code": "AZ ELP 2-3.10.I-5",
+           "text": "using verbs in the past progressive."
+          },
+          {
+           "code": "AZ ELP 2-3.10.I-6",
+           "text": "using grade appropriate verbs in the simple present and simple past, including irregular past forms (e.g., drank, sat, wrote)."
+          },
+          {
+           "code": "AZ ELP 2-3.10.I-7",
+           "text": "using gradeappropriate verbs in the future with “going to” and “will”."
+          },
+          {
+           "code": "AZ ELP 2-3.10.I-8",
+           "text": "applying subjectverb agreement using grade-appropriate nouns and verbs."
+          }
+         ]
+        },
+        {
+         "id": "make-accurate-use-of-standard-english-to-communi-3",
+         "title": "Make accurate use of standard English to communicate in grade appropriate speech and writing (3 of 3)",
+         "outcomes": [
+          {
+           "code": "AZ ELP 2-3.10.I-9",
+           "text": "using a variety of frequently occurring adjectives (i.e., descriptive, possessive, demonstrative)."
+          },
+          {
+           "code": "AZ ELP 2-3.10.I-10",
+           "text": "using a variety of prepositional phrases (e.g. ,toward the playground) to provide detail (e.g., time, manner, place, cause)."
+          },
+          {
+           "code": "AZ ELP 2-3.10.I-11",
+           "text": "using frequently occurring conjunctions (e.g., and, but, or, so, because)."
+          },
+          {
+           "code": "AZ ELP 2-3.10.I-12",
+           "text": "using appropriate word order (subject-verb-object) in declarative, imperative, and interrogative sentences."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "6-8",
+   "units": [
+    {
+     "id": "listening-and-reading",
+     "title": "Listening and Reading",
+     "topics": [
+      {
+       "id": "construct-meaning-from-oral-presentations-and-li",
+       "title": "Construct meaning from oral presentations and literary and informational text through grade appropriate listening, reading, and viewing",
+       "subtopics": [
+        {
+         "id": "pre-emergent-emergent",
+         "title": "Pre-Emergent/Emergent",
+         "outcomes": [
+          {
+           "code": "1.PE.E-1",
+           "text": ": identify the main topic and a few key details."
+          },
+          {
+           "code": "1.PE.E-2",
+           "text": "retell a familiar text including specific details and information."
+          },
+          {
+           "code": "1.PE.E-3",
+           "text": "identify similarities and differences within a text."
+          },
+          {
+           "code": "1.PE.E-4",
+           "text": "identify text structures and text types."
+          }
+         ]
+        },
+        {
+         "id": "basic",
+         "title": "Basic",
+         "outcomes": [
+          {
+           "code": "1.B-1",
+           "text": "determine the central idea or theme and explain how they are supported by using some text evidence."
+          },
+          {
+           "code": "1.B-2",
+           "text": "recount specific details and information in a variety of texts."
+          },
+          {
+           "code": "1.B-3",
+           "text": "identify and describe similarities and differences between multiple texts."
+          },
+          {
+           "code": "1.B-4",
+           "text": "determine which text structures and text types impact the central idea or theme."
+          }
+         ]
+        },
+        {
+         "id": "intermediate",
+         "title": "Intermediate",
+         "outcomes": [
+          {
+           "code": "1.I-1",
+           "text": "analyze the central ideas and themes and justify how they are supported by using text evidence."
+          },
+          {
+           "code": "1.I-2",
+           "text": "summarize a text including specific details and information."
+          },
+          {
+           "code": "1.I-3",
+           "text": "compare and contrast details from multiple texts."
+          },
+          {
+           "code": "1.I-4",
+           "text": "explain how structure, text type, and other elements impacts the central idea or theme."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "deetermine-the-meaning-of-words-and-phrases-in-o",
+       "title": "Deetermine the meaning of words and phrases in oral presentations and literary and informational text",
+       "subtopics": [
+        {
+         "id": "pre-emergent-emergent",
+         "title": "Pre-Emergent/Emergent",
+         "outcomes": [
+          {
+           "code": "2.PE.E-1",
+           "text": "recognize the meaning of frequently occurring words, phrases, and expressions."
+          },
+          {
+           "code": "2.PE.E-2",
+           "text": "recognize the meanings of common idiomatic expressions."
+          },
+          {
+           "code": "2.PE.E-3",
+           "text": "apply information from visual aids, reference materials, and a developing knowledge of grade-appropriate English morphology to determine meaning of unknown words."
+          }
+         ]
+        },
+        {
+         "id": "basic",
+         "title": "Basic",
+         "outcomes": [
+          {
+           "code": "2.B-1",
+           "text": "determine the meaning of frequently occurring academic and content specific words and phrases."
+          },
+          {
+           "code": "2.B-2",
+           "text": "determine the meanings of some idiomatic expressions and figurative language (e.g., similes and proverbs) in familiar texts about a variety of topics, experiences, or events."
+          },
+          {
+           "code": "2.B-3",
+           "text": "apply context clues, information from visual aids, reference materials, and a developing knowledge of grade-appropriate English morphology to determine meaning of unknown words."
+          }
+         ]
+        },
+        {
+         "id": "intermediate",
+         "title": "Intermediate",
+         "outcomes": [
+          {
+           "code": "2.I-1",
+           "text": "determine the meaning of less frequently occurring words and phrases and content specific words."
+          },
+          {
+           "code": "2.I-2",
+           "text": "determine the meaning of idiomatic expressions and figurative language (e.g., metaphors, similes, adages, and proverbs) in texts about a variety of topics, experiences, or events."
+          },
+          {
+           "code": "2.I-3",
+           "text": "apply context clues, information from visual aids, reference materials, and knowledge of grade-appropriate English morphology to determine meaning of unknown words."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "speaking-and-writing",
+     "title": "Speaking and Writing",
+     "topics": [
+      {
+       "id": "speak-and-write-about-grade-appropriate-complex-",
+       "title": "Speak and write about grade appropriate complex literary and informational texts and topics",
+       "subtopics": [
+        {
+         "id": "pre-emergent-emergent",
+         "title": "Pre-Emergent/Emergent",
+         "outcomes": [
+          {
+           "code": "3.PE/E-1",
+           "text": "deliver short oral presentations that include a few details."
+          },
+          {
+           "code": "3.PE/E-2",
+           "text": "compose written narratives, using appropriate conventions, about familiar topics and experiences that include details."
+          },
+          {
+           "code": "3.PE/E-3",
+           "text": "compose informational texts that include details while using appropriate conventions."
+          },
+          {
+           "code": "3.PE/E-4",
+           "text": "produce phrases that identify relationships among ideas and concepts using transition words (e.g. another, for example, also, because)."
+          }
+         ]
+        },
+        {
+         "id": "basic",
+         "title": "Basic",
+         "outcomes": [
+          {
+           "code": "3.B-1",
+           "text": "deliver short oral presentations that include some details to develop a topic."
+          },
+          {
+           "code": "3.B-2",
+           "text": "compose written narratives, using appropriate conventions, that include details and examples to develop a topic."
+          },
+          {
+           "code": "3.B-3",
+           "text": "compose informational texts that include details to develop a topic while using appropriate conventions."
+          },
+          {
+           "code": "3.B-4",
+           "text": "produce sentences to clarify relationships among ideas and concepts using appropriate transitions."
+          },
+          {
+           "code": "3.B-5",
+           "text": "use examples of precise language and domain-specific vocabulary within informative texts."
+          }
+         ]
+        },
+        {
+         "id": "intermediate",
+         "title": "Intermediate",
+         "outcomes": [
+          {
+           "code": "3.I-1",
+           "text": "deliver oral presentations that include details and examples to develop a topic."
+          },
+          {
+           "code": "3.I-2",
+           "text": "compose written narratives, using appropriate conventions, that include details, examples, narrative techniques, and precise language to develop a topic."
+          },
+          {
+           "code": "3.I-3",
+           "text": "compose informational texts that include details and examples to develop a topic while using appropriate conventions."
+          },
+          {
+           "code": "3.I-4",
+           "text": "produce sentences to clarify relationships among ideas and concepts using appropriate transitions."
+          },
+          {
+           "code": "3.I-5",
+           "text": "use precise language and domain-specific vocabulary to inform about or explain the topic."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "construct-grade-appropriate-oral-and-written-cla",
+       "title": "Construct grade appropriate oral and written claims and support them with reasoning and evidence",
+       "subtopics": [
+        {
+         "id": "pre-emergent-emergent",
+         "title": "Pre-Emergent/Emergent",
+         "outcomes": [
+          {
+           "code": "4.PE/E-1",
+           "text": "express an opinion on a topic."
+          },
+          {
+           "code": "4.PE/E-2",
+           "text": "supply a reason that supports the opinion."
+          },
+          {
+           "code": "4.PE/E-3",
+           "text": "use grade-appropriate words."
+          },
+          {
+           "code": "4.PE/E-4",
+           "text": "provide a sense of closure to an argument."
+          }
+         ]
+        },
+        {
+         "id": "basic",
+         "title": "Basic",
+         "outcomes": [
+          {
+           "code": "4.B-1",
+           "text": "construct a claim about a topic or text."
+          },
+          {
+           "code": "4.B-2",
+           "text": "supply a reason that supports the opinion and is based on some textual evidence."
+          },
+          {
+           "code": "4.B-3",
+           "text": "use grade-appropriate words and phrases."
+          },
+          {
+           "code": "4.B-4",
+           "text": "provide a concluding statement to an argument."
+          }
+         ]
+        },
+        {
+         "id": "intermediate",
+         "title": "Intermediate",
+         "outcomes": [
+          {
+           "code": "4.I-1",
+           "text": "construct a claim about a topic or text."
+          },
+          {
+           "code": "4.I-2",
+           "text": "supply a reason that supports the opinion and is based on more detailed textual evidence and relevant background knowledge."
+          },
+          {
+           "code": "4.I-3",
+           "text": "use grade-appropriate general academic and domain-specific words and phrases."
+          },
+          {
+           "code": "4.I-4",
+           "text": "provide a conclusion that summarizes the argument presented."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "adapt-language-choices-to-purpose-task-and-audie",
+       "title": "Adapt language choices to purpose, task, and audience when speaking and writing",
+       "subtopics": [
+        {
+         "id": "pre-emergent-emergent",
+         "title": "Pre-Emergent/Emergent",
+         "outcomes": [
+          {
+           "code": "5.PE/E-1",
+           "text": "demonstrate a developing awareness of the need to adapt language choices to different social and academic contexts."
+          },
+          {
+           "code": "5.PE/E-2",
+           "text": "use frequently occurring general academic and content-specific words and phrases to express ideas."
+          }
+         ]
+        },
+        {
+         "id": "basic",
+         "title": "Basic",
+         "outcomes": [
+          {
+           "code": "5.B-1",
+           "text": "demonstrate awareness of the need to adapt language choices according to purpose, task, and audience."
+          },
+          {
+           "code": "5.B-2",
+           "text": "use general academic and content-specific words and phrases to express ideas."
+          }
+         ]
+        },
+        {
+         "id": "intermediate",
+         "title": "Intermediate",
+         "outcomes": [
+          {
+           "code": "5.I-1",
+           "text": "adapt language choices and style (includes register) according to purpose, task, and audience."
+          },
+          {
+           "code": "5.I-2",
+           "text": "use a wide variety of general academic and content-specific words to precisely express ideas."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "listening-speaking-reading-and-writing",
+     "title": "Listening, Speaking, Reading, and Writing",
+     "topics": [
+      {
+       "id": "participate-in-gradeappropriate-oral-and-written",
+       "title": "Participate in gradeappropriate oral and written exchanges of information, ideas, and analyses, responding to peer, audience, or reader comments and questions",
+       "subtopics": [
+        {
+         "id": "pre-emergent-emergent",
+         "title": "Pre-Emergent/Emergent",
+         "outcomes": [
+          {
+           "code": "6.PE/E-1",
+           "text": "participate in conversations and discussions about familiar topics."
+          },
+          {
+           "code": "6.PE/E-2",
+           "text": "participate in written exchanges about familiar topics."
+          },
+          {
+           "code": "6.PE/E-3",
+           "text": "follow the basic rules for discussion."
+          },
+          {
+           "code": "6.PE/E-4",
+           "text": "respond to simple yes-no and wh- questions."
+          },
+          {
+           "code": "6.PE/E-5",
+           "text": "respond to simple yes-no and wh- questions."
+          },
+          {
+           "code": "6.PE/E-6",
+           "text": "refer to previously read information on familiar topic during collaborative oral and written discussions."
+          }
+         ]
+        },
+        {
+         "id": "basic",
+         "title": "Basic",
+         "outcomes": [
+          {
+           "code": "6.B-1",
+           "text": "participate in discussions about familiar topics and texts."
+          },
+          {
+           "code": "6.B-2",
+           "text": "participate in written exchanges about familiar topics and texts."
+          },
+          {
+           "code": "6.B-3",
+           "text": "follow the rules for discussion."
+          },
+          {
+           "code": "6.B-4",
+           "text": "ask questions to gain information or clarify understanding."
+          },
+          {
+           "code": "6.B-5",
+           "text": "contribute relevant information and evidence to collaborative oral and written discussions."
+          },
+          {
+           "code": "6.B-6",
+           "text": "refer to previously read or researched information during collaborative oral and written discussions."
+          }
+         ]
+        },
+        {
+         "id": "intermediate",
+         "title": "Intermediate",
+         "outcomes": [
+          {
+           "code": "6.I-1",
+           "text": "participate in extended conversations and discussions about a variety of topics and texts."
+          },
+          {
+           "code": "6.I-2",
+           "text": "participate in extended written exchanges about a variety of topics and texts."
+          },
+          {
+           "code": "6.I-3",
+           "text": "express own ideas using the rules for discussion."
+          },
+          {
+           "code": "6.I-4",
+           "text": "pose and respond to questions about a variety of topics and texts."
+          },
+          {
+           "code": "6.I-5",
+           "text": "paraphrase key ideas expressed in collaborative oral and written discussions."
+          },
+          {
+           "code": "6.I-6",
+           "text": "refer to previously read or researched information during collaborative oral and written discussions."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "conduct-research-and-evaluate-and-communicate-fi",
+       "title": "Conduct research and evaluate and communicate findings to answer questions or solve problems",
+       "subtopics": [
+        {
+         "id": "pre-emergent-emergent",
+         "title": "Pre-Emergent/Emergent",
+         "outcomes": [
+          {
+           "code": "7.PE/E-1",
+           "text": "gather information from provided resources to answer a question."
+          },
+          {
+           "code": "7.PE/E-2",
+           "text": "record some information/ observations in simple notes."
+          },
+          {
+           "code": "7.PE/E-3",
+           "text": "identify sources used in research."
+          }
+         ]
+        },
+        {
+         "id": "basic",
+         "title": "Basic",
+         "outcomes": [
+          {
+           "code": "7.B-1",
+           "text": "gather information from multiple provided resources to answer a question."
+          },
+          {
+           "code": "7.B-2",
+           "text": "paraphrase observations/ information notes with labeled illustrations, diagrams, or other graphics, as appropriate."
+          },
+          {
+           "code": "7.B-3",
+           "text": "cite sources used in research."
+          },
+          {
+           "code": "7.B-4",
+           "text": "restate the main idea using evidence from text or presentations."
+          }
+         ]
+        },
+        {
+         "id": "intermediate",
+         "title": "Intermediate",
+         "outcomes": [
+          {
+           "code": "7.I-1",
+           "text": "gather information from print and digital provided resources to answer a question."
+          },
+          {
+           "code": "7.I-2",
+           "text": "summarize key ideas and information in detailed and orderly notes, with charts, diagrams, or other graphics, as appropriate."
+          },
+          {
+           "code": "7.I-3",
+           "text": "identify credible sources used in research and use a standard format for citations."
+          },
+          {
+           "code": "7.I-4",
+           "text": "make inferences and draw conclusions using evidence from text or presentations."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "analyze-and-critique-the-arguments-of-others-ora",
+       "title": "analyze and critique the arguments of others orally and in writing",
+       "subtopics": [
+        {
+         "id": "pre-emergent-emergent",
+         "title": "Pre-Emergent/Emergent",
+         "outcomes": [
+          {
+           "code": "8.PE/E-1",
+           "text": "identify a reason an author or speaker gives to support a main point."
+          },
+          {
+           "code": "8.PE/E-2",
+           "text": "identify claims supported by reasons and evidence and those that are not."
+          },
+          {
+           "code": "8.PE/E-3",
+           "text": "use words and phrases to express ideas and opinions."
+          }
+         ]
+        },
+        {
+         "id": "basic",
+         "title": "Basic",
+         "outcomes": [
+          {
+           "code": "8.B-1",
+           "text": "tell how one or two reasons support the claim an author or a speaker makes."
+          },
+          {
+           "code": "8.B-2",
+           "text": "distinguish between claims that are supported by reasons and evidence from those that are not."
+          },
+          {
+           "code": "8.B-3",
+           "text": "use academic words and phrases to make a claim."
+          }
+         ]
+        },
+        {
+         "id": "intermediate",
+         "title": "Intermediate",
+         "outcomes": [
+          {
+           "code": "8.I-1",
+           "text": "explain how an author or speaker uses reasons and evidence to support or fail to support a claim."
+          },
+          {
+           "code": "8.I-2",
+           "text": "determine and evaluate whether the evidence is sufficient to support the claims."
+          },
+          {
+           "code": "8.I-3",
+           "text": "use academic and domain-specific words and phrases to make a claim."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "language",
+     "title": "Language",
+     "topics": [
+      {
+       "id": "create-clear-and-coherent-grade-appropriate-spee",
+       "title": "Create clear and coherent grade-appropriate speech and text",
+       "subtopics": [
+        {
+         "id": "pre-emergent-emergent",
+         "title": "Pre-Emergent/Emergent",
+         "outcomes": [
+          {
+           "code": "9.PE/E-1",
+           "text": "communicate simple information about a topic when writing and speaking."
+          },
+          {
+           "code": "9.PE/E-2",
+           "text": "present a sequence of events in order using frequently occurring linking words (e.g., and, then) when writing and speaking."
+          }
+         ]
+        },
+        {
+         "id": "basic",
+         "title": "Basic",
+         "outcomes": [
+          {
+           "code": "9.B-1",
+           "text": "introduce and present facts about an informational topic and provide a conclusion when writing and speaking."
+          },
+          {
+           "code": "9.B-2",
+           "text": "introduce and develop a sequence of events, using an increasing range of temporal and other linking words to connect, compare, and contrast ideas, and information (e.g., before, because, also) when writing and speaking."
+          }
+         ]
+        },
+        {
+         "id": "intermediate",
+         "title": "Intermediate",
+         "outcomes": [
+          {
+           "code": "9.I-1",
+           "text": "introduce and develop an informational topic with facts and details and provide a concluding statement or section when writing and speaking."
+          },
+          {
+           "code": "9.I-2",
+           "text": "introduce and develop a more detailed sequence of events, with a beginning, middle, and end using a variety of temporal and linking words and phrases to connect, compare, and contrast ideas, information, or events when writing and speaking."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "make-accurate-use-of-standard-english-to-communi",
+       "title": "Make accurate use of standard English to communicate in grade appropriate speech and writing",
+       "subtopics": [
+        {
+         "id": "pre-emergent-emergent",
+         "title": "Pre-Emergent/Emergent",
+         "outcomes": [
+          {
+           "code": "10.PE/E-1",
+           "text": "using some familiar singular and plural nouns."
+          },
+          {
+           "code": "10.PE/E-2",
+           "text": "using some familiar common and proper nouns with appropriate determiners (e.g., articles and demonstratives)."
+          },
+          {
+           "code": "10.PE/E-3",
+           "text": "recognizing possessive nouns (e.g., That is Mary’s backpack.)."
+          },
+          {
+           "code": "10.PE/E-4",
+           "text": "recognizing possessive nouns (e.g., That is Mary’s backpack.)."
+          },
+          {
+           "code": "10.PE/E-5",
+           "text": "recognizing possessive nouns (e.g., That is Mary’s backpack.)."
+          },
+          {
+           "code": "10.PE/E-6",
+           "text": "using some familiar verbs in the simple present and simple past, including irregular past forms for frequently used verbs (e.g. , had, was, went)."
+          },
+          {
+           "code": "10.PE/E-7",
+           "text": "using some familiar verbs in the future with “going to”."
+          },
+          {
+           "code": "10.PE/E-8",
+           "text": "Applying subject -verb agreement using familiar nouns and verbs."
+          },
+          {
+           "code": "10.PE/E-9",
+           "text": "recognizing and use some frequently occurring adjectives (i.e. , descriptive, possessive, demonstrative)."
+          },
+          {
+           "code": "10.PE/E-10",
+           "text": "beginning to use some frequently occurring prepositional phrases (e.g., on the table) to provide detail (e.g., time, manner, place, cause) about a familiar activity or process ."
+          },
+          {
+           "code": "10.PE/E-11",
+           "text": "using some simple, frequently occurring conjunctions (e.g., and, but)."
+          },
+          {
+           "code": "10.PE/E-12",
+           "text": "using some simple, frequently occurring imperative sentences (e.g., Come in., Sit down.)."
+          },
+          {
+           "code": "10.PE/E-13",
+           "text": "using some simple, frequently occurring modals (e.g., can, could, may, might)."
+          },
+          {
+           "code": "10.PE/E-14",
+           "text": "beginning to use appropriate word order (subject-verb-object) in basic declarative and imperative sentences."
+          }
+         ]
+        },
+        {
+         "id": "basic",
+         "title": "Basic",
+         "outcomes": [
+          {
+           "code": "10.B-1",
+           "text": "using an increasing range of singular and plural nouns."
+          },
+          {
+           "code": "10.B-2",
+           "text": "using an increasing range of common and proper nouns with appropriate determiners (e.g., articles and demonstratives)."
+          },
+          {
+           "code": "10.B-3",
+           "text": "using possessive with some familiar nouns (e.g., That is Mary’s backpack.)."
+          },
+          {
+           "code": "10.B-4",
+           "text": "using personal subject and object pronouns."
+          },
+          {
+           "code": "10.B-5",
+           "text": "using verbs distinguishing present progressive and simple present."
+          },
+          {
+           "code": "10.B-6",
+           "text": "using an increasing range of verbs in the simple present and simple past, including familiar irregular past forms (e.g. , ate, ran, sang)."
+          },
+          {
+           "code": "10.B-7",
+           "text": "using an increasing range of verbs in the future with “going to” and “will”."
+          },
+          {
+           "code": "10.B-8",
+           "text": "Applying subject - verb agreement using and increasing range of nouns and verbs."
+          },
+          {
+           "code": "10.B-9",
+           "text": "using an increasing number of frequently occurring adjectives (i.e. , descriptive, possessive, demonstrative)."
+          },
+          {
+           "code": "10.B-10",
+           "text": "using a wider range of prepositional phrases (e.g. after lunch) to provide detail (e.g., time, manner, place, cause) about a familiar or new activity or process ."
+          },
+          {
+           "code": "10.B-11",
+           "text": "using a wider range of frequently occurring conjunctions (e.g., and, but, because)."
+          },
+          {
+           "code": "10.B-12",
+           "text": "using a wider range of frequently occurring imperative sentences (e.g., Share your opinion with a classmate., Provide support using textual evidence.)."
+          },
+          {
+           "code": "10.B-13",
+           "text": "using a wider range of frequently occurring modals (e.g., shall, should, will, would)."
+          },
+          {
+           "code": "10.B-14",
+           "text": "increasingly using appropriate word order (subject-verb-object) in declarative, imperative, and interrogative sentences."
+          }
+         ]
+        },
+        {
+         "id": "intermediate",
+         "title": "Intermediate",
+         "outcomes": [
+          {
+           "code": "10.I-1",
+           "text": "using gradeappropriate singular and plural nouns."
+          },
+          {
+           "code": "10.I-2",
+           "text": "using gradeappropriate common and proper nouns with appropriate determiners (e.g., articles and demonstratives)."
+          },
+          {
+           "code": "10.I-3",
+           "text": "using possessives with grade-appropriate nouns (e.g., That is Mary’s backpack.)."
+          },
+          {
+           "code": "10.I-4",
+           "text": "using personal (subject and object), possessive, and indefinite pronouns."
+          },
+          {
+           "code": "10.I-5",
+           "text": "using verbs in the past progressive."
+          },
+          {
+           "code": "10.I-6",
+           "text": "using grade - appropriate verbs in the simple present and simple past, including irregular past forms (e.g. , drank, sat, wrote)."
+          },
+          {
+           "code": "10.I-7",
+           "text": "using grade - appropriate verbs in the future with “going to” and “will”."
+          },
+          {
+           "code": "10.I-8",
+           "text": "Applying subject - verb agreement using grade -appropriate nouns and verbs."
+          },
+          {
+           "code": "10.I-9",
+           "text": "using a variety of frequently occurring adjectives (i.e. , descriptive, possessive, demonstrative)."
+          },
+          {
+           "code": "10.I-10",
+           "text": "using a variety of prepositional phrases (e.g. toward the playground) to provide detail (e.g., time, manner, place, cause) ."
+          },
+          {
+           "code": "10.I-11",
+           "text": "using frequently occurring conjunctions (e.g., and, but, or, so, because)."
+          },
+          {
+           "code": "10.I-12",
+           "text": "using frequently occurring imperative sentences (e.g., Share your opinion with a classmate., Provide support using textual evidence.)."
+          },
+          {
+           "code": "10.I-13",
+           "text": "using irregularly occurring modals (e.g., ought, had, better)."
+          },
+          {
+           "code": "10.I-14",
+           "text": "using appropriate word order (subject-verbobject) in declarative, imperative, and interrogative sentences."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "4-5",
+   "units": [
+    {
+     "id": "reading-foundational-skills",
+     "title": "Reading Foundational Skills",
+     "topics": [
+      {
+       "id": "oral-skills",
+       "title": "Oral Skills",
+       "subtopics": [
+        {
+         "id": "phonological-awareness",
+         "title": "Phonological Awareness:",
+         "outcomes": [
+          {
+           "code": "RF.1.a",
+           "text": "Distinguish between phonemes in the initial, medial, and final positions of words."
+          },
+          {
+           "code": "RF.1.b",
+           "text": "Produce the 44 phonemes with verbal modeling and visual cues."
+          },
+          {
+           "code": "RF.1.c",
+           "text": "Orally produce the initial and final sounds (not the letter) of a spoken word."
+          },
+          {
+           "code": "RF.1.d",
+           "text": "Identify short vowel sounds in orally stated single-syllable words (e.g., hen, hat, mad, etc.)."
+          },
+          {
+           "code": "RF.1.e",
+           "text": "Identify long vowel sounds in orally stated single-syllable words (e.g., kite, made, cake, etc.)."
+          },
+          {
+           "code": "RF.1.f",
+           "text": "Segment sentences into words."
+          },
+          {
+           "code": "RF.1.g",
+           "text": "Segment multi-syllabic words into syllables (/but/ter/fly/)."
+          },
+          {
+           "code": "RF.1.h",
+           "text": "Blend spoken simple onsets and rimes to form real words (onset /c/ and rime /at/)."
+          },
+          {
+           "code": "RF.1.i",
+           "text": "Blend spoken phonemes to form two letter words (/i/t/, /a/t/, /m/e/)."
+          },
+          {
+           "code": "RF.1.j",
+           "text": "Recognize the new spoken word when a specified phoneme is added, changed or removed."
+          },
+          {
+           "code": "RF.1.k",
+           "text": "Distinguish spoken rhyming words from non-rhyming words (e.g., run, sun vs. run, man, etc.)."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "print-skills",
+       "title": "Print Skills",
+       "subtopics": [
+        {
+         "id": "print-concepts",
+         "title": "Print Concepts:",
+         "outcomes": [
+          {
+           "code": "RF.2.a",
+           "text": "Demonstrate the command of left to right, top to bottom directionality, and return sweep when handling reading materials."
+          },
+          {
+           "code": "RF.2.b",
+           "text": "Track the one to one correlation between spoken and printed word."
+          },
+          {
+           "code": "RF.2.c",
+           "text": "Identify letters, words and sentences and their distinguishing features (e.g., capitalization, ending punctuation, etc.)."
+          },
+          {
+           "code": "RF.2.d",
+           "text": "Locate organizational features of a book (e.g., title, author, and table of contents) with instructional support."
+          }
+         ]
+        },
+        {
+         "id": "phonics-and-word-recognition-decoding",
+         "title": "Phonics and Word Recognition (Decoding):",
+         "outcomes": [
+          {
+           "code": "RF.3.a",
+           "text": "Recognize and naming uppercase and lowercase letters of the alphabet."
+          },
+          {
+           "code": "RF.3.b",
+           "text": "Produce sounds represented by the single-lettered consonant and vowel graphemes."
+          },
+          {
+           "code": "RF.3.c",
+           "text": "Read regularly spelled one and two-syllable words and compound words including consonant blends (bl, st, and tr)."
+          },
+          {
+           "code": "RF.3.d",
+           "text": "Read one and two-syllable words using letter-sound knowledge."
+          },
+          {
+           "code": "RF.3.e",
+           "text": "Identify base words (walk, clean, dress) that have been modified by inflectional endings."
+          },
+          {
+           "code": "RF.3.f",
+           "text": "Identify inflectional endings (e.g., -s, -ed, -ing, etc.) and their functions (i.e., tense, plurality, comparison and parts of speech)."
+          },
+          {
+           "code": "RF.3.g",
+           "text": "Repeat and read given words with common prefixes, suffixes and roots including the endings -tion, -sion."
+          },
+          {
+           "code": "RF.3.h",
+           "text": "Read contractions."
+          },
+          {
+           "code": "RF.3.i",
+           "text": "Use word order and context to confirm decoding of text."
+          }
+         ]
+        },
+        {
+         "id": "fluency",
+         "title": "Fluency:",
+         "outcomes": [
+          {
+           "code": "RF.4.a",
+           "text": "Read high frequency words, sight words, sentences and short passages from familiar patterned text (e.g., poems and chants, etc.) with fluency (e.g., accuracy, appropriate phrasing, and attention to punctuation)."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "receptive-communication",
+     "title": "RECEPTIVE COMMUNICATION",
+     "topics": [
+      {
+       "id": "receptive-communication",
+       "title": "RECEPTIVE COMMUNICATION",
+       "subtopics": [
+        {
+         "id": "receptive-communication",
+         "title": "RECEPTIVE COMMUNICATION",
+         "outcomes": [
+          {
+           "code": "RC.1",
+           "text": "construct meaning from oral presentations and literary and informational text through grade appropriate listening, reading, and viewing."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "pre-emergent-emergent",
+     "title": "Pre-Emergent/ Emergent",
+     "topics": [
+      {
+       "id": "pre-emergent-emergent",
+       "title": "Pre-Emergent/ Emergent",
+       "subtopics": [
+        {
+         "id": "pre-emergent-emergent-1-of-9",
+         "title": "Pre-Emergent/ Emergent (1 of 9)",
+         "outcomes": [
+          {
+           "code": "RC.1.PE/E-1",
+           "text": "identify the central topic and key details."
+          },
+          {
+           "code": "RC.1.PE/E-2",
+           "text": "retell a familiar text including specific details and information."
+          },
+          {
+           "code": "RC.1.PE/E-3",
+           "text": "identify similarities and differences within a text."
+          },
+          {
+           "code": "RC.1.PE/E-4",
+           "text": "establish connections between visual supports and text."
+          },
+          {
+           "code": "RC.2.PE/E-1",
+           "text": "recognize the meaning of frequently occurring words, phrases, and expressions."
+          }
+         ]
+        },
+        {
+         "id": "pre-emergent-emergent-2-of-9",
+         "title": "Pre-Emergent/ Emergent (2 of 9)",
+         "outcomes": [
+          {
+           "code": "RC.2.PE/E-2",
+           "text": "recognize the meanings of common idiomatic expressions."
+          },
+          {
+           "code": "RC.2.PE/E-3",
+           "text": "apply information from visual aids, reference materials, and a developing knowledge of grade-appropriate English morphology to determine meaning of unknown words."
+          },
+          {
+           "code": "PC.3.PE/E-1",
+           "text": "deliver short oral presentations that include a few details."
+          },
+          {
+           "code": "PC.3.PE/E-2",
+           "text": "compose written narratives using appropriate conventions about familiar topics and experiences that include details."
+          },
+          {
+           "code": "PC.3.PE/E-3",
+           "text": "compose informational texts that include details while using appropriate conventions."
+          }
+         ]
+        },
+        {
+         "id": "pre-emergent-emergent-3-of-9",
+         "title": "Pre-Emergent/ Emergent (3 of 9)",
+         "outcomes": [
+          {
+           "code": "PC.3.PE/E-4",
+           "text": "produce phrases that link ideas and information using transition words (e.g., also, because)."
+          },
+          {
+           "code": "PC.4.PE/E-1",
+           "text": "express an opinion on a topic or text."
+          },
+          {
+           "code": "PC.4.PE/E-2",
+           "text": "supply a reason that supports the opinion."
+          },
+          {
+           "code": "PC.4.PE/E-3",
+           "text": "use simple words that signal actions and emotions."
+          },
+          {
+           "code": "PC.4.PE/E-4",
+           "text": "provide a sense of closure to an opinion."
+          }
+         ]
+        },
+        {
+         "id": "pre-emergent-emergent-4-of-9",
+         "title": "Pre-Emergent/ Emergent (4 of 9)",
+         "outcomes": [
+          {
+           "code": "PC.5.PE/E-1",
+           "text": "demonstrate a developing awareness of the need to adapt language choices to different social and academic contexts."
+          },
+          {
+           "code": "PC.5.PE/E-2",
+           "text": "use general academic words and phrases learned through conversations, reading, and being read to."
+          },
+          {
+           "code": "IC.6.PE/E-1",
+           "text": "participate in conversations and discussions about familiar topics."
+          },
+          {
+           "code": "IC.6.PE/E-2",
+           "text": "participate in written exchanges about familiar topics."
+          },
+          {
+           "code": "IC.6.PE/E-3",
+           "text": "follow basic rules for discussion."
+          }
+         ]
+        },
+        {
+         "id": "pre-emergent-emergent-5-of-9",
+         "title": "Pre-Emergent/ Emergent (5 of 9)",
+         "outcomes": [
+          {
+           "code": "IC.6.PE/E-4",
+           "text": "respond to simple yes-no and wh-questions."
+          },
+          {
+           "code": "IC.6.PE/E-5",
+           "text": "contribute own comments to collaborative oral and written discussions about familiar topics."
+          },
+          {
+           "code": "IC.7.PE/E-1",
+           "text": "gather information from provided resources to answer questions."
+          },
+          {
+           "code": "IC.7.PE/E-2",
+           "text": "record some information/ observations in simple notes."
+          },
+          {
+           "code": "IC.8.PE/E-1",
+           "text": "identify a reason an author or speaker gives to support a main point."
+          }
+         ]
+        },
+        {
+         "id": "pre-emergent-emergent-6-of-9",
+         "title": "Pre-Emergent/ Emergent (6 of 9)",
+         "outcomes": [
+          {
+           "code": "IC.8.PE/E-2",
+           "text": "determine and explain the author’s purpose."
+          },
+          {
+           "code": "IC.8.PE/E-3",
+           "text": "identify vocabulary used to influence a reader's perspective (e.g., emotional words, etc.)."
+          },
+          {
+           "code": "IC.8.PE/E-4",
+           "text": "express an opinion."
+          },
+          {
+           "code": "IC.8.PE/E-5",
+           "text": "use words and phrases to express ideas and opinions."
+          },
+          {
+           "code": "L.9.PE/E-1",
+           "text": "apply understanding of how text types are organized when writing and speaking in simple texts (e.g., how a story is organized sequentially versus how an informative text is organized by topic and details versus how an opinion text is organized by opinion and supporting reasons)."
+          }
+         ]
+        },
+        {
+         "id": "pre-emergent-emergent-7-of-9",
+         "title": "Pre-Emergent/ Emergent (7 of 9)",
+         "outcomes": [
+          {
+           "code": "L.9.PE/E-2",
+           "text": "apply basic understanding of how ideas, events, or reasons are linked throughout a text by using frequently occurring linking words when writing and speaking."
+          },
+          {
+           "code": "L.10.PE/E-1",
+           "text": "using some familiar singular and plural nouns."
+          },
+          {
+           "code": "L.10.PE/E-2",
+           "text": "using some familiar common and proper nouns with appropriate determiners (e.g., articles and demonstratives)."
+          },
+          {
+           "code": "L.10.PE/E-3",
+           "text": "recognizing possessive nouns (e.g., That is Mary’s backpack.)."
+          },
+          {
+           "code": "L.10.PE/E-4",
+           "text": "beginning to use personal subject and object pronouns."
+          }
+         ]
+        },
+        {
+         "id": "pre-emergent-emergent-8-of-9",
+         "title": "Pre-Emergent/ Emergent (8 of 9)",
+         "outcomes": [
+          {
+           "code": "L.10.PE/E-5",
+           "text": "using familiar verbs in the present progressive."
+          },
+          {
+           "code": "L.10.PE/E-6",
+           "text": "using some familiar verbs in the simple present and simple past, including irregular past forms for frequently used verbs (e.g., had, was, went)."
+          },
+          {
+           "code": "L.10.PE/E-7",
+           "text": "using some familiar verbs in the future with “going to”."
+          },
+          {
+           "code": "L.10.PE/E-8",
+           "text": "applying subject-verb agreement using familiar nouns and verbs."
+          },
+          {
+           "code": "L.10.PE/E-9",
+           "text": "recognizing and use some frequently occurring adjectives (i.e., descriptive, possessive, demonstrative)."
+          }
+         ]
+        },
+        {
+         "id": "pre-emergent-emergent-9-of-9",
+         "title": "Pre-Emergent/ Emergent (9 of 9)",
+         "outcomes": [
+          {
+           "code": "L.10.PE/E-10",
+           "text": "beginning to use some frequently occurring prepositional phrases (e.g., on the table) to provide detail (e.g., time, manner, place, cause) about a familiar activity or process."
+          },
+          {
+           "code": "L.10.PE/E-11",
+           "text": "using some simple, frequently occurring conjunctions (e.g., and, but)."
+          },
+          {
+           "code": "L.10.PE/E-12",
+           "text": "beginning to use appropriate word order (subject-verb-object) in basic declarative and imperative sentences."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "basic",
+     "title": "Basic",
+     "topics": [
+      {
+       "id": "basic",
+       "title": "Basic",
+       "subtopics": [
+        {
+         "id": "basic-1-of-9",
+         "title": "Basic (1 of 9)",
+         "outcomes": [
+          {
+           "code": "RC.1.B-1",
+           "text": "determine the central idea (in informational text) and theme (in literary text) and explain how they are supported by key details."
+          },
+          {
+           "code": "RC.1.B-2",
+           "text": "recount a text including specific details and information."
+          },
+          {
+           "code": "RC.1.B-3",
+           "text": "identify and describe similarities and differences within a text."
+          },
+          {
+           "code": "RC.1.B-4",
+           "text": "utilize visual information to understand the text."
+          },
+          {
+           "code": "RC.2.B-1",
+           "text": "determine the meaning of frequently occurring academic and content-specific words and phrases."
+          }
+         ]
+        },
+        {
+         "id": "basic-2-of-9",
+         "title": "Basic (2 of 9)",
+         "outcomes": [
+          {
+           "code": "RC.2.B-2",
+           "text": "determine the meanings of some idiomatic expressions and figurative language (e.g., similes and proverbs) in familiar texts about a variety of topics, experiences, or events."
+          },
+          {
+           "code": "RC.2.B-3",
+           "text": "apply context clues, information from visual aids, reference materials, and a developing knowledge of grade-appropriate English morphology to determine meaning of unknown words."
+          },
+          {
+           "code": "PC.3.B-1",
+           "text": "deliver short oral presentations that include some details to develop a topic."
+          },
+          {
+           "code": "PC.3.B-2",
+           "text": "compose written narratives using appropriate conventions that include details and examples to develop a topic."
+          },
+          {
+           "code": "PC.3.B-3",
+           "text": "compose informational texts that include details to develop a topic while using appropriate conventions."
+          }
+         ]
+        },
+        {
+         "id": "basic-3-of-9",
+         "title": "Basic (3 of 9)",
+         "outcomes": [
+          {
+           "code": "PC.3.B-4",
+           "text": "produce sentences that link ideas and information using transition words and phrases (e.g., another, for example, also, because)."
+          },
+          {
+           "code": "PC.3.B-5",
+           "text": "use examples of precise language and domain-specific vocabulary within informative texts."
+          },
+          {
+           "code": "PC.4.B-1",
+           "text": "express an opinion on a topic or text."
+          },
+          {
+           "code": "PC.4.B-2",
+           "text": "supply a reason that supports the opinion and is based on some textual evidence."
+          },
+          {
+           "code": "PC.4.B-3",
+           "text": "use grade-appropriate words and phrases, including those that signal precise actions, emotions, or states of being (e.g., quizzed, whined, stammered) and that are basic to a particular topic (e.g., wildlife, conservation, and endangered when discussing animal preservation)."
+          }
+         ]
+        },
+        {
+         "id": "basic-4-of-9",
+         "title": "Basic (4 of 9)",
+         "outcomes": [
+          {
+           "code": "PC.4.B-4",
+           "text": "provide a concluding statement to an opinion."
+          },
+          {
+           "code": "PC.5.B-1",
+           "text": "demonstrate awareness of the need to adapt language choices according to purpose, task, and audience."
+          },
+          {
+           "code": "PC.5.B-2",
+           "text": "use grade-appropriate general academic and content specific words, phrases, and expressions with developing control."
+          },
+          {
+           "code": "IC.6.B-1",
+           "text": "participate in discussions about familiar topics and texts."
+          },
+          {
+           "code": "IC.6.B-2",
+           "text": "participate in written exchanges about familiar topics and texts."
+          }
+         ]
+        },
+        {
+         "id": "basic-5-of-9",
+         "title": "Basic (5 of 9)",
+         "outcomes": [
+          {
+           "code": "IC.6.B-3",
+           "text": "follow rules for discussion."
+          },
+          {
+           "code": "IC.6.B-4",
+           "text": "ask questions to gain information or clarify understanding."
+          },
+          {
+           "code": "IC.6.B-5",
+           "text": "contribute information and evidence to collaborative oral and written discussions."
+          },
+          {
+           "code": "IC.7.B-1",
+           "text": "gather information from multiple provided resources to answer questions."
+          },
+          {
+           "code": "IC.7.B-2",
+           "text": "sort evidence into categories."
+          }
+         ]
+        },
+        {
+         "id": "basic-6-of-9",
+         "title": "Basic (6 of 9)",
+         "outcomes": [
+          {
+           "code": "IC.8.B-1",
+           "text": "tell how one or two reasons support the specific points an author or a speaker makes."
+          },
+          {
+           "code": "IC.8.B-2",
+           "text": "identify the author’s purpose for their piece of writing (e.g., to entertain, to inform, to persuade)."
+          },
+          {
+           "code": "IC.8.B-3",
+           "text": "distinguish between facts an opinion in a text."
+          },
+          {
+           "code": "IC.8.B-4",
+           "text": "write about an opinion and use provided resources to include one or more supporting reasons."
+          },
+          {
+           "code": "IC.8.B-5",
+           "text": "use academic words and phrases to express ideas and phrases."
+          }
+         ]
+        },
+        {
+         "id": "basic-7-of-9",
+         "title": "Basic (7 of 9)",
+         "outcomes": [
+          {
+           "code": "L.9.B-1",
+           "text": "apply understanding of how text types are organized in increasingly complex texts (e.g., how a story is organized when writing and speaking sequentially versus how an informative text is organized by topic and details versus how an opinion text is organized by opinion and supporting reasons)."
+          },
+          {
+           "code": "L.9.B-2",
+           "text": "apply understanding of how ideas, events, or reasons are linked throughout a text by using frequently occurring linking words and temporal words when writing and speaking."
+          },
+          {
+           "code": "L.10.B-1",
+           "text": "using an increasing range of singular and plural nouns."
+          },
+          {
+           "code": "L.10.B-2",
+           "text": "using an increasing range of common and proper nouns with appropriate determiners (e.g., articles and demonstratives)."
+          },
+          {
+           "code": "L.10.B-3",
+           "text": "using possessive with some familiar nouns (e.g., That is Mary’s backpack.)."
+          }
+         ]
+        },
+        {
+         "id": "basic-8-of-9",
+         "title": "Basic (8 of 9)",
+         "outcomes": [
+          {
+           "code": "L.10.B-4",
+           "text": "using personal subject and object pronouns."
+          },
+          {
+           "code": "L.10.B-5",
+           "text": "using verbs distinguishing present progressive and simple present."
+          },
+          {
+           "code": "L.10.B-6",
+           "text": "using an increasing range of verbs in the simple present and simple past, including familiar irregular past forms (e.g., ate, ran, sang)."
+          },
+          {
+           "code": "L.10.B-7",
+           "text": "using an increasing range of verbs in the future with “going to” and “will”."
+          },
+          {
+           "code": "L.10.B-8",
+           "text": "applying subject-verb agreement using and increasing range of nouns and verbs."
+          }
+         ]
+        },
+        {
+         "id": "basic-9-of-9",
+         "title": "Basic (9 of 9)",
+         "outcomes": [
+          {
+           "code": "L.10.B-9",
+           "text": "using an increasing number of frequently occurring adjectives (i.e., descriptive, possessive, demonstrative)."
+          },
+          {
+           "code": "L.10.B-10",
+           "text": "using a wider range of prepositional phrases (e.g., after lunch) to provide detail (e.g., time, manner, place, cause) about a familiar or new activity or process."
+          },
+          {
+           "code": "L.10.B-11",
+           "text": "using a wider range of frequently occurring conjunctions (e.g., and, but, because)."
+          },
+          {
+           "code": "L.10.B-12",
+           "text": "increasingly using appropriate word order (subject-verb-object) in declarative, imperative, and interrogative sentences."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "intermediate",
+     "title": "Intermediate",
+     "topics": [
+      {
+       "id": "intermediate",
+       "title": "Intermediate",
+       "subtopics": [
+        {
+         "id": "intermediate-1-of-10",
+         "title": "Intermediate (1 of 10)",
+         "outcomes": [
+          {
+           "code": "RC.1.I-1",
+           "text": "determine central ideas (in informational texts) and themes (in literary texts) and explain how they are supported by key details."
+          },
+          {
+           "code": "RC.1.I-2",
+           "text": "summarize a text including specific details and information."
+          },
+          {
+           "code": "RC.1.I-3",
+           "text": "compare and contrast details from multiple texts."
+          },
+          {
+           "code": "RC.1.I-4",
+           "text": "explain how the visual information supports the text."
+          },
+          {
+           "code": "RC.2",
+           "text": "determine the meaning of words and phrases in oral presentations and literary and informational text."
+          }
+         ]
+        },
+        {
+         "id": "intermediate-2-of-10",
+         "title": "Intermediate (2 of 10)",
+         "outcomes": [
+          {
+           "code": "RC.2.I-1",
+           "text": "determine the meaning of less-frequently occurring words and phrases and content specific words."
+          },
+          {
+           "code": "RC.2.I-2",
+           "text": "determine the meaning of idiomatic expressions and figurative language (e.g., metaphors, similes, adages, and proverbs) in texts about a variety of topics, experiences, or events."
+          },
+          {
+           "code": "RC.2.I-3",
+           "text": "apply context clues, information from visual aids, reference materials, and knowledge of grade-appropriate English morphology to determine meaning of unknown words."
+          },
+          {
+           "code": "PC.3.I-1",
+           "text": "deliver oral presentations that include details and examples to develop a topic."
+          },
+          {
+           "code": "PC.3.I-2",
+           "text": "compose written narratives using appropriate conventions that include details and examples to develop a topic."
+          }
+         ]
+        },
+        {
+         "id": "intermediate-3-of-10",
+         "title": "Intermediate (3 of 10)",
+         "outcomes": [
+          {
+           "code": "PC.3.I-3",
+           "text": "compose informational texts that include details and examples to develop a topic while using appropriate conventions."
+          },
+          {
+           "code": "PC.3.I-4",
+           "text": "produce sentences that link ideas using transition words and phrases (e.g., another, for example, in contrast)."
+          },
+          {
+           "code": "PC.3.I-5",
+           "text": "use precise language and domain-specific vocabulary to inform about or explain the topic."
+          },
+          {
+           "code": "PC.4",
+           "text": "construct grade appropriate oral and written claims and support them with reasoning and evidence."
+          },
+          {
+           "code": "PC.4.I-1",
+           "text": "express an opinion on a topic or text."
+          }
+         ]
+        },
+        {
+         "id": "intermediate-4-of-10",
+         "title": "Intermediate (4 of 10)",
+         "outcomes": [
+          {
+           "code": "PC.4.I-2",
+           "text": "supply a reason that supports the opinion and is based on more detailed textual evidence and relevant background knowledge."
+          },
+          {
+           "code": "PC.4.I-3",
+           "text": "use grade-appropriate general academic and domain-specific words and phrases, including those that signal precise actions, emotions, or states of being (e.g., quizzed, whined, stammered) and that are basic to a particular topic (e.g., wildlife, conservation, and endangered when discussing animal preservation)."
+          },
+          {
+           "code": "PC.4.I-4",
+           "text": "provide a conclusion that summarizes the opinion presented."
+          },
+          {
+           "code": "PC.5",
+           "text": "adapt language choices to purpose, task, and audience when speaking and writing."
+          },
+          {
+           "code": "PC.5.I-1",
+           "text": "adapt language choices and style (includes register) according to purpose, task, and audience."
+          }
+         ]
+        },
+        {
+         "id": "intermediate-5-of-10",
+         "title": "Intermediate (5 of 10)",
+         "outcomes": [
+          {
+           "code": "PC.5.I-2",
+           "text": "use a variety of general academic and content-specific words and phrases."
+          },
+          {
+           "code": "IC.6.I-1",
+           "text": "participate in extended conversations and discussions about a variety of topics and texts."
+          },
+          {
+           "code": "IC.6.I-2",
+           "text": "participate in extended written exchanges about a variety of topics and texts."
+          },
+          {
+           "code": "IC.6.I-3",
+           "text": "express own ideas using the rules for discussion."
+          },
+          {
+           "code": "IC.6.I-4",
+           "text": "pose and respond to questions about a variety of topics and texts."
+          }
+         ]
+        },
+        {
+         "id": "intermediate-6-of-10",
+         "title": "Intermediate (6 of 10)",
+         "outcomes": [
+          {
+           "code": "IC.6.I-5",
+           "text": "paraphrase the key ideas expressed in collaborative oral and written discussions."
+          },
+          {
+           "code": "IC.7",
+           "text": "conduct research and evaluate and communicate findings to answer questions or solve problems."
+          },
+          {
+           "code": "IC.7.I-1",
+           "text": "gather information from print and digital provided resources to answer questions."
+          },
+          {
+           "code": "IC.7.I-2",
+           "text": "summarize key ideas and information in detailed and orderly notes, with charts, tables, or other graphics, as appropriate."
+          },
+          {
+           "code": "IC.8",
+           "text": "analyze and critique the arguments of others orally and in writing."
+          }
+         ]
+        },
+        {
+         "id": "intermediate-7-of-10",
+         "title": "Intermediate (7 of 10)",
+         "outcomes": [
+          {
+           "code": "IC.8.I-1",
+           "text": "explain how an author or speaker uses reasons and evidence to support or fail to support specific points."
+          },
+          {
+           "code": "IC.8.I-2",
+           "text": "determine and explain the author’s purpose for their piece of writing (e.g., to entertain, to inform, to persuade)."
+          },
+          {
+           "code": "IC.8.I-3",
+           "text": "distinguish fact from opinion in persuasive text (e.g., advertisements, product labels, written communications, etc.)."
+          },
+          {
+           "code": "IC.8.I-4",
+           "text": "write about an opinion and use provided resources to include supporting reasons."
+          },
+          {
+           "code": "IC.8.I-5",
+           "text": "use academic and domain-specific words and phrases to express ideas and phrases."
+          }
+         ]
+        },
+        {
+         "id": "intermediate-8-of-10",
+         "title": "Intermediate (8 of 10)",
+         "outcomes": [
+          {
+           "code": "L.9.I-1",
+           "text": "apply understanding of how text types are organized in complex texts (e.g., how a story is organized when writing and speaking sequentially versus how an informative text is organized by topic and details versus how an opinion text is organized by opinion and supporting reasons)."
+          },
+          {
+           "code": "L.9.I-2",
+           "text": "apply increasing understanding of how ideas, events, or reasons are linked throughout a text by using grade-appropriate linking words and temporal words when writing and speaking."
+          },
+          {
+           "code": "L.10",
+           "text": "make accurate use of standard English to communicate in grade appropriate speech and writing."
+          },
+          {
+           "code": "L.10.I-1",
+           "text": "using grade-appropriate singular and plural nouns."
+          },
+          {
+           "code": "L.10.I-2",
+           "text": "using grade-appropriate common and proper nouns with appropriate determiners (e.g., articles and demonstratives)."
+          }
+         ]
+        },
+        {
+         "id": "intermediate-9-of-10",
+         "title": "Intermediate (9 of 10)",
+         "outcomes": [
+          {
+           "code": "L.10.I-3",
+           "text": "using possessives with grade-appropriate nouns (e.g., That is Mary’s backpack.)."
+          },
+          {
+           "code": "L.10.I-4",
+           "text": "using personal (subject and object), possessive, and indefinite pronouns."
+          },
+          {
+           "code": "L.10.I-5",
+           "text": "using verbs in the past progressive."
+          },
+          {
+           "code": "L.10.I-6",
+           "text": "using grade-appropriate verbs in the simple present and simple past, including irregular past forms (e.g., drank, sat, wrote)."
+          },
+          {
+           "code": "L.10.I-7",
+           "text": "using grade-appropriate verbs in the future with “going to” and “will”."
+          }
+         ]
+        },
+        {
+         "id": "intermediate-10-of-10",
+         "title": "Intermediate (10 of 10)",
+         "outcomes": [
+          {
+           "code": "L.10.I-8",
+           "text": "applying subject-verb agreement using grade-appropriate nouns and verbs."
+          },
+          {
+           "code": "L.10.I-9",
+           "text": "using a variety of frequently occurring adjectives (i.e., descriptive, possessive, demonstrative)."
+          },
+          {
+           "code": "L.10.I-10",
+           "text": "using a variety of prepositional phrases (e.g., toward the playground) to provide detail (e.g., time, manner, place, cause)."
+          },
+          {
+           "code": "L.10.I-11",
+           "text": "using frequently occurring conjunctions (e.g., and, but, or, so, because)."
+          },
+          {
+           "code": "L.10.I-12",
+           "text": "using appropriate word order (subject-verb-object) in declarative, imperative, and interrogative sentences."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "productive-communication",
+     "title": "PRODUCTIVE COMMUNICATION",
+     "topics": [
+      {
+       "id": "productive-communication",
+       "title": "PRODUCTIVE COMMUNICATION",
+       "subtopics": [
+        {
+         "id": "productive-communication",
+         "title": "PRODUCTIVE COMMUNICATION",
+         "outcomes": [
+          {
+           "code": "PC.3",
+           "text": "speak and write about grade appropriate complex literary and informational texts and topics."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "interactive-communication",
+     "title": "INTERACTIVE COMMUNICATION",
+     "topics": [
+      {
+       "id": "interactive-communication",
+       "title": "INTERACTIVE COMMUNICATION",
+       "subtopics": [
+        {
+         "id": "interactive-communication",
+         "title": "INTERACTIVE COMMUNICATION",
+         "outcomes": [
+          {
+           "code": "IC.6",
+           "text": "participate in grade-appropriate oral and written exchanges of information, ideas, and analyses, responding to peer, audience, or reader comments and questions."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "language",
+     "title": "LANGUAGE",
+     "topics": [
+      {
+       "id": "language",
+       "title": "LANGUAGE",
+       "subtopics": [
+        {
+         "id": "language",
+         "title": "LANGUAGE",
+         "outcomes": [
+          {
+           "code": "L.9",
+           "text": "create clear and coherent grade-appropriate speech and text."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "build": {
+  "builtAt": "2026-10-14T16:20:38.466Z",
+  "model": "none",
+  "usd": 0,
+  "expectedCodes": 566,
+  "coverage": 1,
+  "missingCodes": [],
+  "counts": {
+   "grades": 6,
+   "units": 38,
+   "topics": 57,
+   "subtopics": 157,
+   "outcomes": 659
+  },
+  "warnings": [
+   "unit \"RECEPTIVE COMMUNICATION\" (grade 4-5) has a single outcome",
+   "unit \"PRODUCTIVE COMMUNICATION\" (grade 4-5) has a single outcome",
+   "unit \"INTERACTIVE COMMUNICATION\" (grade 4-5) has a single outcome",
+   "unit \"LANGUAGE\" (grade 4-5) has a single outcome"
+  ]
+ }
+}

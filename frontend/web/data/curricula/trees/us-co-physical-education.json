@@ -1,0 +1,2754 @@
+{
+ "id": "us-co-physical-education",
+ "region": "US",
+ "framework": "Colorado state academic standards: Physical Education",
+ "board": null,
+ "qualification": "K-12",
+ "subject": "Physical Education",
+ "syllabusCode": null,
+ "gradeSystem": "grade",
+ "source": {
+  "urls": [
+   "https://api.commonstandardsproject.com/api/v1/jurisdictions/83F29380C23C4AEB843733B243CB2243",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/C999DE314D884DB395145F394302E560",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/1E1E4504BD2B428BBB2923B42267D810",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/D65C9622E75B478F905C5F0003C8488D",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/EFE0A0E2F2DD49ECA49CC74B4BC4D6A8",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/3A287679655E45359C8973EB7F16E443",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/EA0F3D4CEC64425CACF79DD7AA2D6A1A",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/97602B92A14D41B1AF36B0597BA8DDA0",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/EAE7C98C5B8C4B2EB9808B3010403044",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/D0C1C2136DCA4B4EB482F0CEB69C07F8",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/A7DC930EE1F64EFDA885E85C0FA3F46C",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/4BDFA395E9CF420A97E79CFE22919DA5"
+  ],
+  "publisher": "Colorado state education agency (machine-readable via Common Standards Project / ASN)",
+  "licence": "CC BY 4.0 US, Common Curriculum, Inc.",
+  "firstExam": "2020"
+ },
+ "grades": [
+  {
+   "grade": "PK",
+   "units": [
+    {
+     "id": "movement-competence-and-understanding",
+     "title": "Movement Competence and Understanding",
+     "topics": [
+      {
+       "id": "travel-in-a-variety-of-directions-using-basic-lo",
+       "title": "Travel in a variety of directions using basic locomotor skills and demonstrate understanding of personal and general space",
+       "subtopics": [
+        {
+         "id": "travel-in-a-variety-of-directions-using-basic-lo",
+         "title": "Travel in a variety of directions using basic locomotor skills and demonstrate understanding of personal and general space (1 of 2)",
+         "outcomes": [
+          {
+           "code": "PK.1.1.a",
+           "text": "Move safely in a large group without bumping into others or falling while using locomotor skills."
+          },
+          {
+           "code": "PK.1.1.b",
+           "text": "Travel forward and sideways while changing directions quickly in response to a signal."
+          },
+          {
+           "code": "PK.1.1.c",
+           "text": "Perform movements to the rhythm of music."
+          },
+          {
+           "code": "PK.1.1.d",
+           "text": "Develop motor control and balance for a range of physical activities, such as walking, propelling a wheelchair or mobility device, skipping, running, climbing, and hopping."
+          }
+         ]
+        },
+        {
+         "id": "travel-in-a-variety-of-directions-using-basic-lo-2",
+         "title": "Travel in a variety of directions using basic locomotor skills and demonstrate understanding of personal and general space (2 of 2)",
+         "outcomes": [
+          {
+           "code": "PK.1.1.e",
+           "text": "Develop motor coordination and skill in using objects for a range of physical activities, such as pulling, throwing, catching, kicking, bouncing or hitting balls, and riding a tricycle."
+          },
+          {
+           "code": "PK.1.1.f",
+           "text": "Demonstrate the relationship of under, over, behind, next to, through, right, left, up, down, forward, backward, and in front of by using the body and an object."
+          },
+          {
+           "code": "PK.1.1.g",
+           "text": "Understand movement concepts, such as control of the body, how the body moves (such as awareness of space and directionality), and that the body can move independently or in coordination with other objects."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "physical-and-personal-wellness",
+     "title": "Physical and Personal Wellness",
+     "topics": [
+      {
+       "id": "recognize-the-positive-feelings-experienced-duri",
+       "title": "Recognize the positive feelings experienced during and after physical activity",
+       "subtopics": [
+        {
+         "id": "recognize-the-positive-feelings-experienced-duri",
+         "title": "Recognize the positive feelings experienced during and after physical activity",
+         "outcomes": [
+          {
+           "code": "PK.2.1.a",
+           "text": "Participate in activities that increase the heart rate."
+          },
+          {
+           "code": "PK.2.1.b",
+           "text": "Participate in activities that require stretching the muscles."
+          },
+          {
+           "code": "PK.2.1.c",
+           "text": "Begin to understand how daily activity and healthy behavior promote overall personal health and safety."
+          },
+          {
+           "code": "PK.2.1.d",
+           "text": "Identify physical activity opportunities inside and outside of school."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "social-emotional-wellness",
+     "title": "Social Emotional Wellness",
+     "topics": [
+      {
+       "id": "demonstrate-understanding-of-positive-social-int",
+       "title": "Demonstrate understanding of positive social interaction with teachers and peers",
+       "subtopics": [
+        {
+         "id": "demonstrate-understanding-of-positive-social-int",
+         "title": "Demonstrate understanding of positive social interaction with teachers and peers",
+         "outcomes": [
+          {
+           "code": "PK.3.1.a",
+           "text": "Demonstrate listening to the teacher during group activities."
+          },
+          {
+           "code": "PK.3.1.b",
+           "text": "Demonstrate sharing and taking turns when with participating with peers."
+          },
+          {
+           "code": "PK.3.1.c",
+           "text": "Follow directions to simple activities."
+          },
+          {
+           "code": "PK.3.1.d",
+           "text": "Recognize basic class rules and protocols."
+          },
+          {
+           "code": "PK.3.1.e",
+           "text": "Individuals recognize that rules make situations and activities safe and run more smoothly."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "prevention-and-risk-management",
+     "title": "Prevention and Risk Management",
+     "topics": [
+      {
+       "id": "understand-basic-safety-rules-and-principles",
+       "title": "Understand basic safety rules and principles",
+       "subtopics": [
+        {
+         "id": "understand-basic-safety-rules-and-principles",
+         "title": "Understand basic safety rules and principles",
+         "outcomes": [
+          {
+           "code": "PK.4.1.a",
+           "text": "Follow teacher directions for safe participation in physical activity."
+          },
+          {
+           "code": "PK.4.1.b",
+           "text": "Follow basic health and safety rules and respond appropriately to harmful or unsafe situations."
+          },
+          {
+           "code": "PK.4.1.c",
+           "text": "Communicate an understanding of the importance of health and safety routines and rules."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "K",
+   "units": [
+    {
+     "id": "movement-competence-and-understanding",
+     "title": "Movement Competence and Understanding",
+     "topics": [
+      {
+       "id": "demonstrate-body-and-spatial-awareness-through-m",
+       "title": "Demonstrate body and spatial awareness through movement",
+       "subtopics": [
+        {
+         "id": "demonstrate-body-and-spatial-awareness-through-m",
+         "title": "Demonstrate body and spatial awareness through movement (1 of 2)",
+         "outcomes": [
+          {
+           "code": "K.1.1.a",
+           "text": "Travel within a large group without bumping into others or falling while using a variety of locomotor skills."
+          },
+          {
+           "code": "K.1.1.b",
+           "text": "Demonstrate contrasts between slow and fast speeds while using locomotor skills."
+          },
+          {
+           "code": "K.1.1.c",
+           "text": "Travel in straight, curved, and zigzag pathways."
+          },
+          {
+           "code": "K.1.1.d",
+           "text": "Move in opposition and alternately."
+          }
+         ]
+        },
+        {
+         "id": "demonstrate-body-and-spatial-awareness-through-m-2",
+         "title": "Demonstrate body and spatial awareness through movement (2 of 2)",
+         "outcomes": [
+          {
+           "code": "K.1.1.e",
+           "text": "Move synchronously with others."
+          },
+          {
+           "code": "K.1.1.f",
+           "text": "Participate in chase-and-flee activities that include various spatial relationships."
+          },
+          {
+           "code": "K.1.1.g",
+           "text": "Jump over a stationary rope several times in succession using forward-andback and side-to-side movement patterns."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "locate-and-move-the-major-parts-of-the-body",
+       "title": "Locate and move the major parts of the body",
+       "subtopics": [
+        {
+         "id": "locate-and-move-the-major-parts-of-the-body",
+         "title": "Locate and move the major parts of the body",
+         "outcomes": [
+          {
+           "code": "K.1.2.a",
+           "text": "Move specified body parts in response to a variety of sensory cues such as auditory or visual."
+          },
+          {
+           "code": "K.1.2.b",
+           "text": "Identify body planes such as front, back, and side."
+          },
+          {
+           "code": "K.1.2.c",
+           "text": "Create shapes at high, medium, and low levels by using hands, arms, torso, feet, and legs in a variety of combinations."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "physical-and-personal-wellness",
+     "title": "Physical and Personal Wellness",
+     "topics": [
+      {
+       "id": "understand-that-physical-activity-increases-the-",
+       "title": "Understand that physical activity increases the heart rate, making the heart stronger",
+       "subtopics": [
+        {
+         "id": "understand-that-physical-activity-increases-the-",
+         "title": "Understand that physical activity increases the heart rate, making the heart stronger",
+         "outcomes": [
+          {
+           "code": "K.2.1.a",
+           "text": "Identify the heart rate as an indicator of physical activity."
+          },
+          {
+           "code": "K.2.1.b",
+           "text": "Sustain physical activity for short periods of time."
+          },
+          {
+           "code": "K.2.1.c",
+           "text": "Identify activities that will increase the heart rate."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "social-emotional-wellness",
+     "title": "Social Emotional Wellness",
+     "topics": [
+      {
+       "id": "demonstrate-respect-for-self-others-and-equipmen",
+       "title": "Demonstrate respect for self, others, and equipment",
+       "subtopics": [
+        {
+         "id": "demonstrate-respect-for-self-others-and-equipmen",
+         "title": "Demonstrate respect for self, others, and equipment",
+         "outcomes": [
+          {
+           "code": "K.3.1.a",
+           "text": "Demonstrate the characteristics of sharing."
+          },
+          {
+           "code": "K.3.1.b",
+           "text": "Identify feelings that result from participation in physical activity."
+          },
+          {
+           "code": "K.3.1.c",
+           "text": "Participate as a leader and follower."
+          },
+          {
+           "code": "K.3.1.d",
+           "text": "Help to manage equipment."
+          },
+          {
+           "code": "K.3.1.e",
+           "text": "Play without interfering with others."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "demonstrate-the-ability-to-follow-directions",
+       "title": "Demonstrate the ability to follow directions",
+       "subtopics": [
+        {
+         "id": "demonstrate-the-ability-to-follow-directions",
+         "title": "Demonstrate the ability to follow directions",
+         "outcomes": [
+          {
+           "code": "K.3.2.a",
+           "text": "Start and stop on an auditory and visual signal."
+          },
+          {
+           "code": "K.3.2.b",
+           "text": "Follow a simple series of instructions for an activity"
+          },
+          {
+           "code": "K.3.2.c",
+           "text": "Speak at appropriate times."
+          },
+          {
+           "code": "K.3.2.d",
+           "text": "Follow established class protocols."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "prevention-and-risk-management",
+     "title": "Prevention and Risk Management",
+     "topics": [
+      {
+       "id": "apply-safe-practices-rules-and-procedures",
+       "title": "Apply safe practices, rules, and procedures",
+       "subtopics": [
+        {
+         "id": "apply-safe-practices-rules-and-procedures",
+         "title": "Apply safe practices, rules, and procedures",
+         "outcomes": [
+          {
+           "code": "K.4.1.a",
+           "text": "Demonstrate safety awareness when using materials."
+          },
+          {
+           "code": "K.4.1.b",
+           "text": "Participate in activity without colliding into other students, objects, and surroundings."
+          },
+          {
+           "code": "K.4.1.c",
+           "text": "Identify proper footwear for physical education."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "1",
+   "units": [
+    {
+     "id": "movement-competence-and-understanding",
+     "title": "Movement Competence and Understanding",
+     "topics": [
+      {
+       "id": "demonstrate-basic-locomotor-and-non-locomotor-sk",
+       "title": "Demonstrate basic locomotor and non-locomotor skills and rhythmic and cross-lateral movements",
+       "subtopics": [
+        {
+         "id": "demonstrate-basic-locomotor-and-non-locomotor-sk",
+         "title": "Demonstrate basic locomotor and non-locomotor skills and rhythmic and cross-lateral movements (1 of 2)",
+         "outcomes": [
+          {
+           "code": "1.1.1.a",
+           "text": "Move in different directions and at high, medium, and low levels in space."
+          },
+          {
+           "code": "1.1.1.b",
+           "text": "Demonstrate locomotor movements in a variety of pathways and levels."
+          },
+          {
+           "code": "1.1.1.c",
+           "text": "Travel in forward and sideways directions using a variety of locomotor and non-locomotor patterns, and change direction quickly in response to a signal."
+          },
+          {
+           "code": "1.1.1.d",
+           "text": "Perform a simple dance step in keeping with a specific tempo."
+          },
+          {
+           "code": "1.1.1.e",
+           "text": "Travel to a variety of rhythms changing time, force, and flow."
+          }
+         ]
+        },
+        {
+         "id": "demonstrate-basic-locomotor-and-non-locomotor-sk-2",
+         "title": "Demonstrate basic locomotor and non-locomotor skills and rhythmic and cross-lateral movements (2 of 2)",
+         "outcomes": [
+          {
+           "code": "1.1.1.f",
+           "text": "Manipulate objects such as jump ropes, scarves, hoops, and balls."
+          },
+          {
+           "code": "1.1.1.g",
+           "text": "Balance at different levels on different body parts."
+          },
+          {
+           "code": "1.1.1.h",
+           "text": "Demonstrate both static and dynamic balances."
+          },
+          {
+           "code": "1.1.1.i",
+           "text": "Perform rhythmical movements using small musical aids."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "demonstrate-fundamental-manipulative-skills",
+       "title": "Demonstrate fundamental manipulative skills",
+       "subtopics": [
+        {
+         "id": "demonstrate-fundamental-manipulative-skills",
+         "title": "Demonstrate fundamental manipulative skills",
+         "outcomes": [
+          {
+           "code": "1.1.2.a",
+           "text": "Standing in place, dribble a ball continuously with one’s dominant hand."
+          },
+          {
+           "code": "1.1.2.b",
+           "text": "Throw an object with an overhand or underhand motion while stepping forward in opposition."
+          },
+          {
+           "code": "1.1.2.c",
+           "text": "Toss a ball to oneself using the underhand throw pattern, and catch it before it bounces"
+          },
+          {
+           "code": "1.1.2.d",
+           "text": "Catch a thrown large object with both hands."
+          },
+          {
+           "code": "1.1.2.e",
+           "text": "Kick a stationary object using a simple kicking pattern."
+          },
+          {
+           "code": "1.1.2.f",
+           "text": "Use body parts and light implements to strike stationary and moving objects."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "establish-a-beginning-movement-vocabulary",
+       "title": "Establish a beginning movement vocabulary",
+       "subtopics": [
+        {
+         "id": "establish-a-beginning-movement-vocabulary",
+         "title": "Establish a beginning movement vocabulary",
+         "outcomes": [
+          {
+           "code": "1.1.3.a",
+           "text": "Distinguish between a jog and a run, a hop and a jump, and a gallop and a slide."
+          },
+          {
+           "code": "1.1.3.b",
+           "text": "Respond appropriately to a variety of cues."
+          },
+          {
+           "code": "1.1.3.c",
+           "text": "Recognize personal space, high and low levels, fast and slow speeds, straight, curved, and zigzag pathways, balance, and twist."
+          },
+          {
+           "code": "1.1.3.d",
+           "text": "Distinguish between personal space, general space, and boundaries."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "physical-and-personal-wellness",
+     "title": "Physical and Personal Wellness",
+     "topics": [
+      {
+       "id": "identify-the-body-s-normal-reactions-to-moderate",
+       "title": "Identify the body’s normal reactions to moderate and vigorous physical activity",
+       "subtopics": [
+        {
+         "id": "identify-the-body-s-normal-reactions-to-moderate",
+         "title": "Identify the body’s normal reactions to moderate and vigorous physical activity",
+         "outcomes": [
+          {
+           "code": "1.2.1.a",
+           "text": "Identify basic exercises that help to strengthen various muscles of the body, such as push-ups, curl-ups, squats, planks, mountain climbers."
+          },
+          {
+           "code": "1.2.1.b",
+           "text": "Identify physical activities that require strong muscles."
+          },
+          {
+           "code": "1.2.1.c",
+           "text": "Identify heart beating faster, harder breathing, and sweating as reactions to exercise."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "social-emotional-wellness",
+     "title": "Social Emotional Wellness",
+     "topics": [
+      {
+       "id": "work-independently-and-with-others-to-complete-w",
+       "title": "Work independently and with others to complete work",
+       "subtopics": [
+        {
+         "id": "work-independently-and-with-others-to-complete-w",
+         "title": "Work independently and with others to complete work",
+         "outcomes": [
+          {
+           "code": "1.3.1.a",
+           "text": "Identify and demonstrate acceptable responses to challenges, successes, and failures."
+          },
+          {
+           "code": "1.3.1.b",
+           "text": "Invite others to use equipment before repeating a turn."
+          },
+          {
+           "code": "1.3.1.c",
+           "text": "Identify and demonstrate the attributes of being an effective partner or group member in physical activity."
+          },
+          {
+           "code": "1.3.1.d",
+           "text": "Help another student share space effectively."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "follow-the-rules-of-an-activity",
+       "title": "Follow the rules of an activity",
+       "subtopics": [
+        {
+         "id": "follow-the-rules-of-an-activity",
+         "title": "Follow the rules of an activity",
+         "outcomes": [
+          {
+           "code": "1.3.2.a",
+           "text": "Perform movements within given parameters and guidelines."
+          },
+          {
+           "code": "1.3.2.b",
+           "text": "Develop rules for an activity with teacher assistance, and participate in the activity while following the rules."
+          },
+          {
+           "code": "1.3.2.c",
+           "text": "Follow the rules for simple games and activities."
+          },
+          {
+           "code": "1.3.2.d",
+           "text": "Accept responsibility for one’s behavior in a game situation."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "prevention-and-risk-management",
+     "title": "Prevention and Risk Management",
+     "topics": [
+      {
+       "id": "develop-movement-control-for-safe-participation-",
+       "title": "Develop movement control for safe participation in games and physical activities",
+       "subtopics": [
+        {
+         "id": "develop-movement-control-for-safe-participation-",
+         "title": "Develop movement control for safe participation in games and physical activities",
+         "outcomes": [
+          {
+           "code": "1.4.1.a",
+           "text": "Recognize appropriate safety practices in general space (e.g., throwing objects when appropriate, only throwing objects when others are not in the direct line of the throw)."
+          },
+          {
+           "code": "1.4.1.b",
+           "text": "Demonstrate the ability to follow verbal and nonverbal instruction."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "2",
+   "units": [
+    {
+     "id": "movement-competence-and-understanding",
+     "title": "Movement Competence and Understanding",
+     "topics": [
+      {
+       "id": "demonstrate-the-elements-of-movement-in-combinat",
+       "title": "Demonstrate the elements of movement in combination with a variety of locomotor skills",
+       "subtopics": [
+        {
+         "id": "demonstrate-the-elements-of-movement-in-combinat",
+         "title": "Demonstrate the elements of movement in combination with a variety of locomotor skills",
+         "outcomes": [
+          {
+           "code": "2.1.1.a",
+           "text": "Demonstrate skipping, hopping, galloping, and sliding while transitioning on command."
+          },
+          {
+           "code": "2.1.1.b",
+           "text": "Demonstrate smooth transitions between sequential motor skills such as running into a jump."
+          },
+          {
+           "code": "2.1.1.c",
+           "text": "Move using the concepts of space awareness and movement control to run, hop, and skip in different ways in a large group without bumping into others or falling."
+          },
+          {
+           "code": "2.1.1.d",
+           "text": "Identify major characteristics of the skills of walking, running, jumping, hopping, and leaping."
+          },
+          {
+           "code": "2.1.1.e",
+           "text": "Correctly identify the locomotor, non-locomotor, or manipulative skill in a variety of activities."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "demonstrate-control-and-balance-in-traveling-and",
+       "title": "Demonstrate control and balance in traveling and weight-bearing activities using a variety of body parts and implements",
+       "subtopics": [
+        {
+         "id": "demonstrate-control-and-balance-in-traveling-and",
+         "title": "Demonstrate control and balance in traveling and weight-bearing activities using a variety of body parts and implements",
+         "outcomes": [
+          {
+           "code": "2.1.2.a",
+           "text": "Move to even and uneven beats using various locomotor movements."
+          },
+          {
+           "code": "2.1.2.b",
+           "text": "Create a routine that includes two types of body rolls such as a log roll, egg roll, shoulder roll, or forward roll and a stationary balance position after each roll."
+          },
+          {
+           "code": "2.1.2.c",
+           "text": "Jump rope repeatedly."
+          },
+          {
+           "code": "2.1.2.d",
+           "text": "Throw, catch, strike, and trap objects while stationary or moving with a partner."
+          },
+          {
+           "code": "2.1.2.e",
+           "text": "Balance objects on various body parts while in various positions."
+          },
+          {
+           "code": "2.1.2.f",
+           "text": "Demonstrate static and dynamic balance on lines or low beams and benches."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "use-feedback-to-improve-performance",
+       "title": "Use feedback to improve performance",
+       "subtopics": [
+        {
+         "id": "use-feedback-to-improve-performance",
+         "title": "Use feedback to improve performance",
+         "outcomes": [
+          {
+           "code": "2.1.3.a",
+           "text": "Use instructor feedback to identify strengths and weaknesses."
+          },
+          {
+           "code": "2.1.3.b",
+           "text": "Identify modifications to improve performance of a skill or physical movement."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "physical-and-personal-wellness",
+     "title": "Physical and Personal Wellness",
+     "topics": [
+      {
+       "id": "identify-healthy-habits-for-personal-wellness",
+       "title": "Identify healthy habits for personal wellness",
+       "subtopics": [
+        {
+         "id": "identify-healthy-habits-for-personal-wellness",
+         "title": "Identify healthy habits for personal wellness",
+         "outcomes": [
+          {
+           "code": "2.2.1.a",
+           "text": "Explain the fuel requirements of the body during physical activity and inactivity."
+          },
+          {
+           "code": "2.2.1.b",
+           "text": "Identify healthy food choices to fuel the body."
+          },
+          {
+           "code": "2.2.1.c",
+           "text": "Determine the proper amount of sleep to get every night."
+          },
+          {
+           "code": "2.2.1.d",
+           "text": "Identify changes in the body during exercise and how that makes you feel."
+          },
+          {
+           "code": "2.2.1.e",
+           "text": "Identify feelings resulting from challenges, successes, and failures in physical activity."
+          },
+          {
+           "code": "2.2.1.f",
+           "text": "Describe the role of water as an essential nutrient for the brain and body."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "social-emotional-wellness",
+     "title": "Social Emotional Wellness",
+     "topics": [
+      {
+       "id": "demonstrate-positive-and-helpful-behavior-and-wo",
+       "title": "Demonstrate positive and helpful behavior and words toward other students",
+       "subtopics": [
+        {
+         "id": "demonstrate-positive-and-helpful-behavior-and-wo",
+         "title": "Demonstrate positive and helpful behavior and words toward other students",
+         "outcomes": [
+          {
+           "code": "2.3.1.a",
+           "text": "Describe how positive social interaction can make physical activity with others more fun."
+          },
+          {
+           "code": "2.3.1.b",
+           "text": "Participate in a variety of group settings without distracting behavior."
+          },
+          {
+           "code": "2.3.1.c",
+           "text": "Encourage others by using verbal and nonverbal communication."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "prevention-and-risk-management",
+     "title": "Prevention and Risk Management",
+     "topics": [
+      {
+       "id": "apply-rules-procedures-and-safe-practices-in-the",
+       "title": "Apply rules, procedures, and safe practices in the classroom",
+       "subtopics": [
+        {
+         "id": "apply-rules-procedures-and-safe-practices-in-the",
+         "title": "Apply rules, procedures, and safe practices in the classroom",
+         "outcomes": [
+          {
+           "code": "2.4.1.a",
+           "text": "Maintain safety within personal space while using implements."
+          },
+          {
+           "code": "2.4.1.b",
+           "text": "Follow safety rules in the gymnasium and on the playground."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "3",
+   "units": [
+    {
+     "id": "movement-competence-and-understanding",
+     "title": "Movement Competence and Understanding",
+     "topics": [
+      {
+       "id": "demonstrate-a-variety-of-motor-patterns-in-simpl",
+       "title": "Demonstrate a variety of motor patterns in simple combinations while participating in activities, games, and sports",
+       "subtopics": [
+        {
+         "id": "demonstrate-a-variety-of-motor-patterns-in-simpl",
+         "title": "Demonstrate a variety of motor patterns in simple combinations while participating in activities, games, and sports",
+         "outcomes": [
+          {
+           "code": "3.1.1.a",
+           "text": "Demonstrate changes of pathways, levels, forces, and direction with manipulatives."
+          },
+          {
+           "code": "3.1.1.b",
+           "text": "Dribble while changing speed and direction."
+          },
+          {
+           "code": "3.1.1.c",
+           "text": "Demonstrate throwing, catching, striking or trapping in an activity."
+          },
+          {
+           "code": "3.1.1.d",
+           "text": "Demonstrate skills of chasing, fleeing, and dodging to avoid others."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "perform-cross-lateral-and-rhythmic-exercises-tha",
+       "title": "Perform cross lateral and rhythmic exercises that make a brain-body connection",
+       "subtopics": [
+        {
+         "id": "perform-cross-lateral-and-rhythmic-exercises-tha",
+         "title": "Perform cross lateral and rhythmic exercises that make a brain-body connection (1 of 2)",
+         "outcomes": [
+          {
+           "code": "3.1.2.a",
+           "text": "Describe, create, and demonstrate movements that require crossing the midline."
+          },
+          {
+           "code": "3.1.2.b",
+           "text": "Perform successfully a variety of jump-rope skills using both short and long ropes, and jump to various tempos."
+          },
+          {
+           "code": "3.1.2.c",
+           "text": "Perform jumping, tossing, dribbling, or catching to music or rhythmic beat."
+          },
+          {
+           "code": "3.1.2.d",
+           "text": "Perform a basic tinikling step to 3/4 time (close, tap, and tap)."
+          }
+         ]
+        },
+        {
+         "id": "perform-cross-lateral-and-rhythmic-exercises-tha-2",
+         "title": "Perform cross lateral and rhythmic exercises that make a brain-body connection (2 of 2)",
+         "outcomes": [
+          {
+           "code": "3.1.2.e",
+           "text": "Balance demonstrating momentary stillness in symmetrical and nonsymmetrical shapes on a variety of body parts."
+          },
+          {
+           "code": "3.1.2.f",
+           "text": "Perform forward and backward rolls with variation."
+          },
+          {
+           "code": "3.1.2.g",
+           "text": "Combine two or more rotational skills."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "demonstrate-understanding-of-how-the-use-of-self",
+       "title": "Demonstrate understanding of how the use of self-assessment aids in skill development",
+       "subtopics": [
+        {
+         "id": "demonstrate-understanding-of-how-the-use-of-self",
+         "title": "Demonstrate understanding of how the use of self-assessment aids in skill development",
+         "outcomes": [
+          {
+           "code": "3.1.3.a",
+           "text": "Use self-feedback to identify strengths and weaknesses."
+          },
+          {
+           "code": "3.1.3.b",
+           "text": "Use instructor or self-feedback to make adjustments that will improve performance."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "physical-and-personal-wellness",
+     "title": "Physical and Personal Wellness",
+     "topics": [
+      {
+       "id": "identify-the-benefits-of-sustained-physical-acti",
+       "title": "Identify the benefits of sustained physical activity that causes increased heart rate and heavy breathing",
+       "subtopics": [
+        {
+         "id": "identify-the-benefits-of-sustained-physical-acti",
+         "title": "Identify the benefits of sustained physical activity that causes increased heart rate and heavy breathing (1 of 2)",
+         "outcomes": [
+          {
+           "code": "3.2.1.a",
+           "text": "Explain why the body perspires, the heart beats faster and breathing increases when participating in moderate to vigorous physical activity."
+          },
+          {
+           "code": "3.2.1.b",
+           "text": "Describe the relationship among the heart, lungs, muscles, blood, and oxygen during physical activity."
+          },
+          {
+           "code": "3.2.1.c",
+           "text": "Identify several moderate to vigorous physical activities (formal or informal) that provide personal pleasure."
+          },
+          {
+           "code": "3.2.1.d",
+           "text": "Locate heart rate on at least two different pulse points on the body."
+          }
+         ]
+        },
+        {
+         "id": "identify-the-benefits-of-sustained-physical-acti-2",
+         "title": "Identify the benefits of sustained physical activity that causes increased heart rate and heavy breathing (2 of 2)",
+         "outcomes": [
+          {
+           "code": "3.2.1.e",
+           "text": "Discuss how drinking an adequate amount of water before, during, and after physical activity keeps the body hydrated."
+          },
+          {
+           "code": "3.2.1.f",
+           "text": "Demonstrate the ability to understand the concept of pacing during cardiovascular endurance activity."
+          },
+          {
+           "code": "3.2.1.g",
+           "text": "Explain how the intensity and duration of exercise affect fuel use during physical activity."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "understand-that-the-body-is-composed-of-water-mu",
+       "title": "Understand that the body is composed of water, muscle, bones, organs, fat, and other tissues",
+       "subtopics": [
+        {
+         "id": "understand-that-the-body-is-composed-of-water-mu",
+         "title": "Understand that the body is composed of water, muscle, bones, organs, fat, and other tissues",
+         "outcomes": [
+          {
+           "code": "3.2.2.a",
+           "text": "Identify the location of the lungs and heart."
+          },
+          {
+           "code": "3.2.2.b",
+           "text": "Identify muscles and fat."
+          },
+          {
+           "code": "3.2.2.c",
+           "text": "Feel your heart beat after moderate to vigorous physical activity."
+          },
+          {
+           "code": "3.2.2.d",
+           "text": "Compare heart rate before, during, and after exercise, and explain that increasing the heart rate during physical activity strengthens the heart muscles."
+          },
+          {
+           "code": "3.2.2.e",
+           "text": "Identify physical activities that cause the heart to beat faster."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "social-emotional-wellness",
+     "title": "Social Emotional Wellness",
+     "topics": [
+      {
+       "id": "demonstrate-positive-social-behaviors-during-phy",
+       "title": "Demonstrate positive social behaviors during physical activity",
+       "subtopics": [
+        {
+         "id": "demonstrate-positive-social-behaviors-during-phy",
+         "title": "Demonstrate positive social behaviors during physical activity",
+         "outcomes": [
+          {
+           "code": "3.3.1.a",
+           "text": "Identify the positive behaviors of self and others."
+          },
+          {
+           "code": "3.3.1.b",
+           "text": "Congratulate teammates and opponents upon conclusion of a game or activity."
+          },
+          {
+           "code": "3.3.1.c",
+           "text": "Follow directions, activity-specific rules, procedures, and etiquette with few reminders"
+          },
+          {
+           "code": "3.3.1.d",
+           "text": "Encourage others regularly, and refrain from put-down statements."
+          },
+          {
+           "code": "3.3.1.e",
+           "text": "Ask a partner to participate in a physical activity."
+          },
+          {
+           "code": "3.3.1.f",
+           "text": "Congratulate friends for performing a skill correctly."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "prevention-and-risk-management",
+     "title": "Prevention and Risk Management",
+     "topics": [
+      {
+       "id": "identify-ways-to-prevent-injuries-during-physica",
+       "title": "Identify ways to prevent injuries during physical activity",
+       "subtopics": [
+        {
+         "id": "identify-ways-to-prevent-injuries-during-physica",
+         "title": "Identify ways to prevent injuries during physical activity",
+         "outcomes": [
+          {
+           "code": "3.4.1.a",
+           "text": "Recognize how injuries can occur during physical activity."
+          },
+          {
+           "code": "3.4.1.b",
+           "text": "Understand how activities can affect safety of self and others."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "4",
+   "units": [
+    {
+     "id": "movement-competence-and-understanding",
+     "title": "Movement Competence and Understanding",
+     "topics": [
+      {
+       "id": "identify-the-major-characteristics-of-mature-loc",
+       "title": "Identify the major characteristics of mature locomotor, non-locomotor, manipulative, and rhythmic skills",
+       "subtopics": [
+        {
+         "id": "identify-the-major-characteristics-of-mature-loc",
+         "title": "Identify the major characteristics of mature locomotor, non-locomotor, manipulative, and rhythmic skills (1 of 2)",
+         "outcomes": [
+          {
+           "code": "4.1.1.a",
+           "text": "Dribble and pass an object to a moving receiver."
+          },
+          {
+           "code": "4.1.1.b",
+           "text": "Throw, catch, and kick to self or a partner."
+          },
+          {
+           "code": "4.1.1.c",
+           "text": "Jump and land for height and distance using mature form."
+          },
+          {
+           "code": "4.1.1.d",
+           "text": "Use a variety of manipulatives to throw to a moving target, making the needed adjustments for skill improvement."
+          },
+          {
+           "code": "4.1.1.e",
+           "text": "Create a rhythmic routine, including gymnastics, creative dance, or jump rope."
+          }
+         ]
+        },
+        {
+         "id": "identify-the-major-characteristics-of-mature-loc-2",
+         "title": "Identify the major characteristics of mature locomotor, non-locomotor, manipulative, and rhythmic skills (2 of 2)",
+         "outcomes": [
+          {
+           "code": "4.1.1.f",
+           "text": "Demonstrate balances with control on a variety of objects such as a balance board, balance beam, or skates (ice or in-line)."
+          },
+          {
+           "code": "4.1.1.g",
+           "text": "Transfer weight from feet to hands at fast and slow speeds using large extensions such as mule kicks, handstands, or cartwheels."
+          },
+          {
+           "code": "4.1.1.h",
+           "text": "Distinguish and describe the similarities and differences of manipulative skills such as basketball and soccer dribbling or overhand and underhand."
+          },
+          {
+           "code": "4.1.1.i",
+           "text": "Demonstrate efficient patterns of striking with and without an implement."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "provide-and-receive-feedback-to-and-from-peers-u",
+       "title": "Provide and receive feedback to and from peers using the major characteristics of mature locomotor and manipulative skills",
+       "subtopics": [
+        {
+         "id": "provide-and-receive-feedback-to-and-from-peers-u",
+         "title": "Provide and receive feedback to and from peers using the major characteristics of mature locomotor and manipulative skills",
+         "outcomes": [
+          {
+           "code": "4.1.2.a",
+           "text": "Use peer assessment tools to recognize and evaluate the critical elements of movement in a variety of physical activities."
+          },
+          {
+           "code": "4.1.2.b",
+           "text": "Identify critical elements of movement skills when watching a video for self or peer assessment."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "physical-and-personal-wellness",
+     "title": "Physical and Personal Wellness",
+     "topics": [
+      {
+       "id": "explain-how-the-health-related-fitness-component",
+       "title": "Explain how the health-related fitness components are used to improve physical fitness",
+       "subtopics": [
+        {
+         "id": "explain-how-the-health-related-fitness-component",
+         "title": "Explain how the health-related fitness components are used to improve physical fitness",
+         "outcomes": [
+          {
+           "code": "4.2.1.a",
+           "text": "Identify and demonstrate flexibility exercises for major muscle groups."
+          },
+          {
+           "code": "4.2.1.b",
+           "text": "Identify health-related components of fitness and demonstrate an exercise that positively impacts each component."
+          },
+          {
+           "code": "4.2.1.c",
+           "text": "Measure and record personal heart rate before, during, and after moderate to vigorous exercise."
+          },
+          {
+           "code": "4.2.1.d",
+           "text": "Identify and perform specific exercises that can be done to improve the muscular strength and endurance of various muscle groups."
+          },
+          {
+           "code": "4.2.1.e",
+           "text": "Explain the benefits of having good cardiovascular endurance."
+          },
+          {
+           "code": "4.2.1.f",
+           "text": "Recognize healthy and balanced meals and snacks designed to enhance the performance of physical activities."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "analyze-opportunities-for-participating-in-physi",
+       "title": "Analyze opportunities for participating in physical activity and actively engage in teacher-directed and independent activities",
+       "subtopics": [
+        {
+         "id": "analyze-opportunities-for-participating-in-physi",
+         "title": "Analyze opportunities for participating in physical activity and actively engage in teacher-directed and independent activities",
+         "outcomes": [
+          {
+           "code": "4.2.2.a",
+           "text": "Understand the importance of participation in fitness-enhancing physical activities such as gymnastic clubs, community-sponsored youth sports, or activity clubs."
+          },
+          {
+           "code": "4.2.2.b",
+           "text": "Demonstrate appropriate warm-up procedures before participation in vigorous physical activity."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "social-emotional-wellness",
+     "title": "Social Emotional Wellness",
+     "topics": [
+      {
+       "id": "assess-and-take-responsibility-for-personal-beha",
+       "title": "Assess and take responsibility for personal behavior and stress management",
+       "subtopics": [
+        {
+         "id": "assess-and-take-responsibility-for-personal-beha",
+         "title": "Assess and take responsibility for personal behavior and stress management",
+         "outcomes": [
+          {
+           "code": "4.3.1.a",
+           "text": "Act in a safe and healthy manner when confronted with negative peer pressure during physical activity."
+          },
+          {
+           "code": "4.3.1.b",
+           "text": "Set a personal goal to improve a skill and work toward that goal."
+          },
+          {
+           "code": "4.3.1.c",
+           "text": "Describe and demonstrate responsible behavior and decision-making while participating in physical activity."
+          },
+          {
+           "code": "4.3.1.d",
+           "text": "Demonstrate respect for the person who is officiating."
+          },
+          {
+           "code": "4.3.1.e",
+           "text": "Recognize that physical activity can be used as a stress management technique."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "prevention-and-risk-management",
+     "title": "Prevention and Risk Management",
+     "topics": [
+      {
+       "id": "demonstrate-knowledge-of-safe-practices-in-a-phy",
+       "title": "Demonstrate knowledge of safe practices in a physical activity setting",
+       "subtopics": [
+        {
+         "id": "demonstrate-knowledge-of-safe-practices-in-a-phy",
+         "title": "Demonstrate knowledge of safe practices in a physical activity setting",
+         "outcomes": [
+          {
+           "code": "4.4.1.a",
+           "text": "Explain safety considerations prior to participation in lead-up games."
+          },
+          {
+           "code": "4.4.1.b",
+           "text": "Demonstrate the safe use of implements."
+          },
+          {
+           "code": "4.4.1.c",
+           "text": "Differentiate between safe and unsafe participation and environment"
+          },
+          {
+           "code": "4.4.1.d",
+           "text": "Display safe and responsible behavior while engaging in fitness activities."
+          },
+          {
+           "code": "4.4.1.e",
+           "text": "Develop with an instructor’s help the safety rules for physical education."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "5",
+   "units": [
+    {
+     "id": "movement-competence-and-understanding",
+     "title": "Movement Competence and Understanding",
+     "topics": [
+      {
+       "id": "demonstrate-mature-form-for-all-basic-locomotor-",
+       "title": "Demonstrate mature form for all basic locomotor, non-locomotor, manipulative, and rhythmic skills",
+       "subtopics": [
+        {
+         "id": "demonstrate-mature-form-for-all-basic-locomotor-",
+         "title": "Demonstrate mature form for all basic locomotor, non-locomotor, manipulative, and rhythmic skills (1 of 2)",
+         "outcomes": [
+          {
+           "code": "5.1.1.a",
+           "text": "Throw and catch an object demonstrating both accuracy and force."
+          },
+          {
+           "code": "5.1.1.b",
+           "text": "Punt a ball dropped from the hands at a target."
+          },
+          {
+           "code": "5.1.1.c",
+           "text": "Dribble a ball (by hand or foot) while preventing another person from stealing the ball."
+          },
+          {
+           "code": "5.1.1.d",
+           "text": "Volley an object continuously with a partner."
+          }
+         ]
+        },
+        {
+         "id": "demonstrate-mature-form-for-all-basic-locomotor--2",
+         "title": "Demonstrate mature form for all basic locomotor, non-locomotor, manipulative, and rhythmic skills (2 of 2)",
+         "outcomes": [
+          {
+           "code": "5.1.1.e",
+           "text": "Strike an object consecutively in a competitive or cooperative game."
+          },
+          {
+           "code": "5.1.1.f",
+           "text": "Demonstrate correct steps and patterns for dance. (e.g., square, folk, modern, contemporary)."
+          },
+          {
+           "code": "5.1.1.g",
+           "text": "Perform a short or long rope jump routine with a partner or small group."
+          },
+          {
+           "code": "5.1.1.h",
+           "text": "Develop and refine a gymnastics or creative dance sequence, and demonstrate smooth transitions."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "demonstrate-understanding-of-how-to-combine-and-",
+       "title": "Demonstrate understanding of how to combine and apply movement concepts and principles to learn and develop motor skills",
+       "subtopics": [
+        {
+         "id": "demonstrate-understanding-of-how-to-combine-and-",
+         "title": "Demonstrate understanding of how to combine and apply movement concepts and principles to learn and develop motor skills",
+         "outcomes": [
+          {
+           "code": "5.1.2.a",
+           "text": "Use basic understanding of the knowledge of strategies in activity settings such as moving to open space to receive a pass or intercepting an object."
+          },
+          {
+           "code": "5.1.2.b",
+           "text": "Analyze and correct errors in movement patterns, and provide and use feedback from a peer or instruction technology."
+          },
+          {
+           "code": "5.1.2.c",
+           "text": "Develop a cooperative movement game that uses locomotor skills, object manipulation, and an offensive strategy, and teach the game to another person."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "understand-why-feedback-can-improve-performance",
+       "title": "Understand why feedback can improve performance",
+       "subtopics": [
+        {
+         "id": "understand-why-feedback-can-improve-performance",
+         "title": "Understand why feedback can improve performance",
+         "outcomes": [
+          {
+           "code": "5.1.3.a",
+           "text": "Analyze and correct errors in throw, catch, hand dribble, foot dribble, striking a ball, and volley, and demonstrate control and accuracy."
+          },
+          {
+           "code": "5.1.3.b",
+           "text": "Analyze and correct errors in non-locomotor and locomotor movements."
+          },
+          {
+           "code": "5.1.3.c",
+           "text": "Analyze and use basic offensive and defensive strategies, and apply rules in modified games and activities."
+          },
+          {
+           "code": "5.1.3.d",
+           "text": "Analyze and demonstrate a variety of social, folk, square, modern, jazz, or creative dance."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "physical-and-personal-wellness",
+     "title": "Physical and Personal Wellness",
+     "topics": [
+      {
+       "id": "demonstrate-understanding-of-skill-related-compo",
+       "title": "Demonstrate understanding of skill-related components of fitness and how they affect physical performance",
+       "subtopics": [
+        {
+         "id": "demonstrate-understanding-of-skill-related-compo",
+         "title": "Demonstrate understanding of skill-related components of fitness and how they affect physical performance",
+         "outcomes": [
+          {
+           "code": "5.2.1.a",
+           "text": "Identify and demonstrate exercises that are used to develop agility, balance, coordination, power, reaction time, or speed."
+          },
+          {
+           "code": "5.2.1.b",
+           "text": "Create a plan using the six skill-related components to improve performance in a chosen activity."
+          },
+          {
+           "code": "5.2.1.c",
+           "text": "Differentiate between health related components and skill related components."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "set-personal-goals-for-improving-health-related-",
+       "title": "Set personal goals for improving health-related fitness",
+       "subtopics": [
+        {
+         "id": "set-personal-goals-for-improving-health-related-",
+         "title": "Set personal goals for improving health-related fitness (1 of 2)",
+         "outcomes": [
+          {
+           "code": "5.2.2.a",
+           "text": "Explain how the five health-related fitness components (body composition, cardiovascular endurance, flexibility, muscular endurance, and muscular strength) affect ability to participate normally in everyday activities."
+          },
+          {
+           "code": "5.2.2.b",
+           "text": "Compare results of fitness testing to personal health status and ability to perform various activities."
+          },
+          {
+           "code": "5.2.2.c",
+           "text": "Develop short term and long-term fitness goals."
+          },
+          {
+           "code": "5.2.2.d",
+           "text": "Compare individual physical fitness goals with research-based standards for good health."
+          }
+         ]
+        },
+        {
+         "id": "set-personal-goals-for-improving-health-related--2",
+         "title": "Set personal goals for improving health-related fitness (2 of 2)",
+         "outcomes": [
+          {
+           "code": "5.2.2.e",
+           "text": "Identify activities that will help to improve cardio-respiratory, muscular endurance, muscular strength, flexibility, and body composition."
+          },
+          {
+           "code": "5.2.2.f",
+           "text": "Accurately take a pulse at rest and during exercise."
+          },
+          {
+           "code": "5.2.2.g",
+           "text": "Identify the components of the FITT principle (frequency, intensity, time, type)."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "social-emotional-wellness",
+     "title": "Social Emotional Wellness",
+     "topics": [
+      {
+       "id": "identify-personal-activity-interests-and-abiliti",
+       "title": "Identify personal activity interests and abilities and take responsibility for individual and team performance",
+       "subtopics": [
+        {
+         "id": "identify-personal-activity-interests-and-abiliti",
+         "title": "Identify personal activity interests and abilities and take responsibility for individual and team performance",
+         "outcomes": [
+          {
+           "code": "5.3.1.a",
+           "text": "Accept responsibility for one’s own performance without blaming others."
+          },
+          {
+           "code": "5.3.1.b",
+           "text": "Respond to winning and losing in socially appropriate ways."
+          },
+          {
+           "code": "5.3.1.c",
+           "text": "Develop confidence in self and others in a physical activity setting."
+          },
+          {
+           "code": "5.3.1.d",
+           "text": "Try new activities and connect hard work and practice to success."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "work-cooperatively-and-productively-in-a-group",
+       "title": "Work cooperatively and productively in a group",
+       "subtopics": [
+        {
+         "id": "work-cooperatively-and-productively-in-a-group",
+         "title": "Work cooperatively and productively in a group",
+         "outcomes": [
+          {
+           "code": "5.3.2.a",
+           "text": "Establish and accomplish goals in both cooperative and competitive activities."
+          },
+          {
+           "code": "5.3.2.b",
+           "text": "Identify and define the role of each participant in a group physical activity."
+          },
+          {
+           "code": "5.3.2.c",
+           "text": "Analyze possible solutions to a problem in a group physical activity, and come to a consensus on the best solution."
+          },
+          {
+           "code": "5.3.2.d",
+           "text": "Demonstrate the ability to resolve conflicts with peers."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "prevention-and-risk-management",
+     "title": "Prevention and Risk Management",
+     "topics": [
+      {
+       "id": "implement-safety-procedures-in-the-utilization-o",
+       "title": "Implement safety procedures in the utilization of space and equipment",
+       "subtopics": [
+        {
+         "id": "implement-safety-procedures-in-the-utilization-o",
+         "title": "Implement safety procedures in the utilization of space and equipment",
+         "outcomes": [
+          {
+           "code": "5.4.1.a",
+           "text": "Identify and participate in safe warm-up and cool-down activities."
+          },
+          {
+           "code": "5.4.1.b",
+           "text": "Review components of safe participation and what constitutes a safe environment."
+          },
+          {
+           "code": "5.4.1.c",
+           "text": "Follow the rules of activities to maintain safe playing conditions."
+          },
+          {
+           "code": "5.4.1.d",
+           "text": "Describe safe and unsafe practices for a variety of physical activities."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "6",
+   "units": [
+    {
+     "id": "movement-competence-and-understanding",
+     "title": "Movement Competence and Understanding",
+     "topics": [
+      {
+       "id": "demonstrate-beginning-skills-for-a-variety-of-ac",
+       "title": "Demonstrate beginning skills for a variety of activities, games, and sports",
+       "subtopics": [
+        {
+         "id": "demonstrate-beginning-skills-for-a-variety-of-ac",
+         "title": "Demonstrate beginning skills for a variety of activities, games, and sports (1 of 2)",
+         "outcomes": [
+          {
+           "code": "6.1.1.a",
+           "text": "Volley an object repeatedly with a partner."
+          },
+          {
+           "code": "6.1.1.b",
+           "text": "Strike a ball continually against a wall and with a partner, using a paddle for the forehand stroke and backhand stroke."
+          },
+          {
+           "code": "6.1.1.c",
+           "text": "Strike an object consistently, using a body part and an implement so that the object travels in the intended direction at the desired height."
+          },
+          {
+           "code": "6.1.1.d",
+           "text": "Dribble and pass a ball to a partner while being guarded."
+          }
+         ]
+        },
+        {
+         "id": "demonstrate-beginning-skills-for-a-variety-of-ac-2",
+         "title": "Demonstrate beginning skills for a variety of activities, games, and sports (2 of 2)",
+         "outcomes": [
+          {
+           "code": "6.1.1.e",
+           "text": "Throw an object accurately and with applied force, using the underhand, overhand, and sidearm movement (throw) patterns."
+          },
+          {
+           "code": "6.1.1.f",
+           "text": "Combine relationships, levels, speed, direction, and pathways in complex individual and group physical activities."
+          },
+          {
+           "code": "6.1.1.g",
+           "text": "Combine motor skills to play a lead-up or modified game."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "participate-in-activities-that-require-problem-s",
+       "title": "Participate in activities that require problem-solving, cooperation, and team-building",
+       "subtopics": [
+        {
+         "id": "participate-in-activities-that-require-problem-s",
+         "title": "Participate in activities that require problem-solving, cooperation, and team-building",
+         "outcomes": [
+          {
+           "code": "6.1.2.a",
+           "text": "Participate in initiative and cooperative activities."
+          },
+          {
+           "code": "6.1.2.b",
+           "text": "Cooperate with a small group of classmates during activities, game play or team-building activities."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "demonstrate-beginning-strategies-for-a-variety-o",
+       "title": "Demonstrate beginning strategies for a variety of activities, games, or sports",
+       "subtopics": [
+        {
+         "id": "demonstrate-beginning-strategies-for-a-variety-o",
+         "title": "Demonstrate beginning strategies for a variety of activities, games, or sports",
+         "outcomes": [
+          {
+           "code": "6.1.3.a",
+           "text": "Use basic understanding of the knowledge of strategies in activity settings such as moving to open space to receive a pass or intercept an object."
+          },
+          {
+           "code": "6.1.3.b",
+           "text": "Analyze and correct errors in movement patterns, and provide and use feedback from a peer or instruction technology."
+          },
+          {
+           "code": "6.1.3.c",
+           "text": "Develop a cooperative movement game that uses locomotor skills, object manipulation, and an offensive strategy, and teach the game to another person."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "physical-and-personal-wellness",
+     "title": "Physical and Personal Wellness",
+     "topics": [
+      {
+       "id": "understand-and-apply-basic-principles-of-trainin",
+       "title": "Understand and apply basic principles of training to improving physical fitness",
+       "subtopics": [
+        {
+         "id": "understand-and-apply-basic-principles-of-trainin",
+         "title": "Understand and apply basic principles of training to improving physical fitness (1 of 2)",
+         "outcomes": [
+          {
+           "code": "6.2.1.a",
+           "text": "Correctly differentiate the body’s response to physical activities of various exercise intensities."
+          },
+          {
+           "code": "6.2.1.b",
+           "text": "Record and analyze food consumption for one day, and make a plan to replace foods with healthier choices."
+          },
+          {
+           "code": "6.2.1.c",
+           "text": "Explain why dehydration impairs temperature regulation and physical and mental performance."
+          },
+          {
+           "code": "6.2.1.d",
+           "text": "Determine an appropriate cardiovascular training zone."
+          },
+          {
+           "code": "6.2.1.e",
+           "text": "Perform flexibility exercises that will stretch particular muscles area for given physical activities."
+          }
+         ]
+        },
+        {
+         "id": "understand-and-apply-basic-principles-of-trainin-2",
+         "title": "Understand and apply basic principles of training to improving physical fitness (2 of 2)",
+         "outcomes": [
+          {
+           "code": "6.2.1.f",
+           "text": "Identify, select, and participate in activities designed to improve selfdiagnosed areas for improvement in health-related fitness components."
+          },
+          {
+           "code": "6.2.1.g",
+           "text": "Engage in moderate to vigorous physical activity at the target heart rate for a minimum of 60 minutes per day."
+          },
+          {
+           "code": "6.2.1.h",
+           "text": "Accurately identify activities that are aerobic and anaerobic."
+          },
+          {
+           "code": "6.2.1.i",
+           "text": "Determine the intensity of personal physical activity using the concept of perceived exertion."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "recognize-how-health-related-and-skill-related-f",
+       "title": "Recognize how health-related and skill-related fitness components contribute to a health-enhancing lifestyle that embraces physical fitness",
+       "subtopics": [
+        {
+         "id": "recognize-how-health-related-and-skill-related-f",
+         "title": "Recognize how health-related and skill-related fitness components contribute to a health-enhancing lifestyle that embraces physical fitness",
+         "outcomes": [
+          {
+           "code": "6.2.2.a",
+           "text": "Monitor the intensity of one’s heart rate during physical activity"
+          },
+          {
+           "code": "6.2.2.b",
+           "text": "Identify target heart rate."
+          },
+          {
+           "code": "6.2.2.c",
+           "text": "Explain how the six skill-related fitness components (agility, balance, eye-hand coordination, power, speed, reaction time) affect ability to enhance participation in activities."
+          },
+          {
+           "code": "6.2.2.d",
+           "text": "Distinguish between health-related and skill-related fitness."
+          },
+          {
+           "code": "6.2.2.e",
+           "text": "Identify activities that utilize enhanced skill-related components of fitness."
+          },
+          {
+           "code": "6.2.2.f",
+           "text": "Compare results of fitness testing with research-based standards for self-improvement."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "identify-opportunities-in-school-and-in-the-comm",
+       "title": "Identify opportunities in school and in the community for regular participation in physical activity to enhance physical fitness",
+       "subtopics": [
+        {
+         "id": "identify-opportunities-in-school-and-in-the-comm",
+         "title": "Identify opportunities in school and in the community for regular participation in physical activity to enhance physical fitness",
+         "outcomes": [
+          {
+           "code": "6.2.3.a",
+           "text": "Set age-appropriate fitness goals."
+          },
+          {
+           "code": "6.2.3.b",
+           "text": "Strive to attain fitness goals through participation in physical activity of individual choosing"
+          },
+          {
+           "code": "6.2.3.c",
+           "text": "Identify where individuals can engage in regular physical activity to meet their personal fitness goals."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "social-emotional-wellness",
+     "title": "Social Emotional Wellness",
+     "topics": [
+      {
+       "id": "recognize-diverse-skill-performance-in-self-and-",
+       "title": "Recognize diverse skill performance in self and in others and how diversity affects activities, games, and sport participation",
+       "subtopics": [
+        {
+         "id": "recognize-diverse-skill-performance-in-self-and-",
+         "title": "Recognize diverse skill performance in self and in others and how diversity affects activities, games, and sport participation",
+         "outcomes": [
+          {
+           "code": "6.3.1.a",
+           "text": "Evaluate individual responsibility in group efforts."
+          },
+          {
+           "code": "6.3.1.b",
+           "text": "Accept differences among classmates in physical development, maturation and varying skill levels."
+          },
+          {
+           "code": "6.3.1.c",
+           "text": "Participate in activities that address diversity with individuals of various skill levels."
+          },
+          {
+           "code": "6.3.1.d",
+           "text": "Exhibit responsible social behavior by cooperating with classmates, demonstrating inclusive behaviors."
+          },
+          {
+           "code": "6.3.1.e",
+           "text": "Acknowledge and accommodate individual differences in others’ physical abilities in small-group activities."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "choose-to-participate-cooperatively-and-producti",
+       "title": "Choose to participate cooperatively and productively in group and individual physical activities",
+       "subtopics": [
+        {
+         "id": "choose-to-participate-cooperatively-and-producti",
+         "title": "Choose to participate cooperatively and productively in group and individual physical activities",
+         "outcomes": [
+          {
+           "code": "6.3.2.a",
+           "text": "Help others with physical activity challenges."
+          },
+          {
+           "code": "6.3.2.b",
+           "text": "Contribute ideas and listen to the ideas of others in cooperative problem solving activities."
+          },
+          {
+           "code": "6.3.2.c",
+           "text": "Officiate an activity, game, or sport."
+          },
+          {
+           "code": "6.3.2.d",
+           "text": "Demonstrate conflict resolution behavior in socially appropriate ways."
+          },
+          {
+           "code": "6.3.2.e",
+           "text": "Demonstrate cooperation skills by establishing rules and guidelines for resolving conflicts."
+          },
+          {
+           "code": "6.3.2.f",
+           "text": "Problem-solve with a small group of classmates during adventure activities, game play or team-building activities."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "prevention-and-risk-management",
+     "title": "Prevention and Risk Management",
+     "topics": [
+      {
+       "id": "apply-personal-safety-knowledge-and-skills-to-pr",
+       "title": "Apply personal safety knowledge and skills to prevent and treat intentional or unintentional injury",
+       "subtopics": [
+        {
+         "id": "apply-personal-safety-knowledge-and-skills-to-pr",
+         "title": "Apply personal safety knowledge and skills to prevent and treat intentional or unintentional injury",
+         "outcomes": [
+          {
+           "code": "6.4.1.a",
+           "text": "Identify proper safety equipment for various physical activities."
+          },
+          {
+           "code": "6.4.1.b",
+           "text": "Describe and demonstrate the correct form to push, pull, and lift heavy objects."
+          },
+          {
+           "code": "6.4.1.c",
+           "text": "Identify appropriate footwear and sport-related gear/clothing for safe participation in various activities."
+          },
+          {
+           "code": "6.4.1.d",
+           "text": "Create a list or poster that describes safety rules while participating in physical activities, with or without the help of an instructor."
+          },
+          {
+           "code": "6.4.1.e",
+           "text": "List the benefits and risks of following and not following safety rules associated with physical activity."
+          },
+          {
+           "code": "6.4.1.f",
+           "text": "Use physical activity and fitness equipment appropriately and safely, with the teacher’s guidance."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "7",
+   "units": [
+    {
+     "id": "movement-competence-and-understanding",
+     "title": "Movement Competence and Understanding",
+     "topics": [
+      {
+       "id": "combine-the-critical-elements-of-movement-and-sk",
+       "title": "Combine the critical elements of movement and skills concepts",
+       "subtopics": [
+        {
+         "id": "combine-the-critical-elements-of-movement-and-sk",
+         "title": "Combine the critical elements of movement and skills concepts (1 of 2)",
+         "outcomes": [
+          {
+           "code": "7.1.1.a",
+           "text": "Design and perform movement sequences that combine traveling, balancing, and weight transfer into smooth, flowing sequences with changes in direction, speed, and flow."
+          },
+          {
+           "code": "7.1.1.b",
+           "text": "Cooperate with another student to create, develop, and refine movement routines based on a theme."
+          },
+          {
+           "code": "7.1.1.c",
+           "text": "Create a game, movement, dance, or sport with a group."
+          },
+          {
+           "code": "7.1.1.d",
+           "text": "Identify and describe key elements in the mature performance of overhand, sidearm, and underhand throwing, catching; kicking and punting; striking; trapping; dribbling (hand and foot); and volleying."
+          }
+         ]
+        },
+        {
+         "id": "combine-the-critical-elements-of-movement-and-sk-2",
+         "title": "Combine the critical elements of movement and skills concepts (2 of 2)",
+         "outcomes": [
+          {
+           "code": "7.1.1.e",
+           "text": "Analyze movement patterns, and correct errors."
+          },
+          {
+           "code": "7.1.1.f",
+           "text": "Use principles from motor learning to establish, monitor, and meet goals for motor skill development."
+          },
+          {
+           "code": "7.1.1.g",
+           "text": "Compare and contrast the effectiveness of practicing skills as a whole and practicing skills in smaller parts."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "demonstrate-beginning-offensive-and-defensive-st",
+       "title": "Demonstrate beginning offensive and defensive strategies for individual and team physical activities and sports",
+       "subtopics": [
+        {
+         "id": "demonstrate-beginning-offensive-and-defensive-st",
+         "title": "Demonstrate beginning offensive and defensive strategies for individual and team physical activities and sports (1 of 2)",
+         "outcomes": [
+          {
+           "code": "7.1.2.a",
+           "text": "Diagram and demonstrate basic offensive and defensive strategies for individual and dual physical activities."
+          },
+          {
+           "code": "7.1.2.b",
+           "text": "Develop an individual or dual game that uses a manipulative skill, two different offensive strategies, and a scoring system, and teach it to another person."
+          },
+          {
+           "code": "7.1.2.c",
+           "text": "Reduce open space by using locomotor movements in combination with movement concepts."
+          },
+          {
+           "code": "7.1.2.d",
+           "text": "Reduce open space on defense by staying close to the opponent as he/she nears the goal."
+          },
+          {
+           "code": "7.1.2.e",
+           "text": "Use a variety of passes, pivots and fakes; give and go to create open space."
+          }
+         ]
+        },
+        {
+         "id": "demonstrate-beginning-offensive-and-defensive-st-2",
+         "title": "Demonstrate beginning offensive and defensive strategies for individual and team physical activities and sports (2 of 2)",
+         "outcomes": [
+          {
+           "code": "7.1.2.f",
+           "text": "Select an effective defensive play based on the situation."
+          },
+          {
+           "code": "7.1.2.g",
+           "text": "Transition from offense to defense or defense to offense quickly."
+          },
+          {
+           "code": "7.1.2.h",
+           "text": "Create open space in net or wall games by varying force and directions and by moving opponent from side to side."
+          },
+          {
+           "code": "7.1.2.i",
+           "text": "Select an offensive shot based on an opponent’s location."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "physical-and-personal-wellness",
+     "title": "Physical and Personal Wellness",
+     "topics": [
+      {
+       "id": "understand-and-apply-principles-of-physical-fitn",
+       "title": "Understand and apply principles of physical fitness to create a personal fitness plan and set personal physical fitness goals",
+       "subtopics": [
+        {
+         "id": "understand-and-apply-principles-of-physical-fitn",
+         "title": "Understand and apply principles of physical fitness to create a personal fitness plan and set personal physical fitness goals",
+         "outcomes": [
+          {
+           "code": "7.2.1.a",
+           "text": "Explain the principles of physical fitness (S.P.O.R.T.); Specificity, progression, overload, reversibility, and tedium."
+          },
+          {
+           "code": "7.2.1.b",
+           "text": "Incorporate the F.I.T.T. Principle into a fitness plan."
+          },
+          {
+           "code": "7.2.1.c",
+           "text": "Create an individual physical activity portfolio."
+          },
+          {
+           "code": "7.2.1.d",
+           "text": "Identify elements that comprise an age-appropriate fitness plan, according to an individual’s age, level of fitness and goals."
+          },
+          {
+           "code": "7.2.1.e",
+           "text": "Identify and incorporate self-selected activities that are enjoyable into one’s personal fitness plan."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "demonstrates-fitness-knowledge-and-skills-that-m",
+       "title": "Demonstrates fitness knowledge and skills that maintain a health-enhancing lifestyle, while actively engaging in the participation of lifetime physical activities",
+       "subtopics": [
+        {
+         "id": "demonstrates-fitness-knowledge-and-skills-that-m",
+         "title": "Demonstrates fitness knowledge and skills that maintain a health-enhancing lifestyle, while actively engaging in the participation of lifetime physical activities",
+         "outcomes": [
+          {
+           "code": "7.2.2.a",
+           "text": "Maintain involvement in a physical activity, twice a week, outside physical education class."
+          },
+          {
+           "code": "7.2.2.b",
+           "text": "Engage in a variety of strength and endurance fitness activities."
+          },
+          {
+           "code": "7.2.2.c",
+           "text": "Participate in a variety of lifetime dual and individual sports, martial arts, or aquatic activities."
+          },
+          {
+           "code": "7.2.2.d",
+           "text": "Identify moderate to vigorous muscle and bone strengthening physical activities."
+          },
+          {
+           "code": "7.2.2.e",
+           "text": "Develop and describe short-term and long-term fitness goals as they relate to improving health-related or skill-related components."
+          },
+          {
+           "code": "7.2.2.f",
+           "text": "Design a warm-up and cool-down regime for a self-selected physical activity."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "social-emotional-wellness",
+     "title": "Social Emotional Wellness",
+     "topics": [
+      {
+       "id": "demonstrate-inclusiveness-in-and-out-of-classroo",
+       "title": "Demonstrate inclusiveness in and out of classroom settings",
+       "subtopics": [
+        {
+         "id": "demonstrate-inclusiveness-in-and-out-of-classroo",
+         "title": "Demonstrate inclusiveness in and out of classroom settings",
+         "outcomes": [
+          {
+           "code": "7.3.1.a",
+           "text": "Seek out participation with, and show respect for, a peer with varying skill ability in a variety of physical activities."
+          },
+          {
+           "code": "7.3.1.b",
+           "text": "Participate in group cooperation games and adventure activities to encourage team-building and fun."
+          },
+          {
+           "code": "7.3.1.c",
+           "text": "Make suggestions to the instructor on how to modify a game to allow all members with varying skill abilities to participate."
+          },
+          {
+           "code": "7.3.1.d",
+           "text": "Recognize the role of physical activity in getting to know and understand others of similar and different backgrounds."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "prevention-and-risk-management",
+     "title": "Prevention and Risk Management",
+     "topics": [
+      {
+       "id": "understand-and-utilize-safe-and-appropriate-warm",
+       "title": "Understand and utilize safe and appropriate warm-up, pacing, and cool-down techniques for injury prevention and safe participation",
+       "subtopics": [
+        {
+         "id": "understand-and-utilize-safe-and-appropriate-warm",
+         "title": "Understand and utilize safe and appropriate warm-up, pacing, and cool-down techniques for injury prevention and safe participation",
+         "outcomes": [
+          {
+           "code": "7.4.1.a",
+           "text": "Describe proper warm-up and cool-down procedures for a chosen activity (e.g., create a report, bulletin board, or poster)."
+          },
+          {
+           "code": "7.4.1.b",
+           "text": "Identify proper warm-up and cool-down techniques."
+          },
+          {
+           "code": "7.4.1.c",
+           "text": "Explain that warm-up and cool-down activities prepare the body for physical activity and help to prevent injuries."
+          },
+          {
+           "code": "7.4.1.d",
+           "text": "Identify safety rules for the activity and area being used."
+          },
+          {
+           "code": "7.4.1.e",
+           "text": "Independently use physical activity and exercise equipment appropriately and safely."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "8",
+   "units": [
+    {
+     "id": "movement-competence-and-understanding",
+     "title": "Movement Competence and Understanding",
+     "topics": [
+      {
+       "id": "demonstrate-competency-in-a-variety-of-motor-ski",
+       "title": "Demonstrate competency in a variety of motor skills and movement patterns",
+       "subtopics": [
+        {
+         "id": "demonstrate-competency-in-a-variety-of-motor-ski",
+         "title": "Demonstrate competency in a variety of motor skills and movement patterns",
+         "outcomes": [
+          {
+           "code": "8.1.1.a",
+           "text": "Use a variety of motor skill patterns to create a movement sequence."
+          },
+          {
+           "code": "8.1.1.b",
+           "text": "Create and perform a timed routine using rotational, balancing, and supporting skills."
+          },
+          {
+           "code": "8.1.1.c",
+           "text": "Create, develop, and refine movement sequence based on self-generated themes and self-selected music."
+          },
+          {
+           "code": "8.1.1.d",
+           "text": "Integrate information from other subject matter into a movement activity or routine."
+          },
+          {
+           "code": "8.1.1.e",
+           "text": "Identify the characteristics of a highly skilled performance for the purpose of improving one’s own performance."
+          },
+          {
+           "code": "8.1.1.f",
+           "text": "Analyze motor skills and movement patterns through a variety of skill assessments."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "understand-and-apply-game-strategies-to-physical",
+       "title": "Understand and apply game strategies to physical activities and sports",
+       "subtopics": [
+        {
+         "id": "understand-and-apply-game-strategies-to-physical",
+         "title": "Understand and apply game strategies to physical activities and sports",
+         "outcomes": [
+          {
+           "code": "8.1.2.a",
+           "text": "Diagram and demonstrate basic offensive, defensive skills and strategies in games and sports."
+          },
+          {
+           "code": "8.1.2.b",
+           "text": "Apply locomotor, non-locomotor, and manipulative skills to games and sports."
+          },
+          {
+           "code": "8.1.2.c",
+           "text": "Diagram, explain, and justify offensive and defensive strategies in net/wall, target, invasion, and fielding/run scoring games."
+          },
+          {
+           "code": "8.1.2.d",
+           "text": "Develop and teach a game that incorporates designated offensive and defensive space, a penalty system, and a scoring system."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "physical-and-personal-wellness",
+     "title": "Physical and Personal Wellness",
+     "topics": [
+      {
+       "id": "identify-areas-for-growth-and-design-personal-go",
+       "title": "Identify areas for growth and design personal goals utilizing assessment and program planning concepts",
+       "subtopics": [
+        {
+         "id": "identify-areas-for-growth-and-design-personal-go",
+         "title": "Identify areas for growth and design personal goals utilizing assessment and program planning concepts",
+         "outcomes": [
+          {
+           "code": "8.2.1.a",
+           "text": "Plan and implement an extended personal physical fitness plan in collaboration with an instructor utilizing assessment data."
+          },
+          {
+           "code": "8.2.1.b",
+           "text": "Design and implement a program of remediation for three areas of weakness based on the results of health-related fitness assessments."
+          },
+          {
+           "code": "8.2.1.c",
+           "text": "Design and implement a program to improve levels of health-related fitness."
+          },
+          {
+           "code": "8.2.1.d",
+           "text": "Maintain a physical activity for at least two weeks and reflect on activity levels as documented in the log."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "identify-preferences-for-lifetime-physical-activ",
+       "title": "Identify preferences for lifetime physical activity",
+       "subtopics": [
+        {
+         "id": "identify-preferences-for-lifetime-physical-activ",
+         "title": "Identify preferences for lifetime physical activity",
+         "outcomes": [
+          {
+           "code": "8.2.2.a",
+           "text": "Participate in a variety of recreational activities appropriate to a geographical area."
+          },
+          {
+           "code": "8.2.2.b",
+           "text": "Match personal preferences in physical activities with each of the five components of health-related physical fitness (body composition, cardiovascular endurance, flexibility, muscular endurance, and muscular strength)."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "social-emotional-wellness",
+     "title": "Social Emotional Wellness",
+     "topics": [
+      {
+       "id": "recognize-diverse-skill-performance-in-self-and-",
+       "title": "Recognize diverse skill performance in self and in others and how diversity affects activities, games, and sport participation",
+       "subtopics": [
+        {
+         "id": "recognize-diverse-skill-performance-in-self-and-",
+         "title": "Recognize diverse skill performance in self and in others and how diversity affects activities, games, and sport participation",
+         "outcomes": [
+          {
+           "code": "8.3.1.a",
+           "text": "Acknowledge the performance of others, regardless of the outcome"
+          },
+          {
+           "code": "8.3.1.b",
+           "text": "Participate with others in all types of physical activity, regardless of their race or ethnicity, gender, or culture."
+          },
+          {
+           "code": "8.3.1.c",
+           "text": "Practice conflict management and listening skills in a competitive atmosphere."
+          },
+          {
+           "code": "8.3.1.",
+           "text": "Respond appropriately to participants’ ethical and unethical behavior during physical activity by using rules and guidelines for resolving conflicts."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "prevention-and-risk-management",
+     "title": "Prevention and Risk Management",
+     "topics": [
+      {
+       "id": "apply-rules-procedures-and-safe-practices-to-cre",
+       "title": "Apply rules, procedures, and safe practices to create a safe school environment with no reinforcement",
+       "subtopics": [
+        {
+         "id": "apply-rules-procedures-and-safe-practices-to-cre",
+         "title": "Apply rules, procedures, and safe practices to create a safe school environment with no reinforcement",
+         "outcomes": [
+          {
+           "code": "8.4.1.a",
+           "text": "Maintain safety within personal space while using physical activity and fitness equipment."
+          },
+          {
+           "code": "8.4.1.b",
+           "text": "Follow safety rules in the gymnasium and in other physical activity settings"
+          },
+          {
+           "code": "8.4.1.c",
+           "text": "Make appropriate decisions to ensure the safety of self and others during outdoor activities."
+          },
+          {
+           "code": "8.4.1.d",
+           "text": "Independently use fitness equipment appropriately"
+          },
+          {
+           "code": "8.4.1.e",
+           "text": "Identify specific safety issues associated with all physical activities."
+          },
+          {
+           "code": "8.4.1.f",
+           "text": "Identify and demonstrate best practices for safe participation in all physical activities."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "9-12",
+   "units": [
+    {
+     "id": "movement-competence-and-understanding",
+     "title": "Movement Competence and Understanding",
+     "topics": [
+      {
+       "id": "engage-in-a-variety-of-lifelong-physical-activit",
+       "title": "Engage in a variety of lifelong physical activities at a competent level",
+       "subtopics": [
+        {
+         "id": "engage-in-a-variety-of-lifelong-physical-activit",
+         "title": "Engage in a variety of lifelong physical activities at a competent level",
+         "outcomes": [
+          {
+           "code": "HS.1.1.a",
+           "text": "Combine and apply movement patterns from simple to complex to participate successfully in activities such as aquatic, rhythms/dance, combatives, outdoor adventure activities, and a variety of lifelong sports and games. (Level1)"
+          },
+          {
+           "code": "HS.1.1.b",
+           "text": "Explain and demonstrate offensive, defensive and transitional strategies in lifelong sports and games. (Level 1)"
+          },
+          {
+           "code": "HS.1.1.c",
+           "text": "Identify muscles in the body and how they relate to a variety of physical activity and human movement. (Level 1)"
+          },
+          {
+           "code": "HS.1.1.d",
+           "text": "Explain and apply the skill-related components that enhance performance levels in activities such as; aquatic, rhythms/dance, combatives, outdoor adventure activities, and lifelong sports and games. (Level 2)"
+          },
+          {
+           "code": "HS.1.1.e",
+           "text": "Explain and demonstrate training practices that have the greatest impact on improvement of skill acquisition and performance in a variety of lifelong activities. (Level 2)"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "recognize-how-movement-concepts-affect-brain-dev",
+       "title": "Recognize how movement concepts affect brain development",
+       "subtopics": [
+        {
+         "id": "recognize-how-movement-concepts-affect-brain-dev",
+         "title": "Recognize how movement concepts affect brain development",
+         "outcomes": [
+          {
+           "code": "HS.1.2.a",
+           "text": "Analyze multiple movement patterns and their effects on the brain, such as; cross-lateral and midline movement patterns. (Level 1)"
+          },
+          {
+           "code": "HS.1.2.b",
+           "text": "Describe how exercise enhances brain development and academic success. (Level 1)"
+          },
+          {
+           "code": "HS.1.2.c",
+           "text": "Identify and evaluate personal physiological responses to physical activity (e.g., anxiety, stress, etc.). (Level 2)"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "apply-rules-principles-problem-solving-skills-an",
+       "title": "Apply rules, principles, problem-solving skills and concepts to traditional and nontraditional movement settings",
+       "subtopics": [
+        {
+         "id": "apply-rules-principles-problem-solving-skills-an",
+         "title": "Apply rules, principles, problem-solving skills and concepts to traditional and nontraditional movement settings",
+         "outcomes": [
+          {
+           "code": "HS.1.3.a",
+           "text": "Apply rules, protocols, and procedures to enhance game settings and maintain an organized game environment. (Level 1)"
+          },
+          {
+           "code": "HS.1.3.b",
+           "text": "Analyze principles, utilize problem-solving skills and provide feedback to support peers in activities. (Level 1)"
+          },
+          {
+           "code": "HS.1.3.c",
+           "text": "Create or modify practice and training plans based on evaluative feedback of skill acquisition and performance in a variety of lifelong activities. (Level 2)"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "physical-and-personal-wellness",
+     "title": "Physical and Personal Wellness",
+     "topics": [
+      {
+       "id": "develop-implement-and-monitor-an-individual-heal",
+       "title": "Develop, implement and monitor an individual health and fitness plan by establishing goals based on fitness assessment data",
+       "subtopics": [
+        {
+         "id": "develop-implement-and-monitor-an-individual-heal",
+         "title": "Develop, implement and monitor an individual health and fitness plan by establishing goals based on fitness assessment data (1 of 2)",
+         "outcomes": [
+          {
+           "code": "HS.2.1.a",
+           "text": "Develop a physical fitness plan that enhances personal health and wellness while making connections to FITT formula and Principles of Training (S.P.O.R.T.). (Level 1)"
+          },
+          {
+           "code": "HS.2.1.b",
+           "text": "Analyze a skill or concept and apply knowledge of the skill-related components of fitness to improve performance. (Level 1)"
+          },
+          {
+           "code": "HS.2.1.c",
+           "text": "Create a food diary and analyze the nutritional impact in relation to personal fitness goals. (Level 1 )"
+          },
+          {
+           "code": "HS.2.1.d",
+           "text": "Participate in a variety of self-selected physical activities, and consider the value of each as it relates to personal fitness goals. (Level 1)"
+          },
+          {
+           "code": "HS.2.1.e",
+           "text": "Examine fitness assessment data, and develop a plan to show personal improvement toward achievement of fitness goals. This includes monitoring personal levels of fitness within each of the five health-related fitness components. (Level 1)"
+          }
+         ]
+        },
+        {
+         "id": "develop-implement-and-monitor-an-individual-heal-2",
+         "title": "Develop, implement and monitor an individual health and fitness plan by establishing goals based on fitness assessment data (2 of 2)",
+         "outcomes": [
+          {
+           "code": "HS.2.1.f",
+           "text": "Evaluate individual measures of physical fitness in relationship to patterns of physical activity. (Level 1)"
+          },
+          {
+           "code": "HS.2.1.g",
+           "text": "Identify muscle groups needed to aid in the design of a personal fitness plan. (Level 1)"
+          },
+          {
+           "code": "HS.2.1.h",
+           "text": "Refine individual fitness goals for each of the five components of healthrelated physical fitness using research-based criteria. (Level 2)"
+          },
+          {
+           "code": "HS.2.1.i",
+           "text": "Apply advanced fitness training knowledge to the planning of an extended personal physical fitness program. (Level 2)"
+          },
+          {
+           "code": "HS.2.1.j",
+           "text": "Create, analyze and monitor a fitness plan personalized for a peer. (Level 2)"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "examine-resources-to-maintain-lifelong-health-an",
+       "title": "Examine resources to maintain lifelong health and wellness",
+       "subtopics": [
+        {
+         "id": "examine-resources-to-maintain-lifelong-health-an",
+         "title": "Examine resources to maintain lifelong health and wellness",
+         "outcomes": [
+          {
+           "code": "HS.2.2.a",
+           "text": "Research and identify physical activity and fitness opportunities in the community. (Level 1)"
+          },
+          {
+           "code": "HS.2.2.b",
+           "text": "Explain the requirements involved with participation in a variety of physical activities, such as; cost, transportation, facilities. (Level 1)"
+          },
+          {
+           "code": "HS.2.2.c",
+           "text": "Monitor physical activity through the use of fitness-based technology such as, pedometers, heart-rate monitors, and other fitness devices. (Level 1)"
+          },
+          {
+           "code": "HS.2.2.d",
+           "text": "Explain the benefits of participation in a variety of physical activities and their connections to lifelong wellness. (Level 1)"
+          },
+          {
+           "code": "HS.2.2.e",
+           "text": "Research and evaluate wise consumer choices about equipment and programs needed to successfully participate in a wide range of physical activities. (Level 2)"
+          },
+          {
+           "code": "HS.2.2.f",
+           "text": "Compare and contrast available fitness technologies and nutrition-based applications (apps) and the effectiveness of their use. (Level 2)"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "social-emotional-wellness",
+     "title": "Social Emotional Wellness",
+     "topics": [
+      {
+       "id": "demonstrate-collaboration-cooperation-and-leader",
+       "title": "Demonstrate collaboration, cooperation, and leadership skills",
+       "subtopics": [
+        {
+         "id": "demonstrate-collaboration-cooperation-and-leader",
+         "title": "Demonstrate collaboration, cooperation, and leadership skills (1 of 2)",
+         "outcomes": [
+          {
+           "code": "HS.3.1.a",
+           "text": "Contribute to group success through a variety of noncompetitive roles."
+          },
+          {
+           "code": "HS.3.1.b",
+           "text": "Identify and utilize the potential strengths of each individual within a group setting."
+          },
+          {
+           "code": "HS.3.1.c",
+           "text": "Positively influence the behavior of others in physical activity settings."
+          },
+          {
+           "code": "HS.3.1.d",
+           "text": "Evaluate the role of cooperation and positive interactions with others when participating in a variety of settings."
+          }
+         ]
+        },
+        {
+         "id": "demonstrate-collaboration-cooperation-and-leader-2",
+         "title": "Demonstrate collaboration, cooperation, and leadership skills (2 of 2)",
+         "outcomes": [
+          {
+           "code": "HS.3.1.e",
+           "text": "Identify leadership skills, perform planned leadership assignments, and assume spontaneous leadership roles."
+          },
+          {
+           "code": "HS.3.1.f",
+           "text": "Implement cooperative learning strategies to achieve group goals."
+          },
+          {
+           "code": "HS.3.1.g",
+           "text": "Abide by the decisions of officials, accept the outcome of the game, and show appreciation toward participants."
+          },
+          {
+           "code": "HS.3.1.h",
+           "text": "Compare and contrast different leadership skills required in a variety of physical activities such as, outdoor education, adventure activities, and weight training."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "demonstrate-responsible-behavior-in-group-settin",
+       "title": "Demonstrate responsible behavior in group settings",
+       "subtopics": [
+        {
+         "id": "demonstrate-responsible-behavior-in-group-settin",
+         "title": "Demonstrate responsible behavior in group settings",
+         "outcomes": [
+          {
+           "code": "HS.3.2.a",
+           "text": "Initiate responsible behavior, and function independently and cooperatively."
+          },
+          {
+           "code": "HS.3.2.b",
+           "text": "Display empathy toward others."
+          },
+          {
+           "code": "HS.3.2.c",
+           "text": "Accept the diversity and individual differences of participants in physical activity."
+          },
+          {
+           "code": "HS.3.2.d",
+           "text": "Accept the roles of group members within the structure of a game or activity."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "prevention-and-risk-management",
+     "title": "Prevention and Risk Management",
+     "topics": [
+      {
+       "id": "understand-the-risks-and-safety-factors-that-may",
+       "title": "Understand the risks and safety factors that may affect participation in physical activity",
+       "subtopics": [
+        {
+         "id": "understand-the-risks-and-safety-factors-that-may",
+         "title": "Understand the risks and safety factors that may affect participation in physical activity",
+         "outcomes": [
+          {
+           "code": "HS.4.1.a",
+           "text": "Describe and demonstrate the correct use of safety equipment for a variety of physical activities."
+          },
+          {
+           "code": "HS.4.1.b",
+           "text": "Identify and apply principles from biomechanics and exercise physiology necessary for safe performance of physical activities."
+          },
+          {
+           "code": "HS.4.1.c",
+           "text": "Demonstrate proper spotting techniques for all lifts and exercises that require spotting."
+          },
+          {
+           "code": "HS.4.1.d",
+           "text": "Inspect equipment and facilities for safety hazards prior to participation."
+          },
+          {
+           "code": "HS.4.1.e",
+           "text": "Explain strategies for the prevention of injuries when engaging in physical activity."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "demonstrate-knowledge-of-safety-and-emergency-re",
+       "title": "Demonstrate knowledge of safety and emergency response procedures",
+       "subtopics": [
+        {
+         "id": "demonstrate-knowledge-of-safety-and-emergency-re",
+         "title": "Demonstrate knowledge of safety and emergency response procedures",
+         "outcomes": [
+          {
+           "code": "HS.4.2.a",
+           "text": "Demonstrate knowledge in one or more of the following areas: basic first aid, CPR, lifeguard training, water safety instruction, basic water safety, and automated external defibrillators (AEDs)."
+          },
+          {
+           "code": "HS.4.2.b",
+           "text": "Describe emergency procedures for a physical education setting."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "build": {
+  "builtAt": "2026-10-14T16:20:39.510Z",
+  "model": "none",
+  "usd": 0,
+  "expectedCodes": 354,
+  "coverage": 1,
+  "missingCodes": [],
+  "counts": {
+   "grades": 11,
+   "units": 44,
+   "topics": 74,
+   "subtopics": 88,
+   "outcomes": 354
+  },
+  "warnings": []
+ }
+}

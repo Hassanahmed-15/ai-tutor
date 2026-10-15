@@ -1,0 +1,930 @@
+[
+ {
+  "grade": "IGCSE",
+  "unit": "1 Data representation",
+  "topic": "1.1 Number systems",
+  "subtopic": "Binary and why computers use it",
+  "code": "1.1",
+  "outcome": "Explain how and why computers use binary to represent all data."
+ },
+ {
+  "grade": "IGCSE",
+  "unit": "1 Data representation",
+  "topic": "1.1 Number systems",
+  "subtopic": "Denary, binary and hexadecimal",
+  "code": null,
+  "outcome": "Explain denary, binary and hexadecimal number systems."
+ },
+ {
+  "grade": "IGCSE",
+  "unit": "1 Data representation",
+  "topic": "1.1 Number systems",
+  "subtopic": "Denary, binary and hexadecimal",
+  "code": null,
+  "outcome": "Convert between positive denary, binary and hexadecimal numbers (up to 16-bit)."
+ },
+ {
+  "grade": "IGCSE",
+  "unit": "1 Data representation",
+  "topic": "1.1 Number systems",
+  "subtopic": "Denary, binary and hexadecimal",
+  "code": null,
+  "outcome": "Explain how and why hexadecimal is used."
+ },
+ {
+  "grade": "IGCSE",
+  "unit": "1 Data representation",
+  "topic": "1.1 Number systems",
+  "subtopic": "Binary addition and shifts",
+  "code": null,
+  "outcome": "Add two positive 8-bit binary integers."
+ },
+ {
+  "grade": "IGCSE",
+  "unit": "1 Data representation",
+  "topic": "1.1 Number systems",
+  "subtopic": "Binary addition and shifts",
+  "code": null,
+  "outcome": "Explain overflow and why it occurs in binary addition."
+ },
+ {
+  "grade": "IGCSE",
+  "unit": "1 Data representation",
+  "topic": "1.1 Number systems",
+  "subtopic": "Binary addition and shifts",
+  "code": null,
+  "outcome": "Perform logical left and right shifts and explain their effect on the value."
+ },
+ {
+  "grade": "IGCSE",
+  "unit": "1 Data representation",
+  "topic": "1.1 Number systems",
+  "subtopic": "Two's complement",
+  "code": null,
+  "outcome": "Use two's complement to represent positive and negative 8-bit integers and convert both ways."
+ },
+ {
+  "grade": "IGCSE",
+  "unit": "1 Data representation",
+  "topic": "1.2 Text, sound and images",
+  "subtopic": "Representing text, sound and images",
+  "code": "1.2",
+  "outcome": "Explain how a computer represents text with ASCII and Unicode."
+ },
+ {
+  "grade": "IGCSE",
+  "unit": "1 Data representation",
+  "topic": "1.2 Text, sound and images",
+  "subtopic": "Representing text, sound and images",
+  "code": null,
+  "outcome": "Explain how sound is represented, including sample rate and sample resolution."
+ },
+ {
+  "grade": "IGCSE",
+  "unit": "1 Data representation",
+  "topic": "1.2 Text, sound and images",
+  "subtopic": "Representing text, sound and images",
+  "code": null,
+  "outcome": "Explain how an image is represented, including resolution and colour depth."
+ },
+ {
+  "grade": "IGCSE",
+  "unit": "1 Data representation",
+  "topic": "1.3 Data storage and compression",
+  "subtopic": "Storage units and file sizes",
+  "code": "1.3",
+  "outcome": "Explain how data storage is measured, from bit and nibble to exbibyte."
+ },
+ {
+  "grade": "IGCSE",
+  "unit": "1 Data representation",
+  "topic": "1.3 Data storage and compression",
+  "subtopic": "Storage units and file sizes",
+  "code": null,
+  "outcome": "Calculate the file size of an image or sound file using 1024."
+ },
+ {
+  "grade": "IGCSE",
+  "unit": "1 Data representation",
+  "topic": "1.3 Data storage and compression",
+  "subtopic": "Data compression",
+  "code": null,
+  "outcome": "Explain the purpose of and need for data compression."
+ },
+ {
+  "grade": "IGCSE",
+  "unit": "1 Data representation",
+  "topic": "1.3 Data storage and compression",
+  "subtopic": "Data compression",
+  "code": null,
+  "outcome": "Explain lossy and lossless compression, such as run length encoding."
+ },
+ {
+  "grade": "IGCSE",
+  "unit": "2 Data transmission",
+  "topic": "2.1 Types and methods of data transmission",
+  "subtopic": "Packets and packet switching",
+  "code": "2.1",
+  "outcome": "Explain that data is sent as packets."
+ },
+ {
+  "grade": "IGCSE",
+  "unit": "2 Data transmission",
+  "topic": "2.1 Types and methods of data transmission",
+  "subtopic": "Packets and packet switching",
+  "code": null,
+  "outcome": "Describe the structure of a packet: header, payload and trailer."
+ },
+ {
+  "grade": "IGCSE",
+  "unit": "2 Data transmission",
+  "topic": "2.1 Types and methods of data transmission",
+  "subtopic": "Packets and packet switching",
+  "code": null,
+  "outcome": "Describe packet switching, routers and reordering."
+ },
+ {
+  "grade": "IGCSE",
+  "unit": "2 Data transmission",
+  "topic": "2.1 Types and methods of data transmission",
+  "subtopic": "Transmission methods and USB",
+  "code": null,
+  "outcome": "Describe serial, parallel, simplex, half-duplex and full-duplex transmission."
+ },
+ {
+  "grade": "IGCSE",
+  "unit": "2 Data transmission",
+  "topic": "2.1 Types and methods of data transmission",
+  "subtopic": "Transmission methods and USB",
+  "code": null,
+  "outcome": "Explain which method suits a given scenario."
+ },
+ {
+  "grade": "IGCSE",
+  "unit": "2 Data transmission",
+  "topic": "2.1 Types and methods of data transmission",
+  "subtopic": "Transmission methods and USB",
+  "code": null,
+  "outcome": "Explain the USB interface, with benefits and drawbacks."
+ },
+ {
+  "grade": "IGCSE",
+  "unit": "2 Data transmission",
+  "topic": "2.2 Methods of error detection",
+  "subtopic": "Detecting errors",
+  "code": "2.2",
+  "outcome": "Explain why transmitted data is checked and how errors occur."
+ },
+ {
+  "grade": "IGCSE",
+  "unit": "2 Data transmission",
+  "topic": "2.2 Methods of error detection",
+  "subtopic": "Detecting errors",
+  "code": null,
+  "outcome": "Describe parity check, checksum and echo check."
+ },
+ {
+  "grade": "IGCSE",
+  "unit": "2 Data transmission",
+  "topic": "2.2 Methods of error detection",
+  "subtopic": "Detecting errors",
+  "code": null,
+  "outcome": "Describe how a check digit detects data entry errors, such as ISBN and bar codes."
+ },
+ {
+  "grade": "IGCSE",
+  "unit": "2 Data transmission",
+  "topic": "2.2 Methods of error detection",
+  "subtopic": "Detecting errors",
+  "code": null,
+  "outcome": "Describe automatic repeat query with acknowledgements and timeout."
+ },
+ {
+  "grade": "IGCSE",
+  "unit": "2 Data transmission",
+  "topic": "2.3 Encryption",
+  "subtopic": "Encryption",
+  "code": "2.3",
+  "outcome": "Explain the need for and purpose of encryption."
+ },
+ {
+  "grade": "IGCSE",
+  "unit": "2 Data transmission",
+  "topic": "2.3 Encryption",
+  "subtopic": "Encryption",
+  "code": null,
+  "outcome": "Explain symmetric and asymmetric encryption with public and private keys."
+ },
+ {
+  "grade": "IGCSE",
+  "unit": "3 Hardware",
+  "topic": "3.1 Computer architecture",
+  "subtopic": "The CPU and Von Neumann architecture",
+  "code": "3.1",
+  "outcome": "Explain the role of the CPU and what a microprocessor is."
+ },
+ {
+  "grade": "IGCSE",
+  "unit": "3 Hardware",
+  "topic": "3.1 Computer architecture",
+  "subtopic": "The CPU and Von Neumann architecture",
+  "code": null,
+  "outcome": "Explain the purpose of the ALU, control unit, registers and buses in a Von Neumann CPU."
+ },
+ {
+  "grade": "IGCSE",
+  "unit": "3 Hardware",
+  "topic": "3.1 Computer architecture",
+  "subtopic": "The CPU and Von Neumann architecture",
+  "code": null,
+  "outcome": "Describe the fetch-decode-execute cycle."
+ },
+ {
+  "grade": "IGCSE",
+  "unit": "3 Hardware",
+  "topic": "3.1 Computer architecture",
+  "subtopic": "CPU performance, instruction sets and embedded systems",
+  "code": null,
+  "outcome": "Explain how cores, cache and clock speed affect CPU performance."
+ },
+ {
+  "grade": "IGCSE",
+  "unit": "3 Hardware",
+  "topic": "3.1 Computer architecture",
+  "subtopic": "CPU performance, instruction sets and embedded systems",
+  "code": null,
+  "outcome": "Explain the purpose and use of a CPU instruction set."
+ },
+ {
+  "grade": "IGCSE",
+  "unit": "3 Hardware",
+  "topic": "3.1 Computer architecture",
+  "subtopic": "CPU performance, instruction sets and embedded systems",
+  "code": null,
+  "outcome": "Describe embedded systems and identify common devices."
+ },
+ {
+  "grade": "IGCSE",
+  "unit": "3 Hardware",
+  "topic": "3.2 Input and output devices",
+  "subtopic": "Input and output devices",
+  "code": "3.2",
+  "outcome": "Explain what an input device is and why it is needed, with examples."
+ },
+ {
+  "grade": "IGCSE",
+  "unit": "3 Hardware",
+  "topic": "3.2 Input and output devices",
+  "subtopic": "Input and output devices",
+  "code": null,
+  "outcome": "Explain what an output device is and why it is needed, with examples."
+ },
+ {
+  "grade": "IGCSE",
+  "unit": "3 Hardware",
+  "topic": "3.2 Input and output devices",
+  "subtopic": "Sensors",
+  "code": null,
+  "outcome": "Explain what sensors are and what they are for."
+ },
+ {
+  "grade": "IGCSE",
+  "unit": "3 Hardware",
+  "topic": "3.2 Input and output devices",
+  "subtopic": "Sensors",
+  "code": null,
+  "outcome": "Identify the data each sensor captures and choose a suitable sensor for a context."
+ },
+ {
+  "grade": "IGCSE",
+  "unit": "3 Hardware",
+  "topic": "3.3 Data storage",
+  "subtopic": "Primary storage and virtual memory",
+  "code": "3.3",
+  "outcome": "Explain primary storage, including RAM and ROM and why both are needed."
+ },
+ {
+  "grade": "IGCSE",
+  "unit": "3 Hardware",
+  "topic": "3.3 Data storage",
+  "subtopic": "Primary storage and virtual memory",
+  "code": null,
+  "outcome": "Describe virtual memory, how it is made and why it is needed."
+ },
+ {
+  "grade": "IGCSE",
+  "unit": "3 Hardware",
+  "topic": "3.3 Data storage",
+  "subtopic": "Secondary storage",
+  "code": null,
+  "outcome": "Explain secondary storage."
+ },
+ {
+  "grade": "IGCSE",
+  "unit": "3 Hardware",
+  "topic": "3.3 Data storage",
+  "subtopic": "Secondary storage",
+  "code": null,
+  "outcome": "Describe magnetic, optical and solid-state storage with examples."
+ },
+ {
+  "grade": "IGCSE",
+  "unit": "3 Hardware",
+  "topic": "3.3 Data storage",
+  "subtopic": "Cloud storage",
+  "code": null,
+  "outcome": "Explain cloud storage."
+ },
+ {
+  "grade": "IGCSE",
+  "unit": "3 Hardware",
+  "topic": "3.3 Data storage",
+  "subtopic": "Cloud storage",
+  "code": null,
+  "outcome": "Weigh the advantages and disadvantages of cloud against local storage."
+ },
+ {
+  "grade": "IGCSE",
+  "unit": "3 Hardware",
+  "topic": "3.4 Network hardware",
+  "subtopic": "Network hardware and addresses",
+  "code": "3.4",
+  "outcome": "Explain that a network interface card is needed to join a network."
+ },
+ {
+  "grade": "IGCSE",
+  "unit": "3 Hardware",
+  "topic": "3.4 Network hardware",
+  "subtopic": "Network hardware and addresses",
+  "code": null,
+  "outcome": "Explain MAC addresses, including their structure."
+ },
+ {
+  "grade": "IGCSE",
+  "unit": "3 Hardware",
+  "topic": "3.4 Network hardware",
+  "subtopic": "Network hardware and addresses",
+  "code": null,
+  "outcome": "Explain IP addresses and the differences between IPv4 and IPv6."
+ },
+ {
+  "grade": "IGCSE",
+  "unit": "3 Hardware",
+  "topic": "3.4 Network hardware",
+  "subtopic": "Network hardware and addresses",
+  "code": null,
+  "outcome": "Describe the role of a router."
+ },
+ {
+  "grade": "IGCSE",
+  "unit": "4 Software",
+  "topic": "4.1 Types of software and interrupts",
+  "subtopic": "System and application software",
+  "code": "4.1",
+  "outcome": "Describe system software against application software with examples."
+ },
+ {
+  "grade": "IGCSE",
+  "unit": "4 Software",
+  "topic": "4.1 Types of software and interrupts",
+  "subtopic": "System and application software",
+  "code": null,
+  "outcome": "Describe the role and basic functions of an operating system."
+ },
+ {
+  "grade": "IGCSE",
+  "unit": "4 Software",
+  "topic": "4.1 Types of software and interrupts",
+  "subtopic": "System and application software",
+  "code": null,
+  "outcome": "Explain how hardware, firmware and the operating system run applications."
+ },
+ {
+  "grade": "IGCSE",
+  "unit": "4 Software",
+  "topic": "4.1 Types of software and interrupts",
+  "subtopic": "Interrupts",
+  "code": null,
+  "outcome": "Describe how interrupts are generated, handled by an interrupt service routine, and their results."
+ },
+ {
+  "grade": "IGCSE",
+  "unit": "4 Software",
+  "topic": "4.2 Types of programming language, translators and IDEs",
+  "subtopic": "Programming languages and translators",
+  "code": "4.2",
+  "outcome": "Explain high-level and low-level languages, with their advantages and disadvantages."
+ },
+ {
+  "grade": "IGCSE",
+  "unit": "4 Software",
+  "topic": "4.2 Types of programming language, translators and IDEs",
+  "subtopic": "Programming languages and translators",
+  "code": null,
+  "outcome": "Explain assembly language and the need for an assembler."
+ },
+ {
+  "grade": "IGCSE",
+  "unit": "4 Software",
+  "topic": "4.2 Types of programming language, translators and IDEs",
+  "subtopic": "Programming languages and translators",
+  "code": null,
+  "outcome": "Describe how a compiler and an interpreter work and report errors."
+ },
+ {
+  "grade": "IGCSE",
+  "unit": "4 Software",
+  "topic": "4.2 Types of programming language, translators and IDEs",
+  "subtopic": "Programming languages and translators",
+  "code": null,
+  "outcome": "Weigh the advantages and disadvantages of compilers and interpreters."
+ },
+ {
+  "grade": "IGCSE",
+  "unit": "4 Software",
+  "topic": "4.2 Types of programming language, translators and IDEs",
+  "subtopic": "Integrated development environments",
+  "code": null,
+  "outcome": "Explain the role and common functions of an IDE."
+ },
+ {
+  "grade": "IGCSE",
+  "unit": "5 The internet and its uses",
+  "topic": "5.1 The internet and the world wide web",
+  "subtopic": "The internet, the web and URLs",
+  "code": "5.1",
+  "outcome": "Explain the difference between the internet and the world wide web."
+ },
+ {
+  "grade": "IGCSE",
+  "unit": "5 The internet and its uses",
+  "topic": "5.1 The internet and the world wide web",
+  "subtopic": "The internet, the web and URLs",
+  "code": null,
+  "outcome": "Explain what a URL is."
+ },
+ {
+  "grade": "IGCSE",
+  "unit": "5 The internet and its uses",
+  "topic": "5.1 The internet and the world wide web",
+  "subtopic": "The internet, the web and URLs",
+  "code": null,
+  "outcome": "Describe the purpose and operation of HTTP and HTTPS."
+ },
+ {
+  "grade": "IGCSE",
+  "unit": "5 The internet and its uses",
+  "topic": "5.1 The internet and the world wide web",
+  "subtopic": "Browsers, web page retrieval and cookies",
+  "code": null,
+  "outcome": "Explain the purpose and functions of a web browser."
+ },
+ {
+  "grade": "IGCSE",
+  "unit": "5 The internet and its uses",
+  "topic": "5.1 The internet and the world wide web",
+  "subtopic": "Browsers, web page retrieval and cookies",
+  "code": null,
+  "outcome": "Describe how a web page is located, retrieved and displayed from a URL."
+ },
+ {
+  "grade": "IGCSE",
+  "unit": "5 The internet and its uses",
+  "topic": "5.1 The internet and the world wide web",
+  "subtopic": "Browsers, web page retrieval and cookies",
+  "code": null,
+  "outcome": "Explain cookies, including session and persistent cookies."
+ },
+ {
+  "grade": "IGCSE",
+  "unit": "5 The internet and its uses",
+  "topic": "5.2 Digital currency",
+  "subtopic": "Digital currency and blockchain",
+  "code": "5.2",
+  "outcome": "Explain digital currency and how it is used."
+ },
+ {
+  "grade": "IGCSE",
+  "unit": "5 The internet and its uses",
+  "topic": "5.2 Digital currency",
+  "subtopic": "Digital currency and blockchain",
+  "code": null,
+  "outcome": "Explain blockchain and how it tracks digital currency transactions."
+ },
+ {
+  "grade": "IGCSE",
+  "unit": "5 The internet and its uses",
+  "topic": "5.3 Cyber security",
+  "subtopic": "Cyber security threats",
+  "code": "5.3",
+  "outcome": "Describe how a range of security threats work and what they aim to do: brute force, interception, DDoS, hacking, malware, pharming, phishing and social engineering."
+ },
+ {
+  "grade": "IGCSE",
+  "unit": "5 The internet and its uses",
+  "topic": "5.3 Cyber security",
+  "subtopic": "Keeping data safe",
+  "code": null,
+  "outcome": "Explain solutions to keep data safe: access levels, anti-malware, authentication, updates, careful checking of messages and links, firewalls, privacy settings, proxy servers and SSL."
+ },
+ {
+  "grade": "IGCSE",
+  "unit": "6 Automated and emerging technologies",
+  "topic": "6.1 Automated systems",
+  "subtopic": "Automated systems",
+  "code": "6.1",
+  "outcome": "Describe how sensors, microprocessors and actuators work together in automated systems."
+ },
+ {
+  "grade": "IGCSE",
+  "unit": "6 Automated and emerging technologies",
+  "topic": "6.1 Automated systems",
+  "subtopic": "Automated systems",
+  "code": null,
+  "outcome": "Describe advantages and disadvantages of an automated system in a scenario."
+ },
+ {
+  "grade": "IGCSE",
+  "unit": "6 Automated and emerging technologies",
+  "topic": "6.2 Robotics",
+  "subtopic": "Robotics",
+  "code": "6.2",
+  "outcome": "Explain what robotics is."
+ },
+ {
+  "grade": "IGCSE",
+  "unit": "6 Automated and emerging technologies",
+  "topic": "6.2 Robotics",
+  "subtopic": "Robotics",
+  "code": null,
+  "outcome": "Describe the characteristics of a robot."
+ },
+ {
+  "grade": "IGCSE",
+  "unit": "6 Automated and emerging technologies",
+  "topic": "6.2 Robotics",
+  "subtopic": "Robotics",
+  "code": null,
+  "outcome": "Describe the roles of robots and the advantages and disadvantages of using them."
+ },
+ {
+  "grade": "IGCSE",
+  "unit": "6 Automated and emerging technologies",
+  "topic": "6.3 Artificial intelligence",
+  "subtopic": "Artificial intelligence",
+  "code": "6.3",
+  "outcome": "Explain what artificial intelligence is."
+ },
+ {
+  "grade": "IGCSE",
+  "unit": "6 Automated and emerging technologies",
+  "topic": "6.3 Artificial intelligence",
+  "subtopic": "Artificial intelligence",
+  "code": null,
+  "outcome": "Describe the main characteristics of AI: data and rules, reasoning, learning and adapting."
+ },
+ {
+  "grade": "IGCSE",
+  "unit": "6 Automated and emerging technologies",
+  "topic": "6.3 Artificial intelligence",
+  "subtopic": "Artificial intelligence",
+  "code": null,
+  "outcome": "Explain how expert systems and machine learning work and their components."
+ },
+ {
+  "grade": "IGCSE",
+  "unit": "7 Algorithm design and problem-solving",
+  "topic": "7 Algorithm design and problem-solving",
+  "subtopic": "Program development and decomposition",
+  "code": null,
+  "outcome": "Explain the program development life cycle: analysis, design, coding and testing."
+ },
+ {
+  "grade": "IGCSE",
+  "unit": "7 Algorithm design and problem-solving",
+  "topic": "7 Algorithm design and problem-solving",
+  "subtopic": "Program development and decomposition",
+  "code": null,
+  "outcome": "Explain that systems are made of sub-systems."
+ },
+ {
+  "grade": "IGCSE",
+  "unit": "7 Algorithm design and problem-solving",
+  "topic": "7 Algorithm design and problem-solving",
+  "subtopic": "Program development and decomposition",
+  "code": null,
+  "outcome": "Decompose a problem into inputs, processes, outputs and storage."
+ },
+ {
+  "grade": "IGCSE",
+  "unit": "7 Algorithm design and problem-solving",
+  "topic": "7 Algorithm design and problem-solving",
+  "subtopic": "Program development and decomposition",
+  "code": null,
+  "outcome": "Design solutions using structure diagrams, flowcharts and pseudocode."
+ },
+ {
+  "grade": "IGCSE",
+  "unit": "7 Algorithm design and problem-solving",
+  "topic": "7 Algorithm design and problem-solving",
+  "subtopic": "Understanding and writing algorithms",
+  "code": null,
+  "outcome": "Explain the purpose of a given algorithm."
+ },
+ {
+  "grade": "IGCSE",
+  "unit": "7 Algorithm design and problem-solving",
+  "topic": "7 Algorithm design and problem-solving",
+  "subtopic": "Understanding and writing algorithms",
+  "code": null,
+  "outcome": "Describe standard methods: linear search, bubble sort, totalling, counting, maximum, minimum and average."
+ },
+ {
+  "grade": "IGCSE",
+  "unit": "7 Algorithm design and problem-solving",
+  "topic": "7 Algorithm design and problem-solving",
+  "subtopic": "Understanding and writing algorithms",
+  "code": null,
+  "outcome": "Write and amend algorithms using pseudocode, code and flowcharts."
+ },
+ {
+  "grade": "IGCSE",
+  "unit": "7 Algorithm design and problem-solving",
+  "topic": "7 Algorithm design and problem-solving",
+  "subtopic": "Validation, verification and testing",
+  "code": null,
+  "outcome": "Explain validation checks and their types."
+ },
+ {
+  "grade": "IGCSE",
+  "unit": "7 Algorithm design and problem-solving",
+  "topic": "7 Algorithm design and problem-solving",
+  "subtopic": "Validation, verification and testing",
+  "code": null,
+  "outcome": "Explain verification checks: visual check and double entry."
+ },
+ {
+  "grade": "IGCSE",
+  "unit": "7 Algorithm design and problem-solving",
+  "topic": "7 Algorithm design and problem-solving",
+  "subtopic": "Validation, verification and testing",
+  "code": null,
+  "outcome": "Suggest and apply normal, abnormal, extreme and boundary test data."
+ },
+ {
+  "grade": "IGCSE",
+  "unit": "7 Algorithm design and problem-solving",
+  "topic": "7 Algorithm design and problem-solving",
+  "subtopic": "Trace tables and errors",
+  "code": null,
+  "outcome": "Complete a trace table for a dry-run."
+ },
+ {
+  "grade": "IGCSE",
+  "unit": "7 Algorithm design and problem-solving",
+  "topic": "7 Algorithm design and problem-solving",
+  "subtopic": "Trace tables and errors",
+  "code": null,
+  "outcome": "Identify errors in algorithms and suggest corrections."
+ },
+ {
+  "grade": "IGCSE",
+  "unit": "8 Programming",
+  "topic": "8.1 Programming concepts",
+  "subtopic": "Variables, data types and input/output",
+  "code": "8.1",
+  "outcome": "Declare and use variables and constants."
+ },
+ {
+  "grade": "IGCSE",
+  "unit": "8 Programming",
+  "topic": "8.1 Programming concepts",
+  "subtopic": "Variables, data types and input/output",
+  "code": null,
+  "outcome": "Use the basic data types: integer, real, char, string and Boolean."
+ },
+ {
+  "grade": "IGCSE",
+  "unit": "8 Programming",
+  "topic": "8.1 Programming concepts",
+  "subtopic": "Variables, data types and input/output",
+  "code": null,
+  "outcome": "Use input and output."
+ },
+ {
+  "grade": "IGCSE",
+  "unit": "8 Programming",
+  "topic": "8.1 Programming concepts",
+  "subtopic": "Sequence, selection and iteration",
+  "code": null,
+  "outcome": "Use sequence."
+ },
+ {
+  "grade": "IGCSE",
+  "unit": "8 Programming",
+  "topic": "8.1 Programming concepts",
+  "subtopic": "Sequence, selection and iteration",
+  "code": null,
+  "outcome": "Use selection with IF and CASE statements."
+ },
+ {
+  "grade": "IGCSE",
+  "unit": "8 Programming",
+  "topic": "8.1 Programming concepts",
+  "subtopic": "Sequence, selection and iteration",
+  "code": null,
+  "outcome": "Use iteration with count-controlled, pre-condition and post-condition loops."
+ },
+ {
+  "grade": "IGCSE",
+  "unit": "8 Programming",
+  "topic": "8.1 Programming concepts",
+  "subtopic": "Sequence, selection and iteration",
+  "code": null,
+  "outcome": "Use totalling and counting."
+ },
+ {
+  "grade": "IGCSE",
+  "unit": "8 Programming",
+  "topic": "8.1 Programming concepts",
+  "subtopic": "Sequence, selection and iteration",
+  "code": null,
+  "outcome": "Use nested statements, up to three levels."
+ },
+ {
+  "grade": "IGCSE",
+  "unit": "8 Programming",
+  "topic": "8.1 Programming concepts",
+  "subtopic": "Strings and operators",
+  "code": null,
+  "outcome": "Use string handling: length, substring, upper and lower."
+ },
+ {
+  "grade": "IGCSE",
+  "unit": "8 Programming",
+  "topic": "8.1 Programming concepts",
+  "subtopic": "Strings and operators",
+  "code": null,
+  "outcome": "Use arithmetic, relational and logical operators."
+ },
+ {
+  "grade": "IGCSE",
+  "unit": "8 Programming",
+  "topic": "8.1 Programming concepts",
+  "subtopic": "Procedures, functions and maintainable code",
+  "code": null,
+  "outcome": "Explain procedures, functions and parameters."
+ },
+ {
+  "grade": "IGCSE",
+  "unit": "8 Programming",
+  "topic": "8.1 Programming concepts",
+  "subtopic": "Procedures, functions and maintainable code",
+  "code": null,
+  "outcome": "Define and use procedures and functions with up to three parameters."
+ },
+ {
+  "grade": "IGCSE",
+  "unit": "8 Programming",
+  "topic": "8.1 Programming concepts",
+  "subtopic": "Procedures, functions and maintainable code",
+  "code": null,
+  "outcome": "Use local and global variables."
+ },
+ {
+  "grade": "IGCSE",
+  "unit": "8 Programming",
+  "topic": "8.1 Programming concepts",
+  "subtopic": "Procedures, functions and maintainable code",
+  "code": null,
+  "outcome": "Use library routines: MOD, DIV, ROUND and RANDOM."
+ },
+ {
+  "grade": "IGCSE",
+  "unit": "8 Programming",
+  "topic": "8.1 Programming concepts",
+  "subtopic": "Procedures, functions and maintainable code",
+  "code": null,
+  "outcome": "Write maintainable programs with meaningful identifiers and comments."
+ },
+ {
+  "grade": "IGCSE",
+  "unit": "8 Programming",
+  "topic": "8.2 Arrays",
+  "subtopic": "Arrays",
+  "code": "8.2",
+  "outcome": "Declare and use one-dimensional and two-dimensional arrays."
+ },
+ {
+  "grade": "IGCSE",
+  "unit": "8 Programming",
+  "topic": "8.2 Arrays",
+  "subtopic": "Arrays",
+  "code": null,
+  "outcome": "Explain the use of arrays, including variables as indexes."
+ },
+ {
+  "grade": "IGCSE",
+  "unit": "8 Programming",
+  "topic": "8.2 Arrays",
+  "subtopic": "Arrays",
+  "code": null,
+  "outcome": "Write to and read from arrays using iteration, including nested loops."
+ },
+ {
+  "grade": "IGCSE",
+  "unit": "8 Programming",
+  "topic": "8.3 File handling",
+  "subtopic": "File handling",
+  "code": "8.3",
+  "outcome": "Explain the purpose of storing data in a file for a program."
+ },
+ {
+  "grade": "IGCSE",
+  "unit": "8 Programming",
+  "topic": "8.3 File handling",
+  "subtopic": "File handling",
+  "code": null,
+  "outcome": "Open, close, read from and write to a file."
+ },
+ {
+  "grade": "IGCSE",
+  "unit": "9 Databases",
+  "topic": "9 Databases",
+  "subtopic": "Database design",
+  "code": null,
+  "outcome": "Define a single-table database: fields, records and validation."
+ },
+ {
+  "grade": "IGCSE",
+  "unit": "9 Databases",
+  "topic": "9 Databases",
+  "subtopic": "Database design",
+  "code": null,
+  "outcome": "Suggest suitable basic data types."
+ },
+ {
+  "grade": "IGCSE",
+  "unit": "9 Databases",
+  "topic": "9 Databases",
+  "subtopic": "Database design",
+  "code": null,
+  "outcome": "Explain a primary key and choose one for a table."
+ },
+ {
+  "grade": "IGCSE",
+  "unit": "9 Databases",
+  "topic": "9 Databases",
+  "subtopic": "SQL queries",
+  "code": null,
+  "outcome": "Read, understand and complete SQL scripts using SELECT, FROM, WHERE, ORDER BY, SUM, COUNT, AND and OR."
+ },
+ {
+  "grade": "IGCSE",
+  "unit": "9 Databases",
+  "topic": "9 Databases",
+  "subtopic": "SQL queries",
+  "code": null,
+  "outcome": "Identify the output of an SQL statement on a given table."
+ },
+ {
+  "grade": "IGCSE",
+  "unit": "10 Boolean logic",
+  "topic": "10 Boolean logic",
+  "subtopic": "Logic gates",
+  "code": null,
+  "outcome": "Identify and use the standard symbols for logic gates."
+ },
+ {
+  "grade": "IGCSE",
+  "unit": "10 Boolean logic",
+  "topic": "10 Boolean logic",
+  "subtopic": "Logic gates",
+  "code": null,
+  "outcome": "Define and understand the functions of NOT, AND, OR, NAND, NOR and XOR gates."
+ },
+ {
+  "grade": "IGCSE",
+  "unit": "10 Boolean logic",
+  "topic": "10 Boolean logic",
+  "subtopic": "Logic circuits and truth tables",
+  "code": null,
+  "outcome": "Create logic circuits from a problem statement, expression or truth table."
+ },
+ {
+  "grade": "IGCSE",
+  "unit": "10 Boolean logic",
+  "topic": "10 Boolean logic",
+  "subtopic": "Logic circuits and truth tables",
+  "code": null,
+  "outcome": "Complete truth tables from a statement, expression or circuit."
+ },
+ {
+  "grade": "IGCSE",
+  "unit": "10 Boolean logic",
+  "topic": "10 Boolean logic",
+  "subtopic": "Logic circuits and truth tables",
+  "code": null,
+  "outcome": "Write logic expressions from a statement, circuit or truth table."
+ }
+]

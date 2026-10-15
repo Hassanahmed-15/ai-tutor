@@ -1,0 +1,3121 @@
+{
+ "id": "au-ac9-mathematics-f-10",
+ "region": "AU",
+ "framework": "Australian Curriculum Version 9.0 (F-10)",
+ "board": "ACARA",
+ "qualification": null,
+ "subject": "Mathematics",
+ "syllabusCode": "MATMAT",
+ "gradeSystem": "year",
+ "source": {
+  "urls": [
+   "https://vocabulary.curriculum.edu.au/MRAC/2024/04/LA/MAT/export/MRAC/2024/04/LA/MAT.jsonld",
+   "https://www.australiancurriculum.edu.au/content/dam/en/curriculum/ac-version-9/downloads/curriculum-workbook.xlsx"
+  ],
+  "publisher": "Australian Curriculum, Assessment and Reporting Authority (ACARA)",
+  "licence": "© ACARA, Australian Curriculum v9.0, CC BY 4.0",
+  "firstExam": null
+ },
+ "grades": [
+  {
+   "grade": "Foundation",
+   "units": [
+    {
+     "id": "number",
+     "title": "Number",
+     "topics": [
+      {
+       "id": "number",
+       "title": "Number",
+       "subtopics": [
+        {
+         "id": "numbers-to-20",
+         "title": "Numbers to 20",
+         "outcomes": [
+          {
+           "code": "AC9MFN01",
+           "text": "name, represent and order numbers including zero to at least 20, using physical and virtual materials and numerals"
+          }
+         ]
+        },
+        {
+         "id": "subitising-to-5",
+         "title": "Subitising to 5",
+         "outcomes": [
+          {
+           "code": "AC9MFN02",
+           "text": "recognise and name the number of objects within a collection up to 5 using subitising"
+          }
+         ]
+        },
+        {
+         "id": "compare-collections",
+         "title": "Compare Collections",
+         "outcomes": [
+          {
+           "code": "AC9MFN03",
+           "text": "quantify and compare collections to at least 20 using counting and explain or demonstrate reasoning"
+          }
+         ]
+        },
+        {
+         "id": "parts-of-numbers-to-10",
+         "title": "Parts of Numbers to 10",
+         "outcomes": [
+          {
+           "code": "AC9MFN04",
+           "text": "partition and combine collections up to 10 using part-part-whole relationships and subitising to recognise and name the parts"
+          }
+         ]
+        },
+        {
+         "id": "addition-and-subtraction-situations",
+         "title": "Addition and Subtraction Situations",
+         "outcomes": [
+          {
+           "code": "AC9MFN05",
+           "text": "represent practical situations involving addition, subtraction and quantification with physical and virtual materials and use counting or subitising strategies"
+          }
+         ]
+        },
+        {
+         "id": "sharing-and-grouping",
+         "title": "Sharing and Grouping",
+         "outcomes": [
+          {
+           "code": "AC9MFN06",
+           "text": "represent practical situations that involve equal sharing and grouping with physical and virtual materials and use counting or subitising strategies"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "algebra",
+     "title": "Algebra",
+     "topics": [
+      {
+       "id": "algebra",
+       "title": "Algebra",
+       "subtopics": [
+        {
+         "id": "algebra",
+         "title": "Algebra",
+         "outcomes": [
+          {
+           "code": "AC9MFA01",
+           "text": "recognise, copy and continue repeating patterns represented in different ways"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "measurement",
+     "title": "Measurement",
+     "topics": [
+      {
+       "id": "measurement",
+       "title": "Measurement",
+       "subtopics": [
+        {
+         "id": "measurement",
+         "title": "Measurement",
+         "outcomes": [
+          {
+           "code": "AC9MFM01",
+           "text": "identify and compare attributes of objects and events, including length, capacity, mass and duration, using direct comparisons and communicating reasoning"
+          },
+          {
+           "code": "AC9MFM02",
+           "text": "sequence days of the week and times of the day including morning, lunchtime, afternoon and night time, and connect them to familiar events and actions"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "space",
+     "title": "Space",
+     "topics": [
+      {
+       "id": "space",
+       "title": "Space",
+       "subtopics": [
+        {
+         "id": "space",
+         "title": "Space",
+         "outcomes": [
+          {
+           "code": "AC9MFSP01",
+           "text": "sort, name and create familiar shapes; recognise and describe familiar shapes within objects in the environment, giving reasons"
+          },
+          {
+           "code": "AC9MFSP02",
+           "text": "describe the position and location of themselves and objects in relation to other people and objects within a familiar space"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "statistics",
+     "title": "Statistics",
+     "topics": [
+      {
+       "id": "statistics",
+       "title": "Statistics",
+       "subtopics": [
+        {
+         "id": "statistics",
+         "title": "Statistics",
+         "outcomes": [
+          {
+           "code": "AC9MFST01",
+           "text": "collect, sort and compare data represented by objects and images in response to given investigative questions that relate to familiar situations"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "1",
+   "units": [
+    {
+     "id": "number",
+     "title": "Number",
+     "topics": [
+      {
+       "id": "number",
+       "title": "Number",
+       "subtopics": [
+        {
+         "id": "numbers-to-120",
+         "title": "Numbers to 120",
+         "outcomes": [
+          {
+           "code": "AC9M1N01",
+           "text": "recognise, represent and order numbers to at least 120 using physical and virtual materials, numerals, number lines and charts"
+          }
+         ]
+        },
+        {
+         "id": "partition-tens-and-ones",
+         "title": "Partition Tens and Ones",
+         "outcomes": [
+          {
+           "code": "AC9M1N02",
+           "text": "partition one- and two-digit numbers in different ways using physical and virtual materials, including partitioning two-digit numbers into tens and ones"
+          }
+         ]
+        },
+        {
+         "id": "equal-groups-and-skip-counting",
+         "title": "Equal Groups and Skip Counting",
+         "outcomes": [
+          {
+           "code": "AC9M1N03",
+           "text": "quantify sets of objects, to at least 120, by partitioning collections into equal groups using number knowledge and skip counting"
+          }
+         ]
+        },
+        {
+         "id": "add-and-subtract-to-20",
+         "title": "Add and Subtract to 20",
+         "outcomes": [
+          {
+           "code": "AC9M1N04",
+           "text": "add and subtract numbers within 20, using physical and virtual materials, part-part-whole knowledge to 10 and a variety of calculation strategies"
+          }
+         ]
+        },
+        {
+         "id": "additive-problems-and-money",
+         "title": "Additive Problems and Money",
+         "outcomes": [
+          {
+           "code": "AC9M1N05",
+           "text": "use mathematical modelling to solve practical problems involving additive situations including simple money transactions; represent the situations with diagrams, physical and virtual materials, and use calculation strategies to solve the problem"
+          }
+         ]
+        },
+        {
+         "id": "sharing-and-grouping-problems",
+         "title": "Sharing and Grouping Problems",
+         "outcomes": [
+          {
+           "code": "AC9M1N06",
+           "text": "use mathematical modelling to solve practical problems involving equal sharing and grouping; represent the situations with diagrams, physical and virtual materials, and use calculation strategies to solve the problem"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "algebra",
+     "title": "Algebra",
+     "topics": [
+      {
+       "id": "algebra",
+       "title": "Algebra",
+       "subtopics": [
+        {
+         "id": "algebra",
+         "title": "Algebra",
+         "outcomes": [
+          {
+           "code": "AC9M1A01",
+           "text": "recognise, continue and create pattern sequences, with numbers, symbols, shapes and objects, formed by skip counting, initially by twos, fives and tens"
+          },
+          {
+           "code": "AC9M1A02",
+           "text": "recognise, continue and create repeating patterns with numbers, symbols, shapes and objects, identifying the repeating unit"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "measurement",
+     "title": "Measurement",
+     "topics": [
+      {
+       "id": "measurement",
+       "title": "Measurement",
+       "subtopics": [
+        {
+         "id": "compare-and-order",
+         "title": "Compare and Order",
+         "outcomes": [
+          {
+           "code": "AC9M1M01",
+           "text": "compare directly and indirectly and order objects and events using attributes of length, mass, capacity and duration, communicating reasoning"
+          }
+         ]
+        },
+        {
+         "id": "measure-length",
+         "title": "Measure Length",
+         "outcomes": [
+          {
+           "code": "AC9M1M02",
+           "text": "measure the length of shapes and objects using informal units, recognising that units need to be uniform and used end-to-end"
+          }
+         ]
+        },
+        {
+         "id": "describe-time",
+         "title": "Describe Time",
+         "outcomes": [
+          {
+           "code": "AC9M1M03",
+           "text": "describe the duration and sequence of events using years, months, weeks, days and hours"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "space",
+     "title": "Space",
+     "topics": [
+      {
+       "id": "space",
+       "title": "Space",
+       "subtopics": [
+        {
+         "id": "space",
+         "title": "Space",
+         "outcomes": [
+          {
+           "code": "AC9M1SP01",
+           "text": "make, compare and classify familiar shapes; recognise familiar shapes and objects in the environment, identifying the similarities and differences between them"
+          },
+          {
+           "code": "AC9M1SP02",
+           "text": "give and follow directions to move people and objects to different locations within a space"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "statistics",
+     "title": "Statistics",
+     "topics": [
+      {
+       "id": "statistics",
+       "title": "Statistics",
+       "subtopics": [
+        {
+         "id": "statistics",
+         "title": "Statistics",
+         "outcomes": [
+          {
+           "code": "AC9M1ST01",
+           "text": "acquire and record data for categorical variables in various ways including using digital tools, objects, images, drawings, lists, tally marks and symbols"
+          },
+          {
+           "code": "AC9M1ST02",
+           "text": "represent collected data for a categorical variable using one-to-one displays and digital tools where appropriate; compare the data using frequencies and discuss the findings"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "2",
+   "units": [
+    {
+     "id": "number",
+     "title": "Number",
+     "topics": [
+      {
+       "id": "number",
+       "title": "Number",
+       "subtopics": [
+        {
+         "id": "order-numbers-to-1000",
+         "title": "Order Numbers to 1000",
+         "outcomes": [
+          {
+           "code": "AC9M2N01",
+           "text": "recognise, represent and order numbers to at least 1000 using physical and virtual materials, numerals and number lines"
+          }
+         ]
+        },
+        {
+         "id": "place-value-regrouping",
+         "title": "Place Value Regrouping",
+         "outcomes": [
+          {
+           "code": "AC9M2N02",
+           "text": "partition, rearrange, regroup and rename two- and three-digit numbers using standard and non-standard groupings; recognise the role of a zero digit in place value notation"
+          }
+         ]
+        },
+        {
+         "id": "halves-quarters-and-eighths",
+         "title": "Halves Quarters and Eighths",
+         "outcomes": [
+          {
+           "code": "AC9M2N03",
+           "text": "recognise and describe one-half as one of 2 equal parts of a whole and connect halves, quarters and eighths through repeated halving"
+          }
+         ]
+        },
+        {
+         "id": "add-and-subtract-numbers",
+         "title": "Add and Subtract Numbers",
+         "outcomes": [
+          {
+           "code": "AC9M2N04",
+           "text": "add and subtract one- and two-digit numbers, representing problems using number sentences, and solve using part-part-whole reasoning and a variety of calculation strategies"
+          }
+         ]
+        },
+        {
+         "id": "multiply-and-divide",
+         "title": "Multiply and Divide",
+         "outcomes": [
+          {
+           "code": "AC9M2N05",
+           "text": "multiply and divide by one-digit numbers using repeated addition, equal grouping, arrays, and partitioning to support a variety of calculation strategies"
+          }
+         ]
+        },
+        {
+         "id": "solve-practical-number-problems",
+         "title": "Solve Practical Number Problems",
+         "outcomes": [
+          {
+           "code": "AC9M2N06",
+           "text": "use mathematical modelling to solve practical problems involving additive and multiplicative situations, including money transactions; represent situations and choose calculation strategies; interpret and communicate solutions in terms of the situation"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "algebra",
+     "title": "Algebra",
+     "topics": [
+      {
+       "id": "algebra",
+       "title": "Algebra",
+       "subtopics": [
+        {
+         "id": "additive-patterns",
+         "title": "Additive Patterns",
+         "outcomes": [
+          {
+           "code": "AC9M2A01",
+           "text": "recognise, describe and create additive patterns that increase or decrease by a constant amount, using numbers, shapes and objects, and identify missing elements in the pattern"
+          }
+         ]
+        },
+        {
+         "id": "addition-and-subtraction-facts",
+         "title": "Addition and Subtraction Facts",
+         "outcomes": [
+          {
+           "code": "AC9M2A02",
+           "text": "recall and demonstrate proficiency with addition facts to 20; extend and apply facts to develop related subtraction facts"
+          }
+         ]
+        },
+        {
+         "id": "twos-multiplication-and-division",
+         "title": "Twos Multiplication and Division",
+         "outcomes": [
+          {
+           "code": "AC9M2A03",
+           "text": "recall and demonstrate proficiency with multiplication facts for twos; extend and apply facts to develop the related division facts using doubling and halving"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "measurement",
+     "title": "Measurement",
+     "topics": [
+      {
+       "id": "measurement",
+       "title": "Measurement",
+       "subtopics": [
+        {
+         "id": "measure-length-capacity-and-mass",
+         "title": "Measure Length, Capacity, and Mass",
+         "outcomes": [
+          {
+           "code": "AC9M2M01",
+           "text": "measure and compare objects based on length, capacity and mass using appropriate uniform informal units and smaller units for accuracy when necessary"
+          }
+         ]
+        },
+        {
+         "id": "fractions-in-everyday-life",
+         "title": "Fractions in Everyday Life",
+         "outcomes": [
+          {
+           "code": "AC9M2M02",
+           "text": "identify common uses and represent halves, quarters and eighths in relation to shapes, objects and events"
+          }
+         ]
+        },
+        {
+         "id": "dates-and-days-on-calendars",
+         "title": "Dates and Days on Calendars",
+         "outcomes": [
+          {
+           "code": "AC9M2M03",
+           "text": "identify the date and determine the number of days between events using calendars"
+          }
+         ]
+        },
+        {
+         "id": "read-time-on-clocks",
+         "title": "Read Time on Clocks",
+         "outcomes": [
+          {
+           "code": "AC9M2M04",
+           "text": "recognise and read the time represented on an analog clock to the hour, half-hour and quarter-hour"
+          }
+         ]
+        },
+        {
+         "id": "measures-of-turn",
+         "title": "Measures of Turn",
+         "outcomes": [
+          {
+           "code": "AC9M2M05",
+           "text": "identify, describe and demonstrate quarter, half, three-quarter and full measures of turn in everyday situations"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "space",
+     "title": "Space",
+     "topics": [
+      {
+       "id": "space",
+       "title": "Space",
+       "subtopics": [
+        {
+         "id": "space",
+         "title": "Space",
+         "outcomes": [
+          {
+           "code": "AC9M2SP01",
+           "text": "recognise, compare and classify shapes, referencing the number of sides and using spatial terms such as “opposite”, “parallel”, “curved” and “straight”"
+          },
+          {
+           "code": "AC9M2SP02",
+           "text": "locate positions in two-dimensional representations of a familiar space; move positions by following directions and pathways"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "statistics",
+     "title": "Statistics",
+     "topics": [
+      {
+       "id": "statistics",
+       "title": "Statistics",
+       "subtopics": [
+        {
+         "id": "statistics",
+         "title": "Statistics",
+         "outcomes": [
+          {
+           "code": "AC9M2ST01",
+           "text": "acquire data for categorical variables through surveys, observation, experiment and using digital tools; sort data into relevant categories and display data using lists and tables"
+          },
+          {
+           "code": "AC9M2ST02",
+           "text": "create different graphical representations of data using software where appropriate; compare the different representations, identify and describe common and distinctive features in response to questions"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "3",
+   "units": [
+    {
+     "id": "number",
+     "title": "Number",
+     "topics": [
+      {
+       "id": "number",
+       "title": "Number",
+       "subtopics": [
+        {
+         "id": "large-natural-numbers",
+         "title": "Large Natural Numbers",
+         "outcomes": [
+          {
+           "code": "AC9M3N01",
+           "text": "recognise, represent and order natural numbers using naming and writing conventions for numerals beyond 10 000"
+          }
+         ]
+        },
+        {
+         "id": "unit-fractions-and-wholes",
+         "title": "Unit Fractions and Wholes",
+         "outcomes": [
+          {
+           "code": "AC9M3N02",
+           "text": "recognise and represent unit fractions including \\(\\frac12\\), \\(\\frac13\\), \\(\\frac14\\), \\(\\frac15\\) and \\(\\frac1{10}\\) and their multiples in different ways; combine fractions with the same denominator to complete the whole"
+          }
+         ]
+        },
+        {
+         "id": "adding-and-subtracting",
+         "title": "Adding and Subtracting",
+         "outcomes": [
+          {
+           "code": "AC9M3N03",
+           "text": "add and subtract two- and three-digit numbers using place value to partition, rearrange and regroup numbers to assist in calculations without a calculator"
+          }
+         ]
+        },
+        {
+         "id": "multiplication-and-division",
+         "title": "Multiplication and Division",
+         "outcomes": [
+          {
+           "code": "AC9M3N04",
+           "text": "multiply and divide one- and two-digit numbers, representing problems using number sentences, diagrams and arrays, and using a variety of calculation strategies"
+          }
+         ]
+        },
+        {
+         "id": "estimating-quantities",
+         "title": "Estimating Quantities",
+         "outcomes": [
+          {
+           "code": "AC9M3N05",
+           "text": "estimate the quantity of objects in collections and make estimates when solving problems to determine the reasonableness of calculations"
+          }
+         ]
+        },
+        {
+         "id": "modelling-number-problems",
+         "title": "Modelling Number Problems",
+         "outcomes": [
+          {
+           "code": "AC9M3N06",
+           "text": "use mathematical modelling to solve practical problems involving additive and multiplicative situations including financial contexts; formulate problems using number sentences and choose calculation strategies, using digital tools where appropriate; interpret and communicate solutions in terms of the situation"
+          }
+         ]
+        },
+        {
+         "id": "number-algorithms-and-patterns",
+         "title": "Number Algorithms and Patterns",
+         "outcomes": [
+          {
+           "code": "AC9M3N07",
+           "text": "follow and create algorithms involving a sequence of steps and decisions to investigate numbers; describe any emerging patterns"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "algebra",
+     "title": "Algebra",
+     "topics": [
+      {
+       "id": "algebra",
+       "title": "Algebra",
+       "subtopics": [
+        {
+         "id": "addition-and-subtraction-inverses",
+         "title": "Addition and Subtraction Inverses",
+         "outcomes": [
+          {
+           "code": "AC9M3A01",
+           "text": "recognise and explain the connection between addition and subtraction as inverse operations, apply to partition numbers and find unknown values in number sentences"
+          }
+         ]
+        },
+        {
+         "id": "mental-addition-and-subtraction",
+         "title": "Mental Addition and Subtraction",
+         "outcomes": [
+          {
+           "code": "AC9M3A02",
+           "text": "extend and apply knowledge of addition and subtraction facts to 20 to develop efficient mental strategies for computation with larger numbers without a calculator"
+          }
+         ]
+        },
+        {
+         "id": "multiplication-and-division-facts",
+         "title": "Multiplication and Division Facts",
+         "outcomes": [
+          {
+           "code": "AC9M3A03",
+           "text": "recall and demonstrate proficiency with multiplication facts for \\(3, 4, 5\\) and \\(10\\); extend and apply facts to develop the related division facts"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "measurement",
+     "title": "Measurement",
+     "topics": [
+      {
+       "id": "measurement",
+       "title": "Measurement",
+       "subtopics": [
+        {
+         "id": "metric-units-and-estimates",
+         "title": "Metric Units and Estimates",
+         "outcomes": [
+          {
+           "code": "AC9M3M01",
+           "text": "identify which metric units are used to measure everyday items; use measurements of familiar items and known units to make estimates"
+          }
+         ]
+        },
+        {
+         "id": "measuring-length-mass-capacity",
+         "title": "Measuring Length Mass Capacity",
+         "outcomes": [
+          {
+           "code": "AC9M3M02",
+           "text": "measure and compare objects using familiar metric units of length, mass and capacity, and instruments with labelled markings"
+          }
+         ]
+        },
+        {
+         "id": "units-of-time",
+         "title": "Units of Time",
+         "outcomes": [
+          {
+           "code": "AC9M3M03",
+           "text": "recognise and use the relationship between formal units of time including days, hours, minutes and seconds to estimate and compare the duration of events"
+          }
+         ]
+        },
+        {
+         "id": "reading-clocks",
+         "title": "Reading Clocks",
+         "outcomes": [
+          {
+           "code": "AC9M3M04",
+           "text": "describe the relationship between the hours and minutes on analog and digital clocks, and read the time to the nearest minute"
+          }
+         ]
+        },
+        {
+         "id": "comparing-angles",
+         "title": "Comparing Angles",
+         "outcomes": [
+          {
+           "code": "AC9M3M05",
+           "text": "identify angles as measures of turn and compare angles with right angles in everyday situations"
+          }
+         ]
+        },
+        {
+         "id": "dollars-and-cents",
+         "title": "Dollars and Cents",
+         "outcomes": [
+          {
+           "code": "AC9M3M06",
+           "text": "recognise the relationships between dollars and cents and represent money values in different ways"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "space",
+     "title": "Space",
+     "topics": [
+      {
+       "id": "space",
+       "title": "Space",
+       "subtopics": [
+        {
+         "id": "space",
+         "title": "Space",
+         "outcomes": [
+          {
+           "code": "AC9M3SP01",
+           "text": "make, compare and classify objects, identifying key features and explaining why these features make them suited to their uses"
+          },
+          {
+           "code": "AC9M3SP02",
+           "text": "interpret and create two-dimensional representations of familiar environments, locating key landmarks and objects relative to each other"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "statistics",
+     "title": "Statistics",
+     "topics": [
+      {
+       "id": "statistics",
+       "title": "Statistics",
+       "subtopics": [
+        {
+         "id": "collecting-and-recording-data",
+         "title": "Collecting and Recording Data",
+         "outcomes": [
+          {
+           "code": "AC9M3ST01",
+           "text": "acquire data for categorical and discrete numerical variables to address a question of interest or purpose by observing, collecting and accessing data sets; record the data using appropriate methods including frequency tables and spreadsheets"
+          }
+         ]
+        },
+        {
+         "id": "graphs-and-interpretation",
+         "title": "Graphs and Interpretation",
+         "outcomes": [
+          {
+           "code": "AC9M3ST02",
+           "text": "create and compare different graphical representations of data sets including using software where appropriate; interpret the data in terms of the context"
+          }
+         ]
+        },
+        {
+         "id": "statistical-investigations",
+         "title": "Statistical Investigations",
+         "outcomes": [
+          {
+           "code": "AC9M3ST03",
+           "text": "conduct guided statistical investigations involving the collection, representation and interpretation of data for categorical and discrete numerical variables with respect to questions of interest"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "probability",
+     "title": "Probability",
+     "topics": [
+      {
+       "id": "probability",
+       "title": "Probability",
+       "subtopics": [
+        {
+         "id": "probability",
+         "title": "Probability",
+         "outcomes": [
+          {
+           "code": "AC9M3P01",
+           "text": "identify practical activities and everyday events involving chance; describe possible outcomes and events as ‘likely’ or ‘unlikely’ and identify some events as ‘certain’ or ‘impossible’ explaining reasoning"
+          },
+          {
+           "code": "AC9M3P02",
+           "text": "conduct repeated chance experiments; identify and describe possible outcomes, record the results, recognise and discuss the variation"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "4",
+   "units": [
+    {
+     "id": "number",
+     "title": "Number",
+     "topics": [
+      {
+       "id": "number",
+       "title": "Number",
+       "subtopics": [
+        {
+         "id": "decimal-place-value",
+         "title": "Decimal Place Value",
+         "outcomes": [
+          {
+           "code": "AC9M4N01",
+           "text": "recognise and extend the application of place value to tenths and hundredths and use the conventions of decimal notation to name and represent decimals"
+          }
+         ]
+        },
+        {
+         "id": "odd-and-even-numbers",
+         "title": "Odd and Even Numbers",
+         "outcomes": [
+          {
+           "code": "AC9M4N02",
+           "text": "explain and use the properties of odd and even numbers"
+          }
+         ]
+        },
+        {
+         "id": "fractions-and-decimals",
+         "title": "Fractions and Decimals",
+         "outcomes": [
+          {
+           "code": "AC9M4N03",
+           "text": "find equivalent representations of fractions using related denominators and make connections between fractions and decimal notation"
+          }
+         ]
+        },
+        {
+         "id": "counting-fractions",
+         "title": "Counting Fractions",
+         "outcomes": [
+          {
+           "code": "AC9M4N04",
+           "text": "count by fractions including mixed numerals; locate and represent these fractions as numbers on number lines"
+          }
+         ]
+        },
+        {
+         "id": "powers-of-ten",
+         "title": "Powers of Ten",
+         "outcomes": [
+          {
+           "code": "AC9M4N05",
+           "text": "solve problems involving multiplying or dividing natural numbers by multiples and powers of 10 without a calculator, using the multiplicative relationship between the place value of digits"
+          }
+         ]
+        },
+        {
+         "id": "calculation-strategies",
+         "title": "Calculation Strategies",
+         "outcomes": [
+          {
+           "code": "AC9M4N06",
+           "text": "develop efficient strategies and use appropriate digital tools for solving problems involving addition and subtraction, and multiplication and division where there is no remainder"
+          }
+         ]
+        },
+        {
+         "id": "estimation-and-rounding",
+         "title": "Estimation and Rounding",
+         "outcomes": [
+          {
+           "code": "AC9M4N07",
+           "text": "choose and use estimation and rounding to check and explain the reasonableness of calculations including the results of financial transactions"
+          }
+         ]
+        },
+        {
+         "id": "practical-number-problems",
+         "title": "Practical Number Problems",
+         "outcomes": [
+          {
+           "code": "AC9M4N08",
+           "text": "use mathematical modelling to solve practical problems involving additive and multiplicative situations including financial contexts; formulate the problems using number sentences and choose efficient calculation strategies, using digital tools where appropriate; interpret and communicate solutions in terms of the situation"
+          }
+         ]
+        },
+        {
+         "id": "number-algorithms-and-patterns",
+         "title": "Number Algorithms and Patterns",
+         "outcomes": [
+          {
+           "code": "AC9M4N09",
+           "text": "follow and create algorithms involving a sequence of steps and decisions that use addition or multiplication to generate sets of numbers; identify and describe any emerging patterns"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "algebra",
+     "title": "Algebra",
+     "topics": [
+      {
+       "id": "algebra",
+       "title": "Algebra",
+       "subtopics": [
+        {
+         "id": "algebra",
+         "title": "Algebra",
+         "outcomes": [
+          {
+           "code": "AC9M4A01",
+           "text": "find unknown values in numerical equations involving addition and subtraction, using the properties of numbers and operations"
+          },
+          {
+           "code": "AC9M4A02",
+           "text": "recall and demonstrate proficiency with multiplication facts up to 10 x 10 and related division facts; extend and apply facts to develop efficient mental strategies for computation with larger numbers without a calculator"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "measurement",
+     "title": "Measurement",
+     "topics": [
+      {
+       "id": "measurement",
+       "title": "Measurement",
+       "subtopics": [
+        {
+         "id": "read-measurement-scales",
+         "title": "Read Measurement Scales",
+         "outcomes": [
+          {
+           "code": "AC9M4M01",
+           "text": "interpret unmarked and partial units when measuring and comparing attributes of length, mass, capacity, duration and temperature, using scaled and digital instruments and appropriate units"
+          }
+         ]
+        },
+        {
+         "id": "measure-perimeter-and-area",
+         "title": "Measure Perimeter And Area",
+         "outcomes": [
+          {
+           "code": "AC9M4M02",
+           "text": "recognise ways of measuring and approximating the perimeter and area of shapes and enclosed spaces, using appropriate formal and informal units"
+          }
+         ]
+        },
+        {
+         "id": "solve-time-problems",
+         "title": "Solve Time Problems",
+         "outcomes": [
+          {
+           "code": "AC9M4M03",
+           "text": "solve problems involving the duration of time including situations involving “am” and “pm” and conversions between units of time"
+          }
+         ]
+        },
+        {
+         "id": "compare-angle-types",
+         "title": "Compare Angle Types",
+         "outcomes": [
+          {
+           "code": "AC9M4M04",
+           "text": "estimate and compare angles using angle names including acute, obtuse, straight angle, reflex and revolution, and recognise their relationship to a right angle"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "space",
+     "title": "Space",
+     "topics": [
+      {
+       "id": "space",
+       "title": "Space",
+       "subtopics": [
+        {
+         "id": "model-composite-shapes",
+         "title": "Model Composite Shapes",
+         "outcomes": [
+          {
+           "code": "AC9M4SP01",
+           "text": "represent and approximate composite shapes and objects in the environment, using combinations of familiar shapes and objects"
+          }
+         ]
+        },
+        {
+         "id": "use-grid-references",
+         "title": "Use Grid References",
+         "outcomes": [
+          {
+           "code": "AC9M4SP02",
+           "text": "create and interpret grid reference systems using grid references and directions to locate and describe positions and pathways"
+          }
+         ]
+        },
+        {
+         "id": "explore-symmetry",
+         "title": "Explore Symmetry",
+         "outcomes": [
+          {
+           "code": "AC9M4SP03",
+           "text": "recognise line and rotational symmetry of shapes and create symmetrical patterns and pictures, using dynamic geometric software where appropriate"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "statistics",
+     "title": "Statistics",
+     "topics": [
+      {
+       "id": "statistics",
+       "title": "Statistics",
+       "subtopics": [
+        {
+         "id": "collecting-and-displaying-data",
+         "title": "Collecting and Displaying Data",
+         "outcomes": [
+          {
+           "code": "AC9M4ST01",
+           "text": "acquire data for categorical and discrete numerical variables to address a question of interest or purpose, using digital tools; represent data using many-to-one pictographs, column graphs and other displays or visualisations; interpret and discuss the information that has been created"
+          },
+          {
+           "code": "AC9M4ST03",
+           "text": "conduct statistical investigations, collecting data through survey responses and other methods; record and display data using digital tools; interpret the data and communicate the results"
+          }
+         ]
+        },
+        {
+         "id": "comparing-data-distributions",
+         "title": "Comparing Data Distributions",
+         "outcomes": [
+          {
+           "code": "AC9M4ST02",
+           "text": "analyse the effectiveness of different displays or visualisations in illustrating and comparing data distributions, then discuss the shape of distributions and the variation in the data"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "probability",
+     "title": "Probability",
+     "topics": [
+      {
+       "id": "probability",
+       "title": "Probability",
+       "subtopics": [
+        {
+         "id": "probability",
+         "title": "Probability",
+         "outcomes": [
+          {
+           "code": "AC9M4P01",
+           "text": "describe possible everyday events and the possible outcomes of chance experiments and order outcomes or events based on their likelihood of occurring; identify independent or dependent events"
+          },
+          {
+           "code": "AC9M4P02",
+           "text": "conduct repeated chance experiments to observe relationships between outcomes; identify and describe the variation in results"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "5",
+   "units": [
+    {
+     "id": "number",
+     "title": "Number",
+     "topics": [
+      {
+       "id": "number",
+       "title": "Number",
+       "subtopics": [
+        {
+         "id": "decimal-place-value",
+         "title": "Decimal Place Value",
+         "outcomes": [
+          {
+           "code": "AC9M5N01",
+           "text": "interpret, compare and order numbers with more than 2 decimal places, including numbers greater than one, using place value understanding; represent these on a number line"
+          }
+         ]
+        },
+        {
+         "id": "factors-multiples-and-fractions",
+         "title": "Factors Multiples and Fractions",
+         "outcomes": [
+          {
+           "code": "AC9M5N02",
+           "text": "express natural numbers as products of their factors, recognise multiples and determine if one number is divisible by another"
+          },
+          {
+           "code": "AC9M5N03",
+           "text": "compare and order fractions with the same and related denominators including mixed numerals, applying knowledge of factors and multiples; represent these fractions on a number line"
+          }
+         ]
+        },
+        {
+         "id": "percentages-and-equivalents",
+         "title": "Percentages and Equivalents",
+         "outcomes": [
+          {
+           "code": "AC9M5N04",
+           "text": "recognise that 100% represents the complete whole and use percentages to describe, represent and compare relative size; connect familiar percentages to their decimal and fraction equivalents"
+          }
+         ]
+        },
+        {
+         "id": "adding-and-subtracting-fractions",
+         "title": "Adding and Subtracting Fractions",
+         "outcomes": [
+          {
+           "code": "AC9M5N05",
+           "text": "solve problems involving addition and subtraction of fractions with the same or related denominators, using different strategies"
+          }
+         ]
+        },
+        {
+         "id": "multiplication-and-division",
+         "title": "Multiplication and Division",
+         "outcomes": [
+          {
+           "code": "AC9M5N06",
+           "text": "solve problems involving multiplication of larger numbers by one- or two-digit numbers, choosing efficient calculation strategies and using digital tools where appropriate; check the reasonableness of answers"
+          },
+          {
+           "code": "AC9M5N07",
+           "text": "solve problems involving division, choosing efficient strategies and using digital tools where appropriate; interpret any remainder according to the context and express results as a whole number, decimal or fraction"
+          }
+         ]
+        },
+        {
+         "id": "modelling-and-checking-solutions",
+         "title": "Modelling and Checking Solutions",
+         "outcomes": [
+          {
+           "code": "AC9M5N08",
+           "text": "check and explain the reasonableness of solutions to problems including financial contexts using estimation strategies appropriate to the context"
+          },
+          {
+           "code": "AC9M5N09",
+           "text": "use mathematical modelling to solve practical problems involving additive and multiplicative situations including financial contexts; formulate the problems, choosing operations and efficient calculation strategies, using digital tools where appropriate; interpret and communicate solutions in terms of the situation"
+          }
+         ]
+        },
+        {
+         "id": "algorithms-and-number-patterns",
+         "title": "Algorithms and Number Patterns",
+         "outcomes": [
+          {
+           "code": "AC9M5N010",
+           "text": "create and use algorithms involving a sequence of steps and decisions and digital tools to experiment with factors, multiples and divisibility; identify, interpret and describe emerging patterns"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "algebra",
+     "title": "Algebra",
+     "topics": [
+      {
+       "id": "algebra",
+       "title": "Algebra",
+       "subtopics": [
+        {
+         "id": "algebra",
+         "title": "Algebra",
+         "outcomes": [
+          {
+           "code": "AC9M5A01",
+           "text": "recognise and explain the connection between multiplication and division as inverse operations and use this to develop families of number facts"
+          },
+          {
+           "code": "AC9M5A02",
+           "text": "find unknown values in numerical equations involving multiplication and division using the properties of numbers and operations"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "measurement",
+     "title": "Measurement",
+     "topics": [
+      {
+       "id": "measurement",
+       "title": "Measurement",
+       "subtopics": [
+        {
+         "id": "choose-metric-units",
+         "title": "Choose Metric Units",
+         "outcomes": [
+          {
+           "code": "AC9M5M01",
+           "text": "choose appropriate metric units when measuring the length, mass and capacity of objects; use smaller units or a combination of units to obtain a more accurate measure"
+          }
+         ]
+        },
+        {
+         "id": "perimeter-and-area",
+         "title": "Perimeter and Area",
+         "outcomes": [
+          {
+           "code": "AC9M5M02",
+           "text": "solve practical problems involving the perimeter and area of regular and irregular shapes using appropriate metric units"
+          }
+         ]
+        },
+        {
+         "id": "12-and-24-hour-time",
+         "title": "12- and 24-Hour Time",
+         "outcomes": [
+          {
+           "code": "AC9M5M03",
+           "text": "compare 12- and 24-hour time systems and solve practical problems involving the conversion between them"
+          }
+         ]
+        },
+        {
+         "id": "measure-and-name-angles",
+         "title": "Measure and Name Angles",
+         "outcomes": [
+          {
+           "code": "AC9M5M04",
+           "text": "estimate, construct and measure angles in degrees, using appropriate tools including a protractor, and relate these measures to angle names"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "space",
+     "title": "Space",
+     "topics": [
+      {
+       "id": "space",
+       "title": "Space",
+       "subtopics": [
+        {
+         "id": "build-objects-from-nets",
+         "title": "Build Objects from Nets",
+         "outcomes": [
+          {
+           "code": "AC9M5SP01",
+           "text": "connect objects to their nets and build objects from their nets using spatial and geometric reasoning"
+          }
+         ]
+        },
+        {
+         "id": "use-coordinates-and-directions",
+         "title": "Use Coordinates and Directions",
+         "outcomes": [
+          {
+           "code": "AC9M5SP02",
+           "text": "construct a grid coordinate system that uses coordinates to locate positions within a space; use coordinates and directional language to describe position and movement"
+          }
+         ]
+        },
+        {
+         "id": "transform-and-symmetry",
+         "title": "Transform and Symmetry",
+         "outcomes": [
+          {
+           "code": "AC9M5SP03",
+           "text": "describe and perform translations, reflections and rotations of shapes, using dynamic geometric software where appropriate; recognise what changes and what remains the same, and identify any symmetries"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "statistics",
+     "title": "Statistics",
+     "topics": [
+      {
+       "id": "statistics",
+       "title": "Statistics",
+       "subtopics": [
+        {
+         "id": "collect-and-represent-data",
+         "title": "Collect and Represent Data",
+         "outcomes": [
+          {
+           "code": "AC9M5ST01",
+           "text": "acquire, validate and represent data for nominal and ordinal categorical and discrete numerical variables, to address a question of interest or purpose using software including spreadsheets; discuss and report on data distributions in terms of highest frequency (mode) and shape, in the context of the data"
+          }
+         ]
+        },
+        {
+         "id": "interpret-line-graphs",
+         "title": "Interpret Line Graphs",
+         "outcomes": [
+          {
+           "code": "AC9M5ST02",
+           "text": "interpret line graphs representing change over time; discuss the relationships that are represented and conclusions that can be made"
+          }
+         ]
+        },
+        {
+         "id": "conduct-statistical-investigations",
+         "title": "Conduct Statistical Investigations",
+         "outcomes": [
+          {
+           "code": "AC9M5ST03",
+           "text": "plan and conduct statistical investigations by posing questions or identifying a problem and collecting relevant data; choose appropriate displays and interpret the data; communicate findings within the context of the investigation"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "probability",
+     "title": "Probability",
+     "topics": [
+      {
+       "id": "probability",
+       "title": "Probability",
+       "subtopics": [
+        {
+         "id": "probability",
+         "title": "Probability",
+         "outcomes": [
+          {
+           "code": "AC9M5P01",
+           "text": "list the possible outcomes of chance experiments involving equally likely outcomes and compare to those which are not equally likely"
+          },
+          {
+           "code": "AC9M5P02",
+           "text": "conduct repeated chance experiments including those with and without equally likely outcomes, observe and record the results; use frequency to compare outcomes and estimate their likelihoods"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "6",
+   "units": [
+    {
+     "id": "number",
+     "title": "Number",
+     "topics": [
+      {
+       "id": "number",
+       "title": "Number",
+       "subtopics": [
+        {
+         "id": "integers-and-number-lines",
+         "title": "Integers and Number Lines",
+         "outcomes": [
+          {
+           "code": "AC9M6N01",
+           "text": "recognise situations, including financial contexts, that use integers; locate and represent integers on a number line and as coordinates on the Cartesian plane"
+          }
+         ]
+        },
+        {
+         "id": "prime-composite-and-square-numbers",
+         "title": "Prime Composite and Square Numbers",
+         "outcomes": [
+          {
+           "code": "AC9M6N02",
+           "text": "identify and describe the properties of prime, composite and square numbers and use these properties to solve problems and simplify calculations"
+          }
+         ]
+        },
+        {
+         "id": "comparing-common-fractions",
+         "title": "Comparing Common Fractions",
+         "outcomes": [
+          {
+           "code": "AC9M6N03",
+           "text": "apply knowledge of equivalence to compare, order and represent common fractions including halves, thirds and quarters on the same number line and justify their order"
+          }
+         ]
+        },
+        {
+         "id": "adding-and-subtracting-decimals",
+         "title": "Adding and Subtracting Decimals",
+         "outcomes": [
+          {
+           "code": "AC9M6N04",
+           "text": "apply knowledge of place value to add and subtract decimals, using digital tools where appropriate; use estimation and rounding to check the reasonableness of answers"
+          }
+         ]
+        },
+        {
+         "id": "adding-and-subtracting-fractions",
+         "title": "Adding and Subtracting Fractions",
+         "outcomes": [
+          {
+           "code": "AC9M6N05",
+           "text": "solve problems involving addition and subtraction of fractions using knowledge of equivalent fractions"
+          }
+         ]
+        },
+        {
+         "id": "multiplying-and-dividing-decimals",
+         "title": "Multiplying and Dividing Decimals",
+         "outcomes": [
+          {
+           "code": "AC9M6N06",
+           "text": "multiply and divide decimals by multiples of powers of 10 without a calculator, applying knowledge of place value and proficiency with multiplication facts; using estimation and rounding to check the reasonableness of answers"
+          }
+         ]
+        },
+        {
+         "id": "fractions-decimals-and-percentages",
+         "title": "Fractions Decimals and Percentages",
+         "outcomes": [
+          {
+           "code": "AC9M6N07",
+           "text": "solve problems that require finding a familiar fraction, decimal or percentage of a quantity, including percentage discounts, choosing efficient calculation strategies and using digital tools where appropriate"
+          }
+         ]
+        },
+        {
+         "id": "estimating-rational-numbers",
+         "title": "Estimating Rational Numbers",
+         "outcomes": [
+          {
+           "code": "AC9M6N08",
+           "text": "approximate numerical solutions to problems involving rational numbers and percentages, including financial contexts, using appropriate estimation strategies"
+          }
+         ]
+        },
+        {
+         "id": "modelling-practical-number-problems",
+         "title": "Modelling Practical Number Problems",
+         "outcomes": [
+          {
+           "code": "AC9M6N09",
+           "text": "use mathematical modelling to solve practical problems involving natural and rational numbers and percentages, including in financial contexts; formulate the problems, choosing operations and efficient calculation strategies, and using digital tools where appropriate; interpret and communicate solutions in terms of the situation, justifying the choices made"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "algebra",
+     "title": "Algebra",
+     "topics": [
+      {
+       "id": "algebra",
+       "title": "Algebra",
+       "subtopics": [
+        {
+         "id": "growing-patterns",
+         "title": "Growing Patterns",
+         "outcomes": [
+          {
+           "code": "AC9M6A01",
+           "text": "recognise and use rules that generate visually growing patterns and number patterns involving rational numbers"
+          }
+         ]
+        },
+        {
+         "id": "unknown-values",
+         "title": "Unknown Values",
+         "outcomes": [
+          {
+           "code": "AC9M6A02",
+           "text": "find unknown values in numerical equations involving brackets and combinations of arithmetic operations, using the properties of numbers and operations"
+          }
+         ]
+        },
+        {
+         "id": "number-algorithms",
+         "title": "Number Algorithms",
+         "outcomes": [
+          {
+           "code": "AC9M6A03",
+           "text": "create and use algorithms involving a sequence of steps and decisions that use rules to generate sets of numbers; identify, interpret and explain emerging patterns"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "measurement",
+     "title": "Measurement",
+     "topics": [
+      {
+       "id": "measurement",
+       "title": "Measurement",
+       "subtopics": [
+        {
+         "id": "metric-measurements",
+         "title": "Metric Measurements",
+         "outcomes": [
+          {
+           "code": "AC9M6M01",
+           "text": "convert between common metric units of length, mass and capacity; choose and use decimal representations of metric measurements relevant to the context of a problem"
+          }
+         ]
+        },
+        {
+         "id": "area-of-rectangles",
+         "title": "Area of Rectangles",
+         "outcomes": [
+          {
+           "code": "AC9M6M02",
+           "text": "establish the formula for the area of a rectangle and use it to solve practical problems"
+          }
+         ]
+        },
+        {
+         "id": "timetables-and-duration",
+         "title": "Timetables and Duration",
+         "outcomes": [
+          {
+           "code": "AC9M6M03",
+           "text": "interpret and use timetables and itineraries to plan activities and determine the duration of events and journeys"
+          }
+         ]
+        },
+        {
+         "id": "angle-relationships",
+         "title": "Angle Relationships",
+         "outcomes": [
+          {
+           "code": "AC9M6M04",
+           "text": "identify the relationships between angles on a straight line, angles at a point and vertically opposite angles; use these to determine unknown angles, communicating reasoning"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "space",
+     "title": "Space",
+     "topics": [
+      {
+       "id": "space",
+       "title": "Space",
+       "subtopics": [
+        {
+         "id": "parallel-cross-sections",
+         "title": "Parallel Cross-Sections",
+         "outcomes": [
+          {
+           "code": "AC9M6SP01",
+           "text": "compare the parallel cross-sections of objects and recognise their relationships to right prisms"
+          }
+         ]
+        },
+        {
+         "id": "coordinates-in-four-quadrants",
+         "title": "Coordinates in Four Quadrants",
+         "outcomes": [
+          {
+           "code": "AC9M6SP02",
+           "text": "locate points in the 4 quadrants of a Cartesian plane; describe changes to the coordinates when a point is moved to a different position in the plane"
+          }
+         ]
+        },
+        {
+         "id": "transformations-and-tessellations",
+         "title": "Transformations and Tessellations",
+         "outcomes": [
+          {
+           "code": "AC9M6SP03",
+           "text": "recognise and use combinations of transformations to create tessellations and other geometric patterns, using dynamic geometric software where appropriate"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "statistics",
+     "title": "Statistics",
+     "topics": [
+      {
+       "id": "statistics",
+       "title": "Statistics",
+       "subtopics": [
+        {
+         "id": "compare-data-sets",
+         "title": "Compare Data Sets",
+         "outcomes": [
+          {
+           "code": "AC9M6ST01",
+           "text": "interpret and compare data sets for ordinal and nominal categorical, discrete and continuous numerical variables using comparative displays or visualisations and digital tools; compare distributions in terms of mode, range and shape"
+          }
+         ]
+        },
+        {
+         "id": "critique-statistical-claims",
+         "title": "Critique Statistical Claims",
+         "outcomes": [
+          {
+           "code": "AC9M6ST02",
+           "text": "identify statistically informed arguments presented in traditional and digital media; discuss and critique methods, data representations and conclusions"
+          }
+         ]
+        },
+        {
+         "id": "conduct-statistical-investigations",
+         "title": "Conduct Statistical Investigations",
+         "outcomes": [
+          {
+           "code": "AC9M6ST03",
+           "text": "plan and conduct statistical investigations by posing and refining questions or identifying a problem and collecting relevant data; analyse and interpret the data and communicate findings within the context of the investigation"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "probability",
+     "title": "Probability",
+     "topics": [
+      {
+       "id": "probability",
+       "title": "Probability",
+       "subtopics": [
+        {
+         "id": "probability",
+         "title": "Probability",
+         "outcomes": [
+          {
+           "code": "AC9M6P01",
+           "text": "recognise that probabilities lie on numerical scales of 0 – 1 or 0% – 100% and use estimation to assign probabilities that events occur in a given context, using common fractions, percentages and decimals"
+          },
+          {
+           "code": "AC9M6P02",
+           "text": "conduct repeated chance experiments and run simulations with an increasing number of trials using digital tools; compare observations with expected results and discuss the effect on variation of increasing the number of trials"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "7",
+   "units": [
+    {
+     "id": "number",
+     "title": "Number",
+     "topics": [
+      {
+       "id": "number",
+       "title": "Number",
+       "subtopics": [
+        {
+         "id": "squares-and-square-roots",
+         "title": "Squares and Square Roots",
+         "outcomes": [
+          {
+           "code": "AC9M7N01",
+           "text": "describe the relationship between perfect square numbers and square roots, and use squares of numbers and square roots of perfect square numbers to solve problems"
+          }
+         ]
+        },
+        {
+         "id": "powers-and-place-value",
+         "title": "Powers and Place Value",
+         "outcomes": [
+          {
+           "code": "AC9M7N02",
+           "text": "represent natural numbers as products of powers of prime numbers using exponent notation"
+          },
+          {
+           "code": "AC9M7N03",
+           "text": "represent natural numbers in expanded notation using place value and powers of 10"
+          }
+         ]
+        },
+        {
+         "id": "rational-numbers",
+         "title": "Rational Numbers",
+         "outcomes": [
+          {
+           "code": "AC9M7N04",
+           "text": "find equivalent representations of rational numbers and represent rational numbers on a number line"
+          }
+         ]
+        },
+        {
+         "id": "rounding-and-estimation",
+         "title": "Rounding and Estimation",
+         "outcomes": [
+          {
+           "code": "AC9M7N05",
+           "text": "round decimals to a given accuracy appropriate to the context and use appropriate rounding and estimation to check the reasonableness of solutions"
+          }
+         ]
+        },
+        {
+         "id": "operations-with-rational-numbers",
+         "title": "Operations with Rational Numbers",
+         "outcomes": [
+          {
+           "code": "AC9M7N06",
+           "text": "use the 4 operations with positive rational numbers including fractions, decimals and percentages to solve problems using efficient calculation strategies"
+          }
+         ]
+        },
+        {
+         "id": "adding-and-subtracting-integers",
+         "title": "Adding and Subtracting Integers",
+         "outcomes": [
+          {
+           "code": "AC9M7N07",
+           "text": "compare, order and solve problems involving addition and subtraction of integers"
+          }
+         ]
+        },
+        {
+         "id": "ratios",
+         "title": "Ratios",
+         "outcomes": [
+          {
+           "code": "AC9M7N08",
+           "text": "recognise, represent and solve problems involving ratios"
+          }
+         ]
+        },
+        {
+         "id": "modelling-with-numbers",
+         "title": "Modelling with Numbers",
+         "outcomes": [
+          {
+           "code": "AC9M7N09",
+           "text": "use mathematical modelling to solve practical problems, involving rational numbers and percentages, including financial contexts; formulate problems, choosing representations and efficient calculation strategies, using digital tools as appropriate; interpret and communicate solutions in terms of the situation, justifying choices made about the representation"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "algebra",
+     "title": "Algebra",
+     "topics": [
+      {
+       "id": "algebra",
+       "title": "Algebra",
+       "subtopics": [
+        {
+         "id": "variables-and-formulas",
+         "title": "Variables and Formulas",
+         "outcomes": [
+          {
+           "code": "AC9M7A01",
+           "text": "recognise and use variables to represent everyday formulas algebraically and substitute values into formulas to determine an unknown"
+          }
+         ]
+        },
+        {
+         "id": "writing-algebraic-expressions",
+         "title": "Writing Algebraic Expressions",
+         "outcomes": [
+          {
+           "code": "AC9M7A02",
+           "text": "formulate algebraic expressions using constants, variables, operations and brackets"
+          }
+         ]
+        },
+        {
+         "id": "solving-linear-equations",
+         "title": "Solving Linear Equations",
+         "outcomes": [
+          {
+           "code": "AC9M7A03",
+           "text": "solve one-variable linear equations with natural number solutions; verify the solution by substitution"
+          }
+         ]
+        },
+        {
+         "id": "graphs-and-relationships",
+         "title": "Graphs and Relationships",
+         "outcomes": [
+          {
+           "code": "AC9M7A04",
+           "text": "describe relationships between variables represented in graphs of functions from authentic data"
+          }
+         ]
+        },
+        {
+         "id": "tables-and-patterns",
+         "title": "Tables and Patterns",
+         "outcomes": [
+          {
+           "code": "AC9M7A05",
+           "text": "generate tables of values from visually growing patterns or the rule of a function; describe and plot these relationships on the Cartesian plane"
+          }
+         ]
+        },
+        {
+         "id": "manipulating-formulas",
+         "title": "Manipulating Formulas",
+         "outcomes": [
+          {
+           "code": "AC9M7A06",
+           "text": "manipulate formulas involving several variables using digital tools, and describe the effect of systematic variation in the values of the variables"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "measurement",
+     "title": "Measurement",
+     "topics": [
+      {
+       "id": "measurement",
+       "title": "Measurement",
+       "subtopics": [
+        {
+         "id": "areas-of-triangles-and-parallelograms",
+         "title": "Areas of Triangles and Parallelograms",
+         "outcomes": [
+          {
+           "code": "AC9M7M01",
+           "text": "solve problems involving the area of triangles and parallelograms using established formulas and appropriate units"
+          }
+         ]
+        },
+        {
+         "id": "volumes-of-right-prisms",
+         "title": "Volumes of Right Prisms",
+         "outcomes": [
+          {
+           "code": "AC9M7M02",
+           "text": "solve problems involving the volume of right prisms including rectangular and triangular prisms, using established formulas and appropriate units"
+          }
+         ]
+        },
+        {
+         "id": "pi-and-circle-features",
+         "title": "Pi and Circle Features",
+         "outcomes": [
+          {
+           "code": "AC9M7M03",
+           "text": "describe the relationship between \\(π\\) and the features of circles including the circumference, radius and diameter"
+          }
+         ]
+        },
+        {
+         "id": "angles-with-parallel-lines",
+         "title": "Angles with Parallel Lines",
+         "outcomes": [
+          {
+           "code": "AC9M7M04",
+           "text": "identify corresponding, alternate and co-interior relationships between angles formed when parallel lines are crossed by a transversal; use them to solve problems and explain reasons"
+          }
+         ]
+        },
+        {
+         "id": "triangle-and-shape-angles",
+         "title": "Triangle and Shape Angles",
+         "outcomes": [
+          {
+           "code": "AC9M7M05",
+           "text": "demonstrate that the interior angle sum of a triangle in the plane is 180° and apply this to determine the interior angle sum of other shapes and the size of unknown angles"
+          }
+         ]
+        },
+        {
+         "id": "modelling-with-ratios",
+         "title": "Modelling with Ratios",
+         "outcomes": [
+          {
+           "code": "AC9M7M06",
+           "text": "use mathematical modelling to solve practical problems involving ratios; formulate problems, interpret and communicate solutions in terms of the situation, justifying choices made about the representation"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "space",
+     "title": "Space",
+     "topics": [
+      {
+       "id": "space",
+       "title": "Space",
+       "subtopics": [
+        {
+         "id": "representing-objects",
+         "title": "Representing Objects",
+         "outcomes": [
+          {
+           "code": "AC9M7SP01",
+           "text": "represent objects in 2 dimensions; discuss and reason about the advantages and disadvantages of different representations"
+          }
+         ]
+        },
+        {
+         "id": "classifying-shapes",
+         "title": "Classifying Shapes",
+         "outcomes": [
+          {
+           "code": "AC9M7SP02",
+           "text": "classify triangles, quadrilaterals and other polygons according to their side and angle properties; identify and reason about relationships"
+          }
+         ]
+        },
+        {
+         "id": "transformations-and-coordinates",
+         "title": "Transformations and Coordinates",
+         "outcomes": [
+          {
+           "code": "AC9M7SP03",
+           "text": "describe transformations of a set of points using coordinates in the Cartesian plane, translations and reflections on an axis, and rotations about a given point"
+          }
+         ]
+        },
+        {
+         "id": "shape-sorting-algorithms",
+         "title": "Shape Sorting Algorithms",
+         "outcomes": [
+          {
+           "code": "AC9M7SP04",
+           "text": "design and create algorithms involving a sequence of steps and decisions that will sort and classify sets of shapes according to their attributes, and describe how the algorithms work"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "statistics",
+     "title": "Statistics",
+     "topics": [
+      {
+       "id": "statistics",
+       "title": "Statistics",
+       "subtopics": [
+        {
+         "id": "measures-of-centre",
+         "title": "Measures of Centre",
+         "outcomes": [
+          {
+           "code": "AC9M7ST01",
+           "text": "acquire data sets for discrete and continuous numerical variables and calculate the range, median, mean and mode; make and justify decisions about which measures of central tendency provide useful insights into the nature of the distribution of data"
+          }
+         ]
+        },
+        {
+         "id": "data-displays-and-distributions",
+         "title": "Data Displays and Distributions",
+         "outcomes": [
+          {
+           "code": "AC9M7ST02",
+           "text": "create different types of numerical data displays including stem-and-leaf plots using software where appropriate; describe and compare the distribution of data, commenting on the shape, centre and spread including outliers and determining the range, median, mean and mode"
+          }
+         ]
+        },
+        {
+         "id": "statistical-investigations",
+         "title": "Statistical Investigations",
+         "outcomes": [
+          {
+           "code": "AC9M7ST03",
+           "text": "plan and conduct statistical investigations involving data for discrete and continuous numerical variables; analyse and interpret distributions of data and report findings in terms of shape and summary statistics"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "probability",
+     "title": "Probability",
+     "topics": [
+      {
+       "id": "probability",
+       "title": "Probability",
+       "subtopics": [
+        {
+         "id": "probability",
+         "title": "Probability",
+         "outcomes": [
+          {
+           "code": "AC9M7P01",
+           "text": "identify the sample space for single-stage events; assign probabilities to the outcomes of these events and predict relative frequencies for related events"
+          },
+          {
+           "code": "AC9M7P02",
+           "text": "conduct repeated chance experiments and run simulations with a large number of trials using digital tools; compare predictions about outcomes with observed results, explaining the differences"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "8",
+   "units": [
+    {
+     "id": "number",
+     "title": "Number",
+     "topics": [
+      {
+       "id": "number",
+       "title": "Number",
+       "subtopics": [
+        {
+         "id": "recognise-irrational-numbers",
+         "title": "Recognise Irrational Numbers",
+         "outcomes": [
+          {
+           "code": "AC9M8N01",
+           "text": "recognise irrational numbers in applied contexts, including square roots and \\(π\\)"
+          }
+         ]
+        },
+        {
+         "id": "apply-exponent-laws",
+         "title": "Apply Exponent Laws",
+         "outcomes": [
+          {
+           "code": "AC9M8N02",
+           "text": "establish and apply the exponent laws with positive integer exponents and the zero-exponent, using exponent notation with numbers"
+          }
+         ]
+        },
+        {
+         "id": "recognise-decimal-types",
+         "title": "Recognise Decimal Types",
+         "outcomes": [
+          {
+           "code": "AC9M8N03",
+           "text": "recognise terminating and recurring decimals, using digital tools as appropriate"
+          }
+         ]
+        },
+        {
+         "id": "calculate-with-rational-numbers",
+         "title": "Calculate with Rational Numbers",
+         "outcomes": [
+          {
+           "code": "AC9M8N04",
+           "text": "use the 4 operations with integers and with rational numbers, choosing and using efficient strategies and digital tools where appropriate"
+          }
+         ]
+        },
+        {
+         "id": "model-practical-number-problems",
+         "title": "Model Practical Number Problems",
+         "outcomes": [
+          {
+           "code": "AC9M8N05",
+           "text": "use mathematical modelling to solve practical problems involving rational numbers and percentages, including financial contexts; formulate problems, choosing efficient calculation strategies and using digital tools where appropriate; interpret and communicate solutions in terms of the situation, reviewing the appropriateness of the model"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "algebra",
+     "title": "Algebra",
+     "topics": [
+      {
+       "id": "algebra",
+       "title": "Algebra",
+       "subtopics": [
+        {
+         "id": "work-with-linear-expressions",
+         "title": "Work With Linear Expressions",
+         "outcomes": [
+          {
+           "code": "AC9M8A01",
+           "text": "create, expand, factorise, rearrange and simplify linear expressions, applying the associative, commutative, identity, distributive and inverse properties"
+          }
+         ]
+        },
+        {
+         "id": "graph-and-solve-linear-relations",
+         "title": "Graph And Solve Linear Relations",
+         "outcomes": [
+          {
+           "code": "AC9M8A02",
+           "text": "graph linear relations on the Cartesian plane using digital tools where appropriate; solve linear equations and one-variable inequalities using graphical and algebraic techniques; verify solutions by substitution"
+          }
+         ]
+        },
+        {
+         "id": "model-real-world-linear-problems",
+         "title": "Model Real-World Linear Problems",
+         "outcomes": [
+          {
+           "code": "AC9M8A03",
+           "text": "use mathematical modelling to solve applied problems involving linear relations, including financial contexts; formulate problems with linear functions, choosing a representation; interpret and communicate solutions in terms of the situation, reviewing the appropriateness of the model"
+          }
+         ]
+        },
+        {
+         "id": "explore-linear-functions",
+         "title": "Explore Linear Functions",
+         "outcomes": [
+          {
+           "code": "AC9M8A04",
+           "text": "experiment with linear functions and relations using digital tools, making and testing conjectures and generalising emerging patterns"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "measurement",
+     "title": "Measurement",
+     "topics": [
+      {
+       "id": "measurement",
+       "title": "Measurement",
+       "subtopics": [
+        {
+         "id": "area-and-perimeter",
+         "title": "Area and Perimeter",
+         "outcomes": [
+          {
+           "code": "AC9M8M01",
+           "text": "solve problems involving the area and perimeter of irregular and composite shapes using appropriate units"
+          }
+         ]
+        },
+        {
+         "id": "volume-and-capacity",
+         "title": "Volume and Capacity",
+         "outcomes": [
+          {
+           "code": "AC9M8M02",
+           "text": "solve problems involving the volume and capacity of right prisms using appropriate units"
+          }
+         ]
+        },
+        {
+         "id": "circles",
+         "title": "Circles",
+         "outcomes": [
+          {
+           "code": "AC9M8M03",
+           "text": "solve problems involving the circumference and area of a circle using formulas and appropriate units"
+          }
+         ]
+        },
+        {
+         "id": "duration-and-time-zones",
+         "title": "Duration and Time Zones",
+         "outcomes": [
+          {
+           "code": "AC9M8M04",
+           "text": "solve problems involving duration, including using 12- and 24-hour time across multiple time zones"
+          }
+         ]
+        },
+        {
+         "id": "rates-and-comparisons",
+         "title": "Rates and Comparisons",
+         "outcomes": [
+          {
+           "code": "AC9M8M05",
+           "text": "recognise and use rates to solve problems involving the comparison of 2 related quantities of different units of measure"
+          }
+         ]
+        },
+        {
+         "id": "pythagoras-theorem",
+         "title": "Pythagoras’ Theorem",
+         "outcomes": [
+          {
+           "code": "AC9M8M06",
+           "text": "use Pythagoras’ theorem to solve problems involving the side lengths of right-angled triangles"
+          }
+         ]
+        },
+        {
+         "id": "modelling-ratios-and-rates",
+         "title": "Modelling Ratios and Rates",
+         "outcomes": [
+          {
+           "code": "AC9M8M07",
+           "text": "use mathematical modelling to solve practical problems involving ratios and rates, including financial contexts; formulate problems; interpret and communicate solutions in terms of the situation, reviewing the appropriateness of the model"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "space",
+     "title": "Space",
+     "topics": [
+      {
+       "id": "space",
+       "title": "Space",
+       "subtopics": [
+        {
+         "id": "congruence-and-similarity",
+         "title": "Congruence and Similarity",
+         "outcomes": [
+          {
+           "code": "AC9M8SP01",
+           "text": "identify the conditions for congruence and similarity of triangles and explain the conditions for other sets of common shapes to be congruent or similar, including those formed by transformations"
+          }
+         ]
+        },
+        {
+         "id": "quadrilateral-properties",
+         "title": "Quadrilateral Properties",
+         "outcomes": [
+          {
+           "code": "AC9M8SP02",
+           "text": "establish properties of quadrilaterals using congruent triangles and angle properties, and solve related problems explaining reasoning"
+          }
+         ]
+        },
+        {
+         "id": "3d-positions-and-coordinates",
+         "title": "3D Positions and Coordinates",
+         "outcomes": [
+          {
+           "code": "AC9M8SP03",
+           "text": "describe the position and location of objects in 3 dimensions in different ways, including using a three-dimensional coordinate system with the use of dynamic geometric software and other digital tools"
+          }
+         ]
+        },
+        {
+         "id": "shape-testing-algorithms",
+         "title": "Shape Testing Algorithms",
+         "outcomes": [
+          {
+           "code": "AC9M8SP04",
+           "text": "design, create and test algorithms involving a sequence of steps and decisions that identify congruency or similarity of shapes, and describe how the algorithm works"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "statistics",
+     "title": "Statistics",
+     "topics": [
+      {
+       "id": "statistics",
+       "title": "Statistics",
+       "subtopics": [
+        {
+         "id": "collecting-data",
+         "title": "Collecting Data",
+         "outcomes": [
+          {
+           "code": "AC9M8ST01",
+           "text": "investigate techniques for data collection including census, sampling, experiment and observation, and explain the practicalities and implications of obtaining data through these techniques"
+          }
+         ]
+        },
+        {
+         "id": "sampling-and-distributions",
+         "title": "Sampling and Distributions",
+         "outcomes": [
+          {
+           "code": "AC9M8ST02",
+           "text": "analyse and report on the distribution of data from primary and secondary sources using random and non-random sampling techniques to select and study samples"
+          }
+         ]
+        },
+        {
+         "id": "sample-variation",
+         "title": "Sample Variation",
+         "outcomes": [
+          {
+           "code": "AC9M8ST03",
+           "text": "compare variations in distributions and proportions obtained from random samples of the same size drawn from a population and recognise the effect of sample size on this variation"
+          }
+         ]
+        },
+        {
+         "id": "statistical-investigations",
+         "title": "Statistical Investigations",
+         "outcomes": [
+          {
+           "code": "AC9M8ST04",
+           "text": "plan and conduct statistical investigations involving samples of a population; use ethical and fair methods to make inferences about the population and report findings, acknowledging uncertainty"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "probability",
+     "title": "Probability",
+     "topics": [
+      {
+       "id": "probability",
+       "title": "Probability",
+       "subtopics": [
+        {
+         "id": "complementary-events",
+         "title": "Complementary Events",
+         "outcomes": [
+          {
+           "code": "AC9M8P01",
+           "text": "recognise that complementary events have a combined probability of one; use this relationship to calculate probabilities in applied contexts"
+          }
+         ]
+        },
+        {
+         "id": "combining-events",
+         "title": "Combining Events",
+         "outcomes": [
+          {
+           "code": "AC9M8P02",
+           "text": "determine all possible combinations for 2 events, using two-way tables, tree diagrams and Venn diagrams, and use these to determine probabilities of specific outcomes in practical situations"
+          }
+         ]
+        },
+        {
+         "id": "simulations-and-results",
+         "title": "Simulations and Results",
+         "outcomes": [
+          {
+           "code": "AC9M8P03",
+           "text": "conduct repeated chance experiments and simulations, using digital tools to determine probabilities for compound events, and describe results"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "9",
+   "units": [
+    {
+     "id": "number",
+     "title": "Number",
+     "topics": [
+      {
+       "id": "number",
+       "title": "Number",
+       "subtopics": [
+        {
+         "id": "number",
+         "title": "Number",
+         "outcomes": [
+          {
+           "code": "AC9M9N01",
+           "text": "recognise that the real number system includes the rational numbers and the irrational numbers, and solve problems involving real numbers using digital tools"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "algebra",
+     "title": "Algebra",
+     "topics": [
+      {
+       "id": "algebra",
+       "title": "Algebra",
+       "subtopics": [
+        {
+         "id": "simplify-algebraic-expressions",
+         "title": "Simplify Algebraic Expressions",
+         "outcomes": [
+          {
+           "code": "AC9M9A01",
+           "text": "apply the exponent laws to numerical expressions with integer exponents and extend to variables"
+          },
+          {
+           "code": "AC9M9A02",
+           "text": "simplify algebraic expressions, expand binomial products and factorise monic quadratic expressions"
+          }
+         ]
+        },
+        {
+         "id": "coordinate-geometry",
+         "title": "Coordinate Geometry",
+         "outcomes": [
+          {
+           "code": "AC9M9A03",
+           "text": "find the gradient of a line segment, the midpoint of the line interval and the distance between 2 distinct points on the Cartesian plane"
+          }
+         ]
+        },
+        {
+         "id": "quadratic-functions-and-equations",
+         "title": "Quadratic Functions and Equations",
+         "outcomes": [
+          {
+           "code": "AC9M9A04",
+           "text": "identify and graph quadratic functions, solve quadratic equations graphically and numerically, and solve monic quadratic equations with integer roots algebraically, using graphing software and digital tools as appropriate"
+          }
+         ]
+        },
+        {
+         "id": "mathematical-modelling",
+         "title": "Mathematical Modelling",
+         "outcomes": [
+          {
+           "code": "AC9M9A05",
+           "text": "use mathematical modelling to solve applied problems involving change including financial contexts; formulate problems, choosing to use either linear or quadratic functions; interpret solutions in terms of the situation; evaluate the model and report methods and findings"
+          }
+         ]
+        },
+        {
+         "id": "transforming-related-graphs",
+         "title": "Transforming Related Graphs",
+         "outcomes": [
+          {
+           "code": "AC9M9A06",
+           "text": "experiment with the effects of the variation of parameters on graphs of related functions, using digital tools, making connections between graphical and algebraic representations, and generalising emerging patterns"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "measurement",
+     "title": "Measurement",
+     "topics": [
+      {
+       "id": "measurement",
+       "title": "Measurement",
+       "subtopics": [
+        {
+         "id": "prism-and-cylinder-measures",
+         "title": "Prism and Cylinder Measures",
+         "outcomes": [
+          {
+           "code": "AC9M9M01",
+           "text": "solve problems involving the volume and surface area of right prisms and cylinders using appropriate units"
+          }
+         ]
+        },
+        {
+         "id": "scientific-notation-and-time",
+         "title": "Scientific Notation and Time",
+         "outcomes": [
+          {
+           "code": "AC9M9M02",
+           "text": "solve problems involving very small and very large measurements, time scales and intervals expressed in scientific notation"
+          }
+         ]
+        },
+        {
+         "id": "spatial-problems-and-trigonometry",
+         "title": "Spatial Problems and Trigonometry",
+         "outcomes": [
+          {
+           "code": "AC9M9M03",
+           "text": "solve spatial problems, applying angle properties, scale, similarity, Pythagoras’ theorem and trigonometry in right-angled triangles"
+          }
+         ]
+        },
+        {
+         "id": "measurement-errors",
+         "title": "Measurement Errors",
+         "outcomes": [
+          {
+           "code": "AC9M9M04",
+           "text": "calculate and interpret absolute, relative and percentage errors in measurements, recognising that all measurements are estimates"
+          }
+         ]
+        },
+        {
+         "id": "modelling-practical-problems",
+         "title": "Modelling Practical Problems",
+         "outcomes": [
+          {
+           "code": "AC9M9M05",
+           "text": "use mathematical modelling to solve practical problems involving direct proportion, rates, ratio and scale, including financial contexts; formulate the problems and interpret solutions in terms of the situation; evaluate the model and report methods and findings"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "space",
+     "title": "Space",
+     "topics": [
+      {
+       "id": "space",
+       "title": "Space",
+       "subtopics": [
+        {
+         "id": "trigonometric-ratios",
+         "title": "Trigonometric Ratios",
+         "outcomes": [
+          {
+           "code": "AC9M9SP01",
+           "text": "recognise the constancy of the sine, cosine and tangent ratios for a given angle in right-angled triangles using properties of similarity"
+          }
+         ]
+        },
+        {
+         "id": "enlargement-transformations",
+         "title": "Enlargement Transformations",
+         "outcomes": [
+          {
+           "code": "AC9M9SP02",
+           "text": "apply the enlargement transformation to shapes and objects using dynamic geometry software as appropriate; identify and explain aspects that remain the same and those that change"
+          }
+         ]
+        },
+        {
+         "id": "geometric-algorithms",
+         "title": "Geometric Algorithms",
+         "outcomes": [
+          {
+           "code": "AC9M9SP03",
+           "text": "design, test and refine algorithms involving a sequence of steps and decisions based on geometric constructions and theorems; discuss and evaluate refinements"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "statistics",
+     "title": "Statistics",
+     "topics": [
+      {
+       "id": "statistics",
+       "title": "Statistics",
+       "subtopics": [
+        {
+         "id": "survey-data-and-estimates",
+         "title": "Survey Data and Estimates",
+         "outcomes": [
+          {
+           "code": "AC9M9ST01",
+           "text": "analyse reports of surveys in digital media and elsewhere for information on how data was obtained to estimate population means and medians"
+          }
+         ]
+        },
+        {
+         "id": "sampling-and-representation",
+         "title": "Sampling and Representation",
+         "outcomes": [
+          {
+           "code": "AC9M9ST02",
+           "text": "analyse how different sampling methods can affect the results of surveys and how choice of representation can be used to support a particular point of view"
+          }
+         ]
+        },
+        {
+         "id": "comparing-data-distributions",
+         "title": "Comparing Data Distributions",
+         "outcomes": [
+          {
+           "code": "AC9M9ST03",
+           "text": "represent the distribution of multiple data sets for numerical variables using comparative representations; compare data distributions with consideration of centre, spread and shape, and the effect of outliers on these measures"
+          }
+         ]
+        },
+        {
+         "id": "choosing-data-displays",
+         "title": "Choosing Data Displays",
+         "outcomes": [
+          {
+           "code": "AC9M9ST04",
+           "text": "choose appropriate forms of display or visualisation for a given type of data; justify selections and interpret displays for a given context"
+          }
+         ]
+        },
+        {
+         "id": "conducting-statistical-investigations",
+         "title": "Conducting Statistical Investigations",
+         "outcomes": [
+          {
+           "code": "AC9M9ST05",
+           "text": "plan and conduct statistical investigations involving the collection and analysis of different kinds of data; report findings and discuss the strength of evidence to support any conclusions"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "probability",
+     "title": "Probability",
+     "topics": [
+      {
+       "id": "probability",
+       "title": "Probability",
+       "subtopics": [
+        {
+         "id": "list-compound-outcomes",
+         "title": "List Compound Outcomes",
+         "outcomes": [
+          {
+           "code": "AC9M9P01",
+           "text": "list all outcomes for compound events both with and without replacement, using lists, tree diagrams, tables or arrays; assign probabilities to outcomes"
+          }
+         ]
+        },
+        {
+         "id": "estimate-event-probabilities",
+         "title": "Estimate Event Probabilities",
+         "outcomes": [
+          {
+           "code": "AC9M9P02",
+           "text": "calculate relative frequencies from given or collected data to estimate probabilities of events involving “and”, inclusive “or” and exclusive “or”"
+          }
+         ]
+        },
+        {
+         "id": "run-chance-simulations",
+         "title": "Run Chance Simulations",
+         "outcomes": [
+          {
+           "code": "AC9M9P03",
+           "text": "design and conduct repeated chance experiments and simulations, using digital tools to compare probabilities of simple events to related compound events, and describe results"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "10",
+   "units": [
+    {
+     "id": "number",
+     "title": "Number",
+     "topics": [
+      {
+       "id": "number",
+       "title": "Number",
+       "subtopics": [
+        {
+         "id": "number",
+         "title": "Number",
+         "outcomes": [
+          {
+           "code": "AC9M10N01",
+           "text": "recognise the effect of using approximations of real numbers in repeated calculations and compare the results when using exact representations"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "algebra",
+     "title": "Algebra",
+     "topics": [
+      {
+       "id": "algebra",
+       "title": "Algebra",
+       "subtopics": [
+        {
+         "id": "expressions-and-equations",
+         "title": "Expressions and Equations",
+         "outcomes": [
+          {
+           "code": "AC9M10A01",
+           "text": "expand, factorise and simplify expressions and solve equations algebraically, applying exponent laws involving products, quotients and powers of variables, and the distributive property"
+          }
+         ]
+        },
+        {
+         "id": "inequalities-and-simultaneous-equations",
+         "title": "Inequalities and Simultaneous Equations",
+         "outcomes": [
+          {
+           "code": "AC9M10A02",
+           "text": "solve linear inequalities and simultaneous linear equations in 2 variables; interpret solutions graphically and communicate solutions in terms of the situation"
+          }
+         ]
+        },
+        {
+         "id": "exponential-relations",
+         "title": "Exponential Relations",
+         "outcomes": [
+          {
+           "code": "AC9M10A03",
+           "text": "recognise the connection between algebraic and graphical representations of exponential relations and solve related exponential equations, using digital tools where appropriate"
+          }
+         ]
+        },
+        {
+         "id": "growth-and-decay-models",
+         "title": "Growth and Decay Models",
+         "outcomes": [
+          {
+           "code": "AC9M10A04",
+           "text": "use mathematical modelling to solve applied problems involving growth and decay, including financial contexts; formulate problems, choosing to apply linear, quadratic or exponential models; interpret solutions in terms of the situation; evaluate and modify models as necessary and report assumptions, methods and findings"
+          }
+         ]
+        },
+        {
+         "id": "functions-and-relations",
+         "title": "Functions and Relations",
+         "outcomes": [
+          {
+           "code": "AC9M10A05",
+           "text": "experiment with functions and relations using digital tools, making and testing conjectures and generalising emerging patterns"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "measurement",
+     "title": "Measurement",
+     "topics": [
+      {
+       "id": "measurement",
+       "title": "Measurement",
+       "subtopics": [
+        {
+         "id": "composite-surface-area-and-volume",
+         "title": "Composite Surface Area and Volume",
+         "outcomes": [
+          {
+           "code": "AC9M10M01",
+           "text": "solve problems involving the surface area and volume of composite objects using appropriate units"
+          }
+         ]
+        },
+        {
+         "id": "logarithmic-scales",
+         "title": "Logarithmic Scales",
+         "outcomes": [
+          {
+           "code": "AC9M10M02",
+           "text": "interpret and use logarithmic scales in applied contexts involving small and large quantities and change"
+          }
+         ]
+        },
+        {
+         "id": "right-triangle-applications",
+         "title": "Right Triangle Applications",
+         "outcomes": [
+          {
+           "code": "AC9M10M03",
+           "text": "solve practical problems applying Pythagoras’ theorem and trigonometry of right-angled triangles, including problems involving direction and angles of elevation and depression"
+          }
+         ]
+        },
+        {
+         "id": "measurement-errors",
+         "title": "Measurement Errors",
+         "outcomes": [
+          {
+           "code": "AC9M10M04",
+           "text": "identify the impact of measurement errors on the accuracy of results in practical contexts"
+          }
+         ]
+        },
+        {
+         "id": "mathematical-modelling",
+         "title": "Mathematical Modelling",
+         "outcomes": [
+          {
+           "code": "AC9M10M05",
+           "text": "use mathematical modelling to solve practical problems involving proportion and scaling of objects; formulate problems and interpret solutions in terms of the situation; evaluate and modify models as necessary, and report assumptions, methods and findings"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "space",
+     "title": "Space",
+     "topics": [
+      {
+       "id": "space",
+       "title": "Space",
+       "subtopics": [
+        {
+         "id": "reasoning-about-shapes",
+         "title": "Reasoning About Shapes",
+         "outcomes": [
+          {
+           "code": "AC9M10SP01",
+           "text": "apply deductive reasoning to proofs involving shapes in the plane and use theorems to solve spatial problems"
+          }
+         ]
+        },
+        {
+         "id": "networks-and-connectedness",
+         "title": "Networks and Connectedness",
+         "outcomes": [
+          {
+           "code": "AC9M10SP02",
+           "text": "interpret networks and network diagrams used to represent relationships in practical situations and describe connectedness"
+          }
+         ]
+        },
+        {
+         "id": "solving-spatial-problems",
+         "title": "Solving Spatial Problems",
+         "outcomes": [
+          {
+           "code": "AC9M10SP03",
+           "text": "design, test and refine solutions to spatial problems using algorithms and digital tools; communicate and justify solutions"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "statistics",
+     "title": "Statistics",
+     "topics": [
+      {
+       "id": "statistics",
+       "title": "Statistics",
+       "subtopics": [
+        {
+         "id": "evaluate-statistical-claims",
+         "title": "Evaluate Statistical Claims",
+         "outcomes": [
+          {
+           "code": "AC9M10ST01",
+           "text": "analyse claims, inferences and conclusions of statistical reports in the media, including ethical considerations and identification of potential sources of bias"
+          }
+         ]
+        },
+        {
+         "id": "compare-data-distributions",
+         "title": "Compare Data Distributions",
+         "outcomes": [
+          {
+           "code": "AC9M10ST02",
+           "text": "compare data distributions for continuous numerical variables using appropriate data displays including boxplots; discuss the shapes of these distributions in terms of centre, spread, shape and outliers in the context of the data"
+          }
+         ]
+        },
+        {
+         "id": "explore-scatterplots",
+         "title": "Explore Scatterplots",
+         "outcomes": [
+          {
+           "code": "AC9M10ST03",
+           "text": "construct scatterplots and comment on the association between the 2 numerical variables in terms of strength, direction and linearity"
+          }
+         ]
+        },
+        {
+         "id": "use-two-way-tables",
+         "title": "Use Two-Way Tables",
+         "outcomes": [
+          {
+           "code": "AC9M10ST04",
+           "text": "construct two-way tables and discuss possible relationship between categorical variables"
+          }
+         ]
+        },
+        {
+         "id": "investigate-bivariate-data",
+         "title": "Investigate Bivariate Data",
+         "outcomes": [
+          {
+           "code": "AC9M10ST05",
+           "text": "plan and conduct statistical investigations of situations that involve bivariate data; evaluate and report findings with consideration of limitations of any inferences"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "probability",
+     "title": "Probability",
+     "topics": [
+      {
+       "id": "probability",
+       "title": "Probability",
+       "subtopics": [
+        {
+         "id": "probability",
+         "title": "Probability",
+         "outcomes": [
+          {
+           "code": "AC9M10P01",
+           "text": "use the language of “if .... then”, “given”, “of”, “knowing that” to describe and interpret situations involving conditional probability"
+          },
+          {
+           "code": "AC9M10P02",
+           "text": "design and conduct repeated chance experiments and simulations using digital tools to model conditional probability and interpret results"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "build": {
+  "builtAt": "2026-10-14T07:53:40.093Z",
+  "model": "gpt-5.6-luna",
+  "usd": 0.0079,
+  "expectedCodes": 240,
+  "coverage": 1,
+  "missingCodes": [],
+  "counts": {
+   "grades": 11,
+   "units": 63,
+   "topics": 63,
+   "subtopics": 218,
+   "outcomes": 240
+  },
+  "warnings": [
+   "unit \"Algebra\" (grade Foundation) has a single outcome",
+   "unit \"Statistics\" (grade Foundation) has a single outcome",
+   "unit \"Number\" (grade 9) has a single outcome",
+   "unit \"Number\" (grade 10) has a single outcome"
+  ]
+ }
+}

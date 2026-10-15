@@ -1,0 +1,2798 @@
+{
+ "id": "pk-ncp-tech-hvacr-9-12",
+ "region": "PK",
+ "framework": "National Curriculum of Pakistan 2022-23",
+ "board": null,
+ "qualification": "Technical stream",
+ "subject": "Heating, Ventilation, Air Conditioning and Refrigeration (HVACR)",
+ "syllabusCode": null,
+ "gradeSystem": "grade",
+ "source": {
+  "urls": [
+   "https://ncc.gov.pk/SiteImage/Misc/files/43-Heating%2c%20Ventilation%2c%20Air%20Conditioning%20and%20Refrigeration%20(HVACR).pdf"
+  ],
+  "publisher": "National Curriculum Council, Ministry of Federal Education and Professional Training",
+  "licence": "Government publication; structure + our own wording only",
+  "firstExam": null
+ },
+ "grades": [
+  {
+   "grade": "9",
+   "units": [
+    {
+     "id": "domain-a-maintain-safe-work-environment-hvacr",
+     "title": "Domain A: Maintain Safe Work Environment HVACR",
+     "topics": [
+      {
+       "id": "safe-work-environment",
+       "title": "Safe work environment",
+       "subtopics": [
+        {
+         "id": "spotting-workplace-hazards",
+         "title": "Spotting workplace hazards",
+         "outcomes": [
+          {
+           "code": "HVACR-09-A-01",
+           "text": "Read and interpret work processes and procedures to find workplace hazard risks."
+          },
+          {
+           "code": "HVACR-09-A-02",
+           "text": "Recognise processes, tools, equipment and materials that could cause harm."
+          },
+          {
+           "code": "HVACR-09-A-03",
+           "text": "Identify potential hazards and act to reduce the risk."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "domain-b-personal-professional-development-and-c",
+     "title": "Domain B: Personal & Professional Development and Communication Skill",
+     "topics": [
+      {
+       "id": "professional-and-communication-skills",
+       "title": "Professional and communication skills",
+       "subtopics": [
+        {
+         "id": "cv-and-job-search",
+         "title": "CV and job search",
+         "outcomes": [
+          {
+           "code": "HVACR-09-B-01",
+           "text": "Explain why a CV matters in a job application."
+          },
+          {
+           "code": "HVACR-09-B-02",
+           "text": "Create and format a CV or resume."
+          },
+          {
+           "code": "HVACR-09-B-03",
+           "text": "Register an email account on online job portals."
+          },
+          {
+           "code": "HVACR-09-B-04",
+           "text": "Search for jobs by job description and title."
+          }
+         ]
+        },
+        {
+         "id": "working-with-clients",
+         "title": "Working with clients",
+         "outcomes": [
+          {
+           "code": "HVACR-09-B-05",
+           "text": "Collect and confirm work requirements from clients using proper communication."
+          },
+          {
+           "code": "HVACR-09-B-06",
+           "text": "Give clients clear information on requirements, cost and time."
+          },
+          {
+           "code": "HVACR-09-B-07",
+           "text": "Negotiate wages, time and labour needs with clients."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "domain-c-basic-drawing",
+     "title": "Domain C: Basic Drawing",
+     "topics": [
+      {
+       "id": "basic-drawing",
+       "title": "Basic drawing",
+       "subtopics": [
+        {
+         "id": "measuring-and-drawing",
+         "title": "Measuring and drawing",
+         "outcomes": [
+          {
+           "code": "HVACR-09-C-01",
+           "text": "Take accurate measurements and collect work specification information."
+          },
+          {
+           "code": "HVACR-09-C-02",
+           "text": "Make drawings to match job requirements."
+          },
+          {
+           "code": "HVACR-09-C-03",
+           "text": "Confirm specifications and drawings with the client or supervisor and adjust as needed."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "domain-d-fundamentals-of-hvacr",
+     "title": "Domain D: Fundamentals of HVACR",
+     "topics": [
+      {
+       "id": "physical-fundamentals",
+       "title": "Physical fundamentals",
+       "subtopics": [
+        {
+         "id": "energy",
+         "title": "Energy",
+         "outcomes": [
+          {
+           "code": "HVACR-09-D-01",
+           "text": "Define energy and its unit."
+          },
+          {
+           "code": "HVACR-09-D-02",
+           "text": "Know the types of energy: kinetic, potential and heat."
+          }
+         ]
+        },
+        {
+         "id": "heat-and-heat-transfer",
+         "title": "Heat and heat transfer",
+         "outcomes": [
+          {
+           "code": "HVACR-09-D-03",
+           "text": "Define heat and its unit."
+          },
+          {
+           "code": "HVACR-09-D-04",
+           "text": "Know the different types of heat."
+          },
+          {
+           "code": "HVACR-09-D-05",
+           "text": "Explain how heat transfers."
+          },
+          {
+           "code": "HVACR-09-D-06",
+           "text": "Identify the types of heat transfer."
+          }
+         ]
+        },
+        {
+         "id": "pressure",
+         "title": "Pressure",
+         "outcomes": [
+          {
+           "code": "HVACR-09-D-07",
+           "text": "Define pressure and its unit."
+          },
+          {
+           "code": "HVACR-09-D-8",
+           "text": "Explain the different types of pressure."
+          },
+          {
+           "code": "HVACR-09-D-09",
+           "text": "Use pressure-measuring devices."
+          }
+         ]
+        },
+        {
+         "id": "temperature",
+         "title": "Temperature",
+         "outcomes": [
+          {
+           "code": "HVACR-09-D-10",
+           "text": "Define temperature and its unit."
+          },
+          {
+           "code": "HVACR-09-D-11",
+           "text": "Know the temperature scales: Celsius, Kelvin and Fahrenheit."
+          },
+          {
+           "code": "HVACR-09-D-12",
+           "text": "Convert between temperature scales."
+          }
+         ]
+        },
+        {
+         "id": "volume-and-laws",
+         "title": "Volume and laws",
+         "outcomes": [
+          {
+           "code": "HVACR-09-D-13",
+           "text": "Define volume and its unit."
+          },
+          {
+           "code": "HVACR-09-D-14",
+           "text": "Explain how temperature, pressure and volume relate."
+          },
+          {
+           "code": "HVACR-09-D-15",
+           "text": "State refrigeration laws, Pascal's law and Dalton's law."
+          }
+         ]
+        },
+        {
+         "id": "units",
+         "title": "Units",
+         "outcomes": [
+          {
+           "code": "HVACR-09-D-16",
+           "text": "Define physical quantities and units."
+          },
+          {
+           "code": "HVACR-09-D-17",
+           "text": "Describe systems of units and convert between units."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "domain-f-electronics-electrical-power-system-ope",
+     "title": "Domain F: Electronics, Electrical Power System Operation and Control",
+     "topics": [
+      {
+       "id": "electrical-and-electronics",
+       "title": "Electrical and electronics",
+       "subtopics": [
+        {
+         "id": "electricity-basics",
+         "title": "Electricity basics",
+         "outcomes": [
+          {
+           "code": "HVACR-09-F-01",
+           "text": "Explain basic knowledge of electricity and electronics."
+          },
+          {
+           "code": "HVACR-09-F-02",
+           "text": "Identify and collect tools and materials for the job."
+          }
+         ]
+        },
+        {
+         "id": "electric-meters",
+         "title": "Electric meters",
+         "outcomes": [
+          {
+           "code": "HVACR-09-F-03",
+           "text": "Identify electric meters."
+          },
+          {
+           "code": "HVACR-09-F-04",
+           "text": "Connect electric meters."
+          },
+          {
+           "code": "HVACR-09-F-05",
+           "text": "Measure different electric quantities."
+          }
+         ]
+        },
+        {
+         "id": "wire-joints",
+         "title": "Wire joints",
+         "outcomes": [
+          {
+           "code": "HVACR-09-F-06",
+           "text": "Identify and collect tools and materials for the job."
+          },
+          {
+           "code": "HVACR-09-F-07",
+           "text": "Remove and clean insulation from conductors."
+          },
+          {
+           "code": "HVACR-09-F-08",
+           "text": "Twist and overlay conductors."
+          },
+          {
+           "code": "HVACR-09-F-09",
+           "text": "Make a simple twist joint of PVC cable."
+          },
+          {
+           "code": "HVACR-09-F-10",
+           "text": "Make a married joint of PVC cable."
+          },
+          {
+           "code": "HVACR-09-F-11",
+           "text": "Make a tee joint of PVC cable."
+          }
+         ]
+        },
+        {
+         "id": "splicing-and-soldering",
+         "title": "Splicing and soldering",
+         "outcomes": [
+          {
+           "code": "HVACR-09-F-12",
+           "text": "Splice conductors smoothly and properly."
+          },
+          {
+           "code": "HVACR-09-F-13",
+           "text": "Solder a splice leaving no gaps."
+          },
+          {
+           "code": "HVACR-09-F-14",
+           "text": "Insulate the splice."
+          }
+         ]
+        },
+        {
+         "id": "simple-circuits",
+         "title": "Simple circuits",
+         "outcomes": [
+          {
+           "code": "HVACR-09-F-15",
+           "text": "Identify and collect tools and materials for the job."
+          },
+          {
+           "code": "HVACR-09-F-16",
+           "text": "Prepare the layout or circuit diagram."
+          },
+          {
+           "code": "HVACR-09-F-17",
+           "text": "Connect a lamp with a switch."
+          },
+          {
+           "code": "HVACR-09-F-18",
+           "text": "Connect two lamps in series and parallel."
+          },
+          {
+           "code": "HVACR-09-F-19",
+           "text": "Make a staircase circuit."
+          },
+          {
+           "code": "HVACR-09-F-20",
+           "text": "Prepare a test board circuit."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "domain-g-introduction-to-hvacr-allied-components",
+     "title": "Domain G: Introduction to HVACR Allied Components for Commercial & Industrial Systems",
+     "topics": [
+      {
+       "id": "introduction-to-hvacr",
+       "title": "Introduction to HVACR",
+       "subtopics": [
+        {
+         "id": "what-hvacr-is",
+         "title": "What HVACR is",
+         "outcomes": [
+          {
+           "code": "HVACR-09-G-01",
+           "text": "Define HVACR."
+          },
+          {
+           "code": "HVACR-09-G-02",
+           "text": "Explain the basic concept of HVACR."
+          },
+          {
+           "code": "HVACR-09-G-03",
+           "text": "Define the scope of HVACR."
+          },
+          {
+           "code": "HVACR-09-G-04",
+           "text": "Understand why HVACR matters."
+          }
+         ]
+        },
+        {
+         "id": "hvacr-sources",
+         "title": "HVACR sources",
+         "outcomes": [
+          {
+           "code": "HVACR-09-G-05",
+           "text": "Explain HVACR sources."
+          },
+          {
+           "code": "HVACR-09-G-06",
+           "text": "Explain why different HVACR sources matter."
+          },
+          {
+           "code": "HVACR-09-G-07",
+           "text": "Recognise different HVACR sources."
+          }
+         ]
+        },
+        {
+         "id": "tools-equipment-and-5s",
+         "title": "Tools, equipment and 5S",
+         "outcomes": [
+          {
+           "code": "HVACR-09-G-08",
+           "text": "Recognise tools, equipment and plants."
+          },
+          {
+           "code": "HVACR-09-G-09",
+           "text": "Explain the function of tools and equipment, and adopt 5S procedures."
+          }
+         ]
+        },
+        {
+         "id": "hvacr-societies",
+         "title": "HVACR societies",
+         "outcomes": [
+          {
+           "code": "HVACR-09-G-10",
+           "text": "Define HVACR societies."
+          },
+          {
+           "code": "HVACR-09-G-11",
+           "text": "Identify the role of HVACR societies."
+          },
+          {
+           "code": "HVACR-09-G-12",
+           "text": "Learn the types of societies."
+          }
+         ]
+        },
+        {
+         "id": "pipe-work",
+         "title": "Pipe work",
+         "outcomes": [
+          {
+           "code": "HVACR-09-G-13",
+           "text": "Describe pipe sizes."
+          },
+          {
+           "code": "HVACR-09-G-14",
+           "text": "Define cutting."
+          },
+          {
+           "code": "HVACR-09-G-15",
+           "text": "Define flaring."
+          },
+          {
+           "code": "HVACR-09-G-16",
+           "text": "Define swaging."
+          },
+          {
+           "code": "HVACR-09-G-17",
+           "text": "Describe bending."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "domain-h-refrigeration-cycle-and-refrigerants",
+     "title": "Domain H: Refrigeration Cycle and Refrigerants",
+     "topics": [
+      {
+       "id": "refrigeration-cycle-and-refrigerants",
+       "title": "Refrigeration cycle and refrigerants",
+       "subtopics": [
+        {
+         "id": "the-refrigeration-cycle",
+         "title": "The refrigeration cycle",
+         "outcomes": [
+          {
+           "code": "HVACR-09-H-01",
+           "text": "Define a cycle."
+          },
+          {
+           "code": "HVACR-09-H-02",
+           "text": "Explain the refrigeration cycle."
+          },
+          {
+           "code": "HVACR-09-H-03",
+           "text": "Explain the working principle of the refrigeration cycle."
+          },
+          {
+           "code": "HVACR-09-H-04",
+           "text": "List the basic components of the refrigeration cycle."
+          }
+         ]
+        },
+        {
+         "id": "compression",
+         "title": "Compression",
+         "outcomes": [
+          {
+           "code": "HVACR-09-H-05",
+           "text": "Define compression."
+          },
+          {
+           "code": "HVACR-09-H-06",
+           "text": "Define a compressor and its types."
+          },
+          {
+           "code": "HVACR-09-H-07",
+           "text": "Explain how a compressor works."
+          }
+         ]
+        },
+        {
+         "id": "condensation",
+         "title": "Condensation",
+         "outcomes": [
+          {
+           "code": "HVACR-09-H-08",
+           "text": "Define condensation."
+          },
+          {
+           "code": "HVACR-09-H-09",
+           "text": "Define a condenser and its types."
+          },
+          {
+           "code": "HVACR-09-H-10",
+           "text": "Explain how a condenser works."
+          }
+         ]
+        },
+        {
+         "id": "refrigerant-control",
+         "title": "Refrigerant control",
+         "outcomes": [
+          {
+           "code": "HVACR-09-H-11",
+           "text": "Define refrigerant control."
+          },
+          {
+           "code": "HVACR-09-H-12",
+           "text": "Define expansion and its role in the refrigeration cycle."
+          },
+          {
+           "code": "HVACR-09-H-13",
+           "text": "Identify types of refrigerant control."
+          }
+         ]
+        },
+        {
+         "id": "evaporation",
+         "title": "Evaporation",
+         "outcomes": [
+          {
+           "code": "HVACR-09-H-14",
+           "text": "Define evaporation."
+          },
+          {
+           "code": "HVACR-09-H-15",
+           "text": "Define an evaporator and its types."
+          },
+          {
+           "code": "HVACR-09-H-16",
+           "text": "Explain how an evaporator works."
+          }
+         ]
+        },
+        {
+         "id": "refrigerants",
+         "title": "Refrigerants",
+         "outcomes": [
+          {
+           "code": "HVACR-09-H-17",
+           "text": "Define refrigerants."
+          },
+          {
+           "code": "HVACR-09-H-18",
+           "text": "Explain the types of refrigerants."
+          }
+         ]
+        },
+        {
+         "id": "refrigerant-properties",
+         "title": "Refrigerant properties",
+         "outcomes": [
+          {
+           "code": "HVACR-09-H-19",
+           "text": "List the properties of refrigerants."
+          },
+          {
+           "code": "HVACR-09-H-20",
+           "text": "Explain the different properties of a refrigerant."
+          },
+          {
+           "code": "HVACR-09-H-21",
+           "text": "Classify refrigerants by application and safety."
+          },
+          {
+           "code": "HVACR-09-H-22",
+           "text": "Tell a good refrigerant from a bad one."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "domain-j-service-repair-domestic-commercial-indu",
+     "title": "Domain J: Service & Repair Domestic, Commercial & Industrial Refrigeration Systems",
+     "topics": [
+      {
+       "id": "servicing-and-repair",
+       "title": "Servicing and repair",
+       "subtopics": [
+        {
+         "id": "diagnosing-faults",
+         "title": "Diagnosing faults",
+         "outcomes": [
+          {
+           "code": "HVACR-09-J-01",
+           "text": "Check for obvious problems to find which component or system is at fault."
+          },
+          {
+           "code": "HVACR-09-J-02",
+           "text": "Select tools, equipment and accessories to requirements and standards."
+          },
+          {
+           "code": "HVACR-09-J-03",
+           "text": "Check power supply, wiring and electric components as the manufacturer recommends and record results."
+          },
+          {
+           "code": "HVACR-09-J-04",
+           "text": "Check different types of heaters as recommended and record results."
+          },
+          {
+           "code": "HVACR-09-J-05",
+           "text": "Check refrigerant pressure with an AVO meter or gauge manifold to find the exact problem."
+          },
+          {
+           "code": "HVACR-09-J-06",
+           "text": "Diagnose causes of the problem from the manufacturer's manual and standards."
+          }
+         ]
+        },
+        {
+         "id": "repairing-a-refrigerator-or-freezer",
+         "title": "Repairing a refrigerator or freezer",
+         "outcomes": [
+          {
+           "code": "HVACR-09-J-07",
+           "text": "Select tools, equipment and accessories for the job."
+          },
+          {
+           "code": "HVACR-09-J-08",
+           "text": "Disconnect the refrigerator or freezer from power and follow the manual to rectify."
+          },
+          {
+           "code": "HVACR-09-J-09",
+           "text": "Rectify diagnosed faults, repairing or replacing components."
+          },
+          {
+           "code": "HVACR-09-J-10",
+           "text": "Check, wash and restore the body and cabinets to proper condition."
+          },
+          {
+           "code": "HVACR-09-J-11",
+           "text": "Check, service and replace the thermostat, door gasket and heaters if needed."
+          },
+          {
+           "code": "HVACR-09-J-12",
+           "text": "Switch on the unit to check electrical and mechanical performance and record results."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "domain-k-installation-of-domestic-commercial-ind",
+     "title": "Domain K: Installation of Domestic Commercial & Industrial Building Air Conditioning Systems",
+     "topics": [
+      {
+       "id": "installing-air-conditioning-systems",
+       "title": "Installing air conditioning systems",
+       "subtopics": [
+        {
+         "id": "installing-a-split-ac-marking-and-openings",
+         "title": "Installing a split AC: marking and openings",
+         "outcomes": [
+          {
+           "code": "HVACR-09-K-01",
+           "text": "Select tools, equipment and accessories for the job."
+          },
+          {
+           "code": "HVACR-09-K-02",
+           "text": "Mark the wall area for indoor and outdoor units per specifications and client needs."
+          },
+          {
+           "code": "HVACR-09-K-03",
+           "text": "Physically inspect indoor and outdoor units against specifications."
+          },
+          {
+           "code": "HVACR-09-K-04",
+           "text": "Make an opening for refrigerant pipes, condensate pipe and control wires."
+          }
+         ]
+        },
+        {
+         "id": "installing-a-split-ac-mounting-units",
+         "title": "Installing a split AC: mounting units",
+         "outcomes": [
+          {
+           "code": "HVACR-09-K-05",
+           "text": "Mount the indoor unit on its wall plate per manufacturer specifications."
+          },
+          {
+           "code": "HVACR-09-K-06",
+           "text": "Prepare the base and fix the outdoor unit per manufacturer specifications."
+          }
+         ]
+        },
+        {
+         "id": "installing-a-split-ac-piping-and-wiring",
+         "title": "Installing a split AC: piping and wiring",
+         "outcomes": [
+          {
+           "code": "HVACR-09-K-07",
+           "text": "Connect refrigerant pipes, supply and control wires between indoor and outdoor units."
+          },
+          {
+           "code": "HVACR-09-K-08",
+           "text": "Add extra refrigerant for extra piping as the manufacturer recommends."
+          },
+          {
+           "code": "HVACR-09-K-09",
+           "text": "Make an oil trap in copper pipe as the site needs."
+          }
+         ]
+        },
+        {
+         "id": "installing-a-split-ac-commissioning",
+         "title": "Installing a split AC: commissioning",
+         "outcomes": [
+          {
+           "code": "HVACR-09-K-10",
+           "text": "Leak test, evacuate, charge refrigerant and open service valves."
+          },
+          {
+           "code": "HVACR-09-K-11",
+           "text": "Insulate joints and refrigerant pipes to standards."
+          },
+          {
+           "code": "HVACR-09-K-12",
+           "text": "Make sure all packing materials are removed."
+          },
+          {
+           "code": "HVACR-09-K-13",
+           "text": "Switch on the AC and check performance against capacity and specifications."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "domain-l-service-repair-domestic-commercial-indu",
+     "title": "Domain L: Service & Repair Domestic, Commercial & Industrial Air Conditioning System",
+     "topics": [
+      {
+       "id": "servicing-air-conditioners",
+       "title": "Servicing air conditioners",
+       "subtopics": [
+        {
+         "id": "diagnosing-ac-faults",
+         "title": "Diagnosing AC faults",
+         "outcomes": [
+          {
+           "code": "HVACR-09-L-01",
+           "text": "Check for obvious problems to find which component or system is at fault."
+          },
+          {
+           "code": "HVACR-09-L-02",
+           "text": "Select tools, equipment and accessories to requirements and standards."
+          },
+          {
+           "code": "HVACR-09-L-03",
+           "text": "Check power supply, wiring and electric components as recommended and record results."
+          },
+          {
+           "code": "HVACR-09-L-04",
+           "text": "Check refrigerant pressure with an AVO meter or gauge manifold and record results."
+          },
+          {
+           "code": "HVACR-09-L-05",
+           "text": "Diagnose causes of the problem from the manufacturer's manual and standards."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "10",
+   "units": [
+    {
+     "id": "domain-a-maintain-safe-work-environment-hvacr",
+     "title": "Domain A: Maintain Safe Work Environment HVACR",
+     "topics": [
+      {
+       "id": "safe-work-environment",
+       "title": "Safe work environment",
+       "subtopics": [
+        {
+         "id": "working-safely",
+         "title": "Working safely",
+         "outcomes": [
+          {
+           "code": "HVACR-10-A-01",
+           "text": "Work safely at all times, following health and safety rules and guidelines."
+          },
+          {
+           "code": "HVACR-10-A-02",
+           "text": "Identify health and safety hazards so injury and damage are prevented and corrective action is taken."
+          },
+          {
+           "code": "HVACR-10-A-03",
+           "text": "Deal with problems within your control and report others to the safety officer."
+          }
+         ]
+        },
+        {
+         "id": "protective-equipment-and-housekeeping",
+         "title": "Protective equipment and housekeeping",
+         "outcomes": [
+          {
+           "code": "HVACR-10-A-04",
+           "text": "Wear, adjust and maintain personal protective equipment for correct fit and protection."
+          },
+          {
+           "code": "HVACR-10-A-05",
+           "text": "Keep the work area clean and clear of obstructions and store tools properly to prevent accidents."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "domain-b-personal-professional-development-and-c",
+     "title": "Domain B: Personal & Professional Development and Communication Skill",
+     "topics": [
+      {
+       "id": "professional-and-communication-skills",
+       "title": "Professional and communication skills",
+       "subtopics": [
+        {
+         "id": "online-job-resources",
+         "title": "Online job resources",
+         "outcomes": [
+          {
+           "code": "HVACR-10-B-01",
+           "text": "Get familiar with online travel and e-commerce websites."
+          },
+          {
+           "code": "HVACR-10-B-02",
+           "text": "Find out about hotel websites."
+          },
+          {
+           "code": "HVACR-10-B-03",
+           "text": "Find out about freelancing websites and job opportunities."
+          }
+         ]
+        },
+        {
+         "id": "teamwork",
+         "title": "Teamwork",
+         "outcomes": [
+          {
+           "code": "HVACR-10-B-04",
+           "text": "Treat team members with respect and keep positive relationships towards shared goals."
+          },
+          {
+           "code": "HVACR-10-B-05",
+           "text": "Listen to instructions carefully and follow them."
+          },
+          {
+           "code": "HVACR-10-B-06",
+           "text": "Give work information to team members and spot linked activities to avoid confusion."
+          },
+          {
+           "code": "HVACR-10-B-07",
+           "text": "Use communication skills suited to the work."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "domain-e-heat-load-calculation-and-thermodynamic",
+     "title": "Domain E: Heat Load Calculation and Thermodynamics",
+     "topics": [
+      {
+       "id": "heat-and-thermodynamics",
+       "title": "Heat and thermodynamics",
+       "subtopics": [
+        {
+         "id": "heat-quantity-and-units",
+         "title": "Heat quantity and units",
+         "outcomes": [
+          {
+           "code": "HVACR-10-E-01",
+           "text": "Describe the quantity of heat in gases."
+          },
+          {
+           "code": "HVACR-10-E-02",
+           "text": "Explain conversion between different units."
+          }
+         ]
+        },
+        {
+         "id": "types-of-heat",
+         "title": "Types of heat",
+         "outcomes": [
+          {
+           "code": "HVACR-10-E-03",
+           "text": "Describe sensible, latent and total heat."
+          },
+          {
+           "code": "HVACR-10-E-04",
+           "text": "Calculate the different types of heat."
+          }
+         ]
+        },
+        {
+         "id": "gas-laws",
+         "title": "Gas laws",
+         "outcomes": [
+          {
+           "code": "HVACR-10-E-05",
+           "text": "Calculate pressure, volume and temperature relations with Boyle's, Charles's, Gay-Lussac and general gas laws."
+          },
+          {
+           "code": "HVACR-10-E-06",
+           "text": "Define gas properties such as energy, density, work, volume, pressure and temperature."
+          }
+         ]
+        },
+        {
+         "id": "psychrometric-processes",
+         "title": "Psychrometric processes",
+         "outcomes": [
+          {
+           "code": "HVACR-10-E-07",
+           "text": "Define heating and cooling psychrometric processes of air."
+          },
+          {
+           "code": "HVACR-10-E-08",
+           "text": "Describe psychrometric processes such as sensible heating and cooling, dehumidification and air mixing."
+          }
+         ]
+        },
+        {
+         "id": "psychrometric-calculations",
+         "title": "Psychrometric calculations",
+         "outcomes": [
+          {
+           "code": "HVACR-10-E-09",
+           "text": "Calculate psychrometric properties."
+          },
+          {
+           "code": "HVACR-10-E-10",
+           "text": "Calculate evaporative cooling (humidification)."
+          },
+          {
+           "code": "HVACR-10-E-11",
+           "text": "Calculate summer cooling (dehumidification)."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "domain-f-electronics-electrical-power-system-ope",
+     "title": "Domain F: Electronics, Electrical Power System Operation and Control",
+     "topics": [
+      {
+       "id": "electrical-and-electronics",
+       "title": "Electrical and electronics",
+       "subtopics": [
+        {
+         "id": "motors-and-testing",
+         "title": "Motors and testing",
+         "outcomes": [
+          {
+           "code": "HVACR-10-F-01",
+           "text": "Identify the type of electric motor."
+          },
+          {
+           "code": "HVACR-10-F-02",
+           "text": "Check a motor with test instruments to detect electrical defects."
+          },
+          {
+           "code": "HVACR-10-F-03",
+           "text": "Check the tripping of a protective device with test instruments while the motor runs."
+          }
+         ]
+        },
+        {
+         "id": "electronic-components",
+         "title": "Electronic components",
+         "outcomes": [
+          {
+           "code": "HVACR-10-F-04",
+           "text": "Define electronic components and circuits."
+          },
+          {
+           "code": "HVACR-10-F-05",
+           "text": "Define opto-coupler devices."
+          }
+         ]
+        },
+        {
+         "id": "electronic-circuits-to-build",
+         "title": "Electronic circuits to build",
+         "outcomes": [
+          {
+           "code": "HVACR-10-F-06",
+           "text": "Make a pin-hole detector."
+          },
+          {
+           "code": "HVACR-10-F-07",
+           "text": "Make a flame failure control."
+          },
+          {
+           "code": "HVACR-10-F-08",
+           "text": "Make a DC motor speed control circuit."
+          },
+          {
+           "code": "HVACR-10-F-09",
+           "text": "Make an AC power control circuit."
+          }
+         ]
+        },
+        {
+         "id": "photocell-and-logic-circuits",
+         "title": "Photocell and logic circuits",
+         "outcomes": [
+          {
+           "code": "HVACR-10-F-10",
+           "text": "Connect a crocodile."
+          },
+          {
+           "code": "HVACR-10-F-11",
+           "text": "Connect a photocell."
+          },
+          {
+           "code": "HVACR-10-F-12",
+           "text": "Verify a photocell."
+          },
+          {
+           "code": "HVACR-10-F-13",
+           "text": "Make the necessary connections."
+          },
+          {
+           "code": "HVACR-10-F-14",
+           "text": "Operate gates in a circuit."
+          },
+          {
+           "code": "HVACR-10-F-15",
+           "text": "Build a time delay circuit."
+          }
+         ]
+        },
+        {
+         "id": "pcb-and-inverter",
+         "title": "PCB and inverter",
+         "outcomes": [
+          {
+           "code": "HVACR-10-F-16",
+           "text": "Install and connect a PCB system according to the functional diagram."
+          },
+          {
+           "code": "HVACR-10-F-17",
+           "text": "Check inverter AC performance against requirements."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "domain-h-refrigeration-cycle-and-refrigerants",
+     "title": "Domain H: Refrigeration Cycle and Refrigerants",
+     "topics": [
+      {
+       "id": "refrigeration-cycle-and-refrigerants",
+       "title": "Refrigeration cycle and refrigerants",
+       "subtopics": [
+        {
+         "id": "retrofitting",
+         "title": "Retrofitting",
+         "outcomes": [
+          {
+           "code": "HVACR-10-H-01",
+           "text": "Define retrofitting."
+          },
+          {
+           "code": "HVACR-10-H-05",
+           "text": "Explain the retrofitting process."
+          }
+         ]
+        },
+        {
+         "id": "environmental-effects",
+         "title": "Environmental effects",
+         "outcomes": [
+          {
+           "code": "HVACR-10-H-02",
+           "text": "Define ozone depletion."
+          },
+          {
+           "code": "HVACR-10-H-03",
+           "text": "Define global warming."
+          },
+          {
+           "code": "HVACR-10-H-04",
+           "text": "Define the greenhouse effect."
+          },
+          {
+           "code": "HVACR-10-H-10",
+           "text": "Study refrigerant charts for global warming and ozone depletion potential."
+          }
+         ]
+        },
+        {
+         "id": "recovering-and-handling-refrigerants",
+         "title": "Recovering and handling refrigerants",
+         "outcomes": [
+          {
+           "code": "HVACR-10-H-06",
+           "text": "Define recovery of refrigerant."
+          },
+          {
+           "code": "HVACR-10-H-07",
+           "text": "Define reclaiming."
+          },
+          {
+           "code": "HVACR-10-H-08",
+           "text": "Describe recycling."
+          },
+          {
+           "code": "HVACR-10-H-09",
+           "text": "Describe safe handling and storage of refrigerants."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "domain-i-install-commercial-industrial-refrigera",
+     "title": "Domain I: Install Commercial & Industrial Refrigeration Units",
+     "topics": [
+      {
+       "id": "installing-refrigeration-units",
+       "title": "Installing refrigeration units",
+       "subtopics": [
+        {
+         "id": "installing-an-ice-making-machine",
+         "title": "Installing an ice-making machine",
+         "outcomes": [
+          {
+           "code": "HVACR-10-I-01",
+           "text": "Select tools, equipment and accessories for an ice-making machine."
+          },
+          {
+           "code": "HVACR-10-I-02",
+           "text": "Fix the machine on the potable water supply following manufacturer specifications."
+          },
+          {
+           "code": "HVACR-10-I-03",
+           "text": "Measure clearances on each side to meet manufacturer standards."
+          },
+          {
+           "code": "HVACR-10-I-04",
+           "text": "Make water drain connections as per the manual and client needs."
+          },
+          {
+           "code": "HVACR-10-I-05",
+           "text": "Install a shut-off valve on the water supply near the machine."
+          },
+          {
+           "code": "HVACR-10-I-06",
+           "text": "Connect electric supply, switch on and check performance with proper instruments."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "domain-j-service-repair-domestic-commercial-indu",
+     "title": "Domain J: Service & Repair Domestic, Commercial & Industrial Refrigeration Systems",
+     "topics": [
+      {
+       "id": "servicing-and-repair",
+       "title": "Servicing and repair",
+       "subtopics": [
+        {
+         "id": "repairing-a-water-cooler-or-dispenser",
+         "title": "Repairing a water cooler or dispenser",
+         "outcomes": [
+          {
+           "code": "HVACR-10-J-01",
+           "text": "Select tools, equipment and accessories according to job requirements."
+          },
+          {
+           "code": "HVACR-10-J-02",
+           "text": "Disconnect the water cooler or dispenser from power and follow the manual to rectify."
+          },
+          {
+           "code": "HVACR-10-J-03",
+           "text": "Rectify diagnosed faults, repairing or replacing components."
+          },
+          {
+           "code": "HVACR-10-J-04",
+           "text": "Check, wash and restore the body and mounts to proper condition."
+          },
+          {
+           "code": "HVACR-10-J-05",
+           "text": "Switch on to check electrical and mechanical performance and record results."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "domain-k-installation-of-domestic-commercial-ind",
+     "title": "Domain K: Installation of Domestic Commercial & Industrial Building Air Conditioning Systems",
+     "topics": [
+      {
+       "id": "installing-air-conditioning-systems",
+       "title": "Installing air conditioning systems",
+       "subtopics": [
+        {
+         "id": "installing-a-window-ac",
+         "title": "Installing a window AC",
+         "outcomes": [
+          {
+           "code": "HVACR-10-K-01",
+           "text": "Select tools, equipment and accessories for the job."
+          },
+          {
+           "code": "HVACR-10-K-02",
+           "text": "Mark the wall location for the window AC per specifications and client needs."
+          },
+          {
+           "code": "HVACR-10-K-03",
+           "text": "Make an opening at the marked area on the wall."
+          },
+          {
+           "code": "HVACR-10-K-04",
+           "text": "Fix an iron or wooden frame firmly in the opening and insert the AC cover."
+          },
+          {
+           "code": "HVACR-10-K-05",
+           "text": "Install the AC in the framed opening with a slope so condensate drains outside."
+          },
+          {
+           "code": "HVACR-10-K-06",
+           "text": "Cover and seal side air gaps with insulating material."
+          },
+          {
+           "code": "HVACR-10-K-07",
+           "text": "Fix a wooden border around the AC grill as the client wants."
+          },
+          {
+           "code": "HVACR-10-K-08",
+           "text": "Fix the condensate drain pipe into the main sewer line."
+          },
+          {
+           "code": "HVACR-10-K-09",
+           "text": "Arrange power supply with a circuit breaker near the AC."
+          },
+          {
+           "code": "HVACR-10-K-10",
+           "text": "Make sure all packing materials are removed after installation."
+          },
+          {
+           "code": "HVACR-10-K-11",
+           "text": "Switch on the AC and check performance against capacity and specifications."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "domain-l-service-repair-domestic-commercial-indu",
+     "title": "Domain L: Service & Repair Domestic, Commercial & Industrial Air Conditioning System",
+     "topics": [
+      {
+       "id": "servicing-air-conditioners",
+       "title": "Servicing air conditioners",
+       "subtopics": [
+        {
+         "id": "repairing-a-split-ac",
+         "title": "Repairing a split AC",
+         "outcomes": [
+          {
+           "code": "HVACR-10-L-01",
+           "text": "Select tools, equipment and accessories for the job."
+          },
+          {
+           "code": "HVACR-10-L-02",
+           "text": "Disconnect the AC from power and follow the manual to rectify."
+          },
+          {
+           "code": "HVACR-10-L-03",
+           "text": "Rectify diagnosed faults, repairing or replacing components."
+          },
+          {
+           "code": "HVACR-10-L-04",
+           "text": "Switch on to check electrical and mechanical performance and record results."
+          }
+         ]
+        },
+        {
+         "id": "servicing-a-split-ac",
+         "title": "Servicing a split AC",
+         "outcomes": [
+          {
+           "code": "HVACR-10-L-05",
+           "text": "Select tools, equipment and accessories for the job."
+          },
+          {
+           "code": "HVACR-10-L-06",
+           "text": "Start the AC and record performance with test instruments."
+          },
+          {
+           "code": "HVACR-10-L-07",
+           "text": "Pump down the split AC and dismantle the indoor and condensing units."
+          },
+          {
+           "code": "HVACR-10-L-08",
+           "text": "Clean the AC components with the specified agents, tools and materials."
+          },
+          {
+           "code": "HVACR-10-L-09",
+           "text": "Reinstall indoor and outdoor units, connect pipes and wires, evacuate, open service valves and leak test."
+          },
+          {
+           "code": "HVACR-10-L-10",
+           "text": "Switch on the AC and record performance."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "domain-m-automobile-air-conditioning-system",
+     "title": "Domain M: Automobile Air Conditioning system",
+     "topics": [
+      {
+       "id": "automobile-air-conditioning",
+       "title": "Automobile air conditioning",
+       "subtopics": [
+        {
+         "id": "preparing-for-a-car-ac-check",
+         "title": "Preparing for a car AC check",
+         "outcomes": [
+          {
+           "code": "HVACR-10-M-01",
+           "text": "Identify and collect the tools and equipment required."
+          },
+          {
+           "code": "HVACR-10-M-02",
+           "text": "Collect materials in line with the work requirements."
+          },
+          {
+           "code": "HVACR-10-M-03",
+           "text": "Identify and prepare technical or calibration needs for servicing equipment."
+          }
+         ]
+        },
+        {
+         "id": "checking-a-car-ac-system",
+         "title": "Checking a car AC system",
+         "outcomes": [
+          {
+           "code": "HVACR-10-M-04",
+           "text": "Handle refrigerants safely where dangers are observed."
+          },
+          {
+           "code": "HVACR-10-M-05",
+           "text": "Check AC system components by procedure."
+          },
+          {
+           "code": "HVACR-10-M-06",
+           "text": "Check the refrigerant amount as the manual instructs."
+          }
+         ]
+        },
+        {
+         "id": "finding-and-reporting-faults",
+         "title": "Finding and reporting faults",
+         "outcomes": [
+          {
+           "code": "HVACR-10-M-07",
+           "text": "Detect damaged components and related wiring or ECU systems by standard procedure."
+          },
+          {
+           "code": "HVACR-10-M-08",
+           "text": "Complete the test without damaging workplace property or the vehicle."
+          },
+          {
+           "code": "HVACR-10-M-09",
+           "text": "Identify faults or defects that need repair or servicing from the checks."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "11",
+   "units": [
+    {
+     "id": "domain-a-maintain-safe-work-environment-hvacr",
+     "title": "Domain A: Maintain Safe Work Environment HVACR",
+     "topics": [
+      {
+       "id": "safe-work-environment",
+       "title": "Safe work environment",
+       "subtopics": [
+        {
+         "id": "hazards-and-accidents",
+         "title": "Hazards and accidents",
+         "outcomes": [
+          {
+           "code": "HVACR-11-A-01",
+           "text": "Define hazards and their types."
+          },
+          {
+           "code": "HVACR-11-A-02",
+           "text": "Describe falling and lifting accidents during installation and maintenance of commercial and industrial HVAC systems."
+          },
+          {
+           "code": "HVACR-11-A-03",
+           "text": "Recognise commercial and industrial HVAC systems and their safety concerns."
+          }
+         ]
+        },
+        {
+         "id": "handling-and-ergonomics",
+         "title": "Handling and ergonomics",
+         "outcomes": [
+          {
+           "code": "HVACR-11-A-04",
+           "text": "Explain safe handling of materials and tools."
+          },
+          {
+           "code": "HVACR-11-A-05",
+           "text": "Identify ergonomic safety at the workplace."
+          },
+          {
+           "code": "HVACR-11-A-06",
+           "text": "Identify weather safety precautions."
+          }
+         ]
+        },
+        {
+         "id": "ppe-and-chemicals",
+         "title": "PPE and chemicals",
+         "outcomes": [
+          {
+           "code": "HVACR-11-A-07",
+           "text": "Use personal protective equipment."
+          },
+          {
+           "code": "HVACR-11-A-08",
+           "text": "Recognise safe chemical handling."
+          }
+         ]
+        },
+        {
+         "id": "scaffolds-and-ladders",
+         "title": "Scaffolds and ladders",
+         "outcomes": [
+          {
+           "code": "HVACR-11-A-09",
+           "text": "Use scaffolding safely."
+          },
+          {
+           "code": "HVACR-11-A-10",
+           "text": "Use a ladder safely."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "domain-b-personal-professional-development-and-c",
+     "title": "Domain B: Personal & Professional Development and Communication Skill",
+     "topics": [
+      {
+       "id": "professional-and-communication-skills",
+       "title": "Professional and communication skills",
+       "subtopics": [
+        {
+         "id": "communication-skills",
+         "title": "Communication skills",
+         "outcomes": [
+          {
+           "code": "HVACR-11-B-01",
+           "text": "Recognise the importance of body language and effective communication."
+          },
+          {
+           "code": "HVACR-11-B-02",
+           "text": "Explain basic rules of effective communication."
+          },
+          {
+           "code": "HVACR-11-B-03",
+           "text": "Explain methods of communication and when each suits."
+          },
+          {
+           "code": "HVACR-11-B-04",
+           "text": "Interact and communicate effectively with colleagues."
+          },
+          {
+           "code": "HVACR-11-B-05",
+           "text": "Interact and communicate with other stakeholders."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "domain-d-fundamentals-of-hvacr",
+     "title": "Domain D: Fundamentals of HVACR",
+     "topics": [
+      {
+       "id": "hvac-systems-and-distribution",
+       "title": "HVAC systems and distribution",
+       "subtopics": [
+        {
+         "id": "introduction-to-hvac",
+         "title": "Introduction to HVAC",
+         "outcomes": [
+          {
+           "code": "HVACR-11-D-01",
+           "text": "Define the basic concepts of HVAC systems."
+          },
+          {
+           "code": "HVACR-11-D-02",
+           "text": "Identify the main components of HVAC systems."
+          },
+          {
+           "code": "HVACR-11-D-03",
+           "text": "Explain why energy efficiency matters in HVAC."
+          }
+         ]
+        },
+        {
+         "id": "psychrometric-properties-of-air",
+         "title": "Psychrometric properties of air",
+         "outcomes": [
+          {
+           "code": "HVACR-11-D-04",
+           "text": "Define psychrometry and why it matters in HVAC."
+          },
+          {
+           "code": "HVACR-11-D-05",
+           "text": "Identify and explain dry bulb, wet bulb, dew point, humidity, specific volume and enthalpy."
+          }
+         ]
+        },
+        {
+         "id": "psychrometric-chart-practice",
+         "title": "Psychrometric chart practice",
+         "outcomes": [
+          {
+           "code": "HVACR-11-D-06",
+           "text": "Recognise the lines and scales on a psychrometric chart."
+          },
+          {
+           "code": "HVACR-11-D-07",
+           "text": "Measure dry and wet bulb temperatures with a sling psychrometer."
+          },
+          {
+           "code": "HVACR-11-D-08",
+           "text": "Draw psychrometric properties on a chart."
+          },
+          {
+           "code": "HVACR-11-D-09",
+           "text": "Calculate basic air properties during heating or cooling."
+          }
+         ]
+        },
+        {
+         "id": "air-distribution-basics",
+         "title": "Air distribution basics",
+         "outcomes": [
+          {
+           "code": "HVACR-11-D-10",
+           "text": "Define an air distribution system."
+          },
+          {
+           "code": "HVACR-11-D-11",
+           "text": "Explain the components of an air distribution system."
+          },
+          {
+           "code": "HVACR-11-D-12",
+           "text": "Recognise the importance of ducting and air filters."
+          }
+         ]
+        },
+        {
+         "id": "air-distribution-practice",
+         "title": "Air distribution practice",
+         "outcomes": [
+          {
+           "code": "HVACR-11-D-13",
+           "text": "Do air leak testing in ducts."
+          },
+          {
+           "code": "HVACR-11-D-14",
+           "text": "Install air filters."
+          },
+          {
+           "code": "HVACR-11-D-15",
+           "text": "Identify air control and distribution devices."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "domain-e-heat-load-calculation-and-thermodynamic",
+     "title": "Domain E: Heat Load Calculation and Thermodynamics",
+     "topics": [
+      {
+       "id": "heat-and-thermodynamics",
+       "title": "Heat and thermodynamics",
+       "subtopics": [
+        {
+         "id": "thermodynamics",
+         "title": "Thermodynamics",
+         "outcomes": [
+          {
+           "code": "HVACR-11-E-01",
+           "text": "Define thermodynamics."
+          },
+          {
+           "code": "HVACR-11-E-02",
+           "text": "Describe thermodynamic properties of air."
+          },
+          {
+           "code": "HVACR-11-E-03",
+           "text": "Calculate specific heat, enthalpy, internal energy, specific gravity and density of air and gases."
+          },
+          {
+           "code": "HVACR-11-E-04",
+           "text": "Apply thermodynamic principles to different conditions."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "domain-f-electronics-electrical-power-system-ope",
+     "title": "Domain F: Electronics, Electrical Power System Operation and Control",
+     "topics": [
+      {
+       "id": "electrical-and-electronics",
+       "title": "Electrical and electronics",
+       "subtopics": [
+        {
+         "id": "reading-drawings",
+         "title": "Reading drawings",
+         "outcomes": [
+          {
+           "code": "HVACR-11-F-01",
+           "text": "Interpret drawings."
+          },
+          {
+           "code": "HVACR-11-F-02",
+           "text": "Identify signs and symbols."
+          },
+          {
+           "code": "HVACR-11-F-03",
+           "text": "Identify terms and abbreviations."
+          },
+          {
+           "code": "HVACR-11-F-04",
+           "text": "Interpret specifications."
+          },
+          {
+           "code": "HVACR-11-F-05",
+           "text": "Interpret circuit diagrams from a given drawing."
+          },
+          {
+           "code": "HVACR-11-F-06",
+           "text": "Draw signs, symbols and abbreviations of given equipment."
+          }
+         ]
+        },
+        {
+         "id": "direct-online-starter",
+         "title": "Direct online starter",
+         "outcomes": [
+          {
+           "code": "HVACR-11-F-07",
+           "text": "Connect a direct online starter, controls and accessories."
+          }
+         ]
+        },
+        {
+         "id": "star-delta-starter",
+         "title": "Star-delta starter",
+         "outcomes": [
+          {
+           "code": "HVACR-11-F-08",
+           "text": "Collect and interpret a star-delta starter."
+          },
+          {
+           "code": "HVACR-11-F-09",
+           "text": "Identify the procedure for star connections."
+          },
+          {
+           "code": "HVACR-11-F-10",
+           "text": "Identify the procedure for delta connections."
+          },
+          {
+           "code": "HVACR-11-F-11",
+           "text": "Demonstrate techniques for a star-delta starter."
+          },
+          {
+           "code": "HVACR-11-F-12",
+           "text": "Make star connections."
+          },
+          {
+           "code": "HVACR-11-F-13",
+           "text": "Make delta connections."
+          },
+          {
+           "code": "HVACR-11-F-14",
+           "text": "Connect a star-delta starter."
+          }
+         ]
+        },
+        {
+         "id": "auto-transformer-starter-and-plc",
+         "title": "Auto-transformer starter and PLC",
+         "outcomes": [
+          {
+           "code": "HVACR-11-F-15",
+           "text": "Demonstrate techniques for an auto-transformer starter."
+          },
+          {
+           "code": "HVACR-11-F-16",
+           "text": "Check and justify all connections of each starter, control and accessory."
+          },
+          {
+           "code": "HVACR-11-F-17",
+           "text": "Test and check the connection between motor and starters."
+          },
+          {
+           "code": "HVACR-11-F-18",
+           "text": "Interpret the manufacturer's manual and machine functional diagram."
+          },
+          {
+           "code": "HVACR-11-F-19",
+           "text": "Install and connect a PLC system according to the functional diagram."
+          },
+          {
+           "code": "HVACR-11-F-20",
+           "text": "Check machine performance against requirements."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "domain-g-introduction-to-hvacr-allied-components",
+     "title": "Domain G: Introduction to HVACR Allied Components for Commercial & Industrial Systems",
+     "topics": [
+      {
+       "id": "introduction-to-hvacr",
+       "title": "Introduction to HVACR",
+       "subtopics": [
+        {
+         "id": "commercial-and-industrial-ac-units",
+         "title": "Commercial and industrial AC units",
+         "outcomes": [
+          {
+           "code": "HVACR-11-G-01",
+           "text": "Define commercial and industrial air conditioning units."
+          },
+          {
+           "code": "HVACR-11-G-02",
+           "text": "Identify the types of commercial air conditioning units."
+          },
+          {
+           "code": "HVACR-11-G-03",
+           "text": "Explain the components of commercial and industrial air conditioning units."
+          },
+          {
+           "code": "HVACR-11-G-04",
+           "text": "Explain why commercial and industrial AC units matter."
+          },
+          {
+           "code": "HVACR-11-G-05",
+           "text": "Explain the difference between commercial and industrial AC units."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "domain-i-install-commercial-industrial-refrigera",
+     "title": "Domain I: Install Commercial & Industrial Refrigeration Units",
+     "topics": [
+      {
+       "id": "installing-refrigeration-units",
+       "title": "Installing refrigeration units",
+       "subtopics": [
+        {
+         "id": "installing-a-walk-in-cooler-or-freezer",
+         "title": "Installing a walk-in cooler or freezer",
+         "outcomes": [
+          {
+           "code": "HVACR-11-I-01",
+           "text": "Select tools, equipment and accessories for a walk-in cooler, freezer or cold room."
+          },
+          {
+           "code": "HVACR-11-I-02",
+           "text": "Prepare an insulated room for low-temperature food storage per drawing."
+          },
+          {
+           "code": "HVACR-11-I-03",
+           "text": "Prepare the steel or concrete foundation or frame for the condensing unit."
+          },
+          {
+           "code": "HVACR-11-I-04",
+           "text": "Prepare and level the place to fix the evaporator and condensing unit firmly."
+          },
+          {
+           "code": "HVACR-11-I-05",
+           "text": "Lay out piping and control wiring from indoor to outdoor unit."
+          },
+          {
+           "code": "HVACR-11-I-06",
+           "text": "Leak test, evacuate and charge refrigerant to unit specifications."
+          },
+          {
+           "code": "HVACR-11-I-07",
+           "text": "Connect electric supply and operate the unit to check performance."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "domain-j-service-repair-domestic-commercial-indu",
+     "title": "Domain J: Service & Repair Domestic, Commercial & Industrial Refrigeration Systems",
+     "topics": [
+      {
+       "id": "servicing-and-repair",
+       "title": "Servicing and repair",
+       "subtopics": [
+        {
+         "id": "diagnosing-commercial-refrigeration-faults",
+         "title": "Diagnosing commercial refrigeration faults",
+         "outcomes": [
+          {
+           "code": "HVACR-11-J-01",
+           "text": "Check for obvious problems to find which component or system is at fault."
+          },
+          {
+           "code": "HVACR-11-J-02",
+           "text": "Select tools, equipment and accessories to requirements and standards."
+          },
+          {
+           "code": "HVACR-11-J-03",
+           "text": "Check power, wiring, electronics and refrigerant pressure with a manufacturer flow chart and record results."
+          },
+          {
+           "code": "HVACR-11-J-04",
+           "text": "Diagnose causes from the manufacturer's manual and standards."
+          }
+         ]
+        },
+        {
+         "id": "repairing-commercial-refrigeration",
+         "title": "Repairing commercial refrigeration",
+         "outcomes": [
+          {
+           "code": "HVACR-11-J-05",
+           "text": "Select tools, equipment and accessories to requirements and standards."
+          },
+          {
+           "code": "HVACR-11-J-06",
+           "text": "Disconnect the unit from power and follow the manual to rectify."
+          },
+          {
+           "code": "HVACR-11-J-07",
+           "text": "Rectify the diagnosed fault by repairing or replacing components."
+          },
+          {
+           "code": "HVACR-11-J-08",
+           "text": "Switch on to check electrical and mechanical performance and record results."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "domain-k-installation-of-domestic-commercial-ind",
+     "title": "Domain K: Installation of Domestic Commercial & Industrial Building Air Conditioning Systems",
+     "topics": [
+      {
+       "id": "installing-air-conditioning-systems",
+       "title": "Installing air conditioning systems",
+       "subtopics": [
+        {
+         "id": "installing-a-package-unit",
+         "title": "Installing a package unit",
+         "outcomes": [
+          {
+           "code": "HVACR-11-K-01",
+           "text": "Select tools, equipment and accessories for the job."
+          },
+          {
+           "code": null,
+           "text": "Mark locations and areas as per layout plans and specifications."
+          },
+          {
+           "code": null,
+           "text": "Prepare foundations, place, adjust and level package units with safety precautions."
+          },
+          {
+           "code": null,
+           "text": "Connect package units with ducts, insulate where needed, and make power and control connections."
+          },
+          {
+           "code": null,
+           "text": "Switch on the supply and check performance per manufacturer instructions and standards."
+          }
+         ]
+        },
+        {
+         "id": "installing-a-vrf-or-vrv-system",
+         "title": "Installing a VRF or VRV system",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Select tools, equipment and accessories for the job."
+          },
+          {
+           "code": null,
+           "text": "Prepare foundations, place, adjust and level outdoor units with safety precautions."
+          },
+          {
+           "code": null,
+           "text": "Prepare piping, weld and braze per specifications and layout drawings."
+          },
+          {
+           "code": null,
+           "text": "Install indoor units based on layout diagrams, client needs and manufacturer instructions."
+          },
+          {
+           "code": null,
+           "text": "Fix shut-off valves with service ports on each indoor unit."
+          },
+          {
+           "code": null,
+           "text": "Check and repair leaks, insulate joints, evacuate the system and charge refrigerant."
+          },
+          {
+           "code": "HVACR-10-K-12",
+           "text": "Connect power supply and control wires to the central control or building management system."
+          },
+          {
+           "code": "HVACR-10-K-13",
+           "text": "Switch on the system and check performance."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "domain-l-service-repair-domestic-commercial-indu",
+     "title": "Domain L: Service & Repair Domestic, Commercial & Industrial Air Conditioning System",
+     "topics": [
+      {
+       "id": "servicing-air-conditioners",
+       "title": "Servicing air conditioners",
+       "subtopics": [
+        {
+         "id": "basic-ac-diagnostics",
+         "title": "Basic AC diagnostics",
+         "outcomes": [
+          {
+           "code": "HVACR-11-L-01",
+           "text": "Build basic skills in diagnosing common AC problems."
+          },
+          {
+           "code": "HVACR-11-L-02",
+           "text": "Select basic tools and equipment for diagnosis."
+          },
+          {
+           "code": "HVACR-11-L-03",
+           "text": "Understand why documentation and record-keeping matter in fault diagnosis."
+          },
+          {
+           "code": "HVACR-11-L-04",
+           "text": "Check power supply, wiring, components and refrigerant pressure by hand."
+          }
+         ]
+        },
+        {
+         "id": "repairing-chillers-ahus-and-fcus",
+         "title": "Repairing chillers, AHUs and FCUs",
+         "outcomes": [
+          {
+           "code": "HVACR-11-L-05",
+           "text": "Select tools and equipment suited to specific repairs."
+          },
+          {
+           "code": "HVACR-11-L-06",
+           "text": "Follow advanced shutdown and rectification procedures."
+          },
+          {
+           "code": "HVACR-11-L-07",
+           "text": "Replace components such as printed circuit boards and air filters."
+          },
+          {
+           "code": "HVACR-11-L-08",
+           "text": "Restart systems and record post-repair performance."
+          }
+         ]
+        },
+        {
+         "id": "repairing-pumps-and-cooling-towers",
+         "title": "Repairing pumps and cooling towers",
+         "outcomes": [
+          {
+           "code": "HVACR-11-L-09",
+           "text": "Select tools for more complex pump and cooling tower tasks."
+          },
+          {
+           "code": "HVACR-11-L-10",
+           "text": "Understand cooling tower components such as fan assemblies, float valves and strainers."
+          },
+          {
+           "code": "HVACR-11-L-11",
+           "text": "Explore chemical treatment to prevent sludge and scaling."
+          },
+          {
+           "code": "HVACR-11-L-12",
+           "text": "Learn advanced procedures for starting, servicing and repairing condenser and chilled water pumps."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "domain-n-fabrication-fundamentals-for-hvac-work",
+     "title": "Domain N: Fabrication Fundamentals for HVAC Work",
+     "topics": [
+      {
+       "id": "hvac-fabrication",
+       "title": "HVAC fabrication",
+       "subtopics": [
+        {
+         "id": "tools-and-materials",
+         "title": "Tools and materials",
+         "outcomes": [
+          {
+           "code": "HVACR-11-N-01",
+           "text": "Select tools, machines, sheet materials and accessories for HVAC fabrication to standards."
+          },
+          {
+           "code": "HVACR-11-N-02",
+           "text": "Identify and group tools and gain hands-on experience using them."
+          }
+         ]
+        },
+        {
+         "id": "basic-duct-fabrication",
+         "title": "Basic duct fabrication",
+         "outcomes": [
+          {
+           "code": "HVACR-11-N-03",
+           "text": "Take measurements, mark locations and pick duct fittings from layout plans."
+          },
+          {
+           "code": "HVACR-11-N-04",
+           "text": "Fabricate basic duct elements: edges, joints, seams, bends and notches."
+          }
+         ]
+        },
+        {
+         "id": "basic-pipe-fabrication",
+         "title": "Basic pipe fabrication",
+         "outcomes": [
+          {
+           "code": "HVACR-11-N-05",
+           "text": "Select tools, machines and pipe materials, and prepare and clean joints for welding or threading."
+          },
+          {
+           "code": "HVACR-11-N-06",
+           "text": "Show basic pipe fabrication skill with precision and cleanliness."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "domain-o-perform-preventive-maintenance",
+     "title": "Domain O: Perform Preventive Maintenance",
+     "topics": [
+      {
+       "id": "preventive-maintenance",
+       "title": "Preventive maintenance",
+       "subtopics": [
+        {
+         "id": "calibrating-or-replacing-instruments",
+         "title": "Calibrating or replacing instruments",
+         "outcomes": [
+          {
+           "code": "HVACR-11-O-01",
+           "text": "Shut down the system when required and safely dismantle measuring instruments."
+          },
+          {
+           "code": "HVACR-11-O-02",
+           "text": "Select and organise tools and accessories by job requirements and sequence of work."
+          },
+          {
+           "code": "HVACR-11-O-03",
+           "text": "Calibrate or replace measuring instruments following manufacturer instructions."
+          },
+          {
+           "code": "HVACR-11-O-04",
+           "text": "Reinstall instruments and start the system to confirm they match manufacturer specifications."
+          },
+          {
+           "code": "HVACR-11-O-05",
+           "text": "Record instrument output results for future reference."
+          },
+          {
+           "code": "HVACR-11-O-06",
+           "text": "Follow HVACR standards throughout calibration or replacement."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "12",
+   "units": [
+    {
+     "id": "domain-b-personal-professional-development-and-c",
+     "title": "Domain B: Personal & Professional Development and Communication Skill",
+     "topics": [
+      {
+       "id": "professional-and-communication-skills",
+       "title": "Professional and communication skills",
+       "subtopics": [
+        {
+         "id": "work-ethics",
+         "title": "Work ethics",
+         "outcomes": [
+          {
+           "code": "HVACR-12-B-01",
+           "text": "Define work ethics."
+          },
+          {
+           "code": "HVACR-12-B-02",
+           "text": "Describe the impact of good work ethics."
+          },
+          {
+           "code": "HVACR-12-B-03",
+           "text": "Tell poor from good work ethics."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "domain-d-fundamentals-of-hvacr",
+     "title": "Domain D: Fundamentals of HVACR",
+     "topics": [
+      {
+       "id": "hvac-systems-and-distribution",
+       "title": "HVAC systems and distribution",
+       "subtopics": [
+        {
+         "id": "water-distribution-overview",
+         "title": "Water distribution overview",
+         "outcomes": [
+          {
+           "code": "HVACR-12-D-01",
+           "text": "Define a water distribution system in HVAC."
+          },
+          {
+           "code": "HVACR-12-D-02",
+           "text": "Explain the components and importance of water distribution."
+          },
+          {
+           "code": "HVACR-12-D-03",
+           "text": "Recognise types of pumps and valves."
+          }
+         ]
+        },
+        {
+         "id": "water-distribution-skills",
+         "title": "Water distribution skills",
+         "outcomes": [
+          {
+           "code": "HVACR-12-D-04",
+           "text": "Do leak testing of water distribution systems."
+          },
+          {
+           "code": "HVACR-12-D-05",
+           "text": "Identify and operate different pumps."
+          },
+          {
+           "code": "HVACR-12-D-06",
+           "text": "Recognise and work with valve types."
+          }
+         ]
+        },
+        {
+         "id": "thermal-insulation",
+         "title": "Thermal insulation",
+         "outcomes": [
+          {
+           "code": "HVACR-12-D-07",
+           "text": "Explain the basic principles of thermal insulation."
+          },
+          {
+           "code": "HVACR-12-D-08",
+           "text": "Recognise different insulating materials."
+          },
+          {
+           "code": "HVACR-12-D-09",
+           "text": "Insulate ducts and pipes."
+          }
+         ]
+        },
+        {
+         "id": "integrating-hvac-fundamentals",
+         "title": "Integrating HVAC fundamentals",
+         "outcomes": [
+          {
+           "code": "HVACR-12-D-10",
+           "text": "Show how psychrometric knowledge fits with air and water distribution."
+          },
+          {
+           "code": "HVACR-12-D-11",
+           "text": "Apply insulation techniques to improve system efficiency."
+          },
+          {
+           "code": "HVACR-12-D-12",
+           "text": "Analyse and calculate air properties to improve system performance."
+          }
+         ]
+        },
+        {
+         "id": "safety-and-compliance",
+         "title": "Safety and compliance",
+         "outcomes": [
+          {
+           "code": "HVACR-12-D-13",
+           "text": "Apply safety measures during HVAC work."
+          },
+          {
+           "code": "HVACR-12-D-14",
+           "text": "Follow industry standards and regulations."
+          },
+          {
+           "code": "HVACR-12-D-15",
+           "text": "Show awareness of environmental considerations in HVAC practice."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "domain-g-introduction-to-hvacr-allied-components",
+     "title": "Domain G: Introduction to HVACR Allied Components for Commercial & Industrial Systems",
+     "topics": [
+      {
+       "id": "introduction-to-hvacr",
+       "title": "Introduction to HVACR",
+       "subtopics": [
+        {
+         "id": "installing-unit-components",
+         "title": "Installing unit components",
+         "outcomes": [
+          {
+           "code": "HVACR-12-G-01",
+           "text": "Select tools, equipment and accessories for the job."
+          },
+          {
+           "code": "HVACR-12-G-02",
+           "text": "Install a filter drier following manufacturer specifications."
+          },
+          {
+           "code": "HVACR-12-G-03",
+           "text": "Install a side glass following manufacturer specifications."
+          },
+          {
+           "code": "HVACR-12-G-04",
+           "text": "Install a vibration absorber following manufacturer specifications."
+          },
+          {
+           "code": "HVACR-12-G-05",
+           "text": "Install a liquid receiver following manufacturer specifications."
+          },
+          {
+           "code": "HVACR-12-G-06",
+           "text": "Install a service valve following manufacturer specifications."
+          },
+          {
+           "code": "HVACR-12-G-07",
+           "text": "Install a heat exchanger following manufacturer specifications."
+          },
+          {
+           "code": "HVACR-12-G-08",
+           "text": "Install a solenoid valve following manufacturer specifications."
+          },
+          {
+           "code": "HVACR-12-G-09",
+           "text": "Install an oil separator following manufacturer specifications."
+          },
+          {
+           "code": "HVACR-12-G-10",
+           "text": "Switch on the unit to check the performance of its mechanical components."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "domain-i-install-commercial-industrial-refrigera",
+     "title": "Domain I: Install Commercial & Industrial Refrigeration Units",
+     "topics": [
+      {
+       "id": "installing-refrigeration-units",
+       "title": "Installing refrigeration units",
+       "subtopics": [
+        {
+         "id": "installing-a-chilled-water-tank-or-cooler",
+         "title": "Installing a chilled water tank or cooler",
+         "outcomes": [
+          {
+           "code": "HVACR-12-I-01",
+           "text": "Select tools, equipment and accessories for a chilled water tank or electric water cooler."
+          },
+          {
+           "code": "HVACR-12-I-02",
+           "text": "Fix the cooler or tank on the potable water supply following manufacturer and client needs."
+          },
+          {
+           "code": "HVACR-12-I-03",
+           "text": "Measure clearances on each side to meet manufacturer standards."
+          },
+          {
+           "code": "HVACR-12-I-04",
+           "text": "Make water drain connections next to the water supply as per the manual."
+          },
+          {
+           "code": "HVACR-12-I-05",
+           "text": "Install a shut-off valve and non-return valve on the water supply line."
+          },
+          {
+           "code": "HVACR-12-I-06",
+           "text": "Fix minimum water level protection and interlock it with the refrigeration unit."
+          },
+          {
+           "code": "HVACR-12-I-07",
+           "text": "Make the power supply as per manual instructions."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "domain-j-service-repair-domestic-commercial-indu",
+     "title": "Domain J: Service & Repair Domestic, Commercial & Industrial Refrigeration Systems",
+     "topics": [
+      {
+       "id": "servicing-and-repair",
+       "title": "Servicing and repair",
+       "subtopics": [
+        {
+         "id": "maintaining-multi-stage-and-cascade-systems",
+         "title": "Maintaining multi-stage and cascade systems",
+         "outcomes": [
+          {
+           "code": "HVACR-12-J-01",
+           "text": "Do preventive maintenance checks and adjustments on multi-stage, cascade or ultra-cold refrigeration systems."
+          },
+          {
+           "code": "HVACR-12-J-02",
+           "text": "Coordinate the refrigeration system in food production."
+          },
+          {
+           "code": "HVACR-12-J-03",
+           "text": "Inspect different parts of the unit."
+          }
+         ]
+        },
+        {
+         "id": "repairing-multi-stage-and-cascade-systems",
+         "title": "Repairing multi-stage and cascade systems",
+         "outcomes": [
+          {
+           "code": "HVACR-12-J-04",
+           "text": "Diagnose faults in the system."
+          },
+          {
+           "code": "HVACR-12-J-05",
+           "text": "Repair faults."
+          },
+          {
+           "code": "HVACR-12-J-06",
+           "text": "Check and repair leaks in the system."
+          },
+          {
+           "code": "HVACR-12-J-07",
+           "text": "Practise storage methods to avoid food spoilage."
+          },
+          {
+           "code": "HVACR-12-J-08",
+           "text": "Shut down the system."
+          },
+          {
+           "code": "HVACR-12-J-09",
+           "text": "Replace faulty parts of the system."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "domain-k-installation-of-domestic-commercial-ind",
+     "title": "Domain K: Installation of Domestic Commercial & Industrial Building Air Conditioning Systems",
+     "topics": [
+      {
+       "id": "installing-air-conditioning-systems",
+       "title": "Installing air conditioning systems",
+       "subtopics": [
+        {
+         "id": "installing-a-water-chiller-system",
+         "title": "Installing a water chiller system",
+         "outcomes": [
+          {
+           "code": "HVACR-12-K-01",
+           "text": "Select tools, equipment and accessories for the job."
+          },
+          {
+           "code": "HVACR-12-K-02",
+           "text": "Mark locations and areas according to layout plans."
+          },
+          {
+           "code": "HVACR-12-K-03",
+           "text": "Prepare foundations, place, adjust and level the chiller, with safety precautions."
+          },
+          {
+           "code": "HVACR-12-K-04",
+           "text": "Install air handling units (AHU) and fan coil units (FCU) based on drawings."
+          },
+          {
+           "code": "HVACR-12-K-05",
+           "text": "Install high-pressure MS pipes from the chiller to AHUs and FCUs inside the building."
+          },
+          {
+           "code": "HVACR-12-K-06",
+           "text": "Fabricate and install G.I sheet ducting inside the building."
+          },
+          {
+           "code": "HVACR-12-K-07",
+           "text": "Install a cooling tower and water pumps for a water-cooled condenser."
+          },
+          {
+           "code": "HVACR-12-K-08",
+           "text": "Set up electric power for the chiller, AHUs and cooling tower."
+          }
+         ]
+        },
+        {
+         "id": "commissioning-a-chiller-system",
+         "title": "Commissioning a chiller system",
+         "outcomes": [
+          {
+           "code": "HVACR-12-K-09",
+           "text": "Select tools, equipment and accessories for commissioning."
+          },
+          {
+           "code": "HVACR-12-K-10",
+           "text": "Start the condenser and chilled water pumps to circulate water."
+          },
+          {
+           "code": "HVACR-12-K-11",
+           "text": "Start the chiller, record temperature and pressure and check for unusual vibration or noise."
+          },
+          {
+           "code": "HVACR-12-K-12",
+           "text": "Balance air and water to match the design distribution."
+          },
+          {
+           "code": "HVACR-12-K-13",
+           "text": "Check system performance against design criteria."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "domain-l-service-repair-domestic-commercial-indu",
+     "title": "Domain L: Service & Repair Domestic, Commercial & Industrial Air Conditioning System",
+     "topics": [
+      {
+       "id": "servicing-air-conditioners",
+       "title": "Servicing air conditioners",
+       "subtopics": [
+        {
+         "id": "advanced-diagnostics",
+         "title": "Advanced diagnostics",
+         "outcomes": [
+          {
+           "code": "HVACR-12-L-01",
+           "text": "Specialise in advanced diagnostic techniques for complex air conditioning systems."
+          },
+          {
+           "code": "HVACR-12-L-02",
+           "text": "Interpret readings of parameters such as temperature and pressure."
+          },
+          {
+           "code": "HVACR-12-L-03",
+           "text": "Learn advanced techniques for testing compressor efficiency and air velocity over cooling coils."
+          }
+         ]
+        },
+        {
+         "id": "advanced-repairs",
+         "title": "Advanced repairs",
+         "outcomes": [
+          {
+           "code": "HVACR-12-L-04",
+           "text": "Replace and upgrade components such as motorised actuator valves."
+          },
+          {
+           "code": "HVACR-12-L-05",
+           "text": "Dismantle and reassemble complex HVAC units."
+          },
+          {
+           "code": "HVACR-12-L-06",
+           "text": "Replace critical components to improve system performance."
+          }
+         ]
+        },
+        {
+         "id": "pump-and-cooling-tower-maintenance",
+         "title": "Pump and cooling tower maintenance",
+         "outcomes": [
+          {
+           "code": "HVACR-12-L-07",
+           "text": "Develop specialised pump and cooling tower maintenance skills."
+          },
+          {
+           "code": "HVACR-12-L-08",
+           "text": "Check water levels, bearings and motor abnormalities."
+          },
+          {
+           "code": "HVACR-12-L-09",
+           "text": "Deepen knowledge of chemical treatment against sludge and scaling."
+          },
+          {
+           "code": "HVACR-12-L-10",
+           "text": "Specialise in servicing and repairing condenser and chilled water pumps."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "domain-n-fabrication-fundamentals-for-hvac-work",
+     "title": "Domain N: Fabrication Fundamentals for HVAC Work",
+     "topics": [
+      {
+       "id": "hvac-fabrication",
+       "title": "HVAC fabrication",
+       "subtopics": [
+        {
+         "id": "advanced-fabrication",
+         "title": "Advanced fabrication",
+         "outcomes": [
+          {
+           "code": "HVACR-12-N-01",
+           "text": "Follow international standards (ASHRAE or SMACNA) for fabrication."
+          },
+          {
+           "code": "HVACR-12-N-02",
+           "text": "Apply advanced fabrication techniques that meet HVAC standards and quality control."
+          }
+         ]
+        },
+        {
+         "id": "installation",
+         "title": "Installation",
+         "outcomes": [
+          {
+           "code": "HVACR-12-N-03",
+           "text": "Mount hangers, angle rails, threaded rods and straps to standard, and install ducts and pipes on angle rails."
+          },
+          {
+           "code": "HVACR-12-N-04",
+           "text": "Do complex installations with ducts and pipes securely mounted, insulated and clad."
+          }
+         ]
+        },
+        {
+         "id": "insulation-practice",
+         "title": "Insulation practice",
+         "outcomes": [
+          {
+           "code": "HVACR-12-N-05",
+           "text": "Select tools and insulation materials, then prepare and apply insulation to ASHRAE or SMACNA standards."
+          },
+          {
+           "code": "HVACR-12-N-06",
+           "text": "Insulate water and steam pipes with vapour barrier paper, cloth wrapping and sheet metal cladding."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "domain-o-perform-preventive-maintenance",
+     "title": "Domain O: Perform Preventive Maintenance",
+     "topics": [
+      {
+       "id": "preventive-maintenance",
+       "title": "Preventive maintenance",
+       "subtopics": [
+        {
+         "id": "advanced-instrument-calibration",
+         "title": "Advanced instrument calibration",
+         "outcomes": [
+          {
+           "code": "HVACR-12-O-01",
+           "text": "Use advanced troubleshooting to decide when instruments need calibrating or replacing."
+          },
+          {
+           "code": "HVACR-12-O-02",
+           "text": "Use digital tools to calibrate and replace measuring instruments precisely."
+          },
+          {
+           "code": "HVACR-12-O-03",
+           "text": "Build understanding of best practices and trends in instrument calibration and replacement."
+          }
+         ]
+        },
+        {
+         "id": "carrying-out-maintenance",
+         "title": "Carrying out maintenance",
+         "outcomes": [
+          {
+           "code": "HVACR-12-O-04",
+           "text": "Pump down or shut down the system safely following standard procedures."
+          },
+          {
+           "code": "HVACR-12-O-05",
+           "text": "Use advanced tools to check machine parameters such as temperature, vibration and noise."
+          },
+          {
+           "code": "HVACR-12-O-06",
+           "text": "Carry out weekly, monthly and annual maintenance so the system runs at design efficiency."
+          },
+          {
+           "code": "HVACR-12-O-07",
+           "text": "Record and analyse performance after maintenance and adjust as needed."
+          },
+          {
+           "code": "HVACR-12-O-08",
+           "text": "Understand HVACR standards and apply them consistently during maintenance."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "build": {
+  "builtAt": "2026-10-14T08:39:43.879Z",
+  "model": "claude-agent",
+  "usd": 0,
+  "expectedCodes": 391,
+  "coverage": 1,
+  "missingCodes": [],
+  "counts": {
+   "grades": 4,
+   "units": 41,
+   "topics": 41,
+   "subtopics": 107,
+   "outcomes": 402
+  },
+  "warnings": []
+ }
+}

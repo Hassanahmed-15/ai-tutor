@@ -1,0 +1,90 @@
+#Unit 2: Force and Translational Dynamics
+=2.1 Systems and Center of Mass
+2.1.A|Systems|Describe the properties and interactions of a system.
+2.1.A.1|Systems|Explain system properties come from interactions among its objects.
+2.1.A.2|Systems|Treat a system as one object when its internal details do not matter.
+2.1.A.3|Systems|Note systems can exchange energy or mass with the environment.
+2.1.A.4|Systems|Recognize parts of a system can behave differently from each other and from the whole.
+2.1.A.5|Systems|Explain internal structure affects how a system is analyzed.
+2.1.A.6|Systems|Explain changing external variables may change a system's substructure.
+2.1.B|Center of mass|Describe where a system's center of mass lies relative to its parts.
+2.1.B.1|Center of mass|Place the center of mass on symmetry lines for symmetric mass distributions.
+2.1.B.2|Center of mass|Calculate center of mass along an axis from a weighted sum of positions.
+2.1.B.3|Center of mass|Find center of mass of a nonuniform solid by integrating over mass elements and densities.
+2.1.B.4|Center of mass|Model a system as one object at its center of mass.
+=2.2 Forces and Free-Body Diagrams
+2.2.A|Forces|Describe a force as an interaction between two objects or systems.
+2.2.A.1|Forces|Explain forces are vectors from interactions; nothing exerts a net force on itself.
+2.2.A.2|Forces|Describe contact forces as macroscopic results of interatomic electric forces.
+2.2.B|Free-body diagrams|Describe forces on an object using a free-body diagram.
+2.2.B.1|Free-body diagrams|Use free-body diagrams to visualize forces and set up equations.
+2.2.B.2|Free-body diagrams|Show every force the environment exerts on the object.
+2.2.B.3|Free-body diagrams|Draw forces as arrows from a dot at the center of mass.
+2.2.B.4|Free-body diagrams|Choose an axis along the acceleration, such as parallel to an incline.
+=2.3 Newton's Third Law
+2.3.A|Newton's third law|Describe object interactions using Newton's third law and paired forces.
+2.3.A.1|Newton's third law|Describe interaction as paired forces each object exerts on the other.
+2.3.A.2|Newton's third law|Explain internal forces do not change the center-of-mass motion.
+2.3.A.3|Tension and pulleys|Explain tension as the net result of forces between string segments, ideal strings and pulleys.
+=2.4 Newton's First Law
+2.4.A|Newton's first law|Describe conditions under which a system's velocity stays constant.
+2.4.A.1|Newton's first law|Define net force as the vector sum of forces.
+2.4.A.2|Newton's first law|Define translational equilibrium as zero net force.
+2.4.A.3|Newton's first law|State Newton's first law: zero net force means constant velocity.
+2.4.A.4|Newton's first law|Explain forces can balance in one dimension but not another.
+2.4.A.5|Newton's first law|Define an inertial frame as one where Newton's first law holds.
+=2.5 Newton's Second Law
+2.5.A|Newton's second law|Describe conditions under which a system's velocity changes.
+2.5.A.1|Newton's second law|Define unbalanced forces as nonzero net force.
+2.5.A.2|Newton's second law|State Newton's second law: acceleration is proportional to net force, in its direction.
+2.5.A.3|Newton's second law|Explain center-of-mass velocity changes only with nonzero net external force.
+=2.6 Gravitational Force
+2.6.A|Universal gravitation|Describe the gravitational interaction between two masses.
+2.6.A.1|Universal gravitation|State the law of universal gravitation: proportional to masses, inverse square of distance, attractive.
+2.6.A.2|Gravitational field|Use a field model for noncontact force and gravitational field strength g = GM/r^2.
+2.6.A.3|Gravitational field|Define weight as the gravitational force of a body on a nearby object.
+2.6.B|Constant gravity|Describe when gravitational force can be treated as constant.
+2.6.B.1|Constant gravity|Treat gravity as constant when it barely changes over the displacement.
+2.6.B.2|Constant gravity|Use Earth's surface field strength.
+2.6.C|Apparent weight|Describe when apparent weight differs from gravitational force.
+2.6.C.1|Apparent weight|Define apparent weight as the normal force magnitude.
+2.6.C.2|Apparent weight|Explain apparent weight differs from gravity when the system accelerates.
+2.6.C.3|Apparent weight|Explain weightlessness when no force or only gravity acts.
+2.6.C.4|Apparent weight|State the equivalence principle for noninertial observers.
+2.6.D|Inertial and gravitational mass|Describe inertial and gravitational mass.
+2.6.D.1|Inertial and gravitational mass|Define inertial mass as resistance to changes in motion.
+2.6.D.2|Inertial and gravitational mass|Relate gravitational mass to gravitational attraction.
+2.6.D.3|Inertial and gravitational mass|Note inertial and gravitational mass are experimentally equal.
+2.6.E|Shell theorem|Describe gravity from a uniform spherical mass distribution.
+2.6.E.1|Shell theorem|Sum small mass-element forces to get gravity from a sphere.
+2.6.E.2|Shell theorem|Apply the shell theorem: zero inside a shell, point-mass behavior outside, partial mass inside a sphere.
+2.6.E.3|Shell theorem|Show gravity inside a uniform sphere is proportional to distance from the center.
+=2.7 Kinetic and Static Friction
+2.7.A|Kinetic friction|Describe kinetic friction between two surfaces.
+2.7.A.1|Kinetic friction|Explain kinetic friction opposes relative motion and is independent of contact area.
+2.7.A.2|Kinetic friction|Compute kinetic friction as coefficient times normal force; define the normal force.
+2.7.B|Static friction|Describe static friction between two surfaces.
+2.7.B.1|Static friction|Recognize static friction between surfaces not moving relative to each other.
+2.7.B.2|Static friction|Explain static friction adjusts to prevent slipping, up to a maximum mu_s N.
+2.7.B.3|Static friction|Note the static coefficient usually exceeds the kinetic one.
+=2.8 Spring Forces
+2.8.A|Ideal springs|Describe the force exerted by an ideal spring.
+2.8.A.1|Ideal springs|Define an ideal spring versus a nonideal spring.
+2.8.A.2|Ideal springs|Apply Hooke's law for the spring force.
+2.8.A.3|Ideal springs|Note the spring force points toward equilibrium.
+2.8.B|Combined springs|Describe equivalent spring constants for combinations of springs.
+2.8.B.1|Combined springs|Find the equivalent constant for springs in series (inverse sum) and in parallel (sum).
+=2.9 Resistive Forces
+2.9.A|Resistive forces|Describe the motion of an object subject to a resistive force.
+2.9.A.1|Resistive forces|Define a resistive force as velocity-dependent and opposite to velocity.
+2.9.A.2|Resistive forces|Apply Newton's second law to get a velocity differential equation and solve it by separation of variables; motion is exponential.
+2.9.A.3|Resistive forces|Define terminal velocity as the speed where net force is zero.
+=2.10 Circular Motion
+2.10.A|Circular motion|Describe the motion of an object in a circular path.
+2.10.A.1|Centripetal acceleration|Define centripetal acceleration as v^2/r toward the center.
+2.10.A.2|Centripetal acceleration|Identify forces or components supplying centripetal acceleration, such as loops, banks and conical pendulums.
+2.10.A.3|Tangential and net acceleration|Define tangential acceleration as the rate of change of speed.
+2.10.A.4|Tangential and net acceleration|Find net acceleration as the vector sum of centripetal and tangential parts.
+2.10.A.5|Period and frequency|Describe uniform circular motion with period and frequency.
+2.10.B|Circular orbits|Describe circular orbits using Kepler's third law.
+2.10.B.1|Circular orbits|Relate orbital period and radius to central mass, with gravity as the only centripetal force.

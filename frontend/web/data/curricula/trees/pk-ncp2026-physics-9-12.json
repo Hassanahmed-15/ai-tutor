@@ -1,0 +1,3264 @@
+{
+ "id": "pk-ncp2026-physics-9-12",
+ "region": "PK",
+ "framework": "National Curriculum of Pakistan 2026 (Rationalized Curricula 9-12)",
+ "board": null,
+ "qualification": "SSC/HSSC",
+ "subject": "Physics",
+ "syllabusCode": null,
+ "gradeSystem": "grade",
+ "source": {
+  "urls": [
+   "https://ncc.gov.pk/SiteImage/Misc/files/Physics.pdf"
+  ],
+  "publisher": "National Curriculum Council, Ministry of Federal Education and Professional Training",
+  "licence": "Government publication; structure + our own wording only",
+  "firstExam": null
+ },
+ "grades": [
+  {
+   "grade": "9",
+   "units": [
+    {
+     "id": "domain-a-physical-quantities-and-measurement",
+     "title": "Domain A: Physical Quantities and Measurement",
+     "topics": [
+      {
+       "id": "grade-9-unit-1-physical-quantities",
+       "title": "Grade 9 Unit 1: Physical Quantities",
+       "subtopics": [
+        {
+         "id": "what-physics-is",
+         "title": "What physics is",
+         "outcomes": [
+          {
+           "code": "P-09-A-01",
+           "text": "Tell science, technology and engineering apart using everyday examples."
+          },
+          {
+           "code": "P-09-A-02",
+           "text": "Describe physics as the study of matter, energy and how they are linked."
+          },
+          {
+           "code": "P-09-A-03",
+           "text": "Explain how physics helps solve real problems such as energy, environment and technology."
+          },
+          {
+           "code": "P-09-A-04",
+           "text": "Name the main branches of physics and some interdisciplinary fields such as biophysics."
+          }
+         ]
+        },
+        {
+         "id": "physical-quantities-and-units",
+         "title": "Physical quantities and units",
+         "outcomes": [
+          {
+           "code": "P-09-A-05",
+           "text": "Distinguish physical quantities from non-physical ones."
+          },
+          {
+           "code": "P-09-A-06",
+           "text": "Separate base and derived quantities, giving their symbols and SI units."
+          }
+         ]
+        },
+        {
+         "id": "scientific-notation-and-prefixes",
+         "title": "Scientific notation and prefixes",
+         "outcomes": [
+          {
+           "code": "P-09-A-08",
+           "text": "Write numbers in scientific notation for measurements and calculations."
+          },
+          {
+           "code": "P-09-A-09",
+           "text": "Express data using SI prefixes."
+          }
+         ]
+        },
+        {
+         "id": "significant-figures-and-errors",
+         "title": "Significant figures and errors",
+         "outcomes": [
+          {
+           "code": "P-09-A-10",
+           "text": "State what significant figures are and the rules for finding and using them in answers."
+          },
+          {
+           "code": "P-09-A-11",
+           "text": "Identify sources of systematic and random error and how to reduce them."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "domain-b-mechanics",
+     "title": "Domain B: Mechanics",
+     "topics": [
+      {
+       "id": "grade-9-unit-2-kinematics",
+       "title": "Grade 9 Unit 2: Kinematics",
+       "subtopics": [
+        {
+         "id": "scalars-and-vectors",
+         "title": "Scalars and vectors",
+         "outcomes": [
+          {
+           "code": "P-09-B-01",
+           "text": "Tell scalar quantities from vector quantities."
+          },
+          {
+           "code": "P-09-B-02",
+           "text": "Write vectors in symbols and draw them as arrows with direction."
+          },
+          {
+           "code": "P-09-B-03",
+           "text": "Add vectors head-to-tail and find the resultant's size and direction."
+          },
+          {
+           "code": "P-09-B-04",
+           "text": "Split a 2-D vector into two perpendicular components."
+          },
+          {
+           "code": "P-09-B-05",
+           "text": "Find the resultant of two perpendicular vectors by calculation and drawing."
+          },
+          {
+           "code": "P-09-B-06",
+           "text": "Explain null, negative and equal vectors."
+          }
+         ]
+        },
+        {
+         "id": "types-of-motion",
+         "title": "Types of motion",
+         "outcomes": [
+          {
+           "code": "P-09-B-07",
+           "text": "Explain with examples how an object can be at rest for one observer and moving for another."
+          },
+          {
+           "code": "P-09-B-08",
+           "text": "Distinguish translatory, rotatory and vibratory motion."
+          }
+         ]
+        },
+        {
+         "id": "distance-speed-and-velocity",
+         "title": "Distance, speed and velocity",
+         "outcomes": [
+          {
+           "code": "P-09-B-09",
+           "text": "Tell distance from displacement."
+          },
+          {
+           "code": "P-09-B-10",
+           "text": "Tell speed from velocity."
+          },
+          {
+           "code": "P-09-B-11",
+           "text": "Tell average from instantaneous speed or velocity."
+          },
+          {
+           "code": "P-09-B-12",
+           "text": "Tell uniform from non-uniform velocity."
+          },
+          {
+           "code": "P-09-B-13",
+           "text": "Calculate average speed and velocity from distance, displacement and time."
+          }
+         ]
+        },
+        {
+         "id": "acceleration",
+         "title": "Acceleration",
+         "outcomes": [
+          {
+           "code": "P-09-B-14",
+           "text": "Explain acceleration, including deceleration."
+          },
+          {
+           "code": "P-09-B-15",
+           "text": "Tell uniform, non-uniform and instantaneous acceleration apart."
+          }
+         ]
+        },
+        {
+         "id": "motion-graphs",
+         "title": "Motion graphs",
+         "outcomes": [
+          {
+           "code": "P-09-B-16",
+           "text": "Draw and read distance-time graphs, including rest, constant speed, speeding up and slowing down."
+          },
+          {
+           "code": "P-09-B-18",
+           "text": "Draw and read speed-time graphs for rest, constant speed and changing acceleration."
+          },
+          {
+           "code": "P-09-B-19",
+           "text": "Explain that the gradient of a speed-time graph gives acceleration."
+          },
+          {
+           "code": "P-09-B-20",
+           "text": "Find distance travelled from the area under a speed-time graph."
+          }
+         ]
+        },
+        {
+         "id": "equations-of-motion",
+         "title": "Equations of motion",
+         "outcomes": [
+          {
+           "code": "P-09-B-21",
+           "text": "Derive the equations of motion for uniform acceleration."
+          },
+          {
+           "code": "P-09-B-22",
+           "text": "Solve straight-line problems using the equations of motion, including falling bodies."
+          },
+          {
+           "code": "P-09-B-23",
+           "text": "Use 9.8 m/s2 for free-fall acceleration in kinematics problems without air resistance."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "grade-9-unit-3-dynamics",
+       "title": "Grade 9 Unit 3: Dynamics",
+       "subtopics": [
+        {
+         "id": "force-and-mass",
+         "title": "Force and mass",
+         "outcomes": [
+          {
+           "code": "P-09-B-24",
+           "text": "Tell contact forces from non-contact forces."
+          },
+          {
+           "code": "P-09-B-25",
+           "text": "Tell mass from weight."
+          },
+          {
+           "code": "P-09-B-26",
+           "text": "Explain inertia as a body's resistance to changes in its motion and use it in daily examples."
+          },
+          {
+           "code": "P-09-B-27",
+           "text": "Draw free-body diagrams and discuss the net force on an object."
+          }
+         ]
+        },
+        {
+         "id": "newton-s-laws-of-motion",
+         "title": "Newton's laws of motion",
+         "outcomes": [
+          {
+           "code": "P-09-B-28",
+           "text": "State Newton's first law as the law of inertia."
+          },
+          {
+           "code": "P-09-B-29",
+           "text": "Describe how a force can change an object's speed or direction."
+          },
+          {
+           "code": "P-09-B-30",
+           "text": "State Newton's second law with acceleration and apply it to daily life."
+          },
+          {
+           "code": "P-09-B-31",
+           "text": "State Newton's third law and explain action-reaction pairs."
+          }
+         ]
+        },
+        {
+         "id": "newton-s-law-of-gravitation",
+         "title": "Newton's law of gravitation",
+         "outcomes": [
+          {
+           "code": "P-09-B-32",
+           "text": "State and use Newton's law of gravitation in problems."
+          },
+          {
+           "code": "P-09-B-33",
+           "text": "Define and calculate gravitational field strength."
+          },
+          {
+           "code": "P-09-B-34",
+           "text": "Calculate the mass of the Earth using the law of gravitation."
+          },
+          {
+           "code": "P-09-B-35",
+           "text": "Explain why g decreases with height above the Earth."
+          }
+         ]
+        },
+        {
+         "id": "momentum-and-impulse",
+         "title": "Momentum and impulse",
+         "outcomes": [
+          {
+           "code": "P-09-B-36",
+           "text": "Explain momentum and calculate it."
+          },
+          {
+           "code": "P-09-B-37",
+           "text": "Relate net force to change in momentum and show how collision time affects the force."
+          },
+          {
+           "code": "P-09-B-38",
+           "text": "State the law of conservation of momentum with everyday examples."
+          },
+          {
+           "code": "P-09-B-40",
+           "text": "Define and calculate impulse."
+          }
+         ]
+        },
+        {
+         "id": "friction",
+         "title": "Friction",
+         "outcomes": [
+          {
+           "code": "P-09-B-41",
+           "text": "Explain friction and what causes it."
+          },
+          {
+           "code": "P-09-B-42",
+           "text": "Discuss the good and bad sides of friction in real life."
+          },
+          {
+           "code": "P-09-B-43",
+           "text": "Analyse how friction dissipates energy, for example heating from rubbing."
+          },
+          {
+           "code": "P-09-B-44",
+           "text": "Tell static from kinetic friction coefficients."
+          },
+          {
+           "code": "P-09-B-45",
+           "text": "Compare rolling and sliding friction qualitatively."
+          },
+          {
+           "code": "P-09-B-46",
+           "text": "Describe ways to reduce friction."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "grade-9-unit-4-turning-effects-of-forces",
+       "title": "Grade 9 Unit 4: Turning Effects of Forces",
+       "subtopics": [
+        {
+         "id": "moment-of-a-force-and-couples",
+         "title": "Moment of a force and couples",
+         "outcomes": [
+          {
+           "code": "P-09-B-47",
+           "text": "Tell like from unlike parallel forces."
+          },
+          {
+           "code": "P-09-B-48",
+           "text": "Illustrate moment of force, moment arm and line of action with simple examples."
+          },
+          {
+           "code": "P-09-B-49",
+           "text": "Solve problems on turning effects using force times perpendicular distance."
+          },
+          {
+           "code": "P-09-B-50",
+           "text": "Define a couple, derive its formula and calculate it."
+          },
+          {
+           "code": "P-09-B-51",
+           "text": "State and explain the principle of moments."
+          }
+         ]
+        },
+        {
+         "id": "equilibrium",
+         "title": "Equilibrium",
+         "outcomes": [
+          {
+           "code": "P-09-B-52",
+           "text": "Explain equilibrium and its types."
+          },
+          {
+           "code": "P-09-B-54",
+           "text": "Describe stable, unstable and neutral equilibrium with examples."
+          },
+          {
+           "code": "P-09-B-55",
+           "text": "Analyse bodies in equilibrium using the principle of moments, such as weights on a metre rule."
+          }
+         ]
+        },
+        {
+         "id": "centre-of-gravity-and-stability",
+         "title": "Centre of gravity and stability",
+         "outcomes": [
+          {
+           "code": "P-09-B-56",
+           "text": "Describe centre of mass and centre of gravity."
+          },
+          {
+           "code": "P-09-B-57",
+           "text": "Analyse how the centre of gravity position affects the stability of simple objects."
+          },
+          {
+           "code": "P-09-B-58",
+           "text": "Suggest how to make an object more stable by lowering its centre of mass and widening its base."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "grade-9-unit-5-work-and-energy",
+       "title": "Grade 9 Unit 5: Work and Energy",
+       "subtopics": [
+        {
+         "id": "work",
+         "title": "Work",
+         "outcomes": [
+          {
+           "code": "P-09-B-59",
+           "text": "Define work done and illustrate it with examples."
+          },
+          {
+           "code": "P-09-B-60",
+           "text": "Use W = Fd cos(theta) to solve problems and recognise types of work by angle."
+          }
+         ]
+        },
+        {
+         "id": "energy-and-its-types",
+         "title": "Energy and its types",
+         "outcomes": [
+          {
+           "code": "P-09-B-61",
+           "text": "Recall energy and its forms."
+          },
+          {
+           "code": "P-09-B-62",
+           "text": "Define mechanical energy and list its types."
+          },
+          {
+           "code": "P-09-B-63",
+           "text": "Define kinetic energy, derive its formula and use it."
+          },
+          {
+           "code": "P-09-B-64",
+           "text": "Define gravitational potential energy and use its formula."
+          },
+          {
+           "code": "P-09-B-65",
+           "text": "Explain elastic potential energy."
+          },
+          {
+           "code": "P-09-B-66",
+           "text": "State the law of conservation of energy and discuss applications."
+          },
+          {
+           "code": "P-09-B-67",
+           "text": "Use kinetic and gravitational potential energy formulae in simple energy conversions."
+          },
+          {
+           "code": "P-09-B-68",
+           "text": "List renewable and non-renewable energy resources, especially in Pakistan."
+          }
+         ]
+        },
+        {
+         "id": "power-and-efficiency",
+         "title": "Power and efficiency",
+         "outcomes": [
+          {
+           "code": "P-09-B-69",
+           "text": "Explain mechanical power and calculate it."
+          },
+          {
+           "code": "P-09-B-70",
+           "text": "Explain efficiency."
+          },
+          {
+           "code": "P-09-B-71",
+           "text": "Use the efficiency formula in simple energy-transfer problems."
+          },
+          {
+           "code": "P-09-B-72",
+           "text": "Explain why no system can be 100% efficient."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "grade-9-unit-6-properties-of-matter",
+       "title": "Grade 9 Unit 6: Properties of Matter",
+       "subtopics": [
+        {
+         "id": "density",
+         "title": "Density",
+         "outcomes": [
+          {
+           "code": "P-09-B-73",
+           "text": "Explain density and use it in simple problems."
+          },
+          {
+           "code": "P-09-B-74",
+           "text": "Describe how to measure the density of liquids, regular solids and irregular solids using displacement."
+          }
+         ]
+        },
+        {
+         "id": "pressure",
+         "title": "Pressure",
+         "outcomes": [
+          {
+           "code": "P-09-B-75",
+           "text": "Define and calculate pressure."
+          },
+          {
+           "code": "P-09-B-76",
+           "text": "Describe how pressure varies with force and area in everyday cases."
+          }
+         ]
+        },
+        {
+         "id": "atmospheric-pressure",
+         "title": "Atmospheric pressure",
+         "outcomes": [
+          {
+           "code": "P-09-B-77",
+           "text": "Justify that the atmosphere exerts pressure."
+          },
+          {
+           "code": "P-09-B-78",
+           "text": "Describe how atmospheric pressure changes with altitude."
+          },
+          {
+           "code": "P-09-B-79",
+           "text": "Explain that changing atmospheric pressure can signal a weather change."
+          }
+         ]
+        },
+        {
+         "id": "liquid-pressure-and-pascal-s-law",
+         "title": "Liquid pressure and Pascal's law",
+         "outcomes": [
+          {
+           "code": "P-09-B-80",
+           "text": "Derive p = rho g h for liquid pressure and solve problems."
+          },
+          {
+           "code": "P-09-B-81",
+           "text": "State and explain Pascal's law."
+          },
+          {
+           "code": "P-09-B-82",
+           "text": "Apply Pascal's law to hydraulic presses, lifts and brakes."
+          }
+         ]
+        },
+        {
+         "id": "floatation",
+         "title": "Floatation",
+         "outcomes": [
+          {
+           "code": "P-09-B-83",
+           "text": "State Archimedes' principle and prove it."
+          },
+          {
+           "code": "P-09-B-84",
+           "text": "State the principle of floatation and its conditions."
+          },
+          {
+           "code": "P-09-B-85",
+           "text": "Apply Archimedes' principle to ships, submarines and hydrometers."
+          }
+         ]
+        },
+        {
+         "id": "elasticity",
+         "title": "Elasticity",
+         "outcomes": [
+          {
+           "code": "P-09-B-86",
+           "text": "Explain stress and strain for elastic materials."
+          },
+          {
+           "code": "P-09-B-87",
+           "text": "Explain Hooke's law."
+          },
+          {
+           "code": "P-09-B-88",
+           "text": "Draw and read a stress-strain curve up to the elastic limit."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "domain-c-heat-and-thermodynamics",
+     "title": "Domain C: Heat and Thermodynamics",
+     "topics": [
+      {
+       "id": "grade-9-unit-7-thermal-properties-of-matter",
+       "title": "Grade 9 Unit 7: Thermal Properties of Matter",
+       "subtopics": [
+        {
+         "id": "kinetic-molecular-model-of-matter",
+         "title": "Kinetic molecular model of matter",
+         "outcomes": [
+          {
+           "code": "P-09-C-02",
+           "text": "Describe plasma as the fourth state of matter."
+          }
+         ]
+        },
+        {
+         "id": "temperature-and-thermometers",
+         "title": "Temperature and thermometers",
+         "outcomes": [
+          {
+           "code": "P-09-C-03",
+           "text": "Relate particle motion to temperature, including absolute zero as the lowest temperature."
+          },
+          {
+           "code": "P-09-C-04",
+           "text": "Explain how a property that changes with temperature can be used to measure it."
+          },
+          {
+           "code": "P-09-C-06",
+           "text": "Explain sensitivity, range and linearity of thermometers."
+          }
+         ]
+        },
+        {
+         "id": "conduction",
+         "title": "Conduction",
+         "outcomes": [
+          {
+           "code": "P-09-C-07",
+           "text": "Tell good from poor conductors and give examples."
+          }
+         ]
+        },
+        {
+         "id": "convection",
+         "title": "Convection",
+         "outcomes": [
+          {
+           "code": "P-09-C-09",
+           "text": "Explain convection in liquids and gases through density changes."
+          },
+          {
+           "code": "P-09-C-10",
+           "text": "Explain how convection in seawater supports marine life."
+          },
+          {
+           "code": "P-09-C-11",
+           "text": "Describe land and sea breezes and their moderating effect on coastal climates."
+          },
+          {
+           "code": "P-09-C-12",
+           "text": "Explain how birds and gliders stay up by riding thermal currents."
+          },
+          {
+           "code": "P-09-C-13",
+           "text": "Use convection to explain how cyclones form."
+          },
+          {
+           "code": "P-09-C-14",
+           "text": "Explain magma flow in the Earth's mantle as convection."
+          }
+         ]
+        },
+        {
+         "id": "radiation",
+         "title": "Radiation",
+         "outcomes": [
+          {
+           "code": "P-09-C-15",
+           "text": "Describe heat transfer by radiation, which needs no medium."
+          },
+          {
+           "code": "P-09-C-16",
+           "text": "Describe how surface colour and texture affect emission, absorption and reflection of infrared."
+          },
+          {
+           "code": "P-09-C-17",
+           "text": "Discuss how radiation emission depends on surface temperature and area."
+          },
+          {
+           "code": "P-09-C-18",
+           "text": "Tell good from bad emitters and absorbers of radiation."
+          }
+         ]
+        },
+        {
+         "id": "everyday-heat-transfer-and-climate",
+         "title": "Everyday heat transfer and climate",
+         "outcomes": [
+          {
+           "code": "P-09-C-19",
+           "text": "Analyse the greenhouse effect and its role in global warming."
+          },
+          {
+           "code": "P-09-C-20",
+           "text": "Explain how global warming contributes to extreme weather."
+          },
+          {
+           "code": "P-09-C-21",
+           "text": "Analyse everyday uses of conduction, convection and radiation such as pans, room heating, infrared thermometers and insulation."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "domain-e-electricity-and-magnetism",
+     "title": "Domain E: Electricity and Magnetism",
+     "topics": [
+      {
+       "id": "grade-9-unit-8-magnetism",
+       "title": "Grade 9 Unit 8: Magnetism",
+       "subtopics": [
+        {
+         "id": "introduction-to-magnetism",
+         "title": "Introduction to magnetism",
+         "outcomes": [
+          {
+           "code": "P-09-E-01",
+           "text": "Describe forces between magnetic poles and between magnets and magnetic materials."
+          },
+          {
+           "code": "P-09-E-02",
+           "text": "Describe a magnetic field as a region where a magnetic pole feels a force."
+          },
+          {
+           "code": "P-09-E-03",
+           "text": "Give examples of magnetic and non-magnetic materials."
+          }
+         ]
+        },
+        {
+         "id": "types-of-magnetic-materials",
+         "title": "Types of magnetic materials",
+         "outcomes": [
+          {
+           "code": "P-09-E-04",
+           "text": "Tell paramagnetic from diamagnetic materials by behaviour in a magnetic field."
+          },
+          {
+           "code": "P-09-E-05",
+           "text": "Describe ferromagnetic materials and explain magnetisation using magnetic domains."
+          },
+          {
+           "code": "P-09-E-06",
+           "text": "Explain qualitatively how materials are magnetised and demagnetised."
+          },
+          {
+           "code": "P-09-E-07",
+           "text": "Tell temporary from permanent magnets."
+          }
+         ]
+        },
+        {
+         "id": "uses-of-magnets",
+         "title": "Uses of magnets",
+         "outcomes": [
+          {
+           "code": "P-09-E-08",
+           "text": "Describe uses of permanent magnets and electromagnets."
+          },
+          {
+           "code": "P-09-E-09",
+           "text": "Analyse the use of magnets in recording technology."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "10",
+   "units": [
+    {
+     "id": "domain-c-heat-and-thermodynamics",
+     "title": "Domain C: Heat and Thermodynamics",
+     "topics": [
+      {
+       "id": "grade-10-unit-1-thermal-physics",
+       "title": "Grade 10 Unit 1: Thermal Physics",
+       "subtopics": [
+        {
+         "id": "specific-heat-capacity",
+         "title": "Specific heat capacity",
+         "outcomes": [
+          {
+           "code": "P-10-C-01",
+           "text": "Define specific heat capacity, explain it and use Q = mc(delta T)."
+          },
+          {
+           "code": "P-10-C-02",
+           "text": "Analyse everyday effects of the large specific heat of water."
+          }
+         ]
+        },
+        {
+         "id": "change-of-state",
+         "title": "Change of state",
+         "outcomes": [
+          {
+           "code": "P-10-C-03",
+           "text": "Describe changes of state between solid, liquid and gas, including sublimation and deposition."
+          },
+          {
+           "code": "P-10-C-04",
+           "text": "Recall the melting and boiling temperatures of water at standard pressure."
+          },
+          {
+           "code": "P-10-C-05",
+           "text": "Explain melting, freezing, boiling and condensation as energy transfer at constant temperature."
+          }
+         ]
+        },
+        {
+         "id": "thermal-expansion",
+         "title": "Thermal expansion",
+         "outcomes": [
+          {
+           "code": "P-10-C-06",
+           "text": "Explain thermal expansion with kinetic theory and compare expansion of solids, liquids and gases."
+          },
+          {
+           "code": "P-10-C-07",
+           "text": "Describe linear and volumetric expansion of solids, qualitatively and quantitatively."
+          },
+          {
+           "code": "P-10-C-08",
+           "text": "Explain thermal expansion of liquids as real and apparent expansion."
+          },
+          {
+           "code": "P-10-C-09",
+           "text": "Analyse everyday applications and consequences of thermal expansion."
+          }
+         ]
+        },
+        {
+         "id": "evaporation",
+         "title": "Evaporation",
+         "outcomes": [
+          {
+           "code": "P-10-C-10",
+           "text": "Describe evaporation as escape of energetic particles from a liquid surface."
+          },
+          {
+           "code": "P-10-C-11",
+           "text": "Tell boiling from evaporation."
+          },
+          {
+           "code": "P-10-C-12",
+           "text": "Analyse how temperature, humidity, surface area and air movement affect the evaporation rate."
+          },
+          {
+           "code": "P-10-C-13",
+           "text": "Explain how evaporation causes cooling."
+          },
+          {
+           "code": "P-10-C-14",
+           "text": "Describe cooling by evaporation in refrigeration without harmful CFCs."
+          }
+         ]
+        },
+        {
+         "id": "latent-heat",
+         "title": "Latent heat",
+         "outcomes": [
+          {
+           "code": "P-10-C-15",
+           "text": "Explain latent heat of fusion and vaporisation in terms of particles and calculate it."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "domain-d-oscillations-and-waves",
+     "title": "Domain D: Oscillations and Waves",
+     "topics": [
+      {
+       "id": "grade-10-unit-2-oscillations-and-waves",
+       "title": "Grade 10 Unit 2: Oscillations and Waves",
+       "subtopics": [
+        {
+         "id": "simple-harmonic-motion",
+         "title": "Simple harmonic motion",
+         "outcomes": [
+          {
+           "code": "P-10-D-01",
+           "text": "Tell periodic, oscillatory and simple harmonic motion apart with examples."
+          },
+          {
+           "code": "P-10-D-02",
+           "text": "Define displacement, amplitude, period and frequency for oscillations."
+          },
+          {
+           "code": "P-10-D-03",
+           "text": "Show that frequency is the reciprocal of the time period."
+          },
+          {
+           "code": "P-10-D-04",
+           "text": "Explain that SHM has acceleration proportional to displacement and opposite to it."
+          },
+          {
+           "code": "P-10-D-05",
+           "text": "State the conditions needed for an object to oscillate with SHM."
+          },
+          {
+           "code": "P-10-D-06",
+           "text": "Explain SHM using the ball-and-bowl example."
+          }
+         ]
+        },
+        {
+         "id": "simple-pendulum",
+         "title": "Simple pendulum",
+         "outcomes": [
+          {
+           "code": "P-10-D-07",
+           "text": "Show using forces on the bob that a small-amplitude pendulum moves with SHM."
+          },
+          {
+           "code": "P-10-D-08",
+           "text": "Explain how a pendulum's period depends on length and g and not on mass."
+          },
+          {
+           "code": "P-10-D-09",
+           "text": "Solve problems using T = 2 pi sqrt(L/g)."
+          }
+         ]
+        },
+        {
+         "id": "wave-motion",
+         "title": "Wave motion",
+         "outcomes": [
+          {
+           "code": "P-10-D-10",
+           "text": "Describe wave motion using ropes, springs and water waves."
+          },
+          {
+           "code": "P-10-D-11",
+           "text": "Show that waves carry energy without carrying matter."
+          },
+          {
+           "code": "P-10-D-12",
+           "text": "Illustrate that in a transverse wave the vibration is at right angles to the energy flow."
+          },
+          {
+           "code": "P-10-D-13",
+           "text": "Illustrate that in a longitudinal wave the vibration is parallel to the energy flow."
+          },
+          {
+           "code": "P-10-D-14",
+           "text": "Describe wave features such as wavefront, wavelength, crest, trough, compression, rarefaction, amplitude and speed."
+          },
+          {
+           "code": "P-10-D-15",
+           "text": "Apply the wave equation v = f x wavelength."
+          }
+         ]
+        },
+        {
+         "id": "properties-of-waves",
+         "title": "Properties of waves",
+         "outcomes": [
+          {
+           "code": "P-10-D-16",
+           "text": "Describe reflection at a plane surface, refraction at a boundary and diffraction at a single slit."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "grade-10-unit-3-sound",
+       "title": "Grade 10 Unit 3: Sound",
+       "subtopics": [
+        {
+         "id": "characteristics-of-sound",
+         "title": "Characteristics of sound",
+         "outcomes": [
+          {
+           "code": "P-10-D-17",
+           "text": "Define pitch, loudness and quality of sound."
+          },
+          {
+           "code": "P-10-D-18",
+           "text": "Define sound intensity and its SI unit."
+          },
+          {
+           "code": "P-10-D-19",
+           "text": "Explain sound intensity level, use B = 10 log(I/I0) and the decibel."
+          }
+         ]
+        },
+        {
+         "id": "speed-of-sound",
+         "title": "Speed of sound",
+         "outcomes": [
+          {
+           "code": "P-10-D-20",
+           "text": "Discuss why sound cannot travel in a vacuum."
+          },
+          {
+           "code": "P-10-D-21",
+           "text": "Illustrate methods of measuring the speed of sound in air by distance and time."
+          },
+          {
+           "code": "P-10-D-22",
+           "text": "State the audible range of humans as 20 Hz to 20000 Hz."
+          },
+          {
+           "code": "P-10-D-23",
+           "text": "Describe that sound is generally faster in solids than liquids and in liquids than gases."
+          }
+         ]
+        },
+        {
+         "id": "ultrasound-and-infrasound",
+         "title": "Ultrasound and infrasound",
+         "outcomes": [
+          {
+           "code": "P-10-D-24",
+           "text": "Define ultrasound and recall its uses, including medical diagnosis."
+          },
+          {
+           "code": "P-10-D-25",
+           "text": "Explain the piezoelectric effect and its use in generating and detecting ultrasound."
+          },
+          {
+           "code": "P-10-D-26",
+           "text": "Define infrasound and recall its uses, such as elephant communication and seismic study."
+          }
+         ]
+        },
+        {
+         "id": "acoustic-protection",
+         "title": "Acoustic protection",
+         "outcomes": [
+          {
+           "code": "P-10-D-27",
+           "text": "Explain why acoustic protection matters and how soft materials reduce echo."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "grade-10-unit-4-geometrical-optics",
+       "title": "Grade 10 Unit 4: Geometrical Optics",
+       "subtopics": [
+        {
+         "id": "refraction-of-light",
+         "title": "Refraction of light",
+         "outcomes": [
+          {
+           "code": "P-10-D-28",
+           "text": "Define refraction of light, normal, angle of incidence and angle of refraction."
+          },
+          {
+           "code": "P-10-D-29",
+           "text": "Apply the rule that light bends toward the normal when slowing and away when speeding up."
+          },
+          {
+           "code": "P-10-D-30",
+           "text": "Define and use refractive index as c/v."
+          },
+          {
+           "code": "P-10-D-31",
+           "text": "Define refractive index through sin(i)/sin(r)."
+          }
+         ]
+        },
+        {
+         "id": "total-internal-reflection",
+         "title": "Total internal reflection",
+         "outcomes": [
+          {
+           "code": "P-10-D-33",
+           "text": "Explain critical angle and total internal reflection and the conditions for it."
+          },
+          {
+           "code": "P-10-D-34",
+           "text": "Derive and use n = 1/sin(c)."
+          },
+          {
+           "code": "P-10-D-35",
+           "text": "Discuss optical fibres in telecommunications and their advantages."
+          }
+         ]
+        },
+        {
+         "id": "lenses-and-image-formation",
+         "title": "Lenses and image formation",
+         "outcomes": [
+          {
+           "code": "P-10-D-36",
+           "text": "Analyse how thin converging and diverging lenses act on a parallel beam."
+          },
+          {
+           "code": "P-10-D-37",
+           "text": "Define focal length, principal axis and principal focus for lenses."
+          },
+          {
+           "code": "P-10-D-38",
+           "text": "Tell real from virtual images."
+          },
+          {
+           "code": "P-10-D-39",
+           "text": "Draw ray diagrams for a converging lens with the object at different positions."
+          },
+          {
+           "code": "P-10-D-40",
+           "text": "Draw ray diagrams for a diverging lens."
+          },
+          {
+           "code": "P-10-D-41",
+           "text": "Define and calculate linear magnification of a lens."
+          },
+          {
+           "code": "P-10-D-42",
+           "text": "Use the lens formula for object distance, image distance and focal length."
+          },
+          {
+           "code": "P-10-D-43",
+           "text": "Describe the use of a single lens as a magnifying glass."
+          }
+         ]
+        },
+        {
+         "id": "power-magnification-and-dispersion",
+         "title": "Power, magnification and dispersion",
+         "outcomes": [
+          {
+           "code": "P-10-D-44",
+           "text": "Define power of a lens and its unit and calculate it."
+          },
+          {
+           "code": "P-10-D-45",
+           "text": "Define resolving power and magnifying power."
+          },
+          {
+           "code": "P-10-D-46",
+           "text": "Explain dispersion of light by a prism."
+          },
+          {
+           "code": "P-10-D-47",
+           "text": "State the seven spectrum colours in order of frequency and wavelength."
+          }
+         ]
+        },
+        {
+         "id": "defects-of-vision",
+         "title": "Defects of vision",
+         "outcomes": [
+          {
+           "code": "P-10-D-48",
+           "text": "Draw ray diagrams for the normal, short-sighted and long-sighted eye and give causes."
+          },
+          {
+           "code": "P-10-D-49",
+           "text": "Describe how converging and diverging lenses correct long and short sight."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "domain-e-electricity-and-magnetism",
+     "title": "Domain E: Electricity and Magnetism",
+     "topics": [
+      {
+       "id": "grade-10-unit-5-electrostatics",
+       "title": "Grade 10 Unit 5: Electrostatics",
+       "subtopics": [
+        {
+         "id": "electric-charge",
+         "title": "Electric charge",
+         "outcomes": [
+          {
+           "code": "P-10-E-01",
+           "text": "State that charges are positive and negative and that charge is quantised and measured in coulombs."
+          },
+          {
+           "code": "P-10-E-02",
+           "text": "State that unlike charges attract and like charges repel."
+          },
+          {
+           "code": "P-10-E-03",
+           "text": "Explain that charging solids by friction transfers negative charge."
+          },
+          {
+           "code": "P-10-E-05",
+           "text": "State and apply Coulomb's law, including that it follows Newton's third law."
+          }
+         ]
+        },
+        {
+         "id": "electrostatic-induction-and-its-uses",
+         "title": "Electrostatic induction and its uses",
+         "outcomes": [
+          {
+           "code": "P-10-E-06",
+           "text": "Explain how a conductor is charged by induction and earthing."
+          },
+          {
+           "code": "P-10-E-07",
+           "text": "Suggest how charging and discharging is used in photocopiers, electrostatic precipitators and powder painting."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "grade-10-unit-6-current-electricity",
+       "title": "Grade 10 Unit 6: Current Electricity",
+       "subtopics": [
+        {
+         "id": "electric-current",
+         "title": "Electric current",
+         "outcomes": [
+          {
+           "code": "P-10-E-08",
+           "text": "Define and calculate electric current as I = Q/t."
+          },
+          {
+           "code": "P-10-E-09",
+           "text": "Explain conduction in metals by the movement of free electrons."
+          },
+          {
+           "code": "P-10-E-10",
+           "text": "State that current is measured in amperes, coulombs per second."
+          },
+          {
+           "code": "P-10-E-11",
+           "text": "Tell direct current from alternating current."
+          },
+          {
+           "code": "P-10-E-12",
+           "text": "Tell conventional from electron current."
+          }
+         ]
+        },
+        {
+         "id": "emf-and-potential-difference",
+         "title": "EMF and potential difference",
+         "outcomes": [
+          {
+           "code": "P-10-E-13",
+           "text": "Explain and distinguish EMF from potential difference."
+          },
+          {
+           "code": "P-10-E-14",
+           "text": "Calculate total EMF of sources in series and in parallel."
+          }
+         ]
+        },
+        {
+         "id": "ohm-s-law-and-resistance",
+         "title": "Ohm's law and resistance",
+         "outcomes": [
+          {
+           "code": "P-10-E-15",
+           "text": "State and apply Ohm's law at constant temperature."
+          },
+          {
+           "code": "P-10-E-16",
+           "text": "Define resistance and its unit and measure it with a voltmeter and ammeter."
+          },
+          {
+           "code": "P-10-E-17",
+           "text": "Discuss factors affecting resistance and define resistivity."
+          },
+          {
+           "code": "P-10-E-18",
+           "text": "Describe how temperature rise affects resistance, such as in a filament lamp."
+          },
+          {
+           "code": "P-10-E-20",
+           "text": "Identify conductors, insulators and semiconductors by their ability to conduct."
+          }
+         ]
+        },
+        {
+         "id": "series-and-parallel-circuits",
+         "title": "Series and parallel circuits",
+         "outcomes": [
+          {
+           "code": "P-10-E-21",
+           "text": "Compare series and parallel resistor combinations for current, voltage and total resistance."
+          },
+          {
+           "code": "P-10-E-22",
+           "text": "Calculate current, voltage and resistance in parts or all of a circuit."
+          }
+         ]
+        },
+        {
+         "id": "electrical-power",
+         "title": "Electrical power",
+         "outcomes": [
+          {
+           "code": "P-10-E-23",
+           "text": "Define electric power and use P = IV, I2R and V2/R."
+          },
+          {
+           "code": "P-10-E-24",
+           "text": "Explain energy dissipation in resistors and use E = IVt."
+          },
+          {
+           "code": "P-10-E-25",
+           "text": "Define the kilowatt-hour and relate it to the joule."
+          },
+          {
+           "code": "P-10-E-26",
+           "text": "Calculate the cost of using appliances in kWh."
+          },
+          {
+           "code": "P-10-E-27",
+           "text": "Explain why components need suitable power ratings."
+          }
+         ]
+        },
+        {
+         "id": "electric-hazards-and-safety",
+         "title": "Electric hazards and safety",
+         "outcomes": [
+          {
+           "code": "P-10-E-28",
+           "text": "State common electric hazards such as damaged insulation, overheating cables, damp and overloaded sockets."
+          },
+          {
+           "code": "P-10-E-29",
+           "text": "Explain the harm electric shock does to the body."
+          }
+         ]
+        },
+        {
+         "id": "effective-use-of-electricity",
+         "title": "Effective use of electricity",
+         "outcomes": [
+          {
+           "code": "P-10-E-30",
+           "text": "State common uses of electricity such as heating, lighting, charging and powering motors."
+          },
+          {
+           "code": "P-10-E-31",
+           "text": "Analyse the advantages of connecting lamps in parallel."
+          },
+          {
+           "code": "P-10-E-32",
+           "text": "Explain trip switches and fuses and choose suitable fuse ratings."
+          },
+          {
+           "code": "P-10-E-33",
+           "text": "Explain what happens when a live wire touches an earthed metal case."
+          },
+          {
+           "code": "P-10-E-34",
+           "text": "Explain why appliance casings are either double-insulated or earthed."
+          },
+          {
+           "code": "P-10-E-35",
+           "text": "State that a mains circuit has live, neutral and earth wires."
+          },
+          {
+           "code": "P-10-E-36",
+           "text": "Explain why fuses and breakers go in the live wire."
+          },
+          {
+           "code": "P-10-E-37",
+           "text": "Explain why domestic supplies are wired in parallel."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "grade-10-unit-7-electromagnetism",
+       "title": "Grade 10 Unit 7: Electromagnetism",
+       "subtopics": [
+        {
+         "id": "magnetic-field-around-wires",
+         "title": "Magnetic field around wires",
+         "outcomes": [
+          {
+           "code": "P-10-E-38",
+           "text": "Describe the pattern and direction of the magnetic field of straight wires and solenoids."
+          }
+         ]
+        },
+        {
+         "id": "force-on-a-current-carrying-conductor",
+         "title": "Force on a current-carrying conductor",
+         "outcomes": [
+          {
+           "code": "P-10-E-39",
+           "text": "Describe an experiment showing a force on a current-carrying conductor in a magnetic field."
+          },
+          {
+           "code": "P-10-E-40",
+           "text": "State and use Fleming's left-hand rule."
+          },
+          {
+           "code": "P-10-E-41",
+           "text": "Describe fields and forces between parallel current-carrying conductors."
+          }
+         ]
+        },
+        {
+         "id": "electric-motor-and-earth-s-field",
+         "title": "Electric motor and Earth's field",
+         "outcomes": [
+          {
+           "code": "P-10-E-42",
+           "text": "State that a coil in a magnetic field feels a turning effect and list factors that raise it."
+          },
+          {
+           "code": "P-10-E-43",
+           "text": "Describe the construction and working of an electric motor with split-ring commutator and brushes."
+          },
+          {
+           "code": "P-10-E-44",
+           "text": "State that the Earth's magnetic field is thought to come from its rotating molten iron core."
+          }
+         ]
+        },
+        {
+         "id": "electromagnetic-induction-and-ac-generator",
+         "title": "Electromagnetic induction and AC generator",
+         "outcomes": [
+          {
+           "code": "P-10-E-45",
+           "text": "Describe electromagnetic induction and factors affecting the induced EMF."
+          },
+          {
+           "code": "P-10-E-46",
+           "text": "Describe how AC generators work with slip rings and brushes."
+          },
+          {
+           "code": "P-10-E-47",
+           "text": "Sketch and interpret EMF-time graphs for a simple AC generator."
+          },
+          {
+           "code": "P-10-E-48",
+           "text": "Use period, frequency and peak value for alternating current or voltage."
+          }
+         ]
+        },
+        {
+         "id": "transformers",
+         "title": "Transformers",
+         "outcomes": [
+          {
+           "code": "P-10-E-49",
+           "text": "Explain the construction and working of a simple iron-cored transformer."
+          },
+          {
+           "code": "P-10-E-50",
+           "text": "Use Vp/Vs = Np/Ns."
+          },
+          {
+           "code": "P-10-E-51",
+           "text": "Compare step-up and step-down transformers."
+          },
+          {
+           "code": "P-10-E-52",
+           "text": "Explain high-voltage transmission to cut power loss and step-down transformers for safe supply."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "domain-f-space-and-modern-physics",
+     "title": "Domain F: Space and Modern Physics",
+     "topics": [
+      {
+       "id": "grade-10-unit-8-atomic-and-nuclear-physics",
+       "title": "Grade 10 Unit 8: Atomic and Nuclear Physics",
+       "subtopics": [
+        {
+         "id": "the-atom-and-its-nucleus",
+         "title": "The atom and its nucleus",
+         "outcomes": [
+          {
+           "code": "P-10-F-01",
+           "text": "Describe the atom as a small positive nucleus of protons and neutrons with electrons in shells."
+          },
+          {
+           "code": "P-10-F-02",
+           "text": "Analyse alpha-scattering results as evidence for a tiny, massive, positive nucleus in mostly empty space."
+          },
+          {
+           "code": "P-10-F-03",
+           "text": "Define proton number Z and nucleon number A and find the number of neutrons."
+          },
+          {
+           "code": "P-10-F-04",
+           "text": "Recall the term nuclide and use nuclide notation."
+          },
+          {
+           "code": "P-10-F-05",
+           "text": "Explain isotopes and that an element can have several."
+          }
+         ]
+        },
+        {
+         "id": "background-radiation",
+         "title": "Background radiation",
+         "outcomes": [
+          {
+           "code": "P-10-F-06",
+           "text": "Explain what background radiation is."
+          },
+          {
+           "code": "P-10-F-07",
+           "text": "State its main sources: radon, rocks and buildings, food and drink, cosmic rays."
+          }
+         ]
+        },
+        {
+         "id": "natural-radioactivity",
+         "title": "Natural radioactivity",
+         "outcomes": [
+          {
+           "code": "P-10-F-08",
+           "text": "Describe radioactivity as spontaneous emission of radiation by unstable nuclei."
+          },
+          {
+           "code": "P-10-F-09",
+           "text": "Describe alpha, beta and gamma radiation and their behaviour in electric and magnetic fields."
+          },
+          {
+           "code": "P-10-F-10",
+           "text": "Describe radioactive emission as spontaneous and random."
+          },
+          {
+           "code": "P-10-F-11",
+           "text": "Compare alpha, beta and gamma radiation by ionising effect and penetrating power."
+          },
+          {
+           "code": "P-10-F-12",
+           "text": "Explain radioactive decay as an unstable nucleus changing and emitting radiation."
+          }
+         ]
+        },
+        {
+         "id": "nuclear-transmutation",
+         "title": "Nuclear transmutation",
+         "outcomes": [
+          {
+           "code": "P-10-F-13",
+           "text": "Write and use nuclear decay equations in nuclide notation for alpha, beta and gamma emission."
+          }
+         ]
+        },
+        {
+         "id": "nuclear-fission-and-fusion",
+         "title": "Nuclear fission and fusion",
+         "outcomes": [
+          {
+           "code": "P-10-F-14",
+           "text": "Describe fission as splitting of a heavy nucleus and how released neutrons give a chain reaction."
+          },
+          {
+           "code": "P-10-F-15",
+           "text": "Describe fusion as light nuclei combining, the main energy source of stars."
+          },
+          {
+           "code": "P-10-F-16",
+           "text": "Recognise that mass converts to energy and use E = mc2 for energy released in nuclear reactions."
+          }
+         ]
+        },
+        {
+         "id": "half-life",
+         "title": "Half-life",
+         "outcomes": [
+          {
+           "code": "P-10-F-17",
+           "text": "Explain half-life and find remaining nuclei from data, tables and decay curves."
+          },
+          {
+           "code": "P-10-F-18",
+           "text": "Explain and apply carbon dating to estimate the age of ancient objects."
+          }
+         ]
+        },
+        {
+         "id": "safe-use-and-hazards-of-nuclear-radiation",
+         "title": "Safe use and hazards of nuclear radiation",
+         "outcomes": [
+          {
+           "code": "P-10-F-19",
+           "text": "Explain how radiation type and half-life decide isotope uses such as smoke alarms, food irradiation and thickness gauges."
+          },
+          {
+           "code": "P-10-F-20",
+           "text": "State the effects of ionising radiation on living things, including cell death, mutations and cancer."
+          },
+          {
+           "code": "P-10-F-21",
+           "text": "Explain safe movement, use and storage of radioactive materials using time, distance and shielding."
+          }
+         ]
+        },
+        {
+         "id": "the-sun-and-dark-matter",
+         "title": "The Sun and dark matter",
+         "outcomes": [
+          {
+           "code": "P-10-F-23",
+           "text": "Explain the Sun as a medium-sized star of mostly hydrogen and helium radiating mainly infrared, visible and UV."
+          },
+          {
+           "code": "P-10-F-24",
+           "text": "State that most matter in the universe is hypothesised to be dark matter."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "11",
+   "units": [
+    {
+     "id": "domain-a-physical-quantities-and-measurement",
+     "title": "Domain A: Physical Quantities and Measurement",
+     "topics": [
+      {
+       "id": "grade-11-unit-1-measurement",
+       "title": "Grade 11 Unit 1: Measurement",
+       "subtopics": [
+        {
+         "id": "scope-of-physics",
+         "title": "Scope of physics",
+         "outcomes": [
+          {
+           "code": "P-11-A-01",
+           "text": "Describe the role of physics in space technology, nanotechnology, aerodynamics, medical physics, thermodynamics and solid-state physics."
+          }
+         ]
+        },
+        {
+         "id": "accuracy-precision-and-uncertainty",
+         "title": "Accuracy, precision and uncertainty",
+         "outcomes": [
+          {
+           "code": "P-11-A-02",
+           "text": "Tell accuracy from precision by comparing sets of experimental data."
+          },
+          {
+           "code": "P-11-A-03",
+           "text": "Explain why every measurement has some uncertainty because of instrument limits."
+          },
+          {
+           "code": "P-11-A-04",
+           "text": "Estimate absolute, fractional and percentage uncertainties in combined results and keep suitable significant figures."
+          }
+         ]
+        },
+        {
+         "id": "dimensional-analysis",
+         "title": "Dimensional analysis",
+         "outcomes": [
+          {
+           "code": "P-11-A-06",
+           "text": "Check whether an equation is homogeneous using dimensions."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "domain-b-mechanics",
+     "title": "Domain B: Mechanics",
+     "topics": [
+      {
+       "id": "grade-11-unit-2-vectors",
+       "title": "Grade 11 Unit 2: Vectors",
+       "subtopics": [
+        {
+         "id": "unit-vectors-and-vector-products",
+         "title": "Unit vectors and vector products",
+         "outcomes": [
+          {
+           "code": "P-11-B-01",
+           "text": "Define a unit vector and write vectors using i, j, k."
+          },
+          {
+           "code": "P-11-B-02",
+           "text": "Describe multiplying a vector by a number."
+          },
+          {
+           "code": "P-11-B-03",
+           "text": "Describe the scalar (dot) product of two vectors and its properties."
+          },
+          {
+           "code": "P-11-B-04",
+           "text": "Describe the vector (cross) product, its properties and how to find its direction."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "grade-11-unit-3-motion-and-force",
+       "title": "Grade 11 Unit 3: Motion and Force",
+       "subtopics": [
+        {
+         "id": "elastic-collisions-in-one-dimension",
+         "title": "Elastic collisions in one dimension",
+         "outcomes": [
+          {
+           "code": "P-11-B-05",
+           "text": "Analyse elastic collisions using conserved kinetic energy and equal relative speeds of approach and separation."
+          },
+          {
+           "code": "P-11-B-06",
+           "text": "Show that momentum of an isolated system is conserved even if some kinetic energy changes."
+          }
+         ]
+        },
+        {
+         "id": "projectile-motion",
+         "title": "Projectile motion",
+         "outcomes": [
+          {
+           "code": "P-11-B-07",
+           "text": "Explain projectile motion without air resistance, with constant horizontal velocity and independent motions."
+          },
+          {
+           "code": "P-11-B-08",
+           "text": "Find height, range, time of flight and best launch angle for projectiles."
+          },
+          {
+           "code": "P-11-B-09",
+           "text": "Describe qualitatively how air resistance affects the range of a projectile."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "grade-11-unit-4-work-and-energy",
+       "title": "Grade 11 Unit 4: Work and Energy",
+       "subtopics": [
+        {
+         "id": "work",
+         "title": "Work",
+         "outcomes": [
+          {
+           "code": "P-11-B-10",
+           "text": "Describe work as the scalar product of force and displacement."
+          },
+          {
+           "code": "P-11-B-11",
+           "text": "Tell positive, negative and zero work apart and find work from a force-displacement graph."
+          }
+         ]
+        },
+        {
+         "id": "conservative-fields",
+         "title": "Conservative fields",
+         "outcomes": [
+          {
+           "code": "P-11-B-12",
+           "text": "Tell conservative from non-conservative forces."
+          },
+          {
+           "code": "P-11-B-13",
+           "text": "Prove that the gravitational field is conservative."
+          }
+         ]
+        },
+        {
+         "id": "work-energy-theorem",
+         "title": "Work-energy theorem",
+         "outcomes": [
+          {
+           "code": "P-11-B-14",
+           "text": "Deduce the link between work and energy, with and without friction."
+          }
+         ]
+        },
+        {
+         "id": "gravitational-potential-and-escape-velocity",
+         "title": "Gravitational potential and escape velocity",
+         "outcomes": [
+          {
+           "code": "P-11-B-16",
+           "text": "Show how gravitational potential leads to the potential energy of two point masses."
+          },
+          {
+           "code": "P-11-B-17",
+           "text": "Define escape velocity, derive it and compute it for the Earth and Moon."
+          }
+         ]
+        },
+        {
+         "id": "power",
+         "title": "Power",
+         "outcomes": [
+          {
+           "code": "P-11-B-18",
+           "text": "Derive power as force times velocity and solve problems."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "grade-11-unit-5-rotational-and-circular-motion",
+       "title": "Grade 11 Unit 5: Rotational and Circular Motion",
+       "subtopics": [
+        {
+         "id": "angular-motion",
+         "title": "Angular motion",
+         "outcomes": [
+          {
+           "code": "P-11-B-19",
+           "text": "Define the radian and convert between radians, degrees and revolutions."
+          },
+          {
+           "code": "P-11-B-20",
+           "text": "Define and calculate angular displacement, velocity and acceleration, and link them to linear quantities."
+          },
+          {
+           "code": "P-11-B-21",
+           "text": "Use equations of angular motion to solve problems."
+          }
+         ]
+        },
+        {
+         "id": "centripetal-acceleration-and-force",
+         "title": "Centripetal acceleration and force",
+         "outcomes": [
+          {
+           "code": "P-11-B-22",
+           "text": "Describe centripetal acceleration and its direction."
+          },
+          {
+           "code": "P-11-B-23",
+           "text": "Define centripetal force, deduce its formulae and solve simple problems."
+          },
+          {
+           "code": "P-11-B-24",
+           "text": "Analyse circular motion where tension, friction, gravity or a normal force supplies the centripetal force."
+          },
+          {
+           "code": "P-11-B-25",
+           "text": "Explain how a centrifuge separates materials using centripetal force."
+          }
+         ]
+        },
+        {
+         "id": "moment-of-inertia-and-angular-momentum",
+         "title": "Moment of inertia and angular momentum",
+         "outcomes": [
+          {
+           "code": "P-11-B-26",
+           "text": "Define moment of inertia and angular momentum and calculate them for simple systems."
+          },
+          {
+           "code": "P-11-B-27",
+           "text": "Derive and use the relation between torque, moment of inertia and angular acceleration."
+          },
+          {
+           "code": "P-11-B-28",
+           "text": "Explain and apply conservation of angular momentum."
+          },
+          {
+           "code": "P-11-B-29",
+           "text": "Analyse applications of angular momentum conservation such as flywheels, gyroscopes, skaters and divers."
+          }
+         ]
+        },
+        {
+         "id": "rotational-kinetic-energy",
+         "title": "Rotational kinetic energy",
+         "outcomes": [
+          {
+           "code": "P-11-B-30",
+           "text": "Define rotational kinetic energy, derive its expression and use it."
+          }
+         ]
+        },
+        {
+         "id": "orbits-and-satellites",
+         "title": "Orbits and satellites",
+         "outcomes": [
+          {
+           "code": "P-11-B-31",
+           "text": "Calculate average orbital speed from orbit radius and period."
+          },
+          {
+           "code": "P-11-B-32",
+           "text": "Derive the relation between orbital period and radius using the law of gravitation."
+          },
+          {
+           "code": "P-11-B-33",
+           "text": "Analyse geostationary orbits, including finding the orbital radius."
+          },
+          {
+           "code": "P-11-B-34",
+           "text": "Define satellites and classify their types."
+          },
+          {
+           "code": "P-11-B-35",
+           "text": "Explain why objects in orbiting satellites seem weightless."
+          },
+          {
+           "code": "P-11-B-36",
+           "text": "Describe how artificial gravity counters weightlessness."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "grade-11-unit-6-fluid-dynamics",
+       "title": "Grade 11 Unit 6: Fluid Dynamics",
+       "subtopics": [
+        {
+         "id": "viscosity",
+         "title": "Viscosity",
+         "outcomes": [
+          {
+           "code": "P-11-B-37",
+           "text": "Explain why real fluids are viscous, linking viscosity to density and temperature."
+          },
+          {
+           "code": "P-11-B-38",
+           "text": "Describe how viscous forces give a retarding force on a moving object."
+          }
+         ]
+        },
+        {
+         "id": "terminal-velocity-and-stokes-law",
+         "title": "Terminal velocity and Stokes' law",
+         "outcomes": [
+          {
+           "code": "P-11-B-39",
+           "text": "Analyse how an object reaches terminal velocity."
+          },
+          {
+           "code": "P-11-B-40",
+           "text": "State Stokes' law and derive terminal velocity of a sphere in a viscous fluid."
+          }
+         ]
+        },
+        {
+         "id": "fluid-flow-and-continuity",
+         "title": "Fluid flow and continuity",
+         "outcomes": [
+          {
+           "code": "P-11-B-43",
+           "text": "Explain why squeezing a pipe end speeds up the flow."
+          }
+         ]
+        },
+        {
+         "id": "bernoulli-s-equation",
+         "title": "Bernoulli's equation",
+         "outcomes": [
+          {
+           "code": "P-11-B-44",
+           "text": "State and derive Bernoulli's equation."
+          },
+          {
+           "code": "P-11-B-45",
+           "text": "Explain how changes in fluid speed cause pressure differences."
+          },
+          {
+           "code": "P-11-B-46",
+           "text": "Analyse applications such as the Magnus effect, Venturi ducts and Torricelli's theorem."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "grade-11-unit-7-mechanical-properties-of-solids",
+       "title": "Grade 11 Unit 7: Mechanical Properties of Solids",
+       "subtopics": [
+        {
+         "id": "classification-of-solids",
+         "title": "Classification of solids",
+         "outcomes": [
+          {
+           "code": "P-11-B-47",
+           "text": "Tell crystalline, amorphous and polycrystalline solids apart by structure."
+          }
+         ]
+        },
+        {
+         "id": "elastic-moduli",
+         "title": "Elastic moduli",
+         "outcomes": [
+          {
+           "code": "P-11-B-48",
+           "text": "Describe deformation of solids in one dimension, tensile or compressive."
+          },
+          {
+           "code": "P-11-B-49",
+           "text": "Explain Young's, bulk and shear modulus and use them in problems."
+          }
+         ]
+        },
+        {
+         "id": "tensile-behaviour-and-elastic-energy",
+         "title": "Tensile behaviour and elastic energy",
+         "outcomes": [
+          {
+           "code": "P-11-B-52",
+           "text": "Use the area under a force-extension graph as work done."
+          },
+          {
+           "code": "P-11-B-53",
+           "text": "Find elastic potential energy from the force-extension graph within the proportional limit."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "domain-c-heat-and-thermodynamics",
+     "title": "Domain C: Heat and Thermodynamics",
+     "topics": [
+      {
+       "id": "grade-11-unit-8-kinetic-theory",
+       "title": "Grade 11 Unit 8: Kinetic Theory",
+       "subtopics": [
+        {
+         "id": "kinetic-theory-of-gases",
+         "title": "Kinetic theory of gases",
+         "outcomes": [
+          {
+           "code": "P-11-C-01",
+           "text": "Describe the basic assumptions of the kinetic theory of gases."
+          },
+          {
+           "code": "P-11-C-02",
+           "text": "Apply the ideal gas equation of state, PV = nRT and PV = NkT."
+          },
+          {
+           "code": "P-11-C-03",
+           "text": "Explain gas pressure from molecular motion and when an ideal gas approximates a real gas."
+          },
+          {
+           "code": "P-11-C-04",
+           "text": "Calculate the root-mean-square speed of an ideal gas."
+          },
+          {
+           "code": "P-11-C-05",
+           "text": "Derive and use the relation PV = (1/3)Nm<c2>."
+          },
+          {
+           "code": "P-11-C-06",
+           "text": "Derive and use the average translational kinetic energy of a gas molecule."
+          },
+          {
+           "code": "P-11-C-07",
+           "text": "Derive Boyle's and Charles's laws from kinetic theory."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "grade-11-unit-9-thermodynamics",
+       "title": "Grade 11 Unit 9: Thermodynamics",
+       "subtopics": [
+        {
+         "id": "thermal-equilibrium-and-internal-energy",
+         "title": "Thermal equilibrium and internal energy",
+         "outcomes": [
+          {
+           "code": "P-11-C-08",
+           "text": "State that regions in thermal equilibrium are at the same temperature."
+          },
+          {
+           "code": "P-11-C-09",
+           "text": "Define internal energy of ideal and real gases and link temperature rise to it."
+          }
+         ]
+        },
+        {
+         "id": "work-done-by-gases",
+         "title": "Work done by gases",
+         "outcomes": [
+          {
+           "code": "P-11-C-10",
+           "text": "Tell work done by a system from work done on it."
+          },
+          {
+           "code": "P-11-C-11",
+           "text": "Use W = P(delta V) for work done at constant pressure."
+          },
+          {
+           "code": "P-11-C-12",
+           "text": "Explain qualitatively with particles how pressure, temperature and volume of a gas relate."
+          }
+         ]
+        },
+        {
+         "id": "first-law-of-thermodynamics",
+         "title": "First law of thermodynamics",
+         "outcomes": [
+          {
+           "code": "P-11-C-13",
+           "text": "Define and use the first law of thermodynamics as conservation of energy."
+          }
+         ]
+        },
+        {
+         "id": "molar-specific-heats",
+         "title": "Molar specific heats",
+         "outcomes": [
+          {
+           "code": "P-11-C-16",
+           "text": "Explain why Cp exceeds Cv and derive Mayer's relation."
+          }
+         ]
+        },
+        {
+         "id": "heat-engines-and-the-second-law",
+         "title": "Heat engines and the second law",
+         "outcomes": [
+          {
+           "code": "P-11-C-17",
+           "text": "Describe the working principle of a heat engine."
+          },
+          {
+           "code": "P-11-C-18",
+           "text": "State and explain the second law, including the Kelvin and Clausius statements."
+          },
+          {
+           "code": "P-11-C-19",
+           "text": "Describe the Carnot engine and its cycle on a PV diagram and its efficiency."
+          },
+          {
+           "code": "P-11-C-20",
+           "text": "State that the Carnot cycle limits heat engine efficiency, eff = 1 - Tcold/Thot."
+          },
+          {
+           "code": "P-11-C-21",
+           "text": "Describe a refrigerator as a reversed heat engine and its coefficient of performance."
+          }
+         ]
+        },
+        {
+         "id": "entropy",
+         "title": "Entropy",
+         "outcomes": [
+          {
+           "code": "P-11-C-22",
+           "text": "Explain entropy as a measure of disorder and energy degradation."
+          },
+          {
+           "code": "P-11-C-23",
+           "text": "Describe negentropy."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "domain-d-oscillations-and-waves",
+     "title": "Domain D: Oscillations and Waves",
+     "topics": [
+      {
+       "id": "grade-11-unit-9-oscillations",
+       "title": "Grade 11 Unit 9: Oscillations",
+       "subtopics": [
+        {
+         "id": "circular-motion-and-shm",
+         "title": "Circular motion and SHM",
+         "outcomes": [
+          {
+           "code": "P-11-D-01",
+           "text": "Describe that the projection of circular motion on a diameter is SHM."
+          },
+          {
+           "code": "P-11-D-02",
+           "text": "Derive and use formulae for displacement, velocity and acceleration in SHM from circular motion."
+          },
+          {
+           "code": "P-11-D-03",
+           "text": "Analyse graphs of displacement, velocity and acceleration in SHM."
+          }
+         ]
+        },
+        {
+         "id": "mass-spring-system",
+         "title": "Mass-spring system",
+         "outcomes": [
+          {
+           "code": "P-11-D-04",
+           "text": "Show with Hooke's law that a mass on a spring moves with SHM."
+          },
+          {
+           "code": "P-11-D-05",
+           "text": "Derive and use angular frequency, period and frequency for a mass-spring system."
+          }
+         ]
+        },
+        {
+         "id": "damped-oscillations",
+         "title": "Damped oscillations",
+         "outcomes": [
+          {
+           "code": "P-11-D-07",
+           "text": "Describe how a resistive force damps oscillations."
+          },
+          {
+           "code": "P-11-D-08",
+           "text": "Use light, critical and heavy damping and sketch their displacement-time graphs."
+          },
+          {
+           "code": "P-11-D-09",
+           "text": "Describe practical examples of damping, such as critical damping in car suspension."
+          }
+         ]
+        },
+        {
+         "id": "free-forced-oscillations-and-resonance",
+         "title": "Free, forced oscillations and resonance",
+         "outcomes": [
+          {
+           "code": "P-11-D-11",
+           "text": "Explain resonance as maximum amplitude when the driving frequency equals the natural frequency."
+          },
+          {
+           "code": "P-11-D-12",
+           "text": "Judge when resonance is useful, such as radio tuning, and when it must be avoided, such as bridges."
+          },
+          {
+           "code": "P-11-D-13",
+           "text": "Analyse qualitatively how damping affects the sharpness of resonance."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "grade-11-unit-10-waves",
+       "title": "Grade 11 Unit 10: Waves",
+       "subtopics": [
+        {
+         "id": "intensity-of-waves",
+         "title": "Intensity of waves",
+         "outcomes": [
+          {
+           "code": "P-11-D-14",
+           "text": "Explain wave intensity as power per area and proportional to amplitude squared, and use it."
+          }
+         ]
+        },
+        {
+         "id": "doppler-effect",
+         "title": "Doppler effect",
+         "outcomes": [
+          {
+           "code": "P-11-D-15",
+           "text": "Derive and use the apparent frequency for a moving source or moving observer."
+          },
+          {
+           "code": "P-11-D-16",
+           "text": "Apply the Doppler effect to radar, medical ultrasound and astronomy."
+          }
+         ]
+        },
+        {
+         "id": "superposition-and-interference",
+         "title": "Superposition and interference",
+         "outcomes": [
+          {
+           "code": "P-11-D-17",
+           "text": "State and explain the principle of superposition for coherent waves."
+          },
+          {
+           "code": "P-11-D-18",
+           "text": "Use superposition to explain noise-cancelling headphones."
+          },
+          {
+           "code": "P-11-D-20",
+           "text": "Explain two-source interference with ripple tank, sound and light."
+          },
+          {
+           "code": "P-11-D-21",
+           "text": "Analyse Young's double-slit fringes, including maxima, minima and fringe width."
+          }
+         ]
+        },
+        {
+         "id": "stationary-waves-and-beats",
+         "title": "Stationary waves and beats",
+         "outcomes": [
+          {
+           "code": "P-11-D-22",
+           "text": "Explain experiments showing stationary waves, nodes and antinodes."
+          },
+          {
+           "code": "P-11-D-23",
+           "text": "Explain harmonics on a stretched string and quantised frequencies."
+          },
+          {
+           "code": "P-11-D-24",
+           "text": "Explain harmonics in open and closed organ pipes."
+          },
+          {
+           "code": "P-11-D-25",
+           "text": "Explain beats, calculate beat frequency and use it to tune instruments."
+          }
+         ]
+        },
+        {
+         "id": "diffraction-gratings",
+         "title": "Diffraction gratings",
+         "outcomes": [
+          {
+           "code": "P-11-D-26",
+           "text": "Describe diffraction of monochromatic light by a grating and its use to find wavelength."
+          },
+          {
+           "code": "P-11-D-27",
+           "text": "Explain why white light gives spectral colours through a grating."
+          },
+          {
+           "code": "P-11-D-28",
+           "text": "Use d sin(theta) = n lambda to solve grating problems."
+          }
+         ]
+        },
+        {
+         "id": "polarisation",
+         "title": "Polarisation",
+         "outcomes": [
+          {
+           "code": "P-11-D-29",
+           "text": "Explain that polarisation applies to transverse waves."
+          },
+          {
+           "code": "P-11-D-30",
+           "text": "Define and apply Malus's law for polarising filters."
+          },
+          {
+           "code": "P-11-D-31",
+           "text": "Explain the use of polaroids in sky photography and stress analysis."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "domain-f-space-and-modern-physics",
+     "title": "Domain F: Space and Modern Physics",
+     "topics": [
+      {
+       "id": "grade-11-unit-11-relativity-and-particle-physics",
+       "title": "Grade 11 Unit 11: Relativity and Particle Physics",
+       "subtopics": [
+        {
+         "id": "relativity",
+         "title": "Relativity",
+         "outcomes": [
+          {
+           "code": "P-11-F-01",
+           "text": "Tell inertial from non-inertial frames of reference with examples."
+          },
+          {
+           "code": "P-11-F-03",
+           "text": "Explain that a constant light speed makes measurements of space and time relative to the observer."
+          },
+          {
+           "code": "P-11-F-04",
+           "text": "State the postulates of special relativity."
+          },
+          {
+           "code": "P-11-F-05",
+           "text": "Explain the consequences of special relativity: simultaneity, mass-energy, length contraction, time dilation, mass increase."
+          },
+          {
+           "code": "P-11-F-06",
+           "text": "Solve simple problems using the consequences of special relativity."
+          },
+          {
+           "code": "P-11-F-07",
+           "text": "State that space-time treats time as a fourth dimension and that its distortions have observable effects."
+          }
+         ]
+        },
+        {
+         "id": "particle-physics",
+         "title": "Particle physics",
+         "outcomes": [
+          {
+           "code": "P-11-F-08",
+           "text": "State that nucleon number and charge are conserved in nuclear processes."
+          },
+          {
+           "code": "P-11-F-09",
+           "text": "Describe the composition, mass and charge of alpha, beta and gamma radiations."
+          },
+          {
+           "code": "P-11-F-10",
+           "text": "Explain that an antiparticle has the same mass and opposite charge, such as the positron."
+          },
+          {
+           "code": "P-11-F-12",
+           "text": "Describe quarks and antiquarks and the six quark flavours."
+          },
+          {
+           "code": "P-11-F-13",
+           "text": "Describe protons and neutrons by their quark composition."
+          },
+          {
+           "code": "P-11-F-14",
+           "text": "Define hadrons, leptons and bosons with examples."
+          },
+          {
+           "code": "P-11-F-15",
+           "text": "Explain the working principle and uses of particle accelerators."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "12",
+   "units": [
+    {
+     "id": "domain-e-electricity-and-magnetism",
+     "title": "Domain E: Electricity and Magnetism",
+     "topics": [
+      {
+       "id": "grade-12-unit-1-electrostatics",
+       "title": "Grade 12 Unit 1: Electrostatics",
+       "subtopics": [
+        {
+         "id": "electric-field",
+         "title": "Electric field",
+         "outcomes": [
+          {
+           "code": "P-12-E-01",
+           "text": "State that an electric field is a field of force."
+          },
+          {
+           "code": "P-12-E-02",
+           "text": "Define and calculate electric field strength using E = F/q and E = kQ/r2."
+          }
+         ]
+        },
+        {
+         "id": "electric-field-configurations",
+         "title": "Electric field configurations",
+         "outcomes": [
+          {
+           "code": "P-12-E-03",
+           "text": "Represent electric fields with field lines."
+          },
+          {
+           "code": "P-12-E-04",
+           "text": "Describe field direction around a point charge, a charged sphere and between parallel plates."
+          },
+          {
+           "code": "P-12-E-05",
+           "text": "Find and justify the null point where the net field is zero."
+          },
+          {
+           "code": "P-12-E-06",
+           "text": "Describe the effect of a uniform electric field on charged particles."
+          }
+         ]
+        },
+        {
+         "id": "shielding-breakdown-and-lightning",
+         "title": "Shielding, breakdown and lightning",
+         "outcomes": [
+          {
+           "code": "P-12-E-07",
+           "text": "Explain how a Faraday cage shields its inside from external fields."
+          },
+          {
+           "code": "P-12-E-08",
+           "text": "Explain electrical breakdown as ionisation of a gas in a strong field."
+          },
+          {
+           "code": "P-12-E-09",
+           "text": "State that corona discharge and Lichtenberg figures are examples of breakdown."
+          },
+          {
+           "code": "P-12-E-10",
+           "text": "Explain how lightning is generated."
+          },
+          {
+           "code": "P-12-E-11",
+           "text": "Explain how a lightning rod protects people."
+          }
+         ]
+        },
+        {
+         "id": "electric-potential",
+         "title": "Electric potential",
+         "outcomes": [
+          {
+           "code": "P-12-E-12",
+           "text": "Define electric potential and potential difference."
+          },
+          {
+           "code": "P-12-E-13",
+           "text": "Show that field equals the negative potential gradient."
+          },
+          {
+           "code": "P-12-E-14",
+           "text": "Derive the potential due to a point charge."
+          },
+          {
+           "code": "P-12-E-15",
+           "text": "Explain how potential leads to the electric potential energy of two point charges."
+          },
+          {
+           "code": "P-12-E-16",
+           "text": "Solve simple problems on electric potential and potential energy."
+          }
+         ]
+        },
+        {
+         "id": "capacitors",
+         "title": "Capacitors",
+         "outcomes": [
+          {
+           "code": "P-12-E-17",
+           "text": "Define and calculate capacitance of spheres and parallel plates."
+          },
+          {
+           "code": "P-12-E-18",
+           "text": "Derive and apply capacitance for series and parallel combinations."
+          },
+          {
+           "code": "P-12-E-19",
+           "text": "Find energy stored in a capacitor from the area under the potential-charge graph."
+          },
+          {
+           "code": "P-12-E-20",
+           "text": "Analyse charging and discharging graphs of a capacitor through a resistor with time constant RC."
+          },
+          {
+           "code": "P-12-E-21",
+           "text": "List uses of capacitors in household appliances."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "grade-12-unit-2-current-electricity",
+       "title": "Grade 12 Unit 2: Current Electricity",
+       "subtopics": [
+        {
+         "id": "basics-of-current",
+         "title": "Basics of current",
+         "outcomes": [
+          {
+           "code": "P-12-E-22",
+           "text": "Use I = nqAv to find the current in a conductor."
+          },
+          {
+           "code": "P-12-E-23",
+           "text": "Explain emf, internal resistance and terminal potential difference of a cell."
+          },
+          {
+           "code": "P-12-E-24",
+           "text": "Use V = E - Ir and explain when terminal voltage is below, equal to or above EMF."
+          }
+         ]
+        },
+        {
+         "id": "resistance-and-resistivity",
+         "title": "Resistance and resistivity",
+         "outcomes": [
+          {
+           "code": "P-12-E-25",
+           "text": "Discuss the temperature coefficient of resistivity for metals and semiconductors."
+          },
+          {
+           "code": "P-12-E-26",
+           "text": "Justify and use colour codes for resistors."
+          },
+          {
+           "code": "P-12-E-27",
+           "text": "Explain how conducting carbon fibres let inspectors check concrete bridges."
+          }
+         ]
+        },
+        {
+         "id": "superconductivity",
+         "title": "Superconductivity",
+         "outcomes": [
+          {
+           "code": "P-12-E-28",
+           "text": "Describe superconductivity and its practical uses."
+          }
+         ]
+        },
+        {
+         "id": "thermistors-and-light-dependent-resistors",
+         "title": "Thermistors and light-dependent resistors",
+         "outcomes": [
+          {
+           "code": "P-12-E-29",
+           "text": "Explain the use of thermistors and LDRs in potential dividers and sensors."
+          }
+         ]
+        },
+        {
+         "id": "kirchhoff-s-laws",
+         "title": "Kirchhoff's laws",
+         "outcomes": [
+          {
+           "code": "P-12-E-30",
+           "text": "State Kirchhoff's first law as conservation of charge."
+          },
+          {
+           "code": "P-12-E-31",
+           "text": "State Kirchhoff's second law as conservation of energy."
+          },
+          {
+           "code": "P-12-E-32",
+           "text": "Use Kirchhoff's laws to solve single- and two-loop circuits."
+          }
+         ]
+        },
+        {
+         "id": "potential-divider",
+         "title": "Potential divider",
+         "outcomes": [
+          {
+           "code": "P-12-E-33",
+           "text": "Analyse potential dividers, including R1/R2 = V1/V2."
+          }
+         ]
+        },
+        {
+         "id": "wheatstone-bridge-and-potentiometer",
+         "title": "Wheatstone bridge and potentiometer",
+         "outcomes": [
+          {
+           "code": "P-12-E-34",
+           "text": "Explain null methods with a galvanometer and the Wheatstone bridge."
+          },
+          {
+           "code": "P-12-E-35",
+           "text": "Describe how a potentiometer compares potentials without drawing current."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "grade-12-unit-3-magnetic-fields-and-electromagne",
+       "title": "Grade 12 Unit 3: Magnetic Fields and Electromagnetism",
+       "subtopics": [
+        {
+         "id": "magnetic-force-on-currents-and-charges",
+         "title": "Magnetic force on currents and charges",
+         "outcomes": [
+          {
+           "code": "P-12-E-36",
+           "text": "Use F = BIL sin(theta) for a current-carrying conductor and define magnetic flux density."
+          },
+          {
+           "code": "P-12-E-37",
+           "text": "Describe a charged particle in a uniform magnetic field and use F = qvB sin(theta)."
+          },
+          {
+           "code": "P-12-E-38",
+           "text": "Explain how electric and magnetic fields work in velocity selectors."
+          }
+         ]
+        },
+        {
+         "id": "electric-hazards-and-magnetic-flux",
+         "title": "Electric hazards and magnetic flux",
+         "outcomes": [
+          {
+           "code": "P-12-E-39",
+           "text": "Define magnetic flux as flux density times perpendicular area."
+          }
+         ]
+        },
+        {
+         "id": "electromagnetic-induction",
+         "title": "Electromagnetic induction",
+         "outcomes": [
+          {
+           "code": "P-12-E-41",
+           "text": "State and derive Faraday's law of electromagnetic induction."
+          },
+          {
+           "code": "P-12-E-42",
+           "text": "Use Lenz's law to predict induced current direction as conservation of energy."
+          },
+          {
+           "code": "P-12-E-43",
+           "text": "Use Faraday's and Lenz's laws to solve problems."
+          },
+          {
+           "code": "P-12-E-44",
+           "text": "Explain how a seismometer detects earthquakes by electromagnetic induction."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "grade-12-unit-4-alternating-current",
+       "title": "Grade 12 Unit 4: Alternating Current",
+       "subtopics": [
+        {
+         "id": "ac-basics",
+         "title": "AC basics",
+         "outcomes": [
+          {
+           "code": "P-12-E-45",
+           "text": "Apply that mean power in a resistor is half the peak power for sinusoidal AC."
+          },
+          {
+           "code": "P-12-E-46",
+           "text": "Explain r.m.s. values as the DC equivalent for heating and use Irms = I0/sqrt2 and Vrms = V0/sqrt2."
+          },
+          {
+           "code": "P-12-E-47",
+           "text": "Explain phase of AC and phase leads and lags."
+          }
+         ]
+        },
+        {
+         "id": "ac-in-components",
+         "title": "AC in components",
+         "outcomes": [
+          {
+           "code": "P-12-E-48",
+           "text": "Explain AC in resistors, capacitors and inductors using graphs and phasor diagrams and discuss power dissipation."
+          },
+          {
+           "code": "P-12-E-49",
+           "text": "Identify inductors as chokes that oppose alternating current."
+          },
+          {
+           "code": "P-12-E-50",
+           "text": "Calculate the reactance of capacitors and inductors."
+          },
+          {
+           "code": "P-12-E-51",
+           "text": "Describe impedance as the phasor sum of resistance and reactance in series RC and RL circuits."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "grade-12-unit-5-electronics",
+       "title": "Grade 12 Unit 5: Electronics",
+       "subtopics": [
+        {
+         "id": "semiconductors-and-diodes",
+         "title": "Semiconductors and diodes",
+         "outcomes": [
+          {
+           "code": "P-12-E-52",
+           "text": "Tell intrinsic from extrinsic semiconductors, P-type and N-type, and how electrons and holes conduct."
+          },
+          {
+           "code": "P-12-E-53",
+           "text": "Explain the structure and working of a PN junction diode under forward and reverse bias."
+          }
+         ]
+        },
+        {
+         "id": "rectification",
+         "title": "Rectification",
+         "outcomes": [
+          {
+           "code": "P-12-E-54",
+           "text": "Tell half-wave from full-wave rectification graphically."
+          },
+          {
+           "code": "P-12-E-55",
+           "text": "Explain half-wave rectification with a single diode."
+          },
+          {
+           "code": "P-12-E-56",
+           "text": "Explain full-wave rectification with a four-diode bridge."
+          }
+         ]
+        },
+        {
+         "id": "transistors",
+         "title": "Transistors",
+         "outcomes": [
+          {
+           "code": "P-12-E-57",
+           "text": "Identify the structure and symbols of NPN and PNP transistors."
+          },
+          {
+           "code": "P-12-E-58",
+           "text": "Describe the functions of emitter, base and collector in a properly biased transistor."
+          },
+          {
+           "code": "P-12-E-59",
+           "text": "Recognise common-emitter, common-base and common-collector configurations."
+          },
+          {
+           "code": "P-12-E-60",
+           "text": "Describe the NPN transistor as a switch and why transistors suit digital devices."
+          }
+         ]
+        },
+        {
+         "id": "digital-devices-and-logic-circuits",
+         "title": "Digital devices and logic circuits",
+         "outcomes": [
+          {
+           "code": "P-12-E-61",
+           "text": "Compare analogue and digital electronics."
+          },
+          {
+           "code": "P-12-E-62",
+           "text": "Explain that electronic devices are built from digital logic circuits acting as switches."
+          },
+          {
+           "code": "P-12-E-63",
+           "text": "Explain Boolean logic as the basis for converting analogue to digital data, including bits and bytes."
+          },
+          {
+           "code": "P-12-E-64",
+           "text": "State the action of AND, OR, NAND, NOR and NOT gates in words and truth tables."
+          },
+          {
+           "code": "P-12-E-65",
+           "text": "Identify uses of logic gates for security such as burglar alarms."
+          },
+          {
+           "code": "P-12-E-66",
+           "text": "Identify and draw standard symbols for basic logic gates."
+          },
+          {
+           "code": "P-12-E-67",
+           "text": "Combine Boolean switches to achieve logical operations in given problems."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "domain-f-space-and-modern-physics",
+     "title": "Domain F: Space and Modern Physics",
+     "topics": [
+      {
+       "id": "grade-12-unit-6-quantum-physics",
+       "title": "Grade 12 Unit 6: Quantum Physics",
+       "subtopics": [
+        {
+         "id": "photon-theory",
+         "title": "Photon theory",
+         "outcomes": [
+          {
+           "code": "P-12-F-02",
+           "text": "State the speed of electromagnetic waves in vacuum and air."
+          },
+          {
+           "code": "P-12-F-04",
+           "text": "Use E = hf to find photon energy in joules or electron volts."
+          },
+          {
+           "code": "P-12-F-05",
+           "text": "Explain photon momentum p = E/c and use it."
+          }
+         ]
+        },
+        {
+         "id": "photoelectric-effect",
+         "title": "Photoelectric effect",
+         "outcomes": [
+          {
+           "code": "P-12-F-06",
+           "text": "Describe photoelectron emission from a metal lit by electromagnetic radiation."
+          },
+          {
+           "code": "P-12-F-07",
+           "text": "Describe why classical wave theory cannot explain the photoelectric effect."
+          },
+          {
+           "code": "P-12-F-08",
+           "text": "Describe and use threshold frequency and threshold wavelength."
+          },
+          {
+           "code": "P-12-F-09",
+           "text": "Explain that emission needs photon energy at least equal to the work function."
+          },
+          {
+           "code": "P-12-F-10",
+           "text": "Explain emission with photon energy and work function and find maximum kinetic energy."
+          },
+          {
+           "code": "P-12-F-11",
+           "text": "Explain why maximum kinetic energy is independent of intensity while current depends on it."
+          },
+          {
+           "code": "P-12-F-12",
+           "text": "Draw and interpret graphs of kinetic energy vs frequency and current vs intensity."
+          }
+         ]
+        },
+        {
+         "id": "compton-effect",
+         "title": "Compton effect",
+         "outcomes": [
+          {
+           "code": "P-12-F-13",
+           "text": "Describe the Compton effect, where scattered X-rays and gamma rays gain wavelength."
+          },
+          {
+           "code": "P-12-F-14",
+           "text": "Solve problems using the Compton wavelength shift equation."
+          }
+         ]
+        },
+        {
+         "id": "pair-production-and-annihilation",
+         "title": "Pair production and annihilation",
+         "outcomes": [
+          {
+           "code": "P-12-F-15",
+           "text": "Explain pair production and find the minimum photon energy needed."
+          },
+          {
+           "code": "P-12-F-16",
+           "text": "Describe pair annihilation producing gamma rays with energy and momentum conserved."
+          },
+          {
+           "code": "P-12-F-17",
+           "text": "Calculate the gamma photon energy from electron-positron annihilation."
+          }
+         ]
+        },
+        {
+         "id": "wave-particle-duality",
+         "title": "Wave-particle duality",
+         "outcomes": [
+          {
+           "code": "P-12-F-18",
+           "text": "Analyse the evidence for wave-particle duality of light."
+          },
+          {
+           "code": "P-12-F-19",
+           "text": "Explain how electron diffraction shows the wave nature of particles."
+          },
+          {
+           "code": "P-12-F-20",
+           "text": "Explain and apply the de Broglie wavelength."
+          }
+         ]
+        },
+        {
+         "id": "quantum-energy-levels-and-spectra",
+         "title": "Quantum energy levels and spectra",
+         "outcomes": [
+          {
+           "code": "P-12-F-21",
+           "text": "Understand that isolated atoms such as hydrogen have discrete electron energy levels."
+          },
+          {
+           "code": "P-12-F-22",
+           "text": "Tell continuous, line and band spectra apart."
+          },
+          {
+           "code": "P-12-F-23",
+           "text": "Tell absorption from emission spectra."
+          },
+          {
+           "code": "P-12-F-24",
+           "text": "Explain the formation of emission and absorption line spectra for hydrogen."
+          },
+          {
+           "code": "P-12-F-25",
+           "text": "Use hf = energy difference to find energy levels, frequency and wavelength."
+          },
+          {
+           "code": "P-12-F-26",
+           "text": "Explain how electron microscopes achieve very high resolution."
+          }
+         ]
+        },
+        {
+         "id": "uncertainty-principle",
+         "title": "Uncertainty principle",
+         "outcomes": [
+          {
+           "code": "P-12-F-27",
+           "text": "Explain Heisenberg's uncertainty principle qualitatively."
+          },
+          {
+           "code": "P-12-F-28",
+           "text": "Use the uncertainty principle to explain why measurements are necessarily uncertain."
+          }
+         ]
+        },
+        {
+         "id": "x-rays",
+         "title": "X-rays",
+         "outcomes": [
+          {
+           "code": "P-12-F-29",
+           "text": "Explain X-ray production by electron bombardment and find the minimum wavelength from voltage."
+          },
+          {
+           "code": "P-12-F-30",
+           "text": "Explain the use of X-rays in imaging the body, including contrast."
+          },
+          {
+           "code": "P-12-F-31",
+           "text": "Explain how CT scanning builds a 3D image."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "grade-12-unit-7-nuclear-physics",
+       "title": "Grade 12 Unit 7: Nuclear Physics",
+       "subtopics": [
+        {
+         "id": "mass-defect-and-binding-energy",
+         "title": "Mass defect and binding energy",
+         "outcomes": [
+          {
+           "code": "P-12-F-32",
+           "text": "Define and use mass defect and binding energy."
+          },
+          {
+           "code": "P-12-F-33",
+           "text": "Sketch binding energy per nucleon against nucleon number."
+          }
+         ]
+        },
+        {
+         "id": "nuclear-fission-and-fusion",
+         "title": "Nuclear fission and fusion",
+         "outcomes": [
+          {
+           "code": "P-12-F-34",
+           "text": "Recall what nuclear fusion and fission are."
+          },
+          {
+           "code": "P-12-F-35",
+           "text": "Explain how binding energy per nucleon relates to fission and fusion."
+          },
+          {
+           "code": "P-12-F-36",
+           "text": "Compare the energy released in fission with that of a chemical reaction."
+          },
+          {
+           "code": "P-12-F-37",
+           "text": "Explain the fission chain reaction and its control in a reactor with coolant, moderator and control rods."
+          },
+          {
+           "code": "P-12-F-38",
+           "text": "Describe the main parts of a water-moderated power reactor."
+          },
+          {
+           "code": "P-12-F-39",
+           "text": "Explain why uranium fuel must be enriched."
+          },
+          {
+           "code": "P-12-F-40",
+           "text": "Calculate energy released in nuclear reactions using delta m c2."
+          }
+         ]
+        },
+        {
+         "id": "radioactive-decay",
+         "title": "Radioactive decay",
+         "outcomes": [
+          {
+           "code": "P-12-F-41",
+           "text": "Explain that fluctuating count rates show the randomness of decay."
+          },
+          {
+           "code": "P-12-F-42",
+           "text": "Define activity and decay constant."
+          },
+          {
+           "code": "P-12-F-43",
+           "text": "State and use A = lambda N."
+          },
+          {
+           "code": "P-12-F-44",
+           "text": "Use lambda = 0.693/half-life to solve problems."
+          },
+          {
+           "code": "P-12-F-45",
+           "text": "Describe the exponential nature of decay and use x = x0 e^(-lambda t)."
+          }
+         ]
+        },
+        {
+         "id": "nuclear-medicine",
+         "title": "Nuclear medicine",
+         "outcomes": [
+          {
+           "code": "P-12-F-46",
+           "text": "Explain what a medical tracer is."
+          },
+          {
+           "code": "P-12-F-47",
+           "text": "Illustrate how PET scanning works via positron-electron annihilation."
+          },
+          {
+           "code": "P-12-F-48",
+           "text": "Explain that annihilation gamma photons leave the body and are detected to image tracer concentration."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "grade-12-unit-8-astrophysics",
+       "title": "Grade 12 Unit 8: Astrophysics",
+       "subtopics": [
+        {
+         "id": "luminosity-and-standard-candles",
+         "title": "Luminosity and standard candles",
+         "outcomes": [
+          {
+           "code": "P-12-F-50",
+           "text": "Apply the inverse square law for radiant flux."
+          },
+          {
+           "code": "P-12-F-51",
+           "text": "Define and use standard candles to find distances to galaxies."
+          }
+         ]
+        },
+        {
+         "id": "black-body-radiation-and-stellar-properties",
+         "title": "Black body radiation and stellar properties",
+         "outcomes": [
+          {
+           "code": "P-12-F-52",
+           "text": "Explain blackbody radiation."
+          },
+          {
+           "code": "P-12-F-53",
+           "text": "State and apply Wien's displacement law to estimate a star's surface temperature."
+          },
+          {
+           "code": "P-12-F-54",
+           "text": "State and apply the Stefan-Boltzmann law."
+          },
+          {
+           "code": "P-12-F-55",
+           "text": "Estimate the radius of a star from Wien's and Stefan-Boltzmann laws."
+          }
+         ]
+        },
+        {
+         "id": "redshift-and-the-big-bang",
+         "title": "Redshift and the Big Bang",
+         "outcomes": [
+          {
+           "code": "P-12-F-56",
+           "text": "Explain why spectral lines of distant objects appear at longer wavelengths than in the lab."
+          },
+          {
+           "code": "P-12-F-57",
+           "text": "Explain how redshift suggests the Universe is expanding and solve related problems."
+          },
+          {
+           "code": "P-12-F-58",
+           "text": "State and explain Hubble's law and how it leads to the Big Bang theory."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "build": {
+  "builtAt": "2026-10-14T09:32:11.886Z",
+  "model": "claude-agent",
+  "usd": 0,
+  "expectedCodes": null,
+  "coverage": null,
+  "missingCodes": [],
+  "counts": {
+   "grades": 4,
+   "units": 15,
+   "topics": 36,
+   "subtopics": 154,
+   "outcomes": 494
+  },
+  "warnings": [
+   "29 code(s) not printed in the source were dropped: P-09-A-07, P-11-A-05, P-11-A-07, P-09-B-17, P-09-B-39, P-09-B-53, P-11-B-15, P-11-B-41, P-11-B-42, P-11-B-50"
+  ]
+ }
+}

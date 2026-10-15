@@ -2,7 +2,7 @@ import test from "node:test";
 import assert from "node:assert/strict";
 import { compileExpr, evalExpr, exprUsesOnly } from "../canvas/expr";
 import { validateCanvasSpec, validateInteraction } from "../canvas/validate";
-import { layoutPanel, placePanels, toWorld, type Rect } from "../canvas/layout";
+import { electrolyticCellParts, layoutPanel, placePanels, toWorld, type Rect } from "../canvas/layout";
 import { fitView, flightMs, viewAt } from "../canvas/camera";
 import { activeCues } from "../canvas/cues";
 import { describeCanvasSpec } from "../canvas/describe";
@@ -12,6 +12,8 @@ import { validatePlan } from "../canvas/plan";
 import { applyConceptColours, planConceptColours, recapTour, unifyConceptColours } from "../canvas/lessonPasses";
 import type { ProgressiveLectureInput } from "../progressiveLectureTypes";
 import { chalkCss, chalkTint, panelTheme, recolour } from "../canvas/theme";
+import { critiqueStudentBoard } from "../canvas/studentCritic";
+import { fallbackSpec } from "../canvas/fallback";
 
 /* ── the expression language ──────────────────────────────────────────────────────────────── */
 
@@ -122,6 +124,82 @@ test("an equation token written over the arrow must name a real token", () => {
   if (spec.stage.kind !== "equation") return assert.fail("equation expected");
   assert.equal(spec.stage.tokens.find((t) => t.id === "light")?.on, "arrow");
   assert.equal(spec.stage.tokens.find((t) => t.id === "heat")?.on, undefined);
+});
+
+test("native molecule boards preserve geometry, bond styles, lone pairs and deterministic layout", () => {
+  const spec = validateCanvasSpec({ heading: "VSEPR shapes", notes: [], cues: [], stage: { kind: "molecule", molecules: [{ id: "ammonia", label: "NH₃", geometry: "trigonal pyramidal", bondAngle: "107°", s: 0, atoms: [{ id: "n", element: "N", x: 0, y: 0, z: 0, lonePairs: 1 }, { id: "h1", element: "H", x: -0.8, y: 0.7, z: 0.4 }, { id: "h2", element: "H", x: 0.8, y: 0.7, z: 0.4 }, { id: "h3", element: "H", x: 0, y: -0.8, z: -0.5 }], bonds: [{ from: "n", to: "h1", order: 1, style: "wedge" }, { from: "n", to: "h2", order: 1, style: "dash" }, { from: "n", to: "h3", order: 1 }] }] }, interaction: { kind: "quiz", prompt: "What shape?", options: [{ text: "Trigonal pyramidal", correct: true, feedback: "Correct." }, { text: "Planar", correct: false, feedback: "The lone pair changes it." }, { text: "Linear", correct: false, feedback: "Three bonds and a lone pair are not linear." }] } }, 2)!;
+  assert.equal(spec.stage.kind, "molecule");
+  if (spec.stage.kind !== "molecule") return;
+  assert.equal(spec.stage.molecules[0].atoms[0].lonePairs, 1);
+  assert.deepEqual(spec.stage.molecules[0].bonds.map((bond) => bond.style), ["wedge", "dash", "line"]);
+  const layout = layoutPanel(spec);
+  assert.ok(layout.marks.some((mark) => mark.type === "molecule"));
+  assert.ok(layout.targets.ammonia);
+});
+
+test("atom maps keep conserved matter and energy in separate renderer data", () => {
+  const spec = validateCanvasSpec({ heading: "Photosynthesis atoms", notes: [], cues: [], stage: { kind: "atom-map", reactants: [{ id: "co2", label: "6CO₂", atoms: [{ element: "C", count: 6 }, { element: "O", count: 12 }], s: 0 }, { id: "water", label: "6H₂O", atoms: [{ element: "H", count: 12 }, { element: "O", count: 6 }], s: 0 }], products: [{ id: "glucose", label: "C₆H₁₂O₆", atoms: [{ element: "C", count: 6 }, { element: "H", count: 12 }, { element: "O", count: 6 }], s: 1 }, { id: "oxygen", label: "6O₂", atoms: [{ element: "O", count: 12 }], s: 1 }], energy: { input: "light", output: "chemical energy", s: 1 } } }, 2)!;
+  assert.equal(spec.stage.kind, "atom-map");
+  if (spec.stage.kind !== "atom-map") return;
+  assert.deepEqual(spec.stage.energy, { input: "light", output: "chemical energy", s: 1 });
+  assert.ok(layoutPanel(spec).marks.some((mark) => mark.type === "atom-map"));
+});
+
+test("an electrolytic-cell vocabulary scene becomes one connected apparatus, not four cards", () => {
+  const spec = validateCanvasSpec({
+    heading: "Parts of an electrolytic cell",
+    notes: [],
+    cues: [],
+    stage: {
+      kind: "scene",
+      items: [
+        { id: "power-supply", kind: "box", label: "power supply", cell: "A1", span: "2x2", s: 0 },
+        { id: "electrolyte", kind: "box", label: "electrolyte", cell: "C1", span: "2x2", s: 0 },
+        { id: "anode", kind: "box", label: "anode", cell: "D1", span: "2x2", s: 1 },
+        { id: "cathode", kind: "box", label: "cathode", cell: "E1", span: "2x2", s: 1 },
+      ],
+      arrows: [],
+    },
+  }, 2)!;
+  assert.equal(spec.stage.kind, "scene");
+  if (spec.stage.kind !== "scene") return;
+  assert.ok(electrolyticCellParts(spec.stage));
+  const layout = layoutPanel(spec);
+  assert.equal(layout.marks.filter((mark) => mark.type === "electrolytic-cell").length, 1);
+  assert.equal(layout.marks.filter((mark) => mark.type === "box").length, 0);
+  for (const id of ["power-supply", "electrolyte", "anode", "cathode"]) assert.ok(layout.targets[id], `${id} remains cueable`);
+});
+
+test("student-view critic rejects narration-only relationships and unattached exam labels", () => {
+  const spec = validateCanvasSpec({ heading: "Cell", notes: [], cues: [], stage: { kind: "illustration", subject: "plant cell", parts: [{ id: "wall", name: "Cell wall", s: 0 }, { id: "chloroplast", name: "Chloroplast", s: 0 }], labels: ["wall"] } }, 1)!;
+  const review = critiqueStudentBoard(spec, { objects: ["wall", "chloroplast"], brief: "Identify and label the structures", script: "Identify the cell wall and chloroplast." });
+  assert.equal(review.passed, false);
+  assert.equal(review.checks.labelsAttached, false);
+  assert.match(review.issues.join(" "), /attached callout/);
+  assert.equal(review.score, 60, "the unattached label and exam usability fail (2 of 5 student-view checks)");
+  assert.ok(review.findings.some((finding) => finding.code === "unattached-label"));
+  assert.match(review.findings.find((finding) => finding.code === "unattached-label")!.fix, /every required part/);
+});
+
+test("labels that look like element ids are rejected; code boards are not blocked on object ids", () => {
+  const ids = validateCanvasSpec({ heading: "VSEPR", notes: [], cues: [], stage: { kind: "scene", items: [{ id: "central-atom", kind: "box", label: "central-atom", cell: "A2", s: 0 }, { id: "lone-pairs", kind: "box", label: "lone-pairs", cell: "B2", s: 0 }], arrows: [{ id: "a", from: "central-atom", to: "lone-pairs", s: 0 }] } }, 1)!;
+  const review = critiqueStudentBoard(ids, { objects: ["central-atom", "lone-pairs"], brief: "Shapes", script: "The lone pairs push the bonds." });
+  assert.equal(review.checks.labelsReadable, false);
+  assert.ok(review.findings.some((f) => f.code === "id-label"));
+  const words = validateCanvasSpec({ heading: "VSEPR", notes: [], cues: [], stage: { kind: "scene", items: [{ id: "central-atom", kind: "box", label: "Central atom", cell: "A2", s: 0 }, { id: "lone-pairs", kind: "box", label: "Lone pairs", cell: "B2", s: 0 }], arrows: [{ id: "a", from: "central-atom", to: "lone-pairs", s: 0 }] } }, 1)!;
+  assert.equal(critiqueStudentBoard(words, { objects: ["central-atom", "lone-pairs"], brief: "Shapes", script: "The lone pairs push the bonds." }).checks.labelsReadable, true);
+  const code = validateCanvasSpec({ heading: "Loop", notes: [], cues: [], stage: { kind: "code", language: "python", lines: ["for i in range(3):", "    print(i)"] } }, 1);
+  if (code) assert.equal(critiqueStudentBoard(code, { objects: ["counter", "loop-body"], brief: "Loops", script: "The loop prints." }).checks.namedObjectsIdentifiable, true, "a code board is never failed for lacking object ids");
+});
+
+test("the fallback board is readable: plain words on a chain, never id boxes", () => {
+  const spec = fallbackSpec({ id: "b1", title: "VSEPR shapes", script: "One. Two. Three.", stage: "scene", brief: "", objects: ["central-atom", "lone-pairs", "bond-angle"], inside: null, carry: [], interaction: null, overview: false });
+  assert.equal(spec.stage.kind, "flow");
+  if (spec.stage.kind === "flow") {
+    assert.deepEqual(spec.stage.nodes.map((n) => n.label), ["Central atom", "Lone pairs", "Bond angle"]);
+    assert.equal(spec.stage.arrows.length, 2);
+  }
+  assert.equal(critiqueStudentBoard(spec, { objects: [], brief: "", script: "" }).checks.labelsReadable, true);
 });
 
 /* ── layout ───────────────────────────────────────────────────────────────────────────────── */
@@ -435,4 +513,12 @@ test("a code board explains like a tutor: subgoal labels, a variables panel, a b
   for (const t of Object.values(layout.targets)) assert.ok(t.x + t.w <= PANEL_W + 1 && t.y + t.h <= PANEL_H + 1, "on the board");
   assert.match(describeCanvasSpec(spec), /lines 2-4 repeat and update/);
   assert.match(describeCanvasSpec(spec), /Line 4 was first shown wrong \("    pass"\) and then fixed/);
+});
+
+test("a failed electrolytic-cell board still draws the wired cell", async () => {
+  const { fallbackSpec } = await import("../canvas/fallback");
+  const { electrolyticCellParts } = await import("../canvas/layout");
+  const spec = fallbackSpec({ id: "b1", title: "The electrolysis cell", script: "A power supply drives current. Ions move. Anode attracts anions. Cathode attracts cations.", stage: "scene", brief: "", objects: ["power-supply", "electrolyte", "anode", "cathode"], inside: null, carry: [], interaction: null, overview: false });
+  assert.equal(spec.stage.kind, "scene");
+  if (spec.stage.kind === "scene") assert.ok(electrolyticCellParts(spec.stage));
 });

@@ -1,0 +1,504 @@
+{
+ "id": "us-ms-arts",
+ "region": "US",
+ "framework": "Mississippi state academic standards: Fine Arts",
+ "board": null,
+ "qualification": "K-12",
+ "subject": "Fine Arts",
+ "syllabusCode": null,
+ "gradeSystem": "grade",
+ "source": {
+  "urls": [
+   "https://api.commonstandardsproject.com/api/v1/jurisdictions/78D64C532B604AC7BC15E6578C381017",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/1F40FD91920A48EFB1541A53F65DF8DF"
+  ],
+  "publisher": "Mississippi state education agency (machine-readable via Common Standards Project / ASN)",
+  "licence": "CC BY 4.0 US, Common Curriculum, Inc.",
+  "firstExam": "2017"
+ },
+ "grades": [
+  {
+   "grade": "5-7",
+   "units": [
+    {
+     "id": "generate-and-conceptualize-artistic-ideas-and-wo",
+     "title": "Generate and conceptualize artistic ideas and work. (Imagine)",
+     "topics": [
+      {
+       "id": "generate-musical-ideas-for-various-purposes-and-",
+       "title": "Generate musical ideas for various purposes and contexts",
+       "subtopics": [
+        {
+         "id": "compose-and-improvise-melodic-and-rhythmic-ideas",
+         "title": "Compose and improvise melodic and rhythmic ideas or motives that reflect characteristic(s) of music or text(s) studied in rehearsal",
+         "outcomes": [
+          {
+           "code": "MU: Cr1.1.E.5",
+           "text": "ENDURING UNDERSTANDING - The creative ideas, concepts, and feelings that influence musicians’ work emerge from a variety of sources."
+          },
+          {
+           "code": "MU: Cr1.1.E.5",
+           "text": "ESSENTIAL QUESTION(S) - How do musicians generate creative ideas?"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "organize-and-develop-artistic-ideas-and-work-pla",
+     "title": "Organize and develop artistic ideas and work. (Plan/Make)",
+     "topics": [
+      {
+       "id": "select-and-develop-musical-ideas-for-defined-pur",
+       "title": "Select and develop musical ideas for defined purposes and contexts",
+       "subtopics": [
+        {
+         "id": "select-and-develop-musical-ideas-for-defined-pur",
+         "title": "Select and develop musical ideas for defined purposes and contexts",
+         "outcomes": [
+          {
+           "code": "MU: Cr2.1.E.5",
+           "text": "Select and develop draft melodic and rhythmic ideas or motives that demonstrate understanding of characteristic(s) of music or text(s) studied in rehearsal."
+          }
+         ]
+        },
+        {
+         "id": "preserve-draft-compositions-and-improvisations-t",
+         "title": "Preserve draft compositions and improvisations through standard notation and audio recording",
+         "outcomes": [
+          {
+           "code": "MU: Cr2.1.E.5",
+           "text": "ENDURING UNDERSTANDING - Musicians’ creative choices are influenced by their expertise, context, and expressive intent."
+          },
+          {
+           "code": "MU: Cr2.1.E.5",
+           "text": "ESSENTIAL QUESTION(S) - How do musicians make creative decisions?"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "refine-and-complete-artistic-work-evaluate-refin",
+     "title": "Refine and complete artistic work. (Evaluate/Refine)",
+     "topics": [
+      {
+       "id": "evaluate-and-refine-selected-musical-ideas-to-cr",
+       "title": "Evaluate and refine selected musical ideas to create musical work(s) that meet appropriate criteria",
+       "subtopics": [
+        {
+         "id": "evaluate-and-refine-draft-compositions-and-impro",
+         "title": "Evaluate and refine draft compositions and improvisations based on knowledge, skill, and teacher-provided criteria",
+         "outcomes": [
+          {
+           "code": "MU: Cr3.1.E.5",
+           "text": "ENDURING UNDERSTANDING - Musicians evaluate and refine their work through openness to new ideas, persistence, and the application of appropriate criteria."
+          },
+          {
+           "code": "MU: Cr3.1.E.5",
+           "text": "ESSENTIAL QUESTION(S) - How do musicians improve the quality of their creative work?"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "refine-and-complete-artistic-work-present",
+     "title": "Refine and complete artistic work. (Present)",
+     "topics": [
+      {
+       "id": "share-creative-musical-work-that-conveys-intent-",
+       "title": "Share creative musical work that conveys intent, demonstrates craftsmanship, and exhibits originality",
+       "subtopics": [
+        {
+         "id": "share-personally-developed-melodic-and-rhythmic-",
+         "title": "Share personally-developed melodic and rhythmic ideas or motives – individually or as an ensemble – that demonstrate understanding of characteristics of music or texts studied in rehearsal",
+         "outcomes": [
+          {
+           "code": "MU: Cr3.2.E.5",
+           "text": "ENDURING UNDERSTANDING - Musicians’ presentation of creative work is the culmination of a process of creation and communication."
+          },
+          {
+           "code": "MU: Cr3.2.E.5",
+           "text": "ESSENTIAL QUESTION(S) - When is creative work ready to share?"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "select-analyze-and-interpret-artistic-work-for-p",
+     "title": "Select, analyze and interpret artistic work for presentation. (Select)",
+     "topics": [
+      {
+       "id": "select-varied-musical-works-to-present-based-on-",
+       "title": "Select varied musical works to present based on interest, knowledge, technical skill, and context",
+       "subtopics": [
+        {
+         "id": "select-varied-repertoire-to-study-based-on-inter",
+         "title": "Select varied repertoire to study based on interest, music reading skills (where appropriate), an understanding of the structure of the music, context, and the technical skill of the individual or ensemble",
+         "outcomes": [
+          {
+           "code": "MU: Pr4.1.E.5",
+           "text": "ENDURING UNDERSTANDING - Performers’ interest in and knowledge of musical works, understanding of their own abilities, and the context for a performance influence the selection of repertoire."
+          },
+          {
+           "code": "MU: Pr4.1.E.5",
+           "text": "ESSENTIAL QUESTION(S) - How do performers select repertoire?"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "select-analyze-and-interpret-artistic-work-for-p-2",
+     "title": "Select, analyze and interpret artistic work for presentation. (Analyze)",
+     "topics": [
+      {
+       "id": "analyze-the-structure-and-context-of-varied-musi",
+       "title": "Analyze the structure and context of varied musical works and their implications for performance",
+       "subtopics": [
+        {
+         "id": "demonstrate-using-music-reading-skills-where-app",
+         "title": "Demonstrate, using music reading skills where appropriate, how knowledge of formal aspects in musical works inform prepared or improvised performances",
+         "outcomes": [
+          {
+           "code": "MU: Pr4.2.E.5",
+           "text": "ENDURING UNDERSTANDING - Analyzing creators’ context and how they manipulate elements of music provides insight into their intent and informs performance."
+          },
+          {
+           "code": "MU: Pr4.2.E.5",
+           "text": "ESSENTIAL QUESTION(S) - How does understanding the structure and context of musical works inform performance?"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "select-analyze-and-interpret-artistic-work-for-p-3",
+     "title": "Select, analyze and interpret artistic work for presentation. (Interpret)",
+     "topics": [
+      {
+       "id": "develop-personal-interpretations-that-consider-c",
+       "title": "Develop personal interpretations that consider creators’ intent",
+       "subtopics": [
+        {
+         "id": "identify-expressive-qualities-in-a-varied-repert",
+         "title": "Identify expressive qualities in a varied repertoire of music that can be demonstrated through prepared and improvised performances",
+         "outcomes": [
+          {
+           "code": "MU: Pr4.3.E.5",
+           "text": "ENDURING UNDERSTANDING - Performers make interpretive decisions based on their understanding of context and intent."
+          },
+          {
+           "code": "MU: Pr4.3.E.5",
+           "text": "ESSENTIAL QUESTION(S) - How do performers interpret musical works?"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "develop-and-refine-artistic-techniques-and-work-",
+     "title": "Develop and refine artistic techniques and work for presentation. (Rehearse/Evaluate/Refine)",
+     "topics": [
+      {
+       "id": "evaluate-and-refine-personal-and-ensemble-perfor",
+       "title": "Evaluate and refine personal and ensemble performances, individually or in collaboration with others",
+       "subtopics": [
+        {
+         "id": "use-self-reflection-and-peer-feedback-to-refine-",
+         "title": "Use self-reflection and peer feedback to refine individual and ensemble performances of a varied repertoire of music",
+         "outcomes": [
+          {
+           "code": "MU: Pr5.1.E.5",
+           "text": "ENDURING UNDERSTANDING - To express their musical ideas, musicians analyze, evaluate, and refine their performance over time through openness to new ideas, persistence, and the application of appropriate criteria."
+          },
+          {
+           "code": "MU: Pr5.1.E.5",
+           "text": "ESSENTIAL QUESTION(S) - How do musicians improve the quality of their performance?"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "convey-meaning-through-the-presentation-of-artis",
+     "title": "Convey meaning through the presentation of artistic work. (Present)",
+     "topics": [
+      {
+       "id": "perform-expressively-with-appropriate-interpreta",
+       "title": "Perform expressively, with appropriate interpretation and technical accuracy, and in a manner appropriate to the audience and context",
+       "subtopics": [
+        {
+         "id": "perform-expressively-with-appropriate-interpreta",
+         "title": "Perform expressively, with appropriate interpretation and technical accuracy, and in a manner appropriate to the audience and context",
+         "outcomes": [
+          {
+           "code": "MU: Pr6.1.E.5",
+           "text": "Demonstrate attention to technical accuracy and expressive qualities in prepared and improvised performances of a varied repertoire of music."
+          }
+         ]
+        },
+        {
+         "id": "demonstrate-an-awareness-of-the-context-of-the-m",
+         "title": "Demonstrate an awareness of the context of the music through prepared and improvised performances",
+         "outcomes": [
+          {
+           "code": "MU: Pr6.1.E.5",
+           "text": "ENDURING UNDERSTANDING - Musicians judge performance based on criteria that vary across time, place, and cultures. The context and how a work is presented influence the audience response."
+          },
+          {
+           "code": "MU: Pr6.1.E.5",
+           "text": "ESSENTIAL QUESTION(S) - When is a performance judged ready to present? How do context and the manner in which musical work is presented influence audience response?"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "perceive-and-analyze-artistic-work-select",
+     "title": "Perceive and analyze artistic work (Select)",
+     "topics": [
+      {
+       "id": "choose-music-appropriate-for-a-specific-purpose-",
+       "title": "Choose music appropriate for a specific purpose or context",
+       "subtopics": [
+        {
+         "id": "identify-reasons-for-selecting-music-based-on-ch",
+         "title": "Identify reasons for selecting music based on characteristics found in the music, connection to interest, and purpose or context",
+         "outcomes": [
+          {
+           "code": "MU: Re7.1.E.5",
+           "text": "ENDURING UNDERSTANDING - Individuals' selection of musical works is influenced by their interests, experiences, understandings, and purposes."
+          },
+          {
+           "code": "MU: Re7.1.E.5",
+           "text": "ESSENTIAL QUESTION(S) - How do individuals choose music to experience?"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "perceive-and-analyze-artistic-work-analyze",
+     "title": "Perceive and analyze artistic work. (Analyze)",
+     "topics": [
+      {
+       "id": "analyze-how-the-structure-and-context-of-varied-",
+       "title": "Analyze how the structure and context of varied musical works inform the response",
+       "subtopics": [
+        {
+         "id": "identify-how-knowledge-of-context-and-the-use-of",
+         "title": "Identify how knowledge of context and the use of repetition, similarities, and contrasts inform the response to music",
+         "outcomes": [
+          {
+           "code": "MU: Re7.2.E.5",
+           "text": "ENDURING UNDERSTANDING - Response to music is informed by analyzing context (social, cultural, and historical) and how creators and performers manipulate the elements of music."
+          },
+          {
+           "code": "MU: Re7.2.E.5",
+           "text": "ESSENTIAL QUESTION(S) - How does understanding the structure and context of music inform a response?"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "interpret-intent-and-meaning-in-artistic-work-in",
+     "title": "Interpret intent and meaning in artistic work. (Interpet)",
+     "topics": [
+      {
+       "id": "support-interpretations-of-musical-works-that-re",
+       "title": "Support interpretations of musical works that reflect creators’/performers’ expressive intent",
+       "subtopics": [
+        {
+         "id": "identify-interpretations-of-the-expressive-inten",
+         "title": "Identify interpretations of the expressive intent and meaning of musical works, referring to the elements of music, contexts, and (when appropriate) the setting of the text",
+         "outcomes": [
+          {
+           "code": "MU: Re8.1.E.5",
+           "text": "ENDURING UNDERSTANDING - Through their use of elements and structures of music, creators and performers provide clues to their expressive intent."
+          },
+          {
+           "code": "MU: Re8.1.E.5",
+           "text": "ESSENTIAL QUESTION(S) - How do we discern musical creators’ and performers’ expressive intent?"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "apply-criteria-to-evaluate-artistic-work-evaluat",
+     "title": "Apply criteria to evaluate artistic work. (Evaluate)",
+     "topics": [
+      {
+       "id": "support-evaluations-of-musical-works-and-perform",
+       "title": "Support evaluations of musical works and performances based on analysis, interpretation, and established criteria",
+       "subtopics": [
+        {
+         "id": "identify-and-describe-the-effect-of-interest-exp",
+         "title": "Identify and describe the effect of interest, experience, analysis, and context on the evaluation of music",
+         "outcomes": [
+          {
+           "code": "MU: Re9.1.E.5",
+           "text": "ENDURING UNDERSTANDING - The personal evaluation of musical works and performances is informed by analysis, interpretation, and established criteria"
+          },
+          {
+           "code": "MU: Re9.1.E.5",
+           "text": "ESSENTIAL QUESTION(S) - How do we judge the quality of musical work(s) and performance(s)?"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "synthesize-and-relate-knowledge-and-personal-exp",
+     "title": "Synthesize and relate knowledge and personal experiences to make art. (Connect)",
+     "topics": [
+      {
+       "id": "synthesize-and-relate-knowledge-and-personal-exp",
+       "title": "Synthesize and relate knowledge and personal experiences to make music",
+       "subtopics": [
+        {
+         "id": "synthesize-and-relate-knowledge-and-personal-exp",
+         "title": "Synthesize and relate knowledge and personal experiences to make music",
+         "outcomes": [
+          {
+           "code": "MU: Cn10.0.E.5",
+           "text": "Demonstrate how interests, knowledge, and skills relate to personal choices and intent when creating, performing, and responding to music."
+          },
+          {
+           "code": "MU: Cn10.0.E.5",
+           "text": "Embedded within:"
+          },
+          {
+           "code": "MU: Cn10.0.E.5",
+           "text": "MU:Cr3.2.E.5a Share personally-developed melodic and rhythmic ideas or motives – individually or as an ensemble – that demonstrate understanding of characteristics of music or texts studied in rehearsal."
+          },
+          {
+           "code": "MU: Cn10.0.E.5",
+           "text": "MU:Pr4.1.E.5a Select varied repertoire to study based on interest, music reading skills (where appropriate), an understanding of the structure of the music, context, and the technical skills of the individual or ensemble."
+          },
+          {
+           "code": "MU: Cn10.0.E.5",
+           "text": "MU:Pr4.3.E.5a Identify expressive qualities in a varied repertoire of music that can be demonstrated through prepared and improvised performances."
+          }
+         ]
+        },
+        {
+         "id": "mu-re7-1e-5a-identify-reasons-for-selecting-musi",
+         "title": "MU:Re7.1E.5a Identify reasons for selecting music based on characteristics found in the music, connection to interest, and purpose or context",
+         "outcomes": [
+          {
+           "code": "MU: Cn10.0.E.5",
+           "text": "ENDURING UNDERSTANDING - Musicians connect their personal interests, experiences, ideas, and knowledge to creating, performing and responding"
+          },
+          {
+           "code": "MU: Cn10.0.E.5",
+           "text": "ESSENTIAL QUESTION(S) - How do musicians make meaningful connections to creating, performing and responding?"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "relate-artistic-ideas-and-works-with-societal-cu",
+     "title": "Relate artistic ideas and works with societal, cultural and historical context to deepen understanding. (Connect)",
+     "topics": [
+      {
+       "id": "relate-musical-ideas-and-works-with-varied-conte",
+       "title": "Relate musical ideas and works with varied context to deepen understanding",
+       "subtopics": [
+        {
+         "id": "relate-musical-ideas-and-works-with-varied-conte",
+         "title": "Relate musical ideas and works with varied context to deepen understanding",
+         "outcomes": [
+          {
+           "code": "MU: Cn11.0.E.5",
+           "text": "Demonstrate understanding of relationships between music and the other arts, other disciplines, varied contexts, and daily life."
+          },
+          {
+           "code": "MU: Cn11.0.E.5",
+           "text": "Embedded within:"
+          },
+          {
+           "code": "MU: Cn11.0.E.5",
+           "text": "MU:Cr1.1.E.5a Compose and improvise melodic and rhythmic ideas or motives that reflect characteristic(s) of music or text(s) studied in rehearsal."
+          },
+          {
+           "code": "MU: Cn11.0.E.5",
+           "text": "MU:Cr3.2.E.5a Share personally-developed melodic and rhythmic ideas or motives – individually or as an ensemble – that demonstrate understanding of characteristics of music or texts studied in rehearsal"
+          },
+          {
+           "code": "MU: Cn11.0.E.5",
+           "text": "MU:Pr6.1.E.5b Demonstrate an awareness of the context of the music through prepared and improvised performances"
+          }
+         ]
+        },
+        {
+         "id": "mu-re9-1-e-5a-identify-and-describe-the-effect-o",
+         "title": "MU:Re9.1.E.5a Identify and describe the effect of interest, experience, analysis, and context on the evaluation of music",
+         "outcomes": [
+          {
+           "code": "MU: Cn11.0.E.5",
+           "text": "ENDURING UNDERSTANDING - Understanding connections to varied contexts and daily life enhances musicians’ creating, performing, and responding."
+          },
+          {
+           "code": "MU: Cn11.0.E.5",
+           "text": "ESSENTIAL QUESTION(S) - How do the other arts, other disciplines, contexts and daily life inform creating, performing, and responding to music?"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "build": {
+  "builtAt": "2026-10-14T16:20:45.001Z",
+  "model": "none",
+  "usd": 0,
+  "expectedCodes": 15,
+  "coverage": 1,
+  "missingCodes": [],
+  "counts": {
+   "grades": 1,
+   "units": 15,
+   "topics": 15,
+   "subtopics": 19,
+   "outcomes": 42
+  },
+  "warnings": []
+ }
+}

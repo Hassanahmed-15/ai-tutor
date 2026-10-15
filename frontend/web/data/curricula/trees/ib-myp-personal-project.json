@@ -1,0 +1,127 @@
+{
+ "id": "ib-myp-personal-project",
+ "region": "INTL",
+ "framework": "International Baccalaureate Middle Years Programme (MYP)",
+ "board": "IB",
+ "qualification": "IB Middle Years Programme",
+ "subject": "Personal project (MYP)",
+ "syllabusCode": null,
+ "gradeSystem": "year",
+ "source": {
+  "urls": [
+   "https://www.ibo.org/globalassets/new-structure/brochures-and-infographics/pdfs/myp-brief_personal-project_2015.pdf",
+   "https://web.archive.org/web/20230111151609id_/https://www.ibo.org/globalassets/new-structure/brochures-and-infographics/pdfs/myp-brief_personal-project_2015.pdf"
+  ],
+  "publisher": "International Baccalaureate Organization",
+  "licence": "(c) International Baccalaureate Organization; all rights reserved, no open licence. ibo.org terms 1.8: IB copyrighted materials are licensed only under the IB's terms or a signed agreement; 'Any use not expressly permitted is prohibited unless special permission is obtained in writing from the IB'; 1.9: nothing on the IB websites confers any licence. Briefs are free public marketing summaries: take topic structure only, write everything in our own words, never reproduce brief text, and do not use IB logos/trade marks. Full subject guides are sold to schools and were NOT used. Terms: https://www.ibo.org/terms-and-conditions/ and https://www.ibo.org/copyright",
+  "firstExam": null
+ },
+ "grades": [
+  {
+   "grade": "all",
+   "units": [
+    {
+     "id": "ii-project-components",
+     "title": "II. Project components",
+     "topics": [
+      {
+       "id": "planning-the-project",
+       "title": "Planning the project",
+       "subtopics": [
+        {
+         "id": "goals-and-plan",
+         "title": "Goals and plan",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Choose a personal interest and state a learning goal that comes from it."
+          },
+          {
+           "code": null,
+           "text": "Define a product or outcome, such as an artwork, device, event or service."
+          },
+          {
+           "code": null,
+           "text": "Create your own success criteria for the product."
+          },
+          {
+           "code": null,
+           "text": "Make a clear, detailed plan to reach the product and meet the criteria."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "doing-the-project",
+       "title": "Doing the project",
+       "subtopics": [
+        {
+         "id": "process-journal-and-skills",
+         "title": "Process journal and skills",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Keep a process journal recording plans, ideas, research, reflections and feedback."
+          },
+          {
+           "code": null,
+           "text": "Apply approaches to learning skills to reach the learning goal and product."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "reflecting-and-reporting",
+       "title": "Reflecting and reporting",
+       "subtopics": [
+        {
+         "id": "report",
+         "title": "Report",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain the impact of the project on yourself and your learning."
+          },
+          {
+           "code": null,
+           "text": "Evaluate the product against the success criteria."
+          },
+          {
+           "code": null,
+           "text": "Write a concise report with a formal bibliography and academic honesty statement."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "build": {
+  "builtAt": "2026-10-14T10:54:29.017Z",
+  "model": "claude-agent",
+  "usd": 0,
+  "expectedCodes": null,
+  "coverage": null,
+  "missingCodes": [],
+  "counts": {
+   "grades": 1,
+   "units": 1,
+   "topics": 3,
+   "subtopics": 3,
+   "outcomes": 9
+  },
+  "warnings": [
+   "grade MYP 1 has no content",
+   "grade MYP 2 has no content",
+   "grade MYP 3 has no content",
+   "grade MYP 4 has no content",
+   "grade MYP 5 has no content",
+   "unexpected grade label \"all\""
+  ]
+ }
+}

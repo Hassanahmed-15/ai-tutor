@@ -1,0 +1,897 @@
+{
+ "id": "uk-ocr-gcse-economics-j205",
+ "region": "UK",
+ "framework": "OCR GCSE (9-1)",
+ "board": "OCR",
+ "qualification": "GCSE",
+ "subject": "Economics",
+ "syllabusCode": "J205",
+ "gradeSystem": "year",
+ "source": {
+  "urls": [
+   "https://www.ocr.org.uk/Images/306377-specification-accredited-gcse-economics-j205.pdf"
+  ],
+  "publisher": "OCR (Oxford Cambridge and RSA)",
+  "licence": "Exam board specification, (c) OCR; structure + our own wording only",
+  "firstExam": "2019"
+ },
+ "grades": [
+  {
+   "grade": "all",
+   "units": [
+    {
+     "id": "1-introduction-to-economics",
+     "title": "1 Introduction to Economics",
+     "topics": [
+      {
+       "id": "1-1-main-economic-groups-and-factors-of-producti",
+       "title": "1.1 Main economic groups and factors of production",
+       "subtopics": [
+        {
+         "id": "economic-groups",
+         "title": "Economic groups",
+         "outcomes": [
+          {
+           "code": "1.1",
+           "text": "Describe what consumers, producers and the government each do and how they depend on one another."
+          }
+         ]
+        },
+        {
+         "id": "factors-of-production",
+         "title": "Factors of production",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain the four factors of production (land, labour, capital, enterprise) and how they can be combined."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "1-2-the-basic-economic-problem",
+       "title": "1.2 The basic economic problem",
+       "subtopics": [
+        {
+         "id": "scarcity-and-choice",
+         "title": "Scarcity and choice",
+         "outcomes": [
+          {
+           "code": "1.2",
+           "text": "Explain scarce resources versus unlimited wants."
+          },
+          {
+           "code": null,
+           "text": "Explain the economic problem: how to allocate resources, and what, for whom and how to produce."
+          }
+         ]
+        },
+        {
+         "id": "opportunity-cost",
+         "title": "Opportunity cost",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain what opportunity cost means."
+          },
+          {
+           "code": null,
+           "text": "Weigh up costs and benefits of economic choices, including economic, social and environmental sustainability."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "2-the-role-of-markets-and-money",
+     "title": "2 The role of markets and money",
+     "topics": [
+      {
+       "id": "2-1-the-role-of-markets",
+       "title": "2.1 The role of markets",
+       "subtopics": [
+        {
+         "id": "markets-and-sectors",
+         "title": "Markets and sectors",
+         "outcomes": [
+          {
+           "code": "2.1",
+           "text": "Explain what a market is."
+          },
+          {
+           "code": null,
+           "text": "Describe the primary, secondary and tertiary sectors and the difference between goods and services."
+          }
+         ]
+        },
+        {
+         "id": "factor-and-product-markets",
+         "title": "Factor and product markets",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain factor and product markets and how they depend on each other."
+          }
+         ]
+        },
+        {
+         "id": "specialisation-and-exchange",
+         "title": "Specialisation and exchange",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Evaluate costs and benefits of specialisation and exchange for producers, workers, regions and countries."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "2-2-demand",
+       "title": "2.2 Demand",
+       "subtopics": [
+        {
+         "id": "what-demand-is",
+         "title": "What demand is",
+         "outcomes": [
+          {
+           "code": "2.2",
+           "text": "Explain what demand means."
+          }
+         ]
+        },
+        {
+         "id": "demand-curves",
+         "title": "Demand curves",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Draw and explain a demand curve from data, for individuals and the whole market."
+          },
+          {
+           "code": null,
+           "text": "Draw shifts of and movements along the demand curve."
+          }
+         ]
+        },
+        {
+         "id": "changes-in-demand",
+         "title": "Changes in demand",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Analyse causes and consequences for consumers and producers of shifts and movements along the demand curve."
+          }
+         ]
+        },
+        {
+         "id": "price-elasticity-of-demand",
+         "title": "Price elasticity of demand",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain price elasticity of demand."
+          },
+          {
+           "code": null,
+           "text": "Draw demand curves of different elasticity."
+          },
+          {
+           "code": null,
+           "text": "Evaluate why price elasticity of demand matters to consumers and producers."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "2-3-supply",
+       "title": "2.3 Supply",
+       "subtopics": [
+        {
+         "id": "what-supply-is",
+         "title": "What supply is",
+         "outcomes": [
+          {
+           "code": "2.3",
+           "text": "Explain what supply means."
+          }
+         ]
+        },
+        {
+         "id": "supply-curves",
+         "title": "Supply curves",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Draw and explain a supply curve from data, for individual firms and the market."
+          },
+          {
+           "code": null,
+           "text": "Draw shifts of and movements along the supply curve."
+          }
+         ]
+        },
+        {
+         "id": "changes-in-supply",
+         "title": "Changes in supply",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Analyse causes and consequences for consumers and producers of shifts and movements along the supply curve."
+          }
+         ]
+        },
+        {
+         "id": "price-elasticity-of-supply",
+         "title": "Price elasticity of supply",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain price elasticity of supply."
+          },
+          {
+           "code": null,
+           "text": "Draw supply curves of different elasticity."
+          },
+          {
+           "code": null,
+           "text": "Evaluate why price elasticity of supply matters to consumers and producers."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "2-4-price",
+       "title": "2.4 Price",
+       "subtopics": [
+        {
+         "id": "price-and-resources",
+         "title": "Price and resources",
+         "outcomes": [
+          {
+           "code": "2.4",
+           "text": "Explain price as a reflection of worth and its role in sharing resources efficiently."
+          }
+         ]
+        },
+        {
+         "id": "equilibrium",
+         "title": "Equilibrium",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain equilibrium price and quantity."
+          },
+          {
+           "code": null,
+           "text": "Draw and analyse how demand and supply interact."
+          }
+         ]
+        },
+        {
+         "id": "market-forces",
+         "title": "Market forces",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain how markets set price and allocate resources."
+          },
+          {
+           "code": null,
+           "text": "Analyse how changes in demand and supply move equilibrium price and quantity."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "2-5-competition",
+       "title": "2.5 Competition",
+       "subtopics": [
+        {
+         "id": "competition",
+         "title": "Competition",
+         "outcomes": [
+          {
+           "code": "2.5",
+           "text": "Explain competition between producers in a market economy and why producers compete."
+          },
+          {
+           "code": null,
+           "text": "Analyse how competition affects price."
+          },
+          {
+           "code": null,
+           "text": "Evaluate the economic impact of competition on producers and consumers."
+          }
+         ]
+        },
+        {
+         "id": "monopoly-and-oligopoly",
+         "title": "Monopoly and oligopoly",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain monopoly and oligopoly and how they differ from competitive markets."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "2-6-production",
+       "title": "2.6 Production",
+       "subtopics": [
+        {
+         "id": "producers-and-productivity",
+         "title": "Producers and productivity",
+         "outcomes": [
+          {
+           "code": "2.6",
+           "text": "Explain the role of producers: individuals, firms and the government."
+          },
+          {
+           "code": null,
+           "text": "Evaluate the importance of production and productivity for the economy."
+          }
+         ]
+        },
+        {
+         "id": "costs-revenue-and-profit",
+         "title": "Costs, revenue and profit",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Calculate and explain total cost, average cost, total revenue, average revenue, profit and loss."
+          },
+          {
+           "code": null,
+           "text": "Evaluate the importance of cost, revenue, profit and loss to producers, including effects on profit and supply."
+          }
+         ]
+        },
+        {
+         "id": "economies-of-scale",
+         "title": "Economies of scale",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain what economies of scale are."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "2-7-the-labour-market",
+       "title": "2.7 The labour market",
+       "subtopics": [
+        {
+         "id": "labour-market",
+         "title": "Labour market",
+         "outcomes": [
+          {
+           "code": "2.7",
+           "text": "Explain how the labour market works and how workers and employers interact."
+          }
+         ]
+        },
+        {
+         "id": "wage-determination",
+         "title": "Wage determination",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Analyse how wages are set by labour supply and demand and what affects each."
+          }
+         ]
+        },
+        {
+         "id": "gross-and-net-pay",
+         "title": "Gross and net pay",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain and calculate gross and net pay, including income tax, national insurance and pension deductions."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "2-8-the-role-of-money-and-financial-markets",
+       "title": "2.8 The role of money and financial markets",
+       "subtopics": [
+        {
+         "id": "money",
+         "title": "Money",
+         "outcomes": [
+          {
+           "code": "2.8",
+           "text": "Explain money as a medium of exchange."
+          }
+         ]
+        },
+        {
+         "id": "financial-sector",
+         "title": "Financial sector",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain the financial sector's role, including banks, building societies and insurers."
+          },
+          {
+           "code": null,
+           "text": "Evaluate the importance of the financial sector to consumers, producers and government."
+          }
+         ]
+        },
+        {
+         "id": "interest-rates",
+         "title": "Interest rates",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Analyse how different interest rates affect saving, borrowing and investment."
+          },
+          {
+           "code": null,
+           "text": "Calculate how interest rate changes affect savings and borrowings."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "3-economic-objectives-and-the-role-of-government",
+     "title": "3 Economic objectives and the role of government",
+     "topics": [
+      {
+       "id": "3-1-economic-growth",
+       "title": "3.1 Economic growth",
+       "subtopics": [
+        {
+         "id": "measuring-growth",
+         "title": "Measuring growth",
+         "outcomes": [
+          {
+           "code": "3.1",
+           "text": "Explain what economic growth is."
+          },
+          {
+           "code": null,
+           "text": "Calculate and explain how growth is measured with GDP and GDP per capita."
+          },
+          {
+           "code": null,
+           "text": "Analyse recent and historical GDP data."
+          }
+         ]
+        },
+        {
+         "id": "causes-and-effects-of-growth",
+         "title": "Causes and effects of growth",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Analyse determinants of growth: investment, technology, workforce size, education and training, natural resources and government policy."
+          },
+          {
+           "code": null,
+           "text": "Evaluate costs and benefits of growth, including economic, social and environmental sustainability."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "3-2-low-unemployment",
+       "title": "3.2 Low unemployment",
+       "subtopics": [
+        {
+         "id": "measuring-unemployment",
+         "title": "Measuring unemployment",
+         "outcomes": [
+          {
+           "code": "3.2",
+           "text": "Explain employment and unemployment."
+          },
+          {
+           "code": null,
+           "text": "Explain how the Claimant Count measures unemployment."
+          },
+          {
+           "code": null,
+           "text": "Calculate the unemployment rate."
+          },
+          {
+           "code": null,
+           "text": "Analyse recent and historical unemployment figures."
+          }
+         ]
+        },
+        {
+         "id": "types-and-effects-of-unemployment",
+         "title": "Types and effects of unemployment",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain cyclical, frictional, seasonal and structural unemployment."
+          },
+          {
+           "code": null,
+           "text": "Evaluate causes and consequences of unemployment for individuals, regions and the government."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "3-3-fair-distribution-of-income",
+       "title": "3.3 Fair distribution of income",
+       "subtopics": [
+        {
+         "id": "income-and-wealth",
+         "title": "Income and wealth",
+         "outcomes": [
+          {
+           "code": "3.3",
+           "text": "Explain distribution of income, types of income and how income differs from wealth."
+          },
+          {
+           "code": null,
+           "text": "Calculate income and wealth."
+          }
+         ]
+        },
+        {
+         "id": "inequality",
+         "title": "Inequality",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Evaluate causes of differences in income and wealth distribution and consequences for an economy."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "3-4-price-stability",
+       "title": "3.4 Price stability",
+       "subtopics": [
+        {
+         "id": "inflation",
+         "title": "Inflation",
+         "outcomes": [
+          {
+           "code": "3.4",
+           "text": "Explain price stability and inflation, including real versus nominal values."
+          },
+          {
+           "code": null,
+           "text": "Explain how the Consumer Price Index measures inflation."
+          },
+          {
+           "code": null,
+           "text": "Calculate the effect of inflation on prices."
+          },
+          {
+           "code": null,
+           "text": "Analyse recent and historical inflation figures."
+          }
+         ]
+        },
+        {
+         "id": "causes-and-effects-of-inflation",
+         "title": "Causes and effects of inflation",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Evaluate causes of inflation and consequences for consumers, producers, savers and government."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "3-5-fiscal-policy",
+       "title": "3.5 Fiscal policy",
+       "subtopics": [
+        {
+         "id": "government-spending-and-taxes",
+         "title": "Government spending and taxes",
+         "outcomes": [
+          {
+           "code": "3.5",
+           "text": "Explain purposes of government spending and sources of revenue, including direct and indirect taxes."
+          },
+          {
+           "code": null,
+           "text": "Explain a balanced budget, budget surplus and budget deficit."
+          }
+         ]
+        },
+        {
+         "id": "using-fiscal-policy",
+         "title": "Using fiscal policy",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain fiscal policy and how it helps achieve economic objectives."
+          },
+          {
+           "code": null,
+           "text": "Calculate and analyse how taxes and spending affect markets and the whole economy."
+          },
+          {
+           "code": null,
+           "text": "Evaluate costs, including opportunity cost, and benefits of fiscal policy."
+          }
+         ]
+        },
+        {
+         "id": "redistribution",
+         "title": "Redistribution",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Evaluate economic consequences of redistributing income and wealth, including progressive taxes."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "3-6-monetary-policy",
+       "title": "3.6 Monetary policy",
+       "subtopics": [
+        {
+         "id": "monetary-policy",
+         "title": "Monetary policy",
+         "outcomes": [
+          {
+           "code": "3.6",
+           "text": "Explain monetary policy and how it helps achieve economic objectives."
+          },
+          {
+           "code": null,
+           "text": "Analyse how monetary policy affects growth, employment and price stability."
+          },
+          {
+           "code": null,
+           "text": "Evaluate effects of monetary policy on spending, borrowing, saving and investment."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "3-7-supply-side-policies",
+       "title": "3.7 Supply side policies",
+       "subtopics": [
+        {
+         "id": "supply-side-policies",
+         "title": "Supply side policies",
+         "outcomes": [
+          {
+           "code": "3.7",
+           "text": "Explain supply side policy and how it helps achieve economic objectives."
+          },
+          {
+           "code": null,
+           "text": "Evaluate costs, including opportunity cost, and benefits of supply side policies."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "3-8-limitations-of-markets",
+       "title": "3.8 Limitations of markets",
+       "subtopics": [
+        {
+         "id": "externalities",
+         "title": "Externalities",
+         "outcomes": [
+          {
+           "code": "3.8",
+           "text": "Explain positive and negative externalities."
+          }
+         ]
+        },
+        {
+         "id": "correcting-externalities",
+         "title": "Correcting externalities",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain policies to correct externalities: taxes, subsidies, state provision, legislation, regulation and information."
+          },
+          {
+           "code": null,
+           "text": "Evaluate the use and impact of these policies."
+          },
+          {
+           "code": null,
+           "text": "Evaluate costs, including opportunity cost, and benefits of these policies."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "4-international-trade-and-the-global-economy",
+     "title": "4 International trade and the global economy",
+     "topics": [
+      {
+       "id": "4-1-importance-of-international-trade",
+       "title": "4.1 Importance of international trade",
+       "subtopics": [
+        {
+         "id": "why-countries-trade",
+         "title": "Why countries trade",
+         "outcomes": [
+          {
+           "code": "4.1",
+           "text": "Explain why countries import and export and the benefits to consumers and producers."
+          }
+         ]
+        },
+        {
+         "id": "free-trade",
+         "title": "Free trade",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain free trade agreements, including the European Union."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "4-2-balance-of-payments",
+       "title": "4.2 Balance of payments",
+       "subtopics": [
+        {
+         "id": "current-account",
+         "title": "Current account",
+         "outcomes": [
+          {
+           "code": "4.2",
+           "text": "Explain the balance of payments on current account."
+          },
+          {
+           "code": null,
+           "text": "Explain a balanced current account, surplus and deficit."
+          },
+          {
+           "code": null,
+           "text": "Calculate deficits and surpluses."
+          },
+          {
+           "code": null,
+           "text": "Analyse recent and historical export and import data."
+          }
+         ]
+        },
+        {
+         "id": "importance-and-causes",
+         "title": "Importance and causes",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Evaluate the importance of the current account to the UK economy."
+          },
+          {
+           "code": null,
+           "text": "Evaluate causes of current account surpluses and deficits."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "4-3-exchange-rates",
+       "title": "4.3 Exchange rates",
+       "subtopics": [
+        {
+         "id": "exchange-rate-determination",
+         "title": "Exchange rate determination",
+         "outcomes": [
+          {
+           "code": "4.3",
+           "text": "Draw and analyse how supply and demand determine exchange rates."
+          },
+          {
+           "code": null,
+           "text": "Calculate currency conversions."
+          }
+         ]
+        },
+        {
+         "id": "exchange-rate-effects",
+         "title": "Exchange rate effects",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Analyse recent and historical exchange rate data."
+          },
+          {
+           "code": null,
+           "text": "Evaluate effects of exchange rate changes on consumers and producers."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "4-4-globalisation",
+       "title": "4.4 Globalisation",
+       "subtopics": [
+        {
+         "id": "globalisation-and-development",
+         "title": "Globalisation and development",
+         "outcomes": [
+          {
+           "code": "4.4",
+           "text": "Explain globalisation and its driving factors."
+          },
+          {
+           "code": null,
+           "text": "Explain how development is measured: GDP per capita, life expectancy, health care, technology, education."
+          }
+         ]
+        },
+        {
+         "id": "costs-and-benefits-of-globalisation",
+         "title": "Costs and benefits of globalisation",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Evaluate costs and benefits of globalisation in developed countries, including sustainability."
+          },
+          {
+           "code": null,
+           "text": "Evaluate costs and benefits of globalisation in less developed countries, including sustainability."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "build": {
+  "builtAt": "2026-10-14T10:49:42.363Z",
+  "model": "claude-agent",
+  "usd": 0,
+  "expectedCodes": null,
+  "coverage": null,
+  "missingCodes": [],
+  "counts": {
+   "grades": 1,
+   "units": 4,
+   "topics": 22,
+   "subtopics": 52,
+   "outcomes": 96
+  },
+  "warnings": [
+   "grade Year 10 has no content",
+   "grade Year 11 has no content",
+   "unexpected grade label \"all\""
+  ]
+ }
+}

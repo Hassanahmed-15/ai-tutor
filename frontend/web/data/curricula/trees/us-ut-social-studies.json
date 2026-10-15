@@ -1,0 +1,2593 @@
+{
+ "id": "us-ut-social-studies",
+ "region": "US",
+ "framework": "Utah state academic standards: Social Studies",
+ "board": null,
+ "qualification": "K-12",
+ "subject": "Social Studies",
+ "syllabusCode": null,
+ "gradeSystem": "grade",
+ "source": {
+  "urls": [
+   "https://api.commonstandardsproject.com/api/v1/jurisdictions/178982A93FED4D9186E0AC6A740682D9",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/178982A93FED4D9186E0AC6A740682D9_D21349561_grade-01",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/178982A93FED4D9186E0AC6A740682D9_D21349561_grade-02",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/178982A93FED4D9186E0AC6A740682D9_D21349561_grade-03",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/178982A93FED4D9186E0AC6A740682D9_D21349561_grade-04",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/178982A93FED4D9186E0AC6A740682D9_D21349561_grade-05",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/178982A93FED4D9186E0AC6A740682D9_D21349561_grade-06",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/178982A93FED4D9186E0AC6A740682D9_D21349561_grade-k",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/178982A93FED4D9186E0AC6A740682D9_D2784794_grades-07-08-09-10-11-12",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/178982A93FED4D9186E0AC6A740682D9_D2784789_grades-07-08-09-10-11-12",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/178982A93FED4D9186E0AC6A740682D9_D2784790_grades-07-08-09-10-11-12",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/178982A93FED4D9186E0AC6A740682D9_D2784791_grades-07-08-09-10-11-12",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/178982A93FED4D9186E0AC6A740682D9_D2784792_grades-07-08-09-10-11-12",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/178982A93FED4D9186E0AC6A740682D9_D2784793_grades-07-08-09-10-11-12"
+  ],
+  "publisher": "Utah state education agency (machine-readable via Common Standards Project / ASN)",
+  "licence": "D2L Corporation",
+  "firstExam": "2023"
+ },
+ "grades": [
+  {
+   "grade": "K",
+   "units": [
+    {
+     "id": "kindergarten",
+     "title": "Kindergarten",
+     "topics": [
+      {
+       "id": "history",
+       "title": "History",
+       "subtopics": [
+        {
+         "id": "understand-that-history-is-the-study-of-events-p",
+         "title": "Understand that history is the study of events, people, and places of other times",
+         "outcomes": [
+          {
+           "code": "K.1.1",
+           "text": "Compare how people lived in earlier times and how their lives would be different today (for example, growing food, making clothing, living by different rules and laws)."
+          },
+          {
+           "code": "K.1.2",
+           "text": "Use a variety of texts to analyze and retell the stories of a diverse range of key historical figures, including some from United States history, and make inferences about why they are remembered and honored as people who exemplify the traits of honesty, integrity, morality, civility, duty, honor, service, respect, and obedience to law."
+          },
+          {
+           "code": "K.1.3",
+           "text": "Explain how families provide physical, social, and emotional support and how each family has its own unique history."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "geography",
+       "title": "Geography",
+       "subtopics": [
+        {
+         "id": "demonstrate-knowledge-of-basic-physical-and-huma",
+         "title": "Demonstrate knowledge of basic physical and human geographical concepts",
+         "outcomes": [
+          {
+           "code": "K.2.1",
+           "text": "Construct a simple map, and explain how the map represents a place."
+          },
+          {
+           "code": "K.2.2",
+           "text": "Explain how a globe is a model of the Earth."
+          },
+          {
+           "code": "K.2.3",
+           "text": "Recognize and describe geographical features in their community that make it unique (for example, mountains, rivers, lakes, roads)."
+          },
+          {
+           "code": "K.2.4",
+           "text": "Describe and use relative location terms of objects (for example, left/right, above/below, up/down, near/far) while using maps and globes."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "civics",
+       "title": "Civics",
+       "subtopics": [
+        {
+         "id": "learn-and-exhibit-traits-of-good-citizenship",
+         "title": "Learn and exhibit traits of good citizenship",
+         "outcomes": [
+          {
+           "code": "K.3.1",
+           "text": "Describe some of the rules students or family members follow and why they are important as a member of a family, class, and school."
+          },
+          {
+           "code": "K.3.2",
+           "text": "List and describe the essential qualities needed to learn and work together as friends, neighbors, and family members (for example, honesty, integrity, morality, civility, duty, honor, service, respect, obedience to law)."
+          },
+          {
+           "code": "K.3.3",
+           "text": "Identify ways that people work together to build a strong community (for example, parents, religious leaders, teachers and other school personnel, police officers, firefighters, soldiers, business owners)."
+          },
+          {
+           "code": "K.3.4",
+           "text": "Explain why national, state, and other symbols and actions (including the United States flag, the Pledge of Allegiance, the bald eagle, the Utah flag) are considered important. What rules and traditions have been made to reflect that importance?"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "economics",
+       "title": "Economics",
+       "subtopics": [
+        {
+         "id": "identify-basic-economic-concepts-of-needs-wants-",
+         "title": "Identify basic economic concepts of needs, wants, spending, saving, sharing, and the value of work",
+         "outcomes": [
+          {
+           "code": "K.4.1",
+           "text": "Make distinctions between basic human needs and individual wants and how that can change over time."
+          },
+          {
+           "code": "K.4.2",
+           "text": "Relate how different types of work can help people and communities meet their needs and wants."
+          },
+          {
+           "code": "K.4.3",
+           "text": "Identify ways that people use money, including spending, saving, and sharing."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "1",
+   "units": [
+    {
+     "id": "first-grade",
+     "title": "First Grade",
+     "topics": [
+      {
+       "id": "history",
+       "title": "History",
+       "subtopics": [
+        {
+         "id": "examine-important-events-and-historical-figures-",
+         "title": "Examine important events and historical figures in the community, state, and nation",
+         "outcomes": [
+          {
+           "code": "1.1.1",
+           "text": "Explain why people may see historical events from different points of view."
+          },
+          {
+           "code": "1.1.2",
+           "text": "Summarize the contributions of a diverse range of historical figures and groups in their community, state, and nation, and evaluate their significance (for example, figures might be chosen based on their examples of honesty, integrity, morality, civility, duty, honor, service, respect, obedience to law)."
+          },
+          {
+           "code": "1.1.3",
+           "text": "Use primary sources (for example, artifacts and documents such as photographs, newspapers, speakers, stories, songs) to make inferences about why certain events in history are remembered."
+          },
+          {
+           "code": "1.1.4",
+           "text": "Create a primary source to show how their personal histories are shaped by family, school, and community (for example, timeline, interview, artifact collection, recipe book)."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "geography",
+       "title": "Geography",
+       "subtopics": [
+        {
+         "id": "use-geographic-tools-and-map-skills-to-explore-t",
+         "title": "Use geographic tools and map skills to explore the ways geography, climate, and natural resources affect the way people live and work",
+         "outcomes": [
+          {
+           "code": "1.2.1",
+           "text": "Construct a simple map of a neighborhood, classroom, school, or the setting of a story."
+          },
+          {
+           "code": "1.2.2",
+           "text": "Differentiate between natural and engineered geographical features in an area (for example, engineered geographic features include highways, bridges, airports, railroads, buildings, dams, reservoirs)."
+          },
+          {
+           "code": "1.2.3",
+           "text": "Use maps and globes to locate their local community, Utah, the United States, the seven continents, and the five oceans (that is, Africa, Antarctica, Asia, Australia, Europe, North America, South America; Antarctic [Southern] Ocean, Arctic Ocean, Atlantic Ocean, Indian Ocean, Pacific Ocean)."
+          },
+          {
+           "code": "1.2.4",
+           "text": "Explain the reasons that people, animals, and goods move."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "civics",
+       "title": "Civics",
+       "subtopics": [
+        {
+         "id": "analyze-their-role-as-citizens-in-a-school-and-a",
+         "title": "Analyze their role as citizens in a school and a community",
+         "outcomes": [
+          {
+           "code": "1.3.1",
+           "text": "Compare how classroom rules are similar to laws in the community."
+          },
+          {
+           "code": "1.3.2",
+           "text": "Identify the ways that people can function as members of a school and/or community by sharing principles, goals, and traditions."
+          },
+          {
+           "code": "1.3.3",
+           "text": "Explain how diverse community groups work together to accomplish common tasks, solve problems, and fulfill responsibilities."
+          },
+          {
+           "code": "1.3.4",
+           "text": "Identify the symbols, landmarks, and essential documents of the school, community, state, and nation (including the national motto and state emblem). Demonstrate how to show respect for those items, including care and disposal of the United States flag."
+          },
+          {
+           "code": "1.3.5",
+           "text": "Demonstrate characteristics of responsible citizenship (for example, respect others' property, treat people with dignity, find solutions to conflicts, take responsibility for one's actions, take care of school grounds)."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "economics",
+       "title": "Economics",
+       "subtopics": [
+        {
+         "id": "explain-how-to-prioritize-their-economic-wants-a",
+         "title": "Explain how to prioritize their economic wants and make basic financial decisions",
+         "outcomes": [
+          {
+           "code": "1.4.1",
+           "text": "Explain the costs and benefits of spending and saving in order to meet needs and wants."
+          },
+          {
+           "code": "1.4.2",
+           "text": "Identify ways people make a living in the community."
+          },
+          {
+           "code": "1.4.3",
+           "text": "Identify and explain the roles and contributions of consumers, producers, and distributors in the community."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "2",
+   "units": [
+    {
+     "id": "second-grade",
+     "title": "Second Grade",
+     "topics": [
+      {
+       "id": "history",
+       "title": "History",
+       "subtopics": [
+        {
+         "id": "use-historical-thinking-skills-to-explore-contin",
+         "title": "Use historical thinking skills to explore continuity and change in their community, Utah, and the United States",
+         "outcomes": [
+          {
+           "code": "2.1.1",
+           "text": "Use primary sources (for example, artifacts and documents such as interviews, photographs, newspapers, speakers, stories, songs) to document the chronology of important events in their personal, family, school, local, or broader community history (including three significant events)."
+          },
+          {
+           "code": "2.1.2",
+           "text": "Use primary sources to identify how their community has changed or remained the same over time, and make inferences about the reasons why."
+          },
+          {
+           "code": "2.1.3",
+           "text": "Summarize key ideas included in the Declaration of Independence (for example, purpose of government, equality, representative government, limited government, rule of law, natural rights, common good)."
+          },
+          {
+           "code": "2.1.4",
+           "text": "Retell the histories of key people and events connected to state and national symbols, landmarks, and essential documents (for example, Thomas Jefferson and the Declaration of Independence, Francis Scott Key and The Star Spangled Banner, Abraham Lincoln and the Lincoln Memorial, Theodore Roosevelt and Woodrow Wilson and national parks, Utah pioneers and Utah's nickname and motto)."
+          },
+          {
+           "code": "2.1.5",
+           "text": "Identify the achievements of significant Americans, including those from local and other diverse perspectives, and explain their importance."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "geography",
+       "title": "Geography",
+       "subtopics": [
+        {
+         "id": "develop-an-understanding-of-the-relationship-bet",
+         "title": "Develop an understanding of the relationship between people and their physical environment using geographic tools, technology, and map skills",
+         "outcomes": [
+          {
+           "code": "2.2.1",
+           "text": "Locate and identify the poles, equator, continents, oceans, the United States, Utah, and their town or city. Identify and name the states that border Utah and the countries that border the United States."
+          },
+          {
+           "code": "2.2.2",
+           "text": "Interpret and construct physical maps using the title, key, symbols, 8-point compass rose, cardinal directions, and alphanumeric grids."
+          },
+          {
+           "code": "2.2.3",
+           "text": "Identify examples of major geographical features in their local region, state, and country and their significance for the people who live there."
+          },
+          {
+           "code": "2.2.4",
+           "text": "Describe how location, climate, and physical features affect where people live and work, and how communities modify the environment to meet their needs over time (for example, irrigation, dams, reservoirs, roads, buildings, bridges)."
+          },
+          {
+           "code": "2.2.5",
+           "text": "Describe and give examples of interdependent relationships between vegetation, animal life, geographic features, and people specific to a local region (for example, irrigation, water conservation, farming, helping neighbors, ranching, providing vegetation that supports pollinators, protection of endangered animals)."
+          },
+          {
+           "code": "2.2.6",
+           "text": "Identify natural resources, and cite ways people show stewardship through responsible use, conservation, protection, and replenishment."
+          },
+          {
+           "code": "2.2.7",
+           "text": "On a map of the world, locate where their families or other families in the community historically came from. With support, curate and share information about the traditional food, cultural customs, recreation, religion, and music of that country and/or region."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "civics",
+       "title": "Civics",
+       "subtopics": [
+        {
+         "id": "learn-about-the-rights-and-responsibilities-of-c",
+         "title": "Learn about the rights and responsibilities of citizenship, explain how people must work together to resolve conflict, and understand the importance of respecting differences",
+         "outcomes": [
+          {
+           "code": "2.3.1",
+           "text": "Define the essential qualities of good community members (for example, honesty, integrity, morality, civility, duty, honor, service, respect, and obedience to law)."
+          },
+          {
+           "code": "2.3.2",
+           "text": "Describe the rights and responsibilities of citizens in the United States and Utah."
+          },
+          {
+           "code": "2.3.3",
+           "text": "Provide examples of ways in which responsible community members have worked together to resolve conflicts, solve problems, and create unity within their community."
+          },
+          {
+           "code": "2.3.4",
+           "text": "Consider why it is necessary for cities and towns to have governments, and describe ways local representative government promotes the general welfare of their community (for example, water, sewer, garbage pick-up, road and trail maintenance, public schools)."
+          },
+          {
+           "code": "2.3.5",
+           "text": "Identify current leaders (for example, family, school, community, governor, national leaders) and their responsibilities. Discuss the traits of effective leaders."
+          },
+          {
+           "code": "2.3.6",
+           "text": "Identify celebrations and state and national holidays that remember and honor people and events in the history of Utah and the United States."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "economics",
+       "title": "Economics",
+       "subtopics": [
+        {
+         "id": "develop-an-understanding-of-basic-economic-conce",
+         "title": "Develop an understanding of basic economic concepts necessary to make informed individual and family decisions. Students use basic economic principles to explain how businesses supply goods and services to consumers",
+         "outcomes": [
+          {
+           "code": "2.4.1",
+           "text": "Explain the benefits of personal savings."
+          },
+          {
+           "code": "2.4.2",
+           "text": "Explain how scarcity of resources and opportunity cost require people to make choices to satisfy wants and needs."
+          },
+          {
+           "code": "2.4.3",
+           "text": "Describe and compare a variety of services provided by local economic institutions, including businesses and non-profit organizations."
+          },
+          {
+           "code": "2.4.4",
+           "text": "Describe how people can be both producers and consumers of local goods and services."
+          },
+          {
+           "code": "2.4.5",
+           "text": "Identify the specialized work necessary to manufacture, transport, and market goods and services."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "3",
+   "units": [
+    {
+     "id": "third-grade",
+     "title": "Third Grade",
+     "topics": [
+      {
+       "id": "types-of-government-and-the-united-states-and-ut",
+       "title": "Types Of Government And The United States And Utah Constitutions",
+       "subtopics": [
+        {
+         "id": "identify-significant-ideas-in-the-united-states-",
+         "title": "Identify significant ideas in the United States and Utah Constitutions, as well as compare similarities and differences between the documents",
+         "outcomes": [
+          {
+           "code": "3.1.1",
+           "text": "Discuss the basic differences between different forms of government, including a constitutional republic, a pure democracy, an oligarchy, and a monarchy."
+          },
+          {
+           "code": "3.1.2",
+           "text": "Explain why the first three words of the United States Constitution are vital to the workings of representative government."
+          },
+          {
+           "code": "3.1.3",
+           "text": "Summarize how the Constitution of the United States is the supreme law of the land, and explain how laws provide order and stability."
+          },
+          {
+           "code": "3.1.4",
+           "text": "Identify the rights protected by the First Amendment in the Bill of Rights, and analyze how those rights affect them."
+          },
+          {
+           "code": "3.1.5",
+           "text": "Explain how the Constitution balances power between the three branches of government at both the state and federal levels (checks and balances)."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "your-community",
+       "title": "Your Community",
+       "subtopics": [
+        {
+         "id": "analyze-the-communities-in-which-they-live-inclu",
+         "title": "Analyze the communities in which they live, including geography, relative size, and interdependent relationships",
+         "outcomes": [
+          {
+           "code": "3.2.1",
+           "text": "Locate their community, city or town, state, country, and continent on print and digital maps of the earth, and contrast their sizes and the relationships in scale."
+          },
+          {
+           "code": "3.2.2",
+           "text": "Describe how geography (that is, physical features and natural resources) has shaped where and how their community developed, how it sustains itself, and how it will sustain itself in the future."
+          },
+          {
+           "code": "3.2.3",
+           "text": "Define their own cultures or the cultures of their communities (for example, art, music, food, dance, system of writing, architecture, government to which they are regularly exposed or of which they are part)."
+          },
+          {
+           "code": "3.2.4",
+           "text": "Evaluate how their community has changed over time (for example, economic interdependence, changes to the environment)."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "your-rights-and-responsibilities-as-a-community-",
+       "title": "Your Rights And Responsibilities As A Community Member",
+       "subtopics": [
+        {
+         "id": "students-delineate-their-civic-rights-and-respon",
+         "title": "Students delineate their civic rights and responsibilities as members of their community and the limits to their rights when they conflict with the rights of others. Students are introduced to the concepts of civil rights, public virtue, and civic engagement",
+         "outcomes": [
+          {
+           "code": "3.3.1",
+           "text": "Analyze how their community has been shaped by the diverse people who have resided within it. Compare primary and secondary sources (when available) from or about these people."
+          },
+          {
+           "code": "3.3.2",
+           "text": "Reflect upon the processes used to address needs and reach solutions within their family, their classroom, or other groups of which they are a part. Compare those to the democratic processes used to address needs and reach solutions within their communities."
+          },
+          {
+           "code": "3.3.3",
+           "text": "Research improvements that have been made in their community over time (for example, schools, roads, emergency services, utilities, jobs, recreation, libraries, clean environment, protection of civil rights)."
+          },
+          {
+           "code": "3.3.4",
+           "text": "Describe some of the civic roles that people fulfill within their community, and explain the reasons why people choose to serve in those roles and how they benefit the community."
+          },
+          {
+           "code": "3.3.5",
+           "text": "Explain how their community's leaders are elected or appointed and effective ways to work together with them to improve the community."
+          },
+          {
+           "code": "3.3.6",
+           "text": "Describe why governments collect taxes and how they decide how to use them."
+          },
+          {
+           "code": "3.3.7",
+           "text": "Discuss how the choices of individuals and leaders affect their community and its future (for example, supporting local businesses, volunteering, voting)."
+          },
+          {
+           "code": "3.3.8",
+           "text": "Collaborate with peers to address a need in their local community through service."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "connecting-your-community-to-the-world",
+       "title": "Connecting Your Community To The World",
+       "subtopics": [
+        {
+         "id": "learn-about-one-or-more-communities-in-other-reg",
+         "title": "Learn about one or more communities in other regions of the world. Students use what they have learned in the first three Strands about their own community as a basis for comparison. These communities could reflect the diverse heritage of class members and community members",
+         "outcomes": [
+          {
+           "code": "3.4.1",
+           "text": "Choose a community outside of the United States. Locate that community on both print and digital maps of the Earth, their continent, country, and city or town, and contrast their sizes and the relationships in scale."
+          },
+          {
+           "code": "3.4.2",
+           "text": "Research the geography (that is, physical features and natural resources) of the community they chose in 3.4.1, and make inferences regarding how the geography influenced the cultures that have developed there."
+          },
+          {
+           "code": "3.4.3",
+           "text": "Define the cultures of the community they chose in 3.4.1 (for example, art, music, food, dance, system of writing, architecture, government, religion)."
+          },
+          {
+           "code": "3.4.4",
+           "text": "Examine the types of government found in the community they chose in 3.4.1, and compare them with the government of their community (for example, how community leaders are selected, how the government maintains order, keeps people safe, and makes and enforces rules and laws; the role of a community member; the inclusion of immigrants)."
+          },
+          {
+           "code": "3.4.5",
+           "text": "Examine how and why the community they chose in 3.4.1 has adapted to and/or modified its environment over time, and identify the consequences of these environmental changes."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "4",
+   "units": [
+    {
+     "id": "fourth-grade",
+     "title": "Fourth Grade",
+     "topics": [
+      {
+       "id": "utah-s-unique-geography",
+       "title": "Utah's Unique Geography",
+       "subtopics": [
+        {
+         "id": "examine-utah-s-geography-and-analyze-its-histori",
+         "title": "Examine Utah's geography, and analyze its historical and current impacts on residents",
+         "outcomes": [
+          {
+           "code": "4.1.1",
+           "text": "Use a variety of geographic tools to identify Utah and its surrounding states: latitude, longitude, hemisphere, climate, natural resources, landforms, and regions (for example, Rocky Mountains, Colorado Plateau, Basin and Ridge Region)."
+          },
+          {
+           "code": "4.1.2",
+           "text": "Examine maps of Utah's precipitation, temperature, vegetation, population, and natural resources; make inferences about relationships between the data sets. Describe how and why humans have changed the physical environment of Utah to meet their needs (for example, reservoirs, irrigation, climate, transcontinental railroad)."
+          },
+          {
+           "code": "4.1.3",
+           "text": "Describe how the physical geography of Utah has both negative and positive consequences on our health and safety (for example, inversions, earthquakes, aridity, fire, recreation)."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "pre-expansion-before-1847",
+       "title": "Pre-Expansion (Before 1847)",
+       "subtopics": [
+        {
+         "id": "pre-expansion-before-1847",
+         "title": "Pre-Expansion (Before 1847)",
+         "outcomes": [
+          {
+           "code": "4.2.a",
+           "text": "Learn that while recorded history spans only a few centuries, humans have lived in the land now called Utah for thousands of years."
+          },
+          {
+           "code": "4.2.b",
+           "text": "Recognize that for centuries the historic tribal groups of Utah—the Goshute, Navajo (Diné), Paiute, Shoshone, and Ute—adapted to their ever-changing environment."
+          },
+          {
+           "code": "4.2.c",
+           "text": "Understand that more adaptations occurred due to contact and trade while Utah was part of the Spanish Empire and later Mexico."
+          }
+         ]
+        },
+        {
+         "id": "identify-the-factors-that-encouraged-early-trade",
+         "title": "Identify the factors that encouraged early trade and exploration among varied explorers and frontiersmen",
+         "outcomes": [
+          {
+           "code": "4.2.1",
+           "text": "Use evidence (for example, artifacts, texts, oral traditions, geographic inquiry) to make inferences about, and explain the importance of, the geography of the land that would become Utah in the culture of one or more prehistoric or historic Native American cultures."
+          },
+          {
+           "code": "4.2.2",
+           "text": "Explain the economic concepts of trade, scarcity, and supply and demand. Apply these concepts in analyzing the economic activity of Native American tribal groups that existed during this period in the land now called Utah and their trade with European-American trappers and traders.."
+          },
+          {
+           "code": "4.2.3",
+           "text": "Use primary and secondary sources to compare important aspects of the ways of life of at least two Native American tribal groups (for example, Ute, Paiute, Navajo (Diné), Shoshone, Goshute) existing within the land now called Utah and how those ways of life changed as settlers from Europe arrived prior to 1847."
+          },
+          {
+           "code": "4.2.4",
+           "text": "Investigate the reasons why early explorers and frontiersmen came to the land now called Utah, and determine how their contributions are relevant to Utahns today."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "expansion-1847-1896",
+       "title": "Expansion (1847-1896)",
+       "subtopics": [
+        {
+         "id": "expansion-1847-1896",
+         "title": "Expansion (1847-1896)",
+         "outcomes": [
+          {
+           "code": "4.3.a",
+           "text": "Students will learn about the unprecedented migration, dramatic cultural change and conflicts, and new technologies of this era."
+          },
+          {
+           "code": "4.3.b",
+           "text": "Study the migration of diverse populations who settled across the region that would become Utah."
+          },
+          {
+           "code": "4.3.c",
+           "text": "Learn about some of the implications of this settlement on Native American communities."
+          },
+          {
+           "code": "4.3.d",
+           "text": "Evaluate the relationships between the Industrial Revolution, the completion of the transcontinental railroad, other technologies, and the human and physical geography of the region."
+          }
+         ]
+        },
+        {
+         "id": "learn-about-the-process-and-challenges-utah-face",
+         "title": "Learn about the process and challenges Utah faced transforming from a territory to the 45th state",
+         "outcomes": [
+          {
+           "code": "4.3.1",
+           "text": "Use primary sources to compare experiences of at least three groups' migration to Utah between 1847–1896 (for example, members of The Church of Jesus Christ of Latter-day Saints, people from Greece, Italy, China)."
+          },
+          {
+           "code": "4.3.2",
+           "text": "Explain how Utah's physical geography provided opportunities and imposed constraints for human activities between 1847- 1896 (for example, agriculture, mining, settlement, communication, transportation networks) and how people changed the physical environment to meet their needs."
+          },
+          {
+           "code": "4.3.3",
+           "text": "Describe the establishment of communities and the economic development of the Great Basin area under the direction of Brigham Young as the first Territorial Governor of Utah."
+          },
+          {
+           "code": "4.3.4",
+           "text": "Identify the political challenges that delayed Utah's statehood, and explain how these challenges were overcome. Describe the involvement of Utah women in the state and national Women's Suffrage Movement."
+          },
+          {
+           "code": "4.3.5",
+           "text": "Cite multiple perspectives to explain the historical significance and context of at least one conflict of this period (for example, The Utah War, The Mountain Meadows Massacre, The Bear River Massacre, The Black Hawk War)."
+          },
+          {
+           "code": "4.3.6",
+           "text": "Describe how and why humans have changed the physical environment of Utah to meet their needs (for example, reservoirs, irrigation, climate, transcontinental railroad) between 1847-1896."
+          },
+          {
+           "code": "4.3.7",
+           "text": "Explain how the creation of the Transcontinental Railroad and other transportation and communication networks changed Utah's economy and led to greater economic interdependence."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "post-statehood-1896-1999",
+       "title": "Post-Statehood (1896-1999)",
+       "subtopics": [
+        {
+         "id": "post-statehood-1896-1999",
+         "title": "Post-Statehood (1896-1999)",
+         "outcomes": [
+          {
+           "code": "4.4.a",
+           "text": "Study Utah's continued development as a state, including learning about its Constitution and the role of geography in Utah's economy and settlement patterns."
+          },
+          {
+           "code": "4.4.b",
+           "text": "Evaluate the roles and functions of different levels and types of governments."
+          }
+         ]
+        },
+        {
+         "id": "identify-and-explain-the-cultural-connections-th",
+         "title": "Identify and explain the cultural connections that Utah's diverse communities share",
+         "outcomes": [
+          {
+           "code": "4.4.1",
+           "text": "Identify the function and location of state government. Analyze Article 1 of the Utah Constitution to explain how the enumerated rights reflect shared values."
+          },
+          {
+           "code": "4.4.2",
+           "text": "Compare the Utah Constitution with the United States Constitution, noting the similarities (including legislative, executive and judicial branches, rights of citizens) and important/ significant differences (for example, role in education, public lands, local governance)."
+          },
+          {
+           "code": "4.4.3",
+           "text": "Identify Utah symbols, their connection to history and geography, and what these symbols tell us about our shared culture. Explain how they can show respect and appreciation for those symbols."
+          },
+          {
+           "code": "4.4.4",
+           "text": "Use primary and secondary sources to explain how Utah's economy has changed over time (for example, recreation, tourism, mining, information technology, manufacturing, agriculture, petroleum production)."
+          },
+          {
+           "code": "4.4.5",
+           "text": "Analyze the way local, state, tribal, and federal governments interact with one another."
+          },
+          {
+           "code": "4.4.6",
+           "text": "Use case studies to explain how national or global events between 1896–1999 (for example, World War I, the Spanish Flu Epidemic, the Great Depression, World War II, Japanese American Incarceration, the Cold War, civil rights movements, Americans with Disabilities Act) had an impact in their local communities and state."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "a-new-millenia-2000-present",
+       "title": "A New Millenia (2000–Present)",
+       "subtopics": [
+        {
+         "id": "a-new-millenia-2000-present",
+         "title": "A New Millenia (2000–Present)",
+         "outcomes": [
+          {
+           "code": "4.5.a",
+           "text": "Examine, through a 21st century lens, the enduring central themes of diffusion of cultures, global interconnectedness, the importance of creating and sustaining community, and the need for a strong economy."
+          },
+          {
+           "code": "4.5.b",
+           "text": "Recognize that most current events (for example, interactions between Native American sovereign nations and state and federal governments, concerns about water, tensions and questions about the proper role and jurisdiction of local, state, and federal governments, ideas about how best to grow Utah's economy) have their roots deeply embedded in Utah's rich history."
+          }
+         ]
+        },
+        {
+         "id": "understand-that-while-forced-to-make-even-furthe",
+         "title": "Understand that, while forced to make even further adaptations as they came into contact with European explorers, Native Americans still thrive as eight sovereign tribal nations in Utah",
+         "outcomes": [
+          {
+           "code": "4.5.1",
+           "text": "Describe sovereignty as it relates to Native American sovereign nations (Ute Mountain Ute Tribe, Ute Indian Tribe of the Uintah and Ouray reservation, Paiute Indian Tribe of Utah, San Juan Southern Paiute Tribe, Navajo (Diné) Nation, Northwestern Band of the Shoshone Nation, Confederated Tribes of Goshute, Skull Valley Band of Goshute) existing within Utah, and explain efforts to preserve and maintain their culture."
+          },
+          {
+           "code": "4.5.2",
+           "text": "Make a case for the lasting historical significance of an event in recent Utah history (2000–present), and create an argument for including it in a historical text."
+          },
+          {
+           "code": "4.5.3",
+           "text": "Use data and trends to make recommendations for the best sustainable development of Utah's resources (for example, forests, state lands, geology, coal, minerals, oil and gas, state parks, water, wildlife, School Trustlands)."
+          },
+          {
+           "code": "4.5.4",
+           "text": "Explain continuity and change over time by comparing experiences of today's immigrants in Utah with those of immigrants in Utah's past."
+          },
+          {
+           "code": "4.5.5",
+           "text": "After studying examples of individuals or groups making positive changes in Utah, propose positive steps individual students or groups of students can implement (for example, raising awareness through digital media, energy and resource conservation, letter writing, fundraising)."
+          },
+          {
+           "code": "4.5.6",
+           "text": "Choose one of Utah's cultural institutions (for example Utah Symphony, The Tabernacle Choir at Temple Square, Utah Opera Company, Ballet West, Utah's Shakespeare Festival, Utah Festival Opera), and explain its historical significance as well as the cultural benefits to Utah families and our nation."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "5",
+   "units": [
+    {
+     "id": "fifth-grade",
+     "title": "Fifth Grade",
+     "topics": [
+      {
+       "id": "the-impacts-of-geography-and-human-interaction-i",
+       "title": "The Impacts Of Geography And Human Interaction In North America (Pre-Contact To Early Colonization)",
+       "subtopics": [
+        {
+         "id": "the-impacts-of-geography-and-human-interaction-i",
+         "title": "The Impacts Of Geography And Human Interaction In North America (Pre-Contact To Early Colonization)",
+         "outcomes": [
+          {
+           "code": "5.1.a",
+           "text": "Understand how geography had a major impact on the more than 500 tribes and over 50 million indigenous people living in North America prior to European exploration, as well as how it affected methods of exploration."
+          },
+          {
+           "code": "5.1.b",
+           "text": "Evaluate how the Age of Exploration and early colonization opened the way for the global movement of ideas, innovations, foods, and values and how the world was affected in ways that we can still see today."
+          },
+          {
+           "code": "5.1.1",
+           "text": "Cite examples to illustrate how the physical geography of North America (for example, landforms, seasons, weather, bodies of water) influenced the lives of Native American tribal groups."
+          },
+          {
+           "code": "5.1.2",
+           "text": "Identify ideas, innovations, and contributions of Native Americans that have had a lasting impact on human civilization (for example, agriculture, respect for the earth and environment, inventions, fashion, art, government, language, medicines, ritual and ceremony)."
+          },
+          {
+           "code": "5.1.3",
+           "text": "Use maps and primary/secondary sources to evaluate the push and pull factors that led to exploration and colonization of North America (for example, fleeing persecution, enslavement, economic advancement, indentured servitude, religious freedom/isolationism)."
+          },
+          {
+           "code": "5.1.4",
+           "text": "Describe how conflicts over land, trade, and alliances sometimes arose during colonization in North America (for example, Bacon's Rebellion, King Philip's War, the French and Indian War)."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "road-to-self-government",
+       "title": "Road To Self-Government",
+       "subtopics": [
+        {
+         "id": "road-to-self-government-1-of-2",
+         "title": "Road To Self-Government (1 of 2)",
+         "outcomes": [
+          {
+           "code": "5.2.a",
+           "text": "Examine British colonial policies that led colonists to becoming Loyalists, Patriots, or neutral leading up to the American Revolution."
+          },
+          {
+           "code": "5.2.b",
+           "text": "Recognize how the actions of key individuals influenced the outcome of the Revolution."
+          },
+          {
+           "code": "5.2.c",
+           "text": "Explain how the colonists prevailed in gaining their independence and summarize significant ideas in the Declaration of Independence."
+          },
+          {
+           "code": "5.2.1",
+           "text": "Use primary sources to craft an argument representing different perspectives during the period leading to the American Revolution (for example, men and women who were Loyalists, Patriots, Native Americans, enslaved people)."
+          }
+         ]
+        },
+        {
+         "id": "road-to-self-government-2-of-2",
+         "title": "Road To Self-Government (2 of 2)",
+         "outcomes": [
+          {
+           "code": "5.2.2",
+           "text": "Summarize the most significant ideas found in the Declaration of Independence."
+          },
+          {
+           "code": "5.2.3",
+           "text": "Explain how the actions of key individuals and groups influenced the outcome of the American Revolution (for example, George Washington, Thomas Jefferson, Thomas Paine, Benjamin Franklin, Mercy Warren, Alexander Hamilton, King George III, Haudenosaunee (Iroquois) Confederacy, Marquis De Lafayette, Phillis Wheatley)."
+          },
+          {
+           "code": "5.2.4",
+           "text": "Use evidence from primary and secondary sources to craft an argument that explains how the American colonists prevailed over one of the world's most powerful empires."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "united-states-government-and-citizenship",
+       "title": "United States Government And Citizenship",
+       "subtopics": [
+        {
+         "id": "demonstrate-understanding-of-the-constitution-an",
+         "title": "Demonstrate understanding of the Constitution and its relevance in their lives, including the Bill of Rights, the branches of government, and how the Constitution has changed and been interpreted over time",
+         "outcomes": [
+          {
+           "code": "5.3.1",
+           "text": "Use examples from the Constitution to investigate and explain the development, general purpose, and significant foundational principles of the United States government (a compound constitutional republic), as well as earlier documents and philosophies used to help develop the Constitution (for example, the Magna Carta, Mayflower Compact, Articles of Confederation, Haudenosaunee (Iroquois) Confederacy)."
+          },
+          {
+           "code": "5.3.2",
+           "text": "Apply the ideals found in the Preamble of the United States Constitution to historic and current events and issues."
+          },
+          {
+           "code": "5.3.3",
+           "text": "Explain why the Founders established a compound constitutional republic with three branches, and cite historic and current examples of checks and balances."
+          },
+          {
+           "code": "5.3.4",
+           "text": "Explain the significance of the Bill of Rights, and identify the impact of one of these amendments in history, a current event, and/or your daily life."
+          },
+          {
+           "code": "5.3.5",
+           "text": "Investigate how constitutional amendments are passed, and provide examples of how amendments to the Constitution have extended rights to groups originally denied protection under the Constitution (for example, women, enslaved people, immigrants, Black Americans, Native Americans)."
+          },
+          {
+           "code": "5.3.6",
+           "text": "Describe the civic duties members of American society have today (for example, voting, holding public office, jury duty)."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "century-a-time-of-change",
+       "title": "Century—A Time Of Change",
+       "subtopics": [
+        {
+         "id": "century-a-time-of-change-1-of-2",
+         "title": "Century—A Time Of Change (1 of 2)",
+         "outcomes": [
+          {
+           "code": "5.4.a",
+           "text": "Analyze changes brought by Westward Expansion, the Industrial Revolution, and the movement of people."
+          },
+          {
+           "code": "5.4.b",
+           "text": "Understand the effects of this expansion and movement on Native American people and the preservation of those communities while facing adversity."
+          },
+          {
+           "code": "5.4.c",
+           "text": "Examine how conflicts and division led to the United States Civil War and the lasting impacts of its outcome."
+          },
+          {
+           "code": "5.4.1",
+           "text": "Use evidence from multiple perspectives (for example, pioneers, 49ers, Black Americans, Chinese Americans, Native Americans, new immigrants, people experiencing religious persecution) to make a case for the most significant social, economic, and environmental changes brought about by Westward Expansion and the Industrial Revolution."
+          },
+          {
+           "code": "5.4.2",
+           "text": "Use primary sources to explain the driving forces for why people immigrated and emigrated during the 19th century, as well as the ways that movement changed the nation."
+          }
+         ]
+        },
+        {
+         "id": "century-a-time-of-change-2-of-2",
+         "title": "Century—A Time Of Change (2 of 2)",
+         "outcomes": [
+          {
+           "code": "5.4.3",
+           "text": "Summarize the impacts of forced relocation and assimilation on Native American people and how they have preserved their communities in the face of such adversity."
+          },
+          {
+           "code": "5.4.4",
+           "text": "Use primary and secondary sources to compare how differences in economics, politics, and culture (for example, slavery, political and economic competition in Western territories) between the North and South led to the United States Civil War."
+          },
+          {
+           "code": "5.4.5",
+           "text": "Explain how the actions of key individuals and groups influenced the outcome of the Civil War (for example, Abraham Lincoln, Jefferson Davis, Clara Barton, Robert E. Lee, Ulysses S. Grant, Stonewall Jackson, William Tecumseh Sherman, Harriet Beecher Stowe, Rose O'Neal Greenhow, Frederick Douglass, Harriet Tubman)."
+          },
+          {
+           "code": "5.4.6",
+           "text": "Use evidence from primary and secondary sources to craft an argument that explains how the United States of America prevailed over the Confederate States of America in the United States Civil War."
+          },
+          {
+           "code": "5.4.7",
+           "text": "Identify the Civil War's most important outcomes (for example, end of slavery, Reconstruction, expanded role of the federal government, industrial growth in the North), and explain how outcomes of the Civil War continue to resonate today."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "century-to-now-modern-america-social-movements-e",
+       "title": "Century To Now (Modern America: Social Movements, Economic Changes, Modern Warfare, And Current Events)",
+       "subtopics": [
+        {
+         "id": "examine-impactful-conflicts-moments-movements-co",
+         "title": "Examine impactful conflicts, moments, movements, communities, and people of the 21st century. They will analyze the role of the United States as a world power and the effects of its territorial and colonial expansion",
+         "outcomes": [
+          {
+           "code": "5.5.1",
+           "text": "Compare the motivations for and desired outcomes of U.S. entry into two or more of the wars of the 20th and 21st centuries."
+          },
+          {
+           "code": "5.5.2",
+           "text": "Compare the motivations for and desired outcomes of the entry of the United States into World War I and World War II."
+          },
+          {
+           "code": "5.5.3",
+           "text": "Craft an evidence-based argument for why a particular event should be considered the most significant moment in United States history from 1900–now (for example, Stock Market Crash of 1929, Great Depression, Voting Rights Act of 1965, terrorist attack on 9/11, the launch of the Internet)."
+          },
+          {
+           "code": "5.5.4",
+           "text": "Make an evidence-based claim about the role the United States should play as a world power and leader in solving current global problems."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "current-national-issues-and-potential-solutions",
+       "title": "Current National Issues And Potential Solutions",
+       "subtopics": [
+        {
+         "id": "understand-current-national-issues-and-explore-t",
+         "title": "Understand current national issues and explore their rights and responsibilities as citizens and residents of the United States",
+         "outcomes": [
+          {
+           "code": "5.6.1",
+           "text": "Investigate and report on current pressing issues facing the United States, and propose potential solutions that they can support (for example, raising awareness through digital media, energy and resource conservation, letter writing, fundraising)."
+          },
+          {
+           "code": "5.6.2",
+           "text": "Evaluate the methods and impact of individuals and/or groups making positive changes in the United States today as models for civic engagement."
+          },
+          {
+           "code": "5.6.3",
+           "text": "Connect the causes and lasting effects of at least two social movements and their leaders in the 20th Century (for example, the Women's Suffrage Movement, labor unions, the Civil Rights Movement, child labor reforms)."
+          },
+          {
+           "code": "5.6.4",
+           "text": "Research and summarize the accomplishments and contributions of a minority community in the United States today."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "6",
+   "units": [
+    {
+     "id": "sixth-grade",
+     "title": "Sixth Grade",
+     "topics": [
+      {
+       "id": "world-civilizations",
+       "title": "World Civilizations",
+       "subtopics": [
+        {
+         "id": "world-civilizations-1-of-2",
+         "title": "World Civilizations (1 of 2)",
+         "outcomes": [
+          {
+           "code": "6.1.a",
+           "text": "Compare how the aspects of geography, culture, religion, government, technology, and systems in ancient civilizations met human needs and wants, as well as allowed and encouraged the growth and development of civilizations as humans migrated across the earth."
+          },
+          {
+           "code": "6.1.b",
+           "text": "Compare early governments to the foundations of modern governments."
+          },
+          {
+           "code": "6.1.1",
+           "text": "Discern characteristics needed for the transformation from simple societies to civilizations, and compare those characteristics in at least three different ancient civilizations found in different regions of the world (for example, Mesopotamia, Egypt, Indus River Valley, China, Inca, Aztec, Persia, Greece, Carthage, Gupta, Rome)."
+          },
+          {
+           "code": "6.1.2",
+           "text": "Throughout their study of world history, recognize the origins of major world religions (including Buddhism, Christianity, Confucianism, Hinduism, Islam, Judaism, Sikhism, Taoism). Evaluate the role religion played in the development of civilizations, colonization, imperialism, and independence movements."
+          }
+         ]
+        },
+        {
+         "id": "world-civilizations-2-of-2",
+         "title": "World Civilizations (2 of 2)",
+         "outcomes": [
+          {
+           "code": "6.1.3",
+           "text": "Use maps to analyze how physical geography affected the development of three civilizations found in different regions of the world."
+          },
+          {
+           "code": "6.1.4",
+           "text": "Identify some of the economic systems and technologies (for example, irrigation, writing systems, farming techniques, trading and bartering, coins and currency) created by three civilizations found in different regions of the world, and categorize how they met specific human needs or wants."
+          },
+          {
+           "code": "6.1.5",
+           "text": "Use primary and secondary sources to compare the cultures of three civilizations found in different regions of the world and identify examples of cultural expression (for example, architecture, writing, philosophy, artwork)."
+          },
+          {
+           "code": "6.1.6",
+           "text": "Compare the purposes and functions of early governments (for example, monarchy, oligarchy, tyranny, pure democracy, republic, theocracy) to modern governments."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "globalization",
+       "title": "Globalization",
+       "subtopics": [
+        {
+         "id": "globalization-1-of-2",
+         "title": "Globalization (1 of 2)",
+         "outcomes": [
+          {
+           "code": "6.2.a",
+           "text": "Compare how the transformation and changes of the post-classical era (Ca. 500 C.E.–1500 C.E.) set in motion the expansion of knowledge through science, language, writing, religion, and technological innovations."
+          },
+          {
+           "code": "6.2.b",
+           "text": "Understand how this created and encouraged a global interconnectedness among distant societies and civilizations that ripples into modern history."
+          },
+          {
+           "code": "6.2.1",
+           "text": "Summarize key tenets of the major world religions (including Buddhism, Christianity, Confucianism, Hinduism, Islam, Judaism, Sikhism, Taoism)."
+          },
+          {
+           "code": "6.2.2",
+           "text": "Use primary and secondary sources to explain how the spread of religious ideas during the post-classical era influenced globalization (for example, spread of Islam, Crusades, cultural expression through art and architecture, Reformation)."
+          }
+         ]
+        },
+        {
+         "id": "globalization-2-of-2",
+         "title": "Globalization (2 of 2)",
+         "outcomes": [
+          {
+           "code": "6.2.3",
+           "text": "Identify the most historically significant inventions and innovations from Ca. 500 C.E.–1500 C.E. (for example, printing press/ moveable type, astronomy, medicine), and argue their ongoing importance."
+          },
+          {
+           "code": "6.2.4",
+           "text": "Use maps to trace how geography affected the ability of humans to connect with each other (for example, economic and cultural expansion, development of international trade, spread of disease)."
+          },
+          {
+           "code": "6.2.5",
+           "text": "Critique how and why systems of governance took steps toward self-rule during the post-classical period (for example, the rise of the merchant class, Magna Carta, feudalism in Europe and Japan)."
+          },
+          {
+           "code": "6.2.6",
+           "text": "Generalize how the spread of goods and ideas led to the increased influence of China, India, Southeast Asia, and the Middle East on globalization."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "colonization-imperialism-and-independence-moveme",
+       "title": "Colonization, Imperialism And Independence Movements",
+       "subtopics": [
+        {
+         "id": "describe-how-the-political-and-economic-impacts-",
+         "title": "Describe how the political and economic impacts of this time period (c. 1500 C.E.–2000 C.E.) created new political ideologies and technology, providing prime conditions and motivations for colonization, imperialism, and independence that continue to be echoed in current conversations",
+         "outcomes": [
+          {
+           "code": "6.3.1",
+           "text": "Describe how the conditions and motivations of exploration, colonization, and/or imperialism around the world connect to globalization."
+          },
+          {
+           "code": "6.3.2",
+           "text": "Use maps and other data sets to make inferences about the lasting impacts of exploration, colonization, and/or imperialism."
+          },
+          {
+           "code": "6.3.3",
+           "text": "Use primary and secondary sources to draw conclusions about the positive and negative economic impacts of expansion and major global conflicts (for example, Colombian Exchange, economic depressions, rise of factories, effects of famine, slave trade)."
+          },
+          {
+           "code": "6.3.4",
+           "text": "Explain the causes and effects of at least three events that created political, social, economic, industrial, and/or scientific revolution during the 18th–20th century (for example, the French Revolution, Vietnam, Latin American revolutions, the Enlightenment, independence movements of India and African nations)."
+          },
+          {
+           "code": "6.3.5",
+           "text": "Cite evidence to identify the causes and effects of World War I, the Great Depression, and World War II."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "our-modern-world-world-religions-cold-war-era-cu",
+       "title": "Our Modern World (World Religions, Cold War Era, Current Global Events/Issues)",
+       "subtopics": [
+        {
+         "id": "our-modern-world-world-religions-cold-war-era-cu",
+         "title": "Our Modern World (World Religions, Cold War Era, Current Global Events/Issues)",
+         "outcomes": [
+          {
+           "code": "6.4.a",
+           "text": "Examine varying perspectives and opportunities for civic responsibilities based on the backdrop of two world wars, competing economic systems, and unprecedented technological changes."
+          },
+          {
+           "code": "6.4.b",
+           "text": "Review how human and civil rights have developed over time, and use current events to increase awareness and identify possible solutions."
+          },
+          {
+           "code": "6.4.1",
+           "text": "Use primary and secondary sources to describe the impact and/or lasting historical significance of at least two major global events of the 20th–21st centuries not previously studied (for example, the Cold War, Vietnam, genocides, trade wars, terrorism, human rights movements)."
+          },
+          {
+           "code": "6.4.2",
+           "text": "Summarize the main differences between economic systems across the world (including communism, free market capitalism, individualism, socialism). Discuss the relationship between these systems and the concepts of freedom, equality, and fairness."
+          },
+          {
+           "code": "6.4.3",
+           "text": "Determine how human rights and responsibilities around the world have developed over time, and identify ways individuals and organizations work to protect rights considered essential for all humans."
+          },
+          {
+           "code": "6.4.4",
+           "text": "Cite current national and/or global events that exemplify the concept of global interconnectedness."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "7-12",
+   "units": [
+    {
+     "id": "foundational-principles",
+     "title": "Foundational Principles",
+     "topics": [
+      {
+       "id": "foundational-principles",
+       "title": "Foundational Principles",
+       "subtopics": [
+        {
+         "id": "foundational-principles",
+         "title": "Foundational Principles",
+         "outcomes": [
+          {
+           "code": "GC.1.1",
+           "text": "Students will explain how documents, challenges, events, and ideas such as the rule of law, the social contract, compromise, the Declaration of Independence, the Articles of Confederation, Shays' Rebellion, and the Federalist Papers significantly influenced the United States Constitution."
+          },
+          {
+           "code": "GC.1.2",
+           "text": "Students will describe the structure of the United States' form of government as a compound constitutional republic, including the ideas of federalism; checks and balances; separation of powers; commerce, elastic, and supremacy clauses; popular sovereignty; and limited government."
+          },
+          {
+           "code": "GC.1.3",
+           "text": "Students will explain the organization, functions, and processes of the United States government, such as the purpose of the President's cabinet, the function of judicial review, and how a bill becomes a law, and apply that understanding to current issues."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "civil-liberties-civil-rights-and-responsibilitie",
+     "title": "Civil Liberties, Civil Rights, and Responsibilities",
+     "topics": [
+      {
+       "id": "civil-liberties-civil-rights-and-responsibilitie",
+       "title": "Civil Liberties, Civil Rights, and Responsibilities",
+       "subtopics": [
+        {
+         "id": "civil-liberties-civil-rights-and-responsibilitie",
+         "title": "Civil Liberties, Civil Rights, and Responsibilities",
+         "outcomes": [
+          {
+           "code": "GC.2.1",
+           "text": "Students will use historic and modern case studies, including Supreme Court cases, amendment initiatives, and legislation to trace the application of civil liberties, civil rights, and responsibilities spelled out in the Constitution, the Bill of Rights, and other amendments."
+          },
+          {
+           "code": "GC.2.2",
+           "text": "Students will examine various perspectives on a current rights-related issue; take a position; defend that position using the Constitution and Bill of Rights, historical precedents, Supreme Court decisions, and other relevant resources; and share that position, when possible, with relevant stakeholders."
+          },
+          {
+           "code": "GC.2.3",
+           "text": "Students will explain the purpose and importance of fulfilling civic responsibilities, including serving on juries; voting; serving on boards, councils, and commissions; remaining well-informed; contacting elected officials; and other duties associated with active citizenship"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "distribution-of-power",
+     "title": "Distribution of Power",
+     "topics": [
+      {
+       "id": "distribution-of-power",
+       "title": "Distribution of Power",
+       "subtopics": [
+        {
+         "id": "distribution-of-power",
+         "title": "Distribution of Power",
+         "outcomes": [
+          {
+           "code": "GC.3.1",
+           "text": "Students will explain the distribution of power among national, state, tribal, and local governments in order to identify how needs are met by governance systems."
+          },
+          {
+           "code": "GC.3.2",
+           "text": "Students will explain the role that local elected officers fulfill, such as mayors, council members, auditors, treasurers, surveyors, assessors, recorders, clerks, sheriffs, county commissioners, and district or county attorneys and how local government roles differ from state and federal roles."
+          },
+          {
+           "code": "GC.3.3",
+           "text": "Students will explain the processes and motivations for how and why people organize to participate in civic society, such as developing political affiliations, joining political parties, and supporting special interest groups and other non-governmental or non-partisan civic organizations, and evaluate the political impact of those affiliations."
+          },
+          {
+           "code": "GC.3.4",
+           "text": "Students will use data to evaluate election results and explain election processes and strategies."
+          },
+          {
+           "code": "GC.3.5",
+           "text": "Students will explain how the individual roles of the members of the President's cabinet are designed to meet various purposes in government."
+          },
+          {
+           "code": "GC.3.6",
+           "text": "Students will explain how the administrative rule-making process functions within the federal system and the extent and impact of these rules."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "fiscal-policies-and-decisions",
+     "title": "Fiscal Policies and Decisions",
+     "topics": [
+      {
+       "id": "fiscal-policies-and-decisions",
+       "title": "Fiscal Policies and Decisions",
+       "subtopics": [
+        {
+         "id": "fiscal-policies-and-decisions",
+         "title": "Fiscal Policies and Decisions",
+         "outcomes": [
+          {
+           "code": "GC.4.1",
+           "text": "Students will examine the fiscal decisions governmental agencies must make and the economic philosophies that guide those decisions."
+          },
+          {
+           "code": "GC.4.2",
+           "text": "Students will explain how government services and other budget priorities are funded through various forms of revenue streams, such as fees, bonding, and regressive and progressive taxes, including property taxes, income taxes, and sales taxes."
+          },
+          {
+           "code": "GC.4.3",
+           "text": "Students will propose and defend budget priorities at either the local, state, tribal, or federal level; and share their findings with appropriate stakeholders."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "the-u-s-and-our-relationship-to-the-world",
+     "title": "The U.S. and Our Relationship to the World",
+     "topics": [
+      {
+       "id": "the-u-s-and-our-relationship-to-the-world",
+       "title": "The U.S. and Our Relationship to the World",
+       "subtopics": [
+        {
+         "id": "the-u-s-and-our-relationship-to-the-world",
+         "title": "The U.S. and Our Relationship to the World",
+         "outcomes": [
+          {
+           "code": "GC.5.1",
+           "text": "Students will analyze the constitutional process of creating foreign policy and the structures through which the federal government interacts with foreign governments, such as the Department of State, treaties, agreements, and alliances."
+          },
+          {
+           "code": "GC.5.2",
+           "text": "Students will analyze the justification for, and effectiveness of, specific foreign policy positions, such as military intervention, isolationism, alliance formation, economic sanctions, or other security measures."
+          },
+          {
+           "code": "GC.5.3",
+           "text": "Students will evaluate how global economic interdependence and international trade policies affect the economy of the United States."
+          },
+          {
+           "code": "GC.5.4",
+           "text": "Students will craft an argument for an appropriate role for the United States to take in addressing a global economic, environmental, or social issue such as humanitarian aid, migration, pandemics, or the loss of wildlife habitat."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "three-worlds-meet",
+     "title": "Three Worlds Meet",
+     "topics": [
+      {
+       "id": "three-worlds-meet",
+       "title": "Three Worlds Meet",
+       "subtopics": [
+        {
+         "id": "three-worlds-meet",
+         "title": "Three Worlds Meet",
+         "outcomes": [
+          {
+           "code": "USHI.1.1",
+           "text": "Students will analyze evidence, including artifacts and other primary sources to make evidence-based inferences about life among several American Indian nations prior to European exploration of the Americas."
+          },
+          {
+           "code": "USHI.1.2",
+           "text": "Students will compare and evaluate historians' interpretations of the motivations and conditions that led to European exploration."
+          },
+          {
+           "code": "USHI.1.3",
+           "text": "Students will draw from multiple perspectives and cite evidence to explain the effects of European exploration, specifically on Africa, the Caribbean, and North and South America."
+          },
+          {
+           "code": "USHI.1.4",
+           "text": "Students will identify how the period of exploration has affected the current human geography of the Americas, and in particular the role their own cultural background has played."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "colonization",
+     "title": "Colonization",
+     "topics": [
+      {
+       "id": "colonization",
+       "title": "Colonization",
+       "subtopics": [
+        {
+         "id": "colonization",
+         "title": "Colonization",
+         "outcomes": [
+          {
+           "code": "USHI.2.1",
+           "text": "Students will identify the economic, social, and geographic factors that influenced the colonization efforts of the Dutch, English, French, and Spanish."
+          },
+          {
+           "code": "USHI.2.2",
+           "text": "Students will compare and contrast the economic, political, and social patterns evident in the development of the 13 English colonies."
+          },
+          {
+           "code": "USHI.2.3",
+           "text": "Students will use primary sources as evidence to contrast the daily life and contexts of individuals of various classes and conditions in and near the English colonies, such as gentry, planters, women, indentured servants, African slaves, landowners, and American Indians."
+          },
+          {
+           "code": "USHI.2.4",
+           "text": "Students will explain historic and modern regional differences that had their origins in the colonial period, such as the institution of slavery; patterns of life in urban and rural areas; differences between the French continental interior, Spanish southwest, and English northeast; and the location of manufacturing centers."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "the-american-revolution",
+     "title": "The American Revolution",
+     "topics": [
+      {
+       "id": "the-american-revolution",
+       "title": "The American Revolution",
+       "subtopics": [
+        {
+         "id": "the-american-revolution",
+         "title": "The American Revolution",
+         "outcomes": [
+          {
+           "code": "USHI.3.1",
+           "text": "Students will use primary sources to identify the significant events, ideas, people, and methods used to justify or resist the Revolutionary movement."
+          },
+          {
+           "code": "USHI.3.2",
+           "text": "Students will compare and evaluate historians' interpretations of the significant historical events and factors affecting the course of the war and contributing to American victory."
+          },
+          {
+           "code": "USHI.3.3",
+           "text": "Students will use primary sources to compare the contributions of key people and groups to the Revolution, such as Paul Revere, Thomas Paine, Abigail Adams, the Sons and Daughters of Liberty, and Thomas Jefferson."
+          },
+          {
+           "code": "USHI.3.4",
+           "text": "Students will explain how the ideas and events of the American Revolution continue to shape American identity."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "the-u-s-constitution",
+     "title": "The U.S. Constitution",
+     "topics": [
+      {
+       "id": "the-u-s-constitution",
+       "title": "The U.S. Constitution",
+       "subtopics": [
+        {
+         "id": "the-u-s-constitution",
+         "title": "The U.S. Constitution",
+         "outcomes": [
+          {
+           "code": "USHI.4.1",
+           "text": "Students will explain how the ideas, events, and compromises which led to the development and ratification of the Constitution are reflected in the document itself."
+          },
+          {
+           "code": "USHI.4.2",
+           "text": "Students will describe the structure and function of the government that the Constitution creates."
+          },
+          {
+           "code": "USHI.4.3",
+           "text": "Students will use historic case studies and current events to trace how and explain why the rights, liberties, and responsibilities of citizens have changed over time."
+          },
+          {
+           "code": "USHI.4.4",
+           "text": "Students will use evidence to explain how the Constitution is a transformative document that contributed to American exceptionalism."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "the-development-of-political-institutions-and-pr",
+     "title": "The Development of Political Institutions and Processes",
+     "topics": [
+      {
+       "id": "the-development-of-political-institutions-and-pr",
+       "title": "The Development of Political Institutions and Processes",
+       "subtopics": [
+        {
+         "id": "the-development-of-political-institutions-and-pr",
+         "title": "The Development of Political Institutions and Processes",
+         "outcomes": [
+          {
+           "code": "USHI.5.1",
+           "text": "Students will use evidence to document the development and evolution of the American political party system and explain the historic and current roles of political parties."
+          },
+          {
+           "code": "USHI.5.2",
+           "text": "Students will identify the conditions that gave rise to, and evaluate the impact of, social and political reform movements such as Jacksonian Democracy, the women's rights movement, the Abolitionist movement, and anti-immigration reform."
+          },
+          {
+           "code": "USHI.5.3",
+           "text": "Students will use case studies to document the expansion of democratic principles and rights over time."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "expansion",
+     "title": "Expansion",
+     "topics": [
+      {
+       "id": "expansion",
+       "title": "Expansion",
+       "subtopics": [
+        {
+         "id": "expansion",
+         "title": "Expansion",
+         "outcomes": [
+          {
+           "code": "USHI.6.1",
+           "text": "Students will compare and contrast historians' interpretations of the ideas, resources, and events that motivated the territorial expansion of the United States."
+          },
+          {
+           "code": "USHI.6.2",
+           "text": "Students will use primary sources representing multiple perspectives to interpret conflicts that arose during American expansion, especially as American Indians were forced from their traditional lands and as tensions grew over free and slave holding territory."
+          },
+          {
+           "code": "USHI.6.3",
+           "text": "Students will identify the economic and geographic impact of the early Industrial Revolution's new inventions and transportation methods, such as the Erie Canal, the transcontinental railroad, steam engines, the telegraph, the cotton gin, and interchangeable parts."
+          },
+          {
+           "code": "USHI.6.4",
+           "text": "Students will make a case for the most significant cultural, political, and economic impacts of territorial and/or industrial expansion."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "the-civil-war-and-reconstruction",
+     "title": "The Civil War and Reconstruction",
+     "topics": [
+      {
+       "id": "the-civil-war-and-reconstruction",
+       "title": "The Civil War and Reconstruction",
+       "subtopics": [
+        {
+         "id": "the-civil-war-and-reconstruction",
+         "title": "The Civil War and Reconstruction",
+         "outcomes": [
+          {
+           "code": "USHI.7.1",
+           "text": "Students will explain how slavery and other geographic, social, economic, and political differences between the North, South, and West led to the Civil War."
+          },
+          {
+           "code": "USHI.7.2",
+           "text": "Students will use evidence to interpret the factors that were most significant in shaping the course of the war and the Union victory, such as the leadership of Lincoln, Grant, and Lee; the role of industry; demographics; and military strategies."
+          },
+          {
+           "code": "USHI.7.3",
+           "text": "Students will compare historians' interpretations of the competing goals of Reconstruction and why many of those goals were left unrealized."
+          },
+          {
+           "code": "USHI.7.4",
+           "text": "Students will use current events to evaluate the implications of the Civil War and Reconstruction for contemporary American life."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "industrialization",
+     "title": "Industrialization",
+     "topics": [
+      {
+       "id": "industrialization",
+       "title": "Industrialization",
+       "subtopics": [
+        {
+         "id": "industrialization",
+         "title": "Industrialization",
+         "outcomes": [
+          {
+           "code": "USHII.1.1",
+           "text": "Students will assess how innovations in transportation, science, agriculture, manufacturing, technology, communication, and marketing transformed America in the 19th and early 20th centuries."
+          },
+          {
+           "code": "USHII.1.2",
+           "text": "Students will explain the connections between the growth of industry, mining, and agriculture and the movement of people into and within the United States."
+          },
+          {
+           "code": "USHII.1.3",
+           "text": "Students will analyze the causal relationships between industrialization and the challenges faced by the growing working classes in urban settings."
+          },
+          {
+           "code": "USHII.1.4",
+           "text": "Students will use historical evidence to compare how industrial capitalist leaders used entrepreneurship, free markets, and strategies to build their businesses."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "reform-movements",
+     "title": "Reform Movements",
+     "topics": [
+      {
+       "id": "reform-movements",
+       "title": "Reform Movements",
+       "subtopics": [
+        {
+         "id": "reform-movements",
+         "title": "Reform Movements",
+         "outcomes": [
+          {
+           "code": "USHII.2.1",
+           "text": "Students will use primary and secondary sources to identify and explain the conditions that led to the rise of reform movements, such as organized labor, suffrage, and temperance."
+          },
+          {
+           "code": "USHII.2.2",
+           "text": "Students will explain how social reform movements influenced Constitutional amendments and changes to laws and democratic processes."
+          },
+          {
+           "code": "USHII.2.3",
+           "text": "Students will evaluate the methods reformers used to bring about change, such as imagery, unions, associations, writings, ballot initiatives, recalls, and referendums."
+          },
+          {
+           "code": "USHII.2.4",
+           "text": "Students will evaluate the short- and long-term accomplishments and effectiveness of social, economic, and political reform movements."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "america-on-the-global-stage",
+     "title": "America on the Global Stage",
+     "topics": [
+      {
+       "id": "america-on-the-global-stage",
+       "title": "America on the Global Stage",
+       "subtopics": [
+        {
+         "id": "america-on-the-global-stage",
+         "title": "America on the Global Stage",
+         "outcomes": [
+          {
+           "code": "USHII.3.1",
+           "text": "Students will describe how the role of the U.S. in world affairs changed at the turn of the 20th century, and evaluate the arguments used to promote or discourage involvement in world affairs, such as those of the \"big stick,\" Mahan, the Roosevelt Corollary, and the Antiimperialist League."
+          },
+          {
+           "code": "USHII.3.2",
+           "text": "Students will examine and evaluate the role of the media and propaganda in promoting involvement in foreign affairs, using events such as the Spanish American War and World War I."
+          },
+          {
+           "code": "USHII.3.3",
+           "text": "Students will evaluate the positive and negative impacts of imperialism on the U.S. and the U.S. territorial interests, such as the Philippines, Cuba, Guam, Hawaii, Panama, and Puerto Rico."
+          },
+          {
+           "code": "USHII.3.4",
+           "text": "Students will explain the causes for U.S. involvement in World War I and the effects of the war on the home front, such as migration, trade, sedition act, shortages, voluntary rationing, and the Spanish flu."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "traditions-and-social-change",
+     "title": "Traditions and Social Change",
+     "topics": [
+      {
+       "id": "traditions-and-social-change",
+       "title": "Traditions and Social Change",
+       "subtopics": [
+        {
+         "id": "traditions-and-social-change",
+         "title": "Traditions and Social Change",
+         "outcomes": [
+          {
+           "code": "USHII.4.1",
+           "text": "Students will develop and defend an interpretation of why cultural clashes occurred in the 1920s, citing examples such as science vs. religion, rural vs. urban, Prohibition proponents vs. opponents, and nativism vs. immigration."
+          },
+          {
+           "code": "USHII.4.2",
+           "text": "Students will use case studies involving African-American civil rights leaders and events to compare, contrast, and evaluate the effectiveness of various methods used to achieve reform, such as civil disobedience, legal strategies, and political organizing."
+          },
+          {
+           "code": "USHII.4.3",
+           "text": "Students will identify the civil rights objectives held by various groups, assess the strategies used, and evaluate the success of the various civil rights movements in reaching their objectives, paying specific attention to American Indian, women, and other racial and ethnic minorities."
+          },
+          {
+           "code": "USHII.4.4",
+           "text": "Students will identify significant counter-cultural movements of the 20th century as well as the reactions and counter-arguments to those movements, using examples such as the Beatniks, hippies, and the anti-Vietnam War movement."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "economic-boom-bust-and-the-role-of-the-governmen",
+     "title": "Economic Boom, Bust, and the Role of the Government",
+     "topics": [
+      {
+       "id": "economic-boom-bust-and-the-role-of-the-governmen",
+       "title": "Economic Boom, Bust, and the Role of the Government",
+       "subtopics": [
+        {
+         "id": "economic-boom-bust-and-the-role-of-the-governmen",
+         "title": "Economic Boom, Bust, and the Role of the Government",
+         "outcomes": [
+          {
+           "code": "USHII.5.1",
+           "text": "Students will investigate how individual and institutional decisions made during the 1920s, such as over-production, buying on credit, poor banking policies, and stock market speculation helped lead to the boom of the 1920s and then the Great Depression."
+          },
+          {
+           "code": "USHII.5.2",
+           "text": "Students will use evidence to investigate the effectiveness of the New Deal as a response to economic crises."
+          },
+          {
+           "code": "USHII.5.3",
+           "text": "Students will explain how economic and environmental conditions, including the Dust Bowl, affected daily life and demographic trends during the Great Depression."
+          },
+          {
+           "code": "USHII.5.4",
+           "text": "Students will craft an argument regarding the role of government in responding to economic conditions after learning about capitalism and other economic systems, historic cycles of boom and bust, and the New Deal."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "another-global-conflict-and-the-beginnings-of-th",
+     "title": "Another Global Conflict and the Beginnings of the Cold War",
+     "topics": [
+      {
+       "id": "another-global-conflict-and-the-beginnings-of-th",
+       "title": "Another Global Conflict and the Beginnings of the Cold War",
+       "subtopics": [
+        {
+         "id": "another-global-conflict-and-the-beginnings-of-th",
+         "title": "Another Global Conflict and the Beginnings of the Cold War",
+         "outcomes": [
+          {
+           "code": "USHII.6.1",
+           "text": "Students will assess the causes and consequences of America's shift from isolationism to interventionism in the years leading up to World War II."
+          },
+          {
+           "code": "USHII.6.2",
+           "text": "Students will use primary sources to describe the impact of World War II on the home front and the long-term social changes that resulted from the war, such as the baby boom, women in the workplace, and teenage culture."
+          },
+          {
+           "code": "USHII.6.3",
+           "text": "Students will cite and compare historical arguments from multiple perspectives regarding the use of \"total war\" in World War II, focusing on the changing objectives, weapons, tactics, and rules of war, such as carpet bombing, civilian targets, the Holocaust, and the development and use of the atom bomb."
+          },
+          {
+           "code": "USHII.6.4",
+           "text": "Students will research and prioritize the most significant events in the United States and the USSR's transition from World War II allies to Cold War enemies and superpowers."
+          },
+          {
+           "code": "USHII.6.5",
+           "text": "Students will evaluate the impact of using international economic aid and diplomacy to secure national interests, specifically citing case studies of America's investment in war-torn nations following the war, such as the Marshall Plan and the Berlin Airlift."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "the-cold-war-era-and-a-changing-america",
+     "title": "The Cold War Era and a Changing America",
+     "topics": [
+      {
+       "id": "the-cold-war-era-and-a-changing-america",
+       "title": "The Cold War Era and a Changing America",
+       "subtopics": [
+        {
+         "id": "the-cold-war-era-and-a-changing-america",
+         "title": "The Cold War Era and a Changing America",
+         "outcomes": [
+          {
+           "code": "USHII.7.1",
+           "text": "Students will compare the causes, major events, military tactics, and outcomes of the Korean and Vietnam Wars."
+          },
+          {
+           "code": "USHII.7.2",
+           "text": "Students will use government documents and other primary sources to investigate the motives behind a Cold War policy, event, or foreign operation, such as Truman Doctrine, containment, the domino theory, the Korean conflict, the Bay of Pigs invasion, the Cuban Missile Crisis, the Vietnam War, and Olympic boycotts."
+          },
+          {
+           "code": "USHII.7.3",
+           "text": "Students will develop interpretations of the impact of the Cold War on American society and culture using evidence such as cultural artifacts from the Cold War era, oral histories, and primary sources."
+          },
+          {
+           "code": "USHII.7.4",
+           "text": "Students will explain how Reagan's neo-conservatism differed from the policies of previous presidential administrations of this era, most notably Johnson's Great Society."
+          },
+          {
+           "code": "USHII.7.5",
+           "text": "Students will use evidence to demonstrate how technological developments (such as television and social media), government policies (such as Supreme Court decisions), trends (such as rock 'n' roll or environmental conservation), and/or demographic changes (such as the growth of suburbs and modern immigration) have influenced American culture."
+          },
+          {
+           "code": "USHII.7.6",
+           "text": "Students will use historical events and trends associated with American policies toward Israel and Middle Eastern nations and groups to make suggestions for current policies."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "the-21st-century-united-states",
+     "title": "The 21st Century United States",
+     "topics": [
+      {
+       "id": "the-21st-century-united-states",
+       "title": "The 21st Century United States",
+       "subtopics": [
+        {
+         "id": "the-21st-century-united-states",
+         "title": "The 21st Century United States",
+         "outcomes": [
+          {
+           "code": "USHII.8.1",
+           "text": "Students will select the most historically significant events of the 21st century and defend their selection."
+          },
+          {
+           "code": "USHII.8.2",
+           "text": "Students will apply historical perspective and historical thinking skills to propose a viable solution to a pressing economic, environmental, or social issue, such as failing social security, economic inequalities, the national debt, oil dependence, water shortages, global climate change, pandemics, pollution, global terrorism, poverty, and immigration."
+          },
+          {
+           "code": "USHII.8.3",
+           "text": "Students will use evidence from recent events and historical precedents to make a case for the most significant opportunities the country will have in the future."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "native-innovations-and-adaptations",
+     "title": "Native Innovations and Adaptations",
+     "topics": [
+      {
+       "id": "native-innovations-and-adaptations",
+       "title": "Native Innovations and Adaptations",
+       "subtopics": [
+        {
+         "id": "native-innovations-and-adaptations",
+         "title": "Native Innovations and Adaptations",
+         "outcomes": [
+          {
+           "code": "US.1.1",
+           "text": "Students will make evidence-based inferences about the complex ancient cultures in Utah after studying artifacts from the prehistoric era. (history)"
+          },
+          {
+           "code": "US.1.2",
+           "text": "Students will analyze and explain the interactions and interconnections between the physical characteristics of Utah and American Indian cultures using a range of texts, oral histories, and geographic inquiry. (geography)"
+          },
+          {
+           "code": "US.1.3",
+           "text": "Students will explain the economic activity of a prehistoric and/or historic American Indian tribal community by using basic economic concepts, including supply, demand, trade, and scarcity. (economics)"
+          },
+          {
+           "code": "US.1.4",
+           "text": "Students will analyze primary and secondary sources to explain causes and effects of European-American exploration, including the response and involvement of Utah's American Indian tribes. (history)"
+          },
+          {
+           "code": "US.1.5",
+           "text": "Students will describe the cultural change and continuity of at least one of Utah's current sovereign nations as it has responded to changing political, social, and economic forces. Students will use a variety of resources that may include written primary and secondary sources, oral histories, photographs, artifacts, and art. (economics, civics)"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "utah-s-diverse-peoples",
+     "title": "Utah's Diverse Peoples",
+     "topics": [
+      {
+       "id": "utah-s-diverse-peoples",
+       "title": "Utah's Diverse Peoples",
+       "subtopics": [
+        {
+         "id": "utah-s-diverse-peoples-1-of-2",
+         "title": "Utah's Diverse Peoples (1 of 2)",
+         "outcomes": [
+          {
+           "code": "US.2.1",
+           "text": "Students will explain the causes and lasting effects of the Mormon migration to Utah. (history)"
+          },
+          {
+           "code": "US.2.2",
+           "text": "Students will compare the causes and lasting effects of various non-Mormon groups' migrations to Utah. (history)"
+          },
+          {
+           "code": "US.2.3",
+           "text": "Students will use geographic inquiry to explain patterns in the settlement of Utah and the subsequent trends in urbanization, referring to a range of communities as case studies. (geography)"
+          },
+          {
+           "code": "US.2.4",
+           "text": "Students will research multiple perspectives to explain one or more of the political, social, cultural, religious conflicts of this period, including the U.S. Civil War and more localized conflicts such as the Utah War, the Mountain Meadows Massacre, the Bear River Massacre, the Black Hawk War, or other Federal-Mormon conflicts. (history)"
+          }
+         ]
+        },
+        {
+         "id": "utah-s-diverse-peoples-2-of-2",
+         "title": "Utah's Diverse Peoples (2 of 2)",
+         "outcomes": [
+          {
+           "code": "US.2.5",
+           "text": "Students will construct an evidence-based argument to explain how the development of transportation and communication networks across the state changed Utah's economy and human geography. (economics, geography)"
+          },
+          {
+           "code": "US.2.6",
+           "text": "Students will explain how agriculture, railroads, mining, and industrialization created new communities and new economies throughout the state. (economics, geography)"
+          },
+          {
+           "code": "US.2.7",
+           "text": "Students will identify the political challenges that delayed Utah's statehood and explain how these challenges were overcome. (civics)"
+          },
+          {
+           "code": "US.2.8",
+           "text": "Students will explain how their own connection to Utah is a reflection of the complex history of the state. (history)"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "utah-in-the-union",
+     "title": "Utah in the Union",
+     "topics": [
+      {
+       "id": "utah-in-the-union",
+       "title": "Utah in the Union",
+       "subtopics": [
+        {
+         "id": "utah-in-the-union",
+         "title": "Utah in the Union",
+         "outcomes": [
+          {
+           "code": "US.3.1",
+           "text": "Students will identify the civic virtues and principles codified by the Utah Constitution. (civics)"
+          },
+          {
+           "code": "US.3.2",
+           "text": "Students will use primary sources and/or oral histories to analyze the impact of a national/global event such as World War I, the Spanish flu epidemic, the Great Depression, World War II, and Japanese American internment on an individual or community in Utah. (history)"
+          },
+          {
+           "code": "US.3.3",
+           "text": "Students will describe the effects of events, movements, and innovations on Utah's economic development, such as the organized labor movement, farming and industrial improvements, the World Wars, and the Great Depression. (economics)"
+          },
+          {
+           "code": "US.3.4",
+           "text": "Students will identify the causes and effects of the Progressive movement using examples from community or state history, such as the organized labor movement, tax reform, the Scofield mine disaster, and education and child labor reforms. (civics)"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "utah-in-the-world",
+     "title": "Utah in the World",
+     "topics": [
+      {
+       "id": "utah-in-the-world",
+       "title": "Utah in the World",
+       "subtopics": [
+        {
+         "id": "utah-in-the-world",
+         "title": "Utah in the World",
+         "outcomes": [
+          {
+           "code": "US.4.1",
+           "text": "Students will evaluate the impact of the Cold War on Utah, such as the uranium boom, nuclear testing, nuclear waste storage and disposal, and the MX missile controversy. (history)"
+          },
+          {
+           "code": "US.4.2",
+           "text": "Students will make an evidence-based argument regarding the appropriate roles of local, state, and federal governments in resolving a current and/or historical issue. (civics)"
+          },
+          {
+           "code": "US.4.3",
+           "text": "Students will describe the economic ties between Utah communities, the nation, and the world. (economic)"
+          },
+          {
+           "code": "US.4.4",
+           "text": "Students will use data and other evidence related to a cultural, ethnic, or religious group in Utah to interpret the group's historic/current conditions and experiences. (history, geography)"
+          },
+          {
+           "code": "US.4.5",
+           "text": "Students will describe the historic and present management of natural resources and make recommendations for natural resource management in the future. (geography)"
+          },
+          {
+           "code": "US.4.6",
+           "text": "Students will evaluate the impact of tourism on Utah's economy and geography, such as the development of tourism industries, state and national parks, and events including the 2002 Olympics. (economics)"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "looking-towards-utah-s-future",
+     "title": "Looking Towards Utah's Future",
+     "topics": [
+      {
+       "id": "looking-towards-utah-s-future",
+       "title": "Looking Towards Utah's Future",
+       "subtopics": [
+        {
+         "id": "looking-towards-utah-s-future",
+         "title": "Looking Towards Utah's Future",
+         "outcomes": [
+          {
+           "code": "US.5.1",
+           "text": "Students will select a recent event they think will be worthy of remembering, recording, or interpreting, and make an argument for its potential historical significance. (history)"
+          },
+          {
+           "code": "US.5.2",
+           "text": "Students will use geographic tools and resources to investigate a current issue, challenge, or problem facing Utah or their community, and propose a viable solution. (geography)"
+          },
+          {
+           "code": "US.5.3",
+           "text": "Students will use data regarding the key components of Utah's economy to make recommendations for sustainable development. (economics)"
+          },
+          {
+           "code": "US.5.4",
+           "text": "Students will use recent population growth and other demographic trends to make predictions about Utah's growth, and create and defend a public policy in response to those trends. (economics)"
+          },
+          {
+           "code": "US.5.5",
+           "text": "Students will research issues of civic importance in which city, county, tribal, or state governments have a role. Students will use their research to develop and write a policy proposal to the appropriate governmental entity, such as a board, commission, council, legislator, or agency. (civics)"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "humans-and-their-physical-environment",
+     "title": "Humans and their Physical Environment",
+     "topics": [
+      {
+       "id": "humans-and-their-physical-environment",
+       "title": "Humans and their Physical Environment",
+       "subtopics": [
+        {
+         "id": "humans-and-their-physical-environment",
+         "title": "Humans and their Physical Environment",
+         "outcomes": [
+          {
+           "code": "WG.1.1",
+           "text": "Students will describe the significant forces that influence the physical environment, such as plate tectonics, erosion, climate, and natural disasters, and explain how the effects of physical processes vary across regions of the world."
+          },
+          {
+           "code": "WG.1.2",
+           "text": "Students will identify patterns evident in the geographic distribution of ecosystems and biomes and explain how humans interact with them."
+          },
+          {
+           "code": "WG.1.3",
+           "text": "Students will cite evidence of how the distribution of natural resources affects physical and human systems."
+          },
+          {
+           "code": "WG.1.4",
+           "text": "Students will use geographic reasoning to propose actions that mitigate or solve issues, such as natural disasters, pollution, climate change, and habitat loss."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "population-distribution-and-migration",
+     "title": "Population Distribution and Migration",
+     "topics": [
+      {
+       "id": "population-distribution-and-migration",
+       "title": "Population Distribution and Migration",
+       "subtopics": [
+        {
+         "id": "population-distribution-and-migration",
+         "title": "Population Distribution and Migration",
+         "outcomes": [
+          {
+           "code": "WG.2.1",
+           "text": "Students will evaluate the impact of population distribution patterns at various scales by analyzing and comparing demographic characteristics such as gender, age, ethnicity, and population density using maps, population pyramids, and other geographic data."
+          },
+          {
+           "code": "WG.2.2",
+           "text": "Students will explain push and pull factors causing voluntary and involuntary migration and the consequences created by the movement of people."
+          },
+          {
+           "code": "WG.2.3",
+           "text": "Students will investigate the effects of significant patterns of human movement that shape urban and rural environments over time, such as mass urbanization, immigration, and the movement of refugees."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "culture",
+     "title": "Culture",
+     "topics": [
+      {
+       "id": "culture",
+       "title": "Culture",
+       "subtopics": [
+        {
+         "id": "culture-1-of-2",
+         "title": "Culture (1 of 2)",
+         "outcomes": [
+          {
+           "code": "WG.3.1",
+           "text": "Students will identify and describe the essential defining characteristics and functions of culture."
+          },
+          {
+           "code": "WG.3.2",
+           "text": "Students will explain how the physical environment influences and is influenced by culture."
+          },
+          {
+           "code": "WG.3.3",
+           "text": "Students will identify how culture influences sense of place, point of view and perspective, and the relative value placed upon people and places."
+          },
+          {
+           "code": "WG.3.4",
+           "text": "Students will identify the causes, methods, and effects for the diffusion and distribution of cultural characteristics among different places and regions."
+          }
+         ]
+        },
+        {
+         "id": "culture-2-of-2",
+         "title": "Culture (2 of 2)",
+         "outcomes": [
+          {
+           "code": "WG.3.5",
+           "text": "Students will explain how the basic tenets of world religions affect the daily lives of people."
+          },
+          {
+           "code": "WG.3.6",
+           "text": "Students will cite examples of how globalization creates challenges and opportunities for different cultures."
+          },
+          {
+           "code": "WG.3.7",
+           "text": "Students will demonstrate an understanding of their own culture's connection to geography."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "political-systems",
+     "title": "Political Systems",
+     "topics": [
+      {
+       "id": "political-systems",
+       "title": "Political Systems",
+       "subtopics": [
+        {
+         "id": "political-systems",
+         "title": "Political Systems",
+         "outcomes": [
+          {
+           "code": "WG.4.1",
+           "text": "Students will explain why and how people organize into a range of political structures at different scales."
+          },
+          {
+           "code": "WG.4.2",
+           "text": "Students will describe and explain the role physical and human characteristics play in establishing political boundaries."
+          },
+          {
+           "code": "WG.4.3",
+           "text": "Students will explain how cooperation and conflict have many causes, such as differing ideas regarding boundaries, resource control, and land use, as well as ethnic, tribal, and national identities."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "economic-development",
+     "title": "Economic Development",
+     "topics": [
+      {
+       "id": "economic-development",
+       "title": "Economic Development",
+       "subtopics": [
+        {
+         "id": "economic-development",
+         "title": "Economic Development",
+         "outcomes": [
+          {
+           "code": "WG.5.1",
+           "text": "Students will explain the essential attributes of a developed economy and the patterns of development that differentiate less-developed from more-developed places."
+          },
+          {
+           "code": "WG.5.2",
+           "text": "Students will describe and compare the function and distribution of economic activities in primary, secondary, and tertiary sectors."
+          },
+          {
+           "code": "WG.5.3",
+           "text": "Students will explain key economic concepts and their implications for the production, exchange, distribution, and consumption of goods and services."
+          },
+          {
+           "code": "WG.5.4",
+           "text": "Students will cite examples of various levels of economic interdependence between nations and peoples."
+          },
+          {
+           "code": "WG.5.5",
+           "text": "Students will describe the costs, benefits, and sustainability of development in terms of poverty rates, standards of living, the impact on indigenous people, environmental changes, gender equality, and access to education."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "prehistory-to-the-neolithic-revolution",
+     "title": "Prehistory to the Neolithic Revolution",
+     "topics": [
+      {
+       "id": "prehistory-to-the-neolithic-revolution",
+       "title": "Prehistory to the Neolithic Revolution",
+       "subtopics": [
+        {
+         "id": "prehistory-to-the-neolithic-revolution",
+         "title": "Prehistory to the Neolithic Revolution",
+         "outcomes": [
+          {
+           "code": "WH.1.1",
+           "text": "Students will analyze the differences and interactions between sedentary farmers, pastoralists, and hunter-gatherers."
+          },
+          {
+           "code": "WH.1.2",
+           "text": "Students will use geographic concepts to explain the factors that led to the development of civilization, and compare and contrast the environmental impact of civilizations, pastoralists, and hunter-gatherers."
+          },
+          {
+           "code": "WH.1.3",
+           "text": "Students will use artifacts and early written records to make inferences about the significance of technological development and diffusion, including writing, in Mesopotamia, Egypt, the Indus River civilization, and the Huang He (Yellow) River civilization."
+          },
+          {
+           "code": "WH.1.4",
+           "text": "Students will compare life before and after the Neolithic Revolution and cite the most significant effects of that revolution on the development of civilization(s)."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "the-rise-of-classical-societies",
+     "title": "The Rise of Classical Societies",
+     "topics": [
+      {
+       "id": "the-rise-of-classical-societies",
+       "title": "The Rise of Classical Societies",
+       "subtopics": [
+        {
+         "id": "the-rise-of-classical-societies",
+         "title": "The Rise of Classical Societies",
+         "outcomes": [
+          {
+           "code": "WH.2.1",
+           "text": "Students will identify and explain patterns in the development and diffusion and syncretism of world religions and philosophies, including Judaism, Hinduism, Greek philosophy, Confucianism, Buddhism, Christianity, and Islam."
+          },
+          {
+           "code": "WH.2.2",
+           "text": "Students will use primary sources to identify patterns in the stratification of social and gender structures across classical civilizations."
+          },
+          {
+           "code": "WH.2.3",
+           "text": "Students will make evidence-based inferences about the cultural values of classical civilizations, using artistic expressions of various genres as primary sources."
+          },
+          {
+           "code": "WH.2.4",
+           "text": "Students will explain the impact of early trans-regional trade on the diffusion of religion, ideas, technology, and other aspects of culture."
+          },
+          {
+           "code": "WH.2.5",
+           "text": "Students will construct an argument for the significant and enduring political, economic, technological, social, or other cultural contributions of classical civilizations."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "an-age-of-expanding-connections",
+     "title": "An Age of Expanding Connections",
+     "topics": [
+      {
+       "id": "an-age-of-expanding-connections",
+       "title": "An Age of Expanding Connections",
+       "subtopics": [
+        {
+         "id": "an-age-of-expanding-connections",
+         "title": "An Age of Expanding Connections",
+         "outcomes": [
+          {
+           "code": "WH.3.1",
+           "text": "Students will use patterns in trade and settlement to explain how geographic features such as the Indian Ocean, the Saharan Desert, the Atlantic and Pacific Oceans, the Strait of Malacca, and the Mediterranean Sea supported or impeded trade."
+          },
+          {
+           "code": "WH.3.2",
+           "text": "Students will evaluate historians' interpretations regarding the patterns in the development of civilizations in the Americas compared to other places in the world."
+          },
+          {
+           "code": "WH.3.3",
+           "text": "Students will evaluate the long-term effects of the Mongol conquest, such as the diffusion of ideas, technologies, and diseases."
+          },
+          {
+           "code": "WH.3.4",
+           "text": "Students will explain the social, political, religious, technological, and economic changes in medieval Europe that created a context for later European colonization."
+          },
+          {
+           "code": "WH.3.5",
+           "text": "Students will identify patterns in the diffusion of technology, writing, religion, political systems, and other elements of civilization, using case studies such as the Chinese impact on Japan, the Arab impact on Mali, the Byzantine impact on Russia, the Roman impact on Europe, and the Olmec impact on later American civilizations."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "global-interactions",
+     "title": "Global Interactions",
+     "topics": [
+      {
+       "id": "global-interactions",
+       "title": "Global Interactions",
+       "subtopics": [
+        {
+         "id": "global-interactions",
+         "title": "Global Interactions",
+         "outcomes": [
+          {
+           "code": "WH.4.1",
+           "text": "Students will compare the development of Europe's maritime empires with land-based empires such as those of the Ottoman Turks, Chinese, and Russians."
+          },
+          {
+           "code": "WH.4.2",
+           "text": "Students will develop an interpretation of whether the ideas embodied in movements such as the Renaissance, the Reformation, scientific revolution, and Enlightenment led to a changing balance of world power."
+          },
+          {
+           "code": "WH.4.3",
+           "text": "Students will describe the complex cultures of indigenous societies, such as those in Polynesia, Sub-Saharan Africa, Australia, and the Americas."
+          },
+          {
+           "code": "WH.4.4",
+           "text": "Students will analyze the long-term effects of the Columbian Exchange."
+          },
+          {
+           "code": "WH.4.5",
+           "text": "Students will compile and corroborate primary sources as evidence to explain the impact of global exchange and colonization."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "revolutions-industrialization-and-empires",
+     "title": "Revolutions, Industrialization, and Empires",
+     "topics": [
+      {
+       "id": "revolutions-industrialization-and-empires",
+       "title": "Revolutions, Industrialization, and Empires",
+       "subtopics": [
+        {
+         "id": "revolutions-industrialization-and-empires",
+         "title": "Revolutions, Industrialization, and Empires",
+         "outcomes": [
+          {
+           "code": "WH.5.1",
+           "text": "Students will identify the cause-and-effect relationships between absolutism, nationalism, and the political and social revolutions of the 18th and 19th centuries."
+          },
+          {
+           "code": "WH.5.2",
+           "text": "Students will analyze the underlying and immediate causes and the immediate and long-term effects of the Industrial Revolution on nations that industrialized versus those that did not."
+          },
+          {
+           "code": "WH.5.3",
+           "text": "Students will use a variety of data to identify push and pull factors affecting migration during the Industrial Revolution."
+          },
+          {
+           "code": "WH.5.4",
+           "text": "Students will use primary sources and evidence to evaluate the influence of leading intellectual movements such as realism, romanticism, capitalism, nationalism, and Marxism."
+          },
+          {
+           "code": "WH.5.5",
+           "text": "Students will compare and contrast the long-term effects of imperialism on a global scale."
+          },
+          {
+           "code": "WH.5.6",
+           "text": "Students will identify the key ideas and characteristics of current political, economic, and intellectual revolutions such as a contemporary revolution, a social movement, or an independence movement."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "global-conflicts",
+     "title": "Global Conflicts",
+     "topics": [
+      {
+       "id": "global-conflicts",
+       "title": "Global Conflicts",
+       "subtopics": [
+        {
+         "id": "global-conflicts",
+         "title": "Global Conflicts",
+         "outcomes": [
+          {
+           "code": "WH.6.1",
+           "text": "Students will identify cause and effect relationships between World War I, the global Great Depression, and World War II."
+          },
+          {
+           "code": "WH.6.2",
+           "text": "Students will identify and compare patterns and tactics of othering and demonization that are evident in selected genocides in the 20th century."
+          },
+          {
+           "code": "WH.6.3",
+           "text": "Students will explain the political ideas at the heart of decolonization, independence movements, and the formation of new political systems, such as liberation theology, civil disobedience, autonomy, separatist movements, and pan-Africanism."
+          },
+          {
+           "code": "WH.6.4",
+           "text": "Students will use primary and other sources to contextualize and explain the intellectual and artistic responses to global conflict and economic instability, such as conservatism, cubism, fascism, liberalism, self-determination, socialism, surrealism, and new forms of music."
+          },
+          {
+           "code": "WH.6.5",
+           "text": "Students will use case studies to identify the reach and implications of the Cold War for daily life, such as the Vietnam War, the Great Leap Forward, the Berlin Wall, East and West Germany, NATO, the Warsaw Pact, proxy wars, music, culture, and the Olympics."
+          },
+          {
+           "code": "WH.6.6",
+           "text": "Students will make a case for the most significant social, political, and economic consequences of 20th century global conflicts and crises, such as human migration, genocide, poverty, epidemics, the creation of social welfare systems, the rise of dictators, the nuclear arms race, and human rights violations."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "the-contemporary-world",
+     "title": "The Contemporary World",
+     "topics": [
+      {
+       "id": "the-contemporary-world",
+       "title": "The Contemporary World",
+       "subtopics": [
+        {
+         "id": "the-contemporary-world",
+         "title": "The Contemporary World",
+         "outcomes": [
+          {
+           "code": "WH.7.1",
+           "text": "Students will evaluate the role of global organizations, such as non-governmental organizations (NGOs), multi-national corporations, military alliances, and other international civic and political institutions within the increasingly global culture of the world."
+          },
+          {
+           "code": "WH.7.2",
+           "text": "Students will use a variety of evidence, including quantitative data, to evaluate the social and environmental impacts of modern demographic trends, particularly population changes, urbanization, and migration."
+          },
+          {
+           "code": "WH.7.3",
+           "text": "Students will identify international human rights issues, seek and evaluate solutions, and share their ideas with appropriate public and/or private stakeholders."
+          },
+          {
+           "code": "WH.7.4",
+           "text": "Students will identify a pressing global problem and select the most promising political, technological, medical, or scientific advances being created to address those problems."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "build": {
+  "builtAt": "2026-10-14T16:20:49.794Z",
+  "model": "none",
+  "usd": 0,
+  "expectedCodes": 341,
+  "coverage": 1,
+  "missingCodes": [],
+  "counts": {
+   "grades": 8,
+   "units": 44,
+   "topics": 68,
+   "subtopics": 78,
+   "outcomes": 341
+  },
+  "warnings": []
+ }
+}

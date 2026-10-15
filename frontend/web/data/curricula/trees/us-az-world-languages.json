@@ -1,0 +1,638 @@
+{
+ "id": "us-az-world-languages",
+ "region": "US",
+ "framework": "Arizona state academic standards: World Languages",
+ "board": null,
+ "qualification": "K-12",
+ "subject": "World Languages",
+ "syllabusCode": null,
+ "gradeSystem": "grade",
+ "source": {
+  "urls": [
+   "https://api.commonstandardsproject.com/api/v1/jurisdictions/0B41FFF6B5114EB0B8A89CE0E70E22D8",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/0B41FFF6B5114EB0B8A89CE0E70E22D8_D2662817_grades-01-02-03-04-05-06-07-08-09-10-11-12-k"
+  ],
+  "publisher": "Arizona state education agency (machine-readable via Common Standards Project / ASN)",
+  "licence": "CC BY 3.0 US, Desire2Learn Incorporated",
+  "firstExam": "2015"
+ },
+ "grades": [
+  {
+   "grade": "K-12",
+   "units": [
+    {
+     "id": "interpersonal-communication-interact-and-negotia",
+     "title": "Interpersonal Communication: Interact and negotiate meaning in spoken, written, or signed conversations to share information, reactions, feelings, and opinions",
+     "topics": [
+      {
+       "id": "interpersonal-communication-interact-and-negotia",
+       "title": "Interpersonal Communication: Interact and negotiate meaning in spoken, written, or signed conversations to share information, reactions, feelings, and opinions",
+       "subtopics": [
+        {
+         "id": "interpersonal-communication-interact-and-negotia",
+         "title": "Interpersonal Communication: Interact and negotiate meaning in spoken, written, or signed conversations to share information, reactions, feelings, and opinions (1 of 5)",
+         "outcomes": [
+          {
+           "code": "IC.NL.1",
+           "text": "Communicate on some very familiar topics using single words and phrases that have been practiced and learned."
+          },
+          {
+           "code": "IC.NM.1",
+           "text": "Communicate on very familiar topics using a variety of words and phrases that have been practiced and learned."
+          },
+          {
+           "code": "IC.NH.1",
+           "text": "Communicate and exchange information about familiar topics using phrases and simple sentences."
+          },
+          {
+           "code": "IC.NH.2",
+           "text": "Carry out short social interactions in everyday situations by asking and answering simple questions."
+          },
+          {
+           "code": "IC.IL.1",
+           "text": "Participate in conversations on familiar topics by using simple sentences."
+          }
+         ]
+        },
+        {
+         "id": "interpersonal-communication-interact-and-negotia-2",
+         "title": "Interpersonal Communication: Interact and negotiate meaning in spoken, written, or signed conversations to share information, reactions, feelings, and opinions (2 of 5)",
+         "outcomes": [
+          {
+           "code": "IC.IL.2",
+           "text": "Carry out short social interactions in everyday situations by asking and answering simple questions."
+          },
+          {
+           "code": "IC.IM.1",
+           "text": "Participate in conversations on familiar topics by using a series of sentences and a few connecting words."
+          },
+          {
+           "code": "IC.IM.2",
+           "text": "Manage short social interactions in everyday situations by asking and answering a variety of questions."
+          },
+          {
+           "code": "IC.IM.3",
+           "text": "Communicate about events and experiences of daily activities and personal life."
+          },
+          {
+           "code": "IC.IH.1",
+           "text": "Participate with ease and confidence in conversations on familiar topics by using connected sentences."
+          }
+         ]
+        },
+        {
+         "id": "interpersonal-communication-interact-and-negotia-3",
+         "title": "Interpersonal Communication: Interact and negotiate meaning in spoken, written, or signed conversations to share information, reactions, feelings, and opinions (3 of 5)",
+         "outcomes": [
+          {
+           "code": "IC.IH.2",
+           "text": "Manage social interactions in everyday situations, even when there is an unexpected complication."
+          },
+          {
+           "code": "IC.IH.3",
+           "text": "Communicate about events and experiences with some detail in various time frames."
+          },
+          {
+           "code": "IC.AL.1",
+           "text": "Engage in conversations about familiar and some academic topics that go beyond everyday life using multiple simple sentences."
+          },
+          {
+           "code": "IC.AL.2",
+           "text": "Manage familiar situations with an unexpected complication."
+          },
+          {
+           "code": "IC.AL.3",
+           "text": "Communicate in an organized way and with some descriptive detail about events and experiences in various time frames."
+          }
+         ]
+        },
+        {
+         "id": "interpersonal-communication-interact-and-negotia-4",
+         "title": "Interpersonal Communication: Interact and negotiate meaning in spoken, written, or signed conversations to share information, reactions, feelings, and opinions (4 of 5)",
+         "outcomes": [
+          {
+           "code": "IC.AM.1",
+           "text": "Engage fully in conversations and discussions not only on familiar topics, but also on some concrete social, academic, and professional topics using connected sentences."
+          },
+          {
+           "code": "IC.AM.2",
+           "text": "Confidently communicate in routine situations with an unexpected complication."
+          },
+          {
+           "code": "IC.AM.3",
+           "text": "Communicate using descriptive detail about familiar and some unfamiliar events and experiences in various time frames."
+          },
+          {
+           "code": "IC.AM.4",
+           "text": "Express one's point of view in conversations and discussions on some complex issues."
+          },
+          {
+           "code": "IC.AH.1",
+           "text": "Engage fully and spontaneously in conversations and discussions on complex issues and concrete topics using connected sentences."
+          }
+         ]
+        },
+        {
+         "id": "interpersonal-communication-interact-and-negotia-5",
+         "title": "Interpersonal Communication: Interact and negotiate meaning in spoken, written, or signed conversations to share information, reactions, feelings, and opinions (5 of 5)",
+         "outcomes": [
+          {
+           "code": "IC.AH.2",
+           "text": "Confidently communicate beyond routine situations with an unexpected complication."
+          },
+          {
+           "code": "IC.AH.3",
+           "text": "Communicate using descriptive detail about events and experiences in multiple time frames."
+          },
+          {
+           "code": "IC.AH.4",
+           "text": "Express and support opinion and develop hypotheses on topics of particular interest or personal expertise."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "interpretive-listening-understand-interpret-and-",
+     "title": "Interpretive Listening: Understand, interpret, and analyze what is heard (communicated in ASL) on a variety of topics",
+     "topics": [
+      {
+       "id": "interpretive-listening-understand-interpret-and-",
+       "title": "Interpretive Listening: Understand, interpret, and analyze what is heard (communicated in ASL) on a variety of topics",
+       "subtopics": [
+        {
+         "id": "interpretive-listening-understand-interpret-and-",
+         "title": "Interpretive Listening: Understand, interpret, and analyze what is heard (communicated in ASL) on a variety of topics (1 of 4)",
+         "outcomes": [
+          {
+           "code": "IL.NL.1",
+           "text": "Recognize a few familiar words or phrases."
+          },
+          {
+           "code": "IL.NM.1",
+           "text": "Recognize some familiar words and phrases."
+          },
+          {
+           "code": "IL.NH.1",
+           "text": "Understand words, phrases, and simple sentences related to everyday life; sometimes understand the main topic of what is heard."
+          },
+          {
+           "code": "IL.IL.1",
+           "text": "Understand the main idea in short, simple messages, presentations, and overheard conversations on familiar topics."
+          }
+         ]
+        },
+        {
+         "id": "interpretive-listening-understand-interpret-and--2",
+         "title": "Interpretive Listening: Understand, interpret, and analyze what is heard (communicated in ASL) on a variety of topics (2 of 4)",
+         "outcomes": [
+          {
+           "code": "IL.IM.1",
+           "text": "Understand the main idea in messages, presentations, and overheard conversations on a variety of topics related to everyday life, personal interests, and studies."
+          },
+          {
+           "code": "IL.IH.1",
+           "text": "Understand the main idea and a few details in messages, presentations, and overheard conversations (even when something unexpected is expressed) on a variety of topics related to everyday life, personal interests, and studies."
+          },
+          {
+           "code": "IL.IH.2",
+           "text": "Understand a few details of conversations, even when something unexpected is expressed; sometimes follow what is heard about events and experiences in various time frames."
+          },
+          {
+           "code": "IL.AL.1",
+           "text": "Understand the main idea and some supporting details in organized speech on a variety of topics of personal and general interest."
+          }
+         ]
+        },
+        {
+         "id": "interpretive-listening-understand-interpret-and--3",
+         "title": "Interpretive Listening: Understand, interpret, and analyze what is heard (communicated in ASL) on a variety of topics (3 of 4)",
+         "outcomes": [
+          {
+           "code": "IL.AL.2",
+           "text": "Follow stories and descriptions of various lengths and time frames."
+          },
+          {
+           "code": "IL.AL.3",
+           "text": "Understand information presented in a variety of genres on familiar topics, even when something unexpected is expressed."
+          },
+          {
+           "code": "IL.AM.1",
+           "text": "Understand the main idea and most supporting details on a variety of topics of personal and general interest as well as some topics of professional interest."
+          },
+          {
+           "code": "IL.AM.2",
+           "text": "Follow stories and descriptions of some length with supporting details and in various time frames."
+          }
+         ]
+        },
+        {
+         "id": "interpretive-listening-understand-interpret-and--4",
+         "title": "Interpretive Listening: Understand, interpret, and analyze what is heard (communicated in ASL) on a variety of topics (4 of 4)",
+         "outcomes": [
+          {
+           "code": "IL.AM.3",
+           "text": "Understand information presented in most genres even when not familiar with the topic."
+          },
+          {
+           "code": "IL.AH.1",
+           "text": "Follow narrative, informational, and descriptive speech."
+          },
+          {
+           "code": "IL.AH.2",
+           "text": "Understand discussions on most topics that deal with special interests, unfamiliar situations, and abstract concepts."
+          },
+          {
+           "code": "IL.AH.3",
+           "text": "Sometimes follow extended arguments and different points of view."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "interpretive-reading-understand-interpret-and-an",
+     "title": "Interpretive Reading: Understand, interpret, and analyze what is read or viewed on a variety of topics",
+     "topics": [
+      {
+       "id": "interpretive-reading-understand-interpret-and-an",
+       "title": "Interpretive Reading: Understand, interpret, and analyze what is read or viewed on a variety of topics",
+       "subtopics": [
+        {
+         "id": "interpretive-reading-understand-interpret-and-an",
+         "title": "Interpretive Reading: Understand, interpret, and analyze what is read or viewed on a variety of topics (1 of 3)",
+         "outcomes": [
+          {
+           "code": "IR.NL.1",
+           "text": "Recognize a few letters or characters and learned words and phrases."
+          },
+          {
+           "code": "IR.NM.1",
+           "text": "Recognize and understand some characters, words, and phrases."
+          },
+          {
+           "code": "IR.NH.1",
+           "text": "Understand familiar words, phrases, sentences, and sometimes the main idea within short and simple texts related to everyday life."
+          },
+          {
+           "code": "IR.IL.1",
+           "text": "Understand the main idea of short and simple texts when the topic is familiar."
+          },
+          {
+           "code": "IR.IM.1",
+           "text": "Understand the main idea of texts related to everyday life, personal interests, and studies."
+          }
+         ]
+        },
+        {
+         "id": "interpretive-reading-understand-interpret-and-an-2",
+         "title": "Interpretive Reading: Understand, interpret, and analyze what is read or viewed on a variety of topics (2 of 3)",
+         "outcomes": [
+          {
+           "code": "IR.IH.1",
+           "text": "Understand the main idea of texts related to everyday life, personal interests, and studies."
+          },
+          {
+           "code": "IR.IH.2",
+           "text": "Sometimes follow stories and descriptions about events and experiences in various time frames."
+          },
+          {
+           "code": "IR.AL.1",
+           "text": "Understand the main idea and some supporting details on a variety of topics of personal and general interests."
+          },
+          {
+           "code": "IR.AL.2",
+           "text": "Follow stories and descriptions of various lengths, time frames, and genres."
+          },
+          {
+           "code": "IR.AM.1",
+           "text": "Understand the main idea and relevant supporting details on a variety of topics of personal and general interests as well as some professional topics."
+          }
+         ]
+        },
+        {
+         "id": "interpretive-reading-understand-interpret-and-an-3",
+         "title": "Interpretive Reading: Understand, interpret, and analyze what is read or viewed on a variety of topics (3 of 3)",
+         "outcomes": [
+          {
+           "code": "IR.AM.2",
+           "text": "Follow stories and descriptions of considerable length, various time frames, and genres, even with an unfamiliar topic."
+          },
+          {
+           "code": "IR.AH.1",
+           "text": "Understand what was read on most topics that deal with special interests, unfamiliar situations, and abstract concepts"
+          },
+          {
+           "code": "IR.AH.2",
+           "text": "Easily follow narrative, informational, and descriptive texts of various lengths and in various time frames and genres."
+          },
+          {
+           "code": "IR.AH.3",
+           "text": "Sometimes follow extended arguments and different points of view."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "presentational-speaking-present-information-conc",
+     "title": "Presentational Speaking: Present information, concepts, and ideas to inform, explain, persuade, and narrate on a variety of topics using appropriate media and adapting to various audiences of listeners or viewers",
+     "topics": [
+      {
+       "id": "presentational-speaking-present-information-conc",
+       "title": "Presentational Speaking: Present information, concepts, and ideas to inform, explain, persuade, and narrate on a variety of topics using appropriate media and adapting to various audiences of listeners or viewers",
+       "subtopics": [
+        {
+         "id": "presentational-speaking-present-information-conc",
+         "title": "Presentational Speaking: Present information, concepts, and ideas to inform, explain, persuade, and narrate on a variety of topics using appropriate media and adapting to various audiences of listeners or viewers (1 of 2)",
+         "outcomes": [
+          {
+           "code": "PS.NL.1",
+           "text": "Present information about self and other familiar topics using single words or practiced phrases."
+          },
+          {
+           "code": "PS.NM.1",
+           "text": "Present information about self and other familiar topics using a variety of words, phrases, and practiced expressions."
+          },
+          {
+           "code": "PS.NH.1",
+           "text": "Present basic information on familiar topics using learned phrases and simple sentences."
+          },
+          {
+           "code": "PS.IL.1",
+           "text": "Present information on familiar topics by using a series of simple sentences."
+          },
+          {
+           "code": "PS.IM.1",
+           "text": "Make simple presentations on a wide variety of familiar topics using connected sentences."
+          }
+         ]
+        },
+        {
+         "id": "presentational-speaking-present-information-conc-2",
+         "title": "Presentational Speaking: Present information, concepts, and ideas to inform, explain, persuade, and narrate on a variety of topics using appropriate media and adapting to various audiences of listeners or viewers (2 of 2)",
+         "outcomes": [
+          {
+           "code": "PS.IH.1",
+           "text": "Make general presentations on events and experiences with some control of various time frames."
+          },
+          {
+           "code": "PS.AL.1",
+           "text": "Deliver detailed presentations on events, interests, experiences, and academic topics in various time frames."
+          },
+          {
+           "code": "PS.AM.1",
+           "text": "Deliver detailed presentations on a variety of events, experiences, academic topics, and issues in various time frames."
+          },
+          {
+           "code": "PS.AH.1",
+           "text": "Deliver detailed presentations with accuracy, clarity, and precision on a variety of events, experiences, and academic and professional topics in various time frames."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "presentational-writing-present-information-conce",
+     "title": "Presentational Writing: Present information, concepts, and ideas to inform, explain, persuade, and narrate on a variety of topics using appropriate media and adapting to various audiences of readers or viewers",
+     "topics": [
+      {
+       "id": "presentational-writing-present-information-conce",
+       "title": "Presentational Writing: Present information, concepts, and ideas to inform, explain, persuade, and narrate on a variety of topics using appropriate media and adapting to various audiences of readers or viewers",
+       "subtopics": [
+        {
+         "id": "presentational-writing-present-information-conce",
+         "title": "Presentational Writing: Present information, concepts, and ideas to inform, explain, persuade, and narrate on a variety of topics using appropriate media and adapting to various audiences of readers or viewers (1 of 2)",
+         "outcomes": [
+          {
+           "code": "PW.NL.1",
+           "text": "Copy some familiar words, characters, or phrases."
+          },
+          {
+           "code": "PW.NM.1",
+           "text": "Write lists and practiced phrases on familiar topics."
+          },
+          {
+           "code": "PW.NH.1",
+           "text": "Write short messages and notes using phrases and simple sentences on topics related to everyday life."
+          },
+          {
+           "code": "PW.IL.1",
+           "text": "Write and share short messages about familiar topics using a series of simple sentences."
+          },
+          {
+           "code": "PW.IM.1",
+           "text": "Write and share material about a variety of familiar topics using connected sentences."
+          }
+         ]
+        },
+        {
+         "id": "presentational-writing-present-information-conce-2",
+         "title": "Presentational Writing: Present information, concepts, and ideas to inform, explain, persuade, and narrate on a variety of topics using appropriate media and adapting to various audiences of readers or viewers (2 of 2)",
+         "outcomes": [
+          {
+           "code": "PW.IH.1",
+           "text": "Write and share simple paragraphs about events, experiences, and academic topics with some control of various time frames."
+          },
+          {
+           "code": "PW.AL.1",
+           "text": "Write and present organized paragraphs appropriate to an audience on a variety of topics, events, and experiences in various time frames."
+          },
+          {
+           "code": "PW.AM.1",
+           "text": "Write and present papers/essays on events, experiences, and academic and professional topics in various time frames using well-organized, detailed paragraphs."
+          },
+          {
+           "code": "PW.AH.1",
+           "text": "Write and present in-depth, well-organized reports with clarity and precision on a variety of topics, issues, and interests in various time frames."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "cultures-use-the-target-language-to-investigate-",
+     "title": "Cultures: Use the target language to investigate, explain, and reflect on the relationship between the practices, products, and perspectives of cultures studied",
+     "topics": [
+      {
+       "id": "cultures-use-the-target-language-to-investigate-",
+       "title": "Cultures: Use the target language to investigate, explain, and reflect on the relationship between the practices, products, and perspectives of cultures studied",
+       "subtopics": [
+        {
+         "id": "cultures-use-the-target-language-to-investigate-",
+         "title": "Cultures: Use the target language to investigate, explain, and reflect on the relationship between the practices, products, and perspectives of cultures studied",
+         "outcomes": [
+          {
+           "code": "CUL.N.1",
+           "text": "Recognize basic practices, products, and perspectives of cultures where the target language is spoken (e.g., greetings, holiday celebrations, body language, gestures, traditions)."
+          },
+          {
+           "code": "CUL.N.2",
+           "text": "Recognize basic practices, products, and perspectives of cultures where the target language is spoken (e.g., greetings, holiday celebrations, body language, gestures, traditions)."
+          },
+          {
+           "code": "CUL.I.1",
+           "text": "Investigate and describe similarities and differences in practices, products, and perspectives used across cultures (e.g., holidays, family life, historical and contemporary figures) to understand one's own and others' ways of thinking."
+          },
+          {
+           "code": "CUL.I.2",
+           "text": "Use appropriate language and behaviors while participating in familiar culturally authentic activities and situations (e.g., presentations, virtual activities, community celebrations, theatrical productions, concerts, interviews)."
+          },
+          {
+           "code": "CUL.A.1",
+           "text": "Analyze and evaluate practices, products, and perspectives of the culture studied and describe how they are interrelated to topics of philosophy, social issues, regionalisms, history, and traditions of their own cultures (as applicable)."
+          },
+          {
+           "code": "CUL.A.2",
+           "text": "Interact at a culturally competent level in familiar and some unfamiliar cultural situations (e.g., community events, travel, service activities, interactions)."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "connections-build-reinforce-and-expand-knowledge",
+     "title": "Connections: Build, reinforce, and expand knowledge of other content areas and evaluate information and diverse perspectives while using the target language to develop critical thinking and creative problem solving",
+     "topics": [
+      {
+       "id": "connections-build-reinforce-and-expand-knowledge",
+       "title": "Connections: Build, reinforce, and expand knowledge of other content areas and evaluate information and diverse perspectives while using the target language to develop critical thinking and creative problem solving",
+       "subtopics": [
+        {
+         "id": "connections-build-reinforce-and-expand-knowledge",
+         "title": "Connections: Build, reinforce, and expand knowledge of other content areas and evaluate information and diverse perspectives while using the target language to develop critical thinking and creative problem solving",
+         "outcomes": [
+          {
+           "code": "CON.N.1",
+           "text": "Identify and use familiar vocabulary and phrases in the target language supported by resources (e.g., maps, graphs, visuals, audio, digital media) to reinforce prior knowledge and make connections to new knowledge of familiar topics in other content areas (e.g., geography, history, arts, math, science)."
+          },
+          {
+           "code": "CON.I.1",
+           "text": "Access and interpret information in the target language on familiar topics and use it to reinforce and further knowledge in other content areas."
+          },
+          {
+           "code": "CON.A.1",
+           "text": "Analyze and synthesize information gathered in the target language to think critically and solve problems in other content areas and real world situations in the culture(s) studied and (as applicable) in one's own culture."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "comparisons-use-the-language-to-investigate-expl",
+     "title": "Comparisons: Use the language to investigate, explain, and reflect on the nature of language and the concept of culture through comparisons of the target language and cultures studied to one's own",
+     "topics": [
+      {
+       "id": "comparisons-use-the-language-to-investigate-expl",
+       "title": "Comparisons: Use the language to investigate, explain, and reflect on the nature of language and the concept of culture through comparisons of the target language and cultures studied to one's own",
+       "subtopics": [
+        {
+         "id": "comparisons-use-the-language-to-investigate-expl",
+         "title": "Comparisons: Use the language to investigate, explain, and reflect on the nature of language and the concept of culture through comparisons of the target language and cultures studied to one's own",
+         "outcomes": [
+          {
+           "code": "COMP.N.1",
+           "text": "Recognize and compare words, true and false cognates, sound patterns, and basic grammatical structures of the target language with his/her own language (as applicable)."
+          },
+          {
+           "code": "COMP.N.2",
+           "text": "Identify and compare products and practices (e.g., celebrations, dances, oral stories, food) typical of the target culture with his/her own culture (as applicable)."
+          },
+          {
+           "code": "COMP.I.1",
+           "text": "Explain and compare features of target language (e.g., language patterns, expressions, sentence structures) with his/her own language (as applicable)."
+          },
+          {
+           "code": "COMP.I.2",
+           "text": "Compare and contrast familiar topics (e.g., geography, history, the arts) and discuss the impact on the target culture and one's one culture (as applicable)."
+          },
+          {
+           "code": "COMP.A.1",
+           "text": "Analyze and compare features of different registers of language, cultural perspectives as reflected in a variety of genres (e.g., literature, blogs, podcasts, newspaper articles), and regional varieties (e.g., differences in pronunciation, intonation, stress, dialects, vocabulary, grammar)."
+          },
+          {
+           "code": "COMP.A.2",
+           "text": "Research cultural traditions and authentic works in order to analyze the viewpoints and their impact on cultures (e.g., recognize stereotypes)."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "communities-use-the-target-language-to-participa",
+     "title": "Communities: Use the target language to participate in the community and in the globalized world, for enjoyment, enrichment, and advancement",
+     "topics": [
+      {
+       "id": "communities-use-the-target-language-to-participa",
+       "title": "Communities: Use the target language to participate in the community and in the globalized world, for enjoyment, enrichment, and advancement",
+       "subtopics": [
+        {
+         "id": "communities-use-the-target-language-to-participa",
+         "title": "Communities: Use the target language to participate in the community and in the globalized world, for enjoyment, enrichment, and advancement",
+         "outcomes": [
+          {
+           "code": "COM.N.1",
+           "text": "Communicate using key words and phrases in the target language within the school setting (and beyond, as applicable)."
+          },
+          {
+           "code": "COM.N.2",
+           "text": "Participate in simple activities and cultural events within the school setting (and beyond, as applicable)."
+          },
+          {
+           "code": "COM.I.1",
+           "text": "Use expanded vocabulary and structures in the target language to access and interact with different media and community resources within the school setting (and beyond, as applicable)."
+          },
+          {
+           "code": "COM.I.2",
+           "text": "Use the target language to participate in activities for personal enjoyment and community involvement within the school setting (and beyond, as applicable)."
+          },
+          {
+           "code": "COM.A.1",
+           "text": "Use language skills and cultural understanding to interact in the target language on a variety of topics within the school setting (and beyond, as applicable)."
+          },
+          {
+           "code": "COM.A.2",
+           "text": "Use target language to communicate with organizations or individuals to access information on personal and professional growth opportunities within the school setting (and beyond, as applicable)."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "build": {
+  "builtAt": "2026-10-14T16:20:38.596Z",
+  "model": "none",
+  "usd": 0,
+  "expectedCodes": 92,
+  "coverage": 1,
+  "missingCodes": [],
+  "counts": {
+   "grades": 1,
+   "units": 9,
+   "topics": 9,
+   "subtopics": 20,
+   "outcomes": 92
+  },
+  "warnings": []
+ }
+}

@@ -9,7 +9,12 @@
  * A panel is 1000 x 560: heading across the top, a notes column on the left, the stage on the right.
  */
 
-import { PANEL_H, PANEL_W, type Becomes, type CanvasBoardSpec, type CanvasIcon, type CodeStage, type CompareStage, type EquationStage, type FlowStage, type GraphStage, type IllustrationStage, type SceneStage } from "./types";
+import { evalExpr } from "./expr";
+import { placeLabels } from "../figures/labels";
+import { partBounds } from "../figures/bounds";
+import { figureComponent } from "../figures/registry";
+import type { FigureDrawing } from "../figures/types";
+import { PANEL_H, PANEL_W, type AtomMapStage, type Becomes, type CanvasBoardSpec, type CanvasIcon, type CodeStage, type CompareStage, type EquationStage, type FigureStage, type FlowStage, type GraphStage, type IllustrationStage, type MoleculeStage, type SceneStage } from "./types";
 
 export type Rect = { x: number; y: number; w: number; h: number };
 export type Pt = { x: number; y: number };
@@ -23,16 +28,22 @@ export type Mark =
   | { type: "part"; id: string; cx: number; cy: number; name: string; s: number }
   | { type: "callout"; id: string; partId: string; text: string; box: Rect; anchor: Pt; s: number; size: number }
   | { type: "equation"; id: string; tokens: Array<{ id: string; text: string; color: string; w: number; size: number }>; steps: Array<{ s: number; place: Record<string, Pt>; highlight: string[]; caption?: string }>; size: number; captionY: number; center: number; s: number }
-  | { type: "graph"; id: string; plot: Rect; spec: GraphStage; s: number }
+  | { type: "graph"; id: string; plot: Rect; spec: GraphStage; s: number; /** A stacked panel: its curve's name as a title; x axis printed on the bottom panel only. */ stacked?: { title: string; showX: boolean } }
   | { type: "column"; id: string; rect: Rect; title: string; icon?: CanvasIcon; color: string; s: number }
   | { type: "item"; id: string; text: string; rect: Rect; color: string; s: number; size: number }
   | { type: "link"; id: string; p0: Pt; p1: Pt; s: number }
-  | { type: "box"; id: string; rect: Rect; label?: string; color: string; s: number; icon?: CanvasIcon; size: number }
+  | { type: "box"; id: string; rect: Rect; label?: string; color: string; s: number; icon?: CanvasIcon; size: number; /** Wrapped content lines on a card (a box with no icon). */ detail?: string[] }
   | { type: "text"; id: string; rect: Rect; text: string; color: string; s: number; size: number }
+  | { type: "figure"; id: string; rect: Rect; scale: number; drawing: FigureDrawing; s: number; asset?: string }
+  | { type: "figure-label"; id: string; part: string; lines: string[]; side: "left" | "right"; at: Pt; leader: Pt[]; size: number; s: number }
+  | { type: "free-body"; id: string; body: SceneStage["items"][number]; bodyRect: Rect; forces: FreeBodyForce[]; s: number }
+  | { type: "electrolytic-cell"; id: string; rect: Rect; parts: { power: SceneStage["items"][number]; electrolyte: SceneStage["items"][number]; anode: SceneStage["items"][number]; cathode: SceneStage["items"][number] }; s: number }
   | { type: "code"; id: string; rect: Rect; lines: string[]; language: string; size: number; lineH: number; gutter: number; steps: CodeStage["steps"]; reveal: "build" | "all"; groups: Array<{ from: number; to: number; label: string; s: number; x: number }>; edits: NonNullable<CodeStage["edits"]>; s: number }
   | { type: "state"; id: string; rect: Rect; steps: CodeStage["steps"]; s: number }
   | { type: "trace"; id: string; rect: Rect; vars: string[]; rows: Array<{ s: number; values: string[] }>; size: number; s: number }
-  | { type: "output"; id: string; rect: Rect; text: string; size: number; s: number };
+  | { type: "output"; id: string; rect: Rect; text: string; size: number; s: number }
+  | { type: "molecule"; id: string; rect: Rect; molecule: MoleculeStage["molecules"][number]; s: number }
+  | { type: "atom-map"; id: string; rect: Rect; stage: AtomMapStage; s: number };
 
 export type PanelLayout = {
   marks: Mark[];
@@ -50,6 +61,7 @@ const NOTES_X = 48;
 const NOTES_W = 268;
 const STAGE: Rect = { x: 352, y: 108, w: 612, h: 424 };
 const STAGE_WIDE: Rect = { x: 56, y: 108, w: 908, h: 424 };
+const FIGURE_STAGE_WITH_NOTES: Rect = { x: 56, y: 108, w: 908, h: 318 };
 
 /** Average advance of the board font (Nunito SemiBold), in em. Close enough to lay text out. */
 const EM = 0.54;
@@ -104,21 +116,41 @@ export function layoutPanel(spec: CanvasBoardSpec): PanelLayout {
   const marks: Mark[] = [];
   const targets: PanelLayout["targets"] = {};
   const hasNotes = spec.notes.length > 0;
-  const stage = hasNotes ? STAGE : STAGE_WIDE;
+  // Labelled textbook figures need horizontal room for the drawing and two boundary-label columns.
+  // Putting their notes in the normal left rail made a correct 440 px scientific figure render at
+  // roughly 150 CSS pixels. Figure boards therefore use the wide stage and place supporting facts
+  // in a compact evidence strip below it.
+  const figureWithNotes = hasNotes && spec.stage.kind === "figure";
+  const stage = figureWithNotes ? FIGURE_STAGE_WITH_NOTES : hasNotes ? STAGE : STAGE_WIDE;
 
   const headingSize = textWidth(spec.heading, HEADING_SIZE) > PANEL_W - 110 ? 28 : HEADING_SIZE;
   // s = -1: the heading is written while Aria is still bridging into the board, before sentence 0.
   marks.push({ type: "heading", id: "heading", text: spec.heading, x: 48, y: 66, size: headingSize, s: -1 });
   targets.heading = { x: 48, y: 66 - headingSize, w: Math.min(PANEL_W - 96, textWidth(spec.heading, headingSize)), h: headingSize * 1.25, s: 0 };
 
-  let y = 140;
-  spec.notes.slice(0, 4).forEach((note) => {
-    const lines = wrap(note.text, NOTE_SIZE, NOTES_W - 26, 2);
-    marks.push({ type: "note", id: note.id, lines, x: NOTES_X + 24, y, size: NOTE_SIZE, s: note.s, bullet: { x: NOTES_X + 7, y: y - NOTE_SIZE * 0.34 } });
-    const h = lines.length * NOTE_SIZE * 1.28;
-    targets[note.id] = { x: NOTES_X, y: y - NOTE_SIZE, w: NOTES_W, h: h + 6, s: note.s };
-    y += h + 30;
-  });
+  const visibleNotes = spec.notes.slice(0, 4);
+  if (figureWithNotes) {
+    const gap = 18;
+    const noteW = (STAGE_WIDE.w - gap * Math.max(0, visibleNotes.length - 1)) / Math.max(1, visibleNotes.length);
+    const noteSize = visibleNotes.length >= 4 ? 15 : 17;
+    visibleNotes.forEach((note, i) => {
+      const x = STAGE_WIDE.x + i * (noteW + gap);
+      const y = 474;
+      const lines = wrap(note.text, noteSize, noteW - 24, 2);
+      marks.push({ type: "note", id: note.id, lines, x: x + 22, y, size: noteSize, s: note.s, bullet: { x: x + 7, y: y - noteSize * 0.34 } });
+      const h = lines.length * noteSize * 1.28;
+      targets[note.id] = { x, y: y - noteSize, w: noteW, h: h + 6, s: note.s };
+    });
+  } else {
+    let y = 140;
+    visibleNotes.forEach((note) => {
+      const lines = wrap(note.text, NOTE_SIZE, NOTES_W - 26, 2);
+      marks.push({ type: "note", id: note.id, lines, x: NOTES_X + 24, y, size: NOTE_SIZE, s: note.s, bullet: { x: NOTES_X + 7, y: y - NOTE_SIZE * 0.34 } });
+      const h = lines.length * NOTE_SIZE * 1.28;
+      targets[note.id] = { x: NOTES_X, y: y - NOTE_SIZE, w: NOTES_W, h: h + 6, s: note.s };
+      y += h + 30;
+    });
+  }
 
   const add = (id: string, rect: Rect, s: number) => {
     targets[id] = { ...rect, s };
@@ -130,11 +162,14 @@ export function layoutPanel(spec: CanvasBoardSpec): PanelLayout {
     case "illustration":
       layoutIllustration(spec.stage, stage, marks, add);
       break;
+    case "figure":
+      layoutFigure(spec.stage, stage, marks, add);
+      break;
     case "equation":
       layoutEquation(spec.stage, stage, marks, add);
       break;
     case "graph":
-      layoutGraph(spec.stage, stage, marks, add);
+      layoutGraph(spec.stage, stage, marks, add, spec.interaction?.kind === "try" ? Object.fromEntries(spec.interaction.controls.map((c) => [c.var, c.value])) : {});
       break;
     case "compare":
       layoutCompare(spec.stage, stage, marks, add);
@@ -145,10 +180,29 @@ export function layoutPanel(spec: CanvasBoardSpec): PanelLayout {
     case "code":
       layoutCode(spec.stage, stage, marks, add);
       break;
+    case "molecule":
+      layoutMolecules(spec.stage, stage, marks, add);
+      break;
+    case "atom-map":
+      marks.push({ type: "atom-map", id: "atom-map", rect: stage, stage: spec.stage, s: 0 });
+      add("atom-map", stage, 0);
+      spec.stage.reactants.concat(spec.stage.products).forEach((group) => add(group.id, stage, group.s));
+      break;
   }
   targets.stage = { ...stage, s: 0 };
   targets.board = { x: 0, y: 0, w: PANEL_W, h: PANEL_H, s: 0 };
   return { marks, targets, stage };
+}
+
+function layoutMolecules(st: MoleculeStage, area: Rect, marks: Mark[], add: Add) {
+  const gap = 18;
+  const w = (area.w - gap * (st.molecules.length - 1)) / st.molecules.length;
+  st.molecules.forEach((molecule, index) => {
+    const rect = { x: area.x + index * (w + gap), y: area.y, w, h: area.h };
+    marks.push({ type: "molecule", id: molecule.id, rect, molecule, s: molecule.s });
+    add(molecule.id, rect, molecule.s);
+    molecule.atoms.forEach((atom) => add(atom.id, { x: rect.x + rect.w * (0.5 + atom.x * 0.3) - 22, y: rect.y + rect.h * (0.48 + atom.y * 0.3) - 22, w: 44, h: 44 }, molecule.s));
+  });
 }
 
 /* ── code ─────────────────────────────────────────────────────────────────────────────────── */
@@ -249,7 +303,21 @@ function edgePoint(from: Pt, to: Pt, r: number, pad = 10): Pt {
   return { x: from.x + (dx / d) * (r + pad), y: from.y + (dy / d) * (r + pad) };
 }
 
-function arrowMarks(arrows: FlowStage["arrows"], centres: Map<string, { c: Pt; r: number; below?: number }>, bend: (a: Pt, b: Pt) => number, marks: Mark[], add: Add) {
+/** The boxes an arrow's label must not print over: every node's disc and name, every box and text. */
+export function textObstacles(ms: Mark[]): Rect[] {
+  const out: Rect[] = [];
+  for (const m of ms) {
+    if (m.type === "node") {
+      out.push({ x: m.cx - m.r, y: m.cy - m.r, w: m.r * 2, h: m.r * 2 });
+      const w = Math.max(textWidth(m.label, m.labelSize), m.sub ? textWidth(m.sub, 15) : 0);
+      out.push({ x: m.cx - w / 2, y: m.labelY - m.labelSize, w, h: m.labelSize * (m.sub ? 2.3 : 1.3) });
+    } else if (m.type === "box" || m.type === "text") out.push(m.rect);
+  }
+  return out;
+}
+
+function arrowMarks(arrows: FlowStage["arrows"], centres: Map<string, { c: Pt; r: number; below?: number }>, bend: (a: Pt, b: Pt) => number, marks: Mark[], add: Add, obstacles: Rect[] = []) {
+  const placedLabels: Rect[] = [];
   // An arrow that leaves or arrives through a node's underside clears the node's label as well.
   const clear = (from: { c: Pt; r: number; below?: number }, to: Pt) => {
     const d = Math.hypot(to.x - from.c.x, to.y - from.c.y) || 1;
@@ -270,12 +338,22 @@ function arrowMarks(arrows: FlowStage["arrows"], centres: Map<string, { c: Pt; r
     const d = Math.hypot(dx, dy) || 1;
     const k = bend(p0, p1);
     const c = { x: mx - (dy / d) * k, y: my + (dx / d) * k };
-    // The label sits at the curve's midpoint, nudged off the line on the outside of the bend.
-    const mid = { x: 0.25 * p0.x + 0.5 * c.x + 0.25 * p1.x, y: 0.25 * p0.y + 0.5 * c.y + 0.25 * p1.y };
+    // The label sits beside the curve, at the first spot along it (middle first, either side) where it
+    // prints over no node, name, box or other label — an arrow label once covered "Sociologist's
+    // values" (audit 2026-10-15). With nowhere free it is left off: the nodes it joins already say enough.
     const side = k >= 0 ? 1 : -1;
-    const labelAt = { x: mid.x - (dy / d) * 18 * side, y: mid.y + (dx / d) * 18 * side + (Math.abs(dx) > Math.abs(dy) ? -4 : 5) };
-    // A short arrow has no room for a label beside it; the nodes it joins already say enough.
-    const label = Math.hypot(p1.x - p0.x, p1.y - p0.y) > 110 ? arrow.label : undefined;
+    const at = (t: number, sd: number) => {
+      const q = { x: (1 - t) * (1 - t) * p0.x + 2 * t * (1 - t) * c.x + t * t * p1.x, y: (1 - t) * (1 - t) * p0.y + 2 * t * (1 - t) * c.y + t * t * p1.y };
+      return { x: q.x - (dy / d) * 18 * sd, y: q.y + (dx / d) * 18 * sd + (Math.abs(dx) > Math.abs(dy) ? -4 : 5) };
+    };
+    const lw = arrow.label ? textWidth(arrow.label, 14) + 16 : 0;
+    const boxAt = (pt: Pt): Rect => ({ x: pt.x - lw / 2, y: pt.y - 15, w: lw, h: 22 });
+    let labelAt = at(0.5, side);
+    let label = Math.hypot(p1.x - p0.x, p1.y - p0.y) > 110 ? arrow.label : undefined;
+    if (label) {
+      const spot = [0.5, 0.4, 0.6, 0.3, 0.7].flatMap((t) => [at(t, side), at(t, -side)]).find((pt) => ![...obstacles, ...placedLabels].some((r) => overlaps(r, boxAt(pt), 2)));
+      if (spot) { labelAt = spot; placedLabels.push(boxAt(spot)); } else label = undefined;
+    }
     marks.push({ type: "arrow", id: arrow.id, p0, c, p1, label, labelAt, s: arrow.s, flow: arrow.flow ?? false, rate: arrow.rate, color: arrow.color ?? PALETTE[(i + 2) % PALETTE.length] });
     add(arrow.id, union([{ x: Math.min(p0.x, p1.x), y: Math.min(p0.y, p1.y), w: Math.abs(dx) || 8, h: Math.abs(dy) || 8 }, { x: labelAt.x - 40, y: labelAt.y - 16, w: 80, h: 22 }]), arrow.s);
   });
@@ -332,11 +410,55 @@ function layoutFlow(stage: FlowStage, box: Rect, marks: Mark[], add: Add) {
   }
 
   const bend = stage.arrangement === "cycle" ? () => -26 : (a: Pt, b: Pt) => (Math.abs(a.y - b.y) < 10 ? 0 : a.y < b.y ? 14 : -14);
-  arrowMarks(stage.arrows, centres, bend, marks, add);
+  arrowMarks(stage.arrows, centres, bend, marks, add, textObstacles(nodeMarks));
   marks.push(...nodeMarks);
 }
 
 /* ── illustration ─────────────────────────────────────────────────────────────────────────── */
+
+/**
+ * A code-drawn figure (lib/figures): scaled into the stage between two label columns, every part's
+ * anchor mapped exactly onto the board, labels placed textbook-style (lib/figures/labels.ts). Each
+ * labelled part is a pen target at its anchor, revealed on its own sentence.
+ */
+function layoutFigure(stage: FigureStage, box: Rect, marks: Mark[], add: Add) {
+  // A library diagram (lib/figures/library.ts) is a picture with exact anchors: the same label path
+  // as a code-drawn figure, with the art drawn from its file instead of from shapes.
+  const component = stage.asset ? undefined : figureComponent(stage.component);
+  if (!stage.asset && !component) return;
+  const drawing: FigureDrawing = stage.asset
+    ? { w: stage.asset.w, h: stage.asset.h, shapes: [], parts: stage.asset.parts, credit: stage.asset.credit }
+    : component!.build(stage.params);
+  const anchors = new Map(drawing.parts.map((p) => [p.id, p.anchor]));
+  const shown = stage.parts.filter((p) => anchors.has(p.id));
+  const size = shown.length > 6 ? 15 : 17;
+  // Each margin is as wide as the labels that will stand in it (sides as lib/figures/labels.ts picks
+  // them), so the figure gets all the room the labels do not need.
+  const leftSide = shown.filter((p) => anchors.get(p.id)!.x < drawing.w / 2);
+  const rightSide = shown.filter((p) => anchors.get(p.id)!.x >= drawing.w / 2);
+  while (Math.abs(leftSide.length - rightSide.length) > 1) {
+    const [from, to] = leftSide.length > rightSide.length ? [leftSide, rightSide] : [rightSide, leftSide];
+    from.sort((a, b) => Math.abs(anchors.get(a.id)!.x - drawing.w / 2) - Math.abs(anchors.get(b.id)!.x - drawing.w / 2));
+    to.push(from.shift()!);
+  }
+  const marginFor = (list: typeof shown) => (list.length ? Math.min(220, Math.max(...list.map((p) => Math.min(textWidth(p.name, size), 190))) + 46) : 16);
+  const left = marginFor(leftSide), right = marginFor(rightSide);
+  const room = { w: box.w - left - right, h: box.h - 24 };
+  const scale = Math.min(room.w / drawing.w, room.h / drawing.h);
+  const rect = { x: box.x + left + (room.w - drawing.w * scale) / 2, y: box.y + 4 + (room.h - drawing.h * scale) / 2, w: drawing.w * scale, h: drawing.h * scale };
+  const onBoard = (p: Pt): Pt => ({ x: rect.x + p.x * scale, y: rect.y + p.y * scale });
+  marks.push({ type: "figure", id: "figure", rect, scale, drawing, s: 0, ...(stage.asset ? { asset: stage.asset.id } : {}) });
+  add("figure", rect, 0);
+  // Every other part's outline is an obstacle a leader must not cross (lib/figures/bounds.ts); parts
+  // that span most of the figure (wires, a stand) are left out, or nothing could reach in.
+  const obstacles = [...partBounds(drawing)].filter(([, b]) => b.w * b.h < drawing.w * drawing.h * 0.2).map(([id, b]) => ({ id, box: { x: rect.x + b.x * scale, y: rect.y + b.y * scale, w: b.w * scale, h: b.h * scale } }));
+  const placed = placeLabels(shown.map((p) => ({ id: p.id, text: p.name, anchor: onBoard(anchors.get(p.id)!), s: p.s })), rect, box, textWidth, size, obstacles);
+  for (const l of placed) {
+    marks.push({ type: "figure-label", id: `label-${l.id}`, part: l.id, lines: l.lines, side: l.side, at: l.at, leader: l.leader, size: l.size, s: l.s });
+    const a = l.leader[l.leader.length - 1];
+    add(l.id, { x: a.x - 16, y: a.y - 16, w: 32, h: 32 }, l.s);
+  }
+}
 
 function layoutIllustration(stage: IllustrationStage, box: Rect, marks: Mark[], add: Add) {
   const w = Math.min(box.w, (box.h - 10) * 1.5);
@@ -358,8 +480,10 @@ function layoutIllustration(stage: IllustrationStage, box: Rect, marks: Mark[], 
     placed.push({ x: cx - 8, y: cy - 8, w: 16, h: 16 });
   }
 
-  const size = 18;
-  for (const id of stage.labels.slice(0, 3)) {
+  // Every label the board names is drawn (the validator allows 6): a student must see each part a
+  // "label/identify" lesson asks for. Smaller type when more than three share the picture.
+  const size = stage.labels.length > 3 ? 15 : 18;
+  for (const id of stage.labels.slice(0, 6)) {
     const part = parts.find((p) => p.id === id);
     const at = part && points.get(part.id);
     if (!part || !at) continue;
@@ -442,16 +566,70 @@ function layoutEquation(stage: EquationStage, box: Rect, marks: Mark[], add: Add
 
 /* ── graph ────────────────────────────────────────────────────────────────────────────────── */
 
-function layoutGraph(stage: GraphStage, box: Rect, marks: Mark[], add: Add) {
+function layoutGraph(stage: GraphStage, box: Rect, marks: Mark[], add: Add, vars: Record<string, number> = {}) {
   const plot = { x: box.x + 70, y: box.y + 16, w: box.w - 96, h: box.h - 88 };
-  marks.push({ type: "graph", id: "graph", plot, spec: stage, s: Math.min(...stage.curves.map((c) => c.s), 0) });
   add("graph", { x: box.x, y: box.y, w: box.w, h: box.h }, 0);
+  const panels = graphPanels(stage, vars);
+  if (panels) {
+    const gap = 26;
+    const h = (plot.h - gap * (panels.length - 1)) / panels.length;
+    panels.forEach((panel, i) => {
+      const r = { x: plot.x, y: plot.y + i * (h + gap), w: plot.w, h };
+      const last = i === panels.length - 1;
+      marks.push({ type: "graph", id: i ? `graph-${i}` : "graph", plot: r, spec: panel, s: Math.min(...panel.curves.map((c) => c.s), 0), stacked: { title: panel.y.label, showX: last } });
+      for (const curve of panel.curves) add(curve.id, r, curve.s);
+      for (const marker of panel.markers ?? []) add(marker.id, r, marker.s);
+    });
+    for (const guide of stage.guides ?? []) {
+      const gx = plot.x + ((guide.x - stage.x.min) / (stage.x.max - stage.x.min || 1)) * plot.w;
+      add(guide.id, { x: gx - 30, y: plot.y, w: 60, h: plot.h }, guide.s);
+    }
+    return;
+  }
+  marks.push({ type: "graph", id: "graph", plot, spec: stage, s: Math.min(...stage.curves.map((c) => c.s), 0) });
   for (const curve of stage.curves) add(curve.id, plot, curve.s);
   for (const marker of stage.markers ?? []) add(marker.id, plot, marker.s);
   for (const guide of stage.guides ?? []) {
     const gx = plot.x + ((guide.x - stage.x.min) / (stage.x.max - stage.x.min || 1)) * plot.w;
     add(guide.id, { x: gx - 30, y: plot.y, w: 60, h: plot.h }, guide.s);
   }
+}
+
+/**
+ * STACKED GRAPHS. x, v and a of SHM drawn on one y axis (±0.05 m, ±0.52 m/s, ±5.5 m/s²) left x
+ * looking flat (audit 2026-10-15) — the exam convention is one panel per quantity on a shared time
+ * axis, each with its own scale. Curves whose sizes differ by more than 4× are split that way; each
+ * panel gets its curve's own range (sampled at the try-it defaults) and the curve's name as its axis
+ * label. Curves of one size stay on one plot. Null = draw the stage as one plot.
+ */
+export function graphPanels(stage: GraphStage, vars: Record<string, number> = {}): GraphStage[] | null {
+  if (stage.curves.length < 2) return null;
+  const ranges = stage.curves.map((c) => {
+    let lo = Infinity, hi = -Infinity;
+    for (let i = 0; i <= 120; i++) {
+      const x = stage.x.min + ((stage.x.max - stage.x.min) * i) / 120;
+      const y = evalExpr(c.expr, { ...vars, x }, NaN);
+      if (Number.isFinite(y)) { lo = Math.min(lo, y); hi = Math.max(hi, y); }
+    }
+    return Number.isFinite(lo) ? { lo, hi, size: Math.max(Math.abs(lo), Math.abs(hi)) } : null;
+  });
+  if (ranges.some((r) => !r || r.size === 0)) return null;
+  const sizes = ranges.map((r) => r!.size);
+  if (Math.max(...sizes) / Math.min(...sizes) <= 4) return null;
+  return stage.curves.map((curve, i) => {
+    const { lo, hi, size } = ranges[i]!;
+    const pad = size * 0.15;
+    const min = lo >= 0 ? 0 : lo - pad;
+    const max = hi <= 0 ? 0 : hi + pad;
+    return {
+      ...stage,
+      y: { label: curve.label || stage.y.label, min, max },
+      curves: [curve],
+      markers: stage.markers?.filter((m) => m.curve === curve.id),
+      guides: stage.guides?.map((g) => (i ? { ...g, label: "" } : g)),
+      trace: stage.trace?.curve === curve.id ? stage.trace : undefined,
+    };
+  });
 }
 
 /** Board coordinates of a graph value — shared by the renderer and the pointer. */
@@ -510,6 +688,50 @@ export function sceneCell(cell: string, span: string | undefined, box: Rect): Re
 }
 
 function layoutScene(stage: SceneStage, box: Rect, marks: Mark[], add: Add) {
+  const fbd = freeBodyParts(stage);
+  if (fbd) {
+    const cx = box.x + box.w / 2, cy = box.y + box.h / 2;
+    const bodyRect = { x: cx - 80, y: cy - 50, w: 160, h: 100 };
+    // Arrow lengths follow the stated sizes (bigger force, longer arrow) so balance is visible.
+    const max = Math.max(0, ...fbd.forces.map((f) => f.newtons ?? 0));
+    const room = { up: cy - 50 - box.y - 40, down: box.y + box.h - (cy + 50) - 40, left: cx - 80 - box.x - 30, right: box.x + box.w - (cx + 80) - 30 };
+    const forces: FreeBodyForce[] = fbd.forces.map((f) => {
+      const full = Math.max(60, room[f.dir]);
+      const len = max > 0 && f.newtons ? Math.max(50, full * (f.newtons / max)) : Math.min(full, 140);
+      const start = f.dir === "up" ? { x: cx, y: cy - 50 } : f.dir === "down" ? { x: cx, y: cy + 50 } : f.dir === "left" ? { x: cx - 80, y: cy } : { x: cx + 80, y: cy };
+      const end = f.dir === "up" ? { x: cx, y: start.y - len } : f.dir === "down" ? { x: cx, y: start.y + len } : f.dir === "left" ? { x: start.x - len, y: cy } : { x: start.x + len, y: cy };
+      return { ...f, start, end };
+    });
+    // Two forces on one side (lift and normal both up) sit side by side, not on one line.
+    for (const dir of ["up", "down", "left", "right"] as const) {
+      const same = forces.filter((f) => f.dir === dir);
+      same.forEach((f, i) => {
+        const off = (i - (same.length - 1) / 2) * 44;
+        if (dir === "up" || dir === "down") { f.start = { ...f.start, x: f.start.x + off }; f.end = { ...f.end, x: f.end.x + off }; }
+        else { f.start = { ...f.start, y: f.start.y + off }; f.end = { ...f.end, y: f.end.y + off }; }
+      });
+    }
+    marks.push({ type: "free-body", id: "free-body", body: fbd.body, bodyRect, forces, s: fbd.body.s });
+    add(fbd.body.id, bodyRect, fbd.body.s);
+    for (const f of forces) add(f.item.id, { x: Math.min(f.start.x, f.end.x) - 24, y: Math.min(f.start.y, f.end.y) - 24, w: Math.abs(f.end.x - f.start.x) + 48, h: Math.abs(f.end.y - f.start.y) + 48 }, f.item.s);
+    add("free-body", box, 0);
+    return;
+  }
+  const apparatus = electrolyticCellParts(stage);
+  if (apparatus) {
+    const beaker = { x: box.x + box.w * 0.22, y: box.y + box.h * 0.25, w: box.w * 0.56, h: box.h * 0.68 };
+    const power = { x: box.x + box.w * 0.37, y: box.y + 8, w: box.w * 0.26, h: 68 };
+    const anode = { x: beaker.x + beaker.w * 0.19, y: beaker.y + 48, w: 56, h: beaker.h - 78 };
+    const cathode = { x: beaker.x + beaker.w * 0.70, y: beaker.y + 48, w: 56, h: beaker.h - 78 };
+    const electrolyte = { x: beaker.x + 16, y: beaker.y + beaker.h * 0.48, w: beaker.w - 32, h: beaker.h * 0.46 - 10 };
+    marks.push({ type: "electrolytic-cell", id: "electrolytic-cell", rect: box, parts: apparatus, s: Math.min(apparatus.power.s, apparatus.electrolyte.s, apparatus.anode.s, apparatus.cathode.s) });
+    add(apparatus.power.id, power, apparatus.power.s);
+    add(apparatus.anode.id, anode, apparatus.anode.s);
+    add(apparatus.cathode.id, cathode, apparatus.cathode.s);
+    add(apparatus.electrolyte.id, electrolyte, apparatus.electrolyte.s);
+    add("electrolytic-cell", box, 0);
+    return;
+  }
   const centres = new Map<string, { c: Pt; r: number; below?: number }>();
   const itemMarks: Mark[] = [];
   stage.items.slice(0, 12).forEach((item, i) => {
@@ -523,7 +745,9 @@ function layoutScene(stage: SceneStage, box: Rect, marks: Mark[], add: Add) {
       centres.set(item.id, { c: { x: cx, y: cy }, r, below: item.label ? 26 : 0 });
       add(item.id, rect, item.s);
     } else if (item.kind === "box") {
-      itemMarks.push({ type: "box", id: item.id, rect, label: item.label, color, s: item.s, icon: item.icon, size: 18 });
+      // A box with no icon is a card: its title, and its detail wrapped beneath — never an empty ring.
+      const detail = !item.icon && item.detail ? wrap(item.detail, 15, rect.w - 24, Math.max(1, Math.floor((rect.h - 44) / 19))) : undefined;
+      itemMarks.push({ type: "box", id: item.id, rect, label: item.label, color, s: item.s, icon: item.icon, size: 18, ...(detail?.length ? { detail } : {}) });
       centres.set(item.id, { c: { x: rect.x + rect.w / 2, y: rect.y + rect.h / 2 }, r: Math.min(rect.w, rect.h) / 2 });
       add(item.id, rect, item.s);
     } else {
@@ -532,8 +756,56 @@ function layoutScene(stage: SceneStage, box: Rect, marks: Mark[], add: Add) {
       add(item.id, rect, item.s);
     }
   });
-  arrowMarks(stage.arrows, centres, (a, b) => (Math.abs(a.y - b.y) < 10 ? 0 : 12), marks, add);
+  arrowMarks(stage.arrows, centres, (a, b) => (Math.abs(a.y - b.y) < 10 ? 0 : 12), marks, add, textObstacles(itemMarks));
   marks.push(...itemMarks);
+}
+
+/**
+ * FREE-BODY DIAGRAMS, DRAWN BY CODE. A force's direction follows from what it is — weight down,
+ * normal reaction and upthrust up, friction against the push — so a scene with a "body" and named
+ * forces is drawn as the exam diagram: one object, one arrow per force from its edge, each arrow as
+ * long as its stated size ("Weight 20 N"). A generated picture gets arrow directions wrong; this
+ * cannot. An id or label ending in -up/-down/-left/-right overrides the direction.
+ */
+export type FreeBodyDir = "up" | "down" | "left" | "right";
+export type FreeBodyForce = { item: SceneStage["items"][number]; dir: FreeBodyDir; newtons?: number; start: Pt; end: Pt };
+const BODY = /\b(body|object|block|box|crate|car|ball|mass|trolley|person|skydiver|parachutist|cyclist|load|book|lift|boat|rocket|aircraft|plane)\b/i;
+const FORCES: Array<[RegExp, FreeBodyDir | "drag" | "friction"]> = [
+  [/\b(weight|gravity|gravitational)\b/i, "down"],
+  [/\b(normal|reaction|support)\b/i, "up"],
+  [/\b(upthrust|buoyan\w*|lift[\s-]*force|lift)\b/i, "up"],
+  [/\btension\b/i, "up"],
+  [/\b(thrust|driving|applied|push|pull|engine)\b/i, "right"],
+  [/\bfriction\b/i, "friction"],
+  [/\b(drag|air[\s-]*resistance|water[\s-]*resistance|resistive)\b/i, "drag"],
+];
+export function freeBodyParts(stage: SceneStage): { body: SceneStage["items"][number]; forces: Array<Omit<FreeBodyForce, "start" | "end">> } | null {
+  const text = (i: SceneStage["items"][number]) => `${i.id.replace(/[-_]/g, " ")} ${i.label ?? ""}`;
+  const forceOf = (i: SceneStage["items"][number]) => FORCES.find(([re]) => re.test(text(i)))?.[1];
+  const forceItems = stage.items.filter((i) => forceOf(i) && !/^(body|object)$/i.test(i.id));
+  const body = stage.items.find((i) => !forceItems.includes(i) && (i.id === "body" || BODY.test(text(i))));
+  if (!body || forceItems.length < 2 || !forceItems.some((i) => forceOf(i) === "down")) return null;
+  // Horizontal motion when something pushes it along; otherwise it is falling, and drag acts up.
+  const pushed = forceItems.some((i) => forceOf(i) === "right");
+  const forces = forceItems.slice(0, 6).map((item) => {
+    const kind = forceOf(item)!;
+    const explicit = /[-_ ](up|down|left|right)$/i.exec(item.id)?.[1] ?? /\((up|down|left|right)(?:wards)?\)/i.exec(item.label ?? "")?.[1];
+    const dir = (explicit?.toLowerCase() as FreeBodyDir | undefined) ?? (kind === "friction" ? "left" : kind === "drag" ? (pushed ? "left" : "up") : kind);
+    const n = /(\d+(?:\.\d+)?)\s*(k?N)\b/.exec(item.label ?? "");
+    const newtons = n ? Number(n[1]) * (n[2] === "kN" ? 1000 : 1) : undefined;
+    return { item, dir, ...(newtons ? { newtons } : {}) };
+  });
+  return { body, forces };
+}
+
+/** Recognise the canonical parts of an electrolytic cell even when generation fell back to a scene. */
+export function electrolyticCellParts(stage: SceneStage) {
+  const find = (pattern: RegExp) => stage.items.find((item) => pattern.test(`${item.id} ${item.label ?? ""}`));
+  const power = find(/power[\s-]*supply|battery|d\.?c\.?[\s-]*supply/i);
+  const electrolyte = find(/electrolyte|ionic[\s-]*(?:solution|melt)|molten/i);
+  const anode = find(/\banode\b/i);
+  const cathode = find(/\bcathode\b/i);
+  return power && electrolyte && anode && cathode ? { power, electrolyte, anode, cathode } : null;
 }
 
 /* ── the world ────────────────────────────────────────────────────────────────────────────── */

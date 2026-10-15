@@ -1,0 +1,3914 @@
+{
+ "id": "us-dc-health",
+ "region": "US",
+ "framework": "District of Columbia state academic standards: Health Education",
+ "board": null,
+ "qualification": "K-12",
+ "subject": "Health Education",
+ "syllabusCode": null,
+ "gradeSystem": "grade",
+ "source": {
+  "urls": [
+   "https://api.commonstandardsproject.com/api/v1/jurisdictions/A5C1DF532ED44A6CB3D000FD37370C0F",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/A5C1DF532ED44A6CB3D000FD37370C0F_D2760564_grades-01-02-k",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/A5C1DF532ED44A6CB3D000FD37370C0F_D2760564_grades-03-04-05",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/A5C1DF532ED44A6CB3D000FD37370C0F_D2760564_grades-06-07-08",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/A5C1DF532ED44A6CB3D000FD37370C0F_D2760564_grades-09-10-11-12"
+  ],
+  "publisher": "District of Columbia state education agency (machine-readable via Common Standards Project / ASN)",
+  "licence": "CC BY 3.0 US, D2L Corporation",
+  "firstExam": "2016"
+ },
+ "grades": [
+  {
+   "grade": "K-2",
+   "units": [
+    {
+     "id": "mental-and-emotional-health",
+     "title": "Mental and Emotional Health",
+     "topics": [
+      {
+       "id": "health-promotion",
+       "title": "Health Promotion",
+       "subtopics": [
+        {
+         "id": "health-promotion",
+         "title": "Health Promotion",
+         "outcomes": [
+          {
+           "code": "K-2.1.1.1",
+           "text": "Identify basic emotions and positive and negative ways of dealing with emotions in a variety of situations."
+          },
+          {
+           "code": "K-2.1.1.2",
+           "text": "Explain the impact of different emotions on self and others."
+          },
+          {
+           "code": "K-2.1.1.3",
+           "text": "Describe what respect is and why it is important."
+          },
+          {
+           "code": "K-2.1.1.4",
+           "text": "Describe the difference between bullying and teasing."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "analyzing-influences",
+       "title": "Analyzing Influences",
+       "subtopics": [
+        {
+         "id": "analyzing-influences",
+         "title": "Analyzing Influences",
+         "outcomes": [
+          {
+           "code": "K-2.1.2.5",
+           "text": "Identify positive and negative influences on mental and emotional health practices and behaviors."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "accessing-information",
+       "title": "Accessing Information",
+       "subtopics": [
+        {
+         "id": "accessing-information",
+         "title": "Accessing Information",
+         "outcomes": [
+          {
+           "code": "K-2.1.3.6",
+           "text": "Identify trusted persons and how to get help if something is bothering you."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "communication",
+       "title": "Communication",
+       "subtopics": [
+        {
+         "id": "communication",
+         "title": "Communication",
+         "outcomes": [
+          {
+           "code": "K-2.1.4.7",
+           "text": "Demonstrate how to express personal needs and wants appropriately."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "healthy-behaviors",
+       "title": "Healthy Behaviors",
+       "subtopics": [
+        {
+         "id": "healthy-behaviors",
+         "title": "Healthy Behaviors",
+         "outcomes": [
+          {
+           "code": "K-2.1.7.8",
+           "text": "Describe positive and negative ways of acting on emotions."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "advocacy",
+       "title": "Advocacy",
+       "subtopics": [
+        {
+         "id": "advocacy",
+         "title": "Advocacy",
+         "outcomes": [
+          {
+           "code": "K-2.1.8.9",
+           "text": "Encourage others to appreciate their differences."
+          },
+          {
+           "code": "K-2.1.8.10",
+           "text": "Explain ways children can model healthful behaviors for others."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "safety-skills",
+     "title": "Safety Skills",
+     "topics": [
+      {
+       "id": "health-promotion",
+       "title": "Health Promotion",
+       "subtopics": [
+        {
+         "id": "health-promotion-1-of-2",
+         "title": "Health Promotion (1 of 2)",
+         "outcomes": [
+          {
+           "code": "K-2.2.1.1",
+           "text": "Explain that actions have consequences."
+          },
+          {
+           "code": "K-2.2.1.2",
+           "text": "Identify how rules promote safety and that following rules can prevent injuries."
+          },
+          {
+           "code": "K-2.2.1.3",
+           "text": "Recognize bullying, teasing, and aggressive behaviors as hurtful and potentially harmful."
+          },
+          {
+           "code": "K-2.2.1.4",
+           "text": "Explain the importance of respecting personal boundaries, space, and property."
+          }
+         ]
+        },
+        {
+         "id": "health-promotion-2-of-2",
+         "title": "Health Promotion (2 of 2)",
+         "outcomes": [
+          {
+           "code": "K-2.2.1.5",
+           "text": "Recognize the difference between good and bad touch."
+          },
+          {
+           "code": "K-2.2.1.6",
+           "text": "Describe safety hazards, including those related to fire, water, dangerous objects and how to seek help in these situations."
+          },
+          {
+           "code": "K-2.2.1.7",
+           "text": "Identify items that could be considered a weapon and how to seek help if a weapon is found."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "analyzing-influences",
+       "title": "Analyzing Influences",
+       "subtopics": [
+        {
+         "id": "analyzing-influences",
+         "title": "Analyzing Influences",
+         "outcomes": [
+          {
+           "code": "K-2.2.2.8",
+           "text": "Identify the influences of health and safety rules on home, school, and community environments."
+          },
+          {
+           "code": "K-2.2.2.9",
+           "text": "Identify community helpers and describe their role in keeping communities safe."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "accessing-information",
+       "title": "Accessing Information",
+       "subtopics": [
+        {
+         "id": "accessing-information",
+         "title": "Accessing Information",
+         "outcomes": [
+          {
+           "code": "K-2.2.3.10",
+           "text": "Identify common signs, symbols, and warning labels and what they mean (e.g., a poison symbol on a container)."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "communication",
+       "title": "Communication",
+       "subtopics": [
+        {
+         "id": "communication",
+         "title": "Communication",
+         "outcomes": [
+          {
+           "code": "K-2.2.4.11",
+           "text": "Identify and demonstrate how to communicate to others the importance of respecting personal boundaries, space, and property."
+          },
+          {
+           "code": "K-2.2.4.12",
+           "text": "Demonstrate healthy ways to respond to disagreements or conflicts with others."
+          },
+          {
+           "code": "K-2.2.4.13",
+           "text": "Demonstrate ways to refuse and report inappropriate touch."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "decision-making",
+       "title": "Decision-Making",
+       "subtopics": [
+        {
+         "id": "decision-making",
+         "title": "Decision-Making",
+         "outcomes": [
+          {
+           "code": "K-2.2.5.14",
+           "text": "Make appropriate decisions about safe behaviors around strangers (e.g., getting in cars or taking treats from strangers)."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "goal-setting",
+       "title": "Goal Setting",
+       "subtopics": [
+        {
+         "id": "goal-setting",
+         "title": "Goal Setting",
+         "outcomes": [
+          {
+           "code": "K-2.2.6.15",
+           "text": "Take steps to achieve a personal goal to avoid or reduce injury."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "healthy-behaviors",
+       "title": "Healthy Behaviors",
+       "subtopics": [
+        {
+         "id": "healthy-behaviors",
+         "title": "Healthy Behaviors",
+         "outcomes": [
+          {
+           "code": "K-2.2.7.16",
+           "text": "Demonstrate how to ask for help and express needs in a productive manner."
+          },
+          {
+           "code": "K-2.2.7.17",
+           "text": "Identify a trusted person to talk to about being bullied, teased, or abused in any way."
+          },
+          {
+           "code": "K-2.2.7.18",
+           "text": "Demonstrate safe ways to respond to teasing, harassment, and bullying."
+          },
+          {
+           "code": "K-2.2.7.19",
+           "text": "Interpret the basic traffic, pedestrian, and public transportation signs and symbols."
+          },
+          {
+           "code": "K-2.2.7.20",
+           "text": "Explain what to do in an emergency at home or school (e.g. what to do if someone is choking or if there is a fire)."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "advocacy",
+       "title": "Advocacy",
+       "subtopics": [
+        {
+         "id": "advocacy",
+         "title": "Advocacy",
+         "outcomes": [
+          {
+           "code": "K-2.2.8.21",
+           "text": "Explain that all people, including children, have the right to tell others not to touch their body when they do not want to be touched."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "human-body-and-personal-health",
+     "title": "Human Body and Personal Health",
+     "topics": [
+      {
+       "id": "health-promotion",
+       "title": "Health Promotion",
+       "subtopics": [
+        {
+         "id": "health-promotion",
+         "title": "Health Promotion",
+         "outcomes": [
+          {
+           "code": "K-2.3.1.1",
+           "text": "Name and locate the basic body organs, including the heart, brain, lungs, skin, and stomach and describe their functions."
+          },
+          {
+           "code": "K-2.3.1.2",
+           "text": "Describe how the skeletal and muscular systems help humans move and protect parts of the body."
+          },
+          {
+           "code": "K-2.3.1.3",
+           "text": "Explain biological differences between men and women."
+          },
+          {
+           "code": "K-2.3.1.4",
+           "text": "Identify different body types/sizes and how people's bodies change as they grow older."
+          },
+          {
+           "code": "K-2.3.1.5",
+           "text": "Describe the basic functions of the five senses."
+          },
+          {
+           "code": "K-2.3.1.6",
+           "text": "Identify different kinds of family structures."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "analyzing-influences",
+       "title": "Analyzing Influences",
+       "subtopics": [
+        {
+         "id": "analyzing-influences",
+         "title": "Analyzing Influences",
+         "outcomes": [
+          {
+           "code": "K-2.3.2.7",
+           "text": "Explain why sleep and rest are important for proper growth and good health."
+          },
+          {
+           "code": "K-2.3.2.8",
+           "text": "Differentiate between healthy and unhealthy relationships."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "advocacy",
+       "title": "Advocacy",
+       "subtopics": [
+        {
+         "id": "advocacy",
+         "title": "Advocacy",
+         "outcomes": [
+          {
+           "code": "K-2.3.8.9",
+           "text": "Describe how individual bodies are different and equally special."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "disease-prevention",
+     "title": "Disease Prevention",
+     "topics": [
+      {
+       "id": "health-promotion",
+       "title": "Health Promotion",
+       "subtopics": [
+        {
+         "id": "health-promotion",
+         "title": "Health Promotion",
+         "outcomes": [
+          {
+           "code": "K-2.4.1.1",
+           "text": "Identify the causes and common symptoms (e.g., runny nose, coughing, sneezing) of illness."
+          },
+          {
+           "code": "K-2.4.1.2",
+           "text": "Identify behaviors that promote health and prevent illness (e.g., proper hygiene, proper nutrition, adequate sleep, vaccinations, and exercise)."
+          },
+          {
+           "code": "K-2.4.1.3",
+           "text": "Explain how clean school, home, and community environments prevent the spread of germs."
+          },
+          {
+           "code": "K-2.4.1.4",
+           "text": "Describe the different types of pollution (e.g., air, water, waste) and the effect they have on health."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "analyzing-influences",
+       "title": "Analyzing Influences",
+       "subtopics": [
+        {
+         "id": "analyzing-influences",
+         "title": "Analyzing Influences",
+         "outcomes": [
+          {
+           "code": "K-2.4.2.5",
+           "text": "Identify ways that schools, family, and friends can influence positive health practices."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "accessing-information",
+       "title": "Accessing Information",
+       "subtopics": [
+        {
+         "id": "accessing-information",
+         "title": "Accessing Information",
+         "outcomes": [
+          {
+           "code": "K-2.4.3.6",
+           "text": "Identify individuals who provide health information and promote healthy behavior in schools and the community."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "healthy-behaviors",
+       "title": "Healthy Behaviors",
+       "subtopics": [
+        {
+         "id": "healthy-behaviors",
+         "title": "Healthy Behaviors",
+         "outcomes": [
+          {
+           "code": "K-2.4.7.7",
+           "text": "Demonstrate dental and personal hygiene practices (e.g., hand-washing; proper technique of brushing and flossing; and covering coughs)."
+          },
+          {
+           "code": "K-2.4.7.8",
+           "text": "Practice habits that are good for the environment (e.g., picking up trash, conserving water, and recycling)."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "nutrition",
+     "title": "Nutrition",
+     "topics": [
+      {
+       "id": "health-promotion",
+       "title": "Health Promotion",
+       "subtopics": [
+        {
+         "id": "health-promotion",
+         "title": "Health Promotion",
+         "outcomes": [
+          {
+           "code": "K-2.5.1.1",
+           "text": "Explain why healthy bodies require rest, exercise, and good nutrition."
+          },
+          {
+           "code": "K-2.5.1.2",
+           "text": "Categorize foods according to food sources and food groups (e.g., plant, animal, and processed)."
+          },
+          {
+           "code": "K-2.5.1.3",
+           "text": "Explain the benefits of drinking water and making healthy beverage choices."
+          },
+          {
+           "code": "K-2.5.1.4",
+           "text": "Identify foods that should be limited (e.g. non-nutrient dense foods, or foods high in sugar, salt, or fat)."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "analyzing-influences",
+       "title": "Analyzing Influences",
+       "subtopics": [
+        {
+         "id": "analyzing-influences",
+         "title": "Analyzing Influences",
+         "outcomes": [
+          {
+           "code": "K-2.5.2.5",
+           "text": "Explain how culture, media, peers, family, and other factors influence eating behaviors."
+          },
+          {
+           "code": "K-2.5.2.6",
+           "text": "Recognize that not all products advertised or sold are good for growing bodies."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "accessing-information",
+       "title": "Accessing Information",
+       "subtopics": [
+        {
+         "id": "accessing-information",
+         "title": "Accessing Information",
+         "outcomes": [
+          {
+           "code": "K-2.5.3.7",
+           "text": "Identify community members who grow or sell healthy food and the importance of consuming locally grown food."
+          },
+          {
+           "code": "K-2.5.3.8",
+           "text": "Identify members of the school community who are reliable sources of information about healthy foods."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "communication",
+       "title": "Communication",
+       "subtopics": [
+        {
+         "id": "communication",
+         "title": "Communication",
+         "outcomes": [
+          {
+           "code": "K-2.5.4.9",
+           "text": "Describe criteria for making healthy vs. less healthy food choices."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "decision-making",
+       "title": "Decision-Making",
+       "subtopics": [
+        {
+         "id": "decision-making",
+         "title": "Decision-Making",
+         "outcomes": [
+          {
+           "code": "K-2.5.5.10",
+           "text": "Identify healthy eating habits."
+          },
+          {
+           "code": "K-2.5.5.11",
+           "text": "Distinguish the feeling of hunger from the feeling of being satiated or full."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "goal-setting",
+       "title": "Goal Setting",
+       "subtopics": [
+        {
+         "id": "goal-setting",
+         "title": "Goal Setting",
+         "outcomes": [
+          {
+           "code": "K-2.5.6.12",
+           "text": "Set a goal to choose healthy foods for snacks and meals."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "healthy-behaviors",
+       "title": "Healthy Behaviors",
+       "subtopics": [
+        {
+         "id": "healthy-behaviors",
+         "title": "Healthy Behaviors",
+         "outcomes": [
+          {
+           "code": "K-2.5.7.13",
+           "text": "Understand the concept of variety in diet and explain why it is important to health (within and between food groups)."
+          },
+          {
+           "code": "K-2.5.7.14",
+           "text": "Recognize a nutritious meal or snack."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "advocacy",
+       "title": "Advocacy",
+       "subtopics": [
+        {
+         "id": "advocacy",
+         "title": "Advocacy",
+         "outcomes": [
+          {
+           "code": "K-2.5.8.15",
+           "text": "Practice how to ask for healthy food choices."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "alcohol-tobacco-and-other-drugs",
+     "title": "Alcohol, Tobacco, and Other Drugs",
+     "topics": [
+      {
+       "id": "health-promotion",
+       "title": "Health Promotion",
+       "subtopics": [
+        {
+         "id": "health-promotion",
+         "title": "Health Promotion",
+         "outcomes": [
+          {
+           "code": "K-2.6.1.1",
+           "text": "Describe safe and responsible uses for medicines and household products."
+          },
+          {
+           "code": "K-2.6.1.2",
+           "text": "Describe the consequences of misusing medicines and household products."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "analyzing-influences",
+       "title": "Analyzing Influences",
+       "subtopics": [
+        {
+         "id": "analyzing-influences",
+         "title": "Analyzing Influences",
+         "outcomes": [
+          {
+           "code": "K-2.6.2.3",
+           "text": "Identify trusted adults who can provide accurate information and guidance regarding medicines and common household products."
+          },
+          {
+           "code": "K-2.6.2.4",
+           "text": "Identify rules for taking medicines at school or at home."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "accessing-information",
+       "title": "Accessing Information",
+       "subtopics": [
+        {
+         "id": "accessing-information",
+         "title": "Accessing Information",
+         "outcomes": [
+          {
+           "code": "K-2.6.3.5",
+           "text": "Compare and contrast characteristics of products that are safe and unsafe to consume."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "communication",
+       "title": "Communication",
+       "subtopics": [
+        {
+         "id": "communication",
+         "title": "Communication",
+         "outcomes": [
+          {
+           "code": "K-2.6.4.6",
+           "text": "Use effective nonverbal and verbal communication skills to express needs, wants, and feelings (e.g., saying 'no')."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "3-5",
+   "units": [
+    {
+     "id": "mental-and-emotional-health",
+     "title": "Mental and Emotional Health",
+     "topics": [
+      {
+       "id": "health-promotion",
+       "title": "Health Promotion",
+       "subtopics": [
+        {
+         "id": "health-promotion",
+         "title": "Health Promotion",
+         "outcomes": [
+          {
+           "code": "3-5.1.1.1",
+           "text": "Explain what it means to be emotionally and mentally healthy (e.g., positive selfesteem and self-respect)."
+          },
+          {
+           "code": "3-5.1.1.2",
+           "text": "Define stress (both good and bad); explain steps to manage stress; and ways to deal with stressful situations."
+          },
+          {
+           "code": "3-5.1.1.3",
+           "text": "Identify the effects of stress/stressors on the body."
+          },
+          {
+           "code": "3-5.1.1.4",
+           "text": "Explain why it is wrong and hurtful to tease or bully others (e.g., based on their body type or other personal characteristics)."
+          },
+          {
+           "code": "3-5.1.1.5",
+           "text": "Identify feelings and emotions associated with loss and grief."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "analyzing-influences",
+       "title": "Analyzing Influences",
+       "subtopics": [
+        {
+         "id": "analyzing-influences",
+         "title": "Analyzing Influences",
+         "outcomes": [
+          {
+           "code": "3-5.1.2.6",
+           "text": "Examine and classify personal stressors (e.g., at home, in school, and with peers) and describe how each contributes to your mental, emotional, and physical health."
+          },
+          {
+           "code": "3-5.1.2.7",
+           "text": "Analyze ways that peers, families, and media influence feelings, behavior, and wellbeing."
+          },
+          {
+           "code": "3-5.1.2.8",
+           "text": "Describe the characteristics of positive role models."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "accessing-information",
+       "title": "Accessing Information",
+       "subtopics": [
+        {
+         "id": "accessing-information",
+         "title": "Accessing Information",
+         "outcomes": [
+          {
+           "code": "3-5.1.3.9",
+           "text": "Identify trusted persons at home school, and in the community who can help with mental and emotional health concerns."
+          },
+          {
+           "code": "3-5.1.3.10",
+           "text": "Identify resources for mental and emotional health information and evaluate when to utilize them."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "communication",
+       "title": "Communication",
+       "subtopics": [
+        {
+         "id": "communication",
+         "title": "Communication",
+         "outcomes": [
+          {
+           "code": "3-5.1.4.11",
+           "text": "Demonstrate the ability to use listening skills to support others and understand their feelings."
+          },
+          {
+           "code": "3-5.1.4.12",
+           "text": "Use appropriate communication skills to express emotions and appreciation for self and others."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "decision-making",
+       "title": "Decision-Making",
+       "subtopics": [
+        {
+         "id": "decision-making",
+         "title": "Decision-Making",
+         "outcomes": [
+          {
+           "code": "3-5.1.5.13",
+           "text": "Demonstrate the ability to apply a decision making process to cope with fear, stress, anger, and trauma."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "goal-setting",
+       "title": "Goal Setting",
+       "subtopics": [
+        {
+         "id": "goal-setting",
+         "title": "Goal Setting",
+         "outcomes": [
+          {
+           "code": "3-5.1.6.14",
+           "text": "Develop a plan to implement positive stress management strategies."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "healthy-behaviors",
+       "title": "Healthy Behaviors",
+       "subtopics": [
+        {
+         "id": "healthy-behaviors",
+         "title": "Healthy Behaviors",
+         "outcomes": [
+          {
+           "code": "3-5.1.7.15",
+           "text": "Demonstrate self-esteem and self-respect by identifying personal strengths and assets."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "advocacy",
+       "title": "Advocacy",
+       "subtopics": [
+        {
+         "id": "advocacy",
+         "title": "Advocacy",
+         "outcomes": [
+          {
+           "code": "3-5.1.8.16",
+           "text": "Describe how to persuade others to take action when someone else is being teased, harassed, or bullied."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "safety-skills",
+     "title": "Safety Skills",
+     "topics": [
+      {
+       "id": "health-promotion",
+       "title": "Health Promotion",
+       "subtopics": [
+        {
+         "id": "health-promotion",
+         "title": "Health Promotion",
+         "outcomes": [
+          {
+           "code": "3-5.2.1.1",
+           "text": "Explore the basic dynamics of personal relationships (e.g., conflict, forgiveness, trust, jealousy, and support)."
+          },
+          {
+           "code": "3-5.2.1.2",
+           "text": "Describe situations and behaviors that constitute abuse and bullying."
+          },
+          {
+           "code": "3-5.2.1.3",
+           "text": "Compare and contrast the characteristics of safe and unsafe situations/activities."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "analyzing-influences",
+       "title": "Analyzing Influences",
+       "subtopics": [
+        {
+         "id": "analyzing-influences",
+         "title": "Analyzing Influences",
+         "outcomes": [
+          {
+           "code": "3-5.2.2.5",
+           "text": "Describe the consequences of unresolved conflicts (in personal relationships and within communities) and influences thereof."
+          },
+          {
+           "code": "3-5.2.2.6",
+           "text": "Analyze factors that cause individuals to join gangs or crews and identify alternatives."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "accessing-information",
+       "title": "Accessing Information",
+       "subtopics": [
+        {
+         "id": "accessing-information",
+         "title": "Accessing Information",
+         "outcomes": [
+          {
+           "code": "3-5.2.3.7",
+           "text": "Identify resources for those experiencing abuse, including identifying trusted adults to tell about abuse."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "communication",
+       "title": "Communication",
+       "subtopics": [
+        {
+         "id": "communication",
+         "title": "Communication",
+         "outcomes": [
+          {
+           "code": "3-5.2.4.8",
+           "text": "Demonstrate effective verbal and nonverbal communication skills to resolve conflict (e.g., using body language and tone of voice to say \"no,\" and using \"I\" messages to express feelings)."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "decision-making",
+       "title": "Decision-Making",
+       "subtopics": [
+        {
+         "id": "decision-making",
+         "title": "Decision-Making",
+         "outcomes": [
+          {
+           "code": "3-5.2.5.9",
+           "text": "Develop strategies to reduce the risk of injury."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "goal-setting",
+       "title": "Goal Setting",
+       "subtopics": [
+        {
+         "id": "goal-setting",
+         "title": "Goal Setting",
+         "outcomes": [
+          {
+           "code": "3-5.2.6.10",
+           "text": "Identify resources that help achieve a personal goal to reduce injuries and prevent violence."
+          },
+          {
+           "code": "3-5.2.6.11",
+           "text": "Develop a plan to become a positive influence on the community (e.g., volunteering or helping a friend)."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "healthy-behaviors",
+       "title": "Healthy Behaviors",
+       "subtopics": [
+        {
+         "id": "healthy-behaviors",
+         "title": "Healthy Behaviors",
+         "outcomes": [
+          {
+           "code": "3-5.2.7.12",
+           "text": "Identify and use appropriate protective gear while engaging in certain athletic activities. (e.g., helmets, gloves, knee pads, and dental mouth guards)."
+          },
+          {
+           "code": "3-5.2.7.13",
+           "text": "Differentiate between safe and risky behaviors."
+          },
+          {
+           "code": "3-5.2.7.14",
+           "text": "Describe the characteristics of positive relationships (e.g., support and encouragement) and negative relationships (e.g., neglect and emotional/physical/verbal abuse)."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "advocacy",
+       "title": "Advocacy",
+       "subtopics": [
+        {
+         "id": "advocacy",
+         "title": "Advocacy",
+         "outcomes": [
+          {
+           "code": "3-5.2.8.15",
+           "text": "Describe ways to encourage others to resolve conflicts without violence."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "human-body-and-personal-health",
+     "title": "Human Body and Personal Health",
+     "topics": [
+      {
+       "id": "health-promotion",
+       "title": "Health Promotion",
+       "subtopics": [
+        {
+         "id": "health-promotion",
+         "title": "Health Promotion",
+         "outcomes": [
+          {
+           "code": "3-5.3.1.1",
+           "text": "Describe the basic structure, functions, and systems of the human body (e.g., digestive, circulatory, nervous, and cardiovascular systems)."
+          },
+          {
+           "code": "3-5.3.1.2",
+           "text": "Describe and use the proper names for body parts, systems, and functions, including gender-specific anatomy."
+          },
+          {
+           "code": "3-5.3.1.3",
+           "text": "Describe the human cycle of reproduction, birth, growth, aging, and death. Explain the structure, function, and major parts of the human reproductive system."
+          },
+          {
+           "code": "3-5.3.1.4",
+           "text": "Explain the physical, social, and emotional changes that occur during puberty."
+          },
+          {
+           "code": "3-5.3.1.5",
+           "text": "Define sexual orientation and gender identity and describe the difference between the two."
+          },
+          {
+           "code": "3-5.3.1.6",
+           "text": "Explain that healthy sexual relationships should always be consensual and respectful and that deceit, threats, and coercion are harmful."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "analyzing-influences",
+       "title": "Analyzing Influences",
+       "subtopics": [
+        {
+         "id": "analyzing-influences",
+         "title": "Analyzing Influences",
+         "outcomes": [
+          {
+           "code": "3-5.3.2.7",
+           "text": "Explain how the environment, nutrition, physical exercise, stress, and other influences impact each of the human body systems."
+          },
+          {
+           "code": "3-5.3.2.8",
+           "text": "Identify ways family, friends, peers, the media and others can impact emotional, social, and physical health, including sexual health."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "accessing-information",
+       "title": "Accessing Information",
+       "subtopics": [
+        {
+         "id": "accessing-information",
+         "title": "Accessing Information",
+         "outcomes": [
+          {
+           "code": "3-5.3.3.9",
+           "text": "Evaluate the credibility of sources of information (e.g., information on puberty, sex, and the human body)."
+          },
+          {
+           "code": "3-5.3.3.10",
+           "text": "Identify characteristics of valid healthpromoting products and services."
+          },
+          {
+           "code": "3-5.3.3.11",
+           "text": "Demonstrate ways to locate school and community organizations that provide health services to individuals and families (e.g., HMO, clinics, and substance abuse treatment centers)."
+          },
+          {
+           "code": "3-5.3.3.12",
+           "text": "Identify trusted adults to ask questions about sexual orientation."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "communication",
+       "title": "Communication",
+       "subtopics": [
+        {
+         "id": "communication",
+         "title": "Communication",
+         "outcomes": [
+          {
+           "code": "3-5.3.4.13",
+           "text": "Demonstrate ways to communicate boundaries and explain importance of showing respect to individuals around their boundaries."
+          },
+          {
+           "code": "3-5.3.4.14",
+           "text": "Demonstrate the use of refusal and assertiveness skills when responding to peer pressure, disagreements, and conflicts (particularly in instances of uncomfortable touching)."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "healthy-behaviors",
+       "title": "Healthy Behaviors",
+       "subtopics": [
+        {
+         "id": "healthy-behaviors",
+         "title": "Healthy Behaviors",
+         "outcomes": [
+          {
+           "code": "3-5.3.7.15",
+           "text": "Describe healthy behaviors during puberty, including maintaining personal hygiene and personal safety."
+          },
+          {
+           "code": "3-5.3.7.16",
+           "text": "Demonstrate healthy ways to cope with change that may occur in families (e.g. pregnancy, birth, marriage, divorce, adoption, foster care, relocation, and death)."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "advocacy",
+       "title": "Advocacy",
+       "subtopics": [
+        {
+         "id": "advocacy",
+         "title": "Advocacy",
+         "outcomes": [
+          {
+           "code": "3-5.3.8.17",
+           "text": "Demonstrate ways students can work together to promote dignity and respect for all people in their school and community."
+          },
+          {
+           "code": "3-5.3.8.18",
+           "text": "Describe how to seek advice and help from a trusted person about personal health issues."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "disease-prevention",
+     "title": "Disease Prevention",
+     "topics": [
+      {
+       "id": "health-promotion",
+       "title": "Health Promotion",
+       "subtopics": [
+        {
+         "id": "health-promotion",
+         "title": "Health Promotion",
+         "outcomes": [
+          {
+           "code": "3-5.4.1.1",
+           "text": "Describe noncommunicable and communicable diseases ( including modes of transmission, e.g. air, water, touch, and body fluids), differentiate between the two, and list examples of each."
+          },
+          {
+           "code": "3-5.4.1.2",
+           "text": "Describe how bacteria, viruses, and parasites cause infectious diseases."
+          },
+          {
+           "code": "3-5.4.1.3",
+           "text": "Identify personal health strategies that reduce illness, including receiving vaccinations."
+          },
+          {
+           "code": "3-5.4.1.4",
+           "text": "Explain the importance of oral health, causes of dental/gum decay, disease and strategies to prevent these conditions."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "analyzing-influences",
+       "title": "Analyzing Influences",
+       "subtopics": [
+        {
+         "id": "analyzing-influences",
+         "title": "Analyzing Influences",
+         "outcomes": [
+          {
+           "code": "3-5.4.2.5",
+           "text": "Describe the influence of culture, family, friends, technology, and media influences on health practices."
+          },
+          {
+           "code": "3-5.4.2.6",
+           "text": "Describe the key types of primary care professionals, such as physicians, dentists, nurses, optometrists, and behavioral health personnel."
+          },
+          {
+           "code": "3-5.4.2.7",
+           "text": "Describe the role of primary care medicine in reducing the lifetime impact of health conditions."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "accessing-information",
+       "title": "Accessing Information",
+       "subtopics": [
+        {
+         "id": "accessing-information",
+         "title": "Accessing Information",
+         "outcomes": [
+          {
+           "code": "3-5.4.3.8",
+           "text": "Identify valid sources of information for the evaluation of health products."
+          },
+          {
+           "code": "3-5.4.3.9",
+           "text": "Explain the role of regular dental and health check-ups in the detection and treatment of health problems."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "communication",
+       "title": "Communication",
+       "subtopics": [
+        {
+         "id": "communication",
+         "title": "Communication",
+         "outcomes": [
+          {
+           "code": "3-5.4.4.10",
+           "text": "Demonstrate ability to communicate health concerns to a health-care professional or provider."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "decision-making",
+       "title": "Decision-Making",
+       "subtopics": [
+        {
+         "id": "decision-making",
+         "title": "Decision-Making",
+         "outcomes": [
+          {
+           "code": "3-5.4.5.11",
+           "text": "Apply a decision-making model to determine when a person may need to go to the doctor, hospital, or clinic."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "goal-setting",
+       "title": "Goal Setting",
+       "subtopics": [
+        {
+         "id": "goal-setting",
+         "title": "Goal Setting",
+         "outcomes": [
+          {
+           "code": "3-5.4.6.12",
+           "text": "Identify individuals who can assist with emergent and non-emergent health conditions."
+          },
+          {
+           "code": "3-5.4.6.13",
+           "text": "Explain the importance of establishing a long-term relationship with a primary care provider and dentist as a critical component in maintaining one's health."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "healthy-behaviors",
+       "title": "Healthy Behaviors",
+       "subtopics": [
+        {
+         "id": "healthy-behaviors",
+         "title": "Healthy Behaviors",
+         "outcomes": [
+          {
+           "code": "3-5.4.7.14",
+           "text": "Demonstrate effective brushing and flossing techniques."
+          },
+          {
+           "code": "3-5.4.7.15",
+           "text": "Demonstrate how to follow universal precautions (e.g., hand hygiene, cleaning, and disinfection) for preventing infection."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "advocacy",
+       "title": "Advocacy",
+       "subtopics": [
+        {
+         "id": "advocacy",
+         "title": "Advocacy",
+         "outcomes": [
+          {
+           "code": "3-5.4.8.16",
+           "text": "Demonstrate ways to support others in making positive health choices."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "nutrition",
+     "title": "Nutrition",
+     "topics": [
+      {
+       "id": "health-promotion",
+       "title": "Health Promotion",
+       "subtopics": [
+        {
+         "id": "health-promotion",
+         "title": "Health Promotion",
+         "outcomes": [
+          {
+           "code": "3-5.5.1.1",
+           "text": "Describe the relationship between physical activity and the need for food and water."
+          },
+          {
+           "code": "3-5.5.1.2",
+           "text": "Describe the food groups including recommended portions for each."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "analyzing-influences",
+       "title": "Analyzing Influences",
+       "subtopics": [
+        {
+         "id": "analyzing-influences",
+         "title": "Analyzing Influences",
+         "outcomes": [
+          {
+           "code": "3-5.5.2.3",
+           "text": "Analyze the influence of advertising and marketing techniques on food and beverage choices."
+          },
+          {
+           "code": "3-5.5.2.4",
+           "text": "Identify internal and external influences that affect food choices."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "accessing-information",
+       "title": "Accessing Information",
+       "subtopics": [
+        {
+         "id": "accessing-information",
+         "title": "Accessing Information",
+         "outcomes": [
+          {
+           "code": "3-5.5.3.5",
+           "text": "Identify key components of the 'Nutrition Facts' label and ingredients list."
+          },
+          {
+           "code": "3-5.5.3.6",
+           "text": "Identify sources of nutrition information and evaluate their reliability."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "communication",
+       "title": "Communication",
+       "subtopics": [
+        {
+         "id": "communication",
+         "title": "Communication",
+         "outcomes": [
+          {
+           "code": "3-5.5.4.7",
+           "text": "Develop a message about the benefits of growing food in gardens."
+          },
+          {
+           "code": "3-5.5.4.8",
+           "text": "Demonstrate how to ask for nutritious foods."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "decision-making",
+       "title": "Decision-Making",
+       "subtopics": [
+        {
+         "id": "decision-making",
+         "title": "Decision-Making",
+         "outcomes": [
+          {
+           "code": "3-5.5.5.9",
+           "text": "Compare and contrast snacks, (which can contribute to or undermine healthy eating habits) and identify why some are better than others."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "goal-setting",
+       "title": "Goal Setting",
+       "subtopics": [
+        {
+         "id": "goal-setting",
+         "title": "Goal Setting",
+         "outcomes": [
+          {
+           "code": "3-5.5.6.10",
+           "text": "Set a short-term nutrition goal and track progress toward its achievement."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "healthy-behaviors",
+       "title": "Healthy Behaviors",
+       "subtopics": [
+        {
+         "id": "healthy-behaviors",
+         "title": "Healthy Behaviors",
+         "outcomes": [
+          {
+           "code": "3-5.5.7.11",
+           "text": "Demonstrate how to use 'Nutrition Facts' labels to select a healthy food or snack."
+          },
+          {
+           "code": "3-5.5.7.12",
+           "text": "Plan or prepare a nutritious snack and justify its nutritional value."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "advocacy",
+       "title": "Advocacy",
+       "subtopics": [
+        {
+         "id": "advocacy",
+         "title": "Advocacy",
+         "outcomes": [
+          {
+           "code": "3-5.5.8.13",
+           "text": "Encourage and promote healthy eating opportunities at home, in school, and in the community."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "alcohol-tobacco-and-other-drugs",
+     "title": "Alcohol, Tobacco, and Other Drugs",
+     "topics": [
+      {
+       "id": "health-promotion",
+       "title": "Health Promotion",
+       "subtopics": [
+        {
+         "id": "health-promotion",
+         "title": "Health Promotion",
+         "outcomes": [
+          {
+           "code": "3-5.6.1.1",
+           "text": "Define, compare and contrast legal and illegal drugs, and give examples of each."
+          },
+          {
+           "code": "3-5.6.1.2",
+           "text": "Analyze the relationship between drugs and behavior."
+          },
+          {
+           "code": "3-5.6.1.3",
+           "text": "Define addiction (including its relationship to substance abuse); Explain that those who are addicted require assistance to stop addiction."
+          },
+          {
+           "code": "3-5.6.1.4",
+           "text": "Describe the short and longterm effects of alcohol, drugs, and tobacco on the body and its organ systems."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "analyzing-influences",
+       "title": "Analyzing Influences",
+       "subtopics": [
+        {
+         "id": "analyzing-influences",
+         "title": "Analyzing Influences",
+         "outcomes": [
+          {
+           "code": "3-5.6.2.5",
+           "text": "Identify internal and external factors that protect a person from drug use or abuse."
+          },
+          {
+           "code": "3-5.6.2.6",
+           "text": "Assess ways that alcohol, drugs, or tobacco may be marketed to attract youth."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "accessing-information",
+       "title": "Accessing Information",
+       "subtopics": [
+        {
+         "id": "accessing-information",
+         "title": "Accessing Information",
+         "outcomes": [
+          {
+           "code": "3-5.6.3.8",
+           "text": "Use product safety labels on health-related and household products to obtain basic information and explain the effects of misusing the labels."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "communication",
+       "title": "Communication",
+       "subtopics": [
+        {
+         "id": "communication",
+         "title": "Communication",
+         "outcomes": [
+          {
+           "code": "3-5.6.4.9",
+           "text": "Develop and apply communication skills to refuse offers of alcohol, tobacco, and other drugs."
+          },
+          {
+           "code": "3-5.6.4.10",
+           "text": "Express information and opinions to encourage others to make positive health choices to be alcohol and tobacco free."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "decision-making",
+       "title": "Decision-Making",
+       "subtopics": [
+        {
+         "id": "decision-making",
+         "title": "Decision-Making",
+         "outcomes": [
+          {
+           "code": "3-5.6.5.11",
+           "text": "Describe how using alcohol, tobacco, and other drugs can affect decision making abilities."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "healthy-behaviors",
+       "title": "Healthy Behaviors",
+       "subtopics": [
+        {
+         "id": "healthy-behaviors",
+         "title": "Healthy Behaviors",
+         "outcomes": [
+          {
+           "code": "3-5.6.7.12",
+           "text": "Identify alternatives to alcohol, tobacco, and other drugs (e.g., playing with friends, playing sports, and engaging in hobbies)."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "advocacy",
+       "title": "Advocacy",
+       "subtopics": [
+        {
+         "id": "advocacy",
+         "title": "Advocacy",
+         "outcomes": [
+          {
+           "code": "3-5.6.8.13",
+           "text": "Analyze laws designed to prevent drug use, misuse, and abuse."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "6-8",
+   "units": [
+    {
+     "id": "mental-and-emotional-health",
+     "title": "Mental and Emotional Health",
+     "topics": [
+      {
+       "id": "health-promotion",
+       "title": "Health Promotion",
+       "subtopics": [
+        {
+         "id": "health-promotion",
+         "title": "Health Promotion",
+         "outcomes": [
+          {
+           "code": "6-8.1.1.1",
+           "text": "Define hormones and explain how brain development influences emotions during adolescence."
+          },
+          {
+           "code": "6-8.1.1.2",
+           "text": "Define stress, anxiety, and depression. Identify the signs, symptoms and potential effects of each on the individual (e.g., suicidal thoughts, selfharm, and overeating)."
+          },
+          {
+           "code": "6-8.1.1.3",
+           "text": "Differentiate between sadness and depression."
+          },
+          {
+           "code": "6-8.1.1.4",
+           "text": "Define trauma and recognize traumatic experiences."
+          },
+          {
+           "code": "6-8.1.1.5",
+           "text": "Describe qualities that contribute to a positive self-image."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "analyzing-influences",
+       "title": "Analyzing Influences",
+       "subtopics": [
+        {
+         "id": "analyzing-influences",
+         "title": "Analyzing Influences",
+         "outcomes": [
+          {
+           "code": "6-8.1.2.6",
+           "text": "Analyze the role and impact of family, society, peers, and the media (particularly social media) on selfimage, behaviors, and health practices."
+          },
+          {
+           "code": "6-8.1.2.7",
+           "text": "Analyze the potential impacts of loss and grief on daily activities."
+          },
+          {
+           "code": "6-8.1.2.8",
+           "text": "Analyze the relationship between depression and suicide. Identify the risk factors and warning signs for suicide in adolescents."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "accessing-information",
+       "title": "Accessing Information",
+       "subtopics": [
+        {
+         "id": "accessing-information",
+         "title": "Accessing Information",
+         "outcomes": [
+          {
+           "code": "6-8.1.3.9",
+           "text": "Identify and evaluate the validity of sources of information and services for getting help for mental, emotional, and social health problems."
+          },
+          {
+           "code": "6-8.1.3.10",
+           "text": "Explain how appropriate mental health care can help prevent, detect, and treat mental health concerns, such as anxiety disorders, mood disorders, and suicide."
+          },
+          {
+           "code": "6-8.1.3.11",
+           "text": "Identify techniques and resources for managing mental and emotional health challenges (e.g., depression, grief, anxiety, and stress)."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "communication",
+       "title": "Communication",
+       "subtopics": [
+        {
+         "id": "communication",
+         "title": "Communication",
+         "outcomes": [
+          {
+           "code": "6-8.1.4.12",
+           "text": "Demonstrate how to communicate about stress and anxiety productively."
+          },
+          {
+           "code": "6-8.1.4.13",
+           "text": "Describe how sharing or posting information electronically about self or others on social media sites (e.g., texting, phone, email, and group-chats) can negatively impact mental and emotional health."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "decision-making",
+       "title": "Decision-Making",
+       "subtopics": [
+        {
+         "id": "decision-making",
+         "title": "Decision-Making",
+         "outcomes": [
+          {
+           "code": "6-8.1.5.14",
+           "text": "Identify appropriate responses to personal emotional triggers, including impulse control."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "goal-setting",
+       "title": "Goal Setting",
+       "subtopics": [
+        {
+         "id": "goal-setting",
+         "title": "Goal Setting",
+         "outcomes": [
+          {
+           "code": "6-8.1.6.15",
+           "text": "Set realistic short and long term goals for stress management and develop plans to achieve them."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "healthy-behaviors",
+       "title": "Healthy Behaviors",
+       "subtopics": [
+        {
+         "id": "healthy-behaviors",
+         "title": "Healthy Behaviors",
+         "outcomes": [
+          {
+           "code": "6-8.1.7.16",
+           "text": "Demonstrate healthy ways to express caring, friendship, affection, and love, both verbally and nonverbally."
+          },
+          {
+           "code": "6-8.1.7.17",
+           "text": "Demonstrate ways to show support to a peer who is grieving, suffering from trauma, or dealing with depression/anxiety."
+          },
+          {
+           "code": "6-8.1.7.18",
+           "text": "Demonstrate the ability to use stressrelieving techniques."
+          },
+          {
+           "code": "6-8.1.7.19",
+           "text": "Identify what to do if you or a peer exhibits the warning signs for suicide by reaching out to a trusted person and/or a community/national resource."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "advocacy",
+       "title": "Advocacy",
+       "subtopics": [
+        {
+         "id": "advocacy",
+         "title": "Advocacy",
+         "outcomes": [
+          {
+           "code": "6-8.1.8.20",
+           "text": "Recommend ways to help a friend or family member deal with emotional or mental health challenges."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "safety-skills",
+     "title": "Safety Skills",
+     "topics": [
+      {
+       "id": "health-promotion",
+       "title": "Health Promotion",
+       "subtopics": [
+        {
+         "id": "health-promotion",
+         "title": "Health Promotion",
+         "outcomes": [
+          {
+           "code": "6-8.2.1.1",
+           "text": "Identify dangerous/risky behaviors that might lead to injuries."
+          },
+          {
+           "code": "6-8.2.1.2",
+           "text": "Compare and contrast the differences between harassment and flirting."
+          },
+          {
+           "code": "6-8.2.1.3",
+           "text": "Compare and contrast myths and facts that relate to sexual harassment."
+          },
+          {
+           "code": "6-8.2.1.4",
+           "text": "Describe firstaid for dental injuries (such as displacing a permanent tooth)."
+          },
+          {
+           "code": "6-8.2.1.5",
+           "text": "Contrast the characteristics of harmful or abusive relationships, including intimate partner violence, to those of healthy relationships."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "analyzing-influences",
+       "title": "Analyzing Influences",
+       "subtopics": [
+        {
+         "id": "analyzing-influences",
+         "title": "Analyzing Influences",
+         "outcomes": [
+          {
+           "code": "6-8.2.2.6",
+           "text": "Analyze how unhealthy social environments can influence personal health decisions."
+          },
+          {
+           "code": "6-8.2.2.7",
+           "text": "Describe the impact that individual behavior can have on public safety."
+          },
+          {
+           "code": "6-8.2.2.8",
+           "text": "Analyze the positive and negative effects peer influence can have on personal safety decisions."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "accessing-information",
+       "title": "Accessing Information",
+       "subtopics": [
+        {
+         "id": "accessing-information",
+         "title": "Accessing Information",
+         "outcomes": [
+          {
+           "code": "6-8.2.3.9",
+           "text": "Access sources of information in the event of an emergency or epidemic and evaluate which sources are accurate."
+          },
+          {
+           "code": "6-8.2.3.10",
+           "text": "Identify the available emotional and physical abuse resources for support in schools and the community and describe when to use each."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "communication",
+       "title": "Communication",
+       "subtopics": [
+        {
+         "id": "communication",
+         "title": "Communication",
+         "outcomes": [
+          {
+           "code": "6-8.2.4.11",
+           "text": "Describe how refusal skills help youth avoid unsafe situations."
+          },
+          {
+           "code": "6-8.2.4.12",
+           "text": "Demonstrate how to report situations that could lead to injury or violence."
+          },
+          {
+           "code": "6-8.2.4.13",
+           "text": "Demonstrate how to manage personal information in electronic communication and when using social media (e.g., chat groups, email, texting, websites, phone, and tablet applications) to protect the personal safety of oneself and others."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "decision-making",
+       "title": "Decision-Making",
+       "subtopics": [
+        {
+         "id": "decision-making",
+         "title": "Decision-Making",
+         "outcomes": [
+          {
+           "code": "6-8.2.5.14",
+           "text": "Demonstrate ways to interact with different types of authorities."
+          },
+          {
+           "code": "6-8.2.5.15",
+           "text": "Demonstrate the ability to use mediation and negotiation skills to resolve conflict."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "goal-setting",
+       "title": "Goal Setting",
+       "subtopics": [
+        {
+         "id": "goal-setting",
+         "title": "Goal Setting",
+         "outcomes": [
+          {
+           "code": "6-8.2.6.16",
+           "text": "Assess personal safety and injury prevention practices, including in relation to gun violence."
+          },
+          {
+           "code": "6-8.2.6.17",
+           "text": "Develop and apply personal conflictresolution strategies to prevent, manage, or resolve interpersonal conflicts."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "healthy-behaviors",
+       "title": "Healthy Behaviors",
+       "subtopics": [
+        {
+         "id": "healthy-behaviors",
+         "title": "Healthy Behaviors",
+         "outcomes": [
+          {
+           "code": "6-8.2.7.18",
+           "text": "Demonstrate how to care for babies and young children in order to prevent injury."
+          },
+          {
+           "code": "6-8.2.7.19",
+           "text": "Demonstrate first aid procedures and other lifesaving techniques (e.g., handsonly cardiopulmonary resuscitation, automated external defibrillator, epinephrine auto injector, and asthma rescue inhalers)."
+          },
+          {
+           "code": "6-8.2.7.20",
+           "text": "Describe when it is necessary to seek help or leave an abusive relationship."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "advocacy",
+       "title": "Advocacy",
+       "subtopics": [
+        {
+         "id": "advocacy",
+         "title": "Advocacy",
+         "outcomes": [
+          {
+           "code": "6-8.2.8.21",
+           "text": "Persuade others to make positive safety and violence/injury prevention choices."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "human-body-and-personal-health",
+     "title": "Human Body and Personal Health",
+     "topics": [
+      {
+       "id": "health-promotion",
+       "title": "Health Promotion",
+       "subtopics": [
+        {
+         "id": "health-promotion-1-of-2",
+         "title": "Health Promotion (1 of 2)",
+         "outcomes": [
+          {
+           "code": "6-8.3.1.1",
+           "text": "Describe the function and interconnection of all the body systems and how they work together to ensure wellness. Explain physical, social, and emotional changes associated with adolescence."
+          },
+          {
+           "code": "6-8.3.1.2",
+           "text": "Define sexual orientation, using correct terminology, and explain that as people grow and develop they may begin to feel romantically and/or sexually attracted to people of a different gender and/or to people of the same gender."
+          },
+          {
+           "code": "6-8.3.1.3",
+           "text": "Differentiate between gender identity, gender expression, sexual orientation, and sex assigned at birth/biological sex."
+          },
+          {
+           "code": "6-8.3.1.4",
+           "text": "Summarize the human reproductive cycle. Explain the full range of sexual intercourse/behaviors and the relationship to human reproduction."
+          }
+         ]
+        },
+        {
+         "id": "health-promotion-2-of-2",
+         "title": "Health Promotion (2 of 2)",
+         "outcomes": [
+          {
+           "code": "6-8.3.1.5",
+           "text": "Describe fertilization, embryonic development, and fetal development; describe the signs, symptoms, and body changes that occur with pregnancy."
+          },
+          {
+           "code": "6-8.3.1.6",
+           "text": "Identify prenatal practices that contribute to a healthy pregnancy."
+          },
+          {
+           "code": "6-8.3.1.7",
+           "text": "Explain the precautions necessary during labor and delivery, including when HIV and/or STIs are present."
+          },
+          {
+           "code": "6-8.3.1.8",
+           "text": "Compare/contrast situations and behaviors that may constitute sexual assault and intimate partner violence. Analyze impacts of such violence and relationships."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "analyzing-influences",
+       "title": "Analyzing Influences",
+       "subtopics": [
+        {
+         "id": "analyzing-influences",
+         "title": "Analyzing Influences",
+         "outcomes": [
+          {
+           "code": "6-8.3.2.9",
+           "text": "Analyze how societal messages from all media influence adolescents' perceptions, decisions, and behaviors related to sexual activity and contribute to intimate partner violence."
+          },
+          {
+           "code": "6-8.3.2.10",
+           "text": "Analyze external influences that have an impact on attitudes about gender, sexual orientation, gender identity, and gender expression."
+          },
+          {
+           "code": "6-8.3.2.11",
+           "text": "Examine the social, cultural, religious, and legal factors that influence the option/choice to use contraception and the choice to remain abstinent."
+          },
+          {
+           "code": "6-8.3.2.12",
+           "text": "Describe how heredity influences growth and development."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "accessing-information",
+       "title": "Accessing Information",
+       "subtopics": [
+        {
+         "id": "accessing-information",
+         "title": "Accessing Information",
+         "outcomes": [
+          {
+           "code": "6-8.3.3.13",
+           "text": "Identify school, medical, and community based support services for sexual health services, including STI/HIV testing/treatment, contraception, and abortion."
+          },
+          {
+           "code": "6-8.3.3.14",
+           "text": "Identify programs, support services, and other resources for all students (e.g., LGBTQ, disabled, and immigrant populations)."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "communication",
+       "title": "Communication",
+       "subtopics": [
+        {
+         "id": "communication",
+         "title": "Communication",
+         "outcomes": [
+          {
+           "code": "6-8.3.4.15",
+           "text": "Applying an assertive communication model to demonstrate effective ways to communicate personal boundaries within friendships and romantic relationships."
+          },
+          {
+           "code": "6-8.3.4.16",
+           "text": "Explain the importance of positive self concept."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "decision-making",
+       "title": "Decision-Making",
+       "subtopics": [
+        {
+         "id": "decision-making",
+         "title": "Decision-Making",
+         "outcomes": [
+          {
+           "code": "6-8.3.5.17",
+           "text": "Analyze the short-term and long-term consequences of adolescent sexual activity including the various costs of STI/HIV testing/treatment, unplanned pregnancy, and parenting."
+          },
+          {
+           "code": "6-8.3.5.18",
+           "text": "Using a decision making model, assess the full range of contraceptive choices."
+          },
+          {
+           "code": "6-8.3.5.19",
+           "text": "Examine how self-esteem impacts decision-making around personal health and relationships."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "goal-setting",
+       "title": "Goal Setting",
+       "subtopics": [
+        {
+         "id": "goal-setting",
+         "title": "Goal Setting",
+         "outcomes": [
+          {
+           "code": "6-8.3.6.20",
+           "text": "Design a personal health goal, analyze how family and peers might support or hinder its achievement, and evaluate progress toward its achievement."
+          },
+          {
+           "code": "6-8.3.6.21",
+           "text": "Use a goal setting model to demonstrate strategies to remain abstinent or delay sexual activity and resist pressures to become sexually active."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "healthy-behaviors",
+       "title": "Healthy Behaviors",
+       "subtopics": [
+        {
+         "id": "healthy-behaviors-1-of-2",
+         "title": "Healthy Behaviors (1 of 2)",
+         "outcomes": [
+          {
+           "code": "6-8.3.7.22",
+           "text": "Identify the characteristics of committed relationships (e.g., love, respectfulness, generosity, kindness, and forgiveness)."
+          },
+          {
+           "code": "6-8.3.7.23",
+           "text": "Compare and contrast models of healthy relationships for family, friends, and romantic relationships."
+          },
+          {
+           "code": "6-8.3.7.24",
+           "text": "Explain why abstinence is the most effective way to prevent STIs/HIV and unintended pregnancy."
+          },
+          {
+           "code": "6-8.3.7.25",
+           "text": "Analyze behaviors that place one at risk for HIV/AIDS, STIs, or unintended pregnancy."
+          }
+         ]
+        },
+        {
+         "id": "healthy-behaviors-2-of-2",
+         "title": "Healthy Behaviors (2 of 2)",
+         "outcomes": [
+          {
+           "code": "6-8.3.7.26",
+           "text": "Explain the differences between the full range of hormonal and barrier methods of contraception and how they work. Explain that contraception is the responsibility of both partners."
+          },
+          {
+           "code": "6-8.3.7.27",
+           "text": "Define and describe STI/HIV, protection methods (e.g., male/insertive and female/receptive condoms; dental dams; finger cots; and Pre-Exposure Prophylaxis), symptoms, confidential testing, treatment, risks, and modes of transmission."
+          },
+          {
+           "code": "6-8.3.7.28",
+           "text": "Demonstrate the steps to using a male/insertive and female/receptive condom correctly, and other barrier and hormonal contraception."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "advocacy",
+       "title": "Advocacy",
+       "subtopics": [
+        {
+         "id": "advocacy",
+         "title": "Advocacy",
+         "outcomes": [
+          {
+           "code": "6-8.3.8.29",
+           "text": "Demonstrate how to support peers in making responsible and healthy decisions regarding sexual behavior."
+          },
+          {
+           "code": "6-8.3.8.30",
+           "text": "Demonstrate how to report abuse to a trusted adult or to the Child and Family Services Agency (CFSA)."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "disease-prevention",
+     "title": "Disease Prevention",
+     "topics": [
+      {
+       "id": "health-promotion",
+       "title": "Health Promotion",
+       "subtopics": [
+        {
+         "id": "health-promotion",
+         "title": "Health Promotion",
+         "outcomes": [
+          {
+           "code": "6-8.4.1.1",
+           "text": "Explain the importance of practicing healthpromoting behaviors."
+          },
+          {
+           "code": "6-8.4.1.2",
+           "text": "Describe how exposure to environmental factors can impact health."
+          },
+          {
+           "code": "6-8.4.1.3",
+           "text": "Describe strategies for proper food-handling and storage to prevent the spread of foodborne illness."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "analyzing-influences",
+       "title": "Analyzing Influences",
+       "subtopics": [
+        {
+         "id": "analyzing-influences",
+         "title": "Analyzing Influences",
+         "outcomes": [
+          {
+           "code": "6-8.4.2.4",
+           "text": "Analyze how local sources of pollution can influence both personal and community health."
+          },
+          {
+           "code": "6-8.4.2.5",
+           "text": "Analyze the effects of social norms, cultures, values, attitudes and behaviors on personal and community health."
+          },
+          {
+           "code": "6-8.4.2.6",
+           "text": "Analyze the relationship between the health of a community and global environment."
+          },
+          {
+           "code": "6-8.4.2.7",
+           "text": "Analyze behavioral, genetic, environmental, and other risk factors that contribute to or prevent major diseases."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "accessing-information",
+       "title": "Accessing Information",
+       "subtopics": [
+        {
+         "id": "accessing-information",
+         "title": "Accessing Information",
+         "outcomes": [
+          {
+           "code": "6-8.4.3.8",
+           "text": "Describe situations that may require professional health services, including instances of food poisoning or other foodborne illnesses."
+          },
+          {
+           "code": "6-8.4.3.9",
+           "text": "Compare and contrast global influences on personal and community health."
+          },
+          {
+           "code": "6-8.4.3.10",
+           "text": "Examine barriers to accessing appropriate health care."
+          },
+          {
+           "code": "6-8.4.3.11",
+           "text": "Identify health messages made in the media."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "communication",
+       "title": "Communication",
+       "subtopics": [
+        {
+         "id": "communication",
+         "title": "Communication",
+         "outcomes": [
+          {
+           "code": "6-8.4.5.12",
+           "text": "Explain how sanitation, waste disposal, proper food handling/storage, and environmental controls prevent diseases and improve health conditions."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "decision-making",
+       "title": "Decision-Making",
+       "subtopics": [
+        {
+         "id": "decision-making",
+         "title": "Decision-Making",
+         "outcomes": [
+          {
+           "code": "6-8.4.5.13",
+           "text": "Explain the risks of neglecting oral health, including potential effects on overall health and family's health."
+          },
+          {
+           "code": "6-8.4.5.14",
+           "text": "Explain why it is important to seek treatment for common infectious and chronic diseases."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "goal-setting",
+       "title": "Goal Setting",
+       "subtopics": [
+        {
+         "id": "goal-setting",
+         "title": "Goal Setting",
+         "outcomes": [
+          {
+           "code": "6-8.4.6.15",
+           "text": "Set a short-term goal for practicing positive health practices."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "healthy-behaviors",
+       "title": "Healthy Behaviors",
+       "subtopics": [
+        {
+         "id": "healthy-behaviors",
+         "title": "Healthy Behaviors",
+         "outcomes": [
+          {
+           "code": "6-8.4.7.16",
+           "text": "Recognize the importance of regular visits to a medical home and the maintenance of personal health records (e.g., records regarding vaccinations and wellness visits)."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "advocacy",
+       "title": "Advocacy",
+       "subtopics": [
+        {
+         "id": "advocacy",
+         "title": "Advocacy",
+         "outcomes": [
+          {
+           "code": "6-8.4.8.17",
+           "text": "Propose modes of transportation that benefit the environment and promote health."
+          },
+          {
+           "code": "6-8.4.5.18",
+           "text": "Demonstrate the ability to advocate for healthpromoting opportunities for self and others, including assertive consumerism."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "nutrition",
+     "title": "Nutrition",
+     "topics": [
+      {
+       "id": "health-promotion",
+       "title": "Health Promotion",
+       "subtopics": [
+        {
+         "id": "health-promotion",
+         "title": "Health Promotion",
+         "outcomes": [
+          {
+           "code": "6-8.5.1.1",
+           "text": "Differentiate amongst portion size, serving size, and recommended amounts of each food group using the USDA food guidance (e.g., MyPlate) system for different age groups."
+          },
+          {
+           "code": "6-8.5.1.2",
+           "text": "Compare the nutritional needs associated with life stages (e.g., prenatal through late adulthood)."
+          },
+          {
+           "code": "6-8.5.1.3",
+           "text": "Describe how age, physical activity, and gender affect nutritional requirements."
+          },
+          {
+           "code": "6-8.5.1.4",
+           "text": "Describe the relationship between diet and chronic disease (e.g., high blood pressure, tooth decay, and obesity) and other health problems (e.g., food allergies and eating disorders)."
+          },
+          {
+           "code": "6-8.5.1.5",
+           "text": "Examine factors that contribute to individual differences in body weight, size, shape, and physical ability."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "analyzing-influences",
+       "title": "Analyzing Influences",
+       "subtopics": [
+        {
+         "id": "analyzing-influences",
+         "title": "Analyzing Influences",
+         "outcomes": [
+          {
+           "code": "6-8.5.2.6",
+           "text": "Analyze how internal and external influences (e.g., culture, food costs, poverty, environment, peers, and family) affect food choices."
+          },
+          {
+           "code": "6-8.5.2.7",
+           "text": "Differentiate between research-based diets and 'fad' diets."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "accessing-information",
+       "title": "Accessing Information",
+       "subtopics": [
+        {
+         "id": "accessing-information",
+         "title": "Accessing Information",
+         "outcomes": [
+          {
+           "code": "6-8.5.3.8",
+           "text": "Access valid sources of nutrition information online."
+          },
+          {
+           "code": "6-8.5.3.9",
+           "text": "Evaluate the validity of nutritional information, products, and services and how they influence food choices."
+          },
+          {
+           "code": "6-8.5.3.10",
+           "text": "Identify and evaluate ways to measure body composition."
+          },
+          {
+           "code": "6-8.5.3.11",
+           "text": "Access and use services that provide information and services for individuals with an eating disorder."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "communication",
+       "title": "Communication",
+       "subtopics": [
+        {
+         "id": "communication",
+         "title": "Communication",
+         "outcomes": [
+          {
+           "code": "6-8.5.4.12",
+           "text": "Use communication skills to deal with influences from peers and media regarding food choices and physical activity."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "decision-making",
+       "title": "Decision-Making",
+       "subtopics": [
+        {
+         "id": "decision-making",
+         "title": "Decision-Making",
+         "outcomes": [
+          {
+           "code": "6-8.5.5.13",
+           "text": "Demonstrate the ability to apply a decision-making model to make healthy food choices at home and away from home."
+          },
+          {
+           "code": "6-8.5.5.14",
+           "text": "Utilize the USDA Food Guidance System to evaluate personal eating patterns and habits."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "goal-setting",
+       "title": "Goal Setting",
+       "subtopics": [
+        {
+         "id": "goal-setting",
+         "title": "Goal Setting",
+         "outcomes": [
+          {
+           "code": "6-8.5.6.15",
+           "text": "Develop a decision making process to select nutritious foods and beverages."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "healthy-behaviors",
+       "title": "Healthy Behaviors",
+       "subtopics": [
+        {
+         "id": "healthy-behaviors",
+         "title": "Healthy Behaviors",
+         "outcomes": [
+          {
+           "code": "6-8.5.7.16",
+           "text": "Analyze the concepts of variety, moderation, caloric intake and energy expenditure."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "advocacy",
+       "title": "Advocacy",
+       "subtopics": [
+        {
+         "id": "advocacy",
+         "title": "Advocacy",
+         "outcomes": [
+          {
+           "code": "6-8.5.8.17",
+           "text": "Demonstrate effective ways to influence, promote, and support positive health behaviors (e.g., supporting others to choose healthy food)."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "alcohol-tobacco-and-other-drugs",
+     "title": "Alcohol, Tobacco, and Other Drugs",
+     "topics": [
+      {
+       "id": "health-promotion",
+       "title": "Health Promotion",
+       "subtopics": [
+        {
+         "id": "health-promotion",
+         "title": "Health Promotion",
+         "outcomes": [
+          {
+           "code": "6-8.6.1.1",
+           "text": "Describe the types of over-the-counter substances that may be marketed in drug and grocery stores, as well as the effects that they can have on the human body."
+          },
+          {
+           "code": "6-8.6.1.2",
+           "text": "Analyze the short term and long term effects of all drugs (e.g., stimulants, depressants, hallucinogens, marijuana, tobacco, alcohol, prescription, over the counter drugs, and club/designer drugs) on the brain and body of developing adolescents."
+          },
+          {
+           "code": "6-8.6.1.3",
+           "text": "Describe the stages of addiction and describe methods for the prevention, treatment, and recovery of addiction."
+          },
+          {
+           "code": "6-8.6.1.4",
+           "text": "Explain the signs and symptoms of substance abuse, factors that contribute to the abuse and stages that lead to dependency."
+          },
+          {
+           "code": "6-8.6.1.5",
+           "text": "Explain the consequences of driving under the influence of alcohol and other drugs."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "analyzing-influences",
+       "title": "Analyzing Influences",
+       "subtopics": [
+        {
+         "id": "analyzing-influences",
+         "title": "Analyzing Influences",
+         "outcomes": [
+          {
+           "code": "6-8.6.2.6",
+           "text": "Analyze how culture and media depict the use of alcohol, tobacco, tobacco products and other drugs (e.g., how products may be marketed to attract youth)."
+          },
+          {
+           "code": "6-8.6.2.7",
+           "text": "Describe ways that family and friends can support tobacco-free and drug-free lifestyles."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "accessing-information",
+       "title": "Accessing Information",
+       "subtopics": [
+        {
+         "id": "accessing-information",
+         "title": "Accessing Information",
+         "outcomes": [
+          {
+           "code": "6-8.6.3.9",
+           "text": "Access, use and evaluate community resources for the prevention, treatment and recovery of addiction."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "communication",
+       "title": "Communication",
+       "subtopics": [
+        {
+         "id": "communication",
+         "title": "Communication",
+         "outcomes": [
+          {
+           "code": "6-8.6.4.11",
+           "text": "Communicate w/ peers on how to ask for assistance regarding prevention, treatment, and recovery of substance abuse."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "decision-making",
+       "title": "Decision-Making",
+       "subtopics": [
+        {
+         "id": "decision-making",
+         "title": "Decision-Making",
+         "outcomes": [
+          {
+           "code": "6-8.6.5.13",
+           "text": "Describe healthy alternatives to the use of alcohol, tobacco, or other drugs."
+          },
+          {
+           "code": "6-8.6.5.14",
+           "text": "Apply problemsolving skills to protect one from risky situations involving alcohol, tobacco, and other drugs."
+          },
+          {
+           "code": "6-8.6.5.15",
+           "text": "Discuss how the use of alcohol and other drugs, including popular drugs that are marketed to hide their harmful effects, impair decisionmaking; increase the risk of violence; and place one at risk for sexual assault, pregnancy, and STIs."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "goal-setting",
+       "title": "Goal Setting",
+       "subtopics": [
+        {
+         "id": "goal-setting",
+         "title": "Goal Setting",
+         "outcomes": [
+          {
+           "code": "6-8.6.6.16",
+           "text": "Develop a personal plan for abstaining from the use of alcohol, tobacco, and other drugs."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "healthy-behaviors",
+       "title": "Healthy Behaviors",
+       "subtopics": [
+        {
+         "id": "healthy-behaviors",
+         "title": "Healthy Behaviors",
+         "outcomes": [
+          {
+           "code": "6-8.6.7.17",
+           "text": "Explain the physical, legal, financial, social and physiological cost of the use, sale, and possession of alcohol, tobacco, and other drugs."
+          },
+          {
+           "code": "6-8.6.7.18",
+           "text": "Differentiate between alcohol and drug use, misuse, abuse, and dependence."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "advocacy",
+       "title": "Advocacy",
+       "subtopics": [
+        {
+         "id": "advocacy",
+         "title": "Advocacy",
+         "outcomes": [
+          {
+           "code": "6-8.6.8.20",
+           "text": "Explain school policies and local laws related to the possession, use, sale, and distribution of alcohol, tobacco, and other drugs."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "9-12",
+   "units": [
+    {
+     "id": "mental-and-emotional-health",
+     "title": "Mental and Emotional Health",
+     "topics": [
+      {
+       "id": "health-promotion",
+       "title": "Health Promotion",
+       "subtopics": [
+        {
+         "id": "health-promotion",
+         "title": "Health Promotion",
+         "outcomes": [
+          {
+           "code": "9-12.1.1.1",
+           "text": "Explore the psychological principles and theories of personality development, including identity formation, and differentiate among the concepts of the idea of self, public self and private self."
+          },
+          {
+           "code": "9-12.1.1.3",
+           "text": "Describe the impact that culture and community can have on mental health conditions (e.g. stigma, peer pressure, and denial)."
+          },
+          {
+           "code": "9-12.1.1.4",
+           "text": "Review definitions of stress, anxiety, and depression and analyze risk and protective factors related to suicide."
+          },
+          {
+           "code": "9-12.1.1.5",
+           "text": "Identify the causes, symptoms, and harmful effects of disordered eating."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "analyzing-influences",
+       "title": "Analyzing Influences",
+       "subtopics": [
+        {
+         "id": "analyzing-influences",
+         "title": "Analyzing Influences",
+         "outcomes": [
+          {
+           "code": "9-12.1.2.6",
+           "text": "Analyze the relationship between mental/emotional health and physical health."
+          },
+          {
+           "code": "9-12.1.2.7",
+           "text": "Examine how stigma affects people living with communicable diseases including STIs and HIV/AIDS."
+          },
+          {
+           "code": "9-12.1.2.8",
+           "text": "Analyze how some health risk behaviors influence the likelihood of engaging in other unhealthy mental and emotional health behaviors (e.g., how using alcohol and other drugs increase the risk of suicide and self-injury)."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "accessing-information",
+       "title": "Accessing Information",
+       "subtopics": [
+        {
+         "id": "accessing-information",
+         "title": "Accessing Information",
+         "outcomes": [
+          {
+           "code": "9-12.1.3.9",
+           "text": "Identify and evaluate resources in the community for people with mental or emotional health conditions."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "communication",
+       "title": "Communication",
+       "subtopics": [
+        {
+         "id": "communication",
+         "title": "Communication",
+         "outcomes": [
+          {
+           "code": "9-12.1.4.10",
+           "text": "Demonstrate the ability to release anger in healthy ways, communicate frustration and disappointment, and defuse someone else's anger."
+          },
+          {
+           "code": "9-12.1.4.11",
+           "text": "Develop a message about the importance of recognizing signs of bulimia, disordered eating, and other common mental health conditions."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "decision-making",
+       "title": "Decision-Making",
+       "subtopics": [
+        {
+         "id": "decision-making",
+         "title": "Decision-Making",
+         "outcomes": [
+          {
+           "code": "9-12.1.5.12",
+           "text": "Describe suicideprevention strategies."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "goal-setting",
+       "title": "Goal Setting",
+       "subtopics": [
+        {
+         "id": "goal-setting",
+         "title": "Goal Setting",
+         "outcomes": [
+          {
+           "code": "9-12.1.6.13",
+           "text": "Develop a personal goalsetting and stress management plan to improve or maintain wellness."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "healthy-behaviors",
+       "title": "Healthy Behaviors",
+       "subtopics": [
+        {
+         "id": "healthy-behaviors",
+         "title": "Healthy Behaviors",
+         "outcomes": [
+          {
+           "code": "9-12.1.7.14",
+           "text": "Identify techniques for managing mental and emotional health challenges (e.g., depression, grief, stress, trauma, and anxiety)."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "advocacy",
+       "title": "Advocacy",
+       "subtopics": [
+        {
+         "id": "advocacy",
+         "title": "Advocacy",
+         "outcomes": [
+          {
+           "code": "9-12.1.8.15",
+           "text": "Develop a message promoting help-seeking behaviors in school and in your community."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "safety-skills",
+     "title": "Safety Skills",
+     "topics": [
+      {
+       "id": "health-promotion",
+       "title": "Health Promotion",
+       "subtopics": [
+        {
+         "id": "health-promotion",
+         "title": "Health Promotion",
+         "outcomes": [
+          {
+           "code": "9-12.2.1.1",
+           "text": "Analyze the difference between healthy vs. unhealthy relationships."
+          },
+          {
+           "code": "9-12.2.1.2",
+           "text": "Analyze the role of gender and sexism in intimate partner violence."
+          },
+          {
+           "code": "9-12.2.1.3",
+           "text": "Analyze the impact of violence (e.g., gun violence, domestic violence, and intimate partner violence) have on individuals, families, and communities."
+          },
+          {
+           "code": "9-12.2.1.4",
+           "text": "Compare and contrast different kinds of gangs (e.g., neighborhoodbased, economy-based, social supportbased, genderspecific, violent, and nonviolent) and discuss the characteristics of gang members in each."
+          },
+          {
+           "code": "9-12.2.1.5",
+           "text": "Describe the relationship between personal behaviors and injury (e.g., texting and driving, walking home alone, and getting rides from strangers)."
+          },
+          {
+           "code": "9-12.2.1.6",
+           "text": "Identify injuries that could occur during athletic events."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "analyzing-influences",
+       "title": "Analyzing Influences",
+       "subtopics": [
+        {
+         "id": "analyzing-influences",
+         "title": "Analyzing Influences",
+         "outcomes": [
+          {
+           "code": "9-12.2.2.7",
+           "text": "Analyze how interpersonal communication affects relationships."
+          },
+          {
+           "code": "9-12.2.2.8",
+           "text": "Analyze how peer influence on personal decision-making can impact safety in certain situations (e.g., encouraging violence or delinquency)."
+          },
+          {
+           "code": "9-12.2.2.9",
+           "text": "Analyze how internal, external, and social factors influence mental, emotional, and social health."
+          },
+          {
+           "code": "9-12.2.2.10",
+           "text": "Analyze the roles and influences of law enforcement authorities within communities (e.g., Metropolitan Police Officers, School Resource Officers, and private security officers)."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "accessing-information",
+       "title": "Accessing Information",
+       "subtopics": [
+        {
+         "id": "accessing-information",
+         "title": "Accessing Information",
+         "outcomes": [
+          {
+           "code": "9-12.2.3.11",
+           "text": "Evaluate your school's bullying policy and how that can be a resource to students."
+          },
+          {
+           "code": "9-12.2.3.12",
+           "text": "Evaluate the validity of public sources of safety information (e.g., WMATA alerts, weather advisories, police department announcements)."
+          },
+          {
+           "code": "9-12.2.3.13",
+           "text": "Assess legal channels for addressing partner violence (e.g., Civil Protection Order or a Temporary Protection Order)."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "communication",
+       "title": "Communication",
+       "subtopics": [
+        {
+         "id": "communication",
+         "title": "Communication",
+         "outcomes": [
+          {
+           "code": "9-12.2.4.14",
+           "text": "Demonstrate effective communication strategies associated with boundaries in relationships."
+          },
+          {
+           "code": "9-12.2.4.15",
+           "text": "Demonstrate effective verbal and nonverbal communication skills to enhance safety and to avoid or get out of situations that are unsafe, including how to report situations that could lead to violence or injury."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "decision-making",
+       "title": "Decision-Making",
+       "subtopics": [
+        {
+         "id": "decision-making",
+         "title": "Decision-Making",
+         "outcomes": [
+          {
+           "code": "9-12.2.5.16",
+           "text": "Develop strategies to reduce the risk of injuries that can occur during athletic events."
+          },
+          {
+           "code": "9-12.2.6.17",
+           "text": "Determine and commit to practicing positive alternatives to violence and form healthy associations with organizations and people."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "goal-setting",
+       "title": "Goal Setting",
+       "subtopics": [
+        {
+         "id": "goal-setting",
+         "title": "Goal Setting",
+         "outcomes": [
+          {
+           "code": "9-12.2.6.18",
+           "text": "Assess personal violent and nonviolent health practices and behaviors."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "healthy-behaviors",
+       "title": "Healthy Behaviors",
+       "subtopics": [
+        {
+         "id": "healthy-behaviors",
+         "title": "Healthy Behaviors",
+         "outcomes": [
+          {
+           "code": "9-12.2.7.19",
+           "text": "Demonstrate first-aid procedures (e.g., hands-only cardiopulmonary resuscitation, automated external defibrillator, epinephrine auto injector, and asthma rescue inhalers)."
+          },
+          {
+           "code": "9-12.2.7.20",
+           "text": "Demonstrate healthy ways to manage or resolve conflict to avoid or reduce injury."
+          },
+          {
+           "code": "9-12.2.7.21",
+           "text": "Apply strategies to avoid and report dangerous situations (e.g., relationship violence, conflicts involving weapons, and neighborhood violence)."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "advocacy",
+       "title": "Advocacy",
+       "subtopics": [
+        {
+         "id": "advocacy",
+         "title": "Advocacy",
+         "outcomes": [
+          {
+           "code": "9-12.2.8.22",
+           "text": "Demonstrate the ability to positively, respectfully, and peacefully selfadvocate (e.g., to peers, to school staff, and to law enforcement)."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "human-body-and-personal-health",
+     "title": "Human Body and Personal Health",
+     "topics": [
+      {
+       "id": "health-promotion",
+       "title": "Health Promotion",
+       "subtopics": [
+        {
+         "id": "health-promotion",
+         "title": "Health Promotion",
+         "outcomes": [
+          {
+           "code": "9-12.3.1.1",
+           "text": "Identify and discuss the range of sexual identities and the range of sexual expressions within those identities."
+          },
+          {
+           "code": "9-12.3.1.2",
+           "text": "Compare and contrast sexual behaviors that are healthy from those that are unhealthy."
+          },
+          {
+           "code": "9-12.3.1.3",
+           "text": "Examine the range of sexual intercourse and behaviors."
+          },
+          {
+           "code": "9-12.3.1.4",
+           "text": "Explain how the four stages of the menstrual cycle work, the process of fertilization and conception."
+          },
+          {
+           "code": "9-12.3.1.5",
+           "text": "Describe the signs of pregnancy, the stages of pregnancy, and prenatal practices."
+          },
+          {
+           "code": "9-12.3.1.6",
+           "text": "Analyze factors, including alcohol and other substances that can affect the ability to give or perceive the provision of consent to sexual activity."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "analyzing-influences",
+       "title": "Analyzing Influences",
+       "subtopics": [
+        {
+         "id": "analyzing-influences",
+         "title": "Analyzing Influences",
+         "outcomes": [
+          {
+           "code": "9-12.3.2.7",
+           "text": "Compare and contrast attitudes and beliefs about gender identity, gender expression, sexual orientation, and gender equity across cultures."
+          },
+          {
+           "code": "9-12.3.2.8",
+           "text": "Analyze how peers, family, society, culture, and religion, influence decisions about engaging in sexual behaviors."
+          },
+          {
+           "code": "9-12.3.2.9",
+           "text": "Examine how social norms and attitudes about the human body have evolved throughout history."
+          },
+          {
+           "code": "9-12.3.2.10",
+           "text": "Analyze the contemporary impact of technology and social media on relationships and how technology and media can be used in positive and destructive ways."
+          },
+          {
+           "code": "9-12.3.2.11",
+           "text": "Compare and contrast how heredity, physiological changes, and environmental influences contribute to one's growth and development."
+          },
+          {
+           "code": "9-12.3.2.12",
+           "text": "Examine societal attitudes toward children and how they contribute to or prevent child neglect and abuse."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "accessing-information",
+       "title": "Accessing Information",
+       "subtopics": [
+        {
+         "id": "accessing-information",
+         "title": "Accessing Information",
+         "outcomes": [
+          {
+           "code": "9-12.3.3.13",
+           "text": "Analyze program supports and resources for all student populations (e.g., LGBTQ youth, youth with disabilities, and immigrant youth)."
+          },
+          {
+           "code": "9-12.3.3.14",
+           "text": "Identify and locate community health clinics, private health clinics, urgent care facilities and hospital emergency rooms. Analyze the cost and accessibility thereof."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "communication",
+       "title": "Communication",
+       "subtopics": [
+        {
+         "id": "communication",
+         "title": "Communication",
+         "outcomes": [
+          {
+           "code": "9-12.3.4.15",
+           "text": "Demonstrate how effective communication and negotiation skills can be used to set boundaries, gain important sexual health information about your partners, resist pressures to engage in risky behaviors, and ensure that sexual relationships are consensual and self-respecting."
+          },
+          {
+           "code": "9-12.3.4.16",
+           "text": "Demonstrate effective communication strategies to end relationships."
+          },
+          {
+           "code": "9-12.3.4.17",
+           "text": "Adapt health messages and communication techniques to promote prevention, treatment, and testing for STIs and HIV for high school-aged youth."
+          },
+          {
+           "code": "9-12.3.4.18",
+           "text": "Describe the emotional, psychological, and physical consequences of rape and sexual assault. Explain why a person who has experienced sexual assault is not at fault."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "decision-making",
+       "title": "Decision-Making",
+       "subtopics": [
+        {
+         "id": "decision-making",
+         "title": "Decision-Making",
+         "outcomes": [
+          {
+           "code": "9-12.3.5.19",
+           "text": "Demonstrate the ability to select professional health services based on the type of care needed, the nature of the problem, and the kinds of questions that need answering."
+          },
+          {
+           "code": "9-12.3.5.20",
+           "text": "Compare and contrast the function and advantages/disadvantages of a range of contraceptive methods including male/insertive and female/receptive condoms; hormonal methods; abstinence; IUDs; and long-acting reversible contraceptives."
+          },
+          {
+           "code": "9-12.3.5.21",
+           "text": "Demonstrate how to report abuse to trusted adults or proper authorities (e.g., MPD or CFSA)."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "goal-setting",
+       "title": "Goal Setting",
+       "subtopics": [
+        {
+         "id": "goal-setting",
+         "title": "Goal Setting",
+         "outcomes": [
+          {
+           "code": "9-12.3.6.22",
+           "text": "Analyze the short- and long-term goals that may be impacted by pregnancy and/or maintaining unsafe sex practices."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "healthy-behaviors",
+       "title": "Healthy Behaviors",
+       "subtopics": [
+        {
+         "id": "healthy-behaviors",
+         "title": "Healthy Behaviors",
+         "outcomes": [
+          {
+           "code": "9-12.3.7.23",
+           "text": "Identify and recommend behaviors that enhance and support the optimal functioning of bodily systems, including the functions of the body's immune system."
+          },
+          {
+           "code": "9-12-3.7.24",
+           "text": "Demonstrate strategies to use social media safely, legally, and respectfully within different kinds of relationships."
+          },
+          {
+           "code": "9-12.3.7.25",
+           "text": "Recognize behaviors that increase sexual health risks (e.g., multiple partners, unprotected sex, alcohol/substance use) and develop strategies on how to reduce risk."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "advocacy",
+       "title": "Advocacy",
+       "subtopics": [
+        {
+         "id": "advocacy",
+         "title": "Advocacy",
+         "outcomes": [
+          {
+           "code": "9-12.3.8.26",
+           "text": "Evaluate school policies, programs, and trainings (including those for school staff) for the promotion of dignity, respect, and safety for all students, including all genders, sexual orientations, gender identities, cultures, religions, races, and ethnicities."
+          },
+          {
+           "code": "9-12.3.8.27",
+           "text": "Analyze existing laws and policies designed to protect young people from sexual harassment, sexual assault, child abuse, human trafficking, sexual exploitation, bullying, and other types of violence."
+          },
+          {
+           "code": "9-12.3.8.28",
+           "text": "Research DC minor consent laws, compare and contrast these laws to other states, and describe adolescent sexual health rights generally."
+          },
+          {
+           "code": "9-12.3.8.29",
+           "text": "Analyze the data on STI and HIV rates among youth. Discuss barriers to prevention, testing, and treatment including legal, economic, and cultural barriers."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "disease-prevention",
+     "title": "Disease Prevention",
+     "topics": [
+      {
+       "id": "health-promotion",
+       "title": "Health Promotion",
+       "subtopics": [
+        {
+         "id": "health-promotion",
+         "title": "Health Promotion",
+         "outcomes": [
+          {
+           "code": "9-12.4.1.1",
+           "text": "Compare and contrast diseases and health conditions that occur in adolescence and young adulthood with those occurring later in life."
+          },
+          {
+           "code": "9-12.4.1.2",
+           "text": "Analyze the prevalence of infectious, communicable, and chronic diseases on different populations and in different regions (e.g., locally, nationally, and internationally)."
+          },
+          {
+           "code": "9-12.4.1.3",
+           "text": "Analyze causes and preventions of global health problems."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "analyzing-influences",
+       "title": "Analyzing Influences",
+       "subtopics": [
+        {
+         "id": "analyzing-influences",
+         "title": "Analyzing Influences",
+         "outcomes": [
+          {
+           "code": "9-12.4.2.4",
+           "text": "Analyze the relationship between access to health care and health outcomes."
+          },
+          {
+           "code": "9-12.4.2.5",
+           "text": "Analyze the efficacy of medical screenings for maintaining health and preventing disease."
+          },
+          {
+           "code": "9-12.4.2.6",
+           "text": "Analyze how race, class, poverty, religion, cultural beliefs, gender, gender identity, and sexual orientation are contributing factors to health disparities."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "accessing-information",
+       "title": "Accessing Information",
+       "subtopics": [
+        {
+         "id": "accessing-information",
+         "title": "Accessing Information",
+         "outcomes": [
+          {
+           "code": "9-12.4.3.7",
+           "text": "Describe the basic criteria for eligibility in public health programs (e.g., the School Lunch Program; the Supplemental Nutrition Assistance Program; the Women, Infants and Children; the Children's Health Insurance Program; Medicaid and Medicare)."
+          },
+          {
+           "code": "9-12.4.3.8",
+           "text": "Identify trends in the health care delivery system and how that has impacted use over time."
+          },
+          {
+           "code": "9-12.4.3.9",
+           "text": "Analyze how advances in science may challenge existing knowledge and prompt changes in health information, products, and services."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "communication",
+       "title": "Communication",
+       "subtopics": [
+        {
+         "id": "communication",
+         "title": "Communication",
+         "outcomes": [
+          {
+           "code": "9-12.4.4.10",
+           "text": "Demonstrate ability to discuss disease prevention, diagnosis, and treatment options with a healthcare provider."
+          },
+          {
+           "code": "9-12.4.4.11",
+           "text": "Explain how school and public health policies can influence health promotion and disease prevention."
+          },
+          {
+           "code": "9-12.4.4.12",
+           "text": "Describe public health efforts to solve global health problems."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "decision-making",
+       "title": "Decision-Making",
+       "subtopics": [
+        {
+         "id": "decision-making",
+         "title": "Decision-Making",
+         "outcomes": [
+          {
+           "code": "9-12.4.5.13",
+           "text": "Evaluate how health decisions that are made today may increase or decrease the risk of developing disease."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "goal-setting",
+       "title": "Goal Setting",
+       "subtopics": [
+        {
+         "id": "goal-setting",
+         "title": "Goal Setting",
+         "outcomes": [
+          {
+           "code": "9-12.4.6.14",
+           "text": "Develop a personal health plan for preventing disease."
+          },
+          {
+           "code": "9-12.4.6.15",
+           "text": "Develop a plan for minimizing exposure to environmental pollutants at home and in the community."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "healthy-behaviors",
+       "title": "Healthy Behaviors",
+       "subtopics": [
+        {
+         "id": "healthy-behaviors",
+         "title": "Healthy Behaviors",
+         "outcomes": [
+          {
+           "code": "9-12.4.7.16",
+           "text": "Describe trends and ways to prevent and manage chronic disease from adolescence to later adulthood."
+          },
+          {
+           "code": "9-12.4.7.17",
+           "text": "Demonstrate the ability to locate and describe community resources for disease prevention, diagnosis, and treatment."
+          },
+          {
+           "code": "9-12.4.7.18",
+           "text": "Evaluate the validity of media messages about health."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "advocacy",
+       "title": "Advocacy",
+       "subtopics": [
+        {
+         "id": "advocacy",
+         "title": "Advocacy",
+         "outcomes": [
+          {
+           "code": "9-12.4.8.19",
+           "text": "Describe individual rights and responsibilities within the health care system, including those concerning access to information, necessary care, specialists, emergency rooms, a fair appeal process, confidentiality laws, protected doctor-patient relationships and health maintenance organization and managed care accountability."
+          },
+          {
+           "code": "9-12.4.8.20",
+           "text": "Describe the process to make a health related consumer complaint."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "nutrition",
+     "title": "Nutrition",
+     "topics": [
+      {
+       "id": "health-promotion",
+       "title": "Health Promotion",
+       "subtopics": [
+        {
+         "id": "health-promotion",
+         "title": "Health Promotion",
+         "outcomes": [
+          {
+           "code": "9-12.5.1.1",
+           "text": "Analyze the physiological process involved in digestion, absorption, and metabolism of nutrients."
+          },
+          {
+           "code": "9-12.5.1.2",
+           "text": "Recognize different dietary needs related to food allergies and medical conditions."
+          },
+          {
+           "code": "9-12.5.1.3",
+           "text": "Describe dietary guidelines, food groups, nutrients, and serving sizes for healthy eating habits."
+          },
+          {
+           "code": "9-12.5.1.4",
+           "text": "Analyze the relationship between access to nutritious food, eating habits, and health status."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "analyzing-influences",
+       "title": "Analyzing Influences",
+       "subtopics": [
+        {
+         "id": "analyzing-influences",
+         "title": "Analyzing Influences",
+         "outcomes": [
+          {
+           "code": "9-12.5.2.5",
+           "text": "Analyze the availability and variety of affordable and nutritionally adequate foods in the community."
+          },
+          {
+           "code": "9-12.5.2.6",
+           "text": "Evaluate the usefulness and credibility of nutrition information available online and in the media."
+          },
+          {
+           "code": "9-12.5.2.7",
+           "text": "Identify community programs and services that help people gain access to affordable, healthy foods."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "accessing-information",
+       "title": "Accessing Information",
+       "subtopics": [
+        {
+         "id": "accessing-information",
+         "title": "Accessing Information",
+         "outcomes": [
+          {
+           "code": "9-12.5.3.8",
+           "text": "Describe how availability, individual/family preferences, culture, and the media influence food choices."
+          },
+          {
+           "code": "9-12.5.3.9",
+           "text": "Analyze how economics influences food prices, availability, and marketing strategies."
+          },
+          {
+           "code": "9-12.5.3.10",
+           "text": "Access sources of accurate information about safe and healthy weight management and nutrition."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "communication",
+       "title": "Communication",
+       "subtopics": [
+        {
+         "id": "communication",
+         "title": "Communication",
+         "outcomes": [
+          {
+           "code": "9-12.5.4.11",
+           "text": "Analyze positive strategies to communicate healthy eating needs at home, at school, and in the community."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "decision-making",
+       "title": "Decision-Making",
+       "subtopics": [
+        {
+         "id": "decision-making",
+         "title": "Decision-Making",
+         "outcomes": [
+          {
+           "code": "9-12.5.5.12",
+           "text": "Evaluate and propose opportunities to increase access to nutrient-dense food."
+          },
+          {
+           "code": "9-12.5.5.13",
+           "text": "Demonstrate how nutritional needs are affected by age, gender, activity level, pregnancy and health status."
+          },
+          {
+           "code": "9-12.5.5.14",
+           "text": "Demonstrate ability to use available resources and guidelines to create a nutritionally balanced diet."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "goal-setting",
+       "title": "Goal Setting",
+       "subtopics": [
+        {
+         "id": "goal-setting",
+         "title": "Goal Setting",
+         "outcomes": [
+          {
+           "code": "9-12.5.6.15",
+           "text": "Evaluate one's personal dietary habits and design a plan to make improvements to that diet."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "healthy-behaviors",
+       "title": "Healthy Behaviors",
+       "subtopics": [
+        {
+         "id": "healthy-behaviors",
+         "title": "Healthy Behaviors",
+         "outcomes": [
+          {
+           "code": "9-12.5.7.16",
+           "text": "Describe how to take more personal responsibility for eating healthy."
+          },
+          {
+           "code": "9-12.5.7.17",
+           "text": "Demonstrate various approaches to maintaining a healthy weight."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "advocacy",
+       "title": "Advocacy",
+       "subtopics": [
+        {
+         "id": "advocacy",
+         "title": "Advocacy",
+         "outcomes": [
+          {
+           "code": "9-12.5.8.18",
+           "text": "Advocate for positive eating choices in the community, such as increased access to fresh fruits and vegetables."
+          },
+          {
+           "code": "9-12.5.8.19",
+           "text": "Analyze the benefits to buying locally grown and/or produced foods and argue the impact on the local economy and food quality."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "alcohol-tobacco-and-other-drugs",
+     "title": "Alcohol, Tobacco, and Other Drugs",
+     "topics": [
+      {
+       "id": "health-promotion",
+       "title": "Health Promotion",
+       "subtopics": [
+        {
+         "id": "health-promotion",
+         "title": "Health Promotion",
+         "outcomes": [
+          {
+           "code": "9-12.6.1.1",
+           "text": "Analyze theories about substance dependency such as genetic disposition, genderrelated predisposition, and multiple risk factors."
+          },
+          {
+           "code": "9-12.6.1.2",
+           "text": "Analyze the acute and chronic effects of drug use and abuse on individuals, families, and communities."
+          },
+          {
+           "code": "9-12.6.1.3",
+           "text": "Describe how the use of alcohol and other drugs impairs decisionmaking, increases the risk of violence and places one at risk for sexual assault, pregnancy, STIs and HIV."
+          },
+          {
+           "code": "9-12.6.1.4",
+           "text": "Analyze the effects of combining certain drugs (e.g., alcohol and barbiturates)."
+          },
+          {
+           "code": "9-12.6.1.5",
+           "text": "Describe the relationship between prenatal exposure to alcohol, tobacco, and other drugs and the health of a newborn baby."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "analyzing-influences",
+       "title": "Analyzing Influences",
+       "subtopics": [
+        {
+         "id": "analyzing-influences",
+         "title": "Analyzing Influences",
+         "outcomes": [
+          {
+           "code": "9-12.6.2.6",
+           "text": "Analyze the relationship between the use of alcohol, tobacco and other drugs and personal, family, and community health."
+          },
+          {
+           "code": "9-12.6.2.7",
+           "text": "Analyze the influence of advertising and targeting strategies on alcohol, tobacco and other drug use."
+          },
+          {
+           "code": "9-12.6.2.8",
+           "text": "Analyze how national and international public health policies and governmental regulations related to the sale, distribution and use of alcohol, tobacco, and other drugs influence health promotion and disease prevention."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "accessing-information",
+       "title": "Accessing Information",
+       "subtopics": [
+        {
+         "id": "accessing-information",
+         "title": "Accessing Information",
+         "outcomes": [
+          {
+           "code": "9-12.6.3.9",
+           "text": "Access and evaluate community resources that assist in the prevention and treatment of substance abuse."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "communication",
+       "title": "Communication",
+       "subtopics": [
+        {
+         "id": "communication",
+         "title": "Communication",
+         "outcomes": [
+          {
+           "code": "9-12.6.4.10",
+           "text": "Create and demonstrate a communication plan for refusing to ride with someone who is under the influence of alcohol or other drugs."
+          },
+          {
+           "code": "9-12.6.4.11",
+           "text": "Develop and apply social skills to resist and refuse all drugs (e.g., alcohol, tobacco, prescription pills, and marijuana)."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "decision-making",
+       "title": "Decision-Making",
+       "subtopics": [
+        {
+         "id": "decision-making",
+         "title": "Decision-Making",
+         "outcomes": [
+          {
+           "code": "9-12.6.5.12",
+           "text": "Explain the consequences of driving under the influence of alcohol and other drugs."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "goal-setting",
+       "title": "Goal Setting",
+       "subtopics": [
+        {
+         "id": "goal-setting",
+         "title": "Goal Setting",
+         "outcomes": [
+          {
+           "code": "9-12.6.6.13",
+           "text": "Develop a personal plan that includes both short-and longterm goals for remaining drug and tobacco free."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "healthy-behaviors",
+       "title": "Healthy Behaviors",
+       "subtopics": [
+        {
+         "id": "healthy-behaviors",
+         "title": "Healthy Behaviors",
+         "outcomes": [
+          {
+           "code": "9-12.6.7.14",
+           "text": "Analyze internal and external barriers to quitting alcohol, tobacco, and other drug use."
+          },
+          {
+           "code": "9-12.6.7.15",
+           "text": "Develop strategies for health practices and behaviors that will maintain or improve the health of self and others (e.g., finding healthy ways to meet personal needs and manage stress without using alcohol, tobacco, or other drugs, and avoiding riding in vehicle with drug or alcohol impaired drivers)."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "advocacy",
+       "title": "Advocacy",
+       "subtopics": [
+        {
+         "id": "advocacy",
+         "title": "Advocacy",
+         "outcomes": [
+          {
+           "code": "9-12.6.8.16",
+           "text": "Develop techniques to communicate personal attitudes about alcohol, tobacco, and other drug use."
+          },
+          {
+           "code": "9-12.6.8.17",
+           "text": "Demonstrate the ability to advocate for and support people who are abstaining, and/or trying to quit alcohol, tobacco, or drug use."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "build": {
+  "builtAt": "2026-10-14T16:20:40.103Z",
+  "model": "none",
+  "usd": 0,
+  "expectedCodes": 401,
+  "coverage": 1,
+  "missingCodes": [],
+  "counts": {
+   "grades": 4,
+   "units": 24,
+   "topics": 174,
+   "subtopics": 177,
+   "outcomes": 401
+  },
+  "warnings": []
+ }
+}

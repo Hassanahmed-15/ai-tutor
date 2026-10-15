@@ -1,0 +1,205 @@
+{
+ "id": "uk-aqa-gcse-english-language-8700",
+ "region": "UK",
+ "framework": "AQA GCSE (9-1)",
+ "board": "AQA",
+ "qualification": "GCSE",
+ "subject": "English Language",
+ "syllabusCode": "8700",
+ "gradeSystem": "year",
+ "source": {
+  "urls": [
+   "https://cdn.sanity.io/files/p28bar15/green/eb2b6cd029547c5409a8f2f31af857a159311acd.pdf"
+  ],
+  "publisher": "AQA",
+  "licence": "Exam board specification, (c) AQA; structure + our own wording only",
+  "firstExam": "2017"
+ },
+ "grades": [
+  {
+   "grade": "all",
+   "units": [
+    {
+     "id": "3-subject-content",
+     "title": "3 Subject content",
+     "topics": [
+      {
+       "id": "3-1-1-critical-reading-and-comprehension",
+       "title": "3.1.1 Critical reading and comprehension",
+       "subtopics": [
+        {
+         "id": "reading-for-meaning",
+         "title": "Reading for meaning",
+         "outcomes": [
+          {
+           "code": "3.1",
+           "text": "Read a range of 19th, 20th and 21st century literature, literary non-fiction, reviews and journalism with understanding."
+          },
+          {
+           "code": "3.1.1",
+           "text": "Identify and interpret themes, ideas and information, reading in different ways for different purposes."
+          },
+          {
+           "code": null,
+           "text": "Compare and evaluate how useful, relevant and well presented content is for a given purpose."
+          }
+         ]
+        },
+        {
+         "id": "inference-evidence-and-bias",
+         "title": "Inference, evidence and bias",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Draw inferences and back them with evidence from the text to support a point of view."
+          },
+          {
+           "code": null,
+           "text": "Spot bias and misuse of evidence, separating supported statements from unsupported ones."
+          },
+          {
+           "code": null,
+           "text": "Reflect critically on a text using its context and wider reading, recognising that responses can differ."
+          }
+         ]
+        },
+        {
+         "id": "summary-and-synthesis",
+         "title": "Summary and synthesis",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Identify main themes and summarise ideas and information from a single text."
+          },
+          {
+           "code": null,
+           "text": "Synthesise information from more than one text."
+          }
+         ]
+        },
+        {
+         "id": "writer-s-choices-and-comparing-texts",
+         "title": "Writer's choices and comparing texts",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain how a writer's vocabulary and grammar create effect, using accurate linguistic and literary terms."
+          },
+          {
+           "code": null,
+           "text": "Analyse and evaluate how form and structure add to a text's impact."
+          },
+          {
+           "code": null,
+           "text": "Compare two or more texts critically on all these points."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "3-1-2-writing",
+       "title": "3.1.2 Writing",
+       "subtopics": [
+        {
+         "id": "clear-and-coherent-writing",
+         "title": "Clear and coherent writing",
+         "outcomes": [
+          {
+           "code": "3.1.2",
+           "text": "Write to describe, narrate, explain, instruct, inform, respond and argue for different audiences and purposes."
+          },
+          {
+           "code": null,
+           "text": "Choose vocabulary, grammar, form and structure to suit audience, purpose and context."
+          },
+          {
+           "code": null,
+           "text": "Use language imaginatively and creatively and use information from others to write in different forms."
+          },
+          {
+           "code": null,
+           "text": "Keep a consistent point of view and coherence across a whole text."
+          }
+         ]
+        },
+        {
+         "id": "writing-for-impact",
+         "title": "Writing for impact",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Select, organise and emphasise facts, ideas and key points, citing evidence and quotation pertinently."
+          },
+          {
+           "code": null,
+           "text": "Create emotional impact and write persuasively using rhetorical devices such as rhetorical questions, antithesis and parenthesis."
+          }
+         ]
+        },
+        {
+         "id": "accurate-standard-english",
+         "title": "Accurate Standard English",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Use Standard English, correct grammar, punctuation and spelling with a wide vocabulary and grammatical terminology."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "3-1-3-spoken-language",
+       "title": "3.1.3 Spoken language",
+       "subtopics": [
+        {
+         "id": "presenting-and-responding",
+         "title": "Presenting and responding",
+         "outcomes": [
+          {
+           "code": "3.1.3",
+           "text": "Select and organise information and ideas effectively and persuasively for prepared spoken presentations and speeches."
+          },
+          {
+           "code": null,
+           "text": "Plan a presentation for different purposes and audiences."
+          },
+          {
+           "code": null,
+           "text": "Listen and respond appropriately to questions and feedback."
+          },
+          {
+           "code": null,
+           "text": "Express ideas in spoken Standard English whenever appropriate."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "build": {
+  "builtAt": "2026-10-14T10:20:46.715Z",
+  "model": "claude-agent",
+  "usd": 0,
+  "expectedCodes": 4,
+  "coverage": 1,
+  "missingCodes": [],
+  "counts": {
+   "grades": 1,
+   "units": 1,
+   "topics": 3,
+   "subtopics": 8,
+   "outcomes": 22
+  },
+  "warnings": [
+   "grade Year 10 has no content",
+   "grade Year 11 has no content",
+   "unexpected grade label \"all\""
+  ]
+ }
+}

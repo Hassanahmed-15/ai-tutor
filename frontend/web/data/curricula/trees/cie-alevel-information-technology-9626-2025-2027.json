@@ -1,0 +1,2483 @@
+{
+ "id": "cie-alevel-information-technology-9626-2025-2027",
+ "region": "INTL",
+ "framework": "Cambridge International AS & A Level Information Technology (9626) syllabus 2025–2027",
+ "board": "Cambridge",
+ "qualification": "AS & A Level",
+ "subject": "Information Technology",
+ "syllabusCode": "9626",
+ "gradeSystem": "course",
+ "source": {
+  "urls": [
+   "https://www.cambridgeinternational.org/Images/662482-2025-2027-syllabus.pdf",
+   "https://www.cambridgeinternational.org/programmes-and-qualifications/cambridge-international-as-and-a-level-information-technology-9626/"
+  ],
+  "publisher": "Cambridge University Press & Assessment (Cambridge International Education)",
+  "licence": "© Cambridge University Press & Assessment; structure + our own wording only",
+  "firstExam": "2025"
+ },
+ "grades": [
+  {
+   "grade": "AS",
+   "units": [
+    {
+     "id": "1-data-processing-and-information",
+     "title": "1 Data processing and information",
+     "topics": [
+      {
+       "id": "1-1-data-and-information",
+       "title": "1.1 Data and information",
+       "subtopics": [
+        {
+         "id": "data-and-information",
+         "title": "Data and information",
+         "outcomes": [
+          {
+           "code": "1.1",
+           "text": "Distinguish data from information, since context and meaning turn data into information."
+          },
+          {
+           "code": null,
+           "text": "Compare direct and indirect data and judge their suitability for a purpose."
+          },
+          {
+           "code": null,
+           "text": "Describe sources of direct data: questionnaires, interviews, data logging and observation."
+          },
+          {
+           "code": null,
+           "text": "Describe sources of indirect data: weather, census, electoral register, third-party business data and published research."
+          },
+          {
+           "code": null,
+           "text": "Weigh the advantages and disadvantages of direct and indirect data."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "1-2-quality-of-information",
+       "title": "1.2 Quality of information",
+       "subtopics": [
+        {
+         "id": "quality-of-information",
+         "title": "Quality of information",
+         "outcomes": [
+          {
+           "code": "1.2",
+           "text": "Identify factors affecting information quality: accuracy, relevance, age, level of detail and completeness."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "1-3-encryption",
+       "title": "1.3 Encryption",
+       "subtopics": [
+        {
+         "id": "encryption",
+         "title": "Encryption",
+         "outcomes": [
+          {
+           "code": "1.3",
+           "text": "Explain why encryption is needed."
+          },
+          {
+           "code": null,
+           "text": "Compare symmetric and asymmetric encryption."
+          },
+          {
+           "code": null,
+           "text": "Explain the purpose of TLS/SSL and IPsec and their use in client-server communication."
+          },
+          {
+           "code": null,
+           "text": "Describe uses of encryption: protecting data and systems."
+          },
+          {
+           "code": null,
+           "text": "Weigh the advantages and disadvantages of different encryption methods and protocols."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "1-4-checking-the-accuracy-of-data",
+       "title": "1.4 Checking the accuracy of data",
+       "subtopics": [
+        {
+         "id": "validation",
+         "title": "Validation",
+         "outcomes": [
+          {
+           "code": "1.4",
+           "text": "Describe validation checks: presence, range, type, length, format, check digit, lookup, consistency and limit."
+          }
+         ]
+        },
+        {
+         "id": "verification",
+         "title": "Verification",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe verification methods: visual checking, double entry, parity check, checksum, hash total and control total."
+          },
+          {
+           "code": null,
+           "text": "Explain the difference between validation and verification and why both are needed."
+          },
+          {
+           "code": null,
+           "text": "Weigh the advantages and disadvantages of validation and verification."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "1-5-data-processing",
+       "title": "1.5 Data processing",
+       "subtopics": [
+        {
+         "id": "batch-processing",
+         "title": "Batch processing",
+         "outcomes": [
+          {
+           "code": "1.5",
+           "text": "Describe batch processing and its uses, such as bills, card accounts and customer accounts."
+          },
+          {
+           "code": null,
+           "text": "Explain master and transaction files in payroll and orders."
+          },
+          {
+           "code": null,
+           "text": "Describe the steps in sequentially updating a master file with a transaction file."
+          }
+         ]
+        },
+        {
+         "id": "online-processing",
+         "title": "Online processing",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe online processing: electronic funds transfer, automatic stock control and electronic data interchange."
+          },
+          {
+           "code": null,
+           "text": "Describe business-to-business trading and online shopping steps."
+          }
+         ]
+        },
+        {
+         "id": "real-time-processing",
+         "title": "Real-time processing",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe real-time systems where output affects input, such as greenhouses, heating, air conditioning, alarms, traffic and barriers."
+          },
+          {
+           "code": null,
+           "text": "Describe wireless sensor and actuator networks: smart homes, guidance systems and autonomous vehicles."
+          },
+          {
+           "code": null,
+           "text": "Write an algorithm for the steps of different processing methods."
+          },
+          {
+           "code": null,
+           "text": "Weigh the advantages and disadvantages of different processing methods."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "2-hardware-and-software",
+     "title": "2 Hardware and software",
+     "topics": [
+      {
+       "id": "2-1-mainframe-computers-and-supercomputers",
+       "title": "2.1 Mainframe computers and supercomputers",
+       "subtopics": [
+        {
+         "id": "mainframes-and-supercomputers",
+         "title": "Mainframes and supercomputers",
+         "outcomes": [
+          {
+           "code": "2.1",
+           "text": "Describe characteristics: longevity, reliability, availability, serviceability, security, MIPS and FLOPS, throughput and fault tolerance."
+          },
+          {
+           "code": null,
+           "text": "Describe their operating systems, number of processors and heat management."
+          },
+          {
+           "code": null,
+           "text": "Describe uses of mainframes: census, transaction processing and statistics."
+          },
+          {
+           "code": null,
+           "text": "Describe uses of supercomputers: weather forecasting, climate research and quantum mechanics."
+          },
+          {
+           "code": null,
+           "text": "Weigh the advantages and disadvantages of mainframes and supercomputers."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "2-2-system-software",
+       "title": "2.2 System software",
+       "subtopics": [
+        {
+         "id": "system-software",
+         "title": "System software",
+         "outcomes": [
+          {
+           "code": "2.2",
+           "text": "Describe the types and functions of compilers, interpreters, linkers, device drivers, operating systems and utilities."
+          },
+          {
+           "code": null,
+           "text": "Explain how a high-level language is translated for different systems using interpreters and cross compilers."
+          },
+          {
+           "code": null,
+           "text": "Weigh the advantages and disadvantages of different system software."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "2-3-utility-software",
+       "title": "2.3 Utility software",
+       "subtopics": [
+        {
+         "id": "utility-software",
+         "title": "Utility software",
+         "outcomes": [
+          {
+           "code": "2.3",
+           "text": "Explain the need for anti-virus, back-up, compression, defragmentation, formatting, file copying and deleting."
+          },
+          {
+           "code": null,
+           "text": "Describe file management, disk management and compression utilities."
+          },
+          {
+           "code": null,
+           "text": "Describe the uses of the different utilities."
+          },
+          {
+           "code": null,
+           "text": "Weigh the advantages and disadvantages of different utility software."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "2-4-custom-written-software-and-off-the-shelf-so",
+       "title": "2.4 Custom-written software and off-the-shelf software",
+       "subtopics": [
+        {
+         "id": "custom-written-and-off-the-shelf-software",
+         "title": "Custom-written and off-the-shelf software",
+         "outcomes": [
+          {
+           "code": "2.4",
+           "text": "Describe uses of custom-written software by individuals and organisations."
+          },
+          {
+           "code": null,
+           "text": "Describe uses of off-the-shelf software."
+          },
+          {
+           "code": null,
+           "text": "Compare testing, support, cost and adaptability."
+          },
+          {
+           "code": null,
+           "text": "Distinguish proprietary from open-source software."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "2-5-user-interfaces",
+       "title": "2.5 User interfaces",
+       "subtopics": [
+        {
+         "id": "user-interfaces",
+         "title": "User interfaces",
+         "outcomes": [
+          {
+           "code": "2.5",
+           "text": "Describe command line, graphical, dialogue and gesture-based interfaces."
+          },
+          {
+           "code": null,
+           "text": "Describe the uses of each type."
+          },
+          {
+           "code": null,
+           "text": "Weigh the advantages and disadvantages of each type."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "3-monitoring-and-control",
+     "title": "3 Monitoring and control",
+     "topics": [
+      {
+       "id": "3-1-monitoring-and-measurement-technologies",
+       "title": "3.1 Monitoring and measurement technologies",
+       "subtopics": [
+        {
+         "id": "sensors-and-monitoring",
+         "title": "Sensors and monitoring",
+         "outcomes": [
+          {
+           "code": "3.1",
+           "text": "Describe sensors: light/UV, temperature, pressure, humidity, pH, gas, sound, infrared, touch, magnetic field and proximity."
+          },
+          {
+           "code": null,
+           "text": "Describe uses in environmental monitoring, weather stations and patient monitoring."
+          }
+         ]
+        },
+        {
+         "id": "calibration",
+         "title": "Calibration",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain the importance of calibration."
+          },
+          {
+           "code": null,
+           "text": "Compare one-point, two-point and multipoint calibration and calibrate sensor readings."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "3-2-control-technologies",
+       "title": "3.2 Control technologies",
+       "subtopics": [
+        {
+         "id": "sensors-and-actuators-in-control",
+         "title": "Sensors and actuators in control",
+         "outcomes": [
+          {
+           "code": "3.2",
+           "text": "Describe sensors in control uses: fluid levels, light, moisture, soil pH, gas, infrared and ultrasonic."
+          },
+          {
+           "code": null,
+           "text": "Describe induction loops, sound sensors and proximity sensors in smartphones."
+          },
+          {
+           "code": null,
+           "text": "Describe actuators and the movements they perform: linear, rotary, soft, hydraulic, pneumatic, electric, thermal, magnetic and mechanical."
+          }
+         ]
+        },
+        {
+         "id": "computer-controlled-systems",
+         "title": "Computer-controlled systems",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe computer-controlled systems: greenhouses, heating, air conditioning, alarms, traffic, barriers and smart homes."
+          },
+          {
+           "code": null,
+           "text": "Weigh the advantages and disadvantages of control technologies."
+          },
+          {
+           "code": null,
+           "text": "Write an algorithm or flowchart for a control system."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "4-algorithms-and-flowcharts",
+     "title": "4 Algorithms and flowcharts",
+     "topics": [
+      {
+       "id": "4-1-algorithms",
+       "title": "4.1 Algorithms",
+       "subtopics": [
+        {
+         "id": "algorithms-and-pseudocode",
+         "title": "Algorithms and pseudocode",
+         "outcomes": [
+          {
+           "code": "4.1",
+           "text": "Write and edit an algorithm showing decisions: branching, loops, nested loops and subroutines."
+          },
+          {
+           "code": null,
+           "text": "Write pseudocode using INPUT, WRITE, FOR, IF, WHILE, REPEAT and CASE."
+          },
+          {
+           "code": null,
+           "text": "Use comparison and arithmetic operators in pseudocode."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "4-2-flowcharts",
+       "title": "4.2 Flowcharts",
+       "subtopics": [
+        {
+         "id": "flowcharts",
+         "title": "Flowcharts",
+         "outcomes": [
+          {
+           "code": "4.2",
+           "text": "Draw a basic program flowchart to solve a problem."
+          },
+          {
+           "code": null,
+           "text": "Draw a decision-making flowchart with input/output, decisions, terminators, processes, subroutines, connectors and flowlines."
+          },
+          {
+           "code": null,
+           "text": "Edit a given flowchart."
+          },
+          {
+           "code": null,
+           "text": "Identify errors in an algorithm or flowchart."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "5-esecurity",
+     "title": "5 eSecurity",
+     "topics": [
+      {
+       "id": "5-1-personal-data",
+       "title": "5.1 Personal data",
+       "subtopics": [
+        {
+         "id": "personal-data",
+         "title": "Personal data",
+         "outcomes": [
+          {
+           "code": "5.1",
+           "text": "Explain what personal data is."
+          },
+          {
+           "code": null,
+           "text": "Explain why and how personal data is kept confidential: removing geotags, anonymising, aggregating and duty of confidence."
+          },
+          {
+           "code": null,
+           "text": "Explain how personal data is kept secure, including network security."
+          },
+          {
+           "code": null,
+           "text": "Describe how unauthorised people gather data (smishing, vishing, phishing, pharming) and how firewalls help."
+          },
+          {
+           "code": null,
+           "text": "Weigh the advantages and disadvantages of methods preventing misuse."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "5-2-malware",
+       "title": "5.2 Malware",
+       "subtopics": [
+        {
+         "id": "malware",
+         "title": "Malware",
+         "outcomes": [
+          {
+           "code": "5.2",
+           "text": "Describe types of malware: trojans, worms, spyware, adware, rootkits, bots and ransomware."
+          },
+          {
+           "code": null,
+           "text": "Describe uses of malware: fraud, theft, espionage and sabotage."
+          },
+          {
+           "code": null,
+           "text": "Explain the consequences of malware for organisations and individuals."
+          },
+          {
+           "code": null,
+           "text": "Describe malware prevention software and physical prevention methods."
+          },
+          {
+           "code": null,
+           "text": "Weigh the advantages and disadvantages of prevention methods."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "6-the-digital-divide",
+     "title": "6 The digital divide",
+     "topics": [
+      {
+       "id": "6-1-the-digital-divide",
+       "title": "6.1 The digital divide",
+       "subtopics": [
+        {
+         "id": "the-digital-divide",
+         "title": "The digital divide",
+         "outcomes": [
+          {
+           "code": "6.1",
+           "text": "Explain what the digital divide is."
+          },
+          {
+           "code": null,
+           "text": "Explain its causes, such as computer performance and wireless connections."
+          },
+          {
+           "code": null,
+           "text": "Explain its effects, including unequal access and digital literacy teaching."
+          },
+          {
+           "code": null,
+           "text": "Identify the groups affected: age, city or rural, education, socioeconomic status, accessibility barriers and national development."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "7-expert-systems",
+     "title": "7 Expert systems",
+     "topics": [
+      {
+       "id": "7-1-expert-systems",
+       "title": "7.1 Expert systems",
+       "subtopics": [
+        {
+         "id": "expert-systems",
+         "title": "Expert systems",
+         "outcomes": [
+          {
+           "code": "7.1",
+           "text": "Explain how expert systems produce possible solutions."
+          },
+          {
+           "code": null,
+           "text": "Describe the components: user interface, inference engine, knowledge base, explanation system and knowledge base editor."
+          },
+          {
+           "code": null,
+           "text": "Describe scenarios: mineral prospecting, finance, insurance, fault diagnosis, medical diagnosis, routing and identification."
+          }
+         ]
+        },
+        {
+         "id": "chaining-and-reasoning",
+         "title": "Chaining and reasoning",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain forward and backward chaining with IF...THEN."
+          },
+          {
+           "code": null,
+           "text": "Explain data-driven and goal-driven reasoning in diagnosis, gaming and AI."
+          },
+          {
+           "code": null,
+           "text": "Weigh the advantages and disadvantages of expert systems."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "8-spreadsheets",
+     "title": "8 Spreadsheets",
+     "topics": [
+      {
+       "id": "8-1-creating-a-spreadsheet",
+       "title": "8.1 Creating a spreadsheet",
+       "subtopics": [
+        {
+         "id": "page-set-up-and-structure",
+         "title": "Page set-up and structure",
+         "outcomes": [
+          {
+           "code": "8.1",
+           "text": "Set up page structure for an audience or house style: orientation, size, fit to page, margins, headers and footers."
+          },
+          {
+           "code": null,
+           "text": "Insert, delete, hide, resize rows and columns and merge cells."
+          },
+          {
+           "code": null,
+           "text": "Control input with validation such as drop-down menus."
+          },
+          {
+           "code": null,
+           "text": "Protect cells, rows, columns, worksheets and workbooks, and freeze panes."
+          }
+         ]
+        },
+        {
+         "id": "formulas-and-referencing",
+         "title": "Formulas and referencing",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Create formulas using addition, subtraction, multiplication, division and indices."
+          },
+          {
+           "code": null,
+           "text": "Replicate formulas with absolute, relative and mixed references, including named cells and ranges."
+          },
+          {
+           "code": null,
+           "text": "Explain why each type of referencing is used."
+          }
+         ]
+        },
+        {
+         "id": "functions",
+         "title": "Functions",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Use calculation functions such as SUM, AVERAGE, MIN, MAX, INT, ROUND and SUBTOTAL."
+          },
+          {
+           "code": null,
+           "text": "Use counting functions and lookup functions such as VLOOKUP, XLOOKUP, INDEX and MATCH."
+          },
+          {
+           "code": null,
+           "text": "Use decision functions such as IF, IFS, AND and OR, and date and time functions."
+          },
+          {
+           "code": null,
+           "text": "Use text functions, conditional functions like SUMIF, error trapping, nested functions and TRANSPOSE."
+          }
+         ]
+        },
+        {
+         "id": "formatting-and-audience",
+         "title": "Formatting and audience",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Use appropriate input and error messages."
+          },
+          {
+           "code": null,
+           "text": "Format cells for date, time, text, numbers, currency, percentages, fractions, orientation and alignment."
+          },
+          {
+           "code": null,
+           "text": "Format cell emphasis, including conditional formatting and comments."
+          },
+          {
+           "code": null,
+           "text": "Judge spreadsheet requirements for different audiences."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "8-2-testing-a-spreadsheet",
+       "title": "8.2 Testing a spreadsheet",
+       "subtopics": [
+        {
+         "id": "testing-a-spreadsheet",
+         "title": "Testing a spreadsheet",
+         "outcomes": [
+          {
+           "code": "8.2",
+           "text": "Create and apply a test plan for functions, validation rules and conditional formatting."
+          },
+          {
+           "code": null,
+           "text": "Choose normal, extreme and abnormal test data."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "8-3-using-a-spreadsheet",
+       "title": "8.3 Using a spreadsheet",
+       "subtopics": [
+        {
+         "id": "extracting-sorting-and-summarising",
+         "title": "Extracting, sorting and summarising",
+         "outcomes": [
+          {
+           "code": "8.3",
+           "text": "Extract data by searching with text, numbers, dates, Boolean operators, comparisons, contains, starts with and ends with."
+          },
+          {
+           "code": null,
+           "text": "Sort data ascending or descending on one or several columns."
+          },
+          {
+           "code": null,
+           "text": "Summarise data with pivot tables, pivot charts, subtotals and groups."
+          },
+          {
+           "code": null,
+           "text": "Import and export data in csv, txt and pdf form and as graphs and charts."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "8-4-graphs-and-charts",
+       "title": "8.4 Graphs and charts",
+       "subtopics": [
+        {
+         "id": "creating-charts",
+         "title": "Creating charts",
+         "outcomes": [
+          {
+           "code": "8.4",
+           "text": "Create a chart suited to its purpose from contiguous, non-contiguous or specified data."
+          },
+          {
+           "code": null,
+           "text": "Create bar, pie, line, comparative and combination charts."
+          }
+         ]
+        },
+        {
+         "id": "formatting-charts",
+         "title": "Formatting charts",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Format titles, legends, segment labels, values, percentages and axis labels."
+          },
+          {
+           "code": null,
+           "text": "Set axis scales, data intervals, a secondary axis and extract a pie sector."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "9-modelling",
+     "title": "9 Modelling",
+     "topics": [
+      {
+       "id": "9-1-modelling-and-simulations",
+       "title": "9.1 Modelling and simulations",
+       "subtopics": [
+        {
+         "id": "modelling",
+         "title": "Modelling",
+         "outcomes": [
+          {
+           "code": "9.1",
+           "text": "Use what-if analysis: predict results, model scenarios and use goal seek."
+          },
+          {
+           "code": null,
+           "text": "Describe modelling uses: finance, population, climate, weather, queues, traffic and construction."
+          },
+          {
+           "code": null,
+           "text": "Describe the characteristics of modelling software and the need for computer models."
+          },
+          {
+           "code": null,
+           "text": "Judge the effectiveness of spreadsheet models."
+          },
+          {
+           "code": null,
+           "text": "Use models to run simulations such as disaster planning, pilot training, driving and nuclear research."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "10-database-and-file-concepts",
+     "title": "10 Database and file concepts",
+     "topics": [
+      {
+       "id": "10-1-creating-a-database",
+       "title": "10.1 Creating a database",
+       "subtopics": [
+        {
+         "id": "fields-keys-and-relationships",
+         "title": "Fields, keys and relationships",
+         "outcomes": [
+          {
+           "code": "10.1",
+           "text": "Assign data types and field sizes: text, alphanumeric, numeric, date, time and Boolean."
+          },
+          {
+           "code": null,
+           "text": "Describe one-to-one, one-to-many and many-to-many relationships."
+          },
+          {
+           "code": null,
+           "text": "Describe primary, compound, foreign and composite keys."
+          },
+          {
+           "code": null,
+           "text": "Explain referential integrity and its importance."
+          },
+          {
+           "code": null,
+           "text": "Distinguish a flat file from a relational database and say when each suits."
+          }
+         ]
+        },
+        {
+         "id": "designing-the-database",
+         "title": "Designing the database",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Create and use one-to-one and one-to-many relationships."
+          },
+          {
+           "code": null,
+           "text": "Create and interpret conceptual, logical and physical entity relationship diagrams."
+          },
+          {
+           "code": null,
+           "text": "Create a relational database and set key fields."
+          },
+          {
+           "code": null,
+           "text": "Validate and verify data entry and test validation rules."
+          }
+         ]
+        },
+        {
+         "id": "queries-and-searches",
+         "title": "Queries and searches",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Choose among static, dynamic, simple, complex, nested and summary queries."
+          },
+          {
+           "code": null,
+           "text": "Perform searches with single and multiple criteria, parameter queries and nested queries."
+          },
+          {
+           "code": null,
+           "text": "Use queries to remove duplicates, create tables, append, delete and update records."
+          },
+          {
+           "code": null,
+           "text": "Summarise data and use wildcards, Boolean operators and comparisons."
+          },
+          {
+           "code": null,
+           "text": "Calculate with calculated controls and fields, and sort on several criteria."
+          }
+         ]
+        },
+        {
+         "id": "forms-reports-and-data-transfer",
+         "title": "Forms, reports and data transfer",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Design a data entry form: fonts, spacing, white space, radio buttons, drop-downs, controls and subforms."
+          },
+          {
+           "code": null,
+           "text": "Design, create and edit database reports, including grouped reports and calculated controls."
+          },
+          {
+           "code": null,
+           "text": "Create a switchboard or menu."
+          },
+          {
+           "code": null,
+           "text": "Import csv and txt data, and export tables, queries and reports."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "10-2-normalisation-to-third-normal-form-3nf",
+       "title": "10.2 Normalisation to third normal form (3NF)",
+       "subtopics": [
+        {
+         "id": "normalisation",
+         "title": "Normalisation",
+         "outcomes": [
+          {
+           "code": "10.2",
+           "text": "Describe data in unnormalised, first, second and third normal form."
+          },
+          {
+           "code": null,
+           "text": "Explain the advantages and disadvantages of normalisation."
+          },
+          {
+           "code": null,
+           "text": "Normalise a database to 1NF, 2NF and 3NF."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "10-3-data-dictionary",
+       "title": "10.3 Data dictionary",
+       "subtopics": [
+        {
+         "id": "data-dictionary",
+         "title": "Data dictionary",
+         "outcomes": [
+          {
+           "code": "10.3",
+           "text": "Identify data types: text, numeric, percentage, date and time, and Boolean."
+          },
+          {
+           "code": null,
+           "text": "Describe the components of a data dictionary."
+          },
+          {
+           "code": null,
+           "text": "Create a data dictionary with suitable data types for a situation."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "10-4-file-and-data-management",
+       "title": "10.4 File and data management",
+       "subtopics": [
+        {
+         "id": "file-types-and-access",
+         "title": "File types and access",
+         "outcomes": [
+          {
+           "code": "10.4",
+           "text": "Describe file types and their uses."
+          },
+          {
+           "code": null,
+           "text": "Explain why generic file formats are needed."
+          },
+          {
+           "code": null,
+           "text": "Distinguish proprietary from open-source formats and why open formats matter."
+          },
+          {
+           "code": null,
+           "text": "Use indexed sequential and direct file access."
+          }
+         ]
+        },
+        {
+         "id": "database-systems-and-mis",
+         "title": "Database systems and MIS",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Compare hierarchical, network, object-oriented and relational database systems."
+          },
+          {
+           "code": null,
+           "text": "Describe the features and organisational uses of a management information system."
+          },
+          {
+           "code": null,
+           "text": "Weigh the advantages and disadvantages of each database system."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "11-video-and-audio-editing",
+     "title": "11 Video and audio editing",
+     "topics": [
+      {
+       "id": "11-1-video-editing",
+       "title": "11.1 Video editing",
+       "subtopics": [
+        {
+         "id": "editing-video",
+         "title": "Editing video",
+         "outcomes": [
+          {
+           "code": "11.1",
+           "text": "Set aspect ratio, trim clips and splice clips together."
+          },
+          {
+           "code": null,
+           "text": "Add titles, subtitles, captions and scrolling credits with readable text."
+          },
+          {
+           "code": null,
+           "text": "Add fades, pan and zoom effects and transitions."
+          },
+          {
+           "code": null,
+           "text": "Extract, resize, crop and insert still images."
+          }
+         ]
+        },
+        {
+         "id": "video-audio-export-and-compression",
+         "title": "Video audio, export and compression",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Add, edit or remove audio in a video clip."
+          },
+          {
+           "code": null,
+           "text": "Change speed and apply filters and colour correction."
+          },
+          {
+           "code": null,
+           "text": "Export video in MP4, AVI, MOV or WMV and compress to different resolutions for DVD, internet or mobile."
+          },
+          {
+           "code": null,
+           "text": "Explain how compression methods affect video quality."
+          },
+          {
+           "code": null,
+           "text": "Explain why typical video editing features are used."
+          },
+          {
+           "code": null,
+           "text": "Weigh the advantages and disadvantages of export formats."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "11-2-audio-editing",
+       "title": "11.2 Audio editing",
+       "subtopics": [
+        {
+         "id": "editing-audio",
+         "title": "Editing audio",
+         "outcomes": [
+          {
+           "code": "11.2",
+           "text": "Import and add tracks, normalise and trim audio and splice clips."
+          },
+          {
+           "code": null,
+           "text": "Fade, change speed and pitch, and add delay, echo and reverberation."
+          },
+          {
+           "code": null,
+           "text": "Convert stereo to mono, apply equalisation and filters and reduce noise."
+          },
+          {
+           "code": null,
+           "text": "Overdub, including voiceover."
+          }
+         ]
+        },
+        {
+         "id": "audio-export-and-quality",
+         "title": "Audio export and quality",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Compress audio to different sample rates and export in MP3, MP4a, WAV or AAC."
+          },
+          {
+           "code": null,
+           "text": "Explain how and why typical audio editing features are used."
+          },
+          {
+           "code": null,
+           "text": "Weigh the advantages and disadvantages of export formats."
+          },
+          {
+           "code": null,
+           "text": "Explain how file size depends on sampling rate and resolution."
+          },
+          {
+           "code": null,
+           "text": "Explain how compression methods affect quality: containers, lossy and lossless."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "A Level",
+   "units": [
+    {
+     "id": "12-it-in-society",
+     "title": "12 IT in society",
+     "topics": [
+      {
+       "id": "12-1-digital-currencies",
+       "title": "12.1 Digital currencies",
+       "subtopics": [
+        {
+         "id": "digital-currencies",
+         "title": "Digital currencies",
+         "outcomes": [
+          {
+           "code": "12.1",
+           "text": "Describe types, characteristics and uses of digital currencies."
+          },
+          {
+           "code": null,
+           "text": "Compare centralised systems like cards with decentralised systems like Bitcoin and mobile wallets."
+          },
+          {
+           "code": null,
+           "text": "Explain blockchains as distributed ledgers for cryptocurrencies."
+          },
+          {
+           "code": null,
+           "text": "Explain impacts and risks for individuals, businesses, governments and the global economy."
+          },
+          {
+           "code": null,
+           "text": "Weigh the advantages and disadvantages of different digital currencies."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "12-2-data-mining",
+       "title": "12.2 Data mining",
+       "subtopics": [
+        {
+         "id": "data-mining",
+         "title": "Data mining",
+         "outcomes": [
+          {
+           "code": "12.2",
+           "text": "Describe the data mining process and its six stages from business understanding to deployment."
+          },
+          {
+           "code": null,
+           "text": "Explain how and why data mining is used: security, surveillance, business, research, healthcare and social trends."
+          },
+          {
+           "code": null,
+           "text": "Weigh the advantages and disadvantages, including ethical and privacy concerns."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "12-3-social-networking-services-platforms",
+       "title": "12.3 Social networking services/platforms",
+       "subtopics": [
+        {
+         "id": "social-networking",
+         "title": "Social networking",
+         "outcomes": [
+          {
+           "code": "12.3",
+           "text": "Describe types of social networking: chat rooms, instant messaging, email and social media."
+          },
+          {
+           "code": null,
+           "text": "Describe uses by individuals, businesses, organisations and governments."
+          },
+          {
+           "code": null,
+           "text": "Explain impacts on individuals, businesses, organisations and governments."
+          },
+          {
+           "code": null,
+           "text": "Weigh the advantages and disadvantages of different platforms."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "12-4-the-impact-of-it",
+       "title": "12.4 The impact of IT",
+       "subtopics": [
+        {
+         "id": "the-impact-of-it-on-society",
+         "title": "The impact of IT on society",
+         "outcomes": [
+          {
+           "code": "12.4",
+           "text": "Explain the impact of IT on sport, manufacturing, healthcare, education, banking and e-business."
+          },
+          {
+           "code": null,
+           "text": "Explain the impact on news, entertainment, home, government, politics, individuals and organisations."
+          },
+          {
+           "code": null,
+           "text": "Explain the impact on monitoring and surveillance for individuals, organisations and policing."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "12-5-technology-enhanced-learning",
+       "title": "12.5 Technology enhanced learning",
+       "subtopics": [
+        {
+         "id": "technology-enhanced-learning",
+         "title": "Technology enhanced learning",
+         "outcomes": [
+          {
+           "code": "12.5",
+           "text": "Describe delivery methods: computer-based training, online tutorials, networked courses, MOOCs and video-conferencing."
+          },
+          {
+           "code": null,
+           "text": "Explain the impact on motivation, achievement and autonomy."
+          },
+          {
+           "code": null,
+           "text": "Weigh the advantages and disadvantages of each delivery method."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "13-new-and-emerging-technologies",
+     "title": "13 New and emerging technologies",
+     "topics": [
+      {
+       "id": "13-1-new-and-emerging-technologies",
+       "title": "13.1 New and emerging technologies",
+       "subtopics": [
+        {
+         "id": "new-and-emerging-technologies",
+         "title": "New and emerging technologies",
+         "outcomes": [
+          {
+           "code": "13.1",
+           "text": "Describe new technologies: AI, augmented and virtual reality, robotics, translation, holography and 3D printing."
+          },
+          {
+           "code": null,
+           "text": "Describe wearable computing, blockchain, the Internet of Things, molecular storage and autonomous transport."
+          },
+          {
+           "code": null,
+           "text": "Explain impacts on individuals, organisations, healthcare and scientific research."
+          },
+          {
+           "code": null,
+           "text": "Explain environmental impacts: e-waste, recycling, power use, manufacturing and wireless energy."
+          },
+          {
+           "code": null,
+           "text": "Weigh the advantages and disadvantages of each technology."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "14-communications-technology",
+     "title": "14 Communications technology",
+     "topics": [
+      {
+       "id": "14-1-networks",
+       "title": "14.1 Networks",
+       "subtopics": [
+        {
+         "id": "types-of-network",
+         "title": "Types of network",
+         "outcomes": [
+          {
+           "code": "14.1",
+           "text": "Describe LAN, WAN, client-server, peer-to-peer, VPN and mobile networks."
+          },
+          {
+           "code": null,
+           "text": "Describe their topologies, architecture and protocols."
+          },
+          {
+           "code": null,
+           "text": "Describe their uses: sharing resources and peripherals, BitTorrent, internet, tunnelling, telephony and content delivery."
+          },
+          {
+           "code": null,
+           "text": "Weigh the advantages and disadvantages of each type."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "14-2-components-in-a-network",
+       "title": "14.2 Components in a network",
+       "subtopics": [
+        {
+         "id": "network-components",
+         "title": "Network components",
+         "outcomes": [
+          {
+           "code": "14.2",
+           "text": "Describe the role of network cards, repeaters, hubs, switches, access points, gateways, bridges and routers."
+          },
+          {
+           "code": null,
+           "text": "Explain how each component operates and works with the others."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "14-3-network-servers",
+       "title": "14.3 Network servers",
+       "subtopics": [
+        {
+         "id": "servers",
+         "title": "Servers",
+         "outcomes": [
+          {
+           "code": "14.3",
+           "text": "Describe server types: file, web, mail, applications, print, FTP, proxy and virtual servers."
+          },
+          {
+           "code": null,
+           "text": "Explain the role of servers in a network."
+          },
+          {
+           "code": null,
+           "text": "Explain request-and-response communication between clients and servers, and server farms."
+          },
+          {
+           "code": null,
+           "text": "Judge the advantages and disadvantages of each server type for a scenario."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "14-4-cloud-computing",
+       "title": "14.4 Cloud computing",
+       "subtopics": [
+        {
+         "id": "cloud-computing",
+         "title": "Cloud computing",
+         "outcomes": [
+          {
+           "code": "14.4",
+           "text": "Describe cloud computing and its sharing of computing resources."
+          },
+          {
+           "code": null,
+           "text": "Describe uses by individuals and organisations."
+          },
+          {
+           "code": null,
+           "text": "Weigh the advantages and disadvantages of cloud computing."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "14-5-data-transmission-across-networks",
+       "title": "14.5 Data transmission across networks",
+       "subtopics": [
+        {
+         "id": "speed-of-transmission-and-streaming",
+         "title": "Speed of transmission and streaming",
+         "outcomes": [
+          {
+           "code": "14.5",
+           "text": "Define bandwidth and bit rate and compare the bandwidth of different transmission media and access technologies."
+          },
+          {
+           "code": null,
+           "text": "Explain real-time and on-demand streaming and how bit rate and bandwidth affect it."
+          }
+         ]
+        },
+        {
+         "id": "transmission-methods",
+         "title": "Transmission methods",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe the properties of fibre optic, coaxial and twisted pair cables, and lasers."
+          },
+          {
+           "code": null,
+           "text": "Describe typical applications of each method."
+          },
+          {
+           "code": null,
+           "text": "Explain how the medium limits bandwidth for data, streaming and ultra-high definition TV."
+          },
+          {
+           "code": null,
+           "text": "Weigh the advantages and disadvantages of each method."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "14-6-network-protocols",
+       "title": "14.6 Network protocols",
+       "subtopics": [
+        {
+         "id": "protocols-and-their-purposes",
+         "title": "Protocols and their purposes",
+         "outcomes": [
+          {
+           "code": "14.6",
+           "text": "Define a protocol and explain why protocols are necessary."
+          },
+          {
+           "code": null,
+           "text": "Describe the purposes of TCP, IP, ICMP, ARP, DHCP and UDP."
+          },
+          {
+           "code": null,
+           "text": "Describe HTTP/HTTPS, FTP, tunnelling, SMTP, POP3, IMAP, Telnet, SSH, IPsec and TLS/SSL."
+          }
+         ]
+        },
+        {
+         "id": "sending-data-over-a-network",
+         "title": "Sending data over a network",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe packet switching, packet structure and connection and connectionless modes."
+          },
+          {
+           "code": null,
+           "text": "Describe circuit switching and message switching with store and forward."
+          },
+          {
+           "code": null,
+           "text": "Describe MAC and IP addressing, including IPv4 and IPv6."
+          },
+          {
+           "code": null,
+           "text": "Compare static and dynamic routing and the use of routing tables."
+          }
+         ]
+        },
+        {
+         "id": "routing-protocols-layers-and-firewalls",
+         "title": "Routing protocols, layers and firewalls",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe the function of interior, exterior and border gateway protocols."
+          },
+          {
+           "code": null,
+           "text": "Describe the layers of TCP/IP and OSI and compare the two."
+          },
+          {
+           "code": null,
+           "text": "Explain how firewalls are used and configured to control network access."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "14-7-wireless-technology",
+       "title": "14.7 Wireless technology",
+       "subtopics": [
+        {
+         "id": "wireless-technology",
+         "title": "Wireless technology",
+         "outcomes": [
+          {
+           "code": "14.7",
+           "text": "Describe wireless transmission methods: Wi-Fi, Bluetooth, infrared, microwave, radio and NFC."
+          },
+          {
+           "code": null,
+           "text": "Explain how they operate: data transfer, wireless protocols and wireless power transfer."
+          },
+          {
+           "code": null,
+           "text": "Describe uses: data exchange, mobile communications and the Internet of Things."
+          },
+          {
+           "code": null,
+           "text": "Explain wireless security issues, prevention and protocols such as WEP and WPA."
+          },
+          {
+           "code": null,
+           "text": "Weigh the advantages and disadvantages of each method."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "14-8-mobile-communication-systems",
+       "title": "14.8 Mobile communication systems",
+       "subtopics": [
+        {
+         "id": "cellular-and-satellite-systems",
+         "title": "Cellular and satellite systems",
+         "outcomes": [
+          {
+           "code": "14.8",
+           "text": "Describe the structure of cellular networks and the use of 3G, 4G and 5G."
+          },
+          {
+           "code": null,
+           "text": "Explain how satellite systems prepare, send and receive data."
+          },
+          {
+           "code": null,
+           "text": "Describe uses: GPS, global mapping, surveillance, telecommunications and ultra-high definition TV."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "14-9-network-security",
+       "title": "14.9 Network security",
+       "subtopics": [
+        {
+         "id": "network-security-threats",
+         "title": "Network security threats",
+         "outcomes": [
+          {
+           "code": "14.9",
+           "text": "Describe threats: brute force, denial of service, botnets, malware, malicious actors, SQL injection and poor policies."
+          },
+          {
+           "code": null,
+           "text": "Explain impacts: data destruction, manipulation, theft and identity theft."
+          }
+         ]
+        },
+        {
+         "id": "preventing-security-problems",
+         "title": "Preventing security problems",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe physical measures: barriers, locks, surveillance, alarms and guards."
+          },
+          {
+           "code": null,
+           "text": "Describe software measures: biometrics, anti-malware, encryption and access rights."
+          },
+          {
+           "code": null,
+           "text": "Explain how firewalls are configured to control access."
+          },
+          {
+           "code": null,
+           "text": "Weigh the advantages and disadvantages of security methods."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "14-10-disaster-recovery-management",
+       "title": "14.10 Disaster recovery management",
+       "subtopics": [
+        {
+         "id": "disaster-recovery",
+         "title": "Disaster recovery",
+         "outcomes": [
+          {
+           "code": "14.10",
+           "text": "Identify disasters causing data loss: natural, equipment and power failure, cybercrime, malware and accidents."
+          },
+          {
+           "code": null,
+           "text": "Explain risk analysis, perpetrator analysis, risk testing and quantifying risk."
+          },
+          {
+           "code": null,
+           "text": "Explain how to detect threats, prevent disasters and restore afterwards."
+          },
+          {
+           "code": null,
+           "text": "Describe strategies to minimise risk: power protection, passwords, malware protection and back-ups."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "15-project-management",
+     "title": "15 Project management",
+     "topics": [
+      {
+       "id": "15-1-the-stages-of-the-project-life-cycle",
+       "title": "15.1 The stages of the project life cycle",
+       "subtopics": [
+        {
+         "id": "project-life-cycle",
+         "title": "Project life cycle",
+         "outcomes": [
+          {
+           "code": "15.1",
+           "text": "Describe project initiation: objectives, resources, success criteria, stakeholders, scope and schedule."
+          },
+          {
+           "code": null,
+           "text": "Describe project planning: detailed resources and task scheduling."
+          },
+          {
+           "code": null,
+           "text": "Describe execution and monitoring: implementing, tracking time, cost and quality, and reporting."
+          },
+          {
+           "code": null,
+           "text": "Describe project close and why reviews are done."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "15-2-project-management-software",
+       "title": "15.2 Project management software",
+       "subtopics": [
+        {
+         "id": "project-management-software",
+         "title": "Project management software",
+         "outcomes": [
+          {
+           "code": "15.2",
+           "text": "Describe types: desktop, web-based, mobile, personal, single-user and collaborative."
+          },
+          {
+           "code": null,
+           "text": "Describe uses: planning, scheduling, resources, costings, communication and collaboration."
+          },
+          {
+           "code": null,
+           "text": "Weigh the advantages and disadvantages of the types and of using such software."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "15-3-tools-and-techniques-for-project-management",
+       "title": "15.3 Tools and techniques for project management tasks",
+       "subtopics": [
+        {
+         "id": "gantt-charts-pert-and-cpm",
+         "title": "Gantt charts, PERT and CPM",
+         "outcomes": [
+          {
+           "code": "15.3",
+           "text": "Create, use and interpret Gantt charts."
+          },
+          {
+           "code": null,
+           "text": "Create and interpret PERT charts, with tasks, timings, float, milestones, dependencies and deliverables."
+          },
+          {
+           "code": null,
+           "text": "Calculate the critical path and use it for work flow, costing and resources."
+          },
+          {
+           "code": null,
+           "text": "Weigh the advantages and disadvantages of Gantt, PERT and CPM."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "16-system-life-cycle",
+     "title": "16 System life cycle",
+     "topics": [
+      {
+       "id": "16-1-the-stages-in-the-system-life-cycle",
+       "title": "16.1 The stages in the system life cycle",
+       "subtopics": [
+        {
+         "id": "the-system-life-cycle",
+         "title": "The system life cycle",
+         "outcomes": [
+          {
+           "code": "16.1",
+           "text": "Define a system as hardware, software or both."
+          },
+          {
+           "code": null,
+           "text": "Describe the stages of developing a system."
+          },
+          {
+           "code": null,
+           "text": "Explain how the stages relate."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "16-2-analysis",
+       "title": "16.2 Analysis",
+       "subtopics": [
+        {
+         "id": "analysis",
+         "title": "Analysis",
+         "outcomes": [
+          {
+           "code": "16.2",
+           "text": "Describe research methods: questionnaires, interviews, observation and document analysis."
+          },
+          {
+           "code": null,
+           "text": "Describe the content and purpose of user requirements, system and design specifications."
+          },
+          {
+           "code": null,
+           "text": "Weigh the advantages and disadvantages of each research method."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "16-3-design",
+       "title": "16.3 Design",
+       "subtopics": [
+        {
+         "id": "design",
+         "title": "Design",
+         "outcomes": [
+          {
+           "code": "16.3",
+           "text": "Draw level 0, 1 and 2 data flow diagrams and system flowcharts with correct symbols."
+          },
+          {
+           "code": null,
+           "text": "Describe data storage in databases and input and output files."
+          },
+          {
+           "code": null,
+           "text": "Describe input forms: features, data collection, validation and input screen layouts."
+          },
+          {
+           "code": null,
+           "text": "Describe output reports: screen and printed layouts."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "16-4-development-and-testing",
+       "title": "16.4 Development and testing",
+       "subtopics": [
+        {
+         "id": "testing",
+         "title": "Testing",
+         "outcomes": [
+          {
+           "code": "16.4",
+           "text": "Explain why testing is needed, what a test plan contains and create one."
+          },
+          {
+           "code": null,
+           "text": "Describe the types and purpose of test data."
+          },
+          {
+           "code": null,
+           "text": "Distinguish alpha from beta testing."
+          },
+          {
+           "code": null,
+           "text": "Distinguish white box from black box testing."
+          },
+          {
+           "code": null,
+           "text": "Weigh the advantages and disadvantages of the types of testing."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "16-5-implementation",
+       "title": "16.5 Implementation",
+       "subtopics": [
+        {
+         "id": "implementation",
+         "title": "Implementation",
+         "outcomes": [
+          {
+           "code": "16.5",
+           "text": "Describe parallel running, direct changeover, phased and pilot implementation."
+          },
+          {
+           "code": null,
+           "text": "Weigh the advantages and disadvantages of each and judge the suitability for a situation."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "16-6-documentation",
+       "title": "16.6 Documentation",
+       "subtopics": [
+        {
+         "id": "documentation",
+         "title": "Documentation",
+         "outcomes": [
+          {
+           "code": "16.6",
+           "text": "Describe requirements, design, technical, user and marketing documentation and why each is needed."
+          },
+          {
+           "code": null,
+           "text": "Describe the contents of each type."
+          },
+          {
+           "code": null,
+           "text": "Weigh the advantages and disadvantages of each type."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "16-7-evaluation",
+       "title": "16.7 Evaluation",
+       "subtopics": [
+        {
+         "id": "evaluation",
+         "title": "Evaluation",
+         "outcomes": [
+          {
+           "code": "16.7",
+           "text": "Evaluate a new system for efficiency, ease of use and appropriateness."
+          },
+          {
+           "code": null,
+           "text": "Describe evaluation techniques: checking against specifications, user requirements and user feedback."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "16-8-methods-of-software-development",
+       "title": "16.8 Methods of software development",
+       "subtopics": [
+        {
+         "id": "development-methods",
+         "title": "Development methods",
+         "outcomes": [
+          {
+           "code": "16.8",
+           "text": "Describe the stages of agile, iterative, incremental, RAD and waterfall methods."
+          },
+          {
+           "code": null,
+           "text": "Weigh the advantages and disadvantages of each method."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "16-9-prototyping",
+       "title": "16.9 Prototyping",
+       "subtopics": [
+        {
+         "id": "prototyping",
+         "title": "Prototyping",
+         "outcomes": [
+          {
+           "code": "16.9",
+           "text": "Describe evolutionary, incremental, throwaway and rapid prototyping and why each is needed."
+          },
+          {
+           "code": null,
+           "text": "Weigh the advantages and disadvantages of each type."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "16-10-maintenance",
+       "title": "16.10 Maintenance",
+       "subtopics": [
+        {
+         "id": "maintenance",
+         "title": "Maintenance",
+         "outcomes": [
+          {
+           "code": "16.10",
+           "text": "Describe perfective, adaptive, preventive and corrective maintenance and why each is needed."
+          },
+          {
+           "code": null,
+           "text": "Explain how each type is carried out."
+          },
+          {
+           "code": null,
+           "text": "Weigh the advantages and disadvantages of each type."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "17-data-analysis-and-visualisation",
+     "title": "17 Data Analysis and Visualisation",
+     "topics": [
+      {
+       "id": "17-1-data-analysis-and-visualisation",
+       "title": "17.1 Data Analysis and Visualisation",
+       "subtopics": [
+        {
+         "id": "data-analysis-and-visualisation",
+         "title": "Data analysis and visualisation",
+         "outcomes": [
+          {
+           "code": "17.1",
+           "text": "Transform and clean data to extract meaningful information."
+          },
+          {
+           "code": null,
+           "text": "Compare and consolidate data from two sources."
+          },
+          {
+           "code": null,
+           "text": "Split data into fields and merge data into required fields."
+          },
+          {
+           "code": null,
+           "text": "Display data with pivot table reports and pivot charts."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "18-mail-merge",
+     "title": "18 Mail merge",
+     "topics": [
+      {
+       "id": "18-1-mail-merge",
+       "title": "18.1 Mail merge",
+       "subtopics": [
+        {
+         "id": "mail-merge-basics",
+         "title": "Mail merge basics",
+         "outcomes": [
+          {
+           "code": "18.1",
+           "text": "Explain when and why mail merge is used."
+          },
+          {
+           "code": null,
+           "text": "Explain the need for data sources and master documents."
+          },
+          {
+           "code": null,
+           "text": "Create, edit and use source data in suitable software."
+          },
+          {
+           "code": null,
+           "text": "Create master documents for letters, labels and directories."
+          }
+         ]
+        },
+        {
+         "id": "fields-and-rules",
+         "title": "Fields and rules",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Link a master document to a source file, using correct field names and embedding a chart or table."
+          },
+          {
+           "code": null,
+           "text": "Insert merge fields, document properties, document fields and date/time fields."
+          },
+          {
+           "code": null,
+           "text": "Set up manual fields (Fill-in and Ask) with prompts, and calculation fields with formulas."
+          },
+          {
+           "code": null,
+           "text": "Specify rules to select, sort, filter and exclude recipients."
+          },
+          {
+           "code": null,
+           "text": "Use conditional fields such as If Then Else, Skip Record If and Next Record If."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "19-graphics-creation",
+     "title": "19 Graphics creation",
+     "topics": [
+      {
+       "id": "19-1-common-graphics-skills",
+       "title": "19.1 Common graphics skills",
+       "subtopics": [
+        {
+         "id": "layers-transforms-and-grouping",
+         "title": "Layers, transforms and grouping",
+         "outcomes": [
+          {
+           "code": "19.1",
+           "text": "Use layer tools: add, remove, select, order, hide, lock, change opacity and merge or flatten."
+          },
+          {
+           "code": null,
+           "text": "Use transform tools: resize, skew, reflect, rotate, move, scale, shear, envelope and perspective."
+          },
+          {
+           "code": null,
+           "text": "Use grouping tools: group, ungroup, combine, add, subtract and intersect."
+          },
+          {
+           "code": null,
+           "text": "Use alignment, distribution and order tools."
+          }
+         ]
+        },
+        {
+         "id": "layout-colour-and-file-formats",
+         "title": "Layout, colour and file formats",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Use layout tools: rulers, grids, guidelines and snapping."
+          },
+          {
+           "code": null,
+           "text": "Use colour picker and crop tools."
+          },
+          {
+           "code": null,
+           "text": "Explain RGB, HSL, CMYK and CMS colour systems and how they produce colour."
+          },
+          {
+           "code": null,
+           "text": "Explain image resolution needs and the effect of too low or too high resolution."
+          },
+          {
+           "code": null,
+           "text": "Choose bitmap or vector formats for a scenario and export as SVG, BMP, JPG, PNG, GIF, TIF or PDF."
+          },
+          {
+           "code": null,
+           "text": "Change solid and gradient fills."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "19-2-vector-graphics",
+       "title": "19.2 Vector graphics",
+       "subtopics": [
+        {
+         "id": "vector-drawing",
+         "title": "Vector drawing",
+         "outcomes": [
+          {
+           "code": "19.2",
+           "text": "Create a vector graphic to meet an application and audience."
+          },
+          {
+           "code": null,
+           "text": "Use drawing tools: freehand, Bezier curves, lines and shapes, with envelopes and perspective."
+          },
+          {
+           "code": null,
+           "text": "Use selection tools: convert to curves, replication and transformation, and solid and gradient fills."
+          }
+         ]
+        },
+        {
+         "id": "node-and-path-editing",
+         "title": "Node and path editing",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Add, move and delete nodes to simplify paths and use Bezier handles."
+          },
+          {
+           "code": null,
+           "text": "Work with symmetrical, asymmetrical, cusp and smooth nodes and align nodes."
+          },
+          {
+           "code": null,
+           "text": "Convert bitmaps to vector shapes by tracing and weigh the advantages and disadvantages."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "19-3-bitmap-images",
+       "title": "19.3 Bitmap images",
+       "subtopics": [
+        {
+         "id": "bitmap-editing",
+         "title": "Bitmap editing",
+         "outcomes": [
+          {
+           "code": "19.3",
+           "text": "Create and edit bitmap images to meet an application and audience."
+          },
+          {
+           "code": null,
+           "text": "Use selection tools: lasso, magic wand, colour select, cut-out, crop and masks."
+          },
+          {
+           "code": null,
+           "text": "Work with colour: fills, black and white, greyscale, brightness, contrast, balance, shadows and highlights."
+          },
+          {
+           "code": null,
+           "text": "Use brush, pencil and pen tools with preset and customised options."
+          },
+          {
+           "code": null,
+           "text": "Use filters: distort, clone, erase, blur, smudge, sharpen and red-eye removal."
+          },
+          {
+           "code": null,
+           "text": "Resize image or canvas by changing colour depth and resolution."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "19-4-compression",
+       "title": "19.4 Compression",
+       "subtopics": [
+        {
+         "id": "image-compression",
+         "title": "Image compression",
+         "outcomes": [
+          {
+           "code": "19.4",
+           "text": "Explain what compression is."
+          },
+          {
+           "code": null,
+           "text": "Compare lossless and lossy compression."
+          },
+          {
+           "code": null,
+           "text": "Explain the effects of compression on images."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "19-5-text",
+       "title": "19.5 Text",
+       "subtopics": [
+        {
+         "id": "text-in-graphics",
+         "title": "Text in graphics",
+         "outcomes": [
+          {
+           "code": "19.5",
+           "text": "Select font face, size, kerning, letter spacing and line spacing."
+          },
+          {
+           "code": null,
+           "text": "Fit text to a path or shape and set text in a shape."
+          },
+          {
+           "code": null,
+           "text": "Convert text to curves."
+          },
+          {
+           "code": null,
+           "text": "Use and manipulate text in graphics software."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "20-animation",
+     "title": "20 Animation",
+     "topics": [
+      {
+       "id": "20-1-animation",
+       "title": "20.1 Animation",
+       "subtopics": [
+        {
+         "id": "creating-an-animation",
+         "title": "Creating an animation",
+         "outcomes": [
+          {
+           "code": "20.1",
+           "text": "Create stop-motion and key-frame animations to meet an application and audience."
+          },
+          {
+           "code": null,
+           "text": "Configure the stage: colour, size, aspect ratio, rulers, guides, grid and snapping."
+          },
+          {
+           "code": null,
+           "text": "Import and create vector objects, trace bitmaps and add text."
+          },
+          {
+           "code": null,
+           "text": "Control object properties: stroke, fill, size, position, orientation and transparency."
+          },
+          {
+           "code": null,
+           "text": "Set paths, use layers and masks, and control frame rates, looping and stopping."
+          }
+         ]
+        },
+        {
+         "id": "principles-and-types-of-animation",
+         "title": "Principles and types of animation",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain frames, key frames, property key frames, timings and coordinates."
+          },
+          {
+           "code": null,
+           "text": "Use tweening to change motion, shape, size and colour, and explain morphing."
+          },
+          {
+           "code": null,
+           "text": "Compare cel, stop motion, time lapse, flip book, CGI, 2D and 3D animation."
+          }
+         ]
+        },
+        {
+         "id": "components-and-variables",
+         "title": "Components and variables",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe the primary and secondary components of an animation, such as characters, sound and background."
+          },
+          {
+           "code": null,
+           "text": "Use animation variables to control the position of objects."
+          },
+          {
+           "code": null,
+           "text": "Weigh the advantages and disadvantages of the animation types."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "21-programming-for-the-web",
+     "title": "21 Programming for the web",
+     "topics": [
+      {
+       "id": "21-1-programming-for-the-web",
+       "title": "21.1 Programming for the web",
+       "subtopics": [
+        {
+         "id": "javascript-and-the-page",
+         "title": "JavaScript and the page",
+         "outcomes": [
+          {
+           "code": "21.1",
+           "text": "Add interactivity to web pages by inserting JavaScript in HTML and using external scripts."
+          },
+          {
+           "code": null,
+           "text": "Change HTML content: text, numbers, calculations, string manipulation and images."
+          },
+          {
+           "code": null,
+           "text": "Change HTML styles and show or hide elements."
+          },
+          {
+           "code": null,
+           "text": "Display data with innerHTML, document.write, alert and console.log."
+          }
+         ]
+        },
+        {
+         "id": "events-and-syntax",
+         "title": "Events and syntax",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "React to events: onload, onchange, onclick, onmouseover, onmouseout and onkeydown."
+          },
+          {
+           "code": null,
+           "text": "Provide interaction with confirm() and prompt()."
+          },
+          {
+           "code": null,
+           "text": "Describe JavaScript syntax: literals, variables, operators, expressions, keywords and comments."
+          },
+          {
+           "code": null,
+           "text": "Write functions run by events, by calls or automatically."
+          },
+          {
+           "code": null,
+           "text": "Use timing events setTimeout and setInterval."
+          }
+         ]
+        },
+        {
+         "id": "loops-and-object-based-programming",
+         "title": "Loops and object-based programming",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Use for, for/in, while and do/while loops."
+          },
+          {
+           "code": null,
+           "text": "Use data types, type conversion, variables and arrays."
+          },
+          {
+           "code": null,
+           "text": "Use logical, comparison and conditional operators including if, else and switch."
+          },
+          {
+           "code": null,
+           "text": "Use break, alert, prompt, confirm, functions and timing methods."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "build": {
+  "builtAt": "2026-10-14T09:40:43.198Z",
+  "model": "claude-agent",
+  "usd": 0,
+  "expectedCodes": 67,
+  "coverage": 1,
+  "missingCodes": [],
+  "counts": {
+   "grades": 2,
+   "units": 21,
+   "topics": 67,
+   "subtopics": 94,
+   "outcomes": 336
+  },
+  "warnings": []
+ }
+}

@@ -1,0 +1,778 @@
+{
+ "id": "cie-igcse-food-and-nutrition-0648-2026-2028",
+ "region": "INTL",
+ "framework": "Cambridge IGCSE Food and Nutrition (0648) syllabus 2026–2028",
+ "board": "Cambridge",
+ "qualification": "IGCSE",
+ "subject": "Food and Nutrition",
+ "syllabusCode": "0648",
+ "gradeSystem": "course",
+ "source": {
+  "urls": [
+   "https://www.cambridgeinternational.org/Images/697228-2026-2028-syllabus.pdf",
+   "https://www.cambridgeinternational.org/programmes-and-qualifications/cambridge-igcse-food-and-nutrition-0648/"
+  ],
+  "publisher": "Cambridge University Press & Assessment (Cambridge International Education)",
+  "licence": "© Cambridge University Press & Assessment; structure + our own wording only",
+  "firstExam": "2026"
+ },
+ "grades": [
+  {
+   "grade": "IGCSE",
+   "units": [
+    {
+     "id": "igcse-3-subject-content",
+     "title": "[IGCSE] 3 Subject content",
+     "topics": [
+      {
+       "id": "1-nutritional-terms",
+       "title": "1 Nutritional terms",
+       "subtopics": [
+        {
+         "id": "1-nutritional-terms",
+         "title": "1 Nutritional terms",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Define diet, balanced diet, metabolism, malnutrition, undernutrition, overnutrition and deficiency disease."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "2-nutritive-value-of-food",
+       "title": "2 Nutritive value of food",
+       "subtopics": [
+        {
+         "id": "proteins-and-carbohydrates",
+         "title": "Proteins and carbohydrates",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Identify protein sources and explain the difference between high- and low-biological-value proteins."
+          },
+          {
+           "code": null,
+           "text": "Classify carbohydrates as monosaccharides, disaccharides or polysaccharides and describe their sources and functions."
+          }
+         ]
+        },
+        {
+         "id": "fats-and-food-energy",
+         "title": "Fats and food energy",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe the sources and functions of fats."
+          },
+          {
+           "code": null,
+           "text": "Identify sources of food energy and explain their uses."
+          }
+         ]
+        },
+        {
+         "id": "vitamins-and-minerals",
+         "title": "Vitamins and minerals",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe sources and functions of vitamins A, C, D, E, K and the B-group vitamins."
+          },
+          {
+           "code": null,
+           "text": "Describe sources and functions of calcium, iron, phosphorus, potassium, sodium, fluoride, chloride and iodide."
+          }
+         ]
+        },
+        {
+         "id": "water-and-dietary-fibre",
+         "title": "Water and dietary fibre",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain the nutritional importance and sources of water."
+          },
+          {
+           "code": null,
+           "text": "Explain the sources and functions of non-starch polysaccharide, also called dietary fibre."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "3-digestion-and-absorption",
+       "title": "3 Digestion and absorption",
+       "subtopics": [
+        {
+         "id": "digestion-in-the-alimentary-canal",
+         "title": "Digestion in the alimentary canal",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe digestion at the mouth, stomach, duodenum and ileum."
+          }
+         ]
+        },
+        {
+         "id": "digestive-enzymes",
+         "title": "Digestive enzymes",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain how digestive enzymes act as catalysts, including amylase, erepsin, invertase, lactase, lipase, maltase, pepsin, rennin and trypsinogen."
+          }
+         ]
+        },
+        {
+         "id": "bile-and-fat-digestion",
+         "title": "Bile and fat digestion",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain how bile emulsifies fats."
+          }
+         ]
+        },
+        {
+         "id": "absorption-in-the-ileum",
+         "title": "Absorption in the ileum",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain nutrient absorption, including the structure and adaptations of the ileum."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "4-meal-planning-and-dietary-guidelines",
+       "title": "4 Meal planning and dietary guidelines",
+       "subtopics": [
+        {
+         "id": "food-requirements-and-balance",
+         "title": "Food requirements and balance",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain factors that affect individual food requirements."
+          },
+          {
+           "code": null,
+           "text": "Plan and serve balanced family meals."
+          }
+         ]
+        },
+        {
+         "id": "meals-for-different-people",
+         "title": "Meals for different people",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Plan meals suitable for different ages, occupations, cultures and religions."
+          },
+          {
+           "code": null,
+           "text": "Plan suitable meals for pregnant and breastfeeding women."
+          }
+         ]
+        },
+        {
+         "id": "special-diets-and-conditions",
+         "title": "Special diets and conditions",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Plan meals for people with food allergies or intolerances, including coeliac disease."
+          },
+          {
+           "code": null,
+           "text": "Plan meals for diet-related medical conditions such as diabetes."
+          }
+         ]
+        },
+        {
+         "id": "meals-for-recovery-and-vegetarians",
+         "title": "Meals for recovery and vegetarians",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Plan suitable meals for convalescents."
+          },
+          {
+           "code": null,
+           "text": "Plan meals for vegetarians, including vegans and lacto-vegetarians."
+          }
+         ]
+        },
+        {
+         "id": "special-occasions-and-presentation",
+         "title": "Special occasions and presentation",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Plan meals for special occasions, festivals, packed meals, snacks and beverages."
+          },
+          {
+           "code": null,
+           "text": "Use herbs, spices and garnishes appropriately."
+          },
+          {
+           "code": null,
+           "text": "Present food attractively."
+          }
+         ]
+        },
+        {
+         "id": "dietary-reference-values",
+         "title": "Dietary reference values",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain terminology for recommended dietary intakes, including DRV and RDI."
+          },
+          {
+           "code": null,
+           "text": "Use nutritional tools when planning or evaluating diets."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "5-composition-and-value-of-the-main-foods-in-the",
+       "title": "5 Composition and value of the main foods in the diet",
+       "subtopics": [
+        {
+         "id": "protein-foods",
+         "title": "Protein foods",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Identify protein sources including dairy products, eggs, fish, meat and soya."
+          }
+         ]
+        },
+        {
+         "id": "cereals",
+         "title": "Cereals",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Identify important cereals, including maize, millets, oats, rice and wheat."
+          }
+         ]
+        },
+        {
+         "id": "fruits-vegetables-and-nuts",
+         "title": "Fruits vegetables and nuts",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Identify fruits and vegetables, including pulses and nuts, as main food groups."
+          }
+         ]
+        },
+        {
+         "id": "fats-and-oils",
+         "title": "Fats and oils",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Identify common dietary fats and oils."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "6-cooking-of-food",
+       "title": "6 Cooking of food",
+       "subtopics": [
+        {
+         "id": "heat-transfer",
+         "title": "Heat transfer",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain heat transfer by conduction, convection and radiation."
+          }
+         ]
+        },
+        {
+         "id": "cooking-methods",
+         "title": "Cooking methods",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain the principles of baking, boiling, braising, microwaving, frying, grilling, poaching, pressure cooking, roasting, simmering, steaming, stewing and slow cooking."
+          }
+         ]
+        },
+        {
+         "id": "reasons-for-cooking",
+         "title": "Reasons for cooking",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain why food is cooked."
+          }
+         ]
+        },
+        {
+         "id": "sensory-qualities-of-food",
+         "title": "Sensory qualities of food",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe and assess food through flavour, taste and texture."
+          }
+         ]
+        },
+        {
+         "id": "heat-effects-on-nutrients",
+         "title": "Heat effects on nutrients",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain dry and moist heat effects on proteins, fats, oils, sugars, starches and vitamins."
+          }
+         ]
+        },
+        {
+         "id": "cooking-reactions",
+         "title": "Cooking reactions",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain caramelisation, coagulation, dextrinisation, enzymic and non-enzymic browning, gelatinisation, rancidity and smoking point."
+          }
+         ]
+        },
+        {
+         "id": "nutrient-retention",
+         "title": "Nutrient retention",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Prepare and cook food in ways that retain its nutritional value."
+          }
+         ]
+        },
+        {
+         "id": "economical-cooking",
+         "title": "Economical cooking",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Use food, equipment, fuel and labour economically."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "7-convenience-foods",
+       "title": "7 Convenience foods",
+       "subtopics": [
+        {
+         "id": "types-of-convenience-food",
+         "title": "Types of convenience food",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Recognise dehydrated, canned, frozen, ready-to-eat and cook-chill foods prepared partly or wholly by manufacturers."
+          }
+         ]
+        },
+        {
+         "id": "using-convenience-foods",
+         "title": "Using convenience foods",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Use convenience foods intelligently."
+          },
+          {
+           "code": null,
+           "text": "Evaluate the advantages and disadvantages of convenience foods."
+          }
+         ]
+        },
+        {
+         "id": "food-additives",
+         "title": "Food additives",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Identify food additive types and explain their functions."
+          }
+         ]
+        },
+        {
+         "id": "packaging-materials",
+         "title": "Packaging materials",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Compare packaging types and materials, including their advantages and disadvantages."
+          }
+         ]
+        },
+        {
+         "id": "food-labels",
+         "title": "Food labels",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Identify information on food labels and explain why it is provided."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "8-basic-proportions-and-methods-of-making",
+       "title": "8 Basic proportions and methods of making",
+       "subtopics": [
+        {
+         "id": "biscuits-and-cakes",
+         "title": "Biscuits and cakes",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Make biscuits, cookies, scones and cakes using creaming, melting, one-stage, rubbing-in and whisking methods."
+          }
+         ]
+        },
+        {
+         "id": "pastry-methods",
+         "title": "Pastry methods",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Make shortcrust, flaky and rough-puff pastries."
+          }
+         ]
+        },
+        {
+         "id": "sauces",
+         "title": "Sauces",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Make pouring and coating sauces using roux and blended methods."
+          }
+         ]
+        },
+        {
+         "id": "batters",
+         "title": "Batters",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Make thin pouring and coating batters."
+          }
+         ]
+        },
+        {
+         "id": "yeast-products",
+         "title": "Yeast products",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Make sweet and savoury yeast products."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "9-raising-agents",
+       "title": "9 Raising agents",
+       "subtopics": [
+        {
+         "id": "9-raising-agents",
+         "title": "9 Raising agents",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Identify air, carbon dioxide and water vapour as raising agents."
+          },
+          {
+           "code": null,
+           "text": "Explain how gases are introduced into mixtures, including through bicarbonate of soda, baking powder and yeast."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "10-food-spoilage-and-hygiene",
+       "title": "10 Food spoilage and hygiene",
+       "subtopics": [
+        {
+         "id": "causes-of-food-spoilage",
+         "title": "Causes of food spoilage",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain how enzymes, bacteria, yeasts and moulds cause food spoilage."
+          }
+         ]
+        },
+        {
+         "id": "food-and-kitchen-hygiene",
+         "title": "Food and kitchen hygiene",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Apply personal, food and kitchen hygiene, including hygiene practices in shops and markets."
+          }
+         ]
+        },
+        {
+         "id": "storage-and-waste-disposal",
+         "title": "Storage and waste disposal",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain appropriate home food storage, refrigeration and waste disposal."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "11-food-preservation",
+       "title": "11 Food preservation",
+       "subtopics": [
+        {
+         "id": "why-food-is-preserved",
+         "title": "Why food is preserved",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain why food is preserved."
+          }
+         ]
+        },
+        {
+         "id": "heat-preservation",
+         "title": "Heat preservation",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain preservation by heating, including canning and bottling."
+          }
+         ]
+        },
+        {
+         "id": "removing-moisture",
+         "title": "Removing moisture",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain preservation by moisture removal, including dehydration."
+          }
+         ]
+        },
+        {
+         "id": "low-temperature-preservation",
+         "title": "Low-temperature preservation",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain preservation through reduced temperature, including freezing."
+          }
+         ]
+        },
+        {
+         "id": "sugar-salt-and-vinegar",
+         "title": "Sugar salt and vinegar",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain chemical preservation using sugar, salt and vinegar."
+          }
+         ]
+        },
+        {
+         "id": "modified-atmosphere-packaging",
+         "title": "Modified-atmosphere packaging",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain the principle and use of modified-atmosphere packaging."
+          }
+         ]
+        },
+        {
+         "id": "irradiation",
+         "title": "Irradiation",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain food preservation by irradiation."
+          }
+         ]
+        },
+        {
+         "id": "milk-processing",
+         "title": "Milk processing",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe key stages of milk pasteurisation, sterilisation, UHT processing, evaporation, condensation and drying."
+          }
+         ]
+        },
+        {
+         "id": "making-cheese-and-yoghurt",
+         "title": "Making cheese and yoghurt",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain how enzymes and bacteria are used to manufacture cheese and yoghurt."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "12-kitchen-planning",
+       "title": "12 Kitchen planning",
+       "subtopics": [
+        {
+         "id": "12-kitchen-planning",
+         "title": "12 Kitchen planning",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Organise the cooking area and equipment to enable efficient work."
+          },
+          {
+           "code": null,
+           "text": "Choose, use and care for work surfaces, flooring, walls, wall coverings, lighting and ventilation."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "13-kitchen-equipment",
+       "title": "13 Kitchen equipment",
+       "subtopics": [
+        {
+         "id": "cookers-and-ovens",
+         "title": "Cookers and ovens",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Choose, use and care for modern cookers."
+          },
+          {
+           "code": null,
+           "text": "Choose, use and care for thermostatically controlled and automatically timed ovens."
+          }
+         ]
+        },
+        {
+         "id": "microwave-ovens",
+         "title": "Microwave ovens",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Choose, use and care for microwave ovens."
+          },
+          {
+           "code": null,
+           "text": "Evaluate the advantages and disadvantages of microwave ovens."
+          }
+         ]
+        },
+        {
+         "id": "slow-cookers-and-refrigeration",
+         "title": "Slow cookers and refrigeration",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Choose, use and care for slow electric cooking pots."
+          },
+          {
+           "code": null,
+           "text": "Choose, use and care for refrigerators and freezers."
+          }
+         ]
+        },
+        {
+         "id": "small-kitchen-equipment",
+         "title": "Small kitchen equipment",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Choose, use and care for small kitchen equipment such as knives and pans."
+          },
+          {
+           "code": null,
+           "text": "Choose, use and care for small electrical equipment such as food processors and electric kettles."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "14-kitchen-safety-and-first-aid",
+       "title": "14 Kitchen safety and first aid",
+       "subtopics": [
+        {
+         "id": "kitchen-safety",
+         "title": "Kitchen safety",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Recognise potential danger areas in the kitchen."
+          },
+          {
+           "code": null,
+           "text": "Apply appropriate kitchen safety precautions."
+          }
+         ]
+        },
+        {
+         "id": "kitchen-first-aid",
+         "title": "Kitchen first aid",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Give first aid for burns, scalds, cuts, electric shock, fainting and shock."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "build": {
+  "builtAt": "2026-10-14T07:56:20.720Z",
+  "model": "gpt-5.6-luna",
+  "usd": 0.0106,
+  "expectedCodes": null,
+  "coverage": null,
+  "missingCodes": [],
+  "counts": {
+   "grades": 1,
+   "units": 1,
+   "topics": 14,
+   "subtopics": 57,
+   "outcomes": 76
+  },
+  "warnings": []
+ }
+}

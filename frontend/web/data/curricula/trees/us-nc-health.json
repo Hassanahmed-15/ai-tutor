@@ -1,0 +1,3180 @@
+{
+ "id": "us-nc-health",
+ "region": "US",
+ "framework": "North Carolina state academic standards: Health Education",
+ "board": null,
+ "qualification": "K-12",
+ "subject": "Health Education",
+ "syllabusCode": null,
+ "gradeSystem": "grade",
+ "source": {
+  "urls": [
+   "https://api.commonstandardsproject.com/api/v1/jurisdictions/8A257771396B4F0792EB9D6020CC9089",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/32D2497DC7CE440AAA6D73A292B7E9F4",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/D260E8E88D4F49CBA5BD5BDF533436CE",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/98A4A04618204465A3849CC0ED63D655",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/96B0CA0E810C423A8344DE9E1AE1DC68",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/FB1923001061483EB4EA945B7D0A7CD1",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/C396EF1EBF854709B8CC283CC7D63989",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/6763169BBAB84BB7A4AB145E2260A1D0",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/EAC4E1CF96F94D68A1C68B61BAED372F",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/73D5292BE66C47099686FAC6F35A4D20",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/CCDEBFDE080E4F4F88499FD9A59B14B5"
+  ],
+  "publisher": "North Carolina state education agency (machine-readable via Common Standards Project / ASN)",
+  "licence": "CC BY 4.0 US, Common Curriculum, Inc.",
+  "firstExam": "2024"
+ },
+ "grades": [
+  {
+   "grade": "K",
+   "units": [
+    {
+     "id": "mental-and-emotional-health",
+     "title": "Mental and Emotional Health",
+     "topics": [
+      {
+       "id": "remember-the-association-of-healthy-expression-o",
+       "title": "Remember the association of healthy expression of emotions, mental health, and healthy behavior",
+       "subtopics": [
+        {
+         "id": "remember-the-association-of-healthy-expression-o",
+         "title": "Remember the association of healthy expression of emotions, mental health, and healthy behavior",
+         "outcomes": [
+          {
+           "code": "K.MEH.1.1",
+           "text": "Identify a variety of feelings that people experience and ways of expressing them."
+          },
+          {
+           "code": "K.MEH.1.2",
+           "text": "Demonstrate personal responsibilities for actions and possessions."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "identify-that-effort-and-practice-lead-to-improv",
+       "title": "Identify that effort and practice lead to improved skills",
+       "subtopics": [
+        {
+         "id": "identify-that-effort-and-practice-lead-to-improv",
+         "title": "Identify that effort and practice lead to improved skills",
+         "outcomes": [
+          {
+           "code": "K.MEH.2.1",
+           "text": "Remember that mistakes are important for learning."
+          },
+          {
+           "code": "K.MEH.2.2",
+           "text": "Remember that practice is needed to improve performance."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "personal-and-consumer-health",
+     "title": "Personal and Consumer Health",
+     "topics": [
+      {
+       "id": "demonstrate-age-appropriate-personal-behaviors-t",
+       "title": "Demonstrate age-appropriate personal behaviors that promote health and prevent disease",
+       "subtopics": [
+        {
+         "id": "demonstrate-age-appropriate-personal-behaviors-t",
+         "title": "Demonstrate age-appropriate personal behaviors that promote health and prevent disease",
+         "outcomes": [
+          {
+           "code": "K.PCH.1.1",
+           "text": "Identify that healthy behaviors impact personal health."
+          },
+          {
+           "code": "K.PCH.1.2",
+           "text": "Use steps of correct hand washing at appropriate times throughout the day."
+          },
+          {
+           "code": "K.PCH.1.3",
+           "text": "Model proper tooth brushing techniques."
+          },
+          {
+           "code": "K.PCH.1.4",
+           "text": "Explain rationale for not sharing hygiene products (combs, brushes, toothbrushes)."
+          },
+          {
+           "code": "K.PCH.1.5",
+           "text": "Select and use appropriate clothing according to the weather."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "understand-necessary-steps-to-prevent-and-respon",
+       "title": "Understand necessary steps to prevent and respond to unintentional injury",
+       "subtopics": [
+        {
+         "id": "understand-necessary-steps-to-prevent-and-respon",
+         "title": "Understand necessary steps to prevent and respond to unintentional injury",
+         "outcomes": [
+          {
+           "code": "K.PCH.2.1",
+           "text": "Recognize the meanings of traffic signs and safe practices for being a pedestrian and bicyclist."
+          },
+          {
+           "code": "K.PCH.2.2",
+           "text": "Explain the benefits of safety equipment including seat belts, booster seats, helmets, mouth guards, shin guards, and flotation devices."
+          },
+          {
+           "code": "K.PCH.2.3",
+           "text": "Illustrate how to get help in an emergency."
+          },
+          {
+           "code": "K.PCH.2.4",
+           "text": "Identify appropriate responses to warning signs, sounds, and labels."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "interpersonal-communications-and-healthy-relatio",
+     "title": "Interpersonal Communications and Healthy Relationships",
+     "topics": [
+      {
+       "id": "recognize-healthy-and-effective-interpersonal-co",
+       "title": "Recognize healthy and effective interpersonal communication and relationships",
+       "subtopics": [
+        {
+         "id": "recognize-healthy-and-effective-interpersonal-co",
+         "title": "Recognize healthy and effective interpersonal communication and relationships",
+         "outcomes": [
+          {
+           "code": "K.ICHR.1.1",
+           "text": "Explain reasons for sharing."
+          },
+          {
+           "code": "K.ICHR.1.2",
+           "text": "Recognize that all people have inherent value and dignity regardless of differences."
+          },
+          {
+           "code": "K.ICHR.1.3",
+           "text": "Give examples of protective behaviors to use when approached by someone who you don't know or someone who makes you feel unsafe"
+          },
+          {
+           "code": "K.ICHR.1.4",
+           "text": "Recognize bullying, teasing, and aggressive behaviors and how to respond."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "nutrition-and-physical-activity",
+     "title": "Nutrition and Physical Activity",
+     "topics": [
+      {
+       "id": "identify-sources-of-food-and-water-and-their-imp",
+       "title": "Identify sources of food and water and their importance to the body",
+       "subtopics": [
+        {
+         "id": "identify-sources-of-food-and-water-and-their-imp",
+         "title": "Identify sources of food and water and their importance to the body",
+         "outcomes": [
+          {
+           "code": "K.NPA.1.1",
+           "text": "Recognize that food gives us energy."
+          },
+          {
+           "code": "K.NPA.1.2",
+           "text": "Identify that fruits and vegetables come from plants."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "state-the-importance-of-physical-activity-for-th",
+       "title": "State the importance of physical activity for the body",
+       "subtopics": [
+        {
+         "id": "state-the-importance-of-physical-activity-for-th",
+         "title": "State the importance of physical activity for the body",
+         "outcomes": [
+          {
+           "code": "K.NPA.2.1",
+           "text": "List ways to be physically active."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "alcohol-nicotine-cannabis-and-other-drugs",
+     "title": "Alcohol, Nicotine, Cannabis, and other Drugs",
+     "topics": [
+      {
+       "id": "understand-household-safety-procedures-for-produ",
+       "title": "Understand household safety procedures for products and medicines with adult supervision",
+       "subtopics": [
+        {
+         "id": "understand-household-safety-procedures-for-produ",
+         "title": "Understand household safety procedures for products and medicines with adult supervision",
+         "outcomes": [
+          {
+           "code": "K.ANCOD.1.1",
+           "text": "Explain what is likely to happen if harmful household products are ingested or inhaled."
+          },
+          {
+           "code": "K.ANCOD.1.2",
+           "text": "Recognize that some medications look like candy."
+          },
+          {
+           "code": "K.ANCOD.1.3",
+           "text": "Identify a parent, guardian, or trusted adult and professionals who can be trusted to provide safety information about household products and medicines."
+          },
+          {
+           "code": "K.ANCOD.1.4",
+           "text": "Use appropriate strategies to access help when needed in emergencies involving household products and medicines."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "1",
+   "units": [
+    {
+     "id": "mental-and-emotional-health",
+     "title": "Mental and Emotional Health",
+     "topics": [
+      {
+       "id": "understand-the-connection-between-healthy-expres",
+       "title": "Understand the connection between healthy expressions of emotions, mental wellness, and healthy behaviors",
+       "subtopics": [
+        {
+         "id": "understand-the-connection-between-healthy-expres",
+         "title": "Understand the connection between healthy expressions of emotions, mental wellness, and healthy behaviors",
+         "outcomes": [
+          {
+           "code": "1.MEH.1.1",
+           "text": "Identify appropriate ways to express needs, wants and feelings."
+          },
+          {
+           "code": "1.MEH.1.2",
+           "text": "Describe how different situations impact emotions and vary among individuals."
+          },
+          {
+           "code": "1.MEH.1.3",
+           "text": "Utilize effective communication to express and cope with emotions."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "remember-that-effort-and-practice-lead-to-improv",
+       "title": "Remember that effort and practice lead to improved skills",
+       "subtopics": [
+        {
+         "id": "remember-that-effort-and-practice-lead-to-improv",
+         "title": "Remember that effort and practice lead to improved skills",
+         "outcomes": [
+          {
+           "code": "1.MEH.2.1",
+           "text": "Identify more than one strategy to solve a problem."
+          },
+          {
+           "code": "1.MEH.2.2",
+           "text": "Identify resources to get help with solving a problem."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "personal-and-consumer-health",
+     "title": "Personal and Consumer Health",
+     "topics": [
+      {
+       "id": "list-various-personal-behaviors-and-practices-th",
+       "title": "List various personal behaviors and practices that promote health and prevent disease",
+       "subtopics": [
+        {
+         "id": "list-various-personal-behaviors-and-practices-th",
+         "title": "List various personal behaviors and practices that promote health and prevent disease",
+         "outcomes": [
+          {
+           "code": "1.PCH.1.1",
+           "text": "Explain that germs produce illness and can be spread from one person to another."
+          },
+          {
+           "code": "1.PCH.1.2",
+           "text": "Demonstrate measures for preventing the spread of germs."
+          },
+          {
+           "code": "1.PCH.1.3",
+           "text": "Summarize the transition between primary and permanent teeth and steps for seeking help for dental problems."
+          },
+          {
+           "code": "1.PCH.1.4",
+           "text": "Use appropriate clothing according to the weather."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "understand-necessary-steps-to-prevent-and-respon",
+       "title": "Understand necessary steps to prevent and respond to unintentional injury",
+       "subtopics": [
+        {
+         "id": "understand-necessary-steps-to-prevent-and-respon",
+         "title": "Understand necessary steps to prevent and respond to unintentional injury",
+         "outcomes": [
+          {
+           "code": "1.PCH.2.1",
+           "text": "Identify and describe situations that cause injury."
+          },
+          {
+           "code": "1.PCH.2.2",
+           "text": "Identify items that can cause burns and strategies to prevent fire and burn injury."
+          },
+          {
+           "code": "1.PCH.2.3",
+           "text": "Execute the Stop, Drop, and Roll response."
+          },
+          {
+           "code": "1.PCH.2.4",
+           "text": "Execute an emergency phone call."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "interpersonal-communications-and-healthy-relatio",
+     "title": "Interpersonal Communications and Healthy Relationships",
+     "topics": [
+      {
+       "id": "recognize-healthy-and-effective-interpersonal-co",
+       "title": "Recognize healthy and effective interpersonal communications and relationships",
+       "subtopics": [
+        {
+         "id": "recognize-healthy-and-effective-interpersonal-co",
+         "title": "Recognize healthy and effective interpersonal communications and relationships",
+         "outcomes": [
+          {
+           "code": "1.ICHR.1.1",
+           "text": "Explain the importance of demonstrating respect for the personal space and boundaries of others."
+          },
+          {
+           "code": "1.ICHR.1.2",
+           "text": "Describe positive characteristics that are unique to each individual."
+          },
+          {
+           "code": "1.ICHR.1.3",
+           "text": "Demonstrate how to tell a parent, guardian, or trusted adult when feeling threatened or unsafe."
+          },
+          {
+           "code": "1.ICHR.1.4",
+           "text": "Recognize that anyone who has experienced bullying or mistreatment is not at fault."
+          },
+          {
+           "code": "1.ICHR.1.5",
+           "text": "Demonstrate effective refusal skills, including saying no and moving away to enforce personal boundaries for yourself and others."
+          },
+          {
+           "code": "1.ICHR.1.6",
+           "text": "Identify a parent, guardian, or trusted adult within your home, school and community who can be informed when feeling threatened or harmed."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "nutrition-and-physical-activity",
+     "title": "Nutrition and Physical Activity",
+     "topics": [
+      {
+       "id": "describe-where-food-and-water-come-from-and-thei",
+       "title": "Describe where food and water come from and their importance to the body",
+       "subtopics": [
+        {
+         "id": "describe-where-food-and-water-come-from-and-thei",
+         "title": "Describe where food and water come from and their importance to the body",
+         "outcomes": [
+          {
+           "code": "1.NPA.1.1",
+           "text": "Name the reasons why we need to drink water."
+          },
+          {
+           "code": "1.NPA.1.2",
+           "text": "Explore a variety of foods and why it’s important to eat them"
+          },
+          {
+           "code": "1.NPA.1.3",
+           "text": "Categorize the sources of a variety of foods."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "recognize-the-benefits-of-physical-activity-for-",
+       "title": "Recognize the benefits of physical activity for the body",
+       "subtopics": [
+        {
+         "id": "recognize-the-benefits-of-physical-activity-for-",
+         "title": "Recognize the benefits of physical activity for the body",
+         "outcomes": [
+          {
+           "code": "1.NPA.2.1",
+           "text": "List physical activities that are beneficial to your body."
+          },
+          {
+           "code": "1.NPA.2.2",
+           "text": "Describe enjoyable physical activities that can be done inside and outside of school."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "alcohol-nicotine-cannabis-and-other-drugs",
+     "title": "Alcohol, Nicotine, Cannabis, and other Drugs",
+     "topics": [
+      {
+       "id": "understand-household-safety-procedures-for-produ",
+       "title": "Understand household safety procedures for products and medicines with adult supervision",
+       "subtopics": [
+        {
+         "id": "understand-household-safety-procedures-for-produ",
+         "title": "Understand household safety procedures for products and medicines with adult supervision",
+         "outcomes": [
+          {
+           "code": "1.ANCOD.1.1",
+           "text": "Recognize the harmful effects of medicine when used incorrectly."
+          },
+          {
+           "code": "1.ANCOD.1.2",
+           "text": "Recognize how to behave safely with medicines and household cleaners."
+          },
+          {
+           "code": "1.ANCOD.1.3",
+           "text": "Explain the importance of asking a parent, guardian, or trusted adult before handling household products."
+          },
+          {
+           "code": "1.ANCOD.1.4",
+           "text": "Identify strategies for reporting harmful substances."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "2",
+   "units": [
+    {
+     "id": "mental-and-emotional-health",
+     "title": "Mental and Emotional Health",
+     "topics": [
+      {
+       "id": "demonstrate-healthy-expression-of-emotions-menta",
+       "title": "Demonstrate healthy expression of emotions, mental wellness, and healthy behavior",
+       "subtopics": [
+        {
+         "id": "demonstrate-healthy-expression-of-emotions-menta",
+         "title": "Demonstrate healthy expression of emotions, mental wellness, and healthy behavior",
+         "outcomes": [
+          {
+           "code": "2.MEH.1.1",
+           "text": "Demonstrate appropriate ways to express needs, wants and feelings."
+          },
+          {
+           "code": "2.MEH.1.2",
+           "text": "Identify behaviors to avoid risk and promote mental wellness."
+          },
+          {
+           "code": "2.MEH.1.3",
+           "text": "Examine the influence of peers, media, social media, technology, and the family on feelings, emotions, and behaviors."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "explain-how-challenges-are-opportunities-for-gro",
+       "title": "Explain how challenges are opportunities for growth",
+       "subtopics": [
+        {
+         "id": "explain-how-challenges-are-opportunities-for-gro",
+         "title": "Explain how challenges are opportunities for growth",
+         "outcomes": [
+          {
+           "code": "2.MEH.2.1",
+           "text": "Model accessing a resource to get help with solving a problem."
+          },
+          {
+           "code": "2.MEH.2.2",
+           "text": "Recount at least two strategies to solve a problem."
+          },
+          {
+           "code": "2.MEH.2.3",
+           "text": "Identify strategies that can be applied to various situations to promote resiliency."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "personal-and-consumer-health",
+     "title": "Personal and Consumer Health",
+     "topics": [
+      {
+       "id": "explain-personal-behaviors-and-practices-that-pr",
+       "title": "Explain personal behaviors and practices that promote health and prevent disease",
+       "subtopics": [
+        {
+         "id": "explain-personal-behaviors-and-practices-that-pr",
+         "title": "Explain personal behaviors and practices that promote health and prevent disease",
+         "outcomes": [
+          {
+           "code": "2.PCH.1.1",
+           "text": "Recall the benefits of good dental health."
+          },
+          {
+           "code": "2.PCH.1.2",
+           "text": "Execute the proper techniques for brushing teeth."
+          },
+          {
+           "code": "2.PCH.1.3",
+           "text": "Define sleep and its contribution to overall well-being."
+          },
+          {
+           "code": "2.PCH.1.4",
+           "text": "Demonstrate ways to prevent the spread of germs that cause common communicable diseases."
+          },
+          {
+           "code": "2.PCH.1.5",
+           "text": "Explain the dangers associated with excessive sun exposure and methods for protecting oneself from these dangers."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "interpersonal-communications-and-healthy-relatio",
+     "title": "Interpersonal Communications and Healthy Relationships",
+     "topics": [
+      {
+       "id": "identify-healthy-and-effective-interpersonal-com",
+       "title": "Identify healthy and effective interpersonal communications and relationships to enhance wellbeing",
+       "subtopics": [
+        {
+         "id": "identify-healthy-and-effective-interpersonal-com",
+         "title": "Identify healthy and effective interpersonal communications and relationships to enhance wellbeing",
+         "outcomes": [
+          {
+           "code": "2.ICHR.1.1",
+           "text": "Describe characteristics of a trusted friend."
+          },
+          {
+           "code": "2.ICHR.1.2",
+           "text": "Demonstrate techniques of active listening."
+          },
+          {
+           "code": "2.ICHR.1.3",
+           "text": "Identify the characteristics of bullying and develop skills to respond appropriately."
+          },
+          {
+           "code": "2.ICHR.1.4",
+           "text": "Exemplify how to communicate with others with kindness and respect."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "nutrition-and-physical-activity",
+     "title": "Nutrition and Physical Activity",
+     "topics": [
+      {
+       "id": "explain-where-food-and-water-come-from-and-their",
+       "title": "Explain where food and water come from and their importance to the body",
+       "subtopics": [
+        {
+         "id": "explain-where-food-and-water-come-from-and-their",
+         "title": "Explain where food and water come from and their importance to the body",
+         "outcomes": [
+          {
+           "code": "2.NPA.1.1",
+           "text": "Explain the importance of eating a variety of foods from different groups according to the USDA."
+          },
+          {
+           "code": "2.NPA.1.2",
+           "text": "Classify foods into groups according to USDA."
+          },
+          {
+           "code": "2.NPA.1.3",
+           "text": "Describe the body's signals when you are hungry and thirsty."
+          },
+          {
+           "code": "2.NPA.1.4",
+           "text": "NPA.1.4 Compare and contrast possible benefits of eating a meal with family or friends versus eating alone."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "examine-the-benefits-of-physical-activity",
+       "title": "Examine the benefits of physical activity",
+       "subtopics": [
+        {
+         "id": "examine-the-benefits-of-physical-activity",
+         "title": "Examine the benefits of physical activity",
+         "outcomes": [
+          {
+           "code": "2.NPA.2.1",
+           "text": "Explain why the body needs daily physical activity."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "alcohol-nicotine-cannabis-and-other-drugs",
+     "title": "Alcohol, Nicotine, Cannabis, and other Drugs",
+     "topics": [
+      {
+       "id": "understand-household-safety-procedures-for-produ",
+       "title": "Understand household safety procedures for products and medicines with adult supervision",
+       "subtopics": [
+        {
+         "id": "understand-household-safety-procedures-for-produ",
+         "title": "Understand household safety procedures for products and medicines with adult supervision",
+         "outcomes": [
+          {
+           "code": "2.ANCOD.1.1",
+           "text": "Define medication and ways that it can be helpful and harmful."
+          },
+          {
+           "code": "2.ANCOD.1.2",
+           "text": "Identify the importance of following healthcare provider directions with medications."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "3",
+   "units": [
+    {
+     "id": "mental-and-emotional-health",
+     "title": "Mental and Emotional Health",
+     "topics": [
+      {
+       "id": "explore-characteristics-of-healthy-expression-of",
+       "title": "Explore characteristics of healthy expression of emotions, mental wellness, and personal awareness that contribute to wellbeing",
+       "subtopics": [
+        {
+         "id": "explore-characteristics-of-healthy-expression-of",
+         "title": "Explore characteristics of healthy expression of emotions, mental wellness, and personal awareness that contribute to wellbeing",
+         "outcomes": [
+          {
+           "code": "3.MEH.1.1",
+           "text": "Identify the body's physical response and appropriate ways to express needs, wants, and feelings."
+          },
+          {
+           "code": "3.MEH.1.2",
+           "text": "Elaborate on the influence of peers, social media, technology, and the family on feelings, emotions, and behaviors."
+          },
+          {
+           "code": "3.MEH.1.3",
+           "text": "Explore strategies that can be applied to promote a growth mindset and resiliency."
+          },
+          {
+           "code": "3.MEH.1.4",
+           "text": "Summarize how to access resources for assistance with feelings, various challenges, and mental wellness."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "explain-how-challenges-are-opportunities-for-gro",
+       "title": "Explain how challenges are opportunities for growth",
+       "subtopics": [
+        {
+         "id": "explain-how-challenges-are-opportunities-for-gro",
+         "title": "Explain how challenges are opportunities for growth",
+         "outcomes": [
+          {
+           "code": "3.MEH.2.1",
+           "text": "Describe how persistent effort and trying alternate strategies can help solve a problem."
+          },
+          {
+           "code": "3.MEH.2.2",
+           "text": "List at least two resources for help to solve a challenging problem."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "define-stress-and-understand-how-positive-and-ne",
+       "title": "Define stress and understand how positive and negative stressors can affect wellbeing",
+       "subtopics": [
+        {
+         "id": "define-stress-and-understand-how-positive-and-ne",
+         "title": "Define stress and understand how positive and negative stressors can affect wellbeing",
+         "outcomes": [
+          {
+           "code": "3.MEH.3.1",
+           "text": "Explain how positive stress management techniques are beneficial for our overall wellness."
+          },
+          {
+           "code": "3.MEH.3.2",
+           "text": "Construct a list of positive self-management techniques and resources you can use to cope with stress."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "personal-and-consumer-health",
+     "title": "Personal and Consumer Health",
+     "topics": [
+      {
+       "id": "apply-personal-behaviors-and-practices-that-prom",
+       "title": "Apply personal behaviors and practices that promote health and prevent disease",
+       "subtopics": [
+        {
+         "id": "apply-personal-behaviors-and-practices-that-prom",
+         "title": "Apply personal behaviors and practices that promote health and prevent disease",
+         "outcomes": [
+          {
+           "code": "3.PCH.1.1",
+           "text": "Recognize dental hygiene practices prevent plaque, gum disease and cavities."
+          },
+          {
+           "code": "3.PCH.1.2",
+           "text": "Implement proper flossing to prevent tooth decay and gum disease."
+          },
+          {
+           "code": "3.PCH.1.3",
+           "text": "Explain the importance of personal hygiene in supporting one’s health."
+          },
+          {
+           "code": "3.PCH.1.4",
+           "text": "Describe how sleep and regular physical activity benefit your health."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "explain-necessary-steps-to-prevent-and-respond-t",
+       "title": "Explain necessary steps to prevent and respond to unintentional injury",
+       "subtopics": [
+        {
+         "id": "explain-necessary-steps-to-prevent-and-respond-t",
+         "title": "Explain necessary steps to prevent and respond to unintentional injury",
+         "outcomes": [
+          {
+           "code": "3.PCH.2.1",
+           "text": "Demonstrate methods for prevention of common unintentional injuries."
+          },
+          {
+           "code": "3.PCH.2.2",
+           "text": "Summarize methods that increase and reduce injuries in and around water."
+          },
+          {
+           "code": "3.PCH.2.3",
+           "text": "Identify ways to prevent injuries from firearms."
+          },
+          {
+           "code": "3.PCH.2.4",
+           "text": "Implement a plan to escape fire at home while avoiding smoke inhalation."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "interpersonal-communications-and-healthy-relatio",
+     "title": "Interpersonal Communications and Healthy Relationships",
+     "topics": [
+      {
+       "id": "explain-healthy-and-effective-interpersonal-comm",
+       "title": "Explain healthy and effective interpersonal communications and relationships to enhance wellbeing",
+       "subtopics": [
+        {
+         "id": "explain-healthy-and-effective-interpersonal-comm",
+         "title": "Explain healthy and effective interpersonal communications and relationships to enhance wellbeing",
+         "outcomes": [
+          {
+           "code": "3.ICHR.1.1",
+           "text": "Identify behaviors that promote healthy relationships with families and peers."
+          },
+          {
+           "code": "3.ICHR.1.2",
+           "text": "Demonstrate effective communication skills and personal boundaries to enhance respect and well-being for others and self."
+          },
+          {
+           "code": "3.ICHR.1.3",
+           "text": "Recognize the causes of conflict and apply appropriate strategies for resolution."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "nutrition-and-physical-activity",
+     "title": "Nutrition and Physical Activity",
+     "topics": [
+      {
+       "id": "recall-why-the-body-needs-a-variety-of-foods",
+       "title": "Recall why the body needs a variety of foods",
+       "subtopics": [
+        {
+         "id": "recall-why-the-body-needs-a-variety-of-foods",
+         "title": "Recall why the body needs a variety of foods",
+         "outcomes": [
+          {
+           "code": "3.NPA.1.1",
+           "text": "Recall the food groups and what foods are in each food group, according to the USDA."
+          },
+          {
+           "code": "3.NPA.1.2",
+           "text": "Identify food group components of a variety of example meals."
+          },
+          {
+           "code": "3.NPA.1.3",
+           "text": "Plan activities for fitness and recreation during out of school hours."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "investigate-factors-that-influence-which-foods-w",
+       "title": "Investigate factors that influence which foods we eat",
+       "subtopics": [
+        {
+         "id": "investigate-factors-that-influence-which-foods-w",
+         "title": "Investigate factors that influence which foods we eat",
+         "outcomes": [
+          {
+           "code": "3.NPA.2.1",
+           "text": "List the factors that influence which foods you eat."
+          },
+          {
+           "code": "3.NPA.2.2",
+           "text": "List the body's signals when you are hungry and thirsty."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "examine-the-benefits-of-physical-activity",
+       "title": "Examine the benefits of physical activity",
+       "subtopics": [
+        {
+         "id": "examine-the-benefits-of-physical-activity",
+         "title": "Examine the benefits of physical activity",
+         "outcomes": [
+          {
+           "code": "3.NPA.3.1",
+           "text": "Categorize different activities for all levels of ability in order to promote overall wellness."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "alcohol-nicotine-cannabis-and-other-drugs",
+     "title": "Alcohol, Nicotine, Cannabis, and other Drugs",
+     "topics": [
+      {
+       "id": "apply-household-safety-procedures-for-products-a",
+       "title": "Apply household safety procedures for products and medicines with adult supervision",
+       "subtopics": [
+        {
+         "id": "apply-household-safety-procedures-for-products-a",
+         "title": "Apply household safety procedures for products and medicines with adult supervision",
+         "outcomes": [
+          {
+           "code": "3.ANCOD.1.1",
+           "text": "Summarize how medications can help with common health problems."
+          },
+          {
+           "code": "3.ANCOD.1.2",
+           "text": "Explain the consequences of disregarding medical recommendations for prescription and nonprescription medications."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "apply-strategies-involving-risk-reduction-behavi",
+       "title": "Apply strategies involving risk reduction behaviors to protect self and others from the negative effects of alcohol, nicotine, and other drugs",
+       "subtopics": [
+        {
+         "id": "apply-strategies-involving-risk-reduction-behavi",
+         "title": "Apply strategies involving risk reduction behaviors to protect self and others from the negative effects of alcohol, nicotine, and other drugs",
+         "outcomes": [
+          {
+           "code": "3.ANCOD.2.1",
+           "text": "Recognize refusal skills when confronted or pressured to use alcohol, nicotine, cannabis, or other drugs."
+          },
+          {
+           "code": "3.ANCOD.2.2",
+           "text": "Identify refusal skills when personal safety is at risk."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "4",
+   "units": [
+    {
+     "id": "mental-and-emotional-health",
+     "title": "Mental and Emotional Health",
+     "topics": [
+      {
+       "id": "examine-characteristics-of-health-expression-of-",
+       "title": "Examine characteristics of health expression of emotions, mental wellness, and personal awareness that contribute to wellbeing",
+       "subtopics": [
+        {
+         "id": "examine-characteristics-of-health-expression-of-",
+         "title": "Examine characteristics of health expression of emotions, mental wellness, and personal awareness that contribute to wellbeing",
+         "outcomes": [
+          {
+           "code": "4.MEH.1.1",
+           "text": "Identify strategies that can be adapted when dealing with a challenging problem."
+          },
+          {
+           "code": "4.MEH.1.2",
+           "text": "Identify growth mindset strategies for everyday problems."
+          },
+          {
+           "code": "4.MEH.1.3",
+           "text": "Explore individual character strengths that contribute to mental wellness."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "summarize-positive-and-negative-stressors-to-pro",
+       "title": "Summarize positive and negative stressors to promote wellbeing",
+       "subtopics": [
+        {
+         "id": "summarize-positive-and-negative-stressors-to-pro",
+         "title": "Summarize positive and negative stressors to promote wellbeing",
+         "outcomes": [
+          {
+           "code": "4.MEH.2.1",
+           "text": "Determine personal positive and negative stressors."
+          },
+          {
+           "code": "4.MEH.2.2",
+           "text": "Explore personal positive stress management strategies."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "personal-and-consumer-health",
+     "title": "Personal and Consumer Health",
+     "topics": [
+      {
+       "id": "apply-personal-behaviors-and-practices-that-prom",
+       "title": "Apply personal behaviors and practices that promote health and prevent disease",
+       "subtopics": [
+        {
+         "id": "apply-personal-behaviors-and-practices-that-prom",
+         "title": "Apply personal behaviors and practices that promote health and prevent disease",
+         "outcomes": [
+          {
+           "code": "4.PCH.1.1",
+           "text": "Compare methods that prevent the spread of germs."
+          },
+          {
+           "code": "4.PCH.1.2",
+           "text": "Describe factors which lead to sufficient sleep and regular physical activity."
+          },
+          {
+           "code": "4.PCH.1.3",
+           "text": "PCH.1.3 Recognize and respond to obvious symptoms of common childhood illnesses and conditions such as asthma, allergies, diabetes, and epilepsy."
+          },
+          {
+           "code": "4.PCH.1.4",
+           "text": "Create a personal dental health plan."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "understand-necessary-steps-to-prevent-and-respon",
+       "title": "Understand necessary steps to prevent and respond to unintentional injury",
+       "subtopics": [
+        {
+         "id": "understand-necessary-steps-to-prevent-and-respon",
+         "title": "Understand necessary steps to prevent and respond to unintentional injury",
+         "outcomes": [
+          {
+           "code": "4.PCH.2.1",
+           "text": "Identify personal protection equipment needed for sports or recreational activities."
+          },
+          {
+           "code": "4.PCH.2.2",
+           "text": "Illustrate skills for providing first aid for choking victims."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "understand-body-systems-and-organs-their-functio",
+       "title": "Understand body systems and organs, their functions, and their care",
+       "subtopics": [
+        {
+         "id": "understand-body-systems-and-organs-their-functio",
+         "title": "Understand body systems and organs, their functions, and their care",
+         "outcomes": [
+          {
+           "code": "4.PCH.3.1",
+           "text": "Identify the basic components and functions of the respiratory system."
+          },
+          {
+           "code": "4.PCH.3.2",
+           "text": "Summarize habits to care for the skin."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "interpersonal-communications-and-healthy-relatio",
+     "title": "Interpersonal Communications and Healthy Relationships",
+     "topics": [
+      {
+       "id": "apply-healthy-and-effective-interpersonal-commun",
+       "title": "Apply healthy and effective interpersonal communications and relationships to enhance wellbeing",
+       "subtopics": [
+        {
+         "id": "apply-healthy-and-effective-interpersonal-commun",
+         "title": "Apply healthy and effective interpersonal communications and relationships to enhance wellbeing",
+         "outcomes": [
+          {
+           "code": "4.ICHR.1.1",
+           "text": "Demonstrate respect and empathy for others."
+          },
+          {
+           "code": "4.ICHR.1.2",
+           "text": "Interpret non-verbal communications of others."
+          },
+          {
+           "code": "4.ICHR.1.3",
+           "text": "Apply appropriate strategies for conflict resolution for conflict/bullying."
+          },
+          {
+           "code": "4.ICHR.1.4",
+           "text": "List characteristics of healthy relationships including empathy, respect, patience, and kindness."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "understand-the-changes-that-occur-during-puberty",
+       "title": "Understand the changes that occur during puberty and adolescence",
+       "subtopics": [
+        {
+         "id": "understand-the-changes-that-occur-during-puberty",
+         "title": "Understand the changes that occur during puberty and adolescence",
+         "outcomes": [
+          {
+           "code": "4.ICHR.2.1",
+           "text": "Summarize physical and emotional changes during puberty."
+          },
+          {
+           "code": "4.ICHR.2.2",
+           "text": "Recognize that individuals experience puberty at different ages and for different lengths of time (early, average, late)."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "nutrition-and-physical-activity",
+     "title": "Nutrition and Physical Activity",
+     "topics": [
+      {
+       "id": "interpret-tools-to-apply-nutrition-information",
+       "title": "Interpret tools to apply nutrition information",
+       "subtopics": [
+        {
+         "id": "interpret-tools-to-apply-nutrition-information",
+         "title": "Interpret tools to apply nutrition information",
+         "outcomes": [
+          {
+           "code": "4.NPA.1.1",
+           "text": "Using a school lunch or breakfast menu, plan a meal that includes 3-5 different food groups."
+          },
+          {
+           "code": "4.NPA.1.2",
+           "text": "Explain that foods are generally grouped into food groups based on the nutrients they provide."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "explore-external-factors-that-affect-which-foods",
+       "title": "Explore external factors that affect which foods we eat",
+       "subtopics": [
+        {
+         "id": "explore-external-factors-that-affect-which-foods",
+         "title": "Explore external factors that affect which foods we eat",
+         "outcomes": [
+          {
+           "code": "4.NPA.2.1",
+           "text": "Evaluate influences that affect the food you eat."
+          },
+          {
+           "code": "4.NPA.2.2",
+           "text": "List measures to prevent food borne illnesses, including washing hands and food storage methods."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "compare-the-benefits-of-different-activities-for",
+       "title": "Compare the benefits of different activities for your body to promote wellness",
+       "subtopics": [
+        {
+         "id": "compare-the-benefits-of-different-activities-for",
+         "title": "Compare the benefits of different activities for your body to promote wellness",
+         "outcomes": [
+          {
+           "code": "4.NPA.3.1",
+           "text": "Identify short- and long-term benefits of moderate and vigorous physical activity."
+          },
+          {
+           "code": "4.NPA.3.2",
+           "text": "Describe the benefits of drinking water before, during, and after physical activity."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "alcohol-nicotine-cannabis-and-other-drugs",
+     "title": "Alcohol, Nicotine, Cannabis, and other Drugs",
+     "topics": [
+      {
+       "id": "understand-health-risks-associated-with-the-use-",
+       "title": "Understand health risks associated with the use of nicotine products",
+       "subtopics": [
+        {
+         "id": "understand-health-risks-associated-with-the-use-",
+         "title": "Understand health risks associated with the use of nicotine products",
+         "outcomes": [
+          {
+           "code": "4.ANCOD.1.1",
+           "text": "Summarize the short-term and long-term effects of nicotine products."
+          },
+          {
+           "code": "4.ANCOD.1.2",
+           "text": "Explain why nicotine products are addictive."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "understand-why-people-use-nicotine-products",
+       "title": "Understand why people use nicotine products",
+       "subtopics": [
+        {
+         "id": "understand-why-people-use-nicotine-products",
+         "title": "Understand why people use nicotine products",
+         "outcomes": [
+          {
+           "code": "4.ANCOD.2.1",
+           "text": "Identify possible personal and societal influences on nicotine use."
+          },
+          {
+           "code": "4.ANCOD.2.2",
+           "text": "Analyze the use of various marketing strategies to influence people to purchase various nicotine products."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "apply-risk-reduction-behaviors-to-protect-self-a",
+       "title": "Apply risk reduction behaviors to protect self and others from alcohol, nicotine, cannabis, and other drug use",
+       "subtopics": [
+        {
+         "id": "apply-risk-reduction-behaviors-to-protect-self-a",
+         "title": "Apply risk reduction behaviors to protect self and others from alcohol, nicotine, cannabis, and other drug use",
+         "outcomes": [
+          {
+           "code": "4.ANCOD.3.1",
+           "text": "Identify refusal skills to resist the pressure to experiment with a variety of nicotine products."
+          },
+          {
+           "code": "4.ANCOD.3.2",
+           "text": "Select strategies to use in avoiding situations in which smoked and electronic nicotine products are being used to minimize exposure to secondhand smoke and aerosol."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "5",
+   "units": [
+    {
+     "id": "mental-and-emotional-health",
+     "title": "Mental and Emotional Health",
+     "topics": [
+      {
+       "id": "summarize-strategies-to-address-persistent-chall",
+       "title": "Summarize strategies to address persistent, challenging, or negative thoughts and emotions",
+       "subtopics": [
+        {
+         "id": "summarize-strategies-to-address-persistent-chall",
+         "title": "Summarize strategies to address persistent, challenging, or negative thoughts and emotions",
+         "outcomes": [
+          {
+           "code": "5.MEH.1.1",
+           "text": "Identify ways to cope with challenging situations."
+          },
+          {
+           "code": "5.MEH.1.2",
+           "text": "Identify a parent, guardian, or trusted adult to talk with about feelings."
+          },
+          {
+           "code": "5.MEH.1.3",
+           "text": "Describe how the expression of emotions or feelings can help or hurt oneself or others."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "investigate-positive-stress-management-strategie",
+       "title": "Investigate positive stress management strategies",
+       "subtopics": [
+        {
+         "id": "investigate-positive-stress-management-strategie",
+         "title": "Investigate positive stress management strategies",
+         "outcomes": [
+          {
+           "code": "5.MEH.2.1",
+           "text": "Compare and contrast personal current and newly identified stress management strategies."
+          },
+          {
+           "code": "5.MEH.2.2",
+           "text": "Implement new positive stress management strategies."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "develop-growth-mindset-strategies-for-everyday-p",
+       "title": "Develop growth mindset strategies for everyday problems",
+       "subtopics": [
+        {
+         "id": "develop-growth-mindset-strategies-for-everyday-p",
+         "title": "Develop growth mindset strategies for everyday problems",
+         "outcomes": [
+          {
+           "code": "5.MEH.3.1",
+           "text": "Explain how practicing a growth mindset can help solve challenging problems."
+          },
+          {
+           "code": "5.MEH.3.2",
+           "text": "Explain the importance of adjusting strategies and persistent effort to solve problems."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "personal-and-consumer-health",
+     "title": "Personal and Consumer Health",
+     "topics": [
+      {
+       "id": "utilize-personal-behaviors-and-practices-that-pr",
+       "title": "Utilize personal behaviors and practices that promote health and prevent disease",
+       "subtopics": [
+        {
+         "id": "utilize-personal-behaviors-and-practices-that-pr",
+         "title": "Utilize personal behaviors and practices that promote health and prevent disease",
+         "outcomes": [
+          {
+           "code": "5.PCH.1.1",
+           "text": "Develop a personal hygiene plan."
+          },
+          {
+           "code": "5.PCH.1.2",
+           "text": "Outline personal strategies to obtain sufficient sleep and regular physical activity."
+          },
+          {
+           "code": "5.PCH.1.3",
+           "text": "Discuss the benefits of sunlight, and the importance of taking measures to prevent sunburn."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "understand-necessary-steps-to-prevent-and-respon",
+       "title": "Understand necessary steps to prevent and respond to unintentional injury",
+       "subtopics": [
+        {
+         "id": "understand-necessary-steps-to-prevent-and-respon",
+         "title": "Understand necessary steps to prevent and respond to unintentional injury",
+         "outcomes": [
+          {
+           "code": "5.PCH.2.1",
+           "text": "Implement safety strategies to avoid causing injury to self and others."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "understand-body-systems-and-organs-functions-and",
+       "title": "Understand body systems and organs, functions, and their care",
+       "subtopics": [
+        {
+         "id": "understand-body-systems-and-organs-functions-and",
+         "title": "Understand body systems and organs, functions, and their care",
+         "outcomes": [
+          {
+           "code": "5.PCH.3.1",
+           "text": "Summarize the functions of the organs which make up the digestive system."
+          },
+          {
+           "code": "5.PCH.3.2",
+           "text": "Interpret the relationship between and among the vessels and organs of the circulatory system."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "interpersonal-communications-and-healthy-relatio",
+     "title": "Interpersonal Communications and Healthy Relationships",
+     "topics": [
+      {
+       "id": "analyze-healthy-and-effective-interpersonal-comm",
+       "title": "Analyze healthy and effective interpersonal communications and relationships to enhance wellbeing",
+       "subtopics": [
+        {
+         "id": "analyze-healthy-and-effective-interpersonal-comm",
+         "title": "Analyze healthy and effective interpersonal communications and relationships to enhance wellbeing",
+         "outcomes": [
+          {
+           "code": "5.ICHR.1.1",
+           "text": "Recognize the dangers of communicating with known and unknown peers and adults within the community and online."
+          },
+          {
+           "code": "5.ICHR.1.2",
+           "text": "Identify a parent, guardian, or trusted adult and resources for assistance with unhealthy communication with peers, adults, and strangers within the community and online."
+          },
+          {
+           "code": "5.ICHR.1.3",
+           "text": "Categorize the factors of a healthy relationship with peers, family, and adults."
+          },
+          {
+           "code": "5.ICHR.1.4",
+           "text": "Model appropriate strategies for conflict resolution for conflict/bullying."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "summarize-the-changes-that-occur-during-puberty-",
+       "title": "Summarize the changes that occur during puberty and adolescence",
+       "subtopics": [
+        {
+         "id": "summarize-the-changes-that-occur-during-puberty-",
+         "title": "Summarize the changes that occur during puberty and adolescence",
+         "outcomes": [
+          {
+           "code": "5.ICHR.2.1",
+           "text": "Define physical, mental-emotional, and cognitive changes."
+          },
+          {
+           "code": "5.ICHR.2.2",
+           "text": "Identify valid accurate sources of information about puberty and development."
+          },
+          {
+           "code": "5.ICHR.2.3",
+           "text": "Explain physical changes during puberty."
+          },
+          {
+           "code": "5.ICHR.2.4",
+           "text": "Identify how peers, adults, resources, and cultural influences can impact behavioral choices and feelings during puberty."
+          },
+          {
+           "code": "5.ICHR.2.5",
+           "text": "Analyze media messages as they relate to their influence on perceptions about desirable bodies."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "nutrition-and-physical-activity",
+     "title": "Nutrition and Physical Activity",
+     "topics": [
+      {
+       "id": "use-tools-and-resources-to-interpret-nutrition-i",
+       "title": "Use tools and resources to interpret nutrition information",
+       "subtopics": [
+        {
+         "id": "use-tools-and-resources-to-interpret-nutrition-i",
+         "title": "Use tools and resources to interpret nutrition information",
+         "outcomes": [
+          {
+           "code": "5.NPA.1.1",
+           "text": "Name the primary nutrients that each food group provides."
+          },
+          {
+           "code": "5.NPA.1.2",
+           "text": "Using the USDA Food Groups plan a meal with 3-5 food groups included."
+          },
+          {
+           "code": "5.NPA.1.3",
+           "text": "Calculate nutrients based on the components of a Nutrition Facts label."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "investigate-external-factors-that-affect-which-f",
+       "title": "Investigate external factors that affect which foods we eat",
+       "subtopics": [
+        {
+         "id": "investigate-external-factors-that-affect-which-f",
+         "title": "Investigate external factors that affect which foods we eat",
+         "outcomes": [
+          {
+           "code": "5.NPA.2.1",
+           "text": "Describe how family and culture influence food choices, other eating practices, and enjoyment of food."
+          },
+          {
+           "code": "5.NPA.2.2",
+           "text": "Describe how school and community settings influence food choices and other eating practices and behaviors."
+          },
+          {
+           "code": "5.NPA.2.3",
+           "text": "Describe how media/technology influence what and how we eat."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "evaluate-the-benefits-of-different-activities-fo",
+       "title": "Evaluate the benefits of different activities for your body to promote wellness",
+       "subtopics": [
+        {
+         "id": "evaluate-the-benefits-of-different-activities-fo",
+         "title": "Evaluate the benefits of different activities for your body to promote wellness",
+         "outcomes": [
+          {
+           "code": "5.NPA.3.1",
+           "text": "Develop a plan to implement a variety of physical activities into your daily routine that includes warm-up, stretching, and proper hydration."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "alcohol-nicotine-cannabis-and-other-drugs",
+     "title": "Alcohol, Nicotine, Cannabis, and other Drugs",
+     "topics": [
+      {
+       "id": "understand-health-risks-associated-with-using-al",
+       "title": "Understand health risks associated with using alcohol, nicotine, cannabis, and other drugs",
+       "subtopics": [
+        {
+         "id": "understand-health-risks-associated-with-using-al",
+         "title": "Understand health risks associated with using alcohol, nicotine, cannabis, and other drugs",
+         "outcomes": [
+          {
+           "code": "5.ANCOD.1.1",
+           "text": "Explain the short-term and long-term effects of alcohol, nicotine, and cannabis misuse."
+          },
+          {
+           "code": "5.ANCOD.1.2",
+           "text": "Understand the effects of alcohol, nicotine, cannabis, and other drug misuse on others."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "recognize-why-people-misuse-alcohol-nicotine-can",
+       "title": "Recognize why people misuse alcohol, nicotine, cannabis, and other drug products",
+       "subtopics": [
+        {
+         "id": "recognize-why-people-misuse-alcohol-nicotine-can",
+         "title": "Recognize why people misuse alcohol, nicotine, cannabis, and other drug products",
+         "outcomes": [
+          {
+           "code": "5.ANCOD.2.1",
+           "text": "Identify personal and societal influences to use alcohol, nicotine, cannabis, and other drug products."
+          },
+          {
+           "code": "5.ANCOD.2.2",
+           "text": "Analyze the use of various marketing strategies to influence people to use alcohol, nicotine, cannabis, and other drug products."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "apply-risk-reduction-behaviors-to-protect-onesel",
+       "title": "Apply risk reduction behaviors to protect oneself and others from alcohol, nicotine, cannabis, and other drug misuse",
+       "subtopics": [
+        {
+         "id": "apply-risk-reduction-behaviors-to-protect-onesel",
+         "title": "Apply risk reduction behaviors to protect oneself and others from alcohol, nicotine, cannabis, and other drug misuse",
+         "outcomes": [
+          {
+           "code": "5.ANCOD.3.1",
+           "text": "Use refusal skills to resist the pressure to experiment with alcohol, nicotine, cannabis, and other drugs."
+          },
+          {
+           "code": "5.ANCOD.3.2",
+           "text": "Create a plan for maintaining a drug-free lifestyle that includes challenges to the plan and ways of overcoming the challenges."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "6",
+   "units": [
+    {
+     "id": "mental-and-emotional-health",
+     "title": "Mental and Emotional Health",
+     "topics": [
+      {
+       "id": "analyze-the-impact-of-health-related-decisions-o",
+       "title": "Analyze the impact of health- related decisions on mental and emotional health",
+       "subtopics": [
+        {
+         "id": "analyze-the-impact-of-health-related-decisions-o",
+         "title": "Analyze the impact of health- related decisions on mental and emotional health",
+         "outcomes": [
+          {
+           "code": "6.MEH.1.1",
+           "text": "Recognize that guidance from a parent, guardian, or trusted adult is beneficial and should be sought for healthy decision-making."
+          },
+          {
+           "code": "6.MEH.1.2",
+           "text": "Determine when health-related situations require the application of a thoughtful decision- making process."
+          },
+          {
+           "code": "6.MEH.1.3",
+           "text": "Develop a goal to adopt, maintain, or improve a personal mental health plan."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "demonstrate-a-variety-of-positive-stress-managem",
+       "title": "Demonstrate a variety of positive stress management techniques",
+       "subtopics": [
+        {
+         "id": "demonstrate-a-variety-of-positive-stress-managem",
+         "title": "Demonstrate a variety of positive stress management techniques",
+         "outcomes": [
+          {
+           "code": "6.MEH.2.1",
+           "text": "Compare and contrast positive and negative stress management techniques."
+          },
+          {
+           "code": "6.MEH.2.2",
+           "text": "Create a personal stress management plan."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "analyze-the-relationship-between-healthy-express",
+       "title": "Analyze the relationship between healthy expression of emotions, mental health, and healthy behaviors",
+       "subtopics": [
+        {
+         "id": "analyze-the-relationship-between-healthy-express",
+         "title": "Analyze the relationship between healthy expression of emotions, mental health, and healthy behaviors",
+         "outcomes": [
+          {
+           "code": "6.MEH.3.1",
+           "text": "Develop the ability to reframe challenges or setbacks and see them as opportunities for growth."
+          },
+          {
+           "code": "6.MEH.3.2",
+           "text": "Analyze the relationship between health-enhancing behaviors and navigating challenges."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "personal-and-consumer-health",
+     "title": "Personal and Consumer Health",
+     "topics": [
+      {
+       "id": "demonstrate-age-and-developmentally-appropriate-",
+       "title": "Demonstrate age and developmentally appropriate practices that promote health and prevent or reduce the risk of disease",
+       "subtopics": [
+        {
+         "id": "demonstrate-age-and-developmentally-appropriate-",
+         "title": "Demonstrate age and developmentally appropriate practices that promote health and prevent or reduce the risk of disease",
+         "outcomes": [
+          {
+           "code": "6.PCH.1.1",
+           "text": "Differentiate between communicable and chronic diseases."
+          },
+          {
+           "code": "6.PCH.1.2",
+           "text": "Recall symptoms associated with common communicable and chronic diseases."
+          },
+          {
+           "code": "6.PCH.1.3",
+           "text": "Identify methods of prevention based on the modes of transmission of communicable diseases."
+          },
+          {
+           "code": "6.PCH.1.4",
+           "text": "Summarize the triggers and symptoms for respiratory illnesses and strategies for controlling them."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "develop-health-literacy-through-the-examination-",
+       "title": "Develop health literacy through the examination of health claims and products",
+       "subtopics": [
+        {
+         "id": "develop-health-literacy-through-the-examination-",
+         "title": "Develop health literacy through the examination of health claims and products",
+         "outcomes": [
+          {
+           "code": "6.PCH.2.1",
+           "text": "Analyze how messages from media influence health behaviors."
+          },
+          {
+           "code": "6.PCH.2.2",
+           "text": "Analyze the validity of health information, products, and services from print and electronic sources."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "interpersonal-communications-and-healthy-relatio",
+     "title": "Interpersonal Communications and Healthy Relationships",
+     "topics": [
+      {
+       "id": "use-skills-for-communicating-effectively-with-fa",
+       "title": "Use skills for communicating effectively with family, peers, and others to enhance health",
+       "subtopics": [
+        {
+         "id": "use-skills-for-communicating-effectively-with-fa",
+         "title": "Use skills for communicating effectively with family, peers, and others to enhance health",
+         "outcomes": [
+          {
+           "code": "6.ICHR.1.1",
+           "text": "Distinguish when individual or collaborative decision making is appropriate."
+          },
+          {
+           "code": "6.ICHR.1.2",
+           "text": "Demonstrate the use of verbal and nonverbal communication skills."
+          },
+          {
+           "code": "6.ICHR.1.3",
+           "text": "Demonstrate how to effectively communicate kindness, empathy, compassion, and respect for others."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "apply-strategies-and-skills-for-developing-and-m",
+       "title": "Apply strategies and skills for developing and maintaining healthy relationships",
+       "subtopics": [
+        {
+         "id": "apply-strategies-and-skills-for-developing-and-m",
+         "title": "Apply strategies and skills for developing and maintaining healthy relationships",
+         "outcomes": [
+          {
+           "code": "6.ICHR.2.1",
+           "text": "Explain how the physical and hormonal changes during puberty affect social relationships, and physical, mental, and emotional health."
+          },
+          {
+           "code": "6.ICHR.2.2",
+           "text": "Identify trusted resources to report sexual harassment and bullying."
+          },
+          {
+           "code": "6.ICHR.2.3",
+           "text": "Summarize strategies for predicting and avoiding conflict."
+          },
+          {
+           "code": "6.ICHR.2.4",
+           "text": "Design productive and positive solutions to conflicts based on an understanding of the perspectives of those involved in the conflicts."
+          },
+          {
+           "code": "6.ICHR.2.5",
+           "text": "Compare and contrast the signs of healthy and unhealthy relationships."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "summarize-the-changes-that-occur-during-puberty-",
+       "title": "Summarize the changes that occur during puberty and adolescence",
+       "subtopics": [
+        {
+         "id": "summarize-the-changes-that-occur-during-puberty-",
+         "title": "Summarize the changes that occur during puberty and adolescence",
+         "outcomes": [
+          {
+           "code": "6.ICHR.3.1",
+           "text": "Discuss the maturing of body systems during puberty."
+          },
+          {
+           "code": "6.ICHR.3.2",
+           "text": "Examine the responsibilities of parenthood or guardianship."
+          },
+          {
+           "code": "6.ICHR.3.3",
+           "text": "Demonstrate refusal skills that avoid or reduce health risks."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "nutrition-and-physical-activity",
+     "title": "Nutrition and Physical Activity",
+     "topics": [
+      {
+       "id": "compare-tools-such-as-dietary-guidelines-and-the",
+       "title": "Compare tools such as Dietary Guidelines and the Nutrition Facts Label as they relate to the planning of healthy nutrition and physical activity",
+       "subtopics": [
+        {
+         "id": "compare-tools-such-as-dietary-guidelines-and-the",
+         "title": "Compare tools such as Dietary Guidelines and the Nutrition Facts Label as they relate to the planning of healthy nutrition and physical activity",
+         "outcomes": [
+          {
+           "code": "6.NPA.1.1",
+           "text": "Attribute the prevention of nutrition-related diseases to following the Dietary Guidelines for Americans."
+          },
+          {
+           "code": "6.NPA.1.2",
+           "text": "Evaluate food choices using Nutrition Facts labels."
+          },
+          {
+           "code": "6.NPA.1.3",
+           "text": "Apply current dietary guidelines for meal planning with a variety of food choices."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "explore-the-benefits-of-consuming-a-variety-of-f",
+       "title": "Explore the benefits of consuming a variety of foods and beverages",
+       "subtopics": [
+        {
+         "id": "explore-the-benefits-of-consuming-a-variety-of-f",
+         "title": "Explore the benefits of consuming a variety of foods and beverages",
+         "outcomes": [
+          {
+           "code": "6.NPA.2.1",
+           "text": "Identify the six essential nutrients to make informed decisions regarding healthy eating."
+          },
+          {
+           "code": "6.NPA.2.2",
+           "text": "Compare the nutrients in a variety of beverages."
+          },
+          {
+           "code": "6.NPA.2.3",
+           "text": "Discuss the benefits of consuming foods high in fiber."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "apply-lifelong-nutrition-and-health-related-fitn",
+       "title": "Apply lifelong nutrition and health- related fitness concepts to enhance quality of life",
+       "subtopics": [
+        {
+         "id": "apply-lifelong-nutrition-and-health-related-fitn",
+         "title": "Apply lifelong nutrition and health- related fitness concepts to enhance quality of life",
+         "outcomes": [
+          {
+           "code": "6.NPA.3.1",
+           "text": "Explain the relationships between food consumption, physical activity, and overall health."
+          },
+          {
+           "code": "6.NPA.3.2",
+           "text": "Design a personal wellness plan addressing nutrition and physical activity to enhance quality of life."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "alcohol-nicotine-cannabis-and-other-drugs",
+     "title": "Alcohol, Nicotine, Cannabis, and other Drugs",
+     "topics": [
+      {
+       "id": "summarize-the-health-risks-associated-with-alcoh",
+       "title": "Summarize the health risks associated with alcohol, nicotine products, cannabis, and other drug use",
+       "subtopics": [
+        {
+         "id": "summarize-the-health-risks-associated-with-alcoh",
+         "title": "Summarize the health risks associated with alcohol, nicotine products, cannabis, and other drug use",
+         "outcomes": [
+          {
+           "code": "6.ANCOD.1.1",
+           "text": "Explain potential consequences of using any nicotine products, including vaping."
+          },
+          {
+           "code": "6.ANCOD.1.2",
+           "text": "Identify benefits of a smoke/vape-free and nicotine-free environment."
+          },
+          {
+           "code": "6.ANCOD.1.3",
+           "text": "Analyze family, media, and peer influences on the use, misuse, and avoidance of alcohol, nicotine, cannabis, and other drugs."
+          },
+          {
+           "code": "6.ANCOD.1.4",
+           "text": "Describe the potential effects of alcohol, nicotine, cannabis, and other drugs on physical, mental, and social health."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "apply-refusal-skills-to-protect-self-and-others-",
+       "title": "Apply refusal skills to protect self and others from alcohol, nicotine products, cannabis, and other drug use",
+       "subtopics": [
+        {
+         "id": "apply-refusal-skills-to-protect-self-and-others-",
+         "title": "Apply refusal skills to protect self and others from alcohol, nicotine products, cannabis, and other drug use",
+         "outcomes": [
+          {
+           "code": "6.ANCOD.2.1",
+           "text": "Explain the importance of accepting responsibility for personal actions to avoid risk-taking behaviors related to substance abuse."
+          },
+          {
+           "code": "6.ANCOD.2.2",
+           "text": "Identify the types of support available at school and in the community for substance abuse."
+          },
+          {
+           "code": "6.ANCOD.2.3",
+           "text": "Examine how health-enhancing and risky behaviors can influence the likelihood of engaging in more of the same behaviors."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "7",
+   "units": [
+    {
+     "id": "mental-and-emotional-health",
+     "title": "Mental and Emotional Health",
+     "topics": [
+      {
+       "id": "analyze-the-relationship-between-healthy-express",
+       "title": "Analyze the relationship between healthy expression of emotions, mental health, and healthy behaviors",
+       "subtopics": [
+        {
+         "id": "analyze-the-relationship-between-healthy-express",
+         "title": "Analyze the relationship between healthy expression of emotions, mental health, and healthy behaviors",
+         "outcomes": [
+          {
+           "code": "7.MEH.1.1",
+           "text": "Explain how emotions change during adolescence."
+          },
+          {
+           "code": "7.MEH.1.2",
+           "text": "Describe the potential outcomes of impulsive behaviors."
+          },
+          {
+           "code": "7.MEH.1.3",
+           "text": "Identify resources for mental and emotional health."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "evaluate-positive-stress-management-strategies",
+       "title": "Evaluate positive stress management strategies",
+       "subtopics": [
+        {
+         "id": "evaluate-positive-stress-management-strategies",
+         "title": "Evaluate positive stress management strategies",
+         "outcomes": [
+          {
+           "code": "7.MEH.2.1",
+           "text": "Assess a variety of stress management techniques."
+          },
+          {
+           "code": "7.MEH.2.2",
+           "text": "Design a stress management plan."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "identify-help-seeking-strategies-for-mental-heal",
+       "title": "Identify help-seeking strategies for mental health challenges",
+       "subtopics": [
+        {
+         "id": "identify-help-seeking-strategies-for-mental-heal",
+         "title": "Identify help-seeking strategies for mental health challenges",
+         "outcomes": [
+          {
+           "code": "7.MEH.3.1",
+           "text": "Identify numerous resources that would be appropriate for supporting mental health challenges."
+          },
+          {
+           "code": "7.MEH.3.2",
+           "text": "Implement strategies to seek help from a parent, guardian, or trusted adult when noticing harmful and/or negative thoughts or behaviors."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "personal-and-consumer-health",
+     "title": "Personal and Consumer Health",
+     "topics": [
+      {
+       "id": "understand-wellness-disease-prevention-and-recog",
+       "title": "Understand wellness, disease prevention, and recognition of symptoms",
+       "subtopics": [
+        {
+         "id": "understand-wellness-disease-prevention-and-recog",
+         "title": "Understand wellness, disease prevention, and recognition of symptoms",
+         "outcomes": [
+          {
+           "code": "7.PCH.1.1",
+           "text": "List personal behaviors that are risk factors of chronic illnesses."
+          },
+          {
+           "code": "7.PCH.1.2",
+           "text": "Name the social determinants of health and how they relate to chronic illnesses."
+          },
+          {
+           "code": "7.PCH.1.3",
+           "text": "Explain mental and physical consequences of inadequate rest and sleep."
+          },
+          {
+           "code": "7.PCH.1.4",
+           "text": "Explain the effects of excessive sun exposure on your overall health and the importance of regular skin checks."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "analyze-the-immune-system-in-terms-of-the-organs",
+       "title": "Analyze the immune system in terms of the organs, their functions, and their interrelationships",
+       "subtopics": [
+        {
+         "id": "analyze-the-immune-system-in-terms-of-the-organs",
+         "title": "Analyze the immune system in terms of the organs, their functions, and their interrelationships",
+         "outcomes": [
+          {
+           "code": "7.PCH.2.1",
+           "text": "Describe the parts of the immune system and their purpose."
+          },
+          {
+           "code": "7.PCH.2.2",
+           "text": "Explain how the immune system functions to protect the body."
+          },
+          {
+           "code": "7.PCH.2.3",
+           "text": "Identify strategies to protect your immune system."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "demonstrate-health-literacy-when-evaluating-heal",
+       "title": "Demonstrate health literacy when evaluating health claims for misinformation and bias",
+       "subtopics": [
+        {
+         "id": "demonstrate-health-literacy-when-evaluating-heal",
+         "title": "Demonstrate health literacy when evaluating health claims for misinformation and bias",
+         "outcomes": [
+          {
+           "code": "7.PCH.3.1",
+           "text": "Identify resources that help to make educated decisions on health services and products."
+          },
+          {
+           "code": "7.PCH.3.2",
+           "text": "Discuss misconceptions about health and the efficacy of health products and services."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "analyze-necessary-steps-to-prevent-and-respond-t",
+       "title": "Analyze necessary steps to prevent and respond to unintentional injury",
+       "subtopics": [
+        {
+         "id": "analyze-necessary-steps-to-prevent-and-respond-t",
+         "title": "Analyze necessary steps to prevent and respond to unintentional injury",
+         "outcomes": [
+          {
+           "code": "7.PCH.4.1",
+           "text": "Deconstruct the interaction of individual behaviors, the environment, and other factors that cause or prevent injuries."
+          },
+          {
+           "code": "7.PCH.4.2",
+           "text": "Demonstrate techniques of basic first aid and procedures for treating injuries and emergencies."
+          },
+          {
+           "code": "7.PCH.4.3",
+           "text": "Design plans that reduce the risk of fire-related injuries at home, in school, and in the community at large."
+          },
+          {
+           "code": "7.PCH.4.4",
+           "text": "Create a plan to reduce the risk of water-related injuries."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "interpersonal-communications-and-healthy-relatio",
+     "title": "Interpersonal Communications and Healthy Relationships",
+     "topics": [
+      {
+       "id": "understand-healthy-and-effective-interpersonal-c",
+       "title": "Understand healthy and effective interpersonal communications and relationships",
+       "subtopics": [
+        {
+         "id": "understand-healthy-and-effective-interpersonal-c",
+         "title": "Understand healthy and effective interpersonal communications and relationships",
+         "outcomes": [
+          {
+           "code": "7.ICHR.1.1",
+           "text": "Contrast characteristics of healthy and unhealthy relationships."
+          },
+          {
+           "code": "7.ICHR.1.2",
+           "text": "Predict short-term and long-term consequences of violence to perpetrators, victims, and bystanders."
+          },
+          {
+           "code": "7.ICHR.1.3",
+           "text": "Demonstrate safe and effective ways to manage and resolve conflict."
+          },
+          {
+           "code": "7.ICHR.1.4",
+           "text": "Identify risks of becoming a perpetrator or victim of bullying via social media."
+          },
+          {
+           "code": "7.ICHR.1.5",
+           "text": "Recognize that all people have inherent value and dignity and contribute much in life, regardless of differences."
+          },
+          {
+           "code": "7.ICHR.1.6",
+           "text": "Discuss the appropriate role of bystander in preventing and stopping bullying and violence."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "explain-the-physical-social-and-emotional-benefi",
+       "title": "Explain the physical, social, and emotional benefits of choosing to abstain from sexual activity until marriage",
+       "subtopics": [
+        {
+         "id": "explain-the-physical-social-and-emotional-benefi",
+         "title": "Explain the physical, social, and emotional benefits of choosing to abstain from sexual activity until marriage",
+         "outcomes": [
+          {
+           "code": "7.ICHR.2.1",
+           "text": "Explain how family, peers, culture, media, technology, and other factors can affect sexual health decisions including remaining abstinent from sexual activity until marriage."
+          },
+          {
+           "code": "7.ICHR.2.2",
+           "text": "Analyze the meaning of the term abstinence in the context of sexual health and living a healthy life."
+          },
+          {
+           "code": "7.ICHR.2.3",
+           "text": "Explain that sexual activity includes physical contact between individuals involving intimate/private areas of the body that can potentially result in pregnancy, STIs, and/or emotional consequences."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "explain-strategies-that-develop-and-maintain-rep",
+       "title": "Explain strategies that develop and maintain reproductive and sexual health",
+       "subtopics": [
+        {
+         "id": "explain-strategies-that-develop-and-maintain-rep",
+         "title": "Explain strategies that develop and maintain reproductive and sexual health",
+         "outcomes": [
+          {
+           "code": "7.ICHR.3.1",
+           "text": "Recognize common STIs (including HIV & HPV), modes of transmission, symptoms, effects if untreated, and FDA-approved methods of prevention."
+          },
+          {
+           "code": "7.ICHR.3.2",
+           "text": "Summarize the FDA-approved methods for avoiding unwanted pregnancy."
+          },
+          {
+           "code": "7.ICHR.3.3",
+           "text": "List ways that different forms of sexual assault and sexual abuse can physically, mentally, or emotionally harm a person."
+          },
+          {
+           "code": "7.ICHR.3.4",
+           "text": "Explain sex trafficking and the ways victims are groomed and recruited."
+          },
+          {
+           "code": "7.ICHR.3.5",
+           "text": "Explain the importance of reporting actual or suspected sexual abuse of self or others to a parent, guardian, trusted adult, or local authority."
+          },
+          {
+           "code": "7.ICHR.3.6",
+           "text": "Recognize abstinence is the only certain means of avoiding pregnancy, sexually transmitted infections and other associated health and emotional problems."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "nutrition-and-physical-activity",
+     "title": "Nutrition and Physical Activity",
+     "topics": [
+      {
+       "id": "apply-resources-to-plan-and-employ-balanced-nutr",
+       "title": "Apply resources to plan and employ balanced nutrition and physical activity plans",
+       "subtopics": [
+        {
+         "id": "apply-resources-to-plan-and-employ-balanced-nutr",
+         "title": "Apply resources to plan and employ balanced nutrition and physical activity plans",
+         "outcomes": [
+          {
+           "code": "7.NPA.1.1",
+           "text": "Develop a balanced dietary plan."
+          },
+          {
+           "code": "7.NPA.1.2",
+           "text": "Develop a balanced physical activity plan."
+          },
+          {
+           "code": "7.NPA.1.3",
+           "text": "Identify the health benefits of consuming adequate amounts of water."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "apply-healthy-nutrition-and-physical-activity-co",
+       "title": "Apply healthy nutrition and physical activity concepts to enhance quality of life",
+       "subtopics": [
+        {
+         "id": "apply-healthy-nutrition-and-physical-activity-co",
+         "title": "Apply healthy nutrition and physical activity concepts to enhance quality of life",
+         "outcomes": [
+          {
+           "code": "7.NPA.2.1",
+           "text": "Design goals for enhancing physical activity and strategies for achieving those goals."
+          },
+          {
+           "code": "7.NPA.2.2",
+           "text": "Implement a personal health plan that balances nutrition and physical activity."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "alcohol-nicotine-cannabis-and-other-drugs",
+     "title": "Alcohol, Nicotine, Cannabis, and other Drugs",
+     "topics": [
+      {
+       "id": "analyze-the-health-risks-associated-with-alcohol",
+       "title": "Analyze the health risks associated with alcohol, nicotine, cannabis, drugs, and other mind-altering substances",
+       "subtopics": [
+        {
+         "id": "analyze-the-health-risks-associated-with-alcohol",
+         "title": "Analyze the health risks associated with alcohol, nicotine, cannabis, drugs, and other mind-altering substances",
+         "outcomes": [
+          {
+           "code": "7.ANCOD.1.1",
+           "text": "Explain the link between addiction to alcohol, nicotine, cannabis, drugs, and other mind- altering substances to chronic disease and other risky behaviors."
+          },
+          {
+           "code": "7.ANCOD.1.2",
+           "text": "Explain health risks resulting from injection drug use."
+          },
+          {
+           "code": "7.ANCOD.1.3",
+           "text": "Discuss consequences of over the counter and prescription medicine misuse."
+          },
+          {
+           "code": "7.ANCOD.1.4",
+           "text": "Explain how drug dependence and addiction create barriers to achieving personal goals."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "explain-how-drug-use-can-negatively-impact-decis",
+       "title": "Explain how drug use can negatively impact decision making and problem solving",
+       "subtopics": [
+        {
+         "id": "explain-how-drug-use-can-negatively-impact-decis",
+         "title": "Explain how drug use can negatively impact decision making and problem solving",
+         "outcomes": [
+          {
+           "code": "7.ANCOD.2.1",
+           "text": "Develop strategies to avoid nicotine products, alcohol, cannabis, and other drugs."
+          },
+          {
+           "code": "7.ANCOD.2.2",
+           "text": "Discuss methods of avoiding peer pressure and social media pressures regarding nicotine products."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "8",
+   "units": [
+    {
+     "id": "mental-and-emotional-health",
+     "title": "Mental and Emotional Health",
+     "topics": [
+      {
+       "id": "evaluate-how-structured-thinking-benefits-emotio",
+       "title": "Evaluate how structured thinking benefits emotional well-being",
+       "subtopics": [
+        {
+         "id": "evaluate-how-structured-thinking-benefits-emotio",
+         "title": "Evaluate how structured thinking benefits emotional well-being",
+         "outcomes": [
+          {
+           "code": "8.MEH.1.1",
+           "text": "Evaluate the uses of defense mechanisms in terms of whether they are healthy or unhealthy."
+          },
+          {
+           "code": "8.MEH.1.2",
+           "text": "Explain how personal responsibility for one’s choices is linked to self-worth and growth."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "design-a-personal-plan-for-both-preventing-and-m",
+       "title": "Design a personal plan for both preventing and managing stress and anxiety",
+       "subtopics": [
+        {
+         "id": "design-a-personal-plan-for-both-preventing-and-m",
+         "title": "Design a personal plan for both preventing and managing stress and anxiety",
+         "outcomes": [
+          {
+           "code": "8.MEH.2.1",
+           "text": "Compare and contrast positive and negative stress management techniques."
+          },
+          {
+           "code": "8.MEH.2.2",
+           "text": "Design a plan to minimize stressors or manage the effects of stress."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "apply-help-seeking-strategies-for-mental-health-",
+       "title": "Apply help-seeking strategies for mental health challenges",
+       "subtopics": [
+        {
+         "id": "apply-help-seeking-strategies-for-mental-health-",
+         "title": "Apply help-seeking strategies for mental health challenges",
+         "outcomes": [
+          {
+           "code": "8.MEH.3.1",
+           "text": "Identify signs of behaviors that contribute to harm to self or others."
+          },
+          {
+           "code": "8.MEH.3.2",
+           "text": "Create a plan for seeking adult help for yourself or peers who exhibit signs of self-harm or suicidal intent."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "personal-and-consumer-health",
+     "title": "Personal and Consumer Health",
+     "topics": [
+      {
+       "id": "understand-wellness-disease-prevention-and-recog",
+       "title": "Understand wellness, disease prevention, and recognition of symptoms",
+       "subtopics": [
+        {
+         "id": "understand-wellness-disease-prevention-and-recog",
+         "title": "Understand wellness, disease prevention, and recognition of symptoms",
+         "outcomes": [
+          {
+           "code": "8.PCH.1.1",
+           "text": "Examine risk factors and social determinants of health that impact health outcomes throughout the lifespan."
+          },
+          {
+           "code": "8.PCH.1.2",
+           "text": "Explain behavioral and environmental factors that contribute to major chronic diseases and the methods for reducing problems associated with common conditions."
+          },
+          {
+           "code": "8.PCH.1.3",
+           "text": "Determine individual risk for preventable diseases based on personal health data and family history."
+          },
+          {
+           "code": "8.PCH.1.4",
+           "text": "Identify specific ways the environment impacts personal and community health."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "apply-health-literacy-skills-when-examining-heal",
+       "title": "Apply health literacy skills when examining health claims and products",
+       "subtopics": [
+        {
+         "id": "apply-health-literacy-skills-when-examining-heal",
+         "title": "Apply health literacy skills when examining health claims and products",
+         "outcomes": [
+          {
+           "code": "8.PCH.2.1",
+           "text": "Create a PSA about a health topic using evidence-based information."
+          },
+          {
+           "code": "8.PCH.2.2",
+           "text": "Demonstrate how to influence and support others to make positive health choices."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "analyze-necessary-steps-to-prevent-and-respond-t",
+       "title": "Analyze necessary steps to prevent and respond to unintentional injury",
+       "subtopics": [
+        {
+         "id": "analyze-necessary-steps-to-prevent-and-respond-t",
+         "title": "Analyze necessary steps to prevent and respond to unintentional injury",
+         "outcomes": [
+          {
+           "code": "8.PCH.3.1",
+           "text": "Execute abdominal thrusts on a mannequin."
+          },
+          {
+           "code": "8.PCH.3.2",
+           "text": "Demonstrate CPR compressions and procedures on a mannequin."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "interpersonal-communications-and-healthy-relatio",
+     "title": "Interpersonal Communications and Healthy Relationships",
+     "topics": [
+      {
+       "id": "demonstrate-the-ability-to-use-interpersonal-com",
+       "title": "Demonstrate the ability to use interpersonal communication skills to enhance health and avoid or reduce health risks",
+       "subtopics": [
+        {
+         "id": "demonstrate-the-ability-to-use-interpersonal-com",
+         "title": "Demonstrate the ability to use interpersonal communication skills to enhance health and avoid or reduce health risks",
+         "outcomes": [
+          {
+           "code": "8.ICHR.1.1",
+           "text": "Contrast characteristics of healthy and unhealthy relationships for friendships and for dating."
+          },
+          {
+           "code": "8.ICHR.1.2",
+           "text": "Create strategies to communicate personal boundaries and show respect for the boundaries of others."
+          },
+          {
+           "code": "8.ICHR.1.3",
+           "text": "Identify potential consequences of unhealthy relationships and intolerance which can lead to dating violence, discrimination, and hate crimes."
+          },
+          {
+           "code": "8.ICHR.1.4",
+           "text": "Demonstrate communication skills that build and maintain healthy relationships."
+          },
+          {
+           "code": "8.ICHR.1.5",
+           "text": "Use decision-making strategies appropriate for responding to unknown people via social media, digital messaging, or other means to avoid sexual trafficking."
+          },
+          {
+           "code": "8.ICHR.1.6",
+           "text": "Explore resources for safe and respectful ways to end an unhealthy or unwanted relationship."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "explain-how-avoiding-sexual-activity-is-the-most",
+       "title": "Explain how avoiding sexual activity is the most effective way to prevent pregnancy and STIs",
+       "subtopics": [
+        {
+         "id": "explain-how-avoiding-sexual-activity-is-the-most",
+         "title": "Explain how avoiding sexual activity is the most effective way to prevent pregnancy and STIs",
+         "outcomes": [
+          {
+           "code": "8.ICHR.2.1",
+           "text": "Compare and contrast sexual risk avoidance versus sexual risk reduction as they relate to pregnancy, STI, and other risks."
+          },
+          {
+           "code": "8.ICHR.2.2",
+           "text": "Discuss refusal skills and behaviors that are required for delaying sexual activity."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "identify-strategies-that-maintain-reproductive-a",
+       "title": "Identify strategies that maintain reproductive and sexual health",
+       "subtopics": [
+        {
+         "id": "identify-strategies-that-maintain-reproductive-a",
+         "title": "Identify strategies that maintain reproductive and sexual health",
+         "outcomes": [
+          {
+           "code": "8.ICHR.3.1",
+           "text": "Discuss the emotional, social, educational, and financial impact of teen pregnancy on teen parents and their families."
+          },
+          {
+           "code": "8.ICR.3.2",
+           "text": "Analyze methods of FDA-approved contraceptives in terms of their safety and their effectiveness in preventing unintended pregnancy."
+          },
+          {
+           "code": "8.ICHR.3.3",
+           "text": "Explore family, school, and community resources for the prevention of sexual risks through abstinence, postponed sexual activity, and safer sex practices."
+          },
+          {
+           "code": "8.ICHR.3.4",
+           "text": "Examine examples of how media, social media, and technology can positively or negatively influence sexual attitudes and behaviors."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "nutrition-and-physical-activity",
+     "title": "Nutrition and Physical Activity",
+     "topics": [
+      {
+       "id": "demonstrate-healthy-practices-and-behaviors-that",
+       "title": "Demonstrate healthy practices and behaviors that will maintain or improve the health of self and others",
+       "subtopics": [
+        {
+         "id": "demonstrate-healthy-practices-and-behaviors-that",
+         "title": "Demonstrate healthy practices and behaviors that will maintain or improve the health of self and others",
+         "outcomes": [
+          {
+           "code": "8.NPA.1.1",
+           "text": "Examine the destructive nature of body shaming and negative body image."
+          },
+          {
+           "code": "8.NPA.1.2",
+           "text": "Explain the importance of assuming responsibility for personal dietary choices."
+          },
+          {
+           "code": "8.NPA.1.3",
+           "text": "Identify resources to advocate for those who are at risk for poor nutrition."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "apply-strategies-to-consume-a-variety-of-foods-a",
+       "title": "Apply strategies to consume a variety of foods and beverages",
+       "subtopics": [
+        {
+         "id": "apply-strategies-to-consume-a-variety-of-foods-a",
+         "title": "Apply strategies to consume a variety of foods and beverages",
+         "outcomes": [
+          {
+           "code": "8.NPA.2.1",
+           "text": "Summarize the benefits of consuming adequate amounts of micronutrients and water in a variety of foods."
+          },
+          {
+           "code": "8.NPA.2.2",
+           "text": "Create a healthful eating plan incorporating food choice inside and outside the home setting."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "explore-various-diet-and-physical-activity-trend",
+       "title": "Explore various diet and physical activity trends to enhance quality of life",
+       "subtopics": [
+        {
+         "id": "explore-various-diet-and-physical-activity-trend",
+         "title": "Explore various diet and physical activity trends to enhance quality of life",
+         "outcomes": [
+          {
+           "code": "8.NPA.3.1",
+           "text": "Identify risks and benefits of various dietary preferences and eating patterns."
+          },
+          {
+           "code": "8.NPA.3.2",
+           "text": "Summarize the benefits and risks of current physical activity trends."
+          },
+          {
+           "code": "8.NPA.3.3",
+           "text": "Discuss effects of food preparation on your health."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "alcohol-nicotine-cannabis-and-other-drugs",
+     "title": "Alcohol, Nicotine, Cannabis, and other Drugs",
+     "topics": [
+      {
+       "id": "assess-the-short-and-long-term-health-risks-asso",
+       "title": "Assess the short- and long-term health risks associated with alcohol, nicotine, cannabis, and other drug use",
+       "subtopics": [
+        {
+         "id": "assess-the-short-and-long-term-health-risks-asso",
+         "title": "Assess the short- and long-term health risks associated with alcohol, nicotine, cannabis, and other drug use",
+         "outcomes": [
+          {
+           "code": "8.ANCOD.1.1",
+           "text": "Explain the impact of alcohol and other drug use on vehicle crashes, injuries, violence, and risky sexual behavior."
+          },
+          {
+           "code": "8.ANCOD.1.2",
+           "text": "Evaluate the magnitude and likelihood of the risks associated with the use of performance- enhancing supplements."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "evaluate-positive-and-negative-influences-on-ado",
+       "title": "Evaluate positive and negative influences on adolescent health practices and behaviors including peers, family, media, culture, community, technology, and social platforms",
+       "subtopics": [
+        {
+         "id": "evaluate-positive-and-negative-influences-on-ado",
+         "title": "Evaluate positive and negative influences on adolescent health practices and behaviors including peers, family, media, culture, community, technology, and social platforms",
+         "outcomes": [
+          {
+           "code": "8.ANCOD.2.1",
+           "text": "Analyze policies and laws related to the sale and use of alcohol and nicotine products in terms of their purposes and benefits."
+          },
+          {
+           "code": "8.ANCOD.2.2",
+           "text": "Create persuasive messaging to reduce the use of alcohol, nicotine, cannabis, and other drugs."
+          },
+          {
+           "code": "8.ANCOD.2.3",
+           "text": "2.3 Use strategies to avoid riding in a car with someone impaired by alcohol or drugs."
+          },
+          {
+           "code": "8.ANCOD.2.4",
+           "text": "Identify positive alternatives to the use of alcohol and drugs."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "9",
+   "units": [
+    {
+     "id": "mental-and-emotional-health",
+     "title": "Mental and Emotional Health",
+     "topics": [
+      {
+       "id": "promote-the-destigmatization-of-seeking-mental-h",
+       "title": "Promote the destigmatization of seeking mental health resources",
+       "subtopics": [
+        {
+         "id": "promote-the-destigmatization-of-seeking-mental-h",
+         "title": "Promote the destigmatization of seeking mental health resources",
+         "outcomes": [
+          {
+           "code": "9.MEH.1.1",
+           "text": "Identify causes, symptoms, and strategies for treating mental health challenges."
+          },
+          {
+           "code": "9.MEH.1.2",
+           "text": "Recognize at-risk populations, causes and symptoms of depression, suicide, and impaired mental health."
+          },
+          {
+           "code": "9.MEH.1.3",
+           "text": "Develop a support plan for peers experiencing mental health challenges."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "identify-a-variety-of-positive-stress-management",
+       "title": "Identify a variety of positive stress management and self-regulation strategies that would benefit overall health",
+       "subtopics": [
+        {
+         "id": "identify-a-variety-of-positive-stress-management",
+         "title": "Identify a variety of positive stress management and self-regulation strategies that would benefit overall health",
+         "outcomes": [
+          {
+           "code": "9.MEH.2.1",
+           "text": "Identify the short and long term physical and psychological responses to stress."
+          },
+          {
+           "code": "9.MEH.2.2",
+           "text": "Explore healthy strategies for managing stress, anxiety, anger, and impulsive behaviors."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "personal-and-consumer-health",
+     "title": "Personal and Consumer Health",
+     "topics": [
+      {
+       "id": "understand-wellness-disease-prevention-and-recog",
+       "title": "Understand wellness, disease prevention, and recognition of symptoms",
+       "subtopics": [
+        {
+         "id": "understand-wellness-disease-prevention-and-recog",
+         "title": "Understand wellness, disease prevention, and recognition of symptoms (1 of 2)",
+         "outcomes": [
+          {
+           "code": "9.PCH.1.1",
+           "text": "Identify controllable versus uncontrollable risk factors for communicable and chronic diseases."
+          },
+          {
+           "code": "9.PCH.1.2",
+           "text": "Identify the procedures for organ donation, local and state resources, as well as the pros and cons."
+          },
+          {
+           "code": "9.PCH.1.3",
+           "text": "Explain the procedures for health screenings, checkups, and other early detection measures in terms of their health-related benefits."
+          },
+          {
+           "code": "9.PCH.1.4",
+           "text": "Formulate an effective long-term personal health plan for reducing the risk of chronic disease."
+          }
+         ]
+        },
+        {
+         "id": "understand-wellness-disease-prevention-and-recog-2",
+         "title": "Understand wellness, disease prevention, and recognition of symptoms (2 of 2)",
+         "outcomes": [
+          {
+           "code": "9.PCH.1.5",
+           "text": "Identify measures to improve sleep and rest habits."
+          },
+          {
+           "code": "9.PCH.1.6",
+           "text": "Identify strategies for the prevention and early detection of skin cancer."
+          },
+          {
+           "code": "9.PCH.1.7",
+           "text": "Assess personal health practices and overall health status."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "evaluate-messages-conveyed-in-media-social-media",
+       "title": "Evaluate messages conveyed in media, social media, and technology to determine their influence on health behaviors",
+       "subtopics": [
+        {
+         "id": "evaluate-messages-conveyed-in-media-social-media",
+         "title": "Evaluate messages conveyed in media, social media, and technology to determine their influence on health behaviors",
+         "outcomes": [
+          {
+           "code": "9.PCH.2.1",
+           "text": "Discuss the potential short term and long-term health and social impacts of body art."
+          },
+          {
+           "code": "9.PCH.2.2",
+           "text": "Evaluate the effect of media on personal and family health."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "describe-necessary-steps-to-prevent-and-respond-",
+       "title": "Describe necessary steps to prevent and respond to unintentional injury",
+       "subtopics": [
+        {
+         "id": "describe-necessary-steps-to-prevent-and-respond-",
+         "title": "Describe necessary steps to prevent and respond to unintentional injury",
+         "outcomes": [
+          {
+           "code": "9.PCH.3.1",
+           "text": "Explain the risks associated with operating firearms and motor vehicles."
+          },
+          {
+           "code": "9.PCH.3.2",
+           "text": "Discuss strategies for reducing unintentional injuries."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "apply-critical-literacy-thinking-skills-related-",
+       "title": "Apply critical literacy/thinking skills related to personal, family and community wellness",
+       "subtopics": [
+        {
+         "id": "apply-critical-literacy-thinking-skills-related-",
+         "title": "Apply critical literacy/thinking skills related to personal, family and community wellness",
+         "outcomes": [
+          {
+           "code": "9.PCH.4.1",
+           "text": "Use knowledge of relevant medical and healthcare terminology, to ask questions and make decisions about health benefits."
+          },
+          {
+           "code": "9.PCH.4.2",
+           "text": "Discuss immediate and long-term impact on individual, family, community, and environment when making health-related decisions."
+          },
+          {
+           "code": "9.PCH.4.3",
+           "text": "Discuss individual, family, community, and environmental influences when making health- related decisions."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "interpersonal-communications-and-healthy-relatio",
+     "title": "Interpersonal Communications and Healthy Relationships",
+     "topics": [
+      {
+       "id": "analyze-how-effective-interpersonal-communicatio",
+       "title": "Analyze how effective interpersonal communication can benefit personal health and well-being",
+       "subtopics": [
+        {
+         "id": "analyze-how-effective-interpersonal-communicatio",
+         "title": "Analyze how effective interpersonal communication can benefit personal health and well-being",
+         "outcomes": [
+          {
+           "code": "9.ICHR.1.1",
+           "text": "Demonstrate how to effectively communicate kindness, empathy, compassion, and care for others."
+          },
+          {
+           "code": "9.ICHR.1.2",
+           "text": "Implement negotiation and collaboration skills in solving problems or resolving conflicts."
+          },
+          {
+           "code": "9.ICHR.1.3",
+           "text": "Develop healthy strategies for dating and prevention of intimate partner violence."
+          },
+          {
+           "code": "9.ICHR.1.4",
+           "text": "Explain the concept of consent, in relation to communicating and maintaining personal boundaries."
+          },
+          {
+           "code": "9.ICHR.1.5",
+           "text": "Analyze harmful cultural messages conveyed in sexually explicit media that objectify or sexualize people, normalize sexual violence and exploitation, encourage teenage sex, and ignore negative consequences."
+          },
+          {
+           "code": "9.ICHR.1.6",
+           "text": "Examine applicable state laws governing the age of sexual consent and how violating such laws can lead to serious legal consequences."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "evaluate-abstinence-from-sexual-intercourse-unti",
+       "title": "Evaluate abstinence from sexual intercourse until marriage as a positive choice for young people",
+       "subtopics": [
+        {
+         "id": "evaluate-abstinence-from-sexual-intercourse-unti",
+         "title": "Evaluate abstinence from sexual intercourse until marriage as a positive choice for young people",
+         "outcomes": [
+          {
+           "code": "9.ICHR.2.1",
+           "text": "Evaluate skills and strategies to utilize safer sex options, including abstinence until marriage, postponing participation in sexual activity, and contraceptive use."
+          }
+         ]
+        },
+        {
+         "id": "explain-the-potential-risks-of-stis-including-hi",
+         "title": "Explain the potential risks of STIs, including HIV and HPV, and describe their mode of transmission, symptoms, testing, and treatment",
+         "outcomes": [
+          {
+           "code": "9.ICHR.2.3",
+           "text": "Explain the limitations of FDA approved methods of contraception in reducing the risk of STIs and pregnancy."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "identify-strategies-that-develop-and-maintain-re",
+       "title": "Identify strategies that develop and maintain reproductive and sexual health",
+       "subtopics": [
+        {
+         "id": "identify-strategies-that-develop-and-maintain-re",
+         "title": "Identify strategies that develop and maintain reproductive and sexual health",
+         "outcomes": [
+          {
+           "code": "9.ICHR.3.1",
+           "text": "Identify a parent, guardian, or trusted adult and medically accurate resources to address sexual and reproductive health questions."
+          },
+          {
+           "code": "9.ICHR.3.2",
+           "text": "Summarize the importance of prenatal care to minimize preventable risks during pregnancies."
+          },
+          {
+           "code": "9.ICHR.3.3",
+           "text": "Explain the importance for regular STI screenings for optimal sexual health."
+          },
+          {
+           "code": "9.ICHR.3.4",
+           "text": "ICHR 3.4 Identify local resources for STI screenings and sexual healthcare, including for those who have been sexually abused to heal physically, mentally, and emotionally."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "nutrition-and-physical-activity",
+     "title": "Nutrition and Physical Activity",
+     "topics": [
+      {
+       "id": "describe-the-prevalence-causes-and-long-term-con",
+       "title": "Describe the prevalence, causes and long-term consequences of poor nutrition, extended screen time, and sedentary lifestyle",
+       "subtopics": [
+        {
+         "id": "describe-the-prevalence-causes-and-long-term-con",
+         "title": "Describe the prevalence, causes and long-term consequences of poor nutrition, extended screen time, and sedentary lifestyle",
+         "outcomes": [
+          {
+           "code": "9.NPA.1.1",
+           "text": "Summarize evidence-based approaches for individual prevention of disease."
+          },
+          {
+           "code": "9.NPA.1.2",
+           "text": "Summarize evidence-based approaches for community prevention of disease."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "develop-strategies-to-consume-a-variety-of-foods",
+       "title": "Develop strategies to consume a variety of foods and beverages",
+       "subtopics": [
+        {
+         "id": "develop-strategies-to-consume-a-variety-of-foods",
+         "title": "Develop strategies to consume a variety of foods and beverages",
+         "outcomes": [
+          {
+           "code": "9.NPA.2.1",
+           "text": "Summarize the benefits of consuming the six essential nutrients in adequate amounts in a variety of foods."
+          },
+          {
+           "code": "9.NPA.2.2",
+           "text": "Summarize the effects of hydration and dehydration and preventive measures for dehydration."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "analyze-health-behaviors-in-relation-to-communit",
+       "title": "Analyze health behaviors in relation to community and global disease prevention",
+       "subtopics": [
+        {
+         "id": "analyze-health-behaviors-in-relation-to-communit",
+         "title": "Analyze health behaviors in relation to community and global disease prevention",
+         "outcomes": [
+          {
+           "code": "9.NPA.3.1",
+           "text": "Evaluate how the school and community culture can affect personal health practice and behaviors."
+          },
+          {
+           "code": "9.NPA.3.2",
+           "text": "Advocate for those experiencing local and global barriers that interfere with optimal health."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "apply-lifelong-nutrition-and-physical-activity-c",
+       "title": "Apply lifelong nutrition and physical activity concepts to enhance quality of life",
+       "subtopics": [
+        {
+         "id": "apply-lifelong-nutrition-and-physical-activity-c",
+         "title": "Apply lifelong nutrition and physical activity concepts to enhance quality of life",
+         "outcomes": [
+          {
+           "code": "9.NPA.4.1",
+           "text": "Design and implement a personal physical activity program with safety and effectiveness."
+          },
+          {
+           "code": "9.NPA.4.2",
+           "text": "Identify appropriate methods to avoid/respond to the climate-related conditions during physical activity that impact overall health."
+          },
+          {
+           "code": "9.NPA.4.3",
+           "text": "Evaluate your personal fitness plan."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "alcohol-nicotine-cannabis-and-other-drugs",
+     "title": "Alcohol, Nicotine, Cannabis, and other Drugs",
+     "topics": [
+      {
+       "id": "apply-avoidance-behaviors-to-protect-self-and-ot",
+       "title": "Apply avoidance behaviors to protect self and others from alcohol, nicotine, cannabis, and other drug use",
+       "subtopics": [
+        {
+         "id": "apply-avoidance-behaviors-to-protect-self-and-ot",
+         "title": "Apply avoidance behaviors to protect self and others from alcohol, nicotine, cannabis, and other drug use",
+         "outcomes": [
+          {
+           "code": "9.ANCOD.1.1",
+           "text": "Identify the consequences of driving or riding with someone under the influence of alcohol or other drugs."
+          },
+          {
+           "code": "9.ANCOD.1.2",
+           "text": "Develop a set of personal standards to resist the use of alcohol, nicotine, cannabis, and other harmful substances and behaviors."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "evaluate-effects-of-alcohol-and-other-substances",
+       "title": "Evaluate effects of alcohol and other substances on brain function, behavior, and human body systems",
+       "subtopics": [
+        {
+         "id": "evaluate-effects-of-alcohol-and-other-substances",
+         "title": "Evaluate effects of alcohol and other substances on brain function, behavior, and human body systems",
+         "outcomes": [
+          {
+           "code": "9.ANCOD.2.1",
+           "text": "Explain the short-term and long-term effects of performance-enhancing drugs on health and eligibility to participate in sports."
+          },
+          {
+           "code": "9.ANCOD.2.2",
+           "text": "Evaluate positive and negative influences on health practices and behaviors."
+          },
+          {
+           "code": "9.ANCOD.2.3",
+           "text": "Describe the trends in use and misuse of prescription and non-prescription drugs."
+          },
+          {
+           "code": "9.ANCOD.2.4",
+           "text": "Summarize the risks of IV drug use, including blood borne diseases."
+          },
+          {
+           "code": "9.ANCOD.2.5",
+           "text": "Discuss the complexity of addiction and its effects on individuals and society."
+          },
+          {
+           "code": "9.ANCOD.2.6",
+           "text": "Examine the consequences of alcohol or nicotine use/exposure during different stages of growth and development."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "build": {
+  "builtAt": "2026-10-14T16:20:46.883Z",
+  "model": "none",
+  "usd": 0,
+  "expectedCodes": 342,
+  "coverage": 1,
+  "missingCodes": [],
+  "counts": {
+   "grades": 10,
+   "units": 50,
+   "topics": 117,
+   "subtopics": 119,
+   "outcomes": 342
+  },
+  "warnings": []
+ }
+}

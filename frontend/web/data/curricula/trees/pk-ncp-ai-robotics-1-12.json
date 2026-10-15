@@ -1,0 +1,2584 @@
+{
+ "id": "pk-ncp-ai-robotics-1-12",
+ "region": "PK",
+ "framework": "National Curriculum of Pakistan 2026",
+ "board": null,
+ "qualification": null,
+ "subject": "Artificial Intelligence and Robotics",
+ "syllabusCode": null,
+ "gradeSystem": "grade",
+ "source": {
+  "urls": [
+   "https://ncc.gov.pk/SiteImage/Misc/files/Artificial%20Intelligence%20and%20Robotics%20Curriculum.pdf"
+  ],
+  "publisher": "National Curriculum Council, Ministry of Federal Education and Professional Training",
+  "licence": "Government publication; structure + our own wording only",
+  "firstExam": null
+ },
+ "grades": [
+  {
+   "grade": "1",
+   "units": [
+    {
+     "id": "domain-a-ict-fundamentals",
+     "title": "Domain A: ICT Fundamentals",
+     "topics": [
+      {
+       "id": "computers-and-devices",
+       "title": "Computers and devices",
+       "subtopics": [
+        {
+         "id": "naming-ict-devices",
+         "title": "Naming ICT devices",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Name basic input, processing and output devices and say what each does."
+          }
+         ]
+        },
+        {
+         "id": "using-a-computer",
+         "title": "Using a computer",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Turn a computer on and off and open and close programs."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "domain-b-applied-digital-skills",
+     "title": "Domain B: Applied Digital Skills",
+     "topics": [
+      {
+       "id": "digital-tools",
+       "title": "Digital tools",
+       "subtopics": [
+        {
+         "id": "starting-to-type",
+         "title": "Starting to type",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Begin typing with an age-suitable typing program to learn the keyboard."
+          }
+         ]
+        },
+        {
+         "id": "drawing-and-creating",
+         "title": "Drawing and creating",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Make simple multimedia content with drawing tools such as Canva."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "domain-c-problem-solving-and-programming-fundame",
+     "title": "Domain C: Problem Solving and Programming Fundamentals",
+     "topics": [
+      {
+       "id": "block-based-coding",
+       "title": "Block-based coding",
+       "subtopics": [
+        {
+         "id": "spotting-a-problem",
+         "title": "Spotting a problem",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Identify, define and analyse a problem."
+          }
+         ]
+        },
+        {
+         "id": "solving-daily-problems",
+         "title": "Solving daily problems",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Solve simple everyday problems step by step."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "domain-d-introduction-to-ai-robotics",
+     "title": "Domain D: Introduction to AI & Robotics",
+     "topics": [
+      {
+       "id": "ai-and-robots",
+       "title": "AI and robots",
+       "subtopics": [
+        {
+         "id": "what-is-ai",
+         "title": "What is AI",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Understand basic ideas and everyday examples of AI."
+          }
+         ]
+        },
+        {
+         "id": "robots-versus-toys",
+         "title": "Robots versus toys",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Tell programmable robots from toys that cannot be programmed."
+          }
+         ]
+        },
+        {
+         "id": "robots-follow-instructions",
+         "title": "Robots follow instructions",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Understand that robots move and act by following instructions."
+          }
+         ]
+        },
+        {
+         "id": "ai-that-sees-and-hears",
+         "title": "AI that sees and hears",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Understand that AI lets some machines see, hear and recognise objects."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "domain-e-digital-safety",
+     "title": "Domain E: Digital Safety",
+     "topics": [
+      {
+       "id": "online-safety",
+       "title": "Online safety",
+       "subtopics": [
+        {
+         "id": "staying-safe-online",
+         "title": "Staying safe online",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Understand basic e-safety: no sharing personal information, trusted sites, asking a trusted adult."
+          }
+         ]
+        },
+        {
+         "id": "safe-and-unsafe-behaviour",
+         "title": "Safe and unsafe behaviour",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Tell safe from unsafe online behaviour through activities."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "2",
+   "units": [
+    {
+     "id": "domain-a-ict-fundamentals",
+     "title": "Domain A: ICT Fundamentals",
+     "topics": [
+      {
+       "id": "computers-and-devices",
+       "title": "Computers and devices",
+       "subtopics": [
+        {
+         "id": "ict-device-types",
+         "title": "ICT device types",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Name storage and communication devices and their jobs."
+          }
+         ]
+        },
+        {
+         "id": "using-simple-software",
+         "title": "Using simple software",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Move around simple software such as learning games and apps."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "domain-b-applied-digital-skills",
+     "title": "Domain B: Applied Digital Skills",
+     "topics": [
+      {
+       "id": "digital-tools",
+       "title": "Digital tools",
+       "subtopics": [
+        {
+         "id": "finger-placement",
+         "title": "Finger placement",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Practise proper finger placement and basic typing exercises."
+          }
+         ]
+        },
+        {
+         "id": "everyday-software",
+         "title": "Everyday software",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Use common applications such as a text editor and educational games."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "domain-c-problem-solving-and-programming-fundame",
+     "title": "Domain C: Problem Solving and Programming Fundamentals",
+     "topics": [
+      {
+       "id": "block-based-coding",
+       "title": "Block-based coding",
+       "subtopics": [
+        {
+         "id": "visual-programming",
+         "title": "Visual programming",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Use Scratch, Code.org or Blockly to practise sequencing and logic."
+          }
+         ]
+        },
+        {
+         "id": "blocks-for-interaction",
+         "title": "Blocks for interaction",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Combine visual, motion and sound blocks into an interactive experience."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "domain-d-introduction-to-ai-robotics",
+     "title": "Domain D: Introduction to AI & Robotics",
+     "topics": [
+      {
+       "id": "ai-and-robots",
+       "title": "AI and robots",
+       "subtopics": [
+        {
+         "id": "ai-and-robotics",
+         "title": "AI and robotics",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Understand how AI and robotics are related and how AI begins to learn."
+          }
+         ]
+        },
+        {
+         "id": "ai-tools-for-puzzles",
+         "title": "AI tools for puzzles",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Use AI tools to solve simple problems or puzzles."
+          }
+         ]
+        },
+        {
+         "id": "directional-logic",
+         "title": "Directional logic",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Use directional commands to move a real or virtual robot."
+          }
+         ]
+        },
+        {
+         "id": "sensors",
+         "title": "Sensors",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Know that machines use sensors to make decisions."
+          }
+         ]
+        },
+        {
+         "id": "simulating-ai",
+         "title": "Simulating AI",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Simulate an AI activity such as sorting or reacting to voice."
+          }
+         ]
+        },
+        {
+         "id": "talking-to-an-ai-model",
+         "title": "Talking to an AI model",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Interact with a simple AI model to see how recognition works."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "domain-e-digital-safety",
+     "title": "Domain E: Digital Safety",
+     "topics": [
+      {
+       "id": "online-safety",
+       "title": "Online safety",
+       "subtopics": [
+        {
+         "id": "respectful-online-talk",
+         "title": "Respectful online talk",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Recognise respectful online communication and responsible digital interaction."
+          }
+         ]
+        },
+        {
+         "id": "personal-information-and-privacy",
+         "title": "Personal information and privacy",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Know what personal information is and why privacy matters."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "3",
+   "units": [
+    {
+     "id": "domain-a-ict-fundamentals",
+     "title": "Domain A: ICT Fundamentals",
+     "topics": [
+      {
+       "id": "computers-and-devices",
+       "title": "Computers and devices",
+       "subtopics": [
+        {
+         "id": "peripheral-devices",
+         "title": "Peripheral devices",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Use basic peripherals like the keyboard, mouse, screen and printer."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "domain-b-applied-digital-skills",
+     "title": "Domain B: Applied Digital Skills",
+     "topics": [
+      {
+       "id": "digital-tools",
+       "title": "Digital tools",
+       "subtopics": [
+        {
+         "id": "touch-typing",
+         "title": "Touch typing",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Improve typing speed and accuracy with touch-typing technique."
+          }
+         ]
+        },
+        {
+         "id": "word-processing",
+         "title": "Word processing",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Use word processors like Word or Google Docs, including saving and opening files."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "domain-c-problem-solving-and-programming-fundame",
+     "title": "Domain C: Problem Solving and Programming Fundamentals",
+     "topics": [
+      {
+       "id": "block-based-coding",
+       "title": "Block-based coding",
+       "subtopics": [
+        {
+         "id": "block-stories",
+         "title": "Block stories",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Create a story using visual, motion and sound blocks."
+          }
+         ]
+        },
+        {
+         "id": "scenes-and-dialogue",
+         "title": "Scenes and dialogue",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Build scenes and script dialogue in small block-coded projects."
+          }
+         ]
+        },
+        {
+         "id": "loops-events-conditions",
+         "title": "Loops, events, conditions",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Use loops, events and conditions in a story project."
+          }
+         ]
+        },
+        {
+         "id": "debugging",
+         "title": "Debugging",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Find and fix mistakes in your own block program."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "domain-d-introduction-to-ai-robotics",
+     "title": "Domain D: Introduction to AI & Robotics",
+     "topics": [
+      {
+       "id": "ai-and-robots",
+       "title": "AI and robots",
+       "subtopics": [
+        {
+         "id": "ai-learns-patterns",
+         "title": "AI learns patterns",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Recognise that AI learns patterns from data."
+          }
+         ]
+        },
+        {
+         "id": "testing-an-ai-model",
+         "title": "Testing an AI model",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Test a basic AI model with visual tools such as Teachable Machine."
+          }
+         ]
+        },
+        {
+         "id": "rules-versus-learning",
+         "title": "Rules versus learning",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Tell rule-based coding from learning-based AI behaviour."
+          }
+         ]
+        },
+        {
+         "id": "ai-in-daily-devices",
+         "title": "AI in daily devices",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Recognise common AI-powered devices."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "domain-e-digital-safety",
+     "title": "Domain E: Digital Safety",
+     "topics": [
+      {
+       "id": "online-safety",
+       "title": "Online safety",
+       "subtopics": [
+        {
+         "id": "scams-privacy-cyberbullying",
+         "title": "Scams, privacy, cyberbullying",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Recognise scams, use privacy settings and understand cyberbullying."
+          }
+         ]
+        },
+        {
+         "id": "digital-citizenship",
+         "title": "Digital citizenship",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Understand digital citizenship, online ethics and copyright."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "4",
+   "units": [
+    {
+     "id": "domain-a-ict-fundamentals",
+     "title": "Domain A: ICT Fundamentals",
+     "topics": [
+      {
+       "id": "computers-and-devices",
+       "title": "Computers and devices",
+       "subtopics": [
+        {
+         "id": "more-peripherals",
+         "title": "More peripherals",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Use peripherals such as a scanner, camera and flash disk."
+          }
+         ]
+        },
+        {
+         "id": "basic-troubleshooting",
+         "title": "Basic troubleshooting",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Fix simple problems on common ICT devices."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "domain-b-applied-digital-skills",
+     "title": "Domain B: Applied Digital Skills",
+     "topics": [
+      {
+       "id": "digital-tools",
+       "title": "Digital tools",
+       "subtopics": [
+        {
+         "id": "online-research",
+         "title": "Online research",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Search online, judge how trustworthy sources are and cite them."
+          }
+         ]
+        },
+        {
+         "id": "multimedia-projects",
+         "title": "Multimedia projects",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Combine text, images and sound into presentations or digital stories."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "domain-c-problem-solving-and-programming-fundame",
+     "title": "Domain C: Problem Solving and Programming Fundamentals",
+     "topics": [
+      {
+       "id": "block-based-coding",
+       "title": "Block-based coding",
+       "subtopics": [
+        {
+         "id": "variables-and-conditionals",
+         "title": "Variables and conditionals",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Write block programs using variables, conditionals, loops and events."
+          }
+         ]
+        },
+        {
+         "id": "logic-blocks",
+         "title": "Logic blocks",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Combine several logic blocks to control interactive projects."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "domain-d-introduction-to-ai-robotics",
+     "title": "Domain D: Introduction to AI & Robotics",
+     "topics": [
+      {
+       "id": "ai-and-robots",
+       "title": "AI and robots",
+       "subtopics": [
+        {
+         "id": "smart-systems",
+         "title": "Smart systems",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Recognise that smart systems use sensors and automation to decide."
+          }
+         ]
+        },
+        {
+         "id": "simulating-smart-systems",
+         "title": "Simulating smart systems",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Simulate smart systems with block-based logic."
+          }
+         ]
+        },
+        {
+         "id": "hardware-projects",
+         "title": "Hardware projects",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Prepare or simulate a simple hardware project in TinkerCad, Proteus or Fritzing."
+          }
+         ]
+        },
+        {
+         "id": "ai-in-homes-and-cities",
+         "title": "AI in homes and cities",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explore real uses of AI in homes, cities and education."
+          }
+         ]
+        },
+        {
+         "id": "classify-predict-react",
+         "title": "Classify, predict, react",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Use AI models that classify, predict or react to input data."
+          }
+         ]
+        },
+        {
+         "id": "benefits-and-limits-of-ai",
+         "title": "Benefits and limits of AI",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Discuss benefits and limitations of AI in decision making."
+          }
+         ]
+        },
+        {
+         "id": "making-a-tech-solution",
+         "title": "Making a tech solution",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Apply coding, AI logic and data understanding to build a useful solution."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "domain-e-digital-safety",
+     "title": "Domain E: Digital Safety",
+     "topics": [
+      {
+       "id": "online-safety",
+       "title": "Online safety",
+       "subtopics": [
+        {
+         "id": "responsible-internet-use",
+         "title": "Responsible internet use",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Understand safe internet use, appropriate behaviour and digital footprints."
+          }
+         ]
+        },
+        {
+         "id": "ethics-in-smart-systems",
+         "title": "Ethics in smart systems",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Apply ethical reasoning when using or designing smart systems."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "5",
+   "units": [
+    {
+     "id": "domain-a-ict-fundamentals",
+     "title": "Domain A: ICT Fundamentals",
+     "topics": [
+      {
+       "id": "computers-and-devices",
+       "title": "Computers and devices",
+       "subtopics": [
+        {
+         "id": "smart-devices",
+         "title": "Smart devices",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Recognise smart devices and their uses in daily life."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "domain-b-applied-digital-skills",
+     "title": "Domain B: Applied Digital Skills",
+     "topics": [
+      {
+       "id": "digital-tools",
+       "title": "Digital tools",
+       "subtopics": [
+        {
+         "id": "spreadsheets",
+         "title": "Spreadsheets",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Use basic spreadsheet functions to organise data, make graphs and read results."
+          }
+         ]
+        },
+        {
+         "id": "collaborative-projects",
+         "title": "Collaborative projects",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Work together on group presentations, digital stories or small research projects."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "domain-c-problem-solving-and-programming-fundame",
+     "title": "Domain C: Problem Solving and Programming Fundamentals",
+     "topics": [
+      {
+       "id": "block-based-coding",
+       "title": "Block-based coding",
+       "subtopics": [
+        {
+         "id": "games-and-quizzes",
+         "title": "Games and quizzes",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Design interactive games or quizzes that react to the player."
+          }
+         ]
+        },
+        {
+         "id": "blocks-to-text",
+         "title": "Blocks to text",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Recognise that block code can be written as text code such as Python."
+          }
+         ]
+        },
+        {
+         "id": "first-text-programs",
+         "title": "First text programs",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Write simple Python programs that show problem solving and logic."
+          }
+         ]
+        },
+        {
+         "id": "block-and-text-views",
+         "title": "Block and text views",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "View the same program in block and text modes on platforms like MakeCode."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "domain-d-introduction-to-ai-robotics",
+     "title": "Domain D: Introduction to AI & Robotics",
+     "topics": [
+      {
+       "id": "ai-and-robots",
+       "title": "AI and robots",
+       "subtopics": [
+        {
+         "id": "intro-to-machine-learning",
+         "title": "Intro to machine learning",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain that AI uses data to learn patterns."
+          }
+         ]
+        },
+        {
+         "id": "testing-with-real-data",
+         "title": "Testing with real data",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Test a basic AI model with real images or sounds."
+          }
+         ]
+        },
+        {
+         "id": "ai-accuracy",
+         "title": "AI accuracy",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Reflect on AI accuracy and why good training data matters."
+          }
+         ]
+        },
+        {
+         "id": "sensors-and-actuators",
+         "title": "Sensors and actuators",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Recognise that sensors give input and actuators give output in smart systems."
+          }
+         ]
+        },
+        {
+         "id": "simulating-smart-devices",
+         "title": "Simulating smart devices",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Simulate smart device behaviour with block code or virtual hardware."
+          }
+         ]
+        },
+        {
+         "id": "automated-decisions",
+         "title": "Automated decisions",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain that real-world systems automate decisions using inputs."
+          }
+         ]
+        },
+        {
+         "id": "smart-solutions",
+         "title": "Smart solutions",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Propose a creative smart solution to a real problem using AI or code."
+          }
+         ]
+        },
+        {
+         "id": "integrating-parts",
+         "title": "Integrating parts",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Combine sensors, logic or trained models in a simulated or coded system."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "domain-e-digital-safety",
+     "title": "Domain E: Digital Safety",
+     "topics": [
+      {
+       "id": "online-safety",
+       "title": "Online safety",
+       "subtopics": [
+        {
+         "id": "your-digital-footprint",
+         "title": "Your digital footprint",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Think critically about your digital footprint and online interactions."
+          }
+         ]
+        },
+        {
+         "id": "using-ai-tools-in-research",
+         "title": "Using AI tools in research",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Use AI tools appropriately in digital research."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "6",
+   "units": [
+    {
+     "id": "domain-a-fundamentals-of-ai-robotics",
+     "title": "Domain A: Fundamentals of AI & Robotics",
+     "topics": [
+      {
+       "id": "ai-foundations",
+       "title": "AI foundations",
+       "subtopics": [
+        {
+         "id": "ai-and-robotics-basics",
+         "title": "AI and robotics basics",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe the basic concepts of AI and robotics."
+          }
+         ]
+        },
+        {
+         "id": "real-world-ai-and-robots",
+         "title": "Real-world AI and robots",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Discuss real-world applications of AI and robotics."
+          }
+         ]
+        },
+        {
+         "id": "history-of-ai-and-robots",
+         "title": "History of AI and robots",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Discuss how AI and robotics evolved and why they matter."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "domain-b-practical-applications-of-ai-robotics",
+     "title": "Domain B: Practical Applications of AI & Robotics",
+     "topics": [
+      {
+       "id": "ai-and-robots-at-work",
+       "title": "AI and robots at work",
+       "subtopics": [
+        {
+         "id": "ai-and-efficiency",
+         "title": "AI and efficiency",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Analyse how AI and robotics improve processes and efficiency in various sectors."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "domain-c-programming-logical-thinking",
+     "title": "Domain C: Programming & Logical Thinking",
+     "topics": [
+      {
+       "id": "python-programming",
+       "title": "Python programming",
+       "subtopics": [
+        {
+         "id": "python-syntax",
+         "title": "Python syntax",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Understand the basic syntax and structure of Python programs."
+          }
+         ]
+        },
+        {
+         "id": "first-python-programs",
+         "title": "First Python programs",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Write simple Python programs for basic tasks."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "domain-d-machine-learning-ai-algorithms",
+     "title": "Domain D: Machine Learning & AI Algorithms",
+     "topics": [
+      {
+       "id": "machine-learning",
+       "title": "Machine learning",
+       "subtopics": [
+        {
+         "id": "ai-and-ml-in-real-life",
+         "title": "AI and ML in real life",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Recognise real-life examples of AI and ML."
+          }
+         ]
+        },
+        {
+         "id": "how-ai-learns",
+         "title": "How AI learns",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explore how AI learns from data in basic tasks."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "domain-e-robotic-components-advanced-robotics",
+     "title": "Domain E: Robotic Components & Advanced Robotics",
+     "topics": [
+      {
+       "id": "robot-parts-and-systems",
+       "title": "Robot parts and systems",
+       "subtopics": [
+        {
+         "id": "parts-of-robots",
+         "title": "Parts of robots",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Understand basic parts of robots used in daily life."
+          }
+         ]
+        },
+        {
+         "id": "sensors-and-environment",
+         "title": "Sensors and environment",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain how sensors help robots interact with surroundings."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "7",
+   "units": [
+    {
+     "id": "domain-a-fundamentals-of-ai-robotics",
+     "title": "Domain A: Fundamentals of AI & Robotics",
+     "topics": [
+      {
+       "id": "ai-foundations",
+       "title": "AI foundations",
+       "subtopics": [
+        {
+         "id": "parts-of-an-ai-system",
+         "title": "Parts of an AI system",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain the role and components of AI systems."
+          }
+         ]
+        },
+        {
+         "id": "data-in-ai",
+         "title": "Data in AI",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explore how data is collected and processed in AI."
+          }
+         ]
+        },
+        {
+         "id": "algorithms",
+         "title": "Algorithms",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Apply algorithms to solve problems."
+          }
+         ]
+        },
+        {
+         "id": "ai-decision-making",
+         "title": "AI decision making",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Analyse how AI makes decisions."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "domain-b-practical-applications-of-ai-robotics",
+     "title": "Domain B: Practical Applications of AI & Robotics",
+     "topics": [
+      {
+       "id": "ai-and-robots-at-work",
+       "title": "AI and robots at work",
+       "subtopics": [
+        {
+         "id": "robots-helping-daily",
+         "title": "Robots helping daily",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Identify examples of robots helping with everyday tasks."
+          }
+         ]
+        },
+        {
+         "id": "robot-components",
+         "title": "Robot components",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Name robot components such as sensors, motors and controllers."
+          }
+         ]
+        },
+        {
+         "id": "sensors-for-perception",
+         "title": "Sensors for perception",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Recognise that sensors let robots perceive their surroundings."
+          }
+         ]
+        },
+        {
+         "id": "robot-power",
+         "title": "Robot power",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Evaluate how power sources support robot movement and function."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "domain-c-programming-logical-thinking",
+     "title": "Domain C: Programming & Logical Thinking",
+     "topics": [
+      {
+       "id": "python-programming",
+       "title": "Python programming",
+       "subtopics": [
+        {
+         "id": "conditionals-in-python",
+         "title": "Conditionals in Python",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Use conditional statements to control flow and make decisions."
+          }
+         ]
+        },
+        {
+         "id": "loops-in-python",
+         "title": "Loops in Python",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Use loops to repeat tasks in Python."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "domain-d-machine-learning-ai-algorithms",
+     "title": "Domain D: Machine Learning & AI Algorithms",
+     "topics": [
+      {
+       "id": "machine-learning",
+       "title": "Machine learning",
+       "subtopics": [
+        {
+         "id": "ai-learns-from-data",
+         "title": "AI learns from data",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain how AI learns from data to solve problems."
+          }
+         ]
+        },
+        {
+         "id": "classification-and-sorting",
+         "title": "Classification and sorting",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explore basic ML ideas like classification and sorting."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "domain-e-robotic-components-advanced-robotics",
+     "title": "Domain E: Robotic Components & Advanced Robotics",
+     "topics": [
+      {
+       "id": "robot-parts-and-systems",
+       "title": "Robot parts and systems",
+       "subtopics": [
+        {
+         "id": "robots-in-daily-tasks",
+         "title": "Robots in daily tasks",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Discuss the robots' role in assisting daily tasks."
+          }
+         ]
+        },
+        {
+         "id": "sensors-and-motors",
+         "title": "Sensors and motors",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain key components like sensors and motors."
+          }
+         ]
+        },
+        {
+         "id": "sensors-guide-interaction",
+         "title": "Sensors guide interaction",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain how sensors guide robot interaction."
+          }
+         ]
+        },
+        {
+         "id": "movement-and-power",
+         "title": "Movement and power",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain robot movement and power sources."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "8",
+   "units": [
+    {
+     "id": "domain-a-fundamentals-of-ai-robotics",
+     "title": "Domain A: Fundamentals of AI & Robotics",
+     "topics": [
+      {
+       "id": "ai-foundations",
+       "title": "AI foundations",
+       "subtopics": [
+        {
+         "id": "ai-versus-machine-learning",
+         "title": "AI versus machine learning",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Tell AI apart from machine learning."
+          }
+         ]
+        },
+        {
+         "id": "how-ml-works",
+         "title": "How ML works",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain ML concepts and how they work."
+          }
+         ]
+        },
+        {
+         "id": "types-of-ml-models",
+         "title": "Types of ML models",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Analyse different types of ML models."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "domain-b-practical-applications-of-ai-robotics",
+     "title": "Domain B: Practical Applications of AI & Robotics",
+     "topics": [
+      {
+       "id": "ai-and-robots-at-work",
+       "title": "AI and robots at work",
+       "subtopics": [
+        {
+         "id": "ai-makes-robots-intelligent",
+         "title": "AI makes robots intelligent",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain how AI lets robots operate intelligently."
+          }
+         ]
+        },
+        {
+         "id": "sensors-for-navigation",
+         "title": "Sensors for navigation",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Discuss how sensors help robots navigate and interact."
+          }
+         ]
+        },
+        {
+         "id": "robot-locomotion",
+         "title": "Robot locomotion",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Tell the types of robot movement apart."
+          }
+         ]
+        },
+        {
+         "id": "robot-control-methods",
+         "title": "Robot control methods",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Evaluate control methods for autonomous robots."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "domain-c-programming-logical-thinking",
+     "title": "Domain C: Programming & Logical Thinking",
+     "topics": [
+      {
+       "id": "python-programming",
+       "title": "Python programming",
+       "subtopics": [
+        {
+         "id": "collections",
+         "title": "Collections",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Use lists, dictionaries, tuples and arrays to store and handle data."
+          }
+         ]
+        },
+        {
+         "id": "string-handling",
+         "title": "String handling",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Do basic string manipulation for text processing."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "domain-d-machine-learning-ai-algorithms",
+     "title": "Domain D: Machine Learning & AI Algorithms",
+     "topics": [
+      {
+       "id": "machine-learning",
+       "title": "Machine learning",
+       "subtopics": [
+        {
+         "id": "ai-versus-ml",
+         "title": "AI versus ML",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Differentiate AI from machine learning."
+          }
+         ]
+        },
+        {
+         "id": "how-algorithms-learn",
+         "title": "How algorithms learn",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Acknowledge how ML algorithms learn from data."
+          }
+         ]
+        },
+        {
+         "id": "types-of-ml",
+         "title": "Types of ML",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Discuss types of ML models."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "domain-e-robotic-components-advanced-robotics",
+     "title": "Domain E: Robotic Components & Advanced Robotics",
+     "topics": [
+      {
+       "id": "robot-parts-and-systems",
+       "title": "Robot parts and systems",
+       "subtopics": [
+        {
+         "id": "ai-makes-robots-smarter",
+         "title": "AI makes robots smarter",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Discuss how AI makes robots smarter."
+          }
+         ]
+        },
+        {
+         "id": "senses-for-navigation",
+         "title": "Senses for navigation",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain AI's use of senses for navigation."
+          }
+         ]
+        },
+        {
+         "id": "robot-locomotion-types",
+         "title": "Robot locomotion types",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Discuss types of robot locomotion."
+          }
+         ]
+        },
+        {
+         "id": "autonomy-and-control",
+         "title": "Autonomy and control",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Discuss robot control methods like autonomy."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "9",
+   "units": [
+    {
+     "id": "domain-a-fundamentals-of-ai-robotics",
+     "title": "Domain A: Fundamentals of AI & Robotics",
+     "topics": [
+      {
+       "id": "ai-foundations",
+       "title": "AI foundations",
+       "subtopics": [
+        {
+         "id": "ai-in-autonomous-robots",
+         "title": "AI in autonomous robots",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Evaluate the role of AI in enabling autonomous robots."
+          }
+         ]
+        },
+        {
+         "id": "sense-think-act",
+         "title": "Sense-Think-Act",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Analyse the AI learning process through the Sense-Think-Act model."
+          }
+         ]
+        },
+        {
+         "id": "ai-and-environments",
+         "title": "AI and environments",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Apply AI to understand environments."
+          }
+         ]
+        },
+        {
+         "id": "ai-robotics-across-industries",
+         "title": "AI robotics across industries",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Analyse AI-driven robotics applications across industries."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "domain-b-practical-applications-of-ai-robotics",
+     "title": "Domain B: Practical Applications of AI & Robotics",
+     "topics": [
+      {
+       "id": "ai-and-robots-at-work",
+       "title": "AI and robots at work",
+       "subtopics": [
+        {
+         "id": "ai-in-smart-homes",
+         "title": "AI in smart homes",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Discuss the role of AI and automation in smart homes."
+          }
+         ]
+        },
+        {
+         "id": "smart-devices-in-daily-life",
+         "title": "Smart devices in daily life",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Discuss smart home devices and their effect on daily living."
+          }
+         ]
+        },
+        {
+         "id": "learning-in-smart-homes",
+         "title": "Learning in smart homes",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain how AI learning algorithms improve smart home technology."
+          }
+         ]
+        },
+        {
+         "id": "smart-home-security",
+         "title": "Smart home security",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Evaluate smart home security technologies."
+          }
+         ]
+        },
+        {
+         "id": "future-smart-homes",
+         "title": "Future smart homes",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Predict future smart home trends from new developments."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "domain-c-programming-logical-thinking",
+     "title": "Domain C: Programming & Logical Thinking",
+     "topics": [
+      {
+       "id": "python-programming",
+       "title": "Python programming",
+       "subtopics": [
+        {
+         "id": "functions-and-modules",
+         "title": "Functions and modules",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Use functions and modules to write reusable code."
+          }
+         ]
+        },
+        {
+         "id": "building-programs",
+         "title": "Building programs",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Use core programming ideas to build meaningful programs."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "domain-d-machine-learning-ai-algorithms",
+     "title": "Domain D: Machine Learning & AI Algorithms",
+     "topics": [
+      {
+       "id": "machine-learning",
+       "title": "Machine learning",
+       "subtopics": [
+        {
+         "id": "preparing-data",
+         "title": "Preparing data",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Collect, clean and preprocess data for AI analysis."
+          }
+         ]
+        },
+        {
+         "id": "exploring-data",
+         "title": "Exploring data",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain why exploratory data analysis matters for finding patterns."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "domain-e-robotic-components-advanced-robotics",
+     "title": "Domain E: Robotic Components & Advanced Robotics",
+     "topics": [
+      {
+       "id": "robot-parts-and-systems",
+       "title": "Robot parts and systems",
+       "subtopics": [
+        {
+         "id": "laws-of-robotics",
+         "title": "Laws of Robotics",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain the Laws of Robotics and their purpose."
+          }
+         ]
+        },
+        {
+         "id": "three-laws-in-examples",
+         "title": "Three Laws in examples",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain the Three Laws of Robotics with examples."
+          }
+         ]
+        },
+        {
+         "id": "challenges-applying-the-laws",
+         "title": "Challenges applying the laws",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Discuss challenges in applying the laws in robot use."
+          }
+         ]
+        },
+        {
+         "id": "laws-in-modern-robots",
+         "title": "Laws in modern robots",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Discuss how the laws are adapted for modern robots."
+          }
+         ]
+        },
+        {
+         "id": "ethics-in-robot-programming",
+         "title": "Ethics in robot programming",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Recognise ethical considerations in robot programming."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "10",
+   "units": [
+    {
+     "id": "domain-c-programming-logical-thinking",
+     "title": "Domain C: Programming & Logical Thinking",
+     "topics": [
+      {
+       "id": "python-programming",
+       "title": "Python programming",
+       "subtopics": [
+        {
+         "id": "datasets-in-python",
+         "title": "Datasets in Python",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Load, clean and visualise datasets with Pandas, Matplotlib or Seaborn."
+          }
+         ]
+        },
+        {
+         "id": "numpy-arrays",
+         "title": "NumPy arrays",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Use Python basics and array maths such as NumPy."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "domain-d-machine-learning-ai-algorithms",
+     "title": "Domain D: Machine Learning & AI Algorithms",
+     "topics": [
+      {
+       "id": "machine-learning",
+       "title": "Machine learning",
+       "subtopics": [
+        {
+         "id": "supervised-and-unsupervised",
+         "title": "Supervised and unsupervised",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Differentiate supervised from unsupervised learning."
+          }
+         ]
+        },
+        {
+         "id": "regression",
+         "title": "Regression",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Apply regression models to predict continuous outcomes."
+          }
+         ]
+        },
+        {
+         "id": "classification",
+         "title": "Classification",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Apply classification models to categorise data."
+          }
+         ]
+        },
+        {
+         "id": "clustering",
+         "title": "Clustering",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Use clustering models to group similar data."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "domain-e-robotic-components-advanced-robotics",
+     "title": "Domain E: Robotic Components & Advanced Robotics",
+     "topics": [
+      {
+       "id": "robot-parts-and-systems",
+       "title": "Robot parts and systems",
+       "subtopics": [
+        {
+         "id": "kinematics-and-joints",
+         "title": "Kinematics and joints",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Analyse the role of kinematics, joints and sensors."
+          }
+         ]
+        },
+        {
+         "id": "types-of-robotic-joints",
+         "title": "Types of robotic joints",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Discuss types of robotic joints and their functions."
+          }
+         ]
+        },
+        {
+         "id": "sensors-in-movement",
+         "title": "Sensors in movement",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Illustrate how sensors are used in robot movement."
+          }
+         ]
+        },
+        {
+         "id": "real-world-robot-components",
+         "title": "Real-world robot components",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Understand real-world robots through their components."
+          }
+         ]
+        },
+        {
+         "id": "emerging-robotics-trends",
+         "title": "Emerging robotics trends",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explore emerging trends such as soft robotics."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "domain-f-ethics-laws-careers-in-ai-robotics",
+     "title": "Domain F: Ethics, Laws & Careers in AI & Robotics",
+     "topics": [
+      {
+       "id": "ethics-and-careers",
+       "title": "Ethics and careers",
+       "subtopics": [
+        {
+         "id": "why-ai-ethics-matters",
+         "title": "Why AI ethics matters",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain why ethical practice in AI and robotics is important."
+          }
+         ]
+        },
+        {
+         "id": "ethical-guidelines",
+         "title": "Ethical guidelines",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain the need for ethical guidelines in AI and robotics."
+          }
+         ]
+        },
+        {
+         "id": "bias-privacy-safety",
+         "title": "Bias, privacy, safety",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Discuss ethical challenges such as bias, privacy and safety."
+          }
+         ]
+        },
+        {
+         "id": "ai-and-robotics-jobs",
+         "title": "AI and robotics jobs",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Identify specific job roles that use AI and robotics."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "11",
+   "units": [
+    {
+     "id": "domain-a-fundamentals-of-ai-robotics",
+     "title": "Domain A: Fundamentals of AI & Robotics",
+     "topics": [
+      {
+       "id": "ai-foundations",
+       "title": "AI foundations",
+       "subtopics": [
+        {
+         "id": "ai-transforming-industries",
+         "title": "AI transforming industries",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Analyse how AI changes industries and modern systems."
+          }
+         ]
+        },
+        {
+         "id": "data-powers-ai",
+         "title": "Data powers AI",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain why data is vital for AI systems."
+          }
+         ]
+        },
+        {
+         "id": "ml-in-robotics",
+         "title": "ML in robotics",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Recognise how machine learning improves robot abilities."
+          }
+         ]
+        },
+        {
+         "id": "sensors-and-kinematics",
+         "title": "Sensors and kinematics",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Recognise that robotics applications are enhanced by sensors and kinematics."
+          }
+         ]
+        },
+        {
+         "id": "three-laws-of-robotics",
+         "title": "Three Laws of Robotics",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Evaluate how the Three Laws of Robotics guide robot behaviour."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "domain-c-programming-logical-thinking",
+     "title": "Domain C: Programming & Logical Thinking",
+     "topics": [
+      {
+       "id": "python-programming",
+       "title": "Python programming",
+       "subtopics": [
+        {
+         "id": "core-programming-concepts",
+         "title": "Core programming concepts",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Use variables, control structures and operators in Python."
+          }
+         ]
+        },
+        {
+         "id": "object-oriented-programming",
+         "title": "Object-oriented programming",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Use object-oriented programming to build structured applications."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "domain-d-machine-learning-ai-algorithms",
+     "title": "Domain D: Machine Learning & AI Algorithms",
+     "topics": [
+      {
+       "id": "machine-learning",
+       "title": "Machine learning",
+       "subtopics": [
+        {
+         "id": "machine-learning-versus-deep-learning",
+         "title": "Machine learning versus deep learning",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Analyse differences between ML and deep learning."
+          }
+         ]
+        },
+        {
+         "id": "neural-networks",
+         "title": "Neural networks",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain neural networks and their biological inspiration."
+          }
+         ]
+        },
+        {
+         "id": "types-of-neural-networks",
+         "title": "Types of neural networks",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Differentiate between types of neural networks."
+          }
+         ]
+        },
+        {
+         "id": "evaluating-ml-models",
+         "title": "Evaluating ML models",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Evaluate an ML model for real-world problems."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "domain-e-robotic-components-advanced-robotics",
+     "title": "Domain E: Robotic Components & Advanced Robotics",
+     "topics": [
+      {
+       "id": "robot-parts-and-systems",
+       "title": "Robot parts and systems",
+       "subtopics": [
+        {
+         "id": "autonomous-robotics",
+         "title": "Autonomous robotics",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Analyse autonomous robotics using advanced algorithms."
+          }
+         ]
+        },
+        {
+         "id": "collaborative-and-swarm-robots",
+         "title": "Collaborative and swarm robots",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain collaborative robotics and swarm robotics."
+          }
+         ]
+        },
+        {
+         "id": "mission-driven-robots",
+         "title": "Mission-driven robots",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Discuss mission-driven robots and their impact."
+          }
+         ]
+        },
+        {
+         "id": "computer-vision-and-robotic-arms",
+         "title": "Computer vision and robotic arms",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Recognise computer vision and robotic arms."
+          }
+         ]
+        },
+        {
+         "id": "bio-inspired-and-healthcare-robots",
+         "title": "Bio-inspired and healthcare robots",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Analyse bio-inspired and healthcare robotics."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "12",
+   "units": [
+    {
+     "id": "domain-c-programming-logical-thinking",
+     "title": "Domain C: Programming & Logical Thinking",
+     "topics": [
+      {
+       "id": "python-programming",
+       "title": "Python programming",
+       "subtopics": [
+        {
+         "id": "classical-ml-models",
+         "title": "Classical ML models",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Evaluate models like linear regression and decision trees with scikit-learn or SciPy."
+          }
+         ]
+        },
+        {
+         "id": "ml-libraries",
+         "title": "ML libraries",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Implement basic ML models with libraries such as TensorFlow or PyTorch."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "domain-d-machine-learning-ai-algorithms",
+     "title": "Domain D: Machine Learning & AI Algorithms",
+     "topics": [
+      {
+       "id": "machine-learning",
+       "title": "Machine learning",
+       "subtopics": [
+        {
+         "id": "computer-vision",
+         "title": "Computer vision",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Analyse differences between computer vision and human vision."
+          }
+         ]
+        },
+        {
+         "id": "data-science-in-ai",
+         "title": "Data science in AI",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Analyse the role of data science in AI and robotics."
+          }
+         ]
+        },
+        {
+         "id": "data-analysis-in-python",
+         "title": "Data analysis in Python",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Apply data analysis with Pandas, NumPy, Matplotlib or Seaborn."
+          }
+         ]
+        },
+        {
+         "id": "nlp-llms-and-agentic-ai",
+         "title": "NLP, LLMs and agentic AI",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain NLP, LLMs and agentic AI."
+          }
+         ]
+        },
+        {
+         "id": "applications-of-nlp-and-llms",
+         "title": "Applications of NLP and LLMs",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Acknowledge applications of NLP, LLMs and agentic AI."
+          }
+         ]
+        },
+        {
+         "id": "agentic-ai-in-systems",
+         "title": "Agentic AI in systems",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Analyse the role of agentic AI in intelligent systems."
+          }
+         ]
+        },
+        {
+         "id": "building-a-chatbot",
+         "title": "Building a chatbot",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Design and build a chatbot using ML models."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "domain-e-robotic-components-advanced-robotics",
+     "title": "Domain E: Robotic Components & Advanced Robotics",
+     "topics": [
+      {
+       "id": "robot-parts-and-systems",
+       "title": "Robot parts and systems",
+       "subtopics": [
+        {
+         "id": "robots-for-extreme-environments",
+         "title": "Robots for extreme environments",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain the components of robots for extreme environments."
+          }
+         ]
+        },
+        {
+         "id": "movement-in-harsh-conditions",
+         "title": "Movement in harsh conditions",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Discuss how robots move in harsh conditions."
+          }
+         ]
+        },
+        {
+         "id": "exploring-inaccessible-areas",
+         "title": "Exploring inaccessible areas",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Analyse robots' ability to explore inaccessible areas."
+          }
+         ]
+        },
+        {
+         "id": "ai-driven-autonomy",
+         "title": "AI-driven autonomy",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Illustrate AI-driven autonomy in robotic systems."
+          }
+         ]
+        },
+        {
+         "id": "disaster-response-robots",
+         "title": "Disaster response robots",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Evaluate robots' role in disaster response."
+          }
+         ]
+        },
+        {
+         "id": "ml-for-robot-intelligence",
+         "title": "ML for robot intelligence",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Evaluate ML's role in improving robotic intelligence."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "domain-f-ethics-laws-careers-in-ai-robotics",
+     "title": "Domain F: Ethics, Laws & Careers in AI & Robotics",
+     "topics": [
+      {
+       "id": "ethics-and-careers",
+       "title": "Ethics and careers",
+       "subtopics": [
+        {
+         "id": "real-world-ethical-dilemmas",
+         "title": "Real-world ethical dilemmas",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Analyse real-world ethical dilemmas and propose solutions."
+          }
+         ]
+        },
+        {
+         "id": "career-pathways",
+         "title": "Career pathways",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explore specific career pathways in AI and robotics."
+          }
+         ]
+        },
+        {
+         "id": "skills-industry-needs",
+         "title": "Skills industry needs",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Identify skills required by industry and ethical considerations."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "build": {
+  "builtAt": "2026-10-14T08:19:19.312Z",
+  "model": "claude-agent",
+  "usd": 0,
+  "expectedCodes": null,
+  "coverage": null,
+  "missingCodes": [],
+  "counts": {
+   "grades": 12,
+   "units": 57,
+   "topics": 57,
+   "subtopics": 180,
+   "outcomes": 180
+  },
+  "warnings": [
+   "unit \"Domain A: ICT Fundamentals\" (grade 3) has a single outcome",
+   "unit \"Domain A: ICT Fundamentals\" (grade 5) has a single outcome",
+   "unit \"Domain B: Practical Applications of AI & Robotics\" (grade 6) has a single outcome"
+  ]
+ }
+}

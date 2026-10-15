@@ -1,0 +1,1011 @@
+{
+ "id": "pk-fbise-af-hssc-2-physics",
+ "region": "PK",
+ "framework": "FBISE Assessment Framework (National Curriculum of Pakistan 2022-23)",
+ "board": "FBISE",
+ "qualification": "HSSC-II",
+ "subject": "Physics",
+ "syllabusCode": null,
+ "gradeSystem": "grade",
+ "source": {
+  "urls": [
+   "https://www.fbise.edu.pk/ModelPaper/2025/Assessment%20Frameworks/HSSC-II/Final%20Assessment%20Framework%20%2B%20Model%20Question%20Paper%20Physics%20HSSC-II.pdf"
+  ],
+  "publisher": "Federal Board of Intermediate and Secondary Education",
+  "licence": "Government publication; structure + our own wording only",
+  "firstExam": "2026"
+ },
+ "grades": [
+  {
+   "grade": "12",
+   "units": [
+    {
+     "id": "domain-b-mechanics",
+     "title": "Domain B: Mechanics",
+     "topics": [
+      {
+       "id": "gravitation",
+       "title": "Gravitation",
+       "subtopics": [
+        {
+         "id": "gravitational-field-and-force",
+         "title": "Gravitational field and force",
+         "outcomes": [
+          {
+           "code": "P-12-B-01",
+           "text": "Define gravitational field strength and calculate it for a point mass."
+          },
+          {
+           "code": "P-12-B-02",
+           "text": "Read gravitational fields from field lines; treat a uniform sphere as a point mass."
+          },
+          {
+           "code": "P-12-B-03",
+           "text": "Use Newton's law of gravitation to find the force between two point masses."
+          },
+          {
+           "code": "P-12-B-06",
+           "text": "Derive g = GM/r squared from Newton's law and the field definition."
+          },
+          {
+           "code": "P-12-B-07",
+           "text": "Explain why g stays almost constant for small height changes near Earth."
+          }
+         ]
+        },
+        {
+         "id": "orbits-and-satellites",
+         "title": "Orbits and satellites",
+         "outcomes": [
+          {
+           "code": "P-12-B-04",
+           "text": "Link gravitational force to centripetal acceleration to study circular orbits."
+          },
+          {
+           "code": "P-12-B-05",
+           "text": "Describe geostationary satellites: 24-hour period, over the equator, west to east."
+          }
+         ]
+        },
+        {
+         "id": "gravitational-potential",
+         "title": "Gravitational potential",
+         "outcomes": [
+          {
+           "code": "P-12-B-08",
+           "text": "Define gravitational potential and calculate it for a point mass."
+          },
+          {
+           "code": "P-12-B-09",
+           "text": "Show how potential gives the potential energy of two masses and use it."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "domain-c-heat-and-thermodynamics",
+     "title": "Domain C: Heat and Thermodynamics",
+     "topics": [
+      {
+       "id": "kinetic-theory",
+       "title": "Kinetic theory",
+       "subtopics": [
+        {
+         "id": "gas-pressure-from-molecules",
+         "title": "Gas pressure from molecules",
+         "outcomes": [
+          {
+           "code": "P-12-C-01",
+           "text": "Explain how moving molecules create gas pressure."
+          },
+          {
+           "code": "P-12-C-02",
+           "text": "Derive and use pV = (1/3)Nm<c squared>."
+          },
+          {
+           "code": "P-12-C-03",
+           "text": "Calculate the root-mean-square speed of an ideal gas."
+          },
+          {
+           "code": "P-12-C-04",
+           "text": "Derive and use the mean translational kinetic energy of a gas molecule."
+          }
+         ]
+        },
+        {
+         "id": "ideal-gas-model-and-extreme-matter",
+         "title": "Ideal gas model and extreme matter",
+         "outcomes": [
+          {
+           "code": "P-12-C-05",
+           "text": "Recognise the ideal-gas model as the base of statistical mechanics."
+          },
+          {
+           "code": "P-12-C-06",
+           "text": "Know that extreme conditions create unusual states such as degenerate matter and Bose-Einstein condensates."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "domain-d-waves",
+     "title": "Domain D: Waves",
+     "topics": [
+      {
+       "id": "simple-harmonic-motion",
+       "title": "Simple harmonic motion",
+       "subtopics": [
+        {
+         "id": "oscillation-terms-and-shm",
+         "title": "Oscillation terms and SHM",
+         "outcomes": [
+          {
+           "code": "P-12-D-01",
+           "text": "Give simple examples of free oscillations."
+          },
+          {
+           "code": "P-12-D-02",
+           "text": "Use displacement, amplitude, period, frequency, angular frequency and phase difference."
+          },
+          {
+           "code": "P-12-D-03",
+           "text": "Write the SHM period using frequency and angular frequency."
+          },
+          {
+           "code": "P-12-D-04",
+           "text": "Explain that SHM has acceleration proportional to displacement and opposite to it."
+          }
+         ]
+        },
+        {
+         "id": "shm-equations-and-graphs",
+         "title": "SHM equations and graphs",
+         "outcomes": [
+          {
+           "code": "P-12-D-05",
+           "text": "Solve problems with a = -omega squared x."
+          },
+          {
+           "code": "P-12-D-06",
+           "text": "Use the velocity equations of SHM to solve problems."
+          },
+          {
+           "code": "P-12-D-07",
+           "text": "Read graphs of displacement, velocity and acceleration in SHM."
+          }
+         ]
+        },
+        {
+         "id": "energy-in-shm",
+         "title": "Energy in SHM",
+         "outcomes": [
+          {
+           "code": "P-12-D-08",
+           "text": "Describe how kinetic and potential energy swap during SHM."
+          },
+          {
+           "code": "P-12-D-09",
+           "text": "Use the total-energy formula of SHM in problems."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "damping-and-resonance",
+       "title": "Damping and resonance",
+       "subtopics": [
+        {
+         "id": "damped-oscillations",
+         "title": "Damped oscillations",
+         "outcomes": [
+          {
+           "code": "P-12-D-10",
+           "text": "Explain how a resistive force damps an oscillator."
+          },
+          {
+           "code": "P-12-D-11",
+           "text": "Use the terms light, critical and heavy damping."
+          },
+          {
+           "code": "P-12-D-12",
+           "text": "Sketch displacement-time graphs for each damping type."
+          },
+          {
+           "code": "P-12-D-15",
+           "text": "Give practical examples of damped oscillations and why critical damping matters."
+          },
+          {
+           "code": "P-12-D-18",
+           "text": "Justify critical damping in a car suspension."
+          }
+         ]
+        },
+        {
+         "id": "forced-oscillations-and-resonance",
+         "title": "Forced oscillations and resonance",
+         "outcomes": [
+          {
+           "code": "P-12-D-13",
+           "text": "State that resonance gives maximum amplitude at the natural frequency."
+          },
+          {
+           "code": "P-12-D-14",
+           "text": "Give practical examples of free and forced oscillations."
+          },
+          {
+           "code": "P-12-D-16",
+           "text": "Explain what sets the frequency response and sharpness of resonance."
+          },
+          {
+           "code": "P-12-D-17",
+           "text": "Name uses of standing waves and resonance such as Rubens tubes and Chladni plates."
+          },
+          {
+           "code": "P-12-D-19",
+           "text": "Judge when resonance helps and when it must be avoided."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "diffraction-and-interference",
+       "title": "Diffraction and interference",
+       "subtopics": [
+        {
+         "id": "two-source-interference",
+         "title": "Two-source interference",
+         "outcomes": [
+          {
+           "code": "P-12-D-20",
+           "text": "Explain experiments showing two-source interference with water, sound, light and microwaves."
+          },
+          {
+           "code": "P-12-D-21",
+           "text": "State the conditions for visible two-source interference fringes."
+          },
+          {
+           "code": "P-12-D-22",
+           "text": "Solve double-slit problems with the fringe spacing formula."
+          }
+         ]
+        },
+        {
+         "id": "diffraction-gratings-and-quantum-interpretations",
+         "title": "Diffraction gratings and quantum interpretations",
+         "outcomes": [
+          {
+           "code": "P-12-D-23",
+           "text": "Use d sin(theta) = n lambda to solve problems."
+          },
+          {
+           "code": "P-12-D-24",
+           "text": "Describe how a diffraction grating measures the wavelength of light."
+          },
+          {
+           "code": "P-12-D-25",
+           "text": "Outline the Copenhagen and many-worlds readings of electron double-slit results."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "domain-e-electricity-and-magnetism",
+     "title": "Domain E: Electricity and Magnetism",
+     "topics": [
+      {
+       "id": "electric-potential",
+       "title": "Electric potential",
+       "subtopics": [
+        {
+         "id": "electric-potential-and-energy",
+         "title": "Electric potential and energy",
+         "outcomes": [
+          {
+           "code": "P-12-E-01",
+           "text": "Define electric potential and calculate it for a point charge."
+          },
+          {
+           "code": "P-12-E-02",
+           "text": "Use the field as the negative of the potential gradient."
+          },
+          {
+           "code": "P-12-E-03",
+           "text": "Show how potential gives the energy of two point charges and use it."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "capacitors",
+       "title": "Capacitors",
+       "subtopics": [
+        {
+         "id": "capacitance-and-combinations",
+         "title": "Capacitance and combinations",
+         "outcomes": [
+          {
+           "code": "P-12-E-04",
+           "text": "Define and calculate capacitance for a sphere and parallel plates."
+          },
+          {
+           "code": "P-12-E-05",
+           "text": "Derive and use the formulas for capacitors in series and parallel."
+          },
+          {
+           "code": "P-12-E-06",
+           "text": "Solve problems with series and parallel capacitors."
+          }
+         ]
+        },
+        {
+         "id": "energy-and-discharge-of-a-capacitor",
+         "title": "Energy and discharge of a capacitor",
+         "outcomes": [
+          {
+           "code": "P-12-E-07",
+           "text": "Find the stored energy from the area under the V-Q graph."
+          },
+          {
+           "code": "P-12-E-08",
+           "text": "Analyse graphs of p.d., charge and current in a discharging capacitor; use tau = RC."
+          },
+          {
+           "code": "P-12-E-09",
+           "text": "Use the exponential discharge equations."
+          },
+          {
+           "code": "P-12-E-10",
+           "text": "List capacitor uses in everyday devices."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "bioelectricity",
+       "title": "Bioelectricity",
+       "subtopics": [
+        {
+         "id": "electricity-in-living-things",
+         "title": "Electricity in living things",
+         "outcomes": [
+          {
+           "code": "P-10-E-11",
+           "text": "Describe how animal cells make electrical signals using ion channels."
+          },
+          {
+           "code": "P-10-E-12",
+           "text": "Know that some aquatic animals make electric shocks, like the electric eel."
+          },
+          {
+           "code": "P-10-E-13",
+           "text": "Explain electroreception with animal examples."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "alternating-current",
+       "title": "Alternating current",
+       "subtopics": [
+        {
+         "id": "ac-quantities-and-power",
+         "title": "AC quantities and power",
+         "outcomes": [
+          {
+           "code": "P-10-E-14",
+           "text": "Use period, frequency and peak value for alternating current and voltage."
+          },
+          {
+           "code": "P-10-E-15",
+           "text": "Use sinusoidal equations for AC current or voltage."
+          },
+          {
+           "code": "P-10-E-16",
+           "text": "Know that mean power in a resistor is half the peak power."
+          },
+          {
+           "code": "P-10-E-17",
+           "text": "Tell r.m.s. from peak values and use the relation."
+          }
+         ]
+        },
+        {
+         "id": "rectification",
+         "title": "Rectification",
+         "outcomes": [
+          {
+           "code": "P-10-E-18",
+           "text": "Tell half-wave from full-wave rectification on graphs."
+          },
+          {
+           "code": "P-12-E-19",
+           "text": "Explain half-wave rectification with one diode."
+          },
+          {
+           "code": "P-12-E-20",
+           "text": "Explain full-wave rectification with a four-diode bridge."
+          },
+          {
+           "code": "P-12-E-21",
+           "text": "Show how a capacitor smooths rectified current."
+          }
+         ]
+        },
+        {
+         "id": "inductance-reactance-and-impedance",
+         "title": "Inductance, reactance and impedance",
+         "outcomes": [
+          {
+           "code": "P-12-E-22",
+           "text": "Define mutual and self inductance and the henry."
+          },
+          {
+           "code": "P-12-E-23",
+           "text": "Describe AC phase and how it leads or lags."
+          },
+          {
+           "code": "P-12-E-24",
+           "text": "Identify inductors as chokes in AC circuits."
+          },
+          {
+           "code": "P-12-E-25",
+           "text": "Calculate capacitor and inductor reactance."
+          },
+          {
+           "code": "P-12-E-26",
+           "text": "Describe impedance as the vector sum of resistance and reactance."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "domain-f-modern-physics",
+     "title": "Domain F: Modern Physics",
+     "topics": [
+      {
+       "id": "quantum-physics",
+       "title": "Quantum physics",
+       "subtopics": [
+        {
+         "id": "photons",
+         "title": "Photons",
+         "outcomes": [
+          {
+           "code": "P-12-F-01",
+           "text": "State that radiation has a particle nature."
+          },
+          {
+           "code": "P-12-F-02",
+           "text": "Use E = hf and the electronvolt in problems."
+          },
+          {
+           "code": "P-12-F-05",
+           "text": "Explain photon momentum p = E/c."
+          }
+         ]
+        },
+        {
+         "id": "photoelectric-effect",
+         "title": "Photoelectric effect",
+         "outcomes": [
+          {
+           "code": "P-12-F-06",
+           "text": "Describe photoelectron emission from an illuminated metal."
+          },
+          {
+           "code": "P-12-F-07",
+           "text": "Use threshold frequency and threshold wavelength."
+          },
+          {
+           "code": "P-12-F-08",
+           "text": "Explain photoemission with photon energy and work function."
+          },
+          {
+           "code": "P-12-F-09",
+           "text": "State and apply hf = work function + max kinetic energy."
+          },
+          {
+           "code": "P-12-F-10",
+           "text": "Explain why the maximum kinetic energy of photoelectrons depends on frequency, not intensity."
+          }
+         ]
+        },
+        {
+         "id": "wave-particle-duality",
+         "title": "Wave-particle duality",
+         "outcomes": [
+          {
+           "code": "P-12-F-11",
+           "text": "Compare evidence for light as a wave and as a particle."
+          },
+          {
+           "code": "P-12-F-12",
+           "text": "Explain what electron diffraction shows about matter waves."
+          },
+          {
+           "code": "P-12-F-13",
+           "text": "Use the de Broglie wavelength in problems."
+          },
+          {
+           "code": "P-12-F-20",
+           "text": "State and explain Heisenberg's uncertainty principle."
+          },
+          {
+           "code": "P-12-F-21",
+           "text": "Use the uncertainty principle to explain why experiments cannot be exact."
+          }
+         ]
+        },
+        {
+         "id": "atomic-spectra-and-photon-interactions",
+         "title": "Atomic spectra and photon interactions",
+         "outcomes": [
+          {
+           "code": "P-12-F-14",
+           "text": "State that isolated atoms have discrete electron energy levels."
+          },
+          {
+           "code": "P-12-F-15",
+           "text": "Explain how emission and absorption line spectra form."
+          },
+          {
+           "code": "P-12-F-16",
+           "text": "Use hf = delta E to solve problems."
+          },
+          {
+           "code": "P-12-F-17",
+           "text": "Describe the Compton effect qualitatively."
+          },
+          {
+           "code": "P-12-F-18",
+           "text": "Explain pair production and pair annihilation."
+          },
+          {
+           "code": "P-12-F-19",
+           "text": "Explain how electron microscopes get high resolution."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "particle-physics",
+       "title": "Particle physics",
+       "subtopics": [
+        {
+         "id": "mass-energy-and-binding",
+         "title": "Mass, energy and binding",
+         "outcomes": [
+          {
+           "code": "P-12-F-22",
+           "text": "Recognise the equivalence of mass and energy."
+          },
+          {
+           "code": "P-12-F-23",
+           "text": "Define and use mass defect and binding energy."
+          },
+          {
+           "code": "P-12-F-24",
+           "text": "Sketch binding energy per nucleon against nucleon number."
+          },
+          {
+           "code": "P-12-F-25",
+           "text": "Recall what fusion and fission mean."
+          },
+          {
+           "code": "P-12-F-26",
+           "text": "Explain how binding energy per nucleon relates to fusion and fission, and how fission neutrons start a chain reaction."
+          },
+          {
+           "code": "P-12-F-27",
+           "text": "Calculate the energy released in nuclear reactions."
+          }
+         ]
+        },
+        {
+         "id": "radioactive-decay",
+         "title": "Radioactive decay",
+         "outcomes": [
+          {
+           "code": "P-12-F-28",
+           "text": "Explain how count-rate fluctuations show decay is random."
+          },
+          {
+           "code": "P-12-F-29",
+           "text": "Explain that decay is spontaneous and random."
+          },
+          {
+           "code": "P-12-F-30",
+           "text": "Define activity and the decay constant and state how they connect."
+          },
+          {
+           "code": "P-12-F-31",
+           "text": "Explain half-life with examples."
+          },
+          {
+           "code": "P-12-F-32",
+           "text": "Use lambda = 0.693/T to solve numerical problems."
+          },
+          {
+           "code": "P-12-F-33",
+           "text": "State that radioactive decay is exponential."
+          },
+          {
+           "code": "P-12-F-34",
+           "text": "Use the exponential decay relation for activity, count rate or number of nuclei."
+          }
+         ]
+        },
+        {
+         "id": "nuclear-reactors",
+         "title": "Nuclear reactors",
+         "outcomes": [
+          {
+           "code": "P-12-F-35",
+           "text": "Describe the main parts of a nuclear reactor."
+          },
+          {
+           "code": "P-12-F-36",
+           "text": "Explain why uranium fuel is enriched."
+          },
+          {
+           "code": "P-12-F-37",
+           "text": "Compare the energy from fission with chemical reactions."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "medical-physics",
+       "title": "Medical physics",
+       "subtopics": [
+        {
+         "id": "pet-scanning-and-tracers",
+         "title": "PET scanning and tracers",
+         "outcomes": [
+          {
+           "code": "P-12-F-38",
+           "text": "Explain what a medical tracer is."
+          },
+          {
+           "code": "P-12-F-39",
+           "text": "Explain annihilation of particle and antiparticle."
+          },
+          {
+           "code": "P-12-F-40",
+           "text": "Illustrate how PET scanning works."
+          },
+          {
+           "code": "P-12-F-41",
+           "text": "Calculate the energy of gamma photons from annihilation."
+          },
+          {
+           "code": "P-12-F-42",
+           "text": "Explain why annihilation gamma photons travel in opposite directions."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "astronomy",
+       "title": "Astronomy",
+       "subtopics": [
+        {
+         "id": "stars-and-radiation",
+         "title": "Stars and radiation",
+         "outcomes": [
+          {
+           "code": "P-12-F-43",
+           "text": "Explain luminosity as the total power radiated by a star."
+          },
+          {
+           "code": "P-12-F-44",
+           "text": "Apply the inverse square law for radiant flux."
+          },
+          {
+           "code": "P-12-F-45",
+           "text": "Define standard candles and how they give distances to galaxies."
+          },
+          {
+           "code": "P-12-F-46",
+           "text": "Explain blackbody radiation and apply Wien's law to find a star's temperature."
+          },
+          {
+           "code": "P-12-F-47",
+           "text": "Apply the Stefan-Boltzmann law to solve problems."
+          },
+          {
+           "code": "P-12-F-48",
+           "text": "Estimate a star's radius from its luminosity and temperature."
+          }
+         ]
+        },
+        {
+         "id": "spectra-and-the-expanding-universe",
+         "title": "Spectra and the expanding Universe",
+         "outcomes": [
+          {
+           "code": "P-12-F-49",
+           "text": "Explain what the lines in emission and absorption spectra tell us."
+          },
+          {
+           "code": "P-12-F-50",
+           "text": "Explain how redshift suggests the Universe is expanding."
+          },
+          {
+           "code": "P-12-F-51",
+           "text": "State Hubble's law and how it leads to the Big Bang."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "climate-physics",
+       "title": "Climate physics",
+       "subtopics": [
+        {
+         "id": "climate-system",
+         "title": "Climate system",
+         "outcomes": [
+          {
+           "code": "P-12-F-52",
+           "text": "Describe Earth's climate as a complex system."
+          },
+          {
+           "code": "P-12-F-53",
+           "text": "Relate ocean currents and winds to climate."
+          },
+          {
+           "code": "P-12-F-54",
+           "text": "Explain climate inertia."
+          },
+          {
+           "code": "P-12-F-55",
+           "text": "Explain that climate change has internal and external causes."
+          },
+          {
+           "code": "P-12-F-56",
+           "text": "Explain how energy transfer sets global climate."
+          }
+         ]
+        },
+        {
+         "id": "air-and-ocean-circulation",
+         "title": "Air and ocean circulation",
+         "outcomes": [
+          {
+           "code": "P-12-F-57",
+           "text": "Explain how Earth's rotation turns air and forms atmospheric cells."
+          },
+          {
+           "code": "P-12-F-58",
+           "text": "Explain why saltier ocean water is denser."
+          },
+          {
+           "code": "P-12-F-59",
+           "text": "Explain how thermohaline circulation moves heat."
+          },
+          {
+           "code": "P-12-F-60",
+           "text": "Explain how climate science shows chaotic behaviour."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "medical-imaging",
+       "title": "Medical imaging",
+       "subtopics": [
+        {
+         "id": "ultrasound-x-rays-and-ct",
+         "title": "Ultrasound, X-rays and CT",
+         "outcomes": [
+          {
+           "code": "P-12-F-61",
+           "text": "Explain the piezo-electric effect and its use."
+          },
+          {
+           "code": "P-12-F-62",
+           "text": "Explain how ultrasound gives diagnostic images."
+          },
+          {
+           "code": "P-12-F-63",
+           "text": "Explain how X-rays form by electron bombardment."
+          },
+          {
+           "code": "P-12-F-64",
+           "text": "Explain how X-rays image the inside of the body."
+          },
+          {
+           "code": "P-12-F-65",
+           "text": "Explain how CT scanning works."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "domain-g-nature-of-sciences",
+     "title": "Domain G: Nature of Sciences",
+     "topics": [
+      {
+       "id": "beauty-and-debates-in-physics",
+       "title": "Beauty and debates in physics",
+       "subtopics": [
+        {
+         "id": "beauty-symmetry-and-debate",
+         "title": "Beauty, symmetry and debate",
+         "outcomes": [
+          {
+           "code": "P-12-G-01",
+           "text": "Explain with examples what simplicity and symmetry mean as mathematical beauty."
+          },
+          {
+           "code": "P-12-G-02",
+           "text": "Give an example against the claim that physical truths must be elegant."
+          },
+          {
+           "code": "P-12-G-03",
+           "text": "Weigh pros and cons in debates such as searching for aliens and pursuing risky research."
+          },
+          {
+           "code": "P-11-G-04",
+           "text": "Explain how thought experiments such as Newton's cannonball convey physics ideas."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "domain-h-experimentation-skills",
+     "title": "Domain H: Experimentation Skills",
+     "topics": [
+      {
+       "id": "planning-an-experiment",
+       "title": "Planning an experiment",
+       "subtopics": [
+        {
+         "id": "safety-hypothesis-and-data-collection",
+         "title": "Safety, hypothesis and data collection",
+         "outcomes": [
+          {
+           "code": "P-12-N-01",
+           "text": "Develop safety guidelines for a proposed experiment."
+          },
+          {
+           "code": "P-12-N-02",
+           "text": "Form a testable hypothesis by naming independent, dependent and controlled variables."
+          },
+          {
+           "code": "P-12-N-03",
+           "text": "Explain how to vary and measure the variables."
+          },
+          {
+           "code": "P-12-N-04",
+           "text": "Explain how the data will be analysed."
+          },
+          {
+           "code": "P-12-N-05",
+           "text": "Suggest how technology can digitise data."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "analysing-results",
+       "title": "Analysing results",
+       "subtopics": [
+        {
+         "id": "uncertainty-and-graphs",
+         "title": "Uncertainty and graphs",
+         "outcomes": [
+          {
+           "code": "P-12-N-06",
+           "text": "Show absolute uncertainty beside every measurement."
+          },
+          {
+           "code": "P-12-N-07",
+           "text": "Show error bars in both directions."
+          },
+          {
+           "code": "P-12-N-08",
+           "text": "Draw a best-fit line and a worst acceptable line."
+          },
+          {
+           "code": "P-12-N-09",
+           "text": "Rearrange expressions into straight-line forms."
+          },
+          {
+           "code": "P-12-N-10",
+           "text": "Use a y against x graph to find constants."
+          },
+          {
+           "code": "P-12-N-11",
+           "text": "Use a log y against log x graph to find constants."
+          },
+          {
+           "code": "P-12-N-12",
+           "text": "Use a ln y against x graph to find constants."
+          }
+         ]
+        },
+        {
+         "id": "derived-quantities-and-reporting",
+         "title": "Derived quantities and reporting",
+         "outcomes": [
+          {
+           "code": "P-12-N-13",
+           "text": "Decide which derived quantities to calculate from raw data."
+          },
+          {
+           "code": "P-12-N-14",
+           "text": "Convert absolute uncertainty into fractional or percentage form."
+          },
+          {
+           "code": "P-12-N-15",
+           "text": "Calculate uncertainty in derived quantities."
+          },
+          {
+           "code": "P-12-N-16",
+           "text": "Estimate uncertainty in a graph's gradient."
+          },
+          {
+           "code": "P-12-N-17",
+           "text": "Estimate uncertainty in a graph's y-intercept."
+          },
+          {
+           "code": "P-12-N-18",
+           "text": "Write a result as a value, uncertainty and unit."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "build": {
+  "builtAt": "2026-10-14T08:33:47.420Z",
+  "model": "claude-agent",
+  "usd": 0,
+  "expectedCodes": 151,
+  "coverage": 1,
+  "missingCodes": [],
+  "counts": {
+   "grades": 1,
+   "units": 7,
+   "topics": 18,
+   "subtopics": 36,
+   "outcomes": 151
+  },
+  "warnings": []
+ }
+}

@@ -1,0 +1,938 @@
+[
+ {
+  "grade": "all",
+  "unit": "Component 01: Computer systems",
+  "topic": "1.1.1 Structure and function of the processor",
+  "subtopic": "Inside the CPU",
+  "code": "1.1.1",
+  "outcome": "Describe the ALU, control unit and registers (PC, ACC, MAR, MDR, CIR) and the data, address and control buses."
+ },
+ {
+  "grade": "all",
+  "unit": "Component 01: Computer systems",
+  "topic": "1.1.1 Structure and function of the processor",
+  "subtopic": "Inside the CPU",
+  "code": null,
+  "outcome": "Describe the fetch-decode-execute cycle and its effect on registers."
+ },
+ {
+  "grade": "all",
+  "unit": "Component 01: Computer systems",
+  "topic": "1.1.1 Structure and function of the processor",
+  "subtopic": "CPU performance",
+  "code": null,
+  "outcome": "Explain how clock speed, number of cores and cache affect CPU performance."
+ },
+ {
+  "grade": "all",
+  "unit": "Component 01: Computer systems",
+  "topic": "1.1.1 Structure and function of the processor",
+  "subtopic": "CPU performance",
+  "code": null,
+  "outcome": "Explain how pipelining improves processor efficiency."
+ },
+ {
+  "grade": "all",
+  "unit": "Component 01: Computer systems",
+  "topic": "1.1.1 Structure and function of the processor",
+  "subtopic": "Processor architectures",
+  "code": null,
+  "outcome": "Compare Von Neumann, Harvard and contemporary processor architectures."
+ },
+ {
+  "grade": "all",
+  "unit": "Component 01: Computer systems",
+  "topic": "1.1.2 Types of processor",
+  "subtopic": "Processor types",
+  "code": "1.1.2",
+  "outcome": "Compare CISC and RISC processors and their uses."
+ },
+ {
+  "grade": "all",
+  "unit": "Component 01: Computer systems",
+  "topic": "1.1.2 Types of processor",
+  "subtopic": "Processor types",
+  "code": null,
+  "outcome": "Describe GPUs and their uses, including non-graphics uses."
+ },
+ {
+  "grade": "all",
+  "unit": "Component 01: Computer systems",
+  "topic": "1.1.2 Types of processor",
+  "subtopic": "Processor types",
+  "code": null,
+  "outcome": "Describe multicore and parallel systems."
+ },
+ {
+  "grade": "all",
+  "unit": "Component 01: Computer systems",
+  "topic": "1.1.3 Input, output and storage",
+  "subtopic": "Devices and storage",
+  "code": "1.1.3",
+  "outcome": "Apply different input, output and storage devices to different problems."
+ },
+ {
+  "grade": "all",
+  "unit": "Component 01: Computer systems",
+  "topic": "1.1.3 Input, output and storage",
+  "subtopic": "Devices and storage",
+  "code": null,
+  "outcome": "Describe uses of magnetic, flash and optical storage."
+ },
+ {
+  "grade": "all",
+  "unit": "Component 01: Computer systems",
+  "topic": "1.1.3 Input, output and storage",
+  "subtopic": "Memory",
+  "code": null,
+  "outcome": "Distinguish RAM from ROM."
+ },
+ {
+  "grade": "all",
+  "unit": "Component 01: Computer systems",
+  "topic": "1.1.3 Input, output and storage",
+  "subtopic": "Memory",
+  "code": null,
+  "outcome": "Explain virtual storage."
+ },
+ {
+  "grade": "all",
+  "unit": "Component 01: Computer systems",
+  "topic": "1.2.1 Systems software",
+  "subtopic": "Operating systems",
+  "code": "1.2.1",
+  "outcome": "Explain the need for, and function and purpose of, operating systems."
+ },
+ {
+  "grade": "all",
+  "unit": "Component 01: Computer systems",
+  "topic": "1.2.1 Systems software",
+  "subtopic": "Operating systems",
+  "code": null,
+  "outcome": "Explain memory management: paging, segmentation and virtual memory."
+ },
+ {
+  "grade": "all",
+  "unit": "Component 01: Computer systems",
+  "topic": "1.2.1 Systems software",
+  "subtopic": "Interrupts and scheduling",
+  "code": null,
+  "outcome": "Explain interrupts, interrupt service routines and their role in the fetch-decode-execute cycle."
+ },
+ {
+  "grade": "all",
+  "unit": "Component 01: Computer systems",
+  "topic": "1.2.1 Systems software",
+  "subtopic": "Interrupts and scheduling",
+  "code": null,
+  "outcome": "Describe scheduling: round robin, first come first served, multi-level feedback queues, shortest job first and shortest remaining time."
+ },
+ {
+  "grade": "all",
+  "unit": "Component 01: Computer systems",
+  "topic": "1.2.1 Systems software",
+  "subtopic": "Types of operating system",
+  "code": null,
+  "outcome": "Describe distributed, embedded, multi-tasking, multi-user and real-time operating systems."
+ },
+ {
+  "grade": "all",
+  "unit": "Component 01: Computer systems",
+  "topic": "1.2.1 Systems software",
+  "subtopic": "BIOS, drivers and virtual machines",
+  "code": null,
+  "outcome": "Describe the BIOS."
+ },
+ {
+  "grade": "all",
+  "unit": "Component 01: Computer systems",
+  "topic": "1.2.1 Systems software",
+  "subtopic": "BIOS, drivers and virtual machines",
+  "code": null,
+  "outcome": "Describe device drivers."
+ },
+ {
+  "grade": "all",
+  "unit": "Component 01: Computer systems",
+  "topic": "1.2.1 Systems software",
+  "subtopic": "BIOS, drivers and virtual machines",
+  "code": null,
+  "outcome": "Explain virtual machines, including running intermediate code or an operating system inside another."
+ },
+ {
+  "grade": "all",
+  "unit": "Component 01: Computer systems",
+  "topic": "1.2.2 Applications generation",
+  "subtopic": "Applications and utilities",
+  "code": "1.2.2",
+  "outcome": "Explain the nature of applications and justify suitable applications for a purpose."
+ },
+ {
+  "grade": "all",
+  "unit": "Component 01: Computer systems",
+  "topic": "1.2.2 Applications generation",
+  "subtopic": "Applications and utilities",
+  "code": null,
+  "outcome": "Describe utility software."
+ },
+ {
+  "grade": "all",
+  "unit": "Component 01: Computer systems",
+  "topic": "1.2.2 Applications generation",
+  "subtopic": "Applications and utilities",
+  "code": null,
+  "outcome": "Compare open source and closed source software."
+ },
+ {
+  "grade": "all",
+  "unit": "Component 01: Computer systems",
+  "topic": "1.2.2 Applications generation",
+  "subtopic": "Translators",
+  "code": null,
+  "outcome": "Compare interpreters, compilers and assemblers."
+ },
+ {
+  "grade": "all",
+  "unit": "Component 01: Computer systems",
+  "topic": "1.2.2 Applications generation",
+  "subtopic": "Translators",
+  "code": null,
+  "outcome": "Describe the stages of compilation: lexical analysis, syntax analysis, code generation and optimisation."
+ },
+ {
+  "grade": "all",
+  "unit": "Component 01: Computer systems",
+  "topic": "1.2.2 Applications generation",
+  "subtopic": "Translators",
+  "code": null,
+  "outcome": "Explain linkers, loaders and the use of libraries."
+ },
+ {
+  "grade": "all",
+  "unit": "Component 01: Computer systems",
+  "topic": "1.2.3 Software development",
+  "subtopic": "Development methodologies",
+  "code": "1.2.3",
+  "outcome": "Describe the waterfall lifecycle, agile methodologies, extreme programming, the spiral model and rapid application development."
+ },
+ {
+  "grade": "all",
+  "unit": "Component 01: Computer systems",
+  "topic": "1.2.3 Software development",
+  "subtopic": "Development methodologies",
+  "code": null,
+  "outcome": "Weigh the merits and drawbacks of methodologies and when each suits."
+ },
+ {
+  "grade": "all",
+  "unit": "Component 01: Computer systems",
+  "topic": "1.2.3 Software development",
+  "subtopic": "Development methodologies",
+  "code": null,
+  "outcome": "Write and follow algorithms."
+ },
+ {
+  "grade": "all",
+  "unit": "Component 01: Computer systems",
+  "topic": "1.2.4 Types of programming language",
+  "subtopic": "Paradigms",
+  "code": "1.2.4",
+  "outcome": "Explain the need for and characteristics of a variety of programming paradigms."
+ },
+ {
+  "grade": "all",
+  "unit": "Component 01: Computer systems",
+  "topic": "1.2.4 Types of programming language",
+  "subtopic": "Paradigms",
+  "code": null,
+  "outcome": "Describe procedural languages."
+ },
+ {
+  "grade": "all",
+  "unit": "Component 01: Computer systems",
+  "topic": "1.2.4 Types of programming language",
+  "subtopic": "Assembly language",
+  "code": null,
+  "outcome": "Follow and write simple programs with the Little Man Computer instruction set."
+ },
+ {
+  "grade": "all",
+  "unit": "Component 01: Computer systems",
+  "topic": "1.2.4 Types of programming language",
+  "subtopic": "Assembly language",
+  "code": null,
+  "outcome": "Describe memory addressing modes: immediate, direct, indirect and indexed."
+ },
+ {
+  "grade": "all",
+  "unit": "Component 01: Computer systems",
+  "topic": "1.2.4 Types of programming language",
+  "subtopic": "Object-oriented programming",
+  "code": null,
+  "outcome": "Explain classes, objects, methods, attributes, inheritance, encapsulation and polymorphism."
+ },
+ {
+  "grade": "all",
+  "unit": "Component 01: Computer systems",
+  "topic": "1.3.1 Compression, encryption and hashing",
+  "subtopic": "Compression",
+  "code": "1.3.1",
+  "outcome": "Distinguish lossy from lossless compression."
+ },
+ {
+  "grade": "all",
+  "unit": "Component 01: Computer systems",
+  "topic": "1.3.1 Compression, encryption and hashing",
+  "subtopic": "Compression",
+  "code": null,
+  "outcome": "Describe run length encoding and dictionary coding for lossless compression."
+ },
+ {
+  "grade": "all",
+  "unit": "Component 01: Computer systems",
+  "topic": "1.3.1 Compression, encryption and hashing",
+  "subtopic": "Encryption and hashing",
+  "code": null,
+  "outcome": "Distinguish symmetric from asymmetric encryption."
+ },
+ {
+  "grade": "all",
+  "unit": "Component 01: Computer systems",
+  "topic": "1.3.1 Compression, encryption and hashing",
+  "subtopic": "Encryption and hashing",
+  "code": null,
+  "outcome": "Describe different uses of hashing."
+ },
+ {
+  "grade": "all",
+  "unit": "Component 01: Computer systems",
+  "topic": "1.3.2 Databases",
+  "subtopic": "Relational databases",
+  "code": "1.3.2",
+  "outcome": "Define relational database, flat file, primary, foreign and secondary keys, entity-relationship modelling and indexing."
+ },
+ {
+  "grade": "all",
+  "unit": "Component 01: Computer systems",
+  "topic": "1.3.2 Databases",
+  "subtopic": "Relational databases",
+  "code": null,
+  "outcome": "Describe methods of capturing, selecting, managing and exchanging data."
+ },
+ {
+  "grade": "all",
+  "unit": "Component 01: Computer systems",
+  "topic": "1.3.2 Databases",
+  "subtopic": "Normalisation",
+  "code": null,
+  "outcome": "Normalise data to third normal form."
+ },
+ {
+  "grade": "all",
+  "unit": "Component 01: Computer systems",
+  "topic": "1.3.2 Databases",
+  "subtopic": "Normalisation",
+  "code": null,
+  "outcome": "Explain referential integrity."
+ },
+ {
+  "grade": "all",
+  "unit": "Component 01: Computer systems",
+  "topic": "1.3.2 Databases",
+  "subtopic": "SQL and transactions",
+  "code": null,
+  "outcome": "Interpret and modify SQL."
+ },
+ {
+  "grade": "all",
+  "unit": "Component 01: Computer systems",
+  "topic": "1.3.2 Databases",
+  "subtopic": "SQL and transactions",
+  "code": null,
+  "outcome": "Explain transaction processing, ACID, record locking and redundancy."
+ },
+ {
+  "grade": "all",
+  "unit": "Component 01: Computer systems",
+  "topic": "1.3.3 Networks",
+  "subtopic": "Network basics",
+  "code": "1.3.3",
+  "outcome": "Describe characteristics of networks and the importance of protocols and standards."
+ },
+ {
+  "grade": "all",
+  "unit": "Component 01: Computer systems",
+  "topic": "1.3.3 Networks",
+  "subtopic": "The internet",
+  "code": null,
+  "outcome": "Explain the internet structure: TCP/IP stack, DNS, protocol layering, LANs and WANs, packet and circuit switching."
+ },
+ {
+  "grade": "all",
+  "unit": "Component 01: Computer systems",
+  "topic": "1.3.3 Networks",
+  "subtopic": "Network security and hardware",
+  "code": null,
+  "outcome": "Explain network security and threats, firewalls, proxies and encryption."
+ },
+ {
+  "grade": "all",
+  "unit": "Component 01: Computer systems",
+  "topic": "1.3.3 Networks",
+  "subtopic": "Network security and hardware",
+  "code": null,
+  "outcome": "Describe network hardware."
+ },
+ {
+  "grade": "all",
+  "unit": "Component 01: Computer systems",
+  "topic": "1.3.3 Networks",
+  "subtopic": "Network security and hardware",
+  "code": null,
+  "outcome": "Compare client-server and peer-to-peer networks."
+ },
+ {
+  "grade": "all",
+  "unit": "Component 01: Computer systems",
+  "topic": "1.3.4 Web technologies",
+  "subtopic": "Building web pages",
+  "code": "1.3.4",
+  "outcome": "Use HTML, CSS and JavaScript."
+ },
+ {
+  "grade": "all",
+  "unit": "Component 01: Computer systems",
+  "topic": "1.3.4 Web technologies",
+  "subtopic": "Building web pages",
+  "code": null,
+  "outcome": "Compare server-side and client-side processing."
+ },
+ {
+  "grade": "all",
+  "unit": "Component 01: Computer systems",
+  "topic": "1.3.4 Web technologies",
+  "subtopic": "Search engines",
+  "code": null,
+  "outcome": "Explain search engine indexing."
+ },
+ {
+  "grade": "all",
+  "unit": "Component 01: Computer systems",
+  "topic": "1.3.4 Web technologies",
+  "subtopic": "Search engines",
+  "code": null,
+  "outcome": "Explain the PageRank algorithm."
+ },
+ {
+  "grade": "all",
+  "unit": "Component 01: Computer systems",
+  "topic": "1.4.1 Data types",
+  "subtopic": "Data types",
+  "code": "1.4.1",
+  "outcome": "Describe primitive data types: integer, real, character, string and Boolean."
+ },
+ {
+  "grade": "all",
+  "unit": "Component 01: Computer systems",
+  "topic": "1.4.1 Data types",
+  "subtopic": "Binary and hexadecimal",
+  "code": null,
+  "outcome": "Represent positive integers in binary."
+ },
+ {
+  "grade": "all",
+  "unit": "Component 01: Computer systems",
+  "topic": "1.4.1 Data types",
+  "subtopic": "Binary and hexadecimal",
+  "code": null,
+  "outcome": "Represent negative numbers using sign and magnitude and two's complement."
+ },
+ {
+  "grade": "all",
+  "unit": "Component 01: Computer systems",
+  "topic": "1.4.1 Data types",
+  "subtopic": "Binary and hexadecimal",
+  "code": null,
+  "outcome": "Add and subtract binary integers."
+ },
+ {
+  "grade": "all",
+  "unit": "Component 01: Computer systems",
+  "topic": "1.4.1 Data types",
+  "subtopic": "Binary and hexadecimal",
+  "code": null,
+  "outcome": "Represent positive integers in hexadecimal."
+ },
+ {
+  "grade": "all",
+  "unit": "Component 01: Computer systems",
+  "topic": "1.4.1 Data types",
+  "subtopic": "Binary and hexadecimal",
+  "code": null,
+  "outcome": "Convert positive integers between binary, hexadecimal and denary."
+ },
+ {
+  "grade": "all",
+  "unit": "Component 01: Computer systems",
+  "topic": "1.4.1 Data types",
+  "subtopic": "Floating point",
+  "code": null,
+  "outcome": "Represent and normalise floating point numbers in binary."
+ },
+ {
+  "grade": "all",
+  "unit": "Component 01: Computer systems",
+  "topic": "1.4.1 Data types",
+  "subtopic": "Floating point",
+  "code": null,
+  "outcome": "Add and subtract floating point numbers, positive and negative."
+ },
+ {
+  "grade": "all",
+  "unit": "Component 01: Computer systems",
+  "topic": "1.4.1 Data types",
+  "subtopic": "Bitwise operations and text",
+  "code": null,
+  "outcome": "Use bitwise shifts and masks combined with AND, OR and XOR."
+ },
+ {
+  "grade": "all",
+  "unit": "Component 01: Computer systems",
+  "topic": "1.4.1 Data types",
+  "subtopic": "Bitwise operations and text",
+  "code": null,
+  "outcome": "Explain how ASCII and Unicode represent text."
+ },
+ {
+  "grade": "all",
+  "unit": "Component 01: Computer systems",
+  "topic": "1.4.2 Data structures",
+  "subtopic": "Arrays, records and lists",
+  "code": "1.4.2",
+  "outcome": "Use arrays (up to three dimensions), records, lists and tuples."
+ },
+ {
+  "grade": "all",
+  "unit": "Component 01: Computer systems",
+  "topic": "1.4.2 Data structures",
+  "subtopic": "Linear and tree structures",
+  "code": null,
+  "outcome": "Describe linked lists, graphs, stacks, queues, trees, binary search trees and hash tables."
+ },
+ {
+  "grade": "all",
+  "unit": "Component 01: Computer systems",
+  "topic": "1.4.2 Data structures",
+  "subtopic": "Linear and tree structures",
+  "code": null,
+  "outcome": "Create, traverse, add to and remove data from these structures."
+ },
+ {
+  "grade": "all",
+  "unit": "Component 01: Computer systems",
+  "topic": "1.4.3 Boolean algebra",
+  "subtopic": "Boolean logic",
+  "code": "1.4.3",
+  "outcome": "Define problems using Boolean logic."
+ },
+ {
+  "grade": "all",
+  "unit": "Component 01: Computer systems",
+  "topic": "1.4.3 Boolean algebra",
+  "subtopic": "Simplifying Boolean expressions",
+  "code": null,
+  "outcome": "Manipulate Boolean expressions, including Karnaugh maps for simplification."
+ },
+ {
+  "grade": "all",
+  "unit": "Component 01: Computer systems",
+  "topic": "1.4.3 Boolean algebra",
+  "subtopic": "Simplifying Boolean expressions",
+  "code": null,
+  "outcome": "Use De Morgan's laws, distribution, association, commutation and double negation."
+ },
+ {
+  "grade": "all",
+  "unit": "Component 01: Computer systems",
+  "topic": "1.4.3 Boolean algebra",
+  "subtopic": "Logic circuits",
+  "code": null,
+  "outcome": "Use logic gate diagrams and truth tables."
+ },
+ {
+  "grade": "all",
+  "unit": "Component 01: Computer systems",
+  "topic": "1.4.3 Boolean algebra",
+  "subtopic": "Logic circuits",
+  "code": null,
+  "outcome": "Explain the logic of D-type flip flops, half adders and full adders."
+ },
+ {
+  "grade": "all",
+  "unit": "Component 01: Computer systems",
+  "topic": "1.5.1 Computing related legislation",
+  "subtopic": "Computing law",
+  "code": "1.5.1",
+  "outcome": "Describe the Data Protection Act 1998."
+ },
+ {
+  "grade": "all",
+  "unit": "Component 01: Computer systems",
+  "topic": "1.5.1 Computing related legislation",
+  "subtopic": "Computing law",
+  "code": null,
+  "outcome": "Describe the Computer Misuse Act 1990."
+ },
+ {
+  "grade": "all",
+  "unit": "Component 01: Computer systems",
+  "topic": "1.5.1 Computing related legislation",
+  "subtopic": "Computing law",
+  "code": null,
+  "outcome": "Describe the Copyright Designs and Patents Act 1988."
+ },
+ {
+  "grade": "all",
+  "unit": "Component 01: Computer systems",
+  "topic": "1.5.1 Computing related legislation",
+  "subtopic": "Computing law",
+  "code": null,
+  "outcome": "Describe the Regulation of Investigatory Powers Act 2000."
+ },
+ {
+  "grade": "all",
+  "unit": "Component 01: Computer systems",
+  "topic": "1.5.2 Moral and ethical issues",
+  "subtopic": "Technology and work",
+  "code": "1.5.2",
+  "outcome": "Discuss the impact of computers in the workforce."
+ },
+ {
+  "grade": "all",
+  "unit": "Component 01: Computer systems",
+  "topic": "1.5.2 Moral and ethical issues",
+  "subtopic": "Technology and work",
+  "code": null,
+  "outcome": "Discuss automated decision making and artificial intelligence."
+ },
+ {
+  "grade": "all",
+  "unit": "Component 01: Computer systems",
+  "topic": "1.5.2 Moral and ethical issues",
+  "subtopic": "Society and the internet",
+  "code": null,
+  "outcome": "Discuss environmental effects of computing."
+ },
+ {
+  "grade": "all",
+  "unit": "Component 01: Computer systems",
+  "topic": "1.5.2 Moral and ethical issues",
+  "subtopic": "Society and the internet",
+  "code": null,
+  "outcome": "Discuss censorship and the internet."
+ },
+ {
+  "grade": "all",
+  "unit": "Component 01: Computer systems",
+  "topic": "1.5.2 Moral and ethical issues",
+  "subtopic": "Society and the internet",
+  "code": null,
+  "outcome": "Discuss monitoring behaviour and analysing personal information."
+ },
+ {
+  "grade": "all",
+  "unit": "Component 01: Computer systems",
+  "topic": "1.5.2 Moral and ethical issues",
+  "subtopic": "Society and the internet",
+  "code": null,
+  "outcome": "Discuss piracy and offensive communications."
+ },
+ {
+  "grade": "all",
+  "unit": "Component 01: Computer systems",
+  "topic": "1.5.2 Moral and ethical issues",
+  "subtopic": "Society and the internet",
+  "code": null,
+  "outcome": "Discuss layout, colour paradigms and character sets in design."
+ },
+ {
+  "grade": "all",
+  "unit": "Component 02: Algorithms and programming",
+  "topic": "2.1.1 Thinking abstractly",
+  "subtopic": "Abstraction",
+  "code": "2.1.1",
+  "outcome": "Explain the nature of abstraction and the need for it."
+ },
+ {
+  "grade": "all",
+  "unit": "Component 02: Algorithms and programming",
+  "topic": "2.1.1 Thinking abstractly",
+  "subtopic": "Abstraction",
+  "code": null,
+  "outcome": "Explain how an abstraction differs from reality."
+ },
+ {
+  "grade": "all",
+  "unit": "Component 02: Algorithms and programming",
+  "topic": "2.1.1 Thinking abstractly",
+  "subtopic": "Abstraction",
+  "code": null,
+  "outcome": "Devise an abstract model for a variety of situations."
+ },
+ {
+  "grade": "all",
+  "unit": "Component 02: Algorithms and programming",
+  "topic": "2.1.2 Thinking ahead",
+  "subtopic": "Planning ahead",
+  "code": "2.1.2",
+  "outcome": "Identify inputs and outputs for a situation."
+ },
+ {
+  "grade": "all",
+  "unit": "Component 02: Algorithms and programming",
+  "topic": "2.1.2 Thinking ahead",
+  "subtopic": "Planning ahead",
+  "code": null,
+  "outcome": "Determine preconditions for a solution."
+ },
+ {
+  "grade": "all",
+  "unit": "Component 02: Algorithms and programming",
+  "topic": "2.1.2 Thinking ahead",
+  "subtopic": "Caching and reuse",
+  "code": null,
+  "outcome": "Explain the nature, benefits and drawbacks of caching."
+ },
+ {
+  "grade": "all",
+  "unit": "Component 02: Algorithms and programming",
+  "topic": "2.1.2 Thinking ahead",
+  "subtopic": "Caching and reuse",
+  "code": null,
+  "outcome": "Explain the need for reusable program components."
+ },
+ {
+  "grade": "all",
+  "unit": "Component 02: Algorithms and programming",
+  "topic": "2.1.3 Thinking procedurally",
+  "subtopic": "Breaking problems down",
+  "code": "2.1.3",
+  "outcome": "Identify the components of a problem and of its solution."
+ },
+ {
+  "grade": "all",
+  "unit": "Component 02: Algorithms and programming",
+  "topic": "2.1.3 Thinking procedurally",
+  "subtopic": "Breaking problems down",
+  "code": null,
+  "outcome": "Determine the order of steps needed to solve a problem."
+ },
+ {
+  "grade": "all",
+  "unit": "Component 02: Algorithms and programming",
+  "topic": "2.1.3 Thinking procedurally",
+  "subtopic": "Breaking problems down",
+  "code": null,
+  "outcome": "Identify sub-procedures needed to solve a problem."
+ },
+ {
+  "grade": "all",
+  "unit": "Component 02: Algorithms and programming",
+  "topic": "2.1.4 Thinking logically",
+  "subtopic": "Decisions in a solution",
+  "code": "2.1.4",
+  "outcome": "Identify the points in a solution where a decision is needed."
+ },
+ {
+  "grade": "all",
+  "unit": "Component 02: Algorithms and programming",
+  "topic": "2.1.4 Thinking logically",
+  "subtopic": "Decisions in a solution",
+  "code": null,
+  "outcome": "Determine the logical conditions that affect a decision's outcome."
+ },
+ {
+  "grade": "all",
+  "unit": "Component 02: Algorithms and programming",
+  "topic": "2.1.4 Thinking logically",
+  "subtopic": "Decisions in a solution",
+  "code": null,
+  "outcome": "Determine how decisions affect flow through a program."
+ },
+ {
+  "grade": "all",
+  "unit": "Component 02: Algorithms and programming",
+  "topic": "2.1.5 Thinking concurrently",
+  "subtopic": "Concurrency",
+  "code": "2.1.5",
+  "outcome": "Determine which parts of a problem can be tackled at the same time."
+ },
+ {
+  "grade": "all",
+  "unit": "Component 02: Algorithms and programming",
+  "topic": "2.1.5 Thinking concurrently",
+  "subtopic": "Concurrency",
+  "code": null,
+  "outcome": "Outline the benefits and trade-offs of concurrent processing."
+ },
+ {
+  "grade": "all",
+  "unit": "Component 02: Algorithms and programming",
+  "topic": "2.2.1 Programming techniques",
+  "subtopic": "Programming constructs",
+  "code": "2.2.1",
+  "outcome": "Use sequence, iteration and branching."
+ },
+ {
+  "grade": "all",
+  "unit": "Component 02: Algorithms and programming",
+  "topic": "2.2.1 Programming techniques",
+  "subtopic": "Programming constructs",
+  "code": null,
+  "outcome": "Explain recursion and compare it with iteration."
+ },
+ {
+  "grade": "all",
+  "unit": "Component 02: Algorithms and programming",
+  "topic": "2.2.1 Programming techniques",
+  "subtopic": "Programming constructs",
+  "code": null,
+  "outcome": "Distinguish global and local variables."
+ },
+ {
+  "grade": "all",
+  "unit": "Component 02: Algorithms and programming",
+  "topic": "2.2.1 Programming techniques",
+  "subtopic": "Modularity and tools",
+  "code": null,
+  "outcome": "Use modularity, functions and procedures, with parameters passed by value and by reference."
+ },
+ {
+  "grade": "all",
+  "unit": "Component 02: Algorithms and programming",
+  "topic": "2.2.1 Programming techniques",
+  "subtopic": "Modularity and tools",
+  "code": null,
+  "outcome": "Use an IDE to develop and debug a program."
+ },
+ {
+  "grade": "all",
+  "unit": "Component 02: Algorithms and programming",
+  "topic": "2.2.1 Programming techniques",
+  "subtopic": "Modularity and tools",
+  "code": null,
+  "outcome": "Use object-oriented techniques."
+ },
+ {
+  "grade": "all",
+  "unit": "Component 02: Algorithms and programming",
+  "topic": "2.2.2 Computational methods",
+  "subtopic": "Is it computable?",
+  "code": "2.2.2",
+  "outcome": "Describe the features that make a problem solvable by computational methods."
+ },
+ {
+  "grade": "all",
+  "unit": "Component 02: Algorithms and programming",
+  "topic": "2.2.2 Computational methods",
+  "subtopic": "Is it computable?",
+  "code": null,
+  "outcome": "Recognise problems."
+ },
+ {
+  "grade": "all",
+  "unit": "Component 02: Algorithms and programming",
+  "topic": "2.2.2 Computational methods",
+  "subtopic": "Decomposition methods",
+  "code": null,
+  "outcome": "Decompose a problem."
+ },
+ {
+  "grade": "all",
+  "unit": "Component 02: Algorithms and programming",
+  "topic": "2.2.2 Computational methods",
+  "subtopic": "Decomposition methods",
+  "code": null,
+  "outcome": "Use divide and conquer."
+ },
+ {
+  "grade": "all",
+  "unit": "Component 02: Algorithms and programming",
+  "topic": "2.2.2 Computational methods",
+  "subtopic": "Decomposition methods",
+  "code": null,
+  "outcome": "Use abstraction."
+ },
+ {
+  "grade": "all",
+  "unit": "Component 02: Algorithms and programming",
+  "topic": "2.2.2 Computational methods",
+  "subtopic": "Problem-solving techniques",
+  "code": null,
+  "outcome": "Apply backtracking, data mining, heuristics, performance modelling, pipelining and visualisation to solve problems."
+ },
+ {
+  "grade": "all",
+  "unit": "Component 02: Algorithms and programming",
+  "topic": "2.3.1 Algorithms",
+  "subtopic": "Designing algorithms",
+  "code": "2.3.1",
+  "outcome": "Analyse and design algorithms for a given situation."
+ },
+ {
+  "grade": "all",
+  "unit": "Component 02: Algorithms and programming",
+  "topic": "2.3.1 Algorithms",
+  "subtopic": "Designing algorithms",
+  "code": null,
+  "outcome": "Judge the suitability of algorithms for a task and data set by time and space."
+ },
+ {
+  "grade": "all",
+  "unit": "Component 02: Algorithms and programming",
+  "topic": "2.3.1 Algorithms",
+  "subtopic": "Algorithm efficiency",
+  "code": null,
+  "outcome": "Use measures such as Big O notation (constant, linear, polynomial, exponential, logarithmic) to judge efficiency."
+ },
+ {
+  "grade": "all",
+  "unit": "Component 02: Algorithms and programming",
+  "topic": "2.3.1 Algorithms",
+  "subtopic": "Algorithm efficiency",
+  "code": null,
+  "outcome": "Compare the complexity of algorithms."
+ },
+ {
+  "grade": "all",
+  "unit": "Component 02: Algorithms and programming",
+  "topic": "2.3.1 Algorithms",
+  "subtopic": "Data structure algorithms",
+  "code": null,
+  "outcome": "Write algorithms for stacks, queues, trees and linked lists, and depth-first and breadth-first tree traversal."
+ },
+ {
+  "grade": "all",
+  "unit": "Component 02: Algorithms and programming",
+  "topic": "2.3.1 Algorithms",
+  "subtopic": "Standard algorithms",
+  "code": null,
+  "outcome": "Describe bubble, insertion, merge and quick sort."
+ },
+ {
+  "grade": "all",
+  "unit": "Component 02: Algorithms and programming",
+  "topic": "2.3.1 Algorithms",
+  "subtopic": "Standard algorithms",
+  "code": null,
+  "outcome": "Describe Dijkstra's shortest path and A* algorithms."
+ },
+ {
+  "grade": "all",
+  "unit": "Component 02: Algorithms and programming",
+  "topic": "2.3.1 Algorithms",
+  "subtopic": "Standard algorithms",
+  "code": null,
+  "outcome": "Describe binary search and linear search."
+ }
+]

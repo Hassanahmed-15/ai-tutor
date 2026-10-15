@@ -1,0 +1,120 @@
+U|Unit 4: Inference for Quantitative Data: Means
+T|4.1 Sampling Distributions for Sample Means
+S|Sampling distribution of a sample mean
+4.1.A|Calculate the mean and standard deviation of the sampling distribution of a sample mean
+4.1.A.1|The sample mean has mean mu and standard deviation sigma over root n
+4.1.B|Justify the conditions for the sampling distribution of a sample mean
+4.1.B.1|Check randomization and the 10 percent condition when sampling without replacement
+4.1.B.2|With a normal population, the sample mean is normal at any sample size
+4.1.B.3|Otherwise it is approximately normal when n is at least 30, and more for extreme skew
+4.1.C|Interpret the mean, standard deviation and probabilities of this sampling distribution
+4.1.C.1|Interpret in the context of the population
+T|4.2 Constructing a Confidence Interval for a Population Mean or Population Mean Difference
+S|t-distributions and choosing a procedure
+4.2.A|Describe t-distributions
+4.2.A.1|t-distributions are symmetric, bell-shaped with heavier tails, set by degrees of freedom, approaching the standard normal as df grows
+4.2.A.2|Use t when sigma is unknown and s must be used
+4.2.B|Identify the interval procedure and parameter for a mean or mean difference
+4.2.B.1|Use a one-sample t-interval for a population mean
+4.2.B.2|For matched pairs, take differences and use a one-sample t-interval for the mean difference
+4.2.B.3|State the parameter in context, including the order of subtraction for differences
+S|Conditions for the t-interval
+4.2.C|Verify conditions for a one-sample t-interval
+4.2.C.1|Check randomization, the 10 percent condition, and the sample data condition (normal population, n at least 30, or no strong skew or outliers)
+S|Computing the interval
+4.2.D|Calculate a confidence interval for a mean or mean difference
+4.2.D.1|The point estimate is the sample mean or mean difference
+4.2.D.2|The interval is x-bar plus or minus t-star times s over root n, with n-1 degrees of freedom
+4.2.E|Calculate standard error and margin of error for a one-sample t-interval
+4.2.E.1|Standard error of the mean is s over root n
+4.2.E.2|Margin of error is t-star times the standard error
+T|4.3 Justifying a Claim Based on a Confidence Interval for a Population Mean or Population Mean Difference
+S|Interpreting a confidence interval
+4.3.A|Interpret a confidence interval for a mean or mean difference in context
+4.3.A.1|The computed interval may or may not contain the true value
+4.3.A.2|Confidence level is the long-run percentage of intervals that capture the parameter
+4.3.A.3|State we are C percent confident the interval contains the parameter, in context
+S|Claims and interval width
+4.3.B|Justify a claim from the interval
+4.3.B.1|The interval gives plausible values that can support a claim
+4.3.C|Relate sample size, width, confidence level and margin of error
+4.3.C.1|Higher confidence raises the critical value, margin of error and width
+4.3.C.2|Larger samples shrink standard error and narrow the interval, about one over root n
+T|4.4 Setting Up a Test for a Population Mean or Population Mean Difference
+S|Procedure and hypotheses
+4.4.A|Identify the testing method and parameter for a mean or mean difference with unknown sigma
+4.4.A.1|Use a one-sample t-test for a population mean
+4.4.A.2|For matched pairs, take differences and use a one-sample t-test for the mean difference
+4.4.A.3|State the parameter in context
+4.4.B|Identify null and alternative hypotheses
+4.4.B.1|H0: mu equals mu0, with one-sided or two-sided Ha
+4.4.B.2|For differences, H0: mu-d equals 0, with one-sided or two-sided Ha
+S|Conditions for the t-test
+4.4.C|Verify conditions for a one-sample t-test
+4.4.C.1|Check randomization, the 10 percent condition and the sample data condition
+T|4.5 Carrying Out a Test for a Population Mean or Population Mean Difference
+S|Test statistic and p-value
+4.5.A|Calculate the test statistic and p-value for a mean or mean difference
+4.5.A.1|t equals (x-bar minus mu0) over (s over root n) with n-1 degrees of freedom
+4.5.A.2|Find the p-value from the t-distribution using a table or technology
+4.5.B|Interpret the p-value
+4.5.B.1|The p-value assumes the null hypothesis is true
+S|Decisions and conclusions
+4.5.C|Justify a claim from the test
+4.5.C.1|Reject if the p-value is at most alpha; otherwise fail to reject
+4.5.C.2|Results support the answer to the investigative question
+4.5.C.3|State the conclusion in context, tied to Ha, with non-definitive language
+T|4.6 Sampling Distributions for the Difference Between Two Sample Means
+S|Difference of two sample means
+4.6.A|Calculate the mean and standard deviation of the sampling distribution of a difference of sample means
+4.6.A.1|The difference has mean mu1 minus mu2 and standard deviation root of sigma1 squared over n1 plus sigma2 squared over n2
+4.6.B|Justify conditions for this sampling distribution
+4.6.B.1|Check two independent random samples and the 10 percent condition for each
+4.6.B.2|For experiments only random assignment is needed
+4.6.B.3|It is normal if both populations are normal
+4.6.B.4|Otherwise it is approximately normal if both n are at least 30
+4.6.C|Interpret the mean, standard deviation and probabilities
+4.6.C.1|Interpret within the context of the specific populations
+T|4.7 Constructing a Confidence Interval for the Difference Between Two Population Means
+S|Procedure and conditions
+4.7.A|Identify the interval procedure and parameter for a difference of means
+4.7.A.1|Use a two-sample t-interval for independent samples
+4.7.A.2|State the parameter as the difference in means, response variable and populations
+4.7.B|Verify conditions for a two-sample t-interval
+4.7.B.1|Check randomization, the 10 percent condition (not needed in experiments) and the sample data condition for both samples
+S|Computing the interval
+4.7.C|Calculate the interval for a difference of means
+4.7.C.1|The point estimate is x1-bar minus x2-bar
+4.7.C.2|The interval is the point estimate plus or minus t-star times the standard error, with df found by technology
+4.7.D|Calculate standard error and margin of error for a difference of means
+4.7.D.1|Standard error is root of s1 squared over n1 plus s2 squared over n2
+4.7.D.2|Margin of error is t-star times standard error
+T|4.8 Justifying a Claim Based on a Confidence Interval for the Difference Between Two Population Means
+S|Interpreting and using the interval
+4.8.A|Interpret an interval for a difference of means in context
+4.8.A.1|The computed interval may or may not contain the true difference
+4.8.A.2|Confidence level is the long-run capture rate of such intervals
+4.8.A.3|State we are C percent confident the interval contains the difference, in context
+4.8.B|Justify a claim from the interval
+4.8.B.1|An interval containing 0 means insufficient evidence of a difference; one without 0 means sufficient evidence
+T|4.9 Setting Up a Test for the Difference Between Two Population Means
+S|Procedure, hypotheses and conditions
+4.9.A|Identify the testing method and parameters for a difference of means
+4.9.A.1|Use a two-sample t-test for a difference between means
+4.9.A.2|Parameters refer to the population parameters, response variables and populations
+4.9.B|Identify null and alternative hypotheses
+4.9.B.1|H0: mu1 equals mu2, with one-sided or two-sided Ha
+4.9.C|Verify conditions for a two-sample t-test
+4.9.C.1|Check randomization, the 10 percent condition and the sample data condition for both samples
+T|4.10 Carrying Out a Test for the Difference Between Two Population Means
+S|Test statistic and p-value
+4.10.A|Calculate the test statistic and p-value for a difference of means
+4.10.A.1|The t-statistic is the observed difference minus the hypothesised difference over the standard error, with df by technology
+4.10.A.2|Find the p-value from the t-distribution
+4.10.B|Interpret the p-value
+4.10.B.1|The p-value assumes the population means are equal
+S|Decisions and conclusions
+4.10.C|Justify a claim from the test
+4.10.C.1|Reject if the p-value is at most alpha; otherwise fail to reject
+4.10.C.2|Results support the answer to the investigative question
+4.10.C.3|State the conclusion in context, tied to Ha, with non-definitive language

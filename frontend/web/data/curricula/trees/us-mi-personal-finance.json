@@ -1,0 +1,204 @@
+{
+ "id": "us-mi-personal-finance",
+ "region": "US",
+ "framework": "Michigan state academic standards: Personal Finance",
+ "board": null,
+ "qualification": "K-12",
+ "subject": "Personal Finance",
+ "syllabusCode": null,
+ "gradeSystem": "grade",
+ "source": {
+  "urls": [
+   "https://api.commonstandardsproject.com/api/v1/jurisdictions/778458DAC3234C428E022B08ADF179C3",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/08B23748850240ECA88B75280D5174E1"
+  ],
+  "publisher": "Michigan state education agency (machine-readable via Common Standards Project / ASN)",
+  "licence": "CC BY 4.0 US, Common Curriculum, Inc.",
+  "firstExam": "2022"
+ },
+ "grades": [
+  {
+   "grade": "9-12",
+   "units": [
+    {
+     "id": "earning-income",
+     "title": "Earning Income",
+     "topics": [
+      {
+       "id": "earning-income",
+       "title": "Earning Income",
+       "subtopics": [
+        {
+         "id": "earning-income",
+         "title": "Earning Income",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Conduct research regarding potential income and employee benefit packages, non-income factors that may influence career choice, benefits, and costs of obtaining the necessary education or technical skills, taxes a person is likely to pay, and other possible sources of income."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "buying-goods-and-services",
+     "title": "Buying Goods and Services",
+     "topics": [
+      {
+       "id": "buying-goods-and-services",
+       "title": "Buying Goods and Services",
+       "subtopics": [
+        {
+         "id": "buying-goods-and-services",
+         "title": "Buying Goods and Services",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe the factors that consumers may consider when purchasing a good or service, including the costs, benefits, and the role of government in obtaining the information."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "budgeting-and-saving",
+     "title": "Budgeting and Saving",
+     "topics": [
+      {
+       "id": "budgeting-and-saving",
+       "title": "Budgeting and Saving",
+       "subtopics": [
+        {
+         "id": "budgeting-and-saving",
+         "title": "Budgeting and Saving",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Identify the incentives people have to set aside income for future consumption and evaluate the impact of time, interest rates, and inflation upon the value of savings."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "using-credit",
+     "title": "Using Credit",
+     "topics": [
+      {
+       "id": "evaluate-the-benefits-costs",
+       "title": "Evaluate the benefits, costs",
+       "subtopics": [
+        {
+         "id": "evaluate-the-benefits-costs",
+         "title": "Evaluate the benefits, costs",
+         "outcomes": [
+          {
+           "code": "PF4.1",
+           "text": "Free Application for Federal Student Aid (FAFSA), Student Loans, Scholarships, Work Study and Grants"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "financial-investing",
+     "title": "Financial Investing",
+     "topics": [
+      {
+       "id": "financial-investing",
+       "title": "Financial Investing",
+       "subtopics": [
+        {
+         "id": "financial-investing",
+         "title": "Financial Investing",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Analyze the risks, expected rate of return, tax benefits, the impact of inflation, the role of government agencies, and the importance of diversification when investing in financial assets."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "protecting-and-insuring",
+     "title": "Protecting and Insuring",
+     "topics": [
+      {
+       "id": "protecting-and-insuring",
+       "title": "Protecting and Insuring",
+       "subtopics": [
+        {
+         "id": "protecting-and-insuring",
+         "title": "Protecting and Insuring",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Assess the financial risk of lost income, assets, health, or identity, and determine if a person should accept the risk exposure, reduce risk, or transfer the risk to others by paying a fee now to avoid the possibility of a larger loss later."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "paying-taxes",
+     "title": "Paying Taxes",
+     "topics": [
+      {
+       "id": "paying-taxes",
+       "title": "Paying Taxes",
+       "subtopics": [
+        {
+         "id": "paying-taxes",
+         "title": "Paying Taxes",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Identify and evaluate taxes a person is likely to pay, including federal, state, and local taxes, tax benefits and drawbacks, impacts on take-home pay, types of IRS tax forms, and how these can affect their taxes."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "build": {
+  "builtAt": "2026-10-14T08:04:00.622Z",
+  "model": "none",
+  "usd": 0,
+  "expectedCodes": 1,
+  "coverage": 1,
+  "missingCodes": [],
+  "counts": {
+   "grades": 1,
+   "units": 7,
+   "topics": 7,
+   "subtopics": 7,
+   "outcomes": 7
+  },
+  "warnings": [
+   "unit \"Earning Income\" (grade 9-12) has a single outcome",
+   "unit \"Buying Goods and Services\" (grade 9-12) has a single outcome",
+   "unit \"Budgeting and Saving\" (grade 9-12) has a single outcome",
+   "unit \"Using Credit\" (grade 9-12) has a single outcome",
+   "unit \"Financial Investing\" (grade 9-12) has a single outcome",
+   "unit \"Protecting and Insuring\" (grade 9-12) has a single outcome",
+   "unit \"Paying Taxes\" (grade 9-12) has a single outcome"
+  ]
+ }
+}

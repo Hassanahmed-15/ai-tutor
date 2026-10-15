@@ -22,7 +22,7 @@ export const CANVAS_ICONS = [
 ] as const;
 export type CanvasIcon = (typeof CANVAS_ICONS)[number];
 
-export const CANVAS_STAGES = ["illustration", "flow", "equation", "graph", "compare", "scene", "code"] as const;
+export const CANVAS_STAGES = ["illustration", "flow", "equation", "graph", "compare", "scene", "code", "molecule", "atom-map", "figure"] as const;
 export type CanvasStage = (typeof CANVAS_STAGES)[number];
 
 /** A written key note in the notes column, revealed on the sentence that says it. */
@@ -88,6 +88,25 @@ export type IllustrationStage = {
   paper?: string;
 };
 
+/**
+ * A textbook figure drawn by code (lib/figures): a component, its parameters, and the parts to label
+ * — each named as the board needs ("Burette (hydrochloric acid)") and revealed on its sentence.
+ * Every part's position comes from the component, so labels are exact.
+ */
+export type FigureStage = {
+  kind: "figure";
+  /** A registered code-drawn component (lib/figures/registry.ts), or "library" for a real textbook diagram. */
+  component: string;
+  params: Record<string, string | number | boolean>;
+  parts: Array<{ id: string; name: string; s: number; say?: string }>;
+  /**
+   * component "library": an openly-licensed textbook diagram (lib/figures/library.ts), its own words
+   * taken off and each part an exact anchor in its w×h space. Filled by the server from the library
+   * index (never trusted from the model); the board draws it from /api/figures/asset/<id>.
+   */
+  asset?: { id: string; w: number; h: number; credit: string; parts: Array<{ id: string; name: string; anchor: { x: number; y: number } }> };
+};
+
 export type EquationToken = {
   id: string;
   text: string;
@@ -146,6 +165,8 @@ export type SceneItem = {
   kind: "icon" | "box" | "text";
   icon?: CanvasIcon;
   label?: string;
+  /** A box's one or two lines of content under its title ("+ random sample: representative"). */
+  detail?: string;
   /** Grid cell on a 6 x 4 stage grid, column A-F then row 1-4, e.g. "B2". */
   cell: string;
   /** Cells covered, "2x1" = two wide, one tall. */
@@ -158,6 +179,39 @@ export type SceneStage = {
   kind: "scene";
   items: SceneItem[];
   arrows: FlowArrow[];
+};
+
+export type MoleculeAtom = {
+  id: string;
+  element: string;
+  /** Deterministic model-space coordinates, each clamped to -1..1. */
+  x: number;
+  y: number;
+  z: number;
+  lonePairs?: number;
+  color?: string;
+};
+export type MoleculeBond = { from: string; to: string; order: 1 | 2 | 3; style?: "line" | "wedge" | "dash" };
+export type MoleculeStage = {
+  kind: "molecule";
+  molecules: Array<{
+    id: string;
+    label: string;
+    geometry: string;
+    bondAngle?: string;
+    atoms: MoleculeAtom[];
+    bonds: MoleculeBond[];
+    s: number;
+  }>;
+};
+
+export type AtomMapGroup = { id: string; label: string; atoms: Array<{ element: string; count: number }>; s: number };
+export type AtomMapStage = {
+  kind: "atom-map";
+  reactants: AtomMapGroup[];
+  products: AtomMapGroup[];
+  /** Energy is deliberately rendered on a separate lane from conserved matter. */
+  energy?: { input: string; output: string; s: number };
 };
 
 /**
@@ -185,7 +239,7 @@ export type CodeStage = {
   output?: { s: number; text: string };
 };
 
-export type StageSpec = FlowStage | IllustrationStage | EquationStage | GraphStage | CompareStage | SceneStage | CodeStage;
+export type StageSpec = FlowStage | IllustrationStage | EquationStage | GraphStage | CompareStage | SceneStage | CodeStage | MoleculeStage | AtomMapStage | FigureStage;
 
 /** What the pointer (Aria's pen) or the camera does on a sentence. */
 export type CanvasCue = {
@@ -243,6 +297,12 @@ export type CanvasBoardSpec = {
   overview?: boolean;
   /** A short refresher of a prerequisite, before the topic proper (lib/knowledge). */
   refresher?: boolean;
+  /** A planned rich visual could not be produced, so the student sees a simpler grounded diagram. */
+  visualFallback?: {
+    from: "illustration";
+    reason: "budget" | "generation" | "validation" | "storage";
+    message: string;
+  };
 };
 
 /** The draw op a canvas beat carries (Beat.draw.ops). */
@@ -264,10 +324,18 @@ export type CanvasPlanBeat = {
   inside: { beat: string; object: string } | null;
   carry: string[];
   interaction: "try" | "draw" | "quiz" | null;
+  /** Phase 4: sentence positions for the teach → predict → reveal → transfer rhythm. */
+  teachingCycle?: { teach: number; predict: number; reveal: number; transfer: number };
   overview: boolean;
   /** A short board refreshing a prerequisite the student is shaky on, before the topic proper. */
   refresher?: boolean;  /** How to pitch the board for this student (lib/teachingPolicy.ts policyForBoards), set after planning. */
   audience?: string;
+  /** A "figure" board: the code-drawn component it uses (lib/figures/registry.ts), or "library", chosen by the visual policy. */
+  figure?: string;
+  /** figure "library": the textbook diagram chosen for this board (lib/figures/library.ts) — its parts are what the board may label. */
+  figureAsset?: { id: string; w: number; h: number; credit: string; parts: Array<{ id: string; name: string; anchor: { x: number; y: number } }> };
+  /** Curriculum Phase 3: deterministic visual obligations attached after the model plan. */
+  requiredVisual?: { stages: string[]; mustShow: string[] };
   /**
    * A lesson taught from the student's PDF (reference mode): the pages this board teaches from and,
    * for a code board, which of the document's listings it shows and which of its printed lines

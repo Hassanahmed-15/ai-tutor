@@ -1,0 +1,533 @@
+{
+ "id": "uk-edexcel-alevel-spanish-9sp0",
+ "region": "UK",
+ "framework": "Pearson Edexcel Level 3 Advanced GCE",
+ "board": "Pearson Edexcel",
+ "qualification": "A Level",
+ "subject": "Spanish",
+ "syllabusCode": "9SP0",
+ "gradeSystem": "year",
+ "source": {
+  "urls": [
+   "https://qualifications.pearson.com/content/dam/pdf/A%20Level/Spanish/2016/Specification%20and%20sample%20assessments/Specification_GCE_A_level_L3_in_Spanish.pdf"
+  ],
+  "publisher": "Pearson Education",
+  "licence": "Exam board specification, (c) Pearson; structure + our own wording only",
+  "firstExam": "2018"
+ },
+ "grades": [
+  {
+   "grade": "all",
+   "units": [
+    {
+     "id": "theme-1-la-evolucion-de-la-sociedad-espanola",
+     "title": "Theme 1: La evolucion de la sociedad espanola",
+     "topics": [
+      {
+       "id": "cambios-en-la-estructura-familiar",
+       "title": "Cambios en la estructura familiar",
+       "subtopics": [
+        {
+         "id": "family-change",
+         "title": "Family change",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe changing attitudes to marriage, relationships and families in Spain."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "el-mundo-laboral",
+       "title": "El mundo laboral",
+       "subtopics": [
+        {
+         "id": "work-in-spain",
+         "title": "Work in Spain",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe working life in Spain and attitudes to work."
+          },
+          {
+           "code": null,
+           "text": "Discuss job opportunities for young people."
+          },
+          {
+           "code": null,
+           "text": "Discuss gender equality at work."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "el-impacto-turistico-en-espana",
+       "title": "El impacto turistico en Espana",
+       "subtopics": [
+        {
+         "id": "tourism",
+         "title": "Tourism",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain the economic impact of tourism."
+          },
+          {
+           "code": null,
+           "text": "Describe the opportunities tourism offers."
+          },
+          {
+           "code": null,
+           "text": "Discuss the social and environmental impact of tourism."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "theme-2-la-cultura-politica-y-artistica-en-el-mu",
+     "title": "Theme 2: La cultura politica y artistica en el mundo hispanohablante",
+     "topics": [
+      {
+       "id": "la-musica",
+       "title": "La musica",
+       "subtopics": [
+        {
+         "id": "music",
+         "title": "Music",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe changes and trends in music in the Spanish-speaking world."
+          },
+          {
+           "code": null,
+           "text": "Explain the impact of music on contemporary culture."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "los-medios-de-comunicacion",
+       "title": "Los medios de comunicacion",
+       "subtopics": [
+        {
+         "id": "media",
+         "title": "Media",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe television and telenovelas."
+          },
+          {
+           "code": null,
+           "text": "Describe written and online media."
+          },
+          {
+           "code": null,
+           "text": "Explain media impact on society and politics."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "los-festivales-y-las-tradiciones",
+       "title": "Los festivales y las tradiciones",
+       "subtopics": [
+        {
+         "id": "festivals-and-traditions",
+         "title": "Festivals and traditions",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe festivals, holidays, customs and traditions of Spanish-speaking countries."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "theme-3-la-inmigracion-y-la-sociedad-multicultur",
+     "title": "Theme 3: La inmigracion y la sociedad multicultural espanola",
+     "topics": [
+      {
+       "id": "impacto-positivo-de-la-inmigracion",
+       "title": "Impacto positivo de la inmigracion",
+       "subtopics": [
+        {
+         "id": "immigrant-contributions",
+         "title": "Immigrant contributions",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe immigrants' contributions to Spain's economy and culture."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "desafios-de-la-inmigracion-y-la-integracion",
+       "title": "Desafios de la inmigracion y la integracion",
+       "subtopics": [
+        {
+         "id": "integration-challenges",
+         "title": "Integration challenges",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe measures taken by local communities."
+          },
+          {
+           "code": null,
+           "text": "Explain marginalisation and isolation from immigrants' viewpoint."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "reaccion-social-y-publica",
+       "title": "Reaccion social y publica",
+       "subtopics": [
+        {
+         "id": "reactions-to-immigration",
+         "title": "Reactions to immigration",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe political approaches to immigration."
+          },
+          {
+           "code": null,
+           "text": "Discuss public opinion on immigration."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "theme-4-la-dictadura-franquista-y-la-transicion-",
+     "title": "Theme 4: La dictadura franquista y la transicion a la democracia",
+     "topics": [
+      {
+       "id": "la-guerra-civil-y-el-ascenso-de-franco",
+       "title": "La Guerra Civil y el ascenso de Franco",
+       "subtopics": [
+        {
+         "id": "civil-war",
+         "title": "Civil War",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain the Civil War and Franco's rise, Republicans versus Nationalists."
+          },
+          {
+           "code": null,
+           "text": "Describe divisions in society."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "la-dictadura-franquista",
+       "title": "La dictadura franquista",
+       "subtopics": [
+        {
+         "id": "life-under-franco",
+         "title": "Life under Franco",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe everyday life under the dictatorship."
+          },
+          {
+           "code": null,
+           "text": "Explain political oppression and censorship."
+          },
+          {
+           "code": null,
+           "text": "Describe social divisions under Franco."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "la-transicion-a-la-democracia",
+       "title": "La transicion a la democracia",
+       "subtopics": [
+        {
+         "id": "transition",
+         "title": "Transition",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain King Juan Carlos's role in the transition."
+          },
+          {
+           "code": null,
+           "text": "Describe the Suarez government."
+          },
+          {
+           "code": null,
+           "text": "Explain the 1981 coup attempt."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "language-skills",
+     "title": "Language skills",
+     "topics": [
+      {
+       "id": "paper-1-skills",
+       "title": "Paper 1 skills",
+       "subtopics": [
+        {
+         "id": "listening-and-reading",
+         "title": "Listening and reading",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Understand main points, gist and detail in spoken and written Spanish, and infer meaning."
+          },
+          {
+           "code": null,
+           "text": "Summarise information from spoken sources and use information from online media."
+          }
+         ]
+        },
+        {
+         "id": "translation",
+         "title": "Translation",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Translate Spanish passages accurately into English."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "paper-2-skills",
+       "title": "Paper 2 skills",
+       "subtopics": [
+        {
+         "id": "written-response-to-works",
+         "title": "Written response to works",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Write critical responses to two works on key concepts, characterisation, form and technique, and social and cultural setting."
+          },
+          {
+           "code": null,
+           "text": "Present viewpoints, develop arguments and draw conclusions with evidence."
+          }
+         ]
+        },
+        {
+         "id": "translation",
+         "title": "Translation",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Translate English passages accurately into Spanish."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "paper-3-skills",
+       "title": "Paper 3 skills",
+       "subtopics": [
+        {
+         "id": "speaking-tasks",
+         "title": "Speaking tasks",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Discuss a theme using two stimulus statements."
+          },
+          {
+           "code": null,
+           "text": "Present and discuss independent research based on at least two written sources."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "grammar",
+     "title": "Grammar",
+     "topics": [
+      {
+       "id": "nouns-articles-and-adjectives",
+       "title": "Nouns, articles and adjectives",
+       "subtopics": [
+        {
+         "id": "nouns-articles-and-adjectives",
+         "title": "Nouns, articles and adjectives",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Use noun gender and plural forms, including male/female pairs."
+          },
+          {
+           "code": null,
+           "text": "Use definite and indefinite articles, el with stressed-a feminine nouns, and lo + adjective."
+          },
+          {
+           "code": null,
+           "text": "Make adjectives agree and place them correctly, including apocopation."
+          },
+          {
+           "code": null,
+           "text": "Form comparatives and superlatives of adjectives."
+          },
+          {
+           "code": null,
+           "text": "Use demonstrative, indefinite, possessive, interrogative and relative adjectives, including cuyo."
+          },
+          {
+           "code": null,
+           "text": "Use cardinal and ordinal numerals, and express time and date."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "adverbs-and-pronouns",
+       "title": "Adverbs and pronouns",
+       "subtopics": [
+        {
+         "id": "adverbs-and-pronouns",
+         "title": "Adverbs and pronouns",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Form adverbs in -mente and use adjectives as adverbs."
+          },
+          {
+           "code": null,
+           "text": "Use quantifiers and intensifiers."
+          },
+          {
+           "code": null,
+           "text": "Use subject, object and reflexive pronouns, including order and position."
+          },
+          {
+           "code": null,
+           "text": "Use relative, demonstrative, indefinite, possessive and interrogative pronouns."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "verb-tenses",
+       "title": "Verb tenses",
+       "subtopics": [
+        {
+         "id": "verb-tenses",
+         "title": "Verb tenses",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Conjugate regular, radical-changing, orthographic-changing and irregular verbs."
+          },
+          {
+           "code": null,
+           "text": "Use present, preterite, imperfect and future tenses."
+          },
+          {
+           "code": null,
+           "text": "Use conditional, perfect, future perfect, conditional perfect and pluperfect tenses."
+          },
+          {
+           "code": null,
+           "text": "Use the infinitive, gerund and past participle, and hay que."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "subjunctive-and-verb-structures",
+       "title": "Subjunctive and verb structures",
+       "subtopics": [
+        {
+         "id": "subjunctive-and-verb-structures",
+         "title": "Subjunctive and verb structures",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Use verbal paraphrases such as ir a, estar + gerund, acabar de, llevar + gerund."
+          },
+          {
+           "code": null,
+           "text": "Use the subjunctive in commands, conditionals, time clauses, para que, relative clauses and after expressions of wish, doubt or emotion."
+          },
+          {
+           "code": null,
+           "text": "Use reflexive passive and impersonal se, and ser or estar + past participle."
+          },
+          {
+           "code": null,
+           "text": "Use nuance reflexive verbs and modes of address (tu, usted)."
+          },
+          {
+           "code": null,
+           "text": "Use verbs followed by infinitive, preposition, or gerund."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "build": {
+  "builtAt": "2026-10-14T10:29:44.840Z",
+  "model": "claude-agent",
+  "usd": 0,
+  "expectedCodes": null,
+  "coverage": null,
+  "missingCodes": [],
+  "counts": {
+   "grades": 1,
+   "units": 6,
+   "topics": 19,
+   "subtopics": 21,
+   "outcomes": 53
+  },
+  "warnings": [
+   "grade Year 12 has no content",
+   "grade Year 13 has no content",
+   "unexpected grade label \"all\""
+  ]
+ }
+}

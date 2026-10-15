@@ -1,0 +1,2351 @@
+{
+ "id": "us-ma-world-languages",
+ "region": "US",
+ "framework": "Massachusetts state academic standards: World Languages",
+ "board": null,
+ "qualification": "K-12",
+ "subject": "World Languages",
+ "syllabusCode": null,
+ "gradeSystem": "grade",
+ "source": {
+  "urls": [
+   "https://api.commonstandardsproject.com/api/v1/jurisdictions/95C543B18A1B473B894ED35ECA322576",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/D9AE2BE482DC4681834017DD16E15C08",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/B3EFF0D098304D72A5DC0AA2E8EC8F25",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/72B55CCE68DF4D1B951011433A612452",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/F30C17E5B5C64DB29A30F6C5DC91AC7A",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/3841819EC77A42AA97D15B206FD21FBA",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/542F1E2E73854401BB0EED3A1A056CA5",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/DEC3A05337A542D593D8BE45592ACEB2",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/23C0C8C355934E13AD6BE3DA6BF120FF",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/C15C2D845B664B6C8DD42D9F512D1B4D",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/72EC15B12AF54C8C88045C276BC2743E"
+  ],
+  "publisher": "Massachusetts state education agency (machine-readable via Common Standards Project / ASN)",
+  "licence": "CC BY 4.0 US, Common Curriculum, Inc.",
+  "firstExam": "2021"
+ },
+ "grades": [
+  {
+   "grade": "K-12",
+   "units": [
+    {
+     "id": "communication",
+     "title": "Communication",
+     "topics": [
+      {
+       "id": "interpretive-communication",
+       "title": "Interpretive Communication",
+       "subtopics": [
+        {
+         "id": "in-texts-and-conversations-on-topics-of-high-fam",
+         "title": "In texts and conversations on topics of high familiarity and immediate interest to students, relying upon practiced or memorized words or phrases, supported by repetition, visual aids, and gestures, students:",
+         "outcomes": [
+          {
+           "code": "NL.1.a",
+           "text": "Recognize traits of multiple cultures and communities"
+          },
+          {
+           "code": "NL.1.b",
+           "text": "Identify words, phrases, and basic information"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "interpersonal-communication",
+       "title": "Interpersonal Communication",
+       "subtopics": [
+        {
+         "id": "in-conversations-on-topics-of-high-familiarity-a",
+         "title": "In conversations on topics of high familiarity and immediate interest to students in settings that students would find familiar and highly predictable, using practiced or memorized words or phrases, relying upon repetition, visual aids, and gestures, in such a way that speakers/signers of the language who are accustomed to engaging with language learners sometimes understand, students:",
+         "outcomes": [
+          {
+           "code": "NL.2.a",
+           "text": "Respond to culturally diverse interlocutors, products, practices, and ideas by expressing curiosity and empathy."
+          },
+          {
+           "code": "NL.2.b",
+           "text": "Respond to a few simple, highly practiced questions by providing basic information about themselves."
+          },
+          {
+           "code": "NL.2.c",
+           "text": "Provide memorized questions."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "presentational-communication",
+       "title": "Presentational Communication",
+       "subtopics": [
+        {
+         "id": "in-presentations-on-topics-of-high-familiarity-a",
+         "title": "In presentations on topics of high familiarity and immediate interest to students in settings that students would find familiar and highly predictable, using practiced or memorized words or phrases, relying upon visual aids and gestures, in such a way that speakers/signers of the language who are accustomed to engaging with language learners sometimes understand, students:",
+         "outcomes": [
+          {
+           "code": "NL.3.a",
+           "text": "Demonstrate awareness and understanding of themselves and their audience."
+          },
+          {
+           "code": "NL.3.b",
+           "text": "Provide simple, basic, prepared information in culturally appropriate ways."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "intercultural-communication",
+       "title": "Intercultural Communication",
+       "subtopics": [
+        {
+         "id": "in-interactions-in-settings-that-students-would-",
+         "title": "In interactions in settings that students would find familiar and highly predictable, using practiced or memorized words or phrases, relying upon repetition, visual aids, and gestures, in such a way that speakers/signers of the language who are accustomed to engaging with language learners sometimes understand, students:",
+         "outcomes": [
+          {
+           "code": "NL.4.a",
+           "text": "Refer to some typical products and practices related to an audience’s or interlocutor’s culture to show basic cultural awareness and respect towards diversity."
+          },
+          {
+           "code": "NL.4.b",
+           "text": "Use appropriate highly practiced gestures and behaviors."
+          },
+          {
+           "code": "NL.4.c",
+           "text": "Recognize some behaviors that are likely to offend members of target-language cultures."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "interpretive-communication-in-texts-and-conversa",
+       "title": "Interpretive Communication - In texts and conversations on topics of high familiarity and interest to students, relying upon practiced or memorized words, phrases, and some sentences, supported by repetition, visual aids, and gestures, students:",
+       "subtopics": [
+        {
+         "id": "interpretive-communication-in-texts-and-conversa",
+         "title": "Interpretive Communication - In texts and conversations on topics of high familiarity and interest to students, relying upon practiced or memorized words, phrases, and some sentences, supported by repetition, visual aids, and gestures, students:",
+         "outcomes": [
+          {
+           "code": "NM.1.a",
+           "text": "Recognize traits of multiple cultures and communities."
+          },
+          {
+           "code": "NM.1.b",
+           "text": "Identify some basic facts from the text."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "interpersonal-communication-in-conversations-on-",
+       "title": "Interpersonal Communication - In conversations on topics of high familiarity and interest to students in settings that students would find familiar and highly predictable, using practiced or memorized words, phrases, and some sentences, often relying upon repetition, visual aids, and gestures, in such a way that speakers/signers of the language who are accustomed to engaging with language learners often understand, students:",
+       "subtopics": [
+        {
+         "id": "interpersonal-communication-in-conversations-on-",
+         "title": "Interpersonal Communication - In conversations on topics of high familiarity and interest to students in settings that students would find familiar and highly predictable, using practiced or memorized words, phrases, and some sentences, often relying upon repetition, visual aids, and gestures, in such a way that speakers/signers of the language who are accustomed to engaging with language learners often understand, students:",
+         "outcomes": [
+          {
+           "code": "NM.2.a",
+           "text": "Respond to culturally diverse interlocutors, products, practices, and ideas by expressing curiosity and empathy."
+          },
+          {
+           "code": "NM.2.b",
+           "text": "Respond to questions by expressing basic information about themselves."
+          },
+          {
+           "code": "NM.2.c",
+           "text": "Ask highly predictable, formulaic questions."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "presentational-communication-in-presentations-on",
+       "title": "Presentational Communication - In presentations on topics of high familiarity and interest to students in settings that students would find familiar and highly predictable, using practiced or memorized words, phrases, and some sentences, often relying upon visual aids and gestures, in such a way that speakers/signers of the language who are accustomed to engaging with language learners often understand, students:",
+       "subtopics": [
+        {
+         "id": "presentational-communication-in-presentations-on",
+         "title": "Presentational Communication - In presentations on topics of high familiarity and interest to students in settings that students would find familiar and highly predictable, using practiced or memorized words, phrases, and some sentences, often relying upon visual aids and gestures, in such a way that speakers/signers of the language who are accustomed to engaging with language learners often understand, students:",
+         "outcomes": [
+          {
+           "code": "NM.3.a",
+           "text": "Demonstrate awareness and understanding of themselves and their audience."
+          },
+          {
+           "code": "NM.3.b",
+           "text": "Provide simple, basic, prepared information in culturally appropriate ways."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "intercultural-communication-in-interactions-in-s",
+       "title": "Intercultural Communication - In interactions in settings that students would find familiar and highly predictable, using practiced or memorized words, phrases, and some sentences, often relying upon repetition, visual aids, and gestures, in such a way that speakers/signers of the language who are accustomed to engaging with language learners often understand, students:",
+       "subtopics": [
+        {
+         "id": "intercultural-communication-in-interactions-in-s",
+         "title": "Intercultural Communication - In interactions in settings that students would find familiar and highly predictable, using practiced or memorized words, phrases, and some sentences, often relying upon repetition, visual aids, and gestures, in such a way that speakers/signers of the language who are accustomed to engaging with language learners often understand, students:",
+         "outcomes": [
+          {
+           "code": "NM.4.a",
+           "text": "Refer to some typical products and practices related to an audience’s or interlocutor’s culture to show basic cultural awareness and respect towards diversity."
+          },
+          {
+           "code": "NM.4.b",
+           "text": "Use appropriate rehearsed gestures and behaviors."
+          },
+          {
+           "code": "NM.4.c",
+           "text": "Recognize some behaviors that are likely to offend members of target-language cultures."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "interpretive-communication-in-texts-and-conversa-2",
+       "title": "Interpretive Communication - In texts and conversations on topics that relate personally to students, relying mostly upon understanding of single, simple sentences, supported by repetition and plain language, students:",
+       "subtopics": [
+        {
+         "id": "interpretive-communication-in-texts-and-conversa",
+         "title": "Interpretive Communication - In texts and conversations on topics that relate personally to students, relying mostly upon understanding of single, simple sentences, supported by repetition and plain language, students:",
+         "outcomes": [
+          {
+           "code": "NH.1.a",
+           "text": "Understand traits of multiple cultures and communities."
+          },
+          {
+           "code": "NH.1.b",
+           "text": "Identify and recognize the main topic and some related information."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "interpersonal-communication-in-conversations-on--2",
+       "title": "Interpersonal Communication - In conversations on topics that relate personally to students in a variety of settings, using mostly simple sentences, sometimes relying upon repetition, clarification, and circumlocution, in such a way that speakers/signers of the language who are accustomed to engaging with language learners usually understand, students:",
+       "subtopics": [
+        {
+         "id": "interpersonal-communication-in-conversations-on-",
+         "title": "Interpersonal Communication - In conversations on topics that relate personally to students in a variety of settings, using mostly simple sentences, sometimes relying upon repetition, clarification, and circumlocution, in such a way that speakers/signers of the language who are accustomed to engaging with language learners usually understand, students:",
+         "outcomes": [
+          {
+           "code": "NH.2.a",
+           "text": "Respond to culturally diverse interlocutors, products, practices, and ideas by building connections and showing consideration for different ideas or opinions."
+          },
+          {
+           "code": "NH.2.b",
+           "text": "Understand, answer, and ask a variety of questions."
+          },
+          {
+           "code": "NH.2.c",
+           "text": "Engage in conversation by understanding and creating language that conveys authentic, personal meaning."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "presentational-communication-in-presentations-on-2",
+       "title": "Presentational Communication - In presentations on topics that relate personally to students in a variety of settings, using mostly simple sentences, sometimes relying upon clarification and circumlocution, in such a way that speakers/signers of the language who are accustomed to engaging with language learners usually understand, students:",
+       "subtopics": [
+        {
+         "id": "presentational-communication-in-presentations-on",
+         "title": "Presentational Communication - In presentations on topics that relate personally to students in a variety of settings, using mostly simple sentences, sometimes relying upon clarification and circumlocution, in such a way that speakers/signers of the language who are accustomed to engaging with language learners usually understand, students:",
+         "outcomes": [
+          {
+           "code": "NH.3.a",
+           "text": "Demonstrate awareness and understanding of relevant topics, sources, themselves, and their audience."
+          },
+          {
+           "code": "NH.3.b",
+           "text": "Provide prepared information in culturally appropriate ways."
+          },
+          {
+           "code": "NH.3.c",
+           "text": "Express their own authentic thoughts and preferences in culturally appropriate ways."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "intercultural-communication-in-interactions-in-a",
+       "title": "Intercultural Communication - In interactions in a variety of settings, using mostly simple sentences, sometimes relying upon repetition, clarification, and circumlocution, in such a way that speakers/signers of the language who are accustomed to engaging with language learners usually understand, students:",
+       "subtopics": [
+        {
+         "id": "intercultural-communication-in-interactions-in-a",
+         "title": "Intercultural Communication - In interactions in a variety of settings, using mostly simple sentences, sometimes relying upon repetition, clarification, and circumlocution, in such a way that speakers/signers of the language who are accustomed to engaging with language learners usually understand, students:",
+         "outcomes": [
+          {
+           "code": "NH.4.a",
+           "text": "Refer to and ask questions about common products, practices, and/or perspectives familiar to an audience’s or interlocutor’s culture to demonstrate understanding and curiosity of a target-language culture and respect towards diversity."
+          },
+          {
+           "code": "NH.4.b",
+           "text": "Use appropriate learned gestures and behaviors."
+          },
+          {
+           "code": "NH.4.c",
+           "text": "Avoid major social blunders."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "interpretive-communication-in-texts-and-conversa-3",
+       "title": "Interpretive Communication - In texts and conversations on topics that relate to students and their immediate environment, relying upon understanding of simple sentences, supported by repetition and plain language, students:",
+       "subtopics": [
+        {
+         "id": "interpretive-communication-in-texts-and-conversa",
+         "title": "Interpretive Communication - In texts and conversations on topics that relate to students and their immediate environment, relying upon understanding of simple sentences, supported by repetition and plain language, students:",
+         "outcomes": [
+          {
+           "code": "IL.1.a",
+           "text": "Understand traits of multiple cultures and communities."
+          },
+          {
+           "code": "IL.1.b",
+           "text": "Understand the main idea and related information."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "interpersonal-communication-in-conversations-on--3",
+       "title": "Interpersonal Communication - In conversations on topics that relate to students and their immediate environment in a variety of settings, creating unconnected simple sentences, sometimes relying upon repetition, clarification, and circumlocution, in such a way that speakers/signers of the language who are accustomed to engaging with language learners understand, students:",
+       "subtopics": [
+        {
+         "id": "interpersonal-communication-in-conversations-on-",
+         "title": "Interpersonal Communication - In conversations on topics that relate to students and their immediate environment in a variety of settings, creating unconnected simple sentences, sometimes relying upon repetition, clarification, and circumlocution, in such a way that speakers/signers of the language who are accustomed to engaging with language learners understand, students:",
+         "outcomes": [
+          {
+           "code": "IL.2.a",
+           "text": "Respond to culturally diverse interlocutors, products, practices, and ideas by building connections and showing consideration for different ideas or opinions."
+          },
+          {
+           "code": "IL.2.b",
+           "text": "Understand, answer, and ask a variety of questions."
+          },
+          {
+           "code": "IL.2.c",
+           "text": "Initiate, maintain, and end conversations by understanding and creating language that conveys authentic, personal meaning."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "presentational-communication-in-presentations-on-3",
+       "title": "Presentational Communication - In presentations on topics that relate to students and their immediate environment in a variety of settings,creating unconnected simple sentences, sometimes relying upon clarification and circumlocution, in such a way that speakers/signers of the language who are accustomed to engaging with language learners understand, students:",
+       "subtopics": [
+        {
+         "id": "presentational-communication-in-presentations-on",
+         "title": "Presentational Communication - In presentations on topics that relate to students and their immediate environment in a variety of settings,creating unconnected simple sentences, sometimes relying upon clarification and circumlocution, in such a way that speakers/signers of the language who are accustomed to engaging with language learners understand, students:",
+         "outcomes": [
+          {
+           "code": "IL.3.a",
+           "text": "Demonstrate awareness and understanding of relevant topics, sources, themselves, and their audience."
+          },
+          {
+           "code": "IL.3.b",
+           "text": "Present information, raise awareness, and express personal preferences in culturally appropriate ways."
+          },
+          {
+           "code": "IL.3.c",
+           "text": "Explain their own authentic thoughts in culturally appropriate ways."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "intercultural-communication-in-interactions-in-a-2",
+       "title": "Intercultural Communication - In interactions in a variety of settings, creating unconnected simple sentences, sometimes relying upon repetition, clarification, and circumlocution, in such a way that speakers/signers of the language who are accustomed to engaging with language learners understand, students:",
+       "subtopics": [
+        {
+         "id": "intercultural-communication-in-interactions-in-a",
+         "title": "Intercultural Communication - In interactions in a variety of settings, creating unconnected simple sentences, sometimes relying upon repetition, clarification, and circumlocution, in such a way that speakers/signers of the language who are accustomed to engaging with language learners understand, students:",
+         "outcomes": [
+          {
+           "code": "IL.4.a",
+           "text": "Refer to and ask questions about common products, practices, and/or perspectives familiar to an audience’s or interlocutor’s culture to demonstrate understanding and curiosity of a target-language culture and respect towards diversity."
+          },
+          {
+           "code": "IL.4.b",
+           "text": "Use appropriate learned gestures and behaviors."
+          },
+          {
+           "code": "IL.4.c",
+           "text": "Avoid major social blunders."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "interpretive-communication-in-texts-and-conversa-4",
+       "title": "Interpretive Communication - In texts and conversations on a wide variety of topics that relate to students and their environment, relying upon understanding of series of connected sentences, sometimes supported by repetition and plain language, students:",
+       "subtopics": [
+        {
+         "id": "interpretive-communication-in-texts-and-conversa",
+         "title": "Interpretive Communication - In texts and conversations on a wide variety of topics that relate to students and their environment, relying upon understanding of series of connected sentences, sometimes supported by repetition and plain language, students:",
+         "outcomes": [
+          {
+           "code": "IM.1.a",
+           "text": "Understand traits of multiple cultures and communities."
+          },
+          {
+           "code": "IM.1.b",
+           "text": "Understand the main idea and some supporting details."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "interpersonal-communication-in-conversations-on--4",
+       "title": "Interpersonal Communication - In conversations on a wide variety of topics that relate to students and their environment in a variety of settings, creating series of connected sentences, sometimes relying upon repetition, clarification, and circumlocution, in such a way that speakers/signers of the language who are accustomed to engaging with language learners easily understand, students:",
+       "subtopics": [
+        {
+         "id": "interpersonal-communication-in-conversations-on-",
+         "title": "Interpersonal Communication - In conversations on a wide variety of topics that relate to students and their environment in a variety of settings, creating series of connected sentences, sometimes relying upon repetition, clarification, and circumlocution, in such a way that speakers/signers of the language who are accustomed to engaging with language learners easily understand, students:",
+         "outcomes": [
+          {
+           "code": "IM.2.a",
+           "text": "Respond to culturally diverse interlocutors, products, practices, and ideas by building connections and showing consideration for different ideas or opinions."
+          },
+          {
+           "code": "IM.2.b",
+           "text": "Understand, answer, and ask a variety of questions."
+          },
+          {
+           "code": "IM.2.c",
+           "text": "Initiate, maintain, and end conversations by understanding and creating language that conveys authentic, personal meaning."
+          },
+          {
+           "code": "IM.2.d",
+           "text": "Provide basic advice on individual or societal issues."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "presentational-communication-in-presentations-on-4",
+       "title": "Presentational Communication - In presentations on a wide variety of topics that relate to students and their environment, in a variety of settings, creating series of connected sentences, sometimes relying upon clarification and circumlocution, in such a way that speakers/signers of the language who are accustomed to engaging with language learners easily understand, students:",
+       "subtopics": [
+        {
+         "id": "presentational-communication-in-presentations-on",
+         "title": "Presentational Communication - In presentations on a wide variety of topics that relate to students and their environment, in a variety of settings, creating series of connected sentences, sometimes relying upon clarification and circumlocution, in such a way that speakers/signers of the language who are accustomed to engaging with language learners easily understand, students:",
+         "outcomes": [
+          {
+           "code": "IM.3.a",
+           "text": "Demonstrate awareness and understanding of relevant topics, sources, themselves, and their audience."
+          },
+          {
+           "code": "IM.3.b",
+           "text": "Present information, raise awareness, and express personal preferences in culturally appropriate ways."
+          },
+          {
+           "code": "IM.3.c",
+           "text": "State a viewpoint and provide reasons to support it."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "intercultural-communication-in-interactions-in-a-3",
+       "title": "Intercultural Communication - In interactions in a variety of settings, creating series of connected sentences, sometimes relying upon repetition, clarification, and circumlocution, in such a way that speakers/signers of the language who are accustomed to engaging with language learners easily understand, students:",
+       "subtopics": [
+        {
+         "id": "intercultural-communication-in-interactions-in-a",
+         "title": "Intercultural Communication - In interactions in a variety of settings, creating series of connected sentences, sometimes relying upon repetition, clarification, and circumlocution, in such a way that speakers/signers of the language who are accustomed to engaging with language learners easily understand, students:",
+         "outcomes": [
+          {
+           "code": "IM.4.a",
+           "text": "Refer to and ask questions about common products, practices, and/or perspectives familiar to an audience’s or interlocutor’s culture to demonstrate understanding and curiosity of a target-language culture and respect towards diversity."
+          },
+          {
+           "code": "IM.4.b",
+           "text": "Use appropriate learned gestures and behaviors."
+          },
+          {
+           "code": "IM.4.c",
+           "text": "Avoid major social blunders."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "interpretive-communication-in-narrative-descript",
+       "title": "Interpretive Communication - In narrative, descriptive, and persuasive texts and conversations on a variety of concrete topics of personal, general, or public interest, relying upon understanding of short paragraphs containing multiple time frames, consisting of straightforward or descriptive language, students:",
+       "subtopics": [
+        {
+         "id": "interpretive-communication-in-narrative-descript",
+         "title": "Interpretive Communication - In narrative, descriptive, and persuasive texts and conversations on a variety of concrete topics of personal, general, or public interest, relying upon understanding of short paragraphs containing multiple time frames, consisting of straightforward or descriptive language, students:",
+         "outcomes": [
+          {
+           "code": "IH.1.a",
+           "text": "Analyze traits of multiple cultures and communities."
+          },
+          {
+           "code": "IH.1.b",
+           "text": "Analyze the main message or story line and some supporting details."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "interpersonal-communication-in-conversations-on--5",
+       "title": "Interpersonal Communication - In conversations on a variety of concrete topics of personal, general, or public interest, in a wide variety of settings, creating mostly short paragraphs, sometimes relying upon clarification and circumlocution, in such a way that speakers/signers of the language usually understand, students:",
+       "subtopics": [
+        {
+         "id": "interpersonal-communication-in-conversations-on-",
+         "title": "Interpersonal Communication - In conversations on a variety of concrete topics of personal, general, or public interest, in a wide variety of settings, creating mostly short paragraphs, sometimes relying upon clarification and circumlocution, in such a way that speakers/signers of the language usually understand, students:",
+         "outcomes": [
+          {
+           "code": "IH.2.a",
+           "text": "Respond to culturally diverse interlocutors, products, practices, and ideas by building connections and showing consideration for different ideas or opinions."
+          },
+          {
+           "code": "IH.2.b",
+           "text": "Understand, answer, and ask a wide variety of questions across time frames."
+          },
+          {
+           "code": "IH.2.c",
+           "text": "Initiate, maintain, and end conversations across time frames by understanding and creating language that conveys authentic, personal meaning."
+          },
+          {
+           "code": "IH.2.d",
+           "text": "Provide advice or propose solutions to individual or societal issues."
+          },
+          {
+           "code": "IH.2.e",
+           "text": "Provide descriptions, narrations, and comparisons across time frames."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "presentational-communication-in-presentations-on-5",
+       "title": "Presentational Communication - In presentations on a variety of concrete topics of personal, general, or public interest, in a wide variety of settings, creating mostly short paragraphs, sometimes relying upon circumlocution, in such a way that speakers/signers of the language usually understand, students:",
+       "subtopics": [
+        {
+         "id": "presentational-communication-in-presentations-on",
+         "title": "Presentational Communication - In presentations on a variety of concrete topics of personal, general, or public interest, in a wide variety of settings, creating mostly short paragraphs, sometimes relying upon circumlocution, in such a way that speakers/signers of the language usually understand, students:",
+         "outcomes": [
+          {
+           "code": "IH.3.a",
+           "text": "Demonstrate understanding of their cultural context, topic, sources, themselves, and their audiences to adapt a presentation to a variety of settings."
+          },
+          {
+           "code": "IH.3.b",
+           "text": "Present information, raise awareness, and express preferences."
+          },
+          {
+           "code": "IH.3.c",
+           "text": "Apply authentic resources to state and support a viewpoint."
+          },
+          {
+           "code": "IH.3.d",
+           "text": "Produce descriptions, narrations, and comparisons across time frames."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "intercultural-communication-in-interactions-in-a-4",
+       "title": "Intercultural Communication - In interactions in a wide variety of settings, creating mostly short paragraphs, sometimes relying upon clarification and circumlocution, in such a way that speakers/signers of the language usually understand, students:",
+       "subtopics": [
+        {
+         "id": "intercultural-communication-in-interactions-in-a",
+         "title": "Intercultural Communication - In interactions in a wide variety of settings, creating mostly short paragraphs, sometimes relying upon clarification and circumlocution, in such a way that speakers/signers of the language usually understand, students:",
+         "outcomes": [
+          {
+           "code": "IH.4.a",
+           "text": "Invoke, discuss, and inquire about common products and practices that inform the perspectives of an audience or interlocutor."
+          },
+          {
+           "code": "IH.4.b",
+           "text": "Adapt language and behavior to communicate appropriately in most formal and informal settings."
+          },
+          {
+           "code": "IH.4.c",
+           "text": "Communicate in a manner that is clear and inoffensive to the audience/interlocutor."
+          },
+          {
+           "code": "IH.4.d",
+           "text": "Demonstrate awareness of cultural diversity and bias."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "interpretive-communication-in-narrative-descript-2",
+       "title": "Interpretive Communication - In narrative, descriptive, and persuasive texts and conversations on a variety of concrete topics of personal, general, social, or academic interest, relying upon understanding of cohesive, organized paragraphs containing multiple time frames, students:",
+       "subtopics": [
+        {
+         "id": "interpretive-communication-in-narrative-descript",
+         "title": "Interpretive Communication - In narrative, descriptive, and persuasive texts and conversations on a variety of concrete topics of personal, general, social, or academic interest, relying upon understanding of cohesive, organized paragraphs containing multiple time frames, students:",
+         "outcomes": [
+          {
+           "code": "AL.1.a",
+           "text": "Analyze traits of multiple cultures and communities, and how this may influence the author’s interpretive lens."
+          },
+          {
+           "code": "AL.1.b",
+           "text": "Analyze the main and underlying message or story line and some supporting details."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "interpersonal-communication-in-conversations-on--6",
+       "title": "Interpersonal Communication - In conversations on a variety of concrete, topics of personal, general, social, or academic interest, in a wide variety of settings, producing cohesive, organized paragraphs, in a way that speakers/signers of the language understand, students:",
+       "subtopics": [
+        {
+         "id": "interpersonal-communication-in-conversations-on-",
+         "title": "Interpersonal Communication - In conversations on a variety of concrete, topics of personal, general, social, or academic interest, in a wide variety of settings, producing cohesive, organized paragraphs, in a way that speakers/signers of the language understand, students:",
+         "outcomes": [
+          {
+           "code": "AL.2.a",
+           "text": "Respond to culturally diverse interlocutors, products, practices, and ideas by building connections and showing consideration for different ideas or opinions."
+          },
+          {
+           "code": "AL.2.b",
+           "text": "Understand, answer, and ask a wide variety of questions across all major time frames."
+          },
+          {
+           "code": "AL.2.c",
+           "text": "Initiate, sustain, and end authentic conversations."
+          },
+          {
+           "code": "AL.2.d",
+           "text": "Provide advice or propose solutions to individual or societal issues."
+          },
+          {
+           "code": "AL.2.e",
+           "text": "Describe, narrate, and compare across all major time frames."
+          },
+          {
+           "code": "AL.2.f",
+           "text": "Interact and negotiate to resolve an unexpected complication."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "presentational-communication-in-presentations-on-6",
+       "title": "Presentational Communication - In presentations on a variety of concrete, topics of personal, general, social, or academic interest, in a wide variety of settings, producing cohesive, organized paragraphs, in a way that speakers/signers of the language understand, students:",
+       "subtopics": [
+        {
+         "id": "presentational-communication-in-presentations-on",
+         "title": "Presentational Communication - In presentations on a variety of concrete, topics of personal, general, social, or academic interest, in a wide variety of settings, producing cohesive, organized paragraphs, in a way that speakers/signers of the language understand, students:",
+         "outcomes": [
+          {
+           "code": "AL.3.a",
+           "text": "Apply understanding of their cultural context, topic, sources, themselves, and their audiences to adapt a presentation to a variety of settings."
+          },
+          {
+           "code": "AL.3.b",
+           "text": "Present detailed and organized information, raise awareness, and question assumptions."
+          },
+          {
+           "code": "AL.3.c",
+           "text": "Apply relevant resources to examine and defend a viewpoint."
+          },
+          {
+           "code": "AL.3.d",
+           "text": "Describe, narrate, and compare across all major time frames."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "intercultural-communication-in-interactions-in-a-5",
+       "title": "Intercultural Communication - In interactions in a wide variety of settings, producing cohesive, organized paragraphs, in a way that speakers/signers of the language understand, students:",
+       "subtopics": [
+        {
+         "id": "intercultural-communication-in-interactions-in-a",
+         "title": "Intercultural Communication - In interactions in a wide variety of settings, producing cohesive, organized paragraphs, in a way that speakers/signers of the language understand, students:",
+         "outcomes": [
+          {
+           "code": "AL.4.a",
+           "text": "Invoke, discuss, and inquire about common products and practices that inform the perspectives of an audience or interlocutor."
+          },
+          {
+           "code": "AL.4.b",
+           "text": "Adapt language and behavior to communicate appropriately in most formal and informal settings."
+          },
+          {
+           "code": "AL.4.c",
+           "text": "Communicate in a manner that is clear and inoffensive to the audience/interlocutor."
+          },
+          {
+           "code": "AL.4.d",
+           "text": "Demonstrate awareness of cultural diversity and bias."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "interpretive-communication-in-narrative-descript-3",
+       "title": "Interpretive Communication - In narrative, descriptive, persuasive, and hypothetical texts and conversation on a wide variety of complex, hypothetical, and abstract topics, relying upon understanding of extended discourse composed of purposefully organized and connected paragraphs across multiple time frames, students:",
+       "subtopics": [
+        {
+         "id": "interpretive-communication-in-narrative-descript",
+         "title": "Interpretive Communication - In narrative, descriptive, persuasive, and hypothetical texts and conversation on a wide variety of complex, hypothetical, and abstract topics, relying upon understanding of extended discourse composed of purposefully organized and connected paragraphs across multiple time frames, students:",
+         "outcomes": [
+          {
+           "code": "AH.1.a",
+           "text": "Analyze traits of multiple cultures and communities, and how this may influence the author’s lens and their own understanding."
+          },
+          {
+           "code": "AH.1.b",
+           "text": "Evaluate the main message or story, its supporting details, and its underlying, and even subtle features and nuances of the text."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "interpersonal-communication-in-conversations-on--7",
+       "title": "Interpersonal Communication - In conversations on a wide variety of complex, hypothetical, and abstract topics, in a variety of general and specialized settings, using extended discourse composed of purposefully organized, and connected paragraphs, in a way that speakers/signers of the language easily understand, students:",
+       "subtopics": [
+        {
+         "id": "interpersonal-communication-in-conversations-on-",
+         "title": "Interpersonal Communication - In conversations on a wide variety of complex, hypothetical, and abstract topics, in a variety of general and specialized settings, using extended discourse composed of purposefully organized, and connected paragraphs, in a way that speakers/signers of the language easily understand, students: (1 of 2)",
+         "outcomes": [
+          {
+           "code": "AH.2.a",
+           "text": "Respond to culturally diverse interlocutors, products, practices, and ideas while identifying their own and others’ biases and demonstrating empathy and understanding."
+          },
+          {
+           "code": "AH.2.b",
+           "text": "Provide and solicit detailed responses across time frames to participate fully and effectively in a wide range of general and specialized conversations."
+          },
+          {
+           "code": "AH.2.c",
+           "text": "Initiate, sustain, and end authentic conversations."
+          },
+          {
+           "code": "AH.2.d",
+           "text": "Propose and evaluate solutions to complex and/or hypothetical situations."
+          }
+         ]
+        },
+        {
+         "id": "interpersonal-communication-in-conversations-on--2",
+         "title": "Interpersonal Communication - In conversations on a wide variety of complex, hypothetical, and abstract topics, in a variety of general and specialized settings, using extended discourse composed of purposefully organized, and connected paragraphs, in a way that speakers/signers of the language easily understand, students: (2 of 2)",
+         "outcomes": [
+          {
+           "code": "AH.2.e",
+           "text": "Describe, narrate, and compare with rich, complex details across all major time frames."
+          },
+          {
+           "code": "AH.2.f",
+           "text": "Negotiate to resolve an unexpected, unfamiliar complication."
+          },
+          {
+           "code": "AH.2.g",
+           "text": "Discuss real-world abstract and complex matters."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "presentational-communication-in-presentations-on-7",
+       "title": "Presentational Communication – In presentations on a wide variety of complex, hypothetical, and abstract topics, in a variety of general and specialized settings, using extended discourse composed of purposefully organized, and connected paragraphs, in a way that speakers/signers of the language easily understand, students:",
+       "subtopics": [
+        {
+         "id": "presentational-communication-in-presentations-on",
+         "title": "Presentational Communication – In presentations on a wide variety of complex, hypothetical, and abstract topics, in a variety of general and specialized settings, using extended discourse composed of purposefully organized, and connected paragraphs, in a way that speakers/signers of the language easily understand, students:",
+         "outcomes": [
+          {
+           "code": "AH.3.a",
+           "text": "Apply understanding of their cultural context, topic, sources, themselves, and their audiences to adapt a presentation to a variety of audiences, cultures, communities, and contexts."
+          },
+          {
+           "code": "AH.3.b",
+           "text": "Present rich, complex, detailed, organized, and culturally relevant information."
+          },
+          {
+           "code": "AH.3.c",
+           "text": "Clearly, accurately, and cohesively deliver an argument supported by credible, authentic resources."
+          },
+          {
+           "code": "AH.3.d",
+           "text": "Describe, narrate, and compare across all major time frames, in a rich, organized, complex, and detailed manner."
+          },
+          {
+           "code": "AH.3.e",
+           "text": "Provide detailed, reasonable hypotheses and speculations."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "intercultural-communication-in-interactions-in-a-6",
+       "title": "Intercultural Communication – In interactions in a variety of general and specialized settings,using extended discourse composed of purposefully organized, and connected paragraphs, in a way that is easily comprehensible to any writers/speakers/signers of the language, students:",
+       "subtopics": [
+        {
+         "id": "intercultural-communication-in-interactions-in-a",
+         "title": "Intercultural Communication – In interactions in a variety of general and specialized settings,using extended discourse composed of purposefully organized, and connected paragraphs, in a way that is easily comprehensible to any writers/speakers/signers of the language, students:",
+         "outcomes": [
+          {
+           "code": "AH.4.a",
+           "text": "Invoke, discuss, and inquire about many distinct products and practices that inform the perspectives of an audience or interlocutor."
+          },
+          {
+           "code": "AH.4.b",
+           "text": "Adapt their language and behavior when interacting with others from target-language cultures in social and professional situations."
+          },
+          {
+           "code": "AH.4.c",
+           "text": "Communicate in a manner that is free of traits of students’ personal languages or cultures that would offend or confuse the audience/interlocutor."
+          },
+          {
+           "code": "AH.4.d",
+           "text": "Demonstrate awareness of cultural diversity and bias."
+          },
+          {
+           "code": "AH.4.e",
+           "text": "Engage in, negotiate with, and improvise with cultural norms, etiquette, and nonverbal cues."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "linguistic-cultures",
+     "title": "Linguistic Cultures",
+     "topics": [
+      {
+       "id": "cultures",
+       "title": "Cultures",
+       "subtopics": [
+        {
+         "id": "in-settings-that-students-would-find-familiar-an",
+         "title": "In settings that students would find familiar and highly predictable, using the target language exclusively or almost exclusively, with appropriate linguistic scaffolding, students minimally but consistently:",
+         "outcomes": [
+          {
+           "code": "NL.5.a",
+           "text": "Identify typical products and practices to help understand perspectives within the diverse cultures of the target-language communities."
+          },
+          {
+           "code": "NL.5.b",
+           "text": "Recognize and identify factors that contribute to individual and cultural identities."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "comparisons",
+       "title": "Comparisons",
+       "subtopics": [
+        {
+         "id": "in-settings-that-students-would-find-familiar-an",
+         "title": "In settings that students would find familiar and highly predictable, using the target language exclusively or almost exclusively, with appropriate linguistic scaffolding, students minimally but consistently:",
+         "outcomes": [
+          {
+           "code": "NL.6.a.1",
+           "text": "Identifying similarities and differences in the products, practices, and perspectives of their own and other cultures."
+          },
+          {
+           "code": "NL.6.a.2",
+           "text": "Recognizing stereotypes and/or generalizations in their own and other cultures."
+          },
+          {
+           "code": "NL.6.b.1",
+           "text": "Identifying cognates."
+          },
+          {
+           "code": "NL.6.b.2",
+           "text": "Comparing basic idiomatic expressions."
+          },
+          {
+           "code": "NL.6.b.3",
+           "text": "Identifying similarities and differences in the sound and writing systems."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "cultures-in-a-variety-of-settings-using-the-targ",
+       "title": "Cultures - In a variety of settings, using the target language exclusively or almost exclusively, with appropriate linguistic scaffolding, students most often succeed but sometimes need help to:",
+       "subtopics": [
+        {
+         "id": "cultures-in-a-variety-of-settings-using-the-targ",
+         "title": "Cultures - In a variety of settings, using the target language exclusively or almost exclusively, with appropriate linguistic scaffolding, students most often succeed but sometimes need help to:",
+         "outcomes": [
+          {
+           "code": "NH.5.a",
+           "text": "Analyze products and practices to help understand perspectives within the diverse cultures of the target-language communities."
+          },
+          {
+           "code": "NH.5.b",
+           "text": "Investigate, explain, and reflect on how culture affects identity."
+          },
+          {
+           "code": "NH.5.c",
+           "text": "Investigate, explain, and reflect on the similarities and differences of cultures over time."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "comparisons-in-a-variety-of-settings-using-the-t",
+       "title": "Comparisons - In a variety of settings, using the target language exclusively or almost exclusively, with appropriate linguistic scaffolding, students most often succeed but sometimes need help to:",
+       "subtopics": [
+        {
+         "id": "investigate-explain-and-reflect-on-the-nature-of",
+         "title": "Investigate, explain, and reflect on the nature of culture through comparisons of the diverse targetlanguage cultures studied and their own by:",
+         "outcomes": [
+          {
+           "code": "NH.6.a.1",
+           "text": "Making comparisons between products, practices, and perspectives."
+          },
+          {
+           "code": "NH.6.a.2",
+           "text": "Explaining how stereotypes and past and present treatment of groups and people shape their group identity and culture"
+          }
+         ]
+        },
+        {
+         "id": "investigate-explain-and-reflect-on-the-nature-of-2",
+         "title": "Investigate, explain, and reflect on the nature of language through comparisons of the language studied and their own by:",
+         "outcomes": [
+          {
+           "code": "NH.6.b.1",
+           "text": "Interpreting, expressing, and comparing the meaning of idioms."
+          },
+          {
+           "code": "NH.6.b.2",
+           "text": "Making comparisons of basic language forms."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "cultures-in-a-variety-of-settings-using-the-targ-2",
+       "title": "Cultures - In a variety of settings, using the target language exclusively or almost exclusively, with appropriate linguistic scaffolding, students minimally but consistently:",
+       "subtopics": [
+        {
+         "id": "cultures-in-a-variety-of-settings-using-the-targ",
+         "title": "Cultures - In a variety of settings, using the target language exclusively or almost exclusively, with appropriate linguistic scaffolding, students minimally but consistently:",
+         "outcomes": [
+          {
+           "code": "IL.5.a",
+           "text": "Analyze products and practices to help understand perspectives within the diverse cultures of the target-language communities."
+          },
+          {
+           "code": "IL.5.b",
+           "text": "Investigate, explain, and reflect on how culture affects identity."
+          },
+          {
+           "code": "IL.5.c",
+           "text": "Investigate, explain, and reflect on the similarities and differences of cultures over time."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "comparisons-in-a-variety-of-settings-using-the-t-2",
+       "title": "Comparisons - In a variety of settings, using the target language exclusively or almost exclusively, with appropriate linguistic scaffolding, students minimally but consistently:",
+       "subtopics": [
+        {
+         "id": "investigate-explain-and-reflect-on-the-nature-of",
+         "title": "Investigate, explain, and reflect on the nature of culture through comparisons of the diverse targetlanguage cultures studied and their own by:",
+         "outcomes": [
+          {
+           "code": "IL.6.a.1",
+           "text": "Making comparisons between products, practices, and perspectives."
+          },
+          {
+           "code": "IL.6.a.2",
+           "text": "Explaining how stereotypes and past and present treatment of groups and people shape their group identity and culture."
+          }
+         ]
+        },
+        {
+         "id": "investigate-explain-and-reflect-on-the-nature-of-2",
+         "title": "Investigate, explain, and reflect on the nature of language through comparisons of the language studied and their own by:",
+         "outcomes": [
+          {
+           "code": "IL.6.b.1",
+           "text": "Interpreting, expressing, and comparing the meaning of idioms."
+          },
+          {
+           "code": "IL.6.b.2",
+           "text": "Making comparisons of basic language forms."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "cultures-in-a-variety-of-settings-using-the-targ-3",
+       "title": "Cultures – In a variety of settings, using the target language exclusively or almost exclusively,with appropriate linguistic scaffolding, students fully and consistently:",
+       "subtopics": [
+        {
+         "id": "cultures-in-a-variety-of-settings-using-the-targ",
+         "title": "Cultures – In a variety of settings, using the target language exclusively or almost exclusively,with appropriate linguistic scaffolding, students fully and consistently:",
+         "outcomes": [
+          {
+           "code": "IM.5.a",
+           "text": "Analyze products and practices to help understand perspectives within the diverse cultures of the target-language communities."
+          },
+          {
+           "code": "IM.5.b",
+           "text": "Investigate, explain, and reflect on how culture affects identity."
+          },
+          {
+           "code": "IM.5.c",
+           "text": "Investigate, explain, and reflect on the similarities and differences of cultures over time."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "comparisons-in-a-variety-of-settings-using-the-t-3",
+       "title": "Comparisons - In a variety of settings, using the target language exclusively or almost exclusively, with appropriate linguistic scaffolding, students fully and consistently:",
+       "subtopics": [
+        {
+         "id": "investigate-explain-and-reflect-on-the-nature-of",
+         "title": "Investigate, explain, and reflect on the nature of culture through comparisons of the diverse targetlanguage cultures studied and their own by:",
+         "outcomes": [
+          {
+           "code": "IM.6.a.1",
+           "text": "Making comparisons between products, practices, and perspectives."
+          },
+          {
+           "code": "IM.6.a.2",
+           "text": "Explaining how stereotypes and past and present treatment of groups and people shape their group identity and culture."
+          }
+         ]
+        },
+        {
+         "id": "investigate-explain-and-reflect-on-the-nature-of-2",
+         "title": "Investigate, explain, and reflect on the nature of language through comparisons of the language studied and their own by:",
+         "outcomes": [
+          {
+           "code": "IM.6.b.1",
+           "text": "Interpreting, expressing, and comparing the meaning of idioms."
+          },
+          {
+           "code": "IM.6.b.2",
+           "text": "Making comparisons of basic language forms."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "cultures-in-a-wide-variety-of-settings-using-the",
+       "title": "Cultures - In a wide variety of settings, using the target language exclusively or almost exclusively, with appropriate linguistic scaffolding, students most often succeed but sometimes need help to:",
+       "subtopics": [
+        {
+         "id": "cultures-in-a-wide-variety-of-settings-using-the",
+         "title": "Cultures - In a wide variety of settings, using the target language exclusively or almost exclusively, with appropriate linguistic scaffolding, students most often succeed but sometimes need help to:",
+         "outcomes": [
+          {
+           "code": "IH.5.a",
+           "text": "Explain variations among products and practices and how they relate to perspectives in multiple cultures and communities."
+          },
+          {
+           "code": "IH.5.b",
+           "text": "Analyze and summarize the varied elements that contribute to their own identities and the role cultures play in developing those identities."
+          },
+          {
+           "code": "IH.5.c",
+           "text": "Analyze and explain manifestations of intercultural harmony and/or conflict over time."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "comparisons-in-a-wide-variety-of-settings-using-",
+       "title": "Comparisons - In a wide variety of settings, using the target language exclusively or almost exclusively, with appropriate linguistic scaffolding, students most often succeed but sometimes need help to:",
+       "subtopics": [
+        {
+         "id": "investigate-explain-and-reflect-on-the-nature-of",
+         "title": "Investigate, explain, and reflect on the nature of culture through comparisons of the diverse target language cultures studied and their own by:",
+         "outcomes": [
+          {
+           "code": "IH.6.a.1",
+           "text": "Comparing how products, practices, and perspectives reciprocally affect one another over time."
+          },
+          {
+           "code": "IH.6.a.2",
+           "text": "Taking the perspective of those from different cultures to build empathy."
+          }
+         ]
+        },
+        {
+         "id": "investigate-explain-and-reflect-on-the-nature-of-2",
+         "title": "Investigate, explain, and reflect on the nature of language through comparisons of the language studied and their own by:",
+         "outcomes": [
+          {
+           "code": "IH.6.b.1",
+           "text": "Discussing and analyzing cognates and idiomatic expressions as well as their evolutions and origins."
+          },
+          {
+           "code": "IH.6.b.2",
+           "text": "Comparing language forms."
+          },
+          {
+           "code": "IH.6.b.3",
+           "text": "Analyzing and explaining how time frames are expressed."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "cultures-in-a-wide-variety-of-settings-using-the-2",
+       "title": "Cultures - In a wide variety of settings, using the target language exclusively or almost exclusively, with appropriate linguistic scaffolding, students minimally but consistently:",
+       "subtopics": [
+        {
+         "id": "cultures-in-a-wide-variety-of-settings-using-the",
+         "title": "Cultures - In a wide variety of settings, using the target language exclusively or almost exclusively, with appropriate linguistic scaffolding, students minimally but consistently:",
+         "outcomes": [
+          {
+           "code": "AL.5.a",
+           "text": "Explain variations among products and practices and how they relate to perspectives in multiple cultures and communities using the target language."
+          },
+          {
+           "code": "AL.5.b",
+           "text": "Analyze and explain the varied elements that contribute to their own identities and the role cultures play in developing those identities."
+          },
+          {
+           "code": "AL.5.c",
+           "text": "Analyze and explain manifestations of intercultural harmony and/or conflict over time."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "comparisons-in-a-wide-variety-of-settings-using--2",
+       "title": "Comparisons - In a wide variety of settings, using the target language exclusively or almost exclusively, with appropriate linguistic scaffolding, students minimally but consistently:",
+       "subtopics": [
+        {
+         "id": "investigate-explain-and-reflect-on-the-nature-of",
+         "title": "Investigate, explain, and reflect on the nature of culture through comparisons of the diverse targetlanguage cultures studied and their own by:",
+         "outcomes": [
+          {
+           "code": "AL.6.a.1",
+           "text": "Comparing how products, practices, and perspectives reciprocally affect one another over time."
+          },
+          {
+           "code": "AL.6.a.2",
+           "text": "Taking the perspective of those from different cultures, to build empathy."
+          }
+         ]
+        },
+        {
+         "id": "investigate-explain-and-reflect-on-the-nature-of-2",
+         "title": "Investigate, explain, and reflect on the nature of language through comparisons of the language studied and their own by:",
+         "outcomes": [
+          {
+           "code": "AL.6.b.1",
+           "text": "Discussing and analyzing cognates and idiomatic expressions as well as their evolutions and origins."
+          },
+          {
+           "code": "AL.6.b.2",
+           "text": "Comparing language forms."
+          },
+          {
+           "code": "AL.6.b.3",
+           "text": "Analyzing and explaining how time frames are expressed."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "cultures-in-a-wide-variety-of-settings-using-the-3",
+       "title": "Cultures – In a wide variety of settings, using the target language exclusively or almost exclusively, with appropriate linguistic scaffolding, students fully and consistently:",
+       "subtopics": [
+        {
+         "id": "cultures-in-a-wide-variety-of-settings-using-the",
+         "title": "Cultures – In a wide variety of settings, using the target language exclusively or almost exclusively, with appropriate linguistic scaffolding, students fully and consistently:",
+         "outcomes": [
+          {
+           "code": "AM.5.a",
+           "text": "Explain variations among products and practices and how they relate to perspectives in multiple cultures and communities using the target language."
+          },
+          {
+           "code": "AM.5.b",
+           "text": "Analyze and summarize the varied elements that contribute to their own identities and the role cultures play in developing those identities."
+          },
+          {
+           "code": "AM.5.c",
+           "text": "Analyze and explain manifestations of intercultural harmony and/or conflict over time."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "comparisons-in-a-wide-variety-of-settings-using--3",
+       "title": "Comparisons - In a wide variety of settings, using the target language exclusively or almost exclusively, with appropriate linguistic scaffolding, students fully and consistently:",
+       "subtopics": [
+        {
+         "id": "investigate-explain-and-reflect-on-the-nature-of",
+         "title": "Investigate, explain, and reflect on the nature of culture through comparisons of the diverse target language cultures studied and their own by:",
+         "outcomes": [
+          {
+           "code": "AM.6.a.1",
+           "text": "Comparing how products, practices, and perspectives reciprocally affect one another over time."
+          },
+          {
+           "code": "AM.6.a.2",
+           "text": "Taking the perspective of those from different cultures, to build empathy."
+          }
+         ]
+        },
+        {
+         "id": "investigate-explain-and-reflect-on-the-nature-of-2",
+         "title": "Investigate, explain, and reflect on the nature of language through comparisons of the language studied and their own by:",
+         "outcomes": [
+          {
+           "code": "AM.6.b.1",
+           "text": "Discussing and analyzing cognates and idiomatic expressions as well as their evolutions and origins."
+          },
+          {
+           "code": "AM.6.b.2",
+           "text": "Comparing language forms."
+          },
+          {
+           "code": "AM.6.b.3",
+           "text": "Analyzing and explaining how time frames are expressed."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "cultures-in-a-variety-of-general-and-specialized",
+       "title": "Cultures - In a variety of general and specialized settings, using the target language exclusively or almost exclusively, with appropriate linguistic scaffolding, students most often but sometimes need help to:",
+       "subtopics": [
+        {
+         "id": "cultures-in-a-variety-of-general-and-specialized",
+         "title": "Cultures - In a variety of general and specialized settings, using the target language exclusively or almost exclusively, with appropriate linguistic scaffolding, students most often but sometimes need help to:",
+         "outcomes": [
+          {
+           "code": "AH.5.a",
+           "text": "Analyze and evaluate variations among products and practices and how they relate to perspectives in multiple cultures and communities."
+          },
+          {
+           "code": "AH.5.b",
+           "text": "Analyze and evaluate the contributions of various cultural influences in the development of identity."
+          },
+          {
+           "code": "AH.5.c",
+           "text": "Investigate solutions to intercultural conflicts across generations around the globe."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "comparisons-in-a-variety-of-general-and-speciali",
+       "title": "Comparisons - In a variety of general and specialized settings, using the target language exclusively or almost exclusively, with appropriate linguistic scaffolding, students most often, but sometimes need help to:",
+       "subtopics": [
+        {
+         "id": "investigate-explain-and-reflect-on-the-nature-of",
+         "title": "Investigate, explain, and reflect on the nature of culture through comparisons of diverse target-language cultures and their own by:",
+         "outcomes": [
+          {
+           "code": "AH.6.a.1",
+           "text": "Comparing how products, practices, and perspectives reciprocally affect one another over time."
+          },
+          {
+           "code": "AH.6.a.2",
+           "text": "Taking the perspective of those from different cultures, to build empathy."
+          },
+          {
+           "code": "AH.6.a.3",
+           "text": "Analyzing the impact of unequal power structures on the development of group identities and cultures."
+          }
+         ]
+        },
+        {
+         "id": "investigate-explain-and-reflect-on-the-nature-of-2",
+         "title": "Investigate, explain, and reflect on the nature of language through comparisons of the language studied and their own by:",
+         "outcomes": [
+          {
+           "code": "AH.6.b.1",
+           "text": "Discussing and analyzing cognates and idiomatic expressions as well as their evolutions and origins."
+          },
+          {
+           "code": "AH.6.b.2",
+           "text": "Discussing and analyzing the relationship of syntax and meaning."
+          },
+          {
+           "code": "AH.6.b.3",
+           "text": "Analyzing and explaining how tone and nuance are expressed."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "cultures-in-a-variety-of-general-and-specialized-2",
+       "title": "Cultures - In a variety of general and specialized settings, using the target language exclusively or almost exclusively, with appropriate linguistic scaffolding, students:",
+       "subtopics": [
+        {
+         "id": "cultures-in-a-variety-of-general-and-specialized",
+         "title": "Cultures - In a variety of general and specialized settings, using the target language exclusively or almost exclusively, with appropriate linguistic scaffolding, students:",
+         "outcomes": [
+          {
+           "code": "S.5.a",
+           "text": "Analyze and evaluate variations among products and practices and how they relate to perspectives in multiple cultures and communities."
+          },
+          {
+           "code": "S.5.b",
+           "text": "Analyze and evaluate the contributions of various cultural influences in the development of identity."
+          },
+          {
+           "code": "S.LC.Cul.5.c)",
+           "text": "Investigate solutions to intercultural conflicts across generations around the globe."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "comparisons-in-a-variety-of-general-and-speciali-2",
+       "title": "Comparisons - In a variety of general and specialized settings, using the target language exclusively or almost exclusively, with appropriate linguistic scaffolding, students:",
+       "subtopics": [
+        {
+         "id": "investigate-explain-and-reflect-on-the-nature-of",
+         "title": "Investigate, explain, and reflect on the nature of culture through comparisons of diverse target-language cultures and their own by:",
+         "outcomes": [
+          {
+           "code": "S.6.a.1",
+           "text": "Comparing how products, practices, and perspectives reciprocally affect one another over time."
+          },
+          {
+           "code": "S.6.a.2",
+           "text": "Taking the perspective of those from different cultures, to build empathy."
+          },
+          {
+           "code": "S.6.a.3",
+           "text": "Analyzing the impact of unequal power structures on the development of group identities and cultures."
+          }
+         ]
+        },
+        {
+         "id": "investigate-explain-and-reflect-on-the-nature-of-2",
+         "title": "Investigate, explain, and reflect on the nature of language through comparisons of the language studied and their own by:",
+         "outcomes": [
+          {
+           "code": "S.6.b.1",
+           "text": "Discussing and analyzing cognates and idiomatic expressions as well as their evolutions and origins."
+          },
+          {
+           "code": "S.6.b.2",
+           "text": "Discussing and analyzing the relationship of syntax and meaning."
+          },
+          {
+           "code": "S.6.b.3",
+           "text": "Analyzing and explaining how tone and nuance are expressed."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "lifelong-learning",
+     "title": "Lifelong Learning",
+     "topics": [
+      {
+       "id": "connections",
+       "title": "Connections",
+       "subtopics": [
+        {
+         "id": "in-settings-that-students-would-find-familiar-an",
+         "title": "In settings that students would find familiar and highly predictable, using the target language exclusively or almost exclusively, with appropriate linguistic scaffolding, students minimally but consistently:",
+         "outcomes": [
+          {
+           "code": "NL.7.a",
+           "text": "Incorporate age-appropriate, interdisciplinary vocabulary to recognize, exchange, and present information from across content areas"
+          },
+          {
+           "code": "NL.7.b",
+           "text": "Recognize, exchange, and present diverse perspectives and distinctive viewpoints from authentic age appropriate materials."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "communities",
+       "title": "Communities",
+       "subtopics": [
+        {
+         "id": "in-settings-that-students-would-find-familiar-an",
+         "title": "In settings that students would find familiar and highly predictable, using the target language to the greatest appropriate extent for the community-based situation, with appropriate linguistic scaffolding, students minimally but consistently:",
+         "outcomes": [
+          {
+           "code": "NL.8.a.1",
+           "text": "Identifying resources and assets in the community such as individuals and organizations or technological tools to further investigate and enjoy target-language cultures."
+          },
+          {
+           "code": "NL.8.a.2",
+           "text": "Identifying needs and/or injustices and taking collective action to contribute to strong communities."
+          },
+          {
+           "code": "NL.8.b.1",
+           "text": "Using languages for enjoyment and enrichment and exploring more options for doing so."
+          },
+          {
+           "code": "NL.8.b.3",
+           "text": "Interacting with speakers/signers of the target language to build diverse relationships."
+          },
+          {
+           "code": "NL.8.b.3",
+           "text": "Identifying uses of the target language in the community."
+          },
+          {
+           "code": "NL.8.b.4",
+           "text": "Choosing goals for linguistic and cultural growth and reflecting upon progress."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "connections-in-a-variety-of-settings-using-the-t",
+       "title": "Connections - In a variety of settings, using the target language exclusively or almost exclusively, with appropriate linguistic scaffolding, students most often succeed but sometimes need help to:",
+       "subtopics": [
+        {
+         "id": "connections-in-a-variety-of-settings-using-the-t",
+         "title": "Connections - In a variety of settings, using the target language exclusively or almost exclusively, with appropriate linguistic scaffolding, students most often succeed but sometimes need help to:",
+         "outcomes": [
+          {
+           "code": "NH.7.a",
+           "text": "Incorporate age-appropriate, interdisciplinary vocabulary to understand, exchange, and present information from across content areas."
+          },
+          {
+           "code": "NH.7.b",
+           "text": "Understand, exchange, and present diverse perspectives and distinctive viewpoints from authentic ageappropriate materials."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "communities-in-a-variety-of-settings-using-the-t",
+       "title": "Communities - In a variety of settings,using the target language to the greatest appropriate extent for the community-based situation, with appropriate linguistic scaffolding, students most often succeed but sometimes need help to:",
+       "subtopics": [
+        {
+         "id": "apply-cultural-and-linguistic-skills-to-particip",
+         "title": "Apply cultural and linguistic skills to participate in the school, local, and global community by:",
+         "outcomes": [
+          {
+           "code": "NH.8.a.1",
+           "text": "Engaging with resources and assets in the community such as individuals and organizations or technological tools to further investigate and enjoy target-language cultures."
+          },
+          {
+           "code": "NH.8.a.2",
+           "text": "Identifying needs and/or injustices and designing and taking collective action to contribute to strong communities."
+          }
+         ]
+        },
+        {
+         "id": "become-lifelong-learners-by",
+         "title": "Become lifelong learners by:",
+         "outcomes": [
+          {
+           "code": "NH.8.b.1",
+           "text": "Using languages for enjoyment and enrichment and accessing and evaluating further opportunities for doing so."
+          },
+          {
+           "code": "NH.8.b.2",
+           "text": "Interacting on a regular basis with speakers/signers of the target language to build diverse relationships"
+          },
+          {
+           "code": "NH.8.b.3",
+           "text": "Explaining language education requirements for careers of interest."
+          },
+          {
+           "code": "NH.8.b.4",
+           "text": "Setting goals for growth in these areas and reflecting upon progress."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "connections-in-a-variety-of-settings-using-the-t-2",
+       "title": "Connections - In a variety of settings, using the target language exclusively or almost exclusively, with appropriate linguistic scaffolding, students minimally but consistently:",
+       "subtopics": [
+        {
+         "id": "connections-in-a-variety-of-settings-using-the-t",
+         "title": "Connections - In a variety of settings, using the target language exclusively or almost exclusively, with appropriate linguistic scaffolding, students minimally but consistently:",
+         "outcomes": [
+          {
+           "code": "IL.7.a",
+           "text": "Incorporate age-appropriate, interdisciplinary vocabulary to understand, exchange, and present information from across content areas."
+          },
+          {
+           "code": "IL.7.b",
+           "text": "Understand, exchange, and present diverse perspectives and distinctive viewpoints from authentic ageappropriate materials."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "communities-in-a-variety-of-settings-using-the-t-2",
+       "title": "Communities - In a variety of settings, using the target language to the greatest appropriate extent for the community-based situation, with appropriate linguistic scaffolding, students minimally but consistently:",
+       "subtopics": [
+        {
+         "id": "apply-cultural-and-linguistic-skills-to-particip",
+         "title": "Apply cultural and linguistic skills to participate in the school, local, and global community by:",
+         "outcomes": [
+          {
+           "code": "IL.8.a.1",
+           "text": "Engaging with resources and assets in the community such as individuals and organizations or technological tools to further investigate and enjoy target-language cultures."
+          },
+          {
+           "code": "IL.8.a.2",
+           "text": "Identifying needs and/or injustices and designing and taking collective action to contribute to strong communities."
+          }
+         ]
+        },
+        {
+         "id": "become-lifelong-learners-by",
+         "title": "Become lifelong learners by:",
+         "outcomes": [
+          {
+           "code": "IL.8.b.1",
+           "text": "Using languages for enjoyment and enrichment and accessing and evaluating further opportunities for doing so."
+          },
+          {
+           "code": "IL.8.b.2",
+           "text": "Interacting on a regular basis with speakers/signers of the target language to build diverse relationships."
+          },
+          {
+           "code": "IL.8.b.3",
+           "text": "Explaining language education requirements for careers of interest."
+          },
+          {
+           "code": "IL.8.b.4",
+           "text": "Setting goals for growth in these areas and reflecting upon progress."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "connections-in-a-variety-of-settings-using-the-t-3",
+       "title": "Connections - In a variety of settings, using the target language exclusively or almost exclusively, with appropriate linguistic scaffolding, students fully and consistently:",
+       "subtopics": [
+        {
+         "id": "connections-in-a-variety-of-settings-using-the-t",
+         "title": "Connections - In a variety of settings, using the target language exclusively or almost exclusively, with appropriate linguistic scaffolding, students fully and consistently:",
+         "outcomes": [
+          {
+           "code": "IM.7.a",
+           "text": "Incorporate age-appropriate, interdisciplinary vocabulary to understand, exchange, and present information from across content areas."
+          },
+          {
+           "code": "IM.7.b",
+           "text": "Understand, exchange, and present diverse perspectives and distinctive viewpoints from authentic ageappropriate materials."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "communities-in-a-variety-of-settings-using-the-t-3",
+       "title": "Communities - In a variety of settings, using the target language to the greatest appropriate extent for the community-based situation, with appropriate linguistic scaffolding, students fully and consistently:",
+       "subtopics": [
+        {
+         "id": "apply-cultural-and-linguistic-skills-to-particip",
+         "title": "Apply cultural and linguistic skills to participate in the school, local, and global community by:",
+         "outcomes": [
+          {
+           "code": "IM.8.a.1",
+           "text": "Engaging with resources and assets in the community such as individuals and organizations or technological tools to further investigate and enjoy target-language cultures."
+          },
+          {
+           "code": "IM.8.a.2",
+           "text": "Identifying needs and/or injustices and designing and taking collective action to contribute to strong communities."
+          }
+         ]
+        },
+        {
+         "id": "become-lifelong-learners-by",
+         "title": "Become lifelong learners by:",
+         "outcomes": [
+          {
+           "code": "IM.8.b.1",
+           "text": "Using languages for enjoyment and enrichment and accessing and evaluating further opportunities for doing so."
+          },
+          {
+           "code": "IM.8.b.2",
+           "text": "Interacting on a regular basis with speakers/signers of the target language to build diverse relationships."
+          },
+          {
+           "code": "IM.8.b.3",
+           "text": "Explaining language education requirements for careers of interest."
+          },
+          {
+           "code": "IM.8.b.4",
+           "text": "Setting goals for growth in these areas and reflecting upon progress."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "connections-in-a-wide-variety-of-settings-using-",
+       "title": "Connections - In a wide variety of settings, using the target language exclusively or almost exclusively, with appropriate linguistic scaffolding, students most often succeed but sometimes need help to:",
+       "subtopics": [
+        {
+         "id": "connections-in-a-wide-variety-of-settings-using-",
+         "title": "Connections - In a wide variety of settings, using the target language exclusively or almost exclusively, with appropriate linguistic scaffolding, students most often succeed but sometimes need help to:",
+         "outcomes": [
+          {
+           "code": "IH.7.a",
+           "text": "Incorporate age-appropriate, interdisciplinary vocabulary to understand, exchange, and present information from across content areas."
+          },
+          {
+           "code": "IH.7.b",
+           "text": "Research, analyze, exchange, and present diverse perspectives and distinctive viewpoints from authentic age-appropriate materials."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "communities-in-a-wide-variety-of-settings-using-",
+       "title": "Communities - In a wide variety of settings, using the target language to the greatest appropriate extent for the community-based situation, with appropriate linguistic scaffolding, students most often succeed but sometimes need help to:",
+       "subtopics": [
+        {
+         "id": "apply-cultural-and-linguistic-skills-to-particip",
+         "title": "Apply cultural and linguistic skills to participate in the school, local, and global community by:",
+         "outcomes": [
+          {
+           "code": "IH.8.a.1",
+           "text": "Partnering with individuals and organizations to further investigate and enjoy target-language cultures."
+          },
+          {
+           "code": "IH.8.a.2",
+           "text": "Applying linguistic, cultural, cross-disciplinary academic skills, and collective action to design and implement solutions to real issues facing the community."
+          }
+         ]
+        },
+        {
+         "id": "become-lifelong-learners-by",
+         "title": "Become lifelong learners by:",
+         "outcomes": [
+          {
+           "code": "IH.8.b.1",
+           "text": "Using languages for enjoyment and enrichment and researching further opportunities to do so."
+          },
+          {
+           "code": "IH.8.b.2",
+           "text": "Interacting on a regular basis with speakers/signers of the target language to build diverse relationships."
+          },
+          {
+           "code": "IH.8.b.3",
+           "text": "Analyzing educational and career connections and the benefits of bilingualism to develop a personal plan for language acquisition."
+          },
+          {
+           "code": "IH.8.b.4",
+           "text": "Identifying challenges and strategies for growth and reflecting upon progress."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "connections-in-a-wide-variety-of-settings-using--2",
+       "title": "Connections - In a wide variety of settings, using the target language exclusively or almost exclusively, with appropriate linguistic scaffolding, students minimally but consistently:",
+       "subtopics": [
+        {
+         "id": "connections-in-a-wide-variety-of-settings-using-",
+         "title": "Connections - In a wide variety of settings, using the target language exclusively or almost exclusively, with appropriate linguistic scaffolding, students minimally but consistently:",
+         "outcomes": [
+          {
+           "code": "AL.7.a",
+           "text": "Incorporate age-appropriate, interdisciplinary vocabulary to understand, exchange, and present information from across content areas."
+          },
+          {
+           "code": "AL.7.b",
+           "text": "Research, analyze, exchange, and present diverse perspectives and distinctive viewpoints from authentic age-appropriate materials."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "communities-in-a-wide-variety-of-settings-using--2",
+       "title": "Communities - In a wide variety of settings, using the target language to the greatest appropriate extent for the community-based situation, with appropriate linguistic scaffolding, students minimally but consistently:",
+       "subtopics": [
+        {
+         "id": "apply-cultural-and-linguistic-skills-to-particip",
+         "title": "Apply cultural and linguistic skills to participate in the school, local, and global community by:",
+         "outcomes": [
+          {
+           "code": "AL.8.a.1",
+           "text": "Partnering with individuals and organizations to further investigate and enjoy target-language cultures."
+          },
+          {
+           "code": "AL.8.a.2",
+           "text": "Applying linguistic, cultural, cross-disciplinary academic skills, and collective action to design and implement solutions to real issues facing the community."
+          }
+         ]
+        },
+        {
+         "id": "become-lifelong-learners-by",
+         "title": "Become lifelong learners by:",
+         "outcomes": [
+          {
+           "code": "AL.8.b.1",
+           "text": "Using languages for enjoyment and enrichment and researching further opportunities to do so."
+          },
+          {
+           "code": "AL.8.b.2",
+           "text": "Interacting on a regular basis with speakers/signers of the target language to build diverse relationships."
+          },
+          {
+           "code": "AL.8.b.3",
+           "text": "Analyzing educational and career connections and the benefits of bilingualism to develop a personal plan for language acquisition."
+          },
+          {
+           "code": "AL.8.b.4",
+           "text": "Identifying challenges and strategies for growth and reflecting upon progress."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "connections-in-a-wide-variety-of-settings-using--3",
+       "title": "Connections - In a wide variety of settings, using the target language exclusively or almost exclusively, with appropriate linguistic scaffolding, students fully and consistently:",
+       "subtopics": [
+        {
+         "id": "connections-in-a-wide-variety-of-settings-using-",
+         "title": "Connections - In a wide variety of settings, using the target language exclusively or almost exclusively, with appropriate linguistic scaffolding, students fully and consistently:",
+         "outcomes": [
+          {
+           "code": "AM.7.a",
+           "text": "Incorporate age-appropriate, interdisciplinary vocabulary to understand, exchange, and present information from across content areas."
+          },
+          {
+           "code": "AM.7.b",
+           "text": "Research, analyze, exchange, and present diverse perspectives and distinctive viewpoints from authentic age-appropriate materials."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "communities-in-a-wide-variety-of-settings-using--3",
+       "title": "Communities - In a wide variety of settings, using the target language to the greatest appropriate extent for the community-based situation, with appropriate linguistic scaffolding, students fully and consistently:",
+       "subtopics": [
+        {
+         "id": "apply-cultural-and-linguistic-skills-to-particip",
+         "title": "Apply cultural and linguistic skills to participate in the school, local, and global community by:",
+         "outcomes": [
+          {
+           "code": "AM.8.a.1",
+           "text": "Partnering with individuals and organizations to further investigate and enjoy target-language cultures."
+          },
+          {
+           "code": "AM.8.a.2",
+           "text": "Applying linguistic, cultural, cross-disciplinary academic skills, and collective action to design and implement solutions to real issues facing the community."
+          }
+         ]
+        },
+        {
+         "id": "become-lifelong-learners-by",
+         "title": "Become lifelong learners by:",
+         "outcomes": [
+          {
+           "code": "AM.8.b.1",
+           "text": "Using languages for enjoyment and enrichment and researching further opportunities to do so."
+          },
+          {
+           "code": "AM.8.b.2",
+           "text": "Interacting on a regular basis with speakers/signers of the target language to build diverse relationships."
+          },
+          {
+           "code": "AM.8.b.3",
+           "text": "Analyzing educational and career connections and the benefits of bilingualism to develop a personal plan for language acquisition."
+          },
+          {
+           "code": "AM.8.b.4",
+           "text": "Identifying challenges and strategies for growth and reflecting upon progress in language acquisition."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "connections-in-a-variety-of-general-and-speciali",
+       "title": "Connections - In a variety of general and specialized settings, using the target language exclusively or almost exclusively, with appropriate linguistic scaffolding, students most often, but sometimes need help to:",
+       "subtopics": [
+        {
+         "id": "connections-in-a-variety-of-general-and-speciali",
+         "title": "Connections - In a variety of general and specialized settings, using the target language exclusively or almost exclusively, with appropriate linguistic scaffolding, students most often, but sometimes need help to:",
+         "outcomes": [
+          {
+           "code": "AH.7.a",
+           "text": "Research, analyze, discuss, and hypothesize areas of specialized professional and academic expertise across content areas."
+          },
+          {
+           "code": "AH.7.b",
+           "text": "Research, analyze, evaluate, and hypothesize about diverse perspectives and distinctive viewpoints found in authentic materials from target-language cultures."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "communities-in-a-variety-of-general-and-speciali",
+       "title": "Communities - In a variety of general and specialized settings, using the target language to the greatest appropriate extent for the community-based situation, with appropriate linguistic scaffolding, students most often, but sometimes need help to:",
+       "subtopics": [
+        {
+         "id": "apply-cultural-and-linguistic-skills-to-particip",
+         "title": "Apply cultural and linguistic skills to participate in the school, local, and global community by:",
+         "outcomes": [
+          {
+           "code": "AH.8.a.1",
+           "text": "Partnering with individuals and organizations to further investigate and enjoy target-language cultures."
+          },
+          {
+           "code": "AH.8.a.2",
+           "text": "Applying linguistic, cultural, cross-disciplinary academic skills, and collective action to design, implement, and evaluate solutions to complex issues facing the community."
+          }
+         ]
+        },
+        {
+         "id": "become-lifelong-learners-by",
+         "title": "Become lifelong learners by:",
+         "outcomes": [
+          {
+           "code": "AH.8.b.1",
+           "text": "Using languages for enjoyment and enrichment and creating opportunities to do so."
+          },
+          {
+           "code": "AH.8.b.2",
+           "text": "Interacting on a regular basis with speakers/signers of the target language to build diverse relationships."
+          },
+          {
+           "code": "AH.8.b.3",
+           "text": "Analyzing educational and career connections and the complexities of bilingualism to develop a personal plan for language acquisition."
+          },
+          {
+           "code": "AH.8.b.4",
+           "text": "Identifying challenges and strategies for growth and reflecting upon progress."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "connections-in-a-variety-of-general-and-speciali-2",
+       "title": "Connections - In a variety of general and specialized settings, using the target language exclusively or almost exclusively, with appropriate linguistic scaffolding, students:",
+       "subtopics": [
+        {
+         "id": "connections-in-a-variety-of-general-and-speciali",
+         "title": "Connections - In a variety of general and specialized settings, using the target language exclusively or almost exclusively, with appropriate linguistic scaffolding, students:",
+         "outcomes": [
+          {
+           "code": "S.7.a",
+           "text": "Research, analyze, discuss, and hypothesize areas of specialized professional and academic expertise across content areas."
+          },
+          {
+           "code": "S.7.b",
+           "text": "Research, analyze, evaluate, and hypothesize about diverse perspectives and distinctive viewpoints found in authentic materials from target-language cultures."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "communities-in-a-variety-of-general-and-speciali-2",
+       "title": "Communities - In a variety of general and specialized settings, using the target language to the greatest appropriate extent for the community-based situation, with appropriate linguistic scaffolding, students:",
+       "subtopics": [
+        {
+         "id": "apply-cultural-and-linguistic-skills-to-particip",
+         "title": "Apply cultural and linguistic skills to participate in the school, local, and global community by:",
+         "outcomes": [
+          {
+           "code": "S.8.a.1",
+           "text": "Partnering with individuals and organizations to further investigate and enjoy the targetlanguage cultures."
+          },
+          {
+           "code": "S.8.a.2",
+           "text": "Applying linguistic, cultural, cross-disciplinary academic skills, and collective action to design, implement, and evaluate solutions to complex issues facing the community."
+          }
+         ]
+        },
+        {
+         "id": "become-lifelong-learners-by",
+         "title": "Become lifelong learners by:",
+         "outcomes": [
+          {
+           "code": "S.8.b.1",
+           "text": "Using languages for enjoyment and enrichment and creating opportunities to do so."
+          },
+          {
+           "code": "S.8.b.2",
+           "text": "Interacting on a regular basis with speakers/signers of the target language to build diverse relationships."
+          },
+          {
+           "code": "S.8.b.3",
+           "text": "Analyzing educational and career connections and the complexities of bilingualism to develop a personal plan for language acquisition."
+          },
+          {
+           "code": "S.8.b.4",
+           "text": "Identifying challenges and strategies for growth and reflecting upon progress."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "linguistic-cultures-standards",
+     "title": "Linguistic Cultures Standards",
+     "topics": [
+      {
+       "id": "cultures-in-settings-that-students-would-find-fa",
+       "title": "Cultures - In settings that students would find familiar and highly predictable, using the target language exclusively or almost exclusively, with appropriate linguistic scaffolding, students fully and consistently:",
+       "subtopics": [
+        {
+         "id": "cultures-in-settings-that-students-would-find-fa",
+         "title": "Cultures - In settings that students would find familiar and highly predictable, using the target language exclusively or almost exclusively, with appropriate linguistic scaffolding, students fully and consistently:",
+         "outcomes": [
+          {
+           "code": "NM.5.a",
+           "text": "Identify typical products and practices to help understand perspectives within the diverse cultures of the target-language communities."
+          },
+          {
+           "code": "NM.5.b",
+           "text": "Recognize and identify factors that contribute to individual and cultural identities."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "comparisons-in-settings-that-students-would-find",
+       "title": "Comparisons - In settings that students would find familiar and highly predictable, using the target language exclusively or almost exclusively, with appropriate linguistic scaffolding, students fully and consistently:",
+       "subtopics": [
+        {
+         "id": "investigate-explain-and-reflect-on-the-nature-of",
+         "title": "Investigate, explain, and reflect on the nature of culture through comparisons of the cultures studied and their own by:",
+         "outcomes": [
+          {
+           "code": "NM.6.a.1",
+           "text": "Identifying similarities and differences in the products, practices, and perspectives of their own and other cultures"
+          },
+          {
+           "code": "NM.6.a.2",
+           "text": "Recognizing stereotypes and/or generalizations in their own and other cultures."
+          }
+         ]
+        },
+        {
+         "id": "investigate-explain-and-reflect-on-the-nature-of-2",
+         "title": "Investigate, explain, and reflect on the nature of language through comparisons of the language studied and their own by:",
+         "outcomes": [
+          {
+           "code": "NM.6.b.1",
+           "text": "Identifying cognates."
+          },
+          {
+           "code": "NM.6.b.2",
+           "text": "Comparing basic idiomatic expressions"
+          },
+          {
+           "code": "NM.6.b.3",
+           "text": "Identifying similarities and differences in the sound and writing systems."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "lifelong-learning-standards",
+     "title": "Lifelong Learning Standards",
+     "topics": [
+      {
+       "id": "connections-in-settings-that-students-would-find",
+       "title": "Connections - In settings that students would find familiar and highly predictable, using the target language exclusively or almost exclusively, with appropriate linguistic scaffolding, students fully and consistently:",
+       "subtopics": [
+        {
+         "id": "connections-in-settings-that-students-would-find",
+         "title": "Connections - In settings that students would find familiar and highly predictable, using the target language exclusively or almost exclusively, with appropriate linguistic scaffolding, students fully and consistently:",
+         "outcomes": [
+          {
+           "code": "NM.7.a",
+           "text": "Incorporate age-appropriate, interdisciplinary vocabulary to recognize, exchange, and present information from across content areas."
+          },
+          {
+           "code": "NM.7.b",
+           "text": "Recognize, exchange, and present diverse perspectives and distinctive viewpoints from authentic ageappropriate materials."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "communities-in-settings-that-students-would-find",
+       "title": "Communities - In settings that students would find familiar and highly predictable, using the target language to the greatest appropriate extent for the community-based situation, with appropriate linguistic scaffolding, students fully and consistently:",
+       "subtopics": [
+        {
+         "id": "apply-cultural-and-linguistic-skills-to-particip",
+         "title": "Apply cultural and linguistic skills to participate in the school, local, and global community by:",
+         "outcomes": [
+          {
+           "code": "NM.8.a.1",
+           "text": "Identifying resources and assets in the community such as individuals and organizations or technological tools to further investigate and enjoy target-language cultures."
+          },
+          {
+           "code": "NM.8.a.2",
+           "text": "Identifying needs and/or injustices and taking collective action to contribute to strong communities."
+          }
+         ]
+        },
+        {
+         "id": "become-lifelong-learners-by",
+         "title": "Become lifelong learners by:",
+         "outcomes": [
+          {
+           "code": "NM.8.b.1",
+           "text": "Using languages for enjoyment and enrichment and exploring more options for doing so."
+          },
+          {
+           "code": "NM.8.b.2",
+           "text": "Interacting with speakers/signers of the target language to build diverse relationships."
+          },
+          {
+           "code": "NM.8.b.3",
+           "text": "Identifying uses of the target language in the community."
+          },
+          {
+           "code": "NM.8.b.4",
+           "text": "Choosing goals for linguistic and cultural growth and reflecting upon progress."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "communications",
+     "title": "Communications",
+     "topics": [
+      {
+       "id": "interpretive-communication-in-narrative-descript",
+       "title": "Interpretive Communication - In narrative, descriptive, and persuasive texts and conversations on a wide variety of complex, concrete topics of personal, general, social, academic, or professional significance, relying upon understanding of series of connected paragraphs across multiple time frames, students:",
+       "subtopics": [
+        {
+         "id": "interpretive-communication-in-narrative-descript",
+         "title": "Interpretive Communication - In narrative, descriptive, and persuasive texts and conversations on a wide variety of complex, concrete topics of personal, general, social, academic, or professional significance, relying upon understanding of series of connected paragraphs across multiple time frames, students:",
+         "outcomes": [
+          {
+           "code": "AM.1.a",
+           "text": "Analyze traits of multiple cultures and communities, and how this may influence the author’s lens and their own understanding."
+          },
+          {
+           "code": "AM.1.b",
+           "text": "Analyze the main message or story, some supporting details, and underlying or subtle features of the text."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "interpersonal-communication-in-conversations-on-",
+       "title": "Interpersonal Communication - In conversations on a wide variety of complex, concrete topics of personal, general, social, academic, or professional significance, in a wide variety of settings, producing series of connected paragraphs, in a way that speakers/signers of the language easily understand, students:",
+       "subtopics": [
+        {
+         "id": "interpersonal-communication-in-conversations-on-",
+         "title": "Interpersonal Communication - In conversations on a wide variety of complex, concrete topics of personal, general, social, academic, or professional significance, in a wide variety of settings, producing series of connected paragraphs, in a way that speakers/signers of the language easily understand, students:",
+         "outcomes": [
+          {
+           "code": "AM.2.a",
+           "text": "Respond to culturally diverse interlocutors, products, practices, and ideas by building connections and showing consideration for different ideas or opinions."
+          },
+          {
+           "code": "AM.2.b",
+           "text": "Understand, answer, and ask a wide variety of questions across all major time frames."
+          },
+          {
+           "code": "AM.2.c",
+           "text": "Initiate, sustain, and end authentic conversations."
+          },
+          {
+           "code": "AM.2.d",
+           "text": "Provide advice or propose solutions to individual or societal issues."
+          },
+          {
+           "code": "AM.2.e",
+           "text": "Describe, narrate, and compare across all major time frames."
+          },
+          {
+           "code": "AM.2.f",
+           "text": "Interact and negotiate to resolve an unexpected complication."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "presentational-communication-presentations-on-a-",
+       "title": "Presentational Communication - presentations on a wide variety of complex, concrete topics of personal, general, social, academic, or professional significance, in a wide variety of settings, producing series of connected paragraphs, in a way that speakers/signers of the language easily understand, students:",
+       "subtopics": [
+        {
+         "id": "presentational-communication-presentations-on-a-",
+         "title": "Presentational Communication - presentations on a wide variety of complex, concrete topics of personal, general, social, academic, or professional significance, in a wide variety of settings, producing series of connected paragraphs, in a way that speakers/signers of the language easily understand, students:",
+         "outcomes": [
+          {
+           "code": "AM.3.a",
+           "text": "Apply understanding of their cultural context, topic, sources, themselves, and their audiences to adapt a presentation to a variety of settings."
+          },
+          {
+           "code": "AM.3.b",
+           "text": "Present complex, detailed, organized, and culturally relevant information."
+          },
+          {
+           "code": "AM.3.c",
+           "text": "Apply multiple relevant authentic resources to construct complex, detailed, organized, and respectful arguments that offer possible solutions to general societal issues."
+          },
+          {
+           "code": "AM.3.d",
+           "text": "Describe, narrate, and compare across all major time frames, in a rich, organized, complex, and detailed manner."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "intercultural-communication-in-interactions-in-a",
+       "title": "Intercultural Communication - In interactions in a wide variety of settings, producing series of connected paragraphs, in a way that speakers/signers of the language easily understand, students:",
+       "subtopics": [
+        {
+         "id": "intercultural-communication-in-interactions-in-a",
+         "title": "Intercultural Communication - In interactions in a wide variety of settings, producing series of connected paragraphs, in a way that speakers/signers of the language easily understand, students:",
+         "outcomes": [
+          {
+           "code": "AM.4.a",
+           "text": "Invoke, discuss, and inquire about common products and practices that inform the perspectives of an audience or interlocutor."
+          },
+          {
+           "code": "AM.4.b",
+           "text": "Adapt language and behavior to communicate appropriately in most formal and informal settings."
+          },
+          {
+           "code": "AM.4.c",
+           "text": "Communicate in a manner that is clear and inoffensive to the audience/interlocutor."
+          },
+          {
+           "code": "AM.4.d",
+           "text": "Demonstrate awareness of cultural diversity and bias."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "interpretive-communication-in-narrative-descript-2",
+       "title": "Interpretive Communication - In narrative, descriptive, persuasive, and hypothetical texts and conversation on a wide variety of complex, hypothetical, and abstract topics, relying upon understanding of precise, sophisticated, and academic language in richly organized, extended, and cohesive texts, students:",
+       "subtopics": [
+        {
+         "id": "interpretive-communication-in-narrative-descript",
+         "title": "Interpretive Communication - In narrative, descriptive, persuasive, and hypothetical texts and conversation on a wide variety of complex, hypothetical, and abstract topics, relying upon understanding of precise, sophisticated, and academic language in richly organized, extended, and cohesive texts, students:",
+         "outcomes": [
+          {
+           "code": "S.1.a",
+           "text": "Analyze traits of multiple cultures and communities, and how this may influence the author’s lens and their own understanding."
+          },
+          {
+           "code": "S.1.b",
+           "text": "Evaluate the main message or story, its supporting details, and its underlying, and even subtle features and nuances."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "interpersonal-communication-in-conversations-on--2",
+       "title": "Interpersonal Communication - In conversations on a wide variety of complex, hypothetical, and abstract topics, in a variety of general and specialized settings, using precise, sophisticated, and academic language in richly organized, extended, and cohesive discourse, in a way that speakers/signers of the language easily understand, students:",
+       "subtopics": [
+        {
+         "id": "interpersonal-communication-in-conversations-on-",
+         "title": "Interpersonal Communication - In conversations on a wide variety of complex, hypothetical, and abstract topics, in a variety of general and specialized settings, using precise, sophisticated, and academic language in richly organized, extended, and cohesive discourse, in a way that speakers/signers of the language easily understand, students: (1 of 2)",
+         "outcomes": [
+          {
+           "code": "S.2.a",
+           "text": "Respond to culturally diverse interlocutors, products, practices, and ideas while identifying their own and others’ biases and demonstrating empathy and understanding."
+          },
+          {
+           "code": "S.2.b",
+           "text": "Provide and solicit detailed responses across time frames to participate fully and effectively in a wide range of general and specialized conversations."
+          },
+          {
+           "code": "S.2.c",
+           "text": "Initiate, sustain, and end authentic conversations."
+          },
+          {
+           "code": "S.2.d",
+           "text": "Propose and evaluate solutions to complex and/or hypothetical situations."
+          }
+         ]
+        },
+        {
+         "id": "interpersonal-communication-in-conversations-on--2",
+         "title": "Interpersonal Communication - In conversations on a wide variety of complex, hypothetical, and abstract topics, in a variety of general and specialized settings, using precise, sophisticated, and academic language in richly organized, extended, and cohesive discourse, in a way that speakers/signers of the language easily understand, students: (2 of 2)",
+         "outcomes": [
+          {
+           "code": "S.2.e",
+           "text": "Describe, narrate, and compare with rich, complex details across all major time frames."
+          },
+          {
+           "code": "S.2.f",
+           "text": "Negotiate to resolve an unexpected, unfamiliar complication."
+          },
+          {
+           "code": "S.2.g",
+           "text": "Discuss, and resolve real-world abstract and complex matters effectively."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "presentational-communication-in-presentations-on",
+       "title": "Presentational Communication - In presentations on a wide variety of complex, hypothetical, and abstract topics, in a variety of general and specialized settings, using precise, sophisticated, and academic language in richly organized, extended, and cohesive discourse, in a way that speakers/signers of the language easily understand, students:",
+       "subtopics": [
+        {
+         "id": "presentational-communication-in-presentations-on",
+         "title": "Presentational Communication - In presentations on a wide variety of complex, hypothetical, and abstract topics, in a variety of general and specialized settings, using precise, sophisticated, and academic language in richly organized, extended, and cohesive discourse, in a way that speakers/signers of the language easily understand, students:",
+         "outcomes": [
+          {
+           "code": "S.3.a",
+           "text": "Apply understanding of their cultural context, topic, sources, themselves, and their audiences to adapt a presentation to a variety of audiences, cultures, communities, and contexts."
+          },
+          {
+           "code": "S.3.b",
+           "text": "Impactfully present rich, complex, detailed, organized, and culturally relevant information."
+          },
+          {
+           "code": "S.3.c",
+           "text": "Deliver a clearly articulated, well-structured, and thoroughly supported argument that challenges previously held conceptions."
+          },
+          {
+           "code": "S.3.d",
+           "text": "Describe, narrate, and compare across all time frames with precision of expression in culturally appropriate ways."
+          },
+          {
+           "code": "S.3.e",
+           "text": "Construct complex, thorough, reasonable, and well-supported hypotheses to novel situations."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "intercultural-communication-in-interactions-in-a-2",
+       "title": "Intercultural Communication - In interactions in a variety of general and specialized settings, using precise, sophisticated, and academic language in richly organized, extended, and cohesive discourse, in such a way that speakers/signers of the language easily understand, students:",
+       "subtopics": [
+        {
+         "id": "intercultural-communication-in-interactions-in-a",
+         "title": "Intercultural Communication - In interactions in a variety of general and specialized settings, using precise, sophisticated, and academic language in richly organized, extended, and cohesive discourse, in such a way that speakers/signers of the language easily understand, students:",
+         "outcomes": [
+          {
+           "code": "S.4.a",
+           "text": "Invoke, discuss, and inquire about many distinct products and practices that inform the perspectives of an audience or interlocutor."
+          },
+          {
+           "code": "S.4.b",
+           "text": "Adapt their language and behavior when interacting with others from the target-language cultures in social and professional situations."
+          },
+          {
+           "code": "S.4.c",
+           "text": "Communicate in a manner that is free of traits of students’ personal languages or cultures that would offend or confuse the audience/interlocutor."
+          },
+          {
+           "code": "S.4.d",
+           "text": "Demonstrate awareness of cultural diversity and bias."
+          },
+          {
+           "code": "S.4.e",
+           "text": "Engage in, negotiate with, and improvise with cultural norms, etiquette, and nonverbal cues."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "build": {
+  "builtAt": "2026-10-14T16:20:44.249Z",
+  "model": "none",
+  "usd": 0,
+  "expectedCodes": 295,
+  "coverage": 1,
+  "missingCodes": [],
+  "counts": {
+   "grades": 1,
+   "units": 6,
+   "topics": 80,
+   "subtopics": 100,
+   "outcomes": 296
+  },
+  "warnings": []
+ }
+}

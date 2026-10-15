@@ -1,0 +1,3841 @@
+{
+ "id": "us-or-health",
+ "region": "US",
+ "framework": "Oregon state academic standards: Health Education",
+ "board": null,
+ "qualification": "K-12",
+ "subject": "Health Education",
+ "syllabusCode": null,
+ "gradeSystem": "grade",
+ "source": {
+  "urls": [
+   "https://api.commonstandardsproject.com/api/v1/jurisdictions/3C4329D21BCF435C880282CBAAE12AF1",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/BBBAFC809DC3490A9B86B4B7DD9ED027",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/FF951135EA1940BA89CB20D873EE6CBC",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/212BCAC07CC944F7B5156703C09C40C0",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/6E69A54293974C9DBE7D69D4D0E1242B",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/259BE9ABEADF4199AF14FE7365BDF79F",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/AE7DBC4C0B034193AB2A27817EC5EF40",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/4E06A05494EF41739B52A3B3E9D5F6F4",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/769B271C1BA04471907A6C8116059477",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/CA48984879594E30AD67AFED098FD295",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/8D6AA0DCA77E4FA190836A6A93BFBB2C"
+  ],
+  "publisher": "Oregon state education agency (machine-readable via Common Standards Project / ASN)",
+  "licence": "CC BY 4.0 US, Common Curriculum, Inc.",
+  "firstExam": "2023"
+ },
+ "grades": [
+  {
+   "grade": "K",
+   "units": [
+    {
+     "id": "wellness-and-health-promotion",
+     "title": "Wellness and Health Promotion",
+     "topics": [
+      {
+       "id": "wellness-and-health-promotion",
+       "title": "Wellness and Health Promotion",
+       "subtopics": [
+        {
+         "id": "wellness-and-health-promotion-1-of-2",
+         "title": "Wellness and Health Promotion (1 of 2)",
+         "outcomes": [
+          {
+           "code": "K.WHP.1",
+           "text": "Define what a value is and name values that different people and families care about."
+          },
+          {
+           "code": "K.WHP.2",
+           "text": "Identify illnesses that are easily transmitted and illnesses that are not."
+          },
+          {
+           "code": "K.WHP.3",
+           "text": "Understand steps to protect eyes, teeth, skin, and ears."
+          },
+          {
+           "code": "K.WHP.4",
+           "text": "Identify three wellness practices that help one feel good and have energy."
+          }
+         ]
+        },
+        {
+         "id": "wellness-and-health-promotion-2-of-2",
+         "title": "Wellness and Health Promotion (2 of 2)",
+         "outcomes": [
+          {
+           "code": "K.WHP.5",
+           "text": "Identify different types of healthcare workers who help people feel better."
+          },
+          {
+           "code": "K.WHP.6",
+           "text": "Describe how family and friends influence health practices and behaviors."
+          },
+          {
+           "code": "K.WHP.7",
+           "text": "Understand the importance of access to clean air, clean water, food, and shelter."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "safety-and-first-aid",
+     "title": "Safety and First Aid",
+     "topics": [
+      {
+       "id": "safety-and-first-aid",
+       "title": "Safety and First Aid",
+       "subtopics": [
+        {
+         "id": "safety-and-first-aid",
+         "title": "Safety and First Aid",
+         "outcomes": [
+          {
+           "code": "K.SFA.1",
+           "text": "Identify how to stay safe and prevent injury when riding in a vehicle, crossing streets, riding a bicycle, in the water, and playing."
+          },
+          {
+           "code": "K.SFA.2",
+           "text": "Understand how to identify trusted adults that can help keep people safe at home, at school, and in the community."
+          },
+          {
+           "code": "K.SFA.3",
+           "text": "Practice how to ask trusted adults for help when feeling uncomfortable, scared, confused, or unsafe."
+          },
+          {
+           "code": "K.SFA.4",
+           "text": "Explain safety rules for home, school, and the community, including firearm safety rules."
+          },
+          {
+           "code": "K.SFA.5",
+           "text": "Identify when it is ok to share and not ok to share personal information, such as individual names, parent's or caregiver's names, phone numbers, and addresses."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "substance-use-misuse-and-abuse",
+     "title": "Substance Use, Misuse, and Abuse",
+     "topics": [
+      {
+       "id": "substance-use-misuse-and-abuse",
+       "title": "Substance Use, Misuse, and Abuse",
+       "subtopics": [
+        {
+         "id": "substance-use-misuse-and-abuse",
+         "title": "Substance Use, Misuse, and Abuse",
+         "outcomes": [
+          {
+           "code": "K.SUB.1",
+           "text": "Discuss how to use medicines correctly."
+          },
+          {
+           "code": "K.SUB.2",
+           "text": "Understand that some medicines and substances can be poisonous."
+          },
+          {
+           "code": "K.SUB.3",
+           "text": "Identify family and school rules about medicine use."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "food-nutrition-and-physical-activity",
+     "title": "Food, Nutrition, and Physical Activity",
+     "topics": [
+      {
+       "id": "food-nutrition-and-physical-activity",
+       "title": "Food, Nutrition, and Physical Activity",
+       "subtopics": [
+        {
+         "id": "food-nutrition-and-physical-activity",
+         "title": "Food, Nutrition, and Physical Activity",
+         "outcomes": [
+          {
+           "code": "K.FNP.1",
+           "text": "Understand that food comes from plants and animals and provides energy to help people grow, develop, and learn."
+          },
+          {
+           "code": "K.FNP.2",
+           "text": "Understand the importance of eating a variety of foods and trying new foods and activities."
+          },
+          {
+           "code": "K.FNP.3",
+           "text": "Describe the benefits of drinking water, especially when physically active."
+          },
+          {
+           "code": "K.FNP.4",
+           "text": "Analyze how people eat and prepare foods differently based on culture, personal preference, and availability."
+          },
+          {
+           "code": "K.FNP.5",
+           "text": "Identify food practices that make mealtimes enjoyable."
+          },
+          {
+           "code": "K.FNP.6",
+           "text": "Understand that not all people can eat all kinds of food."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "social-emotional-and-mental-health",
+     "title": "Social, Emotional, and Mental Health",
+     "topics": [
+      {
+       "id": "social-emotional-and-mental-health",
+       "title": "Social, Emotional, and Mental Health",
+       "subtopics": [
+        {
+         "id": "social-emotional-and-mental-health",
+         "title": "Social, Emotional, and Mental Health",
+         "outcomes": [
+          {
+           "code": "K.SEM.1",
+           "text": "TSEL Practice 4B Demonstrate empathy and affirm other’s perspectives during teamwork and collaborative problem solving."
+          },
+          {
+           "code": "K.SEM.2",
+           "text": "Identify how mental health is a part of overall health and well-being."
+          },
+          {
+           "code": "K.SEM.3",
+           "text": "Identify a trusted parent, caregiver, or adult to talk with about feelings."
+          },
+          {
+           "code": "K.SEM.4",
+           "text": "Identify ways to appreciate and take care of body and mind."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "healthy-relationships-and-violence-prevention",
+     "title": "Healthy Relationships and Violence Prevention",
+     "topics": [
+      {
+       "id": "healthy-relationships-and-violence-prevention",
+       "title": "Healthy Relationships and Violence Prevention",
+       "subtopics": [
+        {
+         "id": "healthy-relationships-and-violence-prevention-1-",
+         "title": "Healthy Relationships and Violence Prevention (1 of 2)",
+         "outcomes": [
+          {
+           "code": "K.HRVP.1",
+           "text": "Define what a relationship is and identify different kinds of relationships."
+          },
+          {
+           "code": "K.HRVP.2",
+           "text": "Understand that all people have the right to feel safe and free from bullying and violence."
+          },
+          {
+           "code": "K.HRVP.3",
+           "text": "Recognize that everyone has different interests, likes, and ways to express identities."
+          },
+          {
+           "code": "K.HRVP.4",
+           "text": "Define what a personal boundary is and recognize that personal boundaries differ in different kinds of relationships and for different people."
+          },
+          {
+           "code": "K.HRVP.5",
+           "text": "Discuss how to use words to communicate needs and boundaries, and how to listen to the needs of others."
+          }
+         ]
+        },
+        {
+         "id": "healthy-relationships-and-violence-prevention-2-",
+         "title": "Healthy Relationships and Violence Prevention (2 of 2)",
+         "outcomes": [
+          {
+           "code": "K.HRVP.6",
+           "text": "Describe the characteristics of a trusted adult."
+          },
+          {
+           "code": "K.HRVP.7",
+           "text": "Identify that bullying and teasing are harmful."
+          },
+          {
+           "code": "K.HRVP.8",
+           "text": "Understand that it is never okay to touch someone without their permission."
+          },
+          {
+           "code": "K.HRVP.9",
+           "text": "Identify that abuse is never a child’s fault and discuss how to communicate personal boundaries and report unsafe or unwanted touch."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "growth-and-development",
+     "title": "Growth and Development",
+     "topics": [
+      {
+       "id": "growth-and-development",
+       "title": "Growth and Development",
+       "subtopics": [
+        {
+         "id": "growth-and-development",
+         "title": "Growth and Development",
+         "outcomes": [
+          {
+           "code": "K.GD.1",
+           "text": "Discuss different types of family structures and why all families deserve respect."
+          },
+          {
+           "code": "K.GD.2",
+           "text": "Identify ways in which human bodies are the same and different from each other, and how bodies change over time."
+          },
+          {
+           "code": "K.GD.3",
+           "text": "Name reproductive body parts, using medically accurate terminology."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "1",
+   "units": [
+    {
+     "id": "wellness-and-health-promotion",
+     "title": "Wellness and Health Promotion",
+     "topics": [
+      {
+       "id": "wellness-and-health-promotion",
+       "title": "Wellness and Health Promotion",
+       "subtopics": [
+        {
+         "id": "wellness-and-health-promotion",
+         "title": "Wellness and Health Promotion",
+         "outcomes": [
+          {
+           "code": "1.WHP.1",
+           "text": "Recognize at least three dimensions (physical, social, emotional, mental, and/or environmental) of being healthy and well."
+          },
+          {
+           "code": "1.WHP.2",
+           "text": "Explain what people can do to reduce and treat illness."
+          },
+          {
+           "code": "1.WHP.3",
+           "text": "Describe at least three things to do to maintain good health, including brushing teeth daily."
+          },
+          {
+           "code": "1.WHP.4",
+           "text": "Identify where to locate trusted adults who can help with health related questions."
+          },
+          {
+           "code": "1.WHP.5",
+           "text": "Recognize how friends and media influence personal health behaviors, both positively and negatively."
+          },
+          {
+           "code": "1.WHP.6",
+           "text": "Define environment and environmental health."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "safety-and-first-aid",
+     "title": "Safety and First Aid",
+     "topics": [
+      {
+       "id": "safety-and-first-aid",
+       "title": "Safety and First Aid",
+       "subtopics": [
+        {
+         "id": "safety-and-first-aid",
+         "title": "Safety and First Aid",
+         "outcomes": [
+          {
+           "code": "1.SFA.1",
+           "text": "Demonstrate how to communicate safety rules for crossing streets, riding a bicycle, water safety, and playing."
+          },
+          {
+           "code": "1.SFA.2",
+           "text": "List the steps to identify and respond to emergency situations"
+          },
+          {
+           "code": "1.SFA.3",
+           "text": "Identify safety hazards, including those related to fire, water, and dangerous objects."
+          },
+          {
+           "code": "1.SFA.4",
+           "text": "Recognize that it is important to stay away from potentially unsafe body fluids and objects, including needles and syringes."
+          },
+          {
+           "code": "1.SFA.5",
+           "text": "Discuss why it is important to ask a trusted adult before using online devices."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "substance-use-misuse-and-abuse",
+     "title": "Substance Use, Misuse, and Abuse",
+     "topics": [
+      {
+       "id": "substance-use-misuse-and-abuse",
+       "title": "Substance Use, Misuse, and Abuse",
+       "subtopics": [
+        {
+         "id": "substance-use-misuse-and-abuse",
+         "title": "Substance Use, Misuse, and Abuse",
+         "outcomes": [
+          {
+           "code": "1.SUB.1",
+           "text": "Identify trusted adults who can answer questions about medicines and household products."
+          },
+          {
+           "code": "1.SUB.2",
+           "text": "List family, cultural, and school values and rules about medicine use."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "food-nutrition-and-physical-activity",
+     "title": "Food, Nutrition, and Physical Activity",
+     "topics": [
+      {
+       "id": "food-nutrition-and-physical-activity",
+       "title": "Food, Nutrition, and Physical Activity",
+       "subtopics": [
+        {
+         "id": "food-nutrition-and-physical-activity",
+         "title": "Food, Nutrition, and Physical Activity",
+         "outcomes": [
+          {
+           "code": "1.FNP.1",
+           "text": "Identify the five food groups and what a balanced meal could look like."
+          },
+          {
+           "code": "1.FNP.2",
+           "text": "Identify the connection between eating nutrient dense food and physical activity to help our bodies grow, learn, and develop."
+          },
+          {
+           "code": "1.FNP.3",
+           "text": "Discuss how food advertisements, social media, and commercials influence our food and beverage decisions."
+          },
+          {
+           "code": "1.FNP.4",
+           "text": "Identify feelings of thirst and hunger as signals for needing to drink water and eat food."
+          },
+          {
+           "code": "1.FNP.5",
+           "text": "Describe how to keep food safe from harmful germs."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "social-emotional-and-mental-health",
+     "title": "Social, Emotional, and Mental Health",
+     "topics": [
+      {
+       "id": "social-emotional-and-mental-health",
+       "title": "Social, Emotional, and Mental Health",
+       "subtopics": [
+        {
+         "id": "social-emotional-and-mental-health",
+         "title": "Social, Emotional, and Mental Health",
+         "outcomes": [
+          {
+           "code": "1.SEM.1",
+           "text": "TSEL Practice 1A Identify and label emotions, thoughts, strengths, and potential (both personal and cultural)."
+          },
+          {
+           "code": "1.SEM.2",
+           "text": "TSEL Practice 1B Understand the stress response system (regulation and dysregulation) and what environments and experiences activate those responses."
+          },
+          {
+           "code": "1.SEM.3",
+           "text": "Identify basic brain regions and their functions and recognize that everyone’s brain functions differently."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "healthy-relationships-and-violence-abuse-prevent",
+     "title": "Healthy Relationships and Violence/Abuse Prevention",
+     "topics": [
+      {
+       "id": "healthy-relationships-and-violence-abuse-prevent",
+       "title": "Healthy Relationships and Violence/Abuse Prevention",
+       "subtopics": [
+        {
+         "id": "healthy-relationships-and-violence-abuse-prevent",
+         "title": "Healthy Relationships and Violence/Abuse Prevention",
+         "outcomes": [
+          {
+           "code": "1.HRVP.1",
+           "text": "TSEL Practice 4A Form authentic relationships that encourage autonomy while building cultural awareness and empathy through various forms of communication."
+          },
+          {
+           "code": "1.HRVP.2",
+           "text": "Demonstrate healthy ways for friends to express feelings, both physically and verbally."
+          },
+          {
+           "code": "1.HRVP.3",
+           "text": "Discuss the ways that all people are unique and valuable and have a right to be treated with dignity and respect and be free from bullying and violence."
+          },
+          {
+           "code": "1.HRVP.4",
+           "text": "Define consent and discuss how it is important in all types of relationships."
+          },
+          {
+           "code": "1.HRVP.5",
+           "text": "Demonstrate how to communicate wants, needs, and boundaries and how to listen to the needs of others."
+          },
+          {
+           "code": "1.HRVP.6",
+           "text": "Explain that everyone has the right to decide who can touch one’s own body, where, and in what way to prevent violence and abuse."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "growth-and-development",
+     "title": "Growth and Development",
+     "topics": [
+      {
+       "id": "growth-and-development",
+       "title": "Growth and Development",
+       "subtopics": [
+        {
+         "id": "growth-and-development",
+         "title": "Growth and Development",
+         "outcomes": [
+          {
+           "code": "1.GD.1",
+           "text": "Discuss and affirm different physical characteristics that people may have, including differences in body size, shape, ability, skin color, and hair texture."
+          },
+          {
+           "code": "1.GD.2",
+           "text": "Identify medically accurate names for sexual and reproductive anatomy."
+          },
+          {
+           "code": "1.GD.3",
+           "text": "Discuss that there are many ways that people can express love and attraction."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "2",
+   "units": [
+    {
+     "id": "wellness-and-health-promotion",
+     "title": "Wellness and Health Promotion",
+     "topics": [
+      {
+       "id": "wellness-and-health-promotion",
+       "title": "Wellness and Health Promotion",
+       "subtopics": [
+        {
+         "id": "wellness-and-health-promotion",
+         "title": "Wellness and Health Promotion",
+         "outcomes": [
+          {
+           "code": "2.WHP.1",
+           "text": "Discuss how many of our personal values come from families, communities, and culture."
+          },
+          {
+           "code": "2.WHP.2",
+           "text": "Identify practices that reduce illness."
+          },
+          {
+           "code": "2.WHP.3",
+           "text": "Describe ways to protect vision, hearing, and teeth."
+          },
+          {
+           "code": "2.WHP.4",
+           "text": "Describe the benefits of getting enough sleep and potential problems associated with not getting enough sleep."
+          },
+          {
+           "code": "2.WHP.5",
+           "text": "Locate a trusted adult in the school building to help access valid and reliable health information and services."
+          },
+          {
+           "code": "2.WHP.6",
+           "text": "Describe ways in which schools and neighborhoods influence health behaviors."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "safety-and-first-aid",
+     "title": "Safety and First Aid",
+     "topics": [
+      {
+       "id": "safety-and-first-aid",
+       "title": "Safety and First Aid",
+       "subtopics": [
+        {
+         "id": "safety-and-first-aid",
+         "title": "Safety and First Aid",
+         "outcomes": [
+          {
+           "code": "2.SFA.1",
+           "text": "Demonstrate the importance of wearing helmets, pads, mouth guards, personal flotation devices, and other safety equipment during athletic and outdoor activities."
+          },
+          {
+           "code": "2.SFA.2",
+           "text": "List examples of dangerous behaviors that might lead to injuries."
+          },
+          {
+           "code": "2.SFA.3",
+           "text": "Identify trusted adults that help keep people safe at home, at school, and in the community."
+          },
+          {
+           "code": "2.SFA.4",
+           "text": "Identify why it is important that people of all abilities can safely access school and other buildings."
+          },
+          {
+           "code": "2.SFA.5",
+           "text": "Discuss threats of safety or harm and protective procedures, including those related to dangerous objects and firearms."
+          },
+          {
+           "code": "2.SFA.6",
+           "text": "Explain why it is important to ask a trusted adult before using online devices."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "substance-use-misuse-and-abuse",
+     "title": "Substance Use, Misuse, and Abuse",
+     "topics": [
+      {
+       "id": "substance-use-misuse-and-abuse",
+       "title": "Substance Use, Misuse, and Abuse",
+       "subtopics": [
+        {
+         "id": "substance-use-misuse-and-abuse",
+         "title": "Substance Use, Misuse, and Abuse",
+         "outcomes": [
+          {
+           "code": "2.SUB.1",
+           "text": "Identify the difference between medicine to help people who are sick and other types of substances that can be harmful to the body."
+          },
+          {
+           "code": "2.SUB.2",
+           "text": "Describe how tobacco and secondhand smoke harms the body."
+          },
+          {
+           "code": "2.SUB.3",
+           "text": "Describe safety rules for over-the-counter and prescription drug use."
+          },
+          {
+           "code": "2.SUB.4",
+           "text": "List steps to take when offered substances."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "food-nutrition-and-physical-activity",
+     "title": "Food, Nutrition, and Physical Activity",
+     "topics": [
+      {
+       "id": "food-nutrition-and-physical-activity",
+       "title": "Food, Nutrition, and Physical Activity",
+       "subtopics": [
+        {
+         "id": "food-nutrition-and-physical-activity-1-of-2",
+         "title": "Food, Nutrition, and Physical Activity (1 of 2)",
+         "outcomes": [
+          {
+           "code": "2.FNP.1",
+           "text": "Identify a variety of places and sources that food can come from and how it gets to people."
+          },
+          {
+           "code": "2.FNP.2",
+           "text": "Identify the five major food groups and give an example of foods in each group."
+          },
+          {
+           "code": "2.FNP.3",
+           "text": "Describe the importance of eating a variety of fruits and vegetables and identify foods that provide the nutrients required to help the body grow, learn, and develop."
+          },
+          {
+           "code": "2.FNP.4",
+           "text": "Develop a plan and set a goal to keep hydrated and limit sugary beverages."
+          }
+         ]
+        },
+        {
+         "id": "food-nutrition-and-physical-activity-2-of-2",
+         "title": "Food, Nutrition, and Physical Activity (2 of 2)",
+         "outcomes": [
+          {
+           "code": "2.FNP.5",
+           "text": "Explain how physical activity and eating patterns can affect a person’s health."
+          },
+          {
+           "code": "2.FNP.6",
+           "text": "Recognize how the foods that people eat can reflect cultural backgrounds and the area in which people live."
+          },
+          {
+           "code": "2.FNP.7",
+           "text": "Recognize some people have intolerances and allergies to foods including nuts, wheat, eggs, shellfish, and dairy products."
+          },
+          {
+           "code": "2.FNP.8",
+           "text": "Identify how people have different levels of access to foods."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "social-emotional-and-mental-health",
+     "title": "Social, Emotional, and Mental Health",
+     "topics": [
+      {
+       "id": "social-emotional-and-mental-health",
+       "title": "Social, Emotional, and Mental Health",
+       "subtopics": [
+        {
+         "id": "social-emotional-and-mental-health",
+         "title": "Social, Emotional, and Mental Health",
+         "outcomes": [
+          {
+           "code": "2.SEM.1",
+           "text": "TSEL Practice 1B Understand the stress response system (regulation and dysregulation) and what environments and experiences activate those responses."
+          },
+          {
+           "code": "2.SEM.2",
+           "text": "TSEL Practice 1C Reflect on and evaluate how one’s emotions, thoughts, and perspectives (including values, biases, and prejudices) can influence behavior."
+          },
+          {
+           "code": "2.SEM.3",
+           "text": "Describe the different ways that people can experience or exhibit stress, anxiety, social isolation, and sadness."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "healthy-relationships-and-violence-abuse-prevent",
+     "title": "Healthy Relationships and Violence/Abuse Prevention",
+     "topics": [
+      {
+       "id": "healthy-relationships-and-violence-abuse-prevent",
+       "title": "Healthy Relationships and Violence/Abuse Prevention",
+       "subtopics": [
+        {
+         "id": "healthy-relationships-and-violence-abuse-prevent",
+         "title": "Healthy Relationships and Violence/Abuse Prevention (1 of 2)",
+         "outcomes": [
+          {
+           "code": "2.HRVP.1",
+           "text": "TSEL Practice 4C Recognize and acknowledge when there is harm to self and others and identify when support, agency, and practices to repair and restore are needed."
+          },
+          {
+           "code": "2.HRVP.2",
+           "text": "Demonstrate how to effectively identify and communicate needs, wants, and feelings in healthy ways."
+          },
+          {
+           "code": "2.HRVP.3",
+           "text": "Discuss how diversity in race, gender, and ability enrich relationships and communities."
+          },
+          {
+           "code": "2.HRVP.4",
+           "text": "Define bodily autonomy, personal boundaries, and consent."
+          }
+         ]
+        },
+        {
+         "id": "healthy-relationships-and-violence-abuse-prevent-2",
+         "title": "Healthy Relationships and Violence/Abuse Prevention (2 of 2)",
+         "outcomes": [
+          {
+           "code": "2.HRVP.5",
+           "text": "Recognize that friends, family, teachers, and community members can help each other."
+          },
+          {
+           "code": "2.HRVP.6",
+           "text": "Recognize bullying, cyberbullying, and teasing in multiple types of relationships and the need to tell a trusted source that can help."
+          },
+          {
+           "code": "2.HRVP.7",
+           "text": "Define and identify different forms of violence and abuse, including physical, verbal, sexual, and emotional."
+          },
+          {
+           "code": "2.HRVP.8",
+           "text": "Identify that abuse is never a child’s fault and describe how to communicate personal boundaries and report unsafe or or unwanted touch."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "growth-and-development",
+     "title": "Growth and Development",
+     "topics": [
+      {
+       "id": "growth-and-development",
+       "title": "Growth and Development",
+       "subtopics": [
+        {
+         "id": "growth-and-development",
+         "title": "Growth and Development",
+         "outcomes": [
+          {
+           "code": "2.GD.1",
+           "text": "Recognize that humans grow and mature at different ages and in different ways."
+          },
+          {
+           "code": "2.GD.2",
+           "text": "Recognize that there are many different types of families that may or may not be genetically related, including blended, adopted, and foster families."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "3",
+   "units": [
+    {
+     "id": "wellness-and-health-promotion",
+     "title": "Wellness and Health Promotion",
+     "topics": [
+      {
+       "id": "wellness-and-health-promotion",
+       "title": "Wellness and Health Promotion",
+       "subtopics": [
+        {
+         "id": "wellness-and-health-promotion-1-of-2",
+         "title": "Wellness and Health Promotion (1 of 2)",
+         "outcomes": [
+          {
+           "code": "3.WHP.1",
+           "text": "Discuss what it means to be healthy, considering five dimensions of health (physical, social, emotional, mental, and environmental)."
+          },
+          {
+           "code": "3.WHP.2",
+           "text": "Describe the basic function of the immune system."
+          },
+          {
+           "code": "3.WHP.3",
+           "text": "Explain the benefits of personal health care practices."
+          },
+          {
+           "code": "3.WHP.4",
+           "text": "Describe specific things to do to take care of one’s teeth, including daily brushing and flossing teeth."
+          }
+         ]
+        },
+        {
+         "id": "wellness-and-health-promotion-2-of-2",
+         "title": "Wellness and Health Promotion (2 of 2)",
+         "outcomes": [
+          {
+           "code": "3.WHP.5",
+           "text": "Discuss reasons to go to a healthcare provider for physical and mental health concerns."
+          },
+          {
+           "code": "3.WHP.6",
+           "text": "Identify ways in which media, social media, and technology influence self-perception, feelings, decisions, and behaviors"
+          },
+          {
+           "code": "3.WHP.7",
+           "text": "Recognize the connection between environmental health, including the effects of climate change, and personal health."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "safety-and-first-aid",
+     "title": "Safety and First Aid",
+     "topics": [
+      {
+       "id": "safety-and-first-aid",
+       "title": "Safety and First Aid",
+       "subtopics": [
+        {
+         "id": "safety-and-first-aid",
+         "title": "Safety and First Aid",
+         "outcomes": [
+          {
+           "code": "3.SFA.1",
+           "text": "Identify how concussions can be prevented, recognized, and treated."
+          },
+          {
+           "code": "3.SFA.2",
+           "text": "Practice how to assess and choose safe options when experiencing unsafe situations."
+          },
+          {
+           "code": "3.SFA.3",
+           "text": "Recognize that infections, including Hepatitis B and C and HIV/AIDS, can be transmitted through blood and other body fluids."
+          },
+          {
+           "code": "3.SFA.4",
+           "text": "Describe how to identify and respond to emergency situations."
+          },
+          {
+           "code": "3.SFA.5",
+           "text": "Describe safety procedures for responding to natural disasters."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "substance-use-misuse-and-abuse",
+     "title": "Substance Use, Misuse, and Abuse",
+     "topics": [
+      {
+       "id": "substance-use-misuse-and-abuse",
+       "title": "Substance Use, Misuse, and Abuse",
+       "subtopics": [
+        {
+         "id": "substance-use-misuse-and-abuse",
+         "title": "Substance Use, Misuse, and Abuse",
+         "outcomes": [
+          {
+           "code": "3.SUB.1",
+           "text": "Identify that substances are chemicals that can change how the mind and body function and can cause addiction."
+          },
+          {
+           "code": "3.SUB.2",
+           "text": "Identify how alcohol, marijuana/cannabis, tobacco, and other substances can be harmful to minds, bodies, and brains."
+          },
+          {
+           "code": "3.SUB.3",
+           "text": "Discuss how to recognize social pressures, peer influences, and internal feelings and emotions around substance use."
+          },
+          {
+           "code": "3.SUB.4",
+           "text": "Describe how and where to access help from trusted adults if substances are being misused or abused."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "food-nutrition-and-physical-activity",
+     "title": "Food, Nutrition, and Physical Activity",
+     "topics": [
+      {
+       "id": "food-nutrition-and-physical-activity",
+       "title": "Food, Nutrition, and Physical Activity",
+       "subtopics": [
+        {
+         "id": "food-nutrition-and-physical-activity-1-of-2",
+         "title": "Food, Nutrition, and Physical Activity (1 of 2)",
+         "outcomes": [
+          {
+           "code": "3.FNP.1",
+           "text": "Identify methods for reducing food waste."
+          },
+          {
+           "code": "3.FNP.2",
+           "text": "Recognize that food contains essential nutrients that benefit different systems in our bodies."
+          },
+          {
+           "code": "3.FNP.3",
+           "text": "Explain how to create a balanced daily food plan for individual needs and health considerations."
+          },
+          {
+           "code": "3.FNP.4",
+           "text": "Understand the basic function of the cardiovascular system."
+          }
+         ]
+        },
+        {
+         "id": "food-nutrition-and-physical-activity-2-of-2",
+         "title": "Food, Nutrition, and Physical Activity (2 of 2)",
+         "outcomes": [
+          {
+           "code": "3.FNP.5",
+           "text": "Describe a decision making process about what foods and beverages to consume and ways to be physically active."
+          },
+          {
+           "code": "3.FNP.6",
+           "text": "Describe foods using the senses."
+          },
+          {
+           "code": "3.FNP.7",
+           "text": "Explain what food-borne illnesses are and how to prevent them."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "social-emotional-and-mental-health",
+     "title": "Social, Emotional, and Mental Health",
+     "topics": [
+      {
+       "id": "social-emotional-and-mental-health",
+       "title": "Social, Emotional, and Mental Health",
+       "subtopics": [
+        {
+         "id": "social-emotional-and-mental-health",
+         "title": "Social, Emotional, and Mental Health",
+         "outcomes": [
+          {
+           "code": "3.SEM.1",
+           "text": "TSEL Practice 1B Understand the stress response system (regulation and dysregulation) and what environments and experiences activate those responses."
+          },
+          {
+           "code": "3.SEM.2",
+           "text": "TSEL Practices 2B Use management strategies while recognizing that various situations and environments may require different approaches for achieving personal and collective goals and aspirations in ways that affirm one’s identity."
+          },
+          {
+           "code": "3.SEM.3",
+           "text": "Identify the impacts of stress on mental health."
+          },
+          {
+           "code": "3.SEM.4",
+           "text": "Recognize how emotions can impact eating patterns and that people can get help if necessary."
+          },
+          {
+           "code": "3.SEM.5",
+           "text": "Explain the importance of talking with trusted adults about feelings."
+          },
+          {
+           "code": "3.SEM.6",
+           "text": "Identify personal or community activities that are meaningful or enjoyable."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "healthy-relationships-and-violence-abuse-prevent",
+     "title": "Healthy Relationships and Violence/Abuse Prevention",
+     "topics": [
+      {
+       "id": "healthy-relationships-and-violence-abuse-prevent",
+       "title": "Healthy Relationships and Violence/Abuse Prevention",
+       "subtopics": [
+        {
+         "id": "healthy-relationships-and-violence-abuse-prevent",
+         "title": "Healthy Relationships and Violence/Abuse Prevention",
+         "outcomes": [
+          {
+           "code": "3.HRVP.1",
+           "text": "TSEL Practice 3B Apply social skills (i.e., empathy, compassion, etc.) to develop and maintain healthy relationships that collectively achieve mutual goals while affirming identities and perspectives."
+          },
+          {
+           "code": "3.HRVP.2",
+           "text": "Describe characteristics of a healthy and safe relationship."
+          },
+          {
+           "code": "3.HRVP.3",
+           "text": "Discuss the importance of using affirming language around protected classes of people including people of all genders, race and ethnicities, sexual orientations, and abilities."
+          },
+          {
+           "code": "3.HRVP.4",
+           "text": "Demonstrate effective ways to verbally and nonverbally communicate personal boundaries and show respect for the boundaries of others."
+          },
+          {
+           "code": "3.HRVP.5",
+           "text": "Identify trusted support people and helpers to talk to about uncomfortable situations or when a boundary has been crossed."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "growth-and-development",
+     "title": "Growth and Development",
+     "topics": [
+      {
+       "id": "growth-and-development",
+       "title": "Growth and Development",
+       "subtopics": [
+        {
+         "id": "growth-and-development",
+         "title": "Growth and Development",
+         "outcomes": [
+          {
+           "code": "3.GD.1",
+           "text": "Discuss attributes and characteristics that make every person unique and valued, including physical diversity and neurodiversity."
+          },
+          {
+           "code": "3.GD.2",
+           "text": "Identify the medically accurate names for body parts, including external and internal sexual and reproductive anatomy."
+          },
+          {
+           "code": "3.GD.3",
+           "text": "Recognize that puberty is a time of physical, emotional, and social changes that is a part of human development."
+          },
+          {
+           "code": "3.GD.4",
+           "text": "Recognize that menstrual pads and tampons are medical products some people use to take care of their bodies."
+          },
+          {
+           "code": "3.GD.5",
+           "text": "Recognize that there are different kinds of families that have unique characteristics and identities."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "sexual-and-reproductive-health",
+     "title": "Sexual and Reproductive Health",
+     "topics": [
+      {
+       "id": "sexual-and-reproductive-health",
+       "title": "Sexual and Reproductive Health",
+       "subtopics": [
+        {
+         "id": "sexual-and-reproductive-health",
+         "title": "Sexual and Reproductive Health",
+         "outcomes": [
+          {
+           "code": "3.SRH.1",
+           "text": "Explain that many people enjoy consensual affection and physical closeness throughout their lives and every individual gets to decide what they are comfortable with."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "4",
+   "units": [
+    {
+     "id": "wellness-and-health-promotion",
+     "title": "Wellness and Health Promotion",
+     "topics": [
+      {
+       "id": "wellness-and-health-promotion",
+       "title": "Wellness and Health Promotion",
+       "subtopics": [
+        {
+         "id": "wellness-and-health-promotion",
+         "title": "Wellness and Health Promotion",
+         "outcomes": [
+          {
+           "code": "4.WHP.1",
+           "text": "Identify individual, cultural, and family values that affect one's health."
+          },
+          {
+           "code": "4.WHP.2",
+           "text": "Identify common noncommunicable childhood conditions, including asthma, allergies, diabetes, and epilepsy, and how they are managed."
+          },
+          {
+           "code": "4.WHP.3",
+           "text": "Understand why sleep is necessary for the brain and body and describe how sleep works."
+          },
+          {
+           "code": "4.WHP.4",
+           "text": "Compare and contrast the validity of health and wellness information from a variety of media, products, and services."
+          },
+          {
+           "code": "4.WHP.5",
+           "text": "Define social pressures and peer influences and identify how they can impact behavior."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "safety-and-first-aid",
+     "title": "Safety and First Aid",
+     "topics": [
+      {
+       "id": "safety-and-first-aid",
+       "title": "Safety and First Aid",
+       "subtopics": [
+        {
+         "id": "safety-and-first-aid",
+         "title": "Safety and First Aid",
+         "outcomes": [
+          {
+           "code": "4.SFA.1",
+           "text": "Identify the steps of what to do if firearms are seen or found."
+          },
+          {
+           "code": "4.SFA.2",
+           "text": "Identify strategies for staying safe online."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "substance-use-misuse-and-abuse",
+     "title": "Substance Use, Misuse, and Abuse",
+     "topics": [
+      {
+       "id": "substance-use-misuse-and-abuse",
+       "title": "Substance Use, Misuse, and Abuse",
+       "subtopics": [
+        {
+         "id": "substance-use-misuse-and-abuse-1-of-2",
+         "title": "Substance Use, Misuse, and Abuse (1 of 2)",
+         "outcomes": [
+          {
+           "code": "4.SUB.1",
+           "text": "Discuss how alcohol, marijuana/cannabis, tobacco, and other substances can be addictive and cause harm to the body."
+          },
+          {
+           "code": "4.SUB.2",
+           "text": "Identify the basic function of body organs and systems and how different substances can affect them."
+          },
+          {
+           "code": "4.SUB.3",
+           "text": "Discuss the impact that alcohol, marijuana/cannabis, tobacco, and other substances can have on reaching goals."
+          },
+          {
+           "code": "4.SUB.4",
+           "text": "Demonstrate how to read medicine labels and prescription instructions."
+          }
+         ]
+        },
+        {
+         "id": "substance-use-misuse-and-abuse-2-of-2",
+         "title": "Substance Use, Misuse, and Abuse (2 of 2)",
+         "outcomes": [
+          {
+           "code": "4.SUB.5",
+           "text": "Identify procedural steps in decision making around substance use."
+          },
+          {
+           "code": "4.SUB.6",
+           "text": "Demonstrate communication skills for asserting boundaries around substance use."
+          },
+          {
+           "code": "4.SUB.7",
+           "text": "Understand that a substance use disorder is a medical condition and that there are resources in communities that can provide support, treatment, and healing."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "food-nutrition-and-physical-activity",
+     "title": "Food, Nutrition, and Physical Activity",
+     "topics": [
+      {
+       "id": "food-nutrition-and-physical-activity",
+       "title": "Food, Nutrition, and Physical Activity",
+       "subtopics": [
+        {
+         "id": "food-nutrition-and-physical-activity-1-of-2",
+         "title": "Food, Nutrition, and Physical Activity (1 of 2)",
+         "outcomes": [
+          {
+           "code": "4.FNP.1",
+           "text": "Identify examples of food items grown in different regions throughout the state, including in Oregon’s nine federally recognized tribes."
+          },
+          {
+           "code": "4.FNP.2",
+           "text": "Identify the functions of the six categories of nutrients: protein, carbohydrates, fats, vitamins, minerals, and water."
+          },
+          {
+           "code": "4.FNP.3",
+           "text": "Identify foods and beverages with high sugar content and the negative effects of too much added sugar."
+          },
+          {
+           "code": "4.FNP.4",
+           "text": "Describe the relationship between physical activity and the need for food and hydration."
+          },
+          {
+           "code": "4.FNP.5",
+           "text": "Describe differences in food customs, traditions, and preparations."
+          }
+         ]
+        },
+        {
+         "id": "food-nutrition-and-physical-activity-2-of-2",
+         "title": "Food, Nutrition, and Physical Activity (2 of 2)",
+         "outcomes": [
+          {
+           "code": "4.FNP.6",
+           "text": "Identify internal and external influences that affect food choices and physical activities."
+          },
+          {
+           "code": "4.FNP.7",
+           "text": "Describe the basic functions of the digestive system."
+          },
+          {
+           "code": "4.FNP.8",
+           "text": "Explain why some people eat or avoid certain foods, including allergies, other medical conditions, religious beliefs, and culture."
+          },
+          {
+           "code": "4.FNP.9",
+           "text": "Discuss factors that affect the availability of food, including socioeconomic status and location."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "social-emotional-and-mental-health",
+     "title": "Social, Emotional, and Mental Health",
+     "topics": [
+      {
+       "id": "social-emotional-and-mental-health",
+       "title": "Social, Emotional, and Mental Health",
+       "subtopics": [
+        {
+         "id": "social-emotional-and-mental-health",
+         "title": "Social, Emotional, and Mental Health",
+         "outcomes": [
+          {
+           "code": "4.SEM.1",
+           "text": "TSEL Practice 5C Anticipate, reflect and evaluate the impacts of one’s choices and contributions in promoting personal, family, and community well-being."
+          },
+          {
+           "code": "4.SEM.2",
+           "text": "Identify ways of dealing with stress, anxiety, social isolation, and depression that contribute to the well-being and mental health of self and others."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "healthy-relationships-and-violence-abuse-prevent",
+     "title": "Healthy Relationships and Violence/Abuse Prevention",
+     "topics": [
+      {
+       "id": "healthy-relationships-and-violence-abuse-prevent",
+       "title": "Healthy Relationships and Violence/Abuse Prevention",
+       "subtopics": [
+        {
+         "id": "healthy-relationships-and-violence-abuse-prevent",
+         "title": "Healthy Relationships and Violence/Abuse Prevention (1 of 2)",
+         "outcomes": [
+          {
+           "code": "4.HRVP.1",
+           "text": "TSEL Practice 4D Restore relationships through actively engaging with others, working collaboratively, and affirming cultural and social perspectives."
+          },
+          {
+           "code": "4.HRVP.2",
+           "text": "Describe a variety of healthy ways to show and express liking or loving someone."
+          },
+          {
+           "code": "4.HRVP.3",
+           "text": "Discuss how power and inequality influence different types of relationships and boundaries."
+          },
+          {
+           "code": "4.HRVP.4",
+           "text": "Demonstrate ways to treat all people with dignity and respect, including people of all genders, gender expressions, and gender identities."
+          },
+          {
+           "code": "4.HRVP.5",
+           "text": "Identify the different personal boundaries and privacy needs of self and others at school, with friends, and at home."
+          }
+         ]
+        },
+        {
+         "id": "healthy-relationships-and-violence-abuse-prevent-2",
+         "title": "Healthy Relationships and Violence/Abuse Prevention (2 of 2)",
+         "outcomes": [
+          {
+           "code": "4.HRVP.6",
+           "text": "Discuss communication skills to build healthy relationships and manage conflict."
+          },
+          {
+           "code": "4.HRVP.7",
+           "text": "Identify situations when someone is being abused or harassed and identify people or resources to get help from."
+          },
+          {
+           "code": "4.HRVP.8",
+           "text": "Demonstrate how to be an upstander to respond to bullying or teasing based on physical characteristics, ability, or cultural identity."
+          },
+          {
+           "code": "4.HRVP.9",
+           "text": "Identify different behaviors that would be considered child abuse, neglect, and sexual abuse."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "growth-and-development",
+     "title": "Growth and Development",
+     "topics": [
+      {
+       "id": "growth-and-development",
+       "title": "Growth and Development",
+       "subtopics": [
+        {
+         "id": "growth-and-development",
+         "title": "Growth and Development",
+         "outcomes": [
+          {
+           "code": "4.GD.1",
+           "text": "Discuss physical, emotional, neurological, and social changes associated with puberty."
+          },
+          {
+           "code": "4.GD.2",
+           "text": "Identify body care practices related to puberty, including using menstrual products."
+          },
+          {
+           "code": "4.GD.3",
+           "text": "Discuss the importance of treating people with dignity and respect in regards to their sexual orientation, including other students, their family members, and members of the school community."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "sexual-and-reproductive-health",
+     "title": "Sexual and Reproductive Health",
+     "topics": [
+      {
+       "id": "sexual-and-reproductive-health",
+       "title": "Sexual and Reproductive Health",
+       "subtopics": [
+        {
+         "id": "sexual-and-reproductive-health",
+         "title": "Sexual and Reproductive Health",
+         "outcomes": [
+          {
+           "code": "4.SRH.1",
+           "text": "Recognize that people can show affection and care for other people in different ways, including consensual kissing, hugging, and touching."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "5",
+   "units": [
+    {
+     "id": "wellness-and-health-promotion",
+     "title": "Wellness and Health Promotion",
+     "topics": [
+      {
+       "id": "wellness-and-health-promotion",
+       "title": "Wellness and Health Promotion",
+       "subtopics": [
+        {
+         "id": "wellness-and-health-promotion-1-of-2",
+         "title": "Wellness and Health Promotion (1 of 2)",
+         "outcomes": [
+          {
+           "code": "5.WHP.1",
+           "text": "Reflect on what the five dimensions of health (physical, social, emotional, mental, and environmental) look like for individuals, families, and communities."
+          },
+          {
+           "code": "5.WHP.2",
+           "text": "Explain how vaccines work to prevent an illness and reduce severe symptoms."
+          },
+          {
+           "code": "5.WHP.3",
+           "text": "Describe benefits of practicing health promoting behaviors."
+          },
+          {
+           "code": "5.WHP.4",
+           "text": "Explain ways to engage in healthy practices and behaviors that prevent or reduce oral health risks, including brushing, flossing, reducing sugary drink consumption, wearing mouth guards, and visiting a dentist."
+          }
+         ]
+        },
+        {
+         "id": "wellness-and-health-promotion-2-of-2",
+         "title": "Wellness and Health Promotion (2 of 2)",
+         "outcomes": [
+          {
+           "code": "5.WHP.5",
+           "text": "Practice how to talk to a healthcare provider about health concerns, including dental pain."
+          },
+          {
+           "code": "5.WHP.6",
+           "text": "Evaluate health messages depicted in the media, including in social media and in advertisements."
+          },
+          {
+           "code": "5.WHP.7",
+           "text": "Discuss how the location and environment of where people live can affect their health."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "safety-and-first-aid",
+     "title": "Safety and First Aid",
+     "topics": [
+      {
+       "id": "safety-and-first-aid",
+       "title": "Safety and First Aid",
+       "subtopics": [
+        {
+         "id": "safety-and-first-aid-1-of-2",
+         "title": "Safety and First Aid (1 of 2)",
+         "outcomes": [
+          {
+           "code": "5.SFA.1",
+           "text": "Compare and contrast safe and unsafe situations and events."
+          },
+          {
+           "code": "5.SFA.2",
+           "text": "Discuss reasons why people take risks that may lead to injuries, including dental injury and concussions, and identify steps to avoid injuries."
+          },
+          {
+           "code": "5.SFA.3",
+           "text": "Demonstrate first aid skills and skills for a range of common minor emergencies."
+          },
+          {
+           "code": "5.SFA.4",
+           "text": "Demonstrate how to identify and communicate with trusted adults to keep people safe at home, at school, and in the community."
+          }
+         ]
+        },
+        {
+         "id": "safety-and-first-aid-2-of-2",
+         "title": "Safety and First Aid (2 of 2)",
+         "outcomes": [
+          {
+           "code": "5.SFA.5",
+           "text": "Explain the importance of being inclusive and affirming and making accessible accommodations for people with disabilities."
+          },
+          {
+           "code": "5.SFA.6",
+           "text": "Discuss steps to take to prepare for natural disasters"
+          },
+          {
+           "code": "5.SFA.7",
+           "text": "Describe internet safety rules and how to respond to cyberbullying and exposure to inappropriate material."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "substance-use-misuse-and-abuse",
+     "title": "Substance Use, Misuse, and Abuse",
+     "topics": [
+      {
+       "id": "substance-use-misuse-and-abuse",
+       "title": "Substance Use, Misuse, and Abuse",
+       "subtopics": [
+        {
+         "id": "substance-use-misuse-and-abuse-1-of-2",
+         "title": "Substance Use, Misuse, and Abuse (1 of 2)",
+         "outcomes": [
+          {
+           "code": "5.SUB.1",
+           "text": "Recognize that substances can be addictive and harmful for adolescents during physical and neurological development."
+          },
+          {
+           "code": "5.SUB.2",
+           "text": "Describe how alcohol, marijuana/cannabis, tobacco, and other substances impact the human body and brain, interpersonal relationships, and decision-making."
+          },
+          {
+           "code": "5.SUB.3",
+           "text": "Describe the appropriate use for over-the-counter and prescription medicines."
+          },
+          {
+           "code": "5.SUB.4",
+           "text": "Describe how substance use, misuse, and abuse can affect peoples’ abilities to reach personal goals."
+          },
+          {
+           "code": "5.SUB.5",
+           "text": "Discuss ways that advertising can influence alcohol, marijuana/cannabis, and tobacco use."
+          }
+         ]
+        },
+        {
+         "id": "substance-use-misuse-and-abuse-2-of-2",
+         "title": "Substance Use, Misuse, and Abuse (2 of 2)",
+         "outcomes": [
+          {
+           "code": "5.SUB.6",
+           "text": "Demonstrate how to use decision making steps around substance use."
+          },
+          {
+           "code": "5.SUB.7",
+           "text": "Demonstrate refusal skills to avoid or reduce health risks around substance use."
+          },
+          {
+           "code": "5.SUB.8",
+           "text": "Identify trusted adults to talk to about substance use, misuse, and abuse."
+          },
+          {
+           "code": "5.SUB.9",
+           "text": "Identify school policies, local, state, and federal laws related to substance use."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "food-nutrition-and-physical-activity",
+     "title": "Food, Nutrition, and Physical Activity",
+     "topics": [
+      {
+       "id": "food-nutrition-and-physical-activity",
+       "title": "Food, Nutrition, and Physical Activity",
+       "subtopics": [
+        {
+         "id": "food-nutrition-and-physical-activity-1-of-2",
+         "title": "Food, Nutrition, and Physical Activity (1 of 2)",
+         "outcomes": [
+          {
+           "code": "5.FNP.1",
+           "text": "Discuss the impact of food production and food waste on the environment."
+          },
+          {
+           "code": "5.FNP.2",
+           "text": "Demonstrate how to read food labels to determine nutrient, sugar, and sodium content."
+          },
+          {
+           "code": "5.FNP.3",
+           "text": "Describe nutrient dense breakfasts, meals, and snacks and their impact on growth, learning, and development."
+          },
+          {
+           "code": "5.FNP.4",
+           "text": "Compare and contrast the nutrition content of different beverages for hydration."
+          }
+         ]
+        },
+        {
+         "id": "food-nutrition-and-physical-activity-2-of-2",
+         "title": "Food, Nutrition, and Physical Activity (2 of 2)",
+         "outcomes": [
+          {
+           "code": "5.FNP.5",
+           "text": "Identify the basic functions of the skeletal and muscular systems."
+          },
+          {
+           "code": "5.FNP.6",
+           "text": "Identify how different factors impact decision-making around food, beverages, and physical activity."
+          },
+          {
+           "code": "5.FNP.7",
+           "text": "Illustrate and describe the pathway of food during the process of digestion."
+          },
+          {
+           "code": "5.FNP.8",
+           "text": "Demonstrate how to prepare a nutritious snack or meal using sanitary food preparation and storage practices."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "social-emotional-and-mental-health",
+     "title": "Social, Emotional, and Mental Health",
+     "topics": [
+      {
+       "id": "social-emotional-and-mental-health",
+       "title": "Social, Emotional, and Mental Health",
+       "subtopics": [
+        {
+         "id": "social-emotional-and-mental-health",
+         "title": "Social, Emotional, and Mental Health",
+         "outcomes": [
+          {
+           "code": "5.SEM.1",
+           "text": "TSEL Practice 5B Make informed choices and identify solutions for personal and social injustices after analyzing all types of information."
+          },
+          {
+           "code": "5.SEM.2",
+           "text": "Reflect on external factors and systems that may contribute to stress and anxiety, including microaggressions, and identify coping strategies."
+          },
+          {
+           "code": "5.SEM.3",
+           "text": "Identify the benefits of talking to trusted adults about feelings and thoughts."
+          },
+          {
+           "code": "5.SEM.4",
+           "text": "Identify potential impacts of social media on mental health and body image."
+          },
+          {
+           "code": "5.SEM.5",
+           "text": "Identify decision-making steps to take when deciding whether to share personal information about self or others on social media, considering the potential social, emotional, and mental health impacts."
+          },
+          {
+           "code": "5.SEM.6",
+           "text": "Analyze the impact of identity-based bullying and violence on mental health."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "healthy-relationships-and-violence-abuse-prevent",
+     "title": "Healthy Relationships and Violence/Abuse Prevention",
+     "topics": [
+      {
+       "id": "healthy-relationships-and-violence-abuse-prevent",
+       "title": "Healthy Relationships and Violence/Abuse Prevention",
+       "subtopics": [
+        {
+         "id": "healthy-relationships-and-violence-abuse-prevent",
+         "title": "Healthy Relationships and Violence/Abuse Prevention (1 of 2)",
+         "outcomes": [
+          {
+           "code": "5.HRVP.1",
+           "text": "TSEL Practice 3C Foster a sense of belonging that cultivates acceptance, support, inclusion, and encouragement of others within a diverse community, while addressing the impact of systemic injustices across situations and environments."
+          },
+          {
+           "code": "5.HRVP.2",
+           "text": "Describe how friendship and love can be expressed differently as children become adolescents."
+          },
+          {
+           "code": "5.HRVP.3",
+           "text": "Identify characteristics of safe and equitable relationships."
+          },
+          {
+           "code": "5.HRVP.4",
+           "text": "Explain the relationship between consent, personal boundaries, and bodily autonomy."
+          }
+         ]
+        },
+        {
+         "id": "healthy-relationships-and-violence-abuse-prevent-2",
+         "title": "Healthy Relationships and Violence/Abuse Prevention (2 of 2)",
+         "outcomes": [
+          {
+           "code": "5.HRVP.5",
+           "text": "Explain why it is harmful to tease or bully others based on personal abilities, characteristics, or identities."
+          },
+          {
+           "code": "5.HRVP.6",
+           "text": "Define sexual harassment, trafficking, and domestic violence."
+          },
+          {
+           "code": "5.HRVP.7",
+           "text": "Identify that abuse is never a child’s fault and demonstrate how to communicate personal boundaries and report unsafe or unwanted touch."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "growth-and-development",
+     "title": "Growth and Development",
+     "topics": [
+      {
+       "id": "growth-and-development",
+       "title": "Growth and Development",
+       "subtopics": [
+        {
+         "id": "growth-and-development-1-of-2",
+         "title": "Growth and Development (1 of 2)",
+         "outcomes": [
+          {
+           "code": "5.GD.1",
+           "text": "Describe the human sexual and reproductive system, including external and internal anatomy and basic functions."
+          },
+          {
+           "code": "5.GD.2",
+           "text": "Examine the physical, social, and emotional changes during puberty and adolescence."
+          },
+          {
+           "code": "5.GD.3",
+           "text": "Identify trusted adults, including parents, caregivers, and health care professionals, to ask questions about puberty and adolescent health."
+          },
+          {
+           "code": "5.GD.4",
+           "text": "Describe the menstrual cycle and how menstrual products are used."
+          }
+         ]
+        },
+        {
+         "id": "growth-and-development-2-of-2",
+         "title": "Growth and Development (2 of 2)",
+         "outcomes": [
+          {
+           "code": "5.GD.5",
+           "text": "Define gender identity, gender expression, gender roles, and sex assigned at birth, and sexual orientation."
+          },
+          {
+           "code": "5.GD.6",
+           "text": "Identify trusted adults one could talk to about sexual orientation questions."
+          },
+          {
+           "code": "5.GD.7",
+           "text": "Describe how genetics can affect personal and family health."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "sexual-and-reproductive-health",
+     "title": "Sexual and Reproductive Health",
+     "topics": [
+      {
+       "id": "sexual-and-reproductive-health",
+       "title": "Sexual and Reproductive Health",
+       "subtopics": [
+        {
+         "id": "sexual-and-reproductive-health",
+         "title": "Sexual and Reproductive Health",
+         "outcomes": [
+          {
+           "code": "5.SRH.1",
+           "text": "Discuss different personal, familial, and cultural values about physical and emotional intimacy."
+          },
+          {
+           "code": "5.SRH.2",
+           "text": "Identify that pregnancy can occur in different ways, including sexual intercourse, insemination, in vitro fertilization, donor conception, and surrogacy."
+          },
+          {
+           "code": "5.SRH.3",
+           "text": "Define STIs, including HIV, and describe ways to prevent them, including abstinence and the human papillomavirus (HPV) vaccine."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "6",
+   "units": [
+    {
+     "id": "wellness-and-health-promotion",
+     "title": "Wellness and Health Promotion",
+     "topics": [
+      {
+       "id": "wellness-and-health-promotion",
+       "title": "Wellness and Health Promotion",
+       "subtopics": [
+        {
+         "id": "wellness-and-health-promotion-1-of-2",
+         "title": "Wellness and Health Promotion (1 of 2)",
+         "outcomes": [
+          {
+           "code": "6.WHP.1",
+           "text": "Describe the interrelationship of the five dimensions of health (physical, social, emotional, mental, and environmental)."
+          },
+          {
+           "code": "6.WHP.2",
+           "text": "Describe the difference between communicable and noncommunicable diseases, including cancer, diabetes, and asthma."
+          },
+          {
+           "code": "6.WHP.3",
+           "text": "Demonstrate appropriate habits to protect vision, hearing, skin, and teeth."
+          },
+          {
+           "code": "6.WHP.4",
+           "text": "Distinguish between habits that enhance or hinder personal health."
+          }
+         ]
+        },
+        {
+         "id": "wellness-and-health-promotion-2-of-2",
+         "title": "Wellness and Health Promotion (2 of 2)",
+         "outcomes": [
+          {
+           "code": "6.WHP.5",
+           "text": "Interpret numerical and graphical information to make an informed health decision.."
+          },
+          {
+           "code": "6.WHP.6",
+           "text": "Demonstrate how to access valid and reliable health information online for building health habits."
+          },
+          {
+           "code": "6.WHP.7",
+           "text": "Define different forms of discrimination and understand how it influences the health of communities."
+          },
+          {
+           "code": "6.WHP.8",
+           "text": "Identify actions that can help to create a healthier environment for individuals and communities."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "safety-and-first-aid",
+     "title": "Safety and First Aid",
+     "topics": [
+      {
+       "id": "safety-and-first-aid",
+       "title": "Safety and First Aid",
+       "subtopics": [
+        {
+         "id": "safety-and-first-aid",
+         "title": "Safety and First Aid",
+         "outcomes": [
+          {
+           "code": "6.SFA.1",
+           "text": "Identify unsafe situations at home, at school, and in communities that can lead to injury."
+          },
+          {
+           "code": "6.SFA.2",
+           "text": "Explain first aid and response procedures to treat injuries and other emergencies."
+          },
+          {
+           "code": "6.SFA.3",
+           "text": "Understand firearm safety rules for individuals, families, and communities."
+          },
+          {
+           "code": "6.SFA.4",
+           "text": "Distinguish when decisions around digital safety, managing privacy online, and protecting against identity theft can be made individually or with help from others."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "substance-use-misuse-and-abuse",
+     "title": "Substance Use, Misuse, and Abuse",
+     "topics": [
+      {
+       "id": "substance-use-misuse-and-abuse",
+       "title": "Substance Use, Misuse, and Abuse",
+       "subtopics": [
+        {
+         "id": "substance-use-misuse-and-abuse-1-of-2",
+         "title": "Substance Use, Misuse, and Abuse (1 of 2)",
+         "outcomes": [
+          {
+           "code": "6.SUB.1",
+           "text": "Explain differences between use, misuse, and abuse of substances."
+          },
+          {
+           "code": "6.SUB.2",
+           "text": "Discuss short- and long-term mental, physical, and social health consequences of substance use and misuse, including vaping of nicotine and marijuana/cannabis."
+          },
+          {
+           "code": "6.SUB.3",
+           "text": "Identify at least three reasons why someone would decide not to use alcohol, marijuana/cannabis, tobacco, and other substances."
+          },
+          {
+           "code": "6.SUB.4",
+           "text": "Identify how “fake pills” and other substances could contain fentanyl and other unknown harmful and deadly chemicals."
+          },
+          {
+           "code": "6.SUB.5",
+           "text": "Discuss the relationship between using substances and other health risks, including unintentional injuries, violence, suicide, and sexual risk behaviors."
+          }
+         ]
+        },
+        {
+         "id": "substance-use-misuse-and-abuse-2-of-2",
+         "title": "Substance Use, Misuse, and Abuse (2 of 2)",
+         "outcomes": [
+          {
+           "code": "6.SUB.6",
+           "text": "Analyze the influence of family, school, peers, culture, media, social media, personal values, and perceived norms on the use of alcohol, marijuana/cannabis, tobacco, and other drugs."
+          },
+          {
+           "code": "6.SUB.7",
+           "text": "Describe personal decision-making strategies around substance use."
+          },
+          {
+           "code": "6.SUB.8",
+           "text": "Discuss communication skills to avoid alcohol, marijuana/cannabis, tobacco and drug use, especially in peer-pressure situations."
+          },
+          {
+           "code": "6.SUB.9",
+           "text": "Analyze health-related messages in print and electronic materials to determine credibility of the health message related to substance use."
+          },
+          {
+           "code": "6.SUB.10",
+           "text": "Locate and summarize Oregon laws on alcohol, marijuana/cannabis, tobacco, and other substances."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "food-nutrition-and-physical-activity",
+     "title": "Food, Nutrition, and Physical Activity",
+     "topics": [
+      {
+       "id": "food-nutrition-and-physical-activity",
+       "title": "Food, Nutrition, and Physical Activity",
+       "subtopics": [
+        {
+         "id": "food-nutrition-and-physical-activity-1-of-2",
+         "title": "Food, Nutrition, and Physical Activity (1 of 2)",
+         "outcomes": [
+          {
+           "code": "6.FNP.1",
+           "text": "Compare and contrast foods grown and produced in the United States and other countries."
+          },
+          {
+           "code": "6.FNP.2",
+           "text": "Explain why it is important to respect different nutrition choices based on culture, needs, and preferences."
+          },
+          {
+           "code": "6.FNP.3",
+           "text": "Analyze how internal and external influences can affect decisions about eating and physical activity."
+          },
+          {
+           "code": "6.FNP.4",
+           "text": "Identify the six categories of nutrients and explain why each of them are important to the body."
+          }
+         ]
+        },
+        {
+         "id": "food-nutrition-and-physical-activity-2-of-2",
+         "title": "Food, Nutrition, and Physical Activity (2 of 2)",
+         "outcomes": [
+          {
+           "code": "6.FNP.5",
+           "text": "Discuss the physical and mental impacts of missing, skipping meals, or ‘fad’ dieting."
+          },
+          {
+           "code": "6.FNP.6",
+           "text": "Identify intuitive eating practices that can increase a person's healthy relationship with food, and lower the risk for eating disorders and disordered eating."
+          },
+          {
+           "code": "6.FNP.7",
+           "text": "Analyze benefits of regular physical activity to promote health."
+          },
+          {
+           "code": "6.FNP.8",
+           "text": "Describe safe food handling to prevent illness."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "social-emotional-and-mental-health",
+     "title": "Social, Emotional, and Mental Health",
+     "topics": [
+      {
+       "id": "social-emotional-and-mental-health",
+       "title": "Social, Emotional, and Mental Health",
+       "subtopics": [
+        {
+         "id": "social-emotional-and-mental-health",
+         "title": "Social, Emotional, and Mental Health",
+         "outcomes": [
+          {
+           "code": "6.SEM.1",
+           "text": "TSEL Practice 1B Understand the stress response system (regulation and dysregulation) and what environments and experiences activate those responses."
+          },
+          {
+           "code": "6.SEM.2",
+           "text": "Demonstrate how to access credible mental health information and services in the community, including the Suicide & Crisis Lifeline 988."
+          },
+          {
+           "code": "6.SEM.3",
+           "text": "Describe how sharing information about self and others online can impact social, emotional, and mental health."
+          },
+          {
+           "code": "6.SEM.4",
+           "text": "Describe how prejudice, discrimination, and bias can impact mental health, violence, and traumatic stress."
+          },
+          {
+           "code": "6.SEM.5",
+           "text": "Locate and summarize laws and policies to protect student mental health, including excused absences."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "healthy-relationships-and-violence-abuse-prevent",
+     "title": "Healthy Relationships and Violence/Abuse Prevention",
+     "topics": [
+      {
+       "id": "healthy-relationships-and-violence-abuse-prevent",
+       "title": "Healthy Relationships and Violence/Abuse Prevention",
+       "subtopics": [
+        {
+         "id": "healthy-relationships-and-violence-abuse-prevent",
+         "title": "Healthy Relationships and Violence/Abuse Prevention (1 of 2)",
+         "outcomes": [
+          {
+           "code": "6.HVRP.1",
+           "text": "TSEL Practice 3B Apply social skills (i.e., empathy, compassion, etc.) to develop and maintain healthy relationships that collectively achieve mutual goals while affirming identities and perspectives."
+          },
+          {
+           "code": "6.HVRP.2",
+           "text": "Discuss how family, media, social media, society, culture, and personal identities can influence attitudes, beliefs, and expectations about relationships and physical affection."
+          },
+          {
+           "code": "6.HVRP.3",
+           "text": "Identify sources of support, such as parents or other trusted adults, to tell if being teased, harassed, or bullied based on gender, sexual orientation, race, and physical appearance."
+          },
+          {
+           "code": "6.HVRP.4",
+           "text": "Describe personal feelings when boundaries, consent, and privacy needs are not respected."
+          },
+          {
+           "code": "6.HVRP.5",
+           "text": "Practice communication skills to build healthy relationships and manage conflict."
+          }
+         ]
+        },
+        {
+         "id": "healthy-relationships-and-violence-abuse-prevent-2",
+         "title": "Healthy Relationships and Violence/Abuse Prevention (2 of 2)",
+         "outcomes": [
+          {
+           "code": "6.HVRP.6",
+           "text": "Demonstrate ways to start a conversation when seeking help from a trusted adult about uncomfortable or dangerous situations including bullying, teasing, child sexual abuse, and trafficking."
+          },
+          {
+           "code": "6.HVRP.7",
+           "text": "Demonstrate strategies to use technology and social media safely, legally, and respectfully."
+          },
+          {
+           "code": "6.HVRP.8",
+           "text": "Create an advocacy message that describes the role of upstanders in preventing or stopping bullying and cyberbullying."
+          },
+          {
+           "code": "6.HVRP.9",
+           "text": "Define child sexual abuse, sexual assault, sexual exploitation, and gender-based violence and analyze potential impacts on physical, social, emotional, and mental health."
+          },
+          {
+           "code": "6.HVRP.10",
+           "text": "Recognize some of the ways in which norms and laws around gender and sexual orientation have changed over time."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "growth-and-development",
+     "title": "Growth and Development",
+     "topics": [
+      {
+       "id": "growth-and-development",
+       "title": "Growth and Development",
+       "subtopics": [
+        {
+         "id": "growth-and-development-1-of-2",
+         "title": "Growth and Development (1 of 2)",
+         "outcomes": [
+          {
+           "code": "6.GD.1",
+           "text": "Describe how to show respect for one's own physical appearance, the appearance of others, and how it impacts self-esteem."
+          },
+          {
+           "code": "6.GD.2",
+           "text": "Identify the human sexual and reproductive systems, including external and internal anatomy and their functions, and recognize that there are variations in human bodies."
+          },
+          {
+           "code": "6.GD.3",
+           "text": "Explain common human sexual development and the role of hormones (e.g., romantic and sexual feelings, masturbation, mood swings, and timing of pubertal onset)."
+          },
+          {
+           "code": "6.GD.4",
+           "text": "Define menstruation and its range of symptoms, explain how it is a part of life that begins during puberty, and recognize that pads, tampons, and other products are important for body care."
+          }
+         ]
+        },
+        {
+         "id": "growth-and-development-2-of-2",
+         "title": "Growth and Development (2 of 2)",
+         "outcomes": [
+          {
+           "code": "6.GD.5",
+           "text": "Discuss how affirming healthcare is important for everyone, including people of all genders, people who are transgender, people who have other gender expansive identities, and people of all races and sexual orientations."
+          },
+          {
+           "code": "6.GD.6",
+           "text": "Define sexual and romantic orientations including heterosexual, bisexual, lesbian, gay, queer, asexual, two-spirit, and pansexual."
+          },
+          {
+           "code": "6.GD.7",
+           "text": "Recognize that there are many kinds of family structures and discuss ways in which families can change."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "sexual-and-reproductive-health",
+     "title": "Sexual and Reproductive Health",
+     "topics": [
+      {
+       "id": "sexual-and-reproductive-health",
+       "title": "Sexual and Reproductive Health",
+       "subtopics": [
+        {
+         "id": "sexual-and-reproductive-health-1-of-3",
+         "title": "Sexual and Reproductive Health (1 of 3)",
+         "outcomes": [
+          {
+           "code": "6.SRH.1",
+           "text": "Identify examples of how culture, religion, society, technology, and media influence understanding and expressions of sexuality."
+          },
+          {
+           "code": "6.SRH.2",
+           "text": "Define sexual intercourse."
+          },
+          {
+           "code": "6.SRH.3",
+           "text": "Identify factors that are important in deciding whether and when to engage in romantic and sexual behaviors."
+          },
+          {
+           "code": "6.SRH.4",
+           "text": "Identify the functions of the ovulation cycle, sperm development, and pregnancy."
+          }
+         ]
+        },
+        {
+         "id": "sexual-and-reproductive-health-2-of-3",
+         "title": "Sexual and Reproductive Health (2 of 3)",
+         "outcomes": [
+          {
+           "code": "6.SRH.5",
+           "text": "Identify the benefits, risks, and effectiveness of various methods of contraception, including abstinence, the correct usage of barrier methods, and emergency contraception."
+          },
+          {
+           "code": "6.SRH.6",
+           "text": "Identify the stages of pregnancy."
+          },
+          {
+           "code": "6.SRH.7",
+           "text": "Describe pregnancy options, including parenting, abortion, safe surrender, and adoption."
+          },
+          {
+           "code": "6.SRH.8",
+           "text": "Identify the transmission and prevention of various sexually transmitted infections (STIs) and HIV/AIDS, including abstinence, barrier methods, and the human papillomavirus (HPV) vaccine."
+          }
+         ]
+        },
+        {
+         "id": "sexual-and-reproductive-health-3-of-3",
+         "title": "Sexual and Reproductive Health (3 of 3)",
+         "outcomes": [
+          {
+           "code": "6.SRH.9",
+           "text": "Demonstrate communicating with trusted adults and asking questions about comprehensive sexual and reproductive health."
+          },
+          {
+           "code": "6.SRH.10",
+           "text": "Identify the state and federal laws related to minors' access to sexual healthcare services, including pregnancy and sexually transmitted infection (STI) and HIV/AIDS prevention, testing, care, and treatment."
+          },
+          {
+           "code": "6.SRH.11",
+           "text": "Discuss the importance of sexual and reproductive health care that aligns with personal needs, desires, and cultural values."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "7",
+   "units": [
+    {
+     "id": "wellness-and-health-promotion",
+     "title": "Wellness and Health Promotion",
+     "topics": [
+      {
+       "id": "wellness-and-health-promotion",
+       "title": "Wellness and Health Promotion",
+       "subtopics": [
+        {
+         "id": "wellness-and-health-promotion-1-of-2",
+         "title": "Wellness and Health Promotion (1 of 2)",
+         "outcomes": [
+          {
+           "code": "7.WHP.1",
+           "text": "Describe how personal values, self-esteem, and identity affect personal health."
+          },
+          {
+           "code": "7.WHP.2",
+           "text": "Analyze how personal practices and behaviors reduce or prevent disease, including health screenings."
+          },
+          {
+           "code": "7.WHP.3",
+           "text": "Describe the connections between oral health and overall health."
+          },
+          {
+           "code": "7.WHP.4",
+           "text": "Set a personal health goal for a habit that promotes physical, social, emotional, mental, and environmental health."
+          }
+         ]
+        },
+        {
+         "id": "wellness-and-health-promotion-2-of-2",
+         "title": "Wellness and Health Promotion (2 of 2)",
+         "outcomes": [
+          {
+           "code": "7.WHP.5",
+           "text": "Practice and demonstrate communication skills to improve personal health, including communicating with healthcare providers."
+          },
+          {
+           "code": "7.WHP.6",
+           "text": "Analyze the influence of family, school, peers, culture, technology, media, social media, personal values, and perceived norms on the dimensions of health."
+          },
+          {
+           "code": "7.WHP.7",
+           "text": "Evaluate how social determinants of health influence health outcomes."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "safety-and-first-aid",
+     "title": "Safety and First Aid",
+     "topics": [
+      {
+       "id": "safety-and-first-aid",
+       "title": "Safety and First Aid",
+       "subtopics": [
+        {
+         "id": "safety-and-first-aid-1-of-2",
+         "title": "Safety and First Aid (1 of 2)",
+         "outcomes": [
+          {
+           "code": "7.SFA.1",
+           "text": "Discuss how to reduce the risk of unintentional injuries for individuals, families, and communities."
+          },
+          {
+           "code": "7.SFA.2",
+           "text": "Identify unsafe situations at home, at school, and in communities that can lead to injury and describe possible strategies to reduce risk."
+          },
+          {
+           "code": "7.SFA.3",
+           "text": "Demonstrate how to administer basic first aid, hands-only cardiopulmonary resuscitation (CPR), and use of an automated external defibrillator (AED)."
+          },
+          {
+           "code": "7.SFA.4",
+           "text": "Demonstrate how to ask for help to promote personal safety and injury prevention for self and others."
+          }
+         ]
+        },
+        {
+         "id": "safety-and-first-aid-2-of-2",
+         "title": "Safety and First Aid (2 of 2)",
+         "outcomes": [
+          {
+           "code": "7.SFA.5",
+           "text": "Recognize common ways to make spaces safer and more accessible for people with disabilities and why it is important."
+          },
+          {
+           "code": "7.SFA.6",
+           "text": "Describe basic fire safety and wildfire prevention steps."
+          },
+          {
+           "code": "7.SFA.7",
+           "text": "Describe strategies for using social media safely, legally, and respectfully."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "substance-use-misuse-and-abuse",
+     "title": "Substance Use, Misuse, and Abuse",
+     "topics": [
+      {
+       "id": "substance-use-misuse-and-abuse",
+       "title": "Substance Use, Misuse, and Abuse",
+       "subtopics": [
+        {
+         "id": "substance-use-misuse-and-abuse-1-of-2",
+         "title": "Substance Use, Misuse, and Abuse (1 of 2)",
+         "outcomes": [
+          {
+           "code": "7.SUB.1",
+           "text": "Evaluate the differences between addictive behavior, addiction, and dependence and their impacts on self and society."
+          },
+          {
+           "code": "7.SUB.2",
+           "text": "Analyze the effects of substance use, misuse, and abuse on communities and society."
+          },
+          {
+           "code": "7.SUB.3",
+           "text": "Analyze the outcomes of making decisions to not use alcohol, marijuana/cannabis, tobacco, anabolic steroids, and other drugs."
+          },
+          {
+           "code": "7.SUB.4",
+           "text": "Explore data on current trends around opioids, including fentanyl, and other substance use, misuse, and abuse."
+          },
+          {
+           "code": "7.SUB.5",
+           "text": "Describe the social and economic consequences of substance use, misuse, abuse on self, families, and communities."
+          }
+         ]
+        },
+        {
+         "id": "substance-use-misuse-and-abuse-2-of-2",
+         "title": "Substance Use, Misuse, and Abuse (2 of 2)",
+         "outcomes": [
+          {
+           "code": "7.SUB.6",
+           "text": "Examine risk and protective factors to prevent use, misuse, and abuse of substances, and list alternatives to using."
+          },
+          {
+           "code": "7.SUB.7",
+           "text": "Analyze how personal and family beliefs can affect decisions about substance use."
+          },
+          {
+           "code": "7.SUB.8",
+           "text": "Demonstrate how to ask a trusted adult for help accessing resources for self and others regarding situations related to the use of alcohol, tobacco, and other drugs."
+          },
+          {
+           "code": "7.SUB.9",
+           "text": "Describe situations that require professional substance abuse treatment services and locate valid information and community resources."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "food-nutrition-and-physical-activity",
+     "title": "Food, Nutrition, and Physical Activity",
+     "topics": [
+      {
+       "id": "food-nutrition-and-physical-activity",
+       "title": "Food, Nutrition, and Physical Activity",
+       "subtopics": [
+        {
+         "id": "food-nutrition-and-physical-activity-1-of-2",
+         "title": "Food, Nutrition, and Physical Activity (1 of 2)",
+         "outcomes": [
+          {
+           "code": "7.FNP.1",
+           "text": "Discuss how food waste and the environment are interconnected."
+          },
+          {
+           "code": "7.FNP.2",
+           "text": "Analyze ways that media influence our decisions around food and physical activity."
+          },
+          {
+           "code": "7.FNP.3",
+           "text": "Compare and contrast the nutrient density between ultra-processed, minimally processed, or non processed foods and snacks."
+          },
+          {
+           "code": "7.FNP.4",
+           "text": "Compare and contrast the differences in community or geographic access to nutrient dense foods."
+          },
+          {
+           "code": "7.FNP.5",
+           "text": "Identify the oral health benefits of hydrating with non-sugar sweetened beverages."
+          }
+         ]
+        },
+        {
+         "id": "food-nutrition-and-physical-activity-2-of-2",
+         "title": "Food, Nutrition, and Physical Activity (2 of 2)",
+         "outcomes": [
+          {
+           "code": "7.FNP.6",
+           "text": "Identify the social, emotional, and cognitive benefits of eating nutrient dense foods and engaging in regular physical activity."
+          },
+          {
+           "code": "7.FNP.7",
+           "text": "Identify how personal food and beverage choices, including eating times, affects health and well being."
+          },
+          {
+           "code": "7.FNP.8",
+           "text": "Describe personal hunger and fullness cues."
+          },
+          {
+           "code": "7.FNP.9",
+           "text": "Describe common food allergies and how to manage them."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "social-emotional-and-mental-health",
+     "title": "Social, Emotional, and Mental Health",
+     "topics": [
+      {
+       "id": "social-emotional-and-mental-health",
+       "title": "Social, Emotional, and Mental Health",
+       "subtopics": [
+        {
+         "id": "social-emotional-and-mental-health-1-of-2",
+         "title": "Social, Emotional, and Mental Health (1 of 2)",
+         "outcomes": [
+          {
+           "code": "7.SEM.1",
+           "text": "TSEL Practice 1D Analyze personal and social intersectional identities and positionality, and how they relate to one's interests, purpose, and sense of belonging."
+          },
+          {
+           "code": "7.SEM.2",
+           "text": "TSEL Practices 2B Use management strategies while recognizing that various situations and environments may require different approaches for achieving personal and collective goals and aspirations in ways that affirm one’s identity."
+          },
+          {
+           "code": "7.SEM.3",
+           "text": "Identify and discuss causes, symptoms, and impacts of depression, anxiety, including eating disorders and disordered eating, trauma, self-harm, and suicide."
+          },
+          {
+           "code": "7.SEM.4",
+           "text": "Describe how mental health professionals and other trusted adults can help prevent, treat, and heal from mental health challenges, including suicidal thoughts, eating disorders, and disordered eating."
+          }
+         ]
+        },
+        {
+         "id": "social-emotional-and-mental-health-2-of-2",
+         "title": "Social, Emotional, and Mental Health (2 of 2)",
+         "outcomes": [
+          {
+           "code": "7.SEM.5",
+           "text": "Develop a plan to practice effective and appropriate communication skills via electronic devices and social media to prevent and resolve interpersonal conflict."
+          },
+          {
+           "code": "7.SEM.6",
+           "text": "Identify how connecting with the community, and personal and cultural identity development contribute to mental health."
+          },
+          {
+           "code": "7.SEM.7",
+           "text": "Discuss resiliency and the strategies that individuals and communities use to promote health, overcome health and mental health challenges, address barriers to health, and promote health equity and justice."
+          },
+          {
+           "code": "7.SEM.8",
+           "text": "Identify laws related to student mental health days and age of consent to mental health services."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "healthy-relationships-and-violence-abuse-prevent",
+     "title": "Healthy Relationships and Violence/Abuse Prevention",
+     "topics": [
+      {
+       "id": "healthy-relationships-and-violence-abuse-prevent",
+       "title": "Healthy Relationships and Violence/Abuse Prevention",
+       "subtopics": [
+        {
+         "id": "healthy-relationships-and-violence-abuse-prevent",
+         "title": "Healthy Relationships and Violence/Abuse Prevention (1 of 2)",
+         "outcomes": [
+          {
+           "code": "7.HRVP.1",
+           "text": "TSEL Practice 3A Demonstrate awareness and understanding of the similarities and differences that define, influence, and affirm personal and collective identities."
+          },
+          {
+           "code": "7.HRVP.2",
+           "text": "Discuss the right of all people to decide if, when and, with whom to be in a relationship."
+          },
+          {
+           "code": "7.HRVP.3",
+           "text": "Identify strategies to maintain a safe relationship, end an unsafe, inequitable, or unhealthy relationship, manage conflict, and navigate rejection."
+          },
+          {
+           "code": "7.HRVP.4",
+           "text": "Compare multiple external influences that have an impact on one’s attitudes about gender and gender identity."
+          },
+          {
+           "code": "7.HRVP.5",
+           "text": "Explain the impact that media, including social media, sexually explicit media and sexting, can have on one's body image and self-esteem."
+          }
+         ]
+        },
+        {
+         "id": "healthy-relationships-and-violence-abuse-prevent-2",
+         "title": "Healthy Relationships and Violence/Abuse Prevention (2 of 2)",
+         "outcomes": [
+          {
+           "code": "7.HRVP.6",
+           "text": "Develop a decision making model to determine if and how to intervene and support a person who is being harassed, bullied, or coerced, including assessing when and how and how it is safe to do so."
+          },
+          {
+           "code": "7.HRVP.7",
+           "text": "Analyze dating violence and sexual violence, including harassment, abuse, and trafficking, and their impact on physical, social, emotional, and mental health."
+          },
+          {
+           "code": "7.HRVP.8",
+           "text": "Explain why a survivor/victim of interpersonal violence, including sexual violence and trafficking, is never to blame for the actions of the person who perpetrates the violence."
+          },
+          {
+           "code": "7.HRVP.9",
+           "text": "Identify strategies that people might use to traffic and exploit youth, actions to prevent and counter trafficking, and places to get help."
+          },
+          {
+           "code": "7.HRVP.10",
+           "text": "Identify state and federal laws on sexual consent and mandatory reporting."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "growth-and-development",
+     "title": "Growth and Development",
+     "topics": [
+      {
+       "id": "growth-and-development",
+       "title": "Growth and Development",
+       "subtopics": [
+        {
+         "id": "growth-and-development",
+         "title": "Growth and Development",
+         "outcomes": [
+          {
+           "code": "7.GD.1",
+           "text": "Discuss how peers, media, family, and culture can influence self-concept, body image, and self-esteem."
+          },
+          {
+           "code": "7.GD.2",
+           "text": "Describe how puberty can prepare human bodies for the potential to reproduce and that some people have conditions that impact the ability to reproduce."
+          },
+          {
+           "code": "7.GD.3",
+           "text": "Describe human reproductive systems, including the external and internal body parts and their functions, and variations in human bodies, including intersex conditions."
+          },
+          {
+           "code": "7.GD.4",
+           "text": "Access medically accurate, not fear- or shame- based, comprehensive, and inclusive sources of information about sexual and romantic orientation."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "sexual-and-reproductive-health",
+     "title": "Sexual and Reproductive Health",
+     "topics": [
+      {
+       "id": "sexual-and-reproductive-health",
+       "title": "Sexual and Reproductive Health",
+       "subtopics": [
+        {
+         "id": "sexual-and-reproductive-health-1-of-2",
+         "title": "Sexual and Reproductive Health (1 of 2)",
+         "outcomes": [
+          {
+           "code": "7.SRH.1",
+           "text": "Analyze how peers, family, media, society, culture, and a person's intersecting identities can influence attitudes, beliefs, and expectations about sexuality"
+          },
+          {
+           "code": "7.SRH.2",
+           "text": "Apply a decision-making model to choices about engaging in sexual behaviors."
+          },
+          {
+           "code": "7.SRH.3",
+           "text": "Describe a range of ways a viable pregnancy can occur."
+          },
+          {
+           "code": "7.SRH.4",
+           "text": "Explain there are many methods of short- and long-term contraception that are safe and effective and describe how to access them."
+          },
+          {
+           "code": "7.SRH.5",
+           "text": "Describe pregnancy testing, the signs of pregnancy, and pregnancy options, including parenting, abortion, and adoption."
+          }
+         ]
+        },
+        {
+         "id": "sexual-and-reproductive-health-2-of-2",
+         "title": "Sexual and Reproductive Health (2 of 2)",
+         "outcomes": [
+          {
+           "code": "7.SRH.6",
+           "text": "Discuss the symptoms and treatments of various sexually transmitted infections (STIs), including HIV/AIDS."
+          },
+          {
+           "code": "7.SRH.7",
+           "text": "Describe the steps to using barrier methods correctly, including external and internal condoms and dental dams."
+          },
+          {
+           "code": "7.SRH.8",
+           "text": "Identify medically accurate sources of information about comprehensive sexual and reproductive health."
+          },
+          {
+           "code": "7.SRH.9",
+           "text": "Examine how discrimination and racism negatively impact sexual and reproductive health."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "8",
+   "units": [
+    {
+     "id": "wellness-and-health-promotion",
+     "title": "Wellness and Health Promotion",
+     "topics": [
+      {
+       "id": "wellness-and-health-promotion",
+       "title": "Wellness and Health Promotion",
+       "subtopics": [
+        {
+         "id": "wellness-and-health-promotion-1-of-2",
+         "title": "Wellness and Health Promotion (1 of 2)",
+         "outcomes": [
+          {
+           "code": "8.WHP.1",
+           "text": "Describe personal activities and behaviors within the five dimensions of health (physical, social, emotional, mental, and environmental)."
+          },
+          {
+           "code": "8.WHP.2",
+           "text": "Compare and contrast how communicable and noncommunicable diseases are treated and managed."
+          },
+          {
+           "code": "8.WHP.3",
+           "text": "Explain why it is important to protect vision, hearing, skin, and teeth."
+          },
+          {
+           "code": "8.WHP.4",
+           "text": "Describe strategies to integrate healthy habits related to sleep, physical activity, hygiene, breakfast, social media, and technology habits."
+          }
+         ]
+        },
+        {
+         "id": "wellness-and-health-promotion-2-of-2",
+         "title": "Wellness and Health Promotion (2 of 2)",
+         "outcomes": [
+          {
+           "code": "8.WHP.5",
+           "text": "Identify personal signs and symptoms of needing healthcare and discuss age of consent laws for accessing physical health services."
+          },
+          {
+           "code": "8.WHP.6",
+           "text": "Analyze the validity of health information in print and online using established criteria."
+          },
+          {
+           "code": "8.WHP.7",
+           "text": "Describe how societal issues of inequity, discrimination, and poverty influence the ability to engage in healthy behavior."
+          },
+          {
+           "code": "8.WHP.8",
+           "text": "Examine the relationship between environmental conditions, including air and water quality and climate change, on personal and community health outcomes."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "safety-and-first-aid",
+     "title": "Safety and First Aid",
+     "topics": [
+      {
+       "id": "safety-and-first-aid",
+       "title": "Safety and First Aid",
+       "subtopics": [
+        {
+         "id": "safety-and-first-aid",
+         "title": "Safety and First Aid",
+         "outcomes": [
+          {
+           "code": "8.SFA.1",
+           "text": "Demonstrate age and developmentally appropriate practices that promote health and prevent or reduce the risk of disease and injury."
+          },
+          {
+           "code": "8.SFA.2",
+           "text": "Analyze the likelihood of personal injury or illness if engaging in unsafe and unhealthy behaviors."
+          },
+          {
+           "code": "8.SFA.3",
+           "text": "Demonstrate how to administer basic first aid, hands-only cardiopulmonary resuscitation (CPR), use of an automated external defibrillator (AED), and treatment of an opioid overdose emergency."
+          },
+          {
+           "code": "8.SFA.4",
+           "text": "Work cooperatively to create projects that advocate for practices that promote safe and accessible communities."
+          },
+          {
+           "code": "8.SFA.5",
+           "text": "Describe the school and community safety and disaster protocols for a natural disaster or threat of violence."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "substance-use-misuse-and-abuse",
+     "title": "Substance Use, Misuse, and Abuse",
+     "topics": [
+      {
+       "id": "substance-use-misuse-and-abuse",
+       "title": "Substance Use, Misuse, and Abuse",
+       "subtopics": [
+        {
+         "id": "substance-use-misuse-and-abuse-1-of-2",
+         "title": "Substance Use, Misuse, and Abuse (1 of 2)",
+         "outcomes": [
+          {
+           "code": "8.SUB.1",
+           "text": "Identify risk and protective factors related to substance use, misuse, and abuse."
+          },
+          {
+           "code": "8.SUB.2",
+           "text": "Understand how substance use, misuse, and abuse affects the basic function of the central and autonomic nervous systems including brain function."
+          },
+          {
+           "code": "8.SUB.3",
+           "text": "Describe the risks of fentanyl exposure and overdose and identify harm reduction strategies, including testing, naloxone, and other interventions."
+          },
+          {
+           "code": "8.SUB.4",
+           "text": "Examine the relationship between substance use, misuse, and abuse risks, including unintentional injuries, violence, suicide, and sexual risk behaviors."
+          },
+          {
+           "code": "8.SUB.5",
+           "text": "Evaluate the influence of family, school, peers, culture, media, personal values, and perceived norms on the use of alcohol, marijuana/cannabis, tobacco, and other drugs."
+          }
+         ]
+        },
+        {
+         "id": "substance-use-misuse-and-abuse-2-of-2",
+         "title": "Substance Use, Misuse, and Abuse (2 of 2)",
+         "outcomes": [
+          {
+           "code": "8.SUB.6",
+           "text": "Discuss decisions around substance use and the benefits of being substance-free."
+          },
+          {
+           "code": "8.SUB.7",
+           "text": "Demonstrate communication skills to avoid alcohol, marijuana/cannabis, tobacco, or other drug use, especially in peer-pressure situations."
+          },
+          {
+           "code": "8.SUB.8",
+           "text": "Describe where to find reliable information and services regarding substance use, misuse, and abuse."
+          },
+          {
+           "code": "8.SUB.9",
+           "text": "Examine the history and impact of drug laws and prosecution on communities."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "food-nutrition-and-physical-activity",
+     "title": "Food, Nutrition, and Physical Activity",
+     "topics": [
+      {
+       "id": "food-nutrition-and-physical-activity",
+       "title": "Food, Nutrition, and Physical Activity",
+       "subtopics": [
+        {
+         "id": "food-nutrition-and-physical-activity-1-of-2",
+         "title": "Food, Nutrition, and Physical Activity (1 of 2)",
+         "outcomes": [
+          {
+           "code": "8.FNP.1",
+           "text": "Explain how food is transported from farm to table, focusing on maintaining quality and safety."
+          },
+          {
+           "code": "8.FNP.2",
+           "text": "Discuss ways that the foods and beverages that people consume have a profound impact on their health."
+          },
+          {
+           "code": "8.FNP.3",
+           "text": "Assess personal eating and physical activity behaviors."
+          },
+          {
+           "code": "8.FNP.4",
+           "text": "Discuss cultural dishes, identify ingredients, and find the origins of the food in each recipe."
+          }
+         ]
+        },
+        {
+         "id": "food-nutrition-and-physical-activity-2-of-2",
+         "title": "Food, Nutrition, and Physical Activity (2 of 2)",
+         "outcomes": [
+          {
+           "code": "8.FNP.5",
+           "text": "Analyze the impacts of media, social media, and marketing on food habits."
+          },
+          {
+           "code": "8.FNP.6",
+           "text": "Describe the personal feelings associated with engaging in physical activity, eating nutritious food, and staying hydrated and identify strategies to take care of one’s body."
+          },
+          {
+           "code": "8.FNP.7",
+           "text": "Examine food insecurity and injustice, lack of access, and impacts on individual and community health, cultural preservation and practices."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "social-emotional-and-mental-health",
+     "title": "Social, Emotional, and Mental Health",
+     "topics": [
+      {
+       "id": "social-emotional-and-mental-health",
+       "title": "Social, Emotional, and Mental Health",
+       "subtopics": [
+        {
+         "id": "social-emotional-and-mental-health-1-of-2",
+         "title": "Social, Emotional, and Mental Health (1 of 2)",
+         "outcomes": [
+          {
+           "code": "8.SEM.1",
+           "text": "TSEL Practice 1D Analyze personal and social intersectional identities and positionality, and how they relate to one's interests, purpose, and sense of belonging."
+          },
+          {
+           "code": "8.SEM.2",
+           "text": "TSEL Practice 5C Anticipate, reflect and evaluate the impacts of one’s choices and contributions in promoting personal, family, and community well-being."
+          },
+          {
+           "code": "8.SEM.3",
+           "text": "Develop an action plan to respond to stress, anxiety, including eating disorders and disordered eating, depression, self-harming behaviors, trauma, substance use and abuse, or suicidal thoughts."
+          },
+          {
+           "code": "8.SEM.4",
+           "text": "Recognize when professional services are needed for self and others experiencing chronic or serious mental health concerns and traumatic stress, including self-harm, eating disorders and disordered eating, substance use and abuse, and suicidal ideation."
+          }
+         ]
+        },
+        {
+         "id": "social-emotional-and-mental-health-2-of-2",
+         "title": "Social, Emotional, and Mental Health (2 of 2)",
+         "outcomes": [
+          {
+           "code": "8.SEM.5",
+           "text": "Discuss the impact of social media use on our social, emotional, and mental health for individuals and the community."
+          },
+          {
+           "code": "8.SEM.6",
+           "text": "Analyze how social systems of inequity and discrimination impact mental health and well-being, and identify ways to promote health equity and justice."
+          },
+          {
+           "code": "8.SEM.7",
+           "text": "Discuss how state and federal laws and policies can influence access to mental health."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "healthy-relationships-and-violence-abuse-prevent",
+     "title": "Healthy Relationships and Violence/Abuse Prevention",
+     "topics": [
+      {
+       "id": "healthy-relationships-and-violence-abuse-prevent",
+       "title": "Healthy Relationships and Violence/Abuse Prevention",
+       "subtopics": [
+        {
+         "id": "healthy-relationships-and-violence-abuse-prevent",
+         "title": "Healthy Relationships and Violence/Abuse Prevention (1 of 3)",
+         "outcomes": [
+          {
+           "code": "8.HVRP.1",
+           "text": "TSEL Practice 2D Develop personal and collective agency by using various forms of communication (i.e. verbal, body language, written, etc.) to make choices and take initiative."
+          },
+          {
+           "code": "8.HVRP.2",
+           "text": "Examine how power, privilege, positionality, and inequity are root causes of interpersonal and community violence and discuss what people can do to prevent it."
+          },
+          {
+           "code": "8.HVRP.3",
+           "text": "Demonstrate how to use gender-affirming language with and about people of all gender identities and/or gender expressions."
+          },
+          {
+           "code": "8.HVRP.4",
+           "text": "Demonstrate verbal and nonverbal communication skills that express personal boundaries and consent and how to show respect for the boundaries of others."
+          }
+         ]
+        },
+        {
+         "id": "healthy-relationships-and-violence-abuse-prevent-2",
+         "title": "Healthy Relationships and Violence/Abuse Prevention (2 of 3)",
+         "outcomes": [
+          {
+           "code": "8.HVRP.5",
+           "text": "Demonstrate strategies a student might use to end an unhealthy relationship, including involving a trusted adult who can help."
+          },
+          {
+           "code": "8.HVRP.6",
+           "text": "Identify community resources and other sources of support, including confidential advocates, that students can go to if they have questions about sexual safety or if someone is being sexually harassed, abused, assaulted, or trafficked."
+          },
+          {
+           "code": "8.HVRP.7",
+           "text": "Explain the impact that media, including social media, sexually explicit media and sexting, can have on one's body image, self-esteem, and relationships."
+          },
+          {
+           "code": "8.HVRP.8",
+           "text": "Identify the short- and long-term impacts of bullying for the people targeted, the people who perpetrate bullying, bystanders, and upstanders."
+          }
+         ]
+        },
+        {
+         "id": "healthy-relationships-and-violence-abuse-prevent-3",
+         "title": "Healthy Relationships and Violence/Abuse Prevention (3 of 3)",
+         "outcomes": [
+          {
+           "code": "8.HVRP.9",
+           "text": "Describe strategies a person could use, when it is safe to do so, to intervene when someone is being sexually harassed or someone is perpetuating unhealthy or coercive behaviors."
+          },
+          {
+           "code": "8.HVRP.10",
+           "text": "Collaborate with others to advocate for raising awareness and reducing the risk related to trafficking in physical and online settings."
+          },
+          {
+           "code": "8.HVRP.11",
+           "text": "Describe the state and federal laws on sexual consent, child pornography, sexting, and sex trafficking."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "growth-and-development",
+     "title": "Growth and Development",
+     "topics": [
+      {
+       "id": "growth-and-development",
+       "title": "Growth and Development",
+       "subtopics": [
+        {
+         "id": "growth-and-development",
+         "title": "Growth and Development",
+         "outcomes": [
+          {
+           "code": "8.GD.1",
+           "text": "Reflect on external influences that may affect personal body image and how others are perceived."
+          },
+          {
+           "code": "8.GD.2",
+           "text": "Define medical accuracy and analyze medically accurate sources of information about puberty, adolescent development, and sexual health."
+          },
+          {
+           "code": "8.GD.3",
+           "text": "Identify the rights of students and the responsibilities of schools under Oregon’s Menstrual Dignity Act."
+          },
+          {
+           "code": "8.GD.4",
+           "text": "Analyze how peers, family, and a person's intersecting identities can influence attitudes, beliefs, and expectations about gender, gender identity, gender roles, and gender expression."
+          },
+          {
+           "code": "8.GD.5",
+           "text": "Discuss how support from peers, families, schools, and communities can improve a person's health and wellbeing as it relates to sexual and romantic orientation and sexual identity."
+          },
+          {
+           "code": "8.GD.6",
+           "text": "Describe what can connect a family and discuss different ways to define family."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "sexual-and-reproductive-health",
+     "title": "Sexual and Reproductive Health",
+     "topics": [
+      {
+       "id": "sexual-and-reproductive-health",
+       "title": "Sexual and Reproductive Health",
+       "subtopics": [
+        {
+         "id": "sexual-and-reproductive-health-1-of-3",
+         "title": "Sexual and Reproductive Health (1 of 3)",
+         "outcomes": [
+          {
+           "code": "8.SRH.1",
+           "text": "Evaluate the influence of family, peers, school, community, culture, social norms, media, marketing, technology, and a person’s intersecting identities can influence personal beliefs and behaviors regarding sexual activity and sexuality."
+          },
+          {
+           "code": "8.SRH.2",
+           "text": "Identify safer sex strategies for vaginal, oral, and anal sex."
+          },
+          {
+           "code": "8.SRH.3",
+           "text": "Demonstrate the ability to effectively communicate with a partner about abstaining from sexual behavior, using condoms, and/or contraception."
+          },
+          {
+           "code": "8.SRH.4",
+           "text": "Practice using a decision-making model in response to various sexual health scenarios."
+          }
+         ]
+        },
+        {
+         "id": "sexual-and-reproductive-health-2-of-3",
+         "title": "Sexual and Reproductive Health (2 of 3)",
+         "outcomes": [
+          {
+           "code": "8.SRH.5",
+           "text": "List the steps necessary for a viable pregnancy to occur with sexual intercourse, insemination, in vitro fertilization, donor conception, and surrogacy."
+          },
+          {
+           "code": "8.SRH.6",
+           "text": "Practice demonstrating the correct usage of barrier methods including external and internal condoms and dental dams."
+          },
+          {
+           "code": "8.SRH.7",
+           "text": "List methods of contraception that are available without a prescription in Oregon and where these can be accessed."
+          },
+          {
+           "code": "8.SRH.8",
+           "text": "Define prenatal care and identify medically accurate sources of information about prenatal care."
+          }
+         ]
+        },
+        {
+         "id": "sexual-and-reproductive-health-3-of-3",
+         "title": "Sexual and Reproductive Health (3 of 3)",
+         "outcomes": [
+          {
+           "code": "8.SRH.9",
+           "text": "Develop a plan to eliminate or reduce risk of unintended pregnancy and sexually transmitted infections (STIs), considering biomedical approaches, including vaccines, Pre-Exposure Prophylaxis and (PrEP) Post-Exposure Prophylaxis (PEP), and barrier methods."
+          },
+          {
+           "code": "8.SRH.10",
+           "text": "Identify comprehensive sexual and reproductive health services offered in school or in the local community."
+          },
+          {
+           "code": "8.SRH.11",
+           "text": "Discuss the various state and federal laws related to minors' access to sexual and reproductive healthcare services, including pregnancy and sexually transmitted infection (STI) and HIV/AIDS prevention, testing, care, and treatment."
+          },
+          {
+           "code": "8.SRH.12",
+           "text": "Discuss how oppression against historically and currently marginalized people impacts sexual and reproductive health and rates of violence."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "9-12",
+   "units": [
+    {
+     "id": "wellness-and-health-promotion",
+     "title": "Wellness and Health Promotion",
+     "topics": [
+      {
+       "id": "wellness-and-health-promotion",
+       "title": "Wellness and Health Promotion",
+       "subtopics": [
+        {
+         "id": "wellness-and-health-promotion-1-of-3",
+         "title": "Wellness and Health Promotion (1 of 3)",
+         "outcomes": [
+          {
+           "code": "HS.WHP.1",
+           "text": "Identify and describe personal activities and behaviors within the five dimensions of health (physical, social, emotional, mental, and environmental) and how they affect health-related behaviors and impact holistic well-being."
+          },
+          {
+           "code": "HS.WHP.2",
+           "text": "Discuss personal and family values and behaviors that impact individual, interpersonal, and community health."
+          },
+          {
+           "code": "HS.WHP.3",
+           "text": "Analyze health promotion and disease prevention guidelines and recommendations, including those for infectious diseases, from credible federal, professional, and voluntary health organizations."
+          },
+          {
+           "code": "HS.WHP.4",
+           "text": "Identify individual practices that protect vision, hearing, skin, and teeth."
+          }
+         ]
+        },
+        {
+         "id": "wellness-and-health-promotion-2-of-3",
+         "title": "Wellness and Health Promotion (2 of 3)",
+         "outcomes": [
+          {
+           "code": "HS.WHP.5",
+           "text": "Identify at least two strategies to promote health and wellness for individuals, families, and communities."
+          },
+          {
+           "code": "HS.WHP.6",
+           "text": "Identify and discuss the life-saving benefits of organ and tissue donation, and analyze how personal, familial, media, and cultural factors influence decisions about donation."
+          },
+          {
+           "code": "HS.WHP.7",
+           "text": "Demonstrate how to access medically accurate, comprehensive, and inclusive healthrelated resources online and in the community or at school."
+          },
+          {
+           "code": "HS.WHP.8",
+           "text": "Analyze how public health policies and government regulations can influence health promotion and disease prevention."
+          }
+         ]
+        },
+        {
+         "id": "wellness-and-health-promotion-3-of-3",
+         "title": "Wellness and Health Promotion (3 of 3)",
+         "outcomes": [
+          {
+           "code": "HS.WHP.9",
+           "text": "Analyze how the history of health and social policy impacts individual and community health status."
+          },
+          {
+           "code": "HS.WHP.10",
+           "text": "Discuss the intersections between built environment, green spaces, climate change, and the five dimensions of health."
+          },
+          {
+           "code": "HS.WHP.11",
+           "text": "Advocate for everyone, regardless of physical ability or location, to have access to nutritious food, clean water, clean air, and accessible places."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "safety-and-first-aid",
+     "title": "Safety and First Aid",
+     "topics": [
+      {
+       "id": "safety-and-first-aid",
+       "title": "Safety and First Aid",
+       "subtopics": [
+        {
+         "id": "safety-and-first-aid-1-of-2",
+         "title": "Safety and First Aid (1 of 2)",
+         "outcomes": [
+          {
+           "code": "HS.SFA.1",
+           "text": "Analyze current data on unintentional injury among adolescents."
+          },
+          {
+           "code": "HS.SFA.2",
+           "text": "Formulate a plan to recognize and respond to situations that may lead to injury between individuals, in groups, and in communities."
+          },
+          {
+           "code": "HS.SFA.3",
+           "text": "Demonstrate how to administer basic first aid, hands-only cardiopulmonary resuscitation (CPR), use of an automated external defibrillator (AED), and treatment of an opioid overdose emergency."
+          },
+          {
+           "code": "HS.SFA.4",
+           "text": "Access a variety of resources in the home, school, and community that prevent injury."
+          }
+         ]
+        },
+        {
+         "id": "safety-and-first-aid-2-of-2",
+         "title": "Safety and First Aid (2 of 2)",
+         "outcomes": [
+          {
+           "code": "HS.SFA.5",
+           "text": "Examine laws and practices related to increasing accessibility for people with disabilities and identify why they are important for individual, interpersonal, community, and environmental health."
+          },
+          {
+           "code": "HS.SFA.6",
+           "text": "Analyze community and individual preparation and emergency response in case of natural disasters, including wildfires and earthquakes, and acts of violence."
+          },
+          {
+           "code": "HS.SFA.7",
+           "text": "Evaluate strategies for using social media safely, legally, and respectfully."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "substance-use-misuse-and-abuse",
+     "title": "Substance Use, Misuse, and Abuse",
+     "topics": [
+      {
+       "id": "substance-use-misuse-and-abuse",
+       "title": "Substance Use, Misuse, and Abuse",
+       "subtopics": [
+        {
+         "id": "substance-use-misuse-and-abuse-1-of-3",
+         "title": "Substance Use, Misuse, and Abuse (1 of 3)",
+         "outcomes": [
+          {
+           "code": "HS.SUB.1",
+           "text": "Identify and promote protective factors related to substance use, misuse, and abuse, including harm reduction and emergency action."
+          },
+          {
+           "code": "HS.SUB.2",
+           "text": "Identify how to recognize and respond to overdose emergencies, including how to access, administer, and use naloxone for opioid overdose prevention and reversal."
+          },
+          {
+           "code": "HS.SUB.3",
+           "text": "Access valid and reliable health information on short- and long-term effects of substance use from print and electronic materials that are available from credible health organizations."
+          },
+          {
+           "code": "HS.SUB.4",
+           "text": "Analyze how laws, rules, policies, and regulations influence health promotion and disease prevention related to tobacco, marijuana, and other drugs."
+          },
+          {
+           "code": "HS.SUB.5",
+           "text": "Analyze the data on overdose and fentanyl laced over-the-counter and prescription medications."
+          }
+         ]
+        },
+        {
+         "id": "substance-use-misuse-and-abuse-2-of-3",
+         "title": "Substance Use, Misuse, and Abuse (2 of 3)",
+         "outcomes": [
+          {
+           "code": "HS.SUB.6",
+           "text": "Analyze the relationship between substance use, misuse, abuse and other health risks, including unintentional injuries, violence, self-harm, suicide, and sexual risk behaviors."
+          },
+          {
+           "code": "HS.SUB.7",
+           "text": "Analyze reasons why individuals use or do not use alcohol, marijuana/cannabis, tobacco, and other drugs, including the influence of family, peers, school, community, culture, and social norms on personal values, beliefs, and behaviors."
+          },
+          {
+           "code": "HS.SUB.8",
+           "text": "Identify potential barriers to making healthy decisions regarding substance use and identify personal strategies and community support to overcome those barriers."
+          },
+          {
+           "code": "HS.SUB.9",
+           "text": "Demonstrate decision-making skills in regards to substance use, misuse, and abuse in varying situations."
+          },
+          {
+           "code": "HS.SUB.10",
+           "text": "Evaluate communication skills to manage social pressure to avoid or reduce health risks around substance use."
+          }
+         ]
+        },
+        {
+         "id": "substance-use-misuse-and-abuse-3-of-3",
+         "title": "Substance Use, Misuse, and Abuse (3 of 3)",
+         "outcomes": [
+          {
+           "code": "HS.SUB.11",
+           "text": "Describe how to access support services needed for substance misuse and abuse, harm reduction services, including needle exchanges, test strips, and prescription disposal sites, and community resources to help someone stop using."
+          },
+          {
+           "code": "HS.SUB.12",
+           "text": "Access and analyze the validity of information related to alcohol, marijuana/cannabis, tobacco, and other drug use, misuse, and abuse prevention."
+          },
+          {
+           "code": "HS.SUB.13",
+           "text": "Analyze the influence of public health and government laws and policies, as well as media and marketing, on alcohol, marijuana/cannabis, tobacco, and other drugs, past and present."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "food-nutrition-and-physical-activity",
+     "title": "Food, Nutrition, and Physical Activity",
+     "topics": [
+      {
+       "id": "food-nutrition-and-physical-activity",
+       "title": "Food, Nutrition, and Physical Activity",
+       "subtopics": [
+        {
+         "id": "food-nutrition-and-physical-activity-1-of-2",
+         "title": "Food, Nutrition, and Physical Activity (1 of 2)",
+         "outcomes": [
+          {
+           "code": "HS.FNP.1",
+           "text": "Analyze the political, economic, social, and environmental factors that influence our current food system."
+          },
+          {
+           "code": "HS.FNP.2",
+           "text": "Plan or prepare a balanced meal with nutrient-rich basic ingredients."
+          },
+          {
+           "code": "HS.FNP.3",
+           "text": "Evaluate the physical, emotional, and mental impacts of missing or skipping meals and “fad” dieting."
+          },
+          {
+           "code": "HS.FNP.4",
+           "text": "Explain the importance of drinking water and limiting sugar sweetened beverages and its effect on health."
+          },
+          {
+           "code": "HS.FNP.5",
+           "text": "Create a personal short- and long-term goal that incorporates nutritious eating, hydration, and physical activity as a daily part of life based on personal, cultural, and community influences."
+          }
+         ]
+        },
+        {
+         "id": "food-nutrition-and-physical-activity-2-of-2",
+         "title": "Food, Nutrition, and Physical Activity (2 of 2)",
+         "outcomes": [
+          {
+           "code": "HS.FNP.6",
+           "text": "Describe how to make nutritious food and beverage choices at home, school, and when dining out."
+          },
+          {
+           "code": "HS.FNP.7",
+           "text": "Analyze how people from all cultures and backgrounds are connected by their use of and shared experiences around food."
+          },
+          {
+           "code": "HS.FNP.8",
+           "text": "Analyze the influences of family, peers, school, community, culture, and social norms on personal values and beliefs about food choices and physical activity."
+          },
+          {
+           "code": "HS.FNP.9",
+           "text": "Describe how to prevent foodborne illnesses."
+          },
+          {
+           "code": "HS.FNP.10",
+           "text": "Identify policies, practices, and resources that support access to nutritious food, clean water, and accessible places for physical activity."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "social-emotional-and-mental-health",
+     "title": "Social, Emotional, and Mental Health",
+     "topics": [
+      {
+       "id": "social-emotional-and-mental-health",
+       "title": "Social, Emotional, and Mental Health",
+       "subtopics": [
+        {
+         "id": "social-emotional-and-mental-health-1-of-2",
+         "title": "Social, Emotional, and Mental Health (1 of 2)",
+         "outcomes": [
+          {
+           "code": "HS.SEM.1",
+           "text": "TSEL Practices 2C Plan, evaluate, and achieve personal and collective goals and aspirations."
+          },
+          {
+           "code": "HS.SEM.2",
+           "text": "TSEL Practice 5A Demonstrate curiosity and open-mindedness while using critical thinking skills across various situations and environments."
+          },
+          {
+           "code": "HS.SEM.3",
+           "text": "Analyze physical and psychological effects of stress, anxiety, depression, social isolation, and individual and collective trauma."
+          },
+          {
+           "code": "HS.SEM.4",
+           "text": "Identify activities that promote social, emotional, and mental health."
+          },
+          {
+           "code": "HS.SEM.5",
+           "text": "Compare the validity, reliability, and accessibility of mental, social, and emotional health information, products, and services in the home, at school, and in the community."
+          }
+         ]
+        },
+        {
+         "id": "social-emotional-and-mental-health-2-of-2",
+         "title": "Social, Emotional, and Mental Health (2 of 2)",
+         "outcomes": [
+          {
+           "code": "HS.SEM.6",
+           "text": "Describe the signs and symptoms of mental health challenges, including the warning signs of suicide, self-harm, eating disorders and disordered eating, and other unsafe behaviors."
+          },
+          {
+           "code": "HS.SEM.7",
+           "text": "Analyze the impact of media, marketing, social media, internet use, and other technologies on social, mental, and emotional health."
+          },
+          {
+           "code": "HS.SEM.8",
+           "text": "Advocate for safer school communities to prevent bullying and violence and improve mental health."
+          },
+          {
+           "code": "HS.SEM.9",
+           "text": "Analyze laws related to minors accessing mental health care."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "healthy-relationships-and-violence-abuse-prevent",
+     "title": "Healthy Relationships and Violence/Abuse Prevention",
+     "topics": [
+      {
+       "id": "healthy-relationships-and-violence-abuse-prevent",
+       "title": "Healthy Relationships and Violence/Abuse Prevention",
+       "subtopics": [
+        {
+         "id": "healthy-relationships-and-violence-abuse-prevent",
+         "title": "Healthy Relationships and Violence/Abuse Prevention (1 of 3)",
+         "outcomes": [
+          {
+           "code": "HS.HRVP.1",
+           "text": "TSEL Practices 2A Manage and express thoughts, emotions, impulses, and stressors ways that affirm one’s identity."
+          },
+          {
+           "code": "HS.HRVP.2",
+           "text": "Analyze different ways that people can express consensual physical affection, love, friendship, empathy, and sympathy within different types of relationships."
+          },
+          {
+           "code": "HS.HRVP.3",
+           "text": "Analyze how culture and society can perpetuate stereotypes and expectations of people with different genders in relationships."
+          },
+          {
+           "code": "HS.HRVP.4",
+           "text": "Examine the impact of power differences within relationships and other factors that can affect the ability to give or perceive consent, including in sexual activity."
+          },
+          {
+           "code": "HS.HRVP.5",
+           "text": "Apply a decision-making model to maintaining a healthy relationship and ending an unhealthy relationship."
+          }
+         ]
+        },
+        {
+         "id": "healthy-relationships-and-violence-abuse-prevent-2",
+         "title": "Healthy Relationships and Violence/Abuse Prevention (2 of 3)",
+         "outcomes": [
+          {
+           "code": "HS.HRVP.6",
+           "text": "Describe how to access resources for survivors of interpersonal violence, sexual violence and sex trafficking, including local confidential advocacy resources."
+          },
+          {
+           "code": "HS.HRVP.7",
+           "text": "Demonstrate ways to support a fellow student who is being sexually harassed or abused."
+          },
+          {
+           "code": "HS.HRVP.8",
+           "text": "Explain the impact media, including sexually explicit media, social media, and artificial intelligence (AI) can have on one's perceptions of, and expectations for, a healthy relationship."
+          },
+          {
+           "code": "HS.HRVP.9",
+           "text": "Model how to be an upstander by addressing hurtful comments, addressing concepts of intent, impact, and repair."
+          },
+          {
+           "code": "HS.HRVP.10",
+           "text": "Describe the types of abuse, including physical, emotional, psychological, financial, and sexual, and the cycle of violence as it relates to sexual abuse, domestic violence, dating violence, trafficking, and gender-based violence."
+          }
+         ]
+        },
+        {
+         "id": "healthy-relationships-and-violence-abuse-prevent-3",
+         "title": "Healthy Relationships and Violence/Abuse Prevention (3 of 3)",
+         "outcomes": [
+          {
+           "code": "HS.HRVP.11",
+           "text": "Explain why a person who has been sexually harassed, abused, assaulted, or is a survivor/victim of child sexual abuse, rape, domestic violence, dating violence, or sex trafficking, is never to blame for the action of the perpetrator."
+          },
+          {
+           "code": "HS.HRVP.12",
+           "text": "Explain trafficking, including tactics people use to traffic and exploit youth."
+          },
+          {
+           "code": "HS.HRVP.13",
+           "text": "Summarize individual rights and responsibilities in regards to sexual consent, sexually explicit media, and sexting under state and federal law."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "growth-and-development",
+     "title": "Growth and Development",
+     "topics": [
+      {
+       "id": "growth-and-development",
+       "title": "Growth and Development",
+       "subtopics": [
+        {
+         "id": "growth-and-development-1-of-2",
+         "title": "Growth and Development (1 of 2)",
+         "outcomes": [
+          {
+           "code": "HS.GD.1",
+           "text": "Analyze how peers, media, family, society, history, culture, and a person's intersecting identities can influence self-concept, body image, and self-esteem."
+          },
+          {
+           "code": "HS.GD.2",
+           "text": "Explain the human reproductive and sexual response systems, including differentiating between internal and external body parts and their functions, and that there are variations in human bodies, including different shapes of vulvas, circumcised and uncircumcised penises, and intersex conditions."
+          },
+          {
+           "code": "HS.GD.3",
+           "text": "Describe the cognitive, social, and emotional changes of adolescence and throughout adulthood."
+          },
+          {
+           "code": "HS.GD.4",
+           "text": "Analyze the impact of Oregon’s Menstrual Dignity Act on menstruation stigma and period poverty."
+          }
+         ]
+        },
+        {
+         "id": "growth-and-development-2-of-2",
+         "title": "Growth and Development (2 of 2)",
+         "outcomes": [
+          {
+           "code": "HS.GD.5",
+           "text": "Explain how identity-affirming support from peers, families, schools, communities and health care providers can improve a person's health and well-being."
+          },
+          {
+           "code": "HS.GD.6",
+           "text": "Analyze how peers, media, family, society, culture, and a person's intersecting identities can influence attitudes, beliefs, and expectations about sexual and romantic orientation."
+          },
+          {
+           "code": "HS.GD.7",
+           "text": "Analyze familial factors that can limit access to genetic health information for many people, including adoption, foster care, migration, and donor conception."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "sexual-and-reproductive-health",
+     "title": "Sexual and Reproductive Health",
+     "topics": [
+      {
+       "id": "sexual-and-reproductive-health",
+       "title": "Sexual and Reproductive Health",
+       "subtopics": [
+        {
+         "id": "sexual-and-reproductive-health-1-of-4",
+         "title": "Sexual and Reproductive Health (1 of 4)",
+         "outcomes": [
+          {
+           "code": "HS.SRH.1",
+           "text": "Analyze societal factors that might inhibit honest discussion between sexual and romantic partners about their sexual histories, including sexually transmitted infections (STIs) and HIV/AIDS status, and identify ways to begin open and honest conversations."
+          },
+          {
+           "code": "HS.SRH.2",
+           "text": "Demonstrate the ability to effectively communicate with a partner to make decisions around abstinence and consensual sexual intimacy."
+          },
+          {
+           "code": "HS.SRH.3",
+           "text": "Describe how to make a decision about sexual behaviors, including virtual and inperson, that takes into consideration personal values and health and safety of self and others."
+          },
+          {
+           "code": "HS.SRH.4",
+           "text": "Summarize fertilization, fetal development, and childbirth."
+          },
+          {
+           "code": "HS.SRH.5",
+           "text": "Discuss skills and resources that can support people navigating parenthood."
+          }
+         ]
+        },
+        {
+         "id": "sexual-and-reproductive-health-2-of-4",
+         "title": "Sexual and Reproductive Health (2 of 4)",
+         "outcomes": [
+          {
+           "code": "HS.SRH.6",
+           "text": "Identify individual, familial, cultural, and systemic influences on barrier methods and contraceptive use."
+          },
+          {
+           "code": "HS.SRH.7",
+           "text": "Compare and contrast methods to prevent unintended pregnancy, considering effectiveness, access, and personal impact on health."
+          },
+          {
+           "code": "HS.SRH.8",
+           "text": "Practice demonstrating the correct usage of barrier methods including external and internal condoms and dental dams."
+          },
+          {
+           "code": "HS.SRH.9",
+           "text": "Identify medically accurate sources of information for pregnancy, prenatal care, and pregnancy options, including parenting, surrogacy, adoption, abortion, and safe surrender, including community resources."
+          },
+          {
+           "code": "HS.SRH.10",
+           "text": "Analyze political and historical issues that were rooted in and have resulted in discrimination, oppression, and stigma against historically and currently marginalized people, including those with sexually transmitted infections (STIs) and HIV/AIDS."
+          }
+         ]
+        },
+        {
+         "id": "sexual-and-reproductive-health-3-of-4",
+         "title": "Sexual and Reproductive Health (3 of 4)",
+         "outcomes": [
+          {
+           "code": "HS.SRH.11",
+           "text": "Discuss responsibilities around sexually transmitted infection (STI) prevention, testing, treatment, and disclosure to sexual partners."
+          },
+          {
+           "code": "HS.SRH.12",
+           "text": "Assess the validity, reliability, and accessibility of comprehensive sexual and reproductive health information, products, and services offered online and in the local community."
+          },
+          {
+           "code": "HS.SRH.13",
+           "text": "Describe body literacy skills to notice changes, pain, including menstrual pain, or discomfort in one’s body related to the sexual and reproductive system and identify when to seek support from trusted adults and medical professionals."
+          },
+          {
+           "code": "HS.SRH.14",
+           "text": "Analyze public health and government policies on sexual and reproductive health practices."
+          },
+          {
+           "code": "HS.SRH.15",
+           "text": "Define reproductive justice and explain its history and how it relates to sexual health and health equity."
+          }
+         ]
+        },
+        {
+         "id": "sexual-and-reproductive-health-4-of-4",
+         "title": "Sexual and Reproductive Health (4 of 4)",
+         "outcomes": [
+          {
+           "code": "HS.SRH.16",
+           "text": "Analyze how history can influence attitudes, beliefs, and expectations about sexuality and identity, including the history of medical experimentation and eugenics."
+          },
+          {
+           "code": "HS.SRH.17",
+           "text": "Analyze systemic barriers to sexual, reproductive, and obstetric care, including prenatal care, childbirth, and postpartum care."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "build": {
+  "builtAt": "2026-10-14T16:20:47.801Z",
+  "model": "none",
+  "usd": 0,
+  "expectedCodes": 514,
+  "coverage": 1,
+  "missingCodes": [],
+  "counts": {
+   "grades": 10,
+   "units": 77,
+   "topics": 77,
+   "subtopics": 127,
+   "outcomes": 514
+  },
+  "warnings": [
+   "unit \"Sexual and Reproductive Health\" (grade 3) has a single outcome",
+   "unit \"Sexual and Reproductive Health\" (grade 4) has a single outcome"
+  ]
+ }
+}

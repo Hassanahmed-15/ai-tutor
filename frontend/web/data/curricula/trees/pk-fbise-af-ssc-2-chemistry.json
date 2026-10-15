@@ -1,0 +1,889 @@
+{
+ "id": "pk-fbise-af-ssc-2-chemistry",
+ "region": "PK",
+ "framework": "FBISE Assessment Framework (National Curriculum of Pakistan 2022-23)",
+ "board": "FBISE",
+ "qualification": "SSC-II",
+ "subject": "Chemistry",
+ "syllabusCode": null,
+ "gradeSystem": "grade",
+ "source": {
+  "urls": [
+   "https://www.fbise.edu.pk/ModelPaper/2025/Assessment%20Frameworks/SSC-II/Final%20Assessment%20Framework%20%2B%20Model%20Question%20Paper%20Chemistry%20SSC-II.pdf"
+  ],
+  "publisher": "Federal Board of Intermediate and Secondary Education",
+  "licence": "Government publication; structure + our own wording only",
+  "firstExam": "2026"
+ },
+ "grades": [
+  {
+   "grade": "10",
+   "units": [
+    {
+     "id": "domain-a-nature-of-science-in-chemistry",
+     "title": "Domain A: Nature of Science in Chemistry",
+     "topics": [
+      {
+       "id": "nature-of-science",
+       "title": "Nature of science",
+       "subtopics": [
+        {
+         "id": "how-chemistry-works",
+         "title": "How chemistry works",
+         "outcomes": [
+          {
+           "code": "C-10-A-01",
+           "text": "Justify with examples that science uses shared methods such as evidence and reasoning."
+          },
+          {
+           "code": "C-10-A-02",
+           "text": "Explain with examples what a scientific paradigm is, such as phlogiston and atomic models."
+          },
+          {
+           "code": "C-10-A-03",
+           "text": "Explain with examples how scientists describe uncertainty and confidence."
+          },
+          {
+           "code": "C-10-A-04",
+           "text": "Explain the difference between repeatability and reproducibility."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "domain-b-physical-chemistry",
+     "title": "Domain B: Physical Chemistry",
+     "topics": [
+      {
+       "id": "kinetic-particle-theory",
+       "title": "Kinetic particle theory",
+       "subtopics": [
+        {
+         "id": "states-of-matter",
+         "title": "States of matter",
+         "outcomes": [
+          {
+           "code": "C-10-B-01",
+           "text": "Explain changes of state and internal energy using kinetic particle theory."
+          },
+          {
+           "code": "C-10-B-02",
+           "text": "Distinguish evaporation from boiling."
+          },
+          {
+           "code": "C-10-B-03",
+           "text": "Interpret heating and cooling curves with particle theory."
+          }
+         ]
+        },
+        {
+         "id": "gas-laws",
+         "title": "Gas laws",
+         "outcomes": [
+          {
+           "code": "C-10-B-04",
+           "text": "Interpret Boyle's, Charles's and Avogadro's laws with particle theory."
+          },
+          {
+           "code": "C-10-B-05",
+           "text": "Explain qualitatively the effect of external conditions on gas volume."
+          }
+         ]
+        },
+        {
+         "id": "diffusion-and-sublimation",
+         "title": "Diffusion and sublimation",
+         "outcomes": [
+          {
+           "code": "C-10-B-06",
+           "text": "Explain diffusion of gases with particle theory."
+          },
+          {
+           "code": "C-10-B-07",
+           "text": "Examine how molecular mass and temperature affect diffusion rate."
+          },
+          {
+           "code": "C-10-B-08",
+           "text": "Discuss applications of sublimation around us."
+          },
+          {
+           "code": "C-10-B-09",
+           "text": "Explain why diffusion rates of medicines in the body matter."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "stoichiometry",
+       "title": "Stoichiometry",
+       "subtopics": [
+        {
+         "id": "moles-and-concentration",
+         "title": "Moles and concentration",
+         "outcomes": [
+          {
+           "code": "C-10-B-10",
+           "text": "Use the molar gas volume at room temperature and pressure in gas calculations."
+          },
+          {
+           "code": "C-10-B-11",
+           "text": "Define concentration in g/dm3 and mol/dm3 and convert between them."
+          }
+         ]
+        },
+        {
+         "id": "calculations-from-equations",
+         "title": "Calculations from equations",
+         "outcomes": [
+          {
+           "code": "C-10-B-12",
+           "text": "Calculate reacting masses, limiting reactants, gas volumes and solution concentrations."
+          },
+          {
+           "code": "C-10-B-13",
+           "text": "Calculate the concentration of a solution from titration data."
+          },
+          {
+           "code": "C-10-B-14",
+           "text": "Calculate empirical and molecular formulae."
+          },
+          {
+           "code": "C-10-B-15",
+           "text": "Calculate percentage yield and percentage purity."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "electrochemistry",
+       "title": "Electrochemistry",
+       "subtopics": [
+        {
+         "id": "electrolysis",
+         "title": "Electrolysis",
+         "outcomes": [
+          {
+           "code": "C-10-B-16",
+           "text": "Define electrolysis as the breakdown of an ionic compound by electricity."
+          },
+          {
+           "code": "C-10-B-17",
+           "text": "Identify and label the parts of a simple electrolytic cell."
+          },
+          {
+           "code": "C-10-B-18",
+           "text": "Describe charge transfer in the external circuit and electrolyte."
+          },
+          {
+           "code": null,
+           "text": "Identify products at electrodes for molten lead(II) bromide, brine and dilute sulfuric acid with inert electrodes."
+          },
+          {
+           "code": "C-10-B-22",
+           "text": "Identify products at electrodes for copper(II) sulfate with inert or copper electrodes."
+          },
+          {
+           "code": "C-10-B-23",
+           "text": "Predict the products of electrolysis of other electrolytes."
+          },
+          {
+           "code": "C-10-B-24",
+           "text": "Write ionic half-equations for electrode reactions."
+          }
+         ]
+        },
+        {
+         "id": "cells-and-plating",
+         "title": "Cells and plating",
+         "outcomes": [
+          {
+           "code": "C-10-B-20",
+           "text": "State that a hydrogen-oxygen fuel cell makes electricity from hydrogen and oxygen."
+          },
+          {
+           "code": "C-10-B-21",
+           "text": "Describe advantages and disadvantages of hydrogen-oxygen fuel cells."
+          },
+          {
+           "code": "C-10-B-25",
+           "text": "Describe electroplating and its uses."
+          },
+          {
+           "code": "C-10-B-26",
+           "text": "Sketch a voltaic cell."
+          },
+          {
+           "code": "C-10-B-27",
+           "text": "Use voltage data from voltaic cells to compare metal reactivity."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "chemical-kinetics",
+       "title": "Chemical kinetics",
+       "subtopics": [
+        {
+         "id": "collision-theory-and-rate",
+         "title": "Collision theory and rate",
+         "outcomes": [
+          {
+           "code": "C-10-B-28",
+           "text": "Describe collision theory and activation energy."
+          },
+          {
+           "code": "C-10-B-29",
+           "text": "State that a catalyst speeds up a reaction by lowering activation energy."
+          },
+          {
+           "code": "C-10-B-30",
+           "text": "Describe physical factors that can change reaction rate."
+          },
+          {
+           "code": "C-10-B-31",
+           "text": "Interpret data and graphs from rate investigations."
+          },
+          {
+           "code": "C-10-B-32",
+           "text": "Explain how concentration, temperature, surface area and catalyst change rate using collision theory."
+          },
+          {
+           "code": "C-10-B-33",
+           "text": "Justify the importance of chemical kinetics in everyday life and industry."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "salts",
+       "title": "Salts",
+       "subtopics": [
+        {
+         "id": "properties-of-salts",
+         "title": "Properties of salts",
+         "outcomes": [
+          {
+           "code": "C-10-B-34",
+           "text": "Explain that salts are ionic compounds formed from bases and acids."
+          },
+          {
+           "code": "C-10-B-35",
+           "text": "Explain why salts are solids with high melting and boiling points."
+          },
+          {
+           "code": "C-10-B-36",
+           "text": "Describe that ionic salts conduct electricity only when molten or dissolved."
+          },
+          {
+           "code": "C-10-B-37",
+           "text": "Explain why molten and aqueous salt solutions conduct."
+          }
+         ]
+        },
+        {
+         "id": "solubility-and-preparing-salts",
+         "title": "Solubility and preparing salts",
+         "outcomes": [
+          {
+           "code": "C-10-B-38",
+           "text": "Describe the general solubility rules for salts."
+          },
+          {
+           "code": "C-10-B-39",
+           "text": "Describe how to prepare, separate and purify soluble and insoluble salts."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "domain-c-inorganic-chemistry",
+     "title": "Domain C: Inorganic Chemistry",
+     "topics": [
+      {
+       "id": "nitrogen-and-sulfur",
+       "title": "Nitrogen and sulfur",
+       "subtopics": [
+        {
+         "id": "air-pollution-from-nitrogen-oxides",
+         "title": "Air pollution from nitrogen oxides",
+         "outcomes": [
+          {
+           "code": "C-10-C-01",
+           "text": "Recognise that oxides of nitrogen contribute to photochemical smog."
+          },
+          {
+           "code": "C-10-C-02",
+           "text": "Describe the role of NO and NO2 in forming acid rain and smog."
+          }
+         ]
+        },
+        {
+         "id": "haber-process",
+         "title": "Haber process",
+         "outcomes": [
+          {
+           "code": "C-10-C-03",
+           "text": "State the equation for making ammonia."
+          },
+          {
+           "code": "C-10-C-04",
+           "text": "State the sources of hydrogen and nitrogen for the Haber process."
+          },
+          {
+           "code": "C-10-C-05",
+           "text": "State the typical conditions of the Haber process."
+          }
+         ]
+        },
+        {
+         "id": "contact-process",
+         "title": "Contact process",
+         "outcomes": [
+          {
+           "code": "C-10-C-06",
+           "text": "State the equation for converting sulfur dioxide to sulfur trioxide."
+          },
+          {
+           "code": "C-10-C-07",
+           "text": "State the sources of sulfur dioxide."
+          },
+          {
+           "code": "C-10-C-08",
+           "text": "State the typical conditions for the Contact process."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "oxides-and-metals",
+       "title": "Oxides and metals",
+       "subtopics": [
+        {
+         "id": "oxides",
+         "title": "Oxides",
+         "outcomes": [
+          {
+           "code": "C-10-C-09",
+           "text": "Describe the nature of oxides."
+          },
+          {
+           "code": "C-10-C-10",
+           "text": "Classify oxides as acidic, basic or amphoteric from metal and non-metal character."
+          }
+         ]
+        },
+        {
+         "id": "metals-and-reactivity",
+         "title": "Metals and reactivity",
+         "outcomes": [
+          {
+           "code": "C-10-C-11",
+           "text": "Describe properties of metals and their reactions with water, steam, acids and oxygen."
+          },
+          {
+           "code": "C-10-C-12",
+           "text": "Arrange metals in order of reactivity from experimental results."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "domain-e-organic-chemistry",
+     "title": "Domain E: Organic Chemistry",
+     "topics": [
+      {
+       "id": "basics-of-organic-chemistry",
+       "title": "Basics of organic chemistry",
+       "subtopics": [
+        {
+         "id": "naming-and-drawing-compounds",
+         "title": "Naming and drawing compounds",
+         "outcomes": [
+          {
+           "code": "C-10-E-01",
+           "text": "Name and draw structural and displayed formulae of alkanes, alkenes and alcohols with up to four carbons."
+          },
+          {
+           "code": "C-10-E-02",
+           "text": "State the type of compound from its displayed formula."
+          },
+          {
+           "code": "C-10-E-03",
+           "text": "Name and draw displayed formulae of the unbranched compounds containing up to four carbons."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "hydrocarbons",
+       "title": "Hydrocarbons",
+       "subtopics": [
+        {
+         "id": "alkenes",
+         "title": "Alkenes",
+         "outcomes": [
+          {
+           "code": "C-10-E-04",
+           "text": "State that alkenes are unsaturated hydrocarbons."
+          },
+          {
+           "code": "C-10-E-05",
+           "text": "Describe manufacture of alkenes by cracking."
+          },
+          {
+           "code": "C-10-E-06",
+           "text": "Describe the reasons for cracking large hydrocarbons."
+          },
+          {
+           "code": "C-10-E-07",
+           "text": "Describe the test to tell saturated from unsaturated hydrocarbons."
+          },
+          {
+           "code": "C-10-E-08",
+           "text": "Describe alkene reactions with bromine, hydrogen and steam."
+          },
+          {
+           "code": "C-10-E-09",
+           "text": "Describe preparation of alkenes using symbol equations."
+          }
+         ]
+        },
+        {
+         "id": "alkynes",
+         "title": "Alkynes",
+         "outcomes": [
+          {
+           "code": "C-10-E-10",
+           "text": "State that alkynes are unsaturated hydrocarbons."
+          },
+          {
+           "code": "C-10-E-11",
+           "text": "Describe the use of ethyne as a fuel for welding."
+          }
+         ]
+        },
+        {
+         "id": "petroleum-fractions",
+         "title": "Petroleum fractions",
+         "outcomes": [
+          {
+           "code": "C-10-E-12",
+           "text": "Describe separation of petroleum into useful fractions by fractional distillation."
+          },
+          {
+           "code": null,
+           "text": "Describe how properties of fractions change with chain length, volatility and viscosity."
+          },
+          {
+           "code": "C-10-E-14",
+           "text": "Name the uses of petroleum fractions."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "alcohols",
+       "title": "Alcohols",
+       "subtopics": [
+        {
+         "id": "alcohols",
+         "title": "Alcohols",
+         "outcomes": [
+          {
+           "code": "C-10-E-15",
+           "text": "Describe the manufacture of ethanol by fermentation and by steam addition."
+          },
+          {
+           "code": "C-10-E-16",
+           "text": "Describe the combustion of alcohols."
+          },
+          {
+           "code": "C-10-E-17",
+           "text": "Discuss applications of alcohols as fuels and solvents."
+          },
+          {
+           "code": "C-10-E-18",
+           "text": "Explain the role of alcohols in various industries."
+          },
+          {
+           "code": "C-10-E-19",
+           "text": "Discuss the impact of alcohols on daily life."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "carboxylic-acids",
+       "title": "Carboxylic acids",
+       "subtopics": [
+        {
+         "id": "carboxylic-acids-and-esters",
+         "title": "Carboxylic acids and esters",
+         "outcomes": [
+          {
+           "code": "C-10-E-20",
+           "text": "Describe reactions of carboxylic acids with metals, bases and carbonates."
+          },
+          {
+           "code": "C-10-E-21",
+           "text": "Describe formation of ethanoic acid by oxidation in vinegar production."
+          },
+          {
+           "code": "C-10-E-22",
+           "text": "Describe the reaction of a carboxylic acid with an alcohol to make an ester."
+          },
+          {
+           "code": "C-10-E-23",
+           "text": "Describe industrial uses of carboxylic acids."
+          },
+          {
+           "code": "C-10-E-24",
+           "text": "Explain the role of carboxylic acids and esters in everyday life."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "polymers",
+       "title": "Polymers",
+       "subtopics": [
+        {
+         "id": "addition-and-condensation-polymers",
+         "title": "Addition and condensation polymers",
+         "outcomes": [
+          {
+           "code": "C-10-E-25",
+           "text": "Define polymers as large molecules built from monomers."
+          },
+          {
+           "code": "C-10-E-26",
+           "text": "Identify repeating units and linkages in polymers."
+          },
+          {
+           "code": "C-10-E-27",
+           "text": "Deduce the structure or repeat unit of an addition polymer."
+          },
+          {
+           "code": "C-10-E-28",
+           "text": "Deduce the repeat unit of polyamides and polyesters."
+          },
+          {
+           "code": "C-10-E-29",
+           "text": "Describe differences between addition and condensation polymerisation."
+          }
+         ]
+        },
+        {
+         "id": "plastics-and-their-impact",
+         "title": "Plastics and their impact",
+         "outcomes": [
+          {
+           "code": "C-10-E-30",
+           "text": "State that plastics are made from polymers."
+          },
+          {
+           "code": "C-10-E-31",
+           "text": "Describe how properties of plastics suit their uses."
+          },
+          {
+           "code": "C-10-E-32",
+           "text": "Describe environmental problems caused by plastics."
+          },
+          {
+           "code": "C-10-E-33",
+           "text": "Describe the structure of nylon and PET."
+          },
+          {
+           "code": "C-10-E-34",
+           "text": "State that PET can be recycled back into its monomers."
+          },
+          {
+           "code": "C-10-E-35",
+           "text": "Outline the importance of polymers in textiles."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "biochemistry",
+       "title": "Biochemistry",
+       "subtopics": [
+        {
+         "id": "proteins-nucleic-acids-and-vitamins",
+         "title": "Proteins, nucleic acids and vitamins",
+         "outcomes": [
+          {
+           "code": "C-10-E-36",
+           "text": "Describe proteins as natural polyamides."
+          },
+          {
+           "code": "C-10-E-37",
+           "text": "Draw the general structure of proteins."
+          },
+          {
+           "code": "C-10-E-38",
+           "text": "Explain sources, uses and structure of proteins, carbohydrates and fats."
+          },
+          {
+           "code": "C-10-E-39",
+           "text": "Describe the importance of nucleic acids."
+          },
+          {
+           "code": "C-10-E-40",
+           "text": "Explain vitamins, their sources and roles."
+          },
+          {
+           "code": "C-10-E-41",
+           "text": "Identify applications of biochemistry in testing, gene therapy and cloning."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "domain-f-energy",
+     "title": "Domain F: Energy",
+     "topics": [
+      {
+       "id": "energy",
+       "title": "Energy",
+       "subtopics": [
+        {
+         "id": "fossil-fuels",
+         "title": "Fossil fuels",
+         "outcomes": [
+          {
+           "code": "C-10-F-01",
+           "text": "Name fossil fuels: coal, natural gas and petroleum."
+          },
+          {
+           "code": "C-10-F-02",
+           "text": "Name methane as the main constituent of natural gas."
+          },
+          {
+           "code": "C-10-F-03",
+           "text": "State that petroleum is a mixture of hydrocarbons."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "domain-g-practical-skills",
+     "title": "Domain G: Practical Skills",
+     "topics": [
+      {
+       "id": "practical-skills",
+       "title": "Practical skills",
+       "subtopics": [
+        {
+         "id": "lab-safety",
+         "title": "Lab safety",
+         "outcomes": [
+          {
+           "code": "C-09-10-G-01",
+           "text": "Explain with examples the types of chemical hazards in the lab and safety precautions."
+          },
+          {
+           "code": "C-09-10-G-02",
+           "text": "Recognise the meaning of different chemical hazard symbols."
+          },
+          {
+           "code": "C-09-10-G-03",
+           "text": "Recognise the importance of personal protective equipment in lab work."
+          },
+          {
+           "code": "C-09-10-G-04",
+           "text": "Locate the nearest fire extinguisher and emergency exits."
+          },
+          {
+           "code": "C-09-10-G-05",
+           "text": "Show awareness of emergency procedures in the lab."
+          }
+         ]
+        },
+        {
+         "id": "apparatus-and-methods",
+         "title": "Apparatus and methods",
+         "outcomes": [
+          {
+           "code": "C-09-10-G-06",
+           "text": "Identify apparatus from diagrams or descriptions."
+          },
+          {
+           "code": "C-09-10-G-07",
+           "text": "Draw, complete or label diagrams of apparatus."
+          },
+          {
+           "code": "C-09-10-G-08",
+           "text": "Explain the use of common apparatus and techniques."
+          },
+          {
+           "code": "C-09-10-G-09",
+           "text": "Select the most appropriate apparatus or method for a task."
+          }
+         ]
+        },
+        {
+         "id": "tests-and-separations",
+         "title": "Tests and separations",
+         "outcomes": [
+          {
+           "code": "C-09-10-G-10",
+           "text": "Describe tests: qualitative, gas and other tests."
+          },
+          {
+           "code": "C-09-10-G-11",
+           "text": "Describe techniques used to make sure results are reliable."
+          },
+          {
+           "code": "C-09-10-G-12",
+           "text": "Carry out supervised tests: water test, acid reactions, redox tests, melting and boiling points, displacements and temperature changes."
+          },
+          {
+           "code": "C-09-10-G-13",
+           "text": "Carry out separation and purification: crystallisation, distillation, chromatography and electrolysis."
+          },
+          {
+           "code": "C-09-10-G-14",
+           "text": "Suggest the most appropriate apparatus or method for an experiment."
+          }
+         ]
+        },
+        {
+         "id": "measuring-and-recording",
+         "title": "Measuring and recording",
+         "outcomes": [
+          {
+           "code": "C-09-10-G-15",
+           "text": "Describe experimental procedures."
+          },
+          {
+           "code": "C-09-10-G-16",
+           "text": "Take readings from apparatus."
+          },
+          {
+           "code": "C-09-10-G-17",
+           "text": "Take enough observations or measurements."
+          },
+          {
+           "code": "C-09-10-G-18",
+           "text": "Record qualitative observations from chemical tests."
+          },
+          {
+           "code": "C-09-10-G-19",
+           "text": "Record observations and measurements with appropriate units."
+          },
+          {
+           "code": "C-09-10-G-20",
+           "text": "Record the results of an experiment."
+          }
+         ]
+        },
+        {
+         "id": "handling-results",
+         "title": "Handling results",
+         "outcomes": [
+          {
+           "code": "C-09-10-G-21",
+           "text": "Process experiment results to reach a conclusion."
+          },
+          {
+           "code": "C-09-10-G-22",
+           "text": "Predict expected results."
+          },
+          {
+           "code": "C-09-10-G-23",
+           "text": "Interpret and evaluate experimental observations."
+          },
+          {
+           "code": "C-09-10-G-24",
+           "text": "Process data for further calculation."
+          },
+          {
+           "code": "C-09-10-G-25",
+           "text": "Present data graphically."
+          },
+          {
+           "code": "C-09-10-G-26",
+           "text": "Analyse and interpret observations and data."
+          }
+         ]
+        },
+        {
+         "id": "evaluating-investigations",
+         "title": "Evaluating investigations",
+         "outcomes": [
+          {
+           "code": "C-09-10-G-27",
+           "text": "Form conclusions justified by evidence."
+          },
+          {
+           "code": "C-09-10-G-28",
+           "text": "Evaluate the quality of observations and data."
+          },
+          {
+           "code": "C-09-10-G-29",
+           "text": "Identify potential sources of error in an experiment."
+          },
+          {
+           "code": "C-09-10-G-30",
+           "text": "Assess limitations of an experimental design."
+          },
+          {
+           "code": "C-09-10-G-31",
+           "text": "Evaluate experimental arrangements and methods."
+          },
+          {
+           "code": "C-09-10-G-32",
+           "text": "Suggest improvements to the apparatus and procedure."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "build": {
+  "builtAt": "2026-10-14T08:09:54.585Z",
+  "model": "claude-agent",
+  "usd": 0,
+  "expectedCodes": 97,
+  "coverage": 1,
+  "missingCodes": [],
+  "counts": {
+   "grades": 1,
+   "units": 6,
+   "topics": 16,
+   "subtopics": 32,
+   "outcomes": 131
+  },
+  "warnings": []
+ }
+}

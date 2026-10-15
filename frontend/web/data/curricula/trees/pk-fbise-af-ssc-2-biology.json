@@ -1,0 +1,635 @@
+{
+ "id": "pk-fbise-af-ssc-2-biology",
+ "region": "PK",
+ "framework": "FBISE Assessment Framework (National Curriculum of Pakistan 2022-23)",
+ "board": "FBISE",
+ "qualification": "SSC-II",
+ "subject": "Biology",
+ "syllabusCode": null,
+ "gradeSystem": "grade",
+ "source": {
+  "urls": [
+   "https://www.fbise.edu.pk/ModelPaper/2025/Assessment%20Frameworks/SSC-II/Final%20Assessment%20Framework%20%2B%20Model%20Question%20Paper%20Biology%20SSC-II.pdf"
+  ],
+  "publisher": "Federal Board of Intermediate and Secondary Education",
+  "licence": "Government publication; structure + our own wording only",
+  "firstExam": "2026"
+ },
+ "grades": [
+  {
+   "grade": "10",
+   "units": [
+    {
+     "id": "g-nervous-coordination",
+     "title": "G: Nervous Coordination",
+     "topics": [
+      {
+       "id": "nervous-system",
+       "title": "Nervous system",
+       "subtopics": [
+        {
+         "id": "the-nervous-system",
+         "title": "The nervous system",
+         "outcomes": [
+          {
+           "code": "B-10-G-01",
+           "text": "Describe what the nervous system is and what it does."
+          },
+          {
+           "code": "B-10-G-02",
+           "text": "Tell the central nervous system from the peripheral nervous system."
+          }
+         ]
+        },
+        {
+         "id": "neurons-and-impulses",
+         "title": "Neurons and impulses",
+         "outcomes": [
+          {
+           "code": "B-10-G-03",
+           "text": "Outline the types of neurons with labelled diagrams."
+          },
+          {
+           "code": "B-10-G-04",
+           "text": "Define a stimulus and give examples."
+          },
+          {
+           "code": "B-10-G-05",
+           "text": "State that nerve impulses are electrical signals passing along neurons."
+          }
+         ]
+        },
+        {
+         "id": "synapses-and-reflex",
+         "title": "Synapses and reflex",
+         "outcomes": [
+          {
+           "code": "B-10-G-06",
+           "text": "Define a synapse and sketch it."
+          },
+          {
+           "code": "B-10-G-07",
+           "text": "Introduce neurotransmitters."
+          },
+          {
+           "code": "B-10-G-08",
+           "text": "Use a diagram to explain the nervous pathway when a hand pulls back from a hot object."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "endocrine-system",
+       "title": "Endocrine system",
+       "subtopics": [
+        {
+         "id": "endocrine-glands-and-hormones",
+         "title": "Endocrine glands and hormones",
+         "outcomes": [
+          {
+           "code": "B-10-G-09",
+           "text": "Explain what the endocrine system is."
+          },
+          {
+           "code": "B-10-G-10",
+           "text": "Name the major endocrine glands, their hormones and functions."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "h-reproduction-and-inheritance",
+     "title": "H: Reproduction and Inheritance",
+     "topics": [
+      {
+       "id": "reproduction",
+       "title": "Reproduction",
+       "subtopics": [
+        {
+         "id": "hormones-and-gametes",
+         "title": "Hormones and gametes",
+         "outcomes": [
+          {
+           "code": "B-10-H-01",
+           "text": "Describe how hormones guide male and female sexual development."
+          },
+          {
+           "code": "B-10-H-02",
+           "text": "Describe gametogenesis and fertilization."
+          }
+         ]
+        },
+        {
+         "id": "asexual-and-sexual-reproduction",
+         "title": "Asexual and sexual reproduction",
+         "outcomes": [
+          {
+           "code": "B-10-H-03",
+           "text": "Describe asexual and sexual reproduction in plants and animals with examples."
+          }
+         ]
+        },
+        {
+         "id": "sex-determination",
+         "title": "Sex determination",
+         "outcomes": [
+          {
+           "code": "B-10-H-04",
+           "text": "Describe how sex is determined in humans."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "inheritance",
+       "title": "Inheritance",
+       "subtopics": [
+        {
+         "id": "chromosomes-and-genetic-terms",
+         "title": "Chromosomes and genetic terms",
+         "outcomes": [
+          {
+           "code": "B-10-H-05",
+           "text": "Sketch the structure of a chromosome."
+          },
+          {
+           "code": "B-10-H-06",
+           "text": "Define genotype, phenotype, allele, homozygous, heterozygous, dominant and recessive."
+          }
+         ]
+        },
+        {
+         "id": "mendel-s-crosses",
+         "title": "Mendel's crosses",
+         "outcomes": [
+          {
+           "code": "B-10-H-07",
+           "text": "Illustrate Mendel's laws using monohybrid and dihybrid crosses."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "i-disease-and-immunity",
+     "title": "I: Disease and Immunity",
+     "topics": [
+      {
+       "id": "diseases",
+       "title": "Diseases",
+       "subtopics": [
+        {
+         "id": "pathogens-and-disease",
+         "title": "Pathogens and disease",
+         "outcomes": [
+          {
+           "code": "B-10-I-01",
+           "text": "Define disease, illness, infection and pathogen."
+          },
+          {
+           "code": "B-10-I-02",
+           "text": "List the four kinds of pathogen and common diseases each causes."
+          }
+         ]
+        },
+        {
+         "id": "antibiotics-and-resistance",
+         "title": "Antibiotics and resistance",
+         "outcomes": [
+          {
+           "code": "B-10-I-03",
+           "text": "Discuss antibiotics."
+          },
+          {
+           "code": "B-10-I-04",
+           "text": "Discuss how bacteria become resistant."
+          },
+          {
+           "code": "B-10-I-10",
+           "text": "Describe how penicillin was discovered."
+          }
+         ]
+        },
+        {
+         "id": "diabetes-and-cancer",
+         "title": "Diabetes and cancer",
+         "outcomes": [
+          {
+           "code": "B-10-I-11",
+           "text": "Define diabetes and its subtypes and explain its effects on the body."
+          },
+          {
+           "code": "B-10-I-12",
+           "text": "Discuss cancer and its effects on the body."
+          }
+         ]
+        },
+        {
+         "id": "viral-disease-covid-19-and-hiv",
+         "title": "Viral disease: Covid-19 and HIV",
+         "outcomes": [
+          {
+           "code": "B-10-I-13",
+           "text": "Narrate Covid-19 and list its harmful effects on the body."
+          },
+          {
+           "code": "B-10-I-14",
+           "text": "Discuss how HIV weakens immunity and over time leads to AIDS."
+          }
+         ]
+        },
+        {
+         "id": "plant-diseases-in-pakistan",
+         "title": "Plant diseases in Pakistan",
+         "outcomes": [
+          {
+           "code": "B-10-I-15",
+           "text": "Explain rust, smut and red rot of sugarcane: effect on yield and treatment."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "immunity",
+       "title": "Immunity",
+       "subtopics": [
+        {
+         "id": "the-immune-system",
+         "title": "The immune system",
+         "outcomes": [
+          {
+           "code": "B-10-I-05",
+           "text": "Define immunity and list what the immune system does."
+          },
+          {
+           "code": "B-10-I-06",
+           "text": "Describe the immune system parts: lymph nodes, immune cells, innate and adaptive immunity, three lines of defence."
+          },
+          {
+           "code": "B-10-I-07",
+           "text": "Describe how blood clots."
+          }
+         ]
+        },
+        {
+         "id": "adaptive-immunity-and-vaccines",
+         "title": "Adaptive immunity and vaccines",
+         "outcomes": [
+          {
+           "code": "B-10-I-08",
+           "text": "State the function of adaptive immunity."
+          },
+          {
+           "code": "B-10-I-09",
+           "text": "Discuss how vaccines boost immunity, with examples."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "j-biotechnology",
+     "title": "J: Biotechnology",
+     "topics": [
+      {
+       "id": "biotechnology",
+       "title": "Biotechnology",
+       "subtopics": [
+        {
+         "id": "introduction-and-food-biotechnology",
+         "title": "Introduction and food biotechnology",
+         "outcomes": [
+          {
+           "code": "B-10-J-01",
+           "text": "Introduce biotechnology."
+          },
+          {
+           "code": "B-10-J-02",
+           "text": "Explain with examples how food biotechnology has advanced agriculture, especially in Pakistan."
+          }
+         ]
+        },
+        {
+         "id": "medical-and-gene-editing-biotechnology",
+         "title": "Medical and gene-editing biotechnology",
+         "outcomes": [
+          {
+           "code": "B-10-J-03",
+           "text": "Explain how medical biotechnology has helped treat diabetes and cancer."
+          },
+          {
+           "code": "B-10-J-04",
+           "text": "State the advantages of genetic editing in medicine and agriculture, with examples."
+          }
+         ]
+        },
+        {
+         "id": "marine-environmental-and-industrial-uses",
+         "title": "Marine, environmental and industrial uses",
+         "outcomes": [
+          {
+           "code": "B-10-J-05",
+           "text": "Describe benefits of marine biotechnology with examples."
+          },
+          {
+           "code": "B-10-J-06",
+           "text": "Describe how bioremediation helps the environment, with an example."
+          },
+          {
+           "code": "B-10-J-07",
+           "text": "Explain industrial biotechnology and its applications with examples."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "k-biostatistics-and-data-handling",
+     "title": "K: Biostatistics and Data Handling",
+     "topics": [
+      {
+       "id": "biostatistics-and-data-handling",
+       "title": "Biostatistics and data handling",
+       "subtopics": [
+        {
+         "id": "biostatistics-and-averages",
+         "title": "Biostatistics and averages",
+         "outcomes": [
+          {
+           "code": "B-10-K-01",
+           "text": "Define biostatistics and its use."
+          },
+          {
+           "code": "B-10-K-02",
+           "text": "Define and calculate mean, median and mode."
+          }
+         ]
+        },
+        {
+         "id": "bar-charts",
+         "title": "Bar charts",
+         "outcomes": [
+          {
+           "code": "B-10-K-03",
+           "text": "Sketch a bar chart for a given set of biological data."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "r-human-physiology",
+     "title": "R: Human Physiology",
+     "topics": [
+      {
+       "id": "digestion",
+       "title": "Digestion",
+       "subtopics": [
+        {
+         "id": "stages-and-the-alimentary-canal",
+         "title": "Stages and the alimentary canal",
+         "outcomes": [
+          {
+           "code": "B-10-R-01",
+           "text": "Describe why ingestion, digestion, absorption, assimilation and egestion are needed."
+          },
+          {
+           "code": "B-10-R-02",
+           "text": "Identify the regions of the alimentary canal and associated organs and describe their structure."
+          },
+          {
+           "code": "B-10-R-03",
+           "text": "Describe swallowing and peristalsis."
+          }
+         ]
+        },
+        {
+         "id": "enzymes-liver-and-villi",
+         "title": "Enzymes, liver and villi",
+         "outcomes": [
+          {
+           "code": "B-10-R-04",
+           "text": "Match enzymes to the alimentary canal regions where they act, with substrates and products."
+          },
+          {
+           "code": "B-10R-05",
+           "text": "State the role of the liver."
+          },
+          {
+           "code": "B-10-R-06",
+           "text": "Describe the structure of a villus with its capillaries and lacteals."
+          }
+         ]
+        },
+        {
+         "id": "gut-disorders",
+         "title": "Gut disorders",
+         "outcomes": [
+          {
+           "code": "B-10-R-07",
+           "text": "State signs, causes, treatment and prevention of diarrhoea, constipation and ulcer."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "circulation",
+       "title": "Circulation",
+       "subtopics": [
+        {
+         "id": "blood-and-transport",
+         "title": "Blood and transport",
+         "outcomes": [
+          {
+           "code": "B-10-R-08",
+           "text": "Describe how blood circulates in the human body."
+          },
+          {
+           "code": "B-10-R-09",
+           "text": "Explain how blood transports materials."
+          },
+          {
+           "code": "B-10-R-10",
+           "text": "Identify organs linked to the blood system and their roles."
+          },
+          {
+           "code": "B-10-R-11",
+           "text": "Identify the components of blood."
+          },
+          {
+           "code": "B-10-R-12",
+           "text": "Name blood cell types and their roles."
+          }
+         ]
+        },
+        {
+         "id": "the-heart-and-its-diseases",
+         "title": "The heart and its diseases",
+         "outcomes": [
+          {
+           "code": "B-10-R-13",
+           "text": "Explain the structure of the heart with a diagram."
+          },
+          {
+           "code": "B-10-R-14",
+           "text": "Explain coronary heart disease, myocardial infarction and angina."
+          },
+          {
+           "code": "B-10-R-15",
+           "text": "Explain how smoking harms the heart."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "urinary-system",
+       "title": "Urinary system",
+       "subtopics": [
+        {
+         "id": "kidney-structure-and-nephron",
+         "title": "Kidney structure and nephron",
+         "outcomes": [
+          {
+           "code": "B-10-R-16",
+           "text": "Identify the organs of the urinary system."
+          },
+          {
+           "code": "B-10-R-17",
+           "text": "Relate kidney structure to its function."
+          },
+          {
+           "code": "B-10-R-18",
+           "text": "State that the nephron is the kidney's excretory unit."
+          },
+          {
+           "code": "B-10-R-19",
+           "text": "Locate nephron parts and relate each to its function."
+          }
+         ]
+        },
+        {
+         "id": "urine-formation-and-kidney-problems",
+         "title": "Urine formation and kidney problems",
+         "outcomes": [
+          {
+           "code": "B-10-R-20",
+           "text": "State that the kidney's main role is forming urine."
+          },
+          {
+           "code": "B-10-R-21",
+           "text": "Describe filtration, reabsorption and secretion in urine formation."
+          },
+          {
+           "code": "B-10-R-22",
+           "text": "Explain osmoregulation and the causes and treatment of kidney stones."
+          },
+          {
+           "code": "B-10-R-23",
+           "text": "Outline causes and treatments of kidney failure."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "respiratory-system",
+       "title": "Respiratory system",
+       "subtopics": [
+        {
+         "id": "breathing",
+         "title": "Breathing",
+         "outcomes": [
+          {
+           "code": "B-10-R-24",
+           "text": "Describe the roles of the air passages and lungs."
+          },
+          {
+           "code": "B-10-R-25",
+           "text": "Describe breathing in terms of rib and diaphragm movement."
+          },
+          {
+           "code": "B-10-R-26",
+           "text": "Compare inspired and expired air."
+          }
+         ]
+        },
+        {
+         "id": "respiratory-diseases",
+         "title": "Respiratory diseases",
+         "outcomes": [
+          {
+           "code": "B-10-R-27",
+           "text": "Discuss bronchitis, emphysema, pneumonia, asthma and lung cancer briefly."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "diseases",
+       "title": "Diseases",
+       "subtopics": [
+        {
+         "id": "types-of-disease-and-allergies",
+         "title": "Types of disease and allergies",
+         "outcomes": [
+          {
+           "code": "B-10-R-28",
+           "text": "Describe infectious and non-infectious diseases with examples."
+          },
+          {
+           "code": "B-10-R-29",
+           "text": "Define zoonotic diseases and give their types."
+          },
+          {
+           "code": "B-10-R-30",
+           "text": "Describe vector-borne diseases with examples."
+          },
+          {
+           "code": "B-10-R-31",
+           "text": "List allergies and some common types."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "build": {
+  "builtAt": "2026-10-14T08:18:54.119Z",
+  "model": "claude-agent",
+  "usd": 0,
+  "expectedCodes": 73,
+  "coverage": 0.9863013698630136,
+  "missingCodes": [
+   "B-12-K-01"
+  ],
+  "counts": {
+   "grades": 1,
+   "units": 6,
+   "topics": 13,
+   "subtopics": 31,
+   "outcomes": 73
+  },
+  "warnings": []
+ }
+}

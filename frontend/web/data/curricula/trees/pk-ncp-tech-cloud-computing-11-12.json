@@ -1,0 +1,922 @@
+{
+ "id": "pk-ncp-tech-cloud-computing-11-12",
+ "region": "PK",
+ "framework": "National Curriculum of Pakistan 2022-23",
+ "board": null,
+ "qualification": "Technical stream",
+ "subject": "Cloud Computing",
+ "syllabusCode": null,
+ "gradeSystem": "grade",
+ "source": {
+  "urls": [
+   "https://ncc.gov.pk/SiteImage/Misc/files/48-Cloud%20Computing%20Fundamentals(1).pdf"
+  ],
+  "publisher": "National Curriculum Council, Ministry of Federal Education and Professional Training",
+  "licence": "Government publication; structure + our own wording only",
+  "firstExam": null
+ },
+ "grades": [
+  {
+   "grade": "11",
+   "units": [
+    {
+     "id": "domain-a-introduction-to-cloud-computing",
+     "title": "Domain A: Introduction to Cloud Computing",
+     "topics": [
+      {
+       "id": "key-concepts-of-cloud-computing",
+       "title": "Key concepts of cloud computing",
+       "subtopics": [
+        {
+         "id": "what-cloud-computing-is",
+         "title": "What cloud computing is",
+         "outcomes": [
+          {
+           "code": "CC-11-A-01",
+           "text": "Define cloud computing."
+          },
+          {
+           "code": "CC-11-A-02",
+           "text": "Explain the basic ideas behind cloud computing."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "evolution-of-cloud-computing",
+       "title": "Evolution of cloud computing",
+       "subtopics": [
+        {
+         "id": "history-and-benefits",
+         "title": "History and benefits",
+         "outcomes": [
+          {
+           "code": "CC-11-A-03",
+           "text": "Trace milestones behind cloud: virtualization, grid computing, rise of providers."
+          },
+          {
+           "code": "CC-11-A-04",
+           "text": "Describe how cloud gives scale, flexibility, savings and global access."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "domain-b-architecture",
+     "title": "Domain B: Architecture",
+     "topics": [
+      {
+       "id": "layers-of-connectivity-and-the-cloud",
+       "title": "Layers of connectivity and the cloud",
+       "subtopics": [
+        {
+         "id": "servers-and-databases",
+         "title": "Servers and databases",
+         "outcomes": [
+          {
+           "code": "CC-11-B-01",
+           "text": "Identify the layers of internet connectivity between client and server."
+          },
+          {
+           "code": "CC-11-B-02",
+           "text": "Explain the role of servers in modern computing."
+          },
+          {
+           "code": "CC-11-B-03",
+           "text": "Tell server types apart: file, mail, web, database, DNS."
+          },
+          {
+           "code": "CC-11-B-04",
+           "text": "Compare database types: relational, non-relational, vector, key-value, graph."
+          }
+         ]
+        },
+        {
+         "id": "network-models-and-protocols",
+         "title": "Network models and protocols",
+         "outcomes": [
+          {
+           "code": "CC-11-B-05",
+           "text": "Define the OSI model."
+          },
+          {
+           "code": "CC-11-B-06",
+           "text": "Understand transport protocols TCP and UDP."
+          },
+          {
+           "code": "CC-11-B-07",
+           "text": "Understand application protocols such as HTTP and SMTP."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "the-cloud-computing-model",
+       "title": "The cloud computing model",
+       "subtopics": [
+        {
+         "id": "cloud-service-providers",
+         "title": "Cloud service providers",
+         "outcomes": [
+          {
+           "code": "CC-11-B-08",
+           "text": "Explore major providers such as AWS, GCP and Azure."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "domain-c-cloud-products",
+     "title": "Domain C: Cloud Products",
+     "topics": [
+      {
+       "id": "collaboration-and-productivity-saas-tools",
+       "title": "Collaboration and productivity SaaS tools",
+       "subtopics": [
+        {
+         "id": "notion-and-canva",
+         "title": "Notion and Canva",
+         "outcomes": [
+          {
+           "code": "CC-11-C-01",
+           "text": "Describe the role of productivity tools at work."
+          },
+          {
+           "code": "CC-11-C-02",
+           "text": "Understand Notion's interface, features and workspace organisation."
+          },
+          {
+           "code": "CC-11-C-03",
+           "text": "Use Notion for planning, tasks and progress with boards, lists and calendars."
+          },
+          {
+           "code": "CC-11-C-04",
+           "text": "Collaborate in shared Notion documents using comments, mentions and history."
+          },
+          {
+           "code": "CC-11-C-05",
+           "text": "Use Canva templates and elements to make professional graphics."
+          }
+         ]
+        },
+        {
+         "id": "collaborative-presentations",
+         "title": "Collaborative presentations",
+         "outcomes": [
+          {
+           "code": "CC-11-C-06",
+           "text": "Discuss the purpose and benefits of making presentations together."
+          },
+          {
+           "code": "CC-11-C-07",
+           "text": "Use Pitch.com slides, layouts and interactive elements to build presentations."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "communication-apps",
+       "title": "Communication apps",
+       "subtopics": [
+        {
+         "id": "slack-and-discord",
+         "title": "Slack and Discord",
+         "outcomes": [
+          {
+           "code": "CC-11-C-08",
+           "text": "Describe why effective online communication and collaboration matter."
+          },
+          {
+           "code": "CC-11-C-09",
+           "text": "Navigate Slack and Discord: channels, direct messages, settings."
+          },
+          {
+           "code": "CC-11-C-10",
+           "text": "Understand servers, channels and roles in Discord and workspaces in Slack."
+          },
+          {
+           "code": "CC-11-C-11",
+           "text": "Show teamwork through file sharing, brainstorming and project coordination."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "file-storage-and-sharing-apps",
+       "title": "File storage and sharing apps",
+       "subtopics": [
+        {
+         "id": "dropbox-and-wetransfer",
+         "title": "Dropbox and WeTransfer",
+         "outcomes": [
+          {
+           "code": "CC-11-C-12",
+           "text": "Define file sharing and why it matters for digital collaboration."
+          },
+          {
+           "code": "CC-11-C-13",
+           "text": "Navigate platforms like Dropbox and WeTransfer."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "workspace-tools-for-organizations",
+       "title": "Workspace tools for organizations",
+       "subtopics": [
+        {
+         "id": "google-workspace-and-microsoft-365",
+         "title": "Google Workspace and Microsoft 365",
+         "outcomes": [
+          {
+           "code": "CC-11-C-14",
+           "text": "Explain the purpose and features of Google Workspace and Microsoft 365."
+          },
+          {
+           "code": "CC-11-C-15",
+           "text": "Use Google Meet for live meetings and discussions."
+          },
+          {
+           "code": "CC-11-C-16",
+           "text": "Create, edit and share documents online with Google Docs and Sheets."
+          },
+          {
+           "code": "CC-11-C-17",
+           "text": "Compare collaboration features across Google Workspace, Office 365, Notion, Pitch, Discord and Dropbox."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "domain-d-serverless",
+     "title": "Domain D: Serverless",
+     "topics": [
+      {
+       "id": "paas-and-serverless-model",
+       "title": "PaaS and serverless model",
+       "subtopics": [
+        {
+         "id": "serverless-and-paas-platforms",
+         "title": "Serverless and PaaS platforms",
+         "outcomes": [
+          {
+           "code": "CC-11-D-01",
+           "text": "Define serverless architecture and its gains in cost, scale and upkeep."
+          },
+          {
+           "code": "CC-11-D-02",
+           "text": "List modern PaaS platforms: Replit, Heroku, Railway, Firebase, Vercel, Supabase."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "full-stack-app-with-supabase",
+       "title": "Full stack app with Supabase",
+       "subtopics": [
+        {
+         "id": "supabase-setup",
+         "title": "Supabase setup",
+         "outcomes": [
+          {
+           "code": "CC-11-D-03",
+           "text": "Explore the Supabase platform and its features."
+          },
+          {
+           "code": "CC-11-D-04",
+           "text": "Create a Supabase project and set up a PostgreSQL database."
+          }
+         ]
+        },
+        {
+         "id": "web-app-with-supabase",
+         "title": "Web app with Supabase",
+         "outcomes": [
+          {
+           "code": "CC-11-D-05",
+           "text": "Build a simple web page with HTML, CSS and JavaScript."
+          },
+          {
+           "code": "CC-11-D-06",
+           "text": "Connect Supabase to a web app with JavaScript."
+          },
+          {
+           "code": "CC-11-D-07",
+           "text": "Explain Supabase parts: database, authentication, edge functions, storage."
+          }
+         ]
+        },
+        {
+         "id": "task-manager-project",
+         "title": "Task manager project",
+         "outcomes": [
+          {
+           "code": "CC-11-D-08",
+           "text": "Build a task manager with sign-up, Supabase storage, a task dashboard and real-time updates."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "python-apps-with-replit",
+       "title": "Python apps with Replit",
+       "subtopics": [
+        {
+         "id": "replit-and-flask",
+         "title": "Replit and Flask",
+         "outcomes": [
+          {
+           "code": "CC-11-D-09",
+           "text": "Set up a development environment on Replit."
+          },
+          {
+           "code": "CC-11-D-10",
+           "text": "Explain serverless functions, their benefits and use cases."
+          },
+          {
+           "code": "CC-11-D-11",
+           "text": "Use Flask to handle a basic HTTP request in Python."
+          }
+         ]
+        },
+        {
+         "id": "replit-database-and-crud-api",
+         "title": "Replit database and CRUD API",
+         "outcomes": [
+          {
+           "code": "CC-11-D-12",
+           "text": "Store key-value data in the Replit database."
+          },
+          {
+           "code": "CC-11-D-13",
+           "text": "Build a task management CRUD API with Flask."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "domain-e-virtual-machines",
+     "title": "Domain E: Virtual Machines",
+     "topics": [
+      {
+       "id": "exposing-a-virtual-machine-to-the-internet",
+       "title": "Exposing a virtual machine to the internet",
+       "subtopics": [
+        {
+         "id": "vpc-and-firewall-rules",
+         "title": "VPC and firewall rules",
+         "outcomes": [
+          {
+           "code": "CC-11-E-05",
+           "text": "Understand configuring a virtual private cloud."
+          },
+          {
+           "code": "CC-11-E-06",
+           "text": "Set firewall rules and routing in a VPC, such as allowing port 80."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "domain-h-cloud-in-production",
+     "title": "Domain H: Cloud In Production",
+     "topics": [
+      {
+       "id": "scaling-cloud-applications",
+       "title": "Scaling cloud applications",
+       "subtopics": [
+        {
+         "id": "scalability",
+         "title": "Scalability",
+         "outcomes": [
+          {
+           "code": "CC-11-H-01",
+           "text": "Discuss why scalability matters for web apps."
+          },
+          {
+           "code": "CC-11-H-02",
+           "text": "Compare vertical and horizontal scaling."
+          },
+          {
+           "code": "CC-11-H-03",
+           "text": "Discuss gains of moving to a full cloud platform for features and scale."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "advanced-cloud-services-for-scalability",
+       "title": "Advanced cloud services for scalability",
+       "subtopics": [
+        {
+         "id": "scalable-architecture-on-gcp",
+         "title": "Scalable architecture on GCP",
+         "outcomes": [
+          {
+           "code": "CC-11-H-04",
+           "text": "List key cloud services: compute, load balancing, storage, databases."
+          },
+          {
+           "code": "CC-11-H-05",
+           "text": "Design a scalable web app architecture with GCP services."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "12",
+   "units": [
+    {
+     "id": "domain-a-introduction-to-cloud-computing",
+     "title": "Domain A: Introduction to Cloud Computing",
+     "topics": [
+      {
+       "id": "delivery-models-of-cloud",
+       "title": "Delivery models of cloud",
+       "subtopics": [
+        {
+         "id": "iaas-paas-and-saas",
+         "title": "IaaS, PaaS and SaaS",
+         "outcomes": [
+          {
+           "code": "CC-12-A-01",
+           "text": "Define IaaS, PaaS and SaaS."
+          },
+          {
+           "code": "CC-12-A-02",
+           "text": "Tell IaaS, PaaS and SaaS apart."
+          },
+          {
+           "code": "CC-12-A-03",
+           "text": "Explain what each of IaaS, PaaS and SaaS provides."
+          },
+          {
+           "code": "CC-12-A-04",
+           "text": "Describe scalability, flexibility and cost features of each model."
+          }
+         ]
+        },
+        {
+         "id": "using-iaas-paas-and-saas",
+         "title": "Using IaaS, PaaS and SaaS",
+         "outcomes": [
+          {
+           "code": "CC-12-A-05",
+           "text": "Show how IaaS gives cost savings, on-demand scale and disaster recovery."
+          },
+          {
+           "code": "CC-12-A-06",
+           "text": "Explain how PaaS speeds development, teamwork and release."
+          },
+          {
+           "code": "CC-12-A-07",
+           "text": "Explain how SaaS gives easy access, less upkeep and fast rollout."
+          },
+          {
+           "code": "CC-12-A-08",
+           "text": "List ways PaaS is used to build, test and deploy apps."
+          },
+          {
+           "code": "CC-12-A-09",
+           "text": "Explain how SaaS serves email, CRM, ERP and similar business needs."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "cloud-strategies-public-private-hybrid",
+       "title": "Cloud strategies: public, private, hybrid",
+       "subtopics": [
+        {
+         "id": "public-and-private-cloud",
+         "title": "Public and private cloud",
+         "outcomes": [
+          {
+           "code": "CC-12-A-10",
+           "text": "List considerations for public cloud: security, privacy, compliance."
+          },
+          {
+           "code": "CC-12-A-11",
+           "text": "Explain the private cloud idea."
+          },
+          {
+           "code": "CC-12-A-12",
+           "text": "Describe private cloud benefits for organisations."
+          },
+          {
+           "code": "CC-12-A-13",
+           "text": "Compare on-premises and hosted private cloud."
+          }
+         ]
+        },
+        {
+         "id": "hybrid-cloud-and-workload-placement",
+         "title": "Hybrid cloud and workload placement",
+         "outcomes": [
+          {
+           "code": "CC-12-A-14",
+           "text": "Explain the hybrid cloud model."
+          },
+          {
+           "code": "CC-12-A-15",
+           "text": "Describe the gains from combining public and private cloud."
+          },
+          {
+           "code": "CC-12-A-16",
+           "text": "Plan which workloads go to public or private cloud by performance, security and cost."
+          },
+          {
+           "code": "CC-12-A-17",
+           "text": "Explain how data sensitivity, rules, performance and budget affect deployment choice."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "domain-b-architecture",
+     "title": "Domain B: Architecture",
+     "topics": [
+      {
+       "id": "virtualization",
+       "title": "Virtualization",
+       "subtopics": [
+        {
+         "id": "virtualization-concepts",
+         "title": "Virtualization concepts",
+         "outcomes": [
+          {
+           "code": "CC-12-B-01",
+           "text": "Define virtualization."
+          },
+          {
+           "code": "CC-12-B-02",
+           "text": "List advantages of virtual over physical computing."
+          },
+          {
+           "code": "CC-12-B-03",
+           "text": "List virtualization types: server, storage, network."
+          }
+         ]
+        },
+        {
+         "id": "virtualization-on-gcp",
+         "title": "Virtualization on GCP",
+         "outcomes": [
+          {
+           "code": "CC-12-B-04",
+           "text": "Explore the GCP console and list compute, storage and network virtualization services."
+          },
+          {
+           "code": "CC-12-B-05",
+           "text": "Design a scalable web application with GCP services."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "domain-e-virtual-machines",
+     "title": "Domain E: Virtual Machines",
+     "topics": [
+      {
+       "id": "run-virtual-machines-on-google-cloud",
+       "title": "Run virtual machines on Google Cloud",
+       "subtopics": [
+        {
+         "id": "compute-engine-vms",
+         "title": "Compute Engine VMs",
+         "outcomes": [
+          {
+           "code": "CC-12-E-01",
+           "text": "Compare GCP compute options: Compute Engine, App Engine, Cloud Functions."
+          },
+          {
+           "code": "CC-12-E-02",
+           "text": "Set up virtual machines in Compute Engine: instances, images, snapshots."
+          },
+          {
+           "code": "CC-12-E-03",
+           "text": "Create and manage VMs to meet storage, CPU, network, memory and OS needs."
+          },
+          {
+           "code": "CC-12-E-04",
+           "text": "Explain how to connect to a VM with SSH."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "domain-f-networks-on-the-cloud",
+     "title": "Domain F: Networks On the Cloud",
+     "topics": [
+      {
+       "id": "networking-on-gcp",
+       "title": "Networking on GCP",
+       "subtopics": [
+        {
+         "id": "vpc-addressing-and-dns",
+         "title": "VPC, addressing and DNS",
+         "outcomes": [
+          {
+           "code": "CC-12-F-01",
+           "text": "Define VPCs and their role in cloud networking."
+          },
+          {
+           "code": "CC-12-F-02",
+           "text": "Describe IP addresses, subnets and firewall rules in a VPC."
+          },
+          {
+           "code": "CC-12-F-04",
+           "text": "Use Cloud DNS for domain management."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "securing-a-vm-and-load-balancing",
+       "title": "Securing a VM and load balancing",
+       "subtopics": [
+        {
+         "id": "load-balancing-and-ssl",
+         "title": "Load balancing and SSL",
+         "outcomes": [
+          {
+           "code": "CC-12-F-03",
+           "text": "Explore GCP load balancing solutions."
+          },
+          {
+           "code": "CC-12-F-05",
+           "text": "Compare GCP load balancer types: application and network."
+          },
+          {
+           "code": "CC-12-F-06",
+           "text": "Connect an application load balancer to a VM and route traffic to its port."
+          },
+          {
+           "code": "CC-12-F-07",
+           "text": "Create and manage SSL certificates with certificate management."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "domain-g-storage",
+     "title": "Domain G: Storage",
+     "topics": [
+      {
+       "id": "storage-options-on-gcp",
+       "title": "Storage options on GCP",
+       "subtopics": [
+        {
+         "id": "comparing-storage-services",
+         "title": "Comparing storage services",
+         "outcomes": [
+          {
+           "code": "CC-12-G-01",
+           "text": "Explore GCP storage: Cloud Storage, Cloud SQL, Firestore, persistent disks."
+          },
+          {
+           "code": "CC-12-G-02",
+           "text": "Compare object storage, databases, NoSQL, wide-column stores and persistent disks."
+          },
+          {
+           "code": "CC-12-G-03",
+           "text": "Attach persistent disks to virtual machines."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "cloud-storage-for-objects",
+       "title": "Cloud Storage for objects",
+       "subtopics": [
+        {
+         "id": "buckets-and-objects",
+         "title": "Buckets and objects",
+         "outcomes": [
+          {
+           "code": "CC-12-G-04",
+           "text": "Create buckets, upload objects and set access controls."
+          },
+          {
+           "code": "CC-12-G-05",
+           "text": "Explore versioning, lifecycle management and access control."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "application-data-management-on-gcp",
+       "title": "Application data management on GCP",
+       "subtopics": [
+        {
+         "id": "databases-on-gcp",
+         "title": "Databases on GCP",
+         "outcomes": [
+          {
+           "code": "CC-12-G-06",
+           "text": "List GCP database types, relational and NoSQL."
+          },
+          {
+           "code": "CC-12-G-07",
+           "text": "Set up a Cloud SQL instance."
+          },
+          {
+           "code": "CC-12-G-08",
+           "text": "Discuss Cloud SQL engines: MySQL, PostgreSQL, SQL Server."
+          },
+          {
+           "code": "CC-12-G-09",
+           "text": "Connect to a database from a VM using IAM roles."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "domain-h-cloud-in-production",
+     "title": "Domain H: Cloud In Production",
+     "topics": [
+      {
+       "id": "containerization-concepts",
+       "title": "Containerization concepts",
+       "subtopics": [
+        {
+         "id": "containers-and-docker-images",
+         "title": "Containers and Docker images",
+         "outcomes": [
+          {
+           "code": "CC-12-H-01",
+           "text": "Define containers and their role in app development."
+          },
+          {
+           "code": "CC-12-H-02",
+           "text": "Compare containers with virtual machines."
+          },
+          {
+           "code": "CC-12-H-03",
+           "text": "Create Docker images."
+          },
+          {
+           "code": "CC-12-H-04",
+           "text": "Explore Docker image parts: layers, metadata, filesystem."
+          },
+          {
+           "code": "CC-12-H-05",
+           "text": "Write a simple Dockerfile."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "build-and-deploy-images-on-gcp",
+       "title": "Build and deploy images on GCP",
+       "subtopics": [
+        {
+         "id": "cloud-build-and-image-repository",
+         "title": "Cloud Build and image repository",
+         "outcomes": [
+          {
+           "code": "CC-12-H-06",
+           "text": "Define Google Cloud Build and its advantages."
+          },
+          {
+           "code": "CC-12-H-07",
+           "text": "Write a Cloud Build file to build a Docker image."
+          },
+          {
+           "code": "CC-12-H-08",
+           "text": "Create Cloud Build triggers, manual or on branch push."
+          },
+          {
+           "code": "CC-12-H-09",
+           "text": "Create a repository to store Docker images."
+          },
+          {
+           "code": "CC-12-H-10",
+           "text": "Connect a GitHub repository and build an image on GCP."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "deploying-with-cloud-run",
+       "title": "Deploying with Cloud Run",
+       "subtopics": [
+        {
+         "id": "cloud-run",
+         "title": "Cloud Run",
+         "outcomes": [
+          {
+           "code": "CC-12-H-11",
+           "text": "Define Cloud Run and the advantages of a managed service."
+          },
+          {
+           "code": "CC-12-H-12",
+           "text": "Create a Cloud Run service from a stored image."
+          },
+          {
+           "code": "CC-12-H-13",
+           "text": "Explore deployment options: scaling and concurrency."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "kubernetes-overview",
+       "title": "Kubernetes overview",
+       "subtopics": [
+        {
+         "id": "container-orchestration-and-kubernetes",
+         "title": "Container orchestration and Kubernetes",
+         "outcomes": [
+          {
+           "code": "CC-12-H-14",
+           "text": "Define container orchestration and how it eases deployment and scaling."
+          },
+          {
+           "code": "CC-12-H-15",
+           "text": "Explain Kubernetes as open-source orchestration."
+          },
+          {
+           "code": "CC-12-H-16",
+           "text": "Explore Kubernetes parts: nodes, pods, deployments, services."
+          },
+          {
+           "code": "CC-12-H-17",
+           "text": "Weigh Kubernetes against managed services like Cloud Run."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "build": {
+  "builtAt": "2026-10-14T08:35:16.954Z",
+  "model": "claude-agent",
+  "usd": 0,
+  "expectedCodes": 108,
+  "coverage": 1,
+  "missingCodes": [],
+  "counts": {
+   "grades": 2,
+   "units": 12,
+   "topics": 27,
+   "subtopics": 35,
+   "outcomes": 108
+  },
+  "warnings": []
+ }
+}

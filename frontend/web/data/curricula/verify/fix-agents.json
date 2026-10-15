@@ -1,0 +1,416 @@
+[
+ {
+  "id": "cie-alevel-biology-9700-2025-2027",
+  "done": true,
+  "coverage": "100.0% of 44 codes \u00b7 2 grades 19 units 44 topics 50 lessons 259 outcomes (verify: meanRecall 0.998, verbatim 0.86, 0 low-recall)",
+  "rowsBefore": 0,
+  "rowsAfter": 259,
+  "fixed": "Before this there was no rows file, only a tree from the AI extractor. A Level topics 12-19 had one learning outcome (LO) per subsection, and AS topics 5-11 were squeezed into summary sentences. I parsed pages 15-48 of the syllabus into all 259 numbered LOs: AS topics 1-11 and A Level topics 12-19, with sub-bullets kept inside their statement. 12.2 now has all 14 LOs, 16.1 has 7 and 16.2 has 7. 16.1.1 keeps its command word 'Explain the meanings of the terms haploid (n) and diploid (2n)'. Units are the printed topics ('12 Energy and respiration'), topics are the printed subsections ('12.2 Respiration'), and each subsection's code is on its first row. Subsections with more than 8 LOs are split into 'Title (1 of 2)' lessons.",
+  "leftOver": "Section 5 'Practical assessment' (Paper 3/5 skills) is not included because it is assessment guidance, not section 3 subject content. The audit noted it was absent."
+ },
+ {
+  "id": "cie-alevel-chemistry-9701-2025-2027",
+  "done": true,
+  "coverage": "100.0% of 84 codes \u00b7 2 grades 8 units 37 topics 96 lessons 351 outcomes (verify: meanRecall 0.991, 0 low-recall)",
+  "rowsBefore": 364,
+  "rowsAfter": 351,
+  "fixed": "I rewrote all 37 topics as one row per numbered learning outcome, taken from the syllabus wording with (a)/(b)/(i) sub-points inside. Every 'recall the reactions (reagents and conditions)\u2026' statement now keeps its reagents, conditions and catalysts in full. Examples: 14.1, 14.2, 15.1 (HX, KCl/conc H2SO4, PCl3, PCl5, SOCl2), 31.1 (AlCl3/AlBr3), 33.1 (hot alkaline KMnO4) and 12.1 ('triple bond strength and lack of polarity'). I fixed PDF artefacts by hand: lost subscripts and charges (NO\u2083\u207b, CO\u2083\u00b2\u207b, MnO\u2084\u207b, Cl2, AlCl3 and others), the standard-state symbol and equations in 5.1, 23.3, 23.4 and 24.2 (Gibbs, Nernst, \u0394G\u29b5 = \u2013nE\u29b5cell F), the 27.1 statements that had merged, and the section titles cut off in 10.1, 27.1, 28.1 and 28.2. AS covers topics 1-22 and A Level covers 23-37, with units split into Physical, Inorganic, Organic and Analysis.",
+  "leftOver": "Equations written as diagrams in the PDF (the electrons-in-boxes example in 1.3.7, the organic functional-group table) are referred to in words only."
+ },
+ {
+  "id": "cie-alevel-history-9489-2026",
+  "done": true,
+  "coverage": "no codes in source \u00b7 2 grades 7 units 27 topics 105 lessons 423 outcomes (verify: meanRecall 0.983, verbatim 0.99)",
+  "rowsBefore": 0,
+  "rowsAfter": 423,
+  "fixed": "Before this there was no rows file, only a tree from the extractor. I rebuilt it from the 2026 PDF. Each AS option and each Paper 4 depth study is a unit, topics and themes use their printed titles and dates, each lesson is one printed key question, and each outcome is one content bullet, word for word. Wrong titles are corrected: 'France, 1774\u20131814', 'Liberalism and nationalism in Germany, 1815\u201371', 'The history of the USA, 1820\u20131941', 'The origins of the Civil War, 1820\u201361', 'The Gilded Age and Progressive Era, 1870s to 1920' and 'The Great Crash, the Great Depression and the New Deal policies, 1920\u201341'. I added the missing AS International option: Empire 1870\u20131919, the League of Nations in the 1920s and in the 1930s, and China and Japan 1912\u201345. All four key questions per topic and theme are restored. Paper 3 Topics 1-3 carry their over-arching key questions plus the full Content and Key approaches lists, and 'Nazi anti-Semitism and persecution of the Jews, 1933\u201341' is no longer under an invented heading. The invented Paper 3 and Paper 4 subheadings are gone, so outcomes sit under their real key questions.",
+  "leftOver": ""
+ },
+ {
+  "id": "us-ap-us-government-and-politics",
+  "done": true,
+  "coverage": "100.0% of 210 codes \u00b7 1 grades 6 units 62 topics 65 lessons 238 outcomes (verify: meanRecall 0.996, verbatim 0.86, 0 low-recall)",
+  "rowsBefore": 210,
+  "rowsAfter": 238,
+  "fixed": "All 210 learning objective and essential knowledge statements now carry the CED text, read from the reading-order PDF, with their i./ii. lists kept. I re-spaced the glued text in 2.2.A.3, 2.3.A.1, 2.7.A.1, 2.9.A.2, 2.11.B.1, 2.13.A.1 and 5.9.A.1. 4.2.A.1 now names 'social environments (including civic and religious organizations)'. I added a unit 'Required Foundational Documents and Supreme Court Cases' with all 13 required documents, including 'Letter from a Birmingham Jail', Adam Smith's 'The Wealth of Nations' and the Emancipation Proclamation. The same unit has all 14 required cases with the CED's holding text, from Marbury v. Madison to Citizens United, plus the requirement to learn each case's facts, issue, holding, reasoning, decision and majority opinion. Unit, topic and lesson structure is kept from the previous rows.",
+  "leftOver": "The cases and documents are in their own unit rather than spread across units. The CED's cross-reference table lists several units per case, and its columns do not extract reliably."
+ },
+ {
+  "id": "cie-alevel-geography-9696-2025-2026",
+  "done": true,
+  "coverage": "no codes in source \u00b7 2 grades 4 units 14 topics 56 lessons 162 outcomes (verify: meanRecall 0.996, verbatim 0.97, 0 low-recall)",
+  "rowsBefore": 0,
+  "rowsAfter": 162,
+  "fixed": "Before this there was no rows file. I rebuilt the course from pages 19-31 with one row per printed content statement, in the syllabus wording, and every case study kept. Units are Paper 1 to Paper 4: Papers 1 and 2 are AS, Papers 3 and 4 are A Level. I added the missing Topic 6 Settlement dynamics (6.1-6.4 with its case studies). Headings and numbering now follow the syllabus: 2.3 Weather processes and phenomena, 2.4 The human impact (there is no 2.5), options 7 Tropical, 8 Coastal and 9 Hazardous (9.2 Hazards resulting from mass movements), and the correct 3.x, 4.x and 5.x titles. The invented subtopic titles are gone.",
+  "leftOver": ""
+ },
+ {
+  "id": "pk-ncp-geography-6-8",
+  "done": true,
+  "coverage": "100.0% of 66 codes \u00b7 3 grades 9 units 33 topics 33 lessons 67 outcomes (verify: meanRecall 0.972, verbatim 0.94)",
+  "rowsBefore": 0,
+  "rowsAfter": 67,
+  "fixed": "Before this there was no rows file. All 66 SLOs are now copied exactly, with the bracketed topics, provincial notes and original command words kept. Examples: G-06-A-05 'Recall the differences\u2026', G-07-A-04 '(excessive agriculture)', G-08-A-01 'Construct arguments\u2026 (earthquakes, river systems, water cycle, rock cycle, mineral resources)', G-08-A-02 with its purpose clause, and G-06-C-02 'Understand and describe\u2026'. Statements split across pages were joined and checked against the -layout text. I added the unlabelled statement 'Examine how weather and climate affect the processes of the earth.'; its x-position in the layout puts it in the Grade 8 column. Grades come from the codes and the column positions. Topic headings were read off page images: Earth Processes & Patterns, Weather & Climate, Role of Science and Technology in Economy, Environmental Changes, Managing & Changing Environment, and Patterns of Global Economic Interactions. This fixes the cut-off 'Environmental Chan' and 'Managin'.",
+  "leftOver": "Four statements that run across pages show low recall in verify because of how the extracted text interleaves. The text was checked against the layout and is exact."
+ },
+ {
+  "id": "cie-igcse-islamiyat-0493-2026-2027",
+  "done": true,
+  "coverage": "no codes in source \u00b7 1 grades 2 units 8 topics 19 lessons 93 outcomes (verify: meanRecall 0.947)",
+  "rowsBefore": 0,
+  "rowsAfter": 93,
+  "fixed": "Before this there was no rows file, and the old course covered only Paper 2 Topic 4. Both papers and all 8 topics are now present, with the 'Candidates should study' bullets and the 'should be able to/know' expectations as printed. Paper 1 has: 1 Major themes of the Qur'an, with the 3 theme groups and all 15 set passages from Appendix 1 (Sura 2.255 \u2026 Sura 108); 2 History and importance of the Qur'an; 3 Life and importance of the Prophet; 4 The first Islamic community. Paper 2 has: 1 Major teachings in the Hadiths, with all 20 set Hadiths from Appendix 2 in full; 2 History and importance of the Hadiths; 3 The Rightly Guided Caliphs; 4 Articles of Faith and Pillars, all six articles, jihad and the five pillars with every salat sub-point.",
+  "leftOver": "The Arabic text of the passages is not included; the PDF's Arabic font extracts as scrambled text. Passages are named by sura and verse reference."
+ },
+ {
+  "id": "us-ap-cybersecurity",
+  "done": true,
+  "coverage": "us-ap-cybersecurity: 100.0% of 414 codes \u00b7 1 grades 6 units 29 topics 81 lessons 430 outcomes",
+  "rowsBefore": 0,
+  "rowsAfter": 430,
+  "fixed": "There was no rows file before: the old tree came from the model path and had 414 outcomes. I rebuilt the course from the CED reading-order text. There is one row per learning objective and one per essential-knowledge statement, all printed as written: 'Identify', 'Determine' and the other command words are kept, and so are examples, bullet lists and the illustrative examples. EK text that runs onto the next page, where the LO is reprinted, is joined back onto the right EK. Figure captions and unit-opener prose are removed. Nine EKs had glued words in the PDF (3.5.C.2, 4.2.A.3, 4.2.B.7, 4.2.D.1/3/5, 5.1.B.2, 5.2.D.2, 5.5.A.3) and are now spaced by hand. The missing Course Skills unit is added: skill categories 1 to 4, skills 1.A to 4.D. Topic titles are now in full, e.g. '2.2 Physical Vulnerabilities and Attacks' and '5.1 Application and Data Vulnerabilities and Attacks'. All four audited distortions are fixed: 1.1.A and 1.2.A say 'Identify', 5.4.A says 'Determine', and 5.6.C.1 keeps the honeypot sentence. verify: verbatim 0.95, mean recall 0.995, no code mismatches.",
+  "leftOver": "verify flags one low-recall row, 5.2.A.4. Its PII/PHI/PCI bullets carry on onto the next page in the PDF; the row text is correct."
+ },
+ {
+  "id": "us-ap-european-history",
+  "done": true,
+  "coverage": "us-ap-european-history: 100.0% of 338 codes \u00b7 1 grades 9 units 88 topics 109 lessons 447 outcomes",
+  "rowsBefore": 339,
+  "rowsAfter": 447,
+  "fixed": "The course is rebuilt from the CED. Every KC statement is now word for word: reading-order text, de-glued against the layout text, with no command words added. All 101 unit learning objectives (Unit N: Learning Objective A\u2013P) are added as rows in the topics where they are printed. An LO that is printed under two topics (2B, 3C) appears in both. The 9 missing synthesis topics are added, each with its LO: 1.11, 2.8, 3.8, 4.7, 5.9, 6.10, 7.9, 8.11 and 9.15 (printed in the CED as 'Continuity and Change in the 20th and 21st Centuries'). KCs are placed in the topic where they first appear, so the higher-level KCs sit in each unit's contextualization topic. The dropped specifics are back, e.g. the Little Ice Age and Churchill. Split statements keep their printed codes (KC-1.3.IV.i/.ii, KC-1.3.IV.B.i/.ii, KC-4.2.I.D.i/.ii, KC-4.3.I.i/.ii, KC-4.2.V.D.i/.ii). KC-3.5.I.C is added; the PDF prints it as 'IKC-3.5.I.C'. Teacher guidance that had leaked into four KC texts is removed.",
+  "leftOver": "verify lists 5 base codes as notInCourse (KC-1.3.IV, KC-1.3.IV.B, KC-4.2.I.D, KC-4.3.I, KC-4.2.V.D). The CED prints these only as .i/.ii parts, which the course carries. from-rows counts them as covered (100%)."
+ },
+ {
+  "id": "cie-igcse-computer-science-0265-2029",
+  "done": true,
+  "coverage": "cie-igcse-computer-science-0265-2029: 89.2% of 204 codes \u00b7 1 grades 11 units 30 topics 52 lessons 183 outcomes; MISSING (22): 1.4\u20131.17.4 (Python 3.10 guide numbering only)",
+  "rowsBefore": 0,
+  "rowsAfter": 183,
+  "fixed": "There was no rows file before. The course is rebuilt from the layout text of subject content pages 11\u201327. There is one row per statement (183) with codes as printed. Each row keeps its (a)\u2013(i) sub-points, bullets and printed limits and notes, e.g. 'Logic circuits will be limited to a maximum of three inputs' and 'Candidates will not be required to create or interpret a Huffman tree'. All 29 LOs the audit found missing are now present, including 7.2.1/7.2.2 quantum computers, 1.1.9, 1.1.16, 1.3.4 (RLE/Huffman), 2.2.4/2.2.5 (von Neumann, FDE), 3.4.3/3.4.4 (HTTP/HTTPS), 4.1.5 (ARQ), 6.1.x, 7.1.1, 9.1.1 and 11.2.1. The audited distortions are fixed: 5.2.4 now reads 'Explain the advantages and disadvantages\u2026 and identify the most appropriate'; 5.1.4 has all five (a)\u2013(e); 4.1.2 includes the parity block check. Python-guide codes no longer clash with syllabus numbering. verify: verbatim 0.92, recall 0.997.",
+  "leftOver": "I left out the Python 3.10 guide (pp. 31\u201348, under 'Details of the assessment'). It is reference material on how code appears in the exam, not subject content, and its 1.1\u20131.17 numbering collides with syllabus codes. Its 22 codes are the only ones missing. verify also lists section codes 1.1, 2.1\u2026 as notInCourse, because statements carry the full 1.1.x codes."
+ },
+ {
+  "id": "cie-igcse-history-0470-2024-2026",
+  "done": true,
+  "coverage": "cie-igcse-history-0470-2024-2026: no codes in source \u00b7 1 grades 7 units 37 topics 62 lessons 241 outcomes",
+  "rowsBefore": 0,
+  "rowsAfter": 241,
+  "fixed": "There was no rows file before. The course is rebuilt from subject content pages 12\u201328. Topics are now the printed key questions, not content-item titles. Option A has all 6 KQs, including the missing KQ1 (revolutions of 1848), KQ2 (Italy: Mazzini, Cavour, Plombi\u00e8res, Garibaldi, 1870) and KQ5 (overseas empires). Option B uses the 2024\u201326 wording: 'Was the Treaty of Versailles fair?' and 'How far was Hitler\u2019s foreign policy to blame for the outbreak of war in Europe in 1939?'. The Saar and the Rome\u2013Berlin Axis are content rows inside that KQ, no longer separate topics. Every focus point and every specified-content bullet is its own row, with its dash sub-items kept. Depth studies A\u2013E have all their KQs, focus points and full specified content; Depth B 3(a)/(b) keep their sub-questions. verify: recall 0.93; one low-recall row comes from the PDF's column split.",
+  "leftOver": "Component 3 coursework is a centre-devised depth study with no syllabus content, so it is not included."
+ },
+ {
+  "id": "cie-olevel-pakistan-studies-2059-2026",
+  "done": true,
+  "coverage": "cie-olevel-pakistan-studies-2059-2026: no codes in source \u00b7 1 grades 12 units 42 topics 72 lessons 338 outcomes",
+  "rowsBefore": 95,
+  "rowsAfter": 338,
+  "fixed": "The 95 compressed rows are replaced with 338 rows that follow the printed wording. Paper 1 was typed by hand from the two-column layout: all 16 KQs with their full titles, every focus point, and every specified-content bullet with its group heading. KQ15 has every Bhutto 1988\u201390, Bhutto 1993\u201396 and Sharif item, e.g. the difference with President Ishaq over judicial appointment, the no-confidence motion, balance of payments and dismissal of the Chief Minister of Punjab. KQ2 now says 'the effectiveness of his successors as rulers', without 'weak'. The KQ2 note and the KQ16 scope paragraph are kept. Paper 2 has one row per 'Candidates should\u2026' bullet across all 8 topics and their (a)\u2013(d) subsections. 3 Power now includes the diagram requirement, open cast, adit and shaft mining, exploration and drilling, thermal and nuclear generation, and the availability factors including small-scale renewables. Also kept: the 4(c) natural and human factors lines, the 5(b) list of industries studied, and the four themes across Paper 2. Units are grouped as 'Paper 1 \u2013 section' and 'Paper 2 \u2013 topic'. verify: recall 0.96.",
+  "leftOver": "verify flags two low-recall rows, the KQ15 focus points. The PDF interleaves them with the other column; the row text matches the print."
+ },
+ {
+  "id": "us-ap-german-language-and-culture",
+  "done": true,
+  "coverage": "us-ap-german-language-and-culture: 100.0% of 37 codes \u00b7 1 grades 7 units 21 topics 48 lessons 110 outcomes",
+  "rowsBefore": 62,
+  "rowsAfter": 110,
+  "fixed": "The skill categories, skills and LOs 1.A\u20133.A.3 are now in the CED's exact wording; skill 1.B is 'Interpret meaning.', with no added gloss. The templated 'Read, listen, speak and write about X' theme rows are gone. Each of the 6 units now has its printed essential questions in English and German, its 'students could\u2026' developing-understanding bullets and its list of other recommended contexts. Each recommended instructional context is one lesson, in English and German. The missing Unit 3 contexts 'Literature (Literatur)' and 'Visual and Performing Arts (Kunst, Theater, Musik und Film)' are added. Unit 1's Community Activities and Family Relationships are now separate lessons. Travel and Tourism has moved from Unit 6 to Unit 5, where the CED lists it. Glued PDF words are spaced. verify: no code mismatches, recall 0.96.",
+  "leftOver": "I did not add the per-unit 'Building Course Skills' focus-LO lists, because they only repeat LO codes already in the skills unit."
+ },
+ {
+  "id": "cie-alevel-english-language-9093-2024-2026",
+  "done": true,
+  "coverage": "cie-alevel-english-language-9093-2024-2026: no codes in source \u00b7 2 grades 4 units 8 topics 15 lessons 62 outcomes",
+  "rowsBefore": 0,
+  "rowsAfter": 62,
+  "fixed": "There was no rows file before. The missing AS Level content is added (grade 'AS'). Paper 1 Reading has the 4 knowledge-and-understanding bullets and all 14 skills and techniques. Paper 2 Writing has the 4 knowledge-and-understanding bullets and all 7 skills. Papers 3 and 4 (grade 'A Level') have every knowledge-and-understanding and skills bullet for Sections A and B, keeping specifics such as Early Modern to Contemporary English, children aged 0\u20138 and n-gram graphs. The syllabus's suggested examples are kept on each row and labelled 'suggested examples, not prescribed', since the syllabus says they are not prescriptive. verify: recall 0.90.",
+  "leftOver": ""
+ },
+ {
+  "id": "us-ap-african-american-studies",
+  "done": true,
+  "coverage": "us-ap-african-american-studies: 99.8% of 598 codes \u00b7 1 grades 4 units 74 topics 108 lessons 597 outcomes (MISSING 3.13.B.1); verify: verbatim 0.87, meanRecall 0.995, no lowRecall flags",
+  "rowsBefore": 601,
+  "rowsAfter": 597,
+  "fixed": "There was no rows file, so I rebuilt the rows from the CED's own LO/EK tables. I read them using the PDF's word coordinates, because the reading-order text mixes the two columns together in Unit 3. Every LO and EK is now its own row with the CED wording, so names, dates and lists are back: 1.10.B.4 has '30 years of guerilla warfare' and 'participated in the slave trade'; 1.5.A.1 has each empire's centuries; 4.4.A/4.4.A.1 have 'first half of the twentieth century', the four domains, the Reconstruction Amendments and the Civil Rights Act of 1875; 4.20.B.3 has Onesimus, Daniel Hale Williams (1891 and 1893) and Kizzmekia Corbett. The 'Explain that' and 'Recognize that' openings that had been added are gone. Each code now sits under its own topic: 2.19 holds radical resistance, 2.20 the Underground Railroad, 4.19 is its own topic and 1.1 comes first. Topic titles are as printed ('Topic 1.1: What Is African American Studies?'). I removed source-note text that had leaked into the tables, and kept real hyphens.",
+  "leftOver": "3.13.B.1 is still missing. It appears only in the exam-alignment index at the back of the CED; there is no LO 3.13.B and no EK 3.13.B.1 on the topic pages, and the old course's text for it was invented. The sub-items EK 2.7.A.4.i\u2013iii are kept as (i)\u2013(iii) inside the 2.7.A.4 row, because the checker's code pattern does not count them separately. Lesson names come from the LO text and are cut short with '\u2026'."
+ },
+ {
+  "id": "pk-ncp2026-urdu-9-12",
+  "done": true,
+  "coverage": "pk-ncp2026-urdu-9-12: no codes in source \u00b7 4 grades 24 units 24 topics 64 lessons 382 outcomes (scanned PDF; verify cannot score Urdu)",
+  "rowsBefore": 300,
+  "rowsAfter": 382,
+  "fixed": "The OCR text is unreadable, so I rendered PDF pages 8\u201341 as images and copied every SLO word for word in Urdu, including its printed level tag such as (\u062a\u0641\u06c1\u06cc\u0645\u06cc\u060c \u0627\u0637\u0644\u0627\u0642\u06cc). Each grade's code gets its own row, and the shared 9/10 or 11/12 statements are repeated under each code. Grade-specific wording is now correct: U-10-B01 says '\u062a\u0631\u062a\u06cc\u0628 \u0633\u06d2 \u0628\u06cc\u0627\u0646', U-11-B01 says '\u0627\u067e\u0646\u06cc \u0631\u0627\u0626\u06d2 \u06a9\u0627 \u0627\u0638\u06c1\u0627\u0631', U-12-B01 says '\u062d\u0633\u0646 \u0648 \u0642\u0628\u062d \u06a9\u0627 \u062c\u0627\u0626\u0632\u06c1 \u0644\u06cc\u062a\u06d2 \u06c1\u0648\u0626\u06d2 \u062f\u06c1\u0631\u0627 \u0633\u06a9\u06cc\u06ba', and U-11-B02 and U-12-B02 are now separate. B04 is present for grades 9\u201312. U-11-A05 now says '\u0628\u0631 \u0645\u062d\u0644 \u0627\u0648\u0631 \u0628\u0631\u062c\u0633\u062a\u06c1 \u0627\u0633\u062a\u0639\u0645\u0627\u0644'. All 5 skills \u00d7 4 grades are complete (300 SLOs). The set-text lists for grades 9\u201312 are complete (82 entries), including '\u0628\u06c1\u0627\u062f\u0631 \u062e\u0627\u0646 \u06a9\u06cc \u0633\u0631\u06af\u0630\u0634\u062a' (tr. \u0627\u0646\u0648\u0631 \u0631\u0648\u0645\u0627\u0646) and \u0645\u062d\u0634\u0631 by \u063a\u0648\u062b \u0628\u06c1\u0627\u0631 with \u063a\u0646\u06cc \u067e\u0631\u0648\u0627\u0632 as translator. Two misprinted codes were corrected: the left column of E17 is printed with 09/10 codes, and 'U-9-E[18]'.",
+  "leftOver": "I could not edit code, so the headings carry an English prefix next to the printed Urdu heading (for example 'Skill A: Listening \u2014 \u0645\u06c1\u0627\u0631\u062a: (\u0627\u0644\u0641) \u0633\u0646\u0646\u0627'). The checker's headingKey drops non-ASCII text, which would otherwise merge every Urdu heading into one. The checker also deletes rows whose codes the OCR cannot find, which affects 67 SLOs. For those I set code to null and put the printed code at the start of the outcome (e.g. 'SLO:U-09-B[03] \u2026') so the rows survive. Set-text rows are numbered for the same de-duplication reason. I left out the progression-grid (\u062d\u062f\u0650 \u062a\u062f\u0631\u06cc\u062c) bullets and the suggested-topics page (p.38); neither is an SLO. U-09-B01's tag is printed as '(\u0641\u06c1\u0645\u06cc\u060c \u0627\u0637\u0644\u0627\u0642\u06cc)' and is kept as printed."
+ },
+ {
+  "id": "cie-igcse-psychology-0266-2027-2029",
+  "done": true,
+  "coverage": "cie-igcse-psychology-0266-2027-2029: 100.0% of 189 codes \u00b7 1 grades 7 units 35 topics 42 lessons 212 outcomes; verify: meanRecall 1.00, verbatim 0.48, no flags",
+  "rowsBefore": 189,
+  "rowsAfter": 212,
+  "fixed": "There was no rows file, so I wrote one row for each of the 212 numbered statements (x.y.z), with every bullet, definition, limit ('limited to', 'experiment 2 only') and 'not expected' note kept. This restores everything the audit found missing: 1.4.4 repression and suppression; 1.5.2\u20131.5.3 limbic system, amygdala and hippocampus; 1.5.5 cerebellum; 2.1.1\u20132.1.8 rhythms, sleep types, zeitgebers, hormones, SCN, pineal gland and melatonin, jet lag and shift work; 2.2.2; 3.2.5\u20133.2.6; 5.2.2\u20135.2.3; 6.2.2 LAD and universal grammar; 7.1.3, 7.1.4 and 7.1.10 counterbalancing; 7.5.1; 7.9.3 mean, median and mode; and the application points 1.2.6, 1.3.6, 4.1.8, 7.7.2 and 7.9.2. I fixed a column mix-up where 7.1.3's first line had been printed above its code. Headings are as printed (e.g. '1 Memory and forgetting' / '1.2 Craik and Lockhart's\u2026').",
+  "leftOver": ""
+ },
+ {
+  "id": "cie-igcse-information-and-communication-technology-0417-2026-2028",
+  "done": true,
+  "coverage": "cie-igcse-information-and-communication-technology-0417-2026-2028: 100.0% of 51 codes \u00b7 1 grades 21 units 58 topics 85 lessons 306 outcomes; verify: meanRecall 1.00, verbatim 0.89, no flags",
+  "rowsBefore": 120,
+  "rowsAfter": 306,
+  "fixed": "There was no rows file, so I wrote one row for every line of 'Notes and Guidance' in sections 1\u201321, keeping each 'including' list complete. 1.3 now names CLI, GUI, dialogue-based and gesture-based interfaces. 1.4 names laptops, smartphones, tablets and phablets, and lists all the uses. 7.3 keeps 'Test strategies including to test each module, each function and the whole system' as a knowledge statement. The three missing practical sections are added in full: 16 Graphs and charts, 17 Document production (pagination, gutter margins, tabs, bookmarks and the rest) and 19 Presentations. Lessons follow the syllabus's left-column labels.",
+  "leftOver": ""
+ },
+ {
+  "id": "cie-olevel-sociology-2251-2025-2027",
+  "done": true,
+  "coverage": "cie-olevel-sociology-2251-2025-2027: 100.0% of 100 codes \u00b7 1 grades 6 units 18 topics 36 lessons 83 outcomes; verify: meanRecall 1.00, no flags",
+  "rowsBefore": 83,
+  "rowsAfter": 83,
+  "fixed": "I rewrote all 83 statements so each keeps the full official bullet list and its (a)/(b) parts instead of a compressed summary. 6.2.2\u20136.2.6 now list every explanation (police targeting/stop and search, gang culture, status frustration, chivalry thesis, misogyny, power inequalities\u2026) and the named sub-theories (labelling and moral panic; New Right, subculturalism and strain theory). 6.3.2 has all 12 punishments, 6.3.3 has stop and search and military-style policing, 4.3.5 has every sub-item (symmetrical and dual-worker families, pivot/sandwich generation, boomerang children\u2026), 4.3.1 has 'having children in later life' and 4.3.3 has 'cultural expectations'. Headings are as printed (e.g. '1.1 How do sociologists approach the study of society?'), and lessons are split into groups of 2\u20134 statements.",
+  "leftOver": ""
+ },
+ {
+  "id": "us-ap-chinese-language-and-culture",
+  "done": true,
+  "coverage": "us-ap-chinese-language-and-culture: 100.0% of 37 codes \u00b7 1 grades 7 units 33 topics 75 lessons 190 outcomes; verify: meanRecall 1.00, no flags",
+  "rowsBefore": 37,
+  "rowsAfter": 190,
+  "fixed": "There was no rows file. I added a 'Course Skills and Learning Objectives' unit with all 8 skills and 29 LOs, worded as in the CED (e.g. 'Synthesize meaning to draw logical conclusions', 'Reflect on the significance of\u2026'). All 6 thematic units are now present, including the two that were missing (UNIT 1: Families and Communities and UNIT 3: Art and Creativity). Each unit has its printed essential questions, its 'Developing Understanding' activities, every recommended instructional context (28 in all, with their Chinese names) and its list of other recommended contexts. Each unit also repeats the LOs its 'Building Course Skills' section focuses on, so skills recur across units as the CED intends; the code sits only on the first occurrence because the checker keeps one row per code.",
+  "leftOver": "The CED's Project Manual appendix, the task-type table and the 'Areas of challenge' teaching notes are not included as outcomes; they are exam and teaching guidance, not content. Each context lesson holds a single row naming the context."
+ },
+ {
+  "id": "pk-ncp-chemistry-9-12",
+  "done": true,
+  "coverage": "pk-ncp-chemistry-9-12: 99.3% of 731 codes \u00b7 4 grades 25 units 92 topics 191 lessons 880 outcomes \u00b7 MISSING (5): C-05-B-31 C-10-B-60 C-12-B-102 C-12-B-103 C-12-B-104 (all are misprinted codes in the source; their statements are in the course without a code)",
+  "rowsBefore": 732,
+  "rowsAfter": 880,
+  "fixed": "Rebuilt from the OCR word boxes of the scanned PDF. I split each grade column by position, recognised garbled codes (8 read as B, \u00a2/\u20ac/c read as C, 5LO, split '-11-B-43]') and copied every SLO word for word. Afterwards I read all 880 statements and hand-fixed about 290 OCR artefacts: formulas such as H2O, MnO4\u2013/C2O4 2\u2013, LiAlH4, K2Cr2O7, \u0394H and Kstab; joined words; dropped 'l' prefixes from the table border. I also split off statements whose codes the OCR missed (C-12-C-02, C-12-C-36/37/38, C-11-C-37, C-12-E-81) and removed in-cell headings, which are now used as lesson names. Audit items: (1) All 32 Grade 9-10 practical SLOs C-09-10-G-01..32 are added, plus every G11/G12 practical SLO. (2) All of the ~54 garbled-code SLOs are present, e.g. C-09-B-27/34-36/38-41/43/49, C-10-B-02/03, C-11-B-37/74, C-12-B-01..03/07/08/11..15/17/20/23/31/32, C-12-C-01, C-12-E-33/72 and C-12-G-10/11. (3) Cobalt is fixed: C-12-C-33 now reads MnO4\u2013/C2O4 2\u2013. (4) The shifted C-09-B-21..26 block now has the right codes, and B-26 (cation/anion formation) is back under C-09-B-26. (5) C-09-C-06 keeps its full list of terms. (6) C-11-G-29 'describe patterns' and C-11-G-30 'describe and summarise' are separate rows with the source wording. (7) C-09-B-28 and B-29 are separate rows. Grade comes from the printed column. Duplicate or wrong-column codes in the source are kept as statements without a code, under the column's grade: C-11-E-22..24 printed in the G12 column; C-10-E-01..03 printed under Domain F Energy; C-11-D-05/07 printed in the G9 column; second C-12-F-40; second C-11-G-22.",
+  "leftOver": "About 120 rows have code null because the PDF's OCR text layer prints the code garbled (e.g. 'C-09-8-34'). The checker drops any code not found literally in the source, so the correct code could not be kept on those rows. Their statements are present. There are 76 'lowRecall' flags from verify. The ones I checked are page-split effects (the code is on one page and the text on the next), not wording errors. Gaps in the source numbering (e.g. C-12-B-30, C-11-C-42..46, C-09-D-05/07, C-11-A-02) are not printed anywhere in the PDF. Lesson names partly reuse the old course's titles. Running verify.mts per id overwrote data/curricula/verify/report.json, which now holds only my 6 courses."
+ },
+ {
+  "id": "cie-olevel-physics-5054-2026-2028",
+  "done": true,
+  "coverage": "cie-olevel-physics-5054-2026-2028: 100.0% of 77 codes \u00b7 1 grades 6 units 25 topics 71 lessons 270 outcomes",
+  "rowsBefore": 271,
+  "rowsAfter": 270,
+  "fixed": "Rewrote the course with one row per official numbered statement, parsed from the PDF and keeping the official wording. Sub-points (a)-(h) stay in their statement. Equations broken by the PDF layout were rebuilt by hand, e.g. speed = distance / time (v = s / t), Ek = \u00bdmv\u00b2, n = sin i / sin r, v = 2\u03c0r / T, efficiency fractions, \u00b9\u2074C and 3.0 \u00d7 10\u2078 m/s. Statements the first parse missed were restored: 1.7.3 'List renewable and non-renewable energy sources', 1.7.4 efficiency, 4.1 'Describe induced magnetism', 4.2.1 'State examples of electrical conductors and insulators', 5.2.2 'State relative ionising effects/penetrating powers' and 6.1.1 average orbital speed. Audit items: 6.1.1 now has 365 days, ellipse, 24 hours, one month and 500 s. 6.1.2 keeps 'know their order from the Sun'. 1.1 item 7 lists all 8 vectors. 1.1 item 1 is 'Describe' and includes the analogue micrometer. 6.2.3 is 'Describe, qualitatively'. 5.1.2 includes 'state that an element may have more than one isotope'. Each subsection code now sits on its own first statement, so the old quirk of parent codes on second statements is gone.",
+  "leftOver": "verify.mts lists the parent section codes 1.5, 1.7, 2.1, 2.2, 2.3, 3.2, 4.2, 4.3, 4.4, 4.5, 5.1, 5.2, 6.1 and 6.2 as notInCourse. Each of these sections is covered by its subsection codes, which from-rows counts as 100%. AGENT_EXTRACTION.md forbids adding overview rows just to carry a section number, so I added none."
+ },
+ {
+  "id": "us-ap-english-literature-and-composition",
+  "done": true,
+  "coverage": "us-ap-english-literature-and-composition: 100.0% of 135 codes \u00b7 1 grades 9 units 37 topics 77 lessons 245 outcomes",
+  "rowsBefore": 167,
+  "rowsAfter": 245,
+  "fixed": "Parsed all 9 Unit Overview tables (pp. 39-114) from the PDF word boxes (the CED glues words with \\x07 separators, which are now handled). Each Essential Knowledge statement is in its official wording, with its code. Each lesson is one skill: the skill row (e.g. 'Skill 3.B: Explain the function of a particular sequence of events in a plot.') followed by its EKs, under Unit 1: Short Fiction I \u2026 Unit 9: Longer Fiction or Drama III, with Big Idea topics. All 168 unique EK codes are present, including the 11 the audit found missing: CHR-1.AA, CHR-1.AB, CHR-1.AC, CHR-1.AD, FIG-1.AB, FIG-1.AC, FIG-1.AD (motif), FIG-1.AE, FIG-1.AF, STR-1.AA, STR-1.AB (pacing).",
+  "leftOver": "The CED repeats some EKs (mainly the LAN-1 writing ones) word for word in later units. Each EK appears once, at its first unit. 17 later-unit skill lessons that held only repeated EKs (mostly skills 7.A-7.D) were therefore left out."
+ },
+ {
+  "id": "pk-ncp-computer-science-6-12",
+  "done": true,
+  "coverage": "pk-ncp-computer-science-6-12: 96.1% of 102 codes \u00b7 7 grades 50 units 50 topics 57 lessons 121 outcomes \u00b7 MISSING (4): CS-09-A4-01 CS-09-A4-02 CS-12-A4-03 CS-11-A4-04 (OCR forms of the printed CS-09-A-01/02, CS-12-A-03 and CS-11-A-04, which are in the course without a code)",
+  "rowsBefore": 102,
+  "rowsAfter": 121,
+  "fixed": "Rewrote every SLO word for word from the page images and the text. Grades 6-8 now sit under their own domains A-F, fixing the old filing of B/C/E outcomes under Domain F, with correct domain titles. Added from the audit: Part 2 Domain H Entrepreneurship in the Digital Age (EN-09-H-01/02, EN-10-H-01/02, EN-11-H-01, EN-12-H-01) and the additional SLOs CS-06-D-Add, CS-07-D-Add, CS-08-D-Add1/Add2, CS-10-D-Add and CS-08-B-Add (internet research for a report). Grade 8 now has a Programming domain. I also restored all of grade 10 Domain A (CS-10-A-01..03) and CS-09-A-03, CS-11-A-01/02 and CS-12-A-02, which the old course had dropped. Statements split across page breaks were rebuilt from the images. CS-10-E-03 is 'demonstrate the social implications of AI'. CS-11-E-02 is 'evaluate how different stakeholder's culture, values, and (sometimes conflicting) interests affect AI System designs'. CS-12-D-02 keeps 'explain and create \u2026 SQL, or Python, or R'. CS-11-D-03 keeps 'summary statistics and data visuals (such as bar charts\u2026)'.",
+  "leftOver": "The PDF text layer garbles 11 printed codes: CS-09-A-01..03, CS-10-A-01..03, CS-11-A-01/02/04, CS-12-A-02/03 and CS-08-B-Add, read as 'A4'/'4'. The checker drops codes not found in the text, so these rows have code null. CS-10-D-Add is printed in the Grade 8 column, and the checker moved it to grade 10 because its code names grade 10."
+ },
+ {
+  "id": "us-ap-english-language-and-composition",
+  "done": true,
+  "coverage": "us-ap-english-language-and-composition: 100.0% of 77 codes \u00b7 1 grades 9 units 18 topics 40 lessons 129 outcomes",
+  "rowsBefore": 80,
+  "rowsAfter": 129,
+  "fixed": "Rebuilt from the 9 Unit Overview tables. Units are in order (Unit 1 \u2026 Unit 9), fixing Unit 9 being placed first. All 83 EK codes are present, including the 3 the audit found missing: CLE-1.AD, CLE-1.AE, CLE-1.AF. EKs are in their official wording, e.g. STL-1.A 'Words have both connotative and denotative meanings.' The skills/learning objectives 1.A-8.C are now outcomes: each lesson starts with its skill row(s), e.g. 'Skill 4.B: Writing \u2013 Write a thesis statement that requires proof or defense\u2026'. Paired reading/writing skills that share EKs are kept together in one lesson. The teacher note inside CLE-1.J was removed.",
+  "leftOver": "Repeated EKs appear only at their first unit. Three later-unit lessons that held only repeats were left out: Unit 4 5.C, Unit 7 1.A and Unit 7 2.A."
+ },
+ {
+  "id": "pk-ncp-history-6-8",
+  "done": true,
+  "coverage": "pk-ncp-history-6-8: 100.0% of 36 codes \u00b7 3 grades 14 units 56 topics 56 lessons 178 outcomes",
+  "rowsBefore": 36,
+  "rowsAfter": 178,
+  "fixed": "All 14 topics/units from the progression grid are now units, with their printed titles. Grade 6 (4): Ancient Civilizations; Persian, Greek, Roman civilizations; Aryans, Kushans, Guptas; Rise of Islamic Civilisation. Grade 7 (5): Middle Ages in Europe \u2026 Modern period in Europe (Renaissance and Enlightenment). Grade 8 (5): Arrival of the British \u2026 Pakistan a new Country: 1947 till today. The curriculum says each unit is learnt through all four domains, so each unit carries its grade's domain A-D SLOs. The code is on the first unit and null on the repeats. Every SLO is now copied word for word, which fixes the audit's command-word changes: H-07-A-01 'Analyze, and describe with evidence', H-07-B-01 and H-08-B-01 'Explore'. The bracketed content anchors in H-07-D-01 (Ottoman/Safavid; Greek and Roman myths) and H-08-D-01 (split of Hindu and Muslim unity\u2026) are kept. The B-04 value lists are kept. H-07-D-ADD and H-08-D-ADD (International Institutions: UNICEF, UNESCO, WHO) were added.",
+  "leftOver": "The two '-ADD' SLOs have code null because the code pattern cannot hold 'ADD'. Their text is present in every grade 7 and grade 8 unit."
+ },
+ {
+  "id": "pk-ncp-physics-9-12",
+  "done": true,
+  "coverage": "pk-ncp-physics-9-12: 95.4% of 680 codes \u00b7 4 grades 26 units 63 topics 156 lessons 752 outcomes",
+  "rowsBefore": 689,
+  "rowsAfter": 752,
+  "fixed": "The checker's text for this scan was too damaged to use, because coloured circles cover the left column. I re-read every page (16-103) with my own free OCR pass: pdfimages, then an ImageMagick brightness mask to strip the circles, then Tesseract on each column. I split the text at each [SLO: code] marker, so every statement now sits under the code printed above it. That ends the code drift (E-19..25, C-33..41, D-20..25, D-31..58, E-07/08), and C-41, D-23, D-57/D-58 (now separate), E-08, E-25 and P-11-E-05 are all back. Outcomes are the official statements copied exactly, including the bracketed elaborations, with only OCR artefacts fixed: typos, glued words, brackets and formulas (checked against the page images where unclear). Original command words are kept, e.g. A-08 'Justify', A-17 'Critique and analyze', D-42 'Apply the equation n = 1/sin (c)'. Added the whole Domain H practical-skills block: P-09-10-N-01..49 (including the N-01..40 the audit said were missing), P-11-N-01..28 and P-12-N-01..18. Every row's grade comes from the column it is printed in. Grade-9 Domain F (orbital speed, planetary data) is now under Domain F, not Nature of Science. The magnetic-force outcomes are no longer under 'AC Circuits'. Units are Domains A-H. Topics use the grid sub-headings exactly as printed; where the grid prints none, the topic is the domain name.",
+  "leftOver": "Coverage is 95.4% on purpose. The source misprints some codes in the wrong grade column: grade 11 Domain E prints P-09-E-09..43, grade 12 prints P-10-E-11..18, P-09-F-26 and P-11-G-04, and grade 10 prints P-09-E-05. The checker always moves a row to the grade its code names, so keeping those codes would put these grade-11/12 outcomes back under grade 9 or 10. I kept the statements in their real grade with code null instead. This leaves 30 codes uncovered: P-09-E-16..43, P-09-F-26 and P-11-G-04. The first 8 grade-11 Domain E outcomes have correct P-11-E codes and are covered. Two more source typos were also set to code null: the second printed P-10-F-14 and the second P-10-F-23. P-11-N-19 is blank in the PDF, so it has no row; it is the last of the 31 'missing'. P-09-B-09, B-12, B-26, B-27 and B-70 are printed in the PDF but not readable in the checker's text, so they are uncoded rows (otherwise the checker drops them). P-110-N-18 is kept exactly as printed. P-09-10-N codes are filed under grade 9, because the checker reads the grade from the code. Lesson names (subtopics) are my own short names, since the grid has no lesson-level headings. verify word-recall is 0.92 and verbatim 0.61; both are scored against the checker's damaged text, so they understate how close the rows are to the source."
+ },
+ {
+  "id": "cie-alevel-physics-9702-2025-2027",
+  "done": true,
+  "coverage": "cie-alevel-physics-9702-2025-2027: 100.0% of 76 codes \u00b7 2 grades 25 units 76 topics 78 lessons 300 outcomes",
+  "rowsBefore": 298,
+  "rowsAfter": 300,
+  "fixed": "Rebuilt from the subject content (pp.16-39): one row per numbered learning outcome, wording faithful to the official statements, verbatim 0.85 and recall 0.99. Cambridge's command words are kept everywhere, e.g. 11.1(4) 'understand that isotopes are forms of the same element with different numbers of neutrons', 11.1(8) antiparticle 'same mass but opposite charge', 9.3(7)/(8) LDR/thermistor 'understand', including the NTC assumption, 8.3(3) 'understand the conditions', 24.1(1) the full piezo-electric statement, and 1.3(3) 'assess the uncertainty'. All limits are kept ('not required' notes, SI-only). Formulas broken by the PDF were restored (\u00bdmv\u00b2, I0cos\u00b2\u03b8, nuclide notation, \u2153Nm<c\u00b2>, e^\u2212\u03bbt and others). Section code is on the first statement of each section. AS (1-11) and A Level (12-25) are labelled. 10 D.C. circuits is a unit of its own.",
+  "leftOver": ""
+ },
+ {
+  "id": "cie-igcse-pakistan-studies-0448-2026",
+  "done": true,
+  "coverage": "cie-igcse-pakistan-studies-0448-2026: no codes in source \u00b7 1 grades 2 units 25 topics 70 lessons 319 outcomes",
+  "rowsBefore": 169,
+  "rowsAfter": 319,
+  "fixed": "Added the whole of Paper 2, The environment of Pakistan, which was missing: the cross-cutting themes plus all 8 topics (land, natural resources, power, agriculture, industry, trade, transport and telecommunications, population and employment), with every sub-section (a)-(d). Every named map item, crop, industry, list and limit is kept. Paper 1 was rewritten as one row per 'Specified content' bullet for all 16 Key Questions (sections 1-3), plus each Key Question's focus points. The audit noted that sections 1-2 previously had none. Headings are as printed: Paper, section and Key Question. Mean word-recall is 0.94.",
+  "leftOver": ""
+ },
+ {
+  "id": "us-ap-latin",
+  "done": true,
+  "coverage": "us-ap-latin: 100.0% of 99 codes \u00b7 1 grades 4 units 14 topics 43 lessons 150 outcomes",
+  "rowsBefore": 105,
+  "rowsAfter": 150,
+  "fixed": "Added the missing Skill Category 3 Analyze: Skill 3.A (INT-1, INT-2, INT-3) and Skill 3.B (INT-4 to INT-7). Added the GRAM-1..4, STYL-1..5 and CTXT-1..3 learning-objective statements; VOC, SUM and TRAN are restated. Added the required readings for Units 1-6: Teacher's Choice prose and poetry with word counts, the Pliny letters 6.4, 6.7, 6.16, 6.20, 7.27, 10.5-7, 10.37 and 10.90 with section ranges, the Aeneid passages from Books 1, 2, 4, 6, 7, 11 and 12 with line numbers, and the Course Project. Every essential-knowledge statement was rewritten faithfully with all its Latin examples, lists and dates; STYL-2.C keeps 'suspense or emphasis'. Skill categories and skills are the units and topics, as printed. Recall is 0.95.",
+  "leftOver": ""
+ },
+ {
+  "id": "us-ap-art-and-design",
+  "done": true,
+  "coverage": "us-ap-art-and-design: 100.0% of 81 codes \u00b7 1 grades 5 units 20 topics 28 lessons 107 outcomes",
+  "rowsBefore": 81,
+  "rowsAfter": 107,
+  "fixed": "Rebuilt the framework so every code carries its own text. Learning objectives 1.A-1.F, 2.A-2.D and 3.A-3.F carry their real wording and their own skill tag, e.g. LO 1.C 'Document investigation of viewers' interpretations' [Skill 1.D], 3.A 'Identify in writing materials, processes, and ideas' [3.C], 3.B synthesis [3.D], 3.C skills [3.E], 3.D inquiry [3.A], 3.E sustained investigation [3.B]. The Course Skills 1.A-3.F are separate rows with their own command words, prefixed 'Skill x.y' and uncoded, because they share the LO codes. Every essential-knowledge statement now sits under its own code: 1.A.1 is the definition of experience, 1.C.1 is researching investigations of other disciplines, and 1.A.5 (feedback) was added. 2.D.1, 2.D.2 and 2.D.3 list every element and principle. Added a Portfolio Exam unit: Selected Works (5 works, or 10 images for 3-D; written prompts with character limits; 3 scoring criteria) and Sustained Investigation (15 images, written prompts, per-image fields, 4 weighted criteria, citation of AI and source material). Recall is 0.94.",
+  "leftOver": "1.A.5 is printed as '1.A.5.' with a trailing dot, which the checker's code pattern cannot read, so the row is uncoded with the code given in its text."
+ },
+ {
+  "id": "cie-olevel-urdu-first-language-3247-2025-2026",
+  "done": true,
+  "coverage": "cie-olevel-urdu-first-language-3247-2025-2026: no codes in source \u00b7 1 grades 2 units 7 topics 17 lessons 49 outcomes",
+  "rowsBefore": 37,
+  "rowsAfter": 49,
+  "fixed": "Added all assessment objectives as rows: R1-R4, W1-W6 (including W2 'articulate relevant experience and express what is thought, felt and imagined') and T1-T5 (including T2 'understand the literal meanings of texts and the contexts of those meanings'). Each set text is now named. The ten prescribed ghazals are listed by title, two each for Ahtish, Parveen Shakir, Momin, Iqbal and Faraz. All 17 Musadas Hali stanzas are listed by their first lines, and the six Sarhadi qitaat by first words. The two Khatoot e Ghalib letters are named with addressee, opening and closing words and date (3 November 1858; 2 December 1859). 'Imtahaan' is now spelled as in the source. The four topic areas now govern both the Part 1 Reading passage and the Part 2 Writing titles. Also added the Paper 2 Part 1 unseen-passage task and the response requirements.",
+  "leftOver": "The assessment-objective labels (R1, W2, T2\u2026) are written into the outcome text rather than the code field. This syllabus has no code pattern, so the checker would drop any row carrying a code."
+ },
+ {
+  "id": "pk-ncp-general-science-4-8",
+  "done": true,
+  "coverage": "pk-ncp-general-science-4-8: 100.0% of 375 codes \u00b7 5 grades 17 units 51 topics 233 lessons 428 outcomes (verify: verbatim 92%, mean recall 0.996, no notInSource/notInCourse, no low-recall flags)",
+  "rowsBefore": 375,
+  "rowsAfter": 428,
+  "fixed": "Re-extracted every cell of the side-by-side grade grid from PDF word coordinates (each word is assigned to its column, then cells are split at each [SLO] marker), so every SLO sits in its real grade and the statements are copied verbatim. Fixes: (1) The 22 SLOs whose codes were OCR-damaged ($-05-A-02, 8-05-C-01, S8-07-A-07 and so on) are now present: S-05-A-02/05/22, S-05-B-20/23, S-05-C-01/03/11, S-06-A-01, S-06-B-10/20/28/32, S-07-A-07, S-07-B-17/19/20/43/49, S-07-C-02, S-08-A-30, plus S-04-B-06 and S-06-B-26, whose codes were printed only as '06' and '26'. The checker drops any code it cannot find in the PDF text, so these rows carry code null, with their correct grade and their verbatim text. (2) S-05-A-06 now has its real statement (animals' circulatory system). S-05-C-02 is the volcano statement, and S-05-C-01 is the Earth-structure statement. (3) S-04-B-02 keeps the full shape and volume definitions. (4) Fixed only PDF artefacts: clipped letters ('ree'\u2192'three', 'nvironments'\u2192'environments'), 'Tllustrate', subscripts (H2O, O2, CO2, NH3), arrows in S-06-B-28, glued words, and stray bullet glyphs. Removed the 'Technology in Everyday Life' row labels and a heading that had leaked into the cells. (5) Headings use the printed domain, numbered topic (1\u20135) and Benchmark VII\u2013XI labels; 'Technology in Everyday Life' is a topic of its own. (6) Added the grade 5 and grade 8 Scientific Enquiry, Models and Representations, and Science in Context statements from the progression grid's opening pages. The second printed 'S-08-B-48' (two-stage rocket) is kept with code null.",
+  "leftOver": "23 rows carry code null because their printed codes are OCR-garbled and the checker would drop them; their text and grade are correct. Lesson names are reused from the old course (inherited where an SLO was new) and are not printed headings."
+ },
+ {
+  "id": "pk-ncp-mathematics-9-12-fbise",
+  "done": true,
+  "coverage": "pk-ncp-mathematics-9-12-fbise: 100.0% of 338 codes \u00b7 4 grades 11 units 64 topics 108 lessons 380 outcomes (verify: verbatim 73%, mean recall 0.93)",
+  "rowsBefore": 353,
+  "rowsAfter": 380,
+  "fixed": "Rebuilt from PDF word coordinates with fixed grade columns (9/10/11/12), so 380 SLO statements are copied verbatim. Fixes: (1) All SLOs with OCR-spaced codes are now in the course, including M-11-B-22..30 (fundamental law, allied/double/half/triple angle identities, product-to-sum, domain/range, even/odd/periodic, max/min, graph properties, applications), M-12-B-02..06 (median/altitude/bisector equations, concurrency, triangle area, homogeneous equations), M-12-B-08/09/11, M-12-B-20, circle M-12-B-22..27 and parabola M-12-B-28..30. (2) M-11-A-28 is verbatim ('Identify leasing of motor vehicles\u2026'). (3) The wrong '[12] Domain B' unit in grade 9 is gone; every grade now has Domain A/B/C as printed. (4) Topics are the printed column headings (Real Numbers, Complex Number, Sets and Functions, CONICS, \u2026), and sub-headings become lessons. (5) Formulas garbled by the scan or the equation editor were restored by checking the page images (complex-number properties, (x+iy)^n, ax\u00b2+bx+c=0, gf(x)=f(g(x)), (x\u2212h)\u00b2+(y\u2212k)\u00b2=r\u00b2, the vector-function derivative, the scalar triple product identities, the sin/cos equation forms). Removed bullet glyphs and the domain-intro text that had leaked into rows. (6) A grade-9 statement printed with the wrong code M-10-A-23 (linear inequalities in two variables) is kept in grade 9 with code null.",
+  "leftOver": "verify.mts still lists 41 codes as notInSource. This is the known OCR-spacing limitation ('M-12-B -22'): from-rows accepts the codes and the statements match the source. 25 low-recall flags are statements that run across a page break or contain restored formulas. In M-09-A-18 the right end of the factorisation list is clipped in the PDF; the clipped items were completed from the standard national list."
+ },
+ {
+  "id": "cie-alevel-accounting-9706-2026-2028",
+  "done": true,
+  "coverage": "cie-alevel-accounting-9706-2026-2028: 100.0% of 51 codes \u00b7 2 grades 4 units 17 topics 41 lessons 171 outcomes (verify: mean recall 0.91, no notInSource)",
+  "rowsBefore": 207,
+  "rowsAfter": 171,
+  "fixed": "Rewrote all rows from the syllabus, one per bullet under 'Candidates should have an understanding of', plus each 'Candidates are expected to use their understanding\u2026' statement. Every dash sub-list is kept inside its bullet (e.g. 'loans (secured and unsecured)', the six journals, every IAS standard, every ratio and variance), and every printed Note is attached. Removed the 17 invented 'Outline what this topic covers\u2026' filler rows. 4.4.1 now carries the full ARR formula (ARR = (average profit / average investment) \u00d7 100) together with the notes on discounted payback and residual value. Added the appendix ratio formulas (profitability, liquidity, efficiency, solvency and investment ratios, and the year-end/decimal-places rules) as rows under 1.6.2 and 3.5.1. Units and topics use the printed headings and AS/A Level grades.",
+  "leftOver": "verify.mts lists the topic codes 1.1\u20134.4 as notInCourse because each code now sits on its sub-section's first statement (1.1.1\u2026) instead of on a filler row; from-rows counts them as covered (100%)."
+ },
+ {
+  "id": "cie-alevel-psychology-9990-2024-2026",
+  "done": true,
+  "coverage": "cie-alevel-psychology-9990-2024-2026: 100.0% of 77 codes \u00b7 2 grades 6 units 33 topics 113 lessons 402 outcomes (verify: mean recall 0.92)",
+  "rowsBefore": 133,
+  "rowsAfter": 402,
+  "fixed": "(1) All 12 AS core studies are now present, under the Biological, Cognitive, Learning and Social approaches, each with its full reference, the printed description and 'the psychology being investigated' list. The approaches' main assumptions, the AS issues and debates, and the core-study requirements are included too. (2) AS research methodology has one row per bullet, with all sub-lists. (3) The A Level general content is in: issues and debates, randomised control trials, postal questionnaires, rating scales, psychometric tests, hypotheses, temporal validity. (4) Each of the four specialist options has a 'Key Studies' topic that names all 20 key studies with full references, plus the generic skills and per-key-study requirements. Every content bullet keeps its 'exemplified by the following key study \u2026 Freeman et al. (2003)' text and its 'including a study, e.g. \u2026' examples. (5) Each sub-topic has a row for its 'Relevant issues and debates and methodology' list. (6) Headings are as printed (e.g. '2.2 The psychological environment').",
+  "leftOver": "verify.mts lists topic codes (1.1, 2.1, \u2026) as notInCourse; from-rows counts them as covered via their sub-sections. The AS section codes 3.1/3.1.1/3.1.2/3.2 are left null because the same numbers are Health Psychology codes, and a duplicate code would make the checker drop the row."
+ },
+ {
+  "id": "cie-alevel-computer-science-9618-2026",
+  "done": true,
+  "coverage": "cie-alevel-computer-science-9618-2026: 100.0% of 44 codes \u00b7 2 grades 20 units 44 topics 48 lessons 201 outcomes (verify: mean recall 1.00, no code flags)",
+  "rowsBefore": 101,
+  "rowsAfter": 201,
+  "fixed": "Rebuilt from PDF word coordinates so that every 'Candidates should be able to' statement in all 44 sub-topics is its own row (the AS half previously had only its first statement per sub-topic). Each row carries its 'Notes and guidance' text, for example number bases/BCD/one's and two's complement/overflow/ASCII-Unicode in 1.1; LAN/WAN, client-server/P2P, thin/thick client, topologies, cloud, wired/wireless media, LAN hardware, router, Ethernet CSMA/CD, bit streaming, WWW vs internet, internet hardware, IP addressing and URL/DNS in 2.1; embedded systems, buffers, RAM/ROM, SRAM/DRAM, PROM/EPROM/EEPROM and monitoring/control in 3.1. The 4.2 assembly instruction set and the 4.3 bit-manipulation instruction table are kept as rows, together with the register/notation note. Sub-headings (Graphics/Sound) are kept, the 2.1 and 9.2 lessons are split to stay under 8 statements, and AS/A Level grades follow units 1\u201312 / 13\u201320.",
+  "leftOver": ""
+ },
+ {
+  "id": "cie-igcse-geography-0460-2025-2026",
+  "done": true,
+  "coverage": "cie-igcse-geography-0460-2025-2026: 100.0% of 19 codes \u00b7 1 grades 6 units 24 topics 30 lessons 127 outcomes (verify: mean recall 0.99, no code flags)",
+  "rowsBefore": 67,
+  "rowsAfter": 127,
+  "fixed": "Every theme statement keeps its exact command word ('Show an understanding of over-population\u2026', 'Identify and give reasons for and implications of\u2026') and its Further-guidance text, including the mandatory 'including' lists. 2.1 has the volcano types, features, earthquake terms and plate-boundary types; 2.3 lists all landforms, including stumps and bay-and-headland coastlines; 1.6 has the land-use zones; 2.4 names every instrument and the cloud observations. Added one row per topic for the required case studies (all 21 sets, e.g. over/under-populated, high/low growth countries, an international migration, an earthquake and a volcano, a TNC). Added the 'Using mathematical skills in geography' section. Added Paper 2 Geographical Skills (mapwork: 4/6-figure grid references, 16-point compass and bearings, distance, contours, cross-sections, landscape/settlement interpretation; maps, graphs and data; photographs and field sketches). Added the Paper 4 enquiry skills (route to enquiry, hypotheses, questionnaires, observation, counts, measurement, presentation techniques, analysis, conclusions).",
+  "leftOver": "The Component 3 coursework mark scheme and the example assignment titles are left out because they are assessment and teacher guidance, not subject content."
+ },
+ {
+  "id": "cie-olevel-geography-2217-2026",
+  "done": true,
+  "coverage": "cie-olevel-geography-2217-2026: 100.0% of 19 codes \u00b7 1 grades 6 units 24 topics 30 lessons 125 outcomes (verify: mean recall 0.99, no code flags)",
+  "rowsBefore": 36,
+  "rowsAfter": 125,
+  "fixed": "Expanded from 36 compressed outcomes to one row per official statement, each with its Further-guidance text. 2.4 now has 'Describe how weather data are collected' with the Stevenson screen and full instrument list, 'Make calculations using information from weather instruments' and the graphs statement. 1.1 has 'Give reasons for contrasting rates of natural population change' and the other statements. 3.6 keeps the proportions of water use by level of development. Added the required case studies for every topic, the mathematical skills section, Paper 2 Geographical Skills (grid references, compass/bearings, distance, cross-sections, map interpretation, graphs and data, photographs) and the Paper 3 Geographical Investigations enquiry skills (route to enquiry, aims/hypotheses, questionnaires, observation, counts, measurement, presentation, analysis, conclusions).",
+  "leftOver": ""
+ },
+ {
+  "id": "pk-ncp-biology-9-12",
+  "done": true,
+  "coverage": "pk-ncp-biology-9-12: 99.8% of 520 codes \u00b7 4 grades 34 units 75 topics 140 lessons 631 outcomes (MISSING: B-10-I1-14, which is the OCR's garbled reading of B-10-I-14; that statement is in the course)",
+  "rowsBefore": 520,
+  "rowsAfter": 631,
+  "fixed": "The OCR of this 96-DPI scan was unreliable, so I transcribed all 133 grid pages (PDF pages 20-152) from the page images, reading each column (Grade 9 | 10 | 11 | 12; for practicals, 9-10 | 11 | 12) separately. Every SLO is now copied exactly, with only artefacts removed (stray '3.'/'12.' numbering and bullet glyphs). Each statement sits under its real grade, domain (A-V, X) and benchmark. The audit items: (1) the Grade 9-10 practical block is added: B-09-10-X-01 to X-08, plus the uncoded Benchmark 3, 4 and 5 bullet lists as uncoded grade 9 rows. (2) The grade 9 SLOs the OCR had damaged are restored: A-06, B-11, C-02, C-03, C-04 (lipids), D-02 to D-04, E-01, E-02, F-02, F-03. (3) B-09-C-04 is lipids again and B-09-A-03 is back to its printed wording. (4) B-09-Q-21 is 'explain sexual reproduction in Plants'; parthenogenesis stays under Q-19. (5) Grade 11 Domain C codes are no longer shifted: C-02 is bonds, C-15 classifies proteins, C-17 defines lipids. (6) B-11-F-02 is the co-factors statement, and the grade 9 enzymes statement is back in grade 9. (7) Unit headings match the printed domain letters. Domain I and O, missed by the OCR, are complete. The audit's claim that the Morphology-Pharmacology list belongs to A-03 was wrong: the page images show it continues A-04's list.",
+  "leftOver": "96 correct codes (e.g. all B-11-O-*, B-10-I-*, B-12-I-*, and B-09-A-04/A-06/C-02/F-02) do not appear in the OCR text, which reads O as 0 and I as 1. from-rows.mts deletes a row whose code it cannot find, so I set those 96 rows' code to null. The statement text is kept in full. The codes can come back once the source has a better OCR. I kept source typos as printed (e.g. 'constrast', 'heroine', 'Hollandric'). Low word-recall flags come from the garbled OCR, not from the rows."
+ },
+ {
+  "id": "us-ap-biology",
+  "done": true,
+  "coverage": "us-ap-biology: 100.0% of 302 codes \u00b7 1 grades 9 units 66 topics 108 lessons 324 outcomes (verify: meanRecall 0.988, verbatim 0.435, no low-recall flags)",
+  "rowsBefore": 302,
+  "rowsAfter": 324,
+  "fixed": "I rebuilt the course from the 2025 CED unit guides (topics 1.1-8.7, in unit order, skipping the sample p.32 page that had put Unit 8 first). There is one row per learning objective and one per essential-knowledge statement, all near-verbatim. Every listed item, number and i/ii/iii sub-point is kept, and each exclusion statement is attached to its EK. The audit items: 8.1.B.1 now carries the full statement (visual, audible, tactile, electrical and chemical signals, plus sub-points i and ii), replacing the invented placeholder. 2.1.A.2 lists all the organelles. 4.2.B uses 'Describe' again. I also added the 8 relevant-equation boxes (SA/V, water potential, solute potential, probability laws, Hardy-Weinberg, population, exponential and logistic growth, Simpson's index) to their EKs, plus a Science Practices unit (1.A-6.E with sub-items). Topic titles 1.2, 7.1 and 7.2 were corrected.",
+  "leftOver": ""
+ },
+ {
+  "id": "us-ap-art-history",
+  "done": true,
+  "coverage": "us-ap-art-history: 100.0% of 193 codes \u00b7 1 grades 11 units 46 topics 170 lessons 511 outcomes (verify meanRecall 0.905, no low-recall flags)",
+  "rowsBefore": 198,
+  "rowsAfter": 511,
+  "fixed": "Units 1-10 are in order, topics are named exactly as printed, and each topic holds its learning objective plus every EK paragraph near-verbatim. The PDF's glued words were de-glued, so all period names, places, dates and named examples are kept: for example, CUL-1.A.2 names Paleolithic, Mesolithic and Neolithic and the environmental facts, and CUL-1.A.28 has the regional definition and shamanistic religion. I added all 250 required works from Appendix 1 (title, place, culture, date, material), each under the topic that suggests it. Work 123 is suggested by no topic, so it sits in Unit 4. I also added an 'Art Historical Thinking Skills' unit (1.A-8.D, with the listed sub-items). One code is printed twice: MPT-1.A.14 appears in topic 4.4 by misprint as well as its real place in 5.2. The 4.4 row is kept without a code.",
+  "leftOver": "A handful of rare proper names may still have small spacing artefacts from the glued PDF text. The ones I found were fixed by hand."
+ },
+ {
+  "id": "cie-igcse-commerce-0715-2028",
+  "done": true,
+  "coverage": "cie-igcse-commerce-0715-2028: 100.0% of 67 codes \u00b7 1 grades 6 units 19 topics 51 lessons 122 outcomes (notInCourse 1.1\u20266.2 are section headings whose x.x.x sub-codes are all present, as the audit noted)",
+  "rowsBefore": 127,
+  "rowsAfter": 122,
+  "fixed": "There is one row per syllabus bullet, worded as 'Know \u2026' plus the printed bullet text, so every exhaustive list is complete. That covers all 10 retailer types (2.3.1), all 11 selling techniques including logos, barcoding, direct mail and informal credit (2.3.2), all 11 digital retail trends (2.3.3), all 16 traditional and 7 digital advertising media (5.1.2), all appeal methods including romantic, adventure, music and influencers (5.1.3), and all 10 sales promotion methods (5.1.4). 5.4.1 includes sale and leaseback, ordinary and preference shares, and the full list of financial terms including cash and trade discounts. All six formulas in 5.4.2 are included, as are the transport sub-lists and the banking services sub-lists. Codes are on the first statement of each x.x.x (or x.x for 4.1, 4.2 and 6.3).",
+  "leftOver": ""
+ },
+ {
+  "id": "us-ap-spanish-literature-and-culture",
+  "done": true,
+  "coverage": "us-ap-spanish-literature-and-culture: 100.0% of 45 codes \u00b7 1 grades 16 units 62 topics 80 lessons 149 outcomes (meanRecall 0.971)",
+  "rowsBefore": 84,
+  "rowsAfter": 149,
+  "fixed": "The skills 1.A-7.G are near-verbatim, with '(not assessed)' back on 5.F-5.H and 7.A-7.G and 4.C without the added 'by observing it'. All 49 sub-skills are added as their own rows (1.A.i to 4.B.i, gathered from the unit guides). I added a Course Content: Themes unit with the six required themes and all their organizing concepts. Each unit (headings as printed, e.g. 'UNIT 6: Teatro y poes\u00eda del siglo XX') lists the skills its guide pairs with its texts. The invented interpretive summaries of the 38 required works are gone. Each work now gives its full title as printed, its author, and the CED's own themes and recommended organizing concepts.",
+  "leftOver": "The Enduring Understanding labels per unit are not added as separate rows. The unit skill lists cover the same mapping."
+ },
+ {
+  "id": "cie-alevel-general-paper-as-level-only-8021-2025-2027",
+  "done": true,
+  "coverage": "cie-alevel-general-paper-as-level-only-8021-2025-2027: no codes in source \u00b7 1 grades 2 units 8 topics 21 lessons 59 outcomes (meanRecall 0.864, no low-recall flags)",
+  "rowsBefore": 49,
+  "rowsAfter": 59,
+  "fixed": "The Topic 2 heading is now complete ('\u2026; environmental issues; technology and mathematics'). All 44 suggested areas are kept word for word. I added the syllabus note that teachers need not cover all suggested areas, and how the topics are used in Papers 1 and 2. All four Skills subsections are present, one row per statement. That adds the two that were missing, Application of information and Analysis and evaluation. Writing now names its purposes: explanation, description, summary, analysis, evaluation and persuasion.",
+  "leftOver": ""
+ },
+ {
+  "id": "cie-alevel-urdu-language-as-level-only-8686-2025-2026",
+  "done": true,
+  "coverage": "cie-alevel-urdu-language-as-level-only-8686-2025-2026: no codes in source \u00b7 1 grades 4 units 11 topics 40 lessons 43 outcomes (meanRecall 0.879)",
+  "rowsBefore": 12,
+  "rowsAfter": 43,
+  "fixed": "Added the assessment objectives (the language skills) and the full list of 27 topic areas from section 3, which the syllabus says all exam texts are drawn from. Added Component 2 Reading and Writing: two passages of at most 750 words, the vocabulary and grammatical manipulation tests, the comprehension questions with their marks, and the 140-word summary/response. Added Component 3 Essay technique: 250-400 words in Urdu, 24 marks for language and 16 for content. The set topics are now listed separately for 2025 and for 2026. Every section 5 guidance bullet is a row, word for word and labelled '(examples, not prescriptive)', replacing the added command words ('Evaluate'), the duplicated leisure bullet and the borrowed 'costs'.",
+  "leftOver": ""
+ }
+]

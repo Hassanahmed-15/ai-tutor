@@ -1,0 +1,172 @@
+{
+ "id": "ib-dp-literature-and-performance",
+ "region": "INTL",
+ "framework": "International Baccalaureate Diploma Programme (DP)",
+ "board": "IB",
+ "qualification": "IB Diploma Programme",
+ "subject": "Literature and performance (SL)",
+ "syllabusCode": null,
+ "gradeSystem": "course",
+ "source": {
+  "urls": [
+   "https://www.ibo.org/globalassets/new-structure/programmes/dp/pdfs/lit-performance-subject-brief-en.pdf",
+   "https://web.archive.org/web/20230519213353id_/https://www.ibo.org/globalassets/new-structure/programmes/dp/pdfs/lit-performance-subject-brief-en.pdf"
+  ],
+  "publisher": "International Baccalaureate Organization",
+  "licence": "(c) International Baccalaureate Organization; all rights reserved, no open licence. ibo.org terms 1.8: IB copyrighted materials are licensed only under the IB's terms or a signed agreement; 'Any use not expressly permitted is prohibited unless special permission is obtained in writing from the IB'; 1.9: nothing on the IB websites confers any licence. Briefs are free public marketing summaries: take topic structure only, write everything in our own words, never reproduce brief text, and do not use IB logos/trade marks. Full subject guides are sold to schools and were NOT used. Terms: https://www.ibo.org/terms-and-conditions/ and https://www.ibo.org/copyright",
+  "firstExam": "2024"
+ },
+ "grades": [
+  {
+   "grade": "all",
+   "units": [
+    {
+     "id": "readers-writers-and-texts",
+     "title": "Readers, writers and texts",
+     "topics": [
+      {
+       "id": "nature-of-literature-and-performance",
+       "title": "Nature of literature and performance",
+       "subtopics": [
+        {
+         "id": "authors-choices-and-meaning",
+         "title": "Authors' choices and meaning",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explore the choices authors make and how meaning is created in literary works and their performance."
+          }
+         ]
+        },
+        {
+         "id": "readers-audiences-and-interpretation",
+         "title": "Readers, audiences and interpretation",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Move from a personal response to an interpretation shaped by the community of readers and audiences."
+          }
+         ]
+        },
+        {
+         "id": "performing-dramatic-texts",
+         "title": "Performing dramatic texts",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Perform dramatic texts and convey ideas, emotion, character and atmosphere."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "time-and-space",
+     "title": "Time and space",
+     "topics": [
+      {
+       "id": "contexts-of-texts-and-performances",
+       "title": "Contexts of texts and performances",
+       "subtopics": [
+        {
+         "id": "contexts-of-writing-and-staging",
+         "title": "Contexts of writing and staging",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Examine how cultural conditions shape the writing and staging of a literary text."
+          }
+         ]
+        },
+        {
+         "id": "reflecting-the-world",
+         "title": "Reflecting the world",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain how literature and performance reflect or refract cultural conditions."
+          }
+         ]
+        },
+        {
+         "id": "culture-identity-and-reception",
+         "title": "Culture, identity and reception",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain how culture and identity influence how texts are received."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "intertextuality-connecting-texts",
+     "title": "Intertextuality: connecting texts",
+     "topics": [
+      {
+       "id": "connecting-texts",
+       "title": "Connecting texts",
+       "subtopics": [
+        {
+         "id": "connections-between-written-and-performed-texts",
+         "title": "Connections between written and performed texts",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Examine and build connections between written and performed texts."
+          }
+         ]
+        },
+        {
+         "id": "comparing-texts-and-traditions",
+         "title": "Comparing texts and traditions",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Compare texts, traditions, creators, ideas and forms to appreciate their distinct characteristics."
+          }
+         ]
+        },
+        {
+         "id": "transforming-text-into-performance",
+         "title": "Transforming text into performance",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Turn a literary text into a realised performance and reflect on what it reveals."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "build": {
+  "builtAt": "2026-10-14T10:53:40.568Z",
+  "model": "claude-agent",
+  "usd": 0,
+  "expectedCodes": null,
+  "coverage": null,
+  "missingCodes": [],
+  "counts": {
+   "grades": 1,
+   "units": 3,
+   "topics": 3,
+   "subtopics": 9,
+   "outcomes": 9
+  },
+  "warnings": [
+   "grade DP year 1 has no content",
+   "grade DP year 2 has no content",
+   "unexpected grade label \"all\""
+  ]
+ }
+}

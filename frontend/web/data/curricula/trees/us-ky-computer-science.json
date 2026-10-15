@@ -1,0 +1,2139 @@
+{
+ "id": "us-ky-computer-science",
+ "region": "US",
+ "framework": "Kentucky state academic standards: Computer Science & Technology",
+ "board": null,
+ "qualification": "K-12",
+ "subject": "Computer Science & Technology",
+ "syllabusCode": null,
+ "gradeSystem": "grade",
+ "source": {
+  "urls": [
+   "https://api.commonstandardsproject.com/api/v1/jurisdictions/46C7F759B14D4334A1CD073B03B9BB7C",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/E06A7BC80A8A4756AD0A343B7270A223",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/6032255C33E2458E97A48CA7DBE8F17A",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/85AB71A412FF49D894DFB954500DAE36",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/118E39675AE7401E9232AB6967A3C29E",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/6FF7FB063882406296C9C59FA6C8A541",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/31D942F16D8044DD8F0282C64BF08DBC",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/5B169B18F5E04B39BC71309A7A0B6EED",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/321C050C3E114E3EBED25D4547AD513C"
+  ],
+  "publisher": "Kentucky state education agency (machine-readable via Common Standards Project / ASN)",
+  "licence": "CC BY 4.0 US, Common Curriculum, Inc.",
+  "firstExam": "2025"
+ },
+ "grades": [
+  {
+   "grade": "K-2",
+   "units": [
+    {
+     "id": "empowered-learner",
+     "title": "Empowered Learner",
+     "topics": [
+      {
+       "id": "students-use-technology-to-take-an-active-role-i",
+       "title": "Students use technology to take an active role in their learning",
+       "subtopics": [
+        {
+         "id": "leverage-technology-to-take-an-active-role-in-ch",
+         "title": "Leverage technology to take an active role in choosing, achieving and demonstrating competency in their learning goals, informed by the learning sciences",
+         "outcomes": [
+          {
+           "code": "EL1.A.1",
+           "text": "Set personal learning goals and use digital tools to achieve those goals, with guidance and support ex.: increase reading fluency by recording and reflecting upon student reading ."
+          },
+          {
+           "code": "EL1.A.2",
+           "text": "Reflect on the learning process to improve learning over time, with guidance and support ex.: using digital writing portfolio and reflection log/journal ."
+          },
+          {
+           "code": "EL1.B.1",
+           "text": "Participate in teacher-led explorations utilizing digital tools to expand learning spaces beyond the classroom ex.: expert video channels, video conferencing with professionals, authors blogs ."
+          },
+          {
+           "code": "EL1.C.1",
+           "text": "Recognize and use technology to seek feedback as a valued component of the learning process."
+          },
+          {
+           "code": "EL1.C.2",
+           "text": "Use feedback to improve the demonstration of learning ex.: student uses interactive software with immediate feedback to guide their performance ."
+          },
+          {
+           "code": "EL1.D.1",
+           "text": "Explore a variety of digital tools and discover how they work based on fundamental concepts of technology operations ex.: a student learns how to turn the audio up/down, how to open, save, close files ."
+          },
+          {
+           "code": "EL1.D.2",
+           "text": "Transfer conceptual knowledge of technology operations in multiple contexts, with guidance and support ex.: A student has learned to use a smartphone, and they use what they know about smartphones to use a different device ."
+          }
+         ]
+        },
+        {
+         "id": "apply-the-fundamental-concepts-of-technology-ope",
+         "title": "Apply the fundamental concepts of technology operations and demonstrate the ability to choose, use, and/or troubleshoot current technologies",
+         "outcomes": [
+          {
+           "code": "EL2.A.1",
+           "text": "Use age-appropriate digital resources to produce and publish information. 2. Demonstrate basic ability to communicate a message with digital input strategies ex.: typing/keyboarding, voice to text, video or audio, images ."
+          },
+          {
+           "code": "EL2.B.1",
+           "text": "Choose technology appropriate to task and purpose, with guidance and support."
+          },
+          {
+           "code": "EL2.C.1",
+           "text": "Apply and adapt knowledge of existing technology to the substitution-based use of new technologies."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "digital-citizen",
+     "title": "Digital Citizen",
+     "topics": [
+      {
+       "id": "students-manage-their-digital-identity-in-a-safe",
+       "title": "Students manage their digital identity in a safe, positive, and proactive way",
+       "subtopics": [
+        {
+         "id": "recognize-the-rights-responsibilities-and-opport",
+         "title": "Recognize the rights, responsibilities and opportunities of living, learning and working in an interconnected digital world; act and model in ways that are safe, legal and ethical",
+         "outcomes": [
+          {
+           "code": "DC1.A.1",
+           "text": "Understand what it means to be a positive influence offline and how that could relate to being positive online."
+          },
+          {
+           "code": "DC1.A.2",
+           "text": "Show awareness that when something is put on the internet websites, social media, apps it can leave a trail online digital footprint ."
+          },
+          {
+           "code": "DC1.B.1",
+           "text": "Choose appropriate websites, and understand to seek help from a trusted adult when faced with problems online related to safety."
+          },
+          {
+           "code": "DC1.B.2",
+           "text": "Understand that what is online has positive and negative consequences, and relate the understanding to behaviors offline."
+          },
+          {
+           "code": "DC1.C.1",
+           "text": "Understand usernames and passwords, and understand why these are not shared with others."
+          },
+          {
+           "code": "DC1.C.2",
+           "text": "Navigate to trusted websites and know how to search for websites in a safe manner with awareness that not all websites are safe."
+          }
+         ]
+        },
+        {
+         "id": "demonstrate-an-understanding-of-and-respect-for-",
+         "title": "Demonstrate an understanding of and respect for the rights and obligations of using and sharing intellectual property",
+         "outcomes": [
+          {
+           "code": "DC2.A.1",
+           "text": "Identify acceptable use of the internet and other digital resources."
+          },
+          {
+           "code": "DC2.B.1",
+           "text": "Recognize that everyone has different ideas in creating their own work intellectual property ."
+          },
+          {
+           "code": "DC2.B.2",
+           "text": "Show respect for others intellectual property with positive words."
+          },
+          {
+           "code": "DC2.B.3",
+           "text": "Understand not to copy someone else s work intellectual property ."
+          },
+          {
+           "code": "DC2.B.",
+           "text": "Understand that someone else s creations found on the internet or shared in person, cannot be used without permission, and the creator should be given credit."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "knowledge-constructor",
+     "title": "Knowledge Constructor",
+     "topics": [
+      {
+       "id": "students-use-various-digital-tools-to-find-infor",
+       "title": "Students use various digital tools to find information and make meaning",
+       "subtopics": [
+        {
+         "id": "students-critically-curate-a-variety-of-resource",
+         "title": "Students critically curate a variety of resources using digital tools to construct knowledge",
+         "outcomes": [
+          {
+           "code": "KC1.A.1",
+           "text": "Use basic keyword searches to locate information to build deeper understanding of a subject."
+          },
+          {
+           "code": "KC1.A.2",
+           "text": "Apply print reference knowledge and strategies to find and locate information in digital resources."
+          },
+          {
+           "code": "KC1.A.3",
+           "text": "Satisfy curiosity by exploring answers to questions with digital resources."
+          },
+          {
+           "code": "KC1.B.1",
+           "text": "Classify websites into general categories to guide relevance of search results ex.: entertainment/games, reference, learning ."
+          },
+          {
+           "code": "KC1.B.2",
+           "text": "Compare information on the same topic across multiple digital resources."
+          },
+          {
+           "code": "KC1.C.1",
+           "text": "Use digital organizers to create collections of artifacts ex.: bookmarks, hyperlinks, sites ."
+          },
+          {
+           "code": "KC1.C.2",
+           "text": "Organize gathered artifacts into general themed collections ex.: Famous African-Americans, favorite cartoon characters, pictures of bridges ."
+          }
+         ]
+        },
+        {
+         "id": "produce-creative-artifacts-and-make-meaningful-l",
+         "title": "Produce creative artifacts and make meaningful learning experiences from curated knowledge for themselves and others",
+         "outcomes": [
+          {
+           "code": "KC2.A.1",
+           "text": "Use digital tools to create artifacts from information found in various digital resources."
+          },
+          {
+           "code": "KC2.B.1",
+           "text": "Use a variety of digital resources ex.: website, video clip, photos to explore and report on real world issues."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "innovative-designer",
+     "title": "Innovative Designer",
+     "topics": [
+      {
+       "id": "students-use-a-variety-of-technologies-to-design",
+       "title": "Students use a variety of technologies to design and create",
+       "subtopics": [
+        {
+         "id": "use-a-variety-of-technologies-to-identify-and-so",
+         "title": "Use a variety of technologies to identify and solve authentic real-world problems",
+         "outcomes": [
+          {
+           "code": "ID1.A.1",
+           "text": "Use technology to identify a problem in the school or home environment with guidance and support."
+          },
+          {
+           "code": "ID1.A.2",
+           "text": "Describe the problem, using technology, and explain why it is problematic."
+          },
+          {
+           "code": "ID1.B.1",
+           "text": "Demonstrate perseverance when working to complete a challenging task."
+          }
+         ]
+        },
+        {
+         "id": "use-a-variety-of-technologies-within-a-design-pr",
+         "title": "Use a variety of technologies within a design process to create new, useful and imaginative solutions",
+         "outcomes": [
+          {
+           "code": "ID2.A.1",
+           "text": "Use a design process ex.: creative thinking spiral to ask questions, suggest solutions, test ideas to solve problems, and share their learning, with guidance and support."
+          },
+          {
+           "code": "ID2.B.1",
+           "text": "Use a variety of age-appropriate digital tools to design something, with guidance and support."
+          },
+          {
+           "code": "ID2.C.1",
+           "text": "Use a design process to develop ideas or creations, test their design, and redesign if necessary"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "computational-thinker",
+     "title": "Computational Thinker",
+     "topics": [
+      {
+       "id": "students-understand-sequences-and-use-them-to-de",
+       "title": "Students understand sequences and use them to develop solutions to problems",
+       "subtopics": [
+        {
+         "id": "develop-and-employ-strategies-for-understanding-",
+         "title": "Develop and employ strategies for understanding and solving problems in ways that leverage the power of technological methods to develop and test solutions",
+         "outcomes": [
+          {
+           "code": "CT1.A.1",
+           "text": "Identify a problem and choose the appropriate digital tools to explore and find solutions to the problem through the use of a step-by-step plan, with guidance and support."
+          },
+          {
+           "code": "CT1.B.1",
+           "text": "Utilize an age-appropriate digital tool to collect, organize, and represent data ex.: online surveys, spreadsheets, graphs, charts, etc ; students will use this data to look for similarities and identify patterns and categories within the data set ex.: simple data mining , with guidance and support."
+          },
+          {
+           "code": "CT1.C.1",
+           "text": "Break a problem into smaller parts, identify key information, and use age-appropriate digital tools to help with problem solving ex.: online whiteboard, online mind-mapping tools, digital outline , with guidance and support."
+          },
+          {
+           "code": "CT1.D.1",
+           "text": "Define and give examples of automation ex.: thermostat controls temperature, buttons pressed on toys make various sounds ."
+          },
+          {
+           "code": "CT1.D.2",
+           "text": "Complete a simple coding task with at least 3-5 coded actions ex.: html, block-based coding, python , with guidance and support."
+          }
+         ]
+        },
+        {
+         "id": "apply-strategies-for-understanding-and-solving-p",
+         "title": "Apply strategies for understanding and solving problems by using technological methods to develop and test solutions",
+         "outcomes": [
+          {
+           "code": "CT2.A.1",
+           "text": "Use digital tools to ask questions and digitally collect data, with guidance and support."
+          },
+          {
+           "code": "CT2.B.1",
+           "text": "Use digital tools to identify patterns in order to solve problems, with guidance and support."
+          },
+          {
+           "code": "CT2.C.1",
+           "text": "Use digital tools to identify and create algorithms, with guidance and support."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "creative-communicator",
+     "title": "Creative Communicator",
+     "topics": [
+      {
+       "id": "students-communicate-clearly-and-express-themsel",
+       "title": "Students communicate clearly and express themselves with a variety of digital tools",
+       "subtopics": [
+        {
+         "id": "communicate-clearly-and-express-themselves-creat",
+         "title": "Communicate clearly and express themselves creatively for a variety of purposes using the platforms, tools, styles, formats and digital media appropriate to their goals, audience and task",
+         "outcomes": [
+          {
+           "code": "CC1.A.1",
+           "text": "Introduce and use age appropriate digital tools ex.: art creation programs, video production, photography, presentations, video media, green screen, stop motion animation for producing new creations or published communications using appropriate digital etiquette with guidance and support."
+          },
+          {
+           "code": "CC1.B.1",
+           "text": "Use age appropriate digital tools to create original and remixed work, with respect to intellectual property with guidance and support."
+          },
+          {
+           "code": "CC1.C.1",
+           "text": "Observe and participate in the communication of ideas using a variety of digital tools ex.: video reflections, interactive notebooks, audio recording, as well as visual representation with guidance and support."
+          }
+         ]
+        },
+        {
+         "id": "publish-and-present-content-customized-for-their",
+         "title": "Publish and present content customized for their audience s , purpose, and task",
+         "outcomes": [
+          {
+           "code": "CC2.A.1",
+           "text": "Explore a variety of digital tools ex.: drawing/ art programs, video production, green screen, digital art . to create and communicate an idea to a variety of audiences with guidance and support."
+          },
+          {
+           "code": "CC2.A.2",
+           "text": "Discuss different audiences and how presentations can change based on audience."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "global-collaborator",
+     "title": "Global Collaborator",
+     "topics": [
+      {
+       "id": "students-use-digital-tools-to-connect-with-learn",
+       "title": "Students use digital tools to connect with learners inside and outside of their classroom",
+       "subtopics": [
+        {
+         "id": "use-digital-tools-to-broaden-their-perspectives-",
+         "title": "Use digital tools to broaden their perspectives and enrich their learning by collaborating with others and working effectively in teams locally and globally",
+         "outcomes": [
+          {
+           "code": "GC1.A.1",
+           "text": "Use digital tools and resources ex.: digital resources, virtual field trips, virtual reality, video media, and social media , to understand the similarities and differences of others in school, community, and beyond with guidance and support."
+          },
+          {
+           "code": "GC1.B.1",
+           "text": "Use digital tools to collaborate with team members in a digital workspace with guidance and support."
+          },
+          {
+           "code": "GC1.C.1",
+           "text": "Respect the interest of others by collaborating to share ideas, experiences, and opinions ex.: virtual collaboration, presentation, and discussion boards with guidance and support."
+          }
+         ]
+        },
+        {
+         "id": "use-digital-tools-to-connect-with-a-global-netwo",
+         "title": "Use digital tools to connect with a global network of learners and engage with issues that impact local and global communities",
+         "outcomes": [
+          {
+           "code": "GC2.A.1",
+           "text": "Use digital tools to collaborate with others to examine problems from school, community, and beyond with guidance and support."
+          },
+          {
+           "code": "GC2.B.1",
+           "text": "Use digital tools to collaborate with school, community, and beyond to solve problems with guidance and support."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "empowered-learner-students-use-technology-to-tak",
+     "title": "Empowered Learner: Students use technology to take an active role in their learning",
+     "topics": [
+      {
+       "id": "apply-the-fundamental-concepts-of-technology-ope",
+       "title": "Apply the fundamental concepts of technology operations and demonstrate the ability to choose, use, and/or troubleshoot current technologies",
+       "subtopics": [
+        {
+         "id": "demonstrate-learning-with-the-use-of-technology",
+         "title": "Demonstrate learning with the use of technology",
+         "outcomes": [
+          {
+           "code": "EL2.A.1",
+           "text": "Use age-appropriate digital resources to produce and publish information."
+          },
+          {
+           "code": "EL2.A.2",
+           "text": "Demonstrate basic ability to communicate a message with digital input strategies ex.: typing/keyboarding, voice to text, video or audio, images ."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "digital-citizen-students-manage-their-digital-id",
+     "title": "Digital Citizen: Students manage their digital identity in a safe, positive, and proactive way",
+     "topics": [
+      {
+       "id": "demonstrate-an-understanding-of-and-respect-for-",
+       "title": "Demonstrate an understanding of and respect for the rights and obligations of using and sharing intellectual property",
+       "subtopics": [
+        {
+         "id": "respect-intellectual-property-rights",
+         "title": "Respect intellectual property rights",
+         "outcomes": [
+          {
+           "code": "DC2.B.4",
+           "text": "Understand that someone else s creations found on the internet or shared in person, cannot be used without permission, and the creator should be given credit."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "innovative-designer-students-use-a-variety-of-te",
+     "title": "Innovative Designer: Students use a variety of technologies to design and create",
+     "topics": [
+      {
+       "id": "use-a-variety-of-technologies-within-a-design-pr",
+       "title": "Use a variety of technologies within a design process to create new, useful and imaginative solutions",
+       "subtopics": [
+        {
+         "id": "develop-test-and-refine-prototypes-as-part-of-a-",
+         "title": "Develop, test and refine prototypes as part of a cyclical design process",
+         "outcomes": [
+          {
+           "code": "ID2.C.1",
+           "text": "Use a design process to develop ideas or creations, test their design, and redesign if necessary."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "3-5",
+   "units": [
+    {
+     "id": "empowered-learner",
+     "title": "Empowered Learner",
+     "topics": [
+      {
+       "id": "students-use-technology-to-take-an-active-role-i",
+       "title": "Students use technology to take an active role in their learning",
+       "subtopics": [
+        {
+         "id": "leverage-technology-to-take-an-active-role-in-ch",
+         "title": "Leverage technology to take an active role in choosing, achieving and demonstrating competency in their learning goals, informed by the learning sciences",
+         "outcomes": [
+          {
+           "code": "EL1.A.1",
+           "text": "Set personal learning goals and self-select digital tools to support accomplishing the goals."
+          },
+          {
+           "code": "EL1.A.2",
+           "text": "Reflect on and revise the learning process as needed to improve learning over time ex.: using digital writing portfolio and reflection log/journal ."
+          },
+          {
+           "code": "EL1.B.1",
+           "text": "Participate in explorations that support identifying and building a network ex.: expert video channels, video conferencing with professionals, authors blogs unique to one s own interests/needs to support the learning process."
+          },
+          {
+           "code": "EL1.C.1",
+           "text": "Seek feedback that informs and improves learning ex.: Students seek feedback from teachers and peers during the digital writing process ."
+          },
+          {
+           "code": "EL1.C.2",
+           "text": "Use feedback to improve products that demonstrate learning in a variety of ways."
+          },
+          {
+           "code": "EL1.D.1",
+           "text": "Explore and select digital tools that support learning in different contexts ex.: a student chooses a tool to collect data and then creates a graphical display of the data using a digital tool of their choice ."
+          },
+          {
+           "code": "EL1.D.2",
+           "text": "Transfer conceptual knowledge of technology operations to multiple contexts."
+          },
+          {
+           "code": "EL1.D.3",
+           "text": "Transfer knowledge of fundamental concepts of technology operations to troubleshoot basic technology operations."
+          }
+         ]
+        },
+        {
+         "id": "apply-the-fundamental-concepts-of-technology-ope",
+         "title": "Apply the fundamental concepts of technology operations and demonstrate the ability to choose, use, and/or troubleshoot current technologies",
+         "outcomes": [
+          {
+           "code": "EL2.A.1",
+           "text": "Identify age-appropriate digital tools to produce and publish information for an identified target audience."
+          },
+          {
+           "code": "EL2.A.2",
+           "text": "Demonstrate efficient ability to communicate a message with digital input strategies ex.: typing/keyboarding, voice to text, video or audio ."
+          },
+          {
+           "code": "EL2.B.1",
+           "text": "Choose technology appropriate to their task and purpose."
+          },
+          {
+           "code": "EL2.C.1",
+           "text": "Apply and adapt knowledge of existing technology to the augmentative use of new technologies."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "digital-citizen",
+     "title": "Digital Citizen",
+     "topics": [
+      {
+       "id": "students-manage-their-digital-identity-in-a-safe",
+       "title": "Students manage their digital identity in a safe, positive, and proactive way",
+       "subtopics": [
+        {
+         "id": "recognize-the-rights-responsibilities-and-opport",
+         "title": "Recognize the rights, responsibilities and opportunities of living, learning and working in an interconnected digital world; act and model in ways that are safe, legal and ethical",
+         "outcomes": [
+          {
+           "code": "DC1.A.1",
+           "text": "Model positive behaviors in online communications at school and understand how to apply those behaviors to online activities outside of school."
+          },
+          {
+           "code": "DC1.A.2",
+           "text": "Show awareness and understand they are creating a digital footprint, and can identify positive and negative online activity."
+          },
+          {
+           "code": "DC1.B.1",
+           "text": "Collaborate online with peers and educators in a positive manner, and begin to recognize online behaviors can have positive or negative consequences."
+          },
+          {
+           "code": "DC1.B.2",
+           "text": "Understand that decisions and behaviors online can affect others in both negative and positive and hurtful and helpful ways."
+          },
+          {
+           "code": "DC1.C.1",
+           "text": "Create and know usernames and passwords, and understand why these and other personal information are not shared with others online and offline."
+          },
+          {
+           "code": "DC1.C.2",
+           "text": "Search websites understanding that some sites are not safe without adult permission."
+          }
+         ]
+        },
+        {
+         "id": "demonstrate-an-understanding-of-and-respect-for-",
+         "title": "Demonstrate an understanding of and respect for the rights and obligations of using and sharing intellectual property",
+         "outcomes": [
+          {
+           "code": "DC2.A.1",
+           "text": "Demonstrate acceptable use of the internet and identify acceptable use of social media and other digital media."
+          },
+          {
+           "code": "DC2.B.1",
+           "text": "Value others intellectual property by encouraging others."
+          },
+          {
+           "code": "DC2.B.2",
+           "text": "Give positive and constructive feedback on others intellectual property with respect."
+          },
+          {
+           "code": "DC2.C.1",
+           "text": "Use others creations intellectual property with permission public domain, creative commons, or copyright owner s permission ."
+          },
+          {
+           "code": "DC2.C.2",
+           "text": "Create their own intellectual property in digital projects."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "knowledge-constructor",
+     "title": "Knowledge Constructor",
+     "topics": [
+      {
+       "id": "students-use-various-digital-tools-to-find-infor",
+       "title": "Students use various digital tools to find information and make meaning",
+       "subtopics": [
+        {
+         "id": "students-critically-curate-a-variety-of-resource",
+         "title": "Students critically curate a variety of resources using digital tools to construct knowledge",
+         "outcomes": [
+          {
+           "code": "KC1.A.1",
+           "text": "Filter searches to gather specific information on a subject or research topic ex.: searching \"food sources for Beluga whales\" instead of searching \"whales\" or \"Beluga whales\" ."
+          },
+          {
+           "code": "KC1.A.2",
+           "text": "Use a variety of digital reference resources ex.: digital encyclopedia, digital atlas/maps to locate information related to a research topic."
+          },
+          {
+           "code": "KC1.B.1",
+           "text": "Identify criteria to analyze information presented in a digital resource to determine its accuracy, perspective, credibility, and relevance."
+          },
+          {
+           "code": "KC1.B.2",
+           "text": "Explore different media types ex.: infographics, videos, graphs, text and how they might influence an audience."
+          },
+          {
+           "code": "KC1.B.3",
+           "text": "Compare information presented across different domain extensions ex.: .com, .net, .gov, .edu to help evaluate accuracy, perspective, credibility, and relevance of information."
+          },
+          {
+           "code": "KC1.C.1",
+           "text": "Collect information ex.: images, diagrams, maps, graphs, infographics, videos, animations using digital tools from resources to clarify and add to knowledge of a topic."
+          },
+          {
+           "code": "KC1.C.2",
+           "text": "Organize gathered artifacts into themed collections with subcategories ex.: Famous African-Americans: Scientists, Politicians, Athletes; Favorite Cartoon Characters: Disney, Nickelodeon, Looney Tunes ."
+          }
+         ]
+        },
+        {
+         "id": "produce-creative-artifacts-and-make-meaningful-l",
+         "title": "Produce creative artifacts and make meaningful learning experiences from curated knowledge for themselves and others",
+         "outcomes": [
+          {
+           "code": "KC2.A.1",
+           "text": "Use digital tools to create artifacts that connect similar information found in various digital resources."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "innovative-designer",
+     "title": "Innovative Designer",
+     "topics": [
+      {
+       "id": "students-use-a-variety-of-technologies-to-design",
+       "title": "Students use a variety of technologies to design and create",
+       "subtopics": [
+        {
+         "id": "use-a-variety-of-technologies-to-identify-and-so",
+         "title": "Use a variety of technologies to identify and solve authentic real-world problems",
+         "outcomes": [
+          {
+           "code": "ID1.A.1",
+           "text": "Identify and describe problems or challenges present in their community then analyze the conditions that make it a problem."
+          },
+          {
+           "code": "ID1.B.1",
+           "text": "Demonstrate perseverance when working with authentic, open-ended problems."
+          }
+         ]
+        },
+        {
+         "id": "use-a-variety-of-technologies-within-a-design-pr",
+         "title": "Use a variety of technologies within a design process to create new, useful and imaginative solutions",
+         "outcomes": [
+          {
+           "code": "ID2.A.1",
+           "text": "Explore and practice how a deliberate design process ex.: design thinking works to generate ideas, consider solutions, test theories, plan to solve a problem, or create innovative products to share with others."
+          },
+          {
+           "code": "ID2.B.1",
+           "text": "Use a variety of digital tools to plan and manage a design process, with consideration to design constraints and risks."
+          },
+          {
+           "code": "ID2.C.1",
+           "text": "Engage in a cyclical design process to develop and test prototypes; reflect on the role that trial and error plays in the process."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "computational-thinker",
+     "title": "Computational Thinker",
+     "topics": [
+      {
+       "id": "students-understand-sequences-and-use-them-to-de",
+       "title": "Students understand sequences and use them to develop solutions to problems",
+       "subtopics": [
+        {
+         "id": "develop-and-employ-strategies-for-understanding-",
+         "title": "Develop and employ strategies for understanding and solving problems in ways that leverage the power of technological methods to develop and test solutions",
+         "outcomes": [
+          {
+           "code": "CT1.A.1",
+           "text": "Plan and implement a design process in which they explore solutions to a problem and use digital tools to analyze data, create models, and represent collected data ex.: spreadsheets, graphs, charts, tables, presentations, infographics in a way that can be shared with others, with guidance."
+          },
+          {
+           "code": "CT1.B.1",
+           "text": "Select and utilize an age-appropriate digital tool to represent data ex.: spreadsheets, digital graphs/charts , with guidance and support from adults. 2. Use data to discuss findings and share conclusions with others ex.: presentation apps/website ."
+          },
+          {
+           "code": "CT1.C.1",
+           "text": "Break a problem into smaller parts, identify patterns and key information, and use age-appropriate digital tools to brainstorm a problem solving plan ex.: online whiteboard, online mindmapping tools, digital outline either collaboratively or independently."
+          },
+          {
+           "code": "CT1.D.1",
+           "text": "Complete a coding task with coded actions ex.: html, block-based coding, python either collaboratively or independently."
+          }
+         ]
+        },
+        {
+         "id": "apply-strategies-for-understanding-and-solving-p",
+         "title": "Apply strategies for understanding and solving problems by using technological methods to develop and test solutions",
+         "outcomes": [
+          {
+           "code": "CT2.A.1",
+           "text": "Use digital tools to ask questions and digitally collect data."
+          },
+          {
+           "code": "CT2.B.1",
+           "text": "Use digital tools to find patterns in order to solve complex problems."
+          },
+          {
+           "code": "CT2.C.1",
+           "text": "Use digital tools to identify and create algorithms."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "creative-communicator",
+     "title": "Creative Communicator",
+     "topics": [
+      {
+       "id": "students-communicate-clearly-and-express-themsel",
+       "title": "Students communicate clearly and express themselves with a variety of digital tools",
+       "subtopics": [
+        {
+         "id": "communicate-clearly-and-express-themselves-creat",
+         "title": "Communicate clearly and express themselves creatively for a variety of purposes using the platforms, tools, styles, formats and digital media appropriate to their goals, audience and task",
+         "outcomes": [
+          {
+           "code": "CC1.A.1",
+           "text": "Evaluate and utilize the features of a variety of digital tools ex.: including, but not limited to: adding video/audio, digital collaboration tools, tools affecting the aesthetics of the piece, as well as methods for sharing/publishing for producing new creations or communications with teacher support, following appropriate digital etiquette."
+          },
+          {
+           "code": "CC1.B.1",
+           "text": "Learn and apply strategies to responsibly remix creative work, respecting digital citizenship copyright , both collaboratively and independently."
+          },
+          {
+           "code": "CC1.C.1",
+           "text": "Create digital artifacts ex.: presentations, data collection, models, audio/video, websites, and digital art to display knowledge and communicate ideas clearly to a variety of audiences, both collaboratively and independently."
+          }
+         ]
+        },
+        {
+         "id": "publish-and-present-content-customized-for-their",
+         "title": "Publish and present content customized for their audience s , purpose, and task",
+         "outcomes": [
+          {
+           "code": "CC2.A.1",
+           "text": "Utilize digital tools to create, share, communicate, and publish work effectively ex.: video/ audio creation, social media, spreadsheets, blogs, presentation platforms, word processing, and digital art platforms ."
+          },
+          {
+           "code": "CC2.A.2",
+           "text": "Identify the intended audience and select appropriate platform medium when creating digital pieces, presenting, and collaborating to communicate ideas to the audience."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "global-collaborator",
+     "title": "Global Collaborator",
+     "topics": [
+      {
+       "id": "students-use-digital-tools-to-connect-with-learn",
+       "title": "Students use digital tools to connect with learners inside and outside of their classroom",
+       "subtopics": [
+        {
+         "id": "use-digital-tools-to-broaden-their-perspectives-",
+         "title": "Use digital tools to broaden their perspectives and enrich their learning by collaborating with others and working effectively in teams locally and globally",
+         "outcomes": [
+          {
+           "code": "GC1.A.1",
+           "text": "Use digital tools and resources ex.: presentations, videos, or various digital media platforms to connect and collaborate with authentic audiences from a variety of backgrounds and cultures to enrich learning experiences."
+          },
+          {
+           "code": "GC1.B.1",
+           "text": "Use digital tools to learn how to collaborate with team members in a digital workspace ex.: sharing and respecting digital work within a team workspace, assuming team roles and working together to create video/ green screen production, stop-motion animation, and various other forms of digital creations . Use digital tools and take on a variety of roles to contribute to team projects with guidance and support."
+          },
+          {
+           "code": "GC1.C.1",
+           "text": "Use a variety of digital resources to collaborate with mutual respect ex.: video conferencing, commenting tools, slide decks, and documents ."
+          }
+         ]
+        },
+        {
+         "id": "use-digital-tools-to-connect-with-a-global-netwo",
+         "title": "Use digital tools to connect with a global network of learners and engage with issues that impact local and global communities",
+         "outcomes": [
+          {
+           "code": "GC2.A.1",
+           "text": "Use digital tools to collaborate with peers, experts, and community members to examine problems from multiple viewpoints ex.: video/voice conferencing ."
+          },
+          {
+           "code": "GC2.B.1",
+           "text": "Collaborate digitally with others to understand multiple perspectives while exploring both local and global issues to solve problems with guidance and support ex.: project-based learning and community problem solving ."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "knowledge-constructor-students-use-various-digit",
+     "title": "Knowledge Constructor: Students use various digital tools to find information and make meaning",
+     "topics": [
+      {
+       "id": "produce-creative-artifacts-and-make-meaningful-l",
+       "title": "Produce creative artifacts and make meaningful learning experiences from curated knowledge for themselves and others",
+       "subtopics": [
+        {
+         "id": "build-knowledge-by-actively-exploring-real-world",
+         "title": "Build knowledge by actively exploring real-world issues and problems, developing ideas and theories and pursuing answers and solutions",
+         "outcomes": [
+          {
+           "code": "KC2.B.1",
+           "text": "Use a variety of digital resources ex.: website, video clip, photos to explore and collaborate with others on real-world issues."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "computational-thinker-students-understand-sequen",
+     "title": "Computational Thinker: Students understand sequences and use them to develop solutions to problems",
+     "topics": [
+      {
+       "id": "develop-and-employ-strategies-for-understanding-",
+       "title": "Develop and employ strategies for understanding and solving problems in ways that leverage the power of technological methods to develop and test solutions",
+       "subtopics": [
+        {
+         "id": "collect-data-or-identify-relevant-data-sets-use-",
+         "title": "Collect data or identify relevant data sets, use digital tools to analyze them, and represent data in various ways to facilitate problem-solving and decision-making",
+         "outcomes": [
+          {
+           "code": "CT1.B.1",
+           "text": "Select and utilize an age-appropriate digital tool to represent data ex.: spreadsheets, digital graphs/charts , with guidance and support from adults."
+          },
+          {
+           "code": "CT1.B.2",
+           "text": "Use data to discuss findings and share conclusions with others ex.: presentation apps/website ."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "creative-communicator-students-communicate-clear",
+     "title": "Creative Communicator: Students communicate clearly and express themselves with a variety of digital tools",
+     "topics": [
+      {
+       "id": "communicate-clearly-and-express-themselves-creat",
+       "title": "Communicate clearly and express themselves creatively for a variety of purposes using the platforms, tools, styles, formats and digital media appropriate to their goals, audience and task",
+       "subtopics": [
+        {
+         "id": "create-original-works-or-responsibly-repurpose-a",
+         "title": "Create original works or responsibly repurpose and/or remix digital resources into new creations",
+         "outcomes": [
+          {
+           "code": "CC1.B.1",
+           "text": "Learn and apply strategies to responsibly remix creative work, respecting digital citizenship copyright , both collaboratively and independently"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "9-12",
+   "units": [
+    {
+     "id": "empowered-learner",
+     "title": "Empowered Learner",
+     "topics": [
+      {
+       "id": "students-use-technology-to-take-an-active-role-i",
+       "title": "Students use technology to take an active role in their learning",
+       "subtopics": [
+        {
+         "id": "leverage-technology-to-take-an-active-role-in-ch",
+         "title": "Leverage technology to take an active role in choosing, achieving and demonstrating competency in their learning goals, informed by the learning sciences",
+         "outcomes": [
+          {
+           "code": "EL1.A.1",
+           "text": "Set and articulate personal learning goals and develop strategies leveraging digital tools to achieve those goals."
+          },
+          {
+           "code": "EL1.A.2",
+           "text": "Reflect on successes, areas of improvement, and make necessary revisions to improve the learning over time and adjust for future learning."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "empowered-learner-students-use-technology-to-tak",
+     "title": "Empowered Learner: Students use technology to take an active role in their learning",
+     "topics": [
+      {
+       "id": "leverage-technology-to-take-an-active-role-in-ch",
+       "title": "Leverage technology to take an active role in choosing, achieving and demonstrating competency in their learning goals, informed by the learning sciences",
+       "subtopics": [
+        {
+         "id": "articulate-and-set-personal-learning-goals-devel",
+         "title": "Articulate and set personal learning goals, develop strategies leveraging technology to achieve them and reflect on the learning process itself to improve learning outcomes",
+         "outcomes": [
+          {
+           "code": "EL1.A.1",
+           "text": "Set and articulate personal learning goals and develop strategies leveraging digital tools to achieve those goals. 2. Reflect on successes, areas of improvement, and make necessary revisions to improve the learning over time and adjust for future learning."
+          }
+         ]
+        },
+        {
+         "id": "build-networks-and-customize-their-learning-envi",
+         "title": "Build networks and customize their learning environments in ways that support the learning process",
+         "outcomes": [
+          {
+           "code": "EL1.B.1",
+           "text": "Initiate collaboration with a network of global partners ex.: students, teachers, professionals, or the global community to support and enhance the learning process."
+          }
+         ]
+        },
+        {
+         "id": "use-technology-to-seek-feedback-that-informs-and",
+         "title": "Use technology to seek feedback that informs and improves their practice and to demonstrate their learning in a variety of ways",
+         "outcomes": [
+          {
+           "code": "EL1.C.1",
+           "text": "Seek feedback independently through the use of technology ex.: use video chat to share and reflect upon a learning process or product ."
+          },
+          {
+           "code": "EL1.C.2",
+           "text": "Use feedback to effectively demonstrate learning in a variety of ways."
+          }
+         ]
+        },
+        {
+         "id": "understanding-the-fundamental-concepts-of-how-to",
+         "title": "Understanding the fundamental concepts of how to use technology technology operations ",
+         "outcomes": [
+          {
+           "code": "EL1.D.1",
+           "text": "Understand the fundamental use of technology tools to embrace creativity, communication, collaboration, and critical thinking."
+          },
+          {
+           "code": "EL1.D.2",
+           "text": "Choose and effectively troubleshoot technology tools to suit purpose."
+          },
+          {
+           "code": "EL1.D.3",
+           "text": "Transfer and extend the knowledge of existing technology to explore new technologies."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "apply-the-fundamental-concepts-of-technology-ope",
+       "title": "Apply the fundamental concepts of technology operations and demonstrate the ability to choose, use, and/or troubleshoot current technologies",
+       "subtopics": [
+        {
+         "id": "demonstrate-learning-with-the-use-of-technology",
+         "title": "Demonstrate learning with the use of technology",
+         "outcomes": [
+          {
+           "code": "EL2.A.1",
+           "text": "Select appropriate digital resources to develop, implement and/or evaluate communication with an authentic audience."
+          }
+         ]
+        },
+        {
+         "id": "apply-functions-and-concepts-of-technology-opera",
+         "title": "Apply functions and concepts of technology operations; demonstrate the ability to choose, use and troubleshoot current technologies",
+         "outcomes": [
+          {
+           "code": "EL2.B.1",
+           "text": "Choose efficient functions and concepts appropriate to their task and purpose. 2. Apply an understanding of devices to troubleshoot current technology and adjust for future events."
+          }
+         ]
+        },
+        {
+         "id": "transfer-knowledge-to-emerging-technology",
+         "title": "Transfer knowledge to emerging technology",
+         "outcomes": [
+          {
+           "code": "EL2.C.1",
+           "text": "Apply and adapt knowledge of existing technology to the innovative redefinition-based use of new technologies."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "digital-citizen-students-manage-their-digital-id",
+     "title": "Digital Citizen: Students manage their digital identity in a safe, positive, and proactive way",
+     "topics": [
+      {
+       "id": "recognize-the-rights-responsibilities-and-opport",
+       "title": "Recognize the rights, responsibilities and opportunities of living, learning and working in an interconnected digital world; act and model in ways that are safe, legal and ethical",
+       "subtopics": [
+        {
+         "id": "cultivate-and-manage-your-digital-identity-and-r",
+         "title": "Cultivate and manage your digital identity and reputation, and be aware of the permanence of your actions in the digital world",
+         "outcomes": [
+          {
+           "code": "DC1.A.1",
+           "text": "Actively develop and maintain a positive, authentic digital identity and presence."
+          },
+          {
+           "code": "DC1.A.2",
+           "text": "Comprehend the permanence of actions in the digital world and their potential visibility to future employers, colleagues and social relations."
+          }
+         ]
+        },
+        {
+         "id": "engage-in-positive-safe-legal-and-ethical-behavi",
+         "title": "Engage in positive, safe, legal and ethical behavior when using technology, including social interactions online or when using networked devices",
+         "outcomes": [
+          {
+           "code": "DC1.B.1",
+           "text": "Make responsible decisions based on ethical standards, positive social behavior and the safety of oneself and others when interacting and collaborating in a digital world."
+          },
+          {
+           "code": "DC1.B.2",
+           "text": "Understand the mental and legal ramifications of cyber bullying and harassment; employ strategies to avoid and/or combat cyberbullying and harassment."
+          }
+         ]
+        },
+        {
+         "id": "manage-personal-data-to-maintain-digital-privacy",
+         "title": "Manage personal data to maintain digital privacy and security and are aware of data-collection technology used to track navigation online",
+         "outcomes": [
+          {
+           "code": "DC1.C.1",
+           "text": "Think critically about the information shared in an online environment in order to keep sensitive personal information safe and secure."
+          },
+          {
+           "code": "DC1.C.2",
+           "text": "Comprehend the presence and ramifications of online data collection and how it is used to track online navigation and influence consumer decisions."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "demonstrate-an-understanding-of-and-respect-for-",
+       "title": "Demonstrate an understanding of and respect for the rights and obligations of using and sharing intellectual property",
+       "subtopics": [
+        {
+         "id": "use-information-media-and-digital-resources-in-a",
+         "title": "Use information, media, and digital resources in a responsible manner",
+         "outcomes": [
+          {
+           "code": "DC2.A.1",
+           "text": "Understand the need for, and comply with, acceptable user policies and agreements."
+          },
+          {
+           "code": "DC2.A.2",
+           "text": "Make responsible decisions in the use of information, media, social media and other digital resources in accordance with acceptable user policies and agreements."
+          }
+         ]
+        },
+        {
+         "id": "respect-intellectual-property-rights",
+         "title": "Respect intellectual property rights",
+         "outcomes": [
+          {
+           "code": "DC2.B.1",
+           "text": "Respect the importance of intellectual property in encouraging thought, design, innovation and/or creation."
+          },
+          {
+           "code": "DC2.B.2",
+           "text": "Use, share and/or interact with intellectual property in accordance with the rights given by the owner of the intellectual property."
+          }
+         ]
+        },
+        {
+         "id": "demonstrate-an-understanding-of-and-respect-for-",
+         "title": "Demonstrate an understanding of and respect for the rights and obligations of using and sharing intellectual property",
+         "outcomes": [
+          {
+           "code": "DC2.C.1",
+           "text": "Apply understanding of \"fair use\" and copyright laws when sharing the intellectual property of others, as well as, when producing new intellectual property."
+          },
+          {
+           "code": "DC2.C.2",
+           "text": "Seek permission and properly cite the usage of the intellectual property of others."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "knowledge-constructor-students-use-various-digit",
+     "title": "Knowledge Constructor: Students use various digital tools to find information and make meaning",
+     "topics": [
+      {
+       "id": "students-critically-curate-a-variety-of-resource",
+       "title": "Students critically curate a variety of resources using digital tools to construct knowledge",
+       "subtopics": [
+        {
+         "id": "plan-and-employ-effective-research-strategies-to",
+         "title": "Plan and employ effective research strategies to locate information and other resources for their intellectual or creative pursuits",
+         "outcomes": [
+          {
+           "code": "KC1.A.1",
+           "text": "Utilize a variety of digital resources effectively and safely by applying a variety of search strategies ex.: filtering searches, advanced settings/tools, file types, database/source selection ."
+          },
+          {
+           "code": "KC1.A.2",
+           "text": "Plan and use multiple research strategies to locate information from digital resources for a variety of purposes."
+          }
+         ]
+        },
+        {
+         "id": "evaluate-the-accuracy-perspective-credibility-an",
+         "title": "Evaluate the accuracy, perspective, credibility and relevance of information, media, data or other resources",
+         "outcomes": [
+          {
+           "code": "KC1.B.1",
+           "text": "Evaluate digital sources for accuracy of information; compare and consider the perspectives of the sources; determine usefulness, and assess the credibility of the sources."
+          }
+         ]
+        },
+        {
+         "id": "curate-information-from-digital-resources-using-",
+         "title": "Curate information from digital resources using a variety of tools and methods to create collections of artifacts that demonstrate meaningful connections or conclusions",
+         "outcomes": [
+          {
+           "code": "KC1.C.1",
+           "text": "Use multiple digital tools to select, organize, and communicate information from digital sources."
+          },
+          {
+           "code": "KC1.C.2",
+           "text": "Utilize digital tools to communicate information in real world applications, to address or solve a problem, or to make meaningful connections."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "produce-creative-artifacts-and-make-meaningful-l",
+       "title": "Produce creative artifacts and make meaningful learning experiences from curated knowledge for themselves and others",
+       "subtopics": [
+        {
+         "id": "produce-creative-artifacts",
+         "title": "Produce creative artifacts",
+         "outcomes": [
+          {
+           "code": "KC2.A.1",
+           "text": "Choose and use digital tools to create products that exhibit choice and creativity."
+          },
+          {
+           "code": "KC2.A.2",
+           "text": "Create products independently and collaboratively that incorporate creative elements, and communicate to multiple audiences."
+          }
+         ]
+        },
+        {
+         "id": "build-knowledge-by-actively-exploring-real-world",
+         "title": "Build knowledge by actively exploring real-world issues and problems, developing ideas and theories and pursuing answers and solutions",
+         "outcomes": [
+          {
+           "code": "KC2.B.1",
+           "text": "Select and use digital tools to create products that demonstrate meaningful connections or conclusions."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "innovative-designer-students-use-a-variety-of-te",
+     "title": "Innovative Designer: Students use a variety of technologies to design and create",
+     "topics": [
+      {
+       "id": "innovative-designer-students-use-a-variety-of-te",
+       "title": "Innovative Designer: Students use a variety of technologies to design and create",
+       "subtopics": [
+        {
+         "id": "innovative-designer-students-use-a-variety-of-te",
+         "title": "Innovative Designer: Students use a variety of technologies to design and create",
+         "outcomes": [
+          {
+           "code": "KC2.B.2",
+           "text": "Create products independently and collaboratively that explore real-world issues and problems and engage in discussion around current issues."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "use-a-variety-of-technologies-to-identify-and-so",
+       "title": "Use a variety of technologies to identify and solve authentic real-world problems",
+       "subtopics": [
+        {
+         "id": "find-authentic-real-world-problems-in-local-and-",
+         "title": "Find authentic real-world problems in local and global contexts",
+         "outcomes": [
+          {
+           "code": "ID1.A.1",
+           "text": "Use a variety of technologies to independently identify real-world problems in the local and global community."
+          }
+         ]
+        },
+        {
+         "id": "exhibit-a-tolerance-for-ambiguity-perseverance-a",
+         "title": "Exhibit a tolerance for ambiguity, perseverance and the capacity to work with open-ended problems",
+         "outcomes": [
+          {
+           "code": "ID1.B.1",
+           "text": "Use a variety of technologies to independently demonstrate perseverance when dealing with ambiguous and open-ended problems."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "use-a-variety-of-technologies-within-a-design-pr",
+       "title": "Use a variety of technologies within a design process to create new, useful and imaginative solutions",
+       "subtopics": [
+        {
+         "id": "know-and-use-a-deliberate-design-process-for-gen",
+         "title": "Know and use a deliberate design process for generating ideas, testing theories, creating innovative artifacts or solving authentic problems",
+         "outcomes": [
+          {
+           "code": "ID2.A.1",
+           "text": "Self-select and use a variety of digital tools within a deliberate process for generating ideas, researching, and testing ideas for solving problems or creating original products that demonstrate understanding."
+          }
+         ]
+        },
+        {
+         "id": "select-and-use-digital-tools-to-plan-and-manage-",
+         "title": "Select and use digital tools to plan and manage a design process that considers design constraints and calculated risks",
+         "outcomes": [
+          {
+           "code": "ID2.B.1",
+           "text": "Self-select and use appropriate digital tools to manage work and create original products that take into consideration project constraints, obstacles and outcomes."
+          }
+         ]
+        },
+        {
+         "id": "develop-test-and-refine-prototypes-as-part-of-a-",
+         "title": "Develop, test and refine prototypes as part of a cyclical design process",
+         "outcomes": [
+          {
+           "code": "ID2.C.1",
+           "text": "Select and use a variety of digital tools to aid in working collaboratively or independently to create, test and refine prototypes, drafts and concepts based on self-initiated feedback and reflection in design cycles."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "computational-thinker-students-understand-sequen",
+     "title": "Computational Thinker: Students understand sequences and use them to develop solutions to problems",
+     "topics": [
+      {
+       "id": "develop-and-employ-strategies-for-understanding-",
+       "title": "Develop and employ strategies for understanding and solving problems in ways that leverage the power of technological methods to develop and test solutions",
+       "subtopics": [
+        {
+         "id": "formulate-problem-definitions-suited-for-technol",
+         "title": "Formulate problem definitions suited for technology-assisted methods such as data analysis, abstract models and algorithmic thinking in exploring and finding solutions",
+         "outcomes": [
+          {
+           "code": "CT1.A.1",
+           "text": "Precisely define a problem and develop a solution using digital tools, conducting data analysis, abstract models, and algorithmic thinking."
+          }
+         ]
+        },
+        {
+         "id": "collect-data-or-identify-relevant-data-sets-use-",
+         "title": "Collect data or identify relevant data sets, use digital tools to analyze them, and represent data in various ways to facilitate problem-solving and decision-making",
+         "outcomes": [
+          {
+           "code": "CT1.B.1",
+           "text": "Use digital tool s to effectively collect, organize, and manipulate data to test, verify, and present possible solutions to a problem."
+          }
+         ]
+        },
+        {
+         "id": "break-problems-into-component-parts-extract-key-",
+         "title": "Break problems into component parts, extract key information, and develop descriptive models to understand complex systems or facilitate problem-solving",
+         "outcomes": [
+          {
+           "code": "CT1.C.1",
+           "text": "Evaluate the problem-solving process to deconstruct data and information to develop effective solutions to real-world problems."
+          }
+         ]
+        },
+        {
+         "id": "understand-how-automation-works-and-use-algorith",
+         "title": "Understand how automation works and use algorithmic thinking to develop a sequence of steps to create and test automated solutions",
+         "outcomes": [
+          {
+           "code": "CT1.D.1",
+           "text": "Demonstrate their understanding of automation and logic to develop a process to create and verify automated solutions."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "apply-strategies-for-understanding-and-solving-p",
+       "title": "Apply strategies for understanding and solving problems by using technological methods to develop and test solutions",
+       "subtopics": [
+        {
+         "id": "use-resources-to-collect-analyze-and-represent-d",
+         "title": "Use resources to collect, analyze, and represent data",
+         "outcomes": [
+          {
+           "code": "CT2.A.1",
+           "text": "Use digital tools to collect relevant data, conduct analysis, and prepare data for presentation to facilitate problem-solving and decision-making."
+          }
+         ]
+        },
+        {
+         "id": "deconstruct-components-to-understand-systems-and",
+         "title": "Deconstruct components to understand systems and facilitate problem-solving",
+         "outcomes": [
+          {
+           "code": "CT2.B.1",
+           "text": "Use technology-assisted methods to more easily identify key information by breaking down data to facilitate problem-solving."
+          }
+         ]
+        },
+        {
+         "id": "create-and-test-automated-solutions",
+         "title": "Create and test automated solutions",
+         "outcomes": [
+          {
+           "code": "CT2.C.1",
+           "text": "Use digital tools and algorithmic thinking to develop automated systems to test solutions."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "creative-communicator-students-communicate-clear",
+     "title": "Creative Communicator: Students communicate clearly and express themselves with a variety of digital tools",
+     "topics": [
+      {
+       "id": "communicate-clearly-and-express-themselves-creat",
+       "title": "Communicate clearly and express themselves creatively for a variety of purposes using the platforms, tools, styles, formats and digital media appropriate to their goals, audience and task",
+       "subtopics": [
+        {
+         "id": "choose-the-appropriate-platforms-and-tools-for-m",
+         "title": "Choose the appropriate platforms and tools for meeting the desired objectives of their creation or communication",
+         "outcomes": [
+          {
+           "code": "CC1.A.1",
+           "text": "Evaluate and determine appropriate platforms and digital tools to create or share digital content with an authentic audience for a desired purpose."
+          }
+         ]
+        },
+        {
+         "id": "create-original-works-or-responsibly-repurpose-a",
+         "title": "Create original works or responsibly repurpose and/or remix digital resources into new creations",
+         "outcomes": [
+          {
+           "code": "CC1.B.1",
+           "text": "Create work for an authentic audience and desired purpose that reflects a responsible repurposing of digital media or resources."
+          }
+         ]
+        },
+        {
+         "id": "communicate-complex-ideas-clearly-and-effectivel",
+         "title": "Communicate complex ideas clearly and effectively by creating or using a variety of digital objects such as visualizations, models or simulations",
+         "outcomes": [
+          {
+           "code": "CC1.C.1",
+           "text": "Analyze and communicate complex ideas, data, or solutions to an authentic audience for a desired purpose using digital tools."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "publish-and-present-content-customized-for-their",
+       "title": "Publish and present content customized for their audience s , purpose, and task",
+       "subtopics": [
+        {
+         "id": "publish-and-present-content-that-customizes-the-",
+         "title": "Publish and present content that customizes the message and medium for their intended audiences",
+         "outcomes": [
+          {
+           "code": "CC2.A.1",
+           "text": "Present an idea or creative work that expresses ideas or content that is published for a range of authentic audiences outside of the classroom."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "global-collaborator-students-use-digital-tools-t",
+     "title": "Global Collaborator: Students use digital tools to connect with learners inside and outside of their classroom",
+     "topics": [
+      {
+       "id": "use-digital-tools-to-broaden-their-perspectives-",
+       "title": "Use digital tools to broaden their perspectives and enrich their learning by collaborating with others and working effectively in teams locally and globally",
+       "subtopics": [
+        {
+         "id": "use-digital-tools-to-connect-with-learners-from-",
+         "title": "Use digital tools to connect with learners from a variety of backgrounds and cultures, engaging with them in ways that broaden mutual understanding and learning",
+         "outcomes": [
+          {
+           "code": "GC1.A.1",
+           "text": "Evaluate and use digital collaboration tools to connect with others from a variety of local and global backgrounds/cultures in order to exchange ideas, develop an understanding of diverse perspectives and encourage learning."
+          }
+         ]
+        },
+        {
+         "id": "contribute-constructively-to-project-teams-assum",
+         "title": "Contribute constructively to project teams, assuming various roles and responsibilities to work effectively toward a common goal",
+         "outcomes": [
+          {
+           "code": "GC1.B.1",
+           "text": "Use digital tools to contribute to a project team, determine their role and responsibility within the group and work toward a common goal or a solution to a problem."
+          }
+         ]
+        },
+        {
+         "id": "contribute-to-the-exchange-of-ideas-within-and-b",
+         "title": "Contribute to the exchange of ideas within and beyond the learning community",
+         "outcomes": [
+          {
+           "code": "GC1.C.1",
+           "text": "Select digital tools to share and exchange interests, ideas and experiences with others from within and beyond the local learning community."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "use-digital-tools-to-connect-with-a-global-netwo",
+       "title": "Use digital tools to connect with a global network of learners and engage with issues that impact local and global communities",
+       "subtopics": [
+        {
+         "id": "use-collaborative-technologies-to-work-with-othe",
+         "title": "Use collaborative technologies to work with others, including peers, experts or community members, to examine issues and problems from multiple viewpoints",
+         "outcomes": [
+          {
+           "code": "GC2.A.1",
+           "text": "Use collaborative technologies to work with others peers, experts, community members to gain knowledge about issues through various perspectives and opinions and to find solutions for social change."
+          }
+         ]
+        },
+        {
+         "id": "explore-local-and-global-issues-and-use-collabor",
+         "title": "Explore local and global issues and use collaborative technologies to work with others to investigate solutions",
+         "outcomes": [
+          {
+           "code": "GC2.B.1",
+           "text": "Explore and analyze local and global issues and use collaborative digital tools to investigate, develop a plan and recommend solutions."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "6-8",
+   "units": [
+    {
+     "id": "empowered-learner-students-use-technology-to-tak",
+     "title": "Empowered Learner: Students use technology to take an active role in their learning",
+     "topics": [
+      {
+       "id": "leverage-technology-to-take-an-active-role-in-ch",
+       "title": "Leverage technology to take an active role in choosing, achieving and demonstrating competency in their learning goals, informed by the learning sciences",
+       "subtopics": [
+        {
+         "id": "articulate-and-set-personal-learning-goals-devel",
+         "title": "Articulate and set personal learning goals, develop strategies leveraging technology to achieve them and reflect on the learning process itself to improve learning outcomes",
+         "outcomes": [
+          {
+           "code": "EL1.A.1",
+           "text": "Set personal learning goals and select and manage digital tools that will best support individualized learning ex.: use collaborative documents to revise and reflect on the writing process ."
+          },
+          {
+           "code": "EL1.A.2",
+           "text": "Reflect on successes, areas of improvement, and make necessary revisions to improve the learning over time ex.: using digital writing portfolio and reflection log/journal ."
+          }
+         ]
+        },
+        {
+         "id": "build-networks-and-customize-their-learning-envi",
+         "title": "Build networks and customize their learning environments in ways that support the learning process",
+         "outcomes": [
+          {
+           "code": "EL1.B.1",
+           "text": "Collaborate with a network of self-selected global partners ex.: students, teachers, professionals, and the global community to customize and support the individual learning process."
+          }
+         ]
+        },
+        {
+         "id": "use-technology-to-seek-feedback-that-informs-and",
+         "title": "Use technology to seek feedback that informs and improves their practice and to demonstrate their learning in a variety of ways",
+         "outcomes": [
+          {
+           "code": "EL1.C.1",
+           "text": "Seek feedback from an authentic audience and from features embedded in digital tools ex.: share documents with teachers and peers asking for feedback on writing ."
+          },
+          {
+           "code": "EL1.C.2",
+           "text": "Use feedback to analyze data and make learning adjustments based on the feedback."
+          }
+         ]
+        },
+        {
+         "id": "understanding-the-fundamental-concepts-of-how-to",
+         "title": "Understanding the fundamental concepts of how to use technology technology operations ",
+         "outcomes": [
+          {
+           "code": "EL1.D.1",
+           "text": "Understand the fundamental use of technology tools to consider how to use technology to promote creativity, communication, collaboration, and critical thinking."
+          },
+          {
+           "code": "EL1.D.2",
+           "text": "Choose and troubleshoot technology tools to suit purpose."
+          },
+          {
+           "code": "EL1.D.3",
+           "text": "Transfer the knowledge of existing technology to explore new technologies."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "apply-the-fundamental-concepts-of-technology-ope",
+       "title": "Apply the fundamental concepts of technology operations and demonstrate the ability to choose, use, and/or troubleshoot current technologies",
+       "subtopics": [
+        {
+         "id": "demonstrate-learning-with-the-use-of-technology",
+         "title": "Demonstrate learning with the use of technology",
+         "outcomes": [
+          {
+           "code": "EL2.A.1",
+           "text": "Evaluate the effectiveness of different digital tools to communicate information with multiple audiences."
+          }
+         ]
+        },
+        {
+         "id": "apply-functions-and-concepts-of-technology-opera",
+         "title": "Apply functions and concepts of technology operations; demonstrate the ability to choose, use and troubleshoot current technologies",
+         "outcomes": [
+          {
+           "code": "EL2.B.1",
+           "text": "Choose functions and operations appropriate to their task and purpose."
+          }
+         ]
+        },
+        {
+         "id": "transfer-knowledge-to-emerging-technology",
+         "title": "Transfer knowledge to emerging technology",
+         "outcomes": [
+          {
+           "code": "EL2.C.1",
+           "text": "Apply and adapt knowledge of existing technology to the modification-based use of new technologies."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "digital-citizen-students-manage-their-digital-id",
+     "title": "Digital Citizen: Students manage their digital identity in a safe, positive, and proactive way",
+     "topics": [
+      {
+       "id": "recognize-the-rights-responsibilities-and-opport",
+       "title": "Recognize the rights, responsibilities and opportunities of living, learning and working in an interconnected digital world; act and model in ways that are safe, legal and ethical",
+       "subtopics": [
+        {
+         "id": "cultivate-and-manage-your-digital-identity-and-r",
+         "title": "Cultivate and manage your digital identity and reputation, and be aware of the permanence of your actions in the digital world",
+         "outcomes": [
+          {
+           "code": "DC1.A.1",
+           "text": "Recognize behaviors, habits, and actions that create, maintain, and influence both positive and negative digital identities, reputations, and footprints in the digital world."
+          },
+          {
+           "code": "DC1.A.2",
+           "text": "Build awareness of public and permanent nature of online actions and the possible present and future consequences in personal, academic, and professional lives."
+          }
+         ]
+        },
+        {
+         "id": "engage-in-positive-safe-legal-and-ethical-behavi",
+         "title": "Engage in positive, safe, legal and ethical behavior when using technology, including social interactions online or when using networked devices",
+         "outcomes": [
+          {
+           "code": "DC1.B.1",
+           "text": "Recognize and demonstrate responsible behaviors that are safe, ethical, and legal across a variety of devices, platforms, and settings while considering possible consequences for themselves and/or others."
+          },
+          {
+           "code": "DC1.B.2",
+           "text": "Understand how to be respectful to others online while interacting, communicating, and collaborating and know strategies in order to avoid and/or combat cyberbullying."
+          }
+         ]
+        },
+        {
+         "id": "manage-personal-data-to-maintain-digital-privacy",
+         "title": "Manage personal data to maintain digital privacy and security and are aware of data-collection technology used to track navigation online",
+         "outcomes": [
+          {
+           "code": "DC1.C.1",
+           "text": "Distinguish between information that is public and personal/private and develop and utilize strategies to secure and protect personal/private data and user accounts."
+          },
+          {
+           "code": "DC1.C.2",
+           "text": "Understand that data-collection technology is used to track online navigation and recognize and avoid online scams and phishing."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "demonstrate-an-understanding-of-and-respect-for-",
+       "title": "Demonstrate an understanding of and respect for the rights and obligations of using and sharing intellectual property",
+       "subtopics": [
+        {
+         "id": "use-information-media-and-digital-resources-in-a",
+         "title": "Use information, media, and digital resources in a responsible manner",
+         "outcomes": [
+          {
+           "code": "DC2.A.1",
+           "text": "Demonstrate acceptable use of the internet, information, media and digital resources, including social media according to user agreements, policies, and laws."
+          }
+         ]
+        },
+        {
+         "id": "respect-intellectual-property-rights",
+         "title": "Respect intellectual property rights",
+         "outcomes": [
+          {
+           "code": "DC2.B.1",
+           "text": "Recognize and respect different intellectual property classifications, including those that are copyrighted, subject to fair use, public domain properties, and/or have creative commons licenses."
+          }
+         ]
+        },
+        {
+         "id": "demonstrate-an-understanding-of-and-respect-for-",
+         "title": "Demonstrate an understanding of and respect for the rights and obligations of using and sharing intellectual property",
+         "outcomes": [
+          {
+           "code": "DC2.C.1",
+           "text": "Recognize and seek permission to use the intellectual property of others appropriately."
+          },
+          {
+           "code": "DC2.C.2",
+           "text": "Use and share the intellectual property of others with proper citation and attribution elements."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "knowledge-constructor-students-use-various-digit",
+     "title": "Knowledge Constructor: Students use various digital tools to find information and make meaning",
+     "topics": [
+      {
+       "id": "students-critically-curate-a-variety-of-resource",
+       "title": "Students critically curate a variety of resources using digital tools to construct knowledge",
+       "subtopics": [
+        {
+         "id": "plan-and-employ-effective-research-strategies-to",
+         "title": "Plan and employ effective research strategies to locate information and other resources for their intellectual or creative pursuits",
+         "outcomes": [
+          {
+           "code": "KC1.A.1",
+           "text": "Demonstrate effective digital search techniques ex.: filtering searches using advanced settings/tools, keyword/term choices, or phases to locate information or other resources to gather specific information on a subject or research topic."
+          },
+          {
+           "code": "KC1.A.2",
+           "text": "Practice research strategies that outline a process for locating information digitally ex.: tools and effective search techniques ."
+          }
+         ]
+        },
+        {
+         "id": "evaluate-the-accuracy-perspective-credibility-an",
+         "title": "Evaluate the accuracy, perspective, credibility and relevance of information, media, data or other resources",
+         "outcomes": [
+          {
+           "code": "KC1.B.1",
+           "text": "Select a method, tool, or strategy to evaluate source s for credibility, relevance, authority, accuracy, and perspective."
+          },
+          {
+           "code": "KC1.B.2",
+           "text": "Analyze digital information, media, data, and materials for credibility, relevance, authority, accuracy, and perspective."
+          }
+         ]
+        },
+        {
+         "id": "curate-information-from-digital-resources-using-",
+         "title": "Curate information from digital resources using a variety of tools and methods to create collections of artifacts that demonstrate meaningful connections or conclusions",
+         "outcomes": [
+          {
+           "code": "KC1.C.1",
+           "text": "Combine various tools ex.: spreadsheet, database, saved files and methods ex.: concept mapping, flow charting and outlining software to classify information, observations, or experiments digitally."
+          },
+          {
+           "code": "KC1.C.2",
+           "text": "Compile information from digital resources ex.: search engines, online periodical databases, virtual library/online catalogs, interactive video conferencing ."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "produce-creative-artifacts-and-make-meaningful-l",
+       "title": "Produce creative artifacts and make meaningful learning experiences from curated knowledge for themselves and others",
+       "subtopics": [
+        {
+         "id": "produce-creative-artifacts",
+         "title": "Produce creative artifacts",
+         "outcomes": [
+          {
+           "code": "KC2.A.1",
+           "text": "Demonstrate the ability to create new ideas/concepts or products with digital tools."
+          }
+         ]
+        },
+        {
+         "id": "build-knowledge-by-actively-exploring-real-world",
+         "title": "Build knowledge by actively exploring real-world issues and problems, developing ideas and theories and pursuing answers and solutions",
+         "outcomes": [
+          {
+           "code": "KC2.B.1",
+           "text": "Build knowledge by generating and testing solutions for exploring real world issues using a variety of technology ex.: data collection tools, models, videos, podcast, simulations, forms ."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "innovative-designer-students-use-a-variety-of-te",
+     "title": "Innovative Designer: Students use a variety of technologies to design and create",
+     "topics": [
+      {
+       "id": "use-a-variety-of-technologies-to-identify-and-so",
+       "title": "Use a variety of technologies to identify and solve authentic real-world problems",
+       "subtopics": [
+        {
+         "id": "find-authentic-real-world-problems-in-local-and-",
+         "title": "Find authentic real-world problems in local and global contexts",
+         "outcomes": [
+          {
+           "code": "ID1.A.1",
+           "text": "Collaborate with others in and out of the classroom using digital tools to identify real-world problems and propose a solution that affects the local and global community."
+          }
+         ]
+        },
+        {
+         "id": "exhibit-a-tolerance-for-ambiguity-perseverance-a",
+         "title": "Exhibit a tolerance for ambiguity, perseverance and the capacity to work with open-ended problems",
+         "outcomes": [
+          {
+           "code": "ID1.B.1",
+           "text": "Demonstrate the ability to investigate and make sense of open-ended problems using digital tools and persevere in solving them."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "use-a-variety-of-technologies-within-a-design-pr",
+       "title": "Use a variety of technologies within a design process to create new, useful and imaginative solutions",
+       "subtopics": [
+        {
+         "id": "know-and-use-a-deliberate-design-process-for-gen",
+         "title": "Know and use a deliberate design process for generating ideas, testing theories, creating innovative artifacts or solving authentic problems",
+         "outcomes": [
+          {
+           "code": "ID2.A.1",
+           "text": "Explore and choose appropriate processes and use a deliberate design process for generating ideas, testing theories, creating innovative artifacts or solving authentic problems."
+          }
+         ]
+        },
+        {
+         "id": "select-and-use-digital-tools-to-plan-and-manage-",
+         "title": "Select and use digital tools to plan and manage a design process that considers design constraints and calculated risks",
+         "outcomes": [
+          {
+           "code": "ID2.B.1",
+           "text": "Investigate and use meaningful digital tools to plan and manage a design process that considers design constraints and calculated risks."
+          }
+         ]
+        },
+        {
+         "id": "develop-test-and-refine-prototypes-as-part-of-a-",
+         "title": "Develop, test and refine prototypes as part of a cyclical design process",
+         "outcomes": [
+          {
+           "code": "ID2.C.1",
+           "text": "Create, develop and test prototypes; understand and appreciate that failures are opportunities for growth and improvement."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "computational-thinker-students-understand-sequen",
+     "title": "Computational Thinker: Students understand sequences and use them to develop solutions to problems",
+     "topics": [
+      {
+       "id": "develop-and-employ-strategies-for-understanding-",
+       "title": "Develop and employ strategies for understanding and solving problems in ways that leverage the power of technological methods to develop and test solutions",
+       "subtopics": [
+        {
+         "id": "formulate-problem-definitions-suited-for-technol",
+         "title": "Formulate problem definitions suited for technology-assisted methods such as data analysis, abstract models and algorithmic thinking in exploring and finding solutions",
+         "outcomes": [
+          {
+           "code": "CT1.A.1",
+           "text": "Ask questions, gather data, create/observe abstract models, and think of different processes while finding solutions to real-world problems."
+          }
+         ]
+        },
+        {
+         "id": "collect-data-or-identify-relevant-data-sets-use-",
+         "title": "Collect data or identify relevant data sets, use digital tools to analyze them, and represent data in various ways to facilitate problem-solving and decision-making",
+         "outcomes": [
+          {
+           "code": "CT1.B.1",
+           "text": "Solve problems and make decisions by collecting data or identifying relevant data sets, using digital tools ex.: sheets, surveys to analyze the data, and represent their findings through various ways."
+          }
+         ]
+        },
+        {
+         "id": "break-problems-into-component-parts-extract-key-",
+         "title": "Break problems into component parts, extract key information, and develop descriptive models to understand complex systems or facilitate problem-solving",
+         "outcomes": [
+          {
+           "code": "CT1.C.1",
+           "text": "Break problems into parts, extract key information, and develop descriptive models to understand complex systems or lead problem solving tasks."
+          }
+         ]
+        },
+        {
+         "id": "understand-how-automation-works-and-use-algorith",
+         "title": "Understand how automation works and use algorithmic thinking to develop a sequence of steps to create and test automated solutions",
+         "outcomes": [
+          {
+           "code": "CT1.D.1",
+           "text": "Use digital tools to collect data, conduct analysis, and discuss findings or possible solutions."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "apply-strategies-for-understanding-and-solving-p",
+       "title": "Apply strategies for understanding and solving problems by using technological methods to develop and test solutions",
+       "subtopics": [
+        {
+         "id": "use-resources-to-collect-analyze-and-represent-d",
+         "title": "Use resources to collect, analyze, and represent data",
+         "outcomes": [
+          {
+           "code": "CT2.A.1",
+           "text": "Use digital tools to ask questions to an audience and digitally collect data, and analyze the findings."
+          }
+         ]
+        },
+        {
+         "id": "deconstruct-components-to-understand-systems-and",
+         "title": "Deconstruct components to understand systems and facilitate problem-solving",
+         "outcomes": [
+          {
+           "code": "CT2.B.1",
+           "text": "Use technology-assisted methods to break problems down into smaller, more manageable parts by finding patterns or other methods of decomposition."
+          }
+         ]
+        },
+        {
+         "id": "create-and-test-automated-solutions",
+         "title": "Create and test automated solutions",
+         "outcomes": [
+          {
+           "code": "CT2.C.1",
+           "text": "Use algorithm design to develop step-by-step instructions for solving a problem."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "creative-communicator-students-communicate-clear",
+     "title": "Creative Communicator: Students communicate clearly and express themselves with a variety of digital tools",
+     "topics": [
+      {
+       "id": "communicate-clearly-and-express-themselves-creat",
+       "title": "Communicate clearly and express themselves creatively for a variety of purposes using the platforms, tools, styles, formats and digital media appropriate to their goals, audience and task",
+       "subtopics": [
+        {
+         "id": "choose-the-appropriate-platforms-and-tools-for-m",
+         "title": "Choose the appropriate platforms and tools for meeting the desired objectives of their creation or communication",
+         "outcomes": [
+          {
+           "code": "CC1.A.1",
+           "text": "Choose from available platforms and tools to meet the designated objectives of their creation or communication."
+          }
+         ]
+        },
+        {
+         "id": "create-original-works-or-responsibly-repurpose-a",
+         "title": "Create original works or responsibly repurpose and/or remix digital resources into new creations",
+         "outcomes": [
+          {
+           "code": "CC1.B.1",
+           "text": "Create original works, or repurpose/remix digital resources into new creations, while demonstrating an understanding of digital citizenship ex.: intellectual property rights or copyrights ."
+          }
+         ]
+        },
+        {
+         "id": "communicate-complex-ideas-clearly-and-effectivel",
+         "title": "Communicate complex ideas clearly and effectively by creating or using a variety of digital objects such as visualizations, models or simulations",
+         "outcomes": [
+          {
+           "code": "CC1.C.1",
+           "text": "Create or incorporate digital content to communicate complex ideas clearly and effectively to a variety of audiences."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "publish-and-present-content-customized-for-their",
+       "title": "Publish and present content customized for their audience s , purpose, and task",
+       "subtopics": [
+        {
+         "id": "publish-and-present-content-that-customizes-the-",
+         "title": "Publish and present content that customizes the message and medium for their intended audiences",
+         "outcomes": [
+          {
+           "code": "CC2.A.1",
+           "text": "Publish or present original content to a predetermined audience that appropriately customizes the message and medium."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "global-collaborator-students-use-digital-tools-t",
+     "title": "Global Collaborator: Students use digital tools to connect with learners inside and outside of their classroom",
+     "topics": [
+      {
+       "id": "use-digital-tools-to-broaden-their-perspectives-",
+       "title": "Use digital tools to broaden their perspectives and enrich their learning by collaborating with others and working effectively in teams locally and globally",
+       "subtopics": [
+        {
+         "id": "use-digital-tools-to-connect-with-learners-from-",
+         "title": "Use digital tools to connect with learners from a variety of backgrounds and cultures, engaging with them in ways that broaden mutual understanding and learning",
+         "outcomes": [
+          {
+           "code": "GC1.A.1",
+           "text": "Use digital tools and resources to connect and collaborate with authentic audiences from various backgrounds and cultures to broaden mutual understanding and learning, while using appropriate digital citizenship skills."
+          }
+         ]
+        },
+        {
+         "id": "contribute-constructively-to-project-teams-assum",
+         "title": "Contribute constructively to project teams, assuming various roles and responsibilities to work effectively toward a common goal",
+         "outcomes": [
+          {
+           "code": "GC1.B.1",
+           "text": "Select and use digital tools in diverse collaborative teams within the classroom, assuming specific roles, responsibilities, and perspectives other than your own, to contribute effectively toward a common goal."
+          }
+         ]
+        },
+        {
+         "id": "contribute-to-the-exchange-of-ideas-within-and-b",
+         "title": "Contribute to the exchange of ideas within and beyond the learning community",
+         "outcomes": [
+          {
+           "code": "GC1.C.1",
+           "text": "Select and use digital tools in diverse collaborative teams outside the classroom, assuming specific roles, responsibilities, and perspectives other than their own, to contribute effectively toward a common goal."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "use-digital-tools-to-connect-with-a-global-netwo",
+       "title": "Use digital tools to connect with a global network of learners and engage with issues that impact local and global communities",
+       "subtopics": [
+        {
+         "id": "use-collaborative-technologies-to-work-with-othe",
+         "title": "Use collaborative technologies to work with others, including peers, experts or community members, to examine issues and problems from multiple viewpoints",
+         "outcomes": [
+          {
+           "code": "GC2.A.1",
+           "text": "Use collaborative technologies to connect with others - including peers, experts, and community members - to learn about issues and problems or to gain diverse local and global perspectives."
+          }
+         ]
+        },
+        {
+         "id": "explore-local-and-global-issues-and-use-collabor",
+         "title": "Explore local and global issues and use collaborative technologies to work with others to investigate solutions",
+         "outcomes": [
+          {
+           "code": "GC2.B.1",
+           "text": "Use collaborative technologies and assume roles within digital creations while maintaining digital citizenship within the team digital workspace to investigate and develop solutions to local and global issues."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "build": {
+  "builtAt": "2026-10-14T16:20:42.951Z",
+  "model": "none",
+  "usd": 0,
+  "expectedCodes": 64,
+  "coverage": 1,
+  "missingCodes": [],
+  "counts": {
+   "grades": 4,
+   "units": 35,
+   "topics": 50,
+   "subtopics": 114,
+   "outcomes": 219
+  },
+  "warnings": [
+   "unit \"Digital Citizen: Students manage their digital identity in a safe, positive, and proactive way\" (grade K-2) has a single outcome",
+   "unit \"Innovative Designer: Students use a variety of technologies to design and create\" (grade K-2) has a single outcome",
+   "unit \"Knowledge Constructor: Students use various digital tools to find information and make meaning\" (grade 3-5) has a single outcome",
+   "unit \"Creative Communicator: Students communicate clearly and express themselves with a variety of digital tools\" (grade 3-5) has a single outcome"
+  ]
+ }
+}

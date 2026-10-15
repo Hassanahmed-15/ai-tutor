@@ -1,0 +1,622 @@
+{
+ "id": "us-ny-personal-finance",
+ "region": "US",
+ "framework": "New York state academic standards: Personal Finance",
+ "board": null,
+ "qualification": "K-12",
+ "subject": "Personal Finance",
+ "syllabusCode": null,
+ "gradeSystem": "grade",
+ "source": {
+  "urls": [
+   "https://api.commonstandardsproject.com/api/v1/jurisdictions/DA1743190A534CB0AEC12F494BE1F8D7",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/D9F25E372087461BBD6C9771F480894C",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/7C8EB3E856814C4A8079B322803A9948",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/089DF9CEEACA48C2A230B1E6A00A36A2"
+  ],
+  "publisher": "New York state education agency (machine-readable via Common Standards Project / ASN)",
+  "licence": "CC BY 4.0 US, Common Curriculum, Inc.",
+  "firstExam": "2026"
+ },
+ "grades": [
+  {
+   "grade": "K-4",
+   "units": [
+    {
+     "id": "budgeting-and-money-management-the-understanding",
+     "title": "Budgeting and Money Management: The understanding of how to allocate one’s financial resources to meet life goals",
+     "topics": [
+      {
+       "id": "budgeting-and-money-management-the-understanding",
+       "title": "Budgeting and Money Management: The understanding of how to allocate one’s financial resources to meet life goals",
+       "subtopics": [
+        {
+         "id": "budgeting-and-money-management-the-understanding",
+         "title": "Budgeting and Money Management: The understanding of how to allocate one’s financial resources to meet life goals",
+         "outcomes": [
+          {
+           "code": "1.1",
+           "text": "Explain what money is used for and identify common forms of money, including coins and bills."
+          },
+          {
+           "code": "1.2",
+           "text": "Demonstrate basic skills such as counting money and making change."
+          },
+          {
+           "code": "1.3",
+           "text": "Differentiate between needs and wants and explain how factors such as price, peer influence, and advertisements can influence purchasing decisions."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "credit-and-debt-management-the-understanding-of-",
+     "title": "Credit and Debt Management: The understanding of the role of credit in personal finance and how to avoid potential pitfalls of debt",
+     "topics": [
+      {
+       "id": "credit-and-debt-management-the-understanding-of-",
+       "title": "Credit and Debt Management: The understanding of the role of credit in personal finance and how to avoid potential pitfalls of debt",
+       "subtopics": [
+        {
+         "id": "credit-and-debt-management-the-understanding-of-",
+         "title": "Credit and Debt Management: The understanding of the role of credit in personal finance and how to avoid potential pitfalls of debt",
+         "outcomes": [
+          {
+           "code": "2.1",
+           "text": "Describe the difference between borrowing and lending."
+          },
+          {
+           "code": "2.2",
+           "text": "Explain why a person who borrows money or an item is expected to return it in full, sometimes with an additional amount or condition."
+          },
+          {
+           "code": "2.3",
+           "text": "Provide reasons why a person might lend something to one individual rather than to another, such as trust or responsibility."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "earning-income-the-understanding-of-how-income-i",
+     "title": "Earning Income: The understanding of how income is earned and how taxes impact the money that is taken home",
+     "topics": [
+      {
+       "id": "earning-income-the-understanding-of-how-income-i",
+       "title": "Earning Income: The understanding of how income is earned and how taxes impact the money that is taken home",
+       "subtopics": [
+        {
+         "id": "earning-income-the-understanding-of-how-income-i",
+         "title": "Earning Income: The understanding of how income is earned and how taxes impact the money that is taken home",
+         "outcomes": [
+          {
+           "code": "3.1",
+           "text": "Describe how knowledge, skills, and experience can influence the kinds of jobs people do."
+          },
+          {
+           "code": "3.2",
+           "text": "Explain how people earn money by working and providing goods or services."
+          },
+          {
+           "code": "3.3",
+           "text": "Estimate how much income could be earned from an activity or business operated by young people (e.g., babysitting, lawn service, lemonade stand)."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "risk-management-the-understanding-that-risks-are",
+     "title": "Risk Management: The understanding that risks are a part of life and strategies to manage that risk, including insurance policies",
+     "topics": [
+      {
+       "id": "risk-management-the-understanding-that-risks-are",
+       "title": "Risk Management: The understanding that risks are a part of life and strategies to manage that risk, including insurance policies",
+       "subtopics": [
+        {
+         "id": "risk-management-the-understanding-that-risks-are",
+         "title": "Risk Management: The understanding that risks are a part of life and strategies to manage that risk, including insurance policies",
+         "outcomes": [
+          {
+           "code": "4.1",
+           "text": "Provide examples of risks that people face and that could result in financial costs (e.g., illness, injury, accidental damage, job loss, theft)."
+          },
+          {
+           "code": "4.2",
+           "text": "Recommend ways to reduce or prepare for risks (e.g., planning ahead, setting money aside for emergencies, or taking safety precautions)."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "saving-and-investing-the-understanding-of-the-ro",
+     "title": "Saving and Investing: The understanding of the role of putting money aside to plan for longerterm expenditures",
+     "topics": [
+      {
+       "id": "saving-and-investing-the-understanding-of-the-ro",
+       "title": "Saving and Investing: The understanding of the role of putting money aside to plan for longerterm expenditures",
+       "subtopics": [
+        {
+         "id": "saving-and-investing-the-understanding-of-the-ro",
+         "title": "Saving and Investing: The understanding of the role of putting money aside to plan for longerterm expenditures",
+         "outcomes": [
+          {
+           "code": "5.1",
+           "text": "Describe saving as setting money aside for future needs or goals."
+          },
+          {
+           "code": "5.2",
+           "text": "Describe investing as using money in ways that allow it to grow over time."
+          },
+          {
+           "code": "5.3",
+           "text": "Develop a short-term goal and develop a hypothetical savings plan to reach that goal within a defined time frame."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "5-8",
+   "units": [
+    {
+     "id": "budgeting-and-money-management-the-understanding",
+     "title": "Budgeting and Money Management: The understanding of how to allocate one’s financial resources to meet life goals",
+     "topics": [
+      {
+       "id": "budgeting-and-money-management-the-understanding",
+       "title": "Budgeting and Money Management: The understanding of how to allocate one’s financial resources to meet life goals",
+       "subtopics": [
+        {
+         "id": "budgeting-and-money-management-the-understanding",
+         "title": "Budgeting and Money Management: The understanding of how to allocate one’s financial resources to meet life goals",
+         "outcomes": [
+          {
+           "code": "1.1",
+           "text": "Distinguish between financial needs, wants, values, and goals, and explain how each influences spending and savings decisions in real-world situations."
+          },
+          {
+           "code": "1.2",
+           "text": "Analyze why people with similar incomes may experience different financial outcomes, considering factors such as priorities, obligations, unexpected expenses, access to resources, and decisionmaking."
+          },
+          {
+           "code": "1.3",
+           "text": "Create a budget for a hypothetical income that includes planned expenses and savings."
+          },
+          {
+           "code": "1.4",
+           "text": "Evaluate information about goods and services by assessing the credibility, accuracy, and potential biases of different sources, including advertisements and online content."
+          },
+          {
+           "code": "1.5",
+           "text": "Explain how external influences such as peers, advertising, technology, and economic conditions can shape consumer choices and finances."
+          },
+          {
+           "code": "1.6",
+           "text": "Compare common payment methods—including cash, check, credit cards, and digital payment apps—by summarizing their advantages, disadvantages, risks, and consumer protections."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "credit-and-debt-management-the-understanding-of-",
+     "title": "Credit and Debt Management: The understanding of the role of credit in personal finance and how to avoid potential pitfalls of debt",
+     "topics": [
+      {
+       "id": "credit-and-debt-management-the-understanding-of-",
+       "title": "Credit and Debt Management: The understanding of the role of credit in personal finance and how to avoid potential pitfalls of debt",
+       "subtopics": [
+        {
+         "id": "credit-and-debt-management-the-understanding-of-",
+         "title": "Credit and Debt Management: The understanding of the role of credit in personal finance and how to avoid potential pitfalls of debt",
+         "outcomes": [
+          {
+           "code": "2.1",
+           "text": "Examine factors that influence the decision to use credit, including needs versus wants, simple interest, fees, repayment terms, and personal and legal responsibilities of using credit."
+          },
+          {
+           "code": "2.2",
+           "text": "Explain the costs and benefits of using credit to finance different types of purchases, and describe situations in which using credit may be helpful or harmful."
+          },
+          {
+           "code": "2.3",
+           "text": "Explain strategies credit card users can use to minimize simple interest charges, such as paying balances in full, paying on time, and understanding billing cycles."
+          },
+          {
+           "code": "2.4",
+           "text": "Describe how missed or late payments affect credit agreements, including changes to low introductory interest rates, fees, and long-term costs."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "earning-income-the-understanding-of-how-income-i",
+     "title": "Earning Income: The understanding of how income is earned and how taxes impact the money that is taken home",
+     "topics": [
+      {
+       "id": "earning-income-the-understanding-of-how-income-i",
+       "title": "Earning Income: The understanding of how income is earned and how taxes impact the money that is taken home",
+       "subtopics": [
+        {
+         "id": "earning-income-the-understanding-of-how-income-i",
+         "title": "Earning Income: The understanding of how income is earned and how taxes impact the money that is taken home",
+         "outcomes": [
+          {
+           "code": "3.1",
+           "text": "Compare the education, training, and skills required for multiple careers, and explain how these factors influence earning potential."
+          },
+          {
+           "code": "3.2",
+           "text": "Analyze the difference between gross income and net income, including the impact of taxes and common payroll deductions, such as Social Security and Medicare."
+          },
+          {
+           "code": "3.3",
+           "text": "Explain how taxes reduce take-home pay and describe the purposes of taxes, including funding public services such as schools, libraries, roads, emergency services, and community programs."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "risk-management-the-understanding-that-risks-are",
+     "title": "Risk Management: The understanding that risks are a part of life and strategies to manage that risk, including insurance policies",
+     "topics": [
+      {
+       "id": "risk-management-the-understanding-that-risks-are",
+       "title": "Risk Management: The understanding that risks are a part of life and strategies to manage that risk, including insurance policies",
+       "subtopics": [
+        {
+         "id": "risk-management-the-understanding-that-risks-are",
+         "title": "Risk Management: The understanding that risks are a part of life and strategies to manage that risk, including insurance policies",
+         "outcomes": [
+          {
+           "code": "4.1",
+           "text": "Explain how advance planning and insurance can reduce the financial impact of unexpected events, such as damage to personal property, illness, or injury."
+          },
+          {
+           "code": "4.2",
+           "text": "Describe the purpose of insurance and how insurance works, including the concepts of premiums, coverage, and shared risk (e.g., higher premiums for auto insurance for drivers with a bad accident record and flood insurance for houses on the coastline)."
+          },
+          {
+           "code": "4.3",
+           "text": "Analyze the costs and benefits of purchasing an extended warranty on a specific item (e.g., cellphone, laptop, or vehicle)."
+          },
+          {
+           "code": "4.4",
+           "text": "Identify common methods used by identity thieves to obtain personal information, such as phishing or fake websites, and recommend actions individuals can take to protect personal and financial information (e.g., safe online behavior, strong passwords, and careful sharing of personal information)."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "saving-and-investing-the-understanding-of-the-ro",
+     "title": "Saving and Investing: The understanding of the role of putting money aside to plan for longer-term expenditures",
+     "topics": [
+      {
+       "id": "saving-and-investing-the-understanding-of-the-ro",
+       "title": "Saving and Investing: The understanding of the role of putting money aside to plan for longer-term expenditures",
+       "subtopics": [
+        {
+         "id": "saving-and-investing-the-understanding-of-the-ro",
+         "title": "Saving and Investing: The understanding of the role of putting money aside to plan for longer-term expenditures",
+         "outcomes": [
+          {
+           "code": "5.1",
+           "text": "Identify common reasons that people save money—such as for making a large purchase, preparing for emergencies, or reaching personal goals—and create a simple savings plan to reach a short-term goal within one year."
+          },
+          {
+           "code": "5.2",
+           "text": "Define and differentiate between investment principal and interest, and then explain how interest allows savings or investments to grow over time."
+          },
+          {
+           "code": "5.3",
+           "text": "Compare savings account interest rates across multiple institutions and demonstrate how a higher interest rate will help a person reach their savings goal sooner."
+          },
+          {
+           "code": "5.4",
+           "text": "Describe the potential benefits and risks of different types of investment assets, such as stocks, mutual funds, real estate, and cryptocurrency."
+          },
+          {
+           "code": "5.5",
+           "text": "Explain why starting to save or invest earlier can lead to greater returns over time."
+          },
+          {
+           "code": "5.6",
+           "text": "Explain how diversification helps reduce investment risk by spreading money across different types of assets, rather than relying on one single investment."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "9-12",
+   "units": [
+    {
+     "id": "budgeting-and-money-management-the-understanding",
+     "title": "Budgeting and Money Management: The understanding of how to allocate one’s financial resources to meet life goals",
+     "topics": [
+      {
+       "id": "budgeting-and-money-management-the-understanding",
+       "title": "Budgeting and Money Management: The understanding of how to allocate one’s financial resources to meet life goals",
+       "subtopics": [
+        {
+         "id": "budgeting-and-money-management-the-understanding",
+         "title": "Budgeting and Money Management: The understanding of how to allocate one’s financial resources to meet life goals",
+         "outcomes": [
+          {
+           "code": "1.1",
+           "text": "Develop and manage a budget that allocates income to necessary spending, desired spending, and saving, including consideration of fixed and variable expenses, using appropriate tools or systems to track financial activity."
+          },
+          {
+           "code": "1.2",
+           "text": "Evaluate consumer purchasing decisions by analyzing factors such as cost, features, personal benefit, environmental or social impact, and the influence of marketing and advertising, including social media."
+          },
+          {
+           "code": "1.3",
+           "text": "Compare housing options, including renting and buying, by analyzing short- and long-term costs, benefits, and responsibilities, and explain key rental agreement terms such as lease term, security deposit, grace period, and eviction."
+          },
+          {
+           "code": "1.4",
+           "text": "Assess charitable giving decisions by explaining benefits, considerations, and strategies for evaluating organizations when donating money, goods, or time."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "credit-and-debt-management-the-understanding-of-",
+     "title": "Credit and Debt Management: The understanding of the role of credit in personal finance and how to avoid potential pitfalls of debt",
+     "topics": [
+      {
+       "id": "credit-and-debt-management-the-understanding-of-",
+       "title": "Credit and Debt Management: The understanding of the role of credit in personal finance and how to avoid potential pitfalls of debt",
+       "subtopics": [
+        {
+         "id": "credit-and-debt-management-the-understanding-of-",
+         "title": "Credit and Debt Management: The understanding of the role of credit in personal finance and how to avoid potential pitfalls of debt (1 of 2)",
+         "outcomes": [
+          {
+           "code": "2.1",
+           "text": "Compare examples of \"good debt\" and \"bad debt\", and explain how changes in interest rates, repayment behavior, or financial circumstances can cause “good debt” to become harmful."
+          },
+          {
+           "code": "2.2",
+           "text": "Evaluate credit card options by analyzing interest rates (called Annual Percentage Rate), fees, billing cycles, rewards, and terms, and explain strategies for avoiding fees, penalties, and interest rate increases."
+          },
+          {
+           "code": "2.3",
+           "text": "Distinguish between unsecured versus secured loans, including the role of collateral, and explain the financial and legal consequences of failing to meet repayment obligations for each."
+          },
+          {
+           "code": "2.",
+           "text": "Compare different sources of funding for postsecondary education, including the differences between federal and private student loans, by examining application processes, interest rates, repayment rules, and total repayment costs over time."
+          }
+         ]
+        },
+        {
+         "id": "credit-and-debt-management-the-understanding-of--2",
+         "title": "Credit and Debt Management: The understanding of the role of credit in personal finance and how to avoid potential pitfalls of debt (2 of 2)",
+         "outcomes": [
+          {
+           "code": "2.5",
+           "text": "Identify and describe sources of financial aid for postsecondary education—such as grants, scholarships, work-study, and the New York State Tuition Assistance Program (TAP)—as well as reasons to complete the Free Application for Federal Student Aid (FAFSA)."
+          },
+          {
+           "code": "2.6",
+           "text": "Explain the purpose and use of credit reports, including factors that influence a credit score, strategies for building and improving credit, how reports are used by lenders and other parties, and how a person can obtain a free credit report."
+          },
+          {
+           "code": "2.7",
+           "text": "Analyze the short- and long-term consequences of failing to repay debt, including impacts on credit, employment, housing, and overall financial well-being, and identify strategies and sources of assistance for managing or resolving debt."
+          },
+          {
+           "code": "2.8",
+           "text": "Assess the costs, risks, and characteristics of alternative financial services, such as payday loans and check-cashing services, and compare them to traditional banking and credit options."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "earning-income-the-understanding-of-how-income-i",
+     "title": "Earning Income: The understanding of how income is earned and how taxes impact the money that is taken home",
+     "topics": [
+      {
+       "id": "earning-income-the-understanding-of-how-income-i",
+       "title": "Earning Income: The understanding of how income is earned and how taxes impact the money that is taken home",
+       "subtopics": [
+        {
+         "id": "earning-income-the-understanding-of-how-income-i",
+         "title": "Earning Income: The understanding of how income is earned and how taxes impact the money that is taken home (1 of 2)",
+         "outcomes": [
+          {
+           "code": "3.1",
+           "text": "Identify and compare common types of employee benefits such as health insurance, retirement plans, and paid leave, and explain why benefits should be evaluated alongside wages and salaries when choosing between job opportunities."
+          },
+          {
+           "code": "3.2",
+           "text": "Evaluate the tradeoffs between income and non-income factors—including job stability, work-life balance, working conditions, and career advancement opportunities—when making career or employment choices."
+          },
+          {
+           "code": "3.3",
+           "text": "Compare earnings and unemployment rates across a variety of careers and levels of education and training, and explain how education, credentials, and skill development influence earning potential and employment prospects."
+          },
+          {
+           "code": "3.4",
+           "text": "Explain how economic and labor market conditions such as inflation, recession, technological change, and regional workforce demand can affect income, career opportunities, and employment status."
+          }
+         ]
+        },
+        {
+         "id": "earning-income-the-understanding-of-how-income-i-2",
+         "title": "Earning Income: The understanding of how income is earned and how taxes impact the money that is taken home (2 of 2)",
+         "outcomes": [
+          {
+           "code": "3.5",
+           "text": "Evaluate the benefits and drawbacks of “gig” employment and small-business ownership."
+          },
+          {
+           "code": "3.6",
+           "text": "Complete a tax return form (such as the IRS Form 1040) using a hypothetical employer-provided Form W-2 and fictitious employee information, ensuring that no real personal or financial information is used."
+          },
+          {
+           "code": "3.7",
+           "text": "Describe common taxes and payroll deductions shown on a pay stub, such as federal and state income taxes, Social Security, and Medicare."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "risk-management-the-understanding-that-risks-are",
+     "title": "Risk Management: The understanding that risks are a part of life and strategies to manage that risk, including insurance policies",
+     "topics": [
+      {
+       "id": "risk-management-the-understanding-that-risks-are",
+       "title": "Risk Management: The understanding that risks are a part of life and strategies to manage that risk, including insurance policies",
+       "subtopics": [
+        {
+         "id": "risk-management-the-understanding-that-risks-are",
+         "title": "Risk Management: The understanding that risks are a part of life and strategies to manage that risk, including insurance policies",
+         "outcomes": [
+          {
+           "code": "4.1",
+           "text": "Explain benefits, costs, and purposes of different types of insurance—such as automotive, health, life, disability, home, renters—and explore appropriate coverage for individuals with varying characteristics, needs, and types of property."
+          },
+          {
+           "code": "4.2",
+           "text": "Describe the minimum auto liability insurance required in New York State and evaluate whether these requirements are sufficient to cover typical financial losses resulting from an automobile accident."
+          },
+          {
+           "code": "4.3",
+           "text": "Explore options for securing health insurance (e.g., employer-sponsored, private individual, Health Insurance Marketplace, Medicare, Medicaid, Military Health Care), and analyze how premiums, deductibles, copayments, and coinsurance affect overall cost. Describe the legal and financial consequences associated with insurance fraud."
+          },
+          {
+           "code": "4.4",
+           "text": "Evaluate how online behavior, e-mail and text-message scams, telemarketers, and other methods can increase consumer vulnerability to privacy violations, identity theft, and financial fraud."
+          },
+          {
+           "code": "4.5",
+           "text": "Discuss strategies to reduce the risk of identity theft and financial fraud, as well as steps to take if identity theft or financial fraud occurs."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "saving-and-investing-the-understanding-of-the-ro",
+     "title": "Saving and Investing: The understanding of the role of putting money aside to plan for longer-term expenditures",
+     "topics": [
+      {
+       "id": "saving-and-investing-the-understanding-of-the-ro",
+       "title": "Saving and Investing: The understanding of the role of putting money aside to plan for longer-term expenditures",
+       "subtopics": [
+        {
+         "id": "saving-and-investing-the-understanding-of-the-ro",
+         "title": "Saving and Investing: The understanding of the role of putting money aside to plan for longer-term expenditures (1 of 2)",
+         "outcomes": [
+          {
+           "code": "5.1",
+           "text": "Differentiate between saving and investing, and then explain how each supports short- and long-term financial goals."
+          },
+          {
+           "code": "5.2",
+           "text": "Identify strategies to achieve saving goals, including managing social, emotional, and behavioral obstacles that may influence spending and saving decisions."
+          },
+          {
+           "code": "5.3",
+           "text": "Compare the features, interest rates, and fees of common financial accounts, such as regular savings, high-yield savings, checking, money market, and mobile-only accounts, and choose a preferred account based on individual needs, preference, interest rates, and fees."
+          },
+          {
+           "code": "5.4",
+           "text": "Explain how to open and manage a bank account, including setting up direct deposit, and using digital financial tools, such as budgeting and payment apps."
+          },
+          {
+           "code": "5.5",
+           "text": "Evaluate the impact of time on investing, including how investing earlier in life contributes to wealth accumulation, compared with investing later in life."
+          }
+         ]
+        },
+        {
+         "id": "saving-and-investing-the-understanding-of-the-ro-2",
+         "title": "Saving and Investing: The understanding of the role of putting money aside to plan for longer-term expenditures (2 of 2)",
+         "outcomes": [
+          {
+           "code": "5.6",
+           "text": "Compare the features of tax-advantage investment accounts, such as education savings accounts, 529 plans, traditional and Roth IRAs (Individual Retirement Accounts), 401(k)s, pensions, and health savings accounts."
+          },
+          {
+           "code": "5.7",
+           "text": "Compare common investment options—including stocks, bonds, index funds, mutual funds, cryptocurrency, and real estate—analyzing potential risks, returns, liquidity, and volatility."
+          },
+          {
+           "code": "5.8",
+           "text": "Apply decision-making strategies to set personal investment goals based on timeline, income, risk tolerance, and the principles of diversification to help manage risk and optimize potential returns."
+          },
+          {
+           "code": "5.9",
+           "text": "Describe consumer rights and legal remedies for financial disputes, including the roles of the Bureau of Consumer Protection and Small Claims Court."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "build": {
+  "builtAt": "2026-10-14T16:20:46.356Z",
+  "model": "none",
+  "usd": 0,
+  "expectedCodes": 36,
+  "coverage": 1,
+  "missingCodes": [],
+  "counts": {
+   "grades": 3,
+   "units": 15,
+   "topics": 15,
+   "subtopics": 18,
+   "outcomes": 70
+  },
+  "warnings": []
+ }
+}

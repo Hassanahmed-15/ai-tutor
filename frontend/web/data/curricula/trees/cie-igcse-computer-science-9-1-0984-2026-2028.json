@@ -1,0 +1,980 @@
+{
+ "id": "cie-igcse-computer-science-9-1-0984-2026-2028",
+ "region": "INTL",
+ "framework": "Cambridge IGCSE Computer Science (0984) syllabus 2026–2028",
+ "board": "Cambridge",
+ "qualification": "IGCSE (9-1)",
+ "subject": "Computer Science",
+ "syllabusCode": "0984",
+ "gradeSystem": "course",
+ "source": {
+  "urls": [
+   "https://www.cambridgeinternational.org/Images/697248-2026-2028-syllabus.pdf",
+   "https://www.cambridgeinternational.org/programmes-and-qualifications/cambridge-igcse-9-1-computer-science-0984/"
+  ],
+  "publisher": "Cambridge University Press & Assessment (Cambridge International Education)",
+  "licence": "© Cambridge University Press & Assessment; structure + our own wording only",
+  "firstExam": "2026"
+ },
+ "grades": [
+  {
+   "grade": "IGCSE",
+   "units": [
+    {
+     "id": "1-data-representation",
+     "title": "1 Data representation",
+     "topics": [
+      {
+       "id": "1-1-number-systems",
+       "title": "1.1 Number systems",
+       "subtopics": [
+        {
+         "id": "binary-and-why-computers-use-it",
+         "title": "Binary and why computers use it",
+         "outcomes": [
+          {
+           "code": "1.1",
+           "text": "Explain how and why computers use binary to represent all data."
+          }
+         ]
+        },
+        {
+         "id": "denary-binary-and-hexadecimal",
+         "title": "Denary, binary and hexadecimal",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain denary, binary and hexadecimal number systems."
+          },
+          {
+           "code": null,
+           "text": "Convert between positive denary, binary and hexadecimal numbers (up to 16-bit)."
+          },
+          {
+           "code": null,
+           "text": "Explain how and why hexadecimal is used."
+          }
+         ]
+        },
+        {
+         "id": "binary-addition-and-shifts",
+         "title": "Binary addition and shifts",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Add two positive 8-bit binary integers."
+          },
+          {
+           "code": null,
+           "text": "Explain overflow and why it occurs in binary addition."
+          },
+          {
+           "code": null,
+           "text": "Perform logical left and right shifts and explain their effect on the value."
+          }
+         ]
+        },
+        {
+         "id": "two-s-complement",
+         "title": "Two's complement",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Use two's complement to represent positive and negative 8-bit integers and convert both ways."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "1-2-text-sound-and-images",
+       "title": "1.2 Text, sound and images",
+       "subtopics": [
+        {
+         "id": "representing-text-sound-and-images",
+         "title": "Representing text, sound and images",
+         "outcomes": [
+          {
+           "code": "1.2",
+           "text": "Explain how a computer represents text with ASCII and Unicode."
+          },
+          {
+           "code": null,
+           "text": "Explain how sound is represented, including sample rate and sample resolution."
+          },
+          {
+           "code": null,
+           "text": "Explain how an image is represented, including resolution and colour depth."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "1-3-data-storage-and-compression",
+       "title": "1.3 Data storage and compression",
+       "subtopics": [
+        {
+         "id": "storage-units-and-file-sizes",
+         "title": "Storage units and file sizes",
+         "outcomes": [
+          {
+           "code": "1.3",
+           "text": "Explain how data storage is measured, from bit and nibble to exbibyte."
+          },
+          {
+           "code": null,
+           "text": "Calculate the file size of an image or sound file using 1024."
+          }
+         ]
+        },
+        {
+         "id": "data-compression",
+         "title": "Data compression",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain the purpose of and need for data compression."
+          },
+          {
+           "code": null,
+           "text": "Explain lossy and lossless compression, such as run length encoding."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "2-data-transmission",
+     "title": "2 Data transmission",
+     "topics": [
+      {
+       "id": "2-1-types-and-methods-of-data-transmission",
+       "title": "2.1 Types and methods of data transmission",
+       "subtopics": [
+        {
+         "id": "packets-and-packet-switching",
+         "title": "Packets and packet switching",
+         "outcomes": [
+          {
+           "code": "2.1",
+           "text": "Explain that data is sent as packets."
+          },
+          {
+           "code": null,
+           "text": "Describe the structure of a packet: header, payload and trailer."
+          },
+          {
+           "code": null,
+           "text": "Describe packet switching, routers and reordering."
+          }
+         ]
+        },
+        {
+         "id": "transmission-methods-and-usb",
+         "title": "Transmission methods and USB",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe serial, parallel, simplex, half-duplex and full-duplex transmission."
+          },
+          {
+           "code": null,
+           "text": "Explain which method suits a given scenario."
+          },
+          {
+           "code": null,
+           "text": "Explain the USB interface, with benefits and drawbacks."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "2-2-methods-of-error-detection",
+       "title": "2.2 Methods of error detection",
+       "subtopics": [
+        {
+         "id": "detecting-errors",
+         "title": "Detecting errors",
+         "outcomes": [
+          {
+           "code": "2.2",
+           "text": "Explain why transmitted data is checked and how errors occur."
+          },
+          {
+           "code": null,
+           "text": "Describe parity check, checksum and echo check."
+          },
+          {
+           "code": null,
+           "text": "Describe how a check digit detects data entry errors, such as ISBN and bar codes."
+          },
+          {
+           "code": null,
+           "text": "Describe automatic repeat query with acknowledgements and timeout."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "2-3-encryption",
+       "title": "2.3 Encryption",
+       "subtopics": [
+        {
+         "id": "encryption",
+         "title": "Encryption",
+         "outcomes": [
+          {
+           "code": "2.3",
+           "text": "Explain the need for and purpose of encryption."
+          },
+          {
+           "code": null,
+           "text": "Explain symmetric and asymmetric encryption with public and private keys."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "3-hardware",
+     "title": "3 Hardware",
+     "topics": [
+      {
+       "id": "3-1-computer-architecture",
+       "title": "3.1 Computer architecture",
+       "subtopics": [
+        {
+         "id": "the-cpu-and-von-neumann-architecture",
+         "title": "The CPU and Von Neumann architecture",
+         "outcomes": [
+          {
+           "code": "3.1",
+           "text": "Explain the role of the CPU and what a microprocessor is."
+          },
+          {
+           "code": null,
+           "text": "Explain the purpose of the ALU, control unit, registers and buses in a Von Neumann CPU."
+          },
+          {
+           "code": null,
+           "text": "Describe the fetch-decode-execute cycle."
+          }
+         ]
+        },
+        {
+         "id": "cpu-performance-instruction-sets-and-embedded-sy",
+         "title": "CPU performance, instruction sets and embedded systems",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain how cores, cache and clock speed affect CPU performance."
+          },
+          {
+           "code": null,
+           "text": "Explain the purpose and use of a CPU instruction set."
+          },
+          {
+           "code": null,
+           "text": "Describe embedded systems and identify common devices."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "3-2-input-and-output-devices",
+       "title": "3.2 Input and output devices",
+       "subtopics": [
+        {
+         "id": "input-and-output-devices",
+         "title": "Input and output devices",
+         "outcomes": [
+          {
+           "code": "3.2",
+           "text": "Explain what an input device is and why it is needed, with examples."
+          },
+          {
+           "code": null,
+           "text": "Explain what an output device is and why it is needed, with examples."
+          }
+         ]
+        },
+        {
+         "id": "sensors",
+         "title": "Sensors",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain what sensors are and what they are for."
+          },
+          {
+           "code": null,
+           "text": "Identify the data each sensor captures and choose a suitable sensor for a context."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "3-3-data-storage",
+       "title": "3.3 Data storage",
+       "subtopics": [
+        {
+         "id": "primary-storage-and-virtual-memory",
+         "title": "Primary storage and virtual memory",
+         "outcomes": [
+          {
+           "code": "3.3",
+           "text": "Explain primary storage, including RAM and ROM and why both are needed."
+          },
+          {
+           "code": null,
+           "text": "Describe virtual memory, how it is made and why it is needed."
+          }
+         ]
+        },
+        {
+         "id": "secondary-storage",
+         "title": "Secondary storage",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain secondary storage."
+          },
+          {
+           "code": null,
+           "text": "Describe magnetic, optical and solid-state storage with examples."
+          }
+         ]
+        },
+        {
+         "id": "cloud-storage",
+         "title": "Cloud storage",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain cloud storage."
+          },
+          {
+           "code": null,
+           "text": "Weigh the advantages and disadvantages of cloud against local storage."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "3-4-network-hardware",
+       "title": "3.4 Network hardware",
+       "subtopics": [
+        {
+         "id": "network-hardware-and-addresses",
+         "title": "Network hardware and addresses",
+         "outcomes": [
+          {
+           "code": "3.4",
+           "text": "Explain that a network interface card is needed to join a network."
+          },
+          {
+           "code": null,
+           "text": "Explain MAC addresses, including their structure."
+          },
+          {
+           "code": null,
+           "text": "Explain IP addresses and the differences between IPv4 and IPv6."
+          },
+          {
+           "code": null,
+           "text": "Describe the role of a router."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "4-software",
+     "title": "4 Software",
+     "topics": [
+      {
+       "id": "4-1-types-of-software-and-interrupts",
+       "title": "4.1 Types of software and interrupts",
+       "subtopics": [
+        {
+         "id": "system-and-application-software",
+         "title": "System and application software",
+         "outcomes": [
+          {
+           "code": "4.1",
+           "text": "Describe system software against application software with examples."
+          },
+          {
+           "code": null,
+           "text": "Describe the role and basic functions of an operating system."
+          },
+          {
+           "code": null,
+           "text": "Explain how hardware, firmware and the operating system run applications."
+          }
+         ]
+        },
+        {
+         "id": "interrupts",
+         "title": "Interrupts",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe how interrupts are generated, handled by an interrupt service routine, and their results."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "4-2-types-of-programming-language-translators-an",
+       "title": "4.2 Types of programming language, translators and IDEs",
+       "subtopics": [
+        {
+         "id": "programming-languages-and-translators",
+         "title": "Programming languages and translators",
+         "outcomes": [
+          {
+           "code": "4.2",
+           "text": "Explain high-level and low-level languages, with their advantages and disadvantages."
+          },
+          {
+           "code": null,
+           "text": "Explain assembly language and the need for an assembler."
+          },
+          {
+           "code": null,
+           "text": "Describe how a compiler and an interpreter work and report errors."
+          },
+          {
+           "code": null,
+           "text": "Weigh the advantages and disadvantages of compilers and interpreters."
+          }
+         ]
+        },
+        {
+         "id": "integrated-development-environments",
+         "title": "Integrated development environments",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain the role and common functions of an IDE."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "5-the-internet-and-its-uses",
+     "title": "5 The internet and its uses",
+     "topics": [
+      {
+       "id": "5-1-the-internet-and-the-world-wide-web",
+       "title": "5.1 The internet and the world wide web",
+       "subtopics": [
+        {
+         "id": "the-internet-the-web-and-urls",
+         "title": "The internet, the web and URLs",
+         "outcomes": [
+          {
+           "code": "5.1",
+           "text": "Explain the difference between the internet and the world wide web."
+          },
+          {
+           "code": null,
+           "text": "Explain what a URL is."
+          },
+          {
+           "code": null,
+           "text": "Describe the purpose and operation of HTTP and HTTPS."
+          }
+         ]
+        },
+        {
+         "id": "browsers-web-page-retrieval-and-cookies",
+         "title": "Browsers, web page retrieval and cookies",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain the purpose and functions of a web browser."
+          },
+          {
+           "code": null,
+           "text": "Describe how a web page is located, retrieved and displayed from a URL."
+          },
+          {
+           "code": null,
+           "text": "Explain cookies, including session and persistent cookies."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "5-2-digital-currency",
+       "title": "5.2 Digital currency",
+       "subtopics": [
+        {
+         "id": "digital-currency-and-blockchain",
+         "title": "Digital currency and blockchain",
+         "outcomes": [
+          {
+           "code": "5.2",
+           "text": "Explain digital currency and how it is used."
+          },
+          {
+           "code": null,
+           "text": "Explain blockchain and how it tracks digital currency transactions."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "5-3-cyber-security",
+       "title": "5.3 Cyber security",
+       "subtopics": [
+        {
+         "id": "cyber-security-threats",
+         "title": "Cyber security threats",
+         "outcomes": [
+          {
+           "code": "5.3",
+           "text": "Describe how a range of security threats work and what they aim to do: brute force, interception, DDoS, hacking, malware, pharming, phishing and social engineering."
+          }
+         ]
+        },
+        {
+         "id": "keeping-data-safe",
+         "title": "Keeping data safe",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain solutions to keep data safe: access levels, anti-malware, authentication, updates, careful checking of messages and links, firewalls, privacy settings, proxy servers and SSL."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "6-automated-and-emerging-technologies",
+     "title": "6 Automated and emerging technologies",
+     "topics": [
+      {
+       "id": "6-1-automated-systems",
+       "title": "6.1 Automated systems",
+       "subtopics": [
+        {
+         "id": "automated-systems",
+         "title": "Automated systems",
+         "outcomes": [
+          {
+           "code": "6.1",
+           "text": "Describe how sensors, microprocessors and actuators work together in automated systems."
+          },
+          {
+           "code": null,
+           "text": "Describe advantages and disadvantages of an automated system in a scenario."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "6-2-robotics",
+       "title": "6.2 Robotics",
+       "subtopics": [
+        {
+         "id": "robotics",
+         "title": "Robotics",
+         "outcomes": [
+          {
+           "code": "6.2",
+           "text": "Explain what robotics is."
+          },
+          {
+           "code": null,
+           "text": "Describe the characteristics of a robot."
+          },
+          {
+           "code": null,
+           "text": "Describe the roles of robots and the advantages and disadvantages of using them."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "6-3-artificial-intelligence",
+       "title": "6.3 Artificial intelligence",
+       "subtopics": [
+        {
+         "id": "artificial-intelligence",
+         "title": "Artificial intelligence",
+         "outcomes": [
+          {
+           "code": "6.3",
+           "text": "Explain what artificial intelligence is."
+          },
+          {
+           "code": null,
+           "text": "Describe the main characteristics of AI: data and rules, reasoning, learning and adapting."
+          },
+          {
+           "code": null,
+           "text": "Explain how expert systems and machine learning work and their components."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "7-algorithm-design-and-problem-solving",
+     "title": "7 Algorithm design and problem-solving",
+     "topics": [
+      {
+       "id": "7-algorithm-design-and-problem-solving",
+       "title": "7 Algorithm design and problem-solving",
+       "subtopics": [
+        {
+         "id": "program-development-and-decomposition",
+         "title": "Program development and decomposition",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain the program development life cycle: analysis, design, coding and testing."
+          },
+          {
+           "code": null,
+           "text": "Explain that systems are made of sub-systems."
+          },
+          {
+           "code": null,
+           "text": "Decompose a problem into inputs, processes, outputs and storage."
+          },
+          {
+           "code": null,
+           "text": "Design solutions using structure diagrams, flowcharts and pseudocode."
+          }
+         ]
+        },
+        {
+         "id": "understanding-and-writing-algorithms",
+         "title": "Understanding and writing algorithms",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain the purpose of a given algorithm."
+          },
+          {
+           "code": null,
+           "text": "Describe standard methods: linear search, bubble sort, totalling, counting, maximum, minimum and average."
+          },
+          {
+           "code": null,
+           "text": "Write and amend algorithms using pseudocode, code and flowcharts."
+          }
+         ]
+        },
+        {
+         "id": "validation-verification-and-testing",
+         "title": "Validation, verification and testing",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain validation checks and their types."
+          },
+          {
+           "code": null,
+           "text": "Explain verification checks: visual check and double entry."
+          },
+          {
+           "code": null,
+           "text": "Suggest and apply normal, abnormal, extreme and boundary test data."
+          }
+         ]
+        },
+        {
+         "id": "trace-tables-and-errors",
+         "title": "Trace tables and errors",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Complete a trace table for a dry-run."
+          },
+          {
+           "code": null,
+           "text": "Identify errors in algorithms and suggest corrections."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "8-programming",
+     "title": "8 Programming",
+     "topics": [
+      {
+       "id": "8-1-programming-concepts",
+       "title": "8.1 Programming concepts",
+       "subtopics": [
+        {
+         "id": "variables-data-types-and-input-output",
+         "title": "Variables, data types and input/output",
+         "outcomes": [
+          {
+           "code": "8.1",
+           "text": "Declare and use variables and constants."
+          },
+          {
+           "code": null,
+           "text": "Use the basic data types: integer, real, char, string and Boolean."
+          },
+          {
+           "code": null,
+           "text": "Use input and output."
+          }
+         ]
+        },
+        {
+         "id": "sequence-selection-and-iteration",
+         "title": "Sequence, selection and iteration",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Use sequence."
+          },
+          {
+           "code": null,
+           "text": "Use selection with IF and CASE statements."
+          },
+          {
+           "code": null,
+           "text": "Use iteration with count-controlled, pre-condition and post-condition loops."
+          },
+          {
+           "code": null,
+           "text": "Use totalling and counting."
+          },
+          {
+           "code": null,
+           "text": "Use nested statements, up to three levels."
+          }
+         ]
+        },
+        {
+         "id": "strings-and-operators",
+         "title": "Strings and operators",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Use string handling: length, substring, upper and lower."
+          },
+          {
+           "code": null,
+           "text": "Use arithmetic, relational and logical operators."
+          }
+         ]
+        },
+        {
+         "id": "procedures-functions-and-maintainable-code",
+         "title": "Procedures, functions and maintainable code",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain procedures, functions and parameters."
+          },
+          {
+           "code": null,
+           "text": "Define and use procedures and functions with up to three parameters."
+          },
+          {
+           "code": null,
+           "text": "Use local and global variables."
+          },
+          {
+           "code": null,
+           "text": "Use library routines: MOD, DIV, ROUND and RANDOM."
+          },
+          {
+           "code": null,
+           "text": "Write maintainable programs with meaningful identifiers and comments."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "8-2-arrays",
+       "title": "8.2 Arrays",
+       "subtopics": [
+        {
+         "id": "arrays",
+         "title": "Arrays",
+         "outcomes": [
+          {
+           "code": "8.2",
+           "text": "Declare and use one-dimensional and two-dimensional arrays."
+          },
+          {
+           "code": null,
+           "text": "Explain the use of arrays, including variables as indexes."
+          },
+          {
+           "code": null,
+           "text": "Write to and read from arrays using iteration, including nested loops."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "8-3-file-handling",
+       "title": "8.3 File handling",
+       "subtopics": [
+        {
+         "id": "file-handling",
+         "title": "File handling",
+         "outcomes": [
+          {
+           "code": "8.3",
+           "text": "Explain the purpose of storing data in a file for a program."
+          },
+          {
+           "code": null,
+           "text": "Open, close, read from and write to a file."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "9-databases",
+     "title": "9 Databases",
+     "topics": [
+      {
+       "id": "9-databases",
+       "title": "9 Databases",
+       "subtopics": [
+        {
+         "id": "database-design",
+         "title": "Database design",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Define a single-table database: fields, records and validation."
+          },
+          {
+           "code": null,
+           "text": "Suggest suitable basic data types."
+          },
+          {
+           "code": null,
+           "text": "Explain a primary key and choose one for a table."
+          }
+         ]
+        },
+        {
+         "id": "sql-queries",
+         "title": "SQL queries",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Read, understand and complete SQL scripts using SELECT, FROM, WHERE, ORDER BY, SUM, COUNT, AND and OR."
+          },
+          {
+           "code": null,
+           "text": "Identify the output of an SQL statement on a given table."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "10-boolean-logic",
+     "title": "10 Boolean logic",
+     "topics": [
+      {
+       "id": "10-boolean-logic",
+       "title": "10 Boolean logic",
+       "subtopics": [
+        {
+         "id": "logic-gates",
+         "title": "Logic gates",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Identify and use the standard symbols for logic gates."
+          },
+          {
+           "code": null,
+           "text": "Define and understand the functions of NOT, AND, OR, NAND, NOR and XOR gates."
+          }
+         ]
+        },
+        {
+         "id": "logic-circuits-and-truth-tables",
+         "title": "Logic circuits and truth tables",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Create logic circuits from a problem statement, expression or truth table."
+          },
+          {
+           "code": null,
+           "text": "Complete truth tables from a statement, expression or circuit."
+          },
+          {
+           "code": null,
+           "text": "Write logic expressions from a statement, circuit or truth table."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "build": {
+  "builtAt": "2026-10-14T09:49:15.262Z",
+  "model": "claude-agent",
+  "usd": 0,
+  "expectedCodes": 12,
+  "coverage": 1,
+  "missingCodes": [],
+  "counts": {
+   "grades": 1,
+   "units": 10,
+   "topics": 24,
+   "subtopics": 45,
+   "outcomes": 116
+  },
+  "warnings": []
+ }
+}

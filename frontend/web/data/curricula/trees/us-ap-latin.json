@@ -1,0 +1,1014 @@
+{
+ "id": "us-ap-latin",
+ "region": "US",
+ "framework": "AP Latin Course and Exam Description (effective fall 2025)",
+ "board": "College Board",
+ "qualification": "AP",
+ "subject": "Latin",
+ "syllabusCode": null,
+ "gradeSystem": "course",
+ "source": {
+  "urls": [
+   "https://apcentral.collegeboard.org/media/pdf/ap-latin-course-and-exam-description.pdf",
+   "https://apcentral.collegeboard.org/courses/ap-latin"
+  ],
+  "publisher": "College Board",
+  "licence": "© College Board; structure + our own wording only",
+  "firstExam": "2026"
+ },
+ "grades": [
+  {
+   "grade": "all",
+   "units": [
+    {
+     "id": "skill-category-1-read-and-comprehend-read-and-co",
+     "title": "Skill Category 1: Read and Comprehend — Read and comprehend Latin poetry and prose.",
+     "topics": [
+      {
+       "id": "skill-1-a-identify-the-meaning-of-latin-words-an",
+       "title": "Skill 1.A Identify the meaning of Latin words and phrases.",
+       "subtopics": [
+        {
+         "id": "latin-vocabulary",
+         "title": "Latin vocabulary",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "VOC-1: Define Latin words and phrases."
+          },
+          {
+           "code": null,
+           "text": "VOC-2: Identify the meaning of Latin words and phrases in context."
+          },
+          {
+           "code": null,
+           "text": "Know the list of core vocabulary words in Appendix 2 (the Full Required Latin Vocabulary List), which students are responsible for."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "skill-1-b-describe-how-grammar-contributes-to-th",
+       "title": "Skill 1.B Describe how grammar contributes to the meaning and function of Latin words and phrases in context.",
+       "subtopics": [
+        {
+         "id": "nouns-morphology-nominative-and-genitive",
+         "title": "Nouns: morphology, nominative and genitive",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "GRAM-1: Describe how Latin nouns function in context and contribute to the meaning of the text."
+          },
+          {
+           "code": "GRAM-1.A",
+           "text": "General noun morphology: Latin nouns have a gender, number, and case; number and case are shown by the noun's specific endings, dictated by the group (declension) the noun belongs to, and declensions sometimes, but not always, identify the noun's gender as well."
+          },
+          {
+           "code": "GRAM-1.B",
+           "text": "Nominative: a noun in the nominative case can show the subject of a verb."
+          },
+          {
+           "code": "GRAM-1.C",
+           "text": "Nominative: when a verb connects two ideas, both are usually in the nominative case."
+          },
+          {
+           "code": "GRAM-1.D",
+           "text": "Genitive: most nouns in the genitive case show the possessor, to whom something belongs (e.g., villa amici: my friend's house)."
+          },
+          {
+           "code": "GRAM-1.E",
+           "text": "Genitive: the genitive can show descriptive properties of something (e.g., femina magnae sapientiae: a woman of great wisdom), the whole of which a noun is a part (e.g., plus vini: more wine), or a quasi-object of a noun implying action (e.g., cupiditas regni: desire for a kingdom)."
+          }
+         ]
+        },
+        {
+         "id": "nouns-dative-and-accusative",
+         "title": "Nouns: dative and accusative",
+         "outcomes": [
+          {
+           "code": "GRAM-1.F",
+           "text": "Dative: nouns in the dative show the person to whom, for whom, or to whose advantage the action is done; they can be used with verbs of speaking, giving, and showing and translated \"to ____\" or \"for ____.\""
+          },
+          {
+           "code": "GRAM-1.G",
+           "text": "Dative: a noun in the dative (e.g., usui) can show purpose, often paired with a dative of reference in a double dative construction."
+          },
+          {
+           "code": "GRAM-1.H",
+           "text": "Dative: a noun in the dative can be used with a form of sum to show possession or with desum to show lack of possession."
+          },
+          {
+           "code": "GRAM-1.I",
+           "text": "Accusative: a noun in the accusative can be the direct object of a verb, the noun receiving the action of the verb."
+          },
+          {
+           "code": "GRAM-1.J",
+           "text": "Accusative: the accusative can show how long something happens (e.g., multos annos: for many years)."
+          }
+         ]
+        },
+        {
+         "id": "nouns-ablative",
+         "title": "Nouns: ablative",
+         "outcomes": [
+          {
+           "code": "GRAM-1.K",
+           "text": "Ablative: nouns in the ablative have a variety of functions, most commonly showing the means by which an action is done, by whom it is done, the manner in which it is done, where or when it takes place, or the separation between people or things."
+          },
+          {
+           "code": "GRAM-1.L",
+           "text": "Ablative: a noun in the ablative, translated \"in ____,\" \"in respect to ____,\" or \"in regard to ____,\" can show in what respect a statement may be true."
+          },
+          {
+           "code": "GRAM-1.M",
+           "text": "Ablative: the ablative with an adjective can describe a noun and is often translated \"with ____\" or \"of ____\" (e.g., vir animo bono: a man with a good mind)."
+          },
+          {
+           "code": "GRAM-1.N",
+           "text": "Ablative: the ablative can accompany a comparative adjective (or, rarely, a comparative adverb) and is translated \"than ____\" to show the thing against which another is compared."
+          },
+          {
+           "code": "GRAM-1.O",
+           "text": "Ablative: a noun and participle in the ablative form an ablative absolute and can show the time or circumstance of an action; rarely, the participle can be replaced by a second noun."
+          },
+          {
+           "code": "GRAM-1.P",
+           "text": "Ablative: the nouns causa and gratia in the ablative can follow nouns in the genitive, and in this use both are translated \"for the sake of.\""
+          }
+         ]
+        },
+        {
+         "id": "nouns-locative-and-vocative",
+         "title": "Nouns: locative and vocative",
+         "outcomes": [
+          {
+           "code": "GRAM-1.Q",
+           "text": "Locative: some nouns, especially names of cities, use the locative to show location, translated \"at ____\" or \"in ____\" (e.g., Romae: in Rome); such nouns show place to where with the accusative without a preposition (e.g., Romam: to Rome) and place from where with the ablative without a preposition (e.g., Romā: from Rome)."
+          },
+          {
+           "code": "GRAM-1.R",
+           "text": "Vocative: the vocative identifies the person or object being addressed (e.g., Musa, mihi causas memora, where Vergil addresses the Muse)."
+          }
+         ]
+        },
+        {
+         "id": "verbs-morphology-and-indicative",
+         "title": "Verbs: morphology and indicative",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "GRAM-2: Describe how Latin verbs and verbals function in context and contribute to the meaning of the text."
+          },
+          {
+           "code": "GRAM-2.A",
+           "text": "General verb morphology: a verb's person, number, tense, voice, and mood are shown by a combination of its stem and ending; the endings are dictated by the verb's group (conjugation); irregular verbs (e.g., sum, esse) do not follow the expected patterns, and forms of sum, esse are sometimes omitted and must be inferred from context."
+          },
+          {
+           "code": "GRAM-2.B",
+           "text": "Indicative: the indicative mood is used for statements of fact or reality."
+          },
+          {
+           "code": "GRAM-2.C",
+           "text": "Indicative: there are six tenses in the indicative: present (____[s], is/are ____ing), imperfect (was/were ____ing, used to ____), future (will ____), perfect (____ed, has/have ____ed, did ____), pluperfect (had ____ed), and future perfect (will have ____ed)."
+          },
+          {
+           "code": "GRAM-2.D",
+           "text": "Indicative: when ut introduces a clause with an indicative verb, ut is translated \"like,\" \"as,\" or \"when.\""
+          }
+         ]
+        },
+        {
+         "id": "verbs-subjunctive",
+         "title": "Verbs: subjunctive",
+         "outcomes": [
+          {
+           "code": "GRAM-2.E",
+           "text": "Subjunctive: the subjunctive has many uses (commands, conditions, wishes, possibility, and dependent clauses); a subjunctive in the main clause can be translated \"may ____,\" \"might ____,\" \"would ____,\" \"should ____,\" \"let ____,\" and \"I wish that ____.\""
+          },
+          {
+           "code": "GRAM-2.F",
+           "text": "Subjunctive: clauses introduced by question words with verbs in the subjunctive are indirect questions."
+          },
+          {
+           "code": "GRAM-2.G",
+           "text": "Subjunctive: clauses introduced by ut with subjunctive verbs show the result of an action (result clauses); words of degree such as adeo, ita, sic, tam, tantus, tot, talis, etc., are found in the main clause of many such sentences, and other result clauses can follow verbs such as accidit, fit, and efficit."
+          },
+          {
+           "code": "GRAM-2.H",
+           "text": "Subjunctive: clauses introduced by ut or ne with subjunctive verbs can show the purpose of the main-clause action (purpose clauses); clauses introduced by many verbs of commanding (e.g., impero, persuadeo) can show a command relayed indirectly."
+          }
+         ]
+        },
+        {
+         "id": "verbs-conditions-imperative-and-voice",
+         "title": "Verbs: conditions, imperative and voice",
+         "outcomes": [
+          {
+           "code": "GRAM-2.I",
+           "text": "Conditions are introduced by si (\"if\"), nisi (\"if not\"), and sometimes ni (\"not\"); the verb in either part of the condition may be in the subjunctive or indicative mood."
+          },
+          {
+           "code": "GRAM-2.J",
+           "text": "Imperative: the imperative mood is used for commands."
+          },
+          {
+           "code": "GRAM-2.K",
+           "text": "Voice: verbs have two voices reflecting how the subject interacts with the action: active when the subject does the action, passive when the action is done to the subject; each voice is formed differently."
+          },
+          {
+           "code": "GRAM-2.L",
+           "text": "Voice: deponent verbs have passive forms in Latin but are translated into English with active meanings, and are often listed with three principal parts that look passive (e.g., orior, oriri, ortus sum)."
+          }
+         ]
+        },
+        {
+         "id": "verbs-infinitives-gerunds-and-supines",
+         "title": "Verbs: infinitives, gerunds and supines",
+         "outcomes": [
+          {
+           "code": "GRAM-2.M",
+           "text": "Infinitives: the infinitive is used with certain verbs (e.g., possum, volo, licet) and is often translated \"to _____.\""
+          },
+          {
+           "code": "GRAM-2.N",
+           "text": "Infinitives: a verb of speaking, thinking, feeling, etc., can introduce an indirect statement with an accusative noun as its subject and an infinitive as its verb."
+          },
+          {
+           "code": "GRAM-2.O",
+           "text": "A gerund is a noun formed from a verb (e.g., bellandi: of waging war); a gerundive is an adjective formed from a verb that modifies a noun (e.g., ad eas res conficiendas: for preparing these things)."
+          },
+          {
+           "code": "GRAM-2.P",
+           "text": "A gerundive (often but not always with a form of sum, esse) can show necessity or obligation, and a dative noun can show the agent of the action in this passive construction."
+          },
+          {
+           "code": "GRAM-2.Q",
+           "text": "A supine is a fourth-declension verbal noun ending in -um or -u; the supine in -u is used after adjectives and translated with \"to ____\" (e.g., horribile visu: horrible to see)."
+          }
+         ]
+        },
+        {
+         "id": "participles-and-special-verbs",
+         "title": "Participles and special verbs",
+         "outcomes": [
+          {
+           "code": "GRAM-2.R",
+           "text": "Participles are verbal adjectives that modify nouns: like adjectives they agree with nouns in case, number, and gender; like verbs they have a tense and a voice and may have objects."
+          },
+          {
+           "code": "GRAM-2.S",
+           "text": "Special verbs govern nouns in the dative (e.g., persuadeo, impero, propinquo, credo), ablative (e.g., potior, utor), or genitive (e.g., obliviscor, potior); these nouns are often translated into English as the direct objects of the verbs."
+          }
+         ]
+        },
+        {
+         "id": "adjectives",
+         "title": "Adjectives",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "GRAM-3: Describe how Latin adjectives and pronouns function in context and contribute to the meaning of the text."
+          },
+          {
+           "code": "GRAM-3.A",
+           "text": "Adjectives describe nouns and agree with them in gender, number, and case; they usually modify an explicitly stated noun but may modify an implied noun (used substantively); adjectives occur only in the first three declensions but may modify nouns of any declension, and their gender, number, and case are shown by their ending."
+          },
+          {
+           "code": "GRAM-3.B",
+           "text": "Superlative adjectives show the highest degree of the word, often translated \"____est\" or \"very ____\"; the superlative degree is shown by the stem."
+          },
+          {
+           "code": "GRAM-3.C",
+           "text": "Comparative adjectives show a comparison between two words, often translated \"____er,\" \"more ____,\" or \"rather ____\"; the comparative degree is shown by the stem."
+          }
+         ]
+        },
+        {
+         "id": "pronouns-and-relative-clauses",
+         "title": "Pronouns and relative clauses",
+         "outcomes": [
+          {
+           "code": "GRAM-3.D",
+           "text": "Like nouns, pronouns have a gender, number, and case, shown by a specific form."
+          },
+          {
+           "code": "GRAM-3.E",
+           "text": "The antecedent of a pronoun is the noun it refers to and takes the place of; it may be named earlier or simply understood in context, and the pronoun agrees with it in number and gender."
+          },
+          {
+           "code": "GRAM-3.F",
+           "text": "Relative clauses are introduced by the relative pronoun qui, quae, quod; it refers back to and gives more information about its antecedent, agreeing with it in number and gender, but its case is determined by its use in the relative clause."
+          },
+          {
+           "code": "GRAM-3.G",
+           "text": "The relative pronoun can be used as a demonstrative pronoun, translated \"this,\" \"that,\" \"these,\" or \"those\" instead of \"which\" or \"who.\""
+          }
+         ]
+        },
+        {
+         "id": "particles",
+         "title": "Particles",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "GRAM-4: Describe how Latin particles (such as adverbs, prepositions, and conjunctions) function in context and contribute to the meaning of the text."
+          },
+          {
+           "code": "GRAM-4.A",
+           "text": "An adverb can modify a verb, adjective, or other adverb; the comparative adverb ends in -ius, while the superlative adverb often ends in -e."
+          },
+          {
+           "code": "GRAM-4.B",
+           "text": "Prepositional phrases consist of a preposition and a noun, most often in the ablative or accusative case."
+          },
+          {
+           "code": "GRAM-4.C",
+           "text": "When cum introduces a clause, it may be translated \"when,\" \"since,\" or \"although,\" among other acceptable translations."
+          },
+          {
+           "code": "GRAM-4.D",
+           "text": "Questions in Latin are typically introduced by interrogative words or the suffix -ne placed on the first or most important word of the question."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "skill-1-c-summarize-latin-texts-in-english",
+       "title": "Skill 1.C Summarize Latin texts in English.",
+       "subtopics": [
+        {
+         "id": "summarizing-latin-texts",
+         "title": "Summarizing Latin texts",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "SUM-1: Summarize a Latin text's explicit meaning; the summary may contain, for example, a description of the ideas in the text, the setting of the text, and the sequence of events in the text."
+          },
+          {
+           "code": null,
+           "text": "SUM-2: Summarize a Latin text's implied meaning based on figurative language and inferences."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "skill-1-d-translate-latin-texts-into-english",
+       "title": "Skill 1.D Translate Latin texts into English.",
+       "subtopics": [
+        {
+         "id": "translating-latin-texts",
+         "title": "Translating Latin texts",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "TRAN-1: Provide a translation of a text from Latin to English using idiomatic English."
+          },
+          {
+           "code": null,
+           "text": "TRAN-2: Provide a literal translation of a text from Latin to English accounting for every word in the original Latin."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "skill-category-2-describe-style-and-context-desc",
+     "title": "Skill Category 2: Describe Style and Context — Describe the style and context of Latin poetry and prose.",
+     "topics": [
+      {
+       "id": "skill-2-a-describe-features-and-functions-of-sty",
+       "title": "Skill 2.A Describe features and functions of stylistic elements in Latin texts.",
+       "subtopics": [
+        {
+         "id": "repetition",
+         "title": "Repetition",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "STYL-1: Describe the use of repetition as a stylistic device in Latin texts."
+          },
+          {
+           "code": "STYL-1.A",
+           "text": "An author may repeat words or phrases for a variety of rhetorical or poetic effects: to stress the importance of an idea, to make a statement more memorable, or to give the text a more rhythmic, and at times musical, effect."
+          },
+          {
+           "code": "STYL-1.B",
+           "text": "Alliteration is the repetition of the same initial consonant sound in successive words; it may draw attention to an idea, give the text a pleasant rhythmic quality, or reinforce an emotion or sensory element communicated by the text."
+          },
+          {
+           "code": "STYL-1.C",
+           "text": "Anaphora is the repetition of a word or phrase at the beginning of successive phrases, clauses, sentences, or lines; it may emphasize ideas and create a sense of momentum."
+          },
+          {
+           "code": "STYL-1.D",
+           "text": "Parallel structure (parallelism) is the repetition of phrases, clauses, or sentences; it may create a sense of balance between ideas, give emphasis to an idea, or establish a relationship between ideas."
+          }
+         ]
+        },
+        {
+         "id": "word-order",
+         "title": "Word order",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "STYL-2: Describe the use of word order as a stylistic device in Latin texts."
+          },
+          {
+           "code": "STYL-2.A",
+           "text": "Chiasmus is a rhetorical figure in which two corresponding pairs are arranged not in regular but in inverted order (a-b-b-a); it creates emphasis, calling the reader's or listener's attention to that point."
+          },
+          {
+           "code": "STYL-2.B",
+           "text": "To create an unexpected or emphatic moment, an author may change the natural word order by using interlocking word order, also known as synchysis, with elements placed in an a-b-a-b format."
+          },
+          {
+           "code": "STYL-2.C",
+           "text": "To create suspense or emphasis, an author may delay the final word of a phrase, clause, or sentence to the beginning of the following poetic line; this delay is called enjambment."
+          }
+         ]
+        },
+        {
+         "id": "similes-and-metaphors",
+         "title": "Similes and metaphors",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "STYL-3: Describe the use of similes and metaphors as stylistic devices in Latin texts."
+          },
+          {
+           "code": "STYL-3.A",
+           "text": "A simile is a rhetorical figure making an explicit comparison between two things, usually with \"like\" or \"as\"; similes tend to be used in descriptive passages and help make images more vivid or clear to the reader or listener."
+          },
+          {
+           "code": "STYL-3.B",
+           "text": "A metaphor is a rhetorical figure achieving an implied comparison through a figurative use of words (implicit, whereas the simile is explicit); words are used in an analogous, not literal, sense, and metaphors transfer meanings, create surprising and unexpected connections, and provide vivid imagery, among other effects."
+          }
+         ]
+        },
+        {
+         "id": "meter",
+         "title": "Meter",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "STYL-4: Describe features of meter in Latin poetry."
+          },
+          {
+           "code": "STYL-4.A",
+           "text": "Latin poetry has regular meter: each verse is a somewhat predictable sequence of long and short syllables; syllables make up feet, the basic repeating unit of poetry, and common feet in epic poetry are dactyls (a long and two short syllables), spondees (two long syllables), and trochees (a long then a short syllable)."
+          },
+          {
+           "code": "STYL-4.B",
+           "text": "Elision is partially suppressing the end of a word when reading a verse; it occurs when a word ends in a vowel, a vowel followed by an m, or a diphthong, and the next word begins with a vowel, a diphthong, or an h."
+          },
+          {
+           "code": "STYL-4.C",
+           "text": "All epic poetry is composed in dactylic hexameter: each line has six feet, usually dactyls or spondees; in the Vergilian form the first four feet can be a dactyl or spondee, the fifth foot is usually a dactyl, and the last foot is always a spondee or a trochee."
+          }
+         ]
+        },
+        {
+         "id": "genre-epistles-and-epic",
+         "title": "Genre: epistles and epic",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "STYL-5: Describe features of genre in Latin texts."
+          },
+          {
+           "code": "STYL-5.A",
+           "text": "Epistles are a major genre of Roman literature: some writers published real or fictional letters (e.g., Pliny the Younger, Ovid, Seneca), others had private letters published after their death (e.g., Cicero); letters give insight into Romans' daily lives, but Pliny's are also highly literary, heavily revised between sending and publication in his collection."
+          },
+          {
+           "code": "STYL-5.B",
+           "text": "Epic poetry was a highly stylized, long-established genre; to claim their place in that tradition, epic poets used the same elements as their predecessors while adding their own contribution (e.g., Vergil drew on Greek epics, Homer's Odyssey and Iliad, for the Aeneid)."
+          },
+          {
+           "code": "STYL-5.C",
+           "text": "An epic poem in the Greek and Roman tradition was a long narrative in verse that began with a proem (a preface or prologue) and an invocation to the muses, followed by the start of the plot in medias res."
+          },
+          {
+           "code": "STYL-5.D",
+           "text": "In traditional epic poetry, the gods (which can be personified forces of nature) are always involved in, and sometimes responsible for, moving the narrative forward."
+          },
+          {
+           "code": "STYL-5.E",
+           "text": "An epic poem usually follows the deeds of a hero who is helped and hindered by divine interventions and on many occasions must descend to the underworld to complete his or her quest."
+          },
+          {
+           "code": "STYL-5.F",
+           "text": "Other genres of Latin literature include epigrams, historiography, love poems, didactic poetry, drama (tragedy and comedy), dialogues, oratory, ancient novels, and modern novellas."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "skill-2-b-describe-historical-and-cultural-conte",
+       "title": "Skill 2.B Describe historical and cultural contexts of Latin texts.",
+       "subtopics": [
+        {
+         "id": "vergil-the-punic-wars-and-the-civil-wars",
+         "title": "Vergil, the Punic Wars and the civil wars",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "CTXT-1: Describe references and allusions to influential people, literary works, and historical events in Latin texts."
+          },
+          {
+           "code": "CTXT-1.A",
+           "text": "Vergil (70–19 BCE) composed some of the most famous poems in Latin literature, the Eclogues (or Bucolics), the Georgics, and the Aeneid; his works were well known in his lifetime by most educated Romans and have had a lasting influence on Western literature."
+          },
+          {
+           "code": "CTXT-1.B",
+           "text": "Rome fought a series of wars of expansion with Carthage (a city on the northern tip of modern Tunisia) between 264 and 146 BCE; these Punic Wars ended when the Romans sacked Carthage and took over Carthaginian territories."
+          },
+          {
+           "code": "CTXT-1.C",
+           "text": "Several civil wars marked the transition from Republic to Empire: Julius Caesar returned from his invasion of Gaul to wage war on Rome and establish his dictatorship (49–45 BCE); after his assassination in 44 BCE, the Second Triumvirate defeated the conspirators in Caesar's death at the Battle of Philippi."
+          },
+          {
+           "code": "CTXT-1.D",
+           "text": "Caesar Augustus (63 BCE–14 CE), born Gaius Octavius, was the adopted son and heir of his great-uncle Julius Caesar; power struggles with Marcus Lepidus and Mark Antony of the Second Triumvirate became civil war, ending in Octavius's defeat of Mark Antony's and Cleopatra's armies at Actium in 31 BCE, and he became the first emperor of Rome in 27 BCE."
+          },
+          {
+           "code": "CTXT-1.E",
+           "text": "Augustus used propaganda (art, literature, coinage, and architecture) to support his rise as emperor (27 BCE), promoting his peaceful reign and a powerful, stable empire; the Aeneid created a foundation legend of Rome establishing Augustus's divine ancestry (as a descendant of Aeneas, son of Venus) and preordained status as ruler, and presented Romans as fated to rule the world."
+          }
+         ]
+        },
+        {
+         "id": "pliny-the-younger-pliny-the-elder-and-tacitus",
+         "title": "Pliny the Younger, Pliny the Elder and Tacitus",
+         "outcomes": [
+          {
+           "code": "CTXT-1.F",
+           "text": "Pliny the Younger (61–c. 113 CE) was a lawyer, magistrate, and letter writer who served under the Emperor Trajan; his hundreds of letters give insight into everyday life, the legal system, and Roman public administration in the first century CE."
+          },
+          {
+           "code": "CTXT-1.G",
+           "text": "Pliny the Elder (c. 23–79 CE), Pliny the Younger's maternal uncle, took part in his nephew's rearing and education after the father died and adopted him in his will; an admiral in the Roman fleet, he was also an author and scholar who wrote the Natural History, the largest single work from the Roman Empire to survive antiquity and a model for the modern encyclopedia."
+          },
+          {
+           "code": "CTXT-1.H",
+           "text": "Pliny the Younger's letters about the eruption of Mt. Vesuvius are addressed to his friend, the historian Tacitus (c. 56–c. 120 CE), best known for his Annals and Histories on the lives of emperors and the history of the Empire in the first century CE; their letters are one of the main sources of the little known about Tacitus's personal life."
+          },
+          {
+           "code": "CTXT-1.I",
+           "text": "The Bay of Naples is on the west coast of Italy; Mt. Vesuvius, near the center of the land around the bay, is visible from most places in it; Misenum, at the northern end, was where the Roman navy was stationed (hence Pliny the Elder was there as admiral); the 79 CE eruption covered Pompeii, Herculaneum, Oplontis, and Stabiae, and Stabiae, mentioned in Pliny's letters, was south of Vesuvius in the direct path of the ash and cinder."
+          }
+         ]
+        },
+        {
+         "id": "domitian-trajan-and-the-empire",
+         "title": "Domitian, Trajan and the Empire",
+         "outcomes": [
+          {
+           "code": "CTXT-1.J",
+           "text": "Domitian was emperor from 81 to 96 CE and the last member of the Flavian dynasty (his father and brother ruled before him); he transferred some government functions to the imperial court, tried to diminish the power of the Senate, and executed multiple senators."
+          },
+          {
+           "code": "CTXT-1.K",
+           "text": "Emperor Trajan ruled from 98 to 117 CE; he expanded the empire to its greatest territorial size in its history and oversaw extensive public building programs and the enactment of several social welfare policies."
+          },
+          {
+           "code": "CTXT-1.L",
+           "text": "At its height the Empire encompassed nearly the entire Mediterranean Basin and beyond: west over the entire Iberian Peninsula, north over Britain, east through modern-day Iraq, and into southern Egypt; when Vergil wrote the Aeneid (29–19 BCE) it included the supposed site of Troy (rebuilt by Augustus as Ilium) and Carthage, and Pliny refers to Athens and Alexandria (in Egypt at the mouth of the Nile), part of the empire in the late first century CE."
+          },
+          {
+           "code": "CTXT-1.M",
+           "text": "Pliny the Younger wrote his letters to Emperor Trajan from Bithynia-Pontus, a province on the southern shore of the Black Sea (now in Turkey), where he served as governor from 110 to 113 CE."
+          }
+         ]
+        },
+        {
+         "id": "author-and-work-as-context",
+         "title": "Author and work as context",
+         "outcomes": [
+          {
+           "code": "CTXT-1.N",
+           "text": "An author's life and background can inform an interpretation of a text (e.g., Vergil's patronage by Maecenas, political advisor to Caesar Augustus, probably influenced the pro-Augustan allegory of the Aeneid)."
+          },
+          {
+           "code": "CTXT-1.O",
+           "text": "An author's other works can inform an interpretation of a text, and a work as a whole can inform the interpretation of any part of it."
+          }
+         ]
+        },
+        {
+         "id": "social-standing-citizenship-and-slavery",
+         "title": "Social standing, citizenship and slavery",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "CTXT-2: Describe references and allusions to Roman social norms and everyday life in Latin texts."
+          },
+          {
+           "code": "CTXT-2.A",
+           "text": "A Roman's social standing could be influenced by family background, wealth, professional accomplishments, and political power and connections."
+          },
+          {
+           "code": "CTXT-2.B",
+           "text": "Roman citizenship granted free male citizens rights and protections such as the right to a legal trial, the right to vote, and the right to run for civic office; female Roman citizens were not granted the same rights, protections, or independence (either legally or due to strongly held social norms)."
+          },
+          {
+           "code": "CTXT-2.C",
+           "text": "Enslaved people were property under Roman law with few legal rights or protections; they often did manual labor and domestic services but could be highly educated and work accordingly (e.g., as bookkeepers and physicians); many were captives of war or piracy from across Europe and the Mediterranean; through manumission a person could be freed and might receive citizenship and even attain wealth and political influence, though barred from political office; most were never freed."
+          }
+         ]
+        },
+        {
+         "id": "patronage-family-and-the-roman-day",
+         "title": "Patronage, family and the Roman day",
+         "outcomes": [
+          {
+           "code": "CTXT-2.D",
+           "text": "Patronage (mutually beneficial relationships between individuals with different levels of power and influence) was a major part of Roman culture: wealthier patrons gave assistance such as legal defense and gifts of food to less powerful clients, who gave political support and formed part of the patron's entourage in public; Pliny the Younger and Trajan, and Vergil and Maecenas (friend and political advisor to Augustus), are examples, and Maecenas's patronage probably inspired or encouraged Vergil to craft the Aeneid as a pro-Augustan allegory with cameos of the Emperor."
+          },
+          {
+           "code": "CTXT-2.E",
+           "text": "Roman family structure was hierarchical and patriarchal: the paterfamilias had the power of life and death over his whole household, although abusing it by cruelty or violence was considered a dereliction of duty (and counter-productive); a wealthy household typically consisted of husband, wife, children, and enslaved people."
+          },
+          {
+           "code": "CTXT-2.F",
+           "text": "The Romans divided the day into 12 hours from sunrise to sunset; the first hour began at sunrise and the sixth hour was approximately midday."
+          }
+         ]
+        },
+        {
+         "id": "religion-omens-and-roman-values",
+         "title": "Religion, omens and Roman values",
+         "outcomes": [
+          {
+           "code": "CTXT-2.G",
+           "text": "The Romans viewed their gods as allies in everyday life: they prayed and made offerings to household gods at home shrines, performed public animal sacrifices to ask for favor or protection, and sometimes examined the entrails of sacrificed animals for signs of the gods' approval."
+          },
+          {
+           "code": "CTXT-2.H",
+           "text": "Romans looked for good or bad signs about the future in portents, omens, and dreams; bad omens could be avoided or averted, but failure to address them could lead to disaster; signs took many forms (e.g., human speech or action, weather or celestial events, features or behavior of animals) and required careful interpretation."
+          },
+          {
+           "code": "CTXT-2.I",
+           "text": "Pietas reflects the Roman ideals of reverence for the gods, loyalty to country, and devotion to parents and family; Vergil's use of pius for Aeneas expresses these ideals in his religious attitude, his patriotic mission, and his relations with his father, son, and comrades."
+          },
+          {
+           "code": "CTXT-2.J",
+           "text": "Although Roman principles evolved, a discernible Roman character appears in the writings and art of the Late Republic and Early Empire: Romans especially valued mercy, honesty, frugality, hard work, responsibility, courage, self-control, moral discernment, and ethical behavior, though Roman history shows they did not always live up to these values."
+          }
+         ]
+        },
+        {
+         "id": "the-gods",
+         "title": "The gods",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "CTXT-3: Describe references and allusions to Greco-Roman mythology and legend in Latin texts."
+          },
+          {
+           "code": "CTXT-3.A",
+           "text": "The Romans practiced a polytheistic religion, equating many gods with Greek deities: Jupiter, king of the gods, married to Juno, queen of the gods and goddess of marriage; his daughter Minerva, goddess of handicrafts and war; his son Mars, also a god of war; his son Apollo, god of music, medicine, prophecy, and archery and a sun god; and his son Mercury, god of merchants and thieves and messenger of the gods."
+          },
+          {
+           "code": "CTXT-3.B",
+           "text": "Saturn, Jupiter's father, was the god of time, wealth, and renewal who ruled a mythical past of abundance and peace; his other sons were Neptune, god of the seas and bodies of fresh water, and Pluto (also Dis Pater or Dis), ruler of the underworld."
+          },
+          {
+           "code": "CTXT-3.C",
+           "text": "Venus, Aeneas's mother in the Aeneid, was the goddess of love, beauty, sexual desire, and victory; she was married to Vulcan, god of fire, metalworking, and the forge, another son of Jupiter and Juno."
+          },
+          {
+           "code": "CTXT-3.D",
+           "text": "Diana was the goddess of wild animals, the hunt, and fertility; in the Aeneid she was concerned for the welfare of the warrior Camilla; she was allowed to remain unmarried as a privilege."
+          }
+         ]
+        },
+        {
+         "id": "myth-and-legend",
+         "title": "Myth and legend",
+         "outcomes": [
+          {
+           "code": "CTXT-3.E",
+           "text": "The Fates were three goddesses who controlled human destinies, dictating how long people would live, what they would accomplish, and what they would suffer."
+          },
+          {
+           "code": "CTXT-3.F",
+           "text": "The Judgement of Paris is a Greek myth of the dispute between Hera, Athena, and Aphrodite (Juno, Minerva, and Venus) over who was fairest; they chose the Trojan prince Paris to judge, he named Aphrodite the winner, and in return she caused Helen, the famously beautiful queen of Sparta, to fall in love with him."
+          },
+          {
+           "code": "CTXT-3.G",
+           "text": "The Trojan War comes from Greek mythology: the Greeks went to war with Troy after Paris took Helen from her husband, the king of Sparta; the decade-long siege ended with the Trojan Horse, a giant wooden horse holding Greek soldiers, devised by the Greek hero Ulysses (Odysseus); the Aeneid connects the war with the foundation of Rome, making the Romans descendants of the Trojans."
+          },
+          {
+           "code": "CTXT-3.H",
+           "text": "Dido (Elissa), legendary founder of Carthage, was queen of Tyre (in present-day Lebanon) but fled with supporters after her brother Pygmalion murdered her husband, Sychaeus, for his wealth; in northern Africa Iarbas, leader of the Gaetulians, offered as much land as a piece of hide could cover, and she cut the hide into strips to encircle as much land as she could; she also humiliated Iarbas by rejecting his offer of marriage."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "skill-category-3-analyze-analyze-latin-poetry-an",
+     "title": "Skill Category 3: Analyze — Analyze Latin poetry and prose.",
+     "topics": [
+      {
+       "id": "skill-3-a-develop-an-interpretation-of-a-latin-t",
+       "title": "Skill 3.A Develop an interpretation of a Latin text.",
+       "subtopics": [
+        {
+         "id": "developing-an-interpretation",
+         "title": "Developing an interpretation",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "INT-1: Develop an interpretation about a main idea or meaning of a Latin text."
+          },
+          {
+           "code": null,
+           "text": "INT-2: Develop an interpretation about an effect or purpose of a Latin text."
+          },
+          {
+           "code": null,
+           "text": "INT-3: Develop an interpretation about a point of view or attitude expressed by the author, speaker, or character in a Latin text."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "skill-3-b-explain-how-specific-evidence-supports",
+       "title": "Skill 3.B Explain how specific evidence supports an interpretation of a Latin text.",
+       "subtopics": [
+        {
+         "id": "supporting-an-interpretation-with-evidence",
+         "title": "Supporting an interpretation with evidence",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "INT-4: Cite specific Latin from the selected text that supports an interpretation."
+          },
+          {
+           "code": null,
+           "text": "INT-5: Explain how the cited textual evidence supports an interpretation of a Latin text."
+          },
+          {
+           "code": null,
+           "text": "INT-6: Explain how contextual information supports an interpretation of a Latin text."
+          },
+          {
+           "code": null,
+           "text": "INT-7: Explain how stylistic information supports an interpretation of a Latin text."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "required-readings-units-1-6",
+     "title": "Required Readings (Units 1–6)",
+     "topics": [
+      {
+       "id": "unit-1-teacher-s-choice-latin-prose",
+       "title": "Unit 1: Teacher's Choice – Latin Prose",
+       "subtopics": [
+        {
+         "id": "teacher-s-choice-prose-readings-1-1-1-4",
+         "title": "Teacher's Choice prose readings 1.1–1.4",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Read Readings 1.1, 1.2, 1.3 and 1.4, Teacher's Choice Prose, approximately 300 words each."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "unit-2-pliny-s-letters-eruption-of-mt-vesuvius",
+       "title": "Unit 2: Pliny's Letters: Eruption of Mt. Vesuvius",
+       "subtopics": [
+        {
+         "id": "letter-6-16-pliny-the-elder",
+         "title": "Letter 6.16: Pliny the Elder",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Read Reading 2.1, Pliny the Younger, Letter 6.16.1–12 – Eruption of Mt. Vesuvius and Pliny the Elder, part 1."
+          },
+          {
+           "code": null,
+           "text": "Read Reading 2.2, Letter 6.16.13–22 – Eruption of Mt. Vesuvius and Pliny the Elder, part 2."
+          }
+         ]
+        },
+        {
+         "id": "letter-6-20-pliny-the-younger",
+         "title": "Letter 6.20: Pliny the Younger",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Read Reading 2.3, Letter 6.20.1–10 – Eruption of Mt. Vesuvius and Pliny the Younger, part 1."
+          },
+          {
+           "code": null,
+           "text": "Read Reading 2.4, Letter 6.20.11–20 – Eruption of Mt. Vesuvius and Pliny the Younger, part 2."
+          },
+          {
+           "code": null,
+           "text": "Read Reading 2.5, Teacher's Choice Prose, approximately 225 words."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "unit-3-pliny-s-letters-ghosts-and-apparitions-le",
+       "title": "Unit 3: Pliny's Letters: Ghosts and Apparitions, Letters to Trajan and Calpurnia, and Teacher's Choice – Latin Prose",
+       "subtopics": [
+        {
+         "id": "letter-7-27-ghosts-and-apparitions",
+         "title": "Letter 7.27: Ghosts and Apparitions",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Read Reading 3.1, Letter 7.27.1–8 – Ghosts and Apparitions, part 1."
+          },
+          {
+           "code": null,
+           "text": "Read Reading 3.2, Letter 7.27.9–16 – Ghosts and Apparitions, part 2."
+          },
+          {
+           "code": null,
+           "text": "Read Reading 3.3, Teacher's Choice Prose, approximately 225 words."
+          }
+         ]
+        },
+        {
+         "id": "letters-to-trajan-and-to-calpurnia",
+         "title": "Letters to Trajan and to Calpurnia",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Read Reading 3.4, Letters 10.37 and 10.90 – Letters to Emperor Trajan, Aqueducts."
+          },
+          {
+           "code": null,
+           "text": "Read Reading 3.5, Letters 10.5, 10.6, and 10.7 – Letters to Emperor Trajan, Citizenship for Pliny's Doctor."
+          },
+          {
+           "code": null,
+           "text": "Read Reading 3.6, Letters 6.4 and 6.7 – Letters to Calpurnia."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "unit-4-teacher-s-choice-latin-poetry-and-vergil-",
+       "title": "Unit 4: Teacher's Choice – Latin Poetry and Vergil's Aeneid, Excerpts from Books 1 and 2",
+       "subtopics": [
+        {
+         "id": "teacher-s-choice-poetry-readings-4-1-4-3",
+         "title": "Teacher's Choice poetry readings 4.1–4.3",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Read Readings 4.1 and 4.2, Teacher's Choice Poetry, approximately 300 words each, and Reading 4.3, Teacher's Choice Poetry, approximately 250 words."
+          }
+         ]
+        },
+        {
+         "id": "aeneid-books-1-and-2",
+         "title": "Aeneid Books 1 and 2",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Read Reading 4.4, Aeneid Book 1, Lines 1–33 – The Epic Begins."
+          },
+          {
+           "code": null,
+           "text": "Read Reading 4.5, Aeneid Book 1, Lines 88–107 and 496–508 – The Storm, Queen Dido."
+          },
+          {
+           "code": null,
+           "text": "Read Reading 4.6, Aeneid Book 2, Lines 40–56 and 201–249 – Laocoön and the Trojan Horse."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "unit-5-vergil-s-aeneid-excerpts-from-books-4-6-7",
+       "title": "Unit 5: Vergil's Aeneid, Excerpts from Books 4, 6, 7, 11, and 12",
+       "subtopics": [
+        {
+         "id": "aeneid-book-4-dido",
+         "title": "Aeneid Book 4: Dido",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Read Reading 5.1, Aeneid Book 4, Lines 74–89 and 165–197 – Dido Feels the Effect of Cupid, Rumor Reaches Jupiter."
+          },
+          {
+           "code": null,
+           "text": "Read Reading 5.2, Aeneid Book 4, Lines 305–361 – Aeneas Leaves Dido."
+          }
+         ]
+        },
+        {
+         "id": "aeneid-books-6-and-7",
+         "title": "Aeneid Books 6 and 7",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Read Reading 5.3, Aeneid Book 6, Lines 450–476, 788–800, and 847–853 – The Shade of Dido, Meeting Anchises."
+          },
+          {
+           "code": null,
+           "text": "Read Reading 5.4, Aeneid Book 7, Lines 45–58, 783–792, and 803–817 – King Latinus, Turnus Prepares for War."
+          }
+         ]
+        },
+        {
+         "id": "aeneid-books-11-and-12",
+         "title": "Aeneid Books 11 and 12",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Read Reading 5.5, Aeneid Book 11, Lines 532–594 – The Story of Camilla."
+          },
+          {
+           "code": null,
+           "text": "Read Reading 5.6, Aeneid Book 12, Lines 791–796, 803–812, and 818–828 – The Fate of the Trojans Is Decided."
+          },
+          {
+           "code": null,
+           "text": "Read Reading 5.7, Aeneid Book 12, Lines 919–952 – The Final Battle of Aeneas and Turnus."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "unit-6-course-project-and-teacher-s-choice-latin",
+       "title": "Unit 6: Course Project and Teacher's Choice – Latin Poetry",
+       "subtopics": [
+        {
+         "id": "course-project",
+         "title": "Course Project",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Analyze, in a project-based way, the four nonsyllabus Course Project passages released each summer on AP Digital Portfolio (two prose, two poetry; approximately 100–150 words each, from a variety of topics, authors and time periods, each with a title, attribution, brief introduction, Latin text, glossary of words not on the Full Required Latin Vocabulary List, and brief commentary), demonstrated on two free-response questions on the AP Exam and through two checkpoint activities."
+          }
+         ]
+        },
+        {
+         "id": "teacher-s-choice-poetry-readings-6-1-6-2",
+         "title": "Teacher's Choice poetry readings 6.1–6.2",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Read Readings 6.1 and 6.2, Teacher's Choice Poetry, approximately 250 words each."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "build": {
+  "builtAt": "2026-10-14T16:56:03.098Z",
+  "model": "claude-agent",
+  "usd": 0,
+  "expectedCodes": 99,
+  "coverage": 1,
+  "missingCodes": [],
+  "counts": {
+   "grades": 1,
+   "units": 4,
+   "topics": 14,
+   "subtopics": 43,
+   "outcomes": 150
+  },
+  "warnings": [
+   "grade 9 has no content",
+   "grade 10 has no content",
+   "grade 11 has no content",
+   "grade 12 has no content",
+   "unexpected grade label \"all\""
+  ]
+ }
+}

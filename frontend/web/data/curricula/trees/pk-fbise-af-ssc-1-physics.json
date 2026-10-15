@@ -1,0 +1,1093 @@
+{
+ "id": "pk-fbise-af-ssc-1-physics",
+ "region": "PK",
+ "framework": "FBISE Assessment Framework (National Curriculum of Pakistan 2022-23)",
+ "board": "FBISE",
+ "qualification": "SSC-I",
+ "subject": "Physics",
+ "syllabusCode": null,
+ "gradeSystem": "grade",
+ "source": {
+  "urls": [
+   "https://www.fbise.edu.pk/ModelPaper/2025/Assessment%20Frameworks/SSC-I/Final%20Assessment%20Framework%20Model%20Question%20Paper%20Physics%20SSC-I.pdf"
+  ],
+  "publisher": "Federal Board of Intermediate and Secondary Education",
+  "licence": "Government publication; structure + our own wording only",
+  "firstExam": "2025"
+ },
+ "grades": [
+  {
+   "grade": "9",
+   "units": [
+    {
+     "id": "domain-a-measurements",
+     "title": "Domain A: Measurements",
+     "topics": [
+      {
+       "id": "physical-quantities",
+       "title": "Physical quantities",
+       "subtopics": [
+        {
+         "id": "physical-quantities-and-units",
+         "title": "Physical quantities and units",
+         "outcomes": [
+          {
+           "code": "P-09-A-01",
+           "text": "Tell physical from non-physical quantities."
+          },
+          {
+           "code": "P-09-A-02",
+           "text": "Explain that physics rests on physical quantities with a magnitude and unit."
+          },
+          {
+           "code": "P-09-A-03",
+           "text": "Tell base from derived quantities and units."
+          },
+          {
+           "code": "P-09-A-04",
+           "text": "Use the seven SI base units and their symbols."
+          }
+         ]
+        },
+        {
+         "id": "scientific-notation-and-prefixes",
+         "title": "Scientific notation and prefixes",
+         "outcomes": [
+          {
+           "code": "P-09-A-05",
+           "text": "Express data in scientific notation."
+          },
+          {
+           "code": "P-09-A-06",
+           "text": "Express data using prefixes such as nano, milli, kilo, mega and convert between them."
+          }
+         ]
+        },
+        {
+         "id": "scalars-and-vectors",
+         "title": "Scalars and vectors",
+         "outcomes": [
+          {
+           "code": "P-09-A-07",
+           "text": "Tell scalars from vectors and draw vectors."
+          },
+          {
+           "code": "P-09-A-08",
+           "text": "Justify that distance, speed, time, mass, energy and temperature are scalars."
+          },
+          {
+           "code": "P-09-A-09",
+           "text": "Justify that displacement, force, weight, velocity, acceleration and momentum are vectors."
+          },
+          {
+           "code": "P-09-A-10",
+           "text": "Find the resultant of two perpendicular vectors by calculation or drawing."
+          },
+          {
+           "code": "P-09-A-11",
+           "text": "Make reasonable estimates of physical quantities."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "measurement",
+       "title": "Measurement",
+       "subtopics": [
+        {
+         "id": "measuring-length-volume-and-time",
+         "title": "Measuring length, volume and time",
+         "outcomes": [
+          {
+           "code": "P-09-A-12",
+           "text": "Use rulers, micrometers and Vernier calipers to measure length."
+          },
+          {
+           "code": "P-09-A-13",
+           "text": "Use measuring cylinders for liquid volume and solid volume by displacement."
+          },
+          {
+           "code": "P-09-A-14",
+           "text": "Measure time intervals with clocks and timers."
+          },
+          {
+           "code": "P-09-A-15",
+           "text": "Average repeated readings, such as pendulum oscillation periods."
+          },
+          {
+           "code": "P-09-A-19",
+           "text": "Find the least count of an analogue instrument from its scale."
+          }
+         ]
+        },
+        {
+         "id": "accuracy-errors-and-rounding",
+         "title": "Accuracy, errors and rounding",
+         "outcomes": [
+          {
+           "code": "P-09-A-16",
+           "text": "Round results to suitable significant figures."
+          },
+          {
+           "code": "P-09-A-17",
+           "text": "Find sources of systematic and random error and how to fix them."
+          },
+          {
+           "code": "P-09-A-18",
+           "text": "Tell precision from accuracy."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "domain-b-mechanics",
+     "title": "Domain B: Mechanics",
+     "topics": [
+      {
+       "id": "kinematics",
+       "title": "Kinematics",
+       "subtopics": [
+        {
+         "id": "types-of-motion-and-speed",
+         "title": "Types of motion and speed",
+         "outcomes": [
+          {
+           "code": "P-09-B-01",
+           "text": "Distinguish translatory, rotatory and vibratory motion."
+          },
+          {
+           "code": "P-09-B-02",
+           "text": "Tell distance from displacement and speed from velocity."
+          },
+          {
+           "code": "P-09-B-03",
+           "text": "Define and calculate speed."
+          },
+          {
+           "code": "P-09-B-04",
+           "text": "Calculate average speed."
+          },
+          {
+           "code": "P-09-B-05",
+           "text": "Tell average from instantaneous speed."
+          },
+          {
+           "code": "P-09-B-06",
+           "text": "Tell uniform from non-uniform velocity."
+          }
+         ]
+        },
+        {
+         "id": "acceleration",
+         "title": "Acceleration",
+         "outcomes": [
+          {
+           "code": "P-09-B-07",
+           "text": "Define and calculate acceleration, including deceleration."
+          },
+          {
+           "code": "P-09-B-08",
+           "text": "Tell uniform from non-uniform acceleration."
+          },
+          {
+           "code": "P-09-B-10",
+           "text": "Use 9.8 m/s2 for free fall near Earth."
+          }
+         ]
+        },
+        {
+         "id": "motion-graphs",
+         "title": "Motion graphs",
+         "outcomes": [
+          {
+           "code": "P-09-B-09",
+           "text": "Sketch and read distance-time and speed-time graphs."
+          },
+          {
+           "code": "P-09-B-11",
+           "text": "Show that the gradient of a distance-time graph gives speed."
+          },
+          {
+           "code": "P-09-B-12",
+           "text": "Find distance from the area under a speed-time graph."
+          },
+          {
+           "code": "P-09-B-13",
+           "text": "Derive that the area under a speed-time graph is distance."
+          },
+          {
+           "code": "P-09-B-14",
+           "text": "Find acceleration from the gradient of a speed-time graph."
+          },
+          {
+           "code": "P-09-B-15",
+           "text": "Explain how the speed-time gradient gives acceleration."
+          },
+          {
+           "code": "P-09-B-16",
+           "text": "State that there is a universal speed limit."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "mass-weight-and-gravity",
+       "title": "Mass, weight and gravity",
+       "subtopics": [
+        {
+         "id": "mass-and-weight",
+         "title": "Mass and weight",
+         "outcomes": [
+          {
+           "code": "P-09-B-17",
+           "text": "Show mass as the quantity of matter in an object."
+          },
+          {
+           "code": "P-09-B-18",
+           "text": "Explain mass as resistance to change in motion."
+          },
+          {
+           "code": "P-09-B-19",
+           "text": "Define and calculate weight."
+          },
+          {
+           "code": "P-09-B-20",
+           "text": "Define and calculate gravitational field strength."
+          },
+          {
+           "code": "P-09-B-21",
+           "text": "Use an electronic balance to measure mass."
+          },
+          {
+           "code": "P-09-B-22",
+           "text": "Use a force meter to measure weight."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "forces-and-newton-s-laws",
+       "title": "Forces and Newton's laws",
+       "subtopics": [
+        {
+         "id": "types-of-forces",
+         "title": "Types of forces",
+         "outcomes": [
+          {
+           "code": "P-09-B-23",
+           "text": "Tell contact from non-contact forces."
+          },
+          {
+           "code": "P-09-B-24",
+           "text": "Tell types of forces apart, such as weight, friction and tension."
+          },
+          {
+           "code": "P-09-B-25",
+           "text": "State the three fundamental forces and compare their strengths."
+          },
+          {
+           "code": "P-09-B-26",
+           "text": "Draw free body diagrams."
+          }
+         ]
+        },
+        {
+         "id": "newton-s-first-and-second-laws",
+         "title": "Newton's first and second laws",
+         "outcomes": [
+          {
+           "code": "P-09-B-27",
+           "text": "State and apply Newton's first law."
+          },
+          {
+           "code": "P-09-B-28",
+           "text": "Identify how force changes velocity."
+          },
+          {
+           "code": "P-09-B-29",
+           "text": "Find the resultant of forces along a line."
+          },
+          {
+           "code": "P-09-B-30",
+           "text": "State and apply Newton's second law."
+          }
+         ]
+        },
+        {
+         "id": "newton-s-third-law-and-limits",
+         "title": "Newton's third law and limits",
+         "outcomes": [
+          {
+           "code": "P-09-B-31",
+           "text": "State and apply Newton's third law."
+          },
+          {
+           "code": "P-09-B-32",
+           "text": "Explain action-reaction pairs with examples."
+          },
+          {
+           "code": "P-09-B-33",
+           "text": "State the limits of Newton's laws."
+          },
+          {
+           "code": "P-09-B-34",
+           "text": "Describe states of equilibrium and spot them in daily life."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "friction",
+       "title": "Friction",
+       "subtopics": [
+        {
+         "id": "friction-and-terminal-velocity",
+         "title": "Friction and terminal velocity",
+         "outcomes": [
+          {
+           "code": "P-09-B-35",
+           "text": "Analyse the dissipative effect of friction."
+          },
+          {
+           "code": "P-09-B-36",
+           "text": "Analyse an object reaching terminal velocity."
+          },
+          {
+           "code": "P-09-B-37",
+           "text": "Tell rolling friction from sliding friction."
+          },
+          {
+           "code": "P-09-B-38",
+           "text": "Justify ways to reduce friction."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "momentum",
+       "title": "Momentum",
+       "subtopics": [
+        {
+         "id": "momentum-and-impulse",
+         "title": "Momentum and impulse",
+         "outcomes": [
+          {
+           "code": "P-09-B-39",
+           "text": "Define and calculate momentum."
+          },
+          {
+           "code": "P-09-B-40",
+           "text": "Define and calculate impulse."
+          },
+          {
+           "code": "P-09-B-41",
+           "text": "Use conservation of momentum to solve simple problems."
+          },
+          {
+           "code": "P-09-B-42",
+           "text": "Define resultant force as rate of change of momentum."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "turning-effects",
+       "title": "Turning effects",
+       "subtopics": [
+        {
+         "id": "moments-and-equilibrium",
+         "title": "Moments and equilibrium",
+         "outcomes": [
+          {
+           "code": "P-09-B-43",
+           "text": "Tell like from unlike parallel forces."
+          },
+          {
+           "code": "P-09-B-44",
+           "text": "Analyse turning effects of forces."
+          },
+          {
+           "code": "P-09-B-45",
+           "text": "Use the principle of moments for objects in equilibrium."
+          },
+          {
+           "code": "P-09-B-46",
+           "text": "Justify an experiment to verify the principle of moments."
+          }
+         ]
+        },
+        {
+         "id": "centre-of-mass-and-stability",
+         "title": "Centre of mass and stability",
+         "outcomes": [
+          {
+           "code": "P-09-B-47",
+           "text": "State centre of mass and centre of gravity."
+          },
+          {
+           "code": "P-09-B-48",
+           "text": "Find the centre of gravity of a flat lamina using a plumb line."
+          },
+          {
+           "code": "P-09-B-49",
+           "text": "Analyse how centre of gravity position affects stability."
+          },
+          {
+           "code": "P-09-B-50",
+           "text": "Propose ways to improve stability."
+          },
+          {
+           "code": "P-09-B-51",
+           "text": "Illustrate real-life uses of stability."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "rotation-and-circular-motion",
+       "title": "Rotation and circular motion",
+       "subtopics": [
+        {
+         "id": "rotation-and-centripetal-force",
+         "title": "Rotation and centripetal force",
+         "outcomes": [
+          {
+           "code": "P-09-B-52",
+           "text": "Predict qualitatively how rotating bodies move."
+          },
+          {
+           "code": "P-09-B-53",
+           "text": "Describe circular motion under a centripetal force."
+          },
+          {
+           "code": "P-09-B-54",
+           "text": "Identify sources of centripetal force in real examples."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "elasticity",
+       "title": "Elasticity",
+       "subtopics": [
+        {
+         "id": "hooke-s-law",
+         "title": "Hooke's law",
+         "outcomes": [
+          {
+           "code": "P-09-B-55",
+           "text": "Show that forces can change an object's size and shape."
+          },
+          {
+           "code": "P-09-B-56",
+           "text": "Define and calculate the spring constant."
+          },
+          {
+           "code": "P-09-B-57",
+           "text": "Sketch and read load-extension graphs."
+          },
+          {
+           "code": "P-09-B-58",
+           "text": "Define the limit of proportionality."
+          },
+          {
+           "code": "P-09-B-59",
+           "text": "Illustrate applications of Hooke's law."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "work-and-energy",
+       "title": "Work and energy",
+       "subtopics": [
+        {
+         "id": "work-and-energy",
+         "title": "Work and energy",
+         "outcomes": [
+          {
+           "code": "P-09-B-60",
+           "text": "Define work done."
+          },
+          {
+           "code": "P-09-B-61",
+           "text": "Use work done = force x distance moved."
+          },
+          {
+           "code": "P-09-B-62",
+           "text": "Define energy as the ability to do work."
+          },
+          {
+           "code": "P-09-B-63",
+           "text": "Explain that energy can be stored in several forms."
+          }
+         ]
+        },
+        {
+         "id": "kinetic-and-potential-energy",
+         "title": "Kinetic and potential energy",
+         "outcomes": [
+          {
+           "code": "P-09-B-64",
+           "text": "Prove and use kinetic energy = half m v squared."
+          },
+          {
+           "code": "P-09-B-65",
+           "text": "Prove and use gravitational potential energy."
+          },
+          {
+           "code": "P-09-B-66",
+           "text": "Use these formulas to solve problems."
+          }
+         ]
+        },
+        {
+         "id": "conservation-of-energy",
+         "title": "Conservation of energy",
+         "outcomes": [
+          {
+           "code": "P-09-B-67",
+           "text": "Describe how energy is transferred and stored in events."
+          },
+          {
+           "code": "P-09-B-68",
+           "text": "State and apply the conservation of energy."
+          },
+          {
+           "code": "P-09-B-69",
+           "text": "Explain why perpetual motion machines cannot work."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "energy-resources",
+       "title": "Energy resources",
+       "subtopics": [
+        {
+         "id": "renewable-and-non-renewable-energy",
+         "title": "Renewable and non-renewable energy",
+         "outcomes": [
+          {
+           "code": "P-09-B-70",
+           "text": "List and tell renewable from non-renewable energy sources."
+          },
+          {
+           "code": "P-09-B-71",
+           "text": "Describe how useful energy is got from natural resources."
+          },
+          {
+           "code": "P-09-B-72",
+           "text": "Describe pros and cons of energy generation methods."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "power-and-efficiency",
+       "title": "Power and efficiency",
+       "subtopics": [
+        {
+         "id": "power-and-efficiency",
+         "title": "Power and efficiency",
+         "outcomes": [
+          {
+           "code": "P-09-B-73",
+           "text": "Define and calculate power."
+          },
+          {
+           "code": "P-09-B-74",
+           "text": "Define and calculate efficiency."
+          },
+          {
+           "code": "P-09-B-75",
+           "text": "Apply efficiency to simple energy problems."
+          },
+          {
+           "code": "P-09-B-76",
+           "text": "Explain why no system is 100% efficient."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "pressure",
+       "title": "Pressure",
+       "subtopics": [
+        {
+         "id": "pressure-and-the-atmosphere",
+         "title": "Pressure and the atmosphere",
+         "outcomes": [
+          {
+           "code": "P-09-B-77",
+           "text": "Define and calculate pressure."
+          },
+          {
+           "code": "P-09-B-78",
+           "text": "Describe how pressure depends on force and area."
+          },
+          {
+           "code": "P-09-B-79",
+           "text": "Analyse how pressure at a surface produces a force."
+          },
+          {
+           "code": "P-09-B-80",
+           "text": "Justify that the atmosphere exerts pressure."
+          },
+          {
+           "code": "P-09-B-81",
+           "text": "Describe how atmospheric pressure falls with height."
+          },
+          {
+           "code": "P-09-B-82",
+           "text": "Explain how pressure changes can signal weather."
+          }
+         ]
+        },
+        {
+         "id": "liquid-pressure-and-pascal-s-law",
+         "title": "Liquid pressure and Pascal's law",
+         "outcomes": [
+          {
+           "code": "P-09-B-83",
+           "text": "Analyse how a liquid barometer works."
+          },
+          {
+           "code": "P-09-B-84",
+           "text": "Show how pressure varies with depth."
+          },
+          {
+           "code": "P-09-B-85",
+           "text": "Analyse how a manometer works."
+          },
+          {
+           "code": "P-09-B-86",
+           "text": "Define and apply Pascal's law."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "domain-c-heat-and-thermodynamics",
+     "title": "Domain C: Heat and Thermodynamics",
+     "topics": [
+      {
+       "id": "density-and-states-of-matter",
+       "title": "Density and states of matter",
+       "subtopics": [
+        {
+         "id": "density",
+         "title": "Density",
+         "outcomes": [
+          {
+           "code": "P-09-C-01",
+           "text": "Define and calculate density."
+          },
+          {
+           "code": "P-09-C-02",
+           "text": "Show how to find the density of a substance."
+          }
+         ]
+        },
+        {
+         "id": "particle-structure-of-matter",
+         "title": "Particle structure of matter",
+         "outcomes": [
+          {
+           "code": "P-09-C-03",
+           "text": "Describe particle structure of solids, liquids and gases."
+          },
+          {
+           "code": "P-09-C-04",
+           "text": "Describe plasma as the fourth state of matter."
+          },
+          {
+           "code": "P-09-C-05",
+           "text": "Link particle motion to temperature and states."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "temperature-and-thermometers",
+       "title": "Temperature and thermometers",
+       "subtopics": [
+        {
+         "id": "temperature-and-thermometers",
+         "title": "Temperature and thermometers",
+         "outcomes": [
+          {
+           "code": "P-09-C-06",
+           "text": "State that raising temperature raises particle energy."
+          },
+          {
+           "code": "P-09-C-07",
+           "text": "Explain how a varying property can be used to measure temperature."
+          },
+          {
+           "code": "P-09-C-08",
+           "text": "Justify fixed points in thermometer calibration."
+          },
+          {
+           "code": "P-09-C-09",
+           "text": "Explain sensitivity, range and linearity of a thermometer."
+          },
+          {
+           "code": "P-09-C-10",
+           "text": "Compare liquid-in-glass and thermocouple thermometers."
+          },
+          {
+           "code": "P-09-C-11",
+           "text": "Analyse how a liquid-in-glass thermometer's structure affects its performance."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "domain-e-electricity-and-magnetism",
+     "title": "Domain E: Electricity and Magnetism",
+     "topics": [
+      {
+       "id": "magnetism",
+       "title": "Magnetism",
+       "subtopics": [
+        {
+         "id": "magnets-and-magnetic-materials",
+         "title": "Magnets and magnetic materials",
+         "outcomes": [
+          {
+           "code": "P-09-E-01",
+           "text": "Describe forces between poles and between magnets and magnetic materials."
+          },
+          {
+           "code": "P-09-E-02",
+           "text": "Describe induced magnetism."
+          },
+          {
+           "code": "P-09-E-03",
+           "text": "Tell magnetic from non-magnetic materials."
+          },
+          {
+           "code": "P-09-E-04",
+           "text": "Tell temporary from permanent magnets."
+          }
+         ]
+        },
+        {
+         "id": "magnetic-fields",
+         "title": "Magnetic fields",
+         "outcomes": [
+          {
+           "code": "P-09-E-05",
+           "text": "Describe magnetic fields."
+          },
+          {
+           "code": "P-09-E-06",
+           "text": "Plot field lines with a compass or iron filings."
+          },
+          {
+           "code": "P-09-E-07",
+           "text": "Draw the pattern and direction of field lines around a bar magnet."
+          },
+          {
+           "code": "P-09-E-08",
+           "text": "State that field direction is the way a north pole would point."
+          },
+          {
+           "code": "P-09-E-09",
+           "text": "State that closer field lines mean a stronger field."
+          }
+         ]
+        },
+        {
+         "id": "uses-and-theory-of-magnets",
+         "title": "Uses and theory of magnets",
+         "outcomes": [
+          {
+           "code": "P-09-E-10",
+           "text": "Describe uses of permanent magnets and electromagnets."
+          },
+          {
+           "code": "P-09-E-11",
+           "text": "Explain magnetism with domain theory."
+          },
+          {
+           "code": "P-09-E-12",
+           "text": "Tell ferromagnetic, paramagnetic and diamagnetic materials apart."
+          },
+          {
+           "code": "P-09-E-13",
+           "text": "Describe the Earth's magnetic field."
+          },
+          {
+           "code": "P-09-E-14",
+           "text": "Analyse uses of magnets in recording technology."
+          },
+          {
+           "code": "P-09-E-15",
+           "text": "State that soft magnetic materials such as soft iron are used for temporary magnets and cores."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "domain-f-modern-physics",
+     "title": "Domain F: Modern Physics",
+     "topics": [
+      {
+       "id": "planets-and-orbits",
+       "title": "Planets and orbits",
+       "subtopics": [
+        {
+         "id": "orbital-speed-and-planetary-data",
+         "title": "Orbital speed and planetary data",
+         "outcomes": [
+          {
+           "code": "P-09-F-01",
+           "text": "Define and calculate average orbital speed."
+          },
+          {
+           "code": "P-09-F-02",
+           "text": "Interpret and compare planetary data."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "domain-g-nature-of-science",
+     "title": "Domain G: Nature of Science",
+     "topics": [
+      {
+       "id": "nature-of-physics",
+       "title": "Nature of physics",
+       "subtopics": [
+        {
+         "id": "what-physics-is",
+         "title": "What physics is",
+         "outcomes": [
+          {
+           "code": "P-09-G-01",
+           "text": "Describe physics as the study of matter, energy, space, time and their interactions."
+          },
+          {
+           "code": "P-09-G-02",
+           "text": "Explain that physics has many sub-fields."
+          },
+          {
+           "code": "P-09-G-03",
+           "text": "Explain physics as a part of the physical sciences."
+          },
+          {
+           "code": "P-09-G-04",
+           "text": "State that physics researchers are called physicists."
+          }
+         ]
+        },
+        {
+         "id": "how-science-works",
+         "title": "How science works",
+         "outcomes": [
+          {
+           "code": "P-09-G-05",
+           "text": "Show that science is collaborative."
+          },
+          {
+           "code": "P-09-G-06",
+           "text": "Understand hypothesis, theory and law."
+          },
+          {
+           "code": "P-09-G-07",
+           "text": "Explain falsifiability in physics."
+          },
+          {
+           "code": "P-09-G-08",
+           "text": "Tell science, technology and engineering apart."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "domain-h-experimentation-skills",
+     "title": "Domain H: Experimentation Skills",
+     "topics": [
+      {
+       "id": "lab-safety",
+       "title": "Lab safety",
+       "subtopics": [
+        {
+         "id": "lab-hazards-and-safety",
+         "title": "Lab hazards and safety",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain how lab hazards are reduced and read hazard signs."
+          },
+          {
+           "code": null,
+           "text": "Know how to call emergency services after a lab accident."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "planning-experiments",
+       "title": "Planning experiments",
+       "subtopics": [
+        {
+         "id": "planning-an-experiment",
+         "title": "Planning an experiment",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Use key terms such as independent, dependent and control variables."
+          },
+          {
+           "code": null,
+           "text": "Choose apparatus, plan how data will be tabulated or graphed and analysed."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "measuring-carefully",
+       "title": "Measuring carefully",
+       "subtopics": [
+        {
+         "id": "avoiding-errors",
+         "title": "Avoiding errors",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Avoid parallax and zero error, take meniscus readings and enough repeats."
+          },
+          {
+           "code": null,
+           "text": "Record and reduce sources of random and systematic error."
+          }
+         ]
+        },
+        {
+         "id": "standard-experiments",
+         "title": "Standard experiments",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Use common apparatus, stopwatches, analogue and digital scales."
+          },
+          {
+           "code": null,
+           "text": "Do experiments on length, volume, time, density, springs, heating and cooling, circuits and optics."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "recording-and-graphing-data",
+       "title": "Recording and graphing data",
+       "subtopics": [
+        {
+         "id": "tables-and-graphs",
+         "title": "Tables and graphs",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Record data with correct units and organise results in tables."
+          },
+          {
+           "code": null,
+           "text": "Label axes, choose scales and plot points accurately."
+          }
+         ]
+        },
+        {
+         "id": "working-with-results",
+         "title": "Working with results",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Use full instrument precision, sensible significant figures and clear working."
+          },
+          {
+           "code": null,
+           "text": "Draw best-fit lines, find gradient and intercept, and read by interpolation or extrapolation."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "evaluating-experiments",
+       "title": "Evaluating experiments",
+       "subtopics": [
+        {
+         "id": "validity-and-reliability",
+         "title": "Validity and reliability",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Judge whether a procedure is valid and reliable."
+          },
+          {
+           "code": null,
+           "text": "Suggest ways to cut random and systematic error and spot unsafe designs."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "build": {
+  "builtAt": "2026-10-14T08:17:31.839Z",
+  "model": "claude-agent",
+  "usd": 0,
+  "expectedCodes": 141,
+  "coverage": 1,
+  "missingCodes": [],
+  "counts": {
+   "grades": 1,
+   "units": 7,
+   "topics": 24,
+   "subtopics": 41,
+   "outcomes": 155
+  },
+  "warnings": []
+ }
+}

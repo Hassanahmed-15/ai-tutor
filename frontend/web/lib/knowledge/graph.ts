@@ -85,6 +85,16 @@ export function canonicalKey(label: string): string {
   return SYNONYMS[key] ?? SYNONYMS[key.replace(/\s+/g, "")] ?? key;
 }
 
+/**
+ * Words about the LESSON, not the subject. Every board says "Predict: …", so a model reading the
+ * scripts extracted "prediction" as a prerequisite and students saw "This builds on Prediction"
+ * (audit 2026-10-15). They are dropped at extraction and ignored when reading the graph.
+ */
+const META_CONCEPTS = new Set(["prediction", "predict", "check", "quiz", "question", "example", "worked example", "review", "recap", "summary", "transfer", "lesson", "exam", "exam technique", "answer", "practice", "revision"]);
+export function isMetaConcept(key: string): boolean {
+  return META_CONCEPTS.has(String(key ?? "").toLowerCase().trim());
+}
+
 export function edgeId(from: string, type: EdgeType, to: string): string {
   return `${from}|${type}|${to}`.slice(0, 250);
 }
@@ -105,7 +115,7 @@ export function validateLectureKnowledge(raw: unknown, beatCount: number): Lectu
     const c = (item && typeof item === "object" ? item : {}) as Record<string, unknown>;
     const label = str(c.label ?? c.name, 60);
     const key = canonicalKey(str(c.key, 60) || label);
-    if (!key || key.length < 2 || !label) continue;
+    if (!key || key.length < 2 || !label || isMetaConcept(key)) continue;
     const aliases = [...new Set((Array.isArray(c.aliases) ? c.aliases : []).map((a) => canonicalKey(str(a, 60))).filter((a) => a && a !== key))].slice(0, 6);
     const existing = concepts.get(key);
     if (existing) {

@@ -32,6 +32,7 @@ export default function CanvasLab() {
   const [scrub, setScrub] = useState(false);
   const [quota, setQuota] = useState<{ dailyLimit: number; usedToday: number } | null>(null);
   const [signedOut, setSignedOut] = useState(false);
+  const [apparatusFixture, setApparatusFixture] = useState(false);
 
   const load = useCallback(async (id: string) => {
     setError("");
@@ -46,6 +47,7 @@ export default function CanvasLab() {
 
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
+    if (params.get("fixture") === "electrolytic-cell" && process.env.NODE_ENV !== "production") queueMicrotask(() => setApparatusFixture(true));
     if (params.get("voice") === "0") queueMicrotask(() => setVoice(false));
     if (params.get("scrub") === "1" && process.env.NODE_ENV !== "production") queueMicrotask(() => setScrub(true));
     const id = params.get("id");
@@ -102,6 +104,7 @@ export default function CanvasLab() {
     }
   };
 
+  if (apparatusFixture) return <ApparatusFixture />;
   if (lecture && scrub) return <Scrubber lecture={lecture} />;
   if (lecture) {
     return (
@@ -199,6 +202,30 @@ export default function CanvasLab() {
           </div>
         )}
       </div>
+    </main>
+  );
+}
+
+function ApparatusFixture() {
+  const spec: CanvasBoardSpec = {
+    v: 1,
+    heading: "Meaning and parts of an electrolytic cell",
+    notes: [],
+    stage: {
+      kind: "scene",
+      items: [
+        { id: "power-supply", kind: "box", label: "power supply", cell: "A1", span: "2x2", s: 0 },
+        { id: "electrolyte", kind: "box", label: "electrolyte", cell: "C1", span: "2x2", s: 0 },
+        { id: "anode", kind: "box", label: "anode", cell: "D1", span: "2x2", s: 0 },
+        { id: "cathode", kind: "box", label: "cathode", cell: "E1", span: "2x2", s: 0 },
+      ],
+      arrows: [],
+    },
+    cues: [],
+  };
+  return (
+    <main className="h-screen bg-black">
+      <LessonCanvas panels={[{ key: "electrolytic-cell", spec }]} currentIndex={0} sentence={99} sentenceProgress={1} finished waitingForStudent={false} playing={false} topic="Electrolysis" onSpeak={() => {}} onTellAria={() => {}} onContinue={() => {}} />
     </main>
   );
 }

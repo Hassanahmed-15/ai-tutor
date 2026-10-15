@@ -1,0 +1,5385 @@
+{
+ "id": "us-in-physical-education",
+ "region": "US",
+ "framework": "Indiana state academic standards: Physical Education",
+ "board": null,
+ "qualification": "K-12",
+ "subject": "Physical Education",
+ "syllabusCode": null,
+ "gradeSystem": "grade",
+ "source": {
+  "urls": [
+   "https://api.commonstandardsproject.com/api/v1/jurisdictions/0F7091AB177F40D8B71B326CAFD13C8D",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/12D10BBAA1E54351AFD4EE8DA976027E",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/6C855C5F26C44E84A7C3686FE8AF7B8A",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/B1683C05B7CB483697948C63686F69F4",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/F5FD2F92FA274AF6855C51E3C465E50B",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/6DCF13651E0642D8B4F797A9F5EC6CB0",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/F7F0BE6CBC304BD299F2AD2351EA137B",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/3EB42F27976A4EC0AEDB80E501CA6C10",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/C74115B59C3F4474910C6EB8396A644B",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/CF047DC5BA2C473BAA72A29CEC457A88",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/2758DC9829754441974C4A2812DC2574",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/ACE5FCAAB92240C2A7274F611F1A8DF6"
+  ],
+  "publisher": "Indiana state education agency (machine-readable via Common Standards Project / ASN)",
+  "licence": "CC BY 4.0 US, Common Curriculum, Inc.",
+  "firstExam": "2023"
+ },
+ "grades": [
+  {
+   "grade": "K",
+   "units": [
+    {
+     "id": "the-physically-literate-individual-will-demonstr",
+     "title": "The physically literate individual will demonstrate competency in a variety of motor skills and movement patterns",
+     "topics": [
+      {
+       "id": "locomotor-skills",
+       "title": "Locomotor Skills",
+       "subtopics": [
+        {
+         "id": "locomotor-hopping-galloping-running-sliding-skip",
+         "title": "Locomotor (Hopping, galloping, running, sliding, skipping, leaping, walking, running)",
+         "outcomes": [
+          {
+           "code": "K.1.1.A",
+           "text": "Performs emerging patterns in locomotor skills (walk, run, leap, hop, gallop, slide, and skip) while maintaining balance (such as when you hear the color of your shirt leap over a pillow)."
+          },
+          {
+           "code": "K.1.1.B",
+           "text": "Perform mature patterns in locomotor skills (walk)."
+          }
+         ]
+        },
+        {
+         "id": "locomotor-jumping-and-landing-in-a-horizontal-an",
+         "title": "Locomotor (Jumping and landing in a horizontal and vertical plane)",
+         "outcomes": [
+          {
+           "code": "K.1.2.A",
+           "text": "Performs jumping and landing actions with balance (such as when you hear the color of your shirt, jump over a line on the floor)."
+          }
+         ]
+        },
+        {
+         "id": "locomotor-dance-rhythm-combinations",
+         "title": "Locomotor (Dance, Rhythm, Combinations)",
+         "outcomes": [
+          {
+           "code": "K.1.3.A",
+           "text": "Performs dance (rhythmic) activities in response to teacher led creative activities."
+          }
+         ]
+        },
+        {
+         "id": "non-locomotor",
+         "title": "Non-Locomotor",
+         "outcomes": [
+          {
+           "code": "K.1.4.A",
+           "text": "Performs emerging patterns in nonlocomotor skills (such as bend, twist, turn, sway, stretch) in exploratory and a stable environment."
+          }
+         ]
+        },
+        {
+         "id": "non-locomotor-balance",
+         "title": "Non-Locomotor (Balance)",
+         "outcomes": [
+          {
+           "code": "K.1.5.A",
+           "text": "Maintains momentary balance (such as wide, narrow, curled and twisted body shapes) on different bases of support (such as walking on the floor)."
+          }
+         ]
+        },
+        {
+         "id": "non-locomotor-weight-transfer",
+         "title": "Non-Locomotor (Weight Transfer)",
+         "outcomes": [
+          {
+           "code": "K.1.6.A",
+           "text": "Developmentally appropriate/emerging outcomes first appear in grade one."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "manipulative-skills",
+       "title": "Manipulative Skills",
+       "subtopics": [
+        {
+         "id": "manipulative-skills-throw",
+         "title": "Manipulative Skills (Throw)",
+         "outcomes": [
+          {
+           "code": "K.1.7.A",
+           "text": "Throws underhand and overhand with opposite foot forward demonstrating an emerging pattern."
+          }
+         ]
+        },
+        {
+         "id": "manipulative-skills-pass-with-hands",
+         "title": "Manipulative Skills (Pass with Hands)",
+         "outcomes": [
+          {
+           "code": "K.1.8.A",
+           "text": "Developmentally appropriate/emerging outcomes first appear in grade four."
+          }
+         ]
+        },
+        {
+         "id": "manipulative-skills-catch",
+         "title": "Manipulative Skills (Catch)",
+         "outcomes": [
+          {
+           "code": "K.1.9.A",
+           "text": "Drops a ball and catches it before it bounces twice."
+          },
+          {
+           "code": "K.1.9.B",
+           "text": "Catches a large ball tossed by a skilled thrower."
+          }
+         ]
+        },
+        {
+         "id": "manipulative-skills-hand-dribble",
+         "title": "Manipulative Skills (Hand Dribble)",
+         "outcomes": [
+          {
+           "code": "K.1.10.A",
+           "text": "Dribbles a ball with one hand, attempting the second contact."
+          }
+         ]
+        },
+        {
+         "id": "manipulative-skills-foot-pass-kick",
+         "title": "Manipulative Skills (Foot Pass/Kick)",
+         "outcomes": [
+          {
+           "code": "K.1.11.A",
+           "text": "Demonstrates an emerging pattern while passing or kicking from a stationary position, demonstrating two of the five critical elements of a mature kicking pattern."
+          }
+         ]
+        },
+        {
+         "id": "manipulative-skills-foot-dribble",
+         "title": "Manipulative Skills (Foot Dribble)",
+         "outcomes": [
+          {
+           "code": "K.1.12.A",
+           "text": "Soft taps a ball using the inside of the foot, sending it forward."
+          }
+         ]
+        },
+        {
+         "id": "manipulative-skills-foot-trap-receive",
+         "title": "Manipulative Skills (Foot Trap Receive)",
+         "outcomes": [
+          {
+           "code": "K.1.13.A",
+           "text": "Performs emerging pattern while receiving with the preferred foot when stationary."
+          }
+         ]
+        },
+        {
+         "id": "manipulative-skills-strike-volley-hands-and-arms",
+         "title": "Manipulative Skills (Strike/Volley, Hands and Arms)",
+         "outcomes": [
+          {
+           "code": "K.1.14.A",
+           "text": "Volley a lightweight object (such as a balloon), sending it upward with an open palm."
+          }
+         ]
+        },
+        {
+         "id": "manipulative-skills-strike-with-implement",
+         "title": "Manipulative Skills (Strike with Implement)",
+         "outcomes": [
+          {
+           "code": "K.1.15.A",
+           "text": "Strikes a lightweight object with a paddle or short-handled racket"
+          }
+         ]
+        },
+        {
+         "id": "manipulative-skills-jump-rope",
+         "title": "Manipulative Skills (Jump Rope)",
+         "outcomes": [
+          {
+           "code": "K.1.16.A",
+           "text": "Practices single and group jump roping frequently after watching the activities modeled for them."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "the-physically-literate-individual-applies-knowl",
+     "title": "The physically literate individual applies knowledge of concepts, principles, strategies and tactics related to movement and performance",
+     "topics": [
+      {
+       "id": "movement-concepts-and-strategies",
+       "title": "Movement Concepts and Strategies",
+       "subtopics": [
+        {
+         "id": "space",
+         "title": "Space",
+         "outcomes": [
+          {
+           "code": "K.2.1.A",
+           "text": "Differentiates between movement in personal space and general space at a slow to moderate speed."
+          },
+          {
+           "code": "K.2.1.B",
+           "text": "Moves in personal space to a rhythm."
+          }
+         ]
+        },
+        {
+         "id": "pathways-shapes-levels",
+         "title": "Pathways, Shapes, Levels",
+         "outcomes": [
+          {
+           "code": "K.2.2.A",
+           "text": "Travels in three different pathways (such as moving in various patterns: straight, curved)."
+          }
+         ]
+        },
+        {
+         "id": "speed-direction-force",
+         "title": "Speed, Direction, Force",
+         "outcomes": [
+          {
+           "code": "K.2.3.A",
+           "text": "Travels in general space with different speeds (such as traveling at various speeds in skill development activities)."
+          }
+         ]
+        },
+        {
+         "id": "strategies-and-tactics",
+         "title": "Strategies and Tactics",
+         "outcomes": [
+          {
+           "code": "K.2.4.A",
+           "text": "Developmentally appropriate/ emerging outcomes first appear in grade three"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "the-physically-literate-individual-demonstrates-",
+     "title": "The physically literate individual demonstrates the knowledge and skills to achieve and maintain a health-enhancing level of physical activity and fitness",
+     "topics": [
+      {
+       "id": "physical-activity",
+       "title": "Physical Activity",
+       "subtopics": [
+        {
+         "id": "physical-activity-knowledge",
+         "title": "Physical Activity Knowledge",
+         "outcomes": [
+          {
+           "code": "K.3.1.A",
+           "text": "Recognizes active play opportunities outside physical education class."
+          }
+         ]
+        },
+        {
+         "id": "engages-in-physical-activity",
+         "title": "Engages in Physical Activity",
+         "outcomes": [
+          {
+           "code": "K.3.2.A",
+           "text": "Actively participates in physical education class."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "fitness",
+       "title": "Fitness",
+       "subtopics": [
+        {
+         "id": "fitness-knowledge",
+         "title": "Fitness Knowledge",
+         "outcomes": [
+          {
+           "code": "K.3.3.A",
+           "text": "Recognizes that when you move fast, your heart beats faster and you breathe faster."
+          }
+         ]
+        },
+        {
+         "id": "fitness-assessment-wellness-planning",
+         "title": "Fitness Assessment & Wellness Planning",
+         "outcomes": [
+          {
+           "code": "K.3.4.A",
+           "text": "Developmentally appropriate/ emerging outcomes first appear in grade three."
+          }
+         ]
+        },
+        {
+         "id": "body-systems",
+         "title": "Body Systems",
+         "outcomes": [
+          {
+           "code": "K.3.5.A",
+           "text": "Recognizes basic structure and function of body systems (such as the heart is a muscle, bones make up the skeletal system)."
+          }
+         ]
+        },
+        {
+         "id": "nutrition",
+         "title": "Nutrition",
+         "outcomes": [
+          {
+           "code": "K.3.6.A",
+           "text": "Identifies health and unhealthy foods and recognizes that food provides energy for physical activity."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "the-physically-literate-individual-exhibits-resp",
+     "title": "The physically literate individual exhibits responsible personal and social behavior that respects self and others",
+     "topics": [
+      {
+       "id": "responsible-personal-and-social-behavior",
+       "title": "Responsible Personal and Social Behavior",
+       "subtopics": [
+        {
+         "id": "personal-responsibility",
+         "title": "Personal Responsibility",
+         "outcomes": [
+          {
+           "code": "K.4.1.A",
+           "text": "Follows directions in group settings (such as safe behaviors, following rules, taking turns)."
+          },
+          {
+           "code": "K.4.1.B",
+           "text": "Demonstrates responsible behavior when prompted."
+          }
+         ]
+        },
+        {
+         "id": "accepting-feedback",
+         "title": "Accepting Feedback",
+         "outcomes": [
+          {
+           "code": "K.4.2.A",
+           "text": "Follow instructions/directions when prompted."
+          }
+         ]
+        },
+        {
+         "id": "working-with-others",
+         "title": "Working with Others",
+         "outcomes": [
+          {
+           "code": "K.4.3.A",
+           "text": "Shares equipment and space with others."
+          }
+         ]
+        },
+        {
+         "id": "rules-etiquette",
+         "title": "Rules & Etiquette",
+         "outcomes": [
+          {
+           "code": "K.4.4.A",
+           "text": "Recognizes the established protocols for class activities."
+          }
+         ]
+        },
+        {
+         "id": "safety",
+         "title": "Safety",
+         "outcomes": [
+          {
+           "code": "K.4.5.A",
+           "text": "Follows teacher directions for safe participation and proper use of equipment with minimal reminders."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "the-physically-literate-individual-recognizes-th",
+     "title": "The physically literate individual recognizes the value of physical activity for health, enjoyment, challenge, self expression and/or social interaction",
+     "topics": [
+      {
+       "id": "valuing-health-enjoyment-challenge-self-expressi",
+       "title": "Valuing Health, Enjoyment, Challenge, Self Expression, and Social Interaction",
+       "subtopics": [
+        {
+         "id": "health",
+         "title": "Health",
+         "outcomes": [
+          {
+           "code": "K.5.1.A",
+           "text": "Recognizes that physical activity is important for good health."
+          }
+         ]
+        },
+        {
+         "id": "challenge",
+         "title": "Challenge",
+         "outcomes": [
+          {
+           "code": "K.5.2.A",
+           "text": "Understands that some physical activities are challenging."
+          }
+         ]
+        },
+        {
+         "id": "self-expression-and-enjoyment",
+         "title": "Self-expression and Enjoyment",
+         "outcomes": [
+          {
+           "code": "K.5.3.A",
+           "text": "Identifies physical activities that are enjoyable."
+          }
+         ]
+        },
+        {
+         "id": "social-interaction",
+         "title": "Social Interaction",
+         "outcomes": [
+          {
+           "code": "K.5.4.A",
+           "text": "Recognizes that physical activity can help develop friendships."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "1",
+   "units": [
+    {
+     "id": "the-physically-literate-individual-will-demonstr",
+     "title": "The physically literate individual will demonstrate competency in a variety of motor skills and movement patterns",
+     "topics": [
+      {
+       "id": "locomotor-skills",
+       "title": "Locomotor Skills",
+       "subtopics": [
+        {
+         "id": "locomotor-hopping-galloping-running-sliding-skip",
+         "title": "Locomotor (Hopping, galloping, running, sliding, skipping, leaping, walking, running)",
+         "outcomes": [
+          {
+           "code": "1.1.1.A",
+           "text": "Performs mature patterns in locomotor skills (jog, run, jump, hop, gallop, and slide)."
+          }
+         ]
+        },
+        {
+         "id": "locomotor-jumping-and-landing-in-a-horizontal-an",
+         "title": "Locomotor (Jumping and landing in a horizontal and vertical plane)",
+         "outcomes": [
+          {
+           "code": "1.1.2.A",
+           "text": "Demonstrates two of the five critical elements for jumping and landing in a horizontal and vertical plane using 2-foot take-offs and landings."
+          }
+         ]
+        },
+        {
+         "id": "locomotor-dance-rhythm-combinations",
+         "title": "Locomotor (Dance, Rhythm, Combinations)",
+         "outcomes": [
+          {
+           "code": "1.1.3.A",
+           "text": "Combines locomotor and nonlocomotor skills in a teacher designed dance."
+          }
+         ]
+        },
+        {
+         "id": "non-locomotor",
+         "title": "Non-Locomotor",
+         "outcomes": [
+          {
+           "code": "1.1.4.A",
+           "text": "Performs mature pattern in nonlocomotor skills (such as bend, twist, turn, sway, stretch) in exploratory and a stable environment."
+          }
+         ]
+        },
+        {
+         "id": "non-locomotor-balance",
+         "title": "Non-Locomotor (Balance)",
+         "outcomes": [
+          {
+           "code": "1.1.5.A",
+           "text": "Maintains stillness on different bases of support with different body shapes."
+          }
+         ]
+        },
+        {
+         "id": "non-locomotor-weight-transfer",
+         "title": "Non-Locomotor (Weight Transfer)",
+         "outcomes": [
+          {
+           "code": "1.1.6.A",
+           "text": "Transfers weight from one body part to another in personal space (such as in dance and gymnastics environments)."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "manipulative-skills",
+       "title": "Manipulative Skills",
+       "subtopics": [
+        {
+         "id": "manipulative-skills-throw",
+         "title": "Manipulative Skills (Throw)",
+         "outcomes": [
+          {
+           "code": "1.1.7.A",
+           "text": "Throws underhand and overhand with different sizes and types of objects in a developing and emerging pattern."
+          }
+         ]
+        },
+        {
+         "id": "manipulative-skills-pass-with-hands",
+         "title": "Manipulative Skills (Pass with Hands)",
+         "outcomes": [
+          {
+           "code": "1.1.8.A",
+           "text": "Developmentally appropriate/emerging outcomes first appear in grade four."
+          }
+         ]
+        },
+        {
+         "id": "manipulative-skills-catch",
+         "title": "Manipulative Skills (Catch)",
+         "outcomes": [
+          {
+           "code": "1.1.9.A",
+           "text": "Catches a soft object from a self-toss before it bounces and catches various sizes of balls by a skilled thrower."
+          }
+         ]
+        },
+        {
+         "id": "manipulative-skills-hand-dribble",
+         "title": "Manipulative Skills (Hand Dribble)",
+         "outcomes": [
+          {
+           "code": "1.1.10.A",
+           "text": "Dribbles continuously in personal space using the preferred hand."
+          }
+         ]
+        },
+        {
+         "id": "manipulative-skills-foot-pass-kick",
+         "title": "Manipulative Skills (Foot Pass/Kick)",
+         "outcomes": [
+          {
+           "code": "1.1.11.A",
+           "text": "Demonstrates an emerging pattern while approaching a stationary ball and passing or kicking it forward."
+          }
+         ]
+        },
+        {
+         "id": "manipulative-skills-foot-dribble",
+         "title": "Manipulative Skills (Foot Dribble)",
+         "outcomes": [
+          {
+           "code": "1.1.12.A",
+           "text": "Demonstrates emerging pattern while dribbling a ball using the inside of the foot while walking in general space."
+          }
+         ]
+        },
+        {
+         "id": "manipulative-skills-foot-trap-receive",
+         "title": "Manipulative Skills (Foot Trap Receive)",
+         "outcomes": [
+          {
+           "code": "1.1.13.A",
+           "text": "Performs emerging pattern while receiving with the preferred foot when stationary."
+          }
+         ]
+        },
+        {
+         "id": "manipulative-skills-strike-volley-hands-and-arms",
+         "title": "Manipulative Skills (Strike/Volley, Hands and Arms)",
+         "outcomes": [
+          {
+           "code": "1.1.14.A",
+           "text": "Volley an object with an open palm sending it upward and also strikes a ball with a short-handed implement sending it upward."
+          }
+         ]
+        },
+        {
+         "id": "manipulative-skills-strike-with-implement",
+         "title": "Manipulative Skills (Strike with Implement)",
+         "outcomes": [
+          {
+           "code": "1.1.15.A",
+           "text": "Standard was combined with 1.1.14A."
+          }
+         ]
+        },
+        {
+         "id": "manipulative-skills-jump-rope",
+         "title": "Manipulative Skills (Jump Rope)",
+         "outcomes": [
+          {
+           "code": "1.1.16.A",
+           "text": "Jump forward or backward using a self-turned and long rope consecutively."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "the-physically-literate-individual-applies-knowl",
+     "title": "The physically literate individual applies knowledge of concepts, principles, strategies and tactics related to movement and performance",
+     "topics": [
+      {
+       "id": "movement-concepts-and-strategies",
+       "title": "Movement Concepts and Strategies",
+       "subtopics": [
+        {
+         "id": "space",
+         "title": "Space",
+         "outcomes": [
+          {
+           "code": "1.2.1.A",
+           "text": "Moves in personal space and general space in response to designated beats/rhythms."
+          }
+         ]
+        },
+        {
+         "id": "pathways-shapes-levels",
+         "title": "Pathways, Shapes, Levels",
+         "outcomes": [
+          {
+           "code": "1.2.2.A",
+           "text": "Travels demonstrating low, middle, and high levels."
+          },
+          {
+           "code": "1.2.2.B",
+           "text": "Travels demonstrating a variety of relationships with objects (such as over, under, around, through)."
+          }
+         ]
+        },
+        {
+         "id": "speed-direction-force",
+         "title": "Speed, Direction, Force",
+         "outcomes": [
+          {
+           "code": "1.2.3.A",
+           "text": "Differentiates between movements that are fast and slow speeds, and with strong and light force."
+          }
+         ]
+        },
+        {
+         "id": "strategies-and-tactics",
+         "title": "Strategies and Tactics",
+         "outcomes": [
+          {
+           "code": "1.2.4.A",
+           "text": "Developmentally appropriate/ emerging outcomes first appear in grade three."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "the-physically-literate-individual-demonstrates-",
+     "title": "The physically literate individual demonstrates the knowledge and skills to achieve and maintain a health-enhancing level of physical activity and fitness",
+     "topics": [
+      {
+       "id": "physical-activity",
+       "title": "Physical Activity",
+       "subtopics": [
+        {
+         "id": "physical-activity-knowledge",
+         "title": "Physical Activity Knowledge",
+         "outcomes": [
+          {
+           "code": "1.3.1.A",
+           "text": "Explains the benefits of being active and exercising and/or playing."
+          }
+         ]
+        },
+        {
+         "id": "engages-in-physical-activity",
+         "title": "Engages in Physical Activity",
+         "outcomes": [
+          {
+           "code": "1.3.2.A",
+           "text": "Identifies the heart as a muscle that grows stronger when you exercise, play, and are physically active."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "fitness",
+       "title": "Fitness",
+       "subtopics": [
+        {
+         "id": "fitness-knowledge",
+         "title": "Fitness Knowledge",
+         "outcomes": [
+          {
+           "code": "1.3.3.A",
+           "text": "Identifies the heart as a muscle that grows stronger when you exercise, play, and are physically active."
+          }
+         ]
+        },
+        {
+         "id": "fitness-assessment-wellness-planning",
+         "title": "Fitness Assessment & Wellness Planning",
+         "outcomes": [
+          {
+           "code": "1.3.4.A",
+           "text": "Developmentally appropriate/ emerging outcomes first appear in grade three."
+          }
+         ]
+        },
+        {
+         "id": "body-systems",
+         "title": "Body Systems",
+         "outcomes": [
+          {
+           "code": "1.3.5.A",
+           "text": "Recognizes basic structure and function of the muscular and skeletal system (such as muscles move the body)."
+          }
+         ]
+        },
+        {
+         "id": "nutrition",
+         "title": "Nutrition",
+         "outcomes": [
+          {
+           "code": "1.3.6.A",
+           "text": "Differentiates between healthy and unhealthy foods."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "the-physically-literate-individual-exhibits-resp",
+     "title": "The physically literate individual exhibits responsible personal and social behavior that respects self and others",
+     "topics": [
+      {
+       "id": "responsible-personal-and-social-behavior",
+       "title": "Responsible Personal and Social Behavior",
+       "subtopics": [
+        {
+         "id": "personal-responsibility",
+         "title": "Personal Responsibility",
+         "outcomes": [
+          {
+           "code": "1.4.1.A",
+           "text": "Accepts personal responsibility by using equipment and space appropriately."
+          },
+          {
+           "code": "1.4.1.B",
+           "text": "Follow the rules and protocols of the learning environment."
+          }
+         ]
+        },
+        {
+         "id": "accepting-feedback",
+         "title": "Accepting Feedback",
+         "outcomes": [
+          {
+           "code": "1.4.2.A",
+           "text": "Responds appropriately to general feedback from the teacher."
+          }
+         ]
+        },
+        {
+         "id": "working-with-others",
+         "title": "Working with Others",
+         "outcomes": [
+          {
+           "code": "1.4.3.A",
+           "text": "Works with others in a variety of class activities (such as small and large groups)."
+          }
+         ]
+        },
+        {
+         "id": "rules-etiquette",
+         "title": "Rules & Etiquette",
+         "outcomes": [
+          {
+           "code": "1.4.4.A",
+           "text": "Works independently with others in a variety of class activities (such as small and large groups)."
+          }
+         ]
+        },
+        {
+         "id": "safety",
+         "title": "Safety",
+         "outcomes": [
+          {
+           "code": "1.4.5.A",
+           "text": "Demonstrates following rules and protocols for class activities."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "the-physically-literate-individual-recognizes-th",
+     "title": "The physically literate individual recognizes the value of physical activity for health, enjoyment, challenge, self expression and/or social interaction",
+     "topics": [
+      {
+       "id": "valuing-health-enjoyment-challenge-self-expressi",
+       "title": "Valuing Health, Enjoyment, Challenge, Self Expression, and Social Interaction",
+       "subtopics": [
+        {
+         "id": "health",
+         "title": "Health",
+         "outcomes": [
+          {
+           "code": "1.5.1.A",
+           "text": "Identifies physical activity as a component of good health."
+          }
+         ]
+        },
+        {
+         "id": "challenge",
+         "title": "Challenge",
+         "outcomes": [
+          {
+           "code": "1.5.2.A",
+           "text": "Recognizes that challenges in physical activities can lead to success (such as learning a new game or activity)."
+          }
+         ]
+        },
+        {
+         "id": "self-expression-and-enjoyment",
+         "title": "Self-expression and Enjoyment",
+         "outcomes": [
+          {
+           "code": "1.5.3.A",
+           "text": "Describes positive feelings that result from participating in physical activities."
+          }
+         ]
+        },
+        {
+         "id": "social-interaction",
+         "title": "Social Interaction",
+         "outcomes": [
+          {
+           "code": "1.5.4.A",
+           "text": "Identifies that physical activity promotes opportunity for social interaction."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "2",
+   "units": [
+    {
+     "id": "the-physically-literate-individual-will-demonstr",
+     "title": "The physically literate individual will demonstrate competency in a variety of motor skills and movement patterns",
+     "topics": [
+      {
+       "id": "locomotor-skills",
+       "title": "Locomotor Skills",
+       "subtopics": [
+        {
+         "id": "locomotor-hopping-galloping-running-sliding-skip",
+         "title": "Locomotor (Hopping, galloping, running, sliding, skipping, leaping, walking, running)",
+         "outcomes": [
+          {
+           "code": "2.1.1.A",
+           "text": "Performs mature patterns in locomotor skills (skip)."
+          }
+         ]
+        },
+        {
+         "id": "locomotor-jumping-and-landing-in-a-horizontal-an",
+         "title": "Locomotor (Jumping and landing in a horizontal and vertical plane)",
+         "outcomes": [
+          {
+           "code": "2.1.2.A",
+           "text": "Demonstrates four of the five critical elements for jumping and landing in horizontal and vertical planes using a variety of 1- and 2-foot take-offs and landings."
+          }
+         ]
+        },
+        {
+         "id": "locomotor-dance-rhythm-combinations",
+         "title": "Locomotor (Dance, Rhythm, Combinations)",
+         "outcomes": [
+          {
+           "code": "2.1.3.A",
+           "text": "Performs a teacher and/or student designed rhythmic activity with correct response to simple rhythms."
+          }
+         ]
+        },
+        {
+         "id": "non-locomotor",
+         "title": "Non-Locomotor",
+         "outcomes": [
+          {
+           "code": "2.1.4.A",
+           "text": "Performs a sequence of non locomotor skills, transitioning smoothly from one skill to another."
+          }
+         ]
+        },
+        {
+         "id": "non-locomotor-balance",
+         "title": "Non-Locomotor (Balance)",
+         "outcomes": [
+          {
+           "code": "2.1.5.A",
+           "text": "Balances on different bases of support, combining levels and shapes."
+          }
+         ]
+        },
+        {
+         "id": "non-locomotor-weight-transfer",
+         "title": "Non-Locomotor (Weight Transfer)",
+         "outcomes": [
+          {
+           "code": "2.1.6.A",
+           "text": "Transfers weight from feet to different body parts/bases of support for balance and/or travel."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "manipulative-skills",
+       "title": "Manipulative Skills",
+       "subtopics": [
+        {
+         "id": "manipulative-skills-throw",
+         "title": "Manipulative Skills (Throw)",
+         "outcomes": [
+          {
+           "code": "2.1.7.A",
+           "text": "Throws underhand and overhand using a developing and mature pattern to an area or target."
+          }
+         ]
+        },
+        {
+         "id": "manipulative-skills-pass-with-hands",
+         "title": "Manipulative Skills (Pass with Hands)",
+         "outcomes": [
+          {
+           "code": "2.1.8.A",
+           "text": "Developmentally appropriate/emerging outcomes first appear in grade four."
+          }
+         ]
+        },
+        {
+         "id": "manipulative-skills-catch",
+         "title": "Manipulative Skills (Catch)",
+         "outcomes": [
+          {
+           "code": "2.1.9.A",
+           "text": "Catches a self tossed or well-thrown large ball with hands, not trapping or cradling against the body."
+          }
+         ]
+        },
+        {
+         "id": "manipulative-skills-hand-dribble",
+         "title": "Manipulative Skills (Hand Dribble)",
+         "outcomes": [
+          {
+           "code": "2.1.10.A",
+           "text": "Dribbles in personal and general space with preferred hand demonstrating a mature pattern."
+          }
+         ]
+        },
+        {
+         "id": "manipulative-skills-foot-pass-kick",
+         "title": "Manipulative Skills (Foot Pass/Kick)",
+         "outcomes": [
+          {
+           "code": "2.1.11.A",
+           "text": "Demonstrates an emerging pattern while passing and kicking a moving ball with the inside of the foot (such as passing the ball to a teammate in a soccer lead up game)."
+          }
+         ]
+        },
+        {
+         "id": "manipulative-skills-foot-dribble",
+         "title": "Manipulative Skills (Foot Dribble)",
+         "outcomes": [
+          {
+           "code": "2.1.12.A",
+           "text": "Dribbles with the feet in general space with control of the ball and body (such as dribbling a ball in a soccer lead-up game)."
+          }
+         ]
+        },
+        {
+         "id": "manipulative-skills-foot-trap-receive",
+         "title": "Manipulative Skills (Foot Trap Receive)",
+         "outcomes": [
+          {
+           "code": "2.1.13.A",
+           "text": "Performs emerging pattern while receiving with the non-preferred foot when stationary."
+          }
+         ]
+        },
+        {
+         "id": "manipulative-skills-strike-volley-hands-and-arms",
+         "title": "Manipulative Skills (Strike/Volley, Hands and Arms)",
+         "outcomes": [
+          {
+           "code": "2.1.14.A",
+           "text": "Volleys and strikes an object upward with open palms, forearms and shorthanded hits."
+          }
+         ]
+        },
+        {
+         "id": "manipulative-skills-strike-with-implement",
+         "title": "Manipulative Skills (Strike with Implement)",
+         "outcomes": [
+          {
+           "code": "2.1.15.A",
+           "text": "Strikes an object upward with a short handled implement, using consecutive hits."
+          },
+          {
+           "code": "2.1.15.B",
+           "text": "Strikes a ball off a tee or cone with a bat, using correct grip and body alignment."
+          }
+         ]
+        },
+        {
+         "id": "manipulative-skills-jump-rope",
+         "title": "Manipulative Skills (Jump Rope)",
+         "outcomes": [
+          {
+           "code": "2.1.16.A",
+           "text": "Jumps a self-turned rope consecutively forward and backward with a mature pattern."
+          },
+          {
+           "code": "2.1.16.B",
+           "text": "Jumps with a long rope five times consecutively with student turners."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "the-physically-literate-individual-applies-knowl",
+     "title": "The physically literate individual applies knowledge of concepts, principles, strategies and tactics related to movement and performance",
+     "topics": [
+      {
+       "id": "movement-concepts-and-strategies",
+       "title": "Movement Concepts and Strategies",
+       "subtopics": [
+        {
+         "id": "space",
+         "title": "Space",
+         "outcomes": [
+          {
+           "code": "2.2.1.A",
+           "text": "Combines locomotor skills in general space to a rhythm."
+          }
+         ]
+        },
+        {
+         "id": "pathways-shapes-levels",
+         "title": "Pathways, Shapes, Levels",
+         "outcomes": [
+          {
+           "code": "2.2.2.A",
+           "text": "Combines shapes, levels and pathways into simple travel, dance and gymnastics sequences (such as demonstrating straight arms with a cartwheel; landing with soft knees/slight flex when jumping down from a height)."
+          }
+         ]
+        },
+        {
+         "id": "speed-direction-force",
+         "title": "Speed, Direction, Force",
+         "outcomes": [
+          {
+           "code": "2.2.3.A",
+           "text": "Varies time and force with gradual increases and decreases as an introduction to agility and speed."
+          }
+         ]
+        },
+        {
+         "id": "strategies-and-tactics",
+         "title": "Strategies and Tactics",
+         "outcomes": [
+          {
+           "code": "2.2.4.A",
+           "text": "Developmentally appropriate/ emerging outcomes first appear in grade three."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "the-physically-literate-individual-demonstrates-",
+     "title": "The physically literate individual demonstrates the knowledge and skills to achieve and maintain a health-enhancing level of physical activity and fitness",
+     "topics": [
+      {
+       "id": "physical-activity",
+       "title": "Physical Activity",
+       "subtopics": [
+        {
+         "id": "physical-activity-knowledge",
+         "title": "Physical Activity Knowledge",
+         "outcomes": [
+          {
+           "code": "2.3.1.A",
+           "text": "Describes large motor and/or manipulative physical activities for participation outside physical education class (such as before and after school, at home, at the park, with friends and family)."
+          }
+         ]
+        },
+        {
+         "id": "engages-in-physical-activity",
+         "title": "Engages in Physical Activity",
+         "outcomes": [
+          {
+           "code": "2.3.2.A",
+           "text": "Actively engages in physical education class in response to instruction and practice."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "fitness",
+       "title": "Fitness",
+       "subtopics": [
+        {
+         "id": "fitness-knowledge",
+         "title": "Fitness Knowledge",
+         "outcomes": [
+          {
+           "code": "2.3.3.A",
+           "text": "Recognizes the use of the body as resistance (such as holding the body in plank position, bear crawl, crab walk, etc.) for developing strength and endurance."
+          },
+          {
+           "code": "2.3.3.B",
+           "text": "Identifies physical activities that contribute to fitness."
+          }
+         ]
+        },
+        {
+         "id": "fitness-assessment-wellness-planning",
+         "title": "Fitness Assessment & Wellness Planning",
+         "outcomes": [
+          {
+           "code": "2.3.4.A",
+           "text": "Developmentally appropriate/ emerging outcomes first appear in grade three."
+          }
+         ]
+        },
+        {
+         "id": "body-systems",
+         "title": "Body Systems",
+         "outcomes": [
+          {
+           "code": "2.3.5.A",
+           "text": "Recognizes structure and function of the circulatory and respiratory system (such as lungs help with breathing)."
+          }
+         ]
+        },
+        {
+         "id": "nutrition",
+         "title": "Nutrition",
+         "outcomes": [
+          {
+           "code": "2.3.6.A",
+           "text": "Recognizes the “good health balance” of nutrition and physical activity."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "the-physically-literate-individual-exhibits-resp",
+     "title": "The physically literate individual exhibits responsible personal and social behavior that respects self and others",
+     "topics": [
+      {
+       "id": "responsible-personal-and-social-behavior",
+       "title": "Responsible Personal and Social Behavior",
+       "subtopics": [
+        {
+         "id": "personal-responsibility",
+         "title": "Personal Responsibility",
+         "outcomes": [
+          {
+           "code": "2.4.1.A",
+           "text": "Practices skills with minimal teacher prompting."
+          },
+          {
+           "code": "2.4.1.B",
+           "text": "Accepts responsibility and consequences for following rules and protocols."
+          }
+         ]
+        },
+        {
+         "id": "accepting-feedback",
+         "title": "Accepting Feedback",
+         "outcomes": [
+          {
+           "code": "2.4.2.A",
+           "text": "Accepts specific corrective feedback from the teacher."
+          }
+         ]
+        },
+        {
+         "id": "working-with-others",
+         "title": "Working with Others",
+         "outcomes": [
+          {
+           "code": "2.4.3.A",
+           "text": "Works with others in partner activities."
+          }
+         ]
+        },
+        {
+         "id": "rules-etiquette",
+         "title": "Rules & Etiquette",
+         "outcomes": [
+          {
+           "code": "2.4.4.A",
+           "text": "Accepts responsibility and consequences for following rules and protocols for class activities."
+          }
+         ]
+        },
+        {
+         "id": "safety",
+         "title": "Safety",
+         "outcomes": [
+          {
+           "code": "2.4.5.A",
+           "text": "Works independently and safely in physical education, including equipment use."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "the-physically-literate-individual-recognizes-th",
+     "title": "The physically literate individual recognizes the value of physical activity for health, enjoyment, challenge, self expression and/or social interaction",
+     "topics": [
+      {
+       "id": "valuing-health-enjoyment-challenge-self-expressi",
+       "title": "Valuing Health, Enjoyment, Challenge, Self Expression, and Social Interaction",
+       "subtopics": [
+        {
+         "id": "health",
+         "title": "Health",
+         "outcomes": [
+          {
+           "code": "2.5.1.A",
+           "text": "Recognizes the value of “good health balance”."
+          }
+         ]
+        },
+        {
+         "id": "challenge",
+         "title": "Challenge",
+         "outcomes": [
+          {
+           "code": "2.5.2.A",
+           "text": "Standard was combined with 2.5.3.A"
+          }
+         ]
+        },
+        {
+         "id": "self-expression-and-enjoyment",
+         "title": "Self-expression and Enjoyment",
+         "outcomes": [
+          {
+           "code": "2.5.3.A",
+           "text": "Identifies and compares physical activities that provide self-expression, confidence, and challenge."
+          }
+         ]
+        },
+        {
+         "id": "social-interaction",
+         "title": "Social Interaction",
+         "outcomes": [
+          {
+           "code": "2.5.4.A",
+           "text": "Understands that physical activities can foster cooperation and connection to enhance relationships among a diverse group of peers."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "3",
+   "units": [
+    {
+     "id": "the-physically-literate-individual-will-demonstr",
+     "title": "The physically literate individual will demonstrate competency in a variety of motor skills and movement patterns",
+     "topics": [
+      {
+       "id": "locomotor-skills",
+       "title": "Locomotor Skills",
+       "subtopics": [
+        {
+         "id": "locomotor-hopping-galloping-running-sliding-skip",
+         "title": "Locomotor (Hopping, galloping, running, sliding, skipping, leaping, walking, running)",
+         "outcomes": [
+          {
+           "code": "3.1.1.A",
+           "text": "Performs mature patterns in locomotor skills in isolation (leap)."
+          },
+          {
+           "code": "3.1.1.B",
+           "text": "Applies mature patterns in locomotor skills in a variety of activities."
+          }
+         ]
+        },
+        {
+         "id": "locomotor-jumping-and-landing-in-a-horizontal-an",
+         "title": "Locomotor (Jumping and landing in a horizontal and vertical plane)",
+         "outcomes": [
+          {
+           "code": "3.1.2.A",
+           "text": "Jumps and lands in the horizontal and vertical planes using an emerging pattern."
+          }
+         ]
+        },
+        {
+         "id": "locomotor-dance-rhythm-combinations",
+         "title": "Locomotor (Dance, Rhythm, Combinations)",
+         "outcomes": [
+          {
+           "code": "3.1.3.A",
+           "text": "Performs teacher selected and developmentally appropriate dance steps and movement patterns."
+          }
+         ]
+        },
+        {
+         "id": "non-locomotor",
+         "title": "Non-Locomotor",
+         "outcomes": [
+          {
+           "code": "3.1.4.A",
+           "text": "Applies mature patterns in nonlocomotor skills in a variety of activities."
+          }
+         ]
+        },
+        {
+         "id": "non-locomotor-balance",
+         "title": "Non-Locomotor (Balance)",
+         "outcomes": [
+          {
+           "code": "3.1.5.A",
+           "text": "Balances on different bases of support, demonstrating muscular tension and extensions of free body parts, and shows ability to transfer weight from feet to hand for momentary weight support."
+          }
+         ]
+        },
+        {
+         "id": "non-locomotor-weight-transfer",
+         "title": "Non-Locomotor (Weight Transfer)",
+         "outcomes": [
+          {
+           "code": "3.1.6.A",
+           "text": "Standard was combined with 3.1.5.A"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "manipulative-skills",
+       "title": "Manipulative Skills",
+       "subtopics": [
+        {
+         "id": "manipulative-skills-throw",
+         "title": "Manipulative Skills (Throw)",
+         "outcomes": [
+          {
+           "code": "3.1.7.A",
+           "text": "Throws underhand to a partner or target with reasonable accuracy."
+          },
+          {
+           "code": "3.1.7.B",
+           "text": "Performs mature pattern in an overhand throw."
+          }
+         ]
+        },
+        {
+         "id": "manipulative-skills-pass-with-hands",
+         "title": "Manipulative Skills (Pass with Hands)",
+         "outcomes": [
+          {
+           "code": "3.1.8.A",
+           "text": "Developmentally appropriate/emerging outcomes first appear in grade four."
+          }
+         ]
+        },
+        {
+         "id": "manipulative-skills-catch",
+         "title": "Manipulative Skills (Catch)",
+         "outcomes": [
+          {
+           "code": "3.1.9.A",
+           "text": "Catches a gently tossed hand-size ball from a partner, demonstrating a mature pattern in a non-dynamic environment."
+          }
+         ]
+        },
+        {
+         "id": "manipulative-skills-hand-dribble",
+         "title": "Manipulative Skills (Hand Dribble)",
+         "outcomes": [
+          {
+           "code": "3.1.10.A",
+           "text": "Dribbles and travels in general space at slow to moderate jogging speed, with control of ball and body."
+          }
+         ]
+        },
+        {
+         "id": "manipulative-skills-foot-pass-kick",
+         "title": "Manipulative Skills (Foot Pass/Kick)",
+         "outcomes": [
+          {
+           "code": "3.1.11.A",
+           "text": "Passes & receives a ball with the inside of the foot to a stationary partner, “giving” on reception before returning the pass."
+          },
+          {
+           "code": "3.1.11.B",
+           "text": "Demonstrates a mature pattern and intentionally performs a kick along the ground and a kick in the air, demonstrating four of the five critical elements of a mature pattern for each."
+          },
+          {
+           "code": "3.1.11.C",
+           "text": "Uses a running approach and kicks a stationary ball for accuracy."
+          }
+         ]
+        },
+        {
+         "id": "manipulative-skills-foot-dribble",
+         "title": "Manipulative Skills (Foot Dribble)",
+         "outcomes": [
+          {
+           "code": "3.1.12.A",
+           "text": "Dribbles with the feet in general space at slow to moderate jogging speed with control of ball and body."
+          }
+         ]
+        },
+        {
+         "id": "manipulative-skills-foot-trap-receive",
+         "title": "Manipulative Skills (Foot Trap Receive)",
+         "outcomes": [
+          {
+           "code": "3.1.13.A",
+           "text": "Performs mature pattern while receiving with the foot when stationary."
+          }
+         ]
+        },
+        {
+         "id": "manipulative-skills-strike-volley-hands-and-arms",
+         "title": "Manipulative Skills (Strike/Volley, Hands and Arms)",
+         "outcomes": [
+          {
+           "code": "3.1.14.A",
+           "text": "Demonstrates emerging pattern while striking an object underhand or sidearm, sending it upward and forward."
+          }
+         ]
+        },
+        {
+         "id": "manipulative-skills-strike-with-implement",
+         "title": "Manipulative Skills (Strike with Implement)",
+         "outcomes": [
+          {
+           "code": "3.1.15.A",
+           "text": "Strikes an object with a short- handled implement, sending it forward over a low net or to a wall."
+          },
+          {
+           "code": "3.1.15.B",
+           "text": "Strikes a ball with a long-handled implement (such as a hockey stick, bat, golf club), sending it forward, while using proper grip for the implement. Note: Use a batting tee or ball tossed by the teacher for batting."
+          }
+         ]
+        },
+        {
+         "id": "manipulative-skills-jump-rope",
+         "title": "Manipulative Skills (Jump Rope)",
+         "outcomes": [
+          {
+           "code": "3.1.16.A",
+           "text": "Performs intermediate jump rope skills (such as a variety of tricks, running in and out of long rope) for both long and short ropes."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "the-physically-literate-individual-applies-knowl",
+     "title": "The physically literate individual applies knowledge of concepts, principles, strategies and tactics related to movement and performance",
+     "topics": [
+      {
+       "id": "movement-concepts-and-strategies",
+       "title": "Movement Concepts and Strategies",
+       "subtopics": [
+        {
+         "id": "space",
+         "title": "Space",
+         "outcomes": [
+          {
+           "code": "3.2.1.A",
+           "text": "Recognizes the concept of open spaces in a movement context."
+          }
+         ]
+        },
+        {
+         "id": "pathways-shapes-levels",
+         "title": "Pathways, Shapes, Levels",
+         "outcomes": [
+          {
+           "code": "3.2.2.A",
+           "text": "Recognizes locomotor skills specific to a wide variety of physical activities"
+          }
+         ]
+        },
+        {
+         "id": "speed-direction-force",
+         "title": "Speed, Direction, Force",
+         "outcomes": [
+          {
+           "code": "3.2.3.A",
+           "text": "Combines movement concepts (direction, levels, force, time) with skills as directed by the teacher."
+          }
+         ]
+        },
+        {
+         "id": "strategies-and-tactics",
+         "title": "Strategies and Tactics",
+         "outcomes": [
+          {
+           "code": "3.2.4.A",
+           "text": "Applies simple strategies and tactics in chasing and fleeing activities."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "the-physically-literate-individual-demonstrates-",
+     "title": "The physically literate individual demonstrates the knowledge and skills to achieve and maintain a health-enhancing level of physical activity and fitness",
+     "topics": [
+      {
+       "id": "physical-activity",
+       "title": "Physical Activity",
+       "subtopics": [
+        {
+         "id": "physical-activity-knowledge",
+         "title": "Physical Activity Knowledge",
+         "outcomes": [
+          {
+           "code": "3.3.1.A",
+           "text": "Documents participation in physical activities outside physical education class."
+          },
+          {
+           "code": "3.3.1.B",
+           "text": "Identifies physical activity benefits as a way to become healthier."
+          }
+         ]
+        },
+        {
+         "id": "engages-in-physical-activity",
+         "title": "Engages in Physical Activity",
+         "outcomes": [
+          {
+           "code": "3.3.2.A",
+           "text": "Actively engages in the activities of physical education class with minimal teacher prompting."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "fitness",
+       "title": "Fitness",
+       "subtopics": [
+        {
+         "id": "fitness-knowledge",
+         "title": "Fitness Knowledge",
+         "outcomes": [
+          {
+           "code": "3.3.3.A",
+           "text": "Describes the concept of fitness and provides examples of physical activity to enhance fitness."
+          },
+          {
+           "code": "3.3.3.B",
+           "text": "Recognizes the importance of warmup and cool-down relative to vigorous physical activity."
+          }
+         ]
+        },
+        {
+         "id": "fitness-assessment-wellness-planning",
+         "title": "Fitness Assessment & Wellness Planning",
+         "outcomes": [
+          {
+           "code": "3.3.4.A",
+           "text": "Demonstrates, with teacher direction, the health-related fitness components."
+          }
+         ]
+        },
+        {
+         "id": "body-systems",
+         "title": "Body Systems",
+         "outcomes": [
+          {
+           "code": "3.3.5.A",
+           "text": "Describes connections between muscular and skeletal systems."
+          }
+         ]
+        },
+        {
+         "id": "nutrition",
+         "title": "Nutrition",
+         "outcomes": [
+          {
+           "code": "3.3.6.A",
+           "text": "Identifies foods that are beneficial for before and after physical activity."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "the-physically-literate-individual-exhibits-resp",
+     "title": "The physically literate individual exhibits responsible personal and social behavior that respects self and others",
+     "topics": [
+      {
+       "id": "responsible-personal-and-social-behavior",
+       "title": "Responsible Personal and Social Behavior",
+       "subtopics": [
+        {
+         "id": "personal-responsibility",
+         "title": "Personal Responsibility",
+         "outcomes": [
+          {
+           "code": "3.4.1.A",
+           "text": "Exhibits responsible behavior in both independent and group situations"
+          },
+          {
+           "code": "3.4.1.B",
+           "text": "Works independently for extended periods of time."
+          }
+         ]
+        },
+        {
+         "id": "accepting-feedback",
+         "title": "Accepting Feedback",
+         "outcomes": [
+          {
+           "code": "3.4.2.A",
+           "text": "Accepts and implements specific corrective feedback from the teacher."
+          }
+         ]
+        },
+        {
+         "id": "working-with-others",
+         "title": "Working with Others",
+         "outcomes": [
+          {
+           "code": "3.4.3.A",
+           "text": "Works cooperatively with others."
+          },
+          {
+           "code": "3.4.3.B",
+           "text": "Praises others for their success in movement performance."
+          }
+         ]
+        },
+        {
+         "id": "rules-etiquette",
+         "title": "Rules & Etiquette",
+         "outcomes": [
+          {
+           "code": "3.4.4.A",
+           "text": "Recognizes the role of rules and etiquette in physical activity with peers."
+          }
+         ]
+        },
+        {
+         "id": "safety",
+         "title": "Safety",
+         "outcomes": [
+          {
+           "code": "3.4.5.A",
+           "text": "Works safely with peers, independently, and with/without equipment in physical activity settings."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "the-physically-literate-individual-recognizes-th",
+     "title": "The physically literate individual recognizes the value of physical activity for health, enjoyment, challenge, self expression and/or social interaction",
+     "topics": [
+      {
+       "id": "valuing-health-enjoyment-challenge-self-expressi",
+       "title": "Valuing Health, Enjoyment, Challenge, Self Expression, and Social Interaction",
+       "subtopics": [
+        {
+         "id": "health",
+         "title": "Health",
+         "outcomes": [
+          {
+           "code": "3.5.1.A",
+           "text": "Discusses the relationship between physical activity and good health."
+          }
+         ]
+        },
+        {
+         "id": "challenge",
+         "title": "Challenge",
+         "outcomes": [
+          {
+           "code": "3.5.2.A",
+           "text": "Discusses the challenge that comes from learning a new physical activity."
+          }
+         ]
+        },
+        {
+         "id": "self-expression-and-enjoyment",
+         "title": "Self-expression and Enjoyment",
+         "outcomes": [
+          {
+           "code": "3.5.3.A",
+           "text": "Reflects on the reasons for enjoying selected physical activities."
+          }
+         ]
+        },
+        {
+         "id": "social-interaction",
+         "title": "Social Interaction",
+         "outcomes": [
+          {
+           "code": "3.5.4.A",
+           "text": "Describes the positive social interactions that come when engaged with others in physical activity."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "4",
+   "units": [
+    {
+     "id": "the-physically-literate-individual-will-demonstr",
+     "title": "The physically literate individual will demonstrate competency in a variety of motor skills and movement patterns",
+     "topics": [
+      {
+       "id": "locomotor-skills",
+       "title": "Locomotor Skills",
+       "subtopics": [
+        {
+         "id": "locomotor-hopping-galloping-running-sliding-skip",
+         "title": "Locomotor (Hopping, galloping, running, sliding, skipping, leaping, walking, running)",
+         "outcomes": [
+          {
+           "code": "4.1.1.A",
+           "text": "Applies mature patterns in locomotor skills in a variety of lead-up activities and small sided game play."
+          },
+          {
+           "code": "4.1.1.B",
+           "text": "Performs appropriate pacing in a variety of running distances."
+          }
+         ]
+        },
+        {
+         "id": "locomotor-jumping-and-landing-in-a-horizontal-an",
+         "title": "Locomotor (Jumping and landing in a horizontal and vertical plane)",
+         "outcomes": [
+          {
+           "code": "4.1.2.A",
+           "text": "Jumps and lands in the horizontal and vertical planes using a mature pattern within activities (such as in dance, educational gymnastics and small-sided practice tasks and game environments)."
+          }
+         ]
+        },
+        {
+         "id": "locomotor-dance-rhythm-combinations",
+         "title": "Locomotor (Dance, Rhythm, Combinations)",
+         "outcomes": [
+          {
+           "code": "4.1.3.A",
+           "text": "Combines locomotor movement patterns and dance steps to create and perform an original dance."
+          }
+         ]
+        },
+        {
+         "id": "non-locomotor",
+         "title": "Non-Locomotor",
+         "outcomes": [
+          {
+           "code": "4.1.4.A",
+           "text": "Applies mature patterns in nonlocomotor skills in a variety of lead-up activities and small sided game play."
+          }
+         ]
+        },
+        {
+         "id": "non-locomotor-balance",
+         "title": "Non-Locomotor (Balance)",
+         "outcomes": [
+          {
+           "code": "4.1.5.A",
+           "text": "Balances on different bases of support on apparatus, demonstrating levels and shapes."
+          }
+         ]
+        },
+        {
+         "id": "non-locomotor-weight-transfer",
+         "title": "Non-Locomotor (Weight Transfer)",
+         "outcomes": [
+          {
+           "code": "4.1.6.A",
+           "text": "Transfers weight from feet to hands, varying speed and using large extensions (such as kick, handstand, cartwheel)."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "manipulative-skills",
+       "title": "Manipulative Skills",
+       "subtopics": [
+        {
+         "id": "manipulative-skills-throw",
+         "title": "Manipulative Skills (Throw)",
+         "outcomes": [
+          {
+           "code": "4.1.7.A",
+           "text": "Performs mature pattern in an underhand throw to a moving partner."
+          },
+          {
+           "code": "4.1.7.B",
+           "text": "Demonstrates mature pattern in an underhand throw with accuracy."
+          },
+          {
+           "code": "4.1.7.C",
+           "text": "Throws overhand using a mature pattern in non-dynamic environments."
+          },
+          {
+           "code": "4.1.7.D",
+           "text": "Throws overhand to a partner or at a target with accuracy at a reasonable distance."
+          }
+         ]
+        },
+        {
+         "id": "manipulative-skills-pass-with-hands",
+         "title": "Manipulative Skills (Pass with Hands)",
+         "outcomes": [
+          {
+           "code": "4.1.8.A",
+           "text": "Passes to a moving partner with reasonable accuracy in a non-dynamic environment."
+          }
+         ]
+        },
+        {
+         "id": "manipulative-skills-catch",
+         "title": "Manipulative Skills (Catch)",
+         "outcomes": [
+          {
+           "code": "4.1.9.A",
+           "text": "Catches a thrown ball above the head, at chest or waist level, and below the waist using a mature pattern in a non-dynamic environment"
+          }
+         ]
+        },
+        {
+         "id": "manipulative-skills-hand-dribble",
+         "title": "Manipulative Skills (Hand Dribble)",
+         "outcomes": [
+          {
+           "code": "4.1.10.A",
+           "text": "Dribbles in personal space with both the preferred and the non-preferred hands using a mature pattern."
+          },
+          {
+           "code": "4.1.10.B",
+           "text": "Dribbles in general space with control of ball and body while increasing and decreasing speed."
+          }
+         ]
+        },
+        {
+         "id": "manipulative-skills-foot-pass-kick",
+         "title": "Manipulative Skills (Foot Pass/Kick)",
+         "outcomes": [
+          {
+           "code": "4.1.11.A",
+           "text": "Passes & receives a ball with the inside of the foot to a moving partner in a non-dynamic environment"
+          },
+          {
+           "code": "4.1.11.B",
+           "text": "Passes and receives a ball with the outside and inside of the foot to a stationary partner, “giving” on reception before returning the pass."
+          },
+          {
+           "code": "4.1.11.C",
+           "text": "Kicks along the ground, in the air, and punts using mature patterns."
+          }
+         ]
+        },
+        {
+         "id": "manipulative-skills-foot-dribble",
+         "title": "Manipulative Skills (Foot Dribble)",
+         "outcomes": [
+          {
+           "code": "4.1.12.A",
+           "text": "Dribbles with the feet in general space with control of ball and body while increasing and decreasing speed."
+          }
+         ]
+        },
+        {
+         "id": "manipulative-skills-foot-trap-receive",
+         "title": "Manipulative Skills (Foot Trap Receive)",
+         "outcomes": [
+          {
+           "code": "4.1.13.A",
+           "text": "Performs mature pattern while receiving with the foot when moving in a non-dynamic environment."
+          }
+         ]
+        },
+        {
+         "id": "manipulative-skills-strike-volley-hands-and-arms",
+         "title": "Manipulative Skills (Strike/Volley, Hands and Arms)",
+         "outcomes": [
+          {
+           "code": "4.1.14.A",
+           "text": "Demonstrates mature pattern while striking an object underhand in a variety of lead-up activities and small-sided game play."
+          }
+         ]
+        },
+        {
+         "id": "manipulative-skills-strike-with-implement",
+         "title": "Manipulative Skills (Strike with Implement)",
+         "outcomes": [
+          {
+           "code": "4.1.15.A",
+           "text": "Strikes an object with a short-handled implement while demonstrating a mature pattern."
+          },
+          {
+           "code": "4.1.15.B",
+           "text": "Strikes an object with a long-handled implement (such as a hockey stick, golf club, bat, tennis racket, badminton racket), while demonstrating three of the five critical elements of a mature pattern for the implement."
+          }
+         ]
+        },
+        {
+         "id": "manipulative-skills-jump-rope",
+         "title": "Manipulative Skills (Jump Rope)",
+         "outcomes": [
+          {
+           "code": "4.1.16.A",
+           "text": "Creates a jump-rope routine (such as jumping in a figure 8, front to back, etc., and with short rope, long rope, double dutch, Jump Bands)."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "the-physically-literate-individual-applies-knowl",
+     "title": "The physically literate individual applies knowledge of concepts, principles, strategies and tactics related to movement and performance",
+     "topics": [
+      {
+       "id": "movement-concepts-and-strategies",
+       "title": "Movement Concepts and Strategies",
+       "subtopics": [
+        {
+         "id": "space",
+         "title": "Space",
+         "outcomes": [
+          {
+           "code": "4.2.1.A",
+           "text": "Applies the concept of open spaces to combination skills involving traveling (such as dribbling and traveling)."
+          },
+          {
+           "code": "4.2.1.B",
+           "text": "Applies the concept of open spaces to combination skills involving traveling (such as dribbling and traveling)."
+          }
+         ]
+        },
+        {
+         "id": "pathways-shapes-levels",
+         "title": "Pathways, Shapes, Levels",
+         "outcomes": [
+          {
+           "code": "4.2.2.A",
+           "text": "Combines movement concepts with skills in small-sided practice tasks (such as gymnastics and dance environments)."
+          }
+         ]
+        },
+        {
+         "id": "speed-direction-force",
+         "title": "Speed, Direction, Force",
+         "outcomes": [
+          {
+           "code": "4.2.3.A",
+           "text": "Applies the movement concepts of speed, endurance and pacing for running."
+          },
+          {
+           "code": "4.2.3.B",
+           "text": "Applies the concepts of direction and force when striking an object sending it toward a designated target."
+          }
+         ]
+        },
+        {
+         "id": "strategies-and-tactics",
+         "title": "Strategies and Tactics",
+         "outcomes": [
+          {
+           "code": "4.2.4.A",
+           "text": "Applies simple offensive strategies and tactics in chasing and fleeing activities."
+          },
+          {
+           "code": "4.2.4.B",
+           "text": "Applies simple defensive strategies/ tactics in chasing and fleeing activities."
+          },
+          {
+           "code": "4.2.4.C",
+           "text": "Recognizes the types of kicks needed for different games and sports situations."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "the-physically-literate-individual-demonstrates-",
+     "title": "The physically literate individual demonstrates the knowledge and skills to achieve and maintain a health-enhancing level of physical activity and fitness",
+     "topics": [
+      {
+       "id": "physical-activity",
+       "title": "Physical Activity",
+       "subtopics": [
+        {
+         "id": "physical-activity-knowledge",
+         "title": "Physical Activity Knowledge",
+         "outcomes": [
+          {
+           "code": "4.3.1.A",
+           "text": "Analyzes opportunities for participating in physical activity outside physical education class."
+          }
+         ]
+        },
+        {
+         "id": "engages-in-physical-activity",
+         "title": "Engages in Physical Activity",
+         "outcomes": [
+          {
+           "code": "4.3.2.A",
+           "text": "Actively engages in the activities of physical education class, both teacher directed and independent."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "fitness",
+       "title": "Fitness",
+       "subtopics": [
+        {
+         "id": "fitness-knowledge",
+         "title": "Fitness Knowledge",
+         "outcomes": [
+          {
+           "code": "4.3.3.A",
+           "text": "Identifies the five components of health-related fitness."
+          },
+          {
+           "code": "4.3.3.B",
+           "text": "Demonstrates warmup and cool- down relative to the cardiorespiratory fitness assessment."
+          }
+         ]
+        },
+        {
+         "id": "fitness-assessment-wellness-planning",
+         "title": "Fitness Assessment & Wellness Planning",
+         "outcomes": [
+          {
+           "code": "4.3.4.A",
+           "text": "Completes fitness assessments (pre and post)."
+          },
+          {
+           "code": "4.3.4.B",
+           "text": "Identifies areas of needed remediation from personal tests and, with teacher assistance, identifies strategies for progress in those areas."
+          }
+         ]
+        },
+        {
+         "id": "body-systems",
+         "title": "Body Systems",
+         "outcomes": [
+          {
+           "code": "4.3.5.A",
+           "text": "Describes connections between body systems."
+          }
+         ]
+        },
+        {
+         "id": "nutrition",
+         "title": "Nutrition",
+         "outcomes": [
+          {
+           "code": "4.3.6.A",
+           "text": "Discusses the importance of hydration and hydration choices relative to physical activities."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "the-physically-literate-individual-exhibits-resp",
+     "title": "The physically literate individual exhibits responsible personal and social behavior that respects self and others",
+     "topics": [
+      {
+       "id": "responsible-personal-and-social-behavior",
+       "title": "Responsible Personal and Social Behavior",
+       "subtopics": [
+        {
+         "id": "personal-responsibility",
+         "title": "Personal Responsibility",
+         "outcomes": [
+          {
+           "code": "4.4.1.A",
+           "text": "Exhibits responsible behavior in both independent and group situations."
+          },
+          {
+           "code": "4.4.1.B",
+           "text": "Reflects on personal social behavior in physical activity."
+          }
+         ]
+        },
+        {
+         "id": "accepting-feedback",
+         "title": "Accepting Feedback",
+         "outcomes": [
+          {
+           "code": "4.4.2.A",
+           "text": "Listens respectfully to corrective feedback from others (such as peers, adults)."
+          }
+         ]
+        },
+        {
+         "id": "working-with-others",
+         "title": "Working with Others",
+         "outcomes": [
+          {
+           "code": "4.4.3.A",
+           "text": "Praises the movement effort of others both more and less skilled."
+          },
+          {
+           "code": "4.4.3.B",
+           "text": "Accepts players of all skill levels into the physical activity."
+          }
+         ]
+        },
+        {
+         "id": "rules-etiquette",
+         "title": "Rules & Etiquette",
+         "outcomes": [
+          {
+           "code": "4.4.4.A",
+           "text": "Exhibits etiquette and adherence to rules in a variety of physical activities."
+          }
+         ]
+        },
+        {
+         "id": "safety",
+         "title": "Safety",
+         "outcomes": [
+          {
+           "code": "4.4.5.A",
+           "text": "Works safely with peers, independently, and with/without equipment in physical activity settings."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "the-physically-literate-individual-recognizes-th",
+     "title": "The physically literate individual recognizes the value of physical activity for health, enjoyment, challenge, self expression and/or social interaction",
+     "topics": [
+      {
+       "id": "valuing-health-enjoyment-challenge-self-expressi",
+       "title": "Valuing Health, Enjoyment, Challenge, Self Expression, and Social Interaction",
+       "subtopics": [
+        {
+         "id": "health",
+         "title": "Health",
+         "outcomes": [
+          {
+           "code": "4.5.1.A",
+           "text": "Examines the health benefits of participating in physical activity."
+          }
+         ]
+        },
+        {
+         "id": "challenge",
+         "title": "Challenge",
+         "outcomes": [
+          {
+           "code": "4.5.2.A",
+           "text": "Rates the enjoyment of participating in challenging and mastered physical activities."
+          }
+         ]
+        },
+        {
+         "id": "self-expression-and-enjoyment",
+         "title": "Self-expression and Enjoyment",
+         "outcomes": [
+          {
+           "code": "4.5.3.A",
+           "text": "Ranks the enjoyment of participating in different physical activities."
+          }
+         ]
+        },
+        {
+         "id": "social-interaction",
+         "title": "Social Interaction",
+         "outcomes": [
+          {
+           "code": "4.5.4.A",
+           "text": "Describes and compares the positive social interactions when engaged in partner, small-group and large-group physical activities."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "5",
+   "units": [
+    {
+     "id": "the-physically-literate-individual-will-demonstr",
+     "title": "The physically literate individual will demonstrate competency in a variety of motor skills and movement patterns",
+     "topics": [
+      {
+       "id": "locomotor-skills",
+       "title": "Locomotor Skills",
+       "subtopics": [
+        {
+         "id": "locomotor-hopping-galloping-running-sliding-skip",
+         "title": "Locomotor (Hopping, galloping, running, sliding, skipping, leaping, walking, running)",
+         "outcomes": [
+          {
+           "code": "5.1.1.A",
+           "text": "Applies mature patterns in locomotor skills in a variety of activities, modified games, and small-sided game play."
+          },
+          {
+           "code": "5.1.1.B",
+           "text": "Applies appropriate pacing in a variety of running distances."
+          }
+         ]
+        },
+        {
+         "id": "locomotor-jumping-and-landing-in-a-horizontal-an",
+         "title": "Locomotor (Jumping and landing in a horizontal and vertical plane)",
+         "outcomes": [
+          {
+           "code": "5.1.2.A",
+           "text": "Combines jumping and landing patterns with locomotor and manipulative skills (such as in dance, educational gymnastics and small-sided practice tasks and game environments)."
+          }
+         ]
+        },
+        {
+         "id": "locomotor-dance-rhythm-combinations",
+         "title": "Locomotor (Dance, Rhythm, Combinations)",
+         "outcomes": [
+          {
+           "code": "5.1.3.A",
+           "text": "Creates and demonstrates a routine using complex rhythmic combinations (such as self-dance, Jump Bands, group dance) with correct rhythm and pattern."
+          }
+         ]
+        },
+        {
+         "id": "non-locomotor",
+         "title": "Non-Locomotor",
+         "outcomes": [
+          {
+           "code": "5.1.4.A",
+           "text": "Applies mature patterns in nonlocomotor skills in a variety of activities, modified games, and small-sided game play."
+          }
+         ]
+        },
+        {
+         "id": "non-locomotor-balance",
+         "title": "Non-Locomotor (Balance)",
+         "outcomes": [
+          {
+           "code": "5.1.5.A",
+           "text": "Combines balance and transferring weight (such as in a gymnastics sequence, yoga, dance with a partner)."
+          }
+         ]
+        },
+        {
+         "id": "non-locomotor-weight-transfer",
+         "title": "Non-Locomotor (Weight Transfer)",
+         "outcomes": [
+          {
+           "code": "5.1.6.A",
+           "text": "Transfers weight in various activities (such as gymnastics, dance environments, striking, throwing)."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "manipulative-skills",
+       "title": "Manipulative Skills",
+       "subtopics": [
+        {
+         "id": "manipulative-skills-throw",
+         "title": "Manipulative Skills (Throw)",
+         "outcomes": [
+          {
+           "code": "5.1.7.A",
+           "text": "Applies mature pattern in an underhand throw in a variety of activities, modified games, and small-sided game play."
+          },
+          {
+           "code": "5.1.7.B",
+           "text": "Performs mature pattern in an overhand throw at varying distances."
+          },
+          {
+           "code": "5.1.7.C",
+           "text": "Performs mature pattern in an overhand throw to a moving partner."
+          },
+          {
+           "code": "5.1.7.D",
+           "text": "Performs mature pattern in an overhand throw in a variety of activities, modified games, and small-sided games."
+          }
+         ]
+        },
+        {
+         "id": "manipulative-skills-pass-with-hands",
+         "title": "Manipulative Skills (Pass with Hands)",
+         "outcomes": [
+          {
+           "code": "5.1.8.A",
+           "text": "Passes with accuracy, both partners moving."
+          },
+          {
+           "code": "5.1.8.B",
+           "text": "Passes with reasonable accuracy in dynamic, small- sided practice tasks."
+          }
+         ]
+        },
+        {
+         "id": "manipulative-skills-catch",
+         "title": "Manipulative Skills (Catch)",
+         "outcomes": [
+          {
+           "code": "5.1.9.A",
+           "text": "Catches a ball above the head, at chest or waist level, and along the ground using a mature pattern in a non-dynamic environment."
+          },
+          {
+           "code": "5.1.9.B",
+           "text": "Catches with accuracy while moving."
+          },
+          {
+           "code": "5.1.9.C",
+           "text": "Catches with reasonable accuracy in dynamic, small-sided practice tasks."
+          }
+         ]
+        },
+        {
+         "id": "manipulative-skills-hand-dribble",
+         "title": "Manipulative Skills (Hand Dribble)",
+         "outcomes": [
+          {
+           "code": "5.1.10.A",
+           "text": "Combines hand dribbling with other skills during 1v1 practice tasks."
+          }
+         ]
+        },
+        {
+         "id": "manipulative-skills-foot-pass-kick",
+         "title": "Manipulative Skills (Foot Pass/Kick)",
+         "outcomes": [
+          {
+           "code": "5.1.11.A",
+           "text": "Passes and receives a pass with the feet using a mature pattern as both partners travel."
+          },
+          {
+           "code": "5.1.11.B",
+           "text": "Demonstrates mature patterns in kicking and punting in small-sided practice task environments."
+          }
+         ]
+        },
+        {
+         "id": "manipulative-skills-foot-dribble",
+         "title": "Manipulative Skills (Foot Dribble)",
+         "outcomes": [
+          {
+           "code": "5.1.12.A",
+           "text": "Combines foot dribbling with other skills (such as 1v1 practice tasks, modified games, and small-sided game play)."
+          }
+         ]
+        },
+        {
+         "id": "manipulative-skills-foot-trap-receive",
+         "title": "Manipulative Skills (Foot Trap Receive)",
+         "outcomes": [
+          {
+           "code": "5.1.13.A",
+           "text": "Applies mature patterns while receiving with the foot in a variety of activities (such as 1v1 practice tasks, modified games, and small-sided game play)."
+          }
+         ]
+        },
+        {
+         "id": "manipulative-skills-strike-volley-hands-and-arms",
+         "title": "Manipulative Skills (Strike/Volley, Hands and Arms)",
+         "outcomes": [
+          {
+           "code": "5.1.14.A",
+           "text": "Applies mature patterns while striking an object underhand in a variety of activities (such as modified games, and small-sided game play)."
+          }
+         ]
+        },
+        {
+         "id": "manipulative-skills-strike-with-implement",
+         "title": "Manipulative Skills (Strike with Implement)",
+         "outcomes": [
+          {
+           "code": "5.1.15.A",
+           "text": "Strikes an object consecutively, with a partner, using a short-handed implement,"
+          },
+          {
+           "code": "5.1.15.B",
+           "text": "Strikes a pitched ball with a bat using a mature pattern."
+          },
+          {
+           "code": "5.1.15.C",
+           "text": "Combines striking with a long implement (such as a bat, hockey stick) with receiving and traveling skills in a small-sided game."
+          }
+         ]
+        },
+        {
+         "id": "manipulative-skills-jump-rope",
+         "title": "Manipulative Skills (Jump Rope)",
+         "outcomes": [
+          {
+           "code": "5.1.16.A",
+           "text": "Creates a jump-rope routine with a partner (such as jumping in a figure 8, front to back, etc., and with short rope, long rope, double dutch, jump bands)."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "the-physically-literate-individual-applies-knowl",
+     "title": "The physically literate individual applies knowledge of concepts, principles, strategies and tactics related to movement and performance",
+     "topics": [
+      {
+       "id": "movement-concepts-and-strategies",
+       "title": "Movement Concepts and Strategies",
+       "subtopics": [
+        {
+         "id": "space",
+         "title": "Space",
+         "outcomes": [
+          {
+           "code": "5.2.1.A",
+           "text": "Combines spatial concepts with locomotor and nonlocomotor movements for small groups (such as in gymnastics, dance and game environments)."
+          }
+         ]
+        },
+        {
+         "id": "pathways-shapes-levels",
+         "title": "Pathways, Shapes, Levels",
+         "outcomes": [
+          {
+           "code": "5.2.2.A",
+           "text": "Combines movement concepts with skills in small-sided practice tasks (such as in game environments, gymnastics and dance with self-direction)."
+          }
+         ]
+        },
+        {
+         "id": "speed-direction-force",
+         "title": "Speed, Direction, Force",
+         "outcomes": [
+          {
+           "code": "5.2.3.A",
+           "text": "Applies movement concepts to strategy in game situations."
+          },
+          {
+           "code": "5.2.3.B",
+           "text": "Applies the concepts of direction and force to strike an object with an implement."
+          },
+          {
+           "code": "5.2.3.C",
+           "text": "Analyzes movement situations and applies movement concepts (such as force, direction, speed, pathways, extensions) in small-sided practice tasks in game environments, dance or gymnastics."
+          }
+         ]
+        },
+        {
+         "id": "strategies-and-tactics",
+         "title": "Strategies and Tactics",
+         "outcomes": [
+          {
+           "code": "5.2.4.A",
+           "text": "Applies basic offensive and defensive strategies/ tactics in invasion small-sided practice tasks."
+          },
+          {
+           "code": "5.2.4.B",
+           "text": "Applies basic offensive and defensive strategies and tactics in net/wall small-sided practice tasks."
+          },
+          {
+           "code": "5.2.4.C",
+           "text": "Recognizes the type of throw, volley or striking action needed for different games and sports situations."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "the-physically-literate-individual-demonstrates-",
+     "title": "The physically literate individual demonstrates the knowledge and skills to achieve and maintain a health-enhancing level of physical activity and fitness",
+     "topics": [
+      {
+       "id": "physical-activity",
+       "title": "Physical Activity",
+       "subtopics": [
+        {
+         "id": "physical-activity-knowledge",
+         "title": "Physical Activity Knowledge",
+         "outcomes": [
+          {
+           "code": "5.3.1.A",
+           "text": "Documents and analyzes physical activity outside physical education class for fitness benefits of activities."
+          }
+         ]
+        },
+        {
+         "id": "engages-in-physical-activity",
+         "title": "Engages in Physical Activity",
+         "outcomes": [
+          {
+           "code": "5.3.2.A",
+           "text": "Actively engages in the activities of physical education class, both teacher directed and independent."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "fitness",
+       "title": "Fitness",
+       "subtopics": [
+        {
+         "id": "fitness-knowledge",
+         "title": "Fitness Knowledge",
+         "outcomes": [
+          {
+           "code": "5.3.3.A",
+           "text": "Differentiates between skill-related and health-related fitness."
+          },
+          {
+           "code": "5.3.3.B",
+           "text": "Identifies the need for warm-up and cool-down relative to various physical activities."
+          }
+         ]
+        },
+        {
+         "id": "fitness-assessment-wellness-planning",
+         "title": "Fitness Assessment & Wellness Planning",
+         "outcomes": [
+          {
+           "code": "5.3.4.A",
+           "text": "Analyzes results of fitness assessment (pre and post), comparing results to fitness components for good health."
+          },
+          {
+           "code": "5.3.4.B",
+           "text": "Designs a fitness plan to address ways to use physical activity to enhance fitness."
+          }
+         ]
+        },
+        {
+         "id": "body-systems",
+         "title": "Body Systems",
+         "outcomes": [
+          {
+           "code": "5.3.5.A",
+           "text": "Describes connections between body systems and their role in movement."
+          }
+         ]
+        },
+        {
+         "id": "nutrition",
+         "title": "Nutrition",
+         "outcomes": [
+          {
+           "code": "5.3.6.A",
+           "text": "Analyzes the impact of food choices relative to physical activity, youth sports and personal health."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "the-physically-literate-individual-exhibits-resp",
+     "title": "The physically literate individual exhibits responsible personal and social behavior that respects self and others",
+     "topics": [
+      {
+       "id": "responsible-personal-and-social-behavior",
+       "title": "Responsible Personal and Social Behavior",
+       "subtopics": [
+        {
+         "id": "personal-responsibility",
+         "title": "Personal Responsibility",
+         "outcomes": [
+          {
+           "code": "5.4.1.A",
+           "text": "Engages in physical activity with responsible interpersonal behavior (such as peer to peer, student to teacher, student to referee)."
+          },
+          {
+           "code": "5.4.1.B",
+           "text": "Participates with responsible personal behavior in a variety of physical activity contexts, environments and facilities."
+          },
+          {
+           "code": "5.4.1.C",
+           "text": "Exhibits respect for self with appropriate behavior while engaging in physical activity."
+          }
+         ]
+        },
+        {
+         "id": "accepting-feedback",
+         "title": "Accepting Feedback",
+         "outcomes": [
+          {
+           "code": "5.4.2.A",
+           "text": "Gives corrective feedback respectfully to peers."
+          }
+         ]
+        },
+        {
+         "id": "working-with-others",
+         "title": "Working with Others",
+         "outcomes": [
+          {
+           "code": "5.4.3.A",
+           "text": "Accepts, recognizes and actively involves others with both higher and lower skill abilities into physical activities and group projects."
+          }
+         ]
+        },
+        {
+         "id": "rules-etiquette",
+         "title": "Rules & Etiquette",
+         "outcomes": [
+          {
+           "code": "5.4.4.A",
+           "text": "Critiques the etiquette involved in rules of various game activities."
+          }
+         ]
+        },
+        {
+         "id": "safety",
+         "title": "Safety",
+         "outcomes": [
+          {
+           "code": "5.4.5.A",
+           "text": "Works safely with peers, independently, and with/without equipment in physical activity settings."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "the-physically-literate-individual-recognizes-th",
+     "title": "The physically literate individual recognizes the value of physical activity for health, enjoyment, challenge, self expression and/or social interaction",
+     "topics": [
+      {
+       "id": "valuing-health-enjoyment-challenge-self-expressi",
+       "title": "Valuing Health, Enjoyment, Challenge, Self Expression, and Social Interaction",
+       "subtopics": [
+        {
+         "id": "health",
+         "title": "Health",
+         "outcomes": [
+          {
+           "code": "5.5.1.A",
+           "text": "Compares the health benefits of participating in selected physical activities."
+          }
+         ]
+        },
+        {
+         "id": "challenge",
+         "title": "Challenge",
+         "outcomes": [
+          {
+           "code": "5.5.2.A",
+           "text": "Expresses (such as written essay, visual art, creative dance) the enjoyment and/or challenge of participating in a favorite physical activity."
+          }
+         ]
+        },
+        {
+         "id": "self-expression-and-enjoyment",
+         "title": "Self-expression and Enjoyment",
+         "outcomes": [
+          {
+           "code": "5.5.3.A",
+           "text": "Analyzes different physical activities for enjoyment and challenge, identifying reasons for a positive or negative response."
+          }
+         ]
+        },
+        {
+         "id": "social-interaction",
+         "title": "Social Interaction",
+         "outcomes": [
+          {
+           "code": "5.5.4.A",
+           "text": "Describes the social benefits gained from participating in physical activity (such as recess, youth sport)."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "6",
+   "units": [
+    {
+     "id": "the-physically-literate-individual-will-demonstr",
+     "title": "The physically literate individual will demonstrate competency in a variety of motor skills and movement patterns",
+     "topics": [
+      {
+       "id": "individual-performance-activities",
+       "title": "Individual-Performance Activities",
+       "subtopics": [
+        {
+         "id": "individual-performance-activities",
+         "title": "Individual-Performance Activities",
+         "outcomes": [
+          {
+           "code": "6.1.1.A",
+           "text": "Demonstrates correct technique for basic skills in one selected individual performance activity."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "outdoor-pursuits",
+       "title": "Outdoor Pursuits",
+       "subtopics": [
+        {
+         "id": "outdoor-pursuits",
+         "title": "Outdoor Pursuits",
+         "outcomes": [
+          {
+           "code": "6.1.2.A",
+           "text": "Demonstrates correct technique for basic skills in one selected outdoor activity."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "dance-and-rhythm",
+       "title": "Dance and Rhythm",
+       "subtopics": [
+        {
+         "id": "dance-and-rhythm",
+         "title": "Dance and Rhythm",
+         "outcomes": [
+          {
+           "code": "6.1.3.A",
+           "text": "Demonstrates correct rhythm and pattern for one of the following activities: dance, including folk, social, creative, line, and world;jump bands; and cardio drumming."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "throwing",
+       "title": "Throwing",
+       "subtopics": [
+        {
+         "id": "throwing",
+         "title": "Throwing",
+         "outcomes": [
+          {
+           "code": "6.1.4.A",
+           "text": "Demonstrates a mature underhand or overhand motion pattern for accuracy."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "catching",
+       "title": "Catching",
+       "subtopics": [
+        {
+         "id": "catching",
+         "title": "Catching",
+         "outcomes": [
+          {
+           "code": "6.1.5.A",
+           "text": "Demonstrates a mature catching pattern from a variety of trajectories using different objects during practice."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "passing-and-receiving",
+       "title": "Passing and Receiving",
+       "subtopics": [
+        {
+         "id": "passing-and-receiving",
+         "title": "Passing and Receiving",
+         "outcomes": [
+          {
+           "code": "6.1.6.A",
+           "text": "Demonstrates passing and receiving with hands, feet, or implement with competency while moving, changing direction, and speed."
+          },
+          {
+           "code": "6.1.6.B",
+           "text": "Demonstrates a lead pass with competency, while stationary, to a moving receiver."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "dribbling",
+       "title": "Dribbling",
+       "subtopics": [
+        {
+         "id": "dribbling",
+         "title": "Dribbling",
+         "outcomes": [
+          {
+           "code": "6.1.7.A",
+           "text": "Demonstrates dribbling skills with dominant hand, foot, or implement with control while moving, changing direction, and speed."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "striking",
+       "title": "Striking",
+       "subtopics": [
+        {
+         "id": "striking",
+         "title": "Striking",
+         "outcomes": [
+          {
+           "code": "6.1.8.A",
+           "text": "Demonstrates striking with competency."
+          },
+          {
+           "code": "6.1.8.B",
+           "text": "Demonstrates striking a stationary or moving object with competency using an implement with force in a variety of practices (such as golf, hockey)."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "forehand-and-backhand",
+       "title": "Forehand and Backhand",
+       "subtopics": [
+        {
+         "id": "forehand-and-backhand",
+         "title": "Forehand and Backhand",
+         "outcomes": [
+          {
+           "code": "6.1.9.A",
+           "text": "Demonstrates correct forehand and backhand strokes with competency while transferring weight with correct timing."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "shooting",
+       "title": "Shooting",
+       "subtopics": [
+        {
+         "id": "shooting",
+         "title": "Shooting",
+         "outcomes": [
+          {
+           "code": "6.1.10.A",
+           "text": "Demonstrates shooting on goal with competency during a closed environment practice."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "serving",
+       "title": "Serving",
+       "subtopics": [
+        {
+         "id": "serving",
+         "title": "Serving",
+         "outcomes": [
+          {
+           "code": "6.1.11.A",
+           "text": "Demonstrates a correct underhand or overhand serve with competency, control, and weight transfer."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "volleying",
+       "title": "Volleying",
+       "subtopics": [
+        {
+         "id": "volleying",
+         "title": "Volleying",
+         "outcomes": [
+          {
+           "code": "6.1.12.A",
+           "text": "Demonstrates a controlled forehand volley with mature form."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "offensive-skills",
+       "title": "Offensive Skills",
+       "subtopics": [
+        {
+         "id": "offensive-skills",
+         "title": "Offensive Skills",
+         "outcomes": [
+          {
+           "code": "6.1.13.A",
+           "text": "Demonstrates movement without the ball or object (such as pivot, give and go, and fakes)."
+          },
+          {
+           "code": "6.1.13.B",
+           "text": "Demonstrates movement with the ball or object (such as dribbling) without defensive pressure to create open space."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "defensive-skills",
+       "title": "Defensive Skills",
+       "subtopics": [
+        {
+         "id": "defensive-skills",
+         "title": "Defensive Skills",
+         "outcomes": [
+          {
+           "code": "6.1.14.A",
+           "text": "Demonstrates the ready position in defense by weight on balls of feet, arms extended, and eyes on the midsection of the offensive player."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "the-physically-literate-individual-applies-knowl",
+     "title": "The physically literate individual applies knowledge of concepts, principles, strategies, and tactics related to movement and performance",
+     "topics": [
+      {
+       "id": "target-games",
+       "title": "Target Games",
+       "subtopics": [
+        {
+         "id": "target-games",
+         "title": "Target Games",
+         "outcomes": [
+          {
+           "code": "6.2.1.A",
+           "text": "Developmentally appropriate outcomes first appear in grade seven."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "movement-and-rhythm",
+       "title": "Movement and Rhythm",
+       "subtopics": [
+        {
+         "id": "movement-and-rhythm",
+         "title": "Movement and Rhythm",
+         "outcomes": [
+          {
+           "code": "6.2.2.A",
+           "text": "Varies the application of force when performing movement activities."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "outdoor-pursuits",
+       "title": "Outdoor Pursuits",
+       "subtopics": [
+        {
+         "id": "outdoor-pursuits",
+         "title": "Outdoor Pursuits",
+         "outcomes": [
+          {
+           "code": "6.2.3.A",
+           "text": "Identifies appropriate decisions to ensure safety of self or others."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "offensive-tactics",
+       "title": "Offensive Tactics",
+       "subtopics": [
+        {
+         "id": "offensive-tactics",
+         "title": "Offensive Tactics",
+         "outcomes": [
+          {
+           "code": "6.2.4.A",
+           "text": "Demonstrates at least one way to create open space (such as moving to open space without a ball or object; using a variety of passes, pivots, and fakes; using the give and go maneuver; using the width and length of the field/court). (invasion games)"
+          },
+          {
+           "code": "6.2.4.B",
+           "text": "Identifies open spaces and attempts to strike objects into the space. (field and strike games)"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "defensive-tactics",
+       "title": "Defensive Tactics",
+       "subtopics": [
+        {
+         "id": "defensive-tactics",
+         "title": "Defensive Tactics",
+         "outcomes": [
+          {
+           "code": "6.2.5.A",
+           "text": "Demonstrates at least one way to reduce open space (such as changing body position; by not allowing the catch (denial); allowing the catch, but not the return pass). (invasion games)"
+          },
+          {
+           "code": "6.2.5.B",
+           "text": "Identifies the correct defensive play based on the situation (such as number of outs). (field and strike games)"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "transitions-invasion-games",
+       "title": "Transitions, Invasion Games",
+       "subtopics": [
+        {
+         "id": "transitions-invasion-games",
+         "title": "Transitions, Invasion Games",
+         "outcomes": [
+          {
+           "code": "6.2.6.A",
+           "text": "Demonstrates the transitions from offense to defense and defense to offense by recovering quickly."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "creating-space-net-and-wall-games",
+       "title": "Creating Space, Net and Wall Games",
+       "subtopics": [
+        {
+         "id": "creating-space-net-and-wall-games",
+         "title": "Creating Space, Net and Wall Games",
+         "outcomes": [
+          {
+           "code": "6.2.7.A",
+           "text": "Developmentally appropriate outcomes first appear in grade seven."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "tactics-and-shots-net-and-wall-games",
+       "title": "Tactics and Shots, Net and Wall Games",
+       "subtopics": [
+        {
+         "id": "tactics-and-shots-net-and-wall-games",
+         "title": "Tactics and Shots, Net and Wall Games",
+         "outcomes": [
+          {
+           "code": "6.2.8.A",
+           "text": "Developmentally appropriate outcomes first appear in grade seven."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "the-physically-literate-individual-demonstrates-",
+     "title": "The physically literate individual demonstrates the knowledge and skills to achieve and maintain a health-enhancing level of physical activity and fitness",
+     "topics": [
+      {
+       "id": "physical-activity-benefits",
+       "title": "Physical Activity Benefits",
+       "subtopics": [
+        {
+         "id": "physical-activity-benefits",
+         "title": "Physical Activity Benefits",
+         "outcomes": [
+          {
+           "code": "6.3.1.A",
+           "text": "Describes how being physically active leads to a healthy body."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "engagement-in-physical-activity",
+       "title": "Engagement in Physical Activity",
+       "subtopics": [
+        {
+         "id": "engagement-in-physical-activity",
+         "title": "Engagement in Physical Activity",
+         "outcomes": [
+          {
+           "code": "6.3.2.A",
+           "text": "Participates in self-selected physical activity outside of physical education class."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "components-of-fitness",
+       "title": "Components of Fitness",
+       "subtopics": [
+        {
+         "id": "components-of-fitness",
+         "title": "Components of Fitness",
+         "outcomes": [
+          {
+           "code": "6.3.3.A",
+           "text": "Identifies the skill-related fitness components."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "health-related-fitness",
+       "title": "Health-Related Fitness",
+       "subtopics": [
+        {
+         "id": "health-related-fitness",
+         "title": "Health-Related Fitness",
+         "outcomes": [
+          {
+           "code": "6.3.4.A",
+           "text": "Differentiates between aerobic and anaerobic physical activity."
+          },
+          {
+           "code": "6.3.4.B",
+           "text": "Demonstrates correct techniques and methods of stretching."
+          },
+          {
+           "code": "6.3.4.C",
+           "text": "Uses pacing in cardiorespiratory endurance activities."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "fitt-principle",
+       "title": "FITT Principle",
+       "subtopics": [
+        {
+         "id": "fitt-principle",
+         "title": "FITT Principle",
+         "outcomes": [
+          {
+           "code": "6.3.5.A",
+           "text": "Describes each component of the FITT principle (frequency, intensity, time, type) for cardiorespiratory endurance."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "phases-of-exercise",
+       "title": "Phases of Exercise",
+       "subtopics": [
+        {
+         "id": "phases-of-exercise",
+         "title": "Phases of Exercise",
+         "outcomes": [
+          {
+           "code": "6.3.6.A",
+           "text": "Describes the role of warm-ups and cool-downs before and after physical activity."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "engagement-in-fitness-activities",
+       "title": "Engagement in Fitness Activities",
+       "subtopics": [
+        {
+         "id": "engagement-in-fitness-activities",
+         "title": "Engagement in Fitness Activities",
+         "outcomes": [
+          {
+           "code": "6.3.7.A",
+           "text": "Participates in a variety of cardiorespiratory endurance activities."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "body-systems",
+       "title": "Body Systems",
+       "subtopics": [
+        {
+         "id": "body-systems",
+         "title": "Body Systems",
+         "outcomes": [
+          {
+           "code": "6.3.8.A",
+           "text": "Identifies major muscles used in selected physical activities."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "nutrition",
+       "title": "Nutrition",
+       "subtopics": [
+        {
+         "id": "nutrition",
+         "title": "Nutrition",
+         "outcomes": [
+          {
+           "code": "6.3.9.A",
+           "text": "Compares and contrasts caloric expenditure for a variety of physical activities."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "goal-setting",
+       "title": "Goal-Setting",
+       "subtopics": [
+        {
+         "id": "goal-setting",
+         "title": "Goal-Setting",
+         "outcomes": [
+          {
+           "code": "6.3.10.A",
+           "text": "Uses a SMART (specific, measurable, attainable, realistic, and timely) goal to improve or maintain one area of health-related fitness based on a fitness assessment."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "physical-activity-and-nutrition-log",
+       "title": "Physical Activity and Nutrition Log",
+       "subtopics": [
+        {
+         "id": "physical-activity-and-nutrition-log",
+         "title": "Physical Activity and Nutrition Log",
+         "outcomes": [
+          {
+           "code": "6.3.11.A",
+           "text": "Maintains and reflects on an activity log to create goals pertaining to a personal physical activity."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "the-physically-literate-individual-exhibits-resp",
+     "title": "The physically literate individual exhibits responsible personal and social behavior that respects self and others",
+     "topics": [
+      {
+       "id": "personal-responsibility",
+       "title": "Personal Responsibility",
+       "subtopics": [
+        {
+         "id": "personal-responsibility",
+         "title": "Personal Responsibility",
+         "outcomes": [
+          {
+           "code": "6.4.1.A",
+           "text": "Exhibits personal responsibility by using appropriate etiquette, demonstrating respect for the facilities, and exhibiting safe behaviors."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "rules-and-etiquette",
+       "title": "Rules and Etiquette",
+       "subtopics": [
+        {
+         "id": "rules-and-etiquette",
+         "title": "Rules and Etiquette",
+         "outcomes": [
+          {
+           "code": "6.4.2.A",
+           "text": "Identifies rules and etiquette for physical activities, games, dance, and rhythmic activities."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "receiving-and-providing-feedback",
+       "title": "Receiving and Providing Feedback",
+       "subtopics": [
+        {
+         "id": "receiving-and-providing-feedback",
+         "title": "Receiving and Providing Feedback",
+         "outcomes": [
+          {
+           "code": "6.4.3.A",
+           "text": "Demonstrates responsibility by providing and accepting corrective feedback to improve performance."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "working-with-others",
+       "title": "Working with Others",
+       "subtopics": [
+        {
+         "id": "working-with-others",
+         "title": "Working with Others",
+         "outcomes": [
+          {
+           "code": "6.4.4.A",
+           "text": "Cooperates with a small group of classmates during physical activities."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "safety",
+       "title": "Safety",
+       "subtopics": [
+        {
+         "id": "safety",
+         "title": "Safety",
+         "outcomes": [
+          {
+           "code": "6.4.5.A",
+           "text": "Uses physical activity and fitness equipment appropriately and safely with teacher guidance."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "the-physically-literate-individual-recognizes-th",
+     "title": "The physically literate individual recognizes the value of physical activity for health, enjoyment, challenge, self expression, and/or social interaction",
+     "topics": [
+      {
+       "id": "health",
+       "title": "Health",
+       "subtopics": [
+        {
+         "id": "health",
+         "title": "Health",
+         "outcomes": [
+          {
+           "code": "6.5.1.A",
+           "text": "Applies strategies for overcoming individual challenges in a physical activity setting (such as extending effort, asking for help or feedback, or modifying the tasks)."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "challenge",
+       "title": "Challenge",
+       "subtopics": [
+        {
+         "id": "challenge",
+         "title": "Challenge",
+         "outcomes": [
+          {
+           "code": "6.5.2.A",
+           "text": "Applies strategies for overcoming individual challenges in a physical activity setting (such as extending effort, asking for help or feedback, or modifying the tasks)."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "self-expression-and-enjoyment",
+       "title": "Self-Expression and Enjoyment",
+       "subtopics": [
+        {
+         "id": "self-expression-and-enjoyment",
+         "title": "Self-Expression and Enjoyment",
+         "outcomes": [
+          {
+           "code": "6.5.3.A",
+           "text": "Describes how moving competently in a physical activity setting creates enjoyment."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "social-interaction",
+       "title": "Social Interaction",
+       "subtopics": [
+        {
+         "id": "social-interaction",
+         "title": "Social Interaction",
+         "outcomes": [
+          {
+           "code": "6.5.4.A",
+           "text": "Demonstrates respect for self and others by following the rules and encouraging others in various physical activities and games."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "7",
+   "units": [
+    {
+     "id": "the-physically-literate-individual-will-demonstr",
+     "title": "The physically literate individual will demonstrate competency in a variety of motor skills and movement patterns",
+     "topics": [
+      {
+       "id": "individual-performance-activities",
+       "title": "Individual-Performance Activities",
+       "subtopics": [
+        {
+         "id": "individual-performance-activities",
+         "title": "Individual-Performance Activities",
+         "outcomes": [
+          {
+           "code": "7.1.1.A",
+           "text": "Performs correct technique for a variety of skills in one selected individual performance activity."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "outdoor-pursuits",
+       "title": "Outdoor Pursuits",
+       "subtopics": [
+        {
+         "id": "outdoor-pursuits",
+         "title": "Outdoor Pursuits",
+         "outcomes": [
+          {
+           "code": "7.1.2.A",
+           "text": "Performs correct technique for a variety of skills in one selected outdoor activity."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "dance-and-rhythm",
+       "title": "Dance and Rhythm",
+       "subtopics": [
+        {
+         "id": "dance-and-rhythm",
+         "title": "Dance and Rhythm",
+         "outcomes": [
+          {
+           "code": "7.1.3.A",
+           "text": "Demonstrates correct rhythm and pattern for two of the following activities: dance, including folk, social, creative, line, and world; jump bands; and cardio drumming)."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "throwing",
+       "title": "Throwing",
+       "subtopics": [
+        {
+         "id": "throwing",
+         "title": "Throwing",
+         "outcomes": [
+          {
+           "code": "7.1.4.A",
+           "text": "Performs a mature throwing (underhand and overhand) pattern for accuracy in a dynamic environment."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "catching",
+       "title": "Catching",
+       "subtopics": [
+        {
+         "id": "catching",
+         "title": "Catching",
+         "outcomes": [
+          {
+           "code": "7.1.5.A",
+           "text": "Performs a mature catching pattern from a variety of trajectories using different objects during small-sided game play."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "passing-and-receiving",
+       "title": "Passing and Receiving",
+       "subtopics": [
+        {
+         "id": "passing-and-receiving",
+         "title": "Passing and Receiving",
+         "outcomes": [
+          {
+           "code": "7.1.6.A",
+           "text": "Performs passing and receiving with hands, feet, or implements with competency while moving, changing direction, and speed during small-sided game play."
+          },
+          {
+           "code": "7.1.6.B",
+           "text": "Demonstrates a lead pass with competency, while moving, to a moving receiver."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "dribbling",
+       "title": "Dribbling",
+       "subtopics": [
+        {
+         "id": "dribbling",
+         "title": "Dribbling",
+         "outcomes": [
+          {
+           "code": "7.1.7.A",
+           "text": "Performs dribbling skills with dominant and nondominant hand, foot, and implements with control while moving, changing directions, and speed in a variety of practice tasks."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "striking",
+       "title": "Striking",
+       "subtopics": [
+        {
+         "id": "striking",
+         "title": "Striking",
+         "outcomes": [
+          {
+           "code": "7.1.8.A",
+           "text": "Performs striking with competency in a dynamic environment."
+          },
+          {
+           "code": "7.1.8.B",
+           "text": "Performs striking a stationary object for accuracy and distance, using an implement, with competency in activities (such as golf, hockey)."
+          },
+          {
+           "code": "7.1.8.C",
+           "text": "Performs striking a moving object to open space, with competency, using an implement in a variety of practices."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "forehand-and-backhand",
+       "title": "Forehand and Backhand",
+       "subtopics": [
+        {
+         "id": "forehand-and-backhand",
+         "title": "Forehand and Backhand",
+         "outcomes": [
+          {
+           "code": "7.1.9.A",
+           "text": "Performs forehand and backhand strokes with competency while transferring weight with correct timing, using a short- or long-handled implement in a dynamic environment."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "shooting",
+       "title": "Shooting",
+       "subtopics": [
+        {
+         "id": "shooting",
+         "title": "Shooting",
+         "outcomes": [
+          {
+           "code": "7.1.10.A",
+           "text": "Performs shooting on goal with competency and accuracy in a dynamic environment."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "serving",
+       "title": "Serving",
+       "subtopics": [
+        {
+         "id": "serving",
+         "title": "Serving",
+         "outcomes": [
+          {
+           "code": "7.1.11.A",
+           "text": "Performs an underhand or overhand serve to a target with competency, control, and weight transfer."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "volleying",
+       "title": "Volleying",
+       "subtopics": [
+        {
+         "id": "volleying",
+         "title": "Volleying",
+         "outcomes": [
+          {
+           "code": "7.1.12.A",
+           "text": "Performs controlled forehand and backhand volleys with competency with a short- or long-handled implement in a dynamic environment."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "offensive-skills",
+       "title": "Offensive Skills",
+       "subtopics": [
+        {
+         "id": "offensive-skills",
+         "title": "Offensive Skills",
+         "outcomes": [
+          {
+           "code": "7.1.13.A",
+           "text": "Performs at least one movement without the ball or object (such as the pivot, give and go, fakes, or jab steps)."
+          },
+          {
+           "code": "7.1.13.B",
+           "text": "Performs at least one movement with the ball or object (such as dribbling) against defensive pressure to create open space."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "defensive-skills",
+       "title": "Defensive Skills",
+       "subtopics": [
+        {
+         "id": "defensive-skills",
+         "title": "Defensive Skills",
+         "outcomes": [
+          {
+           "code": "7.1.14.A",
+           "text": "Performs the defensive position and slides in all directions without crossing the feet in a dynamic environment."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "the-physically-literate-individual-applies-knowl",
+     "title": "The physically literate individual applies knowledge of concepts, principles, strategies, and tactics related to movement and performance",
+     "topics": [
+      {
+       "id": "target-games",
+       "title": "Target Games",
+       "subtopics": [
+        {
+         "id": "target-games",
+         "title": "Target Games",
+         "outcomes": [
+          {
+           "code": "7.2.1.A",
+           "text": "Determines how to change speed and/or trajectory of the shot based on location of the object in relation to the target."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "movement-and-rhythm",
+       "title": "Movement and Rhythm",
+       "subtopics": [
+        {
+         "id": "movement-and-rhythm",
+         "title": "Movement and Rhythm",
+         "outcomes": [
+          {
+           "code": "7.2.2.A",
+           "text": "Applies Newton's law of motion to various movement activities."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "outdoor-pursuits",
+       "title": "Outdoor Pursuits",
+       "subtopics": [
+        {
+         "id": "outdoor-pursuits",
+         "title": "Outdoor Pursuits",
+         "outcomes": [
+          {
+           "code": "7.2.3.A",
+           "text": "Analyzes the situation and makes appropriate decisions to ensure the safety of self and/or others."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "offensive-tactics",
+       "title": "Offensive Tactics",
+       "subtopics": [
+        {
+         "id": "offensive-tactics",
+         "title": "Offensive Tactics",
+         "outcomes": [
+          {
+           "code": "7.2.4.A",
+           "text": "Demonstrates at least two ways to create open space (such as moving to open space without a ball or object; using a variety of passes, pivots, and fakes; using the give and go maneuver; using the width and length of the field/court; staying spread out on offense; cutting and passing quickly). (invasion games)"
+          },
+          {
+           "code": "7.2.4.B",
+           "text": "Demonstrates a variety of shots to hit to open space. (field and strike games)"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "defensive-tactics",
+       "title": "Defensive Tactics",
+       "subtopics": [
+        {
+         "id": "defensive-tactics",
+         "title": "Defensive Tactics",
+         "outcomes": [
+          {
+           "code": "7.2.5.A",
+           "text": "Demonstrates at least two ways to reduce open space (such as changing body position; by not allowing the catch (denial); allowing the catch, but not the return pass; staying close to the opponent as they near the goal). (invasion games)"
+          },
+          {
+           "code": "7.2.5.B",
+           "text": "Selects the correct defensive play based on the situation. (field and strike games)"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "transitions-invasion-games",
+       "title": "Transitions, Invasion Games",
+       "subtopics": [
+        {
+         "id": "transitions-invasion-games",
+         "title": "Transitions, Invasion Games",
+         "outcomes": [
+          {
+           "code": "7.2.6.A",
+           "text": "Demonstrates the transitions from offense to defense and defense to offense by recovering quickly and communicating with teammates."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "creating-space-net-and-wall-games",
+       "title": "Creating Space, Net and Wall Games",
+       "subtopics": [
+        {
+         "id": "creating-space-net-and-wall-games",
+         "title": "Creating Space, Net and Wall Games",
+         "outcomes": [
+          {
+           "code": "7.2.7.A",
+           "text": "Creates open space by varying force and direction, and forcing the opponent to move from side to side."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "tactics-and-shots-net-and-wall-games",
+       "title": "Tactics and Shots, Net and Wall Games",
+       "subtopics": [
+        {
+         "id": "tactics-and-shots-net-and-wall-games",
+         "title": "Tactics and Shots, Net and Wall Games",
+         "outcomes": [
+          {
+           "code": "7.2.8.A",
+           "text": "Demonstrates an offensive shot based on the opponent's location (hit where the opponent is not)."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "the-physically-literate-individual-demonstrates-",
+     "title": "The physically literate individual demonstrates the knowledge and skills to achieve and maintain a health-enhancing level of physical activity and fitness",
+     "topics": [
+      {
+       "id": "physical-activity-benefits",
+       "title": "Physical Activity Benefits",
+       "subtopics": [
+        {
+         "id": "physical-activity-benefits",
+         "title": "Physical Activity Benefits",
+         "outcomes": [
+          {
+           "code": "7.3.1.A",
+           "text": "Identifies barriers related to maintaining a physically active lifestyle and identifies solutions for eliminating those barriers."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "engagement-in-physical-activity",
+       "title": "Engagement in Physical Activity",
+       "subtopics": [
+        {
+         "id": "engagement-in-physical-activity",
+         "title": "Engagement in Physical Activity",
+         "outcomes": [
+          {
+           "code": "7.3.2.A",
+           "text": "Participates in physical activity twice a week outside of physical education class."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "components-of-fitness",
+       "title": "Components of Fitness",
+       "subtopics": [
+        {
+         "id": "components-of-fitness",
+         "title": "Components of Fitness",
+         "outcomes": [
+          {
+           "code": "7.3.3.A",
+           "text": "Identifies the difference between health-related and skill-related fitness."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "health-related-fitness",
+       "title": "Health-Related Fitness",
+       "subtopics": [
+        {
+         "id": "health-related-fitness",
+         "title": "Health-Related Fitness",
+         "outcomes": [
+          {
+           "code": "7.3.4.A",
+           "text": "Differentiates between muscular strength and muscular endurance activities."
+          },
+          {
+           "code": "7.3.4.B",
+           "text": "Describes and demonstrates the differences between dynamic and static stretches."
+          },
+          {
+           "code": "7.3.4.C",
+           "text": "Describes the relationship between cardiorespiratory activities and exercise intensity (such as the Borg Rating of Perceived Exertion (RPE), the OMNI Scale, Heart Rate Monitors, or taking a heart rate manually)."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "fitt-principle",
+       "title": "FITT Principle",
+       "subtopics": [
+        {
+         "id": "fitt-principle",
+         "title": "FITT Principle",
+         "outcomes": [
+          {
+           "code": "7.3.5.A",
+           "text": "Describes the FITT principle (frequency, intensity, time, type) for muscular endurance, muscular strength, and flexibility."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "phases-of-exercise",
+       "title": "Phases of Exercise",
+       "subtopics": [
+        {
+         "id": "phases-of-exercise",
+         "title": "Phases of Exercise",
+         "outcomes": [
+          {
+           "code": "7.3.6.A",
+           "text": "Designs a warm-up or cool-down for a self-selected physical activity."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "engagement-in-fitness-activities",
+       "title": "Engagement in Fitness Activities",
+       "subtopics": [
+        {
+         "id": "engagement-in-fitness-activities",
+         "title": "Engagement in Fitness Activities",
+         "outcomes": [
+          {
+           "code": "7.3.7.A",
+           "text": "Participates in a variety of cardiorespiratory endurance, muscular endurance, and muscular strength activities."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "body-systems",
+       "title": "Body Systems",
+       "subtopics": [
+        {
+         "id": "body-systems",
+         "title": "Body Systems",
+         "outcomes": [
+          {
+           "code": "7.3.8.A",
+           "text": "Describes how muscles pull on bones to create movement in pairs by relaxing and contracting."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "nutrition",
+       "title": "Nutrition",
+       "subtopics": [
+        {
+         "id": "nutrition",
+         "title": "Nutrition",
+         "outcomes": [
+          {
+           "code": "7.3.9.A",
+           "text": "Explains the relationship of caloric intake and expenditure to weight management, and investigates strategies for balancing calories."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "goal-setting",
+       "title": "Goal-Setting",
+       "subtopics": [
+        {
+         "id": "goal-setting",
+         "title": "Goal-Setting",
+         "outcomes": [
+          {
+           "code": "7.3.10.A",
+           "text": "Uses a SMART (specific, measurable, attainable, realistic, and timely) goal to improve or maintain two areas of health-related fitness based on a fitness assessment."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "physical-activity-and-nutrition-log",
+       "title": "Physical Activity and Nutrition Log",
+       "subtopics": [
+        {
+         "id": "physical-activity-and-nutrition-log",
+         "title": "Physical Activity and Nutrition Log",
+         "outcomes": [
+          {
+           "code": "7.3.11.A",
+           "text": "Maintains and reflects on a personal physical activity and hydration log to document learning and set goals for improvement."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "the-physically-literate-individual-exhibits-resp",
+     "title": "The physically literate individual exhibits responsible personal and social behavior that respects self and others",
+     "topics": [
+      {
+       "id": "personal-responsibility",
+       "title": "Personal Responsibility",
+       "subtopics": [
+        {
+         "id": "personal-responsibility",
+         "title": "Personal Responsibility",
+         "outcomes": [
+          {
+           "code": "7.4.1.A",
+           "text": "Exhibits responsible social behaviors by cooperating with classmates, demonstrating inclusive behaviors, and supporting classmates."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "rules-and-etiquette",
+       "title": "Rules and Etiquette",
+       "subtopics": [
+        {
+         "id": "rules-and-etiquette",
+         "title": "Rules and Etiquette",
+         "outcomes": [
+          {
+           "code": "7.4.2.A",
+           "text": "Demonstrates knowledge of rules and etiquette by self-officiating physical activities and games or following parameters to create or modify a dance or rhythmic activity."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "receiving-and-providing-feedback",
+       "title": "Receiving and Providing Feedback",
+       "subtopics": [
+        {
+         "id": "receiving-and-providing-feedback",
+         "title": "Receiving and Providing Feedback",
+         "outcomes": [
+          {
+           "code": "7.4.3.A",
+           "text": "Provides corrective feedback to a peer using a teacher-generated rubric, while using appropriate tone and other communication skills."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "working-with-others",
+       "title": "Working with Others",
+       "subtopics": [
+        {
+         "id": "working-with-others",
+         "title": "Working with Others",
+         "outcomes": [
+          {
+           "code": "7.4.4.A",
+           "text": "Demonstrates cooperation by establishing rules and guidelines for resolving conflicts."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "safety",
+       "title": "Safety",
+       "subtopics": [
+        {
+         "id": "safety",
+         "title": "Safety",
+         "outcomes": [
+          {
+           "code": "7.4.5.A",
+           "text": "Independently uses all equipment for physical activity and fitness appropriately and safely."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "the-physically-literate-individual-recognizes-th",
+     "title": "The physically literate individual recognizes the value of physical activity for health, enjoyment, challenge, self expression, and/or social interaction",
+     "topics": [
+      {
+       "id": "health",
+       "title": "Health",
+       "subtopics": [
+        {
+         "id": "health",
+         "title": "Health",
+         "outcomes": [
+          {
+           "code": "7.5.1.A",
+           "text": "Identifies different types of physical activities and describes how each has a positive impact on health."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "challenge",
+       "title": "Challenge",
+       "subtopics": [
+        {
+         "id": "challenge",
+         "title": "Challenge",
+         "outcomes": [
+          {
+           "code": "7.5.2.A",
+           "text": "Uses positive strategies when faced with a group challenge (such as offering suggestions or assistance, leading or following others, and providing possible solutions)."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "self-expression-and-enjoyment",
+       "title": "Self-Expression and Enjoyment",
+       "subtopics": [
+        {
+         "id": "self-expression-and-enjoyment",
+         "title": "Self-Expression and Enjoyment",
+         "outcomes": [
+          {
+           "code": "7.5.3.A",
+           "text": "Identifies why self-selected physical activities create enjoyment."
+          },
+          {
+           "code": "7.5.3.B",
+           "text": "Explains the relationship between self-expression and lifelong enjoyment through physical activity."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "social-interaction",
+       "title": "Social Interaction",
+       "subtopics": [
+        {
+         "id": "social-interaction",
+         "title": "Social Interaction",
+         "outcomes": [
+          {
+           "code": "7.5.4.A",
+           "text": "Demonstrates the importance of social interaction by avoiding negative talk and helping and encouraging others in various physical activities and games."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "8",
+   "units": [
+    {
+     "id": "the-physically-literate-individual-will-demonstr",
+     "title": "The physically literate individual will demonstrate competency in a variety of motor skills and movement patterns",
+     "topics": [
+      {
+       "id": "individual-performance-activities",
+       "title": "Individual-Performance Activities",
+       "subtopics": [
+        {
+         "id": "individual-performance-activities",
+         "title": "Individual-Performance Activities",
+         "outcomes": [
+          {
+           "code": "8.1.1.A",
+           "text": "Performs correct technique for a variety of skills in two selected individual performance activities."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "outdoor-pursuits",
+       "title": "Outdoor Pursuits",
+       "subtopics": [
+        {
+         "id": "outdoor-pursuits",
+         "title": "Outdoor Pursuits",
+         "outcomes": [
+          {
+           "code": "8.1.2.A",
+           "text": "Performs correct technique for a variety of skills in two selected outdoor activities."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "dance-and-rhythm",
+       "title": "Dance and Rhythm",
+       "subtopics": [
+        {
+         "id": "dance-and-rhythm",
+         "title": "Dance and Rhythm",
+         "outcomes": [
+          {
+           "code": "8.1.3.A",
+           "text": "Exhibits command of rhythm and timing by creating a movement/rhythm sequence to music as an individual or in a group."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "throwing",
+       "title": "Throwing",
+       "subtopics": [
+        {
+         "id": "throwing",
+         "title": "Throwing",
+         "outcomes": [
+          {
+           "code": "8.1.4.A",
+           "text": "Performs a mature throwing (underhand and overhand) pattern for distance, control, and accuracy during small-sided and target game play."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "catching",
+       "title": "Catching",
+       "subtopics": [
+        {
+         "id": "catching",
+         "title": "Catching",
+         "outcomes": [
+          {
+           "code": "8.1.5.A",
+           "text": "Performs a mature catching pattern with hands (such as a ball or Frisbee) or an implement (such as a lacrosse stick) in a dynamic environment or small-sided game play."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "passing-and-receiving",
+       "title": "Passing and Receiving",
+       "subtopics": [
+        {
+         "id": "passing-and-receiving",
+         "title": "Passing and Receiving",
+         "outcomes": [
+          {
+           "code": "8.1.6.A",
+           "text": "Performs passing and receiving with hands, feet, or implements with competency while moving, changing direction, speed, or level in small-sided game play."
+          },
+          {
+           "code": "8.1.6.B",
+           "text": "Performs a lead pass with competency, while moving or stationary, to a moving receiver during small-sided game play."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "dribbling",
+       "title": "Dribbling",
+       "subtopics": [
+        {
+         "id": "dribbling",
+         "title": "Dribbling",
+         "outcomes": [
+          {
+           "code": "8.1.7.A",
+           "text": "Performs dribbling skills with dominant and nondominant hand, foot, and implements with control while moving, changing directions, and speed in small-sided game play."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "striking",
+       "title": "Striking",
+       "subtopics": [
+        {
+         "id": "striking",
+         "title": "Striking",
+         "outcomes": [
+          {
+           "code": "8.1.8.A",
+           "text": "Performs striking with competency in small-sided game play."
+          },
+          {
+           "code": "8.1.8.B",
+           "text": "Performs striking a stationary object for accuracy and power, using an implement, with competency in activities (such as golf, hockey)."
+          },
+          {
+           "code": "8.1.8.C",
+           "text": "Performs striking a moving object for power, with competency, using an implement in small-sided game play."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "forehand-and-backhand",
+       "title": "Forehand and Backhand",
+       "subtopics": [
+        {
+         "id": "forehand-and-backhand",
+         "title": "Forehand and Backhand",
+         "outcomes": [
+          {
+           "code": "8.1.9.A",
+           "text": "Performs forehand and backhand strokes with competency while transferring weight with correct timing, using a short- or long-handled implement during a small- sided game."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "shooting",
+       "title": "Shooting",
+       "subtopics": [
+        {
+         "id": "shooting",
+         "title": "Shooting",
+         "outcomes": [
+          {
+           "code": "8.1.10.A",
+           "text": "Performs shooting on goal with competency and accuracy during a small-sided game."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "serving",
+       "title": "Serving",
+       "subtopics": [
+        {
+         "id": "serving",
+         "title": "Serving",
+         "outcomes": [
+          {
+           "code": "8.1.11.A",
+           "text": "Performs an underhand or overhand serve with competency, control, and weight transfer in a small-sided game."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "volleying",
+       "title": "Volleying",
+       "subtopics": [
+        {
+         "id": "volleying",
+         "title": "Volleying",
+         "outcomes": [
+          {
+           "code": "8.1.12.A",
+           "text": "Performs controlled forehand and backhand volleys with competency with a short- or long-handled implement during a small-sided game."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "offensive-skills",
+       "title": "Offensive Skills",
+       "subtopics": [
+        {
+         "id": "offensive-skills",
+         "title": "Offensive Skills",
+         "outcomes": [
+          {
+           "code": "8.1.13.A",
+           "text": "Performs two different movements without the ball or object (such as the pivot, give and go, fakes, or jab steps)."
+          },
+          {
+           "code": "8.1.13.B",
+           "text": "Performs two different movements with the ball or object (such as dribbling) to create open space during a small-sided game."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "defensive-skills",
+       "title": "Defensive Skills",
+       "subtopics": [
+        {
+         "id": "defensive-skills",
+         "title": "Defensive Skills",
+         "outcomes": [
+          {
+           "code": "8.1.14.A",
+           "text": "Performs the defensive position and slides in all directions without crossing the feet in a small-sided game."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "the-physically-literate-individual-applies-knowl",
+     "title": "The physically literate individual applies knowledge of concepts, principles, strategies, and tactics related to movement and performance",
+     "topics": [
+      {
+       "id": "target-games",
+       "title": "Target Games",
+       "subtopics": [
+        {
+         "id": "target-games",
+         "title": "Target Games",
+         "outcomes": [
+          {
+           "code": "8.2.1.A",
+           "text": "Demonstrates the concept of changing the speed, force, and trajectory of a shot based on location of the object in relation to the target."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "movement-and-rhythm",
+       "title": "Movement and Rhythm",
+       "subtopics": [
+        {
+         "id": "movement-and-rhythm",
+         "title": "Movement and Rhythm",
+         "outcomes": [
+          {
+           "code": "8.2.2.A",
+           "text": "Applies Newton's law of motion to various movement activities."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "outdoor-pursuits",
+       "title": "Outdoor Pursuits",
+       "subtopics": [
+        {
+         "id": "outdoor-pursuits",
+         "title": "Outdoor Pursuits",
+         "outcomes": [
+          {
+           "code": "8.2.3.A",
+           "text": "Implements safety protocols in self-selected outdoor pursuits."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "offensive-tactics",
+       "title": "Offensive Tactics",
+       "subtopics": [
+        {
+         "id": "offensive-tactics",
+         "title": "Offensive Tactics",
+         "outcomes": [
+          {
+           "code": "8.2.4.A",
+           "text": "Applies multiple ways to create open space (such as moving to open space without a ball or object; using a variety of passes, pivots, and fakes; using the give and go maneuver; using the width and length of the field/court; staying spread out on offense; cutting and passing quickly; using fakes off the ball). (invasion games)"
+          },
+          {
+           "code": "8.2.4.B",
+           "text": "Performs a variety of shots to open space in a small-sided game. (field and strike games)"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "defensive-tactics",
+       "title": "Defensive Tactics",
+       "subtopics": [
+        {
+         "id": "defensive-tactics",
+         "title": "Defensive Tactics",
+         "outcomes": [
+          {
+           "code": "8.2.5.A",
+           "text": "Applies ways to reduce open space by staying on the goal side of the offensive player and anticipate the speed of the object or person for the purpose of interception or deflection. (invasion games)"
+          },
+          {
+           "code": "8.2.5.B",
+           "text": "Reduces open space during a small-sided game by working with teammates to maximize coverage. (field and strike games)"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "transitions-invasion-games",
+       "title": "Transitions, Invasion Games",
+       "subtopics": [
+        {
+         "id": "transitions-invasion-games",
+         "title": "Transitions, Invasion Games",
+         "outcomes": [
+          {
+           "code": "8.2.6.A",
+           "text": "Demonstrates the transitions from offense to defense and defense to offense by recovering quickly, communicating with teammates, and capitalizing on an advantage."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "creating-space-net-and-wall-games",
+       "title": "Creating Space, Net and Wall Games",
+       "subtopics": [
+        {
+         "id": "creating-space-net-and-wall-games",
+         "title": "Creating Space, Net and Wall Games",
+         "outcomes": [
+          {
+           "code": "8.2.7.A",
+           "text": "Demonstrates creating open space by varying force and direction, and forcing the opponent to move from side to side and/or forward and backward."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "tactics-and-shots-net-and-wall-games",
+       "title": "Tactics and Shots, Net and Wall Games",
+       "subtopics": [
+        {
+         "id": "tactics-and-shots-net-and-wall-games",
+         "title": "Tactics and Shots, Net and Wall Games",
+         "outcomes": [
+          {
+           "code": "8.2.8.A",
+           "text": "Demonstrates a variety of shots to end a rally by using placement, force, or timing."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "the-physically-literate-individual-demonstrates-",
+     "title": "The physically literate individual demonstrates the knowledge and skills to achieve and maintain a health-enhancing level of physical activity and fitness",
+     "topics": [
+      {
+       "id": "physical-activity-benefits",
+       "title": "Physical Activity Benefits",
+       "subtopics": [
+        {
+         "id": "physical-activity-benefits",
+         "title": "Physical Activity Benefits",
+         "outcomes": [
+          {
+           "code": "8.3.1.A",
+           "text": "Explains connections between physical activity and overall physical and mental health."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "engagement-in-physical-activity",
+       "title": "Engagement in Physical Activity",
+       "subtopics": [
+        {
+         "id": "engagement-in-physical-activity",
+         "title": "Engagement in Physical Activity",
+         "outcomes": [
+          {
+           "code": "8.3.2.A",
+           "text": "Participates in physical activity three times a week outside of physical education class."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "components-of-fitness",
+       "title": "Components of Fitness",
+       "subtopics": [
+        {
+         "id": "components-of-fitness",
+         "title": "Components of Fitness",
+         "outcomes": [
+          {
+           "code": "8.3.3.A",
+           "text": "Explains health-related and skill-related components of fitness for self-selected physical activities."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "health-related-fitness",
+       "title": "Health-Related Fitness",
+       "subtopics": [
+        {
+         "id": "health-related-fitness",
+         "title": "Health-Related Fitness",
+         "outcomes": [
+          {
+           "code": "8.3.4.A",
+           "text": "Describes the impact of cardiorespiratory endurance, muscular endurance, and muscular strength on body composition."
+          },
+          {
+           "code": "8.3.4.B",
+           "text": "Uses a variety of appropriate static and dynamic stretching techniques for different muscle groups and understands when to apply them in their routine (i.e. dynamic prior to activity and static post-activity)."
+          },
+          {
+           "code": "8.3.4.C",
+           "text": "Calculates target heart rate zone and adjusts intensity during physical activity to stay in the zone."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "fitt-principle",
+       "title": "FITT Principle",
+       "subtopics": [
+        {
+         "id": "fitt-principle",
+         "title": "FITT Principle",
+         "outcomes": [
+          {
+           "code": "8.3.5.A",
+           "text": "Designs a personal workout using the FITT principle (frequency, intensity, time, type)."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "phases-of-exercise",
+       "title": "Phases of Exercise",
+       "subtopics": [
+        {
+         "id": "phases-of-exercise",
+         "title": "Phases of Exercise",
+         "outcomes": [
+          {
+           "code": "8.3.6.A",
+           "text": "Designs and implements a warm-up or cool-down for a self-selected physical activity."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "engagement-in-fitness-activities",
+       "title": "Engagement in Fitness Activities",
+       "subtopics": [
+        {
+         "id": "engagement-in-fitness-activities",
+         "title": "Engagement in Fitness Activities",
+         "outcomes": [
+          {
+           "code": "8.3.7.A",
+           "text": "Participates in a variety of self-selected fitness activities outside of school."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "body-systems",
+       "title": "Body Systems",
+       "subtopics": [
+        {
+         "id": "body-systems",
+         "title": "Body Systems",
+         "outcomes": [
+          {
+           "code": "8.3.8.A",
+           "text": "Explains how respiratory, muscular, and skeletal systems interact with each other during physical activity."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "nutrition",
+       "title": "Nutrition",
+       "subtopics": [
+        {
+         "id": "nutrition",
+         "title": "Nutrition",
+         "outcomes": [
+          {
+           "code": "8.3.9.A",
+           "text": "Develops strategies for balancing healthy food, snacks, and water intake specific to daily physical activity."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "goal-setting",
+       "title": "Goal-Setting",
+       "subtopics": [
+        {
+         "id": "goal-setting",
+         "title": "Goal-Setting",
+         "outcomes": [
+          {
+           "code": "8.3.10.A",
+           "text": "Uses a SMART (specific, measurable, attainable, realistic, and timely) goal to improve or maintain three areas of health-related fitness based on a fitness assessment."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "physical-activity-and-nutrition-log",
+       "title": "Physical Activity and Nutrition Log",
+       "subtopics": [
+        {
+         "id": "physical-activity-and-nutrition-log",
+         "title": "Physical Activity and Nutrition Log",
+         "outcomes": [
+          {
+           "code": "8.3.11.A",
+           "text": "Maintains and reflects on a personal physical activity and nutrition log to document learning and set goals for improvement."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "the-physically-literate-individual-exhibits-resp",
+     "title": "The physically literate individual exhibits responsible personal and social behavior that respects self and others",
+     "topics": [
+      {
+       "id": "personal-responsibility",
+       "title": "Personal Responsibility",
+       "subtopics": [
+        {
+         "id": "personal-responsibility",
+         "title": "Personal Responsibility",
+         "outcomes": [
+          {
+           "code": "8.4.1.A",
+           "text": "Accepts responsibility for improving one’s own level of physical activity and fitness."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "rules-and-etiquette",
+       "title": "Rules and Etiquette",
+       "subtopics": [
+        {
+         "id": "rules-and-etiquette",
+         "title": "Rules and Etiquette",
+         "outcomes": [
+          {
+           "code": "8.4.2.A",
+           "text": "Applies rules and etiquette for physical activities and games, and creates dance or rhythmic routines within a given set of parameters."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "receiving-and-providing-feedback",
+       "title": "Receiving and Providing Feedback",
+       "subtopics": [
+        {
+         "id": "receiving-and-providing-feedback",
+         "title": "Receiving and Providing Feedback",
+         "outcomes": [
+          {
+           "code": "8.4.3.A",
+           "text": "Provides encouragement and feedback to peers without prompting"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "working-with-others",
+       "title": "Working with Others",
+       "subtopics": [
+        {
+         "id": "working-with-others",
+         "title": "Working with Others",
+         "outcomes": [
+          {
+           "code": "8.4.4.A",
+           "text": "Demonstrates cooperation skills and strategies that promote team or group dynamics."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "safety",
+       "title": "Safety",
+       "subtopics": [
+        {
+         "id": "safety",
+         "title": "Safety",
+         "outcomes": [
+          {
+           "code": "8.4.5.A",
+           "text": "Identifies specific safety concerns associated with physical activity and fitness equipment."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "the-physically-literate-individual-recognizes-th",
+     "title": "The physically literate individual recognizes the value of physical activity for health, enjoyment, challenge, self expression, and/or social interaction",
+     "topics": [
+      {
+       "id": "health",
+       "title": "Health",
+       "subtopics": [
+        {
+         "id": "health",
+         "title": "Health",
+         "outcomes": [
+          {
+           "code": "8.5.1.A",
+           "text": "Identifies the five components of health-related fitness, and explains the connections of being healthy (physically and mentally) and fit."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "challenge",
+       "title": "Challenge",
+       "subtopics": [
+        {
+         "id": "challenge",
+         "title": "Challenge",
+         "outcomes": [
+          {
+           "code": "8.5.2.A",
+           "text": "Applies strategies to overcome individual challenges in physical activity."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "self-expression-and-enjoyment",
+       "title": "Self-Expression and Enjoyment",
+       "subtopics": [
+        {
+         "id": "self-expression-and-enjoyment",
+         "title": "Self-Expression and Enjoyment",
+         "outcomes": [
+          {
+           "code": "8.5.3.A",
+           "text": "Discusses how enjoyment can be increased in self-selected physical activities."
+          },
+          {
+           "code": "8.5.3.B",
+           "text": "Identifies and participates in an enjoyable activity that prompts individual self-expression."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "social-interaction",
+       "title": "Social Interaction",
+       "subtopics": [
+        {
+         "id": "social-interaction",
+         "title": "Social Interaction",
+         "outcomes": [
+          {
+           "code": "8.5.4.A",
+           "text": "Demonstrates respect for self and others by asking for help and helping others in various physical activities and games."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "9-12",
+   "units": [
+    {
+     "id": "the-physically-literate-individual-will-demonstr",
+     "title": "The physically literate individual will demonstrate competency in a variety of motor skills and movement patterns",
+     "topics": [
+      {
+       "id": "outdoor-pursuits-individual-partner-team-sports",
+       "title": "Outdoor Pursuits, Individual, Partner/Team Sports",
+       "subtopics": [
+        {
+         "id": "outdoor-pursuits-individual-partner-team-sports",
+         "title": "Outdoor Pursuits, Individual, Partner/Team Sports",
+         "outcomes": [
+          {
+           "code": "HSL1.1.1.A",
+           "text": "Demonstrates competency in activity-specific movement skill in two or more physical activities from: outdoor pursuits, fitness activities, individual-performance activities, dance and rhythmic activities, games, sports, recreation, or aquatics."
+          },
+          {
+           "code": "HSL2.1.1.A",
+           "text": "Improves on activity-specific movement skill in one or more activities from: outdoor pursuits, fitness activities, individual-performance activities, dance and rhythmic activities, games, sports, recreation, or aquatics."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "the-physically-literate-individual-applies-knowl",
+     "title": "The physically literate individual applies knowledge of concepts, principles, strategies and tactics related to movement and performance",
+     "topics": [
+      {
+       "id": "outdoor-pursuits-individual-partner-team-sports",
+       "title": "Outdoor Pursuits, Individual, Partner/Team Sports",
+       "subtopics": [
+        {
+         "id": "outdoor-pursuits-individual-partner-team-sports",
+         "title": "Outdoor Pursuits, Individual, Partner/Team Sports",
+         "outcomes": [
+          {
+           "code": "HSL1.2.1.A",
+           "text": "The physically literate individual applies knowledge of concepts, principles, strategies, terminology, and tactics related to movement and performance."
+          },
+          {
+           "code": "HSL2.2.1.A",
+           "text": "The physically literate individual applies knowledge of concepts, principles, strategies, terminology, and tactics related to movement by demonstrating performance-based skills."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "the-physically-literate-individual-demonstrates-",
+     "title": "The physically literate individual demonstrates the knowledge and skills to achieve and maintain a health-enhancing level of physical activity and fitness",
+     "topics": [
+      {
+       "id": "health-related-fitness",
+       "title": "Health-Related Fitness",
+       "subtopics": [
+        {
+         "id": "health-related-fitness",
+         "title": "Health-Related Fitness",
+         "outcomes": [
+          {
+           "code": "HSL1.3.1.A",
+           "text": "Demonstrates the knowledge of the components of physical fitness to achieve and maintain a health-enhancing level of physical activity."
+          },
+          {
+           "code": "HSL2.3.1.A",
+           "text": "Applies technology (such as wearable devices, mobile device apps, and/or social media tools) to support physical activity and lifetime fitness habits."
+          },
+          {
+           "code": "HSL2.3.1.B",
+           "text": "Maintains a healthy caloric/energy balance for an active lifestyle."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "physical-activity-knowledge",
+       "title": "Physical Activity Knowledge",
+       "subtopics": [
+        {
+         "id": "physical-activity-knowledge",
+         "title": "Physical Activity Knowledge",
+         "outcomes": [
+          {
+           "code": "HSL1.3.2.A",
+           "text": "Investigates activities that can be pursued in the local environment (such as health clubs, recreational leagues, indoor/outdoor trails, community centers)."
+          },
+          {
+           "code": "HSL1.3.2.B",
+           "text": "Identifies issues associated with exercising in various types of weather conditions (such as heat, humidity, cold)."
+          },
+          {
+           "code": "HSL2.3.2.A",
+           "text": "Identifies fitness principles (such as overload, recovery, specificity) and applies them to a variety of physical activities in their personal fitness plan."
+          },
+          {
+           "code": "HSL2.3.2.B",
+           "text": "Lists opportunities to increase daily physical activity."
+          },
+          {
+           "code": "HSL2.3.2.C",
+           "text": "Describes community and school resources to engage in physical activity."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "engagement-in-physical-activity",
+       "title": "Engagement in Physical Activity",
+       "subtopics": [
+        {
+         "id": "engagement-in-physical-activity",
+         "title": "Engagement in Physical Activity",
+         "outcomes": [
+          {
+           "code": "HSL1.3.3.A",
+           "text": "Participates regularly in physical activity."
+          },
+          {
+           "code": "HSL2.3.3.A",
+           "text": "Meets or exceeds the threshold of accumulating 60 minutes of daily moderate to vigorous physical activity."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "physical-activity-and-nutrition-planning",
+       "title": "Physical Activity and Nutrition Planning",
+       "subtopics": [
+        {
+         "id": "physical-activity-and-nutrition-planning",
+         "title": "Physical Activity and Nutrition Planning",
+         "outcomes": [
+          {
+           "code": "HSL1.3.4.A",
+           "text": "Understands the relationship between caloric intake, physical activity, and body composition."
+          },
+          {
+           "code": "HSL2.3.4.A",
+           "text": "Adjusts daily nutritional intake to meet physical activity levels that work toward their own body composition goal."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "individual-plan",
+       "title": "Individual Plan",
+       "subtopics": [
+        {
+         "id": "individual-plan",
+         "title": "Individual Plan",
+         "outcomes": [
+          {
+           "code": "HSL1.3.5.A",
+           "text": "Designs and implements a personal fitness and nutrition plan (assessment scores, goals for improvement, plan of activities for improvement, log of activities to reach goals, timeline for improvement)."
+          },
+          {
+           "code": "HSL2.3.5.A",
+           "text": "Designs and uses a personal fitness plan that incorporates the health-related fitness components and follows the key principles of training."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "stress-management",
+       "title": "Stress Management",
+       "subtopics": [
+        {
+         "id": "stress-management",
+         "title": "Stress Management",
+         "outcomes": [
+          {
+           "code": "HSL1.3.6.A",
+           "text": "Identifies stress-management strategies, such as mental imagery, relaxation techniques, deep breathing, aerobic exercise, and meditation to reduce stress."
+          },
+          {
+           "code": "HSL2.3.6.A",
+           "text": "Explains the positive health outcomes related to managing stress through engaging in regular physical activity and lifetime fitness pursuits."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "the-physically-literate-individual-exhibits-resp",
+     "title": "The physically literate individual exhibits responsible personal and social behavior that respects self and others",
+     "topics": [
+      {
+       "id": "personal-responsibility",
+       "title": "Personal Responsibility",
+       "subtopics": [
+        {
+         "id": "personal-responsibility",
+         "title": "Personal Responsibility",
+         "outcomes": [
+          {
+           "code": "HSL1.4.1.A",
+           "text": "Employs effective self-management skills to review time commitments (among individual student’s curricular/extracurricular agenda) to identify barriers and modify physical activity and exercise patterns accordingly."
+          },
+          {
+           "code": "HSL2.4.1.A",
+           "text": "Takes responsibility for engaging in daily physical activity and regular participation in lifetime fitness pursuits (such as trying out new activities, giving full effort and attention to the opportunities before them, being a positive role model for others, etc.)."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "rules-and-etiquette",
+       "title": "Rules and Etiquette",
+       "subtopics": [
+        {
+         "id": "rules-and-etiquette",
+         "title": "Rules and Etiquette",
+         "outcomes": [
+          {
+           "code": "HSL1.4.2.A",
+           "text": "Exhibits proper etiquette, respect for others, and teamwork while engaging in physical activity."
+          },
+          {
+           "code": "HSL2.4.2.A",
+           "text": "Adheres to established or developed rules for participation in physical activities, respects the etiquette aspects of participation, and displays a positive disposition."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "working-with-others",
+       "title": "Working with Others",
+       "subtopics": [
+        {
+         "id": "working-with-others",
+         "title": "Working with Others",
+         "outcomes": [
+          {
+           "code": "HSL1.4.3.A",
+           "text": "Solves problems and thinks critically when working with others during physical activity, both as an individual and in groups."
+          },
+          {
+           "code": "HSL2.4.3.A",
+           "text": "Modifies the physical activity or lifetime fitness pursuit so that all ability levels are meaningfully engaged."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "safety",
+       "title": "Safety",
+       "subtopics": [
+        {
+         "id": "safety",
+         "title": "Safety",
+         "outcomes": [
+          {
+           "code": "HSL1.4.4.A",
+           "text": "Both demonstrates and applies best practices for participating safely in physical activity and exercise (such as injury prevention, proper alignment, hydration, use of equipment, implementation of rules, sun protection)."
+          },
+          {
+           "code": "HSL2.4.4.A",
+           "text": "Differentiates an inherent risk versus an unsafe practice."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "the-physically-literate-individual-recognizes-th",
+     "title": "The physically literate individual recognizes the value of physical activity for health, enjoyment, challenge, self-expression, and/or social interaction",
+     "topics": [
+      {
+       "id": "benefits",
+       "title": "Benefits",
+       "subtopics": [
+        {
+         "id": "benefits",
+         "title": "Benefits",
+         "outcomes": [
+          {
+           "code": "HSL1.5.1.A",
+           "text": "Explains physical health benefits of attaining or exceeding the daily recommended 60 minutes of moderate to vigorous physical activity."
+          },
+          {
+           "code": "HSL2.5.1.A",
+           "text": "Recognizes the value of physical activity for health, enjoyment, challenge, self-expression, and/or social interaction."
+          },
+          {
+           "code": "HSL2.5.1.B",
+           "text": "Recognizes the relationship between engaging in regular physical activity and positive outcomes related to cognition and/or academic readiness."
+          },
+          {
+           "code": "HSL2.5.1.C",
+           "text": "Articulates positive social outcomes of trying a new physical activity with others."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "expression",
+       "title": "Expression",
+       "subtopics": [
+        {
+         "id": "expression",
+         "title": "Expression",
+         "outcomes": [
+          {
+           "code": "HSL1.5.2.A",
+           "text": "Participates in a self-selected physical activity for self-expression and enjoyment."
+          },
+          {
+           "code": "HSL2.5.2.A",
+           "text": "Shares the many ways that people of all ability levels and interests can accomplish 60 minutes of moderate to vigorous physical activity daily."
+          },
+          {
+           "code": "HSL2.5.2.B",
+           "text": "Highlights the personal growth aspects of engaging in a novel physical activity."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "build": {
+  "builtAt": "2026-10-14T16:20:42.574Z",
+  "model": "none",
+  "usd": 0,
+  "expectedCodes": 449,
+  "coverage": 1,
+  "missingCodes": [],
+  "counts": {
+   "grades": 10,
+   "units": 50,
+   "topics": 182,
+   "subtopics": 350,
+   "outcomes": 449
+  },
+  "warnings": []
+ }
+}

@@ -1,0 +1,93 @@
+# Needs a human look (from extraction workers)
+- pk-fbise-af-hssc-1-chemistry: C-11-E-142 is a source typo (= C-11-B-142); left out.
+- pk-fbise-af-hssc-2-pakistan-studies: some source text garbled; Pak-US outcome paraphrased loosely.
+- pk-fbise-af-hssc-1-physics: P-11-N-19 has no text in the PDF — generic outcome written; source code typos kept as printed.
+- pk-fbise-af-hssc-2-english: document covers grades 11+12 but registry lists only 12 (E-11 rows warn); 20 OCR-garbled codes kept with code null.
+- pk-fbise-af-hssc-1-islamiyat / -tarjuma-quran / -urdu: Urdu PDF text extraction broken (reversed/ligature-split) — outcomes paraphrased from garbled text; needs an Urdu reader's spot-check. hssc-1-urdu also covers grade 12 (registry lists only 11).
+- pk-fbise-af-hssc-2-physics: two SLOs share P-12-F-26 in the source — merged into one row.
+- pk-fbise-af-hssc-1-english / ssc-1-english: shared XI/XII (IX/X) table — coverage shows ~50% because the other grade's codes are counted; the other grade is covered by the -2- documents. OCR-garbled codes kept with code null.
+- pk-fbise-af-hssc-2-chemistry: Domain F name illegible in OCR ("F: Analysis and Applications" used); 6 garbled codes kept as null.
+- pk-ecat-uet: no topic syllabus exists (test structure only) — map ECAT to HSSC trees instead.
+- pk-fbise-af-hssc-2-biology: Immunity codes garbled by OCR — rows kept with code null.
+- pk-fbise-af-ssc-1-islamiyat: Urdu, scrambled text; outcomes decoded from the alignment chart — LOW confidence, needs Urdu reader. Strand names are our labels.
+- pk-fbise-af-ssc-2-pakistan-studies: unit E name is our label.
+- pk-fbise-af-hssc-2-urdu: only grade 12 rows (49% of codes) — grade 11 half to add (rule now: include every grade a doc covers).
+- several NCP science SLOs paraphrased from the first line of multi-line cells — detail may be thin.
+- biology domain names are our labels (document prints letters only).
+- pk-fbise-af-ssc-1-islamiyat: two workers collided (100% version overwritten by 43%) — reset for a redo with --ocr.
+- pk-nc2006-biology-11-12: only the "Understanding" outcomes written; Skills and STS bullets left out.
+- pk-nc2006-english-1-12: compressed (~2 outcomes per benchmark per grade).
+- pk-fbise-af-ssc-2-english: covers grades 9+10; ~30 misprinted codes kept as null.
+- pk-mdcat-pmdc-2025: subjects reuse codes 1.1, 1.2…; code kept on Biology rows, null on Chemistry/Physics/English rows (checker de-duplicates codes) — consider per-subject trees.
+- pk-nc2006-chemistry-11-12: built from the contents list, not the full outcome pages — thin; redo if NC2006 matters.
+- pk-fbise-af-ssc-1-urdu: decoded by hand from garbled text (before the --ocr tool existed) — spot-check.
+- pk-ncp-arabic-6-12: released unreadable — retry with --ocr.
+- pk-fbise-af-ssc-1-physics: 49 experimentation-skill codes (P-09-10-N-xx) have weak placeholder outcomes.
+- pk-fbise-af-ssc-2-mathematics: outcome B-16 worded loosely.
+- pk-nc2006-urdu-1-12: SKIPPED — scan too poor for OCR; needs a human.
+- pk-ncp-ai-robotics-1-12: codes split across lines in OCR → all 180 rows code null; completeness checked by hand only.
+- pk-ncp-art-fine-arts-1-12: grades 1-8 reconstructed by lesson from scrambled tables (9-12 exact).
+- pk-ncp-computer-graphics-animation-9-12: duplicate printed code 10-B-09 (second kept as null).
+- pk-ncp-arabic-6-12: OCR'd table messy; ARB codes repeat across strands → all rows code null.
+- pk-ncp-civics-11-12: Domain H named but its page is blank in the source — no rows.
+- pk-ncp-environment-for-living-ece: "SLO 1-7" restart per band → checker shows 0% (meaningless); rows complete by hand.
+- pk-ncp-fundamentals-food-nutrition-booklet-11-12: noisy scan, codes null, coverage unmeasured.
+- pk-ncp-entrepreneurship-6-8 (and similar "SLO 1..8 per grade" documents): codes repeat per grade/domain → rows code null; checker shows 0% (meaningless).
+- pk-ncp-character-education-ece-12: grade bands, written as grade "all" with band in the lesson name.
+- pk-ncp-art-textile-design-11-12, home-management-family-studies-11-12: scans, codes garbled — complete by hand, coverage unmeasured.
+- pk-ncp-alp-middle-tech-skills: 757 rows; grades approximated (Package D = 6/7, E = 8).
+- pk-ncp-islamic-culture-9-10: registry says 9-10 but document is grades 11-12; 13 garbled codes kept null.
+- pk-ncp-alp-middle: 99.9% of 885 codes; Package D graded "6" (covers 6-7); Urdu/Islamiyat read from page images.
+- pk-nc2006-pakistan-studies-11-12: graded "all" (no XI/XII split in document).
+- pk-fbise-af-ssc-1-islamiyat: redone; English outcomes rough (thin readable text) — LOW quality, needs Urdu reader. I-09-F-10 content looks like domain E.
+- pk-ncp-computer-studies-home-economics: registry says grades 1-12, document is grade 12 only.
+- pk-ncp-economics-9-12: grade-11 Domain D codes misprinted as Eco-09-D-xx in source; handled, see rows.
+- pk-ncp-environment-for-living-1-8: SLO numbers restart per cell (0% meaningless); 231 cognitive SLOs by hand; grade-column mapping best-effort; most social-emotional SLOs left out.
+- pk-ncp-islamic-history-9-12: noisy OCR; codes IH:09:A:01 not in registry pattern → null.
+- pk-ncp-tech-applied-sciences-11: four sub-courses reuse the same code range; repeats kept with code null.
+- pk-ncp-tech-dispensing-techniques-11-12: DT-11-F-03 blank in source (placeholder); misprinted G codes.
+- pk-ncp-tech-fashion-fabrication-construction-9-12: muddled grade-9 codes in source; placements are judgement calls.
+- pk-ncp-tech-graphic-design-9-12: Domain A history rows nulled in rows file but the saved tree may still carry duplicate A-04..A-06 codes (re-run with --replace refused); GD-09-A-05 placeholder in source.
+- pk-ncp-tech-applied-sciences-12 / physiology-11: reused codes in source, repeats null.
+- pk-ncp-tech-electrician-9-12: 1516/1516 codes; source has mismatched domain headings (C, D) and printed typos; 8 big lessons split mechanically "part 1/2/3".
+- pk-ncp-tech-computer-hardware-9-10 / advertising-9-12: duplicate printed codes handled.
+- pk-ncp-statistics-11-12: F-12-05..10 missing from the PDF itself ("…" gap p18); G-12-10/11 repeat G-12-08/09.
+- pk-ncp-tech-aesthetic-health-sciences-9-12: noisy OCR, ~25 garbled codes null; source misprints corrected.
+- pk-ncp-tech-sports-fitness-11-12: grade per domain inferred from layout — check.
+- pk-ncp-tech-culinary-arts-food-science-9-12: scan, rough OCR of 4-column tables; some wording inferred; grade-12 Domain F codes misprinted (null).
+- pk-ncp2026-general-science-9-12: covers 9-10 only; two misprinted codes judged.
+- pk-ncp-tech-tourism-management-9-12 / hvacr-9-12: duplicate and mislabelled source codes handled (nulls).
+- pk-ncp2026-biology-9-12: 564 outcomes; ~37 OCR-garbled codes null; B-10-F-19/F-34, B-09-M-16 inferred — check; B-10-G-17 not seen.
+- pk-ncp2026-quantitative-reasoning-11: ~15 garbled codes null.
+- cie-lowersec-*: built from thin public outlines / subject pages (full frameworks need a Cambridge login).
+- RECODED (wrapped codes restored): plumbing 372/372, art 285/285 (grades 1-8 now per-code; pairing best-effort, colour rows 04-A-10..15 may be off by one), education 138/138, islamic-culture 105 (IC-11-D-02 printed as IC-12-D-02 → dropped), islamic-studies-elective 101/101 (F/G split is a reading of p7 vs p12), ssc-2-urdu 98.5%, ssc-1-islamiyat 98% (I-10-D-23 only in alignment table).
+- pk-ncp2026-chemistry-9-12: 640 rows; ~76 OCR-mangled codes given by sequence (some uncertain: C-11-B-23/24/28, C-12-B-08); registry has no codePattern (add one to measure coverage). Domain D/E labels follow codes, not contents page.
+- pk-ncp2026-physics-9-12: 523 rows; 29 codes filled by sequence; P-10-F-22 invisible in OCR (generic row).
+- REDONE deeper: A Level Accounting 51→207, Env Mgmt 28→136, Hinduism 26→165, History 8102 15→124, History 9981 12→159, Islamic Studies 23→135.
+- cie-alevel-accounting-9706: generic "overview" rows added to carry section codes — unnecessary now (sections count as covered by their statements); can be dropped.
+- cie-alevel-history-9981: Paper 4 rows unchecked by codes (its numbering repeats Paper 1/2).
+- REDONE deeper: Biblical Studies 65→214, Business 150→346, Chemistry 9701 89→364, History 8101 15→136, History 9982 10→153, IT 9626 67→336.
+- cie-alevel-chemistry-9701: some section codes missing from the checker's list (pattern gaps) — rows written anyway.
+- REDONE deeper: Law 67→177, Physics 9702 76→298, Thinking Skills 15→54 (grade "all"), IGCSE Accounting 27→123, Agriculture 30→92, Biology 0970 61→384 (Core/Supplement not distinguished — no field for it yet).
+- REDONE deeper: Further Maths 9231 23→98, Sociology 9699 32→134, Travel & Tourism 26→113, IGCSE Accounting 0985 27→127, IGCSE Biology 0610 61→350, IGCSE Business 0264 135→213.
+- REDONE deeper: IGCSE Business 0774 90→212, Chemistry 0971 49→258, CS 0984 17→116, Geography 0460/0976 19→67, International Maths 0607 131→268 (88.6%: 16 Core codes are "Extended content only" placeholders — not real content).
+- cie-igcse-business-0774: one prerequisite row added ("what a pressure group is") not in the syllabus.
+- REDONE deeper: IGCSE Maths 0980 139→296, Religious Studies 0490 85→368, O Level Accounting 7707 27→141, Business 7081 76→219, Chemistry 5070 49→227.
+- REDONE deeper: Physical Science 0652 58→345, IGCSE Travel & Tourism 24→114, Bangladesh Studies 30→210 (Paper 1 added, codeless), O Level Commerce 51→133, Env Mgmt 5014 54→135, Fashion & Textiles 31→95.
+- us-act-ccrs-math: ACT score bands mapped to grades 8-12 (our choice).
+- us-ap-*: grade "all" (AP courses are not grade-divided) — the warning is expected.
+- us-ap-spanish-language-and-culture: themed units have no codes; rows from recommended contexts.
+- us-ap-latin: reading-list units skipped (set texts); VOC/SUM/TRAN objectives added code-less.
+- uk-aqa-alevel-geography-7037 / -design-and-technology-fashion-and-textiles-7562 / business / psychology: Year 12/13 assigned by section (arbitrary) — rule since changed to "all" unless the spec marks AS vs A-level content.
+- us-ngss-k-12-dci-arrangements: 98.1% (missing codes are checker misreads of K-2-/3-5- ETS codes).
+- uk-aqa-alevel-media-studies-7572 (74%) / sociology-7192 (72%): missing codes are NEA admin or old-number cross-reference table — content complete.
+- us-sat-suite-assessment-framework: grades 8-12 share one framework (no split).
+- uk-aqa-alevel-music-7272 (no codes, per element type), polish-7687 (per grammar section) — coarser than per statement.
+- uk-edexcel-alevel-politics-9pl0: ecologism "land ethic" thinker name missing in text (Aldo Leopold?).
+- uk-edexcel-alevel-urdu-9ur0: OCR'd; prescribed text authors partly legible (Basir Kazmi title uncertain) — spot-check.
+- Edexcel maths/politics/psychology mark AS content in bold, lost in extraction → grade "all".
+- uk-edexcel-gcse-turkish-1tu0: paper-skills rows taken from the Japanese spec's identical structure — check against Turkish Papers 1-4.
+- uk-edexcel-gcse-spanish-1sp1 / urdu-1ur0: paper/theme rows reused from French/Greek (same layout) — recheck against their own spec pages.
+- uk-edexcel-gcse-religious-studies-a-1ra0: Paper 2 options A-C assumed to match Paper 1 sections by numbering (not written out) — verify wording; may need their own rows.
+- uk-edexcel-gcse-religious-studies-b-1rb0: identical sections written once (Area 1); Areas 2/3 Crime&Punishment / Peace&Conflict outcomes template-based per religion — recheck.
+- uk-ocr-alevel-business-h431: near-duplicate bullets merged. uk-ocr-alevel-english-language-and-literature-h474: thin (47 outcomes).

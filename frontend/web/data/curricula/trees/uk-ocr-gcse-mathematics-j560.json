@@ -1,0 +1,1253 @@
+{
+ "id": "uk-ocr-gcse-mathematics-j560",
+ "region": "UK",
+ "framework": "OCR GCSE (9-1)",
+ "board": "OCR",
+ "qualification": "GCSE",
+ "subject": "Mathematics",
+ "syllabusCode": "J560",
+ "gradeSystem": "year",
+ "source": {
+  "urls": [
+   "https://www.ocr.org.uk/Images/168982-specification-gcse-mathematics.pdf"
+  ],
+  "publisher": "OCR (Oxford Cambridge and RSA)",
+  "licence": "Exam board specification, (c) OCR; structure + our own wording only",
+  "firstExam": "2017"
+ },
+ "grades": [
+  {
+   "grade": "all",
+   "units": [
+    {
+     "id": "1-number-operations-and-integers",
+     "title": "1 Number Operations and Integers",
+     "topics": [
+      {
+       "id": "1-01-calculations-with-integers",
+       "title": "1.01 Calculations with integers",
+       "subtopics": [
+        {
+         "id": "four-rules-with-integers",
+         "title": "Four rules with integers",
+         "outcomes": [
+          {
+           "code": "1.01a",
+           "text": "Add, subtract, multiply and divide positive and negative whole numbers without a calculator."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "1-02-whole-number-theory",
+       "title": "1.02 Whole number theory",
+       "subtopics": [
+        {
+         "id": "factors-multiples-and-primes",
+         "title": "Factors, multiples and primes",
+         "outcomes": [
+          {
+           "code": "1.02a",
+           "text": "Use the terms odd, even, prime, factor, multiple, square, cube and root, and use place value."
+          },
+          {
+           "code": "1.02b",
+           "text": "Identify primes and write a whole number as a product of prime factors, using power notation at Higher."
+          },
+          {
+           "code": "1.02c",
+           "text": "Find the highest common factor and lowest common multiple of two numbers."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "1-03-combining-arithmetic-operations",
+       "title": "1.03 Combining arithmetic operations",
+       "subtopics": [
+        {
+         "id": "order-of-operations-and-inverses",
+         "title": "Order of operations and inverses",
+         "outcomes": [
+          {
+           "code": "1.03a",
+           "text": "Apply the conventional order of operations with brackets, powers, roots and reciprocals."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "1-04-inverse-operations",
+       "title": "1.04 Inverse operations",
+       "subtopics": [
+        {
+         "id": "order-of-operations-and-inverses",
+         "title": "Order of operations and inverses",
+         "outcomes": [
+          {
+           "code": "1.04a",
+           "text": "Use inverse operations to simplify and check calculations."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "2-fractions-decimals-and-percentages",
+     "title": "2 Fractions, Decimals and Percentages",
+     "topics": [
+      {
+       "id": "2-01-fractions",
+       "title": "2.01 Fractions",
+       "subtopics": [
+        {
+         "id": "fraction-arithmetic",
+         "title": "Fraction arithmetic",
+         "outcomes": [
+          {
+           "code": "2.01a",
+           "text": "Recognise and use equivalent fractions and mixed numbers."
+          },
+          {
+           "code": "2.01b",
+           "text": "Add, subtract, multiply and divide fractions including mixed numbers and negatives."
+          },
+          {
+           "code": "2.01c",
+           "text": "Find a fraction of a quantity and express one quantity as a fraction of another."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "2-02-decimal-fractions",
+       "title": "2.02 Decimal fractions",
+       "subtopics": [
+        {
+         "id": "decimal-arithmetic-and-conversion",
+         "title": "Decimal arithmetic and conversion",
+         "outcomes": [
+          {
+           "code": "2.02a",
+           "text": "Convert between fractions and decimals, including recurring decimals to exact fractions at Higher."
+          },
+          {
+           "code": "2.02b",
+           "text": "Add, subtract and multiply decimals, including negatives, without a calculator."
+          },
+          {
+           "code": "2.02c",
+           "text": "Divide decimals by whole numbers, and by decimals at Higher, without a calculator."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "2-03-percentages",
+       "title": "2.03 Percentages",
+       "subtopics": [
+        {
+         "id": "percentages",
+         "title": "Percentages",
+         "outcomes": [
+          {
+           "code": "2.03a",
+           "text": "Convert between fractions, decimals and percentages."
+          },
+          {
+           "code": "2.03b",
+           "text": "Calculate a percentage of a quantity and express one quantity as a percentage of another."
+          },
+          {
+           "code": "2.03c",
+           "text": "Increase or decrease by a percentage using multipliers, including original value and simple interest problems."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "2-04-ordering-fractions-decimals-and-percentages",
+       "title": "2.04 Ordering fractions, decimals and percentages",
+       "subtopics": [
+        {
+         "id": "ordering-numbers",
+         "title": "Ordering numbers",
+         "outcomes": [
+          {
+           "code": "2.04a",
+           "text": "Order integers, fractions, decimals and percentages."
+          },
+          {
+           "code": "2.04b",
+           "text": "Use the symbols <, >, less-or-equal, greater-or-equal and = correctly."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "3-indices-and-surds",
+     "title": "3 Indices and Surds",
+     "topics": [
+      {
+       "id": "3-01-powers-and-roots",
+       "title": "3.01 Powers and roots",
+       "subtopics": [
+        {
+         "id": "indices-and-roots",
+         "title": "Indices and roots",
+         "outcomes": [
+          {
+           "code": "3.01a",
+           "text": "Use positive, negative and fractional indices."
+          },
+          {
+           "code": "3.01b",
+           "text": "Calculate and estimate powers and roots, including negative and fractional powers at Higher."
+          },
+          {
+           "code": "3.01c",
+           "text": "Know and apply the laws of indices for multiplying, dividing and raising powers."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "3-02-standard-form",
+       "title": "3.02 Standard form",
+       "subtopics": [
+        {
+         "id": "standard-form",
+         "title": "Standard form",
+         "outcomes": [
+          {
+           "code": "3.02a",
+           "text": "Interpret, order and convert numbers in standard form."
+          },
+          {
+           "code": "3.02b",
+           "text": "Calculate with numbers in standard form, with a calculator and at Higher without."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "3-03-exact-calculations",
+       "title": "3.03 Exact calculations",
+       "subtopics": [
+        {
+         "id": "exact-values-and-surds",
+         "title": "Exact values and surds",
+         "outcomes": [
+          {
+           "code": "3.03a",
+           "text": "Use fractions, multiples of pi and surds in exact calculations without a calculator."
+          },
+          {
+           "code": "3.03b",
+           "text": "Simplify surd expressions, including rationalising denominators."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "4-approximation-and-estimation",
+     "title": "4 Approximation and Estimation",
+     "topics": [
+      {
+       "id": "4-01-approximation-and-estimation",
+       "title": "4.01 Approximation and estimation",
+       "subtopics": [
+        {
+         "id": "rounding-estimating-and-bounds",
+         "title": "Rounding, estimating and bounds",
+         "outcomes": [
+          {
+           "code": "4.01a",
+           "text": "Round to a given place value, significant figures or decimal places."
+          },
+          {
+           "code": "4.01b",
+           "text": "Estimate or check calculations without a calculator using suitable approximations."
+          },
+          {
+           "code": "4.01c",
+           "text": "Write error intervals and calculate upper and lower bounds of calculations."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "5-ratio-proportion-and-rates-of-change",
+     "title": "5 Ratio, Proportion and Rates Of Change",
+     "topics": [
+      {
+       "id": "5-01-calculations-with-ratio",
+       "title": "5.01 Calculations with ratio",
+       "subtopics": [
+        {
+         "id": "working-with-ratio",
+         "title": "Working with ratio",
+         "outcomes": [
+          {
+           "code": "5.01a",
+           "text": "Find and simplify ratios, including the form 1 : n."
+          },
+          {
+           "code": "5.01b",
+           "text": "Divide a quantity in a given ratio and find one quantity from another given the ratio."
+          },
+          {
+           "code": "5.01c",
+           "text": "Interpret a ratio as fractions of a whole."
+          },
+          {
+           "code": "5.01d",
+           "text": "Solve ratio and proportion problems."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "5-02-direct-and-inverse-proportion",
+       "title": "5.02 Direct and inverse proportion",
+       "subtopics": [
+        {
+         "id": "direct-and-inverse-proportion",
+         "title": "Direct and inverse proportion",
+         "outcomes": [
+          {
+           "code": "5.02a",
+           "text": "Solve direct proportion problems, including y = kx and proportion to powers or roots at Higher."
+          },
+          {
+           "code": "5.02b",
+           "text": "Solve inverse proportion problems, including y = k/x and powers or roots at Higher."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "5-03-discrete-growth-and-decay",
+       "title": "5.03 Discrete growth and decay",
+       "subtopics": [
+        {
+         "id": "growth-and-decay",
+         "title": "Growth and decay",
+         "outcomes": [
+          {
+           "code": "5.03a",
+           "text": "Solve simple and compound interest, depreciation and other multiplier problems, and write exponential growth or decay formulae at Higher."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "6-algebra",
+     "title": "6 Algebra",
+     "topics": [
+      {
+       "id": "6-01-algebraic-expressions",
+       "title": "6.01 Algebraic expressions",
+       "subtopics": [
+        {
+         "id": "algebraic-terminology-and-simplifying",
+         "title": "Algebraic terminology and simplifying",
+         "outcomes": [
+          {
+           "code": "6.01a",
+           "text": "Use the vocabulary of expressions, equations, formulae, inequalities, terms and factors, and build algebraic arguments and proofs."
+          },
+          {
+           "code": "6.01b",
+           "text": "Simplify expressions by collecting like terms."
+          },
+          {
+           "code": "6.01c",
+           "text": "Simplify algebraic products and quotients, using index laws at Higher."
+          }
+         ]
+        },
+        {
+         "id": "expanding-factorising-and-fractions",
+         "title": "Expanding, factorising and fractions",
+         "outcomes": [
+          {
+           "code": "6.01d",
+           "text": "Expand brackets, including products of two binomials and more at Higher."
+          },
+          {
+           "code": "6.01e",
+           "text": "Factorise by common factors, then quadratics and differences of squares."
+          },
+          {
+           "code": "6.01f",
+           "text": "Complete the square on a quadratic expression."
+          },
+          {
+           "code": "6.01g",
+           "text": "Simplify and manipulate algebraic fractions."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "6-02-algebraic-formulae",
+       "title": "6.02 Algebraic formulae",
+       "subtopics": [
+        {
+         "id": "using-formulae",
+         "title": "Using formulae",
+         "outcomes": [
+          {
+           "code": "6.02a",
+           "text": "Formulate algebraic expressions and formulae from real-world contexts."
+          },
+          {
+           "code": "6.02b",
+           "text": "Substitute numbers into expressions and formulae."
+          },
+          {
+           "code": "6.02c",
+           "text": "Rearrange formulae to change the subject."
+          },
+          {
+           "code": "6.02d",
+           "text": "Recall and use standard formulae: circle circumference and area, Pythagoras, trigonometry ratios, quadratic formula, sine and cosine rules, triangle area."
+          },
+          {
+           "code": "6.02e",
+           "text": "Use the kinematics formulae for constant acceleration."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "6-03-algebraic-equations",
+       "title": "6.03 Algebraic equations",
+       "subtopics": [
+        {
+         "id": "solving-equations",
+         "title": "Solving equations",
+         "outcomes": [
+          {
+           "code": "6.03a",
+           "text": "Solve linear equations in one unknown, including setting them up from context."
+          },
+          {
+           "code": "6.03b",
+           "text": "Solve quadratic equations by factorising, completing the square or the formula."
+          },
+          {
+           "code": "6.03c",
+           "text": "Solve two simultaneous equations algebraically, including with a quadratic at Higher."
+          }
+         ]
+        },
+        {
+         "id": "graphical-and-numerical-solutions",
+         "title": "Graphical and numerical solutions",
+         "outcomes": [
+          {
+           "code": "6.03d",
+           "text": "Use graphs to find approximate solutions to equations and simultaneous equations."
+          },
+          {
+           "code": "6.03e",
+           "text": "Find approximate solutions by systematic sign-change methods such as interval bisection."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "6-04-algebraic-inequalities",
+       "title": "6.04 Algebraic inequalities",
+       "subtopics": [
+        {
+         "id": "inequalities",
+         "title": "Inequalities",
+         "outcomes": [
+          {
+           "code": "6.04a",
+           "text": "Use inequality symbols, solve linear (and at Higher quadratic) inequalities, and show solutions on number lines or in set notation."
+          },
+          {
+           "code": "6.04b",
+           "text": "Solve linear inequalities in two variables and show the solution region on a graph."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "6-05-language-of-functions",
+       "title": "6.05 Language of functions",
+       "subtopics": [
+        {
+         "id": "functions",
+         "title": "Functions",
+         "outcomes": [
+          {
+           "code": "6.05a",
+           "text": "Interpret expressions as functions with inputs and outputs, and inverse and composite functions at Higher."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "6-06-sequences",
+       "title": "6.06 Sequences",
+       "subtopics": [
+        {
+         "id": "sequences",
+         "title": "Sequences",
+         "outcomes": [
+          {
+           "code": "6.06a",
+           "text": "Generate sequences from rules and find nth term formulae for arithmetic sequences, and quadratic ones at Higher."
+          },
+          {
+           "code": "6.06b",
+           "text": "Recognise triangular, square and cube numbers, arithmetic and geometric progressions, and Fibonacci at Higher."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "7-graphs-of-equations-and-functions",
+     "title": "7 Graphs of Equations and Functions",
+     "topics": [
+      {
+       "id": "7-01-graphs-of-equations-and-functions",
+       "title": "7.01 Graphs of equations and functions",
+       "subtopics": [
+        {
+         "id": "plotting-and-sketching-graphs",
+         "title": "Plotting and sketching graphs",
+         "outcomes": [
+          {
+           "code": "7.01a",
+           "text": "Work with x- and y-coordinates in all four quadrants."
+          },
+          {
+           "code": "7.01b",
+           "text": "Use tables of values to plot linear, quadratic, polynomial, reciprocal and exponential graphs."
+          },
+          {
+           "code": "7.01c",
+           "text": "Recognise and sketch linear, quadratic, cubic and reciprocal graphs, and find turning points by completing the square at Higher."
+          },
+          {
+           "code": "7.01d",
+           "text": "Recognise and sketch exponential graphs y = k^x."
+          },
+          {
+           "code": "7.01e",
+           "text": "Recognise and sketch graphs of sine, cosine and tangent."
+          },
+          {
+           "code": "7.01f",
+           "text": "Recognise and use the equation of a circle centred at the origin."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "7-02-straight-line-graphs",
+       "title": "7.02 Straight line graphs",
+       "subtopics": [
+        {
+         "id": "straight-line-graphs",
+         "title": "Straight line graphs",
+         "outcomes": [
+          {
+           "code": "7.02a",
+           "text": "Find and interpret gradient and intercept, use y = mx + c, and find a line through two points or with a given gradient."
+          },
+          {
+           "code": "7.02b",
+           "text": "Find equations of parallel and perpendicular lines, and a tangent to a circle at a point."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "7-03-transformations-of-curves-and-their-equatio",
+       "title": "7.03 Transformations of curves and their equations",
+       "subtopics": [
+        {
+         "id": "transforming-graphs",
+         "title": "Transforming graphs",
+         "outcomes": [
+          {
+           "code": "7.03a",
+           "text": "Identify and sketch translations and reflections of a given graph."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "7-04-interpreting-graphs",
+       "title": "7.04 Interpreting graphs",
+       "subtopics": [
+        {
+         "id": "real-world-graphs-and-rates-of-change",
+         "title": "Real-world graphs and rates of change",
+         "outcomes": [
+          {
+           "code": "7.04a",
+           "text": "Construct and interpret graphs in real-world contexts, including proportion graphs."
+          },
+          {
+           "code": "7.04b",
+           "text": "Interpret gradients as rates of change, and estimate gradients of curves using chords and tangents."
+          },
+          {
+           "code": "7.04c",
+           "text": "Calculate or estimate areas under graphs and interpret them in context."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "8-basic-geometry",
+     "title": "8 Basic Geometry",
+     "topics": [
+      {
+       "id": "8-01-conventions-notation-and-terms",
+       "title": "8.01 Conventions, notation and terms",
+       "subtopics": [
+        {
+         "id": "geometry-vocabulary-and-tools",
+         "title": "Geometry vocabulary and tools",
+         "outcomes": [
+          {
+           "code": "8.01a",
+           "text": "Use the terms point, line, line segment, vertex, edge, plane, parallel and perpendicular."
+          },
+          {
+           "code": "8.01b",
+           "text": "Know acute, obtuse, right and reflex angles and the conventions for labelling triangle sides and angles."
+          },
+          {
+           "code": "8.01c",
+           "text": "Know the names of regular polygons, triangle types, quadrilaterals, pentagon, hexagon and octagon."
+          },
+          {
+           "code": "8.01d",
+           "text": "Recognise the terms face, surface, edge, vertex, cube, cuboid, prism, cylinder, pyramid, cone and sphere."
+          },
+          {
+           "code": "8.01e",
+           "text": "Draw diagrams from written descriptions."
+          },
+          {
+           "code": "8.01f",
+           "text": "Use a ruler, protractor and compasses to construct and measure."
+          },
+          {
+           "code": "8.01g",
+           "text": "Use coordinates in plane geometry problems, including transformations."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "8-02-ruler-and-compass-constructions",
+       "title": "8.02 Ruler and compass constructions",
+       "subtopics": [
+        {
+         "id": "constructions-and-loci",
+         "title": "Constructions and loci",
+         "outcomes": [
+          {
+           "code": "8.02a",
+           "text": "Construct the perpendicular bisector and midpoint of a line segment."
+          },
+          {
+           "code": "8.02b",
+           "text": "Construct the bisector of an angle."
+          },
+          {
+           "code": "8.02c",
+           "text": "Construct the perpendicular from a point to a line and at a point on a line."
+          },
+          {
+           "code": "8.02d",
+           "text": "Use constructions to draw figures and loci, including real-world problems."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "8-03-angles",
+       "title": "8.03 Angles",
+       "subtopics": [
+        {
+         "id": "angle-facts",
+         "title": "Angle facts",
+         "outcomes": [
+          {
+           "code": "8.03a",
+           "text": "Know and use that angles at a point sum to 360 degrees."
+          },
+          {
+           "code": "8.03b",
+           "text": "Know and use that angles on a line sum to 180 degrees."
+          },
+          {
+           "code": "8.03c",
+           "text": "Use vertically opposite, alternate and corresponding angles."
+          },
+          {
+           "code": "8.03d",
+           "text": "Use angle sums of triangles and interior and exterior angles of polygons."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "8-04-properties-of-polygons",
+       "title": "8.04 Properties of polygons",
+       "subtopics": [
+        {
+         "id": "triangles-quadrilaterals-and-symmetry",
+         "title": "Triangles, quadrilaterals and symmetry",
+         "outcomes": [
+          {
+           "code": "8.04a",
+           "text": "Know the properties of isosceles, equilateral and right-angled triangles and give reasons using them."
+          },
+          {
+           "code": "8.04b",
+           "text": "Know the properties of the square, rectangle, parallelogram, trapezium, kite and rhombus."
+          },
+          {
+           "code": "8.04c",
+           "text": "Identify reflection and rotation symmetries of polygons."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "8-05-circles",
+       "title": "8.05 Circles",
+       "subtopics": [
+        {
+         "id": "circle-terms-and-theorems",
+         "title": "Circle terms and theorems",
+         "outcomes": [
+          {
+           "code": "8.05a",
+           "text": "Use the terms centre, radius, chord, diameter, circumference, tangent, arc, sector and segment."
+          },
+          {
+           "code": "8.05b",
+           "text": "Apply and prove that the angle at the centre is twice the angle at the circumference."
+          },
+          {
+           "code": "8.05c",
+           "text": "Apply and prove that the angle in a semicircle is a right angle."
+          },
+          {
+           "code": "8.05d",
+           "text": "Apply and prove that angles in the same segment are equal."
+          },
+          {
+           "code": "8.05e",
+           "text": "Apply and prove that a radius bisects a chord if and only if perpendicular to it."
+          },
+          {
+           "code": "8.05f",
+           "text": "Apply and prove that a radius meets a tangent at a right angle."
+          },
+          {
+           "code": "8.05g",
+           "text": "Apply and prove the alternate segment theorem."
+          },
+          {
+           "code": "8.05h",
+           "text": "Apply and prove that opposite angles of a cyclic quadrilateral are supplementary."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "8-06-three-dimensional-shapes",
+       "title": "8.06 Three-dimensional shapes",
+       "subtopics": [
+        {
+         "id": "3d-shapes-and-views",
+         "title": "3D shapes and views",
+         "outcomes": [
+          {
+           "code": "8.06a",
+           "text": "Recognise and know properties of cube, cuboid, prism, cylinder, pyramid, cone and sphere."
+          },
+          {
+           "code": "8.06b",
+           "text": "Interpret, and at Higher construct, plans and elevations of 3D solids."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "9-congruence-and-similarity",
+     "title": "9 Congruence and Similarity",
+     "topics": [
+      {
+       "id": "9-01-plane-isometric-transformations",
+       "title": "9.01 Plane isometric transformations",
+       "subtopics": [
+        {
+         "id": "reflection-rotation-and-translation",
+         "title": "Reflection, rotation and translation",
+         "outcomes": [
+          {
+           "code": "9.01a",
+           "text": "Reflect a shape in a mirror line and identify the mirror line."
+          },
+          {
+           "code": "9.01b",
+           "text": "Rotate a shape about a centre and identify a rotation's centre, angle and sense."
+          },
+          {
+           "code": "9.01c",
+           "text": "Translate a shape using a column vector."
+          },
+          {
+           "code": "9.01d",
+           "text": "Perform and describe combinations of transformations."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "9-02-congruence",
+       "title": "9.02 Congruence",
+       "subtopics": [
+        {
+         "id": "congruent-triangles",
+         "title": "Congruent triangles",
+         "outcomes": [
+          {
+           "code": "9.02a",
+           "text": "Identify congruent triangles and prove congruence using SSS, ASA, SAS and RHS."
+          },
+          {
+           "code": "9.02b",
+           "text": "Apply congruent triangles in calculations and simple proofs."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "9-03-plane-vector-geometry",
+       "title": "9.03 Plane vector geometry",
+       "subtopics": [
+        {
+         "id": "vectors",
+         "title": "Vectors",
+         "outcomes": [
+          {
+           "code": "9.03a",
+           "text": "Add, subtract and scalar-multiply vectors, and use them in geometric proofs at Higher."
+          },
+          {
+           "code": "9.03b",
+           "text": "Represent 2D vectors as column vectors and draw them on a grid."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "9-04-similarity",
+       "title": "9.04 Similarity",
+       "subtopics": [
+        {
+         "id": "similar-shapes-and-enlargement",
+         "title": "Similar shapes and enlargement",
+         "outcomes": [
+          {
+           "code": "9.04a",
+           "text": "Identify similar triangles and prove similarity at Higher."
+          },
+          {
+           "code": "9.04b",
+           "text": "Enlarge shapes with positive, fractional and negative scale factors and identify enlargements."
+          },
+          {
+           "code": "9.04c",
+           "text": "Compare lengths, areas and volumes of similar shapes using scale factors."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "10-mensuration",
+     "title": "10 Mensuration",
+     "topics": [
+      {
+       "id": "10-01-units-and-measurement",
+       "title": "10.01 Units and measurement",
+       "subtopics": [
+        {
+         "id": "units-scales-and-compound-measures",
+         "title": "Units, scales and compound measures",
+         "outcomes": [
+          {
+           "code": "10.01a",
+           "text": "Use and convert standard units of length, area, volume, capacity, mass, time and money."
+          },
+          {
+           "code": "10.01b",
+           "text": "Use and convert compound units such as speed, density and pressure."
+          },
+          {
+           "code": "10.01c",
+           "text": "Use map scales and bearings, and construct and interpret scale drawings."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "10-02-perimeter-calculations",
+       "title": "10.02 Perimeter calculations",
+       "subtopics": [
+        {
+         "id": "perimeter-and-circumference",
+         "title": "Perimeter and circumference",
+         "outcomes": [
+          {
+           "code": "10.02a",
+           "text": "Calculate the perimeter of rectilinear shapes."
+          },
+          {
+           "code": "10.02b",
+           "text": "Calculate circumference of a circle and arc length of a sector at Higher."
+          },
+          {
+           "code": "10.02c",
+           "text": "Calculate the perimeter of composite 2D shapes."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "10-03-area-calculations",
+       "title": "10.03 Area calculations",
+       "subtopics": [
+        {
+         "id": "area-of-2d-shapes",
+         "title": "Area of 2D shapes",
+         "outcomes": [
+          {
+           "code": "10.03a",
+           "text": "Calculate the area of a triangle, including using half ab sin C at Higher."
+          },
+          {
+           "code": "10.03b",
+           "text": "Calculate the area of a parallelogram and rectangle."
+          },
+          {
+           "code": "10.03c",
+           "text": "Calculate the area of a trapezium."
+          },
+          {
+           "code": "10.03d",
+           "text": "Calculate the area of a circle, and of a sector at Higher."
+          },
+          {
+           "code": "10.03e",
+           "text": "Calculate the area of composite shapes."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "10-04-volume-and-surface-area-calculations",
+       "title": "10.04 Volume and surface area calculations",
+       "subtopics": [
+        {
+         "id": "volume-and-surface-area",
+         "title": "Volume and surface area",
+         "outcomes": [
+          {
+           "code": "10.04a",
+           "text": "Calculate surface area and volume of cuboids and right prisms including cylinders."
+          },
+          {
+           "code": "10.04b",
+           "text": "Calculate surface area and volume of spheres, cones and composite solids using given formulae."
+          },
+          {
+           "code": "10.04c",
+           "text": "Calculate surface area and volume of a pyramid using the given formula."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "10-05-triangle-mensuration",
+       "title": "10.05 Triangle mensuration",
+       "subtopics": [
+        {
+         "id": "pythagoras-and-trigonometry",
+         "title": "Pythagoras and trigonometry",
+         "outcomes": [
+          {
+           "code": "10.05a",
+           "text": "Know and apply Pythagoras' theorem in 2D, and in 3D at Higher."
+          },
+          {
+           "code": "10.05b",
+           "text": "Apply sine, cosine and tangent to find lengths and angles in right-angled triangles, and in 3D at Higher."
+          },
+          {
+           "code": "10.05c",
+           "text": "Know exact trigonometric values for 0, 30, 45, 60 and 90 degrees."
+          }
+         ]
+        },
+        {
+         "id": "sine-and-cosine-rules",
+         "title": "Sine and cosine rules",
+         "outcomes": [
+          {
+           "code": "10.05d",
+           "text": "Apply the sine rule to find lengths and angles."
+          },
+          {
+           "code": "10.05e",
+           "text": "Apply the cosine rule to find lengths and angles."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "11-probability",
+     "title": "11 Probability",
+     "topics": [
+      {
+       "id": "11-01-basic-probability-and-experiments",
+       "title": "11.01 Basic probability and experiments",
+       "subtopics": [
+        {
+         "id": "probability-basics",
+         "title": "Probability basics",
+         "outcomes": [
+          {
+           "code": "11.01a",
+           "text": "Use the 0 to 1 probability scale to describe likelihood."
+          },
+          {
+           "code": "11.01b",
+           "text": "Record and analyse relative frequency of repeated experiments using tables and frequency trees."
+          },
+          {
+           "code": "11.01c",
+           "text": "Use relative frequency to estimate probability, knowing it approaches theoretical probability with more trials."
+          },
+          {
+           "code": "11.01d",
+           "text": "Calculate probabilities for equally likely outcomes, simple combined events and expected outcomes."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "11-02-combined-events-and-probability-diagrams",
+       "title": "11.02 Combined events and probability diagrams",
+       "subtopics": [
+        {
+         "id": "counting-outcomes-and-set-diagrams",
+         "title": "Counting outcomes and set diagrams",
+         "outcomes": [
+          {
+           "code": "11.02a",
+           "text": "Use tables, grids and sample spaces to list outcomes and find theoretical probabilities."
+          },
+          {
+           "code": "11.02b",
+           "text": "Use systematic listing, and the product rule at Higher, to count outcomes."
+          },
+          {
+           "code": "11.02c",
+           "text": "Use Venn diagrams, set notation and two-way tables to enumerate sets and find probabilities."
+          }
+         ]
+        },
+        {
+         "id": "probability-laws-and-trees",
+         "title": "Probability laws and trees",
+         "outcomes": [
+          {
+           "code": "11.02d",
+           "text": "Use tree diagrams to list outcomes and record probabilities of successive events."
+          },
+          {
+           "code": "11.02e",
+           "text": "Use the addition law for mutually exclusive events and p(A) + p(not A) = 1, and the general addition formula at Higher."
+          },
+          {
+           "code": "11.02f",
+           "text": "Use the multiplication law for independent and dependent events, and conditional probability at Higher."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "12-statistics",
+     "title": "12 Statistics",
+     "topics": [
+      {
+       "id": "12-01-sampling",
+       "title": "12.01 Sampling",
+       "subtopics": [
+        {
+         "id": "sampling",
+         "title": "Sampling",
+         "outcomes": [
+          {
+           "code": "12.01a",
+           "text": "Define population and sample, infer from a sample, and explain simple random sampling and bias."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "12-02-interpreting-and-representing-data",
+       "title": "12.02 Interpreting and representing data",
+       "subtopics": [
+        {
+         "id": "representing-data",
+         "title": "Representing data",
+         "outcomes": [
+          {
+           "code": "12.02a",
+           "text": "Construct and interpret frequency tables, bar charts, pie charts, pictograms, vertical line charts and time series graphs."
+          },
+          {
+           "code": "12.02b",
+           "text": "Construct and interpret cumulative frequency graphs and histograms with equal or unequal class widths."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "12-03-analysing-data",
+       "title": "12.03 Analysing data",
+       "subtopics": [
+        {
+         "id": "analysing-data",
+         "title": "Analysing data",
+         "outcomes": [
+          {
+           "code": "12.03a",
+           "text": "Calculate mean, mode, median and range, estimate them for grouped data, and use box plots and the interquartile range to compare distributions."
+          },
+          {
+           "code": "12.03b",
+           "text": "Recognise graphical misrepresentation such as incorrect scales or labels."
+          },
+          {
+           "code": "12.03c",
+           "text": "Plot scatter diagrams, recognise correlation, draw lines of best fit, and interpolate and extrapolate."
+          },
+          {
+           "code": "12.03d",
+           "text": "Identify outliers in data and on scatter graphs."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "build": {
+  "builtAt": "2026-10-14T10:51:11.259Z",
+  "model": "claude-agent",
+  "usd": 0,
+  "expectedCodes": 143,
+  "coverage": 1,
+  "missingCodes": [],
+  "counts": {
+   "grades": 1,
+   "units": 12,
+   "topics": 45,
+   "subtopics": 49,
+   "outcomes": 143
+  },
+  "warnings": [
+   "grade Year 10 has no content",
+   "grade Year 11 has no content",
+   "unexpected grade label \"all\""
+  ]
+ }
+}

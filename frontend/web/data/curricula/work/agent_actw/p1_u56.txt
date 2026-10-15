@@ -1,0 +1,101 @@
+U|Unit 5: Torque and Rotational Dynamics
+T|5.1 Rotational Kinematics
+S|Angular displacement, velocity and acceleration
+5.1.A|Describe rotation over time using angular displacement, velocity and acceleration
+5.1.A.1|Angular displacement is the angle in radians a point on a rigid system turns through about an axis; pick clockwise or counterclockwise as positive
+5.1.A.2|Average angular velocity is the rate of change of angular position
+5.1.A.3|Average angular acceleration is the rate of change of angular velocity
+5.1.A.4|Rotational quantities and equations mirror linear kinematics, including constant-acceleration equations and graphs
+T|5.2 Connecting Linear and Rotational Motion
+S|Linear and angular quantities
+5.2.A|Link the linear motion of a point on a rotating rigid system to its rotational motion
+5.2.A.1|Arc length equals radius times angle
+5.2.A.2|Relate linear velocity and tangential acceleration to angular velocity and acceleration
+5.2.A.3|All points of a rigid system share the same angular velocity and acceleration
+T|5.3 Torque
+S|Identifying torques
+5.3.A|Identify the torques exerted on a rigid system
+5.3.A.1|Only the force component perpendicular to the position vector produces torque
+5.3.A.2|The lever arm is the perpendicular distance from the axis to the line of action
+S|Describing torques
+5.3.B|Describe the torques exerted on a rigid system
+5.3.B.1|Use force diagrams that show where forces act relative to the axis
+5.3.B.2|Torque magnitude depends on force, distance from axis and the angle between them
+T|5.4 Rotational Inertia
+S|Rotational inertia
+5.4.A|Describe the rotational inertia of a rigid system about an axis
+5.4.A.1|Rotational inertia resists changes in rotation and depends on mass and its distance from the axis
+5.4.A.2|A point mass has rotational inertia mass times radius squared
+5.4.A.3|Total rotational inertia is the sum over the objects
+S|Parallel axis theorem
+5.4.B|Describe rotational inertia about an axis not through the center of mass
+5.4.B.1|Rotational inertia is smallest when the axis passes through the center of mass
+5.4.B.2|Use the parallel axis theorem for axes parallel to one through the center of mass
+T|5.5 Rotational Equilibrium and Newton's First Law in Rotational Form
+S|Rotational equilibrium
+5.5.A|Describe when a system's angular velocity stays constant
+5.5.A.1|Rotational and translational equilibrium can occur independently; rotational equilibrium means zero net torque and constant angular velocity
+5.5.A.2|Unbalanced torques must change angular velocity
+T|5.6 Newton's Second Law in Rotational Form
+S|Torque and angular acceleration
+5.6.A|Describe when a system's angular velocity changes
+5.6.A.1|Angular velocity changes when net torque is nonzero
+5.6.A.2|Angular acceleration is proportional to net torque and inversely proportional to rotational inertia
+5.6.A.3|Analyse linear and rotational motion separately for a full description
+U|Unit 6: Energy and Momentum of Rotating Systems
+T|6.1 Rotational Kinetic Energy
+S|Rotational kinetic energy
+6.1.A|Describe the rotational kinetic energy of a rigid system from its rotational inertia and angular velocity
+6.1.A.1|Rotational kinetic energy is half rotational inertia times angular velocity squared; total kinetic energy adds the translational part
+6.1.A.2|A rigid system can have rotational kinetic energy while its center of mass is at rest
+6.1.A.3|Rotational kinetic energy is a scalar
+T|6.2 Torque and Work
+S|Work done by a torque
+6.2.A|Describe the work done on a rigid system by a torque
+6.2.A.1|A torque transfers energy when exerted through an angular displacement
+6.2.A.2|Work depends on torque magnitude and angular displacement
+6.2.A.3|Work equals the area under a torque versus angular position graph
+T|6.3 Angular Momentum and Angular Impulse
+S|Angular momentum
+6.3.A|Describe the angular momentum of an object or rigid system
+6.3.A.1|Angular momentum of a rigid system is rotational inertia times angular velocity
+6.3.A.2|Angular momentum of an object about a point depends on the chosen axis or point, mass, speed and angle
+S|Angular impulse
+6.3.B|Describe the angular impulse delivered by a torque
+6.3.B.1|Angular impulse is torque times the time it acts
+6.3.B.2|Angular impulse points in the direction of the torque
+6.3.B.3|Angular impulse equals the area under a torque versus time graph
+S|Angular impulse and momentum change
+6.3.C|Relate change in angular momentum to angular impulse
+6.3.C.1|Compare final and initial angular momentum to find the change
+6.3.C.2|Angular impulse equals change in angular momentum, a result of the rotational second law
+6.3.C.3|Net torque is the slope of an angular momentum versus time graph
+6.3.C.4|Angular impulse equals the area under a net torque versus time graph
+T|6.4 Conservation of Angular Momentum
+S|Conserving angular momentum
+6.4.A|Describe a system's behavior using conservation of angular momentum
+6.4.A.1|Total angular momentum is the sum over the parts about the same axis
+6.4.A.2|Changes in angular momentum come from interaction with the surroundings; a nonrigid system can change spin by moving mass toward or away from the axis
+S|System choice and angular momentum
+6.4.B|Describe how choosing the system determines whether its angular momentum changes
+6.4.B.1|Angular momentum is conserved in all interactions
+6.4.B.2|Zero net external torque means constant angular momentum
+6.4.B.3|Nonzero net external torque transfers angular momentum to or from the environment
+T|6.5 Rolling
+S|Kinetic energy in rolling
+6.5.A|Describe the kinetic energy of a system with translation and rotation
+6.5.A.1|Total kinetic energy is translational plus rotational
+S|Rolling without slipping
+6.5.B|Describe a system rolling without slipping
+6.5.B.1|Link center-of-mass speed and acceleration to angular speed and acceleration through the radius
+6.5.B.2|In ideal rolling without slipping, friction dissipates no energy
+S|Rolling while slipping
+6.5.C|Describe a system that rolls while slipping
+6.5.C.1|When slipping, center-of-mass motion and rotation cannot be directly related
+6.5.C.2|Kinetic friction at a slipping contact dissipates energy
+T|6.6 Motion of Orbiting Satellites
+S|Orbits and escape velocity
+6.6.A|Describe the motion of two objects interacting only by gravity
+6.6.A.1|The motion of a massive central object is negligible next to a light satellite
+6.6.A.2|Conservation laws constrain orbits: circular orbits keep energy and angular momentum constant; elliptical orbits change speed and potential energy; gravitational potential energy is zero at infinite distance
+6.6.A.3|Escape velocity gives zero total mechanical energy and can be derived from energy conservation

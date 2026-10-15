@@ -1,0 +1,109 @@
+U|Unit 2: Probability, Random Variables, and Probability Distributions
+T|2.1 Tabular and Graphical Representations for the Distributions of Two Categorical Variables
+S|Two-way tables and graphs
+2.1.A|Compare tables and graphs showing the relationship between two categorical variables
+2.1.A.1|A two-way table summarises two categorical variables with counts or proportions
+2.1.A.2|Side-by-side bar charts, segmented bar charts and mosaic plots display two categorical variables
+2.1.A.3|Use these graphs to compare across levels and judge association
+2.1.B|Justify a claim using tables and graphs for two categorical variables
+2.1.B.1|These representations can justify claims in context
+T|2.2 Summary Statistics for Two Categorical Variables
+S|Joint, marginal and conditional frequencies
+2.2.A|Calculate summary statistics from two-way tables
+2.2.A.1|A joint relative frequency is a cell count over the table total
+2.2.A.2|A marginal relative frequency is a row or column total over the table total
+2.2.A.3|A conditional relative frequency is a cell over its row or column total
+2.2.B|Compare summary statistics for two categorical variables
+2.2.B.1|Compare distributions for evidence of association
+2.2.C|Justify a claim using summary statistics for two categorical variables
+2.2.C.1|These statistics can justify claims in context
+T|2.3 Estimating Probabilities Using Simulation
+S|Simulation and long-run frequency
+2.3.A|Estimate probabilities using simulations
+2.3.A.1|A random process produces chance results
+2.3.A.2|An outcome is the result of one trial
+2.3.A.3|An event is a collection of outcomes
+2.3.A.4|Simulation models random events and records counts of simulated outcomes
+2.3.A.5|Probability is long-run relative frequency
+2.3.A.6|Empirical relative frequency estimates the true probability
+2.3.A.7|The law of large numbers: relative frequency settles near one value as trials increase
+T|2.4 Introduction to Probability
+S|Probability of events and complements
+2.4.A|Calculate probabilities for events and their complements
+2.4.A.1|The sample space is all nonoverlapping outcomes and has probability 1
+2.4.A.2|With equally likely outcomes, P(E) is outcomes in E over total outcomes
+2.4.A.3|Probabilities lie between 0 and 1
+2.4.A.4|The complement has probability 1 minus P(E)
+T|2.5 Mutually Exclusive Events
+S|Joint probability and disjoint events
+2.5.A|Justify why two events are mutually exclusive using joint probability
+2.5.A.1|Joint probability is the probability of the intersection of A and B
+2.5.A.2|Mutually exclusive events cannot happen together, so P(A and B) is 0
+T|2.6 Conditional Probability
+S|Conditional probability and multiplication rule
+2.6.A|Calculate conditional probabilities
+2.6.A.1|P(A given B) equals P(A and B) divided by P(B)
+2.6.A.2|The general multiplication rule: P(A and B) equals P(A) times P(B given A)
+T|2.7 Independent Events and Unions of Events
+S|Independence and unions
+2.7.A|Calculate probabilities for independent events and for the union of two events
+2.7.A.1|Independent events do not change each other's probabilities, so P(A and B) equals P(A)P(B)
+2.7.A.2|The union is the probability that A or B or both occur
+2.7.A.3|P(A or B) equals P(A) plus P(B) minus P(A and B)
+T|2.8 Introduction to Random Variables and Probability Distributions
+S|Discrete probability distributions
+2.8.A|Construct a probability distribution for a discrete random variable
+2.8.A.1|A random variable has numerical values resulting from a random phenomenon
+2.8.A.2|A distribution lists the probability of every value, summing to 1
+2.8.A.3|Build a distribution from probability rules or simulation
+2.8.A.4|Show a distribution as a graph, table or function
+2.8.A.5|A cumulative distribution gives probability of at most each value
+T|2.9 Parameters of Random Variables
+S|Mean and standard deviation of a random variable
+2.9.A|Calculate the mean and standard deviation for a discrete random variable
+2.9.A.1|A parameter is a single fixed value describing a distribution or population
+2.9.A.2|Expected value is the sum of each value times its probability, the long-run average
+2.9.A.3|Standard deviation is the typical deviation from the expected value; variance is its square
+2.9.B|Interpret the mean and standard deviation for a discrete random variable
+2.9.B.1|Interpret them in the context of the population
+T|2.10 The Binomial Distribution
+S|Recognizing a binomial variable
+2.10.A|Justify why a random variable is or is not binomial
+2.10.A.1|Binomial counts successes in n independent trials with two outcomes and success probability p
+S|Binomial mean, deviation and probabilities
+2.10.B|Calculate the mean and standard deviation for a binomial distribution
+2.10.B.1|The mean is np and the standard deviation is the square root of np(1-p)
+2.10.C|Interpret the mean, standard deviation and probabilities for a binomial distribution
+2.10.C.1|Interpret them in context
+2.10.D|Estimate binomial probabilities using simulation data
+2.10.D.1|Build a distribution by probability rules or estimate it by simulation
+2.10.E|Calculate probabilities for a binomial distribution
+2.10.E.1|Use the binomial probability function for exactly x successes
+T|2.11 The Normal Distribution
+S|Describing a normal distribution
+2.11.A|Describe a normal distribution
+2.11.A.1|A continuous random variable takes any value in a domain; intervals carry probability
+2.11.A.2|Many continuous variables are well modelled by a normal distribution
+2.11.A.3|A normal curve is continuous, unimodal, bell-shaped and symmetric
+2.11.A.4|Use a normal curve to model data or a continuous variable
+2.11.A.5|Mean and standard deviation identify a normal curve; larger deviation means a flatter, wider curve
+2.11.B|Identify mean and standard deviation of a normal distribution
+2.11.B.1|The standard normal has mean 0 and standard deviation 1
+S|Empirical rule and areas
+2.11.C|Calculate percentages using the empirical rule
+2.11.C.1|About 68, 95 and 99.7 percent lie within 1, 2 and 3 standard deviations of the mean
+2.11.D|Calculate the probability of a value in an interval
+2.11.D.1|Probability is the area under the normal curve over the interval; total area is 1
+S|Intervals and relative position
+2.11.E|Calculate intervals and areas of a normal distribution
+2.11.E.1|Find interval boundaries for a given area with technology or z-scores and a table
+2.11.E.2|Translate statements about lowest, middle, highest or most extreme p percent into inequalities and areas
+2.11.F|Compare measures of relative position
+2.11.F.1|Compare positions using percentiles and proportions within or between normal distributions
+T|2.12 Sampling Distributions and the Central Limit Theorem
+S|Sampling distributions
+2.12.A|Describe sampling distributions with simulations
+2.12.A.1|A sampling distribution is the distribution of a statistic over all samples of a given size
+2.12.A.2|Simulate it by drawing many random samples and recording the statistic
+2.12.A.3|A randomization distribution comes from repeatedly reassigning responses to treatment groups
+2.12.A.4|The central limit theorem: the sampling distribution of a mean is approximately normal, better with larger samples

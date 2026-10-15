@@ -1,0 +1,85 @@
+T|3.9 Sampling Distributions for the Difference Between Sample Proportions
+S|Difference of two sample proportions
+3.9.A|Calculate the mean and standard deviation of the sampling distribution of a difference of two sample proportions
+3.9.A.1|The difference has mean p1 minus p2 and standard deviation from the two variances added
+3.9.B|Justify the conditions for this sampling distribution
+3.9.B.1|Check two independent random samples and the 10 percent condition for each
+3.9.B.2|For experiments only random assignment is needed
+3.9.B.3|The distribution is approximately normal when all expected successes and failures are at least 10
+3.9.C|Interpret the mean, standard deviation and probabilities
+3.9.C.1|Interpret within the context of the two populations
+T|3.10 Constructing a Confidence Interval for the Difference Between Two Population Proportions
+S|Procedure and conditions
+3.10.A|Identify the interval procedure and parameters for a difference of proportions
+3.10.A.1|Use a two-sample z-interval for a difference between proportions
+3.10.A.2|Parameters refer to the difference, the response variable and the populations
+3.10.B|Verify conditions for a two-proportion z-interval
+3.10.B.1|Check randomization, the 10 percent condition (not needed in experiments) and at least 10 observed successes and failures in each sample
+S|Computing the interval
+3.10.C|Calculate a confidence interval for the difference of two proportions
+3.10.C.1|The point estimate is p1-hat minus p2-hat
+3.10.C.2|The interval is the point estimate plus or minus margin of error
+3.10.D|Calculate standard error and margin of error for the difference
+3.10.D.1|Standard error combines the two proportion variances
+3.10.D.2|Margin of error is critical value times standard error
+T|3.11 Justifying a Claim Based on a Confidence Interval for the Difference Between Two Population Proportions
+S|Interpreting and using the interval
+3.11.A|Interpret a confidence interval for a difference of proportions in context
+3.11.A.1|The computed interval may or may not contain the true difference
+3.11.A.2|Confidence level is the long-run percentage of such intervals that capture the difference
+3.11.A.3|State we are C percent confident the interval contains the difference, in context
+3.11.B|Justify a claim from the interval
+3.11.B.1|An interval containing 0 gives insufficient evidence of a difference; one without 0 gives sufficient evidence
+T|3.12 Setting Up a Test for the Difference Between Two Population Proportions
+S|Procedure and hypotheses
+3.12.A|Identify the testing method and parameters for a difference of proportions
+3.12.A.1|Use a two-sample z-test for the difference between proportions
+3.12.A.2|Parameters refer to the population parameters, response variables and populations
+3.12.B|Identify null and alternative hypotheses
+3.12.B.1|The null says no difference (p1 equals p2); alternatives are one-sided or two-sided
+S|Conditions for the test
+3.12.C|Verify conditions for a two-proportion z-test
+3.12.C.1|Check randomization, the 10 percent condition and combined-proportion expected counts of at least 10
+T|3.13 Carrying Out a Test for the Difference Between Two Population Proportions
+S|Test statistic and p-value
+3.13.A|Calculate the test statistic and p-value for a difference of proportions
+3.13.A.1|The z-statistic uses the pooled proportion and is standard normal under the null
+3.13.A.2|Find the p-value from the standard normal using a table or technology
+3.13.B|Interpret the p-value
+3.13.B.1|The p-value assumes the true proportions are equal
+S|Decisions and conclusions
+3.13.C|Justify a claim from the test
+3.13.C.1|Compare the p-value with alpha to reject or fail to reject
+3.13.C.2|Results support the answer to the investigative question about both populations
+3.13.C.3|State the conclusion in context, tied to Ha, with non-definitive language
+T|3.14 Setting Up a Chi-Square Test for Homogeneity or Independence
+S|Chi-square distributions
+3.14.A|Describe chi-square distributions
+3.14.A.1|The chi-square statistic measures observed versus expected counts relative to expected counts
+3.14.A.2|Chi-square curves are positive and right-skewed, less so with more degrees of freedom
+S|Choosing the test
+3.14.B|Identify the testing method for two-way tables
+3.14.B.1|Use a chi-square test for homogeneity to compare distributions across populations
+3.14.B.2|Reference the variable and populations in context
+3.14.B.3|Use a chi-square test for independence to check association within one population
+3.14.B.4|Reference the variables and population in context
+S|Hypotheses and conditions
+3.14.C|Identify hypotheses for chi-square tests
+3.14.C.1|Homogeneity: H0 no difference in distributions; Ha a difference
+3.14.C.2|Independence: H0 no association; Ha an association
+3.14.D|Verify conditions for chi-square tests
+3.14.D.1|Check randomization, the 10 percent condition and all expected counts above 5
+T|3.15 Carrying Out a Chi-Square Test for Homogeneity or Independence
+S|Expected counts, statistic and p-value
+3.15.A|Calculate expected counts for two-way tables
+3.15.A.1|Expected count is row total times column total over table total
+3.15.B|Calculate the chi-square statistic and p-value
+3.15.B.1|Sum observed minus expected squared over expected; df is (rows-1)(columns-1)
+3.15.B.2|Find the p-value from the chi-square distribution
+3.15.C|Interpret the p-value
+3.15.C.1|The p-value assumes the null is true
+S|Decisions and conclusions
+3.15.D|Justify a claim from a chi-square test
+3.15.D.1|Compare the p-value with alpha to reject or fail to reject
+3.15.D.2|Results support the answer to the investigative question
+3.15.D.3|State the conclusion in context, tied to Ha, with non-definitive language

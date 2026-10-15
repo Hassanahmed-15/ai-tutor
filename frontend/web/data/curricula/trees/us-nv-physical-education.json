@@ -1,0 +1,924 @@
+{
+ "id": "us-nv-physical-education",
+ "region": "US",
+ "framework": "Nevada state academic standards: Physical Education",
+ "board": null,
+ "qualification": "K-12",
+ "subject": "Physical Education",
+ "syllabusCode": null,
+ "gradeSystem": "grade",
+ "source": {
+  "urls": [
+   "https://api.commonstandardsproject.com/api/v1/jurisdictions/A7F156ECF40D4DFDB9DE1E3541550B20",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/A7F156ECF40D4DFDB9DE1E3541550B20_D2607038_grades-01-02-k",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/A7F156ECF40D4DFDB9DE1E3541550B20_D2607038_grades-03-04-05",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/A7F156ECF40D4DFDB9DE1E3541550B20_D2607038_grades-06-07-08",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/A7F156ECF40D4DFDB9DE1E3541550B20_D2607038_grades-09-10-11-12"
+  ],
+  "publisher": "Nevada state education agency (machine-readable via Common Standards Project / ASN)",
+  "licence": "CC BY 3.0 US, Desire2Learn Incorporated",
+  "firstExam": "2014"
+ },
+ "grades": [
+  {
+   "grade": "K-2",
+   "units": [
+    {
+     "id": "demonstrate-competency-in-motor-skills-movement-",
+     "title": "Demonstrate competency in motor skills, movement patterns and safety needed to perform a variety of physical activities",
+     "topics": [
+      {
+       "id": "locomotor-and-nonlocomotor-movement",
+       "title": "Locomotor and Nonlocomotor Movement",
+       "subtopics": [
+        {
+         "id": "locomotor-and-nonlocomotor-movement",
+         "title": "Locomotor and Nonlocomotor Movement",
+         "outcomes": [
+          {
+           "code": "1.2.1",
+           "text": "Demonstrate the basic elements of movement forms."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "manipulative-skills",
+       "title": "Manipulative Skills",
+       "subtopics": [
+        {
+         "id": "manipulative-skills",
+         "title": "Manipulative Skills",
+         "outcomes": [
+          {
+           "code": "1.2.2",
+           "text": "Perform a variety of basic level manipulative skills in isolation."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "motor-skills-and-movement-patterns",
+       "title": "Motor Skills and Movement Patterns",
+       "subtopics": [
+        {
+         "id": "motor-skills-and-movement-patterns",
+         "title": "Motor Skills and Movement Patterns",
+         "outcomes": [
+          {
+           "code": "1.2.3",
+           "text": "Perform simple motor skills and movement patterns."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "safety",
+       "title": "Safety",
+       "subtopics": [
+        {
+         "id": "safety",
+         "title": "Safety",
+         "outcomes": [
+          {
+           "code": "1.2.4",
+           "text": "Demonstrate safe practices while participating in physical activities."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "apply-knowledge-of-concepts-principles-and-strat",
+     "title": "Apply knowledge of concepts, principles and strategies related to movement, performance and safety within physical activities",
+     "topics": [
+      {
+       "id": "concepts-and-principles",
+       "title": "Concepts and Principles",
+       "subtopics": [
+        {
+         "id": "concepts-and-principles",
+         "title": "Concepts and Principles",
+         "outcomes": [
+          {
+           "code": "2.2.1",
+           "text": "Recognize the basic elements of movement."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "strategies",
+       "title": "Strategies",
+       "subtopics": [
+        {
+         "id": "strategies",
+         "title": "Strategies",
+         "outcomes": [
+          {
+           "code": "2.2.2",
+           "text": "Demonstrate basic strategies in physical activities."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "safety",
+       "title": "Safety",
+       "subtopics": [
+        {
+         "id": "safety",
+         "title": "Safety",
+         "outcomes": [
+          {
+           "code": "2.2.3",
+           "text": "Identify appropriate safety practices in general space for self and others."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "participate-regularly-in-physical-activity",
+     "title": "Participate regularly in physical activity",
+     "topics": [
+      {
+       "id": "moderate-to-vigorous-physical-activity",
+       "title": "Moderate to Vigorous Physical Activity",
+       "subtopics": [
+        {
+         "id": "moderate-to-vigorous-physical-activity",
+         "title": "Moderate to Vigorous Physical Activity",
+         "outcomes": [
+          {
+           "code": "3.2.1",
+           "text": "Demonstrate the differences between sedentary, light, moderate, and vigorous physical activity."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "establishing-healthy-activity-patterns-and-value",
+       "title": "Establishing Healthy Activity Patterns and Values",
+       "subtopics": [
+        {
+         "id": "establishing-healthy-activity-patterns-and-value",
+         "title": "Establishing Healthy Activity Patterns and Values",
+         "outcomes": [
+          {
+           "code": "3.2.2",
+           "text": "Demonstrate healthy activity patterns by participating in physical activity."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "self-management-skills",
+       "title": "Self-Management Skills",
+       "subtopics": [
+        {
+         "id": "self-management-skills",
+         "title": "Self-Management Skills",
+         "outcomes": [
+          {
+           "code": "3.2.3",
+           "text": "Demonstrate ways to be physically active during the day."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "achieves-and-maintains-a-health-enhancing-level-",
+     "title": "Achieves and maintains a health-enhancing level of physical fitness",
+     "topics": [
+      {
+       "id": "health-related-fitness-components",
+       "title": "Health-related Fitness Components",
+       "subtopics": [
+        {
+         "id": "health-related-fitness-components",
+         "title": "Health-related Fitness Components",
+         "outcomes": [
+          {
+           "code": "4.2.1",
+           "text": "Practice health-related fitness components in various physical activities."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "physiological-effects-benefits-of-physical-fitne",
+       "title": "Physiological Effects & Benefits of Physical Fitness",
+       "subtopics": [
+        {
+         "id": "physiological-effects-benefits-of-physical-fitne",
+         "title": "Physiological Effects & Benefits of Physical Fitness",
+         "outcomes": [
+          {
+           "code": "4.2.2",
+           "text": "Identify physiological signs of light, moderate and vigorous physical activity."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "3-5",
+   "units": [
+    {
+     "id": "demonstrate-competency-in-motor-skills-movement-",
+     "title": "Demonstrate competency in motor skills, movement patterns and safety needed to perform a variety of physical activities",
+     "topics": [
+      {
+       "id": "locomotor-and-nonlocomotor-movement",
+       "title": "Locomotor and Nonlocomotor Movement",
+       "subtopics": [
+        {
+         "id": "locomotor-and-nonlocomotor-movement",
+         "title": "Locomotor and Nonlocomotor Movement",
+         "outcomes": [
+          {
+           "code": "1.5.1",
+           "text": "Utilize locomotor and nonlocomotor movements in physical activities."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "manipulative-skills",
+       "title": "Manipulative Skills",
+       "subtopics": [
+        {
+         "id": "manipulative-skills",
+         "title": "Manipulative Skills",
+         "outcomes": [
+          {
+           "code": "1.5.2",
+           "text": "Perform manipulative skills in simple combinations."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "motor-skills-and-movement-patterns",
+       "title": "Motor Skills and Movement Patterns",
+       "subtopics": [
+        {
+         "id": "motor-skills-and-movement-patterns",
+         "title": "Motor Skills and Movement Patterns",
+         "outcomes": [
+          {
+           "code": "1.5.3",
+           "text": "Perform simple and moderate motor skills and movement patterns."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "safety",
+       "title": "Safety",
+       "subtopics": [
+        {
+         "id": "safety",
+         "title": "Safety",
+         "outcomes": [
+          {
+           "code": "1.5.4",
+           "text": "Demonstrate safe practices while participating in physical activities."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "apply-knowledge-of-concepts-principles-and-strat",
+     "title": "Apply knowledge of concepts, principles and strategies related to movement, performance and safety within physical activities",
+     "topics": [
+      {
+       "id": "concepts-and-principles",
+       "title": "Concepts and Principles",
+       "subtopics": [
+        {
+         "id": "concepts-and-principles",
+         "title": "Concepts and Principles",
+         "outcomes": [
+          {
+           "code": "2.5.1",
+           "text": "Recognize critical elements of movement skills."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "strategies",
+       "title": "Strategies",
+       "subtopics": [
+        {
+         "id": "strategies",
+         "title": "Strategies",
+         "outcomes": [
+          {
+           "code": "2.5.2",
+           "text": "Explain strategies within physical activities."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "safety",
+       "title": "Safety",
+       "subtopics": [
+        {
+         "id": "safety",
+         "title": "Safety",
+         "outcomes": [
+          {
+           "code": "2.5.3",
+           "text": "Explain the importance of safety rules and procedures for self and others in physical activities."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "participate-regularly-in-physical-activity",
+     "title": "Participate regularly in physical activity",
+     "topics": [
+      {
+       "id": "moderate-to-vigorous-physical-activity",
+       "title": "Moderate to Vigorous Physical Activity",
+       "subtopics": [
+        {
+         "id": "moderate-to-vigorous-physical-activity",
+         "title": "Moderate to Vigorous Physical Activity",
+         "outcomes": [
+          {
+           "code": "3.5.1",
+           "text": "Participate in a variety of moderate to vigorous physical activities."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "establishing-healthy-activity-patterns-and-value",
+       "title": "Establishing Healthy Activity Patterns and Values",
+       "subtopics": [
+        {
+         "id": "establishing-healthy-activity-patterns-and-value",
+         "title": "Establishing Healthy Activity Patterns and Values",
+         "outcomes": [
+          {
+           "code": "3.5.2",
+           "text": "Demonstrate healthy activity patterns by participating in physical activity."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "self-management-skills",
+       "title": "Self-Management Skills",
+       "subtopics": [
+        {
+         "id": "self-management-skills",
+         "title": "Self-Management Skills",
+         "outcomes": [
+          {
+           "code": "3.5.3",
+           "text": "Demonstrate opportunities at school for regular participation in physical activities."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "achieves-and-maintains-a-health-enhancing-level-",
+     "title": "Achieves and maintains a health-enhancing level of physical fitness",
+     "topics": [
+      {
+       "id": "health-related-fitness-components",
+       "title": "Health-related Fitness Components",
+       "subtopics": [
+        {
+         "id": "health-related-fitness-components",
+         "title": "Health-related Fitness Components",
+         "outcomes": [
+          {
+           "code": "4.5.1",
+           "text": "Participate in various physical activities utilizing the health related fitness components."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "physiological-effects-benefits-of-physical-fitne",
+       "title": "Physiological Effects & Benefits of Physical Fitness",
+       "subtopics": [
+        {
+         "id": "physiological-effects-benefits-of-physical-fitne",
+         "title": "Physiological Effects & Benefits of Physical Fitness",
+         "outcomes": [
+          {
+           "code": "4.5.2",
+           "text": "Explain the long-term benefits of participation in physical activity."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "6-8",
+   "units": [
+    {
+     "id": "demonstrate-competency-in-motor-skills-movement-",
+     "title": "Demonstrate competency in motor skills, movement patterns and safety needed to perform a variety of physical activities",
+     "topics": [
+      {
+       "id": "locomotor-and-nonlocomotor-movement",
+       "title": "Locomotor and Nonlocomotor Movement",
+       "subtopics": [
+        {
+         "id": "locomotor-and-nonlocomotor-movement",
+         "title": "Locomotor and Nonlocomotor Movement",
+         "outcomes": [
+          {
+           "code": "1.8.1",
+           "text": "Apply locomotor and nonlocomotor movements into physical activities."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "manipulative-skills",
+       "title": "Manipulative Skills",
+       "subtopics": [
+        {
+         "id": "manipulative-skills",
+         "title": "Manipulative Skills",
+         "outcomes": [
+          {
+           "code": "1.8.2",
+           "text": "Demonstrate manipulative skills in a variety of environments and under a host of conditions."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "motor-skills-and-movement-patterns",
+       "title": "Motor Skills and Movement Patterns",
+       "subtopics": [
+        {
+         "id": "motor-skills-and-movement-patterns",
+         "title": "Motor Skills and Movement Patterns",
+         "outcomes": [
+          {
+           "code": "1.8.3",
+           "text": "Execute moderate and complex motor skills and movement patterns within physical activities."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "safety",
+       "title": "Safety",
+       "subtopics": [
+        {
+         "id": "safety",
+         "title": "Safety",
+         "outcomes": [
+          {
+           "code": "1.8.4",
+           "text": "Apply safe practices while participating in physical activities."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "apply-knowledge-of-concepts-principles-and-strat",
+     "title": "Apply knowledge of concepts, principles and strategies related to movement, performance and safety within physical activities",
+     "topics": [
+      {
+       "id": "concepts-and-principles",
+       "title": "Concepts and Principles",
+       "subtopics": [
+        {
+         "id": "concepts-and-principles",
+         "title": "Concepts and Principles",
+         "outcomes": [
+          {
+           "code": "2.8.1",
+           "text": "Apply knowledge of the critical elements in specialized skills."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "strategies",
+       "title": "Strategies",
+       "subtopics": [
+        {
+         "id": "strategies",
+         "title": "Strategies",
+         "outcomes": [
+          {
+           "code": "2.8.2",
+           "text": "Implement multiple strategies in physical activities."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "safety",
+       "title": "Safety",
+       "subtopics": [
+        {
+         "id": "safety",
+         "title": "Safety",
+         "outcomes": [
+          {
+           "code": "2.8.3",
+           "text": "Implement safe practices for self and others while participating in physical activities."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "participate-regularly-in-physical-activity",
+     "title": "Participate regularly in physical activity",
+     "topics": [
+      {
+       "id": "moderate-to-vigorous-physical-activity",
+       "title": "Moderate to Vigorous Physical Activity",
+       "subtopics": [
+        {
+         "id": "moderate-to-vigorous-physical-activity",
+         "title": "Moderate to Vigorous Physical Activity",
+         "outcomes": [
+          {
+           "code": "3.8.1",
+           "text": "Engage in a variety of moderate to vigorous physical activities."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "establishing-healthy-activity-patterns-and-value",
+       "title": "Establishing Healthy Activity Patterns and Values",
+       "subtopics": [
+        {
+         "id": "establishing-healthy-activity-patterns-and-value",
+         "title": "Establishing Healthy Activity Patterns and Values",
+         "outcomes": [
+          {
+           "code": "3.8.2",
+           "text": "Apply healthy activity patterns through participation in physical activity."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "self-management-skills",
+       "title": "Self-Management Skills",
+       "subtopics": [
+        {
+         "id": "self-management-skills",
+         "title": "Self-Management Skills",
+         "outcomes": [
+          {
+           "code": "3.8.3",
+           "text": "Demonstrate opportunities at school for regular participation in physical activities."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "achieves-and-maintains-a-health-enhancing-level-",
+     "title": "Achieves and maintains a health-enhancing level of physical fitness",
+     "topics": [
+      {
+       "id": "health-related-fitness-components",
+       "title": "Health-related Fitness Components",
+       "subtopics": [
+        {
+         "id": "health-related-fitness-components",
+         "title": "Health-related Fitness Components",
+         "outcomes": [
+          {
+           "code": "4.8.1",
+           "text": "Develop a physical activity plan that includes training and conditioning principles to improve fitness."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "physiological-effects-benefits-of-physical-fitne",
+       "title": "Physiological Effects & Benefits of Physical Fitness",
+       "subtopics": [
+        {
+         "id": "physiological-effects-benefits-of-physical-fitne",
+         "title": "Physiological Effects & Benefits of Physical Fitness",
+         "outcomes": [
+          {
+           "code": "4.8.2",
+           "text": "Monitor physiological effects during various physical activities and intensity levels."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "9-12",
+   "units": [
+    {
+     "id": "demonstrate-competency-in-motor-skills-movement-",
+     "title": "Demonstrate competency in motor skills, movement patterns and safety needed to perform a variety of physical activities",
+     "topics": [
+      {
+       "id": "locomotor-and-nonlocomotor-movement",
+       "title": "Locomotor and Nonlocomotor Movement",
+       "subtopics": [
+        {
+         "id": "locomotor-and-nonlocomotor-movement",
+         "title": "Locomotor and Nonlocomotor Movement",
+         "outcomes": [
+          {
+           "code": "1.12.1",
+           "text": "Demonstrate proficiency in multiple movement forms in physical activities."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "manipulative-skills",
+       "title": "Manipulative Skills",
+       "subtopics": [
+        {
+         "id": "manipulative-skills",
+         "title": "Manipulative Skills",
+         "outcomes": [
+          {
+           "code": "1.12.2",
+           "text": "Perform manipulative skills in combination with locomotor and/or nonlocomotor movements in a variety of environments and under a host of conditions."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "motor-skills-and-movement-patterns",
+       "title": "Motor Skills and Movement Patterns",
+       "subtopics": [
+        {
+         "id": "motor-skills-and-movement-patterns",
+         "title": "Motor Skills and Movement Patterns",
+         "outcomes": [
+          {
+           "code": "1.12.3",
+           "text": "Execute complex motor skills and various movement patterns within physical activities."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "safety",
+       "title": "Safety",
+       "subtopics": [
+        {
+         "id": "safety",
+         "title": "Safety",
+         "outcomes": [
+          {
+           "code": "1.12.4",
+           "text": "Apply safe practices while participating in physical activities."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "apply-knowledge-of-concepts-principles-and-strat",
+     "title": "Apply knowledge of concepts, principles and strategies related to movement, performance and safety within physical activities",
+     "topics": [
+      {
+       "id": "concepts-and-principles",
+       "title": "Concepts and Principles",
+       "subtopics": [
+        {
+         "id": "concepts-and-principles",
+         "title": "Concepts and Principles",
+         "outcomes": [
+          {
+           "code": "2.12.1",
+           "text": "Analyze complex skills in a physical activity setting."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "strategies",
+       "title": "Strategies",
+       "subtopics": [
+        {
+         "id": "strategies",
+         "title": "Strategies",
+         "outcomes": [
+          {
+           "code": "2.12.2",
+           "text": "Analyze strategies used in physical activity settings to improve movement skills."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "safety",
+       "title": "Safety",
+       "subtopics": [
+        {
+         "id": "safety",
+         "title": "Safety",
+         "outcomes": [
+          {
+           "code": "2.12.3",
+           "text": "Demonstrate safe practices for self and others while participating in physical activities."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "participate-regularly-in-physical-activity",
+     "title": "Participate regularly in physical activity",
+     "topics": [
+      {
+       "id": "moderate-to-vigorous-physical-activity",
+       "title": "Moderate to Vigorous Physical Activity",
+       "subtopics": [
+        {
+         "id": "moderate-to-vigorous-physical-activity",
+         "title": "Moderate to Vigorous Physical Activity",
+         "outcomes": [
+          {
+           "code": "3.12.1",
+           "text": "Engage in a variety of moderate to vigorous physical activities."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "establishing-healthy-activity-patterns-and-value",
+       "title": "Establishing Healthy Activity Patterns and Values",
+       "subtopics": [
+        {
+         "id": "establishing-healthy-activity-patterns-and-value",
+         "title": "Establishing Healthy Activity Patterns and Values",
+         "outcomes": [
+          {
+           "code": "3.12.2",
+           "text": "Apply lifelong activity patterns through participation in physical activity."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "self-management-skills",
+       "title": "Self-Management Skills",
+       "subtopics": [
+        {
+         "id": "self-management-skills",
+         "title": "Self-Management Skills",
+         "outcomes": [
+          {
+           "code": "3.12.3",
+           "text": "Demonstrate opportunities at school for regular participation in physical activities."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "achieves-and-maintains-a-health-enhancing-level-",
+     "title": "Achieves and maintains a health-enhancing level of physical fitness",
+     "topics": [
+      {
+       "id": "health-related-fitness-components",
+       "title": "Health-related Fitness Components",
+       "subtopics": [
+        {
+         "id": "health-related-fitness-components",
+         "title": "Health-related Fitness Components",
+         "outcomes": [
+          {
+           "code": "4.12.1",
+           "text": "Use personal fitness data to develop an exercise and physical activity plan to improve fitness."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "physiological-effects-benefits-of-physical-fitne",
+       "title": "Physiological Effects & Benefits of Physical Fitness",
+       "subtopics": [
+        {
+         "id": "physiological-effects-benefits-of-physical-fitne",
+         "title": "Physiological Effects & Benefits of Physical Fitness",
+         "outcomes": [
+          {
+           "code": "4.12.2",
+           "text": "Analyze health and fitness benefits derived from participation in various physical activities."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "build": {
+  "builtAt": "2026-10-14T16:20:45.892Z",
+  "model": "none",
+  "usd": 0,
+  "expectedCodes": 48,
+  "coverage": 1,
+  "missingCodes": [],
+  "counts": {
+   "grades": 4,
+   "units": 16,
+   "topics": 48,
+   "subtopics": 48,
+   "outcomes": 48
+  },
+  "warnings": []
+ }
+}

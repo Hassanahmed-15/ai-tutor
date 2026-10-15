@@ -1,0 +1,566 @@
+{
+ "id": "ib-dp-economics-hl",
+ "region": "INTL",
+ "framework": "International Baccalaureate Diploma Programme (DP)",
+ "board": "IB",
+ "qualification": "IB Diploma Programme",
+ "subject": "Economics (HL)",
+ "syllabusCode": null,
+ "gradeSystem": "course",
+ "source": {
+  "urls": [
+   "https://www.ibo.org/globalassets/new-structure/programmes/dp/pdfs/hl-economics-en.pdf",
+   "https://web.archive.org/web/20221005153252id_/https://www.ibo.org/globalassets/new-structure/programmes/dp/pdfs/hl-economics-en.pdf"
+  ],
+  "publisher": "International Baccalaureate Organization",
+  "licence": "(c) International Baccalaureate Organization; all rights reserved, no open licence. ibo.org terms 1.8: IB copyrighted materials are licensed only under the IB's terms or a signed agreement; 'Any use not expressly permitted is prohibited unless special permission is obtained in writing from the IB'; 1.9: nothing on the IB websites confers any licence. Briefs are free public marketing summaries: take topic structure only, write everything in our own words, never reproduce brief text, and do not use IB logos/trade marks. Full subject guides are sold to schools and were NOT used. Terms: https://www.ibo.org/terms-and-conditions/ and https://www.ibo.org/copyright",
+  "firstExam": "2022"
+ },
+ "grades": [
+  {
+   "grade": "all",
+   "units": [
+    {
+     "id": "unit-1-introduction-to-economics",
+     "title": "Unit 1: Introduction to economics",
+     "topics": [
+      {
+       "id": "what-is-economics",
+       "title": "What is economics?",
+       "subtopics": [
+        {
+         "id": "what-economics-studies",
+         "title": "What economics studies",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain scarcity, choice and opportunity cost and what economics studies."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "how-economists-approach-the-world",
+       "title": "How economists approach the world",
+       "subtopics": [
+        {
+         "id": "economic-models-and-method",
+         "title": "Economic models and method",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe how economists build models and test ideas, and the limits of this approach."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "unit-2-microeconomics",
+     "title": "Unit 2: Microeconomics",
+     "topics": [
+      {
+       "id": "demand",
+       "title": "Demand",
+       "subtopics": [
+        {
+         "id": "demand",
+         "title": "Demand",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain the law of demand, the demand curve and what shifts it."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "supply",
+       "title": "Supply",
+       "subtopics": [
+        {
+         "id": "supply",
+         "title": "Supply",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain the law of supply, the supply curve and what shifts it."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "competitive-market-equilibrium",
+       "title": "Competitive market equilibrium",
+       "subtopics": [
+        {
+         "id": "market-equilibrium",
+         "title": "Market equilibrium",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Show how price and quantity settle where demand meets supply and how they respond to changes."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "critique-of-maximizing-behaviour",
+       "title": "Critique of maximizing behaviour",
+       "subtopics": [
+        {
+         "id": "limits-of-rational-choice",
+         "title": "Limits of rational choice",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Evaluate the assumption that consumers and producers maximise, using behavioural economics."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "elasticity-of-demand",
+       "title": "Elasticity of demand",
+       "subtopics": [
+        {
+         "id": "price-and-income-elasticity-of-demand",
+         "title": "Price and income elasticity of demand",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Calculate and interpret elasticities of demand and their effect on revenue and policy."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "elasticity-of-supply",
+       "title": "Elasticity of supply",
+       "subtopics": [
+        {
+         "id": "elasticity-of-supply",
+         "title": "Elasticity of supply",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Calculate and interpret price elasticity of supply and its determinants."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "role-of-government-in-microeconomics",
+       "title": "Role of government in microeconomics",
+       "subtopics": [
+        {
+         "id": "price-controls-taxes-and-subsidies",
+         "title": "Price controls, taxes and subsidies",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Analyse how price ceilings, floors, taxes and subsidies change market outcomes."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "market-failure-externalities-and-common-resource",
+       "title": "Market failure: externalities and common resources",
+       "subtopics": [
+        {
+         "id": "externalities-and-common-resources",
+         "title": "Externalities and common resources",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain externalities and overuse of common resources, and policies to correct them."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "market-failure-public-goods",
+       "title": "Market failure: public goods",
+       "subtopics": [
+        {
+         "id": "public-goods",
+         "title": "Public goods",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain why public goods are under-provided by markets and how governments respond."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "market-failure-asymmetric-information",
+       "title": "Market failure: asymmetric information",
+       "subtopics": [
+        {
+         "id": "asymmetric-information",
+         "title": "Asymmetric information",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain how unequal information causes market failure and ways to reduce it."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "market-failure-market-power",
+       "title": "Market failure: market power",
+       "subtopics": [
+        {
+         "id": "market-power",
+         "title": "Market power",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain how market power such as monopoly harms efficiency and how it is regulated."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "markets-and-equity",
+       "title": "Markets and equity",
+       "subtopics": [
+        {
+         "id": "inequity-in-markets",
+         "title": "Inequity in markets",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain why markets alone do not deliver equity and how governments respond."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "unit-3-macroeconomics",
+     "title": "Unit 3: Macroeconomics",
+     "topics": [
+      {
+       "id": "measuring-economic-activity",
+       "title": "Measuring economic activity",
+       "subtopics": [
+        {
+         "id": "measuring-national-output",
+         "title": "Measuring national output",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Measure economic activity with GDP and GNI, and show variations with the business cycle."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "aggregate-demand-and-supply",
+       "title": "Aggregate demand and supply",
+       "subtopics": [
+        {
+         "id": "aggregate-demand-and-aggregate-supply",
+         "title": "Aggregate demand and aggregate supply",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Use aggregate demand and supply to explain changes in output and prices."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "macroeconomic-objectives",
+       "title": "Macroeconomic objectives",
+       "subtopics": [
+        {
+         "id": "macroeconomic-objectives",
+         "title": "Macroeconomic objectives",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe objectives such as growth, low unemployment, stable prices and external balance, and their conflicts."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "inequality-and-poverty",
+       "title": "Inequality and poverty",
+       "subtopics": [
+        {
+         "id": "inequality-and-poverty",
+         "title": "Inequality and poverty",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Measure and explain inequality and poverty and evaluate policies to reduce them."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "monetary-policy",
+       "title": "Monetary policy",
+       "subtopics": [
+        {
+         "id": "monetary-policy",
+         "title": "Monetary policy",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain how interest rates and money supply are used to manage demand."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "fiscal-policy",
+       "title": "Fiscal policy",
+       "subtopics": [
+        {
+         "id": "fiscal-policy",
+         "title": "Fiscal policy",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain how government spending and taxation are used to manage demand."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "supply-side-policies",
+       "title": "Supply-side policies",
+       "subtopics": [
+        {
+         "id": "supply-side-policies",
+         "title": "Supply-side policies",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Evaluate policies that raise an economy's productive capacity."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "unit-4-the-global-economy",
+     "title": "Unit 4: The global economy",
+     "topics": [
+      {
+       "id": "benefits-of-international-trade",
+       "title": "Benefits of international trade",
+       "subtopics": [
+        {
+         "id": "gains-from-trade",
+         "title": "Gains from trade",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain the benefits of international trade, including comparative advantage."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "types-of-trade-protection",
+       "title": "Types of trade protection",
+       "subtopics": [
+        {
+         "id": "trade-protection-tools",
+         "title": "Trade protection tools",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe tariffs, quotas, subsidies and other trade barriers and their effects."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "arguments-for-and-against-protection",
+       "title": "Arguments for and against protection",
+       "subtopics": [
+        {
+         "id": "case-for-and-against-protection",
+         "title": "Case for and against protection",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Evaluate arguments for and against trade control."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "economic-integration",
+       "title": "Economic integration",
+       "subtopics": [
+        {
+         "id": "trading-blocs-and-integration",
+         "title": "Trading blocs and integration",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe forms of economic integration and their effects."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "exchange-rates",
+       "title": "Exchange rates",
+       "subtopics": [
+        {
+         "id": "exchange-rates",
+         "title": "Exchange rates",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain how exchange rates are set and affected, and the effects of changes."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "balance-of-payments",
+       "title": "Balance of payments",
+       "subtopics": [
+        {
+         "id": "balance-of-payments",
+         "title": "Balance of payments",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain the components of the balance of payments and how imbalances adjust."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "sustainable-development",
+       "title": "Sustainable development",
+       "subtopics": [
+        {
+         "id": "sustainable-development",
+         "title": "Sustainable development",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain sustainable development and how to balance growth with environmental limits."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "measuring-development",
+       "title": "Measuring development",
+       "subtopics": [
+        {
+         "id": "measuring-development",
+         "title": "Measuring development",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Compare indicators used to measure economic development."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "barriers-to-growth-and-development",
+       "title": "Barriers to growth and development",
+       "subtopics": [
+        {
+         "id": "barriers-to-growth-and-development",
+         "title": "Barriers to growth and development",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain domestic and international barriers to growth and development."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "growth-and-development-strategies",
+       "title": "Growth and development strategies",
+       "subtopics": [
+        {
+         "id": "growth-and-development-strategies",
+         "title": "Growth and development strategies",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Evaluate strategies for promoting growth and development."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "build": {
+  "builtAt": "2026-10-14T10:53:09.493Z",
+  "model": "claude-agent",
+  "usd": 0,
+  "expectedCodes": null,
+  "coverage": null,
+  "missingCodes": [],
+  "counts": {
+   "grades": 1,
+   "units": 4,
+   "topics": 31,
+   "subtopics": 31,
+   "outcomes": 31
+  },
+  "warnings": [
+   "grade DP year 1 has no content",
+   "grade DP year 2 has no content",
+   "unexpected grade label \"all\""
+  ]
+ }
+}

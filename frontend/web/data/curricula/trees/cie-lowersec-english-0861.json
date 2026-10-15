@@ -1,0 +1,141 @@
+{
+ "id": "cie-lowersec-english-0861",
+ "region": "INTL",
+ "framework": "Cambridge Lower Secondary English curriculum framework (0861)",
+ "board": "Cambridge",
+ "qualification": "Lower Secondary",
+ "subject": "English",
+ "syllabusCode": "0861",
+ "gradeSystem": "stage",
+ "source": {
+  "urls": [
+   "https://www.cambridgeinternational.org/programmes-and-qualifications/cambridge-lower-secondary/curriculum/english/"
+  ],
+  "publisher": "Cambridge University Press & Assessment (Cambridge International Education)",
+  "licence": "© Cambridge University Press & Assessment; structure + our own wording only",
+  "firstExam": null
+ },
+ "grades": [
+  {
+   "grade": "all",
+   "units": [
+    {
+     "id": "reading",
+     "title": "Reading",
+     "topics": [
+      {
+       "id": "reading-for-information-and-pleasure",
+       "title": "Reading for information and pleasure",
+       "subtopics": [
+        {
+         "id": "reading-for-information-and-pleasure",
+         "title": "Reading for information and pleasure",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Engage with a range of texts for information and pleasure, including fiction genres, poetry, playscripts and non-fiction."
+          },
+          {
+           "code": null,
+           "text": "Read texts from different times and cultures and respond to information, media and texts."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "writing",
+     "title": "Writing",
+     "topics": [
+      {
+       "id": "writing-for-audience-and-purpose",
+       "title": "Writing for audience and purpose",
+       "subtopics": [
+        {
+         "id": "writing-for-audience-and-purpose",
+         "title": "Writing for audience and purpose",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Use the written word clearly and creatively for different audiences and purposes."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "speaking",
+     "title": "Speaking",
+     "topics": [
+      {
+       "id": "spoken-communication",
+       "title": "Spoken communication",
+       "subtopics": [
+        {
+         "id": "spoken-communication",
+         "title": "Spoken communication",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Communicate confidently by speaking in everyday situations."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "listening",
+     "title": "Listening",
+     "topics": [
+      {
+       "id": "listening-and-responding",
+       "title": "Listening and responding",
+       "subtopics": [
+        {
+         "id": "listening-and-responding",
+         "title": "Listening and responding",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Listen and respond effectively to information, media and texts in everyday situations."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "build": {
+  "builtAt": "2026-10-14T08:45:33.428Z",
+  "model": "claude-agent",
+  "usd": 0,
+  "expectedCodes": null,
+  "coverage": null,
+  "missingCodes": [],
+  "counts": {
+   "grades": 1,
+   "units": 4,
+   "topics": 4,
+   "subtopics": 4,
+   "outcomes": 5
+  },
+  "warnings": [
+   "grade 7 has no content",
+   "grade 8 has no content",
+   "grade 9 has no content",
+   "unexpected grade label \"all\"",
+   "unit \"Writing\" (grade all) has a single outcome",
+   "unit \"Speaking\" (grade all) has a single outcome",
+   "unit \"Listening\" (grade all) has a single outcome"
+  ]
+ }
+}

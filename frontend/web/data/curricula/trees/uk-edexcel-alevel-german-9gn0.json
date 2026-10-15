@@ -1,0 +1,865 @@
+{
+ "id": "uk-edexcel-alevel-german-9gn0",
+ "region": "UK",
+ "framework": "Pearson Edexcel Level 3 Advanced GCE",
+ "board": "Pearson Edexcel",
+ "qualification": "A Level",
+ "subject": "German",
+ "syllabusCode": "9GN0",
+ "gradeSystem": "year",
+ "source": {
+  "urls": [
+   "https://qualifications.pearson.com/content/dam/pdf/A%20Level/German/2016/Specification%20and%20sample%20assessments/Specification_GCE_A_level_L3_in_German.pdf"
+  ],
+  "publisher": "Pearson Education",
+  "licence": "Exam board specification, (c) Pearson; structure + our own wording only",
+  "firstExam": "2018"
+ },
+ "grades": [
+  {
+   "grade": "all",
+   "units": [
+    {
+     "id": "theme-1-gesellschaftliche-entwicklung-in-deutsch",
+     "title": "Theme 1: Gesellschaftliche Entwicklung in Deutschland",
+     "topics": [
+      {
+       "id": "natur-und-umwelt",
+       "title": "Natur und Umwelt",
+       "subtopics": [
+        {
+         "id": "environmental-awareness",
+         "title": "Environmental awareness",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Discuss environmental awareness in Germany and how people live sustainably."
+          },
+          {
+           "code": null,
+           "text": "Talk about recycling habits and waste systems in Germany."
+          },
+          {
+           "code": null,
+           "text": "Explain renewable energy and its role in German society."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "bildung",
+       "title": "Bildung",
+       "subtopics": [
+        {
+         "id": "german-education-system",
+         "title": "German education system",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe the German education system and the situation of students."
+          },
+          {
+           "code": null,
+           "text": "Discuss repeating a school year (Sitzenbleiben) and arguments for and against it."
+          },
+          {
+           "code": null,
+           "text": "Explain vocational training (Berufsausbildung) and compare it with academic routes."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "die-welt-der-arbeit",
+       "title": "Die Welt der Arbeit",
+       "subtopics": [
+        {
+         "id": "working-life-in-germany",
+         "title": "Working life in Germany",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe working life and work ethic in Germany."
+          },
+          {
+           "code": null,
+           "text": "Discuss German businesses and industries and their place in the economy."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "theme-2-politische-und-ku-nstlerische-kultur-im-",
+     "title": "Theme 2: Politische und künstlerische Kultur im deutschen Sprachraum",
+     "topics": [
+      {
+       "id": "musik",
+       "title": "Musik",
+       "subtopics": [
+        {
+         "id": "music-and-popular-culture",
+         "title": "Music and popular culture",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe changes and trends in music across German-speaking countries."
+          },
+          {
+           "code": null,
+           "text": "Discuss the influence of music on popular culture."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "die-medien",
+       "title": "Die Medien",
+       "subtopics": [
+        {
+         "id": "media-and-society",
+         "title": "Media and society",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Compare television, digital, print and online media in German-speaking countries."
+          },
+          {
+           "code": null,
+           "text": "Discuss the influence of the media on society and politics."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "die-rolle-von-festen-und-traditionen",
+       "title": "Die Rolle von Festen und Traditionen",
+       "subtopics": [
+        {
+         "id": "festivals-and-traditions",
+         "title": "Festivals and traditions",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe festivals, celebrations, customs and traditions in German-speaking communities."
+          },
+          {
+           "code": null,
+           "text": "Discuss the role traditions play in culture and identity today."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "theme-3-immigration-und-die-deutsche-multikultur",
+     "title": "Theme 3: Immigration und die deutsche multikulturelle Gesellschaft",
+     "topics": [
+      {
+       "id": "die-positive-auswirkung-von-immigration",
+       "title": "Die positive Auswirkung von Immigration",
+       "subtopics": [
+        {
+         "id": "benefits-of-immigration",
+         "title": "Benefits of immigration",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain how immigrants contribute to the German economy."
+          },
+          {
+           "code": null,
+           "text": "Explain how immigrants contribute to German culture."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "die-herausforderungen-von-immigration-und-integr",
+       "title": "Die Herausforderungen von Immigration und Integration",
+       "subtopics": [
+        {
+         "id": "challenges-of-integration",
+         "title": "Challenges of integration",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe measures by councils and local communities to support integration."
+          },
+          {
+           "code": null,
+           "text": "Discuss exclusion and alienation as experienced by immigrants."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "die-staatliche-und-soziale-reaktion-zur-immigrat",
+       "title": "Die staatliche und soziale Reaktion zur Immigration",
+       "subtopics": [
+        {
+         "id": "responses-to-immigration",
+         "title": "Responses to immigration",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Discuss right-wing extremism in Germany."
+          },
+          {
+           "code": null,
+           "text": "Describe political approaches towards guest workers, immigrants and asylum seekers."
+          },
+          {
+           "code": null,
+           "text": "Analyse public opinion about immigration."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "theme-4-die-wiedervereinigung-deutschlands",
+     "title": "Theme 4: Die Wiedervereinigung Deutschlands",
+     "topics": [
+      {
+       "id": "die-gesellschaft-in-der-ddr-vor-der-wiederverein",
+       "title": "Die Gesellschaft in der DDR vor der Wiedervereinigung",
+       "subtopics": [
+        {
+         "id": "life-in-the-gdr",
+         "title": "Life in the GDR",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe work and housing in the GDR."
+          },
+          {
+           "code": null,
+           "text": "Explain communist principles in the GDR."
+          },
+          {
+           "code": null,
+           "text": "Discuss the GDR's relationship with the West."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "ereignisse-vor-der-wiedervereinigung",
+       "title": "Ereignisse vor der Wiedervereinigung",
+       "subtopics": [
+        {
+         "id": "events-before-reunification",
+         "title": "Events before reunification",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain the collapse of communism."
+          },
+          {
+           "code": null,
+           "text": "Describe the fall of the Berlin Wall and its significance."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "deutschland-seit-der-wiedervereinigung",
+       "title": "Deutschland seit der Wiedervereinigung",
+       "subtopics": [
+        {
+         "id": "germany-since-reunification",
+         "title": "Germany since reunification",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Discuss migration from East to West Germany."
+          },
+          {
+           "code": null,
+           "text": "Explain unemployment in the former GDR."
+          },
+          {
+           "code": null,
+           "text": "Describe the effects of reunification on schools in Germany."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "works-studied-paper-2",
+     "title": "Works studied (Paper 2)",
+     "topics": [
+      {
+       "id": "literary-texts-and-films",
+       "title": "Literary texts and films",
+       "subtopics": [
+        {
+         "id": "analysing-a-literary-text",
+         "title": "Analysing a literary text",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Study two works: two literary texts, or one text and one film, from the prescribed list."
+          },
+          {
+           "code": null,
+           "text": "Analyse key concepts and issues in a literary text."
+          },
+          {
+           "code": null,
+           "text": "Analyse characterisation in a work."
+          },
+          {
+           "code": null,
+           "text": "Analyse form and technique such as narrative voice."
+          },
+          {
+           "code": null,
+           "text": "Explain the social and cultural setting of a work."
+          }
+         ]
+        },
+        {
+         "id": "analysing-a-film",
+         "title": "Analysing a film",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Analyse camera work and other film techniques."
+          },
+          {
+           "code": null,
+           "text": "Analyse characters, themes and setting in a film."
+          }
+         ]
+        },
+        {
+         "id": "writing-critical-essays-in-german",
+         "title": "Writing critical essays in German",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Present viewpoints and develop arguments with evidence from the work."
+          },
+          {
+           "code": null,
+           "text": "Draw conclusions and evaluate themes and contexts in writing."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "prescribed-literary-texts",
+       "title": "Prescribed literary texts",
+       "subtopics": [
+        {
+         "id": "plays",
+         "title": "Plays",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Study a prescribed play such as Andorra, Der Besuch der alten Dame or Der kaukasische Kreidekreis."
+          }
+         ]
+        },
+        {
+         "id": "novels-and-novellas",
+         "title": "Novels and novellas",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Study a prescribed novel or novella such as Der Vorleser, Die Verwandlung or Tonio Kröger."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "prescribed-films",
+       "title": "Prescribed films",
+       "subtopics": [
+        {
+         "id": "prescribed-films",
+         "title": "Prescribed films",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Study a prescribed film such as Das Leben der Anderen, Good Bye, Lenin! or Die Welle."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "language-skills-papers-1-and-3",
+     "title": "Language skills (Papers 1 and 3)",
+     "topics": [
+      {
+       "id": "listening-and-reading",
+       "title": "Listening and reading",
+       "subtopics": [
+        {
+         "id": "understanding-german",
+         "title": "Understanding German",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Understand main points, gist and detail in spoken and written German."
+          },
+          {
+           "code": null,
+           "text": "Infer meaning from complex spoken and written material."
+          },
+          {
+           "code": null,
+           "text": "Combine information from spoken and written sources, including online media."
+          },
+          {
+           "code": null,
+           "text": "Summarise spoken information and report key points."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "translation",
+       "title": "Translation",
+       "subtopics": [
+        {
+         "id": "translating",
+         "title": "Translating",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Translate German texts into accurate English."
+          },
+          {
+           "code": null,
+           "text": "Translate English passages into accurate German."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "speaking",
+       "title": "Speaking",
+       "subtopics": [
+        {
+         "id": "discussion-on-a-theme",
+         "title": "Discussion on a theme",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Choose a statement from a stimulus card and give views on it."
+          },
+          {
+           "code": null,
+           "text": "Develop a discussion on a theme with examples and justified arguments."
+          },
+          {
+           "code": null,
+           "text": "Ask questions that elicit opinions and check understanding."
+          }
+         ]
+        },
+        {
+         "id": "independent-research-project",
+         "title": "Independent research project",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Plan an independent research question on German-speaking culture or society."
+          },
+          {
+           "code": null,
+           "text": "Find and select a range of authentic sources including online ones."
+          },
+          {
+           "code": null,
+           "text": "Present a summary of at least two written sources with a personal response."
+          },
+          {
+           "code": null,
+           "text": "Discuss research findings in depth."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "grammar-list",
+     "title": "Grammar list",
+     "topics": [
+      {
+       "id": "nouns-and-determiners",
+       "title": "Nouns and determiners",
+       "subtopics": [
+        {
+         "id": "nouns",
+         "title": "Nouns",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Use gender, singular and plural forms."
+          },
+          {
+           "code": null,
+           "text": "Use case marking on nouns and weak masculine nouns."
+          }
+         ]
+        },
+        {
+         "id": "determiners",
+         "title": "Determiners",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Use definite and indefinite articles including kein."
+          },
+          {
+           "code": null,
+           "text": "Use demonstratives and possessives."
+          },
+          {
+           "code": null,
+           "text": "Use other determiners such as alle, viele, welcher."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "pronouns",
+       "title": "Pronouns",
+       "subtopics": [
+        {
+         "id": "pronouns",
+         "title": "Pronouns",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Use personal and reflexive pronouns."
+          },
+          {
+           "code": null,
+           "text": "Use relative and demonstrative pronouns."
+          },
+          {
+           "code": null,
+           "text": "Use possessive, indefinite and interrogative pronouns."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "adjectives-and-adverbs",
+       "title": "Adjectives and adverbs",
+       "subtopics": [
+        {
+         "id": "adjectives",
+         "title": "Adjectives",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Use adjectival endings."
+          },
+          {
+           "code": null,
+           "text": "Form comparatives and superlatives."
+          },
+          {
+           "code": null,
+           "text": "Use adjectives with the dative and with prepositions."
+          },
+          {
+           "code": null,
+           "text": "Understand long adjective phrases (receptive)."
+          }
+         ]
+        },
+        {
+         "id": "adverbs-and-adverbials",
+         "title": "Adverbs and adverbials",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Use adverbials of time, place, direction, manner and degree."
+          },
+          {
+           "code": null,
+           "text": "Use interrogative adverbs and comparative and superlative adverbs."
+          },
+          {
+           "code": null,
+           "text": "Use numbers, fractions, clock time, days and months."
+          },
+          {
+           "code": null,
+           "text": "Use modal particles and discourse markers such as ja, doch, wohl."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "verbs",
+       "title": "Verbs",
+       "subtopics": [
+        {
+         "id": "verb-forms",
+         "title": "Verb forms",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Use principal parts of weak, strong and irregular verbs."
+          },
+          {
+           "code": null,
+           "text": "Use reflexive, separable and inseparable verbs."
+          },
+          {
+           "code": null,
+           "text": "Use auxiliary verbs haben, sein, werden and choose haben or sein in the perfect."
+          },
+          {
+           "code": null,
+           "text": "Use modal verbs in present and imperfect, and imperfect subjunctive of mögen and können."
+          }
+         ]
+        },
+        {
+         "id": "infinitive-constructions",
+         "title": "Infinitive constructions",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Use um... zu, ohne... zu and verbs with zu."
+          },
+          {
+           "code": null,
+           "text": "Use lassen and sich lassen with an infinitive."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "tense-voice-and-mood",
+       "title": "Tense, voice and mood",
+       "subtopics": [
+        {
+         "id": "tenses",
+         "title": "Tenses",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Use present, past and perfect tenses, including perfect of modal verbs."
+          },
+          {
+           "code": null,
+           "text": "Use pluperfect, future and future perfect."
+          },
+          {
+           "code": null,
+           "text": "Use conditional and conditional perfect."
+          }
+         ]
+        },
+        {
+         "id": "passive-imperative-and-subjunctive",
+         "title": "Passive, imperative and subjunctive",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Use passive with werden and with sein."
+          },
+          {
+           "code": null,
+           "text": "Use the imperative."
+          },
+          {
+           "code": null,
+           "text": "Use subjunctive in past and pluperfect conditional clauses."
+          },
+          {
+           "code": null,
+           "text": "Understand conditional sentences with omitted wenn (receptive)."
+          },
+          {
+           "code": null,
+           "text": "Understand subjunctive in indirect speech (receptive) and use all forms of indirect speech."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "prepositions-and-conjunctions",
+       "title": "Prepositions and conjunctions",
+       "subtopics": [
+        {
+         "id": "prepositions",
+         "title": "Prepositions",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Use fixed-case and dual-case prepositions."
+          },
+          {
+           "code": null,
+           "text": "Use prepositional adverbs like darauf."
+          }
+         ]
+        },
+        {
+         "id": "conjunctions",
+         "title": "Conjunctions",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Use coordinating conjunctions."
+          },
+          {
+           "code": null,
+           "text": "Use subordinating conjunctions."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "the-case-system",
+       "title": "The case system",
+       "subtopics": [
+        {
+         "id": "case-use",
+         "title": "Case use",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Identify the subject and finite verb."
+          },
+          {
+           "code": null,
+           "text": "Use accusative, dative and prepositional objects."
+          },
+          {
+           "code": null,
+           "text": "Use nominative after copular verbs sein, werden, bleiben."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "clause-structure-and-word-order",
+       "title": "Clause structure and word order",
+       "subtopics": [
+        {
+         "id": "word-order",
+         "title": "Word order",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Use main clause word order, questions and commands."
+          },
+          {
+           "code": null,
+           "text": "Place pronouns, adverbials and nicht correctly."
+          },
+          {
+           "code": null,
+           "text": "Vary word order for emphasis."
+          },
+          {
+           "code": null,
+           "text": "Form subordinate clauses with dass, obwohl and similar conjunctions."
+          },
+          {
+           "code": null,
+           "text": "Understand da(r)+preposition anticipating dass and infinitive clauses (receptive)."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "word-formation",
+       "title": "Word formation",
+       "subtopics": [
+        {
+         "id": "word-formation",
+         "title": "Word formation",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Form compound nouns."
+          },
+          {
+           "code": null,
+           "text": "Form nouns from verbs and adjectives."
+          },
+          {
+           "code": null,
+           "text": "Form verbs from nouns and adjectives."
+          },
+          {
+           "code": null,
+           "text": "Use separable and inseparable verb prefixes."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "build": {
+  "builtAt": "2026-10-14T10:27:22.558Z",
+  "model": "claude-agent",
+  "usd": 0,
+  "expectedCodes": null,
+  "coverage": null,
+  "missingCodes": [],
+  "counts": {
+   "grades": 1,
+   "units": 7,
+   "topics": 27,
+   "subtopics": 36,
+   "outcomes": 100
+  },
+  "warnings": [
+   "grade Year 12 has no content",
+   "grade Year 13 has no content",
+   "unexpected grade label \"all\""
+  ]
+ }
+}

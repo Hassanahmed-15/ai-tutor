@@ -13,6 +13,7 @@ import { LectureHistory, type ReplayPackage } from "@/components/lecture/Lecture
 import { GuideSheet, guideSeen } from "@/components/pages/GuideSheet";
 import { LibraryDoor, MapDoor } from "@/components/pages/HomeDoors";
 import { setPendingLecture } from "@/lib/pendingLecture";
+import { peekPendingCurriculum, peekPendingTopic, takePendingCurriculum, takePendingTopic } from "@/lib/pendingTopic";
 import { PromptTiles } from "@/components/pages/PromptTiles";
 import { findYouTubeLink } from "@/lib/youtube/videoUrl";
 import { YouTubeLauncher } from "@/components/pages/YouTubeLauncher";
@@ -67,12 +68,30 @@ export function LandingPage({ go }: { go: (p: PageName) => void; onStart: () => 
     go("learn");
   }
 
+  // A topic typed on the welcome page before the account existed: start that lesson now. The guide
+  // waits for a later visit — this student already knows what they came for.
+  // Peeked at render (a pure read, safe to run twice), taken in the effect.
+  // A course lesson picked in the course browser arrives the same way, as an address.
+  const [arrivedWithLesson] = useState(() => (typeof window !== "undefined" ? peekPendingCurriculum() : null));
+  const [arrivedWithTopic] = useState(() => (typeof window !== "undefined" ? (arrivedWithLesson ? "course lesson" : peekPendingTopic()) : null));
+  useEffect(() => {
+    if (!arrivedWithTopic) return;
+    if (arrivedWithLesson) {
+      takePendingCurriculum();
+      setPendingBrief({ topic: "", file: null, curriculum: arrivedWithLesson });
+    } else {
+      takePendingTopic();
+      setPendingBrief({ topic: arrivedWithTopic, file: null });
+    }
+    go("learn");
+  }, [arrivedWithTopic, arrivedWithLesson, go]);
+
   // A brand-new account meets the guide once, by itself; after that it waits behind its door.
   useEffect(() => {
-    if (!user) return;
+    if (!user || arrivedWithTopic) return;
     const t = window.setTimeout(() => { if (!guideSeen()) setGuideOpen(true); }, 900);
     return () => window.clearTimeout(t);
-  }, [user]);
+  }, [user, arrivedWithTopic]);
 
   // Escape closes the library, as it closes any sheet.
   useEffect(() => {

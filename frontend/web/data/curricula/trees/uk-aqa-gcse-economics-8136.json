@@ -1,0 +1,817 @@
+{
+ "id": "uk-aqa-gcse-economics-8136",
+ "region": "UK",
+ "framework": "AQA GCSE (9-1)",
+ "board": "AQA",
+ "qualification": "GCSE",
+ "subject": "Economics",
+ "syllabusCode": "8136",
+ "gradeSystem": "year",
+ "source": {
+  "urls": [
+   "https://cdn.sanity.io/files/p28bar15/green/dd863b3c312fbc4c8d6358d3e3fa9fbc025abb64.pdf"
+  ],
+  "publisher": "AQA",
+  "licence": "Exam board specification, (c) AQA; structure + our own wording only",
+  "firstExam": "2019"
+ },
+ "grades": [
+  {
+   "grade": "all",
+   "units": [
+    {
+     "id": "3-1-how-markets-work",
+     "title": "3.1 How markets work",
+     "topics": [
+      {
+       "id": "3-1-1-economic-foundations",
+       "title": "3.1.1 Economic foundations",
+       "subtopics": [
+        {
+         "id": "economic-activity",
+         "title": "Economic activity",
+         "outcomes": [
+          {
+           "code": "3.1",
+           "text": "Explain the difference between a need and a want and how both change over time."
+          },
+          {
+           "code": "3.1.1",
+           "text": "State that economic activity produces goods and services to satisfy needs and wants."
+          },
+          {
+           "code": "3.1.1.1",
+           "text": "Identify the key decisions: what to produce, how to produce, and who benefits."
+          },
+          {
+           "code": null,
+           "text": "Describe consumers, producers and government as the main economic groups and how they interact."
+          }
+         ]
+        },
+        {
+         "id": "the-factors-of-production",
+         "title": "The factors of production",
+         "outcomes": [
+          {
+           "code": "3.1.1.2",
+           "text": "Explain what an economic resource is."
+          },
+          {
+           "code": null,
+           "text": "Identify land, labour, capital and enterprise with examples and the reward each earns."
+          }
+         ]
+        },
+        {
+         "id": "making-choices",
+         "title": "Making choices",
+         "outcomes": [
+          {
+           "code": "3.1.1.3",
+           "text": "Explain the basic economic problem and how choices are made by weighing costs and benefits."
+          },
+          {
+           "code": null,
+           "text": "Explain opportunity cost in economic decisions."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "3-1-2-resource-allocation",
+       "title": "3.1.2 Resource allocation",
+       "subtopics": [
+        {
+         "id": "markets-and-resource-allocation",
+         "title": "Markets and resource allocation",
+         "outcomes": [
+          {
+           "code": "3.1.2",
+           "text": "Explain a market as buyers and sellers interacting to set a price."
+          },
+          {
+           "code": "3.1.2.1",
+           "text": "Explain the role of markets in allocating scarce resources."
+          },
+          {
+           "code": null,
+           "text": "Distinguish factor markets from product markets."
+          }
+         ]
+        },
+        {
+         "id": "economic-sectors",
+         "title": "Economic sectors",
+         "outcomes": [
+          {
+           "code": "3.1.2.2",
+           "text": "Describe the primary, secondary and tertiary sectors and their relative sizes in the UK."
+          },
+          {
+           "code": null,
+           "text": "Distinguish a good from a service."
+          }
+         ]
+        },
+        {
+         "id": "specialisation-and-exchange",
+         "title": "Specialisation and exchange",
+         "outcomes": [
+          {
+           "code": "3.1.2.3",
+           "text": "Explain specialisation and division of labour and why individuals and producers specialise."
+          },
+          {
+           "code": null,
+           "text": "Explain the costs and benefits of division of labour to the worker and the firm."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "3-1-3-how-prices-are-determined",
+       "title": "3.1.3 How prices are determined",
+       "subtopics": [
+        {
+         "id": "demand",
+         "title": "Demand",
+         "outcomes": [
+          {
+           "code": "3.1.3",
+           "text": "Explain what demand for a good or service means."
+          },
+          {
+           "code": "3.1.3.1",
+           "text": "Identify the factors that influence demand."
+          },
+          {
+           "code": null,
+           "text": "Build an individual demand curve from consumer data."
+          },
+          {
+           "code": null,
+           "text": "Distinguish shifts of the demand curve from movements along it."
+          }
+         ]
+        },
+        {
+         "id": "supply",
+         "title": "Supply",
+         "outcomes": [
+          {
+           "code": "3.1.3.2",
+           "text": "Explain what supply of a good or service means."
+          },
+          {
+           "code": null,
+           "text": "Identify the factors that influence supply."
+          },
+          {
+           "code": null,
+           "text": "Build a firm's supply curve from production data."
+          },
+          {
+           "code": null,
+           "text": "Distinguish shifts of the supply curve from movements along it."
+          }
+         ]
+        },
+        {
+         "id": "equilibrium-price",
+         "title": "Equilibrium price",
+         "outcomes": [
+          {
+           "code": "3.1.3.3",
+           "text": "Show how supply and demand set equilibrium price on a diagram."
+          },
+          {
+           "code": null,
+           "text": "Explain how excess demand and excess supply push prices to change."
+          },
+          {
+           "code": null,
+           "text": "Use diagrams to show the effect of changes on equilibrium price in real markets."
+          },
+          {
+           "code": null,
+           "text": "Show revenue on a supply and demand diagram."
+          }
+         ]
+        },
+        {
+         "id": "intermarket-relationships",
+         "title": "Intermarket relationships",
+         "outcomes": [
+          {
+           "code": "3.1.3.4",
+           "text": "Explain complements and substitutes."
+          },
+          {
+           "code": null,
+           "text": "Explain how a change in demand, supply or price in one market affects related markets."
+          }
+         ]
+        },
+        {
+         "id": "price-elasticity-of-demand",
+         "title": "Price elasticity of demand",
+         "outcomes": [
+          {
+           "code": "3.1.3.5",
+           "text": "Explain why price changes do not always cause equivalent changes in demand."
+          },
+          {
+           "code": null,
+           "text": "Name the factors affecting price elasticity of demand and distinguish elastic from inelastic demand."
+          },
+          {
+           "code": null,
+           "text": "Calculate price elasticity of demand as percentage change in quantity over percentage change in price."
+          },
+          {
+           "code": null,
+           "text": "Explain what elasticity of demand means for producers and consumers."
+          }
+         ]
+        },
+        {
+         "id": "price-elasticity-of-supply",
+         "title": "Price elasticity of supply",
+         "outcomes": [
+          {
+           "code": "3.1.3.6",
+           "text": "Explain why price changes do not always cause equivalent changes in supply."
+          },
+          {
+           "code": null,
+           "text": "Name the factors affecting price elasticity of supply and distinguish elastic from inelastic supply."
+          },
+          {
+           "code": null,
+           "text": "Calculate price elasticity of supply from data."
+          },
+          {
+           "code": null,
+           "text": "Explain what elasticity of supply means for producers and consumers."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "3-1-4-production-costs-revenue-and-profit",
+       "title": "3.1.4 Production, costs, revenue and profit",
+       "subtopics": [
+        {
+         "id": "cost-revenue-and-profit",
+         "title": "Cost, revenue and profit",
+         "outcomes": [
+          {
+           "code": "3.1.4",
+           "text": "Describe business objectives: profit, sales growth and market share."
+          },
+          {
+           "code": "3.1.4.1",
+           "text": "Identify and calculate total, average, fixed and variable costs."
+          },
+          {
+           "code": null,
+           "text": "Identify and calculate total and average revenue."
+          },
+          {
+           "code": null,
+           "text": "Show that profit is total revenue minus total costs and how firms raise it by cutting average costs or raising revenue."
+          },
+          {
+           "code": null,
+           "text": "Explain how higher prices and profits give producers the incentive to expand."
+          },
+          {
+           "code": null,
+           "text": "Explain how producers' motives can conflict with ethical and moral interests."
+          }
+         ]
+        },
+        {
+         "id": "production-and-productivity",
+         "title": "Production and productivity",
+         "outcomes": [
+          {
+           "code": "3.1.4.2",
+           "text": "Distinguish production from productivity."
+          },
+          {
+           "code": null,
+           "text": "Name the factors that influence productivity and the benefits of raising it."
+          }
+         ]
+        },
+        {
+         "id": "economies-of-scale",
+         "title": "Economies of scale",
+         "outcomes": [
+          {
+           "code": "3.1.4.3",
+           "text": "Define economies of scale as the effect on average cost of rising output."
+          },
+          {
+           "code": null,
+           "text": "Describe managerial, purchasing, financial, technical and risk-bearing economies of scale."
+          },
+          {
+           "code": null,
+           "text": "Explain the effects of economies of scale on business behaviour and the costs and benefits of growth."
+          },
+          {
+           "code": null,
+           "text": "Explain diseconomies of scale."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "3-1-5-competitive-and-concentrated-markets",
+       "title": "3.1.5 Competitive and concentrated markets",
+       "subtopics": [
+        {
+         "id": "market-structures",
+         "title": "Market structures",
+         "outcomes": [
+          {
+           "code": "3.1.5",
+           "text": "Explain that markets differ in structure."
+          },
+          {
+           "code": "3.1.5.1",
+           "text": "Use number of producers, product differentiation and ease of entry to tell market structures apart."
+          }
+         ]
+        },
+        {
+         "id": "competitive-markets",
+         "title": "Competitive markets",
+         "outcomes": [
+          {
+           "code": "3.1.5.2",
+           "text": "Describe the main characteristics of a competitive market and how producers operate in it."
+          },
+          {
+           "code": null,
+           "text": "Explain the effect of competition on consumers, producers and workers, and why profits tend to be lower."
+          }
+         ]
+        },
+        {
+         "id": "non-competitive-markets",
+         "title": "Non-competitive markets",
+         "outcomes": [
+          {
+           "code": "3.1.5.3",
+           "text": "Describe the characteristics of a non-competitive market and how producers operate in it."
+          },
+          {
+           "code": null,
+           "text": "Define monopoly and oligopoly."
+          },
+          {
+           "code": null,
+           "text": "Explain the causes and consequences of monopolistic and oligopolistic power."
+          }
+         ]
+        },
+        {
+         "id": "the-labour-market",
+         "title": "The labour market",
+         "outcomes": [
+          {
+           "code": "3.1.5.4",
+           "text": "Explain how wages are set by simple labour demand and supply."
+          },
+          {
+           "code": null,
+           "text": "Explain wage differences within and between occupations."
+          },
+          {
+           "code": null,
+           "text": "Distinguish gross from net pay and calculate income."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "3-1-6-market-failure",
+       "title": "3.1.6 Market failure",
+       "subtopics": [
+        {
+         "id": "misallocation-of-resources",
+         "title": "Misallocation of resources",
+         "outcomes": [
+          {
+           "code": "3.1.6",
+           "text": "Define market failure as the market's inability to allocate resources efficiently."
+          },
+          {
+           "code": "3.1.6.1",
+           "text": "Explain the costs of misallocating resources."
+          },
+          {
+           "code": null,
+           "text": "Describe government methods to counter misallocation."
+          }
+         ]
+        },
+        {
+         "id": "externalities",
+         "title": "Externalities",
+         "outcomes": [
+          {
+           "code": "3.1.6.2",
+           "text": "Define externalities as the gap between social and private costs or benefits."
+          },
+          {
+           "code": null,
+           "text": "Identify positive and negative externalities."
+          },
+          {
+           "code": null,
+           "text": "Explain how production and consumption can create negative externalities."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "3-2-how-the-economy-works",
+     "title": "3.2 How the economy works",
+     "topics": [
+      {
+       "id": "3-2-1-introduction-to-the-national-economy",
+       "title": "3.2.1 Introduction to the national economy",
+       "subtopics": [
+        {
+         "id": "interest-rates",
+         "title": "Interest rates",
+         "outcomes": [
+          {
+           "code": "3.2",
+           "text": "Explain what an interest rate is and what influences different rates."
+          },
+          {
+           "code": "3.2.1",
+           "text": "Explain how interest rate changes affect consumers' decisions to save, borrow or spend."
+          },
+          {
+           "code": "3.2.1.1",
+           "text": "Explain how interest rate changes affect producers' decisions to save, borrow or invest."
+          },
+          {
+           "code": null,
+           "text": "Calculate interest on savings."
+          }
+         ]
+        },
+        {
+         "id": "government-income-and-spending",
+         "title": "Government income and spending",
+         "outcomes": [
+          {
+           "code": "3.2.1.2",
+           "text": "Identify the main sources of UK government revenue and areas of spending."
+          },
+          {
+           "code": null,
+           "text": "Distinguish direct from indirect taxes."
+          },
+          {
+           "code": null,
+           "text": "Distinguish progressive from regressive taxes."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "3-2-2-government-objectives",
+       "title": "3.2.2 Government objectives",
+       "subtopics": [
+        {
+         "id": "economic-objectives",
+         "title": "Economic objectives",
+         "outcomes": [
+          {
+           "code": "3.2.2",
+           "text": "State the principal objectives: full employment, price stability, economic growth and balance of payments."
+          },
+          {
+           "code": "3.2.2.1",
+           "text": "Explain how a policy for one objective can harm another."
+          },
+          {
+           "code": null,
+           "text": "Describe other objectives such as reducing inequality and managing environmental change."
+          },
+          {
+           "code": null,
+           "text": "Explain how pursuing an objective can harm groups of people."
+          }
+         ]
+        },
+        {
+         "id": "economic-growth",
+         "title": "Economic growth",
+         "outcomes": [
+          {
+           "code": "3.2.2.2",
+           "text": "Explain what economic growth means and why it matters."
+          },
+          {
+           "code": null,
+           "text": "Distinguish GDP, real GDP and GDP per capita and do simple calculations."
+          },
+          {
+           "code": null,
+           "text": "Describe the causes, costs, benefits and policies for growth."
+          }
+         ]
+        },
+        {
+         "id": "employment-and-unemployment",
+         "title": "Employment and unemployment",
+         "outcomes": [
+          {
+           "code": "3.2.2.3",
+           "text": "Describe how employment and unemployment are measured."
+          },
+          {
+           "code": null,
+           "text": "Explain structural, seasonal, frictional and cyclical unemployment and their causes."
+          },
+          {
+           "code": null,
+           "text": "Explain the consequences of unemployment and policies to reduce it."
+          }
+         ]
+        },
+        {
+         "id": "inflation-and-price-stability",
+         "title": "Inflation and price stability",
+         "outcomes": [
+          {
+           "code": "3.2.2.4",
+           "text": "Explain inflation and its rate, and measure it with the Consumer Price Index."
+          },
+          {
+           "code": null,
+           "text": "Do simple calculations with CPI figures."
+          },
+          {
+           "code": null,
+           "text": "Explain cost-push and demand-pull inflation."
+          },
+          {
+           "code": null,
+           "text": "Explain consequences of inflation for different groups and policies to manage it."
+          }
+         ]
+        },
+        {
+         "id": "balance-of-payments",
+         "title": "Balance of payments",
+         "outcomes": [
+          {
+           "code": "3.2.2.5",
+           "text": "Do simple calculations using current account figures."
+          },
+          {
+           "code": null,
+           "text": "Explain what a current account deficit or surplus means and why it matters."
+          },
+          {
+           "code": null,
+           "text": "Explain the reasons for a deficit or surplus and policies to influence it."
+          }
+         ]
+        },
+        {
+         "id": "distribution-of-income",
+         "title": "Distribution of income",
+         "outcomes": [
+          {
+           "code": "3.2.2.6",
+           "text": "Describe the distribution of income in the UK."
+          },
+          {
+           "code": null,
+           "text": "Explain the causes and consequences of income and wealth inequality."
+          },
+          {
+           "code": null,
+           "text": "Explain how taxation and government spending redistribute income and wealth."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "3-2-3-how-the-government-manages-the-economy",
+       "title": "3.2.3 How the government manages the economy",
+       "subtopics": [
+        {
+         "id": "fiscal-policy",
+         "title": "Fiscal policy",
+         "outcomes": [
+          {
+           "code": "3.2.3",
+           "text": "Explain how fiscal policy changes income and spending in the economy."
+          },
+          {
+           "code": "3.2.3.1",
+           "text": "Explain how fiscal policy helps achieve government objectives."
+          },
+          {
+           "code": null,
+           "text": "Explain a balanced budget and the consequences of a budget surplus or deficit."
+          }
+         ]
+        },
+        {
+         "id": "monetary-policy",
+         "title": "Monetary policy",
+         "outcomes": [
+          {
+           "code": "3.2.3.2",
+           "text": "Explain what monetary policy is."
+          },
+          {
+           "code": null,
+           "text": "Explain how monetary policy controls inflation and serves other objectives."
+          }
+         ]
+        },
+        {
+         "id": "supply-side-policies",
+         "title": "Supply-side policies",
+         "outcomes": [
+          {
+           "code": "3.2.3.3",
+           "text": "Evaluate supply-side policies: education and training, lower taxes, trade union reform and privatisation or deregulation."
+          },
+          {
+           "code": null,
+           "text": "Explain how supply-side policies help achieve government objectives."
+          }
+         ]
+        },
+        {
+         "id": "policies-for-externalities",
+         "title": "Policies for externalities",
+         "outcomes": [
+          {
+           "code": "3.2.3.4",
+           "text": "Describe government policies to influence positive and negative externalities."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "3-2-4-international-trade-and-the-global-economy",
+       "title": "3.2.4 International trade and the global economy",
+       "subtopics": [
+        {
+         "id": "why-countries-trade",
+         "title": "Why countries trade",
+         "outcomes": [
+          {
+           "code": "3.2.4",
+           "text": "Explain the importance of trade to economies and to the UK."
+          },
+          {
+           "code": "3.2.4.1",
+           "text": "Describe the UK's main exports and imports."
+          },
+          {
+           "code": null,
+           "text": "Explain the advantages of trade and the consequences of global interdependence."
+          }
+         ]
+        },
+        {
+         "id": "exchange-rates",
+         "title": "Exchange rates",
+         "outcomes": [
+          {
+           "code": "3.2.4.2",
+           "text": "Explain how demand and supply determine exchange rates."
+          },
+          {
+           "code": null,
+           "text": "Explain how exchange rate changes affect consumers and producers."
+          }
+         ]
+        },
+        {
+         "id": "free-trade-agreements",
+         "title": "Free-trade agreements",
+         "outcomes": [
+          {
+           "code": "3.2.4.3",
+           "text": "Give arguments for and against free trade."
+          },
+          {
+           "code": null,
+           "text": "Explain the significance and benefits of free-trade agreements such as the EU."
+          }
+         ]
+        },
+        {
+         "id": "globalisation",
+         "title": "Globalisation",
+         "outcomes": [
+          {
+           "code": "3.2.4.4",
+           "text": "Describe the factors behind globalisation, including technology and multinational companies."
+          },
+          {
+           "code": null,
+           "text": "Explain the benefits and drawbacks of globalisation for producers, workers and consumers in the UK and less developed countries."
+          },
+          {
+           "code": null,
+           "text": "Explain moral, ethical and sustainability issues in international trade."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "3-2-5-the-role-of-money-and-financial-markets",
+       "title": "3.2.5 The role of money and financial markets",
+       "subtopics": [
+        {
+         "id": "the-role-of-money",
+         "title": "The role of money",
+         "outcomes": [
+          {
+           "code": "3.2.5",
+           "text": "Describe money's functions: deferred payment, store of value, unit of account and medium of exchange."
+          },
+          {
+           "code": "3.2.5.1",
+           "text": "Explain that money is more than notes and coins in circulation."
+          }
+         ]
+        },
+        {
+         "id": "the-financial-sector",
+         "title": "The financial sector",
+         "outcomes": [
+          {
+           "code": "3.2.5.2",
+           "text": "Identify the Bank of England, commercial banks and building societies."
+          },
+          {
+           "code": null,
+           "text": "Explain the Bank of England's role in influencing interest rates and keeping the system stable."
+          },
+          {
+           "code": null,
+           "text": "Explain how high street banks fund investment and serve savers and borrowers."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "build": {
+  "builtAt": "2026-10-14T10:20:47.844Z",
+  "model": "claude-agent",
+  "usd": 0,
+  "expectedCodes": 52,
+  "coverage": 1,
+  "missingCodes": [],
+  "counts": {
+   "grades": 1,
+   "units": 2,
+   "topics": 11,
+   "subtopics": 39,
+   "outcomes": 115
+  },
+  "warnings": [
+   "grade Year 10 has no content",
+   "grade Year 11 has no content",
+   "unexpected grade label \"all\""
+  ]
+ }
+}

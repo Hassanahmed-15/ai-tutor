@@ -1,0 +1,210 @@
+{
+ "id": "cie-igcse-core-english-as-second-language-0465-2024-2026",
+ "region": "INTL",
+ "framework": "Cambridge IGCSE Core English as a Second Language (0465) syllabus 2024–2026",
+ "board": "Cambridge",
+ "qualification": "IGCSE",
+ "subject": "Core English as a Second Language",
+ "syllabusCode": "0465",
+ "gradeSystem": "course",
+ "source": {
+  "urls": [
+   "https://www.cambridgeinternational.org/Images/662459-2024-2026-syllabus.pdf",
+   "https://www.cambridgeinternational.org/programmes-and-qualifications/cambridge-igcse-core-english-as-second-language-0465/"
+  ],
+  "publisher": "Cambridge University Press & Assessment (Cambridge International Education)",
+  "licence": "© Cambridge University Press & Assessment; structure + our own wording only",
+  "firstExam": "2024"
+ },
+ "grades": [
+  {
+   "grade": "IGCSE",
+   "units": [
+    {
+     "id": "igcse-reading",
+     "title": "[IGCSE] Reading",
+     "topics": [
+      {
+       "id": "content",
+       "title": "Content",
+       "subtopics": [
+        {
+         "id": "find-facts-and-ideas",
+         "title": "Find Facts and Ideas",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Identify and understand factual information, ideas and arguments in varied texts."
+          }
+         ]
+        },
+        {
+         "id": "connect-opinions-across-texts",
+         "title": "Connect Opinions Across Texts",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Identify and understand ideas, opinions and attitudes, including how they connect across texts."
+          }
+         ]
+        },
+        {
+         "id": "understand-implied-meaning",
+         "title": "Understand Implied Meaning",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Understand implied meanings, including unstated purposes, opinions, attitudes and feelings."
+          }
+         ]
+        },
+        {
+         "id": "work-out-word-meaning",
+         "title": "Work Out Word Meaning",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Work out the meaning of unfamiliar words and phrases using surrounding information and inference."
+          }
+         ]
+        },
+        {
+         "id": "select-relevant-details",
+         "title": "Select Relevant Details",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Select relevant details by applying skimming, scanning, careful reading and question-focused prediction strategies."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "igcse-writing",
+     "title": "[IGCSE] Writing",
+     "topics": [
+      {
+       "id": "content",
+       "title": "Content",
+       "subtopics": [
+        {
+         "id": "communicate-clearly",
+         "title": "Communicate Clearly",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Communicate factual information, ideas and arguments clearly, developing them with appropriate detail."
+          },
+          {
+           "code": null,
+           "text": "Produce accurate written texts demonstrating control of grammar, vocabulary, punctuation and spelling."
+          }
+         ]
+        },
+        {
+         "id": "organise-ideas",
+         "title": "Organise Ideas",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Select and organise relevant information and ideas coherently, using suitable linking devices and paragraphing."
+          }
+         ]
+        },
+        {
+         "id": "vary-language",
+         "title": "Vary Language",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Produce writing using varied grammatical and lexical structures while avoiding unnecessary repetition."
+          }
+         ]
+        },
+        {
+         "id": "match-purpose-and-audience",
+         "title": "Match Purpose and Audience",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Respond appropriately to written stimuli by using suitable register, style and format for purpose and audience."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "igcse-listening",
+     "title": "[IGCSE] Listening",
+     "topics": [
+      {
+       "id": "content",
+       "title": "Content",
+       "subtopics": [
+        {
+         "id": "find-facts-and-information",
+         "title": "Find Facts and Information",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Identify and understand factual details and specific information in varied spoken contexts and sources."
+          }
+         ]
+        },
+        {
+         "id": "understand-speakers-views",
+         "title": "Understand Speakers’ Views",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Identify and understand speakers’ ideas, opinions, feelings and attitudes in varied spoken contexts."
+          },
+          {
+           "code": null,
+           "text": "Understand connections between speakers’ ideas, opinions, feelings and attitudes in spoken texts."
+          }
+         ]
+        },
+        {
+         "id": "infer-hidden-meanings",
+         "title": "Infer Hidden Meanings",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Understand implied meanings, including unstated purposes, intentions, attitudes and feelings."
+          },
+          {
+           "code": null,
+           "text": "Deduce unfamiliar word or phrase meanings from surrounding spoken information and inference."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "build": {
+  "builtAt": "2026-10-14T07:53:14.983Z",
+  "model": "gpt-5.6-luna",
+  "usd": 0.0046,
+  "expectedCodes": null,
+  "coverage": null,
+  "missingCodes": [],
+  "counts": {
+   "grades": 1,
+   "units": 3,
+   "topics": 3,
+   "subtopics": 12,
+   "outcomes": 15
+  },
+  "warnings": []
+ }
+}

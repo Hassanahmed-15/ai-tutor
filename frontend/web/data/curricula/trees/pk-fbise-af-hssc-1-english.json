@@ -1,0 +1,707 @@
+{
+ "id": "pk-fbise-af-hssc-1-english",
+ "region": "PK",
+ "framework": "FBISE Assessment Framework (National Curriculum of Pakistan 2022-23)",
+ "board": "FBISE",
+ "qualification": "HSSC-I",
+ "subject": "English",
+ "syllabusCode": null,
+ "gradeSystem": "grade",
+ "source": {
+  "urls": [
+   "https://www.fbise.edu.pk/ModelPaper/2025/Assessment%20Frameworks/HSSC-I/Final%20Assessment%20Framework%20%2B%20Model%20Question%20Paper%20English%20HSSC-I.pdf"
+  ],
+  "publisher": "Federal Board of Intermediate and Secondary Education",
+  "licence": "Government publication; structure + our own wording only",
+  "firstExam": "2025"
+ },
+ "grades": [
+  {
+   "grade": "11",
+   "units": [
+    {
+     "id": "a-oral-communication-skills",
+     "title": "A: Oral Communication Skills",
+     "topics": [
+      {
+       "id": "oral-communication",
+       "title": "Oral communication",
+       "subtopics": [
+        {
+         "id": "drama-and-role-play",
+         "title": "Drama and role play",
+         "outcomes": [
+          {
+           "code": "E-11-A1-01",
+           "text": "Take on roles and use dramatic techniques confidently in a four to five act play."
+          },
+          {
+           "code": "E-11-A2-04",
+           "text": "Perform a drama or role play showing different roles through deliberate choice of speech."
+          }
+         ]
+        },
+        {
+         "id": "responding-to-spoken-texts",
+         "title": "Responding to spoken texts",
+         "outcomes": [
+          {
+           "code": "E-11-A1-02",
+           "text": "Respond to spoken texts for different purposes, including arguments and discussions."
+          }
+         ]
+        },
+        {
+         "id": "listening-and-speaking-in-groups",
+         "title": "Listening and speaking in groups",
+         "outcomes": [
+          {
+           "code": "E-11-A2-01",
+           "text": "Listen attentively in groups, take turns and speak with standard pronunciation."
+          },
+          {
+           "code": "E-11-A2-02",
+           "text": "Answer questions asked for a range of communicative purposes."
+          },
+          {
+           "code": "E-11-A2-03",
+           "text": "Ask complex questions suited to different audiences."
+          }
+         ]
+        },
+        {
+         "id": "speaking-and-discussion",
+         "title": "Speaking and discussion",
+         "outcomes": [
+          {
+           "code": "E-11-A3-01",
+           "text": "Speak fluently in many settings such as panels and dialogues, for purposes like exposition and argument."
+          },
+          {
+           "code": "E-11-A3-02",
+           "text": "Join one-to-one, group and teacher-led discussions with varied partners on grade-level topics."
+          },
+          {
+           "code": "E-11-A4-01",
+           "text": "Hold extended discussions, weighing others' views and presenting your own clearly."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "b1-reading-and-critical-thinking",
+     "title": "B1: Reading and Critical Thinking",
+     "topics": [
+      {
+       "id": "reading-critically",
+       "title": "Reading critically",
+       "subtopics": [
+        {
+         "id": "reading-aloud",
+         "title": "Reading aloud",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Read fiction and non-fiction aloud with accurate pronunciation, pitch and voice variation."
+          }
+         ]
+        },
+        {
+         "id": "asking-questions-of-a-text",
+         "title": "Asking questions of a text",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Ask and answer higher-order questions about an author's choices to guide and check reading."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "b2-reading-for-understanding",
+     "title": "B2: Reading for Understanding",
+     "topics": [
+      {
+       "id": "reading-for-understanding",
+       "title": "Reading for understanding",
+       "subtopics": [
+        {
+         "id": "author-s-language-and-structure",
+         "title": "Author's language and structure",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Judge how authors use language, including figurative language, and its effect on the reader; justify opinions."
+          },
+          {
+           "code": "E-11-B2-02",
+           "text": "Analyse how an author's choices in structuring parts of a text shape its meaning and impact."
+          },
+          {
+           "code": "E-11-B2-03",
+           "text": "Critique different interpretations of a reading."
+          }
+         ]
+        },
+        {
+         "id": "organisational-patterns",
+         "title": "Organisational patterns",
+         "outcomes": [
+          {
+           "code": "E-11-B2-04",
+           "text": "Identify sequence, comparison-contrast, cause-effect, problem-solution and reasoning patterns in a text."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "b3-reading-for-meaning",
+     "title": "B3: Reading for Meaning",
+     "topics": [
+      {
+       "id": "reading-for-meaning",
+       "title": "Reading for meaning",
+       "subtopics": [
+        {
+         "id": "summary-and-implied-meaning",
+         "title": "Summary and implied meaning",
+         "outcomes": [
+          {
+           "code": "E-11-B3-01",
+           "text": "Give an objective summary of fiction, non-fiction and other texts."
+          },
+          {
+           "code": "E-11-B3-02",
+           "text": "Use pre-reading and while-reading strategies to explore layers of meaning, bias and opinion."
+          }
+         ]
+        },
+        {
+         "id": "predicting-and-inferring",
+         "title": "Predicting and inferring",
+         "outcomes": [
+          {
+           "code": "E-11-B3-03",
+           "text": "Decide whether predictions about a text hold or need revising, and explain why."
+          }
+         ]
+        },
+        {
+         "id": "fact-opinion-and-cause",
+         "title": "Fact, opinion and cause",
+         "outcomes": [
+          {
+           "code": "E-11-B3-04",
+           "text": "Separate cause from effect and fact from opinion or bias in informational texts."
+          }
+         ]
+        },
+        {
+         "id": "skimming-and-scanning",
+         "title": "Skimming and scanning",
+         "outcomes": [
+          {
+           "code": "E-11-B3-05",
+           "text": "Skim and scan to find main points, writer's purpose, audience and theme."
+          }
+         ]
+        },
+        {
+         "id": "story-drama-and-poetry-elements",
+         "title": "Story, drama and poetry elements",
+         "outcomes": [
+          {
+           "code": "E-11-B3-06",
+           "text": "Examine how an author develops and contrasts characters' or narrators' viewpoints; critique plot development."
+          },
+          {
+           "code": "E-11-B3-07",
+           "text": "Evaluate story and drama elements, rhyme schemes, figurative language, plot stages and complex characters."
+          }
+         ]
+        },
+        {
+         "id": "central-ideas-and-note-making",
+         "title": "Central ideas and note-making",
+         "outcomes": [
+          {
+           "code": "E-11-B3-08",
+           "text": "Evaluate two or more central ideas and how they develop and interact; make mind maps and convert text to tables or flowcharts."
+          }
+         ]
+        },
+        {
+         "id": "precis-and-personal-response",
+         "title": "Precis and personal response",
+         "outcomes": [
+          {
+           "code": "E-11-B3-09",
+           "text": "Practise writing a precis."
+          },
+          {
+           "code": "E-11-B3-10",
+           "text": "Give an informed personal and analytical response to a text, with textual support."
+          }
+         ]
+        },
+        {
+         "id": "essays-letters-and-point-of-view",
+         "title": "Essays, letters and point of view",
+         "outcomes": [
+          {
+           "code": "E-11-B3-11",
+           "text": "Read essays, letters, reports and biographies analytically, and evaluate an author's point of view and purpose."
+          }
+         ]
+        },
+        {
+         "id": "paraphrasing-and-inference",
+         "title": "Paraphrasing and inference",
+         "outcomes": [
+          {
+           "code": "E-11-B3-12",
+           "text": "Paraphrase complex ideas using correct structure, transitions and punctuation, and draw inferences from context and viewpoint."
+          }
+         ]
+        },
+        {
+         "id": "visual-information-and-interpretations",
+         "title": "Visual information and interpretations",
+         "outcomes": [
+          {
+           "code": "E-11-B3-13",
+           "text": "Combine information from maps, graphs, charts and diagrams to understand a text."
+          },
+          {
+           "code": "E-11-B3-14",
+           "text": "Compare multiple interpretations of a story, drama or poem across print and multimedia versions."
+          }
+         ]
+        },
+        {
+         "id": "text-types-and-evidence",
+         "title": "Text types and evidence",
+         "outcomes": [
+          {
+           "code": "E-11-B3-15",
+           "text": "Read and analyse many text types, from poetry and recounts to procedures, reports, letters, drama and expositions."
+          },
+          {
+           "code": "E-11-B3-16",
+           "text": "Support analysis with strong textual evidence, both stated and inferred."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "c1-vocabulary",
+     "title": "C1: Vocabulary",
+     "topics": [
+      {
+       "id": "vocabulary",
+       "title": "Vocabulary",
+       "subtopics": [
+        {
+         "id": "word-meaning-and-word-parts",
+         "title": "Word meaning and word parts",
+         "outcomes": [
+          {
+           "code": "E-11-C1-01",
+           "text": "Work out unknown and multiple-meaning words using context, word-form patterns and reference tools."
+          }
+         ]
+        },
+        {
+         "id": "idioms-and-phrases",
+         "title": "Idioms and phrases",
+         "outcomes": [
+          {
+           "code": "E-11-C1-02",
+           "text": "Understand and use contemporary idioms and proverbs in texts and speech."
+          },
+          {
+           "code": null,
+           "text": "Identify and use adjectival, prepositional and adverbial phrases in reading and writing."
+          }
+         ]
+        },
+        {
+         "id": "connotation-and-figures-of-speech",
+         "title": "Connotation and figures of speech",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Tell connotative from denotative meanings and use them appropriately."
+          },
+          {
+           "code": "E-11-C1-05",
+           "text": "Interpret figures of speech such as euphemism and oxymoron and shades of word meaning."
+          },
+          {
+           "code": null,
+           "text": "Gather and use suitable words and phrases for reading, writing, speaking and listening."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "c2-grammar",
+     "title": "C2: Grammar",
+     "topics": [
+      {
+       "id": "grammar",
+       "title": "Grammar",
+       "subtopics": [
+        {
+         "id": "parts-of-speech",
+         "title": "Parts of speech",
+         "outcomes": [
+          {
+           "code": "E-11-C2-01",
+           "text": "Know and apply the parts of speech in speech and writing of varying complexity."
+          },
+          {
+           "code": "E-11-C2-02",
+           "text": "Use parts of speech, tenses and sentence structure to make effective choices of meaning and style."
+          }
+         ]
+        },
+        {
+         "id": "prepositions-and-conjunctions",
+         "title": "Prepositions and conjunctions",
+         "outcomes": [
+          {
+           "code": "E-11-C2-03",
+           "text": "Identify and use compound prepositions and prepositional phrases in writing."
+          },
+          {
+           "code": "E-11-C2-04",
+           "text": "Use subordinating, correlative conjunctions and transitional devices for effect."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "c3-punctuation",
+     "title": "C3: Punctuation",
+     "topics": [
+      {
+       "id": "punctuation",
+       "title": "Punctuation",
+       "subtopics": [
+        {
+         "id": "punctuation-capitalisation-and-spelling",
+         "title": "Punctuation, capitalisation and spelling",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Use standard capitalisation, punctuation, hyphenation and spelling in different kinds of writing."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "c4-tenses",
+     "title": "C4: Tenses",
+     "topics": [
+      {
+       "id": "tenses",
+       "title": "Tenses",
+       "subtopics": [
+        {
+         "id": "tenses-and-verb-forms",
+         "title": "Tenses and verb forms",
+         "outcomes": [
+          {
+           "code": "E-11-C4-01",
+           "text": "Use all tenses, gerunds, infinitives, participles and time aspect correctly."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "c5-sentence-structure",
+     "title": "C5: Sentence Structure",
+     "topics": [
+      {
+       "id": "sentence-structure",
+       "title": "Sentence structure",
+       "subtopics": [
+        {
+         "id": "sentence-patterns",
+         "title": "Sentence patterns",
+         "outcomes": [
+          {
+           "code": "E-11-C5-01",
+           "text": "Build sentences using patterns suited to the genre."
+          }
+         ]
+        },
+        {
+         "id": "complex-sentences-and-paragraphs",
+         "title": "Complex sentences and paragraphs",
+         "outcomes": [
+          {
+           "code": "E-11-C5-02",
+           "text": "Build complex sentences and paragraphs with main and subordinate clauses, transitions and correct punctuation."
+          },
+          {
+           "code": "E-11-C5-03",
+           "text": "Write complex paragraphs of varying difficulty using clauses and transitional devices."
+          }
+         ]
+        },
+        {
+         "id": "direct-and-indirect-speech",
+         "title": "Direct and indirect speech",
+         "outcomes": [
+          {
+           "code": "E-11-C5-04",
+           "text": "Change tense and form when turning direct speech into indirect in narrative paragraphs."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "d1-writing-readiness-and-fluency",
+     "title": "D1: Writing Readiness and Fluency",
+     "topics": [
+      {
+       "id": "writing-readiness",
+       "title": "Writing readiness",
+       "subtopics": [
+        {
+         "id": "editing-and-proofreading",
+         "title": "Editing and proofreading",
+         "outcomes": [
+          {
+           "code": "E-11-D1-01",
+           "text": "Edit and proofread a range of texts in different contexts."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "d2-writing-for-understanding",
+     "title": "D2: Writing for Understanding",
+     "topics": [
+      {
+       "id": "writing-for-understanding",
+       "title": "Writing for understanding",
+       "subtopics": [
+        {
+         "id": "clear-and-coherent-writing",
+         "title": "Clear and coherent writing",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Write clearly, with development, organisation and style fitting the task, purpose and audience."
+          }
+         ]
+        },
+        {
+         "id": "drafting-and-revising",
+         "title": "Drafting and revising",
+         "outcomes": [
+          {
+           "code": "E-11-D2-03",
+           "text": "Write a detailed first draft, then proofread and edit it for purpose and audience."
+          },
+          {
+           "code": "E-11-D2-04",
+           "text": "Write and self- or peer-check the final draft; keep paragraphs on topic with hooks and lead-ins."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "d3-writing-for-meaning",
+     "title": "D3: Writing for Meaning",
+     "topics": [
+      {
+       "id": "writing-for-meaning",
+       "title": "Writing for meaning",
+       "subtopics": [
+        {
+         "id": "essays-stories-and-narratives",
+         "title": "Essays, stories and narratives",
+         "outcomes": [
+          {
+           "code": "E-11-D3-01",
+           "text": "Write multi-paragraph essays, stories, poems or playscripts with correct mechanics."
+          },
+          {
+           "code": "E-11-D3-02",
+           "text": "Write narratives of real or imagined events using dialogue, pacing, description and ordered sequence."
+          }
+         ]
+        },
+        {
+         "id": "informative-and-argumentative-writing",
+         "title": "Informative and argumentative writing",
+         "outcomes": [
+          {
+           "code": "E-11-D3-03",
+           "text": "Write informative texts that explain complex ideas with organised structure, precise language and a formal style."
+          },
+          {
+           "code": "E-11-D3-04",
+           "text": "Write arguments that support claims with reasons and evidence, linked by cohesive wording."
+          }
+         ]
+        },
+        {
+         "id": "descriptions-and-letters",
+         "title": "Descriptions and letters",
+         "outcomes": [
+          {
+           "code": "E-11-D3-05",
+           "text": "Write a descriptive composition."
+          },
+          {
+           "code": "E-11-D3-06",
+           "text": "Write a formal letter for academic and professional purposes."
+          }
+         ]
+        },
+        {
+         "id": "research-reviews-and-precis",
+         "title": "Research, reviews and precis",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Gather information from reliable sources, following research ethics, to write and present an assignment."
+          },
+          {
+           "code": "E-11-D3-08",
+           "text": "Write a book review report."
+          },
+          {
+           "code": "E-11-D3-09",
+           "text": "Write a precis effectively."
+          }
+         ]
+        },
+        {
+         "id": "paraphrase-summary-and-free-writing",
+         "title": "Paraphrase, summary and free writing",
+         "outcomes": [
+          {
+           "code": "E-11-D3-10",
+           "text": "Paraphrase a poem."
+          },
+          {
+           "code": "E-11-D3-11",
+           "text": "Write an objective summary using summary skills."
+          },
+          {
+           "code": "E-11-D3-12",
+           "text": "Write several paragraphs of free writing for fluency, creativity or pleasure."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "build": {
+  "builtAt": "2026-10-14T08:04:56.499Z",
+  "model": "claude-agent",
+  "usd": 0,
+  "expectedCodes": 97,
+  "coverage": 0.5567010309278351,
+  "missingCodes": [
+   "E-12-A1-01",
+   "E-12-A1-02",
+   "E-12-A2-01",
+   "E-12-A2-02",
+   "E-12-A2-04",
+   "E-12-A3-02",
+   "E-12-A4-01",
+   "E-12-B2-02",
+   "E-12-B2-03",
+   "E-12-B2-04",
+   "E-12-B3-01",
+   "E-12-B3-02",
+   "E-12-B3-04",
+   "E-12-B3-06",
+   "E-12-B3-07",
+   "E-12-B3-08",
+   "E-12-B3-11",
+   "E-12-B3-12",
+   "E-12-B3-13",
+   "E-12-B3-14",
+   "E-12-B3-15",
+   "E-12-B3-16",
+   "E-12-C1-01",
+   "E-12-C1-02",
+   "E-12-C2-01",
+   "E-12-C2-02",
+   "E-12-C2-03",
+   "E-12-C2-04",
+   "E-12-C4-01",
+   "E-12-D1-01",
+   "E-12-D2-03",
+   "E-12-D2-04",
+   "E-12-D3-01",
+   "E-12-D3-02",
+   "E-12-D3-03",
+   "E-12-D3-04",
+   "E-12-D3-05",
+   "E-12-D3-06",
+   "E-12-D3-07",
+   "E-12-D3-08",
+   "E-12-D3-10",
+   "E-12-D3-11",
+   "E-12-D3-12"
+  ],
+  "counts": {
+   "grades": 1,
+   "units": 12,
+   "topics": 12,
+   "subtopics": 37,
+   "outcomes": 63
+  },
+  "warnings": [
+   "unit \"C3: Punctuation\" (grade 11) has a single outcome",
+   "unit \"C4: Tenses\" (grade 11) has a single outcome",
+   "unit \"D1: Writing Readiness and Fluency\" (grade 11) has a single outcome"
+  ]
+ }
+}

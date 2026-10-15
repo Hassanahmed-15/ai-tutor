@@ -1,0 +1,213 @@
+{
+ "id": "ib-myp-physical-and-health-education",
+ "region": "INTL",
+ "framework": "International Baccalaureate Middle Years Programme (MYP)",
+ "board": "IB",
+ "qualification": "IB Middle Years Programme",
+ "subject": "Physical and health education (MYP subject group)",
+ "syllabusCode": null,
+ "gradeSystem": "year",
+ "source": {
+  "urls": [
+   "https://www.ibo.org/globalassets/new-structure/brochures-and-infographics/pdfs/myp-brief_phys-health-ed_2015.pdf",
+   "https://web.archive.org/web/20230206022706id_/https://www.ibo.org/globalassets/new-structure/brochures-and-infographics/pdfs/myp-brief_phys-health-ed_2015.pdf"
+  ],
+  "publisher": "International Baccalaureate Organization",
+  "licence": "(c) International Baccalaureate Organization; all rights reserved, no open licence. ibo.org terms 1.8: IB copyrighted materials are licensed only under the IB's terms or a signed agreement; 'Any use not expressly permitted is prohibited unless special permission is obtained in writing from the IB'; 1.9: nothing on the IB websites confers any licence. Briefs are free public marketing summaries: take topic structure only, write everything in our own words, never reproduce brief text, and do not use IB logos/trade marks. Full subject guides are sold to schools and were NOT used. Terms: https://www.ibo.org/terms-and-conditions/ and https://www.ibo.org/copyright",
+  "firstExam": "2014"
+ },
+ "grades": [
+  {
+   "grade": "all",
+   "units": [
+    {
+     "id": "physical-and-health-education-strands",
+     "title": "Physical and health education strands",
+     "topics": [
+      {
+       "id": "knowing-and-understanding",
+       "title": "Knowing and understanding",
+       "subtopics": [
+        {
+         "id": "health-and-physical-activity-knowledge",
+         "title": "Health and physical activity knowledge",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Build knowledge and understanding of health and physical activity."
+          },
+          {
+           "code": null,
+           "text": "Use that knowledge to identify and solve problems in physical and health education."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "planning-for-performance",
+       "title": "Planning for performance",
+       "subtopics": [
+        {
+         "id": "planning-to-improve",
+         "title": "Planning to improve",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Design a plan through inquiry to improve performance."
+          },
+          {
+           "code": null,
+           "text": "Analyse and evaluate the plan."
+          },
+          {
+           "code": null,
+           "text": "Carry out the plan and perform."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "applying-and-performing",
+       "title": "Applying and performing",
+       "subtopics": [
+        {
+         "id": "skills-in-activity",
+         "title": "Skills in activity",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Develop practical skills and techniques in a variety of physical activities."
+          },
+          {
+           "code": null,
+           "text": "Apply strategies and movement concepts when taking part in physical activities."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "reflecting-and-improving-performance",
+       "title": "Reflecting and improving performance",
+       "subtopics": [
+        {
+         "id": "reflection-and-responsibility",
+         "title": "Reflection and responsibility",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Improve personal and social development."
+          },
+          {
+           "code": null,
+           "text": "Set goals and take responsible action."
+          },
+          {
+           "code": null,
+           "text": "Reflect on your own performance and that of others."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "concepts-and-contexts-in-physical-and-health-edu",
+     "title": "Concepts and contexts in physical and health education",
+     "topics": [
+      {
+       "id": "key-and-related-concepts",
+       "title": "Key and related concepts",
+       "subtopics": [
+        {
+         "id": "concepts-of-phe",
+         "title": "Concepts of PHE",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Use key concepts of change, communication and relationships to frame inquiry."
+          },
+          {
+           "code": null,
+           "text": "Use related concepts such as energy, balance and refinement."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "global-contexts",
+       "title": "Global contexts",
+       "subtopics": [
+        {
+         "id": "contexts-for-phe",
+         "title": "Contexts for PHE",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explore physical and health education through the contexts of identities and relationships, orientation in space and time, and personal and cultural expression."
+          },
+          {
+           "code": null,
+           "text": "Explore it through scientific and technical innovation, globalization and sustainability, and fairness and development."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "healthy-living-and-collaboration",
+       "title": "Healthy living and collaboration",
+       "subtopics": [
+        {
+         "id": "healthy-lifestyle-and-relationships",
+         "title": "Healthy lifestyle and relationships",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Understand the value of being physically active."
+          },
+          {
+           "code": null,
+           "text": "Make healthy and informed life choices to achieve and maintain a healthy lifestyle."
+          },
+          {
+           "code": null,
+           "text": "Collaborate and communicate effectively and build positive relationships with social responsibility."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "build": {
+  "builtAt": "2026-10-14T10:54:35.902Z",
+  "model": "claude-agent",
+  "usd": 0,
+  "expectedCodes": null,
+  "coverage": null,
+  "missingCodes": [],
+  "counts": {
+   "grades": 1,
+   "units": 2,
+   "topics": 7,
+   "subtopics": 7,
+   "outcomes": 17
+  },
+  "warnings": [
+   "grade MYP 1 has no content",
+   "grade MYP 2 has no content",
+   "grade MYP 3 has no content",
+   "grade MYP 4 has no content",
+   "grade MYP 5 has no content",
+   "unexpected grade label \"all\""
+  ]
+ }
+}

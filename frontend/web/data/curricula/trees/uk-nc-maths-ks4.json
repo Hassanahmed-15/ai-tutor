@@ -1,0 +1,674 @@
+{
+ "id": "uk-nc-maths-ks4",
+ "region": "UK",
+ "framework": "National Curriculum in England (2014)",
+ "board": "Department for Education",
+ "qualification": "Secondary",
+ "subject": "Mathematics",
+ "syllabusCode": null,
+ "gradeSystem": "key-stage",
+ "source": {
+  "urls": [
+   "https://assets.publishing.service.gov.uk/media/5a7dc9dced915d2ac884d8ef/KS4_maths_PoS_FINAL_170714.pdf",
+   "https://www.gov.uk/government/publications/national-curriculum-in-england-mathematics-programmes-of-study"
+  ],
+  "publisher": "Department for Education",
+  "licence": "Open Government Licence v3.0 (Crown copyright)",
+  "firstExam": "2015"
+ },
+ "grades": [
+  {
+   "grade": "KS4",
+   "units": [
+    {
+     "id": "number",
+     "title": "Number",
+     "topics": [
+      {
+       "id": "number",
+       "title": "Number",
+       "subtopics": [
+        {
+         "id": "systematic-listing",
+         "title": "Systematic listing",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Use systematic listing strategies and the product rule for counting."
+          }
+         ]
+        },
+        {
+         "id": "estimating-powers-and-roots",
+         "title": "Estimating powers and roots",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Estimate powers and roots of any positive number."
+          }
+         ]
+        },
+        {
+         "id": "roots-and-indices",
+         "title": "Roots and indices",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Calculate with roots and with integer and fractional indices."
+          }
+         ]
+        },
+        {
+         "id": "exact-values-and-surds",
+         "title": "Exact values and surds",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Calculate exactly with fractions, surds and multiples of pi; simplify surds and rationalise denominators."
+          }
+         ]
+        },
+        {
+         "id": "standard-form",
+         "title": "Standard form",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Calculate with numbers in standard form."
+          }
+         ]
+        },
+        {
+         "id": "recurring-decimals",
+         "title": "Recurring decimals",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Convert recurring decimals to fractions and back."
+          }
+         ]
+        },
+        {
+         "id": "fractions-in-ratio",
+         "title": "Fractions in ratio",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Identify and work with fractions in ratio problems."
+          }
+         ]
+        },
+        {
+         "id": "limits-of-accuracy",
+         "title": "Limits of accuracy",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Apply limits of accuracy when rounding or truncating, including upper and lower bounds."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "algebra",
+     "title": "Algebra",
+     "topics": [
+      {
+       "id": "algebra",
+       "title": "Algebra",
+       "subtopics": [
+        {
+         "id": "factorising-quadratics",
+         "title": "Factorising quadratics",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Factorise quadratics, including the difference of two squares and ax^2+bx+c."
+          }
+         ]
+        },
+        {
+         "id": "laws-of-indices",
+         "title": "Laws of indices",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Simplify expressions with sums, products and powers using the laws of indices."
+          }
+         ]
+        },
+        {
+         "id": "equations-and-identities",
+         "title": "Equations and identities",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Tell an equation from an identity and use algebra to argue and prove."
+          }
+         ]
+        },
+        {
+         "id": "functions",
+         "title": "Functions",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Interpret expressions as functions, inverse functions and composite functions."
+          }
+         ]
+        },
+        {
+         "id": "straight-lines",
+         "title": "Straight lines",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Use y=mx+c for parallel and perpendicular lines and find the equation of a line from two points or a point and gradient."
+          }
+         ]
+        },
+        {
+         "id": "quadratic-graphs",
+         "title": "Quadratic graphs",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Identify roots, intercepts and turning points of quadratics, including by completing the square."
+          }
+         ]
+        },
+        {
+         "id": "graphs-of-functions",
+         "title": "Graphs of functions",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Recognise and sketch linear, quadratic, cubic, reciprocal, exponential and trigonometric graphs."
+          }
+         ]
+        },
+        {
+         "id": "transforming-graphs",
+         "title": "Transforming graphs",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Sketch translations and reflections of a given function's graph."
+          }
+         ]
+        },
+        {
+         "id": "real-life-graphs",
+         "title": "Real-life graphs",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Plot and interpret graphs in real contexts, such as distance, speed and acceleration."
+          }
+         ]
+        },
+        {
+         "id": "gradients-and-areas-under-graphs",
+         "title": "Gradients and areas under graphs",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Estimate gradients and areas under graphs and interpret them."
+          }
+         ]
+        },
+        {
+         "id": "equation-of-a-circle",
+         "title": "Equation of a circle",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Use the equation of a circle at the origin and find a tangent equation."
+          }
+         ]
+        },
+        {
+         "id": "solving-quadratics",
+         "title": "Solving quadratics",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Solve quadratics by factorising, completing the square or the formula, and approximately by graph."
+          }
+         ]
+        },
+        {
+         "id": "simultaneous-equations",
+         "title": "Simultaneous equations",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Solve linear and linear/quadratic simultaneous equations algebraically and by graph."
+          }
+         ]
+        },
+        {
+         "id": "iteration",
+         "title": "Iteration",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Find approximate solutions to equations numerically using iteration."
+          }
+         ]
+        },
+        {
+         "id": "forming-equations",
+         "title": "Forming equations",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Translate situations into expressions, equations or simultaneous equations, solve and interpret them."
+          }
+         ]
+        },
+        {
+         "id": "inequalities",
+         "title": "Inequalities",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Solve linear and quadratic inequalities and show solutions on a number line, set notation or graph."
+          }
+         ]
+        },
+        {
+         "id": "types-of-sequence",
+         "title": "Types of sequence",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Recognise triangular, square, cube, arithmetic, Fibonacci-type, quadratic and geometric sequences."
+          }
+         ]
+        },
+        {
+         "id": "nth-term",
+         "title": "nth term",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Find the nth term of linear and quadratic sequences."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "ratio-proportion-and-rates-of-change",
+     "title": "Ratio, proportion and rates of change",
+     "topics": [
+      {
+       "id": "ratio-proportion-and-rates-of-change",
+       "title": "Ratio, proportion and rates of change",
+       "subtopics": [
+        {
+         "id": "scale-factors-and-similarity",
+         "title": "Scale factors and similarity",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Compare lengths, areas and volumes using ratio and scale factors, linked to similarity."
+          }
+         ]
+        },
+        {
+         "id": "compound-units",
+         "title": "Compound units",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Convert between compound units such as speed, density and pressure."
+          }
+         ]
+        },
+        {
+         "id": "direct-and-inverse-proportion",
+         "title": "Direct and inverse proportion",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Understand and write equations for direct and inverse proportion."
+          }
+         ]
+        },
+        {
+         "id": "gradient-as-rate-of-change",
+         "title": "Gradient as rate of change",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Interpret gradient as a rate of change, and proportion graphs."
+          }
+         ]
+        },
+        {
+         "id": "instantaneous-rate-of-change",
+         "title": "Instantaneous rate of change",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Interpret tangent and chord gradients as instantaneous and average rates of change."
+          }
+         ]
+        },
+        {
+         "id": "growth-and-decay",
+         "title": "Growth and decay",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Solve growth and decay problems, including compound interest and iterative processes."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "geometry-and-measures",
+     "title": "Geometry and measures",
+     "topics": [
+      {
+       "id": "geometry-and-measures",
+       "title": "Geometry and measures",
+       "subtopics": [
+        {
+         "id": "enlargements",
+         "title": "Enlargements",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Use fractional and negative scale factors for enlargements."
+          }
+         ]
+        },
+        {
+         "id": "combined-transformations",
+         "title": "Combined transformations",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe changes and invariance from combining rotations, reflections and translations."
+          }
+         ]
+        },
+        {
+         "id": "circle-properties",
+         "title": "Circle properties",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Apply circle definitions: centre, radius, chord, diameter, circumference, tangent, arc, sector, segment."
+          }
+         ]
+        },
+        {
+         "id": "circle-theorems",
+         "title": "Circle theorems",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Apply and prove the circle theorems."
+          }
+         ]
+        },
+        {
+         "id": "plans-and-elevations",
+         "title": "Plans and elevations",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Construct and interpret plans and elevations of 3D shapes."
+          }
+         ]
+        },
+        {
+         "id": "bearings",
+         "title": "Bearings",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Interpret and use bearings."
+          }
+         ]
+        },
+        {
+         "id": "arcs-and-sectors",
+         "title": "Arcs and sectors",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Calculate arc lengths, sector angles and sector areas."
+          }
+         ]
+        },
+        {
+         "id": "surface-area-and-volume",
+         "title": "Surface area and volume",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Calculate surface areas and volumes of spheres, pyramids, cones and composite solids."
+          }
+         ]
+        },
+        {
+         "id": "congruence-and-similarity",
+         "title": "Congruence and similarity",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Apply congruence and similarity, including length, area and volume relationships."
+          }
+         ]
+        },
+        {
+         "id": "pythagoras-and-right-angled-trigonometry",
+         "title": "Pythagoras and right-angled trigonometry",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Use Pythagoras and trigonometric ratios for lengths and angles in 2D and 3D."
+          }
+         ]
+        },
+        {
+         "id": "exact-trigonometric-values",
+         "title": "Exact trigonometric values",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Know exact sin, cos and tan values for key angles."
+          }
+         ]
+        },
+        {
+         "id": "sine-and-cosine-rules",
+         "title": "Sine and cosine rules",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Use the sine rule, cosine rule and area formula for any triangle."
+          }
+         ]
+        },
+        {
+         "id": "vectors",
+         "title": "Vectors",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe translations as vectors and add, subtract and scale vectors."
+          }
+         ]
+        },
+        {
+         "id": "vector-proof",
+         "title": "Vector proof",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Use vectors to build geometric arguments and proofs."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "probability",
+     "title": "Probability",
+     "topics": [
+      {
+       "id": "probability",
+       "title": "Probability",
+       "subtopics": [
+        {
+         "id": "sum-of-probabilities",
+         "title": "Sum of probabilities",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Use the property that probabilities of exhaustive, mutually exclusive events sum to one."
+          }
+         ]
+        },
+        {
+         "id": "experimental-probability",
+         "title": "Experimental probability",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Use probability models to predict outcomes and see sample results approach theory."
+          }
+         ]
+        },
+        {
+         "id": "combined-events",
+         "title": "Combined events",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Calculate probabilities of independent and dependent combined events using tree diagrams."
+          }
+         ]
+        },
+        {
+         "id": "conditional-probability",
+         "title": "Conditional probability",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Calculate conditional probabilities using tables, trees and Venn diagrams."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "statistics",
+     "title": "Statistics",
+     "topics": [
+      {
+       "id": "statistics",
+       "title": "Statistics",
+       "subtopics": [
+        {
+         "id": "sampling",
+         "title": "Sampling",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Infer population properties from a sample and know the limits of sampling."
+          }
+         ]
+        },
+        {
+         "id": "time-series",
+         "title": "Time series",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Interpret and construct tables and line graphs for time series."
+          }
+         ]
+        },
+        {
+         "id": "histograms-and-cumulative-frequency",
+         "title": "Histograms and cumulative frequency",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Construct and interpret histograms and cumulative frequency graphs."
+          }
+         ]
+        },
+        {
+         "id": "comparing-distributions",
+         "title": "Comparing distributions",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Compare distributions using graphs, box plots, averages, quartiles and interquartile range."
+          }
+         ]
+        },
+        {
+         "id": "describing-a-population",
+         "title": "Describing a population",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Apply statistics to describe a population."
+          }
+         ]
+        },
+        {
+         "id": "scatter-graphs",
+         "title": "Scatter graphs",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Interpret scatter graphs, correlation versus causation, lines of best fit, and interpolation and extrapolation."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "build": {
+  "builtAt": "2026-10-14T10:37:54.681Z",
+  "model": "claude-agent",
+  "usd": 0,
+  "expectedCodes": null,
+  "coverage": null,
+  "missingCodes": [],
+  "counts": {
+   "grades": 1,
+   "units": 6,
+   "topics": 6,
+   "subtopics": 56,
+   "outcomes": 56
+  },
+  "warnings": []
+ }
+}

@@ -1,0 +1,627 @@
+{
+ "id": "us-act-ccrs-science",
+ "region": "US",
+ "framework": "ACT College and Career Readiness Standards",
+ "board": "ACT",
+ "qualification": "ACT",
+ "subject": "Science",
+ "syllabusCode": null,
+ "gradeSystem": "grade",
+ "source": {
+  "urls": [
+   "https://www.act.org/content/dam/act/unsecured/documents/CCRS-ScienceStandards.pdf",
+   "https://www.act.org/standard"
+  ],
+  "publisher": "ACT, Inc.",
+  "licence": "\u00a9 ACT, Inc.; structure + our own wording only",
+  "firstExam": null
+ },
+ "grades": [
+  {
+   "grade": "all",
+   "units": [
+    {
+     "id": "interpretation-of-data-iod",
+     "title": "Interpretation of Data (IOD)",
+     "topics": [
+      {
+       "id": "score-range-13-15",
+       "title": "Score range 13-15",
+       "subtopics": [
+        {
+         "id": "reading-simple-data",
+         "title": "Reading simple data: Score range 13-15",
+         "outcomes": [
+          {
+           "code": "IOD 201",
+           "text": "Pick out one value from a simple data display such as a basic food web."
+          },
+          {
+           "code": "IOD 202",
+           "text": "Spot the basic features of a table, graph or diagram, such as the units used."
+          },
+          {
+           "code": "IOD 203",
+           "text": "Locate basic facts in a passage that describes a simple data display."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "score-range-16-19",
+       "title": "Score range 16-19",
+       "subtopics": [
+        {
+         "id": "reading-simple-data",
+         "title": "Reading simple data: Score range 16-19",
+         "outcomes": [
+          {
+           "code": "IOD 301",
+           "text": "Pick out two or more values from a simple data display."
+          },
+          {
+           "code": "IOD 302",
+           "text": "Understand basic scientific vocabulary used with data."
+          },
+          {
+           "code": "IOD 303",
+           "text": "Locate basic facts in a passage that describes a complex data display."
+          }
+         ]
+        },
+        {
+         "id": "trends-in-data",
+         "title": "Trends in data: Score range 16-19",
+         "outcomes": [
+          {
+           "code": "IOD 304",
+           "text": "Say how one variable changes as another changes in a simple data display."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "score-range-20-23",
+       "title": "Score range 20-23",
+       "subtopics": [
+        {
+         "id": "reading-simple-data",
+         "title": "Reading simple data: Score range 20-23",
+         "outcomes": [
+          {
+           "code": "IOD 401",
+           "text": "Select data from a complex display such as a phase diagram."
+          }
+         ]
+        },
+        {
+         "id": "combining-and-converting-data",
+         "title": "Combining and converting data: Score range 20-23",
+         "outcomes": [
+          {
+           "code": "IOD 402",
+           "text": "Compare or combine values from a simple display, for example ordering or summing table entries."
+          },
+          {
+           "code": "IOD 403",
+           "text": "Turn information into a table, graph or diagram."
+          }
+         ]
+        },
+        {
+         "id": "interpolation-and-extrapolation",
+         "title": "Interpolation and extrapolation: Score range 20-23",
+         "outcomes": [
+          {
+           "code": "IOD 404",
+           "text": "Estimate a value between or beyond plotted points using a simple table or graph."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "score-range-24-27",
+       "title": "Score range 24-27",
+       "subtopics": [
+        {
+         "id": "combining-and-converting-data",
+         "title": "Combining and converting data: Score range 24-27",
+         "outcomes": [
+          {
+           "code": "IOD 501",
+           "text": "Compare or combine data across two or more simple displays, such as sorting one table's data by another's scale."
+          },
+          {
+           "code": "IOD 502",
+           "text": "Compare or combine data from a complex display."
+          }
+         ]
+        },
+        {
+         "id": "trends-in-data",
+         "title": "Trends in data: Score range 24-27",
+         "outcomes": [
+          {
+           "code": "IOD 503",
+           "text": "Say how one variable changes as another changes in a complex display."
+          }
+         ]
+        },
+        {
+         "id": "mathematical-relationships-in-data",
+         "title": "Mathematical relationships in data: Score range 24-27",
+         "outcomes": [
+          {
+           "code": "IOD 504",
+           "text": "Find or use a simple relationship, such as a linear one, between data values."
+          }
+         ]
+        },
+        {
+         "id": "using-new-information",
+         "title": "Using new information: Score range 24-27",
+         "outcomes": [
+          {
+           "code": "IOD 505",
+           "text": "Analyse presented data when given extra simple information."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "score-range-28-32",
+       "title": "Score range 28-32",
+       "subtopics": [
+        {
+         "id": "combining-and-converting-data",
+         "title": "Combining and converting data: Score range 28-32",
+         "outcomes": [
+          {
+           "code": "IOD 601",
+           "text": "Combine data from a simple display with data from a complex one."
+          }
+         ]
+        },
+        {
+         "id": "mathematical-relationships-in-data",
+         "title": "Mathematical relationships in data: Score range 28-32",
+         "outcomes": [
+          {
+           "code": "IOD 602",
+           "text": "Find or use a complex relationship, such as a nonlinear one, between data values."
+          }
+         ]
+        },
+        {
+         "id": "interpolation-and-extrapolation",
+         "title": "Interpolation and extrapolation: Score range 28-32",
+         "outcomes": [
+          {
+           "code": "IOD 603",
+           "text": "Make a complex estimate between or beyond points in a table or graph."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "score-range-33-36",
+       "title": "Score range 33-36",
+       "subtopics": [
+        {
+         "id": "combining-and-converting-data",
+         "title": "Combining and converting data: Score range 33-36",
+         "outcomes": [
+          {
+           "code": "IOD 701",
+           "text": "Compare or combine data from two or more complex displays."
+          }
+         ]
+        },
+        {
+         "id": "using-new-information",
+         "title": "Using new information: Score range 33-36",
+         "outcomes": [
+          {
+           "code": "IOD 702",
+           "text": "Analyse presented data when given extra complex information."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "scientific-investigation-sin",
+     "title": "Scientific Investigation (SIN)",
+     "topics": [
+      {
+       "id": "score-range-13-15",
+       "title": "Score range 13-15",
+       "subtopics": [
+        {
+         "id": "describing-experiments",
+         "title": "Describing experiments: Score range 13-15",
+         "outcomes": [
+          {
+           "code": "SIN 201",
+           "text": "Find basic facts in a passage describing a simple experiment."
+          }
+         ]
+        },
+        {
+         "id": "tools-and-methods",
+         "title": "Tools and methods: Score range 13-15",
+         "outcomes": [
+          {
+           "code": "SIN 202",
+           "text": "Understand what the tools in a simple experiment are for."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "score-range-16-19",
+       "title": "Score range 16-19",
+       "subtopics": [
+        {
+         "id": "tools-and-methods",
+         "title": "Tools and methods: Score range 16-19",
+         "outcomes": [
+          {
+           "code": "SIN 301",
+           "text": "Understand the methods used in a simple experiment."
+          },
+          {
+           "code": "SIN 302",
+           "text": "Understand what the tools in a complex experiment are for."
+          }
+         ]
+        },
+        {
+         "id": "describing-experiments",
+         "title": "Describing experiments: Score range 16-19",
+         "outcomes": [
+          {
+           "code": "SIN 303",
+           "text": "Find basic facts in a passage describing a complex experiment."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "score-range-20-23",
+       "title": "Score range 20-23",
+       "subtopics": [
+        {
+         "id": "experimental-design",
+         "title": "Experimental design: Score range 20-23",
+         "outcomes": [
+          {
+           "code": "SIN 401",
+           "text": "Understand how a simple experiment is designed."
+          },
+          {
+           "code": "SIN 403",
+           "text": "Identify the control in an experiment."
+          }
+         ]
+        },
+        {
+         "id": "tools-and-methods",
+         "title": "Tools and methods: Score range 20-23",
+         "outcomes": [
+          {
+           "code": "SIN 402",
+           "text": "Understand the methods used in a complex experiment."
+          }
+         ]
+        },
+        {
+         "id": "comparing-experiments",
+         "title": "Comparing experiments",
+         "outcomes": [
+          {
+           "code": "SIN 404",
+           "text": "Spot similarities and differences between experiments."
+          },
+          {
+           "code": "SIN 405",
+           "text": "Work out which experiments used a given tool, method or design feature."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "score-range-24-27",
+       "title": "Score range 24-27",
+       "subtopics": [
+        {
+         "id": "experimental-design",
+         "title": "Experimental design: Score range 24-27",
+         "outcomes": [
+          {
+           "code": "SIN 501",
+           "text": "Understand how a complex experiment is designed."
+          }
+         ]
+        },
+        {
+         "id": "predicting-results",
+         "title": "Predicting results",
+         "outcomes": [
+          {
+           "code": "SIN 502",
+           "text": "Predict the outcome of an extra trial or measurement."
+          },
+          {
+           "code": "SIN 503",
+           "text": "Work out the conditions that would give specified results."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "score-range-28-32",
+       "title": "Score range 28-32",
+       "subtopics": [
+        {
+         "id": "hypotheses-and-testing",
+         "title": "Hypotheses and testing",
+         "outcomes": [
+          {
+           "code": "SIN 601",
+           "text": "Work out the hypothesis an experiment was testing."
+          },
+          {
+           "code": "SIN 602",
+           "text": "Suggest another way to test a hypothesis."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "score-range-33-36",
+       "title": "Score range 33-36",
+       "subtopics": [
+        {
+         "id": "precision-and-improving-experiments",
+         "title": "Precision and improving experiments",
+         "outcomes": [
+          {
+           "code": "SIN 701",
+           "text": "Understand issues of precision and accuracy."
+          },
+          {
+           "code": "SIN 702",
+           "text": "Predict what changing an experiment's design or methods would do."
+          },
+          {
+           "code": "SIN 703",
+           "text": "Decide what further trial or experiment would improve or check the results."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "evaluation-of-models-inferences-and-experimental",
+     "title": "Evaluation of Models, Inferences, and Experimental Results (EMI)",
+     "topics": [
+      {
+       "id": "score-range-13-15",
+       "title": "Score range 13-15",
+       "subtopics": [
+        {
+         "id": "reading-models",
+         "title": "Reading models: Score range 13-15",
+         "outcomes": [
+          {
+           "code": "EMI 201",
+           "text": "Find basic information in a conceptual model."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "score-range-16-19",
+       "title": "Score range 16-19",
+       "subtopics": [
+        {
+         "id": "reading-models",
+         "title": "Reading models: Score range 16-19",
+         "outcomes": [
+          {
+           "code": "EMI 301",
+           "text": "Identify what a model implies."
+          },
+          {
+           "code": "EMI 302",
+           "text": "Decide which models contain certain basic information."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "score-range-20-23",
+       "title": "Score range 20-23",
+       "subtopics": [
+        {
+         "id": "hypotheses-and-conclusions",
+         "title": "Hypotheses and conclusions: Score range 20-23",
+         "outcomes": [
+          {
+           "code": "EMI 401",
+           "text": "Decide whether a simple hypothesis, prediction or conclusion fits a data display, model or text."
+          }
+         ]
+        },
+        {
+         "id": "comparing-models",
+         "title": "Comparing models: Score range 20-23",
+         "outcomes": [
+          {
+           "code": "EMI 402",
+           "text": "Identify the key assumptions in a model."
+          },
+          {
+           "code": "EMI 403",
+           "text": "Decide which models imply certain information."
+          },
+          {
+           "code": "EMI 404",
+           "text": "Spot similarities and differences between models."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "score-range-24-27",
+       "title": "Score range 24-27",
+       "subtopics": [
+        {
+         "id": "hypotheses-and-conclusions",
+         "title": "Hypotheses and conclusions: Score range 24-27",
+         "outcomes": [
+          {
+           "code": "EMI 501",
+           "text": "Decide whether a simple hypothesis, prediction or conclusion fits two or more data displays, models or texts."
+          }
+         ]
+        },
+        {
+         "id": "evidence-for-and-against",
+         "title": "Evidence for and against: Score range 24-27",
+         "outcomes": [
+          {
+           "code": "EMI 502",
+           "text": "Judge whether given or new information supports or contradicts a simple hypothesis, and why."
+          },
+          {
+           "code": "EMI 504",
+           "text": "Decide which models are supported or weakened by new information."
+          },
+          {
+           "code": "EMI 505",
+           "text": "Decide which results or models support or contradict a hypothesis, prediction or conclusion."
+          }
+         ]
+        },
+        {
+         "id": "comparing-models",
+         "title": "Comparing models: Score range 24-27",
+         "outcomes": [
+          {
+           "code": "EMI 503",
+           "text": "Identify the strengths and weaknesses of models."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "score-range-28-32",
+       "title": "Score range 28-32",
+       "subtopics": [
+        {
+         "id": "hypotheses-and-conclusions",
+         "title": "Hypotheses and conclusions: Score range 28-32",
+         "outcomes": [
+          {
+           "code": "EMI 601",
+           "text": "Decide whether a complex hypothesis, prediction or conclusion fits a data display, model or text."
+          }
+         ]
+        },
+        {
+         "id": "evidence-for-and-against",
+         "title": "Evidence for and against: Score range 28-32",
+         "outcomes": [
+          {
+           "code": "EMI 602",
+           "text": "Judge whether given or new information supports or weakens a model, and why."
+          }
+         ]
+        },
+        {
+         "id": "predicting-from-models",
+         "title": "Predicting from models",
+         "outcomes": [
+          {
+           "code": "EMI 603",
+           "text": "Use new information to make a prediction from a model."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "score-range-33-36",
+       "title": "Score range 33-36",
+       "subtopics": [
+        {
+         "id": "hypotheses-and-conclusions",
+         "title": "Hypotheses and conclusions: Score range 33-36",
+         "outcomes": [
+          {
+           "code": "EMI 701",
+           "text": "Decide whether a complex hypothesis, prediction or conclusion fits two or more data displays, models or texts."
+          }
+         ]
+        },
+        {
+         "id": "evidence-for-and-against",
+         "title": "Evidence for and against: Score range 33-36",
+         "outcomes": [
+          {
+           "code": "EMI 702",
+           "text": "Judge whether given or new information supports or contradicts a complex hypothesis, and why."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "build": {
+  "builtAt": "2026-10-14T09:59:43.582Z",
+  "model": "claude-agent",
+  "usd": 0,
+  "expectedCodes": 56,
+  "coverage": 1,
+  "missingCodes": [],
+  "counts": {
+   "grades": 1,
+   "units": 3,
+   "topics": 18,
+   "subtopics": 38,
+   "outcomes": 56
+  },
+  "warnings": [
+   "grade 8 has no content",
+   "grade 9 has no content",
+   "grade 10 has no content",
+   "grade 11 has no content",
+   "grade 12 has no content",
+   "unexpected grade label \"all\""
+  ]
+ }
+}

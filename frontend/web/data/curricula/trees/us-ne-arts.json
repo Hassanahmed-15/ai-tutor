@@ -1,0 +1,2468 @@
+{
+ "id": "us-ne-arts",
+ "region": "US",
+ "framework": "Nebraska state academic standards: Fine Arts",
+ "board": null,
+ "qualification": "K-12",
+ "subject": "Fine Arts",
+ "syllabusCode": null,
+ "gradeSystem": "grade",
+ "source": {
+  "urls": [
+   "https://api.commonstandardsproject.com/api/v1/jurisdictions/12FDD9CA15FC49259C2EF4BB13D59D2F",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/12FDD9CA15FC49259C2EF4BB13D59D2F_D2575554_grades-01-02-k",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/12FDD9CA15FC49259C2EF4BB13D59D2F_D2575554_grades-03-04-05",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/12FDD9CA15FC49259C2EF4BB13D59D2F_D2575554_grades-06-07-08",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/12FDD9CA15FC49259C2EF4BB13D59D2F_D2575554_grades-09-10-11-12",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/12FDD9CA15FC49259C2EF4BB13D59D2F_D2575546_grades-01-02-k",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/12FDD9CA15FC49259C2EF4BB13D59D2F_D2575546_grades-03-04-05",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/12FDD9CA15FC49259C2EF4BB13D59D2F_D2575546_grades-06-07-08",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/12FDD9CA15FC49259C2EF4BB13D59D2F_D2575546_grades-09-10-11-12",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/12FDD9CA15FC49259C2EF4BB13D59D2F_D2575553_grades-01-02-k",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/12FDD9CA15FC49259C2EF4BB13D59D2F_D2575553_grades-03-04-05",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/12FDD9CA15FC49259C2EF4BB13D59D2F_D2575553_grades-06-07-08",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/12FDD9CA15FC49259C2EF4BB13D59D2F_D2575553_grades-09-10-11-12",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/12FDD9CA15FC49259C2EF4BB13D59D2F_D2575556_grades-01-02-k",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/12FDD9CA15FC49259C2EF4BB13D59D2F_D2575556_grades-03-04-05",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/12FDD9CA15FC49259C2EF4BB13D59D2F_D2575556_grades-06-07-08",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/12FDD9CA15FC49259C2EF4BB13D59D2F_D2575556_grades-09-10-11-12",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/12FDD9CA15FC49259C2EF4BB13D59D2F_D2575555_grades-01-02-k",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/12FDD9CA15FC49259C2EF4BB13D59D2F_D2575555_grades-03-04-05",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/12FDD9CA15FC49259C2EF4BB13D59D2F_D2575555_grades-06-07-08",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/12FDD9CA15FC49259C2EF4BB13D59D2F_D2575555_grades-09-10-11-12"
+  ],
+  "publisher": "Nebraska state education agency (machine-readable via Common Standards Project / ASN)",
+  "licence": "CC BY 3.0 US, Desire2Learn Incorporated",
+  "firstExam": "2014"
+ },
+ "grades": [
+  {
+   "grade": "K-2",
+   "units": [
+    {
+     "id": "students-will-develop-knowledge-and-skills-to-cr",
+     "title": "Students will develop knowledge and skills to create, perform, respond to, and connect artistic ideas and expressions through dance and movement",
+     "topics": [
+      {
+       "id": "create-concepts",
+       "title": "Create Concepts",
+       "subtopics": [
+        {
+         "id": "students-will-use-dance-elements-and-choreograph",
+         "title": "Students will use dance elements and choreographic principles to explore ideas and images",
+         "outcomes": [
+          {
+           "code": "FA 2.3.1.a",
+           "text": "Generate spontaneous movement independently to explore ideas and images (e.g., shadowing and movement imagery)."
+          },
+          {
+           "code": "FA 2.3.1.b",
+           "text": "Create movements that use a variety of dance elements (e.g., verbally cue students to explore a variety of imaginary environments that promote movement exploration and qualities)."
+          },
+          {
+           "code": "FA 2.3.1.c",
+           "text": "Participate in movement invention, improvise with others (e.g., demonstrate the roles of leader and follower or the activity of \"give and take\")."
+          },
+          {
+           "code": "FA 2.3.1.d",
+           "text": "Collaborate to solve simple movement problems, explore and develop ideas and concepts (e.g., create shapes as a small group, moving as a unit)."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "create-movement",
+       "title": "Create Movement",
+       "subtopics": [
+        {
+         "id": "students-will-explore-movement-skills-in-dance",
+         "title": "Students will explore movement skills in dance",
+         "outcomes": [
+          {
+           "code": "FA 2.3.2.a",
+           "text": "Explore locomotor and non-locomotor movement to develop dance technique (e.g., gross motor movements)."
+          },
+          {
+           "code": "FA 2.3.2.b",
+           "text": "Develop body awareness and explore how the body moves through space and time (e.g., stretch, reach, bend, fold, twist, shrink, grow)."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "perform",
+       "title": "Perform",
+       "subtopics": [
+        {
+         "id": "students-will-explore-etiquette-to-enhance-dance",
+         "title": "Students will explore etiquette to enhance dance performance",
+         "outcomes": [
+          {
+           "code": "FA 2.3.3.a",
+           "text": "Identify examples of audience etiquette that support and enhance the performance experience (e.g., develop guidelines with peers and teacher for expressing opinions about dance)."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "respond",
+       "title": "Respond",
+       "subtopics": [
+        {
+         "id": "students-will-explore-critical-thinking-skills-t",
+         "title": "Students will explore critical thinking skills to evaluate dance",
+         "outcomes": [
+          {
+           "code": "FA 2.3.4.a",
+           "text": "Explore and discuss how elements of movement are used to communicate ideas in dance (e.g., encourage students to use descriptive words to explore imagery)."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "connect",
+       "title": "Connect",
+       "subtopics": [
+        {
+         "id": "students-will-explore-cultural-and-interdiscipli",
+         "title": "Students will explore cultural and interdisciplinary connections with dance",
+         "outcomes": [
+          {
+           "code": "FA 2.3.5.a",
+           "text": "Use dance to connect to social events, ideas, and traditions (e.g., list the reasons people dance, sharing personal dance experiences; family events, social gatherings, to express emotions)."
+          },
+          {
+           "code": "FA 2.3.5.b",
+           "text": "Use other arts disciplines to support ideation for dance creation and performance (e.g., understand how music, visual art, media and theatre can be combined with dance)."
+          },
+          {
+           "code": "FA 2.3.5.c",
+           "text": "Explore how health and nutrition enhance dance ability (e.g., discuss how exercise and nutrition make you feel)."
+          },
+          {
+           "code": "FA 2.3.5.d",
+           "text": "Recognize that jobs in dance are possible."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "students-will-develop-knowledge-and-skills-of-cu",
+     "title": "Students will develop knowledge and skills of current and emerging processes, techniques, and applications used in the creation of media arts as a means of expressing human experience",
+     "topics": [
+      {
+       "id": "create",
+       "title": "Create",
+       "subtopics": [
+        {
+         "id": "students-will-explore-creative-processes-and-tec",
+         "title": "Students will explore creative processes and techniques in media arts",
+         "outcomes": [
+          {
+           "code": "FA 2.1.1.a",
+           "text": "Share imaginative ways that media arts can be used to communicate a narrative, experience, or idea (e.g., movie, podcast, digital art)."
+          },
+          {
+           "code": "FA 2.1.1.b",
+           "text": "Determine the steps, vocabulary, and the resources necessary to create media arts."
+          },
+          {
+           "code": "FA 2.1.1.c",
+           "text": "Explore various editing tools on existing media to create media arts (e.g., capture, copy, paste)."
+          },
+          {
+           "code": "FA 2.1.1.d",
+           "text": "Introduce understanding of, and respect for, the accepted procedures regarding the responsible care of media arts equipment and materials."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "present",
+       "title": "Present",
+       "subtopics": [
+        {
+         "id": "students-will-explore-ways-to-communicate-an-ide",
+         "title": "Students will explore ways to communicate an idea/message in media arts",
+         "outcomes": [
+          {
+           "code": "FA 2.1.2.a",
+           "text": "Introduce cooperation, negotiation, and communication in creating media arts (e.g., collaborative posters)."
+          },
+          {
+           "code": "FA 2.1.2.b",
+           "text": "Practice manipulating media and context for personal expression in media arts productions."
+          },
+          {
+           "code": "FA 2.1.2.c",
+           "text": "Understand self and others as an audience with guided reflection. (e.g., who, what, when, where, why)."
+          },
+          {
+           "code": "FA 2.1.2.d",
+           "text": "Share or distribute media arts in a safe and appropriate venue (e.g., school website, student information system)."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "respond",
+       "title": "Respond",
+       "subtopics": [
+        {
+         "id": "students-will-explore-the-concept-of-interpretat",
+         "title": "Students will explore the concept of interpretation through media arts",
+         "outcomes": [
+          {
+           "code": "FA 2.1.3.a",
+           "text": "Identify different elements that make up media arts and how they make us feel (e.g., background music, imaging, timing)."
+          },
+          {
+           "code": "FA 2.1.3.b",
+           "text": "Discuss how media arts experiences can shift individual understanding."
+          },
+          {
+           "code": "FA 2.1.3.c",
+           "text": "Identify meaning in media arts."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "connect",
+       "title": "Connect",
+       "subtopics": [
+        {
+         "id": "students-will-explore-personal-and-cultural-conn",
+         "title": "Students will explore personal and cultural connections through media arts",
+         "outcomes": [
+          {
+           "code": "FA 2.1.4.a",
+           "text": "Investigate media arts connections to school, community, and everyday life (e.g., websites, advertising)."
+          },
+          {
+           "code": "FA 2.1.4.b",
+           "text": "Share and discuss the characteristics of digital citizenship (glossary) (e.g., copyright, plagiarism)."
+          },
+          {
+           "code": "FA 2.1.4.c",
+           "text": "Explore use of media arts as a collaborative art form to communicate information, experiences, or ideas to others."
+          },
+          {
+           "code": "FA 2.1.4.d",
+           "text": "Identify the importance of media arts as a learning tool."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "students-will-develop-and-apply-knowledge-and-sk",
+     "title": "Students will develop and apply knowledge and skills to create, perform, and respond to music, making connections to human experiences",
+     "topics": [
+      {
+       "id": "create",
+       "title": "Create",
+       "subtopics": [
+        {
+         "id": "students-will-compose-improvise-read-and-perform",
+         "title": "Students will compose, improvise, read, and perform music using pitch, rhythm, and dynamics",
+         "outcomes": [
+          {
+           "code": "FA 2.4.1.a",
+           "text": "Improvise tonal and rhythmic patterns to create musical ideas, with teacher support, relating to: specific purpose interest personal experience."
+          },
+          {
+           "code": "FA 2.4.1.b",
+           "text": "Explore and develop musical ideas (e.g., melody, rhythm) with teacher guidance."
+          },
+          {
+           "code": "FA 2.4.1.c",
+           "text": "Share music through performance or notation (non-traditional or traditional) (e.g., singing, playing) with teacher guidance."
+          },
+          {
+           "code": "FA 2.4.1.d",
+           "text": "Connect music to personal experience through creating."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "perform",
+       "title": "Perform",
+       "subtopics": [
+        {
+         "id": "students-will-sing-and-or-play-instruments-to-a-",
+         "title": "Students will sing and/or play instruments to a variety of music that includes music elements of rhythm, pitch, dynamics, and form",
+         "outcomes": [
+          {
+           "code": "FA 2.4.2.a",
+           "text": "Recognize music elements (i.e., rhythm, pitch, dynamics, form), purpose, and context of selected pieces."
+          },
+          {
+           "code": "FA 2.4.2.b",
+           "text": "Acquire music performance skills (e.g., posture, technique, reading music) with teacher guidance."
+          },
+          {
+           "code": "FA 2.4.2.c",
+           "text": "Perform (formally or informally) music using correct rhythm, pitch, and dynamics. Demonstrate appropriate performance expectations."
+          },
+          {
+           "code": "FA 2.4.2.d",
+           "text": "Connect music to personal experience through performing."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "respond",
+       "title": "Respond",
+       "subtopics": [
+        {
+         "id": "students-will-recognize-and-describe-elements-of",
+         "title": "Students will recognize and describe elements of music to demonstrate how music makes them feel (impact of music)",
+         "outcomes": [
+          {
+           "code": "FA 2.4.3.a",
+           "text": "Experience music from a variety of familiar and unfamiliar sources."
+          },
+          {
+           "code": "FA 2.4.3.b",
+           "text": "Recognize and demonstrate how elements of music are used by a performer or creator."
+          },
+          {
+           "code": "FA 2.4.3.c",
+           "text": "Express ideas and opinions about a music selection."
+          },
+          {
+           "code": "FA 2.4.3.d",
+           "text": "Connect music to personal experience through responding."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "students-will-develop-knowledge-and-skills-apply",
+     "title": "Students will develop knowledge and skills applying the creative and collaborative process within theatre by crafting, performing, and responding to expressions of the human experience",
+     "topics": [
+      {
+       "id": "create",
+       "title": "Create",
+       "subtopics": [
+        {
+         "id": "students-will-dramatize-ideas-and-events-through",
+         "title": "Students will dramatize ideas and events through structured improvisation",
+         "outcomes": [
+          {
+           "code": "FA 2.5.1.a",
+           "text": "Identify an environment or event using body movement and sound (e.g., playground, grocery store, classroom)."
+          },
+          {
+           "code": "FA 2.5.1.b",
+           "text": "Listen to a story and identify the problem."
+          },
+          {
+           "code": "FA 2.5.1.c",
+           "text": "Create, in a group, a tableau of a scene after hearing a fairytale."
+          },
+          {
+           "code": "FA 2.5.1.d",
+           "text": "Engage in creative play, using a given theme, to tell a story (e.g. sharing, safety, friendship)."
+          },
+          {
+           "code": "FA 2.5.1.e",
+           "text": "Engage in creative play, using props, to tell a story."
+          },
+          {
+           "code": "FA 2.5.1.f",
+           "text": "Explore character through body movement (e.g., enact occupations, fairy tale characters)."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "perform",
+       "title": "Perform",
+       "subtopics": [
+        {
+         "id": "students-will-explore-ideas-and-events-through-c",
+         "title": "Students will explore ideas and events through creative play",
+         "outcomes": [
+          {
+           "code": "FA 2.5.2.a",
+           "text": "Demonstrate expressive speech/vocal variety by sharing a personal experience."
+          },
+          {
+           "code": "FA 2.5.2.b",
+           "text": "Follow instructor's oral instructions (e.g., speak clearly, stay focused on scene)."
+          },
+          {
+           "code": "FA 2.5.2.c",
+           "text": "Using classroom furniture and materials arrange a setting for a story as a group."
+          },
+          {
+           "code": "FA 2.5.2.d",
+           "text": "Identify how a character conveyed his/her feelings and emotions."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "respond",
+       "title": "Respond",
+       "subtopics": [
+        {
+         "id": "students-will-demonstrate-understanding-of-audie",
+         "title": "Students will demonstrate understanding of audience/performance relationship",
+         "outcomes": [
+          {
+           "code": "FA 2.5.3.a",
+           "text": "Demonstrate active listening and theatre etiquette during a presentation (e.g., eagerness, interest, appropriate response [i.e., applause, laughter, quiet])."
+          },
+          {
+           "code": "FA 2.5.3.b",
+           "text": "Recall aspects of a performance."
+          },
+          {
+           "code": "FA 2.5.3.c",
+           "text": "Distinguish between a character and a performer."
+          },
+          {
+           "code": "FA 2.5.3.d",
+           "text": "Distinguish between fantasy and reality."
+          },
+          {
+           "code": "FA 2.5.3.e",
+           "text": "Share reactions to a moment or scene in a performance (e.g., verbal or reenactment)."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "connect",
+       "title": "Connect",
+       "subtopics": [
+        {
+         "id": "students-will-recognize-connections-between-thea",
+         "title": "Students will recognize connections between theatre and society",
+         "outcomes": [
+          {
+           "code": "FA 2.5.4.a",
+           "text": "Describes how a performance or story represents the culture of its time. (e.g., cultural folktales)."
+          },
+          {
+           "code": "FA 2.5.4.b",
+           "text": "Distinguish between real life vs. animation (e.g., Milan vs. live performance of The Lion King)."
+          },
+          {
+           "code": "FA 2.5.4.c",
+           "text": "Watch a performance or cartoon and describe personal likes and dislikes."
+          },
+          {
+           "code": "FA 2.5.4.e",
+           "text": "Recognize at least two jobs in the performing arts."
+          },
+          {
+           "code": "FA 2.5.4.f",
+           "text": "Recognize authorship."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "students-will-develop-and-apply-ideas-knowledge-",
+     "title": "Students will develop and apply ideas, knowledge, and skills to create, respond to, present, and connect art with the human experience. (curricular bands have been re-ordered: create, respond, present, connect)",
+     "topics": [
+      {
+       "id": "create-art-to-generate-ideas",
+       "title": "Create – Art to generate ideas",
+       "subtopics": [
+        {
+         "id": "students-will-use-the-creative-process-to-make-w",
+         "title": "Students will use the creative process to make works of art with a variety of materials",
+         "outcomes": [
+          {
+           "code": "FA 2.2.1.a",
+           "text": "Experiment and explore ideas and materials (e.g. 2D, 3D)."
+          },
+          {
+           "code": "FA 2.2.1.b",
+           "text": "Create artworks that express unique student interpretation."
+          },
+          {
+           "code": "FA 2.2.1.c",
+           "text": "Explore and experience the properties of various art media through senses and emotions."
+          },
+          {
+           "code": "FA 2.2.1.d",
+           "text": "Explore elements of art and principles of design to brainstorm visual possibilities. (e.g., use color and shape to create pattern)."
+          },
+          {
+           "code": "FA 2.2.1.e",
+           "text": "Explore various techniques, skills, and the importance of craftsmanship/workmanship (e.g., properly hold scissors, while turning paper, to create a well-defined shape)."
+          },
+          {
+           "code": "FA 2.2.1.f",
+           "text": "Demonstrate respect for accepted procedures regarding responsible care of equipment and materials."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "respond-to-understand-and-appreciate-ideas",
+       "title": "Respond – to understand and appreciate ideas",
+       "subtopics": [
+        {
+         "id": "students-will-explore-the-critical-process-to-re",
+         "title": "Students will explore the critical process to respond to works of art, learning about themselves and others",
+         "outcomes": [
+          {
+           "code": "FA 2.2.2.a",
+           "text": "Identify and describe a piece of art (e.g., subject matter, use of color)."
+          },
+          {
+           "code": "FA 2.2.2.b",
+           "text": "Identify use of elements and principles in works of art (e.g., recognize use of pattern, symmetry)."
+          },
+          {
+           "code": "FA 2.2.2.c",
+           "text": "Interpret mood or feeling in a work of art."
+          },
+          {
+           "code": "FA 2.2.2.d",
+           "text": "Articulate personal artistic choice and ideas (e.g., \"I like this because…,\" \"I chose this because…\")."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "present-art-to-communicate-ideas-process-and-pro",
+       "title": "Present – Art to communicate ideas, process, and product",
+       "subtopics": [
+        {
+         "id": "students-will-explore-basic-presentation-methods",
+         "title": "Students will explore basic presentation methods and purposes",
+         "outcomes": [
+          {
+           "code": "FA 2.2.3.a",
+           "text": "Present an artist statement through formal or informal communication (e.g., written, verbal)."
+          },
+          {
+           "code": "FA 2.2.3.b",
+           "text": "Select a work of art for display."
+          },
+          {
+           "code": "FA 2.2.3.c",
+           "text": "Communicate a variety of different venues to display art (e.g. describe or dramatize to an audience)"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "connect-individual-perspective-and-identity-thro",
+       "title": "Connect – Individual perspective and identity through the study of art",
+       "subtopics": [
+        {
+         "id": "students-will-identify-contemporary-historical-a",
+         "title": "Students will identify contemporary, historical, and cultural context in art and life",
+         "outcomes": [
+          {
+           "code": "FA 2.2.4.a",
+           "text": "Communicate that \"I can be an artist.\""
+          },
+          {
+           "code": "FA 2.2.4.b",
+           "text": "Identify examples of how humans have always made art."
+          },
+          {
+           "code": "FA 2.2.4.c",
+           "text": "Communicate that works of art are made for different purposes."
+          },
+          {
+           "code": "FA 2.2.4.d",
+           "text": "Identify how images and objects are used to convey a story, familiar experience, or connection to the world."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "3-5",
+   "units": [
+    {
+     "id": "students-will-develop-knowledge-and-skills-to-cr",
+     "title": "Students will develop knowledge and skills to create, perform, respond to, and connect artistic ideas and expressions through dance and movement",
+     "topics": [
+      {
+       "id": "create-concepts",
+       "title": "Create Concepts",
+       "subtopics": [
+        {
+         "id": "students-will-use-dance-elements-and-choreograph",
+         "title": "Students will use dance elements and choreographic principles to develop movements that communicate ideas, images, and feelings",
+         "outcomes": [
+          {
+           "code": "FA 5.3.1.a",
+           "text": "Generate spontaneous movement independently to develop ideas, images, and feelings (e.g., pantomime, communicate an emotion or idea through gestural movement)."
+          },
+          {
+           "code": "FA 5.3.1.b",
+           "text": "Create movement sequences that combine a variety of dance elements and images (e.g., combine multiple ideas or images to create a movement sequence)."
+          },
+          {
+           "code": "FA 5.3.1.c",
+           "text": "Invent a movement sequence with others, improvise to generate movement ideas (e.g., use and understand the importance of cooperation and collaboration – Always say 'yes')."
+          },
+          {
+           "code": "FA 5.3.1.d",
+           "text": "Explore a variety of solutions to movement problems with others to create a movement sequence (e.g., choose and order the movements in a sequence)."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "create-movement",
+       "title": "Create Movement",
+       "subtopics": [
+        {
+         "id": "students-will-develop-movement-skills-in-dance",
+         "title": "Students will develop movement skills in dance",
+         "outcomes": [
+          {
+           "code": "FA 5.3.2.a",
+           "text": "Demonstrate whole body movements with flexibility and endurance to develop dance technique (e.g., execute exercises and combinations that build strength, awareness, coordination, control)."
+          },
+          {
+           "code": "FA 5.3.2.b",
+           "text": "Demonstrate ability to move rhythmically, explore levels in space, shift weight, with and without locomotion to perform dance (e.g., plié, triplet, gallop, battement, three-point turn, grapevine, lunge, balance)."
+          },
+          {
+           "code": "FA 5.3.2.c",
+           "text": "Demonstrate spatial qualities and pathways including curved, straight, and zig-zag pathways; move at levels from low to middle to high; leap, roll, and combine to a variety of rhythms (e.g., plié, triplet, gallop, battement, three-point turn, grapevine, lunge, balance)."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "perform",
+       "title": "Perform",
+       "subtopics": [
+        {
+         "id": "students-will-employ-proper-etiquette-to-enhance",
+         "title": "Students will employ proper etiquette to enhance dance performance",
+         "outcomes": [
+          {
+           "code": "FA 5.3.3.a",
+           "text": "Demonstrate appropriate behaviors and etiquette to observe and perform dance (e.g., create a set of agreed-upon criteria to evaluate dance with teacher and peers)."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "respond",
+       "title": "Respond",
+       "subtopics": [
+        {
+         "id": "students-will-develop-critical-thinking-skills-t",
+         "title": "Students will develop critical thinking skills to analyze and evaluate dance",
+         "outcomes": [
+          {
+           "code": "FA 5.3.4.a",
+           "text": "Develop and discuss how elements of movement are used to communicate ideas in dance (e.g., encourage students to use deliberate words to explore imagery)."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "connect",
+       "title": "Connect",
+       "subtopics": [
+        {
+         "id": "students-will-identify-cultural-and-interdiscipl",
+         "title": "Students will identify cultural and interdisciplinary connections with dance",
+         "outcomes": [
+          {
+           "code": "FA 5.3.5.a",
+           "text": "Use dance to discover social events, ideas, and traditions from a local context (e.g., investigate how dance reflects culture)."
+          },
+          {
+           "code": "FA 5.3.5.b",
+           "text": "Identify how other academic disciplines support and enhance ideation and understanding for dance creation and performance (e.g., combine dance with other academic disciplines relating to coursework)."
+          },
+          {
+           "code": "FA 5.3.5.c",
+           "text": "Identify how health and nutrition enhance dance ability (e.g., recognize that some foods and activities are more healthful than others)."
+          },
+          {
+           "code": "FA 5.3.5.d",
+           "text": "Identify a variety of dance-related careers."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "students-will-develop-knowledge-and-skills-of-cu",
+     "title": "Students will develop knowledge and skills of current and emerging processes, techniques, and applications used in the creation of media arts as a means of expressing human experience",
+     "topics": [
+      {
+       "id": "create",
+       "title": "Create",
+       "subtopics": [
+        {
+         "id": "students-will-demonstrate-understanding-of-proce",
+         "title": "Students will demonstrate understanding of processes, techniques, and applications in media arts",
+         "outcomes": [
+          {
+           "code": "FA 5.1.1.a",
+           "text": "Generate ideas for stories, events, or experiences that can be the basis of content for media arts (e.g., brainstorming, role-playing, discussion)."
+          },
+          {
+           "code": "FA 5.1.1.b",
+           "text": "Develop a process with timelines and roles using steps, vocabulary, and resources in creating media arts (e.g., storyboard)."
+          },
+          {
+           "code": "FA 5.1.1.c",
+           "text": "Experiment with multiple strategies to combine and adapt media arts formats, ideas, and processes (e.g., editing)."
+          },
+          {
+           "code": "FA 5.1.1.d",
+           "text": "Reinforce understanding of, and respect for, the accepted procedures regarding the responsible care of media arts equipment and materials."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "present",
+       "title": "Present",
+       "subtopics": [
+        {
+         "id": "students-will-develop-their-ability-to-communica",
+         "title": "Students will develop their ability to communicate an idea/message by presenting their work in media arts",
+         "outcomes": [
+          {
+           "code": "FA 5.1.2.a",
+           "text": "Contribute to a collaborative project in an assigned role (e.g., leader, designer, actor, timekeeper, storyboard artist, cinematographer, director, sound editor, video editor)."
+          },
+          {
+           "code": "FA 5.1.2.b",
+           "text": "Explore how media arts elements and context enhance overall effectiveness and expression (e.g., image, sound, light, movement, time, space)."
+          },
+          {
+           "code": "FA 5.1.2.c",
+           "text": "Construct and adapt media arts in consideration of audience and the context of the work (e.g., public service announcements)."
+          },
+          {
+           "code": "FA 5.1.2.d",
+           "text": "Share and/or distribute media arts through a specific and/or variety of contexts (e.g., physical, virtual channels, venues, spaces, mass audiences, participants)."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "respond",
+       "title": "Respond",
+       "subtopics": [
+        {
+         "id": "students-will-develop-ability-to-interpret-and-e",
+         "title": "Students will develop ability to interpret and evaluate work produced in media arts",
+         "outcomes": [
+          {
+           "code": "FA 5.1.3.a",
+           "text": "Compare and contrast the elements of media arts that make it unique (e.g., background music, imaging, timing, message)."
+          },
+          {
+           "code": "FA 5.1.3.b",
+           "text": "Justify personal and group interpretations and reactions to a variety of media arts."
+          },
+          {
+           "code": "FA 5.1.3.c",
+           "text": "Discuss components and criteria that convey meaning in media arts."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "connect",
+       "title": "Connect",
+       "subtopics": [
+        {
+         "id": "students-will-identify-personal-cultural-and-his",
+         "title": "Students will identify personal, cultural, and historical connections through media arts",
+         "outcomes": [
+          {
+           "code": "FA 5.1.4.a",
+           "text": "Examine media arts to demonstrate student interest and knowledge of self."
+          },
+          {
+           "code": "FA 5.1.4.b",
+           "text": "Demonstrate knowledge of digital citizenship (e.g., copyright, plagiarism, citations, validating resources)."
+          },
+          {
+           "code": "FA 5.1.4.c",
+           "text": "Discuss and determine benefits and challenges of incorporating various ideas when creating or engaging with media arts."
+          },
+          {
+           "code": "FA 5.1.4.d",
+           "text": "Share the importance of media arts as a learning tool and explore potential careers."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "students-will-develop-and-apply-knowledge-and-sk",
+     "title": "Students will develop and apply knowledge and skills to create, perform, and respond to music, making connections to human experiences",
+     "topics": [
+      {
+       "id": "create",
+       "title": "Create",
+       "subtopics": [
+        {
+         "id": "students-will-compose-arrange-improvise-read-and",
+         "title": "Students will compose, arrange, improvise, read, and perform music with melodies and accompaniments",
+         "outcomes": [
+          {
+           "code": "FA 5.4.1.a",
+           "text": "Generate concepts for original improvisation (glossary) or composition from contrasting ideas, with teacher support, including: specific purpose/function interest personal experience expressive potential."
+          },
+          {
+           "code": "FA 5.4.1.b",
+           "text": "Create, evaluate, and refine musical ideas with teacher-generated criteria (e.g., melody, rhythm, harmony)."
+          },
+          {
+           "code": "FA 5.4.1.c",
+           "text": "Present an improvisation, arrangement, or composition. Identify the use of selected elements of music."
+          },
+          {
+           "code": "FA 5.4.1.d",
+           "text": "Connect music to historical and cultural contexts and the arts through creating."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "perform",
+       "title": "Perform",
+       "subtopics": [
+        {
+         "id": "students-will-sing-and-or-play-instruments-to-a-",
+         "title": "Students will sing and/or play instruments to a variety of music that incorporates multiple elements of music",
+         "outcomes": [
+          {
+           "code": "FA 5.4.2.a",
+           "text": "Identify expressive characteristics and components of technique, purpose, and context of selected pieces (e.g., dynamics, tempo)."
+          },
+          {
+           "code": "FA 5.4.2.b",
+           "text": "Develop and refine music performance skills (e.g., posture, technique, reading music) using teacher and peer feedback."
+          },
+          {
+           "code": "FA 5.4.2.c",
+           "text": "Perform (formally or informally) music using correct posture, breath control, rhythm, pitch, and dynamics. Demonstrate appropriate performance expectations."
+          },
+          {
+           "code": "FA 5.4.2.d",
+           "text": "Connect music to historical and cultural contexts and the arts through performing."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "respond",
+       "title": "Respond",
+       "subtopics": [
+        {
+         "id": "students-will-identify-and-describe-elements-of-",
+         "title": "Students will identify and describe elements of music to discern how music is appropriate for specific purposes/settings (intent of music)",
+         "outcomes": [
+          {
+           "code": "FA 5.4.3.a",
+           "text": "Indicate music selections that students prefer to experience for specific purposes/settings."
+          },
+          {
+           "code": "FA 5.4.3.b",
+           "text": "Identify and describe how elements of music are used by a performer or creator."
+          },
+          {
+           "code": "FA 5.4.3.c",
+           "text": "Examine music performances using elements of music, context, and criteria (e.g., mood, interest) generated by student/teacher."
+          },
+          {
+           "code": "FA 5.4.3.d",
+           "text": "Connect music to historical and cultural contexts and the arts through responding."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "students-will-develop-knowledge-and-skills-apply",
+     "title": "Students will develop knowledge and skills applying the creative and collaborative process within theatre by crafting, performing, and responding to expressions of the human experience",
+     "topics": [
+      {
+       "id": "create",
+       "title": "Create",
+       "subtopics": [
+        {
+         "id": "students-will-dramatize-ideas-and-events-with-a-",
+         "title": "Students will dramatize ideas and events with a beginning, middle, and end",
+         "outcomes": [
+          {
+           "code": "FA 5.5.1.a",
+           "text": "Create, in a group, an environment or event using body movement and sound (e.g., a forest, a baseball game) while working in a group."
+          },
+          {
+           "code": "FA 5.5.1.b",
+           "text": "Using dialogue and movement, retell a story with a clear beginning, middle, and end (e.g., nursery rhymes, fairy tales). Work in small groups."
+          },
+          {
+           "code": "FA 5.5.1.c",
+           "text": "Create three tableaus illustrating the beginning, middle, and end of a story and then connect them. Work in small groups."
+          },
+          {
+           "code": "FA 5.5.1.d",
+           "text": "Identify themes within theatrical works."
+          },
+          {
+           "code": "FA 5.5.1.e",
+           "text": "Write a short script incorporating narration and dialogue."
+          },
+          {
+           "code": "FA 5.5.1.f",
+           "text": "Show a character using body movement (e.g., age, personality, family role, occupation)."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "perform",
+       "title": "Perform",
+       "subtopics": [
+        {
+         "id": "students-will-perform-ideas-and-events-with-a-be",
+         "title": "Students will perform ideas and events with a beginning, middle, and end",
+         "outcomes": [
+          {
+           "code": "FA 5.5.2.a",
+           "text": "Demonstrate expressive reading using vocal variety (glossary) (e.g., read short passage aloud)."
+          },
+          {
+           "code": "FA 5.5.2.b",
+           "text": "Demonstrate characters (glossary) through movement (e.g., enact different ages, cartoon characters)."
+          },
+          {
+           "code": "FA 5.5.2.c",
+           "text": "Create characters, individually, appropriate to a specific location a location."
+          },
+          {
+           "code": "FA 5.5.2.d",
+           "text": "Present a short script with narration and dialogue (e.g. readers' theatre)."
+          },
+          {
+           "code": "FA 5.5.2.e",
+           "text": "Respectfully receive polite feedback from instructor and peers."
+          },
+          {
+           "code": "FA 5.5.2.f",
+           "text": "Design and craft a scenic element for an informal presentation (e.g., risers, prop, set piece, backdrop)."
+          },
+          {
+           "code": "FA 5.5.2.g",
+           "text": "Identify one's own vocal and physical choices in expressing an emotion or idea (e.g., show a sound and movement that express sadness, happiness, anger)."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "respond",
+       "title": "Respond",
+       "subtopics": [
+        {
+         "id": "students-will-demonstrate-effective-audience-per",
+         "title": "Students will demonstrate effective audience/performance relationship",
+         "outcomes": [
+          {
+           "code": "FA 5.5.3.a",
+           "text": "Demonstrate respect for self and others (etiquette) in dramatic activities."
+          },
+          {
+           "code": "FA 5.5.3.b",
+           "text": "Discuss how the audience was impacted by the conflict and characters."
+          },
+          {
+           "code": "FA 5.5.3.c",
+           "text": "Recognize character traits and actor choices (e.g., how the character shows age, occupation, temperament)."
+          },
+          {
+           "code": "FA 5.5.3.d",
+           "text": "Recognize theatrical works as either dramatic or comedic genres."
+          },
+          {
+           "code": "FA 5.5.3.e",
+           "text": "Articulate an emotional response to a component of a theatrical production (e.g., character, prop, costumes, song)."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "connect",
+       "title": "Connect",
+       "subtopics": [
+        {
+         "id": "students-will-identify-connections-between-theat",
+         "title": "Students will identify connections between theatre and society",
+         "outcomes": [
+          {
+           "code": "FA 5.5.4.a",
+           "text": "Identify the cultural heritage of a particular work in theatre."
+          },
+          {
+           "code": "FA 5.5.4.b",
+           "text": "Recognize how performances reflect everyday circumstances (e.g., historical events, natural disasters, family relationships)."
+          },
+          {
+           "code": "FA 5.5.4.c",
+           "text": "Watch a performance or film and explain personal likes and dislikes."
+          },
+          {
+           "code": "FA 5.5.4.d",
+           "text": "Identify how performance reflects culture and history (e.g., The Nutcracker, Peter and the Wolf)."
+          },
+          {
+           "code": "FA 5.5.4.e",
+           "text": "Identify careers in the performing arts."
+          },
+          {
+           "code": "FA 5.5.4.f",
+           "text": "Understand the concept of intellectual property."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "students-will-develop-and-apply-ideas-knowledge-",
+     "title": "Students will develop and apply ideas, knowledge, and skills to create, respond to, present, and connect art with the human experience. (curricular bands have been re-ordered: create, respond, present, connect)",
+     "topics": [
+      {
+       "id": "create-art-to-generate-ideas",
+       "title": "Create – Art to generate ideas",
+       "subtopics": [
+        {
+         "id": "students-will-use-the-creative-process-to-make-w",
+         "title": "Students will use the creative process to make works of art exploring subjects and themes with a variety of materials",
+         "outcomes": [
+          {
+           "code": "FA 5.2.1.a",
+           "text": "Develop ideas using a variety of materials."
+          },
+          {
+           "code": "FA 5.2.1.b",
+           "text": "Use observation, imagination and interpretation in creating artworks that reflect a variety of styles, themes, and subjects."
+          },
+          {
+           "code": "FA 5.2.1.c",
+           "text": "Demonstrate the connections between sensory experience and expressing emotion."
+          },
+          {
+           "code": "FA 5.2.1.d",
+           "text": "Identify and use elements of art and principles of design to brainstorm visual possibilities (e.g., create symmetrical and asymmetrical balance using line and shape)."
+          },
+          {
+           "code": "FA 5.2.1.e",
+           "text": "Apply various techniques to develop craftsmanship skills (e.g., use cutting and gluing techniques to produce clean edges without visible glue)."
+          },
+          {
+           "code": "FA 5.2.1.f",
+           "text": "Demonstrate respect for accepted procedures regarding responsible care of equipment and materials."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "respond-to-understand-and-appreciate-ideas",
+       "title": "Respond – to understand and appreciate ideas",
+       "subtopics": [
+        {
+         "id": "students-will-use-the-critical-process-to-examin",
+         "title": "Students will use the critical process to examine works of art, learning about themselves and cultures",
+         "outcomes": [
+          {
+           "code": "FA 5.2.2.a",
+           "text": "Identify and describe use of media (e.g., paint, clay, collage) and techniques to create subject matter, visual elements and mood."
+          },
+          {
+           "code": "FA 5.2.2.b",
+           "text": "Categorize elements and principles in works of art (e.g., group works of art by the use of line, shape, balance)."
+          },
+          {
+           "code": "FA 5.2.2.c",
+           "text": "Interpret the message communicated by a work of art, using knowledge of visual elements, subject matter, and mood."
+          },
+          {
+           "code": "FA 5.2.2.d",
+           "text": "Compare personal interpretation of a work of art with the interpretations of others."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "present-art-to-communicate-ideas-process-and-pro",
+       "title": "Present – Art to communicate ideas, process, and product",
+       "subtopics": [
+        {
+         "id": "students-will-develop-presentation-skills-to-com",
+         "title": "Students will develop presentation skills to communicate meaning",
+         "outcomes": [
+          {
+           "code": "FA 5.2.3.a",
+           "text": "Communicate artistic statements using art terminology (e.g., product, process)."
+          },
+          {
+           "code": "FA 5.2.3.b",
+           "text": "Apply basic art presentation skills in a collaborative group display."
+          },
+          {
+           "code": "FA 5.2.3.c",
+           "text": "Examine how the process of collecting and displaying artwork varies depending on the purpose (e.g., cultivate awareness and appreciation of ideas, beliefs, experiences)."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "connect-individual-perspective-and-identity-thro",
+       "title": "Connect – Individual perspective and identity through the study of art",
+       "subtopics": [
+        {
+         "id": "students-will-examine-contemporary-historical-an",
+         "title": "Students will examine contemporary, historical, and cultural context in art and life",
+         "outcomes": [
+          {
+           "code": "FA 5.2.4.a",
+           "text": "Identify ways that artists influence lives and communities"
+          },
+          {
+           "code": "FA 5.2.4.b",
+           "text": "Compare and contrast works of art from a variety of contemporary, historical, and cultural contexts."
+          },
+          {
+           "code": "FA 5.2.4.c",
+           "text": "Identify and discuss purpose and function of different art forms (e.g., \"is this object a sculpture, bowl, or decoration?\")."
+          },
+          {
+           "code": "FA 5.2.4.d",
+           "text": "Explore how images and objects are used to convey a story, familiar experience, or connection to the world."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "6-8",
+   "units": [
+    {
+     "id": "students-will-develop-knowledge-and-skills-to-cr",
+     "title": "Students will develop knowledge and skills to create, perform, respond to, and connect artistic ideas and expressions through dance and movement",
+     "topics": [
+      {
+       "id": "create-concepts",
+       "title": "Create Concepts",
+       "subtopics": [
+        {
+         "id": "students-will-use-dance-elements-choreographic-p",
+         "title": "Students will use dance elements, choreographic principles, and structures to construct dances that communicate ideas, images, feelings, and experiences",
+         "outcomes": [
+          {
+           "code": "FA 8.3.1.a",
+           "text": "Generate spontaneous and exaggerated movement independently to construct ideas, images, feelings, and experiences (e.g., use a memory or personal narrative (glossary) to create a short movement phrase)."
+          },
+          {
+           "code": "FA 8.3.1.b",
+           "text": "Create and compare multiple movement phrases that use a variety of dance elements and simple choreographic structures (e.g., deconstruct movement to explore choreographic structures)."
+          },
+          {
+           "code": "FA 8.3.1.c",
+           "text": "Invent movement sequences with others, improvise to generate movement ideas that develop from a variety of prompts and sources (e.g., incorporate various ideas to combine and layer movement elements)."
+          },
+          {
+           "code": "FA 8.3.1.d",
+           "text": "Manipulate movement ideas and choose from a variety of solutions to movement problems to establish a simple movement study with others (e.g., collaborate with peers to set formations and spatial patterns for a group work using learned movement material)."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "create-movement",
+       "title": "Create Movement",
+       "subtopics": [
+        {
+         "id": "students-will-comprehend-and-demonstrate-movemen",
+         "title": "Students will comprehend and demonstrate movement skills in dance",
+         "outcomes": [
+          {
+           "code": "FA 8.3.2.a",
+           "text": "Execute body movements with flexibility, endurance, strength, and accuracy to develop dance technique (e.g., execute movement in a variety of dance forms with accuracy)."
+          },
+          {
+           "code": "FA 8.3.2.b",
+           "text": "Move in varied rhythms, explore spatial orientations, and connect a series of dance moves with differing intentions as dictated by style, genre, or other influences (e.g., use rhythm, space, weight, flow to respond to various influences)."
+          },
+          {
+           "code": "FA 8.3.2.c",
+           "text": "Implement technical skills from a variety of dance forms (e.g., modern, ballet, tap, jazz, hip-hop) after viewing a performance."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "perform",
+       "title": "Perform",
+       "subtopics": [
+        {
+         "id": "students-will-understand-how-to-use-performance-",
+         "title": "Students will understand how to use performance values kinesthetic awareness, concentration, focus, and etiquette to enhance dance performance",
+         "outcomes": [
+          {
+           "code": "FA 8.3.3.a",
+           "text": "Use appropriate behaviors and etiquette to observe, create, and perform dance movements (e.g., reflect upon personal criteria to evaluate dance, and share in class discussion)."
+          },
+          {
+           "code": "FA 8.3.3.b",
+           "text": "Identify the impact of performance values of clarity, concentration, focus, and projection on dance performance (e.g., collaborate with peers for group work using learned movement materials)."
+          },
+          {
+           "code": "FA 8.3.3.c",
+           "text": "Recognize how self-assessment can be used to refine dance performance (e.g., maintain a dance journal, use research, resources, notation, peer assessments, and self-reflections)."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "respond",
+       "title": "Respond",
+       "subtopics": [
+        {
+         "id": "students-will-demonstrate-critical-thinking-skil",
+         "title": "Students will demonstrate critical thinking skills to analyze and evaluate dance",
+         "outcomes": [
+          {
+           "code": "FA 8.3.4.a",
+           "text": "Explain and interpret how elements of movement and choreographic structures are used to communicate ideas in dance (e.g., encourage students to analyze movements in order to explore imagery and give perception)."
+          },
+          {
+           "code": "FA 8.3.4.b",
+           "text": "Recognize and discuss the use of dance elements and choreographic forms and structures in a variety of dance compositions (e.g., view live or recorded dance performance and discuss, compare, and contrast)."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "connect",
+       "title": "Connect",
+       "subtopics": [
+        {
+         "id": "students-will-understand-cultural-interdisciplin",
+         "title": "Students will understand cultural, interdisciplinary, and historical connections with dance",
+         "outcomes": [
+          {
+           "code": "FA 8.3.5.a",
+           "text": "Use dance to understand concepts in U.S. history and relate them to significant events, ideas, and traditions from a national context (e.g., investigate what role dance played in U.S. history)."
+          },
+          {
+           "code": "FA 8.3.5.b",
+           "text": "Analyze how other arts and academic disciplines are integrated into dance creation and performance (e.g., recognize who, what, when, where, why, and how it connects to other disciplines when creating dance pieces)."
+          },
+          {
+           "code": "FA 8.3.5.c",
+           "text": "Understand how dance has the ability to enhance physical and emotional health (e.g., recognize shifting moods and the ways dance can help explore and move through them)."
+          },
+          {
+           "code": "FA 8.3.5.d",
+           "text": "Investigate a variety of dance-related professions and the necessary training."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "students-will-develop-knowledge-and-skills-of-cu",
+     "title": "Students will develop knowledge and skills of current and emerging processes, techniques, and applications used in the creation of media arts as a means of expressing human experience",
+     "topics": [
+      {
+       "id": "create",
+       "title": "Create",
+       "subtopics": [
+        {
+         "id": "students-will-utilize-processes-techniques-and-a",
+         "title": "Students will utilize processes, techniques, and application through the creation of media arts",
+         "outcomes": [
+          {
+           "code": "FA 8.1.1.a",
+           "text": "Identify artistic challenges that exist in the process of creating media arts and discover ways to implement possible solutions."
+          },
+          {
+           "code": "FA 8.1.1.b",
+           "text": "Expand media arts vocabulary along with elements and principles of design in the creative process."
+          },
+          {
+           "code": "FA 8.1.1.c",
+           "text": "Utilize available tools, techniques, and conventions in the creation of media arts."
+          },
+          {
+           "code": "FA 8.1.1.d",
+           "text": "Demonstrate understanding of, and respect for, the accepted procedures regarding the responsible care of media arts equipment and materials."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "present",
+       "title": "Present",
+       "subtopics": [
+        {
+         "id": "students-will-communicate-an-idea-message-by-pre",
+         "title": "Students will communicate an idea/message by presenting their work in media arts",
+         "outcomes": [
+          {
+           "code": "FA 8.1.2.a",
+           "text": "Contribute, communicate, and edit in collaborative work, independent work, and/or or performance environment."
+          },
+          {
+           "code": "FA 8.1.2.b",
+           "text": "Combine components of media arts to improve overall quality (e.g., tone, mood, feeling, character)."
+          },
+          {
+           "code": "FA 8.1.2.c",
+           "text": "Utilize audience impact and response in the revision of work and planning for later work."
+          },
+          {
+           "code": "FA 8.1.2.d",
+           "text": "Expand opportunities for others (e.g., audience, school, community) to actively engage in the media arts (e.g., social media, videos, online gallery)."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "respond",
+       "title": "Respond",
+       "subtopics": [
+        {
+         "id": "students-will-develop-ability-to-analyze-interpr",
+         "title": "Students will develop ability to analyze, interpret, and evaluate work produced in media arts",
+         "outcomes": [
+          {
+           "code": "FA 8.1.3.a",
+           "text": "Describe the qualities and relationships of the components in media arts as related to collective personal experiences."
+          },
+          {
+           "code": "FA 8.1.3.b",
+           "text": "Analyze multiple perspectives, key components, and relationships in media arts."
+          },
+          {
+           "code": "FA 8.1.3.c",
+           "text": "Interpret and evaluate possible meanings or points of view of media arts (e.g., intention, form, context)."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "connect",
+       "title": "Connect",
+       "subtopics": [
+        {
+         "id": "students-will-examine-personal-cultural-historic",
+         "title": "Students will examine personal, cultural, historical, and cross-disciplinary connections through media arts",
+         "outcomes": [
+          {
+           "code": "FA 8.1.4.a",
+           "text": "Demonstrate use of media arts to address social, cultural, or societal issues (e.g., advertising, social media, public service announcements."
+          },
+          {
+           "code": "FA 8.1.4.b",
+           "text": "Demonstrate and describe the impact of digital citizenship (e.g., copyright, plagiarism, citations, validating resources)."
+          },
+          {
+           "code": "FA 8.1.4.c",
+           "text": "Identify and incorporate personal or collective experiences, perspectives, and ideas of others through media arts."
+          },
+          {
+           "code": "FA 8.1.4.d",
+           "text": "Examine careers in media arts and lifelong learning opportunities."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "students-will-develop-and-apply-knowledge-and-sk",
+     "title": "Students will develop and apply knowledge and skills to create, perform, and respond to music, making connections to human experiences",
+     "topics": [
+      {
+       "id": "create",
+       "title": "Create",
+       "subtopics": [
+        {
+         "id": "students-will-compose-arrange-improvise-read-and",
+         "title": "Students will compose, arrange, improvise, read, and perform music with technical accuracy and expression",
+         "outcomes": [
+          {
+           "code": "FA 8.4.1.a",
+           "text": "Develop a compositional (glossary) idea for a specific purpose or mood, with teacher guidance, including: how elements of music convey expressive intent unity/variety tension/release how personal experiences influence musical choices."
+          },
+          {
+           "code": "FA 8.4.1.b",
+           "text": "Create, evaluate, and refine musical ideas that utilize a variety of compositional devices (e.g., form, imitation)."
+          },
+          {
+           "code": "FA 8.4.1.c",
+           "text": "Identify and define compositional devices in student creations."
+          },
+          {
+           "code": "FA 8.4.1.d",
+           "text": "Present an improvisation, arrangement, or original composition. Explain how elements of music in the student creation are used to communicate expressive content (e.g., aurally, visually, electronically)."
+          },
+          {
+           "code": "FA 8.4.1.e",
+           "text": "Connect music to historical and cultural contexts, the arts, and other disciplines through creating."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "perform",
+       "title": "Perform",
+       "subtopics": [
+        {
+         "id": "students-will-sing-and-or-play-independently-and",
+         "title": "Students will sing and/or play, independently and/or with others, a variety of music genres and styles using technical accuracy and expression",
+         "outcomes": [
+          {
+           "code": "FA 8.4.2.a",
+           "text": "Discuss expressive characteristics and components of technique, function, and context of selected pieces (e.g., phrasing, articulation/diction)."
+          },
+          {
+           "code": "FA 8.4.2.b",
+           "text": "Develop and refine solo/ensemble performance skills (e.g., posture, technique, reading music) using guided self-evaluation and feedback from others."
+          },
+          {
+           "code": "FA 8.4.2.c",
+           "text": "Perform (formally or informally) music of increasing difficulty using proper tone quality, phrasing, dynamics, and articulation. Demonstrate appropriate performance expectations."
+          },
+          {
+           "code": "FA 8.4.2.d",
+           "text": "Connect music to historical and cultural contexts, the arts, and other disciplines through performing."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "respond",
+       "title": "Respond",
+       "subtopics": [
+        {
+         "id": "students-will-examine-and-evaluate-elements-of-m",
+         "title": "Students will examine and evaluate elements of music to explain how music conveys mood or context (affect of music)",
+         "outcomes": [
+          {
+           "code": "FA 8.4.3.a",
+           "text": "Select appropriate music of contrasting styles to listen to or perform."
+          },
+          {
+           "code": "FA 8.4.3.b",
+           "text": "Analyze and explain how the performer/creator uses composition and performance characteristics (e.g., dynamics, phrasing) to convey expressive intent."
+          },
+          {
+           "code": "FA 8.4.3.c",
+           "text": "Choose appropriate criteria (e.g., dynamics, tone quality) to critique expressiveness and effectiveness of a performance or composition with teacher guidance. Work independently or with others."
+          },
+          {
+           "code": "FA 8.4.3.d",
+           "text": "Connect music to historical and cultural contexts, the arts, and other disciplines through responding."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "students-will-develop-knowledge-and-skills-apply",
+     "title": "Students will develop knowledge and skills applying the creative and collaborative process within theatre by crafting, performing, and responding to expressions of the human experience",
+     "topics": [
+      {
+       "id": "create",
+       "title": "Create",
+       "subtopics": [
+        {
+         "id": "students-will-dramatize-ideas-and-events-incorpo",
+         "title": "Students will dramatize ideas and events incorporating \"the givens\" (who, what, when, where, why)",
+         "outcomes": [
+          {
+           "code": "FA 8.5.1.a",
+           "text": "Use readily available props to create \"the where\" of a story (e.g., table, chairs, silverware indicate a restaurant)."
+          },
+          {
+           "code": "FA 8.5.1.b",
+           "text": "Plan and record, in small groups, an improvisation based on \"the givens\" of a scene (e.g., tell or present a story using a setting, characters and a series of events incorporating introduction, climax, resolution)."
+          },
+          {
+           "code": "FA 8.5.1.c",
+           "text": "Develop a linear plot structure that introduces and resolves a conflict."
+          },
+          {
+           "code": "FA 8.5.1.d",
+           "text": "Create theatrical works to illustrate a theme within theatrical works."
+          },
+          {
+           "code": "FA 8.5.1.e",
+           "text": "Write a dialogue with two to four characters."
+          },
+          {
+           "code": "FA 8.5.1.f",
+           "text": "Use movement in conjunction with extraneous sounds and short phrases to demonstrate two distinct characters (e.g., movements/sounds of a soldier as compared to movements/sounds of a mother)."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "perform",
+       "title": "Perform",
+       "subtopics": [
+        {
+         "id": "students-will-dramatize-ideas-and-events-incorpo",
+         "title": "Students will dramatize ideas and events incorporating \"the givens\" (who, what, when, where, why)",
+         "outcomes": [
+          {
+           "code": "FA 8.5.2.a",
+           "text": "Establish character (glossary) and emotion through the use of rate, articulation, enunciation, projection, inflection, and movement."
+          },
+          {
+           "code": "FA 8.5.2.b",
+           "text": "Establish character and emotion through the use of facial expression, gesture, posture, and body movement (e.g., pantomime, emoting)"
+          },
+          {
+           "code": "FA 8.5.2.c",
+           "text": "Rehearse and portray, in small groups, characters within a defined \"where.\""
+          },
+          {
+           "code": "FA 8.5.2.d",
+           "text": "Deliver a scripted monologue to a focal point."
+          },
+          {
+           "code": "FA 8.5.2.e",
+           "text": "Modify performance based on teacher/director and peer response."
+          },
+          {
+           "code": "FA 8.5.2.f",
+           "text": "Design and craft a performance space including set and audience arrangement (e.g., use classroom furniture to create a courtroom in a proscenium, thrust, or arena)."
+          },
+          {
+           "code": "FA 8.5.2.g",
+           "text": "Examine one's own effectiveness in a production/scene (e.g., keep a journal of acting choices, reflect on video of own performance)."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "respond",
+       "title": "Respond",
+       "subtopics": [
+        {
+         "id": "students-will-analyze-audience-performance-relat",
+         "title": "Students will analyze audience/performance relationship",
+         "outcomes": [
+          {
+           "code": "FA 8.5.3.a",
+           "text": "Construct, share, and use audience code of conduct including appropriate audience behavior and respect for physical space."
+          },
+          {
+           "code": "FA 8.5.3.b",
+           "text": "Identify, analyze, and discuss the impact of the stage space, casting, and technical elements."
+          },
+          {
+           "code": "FA 8.5.3.c",
+           "text": "Compare the effectiveness of a single actor's performance (i.e., physical/vocal choices) as a variety of characters (e.g., Will Smith)."
+          },
+          {
+           "code": "FA 8.5.3.d",
+           "text": "Classify theatrical works as dramatic, comedic, or musical theatre genres."
+          },
+          {
+           "code": "FA 8.5.3.e",
+           "text": "Discuss the impact on the audience of \"willing suspension of disbelief\" in a performance."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "connect",
+       "title": "Connect",
+       "subtopics": [
+        {
+         "id": "students-will-analyze-connections-between-theatr",
+         "title": "Students will analyze connections between theatre and society",
+         "outcomes": [
+          {
+           "code": "FA 8.5.4.a",
+           "text": "Understand the historical relevance of various theatrical forms (e.g., Greek and Roman theatre, Medieval, Renaissance)."
+          },
+          {
+           "code": "FA 8.5.4.b",
+           "text": "Compare and contrast scripted and unscripted performances (e.g., situation comedy vs. reality shows)."
+          },
+          {
+           "code": "FA 8.5.4.c",
+           "text": "Dramatize a traditional ritual (e.g., funeral from Our Town, wedding from Fiddler on the Roof, fire scene from Lord of the Flies)."
+          },
+          {
+           "code": "FA 8.5.4.d",
+           "text": "Analyze how performance reflects culture and history (e.g., Oliver, The Color Purple)."
+          },
+          {
+           "code": "FA 8.5.4.e",
+           "text": "Investigate responsibilities for specific careers in performing arts."
+          },
+          {
+           "code": "FA 8.5.4.f",
+           "text": "Demonstrate an understanding of the rights and responsibilities surrounding intellectual property (e.g., citing sources, paying royalties, receiving permission)."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "students-will-develop-and-apply-ideas-knowledge-",
+     "title": "Students will develop and apply ideas, knowledge, and skills to create, respond to, present, and connect art with the human experience. (curricular bands have been re-ordered: create, respond, present, connect)",
+     "topics": [
+      {
+       "id": "create-art-to-generate-ideas",
+       "title": "Create – Art to generate ideas",
+       "subtopics": [
+        {
+         "id": "students-will-use-the-creative-process-to-invest",
+         "title": "Students will use the creative process to investigate and communicate personal voice in artwork",
+         "outcomes": [
+          {
+           "code": "FA 8.2.1.a",
+           "text": "Investigate ideas and materials to demonstrate planning and refining."
+          },
+          {
+           "code": "FA 8.2.1.b",
+           "text": "Recognize personal voice and make stylistic choices to reflect personal identity."
+          },
+          {
+           "code": "FA 8.2.1.c",
+           "text": "Engage in the sensory experience and relate it to making expressive artwork."
+          },
+          {
+           "code": "FA 8.2.1.d",
+           "text": "Investigate and apply relationships between elements of art and principles of design to brainstorm visual possibilities (e.g., consider a variety of images and determine how line and value create emphasis in art)."
+          },
+          {
+           "code": "FA 8.2.1.e",
+           "text": "Investigate and demonstrate the relationship between technique, skill, and craftsmanship."
+          },
+          {
+           "code": "FA 8.2.1.f",
+           "text": "Demonstrate respect for accepted procedures regarding responsible care of equipment and materials."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "respond-to-understand-and-appreciate-ideas",
+       "title": "Respond – to understand and appreciate ideas",
+       "subtopics": [
+        {
+         "id": "students-will-use-the-critical-process-to-compar",
+         "title": "Students will use the critical process to compare and contrast multiple works of art, learning about themselves in the world",
+         "outcomes": [
+          {
+           "code": "FA 8.2.2.a",
+           "text": "Identify and describe themes and styles in works of art."
+          },
+          {
+           "code": "FA 8.2.2.b",
+           "text": "Compare and contrast works of art using elements and principles (e.g., themes, styles, cultures)."
+          },
+          {
+           "code": "FA 8.2.2.c",
+           "text": "Compare and contrast various interpretations of themes, styles, and mood."
+          },
+          {
+           "code": "FA 8.2.2.d",
+           "text": "Explain why a work of art can evoke different interpretations and how artwork is interpreted and evaluated by the way it is displayed or presented."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "present-art-to-communicate-ideas-process-and-pro",
+       "title": "Present – Art to communicate ideas, process, and product",
+       "subtopics": [
+        {
+         "id": "students-will-understand-and-apply-their-knowled",
+         "title": "Students will understand and apply their knowledge of a variety of presentation and communication techniques",
+         "outcomes": [
+          {
+           "code": "FA 8.2.3.a",
+           "text": "Analyze and present reflections of personal growth in an artist statement."
+          },
+          {
+           "code": "FA 8.2.3.b",
+           "text": "Analyze, individually and collaboratively, the selection of art collections, displays, and presentations."
+          },
+          {
+           "code": "FA 8.2.3.c",
+           "text": "Explore how the meaning of art can be affected by the presentation mode or venue (e.g., reproduction, digital, social media, or original museum/gallery experience)."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "connect-individual-perspective-and-identity-thro",
+       "title": "Connect – Individual perspective and identity through the study of art",
+       "subtopics": [
+        {
+         "id": "students-will-examine-the-significance-of-art-in",
+         "title": "Students will examine the significance of art in contemporary, historical, and cultural context in art and life",
+         "outcomes": [
+          {
+           "code": "FA 8.2.4.a",
+           "text": "Students can identify and demonstrate the role of an artist and explore art-related career opportunities."
+          },
+          {
+           "code": "FA 8.2.4.b",
+           "text": "Investigate and classify works of art from a variety of contemporary, historical, and cultural contexts."
+          },
+          {
+           "code": "FA 8.2.4.c",
+           "text": "Compare and contrast the purpose and function of different art forms. (e.g., artifacts vs. fine art)."
+          },
+          {
+           "code": "FA 8.2.4.d",
+           "text": "Explain how images and objects are used to convey a story, familiar experience, or connection to the world."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "9-12",
+   "units": [
+    {
+     "id": "students-will-develop-knowledge-and-skills-to-cr",
+     "title": "Students will develop knowledge and skills to create, perform, respond to, and connect artistic ideas and expressions through dance and movement",
+     "topics": [
+      {
+       "id": "create-concepts",
+       "title": "Create Concepts",
+       "subtopics": [
+        {
+         "id": "students-will-employ-dance-elements-and-choreogr",
+         "title": "Students will employ dance elements and choreographic principles, structures, and processes to create dances that communicate ideas, images, feelings, and experiences",
+         "outcomes": [
+          {
+           "code": "FA 12.3.1.a",
+           "text": "Generate movement and create dance phrases to communicate ideas, images, feelings, and experiences based on inspiration from a variety of sources (e.g., create a dance phrase based on a favorite song, poem, art piece)."
+          },
+          {
+           "code": "FA 12.3.1.b",
+           "text": "Create a dance sequence that uses a variety of dance elements to implement simple choreographic structures and principles to fulfill choreographic intent (e.g., select phrases for expansion into dance sequences)."
+          },
+          {
+           "code": "FA 12.3.1.c",
+           "text": "Understand and apply the role of improvisation to create choreography with others (e.g., create cohesive transitions between the phrases)."
+          },
+          {
+           "code": "FA 12.3.1.d",
+           "text": "Manipulate movement ideas, choose from a variety of solutions to movement problems, and work with others to create choreography (e.g., create a group work for peers)."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "create-movement",
+       "title": "Create Movement",
+       "subtopics": [
+        {
+         "id": "students-will-apply-movement-skills-in-dance",
+         "title": "Students will apply movement skills in dance",
+         "outcomes": [
+          {
+           "code": "FA 12.3.2.a",
+           "text": "Use a variety of body movements with flexibility, endurance, strength, and proper alignment to develop form and execute dance technique (e.g., execute extended sequences in a variety of dance forms with a high rate of accuracy)."
+          },
+          {
+           "code": "FA 12.3.2.b",
+           "text": "Apply time, space, weight, and flow to perform dance (e.g., use expressive musical phrasing and dynamic control)."
+          },
+          {
+           "code": "FA 12.3.2.c",
+           "text": "Recognize differences and execute technical skills from a variety of dance styles (e.g., study techniques such as ballet, modern, \"release technique\", West African, Afro-Haitian, jazz, hip-hop, rhythm tap, Broadway tap, flamenco, Broadway theater dance, latin, ballroom)."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "perform",
+       "title": "Perform",
+       "subtopics": [
+        {
+         "id": "students-will-understand-how-to-apply-performanc",
+         "title": "Students will understand how to apply performance values kinesthetic awareness, concentration, focus, and etiquette to enhance dance performance",
+         "outcomes": [
+          {
+           "code": "FA 12.3.3.a",
+           "text": "Apply appropriate behaviors and etiquette to observe, create, and perform dance (e.g., demonstrate safe practices for each genre, apply dance experience and knowledge, exhibit dance awareness)."
+          },
+          {
+           "code": "FA 12.3.3.b",
+           "text": "Understand the impact of performance values of clarity, concentration, focus, and projection on dance performance (e.g., understand the concepts of solo, duet, group dance, and the impact of each)."
+          },
+          {
+           "code": "FA 12.3.3.c",
+           "text": "Understand how self-assessment, teacher, and peer feedback can be used to refine dance performance (e.g., maintain a dance portfolio: journal, research, ideas, drawings, print-media clippings, resources, and performance notes. Recognize dance may look different to an audience vs. the way it feels to a performer)."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "respond",
+       "title": "Respond",
+       "subtopics": [
+        {
+         "id": "students-will-apply-critical-thinking-skills-to-",
+         "title": "Students will apply critical thinking skills to analyze and evaluate dance",
+         "outcomes": [
+          {
+           "code": "FA 12.3.4.a",
+           "text": "Use accurate dance terminology to describe how elements of movement and choreographic structures are used to communicate ideas in dance (e.g., use written and verbal expression to analyze dance in response to dance observation, creation, and performance)."
+          },
+          {
+           "code": "FA 12.3.4.b",
+           "text": "Analyze the use of dance elements and choreographic forms and structures in a variety of significant, current dance works for the 21st century (e.g., implement analytical skills to examine current companies and/or choreographers)."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "connect",
+       "title": "Connect",
+       "subtopics": [
+        {
+         "id": "students-will-apply-cultural-interdisciplinary-a",
+         "title": "Students will apply cultural, interdisciplinary, and historical connections with dance",
+         "outcomes": [
+          {
+           "code": "FA 12.3.5.a",
+           "text": "Use dance to apply concepts in world history and relate them to significant events, ideas, and traditions from a global context (e.g., research the role dance played globally and throughout time)."
+          },
+          {
+           "code": "FA 12.3.5.b",
+           "text": "Demonstrate how other arts disciplines are integrated into dance creation and performance (e.g., understand the principles underlying collaboration by learning or creating dances in cooperation with students working in other disciplines, or by using elements and skills from other disciplines)."
+          },
+          {
+           "code": "FA 12.3.5.c",
+           "text": "Apply health and nutrition to enhance dance ability (e.g., set goals for healthy behaviors that may enhance dance experiences)."
+          },
+          {
+           "code": "FA 12.3.5.d",
+           "text": "Identify various dance-related professions and how they impact the field of dance."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "students-will-develop-knowledge-and-skills-of-cu",
+     "title": "Students will develop knowledge and skills of current and emerging processes, techniques, and applications used in the creation of media arts as a means of expressing human experience",
+     "topics": [
+      {
+       "id": "create",
+       "title": "Create",
+       "subtopics": [
+        {
+         "id": "students-will-analyze-and-synthesize-processes-t",
+         "title": "Students will analyze and synthesize processes, techniques, and applications in media arts through the creation of media arts",
+         "outcomes": [
+          {
+           "code": "FA 12.1.1.a",
+           "text": "Engage in pre-production processes to prepare content and systems for production in media arts (e.g., scripting, storyboarding, choreographing)."
+          },
+          {
+           "code": "FA 12.1.1.b",
+           "text": "Apply media arts vocabulary along with elements and principles of design in the creative process."
+          },
+          {
+           "code": "FA 12.1.1.c",
+           "text": "Develop strategies, processes, and plans for creating work in media arts that reflect understanding of multiple resources and media."
+          },
+          {
+           "code": "FA 12.1.1.d",
+           "text": "Demonstrate understanding of, and respect for, the accepted procedures regarding the responsible care of media arts equipment and materials."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "present",
+       "title": "Present",
+       "subtopics": [
+        {
+         "id": "students-will-communicate-an-idea-message-by-pre",
+         "title": "Students will communicate an idea/message by presenting their work in media arts",
+         "outcomes": [
+          {
+           "code": "FA 12.1.2.a",
+           "text": "Research, organize, and integrate media arts content, processes, and aesthetic elements to convey meaning in media arts."
+          },
+          {
+           "code": "FA 12.1.2.b",
+           "text": "Refine and enhance expression through media arts, ideas, and skills over time while gathering and responding to critical feedback."
+          },
+          {
+           "code": "FA 12.1.2.c",
+           "text": "Analyze and evaluate the effectiveness of message perception to diverse audiences (e.g., age, gender, ethnicity)."
+          },
+          {
+           "code": "FA 12.1.2.d",
+           "text": "Construct, distribute, and manage works in media arts through a variety of contexts (e.g., live audiences, digital display, web)."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "respond",
+       "title": "Respond",
+       "subtopics": [
+        {
+         "id": "students-will-analyze-interpret-and-evaluate-wor",
+         "title": "Students will analyze, interpret, and evaluate work produced in media arts",
+         "outcomes": [
+          {
+           "code": "FA 12.1.3.a",
+           "text": "Analyze and describe various forms, methods, styles, and qualities in media arts to reflect experience and create intention."
+          },
+          {
+           "code": "FA 12.1.3.b",
+           "text": "Evaluate and interpret multiple perspectives, key components, and relationships in media arts (e.g., intention, form, context)."
+          },
+          {
+           "code": "FA 12.1.3.c",
+           "text": "Engage in self-directed and teacher-directed critiques of media arts."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "connect",
+       "title": "Connect",
+       "subtopics": [
+        {
+         "id": "students-will-analyze-and-integrate-personal-and",
+         "title": "Students will analyze and integrate personal and global connections through media arts",
+         "outcomes": [
+          {
+           "code": "FA 12.1.4.a",
+           "text": "Use historical, cultural, aesthetic, and critical frameworks to examine the capacity of media arts to reflect, affect, and catalyze personal reflection, action, or social change."
+          },
+          {
+           "code": "FA 12.1.4.b",
+           "text": "Apply the concepts of digital citizenship in media arts (e.g., copyright, plagiarism, citations, liability, validating resources)."
+          },
+          {
+           "code": "FA 12.1.4.c",
+           "text": "Incorporate and analyze personal or collective experiences, perspectives, and ideas of others in media arts."
+          },
+          {
+           "code": "FA 12.1.4.d",
+           "text": "Evaluate the necessary training and lifelong learning skills for careers in media arts."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "students-will-develop-and-apply-knowledge-and-sk",
+     "title": "Students will develop and apply knowledge and skills to create, perform, and respond to music, making connections to human experiences",
+     "topics": [
+      {
+       "id": "create",
+       "title": "Create",
+       "subtopics": [
+        {
+         "id": "students-will-compose-arrange-improvise-read-and",
+         "title": "Students will compose, arrange, improvise, read, and perform music with an analytical understanding of the language of music",
+         "outcomes": [
+          {
+           "code": "FA 12.4.1.a",
+           "text": "Independently generate multiple compositional ideas for a specific purpose or mood, including: how elements of music (glossary) utilize expressive intent unity/variety tension/release how personal experiences influence musical choices."
+          },
+          {
+           "code": "FA 12.4.1.b",
+           "text": "Create, evaluate, and refine musical ideas that actualize creative intent with increasing craftsmanship."
+          },
+          {
+           "code": "FA 12.4.1.c",
+           "text": "Analyze compositional devices in student creations."
+          },
+          {
+           "code": "FA 12.4.1.d",
+           "text": "Present an improvisation, arrangement, or original composition that conveys mood through craftsmanship. Explain how elements of music in the student creation are used to communicate expressive content (e.g., aurally, visually, electronically) and evaluate the effectiveness of their use."
+          },
+          {
+           "code": "FA 12.4.1.e",
+           "text": "Connect music to historical and cultural contexts, the arts, other disciplines, and life experience through creating."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "perform",
+       "title": "Perform",
+       "subtopics": [
+        {
+         "id": "students-will-sing-and-or-play-independently-and",
+         "title": "Students will sing and/or play, independently and/or with others, a variety of music genres and styles using technical accuracy and expression, and synthesize feedback from various sources to evaluate performance",
+         "outcomes": [
+          {
+           "code": "FA 12.4.2.a",
+           "text": "Analyze and interpret expressive characteristics and components of technique, function, and context of selected pieces (e.g., timbre, texture)."
+          },
+          {
+           "code": "FA 12.4.2.b",
+           "text": "Develop and refine solo/ensemble performance skills evaluation (e.g., posture, technique, reading music) using self-evaluation and feedback from others."
+          },
+          {
+           "code": "FA 12.4.2.c",
+           "text": "Perform (formally or informally) music of greater complexity using accurate intonation, expression, and stylistically correct interpretation of phrasing, dynamics, and articulation. Demonstrate appropriate performance expectations."
+          },
+          {
+           "code": "FA 12.4.2.d",
+           "text": "Connect music to historical and cultural contexts, the arts, other disciplines, and life experience through performing."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "respond",
+       "title": "Respond",
+       "subtopics": [
+        {
+         "id": "students-will-analyze-and-evaluate-how-music-eli",
+         "title": "Students will analyze and evaluate how music elicits intended responses (personal response to music)",
+         "outcomes": [
+          {
+           "code": "FA 12.4.3.a",
+           "text": "Select appropriate music in contrasting styles to listen to or perform with the audience in mind."
+          },
+          {
+           "code": "FA 12.4.3.b",
+           "text": "Analyze and evaluate how the performer/creator uses composition and performance characteristics (e.g., form, style) to convey expressive intent."
+          },
+          {
+           "code": "FA 12.4.3.c",
+           "text": "Independently choose appropriate criteria (e.g., texture, phrasing) to critique expressiveness and effectiveness of a performance/composition."
+          },
+          {
+           "code": "FA 12.4.3.d",
+           "text": "Connect music to historical and cultural contexts, the arts, other disciplines, and life experience through responding."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "students-will-develop-knowledge-and-skills-apply",
+     "title": "Students will develop knowledge and skills applying the creative and collaborative process within theatre by crafting, performing, and responding to expressions of the human experience",
+     "topics": [
+      {
+       "id": "create",
+       "title": "Create",
+       "subtopics": [
+        {
+         "id": "students-will-dramatize-ideas-and-events-using-l",
+         "title": "Students will dramatize ideas and events using linear and non-linear plot structures",
+         "outcomes": [
+          {
+           "code": "FA 12.5.1.a",
+           "text": "Design, develop, and use an environment with available materials appropriate to a scripted or improvised performance (e.g., plan and create a bus stop or a store front)."
+          },
+          {
+           "code": "FA 12.5.1.b",
+           "text": "Create a storyboard of an event using non-linear plot structure."
+          },
+          {
+           "code": "FA 12.5.1.c",
+           "text": "Develop and refine, through improvisation, a short scene using linear plot structure."
+          },
+          {
+           "code": "FA 12.5.1.d",
+           "text": "Analyze themes within theatrical works and their social relevance to audiences (e.g., McCarthyism in Arthur Miller's The Crucible)."
+          },
+          {
+           "code": "FA 12.5.1.e",
+           "text": "Adapt a section or scene for performance from a novel or short story using dialogue and/or narration (e.g., trial scene from To Kill A Mockingbird, \"The Interview\" from The Scarlet Letter, Speak, \"The Lottery\")."
+          },
+          {
+           "code": "FA 12.5.1.f",
+           "text": "Plan and rehearse an invented, historical or fictional character using posture, movement, facial expression, gestures, vocal choice, costume, make-up, hair, props, and space (e.g., living history monologue, Miracle Worker, Of Mice and Men, Pony Boy from The Outsiders)"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "perform",
+       "title": "Perform",
+       "subtopics": [
+        {
+         "id": "students-will-perform-ideas-and-events-through-m",
+         "title": "Students will perform ideas and events through movement, speech, and staging for an intended audience",
+         "outcomes": [
+          {
+           "code": "FA 12.5.2.a",
+           "text": "Communicate character through the use of rate, articulation, enunciation, projection, inflection, blocking in a monologue or scene."
+          },
+          {
+           "code": "FA 12.5.2.b",
+           "text": "Communicate character, relationship, and objective through the use of blocking and facial expression (e.g., duet scene from Romeo & Juliet, Mama and Walter from Raisin in the Sun, Joe Mondragon and Sheriff from The Milagro Beanfield War)."
+          },
+          {
+           "code": "FA 12.5.2.c",
+           "text": "Rehearse, refine, and perform a scripted play incorporating a designed environment and audience arrangement."
+          },
+          {
+           "code": "FA 12.5.2.d",
+           "text": "Polish and perform a monologue (glossary) based on the character developed in previous strand (\"create character\" FA 12.5.1.f)."
+          },
+          {
+           "code": "FA 12.5.2.e",
+           "text": "Expand and develop character based on teacher/director comments."
+          },
+          {
+           "code": "FA 12.5.2.f",
+           "text": "Design and craft a performance space making effective use of available light, sound, and color."
+          },
+          {
+           "code": "FA 12.5.2.g",
+           "text": "Evaluate one's own effectiveness in a production/scene (e.g., taking director feedback and modifying performance)."
+          },
+          {
+           "code": "FA 12.5.2.h",
+           "text": "Demonstrate understanding/respect for accepted procedures regarding responsible use/care of theatrical equipment/material (e.g., show awareness of fire codes regarding lights, curtains, paint storage, seating, scene shops; knowledge of rigging standards, safety regulations for use of power tools and other equipment)."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "respond",
+       "title": "Respond",
+       "subtopics": [
+        {
+         "id": "students-will-analyze-and-evaluate-audience-perf",
+         "title": "Students will analyze and evaluate audience/performance relationship",
+         "outcomes": [
+          {
+           "code": "FA 12.5.3.a",
+           "text": "Evaluate how audience conduct affects a theatrical performance."
+          },
+          {
+           "code": "FA 12.5.3.b",
+           "text": "Analyze and critique in part, or in its entirety, a live performance or recording of a live performance."
+          },
+          {
+           "code": "FA 12.5.3.c",
+           "text": "Evaluate how choices of the actor(s) impact audience understanding of a performance (e.g., Hamlet (Mel Gibson, Kenneth Branagh), multiple versions of Romeo & Juliet)."
+          },
+          {
+           "code": "FA 12.5.3.d",
+           "text": "Differentiate among theatrical works as dramatic, comedic, musical theatre, or tragic genres."
+          },
+          {
+           "code": "FA 12.5.3.e",
+           "text": "Justify a personal reaction to a performance or recording of a live performance."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "connect",
+       "title": "Connect",
+       "subtopics": [
+        {
+         "id": "students-will-analyze-and-evaluate-connections-b",
+         "title": "Students will analyze and evaluate connections between theatre and society",
+         "outcomes": [
+          {
+           "code": "FA 12.5.4.a",
+           "text": "Analyze the cultural and historical significance of theatrical forms as they have evolved over time, including contemporary theatre and pop culture (e.g., Romeo and Juliet influenced West Side Story)."
+          },
+          {
+           "code": "FA 12.5.4.b",
+           "text": "Explain the differences between historical event and dramatization of the event (e.g., The Diary of Anne Frank vs. the play The Diary of Anne Frank, Salem Witch Trial records vs. The Crucible, letters of Abigail and John Adams vs. the musical 1776)."
+          },
+          {
+           "code": "FA 12.5.4.c",
+           "text": "Examine the convergence of themes, ethics, aesthetics, and traditions in a theatrical work."
+          },
+          {
+           "code": "FA 12.5.4.d",
+           "text": "Analyze and evaluate cultural impact of theatre on society (e.g., A Raisin in the Sun, West Side Story)."
+          },
+          {
+           "code": "FA 12.5.4.e",
+           "text": "Connect and draw conclusions about how various jobs in theatre contribute to the whole theatrical experience."
+          },
+          {
+           "code": "FA 12.5.4.f",
+           "text": "Respect intellectual property rights and identify entities vital to creation of, and advocacy for, theatre (e.g., respecting author intent, crediting authors, royalties, publishing companies, community theatres)."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "students-will-develop-and-apply-ideas-knowledge-",
+     "title": "Students will develop and apply ideas, knowledge, and skills to create, respond to, present, and connect art with the human experience. (curricular bands have been re-ordered: create, respond, present, connect)",
+     "topics": [
+      {
+       "id": "create-art-to-generate-ideas",
+       "title": "Create – Art to generate ideas",
+       "subtopics": [
+        {
+         "id": "students-will-use-the-creative-process-to-formul",
+         "title": "Students will use the creative process to formulate a plan and implement aesthetic choices in artwork",
+         "outcomes": [
+          {
+           "code": "FA 12.2.1.a",
+           "text": "Analyze multiple ideas and materials to demonstrate planning and refining."
+          },
+          {
+           "code": "FA 12.2.1.b",
+           "text": "Create and communicate a personal voice, with intention, through a body of work."
+          },
+          {
+           "code": "FA 12.2.1.c",
+           "text": "Engage in making art to communicate and connect aesthetic theories to self-expression (e.g., imitationalism, expressionism, institutionalism, instrumentalism, formalism, contextualism)."
+          },
+          {
+           "code": "FA 12.2.1.d",
+           "text": "Demonstrate and communicate understanding of relationships between elements of art and principles of design by developing multiple solutions to a visual problem."
+          },
+          {
+           "code": "FA 12.2.1.e",
+           "text": "Synthesize knowledge of relationships between advanced technique, skill, and craftsmanship."
+          },
+          {
+           "code": "FA 12.2.1.f",
+           "text": "Demonstrate respect for accepted procedures regarding responsible care of equipment and materials."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "respond-to-understand-and-appreciate-ideas",
+       "title": "Respond – to understand and appreciate ideas",
+       "subtopics": [
+        {
+         "id": "students-will-use-the-critical-process-to-develo",
+         "title": "Students will use the critical process to develop and defend a logical argument supporting a contextual response to a work of art",
+         "outcomes": [
+          {
+           "code": "FA 12.2.2.a",
+           "text": "Identify and describe works of art that reveal different ideas (e.g., cultures, individuals)."
+          },
+          {
+           "code": "FA 12.2.2.b",
+           "text": "Formulate a rationale addressing use of elements and principles in a work of art."
+          },
+          {
+           "code": "FA 12.2.2.c",
+           "text": "Interpret and explain expressive qualities of artistic styles and movements (e.g., contemporary/pop cultural vs. historical art movements)."
+          },
+          {
+           "code": "FA 12.2.2.d",
+           "text": "Critique and defend how aesthetic choices impact the visual image and/or intended message."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "present-art-to-communicate-ideas-process-and-pro",
+       "title": "Present – Art to communicate ideas, process, and product",
+       "subtopics": [
+        {
+         "id": "students-will-integrate-and-apply-presentation-k",
+         "title": "Students will integrate and apply presentation knowledge into life experiences",
+         "outcomes": [
+          {
+           "code": "FA 12.2.3.a",
+           "text": "Design a personal artist statement by choosing from a variety of methods (e.g., poetry, multimedia)."
+          },
+          {
+           "code": "FA 12.2.3.b",
+           "text": "Create a portfolio, digital collection, or community display in a professional manner."
+          },
+          {
+           "code": "FA 12.2.3.c",
+           "text": "Compare and contrast the effectiveness of a presentation venue and how it affects the artist, artwork, and audience (e.g., reproduction, digital, social media, museum setting, gallery experience)."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "connect-individual-perspective-and-identity-thro",
+       "title": "Connect – Individual perspective and identity through the study of art",
+       "subtopics": [
+        {
+         "id": "students-will-synthesize-understanding-of-contem",
+         "title": "Students will synthesize understanding of contemporary, historical, and cultural context in art and life",
+         "outcomes": [
+          {
+           "code": "FA 12.2.4.a",
+           "text": "Investigate how artists define, shape, and empower their lives (e.g., personal life, lifelong opportunities, careers)."
+          },
+          {
+           "code": "FA 12.2.4.b",
+           "text": "Analyze and interpret works of art from a variety of contemporary, historical, cultural contexts; time periods, and cultural settings."
+          },
+          {
+           "code": "FA 12.2.4.c",
+           "text": "Synthesize how the purpose and function of art reveals aesthetic theory (e.g., political, social, cultural, personal)."
+          },
+          {
+           "code": "FA 12.2.4.d",
+           "text": "Connect images, objects, and a personal work of art to convey a story, familiar experience, or connection to the world."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "build": {
+  "builtAt": "2026-10-14T16:20:45.797Z",
+  "model": "none",
+  "usd": 0,
+  "expectedCodes": 328,
+  "coverage": 1,
+  "missingCodes": [],
+  "counts": {
+   "grades": 4,
+   "units": 20,
+   "topics": 80,
+   "subtopics": 80,
+   "outcomes": 328
+  },
+  "warnings": []
+ }
+}

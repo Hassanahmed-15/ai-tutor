@@ -1,0 +1,167 @@
+{
+ "id": "uk-nc-art-design-ks1-2",
+ "region": "UK",
+ "framework": "National Curriculum in England (2014)",
+ "board": "Department for Education",
+ "qualification": "Primary",
+ "subject": "Art and design",
+ "syllabusCode": null,
+ "gradeSystem": "key-stage",
+ "source": {
+  "urls": [
+   "https://assets.publishing.service.gov.uk/media/5a7ba810ed915d4147621ca0/PRIMARY_national_curriculum_-_Art_and_design.pdf",
+   "https://www.gov.uk/government/publications/national-curriculum-in-england-art-and-design-programmes-of-study"
+  ],
+  "publisher": "Department for Education",
+  "licence": "Open Government Licence v3.0 (Crown copyright)",
+  "firstExam": "2014"
+ },
+ "grades": [
+  {
+   "grade": "KS1",
+   "units": [
+    {
+     "id": "art-and-design-programme-of-study",
+     "title": "Art and design programme of study",
+     "topics": [
+      {
+       "id": "making-and-techniques",
+       "title": "Making and techniques",
+       "subtopics": [
+        {
+         "id": "using-materials-creatively",
+         "title": "Using materials creatively",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Use a range of materials creatively to design and make products."
+          }
+         ]
+        },
+        {
+         "id": "drawing-painting-and-sculpture",
+         "title": "Drawing, painting and sculpture",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Use drawing, painting and sculpture to develop and share ideas, experiences and imagination."
+          }
+         ]
+        },
+        {
+         "id": "elements-of-art",
+         "title": "Elements of art",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Use colour, pattern, texture, line, shape, form and space in a range of techniques."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "artists-craft-makers-and-designers",
+       "title": "Artists, craft makers and designers",
+       "subtopics": [
+        {
+         "id": "looking-at-artists-work",
+         "title": "Looking at artists' work",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe similarities and differences between the work of artists, craft makers and designers."
+          },
+          {
+           "code": null,
+           "text": "Link the work of artists, craft makers and designers to your own work."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "KS2",
+   "units": [
+    {
+     "id": "art-and-design-programme-of-study",
+     "title": "Art and design programme of study",
+     "topics": [
+      {
+       "id": "making-and-techniques",
+       "title": "Making and techniques",
+       "subtopics": [
+        {
+         "id": "developing-control",
+         "title": "Developing control",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Develop control and use of materials with creativity and experimentation, aware of different kinds of art, craft and design."
+          }
+         ]
+        },
+        {
+         "id": "sketchbooks",
+         "title": "Sketchbooks",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Keep a sketchbook to record observations and to review and revisit ideas."
+          }
+         ]
+        },
+        {
+         "id": "mastering-techniques",
+         "title": "Mastering techniques",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Improve mastery of drawing, painting and sculpture with materials such as pencil, charcoal, paint and clay."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "artists-architects-and-designers",
+       "title": "Artists, architects and designers",
+       "subtopics": [
+        {
+         "id": "great-artists-in-history",
+         "title": "Great artists in history",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Learn about great artists, architects and designers in history."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "build": {
+  "builtAt": "2026-10-14T10:36:21.566Z",
+  "model": "claude-agent",
+  "usd": 0,
+  "expectedCodes": null,
+  "coverage": null,
+  "missingCodes": [],
+  "counts": {
+   "grades": 2,
+   "units": 2,
+   "topics": 4,
+   "subtopics": 8,
+   "outcomes": 9
+  },
+  "warnings": []
+ }
+}

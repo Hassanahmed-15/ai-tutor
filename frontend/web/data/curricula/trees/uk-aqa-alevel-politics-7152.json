@@ -1,0 +1,755 @@
+{
+ "id": "uk-aqa-alevel-politics-7152",
+ "region": "UK",
+ "framework": "AQA A-level",
+ "board": "AQA",
+ "qualification": "A Level",
+ "subject": "Politics",
+ "syllabusCode": "7152",
+ "gradeSystem": "year",
+ "source": {
+  "urls": [
+   "https://cdn.sanity.io/files/p28bar15/green/16213add5da9bf2e76a6c9c02037976c7420fd82.pdf"
+  ],
+  "publisher": "AQA",
+  "licence": "Exam board specification, (c) AQA; structure + our own wording only",
+  "firstExam": "2019"
+ },
+ "grades": [
+  {
+   "grade": "all",
+   "units": [
+    {
+     "id": "3-1-government-and-politics-of-the-uk",
+     "title": "3.1 Government and politics of the UK",
+     "topics": [
+      {
+       "id": "3-1-1-the-government-of-the-uk",
+       "title": "3.1.1 The government of the UK",
+       "subtopics": [
+        {
+         "id": "the-british-constitution",
+         "title": "The British constitution",
+         "outcomes": [
+          {
+           "code": "3.1",
+           "text": "Know the scope of UK government and politics."
+          },
+          {
+           "code": "3.1.1",
+           "text": "Understand how the UK is governed."
+          },
+          {
+           "code": "3.1.1.1",
+           "text": "Define codified and uncodified constitutions, statute, common law, conventions, royal prerogative, rule of law and parliamentary sovereignty."
+          },
+          {
+           "code": null,
+           "text": "Know how Magna Carta, the Bill of Rights, the Act of Settlement and the Parliament Acts shaped UK rights."
+          },
+          {
+           "code": null,
+           "text": "Evaluate the nature and sources of the British constitution and debates on the extent of rights."
+          },
+          {
+           "code": null,
+           "text": "Evaluate two constitutional changes since 1997 (devolution, Freedom of Information, Human Rights Act, Lords reform)."
+          },
+          {
+           "code": null,
+           "text": "Analyse where individual and collective rights agree and conflict."
+          }
+         ]
+        },
+        {
+         "id": "parliament",
+         "title": "Parliament",
+         "outcomes": [
+          {
+           "code": "3.1.1.2",
+           "text": "Explain scrutiny of the executive, the Commons and Lords, and the legislative process."
+          },
+          {
+           "code": null,
+           "text": "Compare Burkean, delegate and mandate theories of representation."
+          },
+          {
+           "code": null,
+           "text": "Evaluate the roles and influence of MPs and peers, committees and the opposition."
+          },
+          {
+           "code": null,
+           "text": "Evaluate Parliament's influence on government: party discipline, civil servants and Select Committees, Whips."
+          },
+          {
+           "code": null,
+           "text": "Analyse interactions between Parliament and other branches."
+          }
+         ]
+        },
+        {
+         "id": "the-prime-minister-and-cabinet",
+         "title": "The Prime Minister and cabinet",
+         "outcomes": [
+          {
+           "code": "3.1.1.3",
+           "text": "Define the core executive, primus inter pares, cabinet, cabinet committees, and collective and individual responsibility."
+          },
+          {
+           "code": null,
+           "text": "Evaluate policy making and the relationship between Prime Minister and cabinet."
+          },
+          {
+           "code": null,
+           "text": "Distinguish individual from collective responsibility using examples such as Crichel Down."
+          },
+          {
+           "code": null,
+           "text": "Analyse two examples of prime ministerial and cabinet power, one from 1945-97 and one since 1997."
+          }
+         ]
+        },
+        {
+         "id": "the-judiciary",
+         "title": "The judiciary",
+         "outcomes": [
+          {
+           "code": "3.1.1.4",
+           "text": "Define the Supreme Court, judicial independence, separation of powers, ultra vires and judicial review."
+          },
+          {
+           "code": null,
+           "text": "Evaluate judicial composition and appointments."
+          },
+          {
+           "code": null,
+           "text": "Evaluate the Supreme Court's impact on government, legislature and policy, including judicial review."
+          }
+         ]
+        },
+        {
+         "id": "devolution",
+         "title": "Devolution",
+         "outcomes": [
+          {
+           "code": "3.1.1.5",
+           "text": "Describe the Scottish, Welsh and Northern Ireland bodies and their powers."
+          },
+          {
+           "code": null,
+           "text": "Evaluate devolution debates in England and existing English devolution."
+          },
+          {
+           "code": null,
+           "text": "Evaluate the impact of devolution on UK government."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "3-1-2-the-politics-of-the-uk",
+       "title": "3.1.2 The politics of the UK",
+       "subtopics": [
+        {
+         "id": "democracy-and-participation",
+         "title": "Democracy and participation",
+         "outcomes": [
+          {
+           "code": "3.1.2",
+           "text": "Understand UK politics."
+          },
+          {
+           "code": "3.1.2.1",
+           "text": "Define direct and representative democracy, suffrage, participation and partisan dealignment."
+          },
+          {
+           "code": null,
+           "text": "Describe how suffrage has changed since the Great Reform Act and debates over gender, class, ethnicity and age."
+          },
+          {
+           "code": null,
+           "text": "Explain the significance of the Chartists, Suffragists and Suffragettes, and suffrage as a human right."
+          },
+          {
+           "code": null,
+           "text": "Evaluate types of democracy and patterns and forms of participation."
+          }
+         ]
+        },
+        {
+         "id": "elections-and-referendums",
+         "title": "Elections and referendums",
+         "outcomes": [
+          {
+           "code": "3.1.2.2",
+           "text": "Compare majoritarian and proportional systems in Westminster and one devolved body."
+          },
+          {
+           "code": null,
+           "text": "Evaluate advantages, disadvantages and performance debates of those systems."
+          },
+          {
+           "code": null,
+           "text": "Study three elections since 1945, including 1997: voting behaviour, media, policies, manifestos, campaigns, leadership and electoral system effects."
+          },
+          {
+           "code": null,
+           "text": "Evaluate the use and impact of referendums."
+          }
+         ]
+        },
+        {
+         "id": "political-parties",
+         "title": "Political parties",
+         "outcomes": [
+          {
+           "code": "3.1.2.3",
+           "text": "Explain the origins and development of the Conservative, Labour and Liberal Democrat parties and their current policies."
+          },
+          {
+           "code": null,
+           "text": "Evaluate party structures, functions and funding debates."
+          },
+          {
+           "code": null,
+           "text": "Evaluate party relations with the media and factors affecting outcomes."
+          },
+          {
+           "code": null,
+           "text": "Evaluate minor parties' influence and the move toward a multi-party system."
+          }
+         ]
+        },
+        {
+         "id": "pressure-groups",
+         "title": "Pressure groups",
+         "outcomes": [
+          {
+           "code": "3.1.2.4",
+           "text": "Define pluralism, insider and outsider groups, and promotional and interest groups."
+          },
+          {
+           "code": null,
+           "text": "Evaluate pressure groups and democracy, and influences such as think tanks, lobbyists, corporations and media."
+          },
+          {
+           "code": null,
+           "text": "Study one insider and one outsider group; evaluate methods and factors of influence, and links to parties, government and media."
+          }
+         ]
+        },
+        {
+         "id": "the-european-union",
+         "title": "The European Union",
+         "outcomes": [
+          {
+           "code": "3.1.2.5",
+           "text": "Know EU institutions."
+          },
+          {
+           "code": null,
+           "text": "Evaluate EU aims and how far they were achieved, and its impact on UK politics and policy."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "3-2-government-and-politics-of-the-usa-and-compa",
+     "title": "3.2 Government and politics of the USA and comparative politics",
+     "topics": [
+      {
+       "id": "3-2-1-government-and-politics-of-the-usa",
+       "title": "3.2.1 Government and politics of the USA",
+       "subtopics": [
+        {
+         "id": "the-us-constitutional-framework",
+         "title": "The US constitutional framework",
+         "outcomes": [
+          {
+           "code": "3.2",
+           "text": "Know the scope of US and comparative politics."
+          },
+          {
+           "code": "3.2.1",
+           "text": "Understand how the USA is governed."
+          },
+          {
+           "code": "3.2.1.1",
+           "text": "Define the US Constitution, Bill of Rights, separation of powers, checks and balances and federalism."
+          },
+          {
+           "code": null,
+           "text": "Evaluate the Constitution's significance, framework, federal-state relations and amendment process."
+          },
+          {
+           "code": null,
+           "text": "Evaluate debates on the Constitution's importance today and the protection of civil liberties."
+          }
+         ]
+        },
+        {
+         "id": "congress",
+         "title": "Congress",
+         "outcomes": [
+          {
+           "code": "3.2.1.2",
+           "text": "Define Congress, House, Senate, oversight and the committee system."
+          },
+          {
+           "code": null,
+           "text": "Evaluate Congress's structure, composition, terms and party allegiance."
+          },
+          {
+           "code": null,
+           "text": "Evaluate its legislative, oversight and purse powers and effectiveness."
+          },
+          {
+           "code": null,
+           "text": "Evaluate parties and committees, representative roles, the House versus Senate, and relations with the executive and Supreme Court."
+          }
+         ]
+        },
+        {
+         "id": "the-president",
+         "title": "The President",
+         "outcomes": [
+          {
+           "code": "3.2.1.3",
+           "text": "Define formal and informal powers, imperial and imperilled presidency."
+          },
+          {
+           "code": null,
+           "text": "Evaluate sources of presidential power using two examples."
+          },
+          {
+           "code": null,
+           "text": "Distinguish formal powers (Article 2) from informal powers, including EXOP."
+          },
+          {
+           "code": null,
+           "text": "Evaluate constraints: checks and balances, party support in Congress, Supreme Court, media and public opinion."
+          },
+          {
+           "code": null,
+           "text": "Evaluate the president's relationship with cabinet, EXOP and bureaucracy, with an example of waxing and waning power, and the imperial versus imperilled debate."
+          }
+         ]
+        },
+        {
+         "id": "the-us-judiciary",
+         "title": "The US judiciary",
+         "outcomes": [
+          {
+           "code": "3.2.1.4",
+           "text": "Define judicial activism, restraint, judicial review and strict and loose constructionism."
+          },
+          {
+           "code": null,
+           "text": "Evaluate Supreme Court selection, appointment and composition."
+          },
+          {
+           "code": null,
+           "text": "Evaluate the Court as guardian of the Constitution and protector of rights, and the significance of judicial review."
+          },
+          {
+           "code": null,
+           "text": "Study two landmark rulings and the Court's role in shaping a policy area."
+          }
+         ]
+        },
+        {
+         "id": "us-elections-and-direct-democracy",
+         "title": "US elections and direct democracy",
+         "outcomes": [
+          {
+           "code": "3.2.1.5",
+           "text": "Define the electoral college, primaries, caucuses, conventions, direct democracy, split-ticket voting, abstention and incumbency."
+          },
+          {
+           "code": null,
+           "text": "Evaluate presidential and congressional elections, nomination and the electoral college."
+          },
+          {
+           "code": null,
+           "text": "Evaluate determinants of outcomes: money, media, issues, leadership, incumbency, and campaign finance debates."
+          },
+          {
+           "code": null,
+           "text": "Evaluate state-level direct democracy: referendums, initiatives, propositions and recall."
+          },
+          {
+           "code": null,
+           "text": "Evaluate US voting behaviour, party coalitions, realigning elections, split-ticket voting and abstention."
+          }
+         ]
+        },
+        {
+         "id": "us-political-parties",
+         "title": "US political parties",
+         "outcomes": [
+          {
+           "code": "3.2.1.6",
+           "text": "Define factionalism, party decline and renewal, party organisation, third parties and independents."
+          },
+          {
+           "code": null,
+           "text": "Evaluate the two main parties' ideologies, values, policies, traditions and organisation, and growing polarisation."
+          },
+          {
+           "code": null,
+           "text": "Evaluate factionalism, decline or renewal, party weakness, two-party dominance and third-party significance."
+          }
+         ]
+        },
+        {
+         "id": "us-pressure-groups",
+         "title": "US pressure groups",
+         "outcomes": [
+          {
+           "code": "3.2.1.7",
+           "text": "Define political pluralism, electoral finance, iron triangles, promotional and interest groups, PACs and Super PACs."
+          },
+          {
+           "code": null,
+           "text": "Evaluate US pluralism, typologies, methods and tactics."
+          },
+          {
+           "code": null,
+           "text": "Evaluate pressure group election funding, iron triangles, incumbency, power versus parties, and PACs and Super PACs."
+          }
+         ]
+        },
+        {
+         "id": "civil-rights",
+         "title": "Civil rights",
+         "outcomes": [
+          {
+           "code": "3.2.1.8",
+           "text": "Define civil liberties, Bill of Rights, landmark rulings and the Civil Rights movement."
+          },
+          {
+           "code": null,
+           "text": "Evaluate protection of rights under the Constitution, Bill of Rights, amendments and Supreme Court rulings."
+          },
+          {
+           "code": null,
+           "text": "Evaluate pressure groups' role in rights and the impact of one salient rights issue on US politics."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "3-2-2-comparative-politics",
+       "title": "3.2.2 Comparative politics",
+       "subtopics": [
+        {
+         "id": "comparing-constitutions",
+         "title": "Comparing constitutions",
+         "outcomes": [
+          {
+           "code": "3.2.2",
+           "text": "Compare UK and US politics."
+          },
+          {
+           "code": "3.2.2.1",
+           "text": "Use structural, rational and cultural approaches to compare UK and US government."
+          },
+          {
+           "code": null,
+           "text": "Compare UK and US constitutions: codified or not, sources, separation of powers, checks and balances."
+          },
+          {
+           "code": null,
+           "text": "Compare UK devolution with US federalism."
+          },
+          {
+           "code": null,
+           "text": "Compare the legislatures' powers, composition, structure, strengths and weaknesses."
+          }
+         ]
+        },
+        {
+         "id": "comparing-executives",
+         "title": "Comparing executives",
+         "outcomes": [
+          {
+           "code": "3.2.2.2",
+           "text": "Compare the role, powers and accountability of the UK prime minister and US president."
+          },
+          {
+           "code": null,
+           "text": "Compare each leader's relationship to other institutions of government."
+          }
+         ]
+        },
+        {
+         "id": "comparing-judiciaries",
+         "title": "Comparing judiciaries",
+         "outcomes": [
+          {
+           "code": "3.2.2.3",
+           "text": "Compare the UK Supreme Court and US Supreme Court, their powers and bases."
+          },
+          {
+           "code": null,
+           "text": "Compare judicial independence and impact on government and politics."
+          }
+         ]
+        },
+        {
+         "id": "comparing-electoral-and-party-systems",
+         "title": "Comparing electoral and party systems",
+         "outcomes": [
+          {
+           "code": "3.2.2.4",
+           "text": "Compare elections and electoral systems in the UK and USA."
+          },
+          {
+           "code": null,
+           "text": "Compare two-party and multi-party systems, and explain why the US has two parties."
+          },
+          {
+           "code": null,
+           "text": "Compare campaign and party finance debates, party unity, third parties and independents, and party policies."
+          }
+         ]
+        },
+        {
+         "id": "comparing-pressure-groups",
+         "title": "Comparing pressure groups",
+         "outcomes": [
+          {
+           "code": "3.2.2.5",
+           "text": "Compare influences on government in the UK and USA."
+          },
+          {
+           "code": null,
+           "text": "Compare pressure groups' power, influence and methods."
+          }
+         ]
+        },
+        {
+         "id": "comparing-civil-rights",
+         "title": "Comparing civil rights",
+         "outcomes": [
+          {
+           "code": "3.2.2.6",
+           "text": "Compare how civil rights are protected in the UK and USA."
+          },
+          {
+           "code": null,
+           "text": "Evaluate civil rights debates."
+          },
+          {
+           "code": null,
+           "text": "Compare methods, influence and effectiveness of civil rights campaigns."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "3-3-political-ideas",
+     "title": "3.3 Political ideas",
+     "topics": [
+      {
+       "id": "3-3-1-core-ideologies",
+       "title": "3.3.1 Core ideologies",
+       "subtopics": [
+        {
+         "id": "liberalism",
+         "title": "Liberalism",
+         "outcomes": [
+          {
+           "code": "3.3",
+           "text": "Know the scope of political ideas."
+          },
+          {
+           "code": "3.3.1",
+           "text": "Understand the core ideologies."
+          },
+          {
+           "code": "3.3.1.1",
+           "text": "Explain liberal views on the individual, freedom, human nature, state, society and economy."
+          },
+          {
+           "code": null,
+           "text": "Distinguish classical from modern liberalism."
+          },
+          {
+           "code": null,
+           "text": "Study Locke, Mill, Rawls, T.H. Green, Wollstonecraft and Friedan on liberal thinking."
+          }
+         ]
+        },
+        {
+         "id": "conservatism",
+         "title": "Conservatism",
+         "outcomes": [
+          {
+           "code": "3.3.1.2",
+           "text": "Explain conservative views on government, free market, individual, authority, tradition and property."
+          },
+          {
+           "code": null,
+           "text": "Distinguish traditional conservatism from the New Right."
+          },
+          {
+           "code": null,
+           "text": "Study Hobbes, Burke, Oakeshott, Rand and Nozick on conservative thinking."
+          }
+         ]
+        },
+        {
+         "id": "socialism",
+         "title": "Socialism",
+         "outcomes": [
+          {
+           "code": "3.3.1.3",
+           "text": "Explain socialist views on Marxism, class analysis and fundamental goals."
+          },
+          {
+           "code": null,
+           "text": "Compare revolutionary socialism with social democracy."
+          },
+          {
+           "code": null,
+           "text": "Study Marx and Engels, Luxemburg, Webb, Crosland and Giddens on socialist thinking."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "3-3-2-other-ideologies",
+       "title": "3.3.2 Other ideologies",
+       "subtopics": [
+        {
+         "id": "nationalism",
+         "title": "Nationalism",
+         "outcomes": [
+          {
+           "code": "3.3.2",
+           "text": "Understand one further ideology."
+          },
+          {
+           "code": "3.3.2.1",
+           "text": "Explain nation and sovereignty of the people, with views on human nature, state, society and economy."
+          },
+          {
+           "code": null,
+           "text": "Compare minority and state nationalism and recent developments."
+          },
+          {
+           "code": null,
+           "text": "Study Rousseau, Herder, Mazzini, Garvey and Maurras on nationalism."
+          }
+         ]
+        },
+        {
+         "id": "feminism",
+         "title": "Feminism",
+         "outcomes": [
+          {
+           "code": "3.3.2.2",
+           "text": "Explain equality of treatment, recognising gender differences and affirmative action."
+          },
+          {
+           "code": null,
+           "text": "Compare liberal and radical feminism, difference feminism and post-feminism."
+          },
+          {
+           "code": null,
+           "text": "Study Gilman, de Beauvoir, Millett, Rowbotham and hooks on feminism."
+          }
+         ]
+        },
+        {
+         "id": "multiculturalism",
+         "title": "Multiculturalism",
+         "outcomes": [
+          {
+           "code": "3.3.2.3",
+           "text": "Explain equality of opportunity, anti-discrimination and assimilation."
+          },
+          {
+           "code": null,
+           "text": "Explain integration and segregation."
+          },
+          {
+           "code": null,
+           "text": "Study Berlin, Kymlicka, Taylor, Modood and Parekh on multiculturalism."
+          }
+         ]
+        },
+        {
+         "id": "anarchism",
+         "title": "Anarchism",
+         "outcomes": [
+          {
+           "code": "3.3.2.4",
+           "text": "Explain individual autonomy, opposition to coercion and to government, and society without government."
+          },
+          {
+           "code": null,
+           "text": "Compare individualist and collectivist anarchist traditions."
+          },
+          {
+           "code": null,
+           "text": "Study Stirner, Bakunin, Goldman, Kropotkin and Proudhon on anarchism."
+          }
+         ]
+        },
+        {
+         "id": "ecologism",
+         "title": "Ecologism",
+         "outcomes": [
+          {
+           "code": "3.3.2.5",
+           "text": "Explain the relationship between humankind and nature, and sustainability."
+          },
+          {
+           "code": null,
+           "text": "Distinguish light greens from dark greens."
+          },
+          {
+           "code": null,
+           "text": "Study Leopold, Carson, Schumacher, Merchant and Bookchin on ecologism."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "build": {
+  "builtAt": "2026-10-14T10:17:00.629Z",
+  "model": "claude-agent",
+  "usd": 0,
+  "expectedCodes": 41,
+  "coverage": 1,
+  "missingCodes": [],
+  "counts": {
+   "grades": 1,
+   "units": 3,
+   "topics": 6,
+   "subtopics": 32,
+   "outcomes": 116
+  },
+  "warnings": [
+   "grade Year 12 has no content",
+   "grade Year 13 has no content",
+   "unexpected grade label \"all\""
+  ]
+ }
+}

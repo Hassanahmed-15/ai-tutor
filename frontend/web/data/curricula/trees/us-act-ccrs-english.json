@@ -1,0 +1,1121 @@
+{
+ "id": "us-act-ccrs-english",
+ "region": "US",
+ "framework": "ACT College and Career Readiness Standards",
+ "board": "ACT",
+ "qualification": "ACT",
+ "subject": "English",
+ "syllabusCode": null,
+ "gradeSystem": "grade",
+ "source": {
+  "urls": [
+   "https://www.act.org/content/dam/act/unsecured/documents/CCRS-EnglishStandards.pdf",
+   "https://www.act.org/standard"
+  ],
+  "publisher": "ACT, Inc.",
+  "licence": "\u00a9 ACT, Inc.; structure + our own wording only",
+  "firstExam": null
+ },
+ "grades": [
+  {
+   "grade": "all",
+   "units": [
+    {
+     "id": "topic-development-in-terms-of-purpose-and-focus-",
+     "title": "Topic Development in Terms of Purpose and Focus (TOD)",
+     "topics": [
+      {
+       "id": "score-range-13-15",
+       "title": "Score range 13-15",
+       "subtopics": [
+        {
+         "id": "relevance-and-deletion",
+         "title": "Relevance and deletion: Score range 13-15",
+         "outcomes": [
+          {
+           "code": "TOD 201",
+           "text": "Spot and cut an obviously off-topic piece of material in an essay."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "score-range-16-19",
+       "title": "Score range 16-19",
+       "subtopics": [
+        {
+         "id": "relevance-and-deletion",
+         "title": "Relevance and deletion: Score range 16-19",
+         "outcomes": [
+          {
+           "code": "TOD 301",
+           "text": "Cut material that clearly has nothing to do with the essay's focus."
+          }
+         ]
+        },
+        {
+         "id": "purpose-and-goals",
+         "title": "Purpose and goals: Score range 16-19",
+         "outcomes": [
+          {
+           "code": "TOD 302",
+           "text": "Say why a word or phrase is there when the reason is simple, such as naming or defining."
+          },
+          {
+           "code": "TOD 303",
+           "text": "Judge whether a simple essay achieves a plain, direct goal."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "score-range-20-23",
+       "title": "Score range 20-23",
+       "subtopics": [
+        {
+         "id": "relevance-and-deletion",
+         "title": "Relevance and deletion: Score range 20-23",
+         "outcomes": [
+          {
+           "code": "TOD 401",
+           "text": "Decide whether material fits the essay's focus."
+          }
+         ]
+        },
+        {
+         "id": "purpose-and-goals",
+         "title": "Purpose and goals: Score range 20-23",
+         "outcomes": [
+          {
+           "code": "TOD 402",
+           "text": "Name the purpose of a word or phrase when it is straightforward, like describing or giving examples."
+          },
+          {
+           "code": "TOD 403",
+           "text": "Choose a word, phrase or sentence that achieves a straightforward purpose such as conveying a feeling."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "score-range-24-27",
+       "title": "Score range 24-27",
+       "subtopics": [
+        {
+         "id": "relevance-and-deletion",
+         "title": "Relevance and deletion: Score range 24-27",
+         "outcomes": [
+          {
+           "code": "TOD 501",
+           "text": "Decide whether material fits the focus of the paragraph it sits in."
+          }
+         ]
+        },
+        {
+         "id": "purpose-and-goals",
+         "title": "Purpose and goals: Score range 24-27",
+         "outcomes": [
+          {
+           "code": "TOD 502",
+           "text": "Identify the purpose of a word, phrase or sentence when fairly straightforward, like giving reasons."
+          },
+          {
+           "code": "TOD 503",
+           "text": "Decide whether an essay meets a stated goal."
+          },
+          {
+           "code": "TOD 504",
+           "text": "Add a word, phrase or sentence that serves a fairly straightforward purpose, like sharpening focus."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "score-range-28-32",
+       "title": "Score range 28-32",
+       "subtopics": [
+        {
+         "id": "relevance-and-deletion",
+         "title": "Relevance and deletion: Score range 28-32",
+         "outcomes": [
+          {
+           "code": "TOD 601",
+           "text": "Judge material that seems plausible but may not belong at that point in the essay."
+          }
+         ]
+        },
+        {
+         "id": "purpose-and-goals",
+         "title": "Purpose and goals: Score range 28-32",
+         "outcomes": [
+          {
+           "code": "TOD 602",
+           "text": "Identify subtle purposes such as supporting a later point or setting tone, or recognise when deletion is best."
+          },
+          {
+           "code": "TOD 603",
+           "text": "Use wording to achieve a subtle purpose such as emphasis or meaning through connotation."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "score-range-33-36",
+       "title": "Score range 33-36",
+       "subtopics": [
+        {
+         "id": "purpose-and-goals",
+         "title": "Purpose and goals: Score range 33-36",
+         "outcomes": [
+          {
+           "code": "TOD 701",
+           "text": "Identify complex purposes, such as anticipating what a reader needs, using the whole paragraph and essay."
+          },
+          {
+           "code": "TOD 702",
+           "text": "Decide whether a complex essay meets a specified goal."
+          },
+          {
+           "code": "TOD 703",
+           "text": "Use wording to achieve a complex purpose, often tied to the essay's focus."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "organization-unity-and-cohesion-org",
+     "title": "Organization, Unity, and Cohesion (ORG)",
+     "topics": [
+      {
+       "id": "score-range-13-15",
+       "title": "Score range 13-15",
+       "subtopics": [
+        {
+         "id": "transitions",
+         "title": "Transitions: Score range 13-15",
+         "outcomes": [
+          {
+           "code": "ORG 201",
+           "text": "Decide when a transition word marks time order in a simple narrative."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "score-range-16-19",
+       "title": "Score range 16-19",
+       "subtopics": [
+        {
+         "id": "placing-sentences",
+         "title": "Placing sentences: Score range 16-19",
+         "outcomes": [
+          {
+           "code": "ORG 301",
+           "text": "Find the most logical position for a sentence within a paragraph."
+          }
+         ]
+        },
+        {
+         "id": "introductions-and-conclusions",
+         "title": "Introductions and conclusions: Score range 16-19",
+         "outcomes": [
+          {
+           "code": "ORG 302",
+           "text": "Write a simple concluding sentence that expresses a main idea."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "score-range-20-23",
+       "title": "Score range 20-23",
+       "subtopics": [
+        {
+         "id": "transitions",
+         "title": "Transitions: Score range 20-23",
+         "outcomes": [
+          {
+           "code": "ORG 401",
+           "text": "Decide when a transition shows a straightforward logical relationship, such as first or afterward."
+          }
+         ]
+        },
+        {
+         "id": "placing-sentences",
+         "title": "Placing sentences: Score range 20-23",
+         "outcomes": [
+          {
+           "code": "ORG 402",
+           "text": "Find the most logical place for a sentence in a straightforward essay."
+          },
+          {
+           "code": "ORG 405",
+           "text": "Reorder sentences in a straightforward paragraph so they follow logic."
+          }
+         ]
+        },
+        {
+         "id": "introductions-and-conclusions",
+         "title": "Introductions and conclusions: Score range 20-23",
+         "outcomes": [
+          {
+           "code": "ORG 403",
+           "text": "Provide an opening sentence for a straightforward paragraph."
+          },
+          {
+           "code": "ORG 404",
+           "text": "Provide a straightforward conclusion that summarises the main idea or ideas."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "score-range-24-27",
+       "title": "Score range 24-27",
+       "subtopics": [
+        {
+         "id": "transitions",
+         "title": "Transitions: Score range 24-27",
+         "outcomes": [
+          {
+           "code": "ORG 501",
+           "text": "Decide when a transition shows a subtle relationship within or between sentences, like therefore or however."
+          }
+         ]
+        },
+        {
+         "id": "introductions-and-conclusions",
+         "title": "Introductions and conclusions: Score range 24-27",
+         "outcomes": [
+          {
+           "code": "ORG 502",
+           "text": "Provide a fairly straightforward introduction, conclusion or transition that supports the main idea."
+          }
+         ]
+        },
+        {
+         "id": "placing-sentences",
+         "title": "Placing sentences: Score range 24-27",
+         "outcomes": [
+          {
+           "code": "ORG 503",
+           "text": "Reorder sentences in a fairly straightforward paragraph for logic."
+          },
+          {
+           "code": "ORG 504",
+           "text": "Decide the best point to split a paragraph to serve a rhetorical goal."
+          },
+          {
+           "code": "ORG 505",
+           "text": "Reorder the paragraphs of an essay for logic."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "score-range-28-32",
+       "title": "Score range 28-32",
+       "subtopics": [
+        {
+         "id": "transitions",
+         "title": "Transitions: Score range 28-32",
+         "outcomes": [
+          {
+           "code": "ORG 601",
+           "text": "Decide when a transition shows subtle logical relationships within and between paragraphs."
+          }
+         ]
+        },
+        {
+         "id": "placing-sentences",
+         "title": "Placing sentences: Score range 28-32",
+         "outcomes": [
+          {
+           "code": "ORG 602",
+           "text": "Find the most logical sentence position in a fairly complex essay."
+          },
+          {
+           "code": "ORG 604",
+           "text": "Reorder sentences in a fairly complex paragraph for logic and coherence."
+          }
+         ]
+        },
+        {
+         "id": "introductions-and-conclusions",
+         "title": "Introductions and conclusions: Score range 28-32",
+         "outcomes": [
+          {
+           "code": "ORG 603",
+           "text": "Provide a subtle introduction, conclusion or transition, such as echoing the theme."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "score-range-33-36",
+       "title": "Score range 33-36",
+       "subtopics": [
+        {
+         "id": "transitions",
+         "title": "Transitions: Score range 33-36",
+         "outcomes": [
+          {
+           "code": "ORG 701",
+           "text": "Choose transitions based on a thorough understanding of the paragraph and essay."
+          }
+         ]
+        },
+        {
+         "id": "introductions-and-conclusions",
+         "title": "Introductions and conclusions: Score range 33-36",
+         "outcomes": [
+          {
+           "code": "ORG 702",
+           "text": "Provide a sophisticated introduction, conclusion or transition grounded in the whole essay."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "knowledge-of-language-kla",
+     "title": "Knowledge of Language (KLA)",
+     "topics": [
+      {
+       "id": "score-range-13-15",
+       "title": "Score range 13-15",
+       "subtopics": [
+        {
+         "id": "clarity-and-concision",
+         "title": "Clarity and concision: Score range 13-15",
+         "outcomes": [
+          {
+           "code": "KLA 201",
+           "text": "Revise vague, clumsy or confusing writing that creates obvious logic problems."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "score-range-16-19",
+       "title": "Score range 16-19",
+       "subtopics": [
+        {
+         "id": "clarity-and-concision",
+         "title": "Clarity and concision: Score range 16-19",
+         "outcomes": [
+          {
+           "code": "KLA 301",
+           "text": "Delete obviously redundant and wordy material."
+          }
+         ]
+        },
+        {
+         "id": "style-and-tone",
+         "title": "Style and tone: Score range 16-19",
+         "outcomes": [
+          {
+           "code": "KLA 302",
+           "text": "Revise expressions that clash sharply with the essay's style and tone."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "score-range-20-23",
+       "title": "Score range 20-23",
+       "subtopics": [
+        {
+         "id": "clarity-and-concision",
+         "title": "Clarity and concision: Score range 20-23",
+         "outcomes": [
+          {
+           "code": "KLA 401",
+           "text": "Cut redundant wordiness contained within a single phrase."
+          }
+         ]
+        },
+        {
+         "id": "style-and-tone",
+         "title": "Style and tone: Score range 20-23",
+         "outcomes": [
+          {
+           "code": "KLA 402",
+           "text": "Revise expressions that deviate from the essay's style and tone."
+          }
+         ]
+        },
+        {
+         "id": "conjunctions-and-word-choice",
+         "title": "Conjunctions and word choice: Score range 20-23",
+         "outcomes": [
+          {
+           "code": "KLA 403",
+           "text": "Decide when a conjunction is needed to link clauses in a straightforward way."
+          },
+          {
+           "code": "KLA 404",
+           "text": "Choose the most fitting word for the sentence when the vocabulary is common."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "score-range-24-27",
+       "title": "Score range 24-27",
+       "subtopics": [
+        {
+         "id": "clarity-and-concision",
+         "title": "Clarity and concision: Score range 24-27",
+         "outcomes": [
+          {
+           "code": "KLA 501",
+           "text": "Revise vague, clumsy and confusing writing."
+          },
+          {
+           "code": "KLA 502",
+           "text": "Cut redundancy when the meaning of the whole sentence must be considered."
+          }
+         ]
+        },
+        {
+         "id": "style-and-tone",
+         "title": "Style and tone: Score range 24-27",
+         "outcomes": [
+          {
+           "code": "KLA 503",
+           "text": "Revise expressions that deviate in subtle ways from the essay's style and tone."
+          }
+         ]
+        },
+        {
+         "id": "conjunctions-and-word-choice",
+         "title": "Conjunctions and word choice: Score range 24-27",
+         "outcomes": [
+          {
+           "code": "KLA 504",
+           "text": "Decide when a conjunction is needed to create logical links between clauses."
+          },
+          {
+           "code": "KLA 505",
+           "text": "Choose the most fitting word when the vocabulary is uncommon."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "score-range-28-32",
+       "title": "Score range 28-32",
+       "subtopics": [
+        {
+         "id": "clarity-and-concision",
+         "title": "Clarity and concision: Score range 28-32",
+         "outcomes": [
+          {
+           "code": "KLA 601",
+           "text": "Revise vague, clumsy or confusing writing that uses sophisticated language."
+          },
+          {
+           "code": "KLA 602",
+           "text": "Cut redundancy in fairly sophisticated language or wordiness that sounds fine in conversation."
+          }
+         ]
+        },
+        {
+         "id": "conjunctions-and-word-choice",
+         "title": "Conjunctions and word choice: Score range 28-32",
+         "outcomes": [
+          {
+           "code": "KLA 603",
+           "text": "Decide when a conjunction creates subtle logical links between clauses."
+          },
+          {
+           "code": "KLA 604",
+           "text": "Choose the most fitting word when the vocabulary is fairly sophisticated."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "score-range-33-36",
+       "title": "Score range 33-36",
+       "subtopics": [
+        {
+         "id": "clarity-and-concision",
+         "title": "Clarity and concision: Score range 33-36",
+         "outcomes": [
+          {
+           "code": "KLA 701",
+           "text": "Cut redundancy involving sophisticated language, complex ideas or repetition across the whole essay."
+          }
+         ]
+        },
+        {
+         "id": "conjunctions-and-word-choice",
+         "title": "Conjunctions and word choice: Score range 33-36",
+         "outcomes": [
+          {
+           "code": "KLA 702",
+           "text": "Choose the most fitting word when the vocabulary is sophisticated."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "sentence-structure-and-formation-sst",
+     "title": "Sentence Structure and Formation (SST)",
+     "topics": [
+      {
+       "id": "score-range-13-15",
+       "title": "Score range 13-15",
+       "subtopics": [
+        {
+         "id": "joining-clauses-and-verb-tense",
+         "title": "Joining clauses and verb tense: Score range 13-15",
+         "outcomes": [
+          {
+           "code": "SST 201",
+           "text": "Decide when punctuation or a conjunction is needed to join simple clauses."
+          },
+          {
+           "code": "SST 202",
+           "text": "Spot and fix wrong shifts in verb tense between simple clauses or sentences."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "score-range-16-19",
+       "title": "Score range 16-19",
+       "subtopics": [
+        {
+         "id": "joining-clauses-and-verb-tense",
+         "title": "Joining clauses and verb tense: Score range 16-19",
+         "outcomes": [
+          {
+           "code": "SST 301",
+           "text": "Fix fragments, fused sentences and clearly faulty coordination or subordination with punctuation or conjunctions."
+          },
+          {
+           "code": "SST 302",
+           "text": "Fix wrong shifts in tense and voice when the whole sentence must be considered."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "score-range-20-23",
+       "title": "Score range 20-23",
+       "subtopics": [
+        {
+         "id": "sentence-structure-errors",
+         "title": "Sentence structure errors: Score range 20-23",
+         "outcomes": [
+          {
+           "code": "SST 401",
+           "text": "Fix marked structure problems such as misplaced modifiers, participial fragments and faulty parallelism in verb series."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "score-range-24-27",
+       "title": "Score range 24-27",
+       "subtopics": [
+        {
+         "id": "sentence-structure-errors",
+         "title": "Sentence structure errors: Score range 24-27",
+         "outcomes": [
+          {
+           "code": "SST 501",
+           "text": "Fix structure problems such as misplaced phrases, faulty coordination and lack of parallelism in phrase series."
+          }
+         ]
+        },
+        {
+         "id": "joining-clauses-and-verb-tense",
+         "title": "Joining clauses and verb tense: Score range 24-27",
+         "outcomes": [
+          {
+           "code": "SST 502",
+           "text": "Keep verb tense and pronoun person consistent with the preceding clause or sentence."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "score-range-28-32",
+       "title": "Score range 28-32",
+       "subtopics": [
+        {
+         "id": "sentence-structure-errors",
+         "title": "Sentence structure errors: Score range 28-32",
+         "outcomes": [
+          {
+           "code": "SST 601",
+           "text": "Fix subtle structure problems such as danglers and faulty subordination in long sentences."
+          }
+         ]
+        },
+        {
+         "id": "joining-clauses-and-verb-tense",
+         "title": "Joining clauses and verb tense: Score range 28-32",
+         "outcomes": [
+          {
+           "code": "SST 602",
+           "text": "Keep tense, voice and pronoun person consistent across the whole paragraph or essay."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "score-range-33-36",
+       "title": "Score range 33-36",
+       "subtopics": [
+        {
+         "id": "sentence-structure-errors",
+         "title": "Sentence structure errors: Score range 33-36",
+         "outcomes": [
+          {
+           "code": "SST 701",
+           "text": "Fix very subtle structure problems such as weak conjunctions, run-ons and faulty parallelism in complex series."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "usage-conventions-usg",
+     "title": "Usage Conventions (USG)",
+     "topics": [
+      {
+       "id": "score-range-13-15",
+       "title": "Score range 13-15",
+       "subtopics": [
+        {
+         "id": "verb-forms-and-adjectives",
+         "title": "Verb forms and adjectives: Score range 13-15",
+         "outcomes": [
+          {
+           "code": "USG 201",
+           "text": "Form past tense and past participle of common irregular verbs."
+          },
+          {
+           "code": "USG 202",
+           "text": "Form comparative and superlative adjectives."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "score-range-16-19",
+       "title": "Score range 16-19",
+       "subtopics": [
+        {
+         "id": "verb-forms-and-adjectives",
+         "title": "Verb forms and adjectives: Score range 16-19",
+         "outcomes": [
+          {
+           "code": "USG 301",
+           "text": "Decide whether an adjective or an adverb is needed."
+          }
+         ]
+        },
+        {
+         "id": "agreement",
+         "title": "Agreement: Score range 16-19",
+         "outcomes": [
+          {
+           "code": "USG 302",
+           "text": "Make subjects and verbs agree in straightforward sentences."
+          },
+          {
+           "code": "USG 303",
+           "text": "Make pronouns agree with their antecedents in straightforward sentences."
+          }
+         ]
+        },
+        {
+         "id": "prepositions-and-confused-words",
+         "title": "Prepositions and confused words: Score range 16-19",
+         "outcomes": [
+          {
+           "code": "USG 304",
+           "text": "Use idiomatic prepositions in simple contexts."
+          },
+          {
+           "code": "USG 305",
+           "text": "Pick the right word from commonly confused pairs like there/their."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "score-range-20-23",
+       "title": "Score range 20-23",
+       "subtopics": [
+        {
+         "id": "verb-forms-and-adjectives",
+         "title": "Verb forms and adjectives: Score range 20-23",
+         "outcomes": [
+          {
+           "code": "USG 401",
+           "text": "Use the correct comparative or superlative form of adjectives and adverbs for the context."
+          }
+         ]
+        },
+        {
+         "id": "agreement",
+         "title": "Agreement: Score range 20-23",
+         "outcomes": [
+          {
+           "code": "USG 402",
+           "text": "Make subject and verb agree when text separates them."
+          }
+         ]
+        },
+        {
+         "id": "prepositions-and-confused-words",
+         "title": "Prepositions and confused words: Score range 20-23",
+         "outcomes": [
+          {
+           "code": "USG 403",
+           "text": "Use idiomatic prepositions, especially with verbs, like long for."
+          },
+          {
+           "code": "USG 404",
+           "text": "Spot and correct non-idiomatic expressions."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "score-range-24-27",
+       "title": "Score range 24-27",
+       "subtopics": [
+        {
+         "id": "verb-forms-and-adjectives",
+         "title": "Verb forms and adjectives: Score range 24-27",
+         "outcomes": [
+          {
+           "code": "USG 501",
+           "text": "Form simple and compound verb tenses, using have instead of of."
+          }
+         ]
+        },
+        {
+         "id": "agreement",
+         "title": "Agreement: Score range 24-27",
+         "outcomes": [
+          {
+           "code": "USG 502",
+           "text": "Make pronouns agree with antecedents in separate clauses or sentences."
+          },
+          {
+           "code": "USG 503",
+           "text": "Spot and fix vague or ambiguous pronouns."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "score-range-28-32",
+       "title": "Score range 28-32",
+       "subtopics": [
+        {
+         "id": "agreement",
+         "title": "Agreement: Score range 28-32",
+         "outcomes": [
+          {
+           "code": "USG 601",
+           "text": "Make subject and verb agree in challenging cases, like inverted order or indefinite pronoun subjects."
+          }
+         ]
+        },
+        {
+         "id": "prepositions-and-confused-words",
+         "title": "Prepositions and confused words: Score range 28-32",
+         "outcomes": [
+          {
+           "code": "USG 602",
+           "text": "Use reflexive pronouns, its/your possessives, and who/whom correctly."
+          },
+          {
+           "code": "USG 603",
+           "text": "Pick the right word from less common confused pairs like allude/elude."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "score-range-33-36",
+       "title": "Score range 33-36",
+       "subtopics": [
+        {
+         "id": "agreement",
+         "title": "Agreement: Score range 33-36",
+         "outcomes": [
+          {
+           "code": "USG 701",
+           "text": "Make subject and verb agree when an intervening phrase suggests a different number."
+          }
+         ]
+        },
+        {
+         "id": "prepositions-and-confused-words",
+         "title": "Prepositions and confused words: Score range 33-36",
+         "outcomes": [
+          {
+           "code": "USG 702",
+           "text": "Use idiomatic prepositions with verbs in sophisticated or complex contexts."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "punctuation-conventions-pun",
+     "title": "Punctuation Conventions (PUN)",
+     "topics": [
+      {
+       "id": "score-range-13-15",
+       "title": "Score range 13-15",
+       "subtopics": [
+        {
+         "id": "commas",
+         "title": "Commas: Score range 13-15",
+         "outcomes": [
+          {
+           "code": "PUN 201",
+           "text": "Delete commas that create basic sense problems, like between verb and object."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "score-range-16-19",
+       "title": "Score range 16-19",
+       "subtopics": [
+        {
+         "id": "commas",
+         "title": "Commas: Score range 16-19",
+         "outcomes": [
+          {
+           "code": "PUN 301",
+           "text": "Delete commas that disturb sentence flow, like between modifier and modified word."
+          },
+          {
+           "code": "PUN 302",
+           "text": "Punctuate straightforward cases such as simple items in a series."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "score-range-20-23",
+       "title": "Score range 20-23",
+       "subtopics": [
+        {
+         "id": "commas",
+         "title": "Commas: Score range 20-23",
+         "outcomes": [
+          {
+           "code": "PUN 401",
+           "text": "Delete commas wrongly implying a pause, like before a verb's object clause."
+          },
+          {
+           "code": "PUN 403",
+           "text": "Add commas to avoid obvious ambiguity, such as after a long introductory element."
+          },
+          {
+           "code": "PUN 404",
+           "text": "Use commas to set off simple parenthetical elements."
+          }
+         ]
+        },
+        {
+         "id": "apostrophes",
+         "title": "Apostrophes: Score range 20-23",
+         "outcomes": [
+          {
+           "code": "PUN 402",
+           "text": "Remove apostrophes wrongly used to make plurals."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "score-range-24-27",
+       "title": "Score range 24-27",
+       "subtopics": [
+        {
+         "id": "commas",
+         "title": "Commas: Score range 24-27",
+         "outcomes": [
+          {
+           "code": "PUN 501",
+           "text": "Delete commas in long sentences that split compound subjects or verbs."
+          },
+          {
+           "code": "PUN 503",
+           "text": "Punctuate complex parenthetical elements."
+          }
+         ]
+        },
+        {
+         "id": "colons-and-semicolons",
+         "title": "Colons and semicolons: Score range 24-27",
+         "outcomes": [
+          {
+           "code": "PUN 502",
+           "text": "Spot and correct inappropriate colons and semicolons."
+          }
+         ]
+        },
+        {
+         "id": "apostrophes",
+         "title": "Apostrophes: Score range 24-27",
+         "outcomes": [
+          {
+           "code": "PUN 504",
+           "text": "Use apostrophes to form simple possessive nouns."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "score-range-28-32",
+       "title": "Score range 28-32",
+       "subtopics": [
+        {
+         "id": "commas",
+         "title": "Commas: Score range 28-32",
+         "outcomes": [
+          {
+           "code": "PUN 601",
+           "text": "Use commas to avoid ambiguity in sophisticated syntax, like complex series."
+          },
+          {
+           "code": "PUN 602",
+           "text": "Punctuate nonessential appositives and clauses."
+          }
+         ]
+        },
+        {
+         "id": "apostrophes",
+         "title": "Apostrophes: Score range 28-32",
+         "outcomes": [
+          {
+           "code": "PUN 603",
+           "text": "Form possessives including irregular plural nouns."
+          }
+         ]
+        },
+        {
+         "id": "colons-and-semicolons",
+         "title": "Colons and semicolons: Score range 28-32",
+         "outcomes": [
+          {
+           "code": "PUN 604",
+           "text": "Use a semicolon to link closely related independent clauses."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "score-range-33-36",
+       "title": "Score range 33-36",
+       "subtopics": [
+        {
+         "id": "commas",
+         "title": "Commas: Score range 33-36",
+         "outcomes": [
+          {
+           "code": "PUN 701",
+           "text": "Remove punctuation around essential appositives and clauses."
+          }
+         ]
+        },
+        {
+         "id": "colons-and-semicolons",
+         "title": "Colons and semicolons: Score range 33-36",
+         "outcomes": [
+          {
+           "code": "PUN 702",
+           "text": "Use a colon to introduce an example or elaboration."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "build": {
+  "builtAt": "2026-10-14T09:59:45.664Z",
+  "model": "claude-agent",
+  "usd": 0,
+  "expectedCodes": 100,
+  "coverage": 1,
+  "missingCodes": [],
+  "counts": {
+   "grades": 1,
+   "units": 6,
+   "topics": 36,
+   "subtopics": 70,
+   "outcomes": 100
+  },
+  "warnings": [
+   "grade 8 has no content",
+   "grade 9 has no content",
+   "grade 10 has no content",
+   "grade 11 has no content",
+   "grade 12 has no content",
+   "unexpected grade label \"all\""
+  ]
+ }
+}

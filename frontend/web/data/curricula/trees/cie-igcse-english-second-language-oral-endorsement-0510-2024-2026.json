@@ -1,0 +1,142 @@
+{
+ "id": "cie-igcse-english-second-language-oral-endorsement-0510-2024-2026",
+ "region": "INTL",
+ "framework": "Cambridge IGCSE English as a Second Language (Speaking endorsement) (0510) syllabus 2024–2026",
+ "board": "Cambridge",
+ "qualification": "IGCSE",
+ "subject": "English as a Second Language (Speaking endorsement)",
+ "syllabusCode": "0510",
+ "gradeSystem": "course",
+ "source": {
+  "urls": [
+   "https://www.cambridgeinternational.org/Images/637160-2024-2026-syllabus.pdf",
+   "https://www.cambridgeinternational.org/programmes-and-qualifications/cambridge-igcse-english-second-language-oral-endorsement-0510/"
+  ],
+  "publisher": "Cambridge University Press & Assessment (Cambridge International Education)",
+  "licence": "© Cambridge University Press & Assessment; structure + our own wording only",
+  "firstExam": "2024"
+ },
+ "grades": [
+  {
+   "grade": "IGCSE",
+   "units": [
+    {
+     "id": "igcse-reading",
+     "title": "[IGCSE] Reading",
+     "topics": [
+      {
+       "id": "a-range-of-reading-strategies",
+       "title": "a range of reading strategies",
+       "subtopics": [
+        {
+         "id": "a-range-of-reading-strategies",
+         "title": "a range of reading strategies",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Choose relevant details for a specific reading purpose using skimming, scanning, and careful reading."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "igcse-writing",
+     "title": "[IGCSE] Writing",
+     "topics": [
+      {
+       "id": "linking-devices-for-different-purposes",
+       "title": "linking devices for different purposes",
+       "subtopics": [
+        {
+         "id": "linking-devices-for-different-purposes",
+         "title": "linking devices for different purposes",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Organise relevant information and ideas coherently using linking devices for cause, addition, contrast, and concession."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "conventions-of",
+       "title": "conventions of",
+       "subtopics": [
+        {
+         "id": "conventions-of",
+         "title": "conventions of",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Use appropriate conventions for informal correspondence, formal correspondence, and discursive, argumentative, or persuasive writing."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "igcse-speaking",
+     "title": "[IGCSE] Speaking",
+     "topics": [
+      {
+       "id": "expansion-of-responses-by",
+       "title": "expansion of responses by",
+       "subtopics": [
+        {
+         "id": "expansion-of-responses-by",
+         "title": "expansion of responses by",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Expand spoken responses by giving examples, reasons, comparisons, speculation, and clarifications."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "use-of-discourse-markers-to-link-ideas",
+       "title": "use of discourse markers to link ideas",
+       "subtopics": [
+        {
+         "id": "use-of-discourse-markers-to-link-ideas",
+         "title": "use of discourse markers to link ideas",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Link spoken ideas coherently using discourse markers expressing addition, sequence, cause, and contrast."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "build": {
+  "builtAt": "2026-10-14T07:55:37.443Z",
+  "model": "gpt-5.6-luna",
+  "usd": 0.0053,
+  "expectedCodes": null,
+  "coverage": null,
+  "missingCodes": [],
+  "counts": {
+   "grades": 1,
+   "units": 3,
+   "topics": 5,
+   "subtopics": 5,
+   "outcomes": 5
+  },
+  "warnings": [
+   "unit \"[IGCSE] Reading\" (grade IGCSE) has a single outcome"
+  ]
+ }
+}

@@ -1,0 +1,112 @@
+#Unit 5: Torque and Rotational Dynamics
+=5.1 Rotational Kinematics
+5.1.A|Angular motion|Describe rotation over time with angular displacement, velocity and acceleration.
+5.1.A.1|Angular motion|Define angular displacement in radians for a rigid system, with a sign convention and when to treat it as one object.
+5.1.A.2|Angular motion|Define angular velocity as the rate of change of angular position.
+5.1.A.3|Angular motion|Define angular acceleration as the rate of change of angular velocity.
+5.1.A.4|Angular motion|Use rotational analogs of the linear kinematics equations and graphs.
+=5.2 Connecting Linear and Rotational Motion
+5.2.A|Linear and rotational links|Relate the linear motion of a point on a rotating rigid system to its rotation.
+5.2.A.1|Linear and rotational links|Relate arc length to angle: s = r times theta.
+5.2.A.2|Linear and rotational links|Relate linear velocity and tangential acceleration to angular velocity and acceleration.
+5.2.A.3|Linear and rotational links|Note all points of a rigid system share angular velocity and acceleration.
+=5.3 Torque
+5.3.A|Torque basics|Identify the torques exerted on a rigid system.
+5.3.A.1|Torque basics|Note only the force component perpendicular to the position vector gives torque.
+5.3.A.2|Torque basics|Define the lever arm as the perpendicular distance from the axis to the line of action.
+5.3.B|Torque calculations|Describe torques on a rigid system.
+5.3.B.1|Torque calculations|Use force diagrams, which also show where forces act relative to the axis.
+5.3.B.2|Torque calculations|Compute torque about a pivot as a cross product, using the right-hand rule for direction.
+=5.4 Rotational Inertia
+5.4.A|Rotational inertia|Describe rotational inertia of a rigid system about an axis.
+5.4.A.1|Rotational inertia|Define rotational inertia as resistance to changes in rotation, depending on mass distribution.
+5.4.A.2|Rotational inertia|Compute I = m r^2 for a point mass.
+5.4.A.3|Rotational inertia|Add rotational inertias of objects about the same axis.
+5.4.A.4|Rotational inertia|Integrate r^2 dm to find rotational inertia of continuous solids.
+5.4.B|Parallel axis theorem|Describe rotational inertia about an axis not through the center of mass.
+5.4.B.1|Parallel axis theorem|Note rotational inertia is smallest for an axis through the center of mass.
+5.4.B.2|Parallel axis theorem|Apply the parallel axis theorem for parallel axes.
+=5.5 Rotational Equilibrium and Newton's First Law in Rotational Form
+5.5.A|Rotational equilibrium|Describe when a system's angular velocity stays constant.
+5.5.A.1|Rotational equilibrium|Explain rotational and translational equilibrium can occur separately; zero net torque gives constant angular velocity.
+5.5.A.2|Rotational equilibrium|Explain unbalanced torques change angular velocity.
+=5.6 Newton's Second Law in Rotational Form
+5.6.A|Rotational second law|Describe when a system's angular velocity changes.
+5.6.A.1|Rotational second law|Explain angular velocity changes when net torque is nonzero.
+5.6.A.2|Rotational second law|Apply angular acceleration equals net torque over rotational inertia.
+5.6.A.3|Rotational second law|Analyze linear and rotational motion separately for full descriptions.
+#Unit 6: Energy and Momentum of Rotating Systems
+=6.1 Rotational Kinetic Energy
+6.1.A|Rotational kinetic energy|Describe rotational kinetic energy in terms of rotational inertia and angular velocity.
+6.1.A.1|Rotational kinetic energy|Compute rotational kinetic energy as one half I omega^2 and total kinetic energy of a rigid system.
+6.1.A.2|Rotational kinetic energy|Note a rigid system can have rotational kinetic energy with its center of mass at rest.
+6.1.A.3|Rotational kinetic energy|Note rotational kinetic energy is a scalar.
+=6.2 Torque and Work
+6.2.A|Work by torque|Describe work done on a rigid system by torques.
+6.2.A.1|Work by torque|Explain torque transfers energy when exerted over an angular displacement.
+6.2.A.2|Work by torque|Relate work to torque magnitude and angular displacement.
+6.2.A.3|Work by torque|Find work as the area under a torque versus angular position graph.
+=6.3 Angular Momentum and Angular Impulse
+6.3.A|Angular momentum|Describe the angular momentum of an object or rigid system.
+6.3.A.1|Angular momentum|Compute rigid-system angular momentum about an axis as I times omega.
+6.3.A.2|Angular momentum|Compute angular momentum about a point as r cross p, and how axis choice and straight-line motion affect it.
+6.3.B|Angular impulse|Describe the angular impulse delivered by a torque.
+6.3.B.1|Angular impulse|Define angular impulse as the integral of torque over time.
+6.3.B.2|Angular impulse|Note angular impulse points along the torque.
+6.3.B.3|Angular impulse|Find angular impulse as the area under a torque versus time graph.
+6.3.C|Angular impulse-momentum theorem|Relate change in angular momentum to angular impulse.
+6.3.C.1|Angular impulse-momentum theorem|Compare magnitudes of final and initial angular momentum.
+6.3.C.2|Angular impulse-momentum theorem|Apply the rotational impulse-momentum theorem.
+6.3.C.3|Angular impulse-momentum theorem|Find net torque as the slope of an angular momentum versus time graph.
+6.3.C.4|Angular impulse-momentum theorem|Find angular impulse as the area under a net torque versus time graph.
+=6.4 Conservation of Angular Momentum
+6.4.A|Conserving angular momentum|Describe system behavior using conservation of angular momentum.
+6.4.A.1|Conserving angular momentum|Sum angular momenta of the parts about the same axis.
+6.4.A.2|Conserving angular momentum|Explain changes come from interactions with surroundings; shape changes alter angular speed without changing angular momentum.
+6.4.B|System choice|Describe how system choice decides whether angular momentum changes.
+6.4.B.1|System choice|State angular momentum is conserved in all interactions.
+6.4.B.2|System choice|Conclude angular momentum is constant if net external torque is zero.
+6.4.B.3|System choice|Conclude nonzero net external torque transfers angular momentum with the environment.
+=6.5 Rolling
+6.5.A|Rolling energy|Describe kinetic energy of a system with translation and rotation.
+6.5.A.1|Rolling energy|Add translational and rotational kinetic energy for total kinetic energy.
+6.5.B|Rolling without slipping|Describe motion of a system rolling without slipping.
+6.5.B.1|Rolling without slipping|Relate center-of-mass speed and acceleration to angular quantities.
+6.5.B.2|Rolling without slipping|Note ideal rolling without slipping dissipates no energy.
+6.5.C|Rolling with slipping|Describe motion of a system rolling while slipping.
+6.5.C.1|Rolling with slipping|Note when slipping, translation and rotation cannot be directly related.
+6.5.C.2|Rolling with slipping|Note kinetic friction dissipates energy while slipping.
+=6.6 Motion of Orbiting Satellites
+6.6.A|Orbits|Describe the motion of two objects interacting only by gravity.
+6.6.A.1|Orbits|Neglect the central object's motion when the satellite's mass is negligible.
+6.6.A.2|Orbits|Use conservation laws for circular and elliptical orbits, with U = -Gm1m2/r.
+6.6.A.3|Orbits|Write circular-orbit total energy as minus kinetic energy or half of potential energy.
+6.6.A.4|Orbits|Define and derive escape velocity from zero total energy.
+#Unit 7: Oscillations
+=7.1 Defining Simple Harmonic Motion (SHM)
+7.1.A|Simple harmonic motion|Describe simple harmonic motion.
+7.1.A.1|Simple harmonic motion|Recognize SHM as a special case of periodic motion.
+7.1.A.2|Simple harmonic motion|Explain SHM arises when the restoring force is proportional to displacement from equilibrium.
+=7.2 Frequency and Period of SHM
+7.2.A|Period and frequency|Describe frequency and period of SHM.
+7.2.A.1|Period and frequency|Relate period to angular frequency; find periods of spring-mass and small-angle simple pendulum.
+=7.3 Representing and Analyzing SHM
+7.3.A|Analyzing SHM|Describe displacement, velocity and acceleration in SHM.
+7.3.A.1|Analyzing SHM|Represent SHM displacement with sinusoids and locate extrema and zeros of each quantity.
+7.3.A.2|Analyzing SHM|Know position as the solution of the differential equation from Newton's second law.
+7.3.A.3|Analyzing SHM|Derive velocity, acceleration and their maxima from the SHM equation and angular frequency.
+7.3.A.4|Resonance and graphs|Explain resonance when a sinusoidal force acts at the natural frequency, raising amplitude.
+7.3.A.5|Resonance and graphs|Note amplitude does not change the period.
+7.3.A.6|Resonance and graphs|Analyze SHM properties from graphs.
+=7.4 Energy of Simple Harmonic Oscillators
+7.4.A|Energy in SHM|Describe the mechanical energy of an SHM system.
+7.4.A.1|Energy in SHM|Write total energy as kinetic plus potential, equal to one half k A^2 for a spring.
+7.4.A.2|Energy in SHM|Note total energy is constant.
+7.4.A.3|Energy in SHM|Note kinetic energy peaks when potential energy is minimum.
+7.4.A.4|Energy in SHM|Note potential energy peaks when kinetic energy is minimum, and amplitude sets total energy.
+=7.5 Simple and Physical Pendulums
+7.5.A|Pendulums|Describe properties of a physical pendulum.
+7.5.A.1|Pendulums|Define a physical pendulum as a rigid body oscillating about a fixed axis.
+7.5.A.2|Pendulums|Derive the small-angle period from gravitational restoring torque and Newton's second law in rotational form.
+7.5.A.3|Pendulums|Treat a simple pendulum as a point mass at distance l from the pivot.
+7.5.A.4|Pendulums|Describe a torsion pendulum, with restoring torque proportional to angular displacement.

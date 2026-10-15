@@ -21,6 +21,7 @@ const SYSTEM = `You map a lesson onto a knowledge graph of concepts. Return JSON
 CONCEPTS
 - A concept is one idea a student can know or not know: "glucose", "chloroplast", "limiting factor", "balanced equation" — never a whole lesson title ("why plants need light") and never a sentence.
 - "key": the plain common name, lower case, singular, 1 to 3 words ("carbon dioxide", not "CO2" or "carbon dioxide gas"). "label": how to show it ("Carbon dioxide"). "aliases": other names and symbols ("co2"). "subject": one word ("biology", "chemistry", "physics", "maths", "history", "computing", ...). "summary": what it is, in at most 15 words.
+- Never a word about the lesson itself ("prediction", "check", "quiz", "example", "summary", "exam technique") — every board asks the student to predict; that is not a concept of the subject.
 - "taught": true for what this lesson teaches (4 to 14 concepts); also list 1 to 5 concepts the lesson ASSUMES the student already knows but does not teach ("taught": false) — what a student would need first.
 
 LINKS — only ones a teacher would agree with

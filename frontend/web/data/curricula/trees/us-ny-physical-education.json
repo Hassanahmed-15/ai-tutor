@@ -1,0 +1,3439 @@
+{
+ "id": "us-ny-physical-education",
+ "region": "US",
+ "framework": "New York state academic standards: Physical Education",
+ "board": null,
+ "qualification": "K-12",
+ "subject": "Physical Education",
+ "syllabusCode": null,
+ "gradeSystem": "grade",
+ "source": {
+  "urls": [
+   "https://api.commonstandardsproject.com/api/v1/jurisdictions/DA1743190A534CB0AEC12F494BE1F8D7",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/BD814EF813274ACBB63223145C656341",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/0A561634406F47FFA8E60B666B270AB3",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/46A09DDFCD644A7093DB5F4A1E35C0DD",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/3FE66BB7B4A54585B06EFE9ECFE6AD89",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/0B45D3B4C51E424D93DB99F256FAA47E",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/997A78F0D4064968B946C449ADC3B1DA",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/1FEDDEFE0EE2453F8D735FBB162DDC61",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/873BD182CD5A43E1AB5FDCBF52B1B932",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/B1A6A2D0E47343CFBBF400F2777E4805",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/1C6C0CA3631E4171B081BA9FD1DB4AF2",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/E498E9E18DA34D3F85A98F8387148375",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/A576A9C8D0E4473882DF66B23B301FCF"
+  ],
+  "publisher": "New York state education agency (machine-readable via Common Standards Project / ASN)",
+  "licence": "CC BY 4.0 US, Common Curriculum, Inc.",
+  "firstExam": "2020"
+ },
+ "grades": [
+  {
+   "grade": "PK",
+   "units": [
+    {
+     "id": "physical-development",
+     "title": "Physical Development",
+     "topics": [
+      {
+       "id": "uses-sense-to-assist-and-guide-learning",
+       "title": "Uses sense to assist and guide learning",
+       "subtopics": [
+        {
+         "id": "uses-sense-to-assist-and-guide-learning",
+         "title": "Uses sense to assist and guide learning",
+         "outcomes": [
+          {
+           "code": "PK.1.1.a",
+           "text": "Identifies sights, smells, sounds, tastes, and textures."
+          },
+          {
+           "code": "PK.1.1.b",
+           "text": "Compares and contrasts different sights, smells, tastes, and textures."
+          },
+          {
+           "code": "PK.1.1.c",
+           "text": "Communicates to discuss sights, smells, sounds, tastes, and textures."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "uses-sensory-information-to-plan-and-carry-out-m",
+       "title": "Uses sensory information to plan and carry out movements",
+       "subtopics": [
+        {
+         "id": "uses-sensory-information-to-plan-and-carry-out-m",
+         "title": "Uses sensory information to plan and carry out movements",
+         "outcomes": [
+          {
+           "code": "PK.1.2.a",
+           "text": "Demonstrates appropriate body awareness when moving in different spaces."
+          },
+          {
+           "code": "PK.1.2.b",
+           "text": "Exhibits appropriate body movements when carrying out a task."
+          },
+          {
+           "code": "PK.1.2.c",
+           "text": "Demonstrates awareness of spatial boundaries and the ability to work within them."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "demonstrates-coordination-and-control-of-larger-",
+       "title": "Demonstrates coordination and control of larger muscles",
+       "subtopics": [
+        {
+         "id": "demonstrates-coordination-and-control-of-larger-",
+         "title": "Demonstrates coordination and control of larger muscles",
+         "outcomes": [
+          {
+           "code": "PK.1.3.a",
+           "text": "Displays an upright posture when standing or seated."
+          },
+          {
+           "code": "PK.1.3.b",
+           "text": "Maintains balance during sitting, standing, and movement activities."
+          },
+          {
+           "code": "PK.1.3.c",
+           "text": "Runs, jumps, walks in a straight line, and hops on one foot."
+          },
+          {
+           "code": "PK.1.3.d",
+           "text": "Navigates stairs using alternating feet."
+          },
+          {
+           "code": "PK.1.3.e",
+           "text": "Puts on age-appropriate clothing items, such as shirts, jackets, pants, shoes, etc."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "combines-a-sequence-of-large-motor-skills-with-a",
+       "title": "Combines a sequence of large motor skills with and without the use of equipment",
+       "subtopics": [
+        {
+         "id": "combines-a-sequence-of-large-motor-skills-with-a",
+         "title": "Combines a sequence of large motor skills with and without the use of equipment",
+         "outcomes": [
+          {
+           "code": "PK.1.4.a",
+           "text": "Navigates age-appropriate playground equipment."
+          },
+          {
+           "code": "PK.1.4.b",
+           "text": "Explores, practices, and performs skill sets."
+          },
+          {
+           "code": "PK.1.4.c",
+           "text": "Participates in a series of large motor movements or activities (e.g., dancing, pedaling, following the leader, participating in games/sports)."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "demonstrates-eye-hand-coordination-and-fine-moto",
+       "title": "Demonstrates eye-hand coordination and fine motor skills",
+       "subtopics": [
+        {
+         "id": "demonstrates-eye-hand-coordination-and-fine-moto",
+         "title": "Demonstrates eye-hand coordination and fine motor skills",
+         "outcomes": [
+          {
+           "code": "PK.1.5.a",
+           "text": "Demonstrates ability to use fine motor skills (e.g., engages in finger plays, uses materials such as pencils, paint brushes and utensils effectively)."
+          },
+          {
+           "code": "PK.1.5.b",
+           "text": "Manipulates small objects with ease (e.g., fits objects into holes, strings wooden beads, etc.)"
+          },
+          {
+           "code": "PK.1.5.c",
+           "text": "Uses buttons, zippers, snaps, hooks, and tape successfully."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "physical-fitness",
+     "title": "Physical Fitness",
+     "topics": [
+      {
+       "id": "engages-in-a-variety-of-physical-fitness-activit",
+       "title": "Engages in a variety of physical fitness activities",
+       "subtopics": [
+        {
+         "id": "engages-in-a-variety-of-physical-fitness-activit",
+         "title": "Engages in a variety of physical fitness activities",
+         "outcomes": [
+          {
+           "code": "PK.2.1.a",
+           "text": "Engages in rigorous large motor activities (e.g., walking, marching, hopping, running, jumping, dancing) in increasingly longer periods of time as skill and endurance develops."
+          },
+          {
+           "code": "PK.2.1.b",
+           "text": "Participates in activities designed to strengthen major muscle groups."
+          },
+          {
+           "code": "PK.2.1.c",
+           "text": "Participates in activities to promote balance and flexibility."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "physical-health-and-well-being",
+     "title": "Physical Health and Well-Being",
+     "topics": [
+      {
+       "id": "demonstrates-personal-care-and-hygiene-skills",
+       "title": "Demonstrates personal care and hygiene skills",
+       "subtopics": [
+        {
+         "id": "demonstrates-personal-care-and-hygiene-skills",
+         "title": "Demonstrates personal care and hygiene skills",
+         "outcomes": [
+          {
+           "code": "PK.3.1.a",
+           "text": "Demonstrates growing independence in using personal hygiene skills."
+          },
+          {
+           "code": "PK.3.1.b",
+           "text": "Exhibits self-help when dressing, cleaning up, participating in meals, etc."
+          },
+          {
+           "code": "PK.3.1.c",
+           "text": "Recognizes and communicates the need to use the restroom or when experiencing symptoms of hunger or illness."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "demonstrates-awareness-and-understanding-of-heal",
+       "title": "Demonstrates awareness and understanding of healthy habits",
+       "subtopics": [
+        {
+         "id": "recognizes-the-importance-of-good-nutrition-wate",
+         "title": "Recognizes the importance of good nutrition, water, rest, and sleep to be healthy",
+         "outcomes": [
+          {
+           "code": "PK.3.2.ab",
+           "text": "Demonstrates ways to self-soothe during times of stress."
+          },
+          {
+           "code": "PK.3.2.ac",
+           "text": "Talks about food choices in relationship to personal allergies and overall health."
+          },
+          {
+           "code": "PK.3.2.ad",
+           "text": "Relates healthy behaviors to good personal health (e.g., eating a balanced diet, exercising, etc.)."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "physical-safety",
+     "title": "Physical Safety",
+     "topics": [
+      {
+       "id": "demonstrates-awareness-and-understanding-of-safe",
+       "title": "Demonstrates awareness and understanding of safety rules",
+       "subtopics": [
+        {
+         "id": "demonstrates-awareness-and-understanding-of-safe",
+         "title": "Demonstrates awareness and understanding of safety rules",
+         "outcomes": [
+          {
+           "code": "PK.4.1.a",
+           "text": "Verbalizes and demonstrates safety rules (e.g., bus safety, holding an adult’s hand when walking on sidewalks or near a street)."
+          },
+          {
+           "code": "PK.4.1.b",
+           "text": "Understands and communicates that some practices could be unsafe (e.g., playing with matches, playing near a busy street, not wearing a bike helmet, etc.)."
+          },
+          {
+           "code": "PK.4.1.c",
+           "text": "Participates in fire evacuation drills, understands what the alarm bell is and the need to go to a safe location, etc."
+          },
+          {
+           "code": "PK.4.1.d",
+           "text": "Explains how to get help in emergency situations (e.g., communicates their guardian’s name)."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "K",
+   "units": [
+    {
+     "id": "demonstrates-competency-in-a-variety-of-motor-sk",
+     "title": "Demonstrates competency in a variety of motor skills and movement patterns",
+     "topics": [
+      {
+       "id": "demonstrates-competency-in-a-variety-of-motor-sk",
+       "title": "Demonstrates competency in a variety of motor skills and movement patterns",
+       "subtopics": [
+        {
+         "id": "demonstrates-competency-in-a-variety-of-motor-sk",
+         "title": "Demonstrates competency in a variety of motor skills and movement patterns",
+         "outcomes": [
+          {
+           "code": "1.1.K",
+           "text": "Identifies locomotor, non-locomotor, and manipulative skills"
+          },
+          {
+           "code": "1.2.K",
+           "text": "Identifies locomotor, non-locomotor, and manipulative skills in dance, movement, and rhythmic activities"
+          },
+          {
+           "code": "1.3.K",
+           "text": "Identifies locomotor, non-locomotor, and manipulative skills"
+          },
+          {
+           "code": "1.4.K",
+           "text": "Identifies locomotor, non-locomotor, and manipulative skills"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "applies-knowledge-of-concepts-principles-strateg",
+     "title": "Applies knowledge of concepts, principles, strategies, and tactics related to movement and performance",
+     "topics": [
+      {
+       "id": "applies-knowledge-of-concepts-principles-strateg",
+       "title": "Applies knowledge of concepts, principles, strategies, and tactics related to movement and performance",
+       "subtopics": [
+        {
+         "id": "applies-knowledge-of-concepts-principles-strateg",
+         "title": "Applies knowledge of concepts, principles, strategies, and tactics related to movement and performance",
+         "outcomes": [
+          {
+           "code": "2.1.K",
+           "text": "Identifies simple movement concepts"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "demonstrates-the-knowledge-and-skills-to-achieve",
+     "title": "Demonstrates the knowledge and skills to achieve and maintain a health-enhancing level of physical activity and fitness",
+     "topics": [
+      {
+       "id": "demonstrates-the-knowledge-and-skills-to-achieve",
+       "title": "Demonstrates the knowledge and skills to achieve and maintain a health-enhancing level of physical activity and fitness",
+       "subtopics": [
+        {
+         "id": "demonstrates-the-knowledge-and-skills-to-achieve",
+         "title": "Demonstrates the knowledge and skills to achieve and maintain a health-enhancing level of physical activity and fitness",
+         "outcomes": [
+          {
+           "code": "3.1.K",
+           "text": "Identifies how physical activity affects the heart and lungs"
+          },
+          {
+           "code": "3.2.K",
+           "text": "Identifies health-enhancing behaviors"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "exhibits-responsible-personal-and-social-behavio",
+     "title": "Exhibits responsible personal and social behavior that respects self and others",
+     "topics": [
+      {
+       "id": "exhibits-responsible-personal-and-social-behavio",
+       "title": "Exhibits responsible personal and social behavior that respects self and others",
+       "subtopics": [
+        {
+         "id": "exhibits-responsible-personal-and-social-behavio",
+         "title": "Exhibits responsible personal and social behavior that respects self and others",
+         "outcomes": [
+          {
+           "code": "4.1.K",
+           "text": "Identifies responsible personal behavior in physical activity settings"
+          },
+          {
+           "code": "4.2.K",
+           "text": "Follows directions in physical activity settings"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "recognize-the-value-of-physical-activity-for-ove",
+     "title": "Recognize the value of physical activity for overall wellness, enjoyment, challenge, and/or self-expression",
+     "topics": [
+      {
+       "id": "recognize-the-value-of-physical-activity-for-ove",
+       "title": "Recognize the value of physical activity for overall wellness, enjoyment, challenge, and/or self-expression",
+       "subtopics": [
+        {
+         "id": "recognize-the-value-of-physical-activity-for-ove",
+         "title": "Recognize the value of physical activity for overall wellness, enjoyment, challenge, and/or self-expression",
+         "outcomes": [
+          {
+           "code": "5.2.K",
+           "text": "Identifies challenging skills in physical activities"
+          },
+          {
+           "code": "5.3.K",
+           "text": "Identifies physical activities that are enjoyable"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "recognizes-career-opportunities-and-manages-pers",
+     "title": "Recognizes career opportunities and manages personal and community resources related to physical activity and fitness to achieve and maintain overall wellness",
+     "topics": [
+      {
+       "id": "recognizes-career-opportunities-and-manages-pers",
+       "title": "Recognizes career opportunities and manages personal and community resources related to physical activity and fitness to achieve and maintain overall wellness",
+       "subtopics": [
+        {
+         "id": "recognizes-career-opportunities-and-manages-pers",
+         "title": "Recognizes career opportunities and manages personal and community resources related to physical activity and fitness to achieve and maintain overall wellness",
+         "outcomes": [
+          {
+           "code": "6.1.K",
+           "text": "Identifies physical activities available outside of school"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "1",
+   "units": [
+    {
+     "id": "demonstrates-competency-in-a-variety-of-motor-sk",
+     "title": "Demonstrates competency in a variety of motor skills and movement patterns",
+     "topics": [
+      {
+       "id": "sports-skills-and-games",
+       "title": "Sports Skills and Games",
+       "subtopics": [
+        {
+         "id": "sports-skills-and-games",
+         "title": "Sports Skills and Games",
+         "outcomes": [
+          {
+           "code": "1.1.1",
+           "text": "Demonstrates, in isolation, emerging forms of locomotor, non-locomotor, and manipulative skills."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "dance-movement-and-rhythmic-activities",
+       "title": "Dance, Movement, and Rhythmic Activities",
+       "subtopics": [
+        {
+         "id": "dance-movement-and-rhythmic-activities",
+         "title": "Dance, Movement, and Rhythmic Activities",
+         "outcomes": [
+          {
+           "code": "1.2.1",
+           "text": "Demonstrates, in isolation, emerging forms of locomotor, non-locomotor, and manipulative skills in dance, movement, and rhythmic activities."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "fitness-activities",
+       "title": "Fitness Activities",
+       "subtopics": [
+        {
+         "id": "fitness-activities",
+         "title": "Fitness Activities",
+         "outcomes": [
+          {
+           "code": "1.3.1",
+           "text": "Demonstrates, in isolation, emerging forms of locomotor, non-locomotor, and manipulative skills."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "lifetime-activities",
+       "title": "Lifetime Activities",
+       "subtopics": [
+        {
+         "id": "lifetime-activities",
+         "title": "Lifetime Activities",
+         "outcomes": [
+          {
+           "code": "1.4.1",
+           "text": "Demonstrates, in isolation, emerging forms of locomotor, non-locomotor, and manipulative skills."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "applies-knowledge-of-concepts-principles-strateg",
+     "title": "Applies knowledge of concepts, principles, strategies, and tactics related to movement and performance",
+     "topics": [
+      {
+       "id": "movement-concepts",
+       "title": "Movement Concepts",
+       "subtopics": [
+        {
+         "id": "movement-concepts",
+         "title": "Movement Concepts",
+         "outcomes": [
+          {
+           "code": "2.1.1",
+           "text": "Identifies more complex movement concepts."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "strategies-and-tactics",
+       "title": "Strategies and Tactics",
+       "subtopics": [
+        {
+         "id": "strategies-and-tactics",
+         "title": "Strategies and Tactics",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "The outcomes for 2.2. begin in grade 3."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "demonstrates-the-knowledge-and-skills-to-achieve",
+     "title": "Demonstrates the knowledge and skills to achieve and maintain a health-enhancing level of physical activity and fitness",
+     "topics": [
+      {
+       "id": "fitness-planning",
+       "title": "Fitness Planning",
+       "subtopics": [
+        {
+         "id": "fitness-planning",
+         "title": "Fitness Planning",
+         "outcomes": [
+          {
+           "code": "3.1.1",
+           "text": "Explains the effects of physical activity on the heart and lungs."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "additional-health-enhancing-behaviors",
+       "title": "Additional Health-Enhancing Behaviors",
+       "subtopics": [
+        {
+         "id": "additional-health-enhancing-behaviors",
+         "title": "Additional Health-Enhancing Behaviors",
+         "outcomes": [
+          {
+           "code": "3.2.1",
+           "text": "Explains health-enhancing behaviors."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "exhibits-responsible-personal-and-social-behavio",
+     "title": "Exhibits responsible personal and social behavior that respects self and others",
+     "topics": [
+      {
+       "id": "self-awareness-and-management",
+       "title": "Self-awareness and management",
+       "subtopics": [
+        {
+         "id": "self-awareness-and-management",
+         "title": "Self-awareness and management",
+         "outcomes": [
+          {
+           "code": "4.1.1",
+           "text": "Identifies responsible personal behavior and responds appropriately to feedback in physical activity settings."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "social-awareness-and-relationship-skills",
+       "title": "Social awareness and relationship skills",
+       "subtopics": [
+        {
+         "id": "social-awareness-and-relationship-skills",
+         "title": "Social awareness and relationship skills",
+         "outcomes": [
+          {
+           "code": "4.2.1",
+           "text": "Follows directions in physical activity settings (e.g., taking turns, sharing)."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "responsible-decision-making",
+       "title": "Responsible decision making",
+       "subtopics": [
+        {
+         "id": "responsible-decision-making",
+         "title": "Responsible decision making",
+         "outcomes": [
+          {
+           "code": "4.3.1",
+           "text": "Follows directions in physical activity settings (e.g., safe behaviors, following rules)."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "recognizes-the-value-of-physical-activity-for-ov",
+     "title": "Recognizes the value of physical activity for overall wellness, enjoyment, challenge, and/or self-expression",
+     "topics": [
+      {
+       "id": "overall-wellness",
+       "title": "Overall Wellness",
+       "subtopics": [
+        {
+         "id": "overall-wellness",
+         "title": "Overall Wellness",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "The outcomes for 5.1. begin in grade 3."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "challenge",
+       "title": "Challenge",
+       "subtopics": [
+        {
+         "id": "challenge",
+         "title": "Challenge",
+         "outcomes": [
+          {
+           "code": "5.2.1",
+           "text": "Attempts challenging skills in physical activities."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "self-expression-enjoyment",
+       "title": "Self-Expression/Enjoyment",
+       "subtopics": [
+        {
+         "id": "self-expression-enjoyment",
+         "title": "Self-Expression/Enjoyment",
+         "outcomes": [
+          {
+           "code": "5.3.1",
+           "text": "Describes positive feelings and personal reasons for enjoying and participating in physical activities."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "recognizes-career-opportunities-and-manages-pers",
+     "title": "Recognizes career opportunities and manages personal and community resources related to physical activity and fitness to achieve and maintain overall wellness",
+     "topics": [
+      {
+       "id": "personal-and-community-resources",
+       "title": "Personal and Community Resources",
+       "subtopics": [
+        {
+         "id": "personal-and-community-resources",
+         "title": "Personal and Community Resources",
+         "outcomes": [
+          {
+           "code": "6.1.1",
+           "text": "Identifies personal resources that support participation in physical activity."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "careers",
+       "title": "Careers",
+       "subtopics": [
+        {
+         "id": "careers",
+         "title": "Careers",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "The outcomes for 6.2. begin in grade 6."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "2",
+   "units": [
+    {
+     "id": "demonstrates-competency-in-a-variety-of-motor-sk",
+     "title": "Demonstrates competency in a variety of motor skills and movement patterns",
+     "topics": [
+      {
+       "id": "sports-skills-and-games",
+       "title": "Sports Skills and Games",
+       "subtopics": [
+        {
+         "id": "sports-skills-and-games",
+         "title": "Sports Skills and Games",
+         "outcomes": [
+          {
+           "code": "1.1.2",
+           "text": "Demonstrates, in isolation, mature patterns of locomotor, non-locomotor, and manipulative skills."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "dance-movement-and-rhythmic-activities",
+       "title": "Dance, Movement, and Rhythmic Activities",
+       "subtopics": [
+        {
+         "id": "dance-movement-and-rhythmic-activities",
+         "title": "Dance, Movement, and Rhythmic Activities",
+         "outcomes": [
+          {
+           "code": "1.2.2",
+           "text": "Demonstrates, in isolation, mature patterns of locomotor, non-locomotor, and manipulative skills in dance, movement, and rhythmic activities."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "fitness-activities",
+       "title": "Fitness Activities",
+       "subtopics": [
+        {
+         "id": "fitness-activities",
+         "title": "Fitness Activities",
+         "outcomes": [
+          {
+           "code": "1.3.2",
+           "text": "Demonstrates, in isolation, mature patterns of locomotor, non-locomotor, and manipulative movement skills."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "lifetime-activities",
+       "title": "Lifetime Activities",
+       "subtopics": [
+        {
+         "id": "lifetime-activities",
+         "title": "Lifetime Activities",
+         "outcomes": [
+          {
+           "code": "1.4.2",
+           "text": "Demonstrates, in isolation, mature patterns of locomotor, non-locomotor, and manipulative movement skills."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "applies-knowledge-of-concepts-principles-strateg",
+     "title": "Applies knowledge of concepts, principles, strategies, and tactics related to movement and performance",
+     "topics": [
+      {
+       "id": "movement-concepts",
+       "title": "Movement Concepts",
+       "subtopics": [
+        {
+         "id": "movement-concepts",
+         "title": "Movement Concepts",
+         "outcomes": [
+          {
+           "code": "2.1.2",
+           "text": "Demonstrates a combination of movement concepts into simple travel."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "strategies-and-tactics",
+       "title": "Strategies and Tactics",
+       "subtopics": [
+        {
+         "id": "strategies-and-tactics",
+         "title": "Strategies and Tactics",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "The outcomes for 2.2. begin in grade 3."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "demonstrates-the-knowledge-and-skills-to-achieve",
+     "title": "Demonstrates the knowledge and skills to achieve and maintain a health-enhancing level of physical activity and fitness",
+     "topics": [
+      {
+       "id": "fitness-planning",
+       "title": "Fitness Planning",
+       "subtopics": [
+        {
+         "id": "fitness-planning",
+         "title": "Fitness Planning",
+         "outcomes": [
+          {
+           "code": "3.1.2",
+           "text": "Explains the effects of physical activity on the body."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "additional-health-enhancing-behaviors",
+       "title": "Additional Health-Enhancing Behaviors",
+       "subtopics": [
+        {
+         "id": "additional-health-enhancing-behaviors",
+         "title": "Additional Health-Enhancing Behaviors",
+         "outcomes": [
+          {
+           "code": "3.2.2",
+           "text": "Explains how health-enhancing behaviors influence overall wellness."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "exhibits-responsible-personal-and-social-behavio",
+     "title": "Exhibits responsible personal and social behavior that respects self and others",
+     "topics": [
+      {
+       "id": "self-awareness-and-management",
+       "title": "Self-awareness and management",
+       "subtopics": [
+        {
+         "id": "self-awareness-and-management",
+         "title": "Self-awareness and management",
+         "outcomes": [
+          {
+           "code": "4.1.2",
+           "text": "Identifies responsible personal behavior and responds appropriately to feedback in physical activity settings."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "social-awareness-and-relationship-skills",
+       "title": "Social awareness and relationship skills",
+       "subtopics": [
+        {
+         "id": "social-awareness-and-relationship-skills",
+         "title": "Social awareness and relationship skills",
+         "outcomes": [
+          {
+           "code": "4.2.2",
+           "text": "Identifies the importance of personal and social responsibility in physical activity settings."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "responsible-decision-making",
+       "title": "Responsible decision making",
+       "subtopics": [
+        {
+         "id": "responsible-decision-making",
+         "title": "Responsible decision making",
+         "outcomes": [
+          {
+           "code": "4.3.2",
+           "text": "Identifies strategies to reinforce positive decisions in physical activity settings."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "recognizes-the-value-of-physical-activity-for-ov",
+     "title": "Recognizes the value of physical activity for overall wellness, enjoyment, challenge, and/or self-expression",
+     "topics": [
+      {
+       "id": "overall-wellness",
+       "title": "Overall Wellness",
+       "subtopics": [
+        {
+         "id": "overall-wellness",
+         "title": "Overall Wellness",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "The outcomes for 5.1. begin in grade 3."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "challenge",
+       "title": "Challenge",
+       "subtopics": [
+        {
+         "id": "challenge",
+         "title": "Challenge",
+         "outcomes": [
+          {
+           "code": "5.2.2",
+           "text": "Identifies reasons physical activity skills are potentially challenging."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "self-expression-enjoyment",
+       "title": "Self-Expression/Enjoyment",
+       "subtopics": [
+        {
+         "id": "self-expression-enjoyment",
+         "title": "Self-Expression/Enjoyment",
+         "outcomes": [
+          {
+           "code": "5.3.2",
+           "text": "Identifies physical activities that provide opportunities for self-expression."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "recognizes-career-opportunities-and-manages-pers",
+     "title": "Recognizes career opportunities and manages personal and community resources related to physical activity and fitness to achieve and maintain overall wellness",
+     "topics": [
+      {
+       "id": "personal-and-community-resources",
+       "title": "Personal and Community Resources",
+       "subtopics": [
+        {
+         "id": "personal-and-community-resources",
+         "title": "Personal and Community Resources",
+         "outcomes": [
+          {
+           "code": "6.1.2",
+           "text": "Identifies community resources that are available for participation in physical activity."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "careers",
+       "title": "Careers",
+       "subtopics": [
+        {
+         "id": "careers",
+         "title": "Careers",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "The outcomes for 6.2. begin in grade 6."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "4",
+   "units": [
+    {
+     "id": "demonstrates-competency-in-a-variety-of-motor-sk",
+     "title": "Demonstrates competency in a variety of motor skills and movement patterns",
+     "topics": [
+      {
+       "id": "sports-skills-and-games",
+       "title": "Sports Skills and Games",
+       "subtopics": [
+        {
+         "id": "sports-skills-and-games",
+         "title": "Sports Skills and Games",
+         "outcomes": [
+          {
+           "code": "1.1.4",
+           "text": "Demonstrates a combination of locomotor, non-locomotor, and manipulative skills in a variety of physical activities."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "dance-movement-and-rhythmic-activities",
+       "title": "Dance, Movement, and Rhythmic Activities",
+       "subtopics": [
+        {
+         "id": "dance-movement-and-rhythmic-activities",
+         "title": "Dance, Movement, and Rhythmic Activities",
+         "outcomes": [
+          {
+           "code": "1.2.4",
+           "text": "Demonstrates a combination of locomotor, non-locomotor, and manipulative skills in a variety of physical activities in dance, movement, and rhythmic activities."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "fitness-activities",
+       "title": "Fitness Activities",
+       "subtopics": [
+        {
+         "id": "fitness-activities",
+         "title": "Fitness Activities",
+         "outcomes": [
+          {
+           "code": "1.3.4",
+           "text": "Demonstrates a combination of locomotor, non-locomotor, and manipulative skills."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "lifetime-activities",
+       "title": "Lifetime Activities",
+       "subtopics": [
+        {
+         "id": "lifetime-activities",
+         "title": "Lifetime Activities",
+         "outcomes": [
+          {
+           "code": "1.4.4",
+           "text": "Demonstrates a combination of locomotor, non-locomotor, and manipulative skills in a variety of physical activities."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "applies-knowledge-of-concepts-principles-strateg",
+     "title": "Applies knowledge of concepts, principles, strategies, and tactics related to movement and performance",
+     "topics": [
+      {
+       "id": "movement-concepts",
+       "title": "Movement Concepts",
+       "subtopics": [
+        {
+         "id": "movement-concepts",
+         "title": "Movement Concepts",
+         "outcomes": [
+          {
+           "code": "2.1.4",
+           "text": "Demonstrates a combination of movement concepts, locomotor, and/or manipulative skills in a variety of physical activities."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "strategies-and-tactics",
+       "title": "Strategies and Tactics",
+       "subtopics": [
+        {
+         "id": "strategies-and-tactics",
+         "title": "Strategies and Tactics",
+         "outcomes": [
+          {
+           "code": "2.2.4",
+           "text": "Identifies emerging forms of simple strategies, tactics, and communication in small-sided games and other physical activities."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "demonstrates-the-knowledge-and-skills-to-achieve",
+     "title": "Demonstrates the knowledge and skills to achieve and maintain a health-enhancing level of physical activity and fitness",
+     "topics": [
+      {
+       "id": "fitness-planning",
+       "title": "Fitness Planning",
+       "subtopics": [
+        {
+         "id": "fitness-planning",
+         "title": "Fitness Planning",
+         "outcomes": [
+          {
+           "code": "3.1.4",
+           "text": "Identifies the components of skill-related fitness."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "additional-health-enhancing-behaviors",
+       "title": "Additional Health-Enhancing Behaviors",
+       "subtopics": [
+        {
+         "id": "additional-health-enhancing-behaviors",
+         "title": "Additional Health-Enhancing Behaviors",
+         "outcomes": [
+          {
+           "code": "3.2.4",
+           "text": "Explains how health-enhancing behaviors influence overall wellness."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "exhibits-responsible-personal-and-social-behavio",
+     "title": "Exhibits responsible personal and social behavior that respects self and others",
+     "topics": [
+      {
+       "id": "self-awareness-and-management",
+       "title": "Self-awareness and management",
+       "subtopics": [
+        {
+         "id": "self-awareness-and-management",
+         "title": "Self-awareness and management",
+         "outcomes": [
+          {
+           "code": "4.1.4",
+           "text": "Demonstrates responsible personal behavior in physical activity settings."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "social-awareness-and-relationship-skills",
+       "title": "Social awareness and relationship skills",
+       "subtopics": [
+        {
+         "id": "social-awareness-and-relationship-skills",
+         "title": "Social awareness and relationship skills",
+         "outcomes": [
+          {
+           "code": "4.2.4",
+           "text": "Demonstrates responsible behavior with minimal teacher prompts in physical activity settings."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "responsible-decision-making",
+       "title": "Responsible decision making",
+       "subtopics": [
+        {
+         "id": "responsible-decision-making",
+         "title": "Responsible decision making",
+         "outcomes": [
+          {
+           "code": "4.3.4",
+           "text": "Compares and contrasts possible outcomes to decisions in physical activity settings."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "recognizes-the-value-of-physical-activity-for-ov",
+     "title": "Recognizes the value of physical activity for overall wellness, enjoyment, challenge, and/or self-expression",
+     "topics": [
+      {
+       "id": "overall-wellness",
+       "title": "Overall Wellness",
+       "subtopics": [
+        {
+         "id": "overall-wellness",
+         "title": "Overall Wellness",
+         "outcomes": [
+          {
+           "code": "5.1.4",
+           "text": "Examines the overall wellness benefits of physical activity and identifies potential consequences of inactivity."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "challenge",
+       "title": "Challenge",
+       "subtopics": [
+        {
+         "id": "challenge",
+         "title": "Challenge",
+         "outcomes": [
+          {
+           "code": "5.2.4",
+           "text": "Describes the challenge that comes from learning a new physical activity."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "self-expression-enjoyment",
+       "title": "Self-Expression/Enjoyment",
+       "subtopics": [
+        {
+         "id": "self-expression-enjoyment",
+         "title": "Self-Expression/Enjoyment",
+         "outcomes": [
+          {
+           "code": "5.3.4",
+           "text": "Ranks the personal level of enjoyment in participating in different physical activities."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "recognizes-career-opportunities-and-manages-pers",
+     "title": "Recognizes career opportunities and manages personal and community resources related to physical activity and fitness to achieve and maintain overall wellness",
+     "topics": [
+      {
+       "id": "personal-and-community-resources",
+       "title": "Personal and Community Resources",
+       "subtopics": [
+        {
+         "id": "personal-and-community-resources",
+         "title": "Personal and Community Resources",
+         "outcomes": [
+          {
+           "code": "6.1.4",
+           "text": "Describes how personal resources could be used to support participation in a variety of physical activities."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "careers",
+       "title": "Careers",
+       "subtopics": [
+        {
+         "id": "careers",
+         "title": "Careers",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "The outcomes for 6.2. begin in grade 6."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "5",
+   "units": [
+    {
+     "id": "demonstrates-competency-in-a-variety-of-motor-sk",
+     "title": "Demonstrates competency in a variety of motor skills and movement patterns",
+     "topics": [
+      {
+       "id": "sports-skills-and-games",
+       "title": "Sports Skills and Games",
+       "subtopics": [
+        {
+         "id": "sports-skills-and-games",
+         "title": "Sports Skills and Games",
+         "outcomes": [
+          {
+           "code": "1.1.5",
+           "text": "Demonstrates a mature combination of locomotor, non-locomotor, and manipulative skills in a variety of physical activities."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "dance-movement-and-rhythmic-activities",
+       "title": "Dance, Movement, and Rhythmic Activities",
+       "subtopics": [
+        {
+         "id": "dance-movement-and-rhythmic-activities",
+         "title": "Dance, Movement, and Rhythmic Activities",
+         "outcomes": [
+          {
+           "code": "1.2.5",
+           "text": "Demonstrates a mature combination of locomotor, non-locomotor, and manipulative skills in dance, movement, and rhythmic activities."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "fitness-activities",
+       "title": "Fitness Activities",
+       "subtopics": [
+        {
+         "id": "fitness-activities",
+         "title": "Fitness Activities",
+         "outcomes": [
+          {
+           "code": "1.3.5",
+           "text": "Demonstrates a mature combination of locomotor, non-locomotor, and manipulative skills."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "lifetime-activities",
+       "title": "Lifetime Activities",
+       "subtopics": [
+        {
+         "id": "lifetime-activities",
+         "title": "Lifetime Activities",
+         "outcomes": [
+          {
+           "code": "1.4.5",
+           "text": "Demonstrates a mature combination of locomotor, non-locomotor, and manipulative skills in a variety of physical activities."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "applies-knowledge-of-concepts-principles-strateg",
+     "title": "Applies knowledge of concepts, principles, strategies, and tactics related to movement and performance",
+     "topics": [
+      {
+       "id": "movement-concepts",
+       "title": "Movement Concepts",
+       "subtopics": [
+        {
+         "id": "movement-concepts",
+         "title": "Movement Concepts",
+         "outcomes": [
+          {
+           "code": "2.1.5",
+           "text": "Demonstrates maturing movement concepts, locomotor, and/or manipulative skills in a variety of physical activities."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "strategies-and-tactics",
+       "title": "Strategies and Tactics",
+       "subtopics": [
+        {
+         "id": "strategies-and-tactics",
+         "title": "Strategies and Tactics",
+         "outcomes": [
+          {
+           "code": "2.2.5",
+           "text": "Demonstrates emerging forms of simple strategies, tactics, and communication in small-sided games and other physical activities."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "demonstrates-the-knowledge-and-skills-to-achieve",
+     "title": "Demonstrates the knowledge and skills to achieve and maintain a health-enhancing level of physical activity and fitness",
+     "topics": [
+      {
+       "id": "fitness-planning",
+       "title": "Fitness Planning",
+       "subtopics": [
+        {
+         "id": "fitness-planning",
+         "title": "Fitness Planning",
+         "outcomes": [
+          {
+           "code": "3.1.5",
+           "text": "Explains the relationship between skill- and health-related fitness."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "additional-health-enhancing-behaviors",
+       "title": "Additional Health-Enhancing Behaviors",
+       "subtopics": [
+        {
+         "id": "additional-health-enhancing-behaviors",
+         "title": "Additional Health-Enhancing Behaviors",
+         "outcomes": [
+          {
+           "code": "3.2.5",
+           "text": "Identifies personal habits related to health-enhancing behaviors."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "exhibits-responsible-personal-and-social-behavio",
+     "title": "Exhibits responsible personal and social behavior that respects self and others",
+     "topics": [
+      {
+       "id": "self-awareness-and-management",
+       "title": "Self-awareness and management",
+       "subtopics": [
+        {
+         "id": "self-awareness-and-management",
+         "title": "Self-awareness and management",
+         "outcomes": [
+          {
+           "code": "4.1.5",
+           "text": "Demonstrates respect for facilities and exhibits safe behaviors in physical activity settings."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "social-awareness-and-relationship-skills",
+       "title": "Social awareness and relationship skills",
+       "subtopics": [
+        {
+         "id": "social-awareness-and-relationship-skills",
+         "title": "Social awareness and relationship skills",
+         "outcomes": [
+          {
+           "code": "4.2.5",
+           "text": "Uses communication skills and strategies that promote positive relationships in physical activity settings."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "responsible-decision-making",
+       "title": "Responsible decision making",
+       "subtopics": [
+        {
+         "id": "responsible-decision-making",
+         "title": "Responsible decision making",
+         "outcomes": [
+          {
+           "code": "4.3.5",
+           "text": "Responds appropriately to personal and social behaviors in physical activity settings."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "recognizes-the-value-of-physical-activity-for-ov",
+     "title": "Recognizes the value of physical activity for overall wellness, enjoyment, challenge, and/or self-expression",
+     "topics": [
+      {
+       "id": "overall-wellness",
+       "title": "Overall Wellness",
+       "subtopics": [
+        {
+         "id": "overall-wellness",
+         "title": "Overall Wellness",
+         "outcomes": [
+          {
+           "code": "5.1.5",
+           "text": "Compares the overall wellness benefits of participation in a variety of physical activities."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "challenge",
+       "title": "Challenge",
+       "subtopics": [
+        {
+         "id": "challenge",
+         "title": "Challenge",
+         "outcomes": [
+          {
+           "code": "5.2.5",
+           "text": "Identifies ways to overcome individual challenges in physical activities."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "self-expression-enjoyment",
+       "title": "Self-Expression/Enjoyment",
+       "subtopics": [
+        {
+         "id": "self-expression-enjoyment",
+         "title": "Self-Expression/Enjoyment",
+         "outcomes": [
+          {
+           "code": "5.3.5",
+           "text": "Compares and contrasts different physical activities based on levelsof enjoyment."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "recognizes-career-opportunities-and-manages-pers",
+     "title": "Recognizes career opportunities and manages personal and community resources related to physical activity and fitness to achieve and maintain overall wellness",
+     "topics": [
+      {
+       "id": "personal-and-community-resources",
+       "title": "Personal and Community Resources",
+       "subtopics": [
+        {
+         "id": "personal-and-community-resources",
+         "title": "Personal and Community Resources",
+         "outcomes": [
+          {
+           "code": "6.1.5",
+           "text": "Describes how community resources could be used to support participation in a variety of physical activities."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "careers",
+       "title": "Careers",
+       "subtopics": [
+        {
+         "id": "careers",
+         "title": "Careers",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "The outcomes for 6.2. begin in grade 6."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "6",
+   "units": [
+    {
+     "id": "demonstrates-competency-in-a-variety-of-motor-sk",
+     "title": "Demonstrates competency in a variety of motor skills and movement patterns",
+     "topics": [
+      {
+       "id": "sports-skills-and-games",
+       "title": "Sports Skills and Games",
+       "subtopics": [
+        {
+         "id": "sports-skills-and-games",
+         "title": "Sports Skills and Games",
+         "outcomes": [
+          {
+           "code": "1.1.6",
+           "text": "Demonstrates emerging forms of specialized skills in a variety of games and sports."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "dance-movement-and-rhythmic-activities",
+       "title": "Dance, Movement, and Rhythmic Activities",
+       "subtopics": [
+        {
+         "id": "dance-movement-and-rhythmic-activities",
+         "title": "Dance, Movement, and Rhythmic Activities",
+         "outcomes": [
+          {
+           "code": "1.2.6",
+           "text": "Demonstrates emerging forms of specialized skills in dance, movement, and rhythmic activities."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "fitness-activities",
+       "title": "Fitness Activities",
+       "subtopics": [
+        {
+         "id": "fitness-activities",
+         "title": "Fitness Activities",
+         "outcomes": [
+          {
+           "code": "1.3.6",
+           "text": "Demonstrates emerging forms of specialized skills in a variety of fitness activities."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "lifetime-activities",
+       "title": "Lifetime Activities",
+       "subtopics": [
+        {
+         "id": "lifetime-activities",
+         "title": "Lifetime Activities",
+         "outcomes": [
+          {
+           "code": "1.4.6",
+           "text": "Demonstrates emerging forms of specialized skills in lifetime activities."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "applies-knowledge-of-concepts-principles-strateg",
+     "title": "Applies knowledge of concepts, principles, strategies, and tactics related to movement and performance",
+     "topics": [
+      {
+       "id": "movement-concepts",
+       "title": "Movement Concepts",
+       "subtopics": [
+        {
+         "id": "movement-concepts",
+         "title": "Movement Concepts",
+         "outcomes": [
+          {
+           "code": "2.1.6",
+           "text": "Applies movement concepts, locomotor, and/or manipulative skills in a variety of physical activities."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "strategies-and-tactics",
+       "title": "Strategies and Tactics",
+       "subtopics": [
+        {
+         "id": "strategies-and-tactics",
+         "title": "Strategies and Tactics",
+         "outcomes": [
+          {
+           "code": "2.2.6",
+           "text": "Applies emerging forms of more complex strategies, tactics, and communication with support in small-sided game play and other physical activities."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "demonstrates-the-knowledge-and-skills-to-achieve",
+     "title": "Demonstrates the knowledge and skills to achieve and maintain a health-enhancing level of physical activity and fitness",
+     "topics": [
+      {
+       "id": "fitness-planning",
+       "title": "Fitness Planning",
+       "subtopics": [
+        {
+         "id": "fitness-planning",
+         "title": "Fitness Planning",
+         "outcomes": [
+          {
+           "code": "3.1.6",
+           "text": "Defines the FITT principle and how it connects to the components of health-related fitness."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "additional-health-enhancing-behaviors",
+       "title": "Additional Health-Enhancing Behaviors",
+       "subtopics": [
+        {
+         "id": "additional-health-enhancing-behaviors",
+         "title": "Additional Health-Enhancing Behaviors",
+         "outcomes": [
+          {
+           "code": "3.2.6",
+           "text": "Identifies strategies to improve health-enhancing behaviors."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "exhibits-responsible-personal-and-social-behavio",
+     "title": "Exhibits responsible personal and social behavior that respects self and others",
+     "topics": [
+      {
+       "id": "self-awareness-and-management",
+       "title": "Self-awareness and management",
+       "subtopics": [
+        {
+         "id": "self-awareness-and-management",
+         "title": "Self-awareness and management",
+         "outcomes": [
+          {
+           "code": "4.1.6",
+           "text": "Responds appropriately to successes and failures in physical activity settings."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "social-awareness-and-relationship-skills",
+       "title": "Social awareness and relationship skills",
+       "subtopics": [
+        {
+         "id": "social-awareness-and-relationship-skills",
+         "title": "Social awareness and relationship skills",
+         "outcomes": [
+          {
+           "code": "4.2.6",
+           "text": "Uses communication skills and strategies that promote positive relationships in physical activity settings."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "responsible-decision-making",
+       "title": "Responsible decision making",
+       "subtopics": [
+        {
+         "id": "responsible-decision-making",
+         "title": "Responsible decision making",
+         "outcomes": [
+          {
+           "code": "4.3.6",
+           "text": "Identifies problem solving skills and conflict resolution tactics in physical activity settings."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "recognizes-the-value-of-physical-activity-for-ov",
+     "title": "Recognizes the value of physical activity for overall wellness, enjoyment, challenge, and/or self-expression",
+     "topics": [
+      {
+       "id": "overall-wellness",
+       "title": "Overall Wellness",
+       "subtopics": [
+        {
+         "id": "overall-wellness",
+         "title": "Overall Wellness",
+         "outcomes": [
+          {
+           "code": "5.1.6",
+           "text": "Describes how being physically active leads to a healthy body and mind."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "challenge",
+       "title": "Challenge",
+       "subtopics": [
+        {
+         "id": "challenge",
+         "title": "Challenge",
+         "outcomes": [
+          {
+           "code": "5.2.6",
+           "text": "Demonstrates perseverance when challenged in physical activities."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "self-expression-enjoyment",
+       "title": "Self-Expression/Enjoyment",
+       "subtopics": [
+        {
+         "id": "self-expression-enjoyment",
+         "title": "Self-Expression/Enjoyment",
+         "outcomes": [
+          {
+           "code": "5.3.6",
+           "text": "Describes how movement competence contributes to enjoyment in a variety of physical activities."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "recognizes-career-opportunities-and-manages-pers",
+     "title": "Recognizes career opportunities and manages personal and community resources related to physical activity and fitness to achieve and maintain overall wellness",
+     "topics": [
+      {
+       "id": "personal-and-community-resources",
+       "title": "Personal and Community Resources",
+       "subtopics": [
+        {
+         "id": "personal-and-community-resources",
+         "title": "Personal and Community Resources",
+         "outcomes": [
+          {
+           "code": "6.1.6",
+           "text": "Identifies personal and community resources to support participation in a variety of physical activities with family and friends."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "careers",
+       "title": "Careers",
+       "subtopics": [
+        {
+         "id": "careers",
+         "title": "Careers",
+         "outcomes": [
+          {
+           "code": "6.2.6",
+           "text": "Describes career options related to physical activity and fitness."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "7",
+   "units": [
+    {
+     "id": "demonstrates-competency-in-a-variety-of-motor-sk",
+     "title": "Demonstrates competency in a variety of motor skills and movement patterns",
+     "topics": [
+      {
+       "id": "sports-skills-and-games",
+       "title": "Sports Skills and Games",
+       "subtopics": [
+        {
+         "id": "sports-skills-and-games",
+         "title": "Sports Skills and Games",
+         "outcomes": [
+          {
+           "code": "1.1.7",
+           "text": "Demonstrates mature forms of specialized skills in a variety of games and sports."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "dance-movement-and-rhythmic-activities",
+       "title": "Dance, Movement, and Rhythmic Activities",
+       "subtopics": [
+        {
+         "id": "dance-movement-and-rhythmic-activities",
+         "title": "Dance, Movement, and Rhythmic Activities",
+         "outcomes": [
+          {
+           "code": "1.2.7",
+           "text": "Demonstrates mature forms of specialized skills in dance, movement, and rhythmic activities."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "fitness-activities",
+       "title": "Fitness Activities",
+       "subtopics": [
+        {
+         "id": "fitness-activities",
+         "title": "Fitness Activities",
+         "outcomes": [
+          {
+           "code": "1.3.7",
+           "text": "Demonstrates mature forms of specialized skills in a variety of fitness activities."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "lifetime-activities",
+       "title": "Lifetime Activities",
+       "subtopics": [
+        {
+         "id": "lifetime-activities",
+         "title": "Lifetime Activities",
+         "outcomes": [
+          {
+           "code": "1.4.7",
+           "text": "Demonstrates mature forms of specialized skills in lifetime activities."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "applies-knowledge-of-concepts-principles-strateg",
+     "title": "Applies knowledge of concepts, principles, strategies, and tactics related to movement and performance",
+     "topics": [
+      {
+       "id": "movement-concepts",
+       "title": "Movement Concepts",
+       "subtopics": [
+        {
+         "id": "movement-concepts",
+         "title": "Movement Concepts",
+         "outcomes": [
+          {
+           "code": "2.1.7",
+           "text": "Applies movement concepts, locomotor, and/or manipulative skills in a variety of physical activities."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "strategies-and-tactics",
+       "title": "Strategies and Tactics",
+       "subtopics": [
+        {
+         "id": "strategies-and-tactics",
+         "title": "Strategies and Tactics",
+         "outcomes": [
+          {
+           "code": "2.2.7",
+           "text": "Applies maturing forms of strategies, tactics, and communication independently in small-sided game play and other physical activities."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "demonstrates-the-knowledge-and-skills-to-achieve",
+     "title": "Demonstrates the knowledge and skills to achieve and maintain a health-enhancing level of physical activity and fitness",
+     "topics": [
+      {
+       "id": "fitness-planning",
+       "title": "Fitness Planning",
+       "subtopics": [
+        {
+         "id": "fitness-planning",
+         "title": "Fitness Planning",
+         "outcomes": [
+          {
+           "code": "3.1.7",
+           "text": "Applies the FITT principle to one health-related component of fitness."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "additional-health-enhancing-behaviors",
+       "title": "Additional Health-Enhancing Behaviors",
+       "subtopics": [
+        {
+         "id": "additional-health-enhancing-behaviors",
+         "title": "Additional Health-Enhancing Behaviors",
+         "outcomes": [
+          {
+           "code": "3.2.7",
+           "text": "Applies strategies to improve health-enhancing behaviors."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "exhibits-responsible-personal-and-social-behavio",
+     "title": "Exhibits responsible personal and social behavior that respects self and others",
+     "topics": [
+      {
+       "id": "self-awareness-and-management",
+       "title": "Self-awareness and management",
+       "subtopics": [
+        {
+         "id": "self-awareness-and-management",
+         "title": "Self-awareness and management",
+         "outcomes": [
+          {
+           "code": "4.1.7",
+           "text": "Responds appropriately to corrective feedback in physical activity settings."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "social-awareness-and-relationship-skills",
+       "title": "Social awareness and relationship skills",
+       "subtopics": [
+        {
+         "id": "social-awareness-and-relationship-skills",
+         "title": "Social awareness and relationship skills",
+         "outcomes": [
+          {
+           "code": "4.2.7",
+           "text": "Demonstrates civility by cooperating with classmates in physical activity settings."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "responsible-decision-making",
+       "title": "Responsible decision making",
+       "subtopics": [
+        {
+         "id": "responsible-decision-making",
+         "title": "Responsible decision making",
+         "outcomes": [
+          {
+           "code": "4.3.7",
+           "text": "Applies problem-solving skills and conflict resolution tactics in physical activity settings."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "recognizes-the-value-of-physical-activity-for-ov",
+     "title": "Recognizes the value of physical activity for overall wellness, enjoyment, challenge, and/or self-expression",
+     "topics": [
+      {
+       "id": "overall-wellness",
+       "title": "Overall Wellness",
+       "subtopics": [
+        {
+         "id": "overall-wellness",
+         "title": "Overall Wellness",
+         "outcomes": [
+          {
+           "code": "5.1.7",
+           "text": "Identifies mental and emotional benefits of participation in a variety of physical activities."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "challenge",
+       "title": "Challenge",
+       "subtopics": [
+        {
+         "id": "challenge",
+         "title": "Challenge",
+         "outcomes": [
+          {
+           "code": "5.2.7",
+           "text": "Creates strategies and solutions when presented with a group physical activity challenge."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "self-expression-enjoyment",
+       "title": "Self-Expression/Enjoyment",
+       "subtopics": [
+        {
+         "id": "self-expression-enjoyment",
+         "title": "Self-Expression/Enjoyment",
+         "outcomes": [
+          {
+           "code": "5.3.7",
+           "text": "Describes the relationship between self-expression and enjoyment through a variety of physical activities."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "recognizes-career-opportunities-and-manages-pers",
+     "title": "Recognizes career opportunities and manages personal and community resources related to physical activity and fitness to achieve and maintain overall wellness",
+     "topics": [
+      {
+       "id": "personal-and-community-resources",
+       "title": "Personal and Community Resources",
+       "subtopics": [
+        {
+         "id": "personal-and-community-resources",
+         "title": "Personal and Community Resources",
+         "outcomes": [
+          {
+           "code": "6.1.7",
+           "text": "Identifies supports and barriers related to personal and community resources that can impact participation in physical activity."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "careers",
+       "title": "Careers",
+       "subtopics": [
+        {
+         "id": "careers",
+         "title": "Careers",
+         "outcomes": [
+          {
+           "code": "6.2.7",
+           "text": "Compares and contrasts career options related to physical activity and fitness."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "8",
+   "units": [
+    {
+     "id": "demonstrates-competency-in-a-variety-of-motor-sk",
+     "title": "Demonstrates competency in a variety of motor skills and movement patterns",
+     "topics": [
+      {
+       "id": "sports-skills-and-games",
+       "title": "Sports Skills and Games",
+       "subtopics": [
+        {
+         "id": "sports-skills-and-games",
+         "title": "Sports Skills and Games",
+         "outcomes": [
+          {
+           "code": "1.1.8",
+           "text": "Demonstrates mature forms of specialized skills in a variety of games and sports."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "dance-movement-and-rhythmic-activities",
+       "title": "Dance, Movement, and Rhythmic Activities",
+       "subtopics": [
+        {
+         "id": "dance-movement-and-rhythmic-activities",
+         "title": "Dance, Movement, and Rhythmic Activities",
+         "outcomes": [
+          {
+           "code": "1.2.8",
+           "text": "Demonstrates mature forms of specialized skills in dance, movement, and rhythmic activities."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "fitness-activities",
+       "title": "Fitness Activities",
+       "subtopics": [
+        {
+         "id": "fitness-activities",
+         "title": "Fitness Activities",
+         "outcomes": [
+          {
+           "code": "1.3.8",
+           "text": "Demonstrates mature forms of specialized skills in a variety of fitness activities."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "lifetime-activities",
+       "title": "Lifetime Activities",
+       "subtopics": [
+        {
+         "id": "lifetime-activities",
+         "title": "Lifetime Activities",
+         "outcomes": [
+          {
+           "code": "1.4.8",
+           "text": "Demonstrates mature forms of specialized skills in lifetime activities."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "applies-knowledge-of-concepts-principles-strateg",
+     "title": "Applies knowledge of concepts, principles, strategies, and tactics related to movement and performance",
+     "topics": [
+      {
+       "id": "movement-concepts",
+       "title": "Movement Concepts",
+       "subtopics": [
+        {
+         "id": "movement-concepts",
+         "title": "Movement Concepts",
+         "outcomes": [
+          {
+           "code": "2.1.8",
+           "text": "Applies movement concepts, locomotor, and/or manipulative skills in a variety of physical activities."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "strategies-and-tactics",
+       "title": "Strategies and Tactics",
+       "subtopics": [
+        {
+         "id": "strategies-and-tactics",
+         "title": "Strategies and Tactics",
+         "outcomes": [
+          {
+           "code": "2.2.8",
+           "text": "Applies maturing forms of strategies, tactics, and communication independently in small-sided game play and other physical activities."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "demonstrates-the-knowledge-and-skills-to-achieve",
+     "title": "Demonstrates the knowledge and skills to achieve and maintain a health-enhancing level of physical activity and fitness",
+     "topics": [
+      {
+       "id": "fitness-planning",
+       "title": "Fitness Planning",
+       "subtopics": [
+        {
+         "id": "fitness-planning",
+         "title": "Fitness Planning",
+         "outcomes": [
+          {
+           "code": "3.1.8",
+           "text": "Applies the FITT principle to more than one health-related component of fitness."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "additional-health-enhancing-behaviors",
+       "title": "Additional Health-Enhancing Behaviors",
+       "subtopics": [
+        {
+         "id": "additional-health-enhancing-behaviors",
+         "title": "Additional Health-Enhancing Behaviors",
+         "outcomes": [
+          {
+           "code": "3.2.8",
+           "text": "Evaluates the application of personal habits and strategies related to healthenhancing behaviors."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "exhibits-responsible-personal-and-social-behavio",
+     "title": "Exhibits responsible personal and social behavior that respects self and others",
+     "topics": [
+      {
+       "id": "self-awareness-and-management",
+       "title": "Self-awareness and management",
+       "subtopics": [
+        {
+         "id": "self-awareness-and-management",
+         "title": "Self-awareness and management",
+         "outcomes": [
+          {
+           "code": "4.1.8",
+           "text": "Applies rules and etiquette while accepting responsibility for individual improvement in physical activity settings."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "social-awareness-and-relationship-skills",
+       "title": "Social awareness and relationship skills",
+       "subtopics": [
+        {
+         "id": "social-awareness-and-relationship-skills",
+         "title": "Social awareness and relationship skills",
+         "outcomes": [
+          {
+           "code": "4.2.8",
+           "text": "Demonstrates citizenship by respecting for diversity and including others in physical activity settings."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "responsible-decision-making",
+       "title": "Responsible decision making",
+       "subtopics": [
+        {
+         "id": "responsible-decision-making",
+         "title": "Responsible decision making",
+         "outcomes": [
+          {
+           "code": "4.3.8",
+           "text": "Evaluates problem-solving skills and conflict resolution tactics in physical activity settings."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "recognizes-the-value-of-physical-activity-for-ov",
+     "title": "Recognizes the value of physical activity for overall wellness, enjoyment, challenge, and/or self-expression",
+     "topics": [
+      {
+       "id": "overall-wellness",
+       "title": "Overall Wellness",
+       "subtopics": [
+        {
+         "id": "overall-wellness",
+         "title": "Overall Wellness",
+         "outcomes": [
+          {
+           "code": "5.1.8",
+           "text": "Explains the connections between fitness and overall wellness."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "challenge",
+       "title": "Challenge",
+       "subtopics": [
+        {
+         "id": "challenge",
+         "title": "Challenge",
+         "outcomes": [
+          {
+           "code": "5.2.8",
+           "text": "Evaluates strategies and solutions to a group physical activity challenge."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "self-expression-enjoyment",
+       "title": "Self-Expression/Enjoyment",
+       "subtopics": [
+        {
+         "id": "self-expression-enjoyment",
+         "title": "Self-Expression/Enjoyment",
+         "outcomes": [
+          {
+           "code": "5.3.8",
+           "text": "Describes how enjoyment could be increased in self-selected physical activities."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "recognizes-career-opportunities-and-manages-pers",
+     "title": "Recognizes career opportunities and manages personal and community resources related to physical activity and fitness to achieve and maintain overall wellness",
+     "topics": [
+      {
+       "id": "personal-and-community-resources",
+       "title": "Personal and Community Resources",
+       "subtopics": [
+        {
+         "id": "personal-and-community-resources",
+         "title": "Personal and Community Resources",
+         "outcomes": [
+          {
+           "code": "6.1.8",
+           "text": "Designs a physical activity outing that includes personal and community resources, supports, and overcomes barriers."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "careers",
+       "title": "Careers",
+       "subtopics": [
+        {
+         "id": "careers",
+         "title": "Careers",
+         "outcomes": [
+          {
+           "code": "6.2.8",
+           "text": "Evaluates personal attributes as they relate to career options, physical activity, and fitness."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "3-4",
+   "units": [
+    {
+     "id": "demonstrates-competency-in-a-variety-of-motor-sk",
+     "title": "Demonstrates competency in a variety of motor skills and movement patterns",
+     "topics": [
+      {
+       "id": "sports-skills-and-games",
+       "title": "Sports Skills and Games",
+       "subtopics": [
+        {
+         "id": "sports-skills-and-games",
+         "title": "Sports Skills and Games",
+         "outcomes": [
+          {
+           "code": "1.1.3",
+           "text": "Demonstrates, in isolation, mature patterns of locomotor, non-locomotor, and manipulative skills in a variety of physical activities."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "dance-movement-and-rhythmic-activities",
+       "title": "Dance, Movement, and Rhythmic Activities",
+       "subtopics": [
+        {
+         "id": "dance-movement-and-rhythmic-activities",
+         "title": "Dance, Movement, and Rhythmic Activities",
+         "outcomes": [
+          {
+           "code": "1.2.3",
+           "text": "Demonstrates, in isolation, mature patterns of locomotor, non-locomotor, and manipulative skills in dance, movement, and rhythmic activities."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "fitness-activities",
+       "title": "Fitness Activities",
+       "subtopics": [
+        {
+         "id": "fitness-activities",
+         "title": "Fitness Activities",
+         "outcomes": [
+          {
+           "code": "1.3.3",
+           "text": "Demonstrates, in isolation, mature patterns of locomotor, non-locomotor, and manipulative movement skills."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "lifetime-activities",
+       "title": "Lifetime Activities",
+       "subtopics": [
+        {
+         "id": "lifetime-activities",
+         "title": "Lifetime Activities",
+         "outcomes": [
+          {
+           "code": "1.4.3",
+           "text": "Demonstrates, in isolation, mature patterns of locomotor, non-locomotor, and manipulative movement skills in a variety of physical activities."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "applies-knowledge-of-concepts-principles-strateg",
+     "title": "Applies knowledge of concepts, principles, strategies, and tactics related to movement and performance",
+     "topics": [
+      {
+       "id": "movement-concepts",
+       "title": "Movement Concepts",
+       "subtopics": [
+        {
+         "id": "movement-concepts",
+         "title": "Movement Concepts",
+         "outcomes": [
+          {
+           "code": "2.1.3",
+           "text": "Demonstrates movement concepts in a variety of physical activities."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "strategies-and-tactics",
+       "title": "Strategies and Tactics",
+       "subtopics": [
+        {
+         "id": "strategies-and-tactics",
+         "title": "Strategies and Tactics",
+         "outcomes": [
+          {
+           "code": "2.2.3",
+           "text": "Identifies emerging forms of simple strategies, tactics, and communication techniques in chasing/fleeing activities."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "demonstrates-the-knowledge-and-skills-to-achieve",
+     "title": "Demonstrates the knowledge and skills to achieve and maintain a health-enhancing level of physical activity and fitness",
+     "topics": [
+      {
+       "id": "fitness-planning",
+       "title": "Fitness Planning",
+       "subtopics": [
+        {
+         "id": "fitness-planning",
+         "title": "Fitness Planning",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Identifies the components of health-related fitness."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "additional-health-enhancing-behaviors",
+       "title": "Additional Health-Enhancing Behaviors",
+       "subtopics": [
+        {
+         "id": "additional-health-enhancing-behaviors",
+         "title": "Additional Health-Enhancing Behaviors",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explains how health-enhancing behaviors influence overall wellness."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "exhibits-responsible-personal-and-social-behavio",
+     "title": "Exhibits responsible personal and social behavior that respects self and others",
+     "topics": [
+      {
+       "id": "self-awareness-and-management",
+       "title": "Self-awareness and management",
+       "subtopics": [
+        {
+         "id": "self-awareness-and-management",
+         "title": "Self-awareness and management",
+         "outcomes": [
+          {
+           "code": "4.1.3",
+           "text": "Demonstrates responsible personal behavior with minimal teaching prompts in physical activity settings."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "social-awareness-and-relationship-skills",
+       "title": "Social awareness and relationship skills",
+       "subtopics": [
+        {
+         "id": "social-awareness-and-relationship-skills",
+         "title": "Social awareness and relationship skills",
+         "outcomes": [
+          {
+           "code": "4.2.3",
+           "text": "Demonstrates cooperative and inclusive behaviors with others in physical activity settings."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "responsible-decision-making",
+       "title": "Responsible decision making",
+       "subtopics": [
+        {
+         "id": "responsible-decision-making",
+         "title": "Responsible decision making",
+         "outcomes": [
+          {
+           "code": "4.3.3",
+           "text": "Demonstrates strategies to reinforce positive decisions in physical activity settings."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "recognizes-the-value-of-physical-activity-for-ov",
+     "title": "Recognizes the value of physical activity for overall wellness, enjoyment, challenge, and/or self-expression",
+     "topics": [
+      {
+       "id": "overall-wellness",
+       "title": "Overall Wellness",
+       "subtopics": [
+        {
+         "id": "overall-wellness",
+         "title": "Overall Wellness",
+         "outcomes": [
+          {
+           "code": "5.1.3",
+           "text": "Identifies the relationship between physical activity and overall wellness."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "challenge",
+       "title": "Challenge",
+       "subtopics": [
+        {
+         "id": "challenge",
+         "title": "Challenge",
+         "outcomes": [
+          {
+           "code": "5.2.3",
+           "text": "Demonstrates growth in challenging physical activity skills in order to build confidence."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "self-expression-enjoyment",
+       "title": "Self-Expression/Enjoyment",
+       "subtopics": [
+        {
+         "id": "self-expression-enjoyment",
+         "title": "Self-Expression/Enjoyment",
+         "outcomes": [
+          {
+           "code": "5.3.3",
+           "text": "Identifies the reasons for enjoyment in self-selected physical activities."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "recognizes-career-opportunities-and-manages-pers",
+     "title": "Recognizes career opportunities and manages personal and community resources related to physical activity and fitness to achieve and maintain overall wellness",
+     "topics": [
+      {
+       "id": "personal-and-community-resources",
+       "title": "Personal and Community Resources",
+       "subtopics": [
+        {
+         "id": "personal-and-community-resources",
+         "title": "Personal and Community Resources",
+         "outcomes": [
+          {
+           "code": "6.1.3",
+           "text": "Describes how to utilize personal and community resources to participate in physical activity."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "careers",
+       "title": "Careers",
+       "subtopics": [
+        {
+         "id": "careers",
+         "title": "Careers",
+         "outcomes": [
+          {
+           "code": "6.2.3",
+           "text": "The outcomes for 6.2. begin in grade 6."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "9-10",
+   "units": [
+    {
+     "id": "demonstrates-competency-in-a-variety-of-motor-sk",
+     "title": "Demonstrates competency in a variety of motor skills and movement patterns",
+     "topics": [
+      {
+       "id": "sports-skills-and-games",
+       "title": "Sports Skills and Games",
+       "subtopics": [
+        {
+         "id": "sports-skills-and-games",
+         "title": "Sports Skills and Games",
+         "outcomes": [
+          {
+           "code": "1.1. L1",
+           "text": "The outcomes for 1.1. conclude at grade 8."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "dance-movement-and-rhythmic-activities",
+       "title": "Dance, Movement, and Rhythmic Activities",
+       "subtopics": [
+        {
+         "id": "dance-movement-and-rhythmic-activities",
+         "title": "Dance, Movement, and Rhythmic Activities",
+         "outcomes": [
+          {
+           "code": "1.2. L1",
+           "text": "Demonstrates competency in one or more dance forms used in cultural and social occasions."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "fitness-activities",
+       "title": "Fitness Activities",
+       "subtopics": [
+        {
+         "id": "fitness-activities",
+         "title": "Fitness Activities",
+         "outcomes": [
+          {
+           "code": "1.3. L1",
+           "text": "Demonstrates competency in one or more fitness activities."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "lifetime-activities",
+       "title": "Lifetime Activities",
+       "subtopics": [
+        {
+         "id": "lifetime-activities",
+         "title": "Lifetime Activities",
+         "outcomes": [
+          {
+           "code": "1.4. L1",
+           "text": "Demonstrates competency in one or more lifetime activities."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "applies-knowledge-of-concepts-principles-strateg",
+     "title": "Applies knowledge of concepts, principles, strategies, and tactics related to movement and performance",
+     "topics": [
+      {
+       "id": "movement-concepts",
+       "title": "Movement Concepts",
+       "subtopics": [
+        {
+         "id": "movement-concepts",
+         "title": "Movement Concepts",
+         "outcomes": [
+          {
+           "code": "2.1. L1",
+           "text": "Demonstrates competency of movement concept in a variety of physical activities."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "strategies-and-tactics",
+       "title": "Strategies and Tactics",
+       "subtopics": [
+        {
+         "id": "strategies-and-tactics",
+         "title": "Strategies and Tactics",
+         "outcomes": [
+          {
+           "code": "2.2. L1",
+           "text": "Demonstrates competency of strategies and tactics in a variety of physical activities."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "demonstrates-the-knowledge-and-skills-to-achieve",
+     "title": "Demonstrates the knowledge and skills to achieve and maintain a health-enhancing level of physical activity and fitness",
+     "topics": [
+      {
+       "id": "fitness-planning",
+       "title": "Fitness Planning",
+       "subtopics": [
+        {
+         "id": "fitness-planning",
+         "title": "Fitness Planning",
+         "outcomes": [
+          {
+           "code": "3.1. L1",
+           "text": "Explains how each of the skill- and health-related fitness components are improved through the application of basic training principles."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "additional-health-enhancing-behaviors",
+       "title": "Additional Health-Enhancing Behaviors",
+       "subtopics": [
+        {
+         "id": "additional-health-enhancing-behaviors",
+         "title": "Additional Health-Enhancing Behaviors",
+         "outcomes": [
+          {
+           "code": "3.2. L1",
+           "text": "Evaluates personal habits related to health-enhancing behaviors for self and others."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "exhibits-responsible-personal-and-social-behavio",
+     "title": "Exhibits responsible personal and social behavior that respects self and others",
+     "topics": [
+      {
+       "id": "self-awareness-and-management",
+       "title": "Self-awareness and management",
+       "subtopics": [
+        {
+         "id": "self-awareness-and-management",
+         "title": "Self-awareness and management",
+         "outcomes": [
+          {
+           "code": "4.1. L1",
+           "text": "Applies positive character traits in physical activity settings."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "social-awareness-and-relationship-skills",
+       "title": "Social awareness and relationship skills",
+       "subtopics": [
+        {
+         "id": "social-awareness-and-relationship-skills",
+         "title": "Social awareness and relationship skills",
+         "outcomes": [
+          {
+           "code": "4.2. L1",
+           "text": "Applies the qualities of civility and citizenship in physical activity settings."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "responsible-decision-making",
+       "title": "Responsible decision making",
+       "subtopics": [
+        {
+         "id": "responsible-decision-making",
+         "title": "Responsible decision making",
+         "outcomes": [
+          {
+           "code": "4.3. L1",
+           "text": "Analyzes ethical decisions made in physical activity settings."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "recognizes-the-value-of-physical-activity-for-ov",
+     "title": "Recognizes the value of physical activity for overall wellness, enjoyment, challenge, and/or self-expression",
+     "topics": [
+      {
+       "id": "overall-wellness",
+       "title": "Overall Wellness",
+       "subtopics": [
+        {
+         "id": "overall-wellness",
+         "title": "Overall Wellness",
+         "outcomes": [
+          {
+           "code": "5.1. L1",
+           "text": "Analyzes the overall wellness benefits of self-selected physical activities."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "challenge",
+       "title": "Challenge",
+       "subtopics": [
+        {
+         "id": "challenge",
+         "title": "Challenge",
+         "outcomes": [
+          {
+           "code": "5.2. L1",
+           "text": "Selects and participates in physical activities that provide an appropriate level of challenge."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "self-expression-enjoyment",
+       "title": "Self-Expression/Enjoyment",
+       "subtopics": [
+        {
+         "id": "self-expression-enjoyment",
+         "title": "Self-Expression/Enjoyment",
+         "outcomes": [
+          {
+           "code": "5.3. L1",
+           "text": "Selects and participates in physical activities that meet the need for selfexpression and enjoyment."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "recognizes-career-opportunities-and-manages-pers",
+     "title": "Recognizes career opportunities and manages personal and community resources related to physical activity and fitness to achieve and maintain overall wellness",
+     "topics": [
+      {
+       "id": "personal-and-community-resources",
+       "title": "Personal and Community Resources",
+       "subtopics": [
+        {
+         "id": "personal-and-community-resources",
+         "title": "Personal and Community Resources",
+         "outcomes": [
+          {
+           "code": "6.1. L1",
+           "text": "Explains how personal community physical activity and fitness resources can support overall wellness."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "careers",
+       "title": "Careers",
+       "subtopics": [
+        {
+         "id": "careers",
+         "title": "Careers",
+         "outcomes": [
+          {
+           "code": "6.2. L1",
+           "text": "Identifies personal and community resources to explore career options related to physical activity and fitness."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "11-12",
+   "units": [
+    {
+     "id": "demonstrates-competency-in-a-variety-of-motor-sk",
+     "title": "Demonstrates competency in a variety of motor skills and movement patterns",
+     "topics": [
+      {
+       "id": "sports-skills-and-games",
+       "title": "Sports Skills and Games",
+       "subtopics": [
+        {
+         "id": "sports-skills-and-games",
+         "title": "Sports Skills and Games",
+         "outcomes": [
+          {
+           "code": "1.1. L2",
+           "text": "The outcomes for 1.1. conclude at grade 8."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "dance-movement-and-rhythmic-activities",
+       "title": "Dance, Movement, and Rhythmic Activities",
+       "subtopics": [
+        {
+         "id": "dance-movement-and-rhythmic-activities",
+         "title": "Dance, Movement, and Rhythmic Activities",
+         "outcomes": [
+          {
+           "code": "1.2. L2",
+           "text": "Demonstrates refined movement skills and creative expression by choreographing a dance or by giving a performance."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "fitness-activities",
+       "title": "Fitness Activities",
+       "subtopics": [
+        {
+         "id": "fitness-activities",
+         "title": "Fitness Activities",
+         "outcomes": [
+          {
+           "code": "1.3. L2",
+           "text": "Demonstrates proficiency and/or refines activity-specific movement skills in one or more fitness activities."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "lifetime-activities",
+       "title": "Lifetime Activities",
+       "subtopics": [
+        {
+         "id": "lifetime-activities",
+         "title": "Lifetime Activities",
+         "outcomes": [
+          {
+           "code": "1.4. L2",
+           "text": "Demonstrates proficiency and/or refines activity-specific movement skills in one or more lifetime activities."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "applies-knowledge-of-concepts-principles-strateg",
+     "title": "Applies knowledge of concepts, principles, strategies, and tactics related to movement and performance",
+     "topics": [
+      {
+       "id": "movement-concepts",
+       "title": "Movement Concepts",
+       "subtopics": [
+        {
+         "id": "movement-concepts",
+         "title": "Movement Concepts",
+         "outcomes": [
+          {
+           "code": "2.1. L2",
+           "text": "Demonstrates proficiency of movement concepts in a variety of physical activities."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "strategies-and-tactics",
+       "title": "Strategies and Tactics",
+       "subtopics": [
+        {
+         "id": "strategies-and-tactics",
+         "title": "Strategies and Tactics",
+         "outcomes": [
+          {
+           "code": "2.2. L2",
+           "text": "Demonstrates proficiency of strategies and tactics in a variety of physical activities."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "demonstrates-the-knowledge-and-skills-to-achieve",
+     "title": "Demonstrates the knowledge and skills to achieve and maintain a health-enhancing level of physical activity and fitness",
+     "topics": [
+      {
+       "id": "fitness-planning",
+       "title": "Fitness Planning",
+       "subtopics": [
+        {
+         "id": "fitness-planning",
+         "title": "Fitness Planning",
+         "outcomes": [
+          {
+           "code": "3.1. L2",
+           "text": "Designs and implements personal fitness plans, addressing goals that incorporate basic training principles that influence lifelong physical activity and fitness."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "additional-health-enhancing-behaviors",
+       "title": "Additional Health-Enhancing Behaviors",
+       "subtopics": [
+        {
+         "id": "additional-health-enhancing-behaviors",
+         "title": "Additional Health-Enhancing Behaviors",
+         "outcomes": [
+          {
+           "code": "3.2. L2",
+           "text": "Designs and implements action plans which address health-enhancing behaviors that influence lifelong physical activity and fitness."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "exhibits-responsible-personal-and-social-behavio",
+     "title": "Exhibits responsible personal and social behavior that respects self and others",
+     "topics": [
+      {
+       "id": "self-awareness-and-management",
+       "title": "Self-awareness and management",
+       "subtopics": [
+        {
+         "id": "self-awareness-and-management",
+         "title": "Self-awareness and management",
+         "outcomes": [
+          {
+           "code": "4.1. L2",
+           "text": "Evaluates positive character traits in physical activity settings."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "social-awareness-and-relationship-skills",
+       "title": "Social awareness and relationship skills",
+       "subtopics": [
+        {
+         "id": "social-awareness-and-relationship-skills",
+         "title": "Social awareness and relationship skills",
+         "outcomes": [
+          {
+           "code": "4.2. L2",
+           "text": "Evaluates the qualities of civility and citizenship in physical activity settings."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "responsible-decision-making",
+       "title": "Responsible decision making",
+       "subtopics": [
+        {
+         "id": "responsible-decision-making",
+         "title": "Responsible decision making",
+         "outcomes": [
+          {
+           "code": "4.3. L2",
+           "text": "Advocates for ethical decisions made in physical activity settings."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "recognizes-the-value-of-physical-activity-for-ov",
+     "title": "Recognizes the value of physical activity for overall wellness, enjoyment, challenge, and/or self-expression",
+     "topics": [
+      {
+       "id": "overall-wellness",
+       "title": "Overall Wellness",
+       "subtopics": [
+        {
+         "id": "overall-wellness",
+         "title": "Overall Wellness",
+         "outcomes": [
+          {
+           "code": "5.1. L2",
+           "text": "Evaluates the lifelong health benefits of self-selected physical activities throughout their physical literacy journey."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "challenge",
+       "title": "Challenge",
+       "subtopics": [
+        {
+         "id": "challenge",
+         "title": "Challenge",
+         "outcomes": [
+          {
+           "code": "5.2. L2",
+           "text": "Evaluates the level of challenge of a self-selected physical activity."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "self-expression-enjoyment",
+       "title": "Self-Expression/Enjoyment",
+       "subtopics": [
+        {
+         "id": "self-expression-enjoyment",
+         "title": "Self-Expression/Enjoyment",
+         "outcomes": [
+          {
+           "code": "5.3. L2",
+           "text": "Evaluates the level of enjoyment of self-selected physical activities for lifelong participation."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "recognizes-career-opportunities-and-manages-pers",
+     "title": "Recognizes career opportunities and manages personal and community resources related to physical activity and fitness to achieve and maintain overall wellness",
+     "topics": [
+      {
+       "id": "personal-and-community-resources",
+       "title": "Personal and Community Resources",
+       "subtopics": [
+        {
+         "id": "personal-and-community-resources",
+         "title": "Personal and Community Resources",
+         "outcomes": [
+          {
+           "code": "6.1. L2",
+           "text": "Evaluates the validity of claims made by commercial products or programs to enhance physical performance, fitness, and overall wellness."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "careers",
+       "title": "Careers",
+       "subtopics": [
+        {
+         "id": "careers",
+         "title": "Careers",
+         "outcomes": [
+          {
+           "code": "6.2. L2",
+           "text": "Evaluates personal and community resources to explore career options related to physical activity and fitness."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "build": {
+  "builtAt": "2026-10-14T16:20:46.472Z",
+  "model": "none",
+  "usd": 0,
+  "expectedCodes": 192,
+  "coverage": 1,
+  "missingCodes": [],
+  "counts": {
+   "grades": 12,
+   "units": 70,
+   "topics": 175,
+   "subtopics": 175,
+   "outcomes": 202
+  },
+  "warnings": [
+   "unit \"Applies knowledge of concepts, principles, strategies, and tactics related to movement and performance\" (grade K) has a single outcome",
+   "unit \"Recognizes career opportunities and manages personal and community resources related to physical activity and fitness to achieve and maintain overall wellness\" (grade K) has a single outcome"
+  ]
+ }
+}

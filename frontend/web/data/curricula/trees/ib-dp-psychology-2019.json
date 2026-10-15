@@ -1,0 +1,209 @@
+{
+ "id": "ib-dp-psychology-2019",
+ "region": "INTL",
+ "framework": "International Baccalaureate Diploma Programme (DP)",
+ "board": "IB",
+ "qualification": "IB Diploma Programme",
+ "subject": "Psychology (SL and HL)",
+ "syllabusCode": null,
+ "gradeSystem": "course",
+ "source": {
+  "urls": [
+   "https://www.ibo.org/globalassets/new-structure/programmes/dp/pdfs/psychology-2019.pdf",
+   "https://web.archive.org/web/20241211194744id_/https://www.ibo.org/globalassets/new-structure/programmes/dp/pdfs/psychology-2019.pdf"
+  ],
+  "publisher": "International Baccalaureate Organization",
+  "licence": "(c) International Baccalaureate Organization; all rights reserved, no open licence. ibo.org terms 1.8: IB copyrighted materials are licensed only under the IB's terms or a signed agreement; 'Any use not expressly permitted is prohibited unless special permission is obtained in writing from the IB'; 1.9: nothing on the IB websites confers any licence. Briefs are free public marketing summaries: take topic structure only, write everything in our own words, never reproduce brief text, and do not use IB logos/trade marks. Full subject guides are sold to schools and were NOT used. Terms: https://www.ibo.org/terms-and-conditions/ and https://www.ibo.org/copyright",
+  "firstExam": "2019"
+ },
+ "grades": [
+  {
+   "grade": "all",
+   "units": [
+    {
+     "id": "core",
+     "title": "Core",
+     "topics": [
+      {
+       "id": "biological-approach-to-understanding-behaviour",
+       "title": "Biological approach to understanding behaviour",
+       "subtopics": [
+        {
+         "id": "biological-approach-to-understanding-behaviour",
+         "title": "Biological approach to understanding behaviour",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Study how biology affects mental processes and behaviour."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "cognitive-approach-to-understanding-behaviour",
+       "title": "Cognitive approach to understanding behaviour",
+       "subtopics": [
+        {
+         "id": "cognitive-approach-to-understanding-behaviour",
+         "title": "Cognitive approach to understanding behaviour",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Study how mental processes such as thinking and memory shape behaviour."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "sociocultural-approach-to-understanding-behaviou",
+       "title": "Sociocultural approach to understanding behaviour",
+       "subtopics": [
+        {
+         "id": "sociocultural-approach-to-understanding-behaviou",
+         "title": "Sociocultural approach to understanding behaviour",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Study how social and cultural settings influence behaviour."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "approaches-to-researching-behaviour",
+       "title": "Approaches to researching behaviour",
+       "subtopics": [
+        {
+         "id": "approaches-to-researching-behaviour",
+         "title": "Approaches to researching behaviour",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Learn the qualitative and quantitative research methods psychologists use, including ethical practice."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "options",
+     "title": "Options",
+     "topics": [
+      {
+       "id": "abnormal-psychology",
+       "title": "Abnormal psychology",
+       "subtopics": [
+        {
+         "id": "abnormal-psychology",
+         "title": "Abnormal psychology",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Apply the three approaches to the study of psychological disorders."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "developmental-psychology",
+       "title": "Developmental psychology",
+       "subtopics": [
+        {
+         "id": "developmental-psychology",
+         "title": "Developmental psychology",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Apply the three approaches to how people develop over time."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "health-psychology",
+       "title": "Health psychology",
+       "subtopics": [
+        {
+         "id": "health-psychology",
+         "title": "Health psychology",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Apply the three approaches to health and health behaviour."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "psychology-of-human-relationships",
+       "title": "Psychology of human relationships",
+       "subtopics": [
+        {
+         "id": "psychology-of-human-relationships",
+         "title": "Psychology of human relationships",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Apply the three approaches to how people form and keep relationships."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "internal-assessment",
+     "title": "Internal assessment",
+     "topics": [
+      {
+       "id": "experimental-study",
+       "title": "Experimental study",
+       "subtopics": [
+        {
+         "id": "experimental-study",
+         "title": "Experimental study",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Design, carry out, analyse and report a simple experiment ethically."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "build": {
+  "builtAt": "2026-10-14T10:54:02.981Z",
+  "model": "claude-agent",
+  "usd": 0,
+  "expectedCodes": null,
+  "coverage": null,
+  "missingCodes": [],
+  "counts": {
+   "grades": 1,
+   "units": 3,
+   "topics": 9,
+   "subtopics": 9,
+   "outcomes": 9
+  },
+  "warnings": [
+   "grade DP year 1 has no content",
+   "grade DP year 2 has no content",
+   "unexpected grade label \"all\"",
+   "unit \"Internal assessment\" (grade all) has a single outcome"
+  ]
+ }
+}

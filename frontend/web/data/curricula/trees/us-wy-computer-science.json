@@ -1,0 +1,120 @@
+{
+ "id": "us-wy-computer-science",
+ "region": "US",
+ "framework": "Wyoming state academic standards: Computer Science & Technology",
+ "board": null,
+ "qualification": "K-12",
+ "subject": "Computer Science & Technology",
+ "syllabusCode": null,
+ "gradeSystem": "grade",
+ "source": {
+  "urls": [
+   "https://api.commonstandardsproject.com/api/v1/jurisdictions/744704BE56D44FB9B3D18B543FBF9BCC",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/9BD3C6703F83404B994865316C6B8773"
+  ],
+  "publisher": "Wyoming state education agency (machine-readable via Common Standards Project / ASN)",
+  "licence": "CC BY 4.0 US, Common Curriculum, Inc.",
+  "firstExam": "2016"
+ },
+ "grades": [
+  {
+   "grade": "K",
+   "units": [
+    {
+     "id": "will-identify-parts-of-the-computer-and-explain-",
+     "title": "Will identify parts of the computer and explain their functions",
+     "topics": [
+      {
+       "id": "will-identify-parts-of-the-computer-and-explain-",
+       "title": "Will identify parts of the computer and explain their functions",
+       "subtopics": [
+        {
+         "id": "will-identify-parts-of-the-computer-and-explain-",
+         "title": "Will identify parts of the computer and explain their functions",
+         "outcomes": [
+          {
+           "code": "TECH.K.1.1",
+           "text": "Identify the mouse, keyboard, monitor and tower"
+          },
+          {
+           "code": "TECH.K.1.2",
+           "text": "Explain the functions of the mouse, keyboard, monitor and tower"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "will-use-the-navigational-features-and-voice-rec",
+     "title": "Will use the navigational features and voice recording of a touch…",
+     "topics": [
+      {
+       "id": "will-use-the-navigational-features-and-voice-rec",
+       "title": "Will use the navigational features and voice recording of a touch…",
+       "subtopics": [
+        {
+         "id": "will-use-the-navigational-features-and-voice-rec",
+         "title": "Will use the navigational features and voice recording of a touch…",
+         "outcomes": [
+          {
+           "code": "TECH.K.2.1",
+           "text": "Demonstrate the use of home button, swipe features and volume controls on a touch screen device"
+          },
+          {
+           "code": "TECH.K.2.2",
+           "text": "Use voice recording to tell a story"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "login-and-navigate-through-an-application",
+     "title": "Login and navigate through an application",
+     "topics": [
+      {
+       "id": "login-and-navigate-through-an-application",
+       "title": "Login and navigate through an application",
+       "subtopics": [
+        {
+         "id": "login-and-navigate-through-an-application",
+         "title": "Login and navigate through an application",
+         "outcomes": [
+          {
+           "code": "TECH.K.3.1",
+           "text": "Log in using their name and using the mouse to open/close and advance in an application"
+          },
+          {
+           "code": "TECH.K.3.2",
+           "text": "Navigate using forward/backward buttons, double click and drag features"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "build": {
+  "builtAt": "2026-10-14T08:06:59.645Z",
+  "model": "none",
+  "usd": 0,
+  "expectedCodes": 6,
+  "coverage": 1,
+  "missingCodes": [],
+  "counts": {
+   "grades": 1,
+   "units": 3,
+   "topics": 3,
+   "subtopics": 3,
+   "outcomes": 6
+  },
+  "warnings": []
+ }
+}

@@ -1,0 +1,225 @@
+{
+ "id": "ib-myp-design",
+ "region": "INTL",
+ "framework": "International Baccalaureate Middle Years Programme (MYP)",
+ "board": "IB",
+ "qualification": "IB Middle Years Programme",
+ "subject": "Design (MYP subject group)",
+ "syllabusCode": null,
+ "gradeSystem": "year",
+ "source": {
+  "urls": [
+   "https://www.ibo.org/globalassets/new-structure/brochures-and-infographics/pdfs/myp-brief_design_2015.pdf",
+   "https://web.archive.org/web/20221231103638id_/https://www.ibo.org/globalassets/new-structure/brochures-and-infographics/pdfs/myp-brief_design_2015.pdf"
+  ],
+  "publisher": "International Baccalaureate Organization",
+  "licence": "(c) International Baccalaureate Organization; all rights reserved, no open licence. ibo.org terms 1.8: IB copyrighted materials are licensed only under the IB's terms or a signed agreement; 'Any use not expressly permitted is prohibited unless special permission is obtained in writing from the IB'; 1.9: nothing on the IB websites confers any licence. Briefs are free public marketing summaries: take topic structure only, write everything in our own words, never reproduce brief text, and do not use IB logos/trade marks. Full subject guides are sold to schools and were NOT used. Terms: https://www.ibo.org/terms-and-conditions/ and https://www.ibo.org/copyright",
+  "firstExam": "2014"
+ },
+ "grades": [
+  {
+   "grade": "all",
+   "units": [
+    {
+     "id": "the-design-cycle",
+     "title": "The design cycle",
+     "topics": [
+      {
+       "id": "inquiring-and-analysing",
+       "title": "Inquiring and analysing",
+       "subtopics": [
+        {
+         "id": "understanding-a-design-problem",
+         "title": "Understanding a design problem",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Start from a design situation and identify a problem that needs solving."
+          },
+          {
+           "code": null,
+           "text": "Analyse the need for a solution."
+          },
+          {
+           "code": null,
+           "text": "Inquire into the nature of the problem through research."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "developing-ideas",
+       "title": "Developing ideas",
+       "subtopics": [
+        {
+         "id": "specification-and-ideas",
+         "title": "Specification and ideas",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Write a detailed specification that drives the development of a solution."
+          },
+          {
+           "code": null,
+           "text": "Develop feasible design ideas and choose a solution."
+          },
+          {
+           "code": null,
+           "text": "Present the chosen solution."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "creating-the-solution",
+       "title": "Creating the solution",
+       "subtopics": [
+        {
+         "id": "making-a-prototype",
+         "title": "Making a prototype",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Plan the creation of the chosen solution."
+          },
+          {
+           "code": null,
+           "text": "Follow the plan to create a prototype good enough for testing and evaluation."
+          },
+          {
+           "code": null,
+           "text": "Create a model, prototype, product or system as the solution."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "evaluating",
+       "title": "Evaluating",
+       "subtopics": [
+        {
+         "id": "testing-and-evaluating",
+         "title": "Testing and evaluating",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Design tests to evaluate the solution."
+          },
+          {
+           "code": null,
+           "text": "Carry out the tests and objectively evaluate how successful the solution is."
+          },
+          {
+           "code": null,
+           "text": "Identify areas where the solution could be improved."
+          },
+          {
+           "code": null,
+           "text": "Explain how the solution will affect the client or target audience."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "concepts-and-contexts-in-design",
+     "title": "Concepts and contexts in design",
+     "topics": [
+      {
+       "id": "key-and-related-concepts",
+       "title": "Key and related concepts",
+       "subtopics": [
+        {
+         "id": "design-concepts",
+         "title": "Design concepts",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Use key concepts such as communication, communities, development and systems to frame design inquiry."
+          },
+          {
+           "code": null,
+           "text": "Use related design concepts such as adaptation, ergonomics, sustainability and innovation."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "global-contexts",
+       "title": "Global contexts",
+       "subtopics": [
+        {
+         "id": "contexts-for-design",
+         "title": "Contexts for design",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explore design through global contexts: identities and relationships, orientation in space and time, personal and cultural expression."
+          },
+          {
+           "code": null,
+           "text": "Explore design through global contexts: scientific and technical innovation, globalization and sustainability, fairness and development."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "design-in-society",
+       "title": "Design in society",
+       "subtopics": [
+        {
+         "id": "role-and-impact-of-design",
+         "title": "Role and impact of design",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain the role of design in historical and contemporary contexts."
+          },
+          {
+           "code": null,
+           "text": "Recognise responsibilities when making design decisions and taking action."
+          },
+          {
+           "code": null,
+           "text": "Use technology effectively to access, process and communicate information, model and create solutions."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "build": {
+  "builtAt": "2026-10-14T10:54:24.902Z",
+  "model": "claude-agent",
+  "usd": 0,
+  "expectedCodes": null,
+  "coverage": null,
+  "missingCodes": [],
+  "counts": {
+   "grades": 1,
+   "units": 2,
+   "topics": 7,
+   "subtopics": 7,
+   "outcomes": 20
+  },
+  "warnings": [
+   "grade MYP 1 has no content",
+   "grade MYP 2 has no content",
+   "grade MYP 3 has no content",
+   "grade MYP 4 has no content",
+   "grade MYP 5 has no content",
+   "unexpected grade label \"all\""
+  ]
+ }
+}

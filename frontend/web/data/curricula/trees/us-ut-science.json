@@ -1,0 +1,1755 @@
+{
+ "id": "us-ut-science",
+ "region": "US",
+ "framework": "Utah state academic standards: Science",
+ "board": null,
+ "qualification": "K-12",
+ "subject": "Science",
+ "syllabusCode": null,
+ "gradeSystem": "grade",
+ "source": {
+  "urls": [
+   "https://api.commonstandardsproject.com/api/v1/jurisdictions/178982A93FED4D9186E0AC6A740682D9",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/178982A93FED4D9186E0AC6A740682D9_D21033781_grade-03",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/178982A93FED4D9186E0AC6A740682D9_D21033781_grade-04",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/178982A93FED4D9186E0AC6A740682D9_D21033781_grade-05",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/178982A93FED4D9186E0AC6A740682D9_D21033782_grades-09-10-11-12",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/178982A93FED4D9186E0AC6A740682D9_D21033780_grade-k",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/75B9DAE9BFF54DCABB1DA80FCA0C7242",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/A0CA4E9FBB61444A8E12CC6F81B952BF",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/178982A93FED4D9186E0AC6A740682D9_D2726259_grade-06",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/178982A93FED4D9186E0AC6A740682D9_D2726259_grade-07",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/178982A93FED4D9186E0AC6A740682D9_D2726259_grade-08"
+  ],
+  "publisher": "Utah state education agency (machine-readable via Common Standards Project / ASN)",
+  "licence": "CC BY 3.0 US, D2L Corporation; CC BY 4.0 US, Common Curriculum, Inc.",
+  "firstExam": "2020"
+ },
+ "grades": [
+  {
+   "grade": "K",
+   "units": [
+    {
+     "id": "weather-patterns",
+     "title": "Weather Patterns",
+     "topics": [
+      {
+       "id": "weather-patterns",
+       "title": "Weather Patterns",
+       "subtopics": [
+        {
+         "id": "weather-patterns",
+         "title": "Weather Patterns",
+         "outcomes": [
+          {
+           "code": "K.1.1",
+           "text": "Obtain, evaluate, and communicate information about local, observable weather conditions to describe patterns over time. Emphasize the students' collection and sharing of data. Examples of data could include sunny, cloudy, windy, rainy, cold, or warm."
+          },
+          {
+           "code": "K.1.2",
+           "text": "Obtain, evaluate, and communicate information on the effect of forecasted weather patterns on human behavior. Examples could include how humans respond to local forecasts of typical and severe weather such as extreme heat, high winds, flash floods, thunderstorms, or snowstorms."
+          },
+          {
+           "code": "K.1.3",
+           "text": "Carry out an investigation using the five senses, to determine the effect of sunlight on different surfaces and materials. Examples could include measuring temperature, through touch or other methods, on natural and man-made materials in various locations throughout the day."
+          },
+          {
+           "code": "K.1.4",
+           "text": "Design a solution that will reduce the warming effect of sunlight on an area. Define the problem by asking questions and gathering information, convey designs through sketches, drawings, or physical models, and compare and test designs."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "living-things-and-their-surroundings",
+     "title": "Living Things And Their Surroundings",
+     "topics": [
+      {
+       "id": "living-things-and-their-surroundings",
+       "title": "Living Things And Their Surroundings",
+       "subtopics": [
+        {
+         "id": "living-things-and-their-surroundings",
+         "title": "Living Things And Their Surroundings",
+         "outcomes": [
+          {
+           "code": "K.2.1",
+           "text": "Obtain, evaluate, and communicate information to describe patterns of what living things (plants and animals, including humans) need to survive. Emphasize the similarities and differences between the survival needs of all living things. Examples could include that plants depend on air, water, minerals, and light to survive, or animals depend on plants or other animals to survive."
+          },
+          {
+           "code": "K.2.2",
+           "text": "Obtain, evaluate, and communicate information about patterns in the relationships between the needs of different living things (plants and animals, including humans) and the places they live. Emphasize that living things need water, air, and resources and that they live in places that have the things they need. Examples could include investigating plants grown in various locations and comparing the results or comparing animals with the places they live."
+          },
+          {
+           "code": "K.2.3",
+           "text": "Obtain, evaluate, and communicate information about how living things (plants and animals, including humans) affect their surroundings to survive. Examples could include squirrels digging in the ground to hide their food, plant roots breaking concrete, or humans building shelters."
+          },
+          {
+           "code": "K.2.4",
+           "text": "Design and communicate a solution to address the effects that living things (plants and animals, including humans) experience while trying to survive in their surroundings."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "forces-motion-and-interactions",
+     "title": "Forces, Motion, And Interactions",
+     "topics": [
+      {
+       "id": "forces-motion-and-interactions",
+       "title": "Forces, Motion, And Interactions",
+       "subtopics": [
+        {
+         "id": "forces-motion-and-interactions",
+         "title": "Forces, Motion, And Interactions",
+         "outcomes": [
+          {
+           "code": "K.3.1",
+           "text": "Plan and conduct an investigation to compare the effects of different strengths or different directions of forces on the motion of an object. Emphasize forces as a push and pull on an object. The idea of strength should be kept separate from the idea of direction."
+          },
+          {
+           "code": "K.3.2",
+           "text": "Analyze data to determine how a design solution causes a change in the speed or direction of an object with a push or a pull."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "weather-patterns-weather-is-the-combination-of-s",
+     "title": "WEATHER PATTERNS Weather is the combination of sunlight, wind, snow or rain, and temperature in a particular region at a particular time. People measure these conditions to describe and record the weather to identify patterns over time. Weather scientists forecast severe weather so that communities can prepare for and respond to these events. Sunlight warms Earth’s surface",
+     "topics": [
+      {
+       "id": "weather-patterns-weather-is-the-combination-of-s",
+       "title": "WEATHER PATTERNS Weather is the combination of sunlight, wind, snow or rain, and temperature in a particular region at a particular time. People measure these conditions to describe and record the weather to identify patterns over time. Weather scientists forecast severe weather so that communities can prepare for and respond to these events. Sunlight warms Earth’s surface",
+       "subtopics": [
+        {
+         "id": "weather-patterns-weather-is-the-combination-of-s",
+         "title": "WEATHER PATTERNS Weather is the combination of sunlight, wind, snow or rain, and temperature in a particular region at a particular time. People measure these conditions to describe and record the weather to identify patterns over time. Weather scientists forecast severe weather so that communities can prepare for and respond to these events. Sunlight warms Earth’s surface",
+         "outcomes": [
+          {
+           "code": "K.1.1",
+           "text": "Obtain, evaluate, and communicate information about local, observable weather conditions to describe patterns over time. Emphasize the students’ collection and sharing of data. Examples of data could include sunny, cloudy, windy, rainy, cold, or warm. (ESS2.D)"
+          },
+          {
+           "code": "K.1.2",
+           "text": "Obtain, evaluate, and communicate information on the effect of forecasted weather patterns on human behavior. Examples could include how humans respond to local forecasts of typical and severe weather such as extreme heat, high winds, flash floods, thunderstorms, or snowstorms. (ESS3.B)"
+          },
+          {
+           "code": "K.1.3",
+           "text": "Carry out an investigation using the five senses, to determine the effect of sunlight on different surfaces and materials. Examples could include measuring temperature, through touch or other methods, on natural and man-made materials in various locations throughout the day. (PS3.B)"
+          },
+          {
+           "code": "K.1.4",
+           "text": "Design a solution that will reduce the warming effect of sunlight on an area. Define the problem by asking questions and gathering information, convey designs through sketches, drawings, or physical models, and compare and test designs. (PS3.B, ETS1.A, ETS1.B, ETS1.C)"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "living-things-and-their-surroundings-living-thin",
+     "title": "LIVING THINGS AND THEIR SURROUNDINGS: Living things (plants and animals, including humans) depend on their surroundings to get what they need, including food, water, shelter, and a favorable temperature. The characteristics of surroundings influence where living things are naturally found. Plants and animals affect and respond to their surroundings",
+     "topics": [
+      {
+       "id": "living-things-and-their-surroundings-living-thin",
+       "title": "LIVING THINGS AND THEIR SURROUNDINGS: Living things (plants and animals, including humans) depend on their surroundings to get what they need, including food, water, shelter, and a favorable temperature. The characteristics of surroundings influence where living things are naturally found. Plants and animals affect and respond to their surroundings",
+       "subtopics": [
+        {
+         "id": "living-things-and-their-surroundings-living-thin",
+         "title": "LIVING THINGS AND THEIR SURROUNDINGS: Living things (plants and animals, including humans) depend on their surroundings to get what they need, including food, water, shelter, and a favorable temperature. The characteristics of surroundings influence where living things are naturally found. Plants and animals affect and respond to their surroundings",
+         "outcomes": [
+          {
+           "code": "K.2.1",
+           "text": "Obtain, evaluate, and communicate information to describe patterns of what living things (plants and animals, including humans) need to survive. Emphasize the similarities and differences between the survival needs of all living things. Examples could include that plants depend on air, water, minerals, and light to survive, or animals depend on plants or other animals to survive. (LS1.C)"
+          },
+          {
+           "code": "K.2.2",
+           "text": "Obtain, evaluate, and communicate information about patterns in the relationships between the needs of different living things (plants and animals, including humans) and the places they live. Emphasize that living things need water, air, and resources and that they live in places that have the things they need. Examples could include investigating plants grown in various locations and comparing the results or comparing animals with the places they live. (LS2.B, ESS3.A)"
+          },
+          {
+           "code": "K.2.3",
+           "text": "Obtain, evaluate, and communicate information about how living things (plants and animals, including humans) affect their surroundings to survive. Examples could include squirrels digging in the ground to hide their food, plant roots breaking concrete, or humans building shelters. (ESS2.E)"
+          },
+          {
+           "code": "K.2.4",
+           "text": "Design and communicate a solution to address the effects that living things (plants and animals, including humans) experience while trying to survive in their surroundings. Define the problem by asking questions and gathering information, convey designs through sketches, drawings, or physical models, and compare designs. Emphasize students working from a plant, animal, or human perspective. Examples could include a plant growing to get more sunlight, a beaver building a dam, or humans caring for the Earth by reusing and recycling natural resources. (ESS3.C, ETS1.A, ETS1.B, ETS1.C)"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "forces-motion-and-interactions-the-motion-of-obj",
+     "title": "FORCES, MOTION, AND INTERACTIONS The motion of objects can be observed and described. Pushing or pulling on an object can change the speed or direction of an object’s motion and can start or stop it. Pushes and pulls can have different strengths and different directions. A bigger push or pull makes things go faster and when objects touch or collide, they push on one another and can change motion",
+     "topics": [
+      {
+       "id": "forces-motion-and-interactions-the-motion-of-obj",
+       "title": "FORCES, MOTION, AND INTERACTIONS The motion of objects can be observed and described. Pushing or pulling on an object can change the speed or direction of an object’s motion and can start or stop it. Pushes and pulls can have different strengths and different directions. A bigger push or pull makes things go faster and when objects touch or collide, they push on one another and can change motion",
+       "subtopics": [
+        {
+         "id": "forces-motion-and-interactions-the-motion-of-obj",
+         "title": "FORCES, MOTION, AND INTERACTIONS The motion of objects can be observed and described. Pushing or pulling on an object can change the speed or direction of an object’s motion and can start or stop it. Pushes and pulls can have different strengths and different directions. A bigger push or pull makes things go faster and when objects touch or collide, they push on one another and can change motion",
+         "outcomes": [
+          {
+           "code": "K.3.1",
+           "text": "Plan and conduct an investigation to compare the effects of different strengths or different directions of forces on the motion of an object. Emphasize forces as a push and pull on an object. The idea of strength should be kept separate from the idea of direction. Non-contact forces, such as magnets and static electricity, will be taught in Grades 3 through 5.(PS2.A, PS2.B, PS2.C, PS3.C)"
+          },
+          {
+           "code": "K.3.2",
+           "text": "Analyze data to determine how a design solution causes a change in the speed or direction of an object with a push or a pull. Define the problem by asking questions and gathering information, convey designs through sketches, drawings, or physical models, and compare and test designs. Examples of problems requiring a solution could include having a marble or other object move a certain distance, follow a particular path, or knock down other objects. (PS2.A, PS2.B, PS2.C, PS3.C, ETS1.A, ETS1.B, ETS1.C)"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "1",
+   "units": [
+    {
+     "id": "seasons-and-space-patterns",
+     "title": "Seasons and Space Patterns",
+     "topics": [
+      {
+       "id": "seasons-and-space-patterns",
+       "title": "Seasons and Space Patterns",
+       "subtopics": [
+        {
+         "id": "seasons-and-space-patterns",
+         "title": "Seasons and Space Patterns",
+         "outcomes": [
+          {
+           "code": "S1.1.1",
+           "text": "Obtain, evaluate, and communicate information about the movement of the Sun, Moon, and stars to describe predictable patterns. Examples of patterns could include how the Sun and Moon appear to rise in one part of the sky, move across the sky, and set; or how stars, other than the Sun, are visible at night but not during the day. (ESS1.A)"
+          },
+          {
+           "code": "S1.1.2",
+           "text": "Obtain, evaluate, and communicate information about the patterns observed at different times of the year to relate the amount of daylight to the time of year. Emphasize the variation in daylight patterns at different times of the day and different times of the year. Examples could include varying locations and regions throughout the state, country, and world. (ESS1.B)"
+          },
+          {
+           "code": "S1.1.3",
+           "text": "Design a device that measures the varying patterns of daylight. Define the problem by asking questions and gathering information, convey designs through sketches, drawings, or physical models, and compare and test designs. Examples could include sundials for telling the time or tracking the movement of shadows throughout the day. (ESS1.B, ETS1.A, ETS1.B, ETS1.C)"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "the-needs-of-living-things-and-their-offspring",
+     "title": "The Needs of Living Things and Their Offspring",
+     "topics": [
+      {
+       "id": "the-needs-of-living-things-and-their-offspring",
+       "title": "The Needs of Living Things and Their Offspring",
+       "subtopics": [
+        {
+         "id": "the-needs-of-living-things-and-their-offspring",
+         "title": "The Needs of Living Things and Their Offspring",
+         "outcomes": [
+          {
+           "code": "S1.2.1",
+           "text": "Plan and carry out an investigation to determine the effect of sunlight and water on plant growth. Emphasize investigations that test one variable at a time. (LS1.C, LS2.A)"
+          },
+          {
+           "code": "S1.2.2",
+           "text": "Construct an explanation by observing patterns of external features of living things that survive in different locations. Emphasize how plants and nonhuman animals, found in specific surroundings, share similar physical characteristics. Examples could include that plants living in dry areas are more likely to have thick outer coatings that hold in water, animals living in cold locations have longer and thicker fur, or most desert animals are awake at night. (LS1.A, LS1.D)"
+          },
+          {
+           "code": "S1.2.3",
+           "text": "Obtain, evaluate, and communicate information about the patterns of plants and nonhuman animals that are alike, but not exactly like, their parents. An example could include that most carrots are orange and shaped like a cone but may be different sizes or have differing tastes. (LS3.A, LS3.B)"
+          },
+          {
+           "code": "S1.2.4",
+           "text": "Construct an explanation of the patterns in the behaviors of parents and offspring which help offspring to survive. Examples of behavioral patterns could include the signals that offspring make such as crying, chirping, and other vocalizations or the responses of the parents such as feeding, comforting, and protecting the offspring. (LS1.B)"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "light-and-sound",
+     "title": "Light and Sound",
+     "topics": [
+      {
+       "id": "light-and-sound",
+       "title": "Light and Sound",
+       "subtopics": [
+        {
+         "id": "light-and-sound",
+         "title": "Light and Sound",
+         "outcomes": [
+          {
+           "code": "S1.3.1",
+           "text": "Plan and carry out an investigation to show the cause and effect relationship between sound and vibrating matter. Emphasize that vibrating matter can make sound and that sound can make matter vibrate. (PS4.A)"
+          },
+          {
+           "code": "S1.3.2",
+           "text": "Use a model to show the effect of light on objects. Emphasize that objects can be seen when light is available to illuminate them or if they give off their own light. (PS4.B)"
+          },
+          {
+           "code": "S1.3.3",
+           "text": "Plan and carry out an investigation to determine the effect of materials in the path of a beam of light. Emphasize that light can travel through some materials, can be reflected off some materials, and some materials block light causing shadows. Examples of materials could include clear plastic, wax paper, cardboard, or a mirror. (PS4.B)"
+          },
+          {
+           "code": "S1.3.4",
+           "text": "Design a device in which the structure of the device uses light or sound to solve the problem of communicating over a distance. Define the problem by asking questions and gathering information, convey designs through sketches, drawings, or physical models, and compare and test designs. Examples of devices could include a light source to send signals, paper-cup-and-string telephones, or a pattern of drum beats. (PS4.C, ETS1.A, ETS1.B, ETS1.C)"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "3",
+   "units": [
+    {
+     "id": "weather-and-climate-patterns",
+     "title": "Weather And Climate Patterns",
+     "topics": [
+      {
+       "id": "weather-and-climate-patterns",
+       "title": "Weather And Climate Patterns",
+       "subtopics": [
+        {
+         "id": "weather-and-climate-patterns",
+         "title": "Weather And Climate Patterns",
+         "outcomes": [
+          {
+           "code": "3.1.1",
+           "text": "Analyze and interpret data to reveal patterns that indicate typical weather conditions expected during a particular season. Emphasize students gathering data in a variety of ways and representing data in tables and graphs. Examples of data could include temperature, precipitation, or wind speed."
+          },
+          {
+           "code": "3.1.2",
+           "text": "Obtain and communicate information to describe climate patterns in different regions of the world. Emphasize how climate patterns can be used to predict typical weather conditions. Examples of climate patterns could be average seasonal temperature and average seasonal precipitation."
+          },
+          {
+           "code": "3.1.3",
+           "text": "Design a solution that reduces the effects of a weather-related hazard. Examples could include barriers to prevent flooding or wind-resistant roofs."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "effects-of-traits-on-survival",
+     "title": "Effects Of Traits On Survival",
+     "topics": [
+      {
+       "id": "effects-of-traits-on-survival",
+       "title": "Effects Of Traits On Survival",
+       "subtopics": [
+        {
+         "id": "effects-of-traits-on-survival",
+         "title": "Effects Of Traits On Survival",
+         "outcomes": [
+          {
+           "code": "3.2.1",
+           "text": "Develop and use models to describe changes that organisms go through during their life cycles. Emphasize that organisms have unique and diverse life cycles but follow a pattern of birth, growth, reproduction, and death. Examples of changes in life cycles could include how some plants and animals look different at different stages of life or how other plants and animals only appear to change size in their life."
+          },
+          {
+           "code": "3.2.2",
+           "text": "Analyze and interpret data to identify patterns of traits that plants and animals have inherited from parents. Emphasize the similarities and differences in traits between parent organisms and offspring and variation of traits in groups of similar organisms."
+          },
+          {
+           "code": "3.2.3",
+           "text": "Construct an explanation that the environment can affect the traits of an organism. Examples could include that the growth of normally tall plants is stunted with insufficient water or that pets given too much food and little exercise may become overweight."
+          },
+          {
+           "code": "3.2.4",
+           "text": "Construct an explanation showing how variations in traits and behaviors can affect the ability of an individual to survive and reproduce. Examples of traits could include large thorns protecting a plant from being eaten or strong smelling flowers to attracting certain pollinators. Examples of behaviors could include animals living in groups for protection or migrating to find more food."
+          },
+          {
+           "code": "3.2.5",
+           "text": "Engage in argument from evidence that in a particular habitat (system) some organisms can survive well, some survive less well, and some cannot survive at all. Emphasize that organisms and habitats form systems in which the parts depend upon each other. Examples of evidence could include needs and characteristics of the organisms and habitats involved such as cacti growing in dry, sandy soil but not surviving in wet, saturated soil."
+          },
+          {
+           "code": "3.2.6",
+           "text": "Design a solution to a problem caused by a change in the environment that impacts the types of plants and animals living in that environment. Examples of environmental changes could include changes in land use, water availability, temperature, food, or changes caused by other organisms."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "force-affects-motion",
+     "title": "Force Affects Motion",
+     "topics": [
+      {
+       "id": "force-affects-motion",
+       "title": "Force Affects Motion",
+       "subtopics": [
+        {
+         "id": "force-affects-motion",
+         "title": "Force Affects Motion",
+         "outcomes": [
+          {
+           "code": "3.3.1",
+           "text": "Plan and carry out investigations that provide evidence of the effects of balanced and unbalanced forces on the motion of an object. Emphasize investigations where only one variable is tested at a time. Examples could include an unbalanced force on one side of a ball causing it to move and balanced forces pushing on a box from both sides producing no movement."
+          },
+          {
+           "code": "3.3.2",
+           "text": "Analyze and interpret data from observations and measurements of an object's motion to identify patterns in its motion that can be used to predict future motion. Examples of motion with a predictable pattern could include a child swinging on a swing or a ball rolling down a ramp."
+          },
+          {
+           "code": "3.3.3",
+           "text": "Construct an explanation that the gravitational force exerted by Earth causes objects to be directed downward, toward the center of the spherical Earth. Emphasize that \"downward\" is a local description depending on one's position on Earth."
+          },
+          {
+           "code": "3.3.4",
+           "text": "Ask questions to plan and carry out an investigation to determine cause and effect relationships of electric or magnetic interactions between two objects not in contact with each other. Emphasize how static electricity and magnets can cause objects to move without touching. Examples could include the force an electrically charged balloon has on hair, how magnet orientation affects the direction of a force, or how distance between objects affects the strength of a force."
+          },
+          {
+           "code": "3.3.5",
+           "text": "Design a solution to a problem in which a device functions by using scientific ideas about magnets. Examples could include a latch or lock used to keep a door shut or a device to keep two moving objects from touching each other."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "4",
+   "units": [
+    {
+     "id": "organisms-functioning-in-their-environment",
+     "title": "Organisms Functioning In Their Environment",
+     "topics": [
+      {
+       "id": "organisms-functioning-in-their-environment",
+       "title": "Organisms Functioning In Their Environment",
+       "subtopics": [
+        {
+         "id": "organisms-functioning-in-their-environment",
+         "title": "Organisms Functioning In Their Environment",
+         "outcomes": [
+          {
+           "code": "4.1.1",
+           "text": "Construct an explanation from evidence that plants and animals have internal and external structures that function to support survival, growth, behavior, and reproduction. Emphasize how structures support an organism's survival in its environment and how internal and external structures of plants and animals vary within the same and across multiple Utah environments. Examples of structures could include thorns on a stem to prevent predation or gills on a fish to allow it to breathe underwater."
+          },
+          {
+           "code": "4.1.2",
+           "text": "Develop and use a model of a system to describe how animals receive different types of information from their environment through their senses, process the information in their brain, and respond to the information. Emphasize how animals are able to use their perceptions and memories to guide their actions. Examples could include models that explain how animals sense and then respond to different aspects of their environment such as sounds, temperature, or smell."
+          },
+          {
+           "code": "4.1.3",
+           "text": "Analyze and interpret data from fossils to provide evidence of the stability and change in organisms and environments from long ago. Emphasize using the structures of fossils to make inferences about ancient organisms. Examples of fossils and environments could include comparing a trilobite with a horseshoe crab in an ocean environment or using a fossil footprint to determine the size of a dinosaur."
+          },
+          {
+           "code": "4.1.4",
+           "text": "Engage in argument from evidence based on patterns in rock layers and fossils found in those layers to support an explanation that environments have changed over time. Emphasize the relationship between fossils and past environments. Examples could include tropical plant fossils found in Arctic areas and rock layers with marine shell fossils found above rock layers with land plant fossils."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "energy-transfer",
+     "title": "Energy Transfer",
+     "topics": [
+      {
+       "id": "energy-transfer",
+       "title": "Energy Transfer",
+       "subtopics": [
+        {
+         "id": "energy-transfer",
+         "title": "Energy Transfer",
+         "outcomes": [
+          {
+           "code": "4.2.1",
+           "text": "Construct an explanation to describe the cause and effect relationship between the speed of an object and the energy of that object. Emphasize using qualitative descriptions of the relationship between speed and energy like fast, slow, strong, or weak. An example could include a ball that is kicked hard has more energy and travels a greater distance than a ball that is kicked softly."
+          },
+          {
+           "code": "4.2.2",
+           "text": "Ask questions and make observations about the changes in energy that occur when objects collide. Emphasize that energy is transferred when objects collide and may be converted to different forms of energy. Examples could include changes in speed when one moving ball collides with another or the transfer of energy when a toy car hits a wall."
+          },
+          {
+           "code": "4.2.3",
+           "text": "Plan and carry out an investigation to gather evidence from observations that energy can be transferred from place to place by sound, light, heat, and electrical currents. Examples could include sound causing objects to vibrate and electric currents being used to produce motion or light."
+          },
+          {
+           "code": "4.2.4",
+           "text": "Design a device that converts energy from one form to another. Examples could include solar ovens that convert light energy to heat energy or a simple alarm system that converts motion energy into sound energy."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "wave-patterns",
+     "title": "Wave Patterns",
+     "topics": [
+      {
+       "id": "wave-patterns",
+       "title": "Wave Patterns",
+       "subtopics": [
+        {
+         "id": "wave-patterns",
+         "title": "Wave Patterns",
+         "outcomes": [
+          {
+           "code": "4.3.1",
+           "text": "Develop and use a model to describe the regular patterns of waves. Emphasize patterns in terms of amplitude and wavelength. Examples of models could include diagrams, analogies, and physical models such as water or rope."
+          },
+          {
+           "code": "4.3.2",
+           "text": "Develop and use a model to describe how visible light waves reflected from objects enter the eye causing objects to be seen. Emphasize the reflection and movement of light."
+          },
+          {
+           "code": "4.3.3",
+           "text": "Design a solution to an information transfer problem using wave patterns. Define the problem, identify criteria and constraints, develop possible solutions using models, analyze data from testing solutions, and propose modifications for optimizing a solution. Examples could include using light to transmit a message in Morse code or using lenses and mirrors to see objects that are far away."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "observable-patterns-in-the-sky",
+     "title": "Observable Patterns In The Sky",
+     "topics": [
+      {
+       "id": "observable-patterns-in-the-sky",
+       "title": "Observable Patterns In The Sky",
+       "subtopics": [
+        {
+         "id": "observable-patterns-in-the-sky",
+         "title": "Observable Patterns In The Sky",
+         "outcomes": [
+          {
+           "code": "4.4.1",
+           "text": "Construct an explanation that differences in the apparent brightness of the Sun compared to other stars is due to the relative distance (scale) of stars from Earth. Emphasize relative distance from Earth. (ESS1.A)"
+          },
+          {
+           "code": "4.4.2",
+           "text": "Analyze and interpret data of observable patterns to show that Earth rotates on its axis and revolves around the Sun. Emphasize patterns that provide evidence of Earth's rotation and orbits around the Sun. Examples of patterns could include day and night, daily changes in length and direction of shadows, and seasonal appearance of some stars in the night sky. Earth's seasons and its connection to the tilt of Earth's axis will be taught in Grades 6 through 8."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "5",
+   "units": [
+    {
+     "id": "characteristics-and-interactions-of-earth-s-syst",
+     "title": "Characteristics And Interactions Of Earth's Systems",
+     "topics": [
+      {
+       "id": "characteristics-and-interactions-of-earth-s-syst",
+       "title": "Characteristics And Interactions Of Earth's Systems",
+       "subtopics": [
+        {
+         "id": "characteristics-and-interactions-of-earth-s-syst",
+         "title": "Characteristics And Interactions Of Earth's Systems",
+         "outcomes": [
+          {
+           "code": "5.1.1",
+           "text": "Analyze and interpret data to describe patterns of Earth's features. Emphasize most earthquakes and volcanoes occur in bands that are often along the boundaries between continents and oceans while major mountain chains may be found inside continents or near their edges. Examples of data could include maps showing locations of mountains on continents and the ocean floor or the locations of volcanoes and earthquakes."
+          },
+          {
+           "code": "5.1.2",
+           "text": "Use mathematics and computational thinking to compare the quantity of saltwater and freshwater in various reservoirs to provide evidence for the distribution of water on Earth. Emphasize reservoirs such as oceans, lakes, rivers, glaciers, groundwater, and polar ice caps. Examples of using mathematics and computational thinking could include measuring, estimating, graphing, or finding percentages of quantities."
+          },
+          {
+           "code": "5.1.3",
+           "text": "Ask questions to plan and carry out investigations that provide evidence for the effects of weathering and the rate of erosion on the geosphere. Emphasize weathering and erosion by water, ice, wind, gravity, or vegetation. Examples could include observing the effects of cycles of freezing and thawing of water on rock or changing the slope in the downhill movement of water."
+          },
+          {
+           "code": "5.1.4",
+           "text": "Develop a model to describe interactions between Earth's systems including the geosphere, biosphere, hydrosphere, and/or atmosphere. Emphasize interactions between only two systems at a time. Examples could include the influence of a rainstorm in a desert, waves on a shoreline, or mountains on clouds."
+          },
+          {
+           "code": "5.1.5",
+           "text": "Design solutions to reduce the effects of naturally occurring events that impact humans. Emphasize that humans cannot eliminate natural hazards, but they can take steps to reduce their impacts. Examples of events could include landslides, earthquakes, tsunamis, blizzards, or volcanic eruptions."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "properties-and-changes-of-matter",
+     "title": "Properties And Changes Of Matter",
+     "topics": [
+      {
+       "id": "properties-and-changes-of-matter",
+       "title": "Properties And Changes Of Matter",
+       "subtopics": [
+        {
+         "id": "properties-and-changes-of-matter",
+         "title": "Properties And Changes Of Matter",
+         "outcomes": [
+          {
+           "code": "5.2.1",
+           "text": "Develop and use a model to describe that matter is made of particles on a scale that is too small to be seen. Emphasize making observations of changes supported by a particle model of matter. Examples could include adding air to expand a balloon, compressing air in a syringe, adding food coloring to water, or dissolving salt in water and evaporating the water."
+          },
+          {
+           "code": "5.2.2",
+           "text": "Ask questions to plan and carry out investigations to identify substances based on patterns of their properties. Emphasize using properties to identify substances. Examples of properties could include color, hardness, conductivity, solubility, or a response to magnetic forces. Examples of substances could include powders, metals, minerals, or liquids."
+          },
+          {
+           "code": "5.2.3",
+           "text": "Plan and carry out investigations to determine the effect of combining two or more substances. Emphasize whether a new substance is or is not created by the formation of a new substance with different properties. Examples could include combining vinegar and baking soda or rusting an iron nail in water."
+          },
+          {
+           "code": "5.2.4",
+           "text": "Use mathematics and computational thinking to provide evidence that regardless of the type of change that occurs when heating, cooling, or combining substances, the total weight of matter is conserved. Examples could include melting an ice cube, dissolving salt in water, and combining baking soda and vinegar in a closed bag."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "cycling-of-matter-in-ecosystems",
+     "title": "Cycling Of Matter In Ecosystems",
+     "topics": [
+      {
+       "id": "cycling-of-matter-in-ecosystems",
+       "title": "Cycling Of Matter In Ecosystems",
+       "subtopics": [
+        {
+         "id": "cycling-of-matter-in-ecosystems",
+         "title": "Cycling Of Matter In Ecosystems",
+         "outcomes": [
+          {
+           "code": "5.3.1",
+           "text": "Construct an explanation that plants use air, water, and energy from sunlight to produce plant matter needed for growth. Emphasize photosynthesis at a conceptual level and that plant matter comes mostly from air and water, not from the soil."
+          },
+          {
+           "code": "5.3.2",
+           "text": "Obtain, evaluate, and communicate information that animals obtain energy and matter from the food they eat for body repair, growth, and motion and to maintain body warmth. Emphasize that the energy used by animals was once energy from the Sun."
+          },
+          {
+           "code": "5.3.3",
+           "text": "Develop and use a model to describe the movement of matter among plants, animals, decomposers, and the environment. Emphasize that matter cycles between the air and soil and among plants, animals, and microbes as these organisms live and die. Examples could include simple food chains from ecosystems such as deserts or oceans or diagrams of decomposers returning matter to the environment."
+          },
+          {
+           "code": "5.3.4",
+           "text": "Evaluate design solutions whose primary function is to conserve Earth's environments and resources. Emphasize how humans can balance everyday needs (agriculture, industry, and energy) while conserving Earth's environments and resources."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "6",
+   "units": [
+    {
+     "id": "structure-and-motion-within-the-solar-system",
+     "title": "Structure and Motion within the Solar System",
+     "topics": [
+      {
+       "id": "structure-and-motion-within-the-solar-system",
+       "title": "Structure and Motion within the Solar System",
+       "subtopics": [
+        {
+         "id": "structure-and-motion-within-the-solar-system",
+         "title": "Structure and Motion within the Solar System",
+         "outcomes": [
+          {
+           "code": "6.1.1",
+           "text": "Develop and use a model of the Sun-Earth-Moon system to describe the cyclic patterns of lunar phases, eclipses of the Sun and Moon, and seasons."
+          },
+          {
+           "code": "6.1.2",
+           "text": "Develop and use a model to describe the role of gravity and inertia in orbital motions of objects in our solar system."
+          },
+          {
+           "code": "6.1.3",
+           "text": "Use computational thinking to analyze data and determine the scale and properties of objects in the solar system."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "energy-affects-matter",
+     "title": "Energy Affects Matter",
+     "topics": [
+      {
+       "id": "energy-affects-matter",
+       "title": "Energy Affects Matter",
+       "subtopics": [
+        {
+         "id": "energy-affects-matter",
+         "title": "Energy Affects Matter",
+         "outcomes": [
+          {
+           "code": "6.2.1",
+           "text": "Develop models to show that molecules are made of different kinds, proportions and quantities of atoms. Emphasize understanding that there are differences between atoms and molecules, and that certain combinations of atoms form specific molecules."
+          },
+          {
+           "code": "6.2.2",
+           "text": "Develop a model to predict the effect of heat energy on states of matter and density. Emphasize the arrangement of particles in states of matter (solid, liquid, or gas) and during phase changes (melting, freezing, condensing, and evaporating)."
+          },
+          {
+           "code": "6.2.3",
+           "text": "Plan and carry out an investigation to determine the relationship between temperature, the amount of heat transferred, and the change of average particle motion in various types or amounts of matter. Emphasize recording and evaluating data, and communicating the results of the investigation."
+          },
+          {
+           "code": "6.2.4",
+           "text": "Design an object, tool, or process that minimizes or maximizes heat energy transfer. Identify criteria and constraints, develop a prototype for iterative testing, analyze data from testing, and propose modifications for optimizing the design solution. Emphasize demonstrating how the structure of differing materials allows them to function as either conductors or insulators."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "earth-s-weather-patterns-and-climate",
+     "title": "Earth's Weather Patterns and Climate",
+     "topics": [
+      {
+       "id": "earth-s-weather-patterns-and-climate",
+       "title": "Earth's Weather Patterns and Climate",
+       "subtopics": [
+        {
+         "id": "earth-s-weather-patterns-and-climate",
+         "title": "Earth's Weather Patterns and Climate",
+         "outcomes": [
+          {
+           "code": "6.3.1",
+           "text": "Develop a model to describe how the cycling of water through Earth's systems is driven by energy from the Sun, gravitational forces, and density."
+          },
+          {
+           "code": "6.3.2",
+           "text": "Investigate the interactions between air masses that cause changes in weather conditions. Collect and analyze weather data to provide evidence for how air masses flow from regions of high pressure to low pressure causing a change in weather."
+          },
+          {
+           "code": "6.3.3",
+           "text": "Develop and use a model to show how unequal heating of the Earth's systems causes patterns of atmospheric and oceanic circulation that determine regional climates. Emphasize how warm water and air move from the equator toward the poles."
+          },
+          {
+           "code": "6.3.4",
+           "text": "Construct an explanation supported by evidence for the role of the natural greenhouse effect in Earth's energy balance, and how it enables life to exist on Earth."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "stability-and-change-in-ecosystems",
+     "title": "Stability and Change in Ecosystems",
+     "topics": [
+      {
+       "id": "stability-and-change-in-ecosystems",
+       "title": "Stability and Change in Ecosystems",
+       "subtopics": [
+        {
+         "id": "stability-and-change-in-ecosystems",
+         "title": "Stability and Change in Ecosystems",
+         "outcomes": [
+          {
+           "code": "6.4.1",
+           "text": "Analyze data to provide evidence for the effects of resource availability on organisms and populations in an ecosystem. Ask questions to predict how changes in resource availability affects organisms in those ecosystems."
+          },
+          {
+           "code": "6.4.2",
+           "text": "Construct an explanation that predicts patterns of interactions among organisms across multiple ecosystems. Emphasize consistent interactions in different environments, such as competition, predation, and mutualism."
+          },
+          {
+           "code": "6.4.3",
+           "text": "Develop a model to describe the cycling of matter and flow of energy among living and nonliving parts of an ecosystem. Emphasize food webs and the role of producers, consumers, and decomposers in various ecosystems."
+          },
+          {
+           "code": "6.4.4",
+           "text": "Construct an argument supported by evidence that the stability of populations is affected by changes to an ecosystem. Emphasize how changes to living and nonliving components in an ecosystem affect populations in that ecosystem."
+          },
+          {
+           "code": "6.4.5",
+           "text": "Evaluate competing design solutions for preserving ecosystem services that protect resources and biodiversity based on how well the solutions maintain stability within the ecosystem. Emphasize obtaining, evaluating, and communicating information of differing design solutions."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "7",
+   "units": [
+    {
+     "id": "forces-are-interactions-between-matter",
+     "title": "Forces are Interactions Between Matter",
+     "topics": [
+      {
+       "id": "forces-are-interactions-between-matter",
+       "title": "Forces are Interactions Between Matter",
+       "subtopics": [
+        {
+         "id": "forces-are-interactions-between-matter",
+         "title": "Forces are Interactions Between Matter",
+         "outcomes": [
+          {
+           "code": "7.1.1",
+           "text": "Carry out an investigation which provides evidence that a change in an object's motion is dependent on the mass of the object and the sum of the forces acting on it. Various experimental designs should be evaluated to determine how well the investigation measures an object's motion. Emphasize conceptual understanding of Newton's First and Second Laws. Calculations will only focus on one-dimensional movement; the use of vectors will be introduced in high school."
+          },
+          {
+           "code": "7.1.2",
+           "text": "Apply Newton's Third Law to design a solution to a problem involving the motion of two colliding objects in a system."
+          },
+          {
+           "code": "7.1.3",
+           "text": "Construct a model using observational evidence to describe the nature of fields existing between objects that exert forces on each other even though the objects are not in contact. Emphasize the cause and effect relationship between properties of objects (such as magnets or electrically charged objects) and the forces they exert."
+          },
+          {
+           "code": "7.1.4",
+           "text": "Collect and analyze data to determine the factors that affect the strength of electric and magnetic forces."
+          },
+          {
+           "code": "7.1.5",
+           "text": "Engage in argument from evidence to support the claim that gravitational interactions within a system are attractive and dependent upon the masses of interacting objects."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "changes-to-earth-over-time",
+     "title": "Changes to Earth Over Time",
+     "topics": [
+      {
+       "id": "changes-to-earth-over-time",
+       "title": "Changes to Earth Over Time",
+       "subtopics": [
+        {
+         "id": "changes-to-earth-over-time",
+         "title": "Changes to Earth Over Time",
+         "outcomes": [
+          {
+           "code": "7.2.1",
+           "text": "Develop a model of the rock cycle to describe the relationship between energy flow and matter cycling that create igneous, sedimentary, and metamorphic rocks. Emphasize the processes of melting, crystallization, weathering, deposition, sedimentation, and deformation, which act together to form minerals and rocks."
+          },
+          {
+           "code": "7.2.2",
+           "text": "Construct an explanation based on evidence for how processes have changed Earth's surface at varying time and spatial scales. Examples of processes that occur at varying time scales could include slow plate motions or rapid landslides."
+          },
+          {
+           "code": "7.2.3",
+           "text": "Ask questions to identify constraints of specific geologic hazards and evaluate competing design solutions for maintaining the stability of human-engineered structures, such as homes, roads, and bridges."
+          },
+          {
+           "code": "7.2.4",
+           "text": "Develop and use a scale model of the matter in the Earth's interior to demonstrate how differences in density and chemical composition (silicon, oxygen, iron, and magnesium) cause the formation of the crust, mantle, and core."
+          },
+          {
+           "code": "7.2.5",
+           "text": "Ask questions and analyze and interpret data about the patterns between plate tectonics and: the occurrence of earthquakes and volcanoes. Continental and ocean floor features. the distribution of rocks and fossils."
+          },
+          {
+           "code": "7.2.6",
+           "text": "Make an argument from evidence for how the geologic time scale shows the age and history of Earth. Emphasize scientific evidence from rock strata, the fossil record, and the principles of relative dating, such as superposition, uniformitarianism and recognizing unconformities."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "structure-and-function-of-life",
+     "title": "Structure and Function of Life",
+     "topics": [
+      {
+       "id": "structure-and-function-of-life",
+       "title": "Structure and Function of Life",
+       "subtopics": [
+        {
+         "id": "structure-and-function-of-life",
+         "title": "Structure and Function of Life",
+         "outcomes": [
+          {
+           "code": "7.3.1",
+           "text": "Plan and carry out an investigation that provides evidence that the basic structures of living things are cells. Emphasize that cells can form single-celled or multicellular organisms, and that multicellular organisms are made of different types of cells."
+          },
+          {
+           "code": "7.3.2",
+           "text": "Develop and use a model to describe the function of a cell in living systems and the way parts of cells contribute to cell function. Emphasize the cell as a system, including the interrelating roles of the nucleus, chloroplasts, mitochondria, cell membrane, and cell wall."
+          },
+          {
+           "code": "7.3.3",
+           "text": "Construct an explanation using evidence to explain how body systems have various levels of organization. Emphasize understanding that cells form tissues, tissues form organs, and organs form systems specialized for particular body functions."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "reproduction-and-inheritance",
+     "title": "Reproduction and Inheritance",
+     "topics": [
+      {
+       "id": "reproduction-and-inheritance",
+       "title": "Reproduction and Inheritance",
+       "subtopics": [
+        {
+         "id": "reproduction-and-inheritance",
+         "title": "Reproduction and Inheritance",
+         "outcomes": [
+          {
+           "code": "7.4.1",
+           "text": "Develop and use a model to explain the effects that different types of reproduction have on genetic variation, including asexual and sexual reproduction."
+          },
+          {
+           "code": "7.4.2",
+           "text": "Obtain, evaluate, and communicate information about specific animal and plant adaptations and structures that affect the probability of successful reproduction."
+          },
+          {
+           "code": "7.4.3",
+           "text": "Develop and use a model to describe why genetic mutations may result in harmful, beneficial, or neutral effects to the structure and function of the organism. Emphasize the conceptual idea that changes to traits can happen because of genetic mutations. Specific changes of genes at the molecular level, mechanisms for protein synthesis, and specific types of mutations will be introduced at the high school level."
+          },
+          {
+           "code": "7.4.4",
+           "text": "Obtain, evaluate, and communicate information about the technologies that have changed the way humans affect the inheritance of desired traits in organisms. Analyze data from tests or simulations to determine the best solution to achieve success in cultivating selected desired traits in organisms."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "changes-in-species-over-time",
+     "title": "Changes in Species Over Time",
+     "topics": [
+      {
+       "id": "changes-in-species-over-time",
+       "title": "Changes in Species Over Time",
+       "subtopics": [
+        {
+         "id": "changes-in-species-over-time",
+         "title": "Changes in Species Over Time",
+         "outcomes": [
+          {
+           "code": "7.5.1",
+           "text": "Construct an explanation that describes how the genetic variation of traits in a population can affect some individuals' probability of surviving and reproducing in a specific environment. Over time, specific traits may increase or decrease in populations. Emphasize the use of proportional reasoning to support explanations of trends in changes to populations over time."
+          },
+          {
+           "code": "7.5.2",
+           "text": "Analyze and interpret data for patterns in the fossil record that document the existence, diversity, extinction, and change of life forms throughout the history of life on Earth, under the assumption that natural laws operate today as in the past."
+          },
+          {
+           "code": "7.5.3",
+           "text": "Construct explanations that describe the patterns of body structure similarities and differences between modern organisms, and between ancient and modern organisms, to infer possible evolutionary relationships."
+          },
+          {
+           "code": "7.5.4",
+           "text": "Analyze data to compare patterns in the embryological development across multiple species to identify similarities and differences not evident in the fully formed anatomy."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "8",
+   "units": [
+    {
+     "id": "matter-and-energy-interact-in-the-physical-world",
+     "title": "Matter and Energy Interact in the Physical World",
+     "topics": [
+      {
+       "id": "matter-and-energy-interact-in-the-physical-world",
+       "title": "Matter and Energy Interact in the Physical World",
+       "subtopics": [
+        {
+         "id": "matter-and-energy-interact-in-the-physical-world",
+         "title": "Matter and Energy Interact in the Physical World (1 of 2)",
+         "outcomes": [
+          {
+           "code": "8.1.1",
+           "text": "Develop a model to describe the scale and proportion of atoms and molecules. Emphasize developing atomic models of elements and their numbers of protons, neutrons, and electrons, as well as models of simple molecules. topics like valence electrons, bond energy, ionic complexes, ions, and isotopes will be introduced at the high school level."
+          },
+          {
+           "code": "8.1.2",
+           "text": "Obtain information about various properties of matter, evaluate how different materials' properties allow them to be used for particular functions in society, and communicate your findings. Emphasize general properties of matter."
+          },
+          {
+           "code": "8.1.3",
+           "text": "Plan and conduct an investigation and then analyze and interpret the data to identify patterns in changes in a substance's properties to determine whether a chemical reaction has occurred."
+          },
+          {
+           "code": "8.1.4",
+           "text": "Obtain and evaluate information to describe how synthetic materials come from natural resources, what their functions are, and how society uses these new materials."
+          }
+         ]
+        },
+        {
+         "id": "matter-and-energy-interact-in-the-physical-world-2",
+         "title": "Matter and Energy Interact in the Physical World (2 of 2)",
+         "outcomes": [
+          {
+           "code": "8.1.5",
+           "text": "Develop a model that uses computational thinking to illustrate cause and effect relationships in particle motion, temperature, density, and state of a pure substance when heat energy is added or removed. Emphasize molecular-level models of solids, liquids, and gases to show how adding or removing heat energy can result in phase changes, and focus on calculating the density of a substance's state."
+          },
+          {
+           "code": "8.1.6",
+           "text": "Develop a model to describe how the total number of atoms does not change in a chemical reaction, indicating that matter is conserved. Emphasize demonstrations of an understanding of the law of conservation of matter. Balancing equations and stoichiometry will be learned at the high school level."
+          },
+          {
+           "code": "8.1.7",
+           "text": "Design, construct, and test a device that can affect the rate of a phase change. Compare and identify the best characteristics of competing devices and modify them based on data analysis to improve the device to better meet the criteria for success."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "energy-is-stored-and-transferred-in-physical-sys",
+     "title": "Energy is Stored and Transferred in Physical Systems",
+     "topics": [
+      {
+       "id": "energy-is-stored-and-transferred-in-physical-sys",
+       "title": "Energy is Stored and Transferred in Physical Systems",
+       "subtopics": [
+        {
+         "id": "energy-is-stored-and-transferred-in-physical-sys",
+         "title": "Energy is Stored and Transferred in Physical Systems",
+         "outcomes": [
+          {
+           "code": "8.2.1",
+           "text": "Use computational thinking to analyze data about the relationship between the mass and speed of objects and the relative amount of kinetic energy of the objects. Emphasis should be on the quantity of mass and relative speed to the observable effects of the kinetic energy."
+          },
+          {
+           "code": "8.2.2",
+           "text": "Ask questions about how the amount of potential energy varies as distance within the system changes. Plan and conduct an investigation to answer a question about potential energy. Emphasize comparing relative amounts of energy."
+          },
+          {
+           "code": "8.2.3",
+           "text": "Engage in argument to identify the strongest evidence that supports the claim that the kinetic energy of an object changes as energy is transferred to or from the object."
+          },
+          {
+           "code": "8.2.4",
+           "text": "Use computational thinking to describe a simple model for waves that shows the pattern of wave amplitude being related to wave energy. Emphasize describing waves with both quantitative and qualitative thinking."
+          },
+          {
+           "code": "8.2.5",
+           "text": "Develop and use a model to describe the structure of waves and how they are reflected, absorbed, or transmitted through various materials. Emphasize both light and mechanical waves."
+          },
+          {
+           "code": "8.2.6",
+           "text": "Obtain and evaluate information to communicate the claim that the structure of digital signals are a more reliable way to store or transmit information than analog signals. Emphasize the basic understanding that waves can be used for communication purposes."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "life-systems-store-and-transfer-matter-and-energ",
+     "title": "Life Systems Store and Transfer Matter and Energy",
+     "topics": [
+      {
+       "id": "life-systems-store-and-transfer-matter-and-energ",
+       "title": "Life Systems Store and Transfer Matter and Energy",
+       "subtopics": [
+        {
+         "id": "life-systems-store-and-transfer-matter-and-energ",
+         "title": "Life Systems Store and Transfer Matter and Energy",
+         "outcomes": [
+          {
+           "code": "8.3.1",
+           "text": "Plan and conduct an investigation and use the evidence to construct an explanation of how photosynthetic organisms use energy to transform matter. Emphasize molecular and energy transformations during photosynthesis."
+          },
+          {
+           "code": "8.3.2",
+           "text": "Develop a model to describe how food is changed through chemical reactions to form new molecules that support growth and/or release energy as matter cycles through an organism. Emphasis is on describing that during cellular respiration molecules are broken apart and rearranged into new molecules, and that this process releases energy."
+          },
+          {
+           "code": "8.3.3",
+           "text": "Ask questions to obtain, evaluate, and communicate information about how changes to an ecosystem affect the stability of cycling matter and the flow of energy among living and nonliving parts of an ecosystem. Emphasize describing the cycling of matter and flow of energy through the carbon cycle."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "interactions-with-natural-systems-and-resources",
+     "title": "Interactions with Natural Systems and Resources",
+     "topics": [
+      {
+       "id": "interactions-with-natural-systems-and-resources",
+       "title": "Interactions with Natural Systems and Resources",
+       "subtopics": [
+        {
+         "id": "interactions-with-natural-systems-and-resources",
+         "title": "Interactions with Natural Systems and Resources",
+         "outcomes": [
+          {
+           "code": "8.4.1",
+           "text": "Construct a scientific explanation based on evidence that shows that the uneven distribution of Earth's mineral, energy, and groundwater resources is caused by geological processes."
+          },
+          {
+           "code": "8.4.2",
+           "text": "Engage in argument supported by evidence about the effect of per capita consumption of natural resources on Earth's systems. Emphasize that these resources are limited and may be non-renewable."
+          },
+          {
+           "code": "8.4.3",
+           "text": "Design a solution to monitor or mitigate the potential effects of the use of natural resources. Evaluate competing design solutions using a systematic process to determine how well each solution meets the criteria and constraints of the problem."
+          },
+          {
+           "code": "8.4.4",
+           "text": "Analyze and interpret data on the factors that change global temperatures and their effects on regional climates."
+          },
+          {
+           "code": "8.4.5",
+           "text": "Analyze and interpret patterns of the occurrence of natural hazards to forecast future catastrophic events, and investigate how data are used to develop technologies to mitigate their effects. Emphasize how some natural hazards, such as volcanic eruptions and severe weather, are preceded by phenomena that allow prediction, but others, such as earthquakes, may occur without warning."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "9-12",
+   "units": [
+    {
+     "id": "biology",
+     "title": "Biology",
+     "topics": [
+      {
+       "id": "interactions-with-organisms-and-the-environment",
+       "title": "Interactions With Organisms And The Environment",
+       "subtopics": [
+        {
+         "id": "interactions-with-organisms-and-the-environment",
+         "title": "Interactions With Organisms And The Environment",
+         "outcomes": [
+          {
+           "code": "BIO.1.1",
+           "text": "Plan and carry out an investigation to analyze and interpret data to determine how biotic and abiotic factors can affect the stability and change of a population. Emphasize stability and change in populations' carrying capacities and an ecosystem's biodiversity."
+          },
+          {
+           "code": "BIO.1.2",
+           "text": "Develop and use a model to explain cycling of matter and flow of energy among organisms in an ecosystem. Emphasize the movement of matter and energy through the different living organisms in an ecosystem. Examples of models could include food chains, food webs, energy pyramids or pyramids of biomass."
+          },
+          {
+           "code": "BIO.1.3",
+           "text": "Analyze and interpret data to determine the effects of photosynthesis and cellular respiration on the scale and proportion of carbon reservoirs in the carbon cycle. Emphasize the cycling of carbon through the biosphere, atmosphere, hydrosphere, and geosphere and how changes to various reservoirs impact ecosystems. Examples of changes to the scale and proportion of reservoirs could include deforestation, fossil fuel combustion, or ocean uptake of carbon dioxide."
+          },
+          {
+           "code": "BIO.1.4",
+           "text": "Develop an argument from evidence for how ecosystems maintain relatively consistent numbers and types of organisms in stable conditions. Emphasize how changing conditions may result in changes to an ecosystem. Examples of changes in ecosystem conditions could include moderate biological or physical changes such as moderate hunting or a seasonal flood; and extreme changes, such as climate change, volcanic eruption, or sea level rise."
+          },
+          {
+           "code": "BIO.1.5",
+           "text": "Design a solution that reduces the impact caused by human activities on the environment and biodiversity. Define the problem, identify criteria and constraints, develop possible solutions using models, analyze data to make improvements from iteratively testing solutions, and optimize a solution. Examples of human activities could include building dams, pollution, deforestation, or introduction of invasive species."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "structure-and-function-of-life",
+       "title": "Structure And Function Of Life",
+       "subtopics": [
+        {
+         "id": "structure-and-function-of-life-1-of-2",
+         "title": "Structure And Function Of Life (1 of 2)",
+         "outcomes": [
+          {
+           "code": "BIO.2.1",
+           "text": "Construct an explanation based on evidence that all organisms are primarily composed of carbon, hydrogen, oxygen, and nitrogen, and that the matter taken into an organism is broken down and recombined to make macromolecules necessary for life functions. Emphasize that molecules are often transformed through enzymatic processes and the atoms involved are used to make carbohydrates, proteins, fats/lipids, and nucleic acids."
+          },
+          {
+           "code": "BIO.2.2",
+           "text": "Ask questions to plan and carry out an investigation to determine how (a) the structure and function of cells, (b) the proportion and quantity of organelles, and (c) the shape of cells result in cells with specialized functions. Examples could include mitochondria in muscle and nerve cells, chloroplasts in leaf cells, ribosomes in pancreatic cells, or the shape of nerve cells and muscle cells."
+          },
+          {
+           "code": "BIO.2.3",
+           "text": "Develop and use a model to illustrate the cycling of matter and flow of energy through living things by the processes of photosynthesis and cellular respiration. Emphasize how the products of one reaction are the reactants of the other and how the energy transfers in these reactions."
+          },
+          {
+           "code": "BIO.2.4",
+           "text": "Plan and carry out an investigation to determine how cells maintain stability within a range of changing conditions by the transport of materials across the cell membrane. Emphasize that large and small particles can pass through the cell membrane to maintain homeostasis."
+          }
+         ]
+        },
+        {
+         "id": "structure-and-function-of-life-2-of-2",
+         "title": "Structure And Function Of Life (2 of 2)",
+         "outcomes": [
+          {
+           "code": "BIO.2.5",
+           "text": "Construct an explanation about the role of mitosis in the production, growth, and maintenance of systems within complex organisms. Emphasize the major events of the cell cycle including cell growth and DNA replication, separation of chromosomes, and separation of cell contents."
+          },
+          {
+           "code": "BIO.2.6",
+           "text": "Ask questions to develop an argument for how the structure and function of interacting organs and organ systems, that make up multicellular organisms, contribute to homeostasis within the organism. Emphasize the interactions of organs and organ systems with the immune, endocrine, and nervous systems."
+          },
+          {
+           "code": "BIO.2.7",
+           "text": "Plan and carry out an investigation to provide evidence of homeostasis and that feedback mechanisms maintain stability in organisms. Examples of investigations could include heart rate response to changes in activity, stomata response to changes in moisture or temperature, or root development in response to variations in water level."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "genetic-patterns",
+       "title": "Genetic Patterns",
+       "subtopics": [
+        {
+         "id": "genetic-patterns",
+         "title": "Genetic Patterns",
+         "outcomes": [
+          {
+           "code": "BIO.3.1",
+           "text": "Construct an explanation for how the structure of DNA is replicated, and how DNA and RNA code for the structure of proteins which regulate and carry out the essential functions of life and result in specific traits. Emphasize a conceptual understanding that the sequence of nucleotides in DNA determines the amino acid sequence of proteins through the processes of transcription and translation."
+          },
+          {
+           "code": "BIO.3.2",
+           "text": "Use computational thinking and patterns to make predictions about the expression of specific traits that are passed in genes on chromosomes from parents to offspring. Emphasize that various inheritance patterns can be predicted by observing the way genes are expressed. Examples of tools to make predictions could include Punnett squares, pedigrees, or karyotypes. Examples of allele crosses could include dominant/recessive, incomplete dominant, codominant, or sex-linked alleles."
+          },
+          {
+           "code": "BIO.3.3",
+           "text": "Engage in argument from evidence that inheritable genetic variation is caused during the formation of gametes. Emphasize that genetic variation may be caused by epigenetics, during meiosis from new genetic combinations, or viable mutations."
+          },
+          {
+           "code": "BIO.3.4",
+           "text": "Plan and carry out an investigation and use computational thinking to explain the variation and patterns in distribution of the traits expressed in a population. Emphasize the distribution of traits as it relates to both genetic and environmental influences on the expression of those traits. Examples of variation and patterns in distribution of traits could include sickle-cell anemia and malaria, hemoglobin levels in humans at high elevation, or antibiotic resistance."
+          },
+          {
+           "code": "BIO.3.5",
+           "text": "Evaluate design solutions where biotechnology was used to identify and/or modify genes in order to solve (effect) a problem. Define the problem, identify criteria and constraints, analyze available data on proposed solutions, and determine an optimal solution. Emphasize arguments that focus on how effective the solution was at meeting the desired outcome."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "evolutionary-change",
+       "title": "Evolutionary Change",
+       "subtopics": [
+        {
+         "id": "evolutionary-change",
+         "title": "Evolutionary Change",
+         "outcomes": [
+          {
+           "code": "BIO.4.1",
+           "text": "Obtain, evaluate, and communicate information to identify the patterns in the evidence that support biological evolution. Examples of evidence could include DNA sequences, amino acid sequences, anatomical structures, the fossil record, or order of appearance of structures during embryological development."
+          },
+          {
+           "code": "BIO.4.2",
+           "text": "Construct an explanation based on evidence that natural selection is a primary cause of evolution. Emphasize that natural selection is primarily caused by the potential for a species to increase in number, the heritable genetic variation of individuals in a species due to mutation and sexual reproduction, competition for limited resources, and the proliferation of those organisms that are better able to survive and reproduce in the environment."
+          },
+          {
+           "code": "BIO.4.3",
+           "text": "Analyze and interpret data to identify patterns that explain the claim that organisms with an advantageous heritable trait tend to increase in proportion to organisms lacking this trait. Emphasize analyzing shifts in the numerical distribution of traits and using these shifts as evidence to support explanations."
+          },
+          {
+           "code": "BIO.4.4",
+           "text": "Engage in argument from evidence that changes in environmental conditions may cause increases in the number of individuals of some species, the emergence of new species over time, and/or the extinction of other species. Emphasize the cause and effect relationships for how changes and the rate of change to the environment affect distribution or disappearance of traits in a species. Examples of changes in environmental conditions could include deforestation, application of fertilizers, drought, or flood."
+          },
+          {
+           "code": "BIO.4.5",
+           "text": "Evaluate design solutions that can best solve a real-world problem caused by natural selection and adaptation of populations. Define the problem, identify criteria and constraints, analyze available data on proposed solutions, and determine an optimal solution. Examples of real-world problems could include bacterial resistance to drugs, plant resistance to herbicides, or the effect of changes in climate on food sources and pollinators."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "chemistry",
+     "title": "Chemistry",
+     "topics": [
+      {
+       "id": "the-structure-and-properties-of-atoms",
+       "title": "The Structure And Properties Of Atoms",
+       "subtopics": [
+        {
+         "id": "the-structure-and-properties-of-atoms",
+         "title": "The Structure And Properties Of Atoms",
+         "outcomes": [
+          {
+           "code": "CHEM.1.1",
+           "text": "Obtain, evaluate, and communicate information regarding the structure of the atom on the basis of experimental evidence. Emphasize the relationship between proton number and element identity, isotopes, and electrons in atoms. Examples of experimental evidence could include the gold foil experiment, cathode ray tube, or atomic spectrum data."
+          },
+          {
+           "code": "CHEM.1.2",
+           "text": "Analyze and interpret data to identify patterns in the stability of isotopes and predict likely modes of radioactive decay. Emphasize that different isotopes of the same element decay by different modes and at different rates depending on their nuclear stability. Examples of data could include band of stability charts, mass or nuclear binding energy per nucleon, or the inverse relationship between half-life and nuclear stability."
+          },
+          {
+           "code": "CHEM.1.3",
+           "text": "Use mathematics and computational thinking to relate the rates of change in quantities of radioactive isotopes through radioactive decay (alpha, beta, and positron) to ages of materials or persistence in the environment. Emphasize a conceptual understanding of half-life. Examples could include radiocarbon dating, nuclear waste management, or nuclear medicine."
+          },
+          {
+           "code": "CHEM.1.4",
+           "text": "Construct an explanation about how fusion can form new elements with greater or lesser nuclear stability. Emphasize the nuclear binding energy, with the conceptual understanding that when fusion of elements results in a more stable nucleus, large quantities of energy are released, and when fusion results in a less stable nucleus, large quantities of energy are required. Examples could include the building up of elements in the universe starting with hydrogen to form heavier elements, the composition of stars, or supernovae producing heavy elements."
+          },
+          {
+           "code": "CHEM.1.5",
+           "text": "Use the periodic table as a model to predict the relative properties of elements based on the patterns of electrons in the outermost energy level of atoms. Emphasize conceptual understanding of trends and patterns. Examples could include trends in ionization energy, atomic radius, or electronegativity. Examples of properties for main group elements could include general reactivity, bonding type, or ion formation."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "the-structure-and-properties-of-molecules",
+       "title": "The Structure And Properties Of Molecules",
+       "subtopics": [
+        {
+         "id": "the-structure-and-properties-of-molecules",
+         "title": "The Structure And Properties Of Molecules",
+         "outcomes": [
+          {
+           "code": "CHEM.2.1",
+           "text": "Analyze data to predict the type of bonding most likely to occur between two elements using the patterns of reactivity on the periodic table. Emphasize the types and strengths of attractions between charged particles in ionic, covalent, and metallic bonds. Examples could include the attraction between electrons on one atom and the nucleus of another atom in a covalent bond or between ions in an ionic compound."
+          },
+          {
+           "code": "CHEM.2.2",
+           "text": "Plan and carry out an investigation to compare the properties of substances at the bulk scale and relate them to molecular structures. Emphasize using models to explain or describe the strength of electrical forces between particles. Examples of models could include Lewis dot structures or ball and stick models. Examples of particles could include ions, atoms, molecules, or networked materials (such as graphite). Examples of properties could include melting point and boiling point, vapor pressure, solubility, or surface tension."
+          },
+          {
+           "code": "CHEM.2.3",
+           "text": "Engage in argument supported by evidence that the functions of natural and designed macromolecules are related to their chemical structures. Emphasize the roles of attractive forces between and within molecules. Examples could include non-covalent interactions between base pairs in DNA allowing it to be unzipped for replication, the network of atoms in a diamond conferring hardness, or the nonpolar nature of polyester (PET) making it quick-drying."
+          },
+          {
+           "code": "CHEM.2.4",
+           "text": "Evaluate design solutions where synthetic chemistry was used to solve a problem (cause and effect). Define the problem, identify criteria and constraints, analyze available data on proposed solutions, and determine an optimal solution. Emphasize the design of materials to control their properties through chemistry. Examples could include pharmaceuticals that target active sites, teflon to reduce friction on surfaces, or nanoparticles of zinc oxide to create transparent sunscreen."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "stability-and-change-in-chemical-systems",
+       "title": "Stability And Change In Chemical Systems",
+       "subtopics": [
+        {
+         "id": "stability-and-change-in-chemical-systems-1-of-2",
+         "title": "Stability And Change In Chemical Systems (1 of 2)",
+         "outcomes": [
+          {
+           "code": "CHEM.3.1",
+           "text": "Use mathematics and computational thinking to analyze the distribution and proportion of particles in solution. Emphasize proportional reasoning and the impact of concentration on solution properties, rather than algorithmic calculations. Examples of concentrations affecting solutions could include the Beer-Lambert Law, colligative properties, or pH."
+          },
+          {
+           "code": "CHEM.3.2",
+           "text": "Analyze data to identify patterns that assist in making predictions of the outcomes of simple chemical reactions. Emphasize patterns based on the outermost electrons of atoms, trends in the periodic table, and knowledge of chemical properties. Examples could include reactions between main group elements, combustion reactions, or reactions between Arrhenius acids and bases."
+          },
+          {
+           "code": "CHEM.3.3",
+           "text": "Plan and carry out an investigation to observe the change in properties of substances in a chemical reaction to relate the macroscopically observed properties to the molecular level changes in bonds and the symbolic notation used in chemistry. Emphasize that the visible macroscopic changes in chemical reactions are a result of changes on the molecular level. Examples of observable properties could include changes in color or the production of a solid or gaseous product."
+          },
+          {
+           "code": "CHEM.3.4",
+           "text": "Use mathematics and computational thinking to support the observation that matter is conserved during chemical reactions and matter cycles. Emphasize that chemical reactions occur on both small and global scales, and that matter is always conserved. Examples of small scale reactions could include ratios of reactants and products in a single chemical reaction or simple stoichiometric calculation. Examples of global scale matter cycles could include tracing carbon through the chemical reactions of photosynthesis, combustion, or respiration."
+          }
+         ]
+        },
+        {
+         "id": "stability-and-change-in-chemical-systems-2-of-2",
+         "title": "Stability And Change In Chemical Systems (2 of 2)",
+         "outcomes": [
+          {
+           "code": "CHEM.3.5",
+           "text": "Develop solutions related to the management, conservation, and utilization of mineral resources (matter). Define the problem, identify criteria and constraints, develop possible solutions using models, analyze data to make improvements from iteratively testing solutions, and optimize a solution. Emphasize the conservation of matter and minerals as a limited resource. Examples of Utah mineral resources could include copper, uranium, potash, coal, oil, or natural gas. Examples of constraints could include cost, safety, reliability, or possible social, cultural, and environmental impacts."
+          },
+          {
+           "code": "CHEM.3.6",
+           "text": "Construct an explanation using experimental evidence for how reaction conditions affect the rate of change of a reaction. Emphasize collision theory as an explanatory principle. Examples of reaction conditions could include temperature, concentration, particle size, or presence of a catalyst."
+          },
+          {
+           "code": "CHEM.3.7",
+           "text": "Design a solution that would refine a chemical system by specifying a change in conditions that would produce increased or decreased amounts of a product at equilibrium. Define the problem, identify criteria and constraints, develop possible solutions using models, analyze data to make improvements from iteratively testing solutions, and optimize a solution. Emphasize a qualitative understanding of Le Châtelier's Principle and connections between macroscopic and molecular level changes."
+          },
+          {
+           "code": "CHEM.3.8",
+           "text": "Obtain, evaluate, and communicate information regarding the effects of designed chemicals in a complex real-world system. Emphasize the role of chemistry in solving problems, while acknowledging unintended consequences. Examples could include ozone depletion and restoration, DDT, development of medicines, the preservation of historical artifacts, or use of bisphenol-A in plastic manufacturing."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "energy-in-chemical-systems",
+       "title": "Energy In Chemical Systems",
+       "subtopics": [
+        {
+         "id": "energy-in-chemical-systems",
+         "title": "Energy In Chemical Systems",
+         "outcomes": [
+          {
+           "code": "CHEM.4.1",
+           "text": "Construct an argument from evidence about whether a simple chemical reaction absorbs or releases energy. Emphasize that the overall change in energy is related to the energy absorbed when bonds are broken and the energy released when bonds are formed. Examples could include chemical reactions releasing or absorbing energy to or from the surrounding solution or the metabolism of glucose."
+          },
+          {
+           "code": "CHEM.4.2",
+           "text": "Construct an explanation of the effects that different frequencies of electromagnetic radiation have when absorbed by matter. Emphasize a qualitative understanding. Examples could include that low energy electromagnetic radiation can increase molecular rotation and bond vibration, visible light can cause electronic transitions, and high energy electromagnetic radiation can result in ionization and bond breaking."
+          },
+          {
+           "code": "CHEM.4.3",
+           "text": "Design a device that converts energy from one form into another to solve a problem. Define the problem, identify criteria and constraints, develop possible solutions using models, analyze data to make improvements from iteratively testing solutions, and optimize a solution. Emphasize chemical potential energy as a type of stored energy. Examples of sources of chemical potential energy could include oxidation-reduction or combustion reactions."
+          },
+          {
+           "code": "CHEM.4.4",
+           "text": "Use models to describe the changes in the composition of the nucleus of the atom during nuclear processes, and compare the energy released during nuclear processes to the energy released during chemical processes. Emphasize a qualitative understanding of nuclear changes. Examples of nuclear processes could include the formation of elements through fusion in stars, generation of electricity in a nuclear power plant, radioactive decay, or the use of radioisotopes in nuclear medicine."
+          },
+          {
+           "code": "CHEM.4.5",
+           "text": "Develop an argument from evidence to evaluate a proposed solution to societal energy demands based on prioritized criteria and trade-offs that account for a range of constraints that could include cost, safety, reliability, as well as possible social, cultural, and environmental impacts."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "earth-and-space-science",
+     "title": "Earth and Space Science",
+     "topics": [
+      {
+       "id": "matter-and-energy-in-space",
+       "title": "Matter And Energy In Space",
+       "subtopics": [
+        {
+         "id": "matter-and-energy-in-space",
+         "title": "Matter And Energy In Space",
+         "outcomes": [
+          {
+           "code": "ESS.1.1",
+           "text": "Develop a model based on evidence to illustrate the life span of the Sun and the role of nuclear fusion releasing energy in the Sun's core. Emphasize energy transfer mechanisms that allow energy from nuclear fusion to reach Earth. Examples of evidence for the model could include observations of the masses and lifetimes of other stars, or non-cyclic variations over centuries."
+          },
+          {
+           "code": "ESS.1.2",
+           "text": "Construct an explanation of the Big Bang theory based on astronomical evidence of electromagnetic radiation, motion of distant galaxies, and composition of matter in the universe. Emphasize redshift of electromagnetic radiation, cosmic microwave background radiation, and the observed composition and distribution of matter in the universe."
+          },
+          {
+           "code": "ESS.1.3",
+           "text": "Develop a model to illustrate the changes in matter occurring in a star's life cycle. Emphasize that the way different elements are created varies as a function of the mass of a star and the stage of its lifetime."
+          },
+          {
+           "code": "ESS.1.4",
+           "text": "Design a solution to a space exploration challenge by breaking it down into smaller, more manageable problems that can be solved through the structure and function of a device. Define the problem, identify criteria and constraints, develop possible solutions using models, analyze data to make improvements from iteratively testing solutions, and optimize a solution. Examples of problems could include, cosmic radiation exposure, transportation on other planets or moons, or supplying energy to space travelers."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "patterns-in-earth-s-history-and-processes",
+       "title": "Patterns In Earth's History And Processes",
+       "subtopics": [
+        {
+         "id": "patterns-in-earth-s-history-and-processes",
+         "title": "Patterns In Earth's History And Processes",
+         "outcomes": [
+          {
+           "code": "ESS.2.1",
+           "text": "Analyze and interpret data to construct an explanation for the changes in Earth's formation and 4.6 billion year history. Examples of data could include the absolute ages of ancient Earth materials, the size and composition of solar system objects like meteorites, or the impact cratering record of planetary surfaces."
+          },
+          {
+           "code": "ESS.2.2",
+           "text": "Develop and use a model based on evidence of Earth's interior and describe the cycling of matter by thermal convection. Emphasize the density of Earth's layers and mantle convection driven by radioactive decay and heat from Earth's early formation. Examples of evidence could include maps of Earth's three-dimensional structure obtained from seismic waves or records of the rate of change of Earth's magnetic field."
+          },
+          {
+           "code": "ESS.2.3",
+           "text": "Construct an explanation for how plate tectonics results in patterns on Earth's surface. Emphasize past and current plate motions. Examples could include continental and ocean floor features such as mountain ranges and mid-ocean ridges, magnetic polarity preserved in seafloor rocks, or regional hot spots."
+          },
+          {
+           "code": "ESS.2.4",
+           "text": "Develop and use a model to illustrate how Earth's internal and surface processes operate at different spatial and temporal scales. Emphasize how the appearance of land and seafloor features are a result of both constructive forces and destructive mechanisms. Examples of constructive forces could include tectonic uplift or mountain building. Examples of destructive mechanisms could include weathering or mass wasting."
+          },
+          {
+           "code": "ESS.2.5",
+           "text": "Engage in argument from evidence for how the simultaneous coevolution of Earth's systems and life on Earth led to periods of stability and change over geologic time. Examples could include how microbial life on land increased the formation of soil, which in turn allowed for the evolution of land plants or how the evolution of corals created reefs that altered patterns of coastal erosion and deposition providing habitats for the evolution of new life forms."
+          },
+          {
+           "code": "ESS.2.6",
+           "text": "Evaluate design solutions that reduce the effects of natural disasters on humans. Define the problem, identify criteria and constraints, analyze available data on proposed solutions, and determine an optimal solution. Examples of natural disasters could include earthquakes, tsunamis, hurricanes, drought, landslides, floods, or wildfires."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "system-interactions-atmosphere-hydrosphere-and-g",
+       "title": "System Interactions: Atmosphere, Hydrosphere, And Geosphere",
+       "subtopics": [
+        {
+         "id": "system-interactions-atmosphere-hydrosphere-and-g",
+         "title": "System Interactions: Atmosphere, Hydrosphere, And Geosphere (1 of 2)",
+         "outcomes": [
+          {
+           "code": "ESS.3.1",
+           "text": "Plan and carry out an investigation of the properties of water and its effects on Earth materials and surface processes. Examples of properties could include water's capacity to expand upon freezing, dissolve and transport material, or absorb, store, and release energy."
+          },
+          {
+           "code": "ESS.3.2",
+           "text": "Construct an explanation of how heat (energy) and water (matter) move throughout the oceans causing patterns in weather and climate. Emphasize the mechanisms for surface and deep ocean movement. Examples of mechanisms for surface movement could include wind, Sun's energy, or the Coriolis effect. Examples of mechanisms for deep ocean movement could include water density differences due to temperature or salinity."
+          },
+          {
+           "code": "ESS.3.3",
+           "text": "Construct an explanation for how energy from the Sun drives atmospheric processes and how atmospheric currents transport matter and transfer energy. Emphasize how energy from the Sun is reflected, absorbed, or scattered; how the greenhouse effect contributes to atmospheric energy; and how uneven heating of Earth's atmosphere combined with the Coriolis effect creates an atmospheric circulation system."
+          },
+          {
+           "code": "ESS.3.4",
+           "text": "Analyze and interpret patterns in data about the factors influencing weather of a given location. Emphasize the amount of solar energy received due to latitude, elevation, the proximity to mountains and/ or large bodies of water, air mass formation and movement, and air pressure gradients."
+          }
+         ]
+        },
+        {
+         "id": "system-interactions-atmosphere-hydrosphere-and-g-2",
+         "title": "System Interactions: Atmosphere, Hydrosphere, And Geosphere (2 of 2)",
+         "outcomes": [
+          {
+           "code": "ESS.3.5",
+           "text": "Develop and use a quantitative model to describe the cycling of carbon among Earth's systems. Emphasize each of Earth's systems (hydrosphere, atmosphere, geosphere, and biosphere) and how the movement of carbon from one system to another can result in changes to the system(s). Examples could include more carbon absorbed in the oceans leading to ocean acidification or more carbon present in the atmosphere leading to a stronger greenhouse effect."
+          },
+          {
+           "code": "ESS.3.6",
+           "text": "Analyze and interpret data from global climate records to illustrate changes to Earth's systems throughout geologic time and make predictions about future variations using modern trends. Examples of data could include average sea surface temperature, average air temperature, composition of gasses in ice cores, or tree rings."
+          },
+          {
+           "code": "ESS.3.7",
+           "text": "Engage in argument from evidence to support the claim that one change to Earth's surface can create climate feedback loops that cause changes to other systems. Examples of climate feedbacks could include ice-albedo or warming oceans."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "stability-and-change-in-natural-resources",
+       "title": "Stability And Change In Natural Resources",
+       "subtopics": [
+        {
+         "id": "stability-and-change-in-natural-resources",
+         "title": "Stability And Change In Natural Resources",
+         "outcomes": [
+          {
+           "code": "ESS.4.1",
+           "text": "Construct an explanation for how the availability of natural resources, the occurrence of natural hazards, and changes in climate affect human activity. Examples of natural resources could include access to fresh water, clean air, or regions of fertile soils. Examples of factors that affect human activity could include that rising sea levels cause humans to move farther from the coast or that humans build railroads to transport mineral resources from one location to another."
+          },
+          {
+           "code": "ESS.4.2",
+           "text": "Use computational thinking to explain the relationships between the sustainability of natural resources and biodiversity within Earth systems. Emphasize the importance of responsible stewardship of Earth's resources. Examples of factors related to sustainability could include costs of resource extraction, per-capita consumption, waste management, agricultural efficiency, or levels of conservation. Examples of natural resources could include minerals, water, or energy resources."
+          },
+          {
+           "code": "ESS.4.3",
+           "text": "Evaluate design solutions for developing, managing, and utilizing energy and mineral resources based on cost-benefit ratios on large and small scales. Define the problem, identify criteria and constraints, analyze available data on proposed solutions, and determine an optimal solution. Emphasize the conservation, recycling, and reuse of resources where possible and minimizing impact where it is not possible. Examples of large-scale solutions could include developing best practices for agricultural soil use or mining and production of conventional, unconventional, or renewable energy resources. Examples of small scale solutions could include mulching lawn clippings or adding biomass to gardens."
+          },
+          {
+           "code": "ESS.4.4",
+           "text": "Evaluate design solutions for a major global or local environmental problem based on one of Earth's systems. Define the problem, identify criteria and constraints, analyze available data on proposed solutions, and determine an optimal solution. Examples of major global or local problems could include water pollution or availability, air pollution, deforestation, or energy production."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "physics",
+     "title": "Physics",
+     "topics": [
+      {
+       "id": "forces-and-interactions",
+       "title": "Forces And Interactions",
+       "subtopics": [
+        {
+         "id": "forces-and-interactions",
+         "title": "Forces And Interactions",
+         "outcomes": [
+          {
+           "code": "PHYS.1.1",
+           "text": "Analyze and interpret data to determine the cause and effect relationship between the net force on an object and its change in motion as summarized by Newton's Second Law of Motion. Emphasize one-dimensional motion and macroscopic objects moving at non-relativistic speeds. Examples could include objects subject to a net unbalanced force, such as a falling object, an object sliding down a ramp, or a moving object being pulled by a constant force."
+          },
+          {
+           "code": "PHYS.1.2",
+           "text": "Use mathematics and computational thinking to support the claim that the total momentum of a system is conserved when there is no net force acting on the system. Emphasize the quantitative conservation of momentum in interactions and the qualitative meaning of this principle. Examples could include one-dimensional elastic or inelastic collisions between objects within the system."
+          },
+          {
+           "code": "PHYS.1.3",
+           "text": "Design a solution that has the function of minimizing the impact force on an object during a collision. Define the problem, identify criteria and constraints, develop possible solutions using models, analyze data to make improvements from iteratively testing solutions, and optimize a solution. Emphasize problems that require application of Newton's Second Law of Motion or conservation of momentum."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "energy",
+       "title": "Energy",
+       "subtopics": [
+        {
+         "id": "energy",
+         "title": "Energy",
+         "outcomes": [
+          {
+           "code": "PHYS.2.1",
+           "text": "Analyze and interpret data to track and calculate the transfer of energy within a system. Emphasize the identification of the components of the system, along with their initial and final energies, and mathematical descriptions to depict energy transfer in the system. Examples of energy transfer could include the transfer of energy during a collision or heat transfer."
+          },
+          {
+           "code": "PHYS.2.2",
+           "text": "Plan and conduct an investigation to provide evidence that the transfer of thermal energy when two components of different temperature are combined within a closed system results in a more uniform energy distribution among the components in the system. Emphasize that uniform distribution of energy is a natural tendency. Examples could include the measurement of the reduction of temperature of a hot object or the increase in temperature of a cold object."
+          },
+          {
+           "code": "PHYS.2.3",
+           "text": "Develop and use models on the macroscopic scale to illustrate that energy can be accounted for as a combination of energies associated with the motion of objects and energy associated with the relative positions of objects. Emphasize relationships between components of the model to show that energy is conserved. Examples could include mechanical systems where kinetic energy is transformed to potential energy or vice versa."
+          },
+          {
+           "code": "PHYS.2.4",
+           "text": "Design a solution by constructing a device that converts one form of energy into another form of energy to solve a complex real-life problem. Define the problem, identify criteria and constraints, develop possible solutions using models, analyze data to make improvements from iteratively testing solutions, and optimize a solution. Examples of energy transformation could include electrical energy to mechanical energy, mechanical energy to electrical energy, or electromagnetic radiation to thermal energy."
+          },
+          {
+           "code": "PHYS 2.5",
+           "text": "Design a solution to a major global problem that accounts for societal energy needs and wants. Define the problem, identify criteria and constraints, develop possible solutions using models, analyze data to make improvements from iteratively testing solutions, and optimize a solution. Emphasize problems that require the application of conservation of energy principles through energy transfers and transformations. Examples of devices could include one that uses renewable energy resources to perform functions currently performed by nonrenewable fuels or ones that are more energy efficient to conserve energy."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "fields",
+       "title": "Fields",
+       "subtopics": [
+        {
+         "id": "fields",
+         "title": "Fields",
+         "outcomes": [
+          {
+           "code": "PHYS.3.1",
+           "text": "Use mathematics and computational thinking to compare the scale and proportion of gravitational and electric fields using Newton's Law of Gravitation and Coulomb's Law. Emphasize the comparative strength of these two field forces, the effect of distance between interacting objects on the magnitudes of these forces, and the use of models to understand field forces."
+          },
+          {
+           "code": "PHYS.3.2",
+           "text": "Plan and conduct an investigation to provide evidence that an electric current causes a magnetic field and that a changing magnetic field causes an electric current. Emphasize the qualitative relationship between electricity and magnetism without necessarily conducting quantitative analysis. Examples could include electromagnets or generators."
+          },
+          {
+           "code": "PHYS.3.3",
+           "text": "Analyze and interpret data to compare the effect of changes in position of interacting objects on electric and gravitational forces and energy. Emphasize the similarities and differences between charged particles in electric fields and masses in gravitational fields. Examples could include models, simulations, or experiments that produce data or illustrate field lines between objects."
+          },
+          {
+           "code": "PHYS.3.4",
+           "text": "Develop and use a model to evaluate the effects on a field as characteristics of its source and surrounding space are varied. Emphasize how a field changes with distance from its source. Examples of electric fields could include those resulting from point charges. Examples of magnetic fields could include those resulting from dipole magnets or current-bearing wire."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "waves",
+       "title": "Waves",
+       "subtopics": [
+        {
+         "id": "waves",
+         "title": "Waves",
+         "outcomes": [
+          {
+           "code": "PHYS.4.1",
+           "text": "Analyze and interpret data to derive both qualitative and quantitative relationships based on patterns observed in frequency, wavelength, and speed of waves traveling in various media. Emphasize mathematical relationships and qualitative descriptions. Examples of data could include electromagnetic radiation traveling in a vacuum or glass, sound waves traveling through air or water, or seismic waves traveling through Earth."
+          },
+          {
+           "code": "PHYS.4.2",
+           "text": "Engage in argument based on evidence that electromagnetic radiation can be described either by a wave model or a particle model, and that for some situations one model better explains interactions within a system than the other. Emphasize how the experimental evidence supports the claim and how models and explanations are modified in light of new evidence. Examples could include resonance, interference, diffraction, or the photoelectric effect."
+          },
+          {
+           "code": "PHYS.4.3",
+           "text": "Evaluate information about the effects that different frequencies of electromagnetic radiation have when absorbed by biological materials. Emphasize that the energy of electromagnetic radiation is directly proportional to frequency and that the potential damage to living tissue from electromagnetic radiation depends on the energy of the radiation."
+          },
+          {
+           "code": "PHYS.4.4",
+           "text": "Ask questions and construct an explanation about the stability of digital transmission and storage of information and their impacts on society. Emphasize the stability of digital signals and the discrete nature of information transmission. Examples of stability and instability could include that digital information can be stored in computer memory, is transferred easily, copied and shared rapidly can be easily deleted, has limited fidelity based on sampling rates, or is vulnerable to security breaches and theft."
+          },
+          {
+           "code": "PHYS.4.5",
+           "text": "Obtain, evaluate, and communicate information about how devices use the principles of electromagnetic radiation and their interactions with matter to transmit and capture information and energy. Emphasize the ways in which devices leverage the wave particle duality of electromagnetic radiation. Examples could include solar cells, medical imaging devices, or communication technologies."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "build": {
+  "builtAt": "2026-10-14T16:20:50.058Z",
+  "model": "none",
+  "usd": 0,
+  "expectedCodes": 202,
+  "coverage": 1,
+  "missingCodes": [],
+  "counts": {
+   "grades": 9,
+   "units": 36,
+   "topics": 48,
+   "subtopics": 52,
+   "outcomes": 212
+  },
+  "warnings": []
+ }
+}

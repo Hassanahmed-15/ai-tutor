@@ -1,0 +1,3144 @@
+{
+ "id": "uk-oak-computing-secondary-aqa",
+ "region": "UK",
+ "framework": "Oak National Academy curriculum",
+ "board": "Oak National Academy",
+ "qualification": "Secondary",
+ "subject": "Computing (AQA GCSE route)",
+ "syllabusCode": null,
+ "gradeSystem": "year",
+ "source": {
+  "urls": [
+   "https://www.thenational.academy/teachers/programmes/computing-secondary-aqa/units",
+   "https://open-api.thenational.academy/api/v0/sequences/computing-secondary-aqa/units"
+  ],
+  "publisher": "Oak National Academy",
+  "licence": "Contains Oak National Academy content licensed under the Open Government Licence v3.0",
+  "firstExam": null
+ },
+ "grades": [
+  {
+   "grade": "Year 7",
+   "units": [
+    {
+     "id": "creating-media",
+     "title": "Creating media",
+     "topics": [
+      {
+       "id": "clear-messaging-in-digital-media",
+       "title": "Clear messaging in digital media",
+       "subtopics": [
+        {
+         "id": "features-of-a-poster",
+         "title": "Features of a poster",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Features of a poster"
+          }
+         ]
+        },
+        {
+         "id": "poster-planning",
+         "title": "Poster planning",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Poster planning"
+          }
+         ]
+        },
+        {
+         "id": "poster-making",
+         "title": "Poster making",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Poster making"
+          }
+         ]
+        },
+        {
+         "id": "creating-a-slide-deck-template",
+         "title": "Creating a slide deck template",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Creating a slide deck template"
+          }
+         ]
+        },
+        {
+         "id": "creating-a-slide-deck",
+         "title": "Creating a slide deck",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Creating a slide deck"
+          }
+         ]
+        },
+        {
+         "id": "reviewing-a-digital-product",
+         "title": "Reviewing a digital product",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Reviewing a digital product"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "using-media-to-gain-support-for-a-cause",
+       "title": "Using media to gain support for a cause",
+       "subtopics": [
+        {
+         "id": "features-of-a-blog",
+         "title": "Features of a blog",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Features of a blog"
+          }
+         ]
+        },
+        {
+         "id": "using-images-appropriately",
+         "title": "Using images appropriately",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Using images appropriately"
+          }
+         ]
+        },
+        {
+         "id": "the-credibility-of-sources",
+         "title": "The credibility of sources",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "The credibility of sources"
+          }
+         ]
+        },
+        {
+         "id": "research-and-planning-a-blog",
+         "title": "Research and planning a blog",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Research and planning a blog"
+          }
+         ]
+        },
+        {
+         "id": "promoting-a-cause",
+         "title": "Promoting a cause",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Promoting a cause"
+          }
+         ]
+        },
+        {
+         "id": "use-criteria-to-develop-a-blog",
+         "title": "Use criteria to develop a blog",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Use criteria to develop a blog"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "networks",
+     "title": "Networks",
+     "topics": [
+      {
+       "id": "computer-networks-and-data-transmission",
+       "title": "Computer networks and data transmission",
+       "subtopics": [
+        {
+         "id": "an-introduction-to-computer-networks",
+         "title": "An introduction to computer networks",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "An introduction to computer networks"
+          }
+         ]
+        },
+        {
+         "id": "protocols-and-ip-addresses",
+         "title": "Protocols and IP addresses",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Protocols and IP addresses"
+          }
+         ]
+        },
+        {
+         "id": "wired-and-wireless-networks",
+         "title": "Wired and wireless networks",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Wired and wireless networks"
+          }
+         ]
+        },
+        {
+         "id": "the-internet",
+         "title": "The internet",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "The internet"
+          }
+         ]
+        },
+        {
+         "id": "exploring-the-world-wide-web-www",
+         "title": "Exploring the World Wide Web (WWW)",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Exploring the World Wide Web (WWW)"
+          }
+         ]
+        },
+        {
+         "id": "internet-of-things",
+         "title": "Internet of Things",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Internet of Things"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "algorithms-and-data-structures",
+     "title": "Algorithms and data structures",
+     "topics": [
+      {
+       "id": "using-fundamental-programming-constructs-in-a-bl",
+       "title": "Using fundamental programming constructs in a block-based language",
+       "subtopics": [
+        {
+         "id": "sequence",
+         "title": "Sequence",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Sequence"
+          }
+         ]
+        },
+        {
+         "id": "program-variables",
+         "title": "Program variables",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Program variables"
+          }
+         ]
+        },
+        {
+         "id": "selection",
+         "title": "Selection",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Selection"
+          }
+         ]
+        },
+        {
+         "id": "operators",
+         "title": "Operators",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Operators"
+          }
+         ]
+        },
+        {
+         "id": "count-controlled-iteration",
+         "title": "Count-controlled iteration",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Count-controlled iteration"
+          }
+         ]
+        },
+        {
+         "id": "problem-solving-using-programming-constructs",
+         "title": "Problem solving using programming constructs",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Problem solving using programming constructs"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "physical-computing-using-the-micro-bit",
+       "title": "Physical computing using the micro:bit",
+       "subtopics": [
+        {
+         "id": "creating-programs-on-a-physical-computing-device",
+         "title": "Creating programs on a physical computing device",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Creating programs on a physical computing device"
+          }
+         ]
+        },
+        {
+         "id": "using-input-and-output",
+         "title": "Using input and output",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Using input and output"
+          }
+         ]
+        },
+        {
+         "id": "connecting-micro-bits-to-other-hardware",
+         "title": "Connecting micro:bits to other hardware",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Connecting micro:bits to other hardware"
+          }
+         ]
+        },
+        {
+         "id": "designing-a-physical-computing-project",
+         "title": "Designing a physical computing project",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Designing a physical computing project"
+          }
+         ]
+        },
+        {
+         "id": "developing-a-physical-computing-project",
+         "title": "Developing a physical computing project",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Developing a physical computing project"
+          }
+         ]
+        },
+        {
+         "id": "reflecting-on-a-physical-computing-project",
+         "title": "Reflecting on a physical computing project",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Reflecting on a physical computing project"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "data-and-information",
+     "title": "Data and information",
+     "topics": [
+      {
+       "id": "data-modelling",
+       "title": "Data modelling",
+       "subtopics": [
+        {
+         "id": "formatting-data-in-a-spreadsheet",
+         "title": "Formatting data in a spreadsheet",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Formatting data in a spreadsheet"
+          }
+         ]
+        },
+        {
+         "id": "spreadsheet-calculations",
+         "title": "Spreadsheet calculations",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Spreadsheet calculations"
+          }
+         ]
+        },
+        {
+         "id": "collecting-data-for-a-purpose",
+         "title": "Collecting data for a purpose",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Collecting data for a purpose"
+          }
+         ]
+        },
+        {
+         "id": "analysing-and-visualising-data",
+         "title": "Analysing and visualising data",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Analysing and visualising data"
+          }
+         ]
+        },
+        {
+         "id": "sorting-and-searching-data",
+         "title": "Sorting and searching data",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Sorting and searching data"
+          }
+         ]
+        },
+        {
+         "id": "applying-conditional-formatting-to-data",
+         "title": "Applying conditional formatting to data",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Applying conditional formatting to data"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "Year 8",
+   "units": [
+    {
+     "id": "creating-media",
+     "title": "Creating media",
+     "topics": [
+      {
+       "id": "developing-vector-graphics",
+       "title": "Developing vector graphics",
+       "subtopics": [
+        {
+         "id": "using-vector-tools-to-draw-and-modify-shapes",
+         "title": "Using vector tools to draw and modify shapes",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Using vector tools to draw and modify shapes"
+          }
+         ]
+        },
+        {
+         "id": "working-with-multiple-objects",
+         "title": "Working with multiple objects",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Working with multiple objects"
+          }
+         ]
+        },
+        {
+         "id": "vector-paths",
+         "title": "Vector paths",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Vector paths"
+          }
+         ]
+        },
+        {
+         "id": "developing-a-vector-product",
+         "title": "Developing a vector product",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Developing a vector product"
+          }
+         ]
+        },
+        {
+         "id": "vector-markup",
+         "title": "Vector markup",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Vector markup"
+          }
+         ]
+        },
+        {
+         "id": "comparing-bitmap-and-vector-graphics",
+         "title": "Comparing bitmap and vector graphics",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Comparing bitmap and vector graphics"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "developing-for-the-web",
+       "title": "Developing for the Web",
+       "subtopics": [
+        {
+         "id": "website-building-blocks",
+         "title": "Website building blocks",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Website building blocks"
+          }
+         ]
+        },
+        {
+         "id": "adding-images-to-a-web-page",
+         "title": "Adding images to a web page",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Adding images to a web page"
+          }
+         ]
+        },
+        {
+         "id": "introduction-to-css",
+         "title": "Introduction to CSS",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Introduction to CSS"
+          }
+         ]
+        },
+        {
+         "id": "search-engines-and-results-rankings",
+         "title": "Search engines and results rankings",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Search engines and results rankings"
+          }
+         ]
+        },
+        {
+         "id": "using-search-and-web-navigation-effectively",
+         "title": "Using search and web navigation effectively",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Using search and web navigation effectively"
+          }
+         ]
+        },
+        {
+         "id": "creating-a-custom-website",
+         "title": "Creating a custom website",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Creating a custom website"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "artificial-intelligence",
+     "title": "Artificial intelligence",
+     "topics": [
+      {
+       "id": "computer-systems-and-data-science",
+       "title": "Computer systems and data science",
+       "subtopics": [
+        {
+         "id": "traditional-computer-systems",
+         "title": "Traditional computer systems",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Traditional computer systems"
+          }
+         ]
+        },
+        {
+         "id": "computer-architecture",
+         "title": "Computer architecture",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Computer architecture"
+          }
+         ]
+        },
+        {
+         "id": "the-operating-system",
+         "title": "The operating system",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "The operating system"
+          }
+         ]
+        },
+        {
+         "id": "boolean-logic",
+         "title": "Boolean logic",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Boolean logic"
+          }
+         ]
+        },
+        {
+         "id": "data-science",
+         "title": "Data science",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Data science"
+          }
+         ]
+        },
+        {
+         "id": "machine-learning-and-artificial-intelligence",
+         "title": "Machine learning and artificial intelligence",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Machine learning and artificial intelligence"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "data-and-information",
+     "title": "Data and information",
+     "topics": [
+      {
+       "id": "data-representation-text-and-numbers",
+       "title": "Data representation: text and numbers",
+       "subtopics": [
+        {
+         "id": "representing-information",
+         "title": "Representing information",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Representing information"
+          }
+         ]
+        },
+        {
+         "id": "representing-characters",
+         "title": "Representing characters",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Representing characters"
+          }
+         ]
+        },
+        {
+         "id": "binary-digits",
+         "title": "Binary digits",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Binary digits"
+          }
+         ]
+        },
+        {
+         "id": "numbers-in-binary",
+         "title": "Numbers in binary",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Numbers in binary"
+          }
+         ]
+        },
+        {
+         "id": "measurements-of-data",
+         "title": "Measurements of data",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Measurements of data"
+          }
+         ]
+        },
+        {
+         "id": "turing-s-mug-cryptography-challenge",
+         "title": "Turing's mug cryptography challenge",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Turing's mug cryptography challenge"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "design-and-development",
+     "title": "Design and development",
+     "topics": [
+      {
+       "id": "mobile-app-development",
+       "title": "Mobile app development",
+       "subtopics": [
+        {
+         "id": "introduction-to-app-design",
+         "title": "Introduction to app design",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Introduction to app design"
+          }
+         ]
+        },
+        {
+         "id": "events-and-interactions",
+         "title": "Events and interactions",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Events and interactions"
+          }
+         ]
+        },
+        {
+         "id": "user-inputs-and-variables",
+         "title": "User inputs and variables",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "User inputs and variables"
+          }
+         ]
+        },
+        {
+         "id": "multiple-screens-and-navigation",
+         "title": "Multiple screens and navigation",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Multiple screens and navigation"
+          }
+         ]
+        },
+        {
+         "id": "app-development-project-part-1",
+         "title": "App development project part 1",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "App development project part 1"
+          }
+         ]
+        },
+        {
+         "id": "app-development-project-part-2",
+         "title": "App development project part 2",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "App development project part 2"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "programming",
+     "title": "Programming",
+     "topics": [
+      {
+       "id": "introduction-to-python-programming",
+       "title": "Introduction to Python programming",
+       "subtopics": [
+        {
+         "id": "writing-a-text-based-program",
+         "title": "Writing a text-based program",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Writing a text-based program"
+          }
+         ]
+        },
+        {
+         "id": "working-with-numerical-inputs",
+         "title": "Working with numerical inputs",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Working with numerical inputs"
+          }
+         ]
+        },
+        {
+         "id": "using-selection",
+         "title": "Using selection",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Using selection"
+          }
+         ]
+        },
+        {
+         "id": "selection-with-multiple-paths",
+         "title": "Selection with multiple paths",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Selection with multiple paths"
+          }
+         ]
+        },
+        {
+         "id": "iteration-using-while-loops",
+         "title": "Iteration using while loops",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Iteration using while loops"
+          }
+         ]
+        },
+        {
+         "id": "building-a-program-using-control-structures",
+         "title": "Building a program using control structures",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Building a program using control structures"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "Year 9",
+   "units": [
+    {
+     "id": "algorithms-and-data-structures",
+     "title": "Algorithms and data structures",
+     "topics": [
+      {
+       "id": "python-programming-with-sequences-of-data",
+       "title": "Python programming with sequences of data",
+       "subtopics": [
+        {
+         "id": "creating-lists-in-python",
+         "title": "Creating lists in Python",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Creating lists in Python"
+          }
+         ]
+        },
+        {
+         "id": "python-list-operations",
+         "title": "Python list operations",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Python list operations"
+          }
+         ]
+        },
+        {
+         "id": "iterating-through-data-structures",
+         "title": "Iterating through data structures",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Iterating through data structures"
+          }
+         ]
+        },
+        {
+         "id": "using-for-loops-to-iterate-data-structures",
+         "title": "Using for loops to iterate data structures",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Using for loops to iterate data structures"
+          }
+         ]
+        },
+        {
+         "id": "mathematical-operations-in-data-structures",
+         "title": "Mathematical operations in data structures",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Mathematical operations in data structures"
+          }
+         ]
+        },
+        {
+         "id": "data-structure-projects-in-python",
+         "title": "Data structure projects in Python",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Data structure projects in Python"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "creating-media",
+     "title": "Creating media",
+     "topics": [
+      {
+       "id": "3d-animation",
+       "title": "3D animation",
+       "subtopics": [
+        {
+         "id": "move-rotate-scale-colour",
+         "title": "Move, rotate, scale, colour",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Move, rotate, scale, colour"
+          }
+         ]
+        },
+        {
+         "id": "keyframe-animation-and-parenting-objects",
+         "title": "Keyframe animation and parenting objects",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Keyframe animation and parenting objects"
+          }
+         ]
+        },
+        {
+         "id": "complex-models-and-colours",
+         "title": "Complex models and colours",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Complex models and colours"
+          }
+         ]
+        },
+        {
+         "id": "organic-modelling",
+         "title": "Organic modelling",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Organic modelling"
+          }
+         ]
+        },
+        {
+         "id": "lighting-and-cameras",
+         "title": "Lighting and cameras",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Lighting and cameras"
+          }
+         ]
+        },
+        {
+         "id": "render-and-export-animations",
+         "title": "Render and export animations",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Render and export animations"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "data-and-information",
+     "title": "Data and information",
+     "topics": [
+      {
+       "id": "using-data-science",
+       "title": "Using data science",
+       "subtopics": [
+        {
+         "id": "using-data-to-support-decision-making",
+         "title": "Using data to support decision making",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Using data to support decision making"
+          }
+         ]
+        },
+        {
+         "id": "global-data",
+         "title": "Global data",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Global data"
+          }
+         ]
+        },
+        {
+         "id": "the-investigative-cycle",
+         "title": "The investigative cycle",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "The investigative cycle"
+          }
+         ]
+        },
+        {
+         "id": "capturing-data-to-investigate-an-issue",
+         "title": "Capturing data to investigate an issue",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Capturing data to investigate an issue"
+          }
+         ]
+        },
+        {
+         "id": "data-cleansing",
+         "title": "Data cleansing",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Data cleansing"
+          }
+         ]
+        },
+        {
+         "id": "using-data-to-make-recommendations",
+         "title": "Using data to make recommendations",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Using data to make recommendations"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "data-representation-images-and-sound",
+       "title": "Data representation: images and sound",
+       "subtopics": [
+        {
+         "id": "representing-images-with-binary-data",
+         "title": "Representing images with binary data",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Representing images with binary data"
+          }
+         ]
+        },
+        {
+         "id": "file-size-of-digital-images",
+         "title": "File size of digital images",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "File size of digital images"
+          }
+         ]
+        },
+        {
+         "id": "manipulating-digital-images",
+         "title": "Manipulating digital images",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Manipulating digital images"
+          }
+         ]
+        },
+        {
+         "id": "representing-sound-with-binary-data",
+         "title": "Representing sound with binary data",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Representing sound with binary data"
+          }
+         ]
+        },
+        {
+         "id": "editing-sound",
+         "title": "Editing sound",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Editing sound"
+          }
+         ]
+        },
+        {
+         "id": "file-size-and-compression",
+         "title": "File size and compression",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "File size and compression"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "networks",
+     "title": "Networks",
+     "topics": [
+      {
+       "id": "introduction-to-cybersecurity",
+       "title": "Introduction to cybersecurity",
+       "subtopics": [
+        {
+         "id": "protecting-personal-data",
+         "title": "Protecting personal data",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Protecting personal data"
+          }
+         ]
+        },
+        {
+         "id": "social-engineering",
+         "title": "Social engineering",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Social engineering"
+          }
+         ]
+        },
+        {
+         "id": "hacking-and-brute-force-attacks",
+         "title": "Hacking and brute force attacks",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Hacking and brute force attacks"
+          }
+         ]
+        },
+        {
+         "id": "malicious-software",
+         "title": "Malicious software",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Malicious software"
+          }
+         ]
+        },
+        {
+         "id": "protecting-networks-from-security-threats",
+         "title": "Protecting networks from security threats",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Protecting networks from security threats"
+          }
+         ]
+        },
+        {
+         "id": "preventing-cyber-attacks",
+         "title": "Preventing cyber attacks",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Preventing cyber attacks"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "artificial-intelligence",
+     "title": "Artificial intelligence",
+     "topics": [
+      {
+       "id": "machine-learning-using-the-micro-bit",
+       "title": "Machine learning using the micro:bit",
+       "subtopics": [
+        {
+         "id": "ai-and-machine-learning-applications",
+         "title": "AI and machine learning applications",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "AI and machine learning applications"
+          }
+         ]
+        },
+        {
+         "id": "gathering-data-for-a-model",
+         "title": "Gathering data for a model",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Gathering data for a model"
+          }
+         ]
+        },
+        {
+         "id": "training-and-testing-a-model",
+         "title": "Training and testing a model",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Training and testing a model"
+          }
+         ]
+        },
+        {
+         "id": "improving-a-model",
+         "title": "Improving a model",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Improving a model"
+          }
+         ]
+        },
+        {
+         "id": "building-a-data-driven-application",
+         "title": "Building a data-driven application",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Building a data-driven application"
+          }
+         ]
+        },
+        {
+         "id": "documenting-and-evaluating-a-machine-learning-mo",
+         "title": "Documenting and evaluating a machine learning model",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Documenting and evaluating a machine learning model"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "Year 10",
+   "units": [
+    {
+     "id": "algorithms-and-data-structures",
+     "title": "Algorithms and data structures",
+     "topics": [
+      {
+       "id": "programming-sequence",
+       "title": "Programming: sequence",
+       "subtopics": [
+        {
+         "id": "high-and-low-level-languages",
+         "title": "High and low level languages",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "High and low level languages"
+          }
+         ]
+        },
+        {
+         "id": "assembly-language",
+         "title": "Assembly language",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Assembly language"
+          }
+         ]
+        },
+        {
+         "id": "features-of-an-ide",
+         "title": "Features of an IDE",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Features of an IDE"
+          }
+         ]
+        },
+        {
+         "id": "input-and-output",
+         "title": "Input and output",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Input and output"
+          }
+         ]
+        },
+        {
+         "id": "developing-programs-using-sequence",
+         "title": "Developing programs using sequence",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Developing programs using sequence"
+          }
+         ]
+        },
+        {
+         "id": "variables-and-constants-in-programs",
+         "title": "Variables and constants in programs",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Variables and constants in programs"
+          }
+         ]
+        },
+        {
+         "id": "common-data-types",
+         "title": "Common data types",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Common data types"
+          }
+         ]
+        },
+        {
+         "id": "programming-project-sequence-i",
+         "title": "Programming project: sequence I",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Programming project: sequence I"
+          }
+         ]
+        },
+        {
+         "id": "programming-project-sequence-ii",
+         "title": "Programming project: sequence II",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Programming project: sequence II"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "algorithms",
+       "title": "Algorithms",
+       "subtopics": [
+        {
+         "id": "computational-thinking",
+         "title": "Computational thinking",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Computational thinking"
+          }
+         ]
+        },
+        {
+         "id": "comparing-algorithms-to-computer-programs",
+         "title": "Comparing algorithms to computer programs",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Comparing algorithms to computer programs"
+          }
+         ]
+        },
+        {
+         "id": "representing-algorithms-using-flowcharts",
+         "title": "Representing algorithms using flowcharts",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Representing algorithms using flowcharts"
+          }
+         ]
+        },
+        {
+         "id": "representing-algorithms-using-pseudocode",
+         "title": "Representing algorithms using pseudocode",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Representing algorithms using pseudocode"
+          }
+         ]
+        },
+        {
+         "id": "tracing-algorithms",
+         "title": "Tracing algorithms",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Tracing algorithms"
+          }
+         ]
+        },
+        {
+         "id": "data-structures",
+         "title": "Data structures",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Data structures"
+          }
+         ]
+        },
+        {
+         "id": "algorithmic-bias",
+         "title": "Algorithmic bias",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Algorithmic bias"
+          }
+         ]
+        },
+        {
+         "id": "tackling-a-project-using-computational-thinking",
+         "title": "Tackling a project using computational thinking",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Tackling a project using computational thinking"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "programming-selection",
+       "title": "Programming: selection",
+       "subtopics": [
+        {
+         "id": "using-selection-when-developing-programs",
+         "title": "Using selection when developing programs",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Using selection when developing programs"
+          }
+         ]
+        },
+        {
+         "id": "arithmetic-operators",
+         "title": "Arithmetic operators",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Arithmetic operators"
+          }
+         ]
+        },
+        {
+         "id": "relational-operators",
+         "title": "Relational operators",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Relational operators"
+          }
+         ]
+        },
+        {
+         "id": "logical-operators",
+         "title": "Logical operators",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Logical operators"
+          }
+         ]
+        },
+        {
+         "id": "nested-selection",
+         "title": "Nested selection",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Nested selection"
+          }
+         ]
+        },
+        {
+         "id": "good-programming-practices",
+         "title": "Good programming practices",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Good programming practices"
+          }
+         ]
+        },
+        {
+         "id": "selection-challenge",
+         "title": "Selection challenge",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Selection challenge"
+          }
+         ]
+        },
+        {
+         "id": "programming-project-selection-i",
+         "title": "Programming project: selection I",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Programming project: selection I"
+          }
+         ]
+        },
+        {
+         "id": "programming-project-selection-ii",
+         "title": "Programming project: selection II",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Programming project: selection II"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "programming-iteration",
+       "title": "Programming: iteration",
+       "subtopics": [
+        {
+         "id": "while-loops",
+         "title": "While loops",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "While loops"
+          }
+         ]
+        },
+        {
+         "id": "using-trace-tables",
+         "title": "Using trace tables",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Using trace tables"
+          }
+         ]
+        },
+        {
+         "id": "for-loops",
+         "title": "For loops",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "For loops"
+          }
+         ]
+        },
+        {
+         "id": "nested-loops",
+         "title": "Nested loops",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Nested loops"
+          }
+         ]
+        },
+        {
+         "id": "randomisation",
+         "title": "Randomisation",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Randomisation"
+          }
+         ]
+        },
+        {
+         "id": "validating-data-input-in-a-program",
+         "title": "Validating data input in a program",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Validating data input in a program"
+          }
+         ]
+        },
+        {
+         "id": "designing-robust-programs",
+         "title": "Designing robust programs",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Designing robust programs"
+          }
+         ]
+        },
+        {
+         "id": "programming-project-iteration-i",
+         "title": "Programming project: iteration I",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Programming project: iteration I"
+          }
+         ]
+        },
+        {
+         "id": "programming-project-iteration-ii",
+         "title": "Programming project: iteration II",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Programming project: iteration II"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "boolean-logic",
+       "title": "Boolean logic",
+       "subtopics": [
+        {
+         "id": "boolean-logic-and-logic-gates",
+         "title": "Boolean logic and logic gates",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Boolean logic and logic gates"
+          }
+         ]
+        },
+        {
+         "id": "introduction-to-logic-circuit-design",
+         "title": "Introduction to logic circuit design",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Introduction to logic circuit design"
+          }
+         ]
+        },
+        {
+         "id": "logic-statements-and-expressions",
+         "title": "Logic statements and expressions",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Logic statements and expressions"
+          }
+         ]
+        },
+        {
+         "id": "creating-logic-circuits",
+         "title": "Creating logic circuits",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Creating logic circuits"
+          }
+         ]
+        },
+        {
+         "id": "truth-tables",
+         "title": "Truth tables",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Truth tables"
+          }
+         ]
+        },
+        {
+         "id": "logic-gate-simulator-software",
+         "title": "Logic gate simulator software",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Logic gate simulator software"
+          }
+         ]
+        },
+        {
+         "id": "implementing-boolean-logic-in-python",
+         "title": "Implementing Boolean logic in Python",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Implementing Boolean logic in Python"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "programming-subroutines",
+       "title": "Programming: subroutines",
+       "subtopics": [
+        {
+         "id": "structured-programming",
+         "title": "Structured programming",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Structured programming"
+          }
+         ]
+        },
+        {
+         "id": "procedures",
+         "title": "Procedures",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Procedures"
+          }
+         ]
+        },
+        {
+         "id": "functions",
+         "title": "Functions",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Functions"
+          }
+         ]
+        },
+        {
+         "id": "global-and-local-variables",
+         "title": "Global and local variables",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Global and local variables"
+          }
+         ]
+        },
+        {
+         "id": "creating-an-xor-function",
+         "title": "Creating an XOR function",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Creating an XOR function"
+          }
+         ]
+        },
+        {
+         "id": "programming-project-subroutines-i",
+         "title": "Programming project: subroutines I",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Programming project: subroutines I"
+          }
+         ]
+        },
+        {
+         "id": "programming-project-subroutines-ii",
+         "title": "Programming project: subroutines II",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Programming project: subroutines II"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "programming-strings-and-lists",
+       "title": "Programming: strings and lists",
+       "subtopics": [
+        {
+         "id": "string-handling",
+         "title": "String handling",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "String handling"
+          }
+         ]
+        },
+        {
+         "id": "substrings",
+         "title": "Substrings",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Substrings"
+          }
+         ]
+        },
+        {
+         "id": "string-manipulation",
+         "title": "String manipulation",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "String manipulation"
+          }
+         ]
+        },
+        {
+         "id": "arrays-and-lists",
+         "title": "Arrays and lists",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Arrays and lists"
+          }
+         ]
+        },
+        {
+         "id": "list-methods",
+         "title": "List methods",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "List methods"
+          }
+         ]
+        },
+        {
+         "id": "2d-arrays-and-lists",
+         "title": "2D arrays and lists",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "2D arrays and lists"
+          }
+         ]
+        },
+        {
+         "id": "2d-lists-challenge",
+         "title": "2D lists challenge",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "2D lists challenge"
+          }
+         ]
+        },
+        {
+         "id": "programming-project-sense-hat-i",
+         "title": "Programming project - Sense HAT I",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Programming project - Sense HAT I"
+          }
+         ]
+        },
+        {
+         "id": "programming-project-sense-hat-ii",
+         "title": "Programming project - Sense HAT II",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Programming project - Sense HAT II"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "searching-and-sorting-algorithms",
+       "title": "Searching and sorting algorithms",
+       "subtopics": [
+        {
+         "id": "linear-search",
+         "title": "Linear search",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Linear search"
+          }
+         ]
+        },
+        {
+         "id": "binary-search",
+         "title": "Binary search",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Binary search"
+          }
+         ]
+        },
+        {
+         "id": "comparing-searching-algorithms",
+         "title": "Comparing searching algorithms",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Comparing searching algorithms"
+          }
+         ]
+        },
+        {
+         "id": "bubble-sort",
+         "title": "Bubble sort",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Bubble sort"
+          }
+         ]
+        },
+        {
+         "id": "merge-sort",
+         "title": "Merge sort",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Merge sort"
+          }
+         ]
+        },
+        {
+         "id": "code-sorting-algorithms",
+         "title": "Code sorting algorithms",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Code sorting algorithms"
+          }
+         ]
+        },
+        {
+         "id": "practice-searching-and-sorting-algorithms",
+         "title": "Practice searching and sorting algorithms",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Practice searching and sorting algorithms"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "computing-systems",
+     "title": "Computing systems",
+     "topics": [
+      {
+       "id": "computer-systems",
+       "title": "Computer Systems",
+       "subtopics": [
+        {
+         "id": "software-and-embedded-systems",
+         "title": "Software and embedded systems",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Software and embedded systems"
+          }
+         ]
+        },
+        {
+         "id": "operating-system",
+         "title": "Operating system",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Operating system"
+          }
+         ]
+        },
+        {
+         "id": "the-processor",
+         "title": "The processor",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "The processor"
+          }
+         ]
+        },
+        {
+         "id": "the-fetch-execute-fe-cycle",
+         "title": "The fetch-execute (FE) cycle",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "The fetch-execute (FE) cycle"
+          }
+         ]
+        },
+        {
+         "id": "main-memory",
+         "title": "Main memory",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Main memory"
+          }
+         ]
+        },
+        {
+         "id": "secondary-storage",
+         "title": "Secondary storage",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Secondary storage"
+          }
+         ]
+        },
+        {
+         "id": "computer-specifications",
+         "title": "Computer specifications",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Computer specifications"
+          }
+         ]
+        },
+        {
+         "id": "environmental-impacts-of-computing-devices",
+         "title": "Environmental impacts of computing devices",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Environmental impacts of computing devices"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "data-and-information",
+     "title": "Data and information",
+     "topics": [
+      {
+       "id": "representation-of-numbers",
+       "title": "Representation of numbers",
+       "subtopics": [
+        {
+         "id": "why-do-computers-use-binary",
+         "title": "Why do computers use binary?",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Why do computers use binary?"
+          }
+         ]
+        },
+        {
+         "id": "number-bases",
+         "title": "Number bases",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Number bases"
+          }
+         ]
+        },
+        {
+         "id": "binary-addition",
+         "title": "Binary addition",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Binary addition"
+          }
+         ]
+        },
+        {
+         "id": "binary-shifts",
+         "title": "Binary shifts",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Binary shifts"
+          }
+         ]
+        },
+        {
+         "id": "hexadecimal",
+         "title": "Hexadecimal",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Hexadecimal"
+          }
+         ]
+        },
+        {
+         "id": "hexadecimal-number-conversions",
+         "title": "Hexadecimal number conversions",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Hexadecimal number conversions"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "representation-of-text-images-and-sound",
+       "title": "Representation of text, images and sound",
+       "subtopics": [
+        {
+         "id": "representation-using-binary-sequences",
+         "title": "Representation using binary sequences",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Representation using binary sequences"
+          }
+         ]
+        },
+        {
+         "id": "representing-text-using-unicode-and-ascii",
+         "title": "Representing text using Unicode and ASCII",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Representing text using Unicode and ASCII"
+          }
+         ]
+        },
+        {
+         "id": "text-file-size-calculations",
+         "title": "Text file size calculations",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Text file size calculations"
+          }
+         ]
+        },
+        {
+         "id": "representing-bitmap-images",
+         "title": "Representing bitmap images",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Representing bitmap images"
+          }
+         ]
+        },
+        {
+         "id": "bitmap-file-size-calculation",
+         "title": "Bitmap file size calculation",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Bitmap file size calculation"
+          }
+         ]
+        },
+        {
+         "id": "representing-sound",
+         "title": "Representing sound",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Representing sound"
+          }
+         ]
+        },
+        {
+         "id": "calculation-of-sound-file-size",
+         "title": "Calculation of sound file size",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Calculation of sound file size"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "data-compression",
+       "title": "Data compression",
+       "subtopics": [
+        {
+         "id": "measurements-of-storage",
+         "title": "Measurements of storage",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Measurements of storage"
+          }
+         ]
+        },
+        {
+         "id": "the-need-for-compression",
+         "title": "The need for compression",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "The need for compression"
+          }
+         ]
+        },
+        {
+         "id": "lossy-and-lossless-compression",
+         "title": "Lossy and lossless compression",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Lossy and lossless compression"
+          }
+         ]
+        },
+        {
+         "id": "compression-ratios",
+         "title": "Compression ratios",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Compression ratios"
+          }
+         ]
+        },
+        {
+         "id": "run-length-encoding",
+         "title": "Run length encoding",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Run length encoding"
+          }
+         ]
+        },
+        {
+         "id": "huffman-coding",
+         "title": "Huffman coding",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Huffman coding"
+          }
+         ]
+        },
+        {
+         "id": "comparing-compression-algorithms",
+         "title": "Comparing compression algorithms",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Comparing compression algorithms"
+          }
+         ]
+        },
+        {
+         "id": "practical-applications-of-compression",
+         "title": "Practical applications of compression",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Practical applications of compression"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "artificial-intelligence",
+     "title": "Artificial intelligence",
+     "topics": [
+      {
+       "id": "data-science-ai-and-machine-learning",
+       "title": "Data science: AI and machine learning",
+       "subtopics": [
+        {
+         "id": "introduction-to-ai",
+         "title": "Introduction to AI",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Introduction to AI"
+          }
+         ]
+        },
+        {
+         "id": "machine-learning",
+         "title": "Machine learning",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Machine learning"
+          }
+         ]
+        },
+        {
+         "id": "predictive-vs-generative-ai",
+         "title": "Predictive vs generative AI",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Predictive vs generative AI"
+          }
+         ]
+        },
+        {
+         "id": "social-and-ethical-issues-of-ai-systems",
+         "title": "Social and ethical issues of AI systems",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Social and ethical issues of AI systems"
+          }
+         ]
+        },
+        {
+         "id": "data-driven-models",
+         "title": "Data driven models",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Data driven models"
+          }
+         ]
+        },
+        {
+         "id": "approaches-to-training-machine-learning-models",
+         "title": "Approaches to training machine learning models",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Approaches to training machine learning models"
+          }
+         ]
+        },
+        {
+         "id": "classification",
+         "title": "Classification",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Classification"
+          }
+         ]
+        },
+        {
+         "id": "machine-learning-engines",
+         "title": "Machine learning engines",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Machine learning engines"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "Year 11",
+   "units": [
+    {
+     "id": "algorithms-and-data-structures",
+     "title": "Algorithms and data structures",
+     "topics": [
+      {
+       "id": "programming-dictionaries-and-data-files",
+       "title": "Programming: dictionaries and data files",
+       "subtopics": [
+        {
+         "id": "records-and-dictionaries",
+         "title": "Records and dictionaries",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Records and dictionaries"
+          }
+         ]
+        },
+        {
+         "id": "dictionary-challenge",
+         "title": "Dictionary challenge",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Dictionary challenge"
+          }
+         ]
+        },
+        {
+         "id": "reading-csv-files",
+         "title": "Reading CSV files",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Reading CSV files"
+          }
+         ]
+        },
+        {
+         "id": "writing-to-csv-files",
+         "title": "Writing to CSV files",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Writing to CSV files"
+          }
+         ]
+        },
+        {
+         "id": "careers-in-programming",
+         "title": "Careers in programming",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Careers in programming"
+          }
+         ]
+        },
+        {
+         "id": "programming-project-dictionaries-i",
+         "title": "Programming project - dictionaries I",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Programming project - dictionaries I"
+          }
+         ]
+        },
+        {
+         "id": "programming-project-dictionaries-ii",
+         "title": "Programming project - dictionaries II",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Programming project - dictionaries II"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "impact-of-technology",
+     "title": "Impact of technology",
+     "topics": [
+      {
+       "id": "network-fundamentals",
+       "title": "Network fundamentals",
+       "subtopics": [
+        {
+         "id": "network-basics",
+         "title": "Network basics",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Network basics"
+          }
+         ]
+        },
+        {
+         "id": "types-of-network",
+         "title": "Types of network",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Types of network"
+          }
+         ]
+        },
+        {
+         "id": "network-hardware-and-mac-addresses",
+         "title": "Network hardware and MAC addresses",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Network hardware and MAC addresses"
+          }
+         ]
+        },
+        {
+         "id": "network-topologies",
+         "title": "Network topologies",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Network topologies"
+          }
+         ]
+        },
+        {
+         "id": "wired-networks",
+         "title": "Wired networks",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Wired networks"
+          }
+         ]
+        },
+        {
+         "id": "wireless-networks",
+         "title": "Wireless networks",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Wireless networks"
+          }
+         ]
+        },
+        {
+         "id": "network-addressing",
+         "title": "Network addressing",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Network addressing"
+          }
+         ]
+        },
+        {
+         "id": "network-performance",
+         "title": "Network performance",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Network performance"
+          }
+         ]
+        },
+        {
+         "id": "the-impact-of-network-failure",
+         "title": "The impact of network failure",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "The impact of network failure"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "cyber-threats-and-security",
+       "title": "Cyber threats and security",
+       "subtopics": [
+        {
+         "id": "the-cost-of-cyber-crime-and-hacker-motivation",
+         "title": "The cost of cyber crime and hacker motivation",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "The cost of cyber crime and hacker motivation"
+          }
+         ]
+        },
+        {
+         "id": "social-engineering-techniques",
+         "title": "Social engineering techniques",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Social engineering techniques"
+          }
+         ]
+        },
+        {
+         "id": "malware-malicious-software",
+         "title": "Malware: malicious software",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Malware: malicious software"
+          }
+         ]
+        },
+        {
+         "id": "defence-against-malware",
+         "title": "Defence against malware",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Defence against malware"
+          }
+         ]
+        },
+        {
+         "id": "encryption-tools-to-protect-communication",
+         "title": "Encryption tools to protect communication",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Encryption tools to protect communication"
+          }
+         ]
+        },
+        {
+         "id": "common-ciphers",
+         "title": "Common ciphers",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Common ciphers"
+          }
+         ]
+        },
+        {
+         "id": "testing-as-a-form-of-defence",
+         "title": "Testing as a form of defence",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Testing as a form of defence"
+          }
+         ]
+        },
+        {
+         "id": "the-impact-of-fake-news",
+         "title": "The impact of fake news",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "The impact of fake news"
+          }
+         ]
+        },
+        {
+         "id": "careers-in-cyber-security",
+         "title": "Careers in cyber security",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Careers in cyber security"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "programming",
+     "title": "Programming",
+     "topics": [
+      {
+       "id": "python-programming-project",
+       "title": "Python programming project",
+       "subtopics": [
+        {
+         "id": "approaching-a-programming-project",
+         "title": "Approaching a programming project",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Approaching a programming project"
+          }
+         ]
+        },
+        {
+         "id": "the-project-brief",
+         "title": "The project brief",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "The project brief"
+          }
+         ]
+        },
+        {
+         "id": "software-design-principles",
+         "title": "Software design principles",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Software design principles"
+          }
+         ]
+        },
+        {
+         "id": "project-design",
+         "title": "Project design",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Project design"
+          }
+         ]
+        },
+        {
+         "id": "developing-code-for-a-programming-project",
+         "title": "Developing code for a programming project",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Developing code for a programming project"
+          }
+         ]
+        },
+        {
+         "id": "refining-code-for-a-programming-project",
+         "title": "Refining code for a programming project",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Refining code for a programming project"
+          }
+         ]
+        },
+        {
+         "id": "testing-principles",
+         "title": "Testing principles",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Testing principles"
+          }
+         ]
+        },
+        {
+         "id": "testing-and-refining-a-programming-project",
+         "title": "Testing and refining a programming project",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Testing and refining a programming project"
+          }
+         ]
+        },
+        {
+         "id": "evaluating-the-success-of-a-programming-project",
+         "title": "Evaluating the success of a programming project",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Evaluating the success of a programming project"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "computing-systems",
+     "title": "Computing systems",
+     "topics": [
+      {
+       "id": "the-internet-and-web-technologies",
+       "title": "The internet and web technologies",
+       "subtopics": [
+        {
+         "id": "internet-fundamentals",
+         "title": "Internet fundamentals",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Internet fundamentals"
+          }
+         ]
+        },
+        {
+         "id": "how-data-travels-across-the-internet",
+         "title": "How data travels across the internet",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "How data travels across the internet"
+          }
+         ]
+        },
+        {
+         "id": "protocols",
+         "title": "Protocols",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Protocols"
+          }
+         ]
+        },
+        {
+         "id": "network-models",
+         "title": "Network models",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Network models"
+          }
+         ]
+        },
+        {
+         "id": "the-tcp-ip-model",
+         "title": "The TCP/IP model",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "The TCP/IP model"
+          }
+         ]
+        },
+        {
+         "id": "hosting-services",
+         "title": "Hosting services",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Hosting services"
+          }
+         ]
+        },
+        {
+         "id": "web-technologies",
+         "title": "Web technologies",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Web technologies"
+          }
+         ]
+        },
+        {
+         "id": "threats-to-networks",
+         "title": "Threats to networks",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Threats to networks"
+          }
+         ]
+        },
+        {
+         "id": "network-security",
+         "title": "Network security",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Network security"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "data-and-information",
+     "title": "Data and information",
+     "topics": [
+      {
+       "id": "databases-and-sql",
+       "title": "Databases and SQL",
+       "subtopics": [
+        {
+         "id": "database-fundamentals",
+         "title": "Database fundamentals",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Database fundamentals"
+          }
+         ]
+        },
+        {
+         "id": "database-design",
+         "title": "Database design",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Database design"
+          }
+         ]
+        },
+        {
+         "id": "sql-fundamentals",
+         "title": "SQL fundamentals",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "SQL fundamentals"
+          }
+         ]
+        },
+        {
+         "id": "sql-searches",
+         "title": "SQL searches",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "SQL searches"
+          }
+         ]
+        },
+        {
+         "id": "data-management-with-sql-statements",
+         "title": "Data management with SQL statements",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Data management with SQL statements"
+          }
+         ]
+        },
+        {
+         "id": "data-protection-copyright-and-the-law",
+         "title": "Data protection, copyright and the law",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Data protection, copyright and the law"
+          }
+         ]
+        },
+        {
+         "id": "data-and-privacy",
+         "title": "Data and privacy",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Data and privacy"
+          }
+         ]
+        },
+        {
+         "id": "big-data",
+         "title": "Big data",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Big data"
+          }
+         ]
+        },
+        {
+         "id": "the-environmental-impact-of-data-systems",
+         "title": "The environmental impact of data systems",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "The environmental impact of data systems"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "design-and-development",
+     "title": "Design and development",
+     "topics": [
+      {
+       "id": "html-programming-project",
+       "title": "HTML programming project",
+       "subtopics": [
+        {
+         "id": "html-fundamentals",
+         "title": "HTML fundamentals",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "HTML fundamentals"
+          }
+         ]
+        },
+        {
+         "id": "images-and-links",
+         "title": "Images and links",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Images and links"
+          }
+         ]
+        },
+        {
+         "id": "planning-a-mini-website",
+         "title": "Planning a mini website",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Planning a mini website"
+          }
+         ]
+        },
+        {
+         "id": "css-fundamentals",
+         "title": "CSS fundamentals",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "CSS fundamentals"
+          }
+         ]
+        },
+        {
+         "id": "web-page-layouts-using-css-divisions",
+         "title": "Web page layouts using CSS divisions",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Web page layouts using CSS divisions"
+          }
+         ]
+        },
+        {
+         "id": "css-for-layout",
+         "title": "CSS for layout",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "CSS for layout"
+          }
+         ]
+        },
+        {
+         "id": "javascript",
+         "title": "JavaScript",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "JavaScript"
+          }
+         ]
+        },
+        {
+         "id": "web-based-project-i",
+         "title": "Web based project I",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Web based project I"
+          }
+         ]
+        },
+        {
+         "id": "web-based-project-ii",
+         "title": "Web based project II",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Web based project II"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "build": {
+  "builtAt": "2026-10-14T07:54:11.543Z",
+  "model": "none",
+  "usd": 0,
+  "expectedCodes": null,
+  "coverage": null,
+  "missingCodes": [],
+  "counts": {
+   "grades": 5,
+   "units": 24,
+   "topics": 38,
+   "subtopics": 271,
+   "outcomes": 271
+  },
+  "warnings": []
+ }
+}

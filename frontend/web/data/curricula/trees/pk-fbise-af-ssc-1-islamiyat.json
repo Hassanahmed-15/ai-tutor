@@ -1,0 +1,636 @@
+{
+ "id": "pk-fbise-af-ssc-1-islamiyat",
+ "region": "PK",
+ "framework": "FBISE Assessment Framework (National Curriculum of Pakistan 2022-23)",
+ "board": "FBISE",
+ "qualification": "SSC-I",
+ "subject": "Islamiyat",
+ "syllabusCode": null,
+ "gradeSystem": "grade",
+ "source": {
+  "urls": [
+   "https://www.fbise.edu.pk/ModelPaper/2024New/islamiyat/Final%20Assessemnt%20Framework%20%2B%20Model%20Question%20Paper%20SSC-I.pdf"
+  ],
+  "publisher": "Federal Board of Intermediate and Secondary Education",
+  "licence": "Government publication; structure + our own wording only",
+  "firstExam": "2025"
+ },
+ "grades": [
+  {
+   "grade": "9",
+   "units": [
+    {
+     "id": "domain-a-holy-quran-and-hadith",
+     "title": "Domain A: Holy Quran and Hadith",
+     "topics": [
+      {
+       "id": "quran-majeed-and-hadith",
+       "title": "Quran Majeed and Hadith",
+       "subtopics": [
+        {
+         "id": "how-the-quran-was-revealed-and-kept",
+         "title": "How the Quran was revealed and kept",
+         "outcomes": [
+          {
+           "code": "I-09-A-08",
+           "text": "Explain how the Quran was revealed, compiled and preserved, and why it is protected."
+          }
+         ]
+        },
+        {
+         "id": "selected-hadith-meaning",
+         "title": "Selected hadith: meaning",
+         "outcomes": [
+          {
+           "code": "I-09-A-14",
+           "text": "Translate the prescribed hadith and explain what each one means."
+          },
+          {
+           "code": "I-09-A-15",
+           "text": "Apply the message of the prescribed hadith to everyday life."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "domain-b-beliefs-and-worship",
+     "title": "Domain B: Beliefs and Worship",
+     "topics": [
+      {
+       "id": "beliefs-and-worship",
+       "title": "Beliefs and Worship",
+       "subtopics": [
+        {
+         "id": "tawhid",
+         "title": "Tawhid",
+         "outcomes": [
+          {
+           "code": "I-09-B-01",
+           "text": "Explain what tawhid means and why it matters."
+          },
+          {
+           "code": "I-09-B-05",
+           "text": "Describe the effects of tawhid and the harms of shirk."
+          }
+         ]
+        },
+        {
+         "id": "risalah-prophethood",
+         "title": "Risalah (prophethood)",
+         "outcomes": [
+          {
+           "code": "I-09-B-12",
+           "text": "Explain belief in the finality of prophethood."
+          }
+         ]
+        },
+        {
+         "id": "prayer-salah",
+         "title": "Prayer (salah)",
+         "outcomes": [
+          {
+           "code": "I-09-B-25",
+           "text": "Describe the importance of prayer and its benefits for life and society."
+          }
+         ]
+        },
+        {
+         "id": "zakat",
+         "title": "Zakat",
+         "outcomes": [
+          {
+           "code": "I-09-B-30",
+           "text": "Explain the spiritual, moral and social benefits of zakat."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "domain-c-seerah-of-the-prophet",
+     "title": "Domain C: Seerah of the Prophet",
+     "topics": [
+      {
+       "id": "seerah-of-the-prophet",
+       "title": "Seerah of the Prophet",
+       "subtopics": [
+        {
+         "id": "makkan-period-background",
+         "title": "Makkan period: background",
+         "outcomes": [
+          {
+           "code": "I-09-C-01",
+           "text": "Describe the background and causes of an event of the Makkan period."
+          }
+         ]
+        },
+        {
+         "id": "makkan-period-events-and-miracles",
+         "title": "Makkan period: events and miracles",
+         "outcomes": [
+          {
+           "code": "I-09-C-03",
+           "text": "Recount key events and miracles from the Prophet's life."
+          }
+         ]
+        },
+        {
+         "id": "year-of-delegations",
+         "title": "Year of Delegations",
+         "outcomes": [
+          {
+           "code": "I-09-C-17",
+           "text": "Outline the Year of Delegations and the arrival of envoys."
+          }
+         ]
+        },
+        {
+         "id": "prophet-s-youth-and-young-adulthood",
+         "title": "Prophet's youth and young adulthood",
+         "outcomes": [
+          {
+           "code": "I-09-C-21",
+           "text": "Recount events of the Prophet's youth and early adulthood."
+          }
+         ]
+        },
+        {
+         "id": "prophet-s-character-generosity",
+         "title": "Prophet's character: generosity",
+         "outcomes": [
+          {
+           "code": "I-09-C-35",
+           "text": "Describe the Prophet's generosity and selflessness in several areas of life."
+          },
+          {
+           "code": "I-09-C-33",
+           "text": "Illustrate the Prophet's generosity with examples from his life."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "domain-d-morals-and-manners",
+     "title": "Domain D: Morals and Manners",
+     "topics": [
+      {
+       "id": "morals-and-manners",
+       "title": "Morals and Manners",
+       "subtopics": [
+        {
+         "id": "trust-and-honesty",
+         "title": "Trust and honesty",
+         "outcomes": [
+          {
+           "code": "I-09-D-09",
+           "text": "Explain trust (amanah) in the light of Quran and Sunnah."
+          },
+          {
+           "code": "I-09-D-11",
+           "text": "Give examples of trustworthiness from the Prophet's life."
+          }
+         ]
+        },
+        {
+         "id": "avoiding-pride-and-vices",
+         "title": "Avoiding pride and vices",
+         "outcomes": [
+          {
+           "code": "I-09-D-18",
+           "text": "Tell pride apart from related vices and say why it is avoided."
+          }
+         ]
+        },
+        {
+         "id": "bad-habits-to-avoid",
+         "title": "Bad habits to avoid",
+         "outcomes": [
+          {
+           "code": "I-09-D-25",
+           "text": "Know the harms of a prohibited habit named in the hadith."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "domain-e-social-life-and-dealings",
+     "title": "Domain E: Social Life and Dealings",
+     "topics": [
+      {
+       "id": "social-life-and-dealings",
+       "title": "Social Life and Dealings",
+       "subtopics": [
+        {
+         "id": "rulings-on-interest-and-dealings",
+         "title": "Rulings on interest and dealings",
+         "outcomes": [
+          {
+           "code": "I-09-E-04",
+           "text": "Know the rulings on a financial or social dealing in Quran and Sunnah."
+          },
+          {
+           "code": "I-09-E-13",
+           "text": "Know further rulings from Quran and Sunnah on social dealings."
+          },
+          {
+           "code": "I-09-E-19",
+           "text": "Know the types and effects of a forbidden dealing."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "domain-f-guidance-great-figures-of-islam",
+     "title": "Domain F: Guidance, Great Figures of Islam",
+     "topics": [
+      {
+       "id": "social-life-and-dealings",
+       "title": "Social Life and Dealings",
+       "subtopics": [
+        {
+         "id": "rulings-and-effects-on-society",
+         "title": "Rulings and effects on society",
+         "outcomes": [
+          {
+           "code": "I-09-F-10",
+           "text": "Assess the personal and social effects of a forbidden act."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "guidance-great-figures-of-islam",
+       "title": "Guidance, Great Figures of Islam",
+       "subtopics": [
+        {
+         "id": "imam-zain-ul-abidin",
+         "title": "Imam Zain ul Abidin",
+         "outcomes": [
+          {
+           "code": "I-09-F-03",
+           "text": "Describe the worship, character and services of Imam Zain ul Abidin."
+          }
+         ]
+        },
+        {
+         "id": "abu-musa-ashari",
+         "title": "Abu Musa Ashari",
+         "outcomes": [
+          {
+           "code": "I-09-F-08",
+           "text": "Describe the moral qualities and services of Abu Musa Ashari."
+          }
+         ]
+        },
+        {
+         "id": "companions-amr-ibn-al-as",
+         "title": "Companions: Amr ibn al-As",
+         "outcomes": [
+          {
+           "code": "I-09-F-18",
+           "text": "Describe the services of a companion such as Amr ibn al-As."
+          }
+         ]
+        },
+        {
+         "id": "companions-amr-ibn-umayyah",
+         "title": "Companions: Amr ibn Umayyah",
+         "outcomes": [
+          {
+           "code": "I-09-F-24",
+           "text": "Describe the life and service of Amr ibn Umayyah."
+          }
+         ]
+        },
+        {
+         "id": "sufi-saints",
+         "title": "Sufi saints",
+         "outcomes": [
+          {
+           "code": "I-09-F-35",
+           "text": "Explain how Sufi saints spread Islam and spirituality."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "domain-g-islamic-teachings-and-modern-needs",
+     "title": "Domain G: Islamic Teachings and Modern Needs",
+     "topics": [
+      {
+       "id": "islamic-teachings-and-modern-needs",
+       "title": "Islamic Teachings and Modern Needs",
+       "subtopics": [
+        {
+         "id": "physical-activity-and-health",
+         "title": "Physical activity and health",
+         "outcomes": [
+          {
+           "code": "I-09-G-12",
+           "text": "Know the physical and mental effects of exercise and healthy living."
+          }
+         ]
+        },
+        {
+         "id": "self-reliance",
+         "title": "Self-reliance",
+         "outcomes": [
+          {
+           "code": "I-09-G-03",
+           "text": "Show from the Prophet's example how self-reliance is encouraged."
+          },
+          {
+           "code": "I-09-G-04",
+           "text": "Recognise forms of self-reliance and reasons for it."
+          }
+         ]
+        },
+        {
+         "id": "physical-and-mental-health",
+         "title": "Physical and mental health",
+         "outcomes": [
+          {
+           "code": "I-09-G-08",
+           "text": "Understand the value of physical and mental health in Islam."
+          }
+         ]
+        },
+        {
+         "id": "limits-of-physical-exercise",
+         "title": "Limits of physical exercise",
+         "outcomes": [
+          {
+           "code": "I-09-G-11",
+           "text": "Know the limits Islam sets on bodily exercise and play."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "10",
+   "units": [
+    {
+     "id": "domain-b-beliefs-and-worship",
+     "title": "Domain B: Beliefs and Worship",
+     "topics": [
+      {
+       "id": "beliefs-and-worship",
+       "title": "Beliefs and Worship",
+       "subtopics": [
+        {
+         "id": "beliefs-books-and-angels",
+         "title": "Beliefs: books and angels",
+         "outcomes": [
+          {
+           "code": "I-10-B-10",
+           "text": "Understand the Divine books and their role in guiding people."
+          },
+          {
+           "code": "I-10-B-11",
+           "text": "Tell apart key points of belief about the revealed scriptures."
+          }
+         ]
+        },
+        {
+         "id": "zakat",
+         "title": "Zakat",
+         "outcomes": [
+          {
+           "code": "I-10-B-22",
+           "text": "Tell zakat from related charity and explain its rules."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "domain-c-seerah-of-the-prophet",
+     "title": "Domain C: Seerah of the Prophet",
+     "topics": [
+      {
+       "id": "seerah-of-the-prophet",
+       "title": "Seerah of the Prophet",
+       "subtopics": [
+        {
+         "id": "makkan-period-events",
+         "title": "Makkan period events",
+         "outcomes": [
+          {
+           "code": "I-10-C-09",
+           "text": "Recount key events of the Makkan period."
+          },
+          {
+           "code": "I-10-C-10",
+           "text": "Explain the causes and effects of a major Makkan-period event."
+          }
+         ]
+        },
+        {
+         "id": "prophet-s-life-provision-and-trust",
+         "title": "Prophet's life: provision and trust",
+         "outcomes": [
+          {
+           "code": "I-10-C-22",
+           "text": "Explain how trust and good conduct bring blessing in provision, using the Prophet's example."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "domain-d-morals-and-manners",
+     "title": "Domain D: Morals and Manners",
+     "topics": [
+      {
+       "id": "morals-and-manners",
+       "title": "Morals and Manners",
+       "subtopics": [
+        {
+         "id": "virtues-in-quran-and-sunnah",
+         "title": "Virtues in Quran and Sunnah",
+         "outcomes": [
+          {
+           "code": "I-10-D-02",
+           "text": "Explain sincerity and piety as taught by Quran and Sunnah."
+          }
+         ]
+        },
+        {
+         "id": "backbiting-and-slander",
+         "title": "Backbiting and slander",
+         "outcomes": [
+          {
+           "code": "I-10-D-10",
+           "text": "Tell backbiting from slander and see why both are forbidden."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "domain-e-social-life-and-dealings",
+     "title": "Domain E: Social Life and Dealings",
+     "topics": [
+      {
+       "id": "social-life-and-dealings",
+       "title": "Social Life and Dealings",
+       "subtopics": [
+        {
+         "id": "rulings-on-interest",
+         "title": "Rulings on interest",
+         "outcomes": [
+          {
+           "code": "I-10-E-02",
+           "text": "Know why interest (riba) is forbidden and what it does to society."
+          }
+         ]
+        },
+        {
+         "id": "types-and-conditions-of-dealings",
+         "title": "Types and conditions of dealings",
+         "outcomes": [
+          {
+           "code": "I-10-E-19",
+           "text": "Understand the types, conditions and scope of a dealing."
+          }
+         ]
+        },
+        {
+         "id": "duties-in-an-islamic-state",
+         "title": "Duties in an Islamic state",
+         "outcomes": [
+          {
+           "code": "I-10-E-12",
+           "text": "Review individual and collective duties of people in an Islamic state."
+          },
+          {
+           "code": "I-10-E-21",
+           "text": "Understand individual and collective duties of citizens in an Islamic state."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "domain-f-guidance-great-figures-of-islam",
+     "title": "Domain F: Guidance, Great Figures of Islam",
+     "topics": [
+      {
+       "id": "guidance-great-figures-of-islam",
+       "title": "Guidance, Great Figures of Islam",
+       "subtopics": [
+        {
+         "id": "female-companions",
+         "title": "Female companions",
+         "outcomes": [
+          {
+           "code": "I-10-F-21",
+           "text": "Describe a female companion's life and services."
+          }
+         ]
+        },
+        {
+         "id": "muslim-scholars",
+         "title": "Muslim scholars",
+         "outcomes": [
+          {
+           "code": "I-10-F-43",
+           "text": "Describe the scholarly and social services of a leading Muslim scholar such as Ibn Rushd."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "domain-g-islamic-teachings-and-modern-needs",
+     "title": "Domain G: Islamic Teachings and Modern Needs",
+     "topics": [
+      {
+       "id": "islamic-teachings-and-modern-needs",
+       "title": "Islamic Teachings and Modern Needs",
+       "subtopics": [
+        {
+         "id": "planning",
+         "title": "Planning",
+         "outcomes": [
+          {
+           "code": "I-10-G-01",
+           "text": "Explain what planning means and why Islam values it."
+          },
+          {
+           "code": "I-10-G-03",
+           "text": "Plan time and tasks following Quran and the Prophet's example."
+          }
+         ]
+        },
+        {
+         "id": "islamic-civilization",
+         "title": "Islamic civilization",
+         "outcomes": [
+          {
+           "code": "I-10-G-08",
+           "text": "Identify distinctive features of Islamic civilization."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "build": {
+  "builtAt": "2026-10-14T09:30:35.004Z",
+  "model": "claude-agent",
+  "usd": 0,
+  "expectedCodes": 50,
+  "coverage": 0.98,
+  "missingCodes": [
+   "I-10-D-23"
+  ],
+  "counts": {
+   "grades": 2,
+   "units": 13,
+   "topics": 14,
+   "subtopics": 38,
+   "outcomes": 49
+  },
+  "warnings": [
+   "unexpected grade label \"10\""
+  ]
+ }
+}

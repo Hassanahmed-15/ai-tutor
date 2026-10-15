@@ -1,0 +1,994 @@
+{
+ "id": "us-wy-health",
+ "region": "US",
+ "framework": "Wyoming state academic standards: Health Education",
+ "board": null,
+ "qualification": "K-12",
+ "subject": "Health Education",
+ "syllabusCode": null,
+ "gradeSystem": "grade",
+ "source": {
+  "urls": [
+   "https://api.commonstandardsproject.com/api/v1/jurisdictions/744704BE56D44FB9B3D18B543FBF9BCC",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/744704BE56D44FB9B3D18B543FBF9BCC_D2400245_grades-01-02-k",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/744704BE56D44FB9B3D18B543FBF9BCC_D2400245_grades-03-04",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/744704BE56D44FB9B3D18B543FBF9BCC_D2400245_grades-05-06",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/744704BE56D44FB9B3D18B543FBF9BCC_D2400245_grades-07-08",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/744704BE56D44FB9B3D18B543FBF9BCC_D2400245_grades-09-10-11-12"
+  ],
+  "publisher": "Wyoming state education agency (machine-readable via Common Standards Project / ASN)",
+  "licence": "CC BY 3.0 US, Desire2Learn Incorporated",
+  "firstExam": "2012"
+ },
+ "grades": [
+  {
+   "grade": "K-2",
+   "units": [
+    {
+     "id": "health-information-products-and-resources-studen",
+     "title": "Health Information, Products and Resources: Students will access, analyze and evaluate health information, products and resources",
+     "topics": [
+      {
+       "id": "health-information-products-and-resources-studen",
+       "title": "Health Information, Products and Resources: Students will access, analyze and evaluate health information, products and resources",
+       "subtopics": [
+        {
+         "id": "health-information-products-and-resources-studen",
+         "title": "Health Information, Products and Resources: Students will access, analyze and evaluate health information, products and resources",
+         "outcomes": [
+          {
+           "code": "HE2.1.1",
+           "text": "Identify people who can help students enhance their health (e.g. trusted adult, family member, school nurse, doctor etc.). FAM, IP/S, PCD"
+          },
+          {
+           "code": "HE2.1.2",
+           "text": "Identify people who can help students reduce their risks (e.g. trusted adult, family member, school nurse, doctor etc.). IP/S, FAM, VP/B"
+          },
+          {
+           "code": "HE2.1.3",
+           "text": "Demonstrate the ability to locate help at school to reduce or avoid health risks (e.g., knowing where to find custodian, principal, school nurse). PCD, PH, IP/S"
+          },
+          {
+           "code": "HE2.1.4",
+           "text": "Identify ways to contact or find help for health and safety emergencies (e.g., call 911, find playground monitor). VP/B, IP/S, FA"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "problem-solving-and-decision-making-students-wil",
+     "title": "Problem Solving and Decision Making: Students will use critical thinking and systematic processes to examine health related problems and make decisions that enhance health and reduce or avoid health risks",
+     "topics": [
+      {
+       "id": "problem-solving-and-decision-making-students-wil",
+       "title": "Problem Solving and Decision Making: Students will use critical thinking and systematic processes to examine health related problems and make decisions that enhance health and reduce or avoid health risks",
+       "subtopics": [
+        {
+         "id": "problem-solving-and-decision-making-students-wil",
+         "title": "Problem Solving and Decision Making: Students will use critical thinking and systematic processes to examine health related problems and make decisions that enhance health and reduce or avoid health risks",
+         "outcomes": [
+          {
+           "code": "HE2.2.1",
+           "text": "Identify situations where a health related decision is needed. IP/S, PH, FAM"
+          },
+          {
+           "code": "HE2.2.2",
+           "text": "Recognize when assistance is needed for making a decision. IP/S, VP/B, ATOD"
+          },
+          {
+           "code": "HE2.2.3",
+           "text": "Describe how health related decisions can affect self or others (e.g., decision to sneeze into sleeve prevents spreading germs to others). IP/S, PCD"
+          },
+          {
+           "code": "HE2.2.4",
+           "text": "Describe how family can influence decisions students make about health practices and risk behaviors (e.g., washing hands, not wearing seatbelts). FAM, PH, PCD"
+          },
+          {
+           "code": "HE2.2.5",
+           "text": "Recognize health-related problems that exist at home and school (e.g., soap dispenser is empty, students not washing hands after going to bathroom, ice on the playground). PH, IP/S, VP/B"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "effective-communication-students-will-demonstrat",
+     "title": "Effective Communication: Students will demonstrate the ability to use interpersonal communication skills to enhance health and reduce or avoid health risks",
+     "topics": [
+      {
+       "id": "effective-communication-students-will-demonstrat",
+       "title": "Effective Communication: Students will demonstrate the ability to use interpersonal communication skills to enhance health and reduce or avoid health risks",
+       "subtopics": [
+        {
+         "id": "effective-communication-students-will-demonstrat",
+         "title": "Effective Communication: Students will demonstrate the ability to use interpersonal communication skills to enhance health and reduce or avoid health risks",
+         "outcomes": [
+          {
+           "code": "HE2.3.1",
+           "text": "Identify various methods to express individual health needs, wants, and feelings (e.g., visual, verbal, physical). PH, ME, FAM"
+          },
+          {
+           "code": "HE2.3.2",
+           "text": "Identify characteristics of effective communication for the purpose of expressing health needs, wants, and feelings (e.g., eye contact, clear purpose, etc.). PH, ME, FAM"
+          },
+          {
+           "code": "HE2.3.3",
+           "text": "Identify appropriate ways to respond to/in unwanted, threatening or dangerous situations. IP/S, PH, VP/B"
+          },
+          {
+           "code": "HE2.3.4",
+           "text": "Identify characteristics of effective listening skills to enhance health or reduce/avoid health risks (e.g., eyes on speaker, etc.). PCD, IP/S, FA"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "personal-and-social-responsibility-students-will",
+     "title": "Personal and Social Responsibility: Students will demonstrate the ability to use personal and social skills that are associated with taking responsible action for enhancing health and reducing or avoiding health risks",
+     "topics": [
+      {
+       "id": "personal-and-social-responsibility-students-will",
+       "title": "Personal and Social Responsibility: Students will demonstrate the ability to use personal and social skills that are associated with taking responsible action for enhancing health and reducing or avoiding health risks",
+       "subtopics": [
+        {
+         "id": "personal-and-social-responsibility-students-will",
+         "title": "Personal and Social Responsibility: Students will demonstrate the ability to use personal and social skills that are associated with taking responsible action for enhancing health and reducing or avoiding health risks (1 of 2)",
+         "outcomes": [
+          {
+           "code": "HE2.4.1",
+           "text": "Identify behaviors that improve or maintain personal health. PA, NUT, PH"
+          },
+          {
+           "code": "HE2.4.2",
+           "text": "Identify behaviors that help avoid or reduce health risks. IP/S, VP/B, ATOD"
+          },
+          {
+           "code": "HE2.4.3",
+           "text": "Identify behaviors that prevent the spread of disease. CEH, PH, PCD"
+          },
+          {
+           "code": "HE2.4.4",
+           "text": "Recognize and accurately label emotions and how they are linked to behavior (anger, sadness, joy, etc.). ME, VP/B"
+          },
+          {
+           "code": "HE2.4.5",
+           "text": "Demonstrate control of impulsive behavior (anger management, delayed gratification, etc.). ME, VP/B, IP/S"
+          }
+         ]
+        },
+        {
+         "id": "personal-and-social-responsibility-students-will-2",
+         "title": "Personal and Social Responsibility: Students will demonstrate the ability to use personal and social skills that are associated with taking responsible action for enhancing health and reducing or avoiding health risks (2 of 2)",
+         "outcomes": [
+          {
+           "code": "HE2.4.6",
+           "text": "Describe why health goals are important. PH"
+          },
+          {
+           "code": "HE2.4.7",
+           "text": "Identify goals for enhancing health. PA, PH, NUT"
+          },
+          {
+           "code": "HE2.4.8",
+           "text": "Describe the ways people are similar and different. FAM, VP/B"
+          },
+          {
+           "code": "HE2.4.9",
+           "text": "Recognize how individual health behavior affects the health and well-being of others. CEH, FAM, VP/B"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "3-4",
+   "units": [
+    {
+     "id": "health-information-products-and-resources-studen",
+     "title": "Health Information, Products and Resources: Students will access, analyze and evaluate health information, products and resources",
+     "topics": [
+      {
+       "id": "health-information-products-and-resources-studen",
+       "title": "Health Information, Products and Resources: Students will access, analyze and evaluate health information, products and resources",
+       "subtopics": [
+        {
+         "id": "health-information-products-and-resources-studen",
+         "title": "Health Information, Products and Resources: Students will access, analyze and evaluate health information, products and resources",
+         "outcomes": [
+          {
+           "code": "HE4.1.1",
+           "text": "Explain when school and community resources should be accessed for specific health and safety emergencies. IP/S, VP/B, FAM"
+          },
+          {
+           "code": "HE4.1.2",
+           "text": "Demonstrate the ability to access trusted resources at school or neighborhood that can help reduce or avoid health risks. CEH, FAM, IP/S"
+          },
+          {
+           "code": "HE4.1.3",
+           "text": "Demonstrate the ability to access trusted resources at school or neighborhood that can help enhance health. PH, NUT, CEH"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "problem-solving-and-decision-making-students-wil",
+     "title": "Problem Solving and Decision Making: Students will use critical thinking and systematic processes to examine health related problems and make decisions that enhance health and reduce or avoid health risks",
+     "topics": [
+      {
+       "id": "problem-solving-and-decision-making-students-wil",
+       "title": "Problem Solving and Decision Making: Students will use critical thinking and systematic processes to examine health related problems and make decisions that enhance health and reduce or avoid health risks",
+       "subtopics": [
+        {
+         "id": "problem-solving-and-decision-making-students-wil",
+         "title": "Problem Solving and Decision Making: Students will use critical thinking and systematic processes to examine health related problems and make decisions that enhance health and reduce or avoid health risks (1 of 2)",
+         "outcomes": [
+          {
+           "code": "HE4.2.1",
+           "text": "Describe situations or circumstances that help or hinder healthy decision-making. IP/S, VP/B, FAM"
+          },
+          {
+           "code": "HE4.2.2",
+           "text": "Explain when assistance is needed for making health related decisions. IP/S, VP/B, CEH"
+          },
+          {
+           "code": "HE4.2.3",
+           "text": "Illustrate how health related decisions can affect self and others. FAM, PH, PA"
+          },
+          {
+           "code": "HE4.2.4",
+           "text": "Explain steps of a simple decision-making process to enhance health or reduce health risks (e.g., identify a few options and consequences of each option). IP/S, VP/B, ATOD (medicinal drugs)"
+          }
+         ]
+        },
+        {
+         "id": "problem-solving-and-decision-making-students-wil-2",
+         "title": "Problem Solving and Decision Making: Students will use critical thinking and systematic processes to examine health related problems and make decisions that enhance health and reduce or avoid health risks (2 of 2)",
+         "outcomes": [
+          {
+           "code": "HE4.2.5",
+           "text": "Explain the potential outcomes of each option when making a health-related decision (e.g., options regarding decision to intervene in bullying situation - ask/get beat up). VP/B, IP/S, ATOD"
+          },
+          {
+           "code": "HE4.2.6",
+           "text": "Describe how peers can influence decisions students make about health practices and risk behaviors. FAM, IP/S, VP/B"
+          },
+          {
+           "code": "HE4.2.7",
+           "text": "Describe healthy options to health-related issues or problems (e.g., benefits of recess before and after lunch). PA, NUT, VP/B"
+          },
+          {
+           "code": "HE4.2.8",
+           "text": "Explain strategies for solving simple health problems that exist at home and school (e.g., create a poster advocating for washing hands, tell an adult, scientific inquiry process, etc.). PH, IP/S, CEH"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "effective-communication-students-will-demonstrat",
+     "title": "Effective Communication: Students will demonstrate the ability to use interpersonal communication skills to enhance health and reduce or avoid health risks",
+     "topics": [
+      {
+       "id": "effective-communication-students-will-demonstrat",
+       "title": "Effective Communication: Students will demonstrate the ability to use interpersonal communication skills to enhance health and reduce or avoid health risks",
+       "subtopics": [
+        {
+         "id": "effective-communication-students-will-demonstrat",
+         "title": "Effective Communication: Students will demonstrate the ability to use interpersonal communication skills to enhance health and reduce or avoid health risks",
+         "outcomes": [
+          {
+           "code": "HE4.3.1",
+           "text": "Describe verbal and nonverbal methods of communication to enhance health or reduce/avoid health risks. FAM, ME, ATOD"
+          },
+          {
+           "code": "HE4.3.2",
+           "text": "Describe characteristics of effective communication for the purpose of enhancing health or reducing/avoiding health risks. VP/B, PCD"
+          },
+          {
+           "code": "HE4.3.3",
+           "text": "Describe refusal skills to avoid or reduce health risks. ATOD, VP/B, IP/S"
+          },
+          {
+           "code": "HE4.3.4",
+           "text": "Demonstrate the ability to use basic listening skills to enhance health or reduce/avoid health risks (e.g., eye contact, follow the speaker with eyes, stay quiet, wait turn in conversations, etc.). FAM, CEH, ME"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "personal-and-social-responsibility-students-will",
+     "title": "Personal and Social Responsibility: Students will demonstrate the ability to use personal and social skills that are associated with taking responsible action for enhancing health and reducing or avoiding health risks",
+     "topics": [
+      {
+       "id": "personal-and-social-responsibility-students-will",
+       "title": "Personal and Social Responsibility: Students will demonstrate the ability to use personal and social skills that are associated with taking responsible action for enhancing health and reducing or avoiding health risks",
+       "subtopics": [
+        {
+         "id": "personal-and-social-responsibility-students-will",
+         "title": "Personal and Social Responsibility: Students will demonstrate the ability to use personal and social skills that are associated with taking responsible action for enhancing health and reducing or avoiding health risks (1 of 2)",
+         "outcomes": [
+          {
+           "code": "HE4.4.1",
+           "text": "Explain why specific behaviors help improve or maintain personal health. NUT, PH, IP/S"
+          },
+          {
+           "code": "HE4.4.2",
+           "text": "Explain behaviors that help avoid or reduce health risks. ATOD, VP/B, IP/S"
+          },
+          {
+           "code": "HE4.4.3",
+           "text": "Explain how specific behaviors prevent the spread of disease. PCD, PH, CEH"
+          },
+          {
+           "code": "HE4.4.4",
+           "text": "Describe a range of emotions and the situations that cause them. ME, VP/B"
+          },
+          {
+           "code": "HE4.4.5",
+           "text": "Describe and demonstrate the ability to express emotions in a socially acceptable manner (positive ways to express anger, alternatives to violence, etc.). ME"
+          }
+         ]
+        },
+        {
+         "id": "personal-and-social-responsibility-students-will-2",
+         "title": "Personal and Social Responsibility: Students will demonstrate the ability to use personal and social skills that are associated with taking responsible action for enhancing health and reducing or avoiding health risks (2 of 2)",
+         "outcomes": [
+          {
+           "code": "HE4.4.6",
+           "text": "Describe criteria for setting personal health goals. PH"
+          },
+          {
+           "code": "HE4.4.7",
+           "text": "Set a measurable short-term personal health goal and monitor progress on achieving the goal (e.g., brush teeth two times per day, walk 10,000 steps every day). PA, NUT, IP/S"
+          },
+          {
+           "code": "HE4.4.8",
+           "text": "Describe how to work effectively with those who are different from oneself. FAM, VP/B"
+          },
+          {
+           "code": "HE4.4.9",
+           "text": "Define bullying and the role of the aggressor in bullying situations. VP/B, ME"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "5-6",
+   "units": [
+    {
+     "id": "health-information-products-and-resources-studen",
+     "title": "Health Information, Products and Resources: Students will access, analyze and evaluate health information, products and resources",
+     "topics": [
+      {
+       "id": "health-information-products-and-resources-studen",
+       "title": "Health Information, Products and Resources: Students will access, analyze and evaluate health information, products and resources",
+       "subtopics": [
+        {
+         "id": "health-information-products-and-resources-studen",
+         "title": "Health Information, Products and Resources: Students will access, analyze and evaluate health information, products and resources",
+         "outcomes": [
+          {
+           "code": "HE6.1.1",
+           "text": "Analyze family, school, or community resources that can be used to enhance health (e.g. compare/contrast what help different people can give). VP/B, PCD, ME"
+          },
+          {
+           "code": "HE6.1.2",
+           "text": "Analyze family school or community resources that can be used to reduce or avoid health risks. (e.g., DARE officer help with strategies). VP/B, ATOD, G&D"
+          },
+          {
+           "code": "HE6.1.3",
+           "text": "Access appropriate information about health and health risks (e.g. where do you find info about growth and development, ATOD, or nutrition). G&D, ATOD, NUT"
+          },
+          {
+           "code": "HE6.1.4",
+           "text": "Explain how products can enhance personal health (e.g. deodorant, toothpaste, etc.). NUT, PH, ME (Related to self-esteem)"
+          },
+          {
+           "code": "HE6.1.5",
+           "text": "Explain how products can reduce health risks. PH, PCD, IP/S"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "problem-solving-and-decision-making-students-wil",
+     "title": "Problem Solving and Decision Making: Students will use critical thinking and systematic processes to examine health related problems and make decisions that enhance health and reduce or avoid health risks",
+     "topics": [
+      {
+       "id": "problem-solving-and-decision-making-students-wil",
+       "title": "Problem Solving and Decision Making: Students will use critical thinking and systematic processes to examine health related problems and make decisions that enhance health and reduce or avoid health risks",
+       "subtopics": [
+        {
+         "id": "problem-solving-and-decision-making-students-wil",
+         "title": "Problem Solving and Decision Making: Students will use critical thinking and systematic processes to examine health related problems and make decisions that enhance health and reduce or avoid health risks (1 of 2)",
+         "outcomes": [
+          {
+           "code": "HE6.2.1",
+           "text": "Differentiate between situations when a health-related decision can be made individually or when assistance is needed. ATOD, IP/S, ME"
+          },
+          {
+           "code": "HE6.2.2",
+           "text": "Determine when health-related situations require the application of a thoughtful decision-making process. IP/S, VP/B, ATOD"
+          },
+          {
+           "code": "HE6.2.3",
+           "text": "Explain the steps of a decision-making process to enhance health or reduce health risk. ATOD, IP/S, ME"
+          },
+          {
+           "code": "HE6.2.4",
+           "text": "Analyze potential short-term impact of each alternative on self and others when making a health related decision (e.g., if I intervene in bullying situation and I get beat up, I may be get a black eye but I may prevent the victim from getting badly hurt). ATOD, IP/S, VP/B"
+          }
+         ]
+        },
+        {
+         "id": "problem-solving-and-decision-making-students-wil-2",
+         "title": "Problem Solving and Decision Making: Students will use critical thinking and systematic processes to examine health related problems and make decisions that enhance health and reduce or avoid health risks (2 of 2)",
+         "outcomes": [
+          {
+           "code": "HE6.2.5",
+           "text": "Explain how family and peers can influence decisions students make about health practices and risk behaviors. ME, ATOD, VP/B"
+          },
+          {
+           "code": "HE6.2.6",
+           "text": "Analyze healthy options to health-related issues or problems (e.g., compare and contrast extracurricular physical activity programs offered at elementary schools in the community). PA, NUT, CEH"
+          },
+          {
+           "code": "HE6.2.6",
+           "text": "Apply a systematic process to examine familiar health-related issues or problems (e.g., identify problem, collect information, analyze data, draw conclusions, make simple recommendations). NUT, PA, VP/B"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "effective-communication-students-will-demonstrat",
+     "title": "Effective Communication: Students will demonstrate the ability to use interpersonal communication skills to enhance health and reduce or avoid health risks",
+     "topics": [
+      {
+       "id": "effective-communication-students-will-demonstrat",
+       "title": "Effective Communication: Students will demonstrate the ability to use interpersonal communication skills to enhance health and reduce or avoid health risks",
+       "subtopics": [
+        {
+         "id": "effective-communication-students-will-demonstrat",
+         "title": "Effective Communication: Students will demonstrate the ability to use interpersonal communication skills to enhance health and reduce or avoid health risks",
+         "outcomes": [
+          {
+           "code": "HE6.3.1",
+           "text": "Explain how various verbal and non-verbal techniques are effective in enhancing health or avoiding/reducing health risks (e.g., argument will not escalate if I use \"I\" messages and avoid blaming others). VP/B, ATOD, FAM"
+          },
+          {
+           "code": "HE6.3.2",
+           "text": "Analyze communication techniques used to enhance health or reduce/avoid health risks (e.g., example specific to cultural differences, how to ask of help to enhance personal health or reduce risks). VP/B, ATOD, CEH"
+          },
+          {
+           "code": "HE6.3.3",
+           "text": "Analyze refusal strategies for potential effectiveness. VP/B, IP/S, ATOD"
+          },
+          {
+           "code": "HE6.3.4",
+           "text": "Describe barriers to effective communication about health. ME, G&D, PCD"
+          },
+          {
+           "code": "HE6.3.5",
+           "text": "Demonstrate the ability to use listening skills for specific health purposes (e.g., asking questions to gather information and/or obtain instructions, make connections, ask clarifying questions). ATOD, IP/S, G&D"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "personal-and-social-responsibility-students-will",
+     "title": "Personal and Social Responsibility: Students will demonstrate the ability to use personal and social skills that are associated with taking responsible action for enhancing health and reducing or avoiding health risks",
+     "topics": [
+      {
+       "id": "personal-and-social-responsibility-students-will",
+       "title": "Personal and Social Responsibility: Students will demonstrate the ability to use personal and social skills that are associated with taking responsible action for enhancing health and reducing or avoiding health risks",
+       "subtopics": [
+        {
+         "id": "personal-and-social-responsibility-students-will",
+         "title": "Personal and Social Responsibility: Students will demonstrate the ability to use personal and social skills that are associated with taking responsible action for enhancing health and reducing or avoiding health risks (1 of 2)",
+         "outcomes": [
+          {
+           "code": "HE6.4.1",
+           "text": "Demonstrate an understanding of behaviors that improve or maintain personal health. G&D, IP/S, ME"
+          },
+          {
+           "code": "HE6.4.2",
+           "text": "Demonstrate an understanding of behaviors to avoid or reduce health risks. ATOD, IP/S, VP/B"
+          },
+          {
+           "code": "HE6.4.3",
+           "text": "Demonstrate an understanding of behaviors that prevent the spread of disease. PCD, CEH, PH"
+          },
+          {
+           "code": "HE6.4.4",
+           "text": "Analyze factors that create stress or motivate successful performance. ME"
+          },
+          {
+           "code": "HE6.4.5",
+           "text": "Analyze age appropriate factors that create good stress and bad stress. ME, ATOD, PA"
+          }
+         ]
+        },
+        {
+         "id": "personal-and-social-responsibility-students-will-2",
+         "title": "Personal and Social Responsibility: Students will demonstrate the ability to use personal and social skills that are associated with taking responsible action for enhancing health and reducing or avoiding health risks (2 of 2)",
+         "outcomes": [
+          {
+           "code": "HE6.4.6",
+           "text": "Demonstrate the ability to apply strategies to manage bad stress and use good stress to motivate successful performance (e.g. getting sufficient sleep). PA, NUT, PH"
+          },
+          {
+           "code": "HE6.4.6",
+           "text": "Use multiple criteria to set short-term personal health goals (e.g., Specific, Measurable, Action oriented, Realistic, Timely). PA, NUT, PH"
+          },
+          {
+           "code": "HE6.4.7",
+           "text": "Monitor progress toward achieving a short-term personal health goal and analyze why it is achieved or not achieved (e.g., the goal to be physically active for 30 minutes every day was not achieved because of snowy weather and no community facility was available for exercise). PA, NUT, PH"
+          },
+          {
+           "code": "HE6.4.8",
+           "text": "Explain how individual, social and cultural differences may increase vulnerability to bullying and identify ways to address it. VP/B, ME"
+          },
+          {
+           "code": "HE6.4.9",
+           "text": "Define various types of bullying and the roles of the aggressor and bystanders in bullying situations. (e.g., physical aggression, social/relational aggression, intimidation, verbal aggression, written aggression, cyber bullying, hazing, etc.). VP/B, CEH, ME"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "7-8",
+   "units": [
+    {
+     "id": "health-information-products-and-resources-studen",
+     "title": "Health Information, Products and Resources: Students will access, analyze and evaluate health information, products and resources",
+     "topics": [
+      {
+       "id": "health-information-products-and-resources-studen",
+       "title": "Health Information, Products and Resources: Students will access, analyze and evaluate health information, products and resources",
+       "subtopics": [
+        {
+         "id": "health-information-products-and-resources-studen",
+         "title": "Health Information, Products and Resources: Students will access, analyze and evaluate health information, products and resources",
+         "outcomes": [
+          {
+           "code": "HE8.1.1",
+           "text": "Demonstrate the ability to locate appropriate health resources at school or in the community that help enhance health. ME, PH, NUT"
+          },
+          {
+           "code": "HE8.1.2",
+           "text": "Demonstrate the ability to locate appropriate health resources at school or in the community that help reduce health risks. SEXUALITY, ATOD, VP/B"
+          },
+          {
+           "code": "HE8.1.3",
+           "text": "Analyze situations or conditions to determine when health services are needed (e.g., Distinguish when symptoms warrant a visit to the doctor versus taking over the counter medication.). ME, VP/B, SEXUALITY"
+          },
+          {
+           "code": "HE8.1.4",
+           "text": "Explain criteria for determining validity of health information. SEXUALITY, ATOD, NUT"
+          },
+          {
+           "code": "HE8.1.5",
+           "text": "Analyze health information for characteristics of validity (e.g. compare and contrast currency of info in different health articles on ATOD, Violence or mental/emotional health). ATOD, ME, VP/B"
+          },
+          {
+           "code": "HE8.1.6",
+           "text": "Analyze characteristics of products and how they enhance health or reduce health risks (e.g., compare products). NUT, IP/S, PA"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "problem-solving-and-decision-making-students-wil",
+     "title": "Problem Solving and Decision Making: Students will use critical thinking and systematic processes to examine health related problems and make decisions that enhance health and reduce or avoid health risks",
+     "topics": [
+      {
+       "id": "problem-solving-and-decision-making-students-wil",
+       "title": "Problem Solving and Decision Making: Students will use critical thinking and systematic processes to examine health related problems and make decisions that enhance health and reduce or avoid health risks",
+       "subtopics": [
+        {
+         "id": "problem-solving-and-decision-making-students-wil",
+         "title": "Problem Solving and Decision Making: Students will use critical thinking and systematic processes to examine health related problems and make decisions that enhance health and reduce or avoid health risks",
+         "outcomes": [
+          {
+           "code": "HE8.2.1",
+           "text": "Distinguish when individual or collaborative decision-making is appropriate. CEH, ATOD, VP/B"
+          },
+          {
+           "code": "HE8.2.2",
+           "text": "Explain various types of decision-making processes to enhance health or reduce health risks (e.g., automatic, intuitive, etc.). ATOD, IP/S, NUT"
+          },
+          {
+           "code": "HE8.2.3",
+           "text": "Apply a systematic decision making process that includes analysis of consequences to enhance health (e.g., impact of decision on self, on others). ME, PA, PCD"
+          },
+          {
+           "code": "HE8.2.4",
+           "text": "Apply a systematic decision-making process that includes analysis of consequences to reduce or avoid health risks. ATOD, SEXUALITY, VP/B"
+          },
+          {
+           "code": "HE8.2.5",
+           "text": "Analyze how peers, culture, and media can influence decisions students make about health practices and risk behaviors (e.g., time, fiscal, etc.). SEXUALITY, ATOD, ME"
+          },
+          {
+           "code": "HE8.2.6",
+           "text": "Apply a systematic process to examine non-familiar health-related issues or problems (e.g., identify problem, collect information, analyze data, draw conclusions, make recommendations). ATOD, CEH, PCD (e.g. pandemics)"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "effective-communication-students-will-demonstrat",
+     "title": "Effective Communication: Students will demonstrate the ability to use interpersonal communication skills to enhance health and reduce or avoid health risks",
+     "topics": [
+      {
+       "id": "effective-communication-students-will-demonstrat",
+       "title": "Effective Communication: Students will demonstrate the ability to use interpersonal communication skills to enhance health and reduce or avoid health risks",
+       "subtopics": [
+        {
+         "id": "effective-communication-students-will-demonstrat",
+         "title": "Effective Communication: Students will demonstrate the ability to use interpersonal communication skills to enhance health and reduce or avoid health risks",
+         "outcomes": [
+          {
+           "code": "HE8.3.1",
+           "text": "Demonstrate the ability to use effective communication techniques (written, verbal, nonverbal, visual, electronic, etc.) for a variety of purposes of enhancing health (e.g., to inform, to persuade or advocate, to instruct). PH, CEH, PCD"
+          },
+          {
+           "code": "HE8.3.2",
+           "text": "Demonstrate the ability to use effective communication techniques (written, verbal, nonverbal, visual, electronic, etc.) for a variety of purposes for reducing or avoid health risks (e.g., to inform, to persuade or advocate, to instruct). IP/S, SEXUALITY, ATOD"
+          },
+          {
+           "code": "HE8.3.3",
+           "text": "Demonstrate the ability to apply effective refusal and conflict resolution skills to avoid risky situations. ATOD, SEXUALITY, VP/B"
+          },
+          {
+           "code": "HE8.3.4",
+           "text": "Analyze characteristics of and demonstrate the ability to use effective listening to decipher meaning from a health message (e.g., listen for details, listen for specific information, identify emotions, listen for opinions, infer meaning, etc.). ANY CONTENT AREA"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "personal-and-social-responsibility-students-will",
+     "title": "Personal and Social Responsibility: Students will demonstrate the ability to use personal and social skills that are associated with taking responsible action for enhancing health and reducing or avoiding health risks",
+     "topics": [
+      {
+       "id": "personal-and-social-responsibility-students-will",
+       "title": "Personal and Social Responsibility: Students will demonstrate the ability to use personal and social skills that are associated with taking responsible action for enhancing health and reducing or avoiding health risks",
+       "subtopics": [
+        {
+         "id": "personal-and-social-responsibility-students-will",
+         "title": "Personal and Social Responsibility: Students will demonstrate the ability to use personal and social skills that are associated with taking responsible action for enhancing health and reducing or avoiding health risks (1 of 3)",
+         "outcomes": [
+          {
+           "code": "HE8.4.1",
+           "text": "Differentiate between appropriate and inappropriate behaviors for improving or maintaining personal health. PH, PA, NUT"
+          },
+          {
+           "code": "HE8.4.2",
+           "text": "Analyze behaviors that avoid and reduce health risks, to self and others. ATOD, SEXUALITY, IP/S"
+          },
+          {
+           "code": "HE8.4.3",
+           "text": "Demonstrate an understanding of behaviors that prevent the spread of disease. SEXUALITY, ATOD, PCD"
+          },
+          {
+           "code": "HE8.4.4",
+           "text": "Describe signs of stress and how stress can affect health status. ME, ATOD"
+          }
+         ]
+        },
+        {
+         "id": "personal-and-social-responsibility-students-will-2",
+         "title": "Personal and Social Responsibility: Students will demonstrate the ability to use personal and social skills that are associated with taking responsible action for enhancing health and reducing or avoiding health risks (2 of 3)",
+         "outcomes": [
+          {
+           "code": "HE8.4.5",
+           "text": "Analyze age appropriate factors that create good stress and bad stress. ME, ATOD, SEXUALITY"
+          },
+          {
+           "code": "HE8.4.6",
+           "text": "Demonstrate the ability to apply strategies to manage bad stress and use good stress to motivate successful performance. PA, NUT, PH"
+          },
+          {
+           "code": "HE8.4.7",
+           "text": "Use criteria to set a short-term personal health goal and make a plan for achieving it. ME, PA, NUT"
+          },
+          {
+           "code": "HE8.4.8",
+           "text": "Monitor progress toward achieving a short-term personal health goal and analyze why it is achieved or not achieved (e.g., the goal to be physically active for 30 minutes every day was achieved because it met all SMART criteria and my plan included activities for all weather conditions). ME, PA, NUT"
+          }
+         ]
+        },
+        {
+         "id": "personal-and-social-responsibility-students-will-3",
+         "title": "Personal and Social Responsibility: Students will demonstrate the ability to use personal and social skills that are associated with taking responsible action for enhancing health and reducing or avoiding health risks (3 of 3)",
+         "outcomes": [
+          {
+           "code": "HE8.4.9",
+           "text": "Analyze the effects of taking action to oppose bullying based on individual and group differences. VP/B, CEH, ME"
+          },
+          {
+           "code": "HE8.4.10",
+           "text": "Describe various forms of bullying and the roles of all involved (aggressor, bystander, victim, etc.) in bullying situations. VP/B, CEH, ME"
+          },
+          {
+           "code": "HE8.4.11",
+           "text": "Describe the impact of bullying on physical health, mental and emotional health, and social health (e.g. depression, violence, avoidance, suicide, physical illness, etc.). VP/B, CEH, ME"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "9-12",
+   "units": [
+    {
+     "id": "health-information-products-and-resources-studen",
+     "title": "Health Information, Products and Resources: Students will access, analyze and evaluate health information, products and resources",
+     "topics": [
+      {
+       "id": "health-information-products-and-resources-studen",
+       "title": "Health Information, Products and Resources: Students will access, analyze and evaluate health information, products and resources",
+       "subtopics": [
+        {
+         "id": "health-information-products-and-resources-studen",
+         "title": "Health Information, Products and Resources: Students will access, analyze and evaluate health information, products and resources",
+         "outcomes": [
+          {
+           "code": "HE12.1.1",
+           "text": "Locate and evaluate appropriate resources at school, in the community and beyond that help to enhance health (e.g., human resources, printed and electronic resources, equipment and facilitates, etc.). PA, PH, ME"
+          },
+          {
+           "code": "HE12.1.2",
+           "text": "Locate and evaluate appropriate resources at school, in the community and beyond that help to reduce health risks. (e.g., human resources, printed and electronic resources, equipment and facilitates, etc.). ATOD, SEXUALITY, PH"
+          },
+          {
+           "code": "HE12.1.3",
+           "text": "Use criteria to evaluate the validity of health information from a variety of sources (e.g., written, verbal, visual, electronic, etc.). ATOD, SEXUALITY, NUT"
+          },
+          {
+           "code": "HE12.1.4",
+           "text": "Use criteria to evaluate products that can enhance health and reduce health risks (e.g., Examine carefully performance supplements and make a judgment about the short and long term impact on an adolescent's health.). NUT, PA, ATOD"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "problem-solving-and-decision-making-students-wil",
+     "title": "Problem Solving and Decision Making: Students will use critical thinking and systematic processes to examine health related problems and make decisions that enhance health and reduce or avoid health risks",
+     "topics": [
+      {
+       "id": "problem-solving-and-decision-making-students-wil",
+       "title": "Problem Solving and Decision Making: Students will use critical thinking and systematic processes to examine health related problems and make decisions that enhance health and reduce or avoid health risks",
+       "subtopics": [
+        {
+         "id": "problem-solving-and-decision-making-students-wil",
+         "title": "Problem Solving and Decision Making: Students will use critical thinking and systematic processes to examine health related problems and make decisions that enhance health and reduce or avoid health risks",
+         "outcomes": [
+          {
+           "code": "HE12.2.1",
+           "text": "Analyze the types of decisions that would be appropriate for a specific health related situation (e.g., 1-step/automatic process appropriate for emergency, 5-step process appropriate for long-term decision). ATOD, SEXAULITY, IP/S"
+          },
+          {
+           "code": "HE12.2.2",
+           "text": "Apply a systematic decision making process that includes evaluation of consequences to enhance health (e.g., impact of decision on self, on others). SEXUALITY, IP/S, CEH"
+          },
+          {
+           "code": "HE12.2.3",
+           "text": "Apply a systematic decision making process that includes evaluation of consequences to reduce or avoid health risks. ATOD, SEXUALITY, IP/S"
+          },
+          {
+           "code": "HE12.2.4",
+           "text": "Evaluate how peers, culture, media and technology influence decisions students make about health practices and risk behaviors. SEXUALITY, ATOD, ME"
+          },
+          {
+           "code": "HE12.2.5",
+           "text": "Apply a systematic process to evaluate the evidence, claims, beliefs and/or points of view about non-familiar health related issues or problems. ATOD, PA, NUT"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "effective-communication-students-will-demonstrat",
+     "title": "Effective Communication: Students will demonstrate the ability to use interpersonal communication skills to enhance health and reduce or avoid health risks",
+     "topics": [
+      {
+       "id": "effective-communication-students-will-demonstrat",
+       "title": "Effective Communication: Students will demonstrate the ability to use interpersonal communication skills to enhance health and reduce or avoid health risks",
+       "subtopics": [
+        {
+         "id": "effective-communication-students-will-demonstrat",
+         "title": "Effective Communication: Students will demonstrate the ability to use interpersonal communication skills to enhance health and reduce or avoid health risks (1 of 2)",
+         "outcomes": [
+          {
+           "code": "HE12.3.1",
+           "text": "Evaluate verbal and non-verbal techniques for communicating effectively with family, peers and others to enhance health. PH, CEH, ME"
+          },
+          {
+           "code": "HE12.3.2",
+           "text": "Evaluate verbal and non-verbal techniques for communicating effectively with family, peers and others to reduce or avoid health risks. ATOD, SEXUALITY, VP/B"
+          },
+          {
+           "code": "HE12.3.3",
+           "text": "Demonstrate the ability to use effective communication techniques to advocate for personal and community health. PH, CEH"
+          },
+          {
+           "code": "HE12.3.4",
+           "text": "Demonstrate the ability to use refusal, negotiation and collaboration skills to enhance health. ME, CEH, VP/B"
+          }
+         ]
+        },
+        {
+         "id": "effective-communication-students-will-demonstrat-2",
+         "title": "Effective Communication: Students will demonstrate the ability to use interpersonal communication skills to enhance health and reduce or avoid health risks (2 of 2)",
+         "outcomes": [
+          {
+           "code": "HE12.3.5",
+           "text": "Demonstrate the ability to use refusal, negotiation and collaboration skills to reduce or avoid health risks. ATOD, SEXUALITY, VP/B"
+          },
+          {
+           "code": "HE12.3.6",
+           "text": "Demonstrate the ability to use strategies to prevent, manage, or resolve interpersonal conflicts without harming self or others. IP/S, VP/B, ME"
+          },
+          {
+           "code": "HE12.3.7",
+           "text": "Delineate a speaker's health argument and specific claims, distinguishing health claims that are supported by reasons and evidence from health claims that are not supported by reasons and evidence. ANY CONTENT AREA"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "personal-and-social-responsibility-students-will",
+     "title": "Personal and Social Responsibility: Students will demonstrate the ability to use personal and social skills that are associated with taking responsible action for enhancing health and reducing or avoiding health risks",
+     "topics": [
+      {
+       "id": "personal-and-social-responsibility-students-will",
+       "title": "Personal and Social Responsibility: Students will demonstrate the ability to use personal and social skills that are associated with taking responsible action for enhancing health and reducing or avoiding health risks",
+       "subtopics": [
+        {
+         "id": "personal-and-social-responsibility-students-will",
+         "title": "Personal and Social Responsibility: Students will demonstrate the ability to use personal and social skills that are associated with taking responsible action for enhancing health and reducing or avoiding health risks (1 of 3)",
+         "outcomes": [
+          {
+           "code": "HE12.4.1",
+           "text": "Analyze the relationship between personal health and their effect on self, others, and society. CEH, PCD, PA"
+          },
+          {
+           "code": "HE12.4.2",
+           "text": "Demonstrate the ability to use a strategic approach to manage health risks and enhance health. NUT, PA, ME"
+          },
+          {
+           "code": "HE12.4.3",
+           "text": "Demonstrate an understanding of behaviors that prevent the spread of disease. SEXUALITY, ATOD, PCD"
+          },
+          {
+           "code": "HE12.4.4",
+           "text": "Explain signs of stress and how stress can affect health status. ME, ATOD"
+          }
+         ]
+        },
+        {
+         "id": "personal-and-social-responsibility-students-will-2",
+         "title": "Personal and Social Responsibility: Students will demonstrate the ability to use personal and social skills that are associated with taking responsible action for enhancing health and reducing or avoiding health risks (2 of 3)",
+         "outcomes": [
+          {
+           "code": "HE12.4.5",
+           "text": "Analyze age appropriate factors that create good stress and bad stress. ME, ATOD, SEXUALITY"
+          },
+          {
+           "code": "HE12.4.7",
+           "text": "Evaluate the appropriateness of various strategies for managing stress and avoiding stress overload in specific situations (e.g. regular exercise to deal with divorce, regular sleep prior to testing, etc.). PA, NUT, PH"
+          },
+          {
+           "code": "HE12.4.8",
+           "text": "Use criteria to set a long-term personal health goal and make a plan for achieving it. ME, PA, NUT"
+          },
+          {
+           "code": "HE12.4.9",
+           "text": "Monitor progress toward achieving a long-term personal health goal and evaluate the effectiveness of the plan for meeting the goal (e.g., a plan to meet the goal of reducing body fat by the end of the semester was effective because it included a variety of activities that met scientific principles for fitness and weight loss (e.g., aerobic activity for 30-45 minutes daily, reducing sugar intake, increasing water intake, attending PE every day, etc.). ME, PA, NUT"
+          }
+         ]
+        },
+        {
+         "id": "personal-and-social-responsibility-students-will-3",
+         "title": "Personal and Social Responsibility: Students will demonstrate the ability to use personal and social skills that are associated with taking responsible action for enhancing health and reducing or avoiding health risks (3 of 3)",
+         "outcomes": [
+          {
+           "code": "HE12.4.10",
+           "text": "Evaluate strategies for being respectful of others and opposing stereotyping and prejudice. VP/B, CEH, ME"
+          },
+          {
+           "code": "HE12.4.11",
+           "text": "Demonstrate the ability to advocate for the prevention of violence and bullying. VP/B, CEH, ME"
+          },
+          {
+           "code": "HE12.4.12",
+           "text": "Analyze the relationship between physical, social, and mental and emotional health. VP/B, CEH ME"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "build": {
+  "builtAt": "2026-10-14T16:20:51.640Z",
+  "model": "none",
+  "usd": 0,
+  "expectedCodes": 125,
+  "coverage": 1,
+  "missingCodes": [],
+  "counts": {
+   "grades": 5,
+   "units": 20,
+   "topics": 20,
+   "subtopics": 30,
+   "outcomes": 127
+  },
+  "warnings": []
+ }
+}

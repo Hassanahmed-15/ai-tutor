@@ -1,0 +1,190 @@
+{
+ "id": "cie-alevel-arabic-language-as-level-only-8680-2026",
+ "region": "INTL",
+ "framework": "Cambridge International AS Level Arabic - Language (8680) syllabus 2026",
+ "board": "Cambridge",
+ "qualification": "AS Level",
+ "subject": "Arabic - Language",
+ "syllabusCode": "8680",
+ "gradeSystem": "course",
+ "source": {
+  "urls": [
+   "https://www.cambridgeinternational.org/Images/697341-2026-syllabus.pdf",
+   "https://www.cambridgeinternational.org/programmes-and-qualifications/cambridge-international-as-and-a-level-arabic-language-as-level-only-8680/"
+  ],
+  "publisher": "Cambridge University Press & Assessment (Cambridge International Education)",
+  "licence": "© Cambridge University Press & Assessment; structure + our own wording only",
+  "firstExam": "2026"
+ },
+ "grades": [
+  {
+   "grade": "AS",
+   "units": [
+    {
+     "id": "4-2-component-3-essay",
+     "title": "4.2 Component 3: Essay",
+     "topics": [
+      {
+       "id": "generation-gap",
+       "title": "Generation Gap",
+       "subtopics": [
+        {
+         "id": "generation-gap",
+         "title": "Generation Gap",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Study changing family relationships, the elderly’s status, and responsibilities for their care."
+          },
+          {
+           "code": null,
+           "text": "Examine generational conflict within families and young people’s attitudes toward older relatives and the family environment."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "the-media",
+       "title": "The media",
+       "subtopics": [
+        {
+         "id": "the-media",
+         "title": "The media",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Examine the media’s role and influence, including the power of advertising."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "employment-and-unemployment",
+       "title": "Employment and unemployment",
+       "subtopics": [
+        {
+         "id": "employment-and-unemployment",
+         "title": "Employment and unemployment",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Study employment preparation, career opportunities and plans, qualifications, work routines, unemployment, declining industries, solutions and migrant workers."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "free-time-activities",
+       "title": "Free time activities",
+       "subtopics": [
+        {
+         "id": "free-time-activities",
+         "title": "Free time activities",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Consider the value of leisure and how to balance work with leisure and organise free time."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "social-and-economic-development",
+       "title": "Social and economic development",
+       "subtopics": [
+        {
+         "id": "social-and-economic-development",
+         "title": "Social and economic development",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Evaluate positive and negative effects of social and economic development, including recent developments and anticipated future trends."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "4-3-component-4-texts",
+     "title": "4.3 Component 4: Texts",
+     "topics": [
+      {
+       "id": "section-1",
+       "title": "Section 1",
+       "subtopics": [
+        {
+         "id": "section-1",
+         "title": "Section 1",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Study selected extracts and the complete works from the prescribed Section 1 texts: تاريخ الأدب العربي: العصر الجاهلي; تاريخ الأدب العربي: العصر العباسي الأول; من الأدب النسائي المعاصر: العربي والغربي."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "section-2",
+       "title": "Section 2",
+       "subtopics": [
+        {
+         "id": "study-shams-al-nahar",
+         "title": "Study Shams al-Nahar",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Study the prescribed drama شمس النهار by Tawfiq al-Hakim."
+          }
+         ]
+        },
+        {
+         "id": "study-al-fajr-al-kadhib",
+         "title": "Study Al-Fajr al-Kadhib",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Study the prescribed collection الفجر الكاذب by Naguib Mahfouz as a complete set text, including its seven specified stories."
+          }
+         ]
+        },
+        {
+         "id": "study-tuyur-aylul",
+         "title": "Study Tuyur Aylul",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Study the prescribed novel طيور أيلول by Emily Daoud Nasrallah."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "build": {
+  "builtAt": "2026-10-14T05:41:41.483Z",
+  "model": "gpt-5.6-luna",
+  "usd": 0.0054,
+  "expectedCodes": null,
+  "coverage": null,
+  "missingCodes": [],
+  "counts": {
+   "grades": 1,
+   "units": 2,
+   "topics": 7,
+   "subtopics": 9,
+   "outcomes": 10
+  },
+  "warnings": []
+ }
+}

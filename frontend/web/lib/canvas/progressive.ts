@@ -1,3 +1,4 @@
+import { checkNumbers, numberIssuesText } from "./numberCheck";
 import "server-only";
 
 import type { Beat } from "../lessonContent";
@@ -5,7 +6,7 @@ import type { ProgressiveBeatPlan, ProgressiveLectureInput } from "../progressiv
 import { bounded, canvasBeat, canvasSentences, client, fallbackSpec, generateSpec, illustrate, jsonCall, PLAN_MODEL, validatePlan, type Clock } from "./generate";
 import { gradeRules, readingGrade } from "../studentCard";
 import { layoutPanel } from "./layout";
-import { canvasBoardCount, canvasBoardDurationMs, canvasPlanRequest, canvasPolicy, canvasRefresherAllowed, documentExtraBoards, referenceDocumentOf, strictDocumentOf, videoDocumentOf } from "./lessonRequest";
+import { canvasBoardCount, canvasBoardDurationMs, canvasPlanRequest, canvasPolicy, canvasRefresherAllowed, curriculumDocumentOf, documentExtraBoards, referenceDocumentOf, strictDocumentOf, videoDocumentOf } from "./lessonRequest";
 import { codeSentenceBlocks, groundSourcePlan, strictBoardLines, ungroundedInPlan, videoBoardLines, videoParts } from "./sourceLessons";
 import { assignListings, documentBoardLines, documentListings, faithfulCodeLines, overlongCodeBoards, uncoveredPages } from "./documentContext";
 import type { SuprnotesLessonInput } from "../suprnotes";
@@ -15,7 +16,13 @@ import { CANVAS_PLAN_PROMPT } from "./prompts";
 import type { CanvasBoardSpec, CanvasPlanBeat } from "./types";
 import type { PlanningKnowledge } from "../knowledge/graph";
 import { slug } from "./validate";
+<<<<<<< HEAD
 import { sourcesForText, type SourcePack } from "../webSources";
+=======
+import { applyLessonVisualPolicy, type VisualPolicyMode } from "./visualPolicy";
+import { findLibraryFigure } from "../figures/library";
+import { teachingCycleIssues } from "./predict";
+>>>>>>> d67c707b (courses added)
 
 /**
  * THE LESSON CANVAS INSIDE THE PROGRESSIVE WORKER (lib/progressiveLectureWorker.ts).
@@ -68,6 +75,17 @@ export async function planCanvasLecture(input: ProgressiveLectureInput, knowledg
       const { json, costUsd: c } = await bounded(jsonCall(openai, PLAN_MODEL, CANVAS_PLAN_PROMPT, attempt > 1 && lastError ? `${request}\n\nYour previous plan could not be used: ${lastError}` : request, fromDocument ? 16_000 : 9000), fromDocument ? 180_000 : 120_000, "canvas plan");
       costUsd += c;
       let plan = validatePlan(json);
+      // Typed, course and reference lessons must genuinely teach, pause for a prediction, reveal,
+      // then transfer. Strict/video lessons may omit a new transfer case when their source does.
+      const cycleProblems = plan && !sourceMode
+        ? plan.beats.flatMap((beat) => teachingCycleIssues(beat).map((issue) => `${beat.title}: ${issue}`))
+        : [];
+      if (cycleProblems.length) {
+        lastError = `teach–predict–reveal–transfer contract failed: ${cycleProblems.slice(0, 6).join("; ")}`;
+        console.log(`[canvas] plan sent back: ${lastError}`);
+        if (attempt < maxAttempts) continue;
+        throw new Error(lastError);
+      }
       if (plan && allowed > 0 && plan.beats.length > allowed) {
         lastError = `it had ${plan.beats.length} boards; the outline has exactly ${outlined}${allowed > outlined ? ` (at most ${allowed} with the extra boards allowed)` : ""}`;
         if (attempt < maxAttempts) continue;
@@ -103,13 +121,56 @@ export async function planCanvasLecture(input: ProgressiveLectureInput, knowledg
       }
       if (missing.length) console.warn(`[canvas] strict plan still leaves out page(s) ${missing.join(", ")}`);
       if (plan) {
+        // WORKED NUMBERS ARE CHECKED BY CODE (lib/canvas/numberCheck.ts): a script that says
+        // "−(8π)²(0.060) = −121" goes back with the right value named (it is −37.9).
+        const arithmetic = plan.beats.flatMap((beat) => checkNumbers(beat.script));
+        if (arithmetic.length && attempt < maxAttempts) {
+          lastError = `worked calculations are wrong: ${numberIssuesText(arithmetic)}. Recompute every number, fix those sentences and anything that depends on them (later steps, the quiz answer)`;
+          console.log(`[canvas] plan sent back: ${lastError}`);
+          continue;
+        }
+        if (arithmetic.length) console.warn(`[canvas] plan still has ${arithmetic.length} wrong calculation(s): ${numberIssuesText(arithmetic)}`);
+        // Curriculum visual contracts are deterministic; attach them to the model's beats so the
+        // board-spec retry gate can reject a decorative stage that cannot show the required evidence.
+        const curriculum = curriculumDocumentOf(input);
+        if (curriculum) {
+          const contractBeats = ((curriculum.lessonPlan as { beats?: Array<{ title?: string; visualRequirement?: Array<{ preferredStages?: string[]; mustShow?: string[] }> }> } | undefined)?.beats ?? []);
+          plan = {
+            ...plan,
+            beats: plan.beats.map((beat, i) => {
+              // By title first, then by position counted without refresher boards: a refresher
+              // added at the front shifted every contract onto the wrong board.
+              if (beat.refresher) return beat;
+              const position = plan!.beats.slice(0, i).filter((b) => !b.refresher).length;
+              const match = contractBeats.find((candidate) => candidate.title?.trim().toLowerCase() === beat.title.trim().toLowerCase()) ?? contractBeats[position];
+              const reqs = match?.visualRequirement ?? [];
+              const stages = [...new Set(reqs.flatMap((r) => r.preferredStages ?? []))];
+              const mustShow = [...new Set(reqs.flatMap((r) => r.mustShow ?? []))];
+              return stages.length || mustShow.length ? { ...beat, requiredVisual: { stages, mustShow } } : beat;
+            }),
+          };
+        }
+        const visualMode: VisualPolicyMode = sourceMode ? "strict" : reference ? "reference" : curriculum ? "course" : "prompt";
+        const visualPolicy = applyLessonVisualPolicy(plan.beats, { mode: visualMode, findAsset: findLibraryFigure });
+        plan = { ...plan, beats: visualPolicy.beats };
+        if ((visualMode === "course" || visualMode === "prompt") && visualPolicy.audit.meaningfulVisuals < visualPolicy.audit.targetMeaningfulVisuals && attempt < maxAttempts) {
+          lastError = `only ${visualPolicy.audit.meaningfulVisuals} of ${plan.beats.length} boards used purpose-built visuals; use at least ${visualPolicy.audit.targetMeaningfulVisuals} appropriate stages such as illustration, flow, graph, equation, compare, molecule, atom-map or code instead of generic scenes`;
+          console.log(`[canvas] plan sent back: ${lastError}`);
+          continue;
+        }
+        console.log(`[canvas] visual policy (${visualMode}): ${visualPolicy.audit.illustrations} generated picture(s), ${visualPolicy.audit.meaningfulVisuals}/${plan.beats.length} purpose-built visual board(s)${visualPolicy.audit.changes.length ? ` — ${visualPolicy.audit.changes.join(" | ")}` : ""}`);
         // CHECK THE PITCH: a model told a grade still writes above it, so each script is measured
         // and the ones too hard for this student are rewritten simpler (lib/studentCard.ts).
         // The target is the policy's reading grade: plainer English or simpler language lowers it.
         const policy = canvasPolicy(input);
         if (policy) {
+          const scriptsBefore = plan.beats.map((beat) => beat.script);
           const fixed = await pitchScripts(openai, plan.beats, policy.readingGrade);
           costUsd += fixed.costUsd;
+          // A simpler rewrite must not break a number: a script whose calculations got worse goes back.
+          plan.beats.forEach((beat, i) => {
+            if (beat.script !== scriptsBefore[i] && checkNumbers(beat.script).length > checkNumbers(scriptsBefore[i]).length) beat.script = scriptsBefore[i];
+          });
           // Each board is written later, from its plan beat alone: it carries the policy's board brief.
           const audience = policyForBoards(policy);
           for (const beat of plan.beats) beat.audience = audience;
@@ -251,12 +312,16 @@ export async function writeCanvasBoard(args: {
     const sentenceBlocks = followCode ?? beat.sentenceBlocks;
     if (sentenceBlocks?.length) written.sentenceBlockIds = sentenceBlocks;
   }
+<<<<<<< HEAD
   // The links at the foot of the slide: the pages behind what this board actually says.
   if (args.webSources) {
     const cited = sourcesForText(args.webSources, `${beat.title} ${beat.brief ?? ""} ${beat.script}`);
     if (cited.length) written.sources = cited.map(({ title, url, site }) => ({ title, url, site }));
   }
   return { beat: written, costUsd: made.costUsd + pictured.costUsd, fallback: made.attempts < 0, log };
+=======
+  return { beat: written, costUsd: made.costUsd + pictured.costUsd, fallback: made.attempts < 0 || Boolean(spec.visualFallback), log };
+>>>>>>> d67c707b (courses added)
 }
 
 /**

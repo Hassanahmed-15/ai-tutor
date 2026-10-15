@@ -1,0 +1,1351 @@
+{
+ "id": "pk-fbise-af-hssc-1-physics",
+ "region": "PK",
+ "framework": "FBISE Assessment Framework (National Curriculum of Pakistan 2022-23)",
+ "board": "FBISE",
+ "qualification": "HSSC-I",
+ "subject": "Physics",
+ "syllabusCode": null,
+ "gradeSystem": "grade",
+ "source": {
+  "urls": [
+   "https://www.fbise.edu.pk/ModelPaper/2025/Assessment%20Frameworks/HSSC-I/Final%20Assessment%20Framework%20Model%20Question%20Paper%20Physics%20HSSC-I.pdf"
+  ],
+  "publisher": "Federal Board of Intermediate and Secondary Education",
+  "licence": "Government publication; structure + our own wording only",
+  "firstExam": "2025"
+ },
+ "grades": [
+  {
+   "grade": "11",
+   "units": [
+    {
+     "id": "domain-a-measurements",
+     "title": "Domain A: Measurements",
+     "topics": [
+      {
+       "id": "physical-quantities-and-units",
+       "title": "Physical quantities and units",
+       "subtopics": [
+        {
+         "id": "estimates-and-derived-units",
+         "title": "Estimates and derived units",
+         "outcomes": [
+          {
+           "code": "P-11-A-01",
+           "text": "Make sensible estimates of physical quantities met in this course."
+          },
+          {
+           "code": "P-11-A-02",
+           "text": "Write derived units as products or quotients of SI base units."
+          }
+         ]
+        },
+        {
+         "id": "dimensional-analysis",
+         "title": "Dimensional analysis",
+         "outcomes": [
+          {
+           "code": "P-11-A-03",
+           "text": "Check whether a physical equation is homogeneous using dimensions."
+          },
+          {
+           "code": "P-11-A-04",
+           "text": "Derive simple formulae using dimensional analysis."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "accuracy-and-uncertainty",
+       "title": "Accuracy and uncertainty",
+       "subtopics": [
+        {
+         "id": "accuracy-precision-and-uncertainty",
+         "title": "Accuracy, precision and uncertainty",
+         "outcomes": [
+          {
+           "code": "P-11-A-05",
+           "text": "Judge the accuracy and precision of data from measuring instruments."
+          },
+          {
+           "code": "P-11-A-06",
+           "text": "Find the uncertainty of a derived quantity by adding absolute, fractional or percentage uncertainties."
+          },
+          {
+           "code": "P-11-A-07",
+           "text": "Explain why every measurement carries some uncertainty."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "domain-b-mechanics",
+     "title": "Domain B: Mechanics",
+     "topics": [
+      {
+       "id": "vectors",
+       "title": "Vectors",
+       "subtopics": [
+        {
+         "id": "components-and-products-of-vectors",
+         "title": "Components and products of vectors",
+         "outcomes": [
+          {
+           "code": "P-11-B-01",
+           "text": "Split a 2-D vector into two perpendicular components."
+          },
+          {
+           "code": "P-11-B-02",
+           "text": "Describe dot and cross products of vectors and their properties."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "kinematics",
+       "title": "Kinematics",
+       "subtopics": [
+        {
+         "id": "equations-of-motion",
+         "title": "Equations of motion",
+         "outcomes": [
+          {
+           "code": "P-11-B-03",
+           "text": "Derive the equations of motion for uniform acceleration from definitions and graphs."
+          },
+          {
+           "code": "P-11-B-04",
+           "text": "Solve straight-line and 2-D problems with the equations of motion, including free fall."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "projectile-motion",
+       "title": "Projectile motion",
+       "subtopics": [
+        {
+         "id": "projectile-motion",
+         "title": "Projectile motion",
+         "outcomes": [
+          {
+           "code": "P-11-B-05",
+           "text": "Analyse projectile motion without air resistance: height, range, time of flight and best launch angle."
+          },
+          {
+           "code": "P-11-B-06",
+           "text": "Predict qualitatively how air resistance changes a projectile's path."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "circular-motion",
+       "title": "Circular motion",
+       "subtopics": [
+        {
+         "id": "angular-quantities",
+         "title": "Angular quantities",
+         "outcomes": [
+          {
+           "code": "P-11-B-07",
+           "text": "Express angles in radians."
+          },
+          {
+           "code": "P-11-B-08",
+           "text": "Define and calculate angular displacement, velocity and acceleration using s=rθ and v=rω."
+          },
+          {
+           "code": "P-11-B-09",
+           "text": "Use the equations of angular motion to solve rotation problems."
+          }
+         ]
+        },
+        {
+         "id": "centripetal-force-and-orbits",
+         "title": "Centripetal force and orbits",
+         "outcomes": [
+          {
+           "code": "P-11-B-10",
+           "text": "Explain qualitatively motion on a curved path caused by a perpendicular force."
+          },
+          {
+           "code": "P-11-B-14",
+           "text": "Define and calculate centripetal force using F=mω²r and F=mv²/r."
+          },
+          {
+           "code": "P-11-B-15",
+           "text": "Analyse circular motion where tension, friction, gravity or a normal force supplies the centripetal force."
+          },
+          {
+           "code": "P-11-B-16",
+           "text": "Explain why objects in orbiting satellites seem weightless."
+          },
+          {
+           "code": "P-11-B-17",
+           "text": "Describe how artificial gravity counters weightlessness."
+          },
+          {
+           "code": "P-11-B-21",
+           "text": "Explain how a centrifuge separates materials using centripetal force."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "momentum",
+       "title": "Momentum",
+       "subtopics": [
+        {
+         "id": "conservation-of-momentum",
+         "title": "Conservation of momentum",
+         "outcomes": [
+          {
+           "code": "P-11-B-11",
+           "text": "Use conservation of momentum on simple one- and two-dimensional collision problems."
+          },
+          {
+           "code": "P-11-B-12",
+           "text": "Analyse elastic collisions using conserved kinetic energy and equal approach and separation speeds."
+          },
+          {
+           "code": "P-11-B-13",
+           "text": "Justify why momentum is conserved in a closed system although kinetic energy may change."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "rotational-dynamics",
+       "title": "Rotational dynamics",
+       "subtopics": [
+        {
+         "id": "moment-of-inertia-and-torque",
+         "title": "Moment of inertia and torque",
+         "outcomes": [
+          {
+           "code": "P-11-B-18",
+           "text": "Define and calculate moment of inertia and angular momentum."
+          },
+          {
+           "code": "P-11-B-19",
+           "text": "Derive and use the relation between torque, moment of inertia and angular acceleration."
+          }
+         ]
+        },
+        {
+         "id": "angular-momentum-conservation",
+         "title": "Angular momentum conservation",
+         "outcomes": [
+          {
+           "code": "P-11-B-20",
+           "text": "State and apply conservation of angular momentum, with real examples such as flywheels, gyroscopes and skaters."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "solids",
+       "title": "Solids",
+       "subtopics": [
+        {
+         "id": "structure-of-solids",
+         "title": "Structure of solids",
+         "outcomes": [
+          {
+           "code": "P-11-B-22",
+           "text": "Tell crystalline, glassy, amorphous and polymeric solids apart by structure."
+          }
+         ]
+        },
+        {
+         "id": "stress-strain-and-young-modulus",
+         "title": "Stress, strain and Young modulus",
+         "outcomes": [
+          {
+           "code": "P-11-B-23",
+           "text": "Describe tensile and compressive deformation of solids by a force."
+          },
+          {
+           "code": "P-11-B-24",
+           "text": "Define and use stress, strain and the Young modulus."
+          },
+          {
+           "code": "P-11-B-25",
+           "text": "Describe an experiment to find the Young modulus of a metal wire."
+          },
+          {
+           "code": "P-11-B-26",
+           "text": "Describe elastic and plastic deformation and the elastic limit."
+          }
+         ]
+        },
+        {
+         "id": "elastic-energy",
+         "title": "Elastic energy",
+         "outcomes": [
+          {
+           "code": "P-11-B-27",
+           "text": "Use the area under a force-extension graph as work done."
+          },
+          {
+           "code": "P-11-B-28",
+           "text": "Find elastic potential energy from the graph and use E=½Fx=½kx²."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "work-and-energy",
+       "title": "Work and energy",
+       "subtopics": [
+        {
+         "id": "kinetic-energy-and-work",
+         "title": "Kinetic energy and work",
+         "outcomes": [
+          {
+           "code": "P-11-B-29",
+           "text": "Derive the kinetic energy formula from the equations of motion."
+          },
+          {
+           "code": "P-11-B-30",
+           "text": "Find work done from a force-displacement graph."
+          },
+          {
+           "code": "P-11-B-31",
+           "text": "Tell conservative from non-conservative forces."
+          },
+          {
+           "code": "P-11-B-32",
+           "text": "Use the work-energy theorem in a resistive medium."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "fluids",
+       "title": "Fluids",
+       "subtopics": [
+        {
+         "id": "floating-and-archimedes",
+         "title": "Floating and Archimedes",
+         "outcomes": [
+          {
+           "code": "P-11-B-33",
+           "text": "Justify and use Archimedes' principle of flotation."
+          },
+          {
+           "code": "P-11-B-34",
+           "text": "Explain how ships are built to float."
+          }
+         ]
+        },
+        {
+         "id": "ideal-fluid-flow-and-continuity",
+         "title": "Ideal fluid flow and continuity",
+         "outcomes": [
+          {
+           "code": "P-11-B-35",
+           "text": "Define steady, incompressible and non-viscous flow of an ideal fluid."
+          },
+          {
+           "code": "P-11-B-36",
+           "text": "Use the equation of continuity to solve problems."
+          },
+          {
+           "code": "P-11-B-37",
+           "text": "Explain why squeezing a rubber pipe's end speeds up the flow."
+          },
+          {
+           "code": "P-11-B-38",
+           "text": "Justify continuity as conservation of mass."
+          }
+         ]
+        },
+        {
+         "id": "bernoulli-s-equation",
+         "title": "Bernoulli's equation",
+         "outcomes": [
+          {
+           "code": "P-11-B-39",
+           "text": "Explain how different flow rates produce pressure differences (Bernoulli effect)."
+          },
+          {
+           "code": "P-11-B-40",
+           "text": "Explain and apply Bernoulli's equation for horizontal and vertical flow."
+          },
+          {
+           "code": "P-11-B-44",
+           "text": "Analyse real uses of the Bernoulli effect such as atomisers, spinning balls and Venturi ducts."
+          }
+         ]
+        },
+        {
+         "id": "viscosity",
+         "title": "Viscosity",
+         "outcomes": [
+          {
+           "code": "P-11-B-41",
+           "text": "Explain why real fluids are viscous."
+          },
+          {
+           "code": "P-11-B-42",
+           "text": "Describe how viscous forces retard an object moving through a fluid."
+          },
+          {
+           "code": "P-11-B-43",
+           "text": "Describe superfluidity as zero viscosity and its consequences."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "domain-c-heat-and-thermodynamics",
+     "title": "Domain C: Heat and Thermodynamics",
+     "topics": [
+      {
+       "id": "temperature-and-gases",
+       "title": "Temperature and gases",
+       "subtopics": [
+        {
+         "id": "thermal-equilibrium-and-internal-energy",
+         "title": "Thermal equilibrium and internal energy",
+         "outcomes": [
+          {
+           "code": "P-12-C-01",
+           "text": "State that regions at equal temperature are in thermal equilibrium."
+          },
+          {
+           "code": "P-11-C-02",
+           "text": "Relate a rise in temperature to more internal energy."
+          }
+         ]
+        },
+        {
+         "id": "ideal-gas-law-and-kinetic-theory",
+         "title": "Ideal gas law and kinetic theory",
+         "outcomes": [
+          {
+           "code": "P-11-C-03",
+           "text": "Apply the ideal gas equation pV=nRT and pV=NkT."
+          },
+          {
+           "code": "P-11-C-04",
+           "text": "State that the Boltzmann constant is k=R/N_A."
+          },
+          {
+           "code": "P-11-C-05",
+           "text": "Describe the assumptions of kinetic theory and when real gases act ideally."
+          },
+          {
+           "code": "P-11-C-09",
+           "text": "Explain with particles how pressure, volume and temperature of a gas relate."
+          },
+          {
+           "code": "P-11-C-10",
+           "text": "Use the equation and graph linking pressure and volume at constant temperature."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "thermodynamics",
+       "title": "Thermodynamics",
+       "subtopics": [
+        {
+         "id": "work-done-by-gases",
+         "title": "Work done by gases",
+         "outcomes": [
+          {
+           "code": "P-11-C-06",
+           "text": "Use W=pΔV for work when gas volume changes at constant pressure."
+          },
+          {
+           "code": "P-11-C-07",
+           "text": "Tell work done by a gas from work done on a gas."
+          }
+         ]
+        },
+        {
+         "id": "first-law-of-thermodynamics",
+         "title": "First law of thermodynamics",
+         "outcomes": [
+          {
+           "code": "P-11-C-08",
+           "text": "Define and use the first law Q=ΔU+W."
+          },
+          {
+           "code": "P-11-C-11",
+           "text": "Justify the first law as conservation of energy."
+          },
+          {
+           "code": "P-11-C-12",
+           "text": "Relate a body's rise in temperature to its increased internal energy."
+          }
+         ]
+        },
+        {
+         "id": "heat-engines-and-the-second-law",
+         "title": "Heat engines and the second law",
+         "outcomes": [
+          {
+           "code": "P-11-C-13",
+           "text": "State the working principle of a heat engine."
+          },
+          {
+           "code": "P-11-C-14",
+           "text": "Describe reversible and irreversible processes."
+          },
+          {
+           "code": "P-11-C-15",
+           "text": "State and explain the second law of thermodynamics."
+          },
+          {
+           "code": "P-11-C-16",
+           "text": "State the working principle of the Carnot engine."
+          },
+          {
+           "code": "P-11-C-17",
+           "text": "Describe a refrigerator as a heat engine run in reverse."
+          },
+          {
+           "code": "P-11-C-23",
+           "text": "State that the Carnot cycle limits efficiency to 1 - Tcold/Thot."
+          }
+         ]
+        },
+        {
+         "id": "entropy",
+         "title": "Entropy",
+         "outcomes": [
+          {
+           "code": "P-11-C-18",
+           "text": "Explain that higher temperature raises the disorder of a system."
+          },
+          {
+           "code": "P-11-C-19",
+           "text": "Explain that rising entropy means degraded energy."
+          },
+          {
+           "code": "P-11-C-20",
+           "text": "Explain that energy is degraded in all natural processes."
+          },
+          {
+           "code": "P-11-C-21",
+           "text": "Recognise that systems become less orderly over time."
+          },
+          {
+           "code": "P-11-C-22",
+           "text": "Explain entropy as a measure of particle disorder."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "domain-d-waves",
+     "title": "Domain D: Waves",
+     "topics": [
+      {
+       "id": "wave-energy",
+       "title": "Wave energy",
+       "subtopics": [
+        {
+         "id": "intensity-of-waves",
+         "title": "Intensity of waves",
+         "outcomes": [
+          {
+           "code": "P-11-D-01",
+           "text": "Use intensity = power/area and intensity proportional to amplitude squared."
+          }
+         ]
+        },
+        {
+         "id": "doppler-effect",
+         "title": "Doppler effect",
+         "outcomes": [
+          {
+           "code": "P-11-D-02",
+           "text": "Explain why a moving source changes the frequency heard by a still observer."
+          },
+          {
+           "code": "P-11-D-03",
+           "text": "Use the observed-frequency formula for a moving source."
+          },
+          {
+           "code": "P-11-D-04",
+           "text": "Explain uses of the Doppler effect in radar, sonar, astronomy and medicine."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "polarization",
+       "title": "Polarization",
+       "subtopics": [
+        {
+         "id": "polarization-and-malus-s-law",
+         "title": "Polarization and Malus's law",
+         "outcomes": [
+          {
+           "code": "P-11-D-05",
+           "text": "Explain that polarization happens only with transverse waves."
+          },
+          {
+           "code": "P-11-D-06",
+           "text": "Define and use Malus's law I=I0cos²θ."
+          },
+          {
+           "code": "P-11-D-17",
+           "text": "Explain how polaroids are used in sky photography and stress analysis."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "superposition",
+       "title": "Superposition",
+       "subtopics": [
+        {
+         "id": "superposition-and-interference",
+         "title": "Superposition and interference",
+         "outcomes": [
+          {
+           "code": "P-11-D-07",
+           "text": "Use the principle of superposition to solve problems."
+          },
+          {
+           "code": "P-11-D-08",
+           "text": "Tell constructive from destructive interference."
+          },
+          {
+           "code": "P-11-D-09",
+           "text": "Explain how noise-cancelling headphones use superposition."
+          },
+          {
+           "code": "P-11-D-14",
+           "text": "Explain coherence."
+          }
+         ]
+        },
+        {
+         "id": "stationary-waves",
+         "title": "Stationary waves",
+         "outcomes": [
+          {
+           "code": "P-11-D-10",
+           "text": "Illustrate experiments showing stationary waves with microwaves, strings and air columns."
+          },
+          {
+           "code": "P-11-D-11",
+           "text": "Explain how a stationary wave forms using graphs."
+          },
+          {
+           "code": "P-11-D-12",
+           "text": "Explain how harmonics form in stationary waves."
+          }
+         ]
+        },
+        {
+         "id": "diffraction-and-beats",
+         "title": "Diffraction and beats",
+         "outcomes": [
+          {
+           "code": "P-11-D-13",
+           "text": "Analyse diffraction experiments and how gap width compared with wavelength matters."
+          },
+          {
+           "code": "P-11-D-15",
+           "text": "Explain beats as pulsing from two close frequencies."
+          },
+          {
+           "code": "P-11-D-16",
+           "text": "Show how beats arise in musical instruments."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "gravitational-waves",
+       "title": "Gravitational waves",
+       "subtopics": [
+        {
+         "id": "gravitational-waves",
+         "title": "Gravitational waves",
+         "outcomes": [
+          {
+           "code": "P-11-D-18",
+           "text": "Describe gravitational waves qualitatively."
+          },
+          {
+           "code": "P-11-D-19",
+           "text": "State that a passing gravitational wave periodically stretches and compresses a body."
+          },
+          {
+           "code": "P-11-D-20",
+           "text": "State that gravitational waves pass through Earth with very tiny amplitude."
+          },
+          {
+           "code": "P-11-D-21",
+           "text": "Describe how interferometers detect gravitational waves."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "domain-e-electricity-and-magnetism",
+     "title": "Domain E: Electricity and Magnetism",
+     "topics": [
+      {
+       "id": "electric-fields",
+       "title": "Electric fields",
+       "subtopics": [
+        {
+         "id": "electric-field-strength-and-field-lines",
+         "title": "Electric field strength and field lines",
+         "outcomes": [
+          {
+           "code": "P-11-E-01",
+           "text": "State that an electric field is a field of force."
+          },
+          {
+           "code": "P-11-E-02",
+           "text": "Define and calculate field strength using F=qE and E=ΔV/Δd."
+          },
+          {
+           "code": "P-11-E-03",
+           "text": "Represent electric fields with field lines."
+          },
+          {
+           "code": "P-11-E-04",
+           "text": "Describe how a uniform field moves charged particles."
+          }
+         ]
+        },
+        {
+         "id": "spherical-conductors-and-shielding",
+         "title": "Spherical conductors and shielding",
+         "outcomes": [
+          {
+           "code": "P-11-E-05",
+           "text": "State that outside a charged sphere, its charge acts like a point charge at the centre."
+          },
+          {
+           "code": "P-11-E-06",
+           "text": "Explain how a Faraday cage shields its inside."
+          }
+         ]
+        },
+        {
+         "id": "coulomb-s-law",
+         "title": "Coulomb's law",
+         "outcomes": [
+          {
+           "code": "P-11-E-07",
+           "text": "State and use Coulomb's law for two point charges."
+          },
+          {
+           "code": "P-11-E-08",
+           "text": "Use E=kQ/r² for the field of a point charge."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "current-electricity",
+       "title": "Current electricity",
+       "subtopics": [
+        {
+         "id": "current-voltage-power-and-resistance",
+         "title": "Current, voltage, power and resistance",
+         "outcomes": [
+          {
+           "code": "P-09-E-09",
+           "text": "Describe how ferrofluids respond to magnet poles and where they are used."
+          },
+          {
+           "code": "P-09-E-10",
+           "text": "Use I=Anvq for current in a conductor."
+          },
+          {
+           "code": "P-09-E-11",
+           "text": "State and use V=W/Q."
+          },
+          {
+           "code": "P-09-E-12",
+           "text": "State and use P=IV, P=I²R and P=V²/R."
+          },
+          {
+           "code": "P-09-E-13",
+           "text": "State and use R=ρL/A."
+          },
+          {
+           "code": "P-09-E-14",
+           "text": "State that an LDR's resistance falls as light gets brighter."
+          }
+         ]
+        },
+        {
+         "id": "e-m-f-and-internal-resistance",
+         "title": "E.m.f. and internal resistance",
+         "outcomes": [
+          {
+           "code": "P-09-E-15",
+           "text": "Define and use electromotive force."
+          },
+          {
+           "code": "P-09-E-16",
+           "text": "Tell e.m.f. from potential difference using energy ideas."
+          },
+          {
+           "code": "P-09-E-17",
+           "text": "Explain how internal resistance affects terminal voltage."
+          },
+          {
+           "code": "P-09-E-26",
+           "text": "Explain internal resistance and its effects on external circuits."
+          }
+         ]
+        },
+        {
+         "id": "kirchhoff-s-laws-and-circuits",
+         "title": "Kirchhoff's laws and circuits",
+         "outcomes": [
+          {
+           "code": "P-09-E-18",
+           "text": "State Kirchhoff's first law as conservation of charge."
+          },
+          {
+           "code": "P-09-E-19",
+           "text": "State Kirchhoff's second law as conservation of energy."
+          },
+          {
+           "code": "P-09-E-20",
+           "text": "Derive the combined resistance of resistors in series."
+          },
+          {
+           "code": "P-09-E-21",
+           "text": "Derive and use the combined resistance of resistors in parallel."
+          },
+          {
+           "code": "P-09-E-22",
+           "text": "Use Kirchhoff's laws to solve simple circuits."
+          }
+         ]
+        },
+        {
+         "id": "potentiometer-and-potential-dividers",
+         "title": "Potentiometer and potential dividers",
+         "outcomes": [
+          {
+           "code": "P-09-E-23",
+           "text": "State and use the potentiometer principle to compare potential differences."
+          },
+          {
+           "code": "P-09-E-24",
+           "text": "Explain the galvanometer in null methods."
+          },
+          {
+           "code": "P-09-E-25",
+           "text": "Explain thermistors and LDRs in potential dividers."
+          },
+          {
+           "code": "P-09-E-27",
+           "text": "Explain how carbon fibres let inspectors check a concrete bridge by conduction."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "magnetism",
+       "title": "Magnetism",
+       "subtopics": [
+        {
+         "id": "magnetic-fields-and-forces-on-currents",
+         "title": "Magnetic fields and forces on currents",
+         "outcomes": [
+          {
+           "code": "P-09-E-28",
+           "text": "Define and explain magnetic fields."
+          },
+          {
+           "code": "P-09-E-29",
+           "text": "State that a current-carrying conductor can feel a force in a magnetic field."
+          },
+          {
+           "code": "P-09-E-30",
+           "text": "Use F=BIL sinθ with Fleming's left-hand rule."
+          },
+          {
+           "code": "P-09-E-31",
+           "text": "Define magnetic flux density."
+          }
+         ]
+        },
+        {
+         "id": "moving-charges-in-magnetic-fields",
+         "title": "Moving charges in magnetic fields",
+         "outcomes": [
+          {
+           "code": "P-09-E-32",
+           "text": "Use F=Bqv sinθ to solve problems."
+          },
+          {
+           "code": "P-09-E-33",
+           "text": "Describe a charge moving perpendicular to a uniform magnetic field."
+          },
+          {
+           "code": "P-09-E-34",
+           "text": "Explain velocity selection using electric and magnetic fields."
+          }
+         ]
+        },
+        {
+         "id": "fields-of-currents",
+         "title": "Fields of currents",
+         "outcomes": [
+          {
+           "code": "P-09-E-35",
+           "text": "Sketch field patterns of a straight wire, flat coil and solenoid."
+          },
+          {
+           "code": "P-09-E-36",
+           "text": "State that an iron core strengthens a solenoid's field."
+          },
+          {
+           "code": "P-09-E-37",
+           "text": "Explain the forces between current-carrying conductors and find their direction."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "electromagnetic-induction",
+       "title": "Electromagnetic induction",
+       "subtopics": [
+        {
+         "id": "flux-and-induction",
+         "title": "Flux and induction",
+         "outcomes": [
+          {
+           "code": "P-09-E-38",
+           "text": "Define magnetic flux."
+          },
+          {
+           "code": "P-09-E-39",
+           "text": "Use Φ=BA to solve problems."
+          },
+          {
+           "code": "P-09-E-40",
+           "text": "Use magnetic flux linkage."
+          },
+          {
+           "code": "P-09-E-41",
+           "text": "Explain experiments showing Faraday's and Lenz's laws."
+          },
+          {
+           "code": "P-09-E-42",
+           "text": "Use Faraday's and Lenz's laws to solve problems."
+          },
+          {
+           "code": "P-09-E-43",
+           "text": "Explain how seismometers detect earthquakes using induction."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "domain-f-modern-physics",
+     "title": "Domain F: Modern Physics",
+     "topics": [
+      {
+       "id": "special-relativity",
+       "title": "Special relativity",
+       "subtopics": [
+        {
+         "id": "frames-and-constant-light-speed",
+         "title": "Frames and constant light speed",
+         "outcomes": [
+          {
+           "code": "P-11-F-01",
+           "text": "Tell inertial from non-inertial frames of reference."
+          },
+          {
+           "code": "P-11-F-02",
+           "text": "Describe why Einstein's constant speed of light matters."
+          },
+          {
+           "code": "P-11-F-03",
+           "text": "Describe how a constant c makes space and time relative."
+          },
+          {
+           "code": "P-11-F-04",
+           "text": "State the postulates of special relativity."
+          }
+         ]
+        },
+        {
+         "id": "consequences-of-relativity",
+         "title": "Consequences of relativity",
+         "outcomes": [
+          {
+           "code": "P-11-F-05",
+           "text": "Explain simultaneity, mass-energy equivalence, length contraction, time dilation and mass increase."
+          },
+          {
+           "code": "P-11-F-06",
+           "text": "State that space-time treats time as a fourth dimension."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "nuclear-and-particle-physics",
+       "title": "Nuclear and particle physics",
+       "subtopics": [
+        {
+         "id": "radiation-and-decay",
+         "title": "Radiation and decay",
+         "outcomes": [
+          {
+           "code": "P-11-F-07",
+           "text": "State that nucleon number and charge are conserved in nuclear processes."
+          },
+          {
+           "code": "P-11-F-08",
+           "text": "Describe the composition, mass and charge of alpha, beta and gamma radiation."
+          },
+          {
+           "code": "P-11-F-09",
+           "text": "Explain that an antiparticle has equal mass and opposite charge."
+          },
+          {
+           "code": "P-11-F-10",
+           "text": "State which neutrinos are produced in beta-minus and beta-plus decay."
+          },
+          {
+           "code": "P-11-F-11",
+           "text": "Explain why alpha energies are discrete but beta energies are continuous."
+          }
+         ]
+        },
+        {
+         "id": "quarks-and-hadrons",
+         "title": "Quarks and hadrons",
+         "outcomes": [
+          {
+           "code": "P-11-F-12",
+           "text": "Describe quarks, antiquarks and the six flavours."
+          },
+          {
+           "code": "P-11-F-13",
+           "text": "Describe protons and neutrons by their quark makeup."
+          },
+          {
+           "code": "P-11-F-14",
+           "text": "State that hadrons are baryons or mesons."
+          },
+          {
+           "code": "P-11-F-15",
+           "text": "Describe quark changes in beta-minus and beta-plus decay."
+          },
+          {
+           "code": "P-11-F-20",
+           "text": "Describe protons and neutrons by their quark composition."
+          },
+          {
+           "code": "P-11-F-21",
+           "text": "State that a hadron is a baryon of three quarks or a meson of a quark and antiquark."
+          }
+         ]
+        },
+        {
+         "id": "fundamental-particles",
+         "title": "Fundamental particles",
+         "outcomes": [
+          {
+           "code": "P-11-F-16",
+           "text": "State that electrons and neutrinos are leptons."
+          },
+          {
+           "code": "P-11-F-17",
+           "text": "State W, Z, gluon and photon as exchange particles."
+          },
+          {
+           "code": "P-11-F-18",
+           "text": "State that the Higgs boson is linked to particle mass."
+          },
+          {
+           "code": "P-11-F-19",
+           "text": "Explain that every subatomic particle has an antiparticle."
+          },
+          {
+           "code": "P-11-F-22",
+           "text": "Explain that several theories exist about where mass and force come from."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "antimatter",
+       "title": "Antimatter",
+       "subtopics": [
+        {
+         "id": "accelerators-and-antimatter",
+         "title": "Accelerators and antimatter",
+         "outcomes": [
+          {
+           "code": "P-11-F-23",
+           "text": "Explain how particle accelerators work and what they are used for."
+          },
+          {
+           "code": "P-11-F-24",
+           "text": "Explain antimatter as the counterpart of matter."
+          },
+          {
+           "code": "P-11-F-25",
+           "text": "Illustrate that antiparticles have the same mass but opposite charge."
+          },
+          {
+           "code": "P-11-F-26",
+           "text": "State that most observable matter is ordinary matter."
+          },
+          {
+           "code": "P-11-F-27",
+           "text": "Describe the matter-antimatter asymmetry as an unsolved mystery."
+          },
+          {
+           "code": "P-11-F-28",
+           "text": "Describe annihilation reactions."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "domain-n-experimentation-skills",
+     "title": "Domain N: Experimentation Skills",
+     "topics": [
+      {
+       "id": "lab-safety",
+       "title": "Lab safety",
+       "subtopics": [
+        {
+         "id": "working-safely",
+         "title": "Working safely",
+         "outcomes": [
+          {
+           "code": "P-11-N-01",
+           "text": "Check equipment works safely before an experiment."
+          },
+          {
+           "code": "P-11-N-02",
+           "text": "Keep the workspace uncrowded and safe."
+          },
+          {
+           "code": "P-11-N-03",
+           "text": "Keep a safe distance from other workers."
+          },
+          {
+           "code": "P-11-N-04",
+           "text": "Suggest what harm physical, chemical, biological or safety hazards could cause."
+          },
+          {
+           "code": "P-11-N-05",
+           "text": "State that asking the lab instructor is better than guessing with new apparatus."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "lab-practice",
+       "title": "Lab practice",
+       "subtopics": [
+        {
+         "id": "setting-up-and-collecting-data",
+         "title": "Setting up and collecting data",
+         "outcomes": [
+          {
+           "code": "P-11-N-06",
+           "text": "Set up apparatus correctly without help."
+          },
+          {
+           "code": "P-11-N-07",
+           "text": "Follow written instructions and diagrams, including circuit diagrams."
+          },
+          {
+           "code": "P-11-N-08",
+           "text": "Collect an appropriate quantity of data."
+          },
+          {
+           "code": "P-11-N-09",
+           "text": "Repeat readings where suitable."
+          },
+          {
+           "code": "P-11-N-10",
+           "text": "Take measurements over the widest possible range."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "graphs-and-uncertainty",
+       "title": "Graphs and uncertainty",
+       "subtopics": [
+        {
+         "id": "uncertainty-in-measurements",
+         "title": "Uncertainty in measurements",
+         "outcomes": [
+          {
+           "code": "P-11-N-12",
+           "text": "Estimate the absolute uncertainty in measurements."
+          },
+          {
+           "code": "P-11-N-13",
+           "text": "Express uncertainty as absolute or percentage and convert between them."
+          },
+          {
+           "code": "P-11-N-14",
+           "text": "Take absolute uncertainty of repeated readings as half their range."
+          }
+         ]
+        },
+        {
+         "id": "drawing-and-reading-graphs",
+         "title": "Drawing and reading graphs",
+         "outcomes": [
+          {
+           "code": "P-11-N-11",
+           "text": "Use a false origin when plotting graphs."
+          },
+          {
+           "code": "P-11-N-15",
+           "text": "Draw lines or curves of best fit."
+          },
+          {
+           "code": "P-11-N-16",
+           "text": "Draw tangents and find gradients."
+          },
+          {
+           "code": "P-11-N-17",
+           "text": "Relate straight-line graphs to y=mx+c and derive gradient and intercept expressions."
+          },
+          {
+           "code": "P-110-N-18",
+           "text": "Read coordinates from a trend line."
+          },
+          {
+           "code": "P-11-N-19",
+           "text": "Read values from a graph's trend line."
+          },
+          {
+           "code": "P-11-N-20",
+           "text": "Find the y-intercept of a line or tangent, including with a false origin."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "analysis-and-evaluation",
+       "title": "Analysis and evaluation",
+       "subtopics": [
+        {
+         "id": "conclusions-and-evaluation",
+         "title": "Conclusions and evaluation",
+         "outcomes": [
+          {
+           "code": "P-11-N-21",
+           "text": "Draw conclusions from experiments, including finding constants."
+          },
+          {
+           "code": "P-11-N-22",
+           "text": "Explain whether data supports a hypothesis and make predictions."
+          },
+          {
+           "code": "P-11-N-23",
+           "text": "Decide whether data supports a relationship containing a constant."
+          },
+          {
+           "code": "P-11-N-24",
+           "text": "Compare percentage difference of constants with a given uncertainty and conclude."
+          },
+          {
+           "code": "P-11-N-25",
+           "text": "Identify limitations in an experimental procedure."
+          },
+          {
+           "code": "P-11-N-26",
+           "text": "Identify the biggest sources of uncertainty."
+          },
+          {
+           "code": "P-11-N-27",
+           "text": "Suggest an arrangement that improves accuracy or extends the investigation."
+          },
+          {
+           "code": "P-11-N-28",
+           "text": "Describe such changes clearly in words or diagrams."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "build": {
+  "builtAt": "2026-10-14T08:05:23.426Z",
+  "model": "claude-agent",
+  "usd": 0,
+  "expectedCodes": 193,
+  "coverage": 1,
+  "missingCodes": [],
+  "counts": {
+   "grades": 1,
+   "units": 7,
+   "topics": 28,
+   "subtopics": 54,
+   "outcomes": 194
+  },
+  "warnings": []
+ }
+}

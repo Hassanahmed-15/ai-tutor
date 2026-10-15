@@ -1,0 +1,2686 @@
+{
+ "id": "us-co-science",
+ "region": "US",
+ "framework": "Colorado state academic standards: Science",
+ "board": null,
+ "qualification": "K-12",
+ "subject": "Science",
+ "syllabusCode": null,
+ "gradeSystem": "grade",
+ "source": {
+  "urls": [
+   "https://api.commonstandardsproject.com/api/v1/jurisdictions/83F29380C23C4AEB843733B243CB2243",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/83F29380C23C4AEB843733B243CB2243_D2980644_grade-01",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/83F29380C23C4AEB843733B243CB2243_D2980644_grade-02",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/83F29380C23C4AEB843733B243CB2243_D2980644_grade-03",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/83F29380C23C4AEB843733B243CB2243_D2980644_grade-04",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/83F29380C23C4AEB843733B243CB2243_D2980644_grade-05",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/83F29380C23C4AEB843733B243CB2243_D2980644_grades-06-07-08",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/83F29380C23C4AEB843733B243CB2243_D2980644_grades-09-10-11-12",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/83F29380C23C4AEB843733B243CB2243_D2980644_grade-k",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/83F29380C23C4AEB843733B243CB2243_D2980644_grade-pre-k"
+  ],
+  "publisher": "Colorado state education agency (machine-readable via Common Standards Project / ASN)",
+  "licence": "CC BY 3.0 US, D2L Corporation",
+  "firstExam": "2020"
+ },
+ "grades": [
+  {
+   "grade": "PK",
+   "units": [
+    {
+     "id": "physical-science",
+     "title": "Physical Science",
+     "topics": [
+      {
+       "id": "recognize-there-are-cause-and-effect-relationshi",
+       "title": "Recognize there are cause-and-effect relationships related to matter and energy",
+       "subtopics": [
+        {
+         "id": "recognize-there-are-cause-and-effect-relationshi",
+         "title": "Recognize there are cause-and-effect relationships related to matter and energy (1 of 2)",
+         "outcomes": [
+          {
+           "code": "PS1.PK.1.a",
+           "text": "Use senses to explore the properties of objects and materials (e.g., solids, liquids)."
+          },
+          {
+           "code": "PS1.PK.1.b",
+           "text": "Make simple observations, predictions, explanations, and generalizations based on real-life experiences."
+          },
+          {
+           "code": "PS1.PK.1.c",
+           "text": "Collect, describe, predict and record information using words, drawings, maps, graphs and charts."
+          },
+          {
+           "code": "PS1.PK.1.d",
+           "text": "Observe, describe, and discuss living things and natural processes."
+          }
+         ]
+        },
+        {
+         "id": "recognize-there-are-cause-and-effect-relationshi-2",
+         "title": "Recognize there are cause-and-effect relationships related to matter and energy (2 of 2)",
+         "outcomes": [
+          {
+           "code": "PS1.PK.2.a",
+           "text": "Recognize and investigate cause-and-effect relationships in everyday experiences (pushing, pulling, kicking, rolling or blowing objects)."
+          },
+          {
+           "code": "PS1.PK.2.b",
+           "text": "Notice change in matter."
+          },
+          {
+           "code": "PS1.PK.2.c",
+           "text": "Observe, describe and discuss properties of materials and transformation of substances."
+          },
+          {
+           "code": "PS1.PK.2.d",
+           "text": "Seek answers to questions and test predictions using simple experiments."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "life-science",
+     "title": "Life Science",
+     "topics": [
+      {
+       "id": "recognize-that-living-things-have-unique-charact",
+       "title": "Recognize that living things have unique characteristics and basic needs that can be observed and studied",
+       "subtopics": [
+        {
+         "id": "recognize-that-living-things-have-unique-charact",
+         "title": "Recognize that living things have unique characteristics and basic needs that can be observed and studied",
+         "outcomes": [
+          {
+           "code": "LS2.PK.1.a",
+           "text": "Observe, describe and discuss living things."
+          },
+          {
+           "code": "LS2.PK.1.b",
+           "text": "Observe similarities and differences in the needs of living things."
+          },
+          {
+           "code": "LS2.PK.1.c",
+           "text": "Observe and describe how natural habitats provide for the basic needs of plants and animals with respect to shelter, food, water, air and light."
+          },
+          {
+           "code": "LS2.PK.1.d",
+           "text": "Ask and pursue questions through simple investigations and observations of living things."
+          },
+          {
+           "code": "LS2.PK.1.e",
+           "text": "Collect, describe, and record information about living things through discussion, drawings, graphs, technology and charts."
+          },
+          {
+           "code": "LS2.PK.1.f",
+           "text": "Identify differences between living and nonliving things."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "recognize-that-living-things-develop-in-predicta",
+       "title": "Recognize that living things develop in predictable patterns",
+       "subtopics": [
+        {
+         "id": "recognize-that-living-things-develop-in-predicta",
+         "title": "Recognize that living things develop in predictable patterns",
+         "outcomes": [
+          {
+           "code": "LS2.PK.2.a",
+           "text": "Identify the common needs such as food, air and water of familiar living things."
+          },
+          {
+           "code": "LS2.PK.2.b",
+           "text": "Predict, explain and infer patterns based on observations and representations of living things, their needs and life cycles."
+          },
+          {
+           "code": "LS2.PK.2.c",
+           "text": "Observe and document changes in living things over time using different modalities such as drawing, dramatization, describing or using technology."
+          },
+          {
+           "code": "LS2.PK.2.d",
+           "text": "Recognize that plants and animals grow and change."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "earth-and-space-science",
+     "title": "Earth and Space Science",
+     "topics": [
+      {
+       "id": "the-acquisition-of-concepts-and-facts-related-to",
+       "title": "The acquisition of concepts and facts related to the Earth materials and their uses",
+       "subtopics": [
+        {
+         "id": "the-acquisition-of-concepts-and-facts-related-to",
+         "title": "The acquisition of concepts and facts related to the Earth materials and their uses",
+         "outcomes": [
+          {
+           "code": "ESS3.PK.1.a",
+           "text": "Use senses and tools, including technology, to investigate materials, and observe processes and relationships to gather information and explore the environment."
+          },
+          {
+           "code": "ESS3.PK.1.b",
+           "text": "Inquire about the natural and physical environment."
+          },
+          {
+           "code": "ESS3.PK.1.c",
+           "text": "Observe and discuss common properties, differences and comparisons among objects."
+          },
+          {
+           "code": "ESS3.PK.1.d",
+           "text": "Participate in simple investigations to form hypothesis, gather observations, draw conclusions."
+          },
+          {
+           "code": "ESS3.PK.1.e",
+           "text": "Record observations using words, drawings, maps, graphs and charts."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "the-acquisition-of-concepts-and-facts-related-to-2",
+       "title": "The acquisition of concepts and facts related to the natural and physical world and the understanding of naturally occurring relationships",
+       "subtopics": [
+        {
+         "id": "the-acquisition-of-concepts-and-facts-related-to",
+         "title": "The acquisition of concepts and facts related to the natural and physical world and the understanding of naturally occurring relationships",
+         "outcomes": [
+          {
+           "code": "ESS3.PK.2.a",
+           "text": "Predict, explain and infer patterns based on observations and evidence."
+          },
+          {
+           "code": "ESS3.PK.2.b",
+           "text": "Articulate findings through a variety of modalities (e.g., drawings, words, dramatizations)."
+          },
+          {
+           "code": "ESS3.PK.2.c",
+           "text": "Recognizes familiar elements of the natural world and demonstrates an understanding that these may change over time (e.g., sun and moon, weather)."
+          },
+          {
+           "code": "ESS3.PK.2.d",
+           "text": "Observe and describe patterns observed over the course of a number of days and nights (e.g., differences in the activities or appearance of plants and animals)."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "K",
+   "units": [
+    {
+     "id": "physical-science",
+     "title": "Physical Science",
+     "topics": [
+      {
+       "id": "pushes-and-pulls-can-have-different-strengths-an",
+       "title": "Pushes and pulls can have different strengths and directions, and can change the speed or direction of an object's motion or start or stop it",
+       "subtopics": [
+        {
+         "id": "pushes-and-pulls-can-have-different-strengths-an",
+         "title": "Pushes and pulls can have different strengths and directions, and can change the speed or direction of an object's motion or start or stop it",
+         "outcomes": [
+          {
+           "code": "PS1.K.1.a",
+           "text": "Plan and conduct an investigation to compare the effects of different strengths or different directions of pushes and pulls on the motion of an object."
+          },
+          {
+           "code": "PS1.K.1.b",
+           "text": "Analyze data to determine if a design solution works as intended to change the speed or direction of an object with a push or a pull."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "sunlight-affects-the-earth-s-surface",
+       "title": "Sunlight affects the Earth's surface",
+       "subtopics": [
+        {
+         "id": "sunlight-affects-the-earth-s-surface",
+         "title": "Sunlight affects the Earth's surface",
+         "outcomes": [
+          {
+           "code": "PS1.K.2.a",
+           "text": "Make observations to determine the effect of sunlight on Earth's surface."
+          },
+          {
+           "code": "PS1.K.2.b",
+           "text": "Use tools and materials to design and build a structure that will reduce the warming effect of sunlight on an area."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "life-science",
+     "title": "Life Science",
+     "topics": [
+      {
+       "id": "to-live-and-grow-animals-obtain-food-they-need-f",
+       "title": "To live and grow, animals obtain food they need from plants or other animals, and plants need water and light",
+       "subtopics": [
+        {
+         "id": "to-live-and-grow-animals-obtain-food-they-need-f",
+         "title": "To live and grow, animals obtain food they need from plants or other animals, and plants need water and light",
+         "outcomes": [
+          {
+           "code": "LS2.K.1.a",
+           "text": "Use observations to describe patterns of what plants and animals (including humans) need to survive."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "earth-and-space-science",
+     "title": "Earth and Space Science",
+     "topics": [
+      {
+       "id": "patterns-are-observed-when-measuring-the-local-w",
+       "title": "Patterns are observed when measuring the local weather, including how humans and other organisms impact their environment",
+       "subtopics": [
+        {
+         "id": "patterns-are-observed-when-measuring-the-local-w",
+         "title": "Patterns are observed when measuring the local weather, including how humans and other organisms impact their environment",
+         "outcomes": [
+          {
+           "code": "ESS3.K.1.a",
+           "text": "Use and share observations of local weather conditions to describe patterns over time."
+          },
+          {
+           "code": "ESS3.K.1.b",
+           "text": "Construct an argument supported by evidence for how plants and animals (including humans) can change the environment to meet their needs."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "plants-and-animals-meet-their-needs-in-their-hab",
+       "title": "Plants and animals meet their needs in their habitats and impact one another; people can prepare for severe weather",
+       "subtopics": [
+        {
+         "id": "plants-and-animals-meet-their-needs-in-their-hab",
+         "title": "Plants and animals meet their needs in their habitats and impact one another; people can prepare for severe weather",
+         "outcomes": [
+          {
+           "code": "ESS3.K.2.a",
+           "text": "Use a model to represent the relationship between the needs of different plants or animals (including humans) and the places they live."
+          },
+          {
+           "code": "ESS3.K.2.b",
+           "text": "Ask questions to obtain information about the purpose of weather forecasting to prepare for, and respond to, severe weather."
+          },
+          {
+           "code": "ESS3.K.2.c",
+           "text": "Communicate solutions that will reduce the impact of humans on the land, water, air and/or other living things in the local environment."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "1",
+   "units": [
+    {
+     "id": "physical-science",
+     "title": "Physical Science",
+     "topics": [
+      {
+       "id": "sound-can-make-matter-vibrate-and-vibrating-matt",
+       "title": "Sound can make matter vibrate and vibrating matter can make sound",
+       "subtopics": [
+        {
+         "id": "sound-can-make-matter-vibrate-and-vibrating-matt",
+         "title": "Sound can make matter vibrate and vibrating matter can make sound",
+         "outcomes": [
+          {
+           "code": "PS1.1.1.a",
+           "text": "Plan and conduct investigations to provide evidence that vibrating materials can make a sound and that sound can make materials vibrate."
+          },
+          {
+           "code": "PS1.1.1.b",
+           "text": "Make observations to construct an evidence-based account that objects can be seen only when illuminated."
+          },
+          {
+           "code": "PS1.1.1.c",
+           "text": "Plan and conduct an investigation to determine the effect of placing objects made with different materials in the path of a beam of light."
+          },
+          {
+           "code": "PS1.1.1.d",
+           "text": "Use tools and materials to design and build a device that used light or sound to solve the problem of communicating over a distance."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "life-science",
+     "title": "Life Science",
+     "topics": [
+      {
+       "id": "all-organisms-have-external-parts-that-they-use-",
+       "title": "All organisms have external parts that they use to perform daily functions",
+       "subtopics": [
+        {
+         "id": "all-organisms-have-external-parts-that-they-use-",
+         "title": "All organisms have external parts that they use to perform daily functions",
+         "outcomes": [
+          {
+           "code": "LS2.1.1.a",
+           "text": "Use materials to design a solution to a human problem by mimicking how plants and/or animals use their external parts to help them survive, grow and meet their needs."
+          },
+          {
+           "code": "LS2.1.1.b",
+           "text": "Read texts and use media to determine patterns in behavior of parents and offspring that help offspring survive."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "young-organisms-are-very-much-but-not-exactly-li",
+       "title": "Young organisms are very much, but not exactly, like their parents, and also resemble other organisms of the same kind",
+       "subtopics": [
+        {
+         "id": "young-organisms-are-very-much-but-not-exactly-li",
+         "title": "Young organisms are very much, but not exactly, like their parents, and also resemble other organisms of the same kind",
+         "outcomes": [
+          {
+           "code": "LS2.1.2.a",
+           "text": "Make observations to construct an evidence-based account that young plants and animals are like, but not exactly like, their parents."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "earth-and-space-science",
+     "title": "Earth and Space Science",
+     "topics": [
+      {
+       "id": "patterns-of-movement-of-the-sun-moon-and-stars-a",
+       "title": "Patterns of movement of the sun, moon and stars as seen from Earth can be observed, described and predicted",
+       "subtopics": [
+        {
+         "id": "patterns-of-movement-of-the-sun-moon-and-stars-a",
+         "title": "Patterns of movement of the sun, moon and stars as seen from Earth can be observed, described and predicted",
+         "outcomes": [
+          {
+           "code": "ESS3.1.1.a",
+           "text": "Use observations of the sun, moon, and stars to describe patterns that can be predicted."
+          },
+          {
+           "code": "ESS3.1.1.b",
+           "text": "Make observations at different times of year to relate the amount of daylight to the time of year."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "2",
+   "units": [
+    {
+     "id": "physical-science",
+     "title": "Physical Science",
+     "topics": [
+      {
+       "id": "matter-exists-as-different-substances-that-have-",
+       "title": "Matter exists as different substances that have observable different properties",
+       "subtopics": [
+        {
+         "id": "matter-exists-as-different-substances-that-have-",
+         "title": "Matter exists as different substances that have observable different properties",
+         "outcomes": [
+          {
+           "code": "PS1.2.1.a",
+           "text": "Plan and conduct an investigation to describe and classify different kinds of materials by their observable properties."
+          },
+          {
+           "code": "PS1.2.1.b",
+           "text": "Analyze data obtained from testing different materials to determine which materials have the properties that are best suited for an intended purpose."
+          },
+          {
+           "code": "PS1.2.1.c",
+           "text": "Make observations to construct an evidence-based account of how an object made of a small set of pieces can be disassembled and made into a new object."
+          },
+          {
+           "code": "PS1.2.1.d",
+           "text": "Construct an argument with evidence that some changes caused by heating or cooling can be reversed and some cannot."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "life-science",
+     "title": "Life Science",
+     "topics": [
+      {
+       "id": "plants-depend-on-water-and-light-to-grow-and-on-",
+       "title": "Plants depend on water and light to grow and on animals for pollination or to move their seeds around",
+       "subtopics": [
+        {
+         "id": "plants-depend-on-water-and-light-to-grow-and-on-",
+         "title": "Plants depend on water and light to grow and on animals for pollination or to move their seeds around",
+         "outcomes": [
+          {
+           "code": "LS2.2.1.a",
+           "text": "Plan and conduct an investigation to determine if plants need sunlight and water to grow."
+          },
+          {
+           "code": "LS2.2.1.b",
+           "text": "Develop a simple model that mimics the function of an animal in dispersing seeds or pollinating plants."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "a-range-of-different-organisms-lives-in-differen",
+       "title": "A range of different organisms lives in different places",
+       "subtopics": [
+        {
+         "id": "a-range-of-different-organisms-lives-in-differen",
+         "title": "A range of different organisms lives in different places",
+         "outcomes": [
+          {
+           "code": "LS2.2.2.a",
+           "text": "Make observations of plants and animals to compare the diversity of life in different habitats."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "earth-and-space-science",
+     "title": "Earth and Space Science",
+     "topics": [
+      {
+       "id": "some-events-on-earth-occur-quickly-others-can-oc",
+       "title": "Some events on Earth occur quickly; others can occur very slowly",
+       "subtopics": [
+        {
+         "id": "some-events-on-earth-occur-quickly-others-can-oc",
+         "title": "Some events on Earth occur quickly; others can occur very slowly",
+         "outcomes": [
+          {
+           "code": "ESS3.2.1.a",
+           "text": "Use information from several sources to provide evidence that Earth events can occur quickly or slowly."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "wind-and-water-can-change-the-shape-of-the-land-",
+       "title": "Wind and water can change the shape of the land; models can show the shape and these changes to the land",
+       "subtopics": [
+        {
+         "id": "wind-and-water-can-change-the-shape-of-the-land-",
+         "title": "Wind and water can change the shape of the land; models can show the shape and these changes to the land",
+         "outcomes": [
+          {
+           "code": "ESS3.2.2.a",
+           "text": "Compare multiple solutions designed to slow or prevent wind or water from changing the shape of the land."
+          },
+          {
+           "code": "ESS3.2.2.b",
+           "text": "Develop a model to represent the shapes and kinds of land and bodies of water in an area."
+          },
+          {
+           "code": "ESS3.2.2.c",
+           "text": "Obtain information to identify where water is found on Earth and that it can be solid or liquid."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "3",
+   "units": [
+    {
+     "id": "physical-science",
+     "title": "Physical Science",
+     "topics": [
+      {
+       "id": "patterns-of-motion-can-be-used-to-predict-future",
+       "title": "Patterns of motion can be used to predict future motion",
+       "subtopics": [
+        {
+         "id": "patterns-of-motion-can-be-used-to-predict-future",
+         "title": "Patterns of motion can be used to predict future motion",
+         "outcomes": [
+          {
+           "code": "PS1.3.1.a",
+           "text": "Plan and conduct an investigation to provide evidence of the effects of balanced and unbalanced forces on the motion of an object."
+          },
+          {
+           "code": "PS1.3.1.b",
+           "text": "Make observations and/or measurements of an object's motion to provide evidence that a pattern can be used to predict future motion."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "objects-in-contact-exert-forces-on-each-other-el",
+       "title": "Objects in contact exert forces on each other; electric and magnetic forces between a pair of objects do not require contact",
+       "subtopics": [
+        {
+         "id": "objects-in-contact-exert-forces-on-each-other-el",
+         "title": "Objects in contact exert forces on each other; electric and magnetic forces between a pair of objects do not require contact",
+         "outcomes": [
+          {
+           "code": "PS1.3.2.a",
+           "text": "Ask questions to determine cause-and-effect relationships of electric or magnetic interactions between two objects not in contact with each other."
+          },
+          {
+           "code": "PS1.3.2.b",
+           "text": "Define a simple design problem that can be solved by applying scientific ideas about magnets."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "life-science",
+     "title": "Life Science",
+     "topics": [
+      {
+       "id": "organisms-have-unique-and-diverse-life-cycles",
+       "title": "Organisms have unique and diverse life cycles",
+       "subtopics": [
+        {
+         "id": "organisms-have-unique-and-diverse-life-cycles",
+         "title": "Organisms have unique and diverse life cycles",
+         "outcomes": [
+          {
+           "code": "LS2.3.1.a",
+           "text": "Develop models to describe that organisms have unique and diverse life cycles but all have in common birth, growth, reproduction and death."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "being-part-of-a-group-helps-animals-obtain-food-",
+       "title": "Being part of a group helps animals obtain food, defend themselves and cope with changes",
+       "subtopics": [
+        {
+         "id": "being-part-of-a-group-helps-animals-obtain-food-",
+         "title": "Being part of a group helps animals obtain food, defend themselves and cope with changes",
+         "outcomes": [
+          {
+           "code": "LS2.3.2.a",
+           "text": "Construct an argument that some animals form groups that help members survive."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "different-organisms-vary-in-how-they-look-and-fu",
+       "title": "Different organisms vary in how they look and function because they have different inherited information; the environment also affects the traits that an organism develops",
+       "subtopics": [
+        {
+         "id": "different-organisms-vary-in-how-they-look-and-fu",
+         "title": "Different organisms vary in how they look and function because they have different inherited information; the environment also affects the traits that an organism develops",
+         "outcomes": [
+          {
+           "code": "LS2.3.3.a",
+           "text": "Analyze and interpret data to provide evidence that plants and animals have traits inherited from parents and that variation of these traits exists in a group of similar organisms."
+          },
+          {
+           "code": "LS2.3.3.b",
+           "text": "Use evidence to support the explanation that traits can be influenced by the environment"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "some-living-organisms-resemble-organisms-that-on",
+       "title": "Some living organisms resemble organisms that once lived on Earth ",
+       "subtopics": [
+        {
+         "id": "some-living-organisms-resemble-organisms-that-on",
+         "title": "Some living organisms resemble organisms that once lived on Earth ",
+         "outcomes": [
+          {
+           "code": "LS2.3.4.a",
+           "text": "Analyze and interpret data from fossils to provide evidence of the organisms and the environments in which they lived long ago."
+          },
+          {
+           "code": "LS2.3.4.b",
+           "text": "Use evidence to construct an explanation for how the variations in characteristics among individuals of the same species may provide advantages in surviving, finding mates and reproducing."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "sometimes-differences-in-characteristics-between",
+       "title": "Sometimes differences in characteristics between individuals of the same species provide advantages in survival and reproduction",
+       "subtopics": [
+        {
+         "id": "sometimes-differences-in-characteristics-between",
+         "title": "Sometimes differences in characteristics between individuals of the same species provide advantages in survival and reproduction",
+         "outcomes": [
+          {
+           "code": "LS2.3.5.a",
+           "text": "Construct an argument with evidence that in a particular habitat some organisms can survive well, some survive less well and some cannot survive at all."
+          },
+          {
+           "code": "LS2.3.5.b",
+           "text": "Make a claim about the merit of a solution to a problem caused when the environment changes and the types of plants and animals that live there may change."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "earth-and-space-science",
+     "title": "Earth and Space Science",
+     "topics": [
+      {
+       "id": "climate-describes-patterns-of-typical-weather-co",
+       "title": "Climate describes patterns of typical weather conditions over different scales and variations; historical weather patterns can be analyzed",
+       "subtopics": [
+        {
+         "id": "climate-describes-patterns-of-typical-weather-co",
+         "title": "Climate describes patterns of typical weather conditions over different scales and variations; historical weather patterns can be analyzed",
+         "outcomes": [
+          {
+           "code": "ESS3.3.3.a",
+           "text": "Represent data in tables and graphical displays to describe typical weather conditions expected during a particular season."
+          },
+          {
+           "code": "ESS3.3.3.b",
+           "text": "Obtain and combine information to describe climates in different regions of the world."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "a-variety-of-weather-hazards-result-from-natural",
+       "title": "A variety of weather hazards result from natural process; humans cannot eliminate weather-related hazards but can reduce their impacts",
+       "subtopics": [
+        {
+         "id": "a-variety-of-weather-hazards-result-from-natural",
+         "title": "A variety of weather hazards result from natural process; humans cannot eliminate weather-related hazards but can reduce their impacts",
+         "outcomes": [
+          {
+           "code": "ESS3.3.a",
+           "text": "Make a claim about the merit of a design solution that reduces the impacts of a weather-related hazard."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "4",
+   "units": [
+    {
+     "id": "physical-science",
+     "title": "Physical Science",
+     "topics": [
+      {
+       "id": "the-faster-an-object-moves-the-more-energy-it-ha",
+       "title": "The faster an object moves the more energy it has",
+       "subtopics": [
+        {
+         "id": "the-faster-an-object-moves-the-more-energy-it-ha",
+         "title": "The faster an object moves the more energy it has",
+         "outcomes": [
+          {
+           "code": "PS1.4.1.a",
+           "text": "Use evidence to construct an explanation relating the speed of an object to the energy of that object."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "energy-can-be-moved-from-place-to-place",
+       "title": "Energy can be moved from place to place",
+       "subtopics": [
+        {
+         "id": "energy-can-be-moved-from-place-to-place",
+         "title": "Energy can be moved from place to place",
+         "outcomes": [
+          {
+           "code": "PS1.4.2.a",
+           "text": "Make observations to provide evidence that energy can be transferred from place to place by sound, light, heat and electric currents."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "when-objects-collide-contact-forces-transfer-so-",
+       "title": "When objects collide contact forces transfer so as to change objects' motion",
+       "subtopics": [
+        {
+         "id": "when-objects-collide-contact-forces-transfer-so-",
+         "title": "When objects collide contact forces transfer so as to change objects' motion",
+         "outcomes": [
+          {
+           "code": "PS1.4.3.a",
+           "text": "Ask questions and predict outcomes about the changes in energy that occur when objects collide."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "energy-can-be-produced-used-or-released-by-conve",
+       "title": "Energy can be produced, used or released by converting stored energy",
+       "subtopics": [
+        {
+         "id": "energy-can-be-produced-used-or-released-by-conve",
+         "title": "Energy can be produced, used or released by converting stored energy",
+         "outcomes": [
+          {
+           "code": "PS1.4.4.a",
+           "text": "Apply scientific ideas to design, test and refine a device that converts energy from one form to another."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "waves-are-regular-patterns-of-motion",
+       "title": "Waves are regular patterns of motion",
+       "subtopics": [
+        {
+         "id": "waves-are-regular-patterns-of-motion",
+         "title": "Waves are regular patterns of motion",
+         "outcomes": [
+          {
+           "code": "PS1.4.5.a",
+           "text": "Develop a model of waves to describe patterns in terms of amplitude and wavelength and that waves can cause objects to move."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "an-object-can-be-seen-when-light-reflected-from-",
+       "title": "An object can be seen when light reflected from its surface enters the eyes",
+       "subtopics": [
+        {
+         "id": "an-object-can-be-seen-when-light-reflected-from-",
+         "title": "An object can be seen when light reflected from its surface enters the eyes",
+         "outcomes": [
+          {
+           "code": "PS1.4.6.a",
+           "text": "Develop a model to describe that light reflecting from objects and entering the eye allows objects to be seen."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "patterns-can-encode-send-receive-and-decode-info",
+       "title": "Patterns can encode, send, receive and decode information",
+       "subtopics": [
+        {
+         "id": "patterns-can-encode-send-receive-and-decode-info",
+         "title": "Patterns can encode, send, receive and decode information",
+         "outcomes": [
+          {
+           "code": "PS1.4.7.a",
+           "text": "Generate and compare multiple solutions that use patterns to transfer information."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "life-science",
+     "title": "Life Science",
+     "topics": [
+      {
+       "id": "organisms-have-both-internal-and-external-struct",
+       "title": "Organisms have both internal and external structures that serve various functions",
+       "subtopics": [
+        {
+         "id": "organisms-have-both-internal-and-external-struct",
+         "title": "Organisms have both internal and external structures that serve various functions",
+         "outcomes": [
+          {
+           "code": "LS2.4.1.a",
+           "text": "Construct an argument that plants and animals have internal and external structures that function to support survival, growth, behavior and reproduction."
+          },
+          {
+           "code": "LS2.4.1.b",
+           "text": "Use a model to describe that animals receive different types of information through their senses, process the information in their brain, and respond to the information in different ways."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "earth-and-space-science",
+     "title": "Earth and Space Science",
+     "topics": [
+      {
+       "id": "earth-has-changed-over-time",
+       "title": "Earth has changed over time",
+       "subtopics": [
+        {
+         "id": "earth-has-changed-over-time",
+         "title": "Earth has changed over time",
+         "outcomes": [
+          {
+           "code": "ESS3.4.1.a",
+           "text": "Identify evidence from patterns in rock formations and fossils in rock layers to support an explanation for changes in a landscape over time."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "four-major-earth-systems-interact",
+       "title": "Four major earth systems interact",
+       "subtopics": [
+        {
+         "id": "four-major-earth-systems-interact",
+         "title": "Four major earth systems interact",
+         "outcomes": [
+          {
+           "code": "ESS3.4.2.a",
+           "text": "Make observations and/or measurements to provide evidence of the effects of weathering or the rate of erosion by water, ice, wind, or vegetation."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "earth-s-physical-features-occur-in-patterns",
+       "title": "Earth's physical features occur in patterns",
+       "subtopics": [
+        {
+         "id": "earth-s-physical-features-occur-in-patterns",
+         "title": "Earth's physical features occur in patterns",
+         "outcomes": [
+          {
+           "code": "ESS3.4.3.a",
+           "text": "Analyze and interpret data from maps to describe patterns of Earth's features."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "energy-and-fuels-that-humans-use-are-derived-fro",
+       "title": "Energy and fuels that humans use are derived from natural sources and their use affects the environment in multiple ways",
+       "subtopics": [
+        {
+         "id": "energy-and-fuels-that-humans-use-are-derived-fro",
+         "title": "Energy and fuels that humans use are derived from natural sources and their use affects the environment in multiple ways",
+         "outcomes": [
+          {
+           "code": "ESS3.4.4.a",
+           "text": "Obtain and combine information to describe that energy and fuels are derived from natural resources and their uses affect the environment."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "a-variety-of-hazards-result-from-natural-process",
+       "title": "A variety of hazards result from natural process; humans cannot eliminate natural hazards but can reduce their impacts' effect",
+       "subtopics": [
+        {
+         "id": "a-variety-of-hazards-result-from-natural-process",
+         "title": "A variety of hazards result from natural process; humans cannot eliminate natural hazards but can reduce their impacts' effect",
+         "outcomes": [
+          {
+           "code": "ESS3.4.5.a",
+           "text": "Generate and compare multiple solutions to reduce the impacts of natural Earth processes on humans."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "5",
+   "units": [
+    {
+     "id": "physical-science",
+     "title": "Physical Science",
+     "topics": [
+      {
+       "id": "matter-exists-as-particles-that-are-too-small-to",
+       "title": "Matter exists as particles that are too small to be seen; measurements of a variety of observable properties can be used to identify particular materials",
+       "subtopics": [
+        {
+         "id": "matter-exists-as-particles-that-are-too-small-to",
+         "title": "Matter exists as particles that are too small to be seen; measurements of a variety of observable properties can be used to identify particular materials",
+         "outcomes": [
+          {
+           "code": "PS1.5.1.a",
+           "text": "Develop a model to describe that matter is made of particles too small to be seen."
+          },
+          {
+           "code": "PS1.5.1.b",
+           "text": "Make observations and measurements to identify materials based on their properties."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "chemical-reactions-that-occur-when-substances-ar",
+       "title": "Chemical Reactions that occur when substances are mixed can be identified by the emergence of substances with different properties; the total mass remains the same",
+       "subtopics": [
+        {
+         "id": "chemical-reactions-that-occur-when-substances-ar",
+         "title": "Chemical Reactions that occur when substances are mixed can be identified by the emergence of substances with different properties; the total mass remains the same",
+         "outcomes": [
+          {
+           "code": "PS1.5.2.a",
+           "text": "Measure and graph quantities to provide evidence that regardless of the type of change that occurs when heating, cooling or mixing substances, the total weight of matter is conserved."
+          },
+          {
+           "code": "PS1.5.2.b",
+           "text": "Conduct an investigation to determine whether the mixing of two or more substances results in new substances."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "the-gravitational-force-of-earth-acting-on-an-ob",
+       "title": "The gravitational force of Earth acting on an object near Earth's surface pulls that object toward the planet's center",
+       "subtopics": [
+        {
+         "id": "the-gravitational-force-of-earth-acting-on-an-ob",
+         "title": "The gravitational force of Earth acting on an object near Earth's surface pulls that object toward the planet's center",
+         "outcomes": [
+          {
+           "code": "PS1.5.3.a",
+           "text": "Support an argument that the gravitational force exerted by Earth on objects is directed down."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "the-energy-released-from-food-was-once-energy-fr",
+       "title": "The energy released from food was once energy from the sun",
+       "subtopics": [
+        {
+         "id": "the-energy-released-from-food-was-once-energy-fr",
+         "title": "The energy released from food was once energy from the sun",
+         "outcomes": [
+          {
+           "code": "PS1.5.4.a",
+           "text": "Use models to describe that energy in animals' food (used for body repair, growth and motion and to maintain body warmth) was once energy from the sun."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "life-science",
+     "title": "Life Science",
+     "topics": [
+      {
+       "id": "plants-acquire-their-material-from-growth-chiefl",
+       "title": "Plants acquire their material from growth chiefly from air and water",
+       "subtopics": [
+        {
+         "id": "plants-acquire-their-material-from-growth-chiefl",
+         "title": "Plants acquire their material from growth chiefly from air and water",
+         "outcomes": [
+          {
+           "code": "LS2.5.1.a",
+           "text": "Support an argument that plants get the materials they need for growth chiefly from air and water."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "matter-cycles-between-air-and-soil-and-among-pla",
+       "title": "Matter cycles between air and soil and among plants, animals and microbes as these organisms live and die",
+       "subtopics": [
+        {
+         "id": "matter-cycles-between-air-and-soil-and-among-pla",
+         "title": "Matter cycles between air and soil and among plants, animals and microbes as these organisms live and die",
+         "outcomes": [
+          {
+           "code": "LS2.5.2.a",
+           "text": "Develop a model to describe the movement of matter among plants, animals, decomposers, and the environment."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "earth-and-space-science",
+     "title": "Earth and Space Science",
+     "topics": [
+      {
+       "id": "stars-range-greatly-in-size-and-distance-from-ea",
+       "title": "Stars range greatly in size and distance from Earth, and this can explain their relative brightness",
+       "subtopics": [
+        {
+         "id": "stars-range-greatly-in-size-and-distance-from-ea",
+         "title": "Stars range greatly in size and distance from Earth, and this can explain their relative brightness",
+         "outcomes": [
+          {
+           "code": "ESS3.5.1.a",
+           "text": "Support an argument that differences in the apparent brightness of the sun compared to other stars is due to their relative distances from the Earth."
+          }
+         ]
+        },
+        {
+         "id": "earth-s-orbit-and-rotation-and-the-orbit-of-the-",
+         "title": "Earth's orbit and rotation and the orbit of the moon around earth cause observable patterns",
+         "outcomes": [
+          {
+           "code": "ESS3.5.2.a",
+           "text": "Represent data in graphical displays to reveal patterns of daily changes in length and direction of shadows, day and night, and the seasonal appearance of some stars in the night sky."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "earth-s-major-systems-interact-in-multiple-ways-",
+       "title": "Earth's major systems interact in multiple ways to affect Earth's surface materials and processes",
+       "subtopics": [
+        {
+         "id": "earth-s-major-systems-interact-in-multiple-ways-",
+         "title": "Earth's major systems interact in multiple ways to affect Earth's surface materials and processes",
+         "outcomes": [
+          {
+           "code": "ESS3.5.3.a",
+           "text": "Develop a model using an example to describe ways the geosphere, biosphere, hydrosphere and/or atmosphere interact."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "most-of-earth-s-water-is-in-the-ocean-and-much-o",
+       "title": "Most of Earth's water is in the ocean and much of Earth's freshwater in glaciers or underground",
+       "subtopics": [
+        {
+         "id": "most-of-earth-s-water-is-in-the-ocean-and-much-o",
+         "title": "Most of Earth's water is in the ocean and much of Earth's freshwater in glaciers or underground",
+         "outcomes": [
+          {
+           "code": "ESS3.5.4.a",
+           "text": "Describe and graph the amounts and percentages of saltwater and freshwater in various reservoirs to provide evidence about the distribution of water on Earth."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "societal-activities-have-had-major-effects-on-la",
+       "title": "Societal activities have had major effects on land, ocean, atmosphere and even outer space",
+       "subtopics": [
+        {
+         "id": "societal-activities-have-had-major-effects-on-la",
+         "title": "Societal activities have had major effects on land, ocean, atmosphere and even outer space",
+         "outcomes": [
+          {
+           "code": "ESS3.5.5.a",
+           "text": "Obtain and combine information about ways individual communities use science ideas to protect the Earth's resources and environment."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "6-8",
+   "units": [
+    {
+     "id": "physical-science",
+     "title": "Physical Science",
+     "topics": [
+      {
+       "id": "the-fact-that-matter-is-composed-of-atoms-and-mo",
+       "title": "The fact that matter is composed of atoms and molecules can be used to explain the properties of substances, diversity of materials, states of matter and phases changes",
+       "subtopics": [
+        {
+         "id": "the-fact-that-matter-is-composed-of-atoms-and-mo",
+         "title": "The fact that matter is composed of atoms and molecules can be used to explain the properties of substances, diversity of materials, states of matter and phases changes",
+         "outcomes": [
+          {
+           "code": "PS1.MS.1.a",
+           "text": "Develop models to describe the atomic composition of simple molecules and extended structures."
+          },
+          {
+           "code": "PS1.MS.1.b",
+           "text": "Analyze and interpret data on the properties of substances before and after the substances interact to determine if a chemical reaction has occurred."
+          },
+          {
+           "code": "PS1.MS.1.c",
+           "text": "Gather and make sense of information to describe that synthetic materials come from natural resources and impact society."
+          },
+          {
+           "code": "PS1.MS.1.d",
+           "text": "Develop a model that predicts and describes changes in particle motion, temperature, and state of a pure substance when thermal energy is added or removed."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "reacting-substances-rearrange-to-form-different-",
+       "title": "Reacting substances rearrange to form different molecules, but the number of atoms is conserved. Some reactions release energy and others absorb energy",
+       "subtopics": [
+        {
+         "id": "reacting-substances-rearrange-to-form-different-",
+         "title": "Reacting substances rearrange to form different molecules, but the number of atoms is conserved. Some reactions release energy and others absorb energy",
+         "outcomes": [
+          {
+           "code": "PS1.MS.2.a",
+           "text": "Analyze and interpret data on the properties of substances before and after the substances interact to determine if a chemical reaction has occurred."
+          },
+          {
+           "code": "PS1.MS.2.b",
+           "text": "Develop and use a model to describe how the total number of atoms does not change in a chemical reaction and thus mass is conserved."
+          },
+          {
+           "code": "PS1.MS.2.c",
+           "text": "Undertake a design project to construct, test, and modify a device that either releases or absorbs thermal energy by chemical processes."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "motion-is-described-relative-to-a-reference-fram",
+       "title": "Motion is described relative to a reference frame that must be shared with others and is determined by the sum of the forces acting on it. The greater the mass of the object, the greater the force needed to achieve the same change in motion",
+       "subtopics": [
+        {
+         "id": "motion-is-described-relative-to-a-reference-fram",
+         "title": "Motion is described relative to a reference frame that must be shared with others and is determined by the sum of the forces acting on it. The greater the mass of the object, the greater the force needed to achieve the same change in motion",
+         "outcomes": [
+          {
+           "code": "PS1.MS.3.a",
+           "text": "Apply Newton's Third Law to design a solution to a problem involving the motion of two colliding objects."
+          },
+          {
+           "code": "PS1.MS.3.b",
+           "text": "Plan an investigation to provide evidence that the change in an objects motion depends on the sum of the forces on the object and the mass of the object."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "forces-that-act-a-distance-gravitational-electri",
+       "title": "Forces that act a distance (gravitational, electric, and magnetic) can be explained by force fields that extend through space and can be mapped by their effect on a test object",
+       "subtopics": [
+        {
+         "id": "forces-that-act-a-distance-gravitational-electri",
+         "title": "Forces that act a distance (gravitational, electric, and magnetic) can be explained by force fields that extend through space and can be mapped by their effect on a test object",
+         "outcomes": [
+          {
+           "code": "PS1.MS.4.a",
+           "text": "Ask questions about data to determine the factors that affect the strength of electric and magnetic forces."
+          },
+          {
+           "code": "PS1.MS.4.b",
+           "text": "Construct and present arguments using evidence to support the claim that gravitational interactions are attractive and depend on the masses of interacting objects."
+          },
+          {
+           "code": "PS1.MS.4.c",
+           "text": "Conduct an investigation and evaluate the experimental design to provide evidence that fields exist between objects exerting forces on each other even though the objects are not in contact."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "kinetic-energy-can-be-distinguished-from-the-var",
+       "title": "Kinetic energy can be distinguished from the various forms of potential energy",
+       "subtopics": [
+        {
+         "id": "kinetic-energy-can-be-distinguished-from-the-var",
+         "title": "Kinetic energy can be distinguished from the various forms of potential energy",
+         "outcomes": [
+          {
+           "code": "PS1.MS.5.a",
+           "text": "Construct and interpret graphical displays of data to describe the relationships of kinetic energy to the mass of an object and the speed of an object."
+          },
+          {
+           "code": "PS1.MS.5.b",
+           "text": "Develop a model to describe that when the arrangement of objects interacting at a distance changes, different amounts of potential energy are stored in the system."
+          },
+          {
+           "code": "PS1.MS.5.d",
+           "text": "Plan an investigation to determine the relationships among the energy transferred, the type of matter, the mass, and the change in the average kinetic energy of the particles as measured by the temperature of the sample."
+          },
+          {
+           "code": "PS1.MS.5.e",
+           "text": "Construct, use, and present arguments to support the claim that when the kinetic energy of an object changes, energy is transferred to or from the object."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "energy-changes-to-and-from-each-type-can-be-trac",
+       "title": "Energy changes to and from each type can be tracked through physical or chemical interactions. The relationship between the temperature and the total energy of a system depends on the types, states and amounts of matter",
+       "subtopics": [
+        {
+         "id": "energy-changes-to-and-from-each-type-can-be-trac",
+         "title": "Energy changes to and from each type can be tracked through physical or chemical interactions. The relationship between the temperature and the total energy of a system depends on the types, states and amounts of matter",
+         "outcomes": [
+          {
+           "code": "PS1.MS.6.a",
+           "text": "Apply scientific principles to design, construct, and test a device that either minimizes or maximizes thermal energy transfer."
+          },
+          {
+           "code": "PS1.MS.6.b",
+           "text": "Plan an investigation to determine the relationships among the energy transferred, the type of matter, the mass, and the change in the average kinetic energy of the particles as measured by the temperature of the sample."
+          },
+          {
+           "code": "PS1.MS.6.c",
+           "text": "Construct, use, and present arguments to support the claim that when kinetic energy of an object changes, energy is transferred to or from the object."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "when-two-objects-interact-each-one-exerts-a-forc",
+       "title": "When two objects interact, each one exerts a force on the other that can cause energy to be transferred to and from the object",
+       "subtopics": [
+        {
+         "id": "when-two-objects-interact-each-one-exerts-a-forc",
+         "title": "When two objects interact, each one exerts a force on the other that can cause energy to be transferred to and from the object",
+         "outcomes": [
+          {
+           "code": "PS1.MS.7.a",
+           "text": "Develop a model to describe that when the arrangement of objects interacting at a distance changes, different amounts of potential energy are stored in the system."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "a-simple-wave-model-has-a-repeating-pattern-with",
+       "title": "A simple wave model has a repeating pattern with specific wavelength, frequency, and amplitude and mechanical waves need a medium through which they are transmitted. This model can explain many phenomena which include light and sound",
+       "subtopics": [
+        {
+         "id": "a-simple-wave-model-has-a-repeating-pattern-with",
+         "title": "A simple wave model has a repeating pattern with specific wavelength, frequency, and amplitude and mechanical waves need a medium through which they are transmitted. This model can explain many phenomena which include light and sound",
+         "outcomes": [
+          {
+           "code": "PS1.MS.8.a",
+           "text": "Use mathematical representations to describe a simple model for waves that includes how the amplitude of a wave is related to the energy in the wave."
+          },
+          {
+           "code": "PS1.MS.8.b",
+           "text": "Develop and use a model to describe that waves are reflected, absorbed or transmitted through various materials."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "a-wave-model-of-light-is-useful-to-explain-how-l",
+       "title": "A wave model of light is useful to explain how light interacts with objects through a variety of properties",
+       "subtopics": [
+        {
+         "id": "a-wave-model-of-light-is-useful-to-explain-how-l",
+         "title": "A wave model of light is useful to explain how light interacts with objects through a variety of properties",
+         "outcomes": [
+          {
+           "code": "PS1.MS.9.a",
+           "text": "Develop and use a model to describe that waves are reflected, absorbed or transmitted through various materials."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "designed-technologies-can-transmit-digital-infor",
+       "title": "Designed technologies can transmit digital information as wave pulses",
+       "subtopics": [
+        {
+         "id": "designed-technologies-can-transmit-digital-infor",
+         "title": "Designed technologies can transmit digital information as wave pulses",
+         "outcomes": [
+          {
+           "code": "PS1.MS.10.a",
+           "text": "Integrate qualitative scientific and technical information to support the claim that digitized signals are a more reliable way to encode and transmit information than analog signals."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "life-science",
+     "title": "Life Science",
+     "topics": [
+      {
+       "id": "all-living-things-are-made-up-of-cells-which-is-",
+       "title": "All living things are made up of cells, which is the smallest unit that can be said to be alive",
+       "subtopics": [
+        {
+         "id": "all-living-things-are-made-up-of-cells-which-is-",
+         "title": "All living things are made up of cells, which is the smallest unit that can be said to be alive",
+         "outcomes": [
+          {
+           "code": "LS2.MS.1.a",
+           "text": "Conduct an investigation to provide evidence that living things are made of cells; either one cell or many different numbers and types of cells."
+          },
+          {
+           "code": "LS2.MS.1.b",
+           "text": "Develop and use a model to describe the function of a cell as a whole and ways the parts of cells contribute to the function."
+          },
+          {
+           "code": "LS2.MS.1.c",
+           "text": "Use argument supported by evidence for how the body is a system of interacting subsystems composed of groups of cells."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "organisms-reproduce-either-sexually-or-asexually",
+       "title": "Organisms reproduce, either sexually or asexually, and transfer their genetic information to their offspring",
+       "subtopics": [
+        {
+         "id": "organisms-reproduce-either-sexually-or-asexually",
+         "title": "Organisms reproduce, either sexually or asexually, and transfer their genetic information to their offspring",
+         "outcomes": [
+          {
+           "code": "LS2.MS.2.a",
+           "text": "Use argument based on empirical evidence and scientific reasoning to support an explanation for how characteristic animal behaviors and specialized plant structures affect the probability of successful reproduction of animals and plants respectively."
+          },
+          {
+           "code": "LS2.MS.2.b",
+           "text": "Construct a scientific explanation based on evidence for how environmental and genetic factors influence the growth of organisms."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "sustaining-life-requires-substantial-energy-and-",
+       "title": "Sustaining life requires substantial energy and matter inputs",
+       "subtopics": [
+        {
+         "id": "sustaining-life-requires-substantial-energy-and-",
+         "title": "Sustaining life requires substantial energy and matter inputs",
+         "outcomes": [
+          {
+           "code": "LS2.MS.3.a",
+           "text": "Construct a scientific explanation based on evidence for the role of photosynthesis in the cycling of matter and flow of energy into and out of organisms."
+          },
+          {
+           "code": "LS2.MS.3.b",
+           "text": "Develop a model to describe how food is rearranged through chemical reactions forming new molecules that support growth and/or release energy as this matter moves through an organism."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "each-sense-receptor-responds-to-different-inputs",
+       "title": "Each sense receptor responds to different inputs (electromagnetic, mechanical, chemical), transmitting them as signals that travel along nerve cells to the brain",
+       "subtopics": [
+        {
+         "id": "each-sense-receptor-responds-to-different-inputs",
+         "title": "Each sense receptor responds to different inputs (electromagnetic, mechanical, chemical), transmitting them as signals that travel along nerve cells to the brain",
+         "outcomes": [
+          {
+           "code": "LS2.MS.4.a",
+           "text": "Gather and synthesize information that sensory receptors respond to stimuli by sending messages to the brain for immediate behavior or storage as memories."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "organisms-and-populations-of-organisms-are-depen",
+       "title": "Organisms and populations of organisms are dependent on their environmental interactions both with other living things and with nonliving",
+       "subtopics": [
+        {
+         "id": "organisms-and-populations-of-organisms-are-depen",
+         "title": "Organisms and populations of organisms are dependent on their environmental interactions both with other living things and with nonliving",
+         "outcomes": [
+          {
+           "code": "LS2.MS.5.a",
+           "text": "Analyze and interpret data to provide evidence for the effects of resource availability on organisms and populations of organisms in an ecosystem."
+          },
+          {
+           "code": "LS2.MS.5.b",
+           "text": "Construct an explanation that predicts patterns of interactions among organisms across multiple ecosystems."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "ecosystems-are-sustained-by-the-continuous-flow-",
+       "title": "Ecosystems are sustained by the continuous flow of energy, originating primarily from the sun, and the recycling of matter and nutrients within the system",
+       "subtopics": [
+        {
+         "id": "ecosystems-are-sustained-by-the-continuous-flow-",
+         "title": "Ecosystems are sustained by the continuous flow of energy, originating primarily from the sun, and the recycling of matter and nutrients within the system",
+         "outcomes": [
+          {
+           "code": "LS2.MS.6.a",
+           "text": "Develop a model to describe the cycling of matter and flow of energy among living and nonliving parts of an ecosystem."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "ecosystems-are-dynamic-in-nature-their-character",
+       "title": "Ecosystems are dynamic in nature; their characteristics can vary over time. Disruptions to any physical or biological component of an ecosystem",
+       "subtopics": [
+        {
+         "id": "ecosystems-are-dynamic-in-nature-their-character",
+         "title": "Ecosystems are dynamic in nature; their characteristics can vary over time. Disruptions to any physical or biological component of an ecosystem",
+         "outcomes": [
+          {
+           "code": "LS2.MS.7.a",
+           "text": "Construct an argument supported by empirical evidence that changes to physical or biological components of an ecosystem affect populations."
+          },
+          {
+           "code": "LS2.MS.7.b",
+           "text": "Evaluate competing design solutions for maintaining biodiversity and ecosystem services."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "heredity-explains-why-offspring-resemble-but-are",
+       "title": "Heredity explains why offspring resemble, but are not identical to, their parents and is a unifying biological principle. Heredity refers to specific mechanisms by which characteristics or traits are passed from one generation to the next via genes",
+       "subtopics": [
+        {
+         "id": "heredity-explains-why-offspring-resemble-but-are",
+         "title": "Heredity explains why offspring resemble, but are not identical to, their parents and is a unifying biological principle. Heredity refers to specific mechanisms by which characteristics or traits are passed from one generation to the next via genes",
+         "outcomes": [
+          {
+           "code": "LS2.MS.8.a",
+           "text": "Develop and use a model to describe why structural changes to genes (mutations) located on chromosomes may affect proteins and may result in harmful, beneficial, or neutral effects to the structure and function of the organism."
+          },
+          {
+           "code": "LS2.MS.8.b",
+           "text": "Develop and use a model to describe why asexual reproduction results in offspring with identical genetic information and sexual reproduction results in offspring with genetic variation."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "fossils-are-mineral-replacements-preserved-remai",
+       "title": "Fossils are mineral replacements, preserved remains, or traces of organisms that lived in the past",
+       "subtopics": [
+        {
+         "id": "fossils-are-mineral-replacements-preserved-remai",
+         "title": "Fossils are mineral replacements, preserved remains, or traces of organisms that lived in the past",
+         "outcomes": [
+          {
+           "code": "LS2.MS.9.a",
+           "text": "Analyze and interpret data for patterns in the fossil record that document the existence, diversity, extinction, and change of life forms throughout the history of life on Earth under the assumption that natural laws operate today as in the past."
+          },
+          {
+           "code": "LS2.MS.9.b",
+           "text": "Apply scientific ideas to construct an explanation for the anatomical similarities and differences among modern organisms and between modern and fossil organisms to infer evolutionary relationships."
+          },
+          {
+           "code": "LS2.MS.9.c",
+           "text": "Analyze displays of pictorial data to compare patterns of similarities in the embryological development across multiple species to identify relationships not evident in the fully formed anatomy."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "genetic-variations-among-individuals-in-a-popula",
+       "title": "Genetic variations among individuals in a population give some individuals an advantage in surviving and reproducing in their environment",
+       "subtopics": [
+        {
+         "id": "genetic-variations-among-individuals-in-a-popula",
+         "title": "Genetic variations among individuals in a population give some individuals an advantage in surviving and reproducing in their environment",
+         "outcomes": [
+          {
+           "code": "LS2.MS.10.a",
+           "text": "Construct an explanation based on evidence that describes how genetic variations of traits in a population increase some individuals' probability of surviving and reproducing in a specific environment."
+          },
+          {
+           "code": "LS2.MS.10.b",
+           "text": "Gather and synthesize information about technologies that have changed the way humans influence the inheritance of desired traits in organisms."
+          },
+          {
+           "code": "LS2.MS.10.c",
+           "text": "Use mathematical representations to support explanations of how natural selection may lead to increases and decreases of specific traits in populations over time."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "adaptation-by-natural-selection-acting-over-gene",
+       "title": "Adaptation by natural selection acting over generations is one important process by which species change over time in response to changes in environmental conditions",
+       "subtopics": [
+        {
+         "id": "adaptation-by-natural-selection-acting-over-gene",
+         "title": "Adaptation by natural selection acting over generations is one important process by which species change over time in response to changes in environmental conditions",
+         "outcomes": [
+          {
+           "code": "LS2.MS.11.a",
+           "text": "Use mathematical representations to support explanations of how natural selection may lead to increases and decreases of specific traits in populations over time."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "biodiversity-is-the-wide-range-of-existing-life-",
+       "title": "Biodiversity is the wide range of existing life forms that have adapted to the variety of conditions on Earth, from terrestrial to marine ecosystems",
+       "subtopics": [
+        {
+         "id": "biodiversity-is-the-wide-range-of-existing-life-",
+         "title": "Biodiversity is the wide range of existing life forms that have adapted to the variety of conditions on Earth, from terrestrial to marine ecosystems",
+         "outcomes": [
+          {
+           "code": "LS2.MS.12.a",
+           "text": "Evaluate competing design solutions for maintaining biodiversity and ecosystem services."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "earth-and-space-science",
+     "title": "Earth and Space Science",
+     "topics": [
+      {
+       "id": "motion-is-predictable-in-both-solar-systems-and-",
+       "title": "Motion is predictable in both solar systems and galaxies",
+       "subtopics": [
+        {
+         "id": "motion-is-predictable-in-both-solar-systems-and-",
+         "title": "Motion is predictable in both solar systems and galaxies",
+         "outcomes": [
+          {
+           "code": "ESS3.MS.1.a",
+           "text": "Develop and use a model of the Earth-sun-moon system to describe the cyclic patterns of lunar phases, eclipses of the sun and moon, and seasons."
+          },
+          {
+           "code": "ESS3.MS.1.b",
+           "text": "Develop and use a model to describe the role of gravity in the motions within galaxies and the solar system."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "the-solar-system-contains-many-varied-objects-he",
+       "title": "The solar system contains many varied objects held together by gravity. Solar system models explain and predict eclipses, lunar phases, and seasons",
+       "subtopics": [
+        {
+         "id": "the-solar-system-contains-many-varied-objects-he",
+         "title": "The solar system contains many varied objects held together by gravity. Solar system models explain and predict eclipses, lunar phases, and seasons",
+         "outcomes": [
+          {
+           "code": "ESS3.MS.2.a",
+           "text": "Develop and use a model to describe the role of gravity in the motions within galaxies and the solar system."
+          },
+          {
+           "code": "ESS3.MS.2.b",
+           "text": "Analyze and interpret data to determine scale properties of objects in the solar system."
+          },
+          {
+           "code": "ESS3.MS.2.c",
+           "text": "Develop and use a model of the Earth-sun-moon system to describe the cyclic patterns of lunar phases, eclipses of the sun and moon, and seasons."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "rock-strata-and-the-fossil-record-can-be-used-as",
+       "title": "Rock strata and the fossil record can be used as evidence to organize the relative occurrence of major historical events in Earth's history",
+       "subtopics": [
+        {
+         "id": "rock-strata-and-the-fossil-record-can-be-used-as",
+         "title": "Rock strata and the fossil record can be used as evidence to organize the relative occurrence of major historical events in Earth's history",
+         "outcomes": [
+          {
+           "code": "ESS3.MS.3.a",
+           "text": "Construct a scientific explanation based on evidence from rock strata for how the geologic time scale is used to organize Earth's 4.6-billion-year-old history."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "energy-flows-and-matter-cycles-within-and-among-",
+       "title": "Energy flows and matter cycles within and among Earth's systems, including the sun and Earth's interior as primary energy sources. Plate tectonics is one result of these processes",
+       "subtopics": [
+        {
+         "id": "energy-flows-and-matter-cycles-within-and-among-",
+         "title": "Energy flows and matter cycles within and among Earth's systems, including the sun and Earth's interior as primary energy sources. Plate tectonics is one result of these processes",
+         "outcomes": [
+          {
+           "code": "ESS3.MS.4.a",
+           "text": "Develop a model to describe the cycling of Earth's materials and the flow of energy that drives this process."
+          },
+          {
+           "code": "ESS3.MS.4.b",
+           "text": "Construct an explanation based on evidence for how geoscience processes have changed Earth's surface at varying time and spatial scales."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "plate-tectonics-is-the-unifying-theory-that-expl",
+       "title": "Plate tectonics is the unifying theory that explains movements of rocks at Earth's surface and geological history",
+       "subtopics": [
+        {
+         "id": "plate-tectonics-is-the-unifying-theory-that-expl",
+         "title": "Plate tectonics is the unifying theory that explains movements of rocks at Earth's surface and geological history",
+         "outcomes": [
+          {
+           "code": "ESS3.MS.5.a",
+           "text": "Analyze and interpret data on the distribution of fossils and rocks, continental shapes, and seafloor structures to provide evidence of the past plate motions."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "water-cycles-among-land-ocean-and-atmosphere-and",
+       "title": "Water cycles among land, ocean, and atmosphere, and is propelled by sunlight and gravity. Density variations of sea water drive interconnected ocean currents. Water movement causes weathering and erosion, changing landscape features",
+       "subtopics": [
+        {
+         "id": "water-cycles-among-land-ocean-and-atmosphere-and",
+         "title": "Water cycles among land, ocean, and atmosphere, and is propelled by sunlight and gravity. Density variations of sea water drive interconnected ocean currents. Water movement causes weathering and erosion, changing landscape features",
+         "outcomes": [
+          {
+           "code": "ESS3.MS.6.a",
+           "text": "Construct an explanation based on evidence for how geoscience processes have changed Earth's surface at varying time and spatial scales."
+          },
+          {
+           "code": "ESS3.MS.6.b",
+           "text": "Develop a model to describe the cycling of water through Earth's systems driven by energy from the sun and the force of gravity."
+          },
+          {
+           "code": "ESS3.MS.6.c",
+           "text": "Collect data to provide evidence for how the motions and complex interactions of air masses result in changes in weather conditions."
+          },
+          {
+           "code": "ESS3.MS.6.d",
+           "text": "Develop and use a model to describe how unequal heating and rotation of the Earth cause patterns of atmospheric and oceanic circulation that determine regional climates."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "complex-interactions-determine-local-weather-pat",
+       "title": "Complex interactions determine local weather patterns and influence climate, including the role of the ocean",
+       "subtopics": [
+        {
+         "id": "complex-interactions-determine-local-weather-pat",
+         "title": "Complex interactions determine local weather patterns and influence climate, including the role of the ocean",
+         "outcomes": [
+          {
+           "code": "ESS3.MS.7.a",
+           "text": "Collect data to provide evidence for how the motions and complex interactions of air masses result in changes in weather conditions."
+          },
+          {
+           "code": "ESS3.MS.7.b",
+           "text": "Develop and use a model to describe how unequal heating and rotation of the Earth cause patterns of atmospheric and oceanic circulation that determine regional climates."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "humans-depend-on-earth-s-land-ocean-atmosphere-a",
+       "title": "Humans depend on Earth's land, ocean, atmosphere, and biosphere for different resources, many of which are limited or not renewable. Resources are distributed unevenly around the planet as a result of past geologic processes",
+       "subtopics": [
+        {
+         "id": "humans-depend-on-earth-s-land-ocean-atmosphere-a",
+         "title": "Humans depend on Earth's land, ocean, atmosphere, and biosphere for different resources, many of which are limited or not renewable. Resources are distributed unevenly around the planet as a result of past geologic processes",
+         "outcomes": [
+          {
+           "code": "ESS3.MS.8.a",
+           "text": "Construct a scientific explanation based on evidence for how the uneven distributions of Earth's mineral, energy, and groundwater resources are the result of past and current geoscience processes."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "mapping-the-history-of-natural-hazards-in-a-regi",
+       "title": "Mapping the history of natural hazards in a region and understanding related geological forces",
+       "subtopics": [
+        {
+         "id": "mapping-the-history-of-natural-hazards-in-a-regi",
+         "title": "Mapping the history of natural hazards in a region and understanding related geological forces",
+         "outcomes": [
+          {
+           "code": "ESS3.MS.9.a",
+           "text": "Analyze and interpret data on natural hazards to forecast future catastrophic events and inform the development of technologies to mitigate their effects."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "human-activities-have-altered-the-biosphere-some",
+       "title": "Human activities have altered the biosphere, sometimes damaging it, although changes to environments can have different impacts for different living things",
+       "subtopics": [
+        {
+         "id": "human-activities-have-altered-the-biosphere-some",
+         "title": "Human activities have altered the biosphere, sometimes damaging it, although changes to environments can have different impacts for different living things",
+         "outcomes": [
+          {
+           "code": "ESS3.MS.10.a",
+           "text": "Apply scientific principles to design a method for monitoring and minimizing a human impact on the environment."
+          },
+          {
+           "code": "ESS3.MS.10.b",
+           "text": "Construct an argument supported by evidence for how increases in human population and per-capita consumption of natural resources impact Earth's systems."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "human-activities-affect-global-warming-decisions",
+       "title": "Human activities affect global warming. Decisions to reduce the impact of global warming depend on understanding climate science, engineering capabilities, and social dynamics",
+       "subtopics": [
+        {
+         "id": "human-activities-affect-global-warming-decisions",
+         "title": "Human activities affect global warming. Decisions to reduce the impact of global warming depend on understanding climate science, engineering capabilities, and social dynamics",
+         "outcomes": [
+          {
+           "code": "ESS3.MS.11.a",
+           "text": "Ask questions to clarify evidence of the factors that have caused the rise in global temperatures over the past century."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "9-12",
+   "units": [
+    {
+     "id": "physical-science",
+     "title": "Physical Science",
+     "topics": [
+      {
+       "id": "the-sub-atomic-structural-model-and-interactions",
+       "title": "The sub-atomic structural model and interactions between electric charges at the atomic scale can be used to explain the structure and interactions of matter",
+       "subtopics": [
+        {
+         "id": "the-sub-atomic-structural-model-and-interactions",
+         "title": "The sub-atomic structural model and interactions between electric charges at the atomic scale can be used to explain the structure and interactions of matter",
+         "outcomes": [
+          {
+           "code": "PS1.HS.1.a",
+           "text": "Use the periodic table as a model to predict the relative properties of elements based on the patterns of electrons in the outermost energy levels of atoms."
+          },
+          {
+           "code": "PS1.HS.1.b",
+           "text": "Plan and conduct an investigation to gather evidence to compare the structure of substances at the bulk scale to infer the strength of electrical forces between particles."
+          },
+          {
+           "code": "PS1.HS.1.c",
+           "text": "Develop a model to illustrate that the release or absorption of energy from a chemical reaction system depends upon the changes in total bond energy."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "chemical-processes-their-rates-their-outcomes-an",
+       "title": "Chemical processes, their rates, their outcomes, and whether or not energy is stored or released can be understood in terms of collisions of molecules, rearrangement of atoms, and changes in energy as determined by properties of elements involved",
+       "subtopics": [
+        {
+         "id": "chemical-processes-their-rates-their-outcomes-an",
+         "title": "Chemical processes, their rates, their outcomes, and whether or not energy is stored or released can be understood in terms of collisions of molecules, rearrangement of atoms, and changes in energy as determined by properties of elements involved",
+         "outcomes": [
+          {
+           "code": "PS1.HS.2.a",
+           "text": "Construct and revise an explanation for the outcome of a simple chemical reaction based on the outermost electron states of atoms, trends in the periodic table, and knowledge of the patterns of chemical properties."
+          },
+          {
+           "code": "PS1.HS.2.b",
+           "text": "Develop a model to illustrate that the release or absorption of energy from a chemical reaction system depends upon the changes in total bond energy."
+          },
+          {
+           "code": "PS1.HS.2.c",
+           "text": "Apply scientific principles and evidence to provide an explanation about the effects of changing the temperature or concentration of the reacting particles on the rate at which a reaction occurs."
+          },
+          {
+           "code": "PS1.HS.2.d",
+           "text": "Refine the design of a chemical system by specifying a change in conditions that would produce increased amounts of products at equilibrium."
+          },
+          {
+           "code": "PS1.HS.2.e",
+           "text": "Use mathematical representations to support the claim that atoms, and therefore mass, are conserved during a chemical reaction."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "the-strong-nuclear-interaction-provides-the-prim",
+       "title": "The strong nuclear interaction provides the primary force that holds nuclei together. Nuclear processes including fusion, fission, and radioactive decays of unstable nuclei involve changes in nuclear binding energies",
+       "subtopics": [
+        {
+         "id": "the-strong-nuclear-interaction-provides-the-prim",
+         "title": "The strong nuclear interaction provides the primary force that holds nuclei together. Nuclear processes including fusion, fission, and radioactive decays of unstable nuclei involve changes in nuclear binding energies",
+         "outcomes": [
+          {
+           "code": "PS1.HS.3.a",
+           "text": "Develop models to illustrate the changes in the composition of the nucleus of the atom and the energy released during the processes of fission, fusion, and radioactive decay."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "newton-s-second-law-and-the-conservation-of-mome",
+       "title": "Newton's second law and the conservation of momentum can be used to predict changes in the motion of macroscopic objects",
+       "subtopics": [
+        {
+         "id": "newton-s-second-law-and-the-conservation-of-mome",
+         "title": "Newton's second law and the conservation of momentum can be used to predict changes in the motion of macroscopic objects",
+         "outcomes": [
+          {
+           "code": "PS1.HS.4.a",
+           "text": "Analyze data to support the claim that Newton's second law of motion describes the mathematical relationship among the net force on a macroscopic object, its mass, and its acceleration."
+          },
+          {
+           "code": "PS1.HS.4.b",
+           "text": "Use mathematical representations to support the claim that the total momentum of a system of objects is conserved when there is no net force on the system."
+          },
+          {
+           "code": "PS1.HS.4.c",
+           "text": "Apply scientific and engineering ideas to design, evaluate, and refine a device that minimizes the force on a macroscopic object during a collision."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "forces-at-a-distance-are-explained-by-fields-tha",
+       "title": "Forces at a distance are explained by fields that can transfer energy and can be described in terms of the arrangement and properties of the interacting objects and the distance between them",
+       "subtopics": [
+        {
+         "id": "forces-at-a-distance-are-explained-by-fields-tha",
+         "title": "Forces at a distance are explained by fields that can transfer energy and can be described in terms of the arrangement and properties of the interacting objects and the distance between them",
+         "outcomes": [
+          {
+           "code": "PS1.HS.5.a",
+           "text": "Use mathematical representations of Newton's Law of Gravitation and Coulomb's Law to describe and predict the gravitational and electrostatic forces between objects."
+          },
+          {
+           "code": "PS1.HS.5.b",
+           "text": "Plan and conduct an investigation to provide evidence that an electric current can produce a magnetic field and that a changing magnetic field can produce an electric current."
+          },
+          {
+           "code": "PS1.HS.5.c",
+           "text": "Communicate scientific and technical information about why the molecular-level structure is important in the functioning of designed materials."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "energy-is-a-quantitative-property-of-a-system-th",
+       "title": "Energy is a quantitative property of a system that depends on the motion and interactions of matter and radiation within that system",
+       "subtopics": [
+        {
+         "id": "energy-is-a-quantitative-property-of-a-system-th",
+         "title": "Energy is a quantitative property of a system that depends on the motion and interactions of matter and radiation within that system",
+         "outcomes": [
+          {
+           "code": "PS1.HS.6.a",
+           "text": "Create a computational model to calculate the change in the energy of one component in a system when the change in energy of the other component(s) and energy flows in and out of the system are known."
+          },
+          {
+           "code": "PS1.HS.6.b",
+           "text": "Develop and use models to illustrate that energy at the macroscopic scale can be accounted for as a combination of energy associated with the motion of particles (objects) and energy associated with the relative positions of particles (objects)."
+          },
+          {
+           "code": "PS1.HS.6.c",
+           "text": "Design, build, and refine a device that works within given constraints to convert one form of energy into another form of energy."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "energy-cannot-be-created-or-destroyed-but-it-can",
+       "title": "Energy cannot be created or destroyed, but it can be transported from one place to another and transferred between systems",
+       "subtopics": [
+        {
+         "id": "energy-cannot-be-created-or-destroyed-but-it-can",
+         "title": "Energy cannot be created or destroyed, but it can be transported from one place to another and transferred between systems",
+         "outcomes": [
+          {
+           "code": "PS1.HS.7.a",
+           "text": "Create a computational model to calculate the change in the energy of one component in a system when the change in energy of the other component(s) and energy flows in and out of the system are known."
+          },
+          {
+           "code": "PS1.HS.7.b",
+           "text": "Plan and conduct an investigation to provide evidence that the transfer of thermal energy when two components of different temperature are combined within a closed system results in a more uniform energy distribution among the components in the system (second law of thermodynamics)."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "force-fields-gravitational-electric-and-magnetic",
+       "title": "Force fields (gravitational, electric, and magnetic) contain energy and can transmit energy across space from one object to another",
+       "subtopics": [
+        {
+         "id": "force-fields-gravitational-electric-and-magnetic",
+         "title": "Force fields (gravitational, electric, and magnetic) contain energy and can transmit energy across space from one object to another",
+         "outcomes": [
+          {
+           "code": "PS1.HS.8.a",
+           "text": "Develop and use a model of two objects interacting through electric or magnetic fields to illustrate the forces between objects and the changes in energy of the objects due to the interaction."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "although-energy-cannot-be-destroyed-it-can-be-co",
+       "title": "Although energy cannot be destroyed, it can be converted to less useful forms as it is captured, stored and transferred",
+       "subtopics": [
+        {
+         "id": "although-energy-cannot-be-destroyed-it-can-be-co",
+         "title": "Although energy cannot be destroyed, it can be converted to less useful forms as it is captured, stored and transferred",
+         "outcomes": [
+          {
+           "code": "PS1.HS.9.a",
+           "text": "Design, build, and refine a device that works within given constraints to convert one form of energy into another form of energy."
+          },
+          {
+           "code": "PS1.HS.9.b",
+           "text": "Plan and conduct an investigation to provide evidence that the transfer of thermal energy when two components of different temperature are combined within a closed system results in a more uniform energy distribution among the components in the system (second law of thermodynamics)."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "waves-have-characteristic-properties-and-behavio",
+       "title": "Waves have characteristic properties and behaviors",
+       "subtopics": [
+        {
+         "id": "waves-have-characteristic-properties-and-behavio",
+         "title": "Waves have characteristic properties and behaviors",
+         "outcomes": [
+          {
+           "code": "PS1.HS.10.a",
+           "text": "Use mathematical representations to support a claim regarding relationships among the frequency, wavelength, and speed of waves traveling in various media."
+          },
+          {
+           "code": "PS1.HS.10.b",
+           "text": "Evaluate questions about the advantages of using a digital transmission and storage of information."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "both-an-electromagnetic-wave-model-and-a-photon-",
+       "title": "Both an electromagnetic wave model and a photon model explain features of electromagnetic radiation broadly and describe common applications of electromagnetic radiation",
+       "subtopics": [
+        {
+         "id": "both-an-electromagnetic-wave-model-and-a-photon-",
+         "title": "Both an electromagnetic wave model and a photon model explain features of electromagnetic radiation broadly and describe common applications of electromagnetic radiation",
+         "outcomes": [
+          {
+           "code": "PS1.HS.11.a",
+           "text": "Evaluate the claims, evidence, and reasoning behind the idea that electromagnetic radiation can be described either by a wave model or a particle model, and that for some situations one model is more useful than the other."
+          },
+          {
+           "code": "PS1.HS.11.b",
+           "text": "Evaluate the validity and reliability of claims in published materials of the effects that different frequencies of electromagnetic radiation have when absorbed by matter."
+          },
+          {
+           "code": "PS1.HS.11.c",
+           "text": "Communicate technical information about how some technological devices use the principles of wave behavior and wave interactions with matter to transmit and capture information and energy."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "multiple-technologies-that-are-part-of-everyday-",
+       "title": "Multiple technologies that are part of everyday experiences are based on waves and their interactions with matter",
+       "subtopics": [
+        {
+         "id": "multiple-technologies-that-are-part-of-everyday-",
+         "title": "Multiple technologies that are part of everyday experiences are based on waves and their interactions with matter",
+         "outcomes": [
+          {
+           "code": "PS1.HS.12.a",
+           "text": "Communicate technical information about how some technological devices use the principles of wave behavior and wave interactions with matter to transmit and capture information and energy."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "life-science",
+     "title": "Life Science",
+     "topics": [
+      {
+       "id": "dna-codes-for-the-complex-hierarchical-organizat",
+       "title": "DNA codes for the complex hierarchical organization of systems that enable life's functions",
+       "subtopics": [
+        {
+         "id": "dna-codes-for-the-complex-hierarchical-organizat",
+         "title": "DNA codes for the complex hierarchical organization of systems that enable life's functions",
+         "outcomes": [
+          {
+           "code": "LS2.HS.1.a",
+           "text": "Construct an explanation based on evidence for how the structure of DNA determines the structure of proteins which carry out the essential functions of life through systems of specialized cells."
+          },
+          {
+           "code": "LS2.HS.1.b",
+           "text": "Develop and use a model to illustrate the hierarchical organization of interacting systems that provide specific functions within multicellular organisms."
+          },
+          {
+           "code": "LS2.HS.1.c",
+           "text": "Plan and conduct an investigation to provide evidence that feedback mechanisms maintain homeostasis."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "growth-and-division-of-cells-in-complex-organism",
+       "title": "Growth and division of cells in complex organisms occurs by mitosis, which differentiates specific cell types",
+       "subtopics": [
+        {
+         "id": "growth-and-division-of-cells-in-complex-organism",
+         "title": "Growth and division of cells in complex organisms occurs by mitosis, which differentiates specific cell types",
+         "outcomes": [
+          {
+           "code": "LS2.HS.2.a",
+           "text": "Use a model to illustrate the role of cellular division (mitosis) and differentiation in producing and maintaining complex organisms."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "organisms-use-matter-and-energy-to-live-and-grow",
+       "title": "Organisms use matter and energy to live and grow",
+       "subtopics": [
+        {
+         "id": "organisms-use-matter-and-energy-to-live-and-grow",
+         "title": "Organisms use matter and energy to live and grow",
+         "outcomes": [
+          {
+           "code": "LS2.HS.3.a",
+           "text": "Use a model to illustrate how photosynthesis transforms light energy into stored chemical energy."
+          },
+          {
+           "code": "LS2.HS.3.b",
+           "text": "Construct and revise an explanation based on evidence for how carbon, hydrogen, and oxygen from sugar molecules may combine with other elements to form amino acids and/or other large carbon-based molecules."
+          },
+          {
+           "code": "LS2.HS.3.c",
+           "text": "Use a model to illustrate that cellular respiration is a chemical process whereby the bonds of food molecules and oxygen molecules are broken and the bonds in new compounds are formed resulting in a net transfer of energy."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "organisms-interact-with-the-living-and-nonliving",
+       "title": "Organisms interact with the living and nonliving components of the environment to obtain matter and energy",
+       "subtopics": [
+        {
+         "id": "organisms-interact-with-the-living-and-nonliving",
+         "title": "Organisms interact with the living and nonliving components of the environment to obtain matter and energy",
+         "outcomes": [
+          {
+           "code": "LS2.HS.4.a",
+           "text": "Use mathematical and/or computational representations to support explanations of factors that affect carrying capacity of ecosystems at different scales."
+          },
+          {
+           "code": "LS2.HS.4.b",
+           "text": "Use mathematical representations to support and revise explanations based on evidence about factors affecting biodiversity and populations in ecosystems of different scales."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "matter-and-energy-necessary-for-life-are-conserv",
+       "title": "Matter and energy necessary for life are conserved as they move through ecosystems",
+       "subtopics": [
+        {
+         "id": "matter-and-energy-necessary-for-life-are-conserv",
+         "title": "Matter and energy necessary for life are conserved as they move through ecosystems",
+         "outcomes": [
+          {
+           "code": "LS2.HS.5.a",
+           "text": "Construct and revise an explanation based on evidence for the cycling of matter and flow of energy in aerobic and anaerobic conditions."
+          },
+          {
+           "code": "LS2.HS.5.b",
+           "text": "Use mathematical representations to support claims for the cycling of matter and flow of energy among organisms in an ecosystem."
+          },
+          {
+           "code": "LS2.HS.5.c",
+           "text": "Develop a model to illustrate the role of photosynthesis and cellular respiration in the cycling of carbon among the biosphere, atmosphere, hydrosphere, and geosphere."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "a-complex-set-of-interactions-determine-how-ecos",
+       "title": "A complex set of interactions determine how ecosystems respond to disturbances",
+       "subtopics": [
+        {
+         "id": "a-complex-set-of-interactions-determine-how-ecos",
+         "title": "A complex set of interactions determine how ecosystems respond to disturbances",
+         "outcomes": [
+          {
+           "code": "LS2.HS.6.a",
+           "text": "Evaluate claims, evidence, and reasoning that the complex interactions in ecosystems maintain relatively consistent numbers and types of organisms in stable conditions, but changing conditions may result in a new ecosystem."
+          },
+          {
+           "code": "LS2.HS.6.b",
+           "text": "Design, evaluate, and refine a solution for reducing the impacts of human activities on the environment and biodiversity."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "organisms-interact-in-groups-to-benefit-the-spec",
+       "title": "Organisms interact in groups to benefit the species",
+       "subtopics": [
+        {
+         "id": "organisms-interact-in-groups-to-benefit-the-spec",
+         "title": "Organisms interact in groups to benefit the species",
+         "outcomes": [
+          {
+           "code": "LS2.HS.7.a",
+           "text": "Evaluate evidence for the role of group behavior on individual and species' chances to survive and reproduce."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "the-characteristics-of-one-generation-are-depend",
+       "title": "The characteristics of one generation are dependent upon the genetic information inherited from previous generations",
+       "subtopics": [
+        {
+         "id": "the-characteristics-of-one-generation-are-depend",
+         "title": "The characteristics of one generation are dependent upon the genetic information inherited from previous generations",
+         "outcomes": [
+          {
+           "code": "LS2.HS.8.a",
+           "text": "Ask questions to clarify relationships about the role of DNA and chromosomes in coding the instructions for characteristic traits passed from parents to offspring."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "variation-between-individuals-results-from-genet",
+       "title": "Variation between individuals results from genetic and environmental factors",
+       "subtopics": [
+        {
+         "id": "variation-between-individuals-results-from-genet",
+         "title": "Variation between individuals results from genetic and environmental factors",
+         "outcomes": [
+          {
+           "code": "LS2.HS.9.a",
+           "text": "Apply concepts of statistics and probability to explain the variation and distribution of expressed traits in a population."
+          },
+          {
+           "code": "LS2.HS.9.b",
+           "text": "Make and defend a claim based on evidence that inheritable genetic variations may result from: (1) new genetic combinations through meiosis, (2) viable errors occurring during replication, and/or (3) mutations caused by environmental factors."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "evidence-of-common-ancestry-and-diversity-betwee",
+       "title": "Evidence of common ancestry and diversity between species can be determined by examining variations including genetic, anatomical and physiological differences",
+       "subtopics": [
+        {
+         "id": "evidence-of-common-ancestry-and-diversity-betwee",
+         "title": "Evidence of common ancestry and diversity between species can be determined by examining variations including genetic, anatomical and physiological differences",
+         "outcomes": [
+          {
+           "code": "LS2.HS.10.a",
+           "text": "Communicate scientific information that common ancestry and biological evolution are supported by multiple lines of empirical evidence."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "genetic-variation-among-organisms-affects-surviv",
+       "title": "Genetic variation among organisms affects survival and reproduction",
+       "subtopics": [
+        {
+         "id": "genetic-variation-among-organisms-affects-surviv",
+         "title": "Genetic variation among organisms affects survival and reproduction",
+         "outcomes": [
+          {
+           "code": "LS2.HS.11.a",
+           "text": "Construct an explanation based on evidence that the process of evolution primarily results from four factors: (1) the potential for a species to increase in number, (2) the heritable genetic variation of individuals in a species due to mutation and sexual reproduction, (3) competition for limited resources, and (4) the proliferation of those organisms that are better able to survive and reproduce in the environment. ("
+          },
+          {
+           "code": "LS2.HS.11.b",
+           "text": "Apply concepts of statistics and probability to support explanations that organisms with an advantageous heritable trait tend to increase in proportion to organisms lacking this trait."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "the-environment-influences-survival-and-reproduc",
+       "title": "The environment influences survival and reproduction of organisms over multiple generations",
+       "subtopics": [
+        {
+         "id": "the-environment-influences-survival-and-reproduc",
+         "title": "The environment influences survival and reproduction of organisms over multiple generations",
+         "outcomes": [
+          {
+           "code": "LS2.HS.12.a",
+           "text": "Construct an explanation based on evidence for how natural selection leads to adaptation of populations."
+          },
+          {
+           "code": "LS2.HS.12.b",
+           "text": "Evaluate the evidence supporting claims that changes in environmental conditions may result in (1) increases in the number of individuals of some species, (2) the emergence of new species over time, and (3) the extinction of other species."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "humans-have-complex-interactions-with-ecosystems",
+       "title": "Humans have complex interactions with ecosystems and have the ability to influence biodiversity on the planet",
+       "subtopics": [
+        {
+         "id": "humans-have-complex-interactions-with-ecosystems",
+         "title": "Humans have complex interactions with ecosystems and have the ability to influence biodiversity on the planet",
+         "outcomes": [
+          {
+           "code": "LS2.HS.13.a",
+           "text": "Create or revise a simulation to test a solution to mitigate adverse impacts of human activity on biodiversity."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "earth-and-space-science",
+     "title": "Earth and Space Science",
+     "topics": [
+      {
+       "id": "all-stars-including-the-sun-undergo-stellar-evol",
+       "title": "All stars, including the sun, undergo stellar evolution, and the study of stars' light spectra and brightness is used to identify compositional elements of stars, their movements, and their distances from Earth",
+       "subtopics": [
+        {
+         "id": "all-stars-including-the-sun-undergo-stellar-evol",
+         "title": "All stars, including the sun, undergo stellar evolution, and the study of stars' light spectra and brightness is used to identify compositional elements of stars, their movements, and their distances from Earth",
+         "outcomes": [
+          {
+           "code": "ESS3.HS.1.a",
+           "text": "Develop a model based on evidence to illustrate the life span of the sun and the role of nuclear fusion in the sun's core to release energy that eventually reaches Earth in the form of radiation."
+          },
+          {
+           "code": "ESS3.HS.1.b",
+           "text": "Construct an explanation of the Big Bang theory based on astronomical evidence of light spectra, motion of distant galaxies, and composition of matter in the universe."
+          },
+          {
+           "code": "ESS3.HS.1.c",
+           "text": "Communicate scientific ideas about the way stars, over their life cycle, produce elements."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "explanations-of-and-predictions-about-the-motion",
+       "title": "Explanations of and predictions about the motions of orbiting objects are described by the laws of physics",
+       "subtopics": [
+        {
+         "id": "explanations-of-and-predictions-about-the-motion",
+         "title": "Explanations of and predictions about the motions of orbiting objects are described by the laws of physics",
+         "outcomes": [
+          {
+           "code": "ESS3.HS.2.a",
+           "text": "Use mathematical or computational representations to predict the motion of orbiting objects in the solar system."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "the-rock-record-resulting-from-tectonic-and-othe",
+       "title": "The rock record resulting from tectonic and other geoscience processes as well as objects from the solar system can provide evidence of Earth's early history and the relative ages of major geologic formations",
+       "subtopics": [
+        {
+         "id": "the-rock-record-resulting-from-tectonic-and-othe",
+         "title": "The rock record resulting from tectonic and other geoscience processes as well as objects from the solar system can provide evidence of Earth's early history and the relative ages of major geologic formations",
+         "outcomes": [
+          {
+           "code": "ESS3.HS.3.a",
+           "text": "Evaluate evidence of the past and current movements of continental and oceanic crust and the theory of plate tectonics to explain the ages of crustal rocks."
+          },
+          {
+           "code": "ESS3.HS.3.b",
+           "text": "Apply scientific reasoning and evidence from ancient Earth materials, meteorites, and other planetary surfaces to construct an account of Earth's formation and early history."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "earth-s-systems-being-dynamic-and-interacting-ca",
+       "title": "Earth's systems, being dynamic and interacting, cause feedback effects that can increase or decrease the original changes, and these effects occur on different time scales, from sudden (e.g., volcanic ash clouds) to intermediate (ice ages) to very long-term tectonic cycles",
+       "subtopics": [
+        {
+         "id": "earth-s-systems-being-dynamic-and-interacting-ca",
+         "title": "Earth's systems, being dynamic and interacting, cause feedback effects that can increase or decrease the original changes, and these effects occur on different time scales, from sudden (e.g., volcanic ash clouds) to intermediate (ice ages) to very long-term tectonic cycles",
+         "outcomes": [
+          {
+           "code": "ESS3.HS.4.a",
+           "text": "Develop a model to illustrate how Earth's internal and surface processes operate at different spatial and temporal scales to form continental and ocean-floor features."
+          },
+          {
+           "code": "ESS3.HS.4.b",
+           "text": "Analyze geoscience data to make the claim that one change to Earth's surface can create feedbacks that cause changes to other Earth systems."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "plate-tectonics-can-be-viewed-as-the-surface-exp",
+       "title": "Plate tectonics can be viewed as the surface expression of mantle convection, which is driven by heat from radioactive decay within Earth's crust and mantle",
+       "subtopics": [
+        {
+         "id": "plate-tectonics-can-be-viewed-as-the-surface-exp",
+         "title": "Plate tectonics can be viewed as the surface expression of mantle convection, which is driven by heat from radioactive decay within Earth's crust and mantle",
+         "outcomes": [
+          {
+           "code": "ESS3.HS.5.a",
+           "text": "Develop a model to illustrate how Earth's internal and surface processes operate at different spatial and temporal scales to form continental and ocean-floor features."
+          },
+          {
+           "code": "ESS3.HS.5.b",
+           "text": "Develop a model based on evidence of Earth's interior to describe the cycling of matter by thermal convection."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "the-planet-s-dynamics-are-greatly-influenced-by-",
+       "title": "The planet's dynamics are greatly influenced by water's unique chemical and physical properties",
+       "subtopics": [
+        {
+         "id": "the-planet-s-dynamics-are-greatly-influenced-by-",
+         "title": "The planet's dynamics are greatly influenced by water's unique chemical and physical properties",
+         "outcomes": [
+          {
+           "code": "ESS3.HS.6.a",
+           "text": "Plan and conduct an investigation of the properties of water and its effects on Earth materials and surface processes."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "the-role-of-radiation-from-the-sun-and-its-inter",
+       "title": "The role of radiation from the sun and its interactions with the atmosphere, ocean, and land are the foundation for the global climate system. Global climate models are used to predict future changes, including changes influenced by human behavior and natural factors",
+       "subtopics": [
+        {
+         "id": "the-role-of-radiation-from-the-sun-and-its-inter",
+         "title": "The role of radiation from the sun and its interactions with the atmosphere, ocean, and land are the foundation for the global climate system. Global climate models are used to predict future changes, including changes influenced by human behavior and natural factors",
+         "outcomes": [
+          {
+           "code": "ESS3.HS.7.a",
+           "text": "Analyze geoscience data to make the claim that one change to Earth's surface can create feedbacks that cause changes to other Earth systems."
+          },
+          {
+           "code": "ESS3.HS.7.b",
+           "text": "Use a model to describe how variations in the flow of energy into and out of Earth's systems result in changes in climate."
+          },
+          {
+           "code": "ESS3.HS.7.c",
+           "text": "Develop a quantitative model to describe the cycling of carbon among the hydrosphere, atmosphere, geosphere, and biosphere."
+          },
+          {
+           "code": "ESS3.HS.7.d",
+           "text": "Construct an argument based on evidence about the simultaneous co-evolution of Earth's systems and life on Earth."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "the-biosphere-and-earth-s-other-systems-have-man",
+       "title": "The biosphere and Earth's other systems have many interconnections that cause a continual co-evolution of Earth's surface and life on it",
+       "subtopics": [
+        {
+         "id": "the-biosphere-and-earth-s-other-systems-have-man",
+         "title": "The biosphere and Earth's other systems have many interconnections that cause a continual co-evolution of Earth's surface and life on it",
+         "outcomes": [
+          {
+           "code": "ESS3.HS.8.a",
+           "text": "Construct an argument based on evidence about the simultaneous co-evolution of Earth's systems and life on Earth."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "resource-availability-has-guided-the-development",
+       "title": "Resource availability has guided the development of human society and use of natural resources has associated costs, risks, and benefits",
+       "subtopics": [
+        {
+         "id": "resource-availability-has-guided-the-development",
+         "title": "Resource availability has guided the development of human society and use of natural resources has associated costs, risks, and benefits",
+         "outcomes": [
+          {
+           "code": "ESS3.HS.9.a",
+           "text": "Construct an explanation based on evidence for how the availability of natural resources, occurrence of natural hazards, and changes in climate have influenced human activity."
+          },
+          {
+           "code": "ESS3.HS.9.b",
+           "text": "Evaluate competing design solutions for developing, managing, and utilizing energy and mineral resources based on cost-benefit ratios."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "natural-hazards-and-other-geological-events-have",
+       "title": "Natural hazards and other geological events have shaped the course of human history at local, regional, and global scales",
+       "subtopics": [
+        {
+         "id": "natural-hazards-and-other-geological-events-have",
+         "title": "Natural hazards and other geological events have shaped the course of human history at local, regional, and global scales",
+         "outcomes": [
+          {
+           "code": "ESS3.HS.10.a",
+           "text": "Construct an explanation based on evidence for how the availability of natural resources, occurrence of natural hazards, and changes in climate have influenced human activity."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "sustainability-of-human-societies-and-the-biodiv",
+       "title": "Sustainability of human societies and the biodiversity that supports them requires responsible management of natural resources, including the development of technologies",
+       "subtopics": [
+        {
+         "id": "sustainability-of-human-societies-and-the-biodiv",
+         "title": "Sustainability of human societies and the biodiversity that supports them requires responsible management of natural resources, including the development of technologies",
+         "outcomes": [
+          {
+           "code": "ESS3.HS.11.a",
+           "text": "Create a computational simulation to illustrate the relationships among the management of natural resources, the sustainability of human populations, and biodiversity."
+          },
+          {
+           "code": "ESS3.HS.11.b",
+           "text": "Evaluate or refine a technological solution that reduces impacts of human activities on natural systems."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "global-climate-models-used-to-predict-future-cli",
+       "title": "Global climate models used to predict future climate change continue to improve our understanding of the impact of human activities on the global climate system",
+       "subtopics": [
+        {
+         "id": "global-climate-models-used-to-predict-future-cli",
+         "title": "Global climate models used to predict future climate change continue to improve our understanding of the impact of human activities on the global climate system",
+         "outcomes": [
+          {
+           "code": "ESS3.HS.12.a",
+           "text": "Analyze geoscience data and the results from global climate models to make an evidence-based forecast of the current rate of global or regional climate change and associated future impacts to Earth's systems."
+          },
+          {
+           "code": "ESS3.HS.12.b",
+           "text": "Use a computational representation to illustrate the relationships among Earth systems and how those relationships are being modified due to human activity."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "build": {
+  "builtAt": "2026-10-14T16:20:39.635Z",
+  "model": "none",
+  "usd": 0,
+  "expectedCodes": 242,
+  "coverage": 1,
+  "missingCodes": [],
+  "counts": {
+   "grades": 9,
+   "units": 27,
+   "topics": 121,
+   "subtopics": 123,
+   "outcomes": 242
+  },
+  "warnings": [
+   "unit \"Life Science\" (grade K) has a single outcome"
+  ]
+ }
+}

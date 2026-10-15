@@ -1,0 +1,876 @@
+{
+ "id": "us-ct-computer-science",
+ "region": "US",
+ "framework": "Connecticut state academic standards: Computer Science & Technology",
+ "board": null,
+ "qualification": "K-12",
+ "subject": "Computer Science & Technology",
+ "syllabusCode": null,
+ "gradeSystem": "grade",
+ "source": {
+  "urls": [
+   "https://api.commonstandardsproject.com/api/v1/jurisdictions/7ED35031669E470B98EF63BEAD17286D",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/7ED35031669E470B98EF63BEAD17286D_D2419643_grades-01-02-03-04-k",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/7ED35031669E470B98EF63BEAD17286D_D2419643_grades-05-06-07-08",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/7ED35031669E470B98EF63BEAD17286D_D2419643_grades-09-10-11-12"
+  ],
+  "publisher": "Connecticut state education agency (machine-readable via Common Standards Project / ASN)",
+  "licence": "CC BY 3.0 US, Desire2Learn Incorporated",
+  "firstExam": "2006"
+ },
+ "grades": [
+  {
+   "grade": "K-4",
+   "units": [
+    {
+     "id": "definition-and-identification-of-information-nee",
+     "title": "Definition and Identification of Information Needs",
+     "topics": [
+      {
+       "id": "students-will-define-their-information-needs-and",
+       "title": "Students will define their information needs and identify effective courses of action to conduct research and solve problems",
+       "subtopics": [
+        {
+         "id": "students-will-define-their-information-needs-and",
+         "title": "Students will define their information needs and identify effective courses of action to conduct research and solve problems",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Clearly restate the scope and criteria of a task (such as time line, length, audience and presentation mode) with minimal prompting"
+          },
+          {
+           "code": null,
+           "text": "Identify existing knowledge and, with assistance, list areas where more information is needed"
+          },
+          {
+           "code": null,
+           "text": "Understand an essential question related to a topic of interest or assignment, with assistance"
+          },
+          {
+           "code": null,
+           "text": "Identify, locate and use appropriate print, non-print and/or digital resources available through the school library media center, with assistance"
+          },
+          {
+           "code": null,
+           "text": "Describe a course of action for addressing an essential question and completing the task, with prompting"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "information-stratigies",
+     "title": "Information Stratigies",
+     "topics": [
+      {
+       "id": "students-will-understand-and-demonstrate-informa",
+       "title": "Students will understand and demonstrate information skills and strategies to locate and effectively use print and non-print resources to solve problems and conduct research",
+       "subtopics": [
+        {
+         "id": "students-will-understand-and-demonstrate-informa",
+         "title": "Students will understand and demonstrate information skills and strategies to locate and effectively use print and non-print resources to solve problems and conduct research (1 of 2)",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Use the online catalog (or card catalog) to identify materials by author, title or subject, including cross references and locate resources in appropriate areas of the library media center (e.g., easy section or reference)"
+          },
+          {
+           "code": null,
+           "text": "Use menus, icons and links to access and use digital media to conduct basic research"
+          },
+          {
+           "code": null,
+           "text": "Locate and use table of contents and index in nonfiction materials"
+          },
+          {
+           "code": null,
+           "text": "Identify print and non-print characteristics, organizing features (e.g., table of contents, index), and purposes"
+          },
+          {
+           "code": null,
+           "text": "Select appropriate resources from a variety of media formats, understanding that information is stored and accessed in different ways"
+          }
+         ]
+        },
+        {
+         "id": "students-will-understand-and-demonstrate-informa-2",
+         "title": "Students will understand and demonstrate information skills and strategies to locate and effectively use print and non-print resources to solve problems and conduct research (2 of 2)",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Identify and use print and non-print reference sources (atlases, almanacs, encyclopedias, dictionaries, etc.)"
+          },
+          {
+           "code": null,
+           "text": "Use information presented graphically (e.g., pictures, captions, diagrams or labels)"
+          },
+          {
+           "code": null,
+           "text": "With assistance, identify and begin using age-appropriate search engines and directories"
+          },
+          {
+           "code": null,
+           "text": "Identify key words for searching for information, with assistance."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "information-processing",
+     "title": "Information Processing",
+     "topics": [
+      {
+       "id": "students-will-apply-information-from-a-variety-o",
+       "title": "Students will apply information from a variety of sources and formats using evaluative criteria to interpret, analyze, organize and synthesize both print and non-print material",
+       "subtopics": [
+        {
+         "id": "students-will-apply-information-from-a-variety-o",
+         "title": "Students will apply information from a variety of sources and formats using evaluative criteria to interpret, analyze, organize and synthesize both print and non-print material",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Identify appropriate sources of information for a specific purpose"
+          },
+          {
+           "code": null,
+           "text": "Use criteria to judge the relevance, credibility and completeness of both print and non-print information"
+          },
+          {
+           "code": null,
+           "text": "Organize, analyze and synthesize information into related categories, with assistance"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "application",
+     "title": "Application",
+     "topics": [
+      {
+       "id": "students-will-use-appropriate-information-and-te",
+       "title": "Students will use appropriate information and technology to create written, visual, oral and multimedia products to communicate ideas, information or conclusions to others",
+       "subtopics": [
+        {
+         "id": "students-will-use-appropriate-information-and-te",
+         "title": "Students will use appropriate information and technology to create written, visual, oral and multimedia products to communicate ideas, information or conclusions to others",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Select and use appropriate software and hardware to organize, analyze, interpret information, and present conclusions"
+          },
+          {
+           "code": null,
+           "text": "Use appropriate technology(s) and format(s) to clearly present information gathered from a variety of print and non-print resources"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "technology-use",
+     "title": "Technology Use",
+     "topics": [
+      {
+       "id": "students-will-operate-and-use-computers-and-othe",
+       "title": "Students will operate and use computers and other technologies as tools for productivity, problem solving and learning across the content areas",
+       "subtopics": [
+        {
+         "id": "students-will-operate-and-use-computers-and-othe",
+         "title": "Students will operate and use computers and other technologies as tools for productivity, problem solving and learning across the content areas (1 of 2)",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Use basic operational features of school hardware (accessing programs, input devices, printing, output devices, keyboard, etc.)"
+          },
+          {
+           "code": null,
+           "text": "Use content-specific technology tools and software"
+          },
+          {
+           "code": null,
+           "text": "Demonstrate the use of the keyboard and mouse"
+          },
+          {
+           "code": null,
+           "text": "Demonstrate the ability to use basic features (entering information/data, editing, calculating, manipulating text, sound and graphics, saving files) of personal productivity software"
+          },
+          {
+           "code": null,
+           "text": "Work cooperatively with peers and others when using computers and other technologies"
+          }
+         ]
+        },
+        {
+         "id": "students-will-operate-and-use-computers-and-othe-2",
+         "title": "Students will operate and use computers and other technologies as tools for productivity, problem solving and learning across the content areas (2 of 2)",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Identify common hardware and software problems and seek assistance"
+          },
+          {
+           "code": null,
+           "text": "Understand that technology tools are constantly changing"
+          },
+          {
+           "code": null,
+           "text": "Describe ways the computer is used to help people work, learn and play"
+          },
+          {
+           "code": null,
+           "text": "Distinguish among different technologies and their uses"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "responsible-use",
+     "title": "Responsible Use",
+     "topics": [
+      {
+       "id": "students-will-demonstrate-the-responsible-legal-",
+       "title": "Students will demonstrate the responsible, legal and ethical use of information resources, computers and other technologies",
+       "subtopics": [
+        {
+         "id": "students-will-demonstrate-the-responsible-legal-",
+         "title": "Students will demonstrate the responsible, legal and ethical use of information resources, computers and other technologies",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Practice proper and ethical use and care of print and non-print information resources, computers and other technologies"
+          },
+          {
+           "code": null,
+           "text": "Give citation credit to original sources when using or transmitting information to others"
+          },
+          {
+           "code": null,
+           "text": "Demonstrate an under-standing of the concept of ownership of ideas and information by respecting and observing laws and/or guidelines for using print and non-print information, software, hardware and networks"
+          },
+          {
+           "code": null,
+           "text": "Adhere to the district's acceptable use and copyright policies"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "assessment",
+     "title": "Assessment",
+     "topics": [
+      {
+       "id": "students-will-assess-the-effectiveness-of-their-",
+       "title": "Students will assess the effectiveness of their information and technology choices for problem-solving and communication",
+       "subtopics": [
+        {
+         "id": "students-will-assess-the-effectiveness-of-their-",
+         "title": "Students will assess the effectiveness of their information and technology choices for problem-solving and communication",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Assess whether the process and information gathered was both relevant and complete in response to the assigned task"
+          },
+          {
+           "code": null,
+           "text": "Assess whether their products meet established standards for process, product and presentation"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "5-8",
+   "units": [
+    {
+     "id": "definition-and-identification-of-information-nee",
+     "title": "Definition and Identification of Information Needs",
+     "topics": [
+      {
+       "id": "students-will-define-their-information-needs-and",
+       "title": "Students will define their information needs and identify effective courses of action to conduct research and solve problems",
+       "subtopics": [
+        {
+         "id": "students-will-define-their-information-needs-and",
+         "title": "Students will define their information needs and identify effective courses of action to conduct research and solve problems",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Clearly restate the scope and criteria for a given task, independently"
+          },
+          {
+           "code": null,
+           "text": "Identify and discuss existing knowledge concerning a given task, without prompting"
+          },
+          {
+           "code": null,
+           "text": "Frame an essential question using given information, and pose additional questions related to completion of the task"
+          },
+          {
+           "code": null,
+           "text": "Identify, locate and use an array of print and non-print resources available through the library media center independently, and with assistance, access resources outside the school"
+          },
+          {
+           "code": null,
+           "text": "Determine an appropriate course of action for addressing the essential question, with minimal assistance"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "information-stratigies",
+     "title": "Information Stratigies",
+     "topics": [
+      {
+       "id": "students-will-understand-and-demonstrate-informa",
+       "title": "Students will understand and demonstrate information skills and strategies to locate and effectively use print and non-print resources to solve problems and conduct research",
+       "subtopics": [
+        {
+         "id": "students-will-understand-and-demonstrate-informa",
+         "title": "Students will understand and demonstrate information skills and strategies to locate and effectively use print and non-print resources to solve problems and conduct research (1 of 2)",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Use additional features of online catalog records and demonstrate the ability to locate information from all areas of the library media center, such as fiction, nonfiction and reference"
+          },
+          {
+           "code": null,
+           "text": "Demonstrate the ability to navigate through a variety of software menus to access information for research, publication and communication"
+          },
+          {
+           "code": null,
+           "text": "Describe the variety of ways indexes and tables are used as organizers for information systems"
+          },
+          {
+           "code": null,
+           "text": "Use additional organizing features of print and non-print (e.g., menus, bibliographies and hyperlinks) to locate and use information"
+          },
+          {
+           "code": null,
+           "text": "Search, find, sort and evaluate database information from computers, CD-ROM and online resources and know how to apply specific features of different search engines"
+          }
+         ]
+        },
+        {
+         "id": "students-will-understand-and-demonstrate-informa-2",
+         "title": "Students will understand and demonstrate information skills and strategies to locate and effectively use print and non-print resources to solve problems and conduct research (2 of 2)",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Select and use appropriate resources and/or equipment to accomplish a given task"
+          },
+          {
+           "code": null,
+           "text": "Demonstrate ability to take notes, print out or record selected information from a wide range of sources of information"
+          },
+          {
+           "code": null,
+           "text": "Demonstrate the ability to identify and use a variety of features to locate information using an Internet search engine or directory"
+          },
+          {
+           "code": null,
+           "text": "Identify key words for searching information sources, with minimal assistance"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "information-processing",
+     "title": "Information Processing",
+     "topics": [
+      {
+       "id": "students-will-apply-information-from-a-variety-o",
+       "title": "Students will apply information from a variety of sources and formats using evaluative criteria to interpret, analyze, organize and synthesize both print and non-print material",
+       "subtopics": [
+        {
+         "id": "students-will-apply-information-from-a-variety-o",
+         "title": "Students will apply information from a variety of sources and formats using evaluative criteria to interpret, analyze, organize and synthesize both print and non-print material",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Develop and apply more complex criteria for aligning resources with a specific need and presentation"
+          },
+          {
+           "code": null,
+           "text": "Apply evaluative criteria to discern stereotypes, biases and propaganda techniques in print and non-print resources"
+          },
+          {
+           "code": null,
+           "text": "Organize, analyze and synthesize information to draw meaningful conclusions and determine an appropriate format for presentation, with minimal assistance"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "application",
+     "title": "Application",
+     "topics": [
+      {
+       "id": "students-will-use-appropriate-information-and-te",
+       "title": "Students will use appropriate information and technology to create written, visual, oral and multimedia products to communicate ideas, information or conclusions to others",
+       "subtopics": [
+        {
+         "id": "students-will-use-appropriate-information-and-te",
+         "title": "Students will use appropriate information and technology to create written, visual, oral and multimedia products to communicate ideas, information or conclusions to others",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Create databases, spreadsheets and a variety of multimedia products to organize, analyze and interpret information"
+          },
+          {
+           "code": null,
+           "text": "Use appropriate technology(s) and format(s) to clearly present information gathered from a variety of print and non-print resources"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "technology-use",
+     "title": "Technology Use",
+     "topics": [
+      {
+       "id": "students-will-operate-and-use-computers-and-othe",
+       "title": "Students will operate and use computers and other technologies as tools for productivity, problem solving and learning across the content areas",
+       "subtopics": [
+        {
+         "id": "students-will-operate-and-use-computers-and-othe",
+         "title": "Students will operate and use computers and other technologies as tools for productivity, problem solving and learning across the content areas (1 of 2)",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Operate school hardware and demonstrate the ability to use the school network to access and utilize school software, independently"
+          },
+          {
+           "code": null,
+           "text": "Use content-specific technology tools and software"
+          },
+          {
+           "code": null,
+           "text": "Demonstrate proficiency in keyboarding"
+          },
+          {
+           "code": null,
+           "text": "Demonstrate the ability to independently use personal productivity software and multimedia to create products in a wide range of formats (newsletters, budgets, brochures, imported graphics, web pages, digital movies, etc.)"
+          },
+          {
+           "code": null,
+           "text": "Demonstrate the use of technological resources to help plan, coordinate and complete group projects"
+          }
+         ]
+        },
+        {
+         "id": "students-will-operate-and-use-computers-and-othe-2",
+         "title": "Students will operate and use computers and other technologies as tools for productivity, problem solving and learning across the content areas (2 of 2)",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Identify hardware and software problems that accompany everyday use and seek assistance"
+          },
+          {
+           "code": null,
+           "text": "Understand that technology tools are constantly changing and describe their potential for use"
+          },
+          {
+           "code": null,
+           "text": "Identify ways computers and other technologies are affecting the way we live, work and learn"
+          },
+          {
+           "code": null,
+           "text": "Describe basic criteria used to evaluate and compare different types of computers, peripherals (e.g. printer, scanner) and other technology tools"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "responsible-use",
+     "title": "Responsible Use",
+     "topics": [
+      {
+       "id": "students-will-demonstrate-the-responsible-legal-",
+       "title": "Students will demonstrate the responsible, legal and ethical use of information resources, computers and other technologies",
+       "subtopics": [
+        {
+         "id": "students-will-demonstrate-the-responsible-legal-",
+         "title": "Students will demonstrate the responsible, legal and ethical use of information resources, computers and other technologies",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Demonstrate responsible and ethical use and care of print and non-print information resources, computers, other technologies and networks"
+          },
+          {
+           "code": null,
+           "text": "Apply established citation standards for giving credit for information or ideas used"
+          },
+          {
+           "code": null,
+           "text": "Differentiate among various types of ownership and protection of intellectual property (e.g., copyright, patents) and observe \"fair use\" guidelines as they apply to each"
+          },
+          {
+           "code": null,
+           "text": "Adhere to the district's acceptable use and copyright policies and understand the relationship to local, state and national legislation"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "assessment",
+     "title": "Assessment",
+     "topics": [
+      {
+       "id": "students-will-assess-the-effectiveness-of-their-",
+       "title": "Students will assess the effectiveness of their information and technology choices for problem-solving and communication",
+       "subtopics": [
+        {
+         "id": "students-will-assess-the-effectiveness-of-their-",
+         "title": "Students will assess the effectiveness of their information and technology choices for problem-solving and communication",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Assess whether the process and information gathered was relevant, complete and accurate in response to the assigned need"
+          },
+          {
+           "code": null,
+           "text": "Assess whether their products meet established standards for process, product and presentation"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "9-12",
+   "units": [
+    {
+     "id": "definition-and-identification-of-information-nee",
+     "title": "Definition and Identification of Information Needs",
+     "topics": [
+      {
+       "id": "students-will-define-their-information-needs-and",
+       "title": "Students will define their information needs and identify effective courses of action to conduct research and solve problems",
+       "subtopics": [
+        {
+         "id": "students-will-define-their-information-needs-and",
+         "title": "Students will define their information needs and identify effective courses of action to conduct research and solve problems",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Clearly state the scope and criteria for a given task and demonstrate the ability to communicate them to others, independently"
+          },
+          {
+           "code": null,
+           "text": "Independently identify and assess existing knowledge related to a given task and articulate information needs to information providers or peers"
+          },
+          {
+           "code": null,
+           "text": "Develop essential questions related to a topic and formulate a research hypothesis related to the topic"
+          },
+          {
+           "code": null,
+           "text": "Search print, non-print and digital resources within and outside the school, independently"
+          },
+          {
+           "code": null,
+           "text": "Determine a course of action that demonstrates the selection of appropriate strategies and resources for accomplishing a task, independently"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "information-stratigies",
+     "title": "Information Stratigies",
+     "topics": [
+      {
+       "id": "students-will-understand-and-demonstrate-informa",
+       "title": "Students will understand and demonstrate information skills and strategies to locate and effectively use print and non-print resources to solve problems and conduct research",
+       "subtopics": [
+        {
+         "id": "students-will-understand-and-demonstrate-informa",
+         "title": "Students will understand and demonstrate information skills and strategies to locate and effectively use print and non-print resources to solve problems and conduct research (1 of 2)",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Apply principles of information systems organization to a variety of print and non-print resources"
+          },
+          {
+           "code": null,
+           "text": "Routinely and efficiently, use online information resources to meet the needs for research, publications, and communications"
+          },
+          {
+           "code": null,
+           "text": "Access specific information from print and non-print resources by using internal organizers (e.g., indexes, cross-references)"
+          },
+          {
+           "code": null,
+           "text": "Plan and design methods to collect reliable data for particular purposes and audiences, using advanced reference materials, indexes, dictionaries and abstracts"
+          },
+          {
+           "code": null,
+           "text": "Determine the best tool for locating information and use key word descriptors and Boolean logic to perform advanced on-line and CD-ROM searches (e.g., field searches)"
+          }
+         ]
+        },
+        {
+         "id": "students-will-understand-and-demonstrate-informa-2",
+         "title": "Students will understand and demonstrate information skills and strategies to locate and effectively use print and non-print resources to solve problems and conduct research (2 of 2)",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Use, independently, the full range of print and non-print resources within the school or district"
+          },
+          {
+           "code": null,
+           "text": "Demonstrate the ability to solve problems by collecting, analyzing and interpreting data through the use of data management software (database, spreadsheets, etc.)"
+          },
+          {
+           "code": null,
+           "text": "Select and use, independently, an appropriate search engine or directory related to a specific task"
+          },
+          {
+           "code": null,
+           "text": "Identify key words for searching information sources, independently"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "information-processing",
+     "title": "Information Processing",
+     "topics": [
+      {
+       "id": "students-will-apply-information-from-a-variety-o",
+       "title": "Students will apply information from a variety of sources and formats using evaluative criteria to interpret, analyze, organize and synthesize both print and non-print material",
+       "subtopics": [
+        {
+         "id": "students-will-apply-information-from-a-variety-o",
+         "title": "Students will apply information from a variety of sources and formats using evaluative criteria to interpret, analyze, organize and synthesize both print and non-print material",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Develop and use personal and established criteria for selecting materials of appropriate breadth and depth of detail, format, illustrations, special features, level, content, purpose and intended audience"
+          },
+          {
+           "code": null,
+           "text": "Demonstrate ability to identify and compare sources of information and apply multiple evaluative criteria, including purpose, point of view, biases and stereotypes, accuracy, continuity and currency"
+          },
+          {
+           "code": null,
+           "text": "Organize, analyze and synthesize information to draw meaningful conclusions through written, oral, numeric and visual communications, independently"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "application",
+     "title": "Application",
+     "topics": [
+      {
+       "id": "students-will-use-appropriate-information-and-te",
+       "title": "Students will use appropriate information and technology to create written, visual, oral and multimedia products to communicate ideas, information or conclusions to others",
+       "subtopics": [
+        {
+         "id": "students-will-use-appropriate-information-and-te",
+         "title": "Students will use appropriate information and technology to create written, visual, oral and multimedia products to communicate ideas, information or conclusions to others",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Use in depth applications of appropriate software and hardware to organize, analyze and interpret information"
+          },
+          {
+           "code": null,
+           "text": "Determine appropriate technology(s) and format(s) to clearly present information gathered from a variety of print and non-print resources, for a variety of audiences"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "technology-use",
+     "title": "Technology Use",
+     "topics": [
+      {
+       "id": "students-will-operate-and-use-computers-and-othe",
+       "title": "Students will operate and use computers and other technologies as tools for productivity, problem solving and learning across the content areas",
+       "subtopics": [
+        {
+         "id": "students-will-operate-and-use-computers-and-othe",
+         "title": "Students will operate and use computers and other technologies as tools for productivity, problem solving and learning across the content areas (1 of 2)",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Operate school hardware and demonstrate ability to understand and use capabilities of the school network and software, independently"
+          },
+          {
+           "code": null,
+           "text": "Use content-specific tools and software"
+          },
+          {
+           "code": null,
+           "text": "Maintain proficiency in keyboarding"
+          },
+          {
+           "code": null,
+           "text": "Produce a variety of products using the advanced features of personal productivity software"
+          },
+          {
+           "code": null,
+           "text": "Using telecommunications collaborate with peers, experts and others to research, compile, synthesize, produce and disseminate information or creative works"
+          }
+         ]
+        },
+        {
+         "id": "students-will-operate-and-use-computers-and-othe-2",
+         "title": "Students will operate and use computers and other technologies as tools for productivity, problem solving and learning across the content areas (2 of 2)",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Identify and apply strategies for solving hardware and software problems outside the school environment"
+          },
+          {
+           "code": null,
+           "text": "Demonstrate the ability to identify, assess and adapt to new technology tools and resources"
+          },
+          {
+           "code": null,
+           "text": "Analyze the educational, social and ethical issues related to the increased reliance on computers and other technologies"
+          },
+          {
+           "code": null,
+           "text": "Identify evaluative criteria for making informed decisions about computers, peripherals and other technology tools"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "responsible-use",
+     "title": "Responsible Use",
+     "topics": [
+      {
+       "id": "students-will-demonstrate-the-responsible-legal-",
+       "title": "Students will demonstrate the responsible, legal and ethical use of information resources, computers and other technologies",
+       "subtopics": [
+        {
+         "id": "students-will-demonstrate-the-responsible-legal-",
+         "title": "Students will demonstrate the responsible, legal and ethical use of information resources, computers and other technologies",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Observe local, state and national laws and policies and procedures regarding the use of print and non-print information resources, computers, other technologies and networks"
+          },
+          {
+           "code": null,
+           "text": "Apply established citation standards for a wide range of information sources and formats"
+          },
+          {
+           "code": null,
+           "text": "Demonstrate an under-standing of the process for copyrighting/protecting their own original work"
+          },
+          {
+           "code": null,
+           "text": "Adhere to the district's acceptable use and copyright policies as well as local, state and national laws and policies"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "assessment",
+     "title": "Assessment",
+     "topics": [
+      {
+       "id": "students-will-assess-the-effectiveness-of-their-",
+       "title": "Students will assess the effectiveness of their information and technology choices for problem-solving and communication",
+       "subtopics": [
+        {
+         "id": "students-will-assess-the-effectiveness-of-their-",
+         "title": "Students will assess the effectiveness of their information and technology choices for problem-solving and communication",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Assess, independently and continuously, the relevance, completeness and accuracy of gathered information and the efficiency of the research process"
+          },
+          {
+           "code": null,
+           "text": "Assess, independently, whether their products meet established standards for process, product and presentation."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "build": {
+  "builtAt": "2026-10-14T16:20:39.642Z",
+  "model": "none",
+  "usd": 0,
+  "expectedCodes": null,
+  "coverage": null,
+  "missingCodes": [],
+  "counts": {
+   "grades": 3,
+   "units": 21,
+   "topics": 21,
+   "subtopics": 27,
+   "outcomes": 102
+  },
+  "warnings": []
+ }
+}

@@ -1,0 +1,867 @@
+{
+ "id": "au-ss-earth-and-environmental-science",
+ "region": "AU",
+ "framework": "Australian Curriculum Senior Secondary, Version 8.4",
+ "board": "ACARA",
+ "qualification": "Senior Secondary (Years 11-12)",
+ "subject": "Earth and Environmental Science",
+ "syllabusCode": null,
+ "gradeSystem": "course",
+ "source": {
+  "urls": [
+   "https://v8.australiancurriculum.edu.au/senior-secondary-curriculum/science/earth-and-environmental-science/?unit=Unit+1&unit=Unit+2&unit=Unit+3&unit=Unit+4",
+   "https://web.archive.org/web/2026/https://v8.australiancurriculum.edu.au/senior-secondary-curriculum/science/earth-and-environmental-science/?unit=Unit+1&unit=Unit+2&unit=Unit+3&unit=Unit+4"
+  ],
+  "publisher": "Australian Curriculum, Assessment and Reporting Authority (ACARA)",
+  "licence": "CC BY 4.0 (Creative Commons Attribution 4.0 International). (c) Australian Curriculum, Assessment and Reporting Authority (ACARA) 2010 to present, unless otherwise indicated; attribution required in ACARA's prescribed form (\"This material was downloaded from the Australian Curriculum website (accessed [date]) and [was/was not] modified. The material is licensed under CC BY 4.0\"). Excluded from CC BY: logos/trade marks, website design, third-party material, photographs, videos and teacher-support resources. ACARA does not endorse products; alignment claims must be to content descriptions and achievement standards, not elaborations. Aboriginal and Torres Strait Islander ICIP protocols apply (esp. the Framework for Aboriginal Languages and Torres Strait Islander Languages). Source: https://www.australiancurriculum.edu.au/copyright-and-terms-of-use",
+  "firstExam": null
+ },
+ "grades": [
+  {
+   "grade": "Unit 1",
+   "units": [
+    {
+     "id": "unit-1-introduction-to-earth-systems",
+     "title": "Unit 1: Introduction to Earth systems",
+     "topics": [
+      {
+       "id": "science-inquiry-skills",
+       "title": "Science Inquiry Skills",
+       "subtopics": [
+        {
+         "id": "planning-investigations",
+         "title": "Planning investigations",
+         "outcomes": [
+          {
+           "code": "ACSES001",
+           "text": "Pose research questions, propose hypotheses and predict outcomes."
+          },
+          {
+           "code": "ACSES002",
+           "text": "Design an investigation with its procedure, data needs, risk assessment and ethics."
+          }
+         ]
+        },
+        {
+         "id": "collecting-and-analysing-data",
+         "title": "Collecting and analysing data",
+         "outcomes": [
+          {
+           "code": "ACSES003",
+           "text": "Carry out safe, careful investigations using map and field location, and rock and soil sampling and identification."
+          },
+          {
+           "code": "ACSES004",
+           "text": "Present and analyse data for trends, describe error and uncertainty, and justify conclusions with evidence."
+          }
+         ]
+        },
+        {
+         "id": "evaluating-and-communicating",
+         "title": "Evaluating and communicating",
+         "outcomes": [
+          {
+           "code": "ACSES005",
+           "text": "Interpret scientific and media texts, judge claims by evidence quality and build arguments."
+          },
+          {
+           "code": "ACSES006",
+           "text": "Use maps, cross sections, stratigraphy and isotopic half-life data to describe spatial relationships and infer ages of rocks and fossils."
+          },
+          {
+           "code": "ACSES007",
+           "text": "Communicate to chosen audiences and purposes, including field data compilations and research reports."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "science-as-a-human-endeavour",
+       "title": "Science as a Human Endeavour",
+       "subtopics": [
+        {
+         "id": "nature-and-communication-of-science",
+         "title": "Nature and communication of science",
+         "outcomes": [
+          {
+           "code": "ACSES008",
+           "text": "Explain why science depends on clear communication, international conventions, peer review and reproducibility."
+          },
+          {
+           "code": "ACSES009",
+           "text": "Explain that complex models and theories need evidence from many people and disciplines."
+          },
+          {
+           "code": "ACSES010",
+           "text": "Show how advances in one science field influence other sciences, technology and engineering."
+          }
+         ]
+        },
+        {
+         "id": "society-and-use-of-science",
+         "title": "Society and use of science",
+         "outcomes": [
+          {
+           "code": "ACSES011",
+           "text": "Explain how social, economic, cultural and ethical factors shape the use of scientific knowledge."
+          },
+          {
+           "code": "ACSES012",
+           "text": "Describe the beneficial, harmful and unintended consequences of using scientific knowledge."
+          },
+          {
+           "code": "ACSES013",
+           "text": "Explain how scientific knowledge supports valid explanations and reliable predictions."
+          },
+          {
+           "code": "ACSES014",
+           "text": "Use scientific knowledge to evaluate projected impacts and design action for sustainability."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "development-of-the-geosphere",
+       "title": "Development of the geosphere",
+       "subtopics": [
+        {
+         "id": "reading-earth-s-history",
+         "title": "Reading Earth's history",
+         "outcomes": [
+          {
+           "code": "ACSES015",
+           "text": "Use present-day processes to infer past events through uniformitarianism."
+          },
+          {
+           "code": "ACSES016",
+           "text": "Build a relative time scale using superposition, cross cutting, inclusions and correlation."
+          },
+          {
+           "code": "ACSES017",
+           "text": "Use radioisotope decay to assign absolute dates and place Earth's age at 4.5 billion years."
+          }
+         ]
+        },
+        {
+         "id": "earth-s-layers-rocks-and-soil",
+         "title": "Earth's layers, rocks and soil",
+         "outcomes": [
+          {
+           "code": "ACSES018",
+           "text": "Describe Earth's layered interior and the seismic and meteorite evidence for it."
+          },
+          {
+           "code": "ACSES019",
+           "text": "Explain how rocks form from mineral assemblages through the igneous, sedimentary and metamorphic rock cycle."
+          },
+          {
+           "code": "ACSES020",
+           "text": "Explain soil formation and composition as an interaction of atmosphere, rocks, water and life."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "development-of-the-atmosphere-and-hydrosphere",
+       "title": "Development of the atmosphere and hydrosphere",
+       "subtopics": [
+        {
+         "id": "atmosphere",
+         "title": "Atmosphere",
+         "outcomes": [
+          {
+           "code": "ACSES021",
+           "text": "Explain how the atmosphere came from volcanic outgassing and was changed by photosynthesising organisms."
+          },
+          {
+           "code": "ACSES022",
+           "text": "Describe the temperature-based layers of the modern atmosphere."
+          }
+         ]
+        },
+        {
+         "id": "water-at-earth-s-surface",
+         "title": "Water at Earth's surface",
+         "outcomes": [
+          {
+           "code": "ACSES023",
+           "text": "Explain where Earth's surface water came from and its three phases."
+          },
+          {
+           "code": "ACSES024",
+           "text": "Explain how water's special properties make it important to Earth system processes."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "development-of-the-biosphere",
+       "title": "Development of the biosphere",
+       "subtopics": [
+        {
+         "id": "origin-of-life",
+         "title": "Origin of life",
+         "outcomes": [
+          {
+           "code": "ACSES025",
+           "text": "Use fossil evidence to date the first life at about 4 billion years ago."
+          },
+          {
+           "code": "ACSES026",
+           "text": "Describe laboratory evidence for life emerging in shallow water or at hydrothermal vents without oxygen."
+          }
+         ]
+        },
+        {
+         "id": "life-and-past-environments",
+         "title": "Life and past environments",
+         "outcomes": [
+          {
+           "code": "ACSES027",
+           "text": "Explain how interacting spheres give each location unique, dynamic communities."
+          },
+          {
+           "code": "ACSES028",
+           "text": "Infer past environments and communities from sedimentary rocks and fossils."
+          },
+          {
+           "code": "ACSES029",
+           "text": "Use the fossil record to infer diversification of life and ecosystem collapse."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "Unit 2",
+   "units": [
+    {
+     "id": "unit-2-earth-processes-energy-transfers-and-tran",
+     "title": "Unit 2: Earth processes - energy transfers and transformations",
+     "topics": [
+      {
+       "id": "science-inquiry-skills",
+       "title": "Science Inquiry Skills",
+       "subtopics": [
+        {
+         "id": "planning-investigations",
+         "title": "Planning investigations",
+         "outcomes": [
+          {
+           "code": "ACSES030",
+           "text": "Pose research questions, propose hypotheses and predict outcomes."
+          },
+          {
+           "code": "ACSES031",
+           "text": "Design an investigation with its procedure, data needs, risk assessment and ethics."
+          }
+         ]
+        },
+        {
+         "id": "collecting-and-analysing-data",
+         "title": "Collecting and analysing data",
+         "outcomes": [
+          {
+           "code": "ACSES032",
+           "text": "Carry out safe, careful investigations using map and field location and environmental sampling."
+          },
+          {
+           "code": "ACSES033",
+           "text": "Present and analyse data for trends, describe error and uncertainty, and justify conclusions with evidence."
+          }
+         ]
+        },
+        {
+         "id": "evaluating-and-communicating",
+         "title": "Evaluating and communicating",
+         "outcomes": [
+          {
+           "code": "ACSES034",
+           "text": "Interpret scientific and media texts, judge claims by evidence quality and build arguments."
+          },
+          {
+           "code": "ACSES035",
+           "text": "Use maps, spatial representations, diagrams and flow charts to explain ideas, solve problems and predict."
+          },
+          {
+           "code": "ACSES036",
+           "text": "Communicate to chosen audiences and purposes, including field data compilations and research reports."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "science-as-a-human-endeavour",
+       "title": "Science as a Human Endeavour",
+       "subtopics": [
+        {
+         "id": "nature-and-communication-of-science",
+         "title": "Nature and communication of science",
+         "outcomes": [
+          {
+           "code": "ACSES037",
+           "text": "Explain why science depends on clear communication, international conventions, peer review and reproducibility."
+          },
+          {
+           "code": "ACSES038",
+           "text": "Explain that complex models and theories need evidence from many people and disciplines."
+          },
+          {
+           "code": "ACSES039",
+           "text": "Show how advances in one science field influence other sciences, technology and engineering."
+          }
+         ]
+        },
+        {
+         "id": "society-and-use-of-science",
+         "title": "Society and use of science",
+         "outcomes": [
+          {
+           "code": "ACSES040",
+           "text": "Explain how social, economic, cultural and ethical factors shape the use of scientific knowledge."
+          },
+          {
+           "code": "ACSES041",
+           "text": "Describe the beneficial, harmful and unintended consequences of using scientific knowledge."
+          },
+          {
+           "code": "ACSES042",
+           "text": "Explain how scientific knowledge supports valid explanations and reliable predictions."
+          },
+          {
+           "code": "ACSES043",
+           "text": "Use scientific knowledge to evaluate projected impacts and design action for sustainability."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "energy-for-earth-processes",
+       "title": "Energy for Earth processes",
+       "subtopics": [
+        {
+         "id": "energy-and-earth-processes",
+         "title": "Energy and Earth processes",
+         "outcomes": [
+          {
+           "code": "ACSES044",
+           "text": "Explain that energy is conserved and changes form and moves between objects."
+          },
+          {
+           "code": "ACSES045",
+           "text": "Identify the Sun and Earth's interior as the energy sources for Earth processes."
+          },
+          {
+           "code": "ACSES046",
+           "text": "Explain how solar heat and light drive evaporation and photosynthesis."
+          }
+         ]
+        },
+        {
+         "id": "energy-and-plate-tectonics",
+         "title": "Energy and plate tectonics",
+         "outcomes": [
+          {
+           "code": "ACSES047",
+           "text": "Explain how heat and gravity in Earth's interior move tectonic plates through convection, plumes and slab sinking."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "energy-for-atmospheric-and-hydrologic-processes",
+       "title": "Energy for atmospheric and hydrologic processes",
+       "subtopics": [
+        {
+         "id": "solar-energy-and-the-atmosphere",
+         "title": "Solar energy and the atmosphere",
+         "outcomes": [
+          {
+           "code": "ACSES048",
+           "text": "Explain how the atmosphere, ozone and surface albedo affect solar energy reaching the surface."
+          },
+          {
+           "code": "ACSES049",
+           "text": "Explain the greenhouse effect."
+          }
+         ]
+        },
+        {
+         "id": "circulation-and-weather",
+         "title": "Circulation and weather",
+         "outcomes": [
+          {
+           "code": "ACSES050",
+           "text": "Explain how air mass movement creates atmospheric circulation that spreads heat."
+          },
+          {
+           "code": "ACSES051",
+           "text": "Explain ocean currents and the global ocean conveyor model."
+          },
+          {
+           "code": "ACSES052",
+           "text": "Explain how atmosphere-ocean interaction can cause anomalies like El Nino and La Nina."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "energy-for-biogeochemical-processes",
+       "title": "Energy for biogeochemical processes",
+       "subtopics": [
+        {
+         "id": "energy-in-ecosystems",
+         "title": "Energy in ecosystems",
+         "outcomes": [
+          {
+           "code": "ACSES053",
+           "text": "Explain photosynthesis as the main energy transformation and define net primary production."
+          },
+          {
+           "code": "ACSES054",
+           "text": "Explain how energy and matter availability set ecosystem carrying capacity."
+          }
+         ]
+        },
+        {
+         "id": "cycling-of-matter",
+         "title": "Cycling of matter",
+         "outcomes": [
+          {
+           "code": "ACSES055",
+           "text": "Explain how nitrogen and phosphorus cycling involves energy transfer between Earth systems."
+          },
+          {
+           "code": "ACSES056",
+           "text": "Explain how energy is stored short term in organisms and long term in hydrocarbons, coal and kerogens in the carbon cycle."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "Unit 3",
+   "units": [
+    {
+     "id": "unit-3-living-on-earth-extracting-using-and-mana",
+     "title": "Unit 3: Living on Earth - extracting, using and managing Earth resources",
+     "topics": [
+      {
+       "id": "science-inquiry-skills",
+       "title": "Science Inquiry Skills",
+       "subtopics": [
+        {
+         "id": "planning-investigations",
+         "title": "Planning investigations",
+         "outcomes": [
+          {
+           "code": "ACSES057",
+           "text": "Pose research questions, propose hypotheses and predict outcomes."
+          },
+          {
+           "code": "ACSES058",
+           "text": "Design an investigation with its procedure, data needs, risk assessment and ethics."
+          }
+         ]
+        },
+        {
+         "id": "collecting-and-analysing-data",
+         "title": "Collecting and analysing data",
+         "outcomes": [
+          {
+           "code": "ACSES059",
+           "text": "Carry out safe, careful investigations using spatial analysis, map and field location and environmental sampling."
+          },
+          {
+           "code": "ACSES060",
+           "text": "Present and analyse data for trends, describe error and uncertainty, and justify conclusions with evidence."
+          }
+         ]
+        },
+        {
+         "id": "evaluating-and-communicating",
+         "title": "Evaluating and communicating",
+         "outcomes": [
+          {
+           "code": "ACSES061",
+           "text": "Interpret scientific and media texts, judge claims by evidence quality and build arguments."
+          },
+          {
+           "code": "ACSES062",
+           "text": "Use maps and spatial representations to explain ideas, solve problems and predict."
+          },
+          {
+           "code": "ACSES063",
+           "text": "Communicate to chosen audiences and purposes, including field data compilations and research reports."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "science-as-a-human-endeavour",
+       "title": "Science as a Human Endeavour",
+       "subtopics": [
+        {
+         "id": "nature-and-communication-of-science",
+         "title": "Nature and communication of science",
+         "outcomes": [
+          {
+           "code": "ACSES064",
+           "text": "Explain how ICT and other technologies have enlarged and sharpened the data scientists use."
+          },
+          {
+           "code": "ACSES065",
+           "text": "Explain how models and theories are contested, refined or replaced by new evidence or greater explanatory power."
+          },
+          {
+           "code": "ACSES066",
+           "text": "Explain how social, economic and cultural context affects acceptance of scientific knowledge."
+          }
+         ]
+        },
+        {
+         "id": "society-and-use-of-science",
+         "title": "Society and use of science",
+         "outcomes": [
+          {
+           "code": "ACSES067",
+           "text": "Use scientific knowledge to monitor, assess and evaluate risk."
+          },
+          {
+           "code": "ACSES068",
+           "text": "Explain why science may fail to give definitive answers in public debate because data are lacking or open to question."
+          },
+          {
+           "code": "ACSES069",
+           "text": "Explain why large-scale or Asia-Pacific science often needs international collaboration."
+          },
+          {
+           "code": "ACSES070",
+           "text": "Use scientific knowledge to evaluate projected impacts and design action for sustainability."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "use-of-non-renewable-earth-resources",
+       "title": "Use of non-renewable Earth resources",
+       "subtopics": [
+        {
+         "id": "finding-non-renewable-resources",
+         "title": "Finding non-renewable resources",
+         "outcomes": [
+          {
+           "code": "ACSES071",
+           "text": "Explain why non-renewable resources form over geological time and are not quickly replenished."
+          },
+          {
+           "code": "ACSES072",
+           "text": "Relate the location of fossil fuels, iron ore and gold to their geological setting."
+          },
+          {
+           "code": "ACSES073",
+           "text": "Describe remote sensing and direct sampling used to find and size a deposit."
+          }
+         ]
+        },
+        {
+         "id": "extraction-and-its-effects",
+         "title": "Extraction and its effects",
+         "outcomes": [
+          {
+           "code": "ACSES074",
+           "text": "Explain how resource type, volume and location determine extraction methods."
+          },
+          {
+           "code": "ACSES075",
+           "text": "Explain how extraction affects ecosystems, including hydrologic systems."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "use-of-renewable-earth-resources",
+       "title": "Use of renewable Earth resources",
+       "subtopics": [
+        {
+         "id": "renewable-resources-and-ecosystem-services",
+         "title": "Renewable resources and ecosystem services",
+         "outcomes": [
+          {
+           "code": "ACSES076",
+           "text": "Define renewable resources and services replenished over years to decades."
+          },
+          {
+           "code": "ACSES077",
+           "text": "Describe provisioning, regulating, supporting and cultural ecosystem services."
+          },
+          {
+           "code": "ACSES078",
+           "text": "Explain how abundance and replenishment rate set sustainable use."
+          }
+         ]
+        },
+        {
+         "id": "energy-and-fresh-water",
+         "title": "Energy and fresh water",
+         "outcomes": [
+          {
+           "code": "ACSES079",
+           "text": "Explain how technology efficiency limits cost-effective renewable energy."
+          },
+          {
+           "code": "ACSES080",
+           "text": "Explain how human activities and natural processes change fresh water availability and quality."
+          }
+         ]
+        },
+        {
+         "id": "biota-and-sustainable-use",
+         "title": "Biota and sustainable use",
+         "outcomes": [
+          {
+           "code": "ACSES081",
+           "text": "Explain how human activities can push populations below viability and harm ecosystem services."
+          },
+          {
+           "code": "ACSES082",
+           "text": "Explain overharvesting and maximum sustainable yield."
+          },
+          {
+           "code": "ACSES083",
+           "text": "Use the ecological footprint to measure demand from producing, using and disposing of resources."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "Unit 4",
+   "units": [
+    {
+     "id": "unit-4-the-changing-earth-the-cause-and-impact-o",
+     "title": "Unit 4: The changing Earth - the cause and impact of Earth hazards",
+     "topics": [
+      {
+       "id": "science-inquiry-skills",
+       "title": "Science Inquiry Skills",
+       "subtopics": [
+        {
+         "id": "planning-investigations",
+         "title": "Planning investigations",
+         "outcomes": [
+          {
+           "code": "ACSES084",
+           "text": "Pose research questions, propose hypotheses and predict outcomes."
+          },
+          {
+           "code": "ACSES085",
+           "text": "Design an investigation with its procedure, data needs, risk assessment and ethics."
+          }
+         ]
+        },
+        {
+         "id": "collecting-and-analysing-data",
+         "title": "Collecting and analysing data",
+         "outcomes": [
+          {
+           "code": "ACSES086",
+           "text": "Carry out safe, careful investigations using spatial analysis, map and field location, environmental sampling and field metering equipment."
+          },
+          {
+           "code": "ACSES087",
+           "text": "Present and analyse data for trends, describe error and uncertainty, and justify conclusions with evidence."
+          }
+         ]
+        },
+        {
+         "id": "evaluating-and-communicating",
+         "title": "Evaluating and communicating",
+         "outcomes": [
+          {
+           "code": "ACSES088",
+           "text": "Interpret scientific and media texts, judge claims by evidence quality and build arguments."
+          },
+          {
+           "code": "ACSES089",
+           "text": "Use maps and spatial representations to explain ideas, solve problems and predict."
+          },
+          {
+           "code": "ACSES090",
+           "text": "Communicate to chosen audiences and purposes, including field data compilations and research reports."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "science-as-a-human-endeavour",
+       "title": "Science as a Human Endeavour",
+       "subtopics": [
+        {
+         "id": "nature-and-communication-of-science",
+         "title": "Nature and communication of science",
+         "outcomes": [
+          {
+           "code": "ACSES091",
+           "text": "Explain how ICT and other technologies have enlarged and sharpened the data scientists use."
+          },
+          {
+           "code": "ACSES092",
+           "text": "Explain how models and theories are contested, refined or replaced by new evidence or greater explanatory power."
+          },
+          {
+           "code": "ACSES093",
+           "text": "Explain how social, economic and cultural context affects acceptance of scientific knowledge."
+          }
+         ]
+        },
+        {
+         "id": "society-and-use-of-science",
+         "title": "Society and use of science",
+         "outcomes": [
+          {
+           "code": "ACSES094",
+           "text": "Use scientific knowledge to monitor, assess and evaluate risk."
+          },
+          {
+           "code": "ACSES095",
+           "text": "Explain why science may fail to give definitive answers in public debate because data are lacking or open to question."
+          },
+          {
+           "code": "ACSES096",
+           "text": "Explain why large-scale or Asia-Pacific science often needs international collaboration."
+          },
+          {
+           "code": "ACSES097",
+           "text": "Use scientific knowledge to evaluate projected impacts and design action for sustainability."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "the-cause-and-impact-of-earth-hazards",
+       "title": "The cause and impact of Earth hazards",
+       "subtopics": [
+        {
+         "id": "earth-hazards-and-plate-tectonics",
+         "title": "Earth hazards and plate tectonics",
+         "outcomes": [
+          {
+           "code": "ACSES098",
+           "text": "Explain that Earth hazards come from interacting Earth systems and can be mitigated, not prevented."
+          },
+          {
+           "code": "ACSES099",
+           "text": "Explain how plate tectonics causes earthquakes, volcanoes and tsunamis and how they affect other processes."
+          },
+          {
+           "code": "ACSES100",
+           "text": "Use monitoring data to map hazard zones and predict where and how likely repeat events are."
+          }
+         ]
+        },
+        {
+         "id": "weather-hazards-and-human-influence",
+         "title": "Weather hazards and human influence",
+         "outcomes": [
+          {
+           "code": "ACSES101",
+           "text": "Explain how major weather systems produce cyclones, floods and droughts and affect other processes."
+          },
+          {
+           "code": "ACSES102",
+           "text": "Explain how human activities such as land clearing change the frequency and intensity of hazards."
+          },
+          {
+           "code": "ACSES103",
+           "text": "Explain how a hazard's impact depends on its location, size and the Earth materials involved."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "the-cause-and-impact-of-global-climate-change",
+       "title": "The cause and impact of global climate change",
+       "subtopics": [
+        {
+         "id": "causes-and-effects-of-climate-change",
+         "title": "Causes and effects of climate change",
+         "outcomes": [
+          {
+           "code": "ACSES104",
+           "text": "Describe natural and human causes of climate change over different time scales."
+          },
+          {
+           "code": "ACSES105",
+           "text": "Explain how land clearing and fossil fuel use change atmospheric composition and climate."
+          },
+          {
+           "code": "ACSES106",
+           "text": "Describe climate change effects on species, crops, sea level, rainfall, temperature and ice."
+          }
+         ]
+        },
+        {
+         "id": "evidence-and-models-of-climate-change",
+         "title": "Evidence and models of climate change",
+         "outcomes": [
+          {
+           "code": "ACSES107",
+           "text": "Use geological, prehistorical and historical records to show regional climate change effects."
+          },
+          {
+           "code": "ACSES108",
+           "text": "Explain how climate models of oceans and atmosphere are built from past and present data to predict change."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "build": {
+  "builtAt": "2026-10-14T10:55:15.856Z",
+  "model": "claude-agent",
+  "usd": 0,
+  "expectedCodes": 108,
+  "coverage": 1,
+  "missingCodes": [],
+  "counts": {
+   "grades": 4,
+   "units": 4,
+   "topics": 18,
+   "subtopics": 41,
+   "outcomes": 108
+  },
+  "warnings": []
+ }
+}

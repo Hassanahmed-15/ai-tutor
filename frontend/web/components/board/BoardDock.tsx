@@ -92,6 +92,9 @@ export interface BoardDockProps {
    * this button alone — the lesson ends here rather than playing boards the student no longer needs.
    */
   onUnderstood?: () => void;
+  /** Optional depth controls: the learner chooses whether this board needs expansion. */
+  onMoreExample?: () => void;
+  onExplainWhy?: () => void;
   /**
    * Playback speed. Shown only when both are given, so a dock that does not narrate is unchanged.
    * One button with the current speed on it; the choices open above it, like the markup tools —
@@ -290,11 +293,22 @@ export function BoardDock(props: BoardDockProps) {
           <button
             onClick={props.onUnderstood}
             title="I understand this — end the lesson"
-            aria-label="Got it — I understand, end the lesson"
+            aria-label="I understand — end the lesson"
             className="flex h-11 shrink-0 items-center gap-1.5 rounded-xl border border-[var(--hud-line)] bg-[var(--hud-surface)] px-3 text-[0.84rem] font-medium text-[var(--hud-text)] transition hover:bg-[var(--hud-surface-2)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--hud-cyan)]"
           >
             <Check size={16} className="text-[var(--ok)]" />
-            <span>Got it</span>
+            <span>I understand</span>
+          </button>
+        )}
+
+        {props.onMoreExample && (
+          <button type="button" onClick={props.onMoreExample} className="hidden h-11 shrink-0 items-center gap-1.5 rounded-xl border border-[var(--hud-line)] px-3 text-[0.82rem] font-medium text-[var(--hud-text)] hover:bg-[var(--hud-surface-2)] lg:flex">
+            <Sparkles size={15} className="text-[var(--hud-cyan)]" /> Show another example
+          </button>
+        )}
+        {props.onExplainWhy && (
+          <button type="button" onClick={props.onExplainWhy} className="hidden h-11 shrink-0 items-center gap-1.5 rounded-xl border border-[var(--hud-line)] px-3 text-[0.82rem] font-medium text-[var(--hud-text)] hover:bg-[var(--hud-surface-2)] xl:flex">
+            <MessageCircle size={15} className="text-[var(--hud-cyan)]" /> Explain why
           </button>
         )}
 

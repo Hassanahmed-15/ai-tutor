@@ -1,0 +1,1595 @@
+{
+ "id": "uk-ocr-alevel-biology-b-h422",
+ "region": "UK",
+ "framework": "OCR A Level",
+ "board": "OCR",
+ "qualification": "A Level",
+ "subject": "Biology B (Advancing Biology)",
+ "syllabusCode": "H422",
+ "gradeSystem": "year",
+ "source": {
+  "urls": [
+   "https://www.ocr.org.uk/Images/171714-specification-accredited-a-level-biology-b-advancing-biology-h422.pdf"
+  ],
+  "publisher": "OCR (Oxford Cambridge and RSA)",
+  "licence": "Exam board specification, (c) OCR; structure + our own wording only",
+  "firstExam": "2016"
+ },
+ "grades": [
+  {
+   "grade": "Year 12",
+   "units": [
+    {
+     "id": "module-1-development-of-practical-skills-in-biol",
+     "title": "Module 1: Development of practical skills in biology",
+     "topics": [
+      {
+       "id": "1-1-practical-skills-assessed-in-a-written-exami",
+       "title": "1.1 Practical skills assessed in a written examination",
+       "subtopics": [
+        {
+         "id": "planning-and-implementing",
+         "title": "Planning and implementing",
+         "outcomes": [
+          {
+           "code": "1.1.1",
+           "text": "Design experiments to solve problems in a practical context, choosing suitable apparatus, equipment and techniques."
+          },
+          {
+           "code": null,
+           "text": "Identify the variables that must be controlled."
+          },
+          {
+           "code": null,
+           "text": "Evaluate whether an experimental method is appropriate for the expected outcomes."
+          },
+          {
+           "code": "1.1.2",
+           "text": "Use a wide range of practical apparatus and techniques correctly."
+          },
+          {
+           "code": null,
+           "text": "Use appropriate units for measurements."
+          },
+          {
+           "code": null,
+           "text": "Present observations and data in an appropriate format."
+          }
+         ]
+        },
+        {
+         "id": "analysis-of-results",
+         "title": "Analysis of results",
+         "outcomes": [
+          {
+           "code": "1.1.3",
+           "text": "Process, analyse and interpret qualitative and quantitative results, reaching valid conclusions."
+          },
+          {
+           "code": null,
+           "text": "Use appropriate mathematical skills to analyse quantitative data."
+          },
+          {
+           "code": null,
+           "text": "Use significant figures appropriately."
+          },
+          {
+           "code": null,
+           "text": "Plot and interpret graphs with labelled axes, scales and units, and measure gradients and intercepts."
+          }
+         ]
+        },
+        {
+         "id": "evaluating-experiments",
+         "title": "Evaluating experiments",
+         "outcomes": [
+          {
+           "code": "1.1.4",
+           "text": "Evaluate results and draw conclusions."
+          },
+          {
+           "code": null,
+           "text": "Identify anomalies in experimental measurements."
+          },
+          {
+           "code": null,
+           "text": "Describe limitations in experimental procedures."
+          },
+          {
+           "code": null,
+           "text": "Assess precision and accuracy, including margins of error, percentage errors and apparatus uncertainties."
+          },
+          {
+           "code": null,
+           "text": "Refine experimental design by suggesting improvements to procedures and apparatus."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "module-2-cells-chemicals-for-life-transport-and-",
+     "title": "Module 2: Cells, chemicals for life, transport and gas exchange",
+     "topics": [
+      {
+       "id": "2-1-cells-and-chemicals-for-life",
+       "title": "2.1 Cells and chemicals for life",
+       "subtopics": [
+        {
+         "id": "microscopy-and-blood-cells",
+         "title": "Microscopy and blood cells",
+         "outcomes": [
+          {
+           "code": "2.1.1",
+           "text": "Explain the importance of microscopy in developing cell theory and investigating cell structure, and describe how blood smears are prepared for light microscopy."
+          },
+          {
+           "code": null,
+           "text": "Describe differential staining, such as Leishman's stain to identify leucocytes."
+          },
+          {
+           "code": null,
+           "text": "Describe animal cell structure using blood cells seen under the light microscope, and observe, draw and annotate them."
+          },
+          {
+           "code": null,
+           "text": "Use linear dimensions of cells and the magnification formula."
+          },
+          {
+           "code": null,
+           "text": "Use a haemocytometer to count cells, including dilutions and concentration calculations."
+          },
+          {
+           "code": null,
+           "text": "Explain the principles and use of flow cytometry in blood analysis."
+          }
+         ]
+        },
+        {
+         "id": "cell-ultrastructure",
+         "title": "Cell ultrastructure",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe the ultrastructure and functions of organelles of a typical eukaryotic animal cell seen by electron microscopy."
+          },
+          {
+           "code": null,
+           "text": "Describe the ultrastructure of a eukaryotic plant cell and a prokaryotic cell, and compare plant, animal and prokaryotic cells."
+          },
+          {
+           "code": null,
+           "text": "Use a graticule and stage micrometer to measure cell dimensions and calculate magnification."
+          }
+         ]
+        },
+        {
+         "id": "membranes-and-transport-across-them",
+         "title": "Membranes and transport across them",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain how the plasma membrane is built from modified lipids and how triglycerides and phospholipids relate structure to function."
+          },
+          {
+           "code": null,
+           "text": "Describe the fluid mosaic model of the plasma membrane."
+          },
+          {
+           "code": null,
+           "text": "Describe diffusion, facilitated diffusion, active transport, endocytosis and exocytosis across membranes."
+          },
+          {
+           "code": null,
+           "text": "Investigate factors affecting diffusion rates in cells."
+          },
+          {
+           "code": null,
+           "text": "Describe the roles of membranes within and at the surface of cells."
+          },
+          {
+           "code": null,
+           "text": "Explain how organelles work together in producing and secreting proteins."
+          }
+         ]
+        },
+        {
+         "id": "water-and-biological-molecules",
+         "title": "Water and biological molecules",
+         "outcomes": [
+          {
+           "code": "2.1.2",
+           "text": "Describe the properties of water, including polarity, hydrogen bonding and its role as a solvent."
+          },
+          {
+           "code": null,
+           "text": "Explain the importance of water as a constituent of cell and body fluids and as a transport medium in plants and animals, and analyse data on body fluid composition."
+          },
+          {
+           "code": null,
+           "text": "Describe how sugars and proteins in body fluids and plant extracts are detected and measured, including the Biuret test, Benedict's test and colorimetry."
+          },
+          {
+           "code": null,
+           "text": "Explain hydrolysis and condensation of biological molecules, and the idea of monomers and polymers."
+          }
+         ]
+        },
+        {
+         "id": "carbohydrates-and-osmosis",
+         "title": "Carbohydrates and osmosis",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe the ring structure of alpha-glucose as a monosaccharide and lactose as a disaccharide."
+          },
+          {
+           "code": null,
+           "text": "Explain how polysaccharides form by condensation with 1,4 and 1,6 glycosidic bonds, and how branching affects solubility; test for starch."
+          },
+          {
+           "code": null,
+           "text": "Explain osmosis as movement of water down a water potential gradient, including effects of solutes on cells."
+          },
+          {
+           "code": null,
+           "text": "Investigate factors affecting osmosis in plant and animal cells."
+          }
+         ]
+        },
+        {
+         "id": "proteins-and-enzymes",
+         "title": "Proteins and enzymes",
+         "outcomes": [
+          {
+           "code": "2.1.3",
+           "text": "Describe the basic structure of an amino acid and peptide bond formation, and use chromatography with Rf values to identify amino acids."
+          },
+          {
+           "code": null,
+           "text": "Describe the structure of globular proteins, as shown by enzymes and haemoglobin."
+          },
+          {
+           "code": null,
+           "text": "Explain how globular protein structure lets enzymes catalyse specific reactions."
+          },
+          {
+           "code": null,
+           "text": "Describe and investigate factors affecting the rate of enzyme-catalysed reactions."
+          }
+         ]
+        },
+        {
+         "id": "enzymes-in-blood-and-medicine",
+         "title": "Enzymes in blood and medicine",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe the role of proteins in blood clotting as an enzyme-controlled process, and first-aid to assist clotting."
+          },
+          {
+           "code": null,
+           "text": "Describe the use of enzymes and inhibitors in medical diagnosis and treatment."
+          },
+          {
+           "code": null,
+           "text": "Describe blood donation, blood groups, and the collection and use of whole blood, leuco-depleted blood, packed red cells, platelets, clotting factors and plasma."
+          }
+         ]
+        },
+        {
+         "id": "nucleotides-and-dna",
+         "title": "Nucleotides and DNA",
+         "outcomes": [
+          {
+           "code": "2.1.4",
+           "text": "Describe the nucleotide as the monomer of nucleic acids, RNA versus DNA nucleotides, and phosphodiester bonds."
+          },
+          {
+           "code": null,
+           "text": "Describe the structure of ADP and ATP as phosphorylated nucleotides."
+          },
+          {
+           "code": null,
+           "text": "Describe DNA structure, including evidence for complementary base pairing, and purify DNA by precipitation."
+          },
+          {
+           "code": null,
+           "text": "Explain semi-conservative DNA replication, including helicase, DNA polymerase and random mutations."
+          }
+         ]
+        },
+        {
+         "id": "genetic-code-and-protein-synthesis",
+         "title": "Genetic code and protein synthesis",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe the genetic code as triplet, non-overlapping, degenerate and universal, and how a gene sets amino acid order."
+          },
+          {
+           "code": null,
+           "text": "Describe RNA structure and how it differs from DNA."
+          },
+          {
+           "code": null,
+           "text": "Describe transcription and translation of genes to make polypeptides, with mRNA, tRNA, rRNA and RNA polymerase."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "2-2-transport-and-gas-exchange-systems",
+       "title": "2.2 Transport and gas exchange systems",
+       "subtopics": [
+        {
+         "id": "the-heart",
+         "title": "The heart",
+         "outcomes": [
+          {
+           "code": "2.2.1",
+           "text": "Explain the need for a mass transport system in mammals, using surface area to volume ratio."
+          },
+          {
+           "code": null,
+           "text": "Describe the internal and external structure of the mammalian heart, including dissection."
+          },
+          {
+           "code": null,
+           "text": "Describe the cardiac cycle, including valves and pressure changes."
+          },
+          {
+           "code": null,
+           "text": "Explain how heart action is initiated and coordinated by the SAN, AVN and purkyne tissue."
+          }
+         ]
+        },
+        {
+         "id": "monitoring-heart-function",
+         "title": "Monitoring heart function",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Investigate factors affecting heart rate, including exercise."
+          },
+          {
+           "code": null,
+           "text": "Calculate cardiac output from heart rate and stroke volume."
+          },
+          {
+           "code": null,
+           "text": "Measure and interpret pulse rate using primary and secondary data."
+          },
+          {
+           "code": null,
+           "text": "Interpret an ECG, including tachycardia, bradycardia, S-T elevation and fibrillation."
+          },
+          {
+           "code": null,
+           "text": "Describe emergency treatment for a heart attack and cardiac arrest, including defibrillator use."
+          }
+         ]
+        },
+        {
+         "id": "blood-vessels-and-circulation",
+         "title": "Blood vessels and circulation",
+         "outcomes": [
+          {
+           "code": "2.2.2",
+           "text": "Explain the importance of a closed double circulatory system."
+          },
+          {
+           "code": null,
+           "text": "Describe the structure and functions of arteries, arterioles, capillaries, venules and veins, including sections under the light microscope."
+          },
+          {
+           "code": null,
+           "text": "Explain the formation and importance of tissue fluid, with hydrostatic and oncotic pressure."
+          }
+         ]
+        },
+        {
+         "id": "blood-pressure",
+         "title": "Blood pressure",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Measure systolic and diastolic blood pressure with a sphygmomanometer and compare readings."
+          },
+          {
+           "code": null,
+           "text": "Interpret blood pressure measurements, including hypertension and hypotension and their consequences."
+          }
+         ]
+        },
+        {
+         "id": "gas-exchange-in-mammals",
+         "title": "Gas exchange in mammals",
+         "outcomes": [
+          {
+           "code": "2.2.3",
+           "text": "Relate cells, tissues and organs of the mammalian gas exchange system and observe them with a microscope."
+          },
+          {
+           "code": null,
+           "text": "Explain gas exchange in the alveoli, including ventilation, epithelium, surfactant and concentration gradients."
+          },
+          {
+           "code": null,
+           "text": "Describe parameters of pulmonary ventilation: tidal volume, breathing rate, vital capacity, residual volume, PEFR and FEV1."
+          },
+          {
+           "code": null,
+           "text": "Describe how expired air resuscitation is carried out on adults, children and babies."
+          }
+         ]
+        },
+        {
+         "id": "gas-exchange-in-plants",
+         "title": "Gas exchange in plants",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe gas exchange in terrestrial plants through stomata and lenticels."
+          },
+          {
+           "code": null,
+           "text": "Describe the structure of stomata and how they open and close through guard cell turgor and ATP."
+          },
+          {
+           "code": null,
+           "text": "Describe the microscopic appearance of stomata in different terrestrial plants."
+          }
+         ]
+        },
+        {
+         "id": "plant-vascular-tissue",
+         "title": "Plant vascular tissue",
+         "outcomes": [
+          {
+           "code": "2.2.4",
+           "text": "Explain the need for transport systems in multicellular plants."
+          },
+          {
+           "code": null,
+           "text": "Describe the structure, function and location of xylem, phloem and companion cells in roots, stems and leaves of cereals and broad-leaved crops."
+          },
+          {
+           "code": null,
+           "text": "Observe, draw and dissect plant tissues to show the position and structure of vascular tissue."
+          }
+         ]
+        },
+        {
+         "id": "water-and-sugar-transport-in-plants",
+         "title": "Water and sugar transport in plants",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain entry and transport of water in plants, including adhesion, cohesion and the transpiration stream in terms of water potential."
+          },
+          {
+           "code": null,
+           "text": "Explain transpiration, the factors affecting its rate, and investigate it."
+          },
+          {
+           "code": null,
+           "text": "Explain translocation as an energy-requiring process between sources and sinks, including active loading and removal."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "module-3-cell-division-development-and-disease-c",
+     "title": "Module 3: Cell division, development and disease control",
+     "topics": [
+      {
+       "id": "3-1-cell-division-and-development",
+       "title": "3.1 Cell division and development",
+       "subtopics": [
+        {
+         "id": "cell-cycle-and-mitosis",
+         "title": "Cell cycle and mitosis",
+         "outcomes": [
+          {
+           "code": "3.1.1",
+           "text": "Describe the cell cycle: interphase (G1, S, G2), mitosis and cytokinesis giving identical daughter cells."
+          },
+          {
+           "code": null,
+           "text": "Describe the changes in nuclei and cells during mitosis in animals and plants, and recognise stages under the microscope."
+          },
+          {
+           "code": null,
+           "text": "Describe the stages and features of apoptosis."
+          },
+          {
+           "code": null,
+           "text": "Explain the importance of apoptosis and mitosis in growth and repair."
+          }
+         ]
+        },
+        {
+         "id": "stem-cells",
+         "title": "Stem cells",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain differentiation of stem cells into specialised cells, including totipotent, pluripotent and multipotent cells."
+          },
+          {
+           "code": null,
+           "text": "Describe current applications and uses of stem cells, including bone marrow stem cells."
+          }
+         ]
+        },
+        {
+         "id": "meiosis",
+         "title": "Meiosis",
+         "outcomes": [
+          {
+           "code": "3.1.2",
+           "text": "Explain the significance of meiosis in sexual reproduction and producing haploid gametes."
+          },
+          {
+           "code": null,
+           "text": "Describe the stages of meiosis in plant and animal cells."
+          },
+          {
+           "code": null,
+           "text": "Explain how meiosis produces genetically different daughter cells through crossing over and independent assortment."
+          }
+         ]
+        },
+        {
+         "id": "pregnancy-and-fetal-development",
+         "title": "Pregnancy and fetal development",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe the programme of antenatal care in the United Kingdom."
+          },
+          {
+           "code": null,
+           "text": "Describe dietary changes recommended in pregnancy and why nutrient recommendations change."
+          },
+          {
+           "code": null,
+           "text": "Describe the effects of alcohol and smoking on fetal growth and development."
+          },
+          {
+           "code": null,
+           "text": "Use ultrasound measurements and fetal growth charts to assess fetal growth."
+          }
+         ]
+        },
+        {
+         "id": "prenatal-testing",
+         "title": "Prenatal testing",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Evaluate techniques for assessing fetal development and detecting disorders: ultrasonography, amniocentesis and chorionic villus sampling."
+          },
+          {
+           "code": null,
+           "text": "Describe the production and use of karyotypes, including for Down's, Klinefelter's and Turner's syndromes."
+          }
+         ]
+        },
+        {
+         "id": "classification-and-species",
+         "title": "Classification and species",
+         "outcomes": [
+          {
+           "code": "3.1.3",
+           "text": "Describe biological classification, taxonomic ranks and the biological and phylogenetic species concepts."
+          },
+          {
+           "code": null,
+           "text": "Describe the types of evidence used in classification and how theories change with new evidence."
+          },
+          {
+           "code": null,
+           "text": "Describe the use of DNA barcoding and the genes used."
+          },
+          {
+           "code": null,
+           "text": "Interpret phylogenetic trees and genetic data to show relatedness."
+          }
+         ]
+        },
+        {
+         "id": "adaptation-and-evolution",
+         "title": "Adaptation and evolution",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe behavioural, physiological and anatomical adaptations in Homo sapiens and plant adaptations to extremes of temperature, light and water, with a practical investigation."
+          },
+          {
+           "code": null,
+           "text": "Discuss the evolution of language as a scientific question with competing theories."
+          },
+          {
+           "code": null,
+           "text": "Explain adaptation and selection as components of evolution."
+          }
+         ]
+        },
+        {
+         "id": "biodiversity",
+         "title": "Biodiversity",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Define and measure biodiversity, including Simpson's Index of Diversity, at genetic, species and ecosystem levels."
+          },
+          {
+           "code": null,
+           "text": "Calculate genetic diversity within populations from the proportion of polymorphic gene loci."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "3-2-pathogens-immunity-and-disease-control",
+       "title": "3.2 Pathogens, immunity and disease control",
+       "subtopics": [
+        {
+         "id": "pathogens-and-hiv-tb",
+         "title": "Pathogens and HIV/TB",
+         "outcomes": [
+          {
+           "code": "3.2.1",
+           "text": "Explain how bacteria, viruses and fungi cause communicable disease."
+          },
+          {
+           "code": null,
+           "text": "Describe the causes, transmission, symptoms and treatment of tuberculosis and HIV/AIDS."
+          },
+          {
+           "code": null,
+           "text": "Describe the structure of HIV."
+          },
+          {
+           "code": null,
+           "text": "Identify bacteria using Gram staining and cell and colony morphology, and culture bacteria."
+          }
+         ]
+        },
+        {
+         "id": "epidemiology",
+         "title": "Epidemiology",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain how the incidence and prevalence of a communicable disease change over time, including endemic, epidemic and pandemic."
+          },
+          {
+           "code": null,
+           "text": "Calculate incidence, prevalence and mortality rates and explain their importance."
+          },
+          {
+           "code": null,
+           "text": "Analyse and interpret epidemiological data."
+          },
+          {
+           "code": null,
+           "text": "Explain the importance of reporting notifiable diseases and the role of Public Health England."
+          },
+          {
+           "code": null,
+           "text": "Discuss social, ethical, economic and biological factors in controlling HIV/AIDS and TB."
+          }
+         ]
+        },
+        {
+         "id": "immune-defences",
+         "title": "Immune defences",
+         "outcomes": [
+          {
+           "code": "3.2.2",
+           "text": "Describe primary and non-specific defences, including phagocytosis and inflammation."
+          },
+          {
+           "code": null,
+           "text": "Describe how phagocytes act."
+          },
+          {
+           "code": null,
+           "text": "Describe the roles of B and T lymphocytes in the specific immune response."
+          },
+          {
+           "code": null,
+           "text": "Explain the secondary immune response and memory cells in long term immunity."
+          },
+          {
+           "code": null,
+           "text": "Describe antibody structure and function, including opsonins and agglutinins."
+          }
+         ]
+        },
+        {
+         "id": "immunity-and-testing",
+         "title": "Immunity and testing",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe how people are tested for TB and HIV infection."
+          },
+          {
+           "code": null,
+           "text": "Distinguish active from passive immunity and natural from artificial immunity."
+          },
+          {
+           "code": null,
+           "text": "Explain how allergies arise from immune hypersensitivity."
+          }
+         ]
+        },
+        {
+         "id": "vaccination",
+         "title": "Vaccination",
+         "outcomes": [
+          {
+           "code": "3.2.3",
+           "text": "Explain the principles of vaccination, forms of vaccines and booster vaccinations."
+          },
+          {
+           "code": null,
+           "text": "Explain the role of vaccination programmes in preventing epidemics, including herd immunity."
+          },
+          {
+           "code": null,
+           "text": "Describe biological and practical problems in developing and using vaccines."
+          },
+          {
+           "code": null,
+           "text": "Discuss the ethical issues in developing and using vaccines, such as the HPV vaccine."
+          }
+         ]
+        },
+        {
+         "id": "antibiotics",
+         "title": "Antibiotics",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe how antibiotics are used in treating communicable disease and why they act on bacterial but not human cells."
+          },
+          {
+           "code": null,
+           "text": "Explain how antibiotic misuse leads to resistant strains of bacteria."
+          },
+          {
+           "code": null,
+           "text": "Investigate the effect of antibiotics on Gram-positive and Gram-negative bacteria."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "3-3-non-communicable-diseases",
+       "title": "3.3 Non-communicable diseases",
+       "subtopics": [
+        {
+         "id": "cancer-causes",
+         "title": "Cancer causes",
+         "outcomes": [
+          {
+           "code": "3.3.1",
+           "text": "Identify risk factors for non-communicable diseases such as cancers and asthma, and evaluate epidemiological evidence of correlation."
+          },
+          {
+           "code": null,
+           "text": "Describe the cellular basis of cancer, including cell cycle control and tumour and metastasis formation."
+          },
+          {
+           "code": null,
+           "text": "Explain how mutations of proto-oncogenes (Ras, Myc) lead to cancer."
+          },
+          {
+           "code": null,
+           "text": "Explain how mutations of tumour suppressor genes such as p53 lead to cancer."
+          },
+          {
+           "code": null,
+           "text": "Evaluate epidemiological evidence linking risk factors to cancers, such as smoking, diet and BRCA1."
+          }
+         ]
+        },
+        {
+         "id": "detecting-and-treating-cancer",
+         "title": "Detecting and treating cancer",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe methods used to detect cancers, such as MRI, X-rays, CT, PET, ultrasound, biopsies and blood tests."
+          },
+          {
+           "code": null,
+           "text": "Discuss ethical and economic issues in cancer screening and genetic testing."
+          },
+          {
+           "code": null,
+           "text": "Describe cancer treatments: surgery, chemotherapy, radiotherapy, immunotherapy, complementary and hormone-related treatments."
+          }
+         ]
+        },
+        {
+         "id": "respiratory-disease",
+         "title": "Respiratory disease",
+         "outcomes": [
+          {
+           "code": "3.3.2",
+           "text": "Describe short- and long-term effects of pollutants on the respiratory system, such as tobacco smoke, asbestos and fungal spores."
+          },
+          {
+           "code": null,
+           "text": "Describe causes and symptoms of chronic bronchitis, emphysema, asthma and lung cancer."
+          },
+          {
+           "code": null,
+           "text": "Compare acute and chronic diseases."
+          },
+          {
+           "code": null,
+           "text": "Describe the treatment of asthma with beta agonists and steroids."
+          }
+         ]
+        },
+        {
+         "id": "medicines-and-clinical-trials",
+         "title": "Medicines and clinical trials",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain the importance of plants as sources of medicinal drugs."
+          },
+          {
+           "code": null,
+           "text": "Describe the design and use of clinical trials, including phases, sample size, randomisation, placebos and double-blind trials."
+          },
+          {
+           "code": null,
+           "text": "Describe the role of NICE in providing treatment guidelines and the importance of economic considerations."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "Year 13",
+   "units": [
+    {
+     "id": "module-4-energy-reproduction-and-populations",
+     "title": "Module 4: Energy, reproduction and populations",
+     "topics": [
+      {
+       "id": "4-1-energy-metabolism-and-exercise",
+       "title": "4.1 Energy, metabolism and exercise",
+       "subtopics": [
+        {
+         "id": "glycolysis-and-the-krebs-cycle",
+         "title": "Glycolysis and the Krebs cycle",
+         "outcomes": [
+          {
+           "code": "4.1.1",
+           "text": "Outline glycolysis as an enzyme-controlled pathway."
+          },
+          {
+           "code": null,
+           "text": "Outline the link reaction."
+          },
+          {
+           "code": null,
+           "text": "Outline the Krebs cycle."
+          }
+         ]
+        },
+        {
+         "id": "oxidative-phosphorylation-and-respiration",
+         "title": "Oxidative phosphorylation and respiration",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Outline oxidative phosphorylation, including electron carriers, proton gradients and ATP synthase."
+          },
+          {
+           "code": null,
+           "text": "Outline anaerobic respiration in muscle cells and yeast."
+          },
+          {
+           "code": null,
+           "text": "Calculate and interpret respiratory quotients to compare energy values of respiratory substrates."
+          },
+          {
+           "code": null,
+           "text": "Investigate the rate of respiration with respirometers and the effects of temperature, substrate, anaerobic conditions and different substrates."
+          }
+         ]
+        },
+        {
+         "id": "exercise-and-fitness",
+         "title": "Exercise and fitness",
+         "outcomes": [
+          {
+           "code": "4.1.2",
+           "text": "Describe immediate and long-term effects of exercise on the respiratory and cardiovascular systems and skeletal muscle."
+          },
+          {
+           "code": null,
+           "text": "Describe factors affecting aerobic fitness."
+          },
+          {
+           "code": null,
+           "text": "Investigate factors affecting resting heart rate, breathing rate or recovery times."
+          },
+          {
+           "code": null,
+           "text": "Explain how training improves aerobic fitness using the F.I.T.T. factors."
+          },
+          {
+           "code": null,
+           "text": "Evaluate supplementary methods of enhancing performance: carbohydrate loading, RhEPO, blood doping and steroids."
+          },
+          {
+           "code": null,
+           "text": "Explain the significance of VO2 max as a measure of aerobic fitness."
+          }
+         ]
+        },
+        {
+         "id": "oxygen-transport",
+         "title": "Oxygen transport",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe the role of haemoglobin in oxygen transport."
+          },
+          {
+           "code": null,
+           "text": "Compare oxygen dissociation curves for adult haemoglobin, fetal haemoglobin and myoglobin."
+          },
+          {
+           "code": null,
+           "text": "Explain the factors affecting oxygen dissociation, including carbonic anhydrase."
+          },
+          {
+           "code": null,
+           "text": "Explain oxygen deficit and oxygen debt (EPOC)."
+          }
+         ]
+        },
+        {
+         "id": "skeletal-muscle",
+         "title": "Skeletal muscle",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe the histology and ultrastructure of skeletal muscle, with microscopy and muscle dissection."
+          },
+          {
+           "code": null,
+           "text": "Explain the sliding filament theory of muscle contraction, including actin, myosin, troponin, tropomyosin, ATP and calcium ions."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "4-2-mammalian-reproduction",
+       "title": "4.2 Mammalian reproduction",
+       "subtopics": [
+        {
+         "id": "gametes-and-hormones",
+         "title": "Gametes and hormones",
+         "outcomes": [
+          {
+           "code": "4.2.1",
+           "text": "Identify the parts of the male and female urinogenital systems."
+          },
+          {
+           "code": null,
+           "text": "Describe the histology of the ovaries and testes."
+          },
+          {
+           "code": null,
+           "text": "Describe gametogenesis (oogenesis and spermatogenesis) and relate it to mitosis and meiosis."
+          },
+          {
+           "code": null,
+           "text": "Relate the structure of the secondary oocyte and sperm to function."
+          },
+          {
+           "code": null,
+           "text": "Explain the role of hormones in gametogenesis and the menstrual cycle."
+          }
+         ]
+        },
+        {
+         "id": "fertilisation-and-infertility",
+         "title": "Fertilisation and infertility",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe fertilisation and its importance in restoring chromosome number and adding variation."
+          },
+          {
+           "code": null,
+           "text": "Describe the use of monoclonal antibodies in pregnancy testing."
+          },
+          {
+           "code": null,
+           "text": "Evaluate biological and ethical issues around infertility."
+          },
+          {
+           "code": null,
+           "text": "Describe assisted reproduction techniques such as IUI, IVF and ICSI."
+          }
+         ]
+        },
+        {
+         "id": "ageing-and-reproduction",
+         "title": "Ageing and reproduction",
+         "outcomes": [
+          {
+           "code": "4.2.2",
+           "text": "Describe the effects of ageing on the female reproductive system, including menopause."
+          },
+          {
+           "code": null,
+           "text": "Describe management of these effects, including HRT and its advantages and disadvantages."
+          },
+          {
+           "code": null,
+           "text": "Describe the effects of ageing on the male urinogenital system, including benign prostate hyperplasia."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "4-3-photosynthesis-food-production-and-populatio",
+       "title": "4.3 Photosynthesis, food production and populations",
+       "subtopics": [
+        {
+         "id": "light-dependent-reactions",
+         "title": "Light-dependent reactions",
+         "outcomes": [
+          {
+           "code": "4.3.1",
+           "text": "Describe chloroplast ultrastructure and where the light-dependent and light-independent reactions occur, and separate pigments by chromatography."
+          },
+          {
+           "code": null,
+           "text": "Describe the light-dependent stage, transferring light energy to ATP and reduced NADP."
+          }
+         ]
+        },
+        {
+         "id": "calvin-cycle-and-photosynthesis-practicals",
+         "title": "Calvin cycle and photosynthesis practicals",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe the light-independent stage (Calvin cycle), including CO2, RuBisCO, RuBP, GP and TP."
+          },
+          {
+           "code": null,
+           "text": "Investigate factors affecting photosynthesis and the Hill reaction with DCPIP."
+          },
+          {
+           "code": null,
+           "text": "Explain how TP and GP are used to make carbohydrates, lipids and amino acids."
+          },
+          {
+           "code": null,
+           "text": "Explain the dependence of respiration in plants and animals on photosynthesis products."
+          }
+         ]
+        },
+        {
+         "id": "compensation-point-and-microorganisms",
+         "title": "Compensation point and microorganisms",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain the biological significance of the compensation point for crop production and compare it between leaf samples."
+          },
+          {
+           "code": null,
+           "text": "Explain the importance of microorganisms in the nitrogen cycle and as biosensors in environmental monitoring."
+          },
+          {
+           "code": null,
+           "text": "Culture Rhizobium and investigate root nodules in legumes."
+          }
+         ]
+        },
+        {
+         "id": "food-production-and-farming",
+         "title": "Food production and farming",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe the transfer of biomass through a food chain in food production."
+          },
+          {
+           "code": null,
+           "text": "Evaluate the efficiency of biomass transfer and sustainability of resource provision, for example fish farming versus beef."
+          },
+          {
+           "code": null,
+           "text": "Describe the role of ruminants and their gut microorganisms in the human food chain."
+          },
+          {
+           "code": null,
+           "text": "Describe farms as ecosystems and the conflict between agriculture and conservation, comparing intensive and extensive farming."
+          }
+         ]
+        },
+        {
+         "id": "succession-and-land-management",
+         "title": "Succession and land management",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain how land management, such as forestry and agriculture, can deflect succession."
+          },
+          {
+           "code": null,
+           "text": "Investigate differences in biodiversity using random and systematic sampling."
+          }
+         ]
+        },
+        {
+         "id": "human-population-and-biodiversity",
+         "title": "Human population and biodiversity",
+         "outcomes": [
+          {
+           "code": "4.3.2",
+           "text": "Explain factors altering birth and death rates in human populations and interpret demographic charts."
+          },
+          {
+           "code": null,
+           "text": "Describe the impact of rising human population on ecosystems and biodiversity."
+          },
+          {
+           "code": null,
+           "text": "Explain the ecological, economic and scientific importance of species biodiversity and statistical methods to assess it."
+          },
+          {
+           "code": null,
+           "text": "Discuss the global food security agenda, sustainable food production and the role of the UN Food and Agriculture Organisation."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "4-4-from-flowers-to-food",
+       "title": "4.4 From flowers to food",
+       "subtopics": [
+        {
+         "id": "plant-reproduction",
+         "title": "Plant reproduction",
+         "outcomes": [
+          {
+           "code": "4.4.1",
+           "text": "Explain the control of flowering, including vernalisation and phytochrome."
+          },
+          {
+           "code": null,
+           "text": "Describe adaptations of flowers for wind and insect pollination."
+          },
+          {
+           "code": null,
+           "text": "Describe fertilisation and seed formation, including the pollen tube, embryo and endosperm."
+          },
+          {
+           "code": null,
+           "text": "Describe seed germination, factors affecting it, and the role of gibberellin."
+          },
+          {
+           "code": null,
+           "text": "Explain the importance of cereals as staple foods and the food security and sustainability issues involved."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "module-5-genetics-control-and-homeostasis",
+     "title": "Module 5: Genetics, control and homeostasis",
+     "topics": [
+      {
+       "id": "5-1-genetics-in-the-twenty-first-century",
+       "title": "5.1 Genetics in the twenty first century",
+       "subtopics": [
+        {
+         "id": "monogenic-inheritance",
+         "title": "Monogenic inheritance",
+         "outcomes": [
+          {
+           "code": "5.1.1",
+           "text": "Explain monogenic inheritance using gene, allele, locus, genotype, phenotype, dominant, recessive and codominant correctly."
+          },
+          {
+           "code": null,
+           "text": "Describe gene mutations, such as cystic fibrosis, sickle cell anaemia, PKU and Huntington's disease."
+          },
+          {
+           "code": null,
+           "text": "Describe codominance and multiple alleles, as in blood groups and HLA antigens."
+          },
+          {
+           "code": null,
+           "text": "Describe sex linkage and autosomal linkage."
+          }
+         ]
+        },
+        {
+         "id": "dihybrid-inheritance-and-genetic-counselling",
+         "title": "Dihybrid inheritance and genetic counselling",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Use model organisms such as Drosophila, dihybrid inheritance and the chi-squared test to analyse inheritance patterns."
+          },
+          {
+           "code": null,
+           "text": "Describe chromosome mutations in humans, including non-disjunction and translocation."
+          },
+          {
+           "code": null,
+           "text": "Explain the role of the genetic counsellor, pedigree analysis, genetic testing and the ethical issues."
+          }
+         ]
+        },
+        {
+         "id": "natural-selection-and-hardy-weinberg",
+         "title": "Natural selection and Hardy-Weinberg",
+         "outcomes": [
+          {
+           "code": "5.1.2",
+           "text": "Explain how natural selection changes allele frequencies, using malaria and the sickle cell allele."
+          },
+          {
+           "code": null,
+           "text": "Link changes in amino acid sequence to changes in protein structure and properties."
+          },
+          {
+           "code": null,
+           "text": "Use the Hardy-Weinberg equations to analyse changes in allele frequencies."
+          }
+         ]
+        },
+        {
+         "id": "speciation-and-epigenetics",
+         "title": "Speciation and epigenetics",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain how the founder effect and genetic bottlenecks contribute to genetic differences between populations."
+          },
+          {
+           "code": null,
+           "text": "Explain the role of geographical and reproductive isolation in forming new species."
+          },
+          {
+           "code": null,
+           "text": "Explain epigenetics and the effect of environment on gene expression, including DNA methylation, histones and human epigenetic studies."
+          }
+         ]
+        },
+        {
+         "id": "cutting-and-copying-dna",
+         "title": "Cutting and copying DNA",
+         "outcomes": [
+          {
+           "code": "5.1.3",
+           "text": "Explain post-transcriptional editing of mRNA, introns and exons."
+          },
+          {
+           "code": null,
+           "text": "Describe genetic modification of bacteria to make human proteins such as insulin, using restriction enzymes, ligase, plasmids and reporter genes."
+          },
+          {
+           "code": null,
+           "text": "Explain the principles and uses of PCR, including primers, Taq polymerase and log scales."
+          },
+          {
+           "code": null,
+           "text": "Explain the principles and uses of agarose gel electrophoresis."
+          }
+         ]
+        },
+        {
+         "id": "genomics-and-gene-therapy",
+         "title": "Genomics and gene therapy",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe the use of haplotypes, SNPs and VNTRs in human genome studies."
+          },
+          {
+           "code": null,
+           "text": "Outline genetic engineering of eukaryotic cells: knockout mice, human proteins in animals and genetically modified crops."
+          },
+          {
+           "code": null,
+           "text": "Distinguish somatic from germ line gene therapy and discuss the ethics."
+          },
+          {
+           "code": null,
+           "text": "Outline the principles of RNA interference using siRNA and miRNA."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "5-2-nervous-control",
+       "title": "5.2 Nervous control",
+       "subtopics": [
+        {
+         "id": "nervous-system-structure",
+         "title": "Nervous system structure",
+         "outcomes": [
+          {
+           "code": "5.2.1",
+           "text": "Describe the organisation of the somatic and autonomic nervous system and observe nervous tissue."
+          },
+          {
+           "code": null,
+           "text": "Describe the structure and function of the human brain regions."
+          },
+          {
+           "code": null,
+           "text": "Describe the structure of motor, sensory and relay neurones."
+          }
+         ]
+        },
+        {
+         "id": "nerve-impulses-and-synapses",
+         "title": "Nerve impulses and synapses",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain the resting potential and transmission of the action potential in neurones."
+          },
+          {
+           "code": null,
+           "text": "Describe synapse structure and function, including neurotransmitters and excitatory and inhibitory potentials."
+          },
+          {
+           "code": null,
+           "text": "Describe the reflex arc and reflexes used to assess nervous damage, and investigate reflexes and reaction times."
+          }
+         ]
+        },
+        {
+         "id": "brain-damage-and-drugs",
+         "title": "Brain damage and drugs",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe the use of brain scans to assess brain and spinal cord damage."
+          },
+          {
+           "code": null,
+           "text": "Describe consequences of brain and spinal cord damage and the ethics of establishing brain death."
+          },
+          {
+           "code": null,
+           "text": "Describe the use of drugs to modify brain activity and the effects of heroin, cannabis, methamphetamine and alcohol on synapses."
+          },
+          {
+           "code": null,
+           "text": "Describe psychological and physical drug dependency and its consequences."
+          }
+         ]
+        },
+        {
+         "id": "the-eye-and-vision",
+         "title": "The eye and vision",
+         "outcomes": [
+          {
+           "code": "5.2.2",
+           "text": "Describe the structure of the eye and the function of each part."
+          },
+          {
+           "code": null,
+           "text": "Describe the structure of the retina, including rods, cones, bipolar and ganglion cells, fovea and blind spot."
+          },
+          {
+           "code": null,
+           "text": "Explain the retina as a receptor of light and a transducer."
+          },
+          {
+           "code": null,
+           "text": "Describe routine eye tests, including visual acuity, colour vision and OCT scans."
+          }
+         ]
+        },
+        {
+         "id": "ageing-and-the-nervous-system",
+         "title": "Ageing and the nervous system",
+         "outcomes": [
+          {
+           "code": "5.2.3",
+           "text": "Describe the symptoms and possible causes of Alzheimer's disease."
+          },
+          {
+           "code": null,
+           "text": "Describe the effects of ageing on the nervous system, including hearing and visual impairment and memory loss."
+          },
+          {
+           "code": null,
+           "text": "Investigate the effect of ageing on reaction times and memory."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "5-3-homeostasis",
+       "title": "5.3 Homeostasis",
+       "subtopics": [
+        {
+         "id": "principles-and-temperature-control",
+         "title": "Principles and temperature control",
+         "outcomes": [
+          {
+           "code": "5.3.1",
+           "text": "Explain homeostasis, receptors, effectors, negative feedback, normal ranges and positive feedback with oxytocin."
+          },
+          {
+           "code": null,
+           "text": "Explain nervous and hormonal control of heart rate."
+          },
+          {
+           "code": null,
+           "text": "Explain the control of body temperature and the responses to rising and falling temperature."
+          },
+          {
+           "code": null,
+           "text": "Explain regulation of thyroxine release and its effect on metabolic rate."
+          },
+          {
+           "code": null,
+           "text": "Describe how core body temperature is measured and why it matters."
+          },
+          {
+           "code": null,
+           "text": "Describe the causes, symptoms and treatment of hypothermia and hyperthermia."
+          }
+         ]
+        },
+        {
+         "id": "blood-glucose-control",
+         "title": "Blood glucose control",
+         "outcomes": [
+          {
+           "code": "5.3.2",
+           "text": "Describe the pancreas as an endocrine gland, including the Islets of Langerhans."
+          },
+          {
+           "code": null,
+           "text": "Explain regulation of blood glucose by negative feedback, with insulin and glucagon."
+          },
+          {
+           "code": null,
+           "text": "Describe the types of diabetes, their causes, risk factors and diagnosis."
+          }
+         ]
+        },
+        {
+         "id": "diabetes-testing-and-management",
+         "title": "Diabetes testing and management",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe the fasting blood glucose test, glucose tolerance testing and biosensors."
+          },
+          {
+           "code": null,
+           "text": "Describe treatment and management of Type 1 and Type 2 diabetes."
+          },
+          {
+           "code": null,
+           "text": "Describe the team of health professionals who manage diabetes and evidence-based practice."
+          },
+          {
+           "code": null,
+           "text": "Discuss the future impact of diabetes on the human population."
+          }
+         ]
+        },
+        {
+         "id": "kidney-structure-and-nephron",
+         "title": "Kidney structure and nephron",
+         "outcomes": [
+          {
+           "code": "5.3.3",
+           "text": "Explain why excretory products are removed, including deamination and urea production."
+          },
+          {
+           "code": null,
+           "text": "Describe the gross structure of the kidney and associated organs."
+          },
+          {
+           "code": null,
+           "text": "Describe the nephron and how ultrafiltration and selective reabsorption produce urine."
+          }
+         ]
+        },
+        {
+         "id": "osmoregulation-and-kidney-failure",
+         "title": "Osmoregulation and kidney failure",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain the role of the kidney in osmoregulation, including ADH and aquaporins."
+          },
+          {
+           "code": null,
+           "text": "Describe the kidney as an endocrine gland, including EPO and renin."
+          },
+          {
+           "code": null,
+           "text": "Describe causes, diagnosis and consequences of kidney failure."
+          },
+          {
+           "code": null,
+           "text": "Compare haemodialysis and peritoneal dialysis."
+          },
+          {
+           "code": null,
+           "text": "Discuss kidney transplants, therapeutic and reproductive cloning, and stem cell technology."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "build": {
+  "builtAt": "2026-10-14T10:40:04.973Z",
+  "model": "claude-agent",
+  "usd": 0,
+  "expectedCodes": 38,
+  "coverage": 0.9473684210526315,
+  "missingCodes": [
+   "1.2.1",
+   "1.2.2"
+  ],
+  "counts": {
+   "grades": 2,
+   "units": 5,
+   "topics": 13,
+   "subtopics": 69,
+   "outcomes": 256
+  },
+  "warnings": []
+ }
+}

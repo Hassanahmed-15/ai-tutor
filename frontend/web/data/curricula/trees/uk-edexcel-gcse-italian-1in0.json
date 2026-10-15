@@ -1,0 +1,975 @@
+{
+ "id": "uk-edexcel-gcse-italian-1in0",
+ "region": "UK",
+ "framework": "Pearson Edexcel GCSE (9-1)",
+ "board": "Pearson Edexcel",
+ "qualification": "GCSE",
+ "subject": "Italian",
+ "syllabusCode": "1IN0",
+ "gradeSystem": "year",
+ "source": {
+  "urls": [
+   "https://qualifications.pearson.com/content/dam/pdf/GCSE/Italian/2017/specification-and-sample-assessments/specification-gcse2017-l12-italian-issue5.pdf"
+  ],
+  "publisher": "Pearson Education",
+  "licence": "Exam board specification, (c) Pearson; structure + our own wording only",
+  "firstExam": "2019"
+ },
+ "grades": [
+  {
+   "grade": "all",
+   "units": [
+    {
+     "id": "theme-1-identity-and-culture",
+     "title": "Theme 1: Identity and culture",
+     "topics": [
+      {
+       "id": "who-am-i",
+       "title": "Who am I?",
+       "subtopics": [
+        {
+         "id": "relationships-friends-and-family",
+         "title": "Relationships, friends and family",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe family and friends and talk about relationships."
+          },
+          {
+           "code": null,
+           "text": "Say what makes a good friend."
+          },
+          {
+           "code": null,
+           "text": "Talk about how you socialise with friends and family."
+          }
+         ]
+        },
+        {
+         "id": "past-life-interests-and-role-models",
+         "title": "Past life, interests and role models",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Talk about what you were like when you were younger."
+          },
+          {
+           "code": null,
+           "text": "Describe your interests."
+          },
+          {
+           "code": null,
+           "text": "Talk about role models and why you admire them."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "daily-life",
+       "title": "Daily life",
+       "subtopics": [
+        {
+         "id": "customs-food-and-shopping",
+         "title": "Customs, food and shopping",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe customs and everyday life at home and in Italy."
+          },
+          {
+           "code": null,
+           "text": "Talk about food and drink."
+          },
+          {
+           "code": null,
+           "text": "Talk about shopping habits."
+          }
+         ]
+        },
+        {
+         "id": "social-media-and-technology",
+         "title": "Social media and technology",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe how you use social media and technology."
+          },
+          {
+           "code": null,
+           "text": "Give advantages and disadvantages of technology."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "cultural-life",
+       "title": "Cultural life",
+       "subtopics": [
+        {
+         "id": "celebrations-festivals-and-reading",
+         "title": "Celebrations, festivals and reading",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe celebrations and festivals."
+          },
+          {
+           "code": null,
+           "text": "Talk about what you read."
+          }
+         ]
+        },
+        {
+         "id": "music-sport-film-and-television",
+         "title": "Music, sport, film and television",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Talk about music and sport."
+          },
+          {
+           "code": null,
+           "text": "Discuss film and television and give opinions."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "theme-2-local-area-holiday-and-travel",
+     "title": "Theme 2: Local area, holiday and travel",
+     "topics": [
+      {
+       "id": "holidays",
+       "title": "Holidays",
+       "subtopics": [
+        {
+         "id": "holiday-preferences-and-experiences",
+         "title": "Holiday preferences and experiences",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Say what kind of holiday you prefer."
+          },
+          {
+           "code": null,
+           "text": "Describe past holiday experiences."
+          },
+          {
+           "code": null,
+           "text": "Talk about holiday destinations."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "travel-and-tourist-transactions",
+       "title": "Travel and tourist transactions",
+       "subtopics": [
+        {
+         "id": "travel-and-accommodation",
+         "title": "Travel and accommodation",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Book and ask about travel and accommodation."
+          },
+          {
+           "code": null,
+           "text": "Ask for help and deal with problems while travelling."
+          }
+         ]
+        },
+        {
+         "id": "directions-eating-out-and-shopping",
+         "title": "Directions, eating out and shopping",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Ask for and give directions."
+          },
+          {
+           "code": null,
+           "text": "Order food and eat out."
+          },
+          {
+           "code": null,
+           "text": "Make purchases in shops."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "town-region-and-country",
+       "title": "Town, region and country",
+       "subtopics": [
+        {
+         "id": "weather-and-places",
+         "title": "Weather and places",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe the weather."
+          },
+          {
+           "code": null,
+           "text": "Describe the places to see in your town, region and country."
+          }
+         ]
+        },
+        {
+         "id": "things-to-do",
+         "title": "Things to do",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Say what there is to do in a town or region."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "theme-3-school",
+     "title": "Theme 3: School",
+     "topics": [
+      {
+       "id": "what-school-is-like",
+       "title": "What school is like",
+       "subtopics": [
+        {
+         "id": "school-types-and-day",
+         "title": "School types and day",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe types of school and the school day."
+          },
+          {
+           "code": null,
+           "text": "Talk about school subjects and opinions of them."
+          }
+         ]
+        },
+        {
+         "id": "rules-pressures-and-success",
+         "title": "Rules, pressures and success",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Discuss school rules and pressures."
+          },
+          {
+           "code": null,
+           "text": "Talk about celebrating success at school."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "school-activities",
+       "title": "School activities",
+       "subtopics": [
+        {
+         "id": "trips-events-and-exchanges",
+         "title": "Trips, events and exchanges",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe school trips and events."
+          },
+          {
+           "code": null,
+           "text": "Talk about school exchanges."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "theme-4-future-aspirations-study-and-work",
+     "title": "Theme 4: Future aspirations, study and work",
+     "topics": [
+      {
+       "id": "using-languages-beyond-the-classroom",
+       "title": "Using languages beyond the classroom",
+       "subtopics": [
+        {
+         "id": "languages-in-life",
+         "title": "Languages in life",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain how languages help form relationships."
+          },
+          {
+           "code": null,
+           "text": "Explain how languages help with travel and employment."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "ambitions",
+       "title": "Ambitions",
+       "subtopics": [
+        {
+         "id": "further-study-and-training",
+         "title": "Further study and training",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Talk about plans for further study."
+          },
+          {
+           "code": null,
+           "text": "Talk about volunteering and training."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "work",
+       "title": "Work",
+       "subtopics": [
+        {
+         "id": "jobs-and-careers",
+         "title": "Jobs and careers",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Talk about different jobs and professions."
+          },
+          {
+           "code": null,
+           "text": "Describe the career you want and why."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "theme-5-international-and-global-dimension",
+     "title": "Theme 5: International and global dimension",
+     "topics": [
+      {
+       "id": "bringing-the-world-together",
+       "title": "Bringing the world together",
+       "subtopics": [
+        {
+         "id": "events-and-good-causes",
+         "title": "Events and good causes",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Talk about sports and music events that unite people."
+          },
+          {
+           "code": null,
+           "text": "Discuss campaigns and good causes."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "environmental-issues",
+       "title": "Environmental issues",
+       "subtopics": [
+        {
+         "id": "being-green",
+         "title": "Being green",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Discuss being green and everyday environmental actions."
+          },
+          {
+           "code": null,
+           "text": "Discuss access to natural resources."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "language-skills",
+     "title": "Language skills",
+     "topics": [
+      {
+       "id": "speaking",
+       "title": "Speaking",
+       "subtopics": [
+        {
+         "id": "role-play",
+         "title": "Role play",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Ask and answer questions in a formal or informal role play."
+          },
+          {
+           "code": null,
+           "text": "Use the right register for the scenario."
+          }
+         ]
+        },
+        {
+         "id": "picture-based-task",
+         "title": "Picture-based task",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe a picture and narrate events."
+          },
+          {
+           "code": null,
+           "text": "Give and justify opinions about the topic."
+          },
+          {
+           "code": null,
+           "text": "Refer to past, present and future events."
+          }
+         ]
+        },
+        {
+         "id": "conversation",
+         "title": "Conversation",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Convey information and give points of view in conversation."
+          },
+          {
+           "code": null,
+           "text": "Respond spontaneously and use rephrasing or repair strategies."
+          },
+          {
+           "code": null,
+           "text": "Use accurate pronunciation and intonation."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "listening",
+       "title": "Listening",
+       "subtopics": [
+        {
+         "id": "understanding-spoken-italian",
+         "title": "Understanding spoken Italian",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Identify the overall message, key points, details and opinions."
+          },
+          {
+           "code": null,
+           "text": "Deduce meaning from spoken texts."
+          },
+          {
+           "code": null,
+           "text": "Recognise the relationship between past, present and future events."
+          },
+          {
+           "code": null,
+           "text": "Extract information and draw conclusions from recordings."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "reading",
+       "title": "Reading",
+       "subtopics": [
+        {
+         "id": "understanding-written-italian",
+         "title": "Understanding written Italian",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Identify the overall message, key points, details and opinions in texts."
+          },
+          {
+           "code": null,
+           "text": "Deduce meaning and recognise implicit meaning and inferences."
+          },
+          {
+           "code": null,
+           "text": "Understand extended authentic texts and extract information."
+          }
+         ]
+        },
+        {
+         "id": "translation-into-english",
+         "title": "Translation into English",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Translate Italian text accurately into English."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "writing",
+       "title": "Writing",
+       "subtopics": [
+        {
+         "id": "writing-for-different-purposes",
+         "title": "Writing for different purposes",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Write short texts with simple sentences and familiar language."
+          },
+          {
+           "code": null,
+           "text": "Write extended text presenting facts and opinions."
+          },
+          {
+           "code": null,
+           "text": "Describe and narrate past, present and future events in writing."
+          },
+          {
+           "code": null,
+           "text": "Adapt structures, style and register for new purposes."
+          }
+         ]
+        },
+        {
+         "id": "translation-into-italian",
+         "title": "Translation into Italian",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Translate English sentences and passages accurately into Italian."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "grammar",
+     "title": "Grammar",
+     "topics": [
+      {
+       "id": "nouns-articles-and-adjectives",
+       "title": "Nouns, articles and adjectives",
+       "subtopics": [
+        {
+         "id": "nouns-and-articles",
+         "title": "Nouns and articles",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Use noun gender and singular and plural forms, including common irregulars."
+          },
+          {
+           "code": null,
+           "text": "Use definite, indefinite and partitive articles."
+          }
+         ]
+        },
+        {
+         "id": "adjective-agreement-and-position",
+         "title": "Adjective agreement and position",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Make adjectives agree and place them correctly."
+          },
+          {
+           "code": null,
+           "text": "Use demonstrative, indefinite, possessive and interrogative adjectives."
+          }
+         ]
+        },
+        {
+         "id": "comparing-with-adjectives",
+         "title": "Comparing with adjectives",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Form regular comparatives and superlatives with più, meno and tanto … quanto."
+          },
+          {
+           "code": null,
+           "text": "Use di and che after comparatives."
+          },
+          {
+           "code": null,
+           "text": "Use irregular comparatives and superlatives like il migliore and il peggiore."
+          },
+          {
+           "code": null,
+           "text": "Use quello and bello before a noun."
+          }
+         ]
+        },
+        {
+         "id": "less-common-irregular-nouns",
+         "title": "Less common irregular nouns",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Recognise less common irregular nouns such as il dito and la dita."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "adverbs",
+       "title": "Adverbs",
+       "subtopics": [
+        {
+         "id": "adverbs",
+         "title": "Adverbs",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Form adverbs and use comparative and superlative forms."
+          },
+          {
+           "code": null,
+           "text": "Use adverbs of time and place and expressions of quantity."
+          },
+          {
+           "code": null,
+           "text": "Use irregular adverbs like meglio and peggio."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "pronouns",
+       "title": "Pronouns",
+       "subtopics": [
+        {
+         "id": "subject-and-object-pronouns",
+         "title": "Subject and object pronouns",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Use subject pronouns, including si."
+          },
+          {
+           "code": null,
+           "text": "Use direct and indirect object pronouns."
+          },
+          {
+           "code": null,
+           "text": "Place object pronouns, and combine direct and indirect pronouns."
+          },
+          {
+           "code": null,
+           "text": "Use emphatic pronouns."
+          }
+         ]
+        },
+        {
+         "id": "reflexive-and-relative-pronouns",
+         "title": "Reflexive and relative pronouns",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Use reflexive pronouns."
+          },
+          {
+           "code": null,
+           "text": "Use relative pronouns che and cui."
+          },
+          {
+           "code": null,
+           "text": "Use il quale, il cui and quello che."
+          }
+         ]
+        },
+        {
+         "id": "other-pronouns",
+         "title": "Other pronouns",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Use demonstrative, indefinite, possessive and interrogative pronouns."
+          },
+          {
+           "code": null,
+           "text": "Use ci and ne."
+          },
+          {
+           "code": null,
+           "text": "Use impersonal si and plural adjectives after si."
+          },
+          {
+           "code": null,
+           "text": "Use less common indefinites like ciascuno and qualunque."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "verbs",
+       "title": "Verbs",
+       "subtopics": [
+        {
+         "id": "verb-forms-and-modes-of-address",
+         "title": "Verb forms and modes of address",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Conjugate regular and irregular verbs in all persons."
+          },
+          {
+           "code": null,
+           "text": "Use reflexive verbs."
+          },
+          {
+           "code": null,
+           "text": "Form negative and interrogative sentences."
+          },
+          {
+           "code": null,
+           "text": "Choose tu, voi or Lei."
+          },
+          {
+           "code": null,
+           "text": "Use impersonal verbs like fa and bisogna."
+          },
+          {
+           "code": null,
+           "text": "Use verbs followed by an infinitive with or without a preposition."
+          }
+         ]
+        },
+        {
+         "id": "present-and-immediate-future",
+         "title": "Present and immediate future",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Use the present tense."
+          },
+          {
+           "code": null,
+           "text": "Use the immediate future such as vado a fare."
+          },
+          {
+           "code": null,
+           "text": "Use da with the present tense."
+          }
+         ]
+        },
+        {
+         "id": "past-tenses",
+         "title": "Past tenses",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Form the perfect tense with avere and essere."
+          },
+          {
+           "code": null,
+           "text": "Use the imperfect tense, starting with avere, essere, stare and fare."
+          },
+          {
+           "code": null,
+           "text": "Use the imperfect for other verbs, and da with the imperfect."
+          },
+          {
+           "code": null,
+           "text": "Use the pluperfect."
+          }
+         ]
+        },
+        {
+         "id": "future-and-conditional",
+         "title": "Future and conditional",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Use the future tense."
+          },
+          {
+           "code": null,
+           "text": "Use vorrei and mi piacerebbe."
+          },
+          {
+           "code": null,
+           "text": "Use the full conditional."
+          },
+          {
+           "code": null,
+           "text": "Recognise the future perfect and conditional perfect."
+          }
+         ]
+        },
+        {
+         "id": "gerund-imperative-and-passive",
+         "title": "Gerund, imperative and passive",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Use the gerund and stare plus gerund."
+          },
+          {
+           "code": null,
+           "text": "Use common imperatives, including negative."
+          },
+          {
+           "code": null,
+           "text": "Use the passive voice."
+          }
+         ]
+        },
+        {
+         "id": "subjunctive-and-special-constructions",
+         "title": "Subjunctive and special constructions",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Use the present subjunctive in common expressions."
+          },
+          {
+           "code": null,
+           "text": "Recognise the past subjunctive."
+          },
+          {
+           "code": null,
+           "text": "Use dependent infinitives like far vedere."
+          },
+          {
+           "code": null,
+           "text": "Use the perfect infinitive after dopo."
+          },
+          {
+           "code": null,
+           "text": "Use impersonal constructions like si dice and si crede."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "negatives-prepositions-and-conjunctions",
+       "title": "Negatives, prepositions and conjunctions",
+       "subtopics": [
+        {
+         "id": "negatives",
+         "title": "Negatives",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Use non with mai, più, niente, nessuno, nulla, ancora and che."
+          },
+          {
+           "code": null,
+           "text": "Use non … né … né, non solo … ma anche, neanche and nemmeno."
+          }
+         ]
+        },
+        {
+         "id": "prepositions",
+         "title": "Prepositions",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Use common and compound prepositions."
+          },
+          {
+           "code": null,
+           "text": "Use prepositions contracted with the definite article."
+          }
+         ]
+        },
+        {
+         "id": "conjunctions",
+         "title": "Conjunctions",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Use coordinating conjunctions like e, ma and o."
+          },
+          {
+           "code": null,
+           "text": "Use subordinating conjunctions like quando, perché and anche se."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "number-quantity-dates-and-time",
+       "title": "Number, quantity, dates and time",
+       "subtopics": [
+        {
+         "id": "numbers-dates-and-time",
+         "title": "Numbers, dates and time",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Use cardinal and ordinal numbers."
+          },
+          {
+           "code": null,
+           "text": "Use quantities."
+          },
+          {
+           "code": null,
+           "text": "Say the time and dates."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "build": {
+  "builtAt": "2026-10-14T10:34:34.070Z",
+  "model": "claude-agent",
+  "usd": 0,
+  "expectedCodes": null,
+  "coverage": null,
+  "missingCodes": [],
+  "counts": {
+   "grades": 1,
+   "units": 7,
+   "topics": 23,
+   "subtopics": 45,
+   "outcomes": 120
+  },
+  "warnings": [
+   "grade Year 10 has no content",
+   "grade Year 11 has no content",
+   "unexpected grade label \"all\""
+  ]
+ }
+}

@@ -1,0 +1,3772 @@
+{
+ "id": "us-nc-english-language-development",
+ "region": "US",
+ "framework": "North Carolina state academic standards: English Language Development",
+ "board": null,
+ "qualification": "K-12",
+ "subject": "English Language Development",
+ "syllabusCode": null,
+ "gradeSystem": "grade",
+ "source": {
+  "urls": [
+   "https://api.commonstandardsproject.com/api/v1/jurisdictions/8A257771396B4F0792EB9D6020CC9089",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/3FB6A710C67C461799F3EBB616B3D608",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/28AC7F39362A4ADFA0478B9F05C995CD",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/8DBA145785C84847929032D16F178463",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/7389F93D350044B88B4C3388FEF0DDB0",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/BC7E5280573C432A9E0D91BCA268427C",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/BC2CAE631E89447CA902278FE01CCD98",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/97967E8612F8470C9DE42EAC38CE043B"
+  ],
+  "publisher": "North Carolina state education agency (machine-readable via Common Standards Project / ASN)",
+  "licence": "CC BY 4.0 US, Common Curriculum, Inc.",
+  "firstExam": "2020"
+ },
+ "grades": [
+  {
+   "grade": "K",
+   "units": [
+    {
+     "id": "social-instructional",
+     "title": "Social/ Instructional",
+     "topics": [
+      {
+       "id": "narrate",
+       "title": "Narrate",
+       "subtopics": [
+        {
+         "id": "narrate",
+         "title": "Narrate",
+         "outcomes": [
+          {
+           "code": "ELD-SI.K-3.1.1",
+           "text": "Share ideas about one’s own and others’ lived experiences and previous learning"
+          },
+          {
+           "code": "ELD-SI.K-3.1.2",
+           "text": "Connect stories with images and representations to add meaning"
+          },
+          {
+           "code": "ELD-SI.K-3.1.3",
+           "text": "Ask questions about what others have shared"
+          },
+          {
+           "code": "ELD-SI.K-3.1.4",
+           "text": "Recount and restate ideas"
+          },
+          {
+           "code": "ELD-SI.K-3.1.5",
+           "text": "Discuss how stories might end or next steps"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "inform",
+       "title": "Inform",
+       "subtopics": [
+        {
+         "id": "inform",
+         "title": "Inform",
+         "outcomes": [
+          {
+           "code": "ELD-SI.K-3.2.1",
+           "text": "Define and classify objects or concepts"
+          },
+          {
+           "code": "ELD-SI.K-3.2.2",
+           "text": "Describe characteristics, patterns, or behavior"
+          },
+          {
+           "code": "ELD-SI.K-3.2.3",
+           "text": "Describe parts and wholes"
+          },
+          {
+           "code": "ELD-SI.K-3.2.4",
+           "text": "Sort, clarify, and summarize ideas"
+          },
+          {
+           "code": "ELD-SI.K-3.2.5",
+           "text": "Summarize information from interaction with others and from learning experiences"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "explain",
+       "title": "Explain",
+       "subtopics": [
+        {
+         "id": "explain",
+         "title": "Explain",
+         "outcomes": [
+          {
+           "code": "ELD-SI.K-3.3.1",
+           "text": "Share initial thinking with others"
+          },
+          {
+           "code": "ELD-SI.K-3.3.2",
+           "text": "Follow and describe cycles in diagrams, steps in procedures, or causes and effects"
+          },
+          {
+           "code": "ELD-SI.K-3.3.3",
+           "text": "Compare and contrast objects or concepts"
+          },
+          {
+           "code": "ELD-SI.K-3.3.4",
+           "text": "Offer ideas and suggestions"
+          },
+          {
+           "code": "ELD-SI.K-3.3.5",
+           "text": "Act on feedback to revise understandings of how or why something works"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "argue",
+       "title": "Argue",
+       "subtopics": [
+        {
+         "id": "argue",
+         "title": "Argue",
+         "outcomes": [
+          {
+           "code": "ELD-SI.K-3.4.1",
+           "text": "Ask questions about others’ opinions"
+          },
+          {
+           "code": "ELD-SI.K-3.4.2",
+           "text": "Support own opinions with reasons"
+          },
+          {
+           "code": "ELD-SI.K-3.4.3",
+           "text": "Clarify and elaborate ideas based on feedback"
+          },
+          {
+           "code": "ELD-SI.K-3.4.4",
+           "text": "Defend change in one’s own thinking"
+          },
+          {
+           "code": "ELD-SI.K-3.4.5",
+           "text": "Revise one’s own opinions based on new information"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "language-arts",
+     "title": "Language Arts",
+     "topics": [
+      {
+       "id": "narrate-interpretive-interpret-language-arts-nar",
+       "title": "Narrate.Interpretive: Interpret language arts narratives (with prompting and support) by:",
+       "subtopics": [
+        {
+         "id": "narrate-interpretive-interpret-language-arts-nar",
+         "title": "Narrate.Interpretive: Interpret language arts narratives (with prompting and support) by:",
+         "outcomes": [
+          {
+           "code": "ELD-LA.K.1.1",
+           "text": "Identifying key details"
+          },
+          {
+           "code": "ELD-LA.K.1.2",
+           "text": "Identifying characters, settings, and major events"
+          },
+          {
+           "code": "ELD-LA.K.1.3",
+           "text": "Asking and answering questions about unknown words in a text"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "narrate-expressive-construct-language-arts-narra",
+       "title": "Narrate.Expressive: Construct language arts narratives (with prompting and support) that:",
+       "subtopics": [
+        {
+         "id": "narrate-expressive-construct-language-arts-narra",
+         "title": "Narrate.Expressive: Construct language arts narratives (with prompting and support) that:",
+         "outcomes": [
+          {
+           "code": "ELD-LA.K.2.1",
+           "text": "Orient audience to story"
+          },
+          {
+           "code": "ELD-LA.K.2.2",
+           "text": "Describe story events"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "inform-interpretive-interpret-informational-text",
+       "title": "Inform.Interpretive: Interpret informational texts in language arts (with prompting and support) by:",
+       "subtopics": [
+        {
+         "id": "inform-interpretive-interpret-informational-text",
+         "title": "Inform.Interpretive: Interpret informational texts in language arts (with prompting and support) by:",
+         "outcomes": [
+          {
+           "code": "ELD-LA.K.3.1",
+           "text": "Identifying main topic and key details"
+          },
+          {
+           "code": "ELD-LA.K.3.2",
+           "text": "Asking and answering questions about descriptions of familiar attributes and characteristics"
+          },
+          {
+           "code": "ELD-LA.K.3.3",
+           "text": "Identifying word choices in relation to topic or content area"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "inform-expressive-construct-informational-texts-",
+       "title": "Inform.Expressive: Construct informational texts in language arts (with prompting and support) that:",
+       "subtopics": [
+        {
+         "id": "inform-expressive-construct-informational-texts-",
+         "title": "Inform.Expressive: Construct informational texts in language arts (with prompting and support) that:",
+         "outcomes": [
+          {
+           "code": "ELD-LA.K.4.1",
+           "text": "Introduce topic for audience"
+          },
+          {
+           "code": "ELD-LA.K.4.2",
+           "text": "Describe details and facts"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "math",
+     "title": "Math",
+     "topics": [
+      {
+       "id": "inform-interpretive-interpret-mathematical-infor",
+       "title": "Inform.Interpretive: Interpret mathematical informational texts (with prompting and support) by:",
+       "subtopics": [
+        {
+         "id": "inform-interpretive-interpret-mathematical-infor",
+         "title": "Inform.Interpretive: Interpret mathematical informational texts (with prompting and support) by:",
+         "outcomes": [
+          {
+           "code": "ELD-MA.K.1.1",
+           "text": "Identifying concept or object"
+          },
+          {
+           "code": "ELD-MA.K.1.2",
+           "text": "Describing quantities and attributes"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "inform-expressive-construct-mathematical-informa",
+       "title": "Inform.Expressive: Construct mathematical informational texts (with prompting and support) that:",
+       "subtopics": [
+        {
+         "id": "inform-expressive-construct-mathematical-informa",
+         "title": "Inform.Expressive: Construct mathematical informational texts (with prompting and support) that:",
+         "outcomes": [
+          {
+           "code": "ELD-MA.K.2.1",
+           "text": "Define or classify concept or entity"
+          },
+          {
+           "code": "ELD-MA.K.2.2",
+           "text": "Describe a concept or entity"
+          },
+          {
+           "code": "ELD-MA.K.2.3",
+           "text": "Compare/contrast concepts or entities"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "science",
+     "title": "Science",
+     "topics": [
+      {
+       "id": "inform-interpretive-interpret-scientific-informa",
+       "title": "Inform.Interpretive: Interpret scientific informational texts by:",
+       "subtopics": [
+        {
+         "id": "inform-interpretive-interpret-scientific-informa",
+         "title": "Inform.Interpretive: Interpret scientific informational texts by:",
+         "outcomes": [
+          {
+           "code": "ELD-SC.K.1.1",
+           "text": "Determining what text is about"
+          },
+          {
+           "code": "ELD-SC.K.1.2",
+           "text": "Defining or classifying a concept or entity"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "inform-expressive-construct-scientific-informati",
+       "title": "Inform.Expressive: Construct scientific informational texts that:",
+       "subtopics": [
+        {
+         "id": "inform-expressive-construct-scientific-informati",
+         "title": "Inform.Expressive: Construct scientific informational texts that:",
+         "outcomes": [
+          {
+           "code": "ELD-SC.K.2.1",
+           "text": "Introduce others to a topic or entity"
+          },
+          {
+           "code": "ELD-SC.K.2.2",
+           "text": "Provide details about an entity"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "explain-interpretive-interpret-scientific-explan",
+       "title": "Explain.Interpretive: Interpret scientific explanations by:",
+       "subtopics": [
+        {
+         "id": "explain-interpretive-interpret-scientific-explan",
+         "title": "Explain.Interpretive: Interpret scientific explanations by:",
+         "outcomes": [
+          {
+           "code": "ELD-SC.K.3.1",
+           "text": "Defining investigable questions or simple design problems based on observations and data about a phenomenon"
+          },
+          {
+           "code": "ELD-SC.K.3.2",
+           "text": "Using information from observations to find patterns and to explain how or why a phenomenon occurs"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "explain-expressive-construct-scientific-explanat",
+       "title": "Explain.Expressive: Construct scientific explanations that:",
+       "subtopics": [
+        {
+         "id": "explain-expressive-construct-scientific-explanat",
+         "title": "Explain.Expressive: Construct scientific explanations that:",
+         "outcomes": [
+          {
+           "code": "ELD-SC.K.4.1",
+           "text": "Describe information from observations about a phenomenon"
+          },
+          {
+           "code": "ELD-SC.K.4.2",
+           "text": "Relate how a series of events causes something to happen"
+          },
+          {
+           "code": "ELD-SC.K.4.3",
+           "text": "Compare multiple solutions to a problem"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "social-studies",
+     "title": "Social Studies",
+     "topics": [
+      {
+       "id": "inform-interpretive-interpret-informational-text",
+       "title": "Inform.Interpretive Interpret informational texts in social studies by:",
+       "subtopics": [
+        {
+         "id": "inform-interpretive-interpret-informational-text",
+         "title": "Inform.Interpretive Interpret informational texts in social studies by:",
+         "outcomes": [
+          {
+           "code": "ELD-SS.K.1.1",
+           "text": "Determining topic associated with a compelling or supporting question"
+          },
+          {
+           "code": "ELD-SS.K.1.2",
+           "text": "Defining attributes and characteristics in relevant information"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "inform-expressive-construct-informational-texts-",
+       "title": "Inform.Expressive Construct informational texts in social studies that:",
+       "subtopics": [
+        {
+         "id": "inform-expressive-construct-informational-texts-",
+         "title": "Inform.Expressive Construct informational texts in social studies that:",
+         "outcomes": [
+          {
+           "code": "ELD-SS.K.2.1",
+           "text": "Introduce topic associated with a compelling or supporting question"
+          },
+          {
+           "code": "ELD-SS.K.2.2",
+           "text": "Provide a detail about relevant information"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "1",
+   "units": [
+    {
+     "id": "social-instructional",
+     "title": "Social/ Instructional",
+     "topics": [
+      {
+       "id": "narrate",
+       "title": "Narrate",
+       "subtopics": [
+        {
+         "id": "narrate",
+         "title": "Narrate",
+         "outcomes": [
+          {
+           "code": "ELD-SI.K-3.1.1",
+           "text": "Share ideas about one’s own and others’ lived experiences and previous learning"
+          },
+          {
+           "code": "ELD-SI.K-3.1.2",
+           "text": "Connect stories with images and representations to add meaning"
+          },
+          {
+           "code": "ELD-SI.K-3.1.3",
+           "text": "Ask questions about what others have shared"
+          },
+          {
+           "code": "ELD-SI.K-3.1.4",
+           "text": "Recount and restate ideas"
+          },
+          {
+           "code": "ELD-SI.K-3.1.5",
+           "text": "Discuss how stories might end or next steps"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "inform",
+       "title": "Inform",
+       "subtopics": [
+        {
+         "id": "inform",
+         "title": "Inform",
+         "outcomes": [
+          {
+           "code": "ELD-SI.K-3.2.1",
+           "text": "Define and classify objects or concepts"
+          },
+          {
+           "code": "ELD-SI.K-3.2.2",
+           "text": "Describe characteristics, patterns, or behavior"
+          },
+          {
+           "code": "ELD-SI.K-3.2.3",
+           "text": "Describe parts and wholes"
+          },
+          {
+           "code": "ELD-SI.K-3.2.4",
+           "text": "Sort, clarify, and summarize ideas"
+          },
+          {
+           "code": "ELD-SI.K-3.2.5",
+           "text": "Summarize information from interaction with others and from learning experiences"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "explain",
+       "title": "Explain",
+       "subtopics": [
+        {
+         "id": "explain",
+         "title": "Explain",
+         "outcomes": [
+          {
+           "code": "ELD-SI.K-3.3.1",
+           "text": "Share initial thinking with others"
+          },
+          {
+           "code": "ELD-SI.K-3.3.2",
+           "text": "Follow and describe cycles in diagrams, steps in procedures, or causes and effects"
+          },
+          {
+           "code": "ELD-SI.K-3.3.3",
+           "text": "Compare and contrast objects or concepts"
+          },
+          {
+           "code": "ELD-SI.K-3.3.4",
+           "text": "Offer ideas and suggestions Act on feedback to revise understandings of how or why something works"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "argue",
+       "title": "Argue",
+       "subtopics": [
+        {
+         "id": "argue",
+         "title": "Argue",
+         "outcomes": [
+          {
+           "code": "ELD-SI.K-3.4.1",
+           "text": "Ask questions about others’ opinions"
+          },
+          {
+           "code": "ELD-SI.K-3.4.2",
+           "text": "Support own opinions with reasons"
+          },
+          {
+           "code": "ELD-SI.K-3.4.3",
+           "text": "Clarify and elaborate ideas based on feedback"
+          },
+          {
+           "code": "ELD-SI.K-3.4.4",
+           "text": "Defend change in one’s own thinking"
+          },
+          {
+           "code": "ELD-SI.K-3.4.5",
+           "text": "Revise one’s own opinions based on new information"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "language-arts",
+     "title": "Language Arts",
+     "topics": [
+      {
+       "id": "narrate-interpretive-interpret-language-arts-nar",
+       "title": "Narrate.Interpretive: Interpret language arts narratives by:",
+       "subtopics": [
+        {
+         "id": "narrate-interpretive-interpret-language-arts-nar",
+         "title": "Narrate.Interpretive: Interpret language arts narratives by:",
+         "outcomes": [
+          {
+           "code": "ELD-LA.1.1.1",
+           "text": "Identifying a central message from key details"
+          },
+          {
+           "code": "ELD-LA.1.1.2",
+           "text": "Identifying how character attributes and actions contribute to an event"
+          },
+          {
+           "code": "ELD-LA.1.1.3",
+           "text": "Identifying words and phrases that suggest feelings or appeal to the senses"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "narrate-expressive-construct-language-arts-narra",
+       "title": "Narrate.Expressive: Construct language arts narratives that:",
+       "subtopics": [
+        {
+         "id": "narrate-expressive-construct-language-arts-narra",
+         "title": "Narrate.Expressive: Construct language arts narratives that:",
+         "outcomes": [
+          {
+           "code": "ELD-LA.1.2.1",
+           "text": "Orient audience to story"
+          },
+          {
+           "code": "ELD-LA.1.2.2",
+           "text": "Develop story events"
+          },
+          {
+           "code": "ELD-LA.1.2.3",
+           "text": "Engage and adjust for audience"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "inform-interpretive-interpret-informational-text",
+       "title": "Inform.Interpretive: Interpret informational texts in language arts by:",
+       "subtopics": [
+        {
+         "id": "inform-interpretive-interpret-informational-text",
+         "title": "Inform.Interpretive: Interpret informational texts in language arts by:",
+         "outcomes": [
+          {
+           "code": "ELD-LA.1.3.1",
+           "text": "Identifying main topic and/or entity and key details"
+          },
+          {
+           "code": "ELD-LA.1.3.2",
+           "text": "Asking and answering questions about descriptions of attributes and characteristics"
+          },
+          {
+           "code": "ELD-LA.1.3.3",
+           "text": "Identifying word choices in relation to topic or content area"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "inform-expressive-construct-informational-texts-",
+       "title": "Inform.Expressive: Construct informational texts in language arts that:",
+       "subtopics": [
+        {
+         "id": "inform-expressive-construct-informational-texts-",
+         "title": "Inform.Expressive: Construct informational texts in language arts that:",
+         "outcomes": [
+          {
+           "code": "ELD-LA.1.4.1",
+           "text": "Introduce and define topic and/or entity for audience"
+          },
+          {
+           "code": "ELD-LA.1.4.2",
+           "text": "Describe attributes and characteristics with facts, definitions, and relevant details"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "math",
+     "title": "Math",
+     "topics": [
+      {
+       "id": "inform-interpretive-interpret-mathematical-infor",
+       "title": "Inform.Interpretive: Interpret mathematical informational texts by:",
+       "subtopics": [
+        {
+         "id": "inform-interpretive-interpret-mathematical-infor",
+         "title": "Inform.Interpretive: Interpret mathematical informational texts by:",
+         "outcomes": [
+          {
+           "code": "ELD-MA.1.1.1",
+           "text": "Identifying concept or entity"
+          },
+          {
+           "code": "ELD-MA.1.1.2",
+           "text": "Describing attributes and characteristics"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "inform-expressive-construct-mathematical-informa",
+       "title": "Inform.Expressive: Construct mathematical informational texts that:",
+       "subtopics": [
+        {
+         "id": "inform-expressive-construct-mathematical-informa",
+         "title": "Inform.Expressive: Construct mathematical informational texts that:",
+         "outcomes": [
+          {
+           "code": "ELD-MA.1.2.1",
+           "text": "Define or classify concept or entity"
+          },
+          {
+           "code": "ELD-MA.1.2.2",
+           "text": "Describe a concept or entity"
+          },
+          {
+           "code": "ELD-MA.1.2.3",
+           "text": "Compare/contrast concepts or entities"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "science",
+     "title": "Science",
+     "topics": [
+      {
+       "id": "inform-interpretive-interpret-scientific-informa",
+       "title": "Inform.Interpretive: Interpret scientific informational texts by:",
+       "subtopics": [
+        {
+         "id": "inform-interpretive-interpret-scientific-informa",
+         "title": "Inform.Interpretive: Interpret scientific informational texts by:",
+         "outcomes": [
+          {
+           "code": "ELD-SC.1.1.1",
+           "text": "Determining what text is about"
+          },
+          {
+           "code": "ELD-SC.1.1.2",
+           "text": "Defining or classifying concept or entity"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "inform-expressive-construct-scientific-informati",
+       "title": "Inform.Expressive: Construct scientific informational texts that:",
+       "subtopics": [
+        {
+         "id": "inform-expressive-construct-scientific-informati",
+         "title": "Inform.Expressive: Construct scientific informational texts that:",
+         "outcomes": [
+          {
+           "code": "ELD-SC.1.2.1",
+           "text": "Introduce others to topic or entity"
+          },
+          {
+           "code": "ELD-SC.1.2.2",
+           "text": "Define, describe, and classify concept, topic, or entity"
+          },
+          {
+           "code": "ELD-SC.1.2.3",
+           "text": "Summarize observations or factual information"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "explain-interpretive-interpret-scientific-explan",
+       "title": "Explain.Interpretive: Interpret scientific explanations by:",
+       "subtopics": [
+        {
+         "id": "explain-interpretive-interpret-scientific-explan",
+         "title": "Explain.Interpretive: Interpret scientific explanations by:",
+         "outcomes": [
+          {
+           "code": "ELD-SC.1.3.1",
+           "text": "Defining investigable questions or simple design problems based on observations and data about a phenomenon"
+          },
+          {
+           "code": "ELD-SC.1.3.2",
+           "text": "Analyzing several events and observations to help explain how or why a phenomenon occurs"
+          },
+          {
+           "code": "ELD-SC.1.3.3",
+           "text": "Identifying information from observations (that supports particular points in explanations)"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "explain-expressive-construct-scientific-explanat",
+       "title": "Explain.Expressive: Construct scientific explanations that:",
+       "subtopics": [
+        {
+         "id": "explain-expressive-construct-scientific-explanat",
+         "title": "Explain.Expressive: Construct scientific explanations that:",
+         "outcomes": [
+          {
+           "code": "ELD-SC.1.4.1",
+           "text": "Describe observations and/or data about a phenomenon"
+          },
+          {
+           "code": "ELD-SC.1.4.2",
+           "text": "Relate how a series of events causes something to happen"
+          },
+          {
+           "code": "ELD-SC.1.4.3",
+           "text": "Compare multiple solutions to a problem"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "social-studies",
+     "title": "Social Studies",
+     "topics": [
+      {
+       "id": "inform-interpretive-interpret-informational-text",
+       "title": "Inform.Interpretive Interpret informational texts in social studies by:",
+       "subtopics": [
+        {
+         "id": "inform-interpretive-interpret-informational-text",
+         "title": "Inform.Interpretive Interpret informational texts in social studies by:",
+         "outcomes": [
+          {
+           "code": "ELD-SS.1.1.1",
+           "text": "Determining topic associated with compelling or supporting questions"
+          },
+          {
+           "code": "ELD-SS.1.1.2",
+           "text": "Defining and classifying attributes, characteristics, and qualities in relevant information"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "inform-expressive-construct-informational-texts-",
+       "title": "Inform.Expressive Construct informational texts in social studies that:",
+       "subtopics": [
+        {
+         "id": "inform-expressive-construct-informational-texts-",
+         "title": "Inform.Expressive Construct informational texts in social studies that:",
+         "outcomes": [
+          {
+           "code": "ELD-SS.1.2.1",
+           "text": "Introduce topic associated with compelling or supporting questions"
+          },
+          {
+           "code": "ELD-SS.1.2.2",
+           "text": "Provide details about disciplinary ideas"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "argue-interpretive-interpret-social-studies-argu",
+       "title": "Argue.Interpretive: Interpret social studies arguments by:",
+       "subtopics": [
+        {
+         "id": "argue-interpretive-interpret-social-studies-argu",
+         "title": "Argue.Interpretive: Interpret social studies arguments by:",
+         "outcomes": [
+          {
+           "code": "ELD-SS.1.3.1",
+           "text": "Identifying topic"
+          },
+          {
+           "code": "ELD-SS.1.3.2",
+           "text": "Analyzing evidence gathered from source"
+          },
+          {
+           "code": "ELD-SS.1.3.3",
+           "text": "Evaluating source based on distinctions between fact and opinion"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "argue-expressive-construct-social-studies-argume",
+       "title": "Argue.Expressive Construct social studies arguments that:",
+       "subtopics": [
+        {
+         "id": "argue-expressive-construct-social-studies-argume",
+         "title": "Argue.Expressive Construct social studies arguments that:",
+         "outcomes": [
+          {
+           "code": "ELD-SS.1.4.1",
+           "text": "Introduce topic"
+          },
+          {
+           "code": "ELD-SS.1.4.2",
+           "text": "Select relevant information to support claim with evidence"
+          },
+          {
+           "code": "ELD-SS.1.4.3",
+           "text": "Show relationship between claim, evidence and reasoning"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "2-3",
+   "units": [
+    {
+     "id": "social-instructional",
+     "title": "Social/ Instructional",
+     "topics": [
+      {
+       "id": "narrate",
+       "title": "Narrate",
+       "subtopics": [
+        {
+         "id": "narrate",
+         "title": "Narrate",
+         "outcomes": [
+          {
+           "code": "ELD-SI.K-3.1.1",
+           "text": "Share ideas about one’s own and others’ lived experiences and previous learning"
+          },
+          {
+           "code": "ELD-SI.K-3.1.2",
+           "text": "Connect stories with images and representations to add meaning"
+          },
+          {
+           "code": "ELD-SI.K-3.1.3",
+           "text": "Ask questions about what others have shared"
+          },
+          {
+           "code": "ELD-SI.K-3.1.4",
+           "text": "Recount and restate ideas"
+          },
+          {
+           "code": "ELD-SI.K-3.1.5",
+           "text": "Discuss how stories might end or next steps"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "inform",
+       "title": "Inform",
+       "subtopics": [
+        {
+         "id": "inform",
+         "title": "Inform",
+         "outcomes": [
+          {
+           "code": "ELD-SI.K-3.2.1",
+           "text": "Define and classify objects or concepts"
+          },
+          {
+           "code": "ELD-SI.K-3.2.2",
+           "text": "Describe characteristics, patterns, or behavior"
+          },
+          {
+           "code": "ELD-SI.K-3.2.3",
+           "text": "Describe parts and wholes"
+          },
+          {
+           "code": "ELD-SI.K-3.2.4",
+           "text": "Sort, clarify, and summarize ideas"
+          },
+          {
+           "code": "ELD-SI.K-3.2.5",
+           "text": "Summarize information from interaction with others and from learning experiences"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "explain",
+       "title": "Explain",
+       "subtopics": [
+        {
+         "id": "explain",
+         "title": "Explain",
+         "outcomes": [
+          {
+           "code": "ELD-SI.K-3.3.1",
+           "text": "Share initial thinking with others"
+          },
+          {
+           "code": "ELD-SI.K-3.3.2",
+           "text": "Follow and describe cycles in diagrams, steps in procedures, or causes and effects"
+          },
+          {
+           "code": "ELD-SI.K-3.3.3",
+           "text": "Compare and contrast objects or concepts"
+          },
+          {
+           "code": "ELD-SI.K-3.3.4",
+           "text": "Offer ideas and suggestions"
+          },
+          {
+           "code": "ELD-SI.K-3.3.5",
+           "text": "Act on feedback to revise understandings of how or why something works"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "argue",
+       "title": "Argue",
+       "subtopics": [
+        {
+         "id": "argue",
+         "title": "Argue",
+         "outcomes": [
+          {
+           "code": "ELD-SI.K-3.4.1",
+           "text": "Ask questions about others’ opinions"
+          },
+          {
+           "code": "ELD-SI.K-3.4.2",
+           "text": "Support own opinions with reasons"
+          },
+          {
+           "code": "ELD-SI.K-3.4.3",
+           "text": "Clarify and elaborate ideas based on feedback"
+          },
+          {
+           "code": "ELD-SI.K-3.4.4",
+           "text": "Defend change in one’s own thinking"
+          },
+          {
+           "code": "ELD-SI.K-3.4.5",
+           "text": "Revise one’s own opinions based on new information"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "language-arts",
+     "title": "Language Arts",
+     "topics": [
+      {
+       "id": "narrate-interpretive-interpret-language-arts-nar",
+       "title": "Narrate.Interpretive: Interpret language arts narratives (with prompting and support) by:",
+       "subtopics": [
+        {
+         "id": "narrate-interpretive-interpret-language-arts-nar",
+         "title": "Narrate.Interpretive: Interpret language arts narratives (with prompting and support) by:",
+         "outcomes": [
+          {
+           "code": "ELD-LA.2-3.1.1",
+           "text": "Identifying a central message from key details"
+          },
+          {
+           "code": "ELD-LA.2-3.1.2",
+           "text": "Identifying how character attributes and actions contribute to event sequences"
+          },
+          {
+           "code": "ELD-LA.2-3.1.3",
+           "text": "Determining the meaning of words and phrases as they are used in texts, distinguishing literal from nonliteral language"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "narrate-expressive-construct-language-arts-narra",
+       "title": "Narrate.Expressive: Construct language arts narratives (with prompting and support) that:",
+       "subtopics": [
+        {
+         "id": "narrate-expressive-construct-language-arts-narra",
+         "title": "Narrate.Expressive: Construct language arts narratives (with prompting and support) that:",
+         "outcomes": [
+          {
+           "code": "ELD-LA.2-3.2.1",
+           "text": "Orient audience to context"
+          },
+          {
+           "code": "ELD-LA.2-3.2.2",
+           "text": "Develop story with time and event sequences, complication, resolution, or ending"
+          },
+          {
+           "code": "ELD-LA.2-3.2.3",
+           "text": "Engage and adjust for audience"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "inform-interpretive-interpret-informational-text",
+       "title": "Inform.Interpretive: Interpret informational texts in language arts (with prompting and support) by:",
+       "subtopics": [
+        {
+         "id": "inform-interpretive-interpret-informational-text",
+         "title": "Inform.Interpretive: Interpret informational texts in language arts (with prompting and support) by:",
+         "outcomes": [
+          {
+           "code": "ELD-LA.2-3.3.1",
+           "text": "Identifying the main idea and key details"
+          },
+          {
+           "code": "ELD-LA.2-3.3.2",
+           "text": "Referring explicitly to descriptions for themes and relationships among meanings"
+          },
+          {
+           "code": "ELD-LA.2-3.3.3",
+           "text": "Describing relationship between a series of events, ideas or concepts, or procedural steps"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "inform-expressive-construct-informational-texts-",
+       "title": "Inform.Expressive: Construct informational texts in language arts (with prompting and support) that:",
+       "subtopics": [
+        {
+         "id": "inform-expressive-construct-informational-texts-",
+         "title": "Inform.Expressive: Construct informational texts in language arts (with prompting and support) that:",
+         "outcomes": [
+          {
+           "code": "ELD-LA.2-3.4.1",
+           "text": "Introduce and define topic and/or entity for audience"
+          },
+          {
+           "code": "ELD-LA.2-3.4.2",
+           "text": "Add details to define, describe, compare, and classify topic and/or entity"
+          },
+          {
+           "code": "ELD-LA.2-3.4.3",
+           "text": "Develop coherence and cohesion throughout text"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "math",
+     "title": "Math",
+     "topics": [
+      {
+       "id": "explain-interpretive-interpret-mathematical-expl",
+       "title": "Explain.Interpretive: Interpret mathematical explanations by:",
+       "subtopics": [
+        {
+         "id": "explain-interpretive-interpret-mathematical-expl",
+         "title": "Explain.Interpretive: Interpret mathematical explanations by:",
+         "outcomes": [
+          {
+           "code": "ELD-MA.2-3.1.1",
+           "text": "Identifying concept or entity"
+          },
+          {
+           "code": "ELD-MA.2-3.1.2",
+           "text": "Analyzing plan for problem-solving steps"
+          },
+          {
+           "code": "ELD-MA.2-3.1.3",
+           "text": "Evaluating simple pattern or structure"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "explain-expressive-construct-mathematical-explan",
+       "title": "Explain.Expressive: Construct mathematical explanations that:",
+       "subtopics": [
+        {
+         "id": "explain-expressive-construct-mathematical-explan",
+         "title": "Explain.Expressive: Construct mathematical explanations that:",
+         "outcomes": [
+          {
+           "code": "ELD-MA.2-3.2.1",
+           "text": "Introduce concept or entity"
+          },
+          {
+           "code": "ELD-MA.2-3.2.2",
+           "text": "Describe solution and steps used to solve problem with others"
+          },
+          {
+           "code": "ELD-MA.2-3.2.3",
+           "text": "State reasoning used to generate solution"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "argue-interpretive-interpret-mathematics-argumen",
+       "title": "Argue.Interpretive: Interpret mathematics arguments by:",
+       "subtopics": [
+        {
+         "id": "argue-interpretive-interpret-mathematics-argumen",
+         "title": "Argue.Interpretive: Interpret mathematics arguments by:",
+         "outcomes": [
+          {
+           "code": "ELD-MA.2-3.3.1",
+           "text": "Identifying conjectures about what might be true"
+          },
+          {
+           "code": "ELD-MA.2-3.3.2",
+           "text": "Distinguishing connections among ideas in justifications"
+          },
+          {
+           "code": "ELD-MA.2-3.3.3",
+           "text": "Extracting mathematical operations and facts from solution strategies to create generalizations"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "argue-expressive-construct-mathematics-arguments",
+       "title": "Argue.Expressive: Construct mathematics arguments that:",
+       "subtopics": [
+        {
+         "id": "argue-expressive-construct-mathematics-arguments",
+         "title": "Argue.Expressive: Construct mathematics arguments that:",
+         "outcomes": [
+          {
+           "code": "ELD-MA.2-3.4.1",
+           "text": "Create conjecture using definitions"
+          },
+          {
+           "code": "ELD-MA.2-3.4.2",
+           "text": "Generalize commonalities across cases"
+          },
+          {
+           "code": "ELD-MA.2-3.4.3",
+           "text": "Justify conclusion steps and strategies in simple patterns"
+          },
+          {
+           "code": "ELD-MA.2-3.4.4",
+           "text": "Identify and respond to others’ arguments"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "science",
+     "title": "Science",
+     "topics": [
+      {
+       "id": "explain-interpretive-interpret-scientific-explan",
+       "title": "Explain.Interpretive: Interpret scientific explanations by:",
+       "subtopics": [
+        {
+         "id": "explain-interpretive-interpret-scientific-explan",
+         "title": "Explain.Interpretive: Interpret scientific explanations by:",
+         "outcomes": [
+          {
+           "code": "ELD-SC.2-3.1.1",
+           "text": "Defining investigable questions or simple design problems based on observations, data, and prior knowledge about a phenomenon"
+          },
+          {
+           "code": "ELD-SC.2-3.1.2",
+           "text": "Obtaining and combining information from observations, and using evidence to help explain how or why a phenomenon occurs"
+          },
+          {
+           "code": "ELD-SC.2-3.1.3",
+           "text": "Identifying information from observations as well as evidence that supports particular points in explanations"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "explain-expressive-construct-scientific-explanat",
+       "title": "Explain.Expressive: Construct scientific explanations that:",
+       "subtopics": [
+        {
+         "id": "explain-expressive-construct-scientific-explanat",
+         "title": "Explain.Expressive: Construct scientific explanations that:",
+         "outcomes": [
+          {
+           "code": "ELD-SC.2-3.1.1",
+           "text": "Describe observations and/or data about a phenomenon"
+          },
+          {
+           "code": "ELD-SC.2-3.1.2",
+           "text": "Develop a logical sequence between data or evidence and claim"
+          },
+          {
+           "code": "ELD-SC.2-3.1.3",
+           "text": "Compare multiple solutions to a problem considering how well they meet the criteria and"
+          },
+          {
+           "code": "ELD-SC.2-3.1.4",
+           "text": "constraints of the design solution"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "argue-interpretive-interpret-scientific-argument",
+       "title": "Argue.Interpretive: Interpret scientific arguments by:",
+       "subtopics": [
+        {
+         "id": "argue-interpretive-interpret-scientific-argument",
+         "title": "Argue.Interpretive: Interpret scientific arguments by:",
+         "outcomes": [
+          {
+           "code": "ELD-SC.2-3.3.1",
+           "text": "Identifying potential evidence from data, models, and/or information from investigations of phenomena or design solutions"
+          },
+          {
+           "code": "ELD-SC.2-3.3.2",
+           "text": "Analyzing whether evidence is relevant or not"
+          },
+          {
+           "code": "ELD-SC.2-3.3.3",
+           "text": "Distinguishing between evidence and opinions"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "argue-expressive-construct-scientific-arguments-",
+       "title": "Argue.Expressive Construct scientific arguments that:",
+       "subtopics": [
+        {
+         "id": "argue-expressive-construct-scientific-arguments-",
+         "title": "Argue.Expressive Construct scientific arguments that:",
+         "outcomes": [
+          {
+           "code": "ELD-SC.2-3.4.1",
+           "text": "Introduce topic/phenomenon for an issue related to the natural and designed world(s)"
+          },
+          {
+           "code": "ELD-SC.2-3.4.2",
+           "text": "Make a claim supported by relevant evidence"
+          },
+          {
+           "code": "ELD-SC.2-3.4.3",
+           "text": "Establish a neutral tone"
+          },
+          {
+           "code": "ELD-SC.2-3.4.4",
+           "text": "Signal logical relationships among reasoning, evidence, data, and/or a model when making a claim"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "social-studies",
+     "title": "Social Studies",
+     "topics": [
+      {
+       "id": "explain-interpretive-interpret-social-studies-ex",
+       "title": "Explain.Interpretive Interpret social studies explanations by:",
+       "subtopics": [
+        {
+         "id": "explain-interpretive-interpret-social-studies-ex",
+         "title": "Explain.Interpretive Interpret social studies explanations by:",
+         "outcomes": [
+          {
+           "code": "ELD-SS.2-3.1.1",
+           "text": "Determining types of sources for answering compelling and supporting questions about phenomena or events"
+          },
+          {
+           "code": "ELD-SS.2-3.1.2",
+           "text": "Analyzing sources for event sequences and/or causes/effects"
+          },
+          {
+           "code": "ELD-SS.2-3.1.3",
+           "text": "Evaluating disciplinary concepts and ideas associated with a compelling or supporting question"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "explain-expressive-construct-social-studies-expl",
+       "title": "Explain.Expressive: Construct social studies explanations that:",
+       "subtopics": [
+        {
+         "id": "explain-expressive-construct-social-studies-expl",
+         "title": "Explain.Expressive: Construct social studies explanations that:",
+         "outcomes": [
+          {
+           "code": "ELD-SS.2-3.2.1",
+           "text": "Introduce phenomena or events"
+          },
+          {
+           "code": "ELD-SS.2-3.2.2",
+           "text": "Describe components, order, causes, or cycles"
+          },
+          {
+           "code": "ELD-SS.2-3.2.3",
+           "text": "Generalize possible reasons for a development or event"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "argue-interpretive-interpret-social-studies-argu",
+       "title": "Argue.Interpretive: Interpret social studies arguments by:",
+       "subtopics": [
+        {
+         "id": "argue-interpretive-interpret-social-studies-argu",
+         "title": "Argue.Interpretive: Interpret social studies arguments by:",
+         "outcomes": [
+          {
+           "code": "ELD-SS.2-3.3.1",
+           "text": "Identifying topic and purpose (argue in favor or against a position, present a balanced interpretation, challenge perspective)"
+          },
+          {
+           "code": "ELD-SS.2-3.3.2",
+           "text": "Analyzing relevant information from one or two sources to develop claims in response to compelling questions"
+          },
+          {
+           "code": "ELD-SS.2-3.3.3",
+           "text": "Evaluating source credibility based on distinctions between fact and opinion"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "argue-expressive-construct-social-studies-argume",
+       "title": "Argue.Expressive: Construct social studies arguments that:",
+       "subtopics": [
+        {
+         "id": "argue-expressive-construct-social-studies-argume",
+         "title": "Argue.Expressive: Construct social studies arguments that:",
+         "outcomes": [
+          {
+           "code": "ELD-SS.2-3.4.1",
+           "text": "Introduce topic"
+          },
+          {
+           "code": "ELD-SS.2-3.4.2",
+           "text": "Select relevant information to support claims with evidence from one or more sources"
+          },
+          {
+           "code": "ELD-SS.2-3.4.3",
+           "text": "Show relationships between claim, evidence, and reasoning"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "4-5",
+   "units": [
+    {
+     "id": "social-instructional",
+     "title": "Social/ Instructional",
+     "topics": [
+      {
+       "id": "narrate",
+       "title": "Narrate",
+       "subtopics": [
+        {
+         "id": "narrate",
+         "title": "Narrate",
+         "outcomes": [
+          {
+           "code": "ELD-SI.4-12.1.1",
+           "text": "Share ideas about one’s own and others’ lived experiences and previous learning"
+          },
+          {
+           "code": "ELD-SI.4-12.1.2",
+           "text": "Connect stories with images and representations to add meaning"
+          },
+          {
+           "code": "ELD-SI.4-12.1.3",
+           "text": "Identify and raise questions about what might be unexplained, missing, or left unsaid"
+          },
+          {
+           "code": "ELD-SI.4-12.1.4",
+           "text": "Recount and restate ideas to sustain and move dialogue forward"
+          },
+          {
+           "code": "ELD-SI.4-12.1.5",
+           "text": "Create closure, recap, and offer next steps"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "inform",
+       "title": "Inform",
+       "subtopics": [
+        {
+         "id": "inform",
+         "title": "Inform",
+         "outcomes": [
+          {
+           "code": "ELD-SI.4-12.2.1",
+           "text": "Define and classify facts and interpretations; determine what is known vs. unknown"
+          },
+          {
+           "code": "ELD-SI.4-12.2.2",
+           "text": "Report on explicit and inferred characteristics, patterns, or behavior"
+          },
+          {
+           "code": "ELD-SI.4-12.2.3",
+           "text": "Describe the parts and wholes of a system"
+          },
+          {
+           "code": "ELD-SI.4-12.2.4",
+           "text": "Sort, clarify, and summarize relationships"
+          },
+          {
+           "code": "ELD-SI.4-12.2.5",
+           "text": "Summarize most important aspects of information"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "explain",
+       "title": "Explain",
+       "subtopics": [
+        {
+         "id": "explain",
+         "title": "Explain",
+         "outcomes": [
+          {
+           "code": "ELD-SI.4-12.3.1",
+           "text": "Generate and convey initial thinking"
+          },
+          {
+           "code": "ELD-SI.4-12.3.2",
+           "text": "Follow and describe cycles and sequences of steps or procedures and their causes and effects"
+          },
+          {
+           "code": "ELD-SI.4-12.3.3",
+           "text": "Compare changing variables, factors, and circumstances"
+          },
+          {
+           "code": "ELD-SI.4-12.3.4",
+           "text": "Offer alternatives to extend or deepen awareness of factors that contribute to particular outcomes"
+          },
+          {
+           "code": "ELD-SI.4-12.3.5",
+           "text": "Act on feedback to revise understandings of how or why something is or works in particular ways"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "argue",
+       "title": "Argue",
+       "subtopics": [
+        {
+         "id": "argue",
+         "title": "Argue",
+         "outcomes": [
+          {
+           "code": "ELD-SI.4-12.4.1",
+           "text": "Generate questions about different perspectives"
+          },
+          {
+           "code": "ELD-SI.4-12.4.2",
+           "text": "Support or challenge an opinion, premise, or interpretation"
+          },
+          {
+           "code": "ELD-SI.4-12.4.3",
+           "text": "Clarify and elaborate ideas based on feedback"
+          },
+          {
+           "code": "ELD-SI.4-12.4.4",
+           "text": "Evaluate changes in thinking, identifying trade-offs"
+          },
+          {
+           "code": "ELD-SI.4-12.4.5",
+           "text": "Refine claims and reasoning based on new information or evidence"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "language-arts",
+     "title": "Language Arts",
+     "topics": [
+      {
+       "id": "narrate-interpretive-interpret-language-arts-nar",
+       "title": "Narrate.Interpretive: Interpret language arts narratives (with prompting and support) by:",
+       "subtopics": [
+        {
+         "id": "narrate-interpretive-interpret-language-arts-nar",
+         "title": "Narrate.Interpretive: Interpret language arts narratives (with prompting and support) by:",
+         "outcomes": [
+          {
+           "code": "ELD-LA.4-5.1.1",
+           "text": "Identifying a theme from details"
+          },
+          {
+           "code": "ELD-LA.4-5.1.2",
+           "text": "Analyzing how character attributes and actions develop across event sequences"
+          },
+          {
+           "code": "ELD-LA.4-5.1.3",
+           "text": "Determining the meaning of words and phrases used in texts, including figurative language, such as metaphors and similes"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "narrate-expressive-construct-language-arts-narra",
+       "title": "Narrate.Expressive: Construct language arts narratives (with prompting and support) that:",
+       "subtopics": [
+        {
+         "id": "narrate-expressive-construct-language-arts-narra",
+         "title": "Narrate.Expressive: Construct language arts narratives (with prompting and support) that:",
+         "outcomes": [
+          {
+           "code": "ELD-LA.4-5.2.1",
+           "text": "Orient audience to context"
+          },
+          {
+           "code": "ELD-LA.4-5.2.2",
+           "text": "Develop and describe characters and their relationships"
+          },
+          {
+           "code": "ELD-LA.4-5.2.3",
+           "text": "Develop story with complication and resolution, time and event sequences"
+          },
+          {
+           "code": "ELD-LA.4-5.2.4",
+           "text": "Engage and adjust for audience"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "inform-interpretive-interpret-informational-text",
+       "title": "Inform.Interpretive: Interpret informational texts in language arts (with prompting and support) by:",
+       "subtopics": [
+        {
+         "id": "inform-interpretive-interpret-informational-text",
+         "title": "Inform.Interpretive: Interpret informational texts in language arts (with prompting and support) by:",
+         "outcomes": [
+          {
+           "code": "ELD-LA.4-5.3.1",
+           "text": "Identifying and summarizing main ideas and key details"
+          },
+          {
+           "code": "ELD-LA.4-5.3.2",
+           "text": "Analyzing details and examples for key attributes, qualities, and characteristics"
+          },
+          {
+           "code": "ELD-LA.4-5.3.3",
+           "text": "Evaluating the impact of key word choices in a text"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "inform-expressive-construct-informational-texts-",
+       "title": "Inform.Expressive: Construct informational texts in language arts (with prompting and support) that:",
+       "subtopics": [
+        {
+         "id": "inform-expressive-construct-informational-texts-",
+         "title": "Inform.Expressive: Construct informational texts in language arts (with prompting and support) that:",
+         "outcomes": [
+          {
+           "code": "ELD-LA.4-5.4.1",
+           "text": "Introduce and define topic and/or entity for audience"
+          },
+          {
+           "code": "ELD-LA.4-5.4.2",
+           "text": "Establish objective or neutral stance"
+          },
+          {
+           "code": "ELD-LA.4-5.4.3",
+           "text": "Add precision and details to define, describe, compare, and classify topic and/or entity"
+          },
+          {
+           "code": "ELD-LA.4-5.4.4",
+           "text": "Develop coherence and cohesion throughout text"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "argue-interpretive-interpret-language-arts-argum",
+       "title": "Argue.Interpretive: Interpret language arts arguments by:",
+       "subtopics": [
+        {
+         "id": "argue-interpretive-interpret-language-arts-argum",
+         "title": "Argue.Interpretive: Interpret language arts arguments by:",
+         "outcomes": [
+          {
+           "code": "ELD-LA.4-5.5.1",
+           "text": "Identifying main ideas"
+          },
+          {
+           "code": "ELD-LA.4-5.5.2",
+           "text": "Analyzing points of view about the same event or topic"
+          },
+          {
+           "code": "ELD-LA.4-5.5.3",
+           "text": "Evaluating how details, reasons, and evidence support particular points in a text"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "argue-expressive-construct-language-arts-argumen",
+       "title": "Argue.Expressive: Construct language arts arguments that:",
+       "subtopics": [
+        {
+         "id": "argue-expressive-construct-language-arts-argumen",
+         "title": "Argue.Expressive: Construct language arts arguments that:",
+         "outcomes": [
+          {
+           "code": "ELD-LA.4-5.6.1",
+           "text": "Introduce and develop a topic clearly; state an opinion"
+          },
+          {
+           "code": "ELD-LA.4-5.6.2",
+           "text": "Support opinions with reasons and information"
+          },
+          {
+           "code": "ELD-LA.4-5.6.3",
+           "text": "Use a formal style"
+          },
+          {
+           "code": "ELD-LA.4-5.6.4",
+           "text": "Logically connect opinions to appropriate evidence, facts, and details; offer a concluding statement or section"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "math",
+     "title": "Math",
+     "topics": [
+      {
+       "id": "explain-interpretive-interpret-mathematical-expl",
+       "title": "Explain.Interpretive: Interpret mathematical explanations by:",
+       "subtopics": [
+        {
+         "id": "explain-interpretive-interpret-mathematical-expl",
+         "title": "Explain.Interpretive: Interpret mathematical explanations by:",
+         "outcomes": [
+          {
+           "code": "ELD-MA.4-5.1.1",
+           "text": "Identifying concept or entity"
+          },
+          {
+           "code": "ELD-MA.4-5.1.2",
+           "text": "Analyzing problem-solving steps"
+          },
+          {
+           "code": "ELD-MA.4-5.1.3",
+           "text": "Evaluating a pattern or structure that follows a given rule"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "explain-expressive-construct-mathematical-explan",
+       "title": "Explain.Expressive: Construct mathematical explanations that:",
+       "subtopics": [
+        {
+         "id": "explain-expressive-construct-mathematical-explan",
+         "title": "Explain.Expressive: Construct mathematical explanations that:",
+         "outcomes": [
+          {
+           "code": "ELD-MA.4-5.2.1",
+           "text": "Introduce concept or entity"
+          },
+          {
+           "code": "ELD-MA.4-5.2.2",
+           "text": "Share solution with others"
+          },
+          {
+           "code": "ELD-MA.4-5.2.3",
+           "text": "Describe data and/or steps to solve problem"
+          },
+          {
+           "code": "ELD-MA.4-5.2.4",
+           "text": "State reasoning used to generate solution"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "argue-interpretive-interpret-mathematics-argumen",
+       "title": "Argue.Interpretive: Interpret mathematics arguments by:",
+       "subtopics": [
+        {
+         "id": "argue-interpretive-interpret-mathematics-argumen",
+         "title": "Argue.Interpretive: Interpret mathematics arguments by:",
+         "outcomes": [
+          {
+           "code": "ELD-MA.4-5.3.1",
+           "text": "Comparing conjectures with patterns, and/or rules"
+          },
+          {
+           "code": "ELD-MA.4-5.3.2",
+           "text": "Distinguishing commonalities and differences among ideas in justifications"
+          },
+          {
+           "code": "ELD-MA.4-5.3.3",
+           "text": "Extracting patterns or rules from solution strategies to create generalizations"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "argue-expressive-construct-mathematics-arguments",
+       "title": "Argue.Expressive: Construct mathematics arguments that:",
+       "subtopics": [
+        {
+         "id": "argue-expressive-construct-mathematics-arguments",
+         "title": "Argue.Expressive: Construct mathematics arguments that:",
+         "outcomes": [
+          {
+           "code": "ELD-MA.4-5.4.1",
+           "text": "Create conjecture using definitions, patterns, and rules"
+          },
+          {
+           "code": "ELD-MA.4-5.4.2",
+           "text": "Generalize commonalities and differences across cases"
+          },
+          {
+           "code": "ELD-MA.4-5.4.3",
+           "text": "Justify conclusions with patterns or rules"
+          },
+          {
+           "code": "ELD-MA.4-5.4.4",
+           "text": "Evaluate others’ arguments"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "science",
+     "title": "Science",
+     "topics": [
+      {
+       "id": "explain-interpretive-interpret-scientific-explan",
+       "title": "Explain.Interpretive: Interpret scientific explanations by:",
+       "subtopics": [
+        {
+         "id": "explain-interpretive-interpret-scientific-explan",
+         "title": "Explain.Interpretive: Interpret scientific explanations by:",
+         "outcomes": [
+          {
+           "code": "ELD-SC.4-5.1.1",
+           "text": "Defining investigable questions or design problems based on observations, data, and prior knowledge about a phenomenon"
+          },
+          {
+           "code": "ELD-SC.4-5.1.2",
+           "text": "Obtaining and combining evidence and information to help explain how or why a phenomenon occurs"
+          },
+          {
+           "code": "ELD-SC.4-5.1.3",
+           "text": "Identifying evidence that supports particular points in an explanation"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "explain-expressive-construct-scientific-explanat",
+       "title": "Explain.Expressive: Construct scientific explanations that:",
+       "subtopics": [
+        {
+         "id": "explain-expressive-construct-scientific-explanat",
+         "title": "Explain.Expressive: Construct scientific explanations that:",
+         "outcomes": [
+          {
+           "code": "ELD-SC.4-5.1.1",
+           "text": "Describe observations and/or data about a phenomenon"
+          },
+          {
+           "code": "ELD-SC.4-5.1.2",
+           "text": "Establish neutral or objective stance in communicating results"
+          },
+          {
+           "code": "ELD-SC.4-5.1.3",
+           "text": "Develop reasoning to show relationships between evidence and claims"
+          },
+          {
+           "code": "ELD-SC.4-5.1.4",
+           "text": "Summarize and/or compare multiple solutions to a problem based on how well they meet the criteria and constraints of the design solution"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "argue-interpretive-interpret-scientific-argument",
+       "title": "Argue.Interpretive: Interpret scientific arguments by:",
+       "subtopics": [
+        {
+         "id": "argue-interpretive-interpret-scientific-argument",
+         "title": "Argue.Interpretive: Interpret scientific arguments by:",
+         "outcomes": [
+          {
+           "code": "ELD-SC.4-5.3.1",
+           "text": "Identifying relevant evidence from data, models, and/or information from investigations of phenomena or design solutions"
+          },
+          {
+           "code": "ELD-SC.4-5.3.2",
+           "text": "Comparing reasoning and claims based on evidence"
+          },
+          {
+           "code": "ELD-SC.4-5.3.3",
+           "text": "Distinguishing among facts, reasoned judgment based on research findings, and speculation in an explanation"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "argue-expressive-construct-scientific-arguments-",
+       "title": "Argue.Expressive Construct scientific arguments that:",
+       "subtopics": [
+        {
+         "id": "argue-expressive-construct-scientific-arguments-",
+         "title": "Argue.Expressive Construct scientific arguments that:",
+         "outcomes": [
+          {
+           "code": "ELD-SC.4-5.4.1",
+           "text": "Introduce topic/phenomenon in issues related to the natural and designed world(s)"
+          },
+          {
+           "code": "ELD-SC.4-5.4.2",
+           "text": "Make and define a claim based on evidence, data, and/or model"
+          },
+          {
+           "code": "ELD-SC.4-5.4.3",
+           "text": "Establish a neutral tone or an objective stance"
+          },
+          {
+           "code": "ELD-SC.4-5.4.4",
+           "text": "Signal logical relationships among reasoning, relevant evidence, data, and/or a model when making a claim"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "social-studies",
+     "title": "Social Studies",
+     "topics": [
+      {
+       "id": "explain-interpretive-interpret-social-studies-ex",
+       "title": "Explain.Interpretive Interpret social studies explanations by:",
+       "subtopics": [
+        {
+         "id": "explain-interpretive-interpret-social-studies-ex",
+         "title": "Explain.Interpretive Interpret social studies explanations by:",
+         "outcomes": [
+          {
+           "code": "ELD-SS.4-5.1.1",
+           "text": "Determining different opinions in sources for answering compelling and supporting questions about phenomena or events"
+          },
+          {
+           "code": "ELD-SS.4-5.1.2",
+           "text": "Analyzing sources for a series of contributing factors or causes"
+          },
+          {
+           "code": "ELD-SS.4-5.1.3",
+           "text": "Evaluating disciplinary concepts and ideas that are open to different interpretations"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "explain-expressive-construct-social-studies-expl",
+       "title": "Explain.Expressive: Construct social studies explanations that:",
+       "subtopics": [
+        {
+         "id": "explain-expressive-construct-social-studies-expl",
+         "title": "Explain.Expressive: Construct social studies explanations that:",
+         "outcomes": [
+          {
+           "code": "ELD-SS.4-5.2.1",
+           "text": "Introduce phenomena or events"
+          },
+          {
+           "code": "ELD-SS.4-5.2.2",
+           "text": "Describe components, order, causes and effects, or cycles using relevant examples and details"
+          },
+          {
+           "code": "ELD-SS.4-5.2.3",
+           "text": "Generalize probable causes and effects of developments or events"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "argue-interpretive-interpret-social-studies-argu",
+       "title": "Argue.Interpretive: Interpret social studies arguments by:",
+       "subtopics": [
+        {
+         "id": "argue-interpretive-interpret-social-studies-argu",
+         "title": "Argue.Interpretive: Interpret social studies arguments by:",
+         "outcomes": [
+          {
+           "code": "ELD-SS.4-5.3.1",
+           "text": "Identifying topic and purpose (argue in favor or against a position, present a balanced interpretation, challenge perspective)"
+          },
+          {
+           "code": "ELD-SS.4-5.3.2",
+           "text": "Analyzing relevant information from multiple sources to develop claims in response to compelling questions"
+          },
+          {
+           "code": "ELD-SS.4-5.3.3",
+           "text": "Evaluating point of view and credibility of source, based on distinctions between fact and opinion"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "argue-expressive-construct-social-studies-argume",
+       "title": "Argue.Expressive: Construct social studies arguments that:",
+       "subtopics": [
+        {
+         "id": "argue-expressive-construct-social-studies-argume",
+         "title": "Argue.Expressive: Construct social studies arguments that:",
+         "outcomes": [
+          {
+           "code": "ELD-SS.4-5.4.1",
+           "text": "Introduce topic"
+          },
+          {
+           "code": "ELD-SS.4-5.4.2",
+           "text": "Select relevant information to support claims with evidence from multiple sources"
+          },
+          {
+           "code": "ELD-SS.4-5.4.3",
+           "text": "Establish perspective"
+          },
+          {
+           "code": "ELD-SS.4-5.4.4",
+           "text": "Show relationships between claims with reasons and multiple sources of evidence"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "6-8",
+   "units": [
+    {
+     "id": "social-instructional",
+     "title": "Social/ Instructional",
+     "topics": [
+      {
+       "id": "narrate",
+       "title": "Narrate",
+       "subtopics": [
+        {
+         "id": "narrate",
+         "title": "Narrate",
+         "outcomes": [
+          {
+           "code": "ELD-SI.4-12.1.1",
+           "text": "Share ideas about one’s own and others’ lived experiences and previous learning"
+          },
+          {
+           "code": "ELD-SI.4-12.1.2",
+           "text": "Connect stories with images and representations to add meaning"
+          },
+          {
+           "code": "ELD-SI.4-12.1.3",
+           "text": "Identify and raise questions about what might be unexplained, missing, or left unsaid"
+          },
+          {
+           "code": "ELD-SI.4-12.1.4",
+           "text": "Recount and restate ideas to sustain and move dialogue forward"
+          },
+          {
+           "code": "ELD-SI.4-12.1.5",
+           "text": "Create closure, recap, and offer next steps"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "inform",
+       "title": "Inform",
+       "subtopics": [
+        {
+         "id": "inform",
+         "title": "Inform",
+         "outcomes": [
+          {
+           "code": "ELD-SI.4-12.2.1",
+           "text": "Define and classify facts and interpretations; determine what is known vs. unknown"
+          },
+          {
+           "code": "ELD-SI.4-12.2.2",
+           "text": "Report on explicit and inferred characteristics, patterns, or behavior"
+          },
+          {
+           "code": "ELD-SI.4-12.2.3",
+           "text": "Describe the parts and wholes of a system"
+          },
+          {
+           "code": "ELD-SI.4-12.2.4",
+           "text": "Sort, clarify, and summarize relationships"
+          },
+          {
+           "code": "ELD-SI.4-12.2.5",
+           "text": "Summarize most important aspects of information"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "explain",
+       "title": "Explain",
+       "subtopics": [
+        {
+         "id": "explain",
+         "title": "Explain",
+         "outcomes": [
+          {
+           "code": "ELD-SI.4-12.3.1",
+           "text": "Generate and convey initial thinking"
+          },
+          {
+           "code": "ELD-SI.4-12.3.2",
+           "text": "Follow and describe cycles and sequences of steps or procedures and their causes and effects"
+          },
+          {
+           "code": "ELD-SI.4-12.3.3",
+           "text": "Compare changing variables, factors, and circumstances"
+          },
+          {
+           "code": "ELD-SI.4-12.3.4",
+           "text": "Offer alternatives to extend or deepen awareness of factors that contribute to particular outcomes"
+          },
+          {
+           "code": "ELD-SI.4-12.3.5",
+           "text": "Act on feedback to revise understandings of how or why something is or works in particular ways"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "argue",
+       "title": "Argue",
+       "subtopics": [
+        {
+         "id": "argue",
+         "title": "Argue",
+         "outcomes": [
+          {
+           "code": "ELD-SI.4-12.4.1",
+           "text": "Generate questions about different perspectives"
+          },
+          {
+           "code": "ELD-SI.4-12.4.2",
+           "text": "Support or challenge an opinion, premise, or interpretation"
+          },
+          {
+           "code": "ELD-SI.4-12.4.3",
+           "text": "Clarify and elaborate ideas based on feedback"
+          },
+          {
+           "code": "ELD-SI.4-12.4.4",
+           "text": "Evaluate changes in thinking, identifying trade-offs"
+          },
+          {
+           "code": "ELD-SI.4-12.4.5",
+           "text": "Refine claims and reasoning based on new information or evidence"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "language-arts",
+     "title": "Language Arts",
+     "topics": [
+      {
+       "id": "narrate-interpretive-interpret-language-arts-nar",
+       "title": "Narrate.Interpretive: Interpret language arts narratives (with prompting and support) by:",
+       "subtopics": [
+        {
+         "id": "narrate-interpretive-interpret-language-arts-nar",
+         "title": "Narrate.Interpretive: Interpret language arts narratives (with prompting and support) by:",
+         "outcomes": [
+          {
+           "code": "ELD-LA.6-8.1.1",
+           "text": "Identifying a theme or central idea that develops over the course of a text"
+          },
+          {
+           "code": "ELD-LA.6-8.1.2",
+           "text": "Analyzing how character attributes and actions develop in relation to events or dialogue"
+          },
+          {
+           "code": "ELD-LA.6-8.1.3",
+           "text": "Evaluating impact of specific word choices about meaning and tone"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "narrate-expressive-construct-language-arts-narra",
+       "title": "Narrate.Expressive: Construct language arts narratives (with prompting and support) that:",
+       "subtopics": [
+        {
+         "id": "narrate-expressive-construct-language-arts-narra",
+         "title": "Narrate.Expressive: Construct language arts narratives (with prompting and support) that:",
+         "outcomes": [
+          {
+           "code": "ELD-LA.6-8.2.1",
+           "text": "Orient audience to context and point of view"
+          },
+          {
+           "code": "ELD-LA.6-8.2.2",
+           "text": "Develop and describe characters and their relationships"
+          },
+          {
+           "code": "ELD-LA.6-8.2.3",
+           "text": "Develop story, including themes with complication and resolution, time, and event sequences"
+          },
+          {
+           "code": "ELD-LA.6-8.2.4",
+           "text": "Engage and adjust for audience"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "inform-interpretive-interpret-informational-text",
+       "title": "Inform.Interpretive: Interpret informational texts in language arts (with prompting and support) by:",
+       "subtopics": [
+        {
+         "id": "inform-interpretive-interpret-informational-text",
+         "title": "Inform.Interpretive: Interpret informational texts in language arts (with prompting and support) by:",
+         "outcomes": [
+          {
+           "code": "ELD-LA.6-8.3.1",
+           "text": "Identifying and/or summarizing main ideas and their relationship to supporting ideas"
+          },
+          {
+           "code": "ELD-LA.6-8.3.2",
+           "text": "Analyzing observations and descriptions in textual evidence for key attributes, qualities, characteristics, activities, and behaviors"
+          },
+          {
+           "code": "ELD-LA.6-8.3.3",
+           "text": "Evaluating the impact of author’s key word choices over the course of a text"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "inform-expressive-construct-informational-texts-",
+       "title": "Inform.Expressive: Construct informational texts in language arts (with prompting and support) that:",
+       "subtopics": [
+        {
+         "id": "inform-expressive-construct-informational-texts-",
+         "title": "Inform.Expressive: Construct informational texts in language arts (with prompting and support) that:",
+         "outcomes": [
+          {
+           "code": "ELD-LA.6-8.4.1",
+           "text": "Introduce and define topic and/or entity for audience"
+          },
+          {
+           "code": "ELD-LA.6-8.4.2",
+           "text": "Establish objective or neutral stance"
+          },
+          {
+           "code": "ELD-LA.6-8.4.3",
+           "text": "Add precision, details, and clarity about relevant attributes, qualities, characteristics, activities, and behaviors"
+          },
+          {
+           "code": "ELD-LA.6-8.4.4",
+           "text": "Develop coherence and cohesion throughout text"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "argue-interpretive-interpret-language-arts-argum",
+       "title": "Argue.Interpretive: Interpret language arts arguments by:",
+       "subtopics": [
+        {
+         "id": "argue-interpretive-interpret-language-arts-argum",
+         "title": "Argue.Interpretive: Interpret language arts arguments by:",
+         "outcomes": [
+          {
+           "code": "ELD-LA.6-8.5.1",
+           "text": "Identifying and summarizing central idea distinct from prior knowledge or opinions"
+          },
+          {
+           "code": "ELD-LA.6-8.5.2",
+           "text": "Analyzing how an author acknowledges and responds to conflicting evidence or viewpoints"
+          },
+          {
+           "code": "ELD-LA.6-8.5.3",
+           "text": "Evaluating relevance, sufficiency of evidence, and validity of reasoning that support claim(s)"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "argue-expressive-construct-language-arts-argumen",
+       "title": "Argue.Expressive: Construct language arts arguments that:",
+       "subtopics": [
+        {
+         "id": "argue-expressive-construct-language-arts-argumen",
+         "title": "Argue.Expressive: Construct language arts arguments that:",
+         "outcomes": [
+          {
+           "code": "ELD-LA.6-8.6.1",
+           "text": "Introduce and develop claim(s) and acknowledge counterclaim(s)"
+          },
+          {
+           "code": "ELD-LA.6-8.6.2",
+           "text": "Support claims with reasons and evidence that are clear, relevant, and credible"
+          },
+          {
+           "code": "ELD-LA.6-8.6.3",
+           "text": "Establish and maintain formal style"
+          },
+          {
+           "code": "ELD-LA.6-8.6.4",
+           "text": "Logically organize claim(s) with clear reasons and relevant evidence; offer a conclusion"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "math",
+     "title": "Math",
+     "topics": [
+      {
+       "id": "explain-interpretive-interpret-mathematical-expl",
+       "title": "Explain.Interpretive: Interpret mathematical explanations by:",
+       "subtopics": [
+        {
+         "id": "explain-interpretive-interpret-mathematical-expl",
+         "title": "Explain.Interpretive: Interpret mathematical explanations by:",
+         "outcomes": [
+          {
+           "code": "ELD-MA.6-8.1.1",
+           "text": "Identifying concept or entity"
+          },
+          {
+           "code": "ELD-MA.6-8.1.2",
+           "text": "Analyzing possible ways to represent and solve a problem"
+          },
+          {
+           "code": "ELD-MA.6-8.1.3",
+           "text": "Evaluating model and rationale for underlying relationships in selected problem-solving approach"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "explain-expressive-construct-mathematical-explan",
+       "title": "Explain.Expressive: Construct mathematical explanations that:",
+       "subtopics": [
+        {
+         "id": "explain-expressive-construct-mathematical-explan",
+         "title": "Explain.Expressive: Construct mathematical explanations that:",
+         "outcomes": [
+          {
+           "code": "ELD-MA.6-8.2.1",
+           "text": "Introduce concept or entity"
+          },
+          {
+           "code": "ELD-MA.6-8.2.2",
+           "text": "Share solution with others"
+          },
+          {
+           "code": "ELD-MA.6-8.2.3",
+           "text": "Describe data and/or problem-solving strategy"
+          },
+          {
+           "code": "ELD-MA.6-8.2.4",
+           "text": "State reasoning used to generate solution"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "argue-interpretive-interpret-mathematics-argumen",
+       "title": "Argue.Interpretive: Interpret mathematics arguments by:",
+       "subtopics": [
+        {
+         "id": "argue-interpretive-interpret-mathematics-argumen",
+         "title": "Argue.Interpretive: Interpret mathematics arguments by:",
+         "outcomes": [
+          {
+           "code": "ELD-MA.6-8.3.1",
+           "text": "Comparing conjectures with previously established results"
+          },
+          {
+           "code": "ELD-MA.6-8.3.2",
+           "text": "Distinguishing commonalities among strategies used"
+          },
+          {
+           "code": "ELD-MA.6-8.3.3",
+           "text": "Evaluating relationships between evidence and mathematical facts to create generalizations"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "argue-expressive-construct-mathematics-arguments",
+       "title": "Argue.Expressive: Construct mathematics arguments that:",
+       "subtopics": [
+        {
+         "id": "argue-expressive-construct-mathematics-arguments",
+         "title": "Argue.Expressive: Construct mathematics arguments that:",
+         "outcomes": [
+          {
+           "code": "ELD-MA.6-8.4.1",
+           "text": "Create conjecture, using definitions and previously established results"
+          },
+          {
+           "code": "ELD-MA.6-8.4.2",
+           "text": "Generalize logic across cases"
+          },
+          {
+           "code": "ELD-MA.6-8.4.3",
+           "text": "Justify conclusions with evidence and mathematical facts"
+          },
+          {
+           "code": "ELD-MA.6-8.4.4",
+           "text": "Evaluate and critique others’ arguments"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "science",
+     "title": "Science",
+     "topics": [
+      {
+       "id": "explain-interpretive-interpret-scientific-explan",
+       "title": "Explain.Interpretive: Interpret scientific explanations by:",
+       "subtopics": [
+        {
+         "id": "explain-interpretive-interpret-scientific-explan",
+         "title": "Explain.Interpretive: Interpret scientific explanations by:",
+         "outcomes": [
+          {
+           "code": "ELD-SC.6-8.1.1",
+           "text": "Defining investigable questions or design problems based on observations, information, and/or data about a phenomenon"
+          },
+          {
+           "code": "ELD-SC.6-8.1.2",
+           "text": "Determining central ideas in complex evidence and information to help explain how or why a phenomenon occurs"
+          },
+          {
+           "code": "ELD-SC.6-8.1.3",
+           "text": "Evaluating scientific reasoning that shows why data or evidence adequately supports conclusions"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "explain-expressive-construct-scientific-explanat",
+       "title": "Explain.Expressive: Construct scientific explanations that:",
+       "subtopics": [
+        {
+         "id": "explain-expressive-construct-scientific-explanat",
+         "title": "Explain.Expressive: Construct scientific explanations that:",
+         "outcomes": [
+          {
+           "code": "ELD-SC.6-8.1.1",
+           "text": "Describe valid and reliable evidence from sources about a phenomenon"
+          },
+          {
+           "code": "ELD-SC.6-8.1.2",
+           "text": "Establish neutral or objective stance in how results are communicated"
+          },
+          {
+           "code": "ELD-SC.6-8.1.3",
+           "text": "Develop reasoning to show relationships among independent and dependent variables in models and simple systems"
+          },
+          {
+           "code": "ELD-SC.6-8.1.4",
+           "text": "Summarize patterns in evidence, making trade-offs, revising, and retesting"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "argue-interpretive-interpret-scientific-argument",
+       "title": "Argue.Interpretive: Interpret scientific arguments by:",
+       "subtopics": [
+        {
+         "id": "argue-interpretive-interpret-scientific-argument",
+         "title": "Argue.Interpretive: Interpret scientific arguments by:",
+         "outcomes": [
+          {
+           "code": "ELD-SC.6-8.3.1",
+           "text": "Identifying convincing evidence from data, models, and/or information from investigations of phenomena or design solutions"
+          },
+          {
+           "code": "ELD-SC.6-8.3.2",
+           "text": "Comparing reasoning and claims based on evidence from two arguments on the same topic"
+          },
+          {
+           "code": "ELD-SC.6-8.3.3",
+           "text": "Evaluating whether they emphasize similar or different evidence and/or interpretations of facts"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "argue-expressive-construct-scientific-arguments-",
+       "title": "Argue.Expressive Construct scientific arguments that:",
+       "subtopics": [
+        {
+         "id": "argue-expressive-construct-scientific-arguments-",
+         "title": "Argue.Expressive Construct scientific arguments that:",
+         "outcomes": [
+          {
+           "code": "ELD-SC.6-8.4.1",
+           "text": "Introduce and contextualize topic/phenomenon in issues related to the natural and designed world(s)"
+          },
+          {
+           "code": "ELD-SC.6-8.4.2",
+           "text": "Support or refute a claim based on data and evidence"
+          },
+          {
+           "code": "ELD-SC.6-8.4.3",
+           "text": "Establish and maintain a neutral or objective stance"
+          },
+          {
+           "code": "ELD-SC.6-8.4.4",
+           "text": "Signal logical relationships among reasoning, evidence, data, and/or a model when making or defending a claim or counterclaim"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "social-studies",
+     "title": "Social Studies",
+     "topics": [
+      {
+       "id": "explain-interpretive-interpret-social-studies-ex",
+       "title": "Explain.Interpretive Interpret social studies explanations by:",
+       "subtopics": [
+        {
+         "id": "explain-interpretive-interpret-social-studies-ex",
+         "title": "Explain.Interpretive Interpret social studies explanations by:",
+         "outcomes": [
+          {
+           "code": "ELD-SS.6-8.1.1",
+           "text": "Determining multiple points of view in sources for answering compelling and supporting questions about phenomena or events"
+          },
+          {
+           "code": "ELD-SS.6-8.1.2",
+           "text": "Analyzing sources for logical relationships among contributing factors or causes"
+          },
+          {
+           "code": "ELD-SS.6-8.1.3",
+           "text": "Evaluating experts’ points of agreement, along with strengths and weakness of explanations"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "explain-expressive-construct-social-studies-expl",
+       "title": "Explain.Expressive: Construct social studies explanations that:",
+       "subtopics": [
+        {
+         "id": "explain-expressive-construct-social-studies-expl",
+         "title": "Explain.Expressive: Construct social studies explanations that:",
+         "outcomes": [
+          {
+           "code": "ELD-SS.6-8.2.1",
+           "text": "Introduce and contextualize phenomena or events"
+          },
+          {
+           "code": "ELD-SS.6-8.2.2",
+           "text": "Establish perspective for communicating outcomes, consequences, or documentation"
+          },
+          {
+           "code": "ELD-SS.6-8.2.3",
+           "text": "Develop reasoning, sequences with linear and nonlinear relationships, evidence, and details, acknowledging strengths and weaknesses"
+          },
+          {
+           "code": "ELD-SS.6-8.2.4",
+           "text": "Generalize multiple causes and effects of developments or events"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "argue-interpretive-interpret-social-studies-argu",
+       "title": "Argue.Interpretive: Interpret social studies arguments by:",
+       "subtopics": [
+        {
+         "id": "argue-interpretive-interpret-social-studies-argu",
+         "title": "Argue.Interpretive: Interpret social studies arguments by:",
+         "outcomes": [
+          {
+           "code": "ELD-SS.6-8.3.1",
+           "text": "Identifying topic and purpose (argue in favor or against a position, present a balanced interpretation, challenge perspective)"
+          },
+          {
+           "code": "ELD-SS.6-8.3.2",
+           "text": "Analyzing relevant information from multiple sources to support claims"
+          },
+          {
+           "code": "ELD-SS.6-8.3.3",
+           "text": "Evaluating point of view and credibility of source based on relevance and intended use"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "argue-expressive-construct-social-studies-argume",
+       "title": "Argue.Expressive: Construct social studies arguments that:",
+       "subtopics": [
+        {
+         "id": "argue-expressive-construct-social-studies-argume",
+         "title": "Argue.Expressive: Construct social studies arguments that:",
+         "outcomes": [
+          {
+           "code": "ELD-SS.6-8.4.1",
+           "text": "Introduce and contextualize topic"
+          },
+          {
+           "code": "ELD-SS.6-8.4.2",
+           "text": "Select relevant information to support claims with evidence gathered from multiple sources"
+          },
+          {
+           "code": "ELD-SS.6-8.4.3",
+           "text": "Establish perspective"
+          },
+          {
+           "code": "ELD-SS.6-8.4.4",
+           "text": "Show relationships between claims and counterclaims, differences in perspectives, and evidence and reasoning"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "9-12",
+   "units": [
+    {
+     "id": "social-instructional",
+     "title": "Social/ Instructional",
+     "topics": [
+      {
+       "id": "narrate",
+       "title": "Narrate",
+       "subtopics": [
+        {
+         "id": "narrate",
+         "title": "Narrate",
+         "outcomes": [
+          {
+           "code": "ELD-SI.4-12.1.1",
+           "text": "Share ideas about one’s own and others’ lived experiences and previous learning"
+          },
+          {
+           "code": "ELD-SI.4-12.1.2",
+           "text": "Connect stories with images and representations to add meaning"
+          },
+          {
+           "code": "ELD-SI.4-12.1.3",
+           "text": "Identify and raise questions about what might be unexplained, missing, or left unsaid"
+          },
+          {
+           "code": "ELD-SI.4-12.1.4",
+           "text": "Recount and restate ideas to sustain and move dialogue forward"
+          },
+          {
+           "code": "ELD-SI.4-12.1.5",
+           "text": "Create closure, recap, and offer next steps"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "inform",
+       "title": "Inform",
+       "subtopics": [
+        {
+         "id": "inform",
+         "title": "Inform",
+         "outcomes": [
+          {
+           "code": "ELD-SI.4-12.2.1",
+           "text": "Define and classify facts and interpretations; determine what is known vs. unknown"
+          },
+          {
+           "code": "ELD-SI.4-12.2.2",
+           "text": "Report on explicit and inferred characteristics, patterns, or behavior"
+          },
+          {
+           "code": "ELD-SI.4-12.2.3",
+           "text": "Describe the parts and wholes of a system"
+          },
+          {
+           "code": "ELD-SI.4-12.2.4",
+           "text": "Sort, clarify, and summarize relationships"
+          },
+          {
+           "code": "ELD-SI.4-12.2.5",
+           "text": "Summarize most important aspects of information"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "explain",
+       "title": "Explain",
+       "subtopics": [
+        {
+         "id": "explain",
+         "title": "Explain",
+         "outcomes": [
+          {
+           "code": "ELD-SI.4-12.3.1",
+           "text": "Generate and convey initial thinking"
+          },
+          {
+           "code": "ELD-SI.4-12.3.2",
+           "text": "Follow and describe cycles and sequences of steps or procedures and their causes and effects"
+          },
+          {
+           "code": "ELD-SI.4-12.3.3",
+           "text": "Compare changing variables, factors, and circumstances"
+          },
+          {
+           "code": "ELD-SI.4-12.3.4",
+           "text": "Offer alternatives to extend or deepen awareness of factors that contribute to particular outcomes"
+          },
+          {
+           "code": "ELD-SI.4-12.3.5",
+           "text": "Act on feedback to revise understandings of how or why something is or works in particular ways"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "argue",
+       "title": "Argue",
+       "subtopics": [
+        {
+         "id": "argue",
+         "title": "Argue",
+         "outcomes": [
+          {
+           "code": "ELD-SI.4-12.4.1",
+           "text": "Generate questions about different perspectives"
+          },
+          {
+           "code": "ELD-SI.4-12.4.2",
+           "text": "Support or challenge an opinion, premise, or interpretation"
+          },
+          {
+           "code": "ELD-SI.4-12.4.3",
+           "text": "Clarify and elaborate ideas based on feedback"
+          },
+          {
+           "code": "ELD-SI.4-12.4.4",
+           "text": "Evaluate changes in thinking, identifying trade-offs"
+          },
+          {
+           "code": "ELD-SI.4-12.4.5",
+           "text": "Refine claims and reasoning based on new information or evidence"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "language-arts",
+     "title": "Language Arts",
+     "topics": [
+      {
+       "id": "narrate-interpretive-interpret-language-arts-nar",
+       "title": "Narrate.Interpretive: Interpret language arts narratives (with prompting and support) by:",
+       "subtopics": [
+        {
+         "id": "narrate-interpretive-interpret-language-arts-nar",
+         "title": "Narrate.Interpretive: Interpret language arts narratives (with prompting and support) by:",
+         "outcomes": [
+          {
+           "code": "ELD-LA.9-12.1.1",
+           "text": "Identifying themes or central ideas that develop over the course of a text"
+          },
+          {
+           "code": "ELD-LA.9-12.1.2",
+           "text": "Analyzing how author choices about character attributes and actions relate to story elements (setting, event sequences, and context)"
+          },
+          {
+           "code": "ELD-LA.9-12.1.3",
+           "text": "Evaluating the impact of specific word choices on meaning, tone, and explicit vs. implicit points of view"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "narrate-expressive-construct-language-arts-narra",
+       "title": "Narrate.Expressive: Construct language arts narratives (with prompting and support) that:",
+       "subtopics": [
+        {
+         "id": "narrate-expressive-construct-language-arts-narra",
+         "title": "Narrate.Expressive: Construct language arts narratives (with prompting and support) that:",
+         "outcomes": [
+          {
+           "code": "ELD-LA.9-12.2.1",
+           "text": "Orient audience to context and one or multiple point(s) of view"
+          },
+          {
+           "code": "ELD-LA.9-12.2.2",
+           "text": "Develop and describe characters and their relationships over a progression of experiences or events"
+          },
+          {
+           "code": "ELD-LA.9-12.2.3",
+           "text": "Develop story, advancing the plot and themes with complications and resolutions, time and event sequences"
+          },
+          {
+           "code": "ELD-LA.9-12.2.4",
+           "text": "Engage and adjust for audience"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "inform-interpretive-interpret-informational-text",
+       "title": "Inform.Interpretive: Interpret informational texts in language arts (with prompting and support) by:",
+       "subtopics": [
+        {
+         "id": "inform-interpretive-interpret-informational-text",
+         "title": "Inform.Interpretive: Interpret informational texts in language arts (with prompting and support) by:",
+         "outcomes": [
+          {
+           "code": "ELD-LA.9-12.3.1",
+           "text": "Identifying and/or summarizing central ideas"
+          },
+          {
+           "code": "ELD-LA.9-12.3.2",
+           "text": "Analyzing descriptions and inferences in textual evidence for key attributes, qualities, characteristics, activities, and conceptual relationships"
+          },
+          {
+           "code": "ELD-LA.9-12.3.3",
+           "text": "Evaluating cumulative impact and refinement of author’s key word choices over the course of text"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "inform-expressive-construct-informational-texts-",
+       "title": "Inform.Expressive: Construct informational texts in language arts (with prompting and support) that:",
+       "subtopics": [
+        {
+         "id": "inform-expressive-construct-informational-texts-",
+         "title": "Inform.Expressive: Construct informational texts in language arts (with prompting and support) that:",
+         "outcomes": [
+          {
+           "code": "ELD-LA.9-12.4.1",
+           "text": "Introduce and define topic and/or entity for audience"
+          },
+          {
+           "code": "ELD-LA.9-12.4.2",
+           "text": "Establish an objective or neutral stance"
+          },
+          {
+           "code": "ELD-LA.9-12.4.3",
+           "text": "Add precision, details, and clarity about complex attributes, qualities, characteristics, activities, and conceptual relationships"
+          },
+          {
+           "code": "ELD-LA.9-12.4.4",
+           "text": "Develop coherence and cohesion throughout text"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "argue-interpretive-interpret-language-arts-argum",
+       "title": "Argue.Interpretive: Interpret language arts arguments by:",
+       "subtopics": [
+        {
+         "id": "argue-interpretive-interpret-language-arts-argum",
+         "title": "Argue.Interpretive: Interpret language arts arguments by:",
+         "outcomes": [
+          {
+           "code": "ELD-LA.9-12.5.1",
+           "text": "Identifying and summarizing central ideas of primary or secondary sources"
+          },
+          {
+           "code": "ELD-LA.9-12.5.2",
+           "text": "Analyzing use of rhetoric and details to advance point of view or purpose"
+          },
+          {
+           "code": "ELD-LA.9-12.5.3",
+           "text": "Evaluating and corroborating relevance and sufficiency of evidence as well as validity of reasoning to support claims"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "argue-expressive-construct-language-arts-argumen",
+       "title": "Argue.Expressive: Construct language arts arguments that:",
+       "subtopics": [
+        {
+         "id": "argue-expressive-construct-language-arts-argumen",
+         "title": "Argue.Expressive: Construct language arts arguments that:",
+         "outcomes": [
+          {
+           "code": "ELD-LA.9-12.6.1",
+           "text": "Introduce and develop precise claims and address counterclaims"
+          },
+          {
+           "code": "ELD-LA.9-12.6.2",
+           "text": "Support claims and refute counterclaims with valid reasoning and relevant and sufficient evidence"
+          },
+          {
+           "code": "ELD-LA.9-12.6.3",
+           "text": "Establish and maintain a formal style and objective tone"
+          },
+          {
+           "code": "ELD-LA.9-12.6.4",
+           "text": "Logically organize claims, counterclaims, reasons, and evidence; offer a conclusion with recommendations"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "math",
+     "title": "Math",
+     "topics": [
+      {
+       "id": "explain-interpretive-interpret-mathematical-expl",
+       "title": "Explain.Interpretive: Interpret mathematical explanations by:",
+       "subtopics": [
+        {
+         "id": "explain-interpretive-interpret-mathematical-expl",
+         "title": "Explain.Interpretive: Interpret mathematical explanations by:",
+         "outcomes": [
+          {
+           "code": "ELD-MA.9-12.1.1",
+           "text": "Identifying concept or entity"
+          },
+          {
+           "code": "ELD-MA.9-12.1.2",
+           "text": "Analyzing data and owning problem-solving approaches"
+          },
+          {
+           "code": "ELD-MA.9-12.1.3",
+           "text": "Evaluating rationales, models, and/or interpretations based on evidence and mathematical principles"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "explain-expressive-construct-mathematical-explan",
+       "title": "Explain.Expressive: Construct mathematical explanations that:",
+       "subtopics": [
+        {
+         "id": "explain-expressive-construct-mathematical-explan",
+         "title": "Explain.Expressive: Construct mathematical explanations that:",
+         "outcomes": [
+          {
+           "code": "ELD-MA.9-12.2.1",
+           "text": "Introduce mathematical concept or entity"
+          },
+          {
+           "code": "ELD-MA.9-12.2.2",
+           "text": "Share solutions with others"
+          },
+          {
+           "code": "ELD-MA.9-12.2.3",
+           "text": "Describe data and/or approach used to solve a problem"
+          },
+          {
+           "code": "ELD-MA.9-12.2.4",
+           "text": "State reasoning used to generate own or alternate solutions"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "argue-interpretive-interpret-mathematics-argumen",
+       "title": "Argue.Interpretive: Interpret mathematics arguments by:",
+       "subtopics": [
+        {
+         "id": "argue-interpretive-interpret-mathematics-argumen",
+         "title": "Argue.Interpretive: Interpret mathematics arguments by:",
+         "outcomes": [
+          {
+           "code": "ELD-MA.9-12.3.1",
+           "text": "Comparing conjectures with previously established results and stated assumptions"
+          },
+          {
+           "code": "ELD-MA.9-12.3.2",
+           "text": "Distinguishing correct from flawed logic"
+          },
+          {
+           "code": "ELD-MA.9-12.3.3",
+           "text": "Evaluating relationships among evidence and mathematical principles to create generalizations"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "argue-expressive-construct-mathematics-arguments",
+       "title": "Argue.Expressive: Construct mathematics arguments that:",
+       "subtopics": [
+        {
+         "id": "argue-expressive-construct-mathematics-arguments",
+         "title": "Argue.Expressive: Construct mathematics arguments that:",
+         "outcomes": [
+          {
+           "code": "ELD-MA.9-12.4.1",
+           "text": "Create precise conjecture, using definitions, previously established results, and stated assumptions"
+          },
+          {
+           "code": "ELD-MA.9-12.4.2",
+           "text": "Generalize logical relationships across cases"
+          },
+          {
+           "code": "ELD-MA.9-12.4.3",
+           "text": "Justify (and refute) conclusions with evidence and mathematical principles"
+          },
+          {
+           "code": "ELD-MA.9-12.4.4",
+           "text": "Evaluate and extend others’ arguments"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "science",
+     "title": "Science",
+     "topics": [
+      {
+       "id": "explain-interpretive-interpret-scientific-explan",
+       "title": "Explain.Interpretive: Interpret scientific explanations by:",
+       "subtopics": [
+        {
+         "id": "explain-interpretive-interpret-scientific-explan",
+         "title": "Explain.Interpretive: Interpret scientific explanations by:",
+         "outcomes": [
+          {
+           "code": "ELD-SC.9-12.1.1",
+           "text": "Defining investigable questions or problems based on observations, information, and/or data about a phenomenon"
+          },
+          {
+           "code": "ELD-SC.9-12.1.2",
+           "text": "Paraphrasing central ideas in complex evidence, concepts, processes, and information to help explain how or why a phenomenon occurs"
+          },
+          {
+           "code": "ELD-SC.9-12.1.3",
+           "text": "Evaluating the extent to which reasoning, theory and/or models link evidence to claims and support conclusions"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "explain-expressive-construct-scientific-explanat",
+       "title": "Explain.Expressive: Construct scientific explanations that:",
+       "subtopics": [
+        {
+         "id": "explain-expressive-construct-scientific-explanat",
+         "title": "Explain.Expressive: Construct scientific explanations that:",
+         "outcomes": [
+          {
+           "code": "ELD-SC.9-12.1.1",
+           "text": "Describe reliable and valid evidence from multiple sources about a phenomenon"
+          },
+          {
+           "code": "ELD-SC.9-12.1.2",
+           "text": "Establish neutral or objective stance in how results are communicated"
+          },
+          {
+           "code": "ELD-SC.9-12.1.3",
+           "text": "Develop reasoning to illustrate and/or predict the relationships between variables in a system or between components of a system"
+          },
+          {
+           "code": "ELD-SC.9-12.1.4",
+           "text": "Summarize and refine solutions referencing scientific knowledge, evidence, criteria, and/or trade-offs"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "argue-interpretive-interpret-scientific-argument",
+       "title": "Argue.Interpretive: Interpret scientific arguments by:",
+       "subtopics": [
+        {
+         "id": "argue-interpretive-interpret-scientific-argument",
+         "title": "Argue.Interpretive: Interpret scientific arguments by:",
+         "outcomes": [
+          {
+           "code": "ELD-SC.9-12.3.1",
+           "text": "Identifying appropriate and sufficient evidence from data, models, and/or information from investigations of a phenomenon or design solutions"
+          },
+          {
+           "code": "ELD-SC.9-12.3.2",
+           "text": "Comparing reasoning and claims based on evidence from competing arguments or design solutions"
+          },
+          {
+           "code": "ELD-SC.9-12.3.3",
+           "text": "Evaluating currently accepted explanations, new evidence, limitations (trade-offs), constraints, and ethical issues"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "argue-expressive-construct-scientific-arguments-",
+       "title": "Argue.Expressive Construct scientific arguments that:",
+       "subtopics": [
+        {
+         "id": "argue-expressive-construct-scientific-arguments-",
+         "title": "Argue.Expressive Construct scientific arguments that:",
+         "outcomes": [
+          {
+           "code": "ELD-SC.9-12.4.1",
+           "text": "Introduce and contextualize topic/phenomenon in current scientific or historical episodes in science"
+          },
+          {
+           "code": "ELD-SC.9-12.4.2",
+           "text": "Defend or refute a claim based on data and evidence"
+          },
+          {
+           "code": "ELD-SC.9-12.4.3",
+           "text": "Establish and maintain an appropriate tone and stance (neutral/objective or biased/subjective)"
+          },
+          {
+           "code": "ELD-SC.9-12.4.4",
+           "text": "Signal logical relationships among reasoning, evidence, data, and/or models when making and defending a claim, counterclaim, and/or rebuttal"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "social-studies",
+     "title": "Social Studies",
+     "topics": [
+      {
+       "id": "explain-interpretive-interpret-social-studies-ex",
+       "title": "Explain.Interpretive Interpret social studies explanations by:",
+       "subtopics": [
+        {
+         "id": "explain-interpretive-interpret-social-studies-ex",
+         "title": "Explain.Interpretive Interpret social studies explanations by:",
+         "outcomes": [
+          {
+           "code": "ELD-SS.9-12.1.1",
+           "text": "Determining multiple types of sources, points of view in sources, and potential uses of sources for answering compelling and supporting questions about phenomena or events"
+          },
+          {
+           "code": "ELD-SS.9-12.1.2",
+           "text": "Analyzing sources for logical relationships among contributing factors, causes, or related concepts"
+          },
+          {
+           "code": "ELD-SS.9-12.1.3",
+           "text": "Evaluating experts’ points of agreement and disagreement based on their consistency with explanation given its purpose"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "explain-expressive-construct-social-studies-expl",
+       "title": "Explain.Expressive: Construct social studies explanations that:",
+       "subtopics": [
+        {
+         "id": "explain-expressive-construct-social-studies-expl",
+         "title": "Explain.Expressive: Construct social studies explanations that:",
+         "outcomes": [
+          {
+           "code": "ELD-SS.9-12.2.1",
+           "text": "Introduce and contextualize multiple phenomena or events"
+          },
+          {
+           "code": "ELD-SS.9-12.2.2",
+           "text": "Establish perspective for communicating intended and unintended outcomes, consequences, or documentation"
+          },
+          {
+           "code": "ELD-SS.9-12.2.3",
+           "text": "Develop sound reasoning, sequences with linear and nonlinear relationships, evidence, and details with significant and pertinent information, acknowledging strengths and weaknesses"
+          },
+          {
+           "code": "ELD-SS.9-12.2.4",
+           "text": "Generalize experts’ points of agreement and disagreement about multiple, complex causes and effects of developments or events"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "argue-interpretive-interpret-social-studies-argu",
+       "title": "Argue.Interpretive: Interpret social studies arguments by:",
+       "subtopics": [
+        {
+         "id": "argue-interpretive-interpret-social-studies-argu",
+         "title": "Argue.Interpretive: Interpret social studies arguments by:",
+         "outcomes": [
+          {
+           "code": "ELD-SS.9-12.3.1",
+           "text": "Identifying topic and purpose (argue in favor of or against a position, present a balanced interpretation, challenge perspective)"
+          },
+          {
+           "code": "ELD-SS.9-12.3.2",
+           "text": "Analyzing relevant information to support and/or revise claims with reliable and valid evidence from multiple sources"
+          },
+          {
+           "code": "ELD-SS.9-12.3.3",
+           "text": "Evaluating credibility, accuracy, and relevancy of source based on expert perspectives"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "argue-expressive-construct-social-studies-argume",
+       "title": "Argue.Expressive: Construct social studies arguments that:",
+       "subtopics": [
+        {
+         "id": "argue-expressive-construct-social-studies-argume",
+         "title": "Argue.Expressive: Construct social studies arguments that:",
+         "outcomes": [
+          {
+           "code": "ELD-SS.9-12.4.1",
+           "text": "Introduce and contextualize topic"
+          },
+          {
+           "code": "ELD-SS.9-12.4.2",
+           "text": "Select relevant information to support precise and knowledgeable claims with evidence from multiple sources"
+          },
+          {
+           "code": "ELD-SS.9-12.4.3",
+           "text": "Establish perspective"
+          },
+          {
+           "code": "ELD-SS.9-12.4.4",
+           "text": "Show relationships between claims and counterclaims, differences in perspectives, evidence, and reasoning"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "LifeLongLearning",
+   "units": [
+    {
+     "id": "an-ell-can-construct-meaning-from-oral-presentat",
+     "title": "An ELL can… construct meaning from oral presentations and literary and informational text through level appropriate listening, reading, and viewing",
+     "topics": [
+      {
+       "id": "an-ell-can-construct-meaning-from-oral-presentat",
+       "title": "An ELL can… construct meaning from oral presentations and literary and informational text through level appropriate listening, reading, and viewing",
+       "subtopics": [
+        {
+         "id": "an-ell-can-construct-meaning-from-oral-presentat",
+         "title": "An ELL can… construct meaning from oral presentations and literary and informational text through level appropriate listening, reading, and viewing",
+         "outcomes": [
+          {
+           "code": "ELP S1/L4",
+           "text": "By the end of English language proficiency level 4, an ELL can… use an increasing range of strategies to: • determine a central idea or theme in oral presentations and spoken and written texts • analyze the development of the themes/ideas • cite specific details and evidence from texts to support the analysis • summarize a text."
+          },
+          {
+           "code": "ELP S1/L3",
+           "text": "By the end of English language proficiency level 3, an ELL can… use a developing set of strategies to: • determine a central idea or theme in oral presentations and spoken and written texts • retell key details • answer questions about key details • explain how the theme is developed by specific details in texts • summarize part of a text."
+          },
+          {
+           "code": "ELP S1/L2",
+           "text": "By the end of English language proficiency level 2, an ELL can… use an emerging set of strategies to: • identify the main topic in oral presentations and simple spoken and written texts • retell a few key details."
+          },
+          {
+           "code": "ELP S1/L1",
+           "text": "By the end of English language proficiency level 1, an ELL can… use a very limited set of strategies to: • identify a few key words and phrases in oral communications and simple spoken and written texts."
+          },
+          {
+           "code": "ELP S1/L5",
+           "text": "By the end of English language proficiency level 5, an ELL can… use a wide range of strategies to: • determine central ideas or themes in oral presentations and spoken and written texts • analyze the development of the themes/ideas • cite specific details and evidence from texts to support the analysis • summarize a text."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "an-ell-can-participate-in-level-appropriate-oral",
+     "title": "An ELL can… participate in level-appropriate oral and written exchanges of information, ideas, and analyses, in various social and academic contexts, responding to peer, audience, or reader comments and questions",
+     "topics": [
+      {
+       "id": "an-ell-can-participate-in-level-appropriate-oral",
+       "title": "An ELL can… participate in level-appropriate oral and written exchanges of information, ideas, and analyses, in various social and academic contexts, responding to peer, audience, or reader comments and questions",
+       "subtopics": [
+        {
+         "id": "an-ell-can-participate-in-level-appropriate-oral",
+         "title": "An ELL can… participate in level-appropriate oral and written exchanges of information, ideas, and analyses, in various social and academic contexts, responding to peer, audience, or reader comments and questions",
+         "outcomes": [
+          {
+           "code": "ELP S2/L1",
+           "text": "By the end of English language proficiency level 1, an ELL can… • actively listen to others • participate in short conversations and written exchanges about familiar topics and in familiar contexts • present simple information • respond to simple yes/no questions and some whquestions."
+          },
+          {
+           "code": "ELP S2/L2",
+           "text": "By the end of English language proficiency level 2, an ELL can… • participate in short conversations and written exchanges about familiar topics and texts • present information and ideas • appropriately take turns in interactions with others • respond to simple questions and wh-questions."
+          },
+          {
+           "code": "ELP S2/L3",
+           "text": "By the end of English language proficiency level 3, an ELL can… • participate in conversations, discussions, and written exchanges about familiar topics, texts, and issues • build on the ideas of others • express his or her own ideas • ask and answer relevant questions • add relevant information and evidence • restate some of the key ideas expressed • follow rules for discussion • ask questions to gain information or clarify understanding."
+          },
+          {
+           "code": "ELP S2/L4",
+           "text": "By the end of English language proficiency level 4, an ELL can… • participate in conversations, discussions, and written exchanges about a range of topics, texts, and issues • build on the ideas of others • express his or her own ideas • clearly support points with specific and relevant evidence • ask and answer questions to clarify ideas and conclusions • summarize the key points expressed."
+          },
+          {
+           "code": "ELP S2/L5",
+           "text": "By the end of English language proficiency level 5, an ELL can… • participate in conversations, extended discussions, and written exchanges about a range of substantive topics, texts, and issues • build on the ideas of others • express his or her own ideas clearly and persuasively • refer to specific and relevant evidence from texts or research to support his or her ideas • ask and answer questions that probe reasoning and claims • summarize the key points and evidence discussed."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "an-ell-can-speak-and-write-about-level-appropria",
+     "title": "An ELL can… speak and write about level-appropriate complex literary and informational texts and topics",
+     "topics": [
+      {
+       "id": "an-ell-can-speak-and-write-about-level-appropria",
+       "title": "An ELL can… speak and write about level-appropriate complex literary and informational texts and topics",
+       "subtopics": [
+        {
+         "id": "an-ell-can-speak-and-write-about-level-appropria",
+         "title": "An ELL can… speak and write about level-appropriate complex literary and informational texts and topics",
+         "outcomes": [
+          {
+           "code": "3LP S3/L1",
+           "text": "By the end of English language proficiency level 1, an ELL can… with support, • communicate information and feelings about familiar texts, topics, and experiences."
+          },
+          {
+           "code": "ELP S3/L2",
+           "text": "By the end of English language proficiency level 2, an ELL can… with support, • deliver short oral presentations • compose simple written narratives or informational texts about familiar texts, topics, experiences, or events."
+          },
+          {
+           "code": "ELP S3/L3",
+           "text": "By the end of English language proficiency level 3, an ELL can… with support, • deliver short oral presentations • compose written informational texts • develop the topic with a few details about familiar texts, topics, or events."
+          },
+          {
+           "code": "ELP S3/L4",
+           "text": "By the end of English language proficiency level 4, an ELL can… • deliver oral presentations • compose written informational texts • develop the topic with some relevant details, concepts, examples, and information • integrate graphics or multimedia when useful about a variety of texts, topics, or events."
+          },
+          {
+           "code": "ELP S3/L5",
+           "text": "By the end of English language proficiency level 5, an ELL can… • deliver oral presentations • compose written informational texts • fully develop the topic with relevant details, concepts, examples, and information • integrate graphics or multimedia when useful about a variety of texts, topics, or events."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "an-ell-can-construct-level-appropriate-oral-and-",
+     "title": "An ELL can… construct level-appropriate oral and written claims and support them with reasoning and evidence",
+     "topics": [
+      {
+       "id": "an-ell-can-construct-level-appropriate-oral-and-",
+       "title": "An ELL can… construct level-appropriate oral and written claims and support them with reasoning and evidence",
+       "subtopics": [
+        {
+         "id": "an-ell-can-construct-level-appropriate-oral-and-",
+         "title": "An ELL can… construct level-appropriate oral and written claims and support them with reasoning and evidence",
+         "outcomes": [
+          {
+           "code": "ELP S4/L1",
+           "text": "By the end of English language proficiency level 1, an ELL can… • express an opinion about a familiar topic, experience or event. • give a reason for the opinion."
+          },
+          {
+           "code": "ELP S4/L2",
+           "text": "By the end of English language proficiency level 2, an ELL can… • construct a claim about familiar topics, experiences, or events • introduce the topic, experience, or event • give a reason to support the claim • provide a concluding statement."
+          },
+          {
+           "code": "ELP S4/L3",
+           "text": "By the end of English language proficiency level 3, an ELL can… • construct a claim about familiar topics • introduce the topic • provide sufficient reasons or facts to support the claim • provide a concluding statement."
+          },
+          {
+           "code": "ELP S4/L4",
+           "text": "By the end of English language proficiency level 4, an ELL can… • construct a claim about a variety of topics • introduce the topic • provide logically ordered reasons or facts that effectively support the claim • provide a concluding statement."
+          },
+          {
+           "code": "ELP S4/L5",
+           "text": "By the end of English language proficiency level 5, an ELL can… • construct a substantive claim about a variety of topics • introduce the claim • distinguish it from a counter-claim • provide logically ordered and relevant reasons and evidence to support the claim and to refute the counterclaim • provide a conclusion that summarizes the argument presented."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "an-ell-can-conduct-research-and-evaluate-and-com",
+     "title": "An ELL can… conduct research and evaluate and communicate findings to answer questions or solve problems",
+     "topics": [
+      {
+       "id": "an-ell-can-conduct-research-and-evaluate-and-com",
+       "title": "An ELL can… conduct research and evaluate and communicate findings to answer questions or solve problems",
+       "subtopics": [
+        {
+         "id": "an-ell-can-conduct-research-and-evaluate-and-com",
+         "title": "An ELL can… conduct research and evaluate and communicate findings to answer questions or solve problems",
+         "outcomes": [
+          {
+           "code": "ELP S5/L1",
+           "text": "By the end of English language proficiency level 1, an ELL can… with support, • carry out short, shared research projects • gather information from a few provided print and digital sources • label collected information, experiences, or events • recall information from experience or from a provided source."
+          },
+          {
+           "code": "ELP S5/L2",
+           "text": "By the end of English language proficiency level 2, an ELL can… with support, • carry out short individual or shared research projects • gather information from provided print and digital sources • record information in simple notes • summarize data and information."
+          },
+          {
+           "code": "ELP S5/L3",
+           "text": "By the end of English language proficiency level 3, an ELL can… with support, • carry out short research projects to answer a question • gather information from multiple provided print and digital sources • paraphrase key information in a short written or oral report • include illustrations, diagrams, or other graphics as appropriate • provide a list of sources."
+          },
+          {
+           "code": "ELP S5/L4",
+           "text": "By the end of English language proficiency level 4, an ELL can… • carry out both short and more sustained research projects to answer a question • gather information from multiple print and digital sources • evaluate the reliability of each source • use search terms effectively • synthesize information from multiple print and digital sources • integrate information into an organized oral or written report • include illustrations, diagrams, or other graphics as appropriate • cite sources appropriately."
+          },
+          {
+           "code": "ELP S5/L5",
+           "text": "By the end of English language proficiency level 5, an ELL can… • carry out both short and more sustained research projects to answer a question or solve a problem • gather information from multiple print and digital sources • evaluate the reliability of each source • use advanced search terms effectively • synthesize information from multiple print and digital sources • analyze and integrate information into clearly organized spoken and written texts • include illustrations, diagrams, or other graphics as appropriate • cite sources appropriately."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "an-ell-can-analyze-and-critique-the-arguments-of",
+     "title": "An ELL can… analyze and critique the arguments of others orally and in writing",
+     "topics": [
+      {
+       "id": "an-ell-can-analyze-and-critique-the-arguments-of",
+       "title": "An ELL can… analyze and critique the arguments of others orally and in writing",
+       "subtopics": [
+        {
+         "id": "an-ell-can-analyze-and-critique-the-arguments-of",
+         "title": "An ELL can… analyze and critique the arguments of others orally and in writing",
+         "outcomes": [
+          {
+           "code": "ELP S6/L1",
+           "text": "By the end of English language proficiency level 1, an ELL can… with support, • identify a point an author or a speaker makes."
+          },
+          {
+           "code": "ELP S6/L2",
+           "text": "By the end of English language proficiency level 2, an ELL can… with support, • identify the main argument an author or speaker makes • identify one reason an author or a speaker gives to support the argument."
+          },
+          {
+           "code": "ELP S6/L3",
+           "text": "By the end of English language proficiency level 3, an ELL can… with support, • explain the reasons an author or a speaker gives to support a claim • identify one or two reasons an author or a speaker gives to support the main point."
+          },
+          {
+           "code": "ELP S6/L4",
+           "text": "By the end of English language proficiency level 4, an ELL can… • analyze the reasoning in persuasive spoken and written texts • determine whether the evidence is sufficient to support the claim • cite textual evidence to support the analysis."
+          },
+          {
+           "code": "ELP S6/L5",
+           "text": "By the end of English language proficiency level 5, an ELL can… • analyze and evaluate the reasoning in persuasive spoken and written texts • determine whether the evidence is sufficient to support the claim • cite specific textual evidence to thoroughly support the analysis."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "an-ell-can-adapt-language-choices-to-purpose-tas",
+     "title": "An ELL can… adapt language choices to purpose, task, and audience when speaking and writing",
+     "topics": [
+      {
+       "id": "an-ell-can-adapt-language-choices-to-purpose-tas",
+       "title": "An ELL can… adapt language choices to purpose, task, and audience when speaking and writing",
+       "subtopics": [
+        {
+         "id": "an-ell-can-adapt-language-choices-to-purpose-tas",
+         "title": "An ELL can… adapt language choices to purpose, task, and audience when speaking and writing",
+         "outcomes": [
+          {
+           "code": "ELP S7/L1",
+           "text": "By the end of English language proficiency level 1, an ELL can… • show emerging awareness of differences between informal and formal language use • recognize the meaning of some words learned through conversations, reading, and being read to."
+          },
+          {
+           "code": "ELP S7/L2",
+           "text": "By the end of English language proficiency level 2, an ELL can… • show increasing awareness of differences between informal and formal language use • adapt language choices to task and audience with emerging control in various social and academic contexts • begin to use some frequently occurring general academic and content-specific words."
+          },
+          {
+           "code": "ELP S7/L3",
+           "text": "By the end of English language proficiency level 3, an ELL can… • adapt language choices and style according to purpose, task, and audience with developing ease in various social and academic contexts • use an increasing number of general academic and contentspecific words and expressions in spoken and written texts • show developing control of style and tone in spoken and written texts."
+          },
+          {
+           "code": "ELP S7/L4",
+           "text": "By the end of English language proficiency level 4, an ELL can… • adapt language choices and style according to purpose, task, and audience in various social and academic contexts • use a wider range of complex general academic and contentspecific words and phrases • adopt and maintain a formal and informal style and tone in spoken and written texts, as appropriate."
+          },
+          {
+           "code": "ELP S7/L5",
+           "text": "By the end of English language proficiency level 5, an ELL can… • adapt language choices and style according to purpose, task, and audience with ease in various social and academic contexts • use a wide variety of complex general academic and contentspecific words and phrases • employ both formal and more informal styles and tones effectively in spoken and written texts, as appropriate."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "an-ell-can-determine-the-meaning-of-words-and-ph",
+     "title": "An ELL can… determine the meaning of words and phrases in oral presentations and literary and informational text",
+     "topics": [
+      {
+       "id": "an-ell-can-determine-the-meaning-of-words-and-ph",
+       "title": "An ELL can… determine the meaning of words and phrases in oral presentations and literary and informational text",
+       "subtopics": [
+        {
+         "id": "an-ell-can-determine-the-meaning-of-words-and-ph",
+         "title": "An ELL can… determine the meaning of words and phrases in oral presentations and literary and informational text",
+         "outcomes": [
+          {
+           "code": "ELP S8/L1",
+           "text": "By the end of English language proficiency level 1, an ELL can… relying heavily on context, questioning, and knowledge of morphology in their native language(s), • recognize the meaning of a few frequently occurring words, simple phrases, and formulaic expressions in spoken and written texts about familiar topics, experiences, or events."
+          },
+          {
+           "code": "ELP S8/L2",
+           "text": "By the end of English language proficiency level 2, an ELL can… using context, questioning, and knowledge of morphology in their native language(s), • determine the meaning of frequently occurring words, phrases, and expressions in spoken and written texts about familiar topics, experiences, or events."
+          },
+          {
+           "code": "ELP S8/L3",
+           "text": "By the end of English language proficiency level 3, an ELL can… using context, questioning, and a developing knowledge of English and their native language(s)' morphology, • determine the meaning of general academic and content-specific words and phrases and frequently occurring expressions in spoken and written texts about familiar topics, experiences, or events."
+          },
+          {
+           "code": "ELP S8/L4",
+           "text": "By the end of English language proficiency level 4, an ELL can… using context, questioning, and an increasing knowledge of English morphology, • determine the meaning of general academic and content-specific words and phrases, figurative and connotative language, and a growing number of idiomatic expressions in spoken and written texts about a variety of topics, experiences, or events."
+          },
+          {
+           "code": "ELP S8/L5",
+           "text": "By the end of English language proficiency level 5, an ELL can… using context, questioning, and consistent knowledge of English morphology, • determine the meaning of general academic and content-specific words and phrases, figurative and connotative language, and idiomatic expressions in spoken and written texts about a variety of topics, experiences, or events."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "an-ell-can-create-clear-and-coherent-level-appro",
+     "title": "An ELL can… create clear and coherent level-appropriate speech and text",
+     "topics": [
+      {
+       "id": "an-ell-can-create-clear-and-coherent-level-appro",
+       "title": "An ELL can… create clear and coherent level-appropriate speech and text",
+       "subtopics": [
+        {
+         "id": "an-ell-can-create-clear-and-coherent-level-appro",
+         "title": "An ELL can… create clear and coherent level-appropriate speech and text",
+         "outcomes": [
+          {
+           "code": "ELP S9/L1",
+           "text": "By the end of English language proficiency level 1, an ELL can… with support, • communicate basic information about an event or topic • use a narrow range of vocabulary and syntactically simple sentences."
+          },
+          {
+           "code": "ELP S9/L2",
+           "text": "By the end of English language proficiency level 2, an ELL can… with support, • recount a short sequence of events in order • introduce an informational topic • provide one or two facts about the topic • use common linking words to connect events and ideas."
+          },
+          {
+           "code": "ELP S9/L3",
+           "text": "By the end of English language proficiency level 3, an ELL can… with support, • recount a sequence of events, with a beginning, middle, and end • introduce and develop an informational topic with facts and details • use common transitional words and phrases to connect events, ideas, and opinions • provide a conclusion."
+          },
+          {
+           "code": "ELP S9/L4",
+           "text": "By the end of English language proficiency level 4, an ELL can… • recount a longer, more detailed sequence of events or steps in a process, with a clear sequential or chronological structure • introduce and develop an informational topic with facts, details, and evidence • use a variety of more complex transitions to link the major sections of speech and text and to clarify relationships among events and ideas • provide a concluding section or statement."
+          },
+          {
+           "code": "ELP S9/L5",
+           "text": "By the end of English language proficiency level 5, an ELL can… • recount a complex and detailed sequence of events or steps in a process, with an effective sequential or chronological order • introduce and effectively develop an informational topic with facts, details, and evidence • use complex and varied transitions to link the major sections of speech and text and to clarify relationships among events and ideas • provide a concluding section or statement."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "an-ell-can-demonstrate-command-of-the-convention",
+     "title": "An ELL can… demonstrate command of the conventions of standard English to communicate in level-appropriate speech and writing",
+     "topics": [
+      {
+       "id": "an-ell-can-demonstrate-command-of-the-convention",
+       "title": "An ELL can… demonstrate command of the conventions of standard English to communicate in level-appropriate speech and writing",
+       "subtopics": [
+        {
+         "id": "an-ell-can-demonstrate-command-of-the-convention",
+         "title": "An ELL can… demonstrate command of the conventions of standard English to communicate in level-appropriate speech and writing",
+         "outcomes": [
+          {
+           "code": "ELP S10/L1",
+           "text": "By the end of English language proficiency level 1, an ELL can… with support, • recognize and use a small number of frequently occurring nouns, noun phrases, verbs, conjunctions, and prepositions • understand and respond to simple questions."
+          },
+          {
+           "code": "ELP S10/L2",
+           "text": "By the end of English language proficiency level 2, an ELL can… with support, • use frequently occurring verbs, nouns, adjectives, adverbs, prepositions, and conjunctions • produce simple and compound sentences."
+          },
+          {
+           "code": "ELP S10/L3",
+           "text": "By the end of English language proficiency level 3, an ELL can… with support, • use simple phrases • use simple clauses • produce and expand simple, compound, and a few complex sentences."
+          },
+          {
+           "code": "ELP S10/L4",
+           "text": "By the end of English language proficiency level 4, an ELL can… • use increasingly complex phrases • use increasingly complex clauses • produce and expand simple, compound, and complex sentences."
+          },
+          {
+           "code": "ELP S10/L5",
+           "text": "By the end of English language proficiency level 5, an ELL can… • use complex phrases and clauses • produce and expand simple, compound, and complex sentences."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "build": {
+  "builtAt": "2026-10-14T16:20:46.508Z",
+  "model": "none",
+  "usd": 0,
+  "expectedCodes": 382,
+  "coverage": 1,
+  "missingCodes": [],
+  "counts": {
+   "grades": 7,
+   "units": 40,
+   "topics": 130,
+   "subtopics": 130,
+   "outcomes": 473
+  },
+  "warnings": [
+   "unexpected grade label \"LifeLongLearning\""
+  ]
+ }
+}

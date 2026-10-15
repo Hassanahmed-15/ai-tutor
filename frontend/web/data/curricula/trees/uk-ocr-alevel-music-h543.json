@@ -1,0 +1,917 @@
+{
+ "id": "uk-ocr-alevel-music-h543",
+ "region": "UK",
+ "framework": "OCR A Level",
+ "board": "OCR",
+ "qualification": "A Level",
+ "subject": "Music",
+ "syllabusCode": "H543",
+ "gradeSystem": "year",
+ "source": {
+  "urls": [
+   "https://www.ocr.org.uk/Images/219397-specification-accredited-a-level-gce-music-h543.pdf"
+  ],
+  "publisher": "OCR (Oxford Cambridge and RSA)",
+  "licence": "Exam board specification, (c) OCR; structure + our own wording only",
+  "firstExam": "2018"
+ },
+ "grades": [
+  {
+   "grade": "all",
+   "units": [
+    {
+     "id": "core-content",
+     "title": "Core Content",
+     "topics": [
+      {
+       "id": "musical-elements",
+       "title": "Musical elements",
+       "subtopics": [
+        {
+         "id": "pitch-harmony-and-tonality",
+         "title": "Pitch, harmony and tonality",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain how pitch is organised melodically and harmonically, including harmonic change and cadences such as the interrupted cadence."
+          },
+          {
+           "code": null,
+           "text": "Recognise complex chord progressions such as secondary dominants, and melodic devices such as augmentation."
+          },
+          {
+           "code": null,
+           "text": "Explain how keys relate through the circle of fifths, and complex or remote key relationships such as enharmonic change."
+          }
+         ]
+        },
+        {
+         "id": "structure-sonority-and-texture",
+         "title": "Structure, sonority and texture",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe complex structures such as sonata form, fugue and through-composed music."
+          },
+          {
+           "code": null,
+           "text": "Describe combinations of vocal timbres and instrumental techniques such as con sordino and sul ponticello."
+          },
+          {
+           "code": null,
+           "text": "Identify textures such as homophony, polyphony and fugue."
+          }
+         ]
+        },
+        {
+         "id": "time-and-dynamics",
+         "title": "Time and dynamics",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe metrical and rhythmic devices: changing metres, syncopation, additive rhythm and polyrhythm."
+          },
+          {
+           "code": null,
+           "text": "Describe expressive use of dynamics, including contrast, extended ranges and refined control."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "musical-contexts",
+       "title": "Musical contexts",
+       "subtopics": [
+        {
+         "id": "purpose-audience-and-change",
+         "title": "Purpose, audience and change",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain how the purpose and intention of composer, performer or commissioner shape how music is created and performed."
+          },
+          {
+           "code": null,
+           "text": "Explain how audience, time and place shape music across historical, social and cultural contexts."
+          },
+          {
+           "code": null,
+           "text": "Describe how music from different contexts has changed over time."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "musical-language",
+       "title": "Musical language",
+       "subtopics": [
+        {
+         "id": "notation-and-chords",
+         "title": "Notation and chords",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Read and write staff notation, including compound time, irregular time signatures and all key signatures."
+          },
+          {
+           "code": null,
+           "text": "Use chords and chord symbols, including inversions, dominant 7ths and extended chords such as secondary 7ths and 9ths."
+          }
+         ]
+        },
+        {
+         "id": "musical-vocabulary",
+         "title": "Musical vocabulary",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Recognise and use musical terms for the areas of study, such as glissando, conjunct and portamento."
+          },
+          {
+           "code": null,
+           "text": "Use sophisticated terminology to describe music accurately."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "areas-of-study",
+     "title": "Areas of Study",
+     "topics": [
+      {
+       "id": "area-of-study-1-instrumental-music-of-haydn-moza",
+       "title": "Area of Study 1: Instrumental Music of Haydn, Mozart and Beethoven",
+       "subtopics": [
+        {
+         "id": "study-approach-and-aims",
+         "title": "Study approach and aims",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Analyse, evaluate and judge Classical chamber music, symphony, concerto and sonata using listening and context."
+          },
+          {
+           "code": null,
+           "text": "Study the prescribed work in depth alongside the music around it."
+          }
+         ]
+        },
+        {
+         "id": "styles-and-developments",
+         "title": "Styles and developments",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Compare developments in Classical instrumental style, its characteristics and principles."
+          },
+          {
+           "code": null,
+           "text": "Explain the forms and style of Haydn, Mozart and Beethoven."
+          }
+         ]
+        },
+        {
+         "id": "musical-elements-in-the-repertoire",
+         "title": "Musical elements in the repertoire",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe the Classical orchestra, instrumental techniques and articulation."
+          },
+          {
+           "code": null,
+           "text": "Explain melodic construction, phrasing and structure."
+          },
+          {
+           "code": null,
+           "text": "Explain harmonic language: inversions, cadences and progressions."
+          },
+          {
+           "code": null,
+           "text": "Explain instrumentation, texture, dynamics and expressive devices."
+          }
+         ]
+        },
+        {
+         "id": "conditions-and-context",
+         "title": "Conditions and context",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain the historical and social context of Classical music."
+          },
+          {
+           "code": null,
+           "text": "Explain how purpose and intention shaped the music and the working conditions of musicians."
+          },
+          {
+           "code": null,
+           "text": "Read and write the associated staff notation."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "area-of-study-2-popular-song-blues-jazz-swing-an",
+       "title": "Area of Study 2: Popular Song: Blues, Jazz, Swing and Big Band",
+       "subtopics": [
+        {
+         "id": "study-approach-and-aims",
+         "title": "Study approach and aims",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Analyse and evaluate vocal jazz and blues, popular solo song, vocal artists' recordings and interpretation of standards."
+          },
+          {
+           "code": null,
+           "text": "Study the prescribed work in depth within its wider context."
+          }
+         ]
+        },
+        {
+         "id": "styles-and-developments",
+         "title": "Styles and developments",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Compare song structures in styles of jazz."
+          },
+          {
+           "code": null,
+           "text": "Describe performing techniques such as improvisation."
+          }
+         ]
+        },
+        {
+         "id": "musical-elements-in-the-repertoire",
+         "title": "Musical elements in the repertoire",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain the delivery and expression of lyrics and the treatment of melody and words."
+          },
+          {
+           "code": null,
+           "text": "Describe vocal techniques: belt, register, articulation and vibrato."
+          },
+          {
+           "code": null,
+           "text": "Explain accompaniment and the relationship of voice and accompaniment."
+          },
+          {
+           "code": null,
+           "text": "Explain dynamics and expressive devices, and how pitch is organised."
+          }
+         ]
+        },
+        {
+         "id": "conditions-and-context",
+         "title": "Conditions and context",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain how audience, time, place and recording technology shaped the songs."
+          },
+          {
+           "code": null,
+           "text": "Explain the historical and social context of the songs and musicians' working conditions."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "area-of-study-3-developments-in-instrumental-jaz",
+       "title": "Area of Study 3: Developments in Instrumental Jazz 1910 to the present day",
+       "subtopics": [
+        {
+         "id": "study-approach-and-aims",
+         "title": "Study approach and aims",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Study recorded jazz performances in depth using recordings, live performance and scores."
+          },
+          {
+           "code": null,
+           "text": "Analyse and judge jazz with technical vocabulary."
+          }
+         ]
+        },
+        {
+         "id": "styles-and-developments",
+         "title": "Styles and developments",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Compare early jazz, swing, bebop and cool jazz."
+          },
+          {
+           "code": null,
+           "text": "Compare hard bop, avant-garde and free jazz, jazz-rock fusion and contemporary approaches."
+          }
+         ]
+        },
+        {
+         "id": "musical-elements-in-the-repertoire",
+         "title": "Musical elements in the repertoire",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain improvisation, swing, syncopation and polyrhythm."
+          },
+          {
+           "code": null,
+           "text": "Explain harmony, tonality, blues, blue notes and note decoration."
+          },
+          {
+           "code": null,
+           "text": "Explain timbre, call and response, riff, ostinato and chorus devices."
+          },
+          {
+           "code": null,
+           "text": "Describe roles of solo, ensemble and rhythm section."
+          }
+         ]
+        },
+        {
+         "id": "conditions-and-context",
+         "title": "Conditions and context",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe the origins of jazz in New Orleans and its spread across the USA and Europe."
+          },
+          {
+           "code": null,
+           "text": "Explain changes in popularity and commercial viability, and the roles of radio and recording."
+          },
+          {
+           "code": null,
+           "text": "Describe jazz musicians' working conditions and today's challenges."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "area-of-study-4-religious-music-of-the-baroque-p",
+       "title": "Area of Study 4: Religious Music of the Baroque Period",
+       "subtopics": [
+        {
+         "id": "study-approach-and-aims",
+         "title": "Study approach and aims",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Study sacred Baroque vocal music in depth through recordings, performances and scores."
+          },
+          {
+           "code": null,
+           "text": "Analyse and judge it using technical vocabulary."
+          }
+         ]
+        },
+        {
+         "id": "styles-and-developments",
+         "title": "Styles and developments",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Compare Italian Catholic traditions: Venetian concertato, a cappella style and oratorio."
+          },
+          {
+           "code": null,
+           "text": "Compare Lutheran and Catholic German music: chorale, passion, church cantata."
+          },
+          {
+           "code": null,
+           "text": "Compare Anglican motet and English oratorio, and French grand motet, petit motet and cantata."
+          }
+         ]
+        },
+        {
+         "id": "musical-elements-in-the-repertoire",
+         "title": "Musical elements in the repertoire",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain harmony and tonality, and structures such as recitative, aria and chorus."
+          },
+          {
+           "code": null,
+           "text": "Explain textures: chordal, fugal, imitative, solo and choral."
+          },
+          {
+           "code": null,
+           "text": "Explain word setting, resources, obbligato accompaniment, and rhythm from dance patterns."
+          }
+         ]
+        },
+        {
+         "id": "conditions-and-context",
+         "title": "Conditions and context",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain worship, liturgy and the opportunities and limits they placed on music."
+          },
+          {
+           "code": null,
+           "text": "Describe how music spread through publishing."
+          },
+          {
+           "code": null,
+           "text": "Describe church musicians' working conditions and training at centres such as St Mark's Venice and St Thomas's Leipzig."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "area-of-study-5-programme-music-1820-1910",
+       "title": "Area of Study 5: Programme Music 1820-1910",
+       "subtopics": [
+        {
+         "id": "study-approach-and-aims",
+         "title": "Study approach and aims",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Study Romantic orchestral, chamber and solo programme music in depth."
+          },
+          {
+           "code": null,
+           "text": "Analyse and judge it using technical vocabulary."
+          }
+         ]
+        },
+        {
+         "id": "styles-and-developments",
+         "title": "Styles and developments",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Compare concert overture, symphonic poem and programme symphony."
+          },
+          {
+           "code": null,
+           "text": "Compare solo works and works expressing national identity."
+          }
+         ]
+        },
+        {
+         "id": "musical-elements-in-the-repertoire",
+         "title": "Musical elements in the repertoire",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain expressive harmony, dissonance and modulation."
+          },
+          {
+           "code": null,
+           "text": "Explain how structure and expressive freedom combine, including adapted sonata form."
+          },
+          {
+           "code": null,
+           "text": "Explain expanded orchestras, piano improvements, virtuoso soloists and the conductor."
+          },
+          {
+           "code": null,
+           "text": "Explain developments in dynamics, articulation, texture and dramatic contrast."
+          }
+         ]
+        },
+        {
+         "id": "conditions-and-context",
+         "title": "Conditions and context",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain the Romantic movement in the arts and the influence of opera on concert music."
+          },
+          {
+           "code": null,
+           "text": "Explain technological advances such as valved brass and piano making."
+          },
+          {
+           "code": null,
+           "text": "Explain audience change, public concerts, orchestras, and transmission of music across Europe and the USA."
+          },
+          {
+           "code": null,
+           "text": "Describe musicians' working conditions."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "area-of-study-6-innovations-in-music-1900-to-the",
+       "title": "Area of Study 6: Innovations in Music 1900 to the present day",
+       "subtopics": [
+        {
+         "id": "study-approach-and-aims",
+         "title": "Study approach and aims",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Study Western music from 1900 to today in depth through recordings, performances and scores."
+          },
+          {
+           "code": null,
+           "text": "Analyse and judge it using technical vocabulary."
+          }
+         ]
+        },
+        {
+         "id": "styles-and-developments",
+         "title": "Styles and developments",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Compare late Romantic style, impressionism, and expressionism with atonality and serialism."
+          },
+          {
+           "code": null,
+           "text": "Compare neo-classicism and folk-based national styles."
+          },
+          {
+           "code": null,
+           "text": "Compare post-1945 avant-garde, electronic and experimental music, minimalism and contemporary composition."
+          }
+         ]
+        },
+        {
+         "id": "musical-elements-in-the-repertoire",
+         "title": "Musical elements in the repertoire",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain irregular rhythm, metre, polyrhythm, polymetre and organisation of time."
+          },
+          {
+           "code": null,
+           "text": "Explain pitch, dissonance, harmony, modality and atonality."
+          },
+          {
+           "code": null,
+           "text": "Explain sonority, timbre, texture, percussion and technology."
+          },
+          {
+           "code": null,
+           "text": "Explain dynamics, extreme range, structure, notation, improvisation and aleatoric methods."
+          }
+         ]
+        },
+        {
+         "id": "conditions-and-context",
+         "title": "Conditions and context",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain audience reactions to innovation and the effect of technology and mass media."
+          },
+          {
+           "code": null,
+           "text": "Explain composers' responses to revolution, war, persecution and censorship."
+          },
+          {
+           "code": null,
+           "text": "Explain ideas about music's function: Gebrauchsmusik, popular crossover, film music and propaganda."
+          },
+          {
+           "code": null,
+           "text": "Describe working conditions and today's challenges for performers and composers."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "component-01-performing-a",
+     "title": "Component 01: Performing A",
+     "topics": [
+      {
+       "id": "recital",
+       "title": "Recital",
+       "subtopics": [
+        {
+         "id": "planning-and-presenting-the-recital",
+         "title": "Planning and presenting the recital",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Perform at least two contrasting pieces as solo, ensemble, accompanist or music-technology realisation."
+          },
+          {
+           "code": null,
+           "text": "Link the recital, if wished, to an Area of Study to inform performance choices."
+          }
+         ]
+        },
+        {
+         "id": "performance-quality",
+         "title": "Performance quality",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Interpret and communicate musical ideas with technical and expressive control and an understanding of style and context."
+          },
+          {
+           "code": null,
+           "text": "Perform with control, continuity and suitable tempi, showing critical understanding of the music."
+          },
+          {
+           "code": null,
+           "text": "Perform fluently with a sense of the shape, direction and style of the music."
+          },
+          {
+           "code": null,
+           "text": "Perform with accuracy, fluency and technical control across a range of techniques."
+          },
+          {
+           "code": null,
+           "text": "Realise performance markings and conventions to interpret and communicate the music."
+          },
+          {
+           "code": null,
+           "text": "Practise varied pieces that build skill as soloist, ensemble member, accompanist or technology realiser."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "component-02-performing-b",
+     "title": "Component 02: Performing B",
+     "topics": [
+      {
+       "id": "section-1-free-choice",
+       "title": "Section 1: Free choice",
+       "subtopics": [
+        {
+         "id": "free-choice-recital",
+         "title": "Free-choice recital",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Perform at least two contrasting pieces by playing, singing, ensemble work, improvising or music technology."
+          },
+          {
+           "code": null,
+           "text": "Interpret music with technical and expressive control and an understanding of style and context."
+          },
+          {
+           "code": null,
+           "text": "Perform with control, continuity, fluency and a sense of overall shape and style."
+          },
+          {
+           "code": null,
+           "text": "Perform accurately with technical control and realise performance markings and conventions."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "section-2-focused-study",
+       "title": "Section 2: Focused study",
+       "subtopics": [
+        {
+         "id": "idiomatic-repertoire",
+         "title": "Idiomatic repertoire",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Perform at least one further piece showing in-depth understanding of repertoire idiomatic to the chosen instrument."
+          },
+          {
+           "code": null,
+           "text": "Make informed musical choices showing the styles and techniques of idiomatic repertoire."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "component-03-composing-a",
+     "title": "Component 03: Composing A",
+     "topics": [
+      {
+       "id": "section-1-composition-to-an-ocr-brief",
+       "title": "Section 1: Composition to an OCR brief",
+       "subtopics": [
+        {
+         "id": "responding-to-a-set-brief",
+         "title": "Responding to a set brief",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Create and develop musical ideas with technical control and expressive understanding in response to a brief from others."
+          },
+          {
+           "code": null,
+           "text": "Develop ideas showing understanding of the devices and conventions of the chosen genre, style and tradition."
+          },
+          {
+           "code": null,
+           "text": "Compose music that is convincing and uses musical elements in combination with sophistication."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "section-2-composition-to-a-learner-brief",
+       "title": "Section 2: Composition to a learner brief",
+       "subtopics": [
+        {
+         "id": "composing-to-a-self-set-brief",
+         "title": "Composing to a self-set brief",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Compose freely, writing own brief to show ability to create and develop musical ideas."
+          },
+          {
+           "code": null,
+           "text": "Show understanding of devices and conventions of the chosen genre, style and tradition."
+          },
+          {
+           "code": null,
+           "text": "Make creative use of ideas that are musically convincing."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "section-3-technical-exercises",
+       "title": "Section 3: Technical exercises",
+       "subtopics": [
+        {
+         "id": "short-technical-exercises",
+         "title": "Short technical exercises",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Compose short exercises that develop ideas using devices and conventions of a genre, style and tradition."
+          },
+          {
+           "code": null,
+           "text": "Show imaginative command of techniques within the chosen option, integrating ideas and technique."
+          },
+          {
+           "code": null,
+           "text": "Show control of ideas and technical knowledge of the chosen medium."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "component-04-composing-b",
+     "title": "Component 04: Composing B",
+     "topics": [
+      {
+       "id": "section-1-composition-to-an-ocr-brief",
+       "title": "Section 1: Composition to an OCR brief",
+       "subtopics": [
+        {
+         "id": "responding-to-a-set-brief",
+         "title": "Responding to a set brief",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Create and develop ideas with technical control and expressive understanding in response to a brief or commission."
+          },
+          {
+           "code": null,
+           "text": "Develop ideas showing understanding of devices and conventions of the chosen genre, style and tradition."
+          },
+          {
+           "code": null,
+           "text": "Compose music that is convincing and uses musical elements in combination with sophistication."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "section-2-composition-to-a-learner-brief",
+       "title": "Section 2: Composition to a learner brief",
+       "subtopics": [
+        {
+         "id": "composing-to-a-self-set-brief",
+         "title": "Composing to a self-set brief",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Compose freely, writing own brief to show ability to create and develop musical ideas."
+          },
+          {
+           "code": null,
+           "text": "Show understanding of devices and conventions of the chosen genre, style and tradition."
+          },
+          {
+           "code": null,
+           "text": "Make creative use of ideas that are musically convincing."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "component-05-listening-and-appraising",
+     "title": "Component 05: Listening and Appraising",
+     "topics": [
+      {
+       "id": "appraising-music",
+       "title": "Appraising music",
+       "subtopics": [
+        {
+         "id": "analysing-and-evaluating-music",
+         "title": "Analysing and evaluating music",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Analyse and evaluate music in aural and written form using knowledge of elements, contexts and language."
+          },
+          {
+           "code": null,
+           "text": "Make critical judgements about repertoire in the Areas of Study and about musical interpretations."
+          },
+          {
+           "code": null,
+           "text": "Judge unfamiliar music not named in the specification."
+          }
+         ]
+        },
+        {
+         "id": "aural-perception-and-critical-commentary",
+         "title": "Aural perception and critical commentary",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Form critical judgements through attentive listening, analysis, evaluation, contextualisation and reflection."
+          },
+          {
+           "code": null,
+           "text": "Comment in detail on music heard across the genres, styles and traditions studied."
+          },
+          {
+           "code": null,
+           "text": "Use acute aural perception and discrimination."
+          },
+          {
+           "code": null,
+           "text": "Show understanding of how musical elements depend on each other, and how music connects to its context."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "build": {
+  "builtAt": "2026-10-14T10:44:29.375Z",
+  "model": "claude-agent",
+  "usd": 0,
+  "expectedCodes": null,
+  "coverage": null,
+  "missingCodes": [],
+  "counts": {
+   "grades": 1,
+   "units": 7,
+   "topics": 18,
+   "subtopics": 41,
+   "outcomes": 119
+  },
+  "warnings": [
+   "grade Year 12 has no content",
+   "grade Year 13 has no content",
+   "unexpected grade label \"all\""
+  ]
+ }
+}

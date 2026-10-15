@@ -1,0 +1,3285 @@
+{
+ "id": "us-nj-social-studies",
+ "region": "US",
+ "framework": "New Jersey state academic standards: Social Studies",
+ "board": null,
+ "qualification": "K-12",
+ "subject": "Social Studies",
+ "syllabusCode": null,
+ "gradeSystem": "grade",
+ "source": {
+  "urls": [
+   "https://api.commonstandardsproject.com/api/v1/jurisdictions/BD9F1823F64844E38377E11EB39F173B",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/BD9F1823F64844E38377E11EB39F173B_D21130301_grades-01-02-k",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/BD9F1823F64844E38377E11EB39F173B_D21130301_grades-03-04-05",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/BD9F1823F64844E38377E11EB39F173B_D21130301_grades-06-07-08",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/5E0546727089416B80199A286CDCDD3D",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/2EE5A209F2C44CB1B27C6615EBB58B12",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/871317E7B39D401A825D4929C9066F1C",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/BD9F1823F64844E38377E11EB39F173B_D21130301_grades-09-10-11-12"
+  ],
+  "publisher": "New Jersey state education agency (machine-readable via Common Standards Project / ASN)",
+  "licence": "CC BY 3.0 US, D2L Corporation",
+  "firstExam": "2020"
+ },
+ "grades": [
+  {
+   "grade": "K-2",
+   "units": [
+    {
+     "id": "u-s-history-america-in-the-world",
+     "title": "U.S. History: America in the World",
+     "topics": [
+      {
+       "id": "civics-government-and-human-rights",
+       "title": "Civics, Government, and Human Rights",
+       "subtopics": [
+        {
+         "id": "civics-government-and-human-rights-1-of-4",
+         "title": "Civics, Government, and Human Rights (1 of 4)",
+         "outcomes": [
+          {
+           "code": "6.1.2.CivicsPI.1",
+           "text": "Describe roles and responsibilities of community and local government leaders (e.g., mayor, town council)."
+          },
+          {
+           "code": "6.1.2.CivicsPI.2",
+           "text": "Investigate the importance of services provided by the local government to meet the needs and ensure the safety of community members."
+          },
+          {
+           "code": "6.1.2.CivicsPI.3",
+           "text": "Explain how individuals work with different levels of government to make rules."
+          },
+          {
+           "code": "6.1.2.CivicsPI.4",
+           "text": "Explain how all people, not just official leaders, play important roles in a community."
+          },
+          {
+           "code": "6.1.2.CivicsPI.5",
+           "text": "Describe how communities work to accomplish common tasks, establish responsibilities, and fulfill roles of authority."
+          }
+         ]
+        },
+        {
+         "id": "civics-government-and-human-rights-2-of-4",
+         "title": "Civics, Government, and Human Rights (2 of 4)",
+         "outcomes": [
+          {
+           "code": "6.1.2.CivicsPI.6",
+           "text": "Explain what government is and its function."
+          },
+          {
+           "code": "6.1.2.CivicsPD.1",
+           "text": "Engage in discussions effectively by asking questions, considering facts, listening to the ideas of others, and sharing opinions."
+          },
+          {
+           "code": "6.1.2.CivicsPD.2",
+           "text": "Establish a process for how individuals can effectively work together to make decisions."
+          },
+          {
+           "code": "6.1.2.CivicsDP.1",
+           "text": "Explain how national symbols reflect on American values and principles."
+          },
+          {
+           "code": "6.1.2.CivicsDP.2",
+           "text": "Use evidence to describe how democratic principles such as equality, fairness, and respect for legitimate authority and rules have impacted individuals and communities."
+          }
+         ]
+        },
+        {
+         "id": "civics-government-and-human-rights-3-of-4",
+         "title": "Civics, Government, and Human Rights (3 of 4)",
+         "outcomes": [
+          {
+           "code": "6.1.2.CivicsDP.3",
+           "text": "Explain how historical symbols, monuments and holidays reflect the shared values, principles, and beliefs of the American identity."
+          },
+          {
+           "code": "6.1.2.CivicsPR.1",
+           "text": "Determine what makes a good rule or law."
+          },
+          {
+           "code": "6.1.2.CivicsPR.2",
+           "text": "Cite evidence that explains why rules and laws are necessary at home, in schools, and in communities."
+          },
+          {
+           "code": "6.1.2.CivicsPR.3",
+           "text": "Analyze classroom rules and routines and describe how they are designed to benefit the common good."
+          },
+          {
+           "code": "6.1.2.CivicsPR.4",
+           "text": "Explain why teachers, local community leaders, and other adults have a responsibility to make rules that fair, consistent, and respectful of individual rights."
+          }
+         ]
+        },
+        {
+         "id": "civics-government-and-human-rights-4-of-4",
+         "title": "Civics, Government, and Human Rights (4 of 4)",
+         "outcomes": [
+          {
+           "code": "6.1.2.CivicsCM.1",
+           "text": "Describe why it is important that individuals assume personal and civic responsibilities in a democratic society."
+          },
+          {
+           "code": "6.1.2.CivicsCM.2",
+           "text": "Use examples from a variety of sources to describe how certain characteristics can help individuals collaborate and solve problems (e.g., open-mindedness, compassion, civility, persistence)."
+          },
+          {
+           "code": "6.1.2.CivicsCM.3",
+           "text": "Explain how diversity, tolerance, fairness, and respect for others can contribute to individuals feeling accepted."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "geography-people-and-the-environment",
+       "title": "Geography, People, and the Environment",
+       "subtopics": [
+        {
+         "id": "geography-people-and-the-environment-1-of-3",
+         "title": "Geography, People, and the Environment (1 of 3)",
+         "outcomes": [
+          {
+           "code": "6.1.2.GeoPP.1",
+           "text": "Explain the different physical and human characteristics that might make a location a good place to live (e.g., landforms, climate and weather, resource availability)."
+          },
+          {
+           "code": "6.1.2.Geo.SV.1",
+           "text": "Use maps to identify physical features (e.g., continents, oceans, rivers, lakes, mountains)."
+          },
+          {
+           "code": "6.1.2.Geo.SV.2",
+           "text": "Describe how maps are created for a specific purpose (e.g., school fire-drill map, route from home to school, learning centers in a classroom)."
+          },
+          {
+           "code": "6.1.2.Geo.SV.3",
+           "text": "Identify and describe the properties of a variety of maps and globes (e.g., title, legend, cardinal directions, scale, symbols,) and purposes (wayfinding, thematic)."
+          }
+         ]
+        },
+        {
+         "id": "geography-people-and-the-environment-2-of-3",
+         "title": "Geography, People, and the Environment (2 of 3)",
+         "outcomes": [
+          {
+           "code": "6.1.2.Geo.SV.4",
+           "text": "Identify examples of geospatial data (e.g., landmarks on the school grounds, the spatial location of each student's assigned seat in the classroom, needs more thought)."
+          },
+          {
+           "code": "6.1.2.Geo.HE.1",
+           "text": "Explain how seasonal weather changes, climate, and other environmental characteristics affect people's lives in a place or region."
+          },
+          {
+           "code": "6.1.2.Geo.HE.2",
+           "text": "Describe how human activities affect the culture and environmental characteristics of places or regions (e.g., transportation, housing, dietary needs)."
+          },
+          {
+           "code": "6.1.2.Geo.HE.3",
+           "text": "Identify cultural and environmental characteristics of different regions in New Jersey and the United States."
+          }
+         ]
+        },
+        {
+         "id": "geography-people-and-the-environment-3-of-3",
+         "title": "Geography, People, and the Environment (3 of 3)",
+         "outcomes": [
+          {
+           "code": "6.1.2.Geo.HE.4",
+           "text": "Investigate the relationship between the physical environment of a place and the economic activities found there."
+          },
+          {
+           "code": "6.1.2.Geo.GI.1",
+           "text": "Explain why and how people, goods, and ideas move from place to place."
+          },
+          {
+           "code": "6.1.2.Geo.GI.2",
+           "text": "Use technology to understand the culture and physical characteristics of regions."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "economics-innovation-and-technology",
+       "title": "Economics, Innovation, and Technology",
+       "subtopics": [
+        {
+         "id": "economics-innovation-and-technology-1-of-3",
+         "title": "Economics, Innovation, and Technology (1 of 3)",
+         "outcomes": [
+          {
+           "code": "6.1.2.EconET.1",
+           "text": "Explain the difference between needs and wants."
+          },
+          {
+           "code": "6.1.2.EconET.2",
+           "text": "Cite examples of choices people make when resources are scarce."
+          },
+          {
+           "code": "6.1.2.EconET.3",
+           "text": "Describe how supply and demand influence price and output of products."
+          },
+          {
+           "code": "6.1.2.EconET.4",
+           "text": "Explain the impact that decisions about savings, debt, and investment can have on individuals' lives."
+          }
+         ]
+        },
+        {
+         "id": "economics-innovation-and-technology-2-of-3",
+         "title": "Economics, Innovation, and Technology (2 of 3)",
+         "outcomes": [
+          {
+           "code": "6.1.2.EconET.5",
+           "text": "Describe how local and state governments make decisions that affect individuals and the community."
+          },
+          {
+           "code": "6.1.2.EconEM.1",
+           "text": "Describe the skills and knowledge required to produce specific goods and services."
+          },
+          {
+           "code": "6.1.2.EconEM.2",
+           "text": "Describe the goods and services that individuals and businesses in the local community produce and those that are produced in other communities."
+          },
+          {
+           "code": "6.1.2.EconEM.3",
+           "text": "Identify the ways in which people exchange(d) goods and services today, and in the past (e.g., purchase, borrow, barter)."
+          }
+         ]
+        },
+        {
+         "id": "economics-innovation-and-technology-3-of-3",
+         "title": "Economics, Innovation, and Technology (3 of 3)",
+         "outcomes": [
+          {
+           "code": "6.1.2.EconNE.1",
+           "text": "Identify examples of human capital, physical capital, and natural resources that contribute to favorable economic conditions."
+          },
+          {
+           "code": "6.1.2.EconNE.2",
+           "text": "Describe examples of goods and services that governments provide."
+          },
+          {
+           "code": "6.1.2.EconGE.1",
+           "text": "Cite examples of products that are produced domestically and sold abroad and produced abroad and sold domestically."
+          },
+          {
+           "code": "6.1.2.EconGE.2",
+           "text": "Explain why people in one country trade goods and services with people in other countries."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "history-culture-and-perspectives",
+       "title": "History, Culture, and Perspectives",
+       "subtopics": [
+        {
+         "id": "history-culture-and-perspectives-1-of-2",
+         "title": "History, Culture, and Perspectives (1 of 2)",
+         "outcomes": [
+          {
+           "code": "6.1.2.HistoryCC.1",
+           "text": "Use multiple sources to create a chronological sequence of events that describes how and why your community has changed over time."
+          },
+          {
+           "code": "6.1.2.HistoryCC.2",
+           "text": "Use a timeline of important events to make inferences about the \"big picture\" of history."
+          },
+          {
+           "code": "6.1.2.HistoryCC.3",
+           "text": "Make inferences about how past events, individuals, and innovations affect our current lives."
+          },
+          {
+           "code": "6.1.2.HistoryUP.1",
+           "text": "Use primary sources representing multiple perspectives to compare and make inferences about why there are different accounts of the same event."
+          },
+          {
+           "code": "6.1.2.HistoryUP.2",
+           "text": "Use evidence to demonstrate how an individual's beliefs, values, and traditions may change and/or reflect more than one culture."
+          }
+         ]
+        },
+        {
+         "id": "history-culture-and-perspectives-2-of-2",
+         "title": "History, Culture, and Perspectives (2 of 2)",
+         "outcomes": [
+          {
+           "code": "6.1.2.HistoryUP.3",
+           "text": "Use examples from the past and present to describe how stereotyping and prejudice can lead to conflict."
+          },
+          {
+           "code": "6.1.2.HistorySE.1",
+           "text": "Use examples of regional folk heroes, stories, and/or songs and make inferences about how they have contributed to the development of a culture's history."
+          },
+          {
+           "code": "6.1.2.HistorySE.2",
+           "text": "Analyze a variety of sources describing the same event and make inferences about why the accounts are different (e.g., photographs, paintings, cartoons, newspapers, poetry, novels, plays)."
+          },
+          {
+           "code": "6.1.2.HistorySE.3",
+           "text": "Use historical data from a variety of sources to investigate the development of a local community (e.g., origins of its name, originating members, important historical events and places)."
+          },
+          {
+           "code": "6.1.2.HistoryCA.1",
+           "text": "Make an evidence-based argument how and why communities change over time (e.g., locally, nationally, globally)."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "active-citizenship-in-the-21st-century",
+     "title": "Active Citizenship in the 21st Century",
+     "topics": [
+      {
+       "id": "civics-government-and-human-rights",
+       "title": "Civics, Government and Human Rights",
+       "subtopics": [
+        {
+         "id": "civics-government-and-human-rights",
+         "title": "Civics, Government and Human Rights",
+         "outcomes": [
+          {
+           "code": "6.3.2.CivicsPD.1",
+           "text": "With adult guidance and support, bring awareness of a local issue to school and/or community members and make recommendations for change."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "geography-people-and-the-environment-global-inte",
+       "title": "Geography, People and the Environment: Global Interconnections",
+       "subtopics": [
+        {
+         "id": "geography-people-and-the-environment-global-inte",
+         "title": "Geography, People and the Environment: Global Interconnections",
+         "outcomes": [
+          {
+           "code": "6.3.2.GeoGI.1",
+           "text": "Investigate a global issue such as climate change, its significance, and share information about how it impacts different regions around the world"
+          },
+          {
+           "code": "6.3.2.GeoGI.2",
+           "text": "Collect data and consider sources from multiple perspectives to become informed about an environmental issue and identify possible solutions"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "3-5",
+   "units": [
+    {
+     "id": "u-s-history-america-in-the-world",
+     "title": "U.S. History: America in the World",
+     "topics": [
+      {
+       "id": "civics-government-and-human-rights",
+       "title": "Civics, Government, and Human Rights",
+       "subtopics": [
+        {
+         "id": "civics-government-and-human-rights-1-of-6",
+         "title": "Civics, Government, and Human Rights (1 of 6)",
+         "outcomes": [
+          {
+           "code": "6.1.5.CivicsPI.1",
+           "text": "Describe ways in which people benefit from and are challenged by working together, including through government, workplaces, voluntary organizations, and families."
+          },
+          {
+           "code": "6.1.5.CivicsPI.2",
+           "text": "Investigate different ways individuals participate in government (e.g., voters, jurors, taxpayers)."
+          },
+          {
+           "code": "6.1.5.CivicsPI.3",
+           "text": "Explain how the United States functions as a representative democracy and describe the roles of elected representatives and how they interact with citizens at local, state, and national levels."
+          },
+          {
+           "code": "6.1.5.CivicsPI.4",
+           "text": "Describe the services our government provides the people in the community, state and across the United States."
+          },
+          {
+           "code": "6.1.5.CivicsPI.5",
+           "text": "Explain how government functions at the local, county, and state level."
+          }
+         ]
+        },
+        {
+         "id": "civics-government-and-human-rights-2-of-6",
+         "title": "Civics, Government, and Human Rights (2 of 6)",
+         "outcomes": [
+          {
+           "code": "6.1.5.CivicsPI.6",
+           "text": "Distinguish the roles and responsibilities of the three branches of the national government."
+          },
+          {
+           "code": "6.1.5.CivicsPI.7",
+           "text": "Explain how national and state governments share power in the federal system of government."
+          },
+          {
+           "code": "6.1.5.CivicsPI.8",
+           "text": "Describe how the United States Constitution defines and limits the power of government."
+          },
+          {
+           "code": "6.1.5.CivicsPI.9",
+           "text": "Research and compare the differences and similarities between the United States and other nations' governments, customs, and laws."
+          },
+          {
+           "code": "6.1.5.CivicsPD.1",
+           "text": "Describe the roles of elected representatives and explain how individuals at local, state, and national levels can interact with them."
+          }
+         ]
+        },
+        {
+         "id": "civics-government-and-human-rights-3-of-6",
+         "title": "Civics, Government, and Human Rights (3 of 6)",
+         "outcomes": [
+          {
+           "code": "6.1.5.CivicsPD.2",
+           "text": "Explain how individuals can initiate and/or influence local, state, or national public policymaking (e.g., petitions, proposing laws, contacting elected officials)."
+          },
+          {
+           "code": "6.1.5.CivicsPD.3",
+           "text": "Explain how and why it is important that people from diverse cultures collaborate to find solutions to community, state, national, and global challenges."
+          },
+          {
+           "code": "6.1.5.CivicsPD.4",
+           "text": "Compare the qualifications of candidates running for local, state, or national public office with the responsibilities of the position."
+          },
+          {
+           "code": "6.1.5.Civic.DP.1",
+           "text": "Using evidence, explain how the core civic virtues and democratic principles impact the decisions made at the local, state, and national government (e.g., fairness, equality, common good)."
+          },
+          {
+           "code": "6.1.5.CivicsDP.2",
+           "text": "Compare and contrast responses of individuals and groups, past and present, to violations of fundamental rights (e.g., fairness, civil rights, human rights)."
+          }
+         ]
+        },
+        {
+         "id": "civics-government-and-human-rights-4-of-6",
+         "title": "Civics, Government, and Human Rights (4 of 6)",
+         "outcomes": [
+          {
+           "code": "6.1.5.CivicsDP.3",
+           "text": "Describe the role of religious freedom and participatory government in various North American colonies."
+          },
+          {
+           "code": "6.1.5.CivicsPR.1",
+           "text": "Compare procedures for making decisions in a variety of settings including classroom, school, government, and /or society."
+          },
+          {
+           "code": "6.1.5.CivicsPR.2",
+           "text": "Describe the process by which immigrants can become United States citizens."
+          },
+          {
+           "code": "6.1.5.CivicsPR.3",
+           "text": "Evaluate school and community rules, laws and/or policies and determine if they meet their intended purpose."
+          },
+          {
+           "code": "6.1.5.CivicsPR.4",
+           "text": "Explain how policies are developed to address public problems."
+          }
+         ]
+        },
+        {
+         "id": "civics-government-and-human-rights-5-of-6",
+         "title": "Civics, Government, and Human Rights (5 of 6)",
+         "outcomes": [
+          {
+           "code": "6.1.5.CivicsHR.1",
+           "text": "Describe how fundamental rights guaranteed by the United States Constitution and the Bill of Rights contribute to the improvement of American democracy (i.e., freedom of expression, freedom of religion, freedom of the press, freedom of assembly, freedom of petition, the right to vote, and the right to due process)."
+          },
+          {
+           "code": "6.1.5.CivicsHR.2",
+           "text": "Research and cite evidence for how the actions of Dr. Martin Luther King, Jr. and other historical civil rights leaders served as catalysts for social change, inspired social activism in subsequent generations."
+          },
+          {
+           "code": "6.1.5.CivicsHR.3",
+           "text": "Cite examples from a variety of sources to describe how national and international leaders, businesses, and global organizations promote human rights and aid individuals and nations in need."
+          },
+          {
+           "code": "6.1.5.CivicsHR.4",
+           "text": "Identify actions that are unfair or discriminatory, such as bullying, and propose solutions to address such actions."
+          },
+          {
+           "code": "6.1.5.CivicsCM.1",
+           "text": "Use a variety of sources to describe the characteristics exhibited by real and fictional people that contribute(d) to the well-being of their community and country."
+          }
+         ]
+        },
+        {
+         "id": "civics-government-and-human-rights-6-of-6",
+         "title": "Civics, Government, and Human Rights (6 of 6)",
+         "outcomes": [
+          {
+           "code": "6.1.5.CivicsCM.2",
+           "text": "Use evidence from multiple sources to construct a claim about how self-discipline and civility contribute to the common good."
+          },
+          {
+           "code": "6.1.5.CivicsCM.3",
+           "text": "Identify the types of behaviors that promote collaboration and problem solving with others who have different perspectives."
+          },
+          {
+           "code": "6.1.5.CivicsCM.4",
+           "text": "Examine the responsibilities of differing positions of authority and identify criteria that are likely to make leaders qualified for those positions."
+          },
+          {
+           "code": "6.1.5.CivicsCM.5",
+           "text": "Investigate the lives of New Jersey individuals with diverse experiences who have contributed to the improvement of society."
+          },
+          {
+           "code": "6.1.5.CivicsCM.6",
+           "text": "Cite evidence from a variety of sources to describe how a democracy depends upon and responds to individuals' participation."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "geography-people-and-the-environment",
+       "title": "Geography, People, and the Environment",
+       "subtopics": [
+        {
+         "id": "geography-people-and-the-environment-1-of-4",
+         "title": "Geography, People, and the Environment (1 of 4)",
+         "outcomes": [
+          {
+           "code": "6.1.5.GeoPP.1",
+           "text": "Compare and contrast characteristics of regions in the United States based on culture, economics, and physical characteristics to understand the concept of regionalism."
+          },
+          {
+           "code": "6.1.5.GeoPP.2",
+           "text": "Describe how landforms, climate and weather, and availability of resources have impacted where and how people live and work in different regions of New Jersey and the United States."
+          },
+          {
+           "code": "6.1.5.GeoPP.3",
+           "text": "Use geographic models to describe how human movement relates to the location of natural resources and sometimes results in conflict."
+          },
+          {
+           "code": "6.1.5.GeoPP.4",
+           "text": "Investigate the different physical and human characteristics of urban, suburban and rural communities and identify the factors that might attract individuals to that space."
+          },
+          {
+           "code": "6.1.5.GeoPP.5",
+           "text": "Describe how the migration and settlement patterns of Native American groups impacted different regions of the Western Hemisphere."
+          }
+         ]
+        },
+        {
+         "id": "geography-people-and-the-environment-2-of-4",
+         "title": "Geography, People, and the Environment (2 of 4)",
+         "outcomes": [
+          {
+           "code": "6.1.5.GeoPP.6",
+           "text": "Compare and contrast the voluntary and involuntary migratory experiences of different groups of people and explain why their experiences differed."
+          },
+          {
+           "code": "6.1.5.GeoSV.1",
+           "text": "Identify the maps or types of maps most appropriate for specific purposes, (e.g., to locate physical and/or human features in a community, to determine the shortest route from one town to another town, to compare the number of people living at two or more locations)."
+          },
+          {
+           "code": "6.1.5.GeoSV.2",
+           "text": "Use maps to explain the impact of location and place on the relationships between places in New Jersey, the United States and other countries."
+          },
+          {
+           "code": "6.1.5.GeoSV.3",
+           "text": "Demonstrate how to use digital geographic tools, maps and globes to measure distances and determine time zones, and locations using latitude and longitude."
+          },
+          {
+           "code": "6.1.5.GeoSV.4",
+           "text": "Use a variety of geographic representations to describe the similarities and differences between places in New Jersey, the United States and the world (e.g., maps, data visualizations, graphs, diagrams, aerial and other photographs, GPS)."
+          }
+         ]
+        },
+        {
+         "id": "geography-people-and-the-environment-3-of-4",
+         "title": "Geography, People, and the Environment (3 of 4)",
+         "outcomes": [
+          {
+           "code": "6.1.5.GeoSV.5",
+           "text": "Use geographic data to examine how the search for natural resources resulted in conflict and cooperation among European colonists and Native American resulting in changes to conditions."
+          },
+          {
+           "code": "6.1.5.GeoHE.1",
+           "text": "Use a variety of sources from multiple perspectives, including aerial photographs or satellite images to describe how human activity has impacted the physical environment during different periods of time in New Jersey and the United States."
+          },
+          {
+           "code": "6.1.5.GeoHE.2",
+           "text": "Cite examples of how technological advances have changed the environment in New Jersey and the United States (e.g., energy, transportation, communications)."
+          },
+          {
+           "code": "6.1.5.GeoHE.3",
+           "text": "Analyze the effects of catastrophic environmental and technological events on human settlements and migration."
+          },
+          {
+           "code": "6.1.5.GeoGI.1",
+           "text": "Use multiple sources to evaluate the impact of the movement of people from place to place on individuals, communities, and regions."
+          }
+         ]
+        },
+        {
+         "id": "geography-people-and-the-environment-4-of-4",
+         "title": "Geography, People, and the Environment (4 of 4)",
+         "outcomes": [
+          {
+           "code": "6.1.5.GeoGI.2",
+           "text": "Use historical maps to explain what led to the exploration of new water and land routes."
+          },
+          {
+           "code": "6.1.5.GeoGI.3",
+           "text": "Use geographic tools to determine factors that impacted emigration, settlement patterns, and regional identities of the US colonies."
+          },
+          {
+           "code": "6.1.5.GeoGI.4",
+           "text": "Explain how cultural and environmental characteristics affect the distribution and movement of people, goods, and ideas."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "economics-innovation-and-technology",
+       "title": "Economics, Innovation, and Technology",
+       "subtopics": [
+        {
+         "id": "economics-innovation-and-technology-1-of-5",
+         "title": "Economics, Innovation, and Technology (1 of 5)",
+         "outcomes": [
+          {
+           "code": "6.1.5.EconET.1",
+           "text": "Identify positive and negative incentives that influence the decisions people make."
+          },
+          {
+           "code": "6.1.5.EconET.2",
+           "text": "Use quantitative data to engage in cost benefit analyses of decisions that impact the individual and/or community."
+          },
+          {
+           "code": "6.1.5.EconET.3",
+           "text": "Explain how scarcity and choice influence decisions made by individuals, communities, and nations."
+          },
+          {
+           "code": "6.1.5.EconEM.1",
+           "text": "Explain why individuals and businesses specialize and trade."
+          },
+          {
+           "code": "6.1.5.EconEM.2",
+           "text": "Identify examples of the variety of resources that are used to produce goods and services (i.e., human capital, physical capital, natural resources)."
+          }
+         ]
+        },
+        {
+         "id": "economics-innovation-and-technology-2-of-5",
+         "title": "Economics, Innovation, and Technology (2 of 5)",
+         "outcomes": [
+          {
+           "code": "6.1.5.EconEM.3",
+           "text": "Describe how supply and demand influence price and output of products."
+          },
+          {
+           "code": "6.1.5.EconEM.4",
+           "text": "Compare different regions of New Jersey to determine the role that geography, natural resources, climate, transportation, technology, and/or the labor force play in economic opportunities."
+          },
+          {
+           "code": "6.1.5.EconEM.5",
+           "text": "Explain why individuals and societies trade, how trade functions, and the role of trade."
+          },
+          {
+           "code": "6.1.5.EconEM.6",
+           "text": "Explain the system of mercantilism and its impact on the economies of the colonies and European countries."
+          },
+          {
+           "code": "6.1.5.EconNM.1",
+           "text": "Explain the ways in which the government pays for the goods and services it provides."
+          }
+         ]
+        },
+        {
+         "id": "economics-innovation-and-technology-3-of-5",
+         "title": "Economics, Innovation, and Technology (3 of 5)",
+         "outcomes": [
+          {
+           "code": "6.1.5.EconNM.2",
+           "text": "Use data to describe how the availability of resources in New Jersey and other regions in the United States have impacted economic opportunities."
+          },
+          {
+           "code": "6.1.5.EconNM.3",
+           "text": "Describe how the development of different transportation systems impacted the economies of New Jersey and the United States."
+          },
+          {
+           "code": "6.1.5.EconNM.4",
+           "text": "Explain how creativity and innovation resulted in scientific achievement and inventions in many cultures during different historical periods."
+          },
+          {
+           "code": "6.1.5.EconNM.5",
+           "text": "Explain how the availability of private and public goods and services is influenced by the government and the global economy."
+          },
+          {
+           "code": "6.1.5.EconNM.6",
+           "text": "Examine the qualities of entrepreneurs in a capitalistic society."
+          }
+         ]
+        },
+        {
+         "id": "economics-innovation-and-technology-4-of-5",
+         "title": "Economics, Innovation, and Technology (4 of 5)",
+         "outcomes": [
+          {
+           "code": "6.1.5.EconNM.7",
+           "text": "Describe the role and relationship among households, businesses, laborers, and governments within the economic system."
+          },
+          {
+           "code": "6.1.5.EconGE.1",
+           "text": "Explain how the development of communication systems has led to increased collaboration and the spread of ideas throughout the United States and the world."
+          },
+          {
+           "code": "6.1.5.EconGE.2",
+           "text": "Illustrate how production, distribution, and consumption of goods and services are interrelated and are affected by the global market and events in the world community."
+          },
+          {
+           "code": "6.1.5.EconGE.3",
+           "text": "Use economic data to explain how trade leads to increasing economic interdependence among nations."
+          },
+          {
+           "code": "6.1.5.EconGE.4",
+           "text": "Compare and contrast how the availability of resources affects people across the world differently."
+          }
+         ]
+        },
+        {
+         "id": "economics-innovation-and-technology-5-of-5",
+         "title": "Economics, Innovation, and Technology (5 of 5)",
+         "outcomes": [
+          {
+           "code": "6.1.5.EconGE.5",
+           "text": "Evaluate the economic impact of science and technology innovations on European exploration."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "history-culture-and-perspectives",
+       "title": "History, Culture, and Perspectives",
+       "subtopics": [
+        {
+         "id": "history-culture-and-perspectives-1-of-5",
+         "title": "History, Culture, and Perspectives (1 of 5)",
+         "outcomes": [
+          {
+           "code": "6.1.5.HistoryCC.1",
+           "text": "Analyze key historical events from the past to explain how they led to the creation of the state of New Jersey and the United States."
+          },
+          {
+           "code": "6.1.5.HistoryCC.2",
+           "text": "Use a variety of sources to illustrate how the American identity has evolved over time."
+          },
+          {
+           "code": "6.1.5.HistoryCC.3",
+           "text": "Use multiple sources to describe how George Washington, Thomas Jefferson, Benjamin Franklin, and Governor William Livingston have impacted state and national governments over time."
+          },
+          {
+           "code": "6.1.5.HistoryCC.4",
+           "text": "Use evidence to document how the interactions among African, European, and Native American groups impacted their respective cultures."
+          },
+          {
+           "code": "6.1.5.HistoryCC.5",
+           "text": "Analyze the power struggle among European countries and determine its impact on people living in Europe and the Americas."
+          }
+         ]
+        },
+        {
+         "id": "history-culture-and-perspectives-2-of-5",
+         "title": "History, Culture, and Perspectives (2 of 5)",
+         "outcomes": [
+          {
+           "code": "6.1.5.HistoryCC.6",
+           "text": "Use multiple sources to make evidence-based inferences on the impact of European colonization on Native American populations, including the Lenni Lenape of New Jersey."
+          },
+          {
+           "code": "6.1.5.HistoryCC.7",
+           "text": "Evaluate the initial and lasting impact of slavery using sources that represent multiple perspectives."
+          },
+          {
+           "code": "6.1.5.HistoryCC.8",
+           "text": "Make evidence-based inferences to describe how the influence of Native American groups, including the Lenni Lenape culture, is manifested in different regions of New Jersey."
+          },
+          {
+           "code": "6.1.5.HistoryCC.9",
+           "text": "Evaluate the impact of ideas, inventions, and other contributions of prominent figures who lived New Jersey."
+          },
+          {
+           "code": "6.1.5.HistoryCC.10",
+           "text": "Analyze the power struggle among European countries and determine its impact on people living in Europe and the Americas."
+          }
+         ]
+        },
+        {
+         "id": "history-culture-and-perspectives-3-of-5",
+         "title": "History, Culture, and Perspectives (3 of 5)",
+         "outcomes": [
+          {
+           "code": "6.1.5.HistoryCC.11",
+           "text": "Make evidence-based inferences to explain the impact that belief systems and family structures of African, European, and Native American groups had on government structures."
+          },
+          {
+           "code": "6.1.5.HistoryCC.12",
+           "text": "Determine the roles of religious freedom and participatory government in various North American colonies."
+          },
+          {
+           "code": "6.1.5.HistoryCC.13",
+           "text": "Craft a claim explaining how the development of early government structures impacted the evolution of American politics and institutions."
+          },
+          {
+           "code": "6.1.5.HistoryCC.14",
+           "text": "Compare the practice of slavery and indentured servitude in Colonial labor systems."
+          },
+          {
+           "code": "6.1.5.HistoryCC.15",
+           "text": "Analyze key historical documents to determine the role they played in past and present-day government and citizenship (i.e., the Mayflower Compact, the Declaration of Independence, the United States Constitution, the Bill of Rights)."
+          }
+         ]
+        },
+        {
+         "id": "history-culture-and-perspectives-4-of-5",
+         "title": "History, Culture, and Perspectives (4 of 5)",
+         "outcomes": [
+          {
+           "code": "6.1.5.HistoryUP.1",
+           "text": "Describe the reasons various groups, voluntarily and involuntarily, immigrated to New Jersey and America, and cite evidence from multiple perspectives to describe the challenges they encountered."
+          },
+          {
+           "code": "6.1.5.HistoryUP.2",
+           "text": "Compare and contrast forms of governance, belief systems, and family structures among African, European, and Native American groups."
+          },
+          {
+           "code": "6.1.5.HistoryUP.3",
+           "text": "Use multiple perspectives to evaluate the impact of the Columbian Exchange on ecology, agriculture, and culture."
+          },
+          {
+           "code": "6.1.5.HistoryUP.4",
+           "text": "Compare and contrast gender roles, religion, values, cultural practices, and political systems of Native American groups."
+          },
+          {
+           "code": "6.1.5.HistoryUP.5",
+           "text": "Compare and contrast historians' interpretations of important historical ideas, resources and events."
+          }
+         ]
+        },
+        {
+         "id": "history-culture-and-perspectives-5-of-5",
+         "title": "History, Culture, and Perspectives (5 of 5)",
+         "outcomes": [
+          {
+           "code": "6.1.5.HistoryUP.6",
+           "text": "Evaluate the impact of different interpretations of experiences and events by people with different cultural or individual perspectives."
+          },
+          {
+           "code": "6.1.5.HistoryUP.7",
+           "text": "Describe why it is important to understand the perspectives of other cultures in an interconnected world."
+          },
+          {
+           "code": "6.1.5.HistorySE.1",
+           "text": "Examine multiple accounts of early European explorations of North America including major land and water routes, reasons for exploration, and the impact the exploration had."
+          },
+          {
+           "code": "6.1.5.HistorySE.2",
+           "text": "Construct an argument for the significant and enduring role of historical symbols, monuments, and holidays and how they affect the American identity."
+          },
+          {
+           "code": "6.1.5.HistoryCA.1",
+           "text": "Craft an argument, supported with historical evidence, for how factors such as demographics (e.g., race, gender, religion, and economic status) affected social, economic, and political opportunities during the Colonial era."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "active-citizenship-in-the-21st-century",
+     "title": "Active Citizenship in the 21st Century",
+     "topics": [
+      {
+       "id": "civics-government-and-human-rights",
+       "title": "Civics, Government, and Human Rights",
+       "subtopics": [
+        {
+         "id": "civics-government-and-human-rights",
+         "title": "Civics, Government, and Human Rights",
+         "outcomes": [
+          {
+           "code": "6.3.5.CivicsPD.1",
+           "text": "Develop an action plan that addresses issues related to climate change and share with school and/or community members."
+          },
+          {
+           "code": "6.3.5.CivicsPD.2",
+           "text": "Use a variety of sources and data to identify the various perspectives and actions taken by individuals involving a current or historical community, state, or national issue."
+          },
+          {
+           "code": "6.3.5.CivicsPD.3",
+           "text": "Propose a solution to a local issue after considering evidence and the perspectives of different groups, including community members and local officials."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "geography-people-and-the-environment",
+       "title": "Geography, People, and the Environment",
+       "subtopics": [
+        {
+         "id": "geography-people-and-the-environment",
+         "title": "Geography, People, and the Environment",
+         "outcomes": [
+          {
+           "code": "6.3.5.GeoHE.1",
+           "text": "Plan and participate in an advocacy project to inform others about the impact of climate change at the local or state level and propose possible solutions."
+          },
+          {
+           "code": "6.3.5.GeoGI.1",
+           "text": "Use technology to collaborate with others who have different perspectives to examine global issues, including climate change and propose possible solutions."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "economics-innovation-and-technology",
+       "title": "Economics, Innovation, and Technology",
+       "subtopics": [
+        {
+         "id": "economics-innovation-and-technology",
+         "title": "Economics, Innovation, and Technology",
+         "outcomes": [
+          {
+           "code": "6.3.5.EconET.1",
+           "text": "Investigate an economic issue that impacts children and propose a solution."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "6-8",
+   "units": [
+    {
+     "id": "u-s-history-america-in-the-world",
+     "title": "U.S. History: America in the World",
+     "topics": [
+      {
+       "id": "era-3-revolution-and-the-new-nation-1754-1820s",
+       "title": "Era 3 - Revolution and the New Nation (1754–1820s)",
+       "subtopics": [
+        {
+         "id": "era-3-revolution-and-the-new-nation-1754-1820s-1",
+         "title": "Era 3 - Revolution and the New Nation (1754–1820s) (1 of 4)",
+         "outcomes": [
+          {
+           "code": "6.1.8.CivicsPI.3.a",
+           "text": "Cite evidence to evaluate the extent to which the leadership and decisions of early administrations of the national government met the goals established in the Constitution."
+          },
+          {
+           "code": "6.1.8.CivicsPI.3.b",
+           "text": "Evaluate the effectiveness of the fundamental principles of the Constitution (i.e., consent of the governed, rule of law, federalism, limited government, separation of powers, checks and balances, and individual rights) in establishing a federal government that allows for growth and change over time."
+          },
+          {
+           "code": "6.1.8.CivicsPI.3.c",
+           "text": "Distinguish the powers and responsibilities of citizens, political parties, interest groups, and the media in a variety of governmental and nongovernmental contexts."
+          },
+          {
+           "code": "6.1.8.CivicsPI.3.d",
+           "text": "Use data and other evidence to determine the extent to which demographics influenced the debate on representation in Congress and federalism by examining the New Jersey and Virginia plans."
+          },
+          {
+           "code": "6.1.8.CivicsPD.3.a",
+           "text": "Cite evidence to determine the role that compromise played in the creation and adoption of the Constitution and Bill of Rights."
+          }
+         ]
+        },
+        {
+         "id": "era-3-revolution-and-the-new-nation-1754-1820s-2",
+         "title": "Era 3 - Revolution and the New Nation (1754–1820s) (2 of 4)",
+         "outcomes": [
+          {
+           "code": "6.1.8.CivicsDP.3.a",
+           "text": "Use primary and secondary sources to assess whether or not the ideals found in the Declaration of Independence were fulfilled for women, African Americans, and Native Americans during this time period."
+          },
+          {
+           "code": "6.1.8.CivicsHR.3.a",
+           "text": "Explain how and why constitutional civil liberties were impacted by acts of government during the Early Republic (i.e., Alien and Sedition Acts)."
+          },
+          {
+           "code": "6.1.8.CivicsHR.3.b",
+           "text": "Evaluate the impact of the institution of slavery on the political and economic expansion of the United States."
+          },
+          {
+           "code": "6.1.8.CivicsHR.3.c",
+           "text": "Construct an argument to explain how the expansion of slavery violated human rights and contradicted American ideals."
+          },
+          {
+           "code": "6.1.8.GeoSV.3.a",
+           "text": "Use maps and other geographic tools to construct an argument on the impact of geography on the developments and outcomes of the American Revolution including New Jersey's pivotal role."
+          }
+         ]
+        },
+        {
+         "id": "era-3-revolution-and-the-new-nation-1754-1820s-3",
+         "title": "Era 3 - Revolution and the New Nation (1754–1820s) (3 of 4)",
+         "outcomes": [
+          {
+           "code": "6.1.8.EconET.3.a",
+           "text": "Identify the effect of inflation and debt on the American people and evaluate the policies of state and national governments during this time."
+          },
+          {
+           "code": "6.1.8.HistoryCC.3.a",
+           "text": "Explain how the consequences of the Seven Years War, changes in British policies toward American colonies, and responses by various groups and individuals in the North American colonies led to the American Revolution."
+          },
+          {
+           "code": "6.1.8.HistoryCC.3.b",
+           "text": "Explain how political parties were formed and continue to be shaped by differing perspectives regarding the role and power of federal government."
+          },
+          {
+           "code": "6.1.8.HistoryCC.3.c",
+           "text": "Use geographic tools and resources to investigate how conflicts and alliances among European countries and Native American groups impacted the expansion of American territory."
+          },
+          {
+           "code": "6.1.8.HistoryCC.3.d",
+           "text": "Compare and contrast the Articles of Confederation and the United States Constitution in terms of the decision-making powers of national government."
+          }
+         ]
+        },
+        {
+         "id": "era-3-revolution-and-the-new-nation-1754-1820s-4",
+         "title": "Era 3 - Revolution and the New Nation (1754–1820s) (4 of 4)",
+         "outcomes": [
+          {
+           "code": "6.1.8.HistoryUP.3.a",
+           "text": "Use primary sources as evidence to explain why the Declaration of Independence was written and how its key principles evolved to become unifying ideas of American democracy."
+          },
+          {
+           "code": "6.1.8.HistoryUP.3.b",
+           "text": "Examine the roles and perspectives of various socioeconomic groups (e.g., rural farmers, urban craftsmen, northern merchants, and southern planters), African Americans, Native Americans, and women during the American Revolution, and determine how these groups were impacted by the war."
+          },
+          {
+           "code": "6.1.8.HistoryUP.3.c",
+           "text": "Analyze how the terms of the Treaty of Paris affected United States relations with Native Americans and with European powers that had territories in North America from multiple perspectives."
+          },
+          {
+           "code": "6.1.8.HistorySE.3.a",
+           "text": "Analyze how the leadership of George Washington during the American Revolution and as president allowed for the establishment of American democracy."
+          },
+          {
+           "code": "6.1.8.HistorySE.3.b",
+           "text": "Analyze a variety of sources to make evidence-based inferences about how prominent individuals and other nations contributed to the causes, execution, and outcomes of the American Revolution."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "era-4-expansion-and-reform-1801-1861",
+       "title": "Era 4 - Expansion and Reform (1801–1861)",
+       "subtopics": [
+        {
+         "id": "era-4-expansion-and-reform-1801-1861-1-of-3",
+         "title": "Era 4 - Expansion and Reform (1801–1861) (1 of 3)",
+         "outcomes": [
+          {
+           "code": "6.1.8.CivicsDP.4.a",
+           "text": "Research and prioritize the most significant events that led to the expansion of voting rights during the Jacksonian period."
+          },
+          {
+           "code": "6.1.8.CivicsHR.4.a",
+           "text": "Examine sources from a variety of perspectives to describe efforts to reform education, women's rights, slavery, and other issues during the Antebellum period."
+          },
+          {
+           "code": "6.1.8.GeoSV.4.a",
+           "text": "Map territorial expansion and settlement, highlighting the locations of conflicts with and resettlement of Native Americans."
+          },
+          {
+           "code": "6.1.8.EconET.4.a",
+           "text": "Analyze the debates involving the National Bank, uniform currency, and tariffs, and determine the extent to which each of these economic tools met the economic challenges facing the new nation."
+          }
+         ]
+        },
+        {
+         "id": "era-4-expansion-and-reform-1801-1861-2-of-3",
+         "title": "Era 4 - Expansion and Reform (1801–1861) (2 of 3)",
+         "outcomes": [
+          {
+           "code": "6.1.8.EconET.4.b",
+           "text": "Assess the impact of the Louisiana Purchase and western exploration on the expansion and economic development of the United States."
+          },
+          {
+           "code": "6.1.8.EconNE.4.a",
+           "text": "Explain how major technological developments revolutionized land and water transportation, as well as the economy, in New Jersey and the nation."
+          },
+          {
+           "code": "6.1.8.EconNE.4.b",
+           "text": "Analyze how technological innovations affected the status and social class of different groups of people and explain the outcomes that resulted."
+          },
+          {
+           "code": "6.1.8.HistoryCC.4.a",
+           "text": "Explain the changes in America's relationships with other nations by analyzing policies, treaties, tariffs, and agreements."
+          }
+         ]
+        },
+        {
+         "id": "era-4-expansion-and-reform-1801-1861-3-of-3",
+         "title": "Era 4 - Expansion and Reform (1801–1861) (3 of 3)",
+         "outcomes": [
+          {
+           "code": "6.1.8.HistoryCC.4.b",
+           "text": "Explain the growing resistance to slavery and New Jersey's role in the Underground Railroad."
+          },
+          {
+           "code": "6.1.8.HistoryCC.4.c",
+           "text": "Analyze how the concept of Manifest Destiny influenced the acquisition of land through annexation, diplomacy, and war."
+          },
+          {
+           "code": "6.1.8.HistoryCC.4.d",
+           "text": "Analyze the push-pull factors that led to increase in immigration and explain why ethnic and cultural conflicts resulted."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "era-5-civil-war-and-reconstruction-1850-1877",
+       "title": "Era 5 - Civil War and Reconstruction (1850–1877)",
+       "subtopics": [
+        {
+         "id": "era-5-civil-war-and-reconstruction-1850-1877-1-o",
+         "title": "Era 5 - Civil War and Reconstruction (1850–1877) (1 of 2)",
+         "outcomes": [
+          {
+           "code": "6.1.8.HistoryCC.5.a",
+           "text": "Prioritize the causes and events that led to the Civil War from different perspectives."
+          },
+          {
+           "code": "6.1.8.HistoryCC.5.b",
+           "text": "Analyze critical events and battles of the Civil War from different perspectives."
+          },
+          {
+           "code": "6.1.8.HistoryCC.5.c",
+           "text": "Assess the human and material costs of the Civil War in the North and South."
+          },
+          {
+           "code": "6.1.8.HistoryUP.5.a",
+           "text": "Analyze the effectiveness of the 13th, 14th, and 15th Amendments to the United States Constitution from multiple perspectives."
+          },
+          {
+           "code": "6.1.8.HistoryUP.5.b",
+           "text": "Examine the roles of women, African Americans, and Native Americans in the Civil War."
+          }
+         ]
+        },
+        {
+         "id": "era-5-civil-war-and-reconstruction-1850-1877-2-o",
+         "title": "Era 5 - Civil War and Reconstruction (1850–1877) (2 of 2)",
+         "outcomes": [
+          {
+           "code": "6.1.8.HistpryUP.5.c",
+           "text": "Explain how and why the Emancipation Proclamation and the Gettysburg Address continue to impact American life."
+          },
+          {
+           "code": "6.1.8.HistoryCC.5.d",
+           "text": "Assess the role of various factors that affected the course and outcome of the Civil War (i.e., geography, natural resources, demographics, transportation, leadership, and technology)."
+          },
+          {
+           "code": "6.1.8.HistoryCC.5.e",
+           "text": "Compare and contrast the approaches of Congress and Presidents Lincoln and Johnson toward the reconstruction of the South."
+          },
+          {
+           "code": "6.1.8.HistoryCC.5.f",
+           "text": "Analyze the economic impact of Reconstruction on the South from different perspectives."
+          },
+          {
+           "code": "6.1.8.HistoryCC.5.g",
+           "text": "Construct an argument that prioritizes the causes and events that led to the Civil War using multiple sources from different perspectives."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "world-history-global-studies",
+     "title": "World History / Global Studies",
+     "topics": [
+      {
+       "id": "era-1-the-beginnings-of-human-society",
+       "title": "Era 1 - The Beginnings of Human Society",
+       "subtopics": [
+        {
+         "id": "era-1-the-beginnings-of-human-society-1-of-2",
+         "title": "Era 1 - The Beginnings of Human Society (1 of 2)",
+         "outcomes": [
+          {
+           "code": "6.2.8.GeoPP.1.a",
+           "text": "Compare and contrast the social organization, natural resources, and land use of early hunters/gatherers and those who lived in early agrarian societies."
+          },
+          {
+           "code": "6.2.8.GeoPP.1.b",
+           "text": "Use maps to examine the impact of the various migratory patterns of hunters/gatherers that moved from Africa to Eurasia, Australia, and the Americas."
+          },
+          {
+           "code": "6.2.8.HistoryCC.1.a",
+           "text": "Describe the influence of the agricultural revolution on population growth and the subsequent development of civilizations (e.g., the impact of food surplus from farming)."
+          },
+          {
+           "code": "6.2.8.HistoryCC.1.b",
+           "text": "Determine the impact of technological advancements on hunter/gatherer and agrarian societies."
+          }
+         ]
+        },
+        {
+         "id": "era-1-the-beginnings-of-human-society-2-of-2",
+         "title": "Era 1 - The Beginnings of Human Society (2 of 2)",
+         "outcomes": [
+          {
+           "code": "6.2.8.HistoryCC.1.c",
+           "text": "Describe how the development of both written and unwritten languages impacted human understanding, development of culture, and social structure."
+          },
+          {
+           "code": "6.2.8.HistoryCC.1.d",
+           "text": "Demonstrate an understanding of pre-agricultural and post-agricultural periods in terms of relative length of time."
+          },
+          {
+           "code": "6.2.8.HistorySE.1.a",
+           "text": "Explain how archaeological discoveries are used to develop and enhance understanding of life prior to written records."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "era-2-early-civilizations-and-the-emergence-of-p",
+       "title": "Era 2 - Early Civilizations and the Emergence of Pastoral Peoples: Early River Valley Civilizations (4000–1000 BCE)",
+       "subtopics": [
+        {
+         "id": "era-2-early-civilizations-and-the-emergence-of-p",
+         "title": "Era 2 - Early Civilizations and the Emergence of Pastoral Peoples: Early River Valley Civilizations (4000–1000 BCE) (1 of 2)",
+         "outcomes": [
+          {
+           "code": "6.2.8.CivicsPI.2.a",
+           "text": "Explain how/why different early river valley civilizations developed similar forms of government and legal structures."
+          },
+          {
+           "code": "6.2.8.CivicsHR.2.a",
+           "text": "Determine the role of slavery in the economic and social structures of early river valley civilizations."
+          },
+          {
+           "code": "6.2.8.GeoSV.2.a",
+           "text": "Compare and contrast physical and political maps of early river valley civilizations and their modern counterparts and determine the geopolitical impact of these civilizations, then and now (i.e., Mesopotamia and Iraq; Ancient Egypt and Modern Egypt; Indus River Valley and Modern Pakistan/India; Ancient China and Modern China)."
+          },
+          {
+           "code": "6.2.8.GeoHE.2.a",
+           "text": "Determine the extent to which geography influenced settlement, the development of trade networks, technological innovations, and the sustainability of early river valley civilizations."
+          },
+          {
+           "code": "6.2.8.GeoGE.2.a",
+           "text": "Explain how technological advancements led to greater economic specialization, improved weaponry, trade, and the development of a class system in early river valley civilizations."
+          }
+         ]
+        },
+        {
+         "id": "era-2-early-civilizations-and-the-emergence-of-p-2",
+         "title": "Era 2 - Early Civilizations and the Emergence of Pastoral Peoples: Early River Valley Civilizations (4000–1000 BCE) (2 of 2)",
+         "outcomes": [
+          {
+           "code": "6.2.8.HistoryCC.2.a",
+           "text": "Evaluate the importance and enduring legacy of the major achievements of the early river valley civilizations over time."
+          },
+          {
+           "code": "6.2.8.HistoryCC.2.b",
+           "text": "Analyze the impact of religion on daily life, government, and culture in various early river valley civilizations."
+          },
+          {
+           "code": "6.2.8.HistoryCC.2.c",
+           "text": "Explain how the development of written language transformed all aspects of life in early river valley civilizations."
+          },
+          {
+           "code": "6.2.8.HistoryCA.2.a",
+           "text": "Analyze the factors that led to the rise and fall of various early river valley civilizations and determine whether there was a common pattern of growth and decline."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "era-3-the-classical-civilizations-of-the-mediter",
+       "title": "Era 3 - The Classical Civilizations of the Mediterranean World, India, and China (1000 BCE–600 CE)",
+       "subtopics": [
+        {
+         "id": "era-3-the-classical-civilizations-of-the-mediter",
+         "title": "Era 3 - The Classical Civilizations of the Mediterranean World, India, and China (1000 BCE–600 CE) (1 of 3)",
+         "outcomes": [
+          {
+           "code": "6.2.8.CivicsPI.3.a",
+           "text": "Compare and contrast the methods (i.e., autocratic rule, philosophies, and bureaucratic structures) used by the rulers of Rome, China, and India to control and unify their expanding empires."
+          },
+          {
+           "code": "6.2.8.CivicsDP.3.a",
+           "text": "Compare and contrast the American legal system with the legal systems of classical civilizations and determine the extent to which these early systems influenced our current legal system (e.g., Babylonian Code of Hammurabi, Roman Justinian Code, Israelite Jewish Law)."
+          },
+          {
+           "code": "6.2.8.CivicsDP.3.b",
+           "text": "Use evidence to describe the impact of Athenian democracy and the Roman Republic on the development of the United State Constitution."
+          },
+          {
+           "code": "6.2.8.CivicsHR.3.a",
+           "text": "Compare and contrast the rights and responsibilities of free men, women, slaves, and foreigners in the political, economic, and social structures of classical civilizations."
+          },
+          {
+           "code": "6.2.8.GeoPP.3.a",
+           "text": "Use geographic models to describe how the availability of natural resources influenced the development of the political, economic, and cultural systems of each of the classical civilizations and provided motivation for expansion."
+          }
+         ]
+        },
+        {
+         "id": "era-3-the-classical-civilizations-of-the-mediter-2",
+         "title": "Era 3 - The Classical Civilizations of the Mediterranean World, India, and China (1000 BCE–600 CE) (2 of 3)",
+         "outcomes": [
+          {
+           "code": "6.2.8.GeoPP.3.b",
+           "text": "Explain how geography and the availability of natural resources led to both the development of classical civilizations and to their decline."
+          },
+          {
+           "code": "6.2.8.EconEM.3.a",
+           "text": "Analyze the impact of expanding land and sea trade routes as well as a uniform system of exchange in the Mediterranean World and Asia."
+          },
+          {
+           "code": "6.2.8.EconGE.3.a",
+           "text": "Explain how classical civilizations used technology and innovation to enhance agricultural/ manufacturing output and commerce, to expand military capabilities, to improve life in urban areas, and to allow for greater division of labor."
+          },
+          {
+           "code": "6.2.8.HistoryCC.3.a",
+           "text": "Determine the extent to which religion, economic issues, and conflict shaped the values and decisions of the classical civilizations."
+          },
+          {
+           "code": "6.2.8.HistoryUP.3.a",
+           "text": "Compare and contrast social hierarchies in classical civilizations as they relate to power, wealth, and equality."
+          }
+         ]
+        },
+        {
+         "id": "era-3-the-classical-civilizations-of-the-mediter-3",
+         "title": "Era 3 - The Classical Civilizations of the Mediterranean World, India, and China (1000 BCE–600 CE) (3 of 3)",
+         "outcomes": [
+          {
+           "code": "6.2.8.HistoryUP.3.b",
+           "text": "Compare the status of groups in the Ancient World to those of people today and evaluate how individuals perceived the principles of liberty and equality then and now (i.e., political, economic, and social)."
+          },
+          {
+           "code": "6.2.8.HistoryUP.3.c",
+           "text": "Compare and contrast the tenets of various world religions that developed in or around this time period (i.e., Buddhism, Christianity, Confucianism, Hinduism, Islam, Judaism, Sikhism, and Taoism), their patterns of expansion, and their responses to the current challenges of globalization."
+          },
+          {
+           "code": "6.2.8.HistoryCA.3.a",
+           "text": "Evaluate the importance and enduring legacy of the major achievements of Greece, Rome, India, and China over time."
+          },
+          {
+           "code": "6.2.8.HistoryCA.3.b",
+           "text": "Determine common factors that contributed to the decline and fall of the Roman Empire, Gupta India, and Han China."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "era-4-expanding-exchanges-and-encounters-500-ce-",
+       "title": "Era 4 - Expanding Exchanges and Encounters (500 CE–1450 CE)",
+       "subtopics": [
+        {
+         "id": "era-4-expanding-exchanges-and-encounters-500-ce-",
+         "title": "Era 4 - Expanding Exchanges and Encounters (500 CE–1450 CE) (1 of 4)",
+         "outcomes": [
+          {
+           "code": "6.2.8.CivicsPI.4.a",
+           "text": "Analyze the role of religion and other means rulers used to unify and centrally govern expanding territories with diverse populations. The principles of the United States government are based on political philosophies, ideas, and experiences of earlier governments."
+          },
+          {
+           "code": "6.2.8.CivicsDP.4.a",
+           "text": "Cite evidence of the influence of medieval English legal and constitutional practices on modern democratic thought and institutions (i.e., the Magna Carta, parliament, the development of habeas corpus, and an independent judiciary)."
+          },
+          {
+           "code": "6.2.8.GeoHE.4.a",
+           "text": "Explain how geography influenced the development of the political, economic, and cultural centers of each empire as well as the empires' relationships with other parts of the world."
+          },
+          {
+           "code": "6.2.8.GeoHP.4.a",
+           "text": "Explain why the Arabian Peninsula's physical features and location made it the epicenter of Afro-Eurasian trade and fostered the spread of Islam into Africa, Europe, and Asia."
+          },
+          {
+           "code": "6.2.8.GeoHP.4.b",
+           "text": "Assess how maritime and overland trade routes impacted urbanization, transportation, communication, and the development of international trade centers (i.e., the African caravan and Silk Road)."
+          }
+         ]
+        },
+        {
+         "id": "era-4-expanding-exchanges-and-encounters-500-ce--2",
+         "title": "Era 4 - Expanding Exchanges and Encounters (500 CE–1450 CE) (2 of 4)",
+         "outcomes": [
+          {
+           "code": "6.2.8.GeoHP.4.c",
+           "text": "Use maps to show how the interaction between the Islamic world and medieval Europe increased trade, enhanced technology innovation and impacted science, thought, and the arts."
+          },
+          {
+           "code": "6.2.8.GeoHE.4.b",
+           "text": "Use geographic models to determine the impact of environmental modifications made by earlier civilizations on the current day environmental challenges."
+          },
+          {
+           "code": "6.2.8.GeoHE.4.c",
+           "text": "Explain how the geographies and climates of Asia, Africa, Europe, and the Americas influenced their economic development and interaction or isolation with other societies."
+          },
+          {
+           "code": "6.2.8.GeoGI.4.a",
+           "text": "Determine how Africa's physical geography and natural resources presented challenges and opportunities for trade, development, and the spread of religion."
+          },
+          {
+           "code": "6.2.8.GeoSV.4.a",
+           "text": "Analyze the immediate and long-term impact on China and Europe of the open exchange between Europe and the Yuan (Mongol) Dynasty."
+          }
+         ]
+        },
+        {
+         "id": "era-4-expanding-exchanges-and-encounters-500-ce--3",
+         "title": "Era 4 - Expanding Exchanges and Encounters (500 CE–1450 CE) (3 of 4)",
+         "outcomes": [
+          {
+           "code": "6.2.8.EconNE.4.a",
+           "text": "Compare and contrast the Japanese and European systems of feudalism and the effectiveness of each in promoting social, economic, and political order."
+          },
+          {
+           "code": "6.2.8.HistoryCC.4.a",
+           "text": "Determine which events led to the rise and eventual decline of European feudalism."
+          },
+          {
+           "code": "6.2.8.HistoryCC.4.b",
+           "text": "Explain how and why the interrelationships among improved agricultural production, population growth, urbanization, and commercialization led to the rise of powerful states and kingdoms (i.e., Europe, Asia, Americas)."
+          },
+          {
+           "code": "6.2.8.HistoryCC.4.c",
+           "text": "Assess the demographic, economic, and religious impact of the plague on Europe."
+          },
+          {
+           "code": "6.2.8.HistoryCC.4.d",
+           "text": "Analyze the causes and outcomes of the Crusades from different perspectives, including the perspectives of European political and religious leaders, the crusaders, Jews, Muslims, and traders."
+          }
+         ]
+        },
+        {
+         "id": "era-4-expanding-exchanges-and-encounters-500-ce--4",
+         "title": "Era 4 - Expanding Exchanges and Encounters (500 CE–1450 CE) (4 of 4)",
+         "outcomes": [
+          {
+           "code": "6.2.8.HistoryCC.4.e",
+           "text": "Determine the extent to which the Byzantine Empire influenced the Islamic world and western Europe."
+          },
+          {
+           "code": "6.2.8.HistoryCC.4.f",
+           "text": "Analyze the role of religion and economics in shaping each empire's social hierarchy and evaluate the impact these hierarchical structures had on the lives of various groups of people."
+          },
+          {
+           "code": "6.2.8.HistoryCC.4.g",
+           "text": "Evaluate the importance and enduring legacy of the major achievements of the people living Asia, Africa (Islam), Europe and the Americas over time."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "active-citizenship-in-the-21st-century",
+     "title": "Active Citizenship in the 21st Century",
+     "topics": [
+      {
+       "id": "civics-government-and-human-rights",
+       "title": "Civics, Government and Human Rights",
+       "subtopics": [
+        {
+         "id": "civics-government-and-human-rights-1-of-4",
+         "title": "Civics, Government and Human Rights (1 of 4)",
+         "outcomes": [
+          {
+           "code": "6.3.8.CivicsPI.1",
+           "text": "Evaluate, take, and defend a position on why government is necessary, and the purposes government should serve."
+          },
+          {
+           "code": "6.3.8.CivicsPI.2",
+           "text": "Evaluate the extent to which different forms of government reflect the history and values of various societies (e.g., monarchy, democracy, republic, dictatorship)."
+          },
+          {
+           "code": "6.3.8.CivicsPI.3",
+           "text": "Use a variety of sources from multiple perspectives to examine the role of individuals, political parties, interest groups, and the media in a local or global issue and share this information with a governmental or nongovernmental organization as a way to gain support for addressing the issue."
+          },
+          {
+           "code": "6.3.8.CivicsPI.4",
+           "text": "Investigate the roles of political, civil, and economic organizations in shaping people's lives and share this information with individuals who might benefit from this information."
+          },
+          {
+           "code": "6.3.8.CivicsPD.1",
+           "text": "Deliberate on a public issue affecting an upcoming election, consider opposing arguments, and develop a reasoned conclusion."
+          }
+         ]
+        },
+        {
+         "id": "civics-government-and-human-rights-2-of-4",
+         "title": "Civics, Government and Human Rights (2 of 4)",
+         "outcomes": [
+          {
+           "code": "6.3.8.CivicsPD.2",
+           "text": "Propose and defend a position regarding a public policy issue at the appropriate local, state, or national level."
+          },
+          {
+           "code": "6.3.8.CivicsPD.3",
+           "text": "Construct a claim as to why it is important for democracy that individuals are informed by facts, aware of diverse viewpoints, and willing to take action on public issues."
+          },
+          {
+           "code": "6.3.8.CivicsDP.1",
+           "text": "Identify an issue of inequality, develop multiple solutions, and communicate the best one to an appropriate government body."
+          },
+          {
+           "code": "6.3.8.CivicsDP.2",
+           "text": "Make a claim based on evidence to determine the extent and the limitations of First Amendment rights (e.g., U.S. Supreme Court decisions)."
+          },
+          {
+           "code": "6.3.8.CivicsDP.3",
+           "text": "Use historical case studies and current events to explain why due process is essential for the protection of individual rights and maintenance of limited government."
+          }
+         ]
+        },
+        {
+         "id": "civics-government-and-human-rights-3-of-4",
+         "title": "Civics, Government and Human Rights (3 of 4)",
+         "outcomes": [
+          {
+           "code": "6.3.8.CivicsPR.1",
+           "text": "Analyze primary sources to explain how democratic ideas in the United States developed from the historical experiences of ancient societies, England, and the North American colonies."
+          },
+          {
+           "code": "6.3.8.CivicsPR.2",
+           "text": "Evaluate the effectiveness of the fundamental principles of the Constitution (i.e., consent of the governed, rule of law, federalism, limited government, separation of powers, checks and balances, and individual rights) in establishing a federal government that allows for growth and change over time."
+          },
+          {
+           "code": "6.3.8.CivicsPR.3",
+           "text": "Take a position on an issue in which fundamental ideals and principles are in conflict (e.g., liberty, equality)."
+          },
+          {
+           "code": "6.3.8.CivicsPR.4",
+           "text": "Use evidence and quantitative data to propose or defend a public policy related to climate change."
+          },
+          {
+           "code": "6.3.8.CivicsPR.5",
+           "text": "Engage in simulated democratic processes (e.g., legislative hearings, judicial proceedings, elections) to understand how conflicting points of view are addressed in a democratic society."
+          }
+         ]
+        },
+        {
+         "id": "civics-government-and-human-rights-4-of-4",
+         "title": "Civics, Government and Human Rights (4 of 4)",
+         "outcomes": [
+          {
+           "code": "6.3.8.CivicsPR.6",
+           "text": "Seek the perspectives of multiple stakeholders with diverse points of view regarding a local budget issue and take a position on proposed policy."
+          },
+          {
+           "code": "6.3.8.CivicsPR.7",
+           "text": "Compare how ideas become laws at the local, state, and national level."
+          },
+          {
+           "code": "6.3.8.CivicsHR.1",
+           "text": "Construct an argument as to the source of human rights and how they are best protected."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "9-12",
+   "units": [
+    {
+     "id": "u-s-history-america-in-the-world",
+     "title": "U.S. History: America in the World",
+     "topics": [
+      {
+       "id": "u-s-history-america-in-the-world",
+       "title": "U.S. History: America in the World",
+       "subtopics": [
+        {
+         "id": "u-s-history-america-in-the-world",
+         "title": "U.S. History: America in the World",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "History, Culture, and Perspectives"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "era-1-colonization-and-settlement-1585-1763",
+       "title": "Era 1 - Colonization and Settlement (1585–1763)",
+       "subtopics": [
+        {
+         "id": "era-1-colonization-and-settlement-1585-1763",
+         "title": "Era 1 - Colonization and Settlement (1585–1763)",
+         "outcomes": [
+          {
+           "code": "6.1.12.CivicsPI.1.a",
+           "text": "Explain how British North American colonies adapted the British governance structure to fit their ideas of individual rights, economic growth, and participatory government."
+          },
+          {
+           "code": "6.1.12.CivicsPD.1.a",
+           "text": "Use multiple sources to analyze the factors that led to an increase in the political rights and participation in government."
+          },
+          {
+           "code": "6.1.12.GeoGI.1.a",
+           "text": "Explain how geographic variations impacted economic development in the New World, and its role in promoting trade with global markets (e.g., climate, soil conditions, other natural resources)."
+          },
+          {
+           "code": "6.1.12.EconGE.1.a",
+           "text": "Explain how economic ideas and the practices of mercantilism and capitalism conflicted during this time period."
+          },
+          {
+           "code": "6.1.12.HistoryCC.1.a",
+           "text": "Assess the impact of the interactions and conflicts between native groups and North American settlers."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "era-2-revolution-and-the-new-nation-1754-1820s",
+       "title": "Era 2 - Revolution and the New Nation (1754–1820s)",
+       "subtopics": [
+        {
+         "id": "era-2-revolution-and-the-new-nation-1754-1820s-1",
+         "title": "Era 2 - Revolution and the New Nation (1754–1820s) (1 of 4)",
+         "outcomes": [
+          {
+           "code": "6.1.12.CivicsPI.2.a",
+           "text": "Prepare and articulate a point of view about the importance of individual rights, separation of powers, and governmental structure in New Jersey's 1776 constitution and the United States Constitution."
+          },
+          {
+           "code": "6.1.12.CivicsPI.2.b",
+           "text": "Examine the emergence of early political parties and their views on centralized government and foreign affairs and compare these positions with those of today's political parties."
+          },
+          {
+           "code": "6.1.12.CivicsPD.2.a",
+           "text": "Compare and contrast the arguments of Federalists and Anti-Federalists during the ratification debates and assess their continuing relevance."
+          },
+          {
+           "code": "6.1.12.CivicsPR.2.a",
+           "text": "Use primary sources to explain how judicial review made the Supreme Court an influential branch of government and construct an argument regarding the continuing impact of the Supreme Court today."
+          }
+         ]
+        },
+        {
+         "id": "era-2-revolution-and-the-new-nation-1754-1820s-2",
+         "title": "Era 2 - Revolution and the New Nation (1754–1820s) (2 of 4)",
+         "outcomes": [
+          {
+           "code": "6.1.12.GeoPP.2.a",
+           "text": "Analyze how the United States has attempted to account for regional differences while also striving to create an American identity."
+          },
+          {
+           "code": "6.1.12.GeoPP.2.b",
+           "text": "Use multiple sources to evaluate the effectiveness of the Northwest Ordinance in resolving disputes over Western lands and the expansion of slavery."
+          },
+          {
+           "code": "6.1.12.EconEM.2.a",
+           "text": "Explain how the United States economy emerged from British mercantilism."
+          },
+          {
+           "code": "6.1.12.EconEM.2.b",
+           "text": "Assess the effectiveness of the new state and national governments attempts to respond to economic challenges including domestic (e.g., inflation, debt) and foreign trade policy issues."
+          }
+         ]
+        },
+        {
+         "id": "era-2-revolution-and-the-new-nation-1754-1820s-3",
+         "title": "Era 2 - Revolution and the New Nation (1754–1820s) (3 of 4)",
+         "outcomes": [
+          {
+           "code": "6.1.12.EconEM.2.c",
+           "text": "Analyze how technological developments transformed the economy, created international markets, and affected the environment in New Jersey and the nation."
+          },
+          {
+           "code": "6.1.12.HistoryCC.2.a",
+           "text": "Create a timeline that relates events in Europe to the development of American trade and American foreign and domestic policies."
+          },
+          {
+           "code": "6.1.12.HistoryCC.2.b",
+           "text": "Assess the importance of the intellectual origins of the Foundational Documents and assess their importance on the spread of democracy around the world (i.e., Declaration of Independence, the Constitution, and Bill of Rights)."
+          },
+          {
+           "code": "6.1.12.HistoryUP.2.a",
+           "text": "Using primary sources, describe the perspectives of African Americans, Native Americans, and women during the American Revolution and assess the contributions of each group on the outcome of the war."
+          }
+         ]
+        },
+        {
+         "id": "era-2-revolution-and-the-new-nation-1754-1820s-4",
+         "title": "Era 2 - Revolution and the New Nation (1754–1820s) (4 of 4)",
+         "outcomes": [
+          {
+           "code": "6.1.12.HistoryUP.2.b",
+           "text": "Analyze the impact and contributions of African American leaders and institutions in the development and activities of black communities in the North and South before and after the Civil War."
+          },
+          {
+           "code": "6.1.12.HistoryUP.2.c",
+           "text": "Explain why American ideals put forth in the Constitution have been denied to different groups of people throughout time (i.e., due process, rule of law and individual rights)."
+          },
+          {
+           "code": "6.1.12.HistorySE.2.a",
+           "text": "Construct responses to arguments in support of new rights and roles for women and for arguments explaining the reasons against them."
+          },
+          {
+           "code": "6.1.12.HistoryCA.2.a",
+           "text": "Research multiple perspectives to explain the struggle to create an American identity."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "era-3-expansion-and-reform-1801-1861",
+       "title": "Era 3 - Expansion and Reform (1801–1861)",
+       "subtopics": [
+        {
+         "id": "era-3-expansion-and-reform-1801-1861-1-of-3",
+         "title": "Era 3 - Expansion and Reform (1801–1861) (1 of 3)",
+         "outcomes": [
+          {
+           "code": "6.1.12.CivicsPI.3.a",
+           "text": "Analyze primary and secondary sources to determine the extent to which local and state issues, publications, and the rise of interest group and party politics impacted the development of democratic institutions and practices."
+          },
+          {
+           "code": "6.1.12.Civics.PI.3.b",
+           "text": "Describe how the Supreme Court increased the power of the national government and promoted national economic growth during this era."
+          },
+          {
+           "code": "6.1.12.CivicsDP.3.a",
+           "text": "Compare and contrast the successes and failures of political and social reform movements in New Jersey and the nation during the Antebellum period (i.e., the 1844 State Constitution, abolition, women's rights, and temperance)."
+          },
+          {
+           "code": "6.1.12.CivicsDP.3.b",
+           "text": "Judge the fairness of government treaties, policies, and actions that resulted in Native American migration and removal."
+          },
+          {
+           "code": "6.1.12.CivicsDP.3.c",
+           "text": "Examine the origins of the antislavery movement and the impact of particular events, such as the Amistad decision, on the movement."
+          }
+         ]
+        },
+        {
+         "id": "era-3-expansion-and-reform-1801-1861-2-of-3",
+         "title": "Era 3 - Expansion and Reform (1801–1861) (2 of 3)",
+         "outcomes": [
+          {
+           "code": "6.1.12.GeoSV.3.a",
+           "text": "Evaluate the impact of Western settlement on the expansion of United States political boundaries."
+          },
+          {
+           "code": "6.1.12.EconET.3.a",
+           "text": "Relate the wealth of natural resources to the economic development of the United States and to the quality of life of individuals."
+          },
+          {
+           "code": "6.1.12.EconGE.3.a",
+           "text": "Analyze how technological developments transformed the economy, created international markets, and affected the environment in New Jersey and the nation."
+          },
+          {
+           "code": "6.1.12.EconNE.3.a",
+           "text": "Evaluate the impact of education in improving economic opportunities and in the development of responsible citizens."
+          },
+          {
+           "code": "6.1.12.HistoryUP.3.a",
+           "text": "Determine how expansion created opportunities for some and hardships for others by considering multiple perspectives over different time periods (e.g. Native American/European, Native American/White settlers, American/Latin American, American/Asian)."
+          }
+         ]
+        },
+        {
+         "id": "era-3-expansion-and-reform-1801-1861-3-of-3",
+         "title": "Era 3 - Expansion and Reform (1801–1861) (3 of 3)",
+         "outcomes": [
+          {
+           "code": "6.1.12.HistoryUP.3.b",
+           "text": "Examine a variety of sources from multiple perspectives on slavery and evaluate the claims used to justify the arguments."
+          },
+          {
+           "code": "6.1.12.HistoryCA.3.a",
+           "text": "Use evidence to demonstrate how states' rights (i.e., Nullification) and sectional interests influenced party politics and shaped national policies (i.e., the Missouri Compromise and the Compromise of 1850)."
+          },
+          {
+           "code": "6.1.12.HistoryCA.3.b",
+           "text": "Use primary sources representing multiple perspectives to explain the impact of immigration on American society and the economy and the various responses to increased immigration."
+          },
+          {
+           "code": "6.1.12.HistoryCC.3.a",
+           "text": "Evaluate the role of religion, music, literature, and media in shaping contemporary American culture over different time periods."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "era-4-civil-war-and-reconstruction-1850-1877",
+       "title": "Era 4 - Civil War and Reconstruction (1850–1877)",
+       "subtopics": [
+        {
+         "id": "era-4-civil-war-and-reconstruction-1850-1877-1-o",
+         "title": "Era 4 - Civil War and Reconstruction (1850–1877) (1 of 3)",
+         "outcomes": [
+          {
+           "code": "6.1.12.CivicsDP.4.a",
+           "text": "Compare and contrast historians' interpretations of the impact of the 13th, 14th, and 15th Amendments on African American's ability to participate in influencing governmental policies."
+          },
+          {
+           "code": "6.1.12.CivicsDP.4.b",
+           "text": "Analyze how ideas found in key documents contributed to demanding equality for all (i.e., the Declaration of Independence, the Seneca Falls Declaration of Sentiments and Resolutions, the Emancipation Proclamation, and the Gettysburg Address)."
+          },
+          {
+           "code": "6.1.12.CivicsPR.4.a",
+           "text": "Draw from multiple sources to explain the ways in which prevailing attitudes, socioeconomic factors, and government actions (i.e., the Fugitive Slave Act and Dred Scott Decision) in the North and South (i.e., Secession) led to the Civil War."
+          },
+          {
+           "code": "6.1.12.GeoSV.4.a",
+           "text": "Use maps and primary sources to describe the impact geography had on military, political, and economic decisions during the civil war."
+          }
+         ]
+        },
+        {
+         "id": "era-4-civil-war-and-reconstruction-1850-1877-2-o",
+         "title": "Era 4 - Civil War and Reconstruction (1850–1877) (2 of 3)",
+         "outcomes": [
+          {
+           "code": "6.1.12.GeoPP.4.a",
+           "text": "Use evidence to demonstrate the impact of population shifts and migration patterns during the Reconstruction period."
+          },
+          {
+           "code": "6.1.12.EconET.4.a",
+           "text": "Assess the role that economics played in enabling the North and South to wage war."
+          },
+          {
+           "code": "6.1.12.EconNE.4.a",
+           "text": "Compare and contrast the immediate and long-term effects of the Civil War on the economies of the North and South."
+          },
+          {
+           "code": "6.1.12.HistoryCC.4.a",
+           "text": "Analyze the extent of change in the relationship between the national and state governments as a result of the Civil War and the 13th, 14th, and 15th Amendments during the 19th century."
+          }
+         ]
+        },
+        {
+         "id": "era-4-civil-war-and-reconstruction-1850-1877-3-o",
+         "title": "Era 4 - Civil War and Reconstruction (1850–1877) (3 of 3)",
+         "outcomes": [
+          {
+           "code": "6.1.12.HistoryUP.4.a",
+           "text": "Relate conflicting political, economic, social, and sectional perspectives on Reconstruction to the resistance of some Southern individuals and states."
+          },
+          {
+           "code": "6.1.12.HistoryUP.4.b",
+           "text": "Use primary sources to compare and contrast the experiences of African Americans who lived in Union and Confederate states before and during the Civil War."
+          },
+          {
+           "code": "6.1.12.HistoryCC.4.b",
+           "text": "Compare and contrast the impact of the American Civil War with the impact of a past or current civil war in another country in terms of the consequences of costs, reconstruction, people's lives, and work."
+          },
+          {
+           "code": "6.1.12.HistoryCA.4.c",
+           "text": "Analyze the debate about how to reunite the country and determine the extent to which enacted Reconstruction policies achieved their goals."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "era-5-the-development-of-the-industrial-united-s",
+       "title": "Era 5 - The Development of the Industrial United States (1870–1900)",
+       "subtopics": [
+        {
+         "id": "era-5-the-development-of-the-industrial-united-s",
+         "title": "Era 5 - The Development of the Industrial United States (1870–1900) (1 of 2)",
+         "outcomes": [
+          {
+           "code": "6.1.12.CivicsDP.5.a",
+           "text": "Analyze the effectiveness of governmental policies and of actions by groups and individuals to address discrimination against new immigrants, Native Americans, and African Americans."
+          },
+          {
+           "code": "6.1.12.EconEM.5.a",
+           "text": "Assess the impact of governmental efforts to regulate industrial and financial systems in order to provide economic stability."
+          },
+          {
+           "code": "6.1.12.EconEM.5.b",
+           "text": "Analyze the economic practices of corporations and monopolies regarding the production and marketing of goods and determine the positive or negative impact of these practices on individuals and the nation and the need for government regulations."
+          },
+          {
+           "code": "6.1.12.GeoPP.5.a",
+           "text": "Explain how the Homestead Act, the availability of land and natural resources, and the development of transcontinental railroads and waterways promoted the growth of a nationwide economy and the movement of populations."
+          },
+          {
+           "code": "6.1.12.GeoHE.5.a",
+           "text": "Generate/make an evidence-based argument regarding the impact of rapid urbanization on the environment and on the quality of life in cities."
+          }
+         ]
+        },
+        {
+         "id": "era-5-the-development-of-the-industrial-united-s-2",
+         "title": "Era 5 - The Development of the Industrial United States (1870–1900) (2 of 2)",
+         "outcomes": [
+          {
+           "code": "6.1.12.HistoryNM.5.a",
+           "text": "Compare and contrast economic developments and long-term effects of the Civil War on the economics of the North and the South."
+          },
+          {
+           "code": "6.1.12.HistoryNM.5.b",
+           "text": "Analyze the cyclical nature of the economy and the impact of periods of expansion and recession on businesses and individuals."
+          },
+          {
+           "code": "6.1.12.HistoryCC.5.a",
+           "text": "Evaluate how events led to the creation of labor and agricultural organizations and determine the impact of those organizations on workers' rights, the economy, and politics across time periods."
+          },
+          {
+           "code": "6.1.12.HistoryUP.5.a",
+           "text": "Using primary sources, relate varying immigrants' experiences to gender, race, ethnicity, or occupation."
+          },
+          {
+           "code": "6.1.12.HistoryCA.5.a",
+           "text": "Assess the effectiveness of public education in fostering national unity and American values and in helping people meet their economic needs and expectations."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "era-6-the-emergence-of-modern-america-progressiv",
+       "title": "Era 6 - The Emergence of Modern America: Progressive Reforms (1890–1930)",
+       "subtopics": [
+        {
+         "id": "era-6-the-emergence-of-modern-america-progressiv",
+         "title": "Era 6 - The Emergence of Modern America: Progressive Reforms (1890–1930) (1 of 3)",
+         "outcomes": [
+          {
+           "code": "6.1.12.CivicsDP.6.a",
+           "text": "Use a variety of sources from multiple perspectives to document the ways in which women organized to promote government policies designed to address injustice, inequality, and workplace safety (i.e., abolition, women's suffrage, and the temperance movement)."
+          },
+          {
+           "code": "6.1.12.CivicsDP.6.b",
+           "text": "Relate the creation of African American advocacy organizations (i.e., the National Association for the Advancement of Colored People) to United States Supreme Court decisions (i.e., Plessy v. Ferguson) and state and local governmental policies."
+          },
+          {
+           "code": "6.1.12.CivicsPR.6.a",
+           "text": "Use a variety of sources from multiple perspectives to evaluate the effectiveness of Progressive reforms in preventing unfair business practices and political corruption and in promoting social justice."
+          },
+          {
+           "code": "6.1.12.GeoHE.6.a",
+           "text": "Compare and contrast issues involved in the struggle between the unregulated development of natural resources and efforts to conserve and protect natural resources during the period of industrial expansion."
+          }
+         ]
+        },
+        {
+         "id": "era-6-the-emergence-of-modern-america-progressiv-2",
+         "title": "Era 6 - The Emergence of Modern America: Progressive Reforms (1890–1930) (2 of 3)",
+         "outcomes": [
+          {
+           "code": "6.1.12.GeoGM.6.a",
+           "text": "Determine the role geography played in gaining access to raw materials and finding new global markets to promote trade."
+          },
+          {
+           "code": "6.1.12.EconEM.6.a",
+           "text": "Determine how supply and demand influenced price and output during the Industrial Revolution."
+          },
+          {
+           "code": "6.1.12.EconNE.6.a",
+           "text": "Analyze the impact of money, investment, credit, savings, debt, and financial institutions on the development of the nation and the lives of individuals."
+          },
+          {
+           "code": "6.1.12.HistoryCC.6.b",
+           "text": "Explore factors that promoted innovation, entrepreneurship, and industrialization and determine their impact on New Jersey (i.e. Paterson Silk Strike) and the United States during this period."
+          }
+         ]
+        },
+        {
+         "id": "era-6-the-emergence-of-modern-america-progressiv-3",
+         "title": "Era 6 - The Emergence of Modern America: Progressive Reforms (1890–1930) (3 of 3)",
+         "outcomes": [
+          {
+           "code": "6.1.12.HistoryCC.6.c",
+           "text": "Compare and contrast the foreign policies of American presidents during this time period and analyze how these presidents contributed to the United States becoming a world power."
+          },
+          {
+           "code": "6.1.12.HistoryCC.6.d",
+           "text": "Analyze the successes and failures of efforts to expand women's rights, including the work of important leaders and the eventual ratification of the 19th Amendment (i.e., Elizabeth Cady Stanton, Susan B. Anthony, Alice Paul, and Lucy Stone)."
+          },
+          {
+           "code": "6.1.12.HistoryCA.6.a",
+           "text": "Evaluate the effectiveness of labor and agricultural organizations in improving economic opportunities and rights for various groups."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "era-7-the-emergence-of-modern-america-world-war-",
+       "title": "Era 7 - The Emergence of Modern America: World War I (1890–1930)",
+       "subtopics": [
+        {
+         "id": "era-7-the-emergence-of-modern-america-world-war-",
+         "title": "Era 7 - The Emergence of Modern America: World War I (1890–1930) (1 of 2)",
+         "outcomes": [
+          {
+           "code": "6.1.12.CivicsDP.7.a",
+           "text": "Evaluate the impact of government policies designed to promote patriotism and to protect national security during times of war on individual rights (i.e., the Espionage Act and the Sedition Amendment)."
+          },
+          {
+           "code": "6.1.12.EconNM.7.a",
+           "text": "Assess the immediate and long-term impact of women and African Americans entering the work force in large numbers during World War I."
+          },
+          {
+           "code": "6.1.12.HistoryCC.7.a",
+           "text": "Take a position based on evidence that evaluates the effectiveness of Woodrow Wilson's leadership during and immediately after WWI and compare it to another president's wartime leadership."
+          },
+          {
+           "code": "6.1.12.HistoryCA.7.a",
+           "text": "Determine the extent to which propaganda, the media, and special interest groups shaped American public opinion and American foreign policy during World War I and compare those factors to contemporary American involvement in another country."
+          }
+         ]
+        },
+        {
+         "id": "era-7-the-emergence-of-modern-america-world-war--2",
+         "title": "Era 7 - The Emergence of Modern America: World War I (1890–1930) (2 of 2)",
+         "outcomes": [
+          {
+           "code": "6.1.12.HistoryCA.7.b",
+           "text": "Analyze the reasons for the policy of neutrality regarding World War I and explain why the United States eventually entered the war."
+          },
+          {
+           "code": "6.1.12.HistoryCA.7.c",
+           "text": "Evaluate the American government's response to the rise of authoritarian regimes between the world wars and compare that response to the rise of a modern authoritarian regime (e.g., North Korea, Venezuela, Syria, China, Iran)."
+          },
+          {
+           "code": "6.1.12.HistoryUP.7.a",
+           "text": "Analyze the Treaty of Versailles and the League of Nations from the perspectives of different countries."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "era-8-the-emergence-of-modern-america-roaring-tw",
+       "title": "Era 8 - The Emergence of Modern America: Roaring Twenties (1890–1930)",
+       "subtopics": [
+        {
+         "id": "era-8-the-emergence-of-modern-america-roaring-tw",
+         "title": "Era 8 - The Emergence of Modern America: Roaring Twenties (1890–1930) (1 of 2)",
+         "outcomes": [
+          {
+           "code": "6.1.12.CivicsHR.8.a",
+           "text": "Analyze primary and secondary sources to explain how social intolerance, xenophobia, and fear of anarchism led to restrictive immigration and refugee laws, and the violation of the human rights of individuals and groups."
+          },
+          {
+           "code": "6.1.12.GeoHE.8.a",
+           "text": "Determine the impact of the expansion of agricultural production into marginal farmlands and other ineffective agricultural practices on people and the environment."
+          },
+          {
+           "code": "6.1.12.EconET.8.a",
+           "text": "Relate social, cultural, and technological changes in the interwar period to the rise of a consumer economy and the changing role and status of women."
+          },
+          {
+           "code": "6.1.12.EconNM.8.a",
+           "text": "Analyze the push-pull factors that led to the Great Migration."
+          }
+         ]
+        },
+        {
+         "id": "era-8-the-emergence-of-modern-america-roaring-tw-2",
+         "title": "Era 8 - The Emergence of Modern America: Roaring Twenties (1890–1930) (2 of 2)",
+         "outcomes": [
+          {
+           "code": "6.1.12.HistoryCC.8.a",
+           "text": "Make evidence-based inferences to explain why the Great Migration led to heightened racial tensions, restrictive laws, a rise in repressive organizations, and an increase in violence."
+          },
+          {
+           "code": "6.1.12.History CC.8.b",
+           "text": "Relate government policies to the prosperity of the country during the 1920s and determine the impact of these policies on business and the consumer."
+          },
+          {
+           "code": "6.1.12.HistoryCC.8.c",
+           "text": "Identify the conditions that gave rise to the Harlem Renaissance and assess the impact of artists, writers, and musicians on American culture."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "era-9-the-great-depression-and-world-war-ii-the-",
+       "title": "Era 9 - The Great Depression and World War II: The Great Depression (1929–1945)",
+       "subtopics": [
+        {
+         "id": "era-9-the-great-depression-and-world-war-ii-the-",
+         "title": "Era 9 - The Great Depression and World War II: The Great Depression (1929–1945) (1 of 2)",
+         "outcomes": [
+          {
+           "code": "6.1.12.GeoHE.9.a",
+           "text": "Determine how agricultural practices, overproduction, and the Dust Bowl intensified the worsening economic situation during the Great Depression."
+          },
+          {
+           "code": "6.1.12.EconNE.9.a",
+           "text": "Explain how economic indicators are used to evaluate the health of the economy (i.e., gross domestic product, the consumer price index, the national debt, and the trade deficit)."
+          },
+          {
+           "code": "6.1.12.EconNE.9.b",
+           "text": "Compare and contrast the causes and outcomes of the stock market crash in 1929 with other periods of economic instability."
+          },
+          {
+           "code": "6.1.12.EconNE.9.c",
+           "text": "Explain how government can adjust taxes, interest rates, and spending and use other policies to restore the country's economic health."
+          }
+         ]
+        },
+        {
+         "id": "era-9-the-great-depression-and-world-war-ii-the--2",
+         "title": "Era 9 - The Great Depression and World War II: The Great Depression (1929–1945) (2 of 2)",
+         "outcomes": [
+          {
+           "code": "6.1.12.EconNE.9.d",
+           "text": "Explain the interdependence of various parts of a market economy (i.e., private enterprise, government programs, and the Federal Reserve System)."
+          },
+          {
+           "code": "6.1.12.A.9.a",
+           "text": "Analyze how the actions and policies of the United States government contributed to the Great Depression."
+          },
+          {
+           "code": "6.1.12.HistoryCA.9.a",
+           "text": "Explore the global context of the Great Depression and the reasons for the worldwide economic collapse."
+          },
+          {
+           "code": "6.1.12.HistoryUP.9.a",
+           "text": "Analyze the impact of the Great Depression on the American family and ethnic and racial minorities."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "era-10-the-great-depression-and-world-war-ii-new",
+       "title": "Era 10 - The Great Depression and World War II: New Deal (1929–1945)",
+       "subtopics": [
+        {
+         "id": "era-10-the-great-depression-and-world-war-ii-new",
+         "title": "Era 10 - The Great Depression and World War II: New Deal (1929–1945) (1 of 2)",
+         "outcomes": [
+          {
+           "code": "6.1.12.CivicsPR.10.a",
+           "text": "Analyze how the Supreme Court has interpreted the Constitution to define and expand individual rights and use evidence to document the long-term impact of these decisions on the protection of civil and human rights."
+          },
+          {
+           "code": "6.1.12.CivicsPR.10.b",
+           "text": "Assess the effectiveness of governmental policies enacted during the New Deal period in protecting the welfare of individuals (i.e., FDIC, NLRB, and Social Security)."
+          },
+          {
+           "code": "6.1.12.GeoHE.10.a",
+           "text": "Use primary and secondary sources to explain the effectiveness of New Deal programs designed to protect the environment."
+          },
+          {
+           "code": "6.1.12.EconEM.10.a",
+           "text": "Construct a claim that evaluates short- and long-term impact of the expanded role of government on economic policy, capitalism, and society."
+          },
+          {
+           "code": "6.1.12.EconoNM.10.a",
+           "text": "Evaluate the effectiveness of economic regulations and standards established during this time period in combating the Great Depression."
+          }
+         ]
+        },
+        {
+         "id": "era-10-the-great-depression-and-world-war-ii-new-2",
+         "title": "Era 10 - The Great Depression and World War II: New Deal (1929–1945) (2 of 2)",
+         "outcomes": [
+          {
+           "code": "6.1.12.EconoNM.10.b",
+           "text": "Compare and contrast the economic ideologies of the two major political parties regarding the role of government during the New Deal and today."
+          },
+          {
+           "code": "6.1.12.HistoryCA.10.a",
+           "text": "Explain how Franklin Roosevelt and other key individuals, including minorities and women, shaped the core ideologies and policies of the New Deal (i.e., Mary McLeod Bethune, Frances Perkins, and Eleanor Roosevelt)."
+          },
+          {
+           "code": "6.1.12.HistoryCA.10.b",
+           "text": "Use a variety of sources from multiple perspectives to determine the extent to which New Deal public works and arts programs impacted New Jersey, the nation, and the environment."
+          },
+          {
+           "code": "6.1.12.HistoryCA.10.c",
+           "text": "Analyze how other nations responded to the Great Depression."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "era-11-the-great-depression-and-world-war-ii-wor",
+       "title": "Era 11 - The Great Depression and World War II: World War II (1929–1945)",
+       "subtopics": [
+        {
+         "id": "era-11-the-great-depression-and-world-war-ii-wor",
+         "title": "Era 11 - The Great Depression and World War II: World War II (1929–1945) (1 of 3)",
+         "outcomes": [
+          {
+           "code": "6.1.12.CivicsDP.11.a",
+           "text": "Use a variety of sources to determine if American policies towards the Japanese during WWII were a denial of civil rights."
+          },
+          {
+           "code": "6.1.12.CivicsHR.11.a",
+           "text": "Assess the responses of the United States and other nations to the violation of human rights that occurred during the Holocaust and other genocides."
+          },
+          {
+           "code": "6.1.12.CivicsHR.11.b",
+           "text": "Explain the reasons for the creation of the United Nations, the Universal Declaration of Human Rights, and evaluate the effectiveness of United Nations' human rights policies and the commitment of the United States to them."
+          },
+          {
+           "code": "6.1.12.EconET.11.a",
+           "text": "Evaluate the shift in economic resources from the production of domestic to military goods during World War II in terms of opportunity costs and trade-offs and analyze the impact of the post-war shift back to domestic production."
+          }
+         ]
+        },
+        {
+         "id": "era-11-the-great-depression-and-world-war-ii-wor-2",
+         "title": "Era 11 - The Great Depression and World War II: World War II (1929–1945) (2 of 3)",
+         "outcomes": [
+          {
+           "code": "6.1.12.EconNM.11.a",
+           "text": "Analyze how scientific advancements, including advancements in agricultural technology, impacted the national and global economies and daily life."
+          },
+          {
+           "code": "6.1.12.HistoryCC.11.a",
+           "text": "Assess the impact of the arms race and the proliferation of nuclear weapons on world power, security, and national foreign policy."
+          },
+          {
+           "code": "6.1.12.HistoryCA.11.a",
+           "text": "Evaluate the role of New Jersey (i.e., defense industries, Seabrook Farms, military installations, and Battleship New Jersey) and prominent New Jersey citizens (i.e., Albert Einstein) in World War II."
+          },
+          {
+           "code": "6.1.12.HistoryCA.11.b",
+           "text": "Evaluate the effectiveness of international agreements following World War I in preventing international disputes (e.g., League of Nations, Treaty of Versailles, Washington Naval Conference, Kellogg-Briand Pact)."
+          }
+         ]
+        },
+        {
+         "id": "era-11-the-great-depression-and-world-war-ii-wor-3",
+         "title": "Era 11 - The Great Depression and World War II: World War II (1929–1945) (3 of 3)",
+         "outcomes": [
+          {
+           "code": "6.1.12.History CC.11.b",
+           "text": "Analyze the roles of various alliances among nations and their leaders in the conduct and outcomes of the World War II."
+          },
+          {
+           "code": "6.1.12.HistoryCC.11.c",
+           "text": "Explain why women, African Americans, Native Americans, Asian Americans, and other minority groups often expressed a strong sense of nationalism despite the discrimination they experienced in the military and workforce."
+          },
+          {
+           "code": "6.1.12.HistoryCC.11.d",
+           "text": "Compare the varying perspectives of victims, survivors, bystanders, rescuers, and perpetrators during the Holocaust."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "era-12-postwar-united-states-cold-war-1945-to-ea",
+       "title": "Era 12 - Postwar United States: Cold War (1945 to early 1970s)",
+       "subtopics": [
+        {
+         "id": "era-12-postwar-united-states-cold-war-1945-to-ea",
+         "title": "Era 12 - Postwar United States: Cold War (1945 to early 1970s) (1 of 2)",
+         "outcomes": [
+          {
+           "code": "6.1.12.EconNE.12.a",
+           "text": "Explain the implications and outcomes of the Space Race from the perspectives of the scientific community, the government, and the people."
+          },
+          {
+           "code": "6.1.12.EconNE.12.b",
+           "text": "Assess the impact of agricultural innovation on the world economy."
+          },
+          {
+           "code": "6.1.12.EconEM.12.a",
+           "text": "Assess the role of the public and private sectors in promoting economic growth and ensuring economic stability."
+          },
+          {
+           "code": "6.1.12.HistoryCC.12.a",
+           "text": "Examine constitutional issues involving war powers, as they relate to United States military intervention in the Korean War, the Vietnam War, and other conflicts."
+          },
+          {
+           "code": "6.1.12.HistoryCC.12.b",
+           "text": "Analyze the impact of American governmental policies on independence movements in Africa, Asia, Latin America and the Middle East."
+          }
+         ]
+        },
+        {
+         "id": "era-12-postwar-united-states-cold-war-1945-to-ea-2",
+         "title": "Era 12 - Postwar United States: Cold War (1945 to early 1970s) (2 of 2)",
+         "outcomes": [
+          {
+           "code": "6.1.12.HistoryCC.12.c",
+           "text": "Analyze efforts to eliminate communism, such as McCarthyism, and their impact on individual civil liberties."
+          },
+          {
+           "code": "6.1.12.HistoryCC.12.d",
+           "text": "Explain how the development and proliferation of nuclear weapons affected international relations."
+          },
+          {
+           "code": "6.1.12.HistoryCC.12.e",
+           "text": "Analyze ideological differences and other factors that contributed to the Cold War and to United States involvement in conflicts intended to contain communism, including the Korean War, the Cuban Missile Crisis, and the Vietnam War."
+          },
+          {
+           "code": "6.1.12.HistorySE.12.a",
+           "text": "Explain the reasons for the creation of the United Nations and evaluate the effectiveness of United Nations' human rights policies and the commitment of the United States to them."
+          },
+          {
+           "code": "6.1.12.HistorySE.12.b",
+           "text": "Use a variety of sources to explain how the Arab-Israeli conflict influenced American foreign policy."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "era-13-postwar-united-states-civil-rights-and-so",
+       "title": "Era 13 - Postwar United States: Civil Rights and Social Change (1945 to early 1970s)",
+       "subtopics": [
+        {
+         "id": "era-13-postwar-united-states-civil-rights-and-so",
+         "title": "Era 13 - Postwar United States: Civil Rights and Social Change (1945 to early 1970s) (1 of 3)",
+         "outcomes": [
+          {
+           "code": "6.1.12.CivicsPI.13.a",
+           "text": "Craft an argument as to the effectiveness of the New Jersey Constitution of 1947, New Jersey Supreme Court decisions (i.e., Hedgepeth and Williams v. Trenton Board of Education), and New Jersey's laws in eliminating segregation and discrimination."
+          },
+          {
+           "code": "6.1.12.CivicsDP.13.a",
+           "text": "Analyze the effectiveness of national legislation, policies, and Supreme Court decisions in promoting civil liberties and equal opportunities (i.e., the Civil Rights Act, the Voting Rights Act, the Equal Rights Amendment, Title VII, Title IX, Affirmative Action, Brown v. Board of Education, and Roe v. Wade)."
+          },
+          {
+           "code": "6.1.12.GeoPP.13.a",
+           "text": "Make evidence-based inferences to determine the factors that led to migration from American cities to suburbs in the 1950s and 1960s and describe how this movement impacted cities."
+          },
+          {
+           "code": "6.1.12.GeoPP.13.b",
+           "text": "Use quantitative data and other sources to describe the extent to which changes in national policy impacted immigration to New Jersey and the United States after 1965."
+          },
+          {
+           "code": "6.1.12.GeoHE.13.a",
+           "text": "Construct an argument on the effectiveness of environmental movements, their influence on public attitudes, and the efficacy of the government's environmental protection agencies and laws."
+          }
+         ]
+        },
+        {
+         "id": "era-13-postwar-united-states-civil-rights-and-so-2",
+         "title": "Era 13 - Postwar United States: Civil Rights and Social Change (1945 to early 1970s) (2 of 3)",
+         "outcomes": [
+          {
+           "code": "6.1.12.EconNE.13.a",
+           "text": "Relate American economic expansion after World War II to increased consumer demand."
+          },
+          {
+           "code": "6.1.12.EconNE.13.b",
+           "text": "Evaluate the effectiveness of economic policies that sought to combat post-World War II inflation."
+          },
+          {
+           "code": "6.1.12.EconEM.13.a",
+           "text": "Explain how individuals and organizations used economic measures as weapons in the struggle for civil and human rights (e.g., the Montgomery Bus Boycott, sit downs)."
+          },
+          {
+           "code": "6.1.12.EconNE.13.b",
+           "text": "Evaluate the effectiveness of social legislation that was enacted to end poverty in the 1960s and today by assessing the economic impact on the economy (e.g., inflation, recession, taxation, deficit spending, employment, education)."
+          },
+          {
+           "code": "6.1.12.HistoryCC.13.a",
+           "text": "Compare and contrast the leadership and ideology of Martin Luther King, Jr., and Malcolm X during the Civil Rights Movement, and evaluate their legacies."
+          }
+         ]
+        },
+        {
+         "id": "era-13-postwar-united-states-civil-rights-and-so-3",
+         "title": "Era 13 - Postwar United States: Civil Rights and Social Change (1945 to early 1970s) (3 of 3)",
+         "outcomes": [
+          {
+           "code": "6.1.12.HistoryCC.13.b",
+           "text": "Explore the reasons for the changing role of women in the labor force in post-WWII America and determine its impact on society, politics, and the economy."
+          },
+          {
+           "code": "6.1.12.HistoryCC.13.c",
+           "text": "Determine the impetus for the Civil Rights Movement and generate an evidence-based argument that evaluates the federal actions taken to ensure civil rights for African Americans."
+          },
+          {
+           "code": "6.1.12.HistoryCC.13.d",
+           "text": "Analyze the successes and failures of women's rights organizations, the American Indian Movement, and La Raza in their pursuit of civil rights and equal opportunities."
+          },
+          {
+           "code": "6.1.12.HistoryUP.13.a",
+           "text": "Determine the extent to which suburban living and television supported conformity and stereotyping during this time period, while new music, art, and literature acted as catalysts for the counterculture movement."
+          },
+          {
+           "code": "6.1.12.HistorySE.13.a",
+           "text": "Use a variety of sources to explain the relationship between the changing role of women in the labor force and changes in family structure."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "era-14-contemporary-united-states-domestic-polic",
+       "title": "Era 14 - Contemporary United States: Domestic Policies (1970–Today)",
+       "subtopics": [
+        {
+         "id": "era-14-contemporary-united-states-domestic-polic",
+         "title": "Era 14 - Contemporary United States: Domestic Policies (1970–Today) (1 of 6)",
+         "outcomes": [
+          {
+           "code": "6.1.12.CivicsPI.14.a",
+           "text": "Draw from multiple perspectives to evaluate the effectiveness and fairness of the processes by which local, state, and national officials are elected."
+          },
+          {
+           "code": "6.1.12.CivicsPI.14.b",
+           "text": "Use case studies and evidence to evaluate the effectiveness of the checks and balances system in preventing one branch of national government from usurping too much power during contemporary times."
+          },
+          {
+           "code": "6.1.12.CivicsPI.14.c",
+           "text": "Analyze how the Supreme Court has interpreted the Constitution to define and expand individual rights and use evidence to document the long-term impact of these decisions on the protection of civil and human rights."
+          },
+          {
+           "code": "6.1.12.CivicsPI.14.d",
+           "text": "Use primary sources representing multiple perspectives and data to determine the effectiveness of the federal government in addressing health care, income equality, and immigration."
+          },
+          {
+           "code": "6.1.12.CivicsCM.14.b",
+           "text": "Use a variety of evidence, including quantitative data, to evaluate the impact community groups and state policies have had on increasing the youth vote."
+          }
+         ]
+        },
+        {
+         "id": "era-14-contemporary-united-states-domestic-polic-2",
+         "title": "Era 14 - Contemporary United States: Domestic Policies (1970–Today) (2 of 6)",
+         "outcomes": [
+          {
+           "code": "6.1.12.CivicsPD.14.a",
+           "text": "Draw from multiple perspectives and cite evidence to explain the conflicting ideologies and actions of political parties regarding spending priorities, the role of government in the economy, and social reforms."
+          },
+          {
+           "code": "6.1.12.CivicsDP.14.a",
+           "text": "Draw from multiple perspectives and cite evidence to determine the extent to which nongovernmental organizations, special interest groups, third party political groups, and the media affect public policy."
+          },
+          {
+           "code": "6.1.12.GeoPP.14.a",
+           "text": "Use data and other evidence to determine the impact of recent immigration and migration patterns in New Jersey and the United States on demographic, social, economic, and political issues."
+          },
+          {
+           "code": "6.1.12.GeoPP.14.b",
+           "text": "Use evidence to document how regionalization, urbanization, and suburbanization have led to social and economic reform movements in New Jersey and the United States."
+          },
+          {
+           "code": "6.1.12.GeoHE.14.a",
+           "text": "Evaluate the impact of individual, business, and government decisions and actions on the environment and climate change and assess the efficacy of government policies and agencies in New Jersey and the United States in addressing these decisions."
+          }
+         ]
+        },
+        {
+         "id": "era-14-contemporary-united-states-domestic-polic-3",
+         "title": "Era 14 - Contemporary United States: Domestic Policies (1970–Today) (3 of 6)",
+         "outcomes": [
+          {
+           "code": "6.1.12.EconNE.14.a",
+           "text": "Use economic indicators to evaluate the effectiveness of state and national fiscal (i.e., government spending and taxation) and monetary (i.e., interest rates) policies."
+          },
+          {
+           "code": "6.1.12.GeoNE.14.a",
+           "text": "Use financial and economic data to determine the causes of the financial collapse of 2008 and evaluate the effectiveness of the government's attempts to alleviate the hardships brought on by the Great Recession."
+          },
+          {
+           "code": "6.1.12.EconET.14.a",
+           "text": "Use current events to judge what extent the government should intervene at the local, state, and national levels on issues related to the economy."
+          },
+          {
+           "code": "6.1.12.EconET.14.b",
+           "text": "Analyze economic trends, income distribution, labor participation (i.e., employment, the composition of the work force), and government and consumer debt and their impact on society."
+          },
+          {
+           "code": "6.1.12.EconEM.14.a",
+           "text": "Relate the changing manufacturing, service, science, and technology industries and educational opportunities to the economy and social dynamics in New Jersey."
+          }
+         ]
+        },
+        {
+         "id": "era-14-contemporary-united-states-domestic-polic-4",
+         "title": "Era 14 - Contemporary United States: Domestic Policies (1970–Today) (4 of 6)",
+         "outcomes": [
+          {
+           "code": "6.1.12.HistoryCA.14.a",
+           "text": "Analyze campaign speeches and debates and other sources to determine the extent to which presidential candidates' rhetoric was inclusive, expansive, stereotypical or biased."
+          },
+          {
+           "code": "6.1.12.HistoryCA.14.b",
+           "text": "Create an evidence-based argument that assesses the effectiveness of actions taken to address the causes of continuing racial tensions and violence."
+          },
+          {
+           "code": "6.1.12.HistoryCA.14.c",
+           "text": "Determine the influence of multicultural beliefs, products (i.e., art, food, music, and literature), and practices in shaping contemporary American culture."
+          },
+          {
+           "code": "6.1.12.HistoryCC.14.a",
+           "text": "Develop an argument based on a variety of sources that compares George HW Bush's Iraqi policy with George W. Bush's."
+          },
+          {
+           "code": "6.1.12.HistorySE.14.a",
+           "text": "Explore the various ways women, racial and ethnic minorities, the LGBTQ community, and individuals with disabilities have contributed to the American economy, politics and society."
+          }
+         ]
+        },
+        {
+         "id": "era-14-contemporary-united-states-domestic-polic-5",
+         "title": "Era 14 - Contemporary United States: Domestic Policies (1970–Today) (5 of 6)",
+         "outcomes": [
+          {
+           "code": "6.1.12.HistorySE.14.b",
+           "text": "Use a variety of sources from diverse perspective to analyze the social, economic and political contributions of marginalized and underrepresented groups and/or individuals."
+          },
+          {
+           "code": "6.1.12.HistorySE.14.c",
+           "text": "Analyze the use of eminent domain in New Jersey and the United States from the perspective of local, state, and the federal government as it relates to the economy."
+          },
+          {
+           "code": "6.1.12.HistoryCC.14.b",
+           "text": "Determine how the 9/11 attacks contributed to the debate over national security and civil liberties."
+          },
+          {
+           "code": "6.1.12.HistoryCC.14.c",
+           "text": "Make evidenced-based inferences about the role of partisan politics in presidential impeachments and trials."
+          },
+          {
+           "code": "6.1.12.HistoryCC.14.d",
+           "text": "Evaluate the decisions to wage war in Iraq and Afghanistan after the 9/11 attacks."
+          }
+         ]
+        },
+        {
+         "id": "era-14-contemporary-united-states-domestic-polic-6",
+         "title": "Era 14 - Contemporary United States: Domestic Policies (1970–Today) (6 of 6)",
+         "outcomes": [
+          {
+           "code": "6.1.12.HistoryCC.14.e",
+           "text": "Evaluate the role of religion on cultural and social mores, public opinion, and political decisions."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "era-15-contemporary-united-states-international-",
+       "title": "Era 15 - Contemporary United States: International Policies (1970–Today)",
+       "subtopics": [
+        {
+         "id": "era-15-contemporary-united-states-international-",
+         "title": "Era 15 - Contemporary United States: International Policies (1970–Today) (1 of 2)",
+         "outcomes": [
+          {
+           "code": "6.1.12.CivicsPR.15.a",
+           "text": "Analyze the factors that led to the fall of communism in Eastern European countries and the Soviet Union and determine how the fall influenced the global power structure."
+          },
+          {
+           "code": "6.1.12.CivicsHR.15.a",
+           "text": "Evaluate the role of diplomacy in international conflicts and policies relating to refugees and asylum seekers."
+          },
+          {
+           "code": "6.1.12.EconNE.15.a",
+           "text": "Assess economic priorities related to international and domestic needs, as reflected in the national budget."
+          },
+          {
+           "code": "6.1.12.HistoryCC.15.a",
+           "text": "Assess the impact of the arms race and the proliferation of nuclear weapons on world power, security, and national foreign policy."
+          },
+          {
+           "code": "6.1.12.HistoryCC.15.b",
+           "text": "Analyze the impact of United States support for the policies and actions of the United Nations (i.e., Universal Declaration of Human Rights, United Nations Sustainability Goals) and other international organizations."
+          }
+         ]
+        },
+        {
+         "id": "era-15-contemporary-united-states-international--2",
+         "title": "Era 15 - Contemporary United States: International Policies (1970–Today) (2 of 2)",
+         "outcomes": [
+          {
+           "code": "6.1.12.HistoryCC.15.c",
+           "text": "Evaluate the effectiveness of United States policies and actions in supporting the economic and democratic growth of developing nations."
+          },
+          {
+           "code": "6.1.12.HistorySE.15.a",
+           "text": "Explain how and why religious tensions, historic differences, and a western dependence on oil in the Middle East have led to international conflicts and analyze the effectiveness of United States policy and actions in bringing peaceful resolutions to the region."
+          },
+          {
+           "code": "6.1.12.HistorySE.15.b",
+           "text": "Analyze the reasons for terrorism and the impact that terrorism has had on individuals and government policies and assess the effectiveness of actions taken by the United States and other nations to prevent terrorism."
+          },
+          {
+           "code": "6.1.12.HistorySE.15.c",
+           "text": "Evaluate the role of diplomacy in developing peaceful relations, alliances, and global agreements with other nations."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "era-16-contemporary-united-states-interconnected",
+       "title": "Era 16 - Contemporary United States: Interconnected Global Society (1970–Today)",
+       "subtopics": [
+        {
+         "id": "era-16-contemporary-united-states-interconnected",
+         "title": "Era 16 - Contemporary United States: Interconnected Global Society (1970–Today) (1 of 2)",
+         "outcomes": [
+          {
+           "code": "6.1.12.CivicsPD.16.a",
+           "text": "Construct a claim to describe how media and technology has impacted civic participation and deliberation."
+          },
+          {
+           "code": "6.1.12.CivicsPR.16.a",
+           "text": "Analyze government efforts to address intellectual property rights, personal privacy, and other ethical issues in science, medicine, and business that arise from the global use of new technologies."
+          },
+          {
+           "code": "6.1.12.GeoHE16.a",
+           "text": "Explain why natural resources (i.e., fossil fuels, food, and water) continue to be a source of conflict and analyze how the United States and other nations have addressed issues concerning the distribution and sustainability of natural resources and climate change."
+          },
+          {
+           "code": "6.1.12.EconGE.16.a",
+           "text": "Use quantitative data and other sources to assess the impact of international trade, global business organizations, and overseas competition on the United States economy and workforce."
+          },
+          {
+           "code": "6.1.12.EconNE.16.a",
+           "text": "Make evidenced-base inferences regarding the impact of technology on the global workforce and on entrepreneurship."
+          }
+         ]
+        },
+        {
+         "id": "era-16-contemporary-united-states-interconnected-2",
+         "title": "Era 16 - Contemporary United States: Interconnected Global Society (1970–Today) (2 of 2)",
+         "outcomes": [
+          {
+           "code": "6.1.12.EconNE.16.b",
+           "text": "Evaluate the economic, political, and social impact of new and emerging technologies on individuals and nations."
+          },
+          {
+           "code": "6.1.12.HistoryUP.16.a",
+           "text": "Analyze the impact of American culture on other world cultures and determine the impact of social media on the dissemination of American culture."
+          },
+          {
+           "code": "6.1.12.HistoryCC.16.a",
+           "text": "Assess from various perspectives the effectiveness with which the United States government addresses economic issues that affect individuals, business, and/or other countries."
+          },
+          {
+           "code": "6.1.12.HistoryCC.16.b",
+           "text": "Determine past and present factors that led to the widening of the gap between the rich and poor, and evaluate how this has affected individuals and society"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "active-citizenship-in-the-21st-century",
+     "title": "Active Citizenship in the 21st Century",
+     "topics": [
+      {
+       "id": "civics-government-and-human-rights",
+       "title": "Civics, Government and Human Rights",
+       "subtopics": [
+        {
+         "id": "civics-government-and-human-rights",
+         "title": "Civics, Government and Human Rights",
+         "outcomes": [
+          {
+           "code": "6.3.12.CivicsPD.1",
+           "text": "Develop plan for public accountability and transparency in government related to a particular issue(s) and share the plan with appropriate government officials."
+          },
+          {
+           "code": "6.3.12.CivicsHR.1",
+           "text": "Compare current case studies involving slavery, child labor, or other unfair labor practices in the United States with those of other nations and evaluate the extent to which these human rights violations are a universal problem."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "geography-people-and-the-environment",
+       "title": "Geography, People and the Environment",
+       "subtopics": [
+        {
+         "id": "geography-people-and-the-environment",
+         "title": "Geography, People and the Environment",
+         "outcomes": [
+          {
+           "code": "6.3.12.GeoGI.1",
+           "text": "Collaborate with students from other countries to develop possible solutions to an issue of environmental justice, including climate change and water scarcity, and present those solutions to relevant national and international governmental and/or nongovernmental organizations."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "economics-innovation-and-technology",
+       "title": "Economics, Innovation, and Technology",
+       "subtopics": [
+        {
+         "id": "economics-innovation-and-technology",
+         "title": "Economics, Innovation, and Technology",
+         "outcomes": [
+          {
+           "code": "6.3.12.EconGE.1",
+           "text": "Participate in a simulated meeting (e.g., President's Council, World Bank, International Monetary Fund (IMF), research evidence from multiple sources about an economic problem (e.g., inflation, unemployment, deficit), and develop a plan of action."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "history-culture-and-perspective",
+       "title": "History, Culture, and Perspective",
+       "subtopics": [
+        {
+         "id": "history-culture-and-perspective",
+         "title": "History, Culture, and Perspective",
+         "outcomes": [
+          {
+           "code": "6.3.12.HistoryCA.1",
+           "text": "Analyze the impact of current governmental practices and laws affecting national security and/or First Amendment rights and privacy (e.g., immigration, refugees, seizure of personal property, juvenile detention, listening devices, deportation, religion in schools)."
+          },
+          {
+           "code": "6.3.12.HistoryCA.2",
+           "text": "Analyze a current foreign policy issue by considering current and historical perspectives, examining strategies, and presenting possible actions."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "world-history-global-studies",
+     "title": "World History / Global Studies",
+     "topics": [
+      {
+       "id": "era-1-the-emergence-of-the-first-global-age-glob",
+       "title": "Era 1 - The Emergence of the First Global Age: Global Interactions and Colonialism",
+       "subtopics": [
+        {
+         "id": "era-1-the-emergence-of-the-first-global-age-glob",
+         "title": "Era 1 - The Emergence of the First Global Age: Global Interactions and Colonialism (1 of 3)",
+         "outcomes": [
+          {
+           "code": "6.2.12.GeoSV.1.a",
+           "text": "Use geographic representations to assess changes in political boundaries and the impact of European political and military control in Africa, Asia, and the Americas by the mid-18th century."
+          },
+          {
+           "code": "6.2.12.GeoPP.1.a",
+           "text": "Determine the role of natural resources, climate, and topography in European exploration, colonization, and settlement patterns."
+          },
+          {
+           "code": "6.2.12.GeoGE.1.a",
+           "text": "Compare and contrast the economic policies of China and Japan, and determine the impact these policies had on growth, the desire for colonies, and the relative positions of China and Japan within the emerging global economy."
+          },
+          {
+           "code": "6.2.12.GeoGE.1.b",
+           "text": "Trace the movement of essential commodities (e.g., sugar, cotton) from Asia to Europe to America, and determine the impact trade on the New World's economy and society."
+          },
+          {
+           "code": "6.2.12.GeoGE.1.c",
+           "text": "Assess the role of mercantilism in stimulating European expansion through trade, conquest, and colonization."
+          }
+         ]
+        },
+        {
+         "id": "era-1-the-emergence-of-the-first-global-age-glob-2",
+         "title": "Era 1 - The Emergence of the First Global Age: Global Interactions and Colonialism (2 of 3)",
+         "outcomes": [
+          {
+           "code": "6.2.12.GeoGE.1.d",
+           "text": "Determine the effects of increased global trade and the importation of gold and silver from the New World on inflation in Europe, Southwest Asia, and Africa."
+          },
+          {
+           "code": "6.2.12.HistoryCC.1.a",
+           "text": "Determine the extent to which various technologies, (e.g., printing, marine compass, cannonry, Arabic numerals) derived from Europe's interactions with Islam and Asia provided the necessary tools for European exploration and conquest."
+          },
+          {
+           "code": "6.2.12.HistoryCC.1.b",
+           "text": "Analyze various motivations for the Atlantic slave trade and the impact on Europeans, Africans, and Americans."
+          },
+          {
+           "code": "6.2.12.HistoryCC.1.c",
+           "text": "Explain how the new social stratification created by voluntary and coerced interactions among Native Americans, Africans, and Europeans in Spanish colonies laid the foundation for conflict."
+          },
+          {
+           "code": "6.2.12.HistoryCC.1.d",
+           "text": "Compare slavery practices and other forms of coerced labor or social bondage common in East Africa, West Africa, Southwest Asia, Europe, and the Americas."
+          }
+         ]
+        },
+        {
+         "id": "era-1-the-emergence-of-the-first-global-age-glob-3",
+         "title": "Era 1 - The Emergence of the First Global Age: Global Interactions and Colonialism (3 of 3)",
+         "outcomes": [
+          {
+           "code": "6.2.12.HistoryCC.1.e",
+           "text": "Compare and contrast the motivations for and methods by which various empires (e.g., Ming, Qing, Spanish, Mughal, Ottoman) expanded, and assess why some were more effective than others in maintaining control of their empires."
+          },
+          {
+           "code": "6.2.12.HistoryCC.1.f",
+           "text": "Assess the political, social, and economic impact of the interactions between indigenous peoples and colonizers over different time periods (e.g., Columbian Exchange, forced labor, slave trade and slavery practices, spread of disease, lingering effects on cultures)."
+          },
+          {
+           "code": "6.2.12.HistoryCC.1.g",
+           "text": "Assess the impact of economic, political, and social policies and practices regarding African slaves, indigenous peoples, and Europeans in the Spanish and Portuguese colonies."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "era-2-renaissance-reformation-scientific-revolut",
+       "title": "Era 2 - Renaissance, Reformation, Scientific Revolution, and Enlightenment (1350–1700)",
+       "subtopics": [
+        {
+         "id": "era-2-renaissance-reformation-scientific-revolut",
+         "title": "Era 2 - Renaissance, Reformation, Scientific Revolution, and Enlightenment (1350–1700) (1 of 2)",
+         "outcomes": [
+          {
+           "code": "6.2.12.CivicsPR.2.a",
+           "text": "Compare the principle ideas of the Enlightenment in Europe (e.g., political, social, gender, education) with similar ideas in Asia and the Muslim / Islamic empires of the Middle East and North Africa."
+          },
+          {
+           "code": "6.2.12.CivicsPR.2.b",
+           "text": "Determine the reasons for, and the consequences of, the rise of powerful, centralized nation states in Europe (i.e., the French absolute monarchy and the English limited monarchy)."
+          },
+          {
+           "code": "6.2.12.GeoPP.2.a",
+           "text": "Make an evidence-based argument explaining the impact and development of religion in Europe on the political and cultural development of the colonies in the New World."
+          },
+          {
+           "code": "6.2.12.EconGE.2.a",
+           "text": "Relate the development of more modern banking and financial systems to European economic influence in the world."
+          }
+         ]
+        },
+        {
+         "id": "era-2-renaissance-reformation-scientific-revolut-2",
+         "title": "Era 2 - Renaissance, Reformation, Scientific Revolution, and Enlightenment (1350–1700) (2 of 2)",
+         "outcomes": [
+          {
+           "code": "6.2.12.HistoryCC.2.a",
+           "text": "Determine the factors that led to the Reformation and the impact on European politics."
+          },
+          {
+           "code": "6.2.12.HistoryCC.2.b",
+           "text": "Explore the factors that laid the foundation for the Renaissance (i.e., Asian and Islamic, Ancient Greek and Roman innovations)."
+          },
+          {
+           "code": "6.2.12.HistoryCC.2.c",
+           "text": "Assess the impact of the printing press and other technologies developed on the dissemination of ideas."
+          },
+          {
+           "code": "6.2.12.HistoryUP.2.a",
+           "text": "Analyze the impact of new intellectual, philosophical, and scientific ideas on how humans viewed themselves and how they viewed their physical and spiritual worlds."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "era-3-age-of-revolutions-political-and-industria",
+       "title": "Era 3 - Age of Revolutions: Political and Industrial Revolutions, Imperialism, Reform and Global Impact (1750–1914)",
+       "subtopics": [
+        {
+         "id": "era-3-age-of-revolutions-political-and-industria",
+         "title": "Era 3 - Age of Revolutions: Political and Industrial Revolutions, Imperialism, Reform and Global Impact (1750–1914) (1 of 3)",
+         "outcomes": [
+          {
+           "code": "6.2.12.CivicsPI.3.a",
+           "text": "Analyze the relationship between industrialization and the rise of democratic and social reforms, including the expansion of parliamentary government."
+          },
+          {
+           "code": "6.2.12.CivicsPD.3.a",
+           "text": "Cite evidence describing how and why various ideals became driving forces for reforms and revolutions in Latin America and across the world (e.g., liberty, popular sovereignty, natural rights, democracy, nationalism)."
+          },
+          {
+           "code": "6.2.12.CivicsDP.3.a",
+           "text": "Use a variety of resources from multiple perspectives to analyze the responses of various governments to pressure from the people for self-government, reform, and revolution."
+          },
+          {
+           "code": "6.2.12.CivicsDP.3.b",
+           "text": "Use data and evidence to compare and contrast the struggles for women's suffrage and workers' rights in Europe and North America and evaluate the degree to which each movement achieved its goals."
+          },
+          {
+           "code": "6.2.12.HistoryCC.3.a",
+           "text": "Debate if the role of geography or enlightened ideals had the greater influence on the independence movements in Latin America."
+          }
+         ]
+        },
+        {
+         "id": "era-3-age-of-revolutions-political-and-industria-2",
+         "title": "Era 3 - Age of Revolutions: Political and Industrial Revolutions, Imperialism, Reform and Global Impact (1750–1914) (2 of 3)",
+         "outcomes": [
+          {
+           "code": "6.2.12.GeoGI.3.a",
+           "text": "Use geographic tools and resources to investigate the changes in political boundaries between 1815 and 1914 and make evidence-based inferences regarding the impact of imperialism."
+          },
+          {
+           "code": "6.2.12.EconGI.3.a",
+           "text": "Analyze the interrelationships between the \"agricultural revolution,\" population growth, industrialization, specialization of labor, and patterns of landholding in 19th century Britain."
+          },
+          {
+           "code": "6.2.12.EconGI.3.b",
+           "text": "Construct a claim based on evidence regarding on the interrelationships between the Industrial Revolution, nationalism, competition for global markets, imperialism, and natural resources in different regions of the world."
+          },
+          {
+           "code": "6.2.12.EconGI.3.c",
+           "text": "Compare the impact of imperialism on economic development in Africa, Asia, and Latin America regarding barriers or opportunities for future development and political independence."
+          },
+          {
+           "code": "6.2.12.EconET.3.a",
+           "text": "Determine how, and the extent to which, scientific and technological changes, transportation, and new forms of energy brought about social, economic, and cultural changes in the world."
+          }
+         ]
+        },
+        {
+         "id": "era-3-age-of-revolutions-political-and-industria-3",
+         "title": "Era 3 - Age of Revolutions: Political and Industrial Revolutions, Imperialism, Reform and Global Impact (1750–1914) (3 of 3)",
+         "outcomes": [
+          {
+           "code": "6.2.12.EconET.3.b",
+           "text": "Compare the characteristics of capitalism, socialism, and communism to determine why each system emerged and its success in leading to economic growth and stability."
+          },
+          {
+           "code": "6.2.12.HistoryCC.3.b",
+           "text": "Explain how industrialization and urbanization affected class structure, family life, the daily lives of men, women, and children, and the environment."
+          },
+          {
+           "code": "6.2.12.HistoryUP.3.a",
+           "text": "Analyze the extent to which racism was both a cause and consequence of imperialism and evaluate the impact of imperialism from multiple perspectives."
+          },
+          {
+           "code": "6.2.12.HistoryCC.3.c",
+           "text": "Analyze the impact of the policies of different European colonizers on indigenous societies and explain the responses of these societies to imperialistic rule."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "era-4-half-century-of-crisis-and-achievement-the",
+       "title": "Era 4 - Half-Century of Crisis and Achievement: The Era of the Great Wars",
+       "subtopics": [
+        {
+         "id": "era-4-half-century-of-crisis-and-achievement-the",
+         "title": "Era 4 - Half-Century of Crisis and Achievement: The Era of the Great Wars (1 of 5)",
+         "outcomes": [
+          {
+           "code": "6.2.12.CivicsPI.4.a",
+           "text": "Compare and contrast socialism, communism, fascism, and liberal democracy, analyze the extent to which they promote and protect civil, political, social and economic rights for people, and explain the reasons for their growth or decline around the world."
+          },
+          {
+           "code": "6.2.12.CivicsHR.4.a",
+           "text": "Analyze the motivations, causes, and consequences of the genocides of Armenians, Ukrainians, Jews in the Holocaust and assess the responses by individuals, groups, and governments and analyze large-scale atrocities including 20th century massacres in China."
+          },
+          {
+           "code": "6.2.12.CivicsPI.4.b",
+           "text": "Assess government responses to incidents of ethnic cleansing and genocide."
+          },
+          {
+           "code": "6.2.12.GeoSP.4.a",
+           "text": "Use geographic representations to compare the changes in political boundaries in Europe pre- and post-WWI."
+          },
+          {
+           "code": "6.2.12.GeoSP.4.b",
+           "text": "Determine how geography impacted military strategies and major turning points during World War II."
+          }
+         ]
+        },
+        {
+         "id": "era-4-half-century-of-crisis-and-achievement-the-2",
+         "title": "Era 4 - Half-Century of Crisis and Achievement: The Era of the Great Wars (2 of 5)",
+         "outcomes": [
+          {
+           "code": "6.2.12.GeoGI.4.a",
+           "text": "Use evidence to explain how the fall of the Ottoman Empire and the rise of regional powers led to the creation of new nations in the Middle East."
+          },
+          {
+           "code": "6.2.12.EconEM.4.a",
+           "text": "Analyze government responses to the Great Depression and their consequences, including the growth of fascist, socialist, and communist movements and the effects on capitalist economic theory and practice."
+          },
+          {
+           "code": "6.2.12.HistoryCC.4.a",
+           "text": "Analyze the extent to which nationalism, industrialism, territorial disputes, imperialism, militarism, and alliances led to World War I."
+          },
+          {
+           "code": "6.2.12.HistoryCC.4.b",
+           "text": "Assess the short- and long-term demographic, social, economic, and environmental consequences of the violence and destruction of the two World Wars."
+          },
+          {
+           "code": "6.2.12.HistoryCC.4.c",
+           "text": "Analyze the extent to which the legacy of World War I, the global depression, ethnic and ideological conflicts, imperialism, and traditional political or economic rivalries caused World War II."
+          }
+         ]
+        },
+        {
+         "id": "era-4-half-century-of-crisis-and-achievement-the-3",
+         "title": "Era 4 - Half-Century of Crisis and Achievement: The Era of the Great Wars (3 of 5)",
+         "outcomes": [
+          {
+           "code": "6.2.12.HistoryCC.4.d",
+           "text": "Assess the extent to which world war, depression, nationalist ideology, communism, and liberal democratic ideals contributed to the emergence of movements for national self-rule or sovereignty in Africa and Asia."
+          },
+          {
+           "code": "6.2.12.HistoryCC.4.e",
+           "text": "Explain the role of colonized and indigenous peoples in the war efforts of the Allies and the Central/Axis Powers in both World Wars."
+          },
+          {
+           "code": "6.2.12.HistoryCC.4.f",
+           "text": "Analyze how the social, economic, and political roles of women in western countries were transformed during this time period and explore the reasons why this transformation did not occur outside of the western world."
+          },
+          {
+           "code": "6.2.12.HistoryCC.4.g",
+           "text": "Use a variety of resources from different perspectives to analyze the role of racial bias, nationalism, and propaganda in mobilizing civilian populations in support of \"total war.\""
+          },
+          {
+           "code": "6.2.12.HistoryCC.4.h",
+           "text": "Compare and contrast World Wars I and II in terms of technological innovations (i.e., industrial production, scientific research, war tactics) and social impact (i.e., national mobilization, loss of life, and destruction of property)."
+          }
+         ]
+        },
+        {
+         "id": "era-4-half-century-of-crisis-and-achievement-the-4",
+         "title": "Era 4 - Half-Century of Crisis and Achievement: The Era of the Great Wars (4 of 5)",
+         "outcomes": [
+          {
+           "code": "6.2.12.HistoryUP.4.a",
+           "text": "Analyze the impact of the Treaty of Versailles and the League of Nations from the perspectives of different nations."
+          },
+          {
+           "code": "6.2.12.HistoryUP.4.b",
+           "text": "Report on the influence of war, economic depression, and genocide on the arts, cultural values, and social ideas."
+          },
+          {
+           "code": "6.2.12.HistoryUP.4.c",
+           "text": "Compare and contrast the actions of individuals as perpetrators, bystanders, and rescuers during events of persecution or genocide, and describe the long-term consequences of genocide for all involved."
+          },
+          {
+           "code": "6.2.12.HistoryCA.4.a",
+           "text": "Generate an evidence-based argument to explain the rise of nationalism in China, Turkey, and India."
+          },
+          {
+           "code": "6.2.12.HistoryCA.4.b",
+           "text": "Assess the causes of revolution in the 20th century (i.e., Russia, China, India, and Cuba), and determine the impact on global politics."
+          }
+         ]
+        },
+        {
+         "id": "era-4-half-century-of-crisis-and-achievement-the-5",
+         "title": "Era 4 - Half-Century of Crisis and Achievement: The Era of the Great Wars (5 of 5)",
+         "outcomes": [
+          {
+           "code": "6.2.12.HistoryCA.4.c",
+           "text": "Evaluate how the Allied countries responded to the expansionist actions of Germany, Italy, and Japan."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "era-5-the-20th-century-since-1945-challenges-for",
+       "title": "Era 5 - The 20th Century Since 1945: Challenges for the Modern World",
+       "subtopics": [
+        {
+         "id": "era-5-the-20th-century-since-1945-challenges-for",
+         "title": "Era 5 - The 20th Century Since 1945: Challenges for the Modern World (1 of 4)",
+         "outcomes": [
+          {
+           "code": "6.2.12.CivicsPI.5.a",
+           "text": "Analyze the structure and goals of the United Nations and evaluate the organization's ability to protect human rights, to mediate conflicts, and ensure peace."
+          },
+          {
+           "code": "6.2.12.CivicsHR.5.a",
+           "text": "Assess the progress of human and civil rights protections around the world since the adoption of the Universal Declaration of Human Rights."
+          },
+          {
+           "code": "6.2.12.HistoryCC.5.a.1",
+           "text": "Explain how World War II led to aspirations for self-determination and compare and contrast the methods used by African and Asian countries to achieve independence."
+          },
+          {
+           "code": "6.2.12.GeoPP.5.a",
+           "text": "Use a variety of sources to explain the impact of migration on the way of life in the country of origin and the new country (e.g., social, economic, political structures)."
+          },
+          {
+           "code": "6.2.12.GeoSV.5.a",
+           "text": "Use geographic data to interpret the factors of post-independence struggles in South Asia (e.g., the struggle over the partitioning of the subcontinent into India and Pakistan, as well as later tensions over Kashmir)."
+          }
+         ]
+        },
+        {
+         "id": "era-5-the-20th-century-since-1945-challenges-for-2",
+         "title": "Era 5 - The 20th Century Since 1945: Challenges for the Modern World (2 of 4)",
+         "outcomes": [
+          {
+           "code": "6.2.12.GeoGI.5.a",
+           "text": "Use maps and primary sources to evaluate the impact of geography and economics on the decisions made by the Soviet Union and the United States to expand and protect their spheres of influence."
+          },
+          {
+           "code": "6.2.12.EconET.5.a",
+           "text": "Compare and contrast free market capitalism and Western European democratic socialism with Soviet communism."
+          },
+          {
+           "code": "6.2.12.EconET.5.b",
+           "text": "Articulate a point of view which assesses the reasons for and consequences of the growth of communism and shift toward a market economy in China."
+          },
+          {
+           "code": "6.2.12.EconGE.5.a",
+           "text": "Evaluate the role of the petroleum industry in world politics, the global economy, and the environment."
+          },
+          {
+           "code": "6.2.12.HistoryCC.5.a",
+           "text": "Analyze the reasons for the Cold War and the collapse of the Soviet Union and evaluate the impact of these events on changing national boundaries in Eastern Europe and Asia."
+          }
+         ]
+        },
+        {
+         "id": "era-5-the-20th-century-since-1945-challenges-for-3",
+         "title": "Era 5 - The 20th Century Since 1945: Challenges for the Modern World (3 of 4)",
+         "outcomes": [
+          {
+           "code": "6.2.12.HistoryCC.5.b",
+           "text": "Cite evidence describing the role of boundary disputes and limited natural resources as sources of conflict."
+          },
+          {
+           "code": "6.2.12.HistoryCC.5.c",
+           "text": "Relate the lingering effects of colonialism to the efforts of Latin American, African, and Asian nations to build stable economies and national identities."
+          },
+          {
+           "code": "6.2.12.HistoryCC.5.d",
+           "text": "Assess the influence of television, the Internet, and other forms of electronic communication on the creation and diffusion of cultural and political information worldwide."
+          },
+          {
+           "code": "6.2.12.HistoryCC.5.e",
+           "text": "Explain how and why differences in ideologies and policies between the United States and the USSR resulted in a cold war, the formation of new alliances (e.g., NATO, SEATO, Warsaw Pact), and periodic military clashes (e.g., Korean War, Middle East)."
+          },
+          {
+           "code": "6.2.12.HistoryCC.5.f",
+           "text": "Assess the impact of Gandhi's methods of civil disobedience and passive resistance in India and determine how his methods were later used by people from other countries."
+          }
+         ]
+        },
+        {
+         "id": "era-5-the-20th-century-since-1945-challenges-for-4",
+         "title": "Era 5 - The 20th Century Since 1945: Challenges for the Modern World (4 of 4)",
+         "outcomes": [
+          {
+           "code": "6.2.12.HistoryCC.5.g",
+           "text": "Analyze how feminist movements and social conditions have affected the lives of women in different parts of the world, and evaluate women's progress toward social equality, economic equality, and political equality in various countries."
+          },
+          {
+           "code": "6.2.12.HistoryCC.5.h",
+           "text": "Assess the impact of the international arms race, the space race, and nuclear proliferation on international politics from multiple perspectives."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "era-6-contemporary-issues",
+       "title": "Era 6 - Contemporary Issues",
+       "subtopics": [
+        {
+         "id": "era-6-contemporary-issues-1-of-2",
+         "title": "Era 6 - Contemporary Issues (1 of 2)",
+         "outcomes": [
+          {
+           "code": "6.2.12.CivicsPI.6.a",
+           "text": "Use historic case studies or a current event to assess the effectiveness of multinational organizations in attempting to solve global issues."
+          },
+          {
+           "code": "6.2.12.CivicsHR.6.a",
+           "text": "Evaluate the effectiveness of responses by governments and international organizations to tensions resulting from ethnic, territorial, religious, and/or nationalist differences."
+          },
+          {
+           "code": "6.2.12.CivicsHR.6.b",
+           "text": "Make an evidence-based argument on the tensions between national sovereignty and global priorities regarding economic development and environmental sustainability and its impact on human rights."
+          },
+          {
+           "code": "6.2.12.GeoPP.6.a",
+           "text": "Make evidence-based inferences to determine the global impact of increased population growth, migration, and changes in urban-rural populations on natural resources and land use."
+          }
+         ]
+        },
+        {
+         "id": "era-6-contemporary-issues-2-of-2",
+         "title": "Era 6 - Contemporary Issues (2 of 2)",
+         "outcomes": [
+          {
+           "code": "6.2.12.EconGE.6.a",
+           "text": "Evaluate efforts of governmental, non-governmental, and international organizations to address economic imbalances, social inequalities, climate change, health and/or illiteracy."
+          },
+          {
+           "code": "6.2.12.EconGE.6.b",
+           "text": "Assess the role government monetary policies, central banks, international investment, and exchange rates play in maintaining stable regional and global economies."
+          },
+          {
+           "code": "6.2.12.EconGE.6.c",
+           "text": "Relate the rise of the Internet and social media to global economy."
+          },
+          {
+           "code": "6.2.12.HistoryCC.6.a",
+           "text": "Evaluate the impact of terrorist movements on governments, individuals and societies."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "build": {
+  "builtAt": "2026-10-14T16:20:46.121Z",
+  "model": "none",
+  "usd": 0,
+  "expectedCodes": 526,
+  "coverage": 1,
+  "missingCodes": [],
+  "counts": {
+   "grades": 4,
+   "units": 10,
+   "topics": 48,
+   "subtopics": 127,
+   "outcomes": 528
+  },
+  "warnings": []
+ }
+}

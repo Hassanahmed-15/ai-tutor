@@ -1,0 +1,652 @@
+{
+ "id": "pk-ncp-food-nutrition-9-10",
+ "region": "PK",
+ "framework": "National Curriculum of Pakistan 2022-23",
+ "board": null,
+ "qualification": "SSC",
+ "subject": "Food and Nutrition",
+ "syllabusCode": null,
+ "gradeSystem": "grade",
+ "source": {
+  "urls": [
+   "https://ncc.gov.pk/SiteImage/Misc/files/8-Food%20and%20Nutrition.pdf"
+  ],
+  "publisher": "National Curriculum Council, Ministry of Federal Education and Professional Training",
+  "licence": "Government publication; structure + our own wording only",
+  "firstExam": null
+ },
+ "grades": [
+  {
+   "grade": "9",
+   "units": [
+    {
+     "id": "domain-a-introduction-to-nutrition",
+     "title": "Domain A: Introduction to Nutrition",
+     "topics": [
+      {
+       "id": "basics-of-nutrition",
+       "title": "Basics of nutrition",
+       "subtopics": [
+        {
+         "id": "food-nutrition-and-dietetics",
+         "title": "Food, nutrition and dietetics",
+         "outcomes": [
+          {
+           "code": "FN-09-A-01",
+           "text": "Define food, nutrition and dietetics."
+          }
+         ]
+        },
+        {
+         "id": "food-groups",
+         "title": "Food groups",
+         "outcomes": [
+          {
+           "code": "FN-09-A-02",
+           "text": "Describe the food groups and their sources."
+          },
+          {
+           "code": "FN-09-A-03",
+           "text": "Explain why vegetables matter in the diet."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "digestion",
+       "title": "Digestion",
+       "subtopics": [
+        {
+         "id": "the-digestive-tract-and-absorption",
+         "title": "The digestive tract and absorption",
+         "outcomes": [
+          {
+           "code": "FN-09-A-04",
+           "text": "Describe the structure and jobs of the human digestive tract."
+          },
+          {
+           "code": "FN-09-A-08",
+           "text": "Explain how food is digested and absorbed."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "nutrients",
+       "title": "Nutrients",
+       "subtopics": [
+        {
+         "id": "macronutrients",
+         "title": "Macronutrients",
+         "outcomes": [
+          {
+           "code": "FN-09-A-05",
+           "text": "Describe carbohydrates, fats and proteins as the building blocks of life."
+          },
+          {
+           "code": "FN-09-A-06",
+           "text": "List sources and functions of the various nutrients."
+          }
+         ]
+        },
+        {
+         "id": "micronutrients",
+         "title": "Micronutrients",
+         "outcomes": [
+          {
+           "code": "FN-09-A-07",
+           "text": "Describe types, jobs and benefits of micronutrients."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "energy",
+       "title": "Energy",
+       "subtopics": [
+        {
+         "id": "energy-needs-and-calories",
+         "title": "Energy needs and calories",
+         "outcomes": [
+          {
+           "code": "FN-09-A-09",
+           "text": "Define human energy requirements."
+          },
+          {
+           "code": "FN-09-A-10",
+           "text": "Explain what a calorie is."
+          },
+          {
+           "code": "FN-09-A-11",
+           "text": "Name the components of energy expenditure."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "domain-b-nutritional-assessment",
+     "title": "Domain B: Nutritional Assessment",
+     "topics": [
+      {
+       "id": "assessment",
+       "title": "Assessment",
+       "subtopics": [
+        {
+         "id": "anthropometric-measurements",
+         "title": "Anthropometric measurements",
+         "outcomes": [
+          {
+           "code": "FN-09-B-01",
+           "text": "Explain anthropometric measurements."
+          }
+         ]
+        },
+        {
+         "id": "growth-charts",
+         "title": "Growth charts",
+         "outcomes": [
+          {
+           "code": "FN-09-B-02",
+           "text": "Explain growth parameters and plot them on growth charts."
+          },
+          {
+           "code": "FN-09-B-03",
+           "text": "Interpret growth charts."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "domain-c-food-preparation-and-meal-planning",
+     "title": "Domain C: Food Preparation and Meal Planning",
+     "topics": [
+      {
+       "id": "food-preparation",
+       "title": "Food preparation",
+       "subtopics": [
+        {
+         "id": "hygiene-and-cooking-skills",
+         "title": "Hygiene and cooking skills",
+         "outcomes": [
+          {
+           "code": "FN-09-C-01",
+           "text": "Explain food preparation and the idea of hygiene."
+          },
+          {
+           "code": "FN-09-C-02",
+           "text": "Discuss basic cooking skills such as using utensils and boiling, frying and baking."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "food-science",
+       "title": "Food science",
+       "subtopics": [
+        {
+         "id": "food-science-and-technology",
+         "title": "Food science and technology",
+         "outcomes": [
+          {
+           "code": "FN-09-C-03",
+           "text": "Discuss basic ideas of food science and technology."
+          },
+          {
+           "code": "FN-09-C-04",
+           "text": "Explain how food science helps in selecting, preserving, processing, packaging, distributing and using safe food."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "food-safety",
+       "title": "Food safety",
+       "subtopics": [
+        {
+         "id": "safe-food-handling",
+         "title": "Safe food handling",
+         "outcomes": [
+          {
+           "code": "FN-09-C-05",
+           "text": "Discuss safe food handling: cleaning, sanitising, temperature control and personal hygiene."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "domain-d-nutrition-in-the-lifecycle",
+     "title": "Domain D: Nutrition in the Lifecycle",
+     "topics": [
+      {
+       "id": "pregnancy-and-infancy",
+       "title": "Pregnancy and infancy",
+       "subtopics": [
+        {
+         "id": "intergenerational-malnutrition",
+         "title": "Intergenerational malnutrition",
+         "outcomes": [
+          {
+           "code": "FN-09-D-01",
+           "text": "Describe the intergenerational cycle of malnutrition."
+          }
+         ]
+        },
+        {
+         "id": "nutrition-in-pregnancy-and-lactation",
+         "title": "Nutrition in pregnancy and lactation",
+         "outcomes": [
+          {
+           "code": "FN-09-D-02",
+           "text": "Explain the importance of nutrition in pregnancy and lactation."
+          },
+          {
+           "code": "FN-09-D-03",
+           "text": "Explain balanced nutrition, energy needs and healthy choices in pregnancy."
+          }
+         ]
+        },
+        {
+         "id": "iron-and-folic-acid",
+         "title": "Iron and folic acid",
+         "outcomes": [
+          {
+           "code": "FN-09-D-04",
+           "text": "Describe why iron and folic acid matter for adolescent health."
+          }
+         ]
+        },
+        {
+         "id": "infancy-and-breast-milk",
+         "title": "Infancy and breast milk",
+         "outcomes": [
+          {
+           "code": "FN-09-D-05",
+           "text": "Discuss infant nutrition and the value of breastfeeding."
+          },
+          {
+           "code": "FN-09-D-06",
+           "text": "Explain ingredients of breast milk and compare it with animal milks."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "domain-e-nutrition-and-disease",
+     "title": "Domain E: Nutrition and Disease",
+     "topics": [
+      {
+       "id": "nutrition-therapy-basics",
+       "title": "Nutrition therapy basics",
+       "subtopics": [
+        {
+         "id": "medical-nutrition-therapy-and-balanced-diet",
+         "title": "Medical nutrition therapy and balanced diet",
+         "outcomes": [
+          {
+           "code": "FN-09-E-01",
+           "text": "Explain medical nutrition therapy."
+          },
+          {
+           "code": "FN-09-E-02",
+           "text": "Explain the role of balanced nutrition."
+          }
+         ]
+        },
+        {
+         "id": "diet-prevention-and-immunity",
+         "title": "Diet, prevention and immunity",
+         "outcomes": [
+          {
+           "code": "FN-09-E-03",
+           "text": "Describe nutrition's role in preventing disease."
+          },
+          {
+           "code": "FN-09-E-04",
+           "text": "Describe nutrition's role in healthy immune function."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "10",
+   "units": [
+    {
+     "id": "domain-a-introduction-to-nutrition",
+     "title": "Domain A: Introduction to Nutrition",
+     "topics": [
+      {
+       "id": "diet-analysis",
+       "title": "Diet analysis",
+       "subtopics": [
+        {
+         "id": "analysing-a-daily-diet",
+         "title": "Analysing a daily diet",
+         "outcomes": [
+          {
+           "code": "FN-10-A-01",
+           "text": "Analyse a daily diet for total energy, nutrient intake and nutrient variety."
+          }
+         ]
+        },
+        {
+         "id": "nutrition-care-process",
+         "title": "Nutrition care process",
+         "outcomes": [
+          {
+           "code": "FN-10-A-02",
+           "text": "Explain nutritional diagnosis and the nutrition care process."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "nutrition-and-health",
+       "title": "Nutrition and health",
+       "subtopics": [
+        {
+         "id": "nutrition-health-and-disease-prevention",
+         "title": "Nutrition, health and disease prevention",
+         "outcomes": [
+          {
+           "code": "FN-10-A-03",
+           "text": "Explain nutrition's role in physical and mental health."
+          },
+          {
+           "code": "FN-10-A-04",
+           "text": "Describe nutrition's role in preventing disease."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "nutrients",
+       "title": "Nutrients",
+       "subtopics": [
+        {
+         "id": "nutrient-values-in-foods",
+         "title": "Nutrient values in foods",
+         "outcomes": [
+          {
+           "code": "FN-10-A-05",
+           "text": "Describe important food components and give values for energy, nutrients and fibre."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "meal-planning-guidelines",
+       "title": "Meal planning guidelines",
+       "subtopics": [
+        {
+         "id": "guidelines-and-community-practice",
+         "title": "Guidelines and community practice",
+         "outcomes": [
+          {
+           "code": "FN-10-A-06",
+           "text": "Explain key points of national and international meal planning guidelines."
+          },
+          {
+           "code": "FN-10-A-07",
+           "text": "Discuss nutrition practices in the local community."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "domain-b-nutritional-assessment",
+     "title": "Domain B: Nutritional Assessment",
+     "topics": [
+      {
+       "id": "assessment-methods",
+       "title": "Assessment methods",
+       "subtopics": [
+        {
+         "id": "direct-and-indirect-assessment",
+         "title": "Direct and indirect assessment",
+         "outcomes": [
+          {
+           "code": "FN-10-B-01",
+           "text": "Discuss direct and indirect methods of nutritional assessment."
+          },
+          {
+           "code": "FN-10-B-02",
+           "text": "Tell direct from indirect methods of assessment."
+          }
+         ]
+        },
+        {
+         "id": "dietary-evaluation-and-growth",
+         "title": "Dietary evaluation and growth",
+         "outcomes": [
+          {
+           "code": "FN-10-B-03",
+           "text": "Explain dietary evaluation methods."
+          },
+          {
+           "code": "FN-10-B-04",
+           "text": "Plot and interpret growth parameters."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "domain-c-food-preparation-and-meal-planning",
+     "title": "Domain C: Food Preparation and Meal Planning",
+     "topics": [
+      {
+       "id": "cooking-techniques",
+       "title": "Cooking techniques",
+       "subtopics": [
+        {
+         "id": "creative-cooking",
+         "title": "Creative cooking",
+         "outcomes": [
+          {
+           "code": "FN-10-C-01",
+           "text": "Discuss creative and experimental cooking techniques."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "meal-planning",
+       "title": "Meal planning",
+       "subtopics": [
+        {
+         "id": "meal-planning-and-menus",
+         "title": "Meal planning and menus",
+         "outcomes": [
+          {
+           "code": "FN-10-C-02",
+           "text": "Discuss basic meal planning."
+          },
+          {
+           "code": "FN-10-C-03",
+           "text": "Discuss different types of menus."
+          }
+         ]
+        },
+        {
+         "id": "food-budgeting",
+         "title": "Food budgeting",
+         "outcomes": [
+          {
+           "code": "FN-10-C-04",
+           "text": "Explain the idea and benefits of food budgeting."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "domain-d-nutrition-in-the-lifecycle",
+     "title": "Domain D: Nutrition in the Lifecycle",
+     "topics": [
+      {
+       "id": "childhood",
+       "title": "Childhood",
+       "subtopics": [
+        {
+         "id": "childhood-nutrition",
+         "title": "Childhood nutrition",
+         "outcomes": [
+          {
+           "code": "FN-10-D-01",
+           "text": "Describe nutritional needs in childhood."
+          },
+          {
+           "code": "FN-10-D-02",
+           "text": "Describe why vitamins A and D matter in childhood and infancy."
+          }
+         ]
+        },
+        {
+         "id": "school-health-and-nutrition-services",
+         "title": "School health and nutrition services",
+         "outcomes": [
+          {
+           "code": "FN-10-D-03",
+           "text": "Describe the need and importance of school health and nutrition services."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "adolescence-and-adulthood",
+       "title": "Adolescence and adulthood",
+       "subtopics": [
+        {
+         "id": "adolescence-and-bone-health",
+         "title": "Adolescence and bone health",
+         "outcomes": [
+          {
+           "code": "FN-10-D-04",
+           "text": "Describe nutritional needs in adolescence."
+          },
+          {
+           "code": "FN-10-D-05",
+           "text": "Explain bone health and how to keep it throughout life."
+          }
+         ]
+        },
+        {
+         "id": "adult-and-elderly-nutrition",
+         "title": "Adult and elderly nutrition",
+         "outcomes": [
+          {
+           "code": "FN-10-D-06",
+           "text": "Describe nutritional needs in adult years."
+          },
+          {
+           "code": "FN-10-D-07",
+           "text": "Describe nutritional needs of elderly patients."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "domain-e-nutrition-and-disease",
+     "title": "Domain E: Nutrition and Disease",
+     "topics": [
+      {
+       "id": "nutrition-therapy",
+       "title": "Nutrition therapy",
+       "subtopics": [
+        {
+         "id": "therapy-for-allergies-gut-and-infections",
+         "title": "Therapy for allergies, gut and infections",
+         "outcomes": [
+          {
+           "code": "FN-10-E-01",
+           "text": "Explain nutrition therapy for food allergies."
+          },
+          {
+           "code": "FN-10-E-02",
+           "text": "Explain nutrition therapy for gut disorders."
+          },
+          {
+           "code": "FN-10-E-03",
+           "text": "Explain nutrition therapy for communicable diseases."
+          }
+         ]
+        },
+        {
+         "id": "therapy-for-chronic-and-elderly-care",
+         "title": "Therapy for chronic and elderly care",
+         "outcomes": [
+          {
+           "code": "FN-10-E-04",
+           "text": "Describe nutrition's role for elderly patients."
+          },
+          {
+           "code": "FN-10-E-05",
+           "text": "Discuss nutrition therapy for diabetes and thyroid disorders."
+          },
+          {
+           "code": "FN-10-E-06",
+           "text": "Discuss nutrition therapy for cancers, lung disorders and paediatric conditions."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "build": {
+  "builtAt": "2026-10-14T08:24:28.187Z",
+  "model": "claude-agent",
+  "usd": 0,
+  "expectedCodes": 57,
+  "coverage": 1,
+  "missingCodes": [],
+  "counts": {
+   "grades": 2,
+   "units": 10,
+   "topics": 20,
+   "subtopics": 33,
+   "outcomes": 57
+  },
+  "warnings": []
+ }
+}

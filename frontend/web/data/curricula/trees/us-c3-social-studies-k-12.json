@@ -1,0 +1,3018 @@
+{
+ "id": "us-c3-social-studies-k-12",
+ "region": "US",
+ "framework": "College, Career, and Civic Life (C3) Framework for Social Studies State Standards (2013, rev. 2017)",
+ "board": "National Council for the Social Studies",
+ "qualification": "K-12",
+ "subject": "Social Studies (Civics, Economics, Geography, History)",
+ "syllabusCode": null,
+ "gradeSystem": "stage",
+ "source": {
+  "urls": [
+   "https://www.socialstudies.org/sites/default/files/c3/c3-framework-for-social-studies-rev0617.pdf",
+   "https://web.archive.org/web/20201226211918id_/https://www.socialstudies.org/sites/default/files/c3/c3-framework-for-social-studies-rev0617.pdf",
+   "https://www.socialstudies.org/standards/c3"
+  ],
+  "publisher": "National Council for the Social Studies (NCSS)",
+  "licence": "© 2013 NCSS; free download - structure + our own wording only",
+  "firstExam": "2013"
+ },
+ "grades": [
+  {
+   "grade": "K-2",
+   "units": [
+    {
+     "id": "dimension-1-developing-questions-and-planning-in",
+     "title": "Dimension 1: Developing Questions and Planning Inquiries",
+     "topics": [
+      {
+       "id": "constructing-compelling-questions",
+       "title": "Constructing Compelling Questions",
+       "subtopics": [
+        {
+         "id": "why-compelling-questions-matter",
+         "title": "Why compelling questions matter",
+         "outcomes": [
+          {
+           "code": "D1.1.K-2",
+           "text": "Explain why a compelling question matters to you."
+          },
+          {
+           "code": "D1.2.K-2",
+           "text": "Name the subject ideas linked to a compelling question."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "constructing-supporting-questions",
+       "title": "Constructing Supporting Questions",
+       "subtopics": [
+        {
+         "id": "building-supporting-questions",
+         "title": "Building supporting questions",
+         "outcomes": [
+          {
+           "code": "D1.3.K-2",
+           "text": "Name facts and concepts tied to a supporting question."
+          },
+          {
+           "code": "D1.4.K-2",
+           "text": "Connect supporting questions to compelling questions."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "determining-helpful-sources",
+       "title": "Determining Helpful Sources",
+       "subtopics": [
+        {
+         "id": "choosing-helpful-sources",
+         "title": "Choosing helpful sources",
+         "outcomes": [
+          {
+           "code": "D1.5.K-2",
+           "text": "Decide what kinds of sources would help answer the questions."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "dimension-2-civics",
+     "title": "Dimension 2: Civics",
+     "topics": [
+      {
+       "id": "civic-and-political-institutions",
+       "title": "Civic and Political Institutions",
+       "subtopics": [
+        {
+         "id": "roles-and-responsibilities-in-government",
+         "title": "Roles and responsibilities in government",
+         "outcomes": [
+          {
+           "code": "D2.Civ.1.K-2",
+           "text": "Describe the roles and responsibilities of people in authority."
+          },
+          {
+           "code": "D2.Civ.2.K-2",
+           "text": "Explain how everyone, not just leaders, plays a role in a community."
+          },
+          {
+           "code": "D2.Civ.3.K-2",
+           "text": "Explain why rules are needed in different places."
+          }
+         ]
+        },
+        {
+         "id": "government-structure-and-function",
+         "title": "Government structure and function",
+         "outcomes": [
+          {
+           "code": "D2.Civ.5.K-2",
+           "text": "Explain what governments are and some of their functions."
+          },
+          {
+           "code": "D2.Civ.6.K-2",
+           "text": "Describe how communities work together on common tasks and roles of authority."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "participation-and-deliberation",
+       "title": "Participation and Deliberation",
+       "subtopics": [
+        {
+         "id": "civic-virtues-and-democratic-principles",
+         "title": "Civic virtues and democratic principles",
+         "outcomes": [
+          {
+           "code": "D2.Civ.7.K-2",
+           "text": "Apply civic virtues in school settings."
+          },
+          {
+           "code": "D2.Civ.8.K-2",
+           "text": "Describe democratic principles such as equality, fairness and respect for legitimate rules."
+          }
+         ]
+        },
+        {
+         "id": "deliberating-and-understanding-perspectives",
+         "title": "Deliberating and understanding perspectives",
+         "outcomes": [
+          {
+           "code": "D2.Civ.9.K-2",
+           "text": "Follow agreed rules for discussion and respond attentively when deciding as a group."
+          },
+          {
+           "code": "D2.Civ.10.K-2",
+           "text": "Compare your own point of view with others'."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "processes-rules-and-laws",
+       "title": "Processes, Rules, and Laws",
+       "subtopics": [
+        {
+         "id": "making-decisions-and-rules",
+         "title": "Making decisions and rules",
+         "outcomes": [
+          {
+           "code": "D2.Civ.11.K-2",
+           "text": "Explain how people work together to make classroom decisions."
+          },
+          {
+           "code": "D2.Civ.12.K-2",
+           "text": "Identify and explain how rules work in the classroom and school."
+          }
+         ]
+        },
+        {
+         "id": "policy-and-changing-society",
+         "title": "Policy and changing society",
+         "outcomes": [
+          {
+           "code": "D2.Civ.14.K-2",
+           "text": "Describe how people have tried to improve their communities over time."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "dimension-2-economics",
+     "title": "Dimension 2: Economics",
+     "topics": [
+      {
+       "id": "economic-decision-making",
+       "title": "Economic Decision Making",
+       "subtopics": [
+        {
+         "id": "scarcity-choice-and-incentives",
+         "title": "Scarcity, choice and incentives",
+         "outcomes": [
+          {
+           "code": "D2.Eco.1.K-2",
+           "text": "Explain how scarcity forces decisions."
+          },
+          {
+           "code": "D2.Eco.2.K-2",
+           "text": "Identify benefits and costs of personal decisions."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "exchange-and-markets",
+       "title": "Exchange and Markets",
+       "subtopics": [
+        {
+         "id": "production-and-trade",
+         "title": "Production and trade",
+         "outcomes": [
+          {
+           "code": "D2.Eco.3.K-2",
+           "text": "Describe skills and knowledge needed to produce certain goods and services."
+          },
+          {
+           "code": "D2.Eco.4.K-2",
+           "text": "Describe goods and services produced locally and in other communities."
+          },
+          {
+           "code": "D2.Eco.5.K-2",
+           "text": "Identify prices of products in a local market."
+          }
+         ]
+        },
+        {
+         "id": "prices-profit-and-institutions",
+         "title": "Prices, profit and institutions",
+         "outcomes": [
+          {
+           "code": "D2.Eco.6.K-2",
+           "text": "Explain how people earn income."
+          },
+          {
+           "code": "D2.Eco.7.K-2",
+           "text": "Describe examples of costs of production."
+          },
+          {
+           "code": "D2.Eco.9.K-2",
+           "text": "Describe the role of banks in an economy."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "the-national-economy",
+       "title": "The National Economy",
+       "subtopics": [
+        {
+         "id": "money-saving-and-indicators",
+         "title": "Money, saving and indicators",
+         "outcomes": [
+          {
+           "code": "D2.Eco.10.K-2",
+           "text": "Explain why people save."
+          }
+         ]
+        },
+        {
+         "id": "government-productivity-and-growth",
+         "title": "Government, productivity and growth",
+         "outcomes": [
+          {
+           "code": "D2.Eco.12.K-2",
+           "text": "Describe examples of goods and services governments provide."
+          },
+          {
+           "code": "D2.Eco.13.K-2",
+           "text": "Describe examples of capital goods and human capital."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "the-global-economy",
+       "title": "The Global Economy",
+       "subtopics": [
+        {
+         "id": "trade-between-nations",
+         "title": "Trade between nations",
+         "outcomes": [
+          {
+           "code": "D2.Eco.14.K-2",
+           "text": "Describe why people in one country trade with people in other countries."
+          },
+          {
+           "code": "D2.Eco.15.K-2",
+           "text": "Describe products produced abroad and sold here, and the reverse."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "dimension-2-geography",
+     "title": "Dimension 2: Geography",
+     "topics": [
+      {
+       "id": "geographic-representations-spatial-views-of-the-",
+       "title": "Geographic Representations: Spatial Views of the World",
+       "subtopics": [
+        {
+         "id": "maps-and-geographic-representations",
+         "title": "Maps and geographic representations",
+         "outcomes": [
+          {
+           "code": "D2.Geo.1.K-2",
+           "text": "Construct maps and graphs of familiar places."
+          },
+          {
+           "code": "D2.Geo.2.K-2",
+           "text": "Use maps, graphs and photographs to describe places and the interactions that shape them."
+          },
+          {
+           "code": "D2.Geo.3.K-2",
+           "text": "Use maps and globes to identify cultural and environmental characteristics of places."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "human-environment-interaction-place-regions-and-",
+       "title": "Human-Environment Interaction: Place, Regions, and Culture",
+       "subtopics": [
+        {
+         "id": "people-and-environments",
+         "title": "People and environments",
+         "outcomes": [
+          {
+           "code": "D2.Geo.4.K-2",
+           "text": "Explain how weather, climate and environment affect people's lives in a place."
+          },
+          {
+           "code": "D2.Geo.5.K-2",
+           "text": "Describe how human activities affect cultural and environmental characteristics of places."
+          },
+          {
+           "code": "D2.Geo.6.K-2",
+           "text": "Identify cultural and environmental characteristics of specific places."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "human-population-spatial-patterns-and-movements",
+       "title": "Human Population: Spatial Patterns and Movements",
+       "subtopics": [
+        {
+         "id": "movement-and-settlement",
+         "title": "Movement and settlement",
+         "outcomes": [
+          {
+           "code": "D2.Geo.7.K-2",
+           "text": "Explain why and how people, goods and ideas move between places."
+          },
+          {
+           "code": "D2.Geo.8.K-2",
+           "text": "Compare how people in different communities use nearby and distant environments for daily needs."
+          },
+          {
+           "code": "D2.Geo.9.K-2",
+           "text": "Describe connections between a place's environment and its economic activities."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "global-interconnections-changing-spatial-pattern",
+       "title": "Global Interconnections: Changing Spatial Patterns",
+       "subtopics": [
+        {
+         "id": "interconnected-world-regions",
+         "title": "Interconnected world regions",
+         "outcomes": [
+          {
+           "code": "D2.Geo.10.K-2",
+           "text": "Describe changes in physical and cultural characteristics of world regions."
+          },
+          {
+           "code": "D2.Geo.11.K-2",
+           "text": "Explain how consuming products connects people to distant places."
+          },
+          {
+           "code": "D2.Geo.12.K-2",
+           "text": "Identify ways a disaster may affect people living in a place."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "dimension-2-history",
+     "title": "Dimension 2: History",
+     "topics": [
+      {
+       "id": "change-continuity-and-context",
+       "title": "Change, Continuity, and Context",
+       "subtopics": [
+        {
+         "id": "chronology-change-and-significance",
+         "title": "Chronology, change and significance",
+         "outcomes": [
+          {
+           "code": "D2.His.1.K-2",
+           "text": "Put several events in chronological order."
+          },
+          {
+           "code": "D2.His.2.K-2",
+           "text": "Compare life in the past to life today."
+          },
+          {
+           "code": "D2.His.3.K-2",
+           "text": "Ask questions about people and groups who shaped an important historical change."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "perspectives",
+       "title": "Perspectives",
+       "subtopics": [
+        {
+         "id": "perspectives-in-history",
+         "title": "Perspectives in history",
+         "outcomes": [
+          {
+           "code": "D2.His.4.K-2",
+           "text": "Compare perspectives of people in the past with people today."
+          },
+          {
+           "code": "D2.His.6.K-2",
+           "text": "Compare different accounts of the same historical event."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "historical-sources-and-evidence",
+       "title": "Historical Sources and Evidence",
+       "subtopics": [
+        {
+         "id": "kinds-and-uses-of-sources",
+         "title": "Kinds and uses of sources",
+         "outcomes": [
+          {
+           "code": "D2.His.9.K-2",
+           "text": "Identify different kinds of historical sources."
+          },
+          {
+           "code": "D2.His.10.K-2",
+           "text": "Explain how historical sources help study the past."
+          }
+         ]
+        },
+        {
+         "id": "evaluating-sources",
+         "title": "Evaluating sources",
+         "outcomes": [
+          {
+           "code": "D2.His.11.K-2",
+           "text": "Identify the maker, date and place of origin of a source from the source itself."
+          },
+          {
+           "code": "D2.His.12.K-2",
+           "text": "Ask questions about a source as it relates to an event or development."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "causation-and-argumentation",
+       "title": "Causation and Argumentation",
+       "subtopics": [
+        {
+         "id": "causes-and-effects",
+         "title": "Causes and effects",
+         "outcomes": [
+          {
+           "code": "D2.His.14.K-2",
+           "text": "Come up with possible reasons for a past event."
+          }
+         ]
+        },
+        {
+         "id": "historical-arguments",
+         "title": "Historical arguments",
+         "outcomes": [
+          {
+           "code": "D2.His.16.K-2",
+           "text": "Pick which reasons are more likely to explain an event."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "dimension-3-evaluating-sources-and-using-evidenc",
+     "title": "Dimension 3: Evaluating Sources and Using Evidence",
+     "topics": [
+      {
+       "id": "gathering-and-evaluating-sources",
+       "title": "Gathering and Evaluating Sources",
+       "subtopics": [
+        {
+         "id": "gathering-and-judging-sources",
+         "title": "Gathering and judging sources",
+         "outcomes": [
+          {
+           "code": "D3.1.K-2",
+           "text": "Gather relevant information from one or two sources, using origin and structure to choose."
+          },
+          {
+           "code": "D3.2.K-2",
+           "text": "Judge a source by telling fact from opinion."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "dimension-4-communicating-conclusions-and-taking",
+     "title": "Dimension 4: Communicating Conclusions and Taking Informed Action",
+     "topics": [
+      {
+       "id": "communicating-conclusions",
+       "title": "Communicating Conclusions",
+       "subtopics": [
+        {
+         "id": "arguments-and-explanations",
+         "title": "Arguments and explanations",
+         "outcomes": [
+          {
+           "code": "D4.1.K-2",
+           "text": "Make an argument with reasons."
+          },
+          {
+           "code": "D4.2.K-2",
+           "text": "Make explanations with correct sequence and relevant information."
+          }
+         ]
+        },
+        {
+         "id": "presenting-conclusions",
+         "title": "Presenting conclusions",
+         "outcomes": [
+          {
+           "code": "D4.3.K-2",
+           "text": "Present a summary of an argument in print, oral and digital forms."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "critiquing-conclusions",
+       "title": "Critiquing Conclusions",
+       "subtopics": [
+        {
+         "id": "critiquing-arguments-and-explanations",
+         "title": "Critiquing arguments and explanations",
+         "outcomes": [
+          {
+           "code": "D4.4.K-2",
+           "text": "Ask and answer questions about arguments."
+          },
+          {
+           "code": "D4.5.K-2",
+           "text": "Ask and answer questions about explanations."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "taking-informed-action",
+       "title": "Taking Informed Action",
+       "subtopics": [
+        {
+         "id": "understanding-problems-and-taking-action",
+         "title": "Understanding problems and taking action",
+         "outcomes": [
+          {
+           "code": "D4.6.K-2",
+           "text": "Identify local, regional and global problems and some ways people address them."
+          },
+          {
+           "code": "D4.7.K-2",
+           "text": "Identify ways to take action on local, regional and global problems."
+          },
+          {
+           "code": "D4.8.K-2",
+           "text": "Use listening, consensus-building and voting to decide and act in the classroom."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "3-5",
+   "units": [
+    {
+     "id": "dimension-1-developing-questions-and-planning-in",
+     "title": "Dimension 1: Developing Questions and Planning Inquiries",
+     "topics": [
+      {
+       "id": "constructing-compelling-questions",
+       "title": "Constructing Compelling Questions",
+       "subtopics": [
+        {
+         "id": "why-compelling-questions-matter",
+         "title": "Why compelling questions matter",
+         "outcomes": [
+          {
+           "code": "D1.1.3-5",
+           "text": "Explain why compelling questions matter to others such as peers and adults."
+          },
+          {
+           "code": "D1.2.3-5",
+           "text": "Name concepts linked to a compelling question that can be read in different ways."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "constructing-supporting-questions",
+       "title": "Constructing Supporting Questions",
+       "subtopics": [
+        {
+         "id": "building-supporting-questions",
+         "title": "Building supporting questions",
+         "outcomes": [
+          {
+           "code": "D1.3.3-5",
+           "text": "Name concepts tied to a supporting question that are open to interpretation."
+          },
+          {
+           "code": "D1.4.3-5",
+           "text": "Explain how supporting questions help answer a compelling question."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "determining-helpful-sources",
+       "title": "Determining Helpful Sources",
+       "subtopics": [
+        {
+         "id": "choosing-helpful-sources",
+         "title": "Choosing helpful sources",
+         "outcomes": [
+          {
+           "code": "D1.5.3-5",
+           "text": "Decide which sources help answer the questions, considering different opinions about the answers."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "dimension-2-civics",
+     "title": "Dimension 2: Civics",
+     "topics": [
+      {
+       "id": "civic-and-political-institutions",
+       "title": "Civic and Political Institutions",
+       "subtopics": [
+        {
+         "id": "roles-and-responsibilities-in-government",
+         "title": "Roles and responsibilities in government",
+         "outcomes": [
+          {
+           "code": "D2.Civ.1.3-5",
+           "text": "Tell apart the duties and powers of government officials at different levels and branches."
+          },
+          {
+           "code": "D2.Civ.2.3-5",
+           "text": "Explain how democracy needs responsible participation and how people should take part."
+          },
+          {
+           "code": "D2.Civ.3.3-5",
+           "text": "Examine the origins and purposes of rules, laws and key constitutional provisions."
+          }
+         ]
+        },
+        {
+         "id": "government-structure-and-function",
+         "title": "Government structure and function",
+         "outcomes": [
+          {
+           "code": "D2.Civ.4.3-5",
+           "text": "Explain how groups make rules that create responsibilities and protect freedoms."
+          },
+          {
+           "code": "D2.Civ.5.3-5",
+           "text": "Explain the origins, functions and structure of different systems of government, including US and state constitutions."
+          },
+          {
+           "code": "D2.Civ.6.3-5",
+           "text": "Describe how people gain and struggle from working together in government, workplaces, groups and families."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "participation-and-deliberation",
+       "title": "Participation and Deliberation",
+       "subtopics": [
+        {
+         "id": "civic-virtues-and-democratic-principles",
+         "title": "Civic virtues and democratic principles",
+         "outcomes": [
+          {
+           "code": "D2.Civ.7.3-5",
+           "text": "Apply civic virtues and democratic principles in school settings."
+          },
+          {
+           "code": "D2.Civ.8.3-5",
+           "text": "Identify core civic virtues and democratic principles that guide government and communities."
+          }
+         ]
+        },
+        {
+         "id": "deliberating-and-understanding-perspectives",
+         "title": "Deliberating and understanding perspectives",
+         "outcomes": [
+          {
+           "code": "D2.Civ.9.3-5",
+           "text": "Use deliberative processes to reach group decisions."
+          },
+          {
+           "code": "D2.Civ.10.3-5",
+           "text": "Identify the beliefs, experiences and values behind your own and others' views on civic issues."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "processes-rules-and-laws",
+       "title": "Processes, Rules, and Laws",
+       "subtopics": [
+        {
+         "id": "making-decisions-and-rules",
+         "title": "Making decisions and rules",
+         "outcomes": [
+          {
+           "code": "D2.Civ.11.3-5",
+           "text": "Compare decision-making procedures in classrooms, schools, government and society."
+          },
+          {
+           "code": "D2.Civ.12.3-5",
+           "text": "Explain how rules and laws change society and how people change them."
+          }
+         ]
+        },
+        {
+         "id": "policy-and-changing-society",
+         "title": "Policy and changing society",
+         "outcomes": [
+          {
+           "code": "D2.Civ.13.3-5",
+           "text": "Explain how policies are developed to address public problems."
+          },
+          {
+           "code": "D2.Civ.14.3-5",
+           "text": "Illustrate historical and current ways of changing society."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "dimension-2-economics",
+     "title": "Dimension 2: Economics",
+     "topics": [
+      {
+       "id": "economic-decision-making",
+       "title": "Economic Decision Making",
+       "subtopics": [
+        {
+         "id": "scarcity-choice-and-incentives",
+         "title": "Scarcity, choice and incentives",
+         "outcomes": [
+          {
+           "code": "D2.Eco.1.3-5",
+           "text": "Compare the benefits and costs of personal choices."
+          },
+          {
+           "code": "D2.Eco.2.3-5",
+           "text": "Identify positive and negative incentives that influence decisions."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "exchange-and-markets",
+       "title": "Exchange and Markets",
+       "subtopics": [
+        {
+         "id": "production-and-trade",
+         "title": "Production and trade",
+         "outcomes": [
+          {
+           "code": "D2.Eco.3.3-5",
+           "text": "Identify resources used to produce goods and services: human capital, physical capital and natural resources."
+          },
+          {
+           "code": "D2.Eco.4.3-5",
+           "text": "Explain why individuals and businesses specialize and trade."
+          },
+          {
+           "code": "D2.Eco.5.3-5",
+           "text": "Explain how money makes exchange easier."
+          }
+         ]
+        },
+        {
+         "id": "prices-profit-and-institutions",
+         "title": "Prices, profit and institutions",
+         "outcomes": [
+          {
+           "code": "D2.Eco.6.3-5",
+           "text": "Explain how investing in human capital relates to productivity and future income."
+          },
+          {
+           "code": "D2.Eco.7.3-5",
+           "text": "Explain how profits influence sellers."
+          },
+          {
+           "code": "D2.Eco.8.3-5",
+           "text": "Identify examples of external benefits and costs."
+          },
+          {
+           "code": "D2.Eco.9.3-5",
+           "text": "Describe the role of other financial institutions."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "the-national-economy",
+       "title": "The National Economy",
+       "subtopics": [
+        {
+         "id": "money-saving-and-indicators",
+         "title": "Money, saving and indicators",
+         "outcomes": [
+          {
+           "code": "D2.Eco.10.3-5",
+           "text": "Explain what interest rates are."
+          },
+          {
+           "code": "D2.Eco.11.3-5",
+           "text": "Explain the meaning of inflation, deflation and unemployment."
+          }
+         ]
+        },
+        {
+         "id": "government-productivity-and-growth",
+         "title": "Government, productivity and growth",
+         "outcomes": [
+          {
+           "code": "D2.Eco.12.3-5",
+           "text": "Explain how government pays for the goods and services it provides."
+          },
+          {
+           "code": "D2.Eco.13.3-5",
+           "text": "Describe how better capital goods and human capital raise productivity."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "the-global-economy",
+       "title": "The Global Economy",
+       "subtopics": [
+        {
+         "id": "trade-between-nations",
+         "title": "Trade between nations",
+         "outcomes": [
+          {
+           "code": "D2.Eco.14.3-5",
+           "text": "Explain how trade increases economic interdependence among nations."
+          },
+          {
+           "code": "D2.Eco.15.3-5",
+           "text": "Explain the effects of increasing interdependence on different groups within nations."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "dimension-2-geography",
+     "title": "Dimension 2: Geography",
+     "topics": [
+      {
+       "id": "geographic-representations-spatial-views-of-the-",
+       "title": "Geographic Representations: Spatial Views of the World",
+       "subtopics": [
+        {
+         "id": "maps-and-geographic-representations",
+         "title": "Maps and geographic representations",
+         "outcomes": [
+          {
+           "code": "D2.Geo.1.3-5",
+           "text": "Construct maps and graphics of familiar and unfamiliar places."
+          },
+          {
+           "code": "D2.Geo.2.3-5",
+           "text": "Use maps, satellite images and photographs to explain how location relates to environment."
+          },
+          {
+           "code": "D2.Geo.3.3-5",
+           "text": "Use maps of different scales to describe where characteristics are located."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "human-environment-interaction-place-regions-and-",
+       "title": "Human-Environment Interaction: Place, Regions, and Culture",
+       "subtopics": [
+        {
+         "id": "people-and-environments",
+         "title": "People and environments",
+         "outcomes": [
+          {
+           "code": "D2.Geo.4.3-5",
+           "text": "Explain how culture influences the way people adapt to and change environments."
+          },
+          {
+           "code": "D2.Geo.5.3-5",
+           "text": "Explain how cultural and environmental characteristics of places change over time."
+          },
+          {
+           "code": "D2.Geo.6.3-5",
+           "text": "Describe how environment and culture influence population distribution."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "human-population-spatial-patterns-and-movements",
+       "title": "Human Population: Spatial Patterns and Movements",
+       "subtopics": [
+        {
+         "id": "movement-and-settlement",
+         "title": "Movement and settlement",
+         "outcomes": [
+          {
+           "code": "D2.Geo.7.3-5",
+           "text": "Explain how culture and environment affect the movement of people, goods and ideas."
+          },
+          {
+           "code": "D2.Geo.8.3-5",
+           "text": "Explain how settlements and movement relate to natural resources."
+          },
+          {
+           "code": "D2.Geo.9.3-5",
+           "text": "Analyze effects of catastrophic environmental and technological events on settlement and migration."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "global-interconnections-changing-spatial-pattern",
+       "title": "Global Interconnections: Changing Spatial Patterns",
+       "subtopics": [
+        {
+         "id": "interconnected-world-regions",
+         "title": "Interconnected world regions",
+         "outcomes": [
+          {
+           "code": "D2.Geo.10.3-5",
+           "text": "Explain why environmental characteristics vary among world regions."
+          },
+          {
+           "code": "D2.Geo.11.3-5",
+           "text": "Describe how economic activity patterns in a place change through links to near and far places."
+          },
+          {
+           "code": "D2.Geo.12.3-5",
+           "text": "Explain how natural and human-made disasters in one place affect people elsewhere."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "dimension-2-history",
+     "title": "Dimension 2: History",
+     "topics": [
+      {
+       "id": "change-continuity-and-context",
+       "title": "Change, Continuity, and Context",
+       "subtopics": [
+        {
+         "id": "chronology-change-and-significance",
+         "title": "Chronology, change and significance",
+         "outcomes": [
+          {
+           "code": "D2.His.1.3-5",
+           "text": "Create and use a chronological sequence to compare simultaneous developments."
+          },
+          {
+           "code": "D2.His.2.3-5",
+           "text": "Compare life in specific historical periods to life today."
+          },
+          {
+           "code": "D2.His.3.3-5",
+           "text": "Ask questions about people and groups who shaped historical changes and continuities."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "perspectives",
+       "title": "Perspectives",
+       "subtopics": [
+        {
+         "id": "perspectives-in-history",
+         "title": "Perspectives in history",
+         "outcomes": [
+          {
+           "code": "D2.His.4.3-5",
+           "text": "Explain why people in the same period had different perspectives."
+          },
+          {
+           "code": "D2.His.5.3-5",
+           "text": "Explain connections between historical contexts and people's perspectives then."
+          },
+          {
+           "code": "D2.His.6.3-5",
+           "text": "Describe how people's perspectives shaped the sources they created."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "historical-sources-and-evidence",
+       "title": "Historical Sources and Evidence",
+       "subtopics": [
+        {
+         "id": "kinds-and-uses-of-sources",
+         "title": "Kinds and uses of sources",
+         "outcomes": [
+          {
+           "code": "D2.His.9.3-5",
+           "text": "Summarize how different kinds of sources explain past events."
+          },
+          {
+           "code": "D2.His.10.3-5",
+           "text": "Compare information from different historical sources."
+          }
+         ]
+        },
+        {
+         "id": "evaluating-sources",
+         "title": "Evaluating sources",
+         "outcomes": [
+          {
+           "code": "D2.His.11.3-5",
+           "text": "Infer the intended audience and purpose of a source from the source itself."
+          },
+          {
+           "code": "D2.His.12.3-5",
+           "text": "Ask questions about several sources and how they relate to events."
+          },
+          {
+           "code": "D2.His.13.3-5",
+           "text": "Use a source's maker, date, origin, audience and purpose to judge its usefulness for a topic."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "causation-and-argumentation",
+       "title": "Causation and Argumentation",
+       "subtopics": [
+        {
+         "id": "causes-and-effects",
+         "title": "Causes and effects",
+         "outcomes": [
+          {
+           "code": "D2.His.14.3-5",
+           "text": "Explain probable causes and effects of events."
+          }
+         ]
+        },
+        {
+         "id": "historical-arguments",
+         "title": "Historical arguments",
+         "outcomes": [
+          {
+           "code": "D2.His.16.3-5",
+           "text": "Use evidence to develop a claim about the past."
+          },
+          {
+           "code": "D2.His.17.3-5",
+           "text": "Summarize the central claim of a secondary work of history."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "dimension-3-evaluating-sources-and-using-evidenc",
+     "title": "Dimension 3: Evaluating Sources and Using Evidence",
+     "topics": [
+      {
+       "id": "gathering-and-evaluating-sources",
+       "title": "Gathering and Evaluating Sources",
+       "subtopics": [
+        {
+         "id": "gathering-and-judging-sources",
+         "title": "Gathering and judging sources",
+         "outcomes": [
+          {
+           "code": "D3.1.3-5",
+           "text": "Gather information from multiple sources, using origin, structure and context to choose."
+          },
+          {
+           "code": "D3.2.3-5",
+           "text": "Use fact versus opinion to judge the credibility of multiple sources."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "developing-claims-and-using-evidence",
+       "title": "Developing Claims and Using Evidence",
+       "subtopics": [
+        {
+         "id": "claims-and-evidence",
+         "title": "Claims and evidence",
+         "outcomes": [
+          {
+           "code": "D3.3.3-5",
+           "text": "Identify evidence from multiple sources that responds to compelling questions."
+          },
+          {
+           "code": "D3.4.3-5",
+           "text": "Use evidence to develop claims in response to compelling questions."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "dimension-4-communicating-conclusions-and-taking",
+     "title": "Dimension 4: Communicating Conclusions and Taking Informed Action",
+     "topics": [
+      {
+       "id": "communicating-conclusions",
+       "title": "Communicating Conclusions",
+       "subtopics": [
+        {
+         "id": "arguments-and-explanations",
+         "title": "Arguments and explanations",
+         "outcomes": [
+          {
+           "code": "D4.1.3-5",
+           "text": "Make arguments using claims and evidence from multiple sources."
+          },
+          {
+           "code": "D4.2.3-5",
+           "text": "Make explanations using reasoning, sequence, examples and details."
+          }
+         ]
+        },
+        {
+         "id": "presenting-conclusions",
+         "title": "Presenting conclusions",
+         "outcomes": [
+          {
+           "code": "D4.3.3-5",
+           "text": "Present arguments and explanations to audiences outside the classroom in print, oral and digital forms."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "critiquing-conclusions",
+       "title": "Critiquing Conclusions",
+       "subtopics": [
+        {
+         "id": "critiquing-arguments-and-explanations",
+         "title": "Critiquing arguments and explanations",
+         "outcomes": [
+          {
+           "code": "D4.4.3-5",
+           "text": "Critique arguments."
+          },
+          {
+           "code": "D4.5.3-5",
+           "text": "Critique explanations."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "taking-informed-action",
+       "title": "Taking Informed Action",
+       "subtopics": [
+        {
+         "id": "understanding-problems-and-taking-action",
+         "title": "Understanding problems and taking action",
+         "outcomes": [
+          {
+           "code": "D4.6.3-5",
+           "text": "Use disciplinary concepts to explain challenges and opportunities in addressing problems."
+          },
+          {
+           "code": "D4.7.3-5",
+           "text": "Explain strategies students could use alone and together, and predict possible results."
+          },
+          {
+           "code": "D4.8.3-5",
+           "text": "Use deliberative and democratic procedures to decide and act on civic problems in class and school."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "6-8",
+   "units": [
+    {
+     "id": "dimension-1-developing-questions-and-planning-in",
+     "title": "Dimension 1: Developing Questions and Planning Inquiries",
+     "topics": [
+      {
+       "id": "constructing-compelling-questions",
+       "title": "Constructing Compelling Questions",
+       "subtopics": [
+        {
+         "id": "why-compelling-questions-matter",
+         "title": "Why compelling questions matter",
+         "outcomes": [
+          {
+           "code": "D1.1.6-8",
+           "text": "Explain how a question stands for key ideas in a field."
+          },
+          {
+           "code": "D1.2.6-8",
+           "text": "Explain where experts agree about how to read and use the ideas behind a compelling question."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "constructing-supporting-questions",
+       "title": "Constructing Supporting Questions",
+       "subtopics": [
+        {
+         "id": "building-supporting-questions",
+         "title": "Building supporting questions",
+         "outcomes": [
+          {
+           "code": "D1.3.6-8",
+           "text": "Explain where experts agree about the ideas behind a supporting question."
+          },
+          {
+           "code": "D1.4.6-8",
+           "text": "Explain how supporting and compelling questions strengthen each other."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "determining-helpful-sources",
+       "title": "Determining Helpful Sources",
+       "subtopics": [
+        {
+         "id": "choosing-helpful-sources",
+         "title": "Choosing helpful sources",
+         "outcomes": [
+          {
+           "code": "D1.5.6-8",
+           "text": "Decide which sources help, considering the points of view in them."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "dimension-2-civics",
+     "title": "Dimension 2: Civics",
+     "topics": [
+      {
+       "id": "civic-and-political-institutions",
+       "title": "Civic and Political Institutions",
+       "subtopics": [
+        {
+         "id": "roles-and-responsibilities-in-government",
+         "title": "Roles and responsibilities in government",
+         "outcomes": [
+          {
+           "code": "D2.Civ.1.6-8",
+           "text": "Tell apart the powers of citizens, parties, interest groups and media in different settings."
+          },
+          {
+           "code": "D2.Civ.2.6-8",
+           "text": "Explain roles citizens play, such as voters, jurors, taxpayers, petitioners and office-holders."
+          },
+          {
+           "code": "D2.Civ.3.6-8",
+           "text": "Examine the origins, purposes and impact of constitutions, laws, treaties and agreements."
+          }
+         ]
+        },
+        {
+         "id": "government-structure-and-function",
+         "title": "Government structure and function",
+         "outcomes": [
+          {
+           "code": "D2.Civ.4.6-8",
+           "text": "Explain the powers and limits of the three branches, officials and bureaucracies in the US and elsewhere."
+          },
+          {
+           "code": "D2.Civ.5.6-8",
+           "text": "Explain the origins, functions and structure of government, using the US Constitution and other systems."
+          },
+          {
+           "code": "D2.Civ.6.6-8",
+           "text": "Describe how political, civil and economic organizations shape people's lives."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "participation-and-deliberation",
+       "title": "Participation and Deliberation",
+       "subtopics": [
+        {
+         "id": "civic-virtues-and-democratic-principles",
+         "title": "Civic virtues and democratic principles",
+         "outcomes": [
+          {
+           "code": "D2.Civ.7.6-8",
+           "text": "Apply civic virtues and democratic principles in school and community settings."
+          },
+          {
+           "code": "D2.Civ.8.6-8",
+           "text": "Analyze ideas in the founding documents and how they shape the political system."
+          }
+         ]
+        },
+        {
+         "id": "deliberating-and-understanding-perspectives",
+         "title": "Deliberating and understanding perspectives",
+         "outcomes": [
+          {
+           "code": "D2.Civ.9.6-8",
+           "text": "Compare deliberative processes used by various groups in different settings."
+          },
+          {
+           "code": "D2.Civ.10.6-8",
+           "text": "Explain how personal interests and perspectives, civic virtues and principles matter in public issues."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "processes-rules-and-laws",
+       "title": "Processes, Rules, and Laws",
+       "subtopics": [
+        {
+         "id": "making-decisions-and-rules",
+         "title": "Making decisions and rules",
+         "outcomes": [
+          {
+           "code": "D2.Civ.11.6-8",
+           "text": "Differentiate decision procedures in classroom, school, civil society and government by civic purpose."
+          },
+          {
+           "code": "D2.Civ.12.6-8",
+           "text": "Assess actual and proposed rules and laws as ways to address public problems."
+          }
+         ]
+        },
+        {
+         "id": "policy-and-changing-society",
+         "title": "Policy and changing society",
+         "outcomes": [
+          {
+           "code": "D2.Civ.13.6-8",
+           "text": "Analyze the purposes, implementation and consequences of public policies."
+          },
+          {
+           "code": "D2.Civ.14.6-8",
+           "text": "Compare historical and current ways of changing societies and promoting the common good."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "dimension-2-economics",
+     "title": "Dimension 2: Economics",
+     "topics": [
+      {
+       "id": "economic-decision-making",
+       "title": "Economic Decision Making",
+       "subtopics": [
+        {
+         "id": "scarcity-choice-and-incentives",
+         "title": "Scarcity, choice and incentives",
+         "outcomes": [
+          {
+           "code": "D2.Eco.1.6-8",
+           "text": "Explain how economic decisions affect individuals, businesses and society."
+          },
+          {
+           "code": "D2.Eco.2.6-8",
+           "text": "Evaluate alternative solutions to economic issues by costs and benefits for different groups."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "exchange-and-markets",
+       "title": "Exchange and Markets",
+       "subtopics": [
+        {
+         "id": "production-and-trade",
+         "title": "Production and trade",
+         "outcomes": [
+          {
+           "code": "D2.Eco.3.6-8",
+           "text": "Explain the roles of buyers and sellers in product, labor and financial markets."
+          },
+          {
+           "code": "D2.Eco.4.6-8",
+           "text": "Describe how competition affects prices and wages in a market economy."
+          },
+          {
+           "code": "D2.Eco.5.6-8",
+           "text": "Explain how money eases exchange by lowering transaction costs."
+          }
+         ]
+        },
+        {
+         "id": "prices-profit-and-institutions",
+         "title": "Prices, profit and institutions",
+         "outcomes": [
+          {
+           "code": "D2.Eco.6.6-8",
+           "text": "Explain how supply and demand changes alter prices and quantities in markets."
+          },
+          {
+           "code": "D2.Eco.7.6-8",
+           "text": "Analyze the role of innovation and entrepreneurship in a market economy."
+          },
+          {
+           "code": "D2.Eco.8.6-8",
+           "text": "Explain how external benefits and costs influence market outcomes."
+          },
+          {
+           "code": "D2.Eco.9.6-8",
+           "text": "Describe the roles of corporations, non-profits and labor unions."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "the-national-economy",
+       "title": "The National Economy",
+       "subtopics": [
+        {
+         "id": "money-saving-and-indicators",
+         "title": "Money, saving and indicators",
+         "outcomes": [
+          {
+           "code": "D2.Eco.10.6-8",
+           "text": "Explain how interest rate changes affect borrowing and investing."
+          },
+          {
+           "code": "D2.Eco.11.6-8",
+           "text": "Use data to evaluate employment, inflation, production, income and growth."
+          }
+         ]
+        },
+        {
+         "id": "government-productivity-and-growth",
+         "title": "Government, productivity and growth",
+         "outcomes": [
+          {
+           "code": "D2.Eco.12.6-8",
+           "text": "Explain how inflation, deflation and unemployment affect different groups."
+          },
+          {
+           "code": "D2.Eco.13.6-8",
+           "text": "Explain why living standards rise as productivity improves."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "the-global-economy",
+       "title": "The Global Economy",
+       "subtopics": [
+        {
+         "id": "trade-between-nations",
+         "title": "Trade between nations",
+         "outcomes": [
+          {
+           "code": "D2.Eco.14.6-8",
+           "text": "Explain barriers to trade and how they influence trade."
+          },
+          {
+           "code": "D2.Eco.15.6-8",
+           "text": "Explain the benefits and costs of trade policies to people, businesses and society."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "dimension-2-geography",
+     "title": "Dimension 2: Geography",
+     "topics": [
+      {
+       "id": "geographic-representations-spatial-views-of-the-",
+       "title": "Geographic Representations: Spatial Views of the World",
+       "subtopics": [
+        {
+         "id": "maps-and-geographic-representations",
+         "title": "Maps and geographic representations",
+         "outcomes": [
+          {
+           "code": "D2.Geo.1.6-8",
+           "text": "Construct maps showing spatial patterns of cultural and environmental traits."
+          },
+          {
+           "code": "D2.Geo.2.6-8",
+           "text": "Use maps, images and photographs to explain how location relates to environmental change."
+          },
+          {
+           "code": "D2.Geo.3.6-8",
+           "text": "Use paper and electronic mapping and graphing to analyze spatial patterns."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "human-environment-interaction-place-regions-and-",
+       "title": "Human-Environment Interaction: Place, Regions, and Culture",
+       "subtopics": [
+        {
+         "id": "people-and-environments",
+         "title": "People and environments",
+         "outcomes": [
+          {
+           "code": "D2.Geo.4.6-8",
+           "text": "Explain how cultural patterns and economic decisions influence environments and daily life."
+          },
+          {
+           "code": "D2.Geo.5.6-8",
+           "text": "Analyze combinations of characteristics that make places similar to and different from others."
+          },
+          {
+           "code": "D2.Geo.6.6-8",
+           "text": "Explain how physical and human characteristics connect to human identities and cultures."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "human-population-spatial-patterns-and-movements",
+       "title": "Human Population: Spatial Patterns and Movements",
+       "subtopics": [
+        {
+         "id": "movement-and-settlement",
+         "title": "Movement and settlement",
+         "outcomes": [
+          {
+           "code": "D2.Geo.7.6-8",
+           "text": "Explain how transport and communication changes affect spatial connections and diffusion of ideas."
+          },
+          {
+           "code": "D2.Geo.8.6-8",
+           "text": "Analyze how human-environment relationships extend or contract settlement and movement patterns."
+          },
+          {
+           "code": "D2.Geo.9.6-8",
+           "text": "Evaluate how long-term human-caused environmental change influences conflict and cooperation."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "global-interconnections-changing-spatial-pattern",
+       "title": "Global Interconnections: Changing Spatial Patterns",
+       "subtopics": [
+        {
+         "id": "interconnected-world-regions",
+         "title": "Interconnected world regions",
+         "outcomes": [
+          {
+           "code": "D2.Geo.10.6-8",
+           "text": "Analyze how cultural and environmental characteristics vary among regions."
+          },
+          {
+           "code": "D2.Geo.11.6-8",
+           "text": "Explain how environment and production of goods shape world trade patterns."
+          },
+          {
+           "code": "D2.Geo.12.6-8",
+           "text": "Explain how global changes in population distribution affect land use in places."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "dimension-2-history",
+     "title": "Dimension 2: History",
+     "topics": [
+      {
+       "id": "change-continuity-and-context",
+       "title": "Change, Continuity, and Context",
+       "subtopics": [
+        {
+         "id": "chronology-change-and-significance",
+         "title": "Chronology, change and significance",
+         "outcomes": [
+          {
+           "code": "D2.His.1.6-8",
+           "text": "Analyze connections among events in broader historical contexts."
+          },
+          {
+           "code": "D2.His.2.6-8",
+           "text": "Classify events and developments as change or continuity."
+          },
+          {
+           "code": "D2.His.3.6-8",
+           "text": "Use questions about people and groups to analyze why they are seen as historically significant."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "perspectives",
+       "title": "Perspectives",
+       "subtopics": [
+        {
+         "id": "perspectives-in-history",
+         "title": "Perspectives in history",
+         "outcomes": [
+          {
+           "code": "D2.His.4.6-8",
+           "text": "Analyze factors that shaped people's perspectives in different eras."
+          },
+          {
+           "code": "D2.His.5.6-8",
+           "text": "Explain how and why people's perspectives changed over time."
+          },
+          {
+           "code": "D2.His.6.6-8",
+           "text": "Analyze how perspectives influenced what information is available in sources."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "historical-sources-and-evidence",
+       "title": "Historical Sources and Evidence",
+       "subtopics": [
+        {
+         "id": "kinds-and-uses-of-sources",
+         "title": "Kinds and uses of sources",
+         "outcomes": [
+          {
+           "code": "D2.His.9.6-8",
+           "text": "Classify the kinds of sources used in a secondary interpretation."
+          },
+          {
+           "code": "D2.His.10.6-8",
+           "text": "Detect limits in the historical record from different kinds of sources."
+          }
+         ]
+        },
+        {
+         "id": "evaluating-sources",
+         "title": "Evaluating sources",
+         "outcomes": [
+          {
+           "code": "D2.His.11.6-8",
+           "text": "Use other sources to infer a plausible maker, date, origin and audience."
+          },
+          {
+           "code": "D2.His.12.6-8",
+           "text": "Use questions about several sources to find further areas of inquiry and sources."
+          },
+          {
+           "code": "D2.His.13.6-8",
+           "text": "Evaluate the relevance and usefulness of a source by its maker, date, origin, audience and purpose."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "causation-and-argumentation",
+       "title": "Causation and Argumentation",
+       "subtopics": [
+        {
+         "id": "causes-and-effects",
+         "title": "Causes and effects",
+         "outcomes": [
+          {
+           "code": "D2.His.14.6-8",
+           "text": "Explain multiple causes and effects of past events."
+          },
+          {
+           "code": "D2.His.15.6-8",
+           "text": "Evaluate the relative influence of different causes of events."
+          }
+         ]
+        },
+        {
+         "id": "historical-arguments",
+         "title": "Historical arguments",
+         "outcomes": [
+          {
+           "code": "D2.His.16.6-8",
+           "text": "Organize evidence into a coherent argument about the past."
+          },
+          {
+           "code": "D2.His.17.6-8",
+           "text": "Compare central arguments in secondary works on related topics in multiple media."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "dimension-3-evaluating-sources-and-using-evidenc",
+     "title": "Dimension 3: Evaluating Sources and Using Evidence",
+     "topics": [
+      {
+       "id": "gathering-and-evaluating-sources",
+       "title": "Gathering and Evaluating Sources",
+       "subtopics": [
+        {
+         "id": "gathering-and-judging-sources",
+         "title": "Gathering and judging sources",
+         "outcomes": [
+          {
+           "code": "D3.1.6-8",
+           "text": "Gather information from multiple sources, using origin, authority, structure, context and corroboration."
+          },
+          {
+           "code": "D3.2.6-8",
+           "text": "Judge credibility by a source's relevance and intended use."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "developing-claims-and-using-evidence",
+       "title": "Developing Claims and Using Evidence",
+       "subtopics": [
+        {
+         "id": "claims-and-evidence",
+         "title": "Claims and evidence",
+         "outcomes": [
+          {
+           "code": "D3.3.6-8",
+           "text": "Identify evidence from multiple sources that supports claims, noting its limits."
+          },
+          {
+           "code": "D3.4.6-8",
+           "text": "Develop claims and counterclaims, noting strengths and limits of both."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "dimension-4-communicating-conclusions-and-taking",
+     "title": "Dimension 4: Communicating Conclusions and Taking Informed Action",
+     "topics": [
+      {
+       "id": "communicating-conclusions",
+       "title": "Communicating Conclusions",
+       "subtopics": [
+        {
+         "id": "arguments-and-explanations",
+         "title": "Arguments and explanations",
+         "outcomes": [
+          {
+           "code": "D4.1.6-8",
+           "text": "Make arguments from multiple sources, acknowledging strengths and limits."
+          },
+          {
+           "code": "D4.2.6-8",
+           "text": "Make explanations using reasoning, sequence, examples and details, noting strengths and weaknesses."
+          }
+         ]
+        },
+        {
+         "id": "presenting-conclusions",
+         "title": "Presenting conclusions",
+         "outcomes": [
+          {
+           "code": "D4.3.6-8",
+           "text": "Present adapted arguments and explanations on topics of interest to outside audiences."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "critiquing-conclusions",
+       "title": "Critiquing Conclusions",
+       "subtopics": [
+        {
+         "id": "critiquing-arguments-and-explanations",
+         "title": "Critiquing arguments and explanations",
+         "outcomes": [
+          {
+           "code": "D4.4.6-8",
+           "text": "Critique arguments for credibility."
+          },
+          {
+           "code": "D4.5.6-8",
+           "text": "Critique the structure of explanations."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "taking-informed-action",
+       "title": "Taking Informed Action",
+       "subtopics": [
+        {
+         "id": "understanding-problems-and-taking-action",
+         "title": "Understanding problems and taking action",
+         "outcomes": [
+          {
+           "code": "D4.6.6-8",
+           "text": "Use several disciplinary lenses to analyze how a problem shows up locally, regionally and globally over time."
+          },
+          {
+           "code": "D4.7.6-8",
+           "text": "Assess individual and collective capacity to act, considering levers of power, strategies and outcomes."
+          },
+          {
+           "code": "D4.8.6-8",
+           "text": "Apply deliberative and democratic procedures to act in school and out-of-school civic contexts."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "9-12",
+   "units": [
+    {
+     "id": "dimension-1-developing-questions-and-planning-in",
+     "title": "Dimension 1: Developing Questions and Planning Inquiries",
+     "topics": [
+      {
+       "id": "constructing-compelling-questions",
+       "title": "Constructing Compelling Questions",
+       "subtopics": [
+        {
+         "id": "why-compelling-questions-matter",
+         "title": "Why compelling questions matter",
+         "outcomes": [
+          {
+           "code": "D1.1.9-12",
+           "text": "Explain how a question reflects an enduring issue in a field."
+          },
+          {
+           "code": "D1.2.9-12",
+           "text": "Explain where experts agree and disagree about the ideas behind a compelling question."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "constructing-supporting-questions",
+       "title": "Constructing Supporting Questions",
+       "subtopics": [
+        {
+         "id": "building-supporting-questions",
+         "title": "Building supporting questions",
+         "outcomes": [
+          {
+           "code": "D1.3.9-12",
+           "text": "Explain where experts agree and disagree about the ideas behind a supporting question."
+          },
+          {
+           "code": "D1.4.9-12",
+           "text": "Explain how supporting questions drive an inquiry and how source work raises new questions."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "determining-helpful-sources",
+       "title": "Determining Helpful Sources",
+       "subtopics": [
+        {
+         "id": "choosing-helpful-sources",
+         "title": "Choosing helpful sources",
+         "outcomes": [
+          {
+           "code": "D1.5.9-12",
+           "text": "Decide which sources help, considering points of view, the types available and how they can be used."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "dimension-2-civics",
+     "title": "Dimension 2: Civics",
+     "topics": [
+      {
+       "id": "civic-and-political-institutions",
+       "title": "Civic and Political Institutions",
+       "subtopics": [
+        {
+         "id": "roles-and-responsibilities-in-government",
+         "title": "Roles and responsibilities in government",
+         "outcomes": [
+          {
+           "code": "D2.Civ.1.9-12",
+           "text": "Tell apart the powers and duties of local, state, tribal, national and international institutions."
+          },
+          {
+           "code": "D2.Civ.2.9-12",
+           "text": "Analyze citizens' role in the US system, theories of democracy, changing participation and other models."
+          },
+          {
+           "code": "D2.Civ.3.9-12",
+           "text": "Analyze how constitutions, laws, treaties and agreements maintain national and international order."
+          }
+         ]
+        },
+        {
+         "id": "government-structure-and-function",
+         "title": "Government structure and function",
+         "outcomes": [
+          {
+           "code": "D2.Civ.4.9-12",
+           "text": "Explain how the Constitution sets up powers, duties and limits that have changed and are still contested."
+          },
+          {
+           "code": "D2.Civ.5.9-12",
+           "text": "Evaluate how effectively citizens and institutions address social and political problems."
+          },
+          {
+           "code": "D2.Civ.6.9-12",
+           "text": "Critique relationships among governments, civil societies and economic markets."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "participation-and-deliberation",
+       "title": "Participation and Deliberation",
+       "subtopics": [
+        {
+         "id": "civic-virtues-and-democratic-principles",
+         "title": "Civic virtues and democratic principles",
+         "outcomes": [
+          {
+           "code": "D2.Civ.7.9-12",
+           "text": "Apply civic virtues and democratic principles when working with others."
+          },
+          {
+           "code": "D2.Civ.8.9-12",
+           "text": "Evaluate social and political systems that promote civic virtues and democratic principles."
+          }
+         ]
+        },
+        {
+         "id": "deliberating-and-understanding-perspectives",
+         "title": "Deliberating and understanding perspectives",
+         "outcomes": [
+          {
+           "code": "D2.Civ.9.9-12",
+           "text": "Use suitable deliberative processes in many settings."
+          },
+          {
+           "code": "D2.Civ.10.9-12",
+           "text": "Analyze how personal interests and perspectives affect applying civic virtues, rights and democratic principles."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "processes-rules-and-laws",
+       "title": "Processes, Rules, and Laws",
+       "subtopics": [
+        {
+         "id": "making-decisions-and-rules",
+         "title": "Making decisions and rules",
+         "outcomes": [
+          {
+           "code": "D2.Civ.11.9-12",
+           "text": "Evaluate procedures for government decisions at all levels by the civic purposes they achieve."
+          },
+          {
+           "code": "D2.Civ.12.9-12",
+           "text": "Analyze how people use and challenge laws at all levels to address public issues."
+          }
+         ]
+        },
+        {
+         "id": "policy-and-changing-society",
+         "title": "Policy and changing society",
+         "outcomes": [
+          {
+           "code": "D2.Civ.13.9-12",
+           "text": "Evaluate public policies by intended and unintended outcomes."
+          },
+          {
+           "code": "D2.Civ.14.9-12",
+           "text": "Analyze historical, current and emerging ways of changing societies and protecting rights."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "dimension-2-economics",
+     "title": "Dimension 2: Economics",
+     "topics": [
+      {
+       "id": "economic-decision-making",
+       "title": "Economic Decision Making",
+       "subtopics": [
+        {
+         "id": "scarcity-choice-and-incentives",
+         "title": "Scarcity, choice and incentives",
+         "outcomes": [
+          {
+           "code": "D2.Eco.1.9-12",
+           "text": "Analyze how incentives shape choices and policies with varied costs and benefits."
+          },
+          {
+           "code": "D2.Eco.2.9-12",
+           "text": "Use marginal benefits and costs to argue for or against a solution to an economic issue."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "exchange-and-markets",
+       "title": "Exchange and Markets",
+       "subtopics": [
+        {
+         "id": "production-and-trade",
+         "title": "Production and trade",
+         "outcomes": [
+          {
+           "code": "D2.Eco.3.9-12",
+           "text": "Analyze how incentives influence what a market produces and distributes."
+          },
+          {
+           "code": "D2.Eco.4.9-12",
+           "text": "Evaluate how much competition exists among sellers and buyers in specific markets."
+          },
+          {
+           "code": "D2.Eco.5.9-12",
+           "text": "Describe the consequences of competition in specific markets."
+          }
+         ]
+        },
+        {
+         "id": "prices-profit-and-institutions",
+         "title": "Prices, profit and institutions",
+         "outcomes": [
+          {
+           "code": "D2.Eco.6.9-12",
+           "text": "Generate explanations for a government role in markets when inefficiencies exist."
+          },
+          {
+           "code": "D2.Eco.7.9-12",
+           "text": "Use benefits and costs to judge how well government policies improve market outcomes."
+          },
+          {
+           "code": "D2.Eco.8.9-12",
+           "text": "Describe intended and unintended consequences of government policies on markets."
+          },
+          {
+           "code": "D2.Eco.9.9-12",
+           "text": "Describe the roles of property rights and the rule of law in a market economy."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "the-national-economy",
+       "title": "The National Economy",
+       "subtopics": [
+        {
+         "id": "money-saving-and-indicators",
+         "title": "Money, saving and indicators",
+         "outcomes": [
+          {
+           "code": "D2.Eco.10.9-12",
+           "text": "Use current data to explain how spending, production and money supply changes affect economic conditions."
+          },
+          {
+           "code": "D2.Eco.11.9-12",
+           "text": "Use economic indicators to analyze the current and future state of the economy."
+          }
+         ]
+        },
+        {
+         "id": "government-productivity-and-growth",
+         "title": "Government, productivity and growth",
+         "outcomes": [
+          {
+           "code": "D2.Eco.12.9-12",
+           "text": "Evaluate monetary and fiscal policy choices in varied economic conditions."
+          },
+          {
+           "code": "D2.Eco.13.9-12",
+           "text": "Explain how technology and capital investment raise growth and living standards."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "the-global-economy",
+       "title": "The Global Economy",
+       "subtopics": [
+        {
+         "id": "trade-between-nations",
+         "title": "Trade between nations",
+         "outcomes": [
+          {
+           "code": "D2.Eco.14.9-12",
+           "text": "Analyze the role of comparative advantage in international trade."
+          },
+          {
+           "code": "D2.Eco.15.9-12",
+           "text": "Explain how globalization trends and policies affect growth, labor, rights, environment and distribution."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "dimension-2-geography",
+     "title": "Dimension 2: Geography",
+     "topics": [
+      {
+       "id": "geographic-representations-spatial-views-of-the-",
+       "title": "Geographic Representations: Spatial Views of the World",
+       "subtopics": [
+        {
+         "id": "maps-and-geographic-representations",
+         "title": "Maps and geographic representations",
+         "outcomes": [
+          {
+           "code": "D2.Geo.1.9-12",
+           "text": "Use geospatial technology to create maps showing spatial patterns of cultural and environmental traits."
+          },
+          {
+           "code": "D2.Geo.2.9-12",
+           "text": "Use maps and images to explain how location relates to political, cultural and economic dynamics."
+          },
+          {
+           "code": "D2.Geo.3.9-12",
+           "text": "Use geographic data to analyze variations in spatial patterns at multiple scales."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "human-environment-interaction-place-regions-and-",
+       "title": "Human-Environment Interaction: Place, Regions, and Culture",
+       "subtopics": [
+        {
+         "id": "people-and-environments",
+         "title": "People and environments",
+         "outcomes": [
+          {
+           "code": "D2.Geo.4.9-12",
+           "text": "Analyze interactions between human and physical systems and their reciprocal influences."
+          },
+          {
+           "code": "D2.Geo.5.9-12",
+           "text": "Evaluate how political and economic decisions through time have shaped places and regions."
+          },
+          {
+           "code": "D2.Geo.6.9-12",
+           "text": "Evaluate the impact of human settlement activities on the environment and culture of places."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "human-population-spatial-patterns-and-movements",
+       "title": "Human Population: Spatial Patterns and Movements",
+       "subtopics": [
+        {
+         "id": "movement-and-settlement",
+         "title": "Movement and settlement",
+         "outcomes": [
+          {
+           "code": "D2.Geo.7.9-12",
+           "text": "Analyze how historical events and diffusion of ideas and technologies influence migration and population."
+          },
+          {
+           "code": "D2.Geo.8.9-12",
+           "text": "Evaluate how economic activities and political decisions shape urban, suburban and rural patterns."
+          },
+          {
+           "code": "D2.Geo.9.9-12",
+           "text": "Evaluate how long-term climate variability influences migration, settlement, resource use and land use."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "global-interconnections-changing-spatial-pattern",
+       "title": "Global Interconnections: Changing Spatial Patterns",
+       "subtopics": [
+        {
+         "id": "interconnected-world-regions",
+         "title": "Interconnected world regions",
+         "outcomes": [
+          {
+           "code": "D2.Geo.10.9-12",
+           "text": "Evaluate how changes in a place's characteristics influence trade and land use patterns."
+          },
+          {
+           "code": "D2.Geo.11.9-12",
+           "text": "Evaluate how globalization and scarce resource use drive conflict and cooperation."
+          },
+          {
+           "code": "D2.Geo.12.9-12",
+           "text": "Evaluate the consequences of disasters on global trade, politics and migration."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "dimension-2-history",
+     "title": "Dimension 2: History",
+     "topics": [
+      {
+       "id": "change-continuity-and-context",
+       "title": "Change, Continuity, and Context",
+       "subtopics": [
+        {
+         "id": "chronology-change-and-significance",
+         "title": "Chronology, change and significance",
+         "outcomes": [
+          {
+           "code": "D2.His.1.9-12",
+           "text": "Evaluate how events were shaped by time and place and broader historical contexts."
+          },
+          {
+           "code": "D2.His.2.9-12",
+           "text": "Analyze change and continuity in historical eras."
+          },
+          {
+           "code": "D2.His.3.9-12",
+           "text": "Use questions about people and groups to assess how their significance shifts with time and context."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "perspectives",
+       "title": "Perspectives",
+       "subtopics": [
+        {
+         "id": "perspectives-in-history",
+         "title": "Perspectives in history",
+         "outcomes": [
+          {
+           "code": "D2.His.4.9-12",
+           "text": "Analyze complex, interacting factors that shaped perspectives in different eras."
+          },
+          {
+           "code": "D2.His.5.9-12",
+           "text": "Analyze how historical contexts shaped and still shape perspectives."
+          },
+          {
+           "code": "D2.His.6.9-12",
+           "text": "Analyze how writers' perspectives shaped the history they produced."
+          }
+         ]
+        },
+        {
+         "id": "present-views-of-the-past",
+         "title": "Present views of the past",
+         "outcomes": [
+          {
+           "code": "D2.His.7.9-12",
+           "text": "Explain how people's perspectives today shape interpretations of the past."
+          },
+          {
+           "code": "D2.His.8.9-12",
+           "text": "Analyze how current interpretations of the past are limited by which perspectives sources represent."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "historical-sources-and-evidence",
+       "title": "Historical Sources and Evidence",
+       "subtopics": [
+        {
+         "id": "kinds-and-uses-of-sources",
+         "title": "Kinds and uses of sources",
+         "outcomes": [
+          {
+           "code": "D2.His.9.9-12",
+           "text": "Analyze the relationship between sources and the interpretations made from them."
+          },
+          {
+           "code": "D2.His.10.9-12",
+           "text": "Detect limits in kinds of evidence and in differing interpretations."
+          }
+         ]
+        },
+        {
+         "id": "evaluating-sources",
+         "title": "Evaluating sources",
+         "outcomes": [
+          {
+           "code": "D2.His.11.9-12",
+           "text": "Critique a source's usefulness for an inquiry by its maker, date, origin, audience and purpose."
+          },
+          {
+           "code": "D2.His.12.9-12",
+           "text": "Use questions about several sources to pursue further inquiry and investigate more sources."
+          },
+          {
+           "code": "D2.His.13.9-12",
+           "text": "Critique how appropriate the sources in a secondary interpretation are."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "causation-and-argumentation",
+       "title": "Causation and Argumentation",
+       "subtopics": [
+        {
+         "id": "causes-and-effects",
+         "title": "Causes and effects",
+         "outcomes": [
+          {
+           "code": "D2.His.14.9-12",
+           "text": "Analyze multiple, complex causes and effects of past events."
+          },
+          {
+           "code": "D2.His.15.9-12",
+           "text": "Tell long-term causes from triggering events when building a historical argument."
+          }
+         ]
+        },
+        {
+         "id": "historical-arguments",
+         "title": "Historical arguments",
+         "outcomes": [
+          {
+           "code": "D2.His.16.9-12",
+           "text": "Combine evidence from many sources and interpretations into a reasoned argument."
+          },
+          {
+           "code": "D2.His.17.9-12",
+           "text": "Critique central arguments in secondary works for historical accuracy."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "dimension-2-psychology",
+     "title": "Dimension 2: Psychology",
+     "topics": [
+      {
+       "id": "psychological-methods",
+       "title": "Psychological Methods",
+       "subtopics": [
+        {
+         "id": "scientific-methods-and-research",
+         "title": "Scientific methods and research",
+         "outcomes": [
+          {
+           "code": "D2.Psy.1.9-12",
+           "text": "Show a basic understanding of the scientific methods at the core of psychology."
+          },
+          {
+           "code": "D2.Psy.2.9-12",
+           "text": "Investigate behavior from biological, cognitive, behavioral and sociocultural perspectives."
+          },
+          {
+           "code": "D2.Psy.3.9-12",
+           "text": "Discuss theories, methods and findings needed to plan, run and interpret research."
+          },
+          {
+           "code": "D2.Psy.4.9-12",
+           "text": "Follow and consider ethical guidelines for treating human and nonhuman research participants."
+          },
+          {
+           "code": "D2.Psy.5.9-12",
+           "text": "Explain how validity and reliability of observations relate to data analysis."
+          },
+          {
+           "code": "D2.Psy.6.9-12",
+           "text": "Collect and analyze data on a psychological question using basic descriptive and inferential statistics."
+          },
+          {
+           "code": "D2.Psy.7.9-12",
+           "text": "Explore multicultural and global perspectives on how diversity helps explain behavior."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "influences-on-thought-and-behavior",
+       "title": "Influences on Thought and Behavior",
+       "subtopics": [
+        {
+         "id": "what-shapes-thought-and-behavior",
+         "title": "What shapes thought and behavior",
+         "outcomes": [
+          {
+           "code": "D2.Psy.8.9-12",
+           "text": "Explain the complexity of thought and behavior and the factors behind individual differences."
+          },
+          {
+           "code": "D2.Psy.9.9-12",
+           "text": "Describe biological, psychological and sociocultural factors affecting cognition, perception and behavior."
+          },
+          {
+           "code": "D2.Psy.10.9-12",
+           "text": "Explain how biology and experience (nature and nurture) interact to influence behavior."
+          },
+          {
+           "code": "D2.Psy.11.9-12",
+           "text": "Identify how psychological science helps explain differences in cognitive and physical abilities."
+          },
+          {
+           "code": "D2.Psy.12.9-12",
+           "text": "Explain how social, cultural, gender and economic factors influence behavior around the world."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "critical-thinking-themes-sources-and-evidence",
+       "title": "Critical Thinking: Themes, Sources, and Evidence",
+       "subtopics": [
+        {
+         "id": "psychological-evidence-and-thinking",
+         "title": "Psychological evidence and thinking",
+         "outcomes": [
+          {
+           "code": "D2.Psy.13.9-12",
+           "text": "Explain common themes in psychology: ethics, diversity, development, health and well-being."
+          },
+          {
+           "code": "D2.Psy.14.9-12",
+           "text": "Use different psychological sources to generate research questions."
+          },
+          {
+           "code": "D2.Psy.15.9-12",
+           "text": "Use existing evidence to form conclusions about psychological phenomena."
+          },
+          {
+           "code": "D2.Psy.16.9-12",
+           "text": "Use critical thinking to become a better consumer of psychological knowledge."
+          },
+          {
+           "code": "D2.Psy.17.9-12",
+           "text": "Recognize the interconnectedness of knowledge in psychology."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "applications-of-psychological-knowledge",
+       "title": "Applications of Psychological Knowledge",
+       "subtopics": [
+        {
+         "id": "using-psychology-in-life-and-society",
+         "title": "Using psychology in life and society",
+         "outcomes": [
+          {
+           "code": "D2.Psy.18.9-12",
+           "text": "Apply psychological knowledge to daily life."
+          },
+          {
+           "code": "D2.Psy.19.9-12",
+           "text": "Apply major theoretical approaches to educational, emotional, political, ethical, social and other issues."
+          },
+          {
+           "code": "D2.Psy.20.9-12",
+           "text": "Suggest ethical, psychology-based solutions to real problems in education, business and the environment."
+          },
+          {
+           "code": "D2.Psy.21.9-12",
+           "text": "Discuss how psychological science can address domestic and global issues."
+          },
+          {
+           "code": "D2.Psy.22.9-12",
+           "text": "Use psychological knowledge to promote healthy lifestyle choices."
+          },
+          {
+           "code": "D2.Psy.23.9-12",
+           "text": "Apply psychological knowledge to civic engagement."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "dimension-2-sociology",
+     "title": "Dimension 2: Sociology",
+     "topics": [
+      {
+       "id": "sociological-perspective-and-methods",
+       "title": "Sociological Perspective and Methods",
+       "subtopics": [
+        {
+         "id": "the-sociological-perspective",
+         "title": "The sociological perspective",
+         "outcomes": [
+          {
+           "code": "D2.Soc.1.9-12",
+           "text": "Explain the sociological perspective and how it differs from other social sciences."
+          },
+          {
+           "code": "D2.Soc.2.9-12",
+           "text": "Define social context as the outside forces that shape behavior."
+          },
+          {
+           "code": "D2.Soc.3.9-12",
+           "text": "Identify how social context influences individuals."
+          },
+          {
+           "code": "D2.Soc.4.9-12",
+           "text": "Show how sociological analysis gives data-based information for decisions."
+          },
+          {
+           "code": "D2.Soc.5.9-12",
+           "text": "Give strengths and weaknesses of surveys, experiments, observations and content analysis."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "social-structure-culture-institutions-and-societ",
+       "title": "Social Structure: Culture, Institutions, and Society",
+       "subtopics": [
+        {
+         "id": "culture-and-institutions",
+         "title": "Culture and institutions",
+         "outcomes": [
+          {
+           "code": "D2.Soc.6.9-12",
+           "text": "Identify the major components of culture."
+          },
+          {
+           "code": "D2.Soc.7.9-12",
+           "text": "Give examples of how culture influences the individuals in it."
+          },
+          {
+           "code": "D2.Soc.8.9-12",
+           "text": "Identify important social institutions."
+          },
+          {
+           "code": "D2.Soc.9.9-12",
+           "text": "Explain the role of social institutions in society."
+          },
+          {
+           "code": "D2.Soc.10.9-12",
+           "text": "Analyze how social structures and cultures change."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "social-relationships-self-groups-and-socializati",
+       "title": "Social Relationships: Self, Groups, and Socialization",
+       "subtopics": [
+        {
+         "id": "socialization-and-groups",
+         "title": "Socialization and groups",
+         "outcomes": [
+          {
+           "code": "D2.Soc.11.9-12",
+           "text": "Analyze the influence of the main agents of socialization and why they matter."
+          },
+          {
+           "code": "D2.Soc.12.9-12",
+           "text": "Explain the social construction of self and groups."
+          },
+          {
+           "code": "D2.Soc.13.9-12",
+           "text": "Identify characteristics of groups and their effects on individuals and society, and the reverse."
+          },
+          {
+           "code": "D2.Soc.14.9-12",
+           "text": "Explain how in-group and out-group membership shapes life chances and societal norms."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "stratification-and-inequality",
+       "title": "Stratification and Inequality",
+       "subtopics": [
+        {
+         "id": "inequality-and-power",
+         "title": "Inequality and power",
+         "outcomes": [
+          {
+           "code": "D2.Soc.15.9-12",
+           "text": "Identify common patterns of social inequality."
+          },
+          {
+           "code": "D2.Soc.16.9-12",
+           "text": "Interpret the effects of inequality on groups and individuals."
+          },
+          {
+           "code": "D2.Soc.17.9-12",
+           "text": "Analyze why unequal power and resources can lead to conflict."
+          },
+          {
+           "code": "D2.Soc.18.9-12",
+           "text": "Propose and evaluate responses to inequality."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "dimension-2-religious-studies",
+     "title": "Dimension 2: Religious Studies",
+     "topics": [
+      {
+       "id": "premises-and-methods-of-inquiry",
+       "title": "Premises and Methods of Inquiry",
+       "subtopics": [
+        {
+         "id": "studying-religion-academically",
+         "title": "Studying religion academically",
+         "outcomes": [
+          {
+           "code": "D2.Rel.1.9-12",
+           "text": "Explain the difference between devotional assertions and the nonsectarian academic study of religion."
+          },
+          {
+           "code": "D2.Rel.2.9-12",
+           "text": "Analyze how religions are internally diverse, across sects and within communities."
+          },
+          {
+           "code": "D2.Rel.3.9-12",
+           "text": "Analyze how religions change over time with social, historical and political contexts."
+          },
+          {
+           "code": "D2.Rel.4.9-12",
+           "text": "Analyze how religions are embedded in all parts of culture, not only private life."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "belief-behavior-and-belonging",
+       "title": "Belief, Behavior, and Belonging",
+       "subtopics": [
+        {
+         "id": "religious-identity-and-belonging",
+         "title": "Religious identity and belonging",
+         "outcomes": [
+          {
+           "code": "D2.Rel.5.9-12",
+           "text": "Explain how religious identities shape and are shaped by beliefs, behaviors and belonging."
+          },
+          {
+           "code": "D2.Rel.6.9-12",
+           "text": "Identify internal diversity in beliefs, behaviors and belonging across communities."
+          },
+          {
+           "code": "D2.Rel.7.9-12",
+           "text": "Analyze how beliefs, behaviors and belonging change over time."
+          },
+          {
+           "code": "D2.Rel.8.9-12",
+           "text": "Interpret how beliefs, behaviors and belonging affect and are affected by social, political and cultural forces."
+          },
+          {
+           "code": "D2.Rel.9.9-12",
+           "text": "Give examples of how beliefs, behaviors and community experiences shape each other in context."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "critical-inquiry-representation-sources-and-evid",
+       "title": "Critical Inquiry: Representation, Sources, and Evidence",
+       "subtopics": [
+        {
+         "id": "representation-and-sources-in-religious-studies",
+         "title": "Representation and sources in religious studies",
+         "outcomes": [
+          {
+           "code": "D2.Rel.10.9-12",
+           "text": "Identify assumptions about what religion is and its proper role in private and public life."
+          },
+          {
+           "code": "D2.Rel.11.9-12",
+           "text": "Describe which forms of right belief and right practice are prominent or marginalized in contexts."
+          },
+          {
+           "code": "D2.Rel.12.9-12",
+           "text": "Identify which religious groups appear in public discourse and how others are obscured."
+          },
+          {
+           "code": "D2.Rel.13.9-12",
+           "text": "Collect and analyze primary and secondary religious sources in their social, historical and political context."
+          },
+          {
+           "code": "D2.Rel.14.9-12",
+           "text": "Evaluate how diverse religious sources describe the link between a religion and its context."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "dimension-3-evaluating-sources-and-using-evidenc",
+     "title": "Dimension 3: Evaluating Sources and Using Evidence",
+     "topics": [
+      {
+       "id": "gathering-and-evaluating-sources",
+       "title": "Gathering and Evaluating Sources",
+       "subtopics": [
+        {
+         "id": "gathering-and-judging-sources",
+         "title": "Gathering and judging sources",
+         "outcomes": [
+          {
+           "code": "D3.1.9-12",
+           "text": "Gather information from multiple sources showing a range of views, using origin, authority, structure, context and corroboration."
+          },
+          {
+           "code": "D3.2.9-12",
+           "text": "Judge credibility by how experts value the source."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "developing-claims-and-using-evidence",
+       "title": "Developing Claims and Using Evidence",
+       "subtopics": [
+        {
+         "id": "claims-and-evidence",
+         "title": "Claims and evidence",
+         "outcomes": [
+          {
+           "code": "D3.3.9-12",
+           "text": "Identify evidence from multiple sources to detect inconsistencies and revise or strengthen claims."
+          },
+          {
+           "code": "D3.4.9-12",
+           "text": "Refine claims and counterclaims for precision and significance, noting strengths and limits of both."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "dimension-4-communicating-conclusions-and-taking",
+     "title": "Dimension 4: Communicating Conclusions and Taking Informed Action",
+     "topics": [
+      {
+       "id": "communicating-conclusions",
+       "title": "Communicating Conclusions",
+       "subtopics": [
+        {
+         "id": "arguments-and-explanations",
+         "title": "Arguments and explanations",
+         "outcomes": [
+          {
+           "code": "D4.1.9-12",
+           "text": "Make arguments with precise claims and multiple sources, acknowledging counterclaims and weaknesses."
+          },
+          {
+           "code": "D4.2.9-12",
+           "text": "Make explanations with sound reasoning, sequence, examples and pertinent data, noting strengths and weaknesses given the purpose."
+          }
+         ]
+        },
+        {
+         "id": "presenting-conclusions",
+         "title": "Presenting conclusions",
+         "outcomes": [
+          {
+           "code": "D4.3.9-12",
+           "text": "Present adapted arguments that carry evocative ideas and perspectives to a range of audiences."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "critiquing-conclusions",
+       "title": "Critiquing Conclusions",
+       "subtopics": [
+        {
+         "id": "critiquing-arguments-and-explanations",
+         "title": "Critiquing arguments and explanations",
+         "outcomes": [
+          {
+           "code": "D4.4.9-12",
+           "text": "Critique the use of claims and evidence in arguments for credibility."
+          },
+          {
+           "code": "D4.5.9-12",
+           "text": "Critique reasoning, sequencing and supporting details in explanations."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "taking-informed-action",
+       "title": "Taking Informed Action",
+       "subtopics": [
+        {
+         "id": "understanding-problems-and-taking-action",
+         "title": "Understanding problems and taking action",
+         "outcomes": [
+          {
+           "code": "D4.6.9-12",
+           "text": "Use disciplinary and interdisciplinary lenses to understand problems' characteristics, causes, contexts and challenges."
+          },
+          {
+           "code": "D4.7.9-12",
+           "text": "Assess options for individual and collective action through self-reflection, strategy and causal reasoning."
+          },
+          {
+           "code": "D4.8.9-12",
+           "text": "Apply deliberative and democratic strategies to act in classrooms, schools and out-of-school civic contexts."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "build": {
+  "builtAt": "2026-10-14T15:42:58.037Z",
+  "model": "claude-agent",
+  "usd": 0,
+  "expectedCodes": 338,
+  "coverage": 1,
+  "missingCodes": [],
+  "counts": {
+   "grades": 4,
+   "units": 31,
+   "topics": 102,
+   "subtopics": 135,
+   "outcomes": 338
+  },
+  "warnings": []
+ }
+}

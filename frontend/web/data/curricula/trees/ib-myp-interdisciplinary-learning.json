@@ -1,0 +1,205 @@
+{
+ "id": "ib-myp-interdisciplinary-learning",
+ "region": "INTL",
+ "framework": "International Baccalaureate Middle Years Programme (MYP)",
+ "board": "IB",
+ "qualification": "IB Middle Years Programme",
+ "subject": "Interdisciplinary learning (MYP)",
+ "syllabusCode": null,
+ "gradeSystem": "year",
+ "source": {
+  "urls": [
+   "https://www.ibo.org/globalassets/new-structure/brochures-and-infographics/pdfs/myp-brief-interdisciplinary-learning_en.pdf",
+   "https://web.archive.org/web/20230401045758id_/https://www.ibo.org/globalassets/new-structure/brochures-and-infographics/pdfs/myp-brief-interdisciplinary-learning_en.pdf"
+  ],
+  "publisher": "International Baccalaureate Organization",
+  "licence": "(c) International Baccalaureate Organization; all rights reserved, no open licence. ibo.org terms 1.8: IB copyrighted materials are licensed only under the IB's terms or a signed agreement; 'Any use not expressly permitted is prohibited unless special permission is obtained in writing from the IB'; 1.9: nothing on the IB websites confers any licence. Briefs are free public marketing summaries: take topic structure only, write everything in our own words, never reproduce brief text, and do not use IB logos/trade marks. Full subject guides are sold to schools and were NOT used. Terms: https://www.ibo.org/terms-and-conditions/ and https://www.ibo.org/copyright",
+  "firstExam": null
+ },
+ "grades": [
+  {
+   "grade": "all",
+   "units": [
+    {
+     "id": "global-contexts-for-interdisciplinary-inquiry",
+     "title": "Global contexts for interdisciplinary inquiry",
+     "topics": [
+      {
+       "id": "identities-and-relationships",
+       "title": "Identities and relationships",
+       "subtopics": [
+        {
+         "id": "identities-and-relationships",
+         "title": "Identities and relationships",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Investigate issues of identity and relationships by combining two or more subjects."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "orientation-in-space-and-time",
+       "title": "Orientation in space and time",
+       "subtopics": [
+        {
+         "id": "orientation-in-space-and-time",
+         "title": "Orientation in space and time",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Investigate issues of place and time by combining two or more subjects."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "personal-and-cultural-expression",
+       "title": "Personal and cultural expression",
+       "subtopics": [
+        {
+         "id": "personal-and-cultural-expression",
+         "title": "Personal and cultural expression",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Investigate personal and cultural expression by combining two or more subjects."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "scientific-and-technical-innovation",
+       "title": "Scientific and technical innovation",
+       "subtopics": [
+        {
+         "id": "scientific-and-technical-innovation",
+         "title": "Scientific and technical innovation",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Investigate scientific and technical innovation by combining two or more subjects."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "globalization-and-sustainability",
+       "title": "Globalization and sustainability",
+       "subtopics": [
+        {
+         "id": "globalization-and-sustainability",
+         "title": "Globalization and sustainability",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Investigate globalization and sustainability by combining two or more subjects."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "fairness-and-development",
+       "title": "Fairness and development",
+       "subtopics": [
+        {
+         "id": "fairness-and-development",
+         "title": "Fairness and development",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Investigate fairness and development by combining two or more subjects."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "interdisciplinary-objectives",
+     "title": "Interdisciplinary objectives",
+     "topics": [
+      {
+       "id": "evaluating",
+       "title": "Evaluating",
+       "subtopics": [
+        {
+         "id": "evaluating",
+         "title": "Evaluating",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Judge how more than one subject contributes to understanding a real-world issue."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "synthesizing",
+       "title": "Synthesizing",
+       "subtopics": [
+        {
+         "id": "synthesizing",
+         "title": "Synthesizing",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Combine knowledge from several subjects to explain a phenomenon or create a product."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "reflecting",
+       "title": "Reflecting",
+       "subtopics": [
+        {
+         "id": "reflecting",
+         "title": "Reflecting",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Reflect on how your own interdisciplinary understanding has developed."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "build": {
+  "builtAt": "2026-10-14T10:54:18.681Z",
+  "model": "claude-agent",
+  "usd": 0,
+  "expectedCodes": null,
+  "coverage": null,
+  "missingCodes": [],
+  "counts": {
+   "grades": 1,
+   "units": 2,
+   "topics": 9,
+   "subtopics": 9,
+   "outcomes": 9
+  },
+  "warnings": [
+   "grade MYP 1 has no content",
+   "grade MYP 2 has no content",
+   "grade MYP 3 has no content",
+   "grade MYP 4 has no content",
+   "grade MYP 5 has no content",
+   "unexpected grade label \"all\""
+  ]
+ }
+}

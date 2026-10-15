@@ -1,0 +1,210 @@
+{
+ "id": "cie-igcse-art-and-design-9-1-0989-2026",
+ "region": "INTL",
+ "framework": "Cambridge IGCSE Art & Design (0989) syllabus 2026",
+ "board": "Cambridge",
+ "qualification": "IGCSE (9-1)",
+ "subject": "Art & Design",
+ "syllabusCode": "0989",
+ "gradeSystem": "course",
+ "source": {
+  "urls": [
+   "https://www.cambridgeinternational.org/Images/697261-2026-syllabus.pdf",
+   "https://www.cambridgeinternational.org/programmes-and-qualifications/cambridge-igcse-art-and-design-9-1-0989/"
+  ],
+  "publisher": "Cambridge University Press & Assessment (Cambridge International Education)",
+  "licence": "© Cambridge University Press & Assessment; structure + our own wording only",
+  "firstExam": "2026"
+ },
+ "grades": [
+  {
+   "grade": "IGCSE",
+   "units": [
+    {
+     "id": "3-subject-content",
+     "title": "3 Subject content",
+     "topics": [
+      {
+       "id": "candidates-must-be-able-to",
+       "title": "Candidates must be able to:",
+       "subtopics": [
+        {
+         "id": "research-and-record-ideas",
+         "title": "Research and Record Ideas",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Record personal experiences and observations using first-hand sources, secondary sources and individual research."
+          },
+          {
+           "code": null,
+           "text": "Gather, document and respond to visual information through varied techniques."
+          },
+          {
+           "code": null,
+           "text": "Select, contextualise and organise collected information coherently."
+          },
+          {
+           "code": null,
+           "text": "Use diverse resources effectively to develop artistic practice."
+          }
+         ]
+        },
+        {
+         "id": "investigate-and-make-work",
+         "title": "Investigate and Make Work",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Undertake personal investigations."
+          },
+          {
+           "code": null,
+           "text": "Apply varied skills to create art and design work."
+          }
+         ]
+        },
+        {
+         "id": "review-and-refine-work",
+         "title": "Review and Refine Work",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Assess, revise and edit their own work."
+          },
+          {
+           "code": null,
+           "text": "Reflect on work, then refine and adapt it."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "photography",
+       "title": "Photography",
+       "subtopics": [
+        {
+         "id": "research-and-develop-ideas",
+         "title": "Research and Develop Ideas",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Research visually through direct and secondary sources, recording observations, experiences and developing ideas appropriately."
+          }
+         ]
+        },
+        {
+         "id": "experiment-with-photography",
+         "title": "Experiment with Photography",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Experiment with photographic techniques including focus range, lighting, exposure, viewpoint, composition, framing and editing."
+          },
+          {
+           "code": null,
+           "text": "Experiment with photographic media and processes, including film, pinhole, photograms, multiple exposures, scanning and digital manipulation."
+          }
+         ]
+        },
+        {
+         "id": "explore-animation-processes",
+         "title": "Explore Animation Processes",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explore hand-drawn, stop-motion and digital animation media and processes for animation, film or game design."
+          }
+         ]
+        },
+        {
+         "id": "improve-a-personal-response",
+         "title": "Improve a Personal Response",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Select, evaluate and improve work throughout development to create a personal response."
+          }
+         ]
+        },
+        {
+         "id": "plan-stories-and-images",
+         "title": "Plan Stories and Images",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Create storyboards and images using photography, models, drawing or illustration."
+          }
+         ]
+        },
+        {
+         "id": "use-photographic-conventions",
+         "title": "Use Photographic Conventions",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Understand photographic conventions and genres including portraiture, landscape and documentary."
+          },
+          {
+           "code": null,
+           "text": "Respond creatively to a theme or brief."
+          },
+          {
+           "code": null,
+           "text": "Consider the intended audience for photographic, animation, film or game-design work."
+          }
+         ]
+        },
+        {
+         "id": "understand-photography-and-animation",
+         "title": "Understand Photography and Animation",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Understand different types and genres of photography and animation."
+          },
+          {
+           "code": null,
+           "text": "Understand suitable photographic or animation materials, processes, technologies and resources."
+          }
+         ]
+        },
+        {
+         "id": "understand-creative-processes",
+         "title": "Understand Creative Processes",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Understand how intention, research, realisation and reflection support relevant creative processes."
+          },
+          {
+           "code": null,
+           "text": "Know a range of relevant artists, photographers and animators."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "build": {
+  "builtAt": "2026-10-14T05:25:53.098Z",
+  "model": "gpt-5.6-luna",
+  "usd": 0.006,
+  "expectedCodes": null,
+  "coverage": null,
+  "missingCodes": [],
+  "counts": {
+   "grades": 1,
+   "units": 1,
+   "topics": 2,
+   "subtopics": 11,
+   "outcomes": 21
+  },
+  "warnings": []
+ }
+}

@@ -1,0 +1,6811 @@
+{
+ "id": "pk-nc2006-mathematics-1-12",
+ "region": "PK",
+ "framework": "National Curriculum 2006",
+ "board": "FBISE",
+ "qualification": null,
+ "subject": "Mathematics",
+ "syllabusCode": null,
+ "gradeSystem": "grade",
+ "source": {
+  "urls": [
+   "https://www.fbise.edu.pk/notifications/ssc/Curriculum%20of%20Mathematics%20I-XII%20along%20with%20SLOs.pdf",
+   "https://www.fbise.edu.pk/notifications/hssc/Mathematics%20-%20I-XII_curriculum.pdf"
+  ],
+  "publisher": "Ministry of Education, Government of Pakistan (hosted by FBISE)",
+  "licence": "Government publication; structure + our own wording only",
+  "firstExam": null
+ },
+ "grades": [
+  {
+   "grade": "I",
+   "units": [
+    {
+     "id": "unit-1-concept-of-whole-numbers",
+     "title": "Unit 1: Concept of Whole Numbers",
+     "topics": [
+      {
+       "id": "numbers-0-to-9",
+       "title": "Numbers 0 to 9",
+       "subtopics": [
+        {
+         "id": "numbers-0-to-9",
+         "title": "Numbers 0 to 9",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Identify, read, write and count the numbers 0 to 9, and see 0 as a number."
+          },
+          {
+           "code": null,
+           "text": "Match numbers to objects, count backward, and put 0-9 in order."
+          },
+          {
+           "code": null,
+           "text": "Say which number comes before, after or between others up to 9."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "numbers-up-to-100",
+       "title": "Numbers up to 100",
+       "subtopics": [
+        {
+         "id": "numbers-up-to-100",
+         "title": "Numbers up to 100",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Read, write and count numbers up to 99, and know 10 and 100."
+          },
+          {
+           "code": null,
+           "text": "Recognise tens and ones place value in two-digit numbers."
+          },
+          {
+           "code": null,
+           "text": "Compare and order numbers to 99 and find missing numbers in a sequence."
+          }
+         ]
+        },
+        {
+         "id": "cardinal-and-ordinal-numbers",
+         "title": "Cardinal and ordinal numbers",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Use ordinal numbers first to tenth to show position."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "comparing-and-ordering",
+       "title": "Comparing and ordering",
+       "subtopics": [
+        {
+         "id": "comparing-and-ordering",
+         "title": "Comparing and ordering",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Compare groups using one-to-one matching and the words more than and less than."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "unit-2-number-operations",
+     "title": "Unit 2: Number Operations",
+     "topics": [
+      {
+       "id": "addition",
+       "title": "Addition",
+       "subtopics": [
+        {
+         "id": "addition",
+         "title": "Addition",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Use + and = and find how much more one number is than another up to 20."
+          },
+          {
+           "code": null,
+           "text": "Add one- and two-digit numbers without carrying, and complete missing-number equations."
+          },
+          {
+           "code": null,
+           "text": "Add mentally and write addition equations from pictures."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "subtraction",
+       "title": "Subtraction",
+       "subtopics": [
+        {
+         "id": "subtraction",
+         "title": "Subtraction",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Use the subtraction sign and find how much smaller one number is."
+          },
+          {
+           "code": null,
+           "text": "Subtract one- and two-digit numbers without borrowing and fill missing-number equations."
+          },
+          {
+           "code": null,
+           "text": "Subtract mentally and write subtraction equations from pictures."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "unit-3-measurement-of-length-and-mass",
+     "title": "Unit 3: Measurement of Length and Mass",
+     "topics": [
+      {
+       "id": "comparison-of-objects",
+       "title": "Comparison of objects",
+       "subtopics": [
+        {
+         "id": "comparison-of-objects",
+         "title": "Comparison of objects",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Compare objects as long, short, tall, high, heavy or light with comparative and superlative words."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "unit-4-money",
+     "title": "Unit 4: Money",
+     "topics": [
+      {
+       "id": "pakistani-currency",
+       "title": "Pakistani currency",
+       "subtopics": [
+        {
+         "id": "pakistani-currency",
+         "title": "Pakistani currency",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Identify Pakistani coins (Rs 1, 2, 5) and notes (Rs 10, 20, 50, 100)."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "equivalent-sets-of-money",
+       "title": "Equivalent sets of money",
+       "subtopics": [
+        {
+         "id": "equivalent-sets-of-money",
+         "title": "Equivalent sets of money",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Match groups of coins and notes of equal value and add and subtract using prices."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "comparing-money",
+       "title": "Comparing money",
+       "subtopics": [
+        {
+         "id": "comparing-money",
+         "title": "Comparing money",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Make change up to 100, decide if money is enough for a purchase and add coin combinations."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "unit-5-time-and-date",
+     "title": "Unit 5: Time and Date",
+     "topics": [
+      {
+       "id": "time",
+       "title": "Time",
+       "subtopics": [
+        {
+         "id": "time",
+         "title": "Time",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Name the hour and minute hands and tell time in whole hours on analog and digital clocks."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "date",
+       "title": "Date",
+       "subtopics": [
+        {
+         "id": "date",
+         "title": "Date",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Name the days of the week in order and the day before or after another."
+          },
+          {
+           "code": null,
+           "text": "Name the solar months."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "unit-6-geometry",
+     "title": "Unit 6: Geometry",
+     "topics": [
+      {
+       "id": "basic-shapes",
+       "title": "Basic shapes",
+       "subtopics": [
+        {
+         "id": "basic-shapes",
+         "title": "Basic shapes",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Recognise and match rectangle, square, circle, oval and triangle in real objects."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "patterns",
+       "title": "Patterns",
+       "subtopics": [
+        {
+         "id": "patterns",
+         "title": "Patterns",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Identify, describe and extend patterns of two or three elements."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "position",
+       "title": "Position",
+       "subtopics": [
+        {
+         "id": "position",
+         "title": "Position",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe position: inside/outside, above/below, over/under, far/near, before/after, right/left."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "II",
+   "units": [
+    {
+     "id": "unit-1-numbers",
+     "title": "Unit 1: Numbers",
+     "topics": [
+      {
+       "id": "ordinal-numbers-and-numbers-in-words",
+       "title": "Ordinal numbers and numbers in words",
+       "subtopics": [
+        {
+         "id": "ordinal-numbers-and-numbers-in-words",
+         "title": "Ordinal numbers and numbers in words",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Write ordinal numbers first to twentieth and numbers 1-100 in words."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "numbers-up-to-1000",
+       "title": "Numbers up to 1000",
+       "subtopics": [
+        {
+         "id": "numbers-up-to-1000",
+         "title": "Numbers up to 1000",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Read, write and compare numbers to 999 using hundreds, tens and ones."
+          },
+          {
+           "code": null,
+           "text": "Order numbers, count in tens and hundreds, and know 1000 follows 999."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "fractions",
+       "title": "Fractions",
+       "subtopics": [
+        {
+         "id": "fractions",
+         "title": "Fractions",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Recognise fractions as equal parts, including half, one third and quarter, and write them as numerals."
+          },
+          {
+           "code": null,
+           "text": "Shade fractions of figures and name unit fractions and fractions like two thirds."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "unit-2-number-operations",
+     "title": "Unit 2: Number Operations",
+     "topics": [
+      {
+       "id": "addition",
+       "title": "Addition",
+       "subtopics": [
+        {
+         "id": "addition",
+         "title": "Addition",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Add 2-digit numbers with carrying and solve real-life problems."
+          },
+          {
+           "code": null,
+           "text": "Add 3-digit numbers with and without carrying and solve problems."
+          },
+          {
+           "code": null,
+           "text": "Verify the commutative property of addition."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "subtraction",
+       "title": "Subtraction",
+       "subtopics": [
+        {
+         "id": "subtraction",
+         "title": "Subtraction",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Subtract 2-digit and 3-digit numbers with and without borrowing and solve problems."
+          },
+          {
+           "code": null,
+           "text": "Solve mixed addition and subtraction problems."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "multiplication",
+       "title": "Multiplication",
+       "subtopics": [
+        {
+         "id": "multiplication",
+         "title": "Multiplication",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Use the multiplication sign and see multiplication as repeated addition."
+          },
+          {
+           "code": null,
+           "text": "Build the tables of 2, 3, 4, 5 and 10, multiply within them and verify commutativity."
+          },
+          {
+           "code": null,
+           "text": "Solve real-life multiplication problems."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "division",
+       "title": "Division",
+       "subtopics": [
+        {
+         "id": "division",
+         "title": "Division",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Use the division sign and see division as successive subtraction."
+          },
+          {
+           "code": null,
+           "text": "Divide within the tables with zero remainder and solve problems."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "mixed-operations",
+       "title": "Mixed operations",
+       "subtopics": [
+        {
+         "id": "mixed-operations",
+         "title": "Mixed operations",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Solve real-life problems with all four operations, including Pakistani currency."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "unit-3-measurement-of-length-mass-and-capacity",
+     "title": "Unit 3: Measurement of Length, Mass and Capacity",
+     "topics": [
+      {
+       "id": "length",
+       "title": "Length",
+       "subtopics": [
+        {
+         "id": "length",
+         "title": "Length",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Know metre and centimetre, read and write their abbreviations, measure with a ruler and solve problems."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "mass-or-weight",
+       "title": "Mass or weight",
+       "subtopics": [
+        {
+         "id": "mass-or-weight",
+         "title": "Mass or weight",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Know kilogram and gram, write their abbreviations and solve mass problems."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "capacity",
+       "title": "Capacity",
+       "subtopics": [
+        {
+         "id": "capacity",
+         "title": "Capacity",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Compare capacities, use the litre and its abbreviation, and solve capacity problems."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "unit-4-time",
+     "title": "Unit 4: Time",
+     "topics": [
+      {
+       "id": "time",
+       "title": "Time",
+       "subtopics": [
+        {
+         "id": "time",
+         "title": "Time",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Know hours in a day and minutes in an hour; read, write and draw clock time in five-minute steps."
+          },
+          {
+           "code": null,
+           "text": "Recognise a.m. and p.m. and use solar and lunar calendars to find dates."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "unit-5-geometry",
+     "title": "Unit 5: Geometry",
+     "topics": [
+      {
+       "id": "two-dimensional-figures",
+       "title": "Two-dimensional figures",
+       "subtopics": [
+        {
+         "id": "two-dimensional-figures",
+         "title": "Two-dimensional figures",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Identify square, rectangle, triangle, circle, semi-circle and quarter-circle, and the vertices and sides of triangles and rectangles."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "lines-and-curves",
+       "title": "Lines and curves",
+       "subtopics": [
+        {
+         "id": "lines-and-curves",
+         "title": "Lines and curves",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Tell straight lines from curved lines and draw a straight line with a ruler."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "III",
+   "units": [
+    {
+     "id": "unit-1-numbers",
+     "title": "Unit 1: Numbers",
+     "topics": [
+      {
+       "id": "roman-numbers",
+       "title": "Roman numbers",
+       "subtopics": [
+        {
+         "id": "roman-numbers",
+         "title": "Roman numbers",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Read and write Roman numbers up to 20."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "even-and-odd-numbers",
+       "title": "Even and odd numbers",
+       "subtopics": [
+        {
+         "id": "even-and-odd-numbers",
+         "title": "Even and odd numbers",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Identify and write even and odd numbers up to 99."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "place-value-and-numbers-to-100-000",
+       "title": "Place value and numbers to 100,000",
+       "subtopics": [
+        {
+         "id": "place-value-and-numbers-to-100-000",
+         "title": "Place value and numbers to 100,000",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Find place values to six digits and read and write numbers to 100,000 in numerals and words."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "comparing-ordering-and-the-number-line",
+       "title": "Comparing, ordering and the number line",
+       "subtopics": [
+        {
+         "id": "comparing-ordering-and-the-number-line",
+         "title": "Comparing, ordering and the number line",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Compare numbers with <, > and =, and order sets of numbers."
+          },
+          {
+           "code": null,
+           "text": "Show a number on a number line and read a number from it."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "unit-2-number-operations",
+     "title": "Unit 2: Number Operations",
+     "topics": [
+      {
+       "id": "addition-and-subtraction",
+       "title": "Addition and subtraction",
+       "subtopics": [
+        {
+         "id": "addition-and-subtraction",
+         "title": "Addition and subtraction",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Add and subtract numbers up to four digits, with and without carrying or borrowing, vertically and horizontally."
+          },
+          {
+           "code": null,
+           "text": "Add and subtract mentally up to 100 and solve real-life problems."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "multiplication",
+       "title": "Multiplication",
+       "subtopics": [
+        {
+         "id": "multiplication",
+         "title": "Multiplication",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Use the term product and build tables of 6, 7, 8 and 9."
+          },
+          {
+           "code": null,
+           "text": "Multiply 2-digit by 1-digit numbers, multiply by zero, use mental strategies and solve problems."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "division",
+       "title": "Division",
+       "subtopics": [
+        {
+         "id": "division",
+         "title": "Division",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Divide 2-digit by 1-digit numbers with zero remainder, use mental strategies and solve problems."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "unit-3-fractions",
+     "title": "Unit 3: Fractions",
+     "topics": [
+      {
+       "id": "common-and-equivalent-fractions",
+       "title": "Common and equivalent fractions",
+       "subtopics": [
+        {
+         "id": "common-and-equivalent-fractions",
+         "title": "Common and equivalent fractions",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Write fractions in figures and match them with pictures."
+          },
+          {
+           "code": null,
+           "text": "Identify and write equivalent fractions."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "proper-and-improper-fractions",
+       "title": "Proper and improper fractions",
+       "subtopics": [
+        {
+         "id": "proper-and-improper-fractions",
+         "title": "Proper and improper fractions",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Tell proper from improper fractions."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "comparing-adding-and-subtracting-fractions",
+       "title": "Comparing, adding and subtracting fractions",
+       "subtopics": [
+        {
+         "id": "comparing-adding-and-subtracting-fractions",
+         "title": "Comparing, adding and subtracting fractions",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Compare fractions with the same denominator."
+          },
+          {
+           "code": null,
+           "text": "Add and subtract fractions with the same denominator, also through figures."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "unit-4-measurement-of-length-mass-and-capacity",
+     "title": "Unit 4: Measurement of Length, Mass and Capacity",
+     "topics": [
+      {
+       "id": "length",
+       "title": "Length",
+       "subtopics": [
+        {
+         "id": "length",
+         "title": "Length",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Read, measure and write km, m and cm."
+          },
+          {
+           "code": null,
+           "text": "Add and subtract lengths in the same units and solve problems."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "mass-or-weight",
+       "title": "Mass or weight",
+       "subtopics": [
+        {
+         "id": "mass-or-weight",
+         "title": "Mass or weight",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Read, measure and write kg and g."
+          },
+          {
+           "code": null,
+           "text": "Add and subtract masses in the same units and solve problems."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "volume-or-capacity",
+       "title": "Volume or capacity",
+       "subtopics": [
+        {
+         "id": "volume-or-capacity",
+         "title": "Volume or capacity",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Read, measure and write litre and millilitre."
+          },
+          {
+           "code": null,
+           "text": "Add and subtract volumes in the same units and solve problems."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "unit-5-time",
+     "title": "Unit 5: Time",
+     "topics": [
+      {
+       "id": "units-of-time",
+       "title": "Units of time",
+       "subtopics": [
+        {
+         "id": "units-of-time",
+         "title": "Units of time",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Use a.m. and p.m., read analog and digital clocks and read days and dates on a calendar."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "adding-and-subtracting-time",
+       "title": "Adding and subtracting time",
+       "subtopics": [
+        {
+         "id": "adding-and-subtracting-time",
+         "title": "Adding and subtracting time",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Add and subtract hours of time and solve problems."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "unit-6-geometry",
+     "title": "Unit 6: Geometry",
+     "topics": [
+      {
+       "id": "geometrical-shapes-and-perimeters",
+       "title": "Geometrical shapes and perimeters",
+       "subtopics": [
+        {
+         "id": "geometrical-shapes-and-perimeters",
+         "title": "Geometrical shapes and perimeters",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Recognise point, line segment and ray; classify quadrilaterals and triangles; know circle, radius and diameter."
+          },
+          {
+           "code": null,
+           "text": "Calculate perimeters of squares, rectangles and triangles."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "unit-7-data-representation",
+     "title": "Unit 7: Data Representation",
+     "topics": [
+      {
+       "id": "picture-graphs",
+       "title": "Picture graphs",
+       "subtopics": [
+        {
+         "id": "picture-graphs",
+         "title": "Picture graphs",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Read and interpret a picture graph."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "IV",
+   "units": [
+    {
+     "id": "unit-1-numbers-and-arithmetic-operations",
+     "title": "Unit 1: Numbers and Arithmetic Operations",
+     "topics": [
+      {
+       "id": "numbers-up-to-one-hundred-million",
+       "title": "Numbers up to one hundred million",
+       "subtopics": [
+        {
+         "id": "numbers-up-to-one-hundred-million",
+         "title": "Numbers up to one hundred million",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Find place values, read, write and compare numbers up to 8 digits, in numerals and words."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "addition-and-subtraction",
+       "title": "Addition and subtraction",
+       "subtopics": [
+        {
+         "id": "addition-and-subtraction",
+         "title": "Addition and subtraction",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Add and subtract numbers up to 6 digits and solve real-life problems."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "multiplication-and-division",
+       "title": "Multiplication and division",
+       "subtopics": [
+        {
+         "id": "multiplication-and-division",
+         "title": "Multiplication and division",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Multiply up to 5-digit by 3-digit numbers and divide up to 4-digit by 2-digit numbers."
+          },
+          {
+           "code": null,
+           "text": "Solve problems with all four operations, including Pakistani currency."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "unit-2-factors-and-multiples",
+     "title": "Unit 2: Factors and Multiples",
+     "topics": [
+      {
+       "id": "divisibility-tests",
+       "title": "Divisibility tests",
+       "subtopics": [
+        {
+         "id": "divisibility-tests",
+         "title": "Divisibility tests",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Know and use divisibility rules for 2, 3, 5 and 10 on numbers up to 5 digits."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "prime-and-composite-numbers",
+       "title": "Prime and composite numbers",
+       "subtopics": [
+        {
+         "id": "prime-and-composite-numbers",
+         "title": "Prime and composite numbers",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Define and tell prime from composite numbers."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "factors-multiples-and-prime-factorization",
+       "title": "Factors, multiples and prime factorization",
+       "subtopics": [
+        {
+         "id": "factors-multiples-and-prime-factorization",
+         "title": "Factors, multiples and prime factorization",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "List factors up to 50 and the first twelve multiples, and tell factors from multiples."
+          },
+          {
+           "code": null,
+           "text": "Factorize a number into primes."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "hcf-and-lcm",
+       "title": "HCF and LCM",
+       "subtopics": [
+        {
+         "id": "hcf-and-lcm",
+         "title": "HCF and LCM",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Find HCF by Venn diagram and prime factorization, and solve problems."
+          },
+          {
+           "code": null,
+           "text": "Find LCM by common multiples and prime factorization, and solve problems."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "unit-3-fractions",
+     "title": "Unit 3: Fractions",
+     "topics": [
+      {
+       "id": "comparing-and-simplifying-fractions",
+       "title": "Comparing and simplifying fractions",
+       "subtopics": [
+        {
+         "id": "comparing-and-simplifying-fractions",
+         "title": "Comparing and simplifying fractions",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Define a fraction; tell like from unlike fractions."
+          },
+          {
+           "code": null,
+           "text": "Compare unlike fractions, order them and simplify to lowest form."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "types-of-fractions",
+       "title": "Types of fractions",
+       "subtopics": [
+        {
+         "id": "types-of-fractions",
+         "title": "Types of fractions",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Identify unit, proper, improper and mixed fractions and convert between improper and mixed."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "adding-and-subtracting-fractions",
+       "title": "Adding and subtracting fractions",
+       "subtopics": [
+        {
+         "id": "adding-and-subtracting-fractions",
+         "title": "Adding and subtracting fractions",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Add and subtract fractions with unlike denominators."
+          },
+          {
+           "code": null,
+           "text": "Verify commutative and associative properties of addition."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "multiplying-fractions",
+       "title": "Multiplying fractions",
+       "subtopics": [
+        {
+         "id": "multiplying-fractions",
+         "title": "Multiplying fractions",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Multiply fractions by whole numbers and by fractions; verify commutative and associative properties."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "dividing-fractions",
+       "title": "Dividing fractions",
+       "subtopics": [
+        {
+         "id": "dividing-fractions",
+         "title": "Dividing fractions",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Divide fractions by whole numbers, whole numbers by fractions and fractions by fractions."
+          },
+          {
+           "code": null,
+           "text": "Solve real-life problems with fractions."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "unit-4-decimals-and-fractions",
+     "title": "Unit 4: Decimals and Fractions",
+     "topics": [
+      {
+       "id": "decimals",
+       "title": "Decimals",
+       "subtopics": [
+        {
+         "id": "decimals",
+         "title": "Decimals",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "See decimals as fractions with denominator 10 or a power of 10 and find decimal place values."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "converting-between-fractions-and-decimals",
+       "title": "Converting between fractions and decimals",
+       "subtopics": [
+        {
+         "id": "converting-between-fractions-and-decimals",
+         "title": "Converting between fractions and decimals",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Convert fractions to decimals and decimals up to three places to fractions."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "operations-on-decimals",
+       "title": "Operations on decimals",
+       "subtopics": [
+        {
+         "id": "operations-on-decimals",
+         "title": "Operations on decimals",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Add and subtract decimals; multiply by 10, 100, 1000 and by a 2-digit number; divide by a 1-digit number."
+          },
+          {
+           "code": null,
+           "text": "Solve real-life problems with decimals."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "unit-5-measurements",
+     "title": "Unit 5: Measurements",
+     "topics": [
+      {
+       "id": "length",
+       "title": "Length",
+       "subtopics": [
+        {
+         "id": "length",
+         "title": "Length",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Convert km, m, cm and mm; add and subtract lengths and choose units; solve problems."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "mass-or-weight",
+       "title": "Mass or weight",
+       "subtopics": [
+        {
+         "id": "mass-or-weight",
+         "title": "Mass or weight",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Convert kg to g; add and subtract masses; choose units and solve problems."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "volume-or-capacity",
+       "title": "Volume or capacity",
+       "subtopics": [
+        {
+         "id": "volume-or-capacity",
+         "title": "Volume or capacity",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Convert litres to millilitres; add and subtract volumes; solve problems."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "time",
+       "title": "Time",
+       "subtopics": [
+        {
+         "id": "time",
+         "title": "Time",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Read hours, minutes and seconds and convert units of time."
+          },
+          {
+           "code": null,
+           "text": "Add and subtract time and solve real-life problems."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "unit-6-geometry",
+     "title": "Unit 6: Geometry",
+     "topics": [
+      {
+       "id": "geometry-box-and-lines",
+       "title": "Geometry box and lines",
+       "subtopics": [
+        {
+         "id": "geometry-box-and-lines",
+         "title": "Geometry box and lines",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Know geometry box instruments and the use of H and HB pencils."
+          },
+          {
+           "code": null,
+           "text": "Measure and draw straight and curved lines."
+          },
+          {
+           "code": null,
+           "text": "Recognise horizontal, vertical, parallel and non-parallel lines; draw parallels with set squares."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "angles",
+       "title": "Angles",
+       "subtopics": [
+        {
+         "id": "angles",
+         "title": "Angles",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Recognise an angle and its notation; right, acute and obtuse angles."
+          },
+          {
+           "code": null,
+           "text": "Know a degree and measure angles with a protractor."
+          },
+          {
+           "code": null,
+           "text": "Draw right, acute and obtuse angles, and angles equal, double or the sum of given angles."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "circle-and-quadrilaterals",
+       "title": "Circle and quadrilaterals",
+       "subtopics": [
+        {
+         "id": "circle-and-quadrilaterals",
+         "title": "Circle and quadrilaterals",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Identify centre, radius, diameter and circumference and draw a circle with compasses."
+          },
+          {
+           "code": null,
+           "text": "Construct squares and rectangles with given sides."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "unit-7-information-handling",
+     "title": "Unit 7: Information Handling",
+     "topics": [
+      {
+       "id": "bar-and-line-graphs",
+       "title": "Bar and line graphs",
+       "subtopics": [
+        {
+         "id": "bar-and-line-graphs",
+         "title": "Bar and line graphs",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Read and interpret horizontal and vertical bar graphs."
+          },
+          {
+           "code": null,
+           "text": "Read and interpret a line graph."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "V",
+   "units": [
+    {
+     "id": "unit-1-numbers-and-arithmetic-operations",
+     "title": "Unit 1: Numbers and Arithmetic Operations",
+     "topics": [
+      {
+       "id": "numbers-up-to-one-billion",
+       "title": "Numbers up to one billion",
+       "subtopics": [
+        {
+         "id": "numbers-up-to-one-billion",
+         "title": "Numbers up to one billion",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Read and write numbers up to one billion in numerals and words."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "operations-on-large-numbers",
+       "title": "Operations on large numbers",
+       "subtopics": [
+        {
+         "id": "operations-on-large-numbers",
+         "title": "Operations on large numbers",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Add and subtract numbers of any size."
+          },
+          {
+           "code": null,
+           "text": "Multiply and divide up to 6-digit numbers by 10, 100, 1000, and 2- and 3-digit numbers; solve mixed problems."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "order-of-operations-bodmas",
+       "title": "Order of operations: BODMAS",
+       "subtopics": [
+        {
+         "id": "order-of-operations-bodmas",
+         "title": "Order of operations: BODMAS",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Use BODMAS with parentheses and verify distributive laws."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "unit-2-hcf-and-lcm",
+     "title": "Unit 2: HCF and LCM",
+     "topics": [
+      {
+       "id": "hcf-and-lcm-of-several-numbers",
+       "title": "HCF and LCM of several numbers",
+       "subtopics": [
+        {
+         "id": "hcf-and-lcm-of-several-numbers",
+         "title": "HCF and LCM of several numbers",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Find HCF of three numbers by prime factorization and division."
+          },
+          {
+           "code": null,
+           "text": "Find LCM of four numbers by the same methods and solve problems."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "unit-3-fractions",
+     "title": "Unit 3: Fractions",
+     "topics": [
+      {
+       "id": "adding-and-subtracting-fractions",
+       "title": "Adding and subtracting fractions",
+       "subtopics": [
+        {
+         "id": "adding-and-subtracting-fractions",
+         "title": "Adding and subtracting fractions",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Add and subtract two or more fractions with different denominators."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "multiplying-fractions",
+       "title": "Multiplying fractions",
+       "subtopics": [
+        {
+         "id": "multiplying-fractions",
+         "title": "Multiplying fractions",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Multiply a fraction by a number and by fractions, including brackets and mixed numbers; verify distributive laws."
+          },
+          {
+           "code": null,
+           "text": "Solve real-life multiplication problems."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "dividing-fractions",
+       "title": "Dividing fractions",
+       "subtopics": [
+        {
+         "id": "dividing-fractions",
+         "title": "Dividing fractions",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Divide fractions by numbers and by fractions and solve problems."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "bodmas-with-fractions",
+       "title": "BODMAS with fractions",
+       "subtopics": [
+        {
+         "id": "bodmas-with-fractions",
+         "title": "BODMAS with fractions",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Simplify expressions with fractions using BODMAS."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "unit-4-decimals-and-percentages",
+     "title": "Unit 4: Decimals and Percentages",
+     "topics": [
+      {
+       "id": "decimals",
+       "title": "Decimals",
+       "subtopics": [
+        {
+         "id": "decimals",
+         "title": "Decimals",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Add and subtract decimals; tell like from unlike decimals."
+          },
+          {
+           "code": null,
+           "text": "Multiply and divide decimals by powers of ten, whole numbers and decimals."
+          },
+          {
+           "code": null,
+           "text": "Change fractions to decimals by division; simplify bracketed expressions; round decimals."
+          },
+          {
+           "code": null,
+           "text": "Convert fractions and decimals both ways and solve problems."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "percentages",
+       "title": "Percentages",
+       "subtopics": [
+        {
+         "id": "percentages",
+         "title": "Percentages",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "See percentage as a special fraction; convert to fractions and decimals and solve problems."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "unit-5-distance-time-and-temperature",
+     "title": "Unit 5: Distance, Time and Temperature",
+     "topics": [
+      {
+       "id": "distance",
+       "title": "Distance",
+       "subtopics": [
+        {
+         "id": "distance",
+         "title": "Distance",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Convert km, m, cm, mm both ways; add and subtract distances and solve problems."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "time",
+       "title": "Time",
+       "subtopics": [
+        {
+         "id": "time",
+         "title": "Time",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Convert hours, minutes, seconds, years, months, weeks and days; add and subtract time."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "temperature",
+       "title": "Temperature",
+       "subtopics": [
+        {
+         "id": "temperature",
+         "title": "Temperature",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Recognise Fahrenheit and Celsius and solve temperature problems."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "unit-6-unitary-method",
+     "title": "Unit 6: Unitary Method",
+     "topics": [
+      {
+       "id": "unitary-method",
+       "title": "Unitary method",
+       "subtopics": [
+        {
+         "id": "unitary-method",
+         "title": "Unitary method",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Use the unitary method to find the value of many objects from one."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "ratio-and-proportion",
+       "title": "Ratio and proportion",
+       "subtopics": [
+        {
+         "id": "ratio-and-proportion",
+         "title": "Ratio and proportion",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Define ratio; tell direct from inverse proportion and solve problems by unitary method."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "unit-7-geometry",
+     "title": "Unit 7: Geometry",
+     "topics": [
+      {
+       "id": "angles",
+       "title": "Angles",
+       "subtopics": [
+        {
+         "id": "angles",
+         "title": "Angles",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Recognise acute, right, obtuse, straight and reflex angles; construct them with a protractor."
+          },
+          {
+           "code": null,
+           "text": "Describe adjacent, complementary and supplementary angles."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "triangles",
+       "title": "Triangles",
+       "subtopics": [
+        {
+         "id": "triangles",
+         "title": "Triangles",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Define triangles by sides and by angles and name the hypotenuse."
+          },
+          {
+           "code": null,
+           "text": "Construct triangles from three sides, from two angles and the included side, or from one angle and adjacent sides."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "quadrilaterals",
+       "title": "Quadrilaterals",
+       "subtopics": [
+        {
+         "id": "quadrilaterals",
+         "title": "Quadrilaterals",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Recognise square, rectangle, parallelogram, rhombus, trapezium and kite, and construct squares and rectangles."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "unit-8-perimeter-and-area",
+     "title": "Unit 8: Perimeter and Area",
+     "topics": [
+      {
+       "id": "perimeter-and-area",
+       "title": "Perimeter and area",
+       "subtopics": [
+        {
+         "id": "perimeter-and-area",
+         "title": "Perimeter and area",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Tell perimeter from area and know their units."
+          },
+          {
+           "code": null,
+           "text": "Use formulas for squares and rectangles and solve problems."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "unit-9-information-handling",
+     "title": "Unit 9: Information Handling",
+     "topics": [
+      {
+       "id": "average",
+       "title": "Average",
+       "subtopics": [
+        {
+         "id": "average",
+         "title": "Average",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Define and find an average (mean) and solve real-life problems."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "block-column-and-bar-graphs",
+       "title": "Block, column and bar graphs",
+       "subtopics": [
+        {
+         "id": "block-column-and-bar-graphs",
+         "title": "Block, column and bar graphs",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Draw block or column graphs, read and interpret bar graphs, and organise data."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "VI",
+   "units": [
+    {
+     "id": "unit-1-sets",
+     "title": "Unit 1: Sets",
+     "topics": [
+      {
+       "id": "sets-and-types-of-set",
+       "title": "Sets and types of set",
+       "subtopics": [
+        {
+         "id": "sets-and-their-notation",
+         "title": "Sets and their notation",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Define a set, its notation and elements, and write a set in tabular form."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "types-of-set",
+       "title": "Types of set",
+       "subtopics": [
+        {
+         "id": "types-of-set",
+         "title": "Types of set",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Define finite, infinite, empty, singleton, equal, equivalent sets, subsets, supersets, and proper and improper subsets."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "unit-2-whole-numbers",
+     "title": "Unit 2: Whole Numbers",
+     "topics": [
+      {
+       "id": "natural-and-whole-numbers",
+       "title": "Natural and whole numbers",
+       "subtopics": [
+        {
+         "id": "natural-and-whole-numbers",
+         "title": "Natural and whole numbers",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Tell natural from whole numbers and show lists, inequalities and sums on a number line."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "properties-of-whole-numbers",
+       "title": "Properties of whole numbers",
+       "subtopics": [
+        {
+         "id": "properties-of-whole-numbers",
+         "title": "Properties of whole numbers",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Add and subtract whole numbers; verify commutative and associative laws and 0 as additive identity."
+          },
+          {
+           "code": null,
+           "text": "Multiply and divide whole numbers; verify commutativity, associativity and 1 as multiplicative identity."
+          },
+          {
+           "code": null,
+           "text": "Verify the distributive law over addition and subtraction."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "unit-3-factors-and-multiples",
+     "title": "Unit 3: Factors and Multiples",
+     "topics": [
+      {
+       "id": "factors-multiples-primes",
+       "title": "Factors, multiples, primes",
+       "subtopics": [
+        {
+         "id": "factors-multiples-primes",
+         "title": "Factors, multiples, primes",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Define factor, multiple, even, odd, prime and composite numbers."
+          },
+          {
+           "code": null,
+           "text": "Know 1 is neither prime nor composite, 1 is a factor of all numbers, and 2 is the only even prime."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "tests-for-divisibility",
+       "title": "Tests for divisibility",
+       "subtopics": [
+        {
+         "id": "tests-for-divisibility",
+         "title": "Tests for divisibility",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Test divisibility by 2, 3, 4, 5, 6, 8, 9, 10, 11, 12, 15 and 25."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "prime-factorization",
+       "title": "Prime factorization",
+       "subtopics": [
+        {
+         "id": "prime-factorization",
+         "title": "Prime factorization",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Factorize numbers into primes and write factors in index notation."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "hcf-and-lcm",
+       "title": "HCF and LCM",
+       "subtopics": [
+        {
+         "id": "hcf-and-lcm",
+         "title": "HCF and LCM",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Find HCF and LCM by prime factorization and by long division or division method."
+          },
+          {
+           "code": null,
+           "text": "Solve real-life problems with HCF and LCM."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "unit-4-integers",
+     "title": "Unit 4: Integers",
+     "topics": [
+      {
+       "id": "integers-and-their-order",
+       "title": "Integers and their order",
+       "subtopics": [
+        {
+         "id": "integers-and-their-order",
+         "title": "Integers and their order",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Know positive and negative integers and zero, and show integers on a number line."
+          },
+          {
+           "code": null,
+           "text": "Compare and order integers."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "absolute-value",
+       "title": "Absolute value",
+       "subtopics": [
+        {
+         "id": "absolute-value",
+         "title": "Absolute value",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Define absolute value as distance from zero and order absolute values."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "adding-and-subtracting-integers",
+       "title": "Adding and subtracting integers",
+       "subtopics": [
+        {
+         "id": "adding-and-subtracting-integers",
+         "title": "Adding and subtracting integers",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Add integers on a number line and by the like-sign and unlike-sign rules."
+          },
+          {
+           "code": null,
+           "text": "Subtract integers by changing the sign and adding."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "multiplying-and-dividing-integers",
+       "title": "Multiplying and dividing integers",
+       "subtopics": [
+        {
+         "id": "multiplying-and-dividing-integers",
+         "title": "Multiplying and dividing integers",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Know the sign rules for products and quotients and that division by 0 is impossible."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "unit-5-simplifications",
+     "title": "Unit 5: Simplifications",
+     "topics": [
+      {
+       "id": "bodmas-rule",
+       "title": "BODMAS rule",
+       "subtopics": [
+        {
+         "id": "bodmas-rule",
+         "title": "BODMAS rule",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Know vinculum, parentheses, braces and square brackets and their order."
+          },
+          {
+           "code": null,
+           "text": "Simplify expressions with fractions and decimals using BODMAS and solve problems."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "unit-6-ratio-and-proportion",
+     "title": "Unit 6: Ratio and Proportion",
+     "topics": [
+      {
+       "id": "ratio",
+       "title": "Ratio",
+       "subtopics": [
+        {
+         "id": "ratio",
+         "title": "Ratio",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Define ratio, antecedent and consequent; compute and reduce ratios and relate ratio to fraction."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "proportion",
+       "title": "Proportion",
+       "subtopics": [
+        {
+         "id": "proportion",
+         "title": "Proportion",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Know proportion, extremes and means; find direct and inverse proportion and solve problems."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "unit-7-financial-arithmetic",
+     "title": "Unit 7: Financial Arithmetic",
+     "topics": [
+      {
+       "id": "percentage",
+       "title": "Percentage",
+       "subtopics": [
+        {
+         "id": "percentage",
+         "title": "Percentage",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Convert between percentages, fractions and decimals and solve problems."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "profit-loss-and-discount",
+       "title": "Profit, loss and discount",
+       "subtopics": [
+        {
+         "id": "profit-loss-and-discount",
+         "title": "Profit, loss and discount",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Define selling price, cost price, profit, loss, discount and their percentages; solve problems."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "unit-8-introduction-to-algebra",
+     "title": "Unit 8: Introduction to Algebra",
+     "topics": [
+      {
+       "id": "algebra-and-variables",
+       "title": "Algebra and variables",
+       "subtopics": [
+        {
+         "id": "algebra-and-variables",
+         "title": "Algebra and variables",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain algebra as arithmetic with letters; tell statements from open statements; define variables and algebraic expressions."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "algebraic-expressions",
+       "title": "Algebraic expressions",
+       "subtopics": [
+        {
+         "id": "algebraic-expressions",
+         "title": "Algebraic expressions",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Identify terms, coefficients, constants, like and unlike terms."
+          },
+          {
+           "code": null,
+           "text": "Add, subtract, simplify bracketed expressions and evaluate for given values."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "unit-9-linear-equations",
+     "title": "Unit 9: Linear Equations",
+     "topics": [
+      {
+       "id": "algebraic-equations",
+       "title": "Algebraic equations",
+       "subtopics": [
+        {
+         "id": "algebraic-equations",
+         "title": "Algebraic equations",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Define an equation and tell it from an expression."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "linear-equations",
+       "title": "Linear equations",
+       "subtopics": [
+        {
+         "id": "linear-equations",
+         "title": "Linear equations",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Define and build linear equations in one variable; solve them including fractional and decimal coefficients; solve real-life problems."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "unit-10-geometry",
+     "title": "Unit 10: Geometry",
+     "topics": [
+      {
+       "id": "line-segments",
+       "title": "Line segments",
+       "subtopics": [
+        {
+         "id": "line-segments",
+         "title": "Line segments",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Add and subtract line segments; draw right bisectors and perpendiculars with compasses."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "construction-of-angles",
+       "title": "Construction of angles",
+       "subtopics": [
+        {
+         "id": "construction-of-angles",
+         "title": "Construction of angles",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Copy, double, bisect and quarter angles; construct angles such as 60, 30, 15, 90, 45, 75, 120, 150 degrees."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "construction-of-triangles",
+       "title": "Construction of triangles",
+       "subtopics": [
+        {
+         "id": "construction-of-triangles",
+         "title": "Construction of triangles",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Construct triangles from SSS, SAS, ASA and RHS data."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "unit-11-perimeter-and-area",
+     "title": "Unit 11: Perimeter and Area",
+     "topics": [
+      {
+       "id": "perimeter-and-area",
+       "title": "Perimeter and area",
+       "subtopics": [
+        {
+         "id": "perimeter-and-area",
+         "title": "Perimeter and area",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Find perimeter and area of squares and rectangles, and area of paths."
+          },
+          {
+           "code": null,
+           "text": "Know altitude; find area of parallelogram, trapezium and triangle."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "unit-12-three-dimensional-solids",
+     "title": "Unit 12: Three Dimensional Solids",
+     "topics": [
+      {
+       "id": "volume-and-surface-area",
+       "title": "Volume and surface area",
+       "subtopics": [
+        {
+         "id": "volume-and-surface-area",
+         "title": "Volume and surface area",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Identify cube, cuboid, sphere, cylinder and cone by faces, edges, vertices."
+          },
+          {
+           "code": null,
+           "text": "Find surface area and volume of cube and cuboid and solve problems."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "unit-13-information-handling",
+     "title": "Unit 13: Information Handling",
+     "topics": [
+      {
+       "id": "data-and-graphs",
+       "title": "Data and graphs",
+       "subtopics": [
+        {
+         "id": "data-and-graphs",
+         "title": "Data and graphs",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Define data; tell grouped from ungrouped data."
+          },
+          {
+           "code": null,
+           "text": "Draw bar graphs and read pie graphs."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "VII",
+   "units": [
+    {
+     "id": "unit-1-sets",
+     "title": "Unit 1: Sets",
+     "topics": [
+      {
+       "id": "forms-of-a-set",
+       "title": "Forms of a set",
+       "subtopics": [
+        {
+         "id": "forms-of-a-set",
+         "title": "Forms of a set",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Write a set in descriptive, set-builder and tabular form."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "operations-on-sets",
+       "title": "Operations on sets",
+       "subtopics": [
+        {
+         "id": "operations-on-sets",
+         "title": "Operations on sets",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Define and find union, intersection and difference; tell disjoint from overlapping sets."
+          },
+          {
+           "code": null,
+           "text": "Define universal set and complement; verify set properties."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "venn-diagrams",
+       "title": "Venn diagrams",
+       "subtopics": [
+        {
+         "id": "venn-diagrams",
+         "title": "Venn diagrams",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Show sets and their operations on Venn diagrams for subset, disjoint and overlapping cases."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "unit-2-rational-numbers",
+     "title": "Unit 2: Rational Numbers",
+     "topics": [
+      {
+       "id": "rational-numbers",
+       "title": "Rational numbers",
+       "subtopics": [
+        {
+         "id": "rational-numbers",
+         "title": "Rational numbers",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Define a rational number p/q and show it on the number line."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "operations-on-rational-numbers",
+       "title": "Operations on rational numbers",
+       "subtopics": [
+        {
+         "id": "operations-on-rational-numbers",
+         "title": "Operations on rational numbers",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Add, subtract, multiply and divide rational numbers; find additive and multiplicative inverses and reciprocals."
+          },
+          {
+           "code": null,
+           "text": "Verify commutative, associative and distributive properties."
+          },
+          {
+           "code": null,
+           "text": "Compare and order rational numbers."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "unit-3-decimals",
+     "title": "Unit 3: Decimals",
+     "topics": [
+      {
+       "id": "decimals-and-rational-numbers",
+       "title": "Decimals and rational numbers",
+       "subtopics": [
+        {
+         "id": "decimals-and-rational-numbers",
+         "title": "Decimals and rational numbers",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Convert decimals to rational numbers."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "terminating-and-recurring-decimals",
+       "title": "Terminating and recurring decimals",
+       "subtopics": [
+        {
+         "id": "terminating-and-recurring-decimals",
+         "title": "Terminating and recurring decimals",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Define terminating and recurring decimals and use the denominator rule (only 2 and 5 as prime factors)."
+          },
+          {
+           "code": null,
+           "text": "Express rational numbers as decimals and round off."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "unit-4-exponents",
+     "title": "Unit 4: Exponents",
+     "topics": [
+      {
+       "id": "laws-of-exponents",
+       "title": "Laws of exponents",
+       "subtopics": [
+        {
+         "id": "laws-of-exponents",
+         "title": "Laws of exponents",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Identify base, exponent and value."
+          },
+          {
+           "code": null,
+           "text": "Deduce and use the product, quotient and power laws, zero and negative exponents."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "unit-5-square-root-of-positive-number",
+     "title": "Unit 5: Square Root of Positive Number",
+     "topics": [
+      {
+       "id": "perfect-squares",
+       "title": "Perfect squares",
+       "subtopics": [
+        {
+         "id": "perfect-squares",
+         "title": "Perfect squares",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Define and test perfect squares and use their properties."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "square-roots",
+       "title": "Square roots",
+       "subtopics": [
+        {
+         "id": "square-roots",
+         "title": "Square roots",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Find square roots of perfect-square numbers, fractions and decimals by factorization and division; solve problems."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "unit-6-direct-and-inverse-variation",
+     "title": "Unit 6: Direct and Inverse Variation",
+     "topics": [
+      {
+       "id": "continued-ratio-and-variation",
+       "title": "Continued ratio and variation",
+       "subtopics": [
+        {
+         "id": "continued-ratio-and-variation",
+         "title": "Continued ratio and variation",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Define continued ratio; solve direct and inverse proportion problems by unitary and proportion methods."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "time-work-and-distance",
+       "title": "Time, work and distance",
+       "subtopics": [
+        {
+         "id": "time-work-and-distance",
+         "title": "Time, work and distance",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Solve time and work problems; relate speed, time and distance; convert km/h to m/s; solve variation problems."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "unit-7-financial-arithmetic",
+     "title": "Unit 7: Financial Arithmetic",
+     "topics": [
+      {
+       "id": "taxes",
+       "title": "Taxes",
+       "subtopics": [
+        {
+         "id": "taxes",
+         "title": "Taxes",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain property tax and general sales tax and solve tax problems."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "profit-and-markup",
+       "title": "Profit and markup",
+       "subtopics": [
+        {
+         "id": "profit-and-markup",
+         "title": "Profit and markup",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain profit and markup, find the annual rate and solve problems."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "zakat-and-ushr",
+       "title": "Zakat and ushr",
+       "subtopics": [
+        {
+         "id": "zakat-and-ushr",
+         "title": "Zakat and ushr",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Define zakat and ushr and solve related problems."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "unit-8-algebraic-expressions",
+     "title": "Unit 8: Algebraic Expressions",
+     "topics": [
+      {
+       "id": "algebraic-expressions-and-polynomials",
+       "title": "Algebraic expressions and polynomials",
+       "subtopics": [
+        {
+         "id": "algebraic-expressions-and-polynomials",
+         "title": "Algebraic expressions and polynomials",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Define constants, variables, literals, expressions and polynomials; name monomials, binomials and trinomials."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "operations-with-polynomials",
+       "title": "Operations with polynomials",
+       "subtopics": [
+        {
+         "id": "operations-with-polynomials",
+         "title": "Operations with polynomials",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Add and subtract polynomials; multiply monomials, binomials and trinomials; simplify."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "algebraic-identities-and-factorization",
+       "title": "Algebraic identities and factorization",
+       "subtopics": [
+        {
+         "id": "algebraic-identities-and-factorization",
+         "title": "Algebraic identities and factorization",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Recognise and verify (x+a)(x+b), (a+b)^2, (a-b)^2 and a^2-b^2."
+          },
+          {
+           "code": null,
+           "text": "Factorize using identities and by grouping."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "unit-9-linear-equations",
+     "title": "Unit 9: Linear Equations",
+     "topics": [
+      {
+       "id": "linear-equations",
+       "title": "Linear equations",
+       "subtopics": [
+        {
+         "id": "linear-equations",
+         "title": "Linear equations",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Define a linear equation in one variable and solve ax+b=c and fractional forms; solve real-life problems."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "unit-10-fundamentals-of-geometry",
+     "title": "Unit 10: Fundamentals of Geometry",
+     "topics": [
+      {
+       "id": "properties-of-angles",
+       "title": "Properties of angles",
+       "subtopics": [
+        {
+         "id": "properties-of-angles",
+         "title": "Properties of angles",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Define adjacent, complementary, supplementary and vertically opposite angles and find unknown angles, including in a triangle."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "congruent-and-similar-figures",
+       "title": "Congruent and similar figures",
+       "subtopics": [
+        {
+         "id": "congruent-and-similar-figures",
+         "title": "Congruent and similar figures",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Identify congruent and similar figures and use the congruency symbol and properties."
+          },
+          {
+           "code": null,
+           "text": "Apply SSS, SAS, ASA and RHS congruency of triangles."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "circle",
+       "title": "Circle",
+       "subtopics": [
+        {
+         "id": "circle",
+         "title": "Circle",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe circle parts: centre, radius, diameter, chord, arcs, semicircle, segment."
+          },
+          {
+           "code": null,
+           "text": "Show the angle in a semicircle is a right angle and angles in the same segment are equal."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "unit-11-practical-geometry",
+     "title": "Unit 11: Practical Geometry",
+     "topics": [
+      {
+       "id": "line-segment-and-triangles",
+       "title": "Line segment and triangles",
+       "subtopics": [
+        {
+         "id": "line-segment-and-triangles",
+         "title": "Line segment and triangles",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Divide a line segment into equal parts or in a given ratio."
+          },
+          {
+           "code": null,
+           "text": "Construct triangles from perimeter and side ratio, equilateral triangles, and isosceles triangles."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "parallelogram-and-angle-sums",
+       "title": "Parallelogram and angle sums",
+       "subtopics": [
+        {
+         "id": "parallelogram-and-angle-sums",
+         "title": "Parallelogram and angle sums",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Construct a parallelogram from adjacent sides with the angle or a diagonal."
+          },
+          {
+           "code": null,
+           "text": "Verify practically that angle sums are 180 degrees (triangle) and 360 degrees (quadrilateral)."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "unit-12-circumference-area-and-volume",
+     "title": "Unit 12: Circumference, Area and Volume",
+     "topics": [
+      {
+       "id": "circumference-and-area-of-a-circle",
+       "title": "Circumference and area of a circle",
+       "subtopics": [
+        {
+         "id": "circumference-and-area-of-a-circle",
+         "title": "Circumference and area of a circle",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Express pi as circumference over diameter and find circumference and area."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "cylinder",
+       "title": "Cylinder",
+       "subtopics": [
+        {
+         "id": "cylinder",
+         "title": "Cylinder",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Find surface area and volume of a cylinder and solve problems."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "unit-13-information-handling",
+     "title": "Unit 13: Information Handling",
+     "topics": [
+      {
+       "id": "frequency-distribution-and-pie-graphs",
+       "title": "Frequency distribution and pie graphs",
+       "subtopics": [
+        {
+         "id": "frequency-distribution-and-pie-graphs",
+         "title": "Frequency distribution and pie graphs",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Present data and define frequency, class limits and class interval."
+          },
+          {
+           "code": null,
+           "text": "Read and draw pie graphs."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "VIII",
+   "units": [
+    {
+     "id": "unit-1-operations-on-sets",
+     "title": "Unit 1: Operations on Sets",
+     "topics": [
+      {
+       "id": "special-sets-and-subsets",
+       "title": "Special sets and subsets",
+       "subtopics": [
+        {
+         "id": "special-sets-and-subsets",
+         "title": "Special sets and subsets",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Recognise sets N, W, Z, Q, E, O, P; find subsets, proper and improper subsets and the power set."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "laws-of-set-operations",
+       "title": "Laws of set operations",
+       "subtopics": [
+        {
+         "id": "laws-of-set-operations",
+         "title": "Laws of set operations",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Verify commutative, associative and distributive laws for union and intersection; state and verify De Morgan's laws."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "venn-diagrams-of-three-sets",
+       "title": "Venn diagrams of three sets",
+       "subtopics": [
+        {
+         "id": "venn-diagrams-of-three-sets",
+         "title": "Venn diagrams of three sets",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Show union and intersection of three overlapping sets and verify associative and distributive laws on Venn diagrams."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "unit-2-real-numbers",
+     "title": "Unit 2: Real Numbers",
+     "topics": [
+      {
+       "id": "irrational-and-real-numbers",
+       "title": "Irrational and real numbers",
+       "subtopics": [
+        {
+         "id": "irrational-and-real-numbers",
+         "title": "Irrational and real numbers",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Define irrational and real numbers and show non-terminating, non-repeating decimals."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "squares-and-square-roots",
+       "title": "Squares and square roots",
+       "subtopics": [
+        {
+         "id": "squares-and-square-roots",
+         "title": "Squares and square roots",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Find perfect squares and patterns of squares."
+          },
+          {
+           "code": null,
+           "text": "Find square roots of numbers, fractions and decimals by factorization and division, and of non-perfect squares."
+          },
+          {
+           "code": null,
+           "text": "Use the digit-count rule and solve problems."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "cubes-and-cube-roots",
+       "title": "Cubes and cube roots",
+       "subtopics": [
+        {
+         "id": "cubes-and-cube-roots",
+         "title": "Cubes and cube roots",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Recognise cubes, find cube roots of perfect cubes and know cube properties."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "unit-3-number-systems",
+     "title": "Unit 3: Number Systems",
+     "topics": [
+      {
+       "id": "number-systems-with-bases",
+       "title": "Number systems with bases",
+       "subtopics": [
+        {
+         "id": "number-systems-with-bases",
+         "title": "Number systems with bases",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Define the base of a number system and explain binary, base 5, octal and decimal."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "conversions-and-operations-in-bases",
+       "title": "Conversions and operations in bases",
+       "subtopics": [
+        {
+         "id": "conversions-and-operations-in-bases",
+         "title": "Conversions and operations in bases",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Convert between decimal and bases 2, 5, 8."
+          },
+          {
+           "code": null,
+           "text": "Add, subtract and multiply numbers in these bases."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "unit-4-financial-arithmetic",
+     "title": "Unit 4: Financial Arithmetic",
+     "topics": [
+      {
+       "id": "compound-proportion",
+       "title": "Compound proportion",
+       "subtopics": [
+        {
+         "id": "compound-proportion",
+         "title": "Compound proportion",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Define compound proportion and solve problems of partnership and inheritance."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "banking",
+       "title": "Banking",
+       "subtopics": [
+        {
+         "id": "banking",
+         "title": "Banking",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe bank accounts, cheques, demand drafts and pay orders."
+          },
+          {
+           "code": null,
+           "text": "Explain online banking, ATMs, debit and credit cards."
+          },
+          {
+           "code": null,
+           "text": "Convert Pakistani currency; calculate profit/markup, principal, rate and period."
+          },
+          {
+           "code": null,
+           "text": "Explain overdraft, running finance, demand finance and leasing."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "percentage-profit-loss-and-discount",
+       "title": "Percentage profit, loss and discount",
+       "subtopics": [
+        {
+         "id": "percentage-profit-loss-and-discount",
+         "title": "Percentage profit, loss and discount",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Find percentage profit, loss and discount, including successive transactions."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "insurance",
+       "title": "Insurance",
+       "subtopics": [
+        {
+         "id": "insurance",
+         "title": "Insurance",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Define insurance and solve life and vehicle insurance problems."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "income-tax",
+       "title": "Income tax",
+       "subtopics": [
+        {
+         "id": "income-tax",
+         "title": "Income tax",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain income tax, exempt income and taxable income, and solve simple assessee problems."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "unit-5-polynomials",
+     "title": "Unit 5: Polynomials",
+     "topics": [
+      {
+       "id": "polynomials-and-their-degree",
+       "title": "Polynomials and their degree",
+       "subtopics": [
+        {
+         "id": "polynomials-and-their-degree",
+         "title": "Polynomials and their degree",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Recall constants, variables and expressions; define polynomial, degree and coefficients; recognise polynomials by variables and degree."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "operations-on-polynomials",
+       "title": "Operations on polynomials",
+       "subtopics": [
+        {
+         "id": "operations-on-polynomials",
+         "title": "Operations on polynomials",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Add, subtract and multiply polynomials; divide by a linear polynomial."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "unit-6-factorization-simultaneous-equations",
+     "title": "Unit 6: Factorization, Simultaneous Equations",
+     "topics": [
+      {
+       "id": "basic-algebraic-formulas",
+       "title": "Basic algebraic formulas",
+       "subtopics": [
+        {
+         "id": "basic-algebraic-formulas",
+         "title": "Basic algebraic formulas",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Recall (a+b)^2, (a-b)^2 and a^2-b^2 and apply them to evaluation and x + 1/x problems."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "factorization",
+       "title": "Factorization",
+       "subtopics": [
+        {
+         "id": "factorization",
+         "title": "Factorization",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Factorize by common factors, grouping, perfect squares, difference of squares and a^2 ± 2ab + b^2 - c^2."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "cubic-formulas",
+       "title": "Cubic formulas",
+       "subtopics": [
+        {
+         "id": "cubic-formulas",
+         "title": "Cubic formulas",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Use (a+b)^3 and (a-b)^3 for x^3 ± 1/x^3 problems."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "simultaneous-linear-equations",
+       "title": "Simultaneous linear equations",
+       "subtopics": [
+        {
+         "id": "simultaneous-linear-equations",
+         "title": "Simultaneous linear equations",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Recognise and form linear equations in two variables; know one pair vs. unique solutions."
+          },
+          {
+           "code": null,
+           "text": "Solve by equating coefficients, substitution and cross multiplication; solve real-life problems."
+          },
+          {
+           "code": null,
+           "text": "Eliminate a variable by substitution or formulae."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "unit-7-fundamentals-of-geometry",
+     "title": "Unit 7: Fundamentals of Geometry",
+     "topics": [
+      {
+       "id": "parallel-lines-and-transversals",
+       "title": "Parallel lines and transversals",
+       "subtopics": [
+        {
+         "id": "parallel-lines-and-transversals",
+         "title": "Parallel lines and transversals",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Define parallel lines and their intercept properties."
+          },
+          {
+           "code": null,
+           "text": "Show corresponding, alternate, vertically opposite and interior angle relations for a transversal."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "polygons",
+       "title": "Polygons",
+       "subtopics": [
+        {
+         "id": "polygons",
+         "title": "Polygons",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Define polygons and show parallelogram properties; define regular pentagon, hexagon and octagon."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "circle-terms",
+       "title": "Circle terms",
+       "subtopics": [
+        {
+         "id": "circle-terms",
+         "title": "Circle terms",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Show points inside and outside a circle; describe sector, secant, chord, concyclic points, tangent and concentric circles."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "unit-8-practical-geometry",
+     "title": "Unit 8: Practical Geometry",
+     "topics": [
+      {
+       "id": "constructing-quadrilaterals",
+       "title": "Constructing quadrilaterals",
+       "subtopics": [
+        {
+         "id": "constructing-quadrilaterals",
+         "title": "Constructing quadrilaterals",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Find and bisect the angle between converging lines without extending them."
+          },
+          {
+           "code": null,
+           "text": "Construct squares, rectangles, rhombuses, parallelograms, kites and regular pentagon and hexagon from given data."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "right-angled-triangles",
+       "title": "Right-angled triangles",
+       "subtopics": [
+        {
+         "id": "right-angled-triangles",
+         "title": "Right-angled triangles",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Construct a right triangle from hypotenuse and a side or height."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "unit-9-areas-and-volumes",
+     "title": "Unit 9: Areas and Volumes",
+     "topics": [
+      {
+       "id": "pythagoras-theorem",
+       "title": "Pythagoras theorem",
+       "subtopics": [
+        {
+         "id": "pythagoras-theorem",
+         "title": "Pythagoras theorem",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "State the Pythagoras theorem, give its informal proof and solve right triangles."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "hero-s-formula",
+       "title": "Hero's formula",
+       "subtopics": [
+        {
+         "id": "hero-s-formula",
+         "title": "Hero's formula",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Apply Hero's formula to find areas of triangles and quadrilaterals."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "sphere-and-cone",
+       "title": "Sphere and cone",
+       "subtopics": [
+        {
+         "id": "sphere-and-cone",
+         "title": "Sphere and cone",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Find surface area and volume of a sphere and a cone and solve problems."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "unit-10-demonstrative-geometry",
+     "title": "Unit 10: Demonstrative Geometry",
+     "topics": [
+      {
+       "id": "reasoning-axioms-and-theorems",
+       "title": "Reasoning, axioms and theorems",
+       "subtopics": [
+        {
+         "id": "reasoning-axioms-and-theorems",
+         "title": "Reasoning, axioms and theorems",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Define demonstrative geometry and basics of reasoning."
+          },
+          {
+           "code": null,
+           "text": "Describe axioms, postulates, propositions, theorems, corollaries and converses."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "theorems-on-angles-and-triangles",
+       "title": "Theorems on angles and triangles",
+       "subtopics": [
+        {
+         "id": "theorems-on-angles-and-triangles",
+         "title": "Theorems on angles and triangles",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Prove and apply theorems on angles on a line, vertical angles, triangle congruence, isosceles triangles, exterior angles, alternate angles and the 180 degrees angle sum."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "unit-11-introduction-to-trigonometry",
+     "title": "Unit 11: Introduction to Trigonometry",
+     "topics": [
+      {
+       "id": "trigonometric-ratios",
+       "title": "Trigonometric ratios",
+       "subtopics": [
+        {
+         "id": "trigonometric-ratios",
+         "title": "Trigonometric ratios",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Define trigonometry and ratios of acute angles; find ratios for 30, 45 and 60 degrees and complementary angles."
+          },
+          {
+           "code": null,
+           "text": "Solve right triangles and height problems."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "unit-12-information-handling",
+     "title": "Unit 12: Information Handling",
+     "topics": [
+      {
+       "id": "frequency-distribution",
+       "title": "Frequency distribution",
+       "subtopics": [
+        {
+         "id": "frequency-distribution",
+         "title": "Frequency distribution",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Define frequency, build a frequency table and a histogram."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "measures-of-central-tendency",
+       "title": "Measures of central tendency",
+       "subtopics": [
+        {
+         "id": "measures-of-central-tendency",
+         "title": "Measures of central tendency",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Calculate mean, weighted mean, median and mode for ungrouped data and solve problems."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "IX",
+   "units": [
+    {
+     "id": "unit-1-matrices-and-determinants",
+     "title": "Unit 1: Matrices and Determinants",
+     "topics": [
+      {
+       "id": "introduction-and-types-of-matrices",
+       "title": "Introduction and types of matrices",
+       "subtopics": [
+        {
+         "id": "introduction-and-types-of-matrices",
+         "title": "Introduction and types of matrices",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Define a matrix, its rows, columns, order and equality."
+          },
+          {
+           "code": null,
+           "text": "Identify row, column, square, zero, identity, scalar, diagonal, transpose, symmetric and skew-symmetric matrices."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "addition-and-subtraction-of-matrices",
+       "title": "Addition and subtraction of matrices",
+       "subtopics": [
+        {
+         "id": "addition-and-subtraction-of-matrices",
+         "title": "Addition and subtraction of matrices",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Check conformability, add and subtract matrices and multiply by a scalar."
+          },
+          {
+           "code": null,
+           "text": "Verify commutative and associative laws; find additive identity and inverse."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "multiplication-of-matrices",
+       "title": "Multiplication of matrices",
+       "subtopics": [
+        {
+         "id": "multiplication-of-matrices",
+         "title": "Multiplication of matrices",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Check conformability and multiply matrices; verify associative and distributive laws."
+          },
+          {
+           "code": null,
+           "text": "Show AB is not generally BA, define the identity matrix and verify (AB)^t = B^t A^t."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "determinant-and-inverse-of-a-matrix",
+       "title": "Determinant and inverse of a matrix",
+       "subtopics": [
+        {
+         "id": "determinant-and-inverse-of-a-matrix",
+         "title": "Determinant and inverse of a matrix",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Define and evaluate a determinant; tell singular from non-singular matrices."
+          },
+          {
+           "code": null,
+           "text": "Find the adjoint and inverse by the adjoint method and verify AA^-1 = I and (AB)^-1 = B^-1 A^-1."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "solving-simultaneous-equations-with-matrices",
+       "title": "Solving simultaneous equations with matrices",
+       "subtopics": [
+        {
+         "id": "solving-simultaneous-equations-with-matrices",
+         "title": "Solving simultaneous equations with matrices",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Solve two linear equations in two unknowns by matrix inversion and Cramer's rule, with real-life problems."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "unit-2-real-and-complex-numbers",
+     "title": "Unit 2: Real and Complex Numbers",
+     "topics": [
+      {
+       "id": "real-numbers",
+       "title": "Real numbers",
+       "subtopics": [
+        {
+         "id": "real-numbers",
+         "title": "Real numbers",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Show real numbers as rational and irrational, on the number line and with decimal forms."
+          },
+          {
+           "code": null,
+           "text": "Know the properties of real numbers."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "radicals-and-exponents",
+       "title": "Radicals and exponents",
+       "subtopics": [
+        {
+         "id": "radicals-and-exponents",
+         "title": "Radicals and exponents",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain radicals and radicands and convert between radical and exponential form."
+          },
+          {
+           "code": null,
+           "text": "Apply the laws of exponents with real exponents."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "complex-numbers",
+       "title": "Complex numbers",
+       "subtopics": [
+        {
+         "id": "complex-numbers",
+         "title": "Complex numbers",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Define a complex number a + ib, its real and imaginary parts, conjugate and equality."
+          },
+          {
+           "code": null,
+           "text": "Add, subtract, multiply and divide complex numbers."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "unit-3-logarithms",
+     "title": "Unit 3: Logarithms",
+     "topics": [
+      {
+       "id": "scientific-notation",
+       "title": "Scientific notation",
+       "subtopics": [
+        {
+         "id": "scientific-notation",
+         "title": "Scientific notation",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Write numbers in scientific notation and back."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "logarithms",
+       "title": "Logarithms",
+       "subtopics": [
+        {
+         "id": "logarithms",
+         "title": "Logarithms",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Define logarithm, common logarithm, characteristic and mantissa."
+          },
+          {
+           "code": null,
+           "text": "Use tables for logarithms and antilogarithms."
+          },
+          {
+           "code": null,
+           "text": "Tell common from natural logarithms."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "laws-of-logarithms",
+       "title": "Laws of logarithms",
+       "subtopics": [
+        {
+         "id": "laws-of-logarithms",
+         "title": "Laws of logarithms",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Prove and use the product, quotient, power and change-of-base laws."
+          },
+          {
+           "code": null,
+           "text": "Use logarithms to simplify multiplication, division and powers."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "unit-4-algebraic-expressions-and-algebraic-formu",
+     "title": "Unit 4: Algebraic Expressions and Algebraic Formulas",
+     "topics": [
+      {
+       "id": "rational-expressions",
+       "title": "Rational expressions",
+       "subtopics": [
+        {
+         "id": "rational-expressions",
+         "title": "Rational expressions",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Define rational expressions and tell them from polynomials; reduce to lowest terms."
+          },
+          {
+           "code": null,
+           "text": "Add, subtract, multiply and divide rational expressions and evaluate them."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "algebraic-formulas",
+       "title": "Algebraic formulas",
+       "subtopics": [
+        {
+         "id": "algebraic-formulas",
+         "title": "Algebraic formulas",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Use (a±b)^2 identities, (a+b+c)^2 and cube formulas to find values of related expressions."
+          },
+          {
+           "code": null,
+           "text": "Use a^3 ± b^3 = (a ± b)(a^2 ∓ ab + b^2) for products."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "surds-and-rationalization",
+       "title": "Surds and rationalization",
+       "subtopics": [
+        {
+         "id": "surds-and-rationalization",
+         "title": "Surds and rationalization",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Recognise surds of second order and use operations on them."
+          },
+          {
+           "code": null,
+           "text": "Rationalize denominators of the types 1/(a+b√x) and 1/(√x+√y)."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "unit-5-factorization",
+     "title": "Unit 5: Factorization",
+     "topics": [
+      {
+       "id": "factorization",
+       "title": "Factorization",
+       "subtopics": [
+        {
+         "id": "factorization",
+         "title": "Factorization",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Recall factorization by common factors, grouping, perfect squares and differences of squares."
+          },
+          {
+           "code": null,
+           "text": "Factorize a^4 + a^2b^2 + b^4, x^2+px+q, ax^2+bx+c and four-factor product forms."
+          },
+          {
+           "code": null,
+           "text": "Factorize cubes and sums or differences of cubes."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "remainder-and-factor-theorems",
+       "title": "Remainder and factor theorems",
+       "subtopics": [
+        {
+         "id": "remainder-and-factor-theorems",
+         "title": "Remainder and factor theorems",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "State, prove and use the remainder theorem; define zeros of a polynomial."
+          },
+          {
+           "code": null,
+           "text": "State and prove the factor theorem and use it to factorize cubics."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "unit-6-algebraic-manipulation",
+     "title": "Unit 6: Algebraic Manipulation",
+     "topics": [
+      {
+       "id": "hcf-and-lcm-of-expressions",
+       "title": "HCF and LCM of expressions",
+       "subtopics": [
+        {
+         "id": "hcf-and-lcm-of-expressions",
+         "title": "HCF and LCM of expressions",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Find HCF and LCM of algebraic expressions by factors or division; know their relation; solve problems."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "algebraic-fractions-and-square-roots",
+       "title": "Algebraic fractions and square roots",
+       "subtopics": [
+        {
+         "id": "algebraic-fractions-and-square-roots",
+         "title": "Algebraic fractions and square roots",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Reduce fractional expressions with +, -, x, ÷ using HCF and LCM."
+          },
+          {
+           "code": null,
+           "text": "Find the square root of an algebraic expression by factorization and division."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "unit-7-linear-equations-and-inequalities",
+     "title": "Unit 7: Linear Equations and Inequalities",
+     "topics": [
+      {
+       "id": "linear-equations",
+       "title": "Linear equations",
+       "subtopics": [
+        {
+         "id": "linear-equations",
+         "title": "Linear equations",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Solve linear equations with rational coefficients and equations with radicals reducible to linear form."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "equations-with-absolute-value",
+       "title": "Equations with absolute value",
+       "subtopics": [
+        {
+         "id": "equations-with-absolute-value",
+         "title": "Equations with absolute value",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Define absolute value and solve equations involving it."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "linear-inequalities",
+       "title": "Linear inequalities",
+       "subtopics": [
+        {
+         "id": "linear-inequalities",
+         "title": "Linear inequalities",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Define inequalities and their properties: trichotomy, transitive, additive, multiplicative."
+          },
+          {
+           "code": null,
+           "text": "Solve linear inequalities with rational coefficients."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "unit-14-linear-graphs-and-their-application",
+     "title": "Unit 14: Linear Graphs and Their Application",
+     "topics": [
+      {
+       "id": "cartesian-plane-and-linear-graphs",
+       "title": "Cartesian plane and linear graphs",
+       "subtopics": [
+        {
+         "id": "cartesian-plane-and-linear-graphs",
+         "title": "Cartesian plane and linear graphs",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe the Cartesian plane, axes, origin and plot ordered pairs."
+          },
+          {
+           "code": null,
+           "text": "Make value tables and draw graphs of y=c, x=a, y=mx and y=mx+c, choosing scales."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "conversion-graphs",
+       "title": "Conversion graphs",
+       "subtopics": [
+        {
+         "id": "conversion-graphs",
+         "title": "Conversion graphs",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Read conversion graphs such as miles-km, acres-hectares, Celsius-Fahrenheit and currency."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "graphic-solution-of-equations",
+       "title": "Graphic solution of equations",
+       "subtopics": [
+        {
+         "id": "graphic-solution-of-equations",
+         "title": "Graphic solution of equations",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Solve two linear equations graphically."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "unit-15-introduction-to-coordinate-geometry",
+     "title": "Unit 15: Introduction to Coordinate Geometry",
+     "topics": [
+      {
+       "id": "distance-formula",
+       "title": "Distance formula",
+       "subtopics": [
+        {
+         "id": "distance-formula",
+         "title": "Distance formula",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Derive and use the distance formula."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "collinear-points-and-shapes",
+       "title": "Collinear points and shapes",
+       "subtopics": [
+        {
+         "id": "collinear-points-and-shapes",
+         "title": "Collinear points and shapes",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Define collinear points and test collinearity."
+          },
+          {
+           "code": null,
+           "text": "Use distances to show triangles are equilateral, isosceles, right or scalene, and quadrilaterals are squares, rectangles or parallelograms."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "mid-point-formula",
+       "title": "Mid-point formula",
+       "subtopics": [
+        {
+         "id": "mid-point-formula",
+         "title": "Mid-point formula",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Use the mid-point formula and distance formula to verify geometry results."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "unit-17-congruent-triangles",
+     "title": "Unit 17: Congruent Triangles",
+     "topics": [
+      {
+       "id": "congruent-triangles",
+       "title": "Congruent triangles",
+       "subtopics": [
+        {
+         "id": "congruent-triangles",
+         "title": "Congruent triangles",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Prove and use the theorems on congruence: SAA, isosceles-triangle converse, SSS and RHS."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "unit-18-parallelograms-and-triangles",
+     "title": "Unit 18: Parallelograms and Triangles",
+     "topics": [
+      {
+       "id": "parallelograms-and-triangles",
+       "title": "Parallelograms and triangles",
+       "subtopics": [
+        {
+         "id": "parallelograms-and-the-mid-point-theorem",
+         "title": "Parallelograms and the mid-point theorem",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Prove properties of parallelograms (opposite sides and angles, diagonals bisect) and when a quadrilateral is a parallelogram."
+          },
+          {
+           "code": null,
+           "text": "Prove the mid-point theorem and that medians of a triangle are concurrent at the trisection point."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "unit-19-line-bisectors-and-angle-bisectors",
+     "title": "Unit 19: Line Bisectors and Angle Bisectors",
+     "topics": [
+      {
+       "id": "bisector-theorems",
+       "title": "Bisector theorems",
+       "subtopics": [
+        {
+         "id": "bisector-theorems",
+         "title": "Bisector theorems",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Prove and apply: points on a right bisector are equidistant from the ends and conversely; right bisectors of a triangle's sides are concurrent."
+          },
+          {
+           "code": null,
+           "text": "Prove and apply: points on an angle bisector are equidistant from the arms and conversely; angle bisectors of a triangle are concurrent."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "unit-20-sides-and-angles-of-a-triangle",
+     "title": "Unit 20: Sides and Angles of a Triangle",
+     "topics": [
+      {
+       "id": "sides-and-angles-of-a-triangle",
+       "title": "Sides and angles of a triangle",
+       "subtopics": [
+        {
+         "id": "sides-and-angles-of-a-triangle",
+         "title": "Sides and angles of a triangle",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Prove and apply: longer side opposite greater angle and conversely."
+          },
+          {
+           "code": null,
+           "text": "Prove the triangle inequality and that the perpendicular is the shortest distance to a line."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "unit-21-ratio-and-proportion",
+     "title": "Unit 21: Ratio and Proportion",
+     "topics": [
+      {
+       "id": "proportion-in-triangles",
+       "title": "Proportion in triangles",
+       "subtopics": [
+        {
+         "id": "proportion-in-triangles",
+         "title": "Proportion in triangles",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Prove a line parallel to a side divides the other sides proportionally, and the converse."
+          },
+          {
+           "code": null,
+           "text": "Prove the internal angle bisector theorem and that corresponding sides of similar triangles are proportional."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "unit-22-pythagoras-theorem",
+     "title": "Unit 22: Pythagoras' Theorem",
+     "topics": [
+      {
+       "id": "pythagoras-theorem",
+       "title": "Pythagoras' theorem",
+       "subtopics": [
+        {
+         "id": "pythagoras-theorem",
+         "title": "Pythagoras' theorem",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Prove Pythagoras' theorem and its converse and apply them."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "unit-23-theorems-related-with-area",
+     "title": "Unit 23: Theorems Related with Area",
+     "topics": [
+      {
+       "id": "theorems-on-area",
+       "title": "Theorems on area",
+       "subtopics": [
+        {
+         "id": "theorems-on-area",
+         "title": "Theorems on area",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Prove parallelograms and triangles on the same or equal bases and between the same parallels or altitude have equal area."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "unit-29-practical-geometry-triangles",
+     "title": "Unit 29: Practical Geometry - Triangles",
+     "topics": [
+      {
+       "id": "constructing-triangles",
+       "title": "Constructing triangles",
+       "subtopics": [
+        {
+         "id": "constructing-triangles",
+         "title": "Constructing triangles",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Construct triangles from two sides and included angle, one side and two angles, or two sides and an opposite angle."
+          },
+          {
+           "code": null,
+           "text": "Draw angle bisectors, altitudes, perpendicular bisectors and medians and verify concurrency."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "figures-with-equal-areas",
+       "title": "Figures with equal areas",
+       "subtopics": [
+        {
+         "id": "figures-with-equal-areas",
+         "title": "Figures with equal areas",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Construct a triangle equal in area to a quadrilateral; a rectangle equal to a triangle; a square equal to a rectangle; an equivalent triangle on a given base."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "X",
+   "units": [
+    {
+     "id": "unit-8-quadratic-equations",
+     "title": "Unit 8: Quadratic Equations",
+     "topics": [
+      {
+       "id": "solving-quadratic-equations",
+       "title": "Solving quadratic equations",
+       "subtopics": [
+        {
+         "id": "solving-quadratic-equations",
+         "title": "Solving quadratic equations",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Define a quadratic equation and solve by factorization and completing the square."
+          },
+          {
+           "code": null,
+           "text": "Derive and use the quadratic formula."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "equations-reducible-to-quadratic-form",
+       "title": "Equations reducible to quadratic form",
+       "subtopics": [
+        {
+         "id": "equations-reducible-to-quadratic-form",
+         "title": "Equations reducible to quadratic form",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Solve equations of the types ax^4+bx^2+c, reciprocal and exponential equations and products of four linear factors."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "radical-equations",
+       "title": "Radical equations",
+       "subtopics": [
+        {
+         "id": "radical-equations",
+         "title": "Radical equations",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Solve radical equations of the given types."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "unit-9-theory-of-quadratic-equations",
+     "title": "Unit 9: Theory of Quadratic Equations",
+     "topics": [
+      {
+       "id": "nature-of-roots",
+       "title": "Nature of roots",
+       "subtopics": [
+        {
+         "id": "nature-of-roots",
+         "title": "Nature of roots",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Define and find the discriminant, discuss the nature of roots and find unknowns from root nature."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "cube-roots-of-unity",
+       "title": "Cube roots of unity",
+       "subtopics": [
+        {
+         "id": "cube-roots-of-unity",
+         "title": "Cube roots of unity",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Find cube roots of unity, know ω and ω^2, prove and use their properties."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "roots-and-coefficients",
+       "title": "Roots and coefficients",
+       "subtopics": [
+        {
+         "id": "roots-and-coefficients",
+         "title": "Roots and coefficients",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Relate roots to coefficients; find sum and product without solving; find unknowns from root conditions."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "symmetric-functions-and-forming-equations",
+       "title": "Symmetric functions and forming equations",
+       "subtopics": [
+        {
+         "id": "symmetric-functions-and-forming-equations",
+         "title": "Symmetric functions and forming equations",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Evaluate symmetric functions of roots by coefficients."
+          },
+          {
+           "code": null,
+           "text": "Form a quadratic equation from given roots and from roots related to α and β."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "synthetic-division",
+       "title": "Synthetic division",
+       "subtopics": [
+        {
+         "id": "synthetic-division",
+         "title": "Synthetic division",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Use synthetic division to find quotient and remainder, find unknowns, and solve cubic and quartic equations from given roots."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "simultaneous-equations-with-a-quadratic",
+       "title": "Simultaneous equations with a quadratic",
+       "subtopics": [
+        {
+         "id": "simultaneous-equations-with-a-quadratic",
+         "title": "Simultaneous equations with a quadratic",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Solve systems with one linear and one quadratic equation or two quadratics, and real-life problems."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "unit-10-variations",
+     "title": "Unit 10: Variations",
+     "topics": [
+      {
+       "id": "ratio-proportion-and-variation",
+       "title": "Ratio, proportion and variation",
+       "subtopics": [
+        {
+         "id": "ratio-proportion-and-variation",
+         "title": "Ratio, proportion and variation",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Define ratio, proportion and direct and inverse variation; find mean and continued proportion."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "theorems-on-proportion",
+       "title": "Theorems on proportion",
+       "subtopics": [
+        {
+         "id": "theorems-on-proportion",
+         "title": "Theorems on proportion",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Apply invertendo, alternendo, componendo, dividendo and componendo-dividendo."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "joint-variation-and-k-method",
+       "title": "Joint variation and K-method",
+       "subtopics": [
+        {
+         "id": "joint-variation-and-k-method",
+         "title": "Joint variation and K-method",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Define and solve joint variation problems."
+          },
+          {
+           "code": null,
+           "text": "Use the K-method to prove conditional equalities and solve variation problems."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "unit-11-partial-fractions",
+     "title": "Unit 11: Partial Fractions",
+     "topics": [
+      {
+       "id": "types-of-fractions",
+       "title": "Types of fractions",
+       "subtopics": [
+        {
+         "id": "types-of-fractions",
+         "title": "Types of fractions",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Define proper, improper and rational fractions."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "resolution-into-partial-fractions",
+       "title": "Resolution into partial fractions",
+       "subtopics": [
+        {
+         "id": "resolution-into-partial-fractions",
+         "title": "Resolution into partial fractions",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Resolve fractions with non-repeated and repeated linear factors and non-repeated and repeated quadratic factors."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "unit-12-sets-and-functions",
+     "title": "Unit 12: Sets and Functions",
+     "topics": [
+      {
+       "id": "operations-on-sets",
+       "title": "Operations on sets",
+       "subtopics": [
+        {
+         "id": "operations-on-sets",
+         "title": "Operations on sets",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Recall special sets and perform union, intersection, difference and complement."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "properties-of-union-and-intersection",
+       "title": "Properties of union and intersection",
+       "subtopics": [
+        {
+         "id": "properties-of-union-and-intersection",
+         "title": "Properties of union and intersection",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Prove and verify commutative, associative, distributive laws and De Morgan's laws."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "venn-diagrams",
+       "title": "Venn diagrams",
+       "subtopics": [
+        {
+         "id": "venn-diagrams",
+         "title": "Venn diagrams",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Show set operations and verify laws using Venn diagrams."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "ordered-pairs-relations-and-functions",
+       "title": "Ordered pairs, relations and functions",
+       "subtopics": [
+        {
+         "id": "ordered-pairs-relations-and-functions",
+         "title": "Ordered pairs, relations and functions",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Define ordered pairs, Cartesian product, binary relation, domain and range."
+          },
+          {
+           "code": null,
+           "text": "Define functions and tell into, one-one, onto and bijective functions; test if a relation is a function."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "unit-13-basic-statistics",
+     "title": "Unit 13: Basic Statistics",
+     "topics": [
+      {
+       "id": "frequency-distributions",
+       "title": "Frequency distributions",
+       "subtopics": [
+        {
+         "id": "frequency-distributions",
+         "title": "Frequency distributions",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Build grouped frequency tables, histograms with equal and unequal intervals and frequency polygons."
+          },
+          {
+           "code": null,
+           "text": "Build cumulative frequency tables and polygons."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "measures-of-central-tendency",
+       "title": "Measures of central tendency",
+       "subtopics": [
+        {
+         "id": "measures-of-central-tendency",
+         "title": "Measures of central tendency",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Calculate arithmetic mean (also by assumed mean), median, mode, geometric and harmonic means for ungrouped and grouped data."
+          },
+          {
+           "code": null,
+           "text": "Use weighted and moving averages, and estimate median, quartiles and mode graphically."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "measures-of-dispersion",
+       "title": "Measures of dispersion",
+       "subtopics": [
+        {
+         "id": "measures-of-dispersion",
+         "title": "Measures of dispersion",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Measure range, variance and standard deviation."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "unit-16-introduction-to-trigonometry",
+     "title": "Unit 16: Introduction to Trigonometry",
+     "topics": [
+      {
+       "id": "measuring-angles",
+       "title": "Measuring angles",
+       "subtopics": [
+        {
+         "id": "measuring-angles",
+         "title": "Measuring angles",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Measure angles in degrees, minutes and seconds and convert to decimals."
+          },
+          {
+           "code": null,
+           "text": "Define radian and relate radians to degrees."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "sector-of-a-circle",
+       "title": "Sector of a circle",
+       "subtopics": [
+        {
+         "id": "sector-of-a-circle",
+         "title": "Sector of a circle",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Establish l = rθ and prove area of a sector = ½r²θ."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "trigonometric-ratios",
+       "title": "Trigonometric ratios",
+       "subtopics": [
+        {
+         "id": "trigonometric-ratios",
+         "title": "Trigonometric ratios",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Define coterminal angles, standard position, quadrants and quadrantal angles."
+          },
+          {
+           "code": null,
+           "text": "Define trig ratios and reciprocals by the unit circle; recall values for 30, 45, 60 degrees and quadrantal angles; find signs by quadrant."
+          },
+          {
+           "code": null,
+           "text": "Find the remaining ratios when one is given."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "trigonometric-identities",
+       "title": "Trigonometric identities",
+       "subtopics": [
+        {
+         "id": "trigonometric-identities",
+         "title": "Trigonometric identities",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Prove trig identities and use them for relations."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "angles-of-elevation-and-depression",
+       "title": "Angles of elevation and depression",
+       "subtopics": [
+        {
+         "id": "angles-of-elevation-and-depression",
+         "title": "Angles of elevation and depression",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Find angles of elevation and depression and solve real-life problems."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "unit-24-projection-of-a-side-of-a-triangle",
+     "title": "Unit 24: Projection of a Side of a Triangle",
+     "topics": [
+      {
+       "id": "projection-theorems",
+       "title": "Projection theorems",
+       "subtopics": [
+        {
+         "id": "projection-theorems",
+         "title": "Projection theorems",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Prove and apply the obtuse- and acute-angle side-square theorems using projections."
+          },
+          {
+           "code": null,
+           "text": "Prove and apply Apollonius' theorem on the median."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "unit-25-chords-of-a-circle",
+     "title": "Unit 25: Chords of a Circle",
+     "topics": [
+      {
+       "id": "chords-of-a-circle",
+       "title": "Chords of a circle",
+       "subtopics": [
+        {
+         "id": "chords-of-a-circle",
+         "title": "Chords of a circle",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Prove one circle passes through three non-collinear points."
+          },
+          {
+           "code": null,
+           "text": "Prove the centre-to-chord perpendicular and bisection theorems and that equal chords are equidistant from the centre, and conversely."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "unit-26-tangent-to-a-circle",
+     "title": "Unit 26: Tangent to a Circle",
+     "topics": [
+      {
+       "id": "tangents-to-a-circle",
+       "title": "Tangents to a circle",
+       "subtopics": [
+        {
+         "id": "tangents-to-a-circle",
+         "title": "Tangents to a circle",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Prove a perpendicular at a radius end is a tangent and a tangent is perpendicular to the radius."
+          },
+          {
+           "code": null,
+           "text": "Prove two tangents from an external point are equal and the distance between centres of touching circles."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "unit-27-chords-and-arcs",
+     "title": "Unit 27: Chords and Arcs",
+     "topics": [
+      {
+       "id": "chords-and-arcs",
+       "title": "Chords and arcs",
+       "subtopics": [
+        {
+         "id": "chords-and-arcs",
+         "title": "Chords and arcs",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Prove congruent arcs give equal chords and conversely, and equal chords subtend equal angles at the centre and conversely."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "unit-28-angle-in-a-segment-of-a-circle",
+     "title": "Unit 28: Angle in a Segment of a Circle",
+     "topics": [
+      {
+       "id": "angles-in-a-segment",
+       "title": "Angles in a segment",
+       "subtopics": [
+        {
+         "id": "angles-in-a-segment",
+         "title": "Angles in a segment",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Prove the central angle is double the inscribed angle, angles in the same segment are equal and the semicircle angle is a right angle."
+          },
+          {
+           "code": null,
+           "text": "Prove angles in larger and smaller segments, and that opposite angles of a cyclic quadrilateral are supplementary."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "unit-30-practical-geometry-circles",
+     "title": "Unit 30: Practical Geometry - Circles",
+     "topics": [
+      {
+       "id": "constructing-circles",
+       "title": "Constructing circles",
+       "subtopics": [
+        {
+         "id": "constructing-circles",
+         "title": "Constructing circles",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Locate a circle's centre, draw a circle through three points and complete a circle from an arc."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "circles-with-polygons",
+       "title": "Circles with polygons",
+       "subtopics": [
+        {
+         "id": "circles-with-polygons",
+         "title": "Circles with polygons",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Circumscribe, inscribe and escribe circles for triangles."
+          },
+          {
+           "code": null,
+           "text": "Circumscribe and inscribe an equilateral triangle, square and regular hexagon with a given circle."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "tangent-constructions",
+       "title": "Tangent constructions",
+       "subtopics": [
+        {
+         "id": "tangent-constructions",
+         "title": "Tangent constructions",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Draw tangents to an arc and to a circle from a point, two tangents at a given angle, and common tangents of two circles."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "XI",
+   "units": [
+    {
+     "id": "unit-1-complex-numbers",
+     "title": "Unit 1: Complex Numbers",
+     "topics": [
+      {
+       "id": "complex-numbers-and-their-operations",
+       "title": "Complex numbers and their operations",
+       "subtopics": [
+        {
+         "id": "complex-numbers-and-their-operations",
+         "title": "Complex numbers and their operations",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Recall a + ib, real and imaginary parts, equality and basic operations."
+          },
+          {
+           "code": null,
+           "text": "Define the conjugate and the modulus of a complex number."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "properties-of-complex-numbers",
+       "title": "Properties of complex numbers",
+       "subtopics": [
+        {
+         "id": "properties-of-complex-numbers",
+         "title": "Properties of complex numbers",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe algebraic properties, identities and inverses."
+          },
+          {
+           "code": null,
+           "text": "Prove properties of conjugates and moduli and find real and imaginary parts of powers and quotients."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "solving-equations-with-complex-numbers",
+       "title": "Solving equations with complex numbers",
+       "subtopics": [
+        {
+         "id": "solving-equations-with-complex-numbers",
+         "title": "Solving equations with complex numbers",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Solve linear systems with complex coefficients."
+          },
+          {
+           "code": null,
+           "text": "Write polynomials as products of linear factors and solve quadratics with complex roots."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "unit-2-matrices-and-determinants",
+     "title": "Unit 2: Matrices and Determinants",
+     "topics": [
+      {
+       "id": "matrices-and-their-algebra",
+       "title": "Matrices and their algebra",
+       "subtopics": [
+        {
+         "id": "matrices-and-their-algebra",
+         "title": "Matrices and their algebra",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Recall order, equality and types of matrices including triangular, symmetric and skew-symmetric."
+          },
+          {
+           "code": null,
+           "text": "Add, subtract, scale and multiply matrices with real and complex entries; show commutativity fails for products; verify (AB)^t."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "determinants-and-inverses",
+       "title": "Determinants and inverses",
+       "subtopics": [
+        {
+         "id": "determinants-and-inverses",
+         "title": "Determinants and inverses",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Find minors, cofactors and determinants; tell singular from non-singular matrices."
+          },
+          {
+           "code": null,
+           "text": "Find the adjoint and inverse; verify (AB)^-1 = B^-1 A^-1."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "properties-of-determinants",
+       "title": "Properties of determinants",
+       "subtopics": [
+        {
+         "id": "properties-of-determinants",
+         "title": "Properties of determinants",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "State, prove and use properties of determinants to evaluate them without expansion."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "row-and-column-operations",
+       "title": "Row and column operations",
+       "subtopics": [
+        {
+         "id": "row-and-column-operations",
+         "title": "Row and column operations",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Reduce matrices to echelon and reduced echelon form, and find rank and inverse by row operations."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "systems-of-linear-equations",
+       "title": "Systems of linear equations",
+       "subtopics": [
+        {
+         "id": "systems-of-linear-equations",
+         "title": "Systems of linear equations",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Tell homogeneous from non-homogeneous systems and consistent from inconsistent ones."
+          },
+          {
+           "code": null,
+           "text": "Solve 3 by 3 systems by matrix inversion, Gauss elimination, Gauss-Jordan and Cramer's rule."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "unit-3-vectors",
+     "title": "Unit 3: Vectors",
+     "topics": [
+      {
+       "id": "vectors-in-a-plane",
+       "title": "Vectors in a plane",
+       "subtopics": [
+        {
+         "id": "vectors-in-a-plane",
+         "title": "Vectors in a plane",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Define scalars and vectors; magnitude, equal, negative, unit, zero, position and parallel vectors."
+          },
+          {
+           "code": null,
+           "text": "Add and subtract vectors by triangle, parallelogram and polygon laws; use i and j."
+          },
+          {
+           "code": null,
+           "text": "Find a unit vector and the position vector of a dividing point; prove simple geometry results by vectors."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "vectors-in-space",
+       "title": "Vectors in space",
+       "subtopics": [
+        {
+         "id": "vectors-in-space",
+         "title": "Vectors in space",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Use the rectangular coordinate system, i, j, k, components and magnitude of vectors in space."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "properties-of-vector-operations",
+       "title": "Properties of vector operations",
+       "subtopics": [
+        {
+         "id": "properties-of-vector-operations",
+         "title": "Properties of vector operations",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Prove commutative and associative laws of vector addition and identity and inverse."
+          },
+          {
+           "code": null,
+           "text": "Prove laws of scalar multiplication."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "dot-product",
+       "title": "Dot product",
+       "subtopics": [
+        {
+         "id": "dot-product",
+         "title": "Dot product",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Define the dot product and use it for orthogonality, angles, projections and work."
+          },
+          {
+           "code": null,
+           "text": "Prove its laws; explain direction cosines and ratios."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "cross-product",
+       "title": "Cross product",
+       "subtopics": [
+        {
+         "id": "cross-product",
+         "title": "Cross product",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Define the cross product and use it for parallelism, angles, parallelogram area and moment of a force."
+          },
+          {
+           "code": null,
+           "text": "Prove its properties and distributive laws."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "scalar-triple-product",
+       "title": "Scalar triple product",
+       "subtopics": [
+        {
+         "id": "scalar-triple-product",
+         "title": "Scalar triple product",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Define and compute the scalar triple product and use it for volumes of a parallelepiped and tetrahedron and coplanarity."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "unit-4-sequences-and-series",
+     "title": "Unit 4: Sequences and Series",
+     "topics": [
+      {
+       "id": "sequences",
+       "title": "Sequences",
+       "subtopics": [
+        {
+         "id": "sequences",
+         "title": "Sequences",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Define sequences, formulas and inductive definitions; recognise triangle, factorial and Pascal sequences."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "arithmetic-sequences-and-series",
+       "title": "Arithmetic sequences and series",
+       "subtopics": [
+        {
+         "id": "arithmetic-sequences-and-series",
+         "title": "Arithmetic sequences and series",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Find the general term, insert arithmetic means, and sum arithmetic series; solve real-life problems."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "geometric-sequences-and-series",
+       "title": "Geometric sequences and series",
+       "subtopics": [
+        {
+         "id": "geometric-sequences-and-series",
+         "title": "Geometric sequences and series",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Find the general term, insert geometric means, sum finite and infinite geometric series, and convert recurring decimals to fractions."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "harmonic-sequences",
+       "title": "Harmonic sequences",
+       "subtopics": [
+        {
+         "id": "harmonic-sequences",
+         "title": "Harmonic sequences",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Recognise harmonic sequences, find the nth term and insert harmonic means."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "unit-5-miscellaneous-series",
+     "title": "Unit 5: Miscellaneous Series",
+     "topics": [
+      {
+       "id": "sums-of-natural-number-powers",
+       "title": "Sums of natural-number powers",
+       "subtopics": [
+        {
+         "id": "sums-of-natural-number-powers",
+         "title": "Sums of natural-number powers",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Use sigma notation and sum n, n^2 and n^3."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "special-series",
+       "title": "Special series",
+       "subtopics": [
+        {
+         "id": "special-series",
+         "title": "Special series",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Sum arithmetico-geometric series."
+          },
+          {
+           "code": null,
+           "text": "Use the method of differences and partial fractions to sum series."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "unit-6-permutation-combination-and-probability",
+     "title": "Unit 6: Permutation, Combination and Probability",
+     "topics": [
+      {
+       "id": "factorial-and-permutations",
+       "title": "Factorial and permutations",
+       "subtopics": [
+        {
+         "id": "factorial-and-permutations",
+         "title": "Factorial and permutations",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Use factorial notation and the fundamental principle of counting with tree diagrams."
+          },
+          {
+           "code": null,
+           "text": "Prove and use nPr for arrangements, including repeated objects and circular arrangements."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "combinations",
+       "title": "Combinations",
+       "subtopics": [
+        {
+         "id": "combinations",
+         "title": "Combinations",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Define combinations, prove nCr and its identities, and solve problems."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "probability",
+       "title": "Probability",
+       "subtopics": [
+        {
+         "id": "probability",
+         "title": "Probability",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Define experiment, sample space, event and types of events; use P(E) = n(E)/n(S)."
+          },
+          {
+           "code": null,
+           "text": "Find probability with Venn and tree diagrams; use conditional probability."
+          },
+          {
+           "code": null,
+           "text": "Use the addition and multiplication theorems of probability."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "unit-7-mathematical-induction-and-binomial-theor",
+     "title": "Unit 7: Mathematical Induction and Binomial Theorem",
+     "topics": [
+      {
+       "id": "mathematical-induction",
+       "title": "Mathematical induction",
+       "subtopics": [
+        {
+         "id": "mathematical-induction",
+         "title": "Mathematical induction",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe and apply the principle of mathematical induction to statements, identities and formulae."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "binomial-theorem",
+       "title": "Binomial theorem",
+       "subtopics": [
+        {
+         "id": "binomial-theorem",
+         "title": "Binomial theorem",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Use Pascal's triangle; state and prove the binomial theorem for positive integers; find general and specific terms."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "binomial-series",
+       "title": "Binomial series",
+       "subtopics": [
+        {
+         "id": "binomial-series",
+         "title": "Binomial series",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Expand (1+x)^n for positive integer and rational n, with validity for |x| < 1, and find approximate values."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "unit-8-functions-and-graphs",
+     "title": "Unit 8: Functions and Graphs",
+     "topics": [
+      {
+       "id": "functions-and-inverse-functions",
+       "title": "Functions and inverse functions",
+       "subtopics": [
+        {
+         "id": "functions-and-inverse-functions",
+         "title": "Functions and inverse functions",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Recall function, domain, range, one-to-one and onto; know linear, quadratic and square-root functions."
+          },
+          {
+           "code": null,
+           "text": "Define inverse functions and show their domain and range."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "graphs-of-functions",
+       "title": "Graphs of functions",
+       "subtopics": [
+        {
+         "id": "graphs-of-functions",
+         "title": "Graphs of functions",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Sketch linear, non-linear, y = x^n and quadratic graphs, and sketch using factors."
+          },
+          {
+           "code": null,
+           "text": "Predict functions from their graphs."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "intersecting-graphs",
+       "title": "Intersecting graphs",
+       "subtopics": [
+        {
+         "id": "intersecting-graphs",
+         "title": "Intersecting graphs",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Find intersection points graphically of lines and of a line and a quadratic; solve daily-life problems."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "unit-9-linear-programming",
+     "title": "Unit 9: Linear Programming",
+     "topics": [
+      {
+       "id": "linear-inequalities-in-two-variables",
+       "title": "Linear inequalities in two variables",
+       "subtopics": [
+        {
+         "id": "linear-inequalities-in-two-variables",
+         "title": "Linear inequalities in two variables",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Define linear programming; solve linear inequalities and show regions on the plane for up to three inequalities."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "feasible-region-and-optimal-solution",
+       "title": "Feasible region and optimal solution",
+       "subtopics": [
+        {
+         "id": "feasible-region-and-optimal-solution",
+         "title": "Feasible region and optimal solution",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Define LP problem, objective function, constraints, decision variables and the feasible region."
+          },
+          {
+           "code": null,
+           "text": "Find the optimal solution graphically and solve real-life LP problems."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "unit-10-trigonometric-identities-of-sum-and-diff",
+     "title": "Unit 10: Trigonometric Identities of Sum and Difference of Angles",
+     "topics": [
+      {
+       "id": "fundamental-law-and-sum-difference-identities",
+       "title": "Fundamental law and sum/difference identities",
+       "subtopics": [
+        {
+         "id": "fundamental-law-and-sum-difference-identities",
+         "title": "Fundamental law and sum/difference identities",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Establish cos(α-β) by the distance formula and deduce the sum and difference identities."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "allied-angles",
+       "title": "Allied angles",
+       "subtopics": [
+        {
+         "id": "allied-angles",
+         "title": "Allied angles",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Derive trig ratios of allied angles and write a sinθ + b cosθ as r sin(θ+φ)."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "double-half-and-triple-angle-identities",
+       "title": "Double, half and triple angle identities",
+       "subtopics": [
+        {
+         "id": "double-half-and-triple-angle-identities",
+         "title": "Double, half and triple angle identities",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Derive double, half and triple angle identities."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "sums-and-products-of-sine-and-cosine",
+       "title": "Sums and products of sine and cosine",
+       "subtopics": [
+        {
+         "id": "sums-and-products-of-sine-and-cosine",
+         "title": "Sums and products of sine and cosine",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Convert products to sums or differences and sums or differences to products."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "unit-11-application-of-trigonometry",
+     "title": "Unit 11: Application of Trigonometry",
+     "topics": [
+      {
+       "id": "solving-triangles",
+       "title": "Solving triangles",
+       "subtopics": [
+        {
+         "id": "solving-triangles",
+         "title": "Solving triangles",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Solve right triangles."
+          },
+          {
+           "code": null,
+           "text": "Prove and apply the laws of cosines, sines and tangents and half-angle formulae to oblique triangles."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "area-of-a-triangle",
+       "title": "Area of a triangle",
+       "subtopics": [
+        {
+         "id": "area-of-a-triangle",
+         "title": "Area of a triangle",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Derive area formulae from two sides and the included angle, one side and two angles, and Hero's formula."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "circles-connected-with-a-triangle",
+       "title": "Circles connected with a triangle",
+       "subtopics": [
+        {
+         "id": "circles-connected-with-a-triangle",
+         "title": "Circles connected with a triangle",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Define circum-, in- and escribed circles and derive their radii and identities."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "unit-12-graphs-of-trigonometric-and-inverse-trig",
+     "title": "Unit 12: Graphs of Trigonometric and Inverse Trigonometric Functions and Solution of Trigonometric Equations",
+     "topics": [
+      {
+       "id": "period-of-trigonometric-functions",
+       "title": "Period of trigonometric functions",
+       "subtopics": [
+        {
+         "id": "period-of-trigonometric-functions",
+         "title": "Period of trigonometric functions",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Find domain and range; define even and odd functions; discuss periodicity and maximum and minimum values."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "graphs-of-trigonometric-functions",
+       "title": "Graphs of trigonometric functions",
+       "subtopics": [
+        {
+         "id": "graphs-of-trigonometric-functions",
+         "title": "Graphs of trigonometric functions",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Draw graphs of the six trig functions from -2π to 2π and know periodic, odd and translation properties."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "solving-trigonometric-equations",
+       "title": "Solving trigonometric equations",
+       "subtopics": [
+        {
+         "id": "solving-trigonometric-equations",
+         "title": "Solving trigonometric equations",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Solve sinθ = k, cosθ = k, tanθ = k graphically and equations like sinθ = θ/2."
+          },
+          {
+           "code": null,
+           "text": "Solve general trig equations and discard extraneous roots using periods."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "inverse-trigonometric-functions",
+       "title": "Inverse trigonometric functions",
+       "subtopics": [
+        {
+         "id": "inverse-trigonometric-functions",
+         "title": "Inverse trigonometric functions",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Define inverse trig functions, domains and ranges; draw their graphs."
+          },
+          {
+           "code": null,
+           "text": "Prove and apply addition and subtraction formulae for inverse trig functions."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "XII",
+   "units": [
+    {
+     "id": "unit-1-introduction-to-symbolic-package-maple",
+     "title": "Unit 1: Introduction to Symbolic Package: MAPLE",
+     "topics": [
+      {
+       "id": "maple-basics",
+       "title": "MAPLE basics",
+       "subtopics": [
+        {
+         "id": "maple-basics",
+         "title": "MAPLE basics",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Recognise the MAPLE environment and basic commands, use it as a calculator, and use online help."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "polynomials-graphics-and-matrices-in-maple",
+       "title": "Polynomials, graphics and matrices in MAPLE",
+       "subtopics": [
+        {
+         "id": "polynomials-graphics-and-matrices-in-maple",
+         "title": "Polynomials, graphics and matrices in MAPLE",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Factor, expand and simplify expressions and substitute in MAPLE."
+          },
+          {
+           "code": null,
+           "text": "Plot 2D and parametric graphs and understand plotting options."
+          },
+          {
+           "code": null,
+           "text": "Apply matrix operations and compute inverses and transposes."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "unit-2-functions-and-limits",
+     "title": "Unit 2: Functions and Limits",
+     "topics": [
+      {
+       "id": "functions",
+       "title": "Functions",
+       "subtopics": [
+        {
+         "id": "functions",
+         "title": "Functions",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Find domain and range from graphs and draw the modulus function."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "composition-and-inverse-of-functions",
+       "title": "Composition and inverse of functions",
+       "subtopics": [
+        {
+         "id": "composition-and-inverse-of-functions",
+         "title": "Composition and inverse of functions",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Find the composition of functions and the inverse of a composition."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "transcendental-functions-and-their-graphs",
+       "title": "Transcendental functions and their graphs",
+       "subtopics": [
+        {
+         "id": "transcendental-functions-and-their-graphs",
+         "title": "Transcendental functions and their graphs",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Recognise algebraic, trigonometric, inverse trigonometric, exponential, logarithmic and hyperbolic functions, and explicit, implicit and parametric forms."
+          },
+          {
+           "code": null,
+           "text": "Display graphs of explicit, implicit, parametric and discontinuous functions, also with MAPLE."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "limit-of-a-function",
+       "title": "Limit of a function",
+       "subtopics": [
+        {
+         "id": "limit-of-a-function",
+         "title": "Limit of a function",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Represent intervals and the meaning of x tends to a, 0 or infinity."
+          },
+          {
+           "code": null,
+           "text": "Define limits of sequences and functions and state limit theorems."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "important-limits",
+       "title": "Important limits",
+       "subtopics": [
+        {
+         "id": "important-limits",
+         "title": "Important limits",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Evaluate standard limits such as (x^n - a^n)/(x - a), (1+1/x)^x, (1+x)^(1/x), (a^x - 1)/x and sin x/x; use MAPLE for limits."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "continuity",
+       "title": "Continuity",
+       "subtopics": [
+        {
+         "id": "continuity",
+         "title": "Continuity",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Use left and right limits; define and test continuity at a point and on an interval."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "unit-3-differentiation",
+     "title": "Unit 3: Differentiation",
+     "topics": [
+      {
+       "id": "derivative-of-a-function",
+       "title": "Derivative of a function",
+       "subtopics": [
+        {
+         "id": "derivative-of-a-function",
+         "title": "Derivative of a function",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain rate of change and define the derivative as an instantaneous rate of change."
+          },
+          {
+           "code": null,
+           "text": "Differentiate x^n and (ax+b)^n from first principles."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "theorems-on-differentiation",
+       "title": "Theorems on differentiation",
+       "subtopics": [
+        {
+         "id": "theorems-on-differentiation",
+         "title": "Theorems on differentiation",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Prove and apply the constant, constant multiple, sum, product and quotient rules."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "chain-rule",
+       "title": "Chain rule",
+       "subtopics": [
+        {
+         "id": "chain-rule",
+         "title": "Chain rule",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Prove and use the chain rule and the derivative of an implicit function."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "derivatives-of-trigonometric-and-inverse-trigono",
+       "title": "Derivatives of trigonometric and inverse trigonometric functions",
+       "subtopics": [
+        {
+         "id": "derivatives-of-trigonometric-and-inverse-trigono",
+         "title": "Derivatives of trigonometric and inverse trigonometric functions",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Differentiate trig functions from first principles and inverse trig functions by formula."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "derivatives-of-exponential-and-logarithmic-funct",
+       "title": "Derivatives of exponential and logarithmic functions",
+       "subtopics": [
+        {
+         "id": "derivatives-of-exponential-and-logarithmic-funct",
+         "title": "Derivatives of exponential and logarithmic functions",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Differentiate e^x, a^x, ln x and log_a x from first principles and use logarithmic differentiation."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "derivatives-of-hyperbolic-functions",
+       "title": "Derivatives of hyperbolic functions",
+       "subtopics": [
+        {
+         "id": "derivatives-of-hyperbolic-functions",
+         "title": "Derivatives of hyperbolic functions",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Differentiate hyperbolic and inverse hyperbolic functions, using MAPLE diff."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "unit-4-higher-order-derivatives-and-applications",
+     "title": "Unit 4: Higher Order Derivatives and Applications",
+     "topics": [
+      {
+       "id": "higher-order-derivatives",
+       "title": "Higher order derivatives",
+       "subtopics": [
+        {
+         "id": "higher-order-derivatives",
+         "title": "Higher order derivatives",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Find higher derivatives of algebraic, trig, exponential and logarithmic functions, and second derivatives of implicit, inverse trig and parametric functions."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "maclaurin-s-and-taylor-s-expansions",
+       "title": "Maclaurin's and Taylor's expansions",
+       "subtopics": [
+        {
+         "id": "maclaurin-s-and-taylor-s-expansions",
+         "title": "Maclaurin's and Taylor's expansions",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "State and use Maclaurin's and Taylor's theorems to expand common functions."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "tangents-and-normals",
+       "title": "Tangents and normals",
+       "subtopics": [
+        {
+         "id": "tangents-and-normals",
+         "title": "Tangents and normals",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Interpret the derivative geometrically; find tangent and normal equations, angle between curves and parallel-tangent points."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "maxima-and-minima",
+       "title": "Maxima and minima",
+       "subtopics": [
+        {
+         "id": "maxima-and-minima",
+         "title": "Maxima and minima",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Define increasing and decreasing functions and test with derivatives."
+          },
+          {
+           "code": null,
+           "text": "Find extreme values using the second derivative rule and solve real-life problems."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "unit-5-differentiation-of-vector-functions",
+     "title": "Unit 5: Differentiation of Vector Functions",
+     "topics": [
+      {
+       "id": "vector-functions-limits-and-derivatives",
+       "title": "Vector functions, limits and derivatives",
+       "subtopics": [
+        {
+         "id": "vector-functions-limits-and-derivatives",
+         "title": "Vector functions, limits and derivatives",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Define scalar and vector functions, their domain and range."
+          },
+          {
+           "code": null,
+           "text": "Define limit and continuity of a vector function and its properties."
+          },
+          {
+           "code": null,
+           "text": "Differentiate a vector function and prove the vector differentiation formulae."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "velocity-and-acceleration",
+       "title": "Velocity and acceleration",
+       "subtopics": [
+        {
+         "id": "velocity-and-acceleration",
+         "title": "Velocity and acceleration",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Apply vector differentiation to velocity and acceleration of a position vector."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "unit-6-integration",
+     "title": "Unit 6: Integration",
+     "topics": [
+      {
+       "id": "introduction-to-integration",
+       "title": "Introduction to integration",
+       "subtopics": [
+        {
+         "id": "introduction-to-integration",
+         "title": "Introduction to integration",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "See integration as an accumulator and as inverse of differentiation; explain the constant of integration; use standard integrals."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "rules-of-integration",
+       "title": "Rules of integration",
+       "subtopics": [
+        {
+         "id": "rules-of-integration",
+         "title": "Rules of integration",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Recognise and prove rules of integration and integrals such as ∫[f(x)]^n f'(x)dx and ∫f'(x)/f(x)dx."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "integration-by-substitution",
+       "title": "Integration by substitution",
+       "subtopics": [
+        {
+         "id": "integration-by-substitution",
+         "title": "Integration by substitution",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Evaluate indefinite integrals by substitution, including forms with a^2 ± x^2 and quadratic denominators."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "integration-by-parts-and-partial-fractions",
+       "title": "Integration by parts and partial fractions",
+       "subtopics": [
+        {
+         "id": "integration-by-parts-and-partial-fractions",
+         "title": "Integration by parts and partial fractions",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Use the integration-by-parts formula for the given types."
+          },
+          {
+           "code": null,
+           "text": "Use partial fractions to integrate rational functions."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "definite-integrals",
+       "title": "Definite integrals",
+       "subtopics": [
+        {
+         "id": "definite-integrals",
+         "title": "Definite integrals",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Define a definite integral as a limit of a sum and state the fundamental theorem and properties."
+          },
+          {
+           "code": null,
+           "text": "Evaluate definite integrals and find area under a curve, using MAPLE int."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "unit-7-plane-analytic-geometry-straight-line",
+     "title": "Unit 7: Plane Analytic Geometry - Straight Line",
+     "topics": [
+      {
+       "id": "division-of-a-line-segment",
+       "title": "Division of a line segment",
+       "subtopics": [
+        {
+         "id": "division-of-a-line-segment",
+         "title": "Division of a line segment",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Divide a segment internally and externally in a ratio and show medians and angle bisectors of a triangle are concurrent."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "slope-and-equations-of-a-straight-line",
+       "title": "Slope and equations of a straight line",
+       "subtopics": [
+        {
+         "id": "slope-and-equations-of-a-straight-line",
+         "title": "Slope and equations of a straight line",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Derive slope and the conditions for parallel and perpendicular lines."
+          },
+          {
+           "code": null,
+           "text": "Write equations of lines parallel to axes and in slope-intercept, point-slope, two-point, intercepts, symmetric and normal forms."
+          },
+          {
+           "code": null,
+           "text": "Reduce the general form to standard forms."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "distance-and-angles",
+       "title": "Distance and angles",
+       "subtopics": [
+        {
+         "id": "distance-and-angles",
+         "title": "Distance and angles",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Find the perpendicular distance from a point to a line."
+          },
+          {
+           "code": null,
+           "text": "Find angles between lines, families of lines through an intersection point and triangle angles from slopes."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "concurrency-area-and-homogeneous-equations",
+       "title": "Concurrency, area and homogeneous equations",
+       "subtopics": [
+        {
+         "id": "concurrency-area-and-homogeneous-equations",
+         "title": "Concurrency, area and homogeneous equations",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Find the condition for concurrency of three lines and area of a triangle from vertices."
+          },
+          {
+           "code": null,
+           "text": "Show a homogeneous second-degree equation is a pair of lines through the origin and find the angle between them."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "unit-8-conics-i",
+     "title": "Unit 8: Conics I",
+     "topics": [
+      {
+       "id": "circle",
+       "title": "Circle",
+       "subtopics": [
+        {
+         "id": "circle",
+         "title": "Circle",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Define conics."
+          },
+          {
+           "code": null,
+           "text": "Derive the standard and general equations of a circle and find centre and radius."
+          },
+          {
+           "code": null,
+           "text": "Find circle equations from three points, two points with a line condition, tangent or touching line."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "tangent-and-normal-to-a-circle",
+       "title": "Tangent and normal to a circle",
+       "subtopics": [
+        {
+         "id": "tangent-and-normal-to-a-circle",
+         "title": "Tangent and normal to a circle",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Find line-circle conditions, tangent equations and lengths of tangents; prove equal tangents."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "properties-of-circle",
+       "title": "Properties of circle",
+       "subtopics": [
+        {
+         "id": "properties-of-circle",
+         "title": "Properties of circle",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Prove analytically chord, perpendicular-bisector, central angle, semicircle and tangent properties of a circle."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "unit-9-conics-ii",
+     "title": "Unit 9: Conics II",
+     "topics": [
+      {
+       "id": "parabola",
+       "title": "Parabola",
+       "subtopics": [
+        {
+         "id": "parabola",
+         "title": "Parabola",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Define a parabola and its elements; derive standard equations, graph and find elements."
+          },
+          {
+           "code": null,
+           "text": "Find equations from focus, vertex or directrix; find tangent and normal equations; solve suspension and reflection problems."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "ellipse",
+       "title": "Ellipse",
+       "subtopics": [
+        {
+         "id": "ellipse",
+         "title": "Ellipse",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Define an ellipse, show a circle is a special case; derive the standard equation and elements."
+          },
+          {
+           "code": null,
+           "text": "Find ellipse equations from given data; find tangents and normals."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "hyperbola",
+       "title": "Hyperbola",
+       "subtopics": [
+        {
+         "id": "hyperbola",
+         "title": "Hyperbola",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Define a hyperbola; derive the standard equation and elements and graph it."
+          },
+          {
+           "code": null,
+           "text": "Find equations from given data; find tangents and normals."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "translation-and-rotation-of-axes",
+       "title": "Translation and rotation of axes",
+       "subtopics": [
+        {
+         "id": "translation-and-rotation-of-axes",
+         "title": "Translation and rotation of axes",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Define and use translation and rotation of axes, find transformed equations and remove the xy term."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "unit-10-differential-equations",
+     "title": "Unit 10: Differential Equations",
+     "topics": [
+      {
+       "id": "introduction-and-formation",
+       "title": "Introduction and formation",
+       "subtopics": [
+        {
+         "id": "introduction-and-formation",
+         "title": "Introduction and formation",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Define ordinary differential equations, order, degree, general and particular solutions."
+          },
+          {
+           "code": null,
+           "text": "Form differential equations."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "solving-differential-equations",
+       "title": "Solving differential equations",
+       "subtopics": [
+        {
+         "id": "solving-differential-equations",
+         "title": "Solving differential equations",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Solve first-order, first-degree equations: separable, homogeneous, and reducible to homogeneous; solve real-life problems."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "orthogonal-trajectories",
+       "title": "Orthogonal trajectories",
+       "subtopics": [
+        {
+         "id": "orthogonal-trajectories",
+         "title": "Orthogonal trajectories",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Find orthogonal trajectories of families of curves and view them in MAPLE."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "unit-11-partial-differentiation",
+     "title": "Unit 11: Partial Differentiation",
+     "topics": [
+      {
+       "id": "functions-of-two-variables",
+       "title": "Functions of two variables",
+       "subtopics": [
+        {
+         "id": "functions-of-two-variables",
+         "title": "Functions of two variables",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Define functions of two variables and partial derivatives and compute them."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "euler-s-theorem",
+       "title": "Euler's theorem",
+       "subtopics": [
+        {
+         "id": "euler-s-theorem",
+         "title": "Euler's theorem",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Define homogeneous functions of degree n; state, prove and verify Euler's theorem."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "unit-12-introduction-to-numerical-methods",
+     "title": "Unit 12: Introduction to Numerical Methods",
+     "topics": [
+      {
+       "id": "numerical-solution-of-non-linear-equations",
+       "title": "Numerical solution of non-linear equations",
+       "subtopics": [
+        {
+         "id": "numerical-solution-of-non-linear-equations",
+         "title": "Numerical solution of non-linear equations",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain why numerical methods matter and the basic principles."
+          },
+          {
+           "code": null,
+           "text": "Find real roots by bisection, regula-falsi and Newton-Raphson; use MAPLE fsolve."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "numerical-quadrature",
+       "title": "Numerical quadrature",
+       "subtopics": [
+        {
+         "id": "numerical-quadrature",
+         "title": "Numerical quadrature",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Define numerical quadrature and use the trapezoidal and Simpson's rules, also with MAPLE."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "build": {
+  "builtAt": "2026-10-14T08:19:15.950Z",
+  "model": "claude-agent",
+  "usd": 0,
+  "expectedCodes": null,
+  "coverage": null,
+  "missingCodes": [],
+  "counts": {
+   "grades": 12,
+   "units": 126,
+   "topics": 330,
+   "subtopics": 331,
+   "outcomes": 496
+  },
+  "warnings": [
+   "unit \"Unit 3: Measurement of Length and Mass\" (grade I) has a single outcome",
+   "unit \"Unit 7: Data Representation\" (grade III) has a single outcome",
+   "unit \"Unit 9: Linear Equations\" (grade VII) has a single outcome",
+   "unit \"Unit 17: Congruent Triangles\" (grade IX) has a single outcome",
+   "unit \"Unit 22: Pythagoras' Theorem\" (grade IX) has a single outcome",
+   "unit \"Unit 23: Theorems Related with Area\" (grade IX) has a single outcome",
+   "unit \"Unit 27: Chords and Arcs\" (grade X) has a single outcome"
+  ]
+ }
+}

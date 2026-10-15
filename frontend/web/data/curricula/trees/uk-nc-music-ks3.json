@@ -1,0 +1,144 @@
+{
+ "id": "uk-nc-music-ks3",
+ "region": "UK",
+ "framework": "National Curriculum in England (2014)",
+ "board": "Department for Education",
+ "qualification": "Secondary",
+ "subject": "Music",
+ "syllabusCode": null,
+ "gradeSystem": "key-stage",
+ "source": {
+  "urls": [
+   "https://assets.publishing.service.gov.uk/media/5a7c869440f0b62aff6c2499/SECONDARY_national_curriculum_-_Music.pdf",
+   "https://www.gov.uk/government/publications/national-curriculum-in-england-music-programmes-of-study"
+  ],
+  "publisher": "Department for Education",
+  "licence": "Open Government Licence v3.0 (Crown copyright)",
+  "firstExam": "2014"
+ },
+ "grades": [
+  {
+   "grade": "KS3",
+   "units": [
+    {
+     "id": "key-stage-3-subject-content",
+     "title": "Key stage 3 subject content",
+     "topics": [
+      {
+       "id": "performing",
+       "title": "Performing",
+       "subtopics": [
+        {
+         "id": "performing-confidently",
+         "title": "Performing confidently",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Perform confidently in solo and ensemble settings, using voice and instruments fluently, accurately and expressively."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "creating",
+       "title": "Creating",
+       "subtopics": [
+        {
+         "id": "improvising-and-composing",
+         "title": "Improvising and composing",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Improvise and compose, developing ideas from a range of structures, styles, genres and traditions."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "notation",
+       "title": "Notation",
+       "subtopics": [
+        {
+         "id": "using-notation",
+         "title": "Using notation",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Use staff and other notations accurately across musical styles, genres and traditions."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "musical-dimensions",
+       "title": "Musical dimensions",
+       "subtopics": [
+        {
+         "id": "dimensions-of-music",
+         "title": "Dimensions of music",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Identify and use the inter-related dimensions of music expressively, including tonalities, scales and other devices."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "listening",
+       "title": "Listening",
+       "subtopics": [
+        {
+         "id": "discriminating-listening",
+         "title": "Discriminating listening",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Listen with increasing discrimination to a wide range of music from great composers and musicians."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "understanding-music",
+       "title": "Understanding music",
+       "subtopics": [
+        {
+         "id": "music-and-its-history",
+         "title": "Music and its history",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Deepen understanding of the music performed and heard, and its history."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "build": {
+  "builtAt": "2026-10-14T10:38:03.480Z",
+  "model": "claude-agent",
+  "usd": 0,
+  "expectedCodes": null,
+  "coverage": null,
+  "missingCodes": [],
+  "counts": {
+   "grades": 1,
+   "units": 1,
+   "topics": 6,
+   "subtopics": 6,
+   "outcomes": 6
+  },
+  "warnings": []
+ }
+}

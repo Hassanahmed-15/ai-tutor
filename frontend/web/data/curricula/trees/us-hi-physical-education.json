@@ -1,0 +1,579 @@
+{
+ "id": "us-hi-physical-education",
+ "region": "US",
+ "framework": "Hawaii state academic standards: Physical Education",
+ "board": null,
+ "qualification": "K-12",
+ "subject": "Physical Education",
+ "syllabusCode": null,
+ "gradeSystem": "grade",
+ "source": {
+  "urls": [
+   "https://api.commonstandardsproject.com/api/v1/jurisdictions/64B8E297AAEF42DA886248000B292DF1",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/64B8E297AAEF42DA886248000B292DF1_D2448225_grades-01-02-k",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/64B8E297AAEF42DA886248000B292DF1_D2448225_grades-03-04-05",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/64B8E297AAEF42DA886248000B292DF1_D2448225_grades-06-07-08",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/64B8E297AAEF42DA886248000B292DF1_D2448225_grades-09-10-11-12"
+  ],
+  "publisher": "Hawaii state education agency (machine-readable via Common Standards Project / ASN)",
+  "licence": "CC BY 3.0 US, Desire2Learn Incorporated",
+  "firstExam": "2005"
+ },
+ "grades": [
+  {
+   "grade": "K-2",
+   "units": [
+    {
+     "id": "movement-forms-use-motor-skills-and-movement-pat",
+     "title": "Movement Forms — Use motor skills and movement patterns to perform a variety of physical activities",
+     "topics": [
+      {
+       "id": "fundamental-skills",
+       "title": "Fundamental Skills",
+       "subtopics": [
+        {
+         "id": "fundamental-skills",
+         "title": "Fundamental Skills",
+         "outcomes": [
+          {
+           "code": "PE.K-2.1.1",
+           "text": "Use basic locomotor skills in initial (immature) form alone, with a partner, and in small groups"
+          },
+          {
+           "code": "PE.K-2.1.2",
+           "text": "Use basic non-locomotor skills in initial (immature) form alone, with a partner, and in small groups"
+          },
+          {
+           "code": "PE.K-2.1.3",
+           "text": "Use basic manipulative skills in initial (immature) form alone, with a partner, and in small groups"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "cognitive-concepts-understand-movement-concepts-",
+     "title": "Cognitive Concepts — Understand movement concepts, principles, strategies, and tactics as they apply to the learning and performance of physical activities",
+     "topics": [
+      {
+       "id": "safety-and-play-etiquette",
+       "title": "Safety and Play Etiquette",
+       "subtopics": [
+        {
+         "id": "safety-and-play-etiquette",
+         "title": "Safety and Play Etiquette",
+         "outcomes": [
+          {
+           "code": "PE.K-2.2.1",
+           "text": "Use basic movement concepts related to space, time, effort, and relationships (e.g., personal space, fast/slow, strong/light, under/over)"
+          },
+          {
+           "code": "PE.K-2.2.2",
+           "text": "Identify basic rules for safe participation in physical activities"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "active-lifestyle-participate-regularly-in-physic",
+     "title": "Active Lifestyle — Participate regularly in physical activity",
+     "topics": [
+      {
+       "id": "individual-dual-and-lifetime-activities",
+       "title": "Individual, Dual, and Lifetime Activities",
+       "subtopics": [
+        {
+         "id": "individual-dual-and-lifetime-activities",
+         "title": "Individual, Dual, and Lifetime Activities",
+         "outcomes": [
+          {
+           "code": "PE.K-2.3.1",
+           "text": "Participate regularly in physical activities"
+          },
+          {
+           "code": "PE.K-2.3.2",
+           "text": "Describe the social and emotional benefits of participating in physical activities"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "physical-fitness-know-ways-to-achieve-and-mainta",
+     "title": "Physical Fitness — Know ways to achieve and maintain a health-enhancing level of physical fitness",
+     "topics": [
+      {
+       "id": "fitness-and-conditioning-related-activities",
+       "title": "Fitness and Conditioning-Related Activities",
+       "subtopics": [
+        {
+         "id": "fitness-and-conditioning-related-activities",
+         "title": "Fitness and Conditioning-Related Activities",
+         "outcomes": [
+          {
+           "code": "PE.K-2.4.1",
+           "text": "Identify physiological indicators that accompany moderate to vigorous physical activities"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "3-5",
+   "units": [
+    {
+     "id": "movement-forms-use-motor-skills-and-movement-pat",
+     "title": "Movement Forms — Use motor skills and movement patterns to perform a variety of physical activities",
+     "topics": [
+      {
+       "id": "fundamental-skills",
+       "title": "Fundamental Skills",
+       "subtopics": [
+        {
+         "id": "fundamental-skills",
+         "title": "Fundamental Skills",
+         "outcomes": [
+          {
+           "code": "PE.3-5.1.1",
+           "text": "Use locomotor and non-locomotor skills in a mature (proper) form"
+          },
+          {
+           "code": "PE.3-5.1.2",
+           "text": "Use manipulative skills in a mature (proper) form"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "modified-lead-up-games-and-activites",
+       "title": "Modified/Lead-Up Games and Activites",
+       "subtopics": [
+        {
+         "id": "modified-lead-up-games-and-activites",
+         "title": "Modified/Lead-Up Games and Activites",
+         "outcomes": [
+          {
+           "code": "PE.3-5.1.3",
+           "text": "Use combinations of mature (proper) movement forms, including locomotor, non-locomotor, and manipulative skills"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "cognitive-concepts-understand-movement-concepts-",
+     "title": "Cognitive Concepts — Understand movement concepts, principles, strategies, and tactics as they apply to the learning and performance of physical activities",
+     "topics": [
+      {
+       "id": "modified-lead-up-games-and-activites",
+       "title": "Modified/Lead-Up Games and Activites",
+       "subtopics": [
+        {
+         "id": "modified-lead-up-games-and-activites",
+         "title": "Modified/Lead-Up Games and Activites",
+         "outcomes": [
+          {
+           "code": "PE.3-5.2.1",
+           "text": "Apply movement tactics in simple and modified activities"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "safety-and-play-etiquette",
+       "title": "Safety and Play Etiquette",
+       "subtopics": [
+        {
+         "id": "safety-and-play-etiquette",
+         "title": "Safety and Play Etiquette",
+         "outcomes": [
+          {
+           "code": "PE.3-5.2.2",
+           "text": "Identify procedures for safe participation in physical activities"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "active-lifestyle-participate-regularly-in-physic",
+     "title": "Active Lifestyle — Participate regularly in physical activity",
+     "topics": [
+      {
+       "id": "individual-dual-and-lifetime-activities",
+       "title": "Individual, Dual, and Lifetime Activities",
+       "subtopics": [
+        {
+         "id": "individual-dual-and-lifetime-activities",
+         "title": "Individual, Dual, and Lifetime Activities",
+         "outcomes": [
+          {
+           "code": "PE.3-5.3.1",
+           "text": "Participate regularly in physical activities that contribute to an active lifestyle and bring personal enjoyment"
+          },
+          {
+           "code": "PE.3-5.3.2",
+           "text": "Describe health-related benefits of regular participation in physical activities"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "physical-fitness-know-ways-to-achieve-and-mainta",
+     "title": "Physical Fitness — Know ways to achieve and maintain a health-enhancing level of physical fitness",
+     "topics": [
+      {
+       "id": "fitness-and-conditioning-related-activities",
+       "title": "Fitness and Conditioning-Related Activities",
+       "subtopics": [
+        {
+         "id": "fitness-and-conditioning-related-activities",
+         "title": "Fitness and Conditioning-Related Activities",
+         "outcomes": [
+          {
+           "code": "PE.3-5.4.1",
+           "text": "Identify the components of health-related physical fitness"
+          },
+          {
+           "code": "PE.3-5.4.2",
+           "text": "Use appropriate methods to monitor physiological changes before, during, and after physical activity"
+          },
+          {
+           "code": "PE.3-5.4.3",
+           "text": "Describe ways in which moderate to vigorous physical activities can improve the health-related components of fitness"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "6-8",
+   "units": [
+    {
+     "id": "movement-forms-use-motor-skills-and-movement-pat",
+     "title": "Movement Forms — Use motor skills and movement patterns to perform a variety of physical activities",
+     "topics": [
+      {
+       "id": "fundamental-skills",
+       "title": "Fundamental Skills",
+       "subtopics": [
+        {
+         "id": "fundamental-skills",
+         "title": "Fundamental Skills",
+         "outcomes": [
+          {
+           "code": "PE.6-8.1.1",
+           "text": "Use mature (proper) movement forms appropriately in the context of modified games or activities, such as sports, dance, exercise, and gymnastics"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "modified-lead-up-games-and-activites",
+       "title": "Modified/Lead-Up Games and Activites",
+       "subtopics": [
+        {
+         "id": "modified-lead-up-games-and-activites",
+         "title": "Modified/Lead-Up Games and Activites",
+         "outcomes": [
+          {
+           "code": "PE.6-8.1.2",
+           "text": "Use combinations of movement forms in the context of modified games or activities, such as sports, dance, exercise, and gymnastics"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "cognitive-concepts-understand-movement-concepts-",
+     "title": "Cognitive Concepts — Understand movement concepts, principles, strategies, and tactics as they apply to the learning and performance of physical activities",
+     "topics": [
+      {
+       "id": "safety-and-play-etiquette",
+       "title": "Safety and Play Etiquette",
+       "subtopics": [
+        {
+         "id": "safety-and-play-etiquette",
+         "title": "Safety and Play Etiquette",
+         "outcomes": [
+          {
+           "code": "PE.6-8.2.3",
+           "text": "Apply rules and etiquette for safe participation in physical activities"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "fundamental-skills",
+       "title": "Fundamental Skills",
+       "subtopics": [
+        {
+         "id": "fundamental-skills",
+         "title": "Fundamental Skills",
+         "outcomes": [
+          {
+           "code": "PE.6-8.2.1",
+           "text": "Identify strategies to improve performance of movement skills"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "team-sports",
+       "title": "Team Sports",
+       "subtopics": [
+        {
+         "id": "team-sports",
+         "title": "Team Sports",
+         "outcomes": [
+          {
+           "code": "PE.6-8.2.2",
+           "text": "Describe basic strategies for simple and modified activities"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "active-lifestyle-participate-regularly-in-physic",
+     "title": "Active Lifestyle — Participate regularly in physical activity",
+     "topics": [
+      {
+       "id": "individual-dual-and-lifetime-activities",
+       "title": "Individual, Dual, and Lifetime Activities",
+       "subtopics": [
+        {
+         "id": "individual-dual-and-lifetime-activities",
+         "title": "Individual, Dual, and Lifetime Activities",
+         "outcomes": [
+          {
+           "code": "PE.6-8.3.1",
+           "text": "Identify opportunities for physical activity outside of the physical education class"
+          },
+          {
+           "code": "PE.6-8.3.2",
+           "text": "Participate regularly in moderate to vigorous physical activities to meet personal goals"
+          },
+          {
+           "code": "PE.6-8.3.3",
+           "text": "Explain the relationship between a healthy lifestyle and regular participation in physical activities"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "physical-fitness-know-ways-to-achieve-and-mainta",
+     "title": "Physical Fitness — Know ways to achieve and maintain a health-enhancing level of physical fitness",
+     "topics": [
+      {
+       "id": "fitness-and-conditioning-related-activities",
+       "title": "Fitness and Conditioning-Related Activities",
+       "subtopics": [
+        {
+         "id": "fitness-and-conditioning-related-activities",
+         "title": "Fitness and Conditioning-Related Activities",
+         "outcomes": [
+          {
+           "code": "PE.6-8.4.1",
+           "text": "Describe the principles of training and conditioning and how they affect the components of health-related fitness"
+          },
+          {
+           "code": "PE.6-8.4.2",
+           "text": "Set goals for improving the components of personal health-related physical fitness"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "9-12",
+   "units": [
+    {
+     "id": "movement-forms-use-motor-skills-and-movement-pat",
+     "title": "Movement Forms — Use motor skills and movement patterns to perform a variety of physical activities",
+     "topics": [
+      {
+       "id": "modified-lead-up-games-and-activites",
+       "title": "Modified/Lead-Up Games and Activites",
+       "subtopics": [
+        {
+         "id": "modified-lead-up-games-and-activites",
+         "title": "Modified/Lead-Up Games and Activites",
+         "outcomes": [
+          {
+           "code": "PE.9-12.1.1",
+           "text": "Use combinations of specialized movement forms in a variety of activities, such as net and invasion games, field and target games, aquatics, dance, exercise, and gymnastics"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "cognitive-concepts-understand-movement-concepts-",
+     "title": "Cognitive Concepts — Understand movement concepts, principles, strategies, and tactics as they apply to the learning and performance of physical activities",
+     "topics": [
+      {
+       "id": "safety-and-play-etiquette",
+       "title": "Safety and Play Etiquette",
+       "subtopics": [
+        {
+         "id": "safety-and-play-etiquette",
+         "title": "Safety and Play Etiquette",
+         "outcomes": [
+          {
+           "code": "PE.9-12.2.3",
+           "text": "Assess the importance of rules and procedures for safe and fair play during physical activities"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "fundamental-skills",
+       "title": "Fundamental Skills",
+       "subtopics": [
+        {
+         "id": "fundamental-skills",
+         "title": "Fundamental Skills",
+         "outcomes": [
+          {
+           "code": "PE.9-12.2.1",
+           "text": "Apply concepts, principles, tactics, and strategies to acquire, assess, and improve movement skills"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "team-sports",
+       "title": "Team Sports",
+       "subtopics": [
+        {
+         "id": "team-sports",
+         "title": "Team Sports",
+         "outcomes": [
+          {
+           "code": "PE.9-12.2.2",
+           "text": "Evaluate tactics and strategies for modified and traditional activities"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "active-lifestyle-participate-regularly-in-physic",
+     "title": "Active Lifestyle — Participate regularly in physical activity",
+     "topics": [
+      {
+       "id": "individual-dual-and-lifetime-activities",
+       "title": "Individual, Dual, and Lifetime Activities",
+       "subtopics": [
+        {
+         "id": "individual-dual-and-lifetime-activities",
+         "title": "Individual, Dual, and Lifetime Activities",
+         "outcomes": [
+          {
+           "code": "PE.9-12.3.1",
+           "text": "Participate in a variety of physical activities of personal interest to maintain an active lifestyle"
+          },
+          {
+           "code": "PE.9-12.3.2",
+           "text": "Describe reasons for, and healthful benefits of, continuing involvement in personally selected physical activities and identify strategies to do so"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "physical-fitness-know-ways-to-achieve-and-mainta",
+     "title": "Physical Fitness — Know ways to achieve and maintain a health-enhancing level of physical fitness",
+     "topics": [
+      {
+       "id": "fitness-and-conditioning-related-activities",
+       "title": "Fitness and Conditioning-Related Activities",
+       "subtopics": [
+        {
+         "id": "fitness-and-conditioning-related-activities",
+         "title": "Fitness and Conditioning-Related Activities",
+         "outcomes": [
+          {
+           "code": "PE.9-12.4.1",
+           "text": "Set goals to improve personal fitness level based on various sources of information"
+          },
+          {
+           "code": "PE.9-12.4.2",
+           "text": "Assess the benefits of participation in selected physical activities on the components of health-related physical fitness"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "build": {
+  "builtAt": "2026-10-14T16:20:41.337Z",
+  "model": "none",
+  "usd": 0,
+  "expectedCodes": 36,
+  "coverage": 1,
+  "missingCodes": [],
+  "counts": {
+   "grades": 4,
+   "units": 16,
+   "topics": 23,
+   "subtopics": 23,
+   "outcomes": 36
+  },
+  "warnings": [
+   "unit \"Physical Fitness — Know ways to achieve and maintain a health-enhancing level of physical fitness\" (grade K-2) has a single outcome",
+   "unit \"Movement Forms — Use motor skills and movement patterns to perform a variety of physical activities\" (grade 9-12) has a single outcome"
+  ]
+ }
+}

@@ -1,0 +1,3135 @@
+{
+ "id": "us-al-health",
+ "region": "US",
+ "framework": "Alabama state academic standards: Health Education",
+ "board": null,
+ "qualification": "K-12",
+ "subject": "Health Education",
+ "syllabusCode": null,
+ "gradeSystem": "grade",
+ "source": {
+  "urls": [
+   "https://api.commonstandardsproject.com/api/v1/jurisdictions/B838B98D043045748F3814B9E43CAC85",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/A094D849A34A4535A723321B75E79584",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/1D57C89783E04EFA91D9061674A952DC",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/9FE7E7F4671C41D782B56024B795842A",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/82B1D9FBCA0C4A00B75C62AF39CE036C",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/C4A8ED1FFF2B457FAED42458658E1A6E",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/7EFD4646490F45E48774EDF286B74127",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/D7F1A1B6FB5846D5954AD4022941417D",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/13E7F888797343208062FD7F644A2483",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/5C3964538C0A4FA5A67EB8D668B48453",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/171A08FE31874D6E991E96CF3A2C18D9",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/F61FEC382F3945E6A72C2A9AC67FB98F"
+  ],
+  "publisher": "Alabama state education agency (machine-readable via Common Standards Project / ASN)",
+  "licence": "CC BY 4.0 US, Common Curriculum, Inc.",
+  "firstExam": "2019"
+ },
+ "grades": [
+  {
+   "grade": "K",
+   "units": [
+    {
+     "id": "students-will-comprehend-concepts-related-to-hea",
+     "title": "Students will comprehend concepts related to health promotion and disease prevention to enhance health",
+     "topics": [
+      {
+       "id": "health-promotion",
+       "title": "Health Promotion",
+       "subtopics": [
+        {
+         "id": "health-behaviors",
+         "title": "Health Behaviors",
+         "outcomes": [
+          {
+           "code": "K.1.1",
+           "text": "Identify behaviors that impact personal health."
+          }
+         ]
+        },
+        {
+         "id": "nutrition",
+         "title": "Nutrition &",
+         "outcomes": [
+          {
+           "code": "K.1.2",
+           "text": "Identify healthy food choices. Example: MyPlate"
+          }
+         ]
+        },
+        {
+         "id": "drug-awareness",
+         "title": "Drug Awareness",
+         "outcomes": [
+          {
+           "code": "K.1.3",
+           "text": "List everyday chemical products that can be used like a harmful drug. Examples: glue, laundry pods, aerosol sprays"
+          }
+         ]
+        },
+        {
+         "id": "hygiene",
+         "title": "Hygiene",
+         "outcomes": [
+          {
+           "code": "K.1.4",
+           "text": "Explain why healthy behaviors such as brushing teeth and getting adequate sleep are important."
+          }
+         ]
+        },
+        {
+         "id": "disease-prevention-health-care",
+         "title": "Disease Prevention & Health Care",
+         "outcomes": [
+          {
+           "code": "K.1.5",
+           "text": "Describe ways to prevent the spread of communicable diseases. Examples: coughing into elbow, washing hands"
+          }
+         ]
+        },
+        {
+         "id": "safety",
+         "title": "Safety",
+         "outcomes": [
+          {
+           "code": "K.1.6",
+           "text": "List reasons to call for emergency assistance."
+          }
+         ]
+        },
+        {
+         "id": "dimensions-of-health",
+         "title": "Dimensions of Health",
+         "outcomes": [
+          {
+           "code": "K.1.7",
+           "text": "Identify positive examples of physical health."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "students-will-analyze-the-influence-of-family-pe",
+     "title": "Students will analyze the influence of family, peers, culture, media, technology, and other factors on health behaviors",
+     "topics": [
+      {
+       "id": "analyzing-influences",
+       "title": "Analyzing Influences",
+       "subtopics": [
+        {
+         "id": "family-peer-culture",
+         "title": "Family, Peer, & Culture",
+         "outcomes": [
+          {
+           "code": "K.2.1a",
+           "text": "List family rules and activities that promote health and safety. Example: limiting screen time, not talking to strangers"
+          }
+         ]
+        },
+        {
+         "id": "media-technology",
+         "title": "Media & Technology",
+         "outcomes": [
+          {
+           "code": "K.2.2",
+           "text": "List types of media. Examples: television, radio, internet, advertisements"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "students-will-demonstrate-the-ability-to-access-",
+     "title": "Students will demonstrate the ability to access valid information, products, and services to enhance health",
+     "topics": [
+      {
+       "id": "access-to-information",
+       "title": "Access to Information",
+       "subtopics": [
+        {
+         "id": "information-products-services",
+         "title": "Information, Products, & Services",
+         "outcomes": [
+          {
+           "code": "K.3.1",
+           "text": "Identify school and community health helpers who can assist in understanding health procedures. Examples: dentist, doctor, school nurse"
+          },
+          {
+           "code": "K.3.2",
+           "text": "Discuss the role of the school nurse in encouraging student wellness."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "students-will-demonstrate-the-ability-to-use-int",
+     "title": "Students will demonstrate the ability to use interpersonal communication skills to enhance health and avoid or reduce health risks",
+     "topics": [
+      {
+       "id": "interpersonal-communication",
+       "title": "Interpersonal Communication",
+       "subtopics": [
+        {
+         "id": "social",
+         "title": "Social",
+         "outcomes": [
+          {
+           "code": "K.4.1",
+           "text": "Explain how a person can use good listening skills to enhance his or her health."
+          }
+         ]
+        },
+        {
+         "id": "emotions-feelings",
+         "title": "Emotions & Feelings",
+         "outcomes": [
+          {
+           "code": "K.4.2",
+           "text": "Name various emotions and feelings. Examples: anger, sadness, joy, fear"
+          }
+         ]
+        },
+        {
+         "id": "conflict-resolution",
+         "title": "Conflict Resolution",
+         "outcomes": [
+          {
+           "code": "K.4.3",
+           "text": "Describe how to express feelings to prevent a conflict from starting."
+          }
+         ]
+        },
+        {
+         "id": "refusal-skills",
+         "title": "Refusal Skills",
+         "outcomes": [
+          {
+           "code": "K.4.4",
+           "text": "Tell ways to respond in an unwanted, threatening, or dangerous situation."
+          },
+          {
+           "code": "K.4.5",
+           "text": "Identify characteristics of a trusted adult."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "students-will-demonstrate-the-ability-to-use-dec",
+     "title": "Students will demonstrate the ability to use decision-making skills to enhance health",
+     "topics": [
+      {
+       "id": "decision-making",
+       "title": "Decision -Making",
+       "subtopics": [
+        {
+         "id": "problem-solving",
+         "title": "Problem Solving",
+         "outcomes": [
+          {
+           "code": "K.5.1",
+           "text": "Discuss when and what assistance is needed for health-related situations. Examples: explaining when someone should call 911, asking for help when a student is ill, determining the difference between tattling and telling"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "students-will-demonstrate-the-ability-to-use-goa",
+     "title": "Students will demonstrate the ability to use goal-setting skills to enhance health",
+     "topics": [
+      {
+       "id": "goal-setting",
+       "title": "Goal -Setting",
+       "subtopics": [
+        {
+         "id": "self-awareness",
+         "title": "Self-Awareness",
+         "outcomes": [
+          {
+           "code": "K.6.1",
+           "text": "Define a goal and identify several potential ageappropriate, short-term health goals. Examples: brushing teeth daily, meeting or achieving ARI reading goal"
+          }
+         ]
+        },
+        {
+         "id": "problem-solving",
+         "title": "Problem-Solving",
+         "outcomes": [
+          {
+           "code": "K.6.2",
+           "text": "Identify family members who can assist with achieving shortterm health goals."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "students-will-demonstrate-the-ability-to-practic",
+     "title": "Students will demonstrate the ability to practice health-enhancing behaviors and avoid or reduce health risks",
+     "topics": [
+      {
+       "id": "self-management",
+       "title": "Self-Management",
+       "subtopics": [
+        {
+         "id": "monitor-progress",
+         "title": "Monitor Progress",
+         "outcomes": [
+          {
+           "code": "K.7.1",
+           "text": "Show healthy behaviors that improve personal health and wellness. Examples: demonstrating correct technique for hand washing, showing basic first aid procedures for bandaging a cut"
+          }
+         ]
+        },
+        {
+         "id": "injury-prevention",
+         "title": "Injury Prevention",
+         "outcomes": [
+          {
+           "code": "K.7.2",
+           "text": "Demonstrate healthy behaviors that prevent injuries. Example: practicing safety precautions when crossing the street"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "students-will-demonstrate-the-ability-to-advocat",
+     "title": "Students will demonstrate the ability to advocate for personal, family, and community health",
+     "topics": [
+      {
+       "id": "advocacy",
+       "title": "Advocacy",
+       "subtopics": [
+        {
+         "id": "promote-healthy-habits",
+         "title": "Promote Healthy Habits",
+         "outcomes": [
+          {
+           "code": "K.8.1",
+           "text": "Role play behaviors that promote personal healthy habits. Examples: requesting help when deciding on healthier snack options, asking for help when being teased at school"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "1",
+   "units": [
+    {
+     "id": "students-will-comprehend-concepts-related-to-hea",
+     "title": "Students will comprehend concepts related to health promotion and disease prevention to enhance health",
+     "topics": [
+      {
+       "id": "health-promotion",
+       "title": "Health Promotion",
+       "subtopics": [
+        {
+         "id": "health-behaviors",
+         "title": "Health Behaviors",
+         "outcomes": [
+          {
+           "code": "1.1.1",
+           "text": "Explain how healthy behaviors impact personal health."
+          }
+         ]
+        },
+        {
+         "id": "nutrition",
+         "title": "Nutrition &",
+         "outcomes": [
+          {
+           "code": "1.1.2",
+           "text": "List food safety precautions."
+          }
+         ]
+        },
+        {
+         "id": "drug-awareness",
+         "title": "Drug Awareness",
+         "outcomes": [
+          {
+           "code": "1.1.3",
+           "text": "Explain how overthe-counter and prescription medicines can be misused."
+          }
+         ]
+        },
+        {
+         "id": "hygiene",
+         "title": "Hygiene",
+         "outcomes": [
+          {
+           "code": "1.1.4",
+           "text": "Explain rationale for not sharing hygiene products. Examples: combs, brushes, toothbrushes"
+          }
+         ]
+        },
+        {
+         "id": "disease-prevention-health-care",
+         "title": "Disease Prevention & Health Care",
+         "outcomes": [
+          {
+           "code": "1.1.5",
+           "text": "Apply measures for cleanliness and disease prevention."
+          }
+         ]
+        },
+        {
+         "id": "safety",
+         "title": "Safety",
+         "outcomes": [
+          {
+           "code": "1.1.6",
+           "text": "Demonstrate asking for assistance to enhance safety for self and others. Example: practice what to say when calling 911 or other emergency numbers."
+          }
+         ]
+        },
+        {
+         "id": "dimensions-of-health",
+         "title": "Dimensions of Health",
+         "outcomes": [
+          {
+           "code": "1.1.7",
+           "text": "Identify positive examples of social and emotional health."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "students-will-analyze-the-influence-of-family-pe",
+     "title": "Students will analyze the influence of family, peers, culture, media, technology, and other factors on health behaviors",
+     "topics": [
+      {
+       "id": "analyzing-influences",
+       "title": "Analyzing Influences",
+       "subtopics": [
+        {
+         "id": "family-peer-culture",
+         "title": "Family, Peer, & Culture",
+         "outcomes": [
+          {
+           "code": "1.2.1a",
+           "text": "List healthy foods served by the school cafeteria."
+          }
+         ]
+        },
+        {
+         "id": "media-technology",
+         "title": "Media & Technology",
+         "outcomes": [
+          {
+           "code": "1.2.2",
+           "text": "Describe how advertisements can influence food choices. Example: show healthy vs. unhealthy options"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "students-will-demonstrate-the-ability-to-access-",
+     "title": "Students will demonstrate the ability to access valid information, products, and services to enhance health",
+     "topics": [
+      {
+       "id": "access-to-information",
+       "title": "Access to Information",
+       "subtopics": [
+        {
+         "id": "information-products-services",
+         "title": "Information, Products, & Services",
+         "outcomes": [
+          {
+           "code": "1.3.1",
+           "text": "Describe the roles of various health care professionals."
+          },
+          {
+           "code": "1.3.2",
+           "text": "Identify school and community health helpers who can be contacted in emergencies. Examples: nurse, counselor, EMT"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "students-will-demonstrate-the-ability-to-use-int",
+     "title": "Students will demonstrate the ability to use interpersonal communication skills to enhance health and avoid or reduce health risks",
+     "topics": [
+      {
+       "id": "interpersonal-communication",
+       "title": "Interpersonal Communication",
+       "subtopics": [
+        {
+         "id": "social",
+         "title": "Social",
+         "outcomes": [
+          {
+           "code": "1.4.1",
+           "text": "Identify ways listening skills can be used to build and maintain healthy relationships. Example: taking turns talking and listening"
+          }
+         ]
+        },
+        {
+         "id": "emotions-feelings",
+         "title": "Emotions & Feelings",
+         "outcomes": [
+          {
+           "code": "1.4.2",
+           "text": "Discuss ways to express feelings to peers in a healthy way. Example: speaking calmly"
+          }
+         ]
+        },
+        {
+         "id": "conflict-resolution",
+         "title": "Conflict Resolution",
+         "outcomes": [
+          {
+           "code": "1.4.3",
+           "text": "Interpret the feelings of and describe ways to show empathy for others."
+          }
+         ]
+        },
+        {
+         "id": "refusal-skills",
+         "title": "Refusal Skills",
+         "outcomes": [
+          {
+           "code": "1.4.4",
+           "text": "Demonstrate ways to respond in an unwanted, threatening, or dangerous situation. Example: runhide-fight"
+          },
+          {
+           "code": "1.4.5",
+           "text": "Identify appropriate and inappropriate touches. Example: recognizing touching in the bathing suit zone as inappropriate"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "students-will-demonstrate-the-ability-to-use-dec",
+     "title": "Students will demonstrate the ability to use decision-making skills to enhance health",
+     "topics": [
+      {
+       "id": "decision-making",
+       "title": "Decision -Making",
+       "subtopics": [
+        {
+         "id": "problem-solving",
+         "title": "Problem Solving",
+         "outcomes": [
+          {
+           "code": "1.5.1",
+           "text": "Describe situations in which students must choose between healthy and risky behaviors."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "students-will-demonstrate-the-ability-to-use-goa",
+     "title": "Students will demonstrate the ability to use goal-setting skills to enhance health",
+     "topics": [
+      {
+       "id": "goal-setting",
+       "title": "Goal -Setting",
+       "subtopics": [
+        {
+         "id": "self-awareness",
+         "title": "Self-Awareness",
+         "outcomes": [
+          {
+           "code": "1.6.1",
+           "text": "Create an ageappropriate personal health goal."
+          }
+         ]
+        },
+        {
+         "id": "problem-solving",
+         "title": "Problem-Solving",
+         "outcomes": [
+          {
+           "code": "1.6.2",
+           "text": "Describe ways that parents and other trusted adults can help a student achieve a health goal."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "students-will-demonstrate-the-ability-to-practic",
+     "title": "Students will demonstrate the ability to practice health-enhancing behaviors and avoid or reduce health risks",
+     "topics": [
+      {
+       "id": "self-management",
+       "title": "Self-Management",
+       "subtopics": [
+        {
+         "id": "monitor-progress",
+         "title": "Monitor Progress",
+         "outcomes": [
+          {
+           "code": "1.7.1",
+           "text": "Identify healthy practices and behaviors to maintain and improve personal health."
+          }
+         ]
+        },
+        {
+         "id": "injury-prevention",
+         "title": "Injury Prevention",
+         "outcomes": [
+          {
+           "code": "1.7.2",
+           "text": "Determine behaviors that avoid or reduce injury. Examples: importance of riding in the back seat, meaning of traffic signs, safe pedestrian behaviors"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "students-will-demonstrate-the-ability-to-advocat",
+     "title": "Students will demonstrate the ability to advocate for personal, family, and community health",
+     "topics": [
+      {
+       "id": "advocacy",
+       "title": "Advocacy",
+       "subtopics": [
+        {
+         "id": "promote-healthy-habits",
+         "title": "Promote Healthy Habits",
+         "outcomes": [
+          {
+           "code": "1.8.1",
+           "text": "Encourage peers to make positive health choices. Examples: reminding peers to cover their nose and mouth when sneezing, offering helpful suggestions when peers are trying to resolve a conflict"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "2",
+   "units": [
+    {
+     "id": "students-will-comprehend-concepts-related-to-hea",
+     "title": "Students will comprehend concepts related to health promotion and disease prevention to enhance health",
+     "topics": [
+      {
+       "id": "health-promotion",
+       "title": "Health Promotion",
+       "subtopics": [
+        {
+         "id": "health-behaviors",
+         "title": "Health Behaviors",
+         "outcomes": [
+          {
+           "code": "2.1.1",
+           "text": "Describe behaviors that enhance physical and mental health."
+          }
+         ]
+        },
+        {
+         "id": "nutrition",
+         "title": "Nutrition &",
+         "outcomes": [
+          {
+           "code": "2.1.2",
+           "text": "Summarize motivations for eating food. Examples: hunger, emotions"
+          }
+         ]
+        },
+        {
+         "id": "drug-awareness",
+         "title": "Drug Awareness",
+         "outcomes": [
+          {
+           "code": "2.1.3",
+           "text": "Describe why avoiding tobacco is a healthy behavior."
+          }
+         ]
+        },
+        {
+         "id": "hygiene",
+         "title": "Hygiene",
+         "outcomes": [
+          {
+           "code": "2.1.4",
+           "text": "List ways to prevent germs from spreading. Examples: using soap and warm water when washing hands"
+          }
+         ]
+        },
+        {
+         "id": "disease-prevention-health-care",
+         "title": "Disease Prevention & Health Care",
+         "outcomes": [
+          {
+           "code": "2.1.5",
+           "text": "Investigate how immunizations and regular care from health professionals prevent disease."
+          }
+         ]
+        },
+        {
+         "id": "safety",
+         "title": "Safety",
+         "outcomes": [
+          {
+           "code": "2.1.6",
+           "text": "List ways to prevent common childhood injuries. Examples: following playground safety rules, wearing protective equipment, practicing water safety"
+          }
+         ]
+        },
+        {
+         "id": "dimensions-of-health",
+         "title": "Dimensions of Health",
+         "outcomes": [
+          {
+           "code": "2.1.7",
+           "text": "Identify positive examples of mental health."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "students-will-analyze-the-influence-of-family-pe",
+     "title": "Students will analyze the influence of family, peers, culture, media, technology, and other factors on health behaviors",
+     "topics": [
+      {
+       "id": "analyzing-influences",
+       "title": "Analyzing Influences",
+       "subtopics": [
+        {
+         "id": "family-peer-culture",
+         "title": "Family, Peer, & Culture",
+         "outcomes": [
+          {
+           "code": "2.2.1a",
+           "text": "Identify how hereditary and environmental factors influence family health."
+          }
+         ]
+        },
+        {
+         "id": "media-technology",
+         "title": "Media & Technology",
+         "outcomes": [
+          {
+           "code": "2.2.2",
+           "text": "Discuss how advertisements can influence individuals to purchase certain products."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "students-will-demonstrate-the-ability-to-access-",
+     "title": "Students will demonstrate the ability to access valid information, products, and services to enhance health",
+     "topics": [
+      {
+       "id": "access-to-information",
+       "title": "Access to Information",
+       "subtopics": [
+        {
+         "id": "information-products-services",
+         "title": "Information, Products, & Services",
+         "outcomes": [
+          {
+           "code": "2.3.1",
+           "text": "Explain the importance of identifying trusted adults and health professionals."
+          },
+          {
+           "code": "2.3.2",
+           "text": "Identify adults and professionals who help to promote regular physical activity. Examples: PE teacher, coach, doctor, personal health coach"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "students-will-demonstrate-the-ability-to-use-int",
+     "title": "Students will demonstrate the ability to use interpersonal communication skills to enhance health and avoid or reduce health risks",
+     "topics": [
+      {
+       "id": "interpersonal-communication",
+       "title": "Interpersonal Communication",
+       "subtopics": [
+        {
+         "id": "social",
+         "title": "Social",
+         "outcomes": [
+          {
+           "code": "2.4.1",
+           "text": "Demonstrate techniques of effective listening. Examples: body language, eye contact"
+          }
+         ]
+        },
+        {
+         "id": "emotions-feelings",
+         "title": "Emotions & Feelings",
+         "outcomes": [
+          {
+           "code": "2.4.2",
+           "text": "Explain ways that bullying and excessive teasing can be hurtful."
+          }
+         ]
+        },
+        {
+         "id": "conflict-resolution",
+         "title": "Conflict Resolution",
+         "outcomes": [
+          {
+           "code": "2.4.3",
+           "text": "Demonstrate how to communicate with others with kindness and respect."
+          }
+         ]
+        },
+        {
+         "id": "refusal-skills",
+         "title": "Refusal Skills",
+         "outcomes": [
+          {
+           "code": "2.4.4",
+           "text": "Summarize strategies for reporting harmful acts. Example: reporting to trusted adult"
+          },
+          {
+           "code": "2.4.5",
+           "text": "Demonstrate how to tell a trusted adult if inappropriate touching occurs."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "students-will-demonstrate-the-ability-to-use-dec",
+     "title": "Students will demonstrate the ability to use decision-making skills to enhance health",
+     "topics": [
+      {
+       "id": "decision-making",
+       "title": "Decision -Making",
+       "subtopics": [
+        {
+         "id": "problem-solving",
+         "title": "Problem Solving",
+         "outcomes": [
+          {
+           "code": "2.5.1",
+           "text": "Differentiate between situations when a health-related decision can be made individually or when assistance is needed. Example: when to tell trusted adults about bullying or other abuse"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "students-will-demonstrate-the-ability-to-use-goa",
+     "title": "Students will demonstrate the ability to use goal-setting skills to enhance health",
+     "topics": [
+      {
+       "id": "goal-setting",
+       "title": "Goal -Setting",
+       "subtopics": [
+        {
+         "id": "self-awareness",
+         "title": "Self-Awareness",
+         "outcomes": [
+          {
+           "code": "2.6.1",
+           "text": "Describe various ways to reach a personal health goal."
+          }
+         ]
+        },
+        {
+         "id": "problem-solving",
+         "title": "Problem-Solving",
+         "outcomes": [
+          {
+           "code": "2.6.2",
+           "text": "Identify school and community individuals who can help support personal health goals."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "students-will-demonstrate-the-ability-to-practic",
+     "title": "Students will demonstrate the ability to practice health-enhancing behaviors and avoid or reduce health risks",
+     "topics": [
+      {
+       "id": "self-management",
+       "title": "Self-Management",
+       "subtopics": [
+        {
+         "id": "monitor-progress",
+         "title": "Monitor Progress",
+         "outcomes": [
+          {
+           "code": "2.7.1",
+           "text": "Predict how healthy behaviors can reduce health risks. Example: predicting how a healthy sleep routine promotes academic success"
+          }
+         ]
+        },
+        {
+         "id": "injury-prevention",
+         "title": "Injury Prevention",
+         "outcomes": [
+          {
+           "code": "2.7.2",
+           "text": "Describe personal behaviors that enhance safety at school, home, and within the community. Examples: staying seated on the bus; surfing the Internet with caution; practicing water safety; learning self-defense skills"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "students-will-demonstrate-the-ability-to-advocat",
+     "title": "Students will demonstrate the ability to advocate for personal, family, and community health",
+     "topics": [
+      {
+       "id": "advocacy",
+       "title": "Advocacy",
+       "subtopics": [
+        {
+         "id": "promote-healthy-habits",
+         "title": "Promote Healthy Habits",
+         "outcomes": [
+          {
+           "code": "2.8.1",
+           "text": "Enlist family and community participation in positive health activities. Examples: Relay for Life, Run/Walk for Diabetes"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "3",
+   "units": [
+    {
+     "id": "students-will-comprehend-concepts-related-to-hea",
+     "title": "Students will comprehend concepts related to health promotion and disease prevention to enhance health",
+     "topics": [
+      {
+       "id": "health-promotion",
+       "title": "Health Promotion",
+       "subtopics": [
+        {
+         "id": "health-behaviors",
+         "title": "Health Behaviors",
+         "outcomes": [
+          {
+           "code": "3.1.1",
+           "text": "Describe the relationship between healthy behaviors and personal health."
+          }
+         ]
+        },
+        {
+         "id": "nutrition",
+         "title": "Nutrition &",
+         "outcomes": [
+          {
+           "code": "3.1.2",
+           "text": "Illustrate the link between the six main nutrients and being healthy."
+          }
+         ]
+        },
+        {
+         "id": "drug-awareness",
+         "title": "Drug Awareness",
+         "outcomes": [
+          {
+           "code": "3.1.3",
+           "text": "Examine the harmful effects of tobacco, drugs, and alcohol on the body."
+          }
+         ]
+        },
+        {
+         "id": "hygiene",
+         "title": "Hygiene",
+         "outcomes": [
+          {
+           "code": "3.1.4",
+           "text": "Describe strategies and skills important to personal hygiene."
+          }
+         ]
+        },
+        {
+         "id": "disease-prevention-health-care",
+         "title": "Disease Prevention & Health Care",
+         "outcomes": [
+          {
+           "code": "3.1.5",
+           "text": "Identify symptoms which might need treatment from health care providers. Examples: fever, sore throat, toothache"
+          }
+         ]
+        },
+        {
+         "id": "safety",
+         "title": "Safety",
+         "outcomes": [
+          {
+           "code": "3.1.6",
+           "text": "Identify personal protection equipment needed for sports or recreational activities."
+          }
+         ]
+        },
+        {
+         "id": "dimensions-of-health",
+         "title": "Dimensions of Health",
+         "outcomes": [
+          {
+           "code": "3.1.7",
+           "text": "Identify positive examples of environmental health."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "students-will-analyze-the-influence-of-family-pe",
+     "title": "Students will analyze the influence of family, peers, culture, media, technology, and other factors on health behaviors",
+     "topics": [
+      {
+       "id": "analyzing-influences",
+       "title": "Analyzing Influences",
+       "subtopics": [
+        {
+         "id": "family-peer-culture",
+         "title": "Family, Peer, & Culture",
+         "outcomes": [
+          {
+           "code": "3.2.1a",
+           "text": "Identify ways that peers can influence healthy and unhealthy behaviors."
+          }
+         ]
+        },
+        {
+         "id": "media-technology",
+         "title": "Media & Technology",
+         "outcomes": [
+          {
+           "code": "3.2.2",
+           "text": "Compare a variety of media messages affecting consumer health decisions."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "students-will-demonstrate-the-ability-to-access-",
+     "title": "Students will demonstrate the ability to access valid information, products, and services to enhance health",
+     "topics": [
+      {
+       "id": "access-to-information",
+       "title": "Access to Information",
+       "subtopics": [
+        {
+         "id": "information-products-services",
+         "title": "Information, Products, & Services",
+         "outcomes": [
+          {
+           "code": "3.3.1",
+           "text": "List reliable health-related information, products, and services. Examples: parent, school nurse, counselor"
+          },
+          {
+           "code": "3.3.2",
+           "text": "Identify sources of accurate information about health products, information, and services."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "students-will-demonstrate-the-ability-to-use-int",
+     "title": "Students will demonstrate the ability to use interpersonal communication skills to enhance health and avoid or reduce health risks",
+     "topics": [
+      {
+       "id": "interpersonal-communication",
+       "title": "Interpersonal Communication",
+       "subtopics": [
+        {
+         "id": "social",
+         "title": "Social",
+         "outcomes": [
+          {
+           "code": "3.4.1",
+           "text": "Practice skills needed to develop and maintain personal relationships. Examples: conflict resolution, role play"
+          }
+         ]
+        },
+        {
+         "id": "emotions-feelings",
+         "title": "Emotions & Feelings",
+         "outcomes": [
+          {
+           "code": "3.4.2",
+           "text": "Discuss healthy ways to express needs, wants, and feelings. Examples: using appropriate refusal skills, manners, communication"
+          }
+         ]
+        },
+        {
+         "id": "conflict-resolution",
+         "title": "Conflict Resolution",
+         "outcomes": [
+          {
+           "code": "3.4.3",
+           "text": "Recognize causes of conflicts and apply nonviolent strategies to manage or resolve situations."
+          }
+         ]
+        },
+        {
+         "id": "refusal-skills",
+         "title": "Refusal Skills",
+         "outcomes": [
+          {
+           "code": "3.4.4",
+           "text": "State effective refusal skills to enhance health. Examples: responding effectively in refusing alcohol, tobacco, or other drugs"
+          },
+          {
+           "code": "3.4.5",
+           "text": "Explain that each person has the right to tell others not touch his or her body."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "students-will-demonstrate-the-ability-to-use-dec",
+     "title": "Students will demonstrate the ability to use decision-making skills to enhance health",
+     "topics": [
+      {
+       "id": "decision-making",
+       "title": "Decision -Making",
+       "subtopics": [
+        {
+         "id": "problem-solving",
+         "title": "Problem Solving",
+         "outcomes": [
+          {
+           "code": "3.5.1",
+           "text": "Discuss the consequences of possible choices when making a health decision. Examples: healthy snack vs. junk food, outdoor activity vs. video games, active vs. sedentary, implications of not following established rules"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "students-will-demonstrate-the-ability-to-use-goa",
+     "title": "Students will demonstrate the ability to use goal-setting skills to enhance health",
+     "topics": [
+      {
+       "id": "goal-setting",
+       "title": "Goal -Setting",
+       "subtopics": [
+        {
+         "id": "self-awareness",
+         "title": "Self-Awareness",
+         "outcomes": [
+          {
+           "code": "3.6.1",
+           "text": "Set a personal, health-enhancing goal to pursue for several weeks. Examples: setting good morning and bedtime routines, eating more fruits and vegetables"
+          }
+         ]
+        },
+        {
+         "id": "problem-solving",
+         "title": "Problem-Solving",
+         "outcomes": [
+          {
+           "code": "3.6.2",
+           "text": "Identify barriers to achieving personal health goals, determine how to achieve, and monitor progress."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "students-will-demonstrate-the-ability-to-practic",
+     "title": "Students will demonstrate the ability to practice health-enhancing behaviors and avoid or reduce health risks",
+     "topics": [
+      {
+       "id": "self-management",
+       "title": "Self-Management",
+       "subtopics": [
+        {
+         "id": "monitor-progress",
+         "title": "Monitor Progress",
+         "outcomes": [
+          {
+           "code": "3.7.1",
+           "text": "Develop a plan for responsible personal health behavior. Examples: keeping an activity log, planning activities that reduce stress"
+          }
+         ]
+        },
+        {
+         "id": "injury-prevention",
+         "title": "Injury Prevention",
+         "outcomes": [
+          {
+           "code": "3.7.2",
+           "text": "Describe healthy practices that maintain or improve personal health. Examples: wearing appropriate footwear or clothing for outdoor activity"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "students-will-demonstrate-the-ability-to-advocat",
+     "title": "Students will demonstrate the ability to advocate for personal, family, and community health",
+     "topics": [
+      {
+       "id": "advocacy",
+       "title": "Advocacy",
+       "subtopics": [
+        {
+         "id": "promote-healthy-habits",
+         "title": "Promote Healthy Habits",
+         "outcomes": [
+          {
+           "code": "3.8.1",
+           "text": "Research public health and environmental laws that protect personal health. Examples: laws dealing with dumping, polluting, littering, secondhand smoke, recycling"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "4",
+   "units": [
+    {
+     "id": "students-will-comprehend-concepts-related-to-hea",
+     "title": "Students will comprehend concepts related to health promotion and disease prevention to enhance health",
+     "topics": [
+      {
+       "id": "health-promotion",
+       "title": "Health Promotion",
+       "subtopics": [
+        {
+         "id": "health-behaviors",
+         "title": "Health Behaviors",
+         "outcomes": [
+          {
+           "code": "4.1.1",
+           "text": "Describe school practices that promote a safe and healthy environment."
+          }
+         ]
+        },
+        {
+         "id": "nutrition",
+         "title": "Nutrition &",
+         "outcomes": [
+          {
+           "code": "4.1.2",
+           "text": "Compare unhealthy and healthy eating patterns, including eating in moderation."
+          }
+         ]
+        },
+        {
+         "id": "drug-awareness",
+         "title": "Drug Awareness",
+         "outcomes": [
+          {
+           "code": "4.1.3",
+           "text": "Summarize shortterm and long-term effects of cigarettes and smokeless tobacco products."
+          }
+         ]
+        },
+        {
+         "id": "hygiene",
+         "title": "Hygiene",
+         "outcomes": [
+          {
+           "code": "4.1.4",
+           "text": "Summarize methods that prevent the spread of germs which cause communicable diseases."
+          }
+         ]
+        },
+        {
+         "id": "disease-prevention-health-care",
+         "title": "Disease Prevention & Health Care",
+         "outcomes": [
+          {
+           "code": "4.1.5",
+           "text": "Explain how to prevent or control common childhood illnesses and conditions. Examples: asthma, allergies, diabetes, epilepsy"
+          }
+         ]
+        },
+        {
+         "id": "safety",
+         "title": "Safety",
+         "outcomes": [
+          {
+           "code": "4.1.6",
+           "text": "Describe ways to prevent common childhood injuries. Examples: bicycle safety, wearing a seatbelt, ATV safety"
+          }
+         ]
+        },
+        {
+         "id": "dimensions-of-health",
+         "title": "Dimensions of Health",
+         "outcomes": [
+          {
+           "code": "4.1.7",
+           "text": "Compare and contrast the six dimensions of health."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "students-will-analyze-the-influence-of-family-pe",
+     "title": "Students will analyze the influence of family, peers, culture, media, technology, and other factors on health behaviors",
+     "topics": [
+      {
+       "id": "analyzing-influences",
+       "title": "Analyzing Influences",
+       "subtopics": [
+        {
+         "id": "family-peer-culture",
+         "title": "Family, Peer, & Culture",
+         "outcomes": [
+          {
+           "code": "4.2.1a",
+           "text": "Explain the importance of good communication within the family unit."
+          }
+         ]
+        },
+        {
+         "id": "media-technology",
+         "title": "Media & Technology",
+         "outcomes": [
+          {
+           "code": "4.2.2",
+           "text": "Explain how media influence thoughts, feelings, and health behaviors."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "students-will-demonstrate-the-ability-to-access-",
+     "title": "Students will demonstrate the ability to access valid information, products, and services to enhance health",
+     "topics": [
+      {
+       "id": "access-to-information",
+       "title": "Access to Information",
+       "subtopics": [
+        {
+         "id": "information-products-services",
+         "title": "Information, Products, & Services",
+         "outcomes": [
+          {
+           "code": "4.3.1",
+           "text": "Locate reliable health resources from home, school, and community. Examples: parent, school nurse, counselor"
+          },
+          {
+           "code": "4.3.2",
+           "text": "Compare healthrelated advertisements regarding “truth in advertising.”"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "students-will-demonstrate-the-ability-to-use-int",
+     "title": "Students will demonstrate the ability to use interpersonal communication skills to enhance health and avoid or reduce health risks",
+     "topics": [
+      {
+       "id": "interpersonal-communication",
+       "title": "Interpersonal Communication",
+       "subtopics": [
+        {
+         "id": "social",
+         "title": "Social",
+         "outcomes": [
+          {
+           "code": "4.4.1",
+           "text": "Demonstrate skills that communicate care, consideration, and respect for self and others. Example: helping those with disabilities"
+          }
+         ]
+        },
+        {
+         "id": "emotions-feelings",
+         "title": "Emotions & Feelings",
+         "outcomes": [
+          {
+           "code": "4.4.2",
+           "text": "Describe the various types of bullying and effects on the victim. Examples: types - through social media; effects - depression, suicide, eating disorders"
+          }
+         ]
+        },
+        {
+         "id": "conflict-resolution",
+         "title": "Conflict Resolution",
+         "outcomes": [
+          {
+           "code": "4.4.3",
+           "text": "Demonstrate how to avoid conflict and explain when it is necessary for an adult to intervene."
+          }
+         ]
+        },
+        {
+         "id": "refusal-skills",
+         "title": "Refusal Skills",
+         "outcomes": [
+          {
+           "code": "4.4.4",
+           "text": "Model refusal skills that avoid or reduce health risks. Examples: role playing how to walk away, call for help, say no"
+          },
+          {
+           "code": "4.4.5",
+           "text": "Describe how to avoid dangerous situations involving strangers and Internet safety. Example: refusing to go alone to meet online acquaintances"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "students-will-demonstrate-the-ability-to-use-dec",
+     "title": "Students will demonstrate the ability to use decision-making skills to enhance health",
+     "topics": [
+      {
+       "id": "decision-making",
+       "title": "Decision -Making",
+       "subtopics": [
+        {
+         "id": "problem-solving",
+         "title": "Problem Solving",
+         "outcomes": [
+          {
+           "code": "4.5.1",
+           "text": "Research healthrelated situations that require a thoughtful decision. Examples: food choices, drug use, alcohol consumption, smoking"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "students-will-demonstrate-the-ability-to-use-goa",
+     "title": "Students will demonstrate the ability to use goal-setting skills to enhance health",
+     "topics": [
+      {
+       "id": "goal-setting",
+       "title": "Goal -Setting",
+       "subtopics": [
+        {
+         "id": "self-awareness",
+         "title": "Self-Awareness",
+         "outcomes": [
+          {
+           "code": "4.6.1",
+           "text": "Describe ways to put a plan into place to achieve a goal."
+          }
+         ]
+        },
+        {
+         "id": "problem-solving",
+         "title": "Problem-Solving",
+         "outcomes": [
+          {
+           "code": "4.6.2",
+           "text": "Identify resources to assist in achieving personal health goals. Examples: YMCA, Boys/Girls Clubs, recreation center, school clubs"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "students-will-demonstrate-the-ability-to-practic",
+     "title": "Students will demonstrate the ability to practice health-enhancing behaviors and avoid or reduce health risks",
+     "topics": [
+      {
+       "id": "self-management",
+       "title": "Self-Management",
+       "subtopics": [
+        {
+         "id": "monitor-progress",
+         "title": "Monitor Progress",
+         "outcomes": [
+          {
+           "code": "4.7.1",
+           "text": "Demonstrate a variety of healthy practices and behaviors to maintain and improve personal health. Example: planning a daily menu based on the USDA food guidelines"
+          }
+         ]
+        },
+        {
+         "id": "injury-prevention",
+         "title": "Injury Prevention",
+         "outcomes": [
+          {
+           "code": "4.7.2",
+           "text": "Apply safety rules for engaging in outdoor physical activities requiring the use of special equipment. Examples: using a baseball or bicycle helmet, catcher’s mask, knee pads"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "students-will-demonstrate-the-ability-to-advocat",
+     "title": "Students will demonstrate the ability to advocate for personal, family, and community health",
+     "topics": [
+      {
+       "id": "advocacy",
+       "title": "Advocacy",
+       "subtopics": [
+        {
+         "id": "promote-healthy-habits",
+         "title": "Promote Healthy Habits",
+         "outcomes": [
+          {
+           "code": "4.8.1",
+           "text": "Describe health advocacy strategies. Examples: writing and recording public service announcements for school or community broadcasts, writing letter or email to editors of local media"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "5",
+   "units": [
+    {
+     "id": "students-will-comprehend-concepts-related-to-hea",
+     "title": "Students will comprehend concepts related to health promotion and disease prevention to enhance health",
+     "topics": [
+      {
+       "id": "health-promotion",
+       "title": "Health Promotion",
+       "subtopics": [
+        {
+         "id": "health-behaviors",
+         "title": "Health Behaviors",
+         "outcomes": [
+          {
+           "code": "5.1.1",
+           "text": "Draw conclusions about the relationship between healthy behaviors and personal health."
+          }
+         ]
+        },
+        {
+         "id": "nutrition",
+         "title": "Nutrition &",
+         "outcomes": [
+          {
+           "code": "5.1.2",
+           "text": "Utilize information on various food labels to determine nutritional value."
+          }
+         ]
+        },
+        {
+         "id": "drug-awareness",
+         "title": "Drug Awareness",
+         "outcomes": [
+          {
+           "code": "5.1.3",
+           "text": "Research illnesses and diseases associated with the use and abuse of tobacco, drugs, and alcohol."
+          }
+         ]
+        },
+        {
+         "id": "hygiene",
+         "title": "Hygiene",
+         "outcomes": [
+          {
+           "code": "5.1.4",
+           "text": "Develop strategies and skills used to promote personal hygiene."
+          }
+         ]
+        },
+        {
+         "id": "disease-prevention-health-care",
+         "title": "Disease Prevention & Health Care",
+         "outcomes": [
+          {
+           "code": "5.1.5",
+           "text": "Identify signs, symptoms, and risk factors for cancer, heart disease, obesity, and diabetes."
+          }
+         ]
+        },
+        {
+         "id": "safety",
+         "title": "Safety",
+         "outcomes": [
+          {
+           "code": "5.1.6",
+           "text": "Design a personal and class safety plan. Examples: home safety plan, fire drill, active shooter drill"
+          }
+         ]
+        },
+        {
+         "id": "dimensions-of-health",
+         "title": "Dimensions of Health",
+         "outcomes": [
+          {
+           "code": "5.1.7",
+           "text": "Design a personal health plan utilizing the six dimensions of health."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "students-will-analyze-the-influence-of-family-pe",
+     "title": "Students will analyze the influence of family, peers, culture, media, technology, and other factors on health behaviors",
+     "topics": [
+      {
+       "id": "analyzing-influences",
+       "title": "Analyzing Influences",
+       "subtopics": [
+        {
+         "id": "family-peer-culture",
+         "title": "Family, Peer, & Culture",
+         "outcomes": [
+          {
+           "code": "5.2.1a",
+           "text": "Describe how positive and negative influences from family, peers, and culture affect adolescents’ body acceptance during the changes of puberty."
+          }
+         ]
+        },
+        {
+         "id": "media-technology",
+         "title": "Media & Technology",
+         "outcomes": [
+          {
+           "code": "5.2.2",
+           "text": "Describe ways that technology can influence personal health. Example: step tracker device, heart rate monitor, blood sugar monitor"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "students-will-demonstrate-the-ability-to-access-",
+     "title": "Students will demonstrate the ability to access valid information, products, and services to enhance health",
+     "topics": [
+      {
+       "id": "access-to-information",
+       "title": "Access to Information",
+       "subtopics": [
+        {
+         "id": "information-products-services",
+         "title": "Information, Products, & Services",
+         "outcomes": [
+          {
+           "code": "5.3.1",
+           "text": "Collect information about health choices from home, school, and community. Examples: DARE, SADD, MADD, health-related agencies"
+          },
+          {
+           "code": "5.3.2",
+           "text": "Research factors to consider when selecting health products. Examples: cost, safety, effectiveness, side effects"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "students-will-demonstrate-the-ability-to-use-int",
+     "title": "Students will demonstrate the ability to use interpersonal communication skills to enhance health and avoid or reduce health risks",
+     "topics": [
+      {
+       "id": "interpersonal-communication",
+       "title": "Interpersonal Communication",
+       "subtopics": [
+        {
+         "id": "social",
+         "title": "Social",
+         "outcomes": [
+          {
+           "code": "5.4.1",
+           "text": "Utilize effective verbal and nonverbal communication skills to build and maintain relationships and enhance health."
+          }
+         ]
+        },
+        {
+         "id": "emotions-feelings",
+         "title": "Emotions & Feelings",
+         "outcomes": [
+          {
+           "code": "5.4.2",
+           "text": "Compare positive and negative ways to respond to conflict and bullying."
+          }
+         ]
+        },
+        {
+         "id": "conflict-resolution",
+         "title": "Conflict Resolution",
+         "outcomes": [
+          {
+           "code": "5.4.3",
+           "text": "Develop a class plan to prevent bullying in the school."
+          }
+         ]
+        },
+        {
+         "id": "refusal-skills",
+         "title": "Refusal Skills",
+         "outcomes": [
+          {
+           "code": "5.4.4",
+           "text": "Apply risk reduction behaviors to protect self and others from use of alcohol, tobacco, and other drugs."
+          },
+          {
+           "code": "5.4.5",
+           "text": "Apply the practice of keeping personal information private while online."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "students-will-demonstrate-the-ability-to-use-dec",
+     "title": "Students will demonstrate the ability to use decision-making skills to enhance health",
+     "topics": [
+      {
+       "id": "decision-making",
+       "title": "Decision -Making",
+       "subtopics": [
+        {
+         "id": "problem-solving",
+         "title": "Problem Solving",
+         "outcomes": [
+          {
+           "code": "5.5.1",
+           "text": "Predict the potential outcomes of possible options when making a health-related decision. Examples: sickness, death, suicide"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "students-will-demonstrate-the-ability-to-use-goa",
+     "title": "Students will demonstrate the ability to use goal-setting skills to enhance health",
+     "topics": [
+      {
+       "id": "goal-setting",
+       "title": "Goal -Setting",
+       "subtopics": [
+        {
+         "id": "self-awareness",
+         "title": "Self-Awareness",
+         "outcomes": [
+          {
+           "code": "5.6.1",
+           "text": "Create a personal health goal and track progress toward its achievement."
+          }
+         ]
+        },
+        {
+         "id": "problem-solving",
+         "title": "Problem-Solving",
+         "outcomes": [
+          {
+           "code": "5.6.2",
+           "text": "Identify resources in the school that may assist with achieving personal health goals."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "students-will-demonstrate-the-ability-to-practic",
+     "title": "Students will demonstrate the ability to practice health-enhancing behaviors and avoid or reduce health risks",
+     "topics": [
+      {
+       "id": "self-management",
+       "title": "Self-Management",
+       "subtopics": [
+        {
+         "id": "monitor-progress",
+         "title": "Monitor Progress",
+         "outcomes": [
+          {
+           "code": "5.7.1",
+           "text": "Implement a variety of healthy practices and behaviors that avoid or reduce health risks. Example: executing a plan to manage academic, extracurricular, and family"
+          }
+         ]
+        },
+        {
+         "id": "injury-prevention",
+         "title": "Injury Prevention",
+         "outcomes": [
+          {
+           "code": "5.7.2",
+           "text": "Propose safety precautions for Internet use and electronic gaming."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "students-will-demonstrate-the-ability-to-advocat",
+     "title": "Students will demonstrate the ability to advocate for personal, family, and community health",
+     "topics": [
+      {
+       "id": "advocacy",
+       "title": "Advocacy",
+       "subtopics": [
+        {
+         "id": "promote-healthy-habits",
+         "title": "Promote Healthy Habits",
+         "outcomes": [
+          {
+           "code": "5.8.1",
+           "text": "Implement a school health improvement project. Example: participating in the development of a school wellness policy, conducting survey of school health issues"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "6",
+   "units": [
+    {
+     "id": "students-will-comprehend-concepts-related-to-hea",
+     "title": "Students will comprehend concepts related to health promotion and disease prevention to enhance health",
+     "topics": [
+      {
+       "id": "health-promotion",
+       "title": "Health Promotion",
+       "subtopics": [
+        {
+         "id": "describe-the-interrelationship-between-social-an",
+         "title": "Describe the interrelationship between social and emotional health in adolescence",
+         "outcomes": [
+          {
+           "code": "6.1.1.a",
+           "text": "Identify how positive relationships can enhance each dimension of health."
+          },
+          {
+           "code": "6.1.1.b",
+           "text": "Explain how stress can affect personal"
+          }
+         ]
+        },
+        {
+         "id": "health-promotion",
+         "title": "Health Promotion",
+         "outcomes": [
+          {
+           "code": "6.1.2",
+           "text": "List ways to reduce or prevent injuries and illness. Examples: stretching techniques, regular exercise, equipment safety, flu shot, obtaining immunizations against HPV and other conditions"
+          },
+          {
+           "code": "6.1.3",
+           "text": "Describe benefits of practicing healthy behaviors. Examples: using household products only for intended purposes, dietary choices, physical activity, drinking plenty of water"
+          },
+          {
+           "code": "6.1.4",
+           "text": "Examine how personal health and wellness are affected positively or negatively by an individual’s surroundings."
+          },
+          {
+           "code": "6.1.5",
+           "text": "Identify how positive family practices and beliefs promote personal health. Examples: regular dental and vision check-ups, regular doctor visits"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "students-will-analyze-the-influence-of-family-pe",
+     "title": "Students will analyze the influence of family, peers, culture, media, technology, and other factors on health behaviors",
+     "topics": [
+      {
+       "id": "analyzing-influences",
+       "title": "Analyzing Influences",
+       "subtopics": [
+        {
+         "id": "examine-how-family-and-peers-influence-the-healt",
+         "title": "Examine how family and peers influence the health of adolescents. Examples: inactivity, fast food consumption",
+         "outcomes": [
+          {
+           "code": "6.2.1.a",
+           "text": "List personal family guidelines and rules that enhance health."
+          },
+          {
+           "code": "6.2.1.b",
+           "text": "List peer situations that enhance health."
+          }
+         ]
+        },
+        {
+         "id": "analyzing-influences",
+         "title": "Analyzing Influences",
+         "outcomes": [
+          {
+           "code": "6.2.2",
+           "text": "Identify health services offered in the school."
+          },
+          {
+           "code": "6.2.3",
+           "text": "Investigate how messages from media influence health behaviors. Examples: social media, fast food advertisements, editing photos to enhance physical appearance"
+          },
+          {
+           "code": "6.2.4",
+           "text": "Explain the influence of values and beliefs on individual health practices and behaviors. Examples: family values, religious beliefs"
+          },
+          {
+           "code": "6.2.5",
+           "text": "Identify how bad health choices result in poor personal health. Example: excessive caloric intake resulting in excess poundage"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "students-will-demonstrate-the-ability-to-access-",
+     "title": "Students will demonstrate the ability to access valid information, products, and services to enhance health",
+     "topics": [
+      {
+       "id": "access-to-information",
+       "title": "Access to Information",
+       "subtopics": [
+        {
+         "id": "analyze-the-validity-of-a-variety-of-internet-so",
+         "title": "Analyze the validity of a variety of Internet sources for health information. Examples: valid sites -.edu (education), .org (non-profit), or .gov (government); unreliable health information sites - .com (commercial)",
+         "outcomes": [
+          {
+           "code": "6.3.1.a",
+           "text": "Identify local resources for reliable health information. Examples: public health agencies, school nurse, health education teacher"
+          }
+         ]
+        },
+        {
+         "id": "access-to-information",
+         "title": "Access to Information",
+         "outcomes": [
+          {
+           "code": "6.3.2",
+           "text": "Determine the accessibility of reliable resources, personnel, and services that enhance health. Examples: school counselor, school nurse, dentist, 911"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "students-will-demonstrate-the-ability-to-use-int",
+     "title": "Students will demonstrate the ability to use interpersonal communication skills to enhance health and avoid or reduce health risks",
+     "topics": [
+      {
+       "id": "interpersonal-communication",
+       "title": "Interpersonal Communication",
+       "subtopics": [
+        {
+         "id": "apply-effective-verbal-and-nonverbal-communicati",
+         "title": "Apply effective verbal and nonverbal communication skills to enhance health. Examples: praise, high-five, fist bump, thumbs up",
+         "outcomes": [
+          {
+           "code": "6.4.1.a",
+           "text": "Demonstrate appropriate nonverbal communication skills someone could use when upset. Examples: walking away, remaining calm and quiet"
+          }
+         ]
+        },
+        {
+         "id": "interpersonal-communication",
+         "title": "Interpersonal Communication",
+         "outcomes": [
+          {
+           "code": "6.4.2",
+           "text": "List refusal and negotiation skills to avoid or reduce health risks. Examples: saying no, suggesting alternative choices"
+          },
+          {
+           "code": "6.4.3",
+           "text": "Determine when and how to utilize different communication strategies to deal with a variety of situations and conflicts. Examples: compromising, apologizing, addressing the issue"
+          },
+          {
+           "code": "6.4.4",
+           "text": "Apply risk reduction behaviors to protect self and others from use of alcohol, tobacco, and other drugs."
+          },
+          {
+           "code": "6.4.5",
+           "text": "Apply the practice of keeping personal information private while online."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "students-will-demonstrate-the-ability-to-use-dec",
+     "title": "Students will demonstrate the ability to use decision-making skills to enhance health",
+     "topics": [
+      {
+       "id": "decision-making",
+       "title": "Decision -Making",
+       "subtopics": [
+        {
+         "id": "decision-making",
+         "title": "Decision -Making",
+         "outcomes": [
+          {
+           "code": "6.5.1",
+           "text": "Describe situations that can help or hinder making a healthy decision. Examples: socio-economic status, access to medical services, availability of healthful foods, sedentary lifestyle"
+          },
+          {
+           "code": "6.5.2",
+           "text": "Distinguish between healthy and unhealthy alternatives to health-related issues or problems. Example: role-playing healthy ways to express anger and frustration"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "students-will-demonstrate-the-ability-to-use-goa",
+     "title": "Students will demonstrate the ability to use goal-setting skills to enhance health",
+     "topics": [
+      {
+       "id": "goal-setting",
+       "title": "Goal -Setting",
+       "subtopics": [
+        {
+         "id": "goal-setting",
+         "title": "Goal -Setting",
+         "outcomes": [
+          {
+           "code": "6.6.1",
+           "text": "Assess personal health practices. Examples: food choices, physical activity, hygiene"
+          }
+         ]
+        },
+        {
+         "id": "describe-how-setting-goals-to-increase-time-for-",
+         "title": "Describe how setting goals to increase time for physical activity and academic study may reduce stress",
+         "outcomes": [
+          {
+           "code": "6.6.2.a",
+           "text": "List activities that can improve physical"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "students-will-demonstrate-the-ability-to-practic",
+     "title": "Students will demonstrate the ability to practice health-enhancing behaviors and avoid or reduce health risks",
+     "topics": [
+      {
+       "id": "self-management",
+       "title": "Self-Management",
+       "subtopics": [
+        {
+         "id": "self-management",
+         "title": "Self-Management",
+         "outcomes": [
+          {
+           "code": "6.7.1",
+           "text": "Critique examples of responsible behaviors that reduce health risks. Examples: choosing healthy foods, participating in healthy activities, having regular medical and dental check-ups"
+          },
+          {
+           "code": "6.7.2",
+           "text": "Describe practices to avoid to reduce health risks to self and others. Examples: smoking or vaping, drinking alcohol, using illegal drugs, texting while driving"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "students-will-demonstrate-the-ability-to-advocat",
+     "title": "Students will demonstrate the ability to advocate for personal, family, and community health",
+     "topics": [
+      {
+       "id": "advocacy",
+       "title": "Advocacy",
+       "subtopics": [
+        {
+         "id": "advocacy",
+         "title": "Advocacy",
+         "outcomes": [
+          {
+           "code": "6.8.1",
+           "text": "State a health-enhancing position and support it with accurate information. Example: applying sunscreen has been proven to help prevent skin cancer"
+          },
+          {
+           "code": "6.8.2",
+           "text": "Identify ways by which health messages can be altered to appeal to different audiences. Example: modifying a snack advertisement to target children, teenagers, or adults"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "7",
+   "units": [
+    {
+     "id": "students-will-comprehend-concepts-related-to-hea",
+     "title": "Students will comprehend concepts related to health promotion and disease prevention to enhance health",
+     "topics": [
+      {
+       "id": "health-promotion",
+       "title": "Health Promotion",
+       "subtopics": [
+        {
+         "id": "summarize-the-interrelationship-of-emotional-soc",
+         "title": "Summarize the interrelationship of emotional, social, and physical health",
+         "outcomes": [
+          {
+           "code": "7.1.1.a",
+           "text": "Determine how peers may affect the six dimensions of health."
+          },
+          {
+           "code": "7.1.1.b",
+           "text": "Illustrate how changing family dynamics can affect health. Examples: divorce, relocating, death"
+          }
+         ]
+        },
+        {
+         "id": "predict-the-risk-of-injury-or-illness-if-engagin",
+         "title": "Predict the risk of injury or illness if engaging in unhealthy behaviors. Examples: riding in the bed of a pick-up truck, biking without a helmet, riding without a seat belt",
+         "outcomes": [
+          {
+           "code": "7.1.2.a",
+           "text": "Give examples of dangers associated with the use of alcohol, tobacco or other drugs."
+          }
+         ]
+        },
+        {
+         "id": "determine-barriers-to-practicing-healthy-behavio",
+         "title": "Determine barriers to practicing healthy behaviors. Examples: lack of finances, access to health services, social support",
+         "outcomes": [
+          {
+           "code": "7.1.3.a",
+           "text": "Examine how nutritional choices and psychological issues may lead to eating disorders."
+          }
+         ]
+        },
+        {
+         "id": "predict-the-consequences-of-engaging-in-unhealth",
+         "title": "Predict the consequences of engaging in unhealthy behaviors",
+         "outcomes": [
+          {
+           "code": "7.1.4.a",
+           "text": "Discuss ways to prevent obesity."
+          },
+          {
+           "code": "7.1.4.b",
+           "text": "Determine health risks associated with body pi"
+          }
+         ]
+        },
+        {
+         "id": "research-family-medical-history-and-how-it-impac",
+         "title": "Research family medical history and how it impacts personal health now and in the future",
+         "outcomes": [
+          {
+           "code": "7.1.5.a",
+           "text": "Discuss hereditary diseases that impact personal health and wellness."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "students-will-analyze-the-influence-of-family-pe",
+     "title": "Students will analyze the influence of family, peers, culture, media, technology, and other factors on health behaviors",
+     "topics": [
+      {
+       "id": "analyzing-influences",
+       "title": "Analyzing Influences",
+       "subtopics": [
+        {
+         "id": "analyzing-influences",
+         "title": "Analyzing Influences",
+         "outcomes": [
+          {
+           "code": "7.2.1",
+           "text": "Describe how family values and behaviors influence the health of adolescents. Examples: eating family meals daily, participating in physical activity, practicing open communication"
+          },
+          {
+           "code": "7.2.2",
+           "text": "Explain how communities can affect personal health practices and behaviors. Examples: public policies regarding water pollution, air quality, tobacco use"
+          },
+          {
+           "code": "7.2.3",
+           "text": "Describe how the media can send mixed messages about health. Examples: advertisements concerning tobacco, alcohol, and nutrition"
+          },
+          {
+           "code": "7.2.4",
+           "text": "Explain how school and public health policies can influence health promotion and disease prevention. Examples: vending machine selections, vaccination requirements, wellness checkups"
+          },
+          {
+           "code": "7.2.5",
+           "text": "Discuss how risky choices influence the likelihood of unhealthy behaviors, including tobacco use increasing the risk of using other drugs and peer pressure to consume alcohol."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "students-will-demonstrate-the-ability-to-access-",
+     "title": "Students will demonstrate the ability to access valid information, products, and services to enhance health",
+     "topics": [
+      {
+       "id": "access-to-information",
+       "title": "Access to Information",
+       "subtopics": [
+        {
+         "id": "distinguish-between-facts-and-myths-of-health-in",
+         "title": "Distinguish between facts and myths of health information",
+         "outcomes": [
+          {
+           "code": "7.3.1.a",
+           "text": "Examine beliefs concerning the transmission of HIV/AIDS; distinguish between fact and fallacy."
+          }
+         ]
+        },
+        {
+         "id": "access-to-information",
+         "title": "Access to Information",
+         "outcomes": [
+          {
+           "code": "7.3.2",
+           "text": "Demonstrate the ability to locate valid school and community health resources. Examples: health clinic, school wellness committee, school nurse, local health department"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "students-will-demonstrate-the-ability-to-use-int",
+     "title": "Students will demonstrate the ability to use interpersonal communication skills to enhance health and avoid or reduce health risks",
+     "topics": [
+      {
+       "id": "interpersonal-communication",
+       "title": "Interpersonal Communication",
+       "subtopics": [
+        {
+         "id": "interpersonal-communication",
+         "title": "Interpersonal Communication",
+         "outcomes": [
+          {
+           "code": "7.4.1",
+           "text": "Discuss effective conflict management or resolution strategies. Example: five steps to resolve conflict: calm down, state and understand the problem, apologize, promote solution finding, followup"
+          },
+          {
+           "code": "7.4.2",
+           "text": "Model refusal skills that avoid or reduce health risks. Examples: role playing how to effectively handle bullying, harassment, and peer pressure situations"
+          },
+          {
+           "code": "7.4.3",
+           "text": "Demonstrate skills that avoid conflict. Examples: asking someone respectfully not to smoke, practice active listening, reacting sensibly, communicating clearly, practicing patience"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "students-will-demonstrate-the-ability-to-use-dec",
+     "title": "Students will demonstrate the ability to use decision-making skills to enhance health",
+     "topics": [
+      {
+       "id": "decision-making",
+       "title": "Decision -Making",
+       "subtopics": [
+        {
+         "id": "distinguish-when-a-self-decision-should-be-made-",
+         "title": "Distinguish when a self-decision should be made or if help should be sought from a responsible adult. Examples: friends begin drinking, unsafe situation arises at school, suicidal friend, suspected abuse, seat belt use, suicidal thoughts",
+         "outcomes": [
+          {
+           "code": "7.5.1.a",
+           "text": "Determine when it is necessary to ask for assistance when making a health choice. Examples: friend begins to self- harm, negative peer pre"
+          }
+         ]
+        },
+        {
+         "id": "decision-making",
+         "title": "Decision -Making",
+         "outcomes": [
+          {
+           "code": "7.5.2",
+           "text": "Analyze healthy alternatives over unhealthy alternatives when making decisions. Examples: eating regular meals vs. skipping meals, choosing healthy snacks vs. junk food, getting proper exercise vs. too much screen time"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "students-will-demonstrate-the-ability-to-use-goa",
+     "title": "Students will demonstrate the ability to use goal-setting skills to enhance health",
+     "topics": [
+      {
+       "id": "goal-setting",
+       "title": "Goal -Setting",
+       "subtopics": [
+        {
+         "id": "goal-setting",
+         "title": "Goal -Setting",
+         "outcomes": [
+          {
+           "code": "7.6.1",
+           "text": "Assess current personal health practices and set a goal to adopt, maintain, or improve one or more health practices."
+          },
+          {
+           "code": "7.6.2",
+           "text": "Describe changing abilities, priorities, and responsibilities that impact personal health goals. Examples: age, injuries, changing jobs, leaving active school life to work, sedentary to walking, walking to jogging, jogging to running; eating poorly to making healthy food choices leading to weight loss or weight gain"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "students-will-demonstrate-the-ability-to-practic",
+     "title": "Students will demonstrate the ability to practice health-enhancing behaviors and avoid or reduce health risks",
+     "topics": [
+      {
+       "id": "self-management",
+       "title": "Self-Management",
+       "subtopics": [
+        {
+         "id": "self-management",
+         "title": "Self-Management",
+         "outcomes": [
+          {
+           "code": "7.7.1",
+           "text": "State the importance of assuming responsibility for personal health behaviors and avoiding risky behaviors. Examples: fast food vs. My Plate recommendations, screen time vs. active living"
+          },
+          {
+           "code": "7.7.2",
+           "text": "Demonstrate healthy practices and behaviors that will maintain or improve the health of self and others. Examples: practicing proper use of prescription medications, good nutrition, proper rest, regular exercise; avoiding driver distractions"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "students-will-demonstrate-the-ability-to-advocat",
+     "title": "Students will demonstrate the ability to advocate for personal, family, and community health",
+     "topics": [
+      {
+       "id": "advocacy",
+       "title": "Advocacy",
+       "subtopics": [
+        {
+         "id": "advocacy",
+         "title": "Advocacy",
+         "outcomes": [
+          {
+           "code": "7.8.1",
+           "text": "Create ways to influence and support others in making positive health choices. Examples: using social media campaigns, YouTube live campaign, posters; addressing local school board with the need for quality physical education and healthier food choices"
+          },
+          {
+           "code": "7.8.2",
+           "text": "Describe which advertising appeals are being used in various advertisements. Examples: bandwagon appeal, brand loyalty appeal, sex appeal"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "9-12",
+   "units": [
+    {
+     "id": "students-will-comprehend-concepts-related-to-hea",
+     "title": "Students will comprehend concepts related to health promotion and disease prevention to enhance health",
+     "topics": [
+      {
+       "id": "health-promotion",
+       "title": "Health Promotion",
+       "subtopics": [
+        {
+         "id": "health-promotion",
+         "title": "Health Promotion",
+         "outcomes": [
+          {
+           "code": "HE.1.1",
+           "text": "Predict how health literacy and behaviors can affect health status."
+          },
+          {
+           "code": "HE.1.3",
+           "text": "Analyze how genetics and family history can impact personal health. Examples: family history of heart disease, diabetes, cancer, or addictions"
+          },
+          {
+           "code": "HE.1.5",
+           "text": "Analyze the relationship between access to health care and health status. Examples: relationship between health insurance coverage and life expectancy; access to medical care including primary care physician, hospital, vaccine"
+          }
+         ]
+        },
+        {
+         "id": "describe-the-interrelationships-of-emotional-men",
+         "title": "Describe the interrelationships of emotional, mental, physical, social, spiritual, and environmental health",
+         "outcomes": [
+          {
+           "code": "HE.1.2.a",
+           "text": "Identify symptoms and methods of treatment of mental health disorders, including depression, and stress."
+          },
+          {
+           "code": "HE.1.2.b",
+           "text": "Identify warning signs and prevention strategies for suicide."
+          }
+         ]
+        },
+        {
+         "id": "propose-ways-to-prevent-reduce-and-treat-injurie",
+         "title": "Propose ways to prevent, reduce, and treat injuries and other health problems",
+         "outcomes": [
+          {
+           "code": "HE.1.4.a",
+           "text": "Determine when professional health services may be required for injury or disease."
+          },
+          {
+           "code": "HE.1.4.b",
+           "text": "Perform CPR, AED techniques, and First Aid procedures, including the principles of RICE (Rest, Ice, Compression, Elevation)."
+          }
+         ]
+        },
+        {
+         "id": "compare-and-contrast-the-benefits-of-and-barrier",
+         "title": "Compare and contrast the benefits of and barriers to practicing a variety of healthy behaviors",
+         "outcomes": [
+          {
+           "code": "HE.1.6.a",
+           "text": "Identify factors that impact nutritional choices. Examples: planning healthy meals, accessibility of healthy and unhealthy foods"
+          }
+         ]
+        },
+        {
+         "id": "analyze-the-potential-susceptibility-to-and-seve",
+         "title": "Analyze the potential susceptibility to and severity of injury or illness if engaging in unhealthy behaviors. Examples: possible consequences of driving under the influence, distracted driving, not taking required medications",
+         "outcomes": [
+          {
+           "code": "HE.1.7.a",
+           "text": "Explain the progression of HIV and AIDS."
+          },
+          {
+           "code": "HE.1.7.b",
+           "text": "Explain the progression of Type II diabetes."
+          }
+         ]
+        },
+        {
+         "id": "research-national-state-and-local-data-from-the-",
+         "title": "Research national, state and local data from the Centers for Disease Control and Prevention and the Youth Risk Behavior Survey for prioritizing prevention activities for the school and community",
+         "outcomes": [
+          {
+           "code": "HA.1.1.a",
+           "text": "Interpret the Youth Risk Behavior Survey data on the six priority adolescent risk behaviors."
+          },
+          {
+           "code": "HA.1.1.b",
+           "text": "Recognize the adolescent risk behaviors of high incidence among Alabama’s students."
+          }
+         ]
+        },
+        {
+         "id": "research-the-history-of-disease-in-the-world",
+         "title": "Research the history of disease in the world",
+         "outcomes": [
+          {
+           "code": "WH.1.1.a",
+           "text": "Identify causes of major outbreaks and epidemics in the history of the world."
+          },
+          {
+           "code": "WH.1.1.b",
+           "text": "List major breakthroughs in the prevention and cure of disease."
+          },
+          {
+           "code": "WH.1.1.c",
+           "text": "Assess the effects of current health issues on world populations."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "students-will-analyze-the-influence-of-family-pe",
+     "title": "Students will analyze the influence of family, peers, culture, media, technology, and other factors on health behaviors",
+     "topics": [
+      {
+       "id": "analyzing-influences",
+       "title": "Analyzing Influences",
+       "subtopics": [
+        {
+         "id": "analyze-the-influence-of-external-factors-on-hea",
+         "title": "Analyze the influence of external factors on health beliefs and behaviors",
+         "outcomes": [
+          {
+           "code": "HE.2.1.a",
+           "text": "Analyze how family, culture, school, and community influence the health practice and behaviors of individuals. Examples: explaining how holiday celebrations and traditions such as over indulgence in eating and consuming alcohol affect health behaviors; explaining how extra-curricular activities and schedules result in over-consumption of fast food"
+          },
+          {
+           "code": "HE.2.1.b",
+           "text": "Examine how peers influence healthy and unhealthy behaviors."
+          },
+          {
+           "code": "HE.2.1.c",
+           "text": "Critique the effect of media on personal and family health. Example: influence of media on teen body image, sexual activity, drugs, alcohol, violence, cyber-bullying"
+          },
+          {
+           "code": "HE.2.1.d",
+           "text": "Cite evidence of how public health policies and government regulations can influence health promotion and disease preve"
+          }
+         ]
+        },
+        {
+         "id": "analyzing-influences",
+         "title": "Analyzing Influences",
+         "outcomes": [
+          {
+           "code": "HE.2.2",
+           "text": "Describe the pros and cons of the use of technology as it affects personal, family, and community health. Examples: positive and negative influences on self-esteem, addiction to technology, personal interactions and relationships"
+          },
+          {
+           "code": "HE.2.3",
+           "text": "Analyze how the perceptions of norms influence healthy and unhealthy behaviors. Examples: addressing topics such as wearing safety equipment, teen pregnancy, drug abuse, suicide, cyber-bullying, weight management, potentially dangerous social media trend"
+          },
+          {
+           "code": "HE.2.4",
+           "text": "Critique the influence of personal values and beliefs on individual health practices and behaviors."
+          },
+          {
+           "code": "HE.2.5",
+           "text": "Analyze how some health risk behaviors can influence the likelihood of engaging in unhealthy behaviors. Examples: assessing the effects of driving under the influence, drinking alcohol which can lead to poor choices such as sexual behavior, poor nutrition, sedentary lif"
+          }
+         ]
+        },
+        {
+         "id": "examine-the-health-challenges-facing-the-world-t",
+         "title": "Examine the health challenges facing the world today",
+         "outcomes": [
+          {
+           "code": "WH.2.1.a",
+           "text": "Collect statistical data about health issues within various countries."
+          },
+          {
+           "code": "WH.2.1.b",
+           "text": "Investigate the influence of family, peers, and culture on possible solutions to world health issues."
+          },
+          {
+           "code": "WH.2.1.c",
+           "text": "Examine the links among health, economic development, media, and technology."
+          },
+          {
+           "code": "WH.2.1.d",
+           "text": "Research how disparities in socio-economic status can adversely affect health and access to health care globally."
+          },
+          {
+           "code": "WH.2.1.e",
+           "text": "Analyze the roles and responsibilities of government and non-governmental organizations in achieving global health."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "nfluences",
+       "title": "nfluences",
+       "subtopics": [
+        {
+         "id": "nfluences",
+         "title": "nfluences",
+         "outcomes": [
+          {
+           "code": "HA.2.1",
+           "text": "Analyze how health risk behaviors in the local school and community are influenced by family, peers and other factors. Examples: availability of alcohol and drugs; trends in adolescent sexual behavior; availability of fast food; access to fitness and recreational f"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "students-will-demonstrate-the-ability-to-access-",
+     "title": "Students will demonstrate the ability to access valid information, products, and services to enhance health",
+     "topics": [
+      {
+       "id": "access-to-information-products-services",
+       "title": "Access to Information/Products/ Services",
+       "subtopics": [
+        {
+         "id": "access-to-information-products-services",
+         "title": "Access to Information/Products/ Services",
+         "outcomes": [
+          {
+           "code": "HE.3.1",
+           "text": "Evaluate the accessibility and validity of health information, products, and services. Example: determining the credibility of resources both online and offline"
+          },
+          {
+           "code": "HE.3.2",
+           "text": "Analyze valid resources from home, school, and community that provide health information. Examples: websites, phone apps, media ads; rape, crisis, and suicide centers"
+          },
+          {
+           "code": "HE.3.3",
+           "text": "Explain laws relating to child pornography, age of consent, and sexual exploitation. Examples: information concerning the laws prohibiting sexual abuse; the need to report sexual abuse and legal options available to victims; laws relating to sexting and child pornography"
+          },
+          {
+           "code": "HE.3.4",
+           "text": "Explain current laws related to underage drinking, distracted driving, and driving under the influence."
+          }
+         ]
+        },
+        {
+         "id": "identify-the-necessity-to-seek-help-for-mental-a",
+         "title": "Identify the necessity to seek help for mental and emotional health problems Examples: mood disorders, depression, anxiety and suicidal ideation",
+         "outcomes": [
+          {
+           "code": "HE.3.5.a",
+           "text": "Locate information on how to cope with and rebuff unwanted physical and verbal exploitation by other persons."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "access-to-information",
+       "title": "Access to Information",
+       "subtopics": [
+        {
+         "id": "gather-information-and-interpret-data-for-planni",
+         "title": "Gather information and interpret data for planning prevention activities",
+         "outcomes": [
+          {
+           "code": "HA.3.1.a",
+           "text": "Identify concerns, beliefs, and areas of misinformation among peers."
+          },
+          {
+           "code": "HA.3.1.b",
+           "text": "Design program goals based on addressing misinformation, beliefs, and concerns among peers."
+          },
+          {
+           "code": "HA.3.1.c",
+           "text": "Utilize a focus group to change their school climate"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "access-to-information-products-and-services",
+       "title": "Access to Information, Products, and Services",
+       "subtopics": [
+        {
+         "id": "critique-health-intervention-programs-worldwide",
+         "title": "Critique health intervention programs worldwide",
+         "outcomes": [
+          {
+           "code": "WH.3.1.a",
+           "text": "Examine possible solutions to world health issues through available intervention programs."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "students-will-demonstrate-the-ability-to-use-int",
+     "title": "Students will demonstrate the ability to use interpersonal communication skills to enhance health and avoid or reduce health risks",
+     "topics": [
+      {
+       "id": "interpersonal-communication",
+       "title": "Interpersonal Communication",
+       "subtopics": [
+        {
+         "id": "interpersonal-communication",
+         "title": "Interpersonal Communication",
+         "outcomes": [
+          {
+           "code": "HE.4.1",
+           "text": "Describe skills for communicating effectively with family, peers, and others to enhance health. Examples: active listening, friendliness, confidence, positive feedback, empathy, respect, understanding nonverbal cues, responsivenes"
+          },
+          {
+           "code": "HE.4.2",
+           "text": "Demonstrate refusal, negotiation, and collaboration skills to enhance health and avoid or reduce health risks."
+          },
+          {
+           "code": "HE.4.4",
+           "text": "Demonstrate how to ask for and offer assistance to enhance the health of self and others. Examples: accessing crisis hotlines for suicide, sexual and physical abuse, and human trafficking; community resource materials"
+          },
+          {
+           "code": "WH.4.1",
+           "text": "Communicate with professionals who support world health to learn about the roles and responsibilities of their jobs."
+          },
+          {
+           "code": "WH.4.2",
+           "text": "Research the effectiveness of communicating prevention and management strategies to resolve world health issues. Examples: HIV/AIDS, mental health, sub"
+          }
+         ]
+        },
+        {
+         "id": "develop-strategies-to-prevent-manage-or-resolve-",
+         "title": "Develop strategies to prevent, manage, or resolve interpersonal conflicts without harming self or others",
+         "outcomes": [
+          {
+           "code": "HE.4.3.a",
+           "text": "Identify warning signs of unhealthy relationships."
+          },
+          {
+           "code": "HE.4.3.b",
+           "text": "Differentiate between negative and positive behaviors used in conflict situations."
+          }
+         ]
+        },
+        {
+         "id": "execute-communication-and-leadership-skills-to-e",
+         "title": "Execute communication and leadership skills to empower other students to be physically, socially, behaviorally, emotionally, and intellectually succes",
+         "outcomes": [
+          {
+           "code": "HA.4.1.a",
+           "text": "Examine the varied roles and responsibilities of student leaders."
+          },
+          {
+           "code": "HA.4.1.b",
+           "text": "Design program goals based on YRBS data and focus group results."
+          },
+          {
+           "code": "HA.4.1.c",
+           "text": "Research various leadership and peer training programs and opportunities."
+          },
+          {
+           "code": "HA.4.1.d",
+           "text": "Apply peer helping training skills in assigned schools settings."
+          },
+          {
+           "code": "HA.4.1.e",
+           "text": "Demonstrate leadership skills by advocating for health-related changes in the school or community."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "students-will-demonstrate-the-ability-to-use-dec",
+     "title": "Students will demonstrate the ability to use decision-making skills to enhance health",
+     "topics": [
+      {
+       "id": "decision-making",
+       "title": "Decision -Making",
+       "subtopics": [
+        {
+         "id": "decision-making-1-of-2",
+         "title": "Decision -Making (1 of 2)",
+         "outcomes": [
+          {
+           "code": "HE.5.1",
+           "text": "Examine barriers that can hinder healthy decision-making. Examples: peer pressure, cultural pressures, socio-economic status"
+          },
+          {
+           "code": "HE.5.3",
+           "text": "Justify the appropriateness of individual vs. collaborative decision-making in various situations. Example: explaining when input from a health professional, counselor, or trusted adult would be helpful"
+          },
+          {
+           "code": "HE.5.5",
+           "text": "Recommend personal strategies to avoid violence or criminal activities."
+          },
+          {
+           "code": "HA.5.2",
+           "text": "Develop and implement a school-wide plan or campaign to encourage good decision-making skills."
+          }
+         ]
+        },
+        {
+         "id": "develop-a-thoughtful-decision-making-process-in-",
+         "title": "Develop a thoughtful decision-making process in health-related situations",
+         "outcomes": [
+          {
+           "code": "HE.5.2.a",
+           "text": "Predict the potential short-term and long-term impact of various alternatives on self and others."
+          },
+          {
+           "code": "HE.5.2.b",
+           "text": "Identify warning signs of suicide in self and others and discuss effective coping skills."
+          },
+          {
+           "code": "HE.5.2.c",
+           "text": "Demonstrate refusal skills and explain when to use them in high risk situations. Examples: Saying no to sex"
+          }
+         ]
+        },
+        {
+         "id": "analyze-the-benefits-of-practicing-sexual-abstin",
+         "title": "Analyze the benefits of practicing sexual abstinence",
+         "outcomes": [
+          {
+           "code": "HE.5.4.a",
+           "text": "Identify the types, symptoms, and risks of sexually transmitted diseases (STDs)."
+          },
+          {
+           "code": "HE.5.4.b",
+           "text": "Assess the consequences of teen pregnancy."
+          }
+         ]
+        },
+        {
+         "id": "identify-decision-making-skills-used-in-situatio",
+         "title": "Identify decision-making skills used in situations that put adolescents and teens at risk. Examples: recording a fight and posting it on a social media; seeing a friend smoking marijuana or drinking alcohol; hearing a friend talk about shoplifting; hearing plans about a weekend party that will include drugs and/or alcohol; pressure to have sexual relatio",
+         "outcomes": [
+          {
+           "code": "HA.5.1.a",
+           "text": "Identify consequences of making poor decisions to join in or ignore risky situations."
+          },
+          {
+           "code": "HA.5.1.b",
+           "text": "Recognize the differences between situations in which one has control vs. a lack of control."
+          },
+          {
+           "code": "HA.5.1.c",
+           "text": "Review the importance of successfully managing decision-making skills when confronted with uncomfortable, risky, or dangerous situation"
+          }
+         ]
+        },
+        {
+         "id": "decision-making-2-of-2",
+         "title": "Decision -Making (2 of 2)",
+         "outcomes": [
+          {
+           "code": "WH.5.1",
+           "text": "Evaluate alternatives to current world health programs and practices."
+          },
+          {
+           "code": "WH.5.2",
+           "text": "Examine barriers that hinder decision-making skills related to world health issues. Examples: politics, religious beliefs, culture"
+          },
+          {
+           "code": "WH.5.3",
+           "text": "Predict the potential short- and long-term impacts of poor decision-making on world health issues. Examples: rising cost of medical care"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "students-will-demonstrate-the-ability-to-use-goa",
+     "title": "Students will demonstrate the ability to use goal-setting skills to enhance health",
+     "topics": [
+      {
+       "id": "goal-setting",
+       "title": "Goal -Setting",
+       "subtopics": [
+        {
+         "id": "goal-setting",
+         "title": "Goal -Setting",
+         "outcomes": [
+          {
+           "code": "HE.6.1",
+           "text": "Assess personal health status and health practices to establish a baseline for setting health and fitness goals. Examples: blood pressure, resting heart rate, BMI, vaccination status"
+          },
+          {
+           "code": "HE.6.2",
+           "text": "Set long-term goals for achieving optimal health and implement short-term steps to reach the goals. Examples: assess current health and fitness status, develop plans based on assessment results, implement and monitor p"
+          },
+          {
+           "code": "HA.6.1",
+           "text": "Conduct a school-wide survey to assess the use of personal health practices."
+          },
+          {
+           "code": "HA.6.2",
+           "text": "Compile survey results to develop a school-wide campaign to advocate the use of beneficial personal health practices."
+          },
+          {
+           "code": "HA.6.3",
+           "text": "Implement strategies to address weak areas and critical needs based on survey results."
+          },
+          {
+           "code": "WH.6.1",
+           "text": "Research the needs, strengths, and risks of long-term goals for addressing world health issues."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "students-will-demonstrate-the-ability-to-practic",
+     "title": "Students will demonstrate the ability to practice health-enhancing behaviors and avoid or reduce health risks",
+     "topics": [
+      {
+       "id": "self-management",
+       "title": "Self-Management",
+       "subtopics": [
+        {
+         "id": "analyze-the-role-of-individual-responsibility-fo",
+         "title": "Analyze the role of individual responsibility for enhancing health",
+         "outcomes": [
+          {
+           "code": "HE.7.1.a",
+           "text": "Describe healthy practices and behaviors that will maintain or improve the health of self and others. Examples: effective communication skills and safety techniques, reading and understanding medicine labels, immunizations, wellness checkups and compliance"
+          },
+          {
+           "code": "HE.7.1.b",
+           "text": "Identify negative behaviors that increase health risks to self and others. Examples: distracted driving, drinking and driving, illegal drug use, vaping, smoking, unprotected sex, behaviors resulting in intentional or unintentional injuries, poor eati"
+          },
+          {
+           "code": "HE.7.1.c",
+           "text": "Compare and contrast the responsibilities of both parents in teen parenting. Examples: shared responsibilities; social, financial and educational challenges"
+          }
+         ]
+        },
+        {
+         "id": "self-management",
+         "title": "Self-Management",
+         "outcomes": [
+          {
+           "code": "HA.7.1",
+           "text": "Analyze the role of individual responsibility for enhancing health."
+          },
+          {
+           "code": "HA.7.2",
+           "text": "Demonstrate a variety of healthy practices and behaviors that will maintain or improve the health of self and peers."
+          },
+          {
+           "code": "WH.7.1",
+           "text": "Analyze individual responsibility for enhancing global health. Example: explaining how individual actions can help or hinder the eradication of communicable diseases"
+          },
+          {
+           "code": "WH.7.2",
+           "text": "Compare healthy practices and behaviors of people from various world-wide locations. Examples: immunization"
+          }
+         ]
+        },
+        {
+         "id": "identify-a-variety-of-behaviors-to-avoid-or-redu",
+         "title": "Identify a variety of behaviors to avoid or reduce health risks to self and others",
+         "outcomes": [
+          {
+           "code": "HA.7.3.a",
+           "text": "Plan a school or community campaign designed to encourage health-enhancing behaviors."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "students-will-demonstrate-the-ability-to-advocat",
+     "title": "Students will demonstrate the ability to advocate for personal, family, and community health",
+     "topics": [
+      {
+       "id": "advocacy",
+       "title": "Advocacy",
+       "subtopics": [
+        {
+         "id": "advocacy-1-of-2",
+         "title": "Advocacy (1 of 2)",
+         "outcomes": [
+          {
+           "code": "HE.8.1",
+           "text": "Utilize accurate peer and societal norms to formulate a health enhancing message. Example: using data on local health issues to develop a positive message concerning a topic"
+          },
+          {
+           "code": "HE.8.2",
+           "text": "Formulate and implement a list of innovative ways to influence and support others in making positive health choices. Examples: wearing colors for awareness, speaking to a group or individuals, making good nutritional choices"
+          },
+          {
+           "code": "HE.8.3",
+           "text": "Work cooperatively as an advocate for improving personal and community health. Examples: student-led events, community fundraisers, national events, signing a pledge to abstain from alcohol"
+          },
+          {
+           "code": "HE.8.4",
+           "text": "Adapt health messages and communication techniques to a specific target audience. Example: producing a social media post to encourage a positive health behavior"
+          },
+          {
+           "code": "HA.8.1",
+           "text": "Use school-wide survey data to develop positive messages concerning health topics, including exercise, adequate sleep, and healthy eati"
+          }
+         ]
+        },
+        {
+         "id": "advocacy-2-of-2",
+         "title": "Advocacy (2 of 2)",
+         "outcomes": [
+          {
+           "code": "HA.8.2",
+           "text": "Lead or participate in community-wide health-related events. Examples: Relay for Life, 5K run, Longest Day activities (Alzheimer’s Association)"
+          },
+          {
+           "code": "HA.8.3",
+           "text": "Communicate to peer or community groups on health-related topics."
+          },
+          {
+           "code": "WH.8.1",
+           "text": "Formulate innovative ways to influence and support people in other countries in making positive health choices."
+          },
+          {
+           "code": "WH.8.2",
+           "text": "Work cooperatively as an advocate for improving world-wide health. Examples: participating in international events such as Earth Day and World AIDS Day"
+          },
+          {
+           "code": "WH.8.3",
+           "text": "Adapt health messages and communication techniques to a specific global audience."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "build": {
+  "builtAt": "2026-10-14T16:20:38.215Z",
+  "model": "none",
+  "usd": 0,
+  "expectedCodes": 273,
+  "coverage": 1,
+  "missingCodes": [],
+  "counts": {
+   "grades": 9,
+   "units": 72,
+   "topics": 75,
+   "subtopics": 176,
+   "outcomes": 273
+  },
+  "warnings": [
+   "unit \"Students will demonstrate the ability to use decision-making skills to enhance health\" (grade K) has a single outcome",
+   "unit \"Students will demonstrate the ability to advocate for personal, family, and community health\" (grade K) has a single outcome",
+   "unit \"Students will demonstrate the ability to use decision-making skills to enhance health\" (grade 1) has a single outcome",
+   "unit \"Students will demonstrate the ability to advocate for personal, family, and community health\" (grade 1) has a single outcome",
+   "unit \"Students will demonstrate the ability to use decision-making skills to enhance health\" (grade 2) has a single outcome",
+   "unit \"Students will demonstrate the ability to advocate for personal, family, and community health\" (grade 2) has a single outcome",
+   "unit \"Students will demonstrate the ability to use decision-making skills to enhance health\" (grade 3) has a single outcome",
+   "unit \"Students will demonstrate the ability to advocate for personal, family, and community health\" (grade 3) has a single outcome",
+   "unit \"Students will demonstrate the ability to use decision-making skills to enhance health\" (grade 4) has a single outcome",
+   "unit \"Students will demonstrate the ability to advocate for personal, family, and community health\" (grade 4) has a single outcome",
+   "unit \"Students will demonstrate the ability to use decision-making skills to enhance health\" (grade 5) has a single outcome",
+   "unit \"Students will demonstrate the ability to advocate for personal, family, and community health\" (grade 5) has a single outcome"
+  ]
+ }
+}

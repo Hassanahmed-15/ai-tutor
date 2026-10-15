@@ -1,0 +1,1564 @@
+{
+ "id": "us-ap-macroeconomics",
+ "region": "US",
+ "framework": "AP Macroeconomics Course and Exam Description (effective fall 2026)",
+ "board": "College Board",
+ "qualification": "AP",
+ "subject": "Macroeconomics",
+ "syllabusCode": null,
+ "gradeSystem": "course",
+ "source": {
+  "urls": [
+   "https://apcentral.collegeboard.org/media/pdf/ap-macroeconomics-course-and-exam-description.pdf",
+   "https://apcentral.collegeboard.org/courses/ap-macroeconomics"
+  ],
+  "publisher": "College Board",
+  "licence": "© College Board; structure + our own wording only",
+  "firstExam": "2027"
+ },
+ "grades": [
+  {
+   "grade": "all",
+   "units": [
+    {
+     "id": "unit-1-basic-economic-concepts",
+     "title": "Unit 1: Basic Economic Concepts",
+     "topics": [
+      {
+       "id": "1-1-scarcity",
+       "title": "1.1 Scarcity",
+       "subtopics": [
+        {
+         "id": "scarcity",
+         "title": "Scarcity",
+         "outcomes": [
+          {
+           "code": "MOD-1.A",
+           "text": "Define scarcity and economic resources."
+          },
+          {
+           "code": "MOD-1.A.1",
+           "text": "Explain that scarce resources force individuals and societies to make choices."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "1-2-opportunity-cost-and-the-ppc",
+       "title": "1.2 Opportunity Cost and the PPC",
+       "subtopics": [
+        {
+         "id": "opportunity-cost-and-the-ppc",
+         "title": "Opportunity Cost and the PPC",
+         "outcomes": [
+          {
+           "code": "MOD-1.B",
+           "text": "Define the production possibilities curve and use it to show opportunity cost, tradeoffs, efficiency and growth, and calculate opportunity cost."
+          },
+          {
+           "code": "MOD-1.B.1",
+           "text": "Describe the PPC as a model of tradeoffs in allocating resources."
+          },
+          {
+           "code": "MOD-1.B.2",
+           "text": "Use the PPC to illustrate scarcity, opportunity cost, efficiency, unused resources and growth or contraction."
+          },
+          {
+           "code": "MOD-1.B.3",
+           "text": "Relate the PPC's shape to constant, increasing or decreasing opportunity costs."
+          },
+          {
+           "code": "MOD-1.B.4",
+           "text": "Explain that the PPC shifts with changes in factors of production or technology."
+          },
+          {
+           "code": "MOD-1.B.5",
+           "text": "Show that economic growth shifts the PPC outward."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "1-3-comparative-advantage-and-gains-from-trade",
+       "title": "1.3 Comparative Advantage and Gains from Trade",
+       "subtopics": [
+        {
+         "id": "comparative-advantage-and-gains-from-trade",
+         "title": "Comparative Advantage and Gains from Trade",
+         "outcomes": [
+          {
+           "code": "MKT-1.A",
+           "text": "Define and determine absolute and comparative advantage from data."
+          },
+          {
+           "code": "MKT-1.A.1",
+           "text": "Define absolute advantage as producing more with the same resources."
+          },
+          {
+           "code": "MKT-1.A.2",
+           "text": "Define comparative advantage as producing at lower opportunity cost."
+          },
+          {
+           "code": "MKT-1.B",
+           "text": "Explain how specialization by comparative advantage creates gains from trade and calculate mutually beneficial terms of trade."
+          },
+          {
+           "code": "MKT-1.B.1",
+           "text": "Explain how specialization and exchange allow consumption beyond the PPC."
+          },
+          {
+           "code": "MKT-1.B.2",
+           "text": "Show that opportunity costs set the range of terms of trade that benefit both sides."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "1-4-demand",
+       "title": "1.4 Demand",
+       "subtopics": [
+        {
+         "id": "demand",
+         "title": "Demand",
+         "outcomes": [
+          {
+           "code": "MKT-2.A",
+           "text": "Define the law of demand and explain the price and quantity demanded relationship."
+          },
+          {
+           "code": "MKT-2.A.1",
+           "text": "State the inverse price and quantity demanded relationship giving a downward-sloping demand curve."
+          },
+          {
+           "code": "MKT-2.B",
+           "text": "Explain the determinants of demand."
+          },
+          {
+           "code": "MKT-2.B.1",
+           "text": "Show that factors like income shift the market demand curve."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "1-5-supply",
+       "title": "1.5 Supply",
+       "subtopics": [
+        {
+         "id": "supply",
+         "title": "Supply",
+         "outcomes": [
+          {
+           "code": "MKT-2.C",
+           "text": "Define the law of supply and explain the price and quantity supplied relationship."
+          },
+          {
+           "code": "MKT-2.C.1",
+           "text": "State the positive price and quantity supplied relationship giving an upward-sloping supply curve."
+          },
+          {
+           "code": "MKT-2.D",
+           "text": "Explain the determinants of supply."
+          },
+          {
+           "code": "MKT-2.D.1",
+           "text": "Show that factors like input prices shift the market supply curve."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "1-6-market-equilibrium-and-changes",
+       "title": "1.6 Market Equilibrium and Changes",
+       "subtopics": [
+        {
+         "id": "market-equilibrium-and-changes",
+         "title": "Market Equilibrium and Changes",
+         "outcomes": [
+          {
+           "code": "MKT-2.E",
+           "text": "Define market equilibrium using graphs."
+          },
+          {
+           "code": "MKT-2.E.1",
+           "text": "Find equilibrium at the price where quantity demanded equals quantity supplied."
+          },
+          {
+           "code": "MKT-2.F",
+           "text": "Define surplus and shortage, explain price adjustment and calculate imbalances."
+          },
+          {
+           "code": "MKT-2.F.1",
+           "text": "Explain that market forces push prices toward equilibrium when there are surpluses or shortages."
+          },
+          {
+           "code": "MKT-2.G",
+           "text": "Explain how demand and supply changes alter equilibrium price and quantity."
+          },
+          {
+           "code": "MKT-2.G.1",
+           "text": "Show that changes in determinants of supply or demand give a new equilibrium."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "unit-2-economic-indicators-and-the-business-cycl",
+     "title": "Unit 2: Economic Indicators and the Business Cycle",
+     "topics": [
+      {
+       "id": "2-1-the-circular-flow-and-gdp",
+       "title": "2.1 The Circular Flow and GDP",
+       "subtopics": [
+        {
+         "id": "the-circular-flow-and-gdp",
+         "title": "The Circular Flow and GDP",
+         "outcomes": [
+          {
+           "code": "MEA-1.A",
+           "text": "Define how GDP is measured and its components using the circular flow, and calculate nominal GDP."
+          },
+          {
+           "code": "MEA-1.A.1",
+           "text": "Describe GDP as a measure of the economy's final output."
+          },
+          {
+           "code": "MEA-1.A.2",
+           "text": "Represent GDP as a flow of income and expenditure in the circular flow diagram."
+          },
+          {
+           "code": "MEA-1.A.3",
+           "text": "Name the expenditures, income and value-added ways of measuring GDP."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "2-2-limitations-of-gdp",
+       "title": "2.2 Limitations of GDP",
+       "subtopics": [
+        {
+         "id": "limitations-of-gdp",
+         "title": "Limitations of GDP",
+         "outcomes": [
+          {
+           "code": "MEA-1.B",
+           "text": "Define the limitations of GDP."
+          },
+          {
+           "code": "MEA-1.B.1",
+           "text": "Explain that GDP is useful but misses things like nonmarket transactions."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "2-3-unemployment",
+       "title": "2.3 Unemployment",
+       "subtopics": [
+        {
+         "id": "unemployment-part-1",
+         "title": "Unemployment, part 1",
+         "outcomes": [
+          {
+           "code": "MEA-1.C",
+           "text": "Define the labor force, unemployment rate and participation rate, explain what moves them, and calculate them."
+          },
+          {
+           "code": "MEA-1.C.1",
+           "text": "Define the unemployment rate as the share of the labor force without work."
+          },
+          {
+           "code": "MEA-1.C.2",
+           "text": "Define the labor force participation rate as the share of adults in the labor force."
+          },
+          {
+           "code": "MEA-1.D",
+           "text": "Define the limitations of the unemployment rate."
+          },
+          {
+           "code": "MEA-1.D.1",
+           "text": "Explain why the rate can understate joblessness by excluding discouraged and part-time workers."
+          }
+         ]
+        },
+        {
+         "id": "unemployment-part-2",
+         "title": "Unemployment, part 2",
+         "outcomes": [
+          {
+           "code": "MEA-1.E",
+           "text": "Define types of unemployment and the natural rate, and explain changes in them."
+          },
+          {
+           "code": "MEA-1.E.1",
+           "text": "Distinguish cyclical, frictional and structural unemployment."
+          },
+          {
+           "code": "MEA-1.E.2",
+           "text": "Define the natural rate as frictional plus structural unemployment at full-employment output."
+          },
+          {
+           "code": "MEA-1.E.3",
+           "text": "Identify cyclical unemployment as the gap between actual and natural rates."
+          },
+          {
+           "code": "MEA-1.E.4",
+           "text": "Explain that the natural rate drifts over time with labor force changes."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "2-4-price-indices-and-inflation",
+       "title": "2.4 Price Indices and Inflation",
+       "subtopics": [
+        {
+         "id": "price-indices-and-inflation",
+         "title": "Price Indices and Inflation",
+         "outcomes": [
+          {
+           "code": "MEA-1.F",
+           "text": "Define CPI, inflation, deflation, disinflation and real variables, use price indices to compare over time, and calculate CPI, inflation and real changes."
+          },
+          {
+           "code": "MEA-1.F.1",
+           "text": "Describe the CPI as the income needed to keep the same living standard under new prices."
+          },
+          {
+           "code": "MEA-1.F.2",
+           "text": "Describe the CPI as the cost of a fixed basket relative to a base year."
+          },
+          {
+           "code": "MEA-1.F.3",
+           "text": "Calculate the inflation rate as the percentage change in a price index like CPI or the GDP deflator."
+          },
+          {
+           "code": "MEA-1.F.4",
+           "text": "Deflate nominal variables by the price level to get real variables."
+          },
+          {
+           "code": "MEA-1.G",
+           "text": "Define the shortcomings of the CPI as a measure of inflation."
+          },
+          {
+           "code": "MEA-1.G.1",
+           "text": "Explain that substitution bias makes the CPI overstate true inflation."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "2-5-costs-of-inflation",
+       "title": "2.5 Costs of Inflation",
+       "subtopics": [
+        {
+         "id": "costs-of-inflation",
+         "title": "Costs of Inflation",
+         "outcomes": [
+          {
+           "code": "MEA-1.H",
+           "text": "Explain the costs of unexpected inflation or deflation to individuals and the economy."
+          },
+          {
+           "code": "MEA-1.H.1",
+           "text": "Explain how unexpected inflation redistributes wealth, such as from lenders to borrowers."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "2-6-real-v-nominal-gdp",
+       "title": "2.6 Real v. Nominal GDP",
+       "subtopics": [
+        {
+         "id": "real-v-nominal-gdp",
+         "title": "Real v. Nominal GDP",
+         "outcomes": [
+          {
+           "code": "MEA-1.I",
+           "text": "Define nominal and real GDP."
+          },
+          {
+           "code": "MEA-1.I.1",
+           "text": "Contrast nominal GDP as spending on output with real GDP as amount produced."
+          },
+          {
+           "code": "MEA-1.I.2",
+           "text": "Contrast current-price and constant-price measures of output."
+          },
+          {
+           "code": "MEA-1.J",
+           "text": "Calculate real GDP and the GDP deflator."
+          },
+          {
+           "code": "MEA-1.J.1",
+           "text": "Describe base-year-price real GDP and why it can overstate growth."
+          },
+          {
+           "code": "MEA-1.J.2",
+           "text": "Convert nominal GDP to real GDP with the GDP deflator."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "2-7-business-cycles",
+       "title": "2.7 Business Cycles",
+       "subtopics": [
+        {
+         "id": "business-cycles",
+         "title": "Business Cycles",
+         "outcomes": [
+          {
+           "code": "MEA-2.A",
+           "text": "Define and explain turning points and phases of the business cycle using graphs and data."
+          },
+          {
+           "code": "MEA-2.A.1",
+           "text": "Describe business cycles as output and employment swings from aggregate supply or demand changes."
+          },
+          {
+           "code": "MEA-2.A.2",
+           "text": "Name the phases as recession and expansion."
+          },
+          {
+           "code": "MEA-2.A.3",
+           "text": "Name the turning points as peak and trough."
+          },
+          {
+           "code": "MEA-2.A.4",
+           "text": "Define the output gap as actual minus potential output."
+          },
+          {
+           "code": "MEA-2.A.5",
+           "text": "Equate potential output with full-employment output at the natural unemployment rate."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "unit-3-national-income-and-price-determination",
+     "title": "Unit 3: National Income and Price Determination",
+     "topics": [
+      {
+       "id": "3-1-aggregate-demand-ad",
+       "title": "3.1 Aggregate Demand (AD)",
+       "subtopics": [
+        {
+         "id": "aggregate-demand-ad",
+         "title": "Aggregate Demand (AD)",
+         "outcomes": [
+          {
+           "code": "MOD-2.A",
+           "text": "Define the AD curve and explain its slope and determinants."
+          },
+          {
+           "code": "MOD-2.A.1",
+           "text": "Describe AD as price level versus total demand from households, firms, government and the rest of the world."
+          },
+          {
+           "code": "MOD-2.A.2",
+           "text": "Explain AD's downward slope by the real wealth, interest rate and exchange rate effects."
+          },
+          {
+           "code": "MOD-2.A.3",
+           "text": "Show that non-price-level changes in AD components shift the AD curve."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "3-2-multipliers",
+       "title": "3.2 Multipliers",
+       "subtopics": [
+        {
+         "id": "multipliers",
+         "title": "Multipliers",
+         "outcomes": [
+          {
+           "code": "MOD-2.B",
+           "text": "Define the expenditure and tax multipliers, MPC and MPS, and calculate how spending and tax changes move real GDP."
+          },
+          {
+           "code": "MOD-2.B.1",
+           "text": "Explain that a $1 autonomous spending change triggers further spending and output changes."
+          },
+          {
+           "code": "MOD-2.B.2",
+           "text": "Use the expenditure multiplier to size an AD change from a component change."
+          },
+          {
+           "code": "MOD-2.B.3",
+           "text": "Use the tax multiplier to size an AD change from a tax change."
+          },
+          {
+           "code": "MOD-2.B.4",
+           "text": "Show that both multipliers depend on the marginal propensity to consume."
+          },
+          {
+           "code": "MOD-2.B.5",
+           "text": "Define MPC as change in consumption over change in disposable income, with MPC plus MPS equal to one."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "3-3-short-run-aggregate-supply-sras",
+       "title": "3.3 Short-Run Aggregate Supply (SRAS)",
+       "subtopics": [
+        {
+         "id": "short-run-aggregate-supply-sras",
+         "title": "Short-Run Aggregate Supply (SRAS)",
+         "outcomes": [
+          {
+           "code": "MOD-2.C",
+           "text": "Define the SRAS curve and explain its slope and determinants."
+          },
+          {
+           "code": "MOD-2.C.1",
+           "text": "Describe SRAS as price level versus quantity of output supplied."
+          },
+          {
+           "code": "MOD-2.C.2",
+           "text": "Explain SRAS's upward slope by sticky wages and prices."
+          },
+          {
+           "code": "MOD-2.C.3",
+           "text": "Show that production cost changes, such as inflation expectations, shift SRAS."
+          },
+          {
+           "code": "MOD-2.D",
+           "text": "Explain how moving along SRAS links the price level to unemployment."
+          },
+          {
+           "code": "MOD-2.D.1",
+           "text": "Explain the short-run tradeoff between inflation and unemployment along SRAS."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "3-4-long-run-aggregate-supply-lras",
+       "title": "3.4 Long-Run Aggregate Supply (LRAS)",
+       "subtopics": [
+        {
+         "id": "long-run-aggregate-supply-lras",
+         "title": "Long-Run Aggregate Supply (LRAS)",
+         "outcomes": [
+          {
+           "code": "MOD-2.E",
+           "text": "Define the short run and the long run."
+          },
+          {
+           "code": "MOD-2.E.1",
+           "text": "Contrast fixed short-run input prices with flexible long-run wages and prices, and note no long-run inflation-unemployment tradeoff."
+          },
+          {
+           "code": "MOD-2.F",
+           "text": "Define the LRAS curve."
+          },
+          {
+           "code": "MOD-2.F.1",
+           "text": "Link LRAS to the PPC as maximum sustainable capacity."
+          },
+          {
+           "code": "MOD-2.F.2",
+           "text": "Explain why LRAS is vertical at full-employment output."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "3-5-equilibrium-in-the-ad-as-model",
+       "title": "3.5 Equilibrium in the AD-AS Model",
+       "subtopics": [
+        {
+         "id": "equilibrium-in-the-ad-as-model",
+         "title": "Equilibrium in the AD-AS Model",
+         "outcomes": [
+          {
+           "code": "MOD-2.G",
+           "text": "Explain short-run and long-run equilibrium price level and output using graphs."
+          },
+          {
+           "code": "MOD-2.G.1",
+           "text": "Locate short-run equilibrium where AD meets SRAS."
+          },
+          {
+           "code": "MOD-2.G.2",
+           "text": "Locate long-run equilibrium where AD and SRAS meet on LRAS."
+          },
+          {
+           "code": "MOD-2.G.3",
+           "text": "Show short-run output above, at or below full employment as inflationary or recessionary gaps."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "3-6-changes-in-the-ad-as-model-in-the-short-run",
+       "title": "3.6 Changes in the AD-AS Model in the Short Run",
+       "subtopics": [
+        {
+         "id": "changes-in-the-ad-as-model-in-the-short-run",
+         "title": "Changes in the AD-AS Model in the Short Run",
+         "outcomes": [
+          {
+           "code": "MOD-2.H",
+           "text": "Explain short-run output, employment and price level responses to AD or AS shocks."
+          },
+          {
+           "code": "MOD-2.H.1",
+           "text": "Show a positive or negative AD shock moves output, employment and prices the same way."
+          },
+          {
+           "code": "MOD-2.H.2",
+           "text": "Show a positive or negative SRAS shock moves output and employment opposite to prices."
+          },
+          {
+           "code": "MOD-2.H.3",
+           "text": "Distinguish demand-pull from cost-push inflation."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "3-7-long-run-self-adjustment",
+       "title": "3.7 Long-Run Self-Adjustment",
+       "subtopics": [
+        {
+         "id": "long-run-self-adjustment",
+         "title": "Long-Run Self-Adjustment",
+         "outcomes": [
+          {
+           "code": "MOD-2.I",
+           "text": "Explain long-run responses of output, employment and prices to AD or AS shocks."
+          },
+          {
+           "code": "MOD-2.I.1",
+           "text": "Explain how flexible wages and prices restore full employment without policy."
+          },
+          {
+           "code": "MOD-2.I.2",
+           "text": "Interpret LRAS shifts as changes in full-employment output and growth."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "3-8-fiscal-policy",
+       "title": "3.8 Fiscal Policy",
+       "subtopics": [
+        {
+         "id": "fiscal-policy-part-1",
+         "title": "Fiscal Policy, part 1",
+         "outcomes": [
+          {
+           "code": "POL-1.A",
+           "text": "Define fiscal policy, explain and calculate its short-run effects using graphs."
+          },
+          {
+           "code": "POL-1.A.1",
+           "text": "State that governments use fiscal policy for goals such as full employment."
+          },
+          {
+           "code": "POL-1.A.2",
+           "text": "Name government spending and taxes/transfers as fiscal tools."
+          },
+          {
+           "code": "POL-1.A.3",
+           "text": "Contrast direct spending effects with indirect tax and transfer effects on AD."
+          },
+          {
+           "code": "POL-1.A.4",
+           "text": "Explain that the spending multiplier exceeds the tax multiplier."
+          },
+          {
+           "code": "POL-1.A.5",
+           "text": "Match expansionary or contractionary policy to recessionary or inflationary gaps."
+          },
+          {
+           "code": "POL-1.A.6",
+           "text": "Describe fiscal policy effects on AD, real output and prices."
+          },
+          {
+           "code": "POL-1.A.7",
+           "text": "Use the AD-AS model to show short-run fiscal effects."
+          }
+         ]
+        },
+        {
+         "id": "fiscal-policy-part-2",
+         "title": "Fiscal Policy, part 2",
+         "outcomes": [
+          {
+           "code": "POL-1.B",
+           "text": "Define why discretionary fiscal policy has lags."
+          },
+          {
+           "code": "POL-1.B.1",
+           "text": "Explain that deciding on and implementing policy takes time."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "3-9-automatic-stabilizers",
+       "title": "3.9 Automatic Stabilizers",
+       "subtopics": [
+        {
+         "id": "automatic-stabilizers",
+         "title": "Automatic Stabilizers",
+         "outcomes": [
+          {
+           "code": "POL-1.C",
+           "text": "Define automatic stabilizers and explain how they moderate business cycles."
+          },
+          {
+           "code": "POL-1.C.1",
+           "text": "Explain that stabilizers support recessions and cool overheated expansions."
+          },
+          {
+           "code": "POL-1.C.2",
+           "text": "Show tax revenue falling automatically with GDP to cushion consumption."
+          },
+          {
+           "code": "POL-1.C.3",
+           "text": "Show tax revenue rising automatically with GDP to slow consumption."
+          },
+          {
+           "code": "POL-1.C.4",
+           "text": "Identify transfer payments from social programs as automatic stabilizers."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "unit-4-financial-sector",
+     "title": "Unit 4: Financial Sector",
+     "topics": [
+      {
+       "id": "4-1-financial-assets",
+       "title": "4.1 Financial Assets",
+       "subtopics": [
+        {
+         "id": "financial-assets",
+         "title": "Financial Assets",
+         "outcomes": [
+          {
+           "code": "MEA-3.A",
+           "text": "Define liquidity, return and risk of financial assets including money, and explain how bond prices relate to interest rates."
+          },
+          {
+           "code": "MEA-3.A.1",
+           "text": "Identify cash and demand deposits as the most liquid money."
+          },
+          {
+           "code": "MEA-3.A.2",
+           "text": "Name bonds and stocks as alternatives to holding liquid money."
+          },
+          {
+           "code": "MEA-3.A.3",
+           "text": "Show that prices of previously issued bonds move inversely to interest rates."
+          },
+          {
+           "code": "MEA-3.A.4",
+           "text": "Define the opportunity cost of holding money as forgone interest on other assets."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "4-2-nominal-v-real-interest-rates",
+       "title": "4.2 Nominal v. Real Interest Rates",
+       "subtopics": [
+        {
+         "id": "nominal-v-real-interest-rates",
+         "title": "Nominal v. Real Interest Rates",
+         "outcomes": [
+          {
+           "code": "MEA-3.B",
+           "text": "Define nominal and real interest rates, relate them to expected inflation, and calculate them."
+          },
+          {
+           "code": "MEA-3.B.1",
+           "text": "Define the nominal rate as the loan rate unadjusted for inflation."
+          },
+          {
+           "code": "MEA-3.B.2",
+           "text": "Set nominal rates as expected real rate plus expected inflation."
+          },
+          {
+           "code": "MEA-3.B.3",
+           "text": "Compute a real rate afterwards as nominal rate minus actual inflation."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "4-3-definition-measurement-and-functions-of-mone",
+       "title": "4.3 Definition, Measurement, and Functions of Money",
+       "subtopics": [
+        {
+         "id": "definition-measurement-and-functions-of-money",
+         "title": "Definition, Measurement, and Functions of Money",
+         "outcomes": [
+          {
+           "code": "MEA-3.C",
+           "text": "Define money and its functions and calculate measures of money."
+          },
+          {
+           "code": "MEA-3.C.1",
+           "text": "Define money as any asset accepted as payment."
+          },
+          {
+           "code": "MEA-3.C.2",
+           "text": "List money's roles as medium of exchange, unit of account and store of value."
+          },
+          {
+           "code": "MEA-3.C.3",
+           "text": "Measure the money supply with M1 and M2."
+          },
+          {
+           "code": "MEA-3.C.4",
+           "text": "Define the monetary base as currency in circulation plus bank reserves."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "4-4-banking-and-the-expansion-of-the-money-suppl",
+       "title": "4.4 Banking and the Expansion of the Money Supply",
+       "subtopics": [
+        {
+         "id": "banking-and-the-expansion-of-the-money-supply",
+         "title": "Banking and the Expansion of the Money Supply",
+         "outcomes": [
+          {
+           "code": "POL-2.A",
+           "text": "Define banking terms, explain how banks create money, and calculate effects using balance sheets."
+          },
+          {
+           "code": "POL-2.A.1",
+           "text": "Show how banks organize assets and liabilities on balance sheets."
+          },
+          {
+           "code": "POL-2.A.2",
+           "text": "Describe fractional reserve banking."
+          },
+          {
+           "code": "POL-2.A.3",
+           "text": "Split reserves into required and excess reserves."
+          },
+          {
+           "code": "POL-2.A.4",
+           "text": "Explain that excess reserves are the basis for money expansion."
+          },
+          {
+           "code": "POL-2.A.5",
+           "text": "Define the money multiplier as money supply over monetary base."
+          },
+          {
+           "code": "POL-2.A.6",
+           "text": "Show that money supply expansion depends on the money multiplier."
+          },
+          {
+           "code": "POL-2.A.7",
+           "text": "Calculate the maximum money multiplier as the reciprocal of the required reserve ratio."
+          },
+          {
+           "code": "POL-2.A.8",
+           "text": "Explain why the simple multiplier can overstate expansion when banks hold excess reserves or people hold cash."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "4-5-the-money-market",
+       "title": "4.5 The Money Market",
+       "subtopics": [
+        {
+         "id": "the-money-market-part-1",
+         "title": "The Money Market, part 1",
+         "outcomes": [
+          {
+           "code": "MKT-3.A",
+           "text": "Define the money market, money demand and supply, and explain how the nominal rate relates to quantity demanded."
+          },
+          {
+           "code": "MKT-3.A.1",
+           "text": "Show money demand as an inverse relation between nominal interest rate and money held."
+          },
+          {
+           "code": "MKT-3.A.2",
+           "text": "Explain that money supply is independent of the rate, set by the central bank's base."
+          },
+          {
+           "code": "MKT-3.B",
+           "text": "Define money market equilibrium."
+          },
+          {
+           "code": "MKT-3.B.1",
+           "text": "Find equilibrium where the nominal rate equates money demanded and supplied."
+          },
+          {
+           "code": "MKT-3.C",
+           "text": "Explain how nominal interest rates adjust to restore money market equilibrium."
+          },
+          {
+           "code": "MKT-3.C.1",
+           "text": "Show that disequilibrium rates create surpluses or shortages that push rates to equilibrium."
+          }
+         ]
+        },
+        {
+         "id": "the-money-market-part-2",
+         "title": "The Money Market, part 2",
+         "outcomes": [
+          {
+           "code": "MKT-3.D",
+           "text": "Explain determinants of money demand and supply and their effect on the equilibrium rate."
+          },
+          {
+           "code": "MKT-3.D.1",
+           "text": "Show how price level or monetary policy shifts change the equilibrium nominal rate."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "4-6-monetary-policy",
+       "title": "4.6 Monetary Policy",
+       "subtopics": [
+        {
+         "id": "monetary-policy-part-1",
+         "title": "Monetary Policy, part 1",
+         "outcomes": [
+          {
+           "code": "POL-1.D",
+           "text": "Define monetary policy, explain and calculate its short-run effects using graphs and balance sheets."
+          },
+          {
+           "code": "POL-1.D.1",
+           "text": "State that central banks pursue goals such as price stability."
+          },
+          {
+           "code": "POL-1.D.2",
+           "text": "Name tools: discount and administered rates, open market operations and reserve ratio, and how they differ with limited versus ample reserves."
+          },
+          {
+           "code": "POL-1.D.3",
+           "text": "Explain that open-market purchases raise reserves and the base, and sales lower them."
+          },
+          {
+           "code": "POL-1.D.4",
+           "text": "Explain that with limited reserves, open-market operations affect money supply more than the base through the multiplier."
+          },
+          {
+           "code": "POL-1.D.5",
+           "text": "Describe central bank targeting of an overnight policy rate such as the federal funds rate."
+          },
+          {
+           "code": "POL-1.D.6",
+           "text": "Explain how central banks influence nominal rates, and so investment and consumption, differently with limited or ample reserves."
+          },
+          {
+           "code": "POL-1.D.7",
+           "text": "Use expansionary or contractionary policy to close recessionary or inflationary gaps."
+          },
+          {
+           "code": "POL-1.D.8",
+           "text": "Describe monetary policy effects on rates, AD, output and prices."
+          },
+          {
+           "code": "POL-1.D.9",
+           "text": "Use the money market, reserve market or AD-AS model to show short-run policy effects."
+          }
+         ]
+        },
+        {
+         "id": "monetary-policy-part-2",
+         "title": "Monetary Policy, part 2",
+         "outcomes": [
+          {
+           "code": "POL-1.E",
+           "text": "Define why monetary policy has lags."
+          },
+          {
+           "code": "POL-1.E.1",
+           "text": "Explain lags from recognizing problems and from economic adjustment to policy."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "4-7-the-loanable-funds-market",
+       "title": "4.7 The Loanable Funds Market",
+       "subtopics": [
+        {
+         "id": "the-loanable-funds-market-part-1",
+         "title": "The Loanable Funds Market, part 1",
+         "outcomes": [
+          {
+           "code": "MKT-4.A",
+           "text": "Define the loanable funds market and its demand and supply, and explain their link to the real interest rate."
+          },
+          {
+           "code": "MKT-4.A.1",
+           "text": "Describe the market as the behavior of savers and borrowers."
+          },
+          {
+           "code": "MKT-4.A.2",
+           "text": "Show that demand for loanable funds falls as the real rate rises."
+          },
+          {
+           "code": "MKT-4.A.3",
+           "text": "Show that supply of loanable funds rises as the real rate rises."
+          },
+          {
+           "code": "MKT-4.B",
+           "text": "Define national savings in closed and open economies."
+          },
+          {
+           "code": "MKT-4.B.1",
+           "text": "Compute closed-economy national savings as public plus private savings."
+          },
+          {
+           "code": "MKT-4.B.2",
+           "text": "Explain that open-economy investment equals national savings plus net capital inflow."
+          }
+         ]
+        },
+        {
+         "id": "the-loanable-funds-market-part-2",
+         "title": "The Loanable Funds Market, part 2",
+         "outcomes": [
+          {
+           "code": "MKT-4.C",
+           "text": "Define loanable funds market equilibrium."
+          },
+          {
+           "code": "MKT-4.C.1",
+           "text": "Find equilibrium where the real rate equates funds demanded and supplied."
+          },
+          {
+           "code": "MKT-4.D",
+           "text": "Explain how real interest rates adjust to restore loanable funds equilibrium."
+          },
+          {
+           "code": "MKT-4.D.1",
+           "text": "Show that surpluses or shortages push real rates to equilibrium."
+          },
+          {
+           "code": "MKT-4.E",
+           "text": "Explain determinants of loanable funds demand and supply and their effects on the real rate and quantity."
+          },
+          {
+           "code": "MKT-4.E.1",
+           "text": "Use the market to show effects of government spending, taxes and borrowing on interest rates."
+          },
+          {
+           "code": "MKT-4.E.2",
+           "text": "Show how shifts like an investment tax credit or saving changes alter the rate and quantity."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "unit-5-long-run-consequences-of-stabilization-po",
+     "title": "Unit 5: Long-Run Consequences of Stabilization Policies",
+     "topics": [
+      {
+       "id": "5-1-fiscal-and-monetary-policy-actions-in-the-sh",
+       "title": "5.1 Fiscal and Monetary Policy Actions in the Short Run",
+       "subtopics": [
+        {
+         "id": "fiscal-and-monetary-policy-actions-in-the-short-",
+         "title": "Fiscal and Monetary Policy Actions in the Short Run",
+         "outcomes": [
+          {
+           "code": "POL-1.F",
+           "text": "Explain the effects of combined fiscal and monetary policy actions using graphs."
+          },
+          {
+           "code": "POL-1.F.1",
+           "text": "Combine fiscal and monetary policy to restore full employment in either gap."
+          },
+          {
+           "code": "POL-1.F.2",
+           "text": "Describe combined policy effects on AD, output, prices and interest rates."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "5-2-the-phillips-curve",
+       "title": "5.2 The Phillips Curve",
+       "subtopics": [
+        {
+         "id": "the-phillips-curve-part-1",
+         "title": "The Phillips Curve, part 1",
+         "outcomes": [
+          {
+           "code": "MOD-3.A",
+           "text": "Define the short-run and long-run Phillips curves and explain equilibrium in the model."
+          },
+          {
+           "code": "MOD-3.A.1",
+           "text": "Show the short-run inflation-unemployment tradeoff on the downward-sloping SRPC."
+          },
+          {
+           "code": "MOD-3.A.2",
+           "text": "State that an economy always operates somewhere along the SRPC."
+          },
+          {
+           "code": "MOD-3.A.3",
+           "text": "Draw the LRPC vertical at the natural rate of unemployment."
+          },
+          {
+           "code": "MOD-3.A.4",
+           "text": "Locate long-run equilibrium where SRPC and LRPC intersect."
+          },
+          {
+           "code": "MOD-3.A.5",
+           "text": "Read points left of equilibrium as inflationary gaps and right as recessionary gaps."
+          }
+         ]
+        },
+        {
+         "id": "the-phillips-curve-part-2",
+         "title": "The Phillips Curve, part 2",
+         "outcomes": [
+          {
+           "code": "MOD-3.B",
+           "text": "Explain unemployment and inflation responses in the short and long run."
+          },
+          {
+           "code": "MOD-3.B.1",
+           "text": "Treat demand shocks as movements along the SRPC."
+          },
+          {
+           "code": "MOD-3.B.2",
+           "text": "Treat supply shocks as shifts of the SRPC."
+          },
+          {
+           "code": "MOD-3.B.3",
+           "text": "Shift the LRPC when the natural rate changes."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "5-3-money-growth-and-inflation",
+       "title": "5.3 Money Growth and Inflation",
+       "subtopics": [
+        {
+         "id": "money-growth-and-inflation",
+         "title": "Money Growth and Inflation",
+         "outcomes": [
+          {
+           "code": "POL-3.A",
+           "text": "Explain inflation as a monetary phenomenon, define the quantity theory and calculate with it."
+          },
+          {
+           "code": "POL-3.A.1",
+           "text": "Explain that inflation comes from sustained, too-rapid money supply growth."
+          },
+          {
+           "code": "POL-3.A.2",
+           "text": "Show that at full employment money supply changes do not affect long-run real output."
+          },
+          {
+           "code": "POL-3.A.3",
+           "text": "Use the quantity theory to tie money growth to the inflation rate."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "5-4-government-deficits-and-the-national-debt",
+       "title": "5.4 Government Deficits and the National Debt",
+       "subtopics": [
+        {
+         "id": "government-deficits-and-the-national-debt",
+         "title": "Government Deficits and the National Debt",
+         "outcomes": [
+          {
+           "code": "POL-3.B",
+           "text": "Define budget surplus or deficit and national debt, and explain the debt's burden."
+          },
+          {
+           "code": "POL-3.B.1",
+           "text": "Define the deficit as tax revenue minus purchases plus transfers in a year."
+          },
+          {
+           "code": "POL-3.B.2",
+           "text": "Explain that deficits add to the national debt."
+          },
+          {
+           "code": "POL-3.B.3",
+           "text": "Explain that interest on debt grows the debt and crowds out other uses of funds."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "5-5-crowding-out",
+       "title": "5.5 Crowding Out",
+       "subtopics": [
+        {
+         "id": "crowding-out",
+         "title": "Crowding Out",
+         "outcomes": [
+          {
+           "code": "POL-3.C",
+           "text": "Define crowding out and explain how fiscal policy can cause it."
+          },
+          {
+           "code": "POL-3.C.1",
+           "text": "Explain that deficit governments typically borrow to finance spending."
+          },
+          {
+           "code": "POL-3.C.2",
+           "text": "Use the loanable funds model to show borrowing raising the real rate and crowding out investment."
+          },
+          {
+           "code": "POL-3.C.3",
+           "text": "Define crowding out as lower interest-sensitive private spending from government borrowing."
+          },
+          {
+           "code": "POL-3.C.4",
+           "text": "Explain that crowding out can lower capital accumulation and long-run growth."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "5-6-economic-growth",
+       "title": "5.6 Economic Growth",
+       "subtopics": [
+        {
+         "id": "economic-growth",
+         "title": "Economic Growth",
+         "outcomes": [
+          {
+           "code": "MEA-2.B",
+           "text": "Define measures and determinants of economic growth, explain them, and calculate per capita GDP and growth."
+          },
+          {
+           "code": "MEA-2.B.1",
+           "text": "Measure growth as growth in real GDP per capita."
+          },
+          {
+           "code": "MEA-2.B.2",
+           "text": "Relate employment and output through the aggregate production function."
+          },
+          {
+           "code": "MEA-2.B.3",
+           "text": "Define average labor productivity as output per employed worker."
+          },
+          {
+           "code": "MEA-2.B.4",
+           "text": "Name technology and physical and human capital per worker as productivity determinants."
+          },
+          {
+           "code": "MEA-2.B.5",
+           "text": "Show output per capita rising with physical and human capital per capita."
+          },
+          {
+           "code": "MOD-1.C",
+           "text": "Explain how the PPC is related to the LRAS curve."
+          },
+          {
+           "code": "MOD-1.C.1",
+           "text": "Equate an outward PPC shift with a rightward LRAS shift."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "5-7-public-policy-and-economic-growth",
+       "title": "5.7 Public Policy and Economic Growth",
+       "subtopics": [
+        {
+         "id": "public-policy-and-economic-growth",
+         "title": "Public Policy and Economic Growth",
+         "outcomes": [
+          {
+           "code": "POL-4.A",
+           "text": "Explain public policies for long-run growth and define supply-side fiscal policies."
+          },
+          {
+           "code": "POL-4.A.1",
+           "text": "Show that policies affecting productivity and labor participation change real GDP per capita."
+          },
+          {
+           "code": "POL-4.A.2",
+           "text": "Explain that infrastructure and technology investment affects growth."
+          },
+          {
+           "code": "POL-4.A.3",
+           "text": "Explain supply-side policy effects on AD, AS and potential output through incentives."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "unit-6-open-economy-international-trade-and-fina",
+     "title": "Unit 6: Open Economy: International Trade and Finance",
+     "topics": [
+      {
+       "id": "6-1-balance-of-payments-accounts",
+       "title": "6.1 Balance of Payments Accounts",
+       "subtopics": [
+        {
+         "id": "balance-of-payments-accounts",
+         "title": "Balance of Payments Accounts",
+         "outcomes": [
+          {
+           "code": "MEA-4.A",
+           "text": "Define the current account, capital and financial account and balance of payments, explain and calculate them."
+          },
+          {
+           "code": "MEA-4.A.1",
+           "text": "Describe the current account as net exports, net foreign income and net transfers."
+          },
+          {
+           "code": "MEA-4.A.2",
+           "text": "Recognize that the current account and trade balance may be in surplus or deficit."
+          },
+          {
+           "code": "MEA-4.A.3",
+           "text": "Describe the capital and financial account as capital transfers and asset trades."
+          },
+          {
+           "code": "MEA-4.A.4",
+           "text": "Interpret CFA surplus as capital inflow and deficit as outflow."
+          },
+          {
+           "code": "MEA-4.A.5",
+           "text": "Define the balance of payments as the record of international transactions made of the CA and CFA."
+          },
+          {
+           "code": "MEA-4.A.6",
+           "text": "Treat money inflows as credits and outflows as debits so CA plus CFA equals zero."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "6-2-exchange-rates",
+       "title": "6.2 Exchange Rates",
+       "subtopics": [
+        {
+         "id": "exchange-rates",
+         "title": "Exchange Rates",
+         "outcomes": [
+          {
+           "code": "MKT-5.A",
+           "text": "Define exchange rate, appreciation and depreciation, and calculate relative currency values."
+          },
+          {
+           "code": "MKT-5.A.1",
+           "text": "Define the exchange rate as the price of one currency in another."
+          },
+          {
+           "code": "MKT-5.A.2",
+           "text": "Define appreciation and depreciation as a currency gaining or losing value."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "6-3-the-foreign-exchange-market",
+       "title": "6.3 The Foreign Exchange Market",
+       "subtopics": [
+        {
+         "id": "the-foreign-exchange-market",
+         "title": "The Foreign Exchange Market",
+         "outcomes": [
+          {
+           "code": "MKT-5.B",
+           "text": "Define the foreign exchange market and currency demand and supply, and explain their relation to the exchange rate."
+          },
+          {
+           "code": "MKT-5.B.1",
+           "text": "Explain that currency demand arises from demand for a country's goods and assets and slopes downward."
+          },
+          {
+           "code": "MKT-5.B.2",
+           "text": "Explain that currency supply arises from payments in other currencies and slopes upward."
+          },
+          {
+           "code": "MKT-5.C",
+           "text": "Define the equilibrium exchange rate."
+          },
+          {
+           "code": "MKT-5.C.1",
+           "text": "Find equilibrium where quantities of the currency demanded and supplied are equal."
+          },
+          {
+           "code": "MKT-5.D",
+           "text": "Explain how exchange rates adjust to restore equilibrium."
+          },
+          {
+           "code": "MKT-5.D.1",
+           "text": "Show that surpluses and shortages push exchange rates to equilibrium."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "6-4-policies-and-conditions-in-the-foreign-excha",
+       "title": "6.4 Policies and Conditions in the Foreign Exchange Market",
+       "subtopics": [
+        {
+         "id": "policies-and-conditions-in-the-foreign-exchange-",
+         "title": "Policies and Conditions in the Foreign Exchange Market",
+         "outcomes": [
+          {
+           "code": "MKT-5.E",
+           "text": "Explain determinants of currency demand and supply and how shifts change the exchange rate."
+          },
+          {
+           "code": "MKT-5.E.1",
+           "text": "Show how shifts such as demand for goods or tariffs change the exchange rate."
+          },
+          {
+           "code": "MKT-5.E.2",
+           "text": "Explain that fiscal policy can influence AD, output, prices and exchange rates."
+          },
+          {
+           "code": "MKT-5.E.3",
+           "text": "Explain that monetary policy works through interest rates to affect exchange rates."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "6-5-changes-in-the-foreign-exchange-market-and-n",
+       "title": "6.5 Changes in the Foreign Exchange Market and Net Exports",
+       "subtopics": [
+        {
+         "id": "changes-in-the-foreign-exchange-market-and-net-e",
+         "title": "Changes in the Foreign Exchange Market and Net Exports",
+         "outcomes": [
+          {
+           "code": "MKT-5.F",
+           "text": "Explain how currency value changes alter net exports and aggregate demand."
+          },
+          {
+           "code": "MKT-5.F.1",
+           "text": "Show that appreciation lowers exports, raises imports and cuts net exports."
+          },
+          {
+           "code": "MKT-5.F.2",
+           "text": "Show that depreciation raises exports, lowers imports and lifts net exports."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "6-6-real-interest-rates-and-international-capita",
+       "title": "6.6 Real Interest Rates and International Capital Flows",
+       "subtopics": [
+        {
+         "id": "real-interest-rates-and-international-capital-fl",
+         "title": "Real Interest Rates and International Capital Flows",
+         "outcomes": [
+          {
+           "code": "MKT-5.G",
+           "text": "Explain how real interest rate differences across countries affect capital flows and related markets."
+          },
+          {
+           "code": "MKT-5.G.1",
+           "text": "Show financial capital flowing to the country with the higher real rate."
+          },
+          {
+           "code": "MKT-5.G.2",
+           "text": "Explain that central banks influence domestic rates and so net capital inflows."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "build": {
+  "builtAt": "2026-10-14T10:02:30.414Z",
+  "model": "claude-agent",
+  "usd": 0,
+  "expectedCodes": 235,
+  "coverage": 1,
+  "missingCodes": [],
+  "counts": {
+   "grades": 1,
+   "units": 6,
+   "topics": 42,
+   "subtopics": 48,
+   "outcomes": 235
+  },
+  "warnings": [
+   "grade 9 has no content",
+   "grade 10 has no content",
+   "grade 11 has no content",
+   "grade 12 has no content",
+   "unexpected grade label \"all\""
+  ]
+ }
+}

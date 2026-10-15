@@ -1,0 +1,82 @@
+{
+ "id": "cie-igcse-urdu-as-a-second-language-0539-2025-2027",
+ "region": "INTL",
+ "framework": "Cambridge IGCSE Urdu as a Second Language (0539) syllabus 2025–2027",
+ "board": "Cambridge",
+ "qualification": "IGCSE",
+ "subject": "Urdu as a Second Language",
+ "syllabusCode": "0539",
+ "gradeSystem": "course",
+ "source": {
+  "urls": [
+   "https://www.cambridgeinternational.org/Images/664633-2025-2027-syllabus.pdf",
+   "https://www.cambridgeinternational.org/programmes-and-qualifications/cambridge-igcse-urdu-as-a-second-language-0539/"
+  ],
+  "publisher": "Cambridge University Press & Assessment (Cambridge International Education)",
+  "licence": "© Cambridge University Press & Assessment; structure + our own wording only",
+  "firstExam": "2025"
+ },
+ "grades": [
+  {
+   "grade": "IGCSE",
+   "units": [
+    {
+     "id": "igcse-c-the-world",
+     "title": "[IGCSE] C The world",
+     "topics": [
+      {
+       "id": "animals",
+       "title": "Animals",
+       "subtopics": [
+        {
+         "id": "animals",
+         "title": "Animals",
+         "outcomes": [
+          {
+           "code": "C12",
+           "text": "Discuss animals and related experiences or issues."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "festivals",
+       "title": "Festivals",
+       "subtopics": [
+        {
+         "id": "festivals",
+         "title": "Festivals",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Discuss festivals and related customs."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "build": {
+  "builtAt": "2026-10-14T07:56:38.826Z",
+  "model": "gpt-5.6-luna",
+  "usd": 0.0047,
+  "expectedCodes": null,
+  "coverage": null,
+  "missingCodes": [],
+  "counts": {
+   "grades": 1,
+   "units": 1,
+   "topics": 2,
+   "subtopics": 2,
+   "outcomes": 2
+  },
+  "warnings": [
+   "5 invented code(s) dropped: B4, C2, C3, C7, D3"
+  ]
+ }
+}

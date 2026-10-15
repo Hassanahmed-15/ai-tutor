@@ -1,0 +1,1293 @@
+{
+ "id": "cie-alevel-mathematics-9709-2026-2027",
+ "region": "INTL",
+ "framework": "Cambridge International AS & A Level Mathematics (9709) syllabus 2026–2027",
+ "board": "Cambridge",
+ "qualification": "AS & A Level",
+ "subject": "Mathematics",
+ "syllabusCode": "9709",
+ "gradeSystem": "course",
+ "source": {
+  "urls": [
+   "https://www.cambridgeinternational.org/Images/697427-2026-2027-syllabus.pdf",
+   "https://www.cambridgeinternational.org/programmes-and-qualifications/cambridge-international-as-and-a-level-mathematics-9709/"
+  ],
+  "publisher": "Cambridge University Press & Assessment (Cambridge International Education)",
+  "licence": "© Cambridge University Press & Assessment; structure + our own wording only",
+  "firstExam": "2026"
+ },
+ "grades": [
+  {
+   "grade": "AS",
+   "units": [
+    {
+     "id": "pure-mathematics-1",
+     "title": "Pure Mathematics 1",
+     "topics": [
+      {
+       "id": "1-1-quadratics",
+       "title": "1.1 Quadratics",
+       "subtopics": [
+        {
+         "id": "completing-the-square-and-the-discriminant",
+         "title": "Completing the square and the discriminant",
+         "outcomes": [
+          {
+           "code": "1.1",
+           "text": "Complete the square for a quadratic and use the completed form, for example to find a vertex."
+          },
+          {
+           "code": null,
+           "text": "Find the discriminant of a quadratic and use it to count real roots, including repeated roots."
+          }
+         ]
+        },
+        {
+         "id": "solving-quadratic-problems",
+         "title": "Solving quadratic problems",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Solve quadratic equations and inequalities in one unknown by factorising, completing the square or the formula."
+          },
+          {
+           "code": null,
+           "text": "Solve by substitution a pair of simultaneous equations, one linear and one quadratic."
+          },
+          {
+           "code": null,
+           "text": "Recognise and solve equations that are quadratic in some function of x."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "1-2-functions",
+       "title": "1.2 Functions",
+       "subtopics": [
+        {
+         "id": "function-language-and-composition",
+         "title": "Function language and composition",
+         "outcomes": [
+          {
+           "code": "1.2",
+           "text": "Understand function, domain, range, one-one function, inverse function and composition of functions."
+          },
+          {
+           "code": null,
+           "text": "Find the range of a simple function and the composition of two functions."
+          }
+         ]
+        },
+        {
+         "id": "inverse-functions",
+         "title": "Inverse functions",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Decide whether a function is one-one, and find the inverse in simple cases."
+          },
+          {
+           "code": null,
+           "text": "Sketch a one-one function and its inverse, showing the mirror line y = x."
+          }
+         ]
+        },
+        {
+         "id": "graph-transformations",
+         "title": "Graph transformations",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Understand and use transformations y = f(x) + a, f(x + a), af(x), f(ax) and simple combinations."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "1-3-coordinate-geometry",
+       "title": "1.3 Coordinate geometry",
+       "subtopics": [
+        {
+         "id": "straight-lines",
+         "title": "Straight lines",
+         "outcomes": [
+          {
+           "code": "1.3",
+           "text": "Find the equation of a straight line from sufficient information."
+          },
+          {
+           "code": null,
+           "text": "Use the forms y = mx + c, y - y1 = m(x - x1) and ax + by + c = 0, including distance, midpoint, parallel and perpendicular gradients."
+          }
+         ]
+        },
+        {
+         "id": "circles-and-intersections",
+         "title": "Circles and intersections",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Understand that (x - a)^2 + (y - b)^2 = r^2 is a circle with centre (a, b) and radius r."
+          },
+          {
+           "code": null,
+           "text": "Use algebraic methods on problems about lines and circles."
+          },
+          {
+           "code": null,
+           "text": "Link a graph to its equation, and use intersections of graphs to solve equations."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "1-4-circular-measure",
+       "title": "1.4 Circular measure",
+       "subtopics": [
+        {
+         "id": "radians-arcs-and-sectors",
+         "title": "Radians, arcs and sectors",
+         "outcomes": [
+          {
+           "code": "1.4",
+           "text": "Understand radians and convert between radians and degrees."
+          },
+          {
+           "code": null,
+           "text": "Use s = r theta and A = half r^2 theta for arc length and sector area in problems."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "1-5-trigonometry",
+       "title": "1.5 Trigonometry",
+       "subtopics": [
+        {
+         "id": "trigonometric-graphs-and-exact-values",
+         "title": "Trigonometric graphs and exact values",
+         "outcomes": [
+          {
+           "code": "1.5",
+           "text": "Sketch and use sine, cosine and tangent graphs for any angle, in degrees or radians."
+          },
+          {
+           "code": null,
+           "text": "Use exact trigonometric values for 30, 45 and 60 degrees and related angles."
+          },
+          {
+           "code": null,
+           "text": "Use the notations sin^-1, cos^-1 and tan^-1 for principal values of inverse trigonometric functions."
+          }
+         ]
+        },
+        {
+         "id": "identities-and-equations",
+         "title": "Identities and equations",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Use the identities tan = sin/cos and sin^2 + cos^2 = 1."
+          },
+          {
+           "code": null,
+           "text": "Find all solutions of simple trigonometric equations in a given interval."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "1-6-series",
+       "title": "1.6 Series",
+       "subtopics": [
+        {
+         "id": "binomial-expansion",
+         "title": "Binomial expansion",
+         "outcomes": [
+          {
+           "code": "1.6",
+           "text": "Use the expansion of (a + b)^n for positive integer n, including nCr and factorial notation."
+          }
+         ]
+        },
+        {
+         "id": "arithmetic-and-geometric-progressions",
+         "title": "Arithmetic and geometric progressions",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Recognise arithmetic and geometric progressions."
+          },
+          {
+           "code": null,
+           "text": "Use the nth term and sum formulae to solve problems on progressions."
+          },
+          {
+           "code": null,
+           "text": "Use the convergence condition and sum to infinity for a geometric progression."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "1-7-differentiation",
+       "title": "1.7 Differentiation",
+       "subtopics": [
+        {
+         "id": "gradient-and-derivative-rules",
+         "title": "Gradient and derivative rules",
+         "outcomes": [
+          {
+           "code": "1.7",
+           "text": "Understand the gradient of a curve as a limit of chord gradients, and use the notations for first and second derivatives."
+          },
+          {
+           "code": null,
+           "text": "Differentiate x^n for rational n, multiples, sums, differences and composites using the chain rule."
+          }
+         ]
+        },
+        {
+         "id": "applications-of-differentiation",
+         "title": "Applications of differentiation",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Apply differentiation to gradients, tangents, normals, increasing and decreasing functions and rates of change."
+          },
+          {
+           "code": null,
+           "text": "Locate stationary points, find their nature, and use them in sketching graphs."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "1-8-integration",
+       "title": "1.8 Integration",
+       "subtopics": [
+        {
+         "id": "integration-as-reverse-differentiation",
+         "title": "Integration as reverse differentiation",
+         "outcomes": [
+          {
+           "code": "1.8",
+           "text": "Integrate (ax + b)^n for rational n except -1, with multiples, sums and differences."
+          },
+          {
+           "code": null,
+           "text": "Find a constant of integration from given conditions."
+          }
+         ]
+        },
+        {
+         "id": "definite-integrals-and-applications",
+         "title": "Definite integrals and applications",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Evaluate definite integrals, including simple improper integrals."
+          },
+          {
+           "code": null,
+           "text": "Use definite integration to find areas of regions bounded by curves and lines."
+          },
+          {
+           "code": null,
+           "text": "Use definite integration to find volumes of revolution about an axis."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "pure-mathematics-2",
+     "title": "Pure Mathematics 2",
+     "topics": [
+      {
+       "id": "2-1-algebra",
+       "title": "2.1 Algebra",
+       "subtopics": [
+        {
+         "id": "modulus",
+         "title": "Modulus",
+         "outcomes": [
+          {
+           "code": "2.1",
+           "text": "Understand modulus, sketch y = |ax + b| and use modulus relations to solve equations and inequalities."
+          }
+         ]
+        },
+        {
+         "id": "polynomials",
+         "title": "Polynomials",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Divide a polynomial of degree up to 4 by a linear or quadratic polynomial, finding quotient and remainder."
+          },
+          {
+           "code": null,
+           "text": "Use the factor theorem and the remainder theorem."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "2-2-logarithmic-and-exponential-functions",
+       "title": "2.2 Logarithmic and exponential functions",
+       "subtopics": [
+        {
+         "id": "logarithms-and-e-x",
+         "title": "Logarithms and e^x",
+         "outcomes": [
+          {
+           "code": "2.2",
+           "text": "Understand how logarithms relate to indices and use the laws of logarithms."
+          },
+          {
+           "code": null,
+           "text": "Understand the definition, properties and graphs of e^x and ln x as inverse functions."
+          }
+         ]
+        },
+        {
+         "id": "using-logarithms",
+         "title": "Using logarithms",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Use logarithms to solve equations and inequalities where the unknown is in an index."
+          },
+          {
+           "code": null,
+           "text": "Use logarithms to turn a relationship into linear form and find constants from gradient or intercept."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "2-3-trigonometry",
+       "title": "2.3 Trigonometry",
+       "subtopics": [
+        {
+         "id": "reciprocal-functions-and-identities",
+         "title": "Reciprocal functions and identities",
+         "outcomes": [
+          {
+           "code": "2.3",
+           "text": "Understand sec, cosec and cot, and use properties and graphs of all six trigonometric functions for any angle."
+          },
+          {
+           "code": null,
+           "text": "Use trigonometric identities to simplify, evaluate exactly and solve equations, including compound angle, double angle and R sin(theta + alpha) forms."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "2-4-differentiation",
+       "title": "2.4 Differentiation",
+       "subtopics": [
+        {
+         "id": "new-derivatives-and-rules",
+         "title": "New derivatives and rules",
+         "outcomes": [
+          {
+           "code": "2.4",
+           "text": "Use the derivatives of e^x, ln x, sin x, cos x and tan x with multiples, sums, differences and composites."
+          },
+          {
+           "code": null,
+           "text": "Differentiate products and quotients."
+          },
+          {
+           "code": null,
+           "text": "Find and use the first derivative of a function defined parametrically or implicitly."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "2-5-integration",
+       "title": "2.5 Integration",
+       "subtopics": [
+        {
+         "id": "integration-techniques",
+         "title": "Integration techniques",
+         "outcomes": [
+          {
+           "code": "2.5",
+           "text": "Integrate e^(ax+b), 1/(ax+b), sin(ax+b), cos(ax+b) and sec^2(ax+b) by reversing differentiation."
+          },
+          {
+           "code": null,
+           "text": "Use trigonometric relationships, such as double-angle formulae, when integrating."
+          },
+          {
+           "code": null,
+           "text": "Understand and use the trapezium rule to estimate a definite integral, including whether it over- or under-estimates."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "2-6-numerical-solution-of-equations",
+       "title": "2.6 Numerical solution of equations",
+       "subtopics": [
+        {
+         "id": "roots-and-iteration",
+         "title": "Roots and iteration",
+         "outcomes": [
+          {
+           "code": "2.6",
+           "text": "Locate a root approximately using graphs or a sign change."
+          },
+          {
+           "code": null,
+           "text": "Understand a sequence of approximations that converges to a root, and its notation."
+          },
+          {
+           "code": null,
+           "text": "Use a given iterative formula x(n+1) = F(x(n)) to find a root to a given accuracy."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "mechanics",
+     "title": "Mechanics",
+     "topics": [
+      {
+       "id": "4-1-forces-and-equilibrium",
+       "title": "4.1 Forces and equilibrium",
+       "subtopics": [
+        {
+         "id": "forces-and-resultants",
+         "title": "Forces and resultants",
+         "outcomes": [
+          {
+           "code": "4.1",
+           "text": "Identify the forces acting in a situation, for example with a force diagram."
+          },
+          {
+           "code": null,
+           "text": "Understand force as a vector and find and use components and resultants."
+          },
+          {
+           "code": null,
+           "text": "Use equilibrium: the vector sum of forces, or components in any direction, is zero."
+          }
+         ]
+        },
+        {
+         "id": "contact-forces-and-friction",
+         "title": "Contact forces and friction",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Understand a contact force as a normal component and a frictional component."
+          },
+          {
+           "code": null,
+           "text": "Use the smooth contact model and understand its limitations."
+          },
+          {
+           "code": null,
+           "text": "Understand limiting friction and limiting equilibrium, and use F = mu R or F <= mu R."
+          },
+          {
+           "code": null,
+           "text": "Use Newton's third law."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "4-2-kinematics-of-motion-in-a-straight-line",
+       "title": "4.2 Kinematics of motion in a straight line",
+       "subtopics": [
+        {
+         "id": "motion-graphs-and-calculus",
+         "title": "Motion graphs and calculus",
+         "outcomes": [
+          {
+           "code": "4.2",
+           "text": "Understand distance and speed as scalars, and displacement, velocity and acceleration as vectors."
+          },
+          {
+           "code": null,
+           "text": "Sketch and interpret displacement-time and velocity-time graphs, including gradients and areas."
+          },
+          {
+           "code": null,
+           "text": "Use differentiation and integration with respect to time for displacement, velocity and acceleration."
+          },
+          {
+           "code": null,
+           "text": "Use constant acceleration formulae for straight-line motion."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "4-3-momentum",
+       "title": "4.3 Momentum",
+       "subtopics": [
+        {
+         "id": "linear-momentum",
+         "title": "Linear momentum",
+         "outcomes": [
+          {
+           "code": "4.3",
+           "text": "Use the definition of linear momentum and understand it is a vector."
+          },
+          {
+           "code": null,
+           "text": "Use conservation of linear momentum for direct impact of two bodies, including coalescence."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "4-4-newton-s-laws-of-motion",
+       "title": "4.4 Newton's laws of motion",
+       "subtopics": [
+        {
+         "id": "newton-s-laws-in-practice",
+         "title": "Newton's laws in practice",
+         "outcomes": [
+          {
+           "code": "4.4",
+           "text": "Apply Newton's laws to a particle of constant mass under constant forces, including friction, tension and thrust."
+          },
+          {
+           "code": null,
+           "text": "Use the relationship between mass and weight."
+          },
+          {
+           "code": null,
+           "text": "Solve problems on vertical motion and motion on an inclined plane."
+          },
+          {
+           "code": null,
+           "text": "Solve problems on connected particles."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "4-5-energy-work-and-power",
+       "title": "4.5 Energy, work and power",
+       "subtopics": [
+        {
+         "id": "work-and-energy",
+         "title": "Work and energy",
+         "outcomes": [
+          {
+           "code": "4.5",
+           "text": "Understand work done and calculate it for a constant force with a displacement not parallel to the force."
+          },
+          {
+           "code": null,
+           "text": "Understand gravitational potential energy and kinetic energy and use the formulae."
+          },
+          {
+           "code": null,
+           "text": "Use the link between energy change and work done, and conservation of energy."
+          }
+         ]
+        },
+        {
+         "id": "power",
+         "title": "Power",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Use power as rate of doing work, and P = Fv for force along the motion."
+          },
+          {
+           "code": null,
+           "text": "Solve problems such as a car's instantaneous acceleration on a hill against resistance."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "probability-statistics-1",
+     "title": "Probability & Statistics 1",
+     "topics": [
+      {
+       "id": "5-1-representation-of-data",
+       "title": "5.1 Representation of data",
+       "subtopics": [
+        {
+         "id": "presenting-data",
+         "title": "Presenting data",
+         "outcomes": [
+          {
+           "code": "5.1",
+           "text": "Select a suitable way to present raw data and discuss the pros and cons of representations."
+          },
+          {
+           "code": null,
+           "text": "Draw and interpret stem-and-leaf diagrams, box-and-whisker plots, histograms and cumulative frequency graphs."
+          },
+          {
+           "code": null,
+           "text": "Use a cumulative frequency graph to estimate medians, quartiles, percentiles and proportions."
+          }
+         ]
+        },
+        {
+         "id": "summary-measures",
+         "title": "Summary measures",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Understand and use measures of central tendency and variation, including standard deviation."
+          },
+          {
+           "code": null,
+           "text": "Calculate and use the mean and standard deviation, including grouped and coded data, for up to two data sets."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "5-2-permutations-and-combinations",
+       "title": "5.2 Permutations and combinations",
+       "subtopics": [
+        {
+         "id": "counting-arrangements-and-selections",
+         "title": "Counting arrangements and selections",
+         "outcomes": [
+          {
+           "code": "5.2",
+           "text": "Understand permutation and combination and solve simple selection problems."
+          },
+          {
+           "code": null,
+           "text": "Solve problems on arranging objects in a line, including repetition and restrictions."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "5-3-probability",
+       "title": "5.3 Probability",
+       "subtopics": [
+        {
+         "id": "probability-rules",
+         "title": "Probability rules",
+         "outcomes": [
+          {
+           "code": "5.3",
+           "text": "Evaluate probabilities in simple cases by enumeration or by permutations and combinations."
+          },
+          {
+           "code": null,
+           "text": "Use addition and multiplication of probabilities in simple cases."
+          },
+          {
+           "code": null,
+           "text": "Understand exclusive and independent events, testing independence by comparing P(A and B) with P(A)P(B)."
+          },
+          {
+           "code": null,
+           "text": "Calculate and use conditional probabilities in simple cases."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "5-4-discrete-random-variables",
+       "title": "5.4 Discrete random variables",
+       "subtopics": [
+        {
+         "id": "distributions",
+         "title": "Distributions",
+         "outcomes": [
+          {
+           "code": "5.4",
+           "text": "Draw up a probability distribution table for a discrete random variable and calculate E(X) and Var(X)."
+          },
+          {
+           "code": null,
+           "text": "Use the binomial and geometric probability formulae and recognise when they are suitable models."
+          },
+          {
+           "code": null,
+           "text": "Use the expectation and variance formulae for the binomial distribution and the expectation for the geometric distribution."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "5-5-the-normal-distribution",
+       "title": "5.5 The normal distribution",
+       "subtopics": [
+        {
+         "id": "the-normal-distribution",
+         "title": "The normal distribution",
+         "outcomes": [
+          {
+           "code": "5.5",
+           "text": "Understand the normal distribution as a model for a continuous variable and use normal tables."
+          },
+          {
+           "code": null,
+           "text": "Solve problems for X ~ N(mu, sigma^2), including finding probabilities and finding unknown parameters."
+          },
+          {
+           "code": null,
+           "text": "Recall the conditions for approximating a binomial by a normal, and use it with a continuity correction."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "A Level",
+   "units": [
+    {
+     "id": "pure-mathematics-3",
+     "title": "Pure Mathematics 3",
+     "topics": [
+      {
+       "id": "3-1-algebra",
+       "title": "3.1 Algebra",
+       "subtopics": [
+        {
+         "id": "modulus",
+         "title": "Modulus",
+         "outcomes": [
+          {
+           "code": "3.1",
+           "text": "Understand modulus, sketch y = |ax + b| and use modulus relations to solve equations and inequalities."
+          }
+         ]
+        },
+        {
+         "id": "polynomials-and-partial-fractions",
+         "title": "Polynomials and partial fractions",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Divide a polynomial of degree up to 4 by a linear or quadratic polynomial, finding quotient and remainder."
+          },
+          {
+           "code": null,
+           "text": "Use the factor theorem and the remainder theorem."
+          },
+          {
+           "code": null,
+           "text": "Decompose rational functions into partial fractions for the specified denominator types."
+          }
+         ]
+        },
+        {
+         "id": "binomial-series",
+         "title": "Binomial series",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Expand (1 + x)^n for rational n with |x| < 1, including adapted forms and the range of validity."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "3-2-logarithmic-and-exponential-functions",
+       "title": "3.2 Logarithmic and exponential functions",
+       "subtopics": [
+        {
+         "id": "logarithms-and-e-x",
+         "title": "Logarithms and e^x",
+         "outcomes": [
+          {
+           "code": "3.2",
+           "text": "Understand how logarithms relate to indices and use the laws of logarithms."
+          },
+          {
+           "code": null,
+           "text": "Understand the definition, properties and graphs of e^x and ln x as inverse functions."
+          }
+         ]
+        },
+        {
+         "id": "using-logarithms",
+         "title": "Using logarithms",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Use logarithms to solve equations and inequalities where the unknown is in an index."
+          },
+          {
+           "code": null,
+           "text": "Use logarithms to turn a relationship into linear form and find constants from gradient or intercept."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "3-3-trigonometry",
+       "title": "3.3 Trigonometry",
+       "subtopics": [
+        {
+         "id": "reciprocal-functions-and-identities",
+         "title": "Reciprocal functions and identities",
+         "outcomes": [
+          {
+           "code": "3.3",
+           "text": "Understand sec, cosec and cot, and use properties and graphs of all six trigonometric functions for any angle."
+          },
+          {
+           "code": null,
+           "text": "Use trigonometric identities to simplify, evaluate exactly and solve equations, including compound angle, double angle and R sin(theta + alpha) forms."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "3-4-differentiation",
+       "title": "3.4 Differentiation",
+       "subtopics": [
+        {
+         "id": "new-derivatives-and-rules",
+         "title": "New derivatives and rules",
+         "outcomes": [
+          {
+           "code": "3.4",
+           "text": "Use the derivatives of e^x, ln x, sin x, cos x, tan x and tan^-1 x with multiples, sums, differences and composites."
+          },
+          {
+           "code": null,
+           "text": "Differentiate products and quotients."
+          },
+          {
+           "code": null,
+           "text": "Find and use the first derivative of a function defined parametrically or implicitly."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "3-5-integration",
+       "title": "3.5 Integration",
+       "subtopics": [
+        {
+         "id": "standard-integrals-and-trigonometry",
+         "title": "Standard integrals and trigonometry",
+         "outcomes": [
+          {
+           "code": "3.5",
+           "text": "Integrate e^(ax+b), 1/(ax+b), sin, cos, sec^2 and 1/(x^2 + a^2) forms by reversing differentiation."
+          },
+          {
+           "code": null,
+           "text": "Use trigonometric relationships, such as double-angle formulae, when integrating."
+          },
+          {
+           "code": null,
+           "text": "Integrate rational functions using partial fractions."
+          }
+         ]
+        },
+        {
+         "id": "further-integration-methods",
+         "title": "Further integration methods",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Recognise integrands of the form kf'(x)/f(x) and integrate them."
+          },
+          {
+           "code": null,
+           "text": "Use integration by parts when an integrand is a product."
+          },
+          {
+           "code": null,
+           "text": "Use a given substitution to simplify and evaluate definite or indefinite integrals."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "3-6-numerical-solution-of-equations",
+       "title": "3.6 Numerical solution of equations",
+       "subtopics": [
+        {
+         "id": "roots-and-iteration",
+         "title": "Roots and iteration",
+         "outcomes": [
+          {
+           "code": "3.6",
+           "text": "Locate a root approximately using graphs or a sign change."
+          },
+          {
+           "code": null,
+           "text": "Understand a sequence of approximations that converges to a root, and its notation."
+          },
+          {
+           "code": null,
+           "text": "Use a given iterative formula x(n+1) = F(x(n)) to find a root to a given accuracy."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "3-7-vectors",
+       "title": "3.7 Vectors",
+       "subtopics": [
+        {
+         "id": "vector-basics",
+         "title": "Vector basics",
+         "outcomes": [
+          {
+           "code": "3.7",
+           "text": "Use standard vector notations: column vectors, xi + yj + zk and AB."
+          },
+          {
+           "code": null,
+           "text": "Add and subtract vectors, multiply by a scalar, and interpret these geometrically."
+          },
+          {
+           "code": null,
+           "text": "Calculate vector magnitudes and use unit, displacement and position vectors."
+          }
+         ]
+        },
+        {
+         "id": "lines-and-scalar-products",
+         "title": "Lines and scalar products",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Understand the symbols in r = a + tb and find the equation of a line."
+          },
+          {
+           "code": null,
+           "text": "Decide whether two lines are parallel, intersecting or skew, and find any intersection point."
+          },
+          {
+           "code": null,
+           "text": "Use the scalar product to find angles and perpendicular feet in line and point problems."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "3-8-differential-equations",
+       "title": "3.8 Differential equations",
+       "subtopics": [
+        {
+         "id": "forming-and-solving-differential-equations",
+         "title": "Forming and solving differential equations",
+         "outcomes": [
+          {
+           "code": "3.8",
+           "text": "Formulate a simple rate-of-change statement as a differential equation."
+          },
+          {
+           "code": null,
+           "text": "Find a general solution of a first-order separable differential equation by integration."
+          },
+          {
+           "code": null,
+           "text": "Use an initial condition to find a particular solution."
+          },
+          {
+           "code": null,
+           "text": "Interpret the solution of a differential equation in the modelled context."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "3-9-complex-numbers",
+       "title": "3.9 Complex numbers",
+       "subtopics": [
+        {
+         "id": "cartesian-form",
+         "title": "Cartesian form",
+         "outcomes": [
+          {
+           "code": "3.9",
+           "text": "Understand complex numbers, real and imaginary parts, modulus, argument and conjugate, and when two are equal."
+          },
+          {
+           "code": null,
+           "text": "Add, subtract, multiply and divide complex numbers in Cartesian form."
+          },
+          {
+           "code": null,
+           "text": "Use the fact that non-real roots of real-coefficient polynomials come in conjugate pairs."
+          }
+         ]
+        },
+        {
+         "id": "argand-diagram-and-polar-form",
+         "title": "Argand diagram and polar form",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Represent complex numbers on an Argand diagram."
+          },
+          {
+           "code": null,
+           "text": "Multiply and divide complex numbers in polar form."
+          },
+          {
+           "code": null,
+           "text": "Find the two square roots of a complex number."
+          },
+          {
+           "code": null,
+           "text": "Understand the geometrical effects of conjugating, adding, subtracting, multiplying and dividing complex numbers."
+          },
+          {
+           "code": null,
+           "text": "Illustrate simple equations and inequalities with loci on an Argand diagram."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "probability-statistics-2",
+     "title": "Probability & Statistics 2",
+     "topics": [
+      {
+       "id": "6-1-the-poisson-distribution",
+       "title": "6.1 The Poisson distribution",
+       "subtopics": [
+        {
+         "id": "poisson-distribution",
+         "title": "Poisson distribution",
+         "outcomes": [
+          {
+           "code": "6.1",
+           "text": "Use the formula for Poisson probabilities Po(lambda)."
+          },
+          {
+           "code": null,
+           "text": "Use the fact that a Poisson variable has mean and variance both equal to lambda."
+          },
+          {
+           "code": null,
+           "text": "Understand how the Poisson distribution models random events, and use it as a model."
+          }
+         ]
+        },
+        {
+         "id": "approximations",
+         "title": "Approximations",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Use the Poisson as an approximation to the binomial where appropriate."
+          },
+          {
+           "code": null,
+           "text": "Use the normal distribution, with continuity correction, to approximate the Poisson where appropriate."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "6-2-linear-combinations-of-random-variables",
+       "title": "6.2 Linear combinations of random variables",
+       "subtopics": [
+        {
+         "id": "linear-combinations",
+         "title": "Linear combinations",
+         "outcomes": [
+          {
+           "code": "6.2",
+           "text": "Use the results for E(aX + b), Var(aX + b), E(aX + bY) and Var(aX + bY) for independent X and Y, and the closure of normal and Poisson distributions under combinations."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "6-3-continuous-random-variables",
+       "title": "6.3 Continuous random variables",
+       "subtopics": [
+        {
+         "id": "probability-density-functions",
+         "title": "Probability density functions",
+         "outcomes": [
+          {
+           "code": "6.3",
+           "text": "Understand a continuous random variable and recall and use properties of a probability density function."
+          },
+          {
+           "code": null,
+           "text": "Use a probability density function for probabilities, and to calculate mean and variance."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "6-4-sampling-and-estimation",
+       "title": "6.4 Sampling and estimation",
+       "subtopics": [
+        {
+         "id": "samples-and-sample-means",
+         "title": "Samples and sample means",
+         "outcomes": [
+          {
+           "code": "6.4",
+           "text": "Understand sample versus population and why random sampling matters."
+          },
+          {
+           "code": null,
+           "text": "Explain simply why a given sampling method may be unsatisfactory."
+          },
+          {
+           "code": null,
+           "text": "Recognise a sample mean as a random variable with E(X-bar) = mu and Var(X-bar) = sigma^2/n."
+          },
+          {
+           "code": null,
+           "text": "Use the fact that the sample mean is normal if X is normal."
+          },
+          {
+           "code": null,
+           "text": "Use the Central Limit Theorem where appropriate."
+          }
+         ]
+        },
+        {
+         "id": "estimates-and-confidence-intervals",
+         "title": "Estimates and confidence intervals",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Calculate unbiased estimates of the population mean and variance from raw or summarised data."
+          },
+          {
+           "code": null,
+           "text": "Determine and interpret a confidence interval for a population mean with known variance or a large sample."
+          },
+          {
+           "code": null,
+           "text": "Determine an approximate confidence interval for a population proportion from a large sample."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "6-5-hypothesis-tests",
+       "title": "6.5 Hypothesis tests",
+       "subtopics": [
+        {
+         "id": "hypothesis-testing-ideas",
+         "title": "Hypothesis testing ideas",
+         "outcomes": [
+          {
+           "code": "6.5",
+           "text": "Understand hypothesis tests: one- and two-tailed tests, null and alternative hypotheses, significance level, critical region and test statistic."
+          }
+         ]
+        },
+        {
+         "id": "carrying-out-tests",
+         "title": "Carrying out tests",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Carry out a hypothesis test for a single binomial or Poisson observation, directly or with a normal approximation."
+          },
+          {
+           "code": null,
+           "text": "Carry out a hypothesis test for a population mean with known variance or a large sample."
+          }
+         ]
+        },
+        {
+         "id": "type-i-and-type-ii-errors",
+         "title": "Type I and Type II errors",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Understand Type I and Type II errors."
+          },
+          {
+           "code": null,
+           "text": "Calculate probabilities of Type I and Type II errors in specific normal, binomial or Poisson tests."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "build": {
+  "builtAt": "2026-10-14T12:57:42.999Z",
+  "model": "claude-agent",
+  "usd": 0,
+  "expectedCodes": 38,
+  "coverage": 1,
+  "missingCodes": [],
+  "counts": {
+   "grades": 2,
+   "units": 6,
+   "topics": 38,
+   "subtopics": 61,
+   "outcomes": 154
+  },
+  "warnings": []
+ }
+}

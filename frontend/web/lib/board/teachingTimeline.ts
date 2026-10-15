@@ -2,7 +2,7 @@ import type { DrawScript } from "@/components/sketch/LiveSketch";
 import { sentenceWeight } from "@/lib/narrationClock";
 import { splitNarrationSentences } from "@/lib/voice";
 
-import { resolveOpTiming, sentenceFraction, syncCoverage, type TimedOp } from "./sentenceSync";
+import { evaluateSyncGate, resolveOpTiming, sentenceFraction, syncCoverage, type SyncGateOptions, type TimedOp } from "./sentenceSync";
 import { chooseSurface, toLiveSketchSurface } from "./surfaces";
 
 export interface TeachingTimelineDiagnostics {
@@ -11,6 +11,7 @@ export interface TeachingTimelineDiagnostics {
   unboundOps: number;
   sentencesCovered: number;
   coverage: number;
+  gate: ReturnType<typeof evaluateSyncGate>;
 }
 
 /**
@@ -23,6 +24,7 @@ export interface TeachingTimelineDiagnostics {
 export function coordinateTeachingTimeline(
   draw: DrawScript,
   lesson: { title: string; objective?: string; script: string },
+  syncOptions: SyncGateOptions = {},
 ): { draw: DrawScript; diagnostics: TeachingTimelineDiagnostics } {
   const sentences = splitNarrationSentences(lesson.script);
   const weights = sentences.map(sentenceWeight);
@@ -32,6 +34,7 @@ export function coordinateTeachingTimeline(
     return { ...op, endAt: sentenceFraction(Math.min(sentences.length - 1, op.untilSentence + 1), weights) };
   }) as DrawScript["ops"];
   const coverage = syncCoverage(timed, sentences.length);
+  const gate = evaluateSyncGate(timed, sentences.length, syncOptions);
   const choice = chooseSurface(lesson);
   const surface = draw.surface ?? (choice.surface === "split" ? "split" : toLiveSketchSurface(choice.surface));
   const panes = draw.panes ?? (choice.panes
@@ -46,7 +49,7 @@ export function coordinateTeachingTimeline(
       unboundOps: coverage.unbound,
       sentencesCovered: coverage.sentencesCovered,
       coverage: coverage.coverage,
+      gate,
     },
   };
 }
-

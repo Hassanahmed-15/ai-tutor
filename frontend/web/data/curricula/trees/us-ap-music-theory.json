@@ -1,0 +1,1588 @@
+{
+ "id": "us-ap-music-theory",
+ "region": "US",
+ "framework": "AP Music Theory Course and Exam Description (effective fall 2026)",
+ "board": "College Board",
+ "qualification": "AP",
+ "subject": "Music Theory",
+ "syllabusCode": null,
+ "gradeSystem": "course",
+ "source": {
+  "urls": [
+   "https://apcentral.collegeboard.org/media/pdf/ap-music-theory-course-and-exam-description.pdf",
+   "https://apcentral.collegeboard.org/courses/ap-music-theory"
+  ],
+  "publisher": "College Board",
+  "licence": "© College Board; structure + our own wording only",
+  "firstExam": "2027"
+ },
+ "grades": [
+  {
+   "grade": "all",
+   "units": [
+    {
+     "id": "unit-1-music-fundamentals-i",
+     "title": "Unit 1: Music Fundamentals I",
+     "topics": [
+      {
+       "id": "1-1-pitch-and-pitch-notation",
+       "title": "1.1 Pitch and Pitch Notation",
+       "subtopics": [
+        {
+         "id": "reading-pitches-on-the-staff",
+         "title": "Reading pitches on the staff",
+         "outcomes": [
+          {
+           "code": "PIT-1.A",
+           "text": "Identify pitches on the staff in treble, bass and C clefs, whether heard or notated."
+          },
+          {
+           "code": "PIT-1.A.1",
+           "text": "Read pitch from position on the staff and clef, and know octaves and accidentals."
+          },
+          {
+           "code": "PIT-1.A.2",
+           "text": "Recognize enharmonic equivalents, the same pitch spelled differently."
+          },
+          {
+           "code": "PIT-1.B",
+           "text": "Spot pitch differences between a notated score and what is performed."
+          },
+          {
+           "code": "PIT-1.B.1",
+           "text": "Know that performed pitches should match the score except where improvisation or ornament is allowed."
+          },
+          {
+           "code": "PIT-3.A",
+           "text": "Sight-sing the pitches and rhythms of a notated melody in treble or bass clef."
+          },
+          {
+           "code": "PIT-3.A.1",
+           "text": "Sing notated pitches accurately, keeping the same intervals even if transposed."
+          },
+          {
+           "code": "PIT-3.A.2",
+           "text": "Know a sight-singing is partly right if it keeps the tonic or the correct contour."
+          },
+          {
+           "code": "PIT-3.A.3",
+           "text": "Hold each note for its full length, especially at cadences."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "1-2-rhythmic-values",
+       "title": "1.2 Rhythmic Values",
+       "subtopics": [
+        {
+         "id": "note-and-rest-values",
+         "title": "Note and rest values",
+         "outcomes": [
+          {
+           "code": "RHY-1.A",
+           "text": "Identify note and rest values in performed and notated music."
+          },
+          {
+           "code": "RHY-1.A.1",
+           "text": "Know that values show duration, extended by ties and single or double dots."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "1-3-half-steps-and-whole-steps",
+       "title": "1.3 Half Steps and Whole Steps",
+       "subtopics": [
+        {
+         "id": "half-and-whole-steps",
+         "title": "Half and whole steps",
+         "outcomes": [
+          {
+           "code": "PIT-1.C",
+           "text": "Identify half and whole steps in performed and notated music."
+          },
+          {
+           "code": "PIT-1.C.1",
+           "text": "Know pitch patterns start with the half step and the whole step (two half steps)."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "1-4-major-scales-and-scale-degrees",
+       "title": "1.4 Major Scales and Scale Degrees",
+       "subtopics": [
+        {
+         "id": "major-scales-and-scale-degrees",
+         "title": "Major scales and scale degrees",
+         "outcomes": [
+          {
+           "code": "PIT-1.D",
+           "text": "Identify major scales in performed and notated music."
+          },
+          {
+           "code": "PIT-1.D.1",
+           "text": "Build major and minor scales from set patterns of whole and half steps."
+          },
+          {
+           "code": "PIT-1.E",
+           "text": "Name a pitch's function relative to the tonic using scale degree names or numbers."
+          },
+          {
+           "code": "PIT-1.E.1",
+           "text": "Know the scale degree names from tonic to leading tone, and their numbers."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "1-5-major-keys-and-key-signatures",
+       "title": "1.5 Major Keys and Key Signatures",
+       "subtopics": [
+        {
+         "id": "major-keys-and-key-signatures",
+         "title": "Major keys and key signatures",
+         "outcomes": [
+          {
+           "code": "PIT-1.F",
+           "text": "Identify major keys and key signatures in notated music."
+          },
+          {
+           "code": "PIT-1.F.1",
+           "text": "Understand that music built on a scale is in that key."
+          },
+          {
+           "code": "PIT-1.F.2",
+           "text": "Know key signatures show a scale's sharps or flats; diatonic versus chromatic pitches."
+          },
+          {
+           "code": "PIT-1.F.3",
+           "text": "Use the circle of fifths to see which keys are closely related."
+          },
+          {
+           "code": "PIT-3.B",
+           "text": "Notate the pitches and rhythms of a performed melody in treble or bass clef."
+          },
+          {
+           "code": "PIT-3.B.1",
+           "text": "Take melodic dictation by hearing pitches against the tonic, spelling them in key and placing the octave."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "1-6-simple-and-compound-beat-division",
+       "title": "1.6 Simple and Compound Beat Division",
+       "subtopics": [
+        {
+         "id": "simple-and-compound-beat-division",
+         "title": "Simple and compound beat division",
+         "outcomes": [
+          {
+           "code": "RHY-1.B",
+           "text": "Describe beat division and meter type in performed and notated music."
+          },
+          {
+           "code": "RHY-1.B.1",
+           "text": "Understand meter as layered pulses: beat, division and measure."
+          },
+          {
+           "code": "RHY-1.B.2",
+           "text": "Tell simple meter (beat splits in two) from compound meter (beat splits in three)."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "1-7-meter-and-time-signature",
+       "title": "1.7 Meter and Time Signature",
+       "subtopics": [
+        {
+         "id": "meter-and-time-signatures",
+         "title": "Meter and time signatures",
+         "outcomes": [
+          {
+           "code": "RHY-1.C",
+           "text": "Describe the meter type in performed and notated music."
+          },
+          {
+           "code": "RHY-1.C.1",
+           "text": "Name meters by division and beat grouping: simple or compound, duple, triple or quadruple."
+          },
+          {
+           "code": "RHY-1.D",
+           "text": "Describe the time signature in performed and notated music."
+          },
+          {
+           "code": "RHY-1.D.1",
+           "text": "Read the upper and lower numbers of a time signature to find beats, beat value and meter type."
+          },
+          {
+           "code": "RHY-1.D.2",
+           "text": "Explain metrical accent: downbeat, strong and weak beats, and onbeat versus offbeat divisions."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "1-8-rhythmic-patterns",
+       "title": "1.8 Rhythmic Patterns",
+       "subtopics": [
+        {
+         "id": "rhythmic-patterns",
+         "title": "Rhythmic patterns",
+         "outcomes": [
+          {
+           "code": "RHY-2.A",
+           "text": "Identify, notate and sight-sing rhythmic patterns in simple and compound meter."
+          },
+          {
+           "code": "RHY-2.A.1",
+           "text": "Know the common ways rhythmic values fill a beat, and use named patterns such as dotted rhythms."
+          },
+          {
+           "code": "RHY-2.A.2",
+           "text": "Beam and group notated rhythm so the beats stay clearly visible."
+          },
+          {
+           "code": "RHY-2.B",
+           "text": "Spot rhythm differences between notated and performed music in one or two voices."
+          },
+          {
+           "code": "RHY-2.B.1",
+           "text": "Know performed rhythm should match the score unless a style, such as swing, allows deviation."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "1-9-tempo",
+       "title": "1.9 Tempo",
+       "subtopics": [
+        {
+         "id": "tempo-markings",
+         "title": "Tempo markings",
+         "outcomes": [
+          {
+           "code": "DES-3.A",
+           "text": "Identify and apply tempo markings, including tempo adjustments, in performed and notated music."
+          },
+          {
+           "code": "DES-3.A.1",
+           "text": "Know Italian tempo terms from largo to prestissimo and metronome markings."
+          },
+          {
+           "code": "DES-3.A.2",
+           "text": "Know terms for speeding up, slowing down and flexible tempo, such as accelerando, ritardando and rubato."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "1-10-dynamics-and-articulation",
+       "title": "1.10 Dynamics and Articulation",
+       "subtopics": [
+        {
+         "id": "dynamics-and-articulation",
+         "title": "Dynamics and articulation",
+         "outcomes": [
+          {
+           "code": "DES-3.B",
+           "text": "Identify dynamics and changes in dynamics in performed and notated music."
+          },
+          {
+           "code": "DES-3.B.1",
+           "text": "Read dynamic marks from pp to ff, hairpins, crescendo, subito, and sforzando accents."
+          },
+          {
+           "code": "DES-3.C",
+           "text": "Identify articulation and changes in articulation in performed and notated music."
+          },
+          {
+           "code": "DES-3.C.1",
+           "text": "Read articulation marks: staccato, legato, slurs, accents and tremolo."
+          },
+          {
+           "code": "DES-3.D",
+           "text": "Sight-sing a notated melody while applying its dynamics, articulation and tempo."
+          },
+          {
+           "code": "DES-3.D.1",
+           "text": "Sing at sight with steady tempo and continuity, observing marked expression without hesitating."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "unit-2-music-fundamentals-ii",
+     "title": "Unit 2: Music Fundamentals II",
+     "topics": [
+      {
+       "id": "2-1-minor-scales-natural-harmonic-and-melodic",
+       "title": "2.1 Minor Scales: Natural, Harmonic, and Melodic",
+       "subtopics": [
+        {
+         "id": "minor-scales",
+         "title": "Minor scales",
+         "outcomes": [
+          {
+           "code": "PIT-1.G",
+           "text": "Identify natural, harmonic and melodic minor scales in performed and notated music."
+          },
+          {
+           "code": "PIT-1.G.1",
+           "text": "Know the harmonic and melodic minor are altered forms of natural minor."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "2-2-relative-keys",
+       "title": "2.2 Relative Keys",
+       "subtopics": [
+        {
+         "id": "relative-keys",
+         "title": "Relative keys",
+         "outcomes": [
+          {
+           "code": "PIT-1.H",
+           "text": "Identify and notate a relative key and its key signature."
+          },
+          {
+           "code": "PIT-1.H.1",
+           "text": "Know relative keys share a key signature but have different tonics."
+          },
+          {
+           "code": "PIT-1.I",
+           "text": "Identify minor and relative keys in performed and notated music."
+          },
+          {
+           "code": "PIT-1.I.1",
+           "text": "Know a minor key shares its key signature with its relative major."
+          },
+          {
+           "code": "PIT-1.I.2",
+           "text": "Use the term mode for major and minor, and recognize a change in mode."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "2-3-key-relationships",
+       "title": "2.3 Key Relationships",
+       "subtopics": [
+        {
+         "id": "key-relationships",
+         "title": "Key relationships",
+         "outcomes": [
+          {
+           "code": "PIT-1.J",
+           "text": "Describe parallel, closely related and distantly related key relationships."
+          },
+          {
+           "code": "PIT-1.J.1",
+           "text": "Know parallel keys share a tonic but differ in key signature."
+          },
+          {
+           "code": "PIT-1.J.2",
+           "text": "Know closely related keys differ by at most one accidental."
+          },
+          {
+           "code": "PIT-1.J.3",
+           "text": "Know distantly related keys differ by more than one accidental."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "2-4-other-scales",
+       "title": "2.4 Other Scales",
+       "subtopics": [
+        {
+         "id": "other-scales",
+         "title": "Other scales",
+         "outcomes": [
+          {
+           "code": "PIT-1.K",
+           "text": "Identify chromatic, whole-tone and pentatonic scales in performed and notated music."
+          },
+          {
+           "code": "PIT-1.K.1",
+           "text": "Know the notes of chromatic, whole-tone, and major and minor pentatonic scales."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "2-5-interval-size-and-quality",
+       "title": "2.5 Interval Size and Quality",
+       "subtopics": [
+        {
+         "id": "interval-size-and-quality",
+         "title": "Interval size and quality",
+         "outcomes": [
+          {
+           "code": "PIT-1.L",
+           "text": "Describe the size and quality of an interval in performed and notated music."
+          },
+          {
+           "code": "PIT-1.L.1",
+           "text": "Name intervals by distance and quality: major, minor, perfect, diminished, augmented."
+          },
+          {
+           "code": "PIT-1.L.2",
+           "text": "Tell harmonic from melodic intervals, and steps from leaps."
+          },
+          {
+           "code": "PIT-1.L.3",
+           "text": "Tell consonant (stable) intervals from dissonant (unstable) ones."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "2-6-interval-inversion-and-compound-intervals",
+       "title": "2.6 Interval Inversion and Compound Intervals",
+       "subtopics": [
+        {
+         "id": "inversion-and-compound-intervals",
+         "title": "Inversion and compound intervals",
+         "outcomes": [
+          {
+           "code": "PIT-1.M",
+           "text": "Identify interval inversions and compound intervals in performed and notated music."
+          },
+          {
+           "code": "PIT-1.M.1",
+           "text": "Invert intervals and know how sizes and qualities change; inversions sum to nine."
+          },
+          {
+           "code": "PIT-1.M.2",
+           "text": "Know compound intervals add an octave to a simple interval and sound alike."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "2-7-transposing-instruments",
+       "title": "2.7 Transposing Instruments",
+       "subtopics": [
+        {
+         "id": "transposing-instruments",
+         "title": "Transposing instruments",
+         "outcomes": [
+          {
+           "code": "PIT-1.N",
+           "text": "Find sounding pitches from notated pitches of a transposing instrument, given the transposition."
+          },
+          {
+           "code": "PIT-1.N.1",
+           "text": "Know transposing instruments sound differently from written pitches, so scores need conversion."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "2-8-timbre",
+       "title": "2.8 Timbre",
+       "subtopics": [
+        {
+         "id": "timbre",
+         "title": "Timbre",
+         "outcomes": [
+          {
+           "code": "DES-2.A",
+           "text": "Identify performance media and vocal and instrumental timbres in performed music."
+          },
+          {
+           "code": "DES-2.A.1",
+           "text": "Recognize standard ensembles, timbre, register and tessitura."
+          },
+          {
+           "code": "DES-2.A.2",
+           "text": "Know the instrument families and common members of each, plus groupings like rhythm section and continuo."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "2-9-melodic-features",
+       "title": "2.9 Melodic Features",
+       "subtopics": [
+        {
+         "id": "melodic-features",
+         "title": "Melodic features",
+         "outcomes": [
+          {
+           "code": "PIT-3.C",
+           "text": "Identify features of melody in performed and notated music."
+          },
+          {
+           "code": "PIT-3.C.1",
+           "text": "Know melody comes from pitch and rhythm together."
+          },
+          {
+           "code": "PIT-3.C.2",
+           "text": "Know melodies draw on scales and modes and form motives and phrases."
+          },
+          {
+           "code": "PIT-3.C.3",
+           "text": "Describe contour, conjunct versus disjunct motion, register and range."
+          },
+          {
+           "code": "PIT-3.C.4",
+           "text": "Define a motive as a small recurring musical idea that can be developed."
+          },
+          {
+           "code": "PIT-3.C.5",
+           "text": "Tell syllabic text setting from melismatic text setting."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "2-10-melodic-transposition",
+       "title": "2.10 Melodic Transposition",
+       "subtopics": [
+        {
+         "id": "melodic-transposition",
+         "title": "Melodic transposition",
+         "outcomes": [
+          {
+           "code": "PIT-3.C.6",
+           "text": "Transpose a melody to a new pitch level while keeping its intervals and rhythm."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "2-11-texture-and-texture-types",
+       "title": "2.11 Texture and Texture Types",
+       "subtopics": [
+        {
+         "id": "texture-types",
+         "title": "Texture types",
+         "outcomes": [
+          {
+           "code": "DES-1.A",
+           "text": "Identify texture types in performed and notated music."
+          },
+          {
+           "code": "DES-1.A.1",
+           "text": "Understand texture as how musical components combine, shaped by timbre, density and range."
+          },
+          {
+           "code": "DES-1.A.2",
+           "text": "Name texture types: monophony, homophony, polyphony, heterophony, plus canon and call-and-response."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "2-12-texture-devices",
+       "title": "2.12 Texture Devices",
+       "subtopics": [
+        {
+         "id": "texture-devices",
+         "title": "Texture devices",
+         "outcomes": [
+          {
+           "code": "DES-1.B",
+           "text": "Identify texture devices in performed and notated music."
+          },
+          {
+           "code": "DES-1.B.1",
+           "text": "Recognize devices such as Alberti bass, walking bass, imitation, countermelody, ostinato and tutti."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "2-13-rhythmic-devices",
+       "title": "2.13 Rhythmic Devices",
+       "subtopics": [
+        {
+         "id": "rhythmic-devices",
+         "title": "Rhythmic devices",
+         "outcomes": [
+          {
+           "code": "RHY-3.A",
+           "text": "Identify rhythmic devices in performed and notated music."
+          },
+          {
+           "code": "RHY-3.A.1",
+           "text": "Recognize syncopation, cross-rhythm and hemiola."
+          },
+          {
+           "code": "RHY-3.A.2",
+           "text": "Recognize agogic accent, anacrusis and fermata."
+          },
+          {
+           "code": "RHY-1.E",
+           "text": "Identify irregular beat division or grouping in performed and notated music."
+          },
+          {
+           "code": "RHY-1.E.1",
+           "text": "Recognize borrowed divisions such as triplets and duplets and irregular divisions."
+          },
+          {
+           "code": "RHY-1.E.2",
+           "text": "Tell symmetrical from asymmetrical meters and recognize changing or mixed meter."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "unit-3-music-fundamentals-iii",
+     "title": "Unit 3: Music Fundamentals III",
+     "topics": [
+      {
+       "id": "3-1-triad-and-chord-qualities",
+       "title": "3.1 Triad and Chord Qualities",
+       "subtopics": [
+        {
+         "id": "triad-and-chord-qualities",
+         "title": "Triad and chord qualities",
+         "outcomes": [
+          {
+           "code": "PIT-1.O",
+           "text": "Describe the quality of a chord in performed and notated music."
+          },
+          {
+           "code": "PIT-1.O.1",
+           "text": "Know chords have three or more pitches; triads and seventh chords are stacked thirds."
+          },
+          {
+           "code": "PIT-1.O.2",
+           "text": "Name chord members: root, third, fifth and seventh."
+          },
+          {
+           "code": "PIT-1.O.3",
+           "text": "Classify triads as major, minor, diminished or augmented by their intervals."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "3-2-diatonic-chords-and-roman-numerals",
+       "title": "3.2 Diatonic Chords and Roman Numerals",
+       "subtopics": [
+        {
+         "id": "diatonic-chords-and-roman-numerals",
+         "title": "Diatonic chords and Roman numerals",
+         "outcomes": [
+          {
+           "code": "PIT-2.A",
+           "text": "Identify chords with letters and Roman or Arabic numerals showing root, quality and bass."
+          },
+          {
+           "code": "PIT-2.A.1",
+           "text": "Label diatonic chords with Roman numerals, upper or lower case, and scale degree names."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "3-3-chord-inversions-and-figures",
+       "title": "3.3 Chord Inversions and Figures",
+       "subtopics": [
+        {
+         "id": "inversions-and-figured-bass",
+         "title": "Inversions and figured bass",
+         "outcomes": [
+          {
+           "code": "PIT-2.A.2",
+           "text": "Identify root position and inversions, using figured bass numerals and letter-name chord labels."
+          },
+          {
+           "code": "PIT-2.B",
+           "text": "Use Roman numerals to show the harmonic progression implied by a figured bass."
+          },
+          {
+           "code": "PIT-2.B.1",
+           "text": "Read figured bass numerals as intervals above the bass that imply chords."
+          },
+          {
+           "code": "PIT-2.B.2",
+           "text": "Read slashes, plus signs and lone accidentals in figured bass as raised pitches."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "3-4-seventh-chords",
+       "title": "3.4 Seventh Chords",
+       "subtopics": [
+        {
+         "id": "seventh-chords",
+         "title": "Seventh chords",
+         "outcomes": [
+          {
+           "code": "PIT-2.C",
+           "text": "Describe the quality of a seventh chord in performed and notated music."
+          },
+          {
+           "code": "PIT-2.C.1",
+           "text": "Name the five common seventh chord qualities, including dominant seventh and half- and fully-diminished."
+          },
+          {
+           "code": "PIT-2.C.2",
+           "text": "Recognize the chordal seventh as a chordal dissonance that needs to resolve."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "3-5-seventh-chord-inversions-and-figures",
+       "title": "3.5 Seventh Chord Inversions and Figures",
+       "subtopics": [
+        {
+         "id": "seventh-chord-inversions",
+         "title": "Seventh chord inversions",
+         "outcomes": [
+          {
+           "code": "PIT-2.D",
+           "text": "Identify seventh chords with Roman and Arabic numerals showing root, quality and bass."
+          },
+          {
+           "code": "PIT-2.D.1",
+           "text": "Know seventh chords can sit in third inversion with the seventh in the bass."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "unit-4-harmony-and-voice-leading-i",
+     "title": "Unit 4: Harmony and Voice Leading I",
+     "topics": [
+      {
+       "id": "4-1-soprano-bass-counterpoint",
+       "title": "4.1 Soprano-Bass Counterpoint",
+       "subtopics": [
+        {
+         "id": "soprano-bass-counterpoint",
+         "title": "Soprano-bass counterpoint",
+         "outcomes": [
+          {
+           "code": "PIT-2.E",
+           "text": "Compose a bass line for a given soprano, following 18th-century harmonic norms."
+          },
+          {
+           "code": "PIT-2.E.1",
+           "text": "Imply plausible harmonies with a bass line, using tonic, supertonic, subdominant and dominant, and valid repeats."
+          },
+          {
+           "code": "PIT-2.F",
+           "text": "Use Roman and Arabic numerals to label the chords a bass line implies."
+          },
+          {
+           "code": "PIT-2.F.1",
+           "text": "Analyze bass-line progressions so that every given note is explained by the chords."
+          },
+          {
+           "code": "PIT-2.G",
+           "text": "Notate soprano and bass pitches and rhythms of a performed harmonic progression."
+          },
+          {
+           "code": "PIT-2.G.1",
+           "text": "Take outer-voice dictation: bass octave displacement is tolerated, soprano octave is not."
+          },
+          {
+           "code": "PIT-2.G.2",
+           "text": "Use soprano and bass to identify the chords and show them in Roman numeral analysis."
+          }
+         ]
+        },
+        {
+         "id": "writing-the-bass-line",
+         "title": "Writing the bass line",
+         "outcomes": [
+          {
+           "code": "PIT-3.D",
+           "text": "Compose a bass line against a soprano following 18th-century melodic procedures."
+          },
+          {
+           "code": "PIT-3.D.1",
+           "text": "Balance up and down motion and steps and leaps for melodic interest in the bass."
+          },
+          {
+           "code": "PIT-3.D.2",
+           "text": "Know which bass leaps are allowed and how to follow octave leaps."
+          },
+          {
+           "code": "PIT-3.D.3",
+           "text": "Know when repeated bass notes are acceptable."
+          },
+          {
+           "code": "RHY-2.C",
+           "text": "Compose the rhythm of a bass line in the style of an 18th-century chorale."
+          },
+          {
+           "code": "RHY-2.C.1",
+           "text": "Use mostly quarter notes in the bass, with occasional half and eighth notes."
+          },
+          {
+           "code": "FOR-1.A",
+           "text": "Identify the beginnings, ends and lengths of phrases in performed and notated music."
+          },
+          {
+           "code": "FOR-1.A.1",
+           "text": "Understand phrases as complete utterances ending in a cadence, usually four or eight measures."
+          },
+          {
+           "code": "FOR-1.A.2",
+           "text": "Imply an appropriate cadence at each phrase ending in a bass line, finishing with a perfect authentic cadence."
+          }
+         ]
+        },
+        {
+         "id": "voice-leading-motion-and-conventions",
+         "title": "Voice-leading motion and conventions",
+         "outcomes": [
+          {
+           "code": "PIT-4.A",
+           "text": "Identify and apply 18th-century voice leading through analysis, error detection, writing and listening."
+          },
+          {
+           "code": "PIT-4.A.1",
+           "text": "Understand voice leading as the smooth, independent movement of parts with correct spelling, spacing and doubling."
+          },
+          {
+           "code": "PIT-4.A.2",
+           "text": "Name the four kinds of motion: parallel, similar, oblique and contrary."
+          },
+          {
+           "code": "PIT-4.A.3",
+           "text": "Follow voice-leading rules: mostly steps, common tones, no voice crossing, no parallel fifths or octaves, leading tone resolves."
+          },
+          {
+           "code": "PIT-4.A.4",
+           "text": "Apply voice-leading conventions to outer voices, avoiding cross relations and unresolved leading tones."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "4-2-satb-voice-leading",
+       "title": "4.2 SATB Voice Leading",
+       "subtopics": [
+        {
+         "id": "satb-voice-leading",
+         "title": "SATB voice leading",
+         "outcomes": [
+          {
+           "code": "DES-1.C",
+           "text": "Describe the number of lines and each line's position among the lines in a passage."
+          },
+          {
+           "code": "DES-1.C.1",
+           "text": "Name lines as soprano, alto, tenor and bass, the usual SATB four-voice texture."
+          },
+          {
+           "code": "PIT-4.A.5",
+           "text": "Tell close position from open position spacing."
+          },
+          {
+           "code": "PIT-4.B",
+           "text": "Apply 18th-century chord spelling and doubling by analysis, error detection and writing."
+          },
+          {
+           "code": "PIT-4.B.1",
+           "text": "Spell every chord correctly, with needed accidentals, in a realized Roman-numeral or figured bass."
+          },
+          {
+           "code": "PIT-4.B.2",
+           "text": "Double chord members by convention: the root first, never the leading tone or seventh."
+          },
+          {
+           "code": "PIT-4.B.3",
+           "text": "Spell inverted triads completely."
+          }
+         ]
+        },
+        {
+         "id": "satb-chord-spacing-and-motion",
+         "title": "SATB chord spacing and motion",
+         "outcomes": [
+          {
+           "code": "PIT-4.C",
+           "text": "Apply 18th-century chord voicing and spacing by analysis, error detection and writing."
+          },
+          {
+           "code": "PIT-4.C.1",
+           "text": "Vary the motion between outer voices and avoid more than three consecutive thirds or sixths."
+          },
+          {
+           "code": "PIT-4.C.2",
+           "text": "Avoid rising unequal fifths, hidden fifths and octaves, and overlapping voices."
+          },
+          {
+           "code": "PIT-4.C.3",
+           "text": "Know chords can be voiced in many arrangements within each part's range."
+          },
+          {
+           "code": "PIT-4.C.4",
+           "text": "Keep adjacent upper voices within an octave of each other."
+          },
+          {
+           "code": "PIT-4.D",
+           "text": "Apply spelling, doubling, spacing and voice-leading rules to progressions with first-inversion chords."
+          },
+          {
+           "code": "PIT-4.D.1",
+           "text": "Follow normal voice-leading rules when writing first-inversion triads."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "4-3-harmonic-progression-functional-harmony-and-",
+       "title": "4.3 Harmonic Progression, Functional Harmony, and Cadences",
+       "subtopics": [
+        {
+         "id": "functional-harmony-and-cadences",
+         "title": "Functional harmony and cadences",
+         "outcomes": [
+          {
+           "code": "PIT-2.H",
+           "text": "Identify and describe harmonic function within a chord progression."
+          },
+          {
+           "code": "PIT-2.H.1",
+           "text": "Define tonal music as pitches organized around a tonic, as in common-practice style."
+          },
+          {
+           "code": "PIT-2.H.2",
+           "text": "Describe a harmonic progression as a chord sequence, written in Roman numerals with inversions."
+          },
+          {
+           "code": "PIT-2.H.3",
+           "text": "Describe harmonic rhythm as the rate at which chords change."
+          },
+          {
+           "code": "PIT-2.H.4",
+           "text": "Assign each chord a tonic, dominant or predominant function."
+          },
+          {
+           "code": "PIT-2.H.5",
+           "text": "Know tonic-dominant-tonic as the basic progression that establishes a key."
+          },
+          {
+           "code": "PIT-2.H.6",
+           "text": "Distinguish normative chord successions from retrogressions such as V to IV."
+          },
+          {
+           "code": "PIT-2.H.7",
+           "text": "Know predominant chords expand the pattern into tonic-predominant-dominant-tonic."
+          }
+         ]
+        },
+        {
+         "id": "cadence-types",
+         "title": "Cadence types",
+         "outcomes": [
+          {
+           "code": "PIT-2.H.8",
+           "text": "Know IV and ii typically precede the dominant as predominant harmonies."
+          },
+          {
+           "code": "PIT-2.I",
+           "text": "Identify cadence types in performed and notated music."
+          },
+          {
+           "code": "PIT-2.I.1",
+           "text": "Tell conclusive cadences (perfect authentic, plagal) from inconclusive ones (half, imperfect authentic, deceptive)."
+          },
+          {
+           "code": "PIT-2.I.2",
+           "text": "Recognize special labeled progressions such as the Picardy third."
+          },
+          {
+           "code": "PIT-2.I.3",
+           "text": "Know plagal and Phrygian half cadences use predominant function and deceptive cadences substitute for tonic."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "4-4-voice-leading-with-seventh-chords",
+       "title": "4.4 Voice Leading with Seventh Chords",
+       "subtopics": [
+        {
+         "id": "voice-leading-with-seventh-chords",
+         "title": "Voice leading with seventh chords",
+         "outcomes": [
+          {
+           "code": "PIT-4.A.6",
+           "text": "Follow normal conventions for chordal sevenths in four-voice writing."
+          },
+          {
+           "code": "PIT-4.A.7",
+           "text": "Approach chordal sevenths by common tone or step, and sometimes by a leap of a third."
+          },
+          {
+           "code": "PIT-4.A.8",
+           "text": "Resolve chordal sevenths down by step, with known exceptions."
+          },
+          {
+           "code": "PIT-4.A.9",
+           "text": "Omit the fifth of a root-position dominant seventh when helpful, doubling the root."
+          },
+          {
+           "code": "PIT-4.A.11",
+           "text": "Use leading-tone seventh chords to substitute for V or to prolong the tonic."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "4-5-voice-leading-with-seventh-chords-in-inversi",
+       "title": "4.5 Voice Leading with Seventh Chords in Inversion",
+       "subtopics": [
+        {
+         "id": "seventh-chords-in-inversion",
+         "title": "Seventh chords in inversion",
+         "outcomes": [
+          {
+           "code": "PIT-4.A.10",
+           "text": "Connect inverted seventh chords smoothly with a stepwise bass."
+          },
+          {
+           "code": "PIT-4.A.12",
+           "text": "Spell inverted seventh chords completely and resolve undoubled tendency tones."
+          },
+          {
+           "code": "PIT-4.A.13",
+           "text": "Resolve sevenths in inverted chords downward by step, noting exceptions in V4/3 and ii7 patterns."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "unit-5-harmony-and-voice-leading-ii",
+     "title": "Unit 5: Harmony and Voice Leading II",
+     "topics": [
+      {
+       "id": "5-2-the-vi-vi-chord",
+       "title": "5.2 The vi (VI) Chord",
+       "subtopics": [
+        {
+         "id": "the-vi-chord",
+         "title": "The vi chord",
+         "outcomes": [
+          {
+           "code": "PIT-2.J",
+           "text": "Identify and describe harmonic function and progression in performed and notated music."
+          },
+          {
+           "code": "PIT-2.J.1",
+           "text": "Know vi (VI) can substitute for tonic or act as a weak predominant."
+          },
+          {
+           "code": "PIT-2.J.2",
+           "text": "Recognize the deceptive progression, dominant to a non-tonic chord, usually vi."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "5-4-the-iii-iii-chord",
+       "title": "5.4 The iii (III) Chord",
+       "subtopics": [
+        {
+         "id": "the-iii-chord",
+         "title": "The iii chord",
+         "outcomes": [
+          {
+           "code": "PIT-2.J.3",
+           "text": "Know the mediant triad is rare in 18th-century style; III in minor represents the relative major."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "5-6-cadential-6-4-chords",
+       "title": "5.6 Cadential 6/4 Chords",
+       "subtopics": [
+        {
+         "id": "cadential-6-4-chords",
+         "title": "Cadential 6/4 chords",
+         "outcomes": [
+          {
+           "code": "PIT-2.K",
+           "text": "Identify the 6/4 chord type used in notated music."
+          },
+          {
+           "code": "PIT-2.K.1",
+           "text": "Know 6/4 chords appear only as cadential, neighboring/pedal, passing or arpeggiated patterns."
+          },
+          {
+           "code": "PIT-2.K.2",
+           "text": "Know the cadential 6/4 embellishes the dominant and sits on a stronger beat."
+          },
+          {
+           "code": "PIT-4.E",
+           "text": "Apply 18th-century voice leading of cadential 6/4 chords by analysis, error detection and writing."
+          },
+          {
+           "code": "PIT-4.E.1",
+           "text": "Resolve the sixth and fourth above the bass down by step in a cadential 6/4."
+          },
+          {
+           "code": "PIT-4.E.2",
+           "text": "Read figures such as 6-5 over 4-3 as reminders of cadential 6/4 voice leading."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "5-7-additional-6-4-chords",
+       "title": "5.7 Additional 6/4 Chords",
+       "subtopics": [
+        {
+         "id": "passing-pedal-and-arpeggiated-6-4",
+         "title": "Passing, pedal and arpeggiated 6/4",
+         "outcomes": [
+          {
+           "code": "PIT-2.L",
+           "text": "Describe the type of 6/4 chord used in notated music."
+          },
+          {
+           "code": "PIT-2.L.1",
+           "text": "Describe the neighboring (pedal) 6/4 on a weak beat over a stationary bass."
+          },
+          {
+           "code": "PIT-2.L.2",
+           "text": "Describe the passing 6/4 over a bass passing tone, on a weak beat."
+          },
+          {
+           "code": "PIT-2.L.3",
+           "text": "Describe the arpeggiated 6/4 from a bass arpeggio under static upper voices."
+          },
+          {
+           "code": "PIT-4.F",
+           "text": "Apply voice leading for passing, pedal and arpeggiated 6/4 chords."
+          },
+          {
+           "code": "PIT-4.F.1",
+           "text": "Double the fifth in a passing 6/4 and move all voices by step."
+          },
+          {
+           "code": "PIT-4.F.2",
+           "text": "Embellish the third and fifth with upper neighbors over a stationary bass in a pedal 6/4."
+          },
+          {
+           "code": "PIT-4.F.3",
+           "text": "Keep upper voices still while the bass arpeggiates in an arpeggiated 6/4."
+          }
+         ]
+        },
+        {
+         "id": "bass-lines-and-chord-choice",
+         "title": "Bass lines and chord choice",
+         "outcomes": [
+          {
+           "code": "PIT-4.F.4",
+           "text": "Imply good chord progressions in a bass line, placing 6/4 chords correctly and avoiding poor successions."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "unit-6-harmony-and-voice-leading-iii",
+     "title": "Unit 6: Harmony and Voice Leading III",
+     "topics": [
+      {
+       "id": "6-1-embellishing-tones-passing-and-neighbor-tone",
+       "title": "6.1 Embellishing Tones: Passing and Neighbor Tones",
+       "subtopics": [
+        {
+         "id": "embellishing-tones",
+         "title": "Embellishing tones",
+         "outcomes": [
+          {
+           "code": "PIT-2.M",
+           "text": "Identify embellishing and nonharmonic tones in performed and notated music."
+          },
+          {
+           "code": "PIT-2.M.1",
+           "text": "Define nonharmonic tones and classify them by approach, resolution and accented versus unaccented placement."
+          },
+          {
+           "code": "PIT-2.M.2",
+           "text": "Know related terms: embellishment, ornament, trill, preparation, resolution."
+          },
+          {
+           "code": "PIT-2.M.3",
+           "text": "Identify passing tones and upper and lower neighbor tones."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "6-2-writing-passing-and-neighbor-tones",
+       "title": "6.2 Writing Passing and Neighbor Tones",
+       "subtopics": [
+        {
+         "id": "writing-passing-and-neighbor-tones",
+         "title": "Writing passing and neighbor tones",
+         "outcomes": [
+          {
+           "code": "PIT-2.N",
+           "text": "Compose a bass line with unaccented passing or neighbor tones in 18th-century style."
+          },
+          {
+           "code": "PIT-2.N.1",
+           "text": "Use eighth-note embellishments to complement a stationary soprano, move in parallel thirds or sixths, or exchange voices."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "6-3-anticipations-escape-tones-appoggiaturas-and",
+       "title": "6.3 Anticipations, Escape Tones, Appoggiaturas, and Pedal Points",
+       "subtopics": [
+        {
+         "id": "other-nonharmonic-tones",
+         "title": "Other nonharmonic tones",
+         "outcomes": [
+          {
+           "code": "PIT-2.M.4",
+           "text": "Identify anticipations, escape tones, appoggiaturas and pedal points."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "6-4-suspensions",
+       "title": "6.4 Suspensions",
+       "subtopics": [
+        {
+         "id": "suspensions",
+         "title": "Suspensions",
+         "outcomes": [
+          {
+           "code": "PIT-2.M.5",
+           "text": "Identify suspensions, rearticulated suspensions, chains and upward-resolving suspensions."
+          },
+          {
+           "code": "PIT-2.O",
+           "text": "Notate embellishing tones indicated in a figured bass or Roman numeral progression."
+          },
+          {
+           "code": "PIT-2.O.1",
+           "text": "Read numerals such as 4-3 to show nonharmonic tones like suspensions."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "6-5-motive-and-motivic-transformation",
+       "title": "6.5 Motive and Motivic Transformation",
+       "subtopics": [
+        {
+         "id": "motive-and-motivic-transformation",
+         "title": "Motive and motivic transformation",
+         "outcomes": [
+          {
+           "code": "FOR-1.B",
+           "text": "Identify motives and melodic and rhythmic procedures applied to them."
+          },
+          {
+           "code": "FOR-1.B.1",
+           "text": "Recognize motives, fragmentation, literal and sequential repetition."
+          },
+          {
+           "code": "PIT-3.E",
+           "text": "Identify and apply melodic procedures in performed and notated music."
+          },
+          {
+           "code": "PIT-3.E.1",
+           "text": "Apply transformations such as augmentation, melodic inversion and retrograde."
+          },
+          {
+           "code": "RHY-3.B",
+           "text": "Identify and apply procedures that transform rhythmic patterns."
+          },
+          {
+           "code": "RHY-3.B.1",
+           "text": "Transform rhythms by augmentation and diminution."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "6-6-melodic-sequence",
+       "title": "6.6 Melodic Sequence",
+       "subtopics": [
+        {
+         "id": "melodic-sequence",
+         "title": "Melodic sequence",
+         "outcomes": [
+          {
+           "code": "PIT-3.E.2",
+           "text": "Define melodic sequence as repeated transpositions of a segment at a constant interval."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "6-7-harmonic-sequence",
+       "title": "6.7 Harmonic Sequence",
+       "subtopics": [
+        {
+         "id": "harmonic-sequence",
+         "title": "Harmonic sequence",
+         "outcomes": [
+          {
+           "code": "PIT-2.P",
+           "text": "Identify and apply harmonic sequences in performed and notated music."
+          },
+          {
+           "code": "PIT-2.P.1",
+           "text": "Define harmonic sequence as a chord segment repeated at a constant transposition, sometimes with melodic sequence."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "unit-7-harmony-and-voice-leading-iv",
+     "title": "Unit 7: Harmony and Voice Leading IV",
+     "topics": [
+      {
+       "id": "7-1-tonicization-through-secondary-dominants",
+       "title": "7.1 Tonicization through Secondary Dominants",
+       "subtopics": [
+        {
+         "id": "secondary-dominants",
+         "title": "Secondary dominants",
+         "outcomes": [
+          {
+           "code": "PIT-2.Q",
+           "text": "Identify and describe tonicization in performed and notated music."
+          },
+          {
+           "code": "PIT-2.Q.1",
+           "text": "Define tonicization as a brief local tonic that does not change the main key."
+          },
+          {
+           "code": "PIT-2.Q.2",
+           "text": "Tonicize a chord with its secondary dominant, as in V/V, using accidentals."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "7-2-part-writing-secondary-dominants",
+       "title": "7.2 Part Writing Secondary Dominants",
+       "subtopics": [
+        {
+         "id": "writing-secondary-dominants",
+         "title": "Writing secondary dominants",
+         "outcomes": [
+          {
+           "code": "PIT-2.E.2",
+           "text": "Part-write secondary dominants following dominant doubling and voice-leading rules."
+          },
+          {
+           "code": "PIT-2.E.3",
+           "text": "Recognize chromatic pitches, such as raised 4 going to 5, that suggest tonicization."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "7-3-secondary-leading-tone-chords",
+       "title": "7.3 Secondary Leading-Tone Chords",
+       "subtopics": [
+        {
+         "id": "secondary-leading-tone-chords",
+         "title": "Secondary leading-tone chords",
+         "outcomes": [
+          {
+           "code": "PIT-2.Q.3",
+           "text": "Use secondary leading-tone triads and sevenths to tonicize major or minor triads."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "7-4-part-writing-secondary-leading-tone-chords",
+       "title": "7.4 Part Writing Secondary Leading-Tone Chords",
+       "subtopics": [
+        {
+         "id": "writing-secondary-leading-tone-chords",
+         "title": "Writing secondary leading-tone chords",
+         "outcomes": [
+          {
+           "code": "PIT-4.A.14",
+           "text": "Part-write secondary leading-tone chords with normal leading-tone doubling and seventh resolution."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "unit-8-modes-and-form",
+     "title": "Unit 8: Modes and Form",
+     "topics": [
+      {
+       "id": "8-1-modes",
+       "title": "8.1 Modes",
+       "subtopics": [
+        {
+         "id": "modes",
+         "title": "Modes",
+         "outcomes": [
+          {
+           "code": "PIT-1.P",
+           "text": "Identify modes in performed and notated music."
+          },
+          {
+           "code": "PIT-1.P.1",
+           "text": "Name the modes: Ionian, Dorian, Phrygian, Lydian, Mixolydian, Aeolian and Locrian."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "8-2-phrase-relationships",
+       "title": "8.2 Phrase Relationships",
+       "subtopics": [
+        {
+         "id": "phrase-relationships",
+         "title": "Phrase relationships",
+         "outcomes": [
+          {
+           "code": "FOR-1.C",
+           "text": "Describe melodic relationships between phrases in performed and notated music."
+          },
+          {
+           "code": "FOR-1.C.1",
+           "text": "Label phrase relationships with letters such as a a, a a' and a b."
+          },
+          {
+           "code": "FOR-1.D",
+           "text": "Identify periods in performed and notated music."
+          },
+          {
+           "code": "FOR-1.D.1",
+           "text": "Describe periods as antecedent and consequent phrases, parallel or contrasting."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "8-3-common-formal-sections",
+       "title": "8.3 Common Formal Sections",
+       "subtopics": [
+        {
+         "id": "common-formal-sections",
+         "title": "Common formal sections",
+         "outcomes": [
+          {
+           "code": "FOR-1.E",
+           "text": "Identify common sections in performed and notated music."
+          },
+          {
+           "code": "FOR-1.E.1",
+           "text": "Recognize introduction, interlude, bridge, verse, refrain, chorus, coda and codetta."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "build": {
+  "builtAt": "2026-10-14T10:03:33.454Z",
+  "model": "claude-agent",
+  "usd": 0,
+  "expectedCodes": 213,
+  "coverage": 0.9953051643192489,
+  "missingCodes": [
+   "LOR-1.A"
+  ],
+  "counts": {
+   "grades": 1,
+   "units": 8,
+   "topics": 51,
+   "subtopics": 56,
+   "outcomes": 212
+  },
+  "warnings": [
+   "grade 9 has no content",
+   "grade 10 has no content",
+   "grade 11 has no content",
+   "grade 12 has no content",
+   "unexpected grade label \"all\""
+  ]
+ }
+}

@@ -1,0 +1,4261 @@
+{
+ "id": "us-az-social-studies",
+ "region": "US",
+ "framework": "Arizona state academic standards: Social Studies",
+ "board": null,
+ "qualification": "K-12",
+ "subject": "Social Studies",
+ "syllabusCode": null,
+ "gradeSystem": "grade",
+ "source": {
+  "urls": [
+   "https://api.commonstandardsproject.com/api/v1/jurisdictions/0B41FFF6B5114EB0B8A89CE0E70E22D8",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/7FDB7DDAE8604A3D865B5F415B4CF845",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/D7B1153B180F496CAD34CAC76B9E3253",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/45658FEEC43C4D2C8C88AF647FF52E07",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/CC578AC7A19A46068F64DC88D8EA033D",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/C31516F7C0904370BDBE02A79692A2CA",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/9A0FF14209934088B894F7A190A76EFE",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/3E23AC7082684D8F82FE37E733271E22",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/D9410D837CF74BE385CBE8AABC1BB99E",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/C6E8170E3F4F44CDABC991A88A12BA52",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/992B5FF1121F4A1FA962F33571D6CD85",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/0DACB133A49448BBA31E394B81C1BE06"
+  ],
+  "publisher": "Arizona state education agency (machine-readable via Common Standards Project / ASN)",
+  "licence": "CC BY 4.0 US, Common Curriculum, Inc.",
+  "firstExam": "2018"
+ },
+ "grades": [
+  {
+   "grade": "K",
+   "units": [
+    {
+     "id": "disciplinary-skills-and-processes",
+     "title": "Disciplinary Skills and Processes",
+     "topics": [
+      {
+       "id": "chronological-reasoning-requires-understanding-p",
+       "title": "Chronological reasoning requires understanding processes of change and continuity over time, which means assessing similarities and differences between historical periods and between the past and present",
+       "subtopics": [
+        {
+         "id": "chronological-reasoning-requires-understanding-p",
+         "title": "Chronological reasoning requires understanding processes of change and continuity over time, which means assessing similarities and differences between historical periods and between the past and present",
+         "outcomes": [
+          {
+           "code": "K.SP1.1",
+           "text": "Use a variety of words to reference time in the past, present, and future; identify the beginning, middle, and end of historical stories."
+          },
+          {
+           "code": "K.SP1.2",
+           "text": "Explore how events of the past affect students’ lives and community"
+          },
+          {
+           "code": "K.SP1.3",
+           "text": "With prompting and support, generate questions about individuals and groups from stories shared."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "thinking-within-the-discipline-involves-the-abil",
+       "title": "Thinking within the discipline involves the ability to identify, compare, and evaluate multiple perspectives about a given event to draw conclusions since there are multiple points of view about events and issues",
+       "subtopics": [
+        {
+         "id": "thinking-within-the-discipline-involves-the-abil",
+         "title": "Thinking within the discipline involves the ability to identify, compare, and evaluate multiple perspectives about a given event to draw conclusions since there are multiple points of view about events and issues",
+         "outcomes": [
+          {
+           "code": "K.SP2.1",
+           "text": "With prompting and support, compare diverse cultures using primary sources such as photographs, artifacts, and music and secondary sources such as fiction and non-fiction."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "historians-and-social-scientists-gather-interpre",
+       "title": "Historians and Social Scientists gather, interpret, and use evidence to develop claims and answer historical, economic, geographical, and political questions and communicate their conclusions",
+       "subtopics": [
+        {
+         "id": "historians-and-social-scientists-gather-interpre",
+         "title": "Historians and Social Scientists gather, interpret, and use evidence to develop claims and answer historical, economic, geographical, and political questions and communicate their conclusions",
+         "outcomes": [
+          {
+           "code": "K.SP3.1",
+           "text": "With prompting and support, ask questions and construct responses to content studied."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "civics",
+     "title": "Civics",
+     "topics": [
+      {
+       "id": "civic-virtues-and-democratic-principles-are-key-",
+       "title": "Civic virtues and democratic principles are key components of the American political system",
+       "subtopics": [
+        {
+         "id": "civic-virtues-and-democratic-principles-are-key-",
+         "title": "Civic virtues and democratic principles are key components of the American political system",
+         "outcomes": [
+          {
+           "code": "K.C1.1",
+           "text": "Apply values of respect, responsibility, equality, and fairness within schools and communities."
+          },
+          {
+           "code": "K.C1.2",
+           "text": "Follow agreed upon rules for discussions when responding to others and making decisions as a group."
+          },
+          {
+           "code": "K.C1.3",
+           "text": "Compare one's own thoughts and opinions with those of others."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "citizens-have-individual-rights-roles-and-respon",
+       "title": "Citizens have individual rights, roles, and responsibilities",
+       "subtopics": [
+        {
+         "id": "citizens-have-individual-rights-roles-and-respon",
+         "title": "Citizens have individual rights, roles, and responsibilities",
+         "outcomes": [
+          {
+           "code": "K.C2.1",
+           "text": "Describe roles and responsibilities of people in authority. Such as school personnel, family members, and community members"
+          },
+          {
+           "code": "K.C2.2",
+           "text": "Explain how all people, not just official leaders, play important roles in our school and community"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "process-rules-and-laws-direct-how-individuals-ar",
+       "title": "Process, rules, and laws direct how individuals are governed and how society addresses problems",
+       "subtopics": [
+        {
+         "id": "process-rules-and-laws-direct-how-individuals-ar",
+         "title": "Process, rules, and laws direct how individuals are governed and how society addresses problems",
+         "outcomes": [
+          {
+           "code": "K.C4.1",
+           "text": "Explain how people work together to identify and solve problems within the classroom and school"
+          },
+          {
+           "code": "K.C4.2",
+           "text": "Explain why rules are important within the classroom and school."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "economics",
+     "title": "Economics",
+     "topics": [
+      {
+       "id": "by-applying-economic-reasoning-individuals-seek-",
+       "title": "By applying economic reasoning, individuals seek to understand the decisions of people, groups, and societies",
+       "subtopics": [
+        {
+         "id": "by-applying-economic-reasoning-individuals-seek-",
+         "title": "By applying economic reasoning, individuals seek to understand the decisions of people, groups, and societies",
+         "outcomes": [
+          {
+           "code": "K.E2.1",
+           "text": "Explain how needs, wants, and the availability of resources affect decision making."
+          },
+          {
+           "code": "K.E2.2",
+           "text": "Identify what one gains and gives up when they make choices"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "geography",
+     "title": "Geography",
+     "topics": [
+      {
+       "id": "the-use-of-geographic-representations-and-tools-",
+       "title": "The use of geographic representations and tools help individuals understand their world",
+       "subtopics": [
+        {
+         "id": "the-use-of-geographic-representations-and-tools-",
+         "title": "The use of geographic representations and tools help individuals understand their world",
+         "outcomes": [
+          {
+           "code": "K.G1.1",
+           "text": "Use, explore, and construct maps, graphs and other geographical representations to support content focus. Key concepts include but are not limited to graphing local weather and mapping the classroom"
+          },
+          {
+           "code": "K.G1.2",
+           "text": "Explore locations in stories shared."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "human-environment-interactions-are-essential-asp",
+       "title": "Human-environment interactions are essential aspects of human life in all societies",
+       "subtopics": [
+        {
+         "id": "human-environment-interactions-are-essential-asp",
+         "title": "Human-environment interactions are essential aspects of human life in all societies",
+         "outcomes": [
+          {
+           "code": "K.G2.1",
+           "text": "Explain how water and weather impacts humans."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "history",
+     "title": "History",
+     "topics": [
+      {
+       "id": "the-development-of-civilizations-societies-cultu",
+       "title": "The development of civilizations, societies, culture, and innovation have influenced history and continue to impact the modern world",
+       "subtopics": [
+        {
+         "id": "the-development-of-civilizations-societies-cultu",
+         "title": "The development of civilizations, societies, culture, and innovation have influenced history and continue to impact the modern world",
+         "outcomes": [
+          {
+           "code": "K.H1.1",
+           "text": "Compare one’s own culture with the culture of others. Key cultures include those in the classroom, community, and one of Arizona’s 22 Indian Nations."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "cycles-of-conflict-and-cooperation-have-shaped-r",
+       "title": "Cycles of conflict and cooperation have shaped relations among people, places, and environments",
+       "subtopics": [
+        {
+         "id": "cycles-of-conflict-and-cooperation-have-shaped-r",
+         "title": "Cycles of conflict and cooperation have shaped relations among people, places, and environments",
+         "outcomes": [
+          {
+           "code": "K.H2.1",
+           "text": "Explain the benefits of cooperation and compromise as ways to solve problems."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "patterns-of-social-and-political-interactions-ha",
+       "title": "Patterns of social and political interactions have shaped people, places, and events throughout history and continue to shape the modern world",
+       "subtopics": [
+        {
+         "id": "explain-and-explore-origins-of-key-american-symb",
+         "title": "Explain and explore origins of key American symbols, traditions and holidays",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Key American symbols include but are not limited to American flag, bald eagle, Statue of Liberty, and Mount Rushmore."
+          },
+          {
+           "code": null,
+           "text": "Key traditions include but are not limited to the Pledge of Allegiance and National Anthem."
+          },
+          {
+           "code": null,
+           "text": "Key holidays include but are not limited to Columbus Day, Thanksgiving, Presidents Day, Martin Luther King Jr. Day, Fourth of July, and Constitution Day."
+          }
+         ]
+        },
+        {
+         "id": "patterns-of-social-and-political-interactions-ha",
+         "title": "Patterns of social and political interactions have shaped people, places, and events throughout history and continue to shape the modern world",
+         "outcomes": [
+          {
+           "code": "K.H4.2",
+           "text": "Explore the stories of key historical figures through informational text and biographies."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "1",
+   "units": [
+    {
+     "id": "disciplinary-skills-and-processes",
+     "title": "Disciplinary Skills and Processes",
+     "topics": [
+      {
+       "id": "chronological-reasoning-requires-understanding-p",
+       "title": "Chronological reasoning requires understanding processes of change and continuity over time, which means assessing similarities and differences between historical periods and between the past and present",
+       "subtopics": [
+        {
+         "id": "chronological-reasoning-requires-understanding-p",
+         "title": "Chronological reasoning requires understanding processes of change and continuity over time, which means assessing similarities and differences between historical periods and between the past and present",
+         "outcomes": [
+          {
+           "code": "1.SP1.1",
+           "text": "Place important life events in chronological order on a timeline."
+          },
+          {
+           "code": "1.SP1.2",
+           "text": "Understand how events of the past affect students’ lives and communities"
+          },
+          {
+           "code": "1.SP1.3",
+           "text": "Generate questions about individuals and groups who have shaped a significant historical change."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "thinking-within-the-discipline-involves-the-abil",
+       "title": "Thinking within the discipline involves the ability to identify, compare, and evaluate multiple perspectives about a given event to draw conclusions about that event since there are multiple points of view about events and issues",
+       "subtopics": [
+        {
+         "id": "thinking-within-the-discipline-involves-the-abil",
+         "title": "Thinking within the discipline involves the ability to identify, compare, and evaluate multiple perspectives about a given event to draw conclusions about that event since there are multiple points of view about events and issues",
+         "outcomes": [
+          {
+           "code": "1.SP2.1",
+           "text": "Compare diverse cultures using primary sources such as photographs, artifacts, and music and secondary sources such as fiction and non-fiction"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "historians-and-social-scientists-gather-interpre",
+       "title": "Historians and Social Scientists gather, interpret, and use evidence to develop claims and answer historical, economic, geographical, and political questions and communicate their conclusions",
+       "subtopics": [
+        {
+         "id": "historians-and-social-scientists-gather-interpre",
+         "title": "Historians and Social Scientists gather, interpret, and use evidence to develop claims and answer historical, economic, geographical, and political questions and communicate their conclusions",
+         "outcomes": [
+          {
+           "code": "1.SP3.1",
+           "text": "Generate questions about issues in your community past and present."
+          },
+          {
+           "code": "1.SP3.2",
+           "text": "With support identify evidence drawn from multiple sources to answer questions about issues in your community."
+          },
+          {
+           "code": "1.SP3.3",
+           "text": "With support construct and communicate solutions to issues in your community."
+          },
+          {
+           "code": "1.SP3.4",
+           "text": "Take group or individual action to help address community issues."
+          },
+          {
+           "code": "1.SP3.5",
+           "text": "Ask and answer questions about explanations given."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "civics",
+     "title": "Civics",
+     "topics": [
+      {
+       "id": "civic-virtues-and-democratic-principles-are-key-",
+       "title": "Civic virtues and democratic principles are key components of the American political system",
+       "subtopics": [
+        {
+         "id": "civic-virtues-and-democratic-principles-are-key-",
+         "title": "Civic virtues and democratic principles are key components of the American political system",
+         "outcomes": [
+          {
+           "code": "1.C1.1",
+           "text": "Apply values of respect, responsibility, equality, and fairness as a member of a community."
+          },
+          {
+           "code": "1.C1.2",
+           "text": "Follow agreed upon rules for discussions when responding to others and making decisions including consensus building procedures."
+          },
+          {
+           "code": "1.C1.3",
+           "text": "Compare one's own thoughts and opinions with others’ perspectives."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "an-understanding-of-civic-and-political-institut",
+       "title": "An understanding of civic and political institutions in society and the principles these institutions are intended to reflect including knowledge about law, politics, and government are essential to effective citizenship",
+       "subtopics": [
+        {
+         "id": "explain-the-importance-of-rules-and-laws-in-our-",
+         "title": "Explain the importance of rules and laws in our community",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Key purposes include but are not limited to provide order, protect rights, provide benefits, assign responsibilities, and limit the power of people in authority"
+          }
+         ]
+        },
+        {
+         "id": "explain-the-role-and-function-of-local-governmen",
+         "title": "Explain the role and function of local governments",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Key functions include but are not limited to make laws, carry out laws, enforce laws, manage conflicts, and protect the community"
+          },
+          {
+           "code": null,
+           "text": "Key concepts include but are not limited to type of government and its leaders including the current Governor and President and Vice President of the United States"
+          }
+         ]
+        },
+        {
+         "id": "explain-how-community-groups-work-to-accomplish-",
+         "title": "Explain how community groups work to accomplish common tasks and fulfill responsibilities",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Such as voting, volunteering, community clean-up or recycling campaigns, and becoming informed on community issues"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "economics",
+     "title": "Economics",
+     "topics": [
+      {
+       "id": "a-financially-literate-individual-understands-ho",
+       "title": "A financially literate individual understands how to manage income, spending, and investment",
+       "subtopics": [
+        {
+         "id": "a-financially-literate-individual-understands-ho",
+         "title": "A financially literate individual understands how to manage income, spending, and investment",
+         "outcomes": [
+          {
+           "code": "1.E1.1",
+           "text": "Identify different occupations and the skills and education needed for those jobs in our community."
+          },
+          {
+           "code": "1.E1.2",
+           "text": "Describe reasons to save or spend money."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "by-applying-economic-reasoning-individuals-seek-",
+       "title": "By applying economic reasoning, individuals seek to understand the decisions of people, groups, and societies",
+       "subtopics": [
+        {
+         "id": "by-applying-economic-reasoning-individuals-seek-",
+         "title": "By applying economic reasoning, individuals seek to understand the decisions of people, groups, and societies",
+         "outcomes": [
+          {
+           "code": "1.E2.1",
+           "text": "Explain how needs, wants, and availability of resources affect decision making."
+          },
+          {
+           "code": "1.E2.2",
+           "text": "Identify the benefits and costs of making various personal decisions."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "individuals-and-institutions-are-interdependent-",
+       "title": "Individuals and institutions are interdependent within market systems",
+       "subtopics": [
+        {
+         "id": "individuals-and-institutions-are-interdependent-",
+         "title": "Individuals and institutions are interdependent within market systems",
+         "outcomes": [
+          {
+           "code": "1.E3.1",
+           "text": "Describe the skills, knowledge, and sequence of events required to produce goods and services in our community."
+          },
+          {
+           "code": "1.E3.2",
+           "text": "Explain how people in our community earn income."
+          },
+          {
+           "code": "1.E3.3",
+           "text": "Explain how people can be producers and consumers in our community."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "geography",
+     "title": "Geography",
+     "topics": [
+      {
+       "id": "the-use-of-geographic-representations-and-tools-",
+       "title": "The use of geographic representations and tools helps individuals understand their world",
+       "subtopics": [
+        {
+         "id": "use-explore-and-construct-maps-graphs-and-other-",
+         "title": "Use, explore and construct maps, graphs and other geographical representations to support content focus",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Key concepts include but are not limited to physical features (rivers, lakes, mountains, landforms, desert) and human features (dams, cities, parks, hospitals, schools, railroad tracks, farms, factories, houses)."
+          }
+         ]
+        },
+        {
+         "id": "the-use-of-geographic-representations-and-tools-",
+         "title": "The use of geographic representations and tools helps individuals understand their world",
+         "outcomes": [
+          {
+           "code": "1.G1.2",
+           "text": "Use a grid to locate places."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "human-environment-interactions-are-essential-asp",
+       "title": "Human-environment interactions are essential aspects of human life in all societies",
+       "subtopics": [
+        {
+         "id": "compare-how-human-activities-affect-culture-and-",
+         "title": "Compare how human activities affect culture and the environment now and in the past",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Such as agriculture, industrialization, urbanization, and human migration."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "examining-human-population-and-movement-helps-in",
+       "title": "Examining human population and movement helps individuals understand past, present, and future conditions on Earth’s surface",
+       "subtopics": [
+        {
+         "id": "explain-why-and-how-people-goods-and-ideas-move-",
+         "title": "Explain why and how people, goods, and ideas move from place to place",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Key concepts include but are not limited to transportation, immigration, education, technology, and natural resources."
+          }
+         ]
+        },
+        {
+         "id": "examining-human-population-and-movement-helps-in",
+         "title": "Examining human population and movement helps individuals understand past, present, and future conditions on Earth’s surface",
+         "outcomes": [
+          {
+           "code": "1.G3.2",
+           "text": "Compare places past and present as it relates to content focus."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "history",
+     "title": "History",
+     "topics": [
+      {
+       "id": "the-development-of-civilizations-societies-cultu",
+       "title": "The development of civilizations, societies, cultures, and innovations have influenced history and continue to impact the modern world",
+       "subtopics": [
+        {
+         "id": "explain-how-ideas-and-innovation-can-contribute-",
+         "title": "Explain how ideas and innovation can contribute to a community by utilizing primary sources (artifacts, photographs, newspapers, speakers) and secondary sources (biographies, stories, articles)",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Key examples include but are not limited to farming by irrigation, architecture, writing and inventions as they support content focus."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "cycles-of-conflict-and-cooperation-have-shaped-r",
+       "title": "Cycles of conflict and cooperation have shaped relations among people, places, and environments",
+       "subtopics": [
+        {
+         "id": "cycles-of-conflict-and-cooperation-have-shaped-r",
+         "title": "Cycles of conflict and cooperation have shaped relations among people, places, and environments",
+         "outcomes": [
+          {
+           "code": "1.H2.1",
+           "text": "Explain the benefits of cooperation and compromise as ways to resolve conflict in communities past and present."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "patterns-of-social-and-political-interactions-ha",
+       "title": "Patterns of social and political interactions have shaped people, places, and events throughout history and continue to shape the modern world",
+       "subtopics": [
+        {
+         "id": "explain-and-explore-origins-of-key-american-symb",
+         "title": "Explain and explore origins of key American symbols, documents, landmarks, holidays, and leaders as well as their importance from the past to the present in our country",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Symbols include but are not limited to American flag, bald eagle, Statue of Liberty, White House, Washington Monument, Mount Rushmore, Liberty Bell, United States Capitol, and Arizona state symbols"
+          },
+          {
+           "code": null,
+           "text": "Holidays include but are not limited to Columbus Day, Thanksgiving, Veterans Day, Memorial Day, Labor Day, Presidents Day, Martin Luther King Jr. Day, Independence Day, Constitution Day, and Arizona Statehood Day."
+          },
+          {
+           "code": null,
+           "text": "Leaders include but are not limited to local and/or Tribal leaders, state leaders, and national leaders"
+          }
+         ]
+        },
+        {
+         "id": "patterns-of-social-and-political-interactions-ha",
+         "title": "Patterns of social and political interactions have shaped people, places, and events throughout history and continue to shape the modern world",
+         "outcomes": [
+          {
+           "code": "1.H4.2",
+           "text": "Draw upon fictional stories, biographies, and non-fiction/informational text to identify historical figures in your community, state, and nation and explain their significance in history and in the present day."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "2",
+   "units": [
+    {
+     "id": "disciplinary-skills-and-processes",
+     "title": "Disciplinary Skills and Processes",
+     "topics": [
+      {
+       "id": "chronological-reasoning-requires-understanding-p",
+       "title": "Chronological reasoning requires understanding processes of change and continuity over time, which means assessing similarities and differences between historical periods and between the past and present",
+       "subtopics": [
+        {
+         "id": "chronological-reasoning-requires-understanding-p",
+         "title": "Chronological reasoning requires understanding processes of change and continuity over time, which means assessing similarities and differences between historical periods and between the past and present",
+         "outcomes": [
+          {
+           "code": "2.SP1.1",
+           "text": "Create a chronological sequence of multiple events."
+          },
+          {
+           "code": "2.SP1.2",
+           "text": "Understand how events of the past affect students’ lives and community."
+          },
+          {
+           "code": "2.SP1.3",
+           "text": "Generate questions about individuals and groups who have shaped a significant historical change."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "thinking-within-the-discipline-involves-the-abil",
+       "title": "Thinking within the discipline involves the ability to identify, compare, and evaluate multiple perspectives about a given event to draw conclusions about that event since there are multiple points of view about events and issues",
+       "subtopics": [
+        {
+         "id": "thinking-within-the-discipline-involves-the-abil",
+         "title": "Thinking within the discipline involves the ability to identify, compare, and evaluate multiple perspectives about a given event to draw conclusions about that event since there are multiple points of view about events and issues",
+         "outcomes": [
+          {
+           "code": "2.SP2.1",
+           "text": "Compare diverse cultures from around the world using primary sources such as photographs, artifacts, and music and secondary sources such as fiction and non-fiction."
+          },
+          {
+           "code": "2.SP2.2",
+           "text": "Compare perspectives of people in the past to those today through stories and biographies."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "historians-and-social-scientists-gather-interpre",
+       "title": "Historians and Social Scientists gather, interpret, and use evidence to develop claims and answer historical, economic, geographical, and political questions and communicate their conclusions",
+       "subtopics": [
+        {
+         "id": "historians-and-social-scientists-gather-interpre",
+         "title": "Historians and Social Scientists gather, interpret, and use evidence to develop claims and answer historical, economic, geographical, and political questions and communicate their conclusions",
+         "outcomes": [
+          {
+           "code": "2.SP3.1",
+           "text": "Identify facts and concepts associated with compelling and supporting questions."
+          },
+          {
+           "code": "2.SP3.2",
+           "text": "Determine and use various kinds of sources to answer compelling and supporting questions."
+          },
+          {
+           "code": "2.SP3.3",
+           "text": "Generate questions about a source as it relates to an event or development."
+          },
+          {
+           "code": "2.SP3.4",
+           "text": "Gather relevant information from one or two sources."
+          },
+          {
+           "code": "2.SP3.5",
+           "text": "Ask and answer questions about explanations and arguments."
+          },
+          {
+           "code": "2.SP3.6",
+           "text": "Present a summary of an argument or explanation using print, oral, or digital technology."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "thinking-within-the-discipline-involves-the-abil-2",
+       "title": "Thinking within the discipline involves the ability to analyze relationships among causes and effects and to create and support arguments using relevant evidence",
+       "subtopics": [
+        {
+         "id": "thinking-within-the-discipline-involves-the-abil",
+         "title": "Thinking within the discipline involves the ability to analyze relationships among causes and effects and to create and support arguments using relevant evidence",
+         "outcomes": [
+          {
+           "code": "2.SP4.1",
+           "text": "Generate possible reasons for an event or development."
+          },
+          {
+           "code": "2.SP4.2",
+           "text": "Select which reasons might be more likely than others to explain an event or development."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "civics",
+     "title": "Civics",
+     "topics": [
+      {
+       "id": "citizens-have-individual-rights-roles-and-respon",
+       "title": "Citizens have individual rights, roles, and responsibilities",
+       "subtopics": [
+        {
+         "id": "citizens-have-individual-rights-roles-and-respon",
+         "title": "Citizens have individual rights, roles, and responsibilities",
+         "outcomes": [
+          {
+           "code": "2.C2.2",
+           "text": "Explain how all people, not just official leaders, play important roles in the world."
+          },
+          {
+           "code": "2.C2.1",
+           "text": "Describe roles and responsibilities of people in authority within our country and world."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "process-rules-and-laws-direct-how-individuals-ar",
+       "title": "Process, rules, and laws direct how individuals are governed and how society addresses problems",
+       "subtopics": [
+        {
+         "id": "process-rules-and-laws-direct-how-individuals-ar",
+         "title": "Process, rules, and laws direct how individuals are governed and how society addresses problems",
+         "outcomes": [
+          {
+           "code": "2.C4.1",
+           "text": "Explain how people work together to identify and solve problems within our world."
+          },
+          {
+           "code": "2.C4.2",
+           "text": "Explain how rules function in public settings."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "economics",
+     "title": "Economics",
+     "topics": [
+      {
+       "id": "a-financially-literate-individual-understands-ho",
+       "title": "A financially literate individual understands how to manage income, spending, and investment",
+       "subtopics": [
+        {
+         "id": "a-financially-literate-individual-understands-ho",
+         "title": "A financially literate individual understands how to manage income, spending, and investment",
+         "outcomes": [
+          {
+           "code": "2.E1.1",
+           "text": "Identify different occupations and skills needed in a global economy."
+          },
+          {
+           "code": "2.E1.2",
+           "text": "Describe reasons to save or spend money."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "individuals-and-institutions-are-interdependent-",
+       "title": "Individuals and institutions are interdependent within market systems",
+       "subtopics": [
+        {
+         "id": "individuals-and-institutions-are-interdependent-",
+         "title": "Individuals and institutions are interdependent within market systems",
+         "outcomes": [
+          {
+           "code": "2.E3.1",
+           "text": "Identify and describe the goods and services that are produced around the world."
+          },
+          {
+           "code": "2.E3.2",
+           "text": "Explain how people around the world earn income."
+          },
+          {
+           "code": "2.E3.3",
+           "text": "Explain how people can be producers and consumers in a global economy."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "the-domestic-economy-is-shaped-by-interactions-b",
+       "title": "The domestic economy is shaped by interactions between government, institutions, and the private sector",
+       "subtopics": [
+        {
+         "id": "the-domestic-economy-is-shaped-by-interactions-b",
+         "title": "The domestic economy is shaped by interactions between government, institutions, and the private sector",
+         "outcomes": [
+          {
+           "code": "2.E4.1",
+           "text": "Describe the public services that governments provide and how they meet the needs of individuals."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "the-interconnected-global-economy-impacts-all-in",
+       "title": "The interconnected global economy impacts all individuals and groups in significant and varied ways",
+       "subtopics": [
+        {
+         "id": "the-interconnected-global-economy-impacts-all-in",
+         "title": "The interconnected global economy impacts all individuals and groups in significant and varied ways",
+         "outcomes": [
+          {
+           "code": "2.E5.1",
+           "text": "Illustrate how a country’s resources determine what is produced and traded."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "geography",
+     "title": "Geography",
+     "topics": [
+      {
+       "id": "the-use-of-geographic-representations-and-tools-",
+       "title": "The use of geographic representations and tools help individuals understand their world",
+       "subtopics": [
+        {
+         "id": "use-and-construct-maps-graphs-and-other-geograph",
+         "title": "Use and construct maps, graphs, and other geographic representations of familiar and unfamiliar places in the world; and locate physical and human features",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Key physical features include but are not limited to seven continents, oceans, lakes, rivers, mountain ranges, coasts, seas, and deserts"
+          },
+          {
+           "code": null,
+           "text": "Key human features include but are not limited to equator, hemispheres, North and South Pole, cities, states, countries, regions, and landmarks"
+          }
+         ]
+        },
+        {
+         "id": "the-use-of-geographic-representations-and-tools-",
+         "title": "The use of geographic representations and tools help individuals understand their world",
+         "outcomes": [
+          {
+           "code": "2.G1.2",
+           "text": "Use maps, globes, and other simple geographic models to identify and explain cultural and environmental characteristics of places in the world based on stories shared."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "human-environment-interactions-are-essential-asp",
+       "title": "Human-environment interactions are essential aspects of human life in all societies",
+       "subtopics": [
+        {
+         "id": "human-environment-interactions-are-essential-asp",
+         "title": "Human-environment interactions are essential aspects of human life in all societies",
+         "outcomes": [
+          {
+           "code": "2.G2.1",
+           "text": "Explain how weather, climate, and other environmental characteristics affect people’s lives in a place or region being studied."
+          },
+          {
+           "code": "2.G2.2",
+           "text": "Describe how human activities affect the communities and the environment of places or regions."
+          },
+          {
+           "code": "2.G2.3",
+           "text": "Describe the positive and negative effects of using natural resources."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "examining-human-population-and-movement-helps-in",
+       "title": "Examining human population and movement helps individuals understand past, present, and future conditions on Earth’s surface",
+       "subtopics": [
+        {
+         "id": "explain-why-and-how-people-goods-and-ideas-move-",
+         "title": "Explain why and how people, goods, and ideas move from place to place",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Key concepts include but are not limited to transportation, trade, immigration, migration, and communication"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "global-interconnections-and-spatial-patterns-are",
+       "title": "Global interconnections and spatial patterns are a necessary part of geographic reasoning",
+       "subtopics": [
+        {
+         "id": "global-interconnections-and-spatial-patterns-are",
+         "title": "Global interconnections and spatial patterns are a necessary part of geographic reasoning",
+         "outcomes": [
+          {
+           "code": "2.G4.1",
+           "text": "Identify different physical and cultural regions in the world."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "history",
+     "title": "HISTORY",
+     "topics": [
+      {
+       "id": "the-development-of-civilizations-societies-cultu",
+       "title": "The development of civilizations, societies, cultures, and innovations have influenced history and continue to impact the modern world",
+       "subtopics": [
+        {
+         "id": "the-development-of-civilizations-societies-cultu",
+         "title": "The development of civilizations, societies, cultures, and innovations have influenced history and continue to impact the modern world",
+         "outcomes": [
+          {
+           "code": "2.H1.1",
+           "text": "Explain how individuals can make contributions to a civilization and/or culture in place or region studied."
+          },
+          {
+           "code": "2.H1.2",
+           "text": "Using primary and secondary sources, compare civilizations and/or cultures around the world and how they have changed over time in a place or region studied."
+          },
+          {
+           "code": "2.H1.3",
+           "text": "Examine developments from the civilization and/or culture in place or region studied."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "economic-political-and-religious-ideas-and-insti",
+       "title": "Economic, political, and religious ideas and institutions have influenced history and continue to shape the modern world",
+       "subtopics": [
+        {
+         "id": "generate-questions-about-the-institutions-and-be",
+         "title": "Generate questions about the institutions and belief systems of different societies",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Key concepts include but are not limited to religion, governments, economic systems, and education"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "3",
+   "units": [
+    {
+     "id": "disciplinary-skills-and-processes",
+     "title": "DISCIPLINARY SKILLS AND PROCESSES",
+     "topics": [
+      {
+       "id": "chronological-reasoning-requires-understanding-p",
+       "title": "Chronological reasoning requires understanding processes of change and continuity over time, which means assessing similarities and differences between historical periods and between the past and present",
+       "subtopics": [
+        {
+         "id": "chronological-reasoning-requires-understanding-p",
+         "title": "Chronological reasoning requires understanding processes of change and continuity over time, which means assessing similarities and differences between historical periods and between the past and present",
+         "outcomes": [
+          {
+           "code": "3.SP1.1",
+           "text": "Create and use a chronological sequence of related events to compare developments that happened at the same time."
+          },
+          {
+           "code": "3.SP1.2",
+           "text": "Compare life in specific historical time periods to life today."
+          },
+          {
+           "code": "3.SP1.3",
+           "text": "Generate questions about individuals and groups who have impacted history."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "thinking-within-the-discipline-involves-the-abil",
+       "title": "Thinking within the discipline involves the ability to identify, compare, and evaluate multiple perspectives about a given event to draw conclusions a given event since there are multiple points of view about events and issues",
+       "subtopics": [
+        {
+         "id": "thinking-within-the-discipline-involves-the-abil",
+         "title": "Thinking within the discipline involves the ability to identify, compare, and evaluate multiple perspectives about a given event to draw conclusions a given event since there are multiple points of view about events and issues",
+         "outcomes": [
+          {
+           "code": "3.SP2.1",
+           "text": "Explain why individuals and groups have different points of view on the same event."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "historians-and-social-scientists-gather-interpre",
+       "title": "Historians and Social Scientists gather, interpret, and use evidence to develop claims and answer historical, economic, geographical, and political questions and communicate their conclusions",
+       "subtopics": [
+        {
+         "id": "historians-and-social-scientists-gather-interpre",
+         "title": "Historians and Social Scientists gather, interpret, and use evidence to develop claims and answer historical, economic, geographical, and political questions and communicate their conclusions (1 of 2)",
+         "outcomes": [
+          {
+           "code": "3.SP3.1",
+           "text": "Develop questions about Arizona history, geography, government, and economics."
+          },
+          {
+           "code": "3.SP3.2",
+           "text": "Distinguish between primary and secondary sources."
+          },
+          {
+           "code": "3.SP3.3",
+           "text": "Identify and use evidence that draws information from multiple sources to answer compelling questions about Arizona."
+          },
+          {
+           "code": "3.SP3.4",
+           "text": "Compare information provided by various sources about Arizona."
+          }
+         ]
+        },
+        {
+         "id": "historians-and-social-scientists-gather-interpre-2",
+         "title": "Historians and Social Scientists gather, interpret, and use evidence to develop claims and answer historical, economic, geographical, and political questions and communicate their conclusions (2 of 2)",
+         "outcomes": [
+          {
+           "code": "3.SP3.5",
+           "text": "Generate questions about multiple historical sources."
+          },
+          {
+           "code": "3.SP3.6",
+           "text": "Construct arguments and explanations using reasoning, examples, and details from sources."
+          },
+          {
+           "code": "3.SP3.7",
+           "text": "Present summaries of arguments and explanations using print, oral , and digital technologies."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "thinking-within-the-discipline-involves-the-abil-2",
+       "title": "Thinking within the discipline involves the ability to analyze relationships among causes and effects and to create and support arguments using relevant evidence",
+       "subtopics": [
+        {
+         "id": "thinking-within-the-discipline-involves-the-abil",
+         "title": "Thinking within the discipline involves the ability to analyze relationships among causes and effects and to create and support arguments using relevant evidence",
+         "outcomes": [
+          {
+           "code": "3.SP4.1",
+           "text": "Explain probable causes and effects of events."
+          },
+          {
+           "code": "3.SP4.2",
+           "text": "Summarize the central claim in a secondary source."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "civics",
+     "title": "Civics",
+     "topics": [
+      {
+       "id": "civic-virtues-and-democratic-principles-are-key-",
+       "title": "Civic virtues and democratic principles are key components of the American political system",
+       "subtopics": [
+        {
+         "id": "describe-civic-virtues-and-democratic-principles",
+         "title": "Describe civic virtues and democratic principles within a variety of government structures, societies, and/or communities within Arizona",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Key concepts include but are not limited to respecting the rights of others, helping to promote the common good, and participating in government"
+          }
+         ]
+        },
+        {
+         "id": "civic-virtues-and-democratic-principles-are-key-",
+         "title": "Civic virtues and democratic principles are key components of the American political system",
+         "outcomes": [
+          {
+           "code": "3.C1.2",
+           "text": "Use listening, consensus-building, and voting procedures to decide on and act in their classrooms."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "an-understanding-of-civic-and-political-institut",
+       "title": "An understanding of civic and political institutions in society and the principles these institutions are intended to reflect including knowledge about law, politics, and government are essential to effective citizenship",
+       "subtopics": [
+        {
+         "id": "describe-the-origins-functions-and-structure-of-",
+         "title": "Describe the origins, functions, and structure of the Arizona Constitution, local governments, and tribal governments",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Key concepts for state government include but are not limited to distinguishing the difference between national and state governments, describing the major responsibilities of each branch, describing the important services state governments provide, describing how state government officials are chosen and who those current officials are, explaining how people can participate in their state governments, explaining why it is important that people participate in their state government, and understanding how state government services are paid for"
+          },
+          {
+           "code": null,
+           "text": "Key concepts for local governments include but are not limited to distinguishing between state and local governments, knowing services local governments provide such as public safety, public transportation, education, recreation, explain how local government services are provided and paid for, describing how local government officials are chosen and who they are, explaining how people can participate in their local government, and explaining why it is important to participate in their local government"
+          },
+          {
+           "code": null,
+           "text": "Key concepts for Tribal governments include but are not limited to distinguishing between national, state, local, and tribal governments. understanding the services provided by tribal governments, their organization, and how leaders are chosen"
+          }
+         ]
+        },
+        {
+         "id": "an-understanding-of-civic-and-political-institut",
+         "title": "An understanding of civic and political institutions in society and the principles these institutions are intended to reflect including knowledge about law, politics, and government are essential to effective citizenship",
+         "outcomes": [
+          {
+           "code": "3.C3.2",
+           "text": "Describe ways in which people benefit from and are challenged by working together, including through families, school, workplaces, voluntary organizations, and government."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "economics",
+     "title": "Economics",
+     "topics": [
+      {
+       "id": "a-financially-literate-individual-understands-ho",
+       "title": "A financially literate individual understands how to manage income, spending, and investment",
+       "subtopics": [
+        {
+         "id": "describe-and-discuss-industries-and-occupations-",
+         "title": "Describe and discuss industries and occupations that have shaped Arizona",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Key concepts include but are not limited to the 5 C’s (copper, cattle, cotton, citrus, climate), ranching, mining, farming, and tourism."
+          }
+         ]
+        },
+        {
+         "id": "a-financially-literate-individual-understands-ho",
+         "title": "A financially literate individual understands how to manage income, spending, and investment",
+         "outcomes": [
+          {
+           "code": "3.E1.2",
+           "text": "Identify various forms of earning income in the state of Arizona."
+          },
+          {
+           "code": "3.E1.3",
+           "text": "Identify positive and negative incentives that influence financial decisions people make to save and spend money."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "by-applying-economic-reasoning-individuals-seek-",
+       "title": "By applying economic reasoning, individuals seek to understand the decisions of people, groups, and societies",
+       "subtopics": [
+        {
+         "id": "by-applying-economic-reasoning-individuals-seek-",
+         "title": "By applying economic reasoning, individuals seek to understand the decisions of people, groups, and societies",
+         "outcomes": [
+          {
+           "code": "3.E2.1",
+           "text": "Explain how availability of resources affects decision making in Arizona with respect to water and other natural resources."
+          },
+          {
+           "code": "3.E2.2",
+           "text": "Describe how Arizona is connected to other states, Mexico, and other nations by movement of people, goods, and ideas."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "geography",
+     "title": "Geography",
+     "topics": [
+      {
+       "id": "the-use-of-geographic-representations-and-tools-",
+       "title": "The use of geographic representations and tools helps individuals understand their world",
+       "subtopics": [
+        {
+         "id": "use-and-construct-maps-and-graphs-to-represent-c",
+         "title": "Use and construct maps and graphs to represent changes in Arizona over time",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Key concepts include but are not limited to locating physical features including the Grand Canyon, Mogollon Rim, Colorado River, Salt River, Gila River"
+          },
+          {
+           "code": null,
+           "text": "Key concepts include but are not limited to locating human features including major cities, counties, Hoover Dam, Roosevelt Dam, and state capital"
+          },
+          {
+           "code": null,
+           "text": "Key concepts include but are not limited to distinct physical and cultural characteristics of Arizona including landforms, the 5C’s, climate zones, elevations, plants, animals, Arizona’s 22 Indian Nations, diverse ethnic, racial, and religious cultures"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "human-environment-interactions-are-essential-asp",
+       "title": "Human-environment interactions are essential aspects of human life in all societies",
+       "subtopics": [
+        {
+         "id": "explain-how-people-modify-and-adapt-to-the-arizo",
+         "title": "Explain how people modify and adapt to the Arizona environment",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Key concepts include but are not limited to modification and adaptation of the environment by Paleo-Indians, Prehistoric-Indians, explorers, settlers, farmers, immigrants, migrants, and the 22 Arizona Indian Nations, and the use of Arizona’s natural resources."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "examining-human-population-and-movement-helps-in",
+       "title": "Examining human population and movement helps individuals understand past, present, and future conditions on Earth’s surface",
+       "subtopics": [
+        {
+         "id": "describe-the-movement-of-people-in-and-out-of-ar",
+         "title": "Describe the movement of people in and out of Arizona over time",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Key concepts include but are not limited to factors contributing to settlement, economic development, growth of major cities, major economic activities, and land use patterns"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "global-interconnections-and-spatial-patterns-are",
+       "title": "Global interconnections and spatial patterns are a necessary part of geographical reasoning",
+       "subtopics": [
+        {
+         "id": "describe-how-arizona-has-changed-over-time",
+         "title": "Describe how Arizona has changed over time",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Key concepts include but are not limited to Paleo-Indians, explorers, settlers, farmers, immigrants, migrants, the 22 Arizona Indian Nations, plants, land use, and animals."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "history",
+     "title": "History",
+     "topics": [
+      {
+       "id": "the-development-of-civilizations-societies-cultu",
+       "title": "The development of civilizations, societies, cultures, and innovations have influenced history and continue to impact the modern world",
+       "subtopics": [
+        {
+         "id": "utilize-a-variety-of-sources-to-construct-a-hist",
+         "title": "Utilize a variety of sources to construct a historical narrative exploring Arizona’s cultures, civilizations, and innovations",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Key concepts include but are not limited to impact of prehistoric peoples, Native Americans, Latinx, African Americans, Asian Americans, and newcomers from the United States and world on art, language, architecture, mining, agriculture, and innovations"
+          },
+          {
+           "code": null,
+           "text": "Key concepts include but are not limited to explorers, settlers, trappers, missionaries, and colonizers"
+          },
+          {
+           "code": null,
+           "text": "Key events include but are not limited to statehood"
+          },
+          {
+           "code": null,
+           "text": "Influential individuals and groups in the history and development of Arizona"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "cycles-of-conflict-and-cooperation-have-shaped-r",
+       "title": "Cycles of conflict and cooperation have shaped relations among people, places, and environments",
+       "subtopics": [
+        {
+         "id": "use-primary-and-secondary-sources-to-generate-qu",
+         "title": "Use primary and secondary sources to generate questions about the causes and effects of conflicts and resolutions throughout Arizona’s history",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Key concepts include but are not limited to conflicts over exploration, colonization, settlement, industrialism, and the 22 Arizona Indian Nations"
+          }
+         ]
+        },
+        {
+         "id": "cycles-of-conflict-and-cooperation-have-shaped-r",
+         "title": "Cycles of conflict and cooperation have shaped relations among people, places, and environments",
+         "outcomes": [
+          {
+           "code": "3.H2.2",
+           "text": "Examine how individuals and groups have worked together throughout Arizona’s history."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "economic-political-and-religious-ideas-and-insti",
+       "title": "Economic, political, and religious ideas and institutions have influenced history and continue to shape the modern world",
+       "subtopics": [
+        {
+         "id": "evaluate-how-individual-rights-freedoms-and-resp",
+         "title": "Evaluate how individual rights, freedoms, and responsibilities can vary based on community, state, and nation",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Key concepts such as but not limited to, women’s rights, segregation, Native American rights and citizenship, internment and POW (prisoners of war) camps, migrants and farmworkers"
+          }
+         ]
+        },
+        {
+         "id": "economic-political-and-religious-ideas-and-insti",
+         "title": "Economic, political, and religious ideas and institutions have influenced history and continue to shape the modern world",
+         "outcomes": [
+          {
+           "code": "3.H3.2",
+           "text": "Use primary and secondary sources to analyze the changes that have taken place in Arizona which could include the use of current events."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "4",
+   "units": [
+    {
+     "id": "disciplinary-skills-and-processes",
+     "title": "Disciplinary Skills and Processes",
+     "topics": [
+      {
+       "id": "chronological-reasoning-requires-understanding-p",
+       "title": "Chronological reasoning requires understanding processes of change and continuity over time, which means assessing similarities and differences between historical periods and between the past and present",
+       "subtopics": [
+        {
+         "id": "chronological-reasoning-requires-understanding-p",
+         "title": "Chronological reasoning requires understanding processes of change and continuity over time, which means assessing similarities and differences between historical periods and between the past and present",
+         "outcomes": [
+          {
+           "code": "4.SP1.1",
+           "text": "Create and use a chronological sequence of related events to compare developments that happened at the same time."
+          },
+          {
+           "code": "4.SP1.2",
+           "text": "Compare life in specific historical time periods to life today."
+          }
+         ]
+        },
+        {
+         "id": "generate-questions-about-individuals-and-groups-",
+         "title": "Generate questions about individuals and groups who have shaped significant historical events",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Key individuals may include but are not limited to explorers, leaders (Mesoamerican, American Indian, and political), settlers, women, landowners, organizations, colonists, missionaries, and enslaved and free Africans"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "thinking-within-the-discipline-involves-the-abil",
+       "title": "Thinking within the discipline involves the ability to identify, compare, and evaluate multiple perspectives about a given event to draw conclusions about that event since there are multiple points of view about events and issues",
+       "subtopics": [
+        {
+         "id": "explain-why-individuals-and-groups-during-the-sa",
+         "title": "Explain why individuals and groups during the same historical period differed in their perspectives on issues and events",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Key issues may include but are not limited to slavery, exploration, property rights, and colonization"
+          }
+         ]
+        },
+        {
+         "id": "thinking-within-the-discipline-involves-the-abil",
+         "title": "Thinking within the discipline involves the ability to identify, compare, and evaluate multiple perspectives about a given event to draw conclusions about that event since there are multiple points of view about events and issues",
+         "outcomes": [
+          {
+           "code": "4.SP2.2",
+           "text": "Explain connections among historical contexts and people’s perspectives at the time."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "historians-and-social-scientists-gather-interpre",
+       "title": "Historians and Social Scientists gather, interpret, and use evidence to develop claims and answer historical, economic, geographical, and political questions and communicate their conclusions",
+       "subtopics": [
+        {
+         "id": "historians-and-social-scientists-gather-interpre",
+         "title": "Historians and Social Scientists gather, interpret, and use evidence to develop claims and answer historical, economic, geographical, and political questions and communicate their conclusions",
+         "outcomes": [
+          {
+           "code": "4.SP3.1",
+           "text": "Develop questions about events and developments in the Americas."
+          },
+          {
+           "code": "4.SP3.2",
+           "text": "Compare information provided by different sources about events and developments in the Americas."
+          },
+          {
+           "code": "4.SP3.3",
+           "text": "Generate questions about multiple sources and their relationships to events and developments in the Americas."
+          },
+          {
+           "code": "4.SP3.4",
+           "text": "Use information about a source including the author, date, place of origin, intended audience, and purpose to evaluate the extent to which the source is useful for studying a topic."
+          },
+          {
+           "code": "4.SP3.5",
+           "text": "Construct and present arguments and explanations using reasoning, examples, and details with relevant information and data from multiple sources."
+          },
+          {
+           "code": "4.SP3.6",
+           "text": "Present summaries of arguments and explanations using print, oral, and digital technologies."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "thinking-within-the-discipline-involves-the-abil-2",
+       "title": "Thinking within the discipline involves the ability to analyze relationships among causes and effects and to create and support arguments using relevant evidence",
+       "subtopics": [
+        {
+         "id": "thinking-within-the-discipline-involves-the-abil",
+         "title": "Thinking within the discipline involves the ability to analyze relationships among causes and effects and to create and support arguments using relevant evidence",
+         "outcomes": [
+          {
+           "code": "4.SP4.1",
+           "text": "Explain probable causes and effects of events and developments."
+          },
+          {
+           "code": "4.SP4.2",
+           "text": "Summarize the central claim in a secondary work of history."
+          },
+          {
+           "code": "4.SP4.3",
+           "text": "Use evidence from multiple sources to develop and communicate claims about the causes and effects of events."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "civics",
+     "title": "Civics",
+     "topics": [
+      {
+       "id": "civic-virtues-and-democratic-principles-are-key-",
+       "title": "Civic virtues and democratic principles are key components of the American political system",
+       "subtopics": [
+        {
+         "id": "4-c1-1-analyze-civic-virtues-and-democratic-prin",
+         "title": "● 4.C1.1 Analyze civic virtues and democratic principles or lack thereof within a variety of government structures, societies, and/or communities within the Americas",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "▪ Key concepts include but are not limited to governmental structures, views on property ownership and land use, representative assemblies, town meetings, colonial legislatures, and royal governments throughout the Americas in the time period being studied."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "citizens-have-individual-rights-roles-and-respon",
+       "title": "Citizens have individual rights, roles, and responsibilities",
+       "subtopics": [
+        {
+         "id": "use-primary-and-secondary-sources-to-generate-qu",
+         "title": "Use primary and secondary sources to generate questions about the concepts and ideas such as liberty, justice, equality, and individual rights",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Key concepts include but are not limited to oppression, slavery and the slave trade, indentured servitude, The Mayflower Compact, religious freedom, and European treatment of native cultures in the Americas"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "economics",
+     "title": "Economics",
+     "topics": [
+      {
+       "id": "by-applying-economic-reasoning-individuals-seek-",
+       "title": "By applying economic reasoning, individuals seek to understand the decisions of people, groups, and societies",
+       "subtopics": [
+        {
+         "id": "examine-concepts-of-scarcity-choice-opportunity-",
+         "title": "Examine concepts of scarcity, choice, opportunity cost, and risk",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Key concepts include but are not limited to nomadic and sedentary societies, reasons for European exploration, triangular trade, Jamestown settlement, and the establishment of colonies"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "individuals-and-institutions-are-interdependent-",
+       "title": "Individuals and institutions are interdependent within market systems",
+       "subtopics": [
+        {
+         "id": "compare-different-industries-occupations-and-res",
+         "title": "Compare different industries, occupations, and resources as well as different forms of income earned or received that have shaped the Americas",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Key concepts include but are not limited to societal roles of the individual in Mesoamerican civilizations, the emerging labor force in the colonies (cash crop farming, slavery, indentured servitude), resources and industries of the Southern, Middle, and New England Colonies, economic way of life in western Africa before the 16th century, and views on property ownership and land use between European settlers and American Indians"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "geography",
+     "title": "Geography",
+     "topics": [
+      {
+       "id": "the-use-of-geographic-representations-and-tools-",
+       "title": "The use of geographic representations and tools help individuals understand their world",
+       "subtopics": [
+        {
+         "id": "use-and-construct-maps-and-graphs-to-represent-c",
+         "title": "Use and construct maps and graphs to represent changes in the Americas over time",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Key concepts include but are not limited to human and physical features of the Americas, trade and exploration routes, the location of civilizations and societies in the Americas including indigenous peoples, and settlement patterns including the development of the Southern, Middle, and New England Colonies"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "human-environment-interactions-are-essential-asp",
+       "title": "Human-environment interactions are essential aspects of human life in all societies",
+       "subtopics": [
+        {
+         "id": "compare-the-diverse-ways-people-or-groups-of-peo",
+         "title": "Compare the diverse ways people or groups of people have impacted, modified, or adapted to the environment of the Americas",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Key concepts include but are not limited to disease, farming, family structure, housing, cultural assimilation, cultural amalgamation, climate, transportation, domestication of animals, clothing, recreation, and utilization of renewable and non-renewable natural resources"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "examining-human-population-and-movement-helps-in",
+       "title": "Examining human population and movement helps individuals understand past, present, and future conditions on Earth’s surface",
+       "subtopics": [
+        {
+         "id": "explain-how-the-location-and-use-of-resources-af",
+         "title": "Explain how the location and use of resources affects human settlement and movement",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Key concepts include but are not limited to theories about the peopling of the Americas, the Columbian Exchange, treatment of indigenous people, triangular trade, searches for trade routes to Asia that led to exploration and settlement of the Americas"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "global-interconnections-and-spatial-patterns-are",
+       "title": "Global interconnections and spatial patterns are a necessary part of geographic reasoning",
+       "subtopics": [
+        {
+         "id": "explain-the-positive-and-negative-effects-of-inc",
+         "title": "Explain the positive and negative effects of increasing economic interdependence on distinct groups, countries, and new settlements",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Key concepts include but are not limited to trade, mercantilism, the development of new technologies, and the use of natural resources"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "history",
+     "title": "History",
+     "topics": [
+      {
+       "id": "the-development-of-civilizations-societies-cultu",
+       "title": "The development of civilizations, societies, cultures, and innovations have influenced history and continue to impact the modern world",
+       "subtopics": [
+        {
+         "id": "utilizing-a-variety-of-multi-genre-primary-and-s",
+         "title": "Utilizing a variety of multi-genre primary and secondary sources, construct historical narratives about cultures, civilizations, and innovations in the Americas",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Key concepts include but are not limited to Olmec, Maya, Inca, Aztec, American Indians living in the Americas before and after European exploration, enslaved and free Africans living in the colonies, British, French, Dutch, Spanish explorers and settlers, and the thirteen colonies"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "cycles-of-conflict-and-cooperation-have-shaped-r",
+       "title": "Cycles of conflict and cooperation have shaped relations among people, places, and environments",
+       "subtopics": [
+        {
+         "id": "cycles-of-conflict-and-cooperation-have-shaped-r",
+         "title": "Cycles of conflict and cooperation have shaped relations among people, places, and environments",
+         "outcomes": [
+          {
+           "code": "4.H2.1",
+           "text": "Describe the cycles of conflict and compromise that occurred in the Americas during the convergence of Europeans, American Indians, and Africans in the Americas before and after European exploration"
+          },
+          {
+           "code": "4.H2.2",
+           "text": "Analyze the different approaches used by the Spanish, Portuguese, British, and the French in their interactions with American Indians."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "economic-political-and-religious-ideas-and-insti",
+       "title": "Economic, political, and religious ideas and institutions have influenced history and continue to shape the modern world",
+       "subtopics": [
+        {
+         "id": "examine-how-economic-political-and-religious-ide",
+         "title": "Examine how economic, political, and religious ideas and institutions have influenced the development of individual rights, freedoms, and responsibilities in the Americas",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Key concepts include but are not limited to Olmec, Maya, Inca, Aztec, American Indians living in the Americas before European exploration"
+          },
+          {
+           "code": null,
+           "text": "Key concepts include but are not limited to the influence of colonial governments on constitutional government (fundamental rights, rule of law, representative government, voting rights, separation of powers), how enslaved Africans drew upon their African past along with elements of new cultures to develop a distinct African-American culture, how religious tensions in the New England Colonies established colonies founded on religious tolerance, ways in which society expresses itself (art, music, dance, crafts, and writings), and how religious beliefs of groups like the Quakers and Spanish missionaries led to questions about the morality of slavery and ideas of equality"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "6",
+   "units": [
+    {
+     "id": "disciplinary-skills-and-processes",
+     "title": "Disciplinary Skills and Processes",
+     "topics": [
+      {
+       "id": "chronological-reasoning-requires-understanding-p",
+       "title": "Chronological reasoning requires understanding processes of change and continuity over time, which means assessing similarities and differences between historical periods and between the past and present",
+       "subtopics": [
+        {
+         "id": "chronological-reasoning-requires-understanding-p",
+         "title": "Chronological reasoning requires understanding processes of change and continuity over time, which means assessing similarities and differences between historical periods and between the past and present",
+         "outcomes": [
+          {
+           "code": "6.SP1.1",
+           "text": "Examine ways that historians and social scientists know about the past."
+          },
+          {
+           "code": "6.SP1.2",
+           "text": "Analyze connections among events and developments in various geographic and cultural contexts."
+          },
+          {
+           "code": "6.SP1.3",
+           "text": "Classify a series of historical events and developments as examples of change and/or continuity."
+          },
+          {
+           "code": "6.SP1.4",
+           "text": "Evaluate the significance of past events and their effect on students’ lives and society."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "thinking-within-the-discipline-involves-the-abil",
+       "title": "Thinking within the discipline involves the ability to identify, compare, and evaluate multiple perspectives about a given event to draw conclusions about that event since there are multiple points of view about events and issues",
+       "subtopics": [
+        {
+         "id": "thinking-within-the-discipline-involves-the-abil",
+         "title": "Thinking within the discipline involves the ability to identify, compare, and evaluate multiple perspectives about a given event to draw conclusions about that event since there are multiple points of view about events and issues",
+         "outcomes": [
+          {
+           "code": "6.SP2.1",
+           "text": "Explain how and why perspectives of people have changed throughout different historical eras."
+          },
+          {
+           "code": "6.SP2.2",
+           "text": "Analyze how people’s perspective influenced what information is available in the historical sources they created."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "historians-and-social-scientists-gather-interpre",
+       "title": "Historians and Social Scientists gather, interpret, and use evidence to develop claims and answer historical, economic, geographical, and political questions and communicate their conclusions",
+       "subtopics": [
+        {
+         "id": "historians-and-social-scientists-gather-interpre",
+         "title": "Historians and Social Scientists gather, interpret, and use evidence to develop claims and answer historical, economic, geographical, and political questions and communicate their conclusions (1 of 2)",
+         "outcomes": [
+          {
+           "code": "6.SP3.1",
+           "text": "Define and frame compelling and supporting questions about issues and events in the time-period and region studied."
+          },
+          {
+           "code": "6.SP3.2",
+           "text": "Use evidence to develop claims and counterclaims in response to compelling questions in the time period and region studied."
+          },
+          {
+           "code": "6.SP3.3",
+           "text": "Classify the kinds of historical sources used in secondary interpretations."
+          },
+          {
+           "code": "6.SP3.4",
+           "text": "Use information about a historical source including the author, date, place of origin, intended audience, and purpose to judge the extent to which the source is useful for studying a topic and evaluate the credibility of the source."
+          }
+         ]
+        },
+        {
+         "id": "historians-and-social-scientists-gather-interpre-2",
+         "title": "Historians and Social Scientists gather, interpret, and use evidence to develop claims and answer historical, economic, geographical, and political questions and communicate their conclusions (2 of 2)",
+         "outcomes": [
+          {
+           "code": "6.SP3.5",
+           "text": "Use questions generated about multiple sources to identify further areas of inquiry and additional sources."
+          },
+          {
+           "code": "6.SP3.6",
+           "text": "Construct and present arguments using claims and evidence from multiple sources."
+          },
+          {
+           "code": null,
+           "text": "Construct and present explanations using reasoning, correct sequence, examples and details with relevant information and data."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "thinking-within-the-discipline-involves-the-abil-2",
+       "title": "Thinking within the discipline involves the ability to analyze relationships among causes and effects and to create and support arguments using relevant evidence",
+       "subtopics": [
+        {
+         "id": "thinking-within-the-discipline-involves-the-abil",
+         "title": "Thinking within the discipline involves the ability to analyze relationships among causes and effects and to create and support arguments using relevant evidence",
+         "outcomes": [
+          {
+           "code": "6.SP4.1",
+           "text": "Explain the multiple causes and effects of events and developments in the past."
+          },
+          {
+           "code": "6.SP4.2",
+           "text": "Organize applicable evidence into a coherent argument about the past."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "civics",
+     "title": "Civics",
+     "topics": [
+      {
+       "id": "citizens-have-individual-rights-roles-and-respon",
+       "title": "Citizens have individual rights, roles, and responsibilities",
+       "subtopics": [
+        {
+         "id": "citizens-have-individual-rights-roles-and-respon",
+         "title": "Citizens have individual rights, roles, and responsibilities",
+         "outcomes": [
+          {
+           "code": "6.C2.1",
+           "text": "Analyze the beliefs, experiences, perspectives, and values that underlie points of view regarding civic issues in the time period and regions studied."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "process-rules-and-laws-direct-how-individuals-ar",
+       "title": "Process, rules, and laws direct how individuals are governed and how society addresses problems",
+       "subtopics": [
+        {
+         "id": "process-rules-and-laws-direct-how-individuals-ar",
+         "title": "Process, rules, and laws direct how individuals are governed and how society addresses problems",
+         "outcomes": [
+          {
+           "code": "6.C4.1",
+           "text": "Explain challenges and opportunities people and groups face when solving local, regional, and/or global problems."
+          }
+         ]
+        },
+        {
+         "id": "describe-and-apply-civic-virtues-including-delib",
+         "title": "Describe and apply civic virtues including deliberative processes that contribute to the common good and democratic principles in school, community, and government",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Key concepts include but are not limited to civility, respect for the rights of others, individual responsibility, respect for law, open mindedness, critical examination of issues, negotiation and compromise, civic mindedness, compassion, patriotism, conciliation, and consensus building"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "economics",
+     "title": "Economics",
+     "topics": [
+      {
+       "id": "a-financially-literate-individual-understands-ho",
+       "title": "A financially literate individual understands how to manage income, spending, and investment",
+       "subtopics": [
+        {
+         "id": "a-financially-literate-individual-understands-ho",
+         "title": "A financially literate individual understands how to manage income, spending, and investment",
+         "outcomes": [
+          {
+           "code": "6.E1.1",
+           "text": "Analyze the relationship between education, income, and job opportunities within the context of the time period and region studied."
+          },
+          {
+           "code": "6.E1.2",
+           "text": "Give examples of financial risks that individuals and households face within the context of the time period and region studied."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "individuals-and-institutions-are-interdependent-",
+       "title": "Individuals and institutions are interdependent within market systems",
+       "subtopics": [
+        {
+         "id": "individuals-and-institutions-are-interdependent-",
+         "title": "Individuals and institutions are interdependent within market systems",
+         "outcomes": [
+          {
+           "code": "6.E3.1",
+           "text": "Describe the relationship between various costs and benefits of economic production."
+          },
+          {
+           "code": "6.E3.3",
+           "text": "Analyze the influence of specialization and trade within diverse cultures and communities in regions studied."
+          }
+         ]
+        },
+        {
+         "id": "explain-the-influence-the-factors-of-production-",
+         "title": "Explain the influence the factors of production have on the manufacture of goods and services within different cultures, regions, and communities",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Key concepts include traditional economic systems, manorialism, guilds, taxation systems, and coerced labor"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "the-interconnected-global-economy-impacts-all-in",
+       "title": "The interconnected global economy impacts all individuals and groups in significant and varied ways",
+       "subtopics": [
+        {
+         "id": "the-interconnected-global-economy-impacts-all-in",
+         "title": "The interconnected global economy impacts all individuals and groups in significant and varied ways",
+         "outcomes": [
+          {
+           "code": "6.E5.1",
+           "text": "Describe the factors that influence trade between countries or cultures."
+          },
+          {
+           "code": "6.E5.2",
+           "text": "Explain the effects of increasing economic interdependence within distinct groups."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "geography",
+     "title": "Geography",
+     "topics": [
+      {
+       "id": "the-use-of-geographic-representations-and-tools-",
+       "title": "The use of geographic representations and tools helps individuals understand their world",
+       "subtopics": [
+        {
+         "id": "use-and-construct-maps-graphs-and-other-represen",
+         "title": "Use and construct maps, graphs, and other representations to explain relationships between locations of places and regions",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Key concepts include major landforms and water bodies, countries, cities, ecosystems, climate, languages, religion, economic systems, governmental systems, population patterns, disease, trade routes, and settlement patterns"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "human-environment-interactions-are-essential-asp",
+       "title": "Human-environment interactions are essential aspects of human life in all societies",
+       "subtopics": [
+        {
+         "id": "compare-diverse-ways-people-or-groups-of-people-",
+         "title": "Compare diverse ways people or groups of people have impacted, modified, or adapted to the environment of the Eastern Hemisphere",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Key concepts include but are not limited to hunter-gatherer communities, human settlement, Neolithic Revolution, irrigation and farming, domestication of animals, and influence of climate and seasons"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "examining-human-population-and-movement-helps-in",
+       "title": "Examining human population and movement helps individuals understand past, present, and future conditions on Earth’s surface",
+       "subtopics": [
+        {
+         "id": "analyze-how-cultural-and-environmental-character",
+         "title": "Analyze how cultural and environmental characteristics affect the distribution and movement of people, goods, and ideas",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Key concepts include but are not limited to language, land and sea transportation and trade routes"
+          }
+         ]
+        },
+        {
+         "id": "analyze-the-influence-of-location-use-of-natural",
+         "title": "Analyze the influence of location, use of natural resources, catastrophic environmental events, and technological developments on human settlement and migration",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Key concepts include but are not limited to development of early river civilization, pastoral societies, rise of cities, innovations in transportation, and collapse of empires"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "global-interconnections-and-spatial-patterns-are",
+       "title": "Global interconnections and spatial patterns are a necessary part of geographic reasoning",
+       "subtopics": [
+        {
+         "id": "explain-why-environmental-characteristics-vary-a",
+         "title": "Explain why environmental characteristics vary among different world regions",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Key concepts include but are not limited to latitude, elevation, landforms, location, and human factors"
+          }
+         ]
+        },
+        {
+         "id": "describe-how-natural-and-human-made-catastrophic",
+         "title": "Describe how natural and human-made catastrophic events and economic activities in one place affect people living in nearby and distant places",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Key concepts include but are not limited to disease, war, items exchanged, ideas spread along trade routes, and natural disasters"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "history",
+     "title": "History",
+     "topics": [
+      {
+       "id": "the-development-of-civilizations-societies-cultu",
+       "title": "The development of civilizations, societies, cultures, and innovations have influenced history and continue to impact the modern world",
+       "subtopics": [
+        {
+         "id": "the-development-of-civilizations-societies-cultu",
+         "title": "The development of civilizations, societies, cultures, and innovations have influenced history and continue to impact the modern world",
+         "outcomes": [
+          {
+           "code": "6.H1.1",
+           "text": "Compare the development and characteristics of historical cultures and civilizations from different global regions within designated time periods."
+          }
+         ]
+        },
+        {
+         "id": "explain-the-causes-and-effects-of-interactions-b",
+         "title": "●Explain the causes and effects of interactions between cultures and civilizations",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Key concepts include but are not limited to trade, competition, warfare, slavery, serfdom, innovations, and contributions."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "cycles-of-conflict-and-cooperation-have-shaped-r",
+       "title": "Cycles of conflict and cooperation have shaped relations among people, places, and environments",
+       "subtopics": [
+        {
+         "id": "evaluate-the-causes-and-effects-of-conflict-and-",
+         "title": "Evaluate the causes and effects of conflict and resolution among different societies and cultures",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Key factors such as control and use of natural resources, political power, religious rivalry, acquisition of wealth, cultural diversity, and economic rivalry"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "economic-political-and-religious-ideas-and-insti",
+       "title": "Economic, political, and religious ideas and institutions have influenced history and continue to shape the modern world",
+       "subtopics": [
+        {
+         "id": "economic-political-and-religious-ideas-and-insti",
+         "title": "Economic, political, and religious ideas and institutions have influenced history and continue to shape the modern world",
+         "outcomes": [
+          {
+           "code": "6.H3.1",
+           "text": "Analyze the impact of religious, government, and civic groups over time."
+          },
+          {
+           "code": "6.H3.3",
+           "text": "Explain why communities, states, and nations have different motivations for their choices including individual rights, freedoms, and responsibilities."
+          }
+         ]
+        },
+        {
+         "id": "generate-questions-to-examine-the-similarities-a",
+         "title": "Generate questions to examine the similarities and differences between major world religions and the role of religion in the formation of regions and their cultural, political, economic, and social identity",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Key world religions such as Buddhism, Christianity, Confucianism, Hinduism, Islam, Judaism, Shintoism, Sikhism, and Taoism"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "patterns-of-social-and-political-interactions-ha",
+       "title": "Patterns of social and political interactions have shaped people, places, and events throughout history and continue to shape the modern world",
+       "subtopics": [
+        {
+         "id": "patterns-of-social-and-political-interactions-ha",
+         "title": "Patterns of social and political interactions have shaped people, places, and events throughout history and continue to shape the modern world",
+         "outcomes": [
+          {
+           "code": "6.H4.1",
+           "text": "Describe how different group identities such as racial, ethnic, class, gender, regional, and immigrant/migration status emerged and contributed to societal and regional development, characteristics, and interactions over time."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "7",
+   "units": [
+    {
+     "id": "disciplinary-skills-and-processes",
+     "title": "DISCIPLINARY SKILLS AND PROCESSES",
+     "topics": [
+      {
+       "id": "disciplinary-skills-and-processes",
+       "title": "DISCIPLINARY SKILLS AND PROCESSES",
+       "subtopics": [
+        {
+         "id": "disciplinary-skills-and-processes-1-of-4",
+         "title": "DISCIPLINARY SKILLS AND PROCESSES (1 of 4)",
+         "outcomes": [
+          {
+           "code": "7.SP1.1",
+           "text": "Analyze connections among events and developments in broader historical contexts."
+          },
+          {
+           "code": "7.SP1.2",
+           "text": "Classify a series of historical events and developments as examples of change and/or continuity."
+          },
+          {
+           "code": "7.SP1.3",
+           "text": "Evaluate the significance of past events and their effect on students' lives and global society."
+          },
+          {
+           "code": "7.SP1.4",
+           "text": "Use questions generated about individuals and groups to analyze why they, and the developments they shaped, are historically significant."
+          },
+          {
+           "code": "7.SP2.1",
+           "text": "Analyze multiple factors that influence the perspectives of people during different historical eras."
+          }
+         ]
+        },
+        {
+         "id": "disciplinary-skills-and-processes-2-of-4",
+         "title": "DISCIPLINARY SKILLS AND PROCESSES (2 of 4)",
+         "outcomes": [
+          {
+           "code": "7.SP2.2",
+           "text": "Explain how and why perspectives of people have changed over time."
+          },
+          {
+           "code": "7.SP2.3",
+           "text": "Analyze how people's perspectives influenced what information is available in the historical sources they created."
+          },
+          {
+           "code": "7.SP3.1",
+           "text": "Create compelling questions and supporting questions that reflect enduring issues about the world, past and present."
+          },
+          {
+           "code": "7.SP3.2",
+           "text": "Use evidence drawn from multiple sources to develop and support claims and counterclaims in response to compelling questions."
+          },
+          {
+           "code": "7.SP3.3",
+           "text": "Detect possible limitations in the historical record based on evidence collected from different kinds of historical sources."
+          }
+         ]
+        },
+        {
+         "id": "disciplinary-skills-and-processes-3-of-4",
+         "title": "DISCIPLINARY SKILLS AND PROCESSES (3 of 4)",
+         "outcomes": [
+          {
+           "code": "7.SP3.4",
+           "text": "Use questions generated about multiple sources, including international sources, to identify further areas of inquiry and additional sources."
+          },
+          {
+           "code": "7.SP3.5",
+           "text": "Evaluate the relevance and utility of sources based on information such as author, date, origin, intended audience, and purpose."
+          },
+          {
+           "code": "7.SP3.6",
+           "text": "Construct and present arguments based on claims and counterclaims while pointing out the strengths and limitations of those arguments."
+          },
+          {
+           "code": "7.SP3.7",
+           "text": "Construct and present explanations using reasoning, correct sequence, examples and details, while acknowledging the strengths and weaknesses of the explanations."
+          },
+          {
+           "code": "7.SP4.1",
+           "text": "Explain the multiple causes and effects of events and developments in the past and present."
+          }
+         ]
+        },
+        {
+         "id": "disciplinary-skills-and-processes-4-of-4",
+         "title": "DISCIPLINARY SKILLS AND PROCESSES (4 of 4)",
+         "outcomes": [
+          {
+           "code": "7.SP4.2",
+           "text": "Evaluate the influence of various causes of events and developments in the past and present."
+          },
+          {
+           "code": "7.SP4.3",
+           "text": "Organize applicable evidence into a coherent argument."
+          },
+          {
+           "code": "7.SP4.4",
+           "text": "Compare the central arguments in multiple secondary sources on a related topic using multiple types of sources."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "civics",
+     "title": "CIVICS",
+     "topics": [
+      {
+       "id": "civics",
+       "title": "CIVICS",
+       "subtopics": [
+        {
+         "id": "civics",
+         "title": "CIVICS",
+         "outcomes": [
+          {
+           "code": "7.C2.1",
+           "text": "Explain how revolutions and other changes in government impact citizens' rights."
+          },
+          {
+           "code": "7.C4.1",
+           "text": "Compare historical and contemporary means of changing societies to promote the common good."
+          },
+          {
+           "code": "7.C4.2",
+           "text": "Assess specific rules and laws (both actual and proposed) as a means of addressing public problems."
+          },
+          {
+           "code": "7.C4.3",
+           "text": "Analyze the purpose, process, implementation, and consequences of decision making and public policies in multiple settings."
+          },
+          {
+           "code": "7.C4.4",
+           "text": "Explain challenges people face and opportunities they create in addressing local, regional, and global problems at various times and places. Apply a range of deliberative and democratic procedures to make decisions and take action in local, regional, and global communities."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "economics",
+     "title": "ECONOMICS",
+     "topics": [
+      {
+       "id": "economics",
+       "title": "ECONOMICS",
+       "subtopics": [
+        {
+         "id": "economics-1-of-2",
+         "title": "ECONOMICS (1 of 2)",
+         "outcomes": [
+          {
+           "code": "7.E2.1",
+           "text": "Explain how economic decisions affect the well-being of individuals, businesses, and society."
+          },
+          {
+           "code": "7.E2.2",
+           "text": "Evaluate current economic issues in terms of benefits and costs for different groups in society"
+          },
+          {
+           "code": "7.E3.1",
+           "text": "Explain the roles of buyers, sellers, and profits in product, labor, and financial markets."
+          },
+          {
+           "code": "7.E3.2",
+           "text": "Analyze the relationship between supply, demand, and competition with emphasis on how they influence prices, wages, and production."
+          },
+          {
+           "code": "7.E3.3",
+           "text": "Analyze the influence of institutions such as corporations, non-profits, and labor unions on the economy in a market system."
+          }
+         ]
+        },
+        {
+         "id": "economics-2-of-2",
+         "title": "ECONOMICS (2 of 2)",
+         "outcomes": [
+          {
+           "code": "7.E3.4",
+           "text": "Explain ways in which money facilitates exchange."
+          },
+          {
+           "code": "7.E5.1",
+           "text": "Explain the interdependence of trade and how trade barriers influence trade among nations."
+          },
+          {
+           "code": "7.E5.2",
+           "text": "Compare the various economic systems."
+          },
+          {
+           "code": "7.E5.3",
+           "text": "Explain the benefits and the costs of trade policies to individuals, businesses, and society."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "geography",
+     "title": "GEOGRAPHY",
+     "topics": [
+      {
+       "id": "geography",
+       "title": "GEOGRAPHY",
+       "subtopics": [
+        {
+         "id": "geography-1-of-3",
+         "title": "GEOGRAPHY (1 of 3)",
+         "outcomes": [
+          {
+           "code": "7.G1.1",
+           "text": "Use and construct maps and other geographic representations to explain the spatial patterns of cultural and environmental characteristics. (Key tools and representations such as maps, globes, aerial, and other photos, remotely sensed images, tables, graphs, and geospatial technology.)"
+          },
+          {
+           "code": "7.G1.2",
+           "text": "Analyze various geographic representations and use geographic tools to explain relationships between the location of places and their environments."
+          },
+          {
+           "code": "7.G2.1",
+           "text": "Explain how cultural demographic patterns, economic decisions, and human adaptations shape the identity of nearby and distant places and their environments."
+          },
+          {
+           "code": "7.G2.2",
+           "text": "Analyze cultural and environmental characteristics that make places both similar and different."
+          }
+         ]
+        },
+        {
+         "id": "geography-2-of-3",
+         "title": "GEOGRAPHY (2 of 3)",
+         "outcomes": [
+          {
+           "code": "7.G3.1",
+           "text": "Explain how changes in transportation, communication, and technology influence the spatial connections among human settlements and affect the diffusion of ideas and cultural practices."
+          },
+          {
+           "code": "7.G3.2",
+           "text": "Analyze how relationships between humans and environments extend or contract patterns of settlement and movement."
+          },
+          {
+           "code": "7.G3.3",
+           "text": "Evaluate the influences of long-term, human-induced environmental change on spatial patterns and how it may cause conflict and promote cooperation"
+          },
+          {
+           "code": "7.G3.4",
+           "text": "Evaluate how human population and movement may cause conflict or promote cooperation."
+          }
+         ]
+        },
+        {
+         "id": "geography-3-of-3",
+         "title": "GEOGRAPHY (3 of 3)",
+         "outcomes": [
+          {
+           "code": "7.G4.1",
+           "text": "Analyze cultural and environmental characteristics among various places and regions of the world."
+          },
+          {
+           "code": "7.G4.2",
+           "text": "Explain how the relationship between the human and physical characteristics of places and production of goods influences patterns of world trade."
+          },
+          {
+           "code": "7.G4.3",
+           "text": "Analyze how changes in population distribution patterns affect changes in land use in places and regions."
+          },
+          {
+           "code": "7.G4.4",
+           "text": "Explain an issue in terms of its scale (local, regional, state, national, or global)."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "history",
+     "title": "HISTORY",
+     "topics": [
+      {
+       "id": "history",
+       "title": "HISTORY",
+       "subtopics": [
+        {
+         "id": "history-1-of-3",
+         "title": "HISTORY (1 of 3)",
+         "outcomes": [
+          {
+           "code": "7.H1.1",
+           "text": "Analyze the rise and decline, interactions between, and blending of cultures and societies."
+          },
+          {
+           "code": "7.H1.2",
+           "text": "Trace the development and impact of scientific, technological, and educational innovations within historical time periods."
+          },
+          {
+           "code": "7.H2.1",
+           "text": "Investigate how conflict can be both unifying and divisive throughout communities, societies, nations, and the world."
+          },
+          {
+           "code": "7.H2.2",
+           "text": "Compare the multiple causes and effects of conflict and approaches to peacemaking."
+          }
+         ]
+        },
+        {
+         "id": "history-2-of-3",
+         "title": "HISTORY (2 of 3)",
+         "outcomes": [
+          {
+           "code": "7.H3.1",
+           "text": "Compare the origins and spread of influential ideologies and both religious and non-religious worldviews."
+          },
+          {
+           "code": "7.H3.2",
+           "text": "Analyze how economic and political motivations impact people and events."
+          },
+          {
+           "code": "7.H3.3",
+           "text": "Trace how individual rights, freedoms, and responsibilities have evolved overtime"
+          },
+          {
+           "code": "7.H3.4",
+           "text": "Explain the influence of individuals, groups, and institutions on people and events in historical and contemporary settings."
+          }
+         ]
+        },
+        {
+         "id": "history-3-of-3",
+         "title": "HISTORY (3 of 3)",
+         "outcomes": [
+          {
+           "code": "7.H3.5",
+           "text": "Investigate a significant historical topic from global history that has significance to an issue or topic today."
+          },
+          {
+           "code": "7.H4.1",
+           "text": "Evaluate how the diversity of a society impacts its social and political norms."
+          },
+          {
+           "code": "7.H4.2",
+           "text": "Evaluate the changing patterns of class, ethnic, racial, and gender structures and relations; consider immigration, migration, and social mobility."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "8",
+   "units": [
+    {
+     "id": "disciplinary-skills-and-processes",
+     "title": "Disciplinary Skills and Processes",
+     "topics": [
+      {
+       "id": "disciplinary-skills-and-processes",
+       "title": "Disciplinary Skills and Processes",
+       "subtopics": [
+        {
+         "id": "disciplinary-skills-and-processes-1-of-4",
+         "title": "Disciplinary Skills and Processes (1 of 4)",
+         "outcomes": [
+          {
+           "code": "8.SP1.1",
+           "text": "Analyze connections among events and developments in broader historical contexts."
+          },
+          {
+           "code": "8.SP1.2",
+           "text": "Classify a series of historical events and developments as examples of change and/or continuity."
+          },
+          {
+           "code": "8.SP1.3",
+           "text": "Evaluate the significance of past events and their effect on students' lives and society."
+          },
+          {
+           "code": "8.SP1.4",
+           "text": "Use questions generated about individuals and groups to analyze why they, and the developments they shaped, are historically significant."
+          },
+          {
+           "code": "8.SP2.1",
+           "text": "Analyze multiple factors that influence the perspectives of people during different historical eras."
+          }
+         ]
+        },
+        {
+         "id": "disciplinary-skills-and-processes-2-of-4",
+         "title": "Disciplinary Skills and Processes (2 of 4)",
+         "outcomes": [
+          {
+           "code": "8.SP2.2",
+           "text": "Explain how and why perspectives of people have changed over time."
+          },
+          {
+           "code": "8.SP2.3",
+           "text": "Analyze how people's perspectives influenced what information is available in the historical sources they created."
+          },
+          {
+           "code": "8.SP3.1",
+           "text": "Create and answer compelling and supporting questions that reflect enduring issues in the field of history and social science."
+          },
+          {
+           "code": "8.SP3.2",
+           "text": "Detect possible limitations in the historical record based on evidence collected from different kinds of historical sources."
+          },
+          {
+           "code": "8.SP3.3",
+           "text": "Use questions generated about multiple historical sources to identify further areas of inquiry and additional sources."
+          }
+         ]
+        },
+        {
+         "id": "disciplinary-skills-and-processes-3-of-4",
+         "title": "Disciplinary Skills and Processes (3 of 4)",
+         "outcomes": [
+          {
+           "code": "8.SP3.4",
+           "text": "Evaluate the relevance and utility of historical sources based on information such as author, date, origin, intended audience, and purpose."
+          },
+          {
+           "code": "8.WP3.5",
+           "text": "Gather relevant information from multiple sources while using the origin, authority, structure, context, and corroborative value of the source to guide the selection to support claims and counterclaims."
+          },
+          {
+           "code": "8.SP3.6",
+           "text": "Construct and present arguments based on claims and counterclaims while pointing out the strengths and limitations of the arguments."
+          },
+          {
+           "code": "8.SP3.7",
+           "text": "Construct and present explanations using reasoning, correct sequence, examples, details with relevant information and data, while acknowledging the strengths and weaknesses of the explanations"
+          },
+          {
+           "code": "8.SP3.8",
+           "text": "Present arguments and explanations on topics of interest to others to reach multiple audiences in and outside of the classroom print, oral, and digital technologies."
+          }
+         ]
+        },
+        {
+         "id": "disciplinary-skills-and-processes-4-of-4",
+         "title": "Disciplinary Skills and Processes (4 of 4)",
+         "outcomes": [
+          {
+           "code": "8.SP4.1",
+           "text": "Explain the multiple causes and effects of events and developments in the past."
+          },
+          {
+           "code": "8.SP4.2",
+           "text": "Evaluate the influence of various causes of events and developments in the past."
+          },
+          {
+           "code": "8.SP4.3",
+           "text": "Organize applicable evidence into a coherent argument about the multiple causes and effects of events and issues."
+          },
+          {
+           "code": "8.SP4.4",
+           "text": "Compare the credibility, and authenticity of central arguments in secondary works of history on related topics in multiple media."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "civics",
+     "title": "Civics",
+     "topics": [
+      {
+       "id": "civics",
+       "title": "Civics",
+       "subtopics": [
+        {
+         "id": "civics-1-of-4",
+         "title": "Civics (1 of 4)",
+         "outcomes": [
+          {
+           "code": "8.C1.1",
+           "text": "Analyze ideas and principles contained in the founding documents of the United States, including the Declaration of Independence and Constitution, and explain how they influence society and political systems."
+          },
+          {
+           "code": "8.C1.2",
+           "text": "Demonstrate civic virtues that contribute to the common good and democratic principles within a variety of deliberative processes and settings"
+          },
+          {
+           "code": "8.C1.3",
+           "text": "Analyze the influence of personal interests and perspectives when people address issues and problems in government and civil society"
+          },
+          {
+           "code": "8.C1.4",
+           "text": "Engage in projects to help or inform others such as community service and service-learning projects."
+          }
+         ]
+        },
+        {
+         "id": "civics-2-of-4",
+         "title": "Civics (2 of 4)",
+         "outcomes": [
+          {
+           "code": "8.C2.1",
+           "text": "Analyze the powers of citizens in a variety of governmental and non-governmental contexts."
+          },
+          {
+           "code": "8.C2.2",
+           "text": "Explain specific roles, rights, and responsibilities of people in a society"
+          },
+          {
+           "code": "8.C2.3",
+           "text": "Analyze concepts and ideals such as majority and minority rights, civil dissent, and the rule of law."
+          },
+          {
+           "code": "8.C2.4",
+           "text": "Explain how immigrants become naturalized citizens"
+          }
+         ]
+        },
+        {
+         "id": "civics-3-of-4",
+         "title": "Civics (3 of 4)",
+         "outcomes": [
+          {
+           "code": "8.C3.1",
+           "text": "Describe the impact of political and civic institutions such as political parties, interest groups, elections, and the media in shaping policy."
+          },
+          {
+           "code": "8.C3.2",
+           "text": "Examine the origins and purpose of constitutions, laws, treaties, and international agreements"
+          },
+          {
+           "code": "8.C3.3",
+           "text": "Compare the structures, powers, and limits of government at different levels in the United States."
+          },
+          {
+           "code": "8.C4.1",
+           "text": "Compare historical and contemporary means of changing societies to promote the common good."
+          }
+         ]
+        },
+        {
+         "id": "civics-4-of-4",
+         "title": "Civics (4 of 4)",
+         "outcomes": [
+          {
+           "code": "8.C4.2",
+           "text": "Assess specific rules and laws (both actual and proposed) as means of addressing public problems."
+          },
+          {
+           "code": "8.C4.3",
+           "text": "Analyze the purpose, process, implementation, and consequences of decision making and public policies in multiple settings and at different levels including the national, state, local (county, city, school board), and tribal."
+          },
+          {
+           "code": "8.C4.4",
+           "text": "Identify, research, analyze, discuss, and defend a position on a national, state, or local public policy issue including an action plan to address or inform others about the issue."
+          },
+          {
+           "code": "8.C4.5",
+           "text": "Analyze how a specific problem can manifest itself at the local, regional, and global levels, identifying its characteristics and causes, and the challenges and opportunities faced by those trying to address the problem. Apply a range of deliberative and democratic procedures to take action and solve the problem."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "economics",
+     "title": "Economics",
+     "topics": [
+      {
+       "id": "economics",
+       "title": "Economics",
+       "subtopics": [
+        {
+         "id": "economics-1-of-4",
+         "title": "Economics (1 of 4)",
+         "outcomes": [
+          {
+           "code": "8.E1.1",
+           "text": "Analyze the relationship between education, income, and job opportunities"
+          },
+          {
+           "code": "8E1.2",
+           "text": "Analyze the relationship between interst rates, saving, and use of credit"
+          },
+          {
+           "code": "8.E1.3",
+           "text": "Analyze the relationship between investment and return"
+          },
+          {
+           "code": "8.E1.4",
+           "text": "Examine the factors that influence spending decisions."
+          },
+          {
+           "code": "8.E1.5",
+           "text": "Create a budget and examine the benefits of budgeting."
+          }
+         ]
+        },
+        {
+         "id": "economics-2-of-4",
+         "title": "Economics (2 of 4)",
+         "outcomes": [
+          {
+           "code": "8.E1.6",
+           "text": "Analyze the impact of debt on individuals."
+          },
+          {
+           "code": "8.E1.7",
+           "text": "Understand various types of financial investments and calculate rates of return"
+          },
+          {
+           "code": "8.E1.8",
+           "text": "Identify ways insurance may minimize personal financial risk."
+          },
+          {
+           "code": "8.E2.1",
+           "text": "Explain how economic decisions affect the well-being of individuals, businesses, and society."
+          },
+          {
+           "code": "8.E2.2",
+           "text": "Evaluate current economic issues in terms of benefits and costs for different groups."
+          }
+         ]
+        },
+        {
+         "id": "economics-3-of-4",
+         "title": "Economics (3 of 4)",
+         "outcomes": [
+          {
+           "code": "8.E3.1",
+           "text": "Explain the roles of buyers, sellers, and profits in product, labor, and financial markets"
+          },
+          {
+           "code": "8.E3.2",
+           "text": "Analyze the relationship between supply, demand, and competition and their influence on prices, wages, and production."
+          },
+          {
+           "code": "8.E3.3",
+           "text": "Analyze the influence of institutions such as corporations, non-profits, and labor unions in a market economy"
+          },
+          {
+           "code": "8.E4.1",
+           "text": "Explain how inflation, deflation, and unemployment affect different groups."
+          },
+          {
+           "code": "8.E4.2",
+           "text": "Explain the influence of changes in interest rates on borrowing and investing"
+          }
+         ]
+        },
+        {
+         "id": "economics-4-of-4",
+         "title": "Economics (4 of 4)",
+         "outcomes": [
+          {
+           "code": "8.E4.3",
+           "text": "Explain the effect of productivity on standard of living."
+          },
+          {
+           "code": "8.E5.1",
+           "text": "Explain the interdependence of trade and how trade barriers influence trade among nations."
+          },
+          {
+           "code": "8.E5.2",
+           "text": "Compare various economic systems such as command, mixed, and free market."
+          },
+          {
+           "code": "8.E5.3",
+           "text": "Explain the benefits and the costs of trade policies to individuals, businesses, and society."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "geography",
+     "title": "Geography",
+     "topics": [
+      {
+       "id": "geography",
+       "title": "Geography",
+       "subtopics": [
+        {
+         "id": "geography",
+         "title": "Geography",
+         "outcomes": [
+          {
+           "code": "8.G1.1",
+           "text": "Use geographic tools and representations to analyze historical and modern political and economic issues and events"
+          },
+          {
+           "code": "8.G2.1",
+           "text": "Examine impact of and responses to environmental issues such as air, water, and land pollution, deforestation, urban sprawl, and changes to climate"
+          },
+          {
+           "code": "8.G2.2",
+           "text": "Evaluate how political, social, and economic decisions throughout time have influenced cultural and environmental characteristics of various places and regions."
+          },
+          {
+           "code": "8.G3.1",
+           "text": "Evaluate the impact of economic, political, and social decisions that have caused conflict or promoted cooperation throughout time."
+          },
+          {
+           "code": "8.G4.1",
+           "text": "Take an active stance on a geographic issue reflecting its scale (local, regional, state, national, or global)."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "history",
+     "title": "History",
+     "topics": [
+      {
+       "id": "history",
+       "title": "History",
+       "subtopics": [
+        {
+         "id": "history-1-of-2",
+         "title": "History (1 of 2)",
+         "outcomes": [
+          {
+           "code": "8.H2.1",
+           "text": "Explain how different beliefs about the government's role in social and economic life have affected political debates and policies in the United States."
+          },
+          {
+           "code": "8.H2.2",
+           "text": "Investigate how conflict can be both unifying and divisive both domestically and internationally."
+          },
+          {
+           "code": "8.H2.3",
+           "text": "Explain how geographic and environmental factors shaped communities and how competition over resources have affected government policies."
+          },
+          {
+           "code": "8.H3.1",
+           "text": "Explain how and why prevailing civil, social, religious, and political movements changed the United States during the 20th and 21st centuries."
+          }
+         ]
+        },
+        {
+         "id": "history-2-of-2",
+         "title": "History (2 of 2)",
+         "outcomes": [
+          {
+           "code": "8.H3.2",
+           "text": "Explain how popular movements, reform efforts, and activist groups have sought to change American society and institutions"
+          },
+          {
+           "code": "8.H3.3",
+           "text": "Compare how individual rights, freedoms, and responsibilities have evolved over time around the world."
+          },
+          {
+           "code": "8.H3.4",
+           "text": "Investigate a significant historical topic from United States History that has significance to an issue or topic today."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "all",
+   "units": [
+    {
+     "id": "priority-standards",
+     "title": "Priority Standards",
+     "topics": [
+      {
+       "id": "priority-standards",
+       "title": "Priority Standards",
+       "subtopics": [
+        {
+         "id": "priority-standards-1-of-2",
+         "title": "Priority Standards (1 of 2)",
+         "outcomes": [
+          {
+           "code": "HS.C1.4",
+           "text": "Analyze the evolution of civic virtues, democratic principles, constitutional rights, and human rights."
+          },
+          {
+           "code": "HS.C2.2",
+           "text": "Analyze the role of citizens in the United States political system over time and compare this to the role of citizens in other political systems."
+          },
+          {
+           "code": "HS.C2.3",
+           "text": "Evaluate the evolution of ideals and rights established in historical documents, legislation, executive actions, and court cases."
+          },
+          {
+           "code": "HS.C2.6",
+           "text": "Evaluate the contributions of individuals and groups, including Arizonans, who have played a role in promoting civic and democratic principles."
+          }
+         ]
+        },
+        {
+         "id": "priority-standards-2-of-2",
+         "title": "Priority Standards (2 of 2)",
+         "outcomes": [
+          {
+           "code": "HS.C3.1",
+           "text": "Examine how the United States Constitution established a system of government that has powers, responsibilities, and limits and analyze how those powers, responsibilities, and limits have changed over time."
+          },
+          {
+           "code": "HS.C3.3",
+           "text": "Analyze the impact of political parties, interest groups, elections, and the media on political institutions"
+          },
+          {
+           "code": "HS.C4.1",
+           "text": "Evaluate multiple procedures for making governmental decisions in all three branches and at the local, state, tribal, national, and international levels in terms of the civic purpose achieved"
+          },
+          {
+           "code": "HS.C4.4",
+           "text": "Analyze the purpose, process, implementation, and consequences of decision making and public policies in multiple settings and at various levels."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "social-studies-and-essential-resources-ela-conne",
+     "title": "Social Studies and Essential resources: ELA Connections",
+     "topics": [
+      {
+       "id": "social-studies-and-essential-resources-ela-conne",
+       "title": "Social Studies and Essential resources: ELA Connections",
+       "subtopics": [
+        {
+         "id": "social-studies-and-essential-resources-ela-conne",
+         "title": "Social Studies and Essential resources: ELA Connections (1 of 3)",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Determine central ideas or themes of a text and analyze their development. (R.2, SP3.6)"
+          },
+          {
+           "code": null,
+           "text": "Analyze how and why individuals, events, and ideas develop and interact over the course of a text. (R.3, SP3.7, SP2.1)"
+          },
+          {
+           "code": null,
+           "text": "Interpret words and phrases as they are used in a text, including determining technical, connotative, and figurative meanings, and analyze how specific word choices shape meaning or tone. (R.4, SP2.3, SP3.2, SP3.3)"
+          },
+          {
+           "code": null,
+           "text": "Assess how point of view or purpose shapes the content and style of a text. (R.6, SP1.3, SP2.1-3, SP3.2)"
+          },
+          {
+           "code": null,
+           "text": "Integrate and evaluate content presented in diverse media and formats, including visually and quantitatively, as well as in words. (R.7, SP3.2-3, Sp3.6, SP3.8, SP4.3-4)"
+          }
+         ]
+        },
+        {
+         "id": "social-studies-and-essential-resources-ela-conne-2",
+         "title": "Social Studies and Essential resources: ELA Connections (2 of 3)",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Delineate and evaluate the argument and specific claims in a text, including the validity of the reasoning as well as the relevance and sufficiency of the evidence (R.8, SP3.4-6, SP3.8, SP4.3-4)"
+          },
+          {
+           "code": null,
+           "text": "Analyze how two or more texts address similar themes or topics in order to build knowledge or to compare the approaches the authors take. (R.9, SP3.2-4, SP3.6, SP4.3, SP2.1)"
+          },
+          {
+           "code": null,
+           "text": "Read and comprehend complex literary and informational texts independently and proficiently. (R.10, SP.3, SP3.6, SP4.4)"
+          },
+          {
+           "code": null,
+           "text": "Write arguments to support claims in an analysis of substantive topics or texts, using valid reasoning and relevant and sufficient evidence. (W.1, SP3.6-8)"
+          },
+          {
+           "code": null,
+           "text": "Write informative/explanatory texts to examine and convey complex ideas and information clearly and accurately through the effective selection, organization, and analysis of content. (W.1, SP3.6- 8)"
+          }
+         ]
+        },
+        {
+         "id": "social-studies-and-essential-resources-ela-conne-3",
+         "title": "Social Studies and Essential resources: ELA Connections (3 of 3)",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Produce clear and coherent writing in which the development, organization, and style are appropriate to task, purpose, and audience. (W.4, SP3.1-8)"
+          },
+          {
+           "code": null,
+           "text": "Conduct short as well as more sustained research projects based on focused questions, demonstrating understanding of the subject under investigation. (W.7, SP3.1-3, SP1.4)"
+          },
+          {
+           "code": null,
+           "text": "Gather relevant information from multiple print and digital sources, assess the credibility and accuracy of each source, and integrate the information while avoiding plagiarism. (W.8, SP3.2, SP3.4)"
+          },
+          {
+           "code": null,
+           "text": "Draw evidence from literary or informational texts to support analysis, reflection, and research. (W.9, SP3.2)"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "disciplinary-skill-and-processes",
+     "title": "Disciplinary Skill and Processes",
+     "topics": [
+      {
+       "id": "chronological-reasoning-requires-understanding-p",
+       "title": "Chronological reasoning requires understanding processes of change and continuity over time, which means assessing similarities and differences between historical periods and between the past and present",
+       "subtopics": [
+        {
+         "id": "chronological-reasoning-requires-understanding-p",
+         "title": "Chronological reasoning requires understanding processes of change and continuity over time, which means assessing similarities and differences between historical periods and between the past and present",
+         "outcomes": [
+          {
+           "code": "5.SP1.1",
+           "text": "Create and use a chronological sequence of related events to compare developments that happened at the same time."
+          },
+          {
+           "code": "5.SP1.2",
+           "text": "Explain how events of the past affect students’ lives and society."
+          }
+         ]
+        },
+        {
+         "id": "generate-questions-about-individuals-and-groups-",
+         "title": "Generate questions about individuals and groups who have shaped significant historical changes and continuities",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Key individuals or groups should represent the time- period being studied and be inclusive of the diversity represented in the history of the United States"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "thinking-within-the-discipline-involves-the-abil",
+       "title": "Thinking within the discipline involves the ability to identify, compare, and evaluate multiple perspectives about a given event to draw conclusions since there are multiple points of view about events and issues",
+       "subtopics": [
+        {
+         "id": "explain-why-individuals-and-groups-during-the-sa",
+         "title": "Explain why individuals and groups during the same historical period differed in their perspectives",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Key individuals and groups can include but are not limited to a loyalist and patriots, federalist and anti-federalist, Hamilton and Jefferson, abolitionists and slave owners, Abraham Lincoln and John C. Calhoun, southerners and northerners, labor and business, nativists and immigrants, and American Indians and settlers"
+          },
+          {
+           "code": null,
+           "text": "Key issues and events can include but are not limited to federalism, constitutional interpretation, individual liberties, slavery, Jim Crow Laws and segregation, secession, westward expansion, Indian boarding schools, immigration, Manifest Destiny, worker’s rights, and women’s rights"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "historians-and-social-scientists-gather-interpre",
+       "title": "Historians and Social Scientists gather, interpret, and use evidence to develop claims and answer historical, economic, geographical, and political questions and communicate their conclusions",
+       "subtopics": [
+        {
+         "id": "historians-and-social-scientists-gather-interpre",
+         "title": "Historians and Social Scientists gather, interpret, and use evidence to develop claims and answer historical, economic, geographical, and political questions and communicate their conclusions (1 of 2)",
+         "outcomes": [
+          {
+           "code": "5.SP3.1",
+           "text": "Develop compelling and supporting questions about the United States that are open to different interpretations."
+          },
+          {
+           "code": "5.SP3.2",
+           "text": "Use distinctions among fact and opinion to determine the credibility of multiple sources."
+          },
+          {
+           "code": "5.SP3.3",
+           "text": "Compare information provided by multiple sources about events and developments in the United States."
+          },
+          {
+           "code": "5.SP3.4",
+           "text": "Infer the intended audience and purpose of a source from information within the source itself."
+          }
+         ]
+        },
+        {
+         "id": "historians-and-social-scientists-gather-interpre-2",
+         "title": "Historians and Social Scientists gather, interpret, and use evidence to develop claims and answer historical, economic, geographical, and political questions and communicate their conclusions (2 of 2)",
+         "outcomes": [
+          {
+           "code": "5.SP3.5",
+           "text": "Use information about a historical source including the author, date, place of origin, intended audience, and purpose to judge the extent to which the source is useful for studying a topic and evaluate the credibility of the source."
+          },
+          {
+           "code": "5.SP3.6",
+           "text": "Construct and present arguments using claims and evidence from multiple sources."
+          },
+          {
+           "code": "5.SP3.7",
+           "text": "Construct and present explanations using reasoning, correct sequence, examples and details with relevant information and data."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "thinking-within-the-discipline-involves-the-abil-2",
+       "title": "Thinking within the discipline involves the ability to analyze relationships among causes and effects and to create and support arguments using relevant evidence",
+       "subtopics": [
+        {
+         "id": "explain-probable-causes-and-effects-of-events-an",
+         "title": "Explain probable causes and effects of events and developments in United States history from the revolutionary period to the rise of industry and urbanization",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Events include but are not limited to the American Revolution, Constitutional Convention, Civil War, Reconstruction, westward expansion, industrialism, and urbanization"
+          }
+         ]
+        },
+        {
+         "id": "thinking-within-the-discipline-involves-the-abil",
+         "title": "Thinking within the discipline involves the ability to analyze relationships among causes and effects and to create and support arguments using relevant evidence",
+         "outcomes": [
+          {
+           "code": "5.SP4.2",
+           "text": "Use evidence to develop a claim about the past."
+          },
+          {
+           "code": "5.SP4.3",
+           "text": "Summarize the central claim in a secondary source."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "civics",
+     "title": "Civics",
+     "topics": [
+      {
+       "id": "citizens-have-individual-rights-roles-and-respon",
+       "title": "Citizens have individual rights, roles, and responsibilities",
+       "subtopics": [
+        {
+         "id": "explain-how-a-republic-relies-on-people-s-respon",
+         "title": "Explain how a republic relies on people’s responsible participation within the context of key historical events pre-American Revolution to Industrialization",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Key concepts include but are not limited to volunteerism, joining associations and groups, joining political parties, using the First Amendment (free speech, religion, press, assembly, petition), censorship, voting in elections, running for office, working on campaigns, bringing cases to court, civil disobedience, protest movements, and serving in the military"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "an-understanding-of-civic-and-political-institut",
+       "title": "An understanding of civic and political institutions in society and the principles these institutions are intended to reflect including knowledge about law, politics, and government are essential to effective citizenship",
+       "subtopics": [
+        {
+         "id": "describe-the-origins-functions-and-structure-of-",
+         "title": "Describe the origins, functions, and structure of the United States Constitution and the three branches of government",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Key origins include historical and philosophical influences like the government structures of Ancient Greece and Rome, Enlightenment thinkers like John Locke, British documents like the Magna Carta, colonial governments, the Articles of Confederation, and the compromises and ratification debates of the Constitutional Convention Key functions of the United States government as outlined in the Preamble"
+          },
+          {
+           "code": null,
+           "text": "Key structures include distributing, sharing, and limiting powers of the national government through separation of powers, checks and balances, and federalism"
+          },
+          {
+           "code": null,
+           "text": "Key organization of the Constitution include the Preamble, seven Articles, and Amendments (including the Bill of Rights)"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "process-rules-and-laws-direct-how-individuals-ar",
+       "title": "Process, rules, and laws direct how individuals are governed and how society addresses problems",
+       "subtopics": [
+        {
+         "id": "using-primary-and-secondary-sources-to-examine-h",
+         "title": "Using primary and secondary sources to examine historical and contemporary means of a changing society through laws and policies in order to address public problems",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Key concepts can include but are not limited to the purpose of the Declaration of Independence, the creation of the Constitution, the formation and development of social and reform movements, and responses to industrialism and poverty at the turn of the century"
+          }
+         ]
+        },
+        {
+         "id": "process-rules-and-laws-direct-how-individuals-ar",
+         "title": "Process, rules, and laws direct how individuals are governed and how society addresses problems",
+         "outcomes": [
+          {
+           "code": "5.C4.2",
+           "text": "Use a range of deliberative and democratic procedures to make decisions about and act on issues and civic problems in their classrooms and schools"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "economics",
+     "title": "Economics",
+     "topics": [
+      {
+       "id": "a-financially-literate-individual-understands-ho",
+       "title": "A financially literate individual understands how to manage income, spending, and investment",
+       "subtopics": [
+        {
+         "id": "a-financially-literate-individual-understands-ho",
+         "title": "A financially literate individual understands how to manage income, spending, and investment",
+         "outcomes": [
+          {
+           "code": "5.E1.1",
+           "text": "Give examples of financial risks that individuals and households face within the context of the time period studied."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "by-applying-economic-reasoning-individuals-seek-",
+       "title": "By applying economic reasoning, individuals seek to understand the decisions of people, groups, and societies",
+       "subtopics": [
+        {
+         "id": "compare-the-benefits-and-costs-of-individual-cho",
+         "title": "Compare the benefits and costs of individual choices within the context of key historical events",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Key concepts can include but are not limited to smuggling during the American Revolution, separating from England, economic powers outlined in the Constitution, slavery, secession, territorial expansion, and unregulated industry"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "individuals-and-institutions-are-interdependent-",
+       "title": "Individuals and institutions are interdependent within market systems",
+       "subtopics": [
+        {
+         "id": "develop-an-understanding-of-the-characteristics-",
+         "title": "Develop an understanding of the characteristics of entrepreneurship within a market economy and apply these characteristics to individuals during the time-period studied",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Characteristics include but are not limited to risk taking, innovation, and problem solving"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "the-domestic-economy-is-shaped-by-interactions-b",
+       "title": "The domestic economy is shaped by interactions between government, institutions, and the private sector",
+       "subtopics": [
+        {
+         "id": "the-domestic-economy-is-shaped-by-interactions-b",
+         "title": "The domestic economy is shaped by interactions between government, institutions, and the private sector",
+         "outcomes": [
+          {
+           "code": "5.E4.1",
+           "text": "Describe how government decisions on taxation, spending, protections, and regulation affected the national economy during the time-period being studied"
+          },
+          {
+           "code": "5.E4.2",
+           "text": "Analyze how agriculture, new industries, innovative technologies, changes in transportation, and labor impacted the national economy including productivity, supply and demand, and price during the time-period being studied"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "the-interconnected-global-economy-impacts-all-in",
+       "title": "The interconnected global economy impacts all individuals and groups in significant and varied ways",
+       "subtopics": [
+        {
+         "id": "generate-questions-to-explain-how-trade-leads-to",
+         "title": "Generate questions to explain how trade leads to increasing economic interdependence on different nations",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Key concepts include but are not limited to products that are imported into markets within the United States and products that are exported to other markets in the world"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "geography",
+     "title": "Geography",
+     "topics": [
+      {
+       "id": "the-use-of-geographic-representations-and-tools-",
+       "title": "The use of geographic representations and tools help individuals understand their world",
+       "subtopics": [
+        {
+         "id": "use-and-construct-maps-and-graphs-to-represent-c",
+         "title": "Use and construct maps and graphs to represent changes in the United States",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Key concepts include but are not limited to physical and human features of the United States, the regions of the United States and their characteristics, geographic location of major events, the growth of the United States through territorial expansion, demographic changes, and the states and their capitals"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "human-environment-interactions-are-essential-asp",
+       "title": "Human-environment interactions are essential aspects of human life in all societies",
+       "subtopics": [
+        {
+         "id": "human-environment-interactions-are-essential-asp",
+         "title": "Human-environment interactions are essential aspects of human life in all societies",
+         "outcomes": [
+          {
+           "code": "5.G2.1",
+           "text": "Describe how natural and human-caused changes to habitats or climate can impact our world."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "examining-human-population-and-movement-helps-in",
+       "title": "Examining human population and movement helps individuals understand past, present, and future conditions on Earth’s surface",
+       "subtopics": [
+        {
+         "id": "use-key-historical-events-with-geographic-tools-",
+         "title": "Use key historical events with geographic tools to analyze the causes and effects of environmental and technological events on human settlements and migration",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Key concepts include but are not limited to consequences of territorial expansion on American Indians, the institution of slavery, the positive and negative impact of new technologies on the environment and the growth of cities, and the impact of transportation and infrastructure on settlement and migration"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "global-interconnections-and-spatial-patterns-are",
+       "title": "Global interconnections and spatial patterns are a necessary part of geographic reasoning",
+       "subtopics": [
+        {
+         "id": "global-interconnections-and-spatial-patterns-are",
+         "title": "Global interconnections and spatial patterns are a necessary part of geographic reasoning",
+         "outcomes": [
+          {
+           "code": "5.G4.1",
+           "text": "Describe how economic activities, natural phenomena, and human-made events in one place or region are impacted by interactions with nearby and distant places or regions."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "history",
+     "title": "History",
+     "topics": [
+      {
+       "id": "cycles-of-conflict-and-cooperation-have-shaped-r",
+       "title": "Cycles of conflict and cooperation have shaped relations among people, places, and environments",
+       "subtopics": [
+        {
+         "id": "use-primary-and-secondary-sources-to-summarize-t",
+         "title": "Use primary and secondary sources to summarize the causes and effects of conflicts, resolutions, and social movements throughout the historical timeframe",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Key conflicts can include but are not limited to cultural conflicts, political conflicts, economic conflicts, military conflicts, and conflicts related to resource use and availability"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "patterns-of-social-and-political-interactions-ha",
+       "title": "Patterns of social and political interactions have shaped people, places, and events throughout history and continue to shape the modern world",
+       "subtopics": [
+        {
+         "id": "patterns-of-social-and-political-interactions-ha",
+         "title": "Patterns of social and political interactions have shaped people, places, and events throughout history and continue to shape the modern world",
+         "outcomes": [
+          {
+           "code": "5.H4.1",
+           "text": "Use primary and secondary sources to describe how diverse groups (racial, ethnic, class, gender, regional, immigrant/migrant) shaped the United States’ multicultural society within the historical timeframe."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "9-12",
+   "units": [
+    {
+     "id": "disciplinary-skills-and-processes",
+     "title": "Disciplinary Skills and Processes",
+     "topics": [
+      {
+       "id": "chronological-reasoning-requires-understanding-p",
+       "title": "Chronological reasoning requires understanding processes of change and continuity over time, which means assessing similarities and differences between historical periods and between the past and present",
+       "subtopics": [
+        {
+         "id": "chronological-reasoning-requires-understanding-p",
+         "title": "Chronological reasoning requires understanding processes of change and continuity over time, which means assessing similarities and differences between historical periods and between the past and present",
+         "outcomes": [
+          {
+           "code": "HS.SP1.1",
+           "text": "Evaluate how events and developments were shaped by unique circumstances of time and place as well as broader contexts."
+          },
+          {
+           "code": "HS.SP1.2",
+           "text": "Analyze change and continuity in historical eras."
+          },
+          {
+           "code": "HS.SP1.3",
+           "text": "Evaluate the significance of past events as they relate to their own lives and the world."
+          },
+          {
+           "code": "HS.SP1.4",
+           "text": "Use compelling questions generated about individuals and groups to assess how the significance of their actions changes over time and is shaped by the historical context."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "thinking-within-the-discipline-involves-the-abil",
+       "title": "Thinking within the discipline involves the ability to identify, compare, and evaluate multiple perspectives about a given event to draw conclusions since there are multiple points of view about events and issues",
+       "subtopics": [
+        {
+         "id": "thinking-within-the-discipline-involves-the-abil",
+         "title": "Thinking within the discipline involves the ability to identify, compare, and evaluate multiple perspectives about a given event to draw conclusions since there are multiple points of view about events and issues",
+         "outcomes": [
+          {
+           "code": "HS.SP2.1",
+           "text": "Analyze how contexts shaped and continue to shape people’s perspectives."
+          },
+          {
+           "code": "HS.SP2.2",
+           "text": "Analyze the ways in which perspective shapes recorded history."
+          },
+          {
+           "code": "HS.SP2.3",
+           "text": "Demonstrate historical empathy when examining individuals or groups in the past whose perspectives might be very different from those held today."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "historians-and-social-scientists-gather-interpre",
+       "title": "Historians and Social Scientists gather, interpret, and use evidence to develop claims and answer historical, economic, geographical, and political questions and communicate their conclusions",
+       "subtopics": [
+        {
+         "id": "historians-and-social-scientists-gather-interpre",
+         "title": "Historians and Social Scientists gather, interpret, and use evidence to develop claims and answer historical, economic, geographical, and political questions and communicate their conclusions (1 of 2)",
+         "outcomes": [
+          {
+           "code": "HS.SP3.1",
+           "text": "Develop and frame questions about issues and events in the discipline and determine the types of sources that will be helpful in answering these questions."
+          },
+          {
+           "code": "HS.SP3.2",
+           "text": "Gather relevant information from multiple sources representing a wide range of views while using origin, authority, structure, context, and corroborative value of the source to guide the selection."
+          },
+          {
+           "code": "HS.SP3.3",
+           "text": "Analyze the relationship between primary sources and the secondary interpretations made from them including possible limitations in various kinds of evidence and differing secondary interpretations."
+          },
+          {
+           "code": "HS.SP3.4",
+           "text": "Evaluate the credibility of a source by examining how experts value the source."
+          }
+         ]
+        },
+        {
+         "id": "historians-and-social-scientists-gather-interpre-2",
+         "title": "Historians and Social Scientists gather, interpret, and use evidence to develop claims and answer historical, economic, geographical, and political questions and communicate their conclusions (2 of 2)",
+         "outcomes": [
+          {
+           "code": "HS.SP3.5",
+           "text": "Use questions generated about multiple historical sources to pursue further inquiry and investigate additional sources."
+          },
+          {
+           "code": "HS.SP3.6",
+           "text": "Construct and present arguments using precise and knowledgeable claims, with evidence from multiple sources, while acknowledging counterclaims and evidentiary weaknesses."
+          },
+          {
+           "code": "HS.SP3.7",
+           "text": "Construct and present explanations using sound reasoning, correct sequence (linear and non-linear) examples, and details with significant and pertinent information and data, while acknowledging the strengths and weaknesses of the explanation"
+          },
+          {
+           "code": "HS.SP3.8",
+           "text": "Present arguments and explanations that feature ideas and perspectives on issues and topics to reach a range of audiences and venues using print, oral, and digital technologies."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "thinking-within-the-discipline-involves-the-abil-2",
+       "title": "Thinking within the discipline involves the ability to analyze relationships among causes and effects and to create and support arguments using relevant evidence",
+       "subtopics": [
+        {
+         "id": "thinking-within-the-discipline-involves-the-abil",
+         "title": "Thinking within the discipline involves the ability to analyze relationships among causes and effects and to create and support arguments using relevant evidence",
+         "outcomes": [
+          {
+           "code": "HS.SP4.1",
+           "text": "Analyze multiple and complex causes and effects of events in the past and present."
+          },
+          {
+           "code": "HS.SP4.2",
+           "text": "Distinguish between long-term causes and triggering events in developing an argument."
+          },
+          {
+           "code": "HS.SP4.3",
+           "text": "Integrate evidence from multiple relevant sources and interpretations into a reasoned argument."
+          },
+          {
+           "code": "HS.SP4.4",
+           "text": "Compare the central arguments in secondary works on related topics in multiple media. Critique the central arguments in secondary works on related topics in multiple media in terms of their accuracy and relevance."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "civics",
+     "title": "Civics",
+     "topics": [
+      {
+       "id": "civic-virtues-and-democratic-principles-are-key-",
+       "title": "Civic virtues and democratic principles are key components of the American political system",
+       "subtopics": [
+        {
+         "id": "civic-virtues-and-democratic-principles-are-key-",
+         "title": "Civic virtues and democratic principles are key components of the American political system",
+         "outcomes": [
+          {
+           "code": "HS.C1.1",
+           "text": "Explain the significance of civic virtues to a well-functioning constitutional republic."
+          },
+          {
+           "code": "HS.C1.2",
+           "text": "Evaluate how society and political systems in different contexts promote civic virtue and democratic principles established by the founding documents."
+          },
+          {
+           "code": "HS.C1.3",
+           "text": "Explain and use deliberative processes implemented in various civic and political institutions."
+          },
+          {
+           "code": "HS.C1.4",
+           "text": "Analyze the evolution of civic virtues, democratic principles, constitutional rights, and human rights."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "citizens-have-individual-rights-roles-and-respon",
+       "title": "Citizens have individual rights, roles, and responsibilities",
+       "subtopics": [
+        {
+         "id": "citizens-have-individual-rights-roles-and-respon",
+         "title": "Citizens have individual rights, roles, and responsibilities",
+         "outcomes": [
+          {
+           "code": "HS.C2.1",
+           "text": "Explain the importance of individual participation in civic and political institutions."
+          },
+          {
+           "code": "HS.C2.2",
+           "text": "Analyze the role of citizens in the United States political system over time and compare this to the role of citizens in other political systems."
+          },
+          {
+           "code": "HS.C2.3",
+           "text": "Evaluate the evolution of ideals and rights established in historical documents, legislation, executive actions, and court cases."
+          },
+          {
+           "code": "HS.C2.4",
+           "text": "Analyze the responsibilities of citizens."
+          },
+          {
+           "code": "HS.C2.5",
+           "text": "Compare the rights guaranteed in Arizona Constitution to those in the United States Constitution."
+          },
+          {
+           "code": "HS.C2.6",
+           "text": "Evaluate the contributions of individuals and groups, including Arizonans, who have played a role in promoting civic and democratic principles."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "an-understanding-of-civic-and-political-institut",
+       "title": "An understanding of civic and political institutions in society and the principles these institutions are intended to reflect including knowledge about law, politics, and government are essential to effective citizenship",
+       "subtopics": [
+        {
+         "id": "an-understanding-of-civic-and-political-institut",
+         "title": "An understanding of civic and political institutions in society and the principles these institutions are intended to reflect including knowledge about law, politics, and government are essential to effective citizenship",
+         "outcomes": [
+          {
+           "code": "HS.C3.1",
+           "text": "Examine how the United States Constitution established a system of government that has powers, responsibilities, and limits and analyze how those powers, responsibilities, and limits have changed over time."
+          },
+          {
+           "code": "HS.C3.2",
+           "text": "Analyze the origins, functions, and structures of government at the national, state, local, and tribal levels and compare with other systems of government."
+          },
+          {
+           "code": "HS.C3.3",
+           "text": "Analyze the impact of political parties, interest groups, elections, and the media on political institutions."
+          },
+          {
+           "code": "HS.C3.4",
+           "text": "Analyze the impact of constitutions, laws, treaties, charters, and agreements on the maintenance of international order."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "process-rules-and-laws-direct-how-individuals-ar",
+       "title": "Process, rules, and laws direct how individuals are governed and how society addresses problems",
+       "subtopics": [
+        {
+         "id": "process-rules-and-laws-direct-how-individuals-ar",
+         "title": "Process, rules, and laws direct how individuals are governed and how society addresses problems (1 of 2)",
+         "outcomes": [
+          {
+           "code": "HS.C4.1",
+           "text": "Evaluate multiple procedures for making governmental decisions in all three branches and at the local, state, tribal, national, and international levels in terms of the civic purpose achieved."
+          },
+          {
+           "code": "HS.C4.2",
+           "text": "Evaluate local, state, national, and international policies in terms of intended and unintended outcomes and related consequences."
+          },
+          {
+           "code": "HS.C4.3",
+           "text": "Explain the procedures for elections at the local, state, tribal, and national levels."
+          },
+          {
+           "code": "HS.C4.4",
+           "text": "Analyze the purpose, process, implementation, and consequences of decision making and public policies in multiple settings and at various levels."
+          }
+         ]
+        },
+        {
+         "id": "process-rules-and-laws-direct-how-individuals-ar-2",
+         "title": "Process, rules, and laws direct how individuals are governed and how society addresses problems (2 of 2)",
+         "outcomes": [
+          {
+           "code": "HS.C4.5",
+           "text": "Use disciplinary and interdisciplinary lenses to understand the characteristics and causes of local, regional, and global problems, instances of such problems in multiple contexts, and challenges and opportunities faced by those trying to address these problems over time and place."
+          },
+          {
+           "code": "HS.C4.6",
+           "text": "Assess options for action to address local, regional, and global problems by engaging in self- reflection, strategy identification, and complex causal reasoning."
+          },
+          {
+           "code": "HS.C4.7",
+           "text": "Apply a range of deliberative and democratic strategies and procedures to make decisions in the classroom, school, and out-of-school civic contexts."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "economics",
+     "title": "Economics",
+     "topics": [
+      {
+       "id": "a-financially-literate-individual-understands-ho",
+       "title": "A financially literate individual understands how to manage income, spending, and investment",
+       "subtopics": [
+        {
+         "id": "a-financially-literate-individual-understands-ho",
+         "title": "A financially literate individual understands how to manage income, spending, and investment",
+         "outcomes": [
+          {
+           "code": "HS.E1.1",
+           "text": "Evaluate how and why people make choices to improve their economic well-being."
+          },
+          {
+           "code": "HS.E1.2",
+           "text": "Analyze the factors that influence how and why people make budgeting and saving choices."
+          },
+          {
+           "code": "HS.E1.3",
+           "text": "Evaluate the cost and benefits of using credit."
+          },
+          {
+           "code": "HS.E1.4",
+           "text": "Compare the cost and benefits of several types of investments."
+          },
+          {
+           "code": "HS.E1.5",
+           "text": "Evaluate the ways insurance may minimize personal financial risk."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "by-applying-economic-reasoning-individuals-seek-",
+       "title": "By applying economic reasoning, individuals seek to understand the decisions of people, groups, and societies",
+       "subtopics": [
+        {
+         "id": "by-applying-economic-reasoning-individuals-seek-",
+         "title": "By applying economic reasoning, individuals seek to understand the decisions of people, groups, and societies",
+         "outcomes": [
+          {
+           "code": "HS.E2.1",
+           "text": "Explain how scarcity results in economic decisions and evaluate their impact on individuals, institutions, and societies."
+          },
+          {
+           "code": "HS.E2.3",
+           "text": "Use cost-benefit analysis and/or marginal analysis to evaluate an economic issue."
+          },
+          {
+           "code": "HS.E2.2",
+           "text": "Analyze how incentives influence economic choices for individuals, institutions, and societies."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "individuals-and-institutions-are-interdependent-",
+       "title": "Individuals and institutions are interdependent within market systems",
+       "subtopics": [
+        {
+         "id": "individuals-and-institutions-are-interdependent-",
+         "title": "Individuals and institutions are interdependent within market systems",
+         "outcomes": [
+          {
+           "code": "HS.E3.1",
+           "text": "Explain how buyers and sellers interact to create markets and market structures."
+          },
+          {
+           "code": "HS.E3.2",
+           "text": "Evaluate how numerous factors and conditions influence market prices."
+          },
+          {
+           "code": "HS.E3.3",
+           "text": "Evaluate the role of government in regulating market places."
+          },
+          {
+           "code": "HS.E3.4",
+           "text": "Explain the distinct types of business organizations and analyze the role of innovation and entrepreneurship in a market economy."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "the-domestic-economy-is-shaped-by-interactions-b",
+       "title": "The domestic economy is shaped by interactions between government, institutions, and the private sector",
+       "subtopics": [
+        {
+         "id": "the-domestic-economy-is-shaped-by-interactions-b",
+         "title": "The domestic economy is shaped by interactions between government, institutions, and the private sector",
+         "outcomes": [
+          {
+           "code": "HS.E4.1",
+           "text": "Use economic data to analyze the health of a national economy."
+          },
+          {
+           "code": "HS.E4.2",
+           "text": "Evaluate the economic conditions that lead to fiscal and monetary policy choices and explain their impact on households and businesses."
+          },
+          {
+           "code": "HS.E4.3",
+           "text": "Explain the roles of institutions in a market economy."
+          },
+          {
+           "code": "HS.E4.4",
+           "text": "Explain the effect of advancements in technology and training on economic growth and standards of living."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "the-interconnected-global-economy-impacts-all-in",
+       "title": "The interconnected global economy impacts all individuals and groups in significant and varied ways",
+       "subtopics": [
+        {
+         "id": "the-interconnected-global-economy-impacts-all-in",
+         "title": "The interconnected global economy impacts all individuals and groups in significant and varied ways",
+         "outcomes": [
+          {
+           "code": "HS.E5.1",
+           "text": "Evaluate the advantages and disadvantages of global trade."
+          },
+          {
+           "code": "HS.E5.2",
+           "text": "Evaluate how interdependence impacts individuals, institutions, and societies."
+          },
+          {
+           "code": "HS.E5.3",
+           "text": "Explain why nations chose to trade and how it is regulated."
+          },
+          {
+           "code": "HS.E5.4",
+           "text": "Explain how national economies influence trade."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "geography",
+     "title": "Geography",
+     "topics": [
+      {
+       "id": "the-use-of-geographic-representations-and-tools-",
+       "title": "The use of geographic representations and tools help individuals understand their world",
+       "subtopics": [
+        {
+         "id": "use-geographic-data-to-explain-and-analyze-relat",
+         "title": "Use geographic data to explain and analyze relationships between locations of place and regions",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Key tools and representations such as maps, remotely sensed and other images, tables, and graphs"
+          }
+         ]
+        },
+        {
+         "id": "use-geospatial-tools-and-related-technologies-to",
+         "title": "Use geospatial tools and related technologies to construct relevant geographic data to explain spatial patterns and relationships",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Key tools and representations such as Google Earth, story mapping, wayfaring apps, and other geospatial technologies"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "human-environment-interactions-are-essential-asp",
+       "title": "Human-environment interactions are essential aspects of human life in all societies",
+       "subtopics": [
+        {
+         "id": "human-environment-interactions-are-essential-asp",
+         "title": "Human-environment interactions are essential aspects of human life in all societies",
+         "outcomes": [
+          {
+           "code": "HS.G2.1",
+           "text": "Analyze interactions within and between human and physical systems."
+          },
+          {
+           "code": "HS.G2.2",
+           "text": "Evaluate how political and economic decisions throughout time have influenced cultural and environmental characteristics of various places and regions."
+          },
+          {
+           "code": "HS.G2.3",
+           "text": "Evaluate the impact of human settlement on the environment and culture of specific places and regions."
+          },
+          {
+           "code": "HS.G2.4",
+           "text": "Evaluate the use and sustainability of natural resources."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "examining-human-population-and-movement-helps-in",
+       "title": "Examining human population and movement helps individuals understand past, present, and future conditions on Earth’s surface",
+       "subtopics": [
+        {
+         "id": "examining-human-population-and-movement-helps-in",
+         "title": "Examining human population and movement helps individuals understand past, present, and future conditions on Earth’s surface",
+         "outcomes": [
+          {
+           "code": "HS.G3.1",
+           "text": "Analyze the reciprocal nature of how historical events and the diffusion of ideas, technologies, and cultural practices have influenced migration patterns and the distribution of human population"
+          },
+          {
+           "code": "HS.G3.2",
+           "text": "Evaluate the impact of economic activities and political decisions on spatial patterns within and among urban, suburban, and rural regions."
+          },
+          {
+           "code": "HS.G3.3",
+           "text": "Evaluate the influence of long-term climate variability on human migration and settlement patterns, resource use, and land uses at local-to-global scales."
+          },
+          {
+           "code": "HS.G3.4",
+           "text": "Evaluate the consequences of human-made and natural catastrophes on global trade, politics, and human migration settlement."
+          },
+          {
+           "code": "HS.G3.5",
+           "text": "Evaluate the impact of social, political, and economic decisions that have caused conflict or promoted cooperation throughout time."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "global-interconnections-and-spatial-patterns-are",
+       "title": "Global interconnections and spatial patterns are a necessary part of geographic reasoning",
+       "subtopics": [
+        {
+         "id": "global-interconnections-and-spatial-patterns-are",
+         "title": "Global interconnections and spatial patterns are a necessary part of geographic reasoning",
+         "outcomes": [
+          {
+           "code": "HS.G4.1",
+           "text": "Take an active stance on a geographic issue reflecting its scale (local, regional, state, national, or global)"
+          },
+          {
+           "code": "HS.G4.2",
+           "text": "Analyze patterns of global power and influence in respect to trade, demographics, politics, and resource availability and use."
+          },
+          {
+           "code": "HS.G4.3",
+           "text": "Analyze patterns of interdependence."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "history",
+     "title": "History",
+     "topics": [
+      {
+       "id": "the-development-of-civilizations-societies-cultu",
+       "title": "The development of civilizations, societies, cultures, and innovations have influenced history and continue to impact the modern world",
+       "subtopics": [
+        {
+         "id": "the-development-of-civilizations-societies-cultu",
+         "title": "The development of civilizations, societies, cultures, and innovations have influenced history and continue to impact the modern world (1 of 2)",
+         "outcomes": [
+          {
+           "code": "HS.H1.1",
+           "text": "Explain the process of state-building, expansion, and dissolution."
+          },
+          {
+           "code": "HS.H1.2",
+           "text": "Explain and compare how social, cultural, and environmental factors influenced state-building, expansion, and dissolution."
+          },
+          {
+           "code": "HS.H1.3",
+           "text": "Evaluate the consequences that resulted from civilizational and cultural interactions."
+          },
+          {
+           "code": "HS.H1.4",
+           "text": "Analyze the impact of cultural diffusion."
+          }
+         ]
+        },
+        {
+         "id": "the-development-of-civilizations-societies-cultu-2",
+         "title": "The development of civilizations, societies, cultures, and innovations have influenced history and continue to impact the modern world (2 of 2)",
+         "outcomes": [
+          {
+           "code": "HS.H1.5",
+           "text": "Explain how religions and belief systems have affected the origins of societies."
+          },
+          {
+           "code": "HS.H1.6",
+           "text": "Analyze the relationship among different regional, social, ethnic, and racial groups and explain how these groups’ experiences have related to national identities."
+          },
+          {
+           "code": "HS.H1.7",
+           "text": "Analyze how technological innovation and trade has affected economic development and transformed societies."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "cycles-of-conflict-and-cooperation-have-shaped-r",
+       "title": "Cycles of conflict and cooperation have shaped relations among people, places, and environments",
+       "subtopics": [
+        {
+         "id": "cycles-of-conflict-and-cooperation-have-shaped-r",
+         "title": "Cycles of conflict and cooperation have shaped relations among people, places, and environments",
+         "outcomes": [
+          {
+           "code": "HS.H2.1",
+           "text": "Explain multiple causes of conflict."
+          },
+          {
+           "code": "HS.H2.2",
+           "text": "Analyze approaches to conflict management and resolution."
+          },
+          {
+           "code": "HS.H2.3",
+           "text": "Evaluate the short- and long- term impacts of conflicts and their resolutions."
+          },
+          {
+           "code": "HS.H2.4",
+           "text": "Compare causes and effects of isolationism and globalism."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "economic-political-and-religious-ideas-and-insti",
+       "title": "Economic, political, and religious ideas and institutions have influenced history and continue to shape the modern world",
+       "subtopics": [
+        {
+         "id": "economic-political-and-religious-ideas-and-insti",
+         "title": "Economic, political, and religious ideas and institutions have influenced history and continue to shape the modern world",
+         "outcomes": [
+          {
+           "code": "HS.H3.1",
+           "text": "Analyze how societies, leaders, institutions, and organizations respond to societal needs and changes."
+          },
+          {
+           "code": "HS.H3.2",
+           "text": "Analyze how ideologies, religion, and belief systems have influenced economic, political, and social institutions over time."
+          },
+          {
+           "code": "HS.H3.3",
+           "text": "Compare the ways in which economic philosophies influenced political, economic, and social developments."
+          },
+          {
+           "code": "HS.H3.4",
+           "text": "Evaluate how societies have balanced individual freedoms, responsibilities, and human dignity versus the common good."
+          },
+          {
+           "code": "HS.H3.5",
+           "text": "Explain how different labor systems developed and affected societies over time."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "patterns-of-social-and-political-interactions-ha",
+       "title": "Patterns of social and political interactions have shaped people, places, and events throughout history and continue to shape the modern world",
+       "subtopics": [
+        {
+         "id": "patterns-of-social-and-political-interactions-ha",
+         "title": "Patterns of social and political interactions have shaped people, places, and events throughout history and continue to shape the modern world",
+         "outcomes": [
+          {
+           "code": "HS.H4.1",
+           "text": "Examine how historically marginalized groups have affected change on political and social institutions."
+          },
+          {
+           "code": "HS.H4.2",
+           "text": "Explain how artistic, philosophical, and scientific ideas have developed and shaped society and institutions."
+          },
+          {
+           "code": "HS.H4.3",
+           "text": "Examine how access to information and technology has been used to influence society."
+          },
+          {
+           "code": "HS.H4.4",
+           "text": "Examine how a diverse society can be a force for unity and/or disunity."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "build": {
+  "builtAt": "2026-10-14T16:20:38.681Z",
+  "model": "none",
+  "usd": 0,
+  "expectedCodes": 367,
+  "coverage": 1,
+  "missingCodes": [],
+  "counts": {
+   "grades": 10,
+   "units": 52,
+   "topics": 140,
+   "subtopics": 191,
+   "outcomes": 466
+  },
+  "warnings": [
+   "unexpected grade label \"all\""
+  ]
+ }
+}

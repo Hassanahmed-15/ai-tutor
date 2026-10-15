@@ -1,0 +1,140 @@
+{
+ "id": "ib-pyp-overview",
+ "region": "INTL",
+ "framework": "International Baccalaureate Primary Years Programme (PYP)",
+ "board": "IB",
+ "qualification": "IB Primary Years Programme",
+ "subject": "Primary Years Programme overview",
+ "syllabusCode": null,
+ "gradeSystem": "stage",
+ "source": {
+  "urls": [
+   "https://www.ibo.org/globalassets/new-structure/programmes/pyp/pdfs/pyp-brochure-en.pdf",
+   "https://web.archive.org/web/20260506230406id_/https://www.ibo.org/globalassets/new-structure/programmes/pyp/pdfs/pyp-brochure-en.pdf"
+  ],
+  "publisher": "International Baccalaureate Organization",
+  "licence": "(c) International Baccalaureate Organization; all rights reserved, no open licence. ibo.org terms 1.8: IB copyrighted materials are licensed only under the IB's terms or a signed agreement; 'Any use not expressly permitted is prohibited unless special permission is obtained in writing from the IB'; 1.9: nothing on the IB websites confers any licence. Briefs are free public marketing summaries: take topic structure only, write everything in our own words, never reproduce brief text, and do not use IB logos/trade marks. Full subject guides are sold to schools and were NOT used. Terms: https://www.ibo.org/terms-and-conditions/ and https://www.ibo.org/copyright",
+  "firstExam": null
+ },
+ "grades": [
+  {
+   "grade": "all",
+   "units": [
+    {
+     "id": "transdisciplinary-themes",
+     "title": "Transdisciplinary themes",
+     "topics": [
+      {
+       "id": "six-themes-that-cross-subjects",
+       "title": "Six themes that cross subjects",
+       "subtopics": [
+        {
+         "id": "who-we-are",
+         "title": "Who we are",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Inquire into who we are, drawing on ideas that cross subject boundaries."
+          }
+         ]
+        },
+        {
+         "id": "where-we-are-in-place-and-time",
+         "title": "Where we are in place and time",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Inquire into where we are in place and time, relating what is known to the wider world."
+          }
+         ]
+        },
+        {
+         "id": "how-we-express-ourselves",
+         "title": "How we express ourselves",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Inquire into the ways people express themselves."
+          }
+         ]
+        },
+        {
+         "id": "how-the-world-works",
+         "title": "How the world works",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Inquire into how the world works."
+          }
+         ]
+        },
+        {
+         "id": "how-we-organize-ourselves",
+         "title": "How we organize ourselves",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Inquire into how people and communities organize themselves."
+          }
+         ]
+        },
+        {
+         "id": "sharing-the-planet",
+         "title": "Sharing the planet",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Inquire into sharing the planet and taking meaningful action on local and global issues."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "culminating-project",
+     "title": "Culminating project",
+     "topics": [
+      {
+       "id": "pyp-exhibition",
+       "title": "PYP exhibition",
+       "subtopics": [
+        {
+         "id": "pyp-exhibition",
+         "title": "PYP exhibition",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "In the final year, explore, reflect on, document and share understanding of an issue of personal significance."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "build": {
+  "builtAt": "2026-10-14T10:54:40.166Z",
+  "model": "claude-agent",
+  "usd": 0,
+  "expectedCodes": null,
+  "coverage": null,
+  "missingCodes": [],
+  "counts": {
+   "grades": 1,
+   "units": 2,
+   "topics": 2,
+   "subtopics": 7,
+   "outcomes": 7
+  },
+  "warnings": [
+   "grade PYP has no content",
+   "unexpected grade label \"all\"",
+   "unit \"Culminating project\" (grade all) has a single outcome"
+  ]
+ }
+}

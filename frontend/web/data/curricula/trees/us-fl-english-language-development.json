@@ -1,0 +1,80 @@
+{
+ "id": "us-fl-english-language-development",
+ "region": "US",
+ "framework": "Florida state academic standards: English Language Development",
+ "board": null,
+ "qualification": "K-12",
+ "subject": "English Language Development",
+ "syllabusCode": null,
+ "gradeSystem": "grade",
+ "source": {
+  "urls": [
+   "https://api.commonstandardsproject.com/api/v1/jurisdictions/80B94A122D3D4B95884660FF09CC357E",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/AE74BCD71F304486B7273F127D4AC650"
+  ],
+  "publisher": "Florida state education agency (machine-readable via Common Standards Project / ASN)",
+  "licence": "CC BY 4.0 US, Common Curriculum, Inc.",
+  "firstExam": "2014"
+ },
+ "grades": [
+  {
+   "grade": "5-12",
+   "units": [
+    {
+     "id": "grades-k-12",
+     "title": "Grades K-12",
+     "topics": [
+      {
+       "id": "grades-k-12",
+       "title": "Grades K-12",
+       "subtopics": [
+        {
+         "id": "grades-k-12",
+         "title": "Grades K-12",
+         "outcomes": [
+          {
+           "code": "ELD.K12.ELL.LA.1",
+           "text": "English language learners communicate information, ideas and concepts necessary for academic success in the content area of Language Arts."
+          },
+          {
+           "code": "ELD.K12.ELL.MA.1",
+           "text": "English language learners communicate information, ideas and concepts necessary for academic success in the content area of Mathematics."
+          },
+          {
+           "code": "ELD.K12.ELL.SC.1",
+           "text": "English language learners communicate information, ideas and concepts necessary for academic success in the content area of Science."
+          },
+          {
+           "code": "ELD.K12.ELL.SI.1",
+           "text": "English language learners communicate for social and instructional purposes within the school setting."
+          },
+          {
+           "code": "ELD.K12.ELL.SS.1",
+           "text": "English language learners communicate information, ideas and concepts necessary for academic success in the content area of Social Studies."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "build": {
+  "builtAt": "2026-10-14T08:02:43.695Z",
+  "model": "none",
+  "usd": 0,
+  "expectedCodes": 5,
+  "coverage": 1,
+  "missingCodes": [],
+  "counts": {
+   "grades": 1,
+   "units": 1,
+   "topics": 1,
+   "subtopics": 1,
+   "outcomes": 5
+  },
+  "warnings": []
+ }
+}

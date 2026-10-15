@@ -1,0 +1,2518 @@
+{
+ "id": "us-sc-social-studies",
+ "region": "US",
+ "framework": "South Carolina state academic standards: Social Studies",
+ "board": null,
+ "qualification": "K-12",
+ "subject": "Social Studies",
+ "syllabusCode": null,
+ "gradeSystem": "grade",
+ "source": {
+  "urls": [
+   "https://api.commonstandardsproject.com/api/v1/jurisdictions/033B7F9D29D84F09AF312E83F31AE348",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/033B7F9D29D84F09AF312E83F31AE348_D21024846_grade-01",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/033B7F9D29D84F09AF312E83F31AE348_D21024846_grade-02",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/033B7F9D29D84F09AF312E83F31AE348_D21024846_grade-03",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/033B7F9D29D84F09AF312E83F31AE348_D21024846_grade-04",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/033B7F9D29D84F09AF312E83F31AE348_D21024846_grade-05",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/033B7F9D29D84F09AF312E83F31AE348_D21024846_grade-06",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/033B7F9D29D84F09AF312E83F31AE348_D21024846_grade-07",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/033B7F9D29D84F09AF312E83F31AE348_D21024846_grade-08",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/033B7F9D29D84F09AF312E83F31AE348_D21024846_grades-09-10-11-12",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/033B7F9D29D84F09AF312E83F31AE348_D21024846_grade-k"
+  ],
+  "publisher": "South Carolina state education agency (machine-readable via Common Standards Project / ASN)",
+  "licence": "CC BY 3.0 US, D2L Corporation",
+  "firstExam": "2020"
+ },
+ "grades": [
+  {
+   "grade": "K",
+   "units": [
+    {
+     "id": "the-community-around-us",
+     "title": "The Community Around Us",
+     "topics": [
+      {
+       "id": "history",
+       "title": "History",
+       "subtopics": [
+        {
+         "id": "utilize-the-college-and-career-skills-of-a-histo",
+         "title": "Utilize the college and career skills of a historian to study continuity and change over time for one's personal history and one's community",
+         "outcomes": [
+          {
+           "code": "K.H.1",
+           "text": "Identify similarities and differences between oneself and others."
+          },
+          {
+           "code": "K.H.2",
+           "text": "Examine ways in which individuals change or stay the same over time."
+          },
+          {
+           "code": "K.H.3",
+           "text": "Identify different forms of evidence used in historical inquiry, such as digital sources, maps, photographs/images, or texts."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "geography",
+       "title": "Geography",
+       "subtopics": [
+        {
+         "id": "utilize-the-college-and-career-skills-of-a-geogr",
+         "title": "Utilize the college and career skills of a geographer to apply map skills and draw conclusions about place in one's personal community",
+         "outcomes": [
+          {
+           "code": "K.G.1",
+           "text": "Identify a map, various map features, and explain the purpose of maps."
+          },
+          {
+           "code": "K.G.2",
+           "text": "Utilize sources of geographic information (e.g., digital sources, maps, or photographs/images) to define and identify cultural and/or natural features."
+          },
+          {
+           "code": "K.G.3",
+           "text": "Describe and compare the cultural and natural environment around one's home and school by constructing a visual representation."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "economics",
+       "title": "Economics",
+       "subtopics": [
+        {
+         "id": "utilize-the-college-and-career-skills-of-an-econ",
+         "title": "Utilize the college and career skills of an economist to understand how economic decisions affect one's personal community",
+         "outcomes": [
+          {
+           "code": "K.E.1",
+           "text": "Identify and compare wants and needs."
+          },
+          {
+           "code": "K.E.2",
+           "text": "Explain how wants and needs change over time."
+          },
+          {
+           "code": "K.E.3",
+           "text": "Explain why people have jobs, and describe the economic benefits for self and community."
+          },
+          {
+           "code": "K.E.4",
+           "text": "Identify an economic want or need at one's school or community level and create a solution."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "civics-government",
+       "title": "Civics & Government",
+       "subtopics": [
+        {
+         "id": "utilize-the-college-and-career-skills-of-a-polit",
+         "title": "Utilize the college and career skills of a political scientist to understand and display civic dispositions in one's personal community",
+         "outcomes": [
+          {
+           "code": "K.CG.1",
+           "text": "Identify similarities and differences between people and discuss ways to protect and respect all people by practicing civic dispositions."
+          },
+          {
+           "code": "K.CG.2",
+           "text": "Explain the purpose of rules and laws, and discuss consequences of breaking them."
+          },
+          {
+           "code": "K.CG.3",
+           "text": "Establish and practice classroom rules and procedures for listening and responding appropriately to others."
+          },
+          {
+           "code": "K.CG.4",
+           "text": "Collaborate with others to identify a classroom or school issue and propose a resolution using civic dispositions."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "1",
+   "units": [
+    {
+     "id": "life-in-south-carolina",
+     "title": "Life in South Carolina",
+     "topics": [
+      {
+       "id": "history",
+       "title": "History",
+       "subtopics": [
+        {
+         "id": "utilize-the-college-and-career-skills-of-a-histo",
+         "title": "Utilize the college and career skills of a historian to study continuity and change over time in South Carolina",
+         "outcomes": [
+          {
+           "code": "1.H.1",
+           "text": "Identify similarities and differences between one's community and other South Carolina communities over time."
+          },
+          {
+           "code": "1.H.2",
+           "text": "Analyze a current event in South Carolina and make predictions about possible outcomes."
+          },
+          {
+           "code": "1.H.3",
+           "text": "Evaluate different sources of evidence used in historical inquiry, such as art, artifacts, digital sources, graphs, maps, oral histories, photographs/images, and texts."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "geography",
+       "title": "Geography",
+       "subtopics": [
+        {
+         "id": "utilize-the-college-and-career-skills-of-a-geogr",
+         "title": "Utilize the college and career skills of a geographer to apply map skills and draw conclusions about places in South Carolina and South Carolina's place in the surrounding region",
+         "outcomes": [
+          {
+           "code": "1.G.1",
+           "text": "Identify various types of maps, map features, and the purpose of maps."
+          },
+          {
+           "code": "1.G.2",
+           "text": "Identify and describe the geographic location of South Carolina in relation to the rest of the United States through the use of various maps and geographic tools."
+          },
+          {
+           "code": "1.G.3",
+           "text": "Identify and differentiate between rural, suburban, and urban areas within South Carolina."
+          },
+          {
+           "code": "1.G.4",
+           "text": "Describe and compare various landforms within South Carolina through the use of primary and secondary sources."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "economics",
+       "title": "Economics",
+       "subtopics": [
+        {
+         "id": "utilize-the-college-and-career-skills-of-an-econ",
+         "title": "Utilize the college and career skills of an economist to understand how economic decisions affect South Carolinians",
+         "outcomes": [
+          {
+           "code": "1.E.1",
+           "text": "Compare goods and services in the school, community, and state."
+          },
+          {
+           "code": "1.E.2",
+           "text": "Explain how goods and services change over time."
+          },
+          {
+           "code": "1.E.3",
+           "text": "Research and describe how goods and services differ in rural, suburban, and urban areas in South Carolina."
+          },
+          {
+           "code": "1.E.4",
+           "text": "Identify an economic want or need at the local or state level and create a solution in the form of a good or a service."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "civics-government",
+       "title": "Civics & Government",
+       "subtopics": [
+        {
+         "id": "utilize-the-college-and-career-skills-of-a-polit",
+         "title": "Utilize the college and career skills of a political scientist to understand and display civic dispositions about contemporary South Carolina",
+         "outcomes": [
+          {
+           "code": "1.CG.1",
+           "text": "Demonstrate how civic dispositions encourage citizens with diverse beliefs and backgrounds to work together for a common goal."
+          },
+          {
+           "code": "1.CG.2",
+           "text": "Describe the basic purpose, structure, and functions of South Carolina's government at both the local and state level."
+          },
+          {
+           "code": "1.CG.3",
+           "text": "Demonstrate ways to display active and responsible citizenship in local and state government."
+          },
+          {
+           "code": "1.CG.4",
+           "text": "Collaborate with others to identify, resolve, and communicate resolutions on a local or state issue."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "2",
+   "units": [
+    {
+     "id": "life-in-the-united-states",
+     "title": "Life in the United States",
+     "topics": [
+      {
+       "id": "history",
+       "title": "History",
+       "subtopics": [
+        {
+         "id": "utilize-the-college-and-career-skills-of-a-histo",
+         "title": "Utilize the college and career skills of a historian to study the continuity and changes over time in the United States",
+         "outcomes": [
+          {
+           "code": "2.H.1",
+           "text": "Identify and compare significant historical events, moments, and symbols in U.S. history."
+          },
+          {
+           "code": "2.H.2",
+           "text": "Examine current or past events from U.S. history, and discuss the possible causes and effects."
+          },
+          {
+           "code": "2.H.3",
+           "text": "Analyze patterns of continuities and changes within U.S. history through the use of a variety of sources, including graphic organizers, maps, oral histories, photographs/images, texts, and timelines."
+          },
+          {
+           "code": "2.H.4",
+           "text": "Evaluate different forms of evidence used in historical inquiry and determine their validity."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "geography",
+       "title": "Geography",
+       "subtopics": [
+        {
+         "id": "utilize-the-college-and-career-skills-of-a-geogr",
+         "title": "Utilize the college and career skills of a geographer to apply map skills and draw conclusions about the United States",
+         "outcomes": [
+          {
+           "code": "2.G.1",
+           "text": "Identify the geographic location of the U. S. in relation to the rest of the world."
+          },
+          {
+           "code": "2.G.2",
+           "text": "Describe and compare various landforms over time within the U.S. through the use of primary and secondary sources."
+          },
+          {
+           "code": "2.G.3",
+           "text": "Explain how the distribution of human features, physical features, and natural resources within the U. S changes over time and impacts economic activity."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "economics",
+       "title": "Economics",
+       "subtopics": [
+        {
+         "id": "utilize-the-college-and-career-skills-of-an-econ",
+         "title": "Utilize the college and career skills of an economist to understand how economic decisions affect citizenship within the United States",
+         "outcomes": [
+          {
+           "code": "2.E.1",
+           "text": "Examine the purpose of currency and how income, savings, and spending are parts of a budget."
+          },
+          {
+           "code": "2.E.2",
+           "text": "Explain how budgets change as wants and needs or the availability of goods and services change."
+          },
+          {
+           "code": "2.E.3",
+           "text": "Create a simple budget, and articulate the priorities using economic terms such as expenses, income, and savings."
+          },
+          {
+           "code": "2.E.4",
+           "text": "Interpret data to show how geographic location and available resources impact economic decision-making."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "civics-government",
+       "title": "Civics & Government",
+       "subtopics": [
+        {
+         "id": "responsible-citizenship-requires-individuals-of-",
+         "title": "Responsible citizenship requires individuals of diverse cultural backgrounds to employ dispositions that promote strong relationships to develop solutions to communal problems",
+         "outcomes": [
+          {
+           "code": "2.CG.1",
+           "text": "Identify cultural and ethnic groups in the U. S., explore their characteristics, and communicate how civic dispositions build relationships between groups in a diverse society."
+          },
+          {
+           "code": "2.CG.2",
+           "text": "Use primary and secondary sources to research a national figure who demonstrated civic dispositions."
+          },
+          {
+           "code": "2.CG.3",
+           "text": "Analyze how rights are granted to U. S. citizens through the founding documents."
+          },
+          {
+           "code": "2.CG.4",
+           "text": "Use evidence to propose and communicate a resolution to a national issue."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "3",
+   "units": [
+    {
+     "id": "world-geography",
+     "title": "World Geography",
+     "topics": [
+      {
+       "id": "map-skills-and-earth-s-features",
+       "title": "Map Skills and Earth's Features",
+       "subtopics": [
+        {
+         "id": "use-maps-and-globes-to-categorize-places-and-reg",
+         "title": "Use maps and globes to categorize places and regions by their human and physical conditions",
+         "outcomes": [
+          {
+           "code": "3.1.1.AG",
+           "text": "Utilize an alphanumeric grid to locate the continents and oceans."
+          },
+          {
+           "code": "3.1.2.AG",
+           "text": "Locate the world's four hemispheres (i.e., northern, southern, eastern, and western) by using the major components of latitude and longitude (i.e., the Equator, the Prime Meridian, lines of latitude (i.e., parallels), lines of longitude (i.e., meridians), and the International Date Line)."
+          },
+          {
+           "code": "3.1.3.PR",
+           "text": "Identify the spatial hierarchy of political and physical geographic features."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "environment-and-people",
+       "title": "Environment and People",
+       "subtopics": [
+        {
+         "id": "demonstrate-an-understanding-of-earth-s-physical",
+         "title": "Demonstrate an understanding of Earth's physical features and ecosystems that affect human activities",
+         "outcomes": [
+          {
+           "code": "3.2.1.ER",
+           "text": "Recognize and explain how physical features are distributed around the world."
+          },
+          {
+           "code": "3.2.2.ER",
+           "text": "Identify and analyze the ways people interact with the physical environment in different regions of the state, the country, and the world."
+          },
+          {
+           "code": "3.2.3.ER",
+           "text": "Identify spatial variations in climates around the world and recognize the relationship between climate and human activities."
+          }
+         ]
+        },
+        {
+         "id": "demonstrate-an-understanding-of-the-relationship",
+         "title": "Demonstrate an understanding of the relationship between Earth's environmental hazards and human activities",
+         "outcomes": [
+          {
+           "code": "3.3.1.ER",
+           "text": "Identify the range of natural hazards facing people and explain how some populations are more vulnerable than others."
+          },
+          {
+           "code": "3.3.2.ER",
+           "text": "Use maps and other sources of geographic information to gather evidence and draw conclusions about patterns of natural disasters around the world."
+          },
+          {
+           "code": "3.3.3.AG",
+           "text": "Develop a natural disaster safety plan for a community."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "culture-and-economy",
+       "title": "Culture and Economy",
+       "subtopics": [
+        {
+         "id": "demonstrate-an-understanding-of-varied-human-cul",
+         "title": "Demonstrate an understanding of varied human cultural and economic characteristics across Earth's surface",
+         "outcomes": [
+          {
+           "code": "3.4.1.PR",
+           "text": "Investigate the cultural characteristics of places and regions around the world."
+          },
+          {
+           "code": "3.4.2.HS",
+           "text": "Investigate the economic and land use characteristics of places and regions around the world."
+          },
+          {
+           "code": "3.4.3.AG",
+           "text": "Research and create a geographic representation of a contemporary or historic group of people to communicate findings about their cultural characteristics and livelihoods."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "exploration-and-migration",
+       "title": "Exploration and Migration",
+       "subtopics": [
+        {
+         "id": "demonstrate-an-understanding-of-how-and-why-huma",
+         "title": "Demonstrate an understanding of how and why humans have explored and migrated across Earth",
+         "outcomes": [
+          {
+           "code": "3.5.1.HS",
+           "text": "Investigate and explain the economic, social, and political motivations behind human exploration of Earth."
+          },
+          {
+           "code": "3.5.2.AG",
+           "text": "Use maps and other geographic representations to identify exploration patterns throughout Earth history."
+          },
+          {
+           "code": "3.5.3.HS",
+           "text": "Investigate and explain the economic, social, political, and environmental motivations behind human migration and how places can change as a result."
+          },
+          {
+           "code": "3.5.4.AG",
+           "text": "Use maps and other geographic representations to identify how migration patterns affect people and places."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "4",
+   "units": [
+    {
+     "id": "united-states-south-carolina-studies-part-i",
+     "title": "United States & South Carolina Studies Part I",
+     "topics": [
+      {
+       "id": "colonization",
+       "title": "Colonization",
+       "subtopics": [
+        {
+         "id": "demonstrate-an-understanding-of-the-settlement-a",
+         "title": "Demonstrate an understanding of the settlement and colonization of North America, including South Carolina, between 1600–1730",
+         "outcomes": [
+          {
+           "code": "4.1.CO",
+           "text": "Compare the interactions among cultural groups as a result of European colonization."
+          },
+          {
+           "code": "4.1.CE",
+           "text": "Identify the effects of changing economic systems on the diverse populations in British North America."
+          },
+          {
+           "code": "4.1.P",
+           "text": "Explain the development of political institutions and social characteristics that defined the British colonial regions."
+          },
+          {
+           "code": "4.1.CX",
+           "text": "Contextualize the experience of Africans, Europeans, and Native Americans in South Carolina."
+          },
+          {
+           "code": "4.1.CC",
+           "text": "Identify patterns of change and continuity in the development of economic systems in British North America."
+          },
+          {
+           "code": "4.1.E",
+           "text": "Analyze multiple perspectives on the economic, political, and social developments of British North America and South Carolina."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "a-new-nation",
+       "title": "A New Nation",
+       "subtopics": [
+        {
+         "id": "demonstrate-an-understanding-of-the-identity-of-",
+         "title": "Demonstrate an understanding of the identity of a new nation, including the state of South Carolina between 1730-1800",
+         "outcomes": [
+          {
+           "code": "4.2.CO",
+           "text": "Compare the roles of marginalized groups during the American Revolution."
+          },
+          {
+           "code": "4.2.CE",
+           "text": "Examine the economic and political motivations for colonists to declare independence from Great Britain."
+          },
+          {
+           "code": "4.2.P",
+           "text": "Analyze the sequence of events that led to the establishment of the U. S. as a democratic republic."
+          },
+          {
+           "code": "4.2.CX",
+           "text": "Contextualize South Carolina's role in the development of the new nation."
+          },
+          {
+           "code": "4.2.CC",
+           "text": "Explain the continuities and changes in natural rights as seen from the French and Indian War to the creation of the Bill of Rights."
+          },
+          {
+           "code": "4.2.E",
+           "text": "Analyze multiple perspectives on the economic, political, and social developments of the new nation."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "expansion-and-sectionalism",
+       "title": "Expansion and Sectionalism",
+       "subtopics": [
+        {
+         "id": "demonstrate-an-understanding-of-the-expansion-an",
+         "title": "Demonstrate an understanding of the expansion and growth of South Carolina and the United States between 1800–1850",
+         "outcomes": [
+          {
+           "code": "4.3.CO",
+           "text": "Compare the motivations for and reactions to various expeditions into the Western territories."
+          },
+          {
+           "code": "4.3.CE",
+           "text": "Analyze the effects of government policies in promoting United States territorial expansion into the west."
+          },
+          {
+           "code": "4.3.P",
+           "text": "Analyze the role of technology and the environmental impact during the period of Westward Expansion."
+          },
+          {
+           "code": "4.3.CX",
+           "text": "Contextualize South Carolina's role in the development of sectionalism during the antebellum period."
+          },
+          {
+           "code": "4.3.CC",
+           "text": "Recognize patterns of continuity and change in the experiences of Native Americans and Spanish-speaking people as the U. S. expanded westward."
+          },
+          {
+           "code": "4.3.E",
+           "text": "Analyze multiple perspectives of early westward expansion, including the addition of slave and free territories and states."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "a-divided-nation",
+       "title": "A Divided Nation",
+       "subtopics": [
+        {
+         "id": "demonstrate-an-understanding-of-economic-politic",
+         "title": "Demonstrate an understanding of economic, political, and social divisions during the United States Civil War, including the role of South Carolina between 1850–1870",
+         "outcomes": [
+          {
+           "code": "4.4.CO",
+           "text": "Compare the economic and political causes of the Civil War."
+          },
+          {
+           "code": "4.4.CE",
+           "text": "Explain the effects of military strategies utilized by the Union and the Confederacy."
+          },
+          {
+           "code": "4.4.P",
+           "text": "Explain how emancipation was achieved as a result of civic participation."
+          },
+          {
+           "code": "4.4.CX",
+           "text": "Contextualize South Carolina's experience during the Civil War."
+          },
+          {
+           "code": "4.4.CC",
+           "text": "Identify and evaluate the economic, political, and social changes experienced throughout the Civil War."
+          },
+          {
+           "code": "4.4.E",
+           "text": "Analyze the economic, political, and social divisions during the Civil War."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "rebuilding",
+       "title": "Rebuilding",
+       "subtopics": [
+        {
+         "id": "demonstrate-an-understanding-of-the-contribution",
+         "title": "Demonstrate an understanding of the contributions different groups made to impact the economic, political, and social developments during Reconstruction of the United States and South Carolina in the period of 1860–1880",
+         "outcomes": [
+          {
+           "code": "4.5.CO",
+           "text": "Compare the roles of various groups on Reconstruction."
+          },
+          {
+           "code": "4.5.CE",
+           "text": "Analyze the impact of federal legislation on the South during Reconstruction."
+          },
+          {
+           "code": "4.5.P",
+           "text": "Summarize Reconstruction as a turning point in American history."
+          },
+          {
+           "code": "4.5.CX",
+           "text": "Contextualize the economic, labor, political, and social conditions in South Carolina during the period of Reconstruction."
+          },
+          {
+           "code": "4.5.CC",
+           "text": "Identify and evaluate the impact of economic, political, and social events on the African American experience throughout Reconstruction."
+          },
+          {
+           "code": "4.5.E",
+           "text": "Analyze multiple perspectives of the economic, political, and social effects of Reconstruction on different populations in the South and in other regions of the U. S."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "5",
+   "units": [
+    {
+     "id": "united-states-south-carolina-studies-part-ii",
+     "title": "United States & South Carolina Studies Part II",
+     "topics": [
+      {
+       "id": "expansion-and-migration",
+       "title": "Expansion and Migration",
+       "subtopics": [
+        {
+         "id": "demonstrate-an-understanding-of-the-economic-pol",
+         "title": "Demonstrate an understanding of the economic, political, and social effects of expansion and industrialization on the United States and South Carolina between 1860–1910",
+         "outcomes": [
+          {
+           "code": "5.1.CO",
+           "text": "Compare the physical landscape and demographics of the U.S. before and after the Transcontinental Railroad."
+          },
+          {
+           "code": "5.1.CE",
+           "text": "Examine push- and pull-factors related to immigration and expansion on urban and rural populations during the period."
+          },
+          {
+           "code": "5.1.P",
+           "text": "Summarize how the United States' involvement in the Spanish American War led to increased U.S. economic expansion and imperialism."
+          },
+          {
+           "code": "5.1.CX",
+           "text": "Contextualize how the Second Industrial Revolution led to an increased desire for raw materials and the United States involvement in imperialistic efforts and economic expansion."
+          },
+          {
+           "code": "5.1.CC",
+           "text": "Summarize how imperialism and economic expansion impacted the experiences of different groups and shaped American cultural identities."
+          },
+          {
+           "code": "5.1.E",
+           "text": "Analyze multiple perspectives on the economic, political, and social effects of western expansion, the Industrial Revolution, and immigration through primary and secondary sources, and evaluate the subsequent changes to the U. S."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "federal-expansion",
+       "title": "Federal Expansion",
+       "subtopics": [
+        {
+         "id": "demonstrate-an-understanding-of-how-internationa",
+         "title": "Demonstrate an understanding of how international events and conditions during the early 20th Century (i.e., 1910–1940) affected the United States and South Carolina",
+         "outcomes": [
+          {
+           "code": "5.2.CO",
+           "text": "Compare the cultural and economic impacts of the 1929 Stock Market Crash on the U. S. and South Carolina."
+          },
+          {
+           "code": "5.2.CE",
+           "text": "Examine the primary causes of World War I and the events which led to U.S. involvement."
+          },
+          {
+           "code": "5.2.P",
+           "text": "Summarize how the role of the federal government expanded during the period."
+          },
+          {
+           "code": "5.2.CX",
+           "text": "Contextualize the post-war economic climate on the cultural landscape throughout the United States and South Carolina."
+          },
+          {
+           "code": "5.2.CC",
+           "text": "Examine the continuities and changes that resulted from New Deal programs and the impact these programs had on various groups throughout the U. S. and South Carolina."
+          },
+          {
+           "code": "5.2.E",
+           "text": "Evaluate multiple perspectives from the period, including the economic, political, and social impacts of World War I, the 1920s, the Great Depression, and the New Deal using primary and secondary sources."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "america-as-a-world-leader",
+       "title": "America as a World Leader",
+       "subtopics": [
+        {
+         "id": "demonstrate-an-understanding-of-the-economic-pol",
+         "title": "Demonstrate an understanding of the economic, political, and social effects of World War II, the Holocaust, and their aftermath (i.e., 1930–1950) on the United States and South Carolina",
+         "outcomes": [
+          {
+           "code": "5.3.CO",
+           "text": "Compare the ideologies and policies that led to World War II."
+          },
+          {
+           "code": "5.3.CE",
+           "text": "Analyze the cause and effect of government-sponsored policies within the United States and Europe related to the status of different groups, to include the Holocaust."
+          },
+          {
+           "code": "5.3.P",
+           "text": "Summarize the U.S. government's transition away from neutrality policies following World War I that led to its eventual involvement in World War II."
+          },
+          {
+           "code": "5.3.CX",
+           "text": "Contextualize the technological and geographic influence on military strategies in the Pacific and European theaters of war of World War II."
+          },
+          {
+           "code": "5.3.CC",
+           "text": "Analyze the changes and continuities regarding the United States' international leadership during the period, including the rebuilding of Europe and the resettlement of displaced persons resulting from the Holocaust."
+          },
+          {
+           "code": "5.3.E",
+           "text": "Analyze multiple perspectives on the economic, political, and social effects of World War II and its aftermath using primary and secondary sources."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "social-changes",
+       "title": "Social Changes",
+       "subtopics": [
+        {
+         "id": "demonstrate-an-understanding-of-the-conflicts-in",
+         "title": "Demonstrate an understanding of the conflicts, innovations, and social changes in the United States, including South Carolina, from 1950–1980",
+         "outcomes": [
+          {
+           "code": "5.4.CO",
+           "text": "Compare and contrast the capitalist and communist ideologies."
+          },
+          {
+           "code": "5.4.CE",
+           "text": "Analyze the causes and impacts of social movements in the U. S. and South Carolina."
+          },
+          {
+           "code": "5.4.P",
+           "text": "Summarize the economic, political, and social changes in the U. S. after World War II."
+          },
+          {
+           "code": "5.4.CX",
+           "text": "Contextualize the tension between the United States and the Soviet Union during the Cold War."
+          },
+          {
+           "code": "5.4.CC",
+           "text": "Analyze the continuities and changes of race relations in the United States and South Carolina following the Supreme Court decisions of Briggs v. Elliott and Brown v. Board of Education."
+          },
+          {
+           "code": "5.4.E",
+           "text": "Analyze multiple perspectives on the economic, political, and social effects of the Cold War, Space Race, and Civil Rights Movement using primary and secondary sources."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "modern-america",
+       "title": "Modern America",
+       "subtopics": [
+        {
+         "id": "demonstrate-an-understanding-of-the-contemporary",
+         "title": "Demonstrate an understanding of the contemporary global economic, social, and political roles of the United States and South Carolina from 1980–present",
+         "outcomes": [
+          {
+           "code": "5.5.CO",
+           "text": "Compare and contrast the focus of the U.S. as a world leader before and after the September 11, 2001, attacks."
+          },
+          {
+           "code": "5.5.CE",
+           "text": "Analyze the impact of digital technologies on the U.S., and describe the impact those technologies had on its global influence."
+          },
+          {
+           "code": "5.5.P",
+           "text": "Summarize the global involvement of the U.S. using the fall of the Soviet Union as a turning point."
+          },
+          {
+           "code": "5.5.CX",
+           "text": "Contextualize the changes in rural communities in South Carolina within national and global industries."
+          },
+          {
+           "code": "5.5.CC",
+           "text": "Analyze the continuities and changes in U.S. relationships with countries around the world as a result of the economic, political, and social changes in this period."
+          },
+          {
+           "code": "5.5.E",
+           "text": "Analyze multiple perspectives on the economic, political, and social effects of global interdependence after 1980 using primary and secondary sources."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "6",
+   "units": [
+    {
+     "id": "world-civilizations",
+     "title": "World Civilizations",
+     "topics": [
+      {
+       "id": "civilizations",
+       "title": "Civilizations",
+       "subtopics": [
+        {
+         "id": "demonstrate-an-understanding-of-the-organization",
+         "title": "Demonstrate an understanding of the organization and transformation(s) of world civilizations to 550",
+         "outcomes": [
+          {
+           "code": "6.1.CO",
+           "text": "Compare the development of social systems among the early river valley civilizations."
+          },
+          {
+           "code": "6.1.CE",
+           "text": "Summarize how environmental factors influenced the interactions within and between early civilizations."
+          },
+          {
+           "code": "6.1.P",
+           "text": "Analyze the shift from early to classical civilizations and the enduring contributions of classical civilizations."
+          },
+          {
+           "code": "6.1.CX",
+           "text": "Contextualize the origins and spread of major world religions and their enduring influence."
+          },
+          {
+           "code": "6.1.CC",
+           "text": "Analyze changes and continuities that influenced the organization and technological advancements of early and classical world civilizations."
+          },
+          {
+           "code": "6.1.E",
+           "text": "Analyze multiple perspectives on the political, intellectual, and social achievements of classical societies through a variety of primary and secondary sources."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "increased-global-interactions",
+       "title": "Increased Global Interactions",
+       "subtopics": [
+        {
+         "id": "demonstrate-an-understanding-of-the-increased-gl",
+         "title": "Demonstrate an understanding of the increased global interactions among humans from the end of the classical era to the invention of the printing press (i.e., 550–1450)",
+         "outcomes": [
+          {
+           "code": "6.2.CO",
+           "text": "Compare the political systems within world civilizations."
+          },
+          {
+           "code": "6.2.CE",
+           "text": "Explain the impact of global exchanges among world civilizations."
+          },
+          {
+           "code": "6.2.P",
+           "text": "Summarize the increased global exchanges among world societies using the Crusades as a major turning point."
+          },
+          {
+           "code": "6.2.CX",
+           "text": "Contextualize the historical effects of the expansion of the Turks and Mongols on Europe and Asia."
+          },
+          {
+           "code": "6.2.CC",
+           "text": "Evaluate continuities and changes in cultural and economic interactions between societies in both West Africa and the Americas."
+          },
+          {
+           "code": "6.2.E",
+           "text": "Analyze multiple perspectives on the increased interactions among and between world societies through a variety of primary and secondary sources."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "development-of-the-atlantic-world",
+       "title": "Development of the Atlantic World",
+       "subtopics": [
+        {
+         "id": "demonstrate-an-understanding-of-the-development-",
+         "title": "Demonstrate an understanding of the development of the Atlantic World from the invention of the printing press to the Industrial Revolution (i.e., 1450–1760)",
+         "outcomes": [
+          {
+           "code": "6.3.CO",
+           "text": "Compare European motivations for exploration and settlement."
+          },
+          {
+           "code": "6.3.CE",
+           "text": "Explain the impact of increased global exchanges on the development of the Atlantic World."
+          },
+          {
+           "code": "6.3.P",
+           "text": "Summarize the impact of the Transatlantic Slave Trade on ideological, political, and social systems in the Atlantic World."
+          },
+          {
+           "code": "6.3.CX",
+           "text": "Contextualize the experience of indigenous peoples due to expansion and the conflict that arose from it."
+          },
+          {
+           "code": "6.3.CC",
+           "text": "Analyze the intellectual, political, and social changes in relation to the idea of individual rights from Humanism to the Enlightenment."
+          },
+          {
+           "code": "6.3.E",
+           "text": "Analyze the short and long term impact of the Atlantic World's growth using primary and secondary sources across multiple perspectives."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "global-exchanges-and-revolutions",
+       "title": "Global Exchanges and Revolutions",
+       "subtopics": [
+        {
+         "id": "demonstrate-an-understanding-of-how-increased-gl",
+         "title": "Demonstrate an understanding of how increased global exchanges promoted revolution from 1760 to the beginning of the 20th Century",
+         "outcomes": [
+          {
+           "code": "6.4.CO",
+           "text": "Compare the political revolutions which resulted from the Enlightenment."
+          },
+          {
+           "code": "6.4.CE",
+           "text": "Analyze the economic, political, and social impacts of colonialism and the rise of imperialism."
+          },
+          {
+           "code": "6.4.P",
+           "text": "Summarize the local and global impacts of the Industrial Revolution."
+          },
+          {
+           "code": "6.4.CX",
+           "text": "Contextualize the environmental impact of the Industrial Revolution."
+          },
+          {
+           "code": "6.4.CC",
+           "text": "Analyze the progression of nationalism in the 19th through the early 20th century."
+          },
+          {
+           "code": "6.4.E",
+           "text": "Analyze multiple perspectives on increased global interactions and revolutions through a variety of primary and secondary sources."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "global-interdependence",
+       "title": "Global Interdependence",
+       "subtopics": [
+        {
+         "id": "demonstrate-an-understanding-of-the-development-",
+         "title": "Demonstrate an understanding of the development of global interdependence from 1920 to the present",
+         "outcomes": [
+          {
+           "code": "6.5.CO",
+           "text": "Compare the global movements that resulted in the advancement or limitation of human rights during the 20th and 21st centuries."
+          },
+          {
+           "code": "6.5.CE",
+           "text": "Explain the impact of nationalism on global conflicts and genocides in the 20th and 21st centuries."
+          },
+          {
+           "code": "6.5.P",
+           "text": "Analyze the impact of increased global interdependence using the Great Depression and Cold War as major turning points in the 20th century."
+          },
+          {
+           "code": "6.5.CX",
+           "text": "Contextualize various sustainability efforts amid increasing global interdependence."
+          },
+          {
+           "code": "6.5.CC",
+           "text": "Analyze the progression of technological developments and the resulting cultural diffusion throughout the 20th and 21st centuries."
+          },
+          {
+           "code": "6.5.E",
+           "text": "Analyze multiple perspectives on global interdependence during the 20th and 21st centuries through a variety of primary and secondary sources."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "7",
+   "units": [
+    {
+     "id": "geography-of-world-regions",
+     "title": "Geography of World Regions",
+     "topics": [
+      {
+       "id": "africa",
+       "title": "Africa",
+       "subtopics": [
+        {
+         "id": "analyze-the-cultural-economic-environmental-phys",
+         "title": "Analyze the cultural, economic, environmental, physical, political, and population geographies of contemporary Africa",
+         "outcomes": [
+          {
+           "code": "7.1.1.PR",
+           "text": "Identify select African physical systems and human characteristics of places."
+          },
+          {
+           "code": "7.1.2.ER",
+           "text": "Identify climate and vegetation regions of Africa and the spatial distributions and patterns of natural resources, including the impact of their location on human activities."
+          },
+          {
+           "code": "7.1.3.HS",
+           "text": "Explain Africa's current human population distributions and patterns, and use geographic models to compare the conditions driving migration and demographic change."
+          },
+          {
+           "code": "7.1.4.HS",
+           "text": "Compare and contrast the dynamic physical and human conditions that lead to the creation of ethnic, gender, language, and religious landscapes of African societies."
+          },
+          {
+           "code": "7.1.5.HS",
+           "text": "Identify and analyze the current political borders using maps, and explain the connections between African places and other continents based upon factors such as colonialism, imperialism, independence movements, and regional alliances."
+          },
+          {
+           "code": "7.1.6.AG",
+           "text": "Gather evidence and construct a map or model to investigate a significant contemporary cultural, economic, or political issue facing Africa at the local, regional, or global scale."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "asia",
+       "title": "Asia",
+       "subtopics": [
+        {
+         "id": "analyze-the-cultural-economic-environmental-phys",
+         "title": "Analyze the cultural, economic, environmental, physical, political, and population geographies of contemporary Asia",
+         "outcomes": [
+          {
+           "code": "7.2.1.PR",
+           "text": "Identify select Asian physical systems and human characteristics of places."
+          },
+          {
+           "code": "7.2.2.ER",
+           "text": "Identify climate and vegetation regions of Asia and the spatial distributions and patterns of natural resources, including the impact of their location on human activities."
+          },
+          {
+           "code": "7.2.3.HS",
+           "text": "Explain Asia's current human population distributions and patterns, and use geographic models to compare the conditions driving migration and demographic change."
+          },
+          {
+           "code": "7.2.4.HS",
+           "text": "Compare and contrast the physical and human conditions that lead to the creation of dynamic ethnic, gender, language, and religious landscapes of Asian societies."
+          },
+          {
+           "code": "7.2.5.HS",
+           "text": "Identify and analyze the current political borders using maps, and explain the economic, political, and social connections between Asian places and other continents."
+          },
+          {
+           "code": "7.2.6.AG",
+           "text": "Gather evidence and construct a map or model to investigate a significant contemporary cultural, economic, or political issue facing Asia at the local, regional, or global scale."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "australia-oceania-antarctica",
+       "title": "Australia, Oceania, Antarctica",
+       "subtopics": [
+        {
+         "id": "analyze-the-cultural-economic-environmental-phys",
+         "title": "Analyze the cultural, economic, environmental, physical, political, and population geographies of contemporary Australia, Oceania, and Antarctica",
+         "outcomes": [
+          {
+           "code": "7.3.1.PR",
+           "text": "Identify select Australia, Oceania, and Antarctica physical systems and human characteristics of places."
+          },
+          {
+           "code": "7.3.2.ER",
+           "text": "Identify climate and vegetation regions and the spatial distributions and patterns of natural resources, including the impact of their location on human activities."
+          },
+          {
+           "code": "7.3.3.HS",
+           "text": "Explain the current human population distributions and patterns of Australia, Oceania, and Antarctica, and use geographic models to compare the conditions driving migration and demographic change."
+          },
+          {
+           "code": "7.3.4.HS",
+           "text": "Compare and contrast the dynamic physical and human conditions that lead to the creation of ethnic, gender, language, and religious landscapes of Australia, Oceania, and Antarctica."
+          },
+          {
+           "code": "7.3.5.HS",
+           "text": "Identify and analyze the current political boarders using maps, and explain resource relationships between Australia, Oceania, and Antarctica and other continents."
+          },
+          {
+           "code": "7.3.6.AG",
+           "text": "Gather evidence and construct a map or model to investigate a significant contemporary cultural, economic, or political issue facing Australia, Oceania, or Antarctica at the local, regional, or global scale."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "europe",
+       "title": "Europe",
+       "subtopics": [
+        {
+         "id": "analyze-the-cultural-economic-environmental-phys",
+         "title": "Analyze the cultural, economic, environmental, physical, political, and population geographies of contemporary Europe",
+         "outcomes": [
+          {
+           "code": "7.4.1.PR",
+           "text": "Identify select European physical systems and human characteristics of places."
+          },
+          {
+           "code": "7.4.2.ER",
+           "text": "Identify climate and vegetation regions and the spatial distributions and patterns of natural resources, including the impact of their location on human activities."
+          },
+          {
+           "code": "7.4.3.HS",
+           "text": "Explain Europe's current human population distributions and patterns, and use geographic models to compare the conditions driving migration and demographic change."
+          },
+          {
+           "code": "7.4.4.HS",
+           "text": "Compare and contrast the dynamic physical and human conditions that lead to the creation of ethnic, gender, language, and religious landscapes of European societies."
+          },
+          {
+           "code": "7.4.5.HS",
+           "text": "Identify and analyze the current political borders using maps, and explain the connections between European countries based upon centripetal and centrifugal forces, as well as connections between European places and other continents."
+          },
+          {
+           "code": "7.4.6.AG",
+           "text": "Gather evidence and construct a map or model to investigate a significant contemporary cultural, economic, or political issue facing Europe at the local, regional, or global scale."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "north-america",
+       "title": "North America",
+       "subtopics": [
+        {
+         "id": "analyze-the-cultural-economic-environmental-phys",
+         "title": "Analyze the cultural, economic, environmental, physical, political, and population geographies of contemporary North America",
+         "outcomes": [
+          {
+           "code": "7.5.1.PR",
+           "text": "Identify select North American physical systems and human characteristics of places."
+          },
+          {
+           "code": "7.5.2.ER",
+           "text": "Identify climate and vegetation regions and the spatial distributions and patterns of natural resources, including the impact of their location on human activities."
+          },
+          {
+           "code": "7.5.3.HS",
+           "text": "Explain North America's current human population distributions and patterns, and use geographic models to compare the conditions driving migration and demographic change."
+          },
+          {
+           "code": "7.5.4.HS",
+           "text": "Compare and contrast the dynamic physical and human conditions that lead to the creation of ethnic, gender, language, and religious landscapes of North American societies."
+          },
+          {
+           "code": "7.5.5.HS",
+           "text": "Identify and analyze the current political borders using maps, explain the economic, political, and social inequalities present in North American societies, and explain the connections between North American places and other continents."
+          },
+          {
+           "code": "7.5.6.AG",
+           "text": "Gather evidence and construct a map or model to investigate a significant contemporary cultural, economic, or political issue facing North America at the local, regional, or global scale."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "south-america",
+       "title": "South America",
+       "subtopics": [
+        {
+         "id": "analyze-the-cultural-economic-environmental-phys",
+         "title": "Analyze the cultural, economic, environmental, physical, political, and population geographies of contemporary South America",
+         "outcomes": [
+          {
+           "code": "7.6.1.PR",
+           "text": "Identify select South American physical systems (e.g., landforms and bodies of water), and human characteristics of places (e.g., countries and cities)."
+          },
+          {
+           "code": "7.6.2.ER",
+           "text": "Identify climate and vegetation regions and the spatial distributions and patterns of natural resources, including the impact of their location on human activities."
+          },
+          {
+           "code": "7.6.3.HS",
+           "text": "Explain South America's current human population distributions and patterns, and use geographic models to compare the conditions driving migration and demographic change."
+          },
+          {
+           "code": "7.6.4.HS",
+           "text": "Compare and contrast the dynamic physical and human conditions that lead to the creation of ethnic, gender, language, and religious landscapes of South American societies."
+          },
+          {
+           "code": "7.6.5.HS",
+           "text": "Identify and analyze the current political borders using maps, explain the economic, political, and social inequalities present in South American societies, and explain the connections between South American places and other continents."
+          },
+          {
+           "code": "7.6.6.AG",
+           "text": "Gather evidence and construct a map or model to investigate a significant contemporary cultural, economic, or political issue facing South America at the local, regional, or global scale."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "8",
+   "units": [
+    {
+     "id": "south-carolina-and-the-united-states",
+     "title": "South Carolina and the United States",
+     "topics": [
+      {
+       "id": "settlement-and-development",
+       "title": "Settlement and Development",
+       "subtopics": [
+        {
+         "id": "demonstrate-an-understanding-of-the-development-",
+         "title": "Demonstrate an understanding of the development of South Carolina during the settlement and colonization of North America in the period of 1500–1756",
+         "outcomes": [
+          {
+           "code": "8.1.CO",
+           "text": "Compare the three British North American colonial regions economically, politically, socially, and in regard to labor development."
+          },
+          {
+           "code": "8.1.CE",
+           "text": "Analyze the factors that contributed to the development of South Carolina's economic system and the subsequent impacts on different populations within the colony."
+          },
+          {
+           "code": "8.1.P",
+           "text": "Summarize major events in the development of South Carolina which impacted the economic, political, and social structure of the colony."
+          },
+          {
+           "code": "8.1.CX",
+           "text": "Contextualize the development of South Carolina's political institutions during the colonization of British North America."
+          },
+          {
+           "code": "8.1.CC",
+           "text": "Analyze the changes and continuities of the Native Americans' experiences prior to and as a result of settlement and colonization."
+          },
+          {
+           "code": "8.1.E",
+           "text": "Utilize a variety of primary and secondary sources to examine multiple perspectives and influences of the economic, political, and social effects of South Carolina's settlement and colonization on the development of various forms of government across the colonies."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "revolution-and-identity",
+       "title": "Revolution and Identity",
+       "subtopics": [
+        {
+         "id": "demonstrate-an-understanding-of-how-south-caroli",
+         "title": "Demonstrate an understanding of how South Carolinians and Americans created a revolutionary form of government during the period of 1757–1815",
+         "outcomes": [
+          {
+           "code": "8.2.CO",
+           "text": "Compare the motives and demographics of loyalists and patriots within South Carolina and the colonies."
+          },
+          {
+           "code": "8.2.CE",
+           "text": "Explain the economic, political, and social factors surrounding the American Revolution."
+          },
+          {
+           "code": "8.2.P",
+           "text": "Analyze significant founding principles that led to the development of federalism in South Carolina and the United States."
+          },
+          {
+           "code": "8.2.CX",
+           "text": "Contextualize the roles of various groups of South Carolinians as the colonies moved toward becoming an independent nation."
+          },
+          {
+           "code": "8.2.CC",
+           "text": "Analyze the continuities and changes of how different groups immigrated to and migrated within South Carolina."
+          },
+          {
+           "code": "8.2.E",
+           "text": "Utilize a variety of primary and secondary sources to analyze multiple perspectives on the development of democracy in South Carolina and the United States."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "compromises-and-conflict",
+       "title": "Compromises and Conflict",
+       "subtopics": [
+        {
+         "id": "demonstrate-an-understanding-of-conflict-and-com",
+         "title": "Demonstrate an understanding of conflict and compromise in South Carolina, the Southern region, and the United States as a result of sectionalism between the period 1816–1865",
+         "outcomes": [
+          {
+           "code": "8.3.CO",
+           "text": "Compare the debates between South Carolina and the federal government regarding slavery, federalism, and the Constitution."
+          },
+          {
+           "code": "8.3.CE",
+           "text": "Examine consequences of the major Civil War military strategies."
+          },
+          {
+           "code": "8.3.P",
+           "text": "Analyze the Civil War Amendments (i.e., 13th, 14th, and 15th) as a turning point in the economic, political, and social structures of South Carolina."
+          },
+          {
+           "code": "8.3.CX",
+           "text": "Evaluate the economic significance of agriculture on South Carolina, the U.S., and the world."
+          },
+          {
+           "code": "8.3.CC",
+           "text": "Analyze debates and efforts to recognize the natural rights of marginalized groups during the period of expansion and sectionalism."
+          },
+          {
+           "code": "8.3.E",
+           "text": "Utilize a variety of primary and secondary sources to analyze multiple perspectives on the effects of the Civil War within South Carolina and the United States."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "at-a-crossroads",
+       "title": "At a Crossroads",
+       "subtopics": [
+        {
+         "id": "demonstrate-an-understanding-of-south-carolina-s",
+         "title": "Demonstrate an understanding of South Carolina's role in and response to the dynamic economic, political, and social developments in the United States and around the world during the period 1862–1929",
+         "outcomes": [
+          {
+           "code": "8.4.CO",
+           "text": "Compare perspectives toward reform that emerged during the Progressive Era."
+          },
+          {
+           "code": "8.4.CE",
+           "text": "Explain the causes and effects of World War I on South Carolina and the United States."
+          },
+          {
+           "code": "8.4.P",
+           "text": "Summarize the economic changes that emerged in South Carolina and the U.S."
+          },
+          {
+           "code": "8.4.CX",
+           "text": "Evaluate South Carolinians' struggle to create an understanding of their post-Civil War position within the state, the country, and the world."
+          },
+          {
+           "code": "8.4.CC",
+           "text": "Analyze continuities and change in the African American experience in the period of Reconstruction and Jim Crow eras within South Carolina."
+          },
+          {
+           "code": "8.4.E",
+           "text": "Utilize a variety of primary and secondary sources to analyze multiple perspectives of the challenges and changes within South Carolina and the nation that allowed the U.S. to emerge as a global power during the time period 1862–1929."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "progress",
+       "title": "Progress",
+       "subtopics": [
+        {
+         "id": "demonstrate-an-understanding-of-the-impact-of-wo",
+         "title": "Demonstrate an understanding of the impact of world events on South Carolina and the United States from 1929 to present",
+         "outcomes": [
+          {
+           "code": "8.5.CO",
+           "text": "Compare South Carolina and U.S. wartime contributions and demobilization after World War II."
+          },
+          {
+           "code": "8.5.CE",
+           "text": "Analyze the factors contributing to the shifts in the political party platforms between 1946–1972."
+          },
+          {
+           "code": "8.5.P",
+           "text": "Analyze the transformation of South Carolina's economy from the Great Depression to its current economic diversification."
+          },
+          {
+           "code": "8.5.CX",
+           "text": "Analyze the correlation between the Modern Civil Rights Movement in South Carolina and the U.S."
+          },
+          {
+           "code": "8.5.CC",
+           "text": "Analyze the continuities and changes in South Carolina's identity resulting from the civic participation of different individuals and groups of South Carolinians."
+          },
+          {
+           "code": "8.5.E",
+           "text": "Utilize a variety of primary and secondary sources to analyze multiple perspectives on the cultural changes in South Carolina and the U.S."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "9-12",
+   "units": [
+    {
+     "id": "human-geography",
+     "title": "Human Geography",
+     "topics": [
+      {
+       "id": "population-and-migration",
+       "title": "Population and Migration",
+       "subtopics": [
+        {
+         "id": "demonstrate-an-understanding-of-the-characterist",
+         "title": "Demonstrate an understanding of the characteristics, distribution, and migration of human populations on Earth's surface",
+         "outcomes": [
+          {
+           "code": "HG.1.1.HS",
+           "text": "Identify and analyze the spatial distributions and patterns of human population using maps and geographic models and representations."
+          },
+          {
+           "code": "HG.1.2.PR",
+           "text": "Explain the cultural, economic, environmental, and political conditions and connections that contribute to human migration patterns."
+          },
+          {
+           "code": "HG.1.3.HS",
+           "text": "Analyze historical population and migration maps and models through time to predict future trends and patterns."
+          },
+          {
+           "code": "HG.1.4.HS",
+           "text": "Analyze and evaluate population and migration issues and policies from the local to the global scale using geographic models and representations."
+          },
+          {
+           "code": "HG.1.5.HS",
+           "text": "Evaluate the cultural, economic, environmental, and political impacts of human migration on human settlements in various regions."
+          },
+          {
+           "code": "HG.1.6.AG",
+           "text": "Gather evidence of human population and migration, construct a map to explain current or future development issues at different scales, and communicate findings."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "economic-development",
+       "title": "Economic Development",
+       "subtopics": [
+        {
+         "id": "demonstrate-an-understanding-of-the-conditions-i",
+         "title": "Demonstrate an understanding of the conditions, interconnections, and levels of economic development across Earth's surface",
+         "outcomes": [
+          {
+           "code": "HG.2.1.PR",
+           "text": "Identify regions of varying degrees of economic development, and explain the factors that influence the location and spatial distribution of these regions at the local and global scales using maps and geographic models and representations."
+          },
+          {
+           "code": "HG.2.2.HS",
+           "text": "Compare and evaluate different measures of development, and analyze patterns and trends in various regions of economic development."
+          },
+          {
+           "code": "HG.2.3.HS",
+           "text": "Identify and analyze the spatial distributions and patterns of primary, secondary, and tertiary sectors and activities of production and consumption using maps and geographic models and representations."
+          },
+          {
+           "code": "HG.2.4.PR",
+           "text": "Explain the conditions and connections that contribute to global interdependence of communications, economic, and transportation systems."
+          },
+          {
+           "code": "HG.2.5.ER",
+           "text": "Analyze the distribution and patterns of energy production and consumption over time, and evaluate the impacts and sustainability of different energy sources at varying scales."
+          },
+          {
+           "code": "HG.2.6.AG",
+           "text": "Gather evidence of economic development, construct a map to explain current or future development issues at different scales, and communicate findings."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "cultural-patterns-and-processes",
+       "title": "Cultural Patterns and Processes",
+       "subtopics": [
+        {
+         "id": "demonstrate-an-understanding-of-the-characterist",
+         "title": "Demonstrate an understanding of the characteristics of culture and cultural patterns and processes across Earth's surface",
+         "outcomes": [
+          {
+           "code": "HG.3.1.HS",
+           "text": "Identify the characteristics of popular and folk culture, and explain the factors that influence the location and spatial distribution of these types of culture at the local and global scales using maps and geographic models and representations."
+          },
+          {
+           "code": "HG.3.2.HS",
+           "text": "Identify and analyze the spatial distribution, patterns, and diffusion of ethnic, linguistic, and religious cultural characteristics using maps and other geographic representations."
+          },
+          {
+           "code": "HG.3.3.PR",
+           "text": "Analyze and explain the conditions and connections that create ethnic, linguistic, and religious patterns at varying scales."
+          },
+          {
+           "code": "HG.3.4.HS",
+           "text": "Investigate and evaluate the cultural conditions in different regions that play a role in cooperation and conflict over time."
+          },
+          {
+           "code": "HG.3.5.PR",
+           "text": "Compare and contrast cultural landscapes in various regions, and analyze the human imprint on different landscapes."
+          },
+          {
+           "code": "HG.3.6.AG",
+           "text": "Gather evidence of cultural patterns and processes, construct a map to explain current or future development issues at different scales, and communicate findings."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "political-organization-of-space",
+       "title": "Political Organization of Space",
+       "subtopics": [
+        {
+         "id": "demonstrate-an-understanding-of-how-cooperation-",
+         "title": "Demonstrate an understanding of how cooperation and conflict among people influence the division and control of Earth's surface",
+         "outcomes": [
+          {
+           "code": "HG.4.1HS",
+           "text": "Identify and analyze patterns of territoriality and the relationships of power and spatial organization at various scales using maps and other geographic representations."
+          },
+          {
+           "code": "HG.4.2.PR",
+           "text": "Explain the conditions and connections that contribute to the creation of boundaries and states, and analyze how Earth's surface is organized on a contemporary political map."
+          },
+          {
+           "code": "HG.4.3.PR",
+           "text": "Analyze and evaluate the conditions and connections that have contributed to the development of the modern state system and the rise of supranationalism in various regions."
+          },
+          {
+           "code": "HG.4.4.PR",
+           "text": "Analyze how states spatially organize governance systems, and explain the distribution and patterns of these political systems in various regions."
+          },
+          {
+           "code": "HG.4.5.HS",
+           "text": "Explain how forces of globalization and regional variations in resources can create opportunities for change, conflict, and cooperation for the control of Earth's surface."
+          },
+          {
+           "code": "HG.4.6.AG",
+           "text": "Gather evidence on boundary issues at different scales, construct a map to explain changes in control over people, land, or resources, and communicate findings."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "urban-land-use",
+       "title": "Urban Land Use",
+       "subtopics": [
+        {
+         "id": "demonstrate-an-understanding-of-the-distribution",
+         "title": "Demonstrate an understanding of the distribution, function, patterns, and processes of human settlement across Earth's surface",
+         "outcomes": [
+          {
+           "code": "HG.5.1.PR",
+           "text": "Identify and explain the conditions and connections that influence the characteristics, forms, and functions of cities and their spatial distribution."
+          },
+          {
+           "code": "HG.5.2.PR",
+           "text": "Analyze and compare the arrangement of land used in human settlements in different regions using maps, models, and representations."
+          },
+          {
+           "code": "HG.5.3.ER",
+           "text": "Identify and evaluate how the conditions and connections of settlements in various regions can create economic, environmental, political, social, and sustainability challenges at various scales."
+          },
+          {
+           "code": "HG.5.4.HS",
+           "text": "Explain and analyze how distribution and patterns of urban size and hierarchy shapes the design, planning, and structure of other human settlements."
+          },
+          {
+           "code": "HG.5.5.PR",
+           "text": "Analyze and evaluate the connections between rural and urban regions and their impact on globalization at different scales."
+          },
+          {
+           "code": "HG.5.6.AG",
+           "text": "Gather evidence on human settlements, construct a map to explain processes, patterns and functions in various regions, and communicate findings."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "modern-world-history",
+     "title": "Modern World History",
+     "topics": [
+      {
+       "id": "emergence-of-the-modern-world",
+       "title": "Emergence of the Modern World",
+       "subtopics": [
+        {
+         "id": "demonstrate-an-understanding-of-the-emergence-of",
+         "title": "Demonstrate an understanding of the emergence of the modern world during the period of 1300–1500",
+         "outcomes": [
+          {
+           "code": "MWH.1.CO",
+           "text": "Compare and contrast the major political, social, and belief systems and their spatial distribution in the early modern world."
+          },
+          {
+           "code": "MWH.1.CE",
+           "text": "Examine the causes and effects of the events surrounding the Renaissance on the rise of Europe."
+          },
+          {
+           "code": "MWH.1.P",
+           "text": "Summarize the motivations of worldwide exploration and the influence of exploration on world civilizations."
+          },
+          {
+           "code": "MWH.1.CX",
+           "text": "Contextualize the Indian Ocean as the center of global exchanges within the historically significant Eastern Hemisphere trade networks."
+          },
+          {
+           "code": "MWH.1.CC",
+           "text": "Analyze continuities and changes within the rise and expansion of the Ottoman Empire and its implications on the world."
+          },
+          {
+           "code": "MWH.1.E",
+           "text": "Utilize a variety of primary and secondary sources to analyze multiple perspectives of global exchanges."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "commerce-innovation-and-expansion",
+       "title": "Commerce, Innovation, and Expansion",
+       "subtopics": [
+        {
+         "id": "demonstrate-an-understanding-of-the-effects-of-c",
+         "title": "Demonstrate an understanding of the effects of commerce, innovation and expansion on global affairs and interactions during the period of 1450–1815",
+         "outcomes": [
+          {
+           "code": "MWH.2.CO",
+           "text": "Compare and contrast the philosophies and practices of absolutism to the philosophies and practices of constitutional democracies."
+          },
+          {
+           "code": "MWH.2.CE",
+           "text": "Summarize how major world revolutions created new global affairs and interactions."
+          },
+          {
+           "code": "MWH.2.P",
+           "text": "Analyze significant developments resulting from colonists in the Western Hemisphere applying the principles of the Enlightenment in the creation of the new political institutions during the period 1765–1815."
+          },
+          {
+           "code": "MWH.2.CX",
+           "text": "Contextualize the impact of the Scientific Revolution and Enlightenment in expanding global interactions in commerce and innovations."
+          },
+          {
+           "code": "MWH.2.CC",
+           "text": "Examine the continuities and changes in the development of world trade networks and colonialism."
+          },
+          {
+           "code": "MWH.2.E",
+           "text": "Utilize a variety of primary and secondary sources to analyze multiple perspectives on global interactions."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "nationalism-and-industrialization",
+       "title": "Nationalism and Industrialization",
+       "subtopics": [
+        {
+         "id": "demonstrate-an-understanding-of-how-the-developm",
+         "title": "Demonstrate an understanding of how the development of nationalism and industrialization affected the rise of new governments and competition in the global economy from 1815–1918",
+         "outcomes": [
+          {
+           "code": "MWH.3.CO",
+           "text": "Compare the significant turning points in the development of nationalism and their implications on the world."
+          },
+          {
+           "code": "MWH.3.CE",
+           "text": "Analyze industrialization as a catalyst for new immigration and migration patterns."
+          },
+          {
+           "code": "MWH.3.P",
+           "text": "Summarize the installation of new governments during the Meiji Restoration, Russian Revolution, and Chinese Revolution."
+          },
+          {
+           "code": "MWH.3.CX",
+           "text": "Contextualize industrialization within the various cultural and political changes occurring during the 19th century."
+          },
+          {
+           "code": "MWH.3.CC",
+           "text": "Analyze continuities and changes in the quality of life in Europe resulting from industrialization."
+          },
+          {
+           "code": "MWH.3.E",
+           "text": "Utilize a variety of primary and secondary sources to analyze multiple perspectives related to the development of nationalism and industrialization."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "world-power-struggle",
+       "title": "World Power Struggle",
+       "subtopics": [
+        {
+         "id": "demonstrate-an-understanding-of-how-internationa",
+         "title": "Demonstrate an understanding of how international competition and conflict realigned global powers during the time period of 1885–1950",
+         "outcomes": [
+          {
+           "code": "MWH.4.CO",
+           "text": "Explain the motives for and effects of European countries in the Age of Imperialism."
+          },
+          {
+           "code": "MWH.4.CE",
+           "text": "Analyze the significant causes of World War I and how the Treaty of Versailles attempted to resolve future global conflicts."
+          },
+          {
+           "code": "MWH.4.P",
+           "text": "Summarize the significant technological innovations that led to the realignment of global powers."
+          },
+          {
+           "code": "MWH.4.CX",
+           "text": "Contextualize World War II and the Holocaust within local and global economic, political, and social developments from 1919–1950."
+          },
+          {
+           "code": "MWH.4.CC",
+           "text": "Analyze significant political and economic developments as catalysts for changing the global power structures."
+          },
+          {
+           "code": "MWH.4.E",
+           "text": "Utilize a variety of primary and secondary sources to analyze multiple perspectives during the Age of Imperialism and among countries in world conflicts."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "integration",
+       "title": "Integration",
+       "subtopics": [
+        {
+         "id": "demonstrate-an-understanding-of-the-modern-age-f",
+         "title": "Demonstrate an understanding of the Modern Age from 1933 to present day",
+         "outcomes": [
+          {
+           "code": "MWH.5.CO",
+           "text": "Compare the cultural, economic, and political implications of the Cold War."
+          },
+          {
+           "code": "MWH.5.CE",
+           "text": "Analyze significant developments resulting from post-war decolonization in Asia and Africa in the creation of the new countries during the period 1945–1975."
+          },
+          {
+           "code": "MWH.5.P",
+           "text": "Summarize the interconnections between the United States and the world community through major cultural, economic, and political changes."
+          },
+          {
+           "code": "MWH.5.CX",
+           "text": "Examine the Holocaust and its aftermath in providing the context for subsequent developments in international efforts to recognize and protect human rights."
+          },
+          {
+           "code": "MWH.5.CC",
+           "text": "Contextualize the major economic, geographical, political, religious, and social factors and their impact on nations during the period 1989–present."
+          },
+          {
+           "code": "MWH.5.E",
+           "text": "Utilize a variety of primary and secondary sources to analyze multiple perspectives of international events."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "united-states-history-and-the-constitution",
+     "title": "United States History and the Constitution",
+     "topics": [
+      {
+       "id": "foundations-of-american-republicanism",
+       "title": "Foundations of American Republicanism",
+       "subtopics": [
+        {
+         "id": "demonstrate-an-understanding-of-the-influence-of",
+         "title": "Demonstrate an understanding of the influence of the Atlantic World on the regional and national development of republicanism and federalism from 1607–1815",
+         "outcomes": [
+          {
+           "code": "USHC.1.CO",
+           "text": "Analyze the development of the American identity through the founding principles and social and economic development of the Northern and Southern colonies from 1607–1763 using a comparative analysis."
+          },
+          {
+           "code": "USHC.1.CE",
+           "text": "Assess the major developments of the American Revolution through significant turning points in the debates over independence and self-government from 1763–1791."
+          },
+          {
+           "code": "USHC.1.P",
+           "text": "Summarize the changing relationship between individuals and the government during the period 1607–1800."
+          },
+          {
+           "code": "USHC.1.CX",
+           "text": "Contextualize significant republican developments within North America's connection to the Atlantic World."
+          },
+          {
+           "code": "USHC.1.CC",
+           "text": "Analyze the processes of continuity and change in the debates over the proper role of the central government and neutrality in foreign affairs from 1789–1815."
+          },
+          {
+           "code": "USHC.1.E",
+           "text": "Utilize primary and secondary sources to investigate the impact of the Atlantic influence in the regional and national development of Republicanism and Federalism."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "expansion-and-union",
+       "title": "Expansion and Union",
+       "subtopics": [
+        {
+         "id": "demonstrate-an-understanding-of-the-relationship",
+         "title": "Demonstrate an understanding of the relationship between economic and continental expansion and the evolving disagreements over natural rights and federalism from 1803–1877",
+         "outcomes": [
+          {
+           "code": "USHC.2.CO",
+           "text": "Compare the economic, political, and social, development of the antebellum North and South from 1803–1860 using a comparative analysis."
+          },
+          {
+           "code": "USHC.2.CE",
+           "text": "Evaluate the causes and consequences of economic and geographic expansion through significant turning points from 1803–1865."
+          },
+          {
+           "code": "USHC.2.P",
+           "text": "Summarize the impact of technological changes and social developments on the U.S., including the Civil War, during the period 1815–1865."
+          },
+          {
+           "code": "USHC.2.CX",
+           "text": "Contextualize the perspectives on the role of the federal government in securing natural rights during the period 1830–1877."
+          },
+          {
+           "code": "USHC.2.CC",
+           "text": "Differentiate the patterns of continuity and change within the development of sectionalism and reunion."
+          },
+          {
+           "code": "USHC.2.E",
+           "text": "Utilize primary and secondary sources to judge the impact of economic and continental expansion on the evolving disagreements over natural rights and federalism."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "capitalism-and-reform",
+       "title": "Capitalism and Reform",
+       "subtopics": [
+        {
+         "id": "demonstrate-an-understanding-of-how-innovation-a",
+         "title": "Demonstrate an understanding of how innovation and industrialization impacted demographic change, reform movements, and American identity from 1862–1924",
+         "outcomes": [
+          {
+           "code": "USHC.3.CO",
+           "text": "Compare the strategies and tactics of the Captains of Industry to those of the leaders of the labor movement."
+          },
+          {
+           "code": "USHC.3.CE",
+           "text": "Assess the causes and effects of significant turning points in the Populist and Progressive era from 1877–1924."
+          },
+          {
+           "code": "USHC.3.P",
+           "text": "Examine the relationship between the expanding corporate economy and American government during the period 1862–1924."
+          },
+          {
+           "code": "USHC.3.CX",
+           "text": "Contextualize demographic changes resulting from economic development and growth during the Gilded Age."
+          },
+          {
+           "code": "USHC.3.CC",
+           "text": "Analyze significant developments in the settlement of the frontier between 1862–1924."
+          },
+          {
+           "code": "USHC.3.E",
+           "text": "Utilize a variety of primary and secondary sources to analyze multiple perspectives of innovation and industrialization on demographic change, reform, and American identity."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "modernism-and-interventionism",
+       "title": "Modernism and Interventionism",
+       "subtopics": [
+        {
+         "id": "demonstrate-an-understanding-of-how-the-american",
+         "title": "Demonstrate an understanding of how the American identity both at home and abroad was affected by imperialism, world conflict, and economic boom and bust in the period 1893 to 1945",
+         "outcomes": [
+          {
+           "code": "USHC.4.CO",
+           "text": "Develop a comparative analysis of the motives for and outcomes of American policies regarding foreign intervention."
+          },
+          {
+           "code": "USHC.4.CE",
+           "text": "Evaluate significant turning points, including the immediate and long-term causes and effects of the business cycles of capitalism."
+          },
+          {
+           "code": "USHC.4.P",
+           "text": "Summarize the changing role of the government in the economy during the period 1917–1945."
+          },
+          {
+           "code": "USHC.4.CX",
+           "text": "Contextualize changes in American culture within new migration patterns, participation in global conflict, and capitalist business cycles."
+          },
+          {
+           "code": "USHC.4.CC",
+           "text": "Examine the continuity and changes on the U.S. homefront surrounding World War I and World War II."
+          },
+          {
+           "code": "USHC.4.E",
+           "text": "Utilize primary and secondary sources to analyze the impact of changes in American foreign policy, worldwide conflicts, and business cycles in capitalism."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "legacy-of-the-cold-war",
+       "title": "Legacy of the Cold War",
+       "subtopics": [
+        {
+         "id": "demonstrate-the-impact-of-america-s-global-leade",
+         "title": "Demonstrate the impact of America's global leadership on technological advancements, the transition to a post-industrial society, and ongoing debates over identity in the period 1945–present",
+         "outcomes": [
+          {
+           "code": "USHC.5.CO",
+           "text": "Explain the technological developments and economic changes in the U.S. during the Cold War and post-Cold War eras using a comparative analysis."
+          },
+          {
+           "code": "USHC.5.CE",
+           "text": "Assess the immediate and long-term causes and effects through significant turning points of the Cold War."
+          },
+          {
+           "code": "USHC.5.P",
+           "text": "Summarize the changes in the major American political party platforms during the period."
+          },
+          {
+           "code": "USHC.5.CX",
+           "text": "Contextualize domestic economic development and American national identity within global politics."
+          },
+          {
+           "code": "USHC.5.CC",
+           "text": "Evaluate continuities and changes during the Civil Rights Movement and other subsequent movements for equal rights."
+          },
+          {
+           "code": "USHC.5.E",
+           "text": "Utilize primary and secondary sources to judge the impact of evolving American foreign policy on American identity and capitalism."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "united-states-government",
+     "title": "United States Government",
+     "topics": [
+      {
+       "id": "foundations-of-democracy",
+       "title": "Foundations of Democracy",
+       "subtopics": [
+        {
+         "id": "demonstrate-an-understanding-of-the-fundamental-",
+         "title": "Demonstrate an understanding of the fundamental historical and philosophical principles and ideas that led to the development of the American constitutional democracy",
+         "outcomes": [
+          {
+           "code": "USG.1.ER",
+           "text": "Analyze the philosophical influences on core political principles in the American constitutional democracy."
+          },
+          {
+           "code": "USG.1.IN",
+           "text": "Interpret founding documents and principles that led to the creation of the American constitutional democracy."
+          },
+          {
+           "code": "USG.1.CC",
+           "text": "Analyze the major debates and compromises underlying the formation and ratification of the Constitution."
+          },
+          {
+           "code": "USG.1.IP",
+           "text": "Investigate and communicate the importance of constitutional principles and fundamental values and apply them in abstract and real world situations."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "government-structure",
+       "title": "Government Structure",
+       "subtopics": [
+        {
+         "id": "demonstrate-an-understanding-of-the-structure-an",
+         "title": "Demonstrate an understanding of the structure and functions of government at all levels in the United States",
+         "outcomes": [
+          {
+           "code": "USG.2.ER",
+           "text": "Explain the authority, organization, purposes, and responsibilities of the three branches of government as enumerated in Articles I–III in the Constitution."
+          },
+          {
+           "code": "USG.2.IN",
+           "text": "Analyze how power and responsibility are distributed, shared, and limited in the American constitutional government."
+          },
+          {
+           "code": "USG.2.CC",
+           "text": "Explain how governments in South Carolina are organized and how they function in the American constitutional government."
+          },
+          {
+           "code": "USG.2.IP",
+           "text": "Synthesize why the rule of law has a central place in American society and the impact it has on the American political system."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "the-political-process",
+       "title": "The Political Process",
+       "subtopics": [
+        {
+         "id": "demonstrate-an-understanding-of-the-political-pr",
+         "title": "Demonstrate an understanding of the political process in determining and shaping public policy and the political climate in the United States",
+         "outcomes": [
+          {
+           "code": "USG.3.ER",
+           "text": "Describe the policy making process in the American constitutional government."
+          },
+          {
+           "code": "USG.3.IN",
+           "text": "Interpret how American political beliefs are shaped by the founding principles, core values, and changing demographics of America, and how those beliefs led to the creation of ideological trends which affect public policy over time."
+          },
+          {
+           "code": "USG.3.CC",
+           "text": "Investigate the role of linkage institutions (i.e. media, interest groups, political parties), and explain how they shape public agenda and opinion."
+          },
+          {
+           "code": "USG.3.IP",
+           "text": "Explain how the electoral process works in federal elections and the effects those elections have on U.S. government."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "citizenship",
+       "title": "Citizenship",
+       "subtopics": [
+        {
+         "id": "demonstrate-an-understanding-of-the-rights-and-r",
+         "title": "Demonstrate an understanding of the rights and responsibilities associated with citizenship in the United States",
+         "outcomes": [
+          {
+           "code": "USG.4.ER",
+           "text": "Describe the criteria and process for immigration to and citizenship in the U.S., and explain how the U.S. has expanded and limited the concept of citizenship over time."
+          },
+          {
+           "code": "USG.4.IN",
+           "text": "Distinguish between various economic, personal, and political rights of citizens in the U.S., and how these rights can sometimes conflict with each other."
+          },
+          {
+           "code": "USG.4.CC",
+           "text": "Analyze contemporary issues and governmental responses at various levels in terms of how they have provided equal protection under the law and equal access to society's opportunities and public facilities."
+          },
+          {
+           "code": "USG.4.IP",
+           "text": "Describe and evaluate the ways citizens can participate in the political process at the local, state, national, and global levels."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "economics-and-personal-finance",
+     "title": "Economics and Personal Finance",
+     "topics": [
+      {
+       "id": "economic-concepts",
+       "title": "Economic Concepts",
+       "subtopics": [
+        {
+         "id": "demonstrate-an-understanding-of-fundamental-econ",
+         "title": "Demonstrate an understanding of fundamental economic concepts at an individual, business, and governmental level",
+         "outcomes": [
+          {
+           "code": "EPF.1.ER",
+           "text": "Examine how scarcity of time and resources necessitates decision-making."
+          },
+          {
+           "code": "EPF.1.IN",
+           "text": "Research and utilize evidence to explain how various economic systems address the basic economic questions regarding distribution of resources."
+          },
+          {
+           "code": "EPF.1.CC",
+           "text": "Determine how society's allocation of resources impacts economic well-being using a production possibilities curve."
+          },
+          {
+           "code": "EFP.1.IP",
+           "text": "Evaluate how short-term goals allow individuals and institutions to make rational decisions using marginal analysis."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "financial-literacy",
+       "title": "Financial Literacy",
+       "subtopics": [
+        {
+         "id": "demonstrate-an-understanding-of-how-scarcity-and",
+         "title": "Demonstrate an understanding of how scarcity and choice influence individual financial decisions",
+         "outcomes": [
+          {
+           "code": "EPF.2.ER",
+           "text": "Research and analyze the factors that impact personal income and long-term earning potential."
+          },
+          {
+           "code": "EPF.2.IN",
+           "text": "Identify and explain the functions of different types of financial institutions and how they assist individuals in achieving short- and long-term financial goals."
+          },
+          {
+           "code": "EPF.2.CC",
+           "text": "Determine financially responsible ways that individuals acquire and use credit."
+          },
+          {
+           "code": "EPF.2.IP",
+           "text": "Develop a personal finance strategy for investing, protecting, purchasing, and saving resources."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "microeconomics",
+       "title": "Microeconomics",
+       "subtopics": [
+        {
+         "id": "demonstrate-an-understanding-of-basic-microecono",
+         "title": "Demonstrate an understanding of basic microeconomic principles",
+         "outcomes": [
+          {
+           "code": "EPF.3.ER",
+           "text": "Apply the laws of supply and demand to determine how changes in market conditions affect prices."
+          },
+          {
+           "code": "EPF.3.IN",
+           "text": "Compare and contrast how the organization of various market structures affects decisions and outcomes of individuals and firms."
+          },
+          {
+           "code": "EPF.3.CC",
+           "text": "Illustrate market equilibrium and the impact of shifts in supply and demand, different elasticities, and price controls on market output and price."
+          },
+          {
+           "code": "EPF.3.IP",
+           "text": "Research and evaluate geopolitical influences on employment trends and issues at the state and national level."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "macroeconomics",
+       "title": "Macroeconomics",
+       "subtopics": [
+        {
+         "id": "demonstrate-an-understanding-of-basic-macroecono",
+         "title": "Demonstrate an understanding of basic macroeconomic principles",
+         "outcomes": [
+          {
+           "code": "EPF.4.ER",
+           "text": "Identify and analyze important economic indicators and data used to gauge the economic well-being of a society."
+          },
+          {
+           "code": "EPF.4.IN",
+           "text": "Provide justification for or against regulation in a free-enterprise system."
+          },
+          {
+           "code": "EPF.4.CC",
+           "text": "Evaluate the impact of globalization and trade on the economic well-being of a country."
+          },
+          {
+           "code": "EPF.4.IP",
+           "text": "Investigate contemporary economic policies, and analyze how political ideologies influenced their implementation."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "teaching-the-history-and-literature-of-the-old-t",
+     "title": "Teaching the History and Literature of the Old Testament Era",
+     "topics": [
+      {
+       "id": "history",
+       "title": "History",
+       "subtopics": [
+        {
+         "id": "demonstrate-an-understanding-of-the-old-testamen",
+         "title": "Demonstrate an understanding of the Old Testament on the history, religion, government, and laws of various cultures",
+         "outcomes": [
+          {
+           "code": "OT.1.1",
+           "text": "Contextualize the historical and geographical developments of the Old Testament including its origin, methods and tools of writing, and the means by which it has been preserved."
+          },
+          {
+           "code": "OT.1.2",
+           "text": "Analyze continuities and changes in the translations of biblical texts over time."
+          },
+          {
+           "code": "OT.1.3",
+           "text": "Create a comparative analysis of Old Testament cultures from distinct geographic regions, including Sumerian, Egyptian, Hebrew, and Babylonian."
+          },
+          {
+           "code": "OT.1.4",
+           "text": "Create a narrative analyzing the biblical traditions and their influences on contemporary cultures including customs, government, history, law, morals, and values."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "literature",
+       "title": "Literature",
+       "subtopics": [
+        {
+         "id": "demonstrate-an-understanding-of-the-characters-n",
+         "title": "Demonstrate an understanding of the characters, narratives, poetry, and stories in the Old Testament, and explain how they are used in literature",
+         "outcomes": [
+          {
+           "code": "OT.2.1",
+           "text": "Analyze the influence of biblical texts on the development of the English language."
+          },
+          {
+           "code": "OT.2.2",
+           "text": "Analyze and critique how the author uses structures such as letters, poems, songs, and speeches in biblical texts to shape meaning and impact the reader."
+          },
+          {
+           "code": "OT.2.3",
+           "text": "Analyze and provide evidence of how the author's choice of point of view, perspective, and purpose shape content, meaning, and style within the Old Testament."
+          },
+          {
+           "code": "OT.2.4",
+           "text": "Analyze how complex text structures in biblical texts contribute to the development of plot, setting, or theme."
+          },
+          {
+           "code": "OT.2.5",
+           "text": "Analyze a complex set of ideas or sequence of events, and explain how specific characters, events, or ideas develop and interact within biblical text."
+          },
+          {
+           "code": "OT.2.6",
+           "text": "Explain the influence of the Old Testament in classic and contemporary drama, poetry, prose, and other media."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "arts",
+       "title": "Arts",
+       "subtopics": [
+        {
+         "id": "demonstrate-an-understanding-of-the-influence-of",
+         "title": "Demonstrate an understanding of the influence of the Old Testament on the visual and performing arts",
+         "outcomes": [
+          {
+           "code": "OT.3.1",
+           "text": "Analyze the artistic presentation of the Old Testament through creative dance, music, theatre, the visual arts, and writing from various cultural and historical perspectives."
+          },
+          {
+           "code": "OT.3.2",
+           "text": "Interpret ideas, subject matter, symbols, and themes found in creative dance, music theater, the visual arts, and writing derived from the Old Testament."
+          },
+          {
+           "code": "OT.3.3",
+           "text": "Explain the design, function, and significance of architecture and religious artifacts found in places of worship such as cathedrals, churches, synagogues, tabernacles, and temples."
+          },
+          {
+           "code": "OT.3.4",
+           "text": "Create a response to biblical texts through a variety of methods such as creative dance, music theater, the visual arts, and writing."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "teaching-the-history-and-literature-of-the-new-t",
+     "title": "Teaching the History and Literature of the New Testament Era",
+     "topics": [
+      {
+       "id": "history",
+       "title": "History",
+       "subtopics": [
+        {
+         "id": "demonstrate-an-understanding-of-the-new-testamen",
+         "title": "Demonstrate an understanding of the New Testament on the history, government, laws, and religion of various cultures",
+         "outcomes": [
+          {
+           "code": "NT.1.1",
+           "text": "Contextualize the historical and geographical developments of the New Testament, including its origin, methods and tools of writing, and the means by which it has been preserved."
+          },
+          {
+           "code": "NT.1.2",
+           "text": "Analyze continuities and changes in the translations of biblical texts over time."
+          },
+          {
+           "code": "NT.1.3",
+           "text": "Create a comparative analysis of New Testament cultures, including Roman, Greek, and Hebrew."
+          },
+          {
+           "code": "NT.1.4",
+           "text": "Create a narrative analyzing the rise and growth of Christianity including patterns of expansion across continents, the effects of diffusion on religious beliefs and traditions, and the influence of Christianity on culture and politics."
+          },
+          {
+           "code": "NT.1.5",
+           "text": "Identify, source, and utilize different forms of evidence (including primary and secondary sources) to investigate and explain biblical traditions and their influences on contemporary cultures including customs, government, history, law, morals, and values."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "literature",
+       "title": "Literature",
+       "subtopics": [
+        {
+         "id": "demonstrate-an-understanding-of-the-characters-n",
+         "title": "Demonstrate an understanding of the characters, narratives, poetry, and stories in the New Testament, and explain how they are used in literature",
+         "outcomes": [
+          {
+           "code": "NT.2.1",
+           "text": "Analyze the influence of biblical texts on the development of the English language."
+          },
+          {
+           "code": "NT.2.2",
+           "text": "Analyze and critique how the author uses structures such as letters, poems, songs, and speeches in biblical texts to shape meaning and impact the reader."
+          },
+          {
+           "code": "NT.2.3",
+           "text": "Analyze and provide evidence of how the author's choice of point of view, perspective, and purpose shape content, meaning, and style within the New Testament."
+          },
+          {
+           "code": "NT.2.4",
+           "text": "Analyze how complex text structures in biblical texts contribute to the development of plot, setting, or theme."
+          },
+          {
+           "code": "NT.2.5",
+           "text": "Analyze a complex set of ideas or sequence of events, and explain how specific characters, events, or ideas develop and interact within biblical text."
+          },
+          {
+           "code": "NT.2.6",
+           "text": "Explain the influence of the New Testament in classic and contemporary drama, poetry, prose, and other media."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "arts",
+       "title": "Arts",
+       "subtopics": [
+        {
+         "id": "demonstrate-an-understanding-of-the-influence-of",
+         "title": "Demonstrate an understanding of the influence of the New Testament on the visual and performing arts",
+         "outcomes": [
+          {
+           "code": "NT.3.1",
+           "text": "Analyze the artistic presentation of the New Testament through creative dance, music, theatre, the visual arts, and writing from various cultural and historical perspectives."
+          },
+          {
+           "code": "NT.3.2",
+           "text": "Interpret ideas, subject matter, symbols, and themes found in creative dance, music theater, the visual arts, and writing derived from the New Testament."
+          },
+          {
+           "code": "NT.3.3",
+           "text": "Explain the design, function, and significance of architecture and religious artifacts found in places of worship such as cathedrals, churches, synagogues, tabernacles, and temples."
+          },
+          {
+           "code": "NT.3.4",
+           "text": "Create a response to biblical texts through a variety of methods such as creative dance, music, theatre, the visual arts, and writing."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "build": {
+  "builtAt": "2026-10-14T16:20:48.398Z",
+  "model": "none",
+  "usd": 0,
+  "expectedCodes": 367,
+  "coverage": 1,
+  "missingCodes": [],
+  "counts": {
+   "grades": 10,
+   "units": 16,
+   "topics": 71,
+   "subtopics": 72,
+   "outcomes": 367
+  },
+  "warnings": []
+ }
+}

@@ -1,0 +1,538 @@
+{
+ "id": "ib-dp-physics",
+ "region": "INTL",
+ "framework": "International Baccalaureate Diploma Programme (DP)",
+ "board": "IB",
+ "qualification": "IB Diploma Programme",
+ "subject": "Physics (SL and HL)",
+ "syllabusCode": null,
+ "gradeSystem": "course",
+ "source": {
+  "urls": [
+   "https://www.ibo.org/globalassets/new-structure/recognition/pdfs/dp_sciences_physics_subject-brief_jan_2022_e.pdf",
+   "https://web.archive.org/web/20221124081021id_/https://www.ibo.org/globalassets/new-structure/recognition/pdfs/dp_sciences_physics_subject-brief_jan_2022_e.pdf"
+  ],
+  "publisher": "International Baccalaureate Organization",
+  "licence": "(c) International Baccalaureate Organization; all rights reserved, no open licence. ibo.org terms 1.8: IB copyrighted materials are licensed only under the IB's terms or a signed agreement; 'Any use not expressly permitted is prohibited unless special permission is obtained in writing from the IB'; 1.9: nothing on the IB websites confers any licence. Briefs are free public marketing summaries: take topic structure only, write everything in our own words, never reproduce brief text, and do not use IB logos/trade marks. Full subject guides are sold to schools and were NOT used. Terms: https://www.ibo.org/terms-and-conditions/ and https://www.ibo.org/copyright",
+  "firstExam": "2025"
+ },
+ "grades": [
+  {
+   "grade": "all",
+   "units": [
+    {
+     "id": "a-space-time-and-motion",
+     "title": "A. Space, time and motion",
+     "topics": [
+      {
+       "id": "a-1-kinematics",
+       "title": "A.1 Kinematics",
+       "subtopics": [
+        {
+         "id": "kinematics",
+         "title": "Kinematics",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe and calculate motion using displacement, velocity and acceleration."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "a-2-forces-and-momentum",
+       "title": "A.2 Forces and momentum",
+       "subtopics": [
+        {
+         "id": "forces-and-momentum",
+         "title": "Forces and momentum",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Apply forces and conservation of momentum to explain and predict motion."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "a-3-work-energy-and-power",
+       "title": "A.3 Work, energy and power",
+       "subtopics": [
+        {
+         "id": "work-energy-and-power",
+         "title": "Work, energy and power",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Use work, energy and power to analyse energy transfers."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "a-4-rigid-body-mechanics-higher-level",
+       "title": "A.4 Rigid body mechanics (higher level)",
+       "subtopics": [
+        {
+         "id": "rigid-body-mechanics-higher-level",
+         "title": "Rigid body mechanics (higher level)",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Analyse rotation of rigid bodies using torque and angular quantities."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "a-5-galilean-and-special-relativity-higher-level",
+       "title": "A.5 Galilean and special relativity (higher level)",
+       "subtopics": [
+        {
+         "id": "galilean-and-special-relativity-higher-level",
+         "title": "Galilean and special relativity (higher level)",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Compare Galilean and special relativity for events seen by different observers."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "b-the-particulate-nature-of-matter",
+     "title": "B. The particulate nature of matter",
+     "topics": [
+      {
+       "id": "b-1-thermal-energy-transfers",
+       "title": "B.1 Thermal energy transfers",
+       "subtopics": [
+        {
+         "id": "thermal-energy-transfers",
+         "title": "Thermal energy transfers",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain temperature, heat and how thermal energy moves between systems."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "b-2-greenhouse-effect",
+       "title": "B.2 Greenhouse effect",
+       "subtopics": [
+        {
+         "id": "greenhouse-effect",
+         "title": "Greenhouse effect",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain how the greenhouse effect warms the Earth."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "b-3-gas-laws",
+       "title": "B.3 Gas laws",
+       "subtopics": [
+        {
+         "id": "gas-laws",
+         "title": "Gas laws",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Use the particle model and gas laws to relate pressure, volume and temperature."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "b-4-thermodynamics-higher-level",
+       "title": "B.4 Thermodynamics (higher level)",
+       "subtopics": [
+        {
+         "id": "thermodynamics-higher-level",
+         "title": "Thermodynamics (higher level)",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Apply the laws of thermodynamics, entropy and heat engines."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "b-5-current-and-circuits",
+       "title": "B.5 Current and circuits",
+       "subtopics": [
+        {
+         "id": "current-and-circuits",
+         "title": "Current and circuits",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Analyse electric current, resistance and simple circuits."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "c-wave-behaviour",
+     "title": "C. Wave behaviour",
+     "topics": [
+      {
+       "id": "c-1-simple-harmonic-motion",
+       "title": "C.1 Simple harmonic motion",
+       "subtopics": [
+        {
+         "id": "simple-harmonic-motion",
+         "title": "Simple harmonic motion",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe and analyse simple harmonic oscillations."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "c-2-wave-model",
+       "title": "C.2 Wave model",
+       "subtopics": [
+        {
+         "id": "wave-model",
+         "title": "Wave model",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe waves using wavelength, frequency, speed and amplitude."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "c-3-wave-phenomena",
+       "title": "C.3 Wave phenomena",
+       "subtopics": [
+        {
+         "id": "wave-phenomena",
+         "title": "Wave phenomena",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain reflection, refraction, diffraction, interference and polarisation."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "c-4-standing-waves-and-resonance",
+       "title": "C.4 Standing waves and resonance",
+       "subtopics": [
+        {
+         "id": "standing-waves-and-resonance",
+         "title": "Standing waves and resonance",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain standing waves and resonance in strings and pipes."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "c-5-doppler-effect",
+       "title": "C.5 Doppler effect",
+       "subtopics": [
+        {
+         "id": "doppler-effect",
+         "title": "Doppler effect",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain and calculate the Doppler shift in waves."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "d-fields",
+     "title": "D. Fields",
+     "topics": [
+      {
+       "id": "d-1-gravitational-fields",
+       "title": "D.1 Gravitational fields",
+       "subtopics": [
+        {
+         "id": "gravitational-fields",
+         "title": "Gravitational fields",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe gravitational fields, forces and potential."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "d-2-electric-and-magnetic-fields",
+       "title": "D.2 Electric and magnetic fields",
+       "subtopics": [
+        {
+         "id": "electric-and-magnetic-fields",
+         "title": "Electric and magnetic fields",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe electric and magnetic fields, forces and potential."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "d-3-motion-in-electromagnetic-fields",
+       "title": "D.3 Motion in electromagnetic fields",
+       "subtopics": [
+        {
+         "id": "motion-in-electromagnetic-fields",
+         "title": "Motion in electromagnetic fields",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Predict the motion of charged particles in electric and magnetic fields."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "d-4-induction-higher-level",
+       "title": "D.4 Induction (higher level)",
+       "subtopics": [
+        {
+         "id": "induction-higher-level",
+         "title": "Induction (higher level)",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain electromagnetic induction and its applications."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "e-nuclear-and-quantum-physics",
+     "title": "E. Nuclear and quantum physics",
+     "topics": [
+      {
+       "id": "e-1-structure-of-the-atom",
+       "title": "E.1 Structure of the atom",
+       "subtopics": [
+        {
+         "id": "structure-of-the-atom",
+         "title": "Structure of the atom",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe atomic structure and the evidence for atomic energy levels."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "e-2-quantum-physics-higher-level",
+       "title": "E.2 Quantum physics (higher level)",
+       "subtopics": [
+        {
+         "id": "quantum-physics-higher-level",
+         "title": "Quantum physics (higher level)",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain photons, matter waves and quantum models of particles."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "e-3-radioactive-decay",
+       "title": "E.3 Radioactive decay",
+       "subtopics": [
+        {
+         "id": "radioactive-decay",
+         "title": "Radioactive decay",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe types of radioactive decay and calculate decay rates and half-life."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "e-4-fission",
+       "title": "E.4 Fission",
+       "subtopics": [
+        {
+         "id": "fission",
+         "title": "Fission",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain nuclear fission and how a reactor uses it."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "e-5-fusion-and-stars",
+       "title": "E.5 Fusion and stars",
+       "subtopics": [
+        {
+         "id": "fusion-and-stars",
+         "title": "Fusion and stars",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain nuclear fusion and how it powers and shapes stars."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "skills-in-the-study-of-physics",
+     "title": "Skills in the study of physics",
+     "topics": [
+      {
+       "id": "tools",
+       "title": "Tools",
+       "subtopics": [
+        {
+         "id": "experimental-techniques",
+         "title": "Experimental techniques",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Use appropriate experimental techniques in physics investigations."
+          }
+         ]
+        },
+        {
+         "id": "technology",
+         "title": "Technology",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Use technology for data collection, analysis and modelling."
+          }
+         ]
+        },
+        {
+         "id": "mathematics",
+         "title": "Mathematics",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Apply mathematical methods to physics data and problems."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "inquiry-process",
+       "title": "Inquiry process",
+       "subtopics": [
+        {
+         "id": "exploring-and-designing",
+         "title": "Exploring and designing",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explore a question and design an investigation."
+          }
+         ]
+        },
+        {
+         "id": "collecting-and-processing-data",
+         "title": "Collecting and processing data",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Collect and process data, including uncertainty."
+          }
+         ]
+        },
+        {
+         "id": "concluding-and-evaluating",
+         "title": "Concluding and evaluating",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Draw conclusions and evaluate an investigation."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "build": {
+  "builtAt": "2026-10-14T10:53:54.512Z",
+  "model": "claude-agent",
+  "usd": 0,
+  "expectedCodes": null,
+  "coverage": null,
+  "missingCodes": [],
+  "counts": {
+   "grades": 1,
+   "units": 6,
+   "topics": 26,
+   "subtopics": 30,
+   "outcomes": 30
+  },
+  "warnings": [
+   "grade DP year 1 has no content",
+   "grade DP year 2 has no content",
+   "unexpected grade label \"all\""
+  ]
+ }
+}

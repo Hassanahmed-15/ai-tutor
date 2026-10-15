@@ -1,0 +1,710 @@
+{
+ "id": "ib-dp-biology",
+ "region": "INTL",
+ "framework": "International Baccalaureate Diploma Programme (DP)",
+ "board": "IB",
+ "qualification": "IB Diploma Programme",
+ "subject": "Biology (SL and HL)",
+ "syllabusCode": null,
+ "gradeSystem": "course",
+ "source": {
+  "urls": [
+   "https://www.ibo.org/globalassets/new-structure/recognition/pdfs/dp_sciences_biology_subject-brief_jan_2022_e.pdf",
+   "https://web.archive.org/web/20221009062312id_/https://www.ibo.org/globalassets/new-structure/recognition/pdfs/dp_sciences_biology_subject-brief_jan_2022_e.pdf"
+  ],
+  "publisher": "International Baccalaureate Organization",
+  "licence": "(c) International Baccalaureate Organization; all rights reserved, no open licence. ibo.org terms 1.8: IB copyrighted materials are licensed only under the IB's terms or a signed agreement; 'Any use not expressly permitted is prohibited unless special permission is obtained in writing from the IB'; 1.9: nothing on the IB websites confers any licence. Briefs are free public marketing summaries: take topic structure only, write everything in our own words, never reproduce brief text, and do not use IB logos/trade marks. Full subject guides are sold to schools and were NOT used. Terms: https://www.ibo.org/terms-and-conditions/ and https://www.ibo.org/copyright",
+  "firstExam": "2025"
+ },
+ "grades": [
+  {
+   "grade": "all",
+   "units": [
+    {
+     "id": "unity-and-diversity",
+     "title": "Unity and diversity",
+     "topics": [
+      {
+       "id": "water",
+       "title": "Water",
+       "subtopics": [
+        {
+         "id": "water",
+         "title": "Water",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Study water and its place in living systems."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "nucleic-acids",
+       "title": "Nucleic acids",
+       "subtopics": [
+        {
+         "id": "nucleic-acids",
+         "title": "Nucleic acids",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Study nucleic acids."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "origins-of-cells",
+       "title": "Origins of cells",
+       "subtopics": [
+        {
+         "id": "origins-of-cells",
+         "title": "Origins of cells",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Study how cells originated (higher level only)."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "cell-structure",
+       "title": "Cell structure",
+       "subtopics": [
+        {
+         "id": "cell-structure",
+         "title": "Cell structure",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Study the structure of cells."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "viruses",
+       "title": "Viruses",
+       "subtopics": [
+        {
+         "id": "viruses",
+         "title": "Viruses",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Study viruses (higher level only)."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "diversity-of-organisms",
+       "title": "Diversity of organisms",
+       "subtopics": [
+        {
+         "id": "diversity-of-organisms",
+         "title": "Diversity of organisms",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Study the diversity of living organisms."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "classification-and-cladistics",
+       "title": "Classification and cladistics",
+       "subtopics": [
+        {
+         "id": "classification-and-cladistics",
+         "title": "Classification and cladistics",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Study classifying organisms and cladistics (higher level only)."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "evolution-and-speciation",
+       "title": "Evolution and speciation",
+       "subtopics": [
+        {
+         "id": "evolution-and-speciation",
+         "title": "Evolution and speciation",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Study evolution and the formation of new species."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "conservation-of-biodiversity",
+       "title": "Conservation of biodiversity",
+       "subtopics": [
+        {
+         "id": "conservation-of-biodiversity",
+         "title": "Conservation of biodiversity",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Study conserving biodiversity."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "form-and-function",
+     "title": "Form and function",
+     "topics": [
+      {
+       "id": "carbohydrates-and-lipids",
+       "title": "Carbohydrates and lipids",
+       "subtopics": [
+        {
+         "id": "carbohydrates-and-lipids",
+         "title": "Carbohydrates and lipids",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Study carbohydrates and lipids."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "proteins",
+       "title": "Proteins",
+       "subtopics": [
+        {
+         "id": "proteins",
+         "title": "Proteins",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Study proteins."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "membranes-and-membrane-transport",
+       "title": "Membranes and membrane transport",
+       "subtopics": [
+        {
+         "id": "membranes-and-membrane-transport",
+         "title": "Membranes and membrane transport",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Study membranes and how substances cross them."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "organelles-and-compartmentalization",
+       "title": "Organelles and compartmentalization",
+       "subtopics": [
+        {
+         "id": "organelles-and-compartmentalization",
+         "title": "Organelles and compartmentalization",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Study organelles and compartments within cells."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "cell-specialization",
+       "title": "Cell specialization",
+       "subtopics": [
+        {
+         "id": "cell-specialization",
+         "title": "Cell specialization",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Study how cells specialise."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "gas-exchange",
+       "title": "Gas exchange",
+       "subtopics": [
+        {
+         "id": "gas-exchange",
+         "title": "Gas exchange",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Study gas exchange in organisms."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "transport",
+       "title": "Transport",
+       "subtopics": [
+        {
+         "id": "transport",
+         "title": "Transport",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Study transport within organisms."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "muscle-and-motility",
+       "title": "Muscle and motility",
+       "subtopics": [
+        {
+         "id": "muscle-and-motility",
+         "title": "Muscle and motility",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Study muscle and movement (higher level only)."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "adaptation-to-environment",
+       "title": "Adaptation to environment",
+       "subtopics": [
+        {
+         "id": "adaptation-to-environment",
+         "title": "Adaptation to environment",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Study how organisms adapt to their environment."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "ecological-niches",
+       "title": "Ecological niches",
+       "subtopics": [
+        {
+         "id": "ecological-niches",
+         "title": "Ecological niches",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Study ecological niches."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "interaction-and-interdependence",
+     "title": "Interaction and interdependence",
+     "topics": [
+      {
+       "id": "enzymes-and-metabolism",
+       "title": "Enzymes and metabolism",
+       "subtopics": [
+        {
+         "id": "enzymes-and-metabolism",
+         "title": "Enzymes and metabolism",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Study enzymes and metabolism."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "cell-respiration",
+       "title": "Cell respiration",
+       "subtopics": [
+        {
+         "id": "cell-respiration",
+         "title": "Cell respiration",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Study cell respiration."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "photosynthesis",
+       "title": "Photosynthesis",
+       "subtopics": [
+        {
+         "id": "photosynthesis",
+         "title": "Photosynthesis",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Study photosynthesis."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "chemical-signalling",
+       "title": "Chemical signalling",
+       "subtopics": [
+        {
+         "id": "chemical-signalling",
+         "title": "Chemical signalling",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Study chemical signalling (higher level only)."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "neural-signalling",
+       "title": "Neural signalling",
+       "subtopics": [
+        {
+         "id": "neural-signalling",
+         "title": "Neural signalling",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Study neural signalling."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "integration-of-body-systems",
+       "title": "Integration of body systems",
+       "subtopics": [
+        {
+         "id": "integration-of-body-systems",
+         "title": "Integration of body systems",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Study how body systems are integrated."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "defence-against-disease",
+       "title": "Defence against disease",
+       "subtopics": [
+        {
+         "id": "defence-against-disease",
+         "title": "Defence against disease",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Study defence against disease."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "populations-and-communities",
+       "title": "Populations and communities",
+       "subtopics": [
+        {
+         "id": "populations-and-communities",
+         "title": "Populations and communities",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Study populations and communities."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "transfer-of-energy-and-matter",
+       "title": "Transfer of energy and matter",
+       "subtopics": [
+        {
+         "id": "transfer-of-energy-and-matter",
+         "title": "Transfer of energy and matter",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Study how energy and matter transfer through ecosystems."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "continuity-and-change",
+     "title": "Continuity and change",
+     "topics": [
+      {
+       "id": "dna-replication",
+       "title": "DNA replication",
+       "subtopics": [
+        {
+         "id": "dna-replication",
+         "title": "DNA replication",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Study DNA replication."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "protein-synthesis",
+       "title": "Protein synthesis",
+       "subtopics": [
+        {
+         "id": "protein-synthesis",
+         "title": "Protein synthesis",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Study protein synthesis."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "mutations-and-gene-editing",
+       "title": "Mutations and gene editing",
+       "subtopics": [
+        {
+         "id": "mutations-and-gene-editing",
+         "title": "Mutations and gene editing",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Study mutations and gene editing."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "cell-and-nuclear-division",
+       "title": "Cell and nuclear division",
+       "subtopics": [
+        {
+         "id": "cell-and-nuclear-division",
+         "title": "Cell and nuclear division",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Study cell and nuclear division."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "gene-expression",
+       "title": "Gene expression",
+       "subtopics": [
+        {
+         "id": "gene-expression",
+         "title": "Gene expression",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Study gene expression (higher level only)."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "water-potential",
+       "title": "Water potential",
+       "subtopics": [
+        {
+         "id": "water-potential",
+         "title": "Water potential",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Study water potential."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "reproduction",
+       "title": "Reproduction",
+       "subtopics": [
+        {
+         "id": "reproduction",
+         "title": "Reproduction",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Study reproduction."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "inheritance",
+       "title": "Inheritance",
+       "subtopics": [
+        {
+         "id": "inheritance",
+         "title": "Inheritance",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Study inheritance."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "homeostasis",
+       "title": "Homeostasis",
+       "subtopics": [
+        {
+         "id": "homeostasis",
+         "title": "Homeostasis",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Study homeostasis."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "natural-selection",
+       "title": "Natural selection",
+       "subtopics": [
+        {
+         "id": "natural-selection",
+         "title": "Natural selection",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Study natural selection."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "sustainability-and-change",
+       "title": "Sustainability and change",
+       "subtopics": [
+        {
+         "id": "sustainability-and-change",
+         "title": "Sustainability and change",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Study sustainability and change in ecosystems."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "climate-change",
+       "title": "Climate change",
+       "subtopics": [
+        {
+         "id": "climate-change",
+         "title": "Climate change",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Study climate change."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "build": {
+  "builtAt": "2026-10-14T10:52:14.078Z",
+  "model": "claude-agent",
+  "usd": 0,
+  "expectedCodes": null,
+  "coverage": null,
+  "missingCodes": [],
+  "counts": {
+   "grades": 1,
+   "units": 4,
+   "topics": 40,
+   "subtopics": 40,
+   "outcomes": 40
+  },
+  "warnings": [
+   "grade DP year 1 has no content",
+   "grade DP year 2 has no content",
+   "unexpected grade label \"all\""
+  ]
+ }
+}

@@ -1,0 +1,1198 @@
+{
+ "id": "us-id-health",
+ "region": "US",
+ "framework": "Idaho state academic standards: Health Education",
+ "board": null,
+ "qualification": "K-12",
+ "subject": "Health Education",
+ "syllabusCode": null,
+ "gradeSystem": "grade",
+ "source": {
+  "urls": [
+   "https://api.commonstandardsproject.com/api/v1/jurisdictions/E8D078CED3B44AAD956D244FA0E47636",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/E8D078CED3B44AAD956D244FA0E47636_D2374072_grades-01-02-k",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/E8D078CED3B44AAD956D244FA0E47636_D2374072_grades-03-04-05",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/E8D078CED3B44AAD956D244FA0E47636_D2374072_grades-06-07-08",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/E8D078CED3B44AAD956D244FA0E47636_D2374072_grades-09-10-11-12"
+  ],
+  "publisher": "Idaho state education agency (machine-readable via Common Standards Project / ASN)",
+  "licence": "CC BY 3.0 US, JES & Co.",
+  "firstExam": "2010"
+ },
+ "grades": [
+  {
+   "grade": "K-2",
+   "units": [
+    {
+     "id": "comprehend-core-concepts",
+     "title": "Comprehend Core Concepts",
+     "topics": [
+      {
+       "id": "students-will-comprehend-core-concepts-related-t",
+       "title": "Students will comprehend core concepts related to health promotion and disease prevention to enhance health including: Alcohol, Tobacco and Other Drugs; Nutrition and Physical Activity, Injury Prevention and Safety; Mental, Emotional and Social Health; Prevention and Control of Disease; Consumer and Community Health; Growth, Development and Family Life; and Environmental Health",
+       "subtopics": [
+        {
+         "id": "students-will-comprehend-core-concepts-related-t",
+         "title": "Students will comprehend core concepts related to health promotion and disease prevention to enhance health including: Alcohol, Tobacco and Other Drugs; Nutrition and Physical Activity, Injury Prevention and Safety; Mental, Emotional and Social Health; Prevention and Control of Disease; Consumer and Community Health; Growth, Development and Family Life; and Environmental Health",
+         "outcomes": [
+          {
+           "code": "K-2.H.1.1.1",
+           "text": "Identify that healthy behaviors affect personal health."
+          },
+          {
+           "code": "K-2.H.1.1.2",
+           "text": "Recognize that there are multiple dimensions (i.e. emotional, intellectual, physical and social) of health."
+          },
+          {
+           "code": "K-2.H.1.1.3",
+           "text": "Describe ways to prevent communicable diseases."
+          },
+          {
+           "code": "K-2.H.1.1.4",
+           "text": "List ways to prevent common childhood injuries."
+          },
+          {
+           "code": "K-2.H.1.1.5",
+           "text": "Describe why it is important to seek health care."
+          },
+          {
+           "code": "K-2.H.1.1.6",
+           "text": "Identify body systems."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "analyzing-influences",
+     "title": "Analyzing Influences",
+     "topics": [
+      {
+       "id": "students-will-analyze-the-influence-of-family-pe",
+       "title": "Students will analyze the influence of family, peers, culture, media, technology, and other factors on health behavior",
+       "subtopics": [
+        {
+         "id": "students-will-analyze-the-influence-of-family-pe",
+         "title": "Students will analyze the influence of family, peers, culture, media, technology, and other factors on health behavior",
+         "outcomes": [
+          {
+           "code": "K-2.H.2.1.1",
+           "text": "Identify how the family influences personal health practices and behaviors."
+          },
+          {
+           "code": "K-2.H.2.1.2",
+           "text": "Identify what the school can do to support personal health practices and behaviors."
+          },
+          {
+           "code": "K-2.H.2.1.3",
+           "text": "Describe how the media can influence health behaviors."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "accessing-information",
+     "title": "Accessing Information",
+     "topics": [
+      {
+       "id": "students-will-demonstrate-the-ability-to-access-",
+       "title": "Students will demonstrate the ability to access valid information and products and services to enhance health",
+       "subtopics": [
+        {
+         "id": "students-will-demonstrate-the-ability-to-access-",
+         "title": "Students will demonstrate the ability to access valid information and products and services to enhance health",
+         "outcomes": [
+          {
+           "code": "K-2.H.3.1.1",
+           "text": "Identify trusted adults and professionals who can help promote health."
+          },
+          {
+           "code": "K-2.H.3.1.2",
+           "text": "Identify ways to locate school and community health helpers."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "interpersonal-communication",
+     "title": "Interpersonal Communication",
+     "topics": [
+      {
+       "id": "students-will-demonstrate-the-ability-to-use-int",
+       "title": "Students will demonstrate the ability to use interpersonal communication skills to enhance health and avoid or reduce health risks",
+       "subtopics": [
+        {
+         "id": "students-will-demonstrate-the-ability-to-use-int",
+         "title": "Students will demonstrate the ability to use interpersonal communication skills to enhance health and avoid or reduce health risks",
+         "outcomes": [
+          {
+           "code": "K-2.H.4.1.1",
+           "text": "Demonstrate healthy ways to express needs, wants, and feelings."
+          },
+          {
+           "code": "K-2.H.4.1.2",
+           "text": "Demonstrate listening skills to enhance health."
+          },
+          {
+           "code": "K-2.H.4.1.3",
+           "text": "Demonstrate ways to respond when in an unwanted, threatening, or dangerous situation."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "decision-making",
+     "title": "Decision Making",
+     "topics": [
+      {
+       "id": "students-will-demonstrate-the-ability-to-use-dec",
+       "title": "Students will demonstrate the ability to use decision-making skills to enhance health",
+       "subtopics": [
+        {
+         "id": "students-will-demonstrate-the-ability-to-use-dec",
+         "title": "Students will demonstrate the ability to use decision-making skills to enhance health",
+         "outcomes": [
+          {
+           "code": "K-2.H.5.1.1",
+           "text": "Identify situations when a health-related decision is needed."
+          },
+          {
+           "code": "K-2.H.5.1.2",
+           "text": "Differentiate between situations when a health-related decision can be made individually or when assistance is needed."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "goal-setting",
+     "title": "Goal Setting",
+     "topics": [
+      {
+       "id": "students-will-demonstrate-the-ability-to-use-goa",
+       "title": "Students will demonstrate the ability to use goal-setting skills to enhance health",
+       "subtopics": [
+        {
+         "id": "students-will-demonstrate-the-ability-to-use-goa",
+         "title": "Students will demonstrate the ability to use goal-setting skills to enhance health",
+         "outcomes": [
+          {
+           "code": "K-2.H.6.1.1",
+           "text": "Identify a short-term personal health goal and take action towards achieving the goal."
+          },
+          {
+           "code": "K-2.H.6.1.2",
+           "text": "Identify who can help when assistance is needed to achieve a personal health goal."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "practice-healthy-behavior",
+     "title": "Practice Healthy Behavior",
+     "topics": [
+      {
+       "id": "students-will-demonstrate-the-ability-to-practic",
+       "title": "Students will demonstrate the ability to practice health-enhancing behaviors and avoid or reduce health risks",
+       "subtopics": [
+        {
+         "id": "students-will-demonstrate-the-ability-to-practic",
+         "title": "Students will demonstrate the ability to practice health-enhancing behaviors and avoid or reduce health risks",
+         "outcomes": [
+          {
+           "code": "K-2.H.7.1.1",
+           "text": "Demonstrate healthy practices and behaviors to maintain or improve personal health."
+          },
+          {
+           "code": "K-2.H.7.1.2",
+           "text": "Demonstrate behaviors that avoid or reduce health risks."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "advocacy",
+     "title": "Advocacy",
+     "topics": [
+      {
+       "id": "students-will-demonstrate-the-ability-to-advocat",
+       "title": "Students will demonstrate the ability to advocate for personal, family, and community health",
+       "subtopics": [
+        {
+         "id": "students-will-demonstrate-the-ability-to-advocat",
+         "title": "Students will demonstrate the ability to advocate for personal, family, and community health",
+         "outcomes": [
+          {
+           "code": "K-2.H.8.1.1",
+           "text": "Make requests to promote personal health."
+          },
+          {
+           "code": "K-2.H.8.1.2",
+           "text": "Encourage peers and family to make positive health choices."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "3-5",
+   "units": [
+    {
+     "id": "comprehend-core-concepts",
+     "title": "Comprehend Core Concepts",
+     "topics": [
+      {
+       "id": "students-will-comprehend-core-concepts-related-t",
+       "title": "Students will comprehend core concepts related to health promotion and disease prevention to enhance health including: Alcohol, Tobacco and Other Drugs; Nutrition and Physical Activity, Injury Prevention and Safety; Mental, Emotional and Social Health; Prevention and Control of Disease; Consumer and Community Health; Growth, Development and Family Life; and Environmental Health",
+       "subtopics": [
+        {
+         "id": "students-will-comprehend-core-concepts-related-t",
+         "title": "Students will comprehend core concepts related to health promotion and disease prevention to enhance health including: Alcohol, Tobacco and Other Drugs; Nutrition and Physical Activity, Injury Prevention and Safety; Mental, Emotional and Social Health; Prevention and Control of Disease; Consumer and Community Health; Growth, Development and Family Life; and Environmental Health",
+         "outcomes": [
+          {
+           "code": "3-5.H.1.1.1",
+           "text": "Describe the relationship between healthy behaviors and personal health."
+          },
+          {
+           "code": "3-5.H.1.1.2",
+           "text": "Identify examples of emotional, intellectual, physical, and social health."
+          },
+          {
+           "code": "3-5.H.1.1.3",
+           "text": "Describe ways in which a safe and healthy school and community environment can promote personal health."
+          },
+          {
+           "code": "3-5.H.1.1.4",
+           "text": "Describe ways to prevent common childhood injuries and health problems."
+          },
+          {
+           "code": "3-5.H.1.1.5",
+           "text": "Describe when it is important to seek health care."
+          },
+          {
+           "code": "3-5.H.1.1.6",
+           "text": "Describe the impact of health behaviors on body systems."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "analyzing-influences",
+     "title": "Analyzing Influences",
+     "topics": [
+      {
+       "id": "students-will-analyze-the-influence-of-family-pe",
+       "title": "Students will analyze the influence of family, peers, culture, media, technology, and other factors on health behavior",
+       "subtopics": [
+        {
+         "id": "students-will-analyze-the-influence-of-family-pe",
+         "title": "Students will analyze the influence of family, peers, culture, media, technology, and other factors on health behavior",
+         "outcomes": [
+          {
+           "code": "3-5.H.2.1.1",
+           "text": "Describe how the family influences personal health practices and behaviors."
+          },
+          {
+           "code": "3-5.H.2.1.2",
+           "text": "Identify the influences of culture on health practices and behaviors."
+          },
+          {
+           "code": "3-5.H.2.1.3",
+           "text": "Identify how peers can influence healthy and unhealthy behaviors."
+          },
+          {
+           "code": "3-5.H.2.1.4",
+           "text": "Describe how the school and community can support personal health practices and behaviors."
+          },
+          {
+           "code": "3-5.H.2.1.5",
+           "text": "Describe ways that technology can influences personal health."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "accessing-information",
+     "title": "Accessing Information",
+     "topics": [
+      {
+       "id": "students-will-demonstrate-the-ability-to-access-",
+       "title": "Students will demonstrate the ability to access valid information and products and services to enhance health",
+       "subtopics": [
+        {
+         "id": "students-will-demonstrate-the-ability-to-access-",
+         "title": "Students will demonstrate the ability to access valid information and products and services to enhance health",
+         "outcomes": [
+          {
+           "code": "3-5.H.3.1.1",
+           "text": "Identify characteristics of valid health information, products, and services."
+          },
+          {
+           "code": "3-5.H.3.1.2",
+           "text": "Locate resources from home, school, and community that provide valid health information."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "interpersonal-communication",
+     "title": "Interpersonal Communication",
+     "topics": [
+      {
+       "id": "students-will-demonstrate-the-ability-to-use-int",
+       "title": "Students will demonstrate the ability to use interpersonal communication skills to enhance health and avoid or reduce health risks",
+       "subtopics": [
+        {
+         "id": "students-will-demonstrate-the-ability-to-use-int",
+         "title": "Students will demonstrate the ability to use interpersonal communication skills to enhance health and avoid or reduce health risks",
+         "outcomes": [
+          {
+           "code": "3-5.H.4.1.1",
+           "text": "Demonstrate effective verbal and nonverbal communication skills to enhance health."
+          },
+          {
+           "code": "3-5.H.4.1.2",
+           "text": "Demonstrate refusal skills that avoid or reduce health risks."
+          },
+          {
+           "code": "3-5.H.4.1.3",
+           "text": "Demonstrate nonviolent strategies to manage or resolve conflict."
+          },
+          {
+           "code": "3-5.H.4.1.4",
+           "text": "Demonstrate how to ask for assistance to enhance personal health."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "decision-making",
+     "title": "Decision Making",
+     "topics": [
+      {
+       "id": "students-will-demonstrate-the-ability-to-use-dec",
+       "title": "Students will demonstrate the ability to use decision-making skills to enhance health",
+       "subtopics": [
+        {
+         "id": "students-will-demonstrate-the-ability-to-use-dec",
+         "title": "Students will demonstrate the ability to use decision-making skills to enhance health",
+         "outcomes": [
+          {
+           "code": "3-5.H.5.1.1",
+           "text": "Identify health-related situations that might require a thoughtful decision."
+          },
+          {
+           "code": "3-5.H.5.1.2",
+           "text": "Analyze when assistance is needed when making a health-related decision."
+          },
+          {
+           "code": "3-5.H.5.1.3",
+           "text": "List healthy options to health related issues or problems."
+          },
+          {
+           "code": "3-5.H.5.1.4",
+           "text": "Predict the potential outcomes of each option when making a health-related decision."
+          },
+          {
+           "code": "3-5.H.5.1.5",
+           "text": "Choose a healthy option when making a decision."
+          },
+          {
+           "code": "3-5.H.5.1.6",
+           "text": "Describe the outcomes of a health related decisions."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "goal-setting",
+     "title": "Goal Setting",
+     "topics": [
+      {
+       "id": "students-will-demonstrate-the-ability-to-use-goa",
+       "title": "Students will demonstrate the ability to use goal-setting skills to enhance health",
+       "subtopics": [
+        {
+         "id": "students-will-demonstrate-the-ability-to-use-goa",
+         "title": "Students will demonstrate the ability to use goal-setting skills to enhance health",
+         "outcomes": [
+          {
+           "code": "3-5.H.6.1.1",
+           "text": "Set a personal health goal and track progress toward its achievement."
+          },
+          {
+           "code": "3-5.H.6.1.2",
+           "text": "Identify resources to assist in achieving a personal health goal."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "practice-healthy-behavior",
+     "title": "Practice Healthy Behavior",
+     "topics": [
+      {
+       "id": "students-will-demonstrate-the-ability-to-practic",
+       "title": "Students will demonstrate the ability to practice health-enhancing behaviors and avoid or reduce health risks",
+       "subtopics": [
+        {
+         "id": "students-will-demonstrate-the-ability-to-practic",
+         "title": "Students will demonstrate the ability to practice health-enhancing behaviors and avoid or reduce health risks",
+         "outcomes": [
+          {
+           "code": "3-5.H.7.1.1",
+           "text": "Identify responsible personal health behaviors."
+          },
+          {
+           "code": "3-5.H.7.1.2",
+           "text": "Demonstrate a variety of healthy practices and behaviors to maintain or improve personal health."
+          },
+          {
+           "code": "3-5.H.7.1.3",
+           "text": "Demonstrate a variety of behaviors that avoid or reduce health risks."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "advocacy",
+     "title": "Advocacy",
+     "topics": [
+      {
+       "id": "students-will-demonstrate-the-ability-to-advocat",
+       "title": "Students will demonstrate the ability to advocate for personal, family, and community health",
+       "subtopics": [
+        {
+         "id": "students-will-demonstrate-the-ability-to-advocat",
+         "title": "Students will demonstrate the ability to advocate for personal, family, and community health",
+         "outcomes": [
+          {
+           "code": "3-5.H.8.1.1",
+           "text": "Express opinions and give accurate information about health issues."
+          },
+          {
+           "code": "3-5.H.8.1.2",
+           "text": "Encourage others to make positive health choices."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "6-8",
+   "units": [
+    {
+     "id": "comprehend-core-concepts",
+     "title": "Comprehend Core Concepts",
+     "topics": [
+      {
+       "id": "students-will-comprehend-core-concepts-related-t",
+       "title": "Students will comprehend core concepts related to health promotion and disease prevention to enhance health including: Alcohol, Tobacco and Other Drugs; Nutrition and Physical Activity, Injury Prevention and Safety; Mental, Emotional and Social Health; Prevention and Control of Disease; Consumer and Community Health; Growth, Development and Family Life; and Environmental Health",
+       "subtopics": [
+        {
+         "id": "students-will-comprehend-core-concepts-related-t",
+         "title": "Students will comprehend core concepts related to health promotion and disease prevention to enhance health including: Alcohol, Tobacco and Other Drugs; Nutrition and Physical Activity, Injury Prevention and Safety; Mental, Emotional and Social Health; Prevention and Control of Disease; Consumer and Community Health; Growth, Development and Family Life; and Environmental Health (1 of 2)",
+         "outcomes": [
+          {
+           "code": "6-8.H.1.1.1",
+           "text": "Analyze the relationship between behaviors, body systems, and personal health."
+          },
+          {
+           "code": "6-8.H.1.1.2",
+           "text": "Describe the interrelationships of emotional, intellectual, physical, and social health in adolescence."
+          },
+          {
+           "code": "6-8.H.1.1.3",
+           "text": "Analyze how the environment affects personal health."
+          },
+          {
+           "code": "6-8.H.1.1.4",
+           "text": "Describe how family history can affect personal health."
+          }
+         ]
+        },
+        {
+         "id": "students-will-comprehend-core-concepts-related-t-2",
+         "title": "Students will comprehend core concepts related to health promotion and disease prevention to enhance health including: Alcohol, Tobacco and Other Drugs; Nutrition and Physical Activity, Injury Prevention and Safety; Mental, Emotional and Social Health; Prevention and Control of Disease; Consumer and Community Health; Growth, Development and Family Life; and Environmental Health (2 of 2)",
+         "outcomes": [
+          {
+           "code": "6-8.H.1.1.5",
+           "text": "Describe ways to reduce or prevent injuries and adolescent health problems."
+          },
+          {
+           "code": "6-8.H.1.1.6",
+           "text": "Explain how appropriate health care can promote personal health."
+          },
+          {
+           "code": "6-8.H.1.1.7",
+           "text": "Describe the benefits of and barriers to practicing healthy behaviors."
+          },
+          {
+           "code": "6-8.H.1.1.8",
+           "text": "Examine the likelihood of injury or illness if engaging in unhealthy behaviors."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "analyzing-influences",
+     "title": "Analyzing Influences",
+     "topics": [
+      {
+       "id": "students-will-analyze-the-influence-of-family-pe",
+       "title": "Students will analyze the influence of family, peers, culture, media, technology, and other factors on health behavior",
+       "subtopics": [
+        {
+         "id": "students-will-analyze-the-influence-of-family-pe",
+         "title": "Students will analyze the influence of family, peers, culture, media, technology, and other factors on health behavior",
+         "outcomes": [
+          {
+           "code": "6-8.H.2.1.1",
+           "text": "Examine how family, culture, peers, school, and community influence healthy and unhealthy behaviors."
+          },
+          {
+           "code": "6-8.H.2.1.2",
+           "text": "Analyze the influence of media and technology on personal and family health."
+          },
+          {
+           "code": "6-8.H.2.1.3",
+           "text": "Explain how the perceptions of norms influence healthy and unhealthy behaviors."
+          },
+          {
+           "code": "6-8.H.2.1.4",
+           "text": "Explain the influence of personal values and beliefs on individual health practices and behaviors."
+          },
+          {
+           "code": "6-8.H.2.1.5",
+           "text": "Describe how some health risk behaviors can influence the likelihood of engaging in unhealthy behaviors."
+          },
+          {
+           "code": "6-8.H.2.1.6",
+           "text": "Explain how school and public health policies can influence health promotion and disease prevention."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "accessing-information",
+     "title": "Accessing Information",
+     "topics": [
+      {
+       "id": "students-will-demonstrate-the-ability-to-access-",
+       "title": "Students will demonstrate the ability to access valid information and products and services to enhance health",
+       "subtopics": [
+        {
+         "id": "students-will-demonstrate-the-ability-to-access-",
+         "title": "Students will demonstrate the ability to access valid information and products and services to enhance health",
+         "outcomes": [
+          {
+           "code": "6-8.H.3.1.1",
+           "text": "Analyze the validity of healthy information, products, and services."
+          },
+          {
+           "code": "6-8.H.3.1.2",
+           "text": "Access valid health information from home, school, and community."
+          },
+          {
+           "code": "6-8.H.3.1.3",
+           "text": "Locate reliable and valid health products and services and determine accessibility."
+          },
+          {
+           "code": "6-8.H.3.1.4",
+           "text": "Describe situations that may require professional health services."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "interpersonal-communication",
+     "title": "Interpersonal Communication",
+     "topics": [
+      {
+       "id": "students-will-demonstrate-the-ability-to-use-int",
+       "title": "Students will demonstrate the ability to use interpersonal communication skills to enhance health and avoid or reduce health risks",
+       "subtopics": [
+        {
+         "id": "students-will-demonstrate-the-ability-to-use-int",
+         "title": "Students will demonstrate the ability to use interpersonal communication skills to enhance health and avoid or reduce health risks",
+         "outcomes": [
+          {
+           "code": "6-8.H.4.1.1",
+           "text": "Apply effective verbal and nonverbal communication skills to enhance health."
+          },
+          {
+           "code": "6-8.H.4.1.2",
+           "text": "Demonstrate refusal and negotiation skills that avoid or reduce health risks."
+          },
+          {
+           "code": "6-8.H.4.1.3",
+           "text": "Demonstrate effective conflict management or resolution strategies."
+          },
+          {
+           "code": "6-8.H.4.1.4",
+           "text": "Demonstrate how to ask for assistance to enhance the health of self and others."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "decision-making",
+     "title": "Decision Making",
+     "topics": [
+      {
+       "id": "students-will-demonstrate-the-ability-to-use-dec",
+       "title": "Students will demonstrate the ability to use decision-making skills to enhance health",
+       "subtopics": [
+        {
+         "id": "students-will-demonstrate-the-ability-to-use-dec",
+         "title": "Students will demonstrate the ability to use decision-making skills to enhance health (1 of 2)",
+         "outcomes": [
+          {
+           "code": "6-8.H.5.1.1",
+           "text": "Identify circumstances that can help or hinder healthy decision-making."
+          },
+          {
+           "code": "6-8.H.5.1.2",
+           "text": "Determine when health-related situations require the application of a thoughtful decision-making process."
+          },
+          {
+           "code": "6-8.H.5.1.3",
+           "text": "Distinguish when individual or collaborate decision-making is appropriate."
+          },
+          {
+           "code": "6-8.H.5.1.4",
+           "text": "Distinguish between healthy and unhealthy alternatives to health-related issues or problems."
+          }
+         ]
+        },
+        {
+         "id": "students-will-demonstrate-the-ability-to-use-dec-2",
+         "title": "Students will demonstrate the ability to use decision-making skills to enhance health (2 of 2)",
+         "outcomes": [
+          {
+           "code": "6-8.H.5.1.5",
+           "text": "Predict the potential short-term and long-term impact of each alternative on self and others."
+          },
+          {
+           "code": "6-8.H.5.1.6",
+           "text": "Choose healthy alternatives over unhealthy alternatives when making a decision."
+          },
+          {
+           "code": "6-8.H.5.1.7",
+           "text": "Analyze the outcomes of a health-related decision."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "goal-setting",
+     "title": "Goal Setting",
+     "topics": [
+      {
+       "id": "students-will-demonstrate-the-ability-to-use-goa",
+       "title": "Students will demonstrate the ability to use goal-setting skills to enhance health",
+       "subtopics": [
+        {
+         "id": "students-will-demonstrate-the-ability-to-use-goa",
+         "title": "Students will demonstrate the ability to use goal-setting skills to enhance health",
+         "outcomes": [
+          {
+           "code": "6-8.H.6.1.1",
+           "text": "Assess personal health practices."
+          },
+          {
+           "code": "6-8.H.6.1.2",
+           "text": "Develop a goal to adopt, maintain, or improve a personal health practice."
+          },
+          {
+           "code": "6-8.H.6.1.3",
+           "text": "Apply strategies and skills needed to attain a personal health goal."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "practice-healthy-behavior",
+     "title": "Practice Healthy Behavior",
+     "topics": [
+      {
+       "id": "students-will-demonstrate-the-ability-to-practic",
+       "title": "Students will demonstrate the ability to practice health-enhancing behaviors and avoid or reduce health risks",
+       "subtopics": [
+        {
+         "id": "students-will-demonstrate-the-ability-to-practic",
+         "title": "Students will demonstrate the ability to practice health-enhancing behaviors and avoid or reduce health risks",
+         "outcomes": [
+          {
+           "code": "6-8.H.7.1.1",
+           "text": "Explain the importance of assuming responsibility for personal health behaviors."
+          },
+          {
+           "code": "6-8.H.7.1.2",
+           "text": "Demonstrate healthy practices and behaviors that will maintain or improve the health of self and others."
+          },
+          {
+           "code": "6-8.H.7.1.3",
+           "text": "Demonstrate behaviors that avoid or reduce health risks to self and others."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "advocacy",
+     "title": "Advocacy",
+     "topics": [
+      {
+       "id": "students-will-demonstrate-the-ability-to-advocat",
+       "title": "Students will demonstrate the ability to advocate for personal, family, and community health",
+       "subtopics": [
+        {
+         "id": "students-will-demonstrate-the-ability-to-advocat",
+         "title": "Students will demonstrate the ability to advocate for personal, family, and community health",
+         "outcomes": [
+          {
+           "code": "6-8.H.8.1.1",
+           "text": "State a health-enhancing position on a topic and support it with accurate information."
+          },
+          {
+           "code": "6-8.H.8.1.2",
+           "text": "Demonstrate how to influence and support others to make positive health choices."
+          },
+          {
+           "code": "6-8.H.8.1.3",
+           "text": "Work cooperatively to advocate for the health of individuals, families, schools and the community."
+          },
+          {
+           "code": "6-8.H.8.1.4",
+           "text": "Identify ways in which health messages and communication techniques can be altered for different audiences."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "9-12",
+   "units": [
+    {
+     "id": "comprehend-core-concepts",
+     "title": "Comprehend Core Concepts",
+     "topics": [
+      {
+       "id": "students-will-comprehend-core-concepts-related-t",
+       "title": "Students will comprehend core concepts related to health promotion and disease prevention to enhance health including: Alcohol, Tobacco and Other Drugs; Nutrition and Physical Activity, Injury Prevention and Safety; Mental, Emotional and Social Health; Prevention and Control of Disease; Consumer and Community Health; Growth, Development and Family Life; and Environmental Health",
+       "subtopics": [
+        {
+         "id": "students-will-comprehend-core-concepts-related-t",
+         "title": "Students will comprehend core concepts related to health promotion and disease prevention to enhance health including: Alcohol, Tobacco and Other Drugs; Nutrition and Physical Activity, Injury Prevention and Safety; Mental, Emotional and Social Health; Prevention and Control of Disease; Consumer and Community Health; Growth, Development and Family Life; and Environmental Health (1 of 2)",
+         "outcomes": [
+          {
+           "code": "9-12.H.1.1.1",
+           "text": "Predict how behaviors can affect health status."
+          },
+          {
+           "code": "9-12.H.1.1.2",
+           "text": "Describe the interrelationships of emotional, intellectual, physical, and social health."
+          },
+          {
+           "code": "9-12.H.1.1.3",
+           "text": "Analyze how environment and personal health are interrelated."
+          },
+          {
+           "code": "9-12.H.1.1.4",
+           "text": "Analyze how genetics and family history can affect personal health."
+          }
+         ]
+        },
+        {
+         "id": "students-will-comprehend-core-concepts-related-t-2",
+         "title": "Students will comprehend core concepts related to health promotion and disease prevention to enhance health including: Alcohol, Tobacco and Other Drugs; Nutrition and Physical Activity, Injury Prevention and Safety; Mental, Emotional and Social Health; Prevention and Control of Disease; Consumer and Community Health; Growth, Development and Family Life; and Environmental Health (2 of 2)",
+         "outcomes": [
+          {
+           "code": "9-12.H.1.1.5",
+           "text": "Propose ways to reduce health problems."
+          },
+          {
+           "code": "9-12.H.1.1.6",
+           "text": "Analyze the relationship between access to health care and health status."
+          },
+          {
+           "code": "9-12.H.1.1.7",
+           "text": "Compare and contrast the benefits of and barriers to practicing a variety of healthy behaviors."
+          },
+          {
+           "code": "9-12.H.1.1.8",
+           "text": "Analyze the potential severity of health problems that result from engaging in unhealthy behaviors."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "analyzing-influences",
+     "title": "Analyzing Influences",
+     "topics": [
+      {
+       "id": "students-will-analyze-the-influence-of-family-pe",
+       "title": "Students will analyze the influence of family, peers, culture, media, technology, and other factors on health behavior",
+       "subtopics": [
+        {
+         "id": "students-will-analyze-the-influence-of-family-pe",
+         "title": "Students will analyze the influence of family, peers, culture, media, technology, and other factors on health behavior (1 of 2)",
+         "outcomes": [
+          {
+           "code": "9-12.H.2.1.1",
+           "text": "Analyze how the family and culture influence health beliefs and behaviors."
+          },
+          {
+           "code": "9-12.H.2.1.2",
+           "text": "Analyze how peers influence health beliefs and behaviors."
+          },
+          {
+           "code": "9-12.H.2.1.3",
+           "text": "Evaluate how the school and community can affect personal health practice and behaviors."
+          },
+          {
+           "code": "9-12.H.2.1.4",
+           "text": "Analyze how the media and technology influence health beliefs and behaviors."
+          }
+         ]
+        },
+        {
+         "id": "students-will-analyze-the-influence-of-family-pe-2",
+         "title": "Students will analyze the influence of family, peers, culture, media, technology, and other factors on health behavior (2 of 2)",
+         "outcomes": [
+          {
+           "code": "9-12.H.2.1.5",
+           "text": "Analyze how the perception of norms influences healthy and unhealthy behaviors."
+          },
+          {
+           "code": "9-12.H.2.1.6",
+           "text": "Analyze how some health risk behaviors can influence the likelihood of engaging in unhealthy behaviors."
+          },
+          {
+           "code": "9-12.H.2.1.7",
+           "text": "Analyze how public health policies and government regulations can influence health promotion and disease prevention."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "accessing-information",
+     "title": "Accessing Information",
+     "topics": [
+      {
+       "id": "students-will-demonstrate-the-ability-to-access-",
+       "title": "Students will demonstrate the ability to access valid information and products and services to enhance health",
+       "subtopics": [
+        {
+         "id": "students-will-demonstrate-the-ability-to-access-",
+         "title": "Students will demonstrate the ability to access valid information and products and services to enhance health",
+         "outcomes": [
+          {
+           "code": "9-12.H.3.1.1",
+           "text": "Evaluate the validity of health information, products, and services."
+          },
+          {
+           "code": "9-12.H.3.1.2",
+           "text": "Determine the accessibility of health information, products, and services."
+          },
+          {
+           "code": "9-12.H.3.1.3",
+           "text": "Access valid and reliable health information, products, and services."
+          },
+          {
+           "code": "9-12.H.3.1.4",
+           "text": "Use resources from home, school, and community that provide valid health information."
+          },
+          {
+           "code": "9-12.H.3.1.5",
+           "text": "Determine when professional health services may be required."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "interpersonal-communication",
+     "title": "Interpersonal Communication",
+     "topics": [
+      {
+       "id": "students-will-demonstrate-the-ability-to-use-int",
+       "title": "Students will demonstrate the ability to use interpersonal communication skills to enhance health and avoid or reduce health risks",
+       "subtopics": [
+        {
+         "id": "students-will-demonstrate-the-ability-to-use-int",
+         "title": "Students will demonstrate the ability to use interpersonal communication skills to enhance health and avoid or reduce health risks",
+         "outcomes": [
+          {
+           "code": "9-12.H.4.1.1",
+           "text": "Use skills for communicating effectively with family, peers, and others to enhance health."
+          },
+          {
+           "code": "9-12.H.4.1.2",
+           "text": "Demonstrate refusal, negotiation, and collaboration skills to enhance health and avoid or reduce health risks."
+          },
+          {
+           "code": "9-12.H.4.1.3",
+           "text": "Demonstrate strategies to prevent, manage, or resolve interpersonal conflicts without harming self or others."
+          },
+          {
+           "code": "9-12.H.4.1.4",
+           "text": "Demonstrate how to ask for and offer assist to enhance the health of self and others."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "decision-making",
+     "title": "Decision Making",
+     "topics": [
+      {
+       "id": "students-will-demonstrate-the-ability-to-use-dec",
+       "title": "Students will demonstrate the ability to use decision-making skills to enhance health",
+       "subtopics": [
+        {
+         "id": "students-will-demonstrate-the-ability-to-use-dec",
+         "title": "Students will demonstrate the ability to use decision-making skills to enhance health (1 of 2)",
+         "outcomes": [
+          {
+           "code": "9-12.H.5.1.1",
+           "text": "Examine barriers that can hinder healthy decision-making."
+          },
+          {
+           "code": "9-12.H.5.1.2",
+           "text": "Determine the value of applying a thoughtful decision-making process in health-related situations."
+          },
+          {
+           "code": "9-12.H.5.1.3",
+           "text": "Justify when individual or collaborative decision-making is appropriate."
+          },
+          {
+           "code": "9-12.H.5.1.4",
+           "text": "Generate alternatives to health-related issues or problems."
+          }
+         ]
+        },
+        {
+         "id": "students-will-demonstrate-the-ability-to-use-dec-2",
+         "title": "Students will demonstrate the ability to use decision-making skills to enhance health (2 of 2)",
+         "outcomes": [
+          {
+           "code": "9-12.H.5.1.5",
+           "text": "Predict the potential short-term and long-term impact of each alternative on self and others."
+          },
+          {
+           "code": "9-12.H.5.1.6",
+           "text": "Defend the healthy choice when making decisions."
+          },
+          {
+           "code": "9-12.H.5.1.7",
+           "text": "Evaluate the effectiveness of health-related decisions."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "goal-setting",
+     "title": "Goal Setting",
+     "topics": [
+      {
+       "id": "students-will-demonstrate-the-ability-to-use-goa",
+       "title": "Students will demonstrate the ability to use goal-setting skills to enhance health",
+       "subtopics": [
+        {
+         "id": "students-will-demonstrate-the-ability-to-use-goa",
+         "title": "Students will demonstrate the ability to use goal-setting skills to enhance health",
+         "outcomes": [
+          {
+           "code": "9-12.H.6.1.1",
+           "text": "Assess personal health practices and overall health status."
+          },
+          {
+           "code": "9-12.H.6.1.2",
+           "text": "Develop a plan to attain a personal health goal that addresses strengths, needs, and risks."
+          },
+          {
+           "code": "9-12.H.6.1.3",
+           "text": "Implement strategies and monitor progress in achieving a personal health goal."
+          },
+          {
+           "code": "9-12.H.6.1.4",
+           "text": "Formulate an effective long-term personal health plan."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "practice-healthy-behavior",
+     "title": "Practice Healthy Behavior",
+     "topics": [
+      {
+       "id": "students-will-demonstrate-the-ability-to-practic",
+       "title": "Students will demonstrate the ability to practice health-enhancing behaviors and avoid or reduce health risks",
+       "subtopics": [
+        {
+         "id": "students-will-demonstrate-the-ability-to-practic",
+         "title": "Students will demonstrate the ability to practice health-enhancing behaviors and avoid or reduce health risks",
+         "outcomes": [
+          {
+           "code": "9-12.H.7.1.1",
+           "text": "Analyze the role of individual responsibility in enhancing health."
+          },
+          {
+           "code": "9-12.H.7.1.2",
+           "text": "Demonstrate a variety of healthy practices and behaviors that will maintain or improve the health of self and others."
+          },
+          {
+           "code": "9-12.H.7.1.3",
+           "text": "Demonstrate a variety of healthy practices and behaviors that avoid or reduce health risks to self and others."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "advocacy",
+     "title": "Advocacy",
+     "topics": [
+      {
+       "id": "students-will-demonstrate-the-ability-to-advocat",
+       "title": "Students will demonstrate the ability to advocate for personal, family, and community health",
+       "subtopics": [
+        {
+         "id": "students-will-demonstrate-the-ability-to-advocat",
+         "title": "Students will demonstrate the ability to advocate for personal, family, and community health",
+         "outcomes": [
+          {
+           "code": "9-12.H.8.1.1",
+           "text": "Use accurate peer and societal norms to formulate a health-enhancing message."
+          },
+          {
+           "code": "9-12.H.8.1.2",
+           "text": "Demonstrate how to influence and support others to make positive health choices."
+          },
+          {
+           "code": "9-12.H.8.1.3",
+           "text": "Work cooperatively as an advocate for improving personal, family, and community health."
+          },
+          {
+           "code": "9-12.H.8.1.4",
+           "text": "Adapt health messages and communication techniques to target a specific audience."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "build": {
+  "builtAt": "2026-10-14T16:20:42.047Z",
+  "model": "none",
+  "usd": 0,
+  "expectedCodes": 133,
+  "coverage": 1,
+  "missingCodes": [],
+  "counts": {
+   "grades": 4,
+   "units": 32,
+   "topics": 32,
+   "subtopics": 37,
+   "outcomes": 133
+  },
+  "warnings": []
+ }
+}

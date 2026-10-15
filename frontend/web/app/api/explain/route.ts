@@ -6,7 +6,7 @@ import { EXPLAIN_SYSTEM_PROMPT, EXPLAIN_TEXT_ONLY_SYSTEM_PROMPT, EXPLAIN_OFFER_S
 import { sanitizeExplanation, sanitizeTextExplanation, sanitizeOfferedExplanation } from "@/lib/drawSanitize";
 import { fillReactAnimationOps, type ReactAnimationFillOptions } from "@/lib/reactAnimationGen";
 import { fillSpecBoardOps } from "@/lib/specBoardGen";
-import { isCodeQuestion } from "@/lib/codeSpec";
+import { asksForCode, isCodeQuestion, isProgrammingTopic } from "@/lib/codeSpec";
 import type { Beat } from "@/lib/lessonContent";
 import { sanitizeSourceScope } from "@/lib/sourceScope";
 import { MAX_VIDEO_CONTEXT_CHARS, MAX_VIDEO_LESSON_CHARS, VIDEO_CHAT_RULES, isVideoLessonContext, isVideoTranscriptContext } from "@/lib/youtube/videoSource";
@@ -89,6 +89,7 @@ export async function POST(req: Request) {
    */
   const rawDocumentContext = fidelityHeader.document.trim();
   const videoContext = isVideoTranscriptContext(rawDocumentContext);
+  const curriculumContext = rawDocumentContext.startsWith("Context: This is an official curriculum course lesson");
   const documentContext = rawDocumentContext.slice(0, videoContext ? MAX_VIDEO_CONTEXT_CHARS : 30000);
   const sourceScope = sanitizeSourceScope(body.sourceScope);
   const strictRequested = sourceScope ? sourceScope.fidelity === "strict" : fidelityHeader.strict;
@@ -154,7 +155,9 @@ export async function POST(req: Request) {
       ? `The whole lesson as an outline. "← PLAYING NOW" is where the student is; "(already taught)" and "(still to come)" say what they have and have not seen. If a "(still to come)" section covers this question, still answer it now, then add one short sentence saying that section goes into it later and naming it ("we'll go deeper on this in Hydraulic Actuators"). Never skip that sentence when such a section exists:\n${lessonContext}\n\n`
       : "") +
     (documentContext && !videoContext
-      ? sourceScope?.fidelity === "reference"
+      ? curriculumContext
+        ? `This is an official course lesson built from its syllabus, not an uploaded student document. Refer to it as "this lesson", "the course", or "the syllabus"; never call it "your notes" or "your document". Answer course questions accurately at the stated level:\n${documentContext}\n\n`
+      : sourceScope?.fidelity === "reference"
         /*
          * A REFERENCE LESSON's chat is not fenced by the document, and says so only in passing. The
          * student wants to know what came from their PDF without a label on every answer.
@@ -300,6 +303,20 @@ export async function POST(req: Request) {
             ...syntheticBeat.draw!,
             ops: [{ kind: "codeBoard", codeBrief: `${question} — ${brief}`.slice(0, 400), at: 0, endAt: 1 }],
           };
+        }
+        /*
+         * The reverse: a code board the MODEL chose for a question that is not about code (a
+         * calculus worked example came back as a "C++" listing tagged "From your document" —
+         * audit 2026-10-15) is redrawn as an ordinary explanation board.
+         */
+        {
+          const chosen = syntheticBeat.draw?.ops.find((op) => op.kind === "codeBoard");
+          if (chosen?.kind === "codeBoard" && !isCodeQuestion(question, documentContext, visualMode) && !asksForCode(question) && !isProgrammingTopic(`${topic} ${question}`)) {
+            syntheticBeat.draw = {
+              ...syntheticBeat.draw!,
+              ops: [{ kind: "reactAnimation", teachingPoint: chosen.codeBrief ?? question, at: 0, endAt: 1 }],
+            };
+          }
         }
         /*
          * A question about specific code gets the code itself. The board quotes the student's

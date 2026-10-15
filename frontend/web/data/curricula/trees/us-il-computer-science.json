@@ -1,0 +1,2251 @@
+{
+ "id": "us-il-computer-science",
+ "region": "US",
+ "framework": "Illinois state academic standards: Computer Science & Technology",
+ "board": null,
+ "qualification": "K-12",
+ "subject": "Computer Science & Technology",
+ "syllabusCode": null,
+ "gradeSystem": "grade",
+ "source": {
+  "urls": [
+   "https://api.commonstandardsproject.com/api/v1/jurisdictions/549159D28465455FB144F5B67F3ACDFF",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/B497858A83BB426186CAC9848B861082",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/44DE938837724CC7822B3B124BEC8247",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/9C98C19AB1CA406F96F6F26910AA482E",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/F60E00ED1B8B48A390E2E759F296F891",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/5C9D02B1120D4370A323A6BF8DD157B1",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/C18BB9850248452B803C8CC0B59287F8",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/BF26FC9BD81145B891B56BA3F1DA98A9",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/A924B124EFAE469F990B3732781A80FF"
+  ],
+  "publisher": "Illinois state education agency (machine-readable via Common Standards Project / ASN)",
+  "licence": "CC BY 4.0 US, Common Curriculum, Inc.",
+  "firstExam": "2022"
+ },
+ "grades": [
+  {
+   "grade": "K-12",
+   "units": [
+    {
+     "id": "basic-operations-concepts-and-keyboarding",
+     "title": "Basic Operations, Concepts, and Keyboarding",
+     "topics": [
+      {
+       "id": "basic-operations-concepts-and-keyboarding",
+       "title": "Basic Operations, Concepts, and Keyboarding",
+       "subtopics": [
+        {
+         "id": "basic-operations-concepts-and-keyboarding-1-of-6",
+         "title": "Basic Operations, Concepts, and Keyboarding (1 of 6)",
+         "outcomes": [
+          {
+           "code": "CL.BOCK.1",
+           "text": "Identify the basic components of the computing device, whether a computer, laptop, or hand-held device (e.g., monitor/screen, keyboard, mouse/trackpad, ports, power source)."
+          },
+          {
+           "code": "CL.BOCK.2",
+           "text": "Turn on/off a computing device and follow appropriate procedures to access the device."
+          },
+          {
+           "code": "CL.BOCK.3",
+           "text": "Use a mouse or trackpad to manipulate shapes and icons; navigate within applications (e.g., click on hyperlinks, radio buttons, check boxes, use scroll bars)."
+          },
+          {
+           "code": "CL.BOCK.4",
+           "text": "Use desktop icons, windows, and menus to open, minimize, and close applications or files."
+          },
+          {
+           "code": "CL.BOCK.5",
+           "text": "Use shortcuts and command functions to operate the computer or applications (e.g., Command-P, Command-C, Command-V, Command-Z, Ctrl-Alt- Delete, etc.)."
+          }
+         ]
+        },
+        {
+         "id": "basic-operations-concepts-and-keyboarding-2-of-6",
+         "title": "Basic Operations, Concepts, and Keyboarding (2 of 6)",
+         "outcomes": [
+          {
+           "code": "CL.BOCK.6",
+           "text": "Use gestures to navigate hand-held devices (e.g., swipe-left, swipe-right, pinch, etc.)."
+          },
+          {
+           "code": "CL.BOCK.7",
+           "text": "Locate and utilize accessibility features."
+          },
+          {
+           "code": "CL.BOCK.8",
+           "text": "Use application help functions and online resources to solve basic operational issues (e.g., connecting to Bluetooth devices, finding a printer, internet connectivity) independently."
+          },
+          {
+           "code": "CL.BOCK.9",
+           "text": "Use proper posture and ergonomics while using a computing device, including hand-held devices."
+          },
+          {
+           "code": "CL.BOCK.10",
+           "text": "Locate and use the correct finger/hand for the space bar, return/enter, and shift key."
+          }
+         ]
+        },
+        {
+         "id": "basic-operations-concepts-and-keyboarding-3-of-6",
+         "title": "Basic Operations, Concepts, and Keyboarding (3 of 6)",
+         "outcomes": [
+          {
+           "code": "CL.BOCK.11",
+           "text": "Locate and use letter and number keys with correct left and right hand placement (home row)."
+          },
+          {
+           "code": "CL.BOCK.12",
+           "text": "Learn to use special characters as needed (e.g., accents, tilde)."
+          },
+          {
+           "code": "CL.BOCK.13",
+           "text": "Use a calendar, task manager, or other tools to organize oneself as well as manage projects."
+          },
+          {
+           "code": "CL.BOCK.14",
+           "text": "Use graphic organizers, brainstorming applications, or other digital tools to gather and organize information (e.g., a Jamboard, online drawing tool, online slides)."
+          },
+          {
+           "code": "CL.BOCK.15",
+           "text": "Understand all rules and guidelines in the school's Acceptable Use Policy."
+          }
+         ]
+        },
+        {
+         "id": "basic-operations-concepts-and-keyboarding-4-of-6",
+         "title": "Basic Operations, Concepts, and Keyboarding (4 of 6)",
+         "outcomes": [
+          {
+           "code": "CL.BOCK.16",
+           "text": "Understand Fair Use guidelines and their application to all forms of work."
+          },
+          {
+           "code": "CL.BOCK.17",
+           "text": "Demonstrate understanding of the difference between cloud computing vs. software applications for file storage/management."
+          },
+          {
+           "code": "CL.BOCK.18",
+           "text": "Use login credentials to access network devices, accounts, file servers, and cloud services."
+          },
+          {
+           "code": "CL.BOCK.19",
+           "text": "Name files with appropriate file names and understand where files are being saved."
+          },
+          {
+           "code": "CL.BOCK.20",
+           "text": "Create, save, edit, copy, and rename files and folders to organize files and materials."
+          }
+         ]
+        },
+        {
+         "id": "basic-operations-concepts-and-keyboarding-5-of-6",
+         "title": "Basic Operations, Concepts, and Keyboarding (5 of 6)",
+         "outcomes": [
+          {
+           "code": "CL.BOCK.21",
+           "text": "Delete and recover deleted files and folders and permanently delete files."
+          },
+          {
+           "code": "CL.BOCK.22",
+           "text": "Retrieve previous file versions/access revision history for files located in cloud services."
+          },
+          {
+           "code": "CL.BOCK.23",
+           "text": "Download, upload, attach files/folders via the web, email, or cloud services."
+          },
+          {
+           "code": "CL.BOCK.24",
+           "text": "Compress files and folders via the web, email, or cloud services."
+          },
+          {
+           "code": "CL.BOCK.25",
+           "text": "Use search tools to locate files and applications."
+          }
+         ]
+        },
+        {
+         "id": "basic-operations-concepts-and-keyboarding-6-of-6",
+         "title": "Basic Operations, Concepts, and Keyboarding (6 of 6)",
+         "outcomes": [
+          {
+           "code": "CL.BOCK.26",
+           "text": "Associate document extensions with appropriate file types."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "students-understand-the-fundamental-concepts-of-",
+       "title": "Students understand the fundamental concepts of operations and the various technology devices. They also leverage technology to set and demonstrate competency in their learning goals. Students will be able to build their fine motor skills, along with eye-hand coordination's, as they begin to demonstrate the ability to use basic keyboard functions and touchscreen devices",
+       "subtopics": [
+        {
+         "id": "students-understand-the-fundamental-concepts-of-",
+         "title": "Students understand the fundamental concepts of operations and the various technology devices. They also leverage technology to set and demonstrate competency in their learning goals. Students will be able to build their fine motor skills, along with eye-hand coordination's, as they begin to demonstrate the ability to use basic keyboard functions and touchscreen devices (1 of 6)",
+         "outcomes": [
+          {
+           "code": "CL.BOCK.1",
+           "text": "Identify the basic components of the computing device, whether a computer, laptop or hand-held device"
+          },
+          {
+           "code": "CL>BOCK.3",
+           "text": "Turn on/off a computing device and follow appropriate procedures to access the device."
+          },
+          {
+           "code": "CL.BOCK.3",
+           "text": "Use a mouse or trackpad to manipulate shapes and icons; navigate within applications"
+          },
+          {
+           "code": "CL.BOCK.4",
+           "text": "Use desktop icons, windows, and menus to open, minimize, and close applications or files"
+          },
+          {
+           "code": "CL.BOCK.5",
+           "text": "Use shortcuts and command functions to operate the computer or application."
+          }
+         ]
+        },
+        {
+         "id": "students-understand-the-fundamental-concepts-of--2",
+         "title": "Students understand the fundamental concepts of operations and the various technology devices. They also leverage technology to set and demonstrate competency in their learning goals. Students will be able to build their fine motor skills, along with eye-hand coordination's, as they begin to demonstrate the ability to use basic keyboard functions and touchscreen devices (2 of 6)",
+         "outcomes": [
+          {
+           "code": "CL.BOCK.6",
+           "text": "Use gestures to navigate hand-held devices"
+          },
+          {
+           "code": "CL.BOCK.7",
+           "text": "Locate and utilize accessibility features"
+          },
+          {
+           "code": "CL.BOCK.8",
+           "text": "Use application help functions and online resources to solve basic operational issues"
+          },
+          {
+           "code": "CL.BOCK.9",
+           "text": "Use proper posture and ergonomics while using a computing device, including hand-held devices"
+          },
+          {
+           "code": "CL.BOCK.10",
+           "text": "Locate and use the correct finger/hand for the space bar, return/enter, and shift key"
+          }
+         ]
+        },
+        {
+         "id": "students-understand-the-fundamental-concepts-of--3",
+         "title": "Students understand the fundamental concepts of operations and the various technology devices. They also leverage technology to set and demonstrate competency in their learning goals. Students will be able to build their fine motor skills, along with eye-hand coordination's, as they begin to demonstrate the ability to use basic keyboard functions and touchscreen devices (3 of 6)",
+         "outcomes": [
+          {
+           "code": "CL.BOCK.11",
+           "text": "Locate and use letter and number keys iwth correct left and right hand placement"
+          },
+          {
+           "code": "CL.BOCK.12",
+           "text": "Learn to use special characters as needed"
+          },
+          {
+           "code": "CL.BOCK.13",
+           "text": "Use a calendar, task manager, or other tools to organize oneself as well as manage projects"
+          },
+          {
+           "code": "CL.BOCK.14",
+           "text": "Use graphic organizers, brainstorming applications, or other digital tools to gather and organize information (eg Jamboard, online drawing tool, online slides)"
+          },
+          {
+           "code": "CL.BOCK.15",
+           "text": "Understand all rules and guidelines in the school's Acceptable Use Policy"
+          }
+         ]
+        },
+        {
+         "id": "students-understand-the-fundamental-concepts-of--4",
+         "title": "Students understand the fundamental concepts of operations and the various technology devices. They also leverage technology to set and demonstrate competency in their learning goals. Students will be able to build their fine motor skills, along with eye-hand coordination's, as they begin to demonstrate the ability to use basic keyboard functions and touchscreen devices (4 of 6)",
+         "outcomes": [
+          {
+           "code": "CL.BOCK.16",
+           "text": "Understand Fair Use guidelines and their application to all forms of work"
+          },
+          {
+           "code": "CL.BOCK.17",
+           "text": "Demonstrate understanding of the difference between cloud computing vs software applications for file storage/management"
+          },
+          {
+           "code": "CL.BOCK.18",
+           "text": "Use login credentials to access network devices, accounts, file servers, and cloud services"
+          },
+          {
+           "code": "CL.BOCK.19",
+           "text": "Name files with appropriate file names and understand where files are being saved"
+          },
+          {
+           "code": "CL.BOCK.20",
+           "text": "Create, save, edit, copy and rename files and folders to organize files and materials"
+          }
+         ]
+        },
+        {
+         "id": "students-understand-the-fundamental-concepts-of--5",
+         "title": "Students understand the fundamental concepts of operations and the various technology devices. They also leverage technology to set and demonstrate competency in their learning goals. Students will be able to build their fine motor skills, along with eye-hand coordination's, as they begin to demonstrate the ability to use basic keyboard functions and touchscreen devices (5 of 6)",
+         "outcomes": [
+          {
+           "code": "CL.BOCK.21",
+           "text": "Delete and recover deleted files and folders and permanently delete files"
+          },
+          {
+           "code": "CL.BOCK.22",
+           "text": "Retrieve previous file versions/access revision history for files located in cloud services"
+          },
+          {
+           "code": "CL.BOCK.23",
+           "text": "Downloads, upload, attach files/folders via the web, email, or cloud services"
+          },
+          {
+           "code": "CL.BOCK.24",
+           "text": "Compress files and folders via the web, email or cloud services"
+          },
+          {
+           "code": "CL.BOCK.25",
+           "text": "Use search tools to locate files and applications"
+          }
+         ]
+        },
+        {
+         "id": "students-understand-the-fundamental-concepts-of--6",
+         "title": "Students understand the fundamental concepts of operations and the various technology devices. They also leverage technology to set and demonstrate competency in their learning goals. Students will be able to build their fine motor skills, along with eye-hand coordination's, as they begin to demonstrate the ability to use basic keyboard functions and touchscreen devices (6 of 6)",
+         "outcomes": [
+          {
+           "code": "CL.BOCK.26",
+           "text": "Associate document extensions with appropriate file types"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "data-management-and-security",
+     "title": "Data Management and Security",
+     "topics": [
+      {
+       "id": "data-management-and-security",
+       "title": "Data Management and Security",
+       "subtopics": [
+        {
+         "id": "data-management-and-security-1-of-3",
+         "title": "Data Management and Security (1 of 3)",
+         "outcomes": [
+          {
+           "code": "CL.DMS.1",
+           "text": "Protect accounts by logging out of applications on shared computing devices."
+          },
+          {
+           "code": "CL.DMS.2",
+           "text": "Use passwords/passphrases to secure individual devices."
+          },
+          {
+           "code": "CL.DMS.3",
+           "text": "Create robust passwords/passphrases and effectively manage password privacy."
+          },
+          {
+           "code": "CL.DMS.4",
+           "text": "Keep passwords confidential and follow appropriate procedures if a password is compromised."
+          }
+         ]
+        },
+        {
+         "id": "data-management-and-security-2-of-3",
+         "title": "Data Management and Security (2 of 3)",
+         "outcomes": [
+          {
+           "code": "CL.DMS.5",
+           "text": "Adjust privacy settings on all social media accounts, online services, devices, and browsers."
+          },
+          {
+           "code": "CL.DMS.6",
+           "text": "Apply appropriate login credential security and privacy principles to demonstrate effective and safe use of online and mobile applications to make payments."
+          },
+          {
+           "code": "CL.DMS.7",
+           "text": "Identify when sensitive personal data that may include email, phone, and online banking/credit or debit card information has been compromised and follow appropriate procedures to secure."
+          },
+          {
+           "code": "CL.DMS.8",
+           "text": "Effectively apply and use multi-factor authentication services and applications to secure sensitive information and files."
+          }
+         ]
+        },
+        {
+         "id": "data-management-and-security-3-of-3",
+         "title": "Data Management and Security (3 of 3)",
+         "outcomes": [
+          {
+           "code": "CL.DMS.9",
+           "text": "Understand the difference between public and private data and the considerations when determining privacy settings to apply for specific applications."
+          },
+          {
+           "code": "CL.DMS.10",
+           "text": "Use digital tools to follow appropriate procedures for identifying one's own digital footprint and demonstrate an understanding of managing the digital footprint."
+          },
+          {
+           "code": "CL.DMS.11",
+           "text": "Distinguish between safe and unsafe practices when using online applications (e.g., gaming platforms, social media, virtual discussion platforms)."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "students-understand-human-cultural-and-societal-",
+       "title": "Students understand human, cultural, and societal issues related to technology and practice legal and ethnical behavior. Students will be able to plan, implement and monitor cyber security measures to ensure system and account protection",
+       "subtopics": [
+        {
+         "id": "students-understand-human-cultural-and-societal-",
+         "title": "Students understand human, cultural, and societal issues related to technology and practice legal and ethnical behavior. Students will be able to plan, implement and monitor cyber security measures to ensure system and account protection (1 of 3)",
+         "outcomes": [
+          {
+           "code": "CL.DMS.1",
+           "text": "Protect accounts by logging out of applications on shared computing devices"
+          },
+          {
+           "code": "CL.DMS.2",
+           "text": "Use passwords/passphrases and secure individual devices"
+          },
+          {
+           "code": "CL.DMS.3",
+           "text": "Create robust passwords/passphrases and effectively manage password privacy"
+          },
+          {
+           "code": "CL.DMS.4",
+           "text": "Keep passwords confidential and follow appropriate procedures if a password is compromised."
+          }
+         ]
+        },
+        {
+         "id": "students-understand-human-cultural-and-societal--2",
+         "title": "Students understand human, cultural, and societal issues related to technology and practice legal and ethnical behavior. Students will be able to plan, implement and monitor cyber security measures to ensure system and account protection (2 of 3)",
+         "outcomes": [
+          {
+           "code": "CL.DMS.5",
+           "text": "Adjust privacy settings on all social media accounts, online services, devices and browsers"
+          },
+          {
+           "code": "CL.DMS.6",
+           "text": "Apply appropriate login credential security and privacy principles to demonstrate effective and safe use of online nad mobile applicaitons to make payments."
+          },
+          {
+           "code": "CL.DMS.7",
+           "text": "Identify when sensative personal data that may include email, phone, and online banking/credit or debit card information has been compromised and follow appropriate procedures to secure"
+          },
+          {
+           "code": "CL.DMS.8",
+           "text": "Effectively apply and use multi-factor authentication services to secure sensitive information and files"
+          }
+         ]
+        },
+        {
+         "id": "students-understand-human-cultural-and-societal--3",
+         "title": "Students understand human, cultural, and societal issues related to technology and practice legal and ethnical behavior. Students will be able to plan, implement and monitor cyber security measures to ensure system and account protection (3 of 3)",
+         "outcomes": [
+          {
+           "code": "CL.DMS.9",
+           "text": "Know the difference between public and private data and the considerations when determining privacy settings to apply for specific applications"
+          },
+          {
+           "code": "CL.DMS.10",
+           "text": "Use digital tools to follow appropriate procedures for identifying one's own digital footprint and demonstrate an unerstanding of managing the digital footprint"
+          },
+          {
+           "code": "CL.DMS.11",
+           "text": "Distinguish between safe and unsafe practices when using online applications (e.g. gaming platforms, social media, virtual discussion platforms)."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "internet-searching-and-online-databases",
+     "title": "Internet Searching and Online Databases",
+     "topics": [
+      {
+       "id": "internet-searching-and-online-databases",
+       "title": "Internet Searching and Online Databases",
+       "subtopics": [
+        {
+         "id": "internet-searching-and-online-databases-1-of-2",
+         "title": "Internet Searching and Online Databases (1 of 2)",
+         "outcomes": [
+          {
+           "code": "CL.ISOD.1",
+           "text": "Use refresh, forward, and back buttons to navigate a web browser."
+          },
+          {
+           "code": "CL.ISOD.2",
+           "text": "Use tab browsing to navigate multiple pages."
+          },
+          {
+           "code": "CL.ISOD.3",
+           "text": "Create favorites/bookmarks and add frequently used sites to the favorites/bookmark bar."
+          },
+          {
+           "code": "CL.ISOD.4",
+           "text": "Locate the URL of a website and identify the characteristics of different domains (e.g., .org, .com, .edu, .net, .gov, international domains)."
+          },
+          {
+           "code": "CL.ISOD.5",
+           "text": "Use browser search tools and advanced search features to find information (e.g., search terms, compound operators, quotation marks around search query)."
+          }
+         ]
+        },
+        {
+         "id": "internet-searching-and-online-databases-2-of-2",
+         "title": "Internet Searching and Online Databases (2 of 2)",
+         "outcomes": [
+          {
+           "code": "CL.ISOD.6",
+           "text": "Use a browser's History feature to locate previously visited sites."
+          },
+          {
+           "code": "CL.ISOD.7",
+           "text": "Exercise click restraint (scan results before clicking on first or early search results)."
+          },
+          {
+           "code": "CL.ISOD.8",
+           "text": "Use digital tools or platforms to organize, display, annotate, and/or share a curated collection."
+          },
+          {
+           "code": "CL.ISOD.9",
+           "text": "Conduct an image search. (e.g., the Google Reverse Image tool, TinEye, geolocating, Google Street view)."
+          },
+          {
+           "code": "CL.ISOD.10",
+           "text": "Use digital tools, search engines, and video sites [e.g., YouTube] to determine how to perform an unfamiliar or unknown task."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "students-will-use-media-literacy-skills-civic-de",
+       "title": "Students will use media literacy skills, civic-developed skills, and strategies to evaluate digital tools and resources to research a topic, organize information, and share their findings with others",
+       "subtopics": [
+        {
+         "id": "students-will-use-media-literacy-skills-civic-de",
+         "title": "Students will use media literacy skills, civic-developed skills, and strategies to evaluate digital tools and resources to research a topic, organize information, and share their findings with others (1 of 2)",
+         "outcomes": [
+          {
+           "code": "CL.ISOD.1",
+           "text": "Use refresh, forward and back buttons to navigate a web browser."
+          },
+          {
+           "code": "CL.ISOD.2",
+           "text": "Use tab browsing to navigate multiple pages"
+          },
+          {
+           "code": "CL.ISOD.3",
+           "text": "Create favorites/bookmarks and add frequently use sites to the favorites/bookmarks bar"
+          },
+          {
+           "code": "CL.ISOD.4",
+           "text": "Locate the URL of a website and identify the characteristics of different domains (e.g. .org, .com, .edu, .net, .gov, international domains)"
+          },
+          {
+           "code": "CL.ISOD.5",
+           "text": "Use browser search tools and advnaced search features to find information"
+          }
+         ]
+        },
+        {
+         "id": "students-will-use-media-literacy-skills-civic-de-2",
+         "title": "Students will use media literacy skills, civic-developed skills, and strategies to evaluate digital tools and resources to research a topic, organize information, and share their findings with others (2 of 2)",
+         "outcomes": [
+          {
+           "code": "CL.ISOD.6",
+           "text": "Use a browser's History features to locate previously visited sites"
+          },
+          {
+           "code": "CL.ISOD.7",
+           "text": "Exercise click restraint (scan results before clicking on first or early search results)"
+          },
+          {
+           "code": "CL.ISOD.8",
+           "text": "Use digital tools or platforms to organize, display, annotate, and/or share a curated collection"
+          },
+          {
+           "code": "CL.ISOD.9",
+           "text": "Conduct an image search"
+          },
+          {
+           "code": "CL.ISOD.10",
+           "text": "Use digital tools, search engines and video sites to determine how to perform an unfamilar or unknown task"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "multimedia-software-applications-and-collaborati",
+     "title": "Multimedia, Software Applications, and Collaboration Tools",
+     "topics": [
+      {
+       "id": "multimedia-software-applications-and-collaborati",
+       "title": "Multimedia, Software Applications, and Collaboration Tools",
+       "subtopics": [
+        {
+         "id": "multimedia-software-applications-and-collaborati",
+         "title": "Multimedia, Software Applications, and Collaboration Tools (1 of 3)",
+         "outcomes": [
+          {
+           "code": "CL.MSACT.1",
+           "text": "Use digital devices to capture multimedia (e.g., audio, video, and photo)."
+          },
+          {
+           "code": "CL.MSACT.2",
+           "text": "Use multimedia-editing tools to edit multimedia files (e.g., trim, splice). add effects,"
+          },
+          {
+           "code": "CL.MSACT.3",
+           "text": "Identify the differences among multimedia file types and save multimedia files (e.g., video, audio, photo) in multiple formats."
+          },
+          {
+           "code": "CL.MSACT.4",
+           "text": "Use application features to copy/paste or insert/import and format text and graphics within documents and multimedia presentation files."
+          },
+          {
+           "code": "CL.MSACT.5",
+           "text": "Copy/paste, import, and embed songs, videos, hyperlinks, or other media on a multimedia presentation or document."
+          }
+         ]
+        },
+        {
+         "id": "multimedia-software-applications-and-collaborati-2",
+         "title": "Multimedia, Software Applications, and Collaboration Tools (2 of 3)",
+         "outcomes": [
+          {
+           "code": "CL.MSACT.6",
+           "text": "Use basic drawing tools, including pencil, paint brush, shape, line, undo, redo, and eraser."
+          },
+          {
+           "code": "CL.MSACT.7",
+           "text": "Use color palette/color wheel to change tool color."
+          },
+          {
+           "code": "CL.MSACT.8",
+           "text": "Use advanced color editing tools, such as RGB, HEX codes, and eyedropper, to change to a color."
+          },
+          {
+           "code": "CL.MSACT.9",
+           "text": "Use selection tools to copy, paste, move, and modify work."
+          },
+          {
+           "code": "CL.MSACT.10",
+           "text": "Use text tools to add text features to artwork."
+          }
+         ]
+        },
+        {
+         "id": "multimedia-software-applications-and-collaborati-3",
+         "title": "Multimedia, Software Applications, and Collaboration Tools (3 of 3)",
+         "outcomes": [
+          {
+           "code": "CL.MSACT.11",
+           "text": "Use email, messaging, and other interactive tools and apps to share information through text and communicate in writing."
+          },
+          {
+           "code": "CL.MSACT.12",
+           "text": "Set up, share, and utilize collaborative workspaces, files, or other digital tools for asynchronous and synchronous collaboration."
+          },
+          {
+           "code": "CL.MSACT.13",
+           "text": "Use synchronous audio and visual collaboration tools, such as virtual/video conferencing, interactive television, and Voice over Internet Protocol, to connect with others."
+          },
+          {
+           "code": "CL.MSACT.14",
+           "text": "Create and maintain a digital portfolio or collection of works related to one's learning."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "students-demonstrate-creative-thinking-and-probl",
+       "title": "Students demonstrate creative thinking and problem solving within a design process to create original works as a means of personal or group expression. Students use digital tools to communicate and work collaboratively, including at a distance, to support individual learning and contribute to the learning of others",
+       "subtopics": [
+        {
+         "id": "students-demonstrate-creative-thinking-and-probl",
+         "title": "Students demonstrate creative thinking and problem solving within a design process to create original works as a means of personal or group expression. Students use digital tools to communicate and work collaboratively, including at a distance, to support individual learning and contribute to the learning of others (1 of 3)",
+         "outcomes": [
+          {
+           "code": "CL.MSACT.1",
+           "text": "Use digital devices to capture multimedia"
+          },
+          {
+           "code": "CL.MSACT.2",
+           "text": "Use multimedia editing tools to edit multimedia files"
+          },
+          {
+           "code": "CL.MSACT.3",
+           "text": "Identify the differences among multimedia file tyeps (eg. video, audio, photo) in multiple formats"
+          },
+          {
+           "code": "CL.MSACT.4",
+           "text": "Use application features to copy/paste or insert/import and format text and graphics within documents and multimedia presentation files."
+          },
+          {
+           "code": "CL.MSACT.5",
+           "text": "Copy/paste, import, and embed songs, videos, hyperlinks, or other media on a multimedia presetation or document"
+          }
+         ]
+        },
+        {
+         "id": "students-demonstrate-creative-thinking-and-probl-2",
+         "title": "Students demonstrate creative thinking and problem solving within a design process to create original works as a means of personal or group expression. Students use digital tools to communicate and work collaboratively, including at a distance, to support individual learning and contribute to the learning of others (2 of 3)",
+         "outcomes": [
+          {
+           "code": "CL.MSACT.6",
+           "text": "Use basic drawing tools, including pencil, paint brush, shape, line, undo, redo and eraser"
+          },
+          {
+           "code": "CL.MSACT.7",
+           "text": "Use color palette/color wheel ot change tool color"
+          },
+          {
+           "code": "CL.MSACT.8",
+           "text": "Use advanced color editing tools, such as RGB, HEX codes and eyedropper to change color"
+          },
+          {
+           "code": "CL.MSACT.9",
+           "text": "Use selection tools to copy, paste, move and modify work"
+          },
+          {
+           "code": "CL.MSACT.10",
+           "text": "Use text tools to add text features to artwork"
+          }
+         ]
+        },
+        {
+         "id": "students-demonstrate-creative-thinking-and-probl-3",
+         "title": "Students demonstrate creative thinking and problem solving within a design process to create original works as a means of personal or group expression. Students use digital tools to communicate and work collaboratively, including at a distance, to support individual learning and contribute to the learning of others (3 of 3)",
+         "outcomes": [
+          {
+           "code": "CL.MSACT.11",
+           "text": "Use email, messaging, and other interactive tools and apps to share informaiton through text and communicate in writing"
+          },
+          {
+           "code": "CL.MSACT.12",
+           "text": "Set up, share, and utilize collaborative workspaces, files, or other digital tools for asynchronous and synchronous collaboration"
+          },
+          {
+           "code": "CL.MSACT.13",
+           "text": "Use synchronous audio and visual collaboration tools, such as virtual/video conferencing, interactive television, and VOiP to connect with others"
+          },
+          {
+           "code": "CL.MSACT.14",
+           "text": "Create and maintain a digital portfolio or collection of works related to one's learning."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "K-2",
+   "units": [
+    {
+     "id": "computing-systems",
+     "title": "Computing Systems",
+     "topics": [
+      {
+       "id": "computing-systems",
+       "title": "Computing Systems",
+       "subtopics": [
+        {
+         "id": "computing-systems",
+         "title": "Computing Systems",
+         "outcomes": [
+          {
+           "code": "K-2.CS.01",
+           "text": "Devices: Select and operate appropriate software to perform a variety of tasks and recognie that users have different needs and preferences for the technology they use"
+          },
+          {
+           "code": "K-2.CS.02",
+           "text": "Hardware and Software: Use appropriate terminology in identifying and describing the function of common physical components of computing systems (hardware)"
+          },
+          {
+           "code": "K-2.CS.03",
+           "text": "Troubleshooting: Describe basic hardware and software problems using accurate terminology"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "networks-and-the-internet",
+     "title": "Networks and the Internet",
+     "topics": [
+      {
+       "id": "networks-and-the-internet",
+       "title": "Networks and the Internet",
+       "subtopics": [
+        {
+         "id": "networks-and-the-internet",
+         "title": "Networks and the Internet",
+         "outcomes": [
+          {
+           "code": "K-2.NI.04",
+           "text": "Cybersecurity: Explain what passwords are and why we use them and use strong passwords to protect devices and information from unauthorized use."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "data-and-analysis",
+     "title": "Data and Analysis",
+     "topics": [
+      {
+       "id": "data-and-analysis",
+       "title": "Data and Analysis",
+       "subtopics": [
+        {
+         "id": "data-and-analysis",
+         "title": "Data and Analysis",
+         "outcomes": [
+          {
+           "code": "K-2.DA.05",
+           "text": "Storage: Store, copy, search, retrieve, modify and delete information using a computing device and define the information stored as data"
+          },
+          {
+           "code": "K-2.DA.06",
+           "text": "Collection, Visualization and Transformation: Collect and present the same data in various visual formats"
+          },
+          {
+           "code": "K-2.DA.07",
+           "text": "Inference and Models: Identify and describe patterns in data visualizations, such as charts or graphs, to make predictions"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "algorithms-and-programming",
+     "title": "Algorithms and programming",
+     "topics": [
+      {
+       "id": "algorithms-and-programming",
+       "title": "Algorithms and programming",
+       "subtopics": [
+        {
+         "id": "algorithms-and-programming",
+         "title": "Algorithms and programming",
+         "outcomes": [
+          {
+           "code": "K-2.AP.08",
+           "text": "Algorithms: Model daily processes by creating and following algorithms (sets of step by step instructions) to complete tasks."
+          },
+          {
+           "code": "K-2-AP.09",
+           "text": "Variables: Model the way programs store and manipulate data by using numbers or other symbols to represent information"
+          },
+          {
+           "code": "K-2.AP.10",
+           "text": "Control: Develop programs and sequences and simple loops, to express ideas or address a problem"
+          },
+          {
+           "code": "K-2.AP.11",
+           "text": "Modularity: Decompose (break down) the steps needed to solve a problem into a precise sequence of instructions"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "program-development",
+       "title": "Program Development:",
+       "subtopics": [
+        {
+         "id": "program-development",
+         "title": "Program Development:",
+         "outcomes": [
+          {
+           "code": "K-2.AP.12",
+           "text": "Develop plans that describe a program's sequence of events, goals, and expected outcomes."
+          },
+          {
+           "code": "K-2.AP.13",
+           "text": "Give attribution when using the ideas and creations of others while developing programs"
+          },
+          {
+           "code": "K-2.AP.14",
+           "text": "Debug (identify and fix) errors in an algorithm or program that includes sequences and simple loops"
+          },
+          {
+           "code": "K-2.AP.15",
+           "text": "Using correct terminology, describe steps taken and choices made during the iterative process of program development"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "impacts-of-computing",
+     "title": "Impacts of Computing",
+     "topics": [
+      {
+       "id": "impacts-of-computing",
+       "title": "Impacts of Computing",
+       "subtopics": [
+        {
+         "id": "impacts-of-computing",
+         "title": "Impacts of Computing",
+         "outcomes": [
+          {
+           "code": "K-2.IC.16",
+           "text": "Culture: Compare how people live and work before and after the implementation or adoption of new computing technology"
+          },
+          {
+           "code": "K-2.IC.17",
+           "text": "Social Interactions: Work respectfully and responsibly with others online."
+          },
+          {
+           "code": "K-2.IC.18",
+           "text": "Safety Law and Ethics: Keep login information private and log off of devices appropriately."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "emerging-and-future-technologies",
+     "title": "Emerging and Future Technologies",
+     "topics": [
+      {
+       "id": "emerging-and-future-technologies",
+       "title": "Emerging and Future Technologies",
+       "subtopics": [
+        {
+         "id": "emerging-and-future-technologies",
+         "title": "Emerging and Future Technologies",
+         "outcomes": [
+          {
+           "code": "K-2.ET.A",
+           "text": "Explain that the fields of emerging technologies will be evolving and rapidly growing"
+          },
+          {
+           "code": "K-2.ET.B",
+           "text": "Comparing existing and emerging technologies, ideas, and concepts"
+          },
+          {
+           "code": "K-2.ET.C",
+           "text": "Describe how emerging technologies are influencing current events a a local and global scale"
+          },
+          {
+           "code": "K-2.ET.D",
+           "text": "Predict the positive and negative societal, cultural, and economic impacts that emerging and future technologies may generate"
+          },
+          {
+           "code": "K-2.ET.E",
+           "text": "Create new or original work by applying emerging technolgies"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "3-5",
+   "units": [
+    {
+     "id": "computing-systems",
+     "title": "Computing Systems",
+     "topics": [
+      {
+       "id": "computing-systems",
+       "title": "Computing Systems",
+       "subtopics": [
+        {
+         "id": "computing-systems",
+         "title": "Computing Systems",
+         "outcomes": [
+          {
+           "code": "3-5.CS.01",
+           "text": "Devices: Describe how internal and external parts of computing devices function to form a system."
+          },
+          {
+           "code": "3-5.CS.02",
+           "text": "Hardware and Software: Model how computer hardware and software work together as a system to accomplish tasks. Discuss task specific embedded systems."
+          },
+          {
+           "code": "3-5.CS.03",
+           "text": "Determine potential solutions to solve simple hardware and software problems using common troubleshooting strategies."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "networks-and-the-internet",
+     "title": "Networks and the Internet",
+     "topics": [
+      {
+       "id": "networks-and-the-internet",
+       "title": "Networks and the Internet",
+       "subtopics": [
+        {
+         "id": "networks-and-the-internet",
+         "title": "Networks and the Internet",
+         "outcomes": [
+          {
+           "code": "3-5.NII.04",
+           "text": "Network Communication and Organization: Model how information is broken down into smaller pieces, transmitted as packets through multiple devices over networks and the internet, and reassembled at the destination."
+          },
+          {
+           "code": "3-5.NII.05",
+           "text": "Cybersecurity: Discuss real-world cybersecurity problems and how personal information can be protected."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "data-and-analysis",
+     "title": "Data and Analysis",
+     "topics": [
+      {
+       "id": "data-and-analysis",
+       "title": "Data and Analysis",
+       "subtopics": [
+        {
+         "id": "data-and-analysis",
+         "title": "Data and Analysis",
+         "outcomes": [
+          {
+           "code": "3-5.DA.06",
+           "text": "Collection, Visualization, and Transformation: Organize and present collected data visually to highlight relationships and support a claim."
+          },
+          {
+           "code": "3-5.DA.07",
+           "text": "Interference and Models: Use data to highlight or propose cause-and-effect relationships, predict outcomes, or communicate an idea."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "algorithms-and-programming",
+     "title": "Algorithms and Programming",
+     "topics": [
+      {
+       "id": "algorithms-and-programming",
+       "title": "Algorithms and Programming",
+       "subtopics": [
+        {
+         "id": "algorithms-and-programming-1-of-2",
+         "title": "Algorithms and Programming (1 of 2)",
+         "outcomes": [
+          {
+           "code": "3-5.AP.08",
+           "text": "Algorithms: Compare and refine multiple algorithms for the same task and determine which is the most appropriate."
+          },
+          {
+           "code": "3-5.AP.09",
+           "text": "Variables: Create programs that use variables to store and modify data."
+          },
+          {
+           "code": "3-5.AP.10",
+           "text": "Control: Create programs that include sequences, events, loops, and conditionals."
+          },
+          {
+           "code": "3-5.AP.11",
+           "text": "Modularity: Decompose (break down) problems into smaller, manageable subproblems to facilitate the program development process."
+          },
+          {
+           "code": "3-5.AP.12",
+           "text": "Modularity: Modify, remix, or incorporate portions of an existing program into one's own work, to develop something new or add more advanced features."
+          }
+         ]
+        },
+        {
+         "id": "algorithms-and-programming-2-of-2",
+         "title": "Algorithms and Programming (2 of 2)",
+         "outcomes": [
+          {
+           "code": "3-5.AP.13",
+           "text": "Program Development : Use an iterative process to plan the development of a program by including others' perspectives and considering user preferences."
+          },
+          {
+           "code": "3-5.AP.14",
+           "text": "Program Development : Observe intellectual property rights and give appropriate attribution when creating or remixing programs."
+          },
+          {
+           "code": "3-5.AP.15",
+           "text": "Program Development: Test and debug (identify and fix errors) a program or algorithm to ensure it runs as intended."
+          },
+          {
+           "code": "3-5.AP.16",
+           "text": "Program Development: Take on varying roles, with teacher guidance, when collaborating with peers during the design, implementation, and review stages of program development."
+          },
+          {
+           "code": "3-5.AP.17",
+           "text": "Program Development: Describe choices made during program development using code comments, presentations, and demonstrations"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "impacts-of-computing",
+     "title": "Impacts of Computing",
+     "topics": [
+      {
+       "id": "impacts-of-computing",
+       "title": "Impacts of Computing",
+       "subtopics": [
+        {
+         "id": "impacts-of-computing",
+         "title": "Impacts of Computing",
+         "outcomes": [
+          {
+           "code": "3-5.IC.18",
+           "text": "Culture: Discuss computing technologies that have changed the world and express how those technologies influence, and are influenced by, cultural practices"
+          },
+          {
+           "code": "3-5.IC.19",
+           "text": "Culture: Brainstorm ways to improve the accessibility and usability of technology products for the diverse needs and wants of users"
+          },
+          {
+           "code": "3-5.IC.19",
+           "text": "Social Interactions : Seek diverse perspectives for the purpose of improving computational artifacts."
+          },
+          {
+           "code": "3-5.IC.20",
+           "text": "Safety Law and Ethics: Use public domain or Creative Commons media and refrain from copying or using material created by others without permission."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "emerging-and-future-technologies",
+     "title": "Emerging and Future Technologies",
+     "topics": [
+      {
+       "id": "emerging-and-future-technologies",
+       "title": "Emerging and Future Technologies",
+       "subtopics": [
+        {
+         "id": "emerging-and-future-technologies",
+         "title": "Emerging and Future Technologies",
+         "outcomes": [
+          {
+           "code": "3-5.ET.A",
+           "text": "Explain that the field of emerging technologies will be evolving and rapidly growing"
+          },
+          {
+           "code": "3-5.ET.B",
+           "text": "Compare existing and emerging technologies, ideas, and concepts."
+          },
+          {
+           "code": "3-5.ET.C",
+           "text": "Describe how emerging technologies are influencing current events at a local and global scale."
+          },
+          {
+           "code": "3-5.ET.D",
+           "text": "Predict the positive and negative societal, cultural, and economic impacts that emerging and future technologies may generate."
+          },
+          {
+           "code": "3-5.ET.E",
+           "text": "Create new or original work by applying emerging technologies."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "6-8",
+   "units": [
+    {
+     "id": "computing-systems",
+     "title": "Computing Systems",
+     "topics": [
+      {
+       "id": "computing-systems",
+       "title": "Computing Systems",
+       "subtopics": [
+        {
+         "id": "computing-systems",
+         "title": "Computing Systems",
+         "outcomes": [
+          {
+           "code": "6-8.CS.01",
+           "text": "Devices: Recommend improvements to the design of computing devices, based on an analysis of how users interact with the devices."
+          },
+          {
+           "code": "6-8.CS.02",
+           "text": "Hardware and Software: Design projects that combine hardware and software components to collect and exchange data."
+          },
+          {
+           "code": "6-8.CS.03",
+           "text": "Troubleshooting: Systematically identify and fix problems with computing devices and their components."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "networks-and-the-internet",
+     "title": "Networks and the Internet",
+     "topics": [
+      {
+       "id": "networks-and-the-internet",
+       "title": "Networks and the Internet",
+       "subtopics": [
+        {
+         "id": "networks-and-the-internet",
+         "title": "Networks and the Internet",
+         "outcomes": [
+          {
+           "code": "6-8.NI.04",
+           "text": "Network Communication and Organization: Model the role of protocols in transmitting data across networks and the internet."
+          },
+          {
+           "code": "6-8.NI.05",
+           "text": "Cybersecurity: Explain how physical and digital security measures protect electronic information"
+          },
+          {
+           "code": "6-8.NI.06",
+           "text": "Cybersecurity: Apply multiple methods of encryption to model the secure transmission of information"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "data-and-analysis",
+     "title": "Data and Analysis",
+     "topics": [
+      {
+       "id": "data-and-analysis",
+       "title": "Data and Analysis",
+       "subtopics": [
+        {
+         "id": "data-and-analysis",
+         "title": "Data and Analysis",
+         "outcomes": [
+          {
+           "code": "6-8.DA.07",
+           "text": "Storage: Represent data using multiple encoding schemes."
+          },
+          {
+           "code": "6-8.DA.08",
+           "text": "Collection Visualization and Transformation: Collect data using computational tools and transform the data to make it more useful and reliable."
+          },
+          {
+           "code": "6-8.DA.09",
+           "text": "Interference and Models: Refine computational models based on the data they have generated."
+          },
+          {
+           "code": "6-8.DA.10",
+           "text": "Interference and Models: Evaluate the misuse of data and impact of distorted outcomes."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "algorithms-and-programming",
+     "title": "Algorithms and Programming",
+     "topics": [
+      {
+       "id": "algorithms-and-programming",
+       "title": "Algorithms and Programming",
+       "subtopics": [
+        {
+         "id": "algorithms-and-programming-1-of-2",
+         "title": "Algorithms and Programming (1 of 2)",
+         "outcomes": [
+          {
+           "code": "6-8.AP.11",
+           "text": "Algorithms: Use flowcharts or pseudocode to address complex problems as algorithms"
+          },
+          {
+           "code": "6-8.AP.12",
+           "text": "Variables: Perform operations on student-created variables that possess descriptive names and represent different data types."
+          },
+          {
+           "code": "6-8.AP.13",
+           "text": "Control: Design and iteratively develop programs that combine control structures, including nested loops and compound conditionals."
+          },
+          {
+           "code": "6-8.AP.14",
+           "text": "Modularity: Decompose problems and subproblems into parts to facilitate the design, implementation, and review of programs."
+          },
+          {
+           "code": "6-8.AP.15",
+           "text": "Modularity: Create procedures with parameters to organize code and make it easier to reuse."
+          }
+         ]
+        },
+        {
+         "id": "algorithms-and-programming-2-of-2",
+         "title": "Algorithms and Programming (2 of 2)",
+         "outcomes": [
+          {
+           "code": "6-8.AP.16",
+           "text": "Program Development: Seek and incorporate feedback from team members and users to refine a solution that meets user needs."
+          },
+          {
+           "code": "6-8.AP.17",
+           "text": "Program Development: Incorporate existing code, media, and libraries into original programs and give attribution."
+          },
+          {
+           "code": "6-8.AP.18",
+           "text": "Program Development: Systematically test and refine programs using a range of test cases."
+          },
+          {
+           "code": "6-8.AP.19",
+           "text": "Program Development: Distribute tasks and maintain a project timeline when collaboratively developing computational artifacts."
+          },
+          {
+           "code": "6-8.AP.20",
+           "text": "Program Development:Document programs to make them easier to follow, test, and debug."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "impacts-of-computing",
+     "title": "Impacts of Computing",
+     "topics": [
+      {
+       "id": "impacts-of-computing",
+       "title": "Impacts of Computing",
+       "subtopics": [
+        {
+         "id": "impacts-of-computing",
+         "title": "Impacts of Computing",
+         "outcomes": [
+          {
+           "code": "6-8.IC.21",
+           "text": "Culture: Compare tradeoffs associated with computing technologies that affect people's everyday activities and career options."
+          },
+          {
+           "code": "6-8.IC.22",
+           "text": "Culture: Discuss issues of bias and accessibility in the design of existing technologies."
+          },
+          {
+           "code": "6-8.IC.23",
+           "text": "Social Interactions: Collaborate with many contributors through strategies such as crowdsourcing or surveys when creating a computational artifact."
+          },
+          {
+           "code": "6-8.IC.24",
+           "text": "Safety Law and Ethics: Describe tradeoffs between allowing information to be public and keeping information private and secure."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "emerging-and-future-technologies",
+     "title": "Emerging and Future Technologies",
+     "topics": [
+      {
+       "id": "emerging-and-future-technologies",
+       "title": "Emerging and Future Technologies",
+       "subtopics": [
+        {
+         "id": "emerging-and-future-technologies",
+         "title": "Emerging and Future Technologies",
+         "outcomes": [
+          {
+           "code": "6-8.ET.A",
+           "text": "Explain that the field of emerging technologies will be evolving and rapidly growing"
+          },
+          {
+           "code": "6-8.ET.B",
+           "text": "Compare existing and emerging technologies, ideas, and concepts."
+          },
+          {
+           "code": "6-8.ET.C",
+           "text": "Describe how emerging technologies are influencing current events at a local and global scale."
+          },
+          {
+           "code": "6-8.ET.D",
+           "text": "Predict the positive and negative societal, cultural, and economic impacts that emerging and future technologies may generate."
+          },
+          {
+           "code": "6-8.ET.E",
+           "text": "Create new or original work by applying emerging technologies"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "9-10",
+   "units": [
+    {
+     "id": "computing-systems",
+     "title": "Computing Systems",
+     "topics": [
+      {
+       "id": "computing-systems",
+       "title": "Computing Systems",
+       "subtopics": [
+        {
+         "id": "computing-systems",
+         "title": "Computing Systems",
+         "outcomes": [
+          {
+           "code": "9-10.CS.01",
+           "text": "Devices: Explain how abstractions hide the underlying implementation details of computing systems embedded in everyday objects."
+          },
+          {
+           "code": "9-10.CS.02",
+           "text": "Hardware and Software: Compare levels of abstraction and interactions between application software, system software, and hardware layers."
+          },
+          {
+           "code": "9-10.CS.03",
+           "text": "Troubleshooting: Develop guidelines that convey systematic troubleshooting strategies that others can use to identify and fix errors."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "networks-and-the-internet",
+     "title": "Networks and the Internet",
+     "topics": [
+      {
+       "id": "networks-and-the-internet",
+       "title": "Networks and the Internet",
+       "subtopics": [
+        {
+         "id": "networks-and-the-internet",
+         "title": "Networks and the Internet",
+         "outcomes": [
+          {
+           "code": "9-10.NI.04",
+           "text": "Network Communication and Organization: Evaluate the scalability and reliability of networks by describing the relationship between routers, switches, servers, topology, and addressing."
+          },
+          {
+           "code": "9-10.NI.05",
+           "text": "Network Communication and Organization: Give examples to illustrate how sensitive data can be affected by malware and other attacks."
+          },
+          {
+           "code": "9-10.NI.06",
+           "text": "Network Communication and Organization: Compare various security measures, considering tradeoffs between the usability and security of a computing system."
+          },
+          {
+           "code": "9-10.NI.07",
+           "text": "Cybersecurity: Recommend security measures to address various scenarios based on factors such as efficiency, feasibility, and ethical impacts."
+          },
+          {
+           "code": "9-10.NI.08",
+           "text": "Cybersecurity: Explain tradeoffs when selecting and implementing cybersecurity recommendations."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "data-and-analysis",
+     "title": "Data and Analysis",
+     "topics": [
+      {
+       "id": "data-and-analysis",
+       "title": "Data and Analysis",
+       "subtopics": [
+        {
+         "id": "data-and-analysis",
+         "title": "Data and Analysis",
+         "outcomes": [
+          {
+           "code": "9-10.DA.09",
+           "text": "Storage: Translate between different bit representations of real-world phenomena, such as characters, numbers, and images."
+          },
+          {
+           "code": "9-10.DA.10",
+           "text": "Storage: Evaluate the tradeoffs in how data elements are organized and stored."
+          },
+          {
+           "code": "9-10.DA.11",
+           "text": "Collection, Visualization, and Transformation: Create interactive data visualizations using software tools to help others better understand real-world phenomena."
+          },
+          {
+           "code": "9-10.DA.12",
+           "text": "Interference and Models: Create computational models that represent the relationships among different elements of data collected from a phenomenon or process."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "algorithms-and-programming",
+     "title": "Algorithms and Programming",
+     "topics": [
+      {
+       "id": "algorithms-and-programming",
+       "title": "Algorithms and Programming",
+       "subtopics": [
+        {
+         "id": "algorithms-and-programming-1-of-3",
+         "title": "Algorithms and Programming (1 of 3)",
+         "outcomes": [
+          {
+           "code": "9-10.AP.13",
+           "text": "Algorithms: Create prototypes that use algorithms to solve computational problems by leveraging prior student knowledge and personal interests."
+          },
+          {
+           "code": "9-10.AP.14",
+           "text": "Variables: Use lists to simplify solutions, generalizing computational problems instead of repeatedly using simple variables."
+          },
+          {
+           "code": "9-10.AP.15",
+           "text": "Justify the selection of specific control structures when tradeoffs involve implementation, readability, and program performance, and explain the benefits and drawbacks of choices made."
+          },
+          {
+           "code": "9-10.AP.16",
+           "text": "Control: Design and iteratively develop computational artifacts for practical intent, personal expression, or to address a societal issue by using events to initiate instructions."
+          }
+         ]
+        },
+        {
+         "id": "algorithms-and-programming-2-of-3",
+         "title": "Algorithms and Programming (2 of 3)",
+         "outcomes": [
+          {
+           "code": "9-10.AP.17",
+           "text": "Control: Decompose problems into smaller components through systematic analysis, using constructs such as procedures, modules, or objects."
+          },
+          {
+           "code": "9-10.AP.18",
+           "text": "Modularity: Create artifacts by using procedures within a program, combinations of data and procedures, or independent but interrelated programs."
+          },
+          {
+           "code": "9-10.AP.19",
+           "text": "Modularity: Systematically design and develop programs for broad audiences by incorporating feedback from users."
+          },
+          {
+           "code": "9-10.AP.20",
+           "text": "Program Development: Evaluate licenses that limit or restrict use of computational artifacts when using resources such as libraries."
+          }
+         ]
+        },
+        {
+         "id": "algorithms-and-programming-3-of-3",
+         "title": "Algorithms and Programming (3 of 3)",
+         "outcomes": [
+          {
+           "code": "9-10.AP.21",
+           "text": "Program Development: Evaluate and refine computational artifacts to make them more usable and accessible."
+          },
+          {
+           "code": "9-10.AP.22",
+           "text": "Program Development: Design and develop computational artifacts working in team roles using collaborative tools."
+          },
+          {
+           "code": "9-10.AP.23",
+           "text": "Program Development: Document design decisions using text, graphics, presentations, or demonstrations in the development of complex programs."
+          },
+          {
+           "code": "9-10.AP.24",
+           "text": "Program Development: Describe the characteristics and evaluate the impact of human computer interaction."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "impacts-of-computing",
+     "title": "Impacts of Computing",
+     "topics": [
+      {
+       "id": "impacts-of-computing",
+       "title": "Impacts of Computing",
+       "subtopics": [
+        {
+         "id": "impacts-of-computing-1-of-2",
+         "title": "Impacts of Computing (1 of 2)",
+         "outcomes": [
+          {
+           "code": "9-10.IC.25",
+           "text": "Culture: Evaluate the ways computing impacts personal, ethical, social, economic, and cultural practices. Evaluate the ways digital social interactions impact personal, ethical, social, economic, and cultural practices."
+          },
+          {
+           "code": "9-10.IC.26",
+           "text": "Culture: Test and refine computational artifacts to reduce bias and equity deficits."
+          },
+          {
+           "code": "9-10.IC.27",
+           "text": "Culture: Demonstrate ways a given algorithm applies to problems across disciplines."
+          },
+          {
+           "code": "9-10.IC.28",
+           "text": "Social Interactions: Use tools and methods for collaboration on a project to increase connectivity of people in different cultures and career fields."
+          }
+         ]
+        },
+        {
+         "id": "impacts-of-computing-2-of-2",
+         "title": "Impacts of Computing (2 of 2)",
+         "outcomes": [
+          {
+           "code": "9-10.IC.29",
+           "text": "Safety Law and Ethics: Explain the beneficial and harmful effects that intellectual property laws can have on innovation."
+          },
+          {
+           "code": "9-10.IC.30",
+           "text": "Safety Law and Ethics: Explain the privacy concerns related to the collection and generation of data through automated processes that may not be evident to users."
+          },
+          {
+           "code": "9-10.IC.31",
+           "text": "Safety Law and Ethics: Evaluate the social and economic implications of privacy in the context of safety, law, or ethics."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "emerging-and-future-technologies",
+     "title": "Emerging and Future Technologies",
+     "topics": [
+      {
+       "id": "emerging-and-future-technologies",
+       "title": "Emerging and Future Technologies",
+       "subtopics": [
+        {
+         "id": "emerging-and-future-technologies",
+         "title": "Emerging and Future Technologies",
+         "outcomes": [
+          {
+           "code": "9-10.ET.A",
+           "text": "Explain that the field of emerging technologies will be evolving and rapidly growing."
+          },
+          {
+           "code": "9-10.ET.B",
+           "text": "Compare existing and emerging technologies, ideas, and concepts."
+          },
+          {
+           "code": "9-10.ET.C",
+           "text": "Describe how emerging technologies are influencing current events at a local and global scale."
+          },
+          {
+           "code": "9-10.ET.D",
+           "text": "Predict the positive and negative societal, cultural, and economic impacts that emerging and future technologies may generate."
+          },
+          {
+           "code": "9-10.ET.E",
+           "text": "Create new or original work by applying emerging technologies."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "11-12",
+   "units": [
+    {
+     "id": "computing-systems",
+     "title": "Computing Systems",
+     "topics": [
+      {
+       "id": "computing-systems",
+       "title": "Computing Systems",
+       "subtopics": [
+        {
+         "id": "computing-systems",
+         "title": "Computing Systems",
+         "outcomes": [
+          {
+           "code": "11-12.CS.01",
+           "text": "Devices: Compare the characteristics and uses of traditional and emerging computing devices and systems."
+          },
+          {
+           "code": "11-12.CS.02",
+           "text": "Hardware and Software: Categorize the roles of operating system software."
+          },
+          {
+           "code": "11-12.CS.03",
+           "text": "Troubleshooting: Illustrate ways computing systems implement logic, input, and output through hardware components."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "networks-and-the-internet",
+     "title": "Networks and the Internet",
+     "topics": [
+      {
+       "id": "networks-and-the-internet",
+       "title": "Networks and the Internet",
+       "subtopics": [
+        {
+         "id": "networks-and-the-internet",
+         "title": "Networks and the Internet",
+         "outcomes": [
+          {
+           "code": "11-12.NI.04",
+           "text": "Network Communication and Organization: Describe the issues that impact network functionality (e.g., bandwidth, load, delay, topology)."
+          },
+          {
+           "code": "11-12.NI.05",
+           "text": "Cybersecurity: Compare ways software developers protect devices and information from unauthorized access."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "data-and-analysis",
+     "title": "Data and Analysis",
+     "topics": [
+      {
+       "id": "data-and-analysis",
+       "title": "Data and Analysis",
+       "subtopics": [
+        {
+         "id": "data-and-analysis",
+         "title": "Data and Analysis",
+         "outcomes": [
+          {
+           "code": "11-12.DA.06",
+           "text": "Collection, Visualization, and Transformation: Use data analysis tools and techniques to identify patterns in data representing complex systems."
+          },
+          {
+           "code": "11-12.DA.07",
+           "text": "Collection, Visualization, and Transformation: Select data collection tools and techniques to generate data sets that support a claim or communicate information."
+          },
+          {
+           "code": "11-12.DA.08",
+           "text": "Collection, Visualization, and Transformation: Analyze the ways in which automated data collection is utilized in society."
+          },
+          {
+           "code": "11-12.DA.09",
+           "text": "Interference and Models: Evaluate the ability of models and simulations to test and support the refinement of hypotheses."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "algorithms-and-programming",
+     "title": "Algorithms and Programming",
+     "topics": [
+      {
+       "id": "algorithms-and-programming",
+       "title": "Algorithms and Programming",
+       "subtopics": [
+        {
+         "id": "algorithms-and-programming-1-of-4",
+         "title": "Algorithms and Programming (1 of 4)",
+         "outcomes": [
+          {
+           "code": "11-12.AP.10",
+           "text": "Algorithms: Describe how artificial intelligence drives many software and physical systems."
+          },
+          {
+           "code": "11-12.AP.11",
+           "text": "Algorithms: Implement an artificial intelligence algorithm to play a game against a human opponent or solve a problem."
+          },
+          {
+           "code": "11-12.AP.12",
+           "text": "Algorithms: Use and adapt classic algorithms to solve computational problems."
+          },
+          {
+           "code": "11-12.AP.13",
+           "text": "Algorithms: Evaluate algorithms in terms of their efficiency, correctness, and clarity."
+          },
+          {
+           "code": "11-12.AP.14",
+           "text": "Variables: Compare and contrast fundamental data structures and their uses."
+          }
+         ]
+        },
+        {
+         "id": "algorithms-and-programming-2-of-4",
+         "title": "Algorithms and Programming (2 of 4)",
+         "outcomes": [
+          {
+           "code": "11-12.AP.15",
+           "text": "Control: Illustrate the flow of execution of a recursive algorithm."
+          },
+          {
+           "code": "11-12.AP.16",
+           "text": "Modularity: Construct solutions to problems using student-created components, such as procedures, modules, or objects."
+          },
+          {
+           "code": "11-12.AP.17",
+           "text": "Modularity: Analyze a large-scale computational problem and identify generalizable patterns that can be applied to a solution."
+          },
+          {
+           "code": "11-12.AP.18",
+           "text": "Modularity: Demonstrate code reuse by creating programming solutions using libraries and application programming interfaces."
+          },
+          {
+           "code": "11-12.AP.19",
+           "text": "Program Development: Plan and develop programs for broad audiences using a software life cycle process."
+          }
+         ]
+        },
+        {
+         "id": "algorithms-and-programming-3-of-4",
+         "title": "Algorithms and Programming (3 of 4)",
+         "outcomes": [
+          {
+           "code": "11-12.AP.20",
+           "text": "Program Development: Demonstrate conversion of source code into machine code using compliers or interpreters."
+          },
+          {
+           "code": "11-12.AP.21",
+           "text": "Program Development: Explain security issues that might lead to compromised computer programs."
+          },
+          {
+           "code": "11-12.AP.22",
+           "text": "Program Development: Develop programs for multiple computing platforms."
+          },
+          {
+           "code": "11-12.AP.23",
+           "text": "Program Development: Use version control systems, integrated development environments, and collaborative tools and practices (code documentation) in a group software project."
+          },
+          {
+           "code": "11-12.AP.24",
+           "text": "Program Development: Develop and use a series of test cases to verify that a program performs according to its design specifications."
+          }
+         ]
+        },
+        {
+         "id": "algorithms-and-programming-4-of-4",
+         "title": "Algorithms and Programming (4 of 4)",
+         "outcomes": [
+          {
+           "code": "11-12.AP.25",
+           "text": "Program Development: Discuss social, economic, and ethical consequences of malfunctional software and software updates."
+          },
+          {
+           "code": "11-12.AP.26",
+           "text": "Program Development: Modify an existing program to add additional functionality and discuss intended and unintended implications (e.g., breaking other functionality)."
+          },
+          {
+           "code": "11-12.AP.27",
+           "text": "Program Development: Evaluate key qualities of a program through a process such as a code review."
+          },
+          {
+           "code": "11-12.AP.28",
+           "text": "Program Development: Compare multiple programming languages and discuss how their features make them suitable for solving different types of problems."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "impacts-of-computing",
+     "title": "Impacts of Computing",
+     "topics": [
+      {
+       "id": "impacts-of-computing",
+       "title": "Impacts of Computing",
+       "subtopics": [
+        {
+         "id": "impacts-of-computing",
+         "title": "Impacts of Computing",
+         "outcomes": [
+          {
+           "code": "11-12.IC.29",
+           "text": "Culture: Evaluate computational artifacts to maximize their beneficial effects and minimize harmful effects on society."
+          },
+          {
+           "code": "11-12.IC.30",
+           "text": "Culture: Evaluate the impact of equity, access, and influence on the distribution of computing resources in a global society."
+          },
+          {
+           "code": "11-12.IC.31",
+           "text": "Culture: Predict how computational innovations that have revolutionized aspects of our culture might evolve."
+          },
+          {
+           "code": "11-12.IC.32",
+           "text": "Safety Law and Ethics: Debate laws and regulations that impact the development and use of software."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "emerging-and-future-technologies",
+     "title": "Emerging and Future Technologies",
+     "topics": [
+      {
+       "id": "emerging-and-future-technologies",
+       "title": "Emerging and Future Technologies",
+       "subtopics": [
+        {
+         "id": "emerging-and-future-technologies",
+         "title": "Emerging and Future Technologies",
+         "outcomes": [
+          {
+           "code": "11-12.ET.A",
+           "text": "Explain that the field of emerging technologies will be evolving and rapidly growing."
+          },
+          {
+           "code": "11-12.ET.B",
+           "text": "Compare existing and emerging technologies, ideas, and concepts."
+          },
+          {
+           "code": "11-12.ET.C",
+           "text": "Describe how emerging technologies are influencing current events at a local and global scale."
+          },
+          {
+           "code": "11-12.ET.D",
+           "text": "Predict the positive and negative societal, cultural, and economic impacts that emerging and future technologies may generate."
+          },
+          {
+           "code": "11-12.ET.E",
+           "text": "Create new or original work by applying emerging technologies."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "K-8",
+   "units": [
+    {
+     "id": "empowered-learner-students-leverage-technology-t",
+     "title": "Empowered Learner - Students leverage technology to take an active role in choosing, achieving and demonstrating competency in their learning goals, informed by the learning sciences. Students:",
+     "topics": [
+      {
+       "id": "empowered-learner-students-leverage-technology-t",
+       "title": "Empowered Learner - Students leverage technology to take an active role in choosing, achieving and demonstrating competency in their learning goals, informed by the learning sciences. Students:",
+       "subtopics": [
+        {
+         "id": "empowered-learner-students-leverage-technology-t",
+         "title": "Empowered Learner - Students leverage technology to take an active role in choosing, achieving and demonstrating competency in their learning goals, informed by the learning sciences. Students:",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Articulate and set personal learning goals, develop strategies leveraging technology to achieve them and reflect on the learning process itself to improve learning outcomes."
+          },
+          {
+           "code": null,
+           "text": "Students build networks and customize their learning environments in ways that support the learning process."
+          },
+          {
+           "code": null,
+           "text": "Use technology to seek feedback that informs and improves their practice and to demonstrate their learning in a variety of ways."
+          },
+          {
+           "code": null,
+           "text": "Understand the fundamental concepts of technology operations, demonstrate the ability to choose, use and troubleshoot current technologies and are able to transfer their knowledge to explore emerging technologies."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "digital-citizen-students-recognize-the-rights-re",
+     "title": "Digital Citizen - Students recognize the rights, responsibilities and opportunities of living, learning and working in an interconnected digital world, and they act and model in ways that are safe, legal and ethical. Students:",
+     "topics": [
+      {
+       "id": "digital-citizen-students-recognize-the-rights-re",
+       "title": "Digital Citizen - Students recognize the rights, responsibilities and opportunities of living, learning and working in an interconnected digital world, and they act and model in ways that are safe, legal and ethical. Students:",
+       "subtopics": [
+        {
+         "id": "digital-citizen-students-recognize-the-rights-re",
+         "title": "Digital Citizen - Students recognize the rights, responsibilities and opportunities of living, learning and working in an interconnected digital world, and they act and model in ways that are safe, legal and ethical. Students:",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Cultivate and manage their digital identity and reputation and are aware of the permanence of their actions in the digital world."
+          },
+          {
+           "code": null,
+           "text": "Engage in positive, safe, legal and ethical behavior when using technology, including social interactions online or when using networked devices."
+          },
+          {
+           "code": null,
+           "text": "Demonstrate an understanding of and respect for the rights and obligations of using and sharing intellectual property."
+          },
+          {
+           "code": null,
+           "text": "Manage their personal data to maintain digital privacy and security and are aware of data-collection technology used to track their navigation online."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "knowledge-constructor-students-critically-curate",
+     "title": "Knowledge Constructor - Students critically curate a variety of resources using digital tools to construct knowledge, produce creative artifacts and make meaningful learning experiences for themselves and others. Students:",
+     "topics": [
+      {
+       "id": "knowledge-constructor-students-critically-curate",
+       "title": "Knowledge Constructor - Students critically curate a variety of resources using digital tools to construct knowledge, produce creative artifacts and make meaningful learning experiences for themselves and others. Students:",
+       "subtopics": [
+        {
+         "id": "knowledge-constructor-students-critically-curate",
+         "title": "Knowledge Constructor - Students critically curate a variety of resources using digital tools to construct knowledge, produce creative artifacts and make meaningful learning experiences for themselves and others. Students:",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Plan and employ effective research strategies to locate information and other resources for their intellectual or creative pursuits"
+          },
+          {
+           "code": null,
+           "text": "Evaluate the accuracy, perspective, credibility and relevance of information, media, data or other resources."
+          },
+          {
+           "code": null,
+           "text": "Curate information from digital resources using a variety of tools and methods to create collections of artifacts that demonstrate meaningful connections or conclusions."
+          },
+          {
+           "code": null,
+           "text": "Build knowledge by actively exploring real-world issues and problems, developing ideas and theories and pursuing answers and solutions."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "innovative-designer-students-use-a-variety-of-te",
+     "title": "Innovative Designer - Students use a variety of technologies within a design process to identify and solve problems by creating new, useful or imaginative solutions. Students:",
+     "topics": [
+      {
+       "id": "innovative-designer-students-use-a-variety-of-te",
+       "title": "Innovative Designer - Students use a variety of technologies within a design process to identify and solve problems by creating new, useful or imaginative solutions. Students:",
+       "subtopics": [
+        {
+         "id": "innovative-designer-students-use-a-variety-of-te",
+         "title": "Innovative Designer - Students use a variety of technologies within a design process to identify and solve problems by creating new, useful or imaginative solutions. Students:",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Know and use a deliberate design process for generating ideas, testing theories, creating innovative artifacts or solving authentic problems."
+          },
+          {
+           "code": null,
+           "text": "Select and use digital tools to plan and manage a design process that considers design constraints and calculated risks."
+          },
+          {
+           "code": null,
+           "text": "Develop, test and refine prototypes as part of a cyclical design process."
+          },
+          {
+           "code": null,
+           "text": "Exhibit a tolerance for ambiguity, perseverance and the capacity to work with open-ended problems."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "computational-thinker-students-develop-and-emplo",
+     "title": "Computational Thinker - Students develop and employ strategies for understanding and solving problems in ways that leverage the power of technological methods to develop and test solutions. Students:",
+     "topics": [
+      {
+       "id": "computational-thinker-students-develop-and-emplo",
+       "title": "Computational Thinker - Students develop and employ strategies for understanding and solving problems in ways that leverage the power of technological methods to develop and test solutions. Students:",
+       "subtopics": [
+        {
+         "id": "computational-thinker-students-develop-and-emplo",
+         "title": "Computational Thinker - Students develop and employ strategies for understanding and solving problems in ways that leverage the power of technological methods to develop and test solutions. Students:",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Formulate problem definitions suited for technology assisted methods such as data analysis, abstract models and algorithmic thinking in exploring and finding solutions."
+          },
+          {
+           "code": null,
+           "text": "Collect data or identify relevant data sets, use digital tools to analyze them, and represent data in various ways to facilitate problem-solving and decision-making."
+          },
+          {
+           "code": null,
+           "text": "Break problems into component parts, extract key information, and develop descriptive models to understand complex systems or facilitate problem-solving."
+          },
+          {
+           "code": null,
+           "text": "Understand how automation works and use algorithmic thinking to develop a sequence of steps to create and test automated solutions."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "creative-communicator-students-communicate-clear",
+     "title": "Creative Communicator - Students communicate clearly and express themselves creatively for a variety of purposes using the platforms, tools, styles, formats and digital media appropriate to their goals. Students:",
+     "topics": [
+      {
+       "id": "creative-communicator-students-communicate-clear",
+       "title": "Creative Communicator - Students communicate clearly and express themselves creatively for a variety of purposes using the platforms, tools, styles, formats and digital media appropriate to their goals. Students:",
+       "subtopics": [
+        {
+         "id": "creative-communicator-students-communicate-clear",
+         "title": "Creative Communicator - Students communicate clearly and express themselves creatively for a variety of purposes using the platforms, tools, styles, formats and digital media appropriate to their goals. Students:",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Choose the appropriate platforms and tools for meeting the desired objectives of their creation or communication."
+          },
+          {
+           "code": null,
+           "text": "Create original works or responsibly repurpose or remix digital resources into new creations."
+          },
+          {
+           "code": null,
+           "text": "Communicate complex ideas clearly and effectively by creating or using a variety of digital objects such as visualizations, models or simulations."
+          },
+          {
+           "code": null,
+           "text": "Publish or present content that customizes the message and medium for their intended audiences."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "global-collaborator-students-use-digital-tools-t",
+     "title": "Global Collaborator - Students use digital tools to broaden their perspectives and enrich their learning by collaborating with others and working effectively in teams locally and globally. Students:",
+     "topics": [
+      {
+       "id": "global-collaborator-students-use-digital-tools-t",
+       "title": "Global Collaborator - Students use digital tools to broaden their perspectives and enrich their learning by collaborating with others and working effectively in teams locally and globally. Students:",
+       "subtopics": [
+        {
+         "id": "global-collaborator-students-use-digital-tools-t",
+         "title": "Global Collaborator - Students use digital tools to broaden their perspectives and enrich their learning by collaborating with others and working effectively in teams locally and globally. Students:",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Use digital tools to connect with learners from a variety of backgrounds and cultures, engaging with them in ways that broaden mutual understanding and learning."
+          },
+          {
+           "code": null,
+           "text": "Use collaborative technologies to work with others, including peers, experts or community members, to examine issues and problems from multiple viewpoints."
+          },
+          {
+           "code": null,
+           "text": "Contribute constructively to project teams, assuming various roles and responsibilities to work effectively toward a common goal."
+          },
+          {
+           "code": null,
+           "text": "Explore local and global issues and use collaborative technologies to work with others to investigate solutions."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "build": {
+  "builtAt": "2026-10-14T16:20:42.123Z",
+  "model": "none",
+  "usd": 0,
+  "expectedCodes": 212,
+  "coverage": 1,
+  "missingCodes": [],
+  "counts": {
+   "grades": 7,
+   "units": 41,
+   "topics": 46,
+   "subtopics": 74,
+   "outcomes": 301
+  },
+  "warnings": [
+   "unit \"Networks and the Internet\" (grade K-2) has a single outcome"
+  ]
+ }
+}

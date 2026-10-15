@@ -1,0 +1,477 @@
+{
+ "id": "ib-dp-digital-society",
+ "region": "INTL",
+ "framework": "International Baccalaureate Diploma Programme (DP)",
+ "board": "IB",
+ "qualification": "IB Diploma Programme",
+ "subject": "Digital society (SL and HL)",
+ "syllabusCode": null,
+ "gradeSystem": "course",
+ "source": {
+  "urls": [
+   "https://www.ibo.org/globalassets/new-structure/recognition/pdfs/digital-society-subject-brief-en.pdf",
+   "https://web.archive.org/web/20221128010801id_/https://www.ibo.org/globalassets/new-structure/recognition/pdfs/digital-society-subject-brief-en.pdf"
+  ],
+  "publisher": "International Baccalaureate Organization",
+  "licence": "(c) International Baccalaureate Organization; all rights reserved, no open licence. ibo.org terms 1.8: IB copyrighted materials are licensed only under the IB's terms or a signed agreement; 'Any use not expressly permitted is prohibited unless special permission is obtained in writing from the IB'; 1.9: nothing on the IB websites confers any licence. Briefs are free public marketing summaries: take topic structure only, write everything in our own words, never reproduce brief text, and do not use IB logos/trade marks. Full subject guides are sold to schools and were NOT used. Terms: https://www.ibo.org/terms-and-conditions/ and https://www.ibo.org/copyright",
+  "firstExam": "2024"
+ },
+ "grades": [
+  {
+   "grade": "all",
+   "units": [
+    {
+     "id": "1-introduction",
+     "title": "1 Introduction",
+     "topics": [
+      {
+       "id": "1-1-what-is-digital-society",
+       "title": "1.1 What is digital society?",
+       "subtopics": [
+        {
+         "id": "what-is-digital-society",
+         "title": "What is digital society?",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain what digital society is and how concepts, content and contexts are used to inquire into it."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "2-concepts",
+     "title": "2 Concepts",
+     "topics": [
+      {
+       "id": "2-1-change",
+       "title": "2.1 Change",
+       "subtopics": [
+        {
+         "id": "change",
+         "title": "Change",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain how digital systems drive change in people and communities."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "2-2-expression",
+       "title": "2.2 Expression",
+       "subtopics": [
+        {
+         "id": "expression",
+         "title": "Expression",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain how people express themselves through digital systems."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "2-3-identity",
+       "title": "2.3 Identity",
+       "subtopics": [
+        {
+         "id": "identity",
+         "title": "Identity",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain how digital systems shape personal and group identity."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "2-4-power",
+       "title": "2.4 Power",
+       "subtopics": [
+        {
+         "id": "power",
+         "title": "Power",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain how digital systems shift power between people, groups and organisations."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "2-5-space",
+       "title": "2.5 Space",
+       "subtopics": [
+        {
+         "id": "space",
+         "title": "Space",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain how digital systems change our sense of physical and virtual space."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "2-6-systems",
+       "title": "2.6 Systems",
+       "subtopics": [
+        {
+         "id": "systems",
+         "title": "Systems",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain how digital systems interact as systems."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "2-7-values-and-ethics",
+       "title": "2.7 Values and ethics",
+       "subtopics": [
+        {
+         "id": "values-and-ethics",
+         "title": "Values and ethics",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Weigh the values and ethical questions raised by digital systems."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "3-content",
+     "title": "3 Content",
+     "topics": [
+      {
+       "id": "3-1-data",
+       "title": "3.1 Data",
+       "subtopics": [
+        {
+         "id": "data",
+         "title": "Data",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe how data is collected, stored and used in digital systems."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "3-2-algorithms",
+       "title": "3.2 Algorithms",
+       "subtopics": [
+        {
+         "id": "algorithms",
+         "title": "Algorithms",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe how algorithms make decisions in digital systems."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "3-3-computers",
+       "title": "3.3 Computers",
+       "subtopics": [
+        {
+         "id": "computers",
+         "title": "Computers",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe how computers work as digital systems."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "3-4-networks-and-the-internet",
+       "title": "3.4 Networks and the internet",
+       "subtopics": [
+        {
+         "id": "networks-and-the-internet",
+         "title": "Networks and the internet",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe how networks and the internet connect people and devices."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "3-5-media",
+       "title": "3.5 Media",
+       "subtopics": [
+        {
+         "id": "media",
+         "title": "Media",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe how digital media is created, shared and consumed."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "3-6-artificial-intelligence",
+       "title": "3.6 Artificial intelligence",
+       "subtopics": [
+        {
+         "id": "artificial-intelligence",
+         "title": "Artificial intelligence",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe types of artificial intelligence and their uses."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "3-7-robots-and-autonomous-technologies",
+       "title": "3.7 Robots and autonomous technologies",
+       "subtopics": [
+        {
+         "id": "robots-and-autonomous-technologies",
+         "title": "Robots and autonomous technologies",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe robots and autonomous technologies and their uses."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "4-contexts",
+     "title": "4 Contexts",
+     "topics": [
+      {
+       "id": "4-1-cultural",
+       "title": "4.1 Cultural",
+       "subtopics": [
+        {
+         "id": "cultural",
+         "title": "Cultural",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Examine the impacts of digital systems in cultural contexts."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "4-2-economic",
+       "title": "4.2 Economic",
+       "subtopics": [
+        {
+         "id": "economic",
+         "title": "Economic",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Examine the impacts of digital systems in economic contexts."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "4-3-environmental",
+       "title": "4.3 Environmental",
+       "subtopics": [
+        {
+         "id": "environmental",
+         "title": "Environmental",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Examine the impacts of digital systems in environmental contexts."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "4-4-health",
+       "title": "4.4 Health",
+       "subtopics": [
+        {
+         "id": "health",
+         "title": "Health",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Examine the impacts of digital systems in health contexts."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "4-5-human-knowledge",
+       "title": "4.5 Human knowledge",
+       "subtopics": [
+        {
+         "id": "human-knowledge",
+         "title": "Human knowledge",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Examine the impacts of digital systems on human knowledge."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "4-6-political",
+       "title": "4.6 Political",
+       "subtopics": [
+        {
+         "id": "political",
+         "title": "Political",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Examine the impacts of digital systems in political contexts."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "4-7-social",
+       "title": "4.7 Social",
+       "subtopics": [
+        {
+         "id": "social",
+         "title": "Social",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Examine the impacts of digital systems in social contexts."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "5-hl-extension-challenges-and-interventions",
+     "title": "5 HL extension: challenges and interventions",
+     "topics": [
+      {
+       "id": "5-1-global-well-being",
+       "title": "5.1 Global well-being",
+       "subtopics": [
+        {
+         "id": "global-well-being",
+         "title": "Global well-being",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Evaluate digital interventions that address challenges to global well-being (higher level)."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "5-2-governance-and-human-rights",
+       "title": "5.2 Governance and human rights",
+       "subtopics": [
+        {
+         "id": "governance-and-human-rights",
+         "title": "Governance and human rights",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Evaluate digital interventions that address challenges in governance and human rights (higher level)."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "5-3-sustainable-development",
+       "title": "5.3 Sustainable development",
+       "subtopics": [
+        {
+         "id": "sustainable-development",
+         "title": "Sustainable development",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Evaluate digital interventions that address challenges in sustainable development (higher level)."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "build": {
+  "builtAt": "2026-10-14T10:53:04.300Z",
+  "model": "claude-agent",
+  "usd": 0,
+  "expectedCodes": null,
+  "coverage": null,
+  "missingCodes": [],
+  "counts": {
+   "grades": 1,
+   "units": 5,
+   "topics": 25,
+   "subtopics": 25,
+   "outcomes": 25
+  },
+  "warnings": [
+   "grade DP year 1 has no content",
+   "grade DP year 2 has no content",
+   "unexpected grade label \"all\"",
+   "unit \"1 Introduction\" (grade all) has a single outcome"
+  ]
+ }
+}

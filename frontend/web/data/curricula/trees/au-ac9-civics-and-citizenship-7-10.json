@@ -1,0 +1,609 @@
+{
+ "id": "au-ac9-civics-and-citizenship-7-10",
+ "region": "AU",
+ "framework": "Australian Curriculum Version 9.0 (F-10)",
+ "board": "ACARA",
+ "qualification": null,
+ "subject": "Civics and Citizenship 7-10",
+ "syllabusCode": "HASCIV",
+ "gradeSystem": "year",
+ "source": {
+  "urls": [
+   "https://vocabulary.curriculum.edu.au/MRAC/2024/04/LA/HASS/export/MRAC/2024/04/LA/HASS.jsonld",
+   "https://www.australiancurriculum.edu.au/content/dam/en/curriculum/ac-version-9/downloads/curriculum-workbook.xlsx"
+  ],
+  "publisher": "Australian Curriculum, Assessment and Reporting Authority (ACARA)",
+  "licence": "© ACARA, Australian Curriculum v9.0, CC BY 4.0",
+  "firstExam": null
+ },
+ "grades": [
+  {
+   "grade": "7",
+   "units": [
+    {
+     "id": "knowledge-and-understanding",
+     "title": "Knowledge and understanding",
+     "topics": [
+      {
+       "id": "government-and-democracy",
+       "title": "Government and democracy",
+       "subtopics": [
+        {
+         "id": "government-and-democracy",
+         "title": "Government and democracy",
+         "outcomes": [
+          {
+           "code": "AC9HC7K01",
+           "text": "the key features of Australia's system of government, including democracy, the Australian Constitution, responsible government and federalism"
+          },
+          {
+           "code": "AC9HC7K02",
+           "text": "the characteristics of Australia's democracy, including freedom of speech, association, assembly, religion and movement"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "laws-and-citizens",
+       "title": "Laws and citizens",
+       "subtopics": [
+        {
+         "id": "laws-and-citizens",
+         "title": "Laws and citizens",
+         "outcomes": [
+          {
+           "code": "AC9HC7K03",
+           "text": "the key principles and features of the Australian legal system, including the Australian Constitution, the rule of law and the court system"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "citizenship-diversity-and-identity",
+       "title": "Citizenship, diversity and identity",
+       "subtopics": [
+        {
+         "id": "citizenship-diversity-and-identity",
+         "title": "Citizenship, diversity and identity",
+         "outcomes": [
+          {
+           "code": "AC9HC7K04",
+           "text": "how Australia’s secular democracy and pluralist, multi-faith society draws upon diverse cultural origins, including Christian and Western heritage, distinct First Nations Australian histories and cultures, and migrant communities"
+          },
+          {
+           "code": "AC9HC7K05",
+           "text": "how values based on freedom, respect, fairness and equality of opportunity can support social cohesion and democracy within Australian society"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "skills",
+     "title": "Skills",
+     "topics": [
+      {
+       "id": "questioning-and-researching",
+       "title": "Questioning and researching",
+       "subtopics": [
+        {
+         "id": "questioning-and-researching",
+         "title": "Questioning and researching",
+         "outcomes": [
+          {
+           "code": "AC9HC7S01",
+           "text": "develop questions to investigate Australia’s political and legal systems, and contemporary civic issues"
+          },
+          {
+           "code": "AC9HC7S02",
+           "text": "locate, select and organise information, data and ideas from different sources"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "analysis-evaluation-and-interpretation",
+       "title": "Analysis, evaluation and interpretation",
+       "subtopics": [
+        {
+         "id": "analysis-evaluation-and-interpretation",
+         "title": "Analysis, evaluation and interpretation",
+         "outcomes": [
+          {
+           "code": "AC9HC7S03",
+           "text": "analyse information, data and ideas about political, legal or civic issues to identify and explain differences in perspectives and potential challenges"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "civic-participation-and-decision-making",
+       "title": "Civic participation and decision-making",
+       "subtopics": [
+        {
+         "id": "civic-participation-and-decision-making",
+         "title": "Civic participation and decision-making",
+         "outcomes": [
+          {
+           "code": "AC9HC7S04",
+           "text": "explain the methods or strategies related to making decisions about civic participation"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "communicating",
+       "title": "Communicating",
+       "subtopics": [
+        {
+         "id": "communicating",
+         "title": "Communicating",
+         "outcomes": [
+          {
+           "code": "AC9HC7S05",
+           "text": "create descriptions, explanations and arguments using civics and citizenship knowledge, concepts and terms that reference evidence"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "8",
+   "units": [
+    {
+     "id": "knowledge-and-understanding",
+     "title": "Knowledge and understanding",
+     "topics": [
+      {
+       "id": "government-and-democracy",
+       "title": "Government and democracy",
+       "subtopics": [
+        {
+         "id": "government-and-democracy",
+         "title": "Government and democracy",
+         "outcomes": [
+          {
+           "code": "AC9HC8K01",
+           "text": "how Australians are informed about and participate in democracy"
+          },
+          {
+           "code": "AC9HC8K02",
+           "text": "the role of political parties and independent representatives in Australian democracy, including elections and the formation of governments"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "laws-and-citizens",
+       "title": "Laws and citizens",
+       "subtopics": [
+        {
+         "id": "laws-and-citizens",
+         "title": "Laws and citizens",
+         "outcomes": [
+          {
+           "code": "AC9HC8K03",
+           "text": "the characteristics of laws and how laws are made in Australia through parliaments (statutory law) and through the courts (common law)"
+          },
+          {
+           "code": "AC9HC8K04",
+           "text": "the types of law in Australia, including criminal law and civil law, and the place of First Nations Australian customary law"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "citizenship-diversity-and-identity",
+       "title": "Citizenship, diversity and identity",
+       "subtopics": [
+        {
+         "id": "citizenship-diversity-and-identity",
+         "title": "Citizenship, diversity and identity",
+         "outcomes": [
+          {
+           "code": "AC9HC8K05",
+           "text": "how culture and religion may influence individuals' and groups' perceptions and expressions of citizenship and their actions as citizens"
+          },
+          {
+           "code": "AC9HC8K06",
+           "text": "different experiences of, perspectives on and debates about Australia’s national identity and citizenship, including the perspectives of First Nations Australians as owners of their respective nations, and of different migrant groups"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "skills",
+     "title": "Skills",
+     "topics": [
+      {
+       "id": "questioning-and-researching",
+       "title": "Questioning and researching",
+       "subtopics": [
+        {
+         "id": "questioning-and-researching",
+         "title": "Questioning and researching",
+         "outcomes": [
+          {
+           "code": "AC9HC8S01",
+           "text": "develop questions to investigate Australia’s political and legal systems, and contemporary civic issues"
+          },
+          {
+           "code": "AC9HC8S02",
+           "text": "locate, select and organise information, data and ideas from different sources"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "analysis-evaluation-and-interpretation",
+       "title": "Analysis, evaluation and interpretation",
+       "subtopics": [
+        {
+         "id": "analysis-evaluation-and-interpretation",
+         "title": "Analysis, evaluation and interpretation",
+         "outcomes": [
+          {
+           "code": "AC9HC8S03",
+           "text": "analyse information, data and ideas about political, legal or civic issues to identify and explain differences in perspectives and potential challenges"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "civic-participation-and-decision-making",
+       "title": "Civic participation and decision-making",
+       "subtopics": [
+        {
+         "id": "civic-participation-and-decision-making",
+         "title": "Civic participation and decision-making",
+         "outcomes": [
+          {
+           "code": "AC9HC8S04",
+           "text": "explain the methods or strategies related to making decisions about civic participation"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "communicating",
+       "title": "Communicating",
+       "subtopics": [
+        {
+         "id": "communicating",
+         "title": "Communicating",
+         "outcomes": [
+          {
+           "code": "AC9HC8S05",
+           "text": "create descriptions, explanations and arguments using civics and citizenship knowledge, concepts and terms that reference evidence"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "9",
+   "units": [
+    {
+     "id": "knowledge-and-understanding",
+     "title": "Knowledge and understanding",
+     "topics": [
+      {
+       "id": "government-and-democracy",
+       "title": "Government and democracy",
+       "subtopics": [
+        {
+         "id": "government-and-democracy",
+         "title": "Government and democracy",
+         "outcomes": [
+          {
+           "code": "AC9HC9K01",
+           "text": "the role of the Australian Constitution in providing the basis for Australia’s federal system of government and democratic processes, including institutions, and the process for constitutional change through a referendum"
+          },
+          {
+           "code": "AC9HC9K02",
+           "text": "the legislative processes through which federal government policy is shaped, developed and implemented"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "laws-and-citizens",
+       "title": "Laws and citizens",
+       "subtopics": [
+        {
+         "id": "laws-and-citizens",
+         "title": "Laws and citizens",
+         "outcomes": [
+          {
+           "code": "AC9HC9K03",
+           "text": "the key features and jurisdictions of Australia’s court system, and the operations of courts and tribunals"
+          },
+          {
+           "code": "AC9HC9K04",
+           "text": "the role of courts, judges, lawyers and juries in trials, and the rights of the accused and the rights of victims"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "citizenship-diversity-and-identity",
+       "title": "Citizenship, diversity and identity",
+       "subtopics": [
+        {
+         "id": "citizenship-diversity-and-identity",
+         "title": "Citizenship, diversity and identity",
+         "outcomes": [
+          {
+           "code": "AC9HC9K05",
+           "text": "how and why individuals and groups, including community, religious and cultural groups, participate in and contribute to civic life in Australia and to global citizenship"
+          },
+          {
+           "code": "AC9HC9K06",
+           "text": "the influence of a range of media, including social media, in shaping identity and attitudes to diversity"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "skills",
+     "title": "Skills",
+     "topics": [
+      {
+       "id": "questioning-and-researching",
+       "title": "Questioning and researching",
+       "subtopics": [
+        {
+         "id": "questioning-and-researching",
+         "title": "Questioning and researching",
+         "outcomes": [
+          {
+           "code": "AC9HC9S01",
+           "text": "develop and modify questions to investigate Australia’s political and legal systems, and contemporary civic issues"
+          },
+          {
+           "code": "AC9HC9S02",
+           "text": "locate, select and compare information, data and ideas from a range of sources"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "analysis-evaluation-and-interpretation",
+       "title": "Analysis, evaluation and interpretation",
+       "subtopics": [
+        {
+         "id": "analysis-evaluation-and-interpretation",
+         "title": "Analysis, evaluation and interpretation",
+         "outcomes": [
+          {
+           "code": "AC9HC9S03",
+           "text": "analyse information, data and ideas about political, legal or civic issues to identify and evaluate differences in perspectives and interpretations"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "civic-participation-and-decision-making",
+       "title": "Civic participation and decision-making",
+       "subtopics": [
+        {
+         "id": "civic-participation-and-decision-making",
+         "title": "Civic participation and decision-making",
+         "outcomes": [
+          {
+           "code": "AC9HC9S04",
+           "text": "evaluate the methods or strategies related to making decisions about civic participation"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "communicating",
+       "title": "Communicating",
+       "subtopics": [
+        {
+         "id": "communicating",
+         "title": "Communicating",
+         "outcomes": [
+          {
+           "code": "AC9HC9S05",
+           "text": "create descriptions, explanations and arguments using civics and citizenship knowledge, concepts and terms that incorporate evidence"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "10",
+   "units": [
+    {
+     "id": "knowledge-and-understanding",
+     "title": "Knowledge and understanding",
+     "topics": [
+      {
+       "id": "government-and-democracy",
+       "title": "Government and democracy",
+       "subtopics": [
+        {
+         "id": "government-and-democracy",
+         "title": "Government and democracy",
+         "outcomes": [
+          {
+           "code": "AC9HC10K01",
+           "text": "the key features and values of Australia’s system of government compared with at least one other democratic or non-democratic system of government in the Asia-Pacific region"
+          },
+          {
+           "code": "AC9HC10K02",
+           "text": "the Australian Government’s role and responsibilities at a regional and global level"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "laws-and-citizens",
+       "title": "Laws and citizens",
+       "subtopics": [
+        {
+         "id": "laws-and-citizens",
+         "title": "Laws and citizens",
+         "outcomes": [
+          {
+           "code": "AC9HC10K03",
+           "text": "the role of the parliament and the High Court of Australia in protecting rights under the Constitution, common law, and through federal and state statute law"
+          },
+          {
+           "code": "AC9HC10K04",
+           "text": "how Australia’s international legal obligations shape Australian law and government policies, including those relating to First Nations Australians, and the issues related to the application of these obligations"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "citizenship-diversity-and-identity",
+       "title": "Citizenship, diversity and identity",
+       "subtopics": [
+        {
+         "id": "citizenship-diversity-and-identity",
+         "title": "Citizenship, diversity and identity",
+         "outcomes": [
+          {
+           "code": "AC9HC10K05",
+           "text": "the challenges to and ways of sustaining a resilient democracy and a cohesive society in Australia and/or in our region or globally"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "skills",
+     "title": "Skills",
+     "topics": [
+      {
+       "id": "questioning-and-researching",
+       "title": "Questioning and researching",
+       "subtopics": [
+        {
+         "id": "questioning-and-researching",
+         "title": "Questioning and researching",
+         "outcomes": [
+          {
+           "code": "AC9HC10S01",
+           "text": "develop and modify questions to investigate Australia’s political and legal systems, and contemporary civic issues"
+          },
+          {
+           "code": "AC9HC10S02",
+           "text": "locate, select and compare information, data and ideas from a range of sources"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "analysis-evaluation-and-interpretation",
+       "title": "Analysis, evaluation and interpretation",
+       "subtopics": [
+        {
+         "id": "analysis-evaluation-and-interpretation",
+         "title": "Analysis, evaluation and interpretation",
+         "outcomes": [
+          {
+           "code": "AC9HC10S03",
+           "text": "analyse information, data and ideas about political, legal or civic issues to identify and evaluate differences in perspectives and interpretations"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "civic-participation-and-decision-making",
+       "title": "Civic participation and decision-making",
+       "subtopics": [
+        {
+         "id": "civic-participation-and-decision-making",
+         "title": "Civic participation and decision-making",
+         "outcomes": [
+          {
+           "code": "AC9HC10S04",
+           "text": "evaluate the methods or strategies and outcomes related to making decisions about civic participation"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "communicating",
+       "title": "Communicating",
+       "subtopics": [
+        {
+         "id": "communicating",
+         "title": "Communicating",
+         "outcomes": [
+          {
+           "code": "AC9HC10S05",
+           "text": "create descriptions, explanations and arguments using civics and citizenship knowledge, concepts and terms that incorporate evidence"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "build": {
+  "builtAt": "2026-10-14T07:54:30.314Z",
+  "model": "gpt-5.6-luna",
+  "usd": 0,
+  "expectedCodes": 42,
+  "coverage": 1,
+  "missingCodes": [],
+  "counts": {
+   "grades": 4,
+   "units": 8,
+   "topics": 28,
+   "subtopics": 28,
+   "outcomes": 42
+  },
+  "warnings": []
+ }
+}

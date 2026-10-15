@@ -1,0 +1,1235 @@
+{
+ "id": "au-ac9-health-and-physical-education-f-10",
+ "region": "AU",
+ "framework": "Australian Curriculum Version 9.0 (F-10)",
+ "board": "ACARA",
+ "qualification": null,
+ "subject": "Health and Physical Education",
+ "syllabusCode": "HPEHPE",
+ "gradeSystem": "year",
+ "source": {
+  "urls": [
+   "https://vocabulary.curriculum.edu.au/MRAC/2024/04/LA/HPE/export/MRAC/2024/04/LA/HPE.jsonld",
+   "https://www.australiancurriculum.edu.au/content/dam/en/curriculum/ac-version-9/downloads/curriculum-workbook.xlsx"
+  ],
+  "publisher": "Australian Curriculum, Assessment and Reporting Authority (ACARA)",
+  "licence": "© ACARA, Australian Curriculum v9.0, CC BY 4.0",
+  "firstExam": null
+ },
+ "grades": [
+  {
+   "grade": "Foundation",
+   "units": [
+    {
+     "id": "personal-social-and-community-health",
+     "title": "Personal, social and community health",
+     "topics": [
+      {
+       "id": "identities-and-change",
+       "title": "Identities and change",
+       "subtopics": [
+        {
+         "id": "identities-and-change",
+         "title": "Identities and change",
+         "outcomes": [
+          {
+           "code": "AC9HPFP01",
+           "text": "investigate who they are and the people in their world"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "interacting-with-others",
+       "title": "Interacting with others",
+       "subtopics": [
+        {
+         "id": "respectful-interactions-and-emotions",
+         "title": "Respectful interactions and emotions",
+         "outcomes": [
+          {
+           "code": "AC9HPFP02",
+           "text": "practise personal and social skills to interact respectfully with others"
+          },
+          {
+           "code": "AC9HPFP03",
+           "text": "express and describe emotions they experience"
+          },
+          {
+           "code": "AC9HPFP04",
+           "text": "explore how to seek, give or deny permission respectfully when sharing possessions or personal space"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "making-healthy-and-safe-choices",
+       "title": "Making healthy and safe choices",
+       "subtopics": [
+        {
+         "id": "making-healthy-and-safe-choices",
+         "title": "Making healthy and safe choices",
+         "outcomes": [
+          {
+           "code": "AC9HPFP05",
+           "text": "demonstrate protective behaviours, name body parts and rehearse help-seeking strategies that help keep them safe"
+          },
+          {
+           "code": "AC9HPFP06",
+           "text": "identify health symbols, messages and strategies in their community that support their health and safety"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "movement-and-physical-activity",
+     "title": "Movement and physical activity",
+     "topics": [
+      {
+       "id": "moving-our-bodies",
+       "title": "Moving our bodies",
+       "subtopics": [
+        {
+         "id": "moving-our-bodies",
+         "title": "Moving our bodies",
+         "outcomes": [
+          {
+           "code": "AC9HPFM01",
+           "text": "practise fundamental movement skills in minor game and play situations"
+          },
+          {
+           "code": "AC9HPFM02",
+           "text": "experiment with different ways of moving their body safely and manipulating objects and space"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "making-active-choices",
+       "title": "Making active choices",
+       "subtopics": [
+        {
+         "id": "making-active-choices",
+         "title": "Making active choices",
+         "outcomes": [
+          {
+           "code": "AC9HPFM03",
+           "text": "participate in a range of activities in natural and outdoor settings and explore the benefits of being physically active"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "learning-through-movement",
+       "title": "Learning through movement",
+       "subtopics": [
+        {
+         "id": "learning-through-movement",
+         "title": "Learning through movement",
+         "outcomes": [
+          {
+           "code": "AC9HPFM04",
+           "text": "follow rules to promote fair play in a range of physical activities"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "1-2",
+   "units": [
+    {
+     "id": "personal-social-and-community-health",
+     "title": "Personal, social and community health",
+     "topics": [
+      {
+       "id": "identities-and-change",
+       "title": "Identities and change",
+       "subtopics": [
+        {
+         "id": "identities-and-change",
+         "title": "Identities and change",
+         "outcomes": [
+          {
+           "code": "AC9HP2P01",
+           "text": "describe their personal qualities and those of others, and explain how they contribute to developing identities"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "interacting-with-others",
+       "title": "Interacting with others",
+       "subtopics": [
+        {
+         "id": "respectful-relationships-and-emotions",
+         "title": "Respectful relationships and emotions",
+         "outcomes": [
+          {
+           "code": "AC9HP2P02",
+           "text": "identify and explore skills and strategies to develop respectful relationships"
+          },
+          {
+           "code": "AC9HP2P03",
+           "text": "identify how different situations influence emotional responses"
+          }
+         ]
+        },
+        {
+         "id": "permission-strategies",
+         "title": "Permission strategies",
+         "outcomes": [
+          {
+           "code": "AC9HP2P04",
+           "text": "practise strategies they can use when they need to seek, give or deny permission respectfully"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "making-healthy-and-safe-choices",
+       "title": "Making healthy and safe choices",
+       "subtopics": [
+        {
+         "id": "making-healthy-and-safe-choices",
+         "title": "Making healthy and safe choices",
+         "outcomes": [
+          {
+           "code": "AC9HP2P05",
+           "text": "identify and demonstrate protective behaviours and help-seeking strategies they can use to help them and others stay safe"
+          },
+          {
+           "code": "AC9HP2P06",
+           "text": "investigate a range of health messages and practices in their community and discuss their purposes"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "movement-and-physical-activity",
+     "title": "Movement and physical activity",
+     "topics": [
+      {
+       "id": "moving-our-bodies",
+       "title": "Moving our bodies",
+       "subtopics": [
+        {
+         "id": "moving-our-bodies",
+         "title": "Moving our bodies",
+         "outcomes": [
+          {
+           "code": "AC9HP2M01",
+           "text": "practise fundamental movement skills and apply them in a variety of movement situations"
+          },
+          {
+           "code": "AC9HP2M02",
+           "text": "investigate different ways of moving their body, and manipulating objects and space, and draw conclusions about their effectiveness"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "making-active-choices",
+       "title": "Making active choices",
+       "subtopics": [
+        {
+         "id": "making-active-choices",
+         "title": "Making active choices",
+         "outcomes": [
+          {
+           "code": "AC9HP2M03",
+           "text": "participate in a range of physical activities in natural and outdoor settings, and investigate factors and settings that make physical activity enjoyable"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "learning-through-movement",
+       "title": "Learning through movement",
+       "subtopics": [
+        {
+         "id": "learning-through-movement",
+         "title": "Learning through movement",
+         "outcomes": [
+          {
+           "code": "AC9HP2M04",
+           "text": "co-construct and apply rules to promote fair play in a range of physical activities"
+          },
+          {
+           "code": "AC9HP2M05",
+           "text": "apply strategies to work collaboratively when participating in physical activities"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "3-4",
+   "units": [
+    {
+     "id": "personal-social-and-community-health",
+     "title": "Personal, social and community health",
+     "topics": [
+      {
+       "id": "identities-and-change",
+       "title": "Identities and change",
+       "subtopics": [
+        {
+         "id": "building-resilience-through-challenges",
+         "title": "Building resilience through challenges",
+         "outcomes": [
+          {
+           "code": "AC9HP4P01",
+           "text": "investigate how success, challenge, setbacks and failure strengthen resilience and identities in a range of contexts"
+          }
+         ]
+        },
+        {
+         "id": "coping-with-change",
+         "title": "Coping with change",
+         "outcomes": [
+          {
+           "code": "AC9HP4P02",
+           "text": "plan, rehearse and reflect on strategies to cope with the different changes and transitions they experience, such as the changes associated with puberty"
+          }
+         ]
+        },
+        {
+         "id": "choices-and-stereotypes",
+         "title": "Choices and stereotypes",
+         "outcomes": [
+          {
+           "code": "AC9HP4P03",
+           "text": "describe how choices and actions can be influenced by stereotypes"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "interacting-with-others",
+       "title": "Interacting with others",
+       "subtopics": [
+        {
+         "id": "building-respectful-relationships",
+         "title": "Building respectful relationships",
+         "outcomes": [
+          {
+           "code": "AC9HP4P04",
+           "text": "select, use and refine personal and social skills to establish, manage and strengthen relationships"
+          }
+         ]
+        },
+        {
+         "id": "valuing-diversity-and-inclusion",
+         "title": "Valuing diversity and inclusion",
+         "outcomes": [
+          {
+           "code": "AC9HP4P05",
+           "text": "describe how valuing diversity influences wellbeing and identify actions that promote inclusion in their communities"
+          }
+         ]
+        },
+        {
+         "id": "managing-emotional-responses",
+         "title": "Managing emotional responses",
+         "outcomes": [
+          {
+           "code": "AC9HP4P06",
+           "text": "explain how and why emotional responses can vary and practise strategies to manage their emotions"
+          }
+         ]
+        },
+        {
+         "id": "seeking-and-giving-permission",
+         "title": "Seeking and giving permission",
+         "outcomes": [
+          {
+           "code": "AC9HP4P07",
+           "text": "rehearse and refine strategies for seeking, giving and denying permission respectfully and describe situations when permission is required"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "making-healthy-and-safe-choices",
+       "title": "Making healthy and safe choices",
+       "subtopics": [
+        {
+         "id": "protective-behaviours-and-help-seeking",
+         "title": "Protective behaviours and help-seeking",
+         "outcomes": [
+          {
+           "code": "AC9HP4P08",
+           "text": "describe and apply protective behaviours and help-seeking strategies in a range of online and offline situations"
+          }
+         ]
+        },
+        {
+         "id": "understanding-health-messages",
+         "title": "Understanding health messages",
+         "outcomes": [
+          {
+           "code": "AC9HP4P09",
+           "text": "interpret the nature and intention of health information and messages, and reflect on how they influence personal decisions and behaviours"
+          }
+         ]
+        },
+        {
+         "id": "healthy-and-safe-choices",
+         "title": "Healthy and safe choices",
+         "outcomes": [
+          {
+           "code": "AC9HP4P10",
+           "text": "investigate and apply behaviours that contribute to their own and others’ health, safety, relationships and wellbeing"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "movement-and-physical-activity",
+     "title": "Movement and physical activity",
+     "topics": [
+      {
+       "id": "moving-our-bodies",
+       "title": "Moving our bodies",
+       "subtopics": [
+        {
+         "id": "fundamental-movement-skills",
+         "title": "Fundamental Movement Skills",
+         "outcomes": [
+          {
+           "code": "AC9HP4M01",
+           "text": "refine and apply fundamental movement skills in new movement situations"
+          }
+         ]
+        },
+        {
+         "id": "movement-strategies-and-concepts",
+         "title": "Movement Strategies and Concepts",
+         "outcomes": [
+          {
+           "code": "AC9HP4M02",
+           "text": "apply and adapt movement strategies to achieve movement outcomes"
+          },
+          {
+           "code": "AC9HP4M03",
+           "text": "demonstrate how movement concepts related to effort, space, time, objects and people can be applied when performing movement sequences"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "making-active-choices",
+       "title": "Making active choices",
+       "subtopics": [
+        {
+         "id": "activity-and-healthy-bodies",
+         "title": "Activity and Healthy Bodies",
+         "outcomes": [
+          {
+           "code": "AC9HP4M04",
+           "text": "participate in physical activities to explore how their body feels and describe how regular physical activity helps the body stay healthy and well"
+          }
+         ]
+        },
+        {
+         "id": "outdoor-activity-factors",
+         "title": "Outdoor Activity Factors",
+         "outcomes": [
+          {
+           "code": "AC9HP4M05",
+           "text": "participate in physical activities in natural and outdoor settings to examine factors that can influence their own and others’ participation"
+          }
+         ]
+        },
+        {
+         "id": "activity-and-sedentary-recommendations",
+         "title": "Activity and Sedentary Recommendations",
+         "outcomes": [
+          {
+           "code": "AC9HP4M06",
+           "text": "explore recommendations about physical activity and sedentary behaviours, and discuss strategies to achieve the recommendations"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "learning-through-movement",
+       "title": "Learning through movement",
+       "subtopics": [
+        {
+         "id": "creative-movement-solutions",
+         "title": "Creative Movement Solutions",
+         "outcomes": [
+          {
+           "code": "AC9HP4M07",
+           "text": "apply creative thinking when designing movement sequences and solving movement problems"
+          }
+         ]
+        },
+        {
+         "id": "rules-fair-play-and-scoring",
+         "title": "Rules Fair Play and Scoring",
+         "outcomes": [
+          {
+           "code": "AC9HP4M08",
+           "text": "apply rules and scoring systems to promote fair play when participating or designing physical activities"
+          }
+         ]
+        },
+        {
+         "id": "roles-in-team-activities",
+         "title": "Roles in Team Activities",
+         "outcomes": [
+          {
+           "code": "AC9HP4M09",
+           "text": "perform a range of roles in respectful ways to achieve successful outcomes in group or team movement activities"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "5-6",
+   "units": [
+    {
+     "id": "personal-social-and-community-health",
+     "title": "Personal, social and community health",
+     "topics": [
+      {
+       "id": "identities-and-change",
+       "title": "Identities and change",
+       "subtopics": [
+        {
+         "id": "building-positive-identities",
+         "title": "Building Positive Identities",
+         "outcomes": [
+          {
+           "code": "AC9HP6P01",
+           "text": "explain how identities can be influenced by people and places, and how we can create positive self-identities"
+          },
+          {
+           "code": "AC9HP6P03",
+           "text": "investigate how the portrayal of societal roles and responsibilities can be influenced by gender stereotypes"
+          }
+         ]
+        },
+        {
+         "id": "managing-change-and-puberty",
+         "title": "Managing Change and Puberty",
+         "outcomes": [
+          {
+           "code": "AC9HP6P02",
+           "text": "investigate resources and strategies to manage changes and transitions, including changes associated with puberty"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "interacting-with-others",
+       "title": "Interacting with others",
+       "subtopics": [
+        {
+         "id": "respecting-diversity",
+         "title": "Respecting Diversity",
+         "outcomes": [
+          {
+           "code": "AC9HP6P04",
+           "text": "describe and demonstrate how respect and empathy can be expressed to positively influence relationships"
+          },
+          {
+           "code": "AC9HP6P05",
+           "text": "describe and implement strategies to value diversity in their communities"
+          }
+         ]
+        },
+        {
+         "id": "managing-emotions",
+         "title": "Managing Emotions",
+         "outcomes": [
+          {
+           "code": "AC9HP6P06",
+           "text": "apply strategies to manage emotions and analyse how emotional responses influence interactions"
+          }
+         ]
+        },
+        {
+         "id": "communicating-consent",
+         "title": "Communicating Consent",
+         "outcomes": [
+          {
+           "code": "AC9HP6P07",
+           "text": "describe strategies for seeking, giving or denying consent and rehearse how to communicate their intentions effectively and respectfully"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "making-healthy-and-safe-choices",
+       "title": "Making healthy and safe choices",
+       "subtopics": [
+        {
+         "id": "protective-behaviours",
+         "title": "Protective Behaviours",
+         "outcomes": [
+          {
+           "code": "AC9HP6P08",
+           "text": "analyse and rehearse protective behaviours and help-seeking strategies that can be used in a range of online and offline situations"
+          }
+         ]
+        },
+        {
+         "id": "using-health-information",
+         "title": "Using Health Information",
+         "outcomes": [
+          {
+           "code": "AC9HP6P09",
+           "text": "investigate different sources and types of health information and how these apply to their own and others’ health choices"
+          },
+          {
+           "code": "AC9HP6P10",
+           "text": "analyse how behaviours influence the health, safety, relationships and wellbeing of individuals and communities"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "movement-and-physical-activity",
+     "title": "Movement and physical activity",
+     "topics": [
+      {
+       "id": "moving-our-bodies",
+       "title": "Moving our bodies",
+       "subtopics": [
+        {
+         "id": "adapting-movement-skills",
+         "title": "Adapting Movement Skills",
+         "outcomes": [
+          {
+           "code": "AC9HP6M01",
+           "text": "adapt and modify movement skills across a variety of situations"
+          },
+          {
+           "code": "AC9HP6M02",
+           "text": "transfer familiar movement strategies to different movement situations"
+          }
+         ]
+        },
+        {
+         "id": "movement-concepts",
+         "title": "Movement Concepts",
+         "outcomes": [
+          {
+           "code": "AC9HP6M03",
+           "text": "investigate how different movement concepts related to effort, space, time, objects and people can be applied to improve movement outcomes"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "making-active-choices",
+       "title": "Making active choices",
+       "subtopics": [
+        {
+         "id": "activity-and-body-responses",
+         "title": "Activity and Body Responses",
+         "outcomes": [
+          {
+           "code": "AC9HP6M04",
+           "text": "participate in physical activities to investigate the body’s reaction to different levels of intensity"
+          }
+         ]
+        },
+        {
+         "id": "outdoor-activity-planning",
+         "title": "Outdoor Activity Planning",
+         "outcomes": [
+          {
+           "code": "AC9HP6M05",
+           "text": "participate in physical activities that enhance health and wellbeing in natural and outdoor settings, and analyse the steps and resources needed to promote participation"
+          }
+         ]
+        },
+        {
+         "id": "increasing-daily-activity",
+         "title": "Increasing Daily Activity",
+         "outcomes": [
+          {
+           "code": "AC9HP6M06",
+           "text": "propose and explain strategies to increase physical activity and reduce sedentary behaviour levels in their lives"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "learning-through-movement",
+       "title": "Learning through movement",
+       "subtopics": [
+        {
+         "id": "testing-movement-strategies",
+         "title": "Testing Movement Strategies",
+         "outcomes": [
+          {
+           "code": "AC9HP6M07",
+           "text": "predict and test the effectiveness of applying different skills and strategies in a range of movement situations"
+          }
+         ]
+        },
+        {
+         "id": "inclusive-game-rules",
+         "title": "Inclusive Game Rules",
+         "outcomes": [
+          {
+           "code": "AC9HP6M08",
+           "text": "devise and test alternative rules and game modifications to support fair play and inclusive participation"
+          }
+         ]
+        },
+        {
+         "id": "working-in-teams",
+         "title": "Working in Teams",
+         "outcomes": [
+          {
+           "code": "AC9HP6M09",
+           "text": "participate positively in groups and teams by contributing to group activities, encouraging others and negotiating roles and responsibilities"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "7-8",
+   "units": [
+    {
+     "id": "personal-social-and-community-health",
+     "title": "Personal, social and community health",
+     "topics": [
+      {
+       "id": "identities-and-change",
+       "title": "Identities and change",
+       "subtopics": [
+        {
+         "id": "values-and-identity",
+         "title": "Values and Identity",
+         "outcomes": [
+          {
+           "code": "AC9HP8P01",
+           "text": "analyse and reflect on the influence of values and beliefs on the development of identities"
+          }
+         ]
+        },
+        {
+         "id": "managing-change",
+         "title": "Managing Change",
+         "outcomes": [
+          {
+           "code": "AC9HP8P02",
+           "text": "analyse the impact of changes and transitions, and devise strategies to support themselves and others through these changes"
+          }
+         ]
+        },
+        {
+         "id": "power-in-relationships",
+         "title": "Power in Relationships",
+         "outcomes": [
+          {
+           "code": "AC9HP8P03",
+           "text": "examine how roles, decision-making, and levels of power, coercion and control within relationships can be influenced by gender stereotypes"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "interacting-with-others",
+       "title": "Interacting with others",
+       "subtopics": [
+        {
+         "id": "respectful-relationships",
+         "title": "Respectful Relationships",
+         "outcomes": [
+          {
+           "code": "AC9HP8P04",
+           "text": "examine the roles of respect, empathy, power and coercion in developing respectful relationships"
+          }
+         ]
+        },
+        {
+         "id": "valuing-diversity",
+         "title": "Valuing Diversity",
+         "outcomes": [
+          {
+           "code": "AC9HP8P05",
+           "text": "investigate strategies that influence how communities value diversity and propose actions they can take to promote inclusion in their communities"
+          }
+         ]
+        },
+        {
+         "id": "managing-emotions",
+         "title": "Managing Emotions",
+         "outcomes": [
+          {
+           "code": "AC9HP8P06",
+           "text": "analyse factors that influence emotional responses and devise strategies to self-manage emotions"
+          }
+         ]
+        },
+        {
+         "id": "communicating-consent",
+         "title": "Communicating Consent",
+         "outcomes": [
+          {
+           "code": "AC9HP8P07",
+           "text": "explain and apply skills and strategies to communicate assertively and respectfully when seeking, giving or denying consent"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "making-healthy-and-safe-choices",
+       "title": "Making healthy and safe choices",
+       "subtopics": [
+        {
+         "id": "protective-behaviours",
+         "title": "Protective Behaviours",
+         "outcomes": [
+          {
+           "code": "AC9HP8P08",
+           "text": "refine protective behaviours and evaluate community resources to seek help for themselves and others"
+          }
+         ]
+        },
+        {
+         "id": "media-and-health-choices",
+         "title": "Media and Health Choices",
+         "outcomes": [
+          {
+           "code": "AC9HP8P09",
+           "text": "investigate how media and influential people impact attitudes, beliefs, decisions and behaviours in relation to health, safety, relationships and wellbeing"
+          }
+         ]
+        },
+        {
+         "id": "planning-for-wellbeing",
+         "title": "Planning for Wellbeing",
+         "outcomes": [
+          {
+           "code": "AC9HP8P10",
+           "text": "plan and implement strategies, using health resources, to enhance their own and others’ health, safety, relationships and wellbeing"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "movement-and-physical-activity",
+     "title": "Movement and physical activity",
+     "topics": [
+      {
+       "id": "moving-our-bodies",
+       "title": "Moving our bodies",
+       "subtopics": [
+        {
+         "id": "refining-movement-skills",
+         "title": "Refining Movement Skills",
+         "outcomes": [
+          {
+           "code": "AC9HP8M01",
+           "text": "analyse, refine and transfer movement skills in a variety of movement situations"
+          }
+         ]
+        },
+        {
+         "id": "manipulating-movement-strategies",
+         "title": "Manipulating Movement Strategies",
+         "outcomes": [
+          {
+           "code": "AC9HP8M02",
+           "text": "design and demonstrate how movement strategies can be manipulated to improve movement outcomes"
+          },
+          {
+           "code": "AC9HP8M03",
+           "text": "demonstrate and explain how movement concepts related to effort, space, time, objects and people can be manipulated to improve movement outcomes"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "making-active-choices",
+       "title": "Making active choices",
+       "subtopics": [
+        {
+         "id": "fitness-and-wellbeing",
+         "title": "Fitness and Wellbeing",
+         "outcomes": [
+          {
+           "code": "AC9HP8M04",
+           "text": "participate in physical activities designed to improve fitness and wellbeing to investigate the impact of regular participation on health, fitness and wellbeing"
+          }
+         ]
+        },
+        {
+         "id": "using-community-spaces",
+         "title": "Using Community Spaces",
+         "outcomes": [
+          {
+           "code": "AC9HP8M05",
+           "text": "participate in physical activities that utilise community spaces and outdoor settings, and evaluate strategies to support increased use of these spaces"
+          }
+         ]
+        },
+        {
+         "id": "increasing-physical-activity",
+         "title": "Increasing Physical Activity",
+         "outcomes": [
+          {
+           "code": "AC9HP8M06",
+           "text": "design and justify strategies to increase physical activity levels to achieve health and wellbeing outcomes"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "learning-through-movement",
+       "title": "Learning through movement",
+       "subtopics": [
+        {
+         "id": "choosing-movement-strategies",
+         "title": "Choosing Movement Strategies",
+         "outcomes": [
+          {
+           "code": "AC9HP8M07",
+           "text": "propose and evaluate movement strategies and skills that would be most effective in different movement situations"
+          }
+         ]
+        },
+        {
+         "id": "inclusive-fair-play",
+         "title": "Inclusive Fair Play",
+         "outcomes": [
+          {
+           "code": "AC9HP8M08",
+           "text": "investigate modifications to equipment, rules and scoring systems that support fair play and inclusive participation"
+          }
+         ]
+        },
+        {
+         "id": "leading-and-collaborating",
+         "title": "Leading and Collaborating",
+         "outcomes": [
+          {
+           "code": "AC9HP8M09",
+           "text": "practise and apply leadership, collaboration and group decision-making processes when participating in a range of physical activities"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "9-10",
+   "units": [
+    {
+     "id": "personal-social-and-community-health",
+     "title": "Personal, social and community health",
+     "topics": [
+      {
+       "id": "identities-and-change",
+       "title": "Identities and change",
+       "subtopics": [
+        {
+         "id": "identities-and-influence",
+         "title": "Identities and influence",
+         "outcomes": [
+          {
+           "code": "AC9HP10P01",
+           "text": "analyse factors that shape identities and evaluate how individuals influence the identities of others"
+          }
+         ]
+        },
+        {
+         "id": "managing-life-changes",
+         "title": "Managing life changes",
+         "outcomes": [
+          {
+           "code": "AC9HP10P02",
+           "text": "refine, evaluate and adapt strategies for managing changes and transitions"
+          }
+         ]
+        },
+        {
+         "id": "gender-equality-and-safety",
+         "title": "Gender equality and safety",
+         "outcomes": [
+          {
+           "code": "AC9HP10P03",
+           "text": "investigate how gender equality and challenging assumptions about gender can prevent violence and abuse in relationships"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "interacting-with-others",
+       "title": "Interacting with others",
+       "subtopics": [
+        {
+         "id": "respectful-relationships",
+         "title": "Respectful relationships",
+         "outcomes": [
+          {
+           "code": "AC9HP10P04",
+           "text": "evaluate the influence of respect, empathy, power and coercion on establishing and maintaining respectful relationships"
+          }
+         ]
+        },
+        {
+         "id": "inclusion-and-challenging-bias",
+         "title": "Inclusion and challenging bias",
+         "outcomes": [
+          {
+           "code": "AC9HP10P05",
+           "text": "propose strategies and actions individuals and groups can implement to challenge biases, stereotypes, prejudices and discrimination, and promote inclusion in their communities"
+          }
+         ]
+        },
+        {
+         "id": "managing-emotional-responses",
+         "title": "Managing emotional responses",
+         "outcomes": [
+          {
+           "code": "AC9HP10P06",
+           "text": "evaluate emotional responses in different situations to refine strategies for managing emotions"
+          }
+         ]
+        },
+        {
+         "id": "consent-and-communication",
+         "title": "Consent and communication",
+         "outcomes": [
+          {
+           "code": "AC9HP10P07",
+           "text": "examine how strategies, such as communicating choices, seeking, giving and denying consent, and expressing opinions and needs can support the development of respectful relationships, including sexual relationships"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "making-healthy-and-safe-choices",
+       "title": "Making healthy and safe choices",
+       "subtopics": [
+        {
+         "id": "managing-health-and-safety-risks",
+         "title": "Managing health and safety risks",
+         "outcomes": [
+          {
+           "code": "AC9HP10P08",
+           "text": "plan, rehearse and evaluate strategies for managing situations where their own or others’ health, safety or wellbeing may be at risk"
+          }
+         ]
+        },
+        {
+         "id": "evaluating-health-information",
+         "title": "Evaluating health information",
+         "outcomes": [
+          {
+           "code": "AC9HP10P09",
+           "text": "critique health information, services and media messaging about relationships, lifestyle choices, health decisions and behaviours to evaluate their influence on individual attitudes and actions"
+          }
+         ]
+        },
+        {
+         "id": "enhancing-health-and-wellbeing",
+         "title": "Enhancing health and wellbeing",
+         "outcomes": [
+          {
+           "code": "AC9HP10P10",
+           "text": "plan, justify and critique strategies to enhance their own and others’ health, safety, relationships and wellbeing"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "movement-and-physical-activity",
+     "title": "Movement and physical activity",
+     "topics": [
+      {
+       "id": "moving-our-bodies",
+       "title": "Moving our bodies",
+       "subtopics": [
+        {
+         "id": "refine-movement-skills",
+         "title": "Refine Movement Skills",
+         "outcomes": [
+          {
+           "code": "AC9HP10M01",
+           "text": "analyse, adapt and refine their own and others’ movement skills in a range of challenging movement situations to enhance performance"
+          }
+         ]
+        },
+        {
+         "id": "create-movement-strategies",
+         "title": "Create Movement Strategies",
+         "outcomes": [
+          {
+           "code": "AC9HP10M02",
+           "text": "create and refine movement strategies to achieve successful outcomes across a range of challenging movement situations"
+          }
+         ]
+        },
+        {
+         "id": "apply-movement-concepts",
+         "title": "Apply Movement Concepts",
+         "outcomes": [
+          {
+           "code": "AC9HP10M03",
+           "text": "apply movement concepts in new or challenging movement situations and analyse the impact each concept has on movement outcomes"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "making-active-choices",
+       "title": "Making active choices",
+       "subtopics": [
+        {
+         "id": "choose-healthy-activities",
+         "title": "Choose Healthy Activities",
+         "outcomes": [
+          {
+           "code": "AC9HP10M04",
+           "text": "participate in physical activities designed to enhance health, wellbeing and fitness, and design, apply and evaluate strategies for incorporating these activities into their lives"
+          },
+          {
+           "code": "AC9HP10M05",
+           "text": "participate in physical activities that promote health and social outcomes to design and evaluate participation strategies for themselves and others"
+          }
+         ]
+        },
+        {
+         "id": "plan-physical-activity",
+         "title": "Plan Physical Activity",
+         "outcomes": [
+          {
+           "code": "AC9HP10M06",
+           "text": "design, implement and evaluate personalised plans for improving or maintaining their own or others’ physical activity levels to achieve fitness, health and wellbeing outcomes"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "learning-through-movement",
+       "title": "Learning through movement",
+       "subtopics": [
+        {
+         "id": "adapt-skills-in-new-situations",
+         "title": "Adapt Skills in New Situations",
+         "outcomes": [
+          {
+           "code": "AC9HP10M07",
+           "text": "transfer and adapt skills and strategies from previous experiences to create successful outcomes in unfamiliar movement situations"
+          }
+         ]
+        },
+        {
+         "id": "use-fair-play",
+         "title": "Use Fair Play",
+         "outcomes": [
+          {
+           "code": "AC9HP10M08",
+           "text": "demonstrate fair play and reflect on how ethical behaviour can influence physical activity outcomes for individuals and groups"
+          }
+         ]
+        },
+        {
+         "id": "lead-and-collaborate",
+         "title": "Lead and Collaborate",
+         "outcomes": [
+          {
+           "code": "AC9HP10M09",
+           "text": "devise, implement and refine strategies for decision-making when working in groups or teams that demonstrate leadership and collaboration skills"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "build": {
+  "builtAt": "2026-10-14T07:54:41.290Z",
+  "model": "gpt-5.6-luna",
+  "usd": 0.003,
+  "expectedCodes": 97,
+  "coverage": 1,
+  "missingCodes": [],
+  "counts": {
+   "grades": 6,
+   "units": 12,
+   "topics": 36,
+   "subtopics": 82,
+   "outcomes": 97
+  },
+  "warnings": []
+ }
+}

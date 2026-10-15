@@ -1,0 +1,229 @@
+{
+ "id": "ib-dp-philosophy",
+ "region": "INTL",
+ "framework": "International Baccalaureate Diploma Programme (DP)",
+ "board": "IB",
+ "qualification": "IB Diploma Programme",
+ "subject": "Philosophy (SL and HL)",
+ "syllabusCode": null,
+ "gradeSystem": "course",
+ "source": {
+  "urls": [
+   "https://www.ibo.org/globalassets/new-structure/university-admission/pdfs/dp-philosophy-brief-sl-hl-en.pdf",
+   "https://web.archive.org/web/20220802110650id_/https://www.ibo.org/globalassets/new-structure/university-admission/pdfs/dp-philosophy-brief-sl-hl-en.pdf"
+  ],
+  "publisher": "International Baccalaureate Organization",
+  "licence": "(c) International Baccalaureate Organization; all rights reserved, no open licence. ibo.org terms 1.8: IB copyrighted materials are licensed only under the IB's terms or a signed agreement; 'Any use not expressly permitted is prohibited unless special permission is obtained in writing from the IB'; 1.9: nothing on the IB websites confers any licence. Briefs are free public marketing summaries: take topic structure only, write everything in our own words, never reproduce brief text, and do not use IB logos/trade marks. Full subject guides are sold to schools and were NOT used. Terms: https://www.ibo.org/terms-and-conditions/ and https://www.ibo.org/copyright",
+  "firstExam": "2025"
+ },
+ "grades": [
+  {
+   "grade": "all",
+   "units": [
+    {
+     "id": "core-theme-being-human",
+     "title": "Core theme: Being human",
+     "topics": [
+      {
+       "id": "being-human",
+       "title": "Being human",
+       "subtopics": [
+        {
+         "id": "the-core-theme-being-human",
+         "title": "The core theme: being human",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explore philosophical questions about what it is to be human."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "optional-themes",
+     "title": "Optional themes",
+     "topics": [
+      {
+       "id": "optional-themes",
+       "title": "Optional themes",
+       "subtopics": [
+        {
+         "id": "aesthetics",
+         "title": "Aesthetics",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Study the philosophy of art and beauty."
+          }
+         ]
+        },
+        {
+         "id": "epistemology",
+         "title": "Epistemology",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Study the nature and limits of knowledge."
+          }
+         ]
+        },
+        {
+         "id": "ethics",
+         "title": "Ethics",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Study moral philosophy and how to decide what is right."
+          }
+         ]
+        },
+        {
+         "id": "philosophy-of-religion",
+         "title": "Philosophy of religion",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Study philosophical questions about religion."
+          }
+         ]
+        },
+        {
+         "id": "philosophy-of-science",
+         "title": "Philosophy of science",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Study the philosophy of science and scientific knowledge."
+          }
+         ]
+        },
+        {
+         "id": "political-philosophy",
+         "title": "Political philosophy",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Study the philosophy of government, power and justice."
+          }
+         ]
+        },
+        {
+         "id": "social-philosophy",
+         "title": "Social philosophy",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Study the philosophy of society and social life."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "prescribed-text",
+     "title": "Prescribed text",
+     "topics": [
+      {
+       "id": "prescribed-text",
+       "title": "Prescribed text",
+       "subtopics": [
+        {
+         "id": "studying-a-prescribed-philosophical-text",
+         "title": "Studying a prescribed philosophical text",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Study one text from the IB list of prescribed philosophical texts."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "hl-extension",
+     "title": "HL extension",
+     "topics": [
+      {
+       "id": "philosophy-and-contemporary-issues",
+       "title": "Philosophy and contemporary issues",
+       "subtopics": [
+        {
+         "id": "philosophy-and-contemporary-issues",
+         "title": "Philosophy and contemporary issues",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Apply philosophical methods to contemporary issues."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "philosophical-skills",
+     "title": "Philosophical skills",
+     "topics": [
+      {
+       "id": "philosophical-analysis",
+       "title": "Philosophical analysis",
+       "subtopics": [
+        {
+         "id": "analysing-non-philosophical-stimuli",
+         "title": "Analysing non-philosophical stimuli",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Identify and analyse philosophical issues in a non-philosophical stimulus."
+          }
+         ]
+        },
+        {
+         "id": "constructing-arguments",
+         "title": "Constructing arguments",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Build balanced arguments with supporting examples and reach reasoned conclusions."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "build": {
+  "builtAt": "2026-10-14T10:53:49.108Z",
+  "model": "claude-agent",
+  "usd": 0,
+  "expectedCodes": null,
+  "coverage": null,
+  "missingCodes": [],
+  "counts": {
+   "grades": 1,
+   "units": 5,
+   "topics": 5,
+   "subtopics": 12,
+   "outcomes": 12
+  },
+  "warnings": [
+   "grade DP year 1 has no content",
+   "grade DP year 2 has no content",
+   "unexpected grade label \"all\"",
+   "unit \"Core theme: Being human\" (grade all) has a single outcome",
+   "unit \"Prescribed text\" (grade all) has a single outcome",
+   "unit \"HL extension\" (grade all) has a single outcome"
+  ]
+ }
+}

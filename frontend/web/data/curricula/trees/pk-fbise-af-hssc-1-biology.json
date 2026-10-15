@@ -1,0 +1,1923 @@
+{
+ "id": "pk-fbise-af-hssc-1-biology",
+ "region": "PK",
+ "framework": "FBISE Assessment Framework (National Curriculum of Pakistan 2022-23)",
+ "board": "FBISE",
+ "qualification": "HSSC-I",
+ "subject": "Biology",
+ "syllabusCode": null,
+ "gradeSystem": "grade",
+ "source": {
+  "urls": [
+   "https://www.fbise.edu.pk/ModelPaper/2025/Assessment%20Frameworks/HSSC-I/Final%20Assessment%20Framework%20Model%20Question%20Paper%20Biology%20HSSC-I.pdf"
+  ],
+  "publisher": "Federal Board of Intermediate and Secondary Education",
+  "licence": "Government publication; structure + our own wording only",
+  "firstExam": "2025"
+ },
+ "grades": [
+  {
+   "grade": "11",
+   "units": [
+    {
+     "id": "domain-b-evolution-and-diversity-of-life",
+     "title": "Domain B: Evolution and Diversity of Life",
+     "topics": [
+      {
+       "id": "evolution",
+       "title": "Evolution",
+       "subtopics": [
+        {
+         "id": "evidence-for-evolution",
+         "title": "Evidence for evolution",
+         "outcomes": [
+          {
+           "code": "B-11-B-01",
+           "text": "Explain how variation and selection pressure drive evolution."
+          },
+          {
+           "code": "B-11-B-02",
+           "text": "Discuss biogeographical evidence for evolution."
+          },
+          {
+           "code": "B-11-B-03",
+           "text": "Analyse molecular-biology evidence for evolution."
+          },
+          {
+           "code": "B-11-B-04",
+           "text": "Tell convergent from divergent evolution using homologous and analogous structures."
+          }
+         ]
+        },
+        {
+         "id": "origin-of-eukaryotes",
+         "title": "Origin of eukaryotes",
+         "outcomes": [
+          {
+           "code": "B-11-B-05",
+           "text": "Describe the endosymbiotic theory of how eukaryotes arose from prokaryotes."
+          }
+         ]
+        },
+        {
+         "id": "lamarckism",
+         "title": "Lamarckism",
+         "outcomes": [
+          {
+           "code": "B-11-B-06",
+           "text": "Describe Lamarck's inheritance of acquired characters, with the giraffe neck example."
+          },
+          {
+           "code": "B-11-B-07",
+           "text": "State the weaknesses of Lamarckism."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "plant-diversity",
+       "title": "Plant diversity",
+       "subtopics": [
+        {
+         "id": "non-vascular-plants",
+         "title": "Non-vascular plants",
+         "outcomes": [
+          {
+           "code": "B-11-B-08",
+           "text": "Describe bryophytes as non-vascular plants."
+          },
+          {
+           "code": "B-11-B-09",
+           "text": "Explain the life cycle of Polytrichum moss."
+          }
+         ]
+        },
+        {
+         "id": "vascular-plants-and-ferns",
+         "title": "Vascular plants and ferns",
+         "outcomes": [
+          {
+           "code": "B-11-B-10",
+           "text": "Describe the general features of vascular plants."
+          },
+          {
+           "code": "B-11-B-11",
+           "text": "Identify the divisions of vascular plants."
+          },
+          {
+           "code": "B-11-B-12",
+           "text": "Explain the general characteristics of pteridophytes."
+          },
+          {
+           "code": "B-11-B-13",
+           "text": "Explain the life cycle of ferns."
+          }
+         ]
+        },
+        {
+         "id": "gymnosperms",
+         "title": "Gymnosperms",
+         "outcomes": [
+          {
+           "code": "B-11-B-14",
+           "text": "Describe the general characteristics of gymnosperms."
+          },
+          {
+           "code": "B-11-B-15",
+           "text": "Describe the life cycle of pine."
+          }
+         ]
+        },
+        {
+         "id": "angiosperms",
+         "title": "Angiosperms",
+         "outcomes": [
+          {
+           "code": "B-11-B-16",
+           "text": "Describe the general characteristics of angiosperms."
+          },
+          {
+           "code": "B-11-B-17",
+           "text": "Explain the life cycle of angiosperms."
+          },
+          {
+           "code": "B-11-B-18",
+           "text": "Describe general characteristics of angiosperm groups and their economic importance."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "animal-diversity",
+       "title": "Animal diversity",
+       "subtopics": [
+        {
+         "id": "invertebrates",
+         "title": "Invertebrates",
+         "outcomes": [
+          {
+           "code": "B-11-B-19",
+           "text": "Identify the two major divisions of animals."
+          },
+          {
+           "code": "B-11-B-20",
+           "text": "Describe features and importance of invertebrate phyla such as roundworms, molluscs, annelids, arthropods and echinoderms."
+          }
+         ]
+        },
+        {
+         "id": "chordates",
+         "title": "Chordates",
+         "outcomes": [
+          {
+           "code": "B-11-B-21",
+           "text": "Describe the general characteristics of chordates."
+          },
+          {
+           "code": "B-11-B-22",
+           "text": "Describe the general characteristics of amphibians and other vertebrate classes."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "domain-c-biochemistry",
+     "title": "Domain C: Biochemistry",
+     "topics": [
+      {
+       "id": "molecules-of-life",
+       "title": "Molecules of life",
+       "subtopics": [
+        {
+         "id": "biochemistry-and-water",
+         "title": "Biochemistry and water",
+         "outcomes": [
+          {
+           "code": "B-11-C-01",
+           "text": "Define biochemistry and molecular biology."
+          },
+          {
+           "code": "B-11-C-02",
+           "text": "Describe briefly the types of chemical bonds in biological molecules."
+          },
+          {
+           "code": "B-11-C-05",
+           "text": "State the properties of water that make it the medium of life."
+          }
+         ]
+        },
+        {
+         "id": "biomolecule-types-and-condensation",
+         "title": "Biomolecule types and condensation",
+         "outcomes": [
+          {
+           "code": "B-11-C-03",
+           "text": "Distinguish carbohydrates, proteins, lipids and nucleic acids."
+          },
+          {
+           "code": "B-11-C-04",
+           "text": "Describe and sketch condensation and hydrolysis reactions."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "carbohydrates",
+       "title": "Carbohydrates",
+       "subtopics": [
+        {
+         "id": "carbohydrate-classes",
+         "title": "Carbohydrate classes",
+         "outcomes": [
+          {
+           "code": "B-11-C-06",
+           "text": "Define carbohydrates and classify them."
+          },
+          {
+           "code": "B-11-C-07",
+           "text": "Compare properties and roles of monosaccharides."
+          },
+          {
+           "code": "B-11-C-08",
+           "text": "Compare isomers and stereoisomers of glucose."
+          }
+         ]
+        },
+        {
+         "id": "disaccharides-and-polysaccharides",
+         "title": "Disaccharides and polysaccharides",
+         "outcomes": [
+          {
+           "code": "B-11-C-09",
+           "text": "Distinguish properties and roles of disaccharides."
+          },
+          {
+           "code": "B-11-C-10",
+           "text": "Describe glycosidic bonds in disaccharides."
+          },
+          {
+           "code": "B-11-C-11",
+           "text": "Describe structure, properties and roles of polysaccharides."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "proteins",
+       "title": "Proteins",
+       "subtopics": [
+        {
+         "id": "amino-acids-and-peptide-bonds",
+         "title": "Amino acids and peptide bonds",
+         "outcomes": [
+          {
+           "code": "B-11-C-12",
+           "text": "Define proteins and amino acids, and recognise essential amino acids."
+          },
+          {
+           "code": "B-11-C-13",
+           "text": "Outline how peptide bonds form and break."
+          },
+          {
+           "code": "B-11-C-14",
+           "text": "Justify why amino acid sequence matters."
+          }
+         ]
+        },
+        {
+         "id": "protein-types-and-roles",
+         "title": "Protein types and roles",
+         "outcomes": [
+          {
+           "code": "B-11-C-15",
+           "text": "Classify proteins as globular or fibrous."
+          },
+          {
+           "code": "B-11-C-16",
+           "text": "List roles of structural and functional proteins."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "lipids",
+       "title": "Lipids",
+       "subtopics": [
+        {
+         "id": "lipid-types",
+         "title": "Lipid types",
+         "outcomes": [
+          {
+           "code": "B-11-C-17",
+           "text": "Define lipids."
+          },
+          {
+           "code": "B-11-C-18",
+           "text": "Describe properties and roles of acylglycerols, waxes and phospholipids."
+          },
+          {
+           "code": "B-11-C-19",
+           "text": "Illustrate the molecular structure of fats and phospholipids."
+          },
+          {
+           "code": "B-11-C-20",
+           "text": "Evaluate steroids and prostaglandins as important lipids."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "nucleic-acids",
+       "title": "Nucleic acids",
+       "subtopics": [
+        {
+         "id": "nucleotides-and-dna",
+         "title": "Nucleotides and DNA",
+         "outcomes": [
+          {
+           "code": "B-11-C-21",
+           "text": "Describe nucleic acids and the molecular structure of nucleotides."
+          },
+          {
+           "code": "B-11-C-22",
+           "text": "Distinguish the nitrogenous bases in nucleic acids."
+          },
+          {
+           "code": "B-11-C-23",
+           "text": "Outline mononucleotide examples such as ATP."
+          },
+          {
+           "code": "B-11-C-24",
+           "text": "Illustrate formation of the phosphodiester bond."
+          },
+          {
+           "code": "B-11-C-25",
+           "text": "Explain the double helix structure of DNA."
+          }
+         ]
+        },
+        {
+         "id": "rna-and-the-central-dogma",
+         "title": "RNA and the central dogma",
+         "outcomes": [
+          {
+           "code": "B-11-C-26",
+           "text": "Explain the general structure of RNA."
+          },
+          {
+           "code": "B-11-C-27",
+           "text": "Distinguish the types of RNA by function."
+          },
+          {
+           "code": "B-11-C-28",
+           "text": "Discuss the central dogma."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "conjugated-molecules",
+       "title": "Conjugated molecules",
+       "subtopics": [
+        {
+         "id": "conjugated-molecules",
+         "title": "Conjugated molecules",
+         "outcomes": [
+          {
+           "code": "B-11-C-29",
+           "text": "Define conjugated molecules and describe roles of glycoproteins, lipoproteins and nucleoproteins."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "domain-d-cell-biology",
+     "title": "Domain D: Cell Biology",
+     "topics": [
+      {
+       "id": "cell-structure",
+       "title": "Cell structure",
+       "subtopics": [
+        {
+         "id": "cell-theory-and-cell-types",
+         "title": "Cell theory and cell types",
+         "outcomes": [
+          {
+           "code": "B-11-D-01",
+           "text": "Describe cells as the basic unit of life."
+          },
+          {
+           "code": "B-11-D-11",
+           "text": "Differentiate prokaryotic from eukaryotic cells."
+          },
+          {
+           "code": "B-11-D-12",
+           "text": "State cell theory and how it was tested."
+          }
+         ]
+        },
+        {
+         "id": "ultrastructure-and-organelles",
+         "title": "Ultrastructure and organelles",
+         "outcomes": [
+          {
+           "code": "B-11-D-02",
+           "text": "Identify the ultrastructure of animal and plant cells."
+          },
+          {
+           "code": "B-11-D-03",
+           "text": "Describe structure and function of subcellular organelles."
+          }
+         ]
+        },
+        {
+         "id": "microscopy",
+         "title": "Microscopy",
+         "outcomes": [
+          {
+           "code": "B-11-D-13",
+           "text": "Compare and contrast light and electron microscopes."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "cell-communication",
+       "title": "Cell communication",
+       "subtopics": [
+        {
+         "id": "cell-signalling",
+         "title": "Cell signalling",
+         "outcomes": [
+          {
+           "code": "B-11-D-04",
+           "text": "Define cell signalling."
+          },
+          {
+           "code": "B-11-D-05",
+           "text": "Discuss the path of a signal from outside the cell to a response."
+          }
+         ]
+        },
+        {
+         "id": "stem-cells",
+         "title": "Stem cells",
+         "outcomes": [
+          {
+           "code": "B-11-D-06",
+           "text": "Define stem cells and the benefits of using them."
+          },
+          {
+           "code": "B-11-D-07",
+           "text": "Categorise the types of stem cells."
+          },
+          {
+           "code": "B-11-D-08",
+           "text": "Evaluate advantages and disadvantages of stem cell use."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "cell-membrane",
+       "title": "Cell membrane",
+       "subtopics": [
+        {
+         "id": "membrane-structure",
+         "title": "Membrane structure",
+         "outcomes": [
+          {
+           "code": "B-11-D-09",
+           "text": "Explain the structure of the cell membrane and its parts."
+          },
+          {
+           "code": "B-11-D-14",
+           "text": "Write the chemical structure of a phospholipid with saturated and unsaturated tails."
+          }
+         ]
+        },
+        {
+         "id": "membrane-transport",
+         "title": "Membrane transport",
+         "outcomes": [
+          {
+           "code": "B-11-D-10",
+           "text": "Explain the four membrane transport mechanisms with examples."
+          },
+          {
+           "code": "B-11-D-15",
+           "text": "Describe endocytosis and exocytosis with examples."
+          },
+          {
+           "code": "B-11-D-16",
+           "text": "Compare simple and facilitated diffusion."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "cell-division",
+       "title": "Cell division",
+       "subtopics": [
+        {
+         "id": "mitosis-and-meiosis",
+         "title": "Mitosis and meiosis",
+         "outcomes": [
+          {
+           "code": "B-11-D-17",
+           "text": "Explain the steps of mitosis and meiosis with diagrams."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "domain-f-enzymes-and-bioenergetics",
+     "title": "Domain F: Enzymes and Bioenergetics",
+     "topics": [
+      {
+       "id": "enzymes",
+       "title": "Enzymes",
+       "subtopics": [
+        {
+         "id": "enzyme-structure-and-mechanism",
+         "title": "Enzyme structure and mechanism",
+         "outcomes": [
+          {
+           "code": "B-11-F-01",
+           "text": "Identify the role and parts of the enzyme active site."
+          },
+          {
+           "code": "B-11-F-02",
+           "text": "Differentiate the three types of cofactors."
+          },
+          {
+           "code": "B-11-F-03",
+           "text": "Explain enzyme action through the lock-and-key and induced-fit models."
+          },
+          {
+           "code": "B-11-F-04",
+           "text": "Explain enzyme catalysis using a specific example."
+          },
+          {
+           "code": "B-11-F-05",
+           "text": "Define activation energy and show how enzymes lower it."
+          }
+         ]
+        },
+        {
+         "id": "factors-affecting-enzyme-rate",
+         "title": "Factors affecting enzyme rate",
+         "outcomes": [
+          {
+           "code": "B-11-F-06",
+           "text": "Explain the effect of temperature on enzyme reaction rate."
+          },
+          {
+           "code": "B-11-F-07",
+           "text": "Investigate how pH affects enzyme activity, for example papain."
+          },
+          {
+           "code": "B-11-F-08",
+           "text": "Show that enzyme concentration affects reaction rate."
+          }
+         ]
+        },
+        {
+         "id": "enzyme-inhibition",
+         "title": "Enzyme inhibition",
+         "outcomes": [
+          {
+           "code": "B-11-F-09",
+           "text": "Describe enzyme inhibition, its types and importance."
+          },
+          {
+           "code": "B-11-F-10",
+           "text": "Name molecules that act as inhibitors."
+          },
+          {
+           "code": "B-11-F-11",
+           "text": "Categorise inhibitors as competitive or non-competitive."
+          },
+          {
+           "code": "B-11-F-12",
+           "text": "Explain feedback inhibition."
+          }
+         ]
+        },
+        {
+         "id": "enzyme-classification",
+         "title": "Enzyme classification",
+         "outcomes": [
+          {
+           "code": "B-11-F-13",
+           "text": "Classify enzymes by the reactions they catalyse."
+          },
+          {
+           "code": "B-11-F-14",
+           "text": "Classify enzymes by the substrates they act on."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "photosynthesis",
+       "title": "Photosynthesis",
+       "subtopics": [
+        {
+         "id": "light-reactions",
+         "title": "Light reactions",
+         "outcomes": [
+          {
+           "code": "B-11-F-15",
+           "text": "Explain the roles of light, carbon dioxide and water in photosynthesis."
+          },
+          {
+           "code": "B-11-F-16",
+           "text": "Identify the two kinds of photosynthetic pigments."
+          },
+          {
+           "code": "B-11-F-17",
+           "text": "Describe the roles of photosynthetic pigments."
+          },
+          {
+           "code": "B-11-F-18",
+           "text": "Differentiate absorption spectra from action spectra."
+          },
+          {
+           "code": "B-11-F-19",
+           "text": "Describe the arrangement of photosystems in the thylakoid."
+          },
+          {
+           "code": "B-11-F-20",
+           "text": "Describe the events of non-cyclic photophosphorylation."
+          }
+         ]
+        },
+        {
+         "id": "calvin-cycle",
+         "title": "Calvin cycle",
+         "outcomes": [
+          {
+           "code": "B-11-F-21",
+           "text": "Explain the Calvin cycle and regeneration of RuBP."
+          },
+          {
+           "code": "B-11-F-28",
+           "text": "Justify the importance of G3P in photosynthesis."
+          }
+         ]
+        },
+        {
+         "id": "photorespiration-and-c4-plants",
+         "title": "Photorespiration and C4 plants",
+         "outcomes": [
+          {
+           "code": "B-11-F-31",
+           "text": "Define photorespiration."
+          },
+          {
+           "code": "B-11-F-32",
+           "text": "Outline the events of photorespiration."
+          },
+          {
+           "code": "B-11-F-33",
+           "text": "Rationalise how a wasteful process like photorespiration persists."
+          },
+          {
+           "code": "B-11-F-35",
+           "text": "Outline C4 photosynthesis as an adaptation."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "respiration",
+       "title": "Respiration",
+       "subtopics": [
+        {
+         "id": "anaerobic-respiration-and-glycolysis",
+         "title": "Anaerobic respiration and glycolysis",
+         "outcomes": [
+          {
+           "code": "B-11-F-22",
+           "text": "Explain anaerobic respiration in yeast and muscle, producing ethanol or lactate."
+          },
+          {
+           "code": "B-11-F-27",
+           "text": "Explain substrate-level phosphorylation in glycolysis and the Krebs cycle."
+          }
+         ]
+        },
+        {
+         "id": "aerobic-respiration",
+         "title": "Aerobic respiration",
+         "outcomes": [
+          {
+           "code": "B-11-F-23",
+           "text": "Illustrate the link reaction converting pyruvate to acetyl CoA."
+          },
+          {
+           "code": "B-11-F-24",
+           "text": "Outline the steps of the Krebs cycle."
+          },
+          {
+           "code": "B-11-F-25",
+           "text": "Trace electrons through the electron transport chain."
+          },
+          {
+           "code": "B-11-F-26",
+           "text": "Describe chemiosmosis and relate it to electron transport."
+          },
+          {
+           "code": "B-11-F-34",
+           "text": "Explain how temperature affects oxidative phosphorylation."
+          }
+         ]
+        },
+        {
+         "id": "respiration-of-fats-and-proteins",
+         "title": "Respiration of fats and proteins",
+         "outcomes": [
+          {
+           "code": "B-11-F-29",
+           "text": "Outline how acetyl CoA forms from fats."
+          },
+          {
+           "code": "B-11-F-30",
+           "text": "Compare respiration of fats and carbohydrates."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "domain-h-reproduction-and-inheritance",
+     "title": "Domain H: Reproduction and Inheritance",
+     "topics": [
+      {
+       "id": "human-reproduction",
+       "title": "Human reproduction",
+       "subtopics": [
+        {
+         "id": "male-reproductive-system",
+         "title": "Male reproductive system",
+         "outcomes": [
+          {
+           "code": "B-11-H-01",
+           "text": "Describe the structures of the male reproductive system."
+          },
+          {
+           "code": "B-11-H-02",
+           "text": "Define male reproductive hormones and explain their roles."
+          }
+         ]
+        },
+        {
+         "id": "female-reproductive-system",
+         "title": "Female reproductive system",
+         "outcomes": [
+          {
+           "code": "B-11-H-03",
+           "text": "Explain the structures of the female reproductive system."
+          },
+          {
+           "code": "B-11-H-04",
+           "text": "Describe the menstrual cycle and the hormones controlling it."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "mendelian-genetics",
+       "title": "Mendelian genetics",
+       "subtopics": [
+        {
+         "id": "genes-and-mendel-s-laws",
+         "title": "Genes and Mendel's laws",
+         "outcomes": [
+          {
+           "code": "B-11-H-05",
+           "text": "Define a gene as a nucleotide sequence within DNA."
+          },
+          {
+           "code": "B-11-H-06",
+           "text": "Explain the laws of segregation and independent assortment."
+          },
+          {
+           "code": "B-11-H-07",
+           "text": "Relate independent assortment to dihybrid crosses."
+          },
+          {
+           "code": "B-11-H-08",
+           "text": "Express limits of independent assortment."
+          },
+          {
+           "code": "B-11-H-09",
+           "text": "Show that independent assortment creates variation."
+          },
+          {
+           "code": "B-11-H-10",
+           "text": "Evaluate how gene inheritance and mixing create variety."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "beyond-mendel",
+       "title": "Beyond Mendel",
+       "subtopics": [
+        {
+         "id": "incomplete-dominance",
+         "title": "Incomplete dominance",
+         "outcomes": [
+          {
+           "code": "B-11-H-11",
+           "text": "Describe exceptions to Mendel's laws."
+          },
+          {
+           "code": "B-11-H-12",
+           "text": "Explain incomplete dominance with an example."
+          },
+          {
+           "code": "B-11-H-13",
+           "text": "Differentiate incomplete dominance from codominance."
+          }
+         ]
+        },
+        {
+         "id": "multiple-alleles-and-abo-blood-groups",
+         "title": "Multiple alleles and ABO blood groups",
+         "outcomes": [
+          {
+           "code": "B-11-H-14",
+           "text": "Define alleles and multiple alleles."
+          },
+          {
+           "code": "B-11-H-15",
+           "text": "State the alleles behind ABO blood groups."
+          },
+          {
+           "code": "B-11-H-16",
+           "text": "Explain codominance when two alleles are equally expressed."
+          },
+          {
+           "code": "B-11-H-17",
+           "text": "Name the human blood group systems."
+          },
+          {
+           "code": "B-11-H-18",
+           "text": "Investigate why O-negative people are universal donors."
+          },
+          {
+           "code": "B-11-H-19",
+           "text": "Describe some other blood group systems."
+          }
+         ]
+        },
+        {
+         "id": "rh-factor",
+         "title": "Rh factor",
+         "outcomes": [
+          {
+           "code": "B-11-H-20",
+           "text": "Associate positive and negative blood groups with the Rh factor."
+          },
+          {
+           "code": "B-11-H-21",
+           "text": "Justify why Rh incompatibility endangers a baby."
+          },
+          {
+           "code": "B-11-H-22",
+           "text": "Explain erythroblastosis fetalis using Rh genetics."
+          },
+          {
+           "code": "B-11-H-23",
+           "text": "Suggest measures to prevent Rh problems."
+          }
+         ]
+        },
+        {
+         "id": "polygenic-inheritance-and-epistasis",
+         "title": "Polygenic inheritance and epistasis",
+         "outcomes": [
+          {
+           "code": "B-11-H-24",
+           "text": "Define and relate polygenic inheritance and epistasis."
+          },
+          {
+           "code": "B-11-H-25",
+           "text": "Describe polygenic inheritance using plant and animal examples."
+          },
+          {
+           "code": "B-11-H-26",
+           "text": "List at least five polygenic traits found in humans."
+          },
+          {
+           "code": "B-11-H-27",
+           "text": "Give epistasis examples from mammals and plants."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "linkage-and-sex",
+       "title": "Linkage and sex",
+       "subtopics": [
+        {
+         "id": "gene-linkage-and-crossing-over",
+         "title": "Gene linkage and crossing over",
+         "outcomes": [
+          {
+           "code": "B-11-H-28",
+           "text": "Describe gene linkage and crossing over."
+          },
+          {
+           "code": "B-11-H-29",
+           "text": "Explain how linkage counters independent assortment."
+          },
+          {
+           "code": "B-11-H-30",
+           "text": "Suggest how linkage can be observed or evaluated."
+          }
+         ]
+        },
+        {
+         "id": "sex-determination",
+         "title": "Sex determination",
+         "outcomes": [
+          {
+           "code": "B-11-H-31",
+           "text": "Explain the XX-XY mechanism of sex determination."
+          },
+          {
+           "code": "B-11-H-32",
+           "text": "Identify males and females from karyotypes."
+          },
+          {
+           "code": "B-11-H-33",
+           "text": "Solve genetics problems on XX-XY sex determination."
+          }
+         ]
+        },
+        {
+         "id": "sex-linked-inheritance",
+         "title": "Sex-linked inheritance",
+         "outcomes": [
+          {
+           "code": "B-11-H-34",
+           "text": "Describe the concept of sex linkage."
+          },
+          {
+           "code": "B-11-H-35",
+           "text": "Explain inheritance of sex-linked traits such as eye colour."
+          },
+          {
+           "code": "B-11-H-36",
+           "text": "Describe sex-linked inheritance in males and females."
+          },
+          {
+           "code": "B-11-H-37",
+           "text": "Describe X-linked disorders and their inheritance patterns."
+          },
+          {
+           "code": "B-11-H-38",
+           "text": "Name some human sex-linked disorders."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "molecular-genetics",
+       "title": "Molecular genetics",
+       "subtopics": [
+        {
+         "id": "chromosomes-and-dna-as-genetic-material",
+         "title": "Chromosomes and DNA as genetic material",
+         "outcomes": [
+          {
+           "code": "B-11-H-39",
+           "text": "Explain techniques used for embryonic sex and genetic screening."
+          },
+          {
+           "code": "B-11-H-40",
+           "text": "Annotate the detailed structure of a chromosome."
+          },
+          {
+           "code": "B-11-H-41",
+           "text": "Narrate Griffith and Avery's experiments on genetic material."
+          }
+         ]
+        },
+        {
+         "id": "dna-replication",
+         "title": "DNA replication",
+         "outcomes": [
+          {
+           "code": "B-11-H-42",
+           "text": "Describe the three proposed models of DNA replication."
+          },
+          {
+           "code": "B-11-H-43",
+           "text": "Narrate Meselson and Stahl's experiment supporting semi-conservative replication."
+          },
+          {
+           "code": "B-11-H-44",
+           "text": "Describe the events of DNA replication."
+          },
+          {
+           "code": "B-11-H-45",
+           "text": "Describe DNA stability and variability."
+          }
+         ]
+        },
+        {
+         "id": "genetic-code-and-protein-synthesis",
+         "title": "Genetic code and protein synthesis",
+         "outcomes": [
+          {
+           "code": "B-11-H-46",
+           "text": "Describe characteristics of the genetic code."
+          },
+          {
+           "code": "B-11-H-47",
+           "text": "Differentiate genetic code from codon and anticodon terms."
+          },
+          {
+           "code": "B-11-H-48",
+           "text": "Explain the mechanism of transcription."
+          },
+          {
+           "code": "B-11-H-49",
+           "text": "Explain why mRNA length differs from gene length."
+          },
+          {
+           "code": "B-11-H-50",
+           "text": "Describe the mechanism of protein synthesis."
+          },
+          {
+           "code": "B-11-H-51",
+           "text": "State differences between protein synthesis in prokaryotes and eukaryotes."
+          },
+          {
+           "code": "B-11-H-52",
+           "text": "Suggest ways the synthesised protein is processed and targeted."
+          }
+         ]
+        },
+        {
+         "id": "gene-regulation",
+         "title": "Gene regulation",
+         "outcomes": [
+          {
+           "code": "B-11-H-53",
+           "text": "State the importance of regulating gene expression."
+          },
+          {
+           "code": "B-11-H-54",
+           "text": "Describe negative control of gene expression."
+          },
+          {
+           "code": "B-11-H-55",
+           "text": "Describe positive control of gene expression."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "mutations",
+       "title": "Mutations",
+       "subtopics": [
+        {
+         "id": "mutations",
+         "title": "Mutations",
+         "outcomes": [
+          {
+           "code": "B-11-H-56",
+           "text": "Define mutation and identify its sources."
+          },
+          {
+           "code": "B-11-H-57",
+           "text": "Differentiate natural from induced mutations."
+          },
+          {
+           "code": "B-11-H-58",
+           "text": "Justify why most mutations are harmful."
+          },
+          {
+           "code": "B-11-H-59",
+           "text": "Rationalise that some mutations may aid evolution."
+          },
+          {
+           "code": "B-11-H-60",
+           "text": "Describe symptoms, causes and treatments of chromosomal mutations such as Down syndrome."
+          },
+          {
+           "code": "B-11-H-61",
+           "text": "Describe symptoms, causes and treatments of some gene mutations."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "domain-n-ecology",
+     "title": "Domain N: Ecology",
+     "topics": [
+      {
+       "id": "ecosystem-basics",
+       "title": "Ecosystem basics",
+       "subtopics": [
+        {
+         "id": "ecosystem-organisation-and-nutrition",
+         "title": "Ecosystem organisation and nutrition",
+         "outcomes": [
+          {
+           "code": "B-11-N-01",
+           "text": "Define species, population, community and ecosystem."
+          },
+          {
+           "code": "B-11-N-02",
+           "text": "Distinguish the modes of nutrition."
+          },
+          {
+           "code": "B-11-N-03",
+           "text": "Identify plants as producers that convert light energy to chemical energy."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "energy-flow",
+       "title": "Energy flow",
+       "subtopics": [
+        {
+         "id": "trophic-levels-and-energy-loss",
+         "title": "Trophic levels and energy loss",
+         "outcomes": [
+          {
+           "code": "B-11-N-04",
+           "text": "Define trophic levels."
+          },
+          {
+           "code": "B-11-N-05",
+           "text": "Discuss energy loss between trophic levels."
+          },
+          {
+           "code": "B-11-N-13",
+           "text": "Describe gross and net primary productivity."
+          },
+          {
+           "code": "B-11-N-14",
+           "text": "Interpret pyramids of number, biomass and energy."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "climate-change",
+       "title": "Climate change",
+       "subtopics": [
+        {
+         "id": "greenhouse-effect",
+         "title": "Greenhouse effect",
+         "outcomes": [
+          {
+           "code": "B-11-N-06",
+           "text": "Explain the greenhouse effect with examples of gases."
+          },
+          {
+           "code": "B-11-N-07",
+           "text": "Describe the harmful effects of greenhouse gases."
+          },
+          {
+           "code": "B-11-N-08",
+           "text": "Explain ocean acidification and coral bleaching."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "nutrient-cycles",
+       "title": "Nutrient cycles",
+       "subtopics": [
+        {
+         "id": "water-cycle",
+         "title": "Water cycle",
+         "outcomes": [
+          {
+           "code": "B-11-N-09",
+           "text": "Define biogeochemical cycles and locate their reservoirs."
+          },
+          {
+           "code": "B-11-N-10",
+           "text": "Describe the water cycle in detail."
+          },
+          {
+           "code": "B-11-N-11",
+           "text": "Define aquifers and water table."
+          }
+         ]
+        },
+        {
+         "id": "nitrogen-cycle",
+         "title": "Nitrogen cycle",
+         "outcomes": [
+          {
+           "code": "B-11-N-12",
+           "text": "Discuss the nitrogen cycle in detail."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "ecological-succession",
+       "title": "Ecological succession",
+       "subtopics": [
+        {
+         "id": "succession-types",
+         "title": "Succession types",
+         "outcomes": [
+          {
+           "code": "B-11-N-15",
+           "text": "Define ecological succession."
+          },
+          {
+           "code": "B-11-N-16",
+           "text": "Describe primary and secondary succession."
+          },
+          {
+           "code": "B-11-N-17",
+           "text": "Differentiate xerarch from hydrarch succession."
+          },
+          {
+           "code": "B-11-N-18",
+           "text": "Explain xerarch succession on bare rock up to flowering plants."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "populations-and-ecosystems",
+       "title": "Populations and ecosystems",
+       "subtopics": [
+        {
+         "id": "population-growth-and-pakistan-ecosystems",
+         "title": "Population growth and Pakistan ecosystems",
+         "outcomes": [
+          {
+           "code": "B-11-N-19",
+           "text": "Describe characteristics of a population such as growth and density."
+          },
+          {
+           "code": "B-11-N-20",
+           "text": "Explain the effects of human population growth."
+          },
+          {
+           "code": "B-11-N-21",
+           "text": "Describe the four important ecosystems of Pakistan."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "domain-o-prokaryotes-protists-and-fungi",
+     "title": "Domain O: Prokaryotes, Protists and Fungi",
+     "topics": [
+      {
+       "id": "bacteria",
+       "title": "Bacteria",
+       "subtopics": [
+        {
+         "id": "position-and-diversity-of-prokaryotes",
+         "title": "Position and diversity of prokaryotes",
+         "outcomes": [
+          {
+           "code": "B-11-0-01",
+           "text": "Outline the taxonomic position of prokaryotes."
+          },
+          {
+           "code": "B-11-0-02",
+           "text": "Explain the phylogenetic position of prokaryotes."
+          },
+          {
+           "code": "B-11-0-03",
+           "text": "Justify why bacteria live in the widest range of habitats."
+          }
+         ]
+        },
+        {
+         "id": "bacterial-structure",
+         "title": "Bacterial structure",
+         "outcomes": [
+          {
+           "code": "B-11-0-04",
+           "text": "Draw an annotated generalised bacterial cell."
+          },
+          {
+           "code": "B-11-0-05",
+           "text": "Justify why cyanobacteria are considered the most successful prokaryotes."
+          },
+          {
+           "code": "B-11-0-06",
+           "text": "Describe the structure and chemistry of the bacterial cell wall."
+          },
+          {
+           "code": "B-11-0-07",
+           "text": "Compare cell walls of Gram-positive and Gram-negative bacteria."
+          },
+          {
+           "code": "B-11-0-08",
+           "text": "Illustrate the variety of bacterial shapes with diagrams."
+          }
+         ]
+        },
+        {
+         "id": "spores-motility-and-genome",
+         "title": "Spores, motility and genome",
+         "outcomes": [
+          {
+           "code": "B-11-0-09",
+           "text": "Justify endospore formation as a survival strategy."
+          },
+          {
+           "code": "B-11-0-10",
+           "text": "Explain motility in bacteria."
+          },
+          {
+           "code": "B-11-0-11",
+           "text": "Describe bacterial flagella and other appendages with diagrams."
+          },
+          {
+           "code": "B-11-0-12",
+           "text": "Describe genomic organisation of bacteria."
+          }
+         ]
+        },
+        {
+         "id": "nutrition-growth-and-reproduction",
+         "title": "Nutrition, growth and reproduction",
+         "outcomes": [
+          {
+           "code": "B-11-0-13",
+           "text": "Classify bacteria by their methods of nutrition."
+          },
+          {
+           "code": "B-11-0-14",
+           "text": "Differentiate bacterial photosynthesis from plant photosynthesis."
+          },
+          {
+           "code": "B-11-0-15",
+           "text": "List the phases of bacterial growth."
+          },
+          {
+           "code": "B-11-0-16",
+           "text": "Describe methods of bacterial reproduction."
+          }
+         ]
+        },
+        {
+         "id": "bacteria-and-humans",
+         "title": "Bacteria and humans",
+         "outcomes": [
+          {
+           "code": "B-11-0-19",
+           "text": "Describe bacteria as recyclers of nature."
+          },
+          {
+           "code": "B-11-0-20",
+           "text": "Explain the use of bacteria in research and industry."
+          },
+          {
+           "code": "B-11-0-21",
+           "text": "Describe important bacterial diseases in humans."
+          },
+          {
+           "code": "B-11-0-22",
+           "text": "Describe important bacterial diseases in plants."
+          },
+          {
+           "code": "B-11-0-23",
+           "text": "Define normal flora."
+          },
+          {
+           "code": "B-11-0-24",
+           "text": "Describe benefits of human bacterial flora."
+          },
+          {
+           "code": "B-11-0-25",
+           "text": "List chemical and physical methods to control bacteria."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "protists",
+       "title": "Protists",
+       "subtopics": [
+        {
+         "id": "protists",
+         "title": "Protists",
+         "outcomes": [
+          {
+           "code": "B-11-0-26",
+           "text": "Explain protists as a diverse group of eukaryotes."
+          },
+          {
+           "code": "B-11-0-27",
+           "text": "Describe salient features and examples of protist groups."
+          },
+          {
+           "code": "B-11-0-28",
+           "text": "Justify why protists matter to humans."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "fungi",
+       "title": "Fungi",
+       "subtopics": [
+        {
+         "id": "fungal-groups-and-uses",
+         "title": "Fungal groups and uses",
+         "outcomes": [
+          {
+           "code": "B-11-0-31",
+           "text": "Classify fungi into zygomycota, ascomycota and basidiomycota."
+          },
+          {
+           "code": "B-11-0-32",
+           "text": "Explain yeast as a unicellular fungus used by humans."
+          },
+          {
+           "code": "B-11-0-33",
+           "text": "Name fungi that yield antibiotics."
+          },
+          {
+           "code": "B-11-0-34",
+           "text": "Explain mutualism in mycorrhizae."
+          },
+          {
+           "code": "B-11-0-35",
+           "text": "Give examples of edible fungi."
+          }
+         ]
+        },
+        {
+         "id": "fungi-as-pathogens",
+         "title": "Fungi as pathogens",
+         "outcomes": [
+          {
+           "code": "B-11-0-36",
+           "text": "Describe the ecological impact of fungi that cause plant disease."
+          },
+          {
+           "code": "B-11-0-37",
+           "text": "Discuss the pathogenic role of fungi."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "domain-p-viruses",
+     "title": "Domain P: Viruses",
+     "topics": [
+      {
+       "id": "viruses",
+       "title": "Viruses",
+       "subtopics": [
+        {
+         "id": "nature-and-structure-of-viruses",
+         "title": "Nature and structure of viruses",
+         "outcomes": [
+          {
+           "code": "B-11-P-01",
+           "text": "Justify the status of viruses between living and non-living."
+          },
+          {
+           "code": "B-11-P-02",
+           "text": "Trace the history of viruses since discovery."
+          },
+          {
+           "code": "B-11-P-03",
+           "text": "Classify viruses by host and structure."
+          },
+          {
+           "code": "B-11-P-04",
+           "text": "Describe the structure of a model bacteriophage."
+          }
+         ]
+        },
+        {
+         "id": "virus-life-cycles",
+         "title": "Virus life cycles",
+         "outcomes": [
+          {
+           "code": "B-11-P-05",
+           "text": "Justify that a virus needs a host cell to reproduce."
+          },
+          {
+           "code": "B-11-P-06",
+           "text": "Explain how a virus survives protected inside a host cell."
+          },
+          {
+           "code": "B-11-P-07",
+           "text": "Determine the method a virus uses to complete its life cycle."
+          },
+          {
+           "code": "B-11-P-08",
+           "text": "Describe lytic and lysogenic life cycles of a bacteriophage."
+          },
+          {
+           "code": "B-11-P-09",
+           "text": "Outline uses of bacteriophages in genetic engineering."
+          }
+         ]
+        },
+        {
+         "id": "hiv-and-aids",
+         "title": "HIV and AIDS",
+         "outcomes": [
+          {
+           "code": "B-11-P-10",
+           "text": "Explain the life cycle of HIV."
+          },
+          {
+           "code": "B-11-P-11",
+           "text": "Justify the name Human Immunodeficiency Virus."
+          },
+          {
+           "code": "B-11-P-12",
+           "text": "Reason out HIV specificity for its host cells."
+          },
+          {
+           "code": "B-11-P-13",
+           "text": "List the symptoms of AIDS."
+          },
+          {
+           "code": "B-11-P-14",
+           "text": "Explain opportunistic diseases that strike AIDS patients."
+          },
+          {
+           "code": "B-11-P-15",
+           "text": "Describe treatments available for AIDS."
+          },
+          {
+           "code": "B-11-P-16",
+           "text": "List common measures to control the spread of viral disease."
+          }
+         ]
+        },
+        {
+         "id": "other-viral-diseases-prions-and-viroids",
+         "title": "Other viral diseases, prions and viroids",
+         "outcomes": [
+          {
+           "code": "B-11-P-17",
+           "text": "Describe cause, symptoms, treatment and prevention of common viral diseases."
+          },
+          {
+           "code": "B-11-P-18",
+           "text": "List the transmission sources of each viral disease."
+          },
+          {
+           "code": "B-11-P-19",
+           "text": "Describe the structure of prions and viroids."
+          },
+          {
+           "code": "B-11-P-20",
+           "text": "List diseases caused by prions and viroids."
+          },
+          {
+           "code": "B-11-P-21",
+           "text": "Interpret how viral infections cause global economic loss."
+          },
+          {
+           "code": "B-11-P-22",
+           "text": "Describe limitations of vaccines against viral disease."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "domain-q-plant-physiology",
+     "title": "Domain Q: Plant Physiology",
+     "topics": [
+      {
+       "id": "plant-nutrition-and-transport",
+       "title": "Plant nutrition and transport",
+       "subtopics": [
+        {
+         "id": "plant-nutrition",
+         "title": "Plant nutrition",
+         "outcomes": [
+          {
+           "code": "B-11-Q-01",
+           "text": "List macro and micronutrients of plants."
+          },
+          {
+           "code": "B-11-Q-02",
+           "text": "State examples of carnivorous plants."
+          }
+         ]
+        },
+        {
+         "id": "gas-exchange-and-transpiration",
+         "title": "Gas exchange and transpiration",
+         "outcomes": [
+          {
+           "code": "B-11-Q-03",
+           "text": "Explain the role of stomata and palisade tissue in gas exchange."
+          },
+          {
+           "code": "B-11-Q-04",
+           "text": "Relate transpiration to gas exchange in plants."
+          },
+          {
+           "code": "B-11-Q-09",
+           "text": "Describe how stomata open and close."
+          }
+         ]
+        },
+        {
+         "id": "water-transport",
+         "title": "Water transport",
+         "outcomes": [
+          {
+           "code": "B-11-Q-05",
+           "text": "Assess the structure of xylem vessels and sieve tubes with their functions."
+          },
+          {
+           "code": "B-11-Q-06",
+           "text": "Discuss water movement between plant cells."
+          },
+          {
+           "code": "B-11-Q-07",
+           "text": "Describe water movement through roots."
+          },
+          {
+           "code": "B-11-Q-08",
+           "text": "Explain water movement in xylem."
+          }
+         ]
+        },
+        {
+         "id": "translocation-of-sugars",
+         "title": "Translocation of sugars",
+         "outcomes": [
+          {
+           "code": "B-11-Q-10",
+           "text": "Explain the movement of sugars in plants."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "water-balance",
+       "title": "Water balance",
+       "subtopics": [
+        {
+         "id": "osmotic-adjustment",
+         "title": "Osmotic adjustment",
+         "outcomes": [
+          {
+           "code": "B-11-Q-11",
+           "text": "Define osmotic adjustment."
+          },
+          {
+           "code": "B-11-Q-12",
+           "text": "State water movement into or out of cells in different solutions."
+          },
+          {
+           "code": "B-11-Q-13",
+           "text": "Explain osmotic adjustment in hydrophytes, mesophytes and xerophytes."
+          },
+          {
+           "code": "B-11-Q-14",
+           "text": "List plant adaptations to low and high water availability."
+          },
+          {
+           "code": "B-11-Q-15",
+           "text": "Explain turgor pressure and its importance."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "plant-growth",
+       "title": "Plant growth",
+       "subtopics": [
+        {
+         "id": "supporting-tissues-and-growth",
+         "title": "Supporting tissues and growth",
+         "outcomes": [
+          {
+           "code": "B-11-Q-16",
+           "text": "Describe the structure of supporting tissues in plants."
+          },
+          {
+           "code": "B-11-Q-17",
+           "text": "Define growth and explain primary and secondary growth."
+          },
+          {
+           "code": "B-11-Q-18",
+           "text": "Justify the formation of annual rings."
+          },
+          {
+           "code": "B-11-Q-19",
+           "text": "Explain the influence of apical meristem on plant growth."
+          }
+         ]
+        },
+        {
+         "id": "hormones-and-movements",
+         "title": "Hormones and movements",
+         "outcomes": [
+          {
+           "code": "B-11-Q-20",
+           "text": "Outline the roles of important plant growth regulators."
+          },
+          {
+           "code": "B-11-Q-21",
+           "text": "Explain the types of movement in plants."
+          }
+         ]
+        },
+        {
+         "id": "photoperiodism-and-flowering",
+         "title": "Photoperiodism and flowering",
+         "outcomes": [
+          {
+           "code": "B-11-Q-22",
+           "text": "Define photoperiodism."
+          },
+          {
+           "code": "B-11-Q-23",
+           "text": "Classify plants by flowering response to day length."
+          },
+          {
+           "code": "B-11-Q-24",
+           "text": "Explain the role of low-temperature treatment on flowering."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "domain-x-practical-skills",
+     "title": "Domain X: Practical Skills",
+     "topics": [
+      {
+       "id": "practical-skills",
+       "title": "Practical skills",
+       "subtopics": [
+        {
+         "id": "planning-and-measurement",
+         "title": "Planning and measurement",
+         "outcomes": [
+          {
+           "code": "B-11-X-01",
+           "text": "Make decisions about measurements and observations in an investigation."
+          },
+          {
+           "code": "B-11-X-02",
+           "text": "Choose and control variables in an investigation."
+          },
+          {
+           "code": "B-11-X-03",
+           "text": "Plan a procedure that gives reliable data."
+          }
+         ]
+        },
+        {
+         "id": "recording-data",
+         "title": "Recording data",
+         "outcomes": [
+          {
+           "code": "B-11-X-04",
+           "text": "Record data and observations clearly in tables."
+          },
+          {
+           "code": "B-11-X-05",
+           "text": "Display calculations and reasoning properly."
+          }
+         ]
+        },
+        {
+         "id": "microscope-work",
+         "title": "Microscope work",
+         "outcomes": [
+          {
+           "code": "B-11-X-06",
+           "text": "Make and use observations with a light microscope and photomicrographs."
+          },
+          {
+           "code": "B-11-X-07",
+           "text": "Draw and label specimens in an investigation."
+          },
+          {
+           "code": "B-11-X-08",
+           "text": "Calibrate and measure using microscope scales."
+          }
+         ]
+        },
+        {
+         "id": "interpreting-and-evaluating-results",
+         "title": "Interpreting and evaluating results",
+         "outcomes": [
+          {
+           "code": "B-11-X-09",
+           "text": "Interpret data and observations."
+          },
+          {
+           "code": "B-11-X-10",
+           "text": "Draw conclusions from investigation results."
+          },
+          {
+           "code": "B-11-X-11",
+           "text": "Use results and information to reach supported conclusions."
+          },
+          {
+           "code": "B-11-X-12",
+           "text": "Identify sources of error and suggest improvements."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "build": {
+  "builtAt": "2026-10-14T08:05:02.237Z",
+  "model": "claude-agent",
+  "usd": 0,
+  "expectedCodes": 246,
+  "coverage": 0.9878048780487805,
+  "missingCodes": [
+   "B-09-Q-21",
+   "B-09-D-09",
+   "B-10-H-07"
+  ],
+  "counts": {
+   "grades": 1,
+   "units": 10,
+   "topics": 36,
+   "subtopics": 83,
+   "outcomes": 276
+  },
+  "warnings": []
+ }
+}

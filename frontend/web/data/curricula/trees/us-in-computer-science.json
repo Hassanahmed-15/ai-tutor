@@ -1,0 +1,867 @@
+{
+ "id": "us-in-computer-science",
+ "region": "US",
+ "framework": "Indiana state academic standards: Computer Science & Technology",
+ "board": null,
+ "qualification": "K-12",
+ "subject": "Computer Science & Technology",
+ "syllabusCode": null,
+ "gradeSystem": "grade",
+ "source": {
+  "urls": [
+   "https://api.commonstandardsproject.com/api/v1/jurisdictions/0F7091AB177F40D8B71B326CAFD13C8D",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/0F7091AB177F40D8B71B326CAFD13C8D_D21387593_grades-03-04-05",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/0F7091AB177F40D8B71B326CAFD13C8D_D21387623_grades-06-07-08",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/0F7091AB177F40D8B71B326CAFD13C8D_D21387565_grades-01-02-k",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/0F7091AB177F40D8B71B326CAFD13C8D_D21359796_grades-06-07-08"
+  ],
+  "publisher": "Indiana state education agency (machine-readable via Common Standards Project / ASN)",
+  "licence": "D2L Corporation",
+  "firstExam": "2023"
+ },
+ "grades": [
+  {
+   "grade": "3-5",
+   "units": [
+    {
+     "id": "data-information",
+     "title": "Data & Information",
+     "topics": [
+      {
+       "id": "students-select-aspects-and-portions-of-data-to-",
+       "title": "Students select aspects and portions of data to be transformed, clustered, and categorized to provide views and insights about the data",
+       "subtopics": [
+        {
+         "id": "students-select-aspects-and-portions-of-data-to-",
+         "title": "Students select aspects and portions of data to be transformed, clustered, and categorized to provide views and insights about the data",
+         "outcomes": [
+          {
+           "code": "3-5.DI.1",
+           "text": "Decompose problems and subproblems into parts as a means to solving complex problems."
+          },
+          {
+           "code": "3-5.DI.2",
+           "text": "Organize and present collected data visually to highlight relationships and support a claim."
+          },
+          {
+           "code": "3-5.DI.3",
+           "text": "Demonstrate how variables can represent data and are used to store and modify information."
+          },
+          {
+           "code": "3-5.DI.4",
+           "text": "Describe that data can be represented in different forms understandable by people, including words, symbols, and digital displays of color."
+          },
+          {
+           "code": "3-5.DI.5",
+           "text": "Use data to highlight or propose cause-and-effect relationships, predict outcomes, or communicate an idea."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "computing-devices-systems",
+     "title": "Computing Devices & Systems",
+     "topics": [
+      {
+       "id": "students-identify-similarities-between-computing",
+       "title": "Students identify similarities between computing systems to troubleshoot common problems and choose appropriate combinations of hardware and software to accomplish desired tasks",
+       "subtopics": [
+        {
+         "id": "students-identify-similarities-between-computing",
+         "title": "Students identify similarities between computing systems to troubleshoot common problems and choose appropriate combinations of hardware and software to accomplish desired tasks",
+         "outcomes": [
+          {
+           "code": "3-5.CD.1",
+           "text": "Model how computer hardware and software work together to accomplish tasks."
+          },
+          {
+           "code": "3-5.CD.2",
+           "text": "Determine potential solutions to solve simple hardware and software problems using common troubleshooting strategies."
+          },
+          {
+           "code": "3-5.CD.3",
+           "text": "Describe how internal and external parts of computing devices function to form a system."
+          },
+          {
+           "code": "3-5.CD.4",
+           "text": "Describe what distinguishes humans from machines, focusing on human intelligence versus machine intelligence."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "programs-algorithms",
+     "title": "Programs & Algorithms",
+     "topics": [
+      {
+       "id": "students-collaboratively-engage-in-computer-prog",
+       "title": "Students collaboratively engage in computer program development with consideration of documenting design choices and giving appropriate attributions",
+       "subtopics": [
+        {
+         "id": "students-collaboratively-engage-in-computer-prog",
+         "title": "Students collaboratively engage in computer program development with consideration of documenting design choices and giving appropriate attributions",
+         "outcomes": [
+          {
+           "code": "3-5.PA.1",
+           "text": "Collaborate with peers to implement problem-solving steps to create a variety of programming solutions."
+          },
+          {
+           "code": "3-5.PA.2",
+           "text": "Design programs that incorporate sequences, events, loops, and conditionals."
+          },
+          {
+           "code": "3-5.PA.3",
+           "text": "Test and debug (i.e., identify and fix errors) a program or algorithm to ensure it runs as intended."
+          },
+          {
+           "code": "3-5.PA.4",
+           "text": "Observe intellectual property rights and give appropriate attribution when creating or remixing programs."
+          },
+          {
+           "code": "3-5.PA.5",
+           "text": "Describe choices made during program development using code comments, presentations, and demonstrations."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "networking-the-internet",
+     "title": "Networking & the Internet",
+     "topics": [
+      {
+       "id": "students-describe-how-personal-information-is-pr",
+       "title": "Students describe how personal information is protected as information is transmitted over computer networks",
+       "subtopics": [
+        {
+         "id": "students-describe-how-personal-information-is-pr",
+         "title": "Students describe how personal information is protected as information is transmitted over computer networks",
+         "outcomes": [
+          {
+           "code": "3-5.NI.1",
+           "text": "Discuss real-world cybersecurity problems and how personal information can be protected."
+          },
+          {
+           "code": "3-5.NI.2",
+           "text": "Model how information is broken down into smaller pieces, transmitted as packets through multiple devices over networks and the internet, and reassembled at the destination."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "impact-culture",
+     "title": "Impact & Culture",
+     "topics": [
+      {
+       "id": "students-describe-how-local-and-global-collabora",
+       "title": "Students describe how local and global collaboration is impacted by computing technology",
+       "subtopics": [
+        {
+         "id": "students-describe-how-local-and-global-collabora",
+         "title": "Students describe how local and global collaboration is impacted by computing technology",
+         "outcomes": [
+          {
+           "code": "3-5.IC.1",
+           "text": "Describe the positive and negative impacts of technology on one's personal life, society, and our culture."
+          },
+          {
+           "code": "3-5.IC.2",
+           "text": "Seek diverse perspectives for the purpose of improving computational artifacts."
+          },
+          {
+           "code": "3-5.IC.3",
+           "text": "Critique computing technologies that have changed the world. Analyze how those technologies influence and/or are influenced by cultural practices and societal biases."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "6-8",
+   "units": [
+    {
+     "id": "data-information",
+     "title": "Data & Information",
+     "topics": [
+      {
+       "id": "students-identify-and-implement-multiple-means-o",
+       "title": "Students identify and implement multiple means of representing complex algorithms to communicate how applications store data as a representation understandable by people",
+       "subtopics": [
+        {
+         "id": "students-identify-and-implement-multiple-means-o",
+         "title": "Students identify and implement multiple means of representing complex algorithms to communicate how applications store data as a representation understandable by people",
+         "outcomes": [
+          {
+           "code": "6-8.DI.1",
+           "text": "Decompose (i.e., break down) problems into smaller, more manageable subsets by applying the algorithmic problem solving steps to make the possible solutions easier to follow, test, and debug."
+          },
+          {
+           "code": "6-8.DI.2",
+           "text": "Collect data using computational tools (e.g., sensors, inputs like microphones) and transform the data to make it more useful and reliable."
+          },
+          {
+           "code": "6-8.DI.3",
+           "text": "Describe that data can be represented in multiple encoding schemes such as binary, RGB values (e.g., red, green, and blue intensity), and hexadecimal codes."
+          },
+          {
+           "code": "6-8.DI.4",
+           "text": "Create visuals such as flowcharts, diagrams, and pseudocode to represent complex problems as algorithms."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "computing-devices-systems",
+     "title": "Computing Devices & Systems",
+     "topics": [
+      {
+       "id": "students-explain-trade-offs-functionality-and-ac",
+       "title": "Students explain trade-offs, functionality, and accessibility of computer systems to improve the human-computer interaction",
+       "subtopics": [
+        {
+         "id": "students-explain-trade-offs-functionality-and-ac",
+         "title": "Students explain trade-offs, functionality, and accessibility of computer systems to improve the human-computer interaction",
+         "outcomes": [
+          {
+           "code": "6-8.CD.1",
+           "text": "Design projects that combine hardware and software components to collect and exchange data."
+          },
+          {
+           "code": "6-8.CD.2",
+           "text": "Systematically identify and fix problems (i.e., troubleshoot) with computing devices and their components (e.g., checklist, decision tree, flowchart)."
+          },
+          {
+           "code": "6-8.CD.3",
+           "text": "Recommend improvements to the design of computing devices based on analysis of how users interact with the devices."
+          },
+          {
+           "code": "6-8.CD.4",
+           "text": "Describe what distinguishes humans from machines, focusing on ways we can communicate, as well as ways in which computers use models of intelligent behavior (e.g., robot motion, speech and language understanding, computer vision)."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "programs-algorithms",
+     "title": "Programs & Algorithms",
+     "topics": [
+      {
+       "id": "students-collaboratively-design-meaningful-solut",
+       "title": "Students collaboratively design meaningful solutions for others by defining a problem, carefully considering the diverse needs and wants of the community, and testing whether solutions fit the criteria defined in the problem",
+       "subtopics": [
+        {
+         "id": "students-collaboratively-design-meaningful-solut",
+         "title": "Students collaboratively design meaningful solutions for others by defining a problem, carefully considering the diverse needs and wants of the community, and testing whether solutions fit the criteria defined in the problem",
+         "outcomes": [
+          {
+           "code": "6-8.PA.1",
+           "text": "Design and iteratively develop programs that combine the following: sequencing, looping (including nested loops), conditionals (including compound conditionals), expressions, variables, functions, and parameters."
+          },
+          {
+           "code": "6-8.PA.2",
+           "text": "Systematically test and refine programs using a range of test cases."
+          },
+          {
+           "code": "6-8.PA.3",
+           "text": "Incorporate existing code, media, and libraries into original programs and give attribution."
+          },
+          {
+           "code": "6-8.PA.4",
+           "text": "Document programs in order to make them easier to follow, test, and debug."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "networking-the-internet",
+     "title": "Networking & the Internet",
+     "topics": [
+      {
+       "id": "students-explain-how-information-is-sent-and-rec",
+       "title": "Students explain how information is sent and received securely across different networks and the internet",
+       "subtopics": [
+        {
+         "id": "students-explain-how-information-is-sent-and-rec",
+         "title": "Students explain how information is sent and received securely across different networks and the internet",
+         "outcomes": [
+          {
+           "code": "6-8.NI.1",
+           "text": "Explain how physical and cybersecurity measures protect electronic information."
+          },
+          {
+           "code": "6-8.NI.2",
+           "text": "Model the role of protocols in transmitting data across networks and the internet."
+          },
+          {
+           "code": "6-8.NI.3",
+           "text": "Apply multiple methods of encryption to model the secure transmission of information."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "impact-culture",
+     "title": "Impact & Culture",
+     "topics": [
+      {
+       "id": "students-explain-that-society-is-faced-with-trad",
+       "title": "Students explain that society is faced with trade-offs due to the increasing globalization and automation that computing brings, as well as describe these trade-offs using multiple viewpoints from a diverse audience",
+       "subtopics": [
+        {
+         "id": "students-explain-that-society-is-faced-with-trad",
+         "title": "Students explain that society is faced with trade-offs due to the increasing globalization and automation that computing brings, as well as describe these trade-offs using multiple viewpoints from a diverse audience",
+         "outcomes": [
+          {
+           "code": "6-8.IC.1",
+           "text": "Exhibit legal and ethical behaviors when using technology and information and discuss the consequences of misuse."
+          },
+          {
+           "code": "6-8.IC.2",
+           "text": "Discuss issues of bias and accessibility in the design of existing technologies."
+          },
+          {
+           "code": "6-8.IC.3",
+           "text": "Collaborate with many contributors through strategies such as crowdsourcing or surveys when creating a computational artifact."
+          },
+          {
+           "code": "6-8.IC.4",
+           "text": "Describe tradeoffs between allowing information to be public and keeping information private and secure."
+          },
+          {
+           "code": "6-8.IC.5",
+           "text": "Discuss how unequal distribution and participation in technology and computer science disadvantages marginalized populations."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "digital-citizenship",
+     "title": "Digital Citizenship",
+     "topics": [
+      {
+       "id": "students-understand-how-to-use-technology-in-a-s",
+       "title": "Students understand how to use technology in a safe, legal and ethical manner to be good digital citizens and lifelong learners",
+       "subtopics": [
+        {
+         "id": "students-understand-how-to-use-technology-in-a-s",
+         "title": "Students understand how to use technology in a safe, legal and ethical manner to be good digital citizens and lifelong learners",
+         "outcomes": [
+          {
+           "code": "DCT-1.1",
+           "text": "Investigate the risk and use of technology in a positive, safe, legal, and ethical way including social interactions online or when using networking devices"
+          },
+          {
+           "code": "DCT-1.2",
+           "text": "Differentiate between appropriate technology uses in different settings (School, Home, Work, etc)"
+          },
+          {
+           "code": "DCT-1.3",
+           "text": "Prove responsible use of technology, including social media, and lifelong learning"
+          },
+          {
+           "code": "DCT-1.4",
+           "text": "Demonstrate an understanding of and respect for the rights and obligations of using and sharing intellectual property."
+          },
+          {
+           "code": "DCT-1.5",
+           "text": "Management of one's digital footprint, identity, reputation, and awareness of the permanence of actions in the digital world related to personal data, digital privacy and security, and data collection technology used to track navigation online."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "technology-operation-skills",
+     "title": "Technology Operation Skills",
+     "topics": [
+      {
+       "id": "students-establish-knowledge-about-the-functions",
+       "title": "Students establish knowledge about the functions of computers in order to operate technology efficiently",
+       "subtopics": [
+        {
+         "id": "students-establish-knowledge-about-the-functions",
+         "title": "Students establish knowledge about the functions of computers in order to operate technology efficiently (1 of 2)",
+         "outcomes": [
+          {
+           "code": "DCT-2.1",
+           "text": "Identify and use hardware components, input devices, output devices"
+          },
+          {
+           "code": "DCT-2.2",
+           "text": "Differentiate different type of computers and how they process information"
+          },
+          {
+           "code": "DCT-2.3",
+           "text": "Demonstrate how to maintain and solve common problems of computer equipment"
+          },
+          {
+           "code": "DCT-2.4",
+           "text": "Identify and use operating systems and software applications"
+          }
+         ]
+        },
+        {
+         "id": "students-establish-knowledge-about-the-functions-2",
+         "title": "Students establish knowledge about the functions of computers in order to operate technology efficiently (2 of 2)",
+         "outcomes": [
+          {
+           "code": "DCT-2.5",
+           "text": "Illustrate how to manipulate a computer's desktop, files, disks and system settings"
+          },
+          {
+           "code": "DCT-2.6",
+           "text": "Demonstrate the appropriate technique to add and remove software"
+          },
+          {
+           "code": "DCT-2.7",
+           "text": "Use mobile computing devices and software"
+          },
+          {
+           "code": "DCT-2.8",
+           "text": "Investigate the internet as a tool"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "students-establish-improved-keyboarding-techniqu",
+       "title": "Students establish improved keyboarding techniques for effective personal and professional use",
+       "subtopics": [
+        {
+         "id": "students-establish-improved-keyboarding-techniqu",
+         "title": "Students establish improved keyboarding techniques for effective personal and professional use",
+         "outcomes": [
+          {
+           "code": "DCT-3.1",
+           "text": "Demonstrate correct home row keys hand positions and key stroking"
+          },
+          {
+           "code": "DCT-3.2",
+           "text": "Demonstrate appropriate technique for alphabetic and special purpose keys"
+          },
+          {
+           "code": "DCT-3.3",
+           "text": "Improve speed proficiency consistently"
+          },
+          {
+           "code": "DCT-3.4",
+           "text": "Improve proficiency in accuracy"
+          },
+          {
+           "code": "DCT-3.5",
+           "text": "Apply ergonomic principles to workspace/desk"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "word-processing-software",
+     "title": "Word Processing Software",
+     "topics": [
+      {
+       "id": "students-establish-knowledge-and-skills-of-word-",
+       "title": "Students establish knowledge and skills of word processing software to be effective 21st Century Learners",
+       "subtopics": [
+        {
+         "id": "students-establish-knowledge-and-skills-of-word-",
+         "title": "Students establish knowledge and skills of word processing software to be effective 21st Century Learners",
+         "outcomes": [
+          {
+           "code": "DCT-4.1",
+           "text": "Use common editing and formatting functions, including automatic tools"
+          },
+          {
+           "code": "DCT-4.2",
+           "text": "Apply word processing tools to automate process and increase efficiency"
+          },
+          {
+           "code": "DCT-4.3",
+           "text": "Use common importing, exporting, and printing functions"
+          },
+          {
+           "code": "DCT-4.4",
+           "text": "Demonstrate common file-management functions"
+          },
+          {
+           "code": "DCT-4.5",
+           "text": "Apply and adapt file-management best practices"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "spreadsheet-software",
+     "title": "Spreadsheet Software",
+     "topics": [
+      {
+       "id": "students-establish-knowledge-and-skills-of-sprea",
+       "title": "Students establish knowledge and skills of spreadsheet software to be effective 21st Century Learners",
+       "subtopics": [
+        {
+         "id": "students-establish-knowledge-and-skills-of-sprea",
+         "title": "Students establish knowledge and skills of spreadsheet software to be effective 21st Century Learners",
+         "outcomes": [
+          {
+           "code": "DCT-5.1",
+           "text": "Create a spreadsheet and workbook"
+          },
+          {
+           "code": "DCT-5.2",
+           "text": "Manage worksheet data, structure and formatting"
+          },
+          {
+           "code": "DCT-5.3",
+           "text": "Use tools to sort and manipulate data"
+          },
+          {
+           "code": "DCT-5.4",
+           "text": "Evaluate data through the development and effective use of charts"
+          },
+          {
+           "code": "DCT-5.5",
+           "text": "Construct formulas and calculations"
+          },
+          {
+           "code": "DCT-5.6",
+           "text": "Collect data and identify relevant data sets to analyze and represent the data in various ways to facilitate problem-solving and decision-making"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "presentation-software",
+     "title": "Presentation Software",
+     "topics": [
+      {
+       "id": "students-establish-knowledge-and-skills-of-prese",
+       "title": "Students establish knowledge and skills of presentation software to be effective 21st Century Learners",
+       "subtopics": [
+        {
+         "id": "students-establish-knowledge-and-skills-of-prese",
+         "title": "Students establish knowledge and skills of presentation software to be effective 21st Century Learners",
+         "outcomes": [
+          {
+           "code": "DCT-6.1",
+           "text": "Manage presentation data using tools"
+          },
+          {
+           "code": "DCT-6.2",
+           "text": "Apply and manipulate themes"
+          },
+          {
+           "code": "DCT-6.3",
+           "text": "Improve the use of slide show notes"
+          },
+          {
+           "code": "DCT-6.4",
+           "text": "Manage a presentation by manipulating and reordering slides"
+          },
+          {
+           "code": "DCT-6.5",
+           "text": "Practice presentation skills using the presenter view"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "digital-audio-video-and-images",
+     "title": "Digital Audio, Video and Images",
+     "topics": [
+      {
+       "id": "students-adapt-digital-audio-video-and-images-to",
+       "title": "Students adapt digital audio, video and images to improve the look of documents or presentations",
+       "subtopics": [
+        {
+         "id": "students-adapt-digital-audio-video-and-images-to",
+         "title": "Students adapt digital audio, video and images to improve the look of documents or presentations",
+         "outcomes": [
+          {
+           "code": "DCT-7.1",
+           "text": "Import and export digital audio, video and images"
+          },
+          {
+           "code": "DCT-7.2",
+           "text": "Modify digital images using editing functions"
+          },
+          {
+           "code": "DCT-7.3",
+           "text": "Use audio, video and images in other software programs"
+          },
+          {
+           "code": "DCT-7.4",
+           "text": "Review copyright laws related to digital media"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "communications-software",
+     "title": "Communications Software",
+     "topics": [
+      {
+       "id": "students-establish-knowledge-and-skills-of-commu",
+       "title": "Students establish knowledge and skills of communications software to be effective 21st Century Learners",
+       "subtopics": [
+        {
+         "id": "students-establish-knowledge-and-skills-of-commu",
+         "title": "Students establish knowledge and skills of communications software to be effective 21st Century Learners",
+         "outcomes": [
+          {
+           "code": "DCT-8.1",
+           "text": "Use common editing and formatting functions, including automatic tools"
+          },
+          {
+           "code": "DCT-8.2",
+           "text": "Apply communication tools to automate process and increase efficiency"
+          },
+          {
+           "code": "DCT-8.3",
+           "text": "Use common importing, exporting, and printing functions"
+          },
+          {
+           "code": "DCT-8.4",
+           "text": "Demonstrate common file-management functions"
+          },
+          {
+           "code": "DCT-8.5",
+           "text": "Apply and adapt file-management best practices"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "K-2",
+   "units": [
+    {
+     "id": "data-information",
+     "title": "Data & Information",
+     "topics": [
+      {
+       "id": "students-collect-store-visualize-and-transform-d",
+       "title": "Students collect, store, visualize, and transform data to make inferences and predictions about the world",
+       "subtopics": [
+        {
+         "id": "students-collect-store-visualize-and-transform-d",
+         "title": "Students collect, store, visualize, and transform data to make inferences and predictions about the world",
+         "outcomes": [
+          {
+           "code": "K-2.DI.1",
+           "text": "Identify and collect data using digital tools (e.g., take pictures of all blue items, create a document with things that start with \"a\")."
+          },
+          {
+           "code": "K-2.DI.2",
+           "text": "Define stored information as data and when appropriate, copy, search, retrieve, modify, and delete it."
+          },
+          {
+           "code": "K-2.DI.3",
+           "text": "Model that data can be stored and manipulated using numbers or symbols to represent information."
+          },
+          {
+           "code": "K-2.DI.4",
+           "text": "Organize and present data in different visual formats such as charts, graphs, and symbols, and identify and describe patterns to make predictions."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "computing-devices-systems",
+     "title": "Computing Devices & Systems",
+     "topics": [
+      {
+       "id": "students-identify-a-computing-system-as-being-co",
+       "title": "Students identify a computing system as being composed of hardware and software, troubleshooting common problems and generating solutions based on the needs of the user",
+       "subtopics": [
+        {
+         "id": "students-identify-a-computing-system-as-being-co",
+         "title": "Students identify a computing system as being composed of hardware and software, troubleshooting common problems and generating solutions based on the needs of the user",
+         "outcomes": [
+          {
+           "code": "K-2.CD.1",
+           "text": "Use appropriate terminology in identifying and describing computer hardware."
+          },
+          {
+           "code": "K-2.CD.2",
+           "text": "Describe and troubleshoot basic hardware and software problems using appropriate terminology."
+          },
+          {
+           "code": "K-2.CD.3",
+           "text": "Select and operate appropriate software to perform a variety of tasks and recognize that users have different needs and preferences for the technology they use."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "programs-algorithms",
+     "title": "Programs & Algorithms",
+     "topics": [
+      {
+       "id": "students-model-complex-tasks-using-algorithmic-p",
+       "title": "Students model complex tasks using algorithmic problem solving and develop simple computing programs to represent them",
+       "subtopics": [
+        {
+         "id": "students-model-complex-tasks-using-algorithmic-p",
+         "title": "Students model complex tasks using algorithmic problem solving and develop simple computing programs to represent them",
+         "outcomes": [
+          {
+           "code": "K-2.PA.1",
+           "text": "Breakdown and plan the order of the steps needed for a desired outcome to accomplish the goal"
+          },
+          {
+           "code": "K-2.PA.2",
+           "text": "Using age-appropriate vocabulary, explain steps taken and choices made to improve the design of a sequence."
+          },
+          {
+           "code": "K-2.PA.3",
+           "text": "Develop programs with sequences and simple loops to express ideas or address a problem."
+          },
+          {
+           "code": "K-2.PA.4",
+           "text": "Identify and fix (debug) errors in sequences and simple loops."
+          },
+          {
+           "code": "K-2.PA.5",
+           "text": "Model daily processes by creating and following algorithms (i.e., sets of step-by-step instructions) to complete tasks."
+          },
+          {
+           "code": "K-2.PA.6",
+           "text": "Give attribution when using the ideas and creations of others while developing programs."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "networking-the-internet",
+     "title": "Networking & the Internet",
+     "topics": [
+      {
+       "id": "students-explain-that-information-shared-over-co",
+       "title": "Students explain that information shared over connected computer networks must be protected from unauthorized access",
+       "subtopics": [
+        {
+         "id": "students-explain-that-information-shared-over-co",
+         "title": "Students explain that information shared over connected computer networks must be protected from unauthorized access",
+         "outcomes": [
+          {
+           "code": "K-2.NI.1",
+           "text": "Explain what passwords are, why they are used, and why it is important to develop strong passwords to protect devices and information."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "impact-culture",
+     "title": "Impact & Culture",
+     "topics": [
+      {
+       "id": "students-explain-how-computing-affects-the-way-p",
+       "title": "Students explain how computing affects the way people live, work, and communicate",
+       "subtopics": [
+        {
+         "id": "students-explain-how-computing-affects-the-way-p",
+         "title": "Students explain how computing affects the way people live, work, and communicate",
+         "outcomes": [
+          {
+           "code": "K-2.IC.1",
+           "text": "Compare and contrast the effects of technology on communities and social interactions."
+          },
+          {
+           "code": "K-2.IC.2",
+           "text": "Identify expected behaviors for working responsibly with others online."
+          },
+          {
+           "code": "K-2.IC.3",
+           "text": "Describe how to keep login information private and log off of devices appropriately."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "build": {
+  "builtAt": "2026-10-14T16:20:42.281Z",
+  "model": "none",
+  "usd": 0,
+  "expectedCodes": 99,
+  "coverage": 1,
+  "missingCodes": [],
+  "counts": {
+   "grades": 3,
+   "units": 22,
+   "topics": 23,
+   "subtopics": 24,
+   "outcomes": 99
+  },
+  "warnings": [
+   "unit \"Networking & the Internet\" (grade K-2) has a single outcome"
+  ]
+ }
+}

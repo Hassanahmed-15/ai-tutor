@@ -1,0 +1,2925 @@
+{
+ "id": "us-nv-health",
+ "region": "US",
+ "framework": "Nevada state academic standards: Health Education",
+ "board": null,
+ "qualification": "K-12",
+ "subject": "Health Education",
+ "syllabusCode": null,
+ "gradeSystem": "grade",
+ "source": {
+  "urls": [
+   "https://api.commonstandardsproject.com/api/v1/jurisdictions/A7F156ECF40D4DFDB9DE1E3541550B20",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/5CA5BD05340742E0A2F5F77B8BE7AC36",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/C4DEB5EFCF444347A78B5A8991A605DE",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/96649373244F421EB9AE3BE9E865A112",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/5CC10A542AF64A1BAF6DD5038322647E",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/2B73BF17553B4F65B5926192B3A9CF19",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/505B064A0BB34CEA8AF6FD9E6E77CE35",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/1CABE541955D4FFC8BF5FC305F413D70",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/3A6B1AB6799644E3B8297F655E390FD7"
+  ],
+  "publisher": "Nevada state education agency (machine-readable via Common Standards Project / ASN)",
+  "licence": "CC BY 4.0 US, Common Curriculum, Inc.",
+  "firstExam": "2020"
+ },
+ "grades": [
+  {
+   "grade": "K",
+   "units": [
+    {
+     "id": "core-concepts-students-will-comprehend-concepts-",
+     "title": "Core Concepts: Students will comprehend concepts related to health promotion and disease prevention to enhance health",
+     "topics": [
+      {
+       "id": "personal-community-and-environmental-health-stra",
+       "title": "Personal, Community, and Environmental Health Strand",
+       "subtopics": [
+        {
+         "id": "personal-community-and-environmental-health-stra",
+         "title": "Personal, Community, and Environmental Health Strand",
+         "outcomes": [
+          {
+           "code": "1.PCE.K.1",
+           "text": "Identify a variety of healthy practices and behaviors to maintain or improve personal, community, and environmental health."
+          },
+          {
+           "code": "1.PCE.K.2",
+           "text": "Define pathogens."
+          },
+          {
+           "code": "1.PCE.K.3",
+           "text": "Identify traits that make a person or community unique."
+          },
+          {
+           "code": "1.PCE.K.4",
+           "text": "Identify your family structure."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "mental-and-emotional-health-strand",
+       "title": "Mental and Emotional Health Strand",
+       "subtopics": [
+        {
+         "id": "mental-and-emotional-health-strand",
+         "title": "Mental and Emotional Health Strand",
+         "outcomes": [
+          {
+           "code": "1.ME.K.1",
+           "text": "Identify different emotions."
+          },
+          {
+           "code": "1.ME.K.2",
+           "text": "List ways a person shows emotions."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "nutrition-and-physical-activity-strand",
+       "title": "Nutrition and Physical Activity Strand",
+       "subtopics": [
+        {
+         "id": "nutrition-and-physical-activity-strand",
+         "title": "Nutrition and Physical Activity Strand",
+         "outcomes": [
+          {
+           "code": "1.NP.K.1",
+           "text": "Explain why the body needs food and water."
+          },
+          {
+           "code": "1.NP.K.2",
+           "text": "Describe physical activity."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "substance-use-and-abuse-strand",
+       "title": "Substance Use and Abuse Strand",
+       "subtopics": [
+        {
+         "id": "substance-use-and-abuse-strand",
+         "title": "Substance Use and Abuse Strand",
+         "outcomes": [
+          {
+           "code": "1.SUA.K.1",
+           "text": "Define medication and ways they can be helpful or harmful."
+          },
+          {
+           "code": "1.SUA.K.2",
+           "text": "Identify alcohol, tobacco, marijuana and other drugs and ways they can be harmful."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "safety-practices-injury-prevention-and-cpr-aed-s",
+       "title": "Safety Practices, Injury Prevention, and CPR/AED Strand",
+       "subtopics": [
+        {
+         "id": "safety-practices-injury-prevention-and-cpr-aed-s",
+         "title": "Safety Practices, Injury Prevention, and CPR/AED Strand",
+         "outcomes": [
+          {
+           "code": "1.SIC.K.1",
+           "text": "List emergency contacts and safety rules for preventing injury at home, school, and community."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "personal-safety-strand",
+       "title": "Personal Safety Strand",
+       "subtopics": [
+        {
+         "id": "personal-safety-strand",
+         "title": "Personal Safety Strand",
+         "outcomes": [
+          {
+           "code": "1.PS.K.1",
+           "text": "Define personal space."
+          },
+          {
+           "code": "1.PS.K.2",
+           "text": "Define abuse."
+          },
+          {
+           "code": "1.PS.K.3",
+           "text": "Define safe/trusted adult."
+          },
+          {
+           "code": "1.PS.K.4",
+           "text": "List ways to avoid becoming separated from parent, guardian, or caregiver."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "analyze-influences-students-will-analyze-the-inf",
+     "title": "Analyze Influences: Students will analyze the influences of family, peers, culture, media, technology, and other factors have on health behaviors",
+     "topics": [
+      {
+       "id": "strand",
+       "title": "Strand",
+       "subtopics": [
+        {
+         "id": "strand",
+         "title": "Strand",
+         "outcomes": [
+          {
+           "code": "2.AF.K.1",
+           "text": "Identify various sources that influence health behaviors."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "access-information-students-will-demonstrate-the",
+     "title": "Access Information: Students will demonstrate the ability to access reliable health information, products, and services to enhance health",
+     "topics": [
+      {
+       "id": "strand",
+       "title": "Strand",
+       "subtopics": [
+        {
+         "id": "strand",
+         "title": "Strand",
+         "outcomes": [
+          {
+           "code": "3.AI.K.1",
+           "text": "Identify safe/trusted adults and professionals who can help promote health."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "interpersonal-communication-students-will-demons",
+     "title": "Interpersonal Communication: Students will demonstrate the ability to use interpersonal communication skills to enhance health and to avoid or reduce health risks",
+     "topics": [
+      {
+       "id": "strand",
+       "title": "Strand",
+       "subtopics": [
+        {
+         "id": "strand",
+         "title": "Strand",
+         "outcomes": [
+          {
+           "code": "4.IC.K.1",
+           "text": "Name healthy ways to express needs, wants, and feelings to enhance health and to avoid or reduce health risks."
+          },
+          {
+           "code": "4.IC.K.2",
+           "text": "Define refusal skills."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "decision-making-students-will-demonstrate-the-ab",
+     "title": "Decision Making: Students will demonstrate the ability to use decision-making skills to enhance health",
+     "topics": [
+      {
+       "id": "strand",
+       "title": "Strand",
+       "subtopics": [
+        {
+         "id": "strand",
+         "title": "Strand",
+         "outcomes": [
+          {
+           "code": "5.DM.K.1",
+           "text": "Identify healthy and unhealthy situations."
+          },
+          {
+           "code": "5.DM.K.2",
+           "text": "Identify individuals that can aid in healthy decision making."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "goal-setting-students-will-demonstrate-the-abili",
+     "title": "Goal Setting: Students will demonstrate the ability to use goal-setting skills to enhance health",
+     "topics": [
+      {
+       "id": "strand",
+       "title": "Strand",
+       "subtopics": [
+        {
+         "id": "strand",
+         "title": "Strand",
+         "outcomes": [
+          {
+           "code": "6.GS.K.1",
+           "text": "Define goal."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "self-management-students-will-demonstrate-the-ab",
+     "title": "Self-Management: Students will demonstrate the ability to practice health-enhancing behaviors and to avoid or reduce health risks",
+     "topics": [
+      {
+       "id": "strand",
+       "title": "Strand",
+       "subtopics": [
+        {
+         "id": "strand",
+         "title": "Strand",
+         "outcomes": [
+          {
+           "code": "7.SM.K.1",
+           "text": "Identify personal health behaviors."
+          },
+          {
+           "code": "7.SM.K.2",
+           "text": "Identify behaviors to avoid or reduce health risks."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "advocacy",
+     "title": "Advocacy",
+     "topics": [
+      {
+       "id": "strand",
+       "title": "Strand",
+       "subtopics": [
+        {
+         "id": "strand",
+         "title": "Strand",
+         "outcomes": [
+          {
+           "code": "8.AV.K.1",
+           "text": "List ways to encourage peers to make positive health choices."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "1",
+   "units": [
+    {
+     "id": "core-concepts-students-will-comprehend-concepts-",
+     "title": "Core Concepts: Students will comprehend concepts related to health promotion and disease prevention to enhance health",
+     "topics": [
+      {
+       "id": "personal-community-and-environmental-health-stra",
+       "title": "Personal, Community, and Environmental Health Strand",
+       "subtopics": [
+        {
+         "id": "personal-community-and-environmental-health-stra",
+         "title": "Personal, Community, and Environmental Health Strand",
+         "outcomes": [
+          {
+           "code": "1.PCE.1.1",
+           "text": "Describe a variety of healthy practices and behaviors to maintain or improve personal, community, and environmental health."
+          },
+          {
+           "code": "1.PCE.1.2",
+           "text": "Describe how pathogens can cause disease."
+          },
+          {
+           "code": "1.PCE.1.3",
+           "text": "Describe the importance of accepting self and others."
+          },
+          {
+           "code": "1.PCE.1.4",
+           "text": "List different kinds of family structures."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "mental-and-emotional-health-strand",
+       "title": "Mental and Emotional Health Strand",
+       "subtopics": [
+        {
+         "id": "mental-and-emotional-health-strand",
+         "title": "Mental and Emotional Health Strand",
+         "outcomes": [
+          {
+           "code": "1.ME.1.1",
+           "text": "Recognize the relationship between emotions and actions."
+          },
+          {
+           "code": "1.ME.1.2",
+           "text": "Demonstrate how to express emotions in healthy ways."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "nutrition-and-physical-activity-strand",
+       "title": "Nutrition and Physical Activity Strand",
+       "subtopics": [
+        {
+         "id": "nutrition-and-physical-activity-strand",
+         "title": "Nutrition and Physical Activity Strand",
+         "outcomes": [
+          {
+           "code": "1.NP.1.1",
+           "text": "Identify the food groups."
+          },
+          {
+           "code": "1.NP.1.2",
+           "text": "Explain why the body needs daily physical activity."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "substance-use-and-abuse-strand",
+       "title": "Substance Use and Abuse Strand",
+       "subtopics": [
+        {
+         "id": "substance-use-and-abuse-strand",
+         "title": "Substance Use and Abuse Strand",
+         "outcomes": [
+          {
+           "code": "1.SUA.1.1",
+           "text": "Identify different types of medications."
+          },
+          {
+           "code": "1.SUA.1.2",
+           "text": "Identify the effects of alcohol, tobacco, marijuana, and other drugs have on the body."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "safety-practices-injury-prevention-and-cpr-aed-s",
+       "title": "Safety Practices, Injury Prevention, and CPR/AED Strand",
+       "subtopics": [
+        {
+         "id": "safety-practices-injury-prevention-and-cpr-aed-s",
+         "title": "Safety Practices, Injury Prevention, and CPR/AED Strand",
+         "outcomes": [
+          {
+           "code": "1.SIC.1.1",
+           "text": "Memorize emergency contacts and safety rules for preventing injury at home, school, and community."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "personal-safety-strand",
+       "title": "Personal Safety Strand",
+       "subtopics": [
+        {
+         "id": "personal-safety-strand",
+         "title": "Personal Safety Strand",
+         "outcomes": [
+          {
+           "code": "1.PS.1.1",
+           "text": "Recognize safe personal space of self and others."
+          },
+          {
+           "code": "1.PS.1.2",
+           "text": "List abusive behaviors and actions including various hazards and dangers particular to children and ways to get help."
+          },
+          {
+           "code": "1.PS.1.3",
+           "text": "List examples of unsafe situations that impact children and ways to report to a safe/trusted adult."
+          },
+          {
+           "code": "1.PS.1.4",
+           "text": "Recall steps to take if separated or lost from a parent, guardian, or caregiver."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "analyze-influences-students-will-analyze-the-inf",
+     "title": "Analyze Influences: Students will analyze the influences of family, peers, culture, media, technology, and other factors have on health behaviors",
+     "topics": [
+      {
+       "id": "strand",
+       "title": "Strand",
+       "subtopics": [
+        {
+         "id": "strand",
+         "title": "Strand",
+         "outcomes": [
+          {
+           "code": "2.AF.1.1",
+           "text": "Recognize various sources that influence health behaviors."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "access-information-students-will-demonstrate-the",
+     "title": "Access Information: Students will demonstrate the ability to access reliable health information, products, and services to enhance health",
+     "topics": [
+      {
+       "id": "strand",
+       "title": "Strand",
+       "subtopics": [
+        {
+         "id": "strand",
+         "title": "Strand",
+         "outcomes": [
+          {
+           "code": "3.AI.1.1",
+           "text": "Identify ways to locate school and community health helpers."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "interpersonal-communication-students-will-demons",
+     "title": "Interpersonal Communication: Students will demonstrate the ability to use interpersonal communication skills to enhance health and to avoid or reduce health risks",
+     "topics": [
+      {
+       "id": "strand",
+       "title": "Strand",
+       "subtopics": [
+        {
+         "id": "strand",
+         "title": "Strand",
+         "outcomes": [
+          {
+           "code": "4.IC.1.1",
+           "text": "Discuss healthy ways to express needs, wants, and feelings to enhance health and to avoid or reduce health risks."
+          },
+          {
+           "code": "4.IC.1.2",
+           "text": "Identify refusal skills."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "decision-making-students-will-demonstrate-the-ab",
+     "title": "Decision Making: Students will demonstrate the ability to use decision-making skills to enhance health",
+     "topics": [
+      {
+       "id": "strand",
+       "title": "Strand",
+       "subtopics": [
+        {
+         "id": "strand",
+         "title": "Strand",
+         "outcomes": [
+          {
+           "code": "5.DM.1.1",
+           "text": "Recognize decisions regarding healthy and unhealthy situations."
+          },
+          {
+           "code": "5.DM.1.2",
+           "text": "Identify situations when a health-related decision is needed."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "goal-setting-students-will-demonstrate-the-abili",
+     "title": "Goal Setting: Students will demonstrate the ability to use goal-setting skills to enhance health",
+     "topics": [
+      {
+       "id": "strand",
+       "title": "Strand",
+       "subtopics": [
+        {
+         "id": "strand",
+         "title": "Strand",
+         "outcomes": [
+          {
+           "code": "6.GS.1.1",
+           "text": "Identify a shortterm health goal."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "self-management-students-will-demonstrate-the-ab",
+     "title": "Self-Management: Students will demonstrate the ability to practice health-enhancing behaviors and to avoid or reduce health risks",
+     "topics": [
+      {
+       "id": "strand",
+       "title": "Strand",
+       "subtopics": [
+        {
+         "id": "strand",
+         "title": "Strand",
+         "outcomes": [
+          {
+           "code": "7.SM.1.1",
+           "text": "Classify behaviors as healthy or unhealthy."
+          },
+          {
+           "code": "7.SM.1.2",
+           "text": "Explain behaviors to avoid or reduce health risks."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "advocacy-students-will-demonstrate-the-ability-t",
+     "title": "Advocacy: Students will demonstrate the ability to support/promote personal, family, and community health",
+     "topics": [
+      {
+       "id": "strand",
+       "title": "Strand",
+       "subtopics": [
+        {
+         "id": "strand",
+         "title": "Strand",
+         "outcomes": [
+          {
+           "code": "8.AV.K.1",
+           "text": "Identify ways to encourage peers to make positive health choices."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "2",
+   "units": [
+    {
+     "id": "core-concepts-students-will-comprehend-concepts-",
+     "title": "Core Concepts: Students will comprehend concepts related to health promotion and disease prevention to enhance health",
+     "topics": [
+      {
+       "id": "personal-community-and-environmental-health-stra",
+       "title": "Personal, Community, and Environmental Health Strand",
+       "subtopics": [
+        {
+         "id": "personal-community-and-environmental-health-stra",
+         "title": "Personal, Community, and Environmental Health Strand",
+         "outcomes": [
+          {
+           "code": "1.PCE.2.1",
+           "text": "Explain a variety of healthy practices and behaviors to maintain or improve personal, community, and environmental health."
+          },
+          {
+           "code": "1.PCE.2.2",
+           "text": "Define communicable and noncommunicable diseases."
+          },
+          {
+           "code": "1.PCE.2.3",
+           "text": "Recognize similarities and differences between individuals and communities."
+          },
+          {
+           "code": "1.PCE.2.4",
+           "text": "Identify different kinds of family structures."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "mental-and-emotional-health-strand",
+       "title": "Mental and Emotional Health Strand",
+       "subtopics": [
+        {
+         "id": "mental-and-emotional-health-strand",
+         "title": "Mental and Emotional Health Strand",
+         "outcomes": [
+          {
+           "code": "1.ME.2.1",
+           "text": "Describe how the body responds to emotions physically and behaviorally."
+          },
+          {
+           "code": "1.ME.2.2",
+           "text": "Describe how the expression of emotions can influence actions."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "nutrition-and-physical-activity-strand",
+       "title": "Nutrition and Physical Activity Strand",
+       "subtopics": [
+        {
+         "id": "nutrition-and-physical-activity-strand",
+         "title": "Nutrition and Physical Activity Strand",
+         "outcomes": [
+          {
+           "code": "1.NP.2.1",
+           "text": "Describe how each food group contributes to a healthy body."
+          },
+          {
+           "code": "1.NP.2.2",
+           "text": "Identify types of physical activity and their health benefits."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "substance-use-and-abuse-strand",
+       "title": "Substance Use and Abuse Strand",
+       "subtopics": [
+        {
+         "id": "substance-use-and-abuse-strand",
+         "title": "Substance Use and Abuse Strand",
+         "outcomes": [
+          {
+           "code": "1.SUA.2.1",
+           "text": "Explain the differences between overthe-counter and prescription medications."
+          },
+          {
+           "code": "1.SUA.2.2",
+           "text": "Describe the effects of alcohol, tobacco, marijuana, and other drugs have on the body."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "safety-practices-injury-prevention-and-cpr-aed-s",
+       "title": "Safety Practices, Injury Prevention, and CPR/AED Strand",
+       "subtopics": [
+        {
+         "id": "safety-practices-injury-prevention-and-cpr-aed-s",
+         "title": "Safety Practices, Injury Prevention, and CPR/AED Strand",
+         "outcomes": [
+          {
+           "code": "1.SIC.2.1",
+           "text": "Recognize the importance of knowing your emergency contacts and when it is appropriate to use them in order to prevent injury."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "personal-safety-strand",
+       "title": "Personal Safety Strand",
+       "subtopics": [
+        {
+         "id": "personal-safety-strand",
+         "title": "Personal Safety Strand",
+         "outcomes": [
+          {
+           "code": "1.PS.2.1",
+           "text": "Describe safe personal space of self and others."
+          },
+          {
+           "code": "1.PS.2.2",
+           "text": "Recognize abusive behaviors and actions including various hazards and dangers particular to children and ways to get help."
+          },
+          {
+           "code": "1.PS.2.3",
+           "text": "Recognize when to report an unsafe situation to a safe/trusted adult."
+          },
+          {
+           "code": "1.PS.2.4",
+           "text": "Identify various steps to take if separated or lost from a parent, guardian, or caregiver."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "analyze-influences-students-will-analyze-the-inf",
+     "title": "Analyze Influences: Students will analyze the influences of family, peers, culture, media, technology, and other factors have on health behaviors",
+     "topics": [
+      {
+       "id": "strand",
+       "title": "Strand",
+       "subtopics": [
+        {
+         "id": "strand",
+         "title": "Strand",
+         "outcomes": [
+          {
+           "code": "2.AF.2.1",
+           "text": "Discuss sources of family, peers, culture, media technology and other factors that influence health behaviors."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "access-information-students-will-demonstrate-the",
+     "title": "Access Information: Students will demonstrate the ability to access reliable health information, products, and services to enhance health",
+     "topics": [
+      {
+       "id": "strand",
+       "title": "Strand",
+       "subtopics": [
+        {
+         "id": "strand",
+         "title": "Strand",
+         "outcomes": [
+          {
+           "code": "3.AI.2.1",
+           "text": "Identify safe/trusted adults in the school and community who can assist with accessing reliable health information, products, and services."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "interpersonal-communication-students-will-demons",
+     "title": "Interpersonal Communication: Students will demonstrate the ability to use interpersonal communication skills to enhance health and to avoid or reduce health risks",
+     "topics": [
+      {
+       "id": "strand",
+       "title": "Strand",
+       "subtopics": [
+        {
+         "id": "strand",
+         "title": "Strand",
+         "outcomes": [
+          {
+           "code": "4.IC.2.1",
+           "text": "Demonstrate healthy ways to express needs, wants and feelings to enhance health and to avoid or reduce health risks."
+          },
+          {
+           "code": "4.IC.2.2",
+           "text": "Identify different types of refusal skills to enhance health."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "decision-making-students-will-demonstrate-the-ab",
+     "title": "Decision Making: Students will demonstrate the ability to use decision-making skills to enhance health",
+     "topics": [
+      {
+       "id": "strand",
+       "title": "Strand",
+       "subtopics": [
+        {
+         "id": "strand",
+         "title": "Strand",
+         "outcomes": [
+          {
+           "code": "5.DM.2.1",
+           "text": "Describe decisions regarding healthy and unhealthy situations."
+          },
+          {
+           "code": "5.DM.2.2",
+           "text": "Differentiate between situations when a health-related decision can be made individually or when assistance is needed."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "goal-setting-students-will-demonstrate-the-abili",
+     "title": "Goal Setting: Students will demonstrate the ability to use goal-setting skills to enhance health",
+     "topics": [
+      {
+       "id": "strand",
+       "title": "Strand",
+       "subtopics": [
+        {
+         "id": "strand",
+         "title": "Strand",
+         "outcomes": [
+          {
+           "code": "6.GS.2.1",
+           "text": "Identify a shortterm health goal and take action toward achieving the goal."
+          },
+          {
+           "code": "6.GS.2.2",
+           "text": "Identify who can help when assistance is needed to achieve a health goal."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "self-management-students-will-demonstrate-the-ab",
+     "title": "Self-Management: Students will demonstrate the ability to practice health-enhancing behaviors and to avoid or reduce health risks",
+     "topics": [
+      {
+       "id": "strand",
+       "title": "Strand",
+       "subtopics": [
+        {
+         "id": "strand",
+         "title": "Strand",
+         "outcomes": [
+          {
+           "code": "7.SM.2.1",
+           "text": "Describe a variety of healthy practices and behaviors to maintain or improve personal health."
+          },
+          {
+           "code": "7.SM.2.2",
+           "text": "Demonstrate behaviors that avoid or reduce health risks."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "advocacy-students-will-demonstrate-the-ability-t",
+     "title": "Advocacy Students: will demonstrate the ability to support/promote personal, family, and community health",
+     "topics": [
+      {
+       "id": "strand",
+       "title": "Strand",
+       "subtopics": [
+        {
+         "id": "strand",
+         "title": "Strand",
+         "outcomes": [
+          {
+           "code": "8.AV.2.1",
+           "text": "Encourage peers to make positive health choices."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "3",
+   "units": [
+    {
+     "id": "core-concepts-students-will-comprehend-concepts-",
+     "title": "Core Concepts: Students will comprehend concepts related to health promotion and disease prevention to enhance health",
+     "topics": [
+      {
+       "id": "personal-community-and-environmental-health-stra",
+       "title": "Personal, Community, and Environmental Health Strand",
+       "subtopics": [
+        {
+         "id": "personal-community-and-environmental-health-stra",
+         "title": "Personal, Community, and Environmental Health Strand",
+         "outcomes": [
+          {
+           "code": "1.PCE.3.1",
+           "text": "Compare a variety of healthy practices and behaviors to maintain or improve personal, community, and environmental health."
+          },
+          {
+           "code": "1.PCE.3.2",
+           "text": "Classify communicable and noncommunicable diseases."
+          },
+          {
+           "code": "1.PCE.3.3",
+           "text": "Summarize the importance of treating individuals and communities with respect."
+          },
+          {
+           "code": "1.PCE.3.4",
+           "text": "Describe different kinds of family structures."
+          },
+          {
+           "code": "1.PCE.3.5",
+           "text": "Define genetics and its relationship to family history and personal health."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "mental-and-emotional-health-strand",
+       "title": "Mental and Emotional Health Strand",
+       "subtopics": [
+        {
+         "id": "mental-and-emotional-health-strand",
+         "title": "Mental and Emotional Health Strand",
+         "outcomes": [
+          {
+           "code": "1.ME.3.1",
+           "text": "Define stress, eustress, and distress."
+          },
+          {
+           "code": "1.ME.3.2",
+           "text": "Identify how a person expresses stress."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "nutrition-and-physical-activity-strand",
+       "title": "Nutrition and Physical Activity Strand",
+       "subtopics": [
+        {
+         "id": "nutrition-and-physical-activity-strand",
+         "title": "Nutrition and Physical Activity Strand",
+         "outcomes": [
+          {
+           "code": "1.NP.3.1",
+           "text": "List the six essential nutrients and the sources of each."
+          },
+          {
+           "code": "1.NP.3.2",
+           "text": "Understand the daily recommendations of physical activity."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "substance-use-and-abuse-strand",
+       "title": "Substance Use and Abuse Strand",
+       "subtopics": [
+        {
+         "id": "substance-use-and-abuse-strand",
+         "title": "Substance Use and Abuse Strand",
+         "outcomes": [
+          {
+           "code": "1.SUA.3.1",
+           "text": "Identify the purpose of overthe-counter and prescription medications."
+          },
+          {
+           "code": "1.SUA.3.2",
+           "text": "Discuss ways alcohol, tobacco, marijuana, and other drugs can harm an individual’s physical, mental, and social health."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "safety-practices-injury-prevention-and-cpr-aed-s",
+       "title": "Safety Practices, Injury Prevention, and CPR/AED Strand",
+       "subtopics": [
+        {
+         "id": "safety-practices-injury-prevention-and-cpr-aed-s",
+         "title": "Safety Practices, Injury Prevention, and CPR/AED Strand",
+         "outcomes": [
+          {
+           "code": "1.SIC.3.1",
+           "text": "Identify ways to prevent injuries at home, at school, and in the community."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "personal-safety-strand",
+       "title": "Personal Safety Strand",
+       "subtopics": [
+        {
+         "id": "personal-safety-strand",
+         "title": "Personal Safety Strand",
+         "outcomes": [
+          {
+           "code": "1.PS.3.1",
+           "text": "Explain a person’s right to feel comfortable, safe, and respected."
+          },
+          {
+           "code": "1.PS.3.2",
+           "text": "Describe abusive behaviors and actions and ways to get help."
+          },
+          {
+           "code": "1.PS.3.3",
+           "text": "Identify the steps to report an unsafe situation to a safe/trusted adult when you or someone else needs help."
+          },
+          {
+           "code": "1.PS.3.4",
+           "text": "Explain various steps to take if separated or lost from a parent, guardian, or caregiver"
+          },
+          {
+           "code": "1.PS.3.6",
+           "text": "Identify the advantages and disadvantages of communicating using technology and social media."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "human-reproductive-system-hiv-aids-related-commu",
+       "title": "Human Reproductive System, HIV/AIDS, Related Communicable Diseases, & Sexual Responsibility Strand",
+       "subtopics": [
+        {
+         "id": "human-reproductive-system-hiv-aids-related-commu",
+         "title": "Human Reproductive System, HIV/AIDS, Related Communicable Diseases, & Sexual Responsibility Strand",
+         "outcomes": [
+          {
+           "code": "1.HRS.3.1",
+           "text": "Identify the functions of the major body parts using correct anatomical terms."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "analyze-influences-students-will-analyze-the-inf",
+     "title": "Analyze Influences: Students will analyze the influences of family, peers, culture, media, technology, and other factors have on health behaviors",
+     "topics": [
+      {
+       "id": "strand",
+       "title": "Strand",
+       "subtopics": [
+        {
+         "id": "strand",
+         "title": "Strand",
+         "outcomes": [
+          {
+           "code": "2.AF.3.1",
+           "text": "Explain healthy and unhealthy ways family, peers, culture, media technology and other factors influence health behaviors."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "access-information-students-will-demonstrate-the",
+     "title": "Access Information: Students will demonstrate the ability to access reliable health information, products, and services to enhance health",
+     "topics": [
+      {
+       "id": "strand",
+       "title": "Strand",
+       "subtopics": [
+        {
+         "id": "strand",
+         "title": "Strand",
+         "outcomes": [
+          {
+           "code": "3.AI.3.1",
+           "text": "Identify characteristics of reliable health information, products, and services."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "interpersonal-communication-students-will-demons",
+     "title": "Interpersonal Communication: Students will demonstrate the ability to use interpersonal communication skills to enhance health and to avoid or reduce health risks",
+     "topics": [
+      {
+       "id": "strand",
+       "title": "Strand",
+       "subtopics": [
+        {
+         "id": "strand",
+         "title": "Strand",
+         "outcomes": [
+          {
+           "code": "4.IC.3.1",
+           "text": "Practice appropriate verbal and nonverbal communication to enhance health and to avoid or reduce health risks."
+          },
+          {
+           "code": "4.IC.3.2",
+           "text": "Determine which refusal skills to use to avoid or reduce health risks."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "decision-making-students-will-demonstrate-the-ab",
+     "title": "Decision Making: Students will demonstrate the ability to use decision-making skills to enhance health",
+     "topics": [
+      {
+       "id": "strand",
+       "title": "Strand",
+       "subtopics": [
+        {
+         "id": "strand",
+         "title": "Strand",
+         "outcomes": [
+          {
+           "code": "5.DM.3.1",
+           "text": "Identify the steps of the decision making process as related to a health issue."
+          },
+          {
+           "code": "5.DM.3.",
+           "text": "Determine how health-related decisions have consequences for self and others."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "goal-setting-students-will-demonstrate-the-abili",
+     "title": "Goal Setting: Students will demonstrate the ability to use goal-setting skills to enhance health",
+     "topics": [
+      {
+       "id": "strand",
+       "title": "Strand",
+       "subtopics": [
+        {
+         "id": "strand",
+         "title": "Strand",
+         "outcomes": [
+          {
+           "code": "6.GS.3.1",
+           "text": "Differentiate between shortand long-term health goals."
+          },
+          {
+           "code": "6.GS.3.2",
+           "text": "Describe how a person can help when assistance is needed to achieve a health goal."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "self-management-students-will-demonstrate-the-ab",
+     "title": "Self-Management: Students will demonstrate the ability to practice health-enhancing behaviors and to avoid or reduce health risks",
+     "topics": [
+      {
+       "id": "strand",
+       "title": "Strand",
+       "subtopics": [
+        {
+         "id": "strand",
+         "title": "Strand",
+         "outcomes": [
+          {
+           "code": "7.SM.3.1",
+           "text": "Demonstrate healthy practices and behaviors to maintain or improve personal health."
+          },
+          {
+           "code": "7.SM.3.2",
+           "text": "Describe a variety of behaviors to avoid or reduce health risks."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "advocacy-students-will-demonstrate-the-ability-t",
+     "title": "Advocacy: Students will demonstrate the ability to support/promote personal, family, and community health",
+     "topics": [
+      {
+       "id": "strand",
+       "title": "Strand",
+       "subtopics": [
+        {
+         "id": "strand",
+         "title": "Strand",
+         "outcomes": [
+          {
+           "code": "8.AV.3.1",
+           "text": "Demonstrate advocacy for self to make positive health choices."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "4",
+   "units": [
+    {
+     "id": "core-concepts-students-will-comprehend-concepts-",
+     "title": "Core Concepts: Students will comprehend concepts related to health promotion and disease prevention to enhance health",
+     "topics": [
+      {
+       "id": "personal-community-and-environmental-health-stra",
+       "title": "Personal, Community, and Environmental Health Strand",
+       "subtopics": [
+        {
+         "id": "personal-community-and-environmental-health-stra",
+         "title": "Personal, Community, and Environmental Health Strand",
+         "outcomes": [
+          {
+           "code": "1.PCE.4.1",
+           "text": "Compare and contrast a variety of healthy practices and behaviors that maintain or improve personal, community, and environmental health."
+          },
+          {
+           "code": "1.PCE.4.2",
+           "text": "Differentiate between communicable and noncommunicable diseases."
+          },
+          {
+           "code": "1.PCE.4.3",
+           "text": "Assess the importance of accepting the similarities and differences of self and others as it relates to personal, community, and environmental health."
+          },
+          {
+           "code": "1.PCE.4.4",
+           "text": "Describe how individuals interact within family structures."
+          },
+          {
+           "code": "1.PCE.4.5",
+           "text": "Examine genetics and its relationship to family history and personal health."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "mental-and-emotional-health-strand",
+       "title": "Mental and Emotional Health Strand",
+       "subtopics": [
+        {
+         "id": "mental-and-emotional-health-strand",
+         "title": "Mental and Emotional Health Strand",
+         "outcomes": [
+          {
+           "code": "1.ME.4.1",
+           "text": "Identify physical and psychological responses to stressors."
+          },
+          {
+           "code": "1.ME.4.2",
+           "text": "Recognize how expression of emotions can vary across individuals and situations."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "nutrition-and-physical-activity-strand",
+       "title": "Nutrition and Physical Activity Strand",
+       "subtopics": [
+        {
+         "id": "nutrition-and-physical-activity-strand",
+         "title": "Nutrition and Physical Activity Strand",
+         "outcomes": [
+          {
+           "code": "1.NP.4.1",
+           "text": "Identify how each nutrient contributes to a healthy body."
+          },
+          {
+           "code": "1.NP.4.2",
+           "text": "Recognize the mental, social, and physical benefits of physical activity."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "substance-use-and-abuse-strand",
+       "title": "Substance Use and Abuse Strand",
+       "subtopics": [
+        {
+         "id": "substance-use-and-abuse-strand",
+         "title": "Substance Use and Abuse Strand",
+         "outcomes": [
+          {
+           "code": "1.SUA.4.1",
+           "text": "Summarize why people use overthe-counter and prescription medications in relation to health promotion and disease prevention."
+          },
+          {
+           "code": "1.SUA.4.2",
+           "text": "Relate the positive and negative factors that influence a person’s physical, social and emotional health when using alcohol, tobacco, marijuana, and other drugs."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "safety-practices-injury-prevention-and-cpr-aed-s",
+       "title": "Safety Practices, Injury Prevention, and CPR/AED Strand",
+       "subtopics": [
+        {
+         "id": "safety-practices-injury-prevention-and-cpr-aed-s",
+         "title": "Safety Practices, Injury Prevention, and CPR/AED Strand",
+         "outcomes": [
+          {
+           "code": "1.SIC.4.1",
+           "text": "Categorize safe and unsafe situations at home, school, and in the community."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "personal-safety-strand",
+       "title": "Personal Safety Strand",
+       "subtopics": [
+        {
+         "id": "personal-safety-strand",
+         "title": "Personal Safety Strand",
+         "outcomes": [
+          {
+           "code": "1.PS.4.1",
+           "text": "Describe ways personal space of self and others can be violated."
+          },
+          {
+           "code": "1.PS.4.2",
+           "text": "Categorize various forms of abuse and ways to get help."
+          },
+          {
+           "code": "1.PS.4.3",
+           "text": "Describe how to report to a safe/trusted adult when you or someone else needs help."
+          },
+          {
+           "code": "1.PS.4.4",
+           "text": "Investigate the hazards and dangers of becoming separated or lost from a parent, guardian, or caregiver."
+          },
+          {
+           "code": "1.PS.4.6",
+           "text": "Categorize the advantages and disadvantages of communicating using technology and social media."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "human-reproductive-system-hiv-aids-related-commu",
+       "title": "Human Reproductive System, HIV/AIDS, Related Communicable Diseases, & Sexual Responsibility Strand",
+       "subtopics": [
+        {
+         "id": "human-reproductive-system-hiv-aids-related-commu",
+         "title": "Human Reproductive System, HIV/AIDS, Related Communicable Diseases, & Sexual Responsibility Strand",
+         "outcomes": [
+          {
+           "code": "1.HRS.4.1",
+           "text": "Identify the body parts of the human reproductive systems using correct anatomical terms."
+          },
+          {
+           "code": "1.HRS.4.3",
+           "text": "Explain that all living things reproduce."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "analyze-influences-students-will-analyze-the-inf",
+     "title": "Analyze Influences: Students will analyze the influences of family, peers, culture, media, technology, and other factors have on health behaviors",
+     "topics": [
+      {
+       "id": "strand",
+       "title": "Strand",
+       "subtopics": [
+        {
+         "id": "strand",
+         "title": "Strand",
+         "outcomes": [
+          {
+           "code": "2.AF.4.1",
+           "text": "Compare how various sources of family, peers, culture, media technology and any other factors influence health behaviors."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "access-information-students-will-demonstrate-the",
+     "title": "Access Information: Students will demonstrate the ability to access reliable health information, products, and services to enhance health",
+     "topics": [
+      {
+       "id": "strand",
+       "title": "Strand",
+       "subtopics": [
+        {
+         "id": "strand",
+         "title": "Strand",
+         "outcomes": [
+          {
+           "code": "3.AI.4.1",
+           "text": "Locate home, school, and community resources that provide reliable health information, products, and services."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "interpersonal-communication-students-will-demons",
+     "title": "Interpersonal Communication: Students will demonstrate the ability to use interpersonal communication skills to enhance health and to avoid or reduce health risks",
+     "topics": [
+      {
+       "id": "strand",
+       "title": "Strand",
+       "subtopics": [
+        {
+         "id": "strand",
+         "title": "Strand",
+         "outcomes": [
+          {
+           "code": "4.IC.4.1",
+           "text": "Interpret verbal and nonverbal communication skills to enhance health and to avoid or reduce health risks."
+          },
+          {
+           "code": "4.IC.4.2",
+           "text": "Demonstrate refusal skills to avoid or reduce health risks."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "decision-making-students-will-demonstrate-the-ab",
+     "title": "Decision Making: Students will demonstrate the ability to use decision-making skills to enhance health",
+     "topics": [
+      {
+       "id": "strand",
+       "title": "Strand",
+       "subtopics": [
+        {
+         "id": "strand",
+         "title": "Strand",
+         "outcomes": [
+          {
+           "code": "5.DM.4.1",
+           "text": "Apply the steps of the decision making process to an identified health-related situation to avoid or reduce health risks"
+          },
+          {
+           "code": "5.DM.4.2",
+           "text": "Predict the potential outcomes of health-related decisions for self and others."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "goal-setting-students-will-demonstrate-the-abili",
+     "title": "Goal Setting: Students will demonstrate the ability to use goal-setting skills to enhance health",
+     "topics": [
+      {
+       "id": "strand",
+       "title": "Strand",
+       "subtopics": [
+        {
+         "id": "strand",
+         "title": "Strand",
+         "outcomes": [
+          {
+           "code": "6.GS.4.1",
+           "text": "Formulate short- and longterm health goals."
+          },
+          {
+           "code": "6.GS.4.2",
+           "text": "Identify resources to assist in achieving a health goal."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "self-management-students-will-demonstrate-the-ab",
+     "title": "Self-Management: Students will demonstrate the ability to practice health-enhancing behaviors and to avoid or reduce health risks",
+     "topics": [
+      {
+       "id": "strand",
+       "title": "Strand",
+       "subtopics": [
+        {
+         "id": "strand",
+         "title": "Strand",
+         "outcomes": [
+          {
+           "code": "7.SM.4.1",
+           "text": "Develop a variety of healthy practices and behaviors to maintain or improve personal health."
+          },
+          {
+           "code": "7.SM.4.2",
+           "text": "Develop a variety of behaviors to avoid or reduce health risks."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "advocacy-students-will-demonstrate-the-ability-t",
+     "title": "Advocacy: Students will demonstrate the ability to support/promote personal, family, and community health",
+     "topics": [
+      {
+       "id": "strand",
+       "title": "Strand",
+       "subtopics": [
+        {
+         "id": "strand",
+         "title": "Strand",
+         "outcomes": [
+          {
+           "code": "8.AV.4.1",
+           "text": "Demonstrate advocacy for family members to make positive health choices."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "5",
+   "units": [
+    {
+     "id": "core-concepts-students-will-comprehend-concepts-",
+     "title": "Core Concepts: Students will comprehend concepts related to health promotion and disease prevention to enhance health",
+     "topics": [
+      {
+       "id": "personal-community-and-environmental-health-stra",
+       "title": "Personal, Community, and Environmental Health Strand",
+       "subtopics": [
+        {
+         "id": "personal-community-and-environmental-health-stra",
+         "title": "Personal, Community, and Environmental Health Strand",
+         "outcomes": [
+          {
+           "code": "1.PCE.5.1",
+           "text": "Examine the impact of a variety of healthy practices and behaviors to maintain or improve personal, community, and environmental health."
+          },
+          {
+           "code": "1.PCE.5.2",
+           "text": "Examine the impact of communicable and noncommunicable diseases."
+          },
+          {
+           "code": "1.PCE.5.3",
+           "text": "Investigate the importance of accepting the similarities and differences of self and others as it relates to personal, community, and environmental health."
+          },
+          {
+           "code": "1.PCE.5.4",
+           "text": "Examine how individuals interact within family structures and the community."
+          },
+          {
+           "code": "1.PCE.5.5",
+           "text": "Analyze the impact genetics and family history have on personal health."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "mental-and-emotional-health-strand",
+       "title": "Mental and Emotional Health Strand",
+       "subtopics": [
+        {
+         "id": "mental-and-emotional-health-strand",
+         "title": "Mental and Emotional Health Strand",
+         "outcomes": [
+          {
+           "code": "1.ME.5.1",
+           "text": "Compare the causes, symptoms, and effects among stress, anxiety, sadness, and depression."
+          },
+          {
+           "code": "1.ME.5.2",
+           "text": "Relate how the expression of emotions can be triggered by a crisis or a trauma situation."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "nutrition-and-physical-activity-strand",
+       "title": "Nutrition and Physical Activity Strand",
+       "subtopics": [
+        {
+         "id": "nutrition-and-physical-activity-strand",
+         "title": "Nutrition and Physical Activity Strand",
+         "outcomes": [
+          {
+           "code": "1.NP.5.1",
+           "text": "Examine how the six essential nutrients contribute to health promotion and disease prevention."
+          },
+          {
+           "code": "1.NP.5.2",
+           "text": "Identify the mental, social, and physical benefits of physical activity."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "substance-use-and-abuse-strand",
+       "title": "Substance Use and Abuse Strand",
+       "subtopics": [
+        {
+         "id": "substance-use-and-abuse-strand",
+         "title": "Substance Use and Abuse Strand",
+         "outcomes": [
+          {
+           "code": "1.SUA.5.1",
+           "text": "Compare how over-thecounter and prescription medication use and abuse can affect family and friends."
+          },
+          {
+           "code": "1.SUA.5.2",
+           "text": "Investigate how alcohol, tobacco, marijuana, and other drugs can affect the health of an individual, family, and friends."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "safety-practices-injury-prevention-and-cpr-aed-s",
+       "title": "Safety Practices, Injury Prevention, and CPR/AED Strand",
+       "subtopics": [
+        {
+         "id": "safety-practices-injury-prevention-and-cpr-aed-s",
+         "title": "Safety Practices, Injury Prevention, and CPR/AED Strand",
+         "outcomes": [
+          {
+           "code": "1.SIC.5.1",
+           "text": "Assess the level of danger at home, school, and in the community."
+          },
+          {
+           "code": "1.SIC.5.2",
+           "text": "List common first aid procedures for a given scenario such as cardiopulmonary resuscitation (CPR) and automated external defibrillator (AED)."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "personal-safety-strand",
+       "title": "Personal Safety Strand",
+       "subtopics": [
+        {
+         "id": "personal-safety-strand",
+         "title": "Personal Safety Strand",
+         "outcomes": [
+          {
+           "code": "1.PS.5.1",
+           "text": "Explain the importance of not violating a person's safe personal space."
+          },
+          {
+           "code": "1.PS.5.2",
+           "text": "Examine patterns of abusive behavior and ways to get help."
+          },
+          {
+           "code": "1.PS.5.3",
+           "text": "Explain the reporting process and include where, when, and to whom to report unsafe situations."
+          },
+          {
+           "code": "1.PS.5.4",
+           "text": "Summarize the hazards and dangers of becoming separated or lost from a parent, guardian, or caregiver."
+          },
+          {
+           "code": "1.PS.5.6",
+           "text": "Explain the advantages and disadvantages of communicating using technology and social media."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "human-reproductive-system-hiv-aids-related-commu",
+       "title": "Human Reproductive System, HIV/AIDS, Related Communicable Diseases, & Sexual Responsibility Strand",
+       "subtopics": [
+        {
+         "id": "human-reproductive-system-hiv-aids-related-commu",
+         "title": "Human Reproductive System, HIV/AIDS, Related Communicable Diseases, & Sexual Responsibility Strand (1 of 2)",
+         "outcomes": [
+          {
+           "code": "1.HRS.5.1",
+           "text": "Identify the structures and functions of the human reproductive systems using correct anatomical terms."
+          },
+          {
+           "code": "1.HRS.5.2a",
+           "text": "Explain the physical, social and emotional changes that occur during puberty and adolescence."
+          },
+          {
+           "code": "1.HRS.5.2b",
+           "text": "1.HRS.5.2b Explain how the timing of puberty and adolescent development varies considerably and can still be healthy."
+          },
+          {
+           "code": "1.HRS.5.3",
+           "text": "Describe how puberty prepares human bodies for the potential to reproduce."
+          }
+         ]
+        },
+        {
+         "id": "human-reproductive-system-hiv-aids-related-commu-2",
+         "title": "Human Reproductive System, HIV/AIDS, Related Communicable Diseases, & Sexual Responsibility Strand (2 of 2)",
+         "outcomes": [
+          {
+           "code": "1.HRS.5.5.a",
+           "text": "1.HRS.5.5a Identify how HIV/AIDS and related communicable diseases (STDs/STIs) are and are not transmitted."
+          },
+          {
+           "code": "1.HRS.5.5.b",
+           "text": "1.HRS.5.5b Identify current preventative approaches, including, but not limited to, HPV vaccinations to combat HIV/AIDS and related communicable diseases (STDs/STIs)."
+          },
+          {
+           "code": "1.HRS.5.6",
+           "text": "Describe the characteristics of healthy relationships."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "analyze-influences-students-will-analyze-the-inf",
+     "title": "Analyze Influences: Students will analyze the influences of family, peers, culture, media, technology, and other factors have on health behaviors",
+     "topics": [
+      {
+       "id": "analyze-influences-students-will-analyze-the-inf",
+       "title": "Analyze Influences: Students will analyze the influences of family, peers, culture, media, technology, and other factors have on health behaviors",
+       "subtopics": [
+        {
+         "id": "analyze-influences-students-will-analyze-the-inf",
+         "title": "Analyze Influences: Students will analyze the influences of family, peers, culture, media, technology, and other factors have on health behaviors",
+         "outcomes": [
+          {
+           "code": "2.AF.5.1",
+           "text": "Describe how other factors such as school, community, and extracurricular activities influence health behaviors."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "access-information-students-will-demonstrate-the",
+     "title": "Access Information: Students will demonstrate the ability to access reliable health information, products, and services to enhance health",
+     "topics": [
+      {
+       "id": "access-information-students-will-demonstrate-the",
+       "title": "Access Information: Students will demonstrate the ability to access reliable health information, products, and services to enhance health",
+       "subtopics": [
+        {
+         "id": "access-information-students-will-demonstrate-the",
+         "title": "Access Information: Students will demonstrate the ability to access reliable health information, products, and services to enhance health",
+         "outcomes": [
+          {
+           "code": "3.AI.5.1",
+           "text": "Compare health information, products, and services that promote health."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "interpersonal-communication-students-will-demons",
+     "title": "Interpersonal Communication: Students will demonstrate the ability to use interpersonal communication skills to enhance health and to avoid or reduce health risks",
+     "topics": [
+      {
+       "id": "interpersonal-communication-students-will-demons",
+       "title": "Interpersonal Communication: Students will demonstrate the ability to use interpersonal communication skills to enhance health and to avoid or reduce health risks",
+       "subtopics": [
+        {
+         "id": "interpersonal-communication-students-will-demons",
+         "title": "Interpersonal Communication: Students will demonstrate the ability to use interpersonal communication skills to enhance health and to avoid or reduce health risks",
+         "outcomes": [
+          {
+           "code": "4.IC.5.1",
+           "text": "Demonstrate effective verbal and non-verbal communication skills to enhance health and to avoid or reduce health risks."
+          },
+          {
+           "code": "4.IC.5.2",
+           "text": "Practice refusal skills to avoid or reduce health risks."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "decision-making-students-will-demonstrate-the-ab",
+     "title": "Decision Making: Students will demonstrate the ability to use decision-making skills to enhance health",
+     "topics": [
+      {
+       "id": "decision-making-students-will-demonstrate-the-ab",
+       "title": "Decision Making: Students will demonstrate the ability to use decision-making skills to enhance health",
+       "subtopics": [
+        {
+         "id": "decision-making-students-will-demonstrate-the-ab",
+         "title": "Decision Making: Students will demonstrate the ability to use decision-making skills to enhance health",
+         "outcomes": [
+          {
+           "code": "5.DM.5.1",
+           "text": "Choose a healthy option when making a decision."
+          },
+          {
+           "code": "5.DM.5.2",
+           "text": "Describe the outcomes of a health-related decision."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "goal-setting-students-will-demonstrate-the-abili",
+     "title": "Goal Setting: Students will demonstrate the ability to use goal-setting skills to enhance health",
+     "topics": [
+      {
+       "id": "goal-setting-students-will-demonstrate-the-abili",
+       "title": "Goal Setting: Students will demonstrate the ability to use goal-setting skills to enhance health",
+       "subtopics": [
+        {
+         "id": "goal-setting-students-will-demonstrate-the-abili",
+         "title": "Goal Setting: Students will demonstrate the ability to use goal-setting skills to enhance health",
+         "outcomes": [
+          {
+           "code": "6.GS.5.1",
+           "text": "Set a health goal and track progress toward its achievement."
+          },
+          {
+           "code": "6.GS.5.2",
+           "text": "Describe how resources can assist in achieving a health goal."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "self-management-students-will-demonstrate-the-ab",
+     "title": "Self-Management: Students will demonstrate the ability to practice health-enhancing behaviors and to avoid or reduce health risks",
+     "topics": [
+      {
+       "id": "self-management-students-will-demonstrate-the-ab",
+       "title": "Self-Management: Students will demonstrate the ability to practice health-enhancing behaviors and to avoid or reduce health risks",
+       "subtopics": [
+        {
+         "id": "self-management-students-will-demonstrate-the-ab",
+         "title": "Self-Management: Students will demonstrate the ability to practice health-enhancing behaviors and to avoid or reduce health risks",
+         "outcomes": [
+          {
+           "code": "7.SM.5.1",
+           "text": "Demonstrate a variety of healthy practices and behaviors to maintain or improve personal health."
+          },
+          {
+           "code": "7.SM.5.2",
+           "text": "Demonstrate a variety of behaviors that avoid or reduce health risks."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "advocacy-students-will-demonstrate-the-ability-t",
+     "title": "Advocacy: Students will demonstrate the ability to support/promote personal, family, and community health",
+     "topics": [
+      {
+       "id": "advocacy-students-will-demonstrate-the-ability-t",
+       "title": "Advocacy: Students will demonstrate the ability to support/promote personal, family, and community health",
+       "subtopics": [
+        {
+         "id": "advocacy-students-will-demonstrate-the-ability-t",
+         "title": "Advocacy: Students will demonstrate the ability to support/promote personal, family, and community health",
+         "outcomes": [
+          {
+           "code": "8.AV.5.1",
+           "text": "Demonstrate advocacy within the community to make positive health choices."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "6-8",
+   "units": [
+    {
+     "id": "core-concepts-students-will-comprehend-concepts-",
+     "title": "Core Concepts: Students will comprehend concepts related to health promotion and disease prevention to enhance health",
+     "topics": [
+      {
+       "id": "personal-community-and-environmental-health-stra",
+       "title": "Personal, Community, and Environmental Health Strand",
+       "subtopics": [
+        {
+         "id": "personal-community-and-environmental-health-stra",
+         "title": "Personal, Community, and Environmental Health Strand (1 of 2)",
+         "outcomes": [
+          {
+           "code": "1.PCE.MS.1",
+           "text": "Investigate the impact of a variety of healthy practices and behaviors to maintain or improve personal, community, and environmental health."
+          },
+          {
+           "code": "1.PCE.MS.2",
+           "text": "Investigate the impact of communicable and noncommunicable diseases."
+          },
+          {
+           "code": "1.PCE.MS.3",
+           "text": "Connect the importance of accepting the similarities and differences of self and others as it relates to personal, community, and environmental health."
+          },
+          {
+           "code": "1.PCE.MS.4",
+           "text": "Recognize an individual’s personal role within the family structure and within the community"
+          }
+         ]
+        },
+        {
+         "id": "personal-community-and-environmental-health-stra-2",
+         "title": "Personal, Community, and Environmental Health Strand (2 of 2)",
+         "outcomes": [
+          {
+           "code": "1.PCE.MS.5",
+           "text": "Interpret personal susceptibility to injury, illness, or death based on genetics, family history, and health behaviors."
+          },
+          {
+           "code": "1.PCE.MS.6a",
+           "text": "Describe how to register as a donor and the rules governing donor gifts pursuant to Nevada Law."
+          },
+          {
+           "code": "1.PCE.MS.6b",
+           "text": "Explain the individual and societal benefits of organ and tissue donation."
+          },
+          {
+           "code": "1.PCE.MS.6c",
+           "text": "List facts about organ and tissue donation."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "mental-and-emotional-health-strand",
+       "title": "Mental and Emotional Health Strand",
+       "subtopics": [
+        {
+         "id": "mental-and-emotional-health-strand",
+         "title": "Mental and Emotional Health Strand",
+         "outcomes": [
+          {
+           "code": "1.ME.MS.1",
+           "text": "Connect the relationship between mental health and physical health."
+          },
+          {
+           "code": "1.ME.MS.2",
+           "text": "Identify how loss, grief, trauma, and emotional distress may influence selfinjurious or suicidal behaviors."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "nutrition-and-physical-activity-strand",
+       "title": "Nutrition and Physical Activity Strand",
+       "subtopics": [
+        {
+         "id": "nutrition-and-physical-activity-strand",
+         "title": "Nutrition and Physical Activity Strand",
+         "outcomes": [
+          {
+           "code": "1.NP.MS.1",
+           "text": "Connect how healthy eating patterns, in accordance to the current federal Dietary Guidelines for Americans, lead to health promotion and disease prevention."
+          },
+          {
+           "code": "1.NP.MS.2",
+           "text": "Compare the mental, social and physical benefits of daily moderate to vigorous physical activity"
+          },
+          {
+           "code": "1.NP.MS.3",
+           "text": "Explain the importance of annual physical health examinations and responding appropriately to unusual aches and pains."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "substance-use-and-abuse-strand",
+       "title": "Substance Use and Abuse Strand",
+       "subtopics": [
+        {
+         "id": "substance-use-and-abuse-strand",
+         "title": "Substance Use and Abuse Strand",
+         "outcomes": [
+          {
+           "code": "1.SUA.MS.1",
+           "text": "Critique the pros and cons of using over-thecounter and prescription medications."
+          },
+          {
+           "code": "1.SUA.MS.2",
+           "text": "Assess how alcohol, tobacco, marijuana, and other drugs impact health and disease prevention."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "safety-practices-injury-prevention-and-cpr-aed-s",
+       "title": "Safety Practices, Injury Prevention, and CPR/AED Strand",
+       "subtopics": [
+        {
+         "id": "safety-practices-injury-prevention-and-cpr-aed-s",
+         "title": "Safety Practices, Injury Prevention, and CPR/AED Strand",
+         "outcomes": [
+          {
+           "code": "1.SIC.MS.1",
+           "text": "Examine how health risk behaviors influence safety and injury prevention practices."
+          },
+          {
+           "code": "1.SIC.MS.2a",
+           "text": "Perform the psychomotor skills required for the administration of hands-only cardiopulmonary resuscitation (CPR) according to the guidelines of the American Heart Association."
+          },
+          {
+           "code": "1.SIC.MS.2b",
+           "text": "Discuss the purpose, operation, and safe use of an automated external defibrillator (AED)."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "personal-safety-strand",
+       "title": "Personal Safety Strand",
+       "subtopics": [
+        {
+         "id": "personal-safety-strand",
+         "title": "Personal Safety Strand",
+         "outcomes": [
+          {
+           "code": "1.PS.MS.1",
+           "text": "Define personal boundaries and clear limits for self and recognize personal boundaries of others."
+          },
+          {
+           "code": "1.PS.MS.2",
+           "text": "Investigate the impact of various abusive and coercive behaviors including mental, physical, social, economic, and legal consequences."
+          },
+          {
+           "code": "1.PS.MS.3",
+           "text": "Summarize the reporting process and include where, when, and to whom to report unsafe situations."
+          },
+          {
+           "code": "1.PS.MS.5",
+           "text": "Define human trafficking and ways to get help."
+          },
+          {
+           "code": "1.PS.MS.6",
+           "text": "Compare the advantages and disadvantages of communicating using technology and social media."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "human-reproductive-system-hiv-aids-related-commu",
+       "title": "Human Reproductive System, HIV/AIDS, Related Communicable Diseases, & Sexual Responsibility Strand",
+       "subtopics": [
+        {
+         "id": "human-reproductive-system-hiv-aids-related-commu",
+         "title": "Human Reproductive System, HIV/AIDS, Related Communicable Diseases, & Sexual Responsibility Strand (1 of 3)",
+         "outcomes": [
+          {
+           "code": "1.HRS.MS.1",
+           "text": "Explain the structures and functions of the human reproductive systems using correct anatomical terms."
+          },
+          {
+           "code": "1.HRS.MS.2",
+           "text": "Describe the physical, social, cognitive and emotional changes of adolescence."
+          },
+          {
+           "code": "1.HRS.MS.3",
+           "text": "Explain the scientific process of human reproduction."
+          },
+          {
+           "code": "1.HRS.MS.4a",
+           "text": "Describe the signs and symptoms of a pregnancy"
+          },
+          {
+           "code": "1.HRS.MS.4b",
+           "text": "Explain the health benefits, risks and effectiveness rates of various methods of contraception, including abstinence and condoms."
+          }
+         ]
+        },
+        {
+         "id": "human-reproductive-system-hiv-aids-related-commu-2",
+         "title": "Human Reproductive System, HIV/AIDS, Related Communicable Diseases, & Sexual Responsibility Strand (2 of 3)",
+         "outcomes": [
+          {
+           "code": "1.HRS.MS.4c",
+           "text": "Identify prenatal practices that can contribute to or compromise a healthy pregnancy."
+          },
+          {
+           "code": "1.HRS.MS.4d",
+           "text": "Identify the laws relating to pregnancy, abortion, adoption, and parenting."
+          },
+          {
+           "code": "1.HRS.MS.5a",
+           "text": "Classify the related communicable diseases (STDs/STIs), including HIV/AIDS , by signs and symptoms, treatments, and modes of transmission."
+          },
+          {
+           "code": "1.HRS.MS.5b",
+           "text": "Discuss current preventative approaches, including, but not limited to, HPV vaccinations to combat HIV/AIDS and related communicable diseases (STDs/STIs)."
+          },
+          {
+           "code": "1.HRS.MS.5d",
+           "text": "Compare and contrast behaviors, including abstinence, to determine the potential transmission risk of related communicable diseases (STDs/STIs) and HIV/AIDS."
+          }
+         ]
+        },
+        {
+         "id": "human-reproductive-system-hiv-aids-related-commu-3",
+         "title": "Human Reproductive System, HIV/AIDS, Related Communicable Diseases, & Sexual Responsibility Strand (3 of 3)",
+         "outcomes": [
+          {
+           "code": "1.HRS.MS.6",
+           "text": "Compare and contrast the characteristics of healthy and unhealthy relationships."
+          },
+          {
+           "code": "1.HRS.MS.7a",
+           "text": "Define sexual consent and explain its implications for sexual decision - making."
+          },
+          {
+           "code": "1.HRS.MS.7b",
+           "text": "Discuss laws relating to the sexual conduct of minors, including consent, and criminal sexual conduct."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "analyze-influences-students-will-analyze-the-inf",
+     "title": "Analyze Influences: Students will analyze the influences of family, peers, culture, media, technology, and other factors have on health behaviors",
+     "topics": [
+      {
+       "id": "analyze-influences-students-will-analyze-the-inf",
+       "title": "Analyze Influences: Students will analyze the influences of family, peers, culture, media, technology, and other factors have on health behaviors",
+       "subtopics": [
+        {
+         "id": "analyze-influences-students-will-analyze-the-inf",
+         "title": "Analyze Influences: Students will analyze the influences of family, peers, culture, media, technology, and other factors have on health behaviors",
+         "outcomes": [
+          {
+           "code": "2.AF.MS.1",
+           "text": "Explain how the perceptions of current social expectations influence healthy and unhealthy behaviors."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "access-information-students-will-demonstrate-the",
+     "title": "Access Information: Students will demonstrate the ability to access reliable health information, products, and services to enhance health",
+     "topics": [
+      {
+       "id": "access-information-students-will-demonstrate-the",
+       "title": "Access Information: Students will demonstrate the ability to access reliable health information, products, and services to enhance health",
+       "subtopics": [
+        {
+         "id": "access-information-students-will-demonstrate-the",
+         "title": "Access Information: Students will demonstrate the ability to access reliable health information, products, and services to enhance health",
+         "outcomes": [
+          {
+           "code": "3.AI.MS.1",
+           "text": "Analyze the validity of health information, products and services."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "interpersonal-communication-students-will-demons",
+     "title": "Interpersonal Communication: Students will demonstrate the ability to use interpersonal communication skills to enhance health and to avoid or reduce health risks",
+     "topics": [
+      {
+       "id": "interpersonal-communication-students-will-demons",
+       "title": "Interpersonal Communication: Students will demonstrate the ability to use interpersonal communication skills to enhance health and to avoid or reduce health risks",
+       "subtopics": [
+        {
+         "id": "interpersonal-communication-students-will-demons",
+         "title": "Interpersonal Communication: Students will demonstrate the ability to use interpersonal communication skills to enhance health and to avoid or reduce health risks",
+         "outcomes": [
+          {
+           "code": "4.IC.MS.1",
+           "text": "Apply effective verbal and nonverbal communication skills to enhance health."
+          },
+          {
+           "code": "4.IC.MS.2",
+           "text": "Demonstrate refusal and negotiation skills to avoid or reduce health risks."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "decision-making-students-will-demonstrate-the-ab",
+     "title": "Decision Making: Students will demonstrate the ability to use decision-making skills to enhance health",
+     "topics": [
+      {
+       "id": "decision-making-students-will-demonstrate-the-ab",
+       "title": "Decision Making: Students will demonstrate the ability to use decision-making skills to enhance health",
+       "subtopics": [
+        {
+         "id": "decision-making-students-will-demonstrate-the-ab",
+         "title": "Decision Making: Students will demonstrate the ability to use decision-making skills to enhance health",
+         "outcomes": [
+          {
+           "code": "5.DM.MS.1",
+           "text": "Predict the potential shortterm impact of healthy and unhealthy decisions on self and others."
+          },
+          {
+           "code": "5.DM.MS.2",
+           "text": "Analyze the outcomes of a health-related decision."
+          },
+          {
+           "code": "5.DM.MS.3",
+           "text": "Choose healthy alternatives over unhealthy alternatives when making a decision."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "goal-setting-students-will-demonstrate-the-abili",
+     "title": "Goal Setting: Students will demonstrate the ability to use goal-setting skills to enhance health",
+     "topics": [
+      {
+       "id": "goal-setting-students-will-demonstrate-the-abili",
+       "title": "Goal Setting: Students will demonstrate the ability to use goal-setting skills to enhance health",
+       "subtopics": [
+        {
+         "id": "goal-setting-students-will-demonstrate-the-abili",
+         "title": "Goal Setting: Students will demonstrate the ability to use goal-setting skills to enhance health",
+         "outcomes": [
+          {
+           "code": "6.GS.MS.1",
+           "text": "Apply strategies and skills needed to attain a health goal."
+          },
+          {
+           "code": "6.GS.MS.2",
+           "text": "Describe how health goals can vary with changing abilities, priorities, and responsibilities."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "self-management-students-will-demonstrate-the-ab",
+     "title": "Self-Management: Students will demonstrate the ability to practice health-enhancing behaviors and to avoid or reduce health risks",
+     "topics": [
+      {
+       "id": "self-management-students-will-demonstrate-the-ab",
+       "title": "Self-Management: Students will demonstrate the ability to practice health-enhancing behaviors and to avoid or reduce health risks",
+       "subtopics": [
+        {
+         "id": "self-management-students-will-demonstrate-the-ab",
+         "title": "Self-Management: Students will demonstrate the ability to practice health-enhancing behaviors and to avoid or reduce health risks",
+         "outcomes": [
+          {
+           "code": "7.SM.MS.1",
+           "text": "Demonstrate healthy practices and behaviors that will maintain or improve the health of self and others."
+          },
+          {
+           "code": "7.SM.MS.2",
+           "text": "Demonstrate behaviors that avoid or reduce health risks to self and others"
+          },
+          {
+           "code": "7.SM.MS.3",
+           "text": "Explain the importance of assuming responsibility for personal health behaviors."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "advocacy-students-will-demonstrate-the-ability-t",
+     "title": "Advocacy: Students will demonstrate the ability to support/promote personal, family, and community health",
+     "topics": [
+      {
+       "id": "advocacy-students-will-demonstrate-the-ability-t",
+       "title": "Advocacy: Students will demonstrate the ability to support/promote personal, family, and community health",
+       "subtopics": [
+        {
+         "id": "advocacy-students-will-demonstrate-the-ability-t",
+         "title": "Advocacy: Students will demonstrate the ability to support/promote personal, family, and community health",
+         "outcomes": [
+          {
+           "code": "8.AV.MS.1",
+           "text": "Demonstrate how to influence and support others to make positive health choices."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "9-12",
+   "units": [
+    {
+     "id": "core-concepts-students-will-comprehend-concepts-",
+     "title": "Core Concepts: Students will comprehend concepts related to health promotion and disease prevention to enhance health",
+     "topics": [
+      {
+       "id": "personal-community-and-environmental-health-stra",
+       "title": "Personal, Community, and Environmental Health Strand",
+       "subtopics": [
+        {
+         "id": "personal-community-and-environmental-health-stra",
+         "title": "Personal, Community, and Environmental Health Strand (1 of 2)",
+         "outcomes": [
+          {
+           "code": "1.PCE.HS.1",
+           "text": "Evaluate the impact of a variety of healthy practices and behaviors to maintain or improve personal, community, and environmental health."
+          },
+          {
+           "code": "1.PCE.HS.2",
+           "text": "Evaluate the impact of communicable and noncommunicable diseases."
+          },
+          {
+           "code": "1.PCE.HS.3",
+           "text": "Analyze the importance of accepting the similarities and differences of self and others as it relates to personal, community, and environmental health."
+          },
+          {
+           "code": "1.PCE.HS.4",
+           "text": "Evaluate how an individual’s family structure impacts other families and the community."
+          }
+         ]
+        },
+        {
+         "id": "personal-community-and-environmental-health-stra-2",
+         "title": "Personal, Community, and Environmental Health Strand (2 of 2)",
+         "outcomes": [
+          {
+           "code": "1.PCE.HS.5",
+           "text": "Evaluate the impact genetics, family history, health behaviors, and stress have on individual health."
+          },
+          {
+           "code": "1.PCE.HS.6a",
+           "text": "Explain how to register as an organ and tissue donor."
+          },
+          {
+           "code": "1.PCE.HS.6b",
+           "text": "Summarize individual and societal benefits of organ and tissue donation."
+          },
+          {
+           "code": "1.PCE.HS.6c",
+           "text": "Analyze factual information about organ tissue and donation."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "mental-and-emotional-health-strand",
+       "title": "Mental and Emotional Health Strand",
+       "subtopics": [
+        {
+         "id": "mental-and-emotional-health-strand",
+         "title": "Mental and Emotional Health Strand",
+         "outcomes": [
+          {
+           "code": "1.ME.HS.1",
+           "text": "Investigate the relationship between mental health and physical health."
+          },
+          {
+           "code": "1.ME.HS.2",
+           "text": "Analyze ways to decrease the risk of selfinjurious or suicidal behaviors."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "nutrition-and-physical-activity-strand",
+       "title": "Nutrition and Physical Activity Strand",
+       "subtopics": [
+        {
+         "id": "nutrition-and-physical-activity-strand",
+         "title": "Nutrition and Physical Activity Strand",
+         "outcomes": [
+          {
+           "code": "1.NP.HS.1",
+           "text": "Investigate how personal healthy eating patterns, in accordance to the current federal Dietary Guidelines for Americans, lead to health promotion and disease prevention."
+          },
+          {
+           "code": "1.NP.HS.2",
+           "text": "Analyze the mental, social and physical benefits of daily moderate to vigorous physical activity."
+          },
+          {
+           "code": "1.NP.HS.3",
+           "text": "Evaluate the importance of annual physical health examinations and responding appropriately to unusual aches and pains."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "substance-use-and-abuse-strand",
+       "title": "Substance Use and Abuse Strand",
+       "subtopics": [
+        {
+         "id": "substance-use-and-abuse-strand",
+         "title": "Substance Use and Abuse Strand",
+         "outcomes": [
+          {
+           "code": "1.SUA.HS.1",
+           "text": "Analyze the effects of longterm use and abuse of overthe-counter and prescription medications."
+          },
+          {
+           "code": "1.SUA.HS.2",
+           "text": "Analyze the effects of longterm use and abuse of alcohol, tobacco, marijuana, and other drugs as they relate to health and disease prevention."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "safety-practices-injury-prevention-and-cpr-aed-s",
+       "title": "Safety Practices, Injury Prevention, and CPR/AED Strand",
+       "subtopics": [
+        {
+         "id": "safety-practices-injury-prevention-and-cpr-aed-s",
+         "title": "Safety Practices, Injury Prevention, and CPR/AED Strand",
+         "outcomes": [
+          {
+           "code": "1.SIC.HS.1",
+           "text": "Critique how health risk behaviors influence safety and injury prevention practices."
+          },
+          {
+           "code": "1.SIC.HS.2a",
+           "text": "Perform the psychomotor skills required for the administration of hands-only cardiopulmonary resuscitation (CPR) according to the guidelines of the American Heart Association."
+          },
+          {
+           "code": "1.SIC.HS.2b",
+           "text": "Explain the purpose, operation and safe use of an automated external defibrillator (AED)."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "personal-safety-strand",
+       "title": "Personal Safety Strand",
+       "subtopics": [
+        {
+         "id": "personal-safety-strand",
+         "title": "Personal Safety Strand",
+         "outcomes": [
+          {
+           "code": "1.PS.HS.1",
+           "text": "Develop personal boundaries and clear limits for self and recognize the importance of not violating the personal boundaries of others."
+          },
+          {
+           "code": "1.PS.HS.2",
+           "text": "Analyze the impact related to various abusive and coercive behaviors including mental, physical, social, economic, and legal consequences."
+          },
+          {
+           "code": "1.PS.HS.3",
+           "text": "Diagram the reporting process and include where, when, and whom to report unsafe situations."
+          },
+          {
+           "code": "1.PS.HS.5",
+           "text": "Discuss laws regarding human trafficking"
+          },
+          {
+           "code": "1.PS.HS.6",
+           "text": "Evaluate the potentially positive and negative roles of technology and social media in relationships."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "human-reproductive-system-hiv-aids-related-commu",
+       "title": "Human Reproductive System, HIV/AIDS, Related Communicable Diseases, & Sexual Responsibility Strand",
+       "subtopics": [
+        {
+         "id": "human-reproductive-system-hiv-aids-related-commu",
+         "title": "Human Reproductive System, HIV/AIDS, Related Communicable Diseases, & Sexual Responsibility Strand (1 of 3)",
+         "outcomes": [
+          {
+           "code": "1.HRS.HS.1",
+           "text": "Analyze the role hormones play within the structures and functions of the human reproductive systems."
+          },
+          {
+           "code": "1.HRS.HS.2",
+           "text": "Analyze how brain development has an impact on cognitive, social and emotional changes of adolescence and early adulthood."
+          },
+          {
+           "code": "1.HRS.HS.3",
+           "text": "Analyze the scientific process of human reproduction."
+          },
+          {
+           "code": "1.HRS.HS.4a",
+           "text": "Explain the impact a pregnancy has on the body."
+          },
+          {
+           "code": "1.HRS.HS.4b",
+           "text": "Compare and contrast the advantages and disadvantages of various methods of contraception, including abstinence and condoms."
+          }
+         ]
+        },
+        {
+         "id": "human-reproductive-system-hiv-aids-related-commu-2",
+         "title": "Human Reproductive System, HIV/AIDS, Related Communicable Diseases, & Sexual Responsibility Strand (2 of 3)",
+         "outcomes": [
+          {
+           "code": "1.HRS.HS.4c",
+           "text": "Examine prenatal practices that can contribute to or compromise a healthy pregnancy."
+          },
+          {
+           "code": "1.HRS.HS.4d",
+           "text": "Compare and contrast the laws relating to pregnancy, abortion, adoption, and parenting."
+          },
+          {
+           "code": "1.HRS.HS.5a",
+           "text": "Describe signs and symptoms, treatments, and modes of transmission of related communicable diseases (STDs/STIs), including HIV/AIDS."
+          },
+          {
+           "code": "1.HRS.HS.5b",
+           "text": "Describe current preventative approaches, including, but not limited to, HPV vaccinations to combat HIV/AIDS and related communicable diseases (STDs/STIs)."
+          },
+          {
+           "code": "1.HRS.HS.5c",
+           "text": "laws related to sexual health care services, including related communicable diseases (STD/STIs) and HIV/AIDS testing and treatment."
+          }
+         ]
+        },
+        {
+         "id": "human-reproductive-system-hiv-aids-related-commu-3",
+         "title": "Human Reproductive System, HIV/AIDS, Related Communicable Diseases, & Sexual Responsibility Strand (3 of 3)",
+         "outcomes": [
+          {
+           "code": "1.HRS.HS.5d",
+           "text": "Evaluate the effectiveness of abstinence, condoms and other safer sex methods in preventing the spread of related communicable diseases (STDs/STIs), including HIV/AIDS."
+          },
+          {
+           "code": "1.HRS.HS.6",
+           "text": "Describe characteristics of healthy and unhealthy romantic and/or sexual relationships."
+          },
+          {
+           "code": "1.HRS.HS.7a",
+           "text": "Analyze factors that can affect the ability to give or recognize consent to sexual activity."
+          },
+          {
+           "code": "1.HRS.HS.7b",
+           "text": "Analyze laws relating to the sexual conduct of minors, including consent, and criminal sexual conduct."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "analyze-influences-students-will-analyze-the-inf",
+     "title": "Analyze Influences: Students will analyze the influences of family, peers, culture, media, technology, and other factors have on health behaviors",
+     "topics": [
+      {
+       "id": "analyze-influences-students-will-analyze-the-inf",
+       "title": "Analyze Influences: Students will analyze the influences of family, peers, culture, media, technology, and other factors have on health behaviors",
+       "subtopics": [
+        {
+         "id": "analyze-influences-students-will-analyze-the-inf",
+         "title": "Analyze Influences: Students will analyze the influences of family, peers, culture, media, technology, and other factors have on health behaviors",
+         "outcomes": [
+          {
+           "code": "2.AF.HS.1",
+           "text": "Analyze how the perceptions of current social expectations influence healthy and unhealthy behaviors."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "access-information-students-will-demonstrate-the",
+     "title": "Access Information: Students will demonstrate the ability to access reliable health information, products, and services to enhance health",
+     "topics": [
+      {
+       "id": "access-information-students-will-demonstrate-the",
+       "title": "Access Information: Students will demonstrate the ability to access reliable health information, products, and services to enhance health",
+       "subtopics": [
+        {
+         "id": "access-information-students-will-demonstrate-the",
+         "title": "Access Information: Students will demonstrate the ability to access reliable health information, products, and services to enhance health",
+         "outcomes": [
+          {
+           "code": "3.AI.HS.1",
+           "text": "Evaluate the validity of health information, products and services."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "interpersonal-communication-students-will-demons",
+     "title": "Interpersonal Communication: Students will demonstrate the ability to use interpersonal communication skills to enhance health and to avoid or reduce health risks",
+     "topics": [
+      {
+       "id": "interpersonal-communication-students-will-demons",
+       "title": "Interpersonal Communication: Students will demonstrate the ability to use interpersonal communication skills to enhance health and to avoid or reduce health risks",
+       "subtopics": [
+        {
+         "id": "interpersonal-communication-students-will-demons",
+         "title": "Interpersonal Communication: Students will demonstrate the ability to use interpersonal communication skills to enhance health and to avoid or reduce health risks",
+         "outcomes": [
+          {
+           "code": "4.IC.HS.1",
+           "text": "Utilize skills for communicating effectively with family, peers, and others to enhance health."
+          },
+          {
+           "code": "4.IC.HS.",
+           "text": "Demonstrate refusal, negotiation, and collaboration skills to enhance health and avoid or reduce health risks."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "decision-making-students-will-demonstrate-the-ab",
+     "title": "Decision Making: Students will demonstrate the ability to use decision-making skills to enhance health",
+     "topics": [
+      {
+       "id": "decision-making-students-will-demonstrate-the-ab",
+       "title": "Decision Making: Students will demonstrate the ability to use decision-making skills to enhance health",
+       "subtopics": [
+        {
+         "id": "decision-making-students-will-demonstrate-the-ab",
+         "title": "Decision Making: Students will demonstrate the ability to use decision-making skills to enhance health",
+         "outcomes": [
+          {
+           "code": "5.DM.HS.1",
+           "text": "Compare the potential shortterm and longterm impact of healthy and unhealthy decisions on self and others."
+          },
+          {
+           "code": "5.DM.HS.2",
+           "text": "Evaluate the effectiveness of health-related decisions."
+          },
+          {
+           "code": "5.DM.HS.3",
+           "text": "Defend the healthy choice when making a decision."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "goal-setting-students-will-demonstrate-the-abili",
+     "title": "Goal Setting: Students will demonstrate the ability to use goal-setting skills to enhance health",
+     "topics": [
+      {
+       "id": "goal-setting-students-will-demonstrate-the-abili",
+       "title": "Goal Setting: Students will demonstrate the ability to use goal-setting skills to enhance health",
+       "subtopics": [
+        {
+         "id": "goal-setting-students-will-demonstrate-the-abili",
+         "title": "Goal Setting: Students will demonstrate the ability to use goal-setting skills to enhance health",
+         "outcomes": [
+          {
+           "code": "6.GS.HS.1",
+           "text": "Implement strategies and monitor progress in achieving a health goal."
+          },
+          {
+           "code": "6.GS.HS.2",
+           "text": "Formulate an effective longterm health plan."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "self-management-students-will-demonstrate-the-ab",
+     "title": "Self-Management: Students will demonstrate the ability to practice health-enhancing behaviors and to avoid or reduce health risks",
+     "topics": [
+      {
+       "id": "self-management-students-will-demonstrate-the-ab",
+       "title": "Self-Management: Students will demonstrate the ability to practice health-enhancing behaviors and to avoid or reduce health risks",
+       "subtopics": [
+        {
+         "id": "self-management-students-will-demonstrate-the-ab",
+         "title": "Self-Management: Students will demonstrate the ability to practice health-enhancing behaviors and to avoid or reduce health risks",
+         "outcomes": [
+          {
+           "code": "7.SM.HS.1",
+           "text": "Demonstrate a variety of healthy practices and behaviors that will maintain or improve the health of self and others."
+          },
+          {
+           "code": "7.SM.HS.2",
+           "text": "Demonstrate a variety of behaviors that avoid or reduce health risks to self and others."
+          },
+          {
+           "code": "7.SM.HS.3",
+           "text": "Analyze the role of individual responsibility in enhancing health."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "advocacy-students-will-demonstrate-the-ability-t",
+     "title": "Advocacy Students will demonstrate the ability to support/promote personal, family, and community health",
+     "topics": [
+      {
+       "id": "advocacy-students-will-demonstrate-the-ability-t",
+       "title": "Advocacy Students will demonstrate the ability to support/promote personal, family, and community health",
+       "subtopics": [
+        {
+         "id": "advocacy-students-will-demonstrate-the-ability-t",
+         "title": "Advocacy Students will demonstrate the ability to support/promote personal, family, and community health",
+         "outcomes": [
+          {
+           "code": "8.AV.HS.1",
+           "text": "Demonstrate advocacy for improving personal, family, and community health."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "build": {
+  "builtAt": "2026-10-14T16:20:45.897Z",
+  "model": "none",
+  "usd": 0,
+  "expectedCodes": 269,
+  "coverage": 1,
+  "missingCodes": [],
+  "counts": {
+   "grades": 8,
+   "units": 64,
+   "topics": 109,
+   "subtopics": 116,
+   "outcomes": 270
+  },
+  "warnings": [
+   "unit \"Analyze Influences: Students will analyze the influences of family, peers, culture, media, technology, and other factors have on health behaviors\" (grade K) has a single outcome",
+   "unit \"Access Information: Students will demonstrate the ability to access reliable health information, products, and services to enhance health\" (grade K) has a single outcome",
+   "unit \"Goal Setting: Students will demonstrate the ability to use goal-setting skills to enhance health\" (grade K) has a single outcome",
+   "unit \"Advocacy\" (grade K) has a single outcome",
+   "unit \"Analyze Influences: Students will analyze the influences of family, peers, culture, media, technology, and other factors have on health behaviors\" (grade 1) has a single outcome",
+   "unit \"Access Information: Students will demonstrate the ability to access reliable health information, products, and services to enhance health\" (grade 1) has a single outcome",
+   "unit \"Goal Setting: Students will demonstrate the ability to use goal-setting skills to enhance health\" (grade 1) has a single outcome",
+   "unit \"Advocacy: Students will demonstrate the ability to support/promote personal, family, and community health\" (grade 1) has a single outcome",
+   "unit \"Analyze Influences: Students will analyze the influences of family, peers, culture, media, technology, and other factors have on health behaviors\" (grade 2) has a single outcome",
+   "unit \"Access Information: Students will demonstrate the ability to access reliable health information, products, and services to enhance health\" (grade 2) has a single outcome",
+   "unit \"Advocacy Students: will demonstrate the ability to support/promote personal, family, and community health\" (grade 2) has a single outcome",
+   "unit \"Analyze Influences: Students will analyze the influences of family, peers, culture, media, technology, and other factors have on health behaviors\" (grade 3) has a single outcome",
+   "unit \"Access Information: Students will demonstrate the ability to access reliable health information, products, and services to enhance health\" (grade 3) has a single outcome",
+   "unit \"Advocacy: Students will demonstrate the ability to support/promote personal, family, and community health\" (grade 3) has a single outcome",
+   "unit \"Analyze Influences: Students will analyze the influences of family, peers, culture, media, technology, and other factors have on health behaviors\" (grade 4) has a single outcome",
+   "unit \"Access Information: Students will demonstrate the ability to access reliable health information, products, and services to enhance health\" (grade 4) has a single outcome",
+   "unit \"Advocacy: Students will demonstrate the ability to support/promote personal, family, and community health\" (grade 4) has a single outcome",
+   "unit \"Analyze Influences: Students will analyze the influences of family, peers, culture, media, technology, and other factors have on health behaviors\" (grade 5) has a single outcome",
+   "unit \"Access Information: Students will demonstrate the ability to access reliable health information, products, and services to enhance health\" (grade 5) has a single outcome",
+   "unit \"Advocacy: Students will demonstrate the ability to support/promote personal, family, and community health\" (grade 5) has a single outcome",
+   "unit \"Analyze Influences: Students will analyze the influences of family, peers, culture, media, technology, and other factors have on health behaviors\" (grade 6-8) has a single outcome",
+   "unit \"Access Information: Students will demonstrate the ability to access reliable health information, products, and services to enhance health\" (grade 6-8) has a single outcome",
+   "unit \"Advocacy: Students will demonstrate the ability to support/promote personal, family, and community health\" (grade 6-8) has a single outcome",
+   "unit \"Analyze Influences: Students will analyze the influences of family, peers, culture, media, technology, and other factors have on health behaviors\" (grade 9-12) has a single outcome",
+   "unit \"Access Information: Students will demonstrate the ability to access reliable health information, products, and services to enhance health\" (grade 9-12) has a single outcome",
+   "unit \"Advocacy Students will demonstrate the ability to support/promote personal, family, and community health\" (grade 9-12) has a single outcome"
+  ]
+ }
+}

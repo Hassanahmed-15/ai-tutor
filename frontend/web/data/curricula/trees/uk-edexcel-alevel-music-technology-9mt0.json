@@ -1,0 +1,721 @@
+{
+ "id": "uk-edexcel-alevel-music-technology-9mt0",
+ "region": "UK",
+ "framework": "Pearson Edexcel Level 3 Advanced GCE",
+ "board": "Pearson Edexcel",
+ "qualification": "A Level",
+ "subject": "Music Technology",
+ "syllabusCode": "9MT0",
+ "gradeSystem": "year",
+ "source": {
+  "urls": [
+   "https://qualifications.pearson.com/content/dam/pdf/A%20Level/Music-Technology/2017/specification-and-sample-assessments/Pearson_Edexcel_Level_3_Advanced_GCE_in_Music_Technology_Specification_issue3.pdf"
+  ],
+  "publisher": "Pearson Education",
+  "licence": "Exam board specification, (c) Pearson; structure + our own wording only",
+  "firstExam": "2019"
+ },
+ "grades": [
+  {
+   "grade": "all",
+   "units": [
+    {
+     "id": "area-of-study-1-recording-and-production-techniq",
+     "title": "Area of Study 1: Recording and production techniques",
+     "topics": [
+      {
+       "id": "1-1-software-and-hardware",
+       "title": "1.1 Software and hardware",
+       "subtopics": [
+        {
+         "id": "daws-and-studio-hardware",
+         "title": "DAWs and studio hardware",
+         "outcomes": [
+          {
+           "code": "1.1",
+           "text": "Use core and advanced functions of a digital audio workstation."
+          },
+          {
+           "code": null,
+           "text": "Identify and use hardware: microphones, audio interfaces, pre-amps, DI boxes, mixing desks, outboard effects, guitar pedals, controller keyboards."
+          },
+          {
+           "code": null,
+           "text": "Describe other programming environments such as MIDI or OSC and the impact of new software on production."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "1-2-capture-of-sound",
+       "title": "1.2 Capture of sound",
+       "subtopics": [
+        {
+         "id": "gain-and-pre-amps",
+         "title": "Gain and pre-amps",
+         "outcomes": [
+          {
+           "code": "1.2",
+           "text": "Set gain structure to maximise signal-to-noise ratio and avoid clipping, interference and hiss."
+          },
+          {
+           "code": null,
+           "text": "Use pre-amp controls: phantom power, gain, pad, high-pass filter, polarity, clip LED."
+          }
+         ]
+        },
+        {
+         "id": "microphones-and-placement",
+         "title": "Microphones and placement",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Compare dynamic, condenser and ribbon microphones."
+          },
+          {
+           "code": null,
+           "text": "Compare polar patterns, proximity effect, frequency and transient response, and sensitivity."
+          },
+          {
+           "code": null,
+           "text": "Choose microphone distance, angle and multi-mic setups, and manage spill, background noise and plosives."
+          },
+          {
+           "code": null,
+           "text": "Explain coincident and spaced stereo pairs and phase relationships between microphones."
+          },
+          {
+           "code": null,
+           "text": "Explain how microphones work: diaphragms, electromagnetic induction, capacitance, switches and accessories."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "1-3-synthesis",
+       "title": "1.3 Synthesis",
+       "subtopics": [
+        {
+         "id": "building-sounds-with-synthesis",
+         "title": "Building sounds with synthesis",
+         "outcomes": [
+          {
+           "code": "1.3",
+           "text": "Select and mix waveforms, noise, LFOs, filters and envelopes to create sounds."
+          },
+          {
+           "code": null,
+           "text": "Explain how cut-off, resonance and ADSR envelope shape timbre."
+          },
+          {
+           "code": null,
+           "text": "Use oscillator tuning, pitch bend, mono and polyphonic modes, portamento and arpeggiator."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "1-4-sampling",
+       "title": "1.4 Sampling",
+       "subtopics": [
+        {
+         "id": "editing-and-mapping-samples",
+         "title": "Editing and mapping samples",
+         "outcomes": [
+          {
+           "code": "1.4",
+           "text": "Edit samples by cutting, trimming and tuning, and map pitch across the keyboard."
+          },
+          {
+           "code": null,
+           "text": "Loop samples using loop points, zero crossings and cross-fades."
+          },
+          {
+           "code": null,
+           "text": "Use advanced sampling: sample rate, bit depth, reversing, key zones, velocity layering, time-stretch and synthesis parameters."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "1-5-sequencing",
+       "title": "1.5 Sequencing",
+       "subtopics": [
+        {
+         "id": "midi-input-and-editing",
+         "title": "MIDI input and editing",
+         "outcomes": [
+          {
+           "code": "1.5",
+           "text": "Input notes in real time with a controller and in non-real time with a step grid or pencil tool."
+          },
+          {
+           "code": null,
+           "text": "Quantise with hard values, swing, snap/grid and groove templates."
+          },
+          {
+           "code": null,
+           "text": "Edit in piano roll and list editors: velocity, note length, cutting, looping, duplicating."
+          },
+          {
+           "code": null,
+           "text": "Explain how MIDI data works, including controllers, pitch bend and tempo data."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "1-6-audio-editing",
+       "title": "1.6 Audio editing",
+       "subtopics": [
+        {
+         "id": "cleaning-up-audio",
+         "title": "Cleaning up audio",
+         "outcomes": [
+          {
+           "code": "1.6",
+           "text": "Truncate audio with split tools and set lead-in and lead-out times."
+          },
+          {
+           "code": null,
+           "text": "Remove clicks, hiss, hum and plosives, with fades and cross-fades."
+          },
+          {
+           "code": null,
+           "text": "Explain how clicks and noises arise, such as discontinuous waveforms."
+          },
+          {
+           "code": null,
+           "text": "Use editing functions such as normalising and inverting waveforms."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "1-7-pitch-and-rhythm-correction-and-manipulation",
+       "title": "1.7 Pitch and rhythm correction and manipulation",
+       "subtopics": [
+        {
+         "id": "correcting-pitch-and-timing",
+         "title": "Correcting pitch and timing",
+         "outcomes": [
+          {
+           "code": "1.7",
+           "text": "Correct pitch with automatic tuning or manual pitch shifting, and use tuning creatively."
+          },
+          {
+           "code": null,
+           "text": "Correct rhythm by cutting and moving notes or audio quantise."
+          },
+          {
+           "code": null,
+           "text": "Use control parameters: response time, formant shift, cents, polyphonic retuning, transient detection, time-stretch."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "1-8-automation",
+       "title": "1.8 Automation",
+       "subtopics": [
+        {
+         "id": "automating-mix-parameters",
+         "title": "Automating mix parameters",
+         "outcomes": [
+          {
+           "code": "1.8",
+           "text": "Automate volume and pan for fades and stereo movement."
+          },
+          {
+           "code": null,
+           "text": "Automate plug-in parameters such as filter cut-off and delay feedback."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "1-9-dynamic-processing",
+       "title": "1.9 Dynamic processing",
+       "subtopics": [
+        {
+         "id": "compression-and-gating",
+         "title": "Compression and gating",
+         "outcomes": [
+          {
+           "code": "1.9",
+           "text": "Decide when to use a compressor or gate, and explain limiting, expansion, de-essing and pumping."
+          },
+          {
+           "code": null,
+           "text": "Set compressor threshold, ratio, make-up gain, attack, release, knee and side-chain."
+          },
+          {
+           "code": null,
+           "text": "Set gate threshold, range, attack, release, hold and side-chain, and draw compression and gate graphs."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "1-10-stereo",
+       "title": "1.10 Stereo",
+       "subtopics": [
+        {
+         "id": "pan-and-stereo-width",
+         "title": "Pan and stereo width",
+         "outcomes": [
+          {
+           "code": "1.10",
+           "text": "Set and identify pan positions for tracks in a mix."
+          },
+          {
+           "code": null,
+           "text": "Explain panning law, mono-summing, stereo widening, mono compatibility and mid-side processing."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "1-11-eq",
+       "title": "1.11 EQ",
+       "subtopics": [
+        {
+         "id": "using-eq",
+         "title": "Using EQ",
+         "outcomes": [
+          {
+           "code": "1.11",
+           "text": "Use shelf, band, low-pass, high-pass and band-pass EQ, parametric and graphic."
+          },
+          {
+           "code": null,
+           "text": "Correct sibilance, noise and resonance with EQ."
+          },
+          {
+           "code": null,
+           "text": "Explain how gain, frequency, Q, slope and resonance change sound, and draw EQ graphs."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "1-12-effects",
+       "title": "1.12 Effects",
+       "subtopics": [
+        {
+         "id": "time-based-effects",
+         "title": "Time-based effects",
+         "outcomes": [
+          {
+           "code": "1.12",
+           "text": "Set wet/dry, bypass, sends and inserts for effects."
+          },
+          {
+           "code": null,
+           "text": "Describe reverb types and settings: room, hall, plate, spring, gated, reversed, reverb time, pre-delay, damping."
+          },
+          {
+           "code": null,
+           "text": "Describe delay types and settings: multi-tap, slapback, ping pong, delay time, feedback, ADT."
+          },
+          {
+           "code": null,
+           "text": "Describe modulated delay (flange, chorus, phaser) with LFO rate, depth, feedback and comb filtering."
+          }
+         ]
+        },
+        {
+         "id": "distortion-and-special-effects",
+         "title": "Distortion and special effects",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Use wah-wah, distortion, overdrive, fuzz and amp modelling parameters."
+          },
+          {
+           "code": null,
+           "text": "Use tremolo, vocoder, talk box, and lo-fi effects such as bit-crushing and vinyl crackle."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "1-13-balance-and-blend",
+       "title": "1.13 Balance and blend",
+       "subtopics": [
+        {
+         "id": "balance-and-blend",
+         "title": "Balance and blend",
+         "outcomes": [
+          {
+           "code": "1.13",
+           "text": "Set the relative balance of parts."
+          },
+          {
+           "code": null,
+           "text": "Explain how compression, EQ and effects change blend."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "1-14-mastering",
+       "title": "1.14 Mastering",
+       "subtopics": [
+        {
+         "id": "mastering",
+         "title": "Mastering",
+         "outcomes": [
+          {
+           "code": "1.14",
+           "text": "Use limiting to raise perceived volume."
+          },
+          {
+           "code": null,
+           "text": "Apply mastering parameters: limiter gain, fades, stereo width, master reverb mix."
+          },
+          {
+           "code": null,
+           "text": "Use master EQ, such as high-shelf boost and rumble filter."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "area-of-study-2-principles-of-audio-and-sound-te",
+     "title": "Area of Study 2: Principles of audio and sound technology",
+     "topics": [
+      {
+       "id": "2-1-acoustics",
+       "title": "2.1 Acoustics",
+       "subtopics": [
+        {
+         "id": "room-acoustics",
+         "title": "Room acoustics",
+         "outcomes": [
+          {
+           "code": "2.1",
+           "text": "Explain how room size, absorption, reflection and diffusion affect recordings, including isolation booths."
+          },
+          {
+           "code": null,
+           "text": "Describe reverb tail, pre-delay, early and late reflections, RT60 and resonant frequencies."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "2-2-monitor-speakers",
+       "title": "2.2 Monitor speakers",
+       "subtopics": [
+        {
+         "id": "monitoring-and-mix-translation",
+         "title": "Monitoring and mix translation",
+         "outcomes": [
+          {
+           "code": "2.2",
+           "text": "Describe the frequency ranges of tweeters, woofers and subwoofers."
+          },
+          {
+           "code": null,
+           "text": "Explain how monitor speakers work by electromagnetic induction."
+          },
+          {
+           "code": null,
+           "text": "Explain how checking mixes on headphones, different speakers and subwoofer systems affects translation."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "2-3-leads-and-signals",
+       "title": "2.3 Leads and signals",
+       "subtopics": [
+        {
+         "id": "leads-and-signal-path",
+         "title": "Leads and signal path",
+         "outcomes": [
+          {
+           "code": "2.3",
+           "text": "Compare balanced and unbalanced connections, and use balanced leads to avoid hiss, hum and rumble."
+          },
+          {
+           "code": null,
+           "text": "Trace signal path through aux sends, inserts, sub-groups and channel strips."
+          },
+          {
+           "code": null,
+           "text": "Compare jack, XLR, MIDI, digital and computer data (USB, Firewire) leads, and DI boxes."
+          },
+          {
+           "code": null,
+           "text": "Explain impedance and mic, line and instrument signal levels."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "2-4-digital-and-analogue-technologies",
+       "title": "2.4 Digital and analogue technologies",
+       "subtopics": [
+        {
+         "id": "digital-versus-analogue",
+         "title": "Digital versus analogue",
+         "outcomes": [
+          {
+           "code": "2.4",
+           "text": "Compare digital and analogue frequency response, dynamic range, headroom and clipping, and the effect of valves and transistors."
+          },
+          {
+           "code": null,
+           "text": "Explain A/D and D/A conversion, sample rate, bit depth, bit rate, PCM and compressed formats such as mp3."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "2-5-numeracy",
+       "title": "2.5 Numeracy",
+       "subtopics": [
+        {
+         "id": "graphs-and-calculations",
+         "title": "Graphs and calculations",
+         "outcomes": [
+          {
+           "code": "2.5",
+           "text": "Read and draw waveforms, EQ curves, compressor responses, envelopes, frequency and polar response graphs."
+          },
+          {
+           "code": null,
+           "text": "Use units: decibels, hertz, milliseconds and note values, bpm, feet, semitones, cents, percentages; use binary and logarithms."
+          },
+          {
+           "code": null,
+           "text": "Calculate frequency, phase and amplitude of sound waves."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "2-6-levels",
+       "title": "2.6 Levels",
+       "subtopics": [
+        {
+         "id": "levels-and-metering",
+         "title": "Levels and metering",
+         "outcomes": [
+          {
+           "code": "2.6",
+           "text": "Manage levels to prevent distortion and maximise signal-to-noise ratio."
+          },
+          {
+           "code": null,
+           "text": "Use decibel scales and know when to use peak and RMS metering; explain psycho-acoustics of perceived volume."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "area-of-study-3-the-development-of-recording-and",
+     "title": "Area of Study 3: The development of recording and production technology",
+     "topics": [
+      {
+       "id": "3-1-software-and-hardware-digital",
+       "title": "3.1 Software and hardware: digital",
+       "subtopics": [
+        {
+         "id": "digital-technology",
+         "title": "Digital technology",
+         "outcomes": [
+          {
+           "code": "3.1",
+           "text": "Compare digital and analogue recording, and the pros and cons of digital hardware and software."
+          },
+          {
+           "code": null,
+           "text": "Explain GUIs, sampling theory and converters."
+          },
+          {
+           "code": null,
+           "text": "Describe digital sequencing and DAW functions: real-time processing, software instruments, non-destructive editing, convolution reverb, amp modelling."
+          },
+          {
+           "code": null,
+           "text": "Describe digital consumer formats (CD, mp3, high-definition masters) and bit rate."
+          },
+          {
+           "code": null,
+           "text": "Describe digital multitrack and early sampling hardware with limited memory."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "3-2-hardware-analogue",
+       "title": "3.2 Hardware: analogue",
+       "subtopics": [
+        {
+         "id": "analogue-recording-and-instruments",
+         "title": "Analogue recording and instruments",
+         "outcomes": [
+          {
+           "code": "3.2",
+           "text": "Compare analogue with digital recording, including valves, soft clipping, tape saturation and transistor distortion."
+          },
+          {
+           "code": null,
+           "text": "Describe tape machines, editing and splicing, and multitrack tape formats."
+          },
+          {
+           "code": null,
+           "text": "Describe analogue consumer formats (vinyl, cassette), mono and stereo releases, and mixing and mastering for them."
+          },
+          {
+           "code": null,
+           "text": "Describe analogue effects: tape and bucket-brigade delay, plate and spring reverb, Leslie cabinet, vinyl scratching, pitch changes by tape and vinyl."
+          },
+          {
+           "code": null,
+           "text": "Describe analogue synthesisers, modules and patching."
+          },
+          {
+           "code": null,
+           "text": "Describe early electric instruments: electric guitar, bass, theremin, Mellotron, electric organ, electric piano, Clavinet."
+          }
+         ]
+        },
+        {
+         "id": "eras-of-recording-technology",
+         "title": "Eras of recording technology",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Place production practice in eras from direct-to-tape mono (1930s) through multitrack to digital and DAWs."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "music-styles-and-production-skills",
+     "title": "Music styles and production skills",
+     "topics": [
+      {
+       "id": "music-styles",
+       "title": "Music styles",
+       "subtopics": [
+        {
+         "id": "styles-of-music",
+         "title": "Styles of music",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Know the instruments, sounds and ensembles of jazz, blues, rock 'n' roll, rock, metal, punk, soul, disco, funk and reggae."
+          },
+          {
+           "code": null,
+           "text": "Know the instruments, sounds and ensembles of acoustic and folk, commercial pop, urban, electronic and dance, music for media, and game and film."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "production-skills-across-components",
+       "title": "Production skills across components",
+       "subtopics": [
+        {
+         "id": "recording-and-mixing",
+         "title": "Recording and mixing",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Capture sound accurately and produce a balanced final stereo mix."
+          }
+         ]
+        },
+        {
+         "id": "technology-based-composition",
+         "title": "Technology-based composition",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Compose to a brief with synthesis, sampling, automation and musical elements such as structure, timbre, texture, harmony and rhythm."
+          }
+         ]
+        },
+        {
+         "id": "listening-and-analysing",
+         "title": "Listening and analysing",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Identify and evaluate production techniques and effect settings in unfamiliar commercial recordings."
+          }
+         ]
+        },
+        {
+         "id": "producing-and-analysing",
+         "title": "Producing and analysing",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Edit, correct, process and mix supplied audio and MIDI, and justify parameter decisions."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "build": {
+  "builtAt": "2026-10-14T10:28:42.062Z",
+  "model": "claude-agent",
+  "usd": 0,
+  "expectedCodes": 22,
+  "coverage": 1,
+  "missingCodes": [],
+  "counts": {
+   "grades": 1,
+   "units": 4,
+   "topics": 24,
+   "subtopics": 30,
+   "outcomes": 82
+  },
+  "warnings": [
+   "grade Year 12 has no content",
+   "grade Year 13 has no content",
+   "unexpected grade label \"all\""
+  ]
+ }
+}

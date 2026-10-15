@@ -1,0 +1,195 @@
+{
+ "id": "pk-ncp-ece",
+ "region": "PK",
+ "framework": "National Curriculum of Pakistan 2022-23",
+ "board": null,
+ "qualification": "Early Childhood Education",
+ "subject": "Early Childhood Education",
+ "syllabusCode": null,
+ "gradeSystem": "stage",
+ "source": {
+  "urls": [
+   "https://ncc.gov.pk/SiteImage/Misc/files/1_%20NCP%20ECE%20PG.pdf"
+  ],
+  "publisher": "National Curriculum Council, Ministry of Federal Education and Professional Training",
+  "licence": "Government publication; structure + our own wording only",
+  "firstExam": null
+ },
+ "grades": [
+  {
+   "grade": "ECE",
+   "units": [
+    {
+     "id": "ece-domain-b-language-and-literacy",
+     "title": "[ECE] Domain B: Language and Literacy",
+     "topics": [
+      {
+       "id": "strand-1-receptive-language",
+       "title": "Strand 1: Receptive Language",
+       "subtopics": [
+        {
+         "id": "strand-1-receptive-language",
+         "title": "Strand 1: Receptive Language",
+         "outcomes": [
+          {
+           "code": "ECE-00-B1-02",
+           "text": "Answer questions and respond suitably to signs, stories, and rhymes."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "strand-3b-reading-phonological-awareness",
+       "title": "Strand 3b: Reading (Phonological Awareness)",
+       "subtopics": [
+        {
+         "id": "strand-3b-reading-phonological-awareness",
+         "title": "Strand 3b: Reading (Phonological Awareness)",
+         "outcomes": [
+          {
+           "code": "ECE-00-B3b-05",
+           "text": "Recognize and produce rhyming words and alliteration patterns."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "strand-4-writing",
+       "title": "Strand 4: Writing",
+       "subtopics": [
+        {
+         "id": "strand-4-writing",
+         "title": "Strand 4: Writing",
+         "outcomes": [
+          {
+           "code": "ECE-00-B4-07",
+           "text": "No distinct outcome text is legible in the excerpt."
+          },
+          {
+           "code": "ECE-00-B4-08",
+           "text": "No outcome text is legible in the excerpt."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "ece-domain-d-the-world-around-us",
+     "title": "[ECE] Domain D: The World Around Us",
+     "topics": [
+      {
+       "id": "strand-3-plants-in-their-environment",
+       "title": "Strand 3: Plants in their environment",
+       "subtopics": [
+        {
+         "id": "strand-3-plants-in-their-environment",
+         "title": "Strand 3: Plants in their environment",
+         "outcomes": [
+          {
+           "code": "ECE-00-D3-03",
+           "text": "Observe and record how a plant grows from a seed."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "strand-5-weather-and-environment",
+       "title": "Strand 5: Weather and Environment",
+       "subtopics": [
+        {
+         "id": "strand-5-weather-and-environment",
+         "title": "Strand 5: Weather and Environment",
+         "outcomes": [
+          {
+           "code": "ECE-00-D5-08",
+           "text": "Explore alternative uses for waste materials."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "strand-6-technology",
+       "title": "Strand 6: Technology",
+       "subtopics": [
+        {
+         "id": "strand-6-technology",
+         "title": "Strand 6: Technology",
+         "outcomes": [
+          {
+           "code": "ECE-00-D6-02",
+           "text": "Use different technology devices safely."
+          },
+          {
+           "code": "ECE-00-D6-03",
+           "text": "Identify advantages and disadvantages of using technology."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "ece-domain-e-health-hygiene-and-safety",
+     "title": "[ECE] Domain E: Health, Hygiene, and Safety",
+     "topics": [
+      {
+       "id": "strand-2-safety",
+       "title": "Strand 2: Safety",
+       "subtopics": [
+        {
+         "id": "strand-2-safety",
+         "title": "Strand 2: Safety",
+         "outcomes": [
+          {
+           "code": "ECE-00-E2-06",
+           "text": "Recognise traffic lights and explain what their colours mean."
+          },
+          {
+           "code": "ECE-00-E2-07",
+           "text": "Express basic needs and feelings, including hunger, thirst, and needing the toilet."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "build": {
+  "builtAt": "2026-10-14T05:24:54.071Z",
+  "model": "gpt-5.6-luna",
+  "usd": 0.029,
+  "expectedCodes": 9,
+  "coverage": 0,
+  "missingCodes": [
+   "ECE-00-A1-",
+   "ECE-00-B2-",
+   "ECE-00-B4-",
+   "ECE-00-D2-",
+   "ECE-00-D3-",
+   "ECE-00-D5-",
+   "ECE-00-F1-",
+   "ECE-00-F3-",
+   "ECE-00-F4-"
+  ],
+  "counts": {
+   "grades": 1,
+   "units": 3,
+   "topics": 7,
+   "subtopics": 7,
+   "outcomes": 10
+  },
+  "warnings": [
+   "47 invented code(s) dropped: ECE-00-A1-01, ECE-00-A1-02, ECE-00-A1-03, ECE-00-A1-04, ECE-00-A1-05, ECE-00-B2-01, ECE-00-B2-02, ECE-00-B2-03"
+  ]
+ }
+}

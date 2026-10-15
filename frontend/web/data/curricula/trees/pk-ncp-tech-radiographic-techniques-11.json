@@ -1,0 +1,371 @@
+{
+ "id": "pk-ncp-tech-radiographic-techniques-11",
+ "region": "PK",
+ "framework": "National Curriculum of Pakistan",
+ "board": null,
+ "qualification": "Technical stream",
+ "subject": "Radiographic Techniques",
+ "syllabusCode": null,
+ "gradeSystem": "grade",
+ "source": {
+  "urls": [
+   "https://ncc.gov.pk/SiteImage/Misc/files/56_%20Radiographic%20Techniques%20I%20%20Grade%20(11).pdf"
+  ],
+  "publisher": "National Curriculum Council, Ministry of Federal Education and Professional Training",
+  "licence": "Government publication; structure + our own wording only",
+  "firstExam": null
+ },
+ "grades": [
+  {
+   "grade": "11",
+   "units": [
+    {
+     "id": "domain-a-introduction-to-electromagnetism",
+     "title": "Domain A: Introduction to Electromagnetism",
+     "topics": [
+      {
+       "id": "electromagnetism-and-electricity",
+       "title": "Electromagnetism and electricity",
+       "subtopics": [
+        {
+         "id": "atoms-and-ionization",
+         "title": "Atoms and ionization",
+         "outcomes": [
+          {
+           "code": "RT-11-A-01",
+           "text": "Explain atom structure and isotopes."
+          },
+          {
+           "code": "RT-11-A-02",
+           "text": "Tell ionization apart from excitation."
+          }
+         ]
+        },
+        {
+         "id": "charge-and-circuits",
+         "title": "Charge and circuits",
+         "outcomes": [
+          {
+           "code": "RT-11-A-03",
+           "text": "List kinds of electric charge and how electroscopes detect them."
+          },
+          {
+           "code": "RT-11-A-04",
+           "text": "Describe capacitors, current, voltage, resistance and Ohm's law."
+          },
+          {
+           "code": "RT-11-A-05",
+           "text": "Explain circuit laws, electrical energy and power."
+          },
+          {
+           "code": "RT-11-A-06",
+           "text": "Classify the heating effects of electric current."
+          },
+          {
+           "code": "RT-11-A-07",
+           "text": "List the sources of electrical energy."
+          }
+         ]
+        },
+        {
+         "id": "magnetism-and-induction",
+         "title": "Magnetism and induction",
+         "outcomes": [
+          {
+           "code": "RT-11-A-08",
+           "text": "State what magnetism is and how current produces magnetic effects."
+          },
+          {
+           "code": "RT-11-A-09",
+           "text": "Collect and sort uses of magnetic effects, and mutual and self induction."
+          }
+         ]
+        },
+        {
+         "id": "alternating-current-and-transformers",
+         "title": "Alternating current and transformers",
+         "outcomes": [
+          {
+           "code": "RT-11-A-10",
+           "text": "Introduce alternating current and transformer theory."
+          },
+          {
+           "code": "RT-11-A-11",
+           "text": "List practical points about transformers."
+          },
+          {
+           "code": "RT-11-A-12",
+           "text": "Describe AC circuits: reactance, resonance and impedance."
+          }
+         ]
+        },
+        {
+         "id": "distribution-and-measurement",
+         "title": "Distribution and measurement",
+         "outcomes": [
+          {
+           "code": "RT-11-A-13",
+           "text": "Recognize how electricity is distributed in Pakistan."
+          },
+          {
+           "code": "RT-11-A-14",
+           "text": "Describe electrical measuring instruments and what they measure."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "domain-b-radiation-physics",
+     "title": "Domain B: Radiation Physics",
+     "topics": [
+      {
+       "id": "radiation-physics-and-medical-imaging",
+       "title": "Radiation physics and medical imaging",
+       "subtopics": [
+        {
+         "id": "radiation-and-waves",
+         "title": "Radiation and waves",
+         "outcomes": [
+          {
+           "code": "RT-11-B-01",
+           "text": "Explain atomic structure and the theory and properties of electromagnetic radiation."
+          },
+          {
+           "code": "RT-11-B-02",
+           "text": "Define the wave and quantum theories of radiation."
+          },
+          {
+           "code": "RT-11-B-03",
+           "text": "Discuss visible light and fluorescence."
+          }
+         ]
+        },
+        {
+         "id": "x-ray-production",
+         "title": "X-ray production",
+         "outcomes": [
+          {
+           "code": "RT-11-B-04",
+           "text": "List X-ray properties, how they are made and how they interact with targets."
+          },
+          {
+           "code": "RT-11-B-05",
+           "text": "Describe X-ray spectra and what changes their quantity and intensity."
+          },
+          {
+           "code": "RT-11-B-06",
+           "text": "Describe thermionic emission at the cathode and the principle of X-ray tubes."
+          },
+          {
+           "code": "RT-11-B-07",
+           "text": "List practical aspects of X-rays."
+          }
+         ]
+        },
+        {
+         "id": "x-ray-electronics-and-controls",
+         "title": "X-ray electronics and controls",
+         "outcomes": [
+          {
+           "code": "RT-11-B-08",
+           "text": "List triode valves, semiconductors and cathode ray oscilloscopes."
+          },
+          {
+           "code": "RT-11-B-09",
+           "text": "Describe X-ray control: tube voltage (kV) and tube current (mA)."
+          },
+          {
+           "code": "RT-11-B-10",
+           "text": "Describe exposure controls and how X-rays and gamma rays interact with matter."
+          }
+         ]
+        },
+        {
+         "id": "beams-and-protection",
+         "title": "Beams and protection",
+         "outcomes": [
+          {
+           "code": "RT-11-B-11",
+           "text": "Describe how uniform and mixed beams pass through matter: filtration, absorption, scattering."
+          },
+          {
+           "code": "RT-11-B-12",
+           "text": "Describe radiation protection, maximum permissible dose and protective materials."
+          }
+         ]
+        },
+        {
+         "id": "nuclear-medicine-and-ultrasound",
+         "title": "Nuclear medicine and ultrasound",
+         "outcomes": [
+          {
+           "code": "RT-11-B-13",
+           "text": "List radionuclides used in medicine and their properties."
+          },
+          {
+           "code": "RT-11-B-14",
+           "text": "Describe ultrasound: its nature, generation, power and intensity."
+          }
+         ]
+        },
+        {
+         "id": "tomography-ct-and-mri",
+         "title": "Tomography, CT and MRI",
+         "outcomes": [
+          {
+           "code": "RT-11-B-15",
+           "text": "Describe the physical basis of tomography."
+          },
+          {
+           "code": "RT-11-B-16",
+           "text": "Describe computed tomography."
+          },
+          {
+           "code": "RT-11-B-17",
+           "text": "Describe the physics of magnetic resonance imaging."
+          }
+         ]
+        },
+        {
+         "id": "lasers-and-radiotherapy",
+         "title": "Lasers and radiotherapy",
+         "outcomes": [
+          {
+           "code": "RT-11-B-18",
+           "text": "List laser uses and types, and safety ideas in radiotherapy."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "domain-c-films-and-dark-room-techniques",
+     "title": "Domain C: Films and Dark Room Techniques",
+     "topics": [
+      {
+       "id": "films-and-dark-room-techniques",
+       "title": "Films and dark room techniques",
+       "subtopics": [
+        {
+         "id": "image-formation-and-films",
+         "title": "Image formation and films",
+         "outcomes": [
+          {
+           "code": "RT-11-C-01",
+           "text": "Describe image formation, distortion and blurring."
+          },
+          {
+           "code": "RT-11-C-02",
+           "text": "List what X-ray films are made of."
+          },
+          {
+           "code": "RT-11-C-03",
+           "text": "Describe how X-rays affect film sensitivity."
+          },
+          {
+           "code": "RT-11-C-04",
+           "text": "List ways of storing films."
+          }
+         ]
+        },
+        {
+         "id": "screens-and-cassettes",
+         "title": "Screens and cassettes",
+         "outcomes": [
+          {
+           "code": "RT-11-C-05",
+           "text": "List fluorescent materials and their uses."
+          },
+          {
+           "code": "RT-11-C-06",
+           "text": "Apply care and safety rules for screens and cassettes."
+          },
+          {
+           "code": "RT-11-C-07",
+           "text": "Vary films and screens to suit patient thickness and anatomy."
+          },
+          {
+           "code": "RT-11-C-08",
+           "text": "Describe focal film distance, film speed and screen speed."
+          }
+         ]
+        },
+        {
+         "id": "film-labeling-and-processing",
+         "title": "Film labeling and processing",
+         "outcomes": [
+          {
+           "code": "RT-11-C-09",
+           "text": "List steps of film labeling, identification and sizes."
+          },
+          {
+           "code": "RT-11-C-10",
+           "text": "List steps of manual and automatic film development and spot defects."
+          },
+          {
+           "code": "RT-11-C-11",
+           "text": "Introduce automatic developers and their materials."
+          }
+         ]
+        },
+        {
+         "id": "contrast-media",
+         "title": "Contrast media",
+         "outcomes": [
+          {
+           "code": "RT-11-C-12",
+           "text": "List contrast media types with official and trade names."
+          },
+          {
+           "code": "RT-11-C-13",
+           "text": "List side effects of contrast media and how reactions are treated."
+          }
+         ]
+        },
+        {
+         "id": "records-and-department-management",
+         "title": "Records and department management",
+         "outcomes": [
+          {
+           "code": "RT-11-C-14",
+           "text": "List film types used in ultrasound and how they are stored."
+          },
+          {
+           "code": "RT-11-C-15",
+           "text": "Define how computers record and store images."
+          },
+          {
+           "code": "RT-11-C-16",
+           "text": "List store keeping, inventory and ordering steps in radiology."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "build": {
+  "builtAt": "2026-10-14T08:39:37.086Z",
+  "model": "claude-agent",
+  "usd": 0,
+  "expectedCodes": 48,
+  "coverage": 1,
+  "missingCodes": [],
+  "counts": {
+   "grades": 1,
+   "units": 3,
+   "topics": 3,
+   "subtopics": 17,
+   "outcomes": 48
+  },
+  "warnings": []
+ }
+}

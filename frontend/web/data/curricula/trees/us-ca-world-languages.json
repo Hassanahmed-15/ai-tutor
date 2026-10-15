@@ -1,0 +1,424 @@
+{
+ "id": "us-ca-world-languages",
+ "region": "US",
+ "framework": "California state academic standards: World Languages",
+ "board": null,
+ "qualification": "K-12",
+ "subject": "World Languages",
+ "syllabusCode": null,
+ "gradeSystem": "grade",
+ "source": {
+  "urls": [
+   "https://api.commonstandardsproject.com/api/v1/jurisdictions/B1339AB05F0347E79200FCA63240F3B2",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/B1339AB05F0347E79200FCA63240F3B2_D21024849_grades-01-02-03-04-05-06-07-08-09-10-11-12-k"
+  ],
+  "publisher": "California state education agency (machine-readable via Common Standards Project / ASN)",
+  "licence": "CC BY 3.0 US, D2L Corporation",
+  "firstExam": "2019"
+ },
+ "grades": [
+  {
+   "grade": "K-12",
+   "units": [
+    {
+     "id": "communication",
+     "title": "Communication",
+     "topics": [
+      {
+       "id": "interpretive-communication",
+       "title": "Interpretive Communication",
+       "subtopics": [
+        {
+         "id": "interpretive-communication",
+         "title": "Interpretive Communication",
+         "outcomes": [
+          {
+           "code": "WL.CM1.N",
+           "text": "Demonstrate understanding of the general meaning and some basic information on very familiar common daily topics by recognizing memorized words, phrases, and simple sentences in authentic texts that are spoken, written, or signed (ASL)."
+          },
+          {
+           "code": "WL.CM1.I",
+           "text": "Demonstrate understanding of the main idea and some details on some informal topics related to self and the immediate environment in sentences and strings of sentences in authentic texts that are spoken, written, or signed (ASL)."
+          },
+          {
+           "code": "WL.CM1.A",
+           "text": "Demonstrate understanding of the main idea and supporting details in major time frames on most informal and formal topics of general public interest in authentic texts using paragraph-level discourse that are spoken, written, or signed (ASL)."
+          },
+          {
+           "code": "WL.CM1.S",
+           "text": "Demonstrate understanding and infer meaning from complex, authentic, multi-paragraph texts on topics ranging from broad general interests, to unfamiliar, abstract, and hypothetical areas of specialized professional and academic expertise, in texts that are spoken, written, or signed (ASL)."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "interpersonal-communication",
+       "title": "Interpersonal Communication",
+       "subtopics": [
+        {
+         "id": "interpersonal-communication",
+         "title": "Interpersonal Communication",
+         "outcomes": [
+          {
+           "code": "WL.CM2.N",
+           "text": "Participate in real-world, spoken, written, or signed (ASL) conversations on very familiar topics, using memorized words, phrases, and simple sentences, and questions in highly predictable common daily settings."
+          },
+          {
+           "code": "WL.CM2.I",
+           "text": "Participate in real-world, spoken, written, or signed (ASL) conversations related to self and the immediate environment, creating sentences and strings of sentences to ask and answer a variety of questions in transactional and some informal settings."
+          },
+          {
+           "code": "WL.CM2.A",
+           "text": "Participate in real-world, spoken, written, or signed (ASL) conversations and discussions in major time frames on topics of general public interest using connected sentences and paragraph-level discourse in most informal and formal settings."
+          },
+          {
+           "code": "WL.CM2.S",
+           "text": "Participate fully and effectively in real-world, spoken, written, or signed (ASL) discussions and debates, on topics ranging from broad general interests, to unfamiliar, abstract and hypothetical areas of specialized professional and academic expertise, using a wide variety of text-types with cohesive discourse in informal and formal settings, and problem situations."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "presentational-communication",
+       "title": "Presentational Communication",
+       "subtopics": [
+        {
+         "id": "presentational-communication",
+         "title": "Presentational Communication",
+         "outcomes": [
+          {
+           "code": "WL.CM3.N",
+           "text": "Present information in culturally appropriate-ways on very familiar common daily topics using memorized words, phrases, and simple sentences through spoken, written, or signed (ASL) language using the most suitable media and technologies to present and publish."
+          },
+          {
+           "code": "WL.CM3.I",
+           "text": "Make simple presentations in culturally-appropriate ways on transactional and informal topics related to self and the immediate environment using sentences and strings of sentences through spoken, written, or signed (ASL) language using the most suitable media and technologies to present and publish."
+          },
+          {
+           "code": "WL.CM3.A",
+           "text": "Deliver presentations in culturally-appropriate ways on topics of general public interest using paragraph-level discourse in major time frames through spoken, written, or signed (ASL) language using the most suitable media and technologies to present and publish."
+          },
+          {
+           "code": "WL.CM3.S",
+           "text": "Deliver complex presentations with precision of expression, in culturally-appropriate ways, for a wide variety of audiences, on topics ranging from broad general interests to unfamiliar, abstract, and hypothetical areas of specialized professional and academic expertise, using a wide variety of text-types with cohesive discourse, through spoken, written, or signed (ASL) language, using the most suitable media and technologies to present and publish."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "settings-for-communication",
+       "title": "Settings for Communication",
+       "subtopics": [
+        {
+         "id": "settings-for-communication",
+         "title": "Settings for Communication",
+         "outcomes": [
+          {
+           "code": "WL.CM4.N",
+           "text": "Recognize age-appropriate, culturally-authentic, real-world and academic language-use opportunities in highly predictable common daily settings in target-language communities within the United States and around the globe."
+          },
+          {
+           "code": "WL.CM4.I",
+           "text": "Participate in age-appropriate, culturally-authentic, real-world and academic language-use opportunities in transactional and some informal settings in target-language communities within the United States and around the globe."
+          },
+          {
+           "code": "WL.CM4.A",
+           "text": "Initiate, culturally-authentic, real-world and academic language-use opportunities in most informal and formal settings in target-language communities within the United States and around the globe."
+          },
+          {
+           "code": "WL.CM4.S",
+           "text": "Sustain culturally-authentic, real-world and academic language-use opportunities on topics ranging from broad general interests, to unfamiliar, abstract and hypothetical areas of specialized professional and academic expertise, in target-language communities within the United States and around the globe."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "receptive-structures-in-service-of-communication",
+       "title": "Receptive Structures in Service of Communication",
+       "subtopics": [
+        {
+         "id": "receptive-structures-in-service-of-communication",
+         "title": "Receptive Structures in Service of Communication",
+         "outcomes": [
+          {
+           "code": "WL.CM5.N",
+           "text": "Demonstrate understanding of words, phrases (signs and fingerspelling in ASL), and simple sentences on very familiar common daily topics using orthography, phonology, ASL parameters and very basic sentence-level elements (morphology and/or syntax)."
+          },
+          {
+           "code": "WL.CM5.I",
+           "text": "Demonstrate understanding of transactional and informal topics related to self and the immediate environment using basic sentence-level elements (morphology and syntax)."
+          },
+          {
+           "code": "WL.CM5.A",
+           "text": "Demonstrate understanding of topics of general public interest using knowledge of sentence-level elements (morphology and syntax in major time frames) and paragraph-level discourse (text structure)."
+          },
+          {
+           "code": "WL.CM5.S",
+           "text": "Demonstrate understanding on topics ranging from broad general interests, to unfamiliar, abstract and hypothetical areas of specialized professional and academic expertise, using knowledge of sentence-level elements (morphology and syntax of common and uncommon structures) and extended discourse (text structure)."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "productive-structures-in-service-of-communicatio",
+       "title": "Productive Structures in Service of Communication",
+       "subtopics": [
+        {
+         "id": "productive-structures-in-service-of-communicatio",
+         "title": "Productive Structures in Service of Communication",
+         "outcomes": [
+          {
+           "code": "WL.CM6.N",
+           "text": "Communicate on very familiar common daily topics using words and phrases (signs and fingerspelling in ASL), and simple sentences using orthography, phonology or ASL parameters and very basic sentence-level elements (morphology and/or syntax)."
+          },
+          {
+           "code": "WL.CM6.I",
+           "text": "Communicate about transactional and some informal topics related to self and the immediate environment in sentences and strings of sentences using basic sentence-level elements (morphology and syntax)."
+          },
+          {
+           "code": "WL.CM6.A",
+           "text": "Communicate about topics of general public interest using knowledge of sentence-level elements (morphology and syntax in major time frames) and paragraph-level discourse (text structure)."
+          },
+          {
+           "code": "WL.CM6.S",
+           "text": "Communicate about topics ranging from broad general interests, to unfamiliar, abstract and hypothetical areas of specialized professional and academic expertise, using knowledge of sentence-level elements (morphology and syntax of common and uncommon structures) and extended discourse (text structure)."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "language-comparisons-in-service-of-communication",
+       "title": "Language Comparisons in Service of Communication",
+       "subtopics": [
+        {
+         "id": "language-comparisons-in-service-of-communication",
+         "title": "Language Comparisons in Service of Communication",
+         "outcomes": [
+          {
+           "code": "WL.CM7.N",
+           "text": "Identify similarities and differences in the orthography, phonology, ASL parameters and very basic sentence-level elements (morphology and/or syntax) of the languages known."
+          },
+          {
+           "code": "WL.CM7.I",
+           "text": "Identify similarities and differences in the basic sentence-level elements (morphology and syntax) of the languages known."
+          },
+          {
+           "code": "WL.CM7.A",
+           "text": "Identify similarities and differences in sentence-level elements (morphology and syntax in major time frames) and in paragraph-level discourse (text structure) of the languages known."
+          },
+          {
+           "code": "WL.CM7.S",
+           "text": "Identify similarities and differences in sentence-level elements (morphology and syntax of common and uncommon structures) and in extended discourse (text structure) of the languages known."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "cultures",
+     "title": "Cultures",
+     "topics": [
+      {
+       "id": "culturally-appropriate-interaction",
+       "title": "Culturally Appropriate Interaction",
+       "subtopics": [
+        {
+         "id": "culturally-appropriate-interaction",
+         "title": "Culturally Appropriate Interaction",
+         "outcomes": [
+          {
+           "code": "WL.CL1.N",
+           "text": "Use age-appropriate gestures and expressions in very familiar, common daily settings."
+          },
+          {
+           "code": "WL.CL1.I",
+           "text": "Interact with understanding in a variety of familiar age-appropriate, transactional situations and common daily informal settings."
+          },
+          {
+           "code": "WL.CL1.A",
+           "text": "Interact with cultural competence in most informal and formal settings."
+          },
+          {
+           "code": "WL.CL1.S",
+           "text": "Improvise in culturally-appropriate ways in unfamiliar and unpredictable situations, in informal and formal settings, and in specialized academic and professional contexts."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "cultural-products-practices-and-perspectives",
+       "title": "Cultural Products, Practices and Perspectives",
+       "subtopics": [
+        {
+         "id": "cultural-products-practices-and-perspectives",
+         "title": "Cultural Products, Practices and Perspectives",
+         "outcomes": [
+          {
+           "code": "WL.CL2.N",
+           "text": "Experience, recognize and explore the relationships among typical age-appropriate target- cultures' products, practices and perspectives in culturally-appropriate ways in very familiar common daily settings."
+          },
+          {
+           "code": "WL.CL2.I",
+           "text": "Experience, recognize and explore the relationships among typical age-appropriate target- cultures' products, practices and perspectives in culturally-appropriate ways in transactional situations and some informal settings."
+          },
+          {
+           "code": "WL.CL2.A",
+           "text": "Participate, use, describe and discuss the relationships among target-cultures' products, practices and perspectives in culturally-appropriate ways in most informal and formal settings."
+          },
+          {
+           "code": "WL.CL2.S",
+           "text": "Research, analyze, discuss and hypothesize about the relationships among a wide range of concrete and abstract, general and specialized, academic and professional target-cultures' products, practices and perspectives from different viewpoints, in culturally-appropriate ways."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "cultural-comparisons",
+       "title": "Cultural Comparisons",
+       "subtopics": [
+        {
+         "id": "cultural-comparisons",
+         "title": "Cultural Comparisons",
+         "outcomes": [
+          {
+           "code": "WL.CL3.N",
+           "text": "Identify some similarities and differences among very familiar, common daily products, practices and perspectives in the mainstream cultures of the United States, the students' own cultures, and the target cultures."
+          },
+          {
+           "code": "WL.CL3.I",
+           "text": "Exchange information about similarities and differences among common daily products, practices and perspectives in the immediate environment in the mainstream cultures of the United States, the students' own cultures, and the target cultures."
+          },
+          {
+           "code": "WL.CL3.A",
+           "text": "Describe and explain similarities and differences among products, practices and perspectives of general public interest in the mainstream cultures of the United States, the students' own cultures, and the target cultures."
+          },
+          {
+           "code": "WL.CL3.S",
+           "text": "Research, analyze, discuss and hypothesize about similarities and differences among concrete and abstract, general and specialized, academic and professional products practices and perspectives in the mainstream cultures of the United States, the students' own cultures, and the target cultures."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "intercultural-influences",
+       "title": "Intercultural Influences",
+       "subtopics": [
+        {
+         "id": "intercultural-influences",
+         "title": "Intercultural Influences",
+         "outcomes": [
+          {
+           "code": "WL.CL4.N",
+           "text": "Identify cultural borrowings."
+          },
+          {
+           "code": "WL.CL.4.I",
+           "text": "State reasons for cultural borrowings."
+          },
+          {
+           "code": "WL.CL4.A",
+           "text": "Describe how products, practices and perspectives change when cultures come into contact."
+          },
+          {
+           "code": "WL.CL4.S",
+           "text": "Research, analyze, discuss and hypothesize about a wide range of concrete and abstract, general and specialized, academic and professional products, practices and perspectives, and how they change when cultures come into contact."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "connections",
+     "title": "Connections",
+     "topics": [
+      {
+       "id": "connections-to-other-disciplines",
+       "title": "Connections to Other Disciplines",
+       "subtopics": [
+        {
+         "id": "connections-to-other-disciplines",
+         "title": "Connections to Other Disciplines",
+         "outcomes": [
+          {
+           "code": "WL.CN1.N",
+           "text": "Acquire, exchange, and present information primarily in the target language about very familiar common daily elements of life and age-appropriate academic content across disciplines."
+          },
+          {
+           "code": "WL.CN1.I",
+           "text": "Acquire, exchange, and present information in the target language on topics related to self and the immediate environment and age- appropriate academic content across disciplines."
+          },
+          {
+           "code": "WL.CN1.A",
+           "text": "Acquire, exchange, and present information in the target language on factual topics of public interest and general academic content across disciplines."
+          },
+          {
+           "code": "WL.CN1.S",
+           "text": "Research, analyze, discuss and hypothesize in the target language about topics ranging from broad general interests, to unfamiliar, abstract and hypothetical areas of specialized professional and academic expertise across disciplines."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "diverse-perspectives-and-distinctive-viewpoints",
+       "title": "Diverse Perspectives and Distinctive Viewpoints",
+       "subtopics": [
+        {
+         "id": "diverse-perspectives-and-distinctive-viewpoints",
+         "title": "Diverse Perspectives and Distinctive Viewpoints",
+         "outcomes": [
+          {
+           "code": "WL.CN2.N",
+           "text": "Recognize diverse perspectives and distinctive viewpoints on very familiar common daily topics primarily in the target language from age-appropriate authentic materials from the target cultures."
+          },
+          {
+           "code": "WL.CN2.I",
+           "text": "Identify diverse perspectives and distinctive viewpoints on topics related to self and the immediate environment in the target language from age-appropriate authentic materials from the target cultures."
+          },
+          {
+           "code": "WL.CN2.A",
+           "text": "Research and explain diverse perspectives and distinctive viewpoints on topics of general public interest in the target language through authentic materials from the target cultures."
+          },
+          {
+           "code": "WL.CN2.S",
+           "text": "Research, analyze, discuss and hypothesize in the target language about diverse perspectives and distinctive viewpoints on topics ranging from broad general interests, to unfamiliar, abstract and hypothetical areas of specialized professional and academic expertise language through authentic materials from the target cultures."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "build": {
+  "builtAt": "2026-10-14T16:20:39.093Z",
+  "model": "none",
+  "usd": 0,
+  "expectedCodes": 52,
+  "coverage": 1,
+  "missingCodes": [],
+  "counts": {
+   "grades": 1,
+   "units": 3,
+   "topics": 13,
+   "subtopics": 13,
+   "outcomes": 52
+  },
+  "warnings": []
+ }
+}

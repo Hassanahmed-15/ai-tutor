@@ -1,0 +1,1036 @@
+{
+ "id": "us-ri-computer-science",
+ "region": "US",
+ "framework": "Rhode Island state academic standards: Computer Science & Technology",
+ "board": null,
+ "qualification": "K-12",
+ "subject": "Computer Science & Technology",
+ "syllabusCode": null,
+ "gradeSystem": "grade",
+ "source": {
+  "urls": [
+   "https://api.commonstandardsproject.com/api/v1/jurisdictions/D91DD2FDBCC94DC1869871FD1C0F2665",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/D91DD2FDBCC94DC1869871FD1C0F2665_D2462728_grades-01-02-k",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/D91DD2FDBCC94DC1869871FD1C0F2665_D2462728_grades-03-04",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/D91DD2FDBCC94DC1869871FD1C0F2665_D2462728_grades-05-06",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/D91DD2FDBCC94DC1869871FD1C0F2665_D2462728_grades-07-08",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/D91DD2FDBCC94DC1869871FD1C0F2665_D2462728_grades-09-10-11-12"
+  ],
+  "publisher": "Rhode Island state education agency (machine-readable via Common Standards Project / ASN)",
+  "licence": "CC BY 3.0 US, Desire2Learn Incorporated",
+  "firstExam": "2011"
+ },
+ "grades": [
+  {
+   "grade": "K-2",
+   "units": [
+    {
+     "id": "engineering-and-technology-impacts-the-world-and",
+     "title": "Engineering and technology impacts the world and humankind",
+     "topics": [
+      {
+       "id": "demonstrate-and-identify-reasons-for-the-develop",
+       "title": "Demonstrate and identify reasons for the development of technology and its effects on humankind",
+       "subtopics": [
+        {
+         "id": "students-demonstrate-an-understanding-of-the-nat",
+         "title": "Students demonstrate an understanding of the nature of technology by:",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "investigating life without current technology (e.g. role-play use of the bucket brigade instead of a fire truck)"
+          },
+          {
+           "code": null,
+           "text": "describing how technology affects daily human routines (e.g. How does milk get from the cow to the home refrigerator?)"
+          },
+          {
+           "code": null,
+           "text": "differentiating between needs/wants, helpful/harmful, disposable/reusable, and natural/human-made products."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "discuss-and-develop-an-understanding-of-technolo",
+       "title": "Discuss and develop an understanding of technology and its relationship to the natural and designed (human-made) world in the local community",
+       "subtopics": [
+        {
+         "id": "students-demonstrate-an-understanding-of-the-nee",
+         "title": "Students demonstrate an understanding of the need for technology by:",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "understanding that technology can make life easier (e.g. clothes, telephone, automobile, microwave)."
+          },
+          {
+           "code": null,
+           "text": "discussing the purpose of technology and its relationship to the natural and designed world"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "effective-design-through-engineering-and-technol",
+     "title": "Effective design through engineering and technology is the outcome of a problem solving process involving the application of content knowledge, acquired skills, and creativity",
+     "topics": [
+      {
+       "id": "explore-and-recognize-the-attributes-of-a-design",
+       "title": "Explore and recognize the attributes of a design process",
+       "subtopics": [
+        {
+         "id": "students-demonstrate-an-understanding-of-the-att",
+         "title": "Students demonstrate an understanding of the attributes of a design process by:",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "asking questions, making observations, and brainstorming various ideas."
+          },
+          {
+           "code": null,
+           "text": "exploring solutions to a problem based upon observations and brainstorming ideas."
+          },
+          {
+           "code": null,
+           "text": "completing tasks cooperatively in a group setting."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "explore-and-recognize-basic-technological-produc",
+       "title": "Explore and recognize basic technological products and systems, as well as their tools",
+       "subtopics": [
+        {
+         "id": "students-demonstrate-an-understanding-of-technol",
+         "title": "Students demonstrate an understanding of technological products and systems by:",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "identifying and safely using the required tools (e.g. glue, scissors, tape) for a specific task."
+          },
+          {
+           "code": null,
+           "text": "collecting and using information about everyday products and symbols. (e.g. shape and color of a stop sign)"
+          },
+          {
+           "code": null,
+           "text": "exploring how things work."
+          },
+          {
+           "code": null,
+           "text": "exploring the properties of a product (e.g. size, type of material, shape)."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "explore-the-processes-of-research-and-developmen",
+       "title": "Explore the processes of research and development, invention and innovation, experimentation, and troubleshooting in planning practical solutions to problems",
+       "subtopics": [
+        {
+         "id": "students-demonstrate-an-understanding-of-effecti",
+         "title": "Students demonstrate an understanding of effective design by:",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "recognizing there are steps to solving a problem."
+          },
+          {
+           "code": null,
+           "text": "experimenting/exploring with various simple machines (e.g. wheels, axles, gears, pulleys) to demonstrate their uses and discuss their differences."
+          },
+          {
+           "code": null,
+           "text": "asking questions and making observations of design solutions (e.g. comparing toothbrush designs)."
+          },
+          {
+           "code": null,
+           "text": "comparing and contrasting various design solutions (e.g. bus vs. race car)."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "the-designed-world-community-selects-and-uses-ap",
+     "title": "The designed world community selects and uses appropriate technologies",
+     "topics": [
+      {
+       "id": "recognize-that-there-are-various-areas-in-engine",
+       "title": "Recognize that there are various areas in engineering and technology",
+       "subtopics": [
+        {
+         "id": "students-demonstrate-an-understanding-of-the-are",
+         "title": "Students demonstrate an understanding of the areas of engineering and technology by:",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "identifying community workers in the areas of engineering and technology. (e.g. bus driver in the area of transportation)"
+          },
+          {
+           "code": null,
+           "text": "making connections between the different areas of engineering and technology (e.g. recognize that transportation technologies are involved in construction)."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "select-and-utilize-appropriate-tools-to-measure-",
+       "title": "Select and utilize appropriate tools to measure, design, and implement specific technologies",
+       "subtopics": [
+        {
+         "id": "students-demonstrate-an-understanding-of-selecti",
+         "title": "Students demonstrate an understanding of selecting appropriate tools by:",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "recognizing that there are specialized tools for different areas of engineering and technology."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "3-4",
+   "units": [
+    {
+     "id": "engineering-and-technology-impacts-the-world-and",
+     "title": "Engineering and technology impacts the world and humankind",
+     "topics": [
+      {
+       "id": "demonstrate-and-identify-reasons-for-the-develop",
+       "title": "Demonstrate and identify reasons for the development of technology and its effects on humankind",
+       "subtopics": [
+        {
+         "id": "students-demonstrate-an-understanding-of-the-nat",
+         "title": "Students demonstrate an understanding of the nature of technology by:",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "comparing and contrasting life with and without current technology and how technology impacts everyday life."
+          },
+          {
+           "code": null,
+           "text": "recognizing that technology has positive and negative outcomes utilizing specific examples."
+          },
+          {
+           "code": null,
+           "text": "identifying natural (e.g. wood, fur, stone) vs. human-made objects (e.g. plastic, Styrofoam)"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "discuss-and-develop-an-understanding-of-technolo",
+       "title": "Discuss and develop an understanding of technology and its relationship to the natural and designed (human-made) world in the local community",
+       "subtopics": [
+        {
+         "id": "students-demonstrate-an-understanding-of-the-nee",
+         "title": "Students demonstrate an understanding of the need for technology by:",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "understanding that technology can make life easier (e.g. clothes, telephone, automobile, microwave)."
+          },
+          {
+           "code": null,
+           "text": "discussing the purpose of technology and its relationship to the natural and designed world"
+          },
+          {
+           "code": null,
+           "text": "understanding that technology is any process or invention that affects society (e.g. impact of the tractor on farming, indoor plumbing)."
+          },
+          {
+           "code": null,
+           "text": "discussing the purpose of technology and how it has affected humankind. (e.g. interview people from different generations to compare changes in lifestyles due to technological advancements)."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "effective-design-through-engineering-and-technol",
+     "title": "Effective design through engineering and technology is the outcome of a problem solving process involving the application of content knowledge, acquired skills, and creativity",
+     "topics": [
+      {
+       "id": "explore-and-recognize-the-attributes-of-a-design",
+       "title": "Explore and recognize the attributes of a design process",
+       "subtopics": [
+        {
+         "id": "students-demonstrate-an-understanding-of-the-att",
+         "title": "Students demonstrate an understanding of the attributes of a design process by:",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "defining a problem and expressing design ideas for that problem to others."
+          },
+          {
+           "code": null,
+           "text": "solving problems through the creation of design solutions."
+          },
+          {
+           "code": null,
+           "text": "identifying the characteristics of being an effective team member and working together to complete a task."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "explore-and-recognize-basic-technological-produc",
+       "title": "Explore and recognize basic technological products and systems, as well as their tools",
+       "subtopics": [
+        {
+         "id": "students-demonstrate-an-understanding-of-technol",
+         "title": "Students demonstrate an understanding of technological products and systems by:",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "identifying and safely using the required tools (e.g. glue, scissors, tape) and information resources for a specific task."
+          },
+          {
+           "code": null,
+           "text": "using information to identify patterns within those systems."
+          },
+          {
+           "code": null,
+           "text": "following step by step procedures and identifying sequential actions."
+          },
+          {
+           "code": null,
+           "text": "identifying the effects of technology and comparing and contrasting tradeoffs (e.g. advantage of using scissors vs. paper cutter or tearing paper)."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "explore-the-processes-of-research-and-developmen",
+       "title": "Explore the processes of research and development, invention and innovation, experimentation, and troubleshooting in planning practical solutions to problems",
+       "subtopics": [
+        {
+         "id": "students-demonstrate-an-understanding-of-effecti",
+         "title": "Students demonstrate an understanding of effective design by:",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "exploring a process to solve a real world problem."
+          },
+          {
+           "code": null,
+           "text": "using age-appropriate construction materials based on specific properties (e.g. strength, hardness, flexibility) and tools (e.g. pliers, tape measure, hammer, nails) to build a model to solve a specific problem."
+          },
+          {
+           "code": null,
+           "text": "testing, troubleshooting, and evaluating a basic design solution."
+          },
+          {
+           "code": null,
+           "text": "documenting the advantages and disadvantages of multiple designs (e.g. various designs of can openers)."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "the-designed-world-community-selects-and-uses-ap",
+     "title": "The designed world community selects and uses appropriate technologies",
+     "topics": [
+      {
+       "id": "recognize-that-there-are-various-areas-in-engine",
+       "title": "Recognize that there are various areas in engineering and technology",
+       "subtopics": [
+        {
+         "id": "students-demonstrate-an-understanding-of-the-are",
+         "title": "Students demonstrate an understanding of the areas of engineering and technology by:",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "identifying responsibilities of community workers in the areas of engineering and technology."
+          },
+          {
+           "code": null,
+           "text": "specifying and explaining the connections within the areas of engineering and technology."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "select-and-utilize-appropriate-tools-to-measure-",
+       "title": "Select and utilize appropriate tools to measure, design, and implement specific technologies",
+       "subtopics": [
+        {
+         "id": "students-demonstrate-an-understanding-of-selecti",
+         "title": "Students demonstrate an understanding of selecting appropriate tools by:",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "identifying characteristics of appropriate tools within different technologies."
+          },
+          {
+           "code": null,
+           "text": "experimenting and selecting the optimal tool for a given task in a specific area of technology."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "5-6",
+   "units": [
+    {
+     "id": "engineering-and-technology-impacts-the-world-and",
+     "title": "Engineering and technology impacts the world and humankind",
+     "topics": [
+      {
+       "id": "compare-contrast-and-provide-evidence-of-how-tec",
+       "title": "Compare, contrast, and provide evidence of how technology influences history and impacts society",
+       "subtopics": [
+        {
+         "id": "students-demonstrate-an-understanding-of-the-imp",
+         "title": "Students demonstrate an understanding of the impact of technology by:",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "researching and displaying how technological advancements have inspired historical events (e.g. Cold War/Sputnik, slavery/cotton gin)"
+          },
+          {
+           "code": null,
+           "text": "listing and describing the importance of technology in daily life and its trade-offs"
+          },
+          {
+           "code": null,
+           "text": "evaluating the many and varying uses of technology within different geographic regions (e.g. geothermal, tidal, and wind power"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "describe-and-demonstrate-the-effects-of-technolo",
+       "title": "Describe and demonstrate the effects of technological systems on humankind in terms of a national scale",
+       "subtopics": [
+        {
+         "id": "students-demonstrate-an-understanding-of-the-out",
+         "title": "Students demonstrate an understanding of the outcomes of technology by:",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "making connections between technological inventions and their impacts on a nation. (e.g. automobiles and highway systems; computerized machines and manufacturing)."
+          },
+          {
+           "code": null,
+           "text": "researching and analyzing the effects on humankind and the environment that a particular technology has had over a period of time (e.g. landfill, dam on a river, desalinization plant)."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "effective-design-through-engineering-and-technol",
+     "title": "Effective design through engineering and technology is the outcome of a problem solving process involving the application of content knowledge, acquired skills, and creativity",
+     "topics": [
+      {
+       "id": "utilize-the-attributes-of-a-design-process-to-so",
+       "title": "Utilize the attributes of a design process to solve a real world problem",
+       "subtopics": [
+        {
+         "id": "students-demonstrate-an-understanding-of-the-att",
+         "title": "Students demonstrate an understanding of the attributes of a design process by:",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "defining a problem that addresses a scenario with given criteria and constraints."
+          },
+          {
+           "code": null,
+           "text": "selecting an appropriate design solution for a given scenario or task."
+          },
+          {
+           "code": null,
+           "text": "fulfilling a specific function as a team member to achieve a desired result."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "use-and-maintain-technological-products-and-syst",
+       "title": "Use and maintain technological products and systems, as well as their tools",
+       "subtopics": [
+        {
+         "id": "students-demonstrate-an-understanding-of-technol",
+         "title": "Students demonstrate an understanding of technological products and systems by:",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "safely using the required tools and organizing information resources for a specific task."
+          },
+          {
+           "code": null,
+           "text": "incorporating assigned materials and assigned tools throughout the design process."
+          },
+          {
+           "code": null,
+           "text": "using information to discover, diagnose and troubleshoot problems that arise in the course of the design process."
+          },
+          {
+           "code": null,
+           "text": "interpreting the accuracy of information for the purpose of developing possible solutions."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "utilize-processes-i-e-research-and-development-i",
+       "title": "Utilize processes (i.e. research and development, invention and innovation, experimentation, and troubleshooting) in designs that use criteria and constraints leading to useful products and systems",
+       "subtopics": [
+        {
+         "id": "students-demonstrate-an-understanding-of-effecti",
+         "title": "Students demonstrate an understanding of effective designs of products and systems by:",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "given a process, with criteria and constraints, solve a real world problem."
+          },
+          {
+           "code": null,
+           "text": "utilizing materials provided to construct a working model for a given task (e.g. construct a contraption that utilizes all the simple machines – chain reaction machine)."
+          },
+          {
+           "code": null,
+           "text": "testing, troubleshooting, and evaluating a design solution."
+          },
+          {
+           "code": null,
+           "text": "presenting final working model for peer review and revision."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "the-designed-world-community-selects-and-uses-ap",
+     "title": "The designed world community selects and uses appropriate technologies",
+     "topics": [
+      {
+       "id": "explore-the-various-areas-in-engineering-and-tec",
+       "title": "Explore the various areas in engineering and technology and their interconnections",
+       "subtopics": [
+        {
+         "id": "students-demonstrate-an-understanding-of-the-are",
+         "title": "Students demonstrate an understanding of the areas of engineering and technology by:",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "differentiating among the various engineering and technological careers (e.g. medical technologist vs. biotechnologist)."
+          },
+          {
+           "code": null,
+           "text": "researching the connections within the areas of engineering and technology as they apply to a given product."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "compare-and-contrast-tools-to-measure-design-and",
+       "title": "Compare and contrast tools to measure, design, and implement specific technologies",
+       "subtopics": [
+        {
+         "id": "students-demonstrate-an-understanding-of-selecti",
+         "title": "Students demonstrate an understanding of selecting appropriate tools by:",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "comparing and contrasting tools used for the same purpose across different technologies (e.g. linear measurement tools in construction vs. digital measurement tools in biotechnology)."
+          },
+          {
+           "code": null,
+           "text": "researching and selecting the optimal tool for a given task in a specific area of technology."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "7-8",
+   "units": [
+    {
+     "id": "engineering-and-technology-impacts-the-world-and",
+     "title": "Engineering and technology impacts the world and humankind",
+     "topics": [
+      {
+       "id": "compare-contrast-and-provide-evidence-of-how-tec",
+       "title": "Compare, contrast, and provide evidence of how technology influences history and impacts society",
+       "subtopics": [
+        {
+         "id": "students-demonstrate-an-understanding-of-the-imp",
+         "title": "Students demonstrate an understanding of the impact of technology by:",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "researching and displaying how technological advancements have inspired historical events (e.g. Cold War/Sputnik, slavery/cotton gin)"
+          },
+          {
+           "code": null,
+           "text": "listing and describing the importance of technology in daily life and its trade-offs"
+          },
+          {
+           "code": null,
+           "text": "evaluating the many and varying uses of technology within different geographic regions (e.g. geothermal, tidal, and wind power"
+          },
+          {
+           "code": null,
+           "text": "describing how technological advances affect society (e.g. horse drawn carriages to automobiles)"
+          },
+          {
+           "code": null,
+           "text": "comparing and contrasting the social and economic concerns that arise for the individual, the family, and/or the community as a result of technological advancements"
+          },
+          {
+           "code": null,
+           "text": "analyzing the use of technology within various cultures (e.g. Amish, Japanese"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "describe-and-demonstrate-the-effects-of-technolo",
+       "title": "Describe and demonstrate the effects of technological systems on humankind in terms of a national scale",
+       "subtopics": [
+        {
+         "id": "students-demonstrate-an-understanding-of-the-out",
+         "title": "Students demonstrate an understanding of the outcomes of technology by:",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "designing a technological product and explaining how it may impact society. (e.g. television, cell phones, jumbo jets, water purification systems)"
+          },
+          {
+           "code": null,
+           "text": "associating and illustrating the effects of particular technological systems over a period of time (e.g. waste disposal systems, potable water systems)"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "effective-design-through-engineering-and-technol",
+     "title": "Effective design through engineering and technology is the outcome of a problem solving process involving the application of content knowledge, acquired skills, and creativity",
+     "topics": [
+      {
+       "id": "utilize-the-attributes-of-a-design-process-to-so",
+       "title": "Utilize the attributes of a design process to solve a real world problem",
+       "subtopics": [
+        {
+         "id": "students-demonstrate-an-understanding-of-the-att",
+         "title": "Students demonstrate an understanding of the attributes of a design process by:",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "defining a problem that addresses a scenario by identifying its criteria and constraints."
+          },
+          {
+           "code": null,
+           "text": "selecting and justifying an appropriate design solution for a given scenario or task."
+          },
+          {
+           "code": null,
+           "text": "explaining what makes an effective design team and working together to achieve a desired result."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "use-and-maintain-technological-products-and-syst",
+       "title": "Use and maintain technological products and systems, as well as their tools",
+       "subtopics": [
+        {
+         "id": "students-demonstrate-an-understanding-of-technol",
+         "title": "Students demonstrate an understanding of technological products and systems by:",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "safely using the required tools and organizing and explaining information resources for a specific task."
+          },
+          {
+           "code": null,
+           "text": "incorporating information, proper materials and tool selection throughout the design process."
+          },
+          {
+           "code": null,
+           "text": "using tools to diagnose, adjust, and repair problems that arise in the course of the design process."
+          },
+          {
+           "code": null,
+           "text": "interpreting and evaluating the accuracy of information for the purpose of developing possible solutions."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "utilize-processes-i-e-research-and-development-i",
+       "title": "Utilize processes (i.e. research and development, invention and innovation, experimentation, and troubleshooting) in designs that use criteria and constraints leading to useful products and systems",
+       "subtopics": [
+        {
+         "id": "students-demonstrate-an-understanding-of-effecti",
+         "title": "Students demonstrate an understanding of effective designs of products and systems by:",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "independently develop and utilize a process to solve a real world problem."
+          },
+          {
+           "code": null,
+           "text": "presenting documentation, revisions, and final working model to their peers using a variety of technological tools."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "the-designed-world-community-selects-and-uses-ap",
+     "title": "The designed world community selects and uses appropriate technologies",
+     "topics": [
+      {
+       "id": "explore-the-various-areas-in-engineering-and-tec",
+       "title": "Explore the various areas in engineering and technology and their interconnections",
+       "subtopics": [
+        {
+         "id": "students-demonstrate-an-understanding-of-the-are",
+         "title": "Students demonstrate an understanding of the areas of engineering and technology by:",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "researching and defining the requirements of a particular engineering / technological discipline."
+          },
+          {
+           "code": null,
+           "text": "evaluating the connections within the areas of engineering and technology as they apply to an assigned product."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "compare-and-contrast-tools-to-measure-design-and",
+       "title": "Compare and contrast tools to measure, design, and implement specific technologies",
+       "subtopics": [
+        {
+         "id": "students-demonstrate-an-understanding-of-selecti",
+         "title": "Students demonstrate an understanding of selecting appropriate tools by:",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "researching and explaining the evolution of key tool(s) used in specific technologies (e.g. the evolution of the microscope in the medical area)."
+          },
+          {
+           "code": null,
+           "text": "researching and selecting the optimal tool for a student-selected task in a specific area of technology."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "9-12",
+   "units": [
+    {
+     "id": "engineering-and-technology-impacts-the-world-and",
+     "title": "Engineering and technology impacts the world and humankind",
+     "topics": [
+      {
+       "id": "identify-the-factors-affecting-technological-adv",
+       "title": "Identify the factors affecting technological advances (e.g. social, economic, political, cultural, and environmental) throughout history",
+       "subtopics": [
+        {
+         "id": "students-demonstrate-an-understanding-of-the-inf",
+         "title": "Students demonstrate an understanding of the influences of technology by:",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "analyzing factors related to the development of technology and its effects on the rate of change on the designed world."
+          },
+          {
+           "code": null,
+           "text": "assessing the relationship between available resources and the development of technology."
+          },
+          {
+           "code": null,
+           "text": "analyzing the evolution of factors affecting technological advances in a global environment (e.g. satellites, transportation, media)."
+          },
+          {
+           "code": null,
+           "text": "forecasting technological advancements based on potential needs and wants. (e.g. eBooks, Kindle)"
+          },
+          {
+           "code": null,
+           "text": "developing technology to meet a need and identify potential tradeoffs."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "analyze-and-explain-advancements-in-technologica",
+       "title": "Analyze and explain advancements in technological systems and their impact on the world",
+       "subtopics": [
+        {
+         "id": "students-demonstrate-an-understanding-of-the-imp",
+         "title": "Students demonstrate an understanding of the impacts of technology by:",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "revising a current technological system and analyzing the global effects of the innovation (e.g. transition from fossil fuels to use of renewable resources)."
+          },
+          {
+           "code": null,
+           "text": "modeling the design of a technological system and evaluating its impact on humankind"
+          },
+          {
+           "code": null,
+           "text": "designing a technological system to meet a specified need and analyzing its potential impact on the world"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "effective-design-through-engineering-and-technol",
+     "title": "Effective design through engineering and technology is the outcome of a problem solving process involving the application of content knowledge, acquired skills, and creativity",
+     "topics": [
+      {
+       "id": "evaluate-and-refine-the-design-used-to-solve-a-r",
+       "title": "Evaluate and refine the design used to solve a real world problem",
+       "subtopics": [
+        {
+         "id": "students-demonstrate-an-understanding-of-the-att",
+         "title": "Students demonstrate an understanding of the attributes of a design process by:",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "identifying in-depth criteria and constraints by developing a concise problem statement."
+          },
+          {
+           "code": null,
+           "text": "evaluating and finalizing the most appropriate design solution for a given scenario or task"
+          },
+          {
+           "code": null,
+           "text": "creating a team and assigning roles to team members for the purpose of achieving an overall desired result."
+          },
+          {
+           "code": null,
+           "text": "reevaluating the process utilized in the development of the design solution with the goal of enhanced efficiency."
+          },
+          {
+           "code": null,
+           "text": "identifying the personnel positions required to complete a task and the essential qualities required of each position"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "incorporate-technological-products-systems-and-t",
+       "title": "Incorporate technological products, systems and their tools to achieve design solutions",
+       "subtopics": [
+        {
+         "id": "students-demonstrate-an-understanding-of-technol",
+         "title": "Students demonstrate an understanding of technological products and systems by:",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "selecting independently the proper tools or information resources used in completing a task."
+          },
+          {
+           "code": null,
+           "text": "incorporating proper information, material selection and appropriate tools throughout the design process. (e.g. digital micrometers, digital oscilloscopes)"
+          },
+          {
+           "code": null,
+           "text": "documenting, communicating, and evaluating processes and procedures used to build, operate, and maintain systems."
+          },
+          {
+           "code": null,
+           "text": "integrating information to develop possible solutions and evaluate designs."
+          },
+          {
+           "code": null,
+           "text": "designing specific tools (e.g. jigs and fixtures) to expedite the task."
+          },
+          {
+           "code": null,
+           "text": "creating technically written documentation to support a designed product."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "refine-the-processes-of-research-and-development",
+       "title": "Refine the processes of research and development, invention and innovation, experimentation, and troubleshooting for the purpose of achieving an optimal design solution",
+       "subtopics": [
+        {
+         "id": "students-demonstrate-an-understanding-of-what-is",
+         "title": "Students demonstrate an understanding of what is an optimal design solution by:",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "independently develop and utilize a process to solve a real world problem and justifying the selection."
+          },
+          {
+           "code": null,
+           "text": "selecting appropriate materials to construct a working prototype and/or simulation."
+          },
+          {
+           "code": null,
+           "text": "evaluating and refining a complex design solution for a working prototype"
+          },
+          {
+           "code": null,
+           "text": "presenting comparative simulations/ prototypes and defending the selected solution."
+          },
+          {
+           "code": null,
+           "text": "revising a process to solve a real world problem given unexpected constraints. (e.g. time, funding, personnel)"
+          },
+          {
+           "code": null,
+           "text": "developing an alternative solution to a design problem."
+          },
+          {
+           "code": null,
+           "text": "researching the patent application process."
+          },
+          {
+           "code": null,
+           "text": "presenting solutions to a community problem in a public forum (e.g. senior exhibitions)."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "the-designed-world-community-selects-and-uses-ap",
+     "title": "The designed world community selects and uses appropriate technologies",
+     "topics": [
+      {
+       "id": "experience-and-implement-the-various-areas-in-en",
+       "title": "Experience and implement the various areas in engineering and technology",
+       "subtopics": [
+        {
+         "id": "students-demonstrate-an-understanding-of-the-are",
+         "title": "Students demonstrate an understanding of the areas of engineering and technology by",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "preparing a career portfolio of a particular area of engineering or technology."
+          },
+          {
+           "code": null,
+           "text": "evaluating the connections within the areas of engineering and technology as they apply to a student designed product."
+          },
+          {
+           "code": null,
+           "text": "participating in an internship or job shadowing opportunity in a particular engineering / technological discipline."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "evaluate-the-effectiveness-of-tools-to-measure-d",
+       "title": "Evaluate the effectiveness of tools to measure, design, and implement specific technologies",
+       "subtopics": [
+        {
+         "id": "students-demonstrate-an-understanding-of-selecti",
+         "title": "Students demonstrate an understanding of selecting appropriate tools by:",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "evaluating the effectiveness of various tool(s) used in specific technologies."
+          },
+          {
+           "code": null,
+           "text": "developing or improving a tool for a specific technology (e.g. software, jig, fixture)."
+          },
+          {
+           "code": null,
+           "text": "Design, manufacture and test a prototype."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "build": {
+  "builtAt": "2026-10-14T16:20:48.083Z",
+  "model": "none",
+  "usd": 0,
+  "expectedCodes": null,
+  "coverage": null,
+  "missingCodes": [],
+  "counts": {
+   "grades": 5,
+   "units": 15,
+   "topics": 35,
+   "subtopics": 35,
+   "outcomes": 115
+  },
+  "warnings": []
+ }
+}

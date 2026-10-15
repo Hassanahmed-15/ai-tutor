@@ -1,0 +1,530 @@
+[
+ {
+  "grade": "all",
+  "unit": "Topic 1: Computational thinking",
+  "topic": "1.1 Decomposition and abstraction",
+  "subtopic": "Decomposition and abstraction",
+  "code": "1.1.1",
+  "outcome": "Explain how breaking problems down and hiding detail helps model the real world and solve problems."
+ },
+ {
+  "grade": "all",
+  "unit": "Topic 1: Computational thinking",
+  "topic": "1.1 Decomposition and abstraction",
+  "subtopic": "Decomposition and abstraction",
+  "code": "1.1.2",
+  "outcome": "Explain the benefits of splitting a program into subprograms."
+ },
+ {
+  "grade": "all",
+  "unit": "Topic 1: Computational thinking",
+  "topic": "1.2 Algorithms",
+  "subtopic": "Sequence, selection and repetition",
+  "code": "1.2.1",
+  "outcome": "Follow and write algorithms as flowcharts, pseudocode or code using sequence, selection, loops, iteration, input, processing and output."
+ },
+ {
+  "grade": "all",
+  "unit": "Topic 1: Computational thinking",
+  "topic": "1.2 Algorithms",
+  "subtopic": "Variables and data structures",
+  "code": "1.2.2",
+  "outcome": "Explain why variables and constants are needed and use them with strings, records and 1D/2D arrays in algorithms."
+ },
+ {
+  "grade": "all",
+  "unit": "Topic 1: Computational thinking",
+  "topic": "1.2 Algorithms",
+  "subtopic": "Operators in algorithms",
+  "code": "1.2.3",
+  "outcome": "Use arithmetic, relational and logical operators (including modulus, integer division, exponentiation) in algorithms."
+ },
+ {
+  "grade": "all",
+  "unit": "Topic 1: Computational thinking",
+  "topic": "1.2 Algorithms",
+  "subtopic": "Trace tables",
+  "code": "1.2.4",
+  "outcome": "Work out an algorithm's output for given data and use a trace table to track variable values."
+ },
+ {
+  "grade": "all",
+  "unit": "Topic 1: Computational thinking",
+  "topic": "1.2 Algorithms",
+  "subtopic": "Errors in programs",
+  "code": "1.2.5",
+  "outcome": "Distinguish syntax, logic and runtime errors and find and fix logic errors in algorithms."
+ },
+ {
+  "grade": "all",
+  "unit": "Topic 1: Computational thinking",
+  "topic": "1.2 Algorithms",
+  "subtopic": "Sorting and searching algorithms",
+  "code": "1.2.6",
+  "outcome": "Describe how bubble sort, merge sort, linear search and binary search work."
+ },
+ {
+  "grade": "all",
+  "unit": "Topic 1: Computational thinking",
+  "topic": "1.2 Algorithms",
+  "subtopic": "Evaluating algorithms",
+  "code": "1.2.7",
+  "outcome": "Use reasoning and test data to judge whether an algorithm is fit for purpose and efficient."
+ },
+ {
+  "grade": "all",
+  "unit": "Topic 1: Computational thinking",
+  "topic": "1.3 Truth tables",
+  "subtopic": "Truth tables",
+  "code": "1.3.1",
+  "outcome": "Apply AND, OR and NOT in truth tables with up to three inputs."
+ },
+ {
+  "grade": "all",
+  "unit": "Topic 2: Data",
+  "topic": "2.1 Binary",
+  "subtopic": "Binary and number systems",
+  "code": "2.1.1",
+  "outcome": "Explain that all data and instructions are stored as binary and work out how many states a pattern of given length can hold."
+ },
+ {
+  "grade": "all",
+  "unit": "Topic 2: Data",
+  "topic": "2.1 Binary",
+  "subtopic": "Binary and number systems",
+  "code": "2.1.2",
+  "outcome": "Explain how unsigned integers and two's complement signed integers are represented and manipulated."
+ },
+ {
+  "grade": "all",
+  "unit": "Topic 2: Data",
+  "topic": "2.1 Binary",
+  "subtopic": "Binary and number systems",
+  "code": "2.1.3",
+  "outcome": "Convert between denary and 8-bit binary, both unsigned and signed."
+ },
+ {
+  "grade": "all",
+  "unit": "Topic 2: Data",
+  "topic": "2.1 Binary",
+  "subtopic": "Binary arithmetic and shifts",
+  "code": "2.1.4",
+  "outcome": "Add two positive binary patterns and apply logical and arithmetic binary shifts."
+ },
+ {
+  "grade": "all",
+  "unit": "Topic 2: Data",
+  "topic": "2.1 Binary",
+  "subtopic": "Binary arithmetic and shifts",
+  "code": "2.1.5",
+  "outcome": "Explain overflow when a value needs more bits than are available."
+ },
+ {
+  "grade": "all",
+  "unit": "Topic 2: Data",
+  "topic": "2.1 Binary",
+  "subtopic": "Hexadecimal",
+  "code": "2.1.6",
+  "outcome": "Explain why hexadecimal is used and convert between hexadecimal and binary."
+ },
+ {
+  "grade": "all",
+  "unit": "Topic 2: Data",
+  "topic": "2.2 Data representation",
+  "subtopic": "Representing text and images",
+  "code": "2.2.1",
+  "outcome": "Explain how characters are encoded using 7-bit ASCII."
+ },
+ {
+  "grade": "all",
+  "unit": "Topic 2: Data",
+  "topic": "2.2 Data representation",
+  "subtopic": "Representing text and images",
+  "code": "2.2.2",
+  "outcome": "Explain how bitmap images are stored using pixels, resolution and colour depth."
+ },
+ {
+  "grade": "all",
+  "unit": "Topic 2: Data",
+  "topic": "2.2 Data representation",
+  "subtopic": "Representing sound",
+  "code": "2.2.3",
+  "outcome": "Explain how analogue sound is stored in binary using amplitude, sample rate, bit depth and sample interval."
+ },
+ {
+  "grade": "all",
+  "unit": "Topic 2: Data",
+  "topic": "2.2 Data representation",
+  "subtopic": "Representing sound",
+  "code": "2.2.4",
+  "outcome": "Describe the limits of binary representation when the number of bits is fixed."
+ },
+ {
+  "grade": "all",
+  "unit": "Topic 2: Data",
+  "topic": "2.3 Data storage and compression",
+  "subtopic": "File sizes and storage units",
+  "code": "2.3.1",
+  "outcome": "Use binary storage units from bit to tebibyte and write expressions for file sizes and capacity needs."
+ },
+ {
+  "grade": "all",
+  "unit": "Topic 2: Data",
+  "topic": "2.3 Data storage and compression",
+  "subtopic": "Data compression",
+  "code": "2.3.2",
+  "outcome": "Explain why compression is needed and how lossless and lossy methods work."
+ },
+ {
+  "grade": "all",
+  "unit": "Topic 3: Computers",
+  "topic": "3.1 Hardware",
+  "subtopic": "The CPU and fetch-decode-execute",
+  "code": "3.1.1",
+  "outcome": "Explain the stored program concept and the roles of RAM, CPU parts, clock and buses in the fetch-decode-execute cycle."
+ },
+ {
+  "grade": "all",
+  "unit": "Topic 3: Computers",
+  "topic": "3.1 Hardware",
+  "subtopic": "Secondary storage and embedded systems",
+  "code": "3.1.2",
+  "outcome": "Explain the role of secondary storage and how magnetic, optical and solid state devices store data."
+ },
+ {
+  "grade": "all",
+  "unit": "Topic 3: Computers",
+  "topic": "3.1 Hardware",
+  "subtopic": "Secondary storage and embedded systems",
+  "code": "3.1.3",
+  "outcome": "Explain what an embedded system is and what it is used for."
+ },
+ {
+  "grade": "all",
+  "unit": "Topic 3: Computers",
+  "topic": "3.2 Software",
+  "subtopic": "Operating systems and utilities",
+  "code": "3.2.1",
+  "outcome": "Explain the purpose of an operating system: file, process, peripheral and user management."
+ },
+ {
+  "grade": "all",
+  "unit": "Topic 3: Computers",
+  "topic": "3.2 Software",
+  "subtopic": "Operating systems and utilities",
+  "code": "3.2.2",
+  "outcome": "Explain the purpose of utility software such as backup, defragmentation, compression and anti-malware."
+ },
+ {
+  "grade": "all",
+  "unit": "Topic 3: Computers",
+  "topic": "3.2 Software",
+  "subtopic": "Robust software",
+  "code": "3.2.3",
+  "outcome": "Explain why robust software matters and how audit trails and code reviews find vulnerabilities."
+ },
+ {
+  "grade": "all",
+  "unit": "Topic 3: Computers",
+  "topic": "3.3 Programming languages",
+  "subtopic": "Programming languages and translators",
+  "code": "3.3.1",
+  "outcome": "Describe the features and uses of low-level and high-level languages."
+ },
+ {
+  "grade": "all",
+  "unit": "Topic 3: Computers",
+  "topic": "3.3 Programming languages",
+  "subtopic": "Programming languages and translators",
+  "code": "3.3.2",
+  "outcome": "Explain how an interpreter and a compiler translate code differently."
+ },
+ {
+  "grade": "all",
+  "unit": "Topic 4: Networks",
+  "topic": "4.1 Networks",
+  "subtopic": "Networks and the internet",
+  "code": "4.1.1",
+  "outcome": "Explain why computers are connected in networks."
+ },
+ {
+  "grade": "all",
+  "unit": "Topic 4: Networks",
+  "topic": "4.1 Networks",
+  "subtopic": "Networks and the internet",
+  "code": "4.1.2",
+  "outcome": "Describe LANs and WANs."
+ },
+ {
+  "grade": "all",
+  "unit": "Topic 4: Networks",
+  "topic": "4.1 Networks",
+  "subtopic": "Networks and the internet",
+  "code": "4.1.3",
+  "outcome": "Explain how the internet is structured using IP addressing and routers."
+ },
+ {
+  "grade": "all",
+  "unit": "Topic 4: Networks",
+  "topic": "4.1 Networks",
+  "subtopic": "Network performance",
+  "code": "4.1.4",
+  "outcome": "Explain how wired and wireless connections differ in speed, range, latency and bandwidth."
+ },
+ {
+  "grade": "all",
+  "unit": "Topic 4: Networks",
+  "topic": "4.1 Networks",
+  "subtopic": "Network performance",
+  "code": "4.1.5",
+  "outcome": "Use bits-per-second units to calculate file size, transmission rate and time."
+ },
+ {
+  "grade": "all",
+  "unit": "Topic 4: Networks",
+  "topic": "4.1 Networks",
+  "subtopic": "Protocols and the TCP/IP model",
+  "code": "4.1.6",
+  "outcome": "Explain why network protocols are needed and the roles of Ethernet, Wi-Fi, TCP/IP, HTTP(S), FTP and email protocols."
+ },
+ {
+  "grade": "all",
+  "unit": "Topic 4: Networks",
+  "topic": "4.1 Networks",
+  "subtopic": "Protocols and the TCP/IP model",
+  "code": "4.1.7",
+  "outcome": "Describe how the four TCP/IP layers handle data across a network."
+ },
+ {
+  "grade": "all",
+  "unit": "Topic 4: Networks",
+  "topic": "4.1 Networks",
+  "subtopic": "Network topologies",
+  "code": "4.1.8",
+  "outcome": "Describe the features of bus, star and mesh topologies."
+ },
+ {
+  "grade": "all",
+  "unit": "Topic 4: Networks",
+  "topic": "4.2 Network security",
+  "subtopic": "Network security",
+  "code": "4.2.1",
+  "outcome": "Explain why network security matters, how penetration testing finds weaknesses, and how access control, physical security and firewalls protect."
+ },
+ {
+  "grade": "all",
+  "unit": "Topic 5: Issues and impact",
+  "topic": "5.1 Environmental",
+  "subtopic": "Environmental impact",
+  "code": "5.1.1",
+  "outcome": "Explain the environmental effects of digital devices: energy use, manufacture, replacement and disposal."
+ },
+ {
+  "grade": "all",
+  "unit": "Topic 5: Issues and impact",
+  "topic": "5.2 Ethical and legal",
+  "subtopic": "Personal data",
+  "code": "5.2.1",
+  "outcome": "Explain the ethical and legal issues of collecting and using personal data."
+ },
+ {
+  "grade": "all",
+  "unit": "Topic 5: Issues and impact",
+  "topic": "5.2 Ethical and legal",
+  "subtopic": "AI, machine learning and robotics",
+  "code": "5.2.2",
+  "outcome": "Explain the ethical and legal issues of AI, machine learning and robotics, such as bias, safety and liability."
+ },
+ {
+  "grade": "all",
+  "unit": "Topic 5: Issues and impact",
+  "topic": "5.2 Ethical and legal",
+  "subtopic": "Intellectual property",
+  "code": "5.2.3",
+  "outcome": "Describe how copyright, patents, trademarks and licences protect computer systems and software."
+ },
+ {
+  "grade": "all",
+  "unit": "Topic 5: Issues and impact",
+  "topic": "5.3 Cybersecurity",
+  "subtopic": "Malware and cyberattacks",
+  "code": "5.3.1",
+  "outcome": "Describe malware types and how hackers use technical weaknesses and social engineering."
+ },
+ {
+  "grade": "all",
+  "unit": "Topic 5: Issues and impact",
+  "topic": "5.3 Cybersecurity",
+  "subtopic": "Protecting systems and data",
+  "code": "5.3.2",
+  "outcome": "Describe protection methods: anti-malware, encryption, acceptable use policies, backup and recovery."
+ },
+ {
+  "grade": "all",
+  "unit": "Topic 6: Problem solving with programming",
+  "topic": "6.1 Develop code",
+  "subtopic": "Analysing and refining programs",
+  "code": "6.1.1",
+  "outcome": "Use decomposition and abstraction to analyse and solve programming problems."
+ },
+ {
+  "grade": "all",
+  "unit": "Topic 6: Problem solving with programming",
+  "topic": "6.1 Develop code",
+  "subtopic": "Analysing and refining programs",
+  "code": "6.1.2",
+  "outcome": "Read, write, analyse and refine programs in a high-level language."
+ },
+ {
+  "grade": "all",
+  "unit": "Topic 6: Problem solving with programming",
+  "topic": "6.1 Develop code",
+  "subtopic": "Analysing and refining programs",
+  "code": "6.1.3",
+  "outcome": "Convert flowcharts and pseudocode algorithms into programs."
+ },
+ {
+  "grade": "all",
+  "unit": "Topic 6: Problem solving with programming",
+  "topic": "6.1 Develop code",
+  "subtopic": "Readable code",
+  "code": "6.1.4",
+  "outcome": "Use layout, indentation, comments, meaningful names and white space to make programs readable and maintainable."
+ },
+ {
+  "grade": "all",
+  "unit": "Topic 6: Problem solving with programming",
+  "topic": "6.1 Develop code",
+  "subtopic": "Debugging and testing",
+  "code": "6.1.5",
+  "outcome": "Identify, locate and correct logic, syntax and runtime errors."
+ },
+ {
+  "grade": "all",
+  "unit": "Topic 6: Problem solving with programming",
+  "topic": "6.1 Develop code",
+  "subtopic": "Debugging and testing",
+  "code": "6.1.6",
+  "outcome": "Use reasoning and test data to judge a program's fitness for purpose and efficiency."
+ },
+ {
+  "grade": "all",
+  "unit": "Topic 6: Problem solving with programming",
+  "topic": "6.2 Constructs",
+  "subtopic": "Program structure",
+  "code": "6.2.1",
+  "outcome": "Identify and explain the structural components of programs, from constants and variables to subprograms and input/output."
+ },
+ {
+  "grade": "all",
+  "unit": "Topic 6: Problem solving with programming",
+  "topic": "6.2 Constructs",
+  "subtopic": "Control structures",
+  "code": "6.2.2",
+  "outcome": "Write programs using sequence, selection, loops, iteration and single entry/exit points."
+ },
+ {
+  "grade": "all",
+  "unit": "Topic 6: Problem solving with programming",
+  "topic": "6.3 Data types and structures",
+  "subtopic": "Data types",
+  "code": "6.3.1",
+  "outcome": "Use primitive types and 1D/2D structured types (string, array, record) appropriately."
+ },
+ {
+  "grade": "all",
+  "unit": "Topic 6: Problem solving with programming",
+  "topic": "6.3 Data types and structures",
+  "subtopic": "Variables and strings",
+  "code": "6.3.2",
+  "outcome": "Use variables and constants appropriately in programs."
+ },
+ {
+  "grade": "all",
+  "unit": "Topic 6: Problem solving with programming",
+  "topic": "6.3 Data types and structures",
+  "subtopic": "Variables and strings",
+  "code": "6.3.3",
+  "outcome": "Write programs that manipulate strings: length, position, substrings, case conversion."
+ },
+ {
+  "grade": "all",
+  "unit": "Topic 6: Problem solving with programming",
+  "topic": "6.4 Input/output",
+  "subtopic": "User input and files",
+  "code": "6.4.1",
+  "outcome": "Write programs that accept and respond sensibly to user input."
+ },
+ {
+  "grade": "all",
+  "unit": "Topic 6: Problem solving with programming",
+  "topic": "6.4 Input/output",
+  "subtopic": "User input and files",
+  "code": "6.4.2",
+  "outcome": "Write programs that read from and write to CSV text files."
+ },
+ {
+  "grade": "all",
+  "unit": "Topic 6: Problem solving with programming",
+  "topic": "6.4 Input/output",
+  "subtopic": "Validation and authentication",
+  "code": "6.4.3",
+  "outcome": "Explain why validation is needed and implement length, presence, range and pattern checks."
+ },
+ {
+  "grade": "all",
+  "unit": "Topic 6: Problem solving with programming",
+  "topic": "6.4 Input/output",
+  "subtopic": "Validation and authentication",
+  "code": "6.4.4",
+  "outcome": "Explain why authentication is needed and implement ID/password and lookup checks."
+ },
+ {
+  "grade": "all",
+  "unit": "Topic 6: Problem solving with programming",
+  "topic": "6.5 Operators",
+  "subtopic": "Operators in programs",
+  "code": "6.5.1",
+  "outcome": "Write programs using arithmetic operators."
+ },
+ {
+  "grade": "all",
+  "unit": "Topic 6: Problem solving with programming",
+  "topic": "6.5 Operators",
+  "subtopic": "Operators in programs",
+  "code": "6.5.2",
+  "outcome": "Write programs using relational operators."
+ },
+ {
+  "grade": "all",
+  "unit": "Topic 6: Problem solving with programming",
+  "topic": "6.5 Operators",
+  "subtopic": "Operators in programs",
+  "code": "6.5.3",
+  "outcome": "Write programs using logical operators."
+ },
+ {
+  "grade": "all",
+  "unit": "Topic 6: Problem solving with programming",
+  "topic": "6.6 Subprograms",
+  "subtopic": "Subprograms",
+  "code": "6.6.1",
+  "outcome": "Use built-in, library and user-written procedures and functions."
+ },
+ {
+  "grade": "all",
+  "unit": "Topic 6: Problem solving with programming",
+  "topic": "6.6 Subprograms",
+  "subtopic": "Subprograms",
+  "code": "6.6.2",
+  "outcome": "Write functions that return values and procedures that do not, with or without parameters."
+ },
+ {
+  "grade": "all",
+  "unit": "Topic 6: Problem solving with programming",
+  "topic": "6.6 Subprograms",
+  "subtopic": "Scope of variables",
+  "code": "6.6.3",
+  "outcome": "Explain the difference between global and local variables and use each appropriately."
+ }
+]

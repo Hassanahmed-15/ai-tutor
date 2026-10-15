@@ -1,0 +1,160 @@
+{
+ "id": "cie-igcse-afrikaans-second-language-0548-2025-2027",
+ "region": "INTL",
+ "framework": "Cambridge IGCSE Afrikaans - Second Language (0548) syllabus 2025–2027",
+ "board": "Cambridge",
+ "qualification": "IGCSE",
+ "subject": "Afrikaans - Second Language",
+ "syllabusCode": "0548",
+ "gradeSystem": "course",
+ "source": {
+  "urls": [
+   "https://www.cambridgeinternational.org/Images/663202-2025-2027-syllabus.pdf",
+   "https://www.cambridgeinternational.org/programmes-and-qualifications/cambridge-igcse-afrikaans-second-language-0548/"
+  ],
+  "publisher": "Cambridge University Press & Assessment (Cambridge International Education)",
+  "licence": "© Cambridge University Press & Assessment; structure + our own wording only",
+  "firstExam": "2025"
+ },
+ "grades": [
+  {
+   "grade": "IGCSE",
+   "units": [
+    {
+     "id": "reading",
+     "title": "Reading",
+     "topics": [
+      {
+       "id": "a-range-of-reading-strategies",
+       "title": "a range of reading strategies",
+       "subtopics": [
+        {
+         "id": "find-facts-and-ideas",
+         "title": "Find Facts and Ideas",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Find and understand factual details, ideas and arguments in various texts."
+          }
+         ]
+        },
+        {
+         "id": "recognise-opinions-and-attitudes",
+         "title": "Recognise Opinions and Attitudes",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Recognise and understand ideas, opinions and attitudes, including how they relate within texts."
+          }
+         ]
+        },
+        {
+         "id": "infer-implied-meaning",
+         "title": "Infer Implied Meaning",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Work out information, purposes and attitudes that texts imply without stating directly."
+          }
+         ]
+        },
+        {
+         "id": "infer-unfamiliar-words",
+         "title": "Infer Unfamiliar Words",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Infer the meaning of unfamiliar words and phrases from their surrounding information."
+          }
+         ]
+        },
+        {
+         "id": "read-for-a-purpose",
+         "title": "Read for a Purpose",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Use suitable reading methods to find details needed for a particular purpose and answer questions accurately."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "writing",
+     "title": "Writing",
+     "topics": [
+      {
+       "id": "linking-devices-for-different-purposes",
+       "title": "linking devices for different purposes",
+       "subtopics": [
+        {
+         "id": "plan-clear-information",
+         "title": "Plan Clear Information",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Present factual information, ideas and arguments clearly, developing them with relevant detail."
+          },
+          {
+           "code": null,
+           "text": "Choose and arrange relevant information coherently, using suitable linking expressions and paragraph structure."
+          }
+         ]
+        },
+        {
+         "id": "use-accurate-language",
+         "title": "Use Accurate Language",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Write texts using accurate grammar, vocabulary, punctuation and spelling."
+          },
+          {
+           "code": null,
+           "text": "Use varied grammatical and vocabulary structures, including appropriate verb forms, phrases, collocations and idioms."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "conventions-of",
+       "title": "conventions of",
+       "subtopics": [
+        {
+         "id": "conventions-of",
+         "title": "conventions of",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Adapt content, register, style and format appropriately to the writing purpose and intended audience."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "build": {
+  "builtAt": "2026-10-14T05:25:17.139Z",
+  "model": "gpt-5.6-luna",
+  "usd": 0.0046,
+  "expectedCodes": null,
+  "coverage": null,
+  "missingCodes": [],
+  "counts": {
+   "grades": 1,
+   "units": 2,
+   "topics": 3,
+   "subtopics": 8,
+   "outcomes": 10
+  },
+  "warnings": []
+ }
+}

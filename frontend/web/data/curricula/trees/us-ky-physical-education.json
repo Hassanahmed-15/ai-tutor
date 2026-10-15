@@ -1,0 +1,4266 @@
+{
+ "id": "us-ky-physical-education",
+ "region": "US",
+ "framework": "Kentucky state academic standards: Physical Education",
+ "board": null,
+ "qualification": "K-12",
+ "subject": "Physical Education",
+ "syllabusCode": null,
+ "gradeSystem": "grade",
+ "source": {
+  "urls": [
+   "https://api.commonstandardsproject.com/api/v1/jurisdictions/46C7F759B14D4334A1CD073B03B9BB7C",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/799936B3893C40B1B0EBD21851DC980C",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/56B72CFFAA69485794A3E21F7842797B",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/23CD814BA7964C15AB94FD1A0FBECC7D",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/EB86C71CC43D4E029126396C8AA3A1D2",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/0F5E3D32BFCB4032A59E640511F00571",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/512C2BA07FAD4181A072FECE2CAB46BB",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/25A429FC63AE44A1AE64A71AA3370C77",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/65F768742B35478789D65359CD69677D",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/86939DAD581F496FBFA2D3D328F0D773",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/B1FC53ADAEF3434F89444C0664144E10",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/0AB62D946C2D4FA78B142C9DE16303C9",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/34D8CA62B8A447DA8356467EDED822EE",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/552A885FC4934E93AC6F73C8848D7726",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/772882B984ED41FB8A64391CE96EBC2B"
+  ],
+  "publisher": "Kentucky state education agency (machine-readable via Common Standards Project / ASN)",
+  "licence": "CC BY 4.0 US, Common Curriculum, Inc.",
+  "firstExam": "2025"
+ },
+ "grades": [
+  {
+   "grade": "K",
+   "units": [
+    {
+     "id": "demonstrate-competency-in-a-variety-of-motor-ski",
+     "title": "Demonstrate competency in a variety of motor skills and movement patterns",
+     "topics": [
+      {
+       "id": "locomotor",
+       "title": "Locomotor",
+       "subtopics": [
+        {
+         "id": "locomotor",
+         "title": "Locomotor",
+         "outcomes": [
+          {
+           "code": "K.1.L1",
+           "text": "Explore a variety of locomotor movements, travelling in different directions."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "non-locomotor",
+       "title": "Non-Locomotor",
+       "subtopics": [
+        {
+         "id": "non-locomotor",
+         "title": "Non-Locomotor",
+         "outcomes": [
+          {
+           "code": "K.1.NL1",
+           "text": "Explore non-locomotor skills, using different body parts."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "body-management",
+       "title": "Body Management",
+       "subtopics": [
+        {
+         "id": "body-management",
+         "title": "Body Management",
+         "outcomes": [
+          {
+           "code": "K.1.BM1",
+           "text": "Maintain momentary stillness on different bases of support and transfers weight from one foot to another."
+          },
+          {
+           "code": "K.1.BM2",
+           "text": "Transfer weight from one foot to the other"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "manipulative-skills",
+       "title": "Manipulative Skills",
+       "subtopics": [
+        {
+         "id": "manipulative-skills",
+         "title": "Manipulative Skills",
+         "outcomes": [
+          {
+           "code": "K.1.MS1",
+           "text": "Explore manipulative skills with a variety of objects using performance cues."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "apply-knowledge-of-concepts-principles-strategie",
+     "title": "Apply knowledge of concepts, principles, strategies and tactics to movement and performance",
+     "topics": [
+      {
+       "id": "space",
+       "title": "Space",
+       "subtopics": [
+        {
+         "id": "space",
+         "title": "Space",
+         "outcomes": [
+          {
+           "code": "K.2.SP1",
+           "text": "Explore the difference between personal and general space."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "pathways-shapes-and-levels",
+       "title": "Pathways, Shapes and Levels",
+       "subtopics": [
+        {
+         "id": "pathways-shapes-and-levels",
+         "title": "Pathways, Shapes and Levels",
+         "outcomes": [
+          {
+           "code": "K.2.PS1",
+           "text": "Explore pathways, levels and relationships."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "speed-direction-and-force",
+       "title": "Speed, Direction and Force",
+       "subtopics": [
+        {
+         "id": "speed-direction-and-force",
+         "title": "Speed, Direction and Force",
+         "outcomes": [
+          {
+           "code": "K.2.SD1",
+           "text": "Explore travel in general space with different speeds."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "demonstrate-knowledge-and-skills-to-achieve-and-",
+     "title": "Demonstrate knowledge and skills to achieve and maintain a health-enhancing level of physical activity and fitness",
+     "topics": [
+      {
+       "id": "physical-activity-knowledge",
+       "title": "Physical Activity Knowledge",
+       "subtopics": [
+        {
+         "id": "physical-activity-knowledge",
+         "title": "Physical Activity Knowledge",
+         "outcomes": [
+          {
+           "code": "K.3.PA1",
+           "text": "Identify a variety of ways to be physically active at school and home."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "physical-fitness-knowledge",
+       "title": "Physical Fitness Knowledge",
+       "subtopics": [
+        {
+         "id": "physical-fitness-knowledge",
+         "title": "Physical Fitness Knowledge",
+         "outcomes": [
+          {
+           "code": "K.3.PF1",
+           "text": "Identify the importance of daily activity"
+          },
+          {
+           "code": "K.3.PF2",
+           "text": "Recognize that moving increases heart and respiratory rate."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "nutrition",
+       "title": "Nutrition",
+       "subtopics": [
+        {
+         "id": "nutrition",
+         "title": "Nutrition",
+         "outcomes": [
+          {
+           "code": "K.3.N1",
+           "text": "Recognize that food provides energy for physical activity."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "demonstrate-responsible-personal-and-social-beha",
+     "title": "Demonstrate responsible personal and social behavior that exhibits respect for self and others",
+     "topics": [
+      {
+       "id": "social-interactions-working-with-others",
+       "title": "Social Interactions/Working with Others",
+       "subtopics": [
+        {
+         "id": "social-interactions-working-with-others",
+         "title": "Social Interactions/Working with Others",
+         "outcomes": [
+          {
+           "code": "K.4.SW1",
+           "text": "Share equipment and space with others in physical activity settings."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "rules-and-etiquette",
+       "title": "Rules and Etiquette",
+       "subtopics": [
+        {
+         "id": "rules-and-etiquette",
+         "title": "Rules and Etiquette",
+         "outcomes": [
+          {
+           "code": "K.4.RE1",
+           "text": "Recognize and follow the established rules, protocol and etiquette in physical education."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "safety",
+       "title": "Safety",
+       "subtopics": [
+        {
+         "id": "safety",
+         "title": "Safety",
+         "outcomes": [
+          {
+           "code": "K.4.SA1",
+           "text": "Follow teacher directions for safe participation and proper use of equipment, independently and with others"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "demonstrate-value-of-physical-activity-for-healt",
+     "title": "Demonstrate value of physical activity for health, enjoyment, challenge, self-expression and social interaction",
+     "topics": [
+      {
+       "id": "health",
+       "title": "Health",
+       "subtopics": [
+        {
+         "id": "health",
+         "title": "Health",
+         "outcomes": [
+          {
+           "code": "K.5.H1",
+           "text": "Identify physical activity as a component of good health."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "challenge",
+       "title": "Challenge",
+       "subtopics": [
+        {
+         "id": "challenge",
+         "title": "Challenge",
+         "outcomes": [
+          {
+           "code": "K.5.C1",
+           "text": "Acknowledge that some physical activities are challenging"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "self-expression-and-enjoyment",
+       "title": "Self-Expression and Enjoyment",
+       "subtopics": [
+        {
+         "id": "self-expression-and-enjoyment",
+         "title": "Self-Expression and Enjoyment",
+         "outcomes": [
+          {
+           "code": "K.5.SE1",
+           "text": "Explore enjoyable physical activities."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "social-interaction",
+       "title": "Social Interaction",
+       "subtopics": [
+        {
+         "id": "social-interaction",
+         "title": "Social Interaction",
+         "outcomes": [
+          {
+           "code": "K.5.SI1",
+           "text": "Explore social interaction through physical activity"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "advocacy",
+       "title": "Advocacy",
+       "subtopics": [
+        {
+         "id": "advocacy",
+         "title": "Advocacy",
+         "outcomes": [
+          {
+           "code": "K.5.A1",
+           "text": "Recognize the importance of promoting physical activity"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "1",
+   "units": [
+    {
+     "id": "demonstrate-competency-in-a-variety-of-motor-ski",
+     "title": "Demonstrate competency in a variety of motor skills and movement patterns",
+     "topics": [
+      {
+       "id": "locomotor",
+       "title": "Locomotor",
+       "subtopics": [
+        {
+         "id": "locomotor",
+         "title": "Locomotor",
+         "outcomes": [
+          {
+           "code": "1.1.L1",
+           "text": "Perform a variety of locomotor movements using different body parts."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "non-locomotor",
+       "title": "Non-Locomotor",
+       "subtopics": [
+        {
+         "id": "non-locomotor",
+         "title": "Non-Locomotor",
+         "outcomes": [
+          {
+           "code": "1.1NL1",
+           "text": "Perform a variety of non-locomotor skills, using different body parts at different levels."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "body-management",
+       "title": "Body Management",
+       "subtopics": [
+        {
+         "id": "body-management",
+         "title": "Body Management",
+         "outcomes": [
+          {
+           "code": "1.1.BM1",
+           "text": "Perform a variety of balances using different body parts."
+          },
+          {
+           "code": "1.1.BM2",
+           "text": "Transfer weight from one body part to another with control."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "manipulative-skills",
+       "title": "Manipulative Skills",
+       "subtopics": [
+        {
+         "id": "manipulative-skills",
+         "title": "Manipulative Skills",
+         "outcomes": [
+          {
+           "code": "1.1.MS1",
+           "text": "Demonstrate manipulative skills with a variety of objects using appropriate performance cues"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "apply-knowledge-of-concepts-principles-strategie",
+     "title": "Apply knowledge of concepts, principles, strategies and tactics to movement and performance",
+     "topics": [
+      {
+       "id": "space",
+       "title": "Space",
+       "subtopics": [
+        {
+         "id": "space",
+         "title": "Space",
+         "outcomes": [
+          {
+           "code": "1.2.SP1",
+           "text": "Recognize the difference between personal and general space"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "pathways-shapes-and-levels",
+       "title": "Pathways, Shapes and Levels",
+       "subtopics": [
+        {
+         "id": "pathways-shapes-and-levels",
+         "title": "Pathways, Shapes and Levels",
+         "outcomes": [
+          {
+           "code": "1.2.PS1",
+           "text": "Travel with objects, demonstrating a variety of pathways, levels and relationships to their environment."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "speed-direction-and-force",
+       "title": "Speed, Direction and Force",
+       "subtopics": [
+        {
+         "id": "speed-direction-and-force",
+         "title": "Speed, Direction and Force",
+         "outcomes": [
+          {
+           "code": "1.2.SD1",
+           "text": "Differentiate between fast and slow speeds as well as light and strong force."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "strategy",
+       "title": "Strategy",
+       "subtopics": [
+        {
+         "id": "strategy",
+         "title": "Strategy",
+         "outcomes": [
+          {
+           "code": "1.2ST1",
+           "text": "Apply a variety of simple tactics to increase chances of success while exploring physical activities."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "demonstrate-knowledge-and-skills-to-achieve-and-",
+     "title": "Demonstrate knowledge and skills to achieve and maintain a health-enhancing level of physical activity and fitness",
+     "topics": [
+      {
+       "id": "physical-activity-knowledge",
+       "title": "Physical Activity Knowledge",
+       "subtopics": [
+        {
+         "id": "physical-activity-knowledge",
+         "title": "Physical Activity Knowledge",
+         "outcomes": [
+          {
+           "code": "1.3.PA1",
+           "text": "Identify reasons for participating in daily physical activity."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "physical-fitness-knowledge",
+       "title": "Physical Fitness Knowledge",
+       "subtopics": [
+        {
+         "id": "physical-fitness-knowledge",
+         "title": "Physical Fitness Knowledge",
+         "outcomes": [
+          {
+           "code": "1.3.PF1",
+           "text": "Identify the recommended amount of physical activity for children."
+          },
+          {
+           "code": "1.3.PF2",
+           "text": "Relate intensity to increased heart rate and muscle endurance."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "nutrition",
+       "title": "Nutrition",
+       "subtopics": [
+        {
+         "id": "nutrition",
+         "title": "Nutrition",
+         "outcomes": [
+          {
+           "code": "1.3.N1",
+           "text": "Differentiate between healthy and unhealthy foods"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "demonstrate-responsible-personal-and-social-beha",
+     "title": "Demonstrate responsible personal and social behavior that exhibits respect for self and others",
+     "topics": [
+      {
+       "id": "social-interactions-working-with-others",
+       "title": "Social Interactions/Working with Others",
+       "subtopics": [
+        {
+         "id": "social-interactions-working-with-others",
+         "title": "Social Interactions/Working with Others",
+         "outcomes": [
+          {
+           "code": "1.4.SW1",
+           "text": "Work with others independently in a variety of physical activity settings"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "rules-and-etiquette",
+       "title": "Rules and Etiquette",
+       "subtopics": [
+        {
+         "id": "rules-and-etiquette",
+         "title": "Rules and Etiquette",
+         "outcomes": [
+          {
+           "code": "1.4.RE1",
+           "text": "Recognize and follow the rules, protocols and etiquette in physical education."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "safety",
+       "title": "Safety",
+       "subtopics": [
+        {
+         "id": "safety",
+         "title": "Safety",
+         "outcomes": [
+          {
+           "code": "1.4.SA1",
+           "text": "Follow teacher directions for safe participation and proper use of equipment, independently and with others"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "demonstrate-value-of-physical-activity-for-healt",
+     "title": "Demonstrate value of physical activity for health, enjoyment, challenge, self-expression and social interaction",
+     "topics": [
+      {
+       "id": "health",
+       "title": "Health",
+       "subtopics": [
+        {
+         "id": "health",
+         "title": "Health",
+         "outcomes": [
+          {
+           "code": "1.5.H1",
+           "text": "Acknowledge the health benefits of participating in physical activities"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "challenge",
+       "title": "Challenge",
+       "subtopics": [
+        {
+         "id": "challenge",
+         "title": "Challenge",
+         "outcomes": [
+          {
+           "code": "1.5.C1",
+           "text": "Recognize that challenge in physical activity can lead to success"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "self-expression-and-enjoyment",
+       "title": "Self-Expression and Enjoyment",
+       "subtopics": [
+        {
+         "id": "self-expression-and-enjoyment",
+         "title": "Self-Expression and Enjoyment",
+         "outcomes": [
+          {
+           "code": "1.5.SE1",
+           "text": "Describe positive feelings that result from participating in physical activities."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "social-interaction",
+       "title": "Social Interaction",
+       "subtopics": [
+        {
+         "id": "social-interaction",
+         "title": "Social Interaction",
+         "outcomes": [
+          {
+           "code": "1.5.SI1",
+           "text": "Recognize personal likes and dislikes regarding participation in physical activities with others."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "advocacy",
+       "title": "Advocacy",
+       "subtopics": [
+        {
+         "id": "advocacy",
+         "title": "Advocacy",
+         "outcomes": [
+          {
+           "code": "1.5.A1",
+           "text": "Explore opportunities that encourage others to be physically active."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "2",
+   "units": [
+    {
+     "id": "demonstrate-competency-in-a-variety-of-motor-ski",
+     "title": "Demonstrate competency in a variety of motor skills and movement patterns",
+     "topics": [
+      {
+       "id": "locomotor",
+       "title": "Locomotor",
+       "subtopics": [
+        {
+         "id": "locomotor",
+         "title": "Locomotor",
+         "outcomes": [
+          {
+           "code": "2.1.L1",
+           "text": "Perform a variety of locomotor movements traveling in different directions, at different speeds and in different pathways."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "non-locomotor",
+       "title": "Non-Locomotor",
+       "subtopics": [
+        {
+         "id": "non-locomotor",
+         "title": "Non-Locomotor",
+         "outcomes": [
+          {
+           "code": "2.1.NL1",
+           "text": "Perform non-locomotor skills, with and without equipment."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "body-management",
+       "title": "Body Management",
+       "subtopics": [
+        {
+         "id": "body-management",
+         "title": "Body Management",
+         "outcomes": [
+          {
+           "code": "2.1.BM1",
+           "text": "Perform a variety of balances using different body parts with and without equipment."
+          },
+          {
+           "code": "2.1.BM2",
+           "text": "Transfer weight to different body parts using control, with and without equipment."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "manipulative-skills",
+       "title": "Manipulative Skills",
+       "subtopics": [
+        {
+         "id": "manipulative-skills",
+         "title": "Manipulative Skills",
+         "outcomes": [
+          {
+           "code": "2.1.MS1",
+           "text": "Demonstrate manipulative skills with a variety of objects using appropriate performance cues"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "apply-knowledge-of-concepts-principles-strategie",
+     "title": "Apply knowledge of concepts, principles, strategies and tactics to movement and performance",
+     "topics": [
+      {
+       "id": "space",
+       "title": "Space",
+       "subtopics": [
+        {
+         "id": "space",
+         "title": "Space",
+         "outcomes": [
+          {
+           "code": "2.2.SP1",
+           "text": "Perform movement skills in general space."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "pathways-shapes-and-levels",
+       "title": "Pathways, Shapes and Levels",
+       "subtopics": [
+        {
+         "id": "pathways-shapes-and-levels",
+         "title": "Pathways, Shapes and Levels",
+         "outcomes": [
+          {
+           "code": "2.2.PS1",
+           "text": "Combine shapes, levels and pathways into travel sequences."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "speed-direction-and-force",
+       "title": "Speed, Direction and Force",
+       "subtopics": [
+        {
+         "id": "speed-direction-and-force",
+         "title": "Speed, Direction and Force",
+         "outcomes": [
+          {
+           "code": "2.2.SD1",
+           "text": "Vary time and force with gradual increases and decreases."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "strategy",
+       "title": "Strategy",
+       "subtopics": [
+        {
+         "id": "strategy",
+         "title": "Strategy",
+         "outcomes": [
+          {
+           "code": "2.2.ST1",
+           "text": "Apply a variety of simple tactics to increase chances of success during the performance of physical activities."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "demonstrate-knowledge-and-skills-to-achieve-and-",
+     "title": "Demonstrate knowledge and skills to achieve and maintain a health-enhancing level of physical activity and fitness",
+     "topics": [
+      {
+       "id": "physical-activity-knowledge",
+       "title": "Physical Activity Knowledge",
+       "subtopics": [
+        {
+         "id": "physical-activity-knowledge",
+         "title": "Physical Activity Knowledge",
+         "outcomes": [
+          {
+           "code": "2.3.PA1",
+           "text": "Identify opportunities to participate in physical activity in various settings."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "physical-fitness-knowledge",
+       "title": "Physical Fitness Knowledge",
+       "subtopics": [
+        {
+         "id": "physical-fitness-knowledge",
+         "title": "Physical Fitness Knowledge",
+         "outcomes": [
+          {
+           "code": "2.3.PF1",
+           "text": "Identify the importance of daily physical activity and track the amounts in a variety of settings."
+          },
+          {
+           "code": "2.3.PF2",
+           "text": "Describe different activities that improve strength of the heart and lungs."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "nutrition",
+       "title": "Nutrition",
+       "subtopics": [
+        {
+         "id": "nutrition",
+         "title": "Nutrition",
+         "outcomes": [
+          {
+           "code": "2.3.N1",
+           "text": "Describe the balance between nutrition and physical activity."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "demonstrate-responsible-personal-and-social-beha",
+     "title": "Demonstrate responsible personal and social behavior that exhibits respect for self and others",
+     "topics": [
+      {
+       "id": "social-interactions-working-with-others",
+       "title": "Social Interactions/Working with Others",
+       "subtopics": [
+        {
+         "id": "social-interactions-working-with-others",
+         "title": "Social Interactions/Working with Others",
+         "outcomes": [
+          {
+           "code": "2.4.SW1",
+           "text": "Work with others independently in partner environments."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "rules-and-etiquette",
+       "title": "Rules and Etiquette",
+       "subtopics": [
+        {
+         "id": "rules-and-etiquette",
+         "title": "Rules and Etiquette",
+         "outcomes": [
+          {
+           "code": "2.4.RE1",
+           "text": "Recognize and follow the established rules, protocols and etiquette in physical education."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "safety",
+       "title": "Safety",
+       "subtopics": [
+        {
+         "id": "safety",
+         "title": "Safety",
+         "outcomes": [
+          {
+           "code": "2.4.SA1",
+           "text": "Follow teacher directions for safe participation and proper use of equipment, independently and with others."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "demonstrate-value-of-physical-activity-for-healt",
+     "title": "Demonstrate value of physical activity for health, enjoyment, challenge, self-expression and social interaction",
+     "topics": [
+      {
+       "id": "health",
+       "title": "Health",
+       "subtopics": [
+        {
+         "id": "health",
+         "title": "Health",
+         "outcomes": [
+          {
+           "code": "2.5.H1",
+           "text": "Identify physical activities that contribute to a healthy lifestyle."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "challenge",
+       "title": "Challenge",
+       "subtopics": [
+        {
+         "id": "challenge",
+         "title": "Challenge",
+         "outcomes": [
+          {
+           "code": "2.5.C1",
+           "text": "Compare physical activities that bring confidence and challenge."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "self-expression-and-enjoyment",
+       "title": "Self-Expression and Enjoyment",
+       "subtopics": [
+        {
+         "id": "self-expression-and-enjoyment",
+         "title": "Self-Expression and Enjoyment",
+         "outcomes": [
+          {
+           "code": "2.5.SE1",
+           "text": "Identify physical activities that provide self-expression."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "social-interaction",
+       "title": "Social Interaction",
+       "subtopics": [
+        {
+         "id": "social-interaction",
+         "title": "Social Interaction",
+         "outcomes": [
+          {
+           "code": "2.5.SI1",
+           "text": "Identify the benefits of working cooperatively with others."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "advocacy",
+       "title": "Advocacy",
+       "subtopics": [
+        {
+         "id": "advocacy",
+         "title": "Advocacy",
+         "outcomes": [
+          {
+           "code": "2.5.A1",
+           "text": "Identify various ways to encourage peers to be physically active."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "3",
+   "units": [
+    {
+     "id": "demonstrate-competency-in-a-variety-of-motor-ski",
+     "title": "Demonstrate competency in a variety of motor skills and movement patterns",
+     "topics": [
+      {
+       "id": "locomotor",
+       "title": "Locomotor",
+       "subtopics": [
+        {
+         "id": "locomotor",
+         "title": "Locomotor",
+         "outcomes": [
+          {
+           "code": "3.1.L1",
+           "text": "Perform, alone and with others, a variety of locomotor movements at different levels and in different pathways and directions, with and without equipment."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "non-locomotor",
+       "title": "Non-Locomotor",
+       "subtopics": [
+        {
+         "id": "non-locomotor",
+         "title": "Non-Locomotor",
+         "outcomes": [
+          {
+           "code": "3.1.NL1",
+           "text": "Apply non-locomotor skills in various activities using different body parts, shapes and levels, with and without equipment."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "body-management",
+       "title": "Body Management",
+       "subtopics": [
+        {
+         "id": "body-management",
+         "title": "Body Management",
+         "outcomes": [
+          {
+           "code": "3.1.BM1",
+           "text": "Perform a variety of controlled transitions in movement, with and without equipment."
+          },
+          {
+           "code": "3.1.BM2",
+           "text": "Transfer weight to different body parts for momentary weight support."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "manipulative-skills",
+       "title": "Manipulative Skills",
+       "subtopics": [
+        {
+         "id": "manipulative-skills",
+         "title": "Manipulative Skills",
+         "outcomes": [
+          {
+           "code": "3.1.MS1",
+           "text": "Demonstrate manipulative skills using a variety of objects with a partner by demonstrating appropriate performance cues"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "apply-knowledge-of-concepts-principles-strategie",
+     "title": "Apply knowledge of concepts, principles, strategies and tactics to movement and performance",
+     "topics": [
+      {
+       "id": "space",
+       "title": "Space",
+       "subtopics": [
+        {
+         "id": "space",
+         "title": "Space",
+         "outcomes": [
+          {
+           "code": "3.2.SP1",
+           "text": "Apply the concepts of general and personal space to movement."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "speed-direction-and-force",
+       "title": "Speed, Direction and Force",
+       "subtopics": [
+        {
+         "id": "speed-direction-and-force",
+         "title": "Speed, Direction and Force",
+         "outcomes": [
+          {
+           "code": "3.2.SD1",
+           "text": "Apply the movement concepts of speed and force in a variety of activities."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "strategy",
+       "title": "Strategy",
+       "subtopics": [
+        {
+         "id": "strategy",
+         "title": "Strategy",
+         "outcomes": [
+          {
+           "code": "3.2.ST1",
+           "text": "Apply simple strategies and tactics in a variety of activities"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "demonstrate-knowledge-and-skills-to-achieve-and-",
+     "title": "Demonstrate knowledge and skills to achieve and maintain a health-enhancing level of physical activity and fitness",
+     "topics": [
+      {
+       "id": "physical-activity-knowledge",
+       "title": "Physical Activity Knowledge",
+       "subtopics": [
+        {
+         "id": "physical-activity-knowledge",
+         "title": "Physical Activity Knowledge",
+         "outcomes": [
+          {
+           "code": "3.3.PA1",
+           "text": "Describe the benefits of participating in physical activity every day."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "physical-fitness-knowledge",
+       "title": "Physical Fitness Knowledge",
+       "subtopics": [
+        {
+         "id": "physical-fitness-knowledge",
+         "title": "Physical Fitness Knowledge",
+         "outcomes": [
+          {
+           "code": "3.3.PF1",
+           "text": "Discuss strategies for using skills learned in physical education in a variety of settings to meet physical activity guidelines"
+          },
+          {
+           "code": "3.3.PF2",
+           "text": "Identify the components of health related fitness"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "nutrition",
+       "title": "Nutrition",
+       "subtopics": [
+        {
+         "id": "nutrition",
+         "title": "Nutrition",
+         "outcomes": [
+          {
+           "code": "3.3.N1",
+           "text": "Identify a variety of nutritious food choices from each food group that will help balance the body before and after physical activity."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "demonstrate-responsible-personal-and-social-beha",
+     "title": "Demonstrate responsible personal and social behavior that exhibits respect for self and others",
+     "topics": [
+      {
+       "id": "social-interactions-working-with-others",
+       "title": "Social Interactions/Working with Others",
+       "subtopics": [
+        {
+         "id": "social-interactions-working-with-others",
+         "title": "Social Interactions/Working with Others",
+         "outcomes": [
+          {
+           "code": "3.4.SW1",
+           "text": "Work cooperatively and communicate positively with others in physical education, regardless of skill level."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "rules-and-etiquette",
+       "title": "Rules and Etiquette",
+       "subtopics": [
+        {
+         "id": "rules-and-etiquette",
+         "title": "Rules and Etiquette",
+         "outcomes": [
+          {
+           "code": "3.4.RE1",
+           "text": "Recognize and follow the established rules, protocols and etiquette in physical education."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "safety",
+       "title": "Safety",
+       "subtopics": [
+        {
+         "id": "safety",
+         "title": "Safety",
+         "outcomes": [
+          {
+           "code": "3.4.SA1",
+           "text": "Follow teacher directions for safe participation and proper use of equipment, independently and with others."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "demonstrate-value-of-physical-activity-for-healt",
+     "title": "Demonstrate value of physical activity for health, enjoyment, challenge, self-expression and social interaction",
+     "topics": [
+      {
+       "id": "health",
+       "title": "Health",
+       "subtopics": [
+        {
+         "id": "health",
+         "title": "Health",
+         "outcomes": [
+          {
+           "code": "3.5.H1",
+           "text": "Explain the health benefits of participating in physical activity."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "challenge",
+       "title": "Challenge",
+       "subtopics": [
+        {
+         "id": "challenge",
+         "title": "Challenge",
+         "outcomes": [
+          {
+           "code": "3.5.C1",
+           "text": "Discuss the challenge that comes with learning new activities."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "self-expression-and-enjoyment",
+       "title": "Self-Expression and Enjoyment",
+       "subtopics": [
+        {
+         "id": "self-expression-and-enjoyment",
+         "title": "Self-Expression and Enjoyment",
+         "outcomes": [
+          {
+           "code": "3.5.SE1",
+           "text": "Explain how physical activities are enjoyable."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "social-interaction",
+       "title": "Social Interaction",
+       "subtopics": [
+        {
+         "id": "social-interaction",
+         "title": "Social Interaction",
+         "outcomes": [
+          {
+           "code": "3.5.SI1",
+           "text": "Explain how physical activity provides opportunity for social interaction."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "advocacy",
+       "title": "Advocacy",
+       "subtopics": [
+        {
+         "id": "advocacy",
+         "title": "Advocacy",
+         "outcomes": [
+          {
+           "code": "3.5.A1",
+           "text": "Encourage peers to be physically active."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "4",
+   "units": [
+    {
+     "id": "demonstrate-competency-in-a-variety-of-motor-ski",
+     "title": "Demonstrate competency in a variety of motor skills and movement patterns",
+     "topics": [
+      {
+       "id": "locomotor",
+       "title": "Locomotor",
+       "subtopics": [
+        {
+         "id": "locomotor",
+         "title": "Locomotor",
+         "outcomes": [
+          {
+           "code": "4.1.L1",
+           "text": "Perform different combinations of locomotor movements with and without equipment, alone and with others, moving at different speeds and levels, using different pathways and traveling in different directions."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "non-locomotor",
+       "title": "Non-Locomotor",
+       "subtopics": [
+        {
+         "id": "non-locomotor",
+         "title": "Non-Locomotor",
+         "outcomes": [
+          {
+           "code": "4.1.NL1",
+           "text": "Apply non-locomotor skills in various activities, using a variety of body parts and shapes, at different levels, individually and with partners and equipment."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "body-management",
+       "title": "Body Management",
+       "subtopics": [
+        {
+         "id": "body-management",
+         "title": "Body Management",
+         "outcomes": [
+          {
+           "code": "4.1.BM1",
+           "text": "Perform a variety of controlled transitions between balances with partners"
+          },
+          {
+           "code": "4.1.BM2",
+           "text": "Transfer weight to different body parts at varying speeds, with and without equipment."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "manipulative-skills",
+       "title": "Manipulative Skills",
+       "subtopics": [
+        {
+         "id": "manipulative-skills",
+         "title": "Manipulative Skills",
+         "outcomes": [
+          {
+           "code": "4.1.MS1",
+           "text": "Apply manipulative skills with a partner, using a variety of objects, while demonstrating appropriate performance cues"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "apply-knowledge-of-concepts-principles-strategie",
+     "title": "Apply knowledge of concepts, principles, strategies and tactics to movement and performance",
+     "topics": [
+      {
+       "id": "space",
+       "title": "Space",
+       "subtopics": [
+        {
+         "id": "space",
+         "title": "Space",
+         "outcomes": [
+          {
+           "code": "4.2.SP1",
+           "text": "Combine spatial concepts with combination movements for small group activities in a variety of environments."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "speed-direction-and-force",
+       "title": "Speed, Direction and Force",
+       "subtopics": [
+        {
+         "id": "speed-direction-and-force",
+         "title": "Speed, Direction and Force",
+         "outcomes": [
+          {
+           "code": "4.2.SD1",
+           "text": "Apply speed, endurance and force in activities and game-like situations"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "strategy",
+       "title": "Strategy",
+       "subtopics": [
+        {
+         "id": "strategy",
+         "title": "Strategy",
+         "outcomes": [
+          {
+           "code": "4.2.ST1",
+           "text": "Apply basic offensive and defensive strategies and tactics in a variety of activities"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "demonstrate-knowledge-and-skills-to-achieve-and-",
+     "title": "Demonstrate knowledge and skills to achieve and maintain a health-enhancing level of physical activity and fitness",
+     "topics": [
+      {
+       "id": "physical-activity-knowledge",
+       "title": "Physical Activity Knowledge",
+       "subtopics": [
+        {
+         "id": "physical-activity-knowledge",
+         "title": "Physical Activity Knowledge",
+         "outcomes": [
+          {
+           "code": "4.3.PA1",
+           "text": "Identify factors that motivate daily participation in physical activity."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "physical-fitness-knowledge",
+       "title": "Physical Fitness Knowledge",
+       "subtopics": [
+        {
+         "id": "physical-fitness-knowledge",
+         "title": "Physical Fitness Knowledge",
+         "outcomes": [
+          {
+           "code": "4.3.PF1",
+           "text": "Record physical activity minutes inside and outside of school to determine progress toward daily recommendation"
+          },
+          {
+           "code": "4.3.PF2",
+           "text": "Identify physical activities that improve the components of health related fitness."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "nutrition",
+       "title": "Nutrition",
+       "subtopics": [
+        {
+         "id": "nutrition",
+         "title": "Nutrition",
+         "outcomes": [
+          {
+           "code": "4.3.N1",
+           "text": "Discuss the importance of hydration choices relative to physical activities."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "demonstrate-responsible-personal-and-social-beha",
+     "title": "Demonstrate responsible personal and social behavior that exhibits respect for self and others",
+     "topics": [
+      {
+       "id": "social-interactions-working-with-others",
+       "title": "Social Interactions/Working with Others",
+       "subtopics": [
+        {
+         "id": "social-interactions-working-with-others",
+         "title": "Social Interactions/Working with Others",
+         "outcomes": [
+          {
+           "code": "4.4.SW1",
+           "text": "Encourage and accept all peers in a variety of physical activities."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "rules-and-etiquette",
+       "title": "Rules and Etiquette",
+       "subtopics": [
+        {
+         "id": "rules-and-etiquette",
+         "title": "Rules and Etiquette",
+         "outcomes": [
+          {
+           "code": "4.4.RE1",
+           "text": "Recognize and follow the established rules, protocols and etiquette in physical education"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "safety",
+       "title": "Safety",
+       "subtopics": [
+        {
+         "id": "safety",
+         "title": "Safety",
+         "outcomes": [
+          {
+           "code": "4.4.SA1",
+           "text": "Follow teacher directions for safe participation and proper use of equipment, independently and with others."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "demonstrate-value-of-physical-activity-for-healt",
+     "title": "Demonstrate value of physical activity for health, enjoyment, challenge, self-expression and social interaction",
+     "topics": [
+      {
+       "id": "health",
+       "title": "Health",
+       "subtopics": [
+        {
+         "id": "health",
+         "title": "Health",
+         "outcomes": [
+          {
+           "code": "4.5.H1",
+           "text": "Compare the health benefits of various physical activities."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "challenge",
+       "title": "Challenge",
+       "subtopics": [
+        {
+         "id": "challenge",
+         "title": "Challenge",
+         "outcomes": [
+          {
+           "code": "4.5.C1",
+           "text": "Rate the enjoyment of participating in challenging and mastered physical activities."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "self-expression-and-enjoyment",
+       "title": "Self-Expression and Enjoyment",
+       "subtopics": [
+        {
+         "id": "self-expression-and-enjoyment",
+         "title": "Self-Expression and Enjoyment",
+         "outcomes": [
+          {
+           "code": "4.5.SE1",
+           "text": "Rank the enjoyment of participating in various physical activities."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "social-interaction",
+       "title": "Social Interaction",
+       "subtopics": [
+        {
+         "id": "social-interaction",
+         "title": "Social Interaction",
+         "outcomes": [
+          {
+           "code": "4.5.SI1",
+           "text": "Compare positive social interactions when engaged in a variety of physical activities."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "advocacy",
+       "title": "Advocacy",
+       "subtopics": [
+        {
+         "id": "advocacy",
+         "title": "Advocacy",
+         "outcomes": [
+          {
+           "code": "4.5.A1",
+           "text": "Examine personal beliefs that may encourage others to be physically active."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "5",
+   "units": [
+    {
+     "id": "demonstrate-competency-in-a-variety-of-motor-ski",
+     "title": "Demonstrate competency in a variety of motor skills and movement patterns",
+     "topics": [
+      {
+       "id": "locomotor",
+       "title": "Locomotor",
+       "subtopics": [
+        {
+         "id": "locomotor",
+         "title": "Locomotor",
+         "outcomes": [
+          {
+           "code": "5.1.L1",
+           "text": "Explore different combinations of locomotor movements with and without equipment, alone and with others, moving at different speeds and levels and using different pathways in game-like situations."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "non-locomotor",
+       "title": "Non-Locomotor",
+       "subtopics": [
+        {
+         "id": "non-locomotor",
+         "title": "Non-Locomotor",
+         "outcomes": [
+          {
+           "code": "5.1.NL1",
+           "text": "Apply non-locomotor skills in various activities and game-like situations."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "body-management",
+       "title": "Body Management",
+       "subtopics": [
+        {
+         "id": "body-management",
+         "title": "Body Management",
+         "outcomes": [
+          {
+           "code": "5.1.BM1",
+           "text": "Perform controlled transfers of weight in a variety of physical activities."
+          },
+          {
+           "code": "5.1.BM2",
+           "text": "Combine weight transfer with movement concepts to perform a skill in a game-like situation."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "manipulative-skills",
+       "title": "Manipulative Skills",
+       "subtopics": [
+        {
+         "id": "manipulative-skills",
+         "title": "Manipulative Skills",
+         "outcomes": [
+          {
+           "code": "5.1.MS1",
+           "text": "Apply manipulative skills in game-like situations using various objects."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "apply-knowledge-of-concepts-principles-strategie",
+     "title": "Apply knowledge of concepts, principles, strategies and tactics to movement and performance",
+     "topics": [
+      {
+       "id": "space",
+       "title": "Space",
+       "subtopics": [
+        {
+         "id": "space",
+         "title": "Space",
+         "outcomes": [
+          {
+           "code": "5.2.SP1",
+           "text": "Apply spatial concepts and combination skills in game-like situations"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "speed-direction-and-force",
+       "title": "Speed, Direction and Force",
+       "subtopics": [
+        {
+         "id": "speed-direction-and-force",
+         "title": "Speed, Direction and Force",
+         "outcomes": [
+          {
+           "code": "5.2.SD1",
+           "text": "Analyze movement situations and apply movement concepts in small-sided practice tasks and game-like situations"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "strategy",
+       "title": "Strategy",
+       "subtopics": [
+        {
+         "id": "strategy",
+         "title": "Strategy",
+         "outcomes": [
+          {
+           "code": "5.2.ST1",
+           "text": "Apply basic offensive and defensive strategies and tactics in activities and game-like situations."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "demonstrate-knowledge-and-skills-to-achieve-and-",
+     "title": "Demonstrate knowledge and skills to achieve and maintain a health-enhancing level of physical activity and fitness",
+     "topics": [
+      {
+       "id": "physical-activity-knowledge",
+       "title": "Physical Activity Knowledge",
+       "subtopics": [
+        {
+         "id": "physical-activity-knowledge",
+         "title": "Physical Activity Knowledge",
+         "outcomes": [
+          {
+           "code": "5.3.PA1",
+           "text": "Identify factors that can either motivate or deter people from daily physical activity."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "physical-fitness-knowledge",
+       "title": "Physical Fitness Knowledge",
+       "subtopics": [
+        {
+         "id": "physical-fitness-knowledge",
+         "title": "Physical Fitness Knowledge",
+         "outcomes": [
+          {
+           "code": "5.3.PF1",
+           "text": "Record and review physical activity minutes inside and outside of school to determine progress toward daily recommendation."
+          },
+          {
+           "code": "5.3.PF2",
+           "text": "Identify the benefits associated with developing and maintaining health-related fitness"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "nutrition",
+       "title": "Nutrition",
+       "subtopics": [
+        {
+         "id": "nutrition",
+         "title": "Nutrition",
+         "outcomes": [
+          {
+           "code": "5.3.N1",
+           "text": "Analyze the impact of food choices relative to physical activity, sports and personal health"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "demonstrate-responsible-personal-and-social-beha",
+     "title": "Demonstrate responsible personal and social behavior that exhibits respect for self and others",
+     "topics": [
+      {
+       "id": "social-interactions-working-with-others",
+       "title": "Social Interactions/Working with Others",
+       "subtopics": [
+        {
+         "id": "social-interactions-working-with-others",
+         "title": "Social Interactions/Working with Others",
+         "outcomes": [
+          {
+           "code": "5.4.SW1",
+           "text": "Accept, recognize and actively involve others, with both higher and lower skill abilities, into physical activities and group projects."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "rules-and-etiquette",
+       "title": "Rules and Etiquette",
+       "subtopics": [
+        {
+         "id": "rules-and-etiquette",
+         "title": "Rules and Etiquette",
+         "outcomes": [
+          {
+           "code": "5.4.RE1",
+           "text": "Recognize and follow the established rules, protocols and etiquette in physical education."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "safety",
+       "title": "Safety",
+       "subtopics": [
+        {
+         "id": "safety",
+         "title": "Safety",
+         "outcomes": [
+          {
+           "code": "5.4.SA1",
+           "text": "Follow teacher directions for safe participation and proper use of equipment, independently and with others."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "demonstrate-value-of-physical-activity-for-healt",
+     "title": "Demonstrate value of physical activity for health, enjoyment, challenge, self-expression and social interaction",
+     "topics": [
+      {
+       "id": "health",
+       "title": "Health",
+       "subtopics": [
+        {
+         "id": "health",
+         "title": "Health",
+         "outcomes": [
+          {
+           "code": "5.5.H1",
+           "text": "Develop a personal implementation plan outlining physical activities and their health benefits."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "challenge",
+       "title": "Challenge",
+       "subtopics": [
+        {
+         "id": "challenge",
+         "title": "Challenge",
+         "outcomes": [
+          {
+           "code": "5.5.C1",
+           "text": "Express the enjoyment and/or challenge of participating in a physical activity"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "self-expression-and-enjoyment",
+       "title": "Self-Expression and Enjoyment",
+       "subtopics": [
+        {
+         "id": "self-expression-and-enjoyment",
+         "title": "Self-Expression and Enjoyment",
+         "outcomes": [
+          {
+           "code": "5.5.SEE1",
+           "text": "Analyze different physical activities for enjoyment and challenge identifying reasons for a positive or negative response."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "social-interaction",
+       "title": "Social Interaction",
+       "subtopics": [
+        {
+         "id": "social-interaction",
+         "title": "Social Interaction",
+         "outcomes": [
+          {
+           "code": "5.5.SI1",
+           "text": "Describe the social benefits gained from participating in physical activity."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "advocacy",
+       "title": "Advocacy",
+       "subtopics": [
+        {
+         "id": "advocacy",
+         "title": "Advocacy",
+         "outcomes": [
+          {
+           "code": "5.5.A1",
+           "text": "Create strategies on how to encourage others to make healthy physical activity choices."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "6",
+   "units": [
+    {
+     "id": "demonstrate-competency-in-a-variety-of-motor-ski",
+     "title": "Demonstrate competency in a variety of motor skills and movement patterns",
+     "topics": [
+      {
+       "id": "combinations-of-movement-patterns-and-skills",
+       "title": "Combinations of Movement Patterns and Skills",
+       "subtopics": [
+        {
+         "id": "combinations-of-movement-patterns-and-skills",
+         "title": "Combinations of Movement Patterns and Skills",
+         "outcomes": [
+          {
+           "code": "6.1.MP1",
+           "text": "Demonstrate simple movement concepts, principles, strategies and tactics when learning and performing physical activities."
+          },
+          {
+           "code": "6.1.MP2",
+           "text": "Demonstrate simple and combined motor skills in a variety of games and activities."
+          },
+          {
+           "code": "6.1.MP3",
+           "text": "Perform a wide variety of locomotor movements in combination, using different pathways and directions, while moving around others and/or equipment."
+          },
+          {
+           "code": "6.1.MP1",
+           "text": "Demonstrate simple movement concepts, principles, strategies and tactics when learning and performing physical activities."
+          },
+          {
+           "code": "6.1.MP2",
+           "text": "Demonstrate simple and combined motor skills in a variety of games and activities."
+          },
+          {
+           "code": "6.1.MP3",
+           "text": "Perform a wide variety of locomotor movements in combination, using different pathways and directions, while moving around others and/or equipment."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "manipulative-skills",
+       "title": "Manipulative Skills",
+       "subtopics": [
+        {
+         "id": "manipulative-skills",
+         "title": "Manipulative Skills",
+         "outcomes": [
+          {
+           "code": "6.1.MS1",
+           "text": "Send and receive a variety of objects, adjusting for speed and distance, while applying appropriate performance cues."
+          },
+          {
+           "code": "6.1.MS1",
+           "text": "Send and receive a variety of objects, adjusting for speed and distance, while applying appropriate performance cues."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "apply-knowledge-of-concepts-principles-strategie",
+     "title": "Apply knowledge of concepts, principles, strategies and tactics to movement and performance",
+     "topics": [
+      {
+       "id": "combinations-of-movement-concepts",
+       "title": "Combinations of Movement Concepts",
+       "subtopics": [
+        {
+         "id": "combinations-of-movement-concepts",
+         "title": "Combinations of Movement Concepts",
+         "outcomes": [
+          {
+           "code": "6.2.MC1",
+           "text": "Demonstrate how movement concepts, principles, strategies and tactics apply to the performance of various physical activities."
+          },
+          {
+           "code": "6.2.MC2",
+           "text": "Demonstrate how motor skills and techniques need to be refined, combined and varied in the development of specialized skills for participation in games and activities."
+          },
+          {
+           "code": "6.2.MC3",
+           "text": "Demonstrate how non-locomotor, locomotor and combination skills are used to build simple, creative sequences."
+          },
+          {
+           "code": "6.2.MC1",
+           "text": "Demonstrate how movement concepts, principles, strategies and tactics apply to the performance of various physical activities"
+          },
+          {
+           "code": "6.2.MC2",
+           "text": "Demonstrate how motor skills and techniques need to be refined, combined and varied in the development of specialized skills for participation in games and activities"
+          },
+          {
+           "code": "6.2.MC3",
+           "text": "Demonstrate how non-locomotor, locomotor and combination skills are used to build simple, creative sequences"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "demonstrate-knowledge-and-skills-to-achieve-and-",
+     "title": "Demonstrate knowledge and skills to achieve and maintain a health-enhancing level of physical activity and fitness",
+     "topics": [
+      {
+       "id": "physical-activity-knowledge-and-engagement",
+       "title": "Physical Activity Knowledge and Engagement",
+       "subtopics": [
+        {
+         "id": "physical-activity-knowledge-and-engagement",
+         "title": "Physical Activity Knowledge and Engagement",
+         "outcomes": [
+          {
+           "code": "6.3.PA1",
+           "text": "Describe how being physically active leads to better health."
+          },
+          {
+           "code": "6.3.PA2",
+           "text": "Participate in a variety of physical activities."
+          },
+          {
+           "code": "6.3.PA1",
+           "text": "Describe how being physically active leads to better health"
+          },
+          {
+           "code": "6.3.PA2",
+           "text": "Participate in a variety of physical activities."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "physical-fitness-knowledge",
+       "title": "Physical Fitness Knowledge",
+       "subtopics": [
+        {
+         "id": "physical-fitness-knowledge",
+         "title": "Physical Fitness Knowledge",
+         "outcomes": [
+          {
+           "code": "6.3.PF1",
+           "text": "Identify the components of skill-related fitness."
+          },
+          {
+           "code": "6.3.PF2",
+           "text": "Identify each of the components of the FITT principle for different types of physical activity."
+          },
+          {
+           "code": "6.3.PF1",
+           "text": "Identify the components of skill-related fitness"
+          },
+          {
+           "code": "6.3.PF2",
+           "text": "Identify each of the components of the FITT principle for different types of physical activity"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "nutrition",
+       "title": "Nutrition",
+       "subtopics": [
+        {
+         "id": "nutrition",
+         "title": "Nutrition",
+         "outcomes": [
+          {
+           "code": "6.3.N1",
+           "text": "Identify food from each of the basic food groups and select appropriate servings and proportions for his/her age and physical activity levels."
+          },
+          {
+           "code": "6.3.N1",
+           "text": "Identify food from each of the basic food groups and select appropriate servings and proportions for his/her age and physical activity levels."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "stress-management",
+       "title": "Stress Management",
+       "subtopics": [
+        {
+         "id": "stress-management",
+         "title": "Stress Management",
+         "outcomes": [
+          {
+           "code": "6.3.SM1",
+           "text": "Recognize physical activity as a positive way of dealing with stress."
+          },
+          {
+           "code": "6.3.SA1",
+           "text": "Recognize physical activity as a positive way of dealing with stress."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "demonstrate-responsible-personal-and-social-beha",
+     "title": "Demonstrate responsible personal and social behavior that exhibits respect for self and others",
+     "topics": [
+      {
+       "id": "social-interactions-working-with-others",
+       "title": "Social Interactions/Working with Others",
+       "subtopics": [
+        {
+         "id": "social-interactions-working-with-others",
+         "title": "Social Interactions/Working with Others",
+         "outcomes": [
+          {
+           "code": "6.3.SW1",
+           "text": "Accept differences among classmates in physical development, maturation and varying skill levels by providing encouragement and positive feedback."
+          },
+          {
+           "code": "6.4.SW1",
+           "text": "Accept differences among classmates in physical development, maturation and varying skill levels by providing encouragement and positive feedback."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "rules-and-etiquette",
+       "title": "Rules and Etiquette",
+       "subtopics": [
+        {
+         "id": "rules-and-etiquette",
+         "title": "Rules and Etiquette",
+         "outcomes": [
+          {
+           "code": "6.4.RE1",
+           "text": "Demonstrate knowledge of rules and etiquette by self-officiating standard and modified physical activities."
+          },
+          {
+           "code": "6.4.RE2",
+           "text": "Demonstrate cooperation skills by establishing rules and guidelines for resolving conflict"
+          },
+          {
+           "code": "6.4.RE1",
+           "text": "Demonstrate knowledge of rules and etiquette by self-officiating standard and modified physical activities."
+          },
+          {
+           "code": "6.4.RE2",
+           "text": "Demonstrate cooperation skills by establishing rules and guidelines for resolving conflict"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "safety",
+       "title": "Safety",
+       "subtopics": [
+        {
+         "id": "safety",
+         "title": "Safety",
+         "outcomes": [
+          {
+           "code": "6.4.SA1",
+           "text": "Demonstrate knowledge of appropriate safety principles, rules and procedures in a variety of physical activities."
+          },
+          {
+           "code": "6.4.SA1",
+           "text": "Demonstrate knowledge of appropriate safety principles, rules and procedures in a variety of physical activities."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "demonstrate-value-of-physical-activity-for-healt",
+     "title": "Demonstrate value of physical activity for health, enjoyment, challenge, self-expression and social interaction",
+     "topics": [
+      {
+       "id": "health",
+       "title": "Health",
+       "subtopics": [
+        {
+         "id": "health",
+         "title": "Health",
+         "outcomes": [
+          {
+           "code": "6.5.HE1",
+           "text": "Demonstrate that regular participation in physical activities supports the goals of fitness, reducing stress and a healthier lifestyle."
+          },
+          {
+           "code": "6.5.H1",
+           "text": "Demonstrate that regular participation in physical activities supports the goals of fitness, reducing stress and a healthier lifestyle."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "challenge",
+       "title": "Challenge",
+       "subtopics": [
+        {
+         "id": "challenge",
+         "title": "Challenge",
+         "outcomes": [
+          {
+           "code": "6.5.C1",
+           "text": "Explain that physical activities provide opportunities for self-expression, social interactions and can be enjoyable and challenging."
+          },
+          {
+           "code": "6.5.C1",
+           "text": "Explain that physical activities provide opportunities for self-expression, social interactions and can be enjoyable and challenging."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "self-expression-and-enjoyment",
+       "title": "Self-Expression and Enjoyment",
+       "subtopics": [
+        {
+         "id": "self-expression-and-enjoyment",
+         "title": "Self-Expression and Enjoyment",
+         "outcomes": [
+          {
+           "code": "6.5.SE1",
+           "text": "Identify and use appropriate strategies to self-reinforce positive fitness behaviors."
+          },
+          {
+           "code": "6.5.SE1",
+           "text": "Identify and use appropriate strategies to self-reinforce positive fitness behaviors."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "social-interaction",
+       "title": "Social Interaction",
+       "subtopics": [
+        {
+         "id": "social-interaction",
+         "title": "Social Interaction",
+         "outcomes": [
+          {
+           "code": "6.5.SI1",
+           "text": "Use personal and social behaviors that show respect to self and others in physical activity settings."
+          },
+          {
+           "code": "6.5.SI1",
+           "text": "Use personal and social behaviors that show respect to self and others in physical activity settings."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "advocacy",
+       "title": "Advocacy",
+       "subtopics": [
+        {
+         "id": "advocacy",
+         "title": "Advocacy",
+         "outcomes": [
+          {
+           "code": "6.5.A1",
+           "text": "State a health-enhancing position about being physically active, supported with accurate information, to improve the health of others."
+          },
+          {
+           "code": "6.5.A1",
+           "text": "State a health-enhancing position about being physically active, supported with accurate information, to improve the health of others."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "7",
+   "units": [
+    {
+     "id": "demonstrate-competency-in-a-variety-of-motor-ski",
+     "title": "Demonstrate competency in a variety of motor skills and movement patterns",
+     "topics": [
+      {
+       "id": "combinations-of-movement-patterns-and-skills",
+       "title": "Combinations of Movement Patterns and Skills",
+       "subtopics": [
+        {
+         "id": "combinations-of-movement-patterns-and-skills",
+         "title": "Combinations of Movement Patterns and Skills",
+         "outcomes": [
+          {
+           "code": "7.1.MP1",
+           "text": "Apply refined movement concepts, principles, strategies and tactics when learning and performing physical activities."
+          },
+          {
+           "code": "7.1.MP2",
+           "text": "Demonstrate combined motor skills in a variety of games and activities"
+          },
+          {
+           "code": "7.1.MP3",
+           "text": "Perform controlled movements in game-like situations."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "manipulative-skills",
+       "title": "Manipulative Skills",
+       "subtopics": [
+        {
+         "id": "manipulative-skills",
+         "title": "Manipulative Skills",
+         "outcomes": [
+          {
+           "code": "7.2.MS1",
+           "text": "Demonstrate how to send, receive and retain a variety of objects, while taking into account position and motion in relation to others, equipment and boundaries, while applying appropriate performance cues."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "apply-knowledge-of-concepts-principles-strategie",
+     "title": "Apply knowledge of concepts, principles, strategies and tactics to movement and performance",
+     "topics": [
+      {
+       "id": "combinations-of-movement-concepts",
+       "title": "Combinations of Movement Concepts",
+       "subtopics": [
+        {
+         "id": "combinations-of-movement-concepts",
+         "title": "Combinations of Movement Concepts",
+         "outcomes": [
+          {
+           "code": "7.3.MC1",
+           "text": "Demonstrate how movement concepts, principles, strategies and tactics apply to the performance of various physical activities and game-like situations."
+          },
+          {
+           "code": "7.3.MC2",
+           "text": "Demonstrate how motor skills and techniques need to be refined, combined and varied in the development of specialized skills for participation in physical activities and game-like situations."
+          },
+          {
+           "code": "7.2.MC3",
+           "text": "Demonstrate how non-locomotor, locomotor and combination skills are used to build simple, creative sequences in physical activities and game-like situations."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "demonstrate-knowledge-and-skills-to-achieve-and-",
+     "title": "Demonstrate knowledge and skills to achieve and maintain a health-enhancing level of physical activity and fitness",
+     "topics": [
+      {
+       "id": "physical-activity-knowledge-and-engagement",
+       "title": "Physical Activity Knowledge and Engagement",
+       "subtopics": [
+        {
+         "id": "physical-activity-knowledge-and-engagement",
+         "title": "Physical Activity Knowledge and Engagement",
+         "outcomes": [
+          {
+           "code": "7.3.PA1",
+           "text": "Explain the physical, social and mental/emotional benefits of being physically active."
+          },
+          {
+           "code": "7.3.PA2",
+           "text": "Analyze self-selected physical activity and adjust activities based on current fitness level."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "physical-fitness-knowledge",
+       "title": "Physical Fitness Knowledge",
+       "subtopics": [
+        {
+         "id": "physical-fitness-knowledge",
+         "title": "Physical Fitness Knowledge",
+         "outcomes": [
+          {
+           "code": "7.3.PF1",
+           "text": "Describe how the FITT principle is used to develop personal fitness goals."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "nutrition",
+       "title": "Nutrition",
+       "subtopics": [
+        {
+         "id": "nutrition",
+         "title": "Nutrition",
+         "outcomes": [
+          {
+           "code": "7.3.N1",
+           "text": "Develop strategies for balancing healthy food, snacks and water intake, along with daily physical activity."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "stress-management",
+       "title": "Stress Management",
+       "subtopics": [
+        {
+         "id": "stress-management",
+         "title": "Stress Management",
+         "outcomes": [
+          {
+           "code": "7.3.M1",
+           "text": "Analyze various physical activities that help with stress reduction"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "demonstrate-responsible-personal-and-social-beha",
+     "title": "Demonstrate responsible personal and social behavior that exhibits respect for self and others",
+     "topics": [
+      {
+       "id": "social-interactions-working-with-others",
+       "title": "Social Interactions/Working with Others",
+       "subtopics": [
+        {
+         "id": "social-interactions-working-with-others",
+         "title": "Social Interactions/Working with Others",
+         "outcomes": [
+          {
+           "code": "7.4.SW1",
+           "text": "Accept differences among classmates in physical development, maturation and varying skill levels by providing encouragement and positive feedback."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "rules-and-etiquette",
+       "title": "Rules and Etiquette",
+       "subtopics": [
+        {
+         "id": "rules-and-etiquette",
+         "title": "Rules and Etiquette",
+         "outcomes": [
+          {
+           "code": "7.4.RE.1",
+           "text": "Demonstrate knowledge of rules and etiquette by self-officiating standard and modified physical activities."
+          },
+          {
+           "code": "7.4.RE2",
+           "text": "Demonstrate cooperation skills by establishing rules and guidelines for resolving conflict."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "safety",
+       "title": "Safety",
+       "subtopics": [
+        {
+         "id": "safety",
+         "title": "Safety",
+         "outcomes": [
+          {
+           "code": "7.4.SA1",
+           "text": "Demonstrate knowledge of appropriate safety principles, rules and procedures in a variety of physical activities."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "demonstrate-value-of-physical-activity-for-healt",
+     "title": "Demonstrate value of physical activity for health, enjoyment, challenge, self-expression and social interaction",
+     "topics": [
+      {
+       "id": "health",
+       "title": "Health",
+       "subtopics": [
+        {
+         "id": "health",
+         "title": "Health",
+         "outcomes": [
+          {
+           "code": "7.5.HE1",
+           "text": "Compare how regular participation in physical activities supports the goals of a healthy lifestyle."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "challenge",
+       "title": "Challenge",
+       "subtopics": [
+        {
+         "id": "challenge",
+         "title": "Challenge",
+         "outcomes": [
+          {
+           "code": "7.5.C1",
+           "text": "Identify strategies for persevering when physical activities bring challenge."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "self-expression-and-enjoyment",
+       "title": "Self-Expression and Enjoyment",
+       "subtopics": [
+        {
+         "id": "self-expression-and-enjoyment",
+         "title": "Self-Expression and Enjoyment",
+         "outcomes": [
+          {
+           "code": "7.5.SE1",
+           "text": "Demonstrate both intrinsic and extrinsic motivation by selecting physical activities to participate in outside of class."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "social-interaction",
+       "title": "Social Interaction",
+       "subtopics": [
+        {
+         "id": "social-interaction",
+         "title": "Social Interaction",
+         "outcomes": [
+          {
+           "code": "7.5.SI1",
+           "text": "Demonstrate positive social interactions during physical activity"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "advocacy",
+       "title": "Advocacy",
+       "subtopics": [
+        {
+         "id": "advocacy",
+         "title": "Advocacy",
+         "outcomes": [
+          {
+           "code": "7.5.A1",
+           "text": "Create physical activity messages for different audiences that persuade others to make healthy and safe physical choices."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "9-12",
+   "units": [
+    {
+     "id": "demonstrate-competency-in-a-variety-of-motor-ski",
+     "title": "Demonstrate competency in a variety of motor skills and movement patterns",
+     "topics": [
+      {
+       "id": "demonstrate-competency-in-a-variety-of-motor-ski",
+       "title": "Demonstrate competency in a variety of motor skills and movement patterns",
+       "subtopics": [
+        {
+         "id": "demonstrate-competency-in-a-variety-of-motor-ski",
+         "title": "Demonstrate competency in a variety of motor skills and movement patterns",
+         "outcomes": [
+          {
+           "code": "HS.S1.1",
+           "text": "Demonstrate the mastery of skills and tactics needed to participate in two or more lifetime activities"
+          },
+          {
+           "code": "HS.S1.2",
+           "text": "Demonstrate competency in movements and manipulative skills needed in game-like situations."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "apply-knowledge-of-concepts-principles-strategie",
+     "title": "Apply knowledge of concepts, principles, strategies and tactics to movement and performance",
+     "topics": [
+      {
+       "id": "apply-knowledge-of-concepts-principles-strategie",
+       "title": "Apply knowledge of concepts, principles, strategies and tactics to movement and performance",
+       "subtopics": [
+        {
+         "id": "apply-knowledge-of-concepts-principles-strategie",
+         "title": "Apply knowledge of concepts, principles, strategies and tactics to movement and performance",
+         "outcomes": [
+          {
+           "code": "HS.S2.1",
+           "text": "Use movement concepts and principles to analyze and improve performance of self and/or others."
+          },
+          {
+           "code": "HS.S2.2",
+           "text": "Describe the mechanical principles, including but not limited to force, rotation extension or leverage, that apply to movement skills in physical activities, and analyze their contribution in improving movement performance."
+          },
+          {
+           "code": "HS.S2.3",
+           "text": "Analyze the relationship between and among effort, persistence, practice and improvement as they relate to skill development."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "demonstrate-knowledge-and-skills-to-achieve-and-",
+     "title": "Demonstrate knowledge and skills to achieve and maintain a health-enhancing level of physical activity and fitness",
+     "topics": [
+      {
+       "id": "demonstrate-knowledge-and-skills-to-achieve-and-",
+       "title": "Demonstrate knowledge and skills to achieve and maintain a health-enhancing level of physical activity and fitness",
+       "subtopics": [
+        {
+         "id": "demonstrate-knowledge-and-skills-to-achieve-and-",
+         "title": "Demonstrate knowledge and skills to achieve and maintain a health-enhancing level of physical activity and fitness (1 of 2)",
+         "outcomes": [
+          {
+           "code": "HS.S3.1",
+           "text": "Explain how each component of fitness impacts lifetime physical wellness"
+          },
+          {
+           "code": "HS.S3.2",
+           "text": "Analyze and discuss the benefits of a physically active lifestyle as it relates to college or career productivity"
+          },
+          {
+           "code": "HS.S3.3",
+           "text": "Identify various strength and stretching exercises for personal fitness development."
+          },
+          {
+           "code": "HS.S3.4",
+           "text": "Monitor rates of exertion while participating in physical activity"
+          },
+          {
+           "code": "HS.S3.5",
+           "text": "Calculate target heart rate and use this information to create and/or maintain a personal fitness plan."
+          }
+         ]
+        },
+        {
+         "id": "demonstrate-knowledge-and-skills-to-achieve-and--2",
+         "title": "Demonstrate knowledge and skills to achieve and maintain a health-enhancing level of physical activity and fitness (2 of 2)",
+         "outcomes": [
+          {
+           "code": "HS.S3.6",
+           "text": "Explain how to adjust pacing to keep heart rate in the target zone."
+          },
+          {
+           "code": "HS.S3.7",
+           "text": "Apply goal-setting and decision-making skills in developing, maintaining, implementing and evaluating a personal wellness plan"
+          },
+          {
+           "code": "HS.S3.8",
+           "text": "Design a personal lifetime leisure/recreational plan that includes the components of health-related fitness."
+          },
+          {
+           "code": "HS.S3.9",
+           "text": "Analyze the impact of life choices, economics, motivation and accessibility to physical activity in college or career settings."
+          },
+          {
+           "code": "HS.S3.10",
+           "text": "Analyze and explain the relationships between caloric intake and caloric expenditure in relation to body composition, nutrition and physical activity."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "demonstrate-responsible-personal-and-social-beha",
+     "title": "Demonstrate responsible personal and social behavior that exhibits respect for self and others",
+     "topics": [
+      {
+       "id": "demonstrate-responsible-personal-and-social-beha",
+       "title": "Demonstrate responsible personal and social behavior that exhibits respect for self and others",
+       "subtopics": [
+        {
+         "id": "demonstrate-responsible-personal-and-social-beha",
+         "title": "Demonstrate responsible personal and social behavior that exhibits respect for self and others (1 of 2)",
+         "outcomes": [
+          {
+           "code": "HS.S4.1",
+           "text": "Interact positively in social and group interactions through the use of communication skills, critical thinking, accountability and leadership in a physical activity setting"
+          },
+          {
+           "code": "HS.S4.2",
+           "text": "Demonstrate respect for others’ diversity while participating in sports and/or physical activities."
+          },
+          {
+           "code": "HS.S4.3",
+           "text": "Apply conflict resolution/mediation skills when participating in sports and/or recreational activities."
+          },
+          {
+           "code": "HS.S4.4",
+           "text": "Explain how ethical behavior and positive social interaction impact effective participation in sports and physical activities"
+          }
+         ]
+        },
+        {
+         "id": "demonstrate-responsible-personal-and-social-beha-2",
+         "title": "Demonstrate responsible personal and social behavior that exhibits respect for self and others (2 of 2)",
+         "outcomes": [
+          {
+           "code": "HS.S4.5",
+           "text": "Apply rules of behavior and fair play in a variety of physical activities, sports and games as a competitor and/or spectator."
+          },
+          {
+           "code": "HS.S4.6",
+           "text": "Analyze the value of rules, fair play, cooperation, sportsmanship, teamwork and conflict resolution in a variety of physical activities, sports and games."
+          },
+          {
+           "code": "HS.S4.7",
+           "text": "Examine moral and ethical conduct in specific competitive situations, including but not limited to intentional fouls, performance-enhancing substances, gambling or current events in sport."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "demonstrate-value-of-physical-activity-for-healt",
+     "title": "Demonstrate value of physical activity for health, enjoyment, challenge, self-expression and social interaction",
+     "topics": [
+      {
+       "id": "demonstrate-value-of-physical-activity-for-healt",
+       "title": "Demonstrate value of physical activity for health, enjoyment, challenge, self-expression and social interaction",
+       "subtopics": [
+        {
+         "id": "demonstrate-value-of-physical-activity-for-healt",
+         "title": "Demonstrate value of physical activity for health, enjoyment, challenge, self-expression and social interaction",
+         "outcomes": [
+          {
+           "code": "HS.S5.1",
+           "text": "Explain how physical, intellectual and emotional behaviors impact physical performance."
+          },
+          {
+           "code": "HS.S5.2",
+           "text": "Analyze the physical, emotional/mental and social benefits of regular participation in physical activities."
+          },
+          {
+           "code": "HS.S5.3",
+           "text": "Evaluate the personal benefits derived from regular participation in physical activities as they relate to quality of life."
+          },
+          {
+           "code": "HS.S5.4",
+           "text": "Explain how physical activities provide opportunities for self-expression and social interactions."
+          },
+          {
+           "code": "HS.S5.5",
+           "text": "Collaborate with others to advocate for a healthy community."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "develops-a-variety-of-motor-skills-through-learn",
+     "title": "Develops a variety of motor skills: Through learning experiences in physical education, the student develops motor skills across a variety of environments. Motor skills are a foundational part of child development and support the movements of everyday life. The development of motor skills contributes to an individual’s physical literacy journey",
+     "topics": [
+      {
+       "id": "develops-a-variety-of-motor-skills-through-learn",
+       "title": "Develops a variety of motor skills: Through learning experiences in physical education, the student develops motor skills across a variety of environments. Motor skills are a foundational part of child development and support the movements of everyday life. The development of motor skills contributes to an individual’s physical literacy journey",
+       "subtopics": [
+        {
+         "id": "develops-a-variety-of-motor-skills-through-learn",
+         "title": "Develops a variety of motor skills: Through learning experiences in physical education, the student develops motor skills across a variety of environments. Motor skills are a foundational part of child development and support the movements of everyday life. The development of motor skills contributes to an individual’s physical literacy journey (1 of 2)",
+         "outcomes": [
+          {
+           "code": "1.12.1",
+           "text": "Demonstrates activity-specific movement skills in a variety of lifetime sports and activities."
+          },
+          {
+           "code": "1.12.2",
+           "text": "Demonstrates activity-specific movement skills in a variety of recreational and backyard games."
+          },
+          {
+           "code": "1.12.3",
+           "text": "Demonstrates activity-specific movement skills in a variety of outdoor pursuits."
+          },
+          {
+           "code": "1.12.4",
+           "text": "Demonstrates and creates movement sequences based on one or more forms of dance."
+          },
+          {
+           "code": "1.12.5",
+           "text": "Demonstrates appropriate technique in cardiovascular training."
+          }
+         ]
+        },
+        {
+         "id": "develops-a-variety-of-motor-skills-through-learn-2",
+         "title": "Develops a variety of motor skills: Through learning experiences in physical education, the student develops motor skills across a variety of environments. Motor skills are a foundational part of child development and support the movements of everyday life. The development of motor skills contributes to an individual’s physical literacy journey (2 of 2)",
+         "outcomes": [
+          {
+           "code": "1.12.6",
+           "text": "Demonstrates appropriate technique in muscular strength and endurance training."
+          },
+          {
+           "code": "1.12.7",
+           "text": "Demonstrates appropriate technique in flexibility training."
+          },
+          {
+           "code": "1.12.8",
+           "text": "Demonstrates appropriate technique in skill-related fitness training."
+          },
+          {
+           "code": "1.12.9",
+           "text": "Demonstrates water safety and basic swimming skills on dryland or in water."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "applies-knowledge-related-to-movement-and-fitnes",
+     "title": "Applies knowledge related to movement and fitness concepts: Through learning experiences in physical education, the student uses their knowledge of movement concepts, tactics and strategies across a variety of environments. This knowledge helps the student become a more versatile and efficient mover. Additionally, the student applies knowledge of health-related and skill-related fitness to enhance their overall well-being. The application of knowledge related to various forms of movement contributes to an individual’s physical literacy journey",
+     "topics": [
+      {
+       "id": "applies-knowledge-related-to-movement-and-fitnes",
+       "title": "Applies knowledge related to movement and fitness concepts: Through learning experiences in physical education, the student uses their knowledge of movement concepts, tactics and strategies across a variety of environments. This knowledge helps the student become a more versatile and efficient mover. Additionally, the student applies knowledge of health-related and skill-related fitness to enhance their overall well-being. The application of knowledge related to various forms of movement contributes to an individual’s physical literacy journey",
+       "subtopics": [
+        {
+         "id": "applies-knowledge-related-to-movement-and-fitnes",
+         "title": "Applies knowledge related to movement and fitness concepts: Through learning experiences in physical education, the student uses their knowledge of movement concepts, tactics and strategies across a variety of environments. This knowledge helps the student become a more versatile and efficient mover. Additionally, the student applies knowledge of health-related and skill-related fitness to enhance their overall well-being. The application of knowledge related to various forms of movement contributes to an individual’s physical literacy journey (1 of 3)",
+         "outcomes": [
+          {
+           "code": "2.12.1",
+           "text": "Demonstrates knowledge of tactics and strategies within lifetime sports and activities, recreational and backyard games, and outdoor pursuits."
+          },
+          {
+           "code": "2.12.2",
+           "text": "Applies knowledge of movement sequences to create or participate in one or more forms of dance."
+          },
+          {
+           "code": "2.12.3",
+           "text": "Analyzes how health and fitness will impact quality of life after high school."
+          },
+          {
+           "code": "2.12.4",
+           "text": "Establishes a goal and creates a practice plan to improve performance for a self-selected skill."
+          },
+          {
+           "code": "2.12.5",
+           "text": "Applies the principles of exercise in a variety of self-selected lifetime physical activities."
+          }
+         ]
+        },
+        {
+         "id": "applies-knowledge-related-to-movement-and-fitnes-2",
+         "title": "Applies knowledge related to movement and fitness concepts: Through learning experiences in physical education, the student uses their knowledge of movement concepts, tactics and strategies across a variety of environments. This knowledge helps the student become a more versatile and efficient mover. Additionally, the student applies knowledge of health-related and skill-related fitness to enhance their overall well-being. The application of knowledge related to various forms of movement contributes to an individual’s physical literacy journey (2 of 3)",
+         "outcomes": [
+          {
+           "code": "2.12.6",
+           "text": "Designs and implements a plan that applies knowledge of cardiorespiratory endurance, muscular strength and endurance and flexibility training exercises."
+          },
+          {
+           "code": "2.12.7",
+           "text": "Evaluates rate of perceived exertion (RPE) during physical activity and adjusts effort."
+          },
+          {
+           "code": "2.12.8",
+           "text": "Applies heart rate concepts to ensure safety and maximize health-related fitness outcomes."
+          },
+          {
+           "code": "2.12.9",
+           "text": "Discusses the benefits of a physically active lifestyle as it relates to young adulthood."
+          },
+          {
+           "code": "2.12.10",
+           "text": "Applies knowledge of rest when planning regular physical activity."
+          }
+         ]
+        },
+        {
+         "id": "applies-knowledge-related-to-movement-and-fitnes-3",
+         "title": "Applies knowledge related to movement and fitness concepts: Through learning experiences in physical education, the student uses their knowledge of movement concepts, tactics and strategies across a variety of environments. This knowledge helps the student become a more versatile and efficient mover. Additionally, the student applies knowledge of health-related and skill-related fitness to enhance their overall well-being. The application of knowledge related to various forms of movement contributes to an individual’s physical literacy journey (3 of 3)",
+         "outcomes": [
+          {
+           "code": "2.12.11",
+           "text": "Applies movement concepts and principles (e.g., force, motion, rotation) to analyze and improve performance of self and/or others in a selected skill (e.g., overhand throw, back squat, archery)."
+          },
+          {
+           "code": "2.12.12",
+           "text": "Identifies and discusses the historical and cultural roles of games, sports and dance in a society."
+          },
+          {
+           "code": "2.12.13",
+           "text": "Analyzes and applies technology as tools to support a healthy, active lifestyle."
+          },
+          {
+           "code": "2.12.14",
+           "text": "Identifies snacks and food choices that help and hinder performance, recovery and enjoyment during physical activity."
+          },
+          {
+           "code": "2.12.15",
+           "text": "Demonstrates knowledge of water safety skills. Demonstrates knowledge of basic swimming skills."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "develops-social-skills-through-movement-through-",
+     "title": "Develops social skills through movement: Through learning experiences in physical education, students develop the social skills necessary to exhibit empathy and respect for others and foster and maintain relationships. In addition, students develop skills for communication, leadership, cultural awareness and conflict resolution in a variety of physical activity settings",
+     "topics": [
+      {
+       "id": "develops-social-skills-through-movement-through-",
+       "title": "Develops social skills through movement: Through learning experiences in physical education, students develop the social skills necessary to exhibit empathy and respect for others and foster and maintain relationships. In addition, students develop skills for communication, leadership, cultural awareness and conflict resolution in a variety of physical activity settings",
+       "subtopics": [
+        {
+         "id": "develops-social-skills-through-movement-through-",
+         "title": "Develops social skills through movement: Through learning experiences in physical education, students develop the social skills necessary to exhibit empathy and respect for others and foster and maintain relationships. In addition, students develop skills for communication, leadership, cultural awareness and conflict resolution in a variety of physical activity settings (1 of 2)",
+         "outcomes": [
+          {
+           "code": "3.12.1",
+           "text": "Demonstrates awareness of other people’s emotions and perspectives in a physical activity setting."
+          },
+          {
+           "code": "3.12.2",
+           "text": "Exhibits proper etiquette, respect for others and teamwork while engaging in physical activity."
+          },
+          {
+           "code": "3.12.3",
+           "text": "Encourages and supports others through their interactions in a physical activity setting."
+          },
+          {
+           "code": "3.12.4",
+           "text": "Implements constructive feedback to improve performance without prompting from the teacher."
+          },
+          {
+           "code": "3.12.5",
+           "text": "Provides constructive input to others without prompting from the teacher."
+          }
+         ]
+        },
+        {
+         "id": "develops-social-skills-through-movement-through--2",
+         "title": "Develops social skills through movement: Through learning experiences in physical education, students develop the social skills necessary to exhibit empathy and respect for others and foster and maintain relationships. In addition, students develop skills for communication, leadership, cultural awareness and conflict resolution in a variety of physical activity settings (2 of 2)",
+         "outcomes": [
+          {
+           "code": "3.12.6",
+           "text": "Analyzes the significance of a specific physical activity and its impact on community, tradition and identity across multiple cultures (e.g. geographic, economic, social factors)."
+          },
+          {
+           "code": "3.12.7",
+           "text": "Applies best practices for participating safely in physical activity (e.g., injury prevention, spacing, hydration, use of equipment, implementation of rules, sun protection)."
+          },
+          {
+           "code": "3.12.8",
+           "text": "Thinks critically and solves problems in physical activity settings, both as an individual and in groups."
+          },
+          {
+           "code": "3.12.9",
+           "text": "Evaluates the effectiveness of leadership skills when participating in a variety of physical activity settings."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "develops-personal-skills-identifies-personal-ben",
+     "title": "Develops personal skills, identifies personal benefits of movement and chooses to engage in physical activity: Through learning experiences in physical education, the student develops an understanding of how movement is personally beneficial and subsequently chooses to participate in physical activities that are personally meaningful (e.g., activities that offer social interaction, cultural connection, exploration, choice, self-expression, appropriate levels of challenge and added health benefits). The student develops personal skills including goal setting, identifying strengths and reflection to enhance their physical literacy journey",
+     "topics": [
+      {
+       "id": "develops-personal-skills-identifies-personal-ben",
+       "title": "Develops personal skills, identifies personal benefits of movement and chooses to engage in physical activity: Through learning experiences in physical education, the student develops an understanding of how movement is personally beneficial and subsequently chooses to participate in physical activities that are personally meaningful (e.g., activities that offer social interaction, cultural connection, exploration, choice, self-expression, appropriate levels of challenge and added health benefits). The student develops personal skills including goal setting, identifying strengths and reflection to enhance their physical literacy journey",
+       "subtopics": [
+        {
+         "id": "develops-personal-skills-identifies-personal-ben",
+         "title": "Develops personal skills, identifies personal benefits of movement and chooses to engage in physical activity: Through learning experiences in physical education, the student develops an understanding of how movement is personally beneficial and subsequently chooses to participate in physical activities that are personally meaningful (e.g., activities that offer social interaction, cultural connection, exploration, choice, self-expression, appropriate levels of challenge and added health benefits). The student develops personal skills including goal setting, identifying strengths and reflection to enhance their physical literacy journey (1 of 2)",
+         "outcomes": [
+          {
+           "code": "4.12.1",
+           "text": "Selects and participates in physical activities (e.g., dance, yoga, aerobics) that meet the need for self-expression."
+          },
+          {
+           "code": "4.12.2",
+           "text": "Selects and participates in physical activities that meet the need for social interaction."
+          },
+          {
+           "code": "4.12.3",
+           "text": "Identifies and participates in physical activity that positively affects health."
+          },
+          {
+           "code": "4.12.4",
+           "text": "Chooses and participates in physical activity based on personal interests."
+          },
+          {
+           "code": "4.12.5",
+           "text": "Chooses and successfully participates in self-selected physical activity at a level that is appropriately challenging."
+          }
+         ]
+        },
+        {
+         "id": "develops-personal-skills-identifies-personal-ben-2",
+         "title": "Develops personal skills, identifies personal benefits of movement and chooses to engage in physical activity: Through learning experiences in physical education, the student develops an understanding of how movement is personally beneficial and subsequently chooses to participate in physical activities that are personally meaningful (e.g., activities that offer social interaction, cultural connection, exploration, choice, self-expression, appropriate levels of challenge and added health benefits). The student develops personal skills including goal setting, identifying strengths and reflection to enhance their physical literacy journey (2 of 2)",
+         "outcomes": [
+          {
+           "code": "4.12.6",
+           "text": "Sets and develops movement goals related to personal interests."
+          },
+          {
+           "code": "4.12.7",
+           "text": "Analyzes factors on regular participation in physical activity after high school (e.g., life choices, economics, motivation, accessibility)."
+          },
+          {
+           "code": "4.12.8",
+           "text": "Analyzes and applies self-selected techniques to manage one’s emotions in a physical activity setting."
+          },
+          {
+           "code": "4.12.9",
+           "text": "Reflects on movement experiences during physical education to develop understanding of how movement is personally meaningful."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "K-2",
+   "units": [
+    {
+     "id": "develops-a-variety-of-motor-skills-through-learn",
+     "title": "Develops a variety of motor skills: Through learning experiences in physical education, the student develops motor skills across a variety of environments. Motor skills are a foundational part of child development and support the movements of everyday life. The development of motor skills contributes to an individual’s physical literacy journey",
+     "topics": [
+      {
+       "id": "develops-a-variety-of-motor-skills-through-learn",
+       "title": "Develops a variety of motor skills: Through learning experiences in physical education, the student develops motor skills across a variety of environments. Motor skills are a foundational part of child development and support the movements of everyday life. The development of motor skills contributes to an individual’s physical literacy journey",
+       "subtopics": [
+        {
+         "id": "develops-a-variety-of-motor-skills-through-learn",
+         "title": "Develops a variety of motor skills: Through learning experiences in physical education, the student develops motor skills across a variety of environments. Motor skills are a foundational part of child development and support the movements of everyday life. The development of motor skills contributes to an individual’s physical literacy journey (1 of 3)",
+         "outcomes": [
+          {
+           "code": "1.2.1",
+           "text": "Demonstrates a variety of locomotor skills with the concepts of space, effort and relationship awareness."
+          },
+          {
+           "code": "1.2.2",
+           "text": "Demonstrates jumping and landing in a non-dynamic environment."
+          },
+          {
+           "code": "1.2.3",
+           "text": "Demonstrates transferring weight on multiple body parts."
+          },
+          {
+           "code": "1.2.4",
+           "text": "Demonstrates non-locomotor skills with the concepts of space, effort and relationship awareness."
+          },
+          {
+           "code": "1.2.5",
+           "text": "Demonstrates balancing on different body parts in a non-dynamic environment."
+          }
+         ]
+        },
+        {
+         "id": "develops-a-variety-of-motor-skills-through-learn-2",
+         "title": "Develops a variety of motor skills: Through learning experiences in physical education, the student develops motor skills across a variety of environments. Motor skills are a foundational part of child development and support the movements of everyday life. The development of motor skills contributes to an individual’s physical literacy journey (2 of 3)",
+         "outcomes": [
+          {
+           "code": "1.2.6",
+           "text": "Demonstrates bouncing a ball in a variety of non-dynamic practice tasks."
+          },
+          {
+           "code": "1.2.7",
+           "text": "Demonstrates rolling a ball in a variety of non-dynamic practice tasks."
+          },
+          {
+           "code": "1.2.8",
+           "text": "Demonstrates catching and throwing in a variety of non-dynamic practice tasks."
+          },
+          {
+           "code": "1.2.9",
+           "text": "Demonstrates kicking a ball in a variety of non-dynamic practice tasks."
+          },
+          {
+           "code": "1.2.10",
+           "text": "Demonstrates dribbling with feet in a variety of non-dynamic practice tasks."
+          }
+         ]
+        },
+        {
+         "id": "develops-a-variety-of-motor-skills-through-learn-3",
+         "title": "Develops a variety of motor skills: Through learning experiences in physical education, the student develops motor skills across a variety of environments. Motor skills are a foundational part of child development and support the movements of everyday life. The development of motor skills contributes to an individual’s physical literacy journey (3 of 3)",
+         "outcomes": [
+          {
+           "code": "1.2.11",
+           "text": "Demonstrates striking with hands in a variety of non-dynamic practice tasks."
+          },
+          {
+           "code": "1.2.12",
+           "text": "Demonstrates striking with a short-handled and long-handled implement in a variety of non-dynamic practice tasks."
+          },
+          {
+           "code": "1.2.13",
+           "text": "Demonstrates locomotor, non-locomotor and manipulative movements based on a variety of dance forms."
+          },
+          {
+           "code": "1.2.14",
+           "text": "Demonstrates jumping rope in a non-dynamic environment."
+          },
+          {
+           "code": "1.2.15",
+           "text": "Demonstrates water safety and basic swimming skills on dryland or in water."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "applies-knowledge-related-to-movement-and-fitnes",
+     "title": "Applies knowledge related to movement and fitness concepts: Through learning experiences in physical education, the student uses their knowledge of movement concepts, tactics and strategies across a variety of environments. This knowledge helps the student become a more versatile and efficient mover. Additionally, the student applies knowledge of health-related and skill-related fitness to enhance their overall well-being. The application of knowledge related to various forms of movement contributes to an individual’s physical literacy journey",
+     "topics": [
+      {
+       "id": "applies-knowledge-related-to-movement-and-fitnes",
+       "title": "Applies knowledge related to movement and fitness concepts: Through learning experiences in physical education, the student uses their knowledge of movement concepts, tactics and strategies across a variety of environments. This knowledge helps the student become a more versatile and efficient mover. Additionally, the student applies knowledge of health-related and skill-related fitness to enhance their overall well-being. The application of knowledge related to various forms of movement contributes to an individual’s physical literacy journey",
+       "subtopics": [
+        {
+         "id": "applies-knowledge-related-to-movement-and-fitnes",
+         "title": "Applies knowledge related to movement and fitness concepts: Through learning experiences in physical education, the student uses their knowledge of movement concepts, tactics and strategies across a variety of environments. This knowledge helps the student become a more versatile and efficient mover. Additionally, the student applies knowledge of health-related and skill-related fitness to enhance their overall well-being. The application of knowledge related to various forms of movement contributes to an individual’s physical literacy journey (1 of 3)",
+         "outcomes": [
+          {
+           "code": "2.2.1",
+           "text": "Recognizes personal space and where to move in general space."
+          },
+          {
+           "code": "2.2.2",
+           "text": "Identifies simple strategies in chasing and fleeing activities."
+          },
+          {
+           "code": "2.2.3",
+           "text": "Identifies movement concepts related to locomotor, non-locomotor and manipulative skills."
+          },
+          {
+           "code": "2.2.4",
+           "text": "Demonstrates knowledge of locomotor, non-locomotor and manipulative skills in movement settings."
+          }
+         ]
+        },
+        {
+         "id": "applies-knowledge-related-to-movement-and-fitnes-2",
+         "title": "Applies knowledge related to movement and fitness concepts: Through learning experiences in physical education, the student uses their knowledge of movement concepts, tactics and strategies across a variety of environments. This knowledge helps the student become a more versatile and efficient mover. Additionally, the student applies knowledge of health-related and skill-related fitness to enhance their overall well-being. The application of knowledge related to various forms of movement contributes to an individual’s physical literacy journey (2 of 3)",
+         "outcomes": [
+          {
+           "code": "2.2.5",
+           "text": "Demonstrates knowledge of non-locomotor, locomotor and movement concepts used in dance and rhythms."
+          },
+          {
+           "code": "2.2.6",
+           "text": "Identifies physical activities that contribute to fitness."
+          },
+          {
+           "code": "2.2.7",
+           "text": "Recognizes the importance of stretching before and after physical activity."
+          },
+          {
+           "code": "2.2.8",
+           "text": "Identifies the heart as a muscle that gets stronger with physical activity."
+          }
+         ]
+        },
+        {
+         "id": "applies-knowledge-related-to-movement-and-fitnes-3",
+         "title": "Applies knowledge related to movement and fitness concepts: Through learning experiences in physical education, the student uses their knowledge of movement concepts, tactics and strategies across a variety of environments. This knowledge helps the student become a more versatile and efficient mover. Additionally, the student applies knowledge of health-related and skill-related fitness to enhance their overall well-being. The application of knowledge related to various forms of movement contributes to an individual’s physical literacy journey (3 of 3)",
+         "outcomes": [
+          {
+           "code": "2.2.9",
+           "text": "Recognizes that regular physical activity is good for their health."
+          },
+          {
+           "code": "2.2.10",
+           "text": "Recognizes physiological changes in their body during physical activities."
+          },
+          {
+           "code": "2.2.11",
+           "text": "Recognizes food and hydration choices that provide energy for physical activity."
+          },
+          {
+           "code": "2.2.12",
+           "text": "Demonstrates knowledge of water safety skills. Demonstrates knowledge of basic swimming skills."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "develops-social-skills-through-movement-through-",
+     "title": "Develops social skills through movement: Through learning experiences in physical education, students develop the social skills necessary to exhibit empathy and respect for others and foster and maintain relationships. In addition, students develop skills for communication, leadership, cultural awareness and conflict resolution in a variety of physical activity settings",
+     "topics": [
+      {
+       "id": "develops-social-skills-through-movement-through-",
+       "title": "Develops social skills through movement: Through learning experiences in physical education, students develop the social skills necessary to exhibit empathy and respect for others and foster and maintain relationships. In addition, students develop skills for communication, leadership, cultural awareness and conflict resolution in a variety of physical activity settings",
+       "subtopics": [
+        {
+         "id": "develops-social-skills-through-movement-through-",
+         "title": "Develops social skills through movement: Through learning experiences in physical education, students develop the social skills necessary to exhibit empathy and respect for others and foster and maintain relationships. In addition, students develop skills for communication, leadership, cultural awareness and conflict resolution in a variety of physical activity settings (1 of 2)",
+         "outcomes": [
+          {
+           "code": "3.2.1",
+           "text": "Recognizes the feelings of others during a variety of physical activities."
+          },
+          {
+           "code": "3.2.2",
+           "text": "Demonstrates ability to encourage others."
+          },
+          {
+           "code": "3.2.3",
+           "text": "Uses communication skills to share space and equipment."
+          },
+          {
+           "code": "3.2.4",
+           "text": "Responds appropriately to directions and feedback from the teacher."
+          },
+          {
+           "code": "3.2.5",
+           "text": "Demonstrates respectful behaviors that contribute to positive social interactions in movement."
+          }
+         ]
+        },
+        {
+         "id": "develops-social-skills-through-movement-through--2",
+         "title": "Develops social skills through movement: Through learning experiences in physical education, students develop the social skills necessary to exhibit empathy and respect for others and foster and maintain relationships. In addition, students develop skills for communication, leadership, cultural awareness and conflict resolution in a variety of physical activity settings (2 of 2)",
+         "outcomes": [
+          {
+           "code": "3.2.6",
+           "text": "Describes why following rules are important for safety and fairness."
+          },
+          {
+           "code": "3.2.7",
+           "text": "Makes safe choices with physical education equipment."
+          },
+          {
+           "code": "3.2.8",
+           "text": "Discusses problems and solutions with teacher support in a physical activity setting."
+          },
+          {
+           "code": "3.2.9",
+           "text": "Makes fair choices as directed by teacher."
+          },
+          {
+           "code": "3.2.10",
+           "text": "Identifies and participates in physical activities representing different cultures."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "develops-personal-skills-identifies-personal-ben",
+     "title": "Develops personal skills, identifies personal benefits of movement and chooses to engage in physical activity: Through learning experiences in physical education, the student develops an understanding of how movement is personally beneficial and subsequently chooses to participate in physical activities that are personally meaningful (e.g., activities that offer social interaction, cultural connection, exploration, choice, self-expression, appropriate levels of challenge and added health benefits). The student develops personal skills including goal setting, identifying strengths and reflection to enhance their physical literacy journey",
+     "topics": [
+      {
+       "id": "develops-personal-skills-identifies-personal-ben",
+       "title": "Develops personal skills, identifies personal benefits of movement and chooses to engage in physical activity: Through learning experiences in physical education, the student develops an understanding of how movement is personally beneficial and subsequently chooses to participate in physical activities that are personally meaningful (e.g., activities that offer social interaction, cultural connection, exploration, choice, self-expression, appropriate levels of challenge and added health benefits). The student develops personal skills including goal setting, identifying strengths and reflection to enhance their physical literacy journey",
+       "subtopics": [
+        {
+         "id": "develops-personal-skills-identifies-personal-ben",
+         "title": "Develops personal skills, identifies personal benefits of movement and chooses to engage in physical activity: Through learning experiences in physical education, the student develops an understanding of how movement is personally beneficial and subsequently chooses to participate in physical activities that are personally meaningful (e.g., activities that offer social interaction, cultural connection, exploration, choice, self-expression, appropriate levels of challenge and added health benefits). The student develops personal skills including goal setting, identifying strengths and reflection to enhance their physical literacy journey (1 of 2)",
+         "outcomes": [
+          {
+           "code": "4.2.1",
+           "text": "Identifies physical activities that can meet the need for self-expression."
+          },
+          {
+           "code": "4.2.2",
+           "text": "Identifies physical activities that can meet the need for social interaction."
+          },
+          {
+           "code": "4.2.3",
+           "text": "Lists ways that movement positively affects personal health."
+          },
+          {
+           "code": "4.2.4",
+           "text": "Identifies preferred physical activities based on personal interests."
+          },
+          {
+           "code": "4.2.5",
+           "text": "Recognizes individual challenges through movement (e.g., heart rate, exertion, endurance, skill)."
+          }
+         ]
+        },
+        {
+         "id": "develops-personal-skills-identifies-personal-ben-2",
+         "title": "Develops personal skills, identifies personal benefits of movement and chooses to engage in physical activity: Through learning experiences in physical education, the student develops an understanding of how movement is personally beneficial and subsequently chooses to participate in physical activities that are personally meaningful (e.g., activities that offer social interaction, cultural connection, exploration, choice, self-expression, appropriate levels of challenge and added health benefits). The student develops personal skills including goal setting, identifying strengths and reflection to enhance their physical literacy journey (2 of 2)",
+         "outcomes": [
+          {
+           "code": "4.2.6",
+           "text": "Sets observable short-term goals."
+          },
+          {
+           "code": "4.2.7",
+           "text": "Recognizes movement strengths and the need for practice for individual improvement."
+          },
+          {
+           "code": "4.2.8",
+           "text": "Recognizes the opportunity for physical activity within physical education class."
+          },
+          {
+           "code": "4.2.9",
+           "text": "Demonstrates techniques (e.g., breathing, counting) to assist with managing emotions and behaviors in a physical activity."
+          },
+          {
+           "code": "4.2.10",
+           "text": "Reflects on movement experiences during physical education to develop understanding of how movement is personally meaningful."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "3-5",
+   "units": [
+    {
+     "id": "develops-a-variety-of-motor-skills-through-learn",
+     "title": "Develops a variety of motor skills: Through learning experiences in physical education, the student develops motor skills across a variety of environments. Motor skills are a foundational part of child development and support the movements of everyday life. The development of motor skills contributes to an individual’s physical literacy journey",
+     "topics": [
+      {
+       "id": "develops-a-variety-of-motor-skills-through-learn",
+       "title": "Develops a variety of motor skills: Through learning experiences in physical education, the student develops motor skills across a variety of environments. Motor skills are a foundational part of child development and support the movements of everyday life. The development of motor skills contributes to an individual’s physical literacy journey",
+       "subtopics": [
+        {
+         "id": "develops-a-variety-of-motor-skills-through-learn",
+         "title": "Develops a variety of motor skills: Through learning experiences in physical education, the student develops motor skills across a variety of environments. Motor skills are a foundational part of child development and support the movements of everyday life. The development of motor skills contributes to an individual’s physical literacy journey (1 of 4)",
+         "outcomes": [
+          {
+           "code": "1.5.1",
+           "text": "Combines varied locomotor skills in a variety of practice tasks."
+          },
+          {
+           "code": "1.5.2",
+           "text": "Demonstrates transferring weight from feet to hands and hands to feet in a non-dynamic environment."
+          },
+          {
+           "code": "1.5.3",
+           "text": "Demonstrates rolling with the body in a non-dynamic environment."
+          },
+          {
+           "code": "1.5.4",
+           "text": "Combines jumping/landing, rolling, balancing and transfer of weight from feet to hands in a non-dynamic environment."
+          },
+          {
+           "code": "1.5.5",
+           "text": "Combines locomotor, non-locomotor and manipulative movements based on a variety of dance forms."
+          }
+         ]
+        },
+        {
+         "id": "develops-a-variety-of-motor-skills-through-learn-2",
+         "title": "Develops a variety of motor skills: Through learning experiences in physical education, the student develops motor skills across a variety of environments. Motor skills are a foundational part of child development and support the movements of everyday life. The development of motor skills contributes to an individual’s physical literacy journey (2 of 4)",
+         "outcomes": [
+          {
+           "code": "1.5.6",
+           "text": "Demonstrates jumping rope in a variety of practice tasks."
+          },
+          {
+           "code": "1.5.7",
+           "text": "Demonstrates jumping and landing in a non-dynamic environment."
+          },
+          {
+           "code": "1.5.8",
+           "text": "Demonstrates balancing on different body parts in a non-dynamic environment."
+          },
+          {
+           "code": "1.5.9",
+           "text": "Demonstrates rolling a ball in a non-dynamic environment."
+          },
+          {
+           "code": "1.5.10",
+           "text": "Demonstrates throwing and catching in a variety of practice tasks."
+          }
+         ]
+        },
+        {
+         "id": "develops-a-variety-of-motor-skills-through-learn-3",
+         "title": "Develops a variety of motor skills: Through learning experiences in physical education, the student develops motor skills across a variety of environments. Motor skills are a foundational part of child development and support the movements of everyday life. The development of motor skills contributes to an individual’s physical literacy journey (3 of 4)",
+         "outcomes": [
+          {
+           "code": "1.5.11",
+           "text": "Demonstrates striking with a short-handled and long-handled implement in a variety of practice tasks."
+          },
+          {
+           "code": "1.5.12",
+           "text": "Demonstrates striking with hands above and below the waist in a variety of practice tasks."
+          },
+          {
+           "code": "1.5.13",
+           "text": "Demonstrates serving an object in a non-dynamic environment.,"
+          },
+          {
+           "code": "1.5.14",
+           "text": "Demonstrates sending and receiving an object in a variety of practice tasks."
+          },
+          {
+           "code": "1.5.15",
+           "text": "Demonstrates kicking a ball using the instep in a variety of practice tasks."
+          }
+         ]
+        },
+        {
+         "id": "develops-a-variety-of-motor-skills-through-learn-4",
+         "title": "Develops a variety of motor skills: Through learning experiences in physical education, the student develops motor skills across a variety of environments. Motor skills are a foundational part of child development and support the movements of everyday life. The development of motor skills contributes to an individual’s physical literacy journey (4 of 4)",
+         "outcomes": [
+          {
+           "code": "1.5.16",
+           "text": "Demonstrates dribbling with hands in non-dynamic and dynamic practice tasks."
+          },
+          {
+           "code": "1.5.17",
+           "text": "Demonstrates dribbling with feet in a variety of practice tasks."
+          },
+          {
+           "code": "1.5.18",
+           "text": "Combines manipulative skills and traveling for execution to a target in a variety of practice tasks."
+          },
+          {
+           "code": "1.5.19",
+           "text": "Demonstrates water safety and basic swimming skills on dryland or in water."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "applies-knowledge-related-to-movement-and-fitnes",
+     "title": "Applies knowledge related to movement and fitness concepts: Through learning experiences in physical education, the student uses their knowledge of movement concepts, tactics and strategies across a variety of environments. This knowledge helps the student become a more versatile and efficient mover. Additionally, the student applies knowledge of health-related and skill-related fitness to enhance their overall well-being. The application of knowledge related to various forms of movement contributes to an individual’s physical literacy journey",
+     "topics": [
+      {
+       "id": "applies-knowledge-related-to-movement-and-fitnes",
+       "title": "Applies knowledge related to movement and fitness concepts: Through learning experiences in physical education, the student uses their knowledge of movement concepts, tactics and strategies across a variety of environments. This knowledge helps the student become a more versatile and efficient mover. Additionally, the student applies knowledge of health-related and skill-related fitness to enhance their overall well-being. The application of knowledge related to various forms of movement contributes to an individual’s physical literacy journey",
+       "subtopics": [
+        {
+         "id": "applies-knowledge-related-to-movement-and-fitnes",
+         "title": "Applies knowledge related to movement and fitness concepts: Through learning experiences in physical education, the student uses their knowledge of movement concepts, tactics and strategies across a variety of environments. This knowledge helps the student become a more versatile and efficient mover. Additionally, the student applies knowledge of health-related and skill-related fitness to enhance their overall well-being. The application of knowledge related to various forms of movement contributes to an individual’s physical literacy journey (1 of 4)",
+         "outcomes": [
+          {
+           "code": "2.5.1",
+           "text": "Applies movement concepts and strategies for safe movement within dynamic environments."
+          },
+          {
+           "code": "2.5.2",
+           "text": "Demonstrates knowledge of offensive and defensive strategies in small-sided invasion practice tasks."
+          },
+          {
+           "code": "2.5.3",
+           "text": "Demonstrates knowledge of appropriate movement concepts for efficient performance of manipulative skills."
+          },
+          {
+           "code": "2.5.4",
+           "text": "Demonstrates problem solving strategies in a variety of games/activities."
+          },
+          {
+           "code": "2.5.5",
+           "text": "Applies movement concepts to different types of dances, gymnastics, rhythms and individual performance activities."
+          }
+         ]
+        },
+        {
+         "id": "applies-knowledge-related-to-movement-and-fitnes-2",
+         "title": "Applies knowledge related to movement and fitness concepts: Through learning experiences in physical education, the student uses their knowledge of movement concepts, tactics and strategies across a variety of environments. This knowledge helps the student become a more versatile and efficient mover. Additionally, the student applies knowledge of health-related and skill-related fitness to enhance their overall well-being. The application of knowledge related to various forms of movement contributes to an individual’s physical literacy journey (2 of 4)",
+         "outcomes": [
+          {
+           "code": "2.5.6",
+           "text": "Defines and provides examples of movement activities for developing the health-related fitness components."
+          },
+          {
+           "code": "2.5.7",
+           "text": "Establishes goals related to enhancing fitness development."
+          },
+          {
+           "code": "2.5.8",
+           "text": "Defines and explains how to implement the frequency, intensity, time and type (FITT) Principle for skill or fitness development."
+          },
+          {
+           "code": "2.5.9",
+           "text": "Defines and provides examples of movement activities for developing the skill-related fitness components."
+          },
+          {
+           "code": "2.5.10",
+           "text": "Identifies the need for warm-up and cool-down relative to various physical activities."
+          }
+         ]
+        },
+        {
+         "id": "applies-knowledge-related-to-movement-and-fitnes-3",
+         "title": "Applies knowledge related to movement and fitness concepts: Through learning experiences in physical education, the student uses their knowledge of movement concepts, tactics and strategies across a variety of environments. This knowledge helps the student become a more versatile and efficient mover. Additionally, the student applies knowledge of health-related and skill-related fitness to enhance their overall well-being. The application of knowledge related to various forms of movement contributes to an individual’s physical literacy journey (3 of 4)",
+         "outcomes": [
+          {
+           "code": "2.5.11",
+           "text": "Identifies location of pulse and provides examples of activities that increase heart rate."
+          },
+          {
+           "code": "2.5.12",
+           "text": "Explains the benefits of physical activity."
+          },
+          {
+           "code": "2.5.13",
+           "text": "Recognizes and explains how physical activity influences physiological changes in their body."
+          },
+          {
+           "code": "2.5.14",
+           "text": "Recognizes the critical elements that contribute to proper execution of a skill."
+          },
+          {
+           "code": "2.5.15",
+           "text": "Identifies technology tools that support physical activity goals."
+          }
+         ]
+        },
+        {
+         "id": "applies-knowledge-related-to-movement-and-fitnes-4",
+         "title": "Applies knowledge related to movement and fitness concepts: Through learning experiences in physical education, the student uses their knowledge of movement concepts, tactics and strategies across a variety of environments. This knowledge helps the student become a more versatile and efficient mover. Additionally, the student applies knowledge of health-related and skill-related fitness to enhance their overall well-being. The application of knowledge related to various forms of movement contributes to an individual’s physical literacy journey (4 of 4)",
+         "outcomes": [
+          {
+           "code": "2.5.16",
+           "text": "Describes the impact of food and hydration choices on physical activity."
+          },
+          {
+           "code": "2.5.17",
+           "text": "Demonstrates knowledge of water safety skills. Demonstrates knowledge of basic swimming skills."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "develops-social-skills-through-movement-through-",
+     "title": "Develops social skills through movement: Through learning experiences in physical education, students develop the social skills necessary to exhibit empathy and respect for others and foster and maintain relationships. In addition, students develop skills for communication, leadership, cultural awareness and conflict resolution in a variety of physical activity settings",
+     "topics": [
+      {
+       "id": "develops-social-skills-through-movement-through-",
+       "title": "Develops social skills through movement: Through learning experiences in physical education, students develop the social skills necessary to exhibit empathy and respect for others and foster and maintain relationships. In addition, students develop skills for communication, leadership, cultural awareness and conflict resolution in a variety of physical activity settings",
+       "subtopics": [
+        {
+         "id": "develops-social-skills-through-movement-through-",
+         "title": "Develops social skills through movement: Through learning experiences in physical education, students develop the social skills necessary to exhibit empathy and respect for others and foster and maintain relationships. In addition, students develop skills for communication, leadership, cultural awareness and conflict resolution in a variety of physical activity settings (1 of 2)",
+         "outcomes": [
+          {
+           "code": "3.5.1",
+           "text": "Describes the perspective of others during a variety of activities."
+          },
+          {
+           "code": "3.5.2",
+           "text": "Uses communication skills to negotiate roles and responsibilities in a physical activity setting."
+          },
+          {
+           "code": "3.5.3",
+           "text": "Demonstrates respectful behaviors that contribute to positive social interaction in group activities."
+          },
+          {
+           "code": "3.5.4",
+           "text": "Demonstrates safe behaviors independently with limited reminders."
+          }
+         ]
+        },
+        {
+         "id": "develops-social-skills-through-movement-through--2",
+         "title": "Develops social skills through movement: Through learning experiences in physical education, students develop the social skills necessary to exhibit empathy and respect for others and foster and maintain relationships. In addition, students develop skills for communication, leadership, cultural awareness and conflict resolution in a variety of physical activity settings (2 of 2)",
+         "outcomes": [
+          {
+           "code": "3.5.5",
+           "text": "Solves problems independently, with partners and in small groups."
+          },
+          {
+           "code": "3.5.6",
+           "text": "Makes choices that are fair according to activity etiquette."
+          },
+          {
+           "code": "3.5.7",
+           "text": "Describes and participates in physical activities that represent a variety of cultures around the world."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "develops-personal-skills-identifies-personal-ben",
+     "title": "Develops personal skills, identifies personal benefits of movement and chooses to engage in physical activity",
+     "topics": [
+      {
+       "id": "develops-personal-skills-identifies-personal-ben",
+       "title": "Develops personal skills, identifies personal benefits of movement and chooses to engage in physical activity",
+       "subtopics": [
+        {
+         "id": "develops-personal-skills-identifies-personal-ben",
+         "title": "Develops personal skills, identifies personal benefits of movement and chooses to engage in physical activity (1 of 2)",
+         "outcomes": [
+          {
+           "code": "4.5.1",
+           "text": "Explains how preferred physical activities meet the need for personal self-expression."
+          },
+          {
+           "code": "4.5.2",
+           "text": "Explains how preferred physical activities meet the need for social interaction."
+          },
+          {
+           "code": "4.5.3",
+           "text": "Describes how movement positively affects personal health."
+          },
+          {
+           "code": "4.5.4",
+           "text": "Explains the rationale for one’s choices related to physical activity based on personal interests."
+          },
+          {
+           "code": "4.5.5",
+           "text": "Recognizes group challenges through movement (e.g., peer interaction, cooperation, communication)."
+          }
+         ]
+        },
+        {
+         "id": "develops-personal-skills-identifies-personal-ben-2",
+         "title": "Develops personal skills, identifies personal benefits of movement and chooses to engage in physical activity (2 of 2)",
+         "outcomes": [
+          {
+           "code": "4.5.6",
+           "text": "Sets observable long-term goals."
+          },
+          {
+           "code": "4.5.7",
+           "text": "Identifies movement strengths and opportunities for practice for individual improvement."
+          },
+          {
+           "code": "4.5.8",
+           "text": "Identifies physical activity opportunities outside of physical education class."
+          },
+          {
+           "code": "4.5.9",
+           "text": "Recognizes personally effective techniques that assist with managing one’s emotions and behaviors in a physical activity setting."
+          },
+          {
+           "code": "4.5.10",
+           "text": "Reflects on movement experiences during physical education to develop understanding of how movement is personally meaningful."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "6-8",
+   "units": [
+    {
+     "id": "develops-a-variety-of-motor-skills-through-learn",
+     "title": "Develops a variety of motor skills: Through learning experiences in physical education, the student develops motor skills across a variety of environments. Motor skills are a foundational part of child development and support the movements of everyday life. The development of motor skills contributes to an individual’s physical literacy journey",
+     "topics": [
+      {
+       "id": "develops-a-variety-of-motor-skills-through-learn",
+       "title": "Develops a variety of motor skills: Through learning experiences in physical education, the student develops motor skills across a variety of environments. Motor skills are a foundational part of child development and support the movements of everyday life. The development of motor skills contributes to an individual’s physical literacy journey",
+       "subtopics": [
+        {
+         "id": "develops-a-variety-of-motor-skills-through-learn",
+         "title": "Develops a variety of motor skills: Through learning experiences in physical education, the student develops motor skills across a variety of environments. Motor skills are a foundational part of child development and support the movements of everyday life. The development of motor skills contributes to an individual’s physical literacy journey (1 of 4)",
+         "outcomes": [
+          {
+           "code": "1.8.1",
+           "text": "Demonstrates locomotor, non-locomotor and manipulative skills in a variety of outdoor activities (e.g., frisbee golf, orienteering, hiking)."
+          },
+          {
+           "code": "1.8.2",
+           "text": "Demonstrates movement sequences within varied dance forms."
+          },
+          {
+           "code": "1.8.3",
+           "text": "Demonstrates appropriate form in a variety of health-related fitness activities."
+          },
+          {
+           "code": "1.8.4",
+           "text": "Demonstrates appropriate form in a variety of skill-related fitness activities."
+          },
+          {
+           "code": "1.8.5",
+           "text": "Demonstrates a striking motion with a long-handled implement."
+          }
+         ]
+        },
+        {
+         "id": "develops-a-variety-of-motor-skills-through-learn-2",
+         "title": "Develops a variety of motor skills: Through learning experiences in physical education, the student develops motor skills across a variety of environments. Motor skills are a foundational part of child development and support the movements of everyday life. The development of motor skills contributes to an individual’s physical literacy journey (2 of 4)",
+         "outcomes": [
+          {
+           "code": "1.8.6",
+           "text": "Demonstrates a correct rolling and throwing (underhand, sidearm, overhand) technique in a variety of practice tasks and modified target games."
+          },
+          {
+           "code": "1.8.7",
+           "text": "Demonstrates striking a self-tossed/pitched ball with an implement to open space in a variety of practice tasks and small-sided games."
+          },
+          {
+           "code": "1.8.8",
+           "text": "Demonstrates a proper catch with or without an implement in a variety of practice tasks and small-sided games."
+          },
+          {
+           "code": "1.8.9",
+           "text": "Demonstrates throwing for accuracy, distance and power in a variety of practice tasks and small-sided games."
+          },
+          {
+           "code": "1.8.10",
+           "text": "Demonstrates a proper underhand and overhand serve using the hand in a variety of practice tasks and modified small-sided games."
+          }
+         ]
+        },
+        {
+         "id": "develops-a-variety-of-motor-skills-through-learn-3",
+         "title": "Develops a variety of motor skills: Through learning experiences in physical education, the student develops motor skills across a variety of environments. Motor skills are a foundational part of child development and support the movements of everyday life. The development of motor skills contributes to an individual’s physical literacy journey (3 of 4)",
+         "outcomes": [
+          {
+           "code": "1.8.11",
+           "text": "Demonstrates a proper underhand and overhand serve using a short or long-handled implement in a variety of practice tasks and modified small-sided games."
+          },
+          {
+           "code": "1.8.12",
+           "text": "Demonstrates the correct form of a forehand and backhand stroke with a short-handled and long-handled implement in a variety of practice tasks and modified small-sided games."
+          },
+          {
+           "code": "1.8.13",
+           "text": "Demonstrates a volley using a short-handled and long-handled implement in a variety of practice tasks and modified net and wall games."
+          },
+          {
+           "code": "1.8.14",
+           "text": "Demonstrates sending and receiving in combination with locomotor skills in a variety of small-sided games."
+          },
+          {
+           "code": "1.8.15",
+           "text": "Demonstrates a dribbling skill in a variety of practice tasks and small-sided games."
+          }
+         ]
+        },
+        {
+         "id": "develops-a-variety-of-motor-skills-through-learn-4",
+         "title": "Develops a variety of motor skills: Through learning experiences in physical education, the student develops motor skills across a variety of environments. Motor skills are a foundational part of child development and support the movements of everyday life. The development of motor skills contributes to an individual’s physical literacy journey (4 of 4)",
+         "outcomes": [
+          {
+           "code": "1.8.16",
+           "text": "Demonstrates dribbling an object with an implement in a variety of practice tasks and small-sided games."
+          },
+          {
+           "code": "1.8.17",
+           "text": "Demonstrates a shot on goal with and without an implement in a variety of practice tasks and small-sided games."
+          },
+          {
+           "code": "1.8.18",
+           "text": "Demonstrates multiple techniques to create open space during a variety of practice tasks and small-sided games (offense)."
+          },
+          {
+           "code": "1.8.19",
+           "text": "Demonstrates a defensive ready position in a variety of practice tasks and small-sided games."
+          },
+          {
+           "code": "1.8.20",
+           "text": "Demonstrates water safety and basic swimming skills on dryland or in water"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "applies-knowledge-related-to-movement-and-fitnes",
+     "title": "Applies knowledge related to movement and fitness concepts: Through learning experiences in physical education, the student uses their knowledge of movement concepts, tactics and strategies across a variety of environments. This knowledge helps the student become a more versatile and efficient mover. Additionally, the student applies knowledge of health-related and skill-related fitness to enhance their overall well-being. The application of knowledge related to various forms of movement contributes to an individual’s physical literacy journey",
+     "topics": [
+      {
+       "id": "applies-knowledge-related-to-movement-and-fitnes",
+       "title": "Applies knowledge related to movement and fitness concepts: Through learning experiences in physical education, the student uses their knowledge of movement concepts, tactics and strategies across a variety of environments. This knowledge helps the student become a more versatile and efficient mover. Additionally, the student applies knowledge of health-related and skill-related fitness to enhance their overall well-being. The application of knowledge related to various forms of movement contributes to an individual’s physical literacy journey",
+       "subtopics": [
+        {
+         "id": "applies-knowledge-related-to-movement-and-fitnes",
+         "title": "Applies knowledge related to movement and fitness concepts: Through learning experiences in physical education, the student uses their knowledge of movement concepts, tactics and strategies across a variety of environments. This knowledge helps the student become a more versatile and efficient mover. Additionally, the student applies knowledge of health-related and skill-related fitness to enhance their overall well-being. The application of knowledge related to various forms of movement contributes to an individual’s physical literacy journey (1 of 5)",
+         "outcomes": [
+          {
+           "code": "2.8.1",
+           "text": "Identifies the effective use of movement concepts within multiple dynamic environments."
+          },
+          {
+           "code": "2.8.2",
+           "text": "Demonstrates knowledge of offensive tactics to create space with movement in invasion games."
+          },
+          {
+           "code": "2.8.3",
+           "text": "Demonstrates knowledge of reducing open space with movement and denial in invasion games."
+          },
+          {
+           "code": "2.8.4",
+           "text": "Selects and applies the appropriate shot and technique in net and wall games."
+          },
+          {
+           "code": "2.8.5",
+           "text": "Demonstrates knowledge of offensive tactics in striking and fielding games."
+          }
+         ]
+        },
+        {
+         "id": "applies-knowledge-related-to-movement-and-fitnes-2",
+         "title": "Applies knowledge related to movement and fitness concepts: Through learning experiences in physical education, the student uses their knowledge of movement concepts, tactics and strategies across a variety of environments. This knowledge helps the student become a more versatile and efficient mover. Additionally, the student applies knowledge of health-related and skill-related fitness to enhance their overall well-being. The application of knowledge related to various forms of movement contributes to an individual’s physical literacy journey (2 of 5)",
+         "outcomes": [
+          {
+           "code": "2.8.6",
+           "text": "Demonstrates knowledge of defensive positioning tactics in striking and fielding games."
+          },
+          {
+           "code": "2.8.7",
+           "text": "Demonstrates problem-solving skills in a variety of games and activities."
+          },
+          {
+           "code": "2.8.8",
+           "text": "Applies knowledge of movement concepts for the purpose of varying different types of dances and rhythmic activities."
+          },
+          {
+           "code": "2.8.9",
+           "text": "Identifies and compares the components of health and skill-related fitness."
+          },
+          {
+           "code": "2.8.10",
+           "text": "Monitors personal physical activity goals based on a self-selected health-related fitness assessment."
+          }
+         ]
+        },
+        {
+         "id": "applies-knowledge-related-to-movement-and-fitnes-3",
+         "title": "Applies knowledge related to movement and fitness concepts: Through learning experiences in physical education, the student uses their knowledge of movement concepts, tactics and strategies across a variety of environments. This knowledge helps the student become a more versatile and efficient mover. Additionally, the student applies knowledge of health-related and skill-related fitness to enhance their overall well-being. The application of knowledge related to various forms of movement contributes to an individual’s physical literacy journey (3 of 5)",
+         "outcomes": [
+          {
+           "code": "2.8.11",
+           "text": "Implements the principles of exercise (FITT, progression, overload and specificity) for different types of physical activity."
+          },
+          {
+           "code": "2.8.12",
+           "text": "Applies knowledge of skill-related fitness to different types of physical activity."
+          },
+          {
+           "code": "2.8.13",
+           "text": "Explains the relationship of aerobic fitness and rate of perceived exertion (RPE Scale) to physical activity effort."
+          },
+          {
+           "code": "2.8.14",
+           "text": "Applies knowledge of dynamic and static stretching to exercise in warm-up, cool-down, flexibility, endurance, physical activities, etc."
+          },
+          {
+           "code": "2.8.15",
+           "text": "Demonstrates knowledge of heart rate and describes its relationship to aerobic fitness."
+          }
+         ]
+        },
+        {
+         "id": "applies-knowledge-related-to-movement-and-fitnes-4",
+         "title": "Applies knowledge related to movement and fitness concepts: Through learning experiences in physical education, the student uses their knowledge of movement concepts, tactics and strategies across a variety of environments. This knowledge helps the student become a more versatile and efficient mover. Additionally, the student applies knowledge of health-related and skill-related fitness to enhance their overall well-being. The application of knowledge related to various forms of movement contributes to an individual’s physical literacy journey (4 of 5)",
+         "outcomes": [
+          {
+           "code": "2.8.16",
+           "text": "Identifies ways to be physically active."
+          },
+          {
+           "code": "2.8.17",
+           "text": "Examines how rest impacts the body’s response to physical activity"
+          },
+          {
+           "code": "2.8.18",
+           "text": "Analyzes the critical elements of skill performance."
+          },
+          {
+           "code": "2.8.19",
+           "text": "Evaluates usefulness of technology tools to support physical activity and fitness goals."
+          },
+          {
+           "code": "2.8.20",
+           "text": "Explains the relationships among nutrition, physical activity and health factors."
+          }
+         ]
+        },
+        {
+         "id": "applies-knowledge-related-to-movement-and-fitnes-5",
+         "title": "Applies knowledge related to movement and fitness concepts: Through learning experiences in physical education, the student uses their knowledge of movement concepts, tactics and strategies across a variety of environments. This knowledge helps the student become a more versatile and efficient mover. Additionally, the student applies knowledge of health-related and skill-related fitness to enhance their overall well-being. The application of knowledge related to various forms of movement contributes to an individual’s physical literacy journey (5 of 5)",
+         "outcomes": [
+          {
+           "code": "2.8.21",
+           "text": "Demonstrates knowledge of safety protocols in teacher-selected outdoor activities."
+          },
+          {
+           "code": "2.8.22",
+           "text": "Demonstrates knowledge of water safety skills. Demonstrates knowledge of basic swimming skills."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "develops-social-skills-through-movement-through-",
+     "title": "Develops social skills through movement: Through learning experiences in physical education, students develop the social skills necessary to exhibit empathy and respect for others and foster and maintain relationships. In addition, students develop skills for communication, leadership, cultural awareness and conflict resolution in a variety of physical activity settings",
+     "topics": [
+      {
+       "id": "develops-social-skills-through-movement-through-",
+       "title": "Develops social skills through movement: Through learning experiences in physical education, students develop the social skills necessary to exhibit empathy and respect for others and foster and maintain relationships. In addition, students develop skills for communication, leadership, cultural awareness and conflict resolution in a variety of physical activity settings",
+       "subtopics": [
+        {
+         "id": "develops-social-skills-through-movement-through-",
+         "title": "Develops social skills through movement: Through learning experiences in physical education, students develop the social skills necessary to exhibit empathy and respect for others and foster and maintain relationships. In addition, students develop skills for communication, leadership, cultural awareness and conflict resolution in a variety of physical activity settings (1 of 3)",
+         "outcomes": [
+          {
+           "code": "3.8.1",
+           "text": "Understands and accepts others’ differences during a variety of physical activities."
+          },
+          {
+           "code": "3.8.2",
+           "text": "Demonstrates consideration for others and contributes positively to the group or team."
+          },
+          {
+           "code": "3.8.3",
+           "text": "Uses communication skills to negotiate strategies and tactics in a physical activity setting."
+          },
+          {
+           "code": "3.8.4",
+           "text": "Implements constructive feedback from peers when prompted and supported by the teacher."
+          }
+         ]
+        },
+        {
+         "id": "develops-social-skills-through-movement-through--2",
+         "title": "Develops social skills through movement: Through learning experiences in physical education, students develop the social skills necessary to exhibit empathy and respect for others and foster and maintain relationships. In addition, students develop skills for communication, leadership, cultural awareness and conflict resolution in a variety of physical activity settings (2 of 3)",
+         "outcomes": [
+          {
+           "code": "3.8.5",
+           "text": "Provides constructive input to others when prompted and supported by the teacher."
+          },
+          {
+           "code": "3.8.6",
+           "text": "Explain the cultural significance (e.g., geographic, economic, social factors) of a specific physical activity and its impact on community, tradition and identity."
+          },
+          {
+           "code": "3.8.7",
+           "text": "Demonstrates the ability to follow game rules in a variety of physical activity situations."
+          },
+          {
+           "code": "3.8.8",
+           "text": "Recognizes and implements safe and appropriate behaviors during physical activity and with exercise equipment."
+          }
+         ]
+        },
+        {
+         "id": "develops-social-skills-through-movement-through--3",
+         "title": "Develops social skills through movement: Through learning experiences in physical education, students develop the social skills necessary to exhibit empathy and respect for others and foster and maintain relationships. In addition, students develop skills for communication, leadership, cultural awareness and conflict resolution in a variety of physical activity settings (3 of 3)",
+         "outcomes": [
+          {
+           "code": "3.8.9",
+           "text": "Solves problems amongst teammates and opponents."
+          },
+          {
+           "code": "3.8.10",
+           "text": "Applies and respects the importance of etiquette in a physical activity setting."
+          },
+          {
+           "code": "3.8.11",
+           "text": "Explains how communication, feedback, cooperation and etiquette relate to leadership roles."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "develops-personal-skills-identifies-personal-ben",
+     "title": "Develops personal skills, identifies personal benefits of movement and chooses to engage in physical activity: Through learning experiences in physical education, the student develops an understanding of how movement is personally beneficial and subsequently chooses to participate in physical activities that are personally meaningful (e.g., activities that offer social interaction, cultural connection, exploration, choice, self-expression, appropriate levels of challenge and added health benefits). The student develops personal skills including goal setting, identifying strengths and reflection to enhance their physical literacy journey",
+     "topics": [
+      {
+       "id": "develops-personal-skills-identifies-personal-ben",
+       "title": "Develops personal skills, identifies personal benefits of movement and chooses to engage in physical activity: Through learning experiences in physical education, the student develops an understanding of how movement is personally beneficial and subsequently chooses to participate in physical activities that are personally meaningful (e.g., activities that offer social interaction, cultural connection, exploration, choice, self-expression, appropriate levels of challenge and added health benefits). The student develops personal skills including goal setting, identifying strengths and reflection to enhance their physical literacy journey",
+       "subtopics": [
+        {
+         "id": "develops-personal-skills-identifies-personal-ben",
+         "title": "Develops personal skills, identifies personal benefits of movement and chooses to engage in physical activity: Through learning experiences in physical education, the student develops an understanding of how movement is personally beneficial and subsequently chooses to participate in physical activities that are personally meaningful (e.g., activities that offer social interaction, cultural connection, exploration, choice, self-expression, appropriate levels of challenge and added health benefits). The student develops personal skills including goal setting, identifying strengths and reflection to enhance their physical literacy journey (1 of 2)",
+         "outcomes": [
+          {
+           "code": "4.8.1",
+           "text": "Describes how self-expression impacts individual engagement in physical activity."
+          },
+          {
+           "code": "4.8.2",
+           "text": "Describes how social interaction impacts individual engagement in physical activity."
+          },
+          {
+           "code": "4.8.3",
+           "text": "Participates in a variety of physical activities that can positively affect personal health."
+          },
+          {
+           "code": "4.8.4",
+           "text": "Connects how choice and personal interests impact individual engagement in physical activity."
+          },
+          {
+           "code": "4.8.5",
+           "text": "Examines individual and group challenges through movement."
+          }
+         ]
+        },
+        {
+         "id": "develops-personal-skills-identifies-personal-ben-2",
+         "title": "Develops personal skills, identifies personal benefits of movement and chooses to engage in physical activity: Through learning experiences in physical education, the student develops an understanding of how movement is personally beneficial and subsequently chooses to participate in physical activities that are personally meaningful (e.g., activities that offer social interaction, cultural connection, exploration, choice, self-expression, appropriate levels of challenge and added health benefits). The student develops personal skills including goal setting, identifying strengths and reflection to enhance their physical literacy journey (2 of 2)",
+         "outcomes": [
+          {
+           "code": "4.8.6",
+           "text": "Sets goals to participate in physical activities based on examining individual ability."
+          },
+          {
+           "code": "4.8.7",
+           "text": "Examines opportunities and barriers to participating in physical activity outside of physical education class."
+          },
+          {
+           "code": "4.8.8",
+           "text": "Utilizes a variety of techniques to manage one’s emotions and behaviors in a physical activity setting."
+          },
+          {
+           "code": "4.8.9",
+           "text": "Reflects on movement experiences during physical education to develop understanding of how movement is personally meaningful."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "build": {
+  "builtAt": "2026-10-14T16:20:43.130Z",
+  "model": "none",
+  "usd": 0,
+  "expectedCodes": 399,
+  "coverage": 1,
+  "missingCodes": [],
+  "counts": {
+   "grades": 12,
+   "units": 61,
+   "topics": 161,
+   "subtopics": 192,
+   "outcomes": 418
+  },
+  "warnings": []
+ }
+}

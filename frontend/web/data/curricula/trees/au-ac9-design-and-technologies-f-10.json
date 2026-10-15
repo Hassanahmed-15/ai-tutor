@@ -1,0 +1,898 @@
+{
+ "id": "au-ac9-design-and-technologies-f-10",
+ "region": "AU",
+ "framework": "Australian Curriculum Version 9.0 (F-10)",
+ "board": "ACARA",
+ "qualification": null,
+ "subject": "Design and Technologies",
+ "syllabusCode": "TECTDE",
+ "gradeSystem": "year",
+ "source": {
+  "urls": [
+   "https://vocabulary.curriculum.edu.au/MRAC/2024/04/LA/TEC/export/MRAC/2024/04/LA/TEC.jsonld",
+   "https://www.australiancurriculum.edu.au/content/dam/en/curriculum/ac-version-9/downloads/curriculum-workbook.xlsx"
+  ],
+  "publisher": "Australian Curriculum, Assessment and Reporting Authority (ACARA)",
+  "licence": "© ACARA, Australian Curriculum v9.0, CC BY 4.0",
+  "firstExam": null
+ },
+ "grades": [
+  {
+   "grade": "Foundation",
+   "units": [
+    {
+     "id": "knowledge-and-understanding",
+     "title": "Knowledge and understanding",
+     "topics": [
+      {
+       "id": "technologies-and-society",
+       "title": "Technologies and society",
+       "subtopics": [
+        {
+         "id": "technologies-and-society",
+         "title": "Technologies and society",
+         "outcomes": [
+          {
+           "code": "AC9TDEFK01",
+           "text": "explore how familiar products, services and environments are designed by people"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "processes-and-production-skills",
+     "title": "Processes and production skills",
+     "topics": [
+      {
+       "id": "designing-and-making",
+       "title": "Designing and making",
+       "subtopics": [
+        {
+         "id": "designing-and-making",
+         "title": "Designing and making",
+         "outcomes": [
+          {
+           "code": "AC9TDEFP01",
+           "text": "generate, communicate and evaluate design ideas, and use materials, equipment and steps to safely make a solution for a purpose"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "1-2",
+   "units": [
+    {
+     "id": "knowledge-and-understanding",
+     "title": "Knowledge and understanding",
+     "topics": [
+      {
+       "id": "technologies-and-society",
+       "title": "Technologies and society",
+       "subtopics": [
+        {
+         "id": "technologies-and-society",
+         "title": "Technologies and society",
+         "outcomes": [
+          {
+           "code": "AC9TDE2K01",
+           "text": "identify how familiar products, services and environments are designed and produced by people to meet personal or local community needs and sustainability"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "engineering-and-materials",
+       "title": "Engineering and Materials",
+       "subtopics": [
+        {
+         "id": "engineering-and-materials",
+         "title": "Engineering and Materials",
+         "outcomes": [
+          {
+           "code": "AC9TDE2K02",
+           "text": "explore how technologies including materials affect movement in products"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "food-and-fibre-production",
+       "title": "Food and Fibre Production",
+       "subtopics": [
+        {
+         "id": "food-and-fibre-production",
+         "title": "Food and Fibre Production",
+         "outcomes": [
+          {
+           "code": "AC9TDE2K03",
+           "text": "explore how plants and animals are grown for food, clothing and shelter"
+          },
+          {
+           "code": "AC9TDE2K04",
+           "text": "explore how food can be selected and prepared for healthy eating"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "processes-and-production-skills",
+     "title": "Processes and production skills",
+     "topics": [
+      {
+       "id": "generating-and-designing",
+       "title": "Generating and designing",
+       "subtopics": [
+        {
+         "id": "generating-and-designing",
+         "title": "Generating and designing",
+         "outcomes": [
+          {
+           "code": "AC9TDE2P01",
+           "text": "generate and communicate design ideas through describing, drawing or modelling, including using digital tools"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "producing-and-implementing",
+       "title": "Producing and implementing",
+       "subtopics": [
+        {
+         "id": "producing-and-implementing",
+         "title": "Producing and implementing",
+         "outcomes": [
+          {
+           "code": "AC9TDE2P02",
+           "text": "use materials, components, tools, equipment and techniques to safely make designed solutions"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "evaluating",
+       "title": "Evaluating",
+       "subtopics": [
+        {
+         "id": "evaluating",
+         "title": "Evaluating",
+         "outcomes": [
+          {
+           "code": "AC9TDE2P03",
+           "text": "evaluate the success of design ideas and solutions based on personal preferences and including sustainability"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "collaborating-and-managing",
+       "title": "Collaborating and managing",
+       "subtopics": [
+        {
+         "id": "collaborating-and-managing",
+         "title": "Collaborating and managing",
+         "outcomes": [
+          {
+           "code": "AC9TDE2P04",
+           "text": "sequence steps for making designed solutions cooperatively"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "3-4",
+   "units": [
+    {
+     "id": "knowledge-and-understanding",
+     "title": "Knowledge and understanding",
+     "topics": [
+      {
+       "id": "technologies-and-society",
+       "title": "Technologies and society",
+       "subtopics": [
+        {
+         "id": "technologies-and-society",
+         "title": "Technologies and society",
+         "outcomes": [
+          {
+           "code": "AC9TDE4K01",
+           "text": "examine design and technologies occupations and factors including sustainability that impact on the design of products, services and environments to meet community needs"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "engineering-and-materials",
+       "title": "Engineering and Materials",
+       "subtopics": [
+        {
+         "id": "engineering-and-materials",
+         "title": "Engineering and Materials",
+         "outcomes": [
+          {
+           "code": "AC9TDE4K02",
+           "text": "describe how forces and the properties of materials affect function in a product or system"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "food-and-fibre-production",
+       "title": "Food and Fibre Production",
+       "subtopics": [
+        {
+         "id": "food-and-fibre-production",
+         "title": "Food and Fibre Production",
+         "outcomes": [
+          {
+           "code": "AC9TDE4K03",
+           "text": "describe the ways of producing food and fibre"
+          },
+          {
+           "code": "AC9TDE4K04",
+           "text": "describe the ways food can be selected and prepared for healthy eating"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "processes-and-production-skills",
+     "title": "Processes and production skills",
+     "topics": [
+      {
+       "id": "investigating-and-defining",
+       "title": "Investigating and defining",
+       "subtopics": [
+        {
+         "id": "investigating-and-defining",
+         "title": "Investigating and defining",
+         "outcomes": [
+          {
+           "code": "AC9TDE4P01",
+           "text": "explore needs or opportunities for designing, and test materials, components, tools, equipment and processes needed to create designed solutions"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "generating-and-designing",
+       "title": "Generating and designing",
+       "subtopics": [
+        {
+         "id": "generating-and-designing",
+         "title": "Generating and designing",
+         "outcomes": [
+          {
+           "code": "AC9TDE4P02",
+           "text": "generate and communicate design ideas and decisions using appropriate attributions, technical terms and graphical representation techniques, including using digital tools"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "producing-and-implementing",
+       "title": "Producing and implementing",
+       "subtopics": [
+        {
+         "id": "producing-and-implementing",
+         "title": "Producing and implementing",
+         "outcomes": [
+          {
+           "code": "AC9TDE4P03",
+           "text": "select and use materials, components, tools, equipment and techniques to safely make designed solutions"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "evaluating",
+       "title": "Evaluating",
+       "subtopics": [
+        {
+         "id": "evaluating",
+         "title": "Evaluating",
+         "outcomes": [
+          {
+           "code": "AC9TDE4P04",
+           "text": "use given or co-developed design criteria including sustainability to evaluate design ideas and solutions"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "collaborating-and-managing",
+       "title": "Collaborating and managing",
+       "subtopics": [
+        {
+         "id": "collaborating-and-managing",
+         "title": "Collaborating and managing",
+         "outcomes": [
+          {
+           "code": "AC9TDE4P05",
+           "text": "sequence steps to individually and collaboratively make designed solutions"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "5-6",
+   "units": [
+    {
+     "id": "knowledge-and-understanding",
+     "title": "Knowledge and understanding",
+     "topics": [
+      {
+       "id": "technologies-and-society",
+       "title": "Technologies and society",
+       "subtopics": [
+        {
+         "id": "technologies-and-society",
+         "title": "Technologies and society",
+         "outcomes": [
+          {
+           "code": "AC9TDE6K01",
+           "text": "explain how people in design and technologies occupations consider competing factors including sustainability in the design of products, services and environments"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "technologies-context-engineering-principles-and-",
+       "title": "Technologies context: Engineering principles and systems",
+       "subtopics": [
+        {
+         "id": "technologies-context-engineering-principles-and-",
+         "title": "Technologies context: Engineering principles and systems",
+         "outcomes": [
+          {
+           "code": "AC9TDE6K02",
+           "text": "explain how electrical energy can be transformed into movement, sound or light in a product or system"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "food-and-fibre-production",
+       "title": "Food and Fibre Production",
+       "subtopics": [
+        {
+         "id": "food-and-fibre-production",
+         "title": "Food and Fibre Production",
+         "outcomes": [
+          {
+           "code": "AC9TDE6K03",
+           "text": "explain how and why food and fibre are produced in managed environments"
+          },
+          {
+           "code": "AC9TDE6K04",
+           "text": "explain how the characteristics of foods influence selection and preparation for healthy eating"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "materials-and-technologies",
+       "title": "Materials and Technologies",
+       "subtopics": [
+        {
+         "id": "materials-and-technologies",
+         "title": "Materials and Technologies",
+         "outcomes": [
+          {
+           "code": "AC9TDE6K05",
+           "text": "explain how characteristics and properties of materials, systems, components, tools and equipment affect their use when producing designed solutions"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "processes-and-production-skills",
+     "title": "Processes and production skills",
+     "topics": [
+      {
+       "id": "investigating-and-defining",
+       "title": "Investigating and defining",
+       "subtopics": [
+        {
+         "id": "investigating-and-defining",
+         "title": "Investigating and defining",
+         "outcomes": [
+          {
+           "code": "AC9TDE6P01",
+           "text": "investigate needs or opportunities for designing, and the materials, components, tools, equipment and processes needed to create designed solutions"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "generating-and-designing",
+       "title": "Generating and designing",
+       "subtopics": [
+        {
+         "id": "generating-and-designing",
+         "title": "Generating and designing",
+         "outcomes": [
+          {
+           "code": "AC9TDE6P02",
+           "text": "generate, iterate and communicate design ideas, decisions and processes using technical terms and graphical representation techniques, including using digital tools"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "producing-and-implementing",
+       "title": "Producing and implementing",
+       "subtopics": [
+        {
+         "id": "producing-and-implementing",
+         "title": "Producing and implementing",
+         "outcomes": [
+          {
+           "code": "AC9TDE6P03",
+           "text": "select and use suitable materials, components, tools, equipment and techniques to safely make designed solutions"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "evaluating",
+       "title": "Evaluating",
+       "subtopics": [
+        {
+         "id": "evaluating",
+         "title": "Evaluating",
+         "outcomes": [
+          {
+           "code": "AC9TDE6P04",
+           "text": "negotiate design criteria including sustainability to evaluate design ideas, processes and solutions"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "collaborating-and-managing",
+       "title": "Collaborating and managing",
+       "subtopics": [
+        {
+         "id": "collaborating-and-managing",
+         "title": "Collaborating and managing",
+         "outcomes": [
+          {
+           "code": "AC9TDE6P05",
+           "text": "develop project plans that include consideration of resources to individually and collaboratively make designed solutions"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "7-8",
+   "units": [
+    {
+     "id": "knowledge-and-understanding",
+     "title": "Knowledge and understanding",
+     "topics": [
+      {
+       "id": "technologies-and-society",
+       "title": "Technologies and society",
+       "subtopics": [
+        {
+         "id": "technologies-and-society",
+         "title": "Technologies and society",
+         "outcomes": [
+          {
+           "code": "AC9TDE8K01",
+           "text": "analyse how people in design and technologies occupations consider ethical and sustainability factors to design and produce products, services and environments"
+          },
+          {
+           "code": "AC9TDE8K02",
+           "text": "analyse the impact of innovation and the development of technologies on designed solutions for global preferred futures"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "technologies-context-engineering-principles-and-",
+       "title": "Technologies context: Engineering principles and systems",
+       "subtopics": [
+        {
+         "id": "technologies-context-engineering-principles-and-",
+         "title": "Technologies context: Engineering principles and systems",
+         "outcomes": [
+          {
+           "code": "AC9TDE8K03",
+           "text": "analyse how force, motion and energy are used to manipulate and control engineered systems"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "technologies-context-food-and-fibre-production",
+       "title": "Technologies context: Food and fibre production",
+       "subtopics": [
+        {
+         "id": "technologies-context-food-and-fibre-production",
+         "title": "Technologies context: Food and fibre production",
+         "outcomes": [
+          {
+           "code": "AC9TDE8K04",
+           "text": "analyse how food and fibre are produced in managed environments and how these can become sustainable"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "technologies-context-food-specialisations",
+       "title": "Technologies context: Food specialisations",
+       "subtopics": [
+        {
+         "id": "technologies-context-food-specialisations",
+         "title": "Technologies context: Food specialisations",
+         "outcomes": [
+          {
+           "code": "AC9TDE8K05",
+           "text": "analyse how properties of foods determine preparation and presentation techniques when designing solutions for healthy eating"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "materials-and-technologies",
+       "title": "Materials and Technologies",
+       "subtopics": [
+        {
+         "id": "materials-and-technologies",
+         "title": "Materials and Technologies",
+         "outcomes": [
+          {
+           "code": "AC9TDE8K06",
+           "text": "analyse how characteristics and properties of materials, systems, components, tools and equipment can be combined to create designed solutions"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "processes-and-production-skills",
+     "title": "Processes and production skills",
+     "topics": [
+      {
+       "id": "investigating-and-defining",
+       "title": "Investigating and defining",
+       "subtopics": [
+        {
+         "id": "investigating-and-defining",
+         "title": "Investigating and defining",
+         "outcomes": [
+          {
+           "code": "AC9TDE8P01",
+           "text": "analyse needs or opportunities for designing, and investigate and select materials, components, tools, equipment and processes to create designed solutions"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "generating-and-designing",
+       "title": "Generating and designing",
+       "subtopics": [
+        {
+         "id": "generating-and-designing",
+         "title": "Generating and designing",
+         "outcomes": [
+          {
+           "code": "AC9TDE8P02",
+           "text": "generate, test, iterate and communicate design ideas, processes and solutions using technical terms and graphical representation techniques, including using digital tools"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "producing-and-implementing",
+       "title": "Producing and implementing",
+       "subtopics": [
+        {
+         "id": "producing-and-implementing",
+         "title": "Producing and implementing",
+         "outcomes": [
+          {
+           "code": "AC9TDE8P03",
+           "text": "select, justify and use suitable materials, components, tools, equipment, skills and processes to safely make designed solutions"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "evaluating",
+       "title": "Evaluating",
+       "subtopics": [
+        {
+         "id": "evaluating",
+         "title": "Evaluating",
+         "outcomes": [
+          {
+           "code": "AC9TDE8P04",
+           "text": "develop design criteria collaboratively including sustainability to evaluate design ideas, processes and solutions"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "collaborating-and-managing",
+       "title": "Collaborating and managing",
+       "subtopics": [
+        {
+         "id": "collaborating-and-managing",
+         "title": "Collaborating and managing",
+         "outcomes": [
+          {
+           "code": "AC9TDE8P05",
+           "text": "develop project plans to individually and collaboratively manage time, cost and production of designed solutions"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "9-10",
+   "units": [
+    {
+     "id": "knowledge-and-understanding",
+     "title": "Knowledge and understanding",
+     "topics": [
+      {
+       "id": "technologies-and-society",
+       "title": "Technologies and society",
+       "subtopics": [
+        {
+         "id": "technologies-and-society",
+         "title": "Technologies and society",
+         "outcomes": [
+          {
+           "code": "AC9TDE10K01",
+           "text": "analyse how people in design and technologies occupations consider ethical, security and sustainability factors to innovate and improve products, services and environments"
+          },
+          {
+           "code": "AC9TDE10K02",
+           "text": "analyse the impact of innovation, enterprise and emerging technologies on designed solutions for global preferred futures"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "technologies-context-engineering-principles-and-",
+       "title": "Technologies context: Engineering principles and systems",
+       "subtopics": [
+        {
+         "id": "technologies-context-engineering-principles-and-",
+         "title": "Technologies context: Engineering principles and systems",
+         "outcomes": [
+          {
+           "code": "AC9TDE10K03",
+           "text": "analyse and make judgements on how the characteristics and properties of materials are combined with force, motion and energy to control engineered systems"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "technologies-context-food-and-fibre-production",
+       "title": "Technologies context: Food and fibre production",
+       "subtopics": [
+        {
+         "id": "technologies-context-food-and-fibre-production",
+         "title": "Technologies context: Food and fibre production",
+         "outcomes": [
+          {
+           "code": "AC9TDE10K04",
+           "text": "analyse and make judgements on the ethical, secure and sustainable production and marketing of food and fibre enterprises"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "technologies-context-food-specialisations",
+       "title": "Technologies context: Food specialisations",
+       "subtopics": [
+        {
+         "id": "technologies-context-food-specialisations",
+         "title": "Technologies context: Food specialisations",
+         "outcomes": [
+          {
+           "code": "AC9TDE10K05",
+           "text": "analyse and make judgements on how the sensory and functional properties of food influence the design and preparation of sustainable food solutions for healthy eating"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "materials-and-technologies",
+       "title": "Materials and Technologies",
+       "subtopics": [
+        {
+         "id": "materials-and-technologies",
+         "title": "Materials and Technologies",
+         "outcomes": [
+          {
+           "code": "AC9TDE10K06",
+           "text": "analyse and make judgements on how characteristics and properties of materials, systems, components, tools and equipment can be combined to create designed solutions"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "processes-and-production-skills",
+     "title": "Processes and production skills",
+     "topics": [
+      {
+       "id": "investigating-and-defining",
+       "title": "Investigating and defining",
+       "subtopics": [
+        {
+         "id": "investigating-and-defining",
+         "title": "Investigating and defining",
+         "outcomes": [
+          {
+           "code": "AC9TDE10P01",
+           "text": "analyse needs or opportunities for designing; develop design briefs; and investigate, analyse and select materials, systems, components, tools and equipment to create designed solutions"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "generating-and-designing",
+       "title": "Generating and designing",
+       "subtopics": [
+        {
+         "id": "generating-and-designing",
+         "title": "Generating and designing",
+         "outcomes": [
+          {
+           "code": "AC9TDE10P02",
+           "text": "apply innovation and enterprise skills to generate, test, iterate and communicate design ideas, processes and solutions, including using digital tools"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "producing-and-implementing",
+       "title": "Producing and implementing",
+       "subtopics": [
+        {
+         "id": "producing-and-implementing",
+         "title": "Producing and implementing",
+         "outcomes": [
+          {
+           "code": "AC9TDE10P03",
+           "text": "select, justify, test and use suitable technologies, skills and processes, and apply safety procedures to safely make designed solutions"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "evaluating",
+       "title": "Evaluating",
+       "subtopics": [
+        {
+         "id": "evaluating",
+         "title": "Evaluating",
+         "outcomes": [
+          {
+           "code": "AC9TDE10P04",
+           "text": "develop design criteria independently including sustainability to evaluate design ideas, processes and solutions"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "collaborating-and-managing",
+       "title": "Collaborating and managing",
+       "subtopics": [
+        {
+         "id": "collaborating-and-managing",
+         "title": "Collaborating and managing",
+         "outcomes": [
+          {
+           "code": "AC9TDE10P05",
+           "text": "develop project plans for intended purposes and audiences to individually and collaboratively manage projects, taking into consideration time, cost, risk, processes and production of designed solutions"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "build": {
+  "builtAt": "2026-10-14T07:55:11.686Z",
+  "model": "gpt-5.6-luna",
+  "usd": 0.0001,
+  "expectedCodes": 51,
+  "coverage": 1,
+  "missingCodes": [],
+  "counts": {
+   "grades": 6,
+   "units": 12,
+   "topics": 46,
+   "subtopics": 46,
+   "outcomes": 51
+  },
+  "warnings": [
+   "unit \"Knowledge and understanding\" (grade Foundation) has a single outcome",
+   "unit \"Processes and production skills\" (grade Foundation) has a single outcome"
+  ]
+ }
+}

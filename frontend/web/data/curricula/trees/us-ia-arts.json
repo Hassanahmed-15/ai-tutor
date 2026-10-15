@@ -1,0 +1,976 @@
+{
+ "id": "us-ia-arts",
+ "region": "US",
+ "framework": "Iowa state academic standards: Fine Arts",
+ "board": null,
+ "qualification": "K-12",
+ "subject": "Fine Arts",
+ "syllabusCode": null,
+ "gradeSystem": "grade",
+ "source": {
+  "urls": [
+   "https://api.commonstandardsproject.com/api/v1/jurisdictions/78D8430CBE88474FAB3CDAAD9094C961",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/929D1241113343E189A645AD3FFDB707",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/5852FE98DACA4C35A56D72269BC29C61",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/A9F9B75602284D2C8DADCE35BDC146BC",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/D08A04CD212949A3BC3B4E63CDFABDAC"
+  ],
+  "publisher": "Iowa state education agency (machine-readable via Common Standards Project / ASN)",
+  "licence": "CC BY 4.0 US, Common Curriculum, Inc.",
+  "firstExam": "2017"
+ },
+ "grades": [
+  {
+   "grade": "3",
+   "units": [
+    {
+     "id": "creating",
+     "title": "Creating",
+     "topics": [
+      {
+       "id": "generate-and-conceptualize-artistic-ideas-and-wo",
+       "title": "Generate and conceptualize artistic ideas and work. (Imagine)",
+       "subtopics": [
+        {
+         "id": "generate-and-conceptualize-artistic-ideas-and-wo",
+         "title": "Generate and conceptualize artistic ideas and work. (Imagine)",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Improvise (for self and/or others) rhythmic and melodic ideas, and describe connection to specific purpose and context (such as personal and social)."
+          },
+          {
+           "code": null,
+           "text": "Generate musical ideas (such as rhythms and melodies) within a given tonality and/or meter."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "organize-and-develop-artistic-ideas-and-work-pla",
+       "title": "Organize and develop artistic ideas and work. (Plan and Make)",
+       "subtopics": [
+        {
+         "id": "organize-and-develop-artistic-ideas-and-work-pla",
+         "title": "Organize and develop artistic ideas and work. (Plan and Make)",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Demonstrate selected musical ideas for a simple improvisation or composition to express intent, and describe connection to a specific purpose and context."
+          },
+          {
+           "code": null,
+           "text": "Use standard and/or iconic notation and/or recording technology to document personal rhythmic and melodic musical ideas."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "refine-and-complete-artistic-work-evaluate-and-r",
+       "title": "Refine and complete artistic work. (Evaluate and Refine)",
+       "subtopics": [
+        {
+         "id": "refine-and-complete-artistic-work-evaluate-and-r",
+         "title": "Refine and complete artistic work. (Evaluate and Refine)",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Evaluate, refine, and document revisions to personal musical ideas, applying teacher-provided and collaboratively-developed criteria and feedback."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "refine-and-complete-artistic-work-present",
+       "title": "Refine and complete artistic work. (Present)",
+       "subtopics": [
+        {
+         "id": "refine-and-complete-artistic-work-present",
+         "title": "Refine and complete artistic work. (Present)",
+         "outcomes": [
+          {
+           "code": "MU:Cr3.2.3",
+           "text": "Present the final version of personal created music to others, and describe connection to expressive intent."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "performing",
+     "title": "Performing",
+     "topics": [
+      {
+       "id": "select-analyze-and-interpret-artistic-work-for-p",
+       "title": "Select, analyze, and interpret artistic work for presentation. (Select)",
+       "subtopics": [
+        {
+         "id": "select-analyze-and-interpret-artistic-work-for-p",
+         "title": "Select, analyze, and interpret artistic work for presentation. (Select)",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Demonstrate and explain how the selection of music to perform is influenced by personal interest, knowledge, purpose, and context."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "select-analyze-and-interpret-artistic-work-for-p-2",
+       "title": "Select, analyze, and interpret artistic work for presentation. (Analyze)",
+       "subtopics": [
+        {
+         "id": "select-analyze-and-interpret-artistic-work-for-p",
+         "title": "Select, analyze, and interpret artistic work for presentation. (Analyze)",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Demonstrate understanding of the structure in music selected for performance."
+          },
+          {
+           "code": null,
+           "text": "Read and perform rhythmic and melodic patterns using iconic and/or standard notation."
+          },
+          {
+           "code": null,
+           "text": "Describe how context (such as personal and social) can inform a performance."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "select-analyze-and-interpret-artistic-work-for-p-3",
+       "title": "Select, analyze, and interpret artistic work for presentation. (Interpret)",
+       "subtopics": [
+        {
+         "id": "select-analyze-and-interpret-artistic-work-for-p",
+         "title": "Select, analyze, and interpret artistic work for presentation. (Interpret)",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Demonstrate and describe how intent is conveyed through expressive qualities (such as dynamics and tempo)."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "develop-and-refine-artistic-techniques-and-work-",
+       "title": "Develop and refine artistic techniques and work for presentation. (Rehearse, Evaluate, Refine)",
+       "subtopics": [
+        {
+         "id": "develop-and-refine-artistic-techniques-and-work-",
+         "title": "Develop and refine artistic techniques and work for presentation. (Rehearse, Evaluate, Refine)",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Apply teacher-provided and collaboratively-developed criteria and feedback to evaluate accuracy of group performances (formal or informal)."
+          },
+          {
+           "code": null,
+           "text": "Rehearse to refine technical accuracy, expressive qualities, and identified performance challenges."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "convey-meaning-through-the-presentation-of-artis",
+       "title": "Convey meaning through the presentation of artistic work. (Present)",
+       "subtopics": [
+        {
+         "id": "convey-meaning-through-the-presentation-of-artis",
+         "title": "Convey meaning through the presentation of artistic work. (Present)",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Perform music with expression and technical accuracy."
+          },
+          {
+           "code": null,
+           "text": "Demonstrate performance decorum and audience etiquette appropriate for the context and venue."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "responding",
+     "title": "Responding",
+     "topics": [
+      {
+       "id": "perceive-and-analyze-artistic-work-select",
+       "title": "Perceive and analyze artistic work. (Select)",
+       "subtopics": [
+        {
+         "id": "perceive-and-analyze-artistic-work-select",
+         "title": "Perceive and analyze artistic work. (Select)",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "a. Demonstrate and describe how selected music connects to and is influenced by specific interests, experiences, or purposes."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "perceive-and-analyze-artistic-work-analyze",
+       "title": "Perceive and analyze artistic work. (Analyze)",
+       "subtopics": [
+        {
+         "id": "perceive-and-analyze-artistic-work-analyze",
+         "title": "Perceive and analyze artistic work. (Analyze)",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Demonstrate and describe how a response to music can be informed by the structure of the music."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "interpret-intent-and-meaning-in-artistic-work-in",
+       "title": "Interpret intent and meaning in artistic work. (Interpret)",
+       "subtopics": [
+        {
+         "id": "interpret-intent-and-meaning-in-artistic-work-in",
+         "title": "Interpret intent and meaning in artistic work. (Interpret)",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Demonstrate and describe how the expressive qualities (such as dynamics and tempo) are used in performers’ interpretations to reflect expressive intent."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "apply-criteria-to-evaluate-artistic-work-evaluat",
+       "title": "Apply criteria to evaluate artistic work. (Evaluate)",
+       "subtopics": [
+        {
+         "id": "apply-criteria-to-evaluate-artistic-work-evaluat",
+         "title": "Apply criteria to evaluate artistic work. (Evaluate)",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Evaluate musical works and performances, applying established criteria, and describe appropriateness to the context."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "connecting",
+     "title": "Connecting",
+     "topics": [
+      {
+       "id": "synthesize-and-relate-knowledge-and-personal-exp",
+       "title": "Synthesize and relate knowledge and personal experiences to make art",
+       "subtopics": [
+        {
+         "id": "synthesize-and-relate-knowledge-and-personal-exp",
+         "title": "Synthesize and relate knowledge and personal experiences to make art",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Demonstrate how interests, knowledge, and skills relate to personal choices and intent when creating, performing, and responding to music. (Embedded within: MU:Cr2.1.3a, MU:Cr3.2.3a, MU:Pr4.1.3a, MU:Pr4.3.3a, MU:Re7.1.3a)"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "relate-artistic-ideas-and-works-with-societal-cu",
+       "title": "Relate artistic ideas and works with societal, cultural and historical context to deepen understanding",
+       "subtopics": [
+        {
+         "id": "relate-artistic-ideas-and-works-with-societal-cu",
+         "title": "Relate artistic ideas and works with societal, cultural and historical context to deepen understanding",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Demonstrate understanding of relationships between music and the other arts, other disciplines, varied contexts, and daily life. (Embedded within: MU:Cr1.1.3a, MU:Pr4.2.3c, MU:Pr6.1.3b, MU:Re7.2.3a, MU:Re9.1.3a)"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "4",
+   "units": [
+    {
+     "id": "creating",
+     "title": "Creating",
+     "topics": [
+      {
+       "id": "generate-and-conceptualize-artistic-ideas-and-wo",
+       "title": "Generate and conceptualize artistic ideas and work. (Imagine)",
+       "subtopics": [
+        {
+         "id": "generate-and-conceptualize-artistic-ideas-and-wo",
+         "title": "Generate and conceptualize artistic ideas and work. (Imagine)",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Improvise (for self and/or others) rhythmic, melodic, and harmonic ideas, and explain connection to specific purpose and context (such as social and cultural)."
+          },
+          {
+           "code": null,
+           "text": "Generate musical ideas (such as rhythms, melodies, and simple accompaniment patterns) within related tonalities (such as major and minor) and meters."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "organize-and-develop-artistic-ideas-and-work-pla",
+       "title": "Organize and develop artistic ideas and work. (Plan and Make)",
+       "subtopics": [
+        {
+         "id": "organize-and-develop-artistic-ideas-and-work-pla",
+         "title": "Organize and develop artistic ideas and work. (Plan and Make)",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Demonstrate selected and organized musical ideas for an improvisation, arrangement, or composition to express intent, and explain connection to purpose and context."
+          },
+          {
+           "code": null,
+           "text": "Use standard and/or iconic notation and/or recording technology to document personal rhythmic, melodic, and simple harmonic musical ideas."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "refine-and-complete-artistic-work-evaluate-and-r",
+       "title": "Refine and complete artistic work. (Evaluate and Refine)",
+       "subtopics": [
+        {
+         "id": "refine-and-complete-artistic-work-evaluate-and-r",
+         "title": "Refine and complete artistic work. (Evaluate and Refine)",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Evaluate, refine, and document revisions to personal music, applying teacher provided and collaboratively developed criteria and feedback to show improvement over time."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "refine-and-complete-artistic-work-present",
+       "title": "Refine and complete artistic work. (Present)",
+       "subtopics": [
+        {
+         "id": "refine-and-complete-artistic-work-present",
+         "title": "Refine and complete artistic work. (Present)",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Present the final version of personal created music to others, and explain connection to expressive intent."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "performing",
+     "title": "Performing",
+     "topics": [
+      {
+       "id": "select-analyze-and-interpret-artistic-work-for-p",
+       "title": "Select, analyze, and interpret artistic work for presentation. (Select)",
+       "subtopics": [
+        {
+         "id": "select-analyze-and-interpret-artistic-work-for-p",
+         "title": "Select, analyze, and interpret artistic work for presentation. (Select)",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Demonstrate and explain how the selection of music to perform is influenced by personal interest, knowledge, context, and technical skill."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "select-analyze-and-interpret-artistic-work-for-p-2",
+       "title": "Select, analyze, and interpret artistic work for presentation. (Analyze)",
+       "subtopics": [
+        {
+         "id": "select-analyze-and-interpret-artistic-work-for-p",
+         "title": "Select, analyze, and interpret artistic work for presentation. (Analyze)",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Demonstrate understanding of the structure and the elements of music (such as rhythm, pitch, and form) in music selected for performance."
+          },
+          {
+           "code": null,
+           "text": "Read and perform rhythm and pitch using iconic and/or standard notation."
+          },
+          {
+           "code": null,
+           "text": "Explain how context (such as social and cultural) informs a performance."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "select-analyze-and-interpret-artistic-work-for-p-3",
+       "title": "Select, analyze, and interpret artistic work for presentation. (Interpret)",
+       "subtopics": [
+        {
+         "id": "select-analyze-and-interpret-artistic-work-for-p",
+         "title": "Select, analyze, and interpret artistic work for presentation. (Interpret)",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Demonstrate and explain how intent is conveyed through interpretive decisions and expressive qualities (such as dynamics, tempo, and timbre)."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "develop-and-refine-artistic-techniques-and-work-",
+       "title": "Develop and refine artistic techniques and work for presentation. (Rehearse, Evaluate, Refine)",
+       "subtopics": [
+        {
+         "id": "develop-and-refine-artistic-techniques-and-work-",
+         "title": "Develop and refine artistic techniques and work for presentation. (Rehearse, Evaluate, Refine)",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Apply teacher-provided and collaboratively-developed criteria and feedback to evaluate accuracy and expressiveness of individual and group performances (formal or informal)."
+          },
+          {
+           "code": null,
+           "text": "Rehearse to refine technical accuracy and expressive qualities, and address performance challenges."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "convey-meaning-through-the-presentation-of-artis",
+       "title": "Convey meaning through the presentation of artistic work. (Present)",
+       "subtopics": [
+        {
+         "id": "convey-meaning-through-the-presentation-of-artis",
+         "title": "Convey meaning through the presentation of artistic work. (Present)",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Perform music, alone or with others, with expression and technical accuracy, and appropriate interpretation."
+          },
+          {
+           "code": null,
+           "text": "Demonstrate performance decorum and audience etiquette appropriate for the context, venue, and genre."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "responding",
+     "title": "Responding",
+     "topics": [
+      {
+       "id": "perceive-and-analyze-artistic-work-select",
+       "title": "Perceive and analyze artistic work. (Select)",
+       "subtopics": [
+        {
+         "id": "perceive-and-analyze-artistic-work-select",
+         "title": "Perceive and analyze artistic work. (Select)",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Demonstrate and explain how selected music connects to and is influenced by specific interests, experiences, purposes, or contexts."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "perceive-and-analyze-artistic-work-analyze",
+       "title": "Perceive and analyze artistic work. (Analyze)",
+       "subtopics": [
+        {
+         "id": "perceive-and-analyze-artistic-work-analyze",
+         "title": "Perceive and analyze artistic work. (Analyze)",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Demonstrate and explain how a response to music can be informed by its structure and the use of the elements of music."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "interpret-intent-and-meaning-in-artistic-work-in",
+       "title": "Interpret intent and meaning in artistic work. (Interpret)",
+       "subtopics": [
+        {
+         "id": "interpret-intent-and-meaning-in-artistic-work-in",
+         "title": "Interpret intent and meaning in artistic work. (Interpret)",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Demonstrate and explain how the expressive qualities (such as dynamics, tempo, and timbre) are used in performers’ and personal interpretations to reflect expressive intent."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "apply-criteria-to-evaluate-artistic-work-evaluat",
+       "title": "Apply criteria to evaluate artistic work. (Evaluate)",
+       "subtopics": [
+        {
+         "id": "apply-criteria-to-evaluate-artistic-work-evaluat",
+         "title": "Apply criteria to evaluate artistic work. (Evaluate)",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Evaluate musical works and performances, applying established criteria, and explain appropriateness to the context."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "connecting",
+     "title": "Connecting",
+     "topics": [
+      {
+       "id": "synthesize-and-relate-knowledge-and-personal-exp",
+       "title": "Synthesize and relate knowledge and personal experiences to make art",
+       "subtopics": [
+        {
+         "id": "synthesize-and-relate-knowledge-and-personal-exp",
+         "title": "Synthesize and relate knowledge and personal experiences to make art",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Demonstrate how interests, knowledge, and skills relate to personal choices and intent when creating, performing, and responding to music. (Embedded within: MU:Cr2.1.4a, MU:Cr3.2.4a, MU:Pr4.1.4a, MU:Pr4.3.4a, MU:Re7.1.4a)"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "relate-artistic-ideas-and-works-with-societal-cu",
+       "title": "Relate artistic ideas and works with societal, cultural and historical context to deepen understanding",
+       "subtopics": [
+        {
+         "id": "relate-artistic-ideas-and-works-with-societal-cu",
+         "title": "Relate artistic ideas and works with societal, cultural and historical context to deepen understanding",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Demonstrate understanding of relationships between music and the other arts, other disciplines, varied contexts, and daily life. (Embedded within: MU:Cr1.1.4a, MU:Pr4.2.4c, MU:Pr6.1.4b, MU:Re7.2.4a, MU:Re9.1.4a)"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "7",
+   "units": [
+    {
+     "id": "creating",
+     "title": "Creating",
+     "topics": [
+      {
+       "id": "anchor-standard-generate-and-conceptualize-artis",
+       "title": "Anchor Standard: Generate and conceptualize artistic ideas and work",
+       "subtopics": [
+        {
+         "id": "anchor-standard-generate-and-conceptualize-artis",
+         "title": "Anchor Standard: Generate and conceptualize artistic ideas and work",
+         "outcomes": [
+          {
+           "code": "MU:Cr1.1.7.a",
+           "text": "Improvise (for self and/or others) rhythmic, melodic, and harmonic ideas and variations over harmonic accompaniments and justify connection to specific purpose."
+          },
+          {
+           "code": "MU:Cr1.1.7.b",
+           "text": "Within specified forms (such as rondo, theme, variations, etc.), generate simple rhythmic, melodic, and harmonic phrases over harmonic accompaniments."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "anchor-standard-organize-and-develop-artistic-id",
+       "title": "Anchor Standard: Organize and develop artistic ideas and work",
+       "subtopics": [
+        {
+         "id": "anchor-standard-organize-and-develop-artistic-id",
+         "title": "Anchor Standard: Organize and develop artistic ideas and work",
+         "outcomes": [
+          {
+           "code": "MU:Cr2.1.7.a",
+           "text": "Select, organize, develop and document personal musical ideas for arrangements, songs, and compositions within AB, ABA, or theme and variation forms that demonstrate unity and variety and convey expressive intent."
+          },
+          {
+           "code": "MU:Cr2.1.7.b",
+           "text": "Use standard and/or iconic notation and/or audio/ video recording to document personal simple rhythmic phrases, melodic phrases, and harmonic sequences."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "anchor-standard-refine-and-complete-artistic-wor",
+       "title": "Anchor Standard: Refine and complete artistic work",
+       "subtopics": [
+        {
+         "id": "anchor-standard-refine-and-complete-artistic-wor",
+         "title": "Anchor Standard: Refine and complete artistic work",
+         "outcomes": [
+          {
+           "code": "MU:Cr3.1.7a",
+           "text": "Evaluate personal work, applying selected criteria such as appropriate application of elements of music including style, form, and use of sound sources."
+          },
+          {
+           "code": "MU:Cr3.1.7b",
+           "text": "Describe the rationale for making revisions to the music based on evaluation criteria and feedback from others (teacher and peers)."
+          },
+          {
+           "code": "MU:Cr3.2.7a",
+           "text": "Present the final version of their documented personal composition, song, and/or arrangement, using craftsmanship and originality to demonstrate unity and variety, and convey expressive intent."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "performing",
+     "title": "Performing",
+     "topics": [
+      {
+       "id": "anchor-standard-select-analyze-and-interpret-art",
+       "title": "Anchor Standard: Select, analyze, and interpret artistic work for presentation",
+       "subtopics": [
+        {
+         "id": "anchor-standard-select-analyze-and-interpret-art",
+         "title": "Anchor Standard: Select, analyze, and interpret artistic work for presentation",
+         "outcomes": [
+          {
+           "code": "MU:Pr4.1.7a",
+           "text": "Apply collaboratively developed criteria for selecting music of contrasting styles for a program with a specific purpose and/or context and, after discussion, identify expressive qualities, technical challenges, and reasons for choices."
+          },
+          {
+           "code": "MU:Pr4.2.7a",
+           "text": "Explain and demonstrate the structure of contrasting pieces of music selected for performance and how elements of music are used."
+          },
+          {
+           "code": "MU:Pr4.2.7b",
+           "text": "Read and identify by name or function standard symbols for rhythm, pitch articulation, dynamics, tempo, and form."
+          },
+          {
+           "code": "MU:Pr4.2.7c",
+           "text": "Identify how cultural and historical context inform performances and result in different music interpretations."
+          },
+          {
+           "code": "MU:Pr4.3.7a",
+           "text": "Perform contrasting pieces of music demonstrating their interpretations of the elements of music and expressive qualities (such as dynamics, tempo, timbre, articulation/style, and phrasing) convey intent."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "anchor-standard-develop-and-refine-artistic-tech",
+       "title": "Anchor Standard: Develop and refine artistic techniques and work for presentation",
+       "subtopics": [
+        {
+         "id": "anchor-standard-develop-and-refine-artistic-tech",
+         "title": "Anchor Standard: Develop and refine artistic techniques and work for presentation",
+         "outcomes": [
+          {
+           "code": "MU:Pr5.1.7a",
+           "text": "Identify and apply collaboratively-developed criteria (such as demonstrating correct interpretation of notation, the technical skill of performer, originality, emotional impact and interest) to rehearse, refine, and determine when the music is ready to perform."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "anchor-standard-convey-meaning-through-the-prese",
+       "title": "Anchor Standard: Convey meaning through the presentation of artistic work",
+       "subtopics": [
+        {
+         "id": "anchor-standard-convey-meaning-through-the-prese",
+         "title": "Anchor Standard: Convey meaning through the presentation of artistic work",
+         "outcomes": [
+          {
+           "code": "MU:Pr6.1.7a",
+           "text": "Perform the music with technical accuracy and stylistic expression to convey the creator’s intent."
+          },
+          {
+           "code": "MU:Pr6.1.7b",
+           "text": "Demonstrate performance decorum (such as stage presence, attire, and behavior) and audience etiquette appropriate for venue, purpose, and context."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "respondng",
+     "title": "Respondng",
+     "topics": [
+      {
+       "id": "anchor-standard-perceive-and-analyze-artistic-wo",
+       "title": "Anchor Standard: Perceive and analyze artistic work",
+       "subtopics": [
+        {
+         "id": "anchor-standard-perceive-and-analyze-artistic-wo",
+         "title": "Anchor Standard: Perceive and analyze artistic work",
+         "outcomes": [
+          {
+           "code": "MU:Re7.1.7a",
+           "text": "Select or choose contrasting music for listening and compare the connections to specific interests or experiences for a specific purpose."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "anchor-standard-perceive-and-analyze-artistic-wo-2",
+       "title": "Anchor Standard: Perceive and analyze artistic work. a. Categorize contrasting pieces using the elements of music. b. Identify and compare the context of music from a variety of genres, cultures, and historical periods",
+       "subtopics": [
+        {
+         "id": "anchor-standard-perceive-and-analyze-artistic-wo",
+         "title": "Anchor Standard: Perceive and analyze artistic work. a. Categorize contrasting pieces using the elements of music. b. Identify and compare the context of music from a variety of genres, cultures, and historical periods",
+         "outcomes": [
+          {
+           "code": "MU:Re7.2.7a",
+           "text": "Categorize contrasting pieces using the elements of music."
+          },
+          {
+           "code": "MU:Re7.2.7b",
+           "text": "Identify and compare the context of music from a variety of genres, cultures, and historical periods."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "anchor-standard-interpret-intent-and-meaning-in-",
+       "title": "Anchor Standard: Interpret intent and meaning in artistic work",
+       "subtopics": [
+        {
+         "id": "anchor-standard-interpret-intent-and-meaning-in-",
+         "title": "Anchor Standard: Interpret intent and meaning in artistic work",
+         "outcomes": [
+          {
+           "code": "MU:Re8.1.7a",
+           "text": "Describe a personal interpretation of contrasting works and explain how creators’ and performers’ application of the elements of music and expressive qualities, within genres, cultures, and historical periods, convey expressive intent."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "anchor-standard-apply-criteria-to-evaluate-artis",
+       "title": "Anchor Standard: Apply criteria to evaluate artistic work",
+       "subtopics": [
+        {
+         "id": "anchor-standard-apply-criteria-to-evaluate-artis",
+         "title": "Anchor Standard: Apply criteria to evaluate artistic work",
+         "outcomes": [
+          {
+           "code": "MU:Re9.1.7a",
+           "text": "Select from among established criteria to evaluate musical works or performances."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "connecting",
+     "title": "Connecting",
+     "topics": [
+      {
+       "id": "anchor-standard-synthesize-and-relate-knowledge-",
+       "title": "Anchor Standard: Synthesize and relate knowledge and personal experiences to make art",
+       "subtopics": [
+        {
+         "id": "anchor-standard-synthesize-and-relate-knowledge-",
+         "title": "Anchor Standard: Synthesize and relate knowledge and personal experiences to make art",
+         "outcomes": [
+          {
+           "code": "MU:Cn10.0.7a",
+           "text": "Demonstrate how interests, knowledge, and skills relate to personal choices and intent when creating, performing, and responding to music."
+          },
+          {
+           "code": "MU:Cr2.1.7a",
+           "text": "Select, organize, develop and document personal musical ideas for arrangements, songs, and compositions within AB, ABA, or theme and variation forms that demonstrate unity and variety and convey expressive intent."
+          },
+          {
+           "code": "MU:Cr3.2.7a",
+           "text": "Present the final version of their documented personal composition, song, or arrangement, using craftsmanship and originality to demonstrate unity and variety, and convey expressive intent."
+          },
+          {
+           "code": "MU:Pr4.1.7a",
+           "text": "Apply collaboratively-developed criteria for selecting music of contrasting styles for a program with a specific purpose and/or context and, after discussion, identify expressive qualities, technical challenges, and reasons for choices."
+          },
+          {
+           "code": "MU:Pr4.3.7a",
+           "text": "Perform contrasting pieces of music demonstrating their personal interpretations of the elements of music and expressive qualities (such as dynamics, tempo, timbre, articulation/style, and phrasing) convey intent."
+          },
+          {
+           "code": "MU:Re7.1.7a",
+           "text": "Select or choose contrasting music to listen to and compare the connection to specific interests or experiences for a specific purpose."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "anchor-standard-relate-artistic-ideas-and-works-",
+       "title": "Anchor Standard: Relate artistic ideas and works with societal, cultural and historical context to deepen understanding",
+       "subtopics": [
+        {
+         "id": "anchor-standard-relate-artistic-ideas-and-works-",
+         "title": "Anchor Standard: Relate artistic ideas and works with societal, cultural and historical context to deepen understanding",
+         "outcomes": [
+          {
+           "code": "MU:Cn11.0.7a",
+           "text": "Demonstrate understanding of relationships between music and the other arts, other disciplines, varied contexts, and daily life."
+          },
+          {
+           "code": "MU:Cr1.1.7a",
+           "text": "Generate rhythmic, melodic, and harmonic phrases and variations over harmonic accompaniments within AB, ABA, or theme and variation forms that convey expressive intent."
+          },
+          {
+           "code": "MU:Pr4.2.7c",
+           "text": "Identify how cultural and historical context inform performance and results in different music interpretations."
+          },
+          {
+           "code": "MU:Re9.1.7a",
+           "text": "Select from teacher-provided criteria to evaluate musical works or performances."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "K-8",
+   "units": [
+    {
+     "id": "music-elementary-general-music-k-8",
+     "title": "Music: Elementary General Music K-8",
+     "topics": [
+      {
+       "id": "music-elementary-general-music-k-8",
+       "title": "Music: Elementary General Music K-8",
+       "subtopics": [
+        {
+         "id": "music-elementary-general-music-k-8-1-of-2",
+         "title": "Music: Elementary General Music K-8 (1 of 2)",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Uses song, speech, and movement to effectively communicate, collaborate with a group, and produce a musical product."
+          },
+          {
+           "code": null,
+           "text": "Uses instruments and body percussion to effectively communicate, collaborate with a group, and produce a musical product."
+          },
+          {
+           "code": null,
+           "text": "Creates music and movement using critical thinking to improvise and compose through a collaborative and flexible process."
+          },
+          {
+           "code": null,
+           "text": "Demonstrates literacy by reading and notating music fluently using appropriate processes and systems."
+          }
+         ]
+        },
+        {
+         "id": "music-elementary-general-music-k-8-2-of-2",
+         "title": "Music: Elementary General Music K-8 (2 of 2)",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Listens, responds, describes, analyzes and evaluates music critically."
+          },
+          {
+           "code": null,
+           "text": "Recognizes and respects the commonality and diversity among the cultures and histories of the world through musical experiences."
+          },
+          {
+           "code": null,
+           "text": "Connects music with other disciplines while preserving the integrity of authentic musical learning experiences."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "build": {
+  "builtAt": "2026-10-14T16:20:42.760Z",
+  "model": "none",
+  "usd": 0,
+  "expectedCodes": 25,
+  "coverage": 1,
+  "missingCodes": [],
+  "counts": {
+   "grades": 4,
+   "units": 13,
+   "topics": 43,
+   "subtopics": 44,
+   "outcomes": 79
+  },
+  "warnings": []
+ }
+}

@@ -1,0 +1,4074 @@
+{
+ "id": "us-ccss-math-k-12",
+ "region": "US",
+ "framework": "Common Core State Standards for Mathematics (2010)",
+ "board": "NGA Center / CCSSO",
+ "qualification": "K-12",
+ "subject": "Mathematics",
+ "syllabusCode": null,
+ "gradeSystem": "grade",
+ "source": {
+  "urls": [
+   "https://corestandards.org/wp-content/uploads/2023/09/Math_Standards1.pdf",
+   "https://corestandards.org/"
+  ],
+  "publisher": "National Governors Association Center for Best Practices and Council of Chief State School Officers",
+  "licence": "© 2010 NGA Center/CCSSO; public licence permits use with attribution - structure + our own wording only",
+  "firstExam": "2010"
+ },
+ "grades": [
+  {
+   "grade": "K",
+   "units": [
+    {
+     "id": "counting-and-cardinality",
+     "title": "Counting and Cardinality",
+     "topics": [
+      {
+       "id": "know-number-names-and-the-count-sequence",
+       "title": "Know number names and the count sequence",
+       "subtopics": [
+        {
+         "id": "counting-sequence",
+         "title": "Counting sequence",
+         "outcomes": [
+          {
+           "code": "K.CC",
+           "text": "Count to 100 by ones and by tens"
+          },
+          {
+           "code": null,
+           "text": "Count forward from any given number"
+          },
+          {
+           "code": null,
+           "text": "Write numerals 0 to 20 and match them to quantities of objects"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "count-to-tell-the-number-of-objects",
+       "title": "Count to tell the number of objects",
+       "subtopics": [
+        {
+         "id": "counting-and-cardinality",
+         "title": "Counting and cardinality",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Connect counting to cardinality: pair each object with one number name, the last name tells how many, each next number is one more"
+          },
+          {
+           "code": null,
+           "text": "Count to answer how many for up to 20 objects in lines, arrays or circles, or 10 scattered; count out a given number"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "compare-numbers",
+       "title": "Compare numbers",
+       "subtopics": [
+        {
+         "id": "comparing-numbers",
+         "title": "Comparing numbers",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Say whether one group has more, fewer or the same number of objects than another"
+          },
+          {
+           "code": null,
+           "text": "Compare two written numerals from 1 to 10"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "operations-and-algebraic-thinking",
+     "title": "Operations and Algebraic Thinking",
+     "topics": [
+      {
+       "id": "understand-addition-as-putting-together-and-addi",
+       "title": "Understand addition as putting together and adding to, and subtraction as taking apart and taking from",
+       "subtopics": [
+        {
+         "id": "addition-and-subtraction-within-10",
+         "title": "Addition and subtraction within 10",
+         "outcomes": [
+          {
+           "code": "K.OA",
+           "text": "Represent addition and subtraction with objects, fingers, drawings, sounds, acting out, words, expressions or equations"
+          },
+          {
+           "code": null,
+           "text": "Solve addition and subtraction word problems within 10"
+          },
+          {
+           "code": null,
+           "text": "Break numbers up to 10 into pairs in more than one way and record them"
+          },
+          {
+           "code": null,
+           "text": "Find the number that makes 10 with any number from 1 to 9"
+          },
+          {
+           "code": null,
+           "text": "Fluently add and subtract within 5"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "number-and-operations-in-base-ten",
+     "title": "Number and Operations in Base Ten",
+     "topics": [
+      {
+       "id": "work-with-numbers-11-19-to-gain-foundations-for-",
+       "title": "Work with numbers 11-19 to gain foundations for place value",
+       "subtopics": [
+        {
+         "id": "teen-numbers-as-ten-and-ones",
+         "title": "Teen numbers as ten and ones",
+         "outcomes": [
+          {
+           "code": "K.NBT",
+           "text": "Compose and decompose numbers 11 to 19 into ten ones and some further ones"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "measurement-and-data",
+     "title": "Measurement and Data",
+     "topics": [
+      {
+       "id": "describe-and-compare-measurable-attributes",
+       "title": "Describe and compare measurable attributes",
+       "subtopics": [
+        {
+         "id": "measurable-attributes",
+         "title": "Measurable attributes",
+         "outcomes": [
+          {
+           "code": "K.MD",
+           "text": "Describe measurable attributes such as length or weight, including several for one object"
+          },
+          {
+           "code": null,
+           "text": "Directly compare two objects by an attribute and describe the difference"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "classify-objects-and-count-the-number-of-objects",
+       "title": "Classify objects and count the number of objects in each category",
+       "subtopics": [
+        {
+         "id": "sorting-and-counting-categories",
+         "title": "Sorting and counting categories",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Sort objects into given categories, count each and order categories by count"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "geometry",
+     "title": "Geometry",
+     "topics": [
+      {
+       "id": "identify-and-describe-shapes",
+       "title": "Identify and describe shapes",
+       "subtopics": [
+        {
+         "id": "naming-and-describing-shapes",
+         "title": "Naming and describing shapes",
+         "outcomes": [
+          {
+           "code": "K.G",
+           "text": "Name shapes and describe positions such as above, below, beside, in front of, behind, next to"
+          },
+          {
+           "code": null,
+           "text": "Name shapes correctly whatever their size or orientation"
+          },
+          {
+           "code": null,
+           "text": "Tell flat two-dimensional shapes from solid three-dimensional shapes"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "analyze-compare-create-and-compose-shapes",
+       "title": "Analyze, compare, create, and compose shapes",
+       "subtopics": [
+        {
+         "id": "analyzing-and-composing-shapes",
+         "title": "Analyzing and composing shapes",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Compare 2D and 3D shapes by parts, sides, corners and other attributes"
+          },
+          {
+           "code": null,
+           "text": "Build and draw shapes from components such as sticks and clay"
+          },
+          {
+           "code": null,
+           "text": "Join simple shapes to form larger shapes"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "1",
+   "units": [
+    {
+     "id": "operations-and-algebraic-thinking",
+     "title": "Operations and Algebraic Thinking",
+     "topics": [
+      {
+       "id": "represent-and-solve-problems-involving-addition-",
+       "title": "Represent and solve problems involving addition and subtraction",
+       "subtopics": [
+        {
+         "id": "addition-and-subtraction-word-problems",
+         "title": "Addition and subtraction word problems",
+         "outcomes": [
+          {
+           "code": "1.OA",
+           "text": "Solve add-to, take-from, put-together, take-apart and compare word problems within 20 with unknowns in any position"
+          },
+          {
+           "code": null,
+           "text": "Solve word problems adding three whole numbers with a sum up to 20"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "understand-and-apply-properties-of-operations-an",
+       "title": "Understand and apply properties of operations and the relationship between addition and subtraction",
+       "subtopics": [
+        {
+         "id": "properties-and-unknown-addends",
+         "title": "Properties and unknown addends",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Use properties of operations such as commutative and associative to add and subtract"
+          },
+          {
+           "code": null,
+           "text": "Understand subtraction as finding an unknown addend"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "add-and-subtract-within-20",
+       "title": "Add and subtract within 20",
+       "subtopics": [
+        {
+         "id": "strategies-within-20",
+         "title": "Strategies within 20",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Relate counting on to addition and subtraction"
+          },
+          {
+           "code": null,
+           "text": "Add and subtract within 20 with fluency within 10, using counting on, making ten, decomposing, and related facts"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "work-with-addition-and-subtraction-equations",
+       "title": "Work with addition and subtraction equations",
+       "subtopics": [
+        {
+         "id": "equal-sign-and-unknowns",
+         "title": "Equal sign and unknowns",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Understand the equal sign and judge addition and subtraction equations true or false"
+          },
+          {
+           "code": null,
+           "text": "Find the unknown number in an addition or subtraction equation of three numbers"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "number-and-operations-in-base-ten",
+     "title": "Number and Operations in Base Ten",
+     "topics": [
+      {
+       "id": "extend-the-counting-sequence",
+       "title": "Extend the counting sequence",
+       "subtopics": [
+        {
+         "id": "counting-to-120",
+         "title": "Counting to 120",
+         "outcomes": [
+          {
+           "code": "1.NBT",
+           "text": "Count to 120 from any number, reading and writing numerals and representing quantities"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "understand-place-value",
+       "title": "Understand place value",
+       "subtopics": [
+        {
+         "id": "tens-and-ones",
+         "title": "Tens and ones",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Understand two-digit numbers as tens and ones, including ten as a bundle of ten ones, teens, and multiples of ten"
+          },
+          {
+           "code": null,
+           "text": "Compare two two-digit numbers using greater than, equal to and less than symbols"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "use-place-value-understanding-and-properties-of-",
+       "title": "Use place value understanding and properties of operations to add and subtract",
+       "subtopics": [
+        {
+         "id": "adding-and-subtracting-with-tens",
+         "title": "Adding and subtracting with tens",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Add within 100 using models and place-value strategies, composing a ten when needed, and explain the method"
+          },
+          {
+           "code": null,
+           "text": "Mentally find 10 more or 10 less than a two-digit number"
+          },
+          {
+           "code": null,
+           "text": "Subtract multiples of 10 from multiples of 10 using models and place value"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "measurement-and-data",
+     "title": "Measurement and Data",
+     "topics": [
+      {
+       "id": "measure-lengths-indirectly-and-by-iterating-leng",
+       "title": "Measure lengths indirectly and by iterating length units",
+       "subtopics": [
+        {
+         "id": "comparing-and-measuring-length",
+         "title": "Comparing and measuring length",
+         "outcomes": [
+          {
+           "code": "1.MD",
+           "text": "Order three objects by length and compare two indirectly using a third"
+          },
+          {
+           "code": null,
+           "text": "Express length as a whole number of same-size units laid end to end"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "tell-and-write-time",
+       "title": "Tell and write time",
+       "subtopics": [
+        {
+         "id": "time-to-the-half-hour",
+         "title": "Time to the half hour",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Tell and write time in hours and half-hours on analog and digital clocks"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "represent-and-interpret-data",
+       "title": "Represent and interpret data",
+       "subtopics": [
+        {
+         "id": "categorical-data",
+         "title": "Categorical data",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Organise, represent and interpret data with up to three categories and compare category counts"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "geometry",
+     "title": "Geometry",
+     "topics": [
+      {
+       "id": "reason-with-shapes-and-their-attributes",
+       "title": "Reason with shapes and their attributes",
+       "subtopics": [
+        {
+         "id": "shape-attributes-and-composing-shapes",
+         "title": "Shape attributes and composing shapes",
+         "outcomes": [
+          {
+           "code": "1.G",
+           "text": "Tell defining attributes from non-defining ones and build or draw shapes with defining attributes"
+          },
+          {
+           "code": null,
+           "text": "Compose 2D or 3D shapes into composite shapes and make new shapes from them"
+          }
+         ]
+        },
+        {
+         "id": "equal-shares",
+         "title": "Equal shares",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Split circles and rectangles into two and four equal shares, name halves, fourths and quarters, and see more shares mean smaller shares"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "2",
+   "units": [
+    {
+     "id": "operations-and-algebraic-thinking",
+     "title": "Operations and Algebraic Thinking",
+     "topics": [
+      {
+       "id": "represent-and-solve-problems-involving-addition-",
+       "title": "Represent and solve problems involving addition and subtraction",
+       "subtopics": [
+        {
+         "id": "one-and-two-step-word-problems",
+         "title": "One- and two-step word problems",
+         "outcomes": [
+          {
+           "code": "2.OA",
+           "text": "Solve one- and two-step add and subtract word problems within 100 with unknowns in any position"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "add-and-subtract-within-20",
+       "title": "Add and subtract within 20",
+       "subtopics": [
+        {
+         "id": "fluency-within-20",
+         "title": "Fluency within 20",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Fluently add and subtract within 20 with mental strategies and know all sums of two one-digit numbers"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "work-with-equal-groups-of-objects-to-gain-founda",
+       "title": "Work with equal groups of objects to gain foundations for multiplication",
+       "subtopics": [
+        {
+         "id": "odd-even-and-arrays",
+         "title": "Odd, even and arrays",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Decide whether a group up to 20 is odd or even and write an even number as a sum of two equal addends"
+          },
+          {
+           "code": null,
+           "text": "Find the total in rectangular arrays up to 5 by 5 using repeated addition"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "number-and-operations-in-base-ten",
+     "title": "Number and Operations in Base Ten",
+     "topics": [
+      {
+       "id": "understand-place-value",
+       "title": "Understand place value",
+       "subtopics": [
+        {
+         "id": "three-digit-place-value",
+         "title": "Three-digit place value",
+         "outcomes": [
+          {
+           "code": "2.NBT",
+           "text": "Understand hundreds, tens and ones in three-digit numbers, including a hundred as ten tens"
+          },
+          {
+           "code": null,
+           "text": "Count within 1000 and skip-count by 5s, 10s and 100s"
+          },
+          {
+           "code": null,
+           "text": "Read and write numbers to 1000 as numerals, number names and expanded form"
+          },
+          {
+           "code": null,
+           "text": "Compare three-digit numbers using greater than, equal to and less than symbols"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "use-place-value-understanding-and-properties-of-",
+       "title": "Use place value understanding and properties of operations to add and subtract",
+       "subtopics": [
+        {
+         "id": "adding-and-subtracting-within-100",
+         "title": "Adding and subtracting within 100",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Fluently add and subtract within 100 using place value and properties"
+          },
+          {
+           "code": null,
+           "text": "Add up to four two-digit numbers"
+          }
+         ]
+        },
+        {
+         "id": "adding-and-subtracting-within-1000",
+         "title": "Adding and subtracting within 1000",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Add and subtract within 1000 with models and place-value strategies, composing or decomposing tens and hundreds"
+          },
+          {
+           "code": null,
+           "text": "Mentally add or subtract 10 or 100 from numbers 100 to 900"
+          },
+          {
+           "code": null,
+           "text": "Explain why addition and subtraction strategies work using place value and properties"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "measurement-and-data",
+     "title": "Measurement and Data",
+     "topics": [
+      {
+       "id": "measure-and-estimate-lengths-in-standard-units",
+       "title": "Measure and estimate lengths in standard units",
+       "subtopics": [
+        {
+         "id": "measuring-length",
+         "title": "Measuring length",
+         "outcomes": [
+          {
+           "code": "2.MD",
+           "text": "Measure length with suitable tools such as rulers, yardsticks, meter sticks and tapes"
+          },
+          {
+           "code": null,
+           "text": "Measure one object with two different units and relate the results to unit size"
+          },
+          {
+           "code": null,
+           "text": "Estimate lengths in inches, feet, centimeters and meters"
+          },
+          {
+           "code": null,
+           "text": "Measure how much longer one object is than another in a standard unit"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "relate-addition-and-subtraction-to-length",
+       "title": "Relate addition and subtraction to length",
+       "subtopics": [
+        {
+         "id": "length-problems-and-number-lines",
+         "title": "Length problems and number lines",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Solve word problems within 100 about lengths in the same unit"
+          },
+          {
+           "code": null,
+           "text": "Show whole numbers and sums and differences within 100 on a number line"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "work-with-time-and-money",
+       "title": "Work with time and money",
+       "subtopics": [
+        {
+         "id": "time-and-money",
+         "title": "Time and money",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Tell and write time to the nearest five minutes using a.m. and p.m."
+          },
+          {
+           "code": null,
+           "text": "Solve word problems about bills and coins using dollar and cent symbols"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "represent-and-interpret-data",
+       "title": "Represent and interpret data",
+       "subtopics": [
+        {
+         "id": "line-plots-and-graphs",
+         "title": "Line plots and graphs",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Measure several objects to the nearest unit and show the data on a line plot"
+          },
+          {
+           "code": null,
+           "text": "Draw picture and bar graphs for up to four categories and solve problems from bar graphs"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "geometry",
+     "title": "Geometry",
+     "topics": [
+      {
+       "id": "reason-with-shapes-and-their-attributes",
+       "title": "Reason with shapes and their attributes",
+       "subtopics": [
+        {
+         "id": "shapes-and-equal-shares",
+         "title": "Shapes and equal shares",
+         "outcomes": [
+          {
+           "code": "2.G",
+           "text": "Recognize and draw shapes with given attributes: triangles, quadrilaterals, pentagons, hexagons and cubes"
+          },
+          {
+           "code": null,
+           "text": "Split a rectangle into same-size squares in rows and columns and count them"
+          },
+          {
+           "code": null,
+           "text": "Split circles and rectangles into two, three or four equal shares and name halves, thirds and fourths"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "3",
+   "units": [
+    {
+     "id": "operations-and-algebraic-thinking",
+     "title": "Operations and Algebraic Thinking",
+     "topics": [
+      {
+       "id": "represent-and-solve-problems-involving-multiplic",
+       "title": "Represent and solve problems involving multiplication and division",
+       "subtopics": [
+        {
+         "id": "meaning-of-multiplication-and-division",
+         "title": "Meaning of multiplication and division",
+         "outcomes": [
+          {
+           "code": "3.OA",
+           "text": "Interpret a product as the total in equal groups"
+          },
+          {
+           "code": null,
+           "text": "Interpret a quotient as the size of each share or the number of shares"
+          }
+         ]
+        },
+        {
+         "id": "multiplication-and-division-word-problems",
+         "title": "Multiplication and division word problems",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Solve word problems within 100 using equal groups, arrays and measurement quantities"
+          },
+          {
+           "code": null,
+           "text": "Find the unknown whole number in a multiplication or division equation"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "understand-properties-of-multiplication-and-the-",
+       "title": "Understand properties of multiplication and the relationship between multiplication and division",
+       "subtopics": [
+        {
+         "id": "properties-and-unknown-factors",
+         "title": "Properties and unknown factors",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Apply commutative, associative and distributive properties to multiply and divide"
+          },
+          {
+           "code": null,
+           "text": "Understand division as an unknown-factor problem"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "multiply-and-divide-within-100",
+       "title": "Multiply and divide within 100",
+       "subtopics": [
+        {
+         "id": "fluency-within-100",
+         "title": "Fluency within 100",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Fluently multiply and divide within 100 and know all one-digit products from memory"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "solve-problems-involving-the-four-operations-and",
+       "title": "Solve problems involving the four operations, and identify and explain patterns in arithmetic",
+       "subtopics": [
+        {
+         "id": "two-step-problems-and-patterns",
+         "title": "Two-step problems and patterns",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Solve two-step word problems with the four operations and check them by estimation"
+          },
+          {
+           "code": null,
+           "text": "Find and explain arithmetic patterns in addition and multiplication tables"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "number-and-operations-in-base-ten",
+     "title": "Number and Operations in Base Ten",
+     "topics": [
+      {
+       "id": "use-place-value-understanding-and-properties-of-",
+       "title": "Use place value understanding and properties of operations to perform multi-digit arithmetic",
+       "subtopics": [
+        {
+         "id": "rounding-and-multi-digit-arithmetic",
+         "title": "Rounding and multi-digit arithmetic",
+         "outcomes": [
+          {
+           "code": "3.NBT",
+           "text": "Round whole numbers to the nearest 10 or 100"
+          },
+          {
+           "code": null,
+           "text": "Fluently add and subtract within 1000"
+          },
+          {
+           "code": null,
+           "text": "Multiply one-digit numbers by multiples of 10"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "number-and-operations-fractions",
+     "title": "Number and Operations - Fractions",
+     "topics": [
+      {
+       "id": "develop-understanding-of-fractions-as-numbers",
+       "title": "Develop understanding of fractions as numbers",
+       "subtopics": [
+        {
+         "id": "fractions-as-parts-of-a-whole",
+         "title": "Fractions as parts of a whole",
+         "outcomes": [
+          {
+           "code": "3.NF",
+           "text": "Understand 1/b as one of b equal parts and a/b as a parts of size 1/b"
+          }
+         ]
+        },
+        {
+         "id": "fractions-on-the-number-line",
+         "title": "Fractions on the number line",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Show fractions on a number line by partitioning 0 to 1 into equal parts and marking lengths from 0"
+          }
+         ]
+        },
+        {
+         "id": "equivalent-and-compared-fractions",
+         "title": "Equivalent and compared fractions",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain equivalent fractions, generate simple ones, write whole numbers as fractions, and compare fractions with like numerators or denominators"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "measurement-and-data",
+     "title": "Measurement and Data",
+     "topics": [
+      {
+       "id": "solve-problems-involving-measurement-and-estimat",
+       "title": "Solve problems involving measurement and estimation of intervals of time, liquid volumes, and masses of objects",
+       "subtopics": [
+        {
+         "id": "time-volume-and-mass",
+         "title": "Time, volume and mass",
+         "outcomes": [
+          {
+           "code": "3.MD",
+           "text": "Tell and write time to the nearest minute and solve time-interval problems"
+          },
+          {
+           "code": null,
+           "text": "Measure and estimate liquid volume and mass in grams, kilograms and liters and solve one-step problems"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "represent-and-interpret-data",
+       "title": "Represent and interpret data",
+       "subtopics": [
+        {
+         "id": "scaled-graphs-and-line-plots",
+         "title": "Scaled graphs and line plots",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Draw scaled picture and bar graphs and solve how-many-more problems"
+          },
+          {
+           "code": null,
+           "text": "Measure lengths to halves and fourths of an inch and show them on a line plot"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "geometric-measurement-understand-concepts-of-are",
+       "title": "Geometric measurement: understand concepts of area and relate area to multiplication and to addition",
+       "subtopics": [
+        {
+         "id": "area-concepts",
+         "title": "Area concepts",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Understand area as an attribute and measure it in unit squares"
+          },
+          {
+           "code": null,
+           "text": "Measure area by counting unit squares"
+          }
+         ]
+        },
+        {
+         "id": "area-and-operations",
+         "title": "Area and operations",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Find rectangle area by tiling and by multiplying side lengths, use area models for the distributive property, and add areas of rectilinear parts"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "geometric-measurement-recognize-perimeter-as-an-",
+       "title": "Geometric measurement: recognize perimeter as an attribute of plane figures and distinguish between linear and area measures",
+       "subtopics": [
+        {
+         "id": "perimeter",
+         "title": "Perimeter",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Solve problems about perimeter, unknown sides, and rectangles with equal perimeter but different area or the reverse"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "geometry",
+     "title": "Geometry",
+     "topics": [
+      {
+       "id": "reason-with-shapes-and-their-attributes",
+       "title": "Reason with shapes and their attributes",
+       "subtopics": [
+        {
+         "id": "quadrilaterals-and-equal-parts",
+         "title": "Quadrilaterals and equal parts",
+         "outcomes": [
+          {
+           "code": "3.G",
+           "text": "Understand that shape categories share attributes and recognize rhombuses, rectangles and squares as quadrilaterals"
+          },
+          {
+           "code": null,
+           "text": "Split shapes into equal-area parts and name each part as a unit fraction of the whole"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "4",
+   "units": [
+    {
+     "id": "operations-and-algebraic-thinking",
+     "title": "Operations and Algebraic Thinking",
+     "topics": [
+      {
+       "id": "use-the-four-operations-with-whole-numbers-to-so",
+       "title": "Use the four operations with whole numbers to solve problems",
+       "subtopics": [
+        {
+         "id": "multiplicative-comparison-and-multistep-problems",
+         "title": "Multiplicative comparison and multistep problems",
+         "outcomes": [
+          {
+           "code": "4.OA",
+           "text": "Interpret a multiplication equation as a comparison and write equations for verbal comparisons"
+          },
+          {
+           "code": null,
+           "text": "Solve word problems with multiplicative comparison and tell it from additive comparison"
+          },
+          {
+           "code": null,
+           "text": "Solve multistep whole-number problems, interpret remainders and check by estimation"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "gain-familiarity-with-factors-and-multiples",
+       "title": "Gain familiarity with factors and multiples",
+       "subtopics": [
+        {
+         "id": "factors-multiples-and-primes",
+         "title": "Factors, multiples and primes",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Find factor pairs to 100, recognise multiples, and decide whether a number is prime or composite"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "generate-and-analyze-patterns",
+       "title": "Generate and analyze patterns",
+       "subtopics": [
+        {
+         "id": "number-and-shape-patterns",
+         "title": "Number and shape patterns",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Generate a pattern from a rule and spot features not stated in the rule"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "number-and-operations-in-base-ten",
+     "title": "Number and Operations in Base Ten",
+     "topics": [
+      {
+       "id": "generalize-place-value-understanding-for-multi-d",
+       "title": "Generalize place value understanding for multi-digit whole numbers",
+       "subtopics": [
+        {
+         "id": "place-value-to-1-000-000",
+         "title": "Place value to 1,000,000",
+         "outcomes": [
+          {
+           "code": "4.NBT",
+           "text": "Recognise that each place is ten times the place to its right"
+          },
+          {
+           "code": null,
+           "text": "Read, write and compare multi-digit numbers in numerals, words and expanded form"
+          },
+          {
+           "code": null,
+           "text": "Round multi-digit whole numbers to any place"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "use-place-value-understanding-and-properties-of-",
+       "title": "Use place value understanding and properties of operations to perform multi-digit arithmetic",
+       "subtopics": [
+        {
+         "id": "multi-digit-arithmetic",
+         "title": "Multi-digit arithmetic",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Fluently add and subtract with the standard algorithm"
+          },
+          {
+           "code": null,
+           "text": "Multiply up to four digits by one digit and two digits by two digits, explaining with arrays or area models"
+          },
+          {
+           "code": null,
+           "text": "Divide with up to four-digit dividends and one-digit divisors, finding quotients and remainders"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "number-and-operations-fractions",
+     "title": "Number and Operations - Fractions",
+     "topics": [
+      {
+       "id": "extend-understanding-of-fraction-equivalence-and",
+       "title": "Extend understanding of fraction equivalence and ordering",
+       "subtopics": [
+        {
+         "id": "equivalent-and-compared-fractions",
+         "title": "Equivalent and compared fractions",
+         "outcomes": [
+          {
+           "code": "4.NF",
+           "text": "Explain why a/b equals (n x a)/(n x b) and generate equivalent fractions"
+          },
+          {
+           "code": null,
+           "text": "Compare fractions with different numerators and denominators using common parts or benchmarks"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "build-fractions-from-unit-fractions-by-applying-",
+       "title": "Build fractions from unit fractions by applying and extending previous understandings of operations on whole numbers",
+       "subtopics": [
+        {
+         "id": "adding-and-subtracting-fractions",
+         "title": "Adding and subtracting fractions",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Understand a/b as a sum of unit fractions and decompose fractions in more than one way"
+          },
+          {
+           "code": null,
+           "text": "Add and subtract mixed numbers with like denominators"
+          },
+          {
+           "code": null,
+           "text": "Solve word problems adding and subtracting fractions with like denominators"
+          }
+         ]
+        },
+        {
+         "id": "multiplying-a-fraction-by-a-whole-number",
+         "title": "Multiplying a fraction by a whole number",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Understand a/b as a multiple of 1/b and multiply a fraction by a whole number"
+          },
+          {
+           "code": null,
+           "text": "Solve word problems multiplying a fraction by a whole number"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "understand-decimal-notation-for-fractions-and-co",
+       "title": "Understand decimal notation for fractions, and compare decimal fractions",
+       "subtopics": [
+        {
+         "id": "decimals-and-fractions",
+         "title": "Decimals and fractions",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Rewrite tenths as hundredths and add fractions with denominators 10 and 100"
+          },
+          {
+           "code": null,
+           "text": "Write fractions with denominator 10 or 100 as decimals and place them on a number line"
+          },
+          {
+           "code": null,
+           "text": "Compare decimals to hundredths"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "measurement-and-data",
+     "title": "Measurement and Data",
+     "topics": [
+      {
+       "id": "solve-problems-involving-measurement-and-convers",
+       "title": "Solve problems involving measurement and conversion of measurements from a larger unit to a smaller unit",
+       "subtopics": [
+        {
+         "id": "units-and-conversion",
+         "title": "Units and conversion",
+         "outcomes": [
+          {
+           "code": "4.MD",
+           "text": "Know relative sizes of units in one system and convert larger units to smaller, using two-column tables"
+          },
+          {
+           "code": null,
+           "text": "Solve word problems on distance, time, volume, mass and money, including fractions and decimals"
+          },
+          {
+           "code": null,
+           "text": "Apply area and perimeter formulas for rectangles"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "represent-and-interpret-data",
+       "title": "Represent and interpret data",
+       "subtopics": [
+        {
+         "id": "line-plots-with-fractions",
+         "title": "Line plots with fractions",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Make line plots with fractional units and solve addition and subtraction problems from them"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "geometric-measurement-understand-concepts-of-ang",
+       "title": "Geometric measurement: understand concepts of angle and measure angles",
+       "subtopics": [
+        {
+         "id": "angles-and-measurement",
+         "title": "Angles and measurement",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Understand an angle as two rays sharing an endpoint and measure it in one-degree turns of a circle"
+          },
+          {
+           "code": null,
+           "text": "Measure and sketch angles in whole degrees with a protractor"
+          },
+          {
+           "code": null,
+           "text": "Treat angle measure as additive and find unknown angles"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "geometry",
+     "title": "Geometry",
+     "topics": [
+      {
+       "id": "draw-and-identify-lines-and-angles-and-classify-",
+       "title": "Draw and identify lines and angles, and classify shapes by properties of their lines and angles",
+       "subtopics": [
+        {
+         "id": "lines-angles-and-symmetry",
+         "title": "Lines, angles and symmetry",
+         "outcomes": [
+          {
+           "code": "4.G",
+           "text": "Draw and identify points, lines, segments, rays, right, acute and obtuse angles, and parallel and perpendicular lines"
+          },
+          {
+           "code": null,
+           "text": "Classify 2D figures by parallel or perpendicular lines and angle sizes, including right triangles"
+          },
+          {
+           "code": null,
+           "text": "Identify line symmetry and draw lines of symmetry"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "5",
+   "units": [
+    {
+     "id": "operations-and-algebraic-thinking",
+     "title": "Operations and Algebraic Thinking",
+     "topics": [
+      {
+       "id": "write-and-interpret-numerical-expressions",
+       "title": "Write and interpret numerical expressions",
+       "subtopics": [
+        {
+         "id": "writing-numerical-expressions",
+         "title": "Writing numerical expressions",
+         "outcomes": [
+          {
+           "code": "5.OA",
+           "text": "Use and evaluate parentheses, brackets and braces in expressions"
+          },
+          {
+           "code": null,
+           "text": "Write expressions for calculations and interpret expressions without evaluating them"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "analyze-patterns-and-relationships",
+       "title": "Analyze patterns and relationships",
+       "subtopics": [
+        {
+         "id": "two-patterns-and-the-coordinate-plane",
+         "title": "Two patterns and the coordinate plane",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Generate two patterns from two rules, relate corresponding terms and graph the ordered pairs"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "number-and-operations-in-base-ten",
+     "title": "Number and Operations in Base Ten",
+     "topics": [
+      {
+       "id": "understand-the-place-value-system",
+       "title": "Understand the place value system",
+       "subtopics": [
+        {
+         "id": "place-value-and-powers-of-ten",
+         "title": "Place value and powers of ten",
+         "outcomes": [
+          {
+           "code": "5.NBT",
+           "text": "Recognise a digit as 10 times the place to its right and a tenth of the place to its left"
+          },
+          {
+           "code": null,
+           "text": "Explain patterns when multiplying or dividing by powers of ten, using exponents"
+          }
+         ]
+        },
+        {
+         "id": "decimals-to-thousandths",
+         "title": "Decimals to thousandths",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Read, write and compare decimals to thousandths"
+          },
+          {
+           "code": null,
+           "text": "Round decimals to any place"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "perform-operations-with-multi-digit-whole-number",
+       "title": "Perform operations with multi-digit whole numbers and with decimals to hundredths",
+       "subtopics": [
+        {
+         "id": "multi-digit-and-decimal-operations",
+         "title": "Multi-digit and decimal operations",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Fluently multiply multi-digit numbers with the standard algorithm"
+          },
+          {
+           "code": null,
+           "text": "Divide up to four-digit dividends by two-digit divisors"
+          },
+          {
+           "code": null,
+           "text": "Add, subtract, multiply and divide decimals to hundredths with models and place value"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "number-and-operations-fractions",
+     "title": "Number and Operations - Fractions",
+     "topics": [
+      {
+       "id": "use-equivalent-fractions-as-a-strategy-to-add-an",
+       "title": "Use equivalent fractions as a strategy to add and subtract fractions",
+       "subtopics": [
+        {
+         "id": "unlike-denominators",
+         "title": "Unlike denominators",
+         "outcomes": [
+          {
+           "code": "5.NF",
+           "text": "Add and subtract fractions and mixed numbers with unlike denominators using equivalent fractions"
+          },
+          {
+           "code": null,
+           "text": "Solve word problems adding and subtracting fractions and judge answers by benchmarks"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "apply-and-extend-previous-understandings-of-mult",
+       "title": "Apply and extend previous understandings of multiplication and division to multiply and divide fractions",
+       "subtopics": [
+        {
+         "id": "fractions-as-division",
+         "title": "Fractions as division",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Interpret a fraction as numerator divided by denominator and solve sharing problems"
+          }
+         ]
+        },
+        {
+         "id": "multiplying-fractions",
+         "title": "Multiplying fractions",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Multiply a fraction or whole number by a fraction, and find areas of rectangles with fractional sides"
+          },
+          {
+           "code": null,
+           "text": "Interpret multiplication as scaling and predict whether a product is larger or smaller than a factor"
+          },
+          {
+           "code": null,
+           "text": "Solve real-world problems multiplying fractions and mixed numbers"
+          }
+         ]
+        },
+        {
+         "id": "dividing-with-unit-fractions",
+         "title": "Dividing with unit fractions",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Divide a unit fraction by a whole number and a whole number by a unit fraction"
+          },
+          {
+           "code": null,
+           "text": "Solve real-world problems dividing unit fractions and whole numbers"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "measurement-and-data",
+     "title": "Measurement and Data",
+     "topics": [
+      {
+       "id": "convert-like-measurement-units-within-a-given-me",
+       "title": "Convert like measurement units within a given measurement system",
+       "subtopics": [
+        {
+         "id": "converting-units",
+         "title": "Converting units",
+         "outcomes": [
+          {
+           "code": "5.MD",
+           "text": "Convert among units in one measurement system and use conversions in multistep problems"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "represent-and-interpret-data",
+       "title": "Represent and interpret data",
+       "subtopics": [
+        {
+         "id": "line-plots-with-fractions",
+         "title": "Line plots with fractions",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Make a line plot of fractional measurements and solve problems using fraction operations"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "geometric-measurement-understand-concepts-of-vol",
+       "title": "Geometric measurement: understand concepts of volume and relate volume to multiplication and to addition",
+       "subtopics": [
+        {
+         "id": "volume-concepts",
+         "title": "Volume concepts",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Recognise volume as an attribute measured in unit cubes"
+          },
+          {
+           "code": null,
+           "text": "Measure volume by counting unit cubes"
+          }
+         ]
+        },
+        {
+         "id": "volume-and-operations",
+         "title": "Volume and operations",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Find prism volume by packing, V = l x w x h and V = b x h, and add volumes of composite solids"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "geometry",
+     "title": "Geometry",
+     "topics": [
+      {
+       "id": "graph-points-on-the-coordinate-plane-to-solve-re",
+       "title": "Graph points on the coordinate plane to solve real-world and mathematical problems",
+       "subtopics": [
+        {
+         "id": "the-coordinate-plane",
+         "title": "The coordinate plane",
+         "outcomes": [
+          {
+           "code": "5.G",
+           "text": "Define a coordinate system with perpendicular axes and locate points by ordered pairs"
+          },
+          {
+           "code": null,
+           "text": "Graph points in the first quadrant and interpret coordinates in context"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "classify-two-dimensional-figures-into-categories",
+       "title": "Classify two-dimensional figures into categories based on their properties",
+       "subtopics": [
+        {
+         "id": "classifying-figures",
+         "title": "Classifying figures",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Understand that attributes of a category belong to all its subcategories"
+          },
+          {
+           "code": null,
+           "text": "Classify 2D figures in a hierarchy by properties"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "6",
+   "units": [
+    {
+     "id": "ratios-and-proportional-relationships",
+     "title": "Ratios and Proportional Relationships",
+     "topics": [
+      {
+       "id": "understand-ratio-concepts-and-use-ratio-reasonin",
+       "title": "Understand ratio concepts and use ratio reasoning to solve problems",
+       "subtopics": [
+        {
+         "id": "ratios-and-unit-rates",
+         "title": "Ratios and unit rates",
+         "outcomes": [
+          {
+           "code": "6.RP",
+           "text": "Understand a ratio and describe ratio relationships in words"
+          },
+          {
+           "code": null,
+           "text": "Understand a unit rate a/b for a ratio a:b and use rate language"
+          }
+         ]
+        },
+        {
+         "id": "ratio-reasoning",
+         "title": "Ratio reasoning",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Solve ratio problems with tables of equivalent ratios, tape diagrams, double number lines and equations, including plotting ratio pairs"
+          },
+          {
+           "code": null,
+           "text": "Solve unit rate problems including unit pricing and constant speed"
+          },
+          {
+           "code": null,
+           "text": "Find a percent of a quantity as a rate per 100 and find the whole from a part and percent"
+          },
+          {
+           "code": null,
+           "text": "Use ratio reasoning to convert measurement units"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "the-number-system",
+     "title": "The Number System",
+     "topics": [
+      {
+       "id": "apply-and-extend-previous-understandings-of-mult",
+       "title": "Apply and extend previous understandings of multiplication and division to divide fractions by fractions",
+       "subtopics": [
+        {
+         "id": "dividing-fractions",
+         "title": "Dividing fractions",
+         "outcomes": [
+          {
+           "code": "6.NS",
+           "text": "Interpret and compute quotients of fractions and solve word problems dividing fractions by fractions"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "compute-fluently-with-multi-digit-numbers-and-fi",
+       "title": "Compute fluently with multi-digit numbers and find common factors and multiples",
+       "subtopics": [
+        {
+         "id": "multi-digit-division-and-decimals",
+         "title": "Multi-digit division and decimals",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Fluently divide multi-digit numbers with the standard algorithm"
+          },
+          {
+           "code": null,
+           "text": "Fluently add, subtract, multiply and divide multi-digit decimals"
+          }
+         ]
+        },
+        {
+         "id": "common-factors-and-multiples",
+         "title": "Common factors and multiples",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Find the greatest common factor and least common multiple, and use the distributive property to factor sums"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "apply-and-extend-previous-understandings-of-numb",
+       "title": "Apply and extend previous understandings of numbers to the system of rational numbers",
+       "subtopics": [
+        {
+         "id": "positive-and-negative-numbers",
+         "title": "Positive and negative numbers",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Use positive and negative numbers for quantities with opposite directions and explain the meaning of zero"
+          },
+          {
+           "code": null,
+           "text": "Place rational numbers on number lines and coordinate planes, understand opposites and reflections across axes"
+          }
+         ]
+        },
+        {
+         "id": "ordering-and-absolute-value",
+         "title": "Ordering and absolute value",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Interpret inequalities as positions on a number line and write order statements in context"
+          },
+          {
+           "code": null,
+           "text": "Understand absolute value as distance from 0 and tell it from order"
+          },
+          {
+           "code": null,
+           "text": "Graph points in all four quadrants and find distances along a shared coordinate"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "expressions-and-equations",
+     "title": "Expressions and Equations",
+     "topics": [
+      {
+       "id": "apply-and-extend-previous-understandings-of-arit",
+       "title": "Apply and extend previous understandings of arithmetic to algebraic expressions",
+       "subtopics": [
+        {
+         "id": "exponents-and-expressions",
+         "title": "Exponents and expressions",
+         "outcomes": [
+          {
+           "code": "6.EE",
+           "text": "Write and evaluate numerical expressions with whole-number exponents"
+          },
+          {
+           "code": null,
+           "text": "Write, read and evaluate expressions with letters, name parts such as term and coefficient, and use order of operations with formulas"
+          }
+         ]
+        },
+        {
+         "id": "equivalent-expressions",
+         "title": "Equivalent expressions",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Use properties of operations to generate equivalent expressions"
+          },
+          {
+           "code": null,
+           "text": "Identify when two expressions are equivalent"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "reason-about-and-solve-one-variable-equations-an",
+       "title": "Reason about and solve one-variable equations and inequalities",
+       "subtopics": [
+        {
+         "id": "equations-and-inequalities",
+         "title": "Equations and inequalities",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Understand solving as finding which values make an equation or inequality true, and test by substitution"
+          },
+          {
+           "code": null,
+           "text": "Use variables to represent unknown numbers or any number in a set"
+          },
+          {
+           "code": null,
+           "text": "Solve equations x + p = q and px = q with nonnegative rational numbers"
+          },
+          {
+           "code": null,
+           "text": "Write inequalities x > c or x < c for constraints and graph their solutions"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "represent-and-analyze-quantitative-relationships",
+       "title": "Represent and analyze quantitative relationships between dependent and independent variables",
+       "subtopics": [
+        {
+         "id": "dependent-and-independent-variables",
+         "title": "Dependent and independent variables",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Write an equation for two related quantities and analyse it with tables and graphs"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "geometry",
+     "title": "Geometry",
+     "topics": [
+      {
+       "id": "solve-real-world-and-mathematical-problems-invol",
+       "title": "Solve real-world and mathematical problems involving area, surface area, and volume",
+       "subtopics": [
+        {
+         "id": "area-of-polygons",
+         "title": "Area of polygons",
+         "outcomes": [
+          {
+           "code": "6.G",
+           "text": "Find areas of triangles, quadrilaterals and polygons by composing and decomposing"
+          }
+         ]
+        },
+        {
+         "id": "volume-coordinates-and-nets",
+         "title": "Volume, coordinates and nets",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Find volume of prisms with fractional edges by packing and by formulas"
+          },
+          {
+           "code": null,
+           "text": "Draw polygons in the coordinate plane and find side lengths from coordinates"
+          },
+          {
+           "code": null,
+           "text": "Use nets of rectangles and triangles to find surface area"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "statistics-and-probability",
+     "title": "Statistics and Probability",
+     "topics": [
+      {
+       "id": "develop-understanding-of-statistical-variability",
+       "title": "Develop understanding of statistical variability",
+       "subtopics": [
+        {
+         "id": "statistical-questions-and-distributions",
+         "title": "Statistical questions and distributions",
+         "outcomes": [
+          {
+           "code": "6.SP",
+           "text": "Recognise a statistical question as one that expects variability"
+          },
+          {
+           "code": null,
+           "text": "Understand that data have a distribution with center, spread and shape"
+          },
+          {
+           "code": null,
+           "text": "Tell a measure of center from a measure of variation"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "summarize-and-describe-distributions",
+       "title": "Summarize and describe distributions",
+       "subtopics": [
+        {
+         "id": "displaying-and-summarizing-data",
+         "title": "Displaying and summarizing data",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Display numerical data with dot plots, histograms and box plots"
+          },
+          {
+           "code": null,
+           "text": "Summarise data in context: number of observations, attribute and units, center and variability, patterns and deviations"
+          },
+          {
+           "code": null,
+           "text": "Relate the choice of center and variability measures to distribution shape and context"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "7",
+   "units": [
+    {
+     "id": "ratios-and-proportional-relationships",
+     "title": "Ratios and Proportional Relationships",
+     "topics": [
+      {
+       "id": "analyze-proportional-relationships-and-use-them-",
+       "title": "Analyze proportional relationships and use them to solve real-world and mathematical problems",
+       "subtopics": [
+        {
+         "id": "unit-rates-and-proportional-relationships",
+         "title": "Unit rates and proportional relationships",
+         "outcomes": [
+          {
+           "code": "7.RP",
+           "text": "Compute unit rates for ratios of fractions, including lengths and areas"
+          },
+          {
+           "code": null,
+           "text": "Decide whether two quantities are proportional using tables and graphs"
+          },
+          {
+           "code": null,
+           "text": "Identify the constant of proportionality in tables, graphs, equations and descriptions"
+          },
+          {
+           "code": null,
+           "text": "Write equations for proportional relationships such as t = pn"
+          },
+          {
+           "code": null,
+           "text": "Explain what a point on a proportional graph means, especially (0, 0) and (1, r)"
+          }
+         ]
+        },
+        {
+         "id": "multistep-ratio-and-percent-problems",
+         "title": "Multistep ratio and percent problems",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Solve multistep ratio and percent problems such as interest, tax, markups, discounts, tips, commissions and percent change"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "the-number-system",
+     "title": "The Number System",
+     "topics": [
+      {
+       "id": "apply-and-extend-previous-understandings-of-oper",
+       "title": "Apply and extend previous understandings of operations with fractions to add, subtract, multiply, and divide rational numbers",
+       "subtopics": [
+        {
+         "id": "adding-and-subtracting-rational-numbers",
+         "title": "Adding and subtracting rational numbers",
+         "outcomes": [
+          {
+           "code": "7.NS",
+           "text": "Describe situations where opposite quantities combine to make 0"
+          },
+          {
+           "code": null,
+           "text": "Understand p + q as a move of |q| from p and show additive inverses sum to 0"
+          },
+          {
+           "code": null,
+           "text": "Understand subtraction as adding the additive inverse and distance as absolute value of the difference"
+          },
+          {
+           "code": null,
+           "text": "Use properties of operations to add and subtract rational numbers"
+          }
+         ]
+        },
+        {
+         "id": "multiplying-and-dividing-rational-numbers",
+         "title": "Multiplying and dividing rational numbers",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Understand why multiplication rules for signed numbers follow from the properties of operations"
+          },
+          {
+           "code": null,
+           "text": "Understand that integer quotients are rational numbers and that -(p/q) = (-p)/q = p/(-q)"
+          },
+          {
+           "code": null,
+           "text": "Use properties of operations to multiply and divide rational numbers"
+          },
+          {
+           "code": null,
+           "text": "Convert a rational number to a decimal by long division, terminating or repeating"
+          },
+          {
+           "code": null,
+           "text": "Solve real-world problems with the four operations on rational numbers"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "expressions-and-equations",
+     "title": "Expressions and Equations",
+     "topics": [
+      {
+       "id": "use-properties-of-operations-to-generate-equival",
+       "title": "Use properties of operations to generate equivalent expressions",
+       "subtopics": [
+        {
+         "id": "equivalent-linear-expressions",
+         "title": "Equivalent linear expressions",
+         "outcomes": [
+          {
+           "code": "7.EE",
+           "text": "Add, subtract, factor and expand linear expressions with rational coefficients"
+          },
+          {
+           "code": null,
+           "text": "Rewrite an expression to show how quantities relate, such as a + 0.05a = 1.05a"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "solve-real-life-and-mathematical-problems-using-",
+       "title": "Solve real-life and mathematical problems using numerical and algebraic expressions and equations",
+       "subtopics": [
+        {
+         "id": "multistep-problems-with-rational-numbers",
+         "title": "Multistep problems with rational numbers",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Solve multistep problems with positive and negative rational numbers in any form and check by estimation"
+          }
+         ]
+        },
+        {
+         "id": "equations-and-inequalities",
+         "title": "Equations and inequalities",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Solve word problems leading to px + q = r and p(x + q) = r and compare algebraic and arithmetic solutions"
+          },
+          {
+           "code": null,
+           "text": "Solve word problems leading to inequalities px + q > r or < r and graph the solutions"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "geometry",
+     "title": "Geometry",
+     "topics": [
+      {
+       "id": "draw-construct-and-describe-geometrical-figures-",
+       "title": "Draw, construct, and describe geometrical figures and describe the relationships between them",
+       "subtopics": [
+        {
+         "id": "scale-drawings-and-constructions",
+         "title": "Scale drawings and constructions",
+         "outcomes": [
+          {
+           "code": "7.G",
+           "text": "Solve problems with scale drawings, finding actual lengths and areas and redrawing at another scale"
+          },
+          {
+           "code": null,
+           "text": "Draw shapes from given conditions, noticing when three measures give one, many or no triangles"
+          },
+          {
+           "code": null,
+           "text": "Describe cross-sections of prisms and pyramids"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "solve-real-life-and-mathematical-problems-involv",
+       "title": "Solve real-life and mathematical problems involving angle measure, area, surface area, and volume",
+       "subtopics": [
+        {
+         "id": "circles-angles-and-solids",
+         "title": "Circles, angles and solids",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Know the area and circumference formulas for a circle and informally derive their relationship"
+          },
+          {
+           "code": null,
+           "text": "Use supplementary, complementary, vertical and adjacent angles to write equations for unknown angles"
+          },
+          {
+           "code": null,
+           "text": "Solve problems on area, volume and surface area of composite 2D and 3D figures"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "statistics-and-probability",
+     "title": "Statistics and Probability",
+     "topics": [
+      {
+       "id": "use-random-sampling-to-draw-inferences-about-a-p",
+       "title": "Use random sampling to draw inferences about a population",
+       "subtopics": [
+        {
+         "id": "sampling",
+         "title": "Sampling",
+         "outcomes": [
+          {
+           "code": "7.SP",
+           "text": "Understand that samples inform about populations only if representative and that random sampling helps"
+          },
+          {
+           "code": null,
+           "text": "Use random-sample data to infer about a population and gauge variation with repeated samples"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "draw-informal-comparative-inferences-about-two-p",
+       "title": "Draw informal comparative inferences about two populations",
+       "subtopics": [
+        {
+         "id": "comparing-two-populations",
+         "title": "Comparing two populations",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Assess visual overlap of two distributions by comparing center difference to variability"
+          },
+          {
+           "code": null,
+           "text": "Use center and variability from random samples to compare two populations informally"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "investigate-chance-processes-and-develop-use-and",
+       "title": "Investigate chance processes and develop, use, and evaluate probability models",
+       "subtopics": [
+        {
+         "id": "probability-basics",
+         "title": "Probability basics",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Understand probability as a number from 0 to 1 expressing likelihood"
+          },
+          {
+           "code": null,
+           "text": "Approximate probability by long-run relative frequency and predict frequency from probability"
+          }
+         ]
+        },
+        {
+         "id": "probability-models-and-compound-events",
+         "title": "Probability models and compound events",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Develop uniform and observed-frequency probability models and compare them with data"
+          },
+          {
+           "code": null,
+           "text": "Find probabilities of compound events with organised lists, tables, tree diagrams and simulation"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "8",
+   "units": [
+    {
+     "id": "the-number-system",
+     "title": "The Number System",
+     "topics": [
+      {
+       "id": "know-that-there-are-numbers-that-are-not-rationa",
+       "title": "Know that there are numbers that are not rational, and approximate them by rational numbers",
+       "subtopics": [
+        {
+         "id": "irrational-numbers",
+         "title": "Irrational numbers",
+         "outcomes": [
+          {
+           "code": "8.NS",
+           "text": "Know irrational numbers, that every number has a decimal expansion, and convert repeating decimals to fractions"
+          },
+          {
+           "code": null,
+           "text": "Compare and locate irrational numbers using rational approximations and estimate expressions such as pi squared"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "expressions-and-equations",
+     "title": "Expressions and Equations",
+     "topics": [
+      {
+       "id": "work-with-radicals-and-integer-exponents",
+       "title": "Work with radicals and integer exponents",
+       "subtopics": [
+        {
+         "id": "integer-exponents-and-roots",
+         "title": "Integer exponents and roots",
+         "outcomes": [
+          {
+           "code": "8.EE",
+           "text": "Apply properties of integer exponents to make equivalent expressions"
+          },
+          {
+           "code": null,
+           "text": "Use square and cube root symbols to solve x squared = p and x cubed = p, and know the square root of 2 is irrational"
+          }
+         ]
+        },
+        {
+         "id": "scientific-notation",
+         "title": "Scientific notation",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Estimate very large or small quantities with a single digit times a power of 10"
+          },
+          {
+           "code": null,
+           "text": "Compute with scientific notation and choose sensible units"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "understand-the-connections-between-proportional-",
+       "title": "Understand the connections between proportional relationships, lines, and linear equations",
+       "subtopics": [
+        {
+         "id": "slope-and-lines",
+         "title": "Slope and lines",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Graph proportional relationships with unit rate as slope and compare them in different representations"
+          },
+          {
+           "code": null,
+           "text": "Use similar triangles to show slope is constant and derive y = mx and y = mx + b"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "analyze-and-solve-linear-equations-and-pairs-of-",
+       "title": "Analyze and solve linear equations and pairs of simultaneous linear equations",
+       "subtopics": [
+        {
+         "id": "linear-equations-in-one-variable",
+         "title": "Linear equations in one variable",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Show equations with one, infinitely many or no solutions by transforming to simpler forms"
+          },
+          {
+           "code": null,
+           "text": "Solve linear equations with rational coefficients, expanding and collecting like terms"
+          }
+         ]
+        },
+        {
+         "id": "systems-of-linear-equations",
+         "title": "Systems of linear equations",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Understand solutions of a system as intersections of graphs"
+          },
+          {
+           "code": null,
+           "text": "Solve systems algebraically, estimate by graphing and solve simple cases by inspection"
+          },
+          {
+           "code": null,
+           "text": "Solve real-world problems leading to two linear equations"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "functions",
+     "title": "Functions",
+     "topics": [
+      {
+       "id": "define-evaluate-and-compare-functions",
+       "title": "Define, evaluate, and compare functions",
+       "subtopics": [
+        {
+         "id": "what-a-function-is",
+         "title": "What a function is",
+         "outcomes": [
+          {
+           "code": "8.F",
+           "text": "Understand a function as a rule giving each input exactly one output"
+          },
+          {
+           "code": null,
+           "text": "Compare two functions in different forms: algebraic, graphical, table or verbal"
+          },
+          {
+           "code": null,
+           "text": "Interpret y = mx + b as a linear function and give examples of nonlinear functions"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "use-functions-to-model-relationships-between-qua",
+       "title": "Use functions to model relationships between quantities",
+       "subtopics": [
+        {
+         "id": "modeling-with-linear-functions",
+         "title": "Modeling with linear functions",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Build a linear function, finding rate of change and initial value from a description, two points, a table or a graph"
+          },
+          {
+           "code": null,
+           "text": "Describe a graph qualitatively and sketch a graph from a verbal description"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "geometry",
+     "title": "Geometry",
+     "topics": [
+      {
+       "id": "understand-congruence-and-similarity-using-physi",
+       "title": "Understand congruence and similarity using physical models, transparencies, or geometry software",
+       "subtopics": [
+        {
+         "id": "transformations-and-congruence",
+         "title": "Transformations and congruence",
+         "outcomes": [
+          {
+           "code": "8.G",
+           "text": "Verify experimentally the properties of rotations, reflections and translations"
+          },
+          {
+           "code": null,
+           "text": "Define congruence through rotations, reflections and translations and describe a sequence"
+          }
+         ]
+        },
+        {
+         "id": "dilations-and-similarity",
+         "title": "Dilations and similarity",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe the effect of dilations, translations, rotations and reflections using coordinates"
+          },
+          {
+           "code": null,
+           "text": "Define similarity through transformations including dilations and describe a sequence"
+          },
+          {
+           "code": null,
+           "text": "Use informal arguments for triangle angle sum, exterior angles, parallel lines with a transversal, and angle-angle similarity"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "understand-and-apply-the-pythagorean-theorem",
+       "title": "Understand and apply the Pythagorean Theorem",
+       "subtopics": [
+        {
+         "id": "pythagorean-theorem",
+         "title": "Pythagorean Theorem",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain a proof of the Pythagorean Theorem and its converse"
+          },
+          {
+           "code": null,
+           "text": "Use it to find unknown sides of right triangles in 2D and 3D"
+          },
+          {
+           "code": null,
+           "text": "Use it to find distance between two points in a coordinate system"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "solve-real-world-and-mathematical-problems-invol",
+       "title": "Solve real-world and mathematical problems involving volume of cylinders, cones, and spheres",
+       "subtopics": [
+        {
+         "id": "volumes-of-round-solids",
+         "title": "Volumes of round solids",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Know and use volume formulas for cones, cylinders and spheres"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "statistics-and-probability",
+     "title": "Statistics and Probability",
+     "topics": [
+      {
+       "id": "investigate-patterns-of-association-in-bivariate",
+       "title": "Investigate patterns of association in bivariate data",
+       "subtopics": [
+        {
+         "id": "scatter-plots-and-linear-models",
+         "title": "Scatter plots and linear models",
+         "outcomes": [
+          {
+           "code": "8.SP",
+           "text": "Construct and interpret scatter plots and describe clustering, outliers, and positive, negative, linear or nonlinear association"
+          },
+          {
+           "code": null,
+           "text": "Informally fit a straight line to linear scatter plots and judge fit"
+          },
+          {
+           "code": null,
+           "text": "Use a linear model's equation to solve problems, interpreting slope and intercept"
+          }
+         ]
+        },
+        {
+         "id": "two-way-tables",
+         "title": "Two-way tables",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Build and interpret two-way tables for two categorical variables and use relative frequencies to judge association"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "all",
+   "units": [
+    {
+     "id": "the-real-number-system",
+     "title": "The Real Number System",
+     "topics": [
+      {
+       "id": "extend-the-properties-of-exponents-to-rational-e",
+       "title": "Extend the properties of exponents to rational exponents",
+       "subtopics": [
+        {
+         "id": "rational-exponents",
+         "title": "Rational exponents",
+         "outcomes": [
+          {
+           "code": "N-RN",
+           "text": "Explain how rational exponents follow from extending integer-exponent properties and give radicals in exponent form"
+          },
+          {
+           "code": null,
+           "text": "Rewrite expressions with radicals and rational exponents using exponent properties"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "use-properties-of-rational-and-irrational-number",
+       "title": "Use properties of rational and irrational numbers",
+       "subtopics": [
+        {
+         "id": "rational-and-irrational-sums-and-products",
+         "title": "Rational and irrational sums and products",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain why sums and products of rationals are rational, and rational plus irrational or nonzero rational times irrational is irrational"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "quantities",
+     "title": "Quantities",
+     "topics": [
+      {
+       "id": "reason-quantitatively-and-use-units-to-solve-pro",
+       "title": "Reason quantitatively and use units to solve problems",
+       "subtopics": [
+        {
+         "id": "units-and-measurement-accuracy",
+         "title": "Units and measurement accuracy",
+         "outcomes": [
+          {
+           "code": "N-Q",
+           "text": "Use units to understand problems, guide multistep solutions, and choose scale and origin in graphs"
+          },
+          {
+           "code": null,
+           "text": "Define appropriate quantities for descriptive modeling"
+          },
+          {
+           "code": null,
+           "text": "Choose a level of accuracy that fits measurement limits"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "the-complex-number-system",
+     "title": "The Complex Number System",
+     "topics": [
+      {
+       "id": "perform-arithmetic-operations-with-complex-numbe",
+       "title": "Perform arithmetic operations with complex numbers",
+       "subtopics": [
+        {
+         "id": "complex-number-arithmetic",
+         "title": "Complex number arithmetic",
+         "outcomes": [
+          {
+           "code": "N-CN",
+           "text": "Know i squared is -1 and that complex numbers have the form a + bi"
+          },
+          {
+           "code": null,
+           "text": "Add, subtract and multiply complex numbers using i squared = -1 and the properties of operations"
+          },
+          {
+           "code": null,
+           "text": "(+) Find conjugates and use them for moduli and quotients"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "represent-complex-numbers-and-their-operations-o",
+       "title": "Represent complex numbers and their operations on the complex plane",
+       "subtopics": [
+        {
+         "id": "the-complex-plane",
+         "title": "The complex plane",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "(+) Represent complex numbers in rectangular and polar form and explain they are the same number"
+          },
+          {
+           "code": null,
+           "text": "(+) Represent addition, subtraction, multiplication and conjugation geometrically"
+          },
+          {
+           "code": null,
+           "text": "(+) Find distance and midpoint in the complex plane"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "use-complex-numbers-in-polynomial-identities-and",
+       "title": "Use complex numbers in polynomial identities and equations",
+       "subtopics": [
+        {
+         "id": "complex-solutions-and-polynomials",
+         "title": "Complex solutions and polynomials",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Solve quadratic equations with real coefficients that have complex solutions"
+          },
+          {
+           "code": null,
+           "text": "(+) Extend polynomial identities to complex numbers"
+          },
+          {
+           "code": null,
+           "text": "(+) Know the Fundamental Theorem of Algebra and show it for quadratics"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "vector-and-matrix-quantities",
+     "title": "Vector and Matrix Quantities",
+     "topics": [
+      {
+       "id": "represent-and-model-with-vector-quantities",
+       "title": "Represent and model with vector quantities",
+       "subtopics": [
+        {
+         "id": "vectors",
+         "title": "Vectors",
+         "outcomes": [
+          {
+           "code": "N-VM",
+           "text": "(+) Recognise vectors as having magnitude and direction and represent them by directed segments and symbols"
+          },
+          {
+           "code": null,
+           "text": "(+) Find vector components from initial and terminal points"
+          },
+          {
+           "code": null,
+           "text": "(+) Solve problems with velocity and other vector quantities"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "perform-operations-on-vectors",
+       "title": "Perform operations on vectors",
+       "subtopics": [
+        {
+         "id": "vector-operations",
+         "title": "Vector operations",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "(+) Add and subtract vectors end to end, by components and by the parallelogram rule, and find magnitude and direction of a sum"
+          },
+          {
+           "code": null,
+           "text": "(+) Multiply a vector by a scalar graphically and by components, with magnitude and direction"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "perform-operations-on-matrices-and-use-matrices-",
+       "title": "Perform operations on matrices and use matrices in applications",
+       "subtopics": [
+        {
+         "id": "matrix-basics",
+         "title": "Matrix basics",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "(+) Use matrices to represent and manipulate data"
+          },
+          {
+           "code": null,
+           "text": "(+) Multiply a matrix by a scalar"
+          },
+          {
+           "code": null,
+           "text": "(+) Add, subtract and multiply matrices of suitable dimensions"
+          }
+         ]
+        },
+        {
+         "id": "matrix-properties-and-transformations",
+         "title": "Matrix properties and transformations",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "(+) Know matrix multiplication of square matrices is not commutative but is associative and distributive"
+          },
+          {
+           "code": null,
+           "text": "(+) Know zero and identity matrices and that a nonzero determinant means an inverse exists"
+          },
+          {
+           "code": null,
+           "text": "(+) Multiply a vector by a matrix and use matrices as transformations of vectors"
+          },
+          {
+           "code": null,
+           "text": "(+) Treat 2 by 2 matrices as plane transformations and interpret the determinant as area scaling"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "seeing-structure-in-expressions",
+     "title": "Seeing Structure in Expressions",
+     "topics": [
+      {
+       "id": "interpret-the-structure-of-expressions",
+       "title": "Interpret the structure of expressions",
+       "subtopics": [
+        {
+         "id": "interpreting-expressions",
+         "title": "Interpreting expressions",
+         "outcomes": [
+          {
+           "code": "A-SSE",
+           "text": "Interpret parts of expressions such as terms, factors and coefficients in context"
+          },
+          {
+           "code": null,
+           "text": "Use expression structure to rewrite it, such as a difference of squares"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "write-expressions-in-equivalent-forms-to-solve-p",
+       "title": "Write expressions in equivalent forms to solve problems",
+       "subtopics": [
+        {
+         "id": "choosing-an-equivalent-form",
+         "title": "Choosing an equivalent form",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Choose an equivalent form that reveals a property: factor a quadratic for zeros, complete the square for extremes, transform exponentials"
+          },
+          {
+           "code": null,
+           "text": "Derive and use the sum formula for a finite geometric series"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "arithmetic-with-polynomials-and-rational-express",
+     "title": "Arithmetic with Polynomials and Rational Expressions",
+     "topics": [
+      {
+       "id": "perform-arithmetic-operations-on-polynomials",
+       "title": "Perform arithmetic operations on polynomials",
+       "subtopics": [
+        {
+         "id": "polynomial-arithmetic",
+         "title": "Polynomial arithmetic",
+         "outcomes": [
+          {
+           "code": "A-APR",
+           "text": "Understand polynomials are closed under addition, subtraction and multiplication, and perform them"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "understand-the-relationship-between-zeros-and-fa",
+       "title": "Understand the relationship between zeros and factors of polynomials",
+       "subtopics": [
+        {
+         "id": "zeros-and-factors",
+         "title": "Zeros and factors",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Know and apply the Remainder Theorem"
+          },
+          {
+           "code": null,
+           "text": "Find zeros from factorizations and use them to sketch a graph"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "use-polynomial-identities-to-solve-problems",
+       "title": "Use polynomial identities to solve problems",
+       "subtopics": [
+        {
+         "id": "polynomial-identities",
+         "title": "Polynomial identities",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Prove polynomial identities and use them to describe numerical relationships"
+          },
+          {
+           "code": null,
+           "text": "(+) Know and apply the Binomial Theorem"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "rewrite-rational-expressions",
+       "title": "Rewrite rational expressions",
+       "subtopics": [
+        {
+         "id": "rational-expressions",
+         "title": "Rational expressions",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Rewrite a(x)/b(x) as q(x) + r(x)/b(x) by inspection or long division"
+          },
+          {
+           "code": null,
+           "text": "(+) Add, subtract, multiply and divide rational expressions"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "creating-equations",
+     "title": "Creating Equations",
+     "topics": [
+      {
+       "id": "create-equations-that-describe-numbers-or-relati",
+       "title": "Create equations that describe numbers or relationships",
+       "subtopics": [
+        {
+         "id": "creating-equations-and-inequalities",
+         "title": "Creating equations and inequalities",
+         "outcomes": [
+          {
+           "code": "A-CED",
+           "text": "Create equations and inequalities in one variable and use them to solve problems"
+          },
+          {
+           "code": null,
+           "text": "Create equations in two or more variables and graph them with labels and scales"
+          },
+          {
+           "code": null,
+           "text": "Represent constraints with equations, inequalities and systems and interpret solutions as viable or not"
+          },
+          {
+           "code": null,
+           "text": "Rearrange formulas to highlight a quantity of interest"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "reasoning-with-equations-and-inequalities",
+     "title": "Reasoning with Equations and Inequalities",
+     "topics": [
+      {
+       "id": "understand-solving-equations-as-a-process-of-rea",
+       "title": "Understand solving equations as a process of reasoning and explain the reasoning",
+       "subtopics": [
+        {
+         "id": "justifying-solution-steps",
+         "title": "Justifying solution steps",
+         "outcomes": [
+          {
+           "code": "A-REI",
+           "text": "Explain each step of solving an equation and justify the method"
+          },
+          {
+           "code": null,
+           "text": "Solve simple rational and radical equations and show how extraneous solutions arise"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "solve-equations-and-inequalities-in-one-variable",
+       "title": "Solve equations and inequalities in one variable",
+       "subtopics": [
+        {
+         "id": "linear-and-quadratic-equations",
+         "title": "Linear and quadratic equations",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Solve linear equations and inequalities in one variable, including letter coefficients"
+          },
+          {
+           "code": null,
+           "text": "Solve quadratics by completing the square and derive the quadratic formula"
+          },
+          {
+           "code": null,
+           "text": "Solve quadratics by inspection, square roots, completing the square, the formula or factoring, and write complex solutions as a + bi"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "solve-systems-of-equations",
+       "title": "Solve systems of equations",
+       "subtopics": [
+        {
+         "id": "systems-of-equations",
+         "title": "Systems of equations",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Prove that replacing an equation by itself plus a multiple of the other keeps the same solutions"
+          },
+          {
+           "code": null,
+           "text": "Solve systems of linear equations exactly and approximately"
+          },
+          {
+           "code": null,
+           "text": "Solve a linear-quadratic system algebraically and graphically"
+          },
+          {
+           "code": null,
+           "text": "(+) Write a linear system as a matrix equation"
+          },
+          {
+           "code": null,
+           "text": "(+) Find a matrix inverse and use it to solve linear systems"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "represent-and-solve-equations-and-inequalities-g",
+       "title": "Represent and solve equations and inequalities graphically",
+       "subtopics": [
+        {
+         "id": "graphical-solutions",
+         "title": "Graphical solutions",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Understand a graph of an equation as the set of its solutions"
+          },
+          {
+           "code": null,
+           "text": "Explain that intersections of y = f(x) and y = g(x) solve f(x) = g(x), and find solutions approximately"
+          },
+          {
+           "code": null,
+           "text": "Graph linear inequalities in two variables as half-planes and systems as intersections"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "interpreting-functions",
+     "title": "Interpreting Functions",
+     "topics": [
+      {
+       "id": "understand-the-concept-of-a-function-and-use-fun",
+       "title": "Understand the concept of a function and use function notation",
+       "subtopics": [
+        {
+         "id": "functions-and-notation",
+         "title": "Functions and notation",
+         "outcomes": [
+          {
+           "code": "F-IF",
+           "text": "Understand a function as assigning each domain element exactly one range element, and f(x) notation"
+          },
+          {
+           "code": null,
+           "text": "Use function notation, evaluate functions and interpret the notation in context"
+          },
+          {
+           "code": null,
+           "text": "Recognise sequences as functions, sometimes defined recursively"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "interpret-functions-that-arise-in-applications-i",
+       "title": "Interpret functions that arise in applications in terms of the context",
+       "subtopics": [
+        {
+         "id": "key-features-and-rate-of-change",
+         "title": "Key features and rate of change",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Interpret key features of graphs and tables in context and sketch graphs from descriptions"
+          },
+          {
+           "code": null,
+           "text": "Relate the domain of a function to its graph and context"
+          },
+          {
+           "code": null,
+           "text": "Calculate and interpret average rate of change over an interval and estimate it from a graph"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "analyze-functions-using-different-representation",
+       "title": "Analyze functions using different representations",
+       "subtopics": [
+        {
+         "id": "graphing-functions",
+         "title": "Graphing functions",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Graph functions with key features: linear, quadratic, root, piecewise, absolute value and polynomial functions"
+          },
+          {
+           "code": null,
+           "text": "(+) Graph rational functions with zeros, asymptotes and end behavior"
+          },
+          {
+           "code": null,
+           "text": "Graph exponential, logarithmic and trigonometric functions with intercepts, end behavior, period, midline and amplitude"
+          }
+         ]
+        },
+        {
+         "id": "equivalent-forms-and-comparing-functions",
+         "title": "Equivalent forms and comparing functions",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Rewrite a function in equivalent forms to reveal zeros, extreme values and symmetry, and identify growth or decay rates"
+          },
+          {
+           "code": null,
+           "text": "Compare two functions given in different representations"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "building-functions",
+     "title": "Building Functions",
+     "topics": [
+      {
+       "id": "build-a-function-that-models-a-relationship-betw",
+       "title": "Build a function that models a relationship between two quantities",
+       "subtopics": [
+        {
+         "id": "writing-functions-from-context",
+         "title": "Writing functions from context",
+         "outcomes": [
+          {
+           "code": "F-BF",
+           "text": "Write explicit or recursive functions from a context and combine function types with arithmetic operations"
+          },
+          {
+           "code": null,
+           "text": "(+) Compose functions"
+          },
+          {
+           "code": null,
+           "text": "Write arithmetic and geometric sequences recursively and explicitly and translate between forms"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "build-new-functions-from-existing-functions",
+       "title": "Build new functions from existing functions",
+       "subtopics": [
+        {
+         "id": "transformations-of-graphs",
+         "title": "Transformations of graphs",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Identify the effect of f(x) + k, kf(x), f(kx) and f(x + k) on a graph, and recognise even and odd functions"
+          }
+         ]
+        },
+        {
+         "id": "inverse-functions",
+         "title": "Inverse functions",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Solve f(x) = c and write the inverse of a simple function"
+          },
+          {
+           "code": null,
+           "text": "(+) Verify inverses by composition, read inverse values from graphs and restrict domains"
+          },
+          {
+           "code": null,
+           "text": "(+) Understand the inverse relationship of exponents and logarithms"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "linear-quadratic-and-exponential-models",
+     "title": "Linear, Quadratic, and Exponential Models",
+     "topics": [
+      {
+       "id": "construct-and-compare-linear-quadratic-and-expon",
+       "title": "Construct and compare linear, quadratic, and exponential models and solve problems",
+       "subtopics": [
+        {
+         "id": "choosing-a-model",
+         "title": "Choosing a model",
+         "outcomes": [
+          {
+           "code": "F-LE",
+           "text": "Distinguish linear from exponential situations: equal differences versus equal factors, constant rate versus constant percent rate"
+          }
+         ]
+        },
+        {
+         "id": "constructing-and-comparing-models",
+         "title": "Constructing and comparing models",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Construct linear and exponential functions from a graph, description or two input-output pairs"
+          },
+          {
+           "code": null,
+           "text": "Observe that exponential growth eventually exceeds linear, quadratic and polynomial growth"
+          },
+          {
+           "code": null,
+           "text": "Express solutions of abct = d as logarithms and evaluate with technology"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "interpret-expressions-for-functions-in-terms-of-",
+       "title": "Interpret expressions for functions in terms of the situation they model",
+       "subtopics": [
+        {
+         "id": "interpreting-parameters",
+         "title": "Interpreting parameters",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Interpret parameters of linear and exponential functions in context"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "trigonometric-functions",
+     "title": "Trigonometric Functions",
+     "topics": [
+      {
+       "id": "extend-the-domain-of-trigonometric-functions-usi",
+       "title": "Extend the domain of trigonometric functions using the unit circle",
+       "subtopics": [
+        {
+         "id": "radians-and-the-unit-circle",
+         "title": "Radians and the unit circle",
+         "outcomes": [
+          {
+           "code": "F-TF",
+           "text": "Understand radian measure as arc length on the unit circle"
+          },
+          {
+           "code": null,
+           "text": "Explain how the unit circle extends trig functions to all real numbers"
+          },
+          {
+           "code": null,
+           "text": "(+) Use special triangles and the unit circle for exact values and angle relations"
+          },
+          {
+           "code": null,
+           "text": "(+) Use the unit circle to explain symmetry and periodicity"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "model-periodic-phenomena-with-trigonometric-func",
+       "title": "Model periodic phenomena with trigonometric functions",
+       "subtopics": [
+        {
+         "id": "modeling-with-trig-functions",
+         "title": "Modeling with trig functions",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Choose trig functions to model periodic phenomena with given amplitude, frequency and midline"
+          },
+          {
+           "code": null,
+           "text": "(+) Restrict a trig function to build its inverse"
+          },
+          {
+           "code": null,
+           "text": "(+) Use inverse trig functions to solve equations in modeling contexts"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "prove-and-apply-trigonometric-identities",
+       "title": "Prove and apply trigonometric identities",
+       "subtopics": [
+        {
+         "id": "trig-identities",
+         "title": "Trig identities",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Prove sin squared plus cos squared equals 1 and use it with the quadrant to find values"
+          },
+          {
+           "code": null,
+           "text": "(+) Prove and use addition and subtraction formulas"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "congruence",
+     "title": "Congruence",
+     "topics": [
+      {
+       "id": "experiment-with-transformations-in-the-plane",
+       "title": "Experiment with transformations in the plane",
+       "subtopics": [
+        {
+         "id": "definitions-and-transformations",
+         "title": "Definitions and transformations",
+         "outcomes": [
+          {
+           "code": "G-CO",
+           "text": "Know precise definitions of angle, circle, perpendicular line, parallel line and line segment"
+          },
+          {
+           "code": null,
+           "text": "Represent transformations as functions on points and tell distance-preserving ones from others"
+          },
+          {
+           "code": null,
+           "text": "Describe the rotations and reflections that carry a rectangle, parallelogram, trapezoid or regular polygon onto itself"
+          },
+          {
+           "code": null,
+           "text": "Define rotations, reflections and translations using angles, circles, and perpendicular and parallel lines"
+          },
+          {
+           "code": null,
+           "text": "Draw transformed figures and specify a sequence of transformations between figures"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "understand-congruence-in-terms-of-rigid-motions",
+       "title": "Understand congruence in terms of rigid motions",
+       "subtopics": [
+        {
+         "id": "congruence-and-rigid-motions",
+         "title": "Congruence and rigid motions",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Use rigid motions to transform figures and decide if figures are congruent"
+          },
+          {
+           "code": null,
+           "text": "Show two triangles are congruent exactly when corresponding sides and angles are congruent"
+          },
+          {
+           "code": null,
+           "text": "Explain why ASA, SAS and SSS follow from rigid motions"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "prove-geometric-theorems",
+       "title": "Prove geometric theorems",
+       "subtopics": [
+        {
+         "id": "proofs-about-lines-angles-and-triangles",
+         "title": "Proofs about lines, angles and triangles",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Prove theorems about lines and angles: vertical angles, transversals with parallel lines, perpendicular bisectors"
+          },
+          {
+           "code": null,
+           "text": "Prove theorems about triangles: angle sum, isosceles base angles, midsegments, medians meeting"
+          }
+         ]
+        },
+        {
+         "id": "proofs-about-parallelograms",
+         "title": "Proofs about parallelograms",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Prove theorems about parallelograms: opposite sides and angles, diagonals bisecting, rectangles with equal diagonals"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "make-geometric-constructions",
+       "title": "Make geometric constructions",
+       "subtopics": [
+        {
+         "id": "constructions",
+         "title": "Constructions",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Make formal constructions: copy segment and angle, bisect, perpendicular lines, parallel through a point"
+          },
+          {
+           "code": null,
+           "text": "Construct an equilateral triangle, square and regular hexagon inscribed in a circle"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "similarity-right-triangles-and-trigonometry",
+     "title": "Similarity, Right Triangles, and Trigonometry",
+     "topics": [
+      {
+       "id": "understand-similarity-in-terms-of-similarity-tra",
+       "title": "Understand similarity in terms of similarity transformations",
+       "subtopics": [
+        {
+         "id": "dilations-and-similarity",
+         "title": "Dilations and similarity",
+         "outcomes": [
+          {
+           "code": "G-SRT",
+           "text": "Verify the properties of dilations: lines map to parallel lines and segments scale by the scale factor"
+          },
+          {
+           "code": null,
+           "text": "Decide whether figures are similar by similarity transformations and explain triangle similarity"
+          },
+          {
+           "code": null,
+           "text": "Use similarity transformations to establish the AA criterion"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "prove-theorems-involving-similarity",
+       "title": "Prove theorems involving similarity",
+       "subtopics": [
+        {
+         "id": "similarity-proofs",
+         "title": "Similarity proofs",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Prove theorems about triangles such as parallel lines dividing sides proportionally and the Pythagorean Theorem via similarity"
+          },
+          {
+           "code": null,
+           "text": "Use congruence and similarity criteria to solve problems and prove relationships"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "define-trigonometric-ratios-and-solve-problems-i",
+       "title": "Define trigonometric ratios and solve problems involving right triangles",
+       "subtopics": [
+        {
+         "id": "right-triangle-trigonometry",
+         "title": "Right triangle trigonometry",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Understand that side ratios in right triangles depend on the angle, defining trig ratios"
+          },
+          {
+           "code": null,
+           "text": "Explain and use the relationship between sine and cosine of complementary angles"
+          },
+          {
+           "code": null,
+           "text": "Use trig ratios and the Pythagorean Theorem to solve right triangles in applied problems"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "apply-trigonometry-to-general-triangles",
+       "title": "Apply trigonometry to general triangles",
+       "subtopics": [
+        {
+         "id": "laws-of-sines-and-cosines",
+         "title": "Laws of sines and cosines",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "(+) Derive the area formula A = 1/2 ab sin C"
+          },
+          {
+           "code": null,
+           "text": "(+) Prove the Laws of Sines and Cosines"
+          },
+          {
+           "code": null,
+           "text": "(+) Apply the Laws of Sines and Cosines to find unknown measurements"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "circles",
+     "title": "Circles",
+     "topics": [
+      {
+       "id": "understand-and-apply-theorems-about-circles",
+       "title": "Understand and apply theorems about circles",
+       "subtopics": [
+        {
+         "id": "circle-theorems",
+         "title": "Circle theorems",
+         "outcomes": [
+          {
+           "code": "G-C",
+           "text": "Prove that all circles are similar"
+          },
+          {
+           "code": null,
+           "text": "Describe relationships among inscribed angles, radii, chords, tangents and central, inscribed and circumscribed angles"
+          },
+          {
+           "code": null,
+           "text": "Construct inscribed and circumscribed circles of a triangle and prove properties of angles of an inscribed quadrilateral"
+          },
+          {
+           "code": null,
+           "text": "(+) Construct a tangent line from an outside point to a circle"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "find-arc-lengths-and-areas-of-sectors-of-circles",
+       "title": "Find arc lengths and areas of sectors of circles",
+       "subtopics": [
+        {
+         "id": "arc-length-and-sectors",
+         "title": "Arc length and sectors",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Derive that arc length is proportional to radius, define radian measure, and derive the sector area formula"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "expressing-geometric-properties-with-equations",
+     "title": "Expressing Geometric Properties with Equations",
+     "topics": [
+      {
+       "id": "translate-between-the-geometric-description-and-",
+       "title": "Translate between the geometric description and the equation for a conic section",
+       "subtopics": [
+        {
+         "id": "conic-sections",
+         "title": "Conic sections",
+         "outcomes": [
+          {
+           "code": "G-GPE",
+           "text": "Derive the equation of a circle and complete the square to find center and radius"
+          },
+          {
+           "code": null,
+           "text": "Derive the equation of a parabola from focus and directrix"
+          },
+          {
+           "code": null,
+           "text": "(+) Derive equations of ellipses and hyperbolas from the foci"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "use-coordinates-to-prove-simple-geometric-theore",
+       "title": "Use coordinates to prove simple geometric theorems algebraically",
+       "subtopics": [
+        {
+         "id": "coordinate-geometry",
+         "title": "Coordinate geometry",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Use coordinates to prove or disprove geometric claims algebraically"
+          },
+          {
+           "code": null,
+           "text": "Prove the slope criteria for parallel and perpendicular lines and use them to write line equations"
+          },
+          {
+           "code": null,
+           "text": "Find the point dividing a directed segment in a given ratio"
+          },
+          {
+           "code": null,
+           "text": "Use coordinates to compute perimeters and areas of polygons"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "geometric-measurement-and-dimension",
+     "title": "Geometric Measurement and Dimension",
+     "topics": [
+      {
+       "id": "explain-volume-formulas-and-use-them-to-solve-pr",
+       "title": "Explain volume formulas and use them to solve problems",
+       "subtopics": [
+        {
+         "id": "volume-formulas",
+         "title": "Volume formulas",
+         "outcomes": [
+          {
+           "code": "G-GMD",
+           "text": "Give informal arguments for circle circumference and area and cylinder, pyramid and cone volume, using dissection, Cavalieri's principle and limits"
+          },
+          {
+           "code": null,
+           "text": "(+) Give an informal Cavalieri argument for the volume of a sphere and other solids"
+          },
+          {
+           "code": null,
+           "text": "Use volume formulas for cylinders, pyramids, cones and spheres to solve problems"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "visualize-relationships-between-two-dimensional-",
+       "title": "Visualize relationships between two-dimensional and three-dimensional objects",
+       "subtopics": [
+        {
+         "id": "cross-sections-and-solids-of-revolution",
+         "title": "Cross-sections and solids of revolution",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Identify cross-sections of 3D objects and solids generated by rotating 2D shapes"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "modeling-with-geometry",
+     "title": "Modeling with Geometry",
+     "topics": [
+      {
+       "id": "apply-geometric-concepts-in-modeling-situations",
+       "title": "Apply geometric concepts in modeling situations",
+       "subtopics": [
+        {
+         "id": "geometric-modeling",
+         "title": "Geometric modeling",
+         "outcomes": [
+          {
+           "code": "G-MG",
+           "text": "Use geometric shapes, measures and properties to describe real objects"
+          },
+          {
+           "code": null,
+           "text": "Apply density based on area and volume in modeling"
+          },
+          {
+           "code": null,
+           "text": "Apply geometric methods to design problems under constraints"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "interpreting-categorical-and-quantitative-data",
+     "title": "Interpreting Categorical and Quantitative Data",
+     "topics": [
+      {
+       "id": "summarize-represent-and-interpret-data-on-a-sing",
+       "title": "Summarize, represent, and interpret data on a single count or measurement variable",
+       "subtopics": [
+        {
+         "id": "one-variable-data",
+         "title": "One-variable data",
+         "outcomes": [
+          {
+           "code": "S-ID",
+           "text": "Represent data with dot plots, histograms and box plots"
+          },
+          {
+           "code": null,
+           "text": "Compare center and spread of data sets using statistics suited to their shape"
+          },
+          {
+           "code": null,
+           "text": "Interpret differences in shape, center and spread in context, accounting for outliers"
+          },
+          {
+           "code": null,
+           "text": "Fit a normal distribution using mean and standard deviation to estimate percentages, knowing when it is inappropriate"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "summarize-represent-and-interpret-data-on-two-ca",
+       "title": "Summarize, represent, and interpret data on two categorical and quantitative variables",
+       "subtopics": [
+        {
+         "id": "two-variable-data",
+         "title": "Two-variable data",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Summarise two categorical variables in two-way tables with joint, marginal and conditional relative frequencies"
+          },
+          {
+           "code": null,
+           "text": "Represent two quantitative variables on a scatter plot and fit linear, quadratic or exponential functions"
+          },
+          {
+           "code": null,
+           "text": "Assess a fit by analysing residuals and fit a line to linear scatter plots"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "interpret-linear-models",
+       "title": "Interpret linear models",
+       "subtopics": [
+        {
+         "id": "slope-correlation-and-causation",
+         "title": "Slope, correlation and causation",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Interpret the slope and intercept of a linear model in context"
+          },
+          {
+           "code": null,
+           "text": "Compute and interpret the correlation coefficient of a linear fit"
+          },
+          {
+           "code": null,
+           "text": "Distinguish correlation from causation"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "making-inferences-and-justifying-conclusions",
+     "title": "Making Inferences and Justifying Conclusions",
+     "topics": [
+      {
+       "id": "understand-and-evaluate-random-processes-underly",
+       "title": "Understand and evaluate random processes underlying statistical experiments",
+       "subtopics": [
+        {
+         "id": "random-processes-and-inference",
+         "title": "Random processes and inference",
+         "outcomes": [
+          {
+           "code": "S-IC",
+           "text": "Understand statistics as inference about population parameters from a random sample"
+          },
+          {
+           "code": null,
+           "text": "Decide whether a model is consistent with results from a data-generating process, using simulation"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "make-inferences-and-justify-conclusions-from-sam",
+       "title": "Make inferences and justify conclusions from sample surveys, experiments, and observational studies",
+       "subtopics": [
+        {
+         "id": "surveys-experiments-and-reports",
+         "title": "Surveys, experiments and reports",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Recognise the purposes and differences of sample surveys, experiments and observational studies, and the role of randomization"
+          },
+          {
+           "code": null,
+           "text": "Estimate a population mean or proportion from a survey and develop a margin of error by simulation"
+          },
+          {
+           "code": null,
+           "text": "Compare two treatments from a randomized experiment, using simulation to judge significance"
+          },
+          {
+           "code": null,
+           "text": "Evaluate reports based on data"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "conditional-probability-and-the-rules-of-probabi",
+     "title": "Conditional Probability and the Rules of Probability",
+     "topics": [
+      {
+       "id": "understand-independence-and-conditional-probabil",
+       "title": "Understand independence and conditional probability and use them to interpret data",
+       "subtopics": [
+        {
+         "id": "events-independence-and-conditional-probability",
+         "title": "Events, independence and conditional probability",
+         "outcomes": [
+          {
+           "code": "S-CP",
+           "text": "Describe events as subsets of a sample space using unions, intersections and complements"
+          },
+          {
+           "code": null,
+           "text": "Understand independence as P(A and B) = P(A)P(B) and use it to test independence"
+          },
+          {
+           "code": null,
+           "text": "Understand conditional probability as P(A and B)/P(B) and what independence means for it"
+          },
+          {
+           "code": null,
+           "text": "Construct and interpret two-way frequency tables to test independence and approximate conditional probabilities"
+          },
+          {
+           "code": null,
+           "text": "Explain conditional probability and independence in everyday situations"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "use-the-rules-of-probability-to-compute-probabil",
+       "title": "Use the rules of probability to compute probabilities of compound events in a uniform probability model",
+       "subtopics": [
+        {
+         "id": "probability-rules",
+         "title": "Probability rules",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Find conditional probability as the fraction of B's outcomes also in A"
+          },
+          {
+           "code": null,
+           "text": "Apply the Addition Rule P(A or B) = P(A) + P(B) - P(A and B)"
+          },
+          {
+           "code": null,
+           "text": "(+) Apply the general Multiplication Rule"
+          },
+          {
+           "code": null,
+           "text": "(+) Use permutations and combinations to compute probabilities of compound events"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "using-probability-to-make-decisions",
+     "title": "Using Probability to Make Decisions",
+     "topics": [
+      {
+       "id": "calculate-expected-values-and-use-them-to-solve-",
+       "title": "Calculate expected values and use them to solve problems",
+       "subtopics": [
+        {
+         "id": "random-variables-and-expected-value",
+         "title": "Random variables and expected value",
+         "outcomes": [
+          {
+           "code": "S-MD",
+           "text": "(+) Define a random variable and graph its probability distribution"
+          },
+          {
+           "code": null,
+           "text": "(+) Calculate the expected value of a random variable and interpret it as a mean"
+          },
+          {
+           "code": null,
+           "text": "(+) Develop a theoretical probability distribution and find its expected value"
+          },
+          {
+           "code": null,
+           "text": "(+) Develop an empirical probability distribution and find its expected value"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "use-probability-to-evaluate-outcomes-of-decision",
+       "title": "Use probability to evaluate outcomes of decisions",
+       "subtopics": [
+        {
+         "id": "decisions-with-probability",
+         "title": "Decisions with probability",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "(+) Weigh decision outcomes using expected payoffs, for games of chance and compared strategies"
+          },
+          {
+           "code": null,
+           "text": "(+) Use probabilities to make fair decisions"
+          },
+          {
+           "code": null,
+           "text": "(+) Analyse decisions and strategies using probability concepts"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "build": {
+  "builtAt": "2026-10-14T10:09:57.219Z",
+  "model": "claude-agent",
+  "usd": 0,
+  "expectedCodes": 63,
+  "coverage": 1,
+  "missingCodes": [],
+  "counts": {
+   "grades": 10,
+   "units": 65,
+   "topics": 147,
+   "subtopics": 176,
+   "outcomes": 413
+  },
+  "warnings": [
+   "grade 9 has no content",
+   "grade 10 has no content",
+   "grade 11 has no content",
+   "grade 12 has no content",
+   "unit \"Number and Operations in Base Ten\" (grade K) has a single outcome",
+   "unexpected grade label \"all\""
+  ]
+ }
+}

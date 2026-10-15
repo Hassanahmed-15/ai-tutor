@@ -1,0 +1,158 @@
+{
+ "id": "ib-dp-dance-hl",
+ "region": "INTL",
+ "framework": "International Baccalaureate Diploma Programme (DP)",
+ "board": "IB",
+ "qualification": "IB Diploma Programme",
+ "subject": "Dance (HL)",
+ "syllabusCode": null,
+ "gradeSystem": "course",
+ "source": {
+  "urls": [
+   "https://www.ibo.org/globalassets/new-structure/programmes/dp/pdfs/6_dancehl.pdf",
+   "https://web.archive.org/web/20230401051841id_/https://www.ibo.org/globalassets/new-structure/programmes/dp/pdfs/6_dancehl.pdf"
+  ],
+  "publisher": "International Baccalaureate Organization",
+  "licence": "(c) International Baccalaureate Organization; all rights reserved, no open licence. ibo.org terms 1.8: IB copyrighted materials are licensed only under the IB's terms or a signed agreement; 'Any use not expressly permitted is prohibited unless special permission is obtained in writing from the IB'; 1.9: nothing on the IB websites confers any licence. Briefs are free public marketing summaries: take topic structure only, write everything in our own words, never reproduce brief text, and do not use IB logos/trade marks. Full subject guides are sold to schools and were NOT used. Terms: https://www.ibo.org/terms-and-conditions/ and https://www.ibo.org/copyright",
+  "firstExam": "2014"
+ },
+ "grades": [
+  {
+   "grade": "all",
+   "units": [
+    {
+     "id": "composition-and-analysis",
+     "title": "Composition and analysis",
+     "topics": [
+      {
+       "id": "composing-dances",
+       "title": "Composing dances",
+       "subtopics": [
+        {
+         "id": "composing-original-work",
+         "title": "Composing original work",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Compose original dance works, choosing compositional processes and structures that suit their subject matter."
+          },
+          {
+           "code": null,
+           "text": "Use compositional craft to support the intention, form and content of a dance, with contrast between works."
+          },
+          {
+           "code": null,
+           "text": "Reflect critically on compositional problems met and possible solutions."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "world-dance-studies",
+     "title": "World dance studies",
+     "topics": [
+      {
+       "id": "comparing-dance-cultures",
+       "title": "Comparing dance cultures",
+       "subtopics": [
+        {
+         "id": "exploring-dances",
+         "title": "Exploring dances",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explore dances from more than one culture or tradition, gaining physical and theoretical understanding."
+          },
+          {
+           "code": null,
+           "text": "Compare historical contexts, then and now, of two dance cultures or traditions."
+          },
+          {
+           "code": null,
+           "text": "Compare the dance elements of two styles, one familiar and one unfamiliar."
+          }
+         ]
+        },
+        {
+         "id": "individual-investigation",
+         "title": "Individual investigation",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Carry out an individual investigation comparing two dance styles from different cultures."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "performance",
+     "title": "Performance",
+     "topics": [
+      {
+       "id": "performing-dances",
+       "title": "Performing dances",
+       "subtopics": [
+        {
+         "id": "movement-skills",
+         "title": "Movement skills",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Develop movement skills suited to the dancer's performance."
+          }
+         ]
+        },
+        {
+         "id": "space-time-and-dynamics",
+         "title": "Space, time and dynamics",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Show clarity in space, time, dynamics and movement qualities that suit the work."
+          }
+         ]
+        },
+        {
+         "id": "expressive-performance",
+         "title": "Expressive performance",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Communicate expressively with other performers and the audience, interpreting the dance's intention."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "build": {
+  "builtAt": "2026-10-14T10:52:49.865Z",
+  "model": "claude-agent",
+  "usd": 0,
+  "expectedCodes": null,
+  "coverage": null,
+  "missingCodes": [],
+  "counts": {
+   "grades": 1,
+   "units": 3,
+   "topics": 3,
+   "subtopics": 6,
+   "outcomes": 10
+  },
+  "warnings": [
+   "grade DP year 1 has no content",
+   "grade DP year 2 has no content",
+   "unexpected grade label \"all\""
+  ]
+ }
+}

@@ -1,0 +1,2031 @@
+{
+ "id": "cie-alevel-marine-science-9693-2025-2027",
+ "region": "INTL",
+ "framework": "Cambridge International AS & A Level Marine Science (9693) syllabus 2025–2027",
+ "board": "Cambridge",
+ "qualification": "AS & A Level",
+ "subject": "Marine Science",
+ "syllabusCode": "9693",
+ "gradeSystem": "course",
+ "source": {
+  "urls": [
+   "https://www.cambridgeinternational.org/Images/664553-2025-2027-syllabus.pdf",
+   "https://www.cambridgeinternational.org/programmes-and-qualifications/cambridge-international-as-and-a-level-marine-science-9693/"
+  ],
+  "publisher": "Cambridge University Press & Assessment (Cambridge International Education)",
+  "licence": "© Cambridge University Press & Assessment; structure + our own wording only",
+  "firstExam": "2025"
+ },
+ "grades": [
+  {
+   "grade": "AS",
+   "units": [
+    {
+     "id": "as-1-water",
+     "title": "[AS] 1 Water",
+     "topics": [
+      {
+       "id": "1-2-solubility-in-water",
+       "title": "1.2 Solubility in water",
+       "subtopics": [
+        {
+         "id": "dissolving-in-water",
+         "title": "Dissolving in Water",
+         "outcomes": [
+          {
+           "code": "1.2",
+           "text": "Understand how substances dissolve in water."
+          },
+          {
+           "code": "1.2.1",
+           "text": "Explain solute, solvent, solution and solubility."
+          },
+          {
+           "code": "1.2.2",
+           "text": "Describe how soluble salts dissolve in water through separation of their ions."
+          }
+         ]
+        },
+        {
+         "id": "salt-solubility-and-salinity",
+         "title": "Salt Solubility and Salinity",
+         "outcomes": [
+          {
+           "code": "1.2.3",
+           "text": "Explain how water temperature affects salt solubility."
+          },
+          {
+           "code": "1.2.4",
+           "text": "Define salinity as dissolved-salt concentration in seawater, measured in parts per thousand."
+          },
+          {
+           "code": "1.2.5",
+           "text": "Investigate how salinity changes water’s freezing point."
+          },
+          {
+           "code": "1.2.6",
+           "text": "Explain how runoff, precipitation and evaporation alter seawater salinity."
+          }
+         ]
+        },
+        {
+         "id": "ph-and-water-acidity",
+         "title": "pH and Water Acidity",
+         "outcomes": [
+          {
+           "code": "1.2.7",
+           "text": "Describe pH as a measure of hydrogen-ion concentration and distinguish acidic, neutral and alkaline water."
+          },
+          {
+           "code": "1.2.8",
+           "text": "Use indicators and pH probes to identify acidity or alkalinity and measure water-sample pH."
+          }
+         ]
+        },
+        {
+         "id": "oxygen-in-water",
+         "title": "Oxygen in Water",
+         "outcomes": [
+          {
+           "code": "1.2.9",
+           "text": "State that oxygen dissolves only slightly in water."
+          },
+          {
+           "code": "1.2.10",
+           "text": "Describe how temperature, depth-related pressure, atmospheric pressure and salinity affect gas solubility and marine organisms."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "1-3-density-and-pressure",
+       "title": "1.3 Density and pressure",
+       "subtopics": [
+        {
+         "id": "density-and-pressure-basics",
+         "title": "Density and Pressure Basics",
+         "outcomes": [
+          {
+           "code": "1.3",
+           "text": "Understand density and pressure in marine environments."
+          },
+          {
+           "code": "1.3.1",
+           "text": "Explain how temperature, pressure and salinity affect seawater density."
+          },
+          {
+           "code": "1.3.2",
+           "text": "Apply density equals mass divided by volume, using appropriate SI units."
+          }
+         ]
+        },
+        {
+         "id": "floating-ice",
+         "title": "Floating Ice",
+         "outcomes": [
+          {
+           "code": "1.3.3",
+           "text": "State that ice is less dense than seawater and therefore floats."
+          },
+          {
+           "code": "1.3.4",
+           "text": "Explain floating ice’s importance as thermal insulation and marine-organism habitat."
+          }
+         ]
+        },
+        {
+         "id": "ocean-layers-and-mixing",
+         "title": "Ocean Layers and Mixing",
+         "outcomes": [
+          {
+           "code": "1.3.5",
+           "text": "Describe how temperature and salinity gradients create ocean layers and how those layers subsequently mix."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "1-1-particle-theory-and-bonding",
+       "title": "1.1 Particle theory and bonding",
+       "subtopics": [
+        {
+         "id": "water-particle-states",
+         "title": "Water Particle States",
+         "outcomes": [
+          {
+           "code": "1.1.1",
+           "text": "Explain water’s solid, liquid and gaseous states using kinetic particle theory."
+          }
+         ]
+        },
+        {
+         "id": "atoms-and-seawater",
+         "title": "Atoms and Seawater",
+         "outcomes": [
+          {
+           "code": "1.1.2",
+           "text": "Describe atoms as nuclei containing protons and neutrons, surrounded by electrons arranged in shells."
+          },
+          {
+           "code": "1.1.3",
+           "text": "Understand that seawater contains a mixture of different elements and compounds."
+          }
+         ]
+        },
+        {
+         "id": "covalent-bonding",
+         "title": "Covalent Bonding",
+         "outcomes": [
+          {
+           "code": "1.1.4",
+           "text": "Describe covalent bonding in water as atoms sharing electron pairs, including with diagrams."
+          },
+          {
+           "code": "1.1.5",
+           "text": "Identify covalent molecules, including water, carbon dioxide, oxygen, sulfur dioxide and glucose."
+          }
+         ]
+        },
+        {
+         "id": "ionic-bonding-and-salts",
+         "title": "Ionic Bonding and Salts",
+         "outcomes": [
+          {
+           "code": "1.1.6",
+           "text": "Describe sodium chloride’s ionic bonding through electron transfer and attraction between oppositely charged ions."
+          },
+          {
+           "code": "1.1.7",
+           "text": "Identify ionic substances, including sodium chloride and calcium carbonate."
+          },
+          {
+           "code": "1.1.8",
+           "text": "State names and formulae for seawater salts, including sodium chloride, magnesium sulfate and calcium carbonate."
+          }
+         ]
+        },
+        {
+         "id": "hydrogen-bonds-in-water",
+         "title": "Hydrogen Bonds in Water",
+         "outcomes": [
+          {
+           "code": "1.1.9",
+           "text": "Explain how hydrogen bonds form between water molecules."
+          },
+          {
+           "code": "1.1.10",
+           "text": "Explain how hydrogen bonding affects water’s solvent action, density and specific heat capacity."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "as-2-earth-processes",
+     "title": "[AS] 2 Earth processes",
+     "topics": [
+      {
+       "id": "2-2-weathering-erosion-and-sedimentation",
+       "title": "2.2 Weathering, erosion and sedimentation",
+       "subtopics": [
+        {
+         "id": "weathering-and-erosion",
+         "title": "Weathering and erosion",
+         "outcomes": [
+          {
+           "code": "2.2",
+           "text": "Understand weathering, erosion and sedimentation in marine settings."
+          },
+          {
+           "code": "2.2.1",
+           "text": "Distinguish weathering from erosion."
+          },
+          {
+           "code": "2.2.2",
+           "text": "Describe chemical, physical and organic weathering, giving an example of each."
+          }
+         ]
+        },
+        {
+         "id": "erosion-by-natural-forces",
+         "title": "Erosion by natural forces",
+         "outcomes": [
+          {
+           "code": "2.2.3",
+           "text": "Describe erosion by ice, water, wind and gravity."
+          }
+         ]
+        },
+        {
+         "id": "sedimentation-and-particle-movement",
+         "title": "Sedimentation and particle movement",
+         "outcomes": [
+          {
+           "code": "2.2.4",
+           "text": "Describe sedimentation as deposition of suspended particles."
+          },
+          {
+           "code": "2.2.5",
+           "text": "Explain how water-flow speed and particle size affect particle removal, transport and deposition."
+          }
+         ]
+        },
+        {
+         "id": "littoral-zones-and-environments",
+         "title": "Littoral zones and environments",
+         "outcomes": [
+          {
+           "code": "2.2.6",
+           "text": "Define the littoral zone as the intertidal area between highest and lowest spring-tide marks."
+          },
+          {
+           "code": "2.2.7",
+           "text": "Give examples of littoral environments, including rocky, sandy and muddy shores, estuaries and deltas."
+          }
+         ]
+        },
+        {
+         "id": "shore-and-estuary-formation",
+         "title": "Shore and estuary formation",
+         "outcomes": [
+          {
+           "code": "2.2.8",
+           "text": "Describe how weathering, erosion and sedimentation shape rocky and sandy shores, muddy shores, estuaries and deltas."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "2-3-tides-and-ocean-currents",
+       "title": "2.3 Tides and ocean currents",
+       "subtopics": [
+        {
+         "id": "tides-and-tidal-range",
+         "title": "Tides and tidal range",
+         "outcomes": [
+          {
+           "code": "2.3",
+           "text": "Understand tides and ocean currents."
+          },
+          {
+           "code": "2.3.1",
+           "text": "Explain tidal formation and how astronomical, coastal and atmospheric factors alter tidal range."
+          },
+          {
+           "code": "2.3.2",
+           "text": "Explain how spring and neap tides form."
+          }
+         ]
+        },
+        {
+         "id": "reading-tide-tables-and-graphs",
+         "title": "Reading tide tables and graphs",
+         "outcomes": [
+          {
+           "code": "2.3.3",
+           "text": "Interpret tide tables and graphs for height, range, spring tides and neap tides."
+          }
+         ]
+        },
+        {
+         "id": "currents-and-upwelling",
+         "title": "Currents and upwelling",
+         "outcomes": [
+          {
+           "code": "2.3.4",
+           "text": "Describe how wind, temperature, density, Coriolis deflection and seabed shape create currents and upwelling."
+          }
+         ]
+        },
+        {
+         "id": "global-ocean-conveyor-belt",
+         "title": "Global ocean conveyor belt",
+         "outcomes": [
+          {
+           "code": "2.3.5",
+           "text": "Explain the global ocean conveyor belt and its role in circulating seawater."
+          }
+         ]
+        },
+        {
+         "id": "el-nin-o-and-la-nin-a",
+         "title": "El Niño and La Niña",
+         "outcomes": [
+          {
+           "code": "2.3.6",
+           "text": "Discuss causes and effects of El Niño and La Niña in the Pacific ENSO cycle."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "2-1-tectonic-processes",
+       "title": "2.1 Tectonic processes",
+       "subtopics": [
+        {
+         "id": "earth-s-layers-and-crust",
+         "title": "Earth’s layers and crust",
+         "outcomes": [
+          {
+           "code": "2.1.1",
+           "text": "Describe Earth’s crust, mantle and core, distinguishing oceanic from continental crust."
+          }
+         ]
+        },
+        {
+         "id": "evidence-for-plate-tectonics",
+         "title": "Evidence for plate tectonics",
+         "outcomes": [
+          {
+           "code": "2.1.2",
+           "text": "Describe and apply plate tectonic theory using geological, fossil, paleomagnetic and coastline evidence."
+          }
+         ]
+        },
+        {
+         "id": "plate-boundaries",
+         "title": "Plate boundaries",
+         "outcomes": [
+          {
+           "code": "2.1.3",
+           "text": "Identify convergent, divergent and transform plate boundaries and describe each type."
+          }
+         ]
+        },
+        {
+         "id": "tectonic-landforms-and-hazards",
+         "title": "Tectonic landforms and hazards",
+         "outcomes": [
+          {
+           "code": "2.1.4",
+           "text": "Explain how tectonics form trenches, ridges, vents, abyssal plains, volcanoes, earthquakes and tsunamis."
+          }
+         ]
+        },
+        {
+         "id": "hydrothermal-vent-plumes",
+         "title": "Hydrothermal vent plumes",
+         "outcomes": [
+          {
+           "code": "2.1.5",
+           "text": "State that hydrothermal-vent water is pressurised, hot and nutrient-rich, forming a vent plume."
+          },
+          {
+           "code": "2.1.6",
+           "text": "Understand that hydrothermal-vent plume effects can be detected away from the vent."
+          }
+         ]
+        },
+        {
+         "id": "vent-chimney-formation",
+         "title": "Vent-chimney formation",
+         "outcomes": [
+          {
+           "code": "2.1.7",
+           "text": "Explain vent-chimney formation using temperature changes and salt solubility."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "as-3-interactions-in-marine-ecosystems",
+     "title": "[AS] 3 Interactions in marine ecosystems",
+     "topics": [
+      {
+       "id": "3-2-feeding-relationships",
+       "title": "3.2 Feeding relationships",
+       "subtopics": [
+        {
+         "id": "feeding-relationship-terms",
+         "title": "Feeding Relationship Terms",
+         "outcomes": [
+          {
+           "code": "3.2",
+           "text": "Understand feeding relationships in marine ecosystems."
+          },
+          {
+           "code": "3.2.1",
+           "text": "Explain key feeding-relationship terms, including consumers, producers, trophic levels, predators, prey and decomposers."
+          }
+         ]
+        },
+        {
+         "id": "food-chains-and-webs",
+         "title": "Food Chains and Webs",
+         "outcomes": [
+          {
+           "code": "3.2.2",
+           "text": "Represent and interpret ecosystem feeding relationships using food chains and food webs."
+          }
+         ]
+        },
+        {
+         "id": "producers-and-photosynthesis",
+         "title": "Producers and Photosynthesis",
+         "outcomes": [
+          {
+           "code": "3.2.3",
+           "text": "Understand that producers may use photosynthesis or chemosynthesis."
+          },
+          {
+           "code": "3.2.4",
+           "text": "Explain how photosynthesis captures sunlight energy and summarise it with the word equation for glucose production."
+          }
+         ]
+        },
+        {
+         "id": "testing-photosynthesis-rate",
+         "title": "Testing Photosynthesis Rate",
+         "outcomes": [
+          {
+           "code": "3.2.5",
+           "text": "Investigate how light intensity affects photosynthesis rate."
+          }
+         ]
+        },
+        {
+         "id": "glucose-biomass-and-respiration",
+         "title": "Glucose, Biomass and Respiration",
+         "outcomes": [
+          {
+           "code": "3.2.6",
+           "text": "Understand that photosynthetic glucose can be used to build biomass."
+          },
+          {
+           "code": "3.2.7",
+           "text": "Understand that glucose is used in respiration for usable energy and state its word equation."
+          }
+         ]
+        },
+        {
+         "id": "productivity-and-energy-loss",
+         "title": "Productivity and Energy Loss",
+         "outcomes": [
+          {
+           "code": "3.2.8",
+           "text": "Define productivity and explain how high primary productivity can affect food chains."
+          },
+          {
+           "code": "3.2.9",
+           "text": "Calculate and explain energy losses along food chains."
+          }
+         ]
+        },
+        {
+         "id": "pyramids-of-ecology",
+         "title": "Pyramids of Ecology",
+         "outcomes": [
+          {
+           "code": "3.2.10",
+           "text": "Draw, describe and interpret energy, numbers and biomass pyramids, including parasites and plankton blooms."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "3-3-nutrient-cycles",
+       "title": "3.3 Nutrient cycles",
+       "subtopics": [
+        {
+         "id": "nutrients-and-their-forms",
+         "title": "Nutrients and Their Forms",
+         "outcomes": [
+          {
+           "code": "3.3",
+           "text": "Understand nutrient cycles in marine ecosystems."
+          },
+          {
+           "code": "3.3.1",
+           "text": "Understand nutrients as substances needed for growth, repair, energy supply or normal metabolism."
+          },
+          {
+           "code": "3.3.2",
+           "text": "Recognise nutrients as gases, ions or organic compounds."
+          }
+         ]
+        },
+        {
+         "id": "biological-molecules",
+         "title": "Biological Molecules",
+         "outcomes": [
+          {
+           "code": "3.3.3",
+           "text": "State the elements composing carbohydrates, lipids and proteins."
+          },
+          {
+           "code": "3.3.4",
+           "text": "State how starch, cellulose, proteins and lipids are formed from smaller molecules."
+          }
+         ]
+        },
+        {
+         "id": "roles-of-key-elements",
+         "title": "Roles of Key Elements",
+         "outcomes": [
+          {
+           "code": "3.3.5",
+           "text": "Explain biological roles of nitrogen, carbon, magnesium, calcium and phosphorus."
+          }
+         ]
+        },
+        {
+         "id": "the-ocean-nutrient-reservoir",
+         "title": "The Ocean Nutrient Reservoir",
+         "outcomes": [
+          {
+           "code": "3.3.6",
+           "text": "Understand that soluble nutrients form an ocean reservoir available to producers and consumers."
+          }
+         ]
+        },
+        {
+         "id": "nutrient-replenishment",
+         "title": "Nutrient Replenishment",
+         "outcomes": [
+          {
+           "code": "3.3.7",
+           "text": "Explain how upwelling, runoff, tectonics, atmospheric gases, excretion and decomposition replenish dissolved nutrients."
+          }
+         ]
+        },
+        {
+         "id": "nutrient-uptake-and-loss",
+         "title": "Nutrient Uptake and Loss",
+         "outcomes": [
+          {
+           "code": "3.3.8",
+           "text": "Understand that organisms deplete dissolved nutrients through uptake."
+          },
+          {
+           "code": "3.3.10",
+           "text": "Understand that harvesting removes nutrients incorporated into organisms."
+          }
+         ]
+        },
+        {
+         "id": "marine-snow",
+         "title": "Marine Snow",
+         "outcomes": [
+          {
+           "code": "3.3.9",
+           "text": "Outline how marine snow carries organic, energy-rich material from surface waters to the deep ocean."
+          }
+         ]
+        },
+        {
+         "id": "nutrients-and-productivity",
+         "title": "Nutrients and Productivity",
+         "outcomes": [
+          {
+           "code": "3.3.11",
+           "text": "Explain why dissolved-nutrient availability can limit productivity."
+          }
+         ]
+        },
+        {
+         "id": "the-carbon-cycle",
+         "title": "The Carbon Cycle",
+         "outcomes": [
+          {
+           "code": "3.3.12",
+           "text": "Describe the carbon cycle, including combustion, photosynthesis, respiration, decomposition, fossil fuels and carbonate rocks."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "3-1-interactions",
+       "title": "3.1 Interactions",
+       "subtopics": [
+        {
+         "id": "types-of-symbiosis",
+         "title": "Types of Symbiosis",
+         "outcomes": [
+          {
+           "code": "3.1.1",
+           "text": "Define parasitism, commensalism and mutualism as types of symbiotic relationship."
+          },
+          {
+           "code": "3.1",
+           "text": "Understand that different species can live closely together in symbiotic relationships, including parasitism, commensalism and mutualism."
+          }
+         ]
+        },
+        {
+         "id": "parasitism-in-marine-fish",
+         "title": "Parasitism in Marine Fish",
+         "outcomes": [
+          {
+           "code": "3.1.2",
+           "text": "Describe parasitism using copepods and marine fish as an example."
+          }
+         ]
+        },
+        {
+         "id": "commensalism-in-whales",
+         "title": "Commensalism in Whales",
+         "outcomes": [
+          {
+           "code": "3.1.3",
+           "text": "Describe commensalism using whales and barnacles as an example."
+          }
+         ]
+        },
+        {
+         "id": "mutualism-in-boxer-crabs",
+         "title": "Mutualism in Boxer Crabs",
+         "outcomes": [
+          {
+           "code": "3.1.4",
+           "text": "Describe mutualism using boxer crabs and anemones as an example."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "as-4-classification-and-biodiversity",
+     "title": "[AS] 4 Classification and biodiversity",
+     "topics": [
+      {
+       "id": "4-2-key-groups-of-marine-organisms",
+       "title": "4.2 Key groups of marine organisms",
+       "subtopics": [
+        {
+         "id": "plankton-and-producers",
+         "title": "Plankton and producers",
+         "outcomes": [
+          {
+           "code": "4.2",
+           "text": "Recognise the key groups of marine organisms."
+          },
+          {
+           "code": "4.2.1",
+           "text": "Define plankton as mostly microscopic organisms with limited movement that drift with water currents."
+          },
+          {
+           "code": "4.2.2",
+           "text": "Understand that phytoplankton photosynthesise, absorb environmental nutrients and act as producers."
+          },
+          {
+           "code": "4.2.3",
+           "text": "Understand that zooplankton are consumers, including larvae, copepods and jellyfish."
+          }
+         ]
+        },
+        {
+         "id": "echinoderms",
+         "title": "Echinoderms",
+         "outcomes": [
+          {
+           "code": "4.2.4",
+           "text": "State the characteristic features of adult echinoderms: five-part radial symmetry and tube feet."
+          },
+          {
+           "code": "4.2.5",
+           "text": "Understand the ecological and economic significance of echinoderms, including crown-of-thorns starfish."
+          }
+         ]
+        },
+        {
+         "id": "crustaceans",
+         "title": "Crustaceans",
+         "outcomes": [
+          {
+           "code": "4.2.6",
+           "text": "State crustacean features including a carapace, segmented abdomen, jointed legs and two antenna pairs."
+          },
+          {
+           "code": "4.2.7",
+           "text": "Understand the ecological and economic significance of crustaceans, including Antarctic krill."
+          }
+         ]
+        },
+        {
+         "id": "bony-fish",
+         "title": "Bony fish",
+         "outcomes": [
+          {
+           "code": "4.2.8",
+           "text": "State the main internal and external features of adult bony fish, including skeleton, operculum, gills, swim bladder, scales, lateral line and fins."
+          },
+          {
+           "code": "4.2.9",
+           "text": "Understand the ecological and economic significance of bony fish, including Peruvian anchoveta."
+          }
+         ]
+        },
+        {
+         "id": "cartilaginous-fish",
+         "title": "Cartilaginous fish",
+         "outcomes": [
+          {
+           "code": "4.2.10",
+           "text": "State the main internal and external features of adult cartilaginous fish, including skeleton, gill structures, denticles, lateral line and fins."
+          },
+          {
+           "code": "4.2.11",
+           "text": "Understand the ecological and economic significance of cartilaginous fish, including blue sharks."
+          }
+         ]
+        },
+        {
+         "id": "fish-as-chordates",
+         "title": "Fish as chordates",
+         "outcomes": [
+          {
+           "code": "4.2.12",
+           "text": "Understand that both fish groups are chordates sharing features such as a notochord, dorsal neural tube, pharyngeal slits and post-anal tail."
+          }
+         ]
+        },
+        {
+         "id": "macroalgae",
+         "title": "Macroalgae",
+         "outcomes": [
+          {
+           "code": "4.2.13",
+           "text": "State the main features of macroalgae such as kelp, including holdfast, stipe, gas bladders and blades."
+          },
+          {
+           "code": "4.2.14",
+           "text": "Understand the ecological and economic significance of macroalgae, including kelp."
+          }
+         ]
+        },
+        {
+         "id": "marine-plants",
+         "title": "Marine plants",
+         "outcomes": [
+          {
+           "code": "4.2.15",
+           "text": "State the main features of marine plants such as seagrass, including rhizomes, roots, flowers and leaves."
+          },
+          {
+           "code": "4.2.16",
+           "text": "Understand the ecological and economic significance of marine plants, including seagrass."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "4-3-biodiversity",
+       "title": "4.3 Biodiversity",
+       "subtopics": [
+        {
+         "id": "marine-biodiversity",
+         "title": "Marine biodiversity",
+         "outcomes": [
+          {
+           "code": "4.3",
+           "text": "Understand biodiversity in marine environments."
+          },
+          {
+           "code": "4.3.1",
+           "text": "Explain biodiversity at genetic, species and ecological levels."
+          },
+          {
+           "code": "4.3.2",
+           "text": "Understand marine biodiversity benefits, including ecosystem stability, environmental protection, climate regulation, food and medicines."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "4-4-populations-and-sampling-techniques",
+       "title": "4.4 Populations and sampling techniques",
+       "subtopics": [
+        {
+         "id": "marine-populations",
+         "title": "Marine populations",
+         "outcomes": [
+          {
+           "code": "4.4",
+           "text": "Understand marine populations and sampling techniques."
+          },
+          {
+           "code": "4.4.1",
+           "text": "Explain ecosystem, habitat, niche, species, population and community using marine examples."
+          }
+         ]
+        },
+        {
+         "id": "marine-ecosystem-factors",
+         "title": "Marine ecosystem factors",
+         "outcomes": [
+          {
+           "code": "4.4.2",
+           "text": "Explain biotic and abiotic factors and identify their effects on organisms in a named marine ecosystem."
+          }
+         ]
+        },
+        {
+         "id": "mark-release-recapture",
+         "title": "Mark–release–recapture",
+         "outcomes": [
+          {
+           "code": "4.4.3",
+           "text": "Understand mark–release–recapture for estimating the size of a named species’ population."
+          },
+          {
+           "code": "4.4.4",
+           "text": "Apply the Lincoln index and identify limitations of this population estimate."
+          }
+         ]
+        },
+        {
+         "id": "sampling-methods",
+         "title": "Sampling methods",
+         "outcomes": [
+          {
+           "code": "4.4.5",
+           "text": "Describe random and systematic sampling, including their strengths and weaknesses."
+          },
+          {
+           "code": "4.4.6",
+           "text": "Use quadrats, transects and mark–release–recapture to investigate littoral organism distribution and abundance safely and ethically."
+          }
+         ]
+        },
+        {
+         "id": "simpson-s-index",
+         "title": "Simpson’s index",
+         "outcomes": [
+          {
+           "code": "4.4.7",
+           "text": "Calculate habitat species diversity with Simpson’s index and interpret differing index values."
+          }
+         ]
+        },
+        {
+         "id": "spearman-s-rank",
+         "title": "Spearman’s rank",
+         "outcomes": [
+          {
+           "code": "4.4.8",
+           "text": "Use Spearman’s rank correlation to analyse relationships between species distribution or abundance and environmental factors."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "4-1-the-classification-of-marine-organisms",
+       "title": "4.1 The classification of marine organisms",
+       "subtopics": [
+        {
+         "id": "taxonomic-hierarchy",
+         "title": "Taxonomic hierarchy",
+         "outcomes": [
+          {
+           "code": "4.1.1",
+           "text": "Describe the taxonomic hierarchy from domain through kingdom, phylum, class, order, family, genus and species."
+          },
+          {
+           "code": "4.1.2",
+           "text": "Understand and apply binomial naming for species."
+          }
+         ]
+        },
+        {
+         "id": "dichotomous-keys",
+         "title": "Dichotomous keys",
+         "outcomes": [
+          {
+           "code": "4.1.3",
+           "text": "Construct and use simple dichotomous keys using readily observable characteristics."
+          }
+         ]
+        },
+        {
+         "id": "observing-marine-specimens",
+         "title": "Observing marine specimens",
+         "outcomes": [
+          {
+           "code": "4.1.4",
+           "text": "Make observations and drawings of unfamiliar specimens or structures from specified marine organism groups."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "as-5-examples-of-marine-ecosystems",
+     "title": "[AS] 5 Examples of marine ecosystems",
+     "topics": [
+      {
+       "id": "5-2-the-tropical-coral-reef",
+       "title": "5.2 The tropical coral reef",
+       "subtopics": [
+        {
+         "id": "coral-reef-characteristics",
+         "title": "Coral Reef Characteristics",
+         "outcomes": [
+          {
+           "code": "5.2",
+           "text": "Understand the characteristics of tropical coral reef ecosystems."
+          },
+          {
+           "code": "5.2.1",
+           "text": "Describe environmental conditions needed for tropical coral reef formation."
+          }
+         ]
+        },
+        {
+         "id": "reef-types-and-lagoons",
+         "title": "Reef Types And Lagoons",
+         "outcomes": [
+          {
+           "code": "5.2.2",
+           "text": "Describe and compare fringing, barrier, patch and atoll reefs by coastal position and lagoon structure."
+          }
+         ]
+        },
+        {
+         "id": "coral-structure-and-nutrition",
+         "title": "Coral Structure And Nutrition",
+         "outcomes": [
+          {
+           "code": "5.2.3",
+           "text": "Describe corals as cnidarian animals forming sessile polyp colonies, often with zooxanthellae symbiosis."
+          },
+          {
+           "code": "5.2.4",
+           "text": "Understand how hard and soft corals differ in calcification and zooxanthellae abundance."
+          },
+          {
+           "code": "5.2.5",
+           "text": "Describe hard-coral polyp structures and explain their functions."
+          },
+          {
+           "code": "5.2.6",
+           "text": "Explain coral nutrition, including mutualism between some coral polyps and zooxanthellae."
+          }
+         ]
+        },
+        {
+         "id": "reef-importance-and-threats",
+         "title": "Reef Importance And Threats",
+         "outcomes": [
+          {
+           "code": "5.2.7",
+           "text": "Discuss coral reef importance for tourism, food, coastal protection, medicines and biodiversity."
+          },
+          {
+           "code": "5.2.8",
+           "text": "Discuss causes and effects of reef erosion, including acidity, temperature, predation, physical damage and sediment."
+          }
+         ]
+        },
+        {
+         "id": "artificial-reefs",
+         "title": "Artificial Reefs",
+         "outcomes": [
+          {
+           "code": "5.2.9",
+           "text": "Discuss applications of artificial reefs."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "5-3-the-rocky-shore",
+       "title": "5.3 The rocky shore",
+       "subtopics": [
+        {
+         "id": "rocky-shore-zones",
+         "title": "Rocky Shore Zones",
+         "outcomes": [
+          {
+           "code": "5.3",
+           "text": "Understand the characteristics of rocky shore ecosystems."
+          },
+          {
+           "code": "5.3.1",
+           "text": "Identify rocky-shore zones and describe changing abiotic conditions through a tidal cycle."
+          }
+         ]
+        },
+        {
+         "id": "rocky-shore-distribution",
+         "title": "Rocky Shore Distribution",
+         "outcomes": [
+          {
+           "code": "5.3.2",
+           "text": "Explain how biological and physical factors affect organism distribution and abundance across rocky-shore zones."
+          }
+         ]
+        },
+        {
+         "id": "rocky-shore-adaptations",
+         "title": "Rocky Shore Adaptations",
+         "outcomes": [
+          {
+           "code": "5.3.3",
+           "text": "Explain, with named examples, adaptations enabling organisms to live in different rocky-shore zones."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "5-4-the-sandy-shore",
+       "title": "5.4 The sandy shore",
+       "subtopics": [
+        {
+         "id": "sandy-shore-characteristics",
+         "title": "Sandy Shore Characteristics",
+         "outcomes": [
+          {
+           "code": "5.4",
+           "text": "Understand the characteristics of sandy shore ecosystems."
+          },
+          {
+           "code": "5.4.1",
+           "text": "Describe sandy shores as porous ecosystems with unstable, shifting substrates."
+          },
+          {
+           "code": "5.4.2",
+           "text": "Explain why sandy-shore conditions produce relatively low biodiversity."
+          }
+         ]
+        },
+        {
+         "id": "sand-particle-permeability",
+         "title": "Sand Particle Permeability",
+         "outcomes": [
+          {
+           "code": "5.4.3",
+           "text": "Investigate how particle size affects substrate permeability."
+          }
+         ]
+        },
+        {
+         "id": "sandy-shore-adaptations",
+         "title": "Sandy Shore Adaptations",
+         "outcomes": [
+          {
+           "code": "5.4.4",
+           "text": "Explain, with named examples, adaptations for living on sandy shores."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "5-5-the-mangrove-forest",
+       "title": "5.5 The mangrove forest",
+       "subtopics": [
+        {
+         "id": "mangrove-characteristics-and-formation",
+         "title": "Mangrove Characteristics And Formation",
+         "outcomes": [
+          {
+           "code": "5.5",
+           "text": "Understand the characteristics of mangrove forest ecosystems."
+          },
+          {
+           "code": "5.5.1",
+           "text": "Describe mangrove forests as tidal communities of salt-tolerant plants and other interacting species."
+          },
+          {
+           "code": "5.5.2",
+           "text": "Outline conditions needed for mangrove forest formation."
+          }
+         ]
+        },
+        {
+         "id": "red-mangrove-adaptations",
+         "title": "Red Mangrove Adaptations",
+         "outcomes": [
+          {
+           "code": "5.5.3",
+           "text": "Explain red mangrove adaptations, including prop roots, salt exclusion and viviparous propagule reproduction."
+          }
+         ]
+        },
+        {
+         "id": "mangrove-ecological-roles",
+         "title": "Mangrove Ecological Roles",
+         "outcomes": [
+          {
+           "code": "5.5.4",
+           "text": "Explain mangrove ecological roles in providing nurseries and trapping sediment that protects coasts and nearby habitats."
+          }
+         ]
+        },
+        {
+         "id": "mangrove-importance-and-threats",
+         "title": "Mangrove Importance And Threats",
+         "outcomes": [
+          {
+           "code": "5.5.5",
+           "text": "Discuss mangrove importance for tourism, food, coastal protection, timber, fuel and biodiversity."
+          },
+          {
+           "code": "5.5.6",
+           "text": "Discuss threats to mangroves, including temperature change, overharvesting, storms and altered coastal land use."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "5-1-the-open-ocean",
+       "title": "5.1 The open ocean",
+       "subtopics": [
+        {
+         "id": "oceans-and-depth-zones",
+         "title": "Oceans And Depth Zones",
+         "outcomes": [
+          {
+           "code": "5.1.1",
+           "text": "Identify the five oceans and understand their connections as one global ocean."
+          },
+          {
+           "code": "5.1.2",
+           "text": "Identify open-ocean depth zones and describe them by light penetration."
+          }
+         ]
+        },
+        {
+         "id": "ocean-climate-roles",
+         "title": "Ocean Climate Roles",
+         "outcomes": [
+          {
+           "code": "5.1.3",
+           "text": "Explain ocean interactions with the atmosphere through carbon storage, oxygen production, temperature buffering and climate regulation."
+          }
+         ]
+        },
+        {
+         "id": "ocean-regions",
+         "title": "Ocean Regions",
+         "outcomes": [
+          {
+           "code": "5.1.4",
+           "text": "Identify polar, temperate and tropical ocean regions."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "A Level",
+   "units": [
+    {
+     "id": "a-level-6-physiology-of-marine-organisms",
+     "title": "[A Level] 6 Physiology of marine organisms",
+     "topics": [
+      {
+       "id": "6-2-movement-of-substances",
+       "title": "6.2 Movement of substances",
+       "subtopics": [
+        {
+         "id": "how-substances-move",
+         "title": "How substances move",
+         "outcomes": [
+          {
+           "code": "6.2",
+           "text": "Understand how substances move into, out of and within marine organisms."
+          },
+          {
+           "code": "6.2.1",
+           "text": "Describe and explain diffusion, facilitated diffusion, osmosis and active transport."
+          }
+         ]
+        },
+        {
+         "id": "water-potential",
+         "title": "Water potential",
+         "outcomes": [
+          {
+           "code": "6.2.2",
+           "text": "Explain water potential and how dissolved solutes alter the water potential of solutions and cells."
+          }
+         ]
+        },
+        {
+         "id": "diffusion-and-osmosis-investigations",
+         "title": "Diffusion and osmosis investigations",
+         "outcomes": [
+          {
+           "code": "6.2.3",
+           "text": "Investigate diffusion and osmosis using plant tissue and non-living materials."
+          }
+         ]
+        },
+        {
+         "id": "surface-area-and-volume",
+         "title": "Surface area and volume",
+         "outcomes": [
+          {
+           "code": "6.2.4",
+           "text": "Calculate surface area and volume for simple shapes and use these to demonstrate changing surface-area-to-volume ratio."
+          },
+          {
+           "code": "6.2.5",
+           "text": "Investigate how changing surface-area-to-volume ratio affects diffusion through differently sized agar blocks."
+          }
+         ]
+        },
+        {
+         "id": "water-movement-in-cells",
+         "title": "Water movement in cells",
+         "outcomes": [
+          {
+           "code": "6.2.6",
+           "text": "Investigate plant tissues in solutions with different water potentials and estimate tissue water potential."
+          },
+          {
+           "code": "6.2.7",
+           "text": "Explain water movement between differing water potentials and its effects on plant and animal cells."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "6-3-gas-exchange",
+       "title": "6.3 Gas exchange",
+       "subtopics": [
+        {
+         "id": "gas-exchange-needs",
+         "title": "Gas exchange needs",
+         "outcomes": [
+          {
+           "code": "6.3",
+           "text": "Understand gas exchange in marine organisms."
+          },
+          {
+           "code": "6.3.1",
+           "text": "Understand that respiratory reactants and waste products must travel to and from an organism’s surface."
+          },
+          {
+           "code": "6.3.2",
+           "text": "Relate surface-area-to-volume ratio to organism size and the need for specialised exchange surfaces and transport systems."
+          }
+         ]
+        },
+        {
+         "id": "gas-exchange-methods",
+         "title": "Gas exchange methods",
+         "outcomes": [
+          {
+           "code": "6.3.3",
+           "text": "Describe gas exchange by diffusion, pumped ventilation and ram ventilation in coral polyps, grouper and tuna."
+          }
+         ]
+        },
+        {
+         "id": "gas-exchange-and-habitat",
+         "title": "Gas exchange and habitat",
+         "outcomes": [
+          {
+           "code": "6.3.4",
+           "text": "Relate an organism’s gas-exchange method to its habitat and movement."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "6-4-osmoregulation",
+       "title": "6.4 Osmoregulation",
+       "subtopics": [
+        {
+         "id": "water-and-solute-balance",
+         "title": "Water and solute balance",
+         "outcomes": [
+          {
+           "code": "6.4",
+           "text": "Understand how marine organisms regulate water and solute balance."
+          },
+          {
+           "code": "6.4.1",
+           "text": "Explain why marine organisms regulate water and ion content using comparisons of seawater and body fluids."
+          },
+          {
+           "code": "6.4.2",
+           "text": "Explain osmoconformers and osmoregulators using marine mussels and tuna as examples."
+          }
+         ]
+        },
+        {
+         "id": "salinity-tolerance",
+         "title": "Salinity tolerance",
+         "outcomes": [
+          {
+           "code": "6.4.3",
+           "text": "Distinguish euryhaline and stenohaline organisms using salmon, marine mussels and tuna."
+          }
+         ]
+        },
+        {
+         "id": "salmon-osmoregulation",
+         "title": "Salmon osmoregulation",
+         "outcomes": [
+          {
+           "code": "6.4.4",
+           "text": "Outline osmoregulatory processes in salmon."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "6-1-general-cell-structure",
+       "title": "6.1 General cell structure",
+       "subtopics": [
+        {
+         "id": "cell-structures-and-functions",
+         "title": "Cell structures and functions",
+         "outcomes": [
+          {
+           "code": "6.1.1",
+           "text": "Identify listed organelles and cell structures, and summarise the function of each."
+          }
+         ]
+        },
+        {
+         "id": "membranes-and-transport",
+         "title": "Membranes and transport",
+         "outcomes": [
+          {
+           "code": "6.1.2",
+           "text": "Describe the fluid mosaic membrane model, including phospholipids, carrier proteins and channel proteins."
+          },
+          {
+           "code": "6.1.3",
+           "text": "Explain selective permeability and distinguish passive and active transport across membranes."
+          }
+         ]
+        },
+        {
+         "id": "cells-and-magnification",
+         "title": "Cells and magnification",
+         "outcomes": [
+          {
+           "code": "6.1.4",
+           "text": "Describe and interpret images and drawings of typical animal and plant cells."
+          },
+          {
+           "code": "6.1.5",
+           "text": "Apply the formula magnification equals image size divided by actual size."
+          },
+          {
+           "code": "6.1.6",
+           "text": "Observe unfamiliar specimens or structures, draw them, and calculate their magnification."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "a-level-7-energy",
+     "title": "[A Level] 7 Energy",
+     "topics": [
+      {
+       "id": "7-2-chemosynthesis",
+       "title": "7.2 Chemosynthesis",
+       "subtopics": [
+        {
+         "id": "chemosynthesis-and-energy",
+         "title": "Chemosynthesis and Energy",
+         "outcomes": [
+          {
+           "code": "7.2",
+           "text": "Understand chemosynthesis as a source of biological energy."
+          },
+          {
+           "code": "7.2.1",
+           "text": "Describe chemosynthesis as carbon fixation powered by chemical energy from substances such as sulfide, methane, hydrogen or iron."
+          },
+          {
+           "code": "7.2.2",
+           "text": "Explain how vent bacteria provide usable energy that supports food chains."
+          }
+         ]
+        },
+        {
+         "id": "tubeworm-bacteria-symbiosis",
+         "title": "Tubeworm Bacteria Symbiosis",
+         "outcomes": [
+          {
+           "code": "7.2.3",
+           "text": "Describe the symbiosis between Riftia tubeworms and Endoriftia bacteria."
+          },
+          {
+           "code": "7.2.4",
+           "text": "Explain how Endoriftia uses hydrogen sulfide to fix carbon and produce organic compounds."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "7-3-respiration",
+       "title": "7.3 Respiration",
+       "subtopics": [
+        {
+         "id": "respiration-and-atp",
+         "title": "Respiration and ATP",
+         "outcomes": [
+          {
+           "code": "7.3",
+           "text": "Understand respiration and energy release in marine organisms."
+          },
+          {
+           "code": "7.3.1",
+           "text": "Understand aerobic respiration as oxygen-dependent ATP production from organic nutrients."
+          },
+          {
+           "code": "7.3.2",
+           "text": "Represent aerobic respiration with word and chemical equations."
+          },
+          {
+           "code": "7.3.3",
+           "text": "Explain that anaerobic respiration occurs when oxygen is limited and produces less ATP per glucose molecule."
+          }
+         ]
+        },
+        {
+         "id": "mitochondria-and-locations",
+         "title": "Mitochondria and Locations",
+         "outcomes": [
+          {
+           "code": "7.3.4",
+           "text": "Describe mitochondrial matrix, outer membrane and inner membrane folds called cristae."
+          },
+          {
+           "code": "7.3.5",
+           "text": "State the cellular locations of aerobic and anaerobic respiration."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "7-1-photosynthesis",
+       "title": "7.1 Photosynthesis",
+       "subtopics": [
+        {
+         "id": "light-in-the-ocean",
+         "title": "Light in the Ocean",
+         "outcomes": [
+          {
+           "code": "7.1.1",
+           "text": "Understand that white light contains colours with different wavelengths."
+          },
+          {
+           "code": "7.1.2",
+           "text": "Distinguish wavelength, intensity and penetration when discussing light."
+          },
+          {
+           "code": "7.1.3",
+           "text": "Describe how wavelength affects light penetration at different depths."
+          }
+         ]
+        },
+        {
+         "id": "carbon-fixation",
+         "title": "Carbon Fixation",
+         "outcomes": [
+          {
+           "code": "7.1.4",
+           "text": "Explain photosynthetic carbon fixation by marine producers and represent it with a balanced equation."
+          },
+          {
+           "code": "7.1.5",
+           "text": "Understand that photosynthesis has light-dependent and light-independent stages."
+          },
+          {
+           "code": "7.1.6",
+           "text": "Explain how ATP and reduced NADP transfer energy between photosynthetic stages to make organic compounds."
+          }
+         ]
+        },
+        {
+         "id": "chloroplast-structure",
+         "title": "Chloroplast Structure",
+         "outcomes": [
+          {
+           "code": "7.1.7",
+           "text": "Describe the main structures of a chloroplast, including membranes, stroma, thylakoids, spaces and grana."
+          },
+          {
+           "code": "7.1.8",
+           "text": "State where the light-dependent and light-independent reactions occur in chloroplasts."
+          }
+         ]
+        },
+        {
+         "id": "photosynthetic-pigments",
+         "title": "Photosynthetic Pigments",
+         "outcomes": [
+          {
+           "code": "7.1.9",
+           "text": "Describe how chlorophyll a and accessory pigments absorb light in grana."
+          },
+          {
+           "code": "7.1.10",
+           "text": "Relate marine producers’ accessory pigments to absorption of wavelengths penetrating different depths."
+          }
+         ]
+        },
+        {
+         "id": "pigment-chromatography",
+         "title": "Pigment Chromatography",
+         "outcomes": [
+          {
+           "code": "7.1.11",
+           "text": "Use chromatography and Rf values to separate and identify chloroplast pigments."
+          },
+          {
+           "code": "7.1.12",
+           "text": "Interpret pigment absorption spectra and photosynthesis action spectra."
+          }
+         ]
+        },
+        {
+         "id": "light-dependent-reactions",
+         "title": "Light-Dependent Reactions",
+         "outcomes": [
+          {
+           "code": "7.1.13",
+           "text": "Describe light-dependent reactions as chlorophyll activation, water splitting and energy transfer to ATP and reduced NADP."
+          }
+         ]
+        },
+        {
+         "id": "calvin-cycle",
+         "title": "Calvin Cycle",
+         "outcomes": [
+          {
+           "code": "7.1.14",
+           "text": "Describe Calvin-cycle carbon fixation using rubisco, ATP and reduced NADP to form organic molecules."
+          }
+         ]
+        },
+        {
+         "id": "limiting-photosynthesis",
+         "title": "Limiting Photosynthesis",
+         "outcomes": [
+          {
+           "code": "7.1.15",
+           "text": "Explain how light, wavelength, carbon dioxide and temperature limit photosynthetic rate."
+          },
+          {
+           "code": "7.1.16",
+           "text": "Investigate how light wavelength affects photosynthetic rate."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "a-level-8-fisheries-for-the-future",
+     "title": "[A Level] 8 Fisheries for the future",
+     "topics": [
+      {
+       "id": "8-2-sustainable-fisheries",
+       "title": "8.2 Sustainable fisheries",
+       "subtopics": [
+        {
+         "id": "why-fisheries-need-sustainability",
+         "title": "Why Fisheries Need Sustainability",
+         "outcomes": [
+          {
+           "code": "8.2",
+           "text": "Understand approaches to maintaining sustainable fisheries."
+          },
+          {
+           "code": "8.2.1",
+           "text": "Explain why fisheries must be exploited sustainably, referring to a named marine organism."
+          }
+         ]
+        },
+        {
+         "id": "fishing-technology-and-stock-data",
+         "title": "Fishing Technology and Stock Data",
+         "outcomes": [
+          {
+           "code": "8.2.2",
+           "text": "Discuss how sonar, purse seines, benthic trawls and factory ships affect populations and habitats."
+          },
+          {
+           "code": "8.2.3",
+           "text": "Describe information needed for sustainable exploitation, including recruitment, growth, mortality, maturity, fecundity and habitat dependence."
+          }
+         ]
+        },
+        {
+         "id": "fisheries-management-tools",
+         "title": "Fisheries Management Tools",
+         "outcomes": [
+          {
+           "code": "8.2.4",
+           "text": "Outline management tools including seasonal, quota, licensing, location, method, size, intensity, monitoring, penalties and consumer measures."
+          },
+          {
+           "code": "8.2.5",
+           "text": "Evaluate management tools for effectiveness and effects on non-target species."
+          }
+         ]
+        },
+        {
+         "id": "fishing-effects-and-recovery",
+         "title": "Fishing Effects and Recovery",
+         "outcomes": [
+          {
+           "code": "8.2.6",
+           "text": "Discuss short- and long-term social and economic effects of restricted and unrestricted fishing."
+          },
+          {
+           "code": "8.2.7",
+           "text": "Evaluate stock-recovery strategies including mangrove restoration, artificial reefs and releasing cultivated organisms."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "8-3-marine-aquaculture",
+       "title": "8.3 Marine aquaculture",
+       "subtopics": [
+        {
+         "id": "aquaculture-methods-and-purpose",
+         "title": "Aquaculture Methods and Purpose",
+         "outcomes": [
+          {
+           "code": "8.3",
+           "text": "Understand marine aquaculture and its role in future fisheries."
+          },
+          {
+           "code": "8.3.1",
+           "text": "Describe intensive and extensive aquaculture methods using named marine organisms."
+          }
+         ]
+        },
+        {
+         "id": "aquaculture-processes-and-requirements",
+         "title": "Aquaculture Processes and Requirements",
+         "outcomes": [
+          {
+           "code": "8.3.2",
+           "text": "Outline aquaculture processes for salmon, marine mussels and shrimp."
+          },
+          {
+           "code": "8.3.3",
+           "text": "Explain requirements for successful long-term aquaculture projects, including stock, water, feed, labour, disease control, location and markets."
+          }
+         ]
+        },
+        {
+         "id": "aquaculture-effects",
+         "title": "Aquaculture Effects",
+         "outcomes": [
+          {
+           "code": "8.3.4",
+           "text": "Discuss aquaculture effects such as habitat loss, pollution, escapes, disease, resource competition, reduced wild harvests and social or economic consequences."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "8-1-life-cycles",
+       "title": "8.1 Life cycles",
+       "subtopics": [
+        {
+         "id": "marine-life-cycle-patterns",
+         "title": "Marine Life Cycle Patterns",
+         "outcomes": [
+          {
+           "code": "8.1.1",
+           "text": "Describe metamorphosis, larval stages, and sessile or mobile stages in marine animal life cycles."
+          },
+          {
+           "code": "8.1.2",
+           "text": "Compare simple and complex life cycles using marine mammals and crustaceans, including larvae and metamorphosis."
+          }
+         ]
+        },
+        {
+         "id": "life-stages-and-fertilisation",
+         "title": "Life Stages and Fertilisation",
+         "outcomes": [
+          {
+           "code": "8.1.3",
+           "text": "Outline the importance of different life stages in sessile and mobile organisms."
+          },
+          {
+           "code": "8.1.4",
+           "text": "Discuss internal and external fertilisation and parental investment, using tuna, sharks and whales."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "a-level-9-human-impacts-on-marine-ecosystems",
+     "title": "[A Level] 9 Human impacts on marine ecosystems",
+     "topics": [
+      {
+       "id": "9-3-ocean-acidification",
+       "title": "9.3 Ocean acidification",
+       "subtopics": [
+        {
+         "id": "ocean-acidification-basics",
+         "title": "Ocean Acidification Basics",
+         "outcomes": [
+          {
+           "code": "9.3",
+           "text": "Understand ocean acidification and its effects on marine ecosystems."
+          },
+          {
+           "code": "9.3.1",
+           "text": "Explain links between atmospheric and dissolved carbon dioxide, ocean acidity and the ocean’s role in regulating atmospheric carbon dioxide."
+          }
+         ]
+        },
+        {
+         "id": "carbon-dioxide-in-water",
+         "title": "Carbon Dioxide in Water",
+         "outcomes": [
+          {
+           "code": "9.3.2",
+           "text": "Describe carbon dioxide reactions in water, including hydrogen and hydrogen carbonate ion formation, and effects on pH and carbonate availability."
+          }
+         ]
+        },
+        {
+         "id": "effects-on-marine-organisms",
+         "title": "Effects on Marine Organisms",
+         "outcomes": [
+          {
+           "code": "9.3.3",
+           "text": "Describe how ocean acidification affects hard corals and organisms with shells."
+          },
+          {
+           "code": "9.3.4",
+           "text": "Investigate how pH affects mass loss from empty mollusc shells."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "9-4-conservation-of-marine-ecosystems",
+       "title": "9.4 Conservation of marine ecosystems",
+       "subtopics": [
+        {
+         "id": "why-conservation-matters",
+         "title": "Why Conservation Matters",
+         "outcomes": [
+          {
+           "code": "9.4",
+           "text": "Understand conservation of marine ecosystems."
+          },
+          {
+           "code": "9.4.1",
+           "text": "Explain why conservation is needed to maintain or improve biodiversity."
+          },
+          {
+           "code": "9.4.2",
+           "text": "Explain how the IUCN Red List helps prioritise marine conservation decisions at different scales."
+          }
+         ]
+        },
+        {
+         "id": "invasive-and-endangered-species",
+         "title": "Invasive and Endangered Species",
+         "outcomes": [
+          {
+           "code": "9.4.3",
+           "text": "Define invasive and endangered species according to IUCN terminology."
+          },
+          {
+           "code": "9.4.4",
+           "text": "Explain why invasive species threaten native marine organisms and ecosystems."
+          }
+         ]
+        },
+        {
+         "id": "conservation-strategies",
+         "title": "Conservation Strategies",
+         "outcomes": [
+          {
+           "code": "9.4.5",
+           "text": "Evaluate the feasibility of proposed conservation projects using supplied information."
+          },
+          {
+           "code": "9.4.6",
+           "text": "Discuss conservation strategies including protected areas, captive breeding, legislation, reserves, marine facilities, ecotourism and invasive-species control."
+          }
+         ]
+        },
+        {
+         "id": "international-marine-conservation",
+         "title": "International Marine Conservation",
+         "outcomes": [
+          {
+           "code": "9.4.7",
+           "text": "Explain why large marine ecosystems require international cooperation and legislation, and assess consequences when participation is incomplete."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "9-1-ecological-impacts-of-human-activities",
+       "title": "9.1 Ecological impacts of human activities",
+       "subtopics": [
+        {
+         "id": "human-impacts-on-marine-ecosystems",
+         "title": "Human Impacts on Marine Ecosystems",
+         "outcomes": [
+          {
+           "code": "9.1.1",
+           "text": "Explain how oil, agriculture, renewable energy, sewage, refuse, desalination and fishing affect marine quality, habitats, organisms and food webs."
+          },
+          {
+           "code": "9.1.2",
+           "text": "Explain toxin accumulation within organisms and increasing concentrations through food chains, including metals from antifouling paint and fossil-fuel combustion."
+          }
+         ]
+        },
+        {
+         "id": "microplastics-and-fragmentation",
+         "title": "Microplastics and Fragmentation",
+         "outcomes": [
+          {
+           "code": "9.1.3",
+           "text": "Define microplastics as particles below 5 mm and distinguish primary from secondary microplastics."
+          },
+          {
+           "code": "9.1.4",
+           "text": "Describe how plastics fragment through ultraviolet radiation, wind and waves, and explain temperature effects on this process."
+          }
+         ]
+        },
+        {
+         "id": "plastic-effects-and-solutions",
+         "title": "Plastic Effects and Solutions",
+         "outcomes": [
+          {
+           "code": "9.1.5",
+           "text": "Discuss ecological and human effects of plastics, including plankton uptake, food-chain transfer, toxins, ingestion and entanglement."
+          },
+          {
+           "code": "9.1.6",
+           "text": "Discuss methods for reducing plastic and microplastic release into marine ecosystems."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "9-2-global-warming-and-its-impact",
+       "title": "9.2 Global warming and its impact",
+       "subtopics": [
+        {
+         "id": "the-greenhouse-effect",
+         "title": "The Greenhouse Effect",
+         "outcomes": [
+          {
+           "code": "9.2.1",
+           "text": "Describe how the natural greenhouse effect maintains Earth’s ambient temperature."
+          },
+          {
+           "code": "9.2.2",
+           "text": "Explain how an enhanced greenhouse effect causes global warming."
+          }
+         ]
+        },
+        {
+         "id": "evidence-for-global-warming",
+         "title": "Evidence for Global Warming",
+         "outcomes": [
+          {
+           "code": "9.2.3",
+           "text": "Describe evidence demonstrating global warming."
+          },
+          {
+           "code": "9.2.4",
+           "text": "Evaluate evidence supporting and challenging significant human contribution to global warming."
+          }
+         ]
+        },
+        {
+         "id": "warming-oceans",
+         "title": "Warming Oceans",
+         "outcomes": [
+          {
+           "code": "9.2.5",
+           "text": "Describe marine effects of warming, including sea-level rise, coral bleaching, species redistribution and altered ocean circulation."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "build": {
+  "builtAt": "2026-10-14T05:47:53.480Z",
+  "model": "gpt-5.6-luna",
+  "usd": 0.0538,
+  "expectedCodes": 39,
+  "coverage": 0.7692307692307693,
+  "missingCodes": [
+   "1.1",
+   "2.1",
+   "4.1",
+   "5.1",
+   "6.1",
+   "7.1",
+   "8.1",
+   "9.1",
+   "9.2"
+  ],
+  "counts": {
+   "grades": 2,
+   "units": 9,
+   "topics": 32,
+   "subtopics": 132,
+   "outcomes": 234
+  },
+  "warnings": []
+ }
+}

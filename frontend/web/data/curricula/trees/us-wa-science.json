@@ -1,0 +1,2268 @@
+{
+ "id": "us-wa-science",
+ "region": "US",
+ "framework": "Washington state academic standards: Science",
+ "board": null,
+ "qualification": "K-12",
+ "subject": "Science",
+ "syllabusCode": null,
+ "gradeSystem": "grade",
+ "source": {
+  "urls": [
+   "https://api.commonstandardsproject.com/api/v1/jurisdictions/7432D25024594EA9A2092DF45BBA7F6C",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/3F0AFB988CB04A2C9D8E7F324A12A4BB",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/EDBE1A2C3C8C48529927F9992604D6E3",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/9B238300B325486486AE93CFA4F3A0E5",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/81E50347493B41CFB44EEDB945CAF7E2",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/95D7D1DDFCBB4A27B3DB206345050F60",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/2EBEC2777DAD4153ACEDBE3C4BB26244",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/03AF1CD8741343E7A7ED7F066EE05370",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/97DFED30BE5649A0A08F9143354CC960",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/6B2A82E83E1A490BA8D198E9E4127547",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/44ED2317D0594D6DB663B2C52A5911FE",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/E0C9C510A06C447A981A76D6A698390F",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/221CA00F3F7C4B66B5C8C53F184FD7BC"
+  ],
+  "publisher": "Washington state education agency (machine-readable via Common Standards Project / ASN)",
+  "licence": "CC BY 4.0 US, Common Curriculum, Inc.",
+  "firstExam": "2024"
+ },
+ "grades": [
+  {
+   "grade": "K",
+   "units": [
+    {
+     "id": "physical-science",
+     "title": "Physical Science",
+     "topics": [
+      {
+       "id": "what-happens-if-you-push-or-pull-an-object-in-di",
+       "title": "What happens if you push or pull an object in different ways?",
+       "subtopics": [
+        {
+         "id": "use-evidence-data-and-investigation-to-show-and-",
+         "title": "Use evidence, data, and investigation to show and compare how pushes and pulls affect the motion of objects; apply learned understandings to design and test ways to intentionally control the motion of objects",
+         "outcomes": [
+          {
+           "code": "K-PS2-1",
+           "text": "Plan and conduct an investigation to compare the effects of different strengths or different directions of pushes and pulls on the motion of an object."
+          },
+          {
+           "code": "K-PS2-2",
+           "text": "Analyze data to determine if a design solution works as intended to change the speed or direction of an object with a push or a pull. [Engineering]"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "how-does-sunlight-affect-the-temperature-of-thin",
+       "title": "How does sunlight affect the temperature of things on the Earth? How can we change that?",
+       "subtopics": [
+        {
+         "id": "use-evidence-and-investigation-to-show-how-sunli",
+         "title": "Use evidence and investigation to show how sunlight affects temperature of surfaces; use learned understandings to design and build a structure that can decrease the temperature of a surface heated by the sun",
+         "outcomes": [
+          {
+           "code": "K-PS3-1",
+           "text": "Make observations to determine the effect of sunlight on Earth’s surface."
+          },
+          {
+           "code": "K-PS3-2",
+           "text": "Use tools and materials to design and build a structure that will reduce the warming effect of sunlight on an area. [Climate] [Engineering] [ESE]"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "life-science",
+     "title": "Life Science",
+     "topics": [
+      {
+       "id": "what-do-plants-and-animals-need-to-survive-and-h",
+       "title": "What do plants and animals need to survive and how do they get it?",
+       "subtopics": [
+        {
+         "id": "use-evidence-and-modeling-to-show-and-explain-wh",
+         "title": "Use evidence and modeling to show and explain what living things need to survive and how they get it from the places they live",
+         "outcomes": [
+          {
+           "code": "K-LS1-1",
+           "text": "Use observations to describe patterns of what plants and animals (including humans) need to survive. [ESE]"
+          },
+          {
+           "code": "K-LS1-2",
+           "text": "Construct an argument supported by evidence for how plants and animals (including humans) can change the environment to meet their needs. [ESE]"
+          },
+          {
+           "code": "K-ESS3-1",
+           "text": "Use a model to represent the relationship between the needs of different plants or animals (including humans) and the places they live. [Climate] [ESE]"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "earth-and-space-sciences",
+     "title": "Earth and Space Sciences",
+     "topics": [
+      {
+       "id": "what-patterns-can-we-see-in-our-weather-and-how-",
+       "title": "What patterns can we see in our weather and how can we use those patterns to be safe?",
+       "subtopics": [
+        {
+         "id": "use-evidence-and-data-to-show-and-explain-patter",
+         "title": "Use evidence and data to show and explain patterns in local weather and how humans use those patterns to plan ahead and design for safety",
+         "outcomes": [
+          {
+           "code": "K-ESS2-1",
+           "text": "Use and share observations of local weather conditions to describe patterns over time. [Climate]"
+          },
+          {
+           "code": "K-ESS3-2",
+           "text": "Ask questions to obtain information about the purpose of weather forecasting to prepare for, and respond to, severe weather. [Climate] [Engineering]"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "earth-and-space-sciences",
+       "title": "Earth and Space Sciences",
+       "subtopics": [
+        {
+         "id": "earth-and-space-sciences",
+         "title": "Earth and Space Sciences",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "How can humans help the Earth?"
+          },
+          {
+           "code": "WA K.ESS3",
+           "text": "Develop and share ideas about how humans can help and protect the environment where they live."
+          },
+          {
+           "code": "K-ESS3-3",
+           "text": "Communicate solutions that will reduce the impact of humans on the land, water, air, and/or other living things in the local environment. [Climate] [Engineering] [ESE]"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "k-2-engineering-technology-and-applications-of-s",
+     "title": "K–2 Engineering, Technology, and Applications of Science",
+     "topics": [
+      {
+       "id": "how-do-we-engineer-solutions-to-a-problem",
+       "title": "How do we engineer solutions to a problem?",
+       "subtopics": [
+        {
+         "id": "use-modeling-investigation-and-data-to-design-te",
+         "title": "Use modeling, investigation, and data to design, test, and improve solutions to simple problems that can be solved through engineering",
+         "outcomes": [
+          {
+           "code": "K-2-ETS1-1",
+           "text": "Ask questions, make observations, and gather information about a situation people want to change to define a simple problem that can be solved through the development of a new or improved object or tool."
+          },
+          {
+           "code": "K-2-ETS1-2",
+           "text": "Develop a simple sketch, drawing, or physical model to illustrate how the shape of an object helps it function as needed to solve a given problem."
+          },
+          {
+           "code": "K-2-ETS1-3",
+           "text": "Analyze data from tests of two objects designed to solve the same problem to compare the strengths and weaknesses of how each performs."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "environmental-and-sustainability-education",
+     "title": "Environmental and Sustainability Education",
+     "topics": [
+      {
+       "id": "through-project-based-learning-develop-an-invest",
+       "title": "Through project-based learning, develop an investigation related to the interconnected spheres of nature, society, and the economy in partnership with local communities, including tribes, then communicate about and act upon solutions for local environmental problems",
+       "subtopics": [
+        {
+         "id": "through-project-based-learning-develop-an-invest",
+         "title": "Through project-based learning, develop an investigation related to the interconnected spheres of nature, society, and the economy in partnership with local communities, including tribes, then communicate about and act upon solutions for local environmental problems",
+         "outcomes": [
+          {
+           "code": "K.ESE.1-1",
+           "text": "Design an investigation to explore phenomena related to the roles of money, society, environmental problems, and sustainability solutions in local and tribal communities."
+          },
+          {
+           "code": "K.ESE.1-2",
+           "text": "Analyze and evaluate data gathered on school grounds to explain local scientific phenomena resulting from the influence that natural settings and human-built structures have on each other."
+          },
+          {
+           "code": "K.ESE.1-3",
+           "text": "Engage in place-based learning to communicate about and act on personal and collective solutions for sustainable communities, with a focus on tribal sovereignty."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "1",
+   "units": [
+    {
+     "id": "physical-science",
+     "title": "Physical Science",
+     "topics": [
+      {
+       "id": "what-can-light-and-sound-do",
+       "title": "What can light and sound do?",
+       "subtopics": [
+        {
+         "id": "use-evidence-data-and-investigation-to-show-and-",
+         "title": "Use evidence, data, and investigation to show and explain how light and sound behave; use learned understandings to design a solution to a communication problem",
+         "outcomes": [
+          {
+           "code": "1-PS4-1",
+           "text": "Plan and conduct investigations to provide evidence that vibrating materials can make sound and that sound can make materials vibrate."
+          },
+          {
+           "code": "1-PS2-2",
+           "text": "Make observations to construct an evidence-based account that objects can be seen only when illuminated."
+          },
+          {
+           "code": "1-PS2-3",
+           "text": "Plan and conduct an investigation to determine the effect of placing objects made with different materials in the path of a beam of light."
+          },
+          {
+           "code": "1-PS2-4",
+           "text": "Use tools and materials to design and build a device that uses light or sound to solve the problem of communicating over a distance. [Engineering]"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "life-science",
+     "title": "Life Science",
+     "topics": [
+      {
+       "id": "how-do-the-structures-and-behaviors-of-living-th",
+       "title": "How do the structures and behaviors of living things help them survive?",
+       "subtopics": [
+        {
+         "id": "use-research-and-investigation-to-show-and-expla",
+         "title": "Use research and investigation to show and explain how plants and animals use parts and behaviors to survive: use learned understandings to engineer a solution to a human problem",
+         "outcomes": [
+          {
+           "code": "1-LS1-1",
+           "text": "Use materials to design a solution to a human problem by mimicking how plants and/or animals use their external parts to help them survive, grow, and meet their needs. [Engineering] [ESE]"
+          },
+          {
+           "code": "1-LS1-2",
+           "text": "Read texts and use media to determine patterns in behavior of parents and offspring that help offspring survive."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "how-are-living-things-similar-and-different-from",
+       "title": "How are living things similar and different from their parents?",
+       "subtopics": [
+        {
+         "id": "use-observational-evidence-to-show-and-explain-s",
+         "title": "Use observational evidence to show and explain similarities and differences between plant and animal parents and their offspring",
+         "outcomes": [
+          {
+           "code": "1-LS3-1",
+           "text": "Make observations to construct an evidence-based account that young plants and animals are like, but not exactly like, their parents."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "earth-and-space-sciences",
+     "title": "Earth and Space Sciences",
+     "topics": [
+      {
+       "id": "how-do-the-sun-moon-and-stars-cause-patterns-in-",
+       "title": "How do the sun, moon, and stars cause patterns in what we see on Earth?",
+       "subtopics": [
+        {
+         "id": "use-evidence-data-and-observation-to-notice-and-",
+         "title": "Use evidence, data, and observation to notice and describe patterns in daylight and in the movement of the sun, moon, and stars",
+         "outcomes": [
+          {
+           "code": "1-ESS1-1",
+           "text": "Use observations of the sun, moon, and stars to describe patterns that can be predicted."
+          },
+          {
+           "code": "1-ESS1-2",
+           "text": "Make observations at different times of year to relate the amount of daylight to the time of year."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "k-2-engineering-technology-and-applications-of-s",
+     "title": "K–2 Engineering, Technology, and Applications of Science",
+     "topics": [
+      {
+       "id": "how-do-we-engineer-solutions-to-a-problem",
+       "title": "How do we engineer solutions to a problem?",
+       "subtopics": [
+        {
+         "id": "use-modeling-investigation-and-data-to-design-te",
+         "title": "Use modeling, investigation, and data to design, test, and improve solutions to simple problems that can be solved through engineering",
+         "outcomes": [
+          {
+           "code": "K-2-ETS1-1",
+           "text": "Ask questions, make observations, and gather information about a situation people want to change to define a simple problem that can be solved through the development of a new or improved object or tool."
+          },
+          {
+           "code": "K-2-ETS1-2",
+           "text": "Develop a simple sketch, drawing, or physical model to illustrate how the shape of an object helps it function as needed to solve a given problem."
+          },
+          {
+           "code": "K-2-ETS1-3",
+           "text": "Analyze data from tests of two objects designed to solve the same problem to compare the strengths and weaknesses of how each performs."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "environmental-and-sustainability-education",
+     "title": "Environmental and Sustainability Education",
+     "topics": [
+      {
+       "id": "apply-project-based-learning-to-communicate-abou",
+       "title": "Apply project-based learning to communicate about and act upon solutions for environmental problems in partnership with local communities, including tribes",
+       "subtopics": [
+        {
+         "id": "apply-project-based-learning-to-communicate-abou",
+         "title": "Apply project-based learning to communicate about and act upon solutions for environmental problems in partnership with local communities, including tribes",
+         "outcomes": [
+          {
+           "code": "1.ESE.1-1",
+           "text": "Design an investigation to explore how money, society, and the environment are connected to environmental problems and sustainability solutions in local and tribal communities."
+          },
+          {
+           "code": "1.ESE.1-2",
+           "text": "Explore school grounds to engage in inquiry and explain scientific phenomena related to how natural settings and human-built structures influence each other."
+          },
+          {
+           "code": "1.ESE.1-3",
+           "text": "Apply the knowledge and skills necessary to communicate about and act on personal and collective solutions for sustainable communities."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "2",
+   "units": [
+    {
+     "id": "physical-science",
+     "title": "Physical Science",
+     "topics": [
+      {
+       "id": "how-do-we-know-which-materials-are-right-for-the",
+       "title": "How do we know which materials are right for the job?",
+       "subtopics": [
+        {
+         "id": "use-evidence-data-and-investigation-to-describe-",
+         "title": "Use evidence, data, and investigation to describe matter and its properties; apply learned understandings about properties to identify and explain materials suitable for a given purpose",
+         "outcomes": [
+          {
+           "code": "2-PS1-1",
+           "text": "Plan and conduct an investigation to describe and classify different kinds of materials by their observable properties."
+          },
+          {
+           "code": "2-PS1-2",
+           "text": "Analyze data obtained from testing different materials to determine which materials have the properties that are best suited for an intended purpose. [Engineering] [ESE]"
+          },
+          {
+           "code": "2-PS1-3",
+           "text": "Make observations to construct an evidence-based account of how an object made of a small set of pieces can be disassembled and made into a new object."
+          },
+          {
+           "code": "2-PS1-4",
+           "text": "Construct an argument with evidence that some changes caused by heating or cooling can be reversed and some cannot."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "life-science",
+     "title": "Life Science",
+     "topics": [
+      {
+       "id": "how-do-plants-get-what-they-need-to-grow-and-rep",
+       "title": "How do plants get what they need to grow and reproduce?",
+       "subtopics": [
+        {
+         "id": "use-evidence-investigation-and-modeling-to-show-",
+         "title": "Use evidence, investigation, and modeling to show and explain how matter, energy, and sometimes animals are needed for plants to grow and reproduce",
+         "outcomes": [
+          {
+           "code": "1-LS1-1",
+           "text": "Plan and conduct an investigation to determine if plants need sunlight and water to grow. [ESE]"
+          },
+          {
+           "code": "1-LS1-2",
+           "text": "Develop a simple model that mimics the function of an animal in dispersing seeds or pollinating plants. [Engineering]"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "how-many-different-plants-and-animals-can-live-i",
+       "title": "How many different plants and animals can live in a habitat?",
+       "subtopics": [
+        {
+         "id": "use-evidence-and-data-to-identify-and-compare-th",
+         "title": "Use evidence and data to identify and compare the variety of living things in different habitats",
+         "outcomes": [
+          {
+           "code": "2-LS4-1",
+           "text": "Make observations of plants and animals to compare the diversity of life in different habitats. [ESE]"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "earth-and-space-sciences",
+     "title": "Earth and Space Sciences",
+     "topics": [
+      {
+       "id": "what-do-earth-s-features-look-like-and-how-do-th",
+       "title": "What do Earth’s features look like and how do they change?",
+       "subtopics": [
+        {
+         "id": "use-research-evidence-and-data-to-show-and-expla",
+         "title": "Use research, evidence, and data to show and explain quick and slow changes in the Earth’s appearance",
+         "outcomes": [
+          {
+           "code": "1-ESS1-1",
+           "text": "Use information from several sources to provide evidence that Earth events can occur quickly or slowly. [Climate]"
+          }
+         ]
+        },
+        {
+         "id": "use-research-maps-and-modeling-to-understand-and",
+         "title": "Use research, maps, and modeling to understand and represent land and water on Earth; use engineering thinking to analyze and compare solutions to erosion changing the land’s appearance",
+         "outcomes": [
+          {
+           "code": "2-ESS2-1",
+           "text": "Compare multiple solutions designed to slow or prevent wind or water from changing the shape of the land. [Engineering] [ESE]"
+          },
+          {
+           "code": "2-ESS2-2",
+           "text": "Develop a model to represent the shapes and kinds of land and bodies of water in an area. [ESE]"
+          },
+          {
+           "code": "2-ESS2-3",
+           "text": "Obtain information to identify where water is found on Earth and understand that it can be solid or liquid. [ESE]"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "k-2-engineering-technology-and-applications-of-s",
+     "title": "K–2 Engineering, Technology, and Applications of Science",
+     "topics": [
+      {
+       "id": "how-do-we-engineer-solutions-to-a-problem",
+       "title": "How do we engineer solutions to a problem?",
+       "subtopics": [
+        {
+         "id": "use-modeling-investigation-and-data-to-design-te",
+         "title": "Use modeling, investigation, and data to design, test, and improve solutions to simple problems that can be solved through engineering",
+         "outcomes": [
+          {
+           "code": "K-2-ETS1-1",
+           "text": "Ask questions, make observations, and gather information about a situation people want to change to define a simple problem that can be solved through the development of a new or improved object or tool."
+          },
+          {
+           "code": "K-2-ETS1-2",
+           "text": "Develop a simple sketch, drawing, or physical model to illustrate how the shape of an object helps it function as needed to solve a given problem."
+          },
+          {
+           "code": "K-2-ETS1-3",
+           "text": "Analyze data from tests of two objects designed to solve the same problem to compare the strengths and weaknesses of how each performs."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "environmental-and-sustainability-education",
+     "title": "Environmental and Sustainability Education",
+     "topics": [
+      {
+       "id": "how-do-we-work-together-to-ensure-a-healthy-envi",
+       "title": "How do we work together to ensure a healthy environment and sustainable economy for future generations?",
+       "subtopics": [
+        {
+         "id": "through-project-based-learning-synthesize-inform",
+         "title": "Through project-based learning, synthesize information from multiple sources about local ecological, social, and economic systems to communicate and act upon solutions for environmental problems in the community with partners, including tribes",
+         "outcomes": [
+          {
+           "code": "2.ESE.1-1",
+           "text": "Research multiple perspectives to understand and communicate ideas about how money, society, and the environment are connected to environmental problems and solutions found in class, at school, at home, and in local tribal communities."
+          },
+          {
+           "code": "2.ESE.1-2",
+           "text": "Use the school grounds and campus to identify connections between the natural world and human-made structures, then gather, analyze, and draw conclusions from data gathered during field-based learning."
+          },
+          {
+           "code": "2.ESE.1-3",
+           "text": "Apply knowledge and skills to select a cost-effective approach to solve an environmental problem among many alternative solutions, then take individual or collective action to authentically communicate about or implement their solution."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "3",
+   "units": [
+    {
+     "id": "physical-science",
+     "title": "Physical Science",
+     "topics": [
+      {
+       "id": "how-do-objects-move-and-interact-with-other-obje",
+       "title": "How do objects move and interact with other objects?",
+       "subtopics": [
+        {
+         "id": "use-evidence-and-data-to-investigate-and-measure",
+         "title": "Use evidence and data to investigate and measure an object’s motion and how forces affect the motion of objects; use acquired understandings to show how magnetic forces can be used in engineering solutions",
+         "outcomes": [
+          {
+           "code": "3-PS2-1",
+           "text": "Plan and conduct an investigation to provide evidence of the effects of balanced and unbalanced forces on the motion of an object."
+          },
+          {
+           "code": "3-PS2-2",
+           "text": "Make observations and/or measurements of an object’s motion to provide evidence that a pattern can be used to predict future motion."
+          },
+          {
+           "code": "3-PS2-3",
+           "text": "Ask questions to determine cause and effect relationships of electric or magnetic interactions between two objects not in contact with each other."
+          },
+          {
+           "code": "3-PS2-4",
+           "text": "Define a simple design problem that can be solved by applying scientific ideas about magnets. [Engineering]"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "life-science",
+     "title": "Life Science",
+     "topics": [
+      {
+       "id": "how-do-living-things-grow-and-develop-over-their",
+       "title": "How do living things grow and develop over their lifetime?",
+       "subtopics": [
+        {
+         "id": "use-modeling-to-show-compare-and-contrast-life-c",
+         "title": "Use modeling to show, compare, and contrast life cycle patterns",
+         "outcomes": [
+          {
+           "code": "3-LS1-1",
+           "text": "Develop models to describe that organisms have unique and diverse life cycles, but all have in common birth, growth, reproduction, and death."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "what-makes-living-things-look-the-way-they-do-ho",
+       "title": "What makes living things look the way they do? How does appearance affect survival and reproduction?",
+       "subtopics": [
+        {
+         "id": "use-evidence-and-data-to-show-and-explain-inheri",
+         "title": "Use evidence and data to show and explain inherited and acquired traits; apply understanding of traits to explain how variations can affect survival and reproduction",
+         "outcomes": [
+          {
+           "code": "3-LS3-1",
+           "text": "Analyze and interpret data to provide evidence that plants and animals have traits inherited from parents and that variation of these traits exists in a group of similar organisms."
+          },
+          {
+           "code": "3-LS3-2",
+           "text": "Use evidence to support the explanation that traits can be influenced by the environment. [ESE]"
+          },
+          {
+           "code": "3-LS4-2",
+           "text": "Use evidence to construct an explanation for how the variations in characteristics among individuals of the same species may provide advantages in surviving, finding mates, and reproducing."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "how-are-characteristics-behaviors-and-needs-of-l",
+       "title": "How are characteristics, behaviors, and needs of living things related to their environments where they live?",
+       "subtopics": [
+        {
+         "id": "use-evidence-data-and-modeling-to-show-and-expla",
+         "title": "Use evidence, data, and modeling to show and explain how characteristics and behaviors of living things are related to how well they can survive in their environment; use learned understandings to analyze solutions to problems caused by environmental changes",
+         "outcomes": [
+          {
+           "code": "3-LS2-1",
+           "text": "Construct an argument that some animals form groups that help members survive."
+          },
+          {
+           "code": "3-LS4-1",
+           "text": "Analyze and interpret data from fossils to provide evidence of the organisms and the environments in which they lived long ago."
+          },
+          {
+           "code": "3-LS4-3",
+           "text": "Construct an argument with evidence that in a particular habitat some organisms can survive well, some survive less well, and some cannot survive at all. [Climate] [ESE]"
+          },
+          {
+           "code": "3-LS4-4",
+           "text": "Make a claim about the merit of a solution to a problem caused when the environment changes and the types of plants and animals that live there may change. [Engineering] [ESE]"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "earth-and-space-sciences",
+     "title": "Earth and Space Sciences",
+     "topics": [
+      {
+       "id": "what-is-weather-and-climate-like-in-different-pl",
+       "title": "What is weather and climate like in different places and how does it affect living things?",
+       "subtopics": [
+        {
+         "id": "use-research-data-and-modeling-to-show-and-expla",
+         "title": "Use research, data, and modeling to show and explain patterns in weather and climate",
+         "outcomes": [
+          {
+           "code": "3-ESS2-1",
+           "text": "Represent data in tables and graphical displays to describe typical weather conditions expected during a particular season. [Climate] [ESE]"
+          },
+          {
+           "code": "3-ESS2-2",
+           "text": "Obtain and combine information to describe climates in different regions of the world. [Climate]"
+          }
+         ]
+        },
+        {
+         "id": "use-engineering-thinking-to-compare-and-analyze-",
+         "title": "Use engineering thinking to compare and analyze solutions to weather related problems",
+         "outcomes": [
+          {
+           "code": "3-ESS3-1",
+           "text": "Make a claim about the merit of a design solution that reduces the impacts of a weather-related hazard. [Climate] [Engineering] [ESE]"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "k-2-engineering-technology-and-applications-of-s",
+     "title": "K–2 Engineering, Technology, and Applications of Science",
+     "topics": [
+      {
+       "id": "how-do-we-engineer-solutions-to-a-problem",
+       "title": "How do we engineer solutions to a problem?",
+       "subtopics": [
+        {
+         "id": "use-modeling-investigation-and-data-to-design-te",
+         "title": "Use modeling, investigation, and data to design, test, and improve solutions to problems that can be solved through engineering; include criteria, constraints, and elements of fair tests",
+         "outcomes": [
+          {
+           "code": "3-5-ETS1-1",
+           "text": "Define a simple design problem reflecting a need or a want that includes specified criteria for success and constraints on materials, time, or cost."
+          },
+          {
+           "code": "3-5-ETS1-2",
+           "text": "Generate and compare multiple possible solutions to a problem based on how well each is likely to meet the criteria and constraints of the problem."
+          },
+          {
+           "code": "3-5-ETS1-3",
+           "text": "Plan and carry out fair tests in which variables are controlled and failure points are considered to identify aspects of a model or prototype that can be improved."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "environmental-and-sustainability-education",
+     "title": "Environmental and Sustainability Education",
+     "topics": [
+      {
+       "id": "how-do-we-work-together-to-ensure-a-healthy-envi",
+       "title": "How do we work together to ensure a healthy environment and sustainable economy for future generations?",
+       "subtopics": [
+        {
+         "id": "through-project-based-learning-synthesize-inform",
+         "title": "Through project-based learning, synthesize information from multiple sources about local ecological, social, and economic systems, collaborating with partners and tribes in ways that foster solutions to local environmental problems",
+         "outcomes": [
+          {
+           "code": "3.ESE.1-1",
+           "text": "Cite multiple sources and perspectives in an analysis of and presentation about environmental sustainability in the community, considering values at the individual, community, and tribal level."
+          },
+          {
+           "code": "3.ESE.1-2",
+           "text": "Design an investigation on school grounds to gather, analyze, and present data about how the built environment of the school improves or reduces environmental quality (e.g. impacts on/benefits to water quality, air quality, biodiversity, waste)."
+          },
+          {
+           "code": "3.ESE.1-3",
+           "text": "Gather, analyze, and evaluate information, building the knowledge, attitudes, and understanding needed to demonstrate personal and civic responsibility for improved environmental sustainability at the local level."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "4",
+   "units": [
+    {
+     "id": "physical-science",
+     "title": "Physical Science",
+     "topics": [
+      {
+       "id": "what-can-energy-do-and-how-can-we-use-it",
+       "title": "What can energy do and how can we use it?",
+       "subtopics": [
+        {
+         "id": "use-evidence-data-and-investigation-to-explain-e",
+         "title": "Use evidence, data, and investigation to explain energy transfer and the energy of objects in motion; apply these understandings to design and build a device that converts energy",
+         "outcomes": [
+          {
+           "code": "4-PS3-1",
+           "text": "Use evidence to construct an explanation relating the speed of an object to the energy of that object."
+          },
+          {
+           "code": "4-PS3-2",
+           "text": "Make observations to provide evidence that energy can be transferred from place to place by sound, light, heat, and electric currents."
+          },
+          {
+           "code": "4-PS3-3",
+           "text": "Ask questions and predict outcomes about the changes in energy that occur when objects collide."
+          },
+          {
+           "code": "4-PS3-4",
+           "text": "Apply scientific ideas to design, test, and refine a device that converts energy from one form to another. [Engineering]"
+          }
+         ]
+        },
+        {
+         "id": "use-investigation-evidence-and-modeling-to-show-",
+         "title": "Use investigation, evidence and modeling to show and explain how energy behaves, including as waves; design and evaluate solutions that use energy in patterns to communicate",
+         "outcomes": [
+          {
+           "code": "4-PS4-1",
+           "text": "Develop a model of waves to describe patterns in terms of amplitude and wavelength and that waves can cause objects to move."
+          },
+          {
+           "code": "4-PS4-2",
+           "text": "Develop a model to describe that light reflecting from objects and entering the eye allows objects to be seen."
+          },
+          {
+           "code": "4-PS4-3",
+           "text": "Generate and compare multiple solutions that use patterns to transfer information. [Engineering]"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "life-science",
+     "title": "Life Science",
+     "topics": [
+      {
+       "id": "how-do-internal-and-external-structures-help-liv",
+       "title": "How do internal and external structures help living things function and survive?",
+       "subtopics": [
+        {
+         "id": "use-modeling-to-show-and-explain-internal-and-ex",
+         "title": "Use modeling to show and explain internal and external structures of plants and animals that help them live successfully",
+         "outcomes": [
+          {
+           "code": "4-LS1-1",
+           "text": "Construct an argument that plants and animals have internal and external structures that function to support survival, growth, behavior, and reproduction."
+          },
+          {
+           "code": "4-LS1-2",
+           "text": "Use a model to describe that animals receive different types of information through their senses, process the information in their brain, and respond to the information in different ways."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "earth-and-space-sciences",
+     "title": "Earth and Space Sciences",
+     "topics": [
+      {
+       "id": "what-are-earth-s-features-and-how-do-they-change",
+       "title": "What are Earth’s features and how do they change?",
+       "subtopics": [
+        {
+         "id": "use-evidence-to-show-and-explain-how-earth-s-fea",
+         "title": "Use evidence to show and explain how Earth’s features have changed over time",
+         "outcomes": [
+          {
+           "code": "4-ESS1-1",
+           "text": "Identify evidence from patterns in rock formations and fossils in rock layers to support an explanation for changes in a landscape over time. [Climate]"
+          }
+         ]
+        },
+        {
+         "id": "use-investigation-evidence-and-data-to-show-and-",
+         "title": "Use investigation, evidence, and data to show and explain patterns in Earth’s features and what causes those features to change",
+         "outcomes": [
+          {
+           "code": "4-ESS2-1",
+           "text": "Make observations and/or measurements to provide evidence of the effects of weathering or the rate of erosion by water, ice, wind, or vegetation. [Climate] [ESE]"
+          },
+          {
+           "code": "4-ESS2-2",
+           "text": "Analyze and interpret data from maps to describe patterns of Earth’s features. [ESE]"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "how-do-humans-and-the-earth-affect-each-other",
+       "title": "How do humans and the Earth affect each other?",
+       "subtopics": [
+        {
+         "id": "research-to-understand-and-explain-human-impacts",
+         "title": "Research to understand and explain human impacts on the environment and design solutions to lessen impacts of environmental events on humans",
+         "outcomes": [
+          {
+           "code": "4-ESS3-1",
+           "text": "Obtain and combine information to describe that energy and fuels are derived from natural resources and that their uses affect the environment. [ESE]"
+          },
+          {
+           "code": "4-ESS3-2",
+           "text": "Generate and compare multiple solutions to reduce the impacts of natural Earth processes on humans. [Engineering] [ESE]"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "3-5-engineering-technology-and-applications-of-s",
+     "title": "3–5 Engineering, Technology, and Applications of Science",
+     "topics": [
+      {
+       "id": "how-do-we-engineer-solutions-to-a-problem",
+       "title": "How do we engineer solutions to a problem?",
+       "subtopics": [
+        {
+         "id": "use-modeling-investigation-and-data-to-design-te",
+         "title": "Use modeling, investigation, and data to design, test, and improve solutions to problems that can be solved through engineering; include criteria, constraints, and elements of fair tests",
+         "outcomes": [
+          {
+           "code": "3-5-ETS1-1",
+           "text": "Define a simple design problem reflecting a need or a want that includes specified criteria for success and constraints on materials, time, or cost."
+          },
+          {
+           "code": "3-5-ETS1-2",
+           "text": "Generate and compare multiple possible solutions to a problem based on how well each is likely to meet the criteria and constraints of the problem."
+          },
+          {
+           "code": "3-5-ETS1-3",
+           "text": "Plan and carry out fair tests in which variables are controlled and failure points are considered to identify aspects of a model or prototype that can be improved."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "environmental-and-sustainability-education",
+     "title": "Environmental and Sustainability Education",
+     "topics": [
+      {
+       "id": "how-do-we-work-together-to-ensure-a-healthy-envi",
+       "title": "How do we work together to ensure a healthy environment and sustainable economy for future generations?",
+       "subtopics": [
+        {
+         "id": "through-project-based-learning-synthesize-eviden",
+         "title": "Through project-based learning, synthesize evidence using information from multiple sources about local ecological, social, and economic systems to collaborate with community partners and tribes in ways that foster solutions to local environmental problems",
+         "outcomes": [
+          {
+           "code": "4.ESE.1-1",
+           "text": "Cite multiple sources and perspectives in an analysis of and presentation about environmental sustainability in the community, considering values at the individual, community, and tribal level."
+          },
+          {
+           "code": "4.ESE.1-2",
+           "text": "Design an investigation on school grounds to make observations and/or measurements that provide evidence of the built environment’s effect on environmental quality (e.g. impacts on/benefits to water quality, air quality, biodiversity, waste)."
+          },
+          {
+           "code": "4.ESE.1-3",
+           "text": "Apply scientific ideas to solve design problems related to environmental sustainability, demonstrating the knowledge, attitudes, and understanding needed for personal and civic responsibility related to tribal sovereignty in Washington."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "5",
+   "units": [
+    {
+     "id": "physical-science",
+     "title": "Physical Science",
+     "topics": [
+      {
+       "id": "what-are-the-properties-of-matter-and-what-cause",
+       "title": "What are the properties of matter and what causes those properties to change or stay the same?",
+       "subtopics": [
+        {
+         "id": "use-evidence-data-and-modeling-to-investigate-an",
+         "title": "Use evidence, data, and modeling to investigate and measure the properties of matter and how combining matter or changing its temperature affects those properties",
+         "outcomes": [
+          {
+           "code": "5-PS1-1",
+           "text": "Develop a model to describe that matter is made of particles too small to be seen."
+          },
+          {
+           "code": "5-PS1-2",
+           "text": "Measure and graph quantities to provide evidence that regardless of the type of change that occurs when heating, cooling, or mixing substances, the total weight of matter is conserved."
+          },
+          {
+           "code": "5-PS1-3",
+           "text": "Make observations and measurements to identify materials based on their properties."
+          },
+          {
+           "code": "5-PS1-4",
+           "text": "Conduct an investigation to determine whether the mixing of two or more substances results in new substances."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "life-science",
+     "title": "Life Science",
+     "topics": [
+      {
+       "id": "how-do-living-things-use-matter-and-energy",
+       "title": "How do living things use matter and energy?",
+       "subtopics": [
+        {
+         "id": "use-investigation-evidence-and-data-to-show-and-",
+         "title": "Use investigation, evidence and data to show and explain where plants obtain matter needed grow",
+         "outcomes": [
+          {
+           "code": "5-LS1-1",
+           "text": "Support an argument that plants get the materials they need for growth chiefly from air and water."
+          }
+         ]
+        },
+        {
+         "id": "use-models-to-show-and-explain-how-the-sun-s-ene",
+         "title": "Use models to show and explain how the sun’s energy is passed through systems made up of plants and animals, including how that energy is used for life processes",
+         "outcomes": [
+          {
+           "code": "5-PS3-1",
+           "text": "Use models to describe that energy in animals’ food (used for body repair, growth, motion, and to maintain body warmth) was once energy from the sun."
+          }
+         ]
+        },
+        {
+         "id": "use-evidence-data-and-modeling-to-show-and-expla",
+         "title": "Use evidence, data, and modeling to show and explain the movement of matter among living and non-living parts of an ecosystem",
+         "outcomes": [
+          {
+           "code": "5-LS2-1",
+           "text": "Develop a model to describe the movement of matter among plants, animals, decomposers, and the environment. [Climate] [ESE]"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "earth-and-space-sciences",
+     "title": "Earth and Space Sciences",
+     "topics": [
+      {
+       "id": "how-does-living-on-earth-affect-what-we-see-and-",
+       "title": "How does living on Earth affect what we see and feel?",
+       "subtopics": [
+        {
+         "id": "use-evidence-data-and-modeling-to-show-and-expla",
+         "title": "Use evidence, data, and modeling to show and explain how relative locations and motion of the Earth, sun, moon, and stars result in patterns of what we see on Earth",
+         "outcomes": [
+          {
+           "code": "5-ESS1-1",
+           "text": "Support an argument that differences in the apparent brightness of the sun compared to other stars is due to their relative distances from Earth."
+          },
+          {
+           "code": "5-ESS1-2",
+           "text": "Represent data in graphical displays to reveal patterns of daily changes in length and direction of shadows, day and night, and the seasonal appearance of some stars in the night sky."
+          }
+         ]
+        },
+        {
+         "id": "use-evidence-data-and-modeling-to-show-and-expla-2",
+         "title": "Use evidence, data, and modeling to show and explain how Earth’s mass affects how objects on its surface feel (weight) and behave",
+         "outcomes": [
+          {
+           "code": "5-PS2-1",
+           "text": "Support an argument that the gravitational force exerted by Earth on objects is directed down."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "how-do-earth-s-parts-work-together",
+       "title": "How do Earth’s parts work together?",
+       "subtopics": [
+        {
+         "id": "use-evidence-and-modeling-to-show-and-explain-ho",
+         "title": "Use evidence and modeling to show and explain how the four major spheres of the Earth interact with each other and the effects of those interactions",
+         "outcomes": [
+          {
+           "code": "5-ESS2-1",
+           "text": "Develop a model using an example to describe ways the geosphere, biosphere, hydrosphere, and/or atmosphere interact. [Climate] [ESE]"
+          },
+          {
+           "code": "5-ESS2-2",
+           "text": "Describe and graph the amounts of salt water and fresh water in various reservoirs to provide evidence about the distribution of water on Earth. [ESE]"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "earth-and-space-sciences",
+       "title": "Earth and Space Sciences",
+       "subtopics": [
+        {
+         "id": "earth-and-space-sciences",
+         "title": "Earth and Space Sciences",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "How can humans work together to take care of our Earth?"
+          },
+          {
+           "code": "WA 5.ESS3",
+           "text": "Conduct research to show and explain how communities can positively affect the health of their local and global environment."
+          },
+          {
+           "code": "5-ESS3-1",
+           "text": "Obtain and combine information about ways individual communities use science ideas to protect the Earth’s resources and environment. [Climate] [ESE]"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "3-5-engineering-technology-and-applications-of-s",
+     "title": "3–5 Engineering, Technology, and Applications of Science",
+     "topics": [
+      {
+       "id": "how-do-we-engineer-solutions-to-a-problem",
+       "title": "How do we engineer solutions to a problem?",
+       "subtopics": [
+        {
+         "id": "use-modeling-investigation-and-data-to-design-te",
+         "title": "Use modeling, investigation, and data to design, test, and improve solutions to problems that can be solved through engineering; include criteria, constraints, and elements of fair tests",
+         "outcomes": [
+          {
+           "code": "3-5-ETS1-1",
+           "text": "Define a simple design problem reflecting a need or a want that includes specified criteria for success and constraints on materials, time, or cost."
+          },
+          {
+           "code": "3-5-ETS1-2",
+           "text": "Generate and compare multiple possible solutions to a problem based on how well each is likely to meet the criteria and constraints of the problem."
+          },
+          {
+           "code": "3-5-ETS1-3",
+           "text": "Plan and carry out fair tests in which variables are controlled and failure points are considered to identify aspects of a model or prototype that can be improved."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "environmental-and-sustainability-education",
+     "title": "Environmental and Sustainability Education",
+     "topics": [
+      {
+       "id": "how-do-we-work-together-to-ensure-a-healthy-envi",
+       "title": "How do we work together to ensure a healthy environment and sustainable economy for future generations?",
+       "subtopics": [
+        {
+         "id": "through-project-based-learning-synthesize-inform",
+         "title": "Through project-based learning, synthesize information about ecological, social, and economic systems from multiple sources to understand, design, communicate, and act upon solutions for local environmental problems with community partners, including tribes",
+         "outcomes": [
+          {
+           "code": "5.ESE.1-1",
+           "text": "Cite multiple sources and perspectives in an analysis of a relevant local environmental problem and how it connects to social, economic, and environmental systems, considering personal values at individual, community, and tribal scales."
+          },
+          {
+           "code": "5.ESE.1-2",
+           "text": "Design an investigation on school grounds to gather, analyze, and present data about how the built environment of the school improves or reduces environmental quality (e.g. impacts on/benefits to water quality, air quality, biodiversity, waste)."
+          },
+          {
+           "code": "5.ESE.1-3",
+           "text": "Conduct a project that specifies a local environmental problem, identifies solution paths, solves the problem, and reports results demonstrating individual knowledge, attitudes, and understanding of personal and civic responsibility for improved environmental justice and sustainability."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "6-8",
+   "units": [
+    {
+     "id": "grades",
+     "title": "Grades",
+     "topics": [
+      {
+       "id": "grades",
+       "title": "Grades",
+       "subtopics": [
+        {
+         "id": "grades",
+         "title": "Grades",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Physical Science"
+          },
+          {
+           "code": null,
+           "text": "Life Science"
+          },
+          {
+           "code": null,
+           "text": "Earth and Space Sciences"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "matter-and-its-interactions",
+     "title": "Matter and its Interactions",
+     "topics": [
+      {
+       "id": "how-do-atomic-and-molecular-interactions-explain",
+       "title": "How do atomic and molecular interactions explain the properties of matter that we see and feel?",
+       "subtopics": [
+        {
+         "id": "use-evidence-data-and-modeling-to-show-how-atomi",
+         "title": "Use evidence, data, and modeling to show how atomic and molecular interactions explain the properties of matter. Apply this understanding to engineer a device that releases or absorbs thermal energy",
+         "outcomes": [
+          {
+           "code": "MS-PS1-1",
+           "text": "Develop models to describe the atomic composition of simple molecules and extended structures. [Climate]"
+          },
+          {
+           "code": "MS-PS1-2",
+           "text": "Analyze and interpret data on the properties of substances before and after the substances interact to determine if a chemical reaction has occurred."
+          },
+          {
+           "code": "MS-PS1-3",
+           "text": "Gather and make sense of information to describe that synthetic materials come from natural resources and impact society. [Climate] [ESE]"
+          },
+          {
+           "code": "MS-PS1-4",
+           "text": "Develop a model that predicts and describes changes in particle motion, temperature, and state of a pure substance when thermal energy is added or removed. [Climate] [ESE]"
+          },
+          {
+           "code": "MS-PS1-5",
+           "text": "Develop and use a model to describe how the total number of atoms does not change in a chemical reaction and thus mass is conserved."
+          },
+          {
+           "code": "MS-PS1-6",
+           "text": "Undertake a design project to construct, test, and modify a device that either releases or absorbs thermal energy by chemical processes. [Engineering]"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "motion-and-stability-forces-and-interactions",
+     "title": "Motion and Stability: Forces and Interactions",
+     "topics": [
+      {
+       "id": "how-can-one-describe-physical-interactions-betwe",
+       "title": "How can one describe physical interactions between objects and within systems of objects?",
+       "subtopics": [
+        {
+         "id": "use-data-from-investigations-to-construct-an-arg",
+         "title": "Use data from investigations to construct an argument about how different forces interact to create motion. Apply this understanding to engineer a solution to a problem involving colliding objects",
+         "outcomes": [
+          {
+           "code": "MS-PS2-1",
+           "text": "Apply Newton’s Third Law to design a solution to a problem involving the motion of two colliding objects. [Engineering]"
+          },
+          {
+           "code": "MS-PS2-2",
+           "text": "Plan an investigation to provide evidence that the change in an object’s motion depends on the sum of the forces on the object and the mass of the object."
+          },
+          {
+           "code": "MS-PS2-3",
+           "text": "Ask questions about data to determine the factors that affect the strength of electric and magnetic forces."
+          },
+          {
+           "code": "MS-PS2-4",
+           "text": "Construct and present arguments using evidence to support the claim that gravitational interactions are attractive and depend on the masses of interacting objects."
+          },
+          {
+           "code": "MS-PS2-5",
+           "text": "Conduct an investigation and evaluate the experimental design to provide evidence that fields exist between objects exerting forces on each other even though the objects are not in contact."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "energy",
+     "title": "Energy",
+     "topics": [
+      {
+       "id": "how-can-energy-be-transferred-from-one-object-to",
+       "title": "How can energy be transferred from one object to another?",
+       "subtopics": [
+        {
+         "id": "use-evidence-data-and-modeling-to-support-claims",
+         "title": "Use evidence, data, and modeling to support claims about the transfer of energy between objects and systems. Apply this understanding to engineer a device that minimizes or maximizes the transfer of thermal energy",
+         "outcomes": [
+          {
+           "code": "MS-PS3-1",
+           "text": "Construct and interpret graphical displays of data to describe the relationships of kinetic energy to the mass of an object and to the speed of an object. (supporting MS-PS3-5)"
+          },
+          {
+           "code": "MS-PS3-2",
+           "text": "Develop a model to describe that when the arrangement of objects interacting at a distance changes, different amounts of potential energy are stored in the system."
+          },
+          {
+           "code": "MS-PS3-3",
+           "text": "Apply scientific principles to design, construct, and test a device that either minimizes or maximizes thermal energy transfer. [Engineering] [ESE]"
+          },
+          {
+           "code": "MS-PS3-4",
+           "text": "Plan an investigation to determine the relationships among the energy transferred, the type of matter, the mass, and the change in the average kinetic energy of the particles as measured by the temperature of the sample. [Climate]"
+          },
+          {
+           "code": "MS-PS3-5",
+           "text": "Construct, use, and present arguments to support the claim that when the kinetic energy of an object changes, energy is transferred to or from the object."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "waves-and-their-applications-in-technologies-for",
+     "title": "Waves and Their Applications in Technologies for Information Transfer",
+     "topics": [
+      {
+       "id": "what-are-the-characteristic-properties-of-waves-",
+       "title": "What are the characteristic properties of waves and how can they be used?",
+       "subtopics": [
+        {
+         "id": "use-modeling-and-mathematical-representation-to-",
+         "title": "Use modeling and mathematical representation to describe wave properties and their applications",
+         "outcomes": [
+          {
+           "code": "MS-PS4-1",
+           "text": "Use mathematical representations to describe a simple model for waves that includes how the amplitude of a wave is related to the energy in a wave."
+          },
+          {
+           "code": "MS-PS4-2",
+           "text": "Develop and use a model to describe that waves are reflected, absorbed, or transmitted through various materials. [Climate]"
+          },
+          {
+           "code": "MS-PS4-3",
+           "text": "Integrate qualitative scientific and technical information to support the claim that digitized signals are a more reliable way to encode and transmit information than analog signals."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "from-molecule-to-organisms-structures-and-proces",
+     "title": "From Molecule to Organisms: Structures and Processes",
+     "topics": [
+      {
+       "id": "how-can-one-explain-the-ways-cells-contribute-to",
+       "title": "How can one explain the ways cells contribute to the function of living organisms?",
+       "subtopics": [
+        {
+         "id": "use-evidence-and-modeling-to-support-explanation",
+         "title": "Use evidence and modeling to support explanations of how cells contribute to the structure and function of living organisms",
+         "outcomes": [
+          {
+           "code": "MS-LS1-1",
+           "text": "Conduct an investigation to provide evidence that living things are made of cells; either one cell or many different numbers and types of cells."
+          },
+          {
+           "code": "MS-LS1-2",
+           "text": "Develop and use a model to describe the function of a cell as a whole and ways the parts of cells contribute to the function."
+          },
+          {
+           "code": "MS-LS1-3",
+           "text": "Use argument supported by evidence for how the body is a system of interacting subsystems composed of groups of cells."
+          },
+          {
+           "code": "MS-LS1-4",
+           "text": "Use argument based on empirical evidence and scientific reasoning to support an explanation for how characteristic animal behaviors and specialized plant structures affect the probability of successful reproduction of animals and plants respectively."
+          },
+          {
+           "code": "MS-LS1-5",
+           "text": "Construct a scientific explanation based on evidence for how environmental and genetic factors influence the growth of organisms. [Climate] [Engineering]"
+          },
+          {
+           "code": "MS-LS1-6",
+           "text": "Construct a scientific explanation based on evidence for the role of photosynthesis in the cycling of matter and flow of energy into and out of organisms. [Climate] [ESE]"
+          },
+          {
+           "code": "MS-LS1-7",
+           "text": "Develop a model to describe how food is rearranged through chemical reactions forming new molecules that support growth and/or release energy as this matter moves through an organism."
+          },
+          {
+           "code": "MS-LS1-8",
+           "text": "Gather and synthesize information that sensory receptors respond to stimuli by sending messages to the brain for immediate behavior or storage as memories."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "ecosystems-interactions-energy-and-dynamics",
+     "title": "Ecosystems: Interactions, Energy, and Dynamics",
+     "topics": [
+      {
+       "id": "how-does-a-system-of-living-and-non-living-thing",
+       "title": "How does a system of living and non-living things operate to meet the needs of the organisms in an ecosystem?",
+       "subtopics": [
+        {
+         "id": "use-evidence-and-modeling-to-support-explanation",
+         "title": "Use evidence and modeling to support explanations of how living and non-living components of an ecosystem interact and are utilized by organisms. Apply this understanding to engineer solutions to problems related to maintaining biodiversity or ecosystem services",
+         "outcomes": [
+          {
+           "code": "MS-LS2-1",
+           "text": "Analyze and interpret data to provide evidence for the effects of resource availability on organisms and populations of organisms in an ecosystem. [Climate] [ESE]"
+          },
+          {
+           "code": "MS-LS2-2",
+           "text": "Construct an explanation that predicts patterns of interactions among organisms across multiple ecosystems. [Climate] [ESE]"
+          },
+          {
+           "code": "MS-LS2-3",
+           "text": "Develop a model to describe the cycling of matter and flow of energy among living and nonliving parts of an ecosystem. [ESE]"
+          },
+          {
+           "code": "MS-LS2-4",
+           "text": "Construct an argument supported by empirical evidence that changes to physical or biological components of an ecosystem affect populations. [Climate] [ESE]"
+          },
+          {
+           "code": "MS-LS2-5",
+           "text": "Evaluate competing design solutions for maintaining biodiversity and ecosystem services. [Climate] [Engineering] [ESE]"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "heredity-inheritance-and-variation-of-traits",
+     "title": "Heredity: Inheritance and Variation of Traits",
+     "topics": [
+      {
+       "id": "how-do-living-organisms-pass-traits-from-one-gen",
+       "title": "How do living organisms pass traits from one generation to the next?",
+       "subtopics": [
+        {
+         "id": "develop-and-use-models-of-how-organisms-pass-tra",
+         "title": "Develop and use models of how organisms pass traits from one generation to the next and how the environment affects the traits an organism develops, and how the genetic information of offspring may be the same or different from a parent",
+         "outcomes": [
+          {
+           "code": "MS-LS3-1",
+           "text": "Develop and use a model to describe why structural changes to genes (mutations) located on chromosomes may affect proteins and may result in harmful, beneficial, or neutral effects to the structure and function of the organism."
+          },
+          {
+           "code": "MS-LS3-2",
+           "text": "Develop and use a model to describe why asexual reproduction results in offspring with identical genetic information and sexual reproduction results in offspring with genetic variation."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "biological-evolution-unity-and-diversity",
+     "title": "Biological Evolution: Unity and Diversity",
+     "topics": [
+      {
+       "id": "how-do-organisms-change-over-time-in-response-to",
+       "title": "How do organisms change over time in response to changes in the environment?",
+       "subtopics": [
+        {
+         "id": "use-evidence-and-data-to-create-explanations-of-",
+         "title": "Use evidence and data to create explanations of how organisms change over time in response to environmental shifts",
+         "outcomes": [
+          {
+           "code": "MS-LS4-1",
+           "text": "Analyze and interpret data for patterns in the fossil record that document the existence, diversity, extinction, and change of life forms throughout the history of life on Earth under the assumption that natural laws operate today as in the past."
+          },
+          {
+           "code": "MS-LS4-2",
+           "text": "Apply scientific ideas to construct an explanation for the anatomical similarities and differences among modern organisms and between modern and fossil organisms to infer evolutionary relationships."
+          },
+          {
+           "code": "MS-LS4-3",
+           "text": "Analyze displays of pictorial data to compare patterns of similarities in the embryological development across multiple species to identify relationships not evident in the fully formed anatomy."
+          },
+          {
+           "code": "MS-LS4-4",
+           "text": "Construct an explanation based on evidence that describes how genetic variations of traits in a population increase some individuals’ probability of surviving and reproducing in a specific environment."
+          },
+          {
+           "code": "MS-LS4-5",
+           "text": "Gather and synthesize information about technologies that have changed the way humans influence the inheritance of desired traits in organisms."
+          },
+          {
+           "code": "MS-LS4-6",
+           "text": "Use mathematical representations to support explanations of how natural selection may lead to increases and decreases of specific traits in populations over time."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "earth-s-place-in-the-universe",
+     "title": "Earth’s Place in the Universe",
+     "topics": [
+      {
+       "id": "what-is-earth-s-place-in-the-universe-what-makes",
+       "title": "What is Earth’s place in the Universe? What makes up our solar system and how can the motion of Earth explain seasons and eclipses? How do people figure out that the Earth and life on Earth have changed through time?",
+       "subtopics": [
+        {
+         "id": "use-data-and-modeling-to-explain-earth-s-history",
+         "title": "Use data and modeling to explain Earth’s history and place in the universe, including patterns of celestial motion and solar system dynamics",
+         "outcomes": [
+          {
+           "code": "MS-ESS1-1",
+           "text": "Develop and use a model of the Earth-sun-moon system to describe the cyclic patterns of lunar phases, eclipses of the sun and moon, and seasons. [ESE]"
+          },
+          {
+           "code": "MS-ESS1-2",
+           "text": "Develop and use a model to describe the role of gravity in the motions within galaxies and the solar system."
+          },
+          {
+           "code": "MS-ESS1-3",
+           "text": "Analyze and interpret data to determine scale properties of objects in the solar system."
+          },
+          {
+           "code": "MS-ESS1-4",
+           "text": "Construct a scientific explanation based on evidence from rock strata for how the geologic time scale is used to organize Earth’s 4.6-billion-year-old history."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "earth-s-systems",
+     "title": "Earth’s Systems",
+     "topics": [
+      {
+       "id": "how-do-the-materials-in-and-on-earth-s-crust-cha",
+       "title": "How do the materials in and on Earth’s crust change over time? How does the movement of tectonic plates impact the surface of Earth? How does water influence weather, circulate in the oceans, and shape Earth’s surface? What factors interact and influence weather? How have living organisms changed the Earth and how have Earth’s changing conditions impacted living organisms?",
+       "subtopics": [
+        {
+         "id": "use-evidence-data-and-modeling-to-create-explana",
+         "title": "Use evidence, data, and modeling to create explanations of how Earth’s major systems (geosphere, hydrosphere, atmosphere, and biosphere) interact to shape Earth’s surface materials and processes",
+         "outcomes": [
+          {
+           "code": "MS-ESS2-1",
+           "text": "Develop a model to describe the cycling of Earth’s materials and the flow of energy that drives this process. [ESE]"
+          },
+          {
+           "code": "MS-ESS2-2",
+           "text": "Construct an explanation based on evidence for how geoscience processes have changed Earth’s surface at varying time and spatial scales. [ESE]"
+          },
+          {
+           "code": "MS-ESS2-3",
+           "text": "Analyze and interpret data on the distribution of fossils and rocks, continental shapes, and seafloor structures to provide evidence of the past plate motions."
+          },
+          {
+           "code": "MS-ESS2-4",
+           "text": "Develop a model to describe the cycling of water through Earth’s systems driven by energy from the sun and the force of gravity. [ESE]"
+          },
+          {
+           "code": "MS-ESS2-5",
+           "text": "Collect data to provide evidence for how the motions and complex interactions of air masses result in changes in weather conditions. [Climate] [ESE]"
+          },
+          {
+           "code": "MS-ESS2-6",
+           "text": "Develop and use a model to describe how unequal heating and rotation of the Earth cause patterns of atmospheric and oceanic circulation that determine regional climates. [Climate] [ESE]"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "earth-and-human-activity",
+     "title": "Earth and Human Activity",
+     "topics": [
+      {
+       "id": "how-is-the-availability-of-needed-natural-resour",
+       "title": "How is the availability of needed natural resources related to naturally occurring processes? How can natural hazards be predicted? How do human activities affect Earth systems? How do we know our global climate is changing?",
+       "subtopics": [
+        {
+         "id": "use-data-and-evidence-to-construct-explanations-",
+         "title": "Use data and evidence to construct explanations about the impact of human activities on Earth systems. Apply this understanding to engineer methods for monitoring and minimizing a human impact on the environment",
+         "outcomes": [
+          {
+           "code": "MS-ESS3-1",
+           "text": "Construct a scientific explanation based on evidence for how the uneven distributions of Earth’s mineral, energy, and groundwater resources are the result of past and current geoscience processes. [ESE]"
+          },
+          {
+           "code": "MS-ESS3-2",
+           "text": "Analyze and interpret data on natural hazards to forecast future catastrophic events and inform the development of technologies to mitigate their effects. [Climate] [ESE]"
+          },
+          {
+           "code": "MS-ESS3-3",
+           "text": "Apply scientific principles to design a method for monitoring and minimizing a human impact on the environment. [Climate] [Engineering] [ESE]"
+          },
+          {
+           "code": "MS-ESS3-4",
+           "text": "Construct an argument supported by evidence for how increases in human population and percapita consumption of natural resources impact Earth’s systems. [Climate] [ESE]"
+          },
+          {
+           "code": "MS-ESS3-5",
+           "text": "Ask questions to clarify evidence of the factors that have caused climate change over the past century. [Climate] [ESE]"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "6-8-engineering-technology-and-applications-of-s",
+     "title": "6–8 Engineering, Technology, and Applications of Science",
+     "topics": [
+      {
+       "id": "use-modeling-investigation-and-data-to-design-ev",
+       "title": "Use modeling, investigation, and data to design, evaluate, and refine solutions to a problem that can be solved through engineering; include impacts on people and the natural environment and use systemic strategies to ensure solutions meet criteria and constraints",
+       "subtopics": [
+        {
+         "id": "use-modeling-investigation-and-data-to-design-ev",
+         "title": "Use modeling, investigation, and data to design, evaluate, and refine solutions to a problem that can be solved through engineering; include impacts on people and the natural environment and use systemic strategies to ensure solutions meet criteria and constraints",
+         "outcomes": [
+          {
+           "code": "MS-ETS1-1",
+           "text": "Define the criteria and constraints of a design problem with sufficient precision to ensure a successful solution, taking into account relevant scientific principles and potential impacts on people and the natural environment that may limit possible solutions. [Climate] [ESE]"
+          },
+          {
+           "code": "MS-ETS1-2",
+           "text": "Evaluate competing design solutions using a systematic process to determine how well they meet the criteria and constraints of the problem. [ESE]"
+          },
+          {
+           "code": "MS-ETS1-3",
+           "text": "Analyze data from tests to determine similarities and differences among several design solutions to identify the best characteristics of each that can be combined into a new solution to better meet the criteria for success. [ESE]"
+          },
+          {
+           "code": "MS-ETS1-4",
+           "text": "Develop a model to generate data for iterative testing and modification of a proposed object, tool, or process such that an optimal design can be achieved. [ESE]"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "environmental-and-sustainability-education",
+     "title": "Environmental and Sustainability Education",
+     "topics": [
+      {
+       "id": "demonstrate-understanding-of-the-connections-bet",
+       "title": "Demonstrate understanding of the connections between ecological, social, and economic systems by designing and implementing civic engagement projects that address environmental justice and sustainability issues across different scales",
+       "subtopics": [
+        {
+         "id": "demonstrate-understanding-of-the-connections-bet",
+         "title": "Demonstrate understanding of the connections between ecological, social, and economic systems by designing and implementing civic engagement projects that address environmental justice and sustainability issues across different scales",
+         "outcomes": [
+          {
+           "code": "MS.ESE.1-1",
+           "text": "Apply understanding of ecological, social, and economic systems to develop and communicate solutions for environmental issues at local, regional, national, and tribal scales."
+          },
+          {
+           "code": "MS.ESE.1-2",
+           "text": "Design an investigation to gather, analyze, and present data about how the built environment of the local community improves or reduces environmental quality (e.g. impacts on/benefits to water quality, air quality, biodiversity, waste)."
+          },
+          {
+           "code": "MS.ESE.1-3",
+           "text": "Conduct a project that specifies a local environmental problem, identifies solution paths, solves the problem, and reports results in a way that demonstrates individual knowledge, attitudes, and an understanding of personal and civic responsibility for environmental justice and sustainable communities."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "9-12",
+   "units": [
+    {
+     "id": "matter-and-its-interactions",
+     "title": "Matter and its Interactions",
+     "topics": [
+      {
+       "id": "how-can-one-explain-the-structure-properties-and",
+       "title": "How can one explain the structure, properties, and interactions of matter?",
+       "subtopics": [
+        {
+         "id": "develop-and-use-models-of-atomic-structures-and-",
+         "title": "Develop and use models of atomic structures and patterns in data to understand the chemical properties of matter including outcomes of chemical reactions, nuclear reactions, and structures of substances. Apply this understanding to the energy of reactions, including rates and equilibrium with a refined design to increase the products of a reaction",
+         "outcomes": [
+          {
+           "code": "HS-PS1-1",
+           "text": "Use the periodic table as a model to predict the relative properties of elements based on the patterns of electrons in the outermost energy level of atoms."
+          },
+          {
+           "code": "HS-PS1-2",
+           "text": "Construct and revise an explanation for the outcome of a simple chemical reaction based on the outermost electron states of atoms, trends in the periodic table, and knowledge of the patterns of chemical properties."
+          },
+          {
+           "code": "HS-PS1-3",
+           "text": "Plan and conduct an investigation to gather evidence to compare the structure of substances at the bulk scale to infer the strength of electrical forces between particles."
+          },
+          {
+           "code": "HS-PS1-4",
+           "text": "Develop a model to illustrate that the release or absorption of energy from a chemical reaction system depends upon the changes in total bond energy."
+          },
+          {
+           "code": "HS-PS1-5",
+           "text": "Apply scientific principles and evidence to provide an explanation about the effects of changing the temperature or concentration of the reacting particles on the rate at which the reaction occurs. [ESE]"
+          },
+          {
+           "code": "HS-PS1-6",
+           "text": "Refine the design of a chemical system by specifying a change in conditions that would produce increased amounts of products at equilibrium. [Engineering]"
+          },
+          {
+           "code": "HS-PS1-7",
+           "text": "Use mathematical representations to support the claim that atoms, and therefore mass, are conserved during a chemical reaction."
+          },
+          {
+           "code": "HS-PS1-8",
+           "text": "Develop model to illustrate the changes in composition of the nucleus of the atom and the energy released during the processes of fission, fusion, and radioactive decay."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "motion-and-stability-forces-and-interactions",
+     "title": "Motion and Stability: Forces and Interactions",
+     "topics": [
+      {
+       "id": "how-can-one-explain-and-predict-interactions-bet",
+       "title": "How can one explain and predict interactions between objects and within systems of objects?",
+       "subtopics": [
+        {
+         "id": "plan-an-investigation-collect-data-and-use-repre",
+         "title": "Plan an investigation, collect data, and use representations to create claims about relationships between net force, mass, and acceleration of a single object and about gravitational and electrostatic forces between objects, including magnets. Apply this understanding to systems of objects, designed materials, and collisions",
+         "outcomes": [
+          {
+           "code": "HS-PS2-1",
+           "text": "Analyze data to support the claim that Newton’s second law of motion describes the mathematical relationship among the net force on a macroscopic object, its mass, and its acceleration."
+          },
+          {
+           "code": "HS-PS2-2",
+           "text": "Use mathematical representations to support the claim that the total momentum of a system of objects is conserved when there is no net force on the system."
+          },
+          {
+           "code": "HS-PS2-3",
+           "text": "Apply scientific and engineering ideas to design, evaluate, and refine a device that minimizes the force on a macroscopic object during a collision. [Engineering]"
+          },
+          {
+           "code": "HS-PS2-4",
+           "text": "Use mathematical representations of Newton’s Law of Gravitation and Coulomb’s Law to describe and predict the gravitational and electrostatic forces between objects."
+          },
+          {
+           "code": "HS-PS2-5",
+           "text": "Plan and conduct an investigation to provide evidence that an electric current can produce a magnetic field and that a changing magnetic field can produce an electric current."
+          },
+          {
+           "code": "HS-PS2-6",
+           "text": "Communicate scientific and technical information about why the molecular-level structure is important in the functioning of designed materials. [Engineering]"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "energy",
+     "title": "Energy",
+     "topics": [
+      {
+       "id": "how-is-energy-transferred-and-conserved",
+       "title": "How is energy transferred and conserved?",
+       "subtopics": [
+        {
+         "id": "use-models-and-investigations-to-represent-and-u",
+         "title": "Use models and investigations to represent and understand the energy within objects and energy changes in systems. Apply this understanding through engineering a device that converts energy between forms and by relating how fields can change the energy of an object",
+         "outcomes": [
+          {
+           "code": "HS-PS3-1",
+           "text": "Create a computational model to calculate the change in the energy of one component in a system when the change in energy of the other component(s) and energy flows in and out of the system are known."
+          },
+          {
+           "code": "HS-PS3-2",
+           "text": "Develop and use models to illustrate that energy at the macroscopic scale can be accounted for as a combination of energy associated with the motions of particles (objects) and energy associated with the relative positions of particles (objects)."
+          },
+          {
+           "code": "HS-PS3-3",
+           "text": "Design, build, and refine a device that works within given constraints to convert one form of energy into another form of energy. [Engineering] [ESE]"
+          },
+          {
+           "code": "HS-PS3-4",
+           "text": "Plan and conduct an investigation to provide evidence that the transfer of thermal energy when two components of different temperature are combined within a closed system results in a more uniform energy distribution among the components in the system (second law of thermodynamics)."
+          },
+          {
+           "code": "HS-PS3-5",
+           "text": "Develop and use a model of two objects interacting through electric or magnetic fields to illustrate the forces between objects and the changes in energy of the objects due to the interaction."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "waves-and-their-applications-in-technologies-for",
+     "title": "Waves and Their Applications in Technologies for Information Transfer",
+     "topics": [
+      {
+       "id": "how-are-waves-used-to-transfer-energy-and-send-a",
+       "title": "How are waves used to transfer energy and send and store information?",
+       "subtopics": [
+        {
+         "id": "evaluate-the-validity-and-reliability-of-claims-",
+         "title": "Evaluate the validity and reliability of claims behind the idea that electromagnetic radiation can be described by a wave model and a particle model, the effects different frequencies of electromagnetic radiation have when absorbed by matter, and how the interactions of electromagnetic radiation with matter can be used by technological devices to capture, store, and transmit information and energy",
+         "outcomes": [
+          {
+           "code": "HS-PS4-1",
+           "text": "Use mathematical representations to support a claim regarding relationships among the frequency, wavelength, and speed of waves traveling in various media."
+          },
+          {
+           "code": "HS-PS4-2",
+           "text": "Evaluate questions about the advantages of using digital transmission and storage of information."
+          },
+          {
+           "code": "HS-PS4-3",
+           "text": "Evaluate the claims, evidence, and reasoning behind the idea that electromagnetic radiation can be described either by a wave model or a particle model, and that for some situations one model is more useful than the other."
+          },
+          {
+           "code": "HS-PS4-4",
+           "text": "Evaluate the validity and reliability of claims in published materials of the effects that different frequencies of electromatic radiation have when absorbed by matter. [Climate]"
+          },
+          {
+           "code": "HS-PS4-5",
+           "text": "Communicate technical information about how some technological devices use the principles of wave behavior and wave interactions with matter to transmit and capture information and energy. [Engineering]"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "from-molecule-to-organisms-structures-and-proces",
+     "title": "From Molecule to Organisms: Structures and Processes",
+     "topics": [
+      {
+       "id": "how-do-organisms-live-and-grow",
+       "title": "How do organisms live and grow?",
+       "subtopics": [
+        {
+         "id": "use-evidence-and-develop-models-to-explain-the-f",
+         "title": "Use evidence and develop models to explain the functioning of cells within organisms, including how cells use matter to create structures like proteins and more cells, and how cells transfer, store, and use energy",
+         "outcomes": [
+          {
+           "code": "HS-LS1-1",
+           "text": "Construct an explanation based on evidence for how the structure of DNA determines the structure of proteins which carry out the essential functions of life through systems of specialized cells."
+          },
+          {
+           "code": "HS-LS1-2",
+           "text": "Develop and use a model to illustrate the hierarchical organization of interacting systems that provide specific functions within multicellular organisms."
+          },
+          {
+           "code": "HS-LS1-3",
+           "text": "Plan and conduct an investigation to provide evidence that feedback mechanisms maintain homeostasis."
+          },
+          {
+           "code": "HS-LS1-4",
+           "text": "Use a model to illustrate the role of cellular division (mitosis) and differentiation in producing and maintaining complex organisms."
+          },
+          {
+           "code": "HS-LS1-5",
+           "text": "Use a model to illustrate how photosynthesis transforms light energy into stored chemical energy."
+          },
+          {
+           "code": "HS-LS1-6",
+           "text": "Construct and revise an explanation based on evidence for how carbon, hydrogen, and oxygen from sugar molecules may combine with other elements to form amino acids and/or other large carbon-based molecules."
+          },
+          {
+           "code": "HS-LS1-7",
+           "text": "Use a model to illustrate that cellular respiration is a chemical process whereby the bonds of food molecules and oxygen molecules are broken and the bonds in new compounds are formed resulting in a net transfer of energy."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "ecosystems-interactions-energy-and-dynamics",
+     "title": "Ecosystems: Interactions, Energy, and Dynamics",
+     "topics": [
+      {
+       "id": "how-and-why-do-organisms-interact-with-their-env",
+       "title": "How and why do organisms interact with their environment, and what are the effects of these interactions?",
+       "subtopics": [
+        {
+         "id": "use-mathematical-representations-and-models-to-u",
+         "title": "Use mathematical representations and models to understand stability and change within ecosystems, considering the cycling of energy and matter, biodiversity, and carrying capacity. Apply this understanding to design a solution that would reduce human impacts on an ecosystem",
+         "outcomes": [
+          {
+           "code": "HS-LS2-1",
+           "text": "Use mathematical and/or computational representations to support explanations of factors that affect carrying capacity of ecosystems at different scales. [Climate] [ESE]"
+          },
+          {
+           "code": "HS-LS2-2",
+           "text": "Use mathematical representations to support and revise explanations based on evidence about factors affecting biodiversity and populations in ecosystems of different scales. [Climate] [ESE]"
+          },
+          {
+           "code": "HS-LS2-3",
+           "text": "Construct and revise an explanation based on evidence for the cycling of matter and flow of energy in aerobic and anaerobic conditions. [ESE]"
+          },
+          {
+           "code": "HS-LS2-4",
+           "text": "Use mathematical representations to support claims or the cycling of matter and flow of energy among organisms in an ecosystem. [Climate] [ESE]"
+          },
+          {
+           "code": "HS-LS2-5",
+           "text": "Develop a model to illustrate the role of photosynthesis and cellular respiration in the cycling of carbon among the biosphere, atmosphere, hydrosphere, and geosphere. [Climate] [ESE]"
+          },
+          {
+           "code": "HS-LS2-6",
+           "text": "Evaluate claims, evidence, and reasoning that the complex interactions in ecosystems maintain relatively consistent numbers and types of organisms in stable conditions, but changing conditions may result in a new ecosystem. [Climate] [ESE]"
+          },
+          {
+           "code": "HS-LS2-7",
+           "text": "Design, evaluate, and refine a solution for reducing the impacts of human activities on the environment and biodiversity. [Climate] [Engineering] [ESE]"
+          },
+          {
+           "code": "HS-LS2-8",
+           "text": "Evaluate the evidence for the role of group behavior on individual and species’ chances to survive and reproduce."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "heredity-inheritance-and-variation-of-traits",
+     "title": "Heredity: Inheritance and Variation of Traits",
+     "topics": [
+      {
+       "id": "how-are-characteristics-of-one-generation-passed",
+       "title": "How are characteristics of one generation passed to the next? How can individuals of the same species and even siblings have different characteristics?",
+       "subtopics": [
+        {
+         "id": "ask-questions-and-create-claims-to-understand-th",
+         "title": "Ask questions and create claims to understand the relationship between traits in an organism and the role of DNA in inheriting expressed traits. Apply this understanding with concepts of statistics to explain the variation of traits in a population",
+         "outcomes": [
+          {
+           "code": "HS-LS3-1",
+           "text": "Ask questions to clarify relationships about the role of DNA and chromosomes in coding the instructions for characteristic traits passed from parents to offspring."
+          },
+          {
+           "code": "HS-LS3-2",
+           "text": "Make and defend a claim based on evidence that inheritable genetic variations may result from: (1) new genetic combinations through meiosis, (2) viable errors occurring during replication, and/or (3) mutations caused by environmental factors. [ESE]"
+          },
+          {
+           "code": "HS-LS3-3",
+           "text": "Apply concepts of statistics and probability to explain the variation and distribution of expressed traits in a population."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "biological-evolution-unity-and-diversity",
+     "title": "Biological Evolution: Unity and Diversity",
+     "topics": [
+      {
+       "id": "what-evidence-shows-that-different-species-are-r",
+       "title": "What evidence shows that different species are related?",
+       "subtopics": [
+        {
+         "id": "use-data-evidence-and-mathematical-reasoning-to-",
+         "title": "Use data, evidence, and mathematical reasoning to explain the process of evolution via natural selection. Apply this understanding to a solution to mitigate the adverse impacts of human activity on biodiversity",
+         "outcomes": [
+          {
+           "code": "HS-LS4-1",
+           "text": "Communicate scientific information that common ancestry and biological evolution are supported by multiple lines of empirical evidence."
+          },
+          {
+           "code": "HS-LS4-2",
+           "text": "Construct an explanation based on evidence that the process of evolution primarily results from four factors: (1) the potential for a species to increase in number, (2) the heritable genetic variation of individuals in a species due to mutation and sexual reproduction, (3) competition for limited resources, and (4) the proliferation of those organisms that are better able to survive and reproduce in the environment. [ESE]"
+          },
+          {
+           "code": "HS-LS4-3",
+           "text": "Apply concepts of statistics and probability to support explanations that organisms with an advantageous heritable trait tend to increase in proportion to organisms lacking this trait."
+          },
+          {
+           "code": "HS-LS4-4",
+           "text": "Construct an explanation based on evidence for how natural selection leads to adaptation of populations."
+          },
+          {
+           "code": "HS-LS4-5",
+           "text": "Evaluate the evidence supporting claims that changes in environmental conditions may result in (1) increases in the number of individuals of some species, (2) the emergence of new species over time, and (3) the extinction of other species. [Climate] [ESE]"
+          },
+          {
+           "code": "HS-LS4-6",
+           "text": "Create or revise a simulation to test a solution to mitigate adverse impacts of human activity on biodiversity. [Climate] [Engineering] [ESE]"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "earth-s-place-in-the-universe",
+     "title": "Earth’s Place in the Universe",
+     "topics": [
+      {
+       "id": "what-is-earth-s-place-in-the-universe-what-makes",
+       "title": "What is Earth’s place in the Universe? What makes up our solar system and how can the motion of Earth explain seasons and eclipses? How do people figure out that the Earth and life on Earth have changed through time?",
+       "subtopics": [
+        {
+         "id": "use-mathematical-and-computational-thinking-to-q",
+         "title": "Use mathematical and computational thinking to qualitatively predict the motion of objects in the solar system, describe that the processes and elements produced within stars depend on the mass and age of the star, and apply evidence to construct an account of Earth’s formation and early history",
+         "outcomes": [
+          {
+           "code": "HS-ESS1-1",
+           "text": "Develop a model based on evidence to illustrate the life span of the sun and the role of nuclear fusion in the sun’s core to release energy in the form of radiation."
+          },
+          {
+           "code": "HS-ESS1-2",
+           "text": "Construct an explanation of the Big Bang theory based on astronomical evidence of light spectra, motion of distant galaxies, and composition of matter in the universe."
+          },
+          {
+           "code": "HS-ESS1-3",
+           "text": "Communicate scientific ideas about the way stars, over their life cycle, produce elements."
+          },
+          {
+           "code": "HS-ESS1-4",
+           "text": "Use mathematical or computational representations to predict the motion of orbiting objects in the solar system."
+          },
+          {
+           "code": "HS-ESS1-5",
+           "text": "Evaluate evidence of the past and current movements of continental and oceanic crust and the theory of plate tectonics to explain the ages of crustal rocks."
+          },
+          {
+           "code": "HS-ESS1-6",
+           "text": "Apply scientific reasoning and evidence from ancient Earth materials, meteorites, and other planetary surfaces to construct an account of Earth’s formation and early history."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "earth-s-systems",
+     "title": "Earth’s Systems",
+     "topics": [
+      {
+       "id": "how-do-the-materials-in-and-on-earth-s-crust-cha",
+       "title": "How do the materials in and on Earth’s crust change over time? How does the movement of tectonic plates impact the surface of Earth? How does water influence weather, circulate in the oceans, and shape Earth’s surface? What factors interact and influence weather? How have living organisms changed the Earth and how have Earth’s changing conditions impacted living organisms?",
+       "subtopics": [
+        {
+         "id": "develop-and-use-models-based-on-data-and-evidenc",
+         "title": "Develop and use models based on data and evidence to describe how changes in Earth’s internal and surface processes, especially climate, are caused by variations in energy flow into and out of Earth's systems at different size and time scales",
+         "outcomes": [
+          {
+           "code": "HS-ESS2-1",
+           "text": "Develop a model to illustrate how Earth’s internal and surface processes operate at different spatial and temporal scales to form continental and ocean-floor features."
+          },
+          {
+           "code": "HS-ESS2-2",
+           "text": "Analyze geoscience data to make the claim that one change to Earth’s surface can create feedbacks that cause changes to other Earth systems. [ESE]"
+          },
+          {
+           "code": "HS-ESS2-3",
+           "text": "Develop a model based on evidence of Earth’s interior to describe the cycling of matter by thermal convection."
+          },
+          {
+           "code": "HS-ESS2-4",
+           "text": "Use a model to describe how variation in the flow of energy into and out of Earth’s systems result in changes in climate. [Climate] [ESE]"
+          },
+          {
+           "code": "HS-ESS2-5",
+           "text": "Plan and conduct an investigation of the properties of water and its effects on Earth materials and surface processes. [ESE]"
+          },
+          {
+           "code": "HS-ESS2-6",
+           "text": "Develop a quantitative model to describe the cycling of carbon among the hydrosphere, atmosphere, geosphere, and biosphere. [Climate] [ESE]"
+          },
+          {
+           "code": "HS-ESS2-7",
+           "text": "Construct an argument based on evidence about the simultaneous coevolution of Earth’s systems and life on Earth."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "earth-and-human-activity",
+     "title": "Earth and Human Activity",
+     "topics": [
+      {
+       "id": "how-is-the-availability-of-needed-natural-resour",
+       "title": "How is the availability of needed natural resources related to naturally occurring processes? How can natural hazards be predicted? How do human activities affect Earth systems? How do we know our global climate is changing?",
+       "subtopics": [
+        {
+         "id": "use-computational-representations-based-on-evide",
+         "title": "Use computational representations based on evidence to explain how human activity modifies relationships between and among Earth’s systems and human activity and to predict how the rate of a changing climate can impact Earth’s systems and human activity. Apply this understanding to solutions that reduce the impacts of human activities on natural systems",
+         "outcomes": [
+          {
+           "code": "HS-ESS3-1",
+           "text": "Construct an explanation based on evidence for how the availability of natural resources, occurrence of natural hazards, and changes in climate have influenced human activity. [Climate] [ESE]"
+          },
+          {
+           "code": "HS-ESS3-1",
+           "text": "Evaluate competing design solutions for developing, managing, and utilizing energy and mineral resources based on cost-benefit ratios. [Climate] [Engineering] [ESE]"
+          },
+          {
+           "code": "HS-ESS3-1",
+           "text": "Create a computational simulation to illustrate the relationships among the management of natural resources, the sustainability of human populations, and biodiversity. [ESE]"
+          },
+          {
+           "code": "HS-ESS3-1",
+           "text": "Evaluate or refine a technological solution that reduces impacts of human activities on natural systems. [Climate] [Engineering] [ESE]"
+          },
+          {
+           "code": "HS-ESS3-1",
+           "text": "Analyze geoscience data and results from global climate models to make an evidence-based forecast of the current rate of global or regional climate change and associated future impacts to Earth’s systems. [Climate] [ESE]"
+          },
+          {
+           "code": "HS-ESS3-1",
+           "text": "Use computational representation to illustrate the relationship among Earth systems and how those relationships are being modified due to human activity. [ESE]"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "use-modeling-investigation-and-data-to-design-ev",
+     "title": "Use modeling, investigation, and data to design, evaluate, and refine solutions to complex problems that can be solved through engineering; consider real-world criteria such as social, cultural, and environmental impacts in addition to constraints such as safety and reliability",
+     "topics": [
+      {
+       "id": "use-modeling-investigation-and-data-to-design-ev",
+       "title": "Use modeling, investigation, and data to design, evaluate, and refine solutions to complex problems that can be solved through engineering; consider real-world criteria such as social, cultural, and environmental impacts in addition to constraints such as safety and reliability",
+       "subtopics": [
+        {
+         "id": "use-modeling-investigation-and-data-to-design-ev",
+         "title": "Use modeling, investigation, and data to design, evaluate, and refine solutions to complex problems that can be solved through engineering; consider real-world criteria such as social, cultural, and environmental impacts in addition to constraints such as safety and reliability",
+         "outcomes": [
+          {
+           "code": "HS-ETS-1-1",
+           "text": "Analyze a major global challenge to specify qualitative and quantitative criteria and constraints for solutions that account for societal needs and wants. [Climate] [ESE]"
+          },
+          {
+           "code": "HS-ETS-1-2",
+           "text": "Design a solution to a complex real-world problem by breaking it down into smaller, more manageable problems that can be solved through engineering. [Climate] [ESE]"
+          },
+          {
+           "code": "HS-ETS-1-3",
+           "text": "Evaluate a solution to a complex real-world problem based on prioritized criteria and trade-offs that account for a range of constraints, including cost, safety, reliability, and aesthetics as well as possible social, cultural, and environmental impacts. [Climate] [ESE]"
+          },
+          {
+           "code": "HS-ETS-1-4",
+           "text": "Use a computer simulation to model the impact of proposed solutions to a complex real-world problem with numerous criteria and constraints on interactions within and between systems relevant to the problem. [Climate] [ESE]"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "how-can-humans-work-with-nature-to-design-sustai",
+     "title": "How can humans work with nature to design sustainable systems that benefit the environment, economy, and society for factors like public health, access to nature, and future access to natural resources?",
+     "topics": [
+      {
+       "id": "engage-in-place-based-learning-to-understand-how",
+       "title": "Engage in place-based learning to understand how the natural world, urban systems, and the economy interact, and through project-based learning, identify and address environmental problems to support equitable and sustainable systems in scales from local to global",
+       "subtopics": [
+        {
+         "id": "engage-in-place-based-learning-to-understand-how",
+         "title": "Engage in place-based learning to understand how the natural world, urban systems, and the economy interact, and through project-based learning, identify and address environmental problems to support equitable and sustainable systems in scales from local to global",
+         "outcomes": [
+          {
+           "code": "HS.ESE.1-1",
+           "text": "Apply understanding of ecological, social, and economic systems to develop and communicate solutions for environmental issues at local, regional, national, tribal, and global scales."
+          },
+          {
+           "code": "HS.ESE.1-2",
+           "text": "Engage in place-based inquiry to gather, analyze, and evaluate information, modeling connections that explain one or more ways that humans can support natural and human-built environments for environmental sustainability or climate change resiliency."
+          },
+          {
+           "code": "HS.ESE.1-3",
+           "text": "Conduct a project that specifies a local influence on a global environmental problem, identifies solution paths, takes steps to solve the problem, and reports results to demonstrate the knowledge, attitudes, and understanding of personal and civic responsibility required to ensure environmental justice and sustainable communities."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "build": {
+  "builtAt": "2026-10-14T16:20:50.867Z",
+  "model": "none",
+  "usd": 0,
+  "expectedCodes": 226,
+  "coverage": 1,
+  "missingCodes": [],
+  "counts": {
+   "grades": 8,
+   "units": 57,
+   "topics": 66,
+   "subtopics": 73,
+   "outcomes": 251
+  },
+  "warnings": []
+ }
+}

@@ -1,0 +1,700 @@
+{
+ "id": "us-ar-health",
+ "region": "US",
+ "framework": "Arkansas state academic standards: Health Education",
+ "board": null,
+ "qualification": "K-12",
+ "subject": "Health Education",
+ "syllabusCode": null,
+ "gradeSystem": "grade",
+ "source": {
+  "urls": [
+   "https://api.commonstandardsproject.com/api/v1/jurisdictions/2E9F2A0F3440479492D152F02F081AF1",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/BF91BD5E65464F1BBBA6E773E4DA611C",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/252F0D89AE59418199DD8BF7B88BF3EC",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/A844EE313A9349E3AE8C6CD27049ADF0",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/C0DBA0B672DF4D1385884E5006D37F16"
+  ],
+  "publisher": "Arkansas state education agency (machine-readable via Common Standards Project / ASN)",
+  "licence": "CC BY 4.0 US, Common Curriculum, Inc.",
+  "firstExam": "2019"
+ },
+ "grades": [
+  {
+   "grade": "K-2",
+   "units": [
+    {
+     "id": "human-growth-and-development",
+     "title": "Human Growth and Development",
+     "topics": [
+      {
+       "id": "students-will-demonstrate-the-ability-to-apply-t",
+       "title": "Students will demonstrate the ability to apply their understanding of human growth and development, including awareness of their own and others’, related to body systems",
+       "subtopics": [
+        {
+         "id": "students-will-demonstrate-the-ability-to-apply-t",
+         "title": "Students will demonstrate the ability to apply their understanding of human growth and development, including awareness of their own and others’, related to body systems",
+         "outcomes": [
+          {
+           "code": "1.A",
+           "text": "I can name different parts of the body and describe physical characteristics that make us unique."
+          },
+          {
+           "code": "1.B",
+           "text": "I can distinguish different body parts, including main organs of the body, and tell what those parts do."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "healthy-skills-and-relationships",
+     "title": "Healthy Skills and Relationships",
+     "topics": [
+      {
+       "id": "students-will-demonstrate-healthy-relationships-",
+       "title": "Students will demonstrate healthy relationships and interaction with others, utilize effective communication skills (verbal, non-verbal, and online), and differentiate between healthy and unhealthy behaviors, and how those behaviors impact relationships with peers and adults",
+       "subtopics": [
+        {
+         "id": "students-will-demonstrate-healthy-relationships-",
+         "title": "Students will demonstrate healthy relationships and interaction with others, utilize effective communication skills (verbal, non-verbal, and online), and differentiate between healthy and unhealthy behaviors, and how those behaviors impact relationships with peers and adults",
+         "outcomes": [
+          {
+           "code": "2.A1",
+           "text": "I can demonstrate a respect of personal space for myself and others."
+          },
+          {
+           "code": "2.A2",
+           "text": "I can recognize different emotions and respond to others as needed."
+          },
+          {
+           "code": "2.B1",
+           "text": "I can demonstrate respect for peers and adults through appropriate communication."
+          },
+          {
+           "code": "2.B2",
+           "text": "I can identify different emotions and illustrate how to interact with others in different settings."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "nutrition",
+     "title": "Nutrition",
+     "topics": [
+      {
+       "id": "students-will-apply-concepts-of-how-food-choices",
+       "title": "Students will apply concepts of how food choices impact the overall health of self and others, and investigate how different types of eating disorders damage body systems",
+       "subtopics": [
+        {
+         "id": "students-will-apply-concepts-of-how-food-choices",
+         "title": "Students will apply concepts of how food choices impact the overall health of self and others, and investigate how different types of eating disorders damage body systems",
+         "outcomes": [
+          {
+           "code": "3.A",
+           "text": "I can identify and choose healthy snacks."
+          },
+          {
+           "code": "3.B",
+           "text": "I can identify the food groups and discuss the importance of choosing foods from each group."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "alcohol-tobacco-and-other-drugs",
+     "title": "Alcohol, Tobacco, and Other Drugs",
+     "topics": [
+      {
+       "id": "students-will-investigate-healthy-and-unhealthy-",
+       "title": "Students will investigate healthy and unhealthy behaviors related to alcohol, tobacco, and other drugs, while understanding the physical, psychological, and legal consequences for self and others",
+       "subtopics": [
+        {
+         "id": "students-will-investigate-healthy-and-unhealthy-",
+         "title": "Students will investigate healthy and unhealthy behaviors related to alcohol, tobacco, and other drugs, while understanding the physical, psychological, and legal consequences for self and others",
+         "outcomes": [
+          {
+           "code": "4.A",
+           "text": "I can discuss appropriate use of medications, including taking medicine from reliable adults and following directions."
+          },
+          {
+           "code": "4.B",
+           "text": "I can identify the effects of alcohol and tobacco use that make them harmful to self and others."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "personal-health-and-safety",
+     "title": "Personal Health and Safety",
+     "topics": [
+      {
+       "id": "students-will-promote-physical-social-and-emotio",
+       "title": "Students will promote physical, social, and emotional health for self and others",
+       "subtopics": [
+        {
+         "id": "students-will-promote-physical-social-and-emotio",
+         "title": "Students will promote physical, social, and emotional health for self and others",
+         "outcomes": [
+          {
+           "code": "5.A1",
+           "text": "I can identify the role of germs in causing disease and demonstrate ways to prevent spreading them."
+          },
+          {
+           "code": "5.A2",
+           "text": "I can identify safety hazards and demonstrate ways to prevent harm to self and others."
+          },
+          {
+           "code": "5.A3",
+           "text": "I can identify various emotions and how they impact me."
+          },
+          {
+           "code": "5.B1",
+           "text": "I can discuss the relationship between personal hygiene, wellness, and disease prevention."
+          },
+          {
+           "code": "5.B2",
+           "text": "I can demonstrate safety procedures for emergencies at home or at school."
+          },
+          {
+           "code": "5.B3",
+           "text": "I can recognize the relationship between my emotions and the emotions of others."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "3-5",
+   "units": [
+    {
+     "id": "human-growth-and-development",
+     "title": "Human Growth and Development",
+     "topics": [
+      {
+       "id": "students-will-demonstrate-the-ability-to-apply-t",
+       "title": "Students will demonstrate the ability to apply their understanding of human growth and development, including awareness of their own and others’, related to body systems",
+       "subtopics": [
+        {
+         "id": "students-will-demonstrate-the-ability-to-apply-t",
+         "title": "Students will demonstrate the ability to apply their understanding of human growth and development, including awareness of their own and others’, related to body systems",
+         "outcomes": [
+          {
+           "code": "1.C",
+           "text": "I can classify the major functions of the body systems, identify which body parts are in each system, and how to keep my body systems healthy."
+          },
+          {
+           "code": "1.D",
+           "text": "I can distinguish how the body systems mature and how heredity impacts growth and development."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "healthy-skills-and-relationships",
+     "title": "Healthy Skills and Relationships",
+     "topics": [
+      {
+       "id": "students-will-demonstrate-healthy-relationships-",
+       "title": "Students will demonstrate healthy relationships and interaction with others, utilize effective communication skills (verbal, non-verbal, and online), and differentiate between healthy and unhealthy behaviors, and how those behaviors impact relationships with peers and adults",
+       "subtopics": [
+        {
+         "id": "students-will-demonstrate-healthy-relationships-",
+         "title": "Students will demonstrate healthy relationships and interaction with others, utilize effective communication skills (verbal, non-verbal, and online), and differentiate between healthy and unhealthy behaviors, and how those behaviors impact relationships with peers and adults",
+         "outcomes": [
+          {
+           "code": "2.C1",
+           "text": "I can demonstrate appropriate verbal and nonverbal communication skills."
+          },
+          {
+           "code": "2.C2",
+           "text": "I can compare behaviors that demonstrate respect as well as disrespect of self and others."
+          },
+          {
+           "code": "2.D1",
+           "text": "I can predict consequences of healthy and unhealthy behaviors, including their impact on self and others."
+          },
+          {
+           "code": "2.D2",
+           "text": "I can effectively communicate my thoughts and opinions to my peers in a healthy manner."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "nutrition",
+     "title": "Nutrition",
+     "topics": [
+      {
+       "id": "students-will-apply-concepts-of-how-food-choices",
+       "title": "Students will apply concepts of how food choices impact the overall health of self and others, and investigate how different types of eating disorders damage body systems",
+       "subtopics": [
+        {
+         "id": "students-will-apply-concepts-of-how-food-choices",
+         "title": "Students will apply concepts of how food choices impact the overall health of self and others, and investigate how different types of eating disorders damage body systems",
+         "outcomes": [
+          {
+           "code": "3.C",
+           "text": "I can make healthy food choices based on nutritional information."
+          },
+          {
+           "code": "3.D",
+           "text": "I can discuss healthy and unhealthy food intake patterns and the consequences of both."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "alcohol-tobacco-and-other-drugs",
+     "title": "Alcohol, Tobacco, and Other Drugs",
+     "topics": [
+      {
+       "id": "students-will-investigate-healthy-and-unhealthy-",
+       "title": "Students will investigate healthy and unhealthy behaviors related to alcohol, tobacco, and other drugs, while understanding the physical, psychological, and legal consequences for self and others",
+       "subtopics": [
+        {
+         "id": "students-will-investigate-healthy-and-unhealthy-",
+         "title": "Students will investigate healthy and unhealthy behaviors related to alcohol, tobacco, and other drugs, while understanding the physical, psychological, and legal consequences for self and others",
+         "outcomes": [
+          {
+           "code": "4.C",
+           "text": "I can discuss avoidance strategies for alcohol, tobacco, and other drug use."
+          },
+          {
+           "code": "4.D",
+           "text": "I can discuss physical and psychological damage resulting from long-term use of alcohol, tobacco, and other drugs."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "personal-health-and-safety",
+     "title": "Personal Health and Safety",
+     "topics": [
+      {
+       "id": "students-will-promote-physical-social-and-emotio",
+       "title": "Students will promote physical, social, and emotional health for self and others",
+       "subtopics": [
+        {
+         "id": "students-will-promote-physical-social-and-emotio",
+         "title": "Students will promote physical, social, and emotional health for self and others",
+         "outcomes": [
+          {
+           "code": "5.C1",
+           "text": "I can develop strategies for lifetime behavior and activity that promote health and wellness."
+          },
+          {
+           "code": "5.C2",
+           "text": "I can identify people and resources that promote health and safety."
+          },
+          {
+           "code": "5.C3",
+           "text": "I can identify behaviors associated with physical, mental, and verbal abuse and resources that aid in avoiding them."
+          },
+          {
+           "code": "5.D1",
+           "text": "I can recognize potentially abusive situations as a threat to personal safety."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "6-8",
+   "units": [
+    {
+     "id": "human-growth-and-development",
+     "title": "Human Growth and Development",
+     "topics": [
+      {
+       "id": "students-will-demonstrate-the-ability-to-apply-t",
+       "title": "Students will demonstrate the ability to apply their understanding of human growth and development, including awareness of their own and others’, related to body systems",
+       "subtopics": [
+        {
+         "id": "students-will-demonstrate-the-ability-to-apply-t",
+         "title": "Students will demonstrate the ability to apply their understanding of human growth and development, including awareness of their own and others’, related to body systems",
+         "outcomes": [
+          {
+           "code": "1.E1",
+           "text": "I can demonstrate an understanding of how different body systems interact and depend on each other."
+          },
+          {
+           "code": "1.E2",
+           "text": "I can analyze more advanced body systems and the function that they play in overall health."
+          },
+          {
+           "code": "1.F",
+           "text": "I can analyze and discuss physical and emotional changes that occur during puberty and the physical changes that occur within body systems as I mature."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "healthy-skills-and-relationships",
+     "title": "Healthy Skills and Relationships",
+     "topics": [
+      {
+       "id": "students-will-demonstrate-healthy-relationships-",
+       "title": "Students will demonstrate healthy relationships and interaction with others, utilize effective communication skills (verbal, non-verbal, and online), and differentiate between healthy and unhealthy behaviors, and how those behaviors impact relationships with peers and adults",
+       "subtopics": [
+        {
+         "id": "students-will-demonstrate-healthy-relationships-",
+         "title": "Students will demonstrate healthy relationships and interaction with others, utilize effective communication skills (verbal, non-verbal, and online), and differentiate between healthy and unhealthy behaviors, and how those behaviors impact relationships with peers and adults",
+         "outcomes": [
+          {
+           "code": "2.E1",
+           "text": "I can evaluate how inappropriate and risky behaviors as well as poor communication may have negative consequences in relationships."
+          },
+          {
+           "code": "2.E2",
+           "text": "I can identify the dangers and consequences of inappropriate use of technology and social media."
+          },
+          {
+           "code": "2.F",
+           "text": "I can analyze the impact of behaviors and communication on relationships."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "nutrition",
+     "title": "Nutrition",
+     "topics": [
+      {
+       "id": "students-will-apply-concepts-of-how-food-choices",
+       "title": "Students will apply concepts of how food choices impact the overall health of self and others, and investigate how different types of eating disorders damage body systems",
+       "subtopics": [
+        {
+         "id": "students-will-apply-concepts-of-how-food-choices",
+         "title": "Students will apply concepts of how food choices impact the overall health of self and others, and investigate how different types of eating disorders damage body systems",
+         "outcomes": [
+          {
+           "code": "3.E",
+           "text": "I can recognize different types of eating disorders and identify resources for treatment."
+          },
+          {
+           "code": "3.F",
+           "text": "I can develop a personal eating plan that contributes to overall health and well-being."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "alcohol-tobacco-and-other-drugs",
+     "title": "Alcohol, Tobacco, and Other Drugs",
+     "topics": [
+      {
+       "id": "students-will-investigate-healthy-and-unhealthy-",
+       "title": "Students will investigate healthy and unhealthy behaviors related to alcohol, tobacco, and other drugs, while understanding the physical, psychological, and legal consequences for self and others",
+       "subtopics": [
+        {
+         "id": "students-will-investigate-healthy-and-unhealthy-",
+         "title": "Students will investigate healthy and unhealthy behaviors related to alcohol, tobacco, and other drugs, while understanding the physical, psychological, and legal consequences for self and others",
+         "outcomes": [
+          {
+           "code": "4.E",
+           "text": "I can analyze the misuse of and dependency on alcohol, tobacco, and other drugs and identify support and resources for treatment."
+          },
+          {
+           "code": "4.F",
+           "text": "I can evaluate the family, societal, and legal impact of alcohol, tobacco, and other drugs."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "personal-health-and-safety",
+     "title": "Personal Health and Safety",
+     "topics": [
+      {
+       "id": "students-will-promote-physical-social-and-emotio",
+       "title": "Students will promote physical, social, and emotional health for self and others",
+       "subtopics": [
+        {
+         "id": "students-will-promote-physical-social-and-emotio",
+         "title": "Students will promote physical, social, and emotional health for self and others",
+         "outcomes": [
+          {
+           "code": "5.E1",
+           "text": "I can monitor personal feelings and stress and identify strategies, skills, and resources that assist in managing them."
+          },
+          {
+           "code": "5.E2",
+           "text": "I can examine personal feelings and stress that can be a threat to personal safety."
+          },
+          {
+           "code": "5.F1",
+           "text": "I can identify strategies to avoid risk associated with communicable diseases."
+          },
+          {
+           "code": "5.F2",
+           "text": "I can show/model a knowledge of first aid and appropriate response in emergency situations."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "9-12",
+   "units": [
+    {
+     "id": "human-growth-and-development",
+     "title": "Human Growth and Development",
+     "topics": [
+      {
+       "id": "students-will-demonstrate-the-ability-to-apply-t",
+       "title": "Students will demonstrate the ability to apply their understanding of human growth and development, including awareness of their own and others’, related to body systems",
+       "subtopics": [
+        {
+         "id": "students-will-demonstrate-the-ability-to-apply-t",
+         "title": "Students will demonstrate the ability to apply their understanding of human growth and development, including awareness of their own and others’, related to body systems",
+         "outcomes": [
+          {
+           "code": "1.G",
+           "text": "I can analyze growth patterns and developmental changes and examine the factors that interfere with healthy development."
+          },
+          {
+           "code": "1.H",
+           "text": "I can examine factors that are important to human reproduction, including prenatal care, pregnancy, and childbirth, and identify available health resources."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "healthy-skills-and-relationships",
+     "title": "Healthy Skills and Relationships",
+     "topics": [
+      {
+       "id": "students-will-demonstrate-healthy-relationships-",
+       "title": "Students will demonstrate healthy relationships and interaction with others, utilize effective communication skills (verbal, non-verbal, and online), and differentiate between healthy and unhealthy behaviors, and how those behaviors impact relationships with peers and adults",
+       "subtopics": [
+        {
+         "id": "students-will-demonstrate-healthy-relationships-",
+         "title": "Students will demonstrate healthy relationships and interaction with others, utilize effective communication skills (verbal, non-verbal, and online), and differentiate between healthy and unhealthy behaviors, and how those behaviors impact relationships with peers and adults",
+         "outcomes": [
+          {
+           "code": "2.G1",
+           "text": "I can analyze behaviors and attitudes that contribute to healthy relationships."
+          },
+          {
+           "code": "2.G2",
+           "text": "I can identify healthy sexual behavior. I can describe the signs of dating violence"
+          },
+          {
+           "code": "2.H1",
+           "text": "I can compare and contrast characteristics of healthy and unhealthy behaviors and relationships."
+          },
+          {
+           "code": "2.H2",
+           "text": "I can communicate with peers about dating violence."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "nutrition",
+     "title": "Nutrition",
+     "topics": [
+      {
+       "id": "students-will-apply-concepts-of-how-food-choices",
+       "title": "Students will apply concepts of how food choices impact the overall health of self and others, and investigate how different types of eating disorders damage body systems",
+       "subtopics": [
+        {
+         "id": "students-will-apply-concepts-of-how-food-choices",
+         "title": "Students will apply concepts of how food choices impact the overall health of self and others, and investigate how different types of eating disorders damage body systems",
+         "outcomes": [
+          {
+           "code": "3.G",
+           "text": "I can evaluate personal eating habits and patterns for the purpose of determining how I can live a healthy lifestyle as it relates to nutrition."
+          },
+          {
+           "code": "3.H",
+           "text": "I can identify unhealthy nutrition choices in self and others and determine the warning signs of unhealthy choices and disorders related to nutrition."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "alcohol-tobacco-and-other-drugs",
+     "title": "Alcohol, Tobacco, and Other Drugs",
+     "topics": [
+      {
+       "id": "students-will-investigate-healthy-and-unhealthy-",
+       "title": "Students will investigate healthy and unhealthy behaviors related to alcohol, tobacco, and other drugs, while understanding the physical, psychological, and legal consequences for self and others",
+       "subtopics": [
+        {
+         "id": "students-will-investigate-healthy-and-unhealthy-",
+         "title": "Students will investigate healthy and unhealthy behaviors related to alcohol, tobacco, and other drugs, while understanding the physical, psychological, and legal consequences for self and others",
+         "outcomes": [
+          {
+           "code": "4.G",
+           "text": "I can describe the effects of the use of alcohol, tobacco, and other drugs."
+          },
+          {
+           "code": "4.H",
+           "text": "I can analyze substance abuse and identify available resources to combat addiction."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "personal-health-and-safety",
+     "title": "Personal Health and Safety",
+     "topics": [
+      {
+       "id": "students-will-promote-physical-social-and-emotio",
+       "title": "Students will promote physical, social, and emotional health for self and others",
+       "subtopics": [
+        {
+         "id": "students-will-promote-physical-social-and-emotio",
+         "title": "Students will promote physical, social, and emotional health for self and others",
+         "outcomes": [
+          {
+           "code": "5.G1",
+           "text": "I can make choices in different situations that contribute to the overall health of self and others."
+          },
+          {
+           "code": "5.G2",
+           "text": "I can demonstrate an understanding of basic first aid including hands-on CPR, bleeding control, and the use of an AED."
+          },
+          {
+           "code": "5.H",
+           "text": "I can demonstrate an understanding of different procedures and resources that contribute to the health and safety of self and others."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "disease-prevention-and-control",
+     "title": "Disease Prevention and Control",
+     "topics": [
+      {
+       "id": "students-will-demonstrate-understanding-of-healt",
+       "title": "Students will demonstrate understanding of health promotion (physical, social, and emotional) by applying research-related concepts to disease prevention, safety, and advocating for the health and well-being of self and others",
+       "subtopics": [
+        {
+         "id": "students-will-demonstrate-understanding-of-healt",
+         "title": "Students will demonstrate understanding of health promotion (physical, social, and emotional) by applying research-related concepts to disease prevention, safety, and advocating for the health and well-being of self and others",
+         "outcomes": [
+          {
+           "code": "6.G",
+           "text": "I can compare and contrast different methods of disease transmission and prevention, including foodborne illnesses, STDs, and other communicable diseases."
+          },
+          {
+           "code": "6.H",
+           "text": "I can analyze the impact of different communicable and non-communicable diseases on the overall health of self and others."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "mental-and-emotional-health",
+     "title": "Mental and Emotional Health",
+     "topics": [
+      {
+       "id": "students-will-understand-the-components-related-",
+       "title": "Students will understand the components related to mental and emotional health and analyze related behaviors",
+       "subtopics": [
+        {
+         "id": "students-will-understand-the-components-related-",
+         "title": "Students will understand the components related to mental and emotional health and analyze related behaviors",
+         "outcomes": [
+          {
+           "code": "7.G",
+           "text": "I can recognize the importance of good mental health and how it relates and contributes to all other aspects of health."
+          },
+          {
+           "code": "8.G",
+           "text": "I can demonstrate skills and strategies that promote personal and mental health."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "build": {
+  "builtAt": "2026-10-14T16:20:38.931Z",
+  "model": "none",
+  "usd": 0,
+  "expectedCodes": 61,
+  "coverage": 1,
+  "missingCodes": [],
+  "counts": {
+   "grades": 4,
+   "units": 22,
+   "topics": 22,
+   "subtopics": 22,
+   "outcomes": 61
+  },
+  "warnings": []
+ }
+}

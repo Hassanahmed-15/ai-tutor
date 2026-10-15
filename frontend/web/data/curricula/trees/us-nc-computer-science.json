@@ -1,0 +1,2926 @@
+{
+ "id": "us-nc-computer-science",
+ "region": "US",
+ "framework": "North Carolina state academic standards: Computer Science & Technology",
+ "board": null,
+ "qualification": "K-12",
+ "subject": "Computer Science & Technology",
+ "syllabusCode": null,
+ "gradeSystem": "grade",
+ "source": {
+  "urls": [
+   "https://api.commonstandardsproject.com/api/v1/jurisdictions/8A257771396B4F0792EB9D6020CC9089",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/772B6D3522164D8AAA37BAA3D7E700A2",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/204DD7521CBD4046ABF1D7B977953611",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/AD05CA29217E49D5B8FC0A59A23F1826",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/E56E2935D0804A488AF3610EE6BD2C49",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/8DD2F6C0C2F14688A490F7613B15FD49",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/8A257771396B4F0792EB9D6020CC9089_D2400997_grade-06",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/8A257771396B4F0792EB9D6020CC9089_D2400997_grade-07",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/8A257771396B4F0792EB9D6020CC9089_D2400997_grade-08",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/8A257771396B4F0792EB9D6020CC9089_D2400998_grades-09-10-11-12",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/8A257771396B4F0792EB9D6020CC9089_D2400996_grade-01",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/8A257771396B4F0792EB9D6020CC9089_D2400996_grade-02",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/8A257771396B4F0792EB9D6020CC9089_D2400996_grade-03",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/8A257771396B4F0792EB9D6020CC9089_D2400996_grade-04",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/8A257771396B4F0792EB9D6020CC9089_D2400996_grade-05",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/8A257771396B4F0792EB9D6020CC9089_D2400996_grade-k"
+  ],
+  "publisher": "North Carolina state education agency (machine-readable via Common Standards Project / ASN)",
+  "licence": "CC BY 4.0 US, Common Curriculum, Inc.; CC BY 3.0 US, JES & Co.",
+  "firstExam": "2020"
+ },
+ "grades": [
+  {
+   "grade": "K",
+   "units": [
+    {
+     "id": "sources-of-information",
+     "title": "Sources of Information",
+     "topics": [
+      {
+       "id": "classify-useful-sources-of-information",
+       "title": "Classify useful sources of information",
+       "subtopics": [
+        {
+         "id": "classify-useful-sources-of-information",
+         "title": "Classify useful sources of information",
+         "outcomes": [
+          {
+           "code": "K.SI.1.1",
+           "text": "Identify sources of information (e.g., print, non-print, electronic, people)."
+          },
+          {
+           "code": "K.SI.1.2",
+           "text": "Identify the relevant sources of information for a given task."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "informational-text",
+     "title": "Informational Text",
+     "topics": [
+      {
+       "id": "understand-the-difference-between-text-read-for-",
+       "title": "Understand the difference between text read for enjoyment and text read for information",
+       "subtopics": [
+        {
+         "id": "understand-the-difference-between-text-read-for-",
+         "title": "Understand the difference between text read for enjoyment and text read for information",
+         "outcomes": [
+          {
+           "code": "K.IN.1.1",
+           "text": "Understand the meaning of fiction and nonfiction."
+          },
+          {
+           "code": "K.IN.1.2",
+           "text": "Identify resources with appropriate factual information."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "technology-as-a-tool",
+     "title": "Technology as a Tool",
+     "topics": [
+      {
+       "id": "use-technology-tools-and-skills-to-reinforce-cla",
+       "title": "Use technology tools and skills to reinforce classroom concepts and activities",
+       "subtopics": [
+        {
+         "id": "use-technology-tools-and-skills-to-reinforce-cla",
+         "title": "Use technology tools and skills to reinforce classroom concepts and activities",
+         "outcomes": [
+          {
+           "code": "K.TT.1.1",
+           "text": "Use a variety of technology tools to gather data and information (e.g., Web-based resources, e-books, online communication tools, etc.)."
+          },
+          {
+           "code": "K.TT.1.2",
+           "text": "Use a variety of technology tools to organize data and information (e.g., word processor, graphic organizer, audio and visual recording, online collaboration tools, etc.)."
+          },
+          {
+           "code": "K.TT.1.3",
+           "text": "Use technology tools to present data and information (multimedia, audio and visual recording, online collaboration tools, etc.)."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "research-process",
+     "title": "Research Process",
+     "topics": [
+      {
+       "id": "understand-the-importance-of-good-questions-in-c",
+       "title": "Understand the importance of good questions in conducting research",
+       "subtopics": [
+        {
+         "id": "understand-the-importance-of-good-questions-in-c",
+         "title": "Understand the importance of good questions in conducting research",
+         "outcomes": [
+          {
+           "code": "K.RP.1.1",
+           "text": "Identify questions that are relevant for a given topic or purpose."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "safety-and-ethical-issues",
+     "title": "Safety and Ethical Issues",
+     "topics": [
+      {
+       "id": "remember-safety-and-ethical-issues-related-to-th",
+       "title": "Remember safety and ethical issues related to the responsible use of information and technology resources",
+       "subtopics": [
+        {
+         "id": "remember-safety-and-ethical-issues-related-to-th",
+         "title": "Remember safety and ethical issues related to the responsible use of information and technology resources",
+         "outcomes": [
+          {
+           "code": "K.SE.1.1",
+           "text": "Identify examples of responsible use and care of technology hardware and software."
+          },
+          {
+           "code": "K.SE.1.2",
+           "text": "Remember internet safety rules."
+          },
+          {
+           "code": "K.SE.1.3",
+           "text": "Recognize the importance of respect for the work of others."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "1",
+   "units": [
+    {
+     "id": "sources-of-information",
+     "title": "Sources of Information",
+     "topics": [
+      {
+       "id": "recall-useful-sources-of-information",
+       "title": "Recall useful sources of information",
+       "subtopics": [
+        {
+         "id": "recall-useful-sources-of-information",
+         "title": "Recall useful sources of information",
+         "outcomes": [
+          {
+           "code": "1.SI.1.1",
+           "text": "Identify various resources for information (e. g., print, audio-visual, electronic, people)."
+          },
+          {
+           "code": "1.SI.1.2",
+           "text": "Classify resources as relevant for a given purpose and/or topic."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "informational-text",
+     "title": "Informational Text",
+     "topics": [
+      {
+       "id": "understand-the-difference-between-text-read-for-",
+       "title": "Understand the difference between text read for enjoyment and text read for information",
+       "subtopics": [
+        {
+         "id": "understand-the-difference-between-text-read-for-",
+         "title": "Understand the difference between text read for enjoyment and text read for information",
+         "outcomes": [
+          {
+           "code": "1.IN.1.1",
+           "text": "Classify text as nonfiction or fiction."
+          },
+          {
+           "code": "I.IN.1.2",
+           "text": "Compare important facts and minor details."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "technology-as-a-tool",
+     "title": "Technology as a Tool",
+     "topics": [
+      {
+       "id": "use-technology-tools-and-skills-to-reinforce-cla",
+       "title": "Use technology tools and skills to reinforce classroom concepts and activities",
+       "subtopics": [
+        {
+         "id": "use-technology-tools-and-skills-to-reinforce-cla",
+         "title": "Use technology tools and skills to reinforce classroom concepts and activities",
+         "outcomes": [
+          {
+           "code": "1.TT.1.1",
+           "text": "Use a variety of technology tools to gather data and information (e.g., Web-based resources, e-books, online communication tools, etc.)."
+          },
+          {
+           "code": "1.TT.1.2",
+           "text": "Use a variety of technology tools to organize data and information (e.g., word processor, graphic organizer, audio and visual recording, online collaboration tools, etc.)."
+          },
+          {
+           "code": "1.TT.1.3",
+           "text": "Use technology tools to present data and information (multimedia, audio and visual recording, online collaboration tools, etc.)."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "research-process",
+     "title": "Research Process",
+     "topics": [
+      {
+       "id": "remember-the-steps-of-a-simple-or-simplified-res",
+       "title": "Remember the steps of a simple (or simplified) research process",
+       "subtopics": [
+        {
+         "id": "remember-the-steps-of-a-simple-or-simplified-res",
+         "title": "Remember the steps of a simple (or simplified) research process",
+         "outcomes": [
+          {
+           "code": "1.RP.1.1",
+           "text": "Recognize the steps of a simple (or simplified) research process."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "safety-and-ethical-issues",
+     "title": "Safety and Ethical Issues",
+     "topics": [
+      {
+       "id": "understand-safety-and-ethical-issues-related-to-",
+       "title": "Understand safety and ethical issues related to the responsible use of information and technology resources",
+       "subtopics": [
+        {
+         "id": "understand-safety-and-ethical-issues-related-to-",
+         "title": "Understand safety and ethical issues related to the responsible use of information and technology resources",
+         "outcomes": [
+          {
+           "code": "1.SE.1.1",
+           "text": "Use technology hardware and software responsibly."
+          },
+          {
+           "code": "1.SE.1.2",
+           "text": "Explain why safety is important when using the Internet."
+          },
+          {
+           "code": "1.SE.1.3",
+           "text": "Recognize the need to obtain permission or give credit when using intellectual property of others."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "2",
+   "units": [
+    {
+     "id": "sources-of-information",
+     "title": "Sources of Information",
+     "topics": [
+      {
+       "id": "categorize-sources-of-information-as-appropriate",
+       "title": "Categorize sources of information as appropriate or inappropriate",
+       "subtopics": [
+        {
+         "id": "categorize-sources-of-information-as-appropriate",
+         "title": "Categorize sources of information as appropriate or inappropriate",
+         "outcomes": [
+          {
+           "code": "2.SI.1.1",
+           "text": "Classify sources of information as relevant for particular topics or purposes."
+          },
+          {
+           "code": "2.SI.1.2",
+           "text": "Classify resources as current or not current."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "informational-text",
+     "title": "Informational Text",
+     "topics": [
+      {
+       "id": "understand-appropriate-procedures-when-reading-f",
+       "title": "Understand appropriate procedures when reading for enjoyment and information",
+       "subtopics": [
+        {
+         "id": "understand-appropriate-procedures-when-reading-f",
+         "title": "Understand appropriate procedures when reading for enjoyment and information",
+         "outcomes": [
+          {
+           "code": "2.IN.1.1",
+           "text": "Categorize books by their genre characteristics."
+          },
+          {
+           "code": "2.IN.1.2",
+           "text": "Summarize appropriate reading strategies when reading for information."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "technology-as-a-tool",
+     "title": "Technology as a Tool",
+     "topics": [
+      {
+       "id": "use-technology-tools-and-skills-to-reinforce-cla",
+       "title": "Use technology tools and skills to reinforce classroom concepts and activities",
+       "subtopics": [
+        {
+         "id": "use-technology-tools-and-skills-to-reinforce-cla",
+         "title": "Use technology tools and skills to reinforce classroom concepts and activities",
+         "outcomes": [
+          {
+           "code": "2.TT.1.1",
+           "text": "Use a variety of technology tools to gather data and information (e.g., Web-based resources, e-books, online communication tools, etc.)."
+          },
+          {
+           "code": "2.TT.1.2",
+           "text": "Use a variety of technology tools to organize data and information (e.g., word processor, graphic organizer, audio and visual recording, online collaboration tools, etc.)."
+          },
+          {
+           "code": "2.TT.1.3",
+           "text": "Use technology tools to present data and information (multimedia, audio and visual recording, online collaboration tools, etc.)."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "research-process",
+     "title": "Research Process",
+     "topics": [
+      {
+       "id": "apply-the-research-process-by-participating-in-w",
+       "title": "Apply the research process by participating in whole-class research",
+       "subtopics": [
+        {
+         "id": "apply-the-research-process-by-participating-in-w",
+         "title": "Apply the research process by participating in whole-class research",
+         "outcomes": [
+          {
+           "code": "2.RP.1.1",
+           "text": "Execute the steps of a simple research process (three to four steps)."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "safety-and-ethical-issues",
+     "title": "Safety and Ethical Issues",
+     "topics": [
+      {
+       "id": "understand-issues-related-to-the-safe-ethical-an",
+       "title": "Understand issues related to the safe, ethical, and responsible use of information and technology resources",
+       "subtopics": [
+        {
+         "id": "understand-issues-related-to-the-safe-ethical-an",
+         "title": "Understand issues related to the safe, ethical, and responsible use of information and technology resources",
+         "outcomes": [
+          {
+           "code": "2.SE.1.1",
+           "text": "Use technology hardware and software responsibly."
+          },
+          {
+           "code": "2.SE.1.2",
+           "text": "Explain why safe use of electronic resources is important."
+          },
+          {
+           "code": "2.SE.1.3",
+           "text": "Use simple citation rules for print and electronic resources."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "3",
+   "units": [
+    {
+     "id": "sources-of-information",
+     "title": "Sources of Information",
+     "topics": [
+      {
+       "id": "categorize-sources-of-information-for-specific-p",
+       "title": "Categorize sources of information for specific purposes",
+       "subtopics": [
+        {
+         "id": "categorize-sources-of-information-for-specific-p",
+         "title": "Categorize sources of information for specific purposes",
+         "outcomes": [
+          {
+           "code": "3.SI.1.1",
+           "text": "Classify various types of resources as appropriate or inappropriate for purposes."
+          },
+          {
+           "code": "3.SI.1.2",
+           "text": "Classify resources as reliable or not reliable."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "informational-text",
+     "title": "Informational Text",
+     "topics": [
+      {
+       "id": "apply-strategies-that-are-appropriate-when-readi",
+       "title": "Apply strategies that are appropriate when reading for enjoyment and for information",
+       "subtopics": [
+        {
+         "id": "apply-strategies-that-are-appropriate-when-readi",
+         "title": "Apply strategies that are appropriate when reading for enjoyment and for information",
+         "outcomes": [
+          {
+           "code": "3.IN.1.1",
+           "text": "Use visual and literacy cues to locate relevant information in a given text (e.g., bold print, italics, bullets, etc)."
+          },
+          {
+           "code": "3.IN.1.2",
+           "text": "Compare the characteristics of genres to develop diverse reading habits."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "technology-as-a-tool",
+     "title": "Technology as a Tool",
+     "topics": [
+      {
+       "id": "use-technology-tools-and-skills-to-reinforce-cla",
+       "title": "Use technology tools and skills to reinforce classroom concepts and activities",
+       "subtopics": [
+        {
+         "id": "use-technology-tools-and-skills-to-reinforce-cla",
+         "title": "Use technology tools and skills to reinforce classroom concepts and activities",
+         "outcomes": [
+          {
+           "code": "3.TT.1.1",
+           "text": "Use a variety of technology tools to gather data and information (e.g., Web-based resources, e-books, online communication tools, etc.)."
+          },
+          {
+           "code": "3.TT.1.2",
+           "text": "Use a variety of technology tools to organize data and information (e.g., word processor, graphic organizer, audio and visual recording, online collaboration tools, etc.)."
+          },
+          {
+           "code": "3.TT.1.3",
+           "text": "Use technology tools to present data and information (multimedia, audio and visual recording, online collaboration tools, etc.)."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "research-process",
+     "title": "Research Process",
+     "topics": [
+      {
+       "id": "apply-a-research-process-as-part-of-collaborativ",
+       "title": "Apply a research process as part of collaborative research",
+       "subtopics": [
+        {
+         "id": "apply-a-research-process-as-part-of-collaborativ",
+         "title": "Apply a research process as part of collaborative research",
+         "outcomes": [
+          {
+           "code": "3.RP.1.1",
+           "text": "Implement a research process by collaborating effectively with other students."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "safety-and-ethical-issues",
+     "title": "Safety and Ethical Issues",
+     "topics": [
+      {
+       "id": "understand-issues-related-to-the-safe-ethical-an",
+       "title": "Understand issues related to the safe, ethical, and responsible use of information and technology resources",
+       "subtopics": [
+        {
+         "id": "understand-issues-related-to-the-safe-ethical-an",
+         "title": "Understand issues related to the safe, ethical, and responsible use of information and technology resources",
+         "outcomes": [
+          {
+           "code": "3.SE.1.1",
+           "text": "Understand the guidelines for responsible use of technology hardware."
+          },
+          {
+           "code": "3.SE.1.2",
+           "text": "Understand ethical behavior (copyright, not plagiarizing, netiquette) when using resources."
+          },
+          {
+           "code": "3.SE.1.3",
+           "text": "Understand internet safety precautions (personal information, passwords, etc.)."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "4",
+   "units": [
+    {
+     "id": "sources-of-information",
+     "title": "Sources of Information",
+     "topics": [
+      {
+       "id": "apply-criteria-to-determine-appropriate-informat",
+       "title": "Apply criteria to determine appropriate information resources for specific topics and purposes",
+       "subtopics": [
+        {
+         "id": "apply-criteria-to-determine-appropriate-informat",
+         "title": "Apply criteria to determine appropriate information resources for specific topics and purposes",
+         "outcomes": [
+          {
+           "code": "4.SI.1.1",
+           "text": "Use various types of resources to gather information (including print and online media)."
+          },
+          {
+           "code": "4.SI.1.2",
+           "text": "Use relevant sources of information for an assigned task."
+          },
+          {
+           "code": "4.SI.1.3",
+           "text": "Use reliable sources of information."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "informational-text",
+     "title": "Informational Text",
+     "topics": [
+      {
+       "id": "apply-appropriate-strategies-when-reading-for-en",
+       "title": "Apply appropriate strategies when reading for enjoyment and for information",
+       "subtopics": [
+        {
+         "id": "apply-appropriate-strategies-when-reading-for-en",
+         "title": "Apply appropriate strategies when reading for enjoyment and for information",
+         "outcomes": [
+          {
+           "code": "4.IN.1.1",
+           "text": "Implement appropriate reading strategies when reading for information."
+          },
+          {
+           "code": "4.IN.1.2",
+           "text": "Explain the importance of relevant characteristics in various genres."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "technology-as-a-tool",
+     "title": "Technology as a Tool",
+     "topics": [
+      {
+       "id": "use-technology-tools-and-skills-to-reinforce-cla",
+       "title": "Use technology tools and skills to reinforce classroom concepts and activities",
+       "subtopics": [
+        {
+         "id": "use-technology-tools-and-skills-to-reinforce-cla",
+         "title": "Use technology tools and skills to reinforce classroom concepts and activities",
+         "outcomes": [
+          {
+           "code": "4.TT.1.1",
+           "text": "Use a variety of technology tools to gather data and information (e.g., Web-based resources, e-books, online communication tools, etc.)."
+          },
+          {
+           "code": "4.TT.1.2",
+           "text": "Use a variety of technology tools to organize data and information (e.g., word processor, graphic organizer, audio and visual recording, online collaboration tools, etc.)."
+          },
+          {
+           "code": "4.TT.1.3",
+           "text": "Use technology tools to present data and information (multimedia, audio and visual recording, online collaboration tools, etc.)."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "research-process",
+     "title": "Research Process",
+     "topics": [
+      {
+       "id": "apply-a-research-process-as-part-of-collaborativ",
+       "title": "Apply a research process as part of collaborative research",
+       "subtopics": [
+        {
+         "id": "apply-a-research-process-as-part-of-collaborativ",
+         "title": "Apply a research process as part of collaborative research",
+         "outcomes": [
+          {
+           "code": "4.RP.1.1",
+           "text": "Implement a research process by collaborating effectively with other students."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "safety-and-ethical-issues",
+     "title": "Safety and Ethical Issues",
+     "topics": [
+      {
+       "id": "understand-issues-related-to-the-safe-ethical-an",
+       "title": "Understand issues related to the safe, ethical, and responsible use of information and technology resources",
+       "subtopics": [
+        {
+         "id": "understand-issues-related-to-the-safe-ethical-an",
+         "title": "Understand issues related to the safe, ethical, and responsible use of information and technology resources",
+         "outcomes": [
+          {
+           "code": "4.SE.1.1",
+           "text": "Understand the guidelines for responsible use of technology hardware."
+          },
+          {
+           "code": "4.SE.1.2",
+           "text": "Understand ethical behavior (copyright, not plagiarizing, netiquette) when using resources."
+          },
+          {
+           "code": "4.SE.1.3",
+           "text": "Understand internet safety precautions (personal information, passwords, etc.)."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "5",
+   "units": [
+    {
+     "id": "sources-of-information",
+     "title": "Sources of Information",
+     "topics": [
+      {
+       "id": "apply-criteria-to-determine-appropriate-informat",
+       "title": "Apply criteria to determine appropriate information resources for specific topics and purposes",
+       "subtopics": [
+        {
+         "id": "apply-criteria-to-determine-appropriate-informat",
+         "title": "Apply criteria to determine appropriate information resources for specific topics and purposes",
+         "outcomes": [
+          {
+           "code": "5.SI.1.1",
+           "text": "Use various types of resources to gather information (including print and online media)."
+          },
+          {
+           "code": "5.SI.1.2",
+           "text": "Use relevant sources of information for an assigned task."
+          },
+          {
+           "code": "5.SI.1.3",
+           "text": "Use reliable sources of information."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "informational-text",
+     "title": "Informational Text",
+     "topics": [
+      {
+       "id": "analyze-appropriate-strategies-when-reading-for-",
+       "title": "Analyze appropriate strategies when reading for enjoyment and for information",
+       "subtopics": [
+        {
+         "id": "analyze-appropriate-strategies-when-reading-for-",
+         "title": "Analyze appropriate strategies when reading for enjoyment and for information",
+         "outcomes": [
+          {
+           "code": "5.IN.1.1",
+           "text": "Differentiate strategies when reading informational text in a variety of formats (e.g., print, online, audio, etc.) to complete assigned tasks."
+          },
+          {
+           "code": "5.IN.1.2",
+           "text": "Differentiate strategies when reading various genres."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "technology-as-a-tool",
+     "title": "Technology as a Tool",
+     "topics": [
+      {
+       "id": "use-technology-tools-and-skills-to-reinforce-and",
+       "title": "Use technology tools and skills to reinforce and extend classroom concepts and activities",
+       "subtopics": [
+        {
+         "id": "use-technology-tools-and-skills-to-reinforce-and",
+         "title": "Use technology tools and skills to reinforce and extend classroom concepts and activities",
+         "outcomes": [
+          {
+           "code": "5.TT.1.1",
+           "text": "Use a variety of technology tools to gather data and information (e.g., Web-based resources, e-books, online communication tools, etc.)."
+          },
+          {
+           "code": "5.TT.1.2",
+           "text": "Use a variety of technology tools to organize data and information (e.g., word processor, graphic organizer, audio and visual recording, online collaboration tools, etc.)."
+          },
+          {
+           "code": "5.TT.1.3",
+           "text": "Use technology tools to present data and information (e.g., multimedia, audio and visual recording, online collaboration tools, etc.)."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "research-process",
+     "title": "Research Process",
+     "topics": [
+      {
+       "id": "apply-a-research-process-as-part-of-collaborativ",
+       "title": "Apply a research process as part of collaborative research",
+       "subtopics": [
+        {
+         "id": "apply-a-research-process-as-part-of-collaborativ",
+         "title": "Apply a research process as part of collaborative research",
+         "outcomes": [
+          {
+           "code": "5.RP.1.1",
+           "text": "Implement a research process by collaborating effectively with other students."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "safety-and-ethical-issues",
+     "title": "Safety and Ethical Issues",
+     "topics": [
+      {
+       "id": "understand-issues-related-to-the-safe-ethical-an",
+       "title": "Understand issues related to the safe, ethical, and responsible use of information and technology resources",
+       "subtopics": [
+        {
+         "id": "understand-issues-related-to-the-safe-ethical-an",
+         "title": "Understand issues related to the safe, ethical, and responsible use of information and technology resources",
+         "outcomes": [
+          {
+           "code": "5.SE.1.1",
+           "text": "Understand the guidelines for responsible use of technology hardware."
+          },
+          {
+           "code": "5.SE.1.2",
+           "text": "Understand ethical behavior (e.g., copyright, not plagiarizing, netiquette) when using resources."
+          },
+          {
+           "code": "5.SE.1.3",
+           "text": "Understand internet safety precautions (e.g., personal information, passwords, etc.)."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "6",
+   "units": [
+    {
+     "id": "sources-of-information",
+     "title": "Sources of Information",
+     "topics": [
+      {
+       "id": "analyze-resources-to-determine-their-reliability",
+       "title": "Analyze resources to determine their reliability, point of view, bias, and relevance for particular topics and purposes",
+       "subtopics": [
+        {
+         "id": "analyze-resources-to-determine-their-reliability",
+         "title": "Analyze resources to determine their reliability, point of view, bias, and relevance for particular topics and purposes",
+         "outcomes": [
+          {
+           "code": "6.SI.1.1",
+           "text": "Analyze resources in terms of their reliability (which can be determined by currency, credibility, or authority, depending on the topic or purpose)"
+          },
+          {
+           "code": "6.SI.1.2",
+           "text": "Analyze content for relevance to the assigned task."
+          },
+          {
+           "code": "6.SI.1.3",
+           "text": "Analyze resources for point of view, bias, values, or intent of information."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "technology-as-a-tool",
+     "title": "Technology as a Tool",
+     "topics": [
+      {
+       "id": "use-technology-and-other-resources-for-the-purpo",
+       "title": "Use technology and other resources for the purpose of accessing, organizing, and sharing information",
+       "subtopics": [
+        {
+         "id": "use-technology-and-other-resources-for-the-purpo",
+         "title": "Use technology and other resources for the purpose of accessing, organizing, and sharing information",
+         "outcomes": [
+          {
+           "code": "6.TT.1.1",
+           "text": "Select appropriate technology tools to gather data and information (e.g., Web-based resources, e-books, online communication tools, etc.)."
+          },
+          {
+           "code": "6.TT.1.2",
+           "text": "Select appropriate technology tools to organize data and information (e.g., word processor, database, spreadsheet, graphic organizer, audio and visual recording, online collaboration tools, etc.)."
+          },
+          {
+           "code": "6.TT.1.3",
+           "text": "Select appropriate technology tools to present data and information effectively (multimedia, audio and visual recording, online collaboration tools, etc.)."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "research-process",
+     "title": "Research Process",
+     "topics": [
+      {
+       "id": "apply-a-research-process-for-collaborative-or-in",
+       "title": "Apply a research process for collaborative or individual research",
+       "subtopics": [
+        {
+         "id": "apply-a-research-process-for-collaborative-or-in",
+         "title": "Apply a research process for collaborative or individual research",
+         "outcomes": [
+          {
+           "code": "6.RP.1.1",
+           "text": "Implement a research process collaboratively."
+          },
+          {
+           "code": "6.RP.1.2",
+           "text": "Implement a research process independently."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "safety-and-ethical-issues",
+     "title": "Safety and Ethical Issues",
+     "topics": [
+      {
+       "id": "apply-responsible-behaviors-when-using-informati",
+       "title": "Apply responsible behaviors when using information and technology resources",
+       "subtopics": [
+        {
+         "id": "apply-responsible-behaviors-when-using-informati",
+         "title": "Apply responsible behaviors when using information and technology resources",
+         "outcomes": [
+          {
+           "code": "6.SE.1.1",
+           "text": "Apply ethical behavior (copyright, not plagiarizing, proper netiquette) when using resources."
+          },
+          {
+           "code": "6.SE.1.2",
+           "text": "Apply the safety precautions necessary when using online resources (personal information, passwords, etc.)."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "7",
+   "units": [
+    {
+     "id": "sources-of-information",
+     "title": "Sources of Information",
+     "topics": [
+      {
+       "id": "evaluate-information-resources-based-on-specifie",
+       "title": "Evaluate information resources based on specified criteria",
+       "subtopics": [
+        {
+         "id": "evaluate-information-resources-based-on-specifie",
+         "title": "Evaluate information resources based on specified criteria",
+         "outcomes": [
+          {
+           "code": "7.SI.1.1",
+           "text": "Evaluate resources for reliability. (Reliability can be determined by currency, credibility, authority, etc. depending on the curriculum topic)."
+          },
+          {
+           "code": "7.SI.1.2",
+           "text": "Evaluate content for relevance to the assigned task."
+          },
+          {
+           "code": "7.SI.1.3",
+           "text": "Evaluate resources for point of view, bias, values, or intent of information."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "technology-as-a-tool",
+     "title": "Technology as a Tool",
+     "topics": [
+      {
+       "id": "use-technology-and-other-resources-for-assigned-",
+       "title": "Use technology and other resources for assigned tasks",
+       "subtopics": [
+        {
+         "id": "use-technology-and-other-resources-for-assigned-",
+         "title": "Use technology and other resources for assigned tasks",
+         "outcomes": [
+          {
+           "code": "7.TT.1.1",
+           "text": "Use appropriate technology tools and other resources to access information."
+          },
+          {
+           "code": "7.TT.1.2",
+           "text": "Use appropriate technology tools and other resources to organize information (e.g. graphic organizers, databases, spreadsheets, and desktop publishing)."
+          },
+          {
+           "code": "7.TT.1.3",
+           "text": "Use appropriate technology tools and other resources to design products to share information with others (e.g. multimedia presentations, Web 2.0 tools, graphics, podcasts, and audio files)."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "research-process",
+     "title": "Research Process",
+     "topics": [
+      {
+       "id": "apply-a-research-process-to-complete-given-tasks",
+       "title": "Apply a research process to complete given tasks",
+       "subtopics": [
+        {
+         "id": "apply-a-research-process-to-complete-given-tasks",
+         "title": "Apply a research process to complete given tasks",
+         "outcomes": [
+          {
+           "code": "7.RP.1.1",
+           "text": "Implement a collaborative research process activity that is group selected."
+          },
+          {
+           "code": "7.RP.1.2",
+           "text": "Implement an independent research process activity that is student selected."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "safety-and-ethical-issues",
+     "title": "Safety and Ethical Issues",
+     "topics": [
+      {
+       "id": "apply-responsible-behaviors-when-using-informati",
+       "title": "Apply responsible behaviors when using information and technology resources",
+       "subtopics": [
+        {
+         "id": "apply-responsible-behaviors-when-using-informati",
+         "title": "Apply responsible behaviors when using information and technology resources",
+         "outcomes": [
+          {
+           "code": "7.SE.1.1",
+           "text": "Apply ethical behavior (copyright, not plagiarizing, proper netiquette) when using resources."
+          },
+          {
+           "code": "7.SE.1.2",
+           "text": "Apply the safety precautions necessary when using online resources (personal information, passwords, etc.)."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "8",
+   "units": [
+    {
+     "id": "sources-of-information",
+     "title": "Sources of Information",
+     "topics": [
+      {
+       "id": "evaluate-information-resources-based-on-specifie",
+       "title": "Evaluate information resources based on specified criteria",
+       "subtopics": [
+        {
+         "id": "evaluate-information-resources-based-on-specifie",
+         "title": "Evaluate information resources based on specified criteria",
+         "outcomes": [
+          {
+           "code": "8.SI.1.1",
+           "text": "Evaluate resources for reliability. (Reliability can be determined by currency, credibility, authority, etc. depending on the curriculum topic)."
+          },
+          {
+           "code": "8.SI.1.2",
+           "text": "Evaluate content for relevance to the assigned task."
+          },
+          {
+           "code": "8.SI.1.3",
+           "text": "Evaluate resources for point of view, bias, values, or intent of information."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "technology-as-a-tool",
+     "title": "Technology as a Tool",
+     "topics": [
+      {
+       "id": "use-technology-and-other-resources-for-assigned-",
+       "title": "Use technology and other resources for assigned tasks",
+       "subtopics": [
+        {
+         "id": "use-technology-and-other-resources-for-assigned-",
+         "title": "Use technology and other resources for assigned tasks",
+         "outcomes": [
+          {
+           "code": "8.TT.1.1",
+           "text": "Use appropriate technology tools and other resources to access information (search engines, electronic databases, digital magazine articles)."
+          },
+          {
+           "code": "8.TT.1.2",
+           "text": "Use appropriate technology tools and other resources to organize information (e.g. graphic organizers, databases, spreadsheets, and desktop publishing)."
+          },
+          {
+           "code": "8.TT.1.3",
+           "text": "Use appropriate technology tools and other resources to design products to share information with others (e.g. multimedia presentations, Web 2.0 tools, graphics, podcasts, and audio files)."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "research-process",
+     "title": "Research Process",
+     "topics": [
+      {
+       "id": "apply-a-research-process-to-complete-project-bas",
+       "title": "Apply a research process to complete project-based activities",
+       "subtopics": [
+        {
+         "id": "apply-a-research-process-to-complete-project-bas",
+         "title": "Apply a research process to complete project-based activities",
+         "outcomes": [
+          {
+           "code": "8.RP.1.1",
+           "text": "Implement a project-based activity collaboratively."
+          },
+          {
+           "code": "8.RP.1.2",
+           "text": "Implement a project-based activity independently."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "safety-and-ethical-issues",
+     "title": "Safety and Ethical Issues",
+     "topics": [
+      {
+       "id": "analyze-responsible-behaviors-when-using-informa",
+       "title": "Analyze responsible behaviors when using information and technology resources",
+       "subtopics": [
+        {
+         "id": "analyze-responsible-behaviors-when-using-informa",
+         "title": "Analyze responsible behaviors when using information and technology resources",
+         "outcomes": [
+          {
+           "code": "8.SE.1.1",
+           "text": "Analyze ethical behavior (copyright, not plagiarizing, netiquette) when using resources."
+          },
+          {
+           "code": "8.SE.1.2",
+           "text": "Analyze safety precautions when using online resources (personal information, passwords, etc.)."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "6-8",
+   "units": [
+    {
+     "id": "computing-systems",
+     "title": "Computing Systems",
+     "topics": [
+      {
+       "id": "devices",
+       "title": "Devices",
+       "subtopics": [
+        {
+         "id": "devices",
+         "title": "Devices",
+         "outcomes": [
+          {
+           "code": "68-CS-01",
+           "text": "Understand the design of computing devices based on an analysis of how users interact with the devices."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "hardware-software",
+       "title": "Hardware & Software",
+       "subtopics": [
+        {
+         "id": "hardware-software",
+         "title": "Hardware & Software",
+         "outcomes": [
+          {
+           "code": "68-CS-02",
+           "text": "Design projects that combine hardware and software components to collect and exchange data."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "troubleshooting",
+       "title": "Troubleshooting",
+       "subtopics": [
+        {
+         "id": "troubleshooting",
+         "title": "Troubleshooting",
+         "outcomes": [
+          {
+           "code": "68-CS-03",
+           "text": "Systematically identify and fix problems with computing devices and components."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "networks-the-internet",
+     "title": "Networks & The Internet",
+     "topics": [
+      {
+       "id": "network-communication-organization",
+       "title": "Network Communication & Organization",
+       "subtopics": [
+        {
+         "id": "network-communication-organization",
+         "title": "Network Communication & Organization",
+         "outcomes": [
+          {
+           "code": "68-NI-01",
+           "text": "Analyze different ways that data is transferred across a network and the role of protocols in transmitting data."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "cybersecurity",
+       "title": "Cybersecurity",
+       "subtopics": [
+        {
+         "id": "cybersecurity",
+         "title": "Cybersecurity",
+         "outcomes": [
+          {
+           "code": "68-NI-02",
+           "text": "Explain how physical and digital security measures protect electronic information."
+          },
+          {
+           "code": "68-NI-03",
+           "text": "Explain permission and authorizations to access resources to computer systems online."
+          },
+          {
+           "code": "68-NI-04",
+           "text": "Apply multiple methods of encryption to model the secure transmission of information."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "data-analysis",
+     "title": "Data & Analysis",
+     "topics": [
+      {
+       "id": "storage",
+       "title": "Storage",
+       "subtopics": [
+        {
+         "id": "storage",
+         "title": "Storage",
+         "outcomes": [
+          {
+           "code": "68-DA-01",
+           "text": "Represent data using multiple encoding schemes."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "collection-visualization-transformation",
+       "title": "Collection, Visualization, & Transformation",
+       "subtopics": [
+        {
+         "id": "collection-visualization-transformation",
+         "title": "Collection, Visualization, & Transformation",
+         "outcomes": [
+          {
+           "code": "68-DA-02",
+           "text": "Collect data using computational tools."
+          },
+          {
+           "code": "68-DA-03",
+           "text": "Transform the collected data to make it more useful and reliable."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "inference-models",
+       "title": "Inference & Models",
+       "subtopics": [
+        {
+         "id": "inference-models",
+         "title": "Inference & Models",
+         "outcomes": [
+          {
+           "code": "68-DA-04",
+           "text": "Refine computational models based on the data they have generated and/or data collected."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "algorithms-programming",
+     "title": "Algorithms & Programming",
+     "topics": [
+      {
+       "id": "algorithms",
+       "title": "Algorithms",
+       "subtopics": [
+        {
+         "id": "algorithms",
+         "title": "Algorithms",
+         "outcomes": [
+          {
+           "code": "68-AP-01",
+           "text": "Implement flowcharts and/or pseudocode to address complex problems as algorithms."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "variables",
+       "title": "Variables",
+       "subtopics": [
+        {
+         "id": "variables",
+         "title": "Variables",
+         "outcomes": [
+          {
+           "code": "68-AP-02",
+           "text": "Create clearly named variables that represent different data types."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "control",
+       "title": "Control",
+       "subtopics": [
+        {
+         "id": "control",
+         "title": "Control",
+         "outcomes": [
+          {
+           "code": "68-AP-03",
+           "text": "Design and iteratively develop programs that combine control structures including nested loops and compound conditionals."
+          },
+          {
+           "code": "68-AP-04",
+           "text": "Construct programs that include events."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "modularity",
+       "title": "Modularity",
+       "subtopics": [
+        {
+         "id": "modularity",
+         "title": "Modularity",
+         "outcomes": [
+          {
+           "code": "68-AP-05",
+           "text": "Organize problems and subproblems into parts."
+          },
+          {
+           "code": "68-AP-06",
+           "text": "Explain the design, implementation, and review of programs."
+          },
+          {
+           "code": "68-AP-07",
+           "text": "Create procedures with parameters to organize code and make it easier to reuse groups of instructions."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "program-development",
+       "title": "Program Development",
+       "subtopics": [
+        {
+         "id": "program-development",
+         "title": "Program Development",
+         "outcomes": [
+          {
+           "code": "68-AP-08",
+           "text": "Assess feedback from team members and users to refine a solution that meets user needs."
+          },
+          {
+           "code": "68-AP-09",
+           "text": "Incorporate existing code and media into original programs and give attribution."
+          },
+          {
+           "code": "68-AP-10",
+           "text": "Systematically test and refine programs using a range of test cases."
+          },
+          {
+           "code": "68-AP-11",
+           "text": "Distribute tasks and maintain a project timeline when collaboratively developing computational artifacts."
+          },
+          {
+           "code": "68-AP-12",
+           "text": "Document programs in order to make them easier to follow, test, and debug."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "impacts-of-computing",
+     "title": "Impacts of Computing",
+     "topics": [
+      {
+       "id": "culture",
+       "title": "Culture",
+       "subtopics": [
+        {
+         "id": "culture",
+         "title": "Culture",
+         "outcomes": [
+          {
+           "code": "68-IC-01",
+           "text": "Compare tradeoffs associated with computing technologies that affect everyday activities and career options."
+          },
+          {
+           "code": "68-IC-02",
+           "text": "Describe how equity, access, and influence impact the distribution of computing resources in a global society."
+          },
+          {
+           "code": "68-IC-03",
+           "text": "Discuss issues of bias and accessibility in the design of existing technologies"
+          },
+          {
+           "code": "68-IC-04",
+           "text": "Collaborate, model, and promote effective research strategies for assessing and evaluating innovative resources."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "social-interactions",
+       "title": "Social Interactions",
+       "subtopics": [
+        {
+         "id": "social-interactions",
+         "title": "Social Interactions",
+         "outcomes": [
+          {
+           "code": "68-IC-05",
+           "text": "Collaborate with many contributors to create a computational artifact."
+          },
+          {
+           "code": "68-IC-06",
+           "text": "Utilize tools and methods for collaboration on a project to increase connectivity of peers."
+          },
+          {
+           "code": "68-IC-07",
+           "text": "Examine the benefits and drawbacks of a digital footprint and online identity."
+          },
+          {
+           "code": "68-IC-08",
+           "text": "Understand how online interactions make an impact on the social, emotional, and physical aspect of others."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "safety-law-ethics",
+       "title": "Safety, Law, & Ethics",
+       "subtopics": [
+        {
+         "id": "safety-law-ethics",
+         "title": "Safety, Law, & Ethics",
+         "outcomes": [
+          {
+           "code": "68-IC-09",
+           "text": "Compare tradeoffs between allowing information to be public and keeping information private and secure."
+          },
+          {
+           "code": "68-IC-10",
+           "text": "Explore how laws and regulations impact the development and use of software."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "9-12",
+   "units": [
+    {
+     "id": "computing-systems",
+     "title": "Computing Systems",
+     "topics": [
+      {
+       "id": "devices",
+       "title": "Devices",
+       "subtopics": [
+        {
+         "id": "devices",
+         "title": "Devices",
+         "outcomes": [
+          {
+           "code": "ICS-CS-01",
+           "text": "Explain how abstractions hide the underlying implementation details of computing systems embedded in everyday objects."
+          },
+          {
+           "code": "HS-CS-01",
+           "text": "Describe the use of artificial intelligence within computing systems."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "hardware-software",
+       "title": "Hardware & Software",
+       "subtopics": [
+        {
+         "id": "hardware-software",
+         "title": "Hardware & Software",
+         "outcomes": [
+          {
+           "code": "ICS-CS-02",
+           "text": "Compare levels of abstraction and interactions between application software, system software, and hardware layers."
+          },
+          {
+           "code": "ICS-CS-03",
+           "text": "Explain the roles of operating systems including memory management, data storage/retrieval, process management, and access control."
+          },
+          {
+           "code": "HS-CS-02",
+           "text": "Explain how computing devices manage and allocate shared resources."
+          },
+          {
+           "code": "HS-CS-03",
+           "text": "Illustrate the ways computing systems implement logic, input, and output through hardware components."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "troubleshooting",
+       "title": "Troubleshooting",
+       "subtopics": [
+        {
+         "id": "troubleshooting",
+         "title": "Troubleshooting",
+         "outcomes": [
+          {
+           "code": "ICS-CS-04",
+           "text": "Develop guidelines that convey systematic troubleshooting strategies that others can use to identify and fix errors."
+          },
+          {
+           "code": "HS-CS-04",
+           "text": "Utilize guidelines that convey systematic troubleshooting strategies that debug computer systems."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "networks-the-internet",
+     "title": "Networks & The Internet",
+     "topics": [
+      {
+       "id": "network-communication-organization",
+       "title": "Network Communication & Organization",
+       "subtopics": [
+        {
+         "id": "network-communication-organization",
+         "title": "Network Communication & Organization",
+         "outcomes": [
+          {
+           "code": "ICS-NI-01",
+           "text": "Evaluate the relationship between routers, switches, servers, and topology with regard to networks."
+          },
+          {
+           "code": "HS-NI-01",
+           "text": "Identify issues of network functionality in computational artifact design."
+          },
+          {
+           "code": "HS-NI-02",
+           "text": "Analyze issues of network functionality in computational artifact design."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "cybersecurity",
+       "title": "Cybersecurity",
+       "subtopics": [
+        {
+         "id": "cybersecurity",
+         "title": "Cybersecurity",
+         "outcomes": [
+          {
+           "code": "ICS-NI-02",
+           "text": "Identify examples to illustrate how sensitive data can be affected by malware and other attacks."
+          },
+          {
+           "code": "ICS-NI-03",
+           "text": "Recommend cybersecurity measures to address various scenarios based on factors such as efficiency, feasibility, and ethical impacts."
+          },
+          {
+           "code": "ICS-NI-04",
+           "text": "Compare various security measures and consider tradeoffs between the usability and security of a computing system."
+          },
+          {
+           "code": "HS-NI-03",
+           "text": "Identify issues of unauthorized access and cybersecurity in computational artifact design."
+          },
+          {
+           "code": "HS-NI-04",
+           "text": "Analyze issues of unauthorized access and cybersecurity in computational artifact design."
+          },
+          {
+           "code": "HS-NI-05",
+           "text": "Explain tradeoffs when selecting and implementing cybersecurity recommendations for various scenarios based on factors such as efficiency, feasibility, and ethical impacts."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "data-analysis",
+     "title": "Data & Analysis",
+     "topics": [
+      {
+       "id": "storage",
+       "title": "Storage",
+       "subtopics": [
+        {
+         "id": "storage",
+         "title": "Storage",
+         "outcomes": [
+          {
+           "code": "ICS-DA-01",
+           "text": "Compare different binary representations of data, including text, sound, images, and numbers."
+          },
+          {
+           "code": "ICS-DA-02",
+           "text": "Evaluate the tradeoffs in how data elements are organized and where data is stored."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "collection-visualization-transformation",
+       "title": "Collection, Visualization, & Transformation",
+       "subtopics": [
+        {
+         "id": "collection-visualization-transformation",
+         "title": "Collection, Visualization, & Transformation",
+         "outcomes": [
+          {
+           "code": "ICS-DA-03",
+           "text": "Create interactive data visualizations using software tools to help others better understand real-world phenomena."
+          },
+          {
+           "code": "HS-DA-01",
+           "text": "Identify patterns in data representing complex systems with select data analysis tools and techniques."
+          },
+          {
+           "code": "HS-DA-02",
+           "text": "Select appropriate data collection tools and techniques."
+          },
+          {
+           "code": "HS-DA-03",
+           "text": "Compile data sets that support a claim or communicate information."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "inference-models",
+       "title": "Inference & Models",
+       "subtopics": [
+        {
+         "id": "inference-models",
+         "title": "Inference & Models",
+         "outcomes": [
+          {
+           "code": "ICS-DA-04",
+           "text": "Create computational models that represent the relationships among different elements of data collected."
+          },
+          {
+           "code": "HS-DA-04",
+           "text": "Identify the ability of models and simulations to test hypotheses."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "data-analysis",
+       "title": "Data & Analysis",
+       "subtopics": [
+        {
+         "id": "data-analysis",
+         "title": "Data & Analysis",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Storage"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "algorithms-programming",
+     "title": "Algorithms & Programming",
+     "topics": [
+      {
+       "id": "algorithms",
+       "title": "Algorithms",
+       "subtopics": [
+        {
+         "id": "algorithms",
+         "title": "Algorithms",
+         "outcomes": [
+          {
+           "code": "ICS-AP-01",
+           "text": "Create prototypes that use algorithms to solve computational problems by leveraging prior student knowledge and personal interests."
+          },
+          {
+           "code": "ICS-AP-02",
+           "text": "Explain the use of artificial intelligence within computing systems."
+          },
+          {
+           "code": "HS-AP-01",
+           "text": "Identify artificial intelligence algorithms."
+          },
+          {
+           "code": "HS-AP-02",
+           "text": "Solve computational problems with classic algorithms."
+          },
+          {
+           "code": "HS-AP-03",
+           "text": "Evaluate algorithms in terms of their efficiency, correctness, and clarity."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "variables",
+       "title": "Variables",
+       "subtopics": [
+        {
+         "id": "variables",
+         "title": "Variables",
+         "outcomes": [
+          {
+           "code": "ICS-AP-03",
+           "text": "Utilize lists to simplify solutions, generalizing computational problems instead of repeatedly using simple variables."
+          },
+          {
+           "code": "HS-AP-04",
+           "text": "Select an appropriate data structure for information of a given problem."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "control",
+       "title": "Control",
+       "subtopics": [
+        {
+         "id": "control",
+         "title": "Control",
+         "outcomes": [
+          {
+           "code": "ICS-AP-04",
+           "text": "Justify the selection of specific control structures, considering implementation, readability, and program performance."
+          },
+          {
+           "code": "ICS-AP-05",
+           "text": "Iteratively develop computational artifacts for practical intent, personal expression, or to address a societal issue by using events to initiate instructions."
+          },
+          {
+           "code": "HS-AP-05",
+           "text": "Illustrate the flow of execution of a recursive algorithm."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "modularity",
+       "title": "Modularity",
+       "subtopics": [
+        {
+         "id": "modularity",
+         "title": "Modularity",
+         "outcomes": [
+          {
+           "code": "ICS-AP-06",
+           "text": "Decompose problems into smaller components through systematic analysis, using constructs such as procedures, modules, and/or objects."
+          },
+          {
+           "code": "HS-AP-06",
+           "text": "Identify a large-scale computational problem."
+          },
+          {
+           "code": "HS-AP-07",
+           "text": "Analyze general patterns applicable to a solution."
+          },
+          {
+           "code": "HS-AP-08",
+           "text": "Create computational artifacts with pre-existing procedures, external components, libraries and APIs."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "program-development",
+       "title": "Program Development",
+       "subtopics": [
+        {
+         "id": "program-development-1-of-3",
+         "title": "Program Development (1 of 3)",
+         "outcomes": [
+          {
+           "code": "ICS-AP-07",
+           "text": "Create artifacts by using procedures within a program, combinations of data and procedures, or independent but interrelated programs."
+          },
+          {
+           "code": "ICS-AP-08",
+           "text": "Systematically design programs for broad audiences."
+          },
+          {
+           "code": "ICS-AP-09",
+           "text": "Refine programs by incorporating feedback from users."
+          },
+          {
+           "code": "ICS-AP-10",
+           "text": "Evaluate licenses that limit or restrict use of computational artifacts when using resources such as software libraries."
+          },
+          {
+           "code": "ICS-AP-11",
+           "text": "Evaluate computational artifacts for usability."
+          }
+         ]
+        },
+        {
+         "id": "program-development-2-of-3",
+         "title": "Program Development (2 of 3)",
+         "outcomes": [
+          {
+           "code": "ICS-AP-12",
+           "text": "Modify computational artifacts to increase usability and accessibility."
+          },
+          {
+           "code": "ICS-AP-13",
+           "text": "Develop computational artifacts working in team roles using collaborative tools."
+          },
+          {
+           "code": "ICS-AP-14",
+           "text": "Explain design decisions using text, graphics, presentations, and/or demonstrations in the development of complex programs."
+          },
+          {
+           "code": "HS-AP-09",
+           "text": "Create a computational artifact through an industry-standard process."
+          },
+          {
+           "code": "HS-AP-10",
+           "text": "Justify that a computational artifact meets design specifications with systematic testing and debugging methods."
+          }
+         ]
+        },
+        {
+         "id": "program-development-3-of-3",
+         "title": "Program Development (3 of 3)",
+         "outcomes": [
+          {
+           "code": "HS-AP-11",
+           "text": "Construct a computational artifact as a team through industry appropriate collaborative tools and processes."
+          },
+          {
+           "code": "HS-AP-12",
+           "text": "Compose standard documentation for computational artifacts to make it easier to follow, test, and debug."
+          },
+          {
+           "code": "HS-AP-13",
+           "text": "Modify an existing computational artifact for additional functionality."
+          },
+          {
+           "code": "HS-AP-14",
+           "text": "Discuss intended and unintended implications of a modified computational artifact."
+          },
+          {
+           "code": "HS-AP-15",
+           "text": "Develop computational artifacts for multiple platforms."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "impacts-of-computing",
+     "title": "Impacts of Computing",
+     "topics": [
+      {
+       "id": "culture",
+       "title": "Culture",
+       "subtopics": [
+        {
+         "id": "culture-1-of-2",
+         "title": "Culture (1 of 2)",
+         "outcomes": [
+          {
+           "code": "ICS-IC-01",
+           "text": "Evaluate the ways computing impacts personal, ethical, social, economic, and cultural practices."
+          },
+          {
+           "code": "ICS-IC-02",
+           "text": "Elaborate how computational innovations have and may continue to impact society."
+          },
+          {
+           "code": "ICS-IC-03",
+           "text": "Evaluate how equity, access, and influence impact distribution of computing resources in a global society."
+          },
+          {
+           "code": "ICS-IC-04",
+           "text": "Test computational artifacts to reduce bias and equity deficits."
+          },
+          {
+           "code": "ICS-IC-05",
+           "text": "Demonstrate ways a given algorithm applies to problems across disciplines."
+          }
+         ]
+        },
+        {
+         "id": "culture-2-of-2",
+         "title": "Culture (2 of 2)",
+         "outcomes": [
+          {
+           "code": "HS-IC-01",
+           "text": "Evaluate computational artifacts for their effects on society."
+          },
+          {
+           "code": "HS-IC-02",
+           "text": "Make computational artifact recommendations for maximized benefical and minimal harmful effects on society."
+          },
+          {
+           "code": "HS-IC-03",
+           "text": "Predict how computational innovations that revolutionized aspects of our culture might evolve."
+          },
+          {
+           "code": "HS-IC-04",
+           "text": "Evaluate how equity, access, and influence impact distribution of computing resources in a global society."
+          },
+          {
+           "code": "HS-IC-05",
+           "text": "Create computational artifacts to ensure accessibility and reduce computational bias."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "social-interactions",
+       "title": "Social Interactions",
+       "subtopics": [
+        {
+         "id": "social-interactions",
+         "title": "Social Interactions",
+         "outcomes": [
+          {
+           "code": "ICS-IC-06",
+           "text": "Utilize tools and methods for collaboration on a project to increase connectivity of peers."
+          },
+          {
+           "code": "HS-IC-06",
+           "text": "Utilize tools and methods for collaboration on a project to increase connectivity of people in different cultures and career fields."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "safety-law-ethics",
+       "title": "Safety, Law, & Ethics",
+       "subtopics": [
+        {
+         "id": "safety-law-ethics",
+         "title": "Safety, Law, & Ethics",
+         "outcomes": [
+          {
+           "code": "ICS-IC-07",
+           "text": "Explain the beneficial and harmful effects that intellectual property laws can have on innovation."
+          },
+          {
+           "code": "ICS-IC-08",
+           "text": "Explain privacy concerns related to the collection and generation of data through automated processes that may not be evident to users."
+          },
+          {
+           "code": "ICS-IC-09",
+           "text": "Evaluate the social and economic implications of privacy in the context of safety, law, and ethics."
+          },
+          {
+           "code": "ICS-IC-10",
+           "text": "Explain how laws and regulations impact the development and use of software."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "impacts-of-computing",
+       "title": "Impacts of Computing",
+       "subtopics": [
+        {
+         "id": "impacts-of-computing",
+         "title": "Impacts of Computing",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Safety, Law, & Ethics"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "sources-of-information",
+     "title": "Sources of Information",
+     "topics": [
+      {
+       "id": "evaluate-resources-needed-to-solve-a-given-probl",
+       "title": "Evaluate resources needed to solve a given problem",
+       "subtopics": [
+        {
+         "id": "evaluate-resources-needed-to-solve-a-given-probl",
+         "title": "Evaluate resources needed to solve a given problem",
+         "outcomes": [
+          {
+           "code": "HS.SI.1.1",
+           "text": "Evaluate resources for reliability. (Reliability can be determined by currency, credibility, authority, etc. depending on the curriculum topic)."
+          },
+          {
+           "code": "HS.SI.1.2",
+           "text": "Evaluate resources for point of view, bias, values, or intent of information."
+          },
+          {
+           "code": "HS.SI.1.3",
+           "text": "Evaluate content for relevance to the assigned task."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "technology-as-a-tool",
+     "title": "Technology as a Tool",
+     "topics": [
+      {
+       "id": "use-technology-and-other-resources-for-assigned-",
+       "title": "Use technology and other resources for assigned tasks",
+       "subtopics": [
+        {
+         "id": "use-technology-and-other-resources-for-assigned-",
+         "title": "Use technology and other resources for assigned tasks",
+         "outcomes": [
+          {
+           "code": "HS.TT.1.1",
+           "text": "Use appropriate technology tools and other resources to access information (multi-database search engines, online primary resources, virtual interviews with content experts)."
+          },
+          {
+           "code": "HS.TT.1.2",
+           "text": "Use appropriate technology tools and other resources to organize information (e.g. online note-taking tools, collaborative wikis)."
+          },
+          {
+           "code": "HS.TT.1.3",
+           "text": "Use appropriate technology tools and other resources to design products to share information with others (e.g. multimedia presentations, Web 2.0 tools, graphics, podcasts, and audio files)."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "research-process",
+     "title": "Research Process",
+     "topics": [
+      {
+       "id": "design-project-based-products-that-address-globa",
+       "title": "Design project-based products that address global problems",
+       "subtopics": [
+        {
+         "id": "design-project-based-products-that-address-globa",
+         "title": "Design project-based products that address global problems",
+         "outcomes": [
+          {
+           "code": "HS.RP.1.1",
+           "text": "Design global-awareness project-based products individually and collaboratively."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "safety-and-ethical-issues",
+     "title": "Safety and Ethical Issues",
+     "topics": [
+      {
+       "id": "analyze-issues-and-practices-of-responsible-beha",
+       "title": "Analyze issues and practices of responsible behavior when using resources",
+       "subtopics": [
+        {
+         "id": "analyze-issues-and-practices-of-responsible-beha",
+         "title": "Analyze issues and practices of responsible behavior when using resources",
+         "outcomes": [
+          {
+           "code": "HS.SE.1.1",
+           "text": "Analyze ethical issues and practices related to copyright, not plagiarizing, and netiquette."
+          },
+          {
+           "code": "HS.SE.1.2",
+           "text": "Analyze safety issues and practices when using online resources (legal and criminal consequences, long-term career consequences of behavior)."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "K-2",
+   "units": [
+    {
+     "id": "computing-systems",
+     "title": "Computing Systems",
+     "topics": [
+      {
+       "id": "devices",
+       "title": "Devices",
+       "subtopics": [
+        {
+         "id": "devices",
+         "title": "Devices",
+         "outcomes": [
+          {
+           "code": "K2-CS-01",
+           "text": "Choose appropriate devices to perform a variety of classroom tasks."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "hardware-and-software",
+       "title": "Hardware and Software",
+       "subtopics": [
+        {
+         "id": "hardware-and-software",
+         "title": "Hardware and Software",
+         "outcomes": [
+          {
+           "code": "K2-CS-02",
+           "text": "Describe the function of common physical components of computing systems (hardware) with appropriate terminology."
+          },
+          {
+           "code": "K2-CS-03",
+           "text": "Operate appropriate software to perform a variety of tasks."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "troubleshooting",
+       "title": "Troubleshooting",
+       "subtopics": [
+        {
+         "id": "troubleshooting",
+         "title": "Troubleshooting",
+         "outcomes": [
+          {
+           "code": "K2-CS-04",
+           "text": "Describe basic hardware and software problems with accurate terminology."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "networks-and-the-internet",
+     "title": "Networks and the Internet",
+     "topics": [
+      {
+       "id": "network-communication-organization",
+       "title": "Network Communication & Organization",
+       "subtopics": [
+        {
+         "id": "network-communication-organization",
+         "title": "Network Communication & Organization",
+         "outcomes": [
+          {
+           "code": "K2-NI-01",
+           "text": "Illustrate how information is broken down into smaller pieces and can be reassembled."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "cybersecurity",
+       "title": "Cybersecurity",
+       "subtopics": [
+        {
+         "id": "cybersecurity",
+         "title": "Cybersecurity",
+         "outcomes": [
+          {
+           "code": "K2-NI-02",
+           "text": "Apply knowledge of what passwords are and why we use strong passwords to protect devices and information from unauthorized access."
+          },
+          {
+           "code": "K2-NI-03",
+           "text": "Discover your digital footprint and how personal information can be protected."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "data-analysis",
+     "title": "Data & Analysis",
+     "topics": [
+      {
+       "id": "storage",
+       "title": "Storage",
+       "subtopics": [
+        {
+         "id": "storage",
+         "title": "Storage",
+         "outcomes": [
+          {
+           "code": "K2-DA-01",
+           "text": "Store, copy, search, retrieve, modify, and delete information using a computing device."
+          },
+          {
+           "code": "K2-DA-02",
+           "text": "Define information stored on a computing device as data."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "collection-visualization-transformation",
+       "title": "Collection, Visualization, & Transformation",
+       "subtopics": [
+        {
+         "id": "collection-visualization-transformation",
+         "title": "Collection, Visualization, & Transformation",
+         "outcomes": [
+          {
+           "code": "K2-DA-03",
+           "text": "Collect and present the same data in various visual formats."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "inference-models",
+       "title": "Inference & Models",
+       "subtopics": [
+        {
+         "id": "inference-models",
+         "title": "Inference & Models",
+         "outcomes": [
+          {
+           "code": "K2-DA-04",
+           "text": "Make predictions with patterns in data visualizations."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "algorithms-programming",
+     "title": "Algorithms & Programming",
+     "topics": [
+      {
+       "id": "algorithms",
+       "title": "Algorithms",
+       "subtopics": [
+        {
+         "id": "algorithms",
+         "title": "Algorithms",
+         "outcomes": [
+          {
+           "code": "K2-AP-01",
+           "text": "Model daily processes with algorithms to complete tasks."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "variables",
+       "title": "Variables",
+       "subtopics": [
+        {
+         "id": "variables",
+         "title": "Variables",
+         "outcomes": [
+          {
+           "code": "K2-AP-02",
+           "text": "Demonstrate how programs store and manipulate data by using numbers or other symbols to represent information."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "control",
+       "title": "Control",
+       "subtopics": [
+        {
+         "id": "control",
+         "title": "Control",
+         "outcomes": [
+          {
+           "code": "K2-AP-03",
+           "text": "Develop programs with sequences and simple loops to express ideas or address a problem."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "modularity",
+       "title": "Modularity",
+       "subtopics": [
+        {
+         "id": "modularity",
+         "title": "Modularity",
+         "outcomes": [
+          {
+           "code": "K2-AP-04",
+           "text": "Decompose the steps needed to solve a problem into a precise sequence of instructions"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "program-development",
+       "title": "Program Development",
+       "subtopics": [
+        {
+         "id": "program-development",
+         "title": "Program Development",
+         "outcomes": [
+          {
+           "code": "K2-AP-05",
+           "text": "Develop plans that describe a program’s sequence of events, goals, and expected outcomes."
+          },
+          {
+           "code": "K2-AP-06",
+           "text": "Give attribution when using the ideas and creations of others while developing programs."
+          },
+          {
+           "code": "K2-AP-07",
+           "text": "Identify and debug errors in an algorithm or program that includes sequences and simple loops."
+          },
+          {
+           "code": "K2-AP-08",
+           "text": "Using correct terminology, describe steps taken and choices made during the iterative process of program development"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "impacts-of-computing",
+     "title": "Impacts of Computing",
+     "topics": [
+      {
+       "id": "culture",
+       "title": "Culture",
+       "subtopics": [
+        {
+         "id": "culture",
+         "title": "Culture",
+         "outcomes": [
+          {
+           "code": "K2-IC-01",
+           "text": "Compare how people live and work before and after the implementation or adoption of new computing technology."
+          },
+          {
+           "code": "K2-IC-02",
+           "text": "Select software that meets the diverse needs and preferences for the technology individuals use in the classroom"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "social-interactions",
+       "title": "Social Interactions",
+       "subtopics": [
+        {
+         "id": "social-interactions",
+         "title": "Social Interactions",
+         "outcomes": [
+          {
+           "code": "K2-IC-03",
+           "text": "Work respectfully and responsibly with others online."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "safety-law-ethics",
+       "title": "Safety, Law, & Ethics",
+       "subtopics": [
+        {
+         "id": "safety-law-ethics",
+         "title": "Safety, Law, & Ethics",
+         "outcomes": [
+          {
+           "code": "K2-IC-04",
+           "text": "Model responsible login and logoff procedures on all devices."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "3-5",
+   "units": [
+    {
+     "id": "computing-systems",
+     "title": "Computing Systems",
+     "topics": [
+      {
+       "id": "devices",
+       "title": "Devices",
+       "subtopics": [
+        {
+         "id": "devices",
+         "title": "Devices",
+         "outcomes": [
+          {
+           "code": "35-CS-01",
+           "text": "Evaluate the features available on digital devices to perform a variety of classroom tasks."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "hardware-and-software",
+       "title": "Hardware and Software",
+       "subtopics": [
+        {
+         "id": "hardware-and-software",
+         "title": "Hardware and Software",
+         "outcomes": [
+          {
+           "code": "35-CS-02",
+           "text": "Model how computer hardware and software work together as a system to accomplish tasks"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "troubleshooting",
+       "title": "Troubleshooting",
+       "subtopics": [
+        {
+         "id": "troubleshooting",
+         "title": "Troubleshooting",
+         "outcomes": [
+          {
+           "code": "35-CS-03",
+           "text": "Determine potential solutions to solve simple hardware and software problems using common troubleshooting strategies."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "networks-and-the-internet",
+     "title": "Networks and the Internet",
+     "topics": [
+      {
+       "id": "network-communication-and-organization",
+       "title": "Network Communication and Organization",
+       "subtopics": [
+        {
+         "id": "network-communication-and-organization",
+         "title": "Network Communication and Organization",
+         "outcomes": [
+          {
+           "code": "35-NI-01",
+           "text": "Model how information is broken down into smaller pieces, transmitted as packets through multiple devices over networks and the Internet, and reassembled at the destination."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "cyber-security",
+       "title": "Cyber Security",
+       "subtopics": [
+        {
+         "id": "cyber-security",
+         "title": "Cyber Security",
+         "outcomes": [
+          {
+           "code": "35-NI-02",
+           "text": "Explain your digital footprint and how personal information can be protected."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "data-and-analysis",
+     "title": "Data and Analysis",
+     "topics": [
+      {
+       "id": "storage",
+       "title": "Storage",
+       "subtopics": [
+        {
+         "id": "storage",
+         "title": "Storage",
+         "outcomes": [
+          {
+           "code": "35-DA-01",
+           "text": "Identify the type of data encoded in a file based on file extension."
+          },
+          {
+           "code": "35-DA-02",
+           "text": "Illustrate the process of file management and version control."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "collection-visualization-transformation",
+       "title": "Collection, Visualization, & Transformation",
+       "subtopics": [
+        {
+         "id": "collection-visualization-transformation",
+         "title": "Collection, Visualization, & Transformation",
+         "outcomes": [
+          {
+           "code": "35-DA-03",
+           "text": "Organize and present collected data visually to highlight relationships and support a claim."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "influence-and-models",
+       "title": "Influence and Models",
+       "subtopics": [
+        {
+         "id": "influence-and-models",
+         "title": "Influence and Models",
+         "outcomes": [
+          {
+           "code": "35-DA-04",
+           "text": "Communicate using data to highlight or predict outcomes."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "algorithems-and-programming",
+     "title": "Algorithems and Programming",
+     "topics": [
+      {
+       "id": "algorithms",
+       "title": "Algorithms",
+       "subtopics": [
+        {
+         "id": "algorithms",
+         "title": "Algorithms",
+         "outcomes": [
+          {
+           "code": "35-AP-01",
+           "text": "Create multiple algorithms for the same task to determine which is the most accurate and efficient."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "variables",
+       "title": "Variables",
+       "subtopics": [
+        {
+         "id": "variables",
+         "title": "Variables",
+         "outcomes": [
+          {
+           "code": "35-AP-02",
+           "text": "Create programs that use variables to store and modify data"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "control",
+       "title": "Control",
+       "subtopics": [
+        {
+         "id": "control",
+         "title": "Control",
+         "outcomes": [
+          {
+           "code": "35-AP-03",
+           "text": "Construct programs that include sequences."
+          },
+          {
+           "code": "35-AP-04",
+           "text": "Construct programs using simple loops."
+          },
+          {
+           "code": "35-AP-05",
+           "text": "Construct programs that implement conditionals."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "modularity",
+       "title": "Modularity",
+       "subtopics": [
+        {
+         "id": "modularity",
+         "title": "Modularity",
+         "outcomes": [
+          {
+           "code": "35-AP-06",
+           "text": "Decompose problems into smaller, manageable, subproblems to facilitate the program development process."
+          },
+          {
+           "code": "35-AP-07",
+           "text": "Modify, remix, or incorporate portions of an existing program into one's own work."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "program-development",
+       "title": "Program Development",
+       "subtopics": [
+        {
+         "id": "program-development",
+         "title": "Program Development",
+         "outcomes": [
+          {
+           "code": "35-AP-08",
+           "text": "Apply an iterative process to the development of a program by including diverse perspectives and considering user preferences."
+          },
+          {
+           "code": "35-AP-09",
+           "text": "Give appropriate attribution when creating or remixing programs while respecting intellectual property rights."
+          },
+          {
+           "code": "35-AP-10",
+           "text": "Identify and debug errors in an algorithm or program to ensure it runs as intended."
+          },
+          {
+           "code": "35-AP-11",
+           "text": "Take on varying roles, with teacher guidance, when collaborating with peers during the design, implementation, and review stages of program development."
+          },
+          {
+           "code": "35-AP-12",
+           "text": "Describe choices made during program development using code comments, presentations, and demonstrations."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "impacts-of-computing",
+     "title": "Impacts of Computing",
+     "topics": [
+      {
+       "id": "culture",
+       "title": "Culture",
+       "subtopics": [
+        {
+         "id": "culture",
+         "title": "Culture",
+         "outcomes": [
+          {
+           "code": "35-IC-01",
+           "text": "Compare computing technologies that have changed the world and how they both influence and are influenced by cultural practices"
+          },
+          {
+           "code": "35-IC-02",
+           "text": "Explore the tools that can be used to improve accessibility and usability of technology products for the diverse needs and wants of users."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "social-interactions",
+       "title": "Social Interactions",
+       "subtopics": [
+        {
+         "id": "social-interactions",
+         "title": "Social Interactions",
+         "outcomes": [
+          {
+           "code": "35-IC-03",
+           "text": "Seek diverse perspectives with collaboration for the purpose of improving computational artifacts."
+          },
+          {
+           "code": "35-IC-04",
+           "text": "Exhibit positive digital citizenship and social responsibility in online interactions."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "safety-law-ethics",
+       "title": "Safety, Law, & Ethics",
+       "subtopics": [
+        {
+         "id": "safety-law-ethics",
+         "title": "Safety, Law, & Ethics",
+         "outcomes": [
+          {
+           "code": "35-IC-05",
+           "text": "Utilize public domain or creative commons media, and refrain from copying or using material created by others without permission."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "build": {
+  "builtAt": "2026-10-14T16:20:46.527Z",
+  "model": "none",
+  "usd": 0,
+  "expectedCodes": 259,
+  "coverage": 1,
+  "missingCodes": [],
+  "counts": {
+   "grades": 13,
+   "units": 66,
+   "topics": 112,
+   "subtopics": 115,
+   "outcomes": 261
+  },
+  "warnings": [
+   "unit \"Research Process\" (grade K) has a single outcome",
+   "unit \"Research Process\" (grade 1) has a single outcome",
+   "unit \"Research Process\" (grade 2) has a single outcome",
+   "unit \"Research Process\" (grade 3) has a single outcome",
+   "unit \"Research Process\" (grade 4) has a single outcome",
+   "unit \"Research Process\" (grade 5) has a single outcome",
+   "unit \"Research Process\" (grade 9-12) has a single outcome"
+  ]
+ }
+}

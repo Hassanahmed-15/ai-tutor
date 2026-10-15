@@ -1,0 +1,2706 @@
+{
+ "id": "us-id-english-language-development",
+ "region": "US",
+ "framework": "Idaho state academic standards: English Language Development",
+ "board": null,
+ "qualification": "K-12",
+ "subject": "English Language Development",
+ "syllabusCode": null,
+ "gradeSystem": "grade",
+ "source": {
+  "urls": [
+   "https://api.commonstandardsproject.com/api/v1/jurisdictions/E8D078CED3B44AAD956D244FA0E47636",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/E8D078CED3B44AAD956D244FA0E47636_D2376501_grades-01-02-k",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/E8D078CED3B44AAD956D244FA0E47636_D2376501_grades-03-04-05",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/E8D078CED3B44AAD956D244FA0E47636_D2376501_grades-06-07-08",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/E8D078CED3B44AAD956D244FA0E47636_D2376501_grades-09-10-11-12"
+  ],
+  "publisher": "Idaho state education agency (machine-readable via Common Standards Project / ASN)",
+  "licence": "CC BY 3.0 US, Desire2Learn Incorporated",
+  "firstExam": "2006"
+ },
+ "grades": [
+  {
+   "grade": "K-2",
+   "units": [
+    {
+     "id": "listening",
+     "title": "Listening",
+     "topics": [
+      {
+       "id": "listening-comprehension",
+       "title": "Listening Comprehension",
+       "subtopics": [
+        {
+         "id": "follow-oral-directions",
+         "title": "Follow Oral Directions",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Follow simple one-step oral directions."
+          },
+          {
+           "code": null,
+           "text": "Follow simple two-step oral directions."
+          },
+          {
+           "code": null,
+           "text": "Follow two-step oral directions."
+          },
+          {
+           "code": null,
+           "text": "Follow multi-step oral directions."
+          }
+         ]
+        },
+        {
+         "id": "understand-social-and-academic-conversations",
+         "title": "Understand Social and Academic Conversations",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Respond appropriately to brief, very simple social conversations on familiar topics with contextual support."
+          },
+          {
+           "code": null,
+           "text": "Respond appropriately to simple social conversations on mostly familiar topics with contextual support."
+          },
+          {
+           "code": null,
+           "text": "Respond appropriately to social and simple classroom conversations on mostly familiar, concrete topics."
+          },
+          {
+           "code": null,
+           "text": "Respond appropriately to classroom conversations on mostly concrete topics."
+          },
+          {
+           "code": null,
+           "text": "Respond appropriately to classroom conversations on concrete and abstract topics."
+          }
+         ]
+        },
+        {
+         "id": "understand-key-ideas-of-information-presented-or",
+         "title": "Understand Key Ideas of Information Presented Orally",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Identify a key idea of very brief, concrete information presented orally with visual support."
+          },
+          {
+           "code": null,
+           "text": "Identify a few key ideas of brief, mostly concrete information presented orally with visual support."
+          },
+          {
+           "code": null,
+           "text": "Identify a few key ideas of concrete and some abstract information presented orally with some visual support."
+          },
+          {
+           "code": null,
+           "text": "Identify key ideas of information presented orally."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "speaking",
+     "title": "Speaking",
+     "topics": [
+      {
+       "id": "speaking-applications",
+       "title": "Speaking Applications",
+       "subtopics": [
+        {
+         "id": "ask-and-answer-questions",
+         "title": "Ask and Answer Questions",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Ask and answer familiar, very simple questions using gestures or words."
+          },
+          {
+           "code": null,
+           "text": "Ask and answer simple questions using a few words."
+          },
+          {
+           "code": null,
+           "text": "Ask and answer questions using phrases or simple sentences."
+          },
+          {
+           "code": null,
+           "text": "Ask and answer questions using detailed sentences with some errors."
+          },
+          {
+           "code": null,
+           "text": "Ask and answer questions using detailed sentences with few errors."
+          }
+         ]
+        },
+        {
+         "id": "communicate-information-orally",
+         "title": "Communicate Information Orally",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Express basic needs using gestures or words."
+          },
+          {
+           "code": null,
+           "text": "Express basic needs and feelings using a few words."
+          },
+          {
+           "code": null,
+           "text": "Share information orally using simple sentences."
+          },
+          {
+           "code": null,
+           "text": "Respond orally to information shared by others using coherent sentences."
+          },
+          {
+           "code": null,
+           "text": "Retell or paraphrase information that has been shared by others, using coherent sentences."
+          }
+         ]
+        },
+        {
+         "id": "retell-stories-or-experiences",
+         "title": "Retell Stories or Experiences",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Respond to prompting about an experience or story using gestures and words."
+          },
+          {
+           "code": null,
+           "text": "Tell a brief experience or story in response to prompts using words and phrases."
+          },
+          {
+           "code": null,
+           "text": "Tell an experience or story in a logical sequence with some prompting, using phrases and simple sentences."
+          },
+          {
+           "code": null,
+           "text": "Tell an experience or story in a logical sequence using simple sentences without prompting."
+          },
+          {
+           "code": null,
+           "text": "Tell an experience or story in a logical sequence using detailed sentences without prompting."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "reading",
+     "title": "Reading",
+     "topics": [
+      {
+       "id": "reading-process",
+       "title": "Reading Process",
+       "subtopics": [
+        {
+         "id": "use-text-features-to-locate-information",
+         "title": "Use Text Features to Locate Information",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Identify cover and title of a book; hold book right side up and turn pages in the correct direction."
+          },
+          {
+           "code": null,
+           "text": "Identify words, sentences, and parts of a book (e.g., cover, title)."
+          },
+          {
+           "code": null,
+           "text": "Use the title and illustrations to aid comprehension of information in a book or reading selection."
+          },
+          {
+           "code": null,
+           "text": "Use grade-level text features to locate information in a book or reading selection. [N/A for K]"
+          }
+         ]
+        },
+        {
+         "id": "use-graphic-features-to-support-understanding-of",
+         "title": "Use Graphic Features to Support Understanding of Text",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Identify information from pictures and symbols in signs."
+          },
+          {
+           "code": null,
+           "text": "Identify information in familiar, simple bar graphs or diagrams."
+          },
+          {
+           "code": null,
+           "text": "Identify information in simple graphs, charts, and diagrams. [N/A for K]"
+          },
+          {
+           "code": null,
+           "text": "Describe information in simple graphs, charts, and diagrams. [N/A for K]"
+          },
+          {
+           "code": null,
+           "text": "Use information from simple graphs, charts, and diagrams. [N/A for K]"
+          }
+         ]
+        },
+        {
+         "id": "decode-words-using-phonological-awareness-skills",
+         "title": "Decode Words Using Phonological Awareness Skills",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Name some upper and lowercase letters."
+          },
+          {
+           "code": null,
+           "text": "Name upper and lowercase letters; match vowel and consonant sounds to some letters."
+          },
+          {
+           "code": null,
+           "text": "Match vowel and consonant sounds to all letters; identify initial and final sounds in single-syllable words."
+          },
+          {
+           "code": null,
+           "text": "Identify initial, middle, and final sounds in single-syllable words."
+          },
+          {
+           "code": null,
+           "text": "Use basic word patterns and/or word families to decode words. [N/A for K]"
+          }
+         ]
+        },
+        {
+         "id": "decode-words-using-knowledge-of-syllables",
+         "title": "Decode Words Using Knowledge of Syllables",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Repeat spoken words with one or two syllables."
+          },
+          {
+           "code": null,
+           "text": "Identify the number of syllables in familiar spoken words."
+          },
+          {
+           "code": null,
+           "text": "Identify the number of syllables in spoken words."
+          },
+          {
+           "code": null,
+           "text": "Decode new words using knowledge of common onsets and rimes. [N/A for K]"
+          },
+          {
+           "code": null,
+           "text": "Decode words using knowledge of chunks or small words. [N/A for K]"
+          }
+         ]
+        },
+        {
+         "id": "decode-and-determine-meaning-of-words-using-know",
+         "title": "Decode and Determine Meaning of Words Using Knowledge of Word Parts",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Read simple, familiar words."
+          },
+          {
+           "code": null,
+           "text": "Read and determine the meaning of simple, familiar words."
+          },
+          {
+           "code": null,
+           "text": "Decode and determine the meaning of words by using common inflectional endings (e.g., -ed, -ing, and plural -s). [N/A for K]"
+          },
+          {
+           "code": null,
+           "text": "Decode and determine meaning of words using knowledge of common base words and simple prefixes and suffixes. [N/A for K]"
+          },
+          {
+           "code": null,
+           "text": "Decode and determine meaning of words using knowledge of common base words and simple prefixes, suffixes, and contractions. [N/A for K]"
+          }
+         ]
+        },
+        {
+         "id": "identify-and-use-synonyms-antonyms-homonyms",
+         "title": "Identify and Use Synonyms, Antonyms, Homonyms",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Identify common, simple antonym pairs (e.g., hot/cold)."
+          },
+          {
+           "code": null,
+           "text": "Identify common, simple antonyms and synonyms."
+          },
+          {
+           "code": null,
+           "text": "Identify common antonyms, synonyms, and homonyms. [N/A for K]"
+          },
+          {
+           "code": null,
+           "text": "Identify and use common antonyms and synonyms to determine the meaning of words. [N/A for K]"
+          },
+          {
+           "code": null,
+           "text": "Identify and use synonyms, antonyms, and homonyms to determine the meaning of words. [N/A for K]"
+          }
+         ]
+        },
+        {
+         "id": "read-with-fluency",
+         "title": "Read With Fluency",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Read a few familiar, high frequency words fluently."
+          },
+          {
+           "code": null,
+           "text": "Read familiar high frequency words fluently."
+          },
+          {
+           "code": null,
+           "text": "Read regular and irregular sight words fluently."
+          },
+          {
+           "code": null,
+           "text": "Read grade-level text at near grade-level fluency. [N/A for K]"
+          },
+          {
+           "code": null,
+           "text": "Read grade-level text at grade-level fluency. [N/A for K]"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "reading-comprehension",
+       "title": "Reading Comprehension",
+       "subtopics": [
+        {
+         "id": "follow-written-directions",
+         "title": "Follow Written Directions",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Follow one-step written directions represented by signs, symbols, and one or two words."
+          },
+          {
+           "code": null,
+           "text": "Follow simple one-step written directions supported by visual clues."
+          },
+          {
+           "code": null,
+           "text": "Follow simple one-step written directions."
+          },
+          {
+           "code": null,
+           "text": "Follow complex one-step written directions. [N/A for K]"
+          },
+          {
+           "code": null,
+           "text": "Follow two-step written directions. [N/A for K]"
+          }
+         ]
+        },
+        {
+         "id": "identify-topic-in-text",
+         "title": "Identify Topic in Text",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Identify the topic in brief text with illustrations by drawing a picture or using gestures or words orally."
+          },
+          {
+           "code": null,
+           "text": "Identify orally the topic in brief text with illustrations by drawing a picture and using phrases."
+          },
+          {
+           "code": null,
+           "text": "Identify orally the topic in text with illustrations by using simple sentences."
+          },
+          {
+           "code": null,
+           "text": "Identify the topic in near grade-level text and sequence information in a logical order. [N/A for K]"
+          },
+          {
+           "code": null,
+           "text": "Identify the topic in grade-level text and sequence information in a logical order. [N/A for K]"
+          }
+         ]
+        },
+        {
+         "id": "describe-characters-settings-and-plots",
+         "title": "Describe Characters, Settings, and Plots",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Identify the characters and main event of a story with picture clues, using gestures or words in response to prompting."
+          },
+          {
+           "code": null,
+           "text": "Identify the characters, setting, and main event of a story with picture clues, using words or phrases orally in response to prompting."
+          },
+          {
+           "code": null,
+           "text": "Identify the characters, setting, and beginning, middle, and end of a story with picture clues, using simple sentences orally in response to prompting."
+          },
+          {
+           "code": null,
+           "text": "Identify and describe the characters, identify the setting, and retell the basic plot in a story."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "writing",
+     "title": "Writing",
+     "topics": [
+      {
+       "id": "writing-process",
+       "title": "Writing Process",
+       "subtopics": [
+        {
+         "id": "plan-write-revise-and-edit-a-draft",
+         "title": "Plan, Write, Revise, and Edit a Draft",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Draw a picture for a given topic."
+          },
+          {
+           "code": null,
+           "text": "Label a series of pictures or fill in a simple prewriting organizer for a given topic with support, using familiar words and phrases."
+          },
+          {
+           "code": null,
+           "text": "Fill in a prewriting organizer, and, with support, write a draft of a few simple sentences that includes a main idea; edit the draft for beginning capitalization and ending punctuation. [N/A for K]"
+          },
+          {
+           "code": null,
+           "text": "Fill in a prewriting organizer, write a draft that includes a main idea and some details, make basic revisions, and edit the draft for some writing conventions. [N/A for K]"
+          },
+          {
+           "code": null,
+           "text": "Identify prewriting strategies and format; write and revise a draft that includes a main idea and details, and edit the draft for grade-level writing conventions. [N/A for K]"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "writing-applications",
+       "title": "Writing Applications",
+       "subtopics": [
+        {
+         "id": "write-narratives",
+         "title": "Write Narratives",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Draw a picture and respond to oral prompts using gestures or words."
+          },
+          {
+           "code": null,
+           "text": "Draw and label a series of pictures and respond to oral prompts using words and phrases."
+          },
+          {
+           "code": null,
+           "text": "Write brief narratives based on personal experiences, using a sentence starter template with prompting."
+          },
+          {
+           "code": null,
+           "text": "Write narratives based on personal experiences that contain a main idea, using a few simple sentences. [N/A for K]"
+          },
+          {
+           "code": null,
+           "text": "Write narratives based on personal experiences that contain a main idea, using more detailed sentences. [N/A for K]"
+          }
+         ]
+        },
+        {
+         "id": "write-reports",
+         "title": "Write Reports",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Draw and label a picture and respond to oral prompts about observations of real objects, persons, places, events, or processes using words or phrases."
+          },
+          {
+           "code": null,
+           "text": "Draw and label a series of pictures and respond to oral prompts about observations of real objects, persons, places, events, or processes using phrases."
+          },
+          {
+           "code": null,
+           "text": "Write brief explanations of observations of real objects, persons, places, events, or processes using a sentence starter template with prompting. [N/A for K]"
+          },
+          {
+           "code": null,
+           "text": "Write brief explanations of observations of real objects, persons, places, events, or processes, using a few simple sentences. [N/A for K]"
+          },
+          {
+           "code": null,
+           "text": "Write brief explanations of observations of real objects, persons, places, events, or processes, using more detailed sentences. [N/A for K]"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "writing-conventions",
+       "title": "Writing Conventions",
+       "subtopics": [
+        {
+         "id": "spell-words-correctly",
+         "title": "Spell Words Correctly",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Copy name and high-frequency words with some accuracy."
+          },
+          {
+           "code": null,
+           "text": "Spell name and a few high-frequency words correctly and start to use invented spelling for other words."
+          },
+          {
+           "code": null,
+           "text": "Spell some high-frequency words correctly and use invented spelling for other words."
+          },
+          {
+           "code": null,
+           "text": "Spell high-frequency words correctly. [N/A for K]"
+          },
+          {
+           "code": null,
+           "text": "Spell high-frequency words correctly and apply basic spelling rules to spell other words. [N/A for K]"
+          }
+         ]
+        },
+        {
+         "id": "apply-capitalization-and-punctuation-rules",
+         "title": "Apply Capitalization and Punctuation Rules",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Copy familiar words, including words with capital letters."
+          },
+          {
+           "code": null,
+           "text": "Use capital letters in first name and other familiar proper nouns."
+          },
+          {
+           "code": null,
+           "text": "Use a capital letter for the first word of a sentence, familiar proper nouns, and the pronoun I; use a period at the end of a sentence. [N/A for K]"
+          },
+          {
+           "code": null,
+           "text": "Use grade-level capitalization and punctuation rules with some errors. [N/A for K]"
+          },
+          {
+           "code": null,
+           "text": "Use grade-level capitalization and punctuation rules with few errors. [N/A for K]"
+          }
+         ]
+        },
+        {
+         "id": "use-grammatical-forms",
+         "title": "Use Grammatical Forms",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Complete simple familiar Cloze sentences with a noun or verb."
+          },
+          {
+           "code": null,
+           "text": "Complete simple sentence frames and identify nouns and verbs with prompting."
+          },
+          {
+           "code": null,
+           "text": "Identify and use nouns and verbs in simple sentences. [N/A for K]"
+          },
+          {
+           "code": null,
+           "text": "Identify and use subject-verb-object order in very simple sentences with some errors. [N/A for K]"
+          },
+          {
+           "code": null,
+           "text": "Identify and use subject-verb-object order and subject-verb agreement in simple sentences with few errors. [N/A for K]"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "3-5",
+   "units": [
+    {
+     "id": "listening",
+     "title": "Listening",
+     "topics": [
+      {
+       "id": "listening-comprehension",
+       "title": "Listening Comprehension",
+       "subtopics": [
+        {
+         "id": "follow-oral-directions",
+         "title": "Follow Oral Directions",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Follow simple one-step oral directions."
+          },
+          {
+           "code": null,
+           "text": "Follow simple two-step oral directions."
+          },
+          {
+           "code": null,
+           "text": "Follow simple multi-step oral directions."
+          },
+          {
+           "code": null,
+           "text": "Follow multi-step oral directions."
+          }
+         ]
+        },
+        {
+         "id": "understand-social-and-academic-conversations",
+         "title": "Understand Social and Academic Conversations",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Demonstrate comprehension of brief, very simple social conversations on familiar topics with contextual support."
+          },
+          {
+           "code": null,
+           "text": "Demonstrate comprehension of simple social conversations on mostly familiar topics with contextual support."
+          },
+          {
+           "code": null,
+           "text": "Demonstrate comprehension of social conversations and simple academic discussions on mostly familiar, concrete topics."
+          },
+          {
+           "code": null,
+           "text": "Demonstrate comprehension of academic discussions on mostly concrete topics."
+          },
+          {
+           "code": null,
+           "text": "Demonstrate comprehension of academic discussions on concrete and abstract topics."
+          }
+         ]
+        },
+        {
+         "id": "understand-main-idea-of-information-presented-or",
+         "title": "Understand Main Idea of Information Presented Orally",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Identify literal concepts in very brief, simple stories and information presented orally with visual support."
+          },
+          {
+           "code": null,
+           "text": "Identify the main idea and a few supporting details in brief, simple stories and information presented orally with visual support."
+          },
+          {
+           "code": null,
+           "text": "Briefly describe the main idea and some supporting details of information presented orally."
+          },
+          {
+           "code": null,
+           "text": "Describe the main idea and most supporting details of information presented orally near grade level."
+          },
+          {
+           "code": null,
+           "text": "Describe main ideas and supporting details of information presented orally at grade level."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "speaking",
+     "title": "Speaking",
+     "topics": [
+      {
+       "id": "speaking-applications",
+       "title": "Speaking Applications",
+       "subtopics": [
+        {
+         "id": "ask-and-answer-questions",
+         "title": "Ask and Answer Questions",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Ask and answer very simple questions using words or phrases."
+          },
+          {
+           "code": null,
+           "text": "Ask and answer simple questions using phrases or simple sentences."
+          },
+          {
+           "code": null,
+           "text": "Ask and answer questions with some details and more complex sentences."
+          },
+          {
+           "code": null,
+           "text": "Ask and answer questions using standard grammar with few errors."
+          }
+         ]
+        },
+        {
+         "id": "communicate-information-orally",
+         "title": "Communicate Information Orally",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Express basic needs using simple words or phrases."
+          },
+          {
+           "code": null,
+           "text": "Express basic needs and feelings using phrases and simple sentences."
+          },
+          {
+           "code": null,
+           "text": "Paraphrase information on familiar topics with support."
+          },
+          {
+           "code": null,
+           "text": "Summarize major ideas and supporting details."
+          }
+         ]
+        },
+        {
+         "id": "plan-oral-presentations",
+         "title": "Plan Oral Presentations",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Complete a graphic organizer or label a series of illustrations on an experience or familiar story using words or phrases."
+          },
+          {
+           "code": null,
+           "text": "Complete a graphic organizer on a familiar topic that follows a logical sequence of events."
+          },
+          {
+           "code": null,
+           "text": "Complete a graphic organizer or an outline for simple narrative and informative presentations."
+          },
+          {
+           "code": null,
+           "text": "Organize simple oral presentations that maintain a clear focus."
+          },
+          {
+           "code": null,
+           "text": "Organize oral presentations that maintain a clear focus; use expanded word choice and sentence structure."
+          }
+         ]
+        },
+        {
+         "id": "deliver-oral-presentations",
+         "title": "Deliver Oral Presentations",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Retell experiences or familiar stories in response to prompts; use words, phrases, and props."
+          },
+          {
+           "code": null,
+           "text": "Deliver brief narrative oral presentations on a familiar topic in response to prompts; use simple sentences and props."
+          },
+          {
+           "code": null,
+           "text": "Deliver brief narrative oral presentations following a logical sequence and using expanded sentences."
+          },
+          {
+           "code": null,
+           "text": "Deliver narrative and informative oral presentations that maintain a focus on key events or ideas with some supporting details."
+          },
+          {
+           "code": null,
+           "text": "Deliver narrative and informative oral presentations that maintain a clear focus on important events or ideas with supporting details."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "reading",
+     "title": "Reading",
+     "topics": [
+      {
+       "id": "reading-process",
+       "title": "Reading Process",
+       "subtopics": [
+        {
+         "id": "use-text-features-to-locate-information",
+         "title": "Use Text Features to Locate Information",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Identify letters of the alphabet, words, numerals, and parts of a book (e.g., cover, title)."
+          },
+          {
+           "code": null,
+           "text": "Identify basic text features (e.g., end-sentence punctuation, headings) in familiar print formats."
+          },
+          {
+           "code": null,
+           "text": "Use basic text features (e.g., bold print, paragraphing) to locate information in familiar print formats."
+          },
+          {
+           "code": null,
+           "text": "Use text features to locate information in familiar and some unfamiliar print formats at grade level."
+          },
+          {
+           "code": null,
+           "text": "Use text features to locate information in various print formats at grade level."
+          }
+         ]
+        },
+        {
+         "id": "use-graphic-features-to-support-understanding-of",
+         "title": "Use Graphic Features to Support Understanding of Text",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Use familiar graphic features (e.g., illustrations, charts) to support understanding of written words and phrases."
+          },
+          {
+           "code": null,
+           "text": "Use familiar graphic features (e.g., diagrams, maps) to support understanding of brief, simple text."
+          },
+          {
+           "code": null,
+           "text": "Use familiar graphic features to find information and support understanding of text at independent reading level."
+          },
+          {
+           "code": null,
+           "text": "Use familiar and some newly learned graphic features to find information and support understanding of most grade-level text."
+          },
+          {
+           "code": null,
+           "text": "Use various graphic features to find information and support understanding of grade-level text."
+          }
+         ]
+        },
+        {
+         "id": "decode-words-using-phonological-awareness-skills",
+         "title": "Decode Words Using Phonological Awareness Skills",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Identify first, middle, and last sounds in a single-syllable word."
+          },
+          {
+           "code": null,
+           "text": "Match vowel and consonant sounds to all letters."
+          },
+          {
+           "code": null,
+           "text": "Use word patterns and/or word families to decode words."
+          },
+          {
+           "code": null,
+           "text": "Use knowledge of vowel digraphs, diphthongs, and r-controlled letter-sound association to read new words."
+          }
+         ]
+        },
+        {
+         "id": "decode-words-using-knowledge-of-syllables",
+         "title": "Decode Words Using Knowledge of Syllables",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Determine the number of syllables in familiar one- to three-syllable spoken words."
+          },
+          {
+           "code": null,
+           "text": "Decode basic words of two to three syllables using knowledge of syllable types and patterns."
+          },
+          {
+           "code": null,
+           "text": "Decode words of two to four syllables at independent reading level using knowledge of syllable types and patterns."
+          },
+          {
+           "code": null,
+           "text": "Decode most grade-level multisyllabic words using knowledge of syllable types and patterns."
+          }
+         ]
+        },
+        {
+         "id": "decode-and-determine-meaning-of-words-using-know",
+         "title": "Decode and Determine Meaning of Words Using Knowledge of Word Parts",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Decode simple, familiar words."
+          },
+          {
+           "code": null,
+           "text": "Decode and determine meaning of words using knowledge of common base words and a few simple prefixes and suffixes."
+          },
+          {
+           "code": null,
+           "text": "Decode and determine meaning of words using knowledge of common roots, prefixes, and suffixes at independent reading level."
+          },
+          {
+           "code": null,
+           "text": "Decode and determine meaning of most words using knowledge of common roots, prefixes, and suffixes near grade level."
+          },
+          {
+           "code": null,
+           "text": "Decode and determine meaning of words using knowledge of various roots, prefixes, and suffixes at grade level."
+          }
+         ]
+        },
+        {
+         "id": "identify-and-use-synonyms-antonyms-homonyms-and-",
+         "title": "Identify and Use Synonyms, Antonyms, Homonyms, and Words with Multiple Meanings",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Identify common, simple antonym pairs (e.g., hot/cold)."
+          },
+          {
+           "code": null,
+           "text": "Identify common, simple antonyms and synonyms."
+          },
+          {
+           "code": null,
+           "text": "Identify and use common synonyms, antonyms, homonyms, and words with multiple meanings at independent reading level."
+          },
+          {
+           "code": null,
+           "text": "Identify and use synonyms, antonyms, homonyms, and words with multiple meanings at grade level."
+          }
+         ]
+        },
+        {
+         "id": "read-with-fluency",
+         "title": "Read With Fluency",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Read sight words and other familiar words and phrases accurately."
+          },
+          {
+           "code": null,
+           "text": "Read simple sentences with familiar vocabulary with fluency and accuracy appropriate to reading level."
+          },
+          {
+           "code": null,
+           "text": "Read text at independent reading level with fluency and accuracy appropriate to reading level."
+          },
+          {
+           "code": null,
+           "text": "Read grade-level text with fluency and accuracy near grade level."
+          },
+          {
+           "code": null,
+           "text": "Read grade-level text with fluency and accuracy at grade level."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "reading-comprehension",
+       "title": "Reading Comprehension",
+       "subtopics": [
+        {
+         "id": "follow-written-directions",
+         "title": "Follow Written Directions",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Follow written directions represented by signs, symbols, and one or two words."
+          },
+          {
+           "code": null,
+           "text": "Follow simple two-step written directions."
+          },
+          {
+           "code": null,
+           "text": "Follow some simple multi-step written directions."
+          },
+          {
+           "code": null,
+           "text": "Follow simple multi-step written directions."
+          },
+          {
+           "code": null,
+           "text": "Follow multi-step written directions."
+          }
+         ]
+        },
+        {
+         "id": "describe-main-idea-in-text",
+         "title": "Describe Main Idea in Text",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Identify orally some facts in simple text with visuals read aloud."
+          },
+          {
+           "code": null,
+           "text": "Identify orally facts in brief text read with support and retell facts in logical order."
+          },
+          {
+           "code": null,
+           "text": "Identify main ideas in text at independent reading level and retell important information from the text."
+          },
+          {
+           "code": null,
+           "text": "Identify main ideas and summarize important information in text near grade-level."
+          },
+          {
+           "code": null,
+           "text": "Identify main ideas and summarize information in grade-level text."
+          }
+         ]
+        },
+        {
+         "id": "draw-conclusions-based-on-text",
+         "title": "Draw Conclusions Based on Text",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Draw conclusions orally based on brief, simple text read aloud with visuals."
+          },
+          {
+           "code": null,
+           "text": "Draw conclusions orally based on brief, simple text with visuals on a familiar topic."
+          },
+          {
+           "code": null,
+           "text": "Draw conclusions based on text with visuals at independent reading level, and locate some evidence in the text."
+          },
+          {
+           "code": null,
+           "text": "Draw conclusions based on text near grade level and locate evidence in the text."
+          },
+          {
+           "code": null,
+           "text": "Draw conclusions based on grade-level text and locate evidence in the text."
+          }
+         ]
+        },
+        {
+         "id": "describe-characters-settings-and-plots",
+         "title": "Describe Characters, Settings, and Plots",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Identify orally the main characters and basic sequence of events in simple stories read aloud with visuals."
+          },
+          {
+           "code": null,
+           "text": "Identify orally the main characters, setting, and sequence of events, after reading simple stories with visuals and other support."
+          },
+          {
+           "code": null,
+           "text": "Describe basic aspects of characters, setting, and plot in stories with visuals at independent reading level."
+          },
+          {
+           "code": null,
+           "text": "Describe detailed aspects of characters, setting, and plot in stories near grade level."
+          },
+          {
+           "code": null,
+           "text": "Describe detailed aspects of characters, setting, and plot in stories at grade level."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "writing",
+     "title": "Writing",
+     "topics": [
+      {
+       "id": "writing-process",
+       "title": "Writing Process",
+       "subtopics": [
+        {
+         "id": "plan-write-revise-and-edit-a-draft",
+         "title": "Plan, Write, Revise, and Edit a Draft",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Draw pictures or complete a graphic organizer to show ideas for a narrative."
+          },
+          {
+           "code": null,
+           "text": "Complete a graphic organizer to show ideas for a narrative; write a series of short sentences; and use a simple editing checklist of very basic rules with support."
+          },
+          {
+           "code": null,
+           "text": "Organize a central idea and some supporting details; write a brief paragraph and revise for meaning; and use a simple editing checklist of basic rules."
+          },
+          {
+           "code": null,
+           "text": "Apply the writing process to: organize more complex ideas and supporting details; write a draft and revise for meaning and clarity; and use a modified grade-level editing checklist."
+          },
+          {
+           "code": null,
+           "text": "Apply the writing process to: organize ideas and select an appropriate format; write a draft and revise for meaning and clarity; and use a grade-level editing checklist."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "writing-applications",
+       "title": "Writing Applications",
+       "subtopics": [
+        {
+         "id": "write-narratives",
+         "title": "Write Narratives",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Dictate simple sentences for the beginning, middle, and end of a narrative."
+          },
+          {
+           "code": null,
+           "text": "Write simple sentences with support for the beginning, middle, and end of a narrative."
+          },
+          {
+           "code": null,
+           "text": "Write short narratives with support that have a beginning, middle, and end."
+          },
+          {
+           "code": null,
+           "text": "Write short narratives that have a beginning, middle, and end, using increasingly complex sentences."
+          },
+          {
+           "code": null,
+           "text": "Write short narratives with a beginning, middle, and end, using detailed sentences."
+          },
+          {
+           "code": null,
+           "text": "Write full-length narratives about specific events or situations including some precise details."
+          }
+         ]
+        },
+        {
+         "id": "write-reports",
+         "title": "Write Reports",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Dictate simple expository sentences."
+          },
+          {
+           "code": null,
+           "text": "Write simple expository sentences with support."
+          },
+          {
+           "code": null,
+           "text": "Write expository paragraphs with support that include a main idea and some supporting details, using simple sentences."
+          },
+          {
+           "code": null,
+           "text": "Write brief reports that include a main idea and supporting details, using increasingly complex sentences."
+          },
+          {
+           "code": null,
+           "text": "Write reports that include a main idea and supporting details, using detailed sentences."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "writing-conventions",
+       "title": "Writing Conventions",
+       "subtopics": [
+        {
+         "id": "spell-words-correctly",
+         "title": "Spell Words Correctly",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Copy high-frequency words and use inventive spelling for some words."
+          },
+          {
+           "code": null,
+           "text": "Spell many one-syllable, high-frequency words correctly."
+          },
+          {
+           "code": null,
+           "text": "Spell correctly one-syllable words with blends, contractions, and compounds, and use reference tools to correct errors."
+          },
+          {
+           "code": null,
+           "text": "Spell most grade-appropriate words correctly, and independently use reference tools to correct spelling."
+          },
+          {
+           "code": null,
+           "text": "Consistently spell grade-appropriate words correctly, and independently use reference tools to correct spelling."
+          }
+         ]
+        },
+        {
+         "id": "write-a-variety-of-sentence-types",
+         "title": "Write a Variety of Sentence Types",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Identify and write very simple declarative sentences."
+          },
+          {
+           "code": null,
+           "text": "Identify and write simple declarative, exclamatory, and interrogative sentences."
+          },
+          {
+           "code": null,
+           "text": "Identify and write sentences of varying types and increasing complexity."
+          },
+          {
+           "code": null,
+           "text": "Identify and write sentences of varying types and complexity at grade level."
+          }
+         ]
+        },
+        {
+         "id": "apply-capitalization-and-punctuation-rules",
+         "title": "Apply Capitalization and Punctuation Rules",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Identify and apply basic capitalization and punctuation rules for proper nouns and very simple sentences."
+          },
+          {
+           "code": null,
+           "text": "Identify and apply basic capitalization and punctuation rules in simple sentences."
+          },
+          {
+           "code": null,
+           "text": "Identify and apply increasingly complex capitalization and punctuation rules."
+          },
+          {
+           "code": null,
+           "text": "Identify and apply grade-level capitalization and punctuation rules with some errors."
+          },
+          {
+           "code": null,
+           "text": "Identify and apply grade-level capitalization and punctuation rules with few errors."
+          }
+         ]
+        },
+        {
+         "id": "use-grammatical-forms",
+         "title": "Use Grammatical Forms",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Identify nouns and verbs in very simple sentences."
+          },
+          {
+           "code": null,
+           "text": "Identify and use subject-verb-object order in very simple sentences."
+          },
+          {
+           "code": null,
+           "text": "Identify and use subject-verb agreement and basic verb tenses in simple sentences."
+          },
+          {
+           "code": null,
+           "text": "Identify and use grade-level grammatical forms (e.g., verb tense, pronouns, adjectives) with some errors."
+          },
+          {
+           "code": null,
+           "text": "Identify and use grade-level grammatical forms (e.g., verb tense, pronouns, adjectives) with few errors."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "6-8",
+   "units": [
+    {
+     "id": "listening",
+     "title": "Listening",
+     "topics": [
+      {
+       "id": "listening-comprehension",
+       "title": "Listening Comprehension",
+       "subtopics": [
+        {
+         "id": "follow-oral-directions",
+         "title": "Follow Oral Directions",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Follow simple one-step oral directions."
+          },
+          {
+           "code": null,
+           "text": "Follow simple two-step oral directions."
+          },
+          {
+           "code": null,
+           "text": "Follow simple multi-step oral directions."
+          },
+          {
+           "code": null,
+           "text": "Follow multi-step oral directions."
+          }
+         ]
+        },
+        {
+         "id": "understand-social-and-academic-conversations",
+         "title": "Understand Social and Academic Conversations",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Demonstrate comprehension of brief, very simple social conversations and academic language on familiar topics with contextual support."
+          },
+          {
+           "code": null,
+           "text": "Demonstrate comprehension of simple social conversations and academic language on mostly familiar topics with contextual support."
+          },
+          {
+           "code": null,
+           "text": "Demonstrate comprehension of social conversations and simple academic discussions on mostly familiar, concrete topics."
+          },
+          {
+           "code": null,
+           "text": "Demonstrate comprehension of academic discussions on mostly concrete topics."
+          },
+          {
+           "code": null,
+           "text": "Demonstrate comprehension of academic discussions on concrete and abstract topics."
+          }
+         ]
+        },
+        {
+         "id": "understand-main-idea-of-information-presented-or",
+         "title": "Understand Main Idea of Information Presented Orally",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Identify literal concepts in very brief, simple information presented orally with visual support."
+          },
+          {
+           "code": null,
+           "text": "Identify the main idea and a few supporting details in brief, simple information presented orally with visual support."
+          },
+          {
+           "code": null,
+           "text": "Briefly describe the main idea and some supporting details of information presented orally."
+          },
+          {
+           "code": null,
+           "text": "Summarize the main idea and most supporting details of information presented orally near grade level."
+          },
+          {
+           "code": null,
+           "text": "Summarize main ideas and supporting details of information presented orally at grade level."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "speaking",
+     "title": "Speaking",
+     "topics": [
+      {
+       "id": "speaking-applications",
+       "title": "Speaking Applications",
+       "subtopics": [
+        {
+         "id": "ask-and-answer-questions",
+         "title": "Ask and Answer Questions",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Ask very simple questions about a speaker's briefly stated opinion about a familiar topic."
+          },
+          {
+           "code": null,
+           "text": "Ask simple questions to determine a speaker's opinion about a familiar topic."
+          },
+          {
+           "code": null,
+           "text": "Ask questions to elicit information about a speaker's content to determine the speaker's position."
+          },
+          {
+           "code": null,
+           "text": "Paraphrase a speaker's point of view and ask questions about the speaker's content and position."
+          }
+         ]
+        },
+        {
+         "id": "communicate-information-orally",
+         "title": "Communicate Information Orally",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Express basic needs and state facts using phrases and simple sentences."
+          },
+          {
+           "code": null,
+           "text": "Express needs and state facts using more detailed sentences."
+          },
+          {
+           "code": null,
+           "text": "Briefly describe information on familiar topics presented orally with visual support."
+          },
+          {
+           "code": null,
+           "text": "Summarize major ideas and supporting details."
+          }
+         ]
+        },
+        {
+         "id": "organize-oral-presentations",
+         "title": "Organize Oral Presentations",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Complete a graphic organizer or label a series of illustrations on an experience or familiar story using phrases or simple sentences."
+          },
+          {
+           "code": null,
+           "text": "Complete a graphic organizer on a familiar topic that follows a logical sequence of events using sentence frames."
+          },
+          {
+           "code": null,
+           "text": "Complete a graphic organizer or an outline for narrative and informative presentations using key sentence starters."
+          },
+          {
+           "code": null,
+           "text": "Organize oral presentations that maintain a clear focus."
+          },
+          {
+           "code": null,
+           "text": "Organize oral presentations that maintain a clear focus and use expanded word choice and sentence structure."
+          }
+         ]
+        },
+        {
+         "id": "deliver-oral-presentations",
+         "title": "Deliver Oral Presentations",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Retell experiences in response to prompts using phrases and simple sentences."
+          },
+          {
+           "code": null,
+           "text": "Deliver brief narrative or informative oral presentations on familiar topics in response to some prompts using expanded sentences."
+          },
+          {
+           "code": null,
+           "text": "Deliver brief narrative and informative oral presentations, maintaining a focus on a topic and using more detailed sentences."
+          },
+          {
+           "code": null,
+           "text": "Deliver narrative and informative oral presentations that maintain a focus on main ideas and significant details."
+          },
+          {
+           "code": null,
+           "text": "Deliver informative and persuasive oral presentations that maintain a focus on main ideas and significant details, engage the interests of the audience, and quote from sources when summarizing articles."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "reading",
+     "title": "Reading",
+     "topics": [
+      {
+       "id": "reading-process",
+       "title": "Reading Process",
+       "subtopics": [
+        {
+         "id": "use-text-features-to-understand-information",
+         "title": "Use Text Features to Understand Information",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Identify a few basic text features (e.g., title, author, headings, illustrations) in informational text."
+          },
+          {
+           "code": null,
+           "text": "Use a few basic text features in informational texts to locate a few key points."
+          },
+          {
+           "code": null,
+           "text": "Use text features and basic organizational structures in informational text at independent reading level to locate and describe key points."
+          },
+          {
+           "code": null,
+           "text": "Use text features and organizational structures in informational text near grade level to locate and describe key points."
+          },
+          {
+           "code": null,
+           "text": "Analyze text features and organizational structures in informational text at grade level to locate and explain key points."
+          }
+         ]
+        },
+        {
+         "id": "use-graphic-features-to-support-understanding-of",
+         "title": "Use Graphic Features to Support Understanding of Text",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Identify a few familiar graphic features (e.g., diagrams, maps) in informational text at independent reading level."
+          },
+          {
+           "code": null,
+           "text": "Use a few familiar graphic features in informational text at independent reading level to locate a few key points."
+          },
+          {
+           "code": null,
+           "text": "Use graphic features in informational text at independent reading level to describe key points."
+          },
+          {
+           "code": null,
+           "text": "Interpret graphic features of text near grade level."
+          },
+          {
+           "code": null,
+           "text": "Interpret graphic features of text at grade level."
+          }
+         ]
+        },
+        {
+         "id": "decode-words-using-phonological-awareness-skills",
+         "title": "Decode Words Using Phonological Awareness Skills",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Identify first, middle, and last sounds in a single-syllable word; match vowel and consonant sounds to all letters."
+          },
+          {
+           "code": null,
+           "text": "Use word patterns and/or word families to decode words."
+          },
+          {
+           "code": null,
+           "text": "Use knowledge of vowel digraphs, diphthongs, and r-controlled letter-sound associations to read new words."
+          },
+          {
+           "code": null,
+           "text": "Apply knowledge of letter-sound associations to decode regular words and recognize irregular words."
+          }
+         ]
+        },
+        {
+         "id": "decode-words-using-knowledge-of-syllables",
+         "title": "Decode Words Using Knowledge of Syllables",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Determine the number of syllables in familiar one- to three-syllable spoken words."
+          },
+          {
+           "code": null,
+           "text": "Decode basic words of two to three syllables using knowledge of syllable types and patterns."
+          },
+          {
+           "code": null,
+           "text": "Decode words of two to four syllables at independent reading level using knowledge of syllable types and patterns."
+          },
+          {
+           "code": null,
+           "text": "Decode most grade-level multisyllabic words using knowledge of syllable types and patterns."
+          }
+         ]
+        },
+        {
+         "id": "decode-and-determine-meaning-of-words-using-know",
+         "title": "Decode and Determine Meaning of Words Using Knowledge of Word Parts",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Decode and determine meaning of words using knowledge of common base words and a few simple prefixes and suffixes."
+          },
+          {
+           "code": null,
+           "text": "Decode and determine meaning of words using knowledge of common roots, prefixes, and suffixes in brief, simple text."
+          },
+          {
+           "code": null,
+           "text": "Apply common root words, prefixes, and suffixes, to decode and determine meaning of words in text at independent reading level."
+          },
+          {
+           "code": null,
+           "text": "Apply root words, prefixes, and suffixes, including some Greek and Latin derivatives, to decode and determine meaning of some complex words in near grade-level text."
+          },
+          {
+           "code": null,
+           "text": "Apply root words, prefixes, and suffixes, including Greek and Latin derivatives, to decode and determine meaning of complex words in grade-level text."
+          }
+         ]
+        },
+        {
+         "id": "identify-and-use-synonyms-antonyms-and-words-wit",
+         "title": "Identify and Use Synonyms, Antonyms, and Words With Multiple Meanings",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Identify common, simple antonym pairs (e.g., hot/cold)."
+          },
+          {
+           "code": null,
+           "text": "Identify common antonyms and synonyms and some words with multiple meanings."
+          },
+          {
+           "code": null,
+           "text": "Apply context to identify the meaning of unfamiliar words and words with multiple meanings in text at independent reading level."
+          },
+          {
+           "code": null,
+           "text": "Explain relationships among words including connotation and denotation, antonyms, synonyms, and words with multiple meanings in near grade-level text."
+          },
+          {
+           "code": null,
+           "text": "Explain relationships among words including connotation and denotation, antonyms, synonyms, and words with multiple meanings in grade-level text."
+          }
+         ]
+        },
+        {
+         "id": "read-with-fluency",
+         "title": "Read With Fluency",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Read sight words and other familiar words and phrases accurately."
+          },
+          {
+           "code": null,
+           "text": "Read simple sentences with familiar vocabulary with fluency and accuracy appropriate to reading level."
+          },
+          {
+           "code": null,
+           "text": "Read text at independent reading level with fluency and accuracy appropriate to reading level."
+          },
+          {
+           "code": null,
+           "text": "Read near grade-level text with fluency and accuracy."
+          },
+          {
+           "code": null,
+           "text": "Read grade-level text with fluency and accuracy."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "reading-comprehension",
+       "title": "Reading Comprehension",
+       "subtopics": [
+        {
+         "id": "follow-written-directions",
+         "title": "Follow Written Directions",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Follow simple one- and two-step written directions."
+          },
+          {
+           "code": null,
+           "text": "Follow some simple multi-step written directions."
+          },
+          {
+           "code": null,
+           "text": "Follow simple multi-step written directions."
+          },
+          {
+           "code": null,
+           "text": "Follow multi-step written directions."
+          },
+          {
+           "code": null,
+           "text": "Follow written procedures in informational text and identify the main purpose."
+          }
+         ]
+        },
+        {
+         "id": "describe-main-idea-in-text",
+         "title": "Describe Main Idea in Text",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Identify orally the main idea in brief text read aloud with visuals."
+          },
+          {
+           "code": null,
+           "text": "Identify orally the main idea and some supporting details in brief text with visuals read with support."
+          },
+          {
+           "code": null,
+           "text": "Summarize the literal or inferential main idea and some critical details from text at independent reading level."
+          },
+          {
+           "code": null,
+           "text": "Summarize the literal and inferential main ideas and critical details from near grade-level text."
+          },
+          {
+           "code": null,
+           "text": "Summarize the literal and inferential main ideas and critical details from grade-level text."
+          }
+         ]
+        },
+        {
+         "id": "make-inferences-and-draw-conclusions-based-on-te",
+         "title": "Make Inferences and Draw Conclusions Based on Text",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Draw conclusions orally based on brief, simple text read aloud with visuals."
+          },
+          {
+           "code": null,
+           "text": "Draw conclusions orally based on brief, simple text with visuals on a familiar topic."
+          },
+          {
+           "code": null,
+           "text": "Make inferences, draw conclusions, and locate some evidence in brief text at the independent reading level."
+          },
+          {
+           "code": null,
+           "text": "Make inferences, draw conclusions, form opinions, and locate evidence in text near grade level."
+          },
+          {
+           "code": null,
+           "text": "Make inferences, draw conclusions, form opinions, and locate evidence in grade-level text."
+          }
+         ]
+        },
+        {
+         "id": "analyze-characters-settings-and-plots",
+         "title": "Analyze Characters, Settings, and Plots",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Identify orally the main characters and basic sequence of events in simple stories read aloud with visuals."
+          },
+          {
+           "code": null,
+           "text": "Describe orally the main characters, setting, and sequence of events in simple stories with visuals."
+          },
+          {
+           "code": null,
+           "text": "Analyze basic aspects of characters, setting, and plot in stories with visuals at independent reading level."
+          },
+          {
+           "code": null,
+           "text": "Analyze characterization, setting, and plot development in near grade-level text."
+          },
+          {
+           "code": null,
+           "text": "Analyze characterization, setting, and plot development in grade-level text."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "writing",
+     "title": "Writing",
+     "topics": [
+      {
+       "id": "writing-process",
+       "title": "Writing Process",
+       "subtopics": [
+        {
+         "id": "plan-write-revise-and-edit-a-draft",
+         "title": "Plan, Write, Revise, and Edit a Draft",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Draw a sequence of pictures or complete a graphic organizer to show ideas for a narrative."
+          },
+          {
+           "code": null,
+           "text": "Complete a graphic organizer to show ideas for a narrative; write a series of short sentences; and use a simple editing checklist of very basic rules with support."
+          },
+          {
+           "code": null,
+           "text": "Organize a central idea and some supporting details; write a brief paragraph; revise for meaning; and use a simple editing checklist of basic rules."
+          },
+          {
+           "code": null,
+           "text": "Apply the writing process to: organize more complex ideas and supporting details; write a draft; revise for meaning and clarity; and use a modified grade-level editing checklist."
+          },
+          {
+           "code": null,
+           "text": "Apply the writing process to: organize ideas and select an appropriate format; write a draft; revise for meaning and clarity; and use a grade-level editing checklist."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "writing-applications",
+       "title": "Writing Applications",
+       "subtopics": [
+        {
+         "id": "write-narratives",
+         "title": "Write Narratives",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Write simple sentences using sentence frames for the beginning, middle, and end of a narrative."
+          },
+          {
+           "code": null,
+           "text": "Write a series of simple sentences using sentence frames for a narrative that has a beginning, middle, and end."
+          },
+          {
+           "code": null,
+           "text": "Write a short narrative with increasingly complex sentences that develops a standard plot line, aided by a template."
+          },
+          {
+           "code": null,
+           "text": "Write longer narratives about personal events or situations."
+          }
+         ]
+        },
+        {
+         "id": "write-reports",
+         "title": "Write Reports",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Write simple expository sentences using sentence frames."
+          },
+          {
+           "code": null,
+           "text": "Write a series of simple sentences using sentence frames that include some facts and details."
+          },
+          {
+           "code": null,
+           "text": "Write a brief research report with increasingly complex sentences that includes facts, details, and examples, aided by a template."
+          },
+          {
+           "code": null,
+           "text": "Write a longer research report focused on a main idea with some important details and examples from multiple sources."
+          },
+          {
+           "code": null,
+           "text": "Write a full-length research report focused on a main idea with supporting details compiled through a formal research process."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "writing-conventions",
+       "title": "Writing Conventions",
+       "subtopics": [
+        {
+         "id": "spell-words-correctly",
+         "title": "Spell Words Correctly",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Spell many one-syllable, familiar words correctly."
+          },
+          {
+           "code": null,
+           "text": "Spell familiar words correctly."
+          },
+          {
+           "code": null,
+           "text": "Apply spelling rules to spell correctly words from text at the independent reading level, and independently use reference tools to correct spelling."
+          },
+          {
+           "code": null,
+           "text": "Apply spelling rules and some Greek and Latin derivatives to correctly spell multisyllabic words near grade level, and independently use reference tools to correct spelling."
+          },
+          {
+           "code": null,
+           "text": "Apply spelling rules and Greek and Latin derivatives to correctly spell multisyllabic words at grade level, and independently use reference tools to correct spelling."
+          }
+         ]
+        },
+        {
+         "id": "write-a-variety-of-sentence-types",
+         "title": "Write a Variety of Sentence Types",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Identify and write very simple declarative sentences."
+          },
+          {
+           "code": null,
+           "text": "Identify and write simple declarative, exclamatory, and interrogative sentences."
+          },
+          {
+           "code": null,
+           "text": "Identify and write sentences of varying types and increasing complexity."
+          },
+          {
+           "code": null,
+           "text": "Identify and write sentences of varying types and complexity near grade level."
+          },
+          {
+           "code": null,
+           "text": "Identify and write sentences of varying types and complexity at grade level."
+          }
+         ]
+        },
+        {
+         "id": "apply-capitalization-and-punctuation-rules",
+         "title": "Apply Capitalization and Punctuation Rules",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Identify and apply basic capitalization and punctuation rules in simple sentences."
+          },
+          {
+           "code": null,
+           "text": "Identify and apply increasingly complex capitalization and punctuation rules."
+          },
+          {
+           "code": null,
+           "text": "Identify and apply grade-level capitalization and punctuation rules with some errors."
+          },
+          {
+           "code": null,
+           "text": "Identify and apply grade-level capitalization and punctuation rules."
+          }
+         ]
+        },
+        {
+         "id": "use-grammatical-forms",
+         "title": "Use Grammatical Forms",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Identify nouns, verbs, and adjectives in very simple sentences."
+          },
+          {
+           "code": null,
+           "text": "Identify and use subject-verb-object order in very simple sentences."
+          },
+          {
+           "code": null,
+           "text": "Identify and use subject-verb agreement and basic verb tenses in simple sentences."
+          },
+          {
+           "code": null,
+           "text": "Identify and use grade-level grammatical forms (e.g., verb tense, pronouns, adjectives, conjunctions) with some errors."
+          },
+          {
+           "code": null,
+           "text": "Identify and use grade-level grammatical forms (e.g., verb tense, pronouns, adjectives, conjunctions) with few errors."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "9-12",
+   "units": [
+    {
+     "id": "listening",
+     "title": "Listening",
+     "topics": [
+      {
+       "id": "listening-comprehension",
+       "title": "Listening Comprehension",
+       "subtopics": [
+        {
+         "id": "follow-oral-directions",
+         "title": "Follow Oral Directions",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Follow simple one-step oral directions."
+          },
+          {
+           "code": null,
+           "text": "Follow simple two-step oral directions."
+          },
+          {
+           "code": null,
+           "text": "Follow simple multi-step oral directions."
+          },
+          {
+           "code": null,
+           "text": "Follow multi-step oral directions."
+          }
+         ]
+        },
+        {
+         "id": "understand-social-and-academic-conversations",
+         "title": "Understand Social and Academic Conversations",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Demonstrate comprehension of simple social conversations on familiar topics with contextual support."
+          },
+          {
+           "code": null,
+           "text": "Demonstrate comprehension of simple social and academic conversations on familiar topics with contextual support."
+          },
+          {
+           "code": null,
+           "text": "Draw conclusions from social conversations and simple academic discussions on mostly familiar, concrete topics."
+          },
+          {
+           "code": null,
+           "text": "Draw conclusions from academic discussions on mostly concrete topics."
+          },
+          {
+           "code": null,
+           "text": "Draw conclusions from academic discussions on concrete and abstract topics."
+          }
+         ]
+        },
+        {
+         "id": "understand-main-idea-of-information-presented-or",
+         "title": "Understand Main Idea of Information Presented Orally",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Identify literal concepts in simple information presented orally with visual support."
+          },
+          {
+           "code": null,
+           "text": "Briefly describe the main idea and a few supporting details in simple information presented orally with visual support."
+          },
+          {
+           "code": null,
+           "text": "Evaluate the general coherence of information presented orally with visual support."
+          },
+          {
+           "code": null,
+           "text": "Evaluate the general coherence and effectiveness of a speaker's important points and some evidence."
+          },
+          {
+           "code": null,
+           "text": "Evaluate the general coherence and effectiveness of a speaker's important points, evidence, and organization of ideas."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "speaking",
+     "title": "Speaking",
+     "topics": [
+      {
+       "id": "speaking-applications",
+       "title": "Speaking Applications",
+       "subtopics": [
+        {
+         "id": "ask-and-answer-questions",
+         "title": "Ask and Answer Questions",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Ask simple questions to clarify a speaker's briefly stated opinion about a basic, familiar topic."
+          },
+          {
+           "code": null,
+           "text": "Ask simple questions to determine a speaker's point of view about a basic topic."
+          },
+          {
+           "code": null,
+           "text": "Ask questions to elicit information about a speaker's content and determine the speaker's point of view on the subject."
+          },
+          {
+           "code": null,
+           "text": "Summarize a speaker's point of view and ask questions about the speaker's content and attitude toward the subject."
+          },
+          {
+           "code": null,
+           "text": "Summarize a speaker's point of view and ask specific questions about the speaker's content and attitude toward the subject."
+          }
+         ]
+        },
+        {
+         "id": "communicate-information-orally",
+         "title": "Communicate Information Orally",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Express basic needs, feelings, and information on familiar topics using simple sentences."
+          },
+          {
+           "code": null,
+           "text": "Express needs, feelings, and information on some newly presented topics using more detailed sentences."
+          },
+          {
+           "code": null,
+           "text": "Paraphrase oral information on new topics presented with visual support."
+          },
+          {
+           "code": null,
+           "text": "Summarize major ideas and supporting details."
+          }
+         ]
+        },
+        {
+         "id": "organize-oral-presentations",
+         "title": "Organize Oral Presentations",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Complete a graphic organizer or label a series of illustrations on an experience or familiar topic using simple sentences."
+          },
+          {
+           "code": null,
+           "text": "Complete a graphic organizer that introduces a familiar topic and includes a quotation or reference, using sentence frames."
+          },
+          {
+           "code": null,
+           "text": "Organize simple oral presentations with an introduction and conclusion, including literary quotations or references to authoritative sources, using key sentence starters."
+          },
+          {
+           "code": null,
+           "text": "Organize oral presentations with an introduction and conclusion, including literary quotations, anecdotes, and references to authoritative sources."
+          },
+          {
+           "code": null,
+           "text": "Organize oral presentations with an introduction and conclusion, including literary quotations, anecdotes, and references to authoritative sources; use expanded word choice and sentence structure."
+          }
+         ]
+        },
+        {
+         "id": "deliver-oral-presentations",
+         "title": "Deliver Oral Presentations",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Retell experiences in response to prompts using simple sentences."
+          },
+          {
+           "code": null,
+           "text": "Deliver brief narrative and informative oral presentations on familiar topics using some detailed sentences, with some prompting."
+          },
+          {
+           "code": null,
+           "text": "Deliver brief narrative and expository presentations that maintain a focus on a sequence of events or thesis, including some significant points and detailed sentences."
+          },
+          {
+           "code": null,
+           "text": "Deliver narrative and expository presentations that maintain a focus on a sequence of events or thesis, and include information on significant points."
+          },
+          {
+           "code": null,
+           "text": "Deliver narrative presentations that narrate a sequence of events and communicate their significance; deliver expository presentations that state a thesis, and include information on different perspectives."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "reading",
+     "title": "Reading",
+     "topics": [
+      {
+       "id": "reading-process",
+       "title": "Reading Process",
+       "subtopics": [
+        {
+         "id": "use-text-features-to-understand-information",
+         "title": "Use Text Features to Understand Information",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Identify basic text features in informational text."
+          },
+          {
+           "code": null,
+           "text": "Use basic text features in informational texts to locate a few key points."
+          },
+          {
+           "code": null,
+           "text": "Use text features and basic organizational structures in informational text at independent reading level to locate and describe key points."
+          },
+          {
+           "code": null,
+           "text": "Use text features and organizational structures in informational text near grade level to locate and describe key points."
+          },
+          {
+           "code": null,
+           "text": "Use text features and organizational structures in informational text at grade level to locate and explain key points."
+          }
+         ]
+        },
+        {
+         "id": "use-graphic-features-to-support-understanding-of",
+         "title": "Use Graphic Features to Support Understanding of Text",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Identify familiar graphic features (e.g., diagrams, maps) in informational text at independent reading level."
+          },
+          {
+           "code": null,
+           "text": "Use familiar graphic features in informational text at independent reading level to locate a few key points."
+          },
+          {
+           "code": null,
+           "text": "Use graphic features in informational text at independent reading level to describe key points."
+          },
+          {
+           "code": null,
+           "text": "Interpret graphic features of text near grade level."
+          },
+          {
+           "code": null,
+           "text": "Interpret graphic features of text at grade level."
+          }
+         ]
+        },
+        {
+         "id": "decode-words-using-phonological-awareness-skills",
+         "title": "Decode Words Using Phonological Awareness Skills",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Identify first, middle, and last sounds in a single-syllable word; match vowel and consonant sounds to all letters."
+          },
+          {
+           "code": null,
+           "text": "Use word patterns and/or word families to decode words."
+          },
+          {
+           "code": null,
+           "text": "Use knowledge of vowel digraphs, diphthongs, and r-controlled letter-sound associations to read new words."
+          },
+          {
+           "code": null,
+           "text": "Apply knowledge of letter-sound associations to decode regular words and recognize irregular words."
+          }
+         ]
+        },
+        {
+         "id": "decode-and-determine-meaning-of-words-using-know",
+         "title": "Decode and Determine Meaning of Words Using Knowledge of Word Parts",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Decode and determine the meaning of words using knowledge of common base words and a few simple prefixes and suffixes."
+          },
+          {
+           "code": null,
+           "text": "Decode and determine the meaning of words using knowledge of common roots, prefixes, and suffixes at independent reading level."
+          },
+          {
+           "code": null,
+           "text": "Determine meaning of words using knowledge of common root words and word parts in text at independent reading level."
+          },
+          {
+           "code": null,
+           "text": "Determine meaning of words using knowledge of root words and word parts in near grade-level text."
+          },
+          {
+           "code": null,
+           "text": "Determine meaning of words using knowledge of root words and word parts in grade-level text."
+          }
+         ]
+        },
+        {
+         "id": "use-context-to-determine-meaning-of-words",
+         "title": "Use Context to Determine Meaning of Words",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Identify the meaning of familiar words."
+          },
+          {
+           "code": null,
+           "text": "Identify the meaning of some unfamiliar words using context in text at independent reading level."
+          },
+          {
+           "code": null,
+           "text": "Identify the meaning of unfamiliar words and words with multiple meanings using context in text at independent reading level."
+          },
+          {
+           "code": null,
+           "text": "Identify the meaning of unfamiliar words and words with multiple meanings using context in near grade-level text."
+          },
+          {
+           "code": null,
+           "text": "Determine the meaning of unfamiliar words and words with multiple meanings using context in grade-level text."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "reading-comprehension",
+       "title": "Reading Comprehension",
+       "subtopics": [
+        {
+         "id": "follow-written-directions",
+         "title": "Follow Written Directions",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Follow simple one- and two-step written directions."
+          },
+          {
+           "code": null,
+           "text": "Follow simple multi-step written directions."
+          },
+          {
+           "code": null,
+           "text": "Follow multi-step written directions."
+          },
+          {
+           "code": null,
+           "text": "Follow written procedures in informational text and identify the main purpose."
+          }
+         ]
+        },
+        {
+         "id": "describe-main-idea-in-text",
+         "title": "Describe Main Idea in Text",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Identify orally the main idea in brief, simple text with visuals."
+          },
+          {
+           "code": null,
+           "text": "Identify the main idea and some supporting details in brief text with visuals using expanded sentences."
+          },
+          {
+           "code": null,
+           "text": "Identify a theme or thesis and supporting evidence in text at independent reading level."
+          },
+          {
+           "code": null,
+           "text": "Critique a universal theme or a thesis in near grade-level texts and provide supporting evidence from each work."
+          },
+          {
+           "code": null,
+           "text": "Analyze a universal theme or a thesis and arguments in grade-level texts."
+          }
+         ]
+        },
+        {
+         "id": "make-inferences-and-draw-conclusions-based-on-te",
+         "title": "Make Inferences and Draw Conclusions Based on Text",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Draw conclusions from brief, simple texts with visuals on a familiar topic."
+          },
+          {
+           "code": null,
+           "text": "Draw conclusions from several brief, simple texts with visuals."
+          },
+          {
+           "code": null,
+           "text": "Synthesize content from several sources on a single issue and identify similar themes in texts at independent reading level."
+          },
+          {
+           "code": null,
+           "text": "Compare and contrast ideas and themes from several sources in near grade-level texts."
+          },
+          {
+           "code": null,
+           "text": "Compare and contrast ideas and themes in grade-level texts and explain how the historical or cultural context influenced each author's point of view."
+          }
+         ]
+        },
+        {
+         "id": "analyze-characters-settings-and-plots",
+         "title": "Analyze Characters, Settings, and Plots",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Identify orally the main characters and basic sequence of events in simple stories read aloud with visuals."
+          },
+          {
+           "code": null,
+           "text": "Describe the main characters, setting, and sequence of events in simple stories with visuals."
+          },
+          {
+           "code": null,
+           "text": "Analyze basic aspects of characters in stories at independent reading level."
+          },
+          {
+           "code": null,
+           "text": "Analyze characterization, choice of narrator, and plot in near grade-level text."
+          },
+          {
+           "code": null,
+           "text": "Analyze characterization, plot, choice of narrator, and credibility in grade-level text."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "writing",
+     "title": "Writing",
+     "topics": [
+      {
+       "id": "writing-process",
+       "title": "Writing Process",
+       "subtopics": [
+        {
+         "id": "plan-write-revise-and-edit-a-draft",
+         "title": "Plan, Write, Revise, and Edit a Draft",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Draw and label a sequence of pictures or complete a graphic organizer to show ideas for a narrative."
+          },
+          {
+           "code": null,
+           "text": "Complete a graphic organizer to show ideas for a narrative; write a series of short sentences; and use a simple editing checklist of very basic rules with support."
+          },
+          {
+           "code": null,
+           "text": "Organize a central idea and some supporting details; write a brief paragraph; revise for meaning; and use a simple editing checklist of basic rules."
+          },
+          {
+           "code": null,
+           "text": "Apply the writing process to: organize more complex ideas and supporting details; write a draft; revise for meaning and clarity; and use a modified grade-level editing checklist."
+          },
+          {
+           "code": null,
+           "text": "Apply the writing process to: organize ideas and select an appropriate format; write a draft; revise for meaning and clarity; and use a grade-level editing checklist."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "writing-applications",
+       "title": "Writing Applications",
+       "subtopics": [
+        {
+         "id": "write-narratives",
+         "title": "Write Narratives",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Write simple sentences using sentence frames for the beginning, middle, and end of a narrative."
+          },
+          {
+           "code": null,
+           "text": "Write a series of simple sentences using sentence frames for a narrative that has a beginning, middle, and end."
+          },
+          {
+           "code": null,
+           "text": "Write a short narrative with increasingly complex sentences that describes specific actions and feelings of the characters, aided by a template."
+          },
+          {
+           "code": null,
+           "text": "Write longer autobiographical or biographical narratives that describe details of characters and changes in time and mood."
+          },
+          {
+           "code": null,
+           "text": "Write full-length fictional, autobiographical, or biographical narratives that include specific details; write reflective compositions that compare specific incidents to a broad theme about life."
+          }
+         ]
+        },
+        {
+         "id": "write-research-reports",
+         "title": "Write Research Reports",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Write simple expository sentences using sentence frames."
+          },
+          {
+           "code": null,
+           "text": "Write a series of simple sentences using sentence frames that include a basic thesis and some facts and details."
+          },
+          {
+           "code": null,
+           "text": "Write a brief research report with increasingly complex sentences that includes a thesis, provides relevant support, and documents sources, aided by a template."
+          },
+          {
+           "code": null,
+           "text": "Write a longer research report that includes a thesis, provides relevant support, and includes citations."
+          },
+          {
+           "code": null,
+           "text": "Write a full-length research report that states a thesis, explains the significance of specific data, facts, and ideas, and includes citations."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "writing-conventions",
+       "title": "Writing Conventions",
+       "subtopics": [
+        {
+         "id": "spell-words-correctly",
+         "title": "Spell Words Correctly",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Spell many one-syllable, familiar words correctly."
+          },
+          {
+           "code": null,
+           "text": "Spell familiar words correctly."
+          },
+          {
+           "code": null,
+           "text": "Apply spelling rules to spell correctly words from text at the independent reading level, and independently use reference tools to correct spelling."
+          },
+          {
+           "code": null,
+           "text": "Apply spelling rules and some Greek and Latin derivatives to correctly spell multisyllabic words near grade level, and independently use reference tools to correct spelling."
+          },
+          {
+           "code": null,
+           "text": "Apply spelling rules and Greek and Latin derivatives to correctly spell multisyllabic words at grade level, and independently use reference tools to correct spelling."
+          }
+         ]
+        },
+        {
+         "id": "write-a-variety-of-sentence-types",
+         "title": "Write a Variety of Sentence Types",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Identify and write very simple declarative sentences."
+          },
+          {
+           "code": null,
+           "text": "Identify and write simple declarative, exclamatory, and interrogative sentences."
+          },
+          {
+           "code": null,
+           "text": "Identify and write sentences of varying types and increasing complexity."
+          },
+          {
+           "code": null,
+           "text": "Identify and write sentences of varying types and complexity near grade level."
+          },
+          {
+           "code": null,
+           "text": "Identify and write sentences of varying types and complexity at grade level."
+          }
+         ]
+        },
+        {
+         "id": "apply-capitalization-and-punctuation-rules",
+         "title": "Apply Capitalization and Punctuation Rules",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Identify and apply basic capitalization and punctuation rules in simple sentences."
+          },
+          {
+           "code": null,
+           "text": "Identify and apply increasingly complex capitalization and punctuation rules."
+          },
+          {
+           "code": null,
+           "text": "Identify and apply grade-level capitalization and punctuation rules with some errors."
+          },
+          {
+           "code": null,
+           "text": "Identify and apply grade-level capitalization and punctuation rules."
+          }
+         ]
+        },
+        {
+         "id": "use-grammatical-forms",
+         "title": "Use Grammatical Forms",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Identify and use subject-verb-object order in very simple sentences."
+          },
+          {
+           "code": null,
+           "text": "Identify and use subject-verb agreement and basic verb tenses in simple sentences."
+          },
+          {
+           "code": null,
+           "text": "Identify and use subject-verb agreement, a variety of verb tenses, and a variety of adjectives and adverbs in increasingly complex sentences."
+          },
+          {
+           "code": null,
+           "text": "Identify and use grade-level grammatical forms (e.g., verb tense, subject-verb agreement, and pronoun-antecedent agreement) and parallel structure with some errors."
+          },
+          {
+           "code": null,
+           "text": "Identify and use grade-level grammatical forms (e.g., verb tense, subject-verb agreement, and pronoun-antecedent agreement) and parallel structure."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "build": {
+  "builtAt": "2026-10-14T16:20:41.386Z",
+  "model": "none",
+  "usd": 0,
+  "expectedCodes": null,
+  "coverage": null,
+  "missingCodes": [],
+  "counts": {
+   "grades": 4,
+   "units": 16,
+   "topics": 28,
+   "subtopics": 95,
+   "outcomes": 453
+  },
+  "warnings": []
+ }
+}

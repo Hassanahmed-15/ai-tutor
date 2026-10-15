@@ -1,0 +1,204 @@
+{
+ "id": "ib-dp-visual-arts",
+ "region": "INTL",
+ "framework": "International Baccalaureate Diploma Programme (DP)",
+ "board": "IB",
+ "qualification": "IB Diploma Programme",
+ "subject": "Visual arts (SL and HL)",
+ "syllabusCode": null,
+ "gradeSystem": "course",
+ "source": {
+  "urls": [
+   "https://www.ibo.org/globalassets/new-structure/university-admission/pdfs/dp_vis-arts_subjectbrief_en.pdf",
+   "https://web.archive.org/web/20241011015708id_/https://www.ibo.org/globalassets/new-structure/university-admission/pdfs/dp_vis-arts_subjectbrief_en.pdf"
+  ],
+  "publisher": "International Baccalaureate Organization",
+  "licence": "(c) International Baccalaureate Organization; all rights reserved, no open licence. ibo.org terms 1.8: IB copyrighted materials are licensed only under the IB's terms or a signed agreement; 'Any use not expressly permitted is prohibited unless special permission is obtained in writing from the IB'; 1.9: nothing on the IB websites confers any licence. Briefs are free public marketing summaries: take topic structure only, write everything in our own words, never reproduce brief text, and do not use IB logos/trade marks. Full subject guides are sold to schools and were NOT used. Terms: https://www.ibo.org/terms-and-conditions/ and https://www.ibo.org/copyright",
+  "firstExam": "2027"
+ },
+ "grades": [
+  {
+   "grade": "all",
+   "units": [
+    {
+     "id": "create",
+     "title": "Create",
+     "topics": [
+      {
+       "id": "create",
+       "title": "Create",
+       "subtopics": [
+        {
+         "id": "generating-ideas",
+         "title": "Generating ideas",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Try a variety of art-making forms and creative strategies."
+          },
+          {
+           "code": null,
+           "text": "Generate ideas from investigation and observation."
+          }
+         ]
+        },
+        {
+         "id": "developing-and-resolving-work",
+         "title": "Developing and resolving work",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Experiment and resolve artworks."
+          },
+          {
+           "code": null,
+           "text": "Follow lines of inquiry from conception to realisation."
+          },
+          {
+           "code": null,
+           "text": "Develop a personal visual language."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "connect",
+     "title": "Connect",
+     "topics": [
+      {
+       "id": "connect",
+       "title": "Connect",
+       "subtopics": [
+        {
+         "id": "investigating-other-artworks",
+         "title": "Investigating other artworks",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Investigate artworks from different times and contexts."
+          },
+          {
+           "code": null,
+           "text": "Consider relationships between artwork, artist and audience."
+          }
+         ]
+        },
+        {
+         "id": "situating-your-art",
+         "title": "Situating your art",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Situate your own art-making in relation to context."
+          },
+          {
+           "code": null,
+           "text": "Consider cultural significance."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "communicate",
+     "title": "Communicate",
+     "topics": [
+      {
+       "id": "communicate",
+       "title": "Communicate",
+       "subtopics": [
+        {
+         "id": "presenting-and-critique",
+         "title": "Presenting and critique",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Use methods of visual and written presentation."
+          },
+          {
+           "code": null,
+           "text": "Take part in dialogue and critique."
+          }
+         ]
+        },
+        {
+         "id": "curating-work",
+         "title": "Curating work",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Curate, share and situate your artwork."
+          },
+          {
+           "code": null,
+           "text": "Digitally document and curate artwork."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "integration-of-create-connect-and-communicate",
+     "title": "Integration of create, connect and communicate",
+     "topics": [
+      {
+       "id": "integration-of-create-connect-and-communicate",
+       "title": "Integration of create, connect and communicate",
+       "subtopics": [
+        {
+         "id": "art-making-as-inquiry",
+         "title": "Art-making as inquiry",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Develop artistic intentions and creative processes through personal lines of inquiry."
+          },
+          {
+           "code": null,
+           "text": "Connect your art-making with the work of others."
+          },
+          {
+           "code": null,
+           "text": "Create artworks in context and communicate with audiences."
+          },
+          {
+           "code": null,
+           "text": "Build a coherent body of resolved artworks."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "build": {
+  "builtAt": "2026-10-14T10:54:10.101Z",
+  "model": "claude-agent",
+  "usd": 0,
+  "expectedCodes": null,
+  "coverage": null,
+  "missingCodes": [],
+  "counts": {
+   "grades": 1,
+   "units": 4,
+   "topics": 4,
+   "subtopics": 7,
+   "outcomes": 17
+  },
+  "warnings": [
+   "grade DP year 1 has no content",
+   "grade DP year 2 has no content",
+   "unexpected grade label \"all\""
+  ]
+ }
+}

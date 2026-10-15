@@ -1,0 +1,733 @@
+{
+ "id": "uk-aqa-gcse-design-and-technology-8552",
+ "region": "UK",
+ "framework": "AQA GCSE (9-1)",
+ "board": "AQA",
+ "qualification": "GCSE",
+ "subject": "Design and Technology",
+ "syllabusCode": "8552",
+ "gradeSystem": "year",
+ "source": {
+  "urls": [
+   "https://cdn.sanity.io/files/p28bar15/green/db64d96d05315e9adcaff43690b58b17be11b5e3.pdf"
+  ],
+  "publisher": "AQA",
+  "licence": "Exam board specification, (c) AQA; structure + our own wording only",
+  "firstExam": "2019"
+ },
+ "grades": [
+  {
+   "grade": "all",
+   "units": [
+    {
+     "id": "3-1-core-technical-principles",
+     "title": "3.1 Core technical principles",
+     "topics": [
+      {
+       "id": "3-1-1-new-and-emerging-technologies",
+       "title": "3.1.1 New and emerging technologies",
+       "subtopics": [
+        {
+         "id": "industry-and-enterprise",
+         "title": "Industry and enterprise",
+         "outcomes": [
+          {
+           "code": "3.1.1",
+           "text": "Explain how new technologies change workplaces, buildings, tools and equipment, including automation and robotics."
+          },
+          {
+           "code": "3.1",
+           "text": "Describe enterprise models: crowd funding, virtual marketing and retail, co-operatives and fair trade."
+          }
+         ]
+        },
+        {
+         "id": "sustainability-people-and-culture",
+         "title": "Sustainability, people and culture",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain the effect of resource use on the planet: finite and non-finite resources and waste disposal."
+          },
+          {
+           "code": null,
+           "text": "Explain how technology push and market pull affect choices, and how job roles change."
+          },
+          {
+           "code": null,
+           "text": "Describe how fashion and trends follow new technologies and why different faiths and beliefs deserve respect."
+          }
+         ]
+        },
+        {
+         "id": "society-and-environment",
+         "title": "Society and environment",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain how products are designed to avoid harming others, such as designing for disabled, elderly and religious groups."
+          },
+          {
+           "code": null,
+           "text": "Describe positive and negative environmental impacts of new products, including pollution and global warming."
+          }
+         ]
+        },
+        {
+         "id": "production-systems",
+         "title": "Production systems",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe automation, CAD, CAM, flexible manufacturing, just in time and lean manufacturing."
+          }
+         ]
+        },
+        {
+         "id": "evaluating-new-technologies",
+         "title": "Evaluating new technologies",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Weigh new technologies from different perspectives, including planned obsolescence, maintenance, ethics and the environment."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "3-1-2-energy-generation-and-storage",
+       "title": "3.1.2 Energy generation and storage",
+       "subtopics": [
+        {
+         "id": "fossil-fuels-and-nuclear-power",
+         "title": "Fossil fuels and nuclear power",
+         "outcomes": [
+          {
+           "code": "3.1.2",
+           "text": "Explain how power is generated from coal, gas and oil, and argue for and against fossil fuels."
+          },
+          {
+           "code": null,
+           "text": "Explain how nuclear power is generated, and argue for and against it."
+          }
+         ]
+        },
+        {
+         "id": "renewables-and-storage",
+         "title": "Renewables and storage",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain generation from wind, solar, tidal, hydro-electric and biomass, with arguments for and against."
+          },
+          {
+           "code": null,
+           "text": "Describe energy storage: pumped storage, and alkaline and rechargeable batteries."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "3-1-3-developments-in-new-materials",
+       "title": "3.1.3 Developments in new materials",
+       "subtopics": [
+        {
+         "id": "modern-and-smart-materials",
+         "title": "Modern and smart materials",
+         "outcomes": [
+          {
+           "code": "3.1.3",
+           "text": "Describe modern materials made by new or improved processes, such as graphene, metal foams, titanium, coated metals, LCDs and nanomaterials."
+          },
+          {
+           "code": null,
+           "text": "Explain that smart materials change properties under stimuli such as stress, temperature, moisture or pH, with examples."
+          }
+         ]
+        },
+        {
+         "id": "composites-and-technical-textiles",
+         "title": "Composites and technical textiles",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain that composites combine materials for enhanced properties, such as GRP and CRP."
+          },
+          {
+           "code": null,
+           "text": "Describe technical textiles such as conductive and fire-resistant fabrics, Kevlar and microfibres."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "3-1-4-systems-approach-to-designing",
+       "title": "3.1.4 Systems approach to designing",
+       "subtopics": [
+        {
+         "id": "inputs-processes-and-outputs",
+         "title": "Inputs, processes and outputs",
+         "outcomes": [
+          {
+           "code": "3.1.4",
+           "text": "Describe input components: light, temperature and pressure sensors and switches."
+          },
+          {
+           "code": null,
+           "text": "Explain how programmed microcontrollers count, time and make decisions."
+          },
+          {
+           "code": null,
+           "text": "Describe output components: buzzers, speakers and lamps."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "3-1-5-mechanical-devices",
+       "title": "3.1.5 Mechanical devices",
+       "subtopics": [
+        {
+         "id": "movement-and-force",
+         "title": "Movement and force",
+         "outcomes": [
+          {
+           "code": "3.1.5",
+           "text": "Describe how mechanical devices produce linear, rotary, reciprocating and oscillating movement."
+          },
+          {
+           "code": null,
+           "text": "Explain how first, second and third order levers change force magnitude and direction."
+          },
+          {
+           "code": null,
+           "text": "Explain how linkages (bell cranks, push/pull) and rotary systems (cams, gear trains, pulleys and belts) transmit force and motion."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "3-1-6-materials-and-their-working-properties",
+       "title": "3.1.6 Materials and their working properties",
+       "subtopics": [
+        {
+         "id": "papers-boards-and-timbers",
+         "title": "Papers, boards and timbers",
+         "outcomes": [
+          {
+           "code": "3.1.6",
+           "text": "Know main types of papers and boards."
+          },
+          {
+           "code": "3.1.6.1",
+           "text": "Know the main hardwoods, softwoods and manufactured boards."
+          }
+         ]
+        },
+        {
+         "id": "metals-and-polymers",
+         "title": "Metals and polymers",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Know main ferrous, non-ferrous metals and alloys."
+          },
+          {
+           "code": null,
+           "text": "Know main thermoforming and thermosetting polymers."
+          }
+         ]
+        },
+        {
+         "id": "textiles",
+         "title": "Textiles",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Know natural, synthetic and blended fibres, and woven, non-woven and knitted textiles."
+          }
+         ]
+        },
+        {
+         "id": "material-properties",
+         "title": "Material properties",
+         "outcomes": [
+          {
+           "code": "3.1.6.2",
+           "text": "Explain physical properties: absorbency, density, fusibility, and electrical and thermal conductivity."
+          },
+          {
+           "code": null,
+           "text": "Explain working properties: strength, hardness, toughness, malleability, ductility and elasticity."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "3-2-specialist-technical-principles",
+     "title": "3.2 Specialist technical principles",
+     "topics": [
+      {
+       "id": "3-2-1-selection-of-materials-or-components",
+       "title": "3.2.1 Selection of materials or components",
+       "subtopics": [
+        {
+         "id": "choosing-materials",
+         "title": "Choosing materials",
+         "outcomes": [
+          {
+           "code": "3.2.1",
+           "text": "Select materials by functionality, aesthetics, environment, availability, cost, and social, cultural and ethical factors."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "3-2-2-forces-and-stresses",
+       "title": "3.2.2 Forces and stresses",
+       "subtopics": [
+        {
+         "id": "forces-and-stresses",
+         "title": "Forces and stresses",
+         "outcomes": [
+          {
+           "code": "3.2",
+           "text": "Describe tension, compression, bending, torsion and shear."
+          },
+          {
+           "code": null,
+           "text": "Explain how materials are reinforced, stiffened or made flexible, for example by lamination, folding or interfacing."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "3-2-3-ecological-and-social-footprint",
+       "title": "3.2.3 Ecological and social footprint",
+       "subtopics": [
+        {
+         "id": "ecological-issues-and-the-six-rs",
+         "title": "Ecological issues and the six Rs",
+         "outcomes": [
+          {
+           "code": "3.2.3",
+           "text": "Describe ecological issues: deforestation, mining, drilling, farming, product mileage and carbon."
+          },
+          {
+           "code": null,
+           "text": "Apply the six Rs: reduce, refuse, re-use, repair, recycle and rethink."
+          }
+         ]
+        },
+        {
+         "id": "social-issues",
+         "title": "Social issues",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe social issues such as safe working conditions and reducing pollution and harm to others."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "3-2-4-sources-and-origins",
+       "title": "3.2.4 Sources and origins",
+       "subtopics": [
+        {
+         "id": "sources-of-materials",
+         "title": "Sources of materials",
+         "outcomes": [
+          {
+           "code": "3.2.4",
+           "text": "Explain how raw materials are converted into workable forms for paper, timber, metals, polymers or textiles."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "3-2-5-using-and-working-with-materials",
+       "title": "3.2.5 Using and working with materials",
+       "subtopics": [
+        {
+         "id": "properties-in-products",
+         "title": "Properties in products",
+         "outcomes": [
+          {
+           "code": "3.2.5",
+           "text": "Explain how material properties influence use and performance in commercial products."
+          },
+          {
+           "code": null,
+           "text": "Describe how properties are modified for purpose, such as seasoning, annealing, UV stabilisers and flame retardants."
+          }
+         ]
+        },
+        {
+         "id": "shaping-and-forming",
+         "title": "Shaping and forming",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe how materials are shaped by cutting, abrasion and addition in a chosen material area."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "3-2-6-stock-forms-types-and-sizes",
+       "title": "3.2.6 Stock forms, types and sizes",
+       "subtopics": [
+        {
+         "id": "stock-forms-and-sizes",
+         "title": "Stock forms and sizes",
+         "outcomes": [
+          {
+           "code": "3.2.6",
+           "text": "Know stock forms, sizes and standard components for a material area, and calculate quantities needed."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "3-2-7-scales-of-production",
+       "title": "3.2.7 Scales of production",
+       "subtopics": [
+        {
+         "id": "scales-of-production",
+         "title": "Scales of production",
+         "outcomes": [
+          {
+           "code": "3.2.7",
+           "text": "Explain why prototype, batch, mass and continuous production suit different volumes."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "3-2-8-specialist-techniques-and-processes",
+       "title": "3.2.8 Specialist techniques and processes",
+       "subtopics": [
+        {
+         "id": "production-aids-and-tools",
+         "title": "Production aids and tools",
+         "outcomes": [
+          {
+           "code": "3.2.8",
+           "text": "Use templates, jigs, patterns and reference points."
+          },
+          {
+           "code": null,
+           "text": "Describe tools and processes for wastage, addition, and deforming and reforming."
+          }
+         ]
+        },
+        {
+         "id": "tolerances-and-commercial-processes",
+         "title": "Tolerances and commercial processes",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain manufacture to minimum and maximum measurements (tolerances)."
+          },
+          {
+           "code": null,
+           "text": "Describe commercial processes for a material area, such as offset lithography, injection moulding or flow soldering."
+          }
+         ]
+        },
+        {
+         "id": "quality-control",
+         "title": "Quality control",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Apply quality control checks suited to a material area, such as registration marks or go/no go fixtures."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "3-2-9-surface-treatments-and-finishes",
+       "title": "3.2.9 Surface treatments and finishes",
+       "subtopics": [
+        {
+         "id": "surface-treatments-and-finishes",
+         "title": "Surface treatments and finishes",
+         "outcomes": [
+          {
+           "code": "3.2.9",
+           "text": "Prepare and apply surface treatments and finishes for function and appearance in a chosen material area."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "3-3-designing-and-making-principles",
+     "title": "3.3 Designing and making principles",
+     "topics": [
+      {
+       "id": "3-3-1-investigation-primary-and-secondary-data",
+       "title": "3.3.1 Investigation, primary and secondary data",
+       "subtopics": [
+        {
+         "id": "investigating-user-needs",
+         "title": "Investigating user needs",
+         "outcomes": [
+          {
+           "code": "3.3.1",
+           "text": "Use market research, interviews, focus groups, product analysis, ergonomics and anthropometric data to understand needs."
+          }
+         ]
+        },
+        {
+         "id": "briefs-and-specifications",
+         "title": "Briefs and specifications",
+         "outcomes": [
+          {
+           "code": "3.3",
+           "text": "Write a design brief and a design and manufacturing specification, adjusting the brief when needed."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "3-3-2-environmental-social-and-economic-challeng",
+       "title": "3.3.2 Environmental, social and economic challenge",
+       "subtopics": [
+        {
+         "id": "design-challenges",
+         "title": "Design challenges",
+         "outcomes": [
+          {
+           "code": "3.3.2",
+           "text": "Explain how deforestation, carbon dioxide levels and the need for fair trade create opportunities and constraints in design."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "3-3-3-the-work-of-others",
+       "title": "3.3.3 The work of others",
+       "subtopics": [
+        {
+         "id": "work-of-other-designers",
+         "title": "Work of other designers",
+         "outcomes": [
+          {
+           "code": "3.3.3",
+           "text": "Investigate and evaluate the work of at least two named designers and two companies to inform your own design."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "3-3-4-design-strategies",
+       "title": "3.3.4 Design strategies",
+       "subtopics": [
+        {
+         "id": "design-strategies",
+         "title": "Design strategies",
+         "outcomes": [
+          {
+           "code": "3.3.4",
+           "text": "Apply strategies: collaboration, user centred design, systems approach, iterative design and avoiding design fixation."
+          },
+          {
+           "code": null,
+           "text": "Develop ideas iteratively by sketching, modelling, testing and evaluating."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "3-3-5-communication-of-design-ideas",
+       "title": "3.3.5 Communication of design ideas",
+       "subtopics": [
+        {
+         "id": "communicating-designs",
+         "title": "Communicating designs",
+         "outcomes": [
+          {
+           "code": "3.3.5",
+           "text": "Communicate designs with sketches, isometric and perspective drawings, schematic and exploded diagrams, and annotation."
+          },
+          {
+           "code": null,
+           "text": "Produce scaled third-angle orthographic working drawings and use models, mock-ups and computer tools."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "3-3-6-prototype-development",
+       "title": "3.3.6 Prototype development",
+       "subtopics": [
+        {
+         "id": "developing-and-evaluating-prototypes",
+         "title": "Developing and evaluating prototypes",
+         "outcomes": [
+          {
+           "code": "3.3.6",
+           "text": "Develop prototypes that meet the brief, respond to client needs, are functional, innovative and marketable."
+          },
+          {
+           "code": null,
+           "text": "Evaluate prototypes critically, suggest modifications and judge if they are fit for purpose."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "3-3-7-selection-of-materials-and-components",
+       "title": "3.3.7 Selection of materials and components",
+       "subtopics": [
+        {
+         "id": "selecting-for-a-prototype",
+         "title": "Selecting for a prototype",
+         "outcomes": [
+          {
+           "code": "3.3.7",
+           "text": "Select materials and components for a prototype by functional need, cost and availability."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "3-3-8-tolerances",
+       "title": "3.3.8 Tolerances",
+       "subtopics": [
+        {
+         "id": "working-to-tolerances",
+         "title": "Working to tolerances",
+         "outcomes": [
+          {
+           "code": "3.3.8",
+           "text": "Work accurately to tolerances and explain why tolerances are applied in making."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "3-3-9-material-management",
+       "title": "3.3.9 Material management",
+       "subtopics": [
+        {
+         "id": "minimising-waste",
+         "title": "Minimising waste",
+         "outcomes": [
+          {
+           "code": "3.3.9",
+           "text": "Plan cutting, such as nesting shapes, to minimise waste, allowing for seam allowance and joint overlap."
+          }
+         ]
+        },
+        {
+         "id": "marking-out",
+         "title": "Marking out",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Mark out accurately using reference points, coordinates, templates, jigs and patterns."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "3-3-10-specialist-tools-and-equipment",
+       "title": "3.3.10 Specialist tools and equipment",
+       "subtopics": [
+        {
+         "id": "tools-and-equipment",
+         "title": "Tools and equipment",
+         "outcomes": [
+          {
+           "code": "3.3.10",
+           "text": "Select and safely use hand tools, machinery and digital design and manufacture for quality outcomes."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "3-3-11-specialist-techniques-and-processes",
+       "title": "3.3.11 Specialist techniques and processes",
+       "subtopics": [
+        {
+         "id": "techniques-and-processes",
+         "title": "Techniques and processes",
+         "outcomes": [
+          {
+           "code": "3.3.11",
+           "text": "Select and safely use techniques (wastage, addition, deforming and reforming) to the required accuracy."
+          }
+         ]
+        },
+        {
+         "id": "finishes-in-making",
+         "title": "Finishes in making",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain functional and aesthetic uses of finishes, and prepare and apply them correctly."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "build": {
+  "builtAt": "2026-10-14T10:20:23.510Z",
+  "model": "claude-agent",
+  "usd": 0,
+  "expectedCodes": 31,
+  "coverage": 0.967741935483871,
+  "missingCodes": [
+   "3.2.2"
+  ],
+  "counts": {
+   "grades": 1,
+   "units": 3,
+   "topics": 26,
+   "subtopics": 42,
+   "outcomes": 65
+  },
+  "warnings": [
+   "grade Year 10 has no content",
+   "grade Year 11 has no content",
+   "unexpected grade label \"all\""
+  ]
+ }
+}

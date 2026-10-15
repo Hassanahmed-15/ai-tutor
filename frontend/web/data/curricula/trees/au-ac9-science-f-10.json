@@ -1,0 +1,2282 @@
+{
+ "id": "au-ac9-science-f-10",
+ "region": "AU",
+ "framework": "Australian Curriculum Version 9.0 (F-10)",
+ "board": "ACARA",
+ "qualification": null,
+ "subject": "Science",
+ "syllabusCode": "SCISCI",
+ "gradeSystem": "year",
+ "source": {
+  "urls": [
+   "https://vocabulary.curriculum.edu.au/MRAC/2024/04/LA/SCI/export/MRAC/2024/04/LA/SCI.jsonld",
+   "https://www.australiancurriculum.edu.au/content/dam/en/curriculum/ac-version-9/downloads/curriculum-workbook.xlsx"
+  ],
+  "publisher": "Australian Curriculum, Assessment and Reporting Authority (ACARA)",
+  "licence": "© ACARA, Australian Curriculum v9.0, CC BY 4.0",
+  "firstExam": null
+ },
+ "grades": [
+  {
+   "grade": "Foundation",
+   "units": [
+    {
+     "id": "science-understanding",
+     "title": "Science understanding",
+     "topics": [
+      {
+       "id": "biological-sciences",
+       "title": "Biological sciences",
+       "subtopics": [
+        {
+         "id": "biological-sciences",
+         "title": "Biological sciences",
+         "outcomes": [
+          {
+           "code": "AC9SFU01",
+           "text": "observe external features of plants and animals and describe ways they can be grouped based on these features"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "physical-sciences",
+       "title": "Physical sciences",
+       "subtopics": [
+        {
+         "id": "physical-sciences",
+         "title": "Physical sciences",
+         "outcomes": [
+          {
+           "code": "AC9SFU02",
+           "text": "describe how objects move and how factors including their size, shape or material influence their movement"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "chemical-sciences",
+       "title": "Chemical sciences",
+       "subtopics": [
+        {
+         "id": "chemical-sciences",
+         "title": "Chemical sciences",
+         "outcomes": [
+          {
+           "code": "AC9SFU03",
+           "text": "recognise that objects can be composed of different materials and describe the observable properties of those materials"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "science-as-a-human-endeavour",
+     "title": "Science as a human endeavour",
+     "topics": [
+      {
+       "id": "use-and-influence-of-science",
+       "title": "Use and influence of science",
+       "subtopics": [
+        {
+         "id": "use-and-influence-of-science",
+         "title": "Use and influence of science",
+         "outcomes": [
+          {
+           "code": "AC9SFH01",
+           "text": "explore the ways people make and use observations and questions to learn about the natural world"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "science-inquiry",
+     "title": "Science inquiry",
+     "topics": [
+      {
+       "id": "questioning-and-predicting",
+       "title": "Questioning and predicting",
+       "subtopics": [
+        {
+         "id": "questioning-and-predicting",
+         "title": "Questioning and predicting",
+         "outcomes": [
+          {
+           "code": "AC9SFI01",
+           "text": "pose questions and make predictions based on experiences"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "planning-and-conducting",
+       "title": "Planning and conducting",
+       "subtopics": [
+        {
+         "id": "planning-and-conducting",
+         "title": "Planning and conducting",
+         "outcomes": [
+          {
+           "code": "AC9SFI02",
+           "text": "engage in investigations safely and make observations using their senses"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "processing-modelling-and-analysing",
+       "title": "Processing, modelling and analysing",
+       "subtopics": [
+        {
+         "id": "processing-modelling-and-analysing",
+         "title": "Processing, modelling and analysing",
+         "outcomes": [
+          {
+           "code": "AC9SFI03",
+           "text": "represent observations in provided templates and identify patterns with guidance"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "evaluating",
+       "title": "Evaluating",
+       "subtopics": [
+        {
+         "id": "evaluating",
+         "title": "Evaluating",
+         "outcomes": [
+          {
+           "code": "AC9SFI04",
+           "text": "compare observations with predictions with guidance"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "communicating",
+       "title": "Communicating",
+       "subtopics": [
+        {
+         "id": "communicating",
+         "title": "Communicating",
+         "outcomes": [
+          {
+           "code": "AC9SFI05",
+           "text": "share questions, predictions, observations and ideas with others"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "1",
+   "units": [
+    {
+     "id": "science-understanding",
+     "title": "Science understanding",
+     "topics": [
+      {
+       "id": "biological-sciences",
+       "title": "Biological sciences",
+       "subtopics": [
+        {
+         "id": "biological-sciences",
+         "title": "Biological sciences",
+         "outcomes": [
+          {
+           "code": "AC9S1U01",
+           "text": "identify the basic needs of plants and animals, including air, water, food or shelter, and describe how the places they live meet those needs"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "earth-and-space-sciences",
+       "title": "Earth and space sciences",
+       "subtopics": [
+        {
+         "id": "earth-and-space-sciences",
+         "title": "Earth and space sciences",
+         "outcomes": [
+          {
+           "code": "AC9S1U02",
+           "text": "describe daily and seasonal changes in the environment and explore how these changes affect everyday life"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "physical-sciences",
+       "title": "Physical sciences",
+       "subtopics": [
+        {
+         "id": "physical-sciences",
+         "title": "Physical sciences",
+         "outcomes": [
+          {
+           "code": "AC9S1U03",
+           "text": "describe pushes and pulls in terms of strength and direction and predict the effect of these forces on objects’ motion and shape"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "science-as-a-human-endeavour",
+     "title": "Science as a human endeavour",
+     "topics": [
+      {
+       "id": "use-and-influence-of-science",
+       "title": "Use and influence of science",
+       "subtopics": [
+        {
+         "id": "use-and-influence-of-science",
+         "title": "Use and influence of science",
+         "outcomes": [
+          {
+           "code": "AC9S1H01",
+           "text": "describe how people use science in their daily lives, including using patterns to make scientific predictions"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "science-inquiry",
+     "title": "Science inquiry",
+     "topics": [
+      {
+       "id": "questioning-and-predicting",
+       "title": "Questioning and predicting",
+       "subtopics": [
+        {
+         "id": "questioning-and-predicting",
+         "title": "Questioning and predicting",
+         "outcomes": [
+          {
+           "code": "AC9S1I01",
+           "text": "pose questions to explore observed simple patterns and relationships and make predictions based on experiences"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "planning-and-conducting",
+       "title": "Planning and conducting",
+       "subtopics": [
+        {
+         "id": "planning-and-conducting",
+         "title": "Planning and conducting",
+         "outcomes": [
+          {
+           "code": "AC9S1I02",
+           "text": "suggest and follow safe procedures to investigate questions and test predictions"
+          },
+          {
+           "code": "AC9S1I03",
+           "text": "make and record observations, including informal measurements, using digital tools as appropriate"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "processing-modelling-and-analysing",
+       "title": "Processing, modelling and analysing",
+       "subtopics": [
+        {
+         "id": "processing-modelling-and-analysing",
+         "title": "Processing, modelling and analysing",
+         "outcomes": [
+          {
+           "code": "AC9S1I04",
+           "text": "sort and order data and information and represent patterns, including with provided tables and visual or physical models"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "evaluating",
+       "title": "Evaluating",
+       "subtopics": [
+        {
+         "id": "evaluating",
+         "title": "Evaluating",
+         "outcomes": [
+          {
+           "code": "AC9S1I05",
+           "text": "compare observations with predictions and others’ observations, consider if investigations are fair and identify further questions with guidance"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "communicating",
+       "title": "Communicating",
+       "subtopics": [
+        {
+         "id": "communicating",
+         "title": "Communicating",
+         "outcomes": [
+          {
+           "code": "AC9S1I06",
+           "text": "write and create texts to communicate observations, findings and ideas, using everyday and scientific vocabulary"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "2",
+   "units": [
+    {
+     "id": "science-understanding",
+     "title": "Science understanding",
+     "topics": [
+      {
+       "id": "earth-and-space-sciences",
+       "title": "Earth and space sciences",
+       "subtopics": [
+        {
+         "id": "earth-and-space-sciences",
+         "title": "Earth and space sciences",
+         "outcomes": [
+          {
+           "code": "AC9S2U01",
+           "text": "recognise Earth is a planet in the solar system and identify patterns in the changing position of the sun, moon, planets and stars in the sky"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "physical-sciences",
+       "title": "Physical sciences",
+       "subtopics": [
+        {
+         "id": "physical-sciences",
+         "title": "Physical sciences",
+         "outcomes": [
+          {
+           "code": "AC9S2U02",
+           "text": "explore different actions to make sounds and how to make a variety of sounds, and recognise that sound energy causes objects to vibrate"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "chemical-sciences",
+       "title": "Chemical sciences",
+       "subtopics": [
+        {
+         "id": "chemical-sciences",
+         "title": "Chemical sciences",
+         "outcomes": [
+          {
+           "code": "AC9S2U03",
+           "text": "recognise that materials can be changed physically without changing their material composition and explore the effect of different actions on materials including bending, twisting, stretching and breaking into smaller pieces"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "science-as-a-human-endeavour",
+     "title": "Science as a human endeavour",
+     "topics": [
+      {
+       "id": "use-and-influence-of-science",
+       "title": "Use and influence of science",
+       "subtopics": [
+        {
+         "id": "use-and-influence-of-science",
+         "title": "Use and influence of science",
+         "outcomes": [
+          {
+           "code": "AC9S2H01",
+           "text": "describe how people use science in their daily lives, including using patterns to make scientific predictions"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "science-inquiry",
+     "title": "Science inquiry",
+     "topics": [
+      {
+       "id": "questioning-and-predicting",
+       "title": "Questioning and predicting",
+       "subtopics": [
+        {
+         "id": "questioning-and-predicting",
+         "title": "Questioning and predicting",
+         "outcomes": [
+          {
+           "code": "AC9S2I01",
+           "text": "pose questions to explore observed simple patterns and relationships and make predictions based on experiences"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "planning-and-conducting",
+       "title": "Planning and conducting",
+       "subtopics": [
+        {
+         "id": "planning-and-conducting",
+         "title": "Planning and conducting",
+         "outcomes": [
+          {
+           "code": "AC9S2I02",
+           "text": "suggest and follow safe procedures to investigate questions and test predictions"
+          },
+          {
+           "code": "AC9S2I03",
+           "text": "make and record observations, including informal measurements, using digital tools as appropriate"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "processing-modelling-and-analysing",
+       "title": "Processing, modelling and analysing",
+       "subtopics": [
+        {
+         "id": "processing-modelling-and-analysing",
+         "title": "Processing, modelling and analysing",
+         "outcomes": [
+          {
+           "code": "AC9S2I04",
+           "text": "sort and order data and information and represent patterns, including with provided tables and visual or physical models"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "evaluating",
+       "title": "Evaluating",
+       "subtopics": [
+        {
+         "id": "evaluating",
+         "title": "Evaluating",
+         "outcomes": [
+          {
+           "code": "AC9S2I05",
+           "text": "compare observations with predictions and others’ observations, consider if investigations are fair and identify further questions with guidance"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "communicating",
+       "title": "Communicating",
+       "subtopics": [
+        {
+         "id": "communicating",
+         "title": "Communicating",
+         "outcomes": [
+          {
+           "code": "AC9S2I06",
+           "text": "write and create texts to communicate observations, findings and ideas, using everyday and scientific vocabulary"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "3",
+   "units": [
+    {
+     "id": "science-understanding",
+     "title": "Science understanding",
+     "topics": [
+      {
+       "id": "biological-sciences",
+       "title": "Biological sciences",
+       "subtopics": [
+        {
+         "id": "biological-sciences",
+         "title": "Biological sciences",
+         "outcomes": [
+          {
+           "code": "AC9S3U01",
+           "text": "compare characteristics of living and non-living things and examine the differences between the life cycles of plants and animals"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "earth-and-space-sciences",
+       "title": "Earth and space sciences",
+       "subtopics": [
+        {
+         "id": "earth-and-space-sciences",
+         "title": "Earth and space sciences",
+         "outcomes": [
+          {
+           "code": "AC9S3U02",
+           "text": "compare the observable properties of soils, rocks and minerals and investigate why they are important Earth resources"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "physical-sciences",
+       "title": "Physical sciences",
+       "subtopics": [
+        {
+         "id": "physical-sciences",
+         "title": "Physical sciences",
+         "outcomes": [
+          {
+           "code": "AC9S3U03",
+           "text": "identify sources of heat energy and examine how temperature changes when heat energy is transferred from one object to another"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "chemical-sciences",
+       "title": "Chemical sciences",
+       "subtopics": [
+        {
+         "id": "chemical-sciences",
+         "title": "Chemical sciences",
+         "outcomes": [
+          {
+           "code": "AC9S3U04",
+           "text": "investigate the observable properties of solids and liquids and how adding or removing heat energy leads to a change of state"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "science-as-a-human-endeavour",
+     "title": "Science as a human endeavour",
+     "topics": [
+      {
+       "id": "nature-and-development-of-science",
+       "title": "Nature and development of science",
+       "subtopics": [
+        {
+         "id": "nature-and-development-of-science",
+         "title": "Nature and development of science",
+         "outcomes": [
+          {
+           "code": "AC9S3H01",
+           "text": "examine how people use data to develop scientific explanations"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "use-and-influence-of-science",
+       "title": "Use and influence of science",
+       "subtopics": [
+        {
+         "id": "use-and-influence-of-science",
+         "title": "Use and influence of science",
+         "outcomes": [
+          {
+           "code": "AC9S3H02",
+           "text": "consider how people use scientific explanations to meet a need or solve a problem"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "science-inquiry",
+     "title": "Science inquiry",
+     "topics": [
+      {
+       "id": "questioning-and-predicting",
+       "title": "Questioning and predicting",
+       "subtopics": [
+        {
+         "id": "questioning-and-predicting",
+         "title": "Questioning and predicting",
+         "outcomes": [
+          {
+           "code": "AC9S3I01",
+           "text": "pose questions to explore observed patterns and relationships and make predictions based on observations"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "planning-and-conducting",
+       "title": "Planning and conducting",
+       "subtopics": [
+        {
+         "id": "planning-and-conducting",
+         "title": "Planning and conducting",
+         "outcomes": [
+          {
+           "code": "AC9S3I02",
+           "text": "use provided scaffolds to plan and conduct investigations to answer questions or test predictions, including identifying the elements of fair tests, and considering the safe use of materials and equipment"
+          },
+          {
+           "code": "AC9S3I03",
+           "text": "follow procedures to make and record observations, including making formal measurements using familiar scaled instruments and using digital tools as appropriate"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "processing-modelling-and-analysing",
+       "title": "Processing, modelling and analysing",
+       "subtopics": [
+        {
+         "id": "processing-modelling-and-analysing",
+         "title": "Processing, modelling and analysing",
+         "outcomes": [
+          {
+           "code": "AC9S3I04",
+           "text": "construct and use representations, including tables, simple column graphs and visual or physical models, to organise data and information, show simple relationships and identify patterns"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "evaluating",
+       "title": "Evaluating",
+       "subtopics": [
+        {
+         "id": "evaluating",
+         "title": "Evaluating",
+         "outcomes": [
+          {
+           "code": "AC9S3I05",
+           "text": "compare findings with those of others, consider if investigations were fair, identify questions for further investigation and draw conclusions"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "communicating",
+       "title": "Communicating",
+       "subtopics": [
+        {
+         "id": "communicating",
+         "title": "Communicating",
+         "outcomes": [
+          {
+           "code": "AC9S3I06",
+           "text": "write and create texts to communicate findings and ideas for identified purposes and audiences, using scientific vocabulary and digital tools as appropriate"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "4",
+   "units": [
+    {
+     "id": "science-understanding",
+     "title": "Science understanding",
+     "topics": [
+      {
+       "id": "biological-sciences",
+       "title": "Biological sciences",
+       "subtopics": [
+        {
+         "id": "biological-sciences",
+         "title": "Biological sciences",
+         "outcomes": [
+          {
+           "code": "AC9S4U01",
+           "text": "explain the roles and interactions of consumers, producers and decomposers within a habitat and how food chains represent feeding relationships"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "earth-and-space-sciences",
+       "title": "Earth and space sciences",
+       "subtopics": [
+        {
+         "id": "earth-and-space-sciences",
+         "title": "Earth and space sciences",
+         "outcomes": [
+          {
+           "code": "AC9S4U02",
+           "text": "identify sources of water and describe key processes in the water cycle, including movement of water through the sky, landscape and ocean; precipitation; evaporation; and condensation"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "physical-sciences",
+       "title": "Physical sciences",
+       "subtopics": [
+        {
+         "id": "physical-sciences",
+         "title": "Physical sciences",
+         "outcomes": [
+          {
+           "code": "AC9S4U03",
+           "text": "identify how forces can be exerted by one object on another and investigate the effect of frictional, gravitational and magnetic forces on the motion of objects"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "chemical-sciences",
+       "title": "Chemical sciences",
+       "subtopics": [
+        {
+         "id": "chemical-sciences",
+         "title": "Chemical sciences",
+         "outcomes": [
+          {
+           "code": "AC9S4U04",
+           "text": "examine the properties of natural and made materials including fibres, metals, glass and plastics and consider how these properties influence their use"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "science-as-a-human-endeavour",
+     "title": "Science as a human endeavour",
+     "topics": [
+      {
+       "id": "nature-and-development-of-science",
+       "title": "Nature and development of science",
+       "subtopics": [
+        {
+         "id": "nature-and-development-of-science",
+         "title": "Nature and development of science",
+         "outcomes": [
+          {
+           "code": "AC9S4H01",
+           "text": "examine how people use data to develop scientific explanations"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "use-and-influence-of-science",
+       "title": "Use and influence of science",
+       "subtopics": [
+        {
+         "id": "use-and-influence-of-science",
+         "title": "Use and influence of science",
+         "outcomes": [
+          {
+           "code": "AC9S4H02",
+           "text": "consider how people use scientific explanations to meet a need or solve a problem"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "science-inquiry",
+     "title": "Science inquiry",
+     "topics": [
+      {
+       "id": "questioning-and-predicting",
+       "title": "Questioning and predicting",
+       "subtopics": [
+        {
+         "id": "questioning-and-predicting",
+         "title": "Questioning and predicting",
+         "outcomes": [
+          {
+           "code": "AC9S4I01",
+           "text": "pose questions to explore observed patterns and relationships and make predictions based on observations"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "planning-and-conducting",
+       "title": "Planning and conducting",
+       "subtopics": [
+        {
+         "id": "planning-and-conducting",
+         "title": "Planning and conducting",
+         "outcomes": [
+          {
+           "code": "AC9S4I02",
+           "text": "use provided scaffolds to plan and conduct investigations to answer questions or test predictions, including identifying the elements of fair tests, and considering the safe use of materials and equipment"
+          },
+          {
+           "code": "AC9S4I03",
+           "text": "follow procedures to make and record observations, including making formal measurements using familiar scaled instruments and using digital tools as appropriate"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "processing-modelling-and-analysing",
+       "title": "Processing, modelling and analysing",
+       "subtopics": [
+        {
+         "id": "processing-modelling-and-analysing",
+         "title": "Processing, modelling and analysing",
+         "outcomes": [
+          {
+           "code": "AC9S4I04",
+           "text": "construct and use representations, including tables, simple column graphs and visual or physical models, to organise data and information, show simple relationships and identify patterns"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "evaluating",
+       "title": "Evaluating",
+       "subtopics": [
+        {
+         "id": "evaluating",
+         "title": "Evaluating",
+         "outcomes": [
+          {
+           "code": "AC9S4I05",
+           "text": "compare findings with those of others, consider if investigations were fair, identify questions for further investigation and draw conclusions"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "communicating",
+       "title": "Communicating",
+       "subtopics": [
+        {
+         "id": "communicating",
+         "title": "Communicating",
+         "outcomes": [
+          {
+           "code": "AC9S4I06",
+           "text": "write and create texts to communicate findings and ideas for identified purposes and audiences, using scientific vocabulary and digital tools as appropriate"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "5",
+   "units": [
+    {
+     "id": "science-understanding",
+     "title": "Science understanding",
+     "topics": [
+      {
+       "id": "biological-sciences",
+       "title": "Biological sciences",
+       "subtopics": [
+        {
+         "id": "biological-sciences",
+         "title": "Biological sciences",
+         "outcomes": [
+          {
+           "code": "AC9S5U01",
+           "text": "examine how particular structural features and behaviours of living things enable their survival in specific habitats"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "earth-and-space-sciences",
+       "title": "Earth and space sciences",
+       "subtopics": [
+        {
+         "id": "earth-and-space-sciences",
+         "title": "Earth and space sciences",
+         "outcomes": [
+          {
+           "code": "AC9S5U02",
+           "text": "describe how weathering, erosion, transportation and deposition cause slow or rapid change to Earth’s surface"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "physical-sciences",
+       "title": "Physical sciences",
+       "subtopics": [
+        {
+         "id": "physical-sciences",
+         "title": "Physical sciences",
+         "outcomes": [
+          {
+           "code": "AC9S5U03",
+           "text": "identify sources of light, recognise that light travels in a straight path and describe how shadows are formed and light can be reflected and refracted"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "chemical-sciences",
+       "title": "Chemical sciences",
+       "subtopics": [
+        {
+         "id": "chemical-sciences",
+         "title": "Chemical sciences",
+         "outcomes": [
+          {
+           "code": "AC9S5U04",
+           "text": "explain observable properties of solids, liquids and gases by modelling the motion and arrangement of particles"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "science-as-a-human-endeavour",
+     "title": "Science as a human endeavour",
+     "topics": [
+      {
+       "id": "nature-and-development-of-science",
+       "title": "Nature and development of science",
+       "subtopics": [
+        {
+         "id": "nature-and-development-of-science",
+         "title": "Nature and development of science",
+         "outcomes": [
+          {
+           "code": "AC9S5H01",
+           "text": "examine why advances in science are often the result of collaboration or build on the work of others"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "use-and-influence-of-science",
+       "title": "Use and influence of science",
+       "subtopics": [
+        {
+         "id": "use-and-influence-of-science",
+         "title": "Use and influence of science",
+         "outcomes": [
+          {
+           "code": "AC9S5H02",
+           "text": "investigate how scientific knowledge is used by individuals and communities to identify problems, consider responses and make decisions"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "science-inquiry",
+     "title": "Science inquiry",
+     "topics": [
+      {
+       "id": "questioning-and-predicting",
+       "title": "Questioning and predicting",
+       "subtopics": [
+        {
+         "id": "questioning-and-predicting",
+         "title": "Questioning and predicting",
+         "outcomes": [
+          {
+           "code": "AC9S5I01",
+           "text": "pose investigable questions to identify patterns and test relationships and make reasoned predictions"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "planning-and-conducting",
+       "title": "Planning and conducting",
+       "subtopics": [
+        {
+         "id": "planning-and-conducting",
+         "title": "Planning and conducting",
+         "outcomes": [
+          {
+           "code": "AC9S5I02",
+           "text": "plan and conduct repeatable investigations to answer questions, including, as appropriate, deciding the variables to be changed, measured and controlled in fair tests; describing potential risks; planning for the safe use of equipment and materials; and identifying required permissions to conduct investigations on Country/Place"
+          },
+          {
+           "code": "AC9S5I03",
+           "text": "use equipment to observe, measure and record data with reasonable precision, using digital tools as appropriate"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "processing-modelling-and-analysing",
+       "title": "Processing, modelling and analysing",
+       "subtopics": [
+        {
+         "id": "processing-modelling-and-analysing",
+         "title": "Processing, modelling and analysing",
+         "outcomes": [
+          {
+           "code": "AC9S5I04",
+           "text": "construct and use appropriate representations, including tables, graphs and visual or physical models, to organise and process data and information and describe patterns, trends and relationships"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "evaluating",
+       "title": "Evaluating",
+       "subtopics": [
+        {
+         "id": "evaluating",
+         "title": "Evaluating",
+         "outcomes": [
+          {
+           "code": "AC9S5I05",
+           "text": "compare methods and findings with those of others, recognise possible sources of error, pose questions for further investigation and select evidence to draw reasoned conclusions"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "communicating",
+       "title": "Communicating",
+       "subtopics": [
+        {
+         "id": "communicating",
+         "title": "Communicating",
+         "outcomes": [
+          {
+           "code": "AC9S5I06",
+           "text": "write and create texts to communicate ideas and findings for specific purposes and audiences, including selection of language features, using digital tools as appropriate"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "6",
+   "units": [
+    {
+     "id": "science-understanding",
+     "title": "Science understanding",
+     "topics": [
+      {
+       "id": "biological-sciences",
+       "title": "Biological sciences",
+       "subtopics": [
+        {
+         "id": "biological-sciences",
+         "title": "Biological sciences",
+         "outcomes": [
+          {
+           "code": "AC9S6U01",
+           "text": "investigate the physical conditions of a habitat and analyse how the growth and survival of living things is affected by changing physical conditions"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "earth-and-space-sciences",
+       "title": "Earth and space sciences",
+       "subtopics": [
+        {
+         "id": "earth-and-space-sciences",
+         "title": "Earth and space sciences",
+         "outcomes": [
+          {
+           "code": "AC9S6U02",
+           "text": "describe the movement of Earth and other planets relative to the sun and model how Earth’s tilt, rotation on its axis and revolution around the sun relate to cyclic observable phenomena, including variable day and night length"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "physical-sciences",
+       "title": "Physical sciences",
+       "subtopics": [
+        {
+         "id": "physical-sciences",
+         "title": "Physical sciences",
+         "outcomes": [
+          {
+           "code": "AC9S6U03",
+           "text": "investigate the transfer and transformation of energy in electrical circuits, including the role of circuit components, insulators and conductors"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "chemical-sciences",
+       "title": "Chemical sciences",
+       "subtopics": [
+        {
+         "id": "chemical-sciences",
+         "title": "Chemical sciences",
+         "outcomes": [
+          {
+           "code": "AC9S6U04",
+           "text": "compare reversible changes, including dissolving and changes of state, and irreversible changes, including cooking and rusting that produce new substances"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "science-as-a-human-endeavour",
+     "title": "Science as a human endeavour",
+     "topics": [
+      {
+       "id": "nature-and-development-of-science",
+       "title": "Nature and development of science",
+       "subtopics": [
+        {
+         "id": "nature-and-development-of-science",
+         "title": "Nature and development of science",
+         "outcomes": [
+          {
+           "code": "AC9S6H01",
+           "text": "examine why advances in science are often the result of collaboration or build on the work of others"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "use-and-influence-of-science",
+       "title": "Use and influence of science",
+       "subtopics": [
+        {
+         "id": "use-and-influence-of-science",
+         "title": "Use and influence of science",
+         "outcomes": [
+          {
+           "code": "AC9S6H02",
+           "text": "investigate how scientific knowledge is used by individuals and communities to identify problems, consider responses and make decisions"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "science-inquiry",
+     "title": "Science inquiry",
+     "topics": [
+      {
+       "id": "questioning-and-predicting",
+       "title": "Questioning and predicting",
+       "subtopics": [
+        {
+         "id": "questioning-and-predicting",
+         "title": "Questioning and predicting",
+         "outcomes": [
+          {
+           "code": "AC9S6I01",
+           "text": "pose investigable questions to identify patterns and test relationships and make reasoned predictions"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "planning-and-conducting",
+       "title": "Planning and conducting",
+       "subtopics": [
+        {
+         "id": "planning-and-conducting",
+         "title": "Planning and conducting",
+         "outcomes": [
+          {
+           "code": "AC9S6I02",
+           "text": "plan and conduct repeatable investigations to answer questions including, as appropriate, deciding the variables to be changed, measured and controlled in fair tests; describing potential risks; planning for the safe use of equipment and materials; and identifying required permissions to conduct investigations on Country/Place"
+          },
+          {
+           "code": "AC9S6I03",
+           "text": "use equipment to observe, measure and record data with reasonable precision, using digital tools as appropriate"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "processing-modelling-and-analysing",
+       "title": "Processing, modelling and analysing",
+       "subtopics": [
+        {
+         "id": "processing-modelling-and-analysing",
+         "title": "Processing, modelling and analysing",
+         "outcomes": [
+          {
+           "code": "AC9S6I04",
+           "text": "construct and use appropriate representations, including tables, graphs and visual or physical models, to organise and process data and information and describe patterns, trends and relationships"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "evaluating",
+       "title": "Evaluating",
+       "subtopics": [
+        {
+         "id": "evaluating",
+         "title": "Evaluating",
+         "outcomes": [
+          {
+           "code": "AC9S6I05",
+           "text": "compare methods and findings with those of others, recognise possible sources of error, pose questions for further investigation and select evidence to draw reasoned conclusions"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "communicating",
+       "title": "Communicating",
+       "subtopics": [
+        {
+         "id": "communicating",
+         "title": "Communicating",
+         "outcomes": [
+          {
+           "code": "AC9S6I06",
+           "text": "write and create texts to communicate ideas and findings for specific purposes and audiences, including selection of language features, using digital tools as appropriate"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "7",
+   "units": [
+    {
+     "id": "science-understanding",
+     "title": "Science understanding",
+     "topics": [
+      {
+       "id": "biological-sciences",
+       "title": "Biological sciences",
+       "subtopics": [
+        {
+         "id": "biological-sciences",
+         "title": "Biological sciences",
+         "outcomes": [
+          {
+           "code": "AC9S7U01",
+           "text": "investigate the role of classification in ordering and organising the diversity of life on Earth and use and develop classification tools including dichotomous keys"
+          },
+          {
+           "code": "AC9S7U02",
+           "text": "use models, including food webs, to represent matter and energy flow in ecosystems and predict the impact of changing abiotic and biotic factors on populations"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "earth-and-space-sciences",
+       "title": "Earth and space sciences",
+       "subtopics": [
+        {
+         "id": "earth-and-space-sciences",
+         "title": "Earth and space sciences",
+         "outcomes": [
+          {
+           "code": "AC9S7U03",
+           "text": "model cyclic changes in the relative positions of the Earth, sun and moon and explain how these cycles cause eclipses and influence predictable phenomena on Earth, including seasons and tides"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "physical-sciences",
+       "title": "Physical sciences",
+       "subtopics": [
+        {
+         "id": "physical-sciences",
+         "title": "Physical sciences",
+         "outcomes": [
+          {
+           "code": "AC9S7U04",
+           "text": "investigate and represent balanced and unbalanced forces, including gravitational force, acting on objects, and relate changes in an object’s motion to its mass and the magnitude and direction of forces acting on it"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "chemical-sciences",
+       "title": "Chemical sciences",
+       "subtopics": [
+        {
+         "id": "chemical-sciences",
+         "title": "Chemical sciences",
+         "outcomes": [
+          {
+           "code": "AC9S7U05",
+           "text": "use particle theory to describe the arrangement of particles in a substance, including the motion of and attraction between particles, and relate this to the properties of the substance"
+          },
+          {
+           "code": "AC9S7U06",
+           "text": "use a particle model to describe differences between pure substances and mixtures and apply understanding of properties of substances to separate mixtures"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "science-as-a-human-endeavour",
+     "title": "Science as a human endeavour",
+     "topics": [
+      {
+       "id": "nature-and-development-of-science",
+       "title": "Nature and development of science",
+       "subtopics": [
+        {
+         "id": "nature-and-development-of-science",
+         "title": "Nature and development of science",
+         "outcomes": [
+          {
+           "code": "AC9S7H01",
+           "text": "explain how new evidence or different perspectives can lead to changes in scientific knowledge"
+          },
+          {
+           "code": "AC9S7H02",
+           "text": "investigate how cultural perspectives and world views influence the development of scientific knowledge"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "use-and-influence-of-science",
+       "title": "Use and influence of science",
+       "subtopics": [
+        {
+         "id": "use-and-influence-of-science",
+         "title": "Use and influence of science",
+         "outcomes": [
+          {
+           "code": "AC9S7H03",
+           "text": "examine how proposed scientific responses to contemporary issues may impact on society and explore ethical, environmental, social and economic considerations"
+          },
+          {
+           "code": "AC9S7H04",
+           "text": "explore the role of science communication in informing individual viewpoints and community policies and regulations"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "science-inquiry",
+     "title": "Science inquiry",
+     "topics": [
+      {
+       "id": "questioning-and-predicting",
+       "title": "Questioning and predicting",
+       "subtopics": [
+        {
+         "id": "questioning-and-predicting",
+         "title": "Questioning and predicting",
+         "outcomes": [
+          {
+           "code": "AC9S7I01",
+           "text": "develop investigable questions, reasoned predictions and hypotheses to explore scientific models, identify patterns and test relationships"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "planning-and-conducting",
+       "title": "Planning and conducting",
+       "subtopics": [
+        {
+         "id": "planning-and-conducting",
+         "title": "Planning and conducting",
+         "outcomes": [
+          {
+           "code": "AC9S7I02",
+           "text": "plan and conduct reproducible investigations to answer questions and test hypotheses, including identifying variables and assumptions and, as appropriate, recognising and managing risks, considering ethical issues and recognising key considerations regarding heritage sites and artefacts on Country/Place"
+          },
+          {
+           "code": "AC9S7I03",
+           "text": "select and use equipment to generate and record data with precision, using digital tools as appropriate"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "processing-modelling-and-analysing",
+       "title": "Processing, modelling and analysing",
+       "subtopics": [
+        {
+         "id": "processing-modelling-and-analysing",
+         "title": "Processing, modelling and analysing",
+         "outcomes": [
+          {
+           "code": "AC9S7I04",
+           "text": "select and construct appropriate representations, including tables, graphs, models and mathematical relationships, to organise and process data and information"
+          },
+          {
+           "code": "AC9S7I05",
+           "text": "analyse data and information to describe patterns, trends and relationships and identify anomalies"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "evaluating",
+       "title": "Evaluating",
+       "subtopics": [
+        {
+         "id": "evaluating",
+         "title": "Evaluating",
+         "outcomes": [
+          {
+           "code": "AC9S7I06",
+           "text": "analyse methods, conclusions and claims for assumptions, possible sources of error, conflicting evidence and unanswered questions"
+          },
+          {
+           "code": "AC9S7I07",
+           "text": "construct evidence-based arguments to support conclusions or evaluate claims and consider any ethical issues and cultural protocols associated with using or citing secondary data or information"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "communicating",
+       "title": "Communicating",
+       "subtopics": [
+        {
+         "id": "communicating",
+         "title": "Communicating",
+         "outcomes": [
+          {
+           "code": "AC9S7I08",
+           "text": "write and create texts to communicate ideas, findings and arguments for specific purposes and audiences, including selection of appropriate language and text features, using digital tools as appropriate"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "8",
+   "units": [
+    {
+     "id": "science-understanding",
+     "title": "Science understanding",
+     "topics": [
+      {
+       "id": "biological-sciences",
+       "title": "Biological sciences",
+       "subtopics": [
+        {
+         "id": "biological-sciences",
+         "title": "Biological sciences",
+         "outcomes": [
+          {
+           "code": "AC9S8U01",
+           "text": "recognise cells as the basic units of living things, compare plant and animal cells, and describe the functions of specialised cell structures and organelles"
+          },
+          {
+           "code": "AC9S8U02",
+           "text": "analyse the relationship between structure and function of cells, tissues and organs in a plant and an animal organ system and explain how these systems enable survival of the individual"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "earth-and-space-sciences",
+       "title": "Earth and space sciences",
+       "subtopics": [
+        {
+         "id": "earth-and-space-sciences",
+         "title": "Earth and space sciences",
+         "outcomes": [
+          {
+           "code": "AC9S8U03",
+           "text": "investigate tectonic activity including the formation of geological features at divergent, convergent and transform plate boundaries and describe the scientific evidence for the theory of plate tectonics"
+          },
+          {
+           "code": "AC9S8U04",
+           "text": "describe the key processes of the rock cycle, including the timescales over which they occur, and examine how the properties of sedimentary, igneous and metamorphic rocks reflect their formation and influence their use"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "physical-sciences",
+       "title": "Physical sciences",
+       "subtopics": [
+        {
+         "id": "physical-sciences",
+         "title": "Physical sciences",
+         "outcomes": [
+          {
+           "code": "AC9S8U05",
+           "text": "classify different types of energy as kinetic or potential and investigate energy transfer and transformations in simple systems"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "chemical-sciences",
+       "title": "Chemical sciences",
+       "subtopics": [
+        {
+         "id": "chemical-sciences",
+         "title": "Chemical sciences",
+         "outcomes": [
+          {
+           "code": "AC9S8U06",
+           "text": "classify matter as elements, compounds or mixtures and compare different representations of these, including 2-dimensional and 3-dimensional models, symbols for elements and formulas for molecules and compounds"
+          },
+          {
+           "code": "AC9S8U07",
+           "text": "compare physical and chemical changes and identify indicators of energy change in chemical reactions"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "science-as-a-human-endeavour",
+     "title": "Science as a human endeavour",
+     "topics": [
+      {
+       "id": "nature-and-development-of-science",
+       "title": "Nature and development of science",
+       "subtopics": [
+        {
+         "id": "nature-and-development-of-science",
+         "title": "Nature and development of science",
+         "outcomes": [
+          {
+           "code": "AC9S8H01",
+           "text": "explain how new evidence or different perspectives can lead to changes in scientific knowledge"
+          },
+          {
+           "code": "AC9S8H02",
+           "text": "investigate how cultural perspectives and world views influence the development of scientific knowledge"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "use-and-influence-of-science",
+       "title": "Use and influence of science",
+       "subtopics": [
+        {
+         "id": "use-and-influence-of-science",
+         "title": "Use and influence of science",
+         "outcomes": [
+          {
+           "code": "AC9S8H03",
+           "text": "examine how proposed scientific responses to contemporary issues may impact on society and explore ethical, environmental, social and economic considerations"
+          },
+          {
+           "code": "AC9S8H04",
+           "text": "explore the role of science communication in informing individual viewpoints and community policies and regulations"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "science-inquiry",
+     "title": "Science inquiry",
+     "topics": [
+      {
+       "id": "questioning-and-predicting",
+       "title": "Questioning and predicting",
+       "subtopics": [
+        {
+         "id": "questioning-and-predicting",
+         "title": "Questioning and predicting",
+         "outcomes": [
+          {
+           "code": "AC9S8I01",
+           "text": "develop investigable questions, reasoned predictions and hypotheses to explore scientific models, identify patterns and test relationships"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "planning-and-conducting",
+       "title": "Planning and conducting",
+       "subtopics": [
+        {
+         "id": "planning-and-conducting",
+         "title": "Planning and conducting",
+         "outcomes": [
+          {
+           "code": "AC9S8I02",
+           "text": "plan and conduct reproducible investigations to answer questions and test hypotheses, including identifying variables and assumptions and, as appropriate, recognising and managing risks, considering ethical issues and recognising key considerations regarding heritage sites and artefacts on Country/Place"
+          },
+          {
+           "code": "AC9S8I03",
+           "text": "select and use equipment to generate and record data with precision, using digital tools as appropriate"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "processing-modelling-and-analysing",
+       "title": "Processing, modelling and analysing",
+       "subtopics": [
+        {
+         "id": "processing-modelling-and-analysing",
+         "title": "Processing, modelling and analysing",
+         "outcomes": [
+          {
+           "code": "AC9S8I04",
+           "text": "select and construct appropriate representations, including tables, graphs, models and mathematical relationships, to organise and process data and information"
+          },
+          {
+           "code": "AC9S8I05",
+           "text": "analyse data and information to describe patterns, trends and relationships and identify anomalies"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "evaluating",
+       "title": "Evaluating",
+       "subtopics": [
+        {
+         "id": "evaluating",
+         "title": "Evaluating",
+         "outcomes": [
+          {
+           "code": "AC9S8I06",
+           "text": "analyse methods, conclusions and claims for assumptions, possible sources of error, conflicting evidence and unanswered questions"
+          },
+          {
+           "code": "AC9S8I07",
+           "text": "construct evidence-based arguments to support conclusions or evaluate claims and consider any ethical issues and cultural protocols associated with using or citing secondary data or information"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "communicating",
+       "title": "Communicating",
+       "subtopics": [
+        {
+         "id": "communicating",
+         "title": "Communicating",
+         "outcomes": [
+          {
+           "code": "AC9S8I08",
+           "text": "write and create texts to communicate ideas, findings and arguments for specific purposes and audiences, including selection of appropriate language and text features, using digital tools as appropriate"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "9",
+   "units": [
+    {
+     "id": "science-understanding",
+     "title": "Science understanding",
+     "topics": [
+      {
+       "id": "biological-sciences",
+       "title": "Biological sciences",
+       "subtopics": [
+        {
+         "id": "biological-sciences",
+         "title": "Biological sciences",
+         "outcomes": [
+          {
+           "code": "AC9S9U01",
+           "text": "compare the role of body systems in regulating and coordinating the body’s response to a stimulus, and describe the operation of a negative feedback mechanism"
+          },
+          {
+           "code": "AC9S9U02",
+           "text": "describe the form and function of reproductive cells and organs in animals and plants, and analyse how the processes of sexual and asexual reproduction enable survival of the species"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "earth-and-space-sciences",
+       "title": "Earth and space sciences",
+       "subtopics": [
+        {
+         "id": "earth-and-space-sciences",
+         "title": "Earth and space sciences",
+         "outcomes": [
+          {
+           "code": "AC9S9U03",
+           "text": "represent the carbon cycle and examine how key processes including combustion, photosynthesis and respiration rely on interactions between Earth’s spheres (the geosphere, biosphere, hydrosphere and atmosphere)"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "physical-sciences",
+       "title": "Physical sciences",
+       "subtopics": [
+        {
+         "id": "physical-sciences",
+         "title": "Physical sciences",
+         "outcomes": [
+          {
+           "code": "AC9S9U04",
+           "text": "use wave and particle models to describe energy transfer through different mediums and examine the usefulness of each model for explaining phenomena"
+          },
+          {
+           "code": "AC9S9U05",
+           "text": "apply the law of conservation of energy to analyse system efficiency in terms of energy inputs, outputs, transfers and transformations"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "chemical-sciences",
+       "title": "Chemical sciences",
+       "subtopics": [
+        {
+         "id": "chemical-sciences",
+         "title": "Chemical sciences",
+         "outcomes": [
+          {
+           "code": "AC9S9U06",
+           "text": "explain how the model of the atom changed following the discovery of electrons, protons and neutrons and describe how natural radioactive decay results in stable atoms"
+          },
+          {
+           "code": "AC9S9U07",
+           "text": "model the rearrangement of atoms in chemical reactions using a range of representations, including word and simple balanced chemical equations, and use these to demonstrate the law of conservation of mass"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "science-as-a-human-endeavour",
+     "title": "Science as a human endeavour",
+     "topics": [
+      {
+       "id": "nature-and-development-of-science",
+       "title": "Nature and development of science",
+       "subtopics": [
+        {
+         "id": "nature-and-development-of-science",
+         "title": "Nature and development of science",
+         "outcomes": [
+          {
+           "code": "AC9S9H01",
+           "text": "explain how scientific knowledge is validated and refined, including the role of publication and peer review"
+          },
+          {
+           "code": "AC9S9H02",
+           "text": "investigate how advances in technologies enable advances in science, and how science has contributed to developments in technologies and engineering"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "use-and-influence-of-science",
+       "title": "Use and influence of science",
+       "subtopics": [
+        {
+         "id": "use-and-influence-of-science",
+         "title": "Use and influence of science",
+         "outcomes": [
+          {
+           "code": "AC9S9H03",
+           "text": "analyse the key factors that contribute to science knowledge and practices being adopted more broadly by society"
+          },
+          {
+           "code": "AC9S9H04",
+           "text": "examine how the values and needs of society influence the focus of scientific research"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "science-inquiry",
+     "title": "Science inquiry",
+     "topics": [
+      {
+       "id": "questioning-and-predicting",
+       "title": "Questioning and predicting",
+       "subtopics": [
+        {
+         "id": "questioning-and-predicting",
+         "title": "Questioning and predicting",
+         "outcomes": [
+          {
+           "code": "AC9S9I01",
+           "text": "develop investigable questions, reasoned predictions and hypotheses to test relationships and develop explanatory models"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "planning-and-conducting",
+       "title": "Planning and conducting",
+       "subtopics": [
+        {
+         "id": "planning-and-conducting",
+         "title": "Planning and conducting",
+         "outcomes": [
+          {
+           "code": "AC9S9I02",
+           "text": "plan and conduct valid, reproducible investigations to answer questions and test hypotheses, including identifying and controlling for possible sources of error and, as appropriate, developing and following risk assessments, considering ethical issues, and addressing key considerations regarding heritage sites and artefacts on Country/Place"
+          },
+          {
+           "code": "AC9S9I03",
+           "text": "select and use equipment to generate and record data with precision to obtain useful sample sizes and replicable data, using digital tools as appropriate"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "processing-modelling-and-analysing",
+       "title": "Processing, modelling and analysing",
+       "subtopics": [
+        {
+         "id": "processing-modelling-and-analysing",
+         "title": "Processing, modelling and analysing",
+         "outcomes": [
+          {
+           "code": "AC9S9I04",
+           "text": "select and construct appropriate representations, including tables, graphs, descriptive statistics, models and mathematical relationships, to organise and process data and information"
+          },
+          {
+           "code": "AC9S9I05",
+           "text": "analyse and connect a variety of data and information to identify and explain patterns, trends, relationships and anomalies"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "evaluating",
+       "title": "Evaluating",
+       "subtopics": [
+        {
+         "id": "evaluating",
+         "title": "Evaluating",
+         "outcomes": [
+          {
+           "code": "AC9S9I06",
+           "text": "assess the validity and reproducibility of methods and evaluate the validity of conclusions and claims, including by identifying assumptions, conflicting evidence and areas of uncertainty"
+          },
+          {
+           "code": "AC9S9I07",
+           "text": "construct arguments based on analysis of a variety of evidence to support conclusions or evaluate claims, and consider any ethical issues and cultural protocols associated with accessing, using or citing secondary data or information"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "communicating",
+       "title": "Communicating",
+       "subtopics": [
+        {
+         "id": "communicating",
+         "title": "Communicating",
+         "outcomes": [
+          {
+           "code": "AC9S9I08",
+           "text": "write and create texts to communicate ideas, findings and arguments effectively for identified purposes and audiences, including selection of appropriate content, language and text features, using digital tools as appropriate"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "10",
+   "units": [
+    {
+     "id": "science-understanding",
+     "title": "Science understanding",
+     "topics": [
+      {
+       "id": "biological-sciences",
+       "title": "Biological sciences",
+       "subtopics": [
+        {
+         "id": "biological-sciences",
+         "title": "Biological sciences",
+         "outcomes": [
+          {
+           "code": "AC9S10U01",
+           "text": "explain the role of meiosis and mitosis and the function of chromosomes, DNA and genes in heredity and predict patterns of Mendelian inheritance"
+          },
+          {
+           "code": "AC9S10U02",
+           "text": "use the theory of evolution by natural selection to explain past and present diversity and analyse the scientific evidence supporting the theory"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "earth-and-space-sciences",
+       "title": "Earth and space sciences",
+       "subtopics": [
+        {
+         "id": "earth-and-space-sciences",
+         "title": "Earth and space sciences",
+         "outcomes": [
+          {
+           "code": "AC9S10U03",
+           "text": "describe how the big bang theory models the origin and evolution of the universe and analyse the supporting evidence for the theory"
+          },
+          {
+           "code": "AC9S10U04",
+           "text": "use models of energy flow between the geosphere, biosphere, hydrosphere and atmosphere to explain patterns of global climate change"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "physical-sciences",
+       "title": "Physical sciences",
+       "subtopics": [
+        {
+         "id": "physical-sciences",
+         "title": "Physical sciences",
+         "outcomes": [
+          {
+           "code": "AC9S10U05",
+           "text": "investigate Newton’s laws of motion and quantitatively analyse the relationship between force, mass and acceleration of objects"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "chemical-sciences",
+       "title": "Chemical sciences",
+       "subtopics": [
+        {
+         "id": "chemical-sciences",
+         "title": "Chemical sciences",
+         "outcomes": [
+          {
+           "code": "AC9S10U06",
+           "text": "explain how the structure and properties of atoms relate to the organisation of the elements in the periodic table"
+          },
+          {
+           "code": "AC9S10U07",
+           "text": "identify patterns in synthesis, decomposition and displacement reactions and investigate the factors that affect reaction rates"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "science-as-a-human-endeavour",
+     "title": "Science as a human endeavour",
+     "topics": [
+      {
+       "id": "nature-and-development-of-science",
+       "title": "Nature and development of science",
+       "subtopics": [
+        {
+         "id": "nature-and-development-of-science",
+         "title": "Nature and development of science",
+         "outcomes": [
+          {
+           "code": "AC9S10H01",
+           "text": "explain how scientific knowledge is validated and refined, including the role of publication and peer review"
+          },
+          {
+           "code": "AC9S10H02",
+           "text": "investigate how advances in technologies enable advances in science, and how science has contributed to developments in technologies and engineering"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "use-and-influence-of-science",
+       "title": "Use and influence of science",
+       "subtopics": [
+        {
+         "id": "use-and-influence-of-science",
+         "title": "Use and influence of science",
+         "outcomes": [
+          {
+           "code": "AC9S10H03",
+           "text": "analyse the key factors that contribute to science knowledge and practices being adopted more broadly by society"
+          },
+          {
+           "code": "AC9S10H04",
+           "text": "examine how the values and needs of society influence the focus of scientific research"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "science-inquiry",
+     "title": "Science inquiry",
+     "topics": [
+      {
+       "id": "questioning-and-predicting",
+       "title": "Questioning and predicting",
+       "subtopics": [
+        {
+         "id": "questioning-and-predicting",
+         "title": "Questioning and predicting",
+         "outcomes": [
+          {
+           "code": "AC9S10I01",
+           "text": "develop investigable questions, reasoned predictions and hypotheses to test relationships and develop explanatory models"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "planning-and-conducting",
+       "title": "Planning and conducting",
+       "subtopics": [
+        {
+         "id": "planning-and-conducting",
+         "title": "Planning and conducting",
+         "outcomes": [
+          {
+           "code": "AC9S10I02",
+           "text": "plan and conduct valid, reproducible investigations to answer questions and test hypotheses, including identifying and controlling for possible sources of error and, as appropriate, developing and following risk assessments, considering ethical issues, and addressing key considerations regarding heritage sites and artefacts on Country/Place"
+          },
+          {
+           "code": "AC9S10I03",
+           "text": "select and use equipment to generate and record data with precision to obtain useful sample sizes and replicable data, using digital tools as appropriate"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "processing-modelling-and-analysing",
+       "title": "Processing, modelling and analysing",
+       "subtopics": [
+        {
+         "id": "processing-modelling-and-analysing",
+         "title": "Processing, modelling and analysing",
+         "outcomes": [
+          {
+           "code": "AC9S10I04",
+           "text": "select and construct appropriate representations, including tables, graphs, descriptive statistics, models and mathematical relationships, to organise and process data and information"
+          },
+          {
+           "code": "AC9S10I05",
+           "text": "analyse and connect a variety of data and information to identify and explain patterns, trends, relationships and anomalies"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "evaluating",
+       "title": "Evaluating",
+       "subtopics": [
+        {
+         "id": "evaluating",
+         "title": "Evaluating",
+         "outcomes": [
+          {
+           "code": "AC9S10I06",
+           "text": "assess the validity and reproducibility of methods and evaluate the validity of conclusions and claims, including by identifying assumptions, conflicting evidence and areas of uncertainty"
+          },
+          {
+           "code": "AC9S10I07",
+           "text": "construct arguments based on analysis of a variety of evidence to support conclusions or evaluate claims, and consider any ethical issues and cultural protocols associated with accessing, using or citing secondary data or information"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "communicating",
+       "title": "Communicating",
+       "subtopics": [
+        {
+         "id": "communicating",
+         "title": "Communicating",
+         "outcomes": [
+          {
+           "code": "AC9S10I08",
+           "text": "write and create texts to communicate ideas, findings and arguments effectively for identified purposes and audiences, including selection of appropriate content, language and text features, using digital tools as appropriate"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "build": {
+  "builtAt": "2026-10-14T07:55:10.459Z",
+  "model": "gpt-5.6-luna",
+  "usd": 0,
+  "expectedCodes": 152,
+  "coverage": 1,
+  "missingCodes": [],
+  "counts": {
+   "grades": 11,
+   "units": 33,
+   "topics": 115,
+   "subtopics": 115,
+   "outcomes": 152
+  },
+  "warnings": [
+   "unit \"Science as a human endeavour\" (grade Foundation) has a single outcome",
+   "unit \"Science as a human endeavour\" (grade 1) has a single outcome",
+   "unit \"Science as a human endeavour\" (grade 2) has a single outcome"
+  ]
+ }
+}

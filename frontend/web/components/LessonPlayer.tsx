@@ -1,6 +1,7 @@
 "use client";
 
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { asksForPrediction } from "@/lib/canvas/predict";
 import { SlideStage } from "./SlideStage";
 import { TeacherAvatar } from "./TeacherAvatar";
 import { beats as demoBeats, type Beat } from "@/lib/lessonContent";
@@ -12,6 +13,7 @@ import { usePlaybackRate } from "@/lib/playbackPrefs";
 import { useLessonMachine } from "@/lib/lessonMachine";
 import { backstopRecovery, narrationRecovery } from "@/lib/narrationRecovery";
 import { isAdaptiveQuestion } from "@/lib/adaptiveQuestion";
+import { MAX_DEPTH_HELP_REQUESTS_PER_BOARD, requestDepthHelp } from "@/lib/adaptiveDepth";
 import { useTeacherQuiz } from "@/lib/useTeacherQuiz";
 import { QuizPrompt } from "./QuizPrompt";
 import { LiveSketch } from "./sketch/LiveSketch";
@@ -269,6 +271,8 @@ const wallClock = () => Date.now();
 /** How long a finished board stays on screen after its narration ends, before the next slide. */
 const BOARD_HOLD_AFTER_NARRATION_MS = 2500;
 
+/** "Predict the products…", "Will it be tetrahedral or…?": a sentence that asks the student to commit. */
+
 export function LessonPlayer({
   onExit,
   onCheckpointGraded,
@@ -278,7 +282,7 @@ export function LessonPlayer({
   title = "Photosynthesis",
   mode = "standard",
   mood = "",
-  autoVoiceAssistant = true,
+  autoVoiceAssistant = false,
   adhd = false,
   /**
    * The parsed document this lecture came from, when there was one.
@@ -387,6 +391,11 @@ export function LessonPlayer({
   }, []);
   // Replay from a slide (the mind map's "Replay from this slide"): the lecture opens there.
   const [index, setIndex] = useState(() => Math.max(0, Math.min(startIndex, beats.length - 1)));
+  const [appliedStartIndex, setAppliedStartIndex] = useState(startIndex);
+  if (appliedStartIndex !== startIndex) {
+    setAppliedStartIndex(startIndex);
+    setIndex(Math.max(0, Math.min(startIndex, beats.length - 1)));
+  }
   const displayBeatCount = Math.max(1, totalBeatCount ?? beats.length);
   const [waitingForNextBeat, setWaitingForNextBeat] = useState(false);
   useEffect(() => onBeatIndexChange?.(index), [index, onBeatIndexChange]);
@@ -548,10 +557,10 @@ export function LessonPlayer({
   // Future beats arrive while the current one is playing. Keep tail state current without making
   // the current narration effect depend on it: changing `beats.length`, `hasMoreBeats`, or an
   // inline parent callback must never cancel and replay the audio already in progress.
-  const playbackTailRef = useRef({ beatsLength: beats.length, hasMoreBeats, onComplete });
+  const playbackTailRef = useRef({ beatsLength: beats.length, hasMoreBeats, onComplete, plannedTotal: displayBeatCount });
   useEffect(() => {
-    playbackTailRef.current = { beatsLength: beats.length, hasMoreBeats, onComplete };
-  }, [beats.length, hasMoreBeats, onComplete]);
+    playbackTailRef.current = { beatsLength: beats.length, hasMoreBeats, onComplete, plannedTotal: displayBeatCount };
+  }, [beats.length, hasMoreBeats, onComplete, displayBeatCount]);
 
   // Start rendering every Manim beat the moment the lecture loads, not when it is reached.
   // A render takes seconds and the narration does not wait, so on-demand rendering always
@@ -742,6 +751,8 @@ export function LessonPlayer({
   /** The "Explain this" offer is dismissed per mark, and re-offered on the next one. */
   const [explainDismissed, setExplainDismissed] = useState(true);
   const [explainBusy, setExplainBusy] = useState(false);
+  const depthHelpRef = useRef<Record<string, number>>({});
+  const [, setDepthHelpRevision] = useState(0);
   const [annotations, setAnnotations] = useState(EMPTY_ANNOTATIONS);
   const annotationsRef = useRef(annotations);
   annotationsRef.current = annotations;
@@ -872,6 +883,7 @@ export function LessonPlayer({
    * reference-mode lesson keeps its old behaviour (it still passes the beat's source, as context).
    */
   const hasSourceDocument = isSuprnotesLessonInput(sourceDocument);
+  const curriculumSource = hasSourceDocument && (sourceDocument.lessonPlan as { sourceType?: string } | undefined)?.sourceType === "curriculum";
   const strictSource = hasSourceDocument && isStrictScope(sourceScope);
   // A strict lesson's chat leads with the question and the chosen pages (lib/lessonChatContext.ts).
   const chatFocus = strictSource && focusPages ? { question: lessonQuestion, pages: focusPages } : undefined;
@@ -896,6 +908,9 @@ export function LessonPlayer({
      * Reference mode: the same implicit-attribution rule the text chat gets, riding at the head of the
      * context the live tutor reads (its hook takes strings only, and stays untouched).
      */
+    if (curriculumSource && document) {
+      return `This is an official curriculum course lesson, not the student's uploaded notes. Refer to it as "this lesson", "the course", or "the syllabus" — never "your notes" or "your document".\n\n${document}`;
+    }
     if (sourceScope?.fidelity === "reference" && document) {
       return `This document is the student's REFERENCE material, not a limit. Answer from it when it covers the question and mention that in passing ("your notes say…"); when it does not, answer from what you know and signal that lightly ("your document doesn't cover this, but…"). Never label sources.\n\n${document}`;
     }
@@ -1244,6 +1259,17 @@ export function LessonPlayer({
   /** The beat whose narration has finished, and the beat held for the student's task. */
   const [narrationDoneIndex, setNarrationDoneIndex] = useState<number | null>(null);
   const [canvasHoldIndex, setCanvasHoldIndex] = useState<number | null>(null);
+  /**
+   * PREDICT BEFORE THE REVEAL. A board whose script asks "Predict…" stops right after that
+   * sentence: the task card opens, the board stays drawn up to the question, and the narration
+   * (the reveal) resumes only when the student has answered and pressed Continue. Before, the card
+   * opened after the whole script, so the answer had always been said first (audit 2026-10-15).
+   * `predictHold` = the beat held mid-script and the board sentence the drawing stops at.
+   */
+  const [predictHold, setPredictHold] = useState<{ index: number; boardSentence: number } | null>(null);
+  const predictDoneRef = useRef(new Set<string>());
+  /** Boards whose prediction was answered mid-script (state, for rendering; the ref is for the voice callbacks). */
+  const [answeredPredictions, setAnsweredPredictions] = useState<string[]>([]);
   const speakCanvasLine = useCallback((text: string) => {
     voiceRef.current?.speakAsTeacher(text, { onStart: () => {}, onEnd: () => {}, onBlocked: () => {} }, "utterance");
   }, []);
@@ -1627,7 +1653,9 @@ export function LessonPlayer({
     // text travels with the part change, and the tutor is held to it.
     const partSource = strictSource
       ? strictVoicePartContext(beatSourceFor(beat))
-      : hasSourceDocument ? referenceVoicePartContext(beatSourceFor(beat)) : "";
+      : curriculumSource
+        ? `\nThe official syllabus material for this part:\n${beatSourceFor(beat)?.text ?? ""}`
+        : hasSourceDocument ? referenceVoicePartContext(beatSourceFor(beat)) : "";
     tutor.addContext(`The lecture is now on part ${index + 1}. What the student sees:\n${board}${partSource}`);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [index, beat, liveTutorReady]);
@@ -1664,6 +1692,18 @@ export function LessonPlayer({
       setVoiceBlocked(true);
     },
   });
+
+  const askDepthHelp = useCallback((kind: "example" | "why") => {
+    const result = requestDepthHelp(depthHelpRef.current, beat.id);
+    if (!result.allowed) return;
+    depthHelpRef.current = result.next;
+    setDepthHelpRevision((n) => n + 1);
+    void chat.ask(kind === "example"
+      // No "on the board" here: those words count as asking for a drawing (lib/drawConsent.ts) and
+      // sent every example down the 70–130 s drawing path; the answer comes in words first.
+      ? `Show me another transfer example for ${beat.title}. Use a different situation and connect it to what we just learned.`
+      : "Explain why the main relationship on this board works, not just what happens. Keep it at my course level.");
+  }, [beat.id, beat.title, chat]);
 
   // Short label for the chat mic button while a live session is active/connecting.
   const liveMicLabel =
@@ -2048,6 +2088,7 @@ export function LessonPlayer({
     const narrationWeights = splitNarrationSentences(speakText).map(sentenceWeight);
     let narrationCue = 0;
     let tracedQuarter = -1;
+    let previousAskedPrediction = false;
     const started = voice.speakAsTeacher(
       speakText,
       {
@@ -2056,6 +2097,14 @@ export function LessonPlayer({
           setSpeaking(true);
         },
         onSentenceStart: (sentenceIndex, sentence, total) => {
+          // The sentence after a prediction question is the reveal: hold before it plays.
+          if (previousAskedPrediction && canvasTaskRef.current && sentenceIndex > bridge && !predictDoneRef.current.has(beat.id)) {
+            predictDoneRef.current.add(beat.id);
+            setPredictHold({ index, boardSentence: Math.max(0, sentenceIndex - bridge - 1) });
+            setCanvasHoldIndex(index);
+            lesson.holdForStudent();
+          }
+          previousAskedPrediction = sentenceIndex >= bridge && asksForPrediction(sentence);
           tutorRef.current.noteNarration?.(sentence);
           tracePlayback("sentence", { beat: index, narration: sentenceIndex, bridge, board: Math.max(0, sentenceIndex - bridge), total, text: sentence.slice(0, 50) });
           narrationCue = sentenceIndex;
@@ -2115,8 +2164,9 @@ export function LessonPlayer({
           // advances it, not the end of the narration.
           if (mcqRef.current) return;
           setNarrationDoneIndex(index);
-          // A canvas board with a task holds here: the student's "Continue" advances it.
-          if (canvasTaskRef.current) {
+          // A canvas board with a task holds here: the student's "Continue" advances it. A task
+          // already answered at its prediction does not open again at the end.
+          if (canvasTaskRef.current && !predictDoneRef.current.has(beat.id)) {
             setCanvasHoldIndex(index);
             return;
           }
@@ -2214,7 +2264,9 @@ export function LessonPlayer({
         setStage("slide");
         return i + 1;
       }
-      if (tail.hasMoreBeats) setWaitingForNextBeat(true);
+      // The last PLANNED board is the end, even while the server is still finalising the session:
+      // waiting for "more beats" there left Continue doing nothing on the last board (audit).
+      if (tail.hasMoreBeats && i < tail.plannedTotal - 1) setWaitingForNextBeat(true);
       // The parent's own state changes on completion; a state updater must not set another
       // component's state (React: "Cannot update a component while rendering a different one").
       else queueMicrotask(() => tail.onComplete?.());
@@ -2446,7 +2498,8 @@ export function LessonPlayer({
     setDrawProgress(0);
     setIndex((i) => {
       if (i < beats.length - 1) return i + 1;
-      if (hasMoreBeats) setWaitingForNextBeat(true);
+      // On the last planned board, Continue ends the lecture (see advanceFromHeld).
+      if (hasMoreBeats && i < displayBeatCount - 1) setWaitingForNextBeat(true);
       else queueMicrotask(() => onComplete?.());
       return i;
     });
@@ -2702,8 +2755,8 @@ export function LessonPlayer({
     setVoiceBlocked(false);
     lesson.startTeaching();
     if (REALTIME_TUTOR_ENABLED && autoVoiceAssistant && tutor.status === "idle") {
-      // The click is a browser permission gesture: initialize once, listening for "Aria" (the gate
-      // sends nothing to the model until it hears words for her), and leave the lecture playing.
+      // Preview/lab callers may explicitly opt into hands-free mode. Normal lessons never open the
+      // microphone from the Play button; the student must choose Talk to Aria first.
       tutor.setMicEnabled(true);
       void tutor.start();
     }
@@ -3146,8 +3199,12 @@ export function LessonPlayer({
                 <LessonCanvas
                   panels={canvasPanels}
                   currentIndex={canvasIndex}
-                  sentence={stage === "board" ? narrationSentenceTiming(beat.script, sentenceCue.index, drawProgress).index : -1}
+                  /* A completed lecture revisited while paused ("Review slide N") shows the whole
+                     board, not an empty one waiting for Play (audit 2026-10-15). */
+                  sentence={predictHold?.index === index ? predictHold.boardSentence : stage === "board" ? narrationSentenceTiming(beat.script, sentenceCue.index, drawProgress).index : summaryUnlocked && !lesson.playing ? Number.MAX_SAFE_INTEGER : -1}
+                  taskDone={answeredPredictions.includes(beat.id)}
                   sentenceProgress={narrationSentenceTiming(beat.script, sentenceCue.index, drawProgress).progress}
+                  completed={summaryUnlocked}
                   finished={narrationDoneIndex === index}
                   waitingForStudent={canvasHoldIndex === index}
                   playing={lesson.playing}
@@ -3163,7 +3220,17 @@ export function LessonPlayer({
                   onContinue={() => {
                     setCanvasHoldIndex(null);
                     bumpInteraction();
+                    // Answered at the prediction: the narration goes on to the reveal, same board.
+                    if (predictHold?.index === index) {
+                      setPredictHold(null);
+                      setAnsweredPredictions((done) => (done.includes(beat.id) ? done : [...done, beat.id]));
+                      lesson.requestResume({ explicit: true });
+                      return;
+                    }
                     advanceFromCheckpoint();
+                    // A hold placed while the task was open (a question, the live tutor) must not
+                    // keep the next board silent: Continue is the student saying "go on".
+                    lesson.requestResume({ explicit: true });
                   }}
                 />
                 {peek && <BoardPeek target={peek} onClose={() => setPeek(null)} />}
@@ -3552,6 +3619,8 @@ export function LessonPlayer({
           /* The source workspace has no header: leave, the ask input and status ride in this bar. */
           wide={pdfWorkspace}
           onUnderstood={onUnderstood}
+          onMoreExample={depthHelpRef.current[beat.id] < MAX_DEPTH_HELP_REQUESTS_PER_BOARD ? () => askDepthHelp("example") : undefined}
+          onExplainWhy={depthHelpRef.current[beat.id] < MAX_DEPTH_HELP_REQUESTS_PER_BOARD ? () => askDepthHelp("why") : undefined}
           leading={pdfWorkspace ? (
             <button
               onClick={onExit}
@@ -3803,9 +3872,13 @@ function VisualDirector({
           title: beat.title,
           objective: beat.conceptObjective ?? beat.teacherMove,
           script: beat.script,
+        }, {
+          // Curriculum and source-grounded lessons are the first release cohort for the shared
+          // sync gate. Legacy topic lessons keep their fractional timing during migration.
+          requireSentenceBinding: Boolean(beat.sourceBlockIds?.length),
         }).draw
       : undefined,
-    [beat.draw, beat.title, beat.conceptObjective, beat.teacherMove, beat.script],
+    [beat.draw, beat.title, beat.conceptObjective, beat.teacherMove, beat.script, beat.sourceBlockIds],
   );
   const coordinatedBeat = coordinatedDraw ? { ...beat, draw: coordinatedDraw } : beat;
   const bespokeScene = isCuratedPhotosynthesisBeat(beat) ? photosynthesisSceneForBeat(beat.id, cue) : null;

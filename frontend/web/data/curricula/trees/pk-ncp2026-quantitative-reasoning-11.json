@@ -1,0 +1,531 @@
+{
+ "id": "pk-ncp2026-quantitative-reasoning-11",
+ "region": "PK",
+ "framework": "National Curriculum of Pakistan 2026 (Commerce Group, Grades 11-12)",
+ "board": null,
+ "qualification": "HSSC",
+ "subject": "Quantitative Reasoning",
+ "syllabusCode": null,
+ "gradeSystem": "grade",
+ "source": {
+  "urls": [
+   "https://ncc.gov.pk/SiteImage/Misc/files/QUANTITATIVE%20REASONING_11zon%20(1).pdf"
+  ],
+  "publisher": "National Curriculum Council, Ministry of Federal Education and Professional Training",
+  "licence": "Government publication; structure + our own wording only",
+  "firstExam": null
+ },
+ "grades": [
+  {
+   "grade": "11",
+   "units": [
+    {
+     "id": "domain-a-number-systems-and-algebraic-expression",
+     "title": "Domain A: Number Systems and Algebraic Expressions",
+     "topics": [
+      {
+       "id": "number-systems-and-algebra",
+       "title": "Number systems and algebra",
+       "subtopics": [
+        {
+         "id": "types-of-numbers-and-indices",
+         "title": "Types of numbers and indices",
+         "outcomes": [
+          {
+           "code": "QR-11-A-01",
+           "text": "List and classify natural, whole, integer, rational and irrational numbers."
+          },
+          {
+           "code": "QR-11-A-02",
+           "text": "Explain the rules of indices and surds used in business sums."
+          },
+          {
+           "code": "QR-11-A-03",
+           "text": "Explain like terms, coefficients and exponents in algebraic expressions."
+          }
+         ]
+        },
+        {
+         "id": "working-with-algebraic-expressions",
+         "title": "Working with algebraic expressions",
+         "outcomes": [
+          {
+           "code": "QR-11-A-04",
+           "text": "Add, subtract and multiply algebraic expressions."
+          },
+          {
+           "code": null,
+           "text": "Factorise by common factor, difference of squares and quadratic trinomials."
+          },
+          {
+           "code": "QR-11-A-06",
+           "text": "Simplify algebraic fractions using factorised forms."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "domain-b-commercial-arithmetic-ratio-proportion-",
+     "title": "Domain B: Commercial Arithmetic: Ratio, Proportion, Profit and Commission",
+     "topics": [
+      {
+       "id": "ratio-and-proportion",
+       "title": "Ratio and proportion",
+       "subtopics": [
+        {
+         "id": "ratio-and-proportion-terms",
+         "title": "Ratio and proportion terms",
+         "outcomes": [
+          {
+           "code": "QR-11-B-01",
+           "text": "Define ratio and proportion, continued proportion and mean proportional."
+          },
+          {
+           "code": "QR-11-B-04",
+           "text": "Explain how ratios, fractions and percentages relate."
+          },
+          {
+           "code": "QR-11-B-07",
+           "text": "Use ratio and proportion to split quantities, such as partner profit shares."
+          },
+          {
+           "code": "QR-11-B-08",
+           "text": "Solve direct and inverse proportion problems, including time-work and time-distance."
+          }
+         ]
+        },
+        {
+         "id": "compound-and-mixed-ratios",
+         "title": "Compound and mixed ratios",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Calculate compound and mixed ratios for profit sharing among three or more partners."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "pricing-profit-and-loss",
+       "title": "Pricing, profit and loss",
+       "subtopics": [
+        {
+         "id": "cost-price-and-profit-terms",
+         "title": "Cost, price and profit terms",
+         "outcomes": [
+          {
+           "code": "QR-11-B-02",
+           "text": "Define cost price, selling price, marked price, invoice price, mark-up and margin."
+          },
+          {
+           "code": "QR-11-B-03",
+           "text": "Define profit and loss in terms of cost and selling price."
+          },
+          {
+           "code": "QR-11-B-11",
+           "text": "Calculate profit, loss and their percentages."
+          },
+          {
+           "code": "QR-11-B-12",
+           "text": "Calculate mark-up and margin percentages and convert between them."
+          }
+         ]
+        },
+        {
+         "id": "trade-and-cash-discount",
+         "title": "Trade and cash discount",
+         "outcomes": [
+          {
+           "code": "QR-11-B-05",
+           "text": "Compare trade and cash discount and their effect on invoice and net price."
+          },
+          {
+           "code": "QR-11-B-09",
+           "text": "Calculate net price after single and chained trade discounts."
+          },
+          {
+           "code": "QR-11-B-10",
+           "text": "Calculate cash discount and amount payable under credit terms."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "commission-and-brokerage",
+       "title": "Commission and brokerage",
+       "subtopics": [
+        {
+         "id": "commission",
+         "title": "Commission",
+         "outcomes": [
+          {
+           "code": "QR-11-B-06",
+           "text": "Explain commission and brokerage in trade and sales."
+          },
+          {
+           "code": null,
+           "text": "Calculate commission, brokerage and agent earnings, including slab-based commission."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "combined-business-decisions",
+       "title": "Combined business decisions",
+       "subtopics": [
+        {
+         "id": "choosing-the-best-pricing-option",
+         "title": "Choosing the best pricing option",
+         "outcomes": [
+          {
+           "code": "QR-11-B-15",
+           "text": "Analyse cases mixing ratio, discount, mark-up and commission to decide on pricing or profit sharing."
+          },
+          {
+           "code": "QR-11-B-16",
+           "text": "Evaluate pricing, discount or commission options and recommend the best."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "domain-c-equations-and-marginal-analysis",
+     "title": "Domain C: Equations and Marginal Analysis",
+     "topics": [
+      {
+       "id": "equations-and-marginal-analysis",
+       "title": "Equations and marginal analysis",
+       "subtopics": [
+        {
+         "id": "business-equations",
+         "title": "Business equations",
+         "outcomes": [
+          {
+           "code": "QR-11-C-01",
+           "text": "Explain why simultaneous and quadratic equations matter for break-even and equilibrium."
+          },
+          {
+           "code": "QR-11-C-02",
+           "text": "Solve two-variable linear equations such as market equilibrium price."
+          },
+          {
+           "code": "QR-11-C-03",
+           "text": "Solve quadratic equations for break-even, maximum profit or minimum cost."
+          }
+         ]
+        },
+        {
+         "id": "marginal-analysis",
+         "title": "Marginal analysis",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Calculate marginal cost, revenue and profit by the difference-quotient method."
+          },
+          {
+           "code": null,
+           "text": "Use a difference table to find the output that maximises profit or minimises cost."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "domain-d-financial-mathematics",
+     "title": "Domain D: Financial Mathematics",
+     "topics": [
+      {
+       "id": "interest-and-time-value-of-money",
+       "title": "Interest and time value of money",
+       "subtopics": [
+        {
+         "id": "simple-and-compound-interest",
+         "title": "Simple and compound interest",
+         "outcomes": [
+          {
+           "code": "QR-11-D-01",
+           "text": "Define simple and compound interest and state their formulas."
+          },
+          {
+           "code": null,
+           "text": "Calculate simple and compound interest."
+          },
+          {
+           "code": "QR-11-D-02",
+           "text": "Explain nominal versus effective annual interest rates."
+          },
+          {
+           "code": null,
+           "text": "Calculate the effective annual rate from a nominal rate."
+          }
+         ]
+        },
+        {
+         "id": "present-and-future-value",
+         "title": "Present and future value",
+         "outcomes": [
+          {
+           "code": "QR-11-D-03",
+           "text": "Explain discounting and compounding for present and future values."
+          },
+          {
+           "code": "QR-11-D-06",
+           "text": "Calculate present and future value of a single amount."
+          },
+          {
+           "code": null,
+           "text": "Calculate present and future value of an annuity such as instalments."
+          },
+          {
+           "code": "QR-11-D-08",
+           "text": "Compare simple, compound and annuity financing and choose the best option."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "domain-e-statistical-measures-and-data-analysis",
+     "title": "Domain E: Statistical Measures and Data Analysis",
+     "topics": [
+      {
+       "id": "data-and-statistics",
+       "title": "Data and statistics",
+       "subtopics": [
+        {
+         "id": "statistical-terms-and-data-types",
+         "title": "Statistical terms and data types",
+         "outcomes": [
+          {
+           "code": "QR-11-E-01",
+           "text": "Define data, frequency, mean, median and mode."
+          },
+          {
+           "code": null,
+           "text": "Classify data as qualitative, quantitative, primary or secondary."
+          }
+         ]
+        },
+        {
+         "id": "collecting-and-sampling-data",
+         "title": "Collecting and sampling data",
+         "outcomes": [
+          {
+           "code": "QR-11-E-03",
+           "text": "Explain survey, questionnaire, census and sampling methods."
+          },
+          {
+           "code": null,
+           "text": "Differentiate population from sample and explain why we sample."
+          },
+          {
+           "code": "QR-11-E-09",
+           "text": "Pick a suitable sampling method, such as random or convenience, for a case."
+          }
+         ]
+        },
+        {
+         "id": "summarising-data",
+         "title": "Summarising data",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Summarise and present data with tables, frequency distributions and graphs."
+          },
+          {
+           "code": "QR-11-E-07",
+           "text": "Calculate mean, median and mode for ungrouped and grouped data."
+          }
+         ]
+        },
+        {
+         "id": "measures-of-dispersion",
+         "title": "Measures of dispersion",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Identify when to use range, variance and standard deviation."
+          },
+          {
+           "code": "QR-11-E-08",
+           "text": "Compute variance, standard deviation and coefficient of variation."
+          },
+          {
+           "code": "QR-11-E-10",
+           "text": "Analyse variability to compare consistency of two data sets such as security returns."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "domain-f-index-numbers",
+     "title": "Domain F: Index Numbers",
+     "topics": [
+      {
+       "id": "index-numbers",
+       "title": "Index numbers",
+       "subtopics": [
+        {
+         "id": "index-numbers-and-uses",
+         "title": "Index numbers and uses",
+         "outcomes": [
+          {
+           "code": "QR-11-F-01",
+           "text": "Define index numbers and their types: price, quantity, value."
+          },
+          {
+           "code": "QR-11-F-02",
+           "text": "Explain uses of index numbers such as consumer price index and producer price index."
+          }
+         ]
+        },
+        {
+         "id": "calculating-and-using-indices",
+         "title": "Calculating and using indices",
+         "outcomes": [
+          {
+           "code": "QR-11-F-03",
+           "text": "Calculate simple and weighted index numbers."
+          },
+          {
+           "code": null,
+           "text": "Evaluate whether a base year suits long-term price comparison."
+          },
+          {
+           "code": null,
+           "text": "Construct a deflated or inflated series from index numbers."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "domain-g-correlation-coefficient-and-linear-regr",
+     "title": "Domain G: Correlation Coefficient and Linear Regression",
+     "topics": [
+      {
+       "id": "correlation-and-regression",
+       "title": "Correlation and regression",
+       "subtopics": [
+        {
+         "id": "correlation",
+         "title": "Correlation",
+         "outcomes": [
+          {
+           "code": "QR-11-G-01",
+           "text": "Explain correlation and regression, their uses and limits."
+          },
+          {
+           "code": "QR-11-G-02",
+           "text": "Calculate correlation and rank correlation coefficients."
+          }
+         ]
+        },
+        {
+         "id": "regression",
+         "title": "Regression",
+         "outcomes": [
+          {
+           "code": "QR-11-G-03",
+           "text": "Calculate a least-squares regression line, such as sales on advertising."
+          },
+          {
+           "code": "QR-11-G-04",
+           "text": "Calculate the coefficient of determination and interpret relationship strength."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "domain-h-probability-and-probability-distributio",
+     "title": "Domain H: Probability and Probability Distributions for Business Decisions",
+     "topics": [
+      {
+       "id": "probability",
+       "title": "Probability",
+       "subtopics": [
+        {
+         "id": "counting-permutations-and-combinations",
+         "title": "Counting: permutations and combinations",
+         "outcomes": [
+          {
+           "code": "QR-11-H-01",
+           "text": "Define permutation and combination and state their formulas."
+          },
+          {
+           "code": "QR-11-H-04",
+           "text": "Count outcomes and arrangements using permutations and combinations."
+          }
+         ]
+        },
+        {
+         "id": "rules-of-probability",
+         "title": "Rules of probability",
+         "outcomes": [
+          {
+           "code": "QR-11-H-02",
+           "text": "Explain total and favourable outcomes and the basic rules of probability."
+          },
+          {
+           "code": "QR-11-H-03",
+           "text": "Explain mutually exclusive versus independent events."
+          },
+          {
+           "code": "QR-11-H-05",
+           "text": "Calculate the probability of a simple event classically."
+          },
+          {
+           "code": "QR-11-H-06",
+           "text": "Use the addition rule for mutually exclusive events."
+          },
+          {
+           "code": null,
+           "text": "Use the multiplication rule for independent events."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "build": {
+  "builtAt": "2026-10-14T08:44:17.839Z",
+  "model": "claude-agent",
+  "usd": 0,
+  "expectedCodes": null,
+  "coverage": null,
+  "missingCodes": [],
+  "counts": {
+   "grades": 1,
+   "units": 8,
+   "topics": 11,
+   "subtopics": 22,
+   "outcomes": 61
+  },
+  "warnings": []
+ }
+}

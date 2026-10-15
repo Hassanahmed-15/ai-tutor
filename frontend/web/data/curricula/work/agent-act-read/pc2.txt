@@ -1,0 +1,144 @@
+# Unit 2: Exponential and Logarithmic Functions
+## 2.1 Change in Arithmetic and Geometric Sequences
+@ Arithmetic sequences
+2.1.A|Express arithmetic sequences as functions of the whole numbers.
+2.1.A.1|Know a sequence is a function on the whole numbers whose graph is discrete points.
+2.1.A.2|Recognize a common difference as a constant rate of change.
+2.1.A.3|Write the general term a_n = a_0 + dn, or a_k + d(n - k).
+@ Geometric sequences
+2.1.B|Express geometric sequences as functions of the whole numbers.
+2.1.B.1|Recognize a common ratio as constant proportional change.
+2.1.B.2|Write the general term g_n = g_0 r^n, or g_k r^(n-k).
+2.1.B.3|Contrast arithmetic growth (equal steps) with geometric growth (growing steps).
+## 2.2 Change in Linear and Exponential Functions
+@ Sequences versus functions
+2.2.A|Build real-number functions comparable to arithmetic and geometric sequences.
+2.2.A.1|Compare f(x) = b + mx to arithmetic sequences: initial value plus repeated constant addition.
+2.2.A.2|Write a linear function from a slope and a point, as f(x) = y_i + m(x - x_i).
+2.2.A.3|Compare f(x) = ab^x to geometric sequences: initial value times repeated constant ratio.
+2.2.A.4|Write an exponential function from a ratio and a point, as f(x) = y_i b^(x - x_i).
+2.2.A.5|Know sequences and their matching functions may have different domains.
+@ Linear versus exponential
+2.2.B|Describe similarities and differences between linear and exponential functions.
+2.2.B.1|Tell constant change (linear) from proportional change (exponential) over equal-length intervals; the ratio is not 0 or 1.
+2.2.B.2|Compare linear (addition-based) and exponential (multiplication-based) forms built from an initial value.
+2.2.B.3|Know two distinct values determine an arithmetic or geometric sequence, linear or exponential function.
+## 2.3 Exponential Functions
+@ Features of exponential functions
+2.3.A|Identify key features of exponential functions.
+2.3.A.1|Know the form f(x) = ab^x, growth when a > 0 and b > 1, decay when 0 < b < 1.
+2.3.A.2|Know natural-number inputs count factors of the base; the domain is all real numbers.
+2.3.A.3|Know exponential functions are always monotonic and concave one way, with no extrema or inflection points.
+2.3.A.4|Recognize functions modeled by an additive transformation of an exponential.
+2.3.A.5|Describe end behavior and the asymptote at zero using limits.
+## 2.4 Exponential Function Manipulation
+@ Rewriting exponential expressions
+2.4.A|Rewrite exponential expressions in equivalent forms.
+2.4.A.1|Use the product property for exponents; horizontal translations equal vertical dilations.
+2.4.A.2|Use the power property for exponents; horizontal dilations change the base.
+2.4.A.3|Use the negative exponent property.
+2.4.A.4|Read b^(1/k) as the kth root of b.
+## 2.5 Exponential Function Context and Data Modeling
+@ Building exponential models
+2.5.A|Build a model for situations with proportional outputs over equal-length input intervals.
+2.5.A.1|Use exponentials for patterns of repeated multiplication of a constant.
+2.5.A.2|Add a constant to the data when needed to reveal proportional growth.
+2.5.A.3|Build a model from a ratio and initial value or from two input-output pairs.
+2.5.A.4|Build models by transforming f(x) = ab^x.
+2.5.A.5|Build models with exponential regression technology.
+2.5.A.6|Recognize the natural base e (about 2.718) as a common base.
+@ Using exponential models
+2.5.B|Use exponential models to answer questions about data or a context.
+2.5.B.1|Read the base as a growth factor tied to percent change.
+2.5.B.2|Use equivalent forms to reveal different properties, such as growth per day versus per week.
+2.5.B.3|Predict dependent values and solve for independent values, within domain limits.
+## 2.6 Competing Function Model Validation
+@ Choosing and validating models
+2.6.A|Build linear, quadratic and exponential models from a data set.
+2.6.A.1|Model slightly changing rates of change with linear, quadratic or exponential functions.
+2.6.A.2|Compare models using context and applicability to choose the best.
+2.6.B|Validate a model built from a data set.
+2.6.B.1|Use residuals and residual plots; a model fits if the residual plot shows no pattern.
+2.6.B.2|Interpret model errors, including over- and underestimates, in context.
+## 2.7 Composition of Functions
+@ Evaluating compositions
+2.7.A|Evaluate the composition of two or more functions for given values.
+2.7.A.1|Define the composite f o g, its domain restrictions, and f(g(x)) notation.
+2.7.A.2|Evaluate compositions from graphs, tables, formulas or words.
+2.7.A.3|Know composition is not commutative.
+2.7.A.4|Know the identity function leaves compositions unchanged.
+@ Building and decomposing compositions
+2.7.B|Build representations of the composition of two or more functions.
+2.7.B.1|Use composition to relate quantities with no direct formula.
+2.7.B.2|Write f(g(x)) by substituting g(x) for x in f.
+2.7.B.3|Build numerical or graphical compositions from values (x, f(g(x))).
+2.7.C|Rewrite a function as a composition of simpler functions.
+2.7.C.1|Decompose analytic functions into simpler pieces, replacing the variable properly.
+2.7.C.2|See translations as composition with g(x) = x + k.
+2.7.C.3|See dilations as composition with g(x) = kx.
+## 2.8 Inverse Functions
+@ Finding inverses
+2.8.A|Find the input-output pairs of a function's inverse.
+2.8.A.1|Know a function is invertible when each output comes from a unique input; restrict domains to make it so.
+2.8.A.2|Treat the inverse as a reverse mapping: pairs (a, b) become (b, a).
+2.8.B|Find the inverse of a function on an invertible domain.
+2.8.B.1|Know a function composed with its inverse gives the identity.
+2.8.B.2|Swap domain and range, and reverse table pairs, to get the inverse.
+2.8.B.3|Reflect the graph over y = x to get the inverse graph.
+2.8.B.4|Find the inverse algebraically by swapping x and y and solving.
+2.8.B.5|Know context can restrict where an inverse applies.
+## 2.9 Logarithmic Expressions
+@ Evaluating logarithms
+2.9.A|Evaluate logarithmic expressions.
+2.9.A.1|Define log_b c as the exponent a with b^a = c; common log is base 10.
+2.9.A.2|Evaluate some logs by arithmetic and estimate others with technology.
+2.9.A.3|Read logarithmic scales as multiplicative steps of the base.
+## 2.10 Inverses of Exponential Functions
+@ Logarithms as inverses
+2.10.A|Build representations of the inverse of an exponential function with initial value 1.
+2.10.A.1|Know the general form f(x) = a log_b x.
+2.10.A.2|Contrast exponential growth (additive input, multiplicative output) with logarithmic growth (multiplicative input, additive output).
+2.10.A.3|Know log_b x and b^x are inverse functions.
+2.10.A.4|Graph the log as a reflection of the exponential over y = x.
+2.10.A.5|Swap ordered pairs (s, t) to (t, s) between the exponential and its log.
+## 2.11 Logarithmic Functions
+@ Features of logarithmic functions
+2.11.A|Identify key features of logarithmic functions.
+2.11.A.1|Know the domain is x > 0 and the range is all reals.
+2.11.A.2|Know logs are monotonic and concave one way, with no extrema or inflection points.
+2.11.A.3|Recognize logs as functions whose shifted forms have inputs proportional over equal output intervals.
+2.11.A.4|Describe the vertical asymptote at x = 0 and unbounded end behavior.
+## 2.12 Logarithmic Function Manipulation
+@ Properties of logarithms
+2.12.A|Rewrite logarithmic expressions in equivalent forms.
+2.12.A.1|Use the product property; horizontal dilations equal vertical translations.
+2.12.A.2|Use the power property; powers on the input are vertical dilations.
+2.12.A.3|Use the change of base property.
+2.12.A.4|Define ln x as log base e.
+## 2.13 Exponential and Logarithmic Equations and Inequalities
+@ Solving equations and inequalities
+2.13.A|Solve exponential and logarithmic equations and inequalities.
+2.13.A.1|Use exponent properties, log properties and inverses to solve.
+2.13.A.2|Check solutions for extraneous values ruled out by domain or context.
+2.13.A.3|Use logs to rewrite exponential expressions, including b^x = c^(x log_c b).
+@ Inverses of transformed functions
+2.13.B|Build the inverse for exponential and logarithmic functions.
+2.13.B.1|Invert f(x) = ab^(x+h) + k by reversing its operations.
+2.13.B.2|Invert f(x) = a log_b(x + h) + k by reversing its operations.
+## 2.14 Logarithmic Function Context and Data Modeling
+@ Building logarithmic models
+2.14.A|Build a logarithmic function model.
+2.14.A.1|Use logs for proportional-growth situations where inputs change proportionally over equal output steps.
+2.14.A.2|Build a log model from a proportion and a real zero, or two input-output pairs.
+2.14.A.3|Build log models by transforming f(x) = a log_b x.
+2.14.A.4|Build log models with logarithmic regression technology.
+2.14.A.5|Recognize the natural log as useful in real-world modeling.
+2.14.A.6|Predict dependent values and find independent values with a log model.
+## 2.15 Semi-log Plots
+@ Semi-log plots and linearization
+2.15.A|Decide whether an exponential model fits by examining a semi-log plot.
+2.15.A.1|Know a log-scaled y-axis makes exponential data look linear.
+2.15.A.2|Know linear log-output trends justify transformed exponential models without shifting the data.
+2.15.B|Linearize exponential data.
+2.15.B.1|Apply linear modeling techniques to a semi-log graph.
+2.15.B.2|For y = ab^x, use the line y = (log b)x + log a, with slope log b and intercept log a.

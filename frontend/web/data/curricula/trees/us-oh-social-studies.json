@@ -1,0 +1,2312 @@
+{
+ "id": "us-oh-social-studies",
+ "region": "US",
+ "framework": "Ohio state academic standards: Social Studies",
+ "board": null,
+ "qualification": "K-12",
+ "subject": "Social Studies",
+ "syllabusCode": null,
+ "gradeSystem": "grade",
+ "source": {
+  "urls": [
+   "https://api.commonstandardsproject.com/api/v1/jurisdictions/F4CB2B5DF6904071BBCC671A3AB783B8",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/F4CB2B5DF6904071BBCC671A3AB783B8_D2976165_grade-01",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/F4CB2B5DF6904071BBCC671A3AB783B8_D2976165_grade-02",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/F4CB2B5DF6904071BBCC671A3AB783B8_D2976165_grade-03",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/F4CB2B5DF6904071BBCC671A3AB783B8_D2976165_grade-04",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/F4CB2B5DF6904071BBCC671A3AB783B8_D2976165_grade-05",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/F4CB2B5DF6904071BBCC671A3AB783B8_D2976165_grade-06",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/F4CB2B5DF6904071BBCC671A3AB783B8_D2976165_grade-07",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/F4CB2B5DF6904071BBCC671A3AB783B8_D2976165_grade-08",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/F4CB2B5DF6904071BBCC671A3AB783B8_D2976165_grades-09-10-11-12",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/F4CB2B5DF6904071BBCC671A3AB783B8_D2976165_grade-k"
+  ],
+  "publisher": "Ohio state education agency (machine-readable via Common Standards Project / ASN)",
+  "licence": "CC BY 3.0 US, D2L Corporation",
+  "firstExam": "2018"
+ },
+ "grades": [
+  {
+   "grade": "K",
+   "units": [
+    {
+     "id": "history",
+     "title": "History",
+     "topics": [
+      {
+       "id": "history",
+       "title": "History",
+       "subtopics": [
+        {
+         "id": "history",
+         "title": "History",
+         "outcomes": [
+          {
+           "code": "K.H.1",
+           "text": "Time can be measured."
+          },
+          {
+           "code": "K.H.2",
+           "text": "Personal history can be shared through stories and pictures."
+          },
+          {
+           "code": "K.H.3",
+           "text": "Heritage is reflected through diverse cultures and is shown through the arts, customs, traditions, family celebrations and language."
+          },
+          {
+           "code": "K.H.4",
+           "text": "Symbols and practices of the United States include the flag, Pledge of Allegiance and the National Anthem. Other nations are represented by symbols and practices too."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "geography",
+     "title": "Geography",
+     "topics": [
+      {
+       "id": "geography",
+       "title": "Geography",
+       "subtopics": [
+        {
+         "id": "geography",
+         "title": "Geography",
+         "outcomes": [
+          {
+           "code": "K.GE.5",
+           "text": "Terms related to direction and distance, as well as symbols and landmarks, can be used to talk about the relative location of familiar places."
+          },
+          {
+           "code": "K.GE.6",
+           "text": "Models and maps represent real places."
+          },
+          {
+           "code": "K.GE.7",
+           "text": "Humans depend on and impact the physical environment in order to supply food, clothing and shelter."
+          },
+          {
+           "code": "K.GE.8",
+           "text": "Individuals are unique but share common characteristics of multiple groups."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "government",
+     "title": "Government",
+     "topics": [
+      {
+       "id": "government",
+       "title": "Government",
+       "subtopics": [
+        {
+         "id": "government",
+         "title": "Government",
+         "outcomes": [
+          {
+           "code": "K.GO.9",
+           "text": "Individuals share responsibilities and take action toward the achievement of common goals in homes, schools and communities."
+          },
+          {
+           "code": "K.GO.10",
+           "text": "The purpose of rules and authority figures is to provide order, security and safety in the home, school and community."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "economics",
+     "title": "Economics",
+     "topics": [
+      {
+       "id": "economics",
+       "title": "Economics",
+       "subtopics": [
+        {
+         "id": "economics",
+         "title": "Economics",
+         "outcomes": [
+          {
+           "code": "K.E.11",
+           "text": "Individuals have many wants and make decisions to satisfy those wants. These decisions impact others."
+          },
+          {
+           "code": "K.E.12",
+           "text": "Goods are objects that can satisfy an individual's wants. Services are actions that can satisfy individual's wants."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "1",
+   "units": [
+    {
+     "id": "history",
+     "title": "History",
+     "topics": [
+      {
+       "id": "history",
+       "title": "History",
+       "subtopics": [
+        {
+         "id": "history",
+         "title": "History",
+         "outcomes": [
+          {
+           "code": "1.H.1",
+           "text": "Time can be divided into categories (e.g., months of the year, past, present and future)."
+          },
+          {
+           "code": "1.H.2",
+           "text": "Photographs, letters, artifacts and books can be used to learn about the past."
+          },
+          {
+           "code": "1.H.3",
+           "text": "The ways basic human needs are met have changed over time."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "geography",
+     "title": "Geography",
+     "topics": [
+      {
+       "id": "geography",
+       "title": "Geography",
+       "subtopics": [
+        {
+         "id": "geography",
+         "title": "Geography",
+         "outcomes": [
+          {
+           "code": "1.GE.4",
+           "text": "Maps can be used to locate and identify places."
+          },
+          {
+           "code": "1.GE.5",
+           "text": "Places are distinctive because of their physical characteristics (land forms and bodies of water) and human characteristics (structures built by people)."
+          },
+          {
+           "code": "1.GE.6",
+           "text": "Families interact with the physical environment differently in different times and places."
+          },
+          {
+           "code": "1.GE.7",
+           "text": "Diverse cultural practices address basic human needs in various ways and may change over time."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "government",
+     "title": "Government",
+     "topics": [
+      {
+       "id": "government",
+       "title": "Government",
+       "subtopics": [
+        {
+         "id": "government",
+         "title": "Government",
+         "outcomes": [
+          {
+           "code": "1.GO.8",
+           "text": "Individuals have responsibility to take action toward the achievement of common goals in homes, schools and communities and are accountable for those actions."
+          },
+          {
+           "code": "1.GO.9",
+           "text": "Collaboration requires group members to respect the rights and opinions of others."
+          },
+          {
+           "code": "1.GO.10",
+           "text": "Rules exist in different settings. The principles of fairness should guide rules and the consequences for breaking rules."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "economics",
+     "title": "Economics",
+     "topics": [
+      {
+       "id": "economics",
+       "title": "Economics",
+       "subtopics": [
+        {
+         "id": "economics",
+         "title": "Economics",
+         "outcomes": [
+          {
+           "code": "1.E.11",
+           "text": "Wants are unlimited and resources are limited. Individuals make choices because they cannot have everything they want."
+          },
+          {
+           "code": "1.E.12",
+           "text": "People produce and consume goods and services in the community."
+          },
+          {
+           "code": "1.E.13",
+           "text": "People trade to obtain goods and services they want."
+          },
+          {
+           "code": "1.E.14",
+           "text": "Currency is used as a means of economic exchange."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "2",
+   "units": [
+    {
+     "id": "history",
+     "title": "History",
+     "topics": [
+      {
+       "id": "history",
+       "title": "History",
+       "subtopics": [
+        {
+         "id": "history",
+         "title": "History",
+         "outcomes": [
+          {
+           "code": "2.H.1",
+           "text": "Time can be shown graphically on calendars and timelines."
+          },
+          {
+           "code": "2.H.2",
+           "text": "Change over time can be shown with artifacts, maps, and photographs."
+          },
+          {
+           "code": "2.H.3",
+           "text": "Science and technology have changed daily life."
+          },
+          {
+           "code": "2.H.4",
+           "text": "Biographies can show how peoples' actions have shaped the world in which we live."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "geography",
+     "title": "Geography",
+     "topics": [
+      {
+       "id": "geography",
+       "title": "Geography",
+       "subtopics": [
+        {
+         "id": "geography",
+         "title": "Geography",
+         "outcomes": [
+          {
+           "code": "2.GE.5",
+           "text": "Maps and their symbols, including cardinal directions, can be interpreted to answer questions about location of places."
+          },
+          {
+           "code": "2.GE.6",
+           "text": "The work that people do is impacted by the distinctive human and physical characteristics in the place where they live."
+          },
+          {
+           "code": "2.GE.7",
+           "text": "Human activities alter the physical environment, both positively and negatively."
+          },
+          {
+           "code": "2.GE.8",
+           "text": "Cultures develop in unique ways, in part through the influence of the physical environment."
+          },
+          {
+           "code": "2.GE.9",
+           "text": "Interactions among cultures lead to sharing ways of life."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "government",
+     "title": "Government",
+     "topics": [
+      {
+       "id": "government",
+       "title": "Government",
+       "subtopics": [
+        {
+         "id": "government",
+         "title": "Government",
+         "outcomes": [
+          {
+           "code": "2.GO.10",
+           "text": "Respect for the rights of self and others includes making responsible choices and being accountable for personal actions."
+          },
+          {
+           "code": "2.GO.11",
+           "text": "Groups are accountable for choices they make and actions they take."
+          },
+          {
+           "code": "2.GO.12",
+           "text": "There are different rules and laws that govern behavior in different settings."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "economics",
+     "title": "Economics",
+     "topics": [
+      {
+       "id": "economics",
+       "title": "Economics",
+       "subtopics": [
+        {
+         "id": "economics",
+         "title": "Economics",
+         "outcomes": [
+          {
+           "code": "2.E.13",
+           "text": "Information displayed on bar graphs can be used to compare quantities."
+          },
+          {
+           "code": "2.E.14",
+           "text": "Resources can be used in various ways."
+          },
+          {
+           "code": "2.E.15",
+           "text": "Most people around the world work in jobs in which they produce specific goods and services."
+          },
+          {
+           "code": "2.E.16",
+           "text": "People use money to buy and sell goods and services."
+          },
+          {
+           "code": "2.E.17",
+           "text": "People earn income by working."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "3",
+   "units": [
+    {
+     "id": "history",
+     "title": "History",
+     "topics": [
+      {
+       "id": "history",
+       "title": "History",
+       "subtopics": [
+        {
+         "id": "history",
+         "title": "History",
+         "outcomes": [
+          {
+           "code": "3.H.1",
+           "text": "Events in local history can be shown on timelines organized by years, decades and centuries."
+          },
+          {
+           "code": "3.H.2",
+           "text": "Primary and secondary sources can be used to show change over time."
+          },
+          {
+           "code": "3.H.3",
+           "text": "Local communities change over time."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "geography",
+     "title": "Geography",
+     "topics": [
+      {
+       "id": "geography",
+       "title": "Geography",
+       "subtopics": [
+        {
+         "id": "geography",
+         "title": "Geography",
+         "outcomes": [
+          {
+           "code": "3.GE.4",
+           "text": "Physical and political maps have distinctive characteristics and purposes. Places can be located on a map by using the title, key, alphanumeric grid and cardinal directions."
+          },
+          {
+           "code": "3.GE.5",
+           "text": "Daily life is influenced by the agriculture, industry and natural resources in different communities."
+          },
+          {
+           "code": "3.GE.6",
+           "text": "Evidence of positive and negative human modification of the environment can be observed in the local community."
+          },
+          {
+           "code": "3.GE.7",
+           "text": "Systems of transportation and communication move people, products and ideas from place to place."
+          },
+          {
+           "code": "3.GE.8",
+           "text": "Communities may include diverse cultural groups."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "government",
+     "title": "Government",
+     "topics": [
+      {
+       "id": "government",
+       "title": "Government",
+       "subtopics": [
+        {
+         "id": "government",
+         "title": "Government",
+         "outcomes": [
+          {
+           "code": "3.GO.9",
+           "text": "Members of local communities have rights and responsibilities."
+          },
+          {
+           "code": "3.GO.10",
+           "text": "Individuals make the community a better place by taking action to solve problems in a way that promotes the common good."
+          },
+          {
+           "code": "3.GO.11",
+           "text": "Laws are rules which apply to all people in a community and describe ways people are expected to behave. Laws promote order and security, provide public services and protect the rights of individuals in the local community."
+          },
+          {
+           "code": "3.GO.12",
+           "text": "Governments have authority to make and enforce laws."
+          },
+          {
+           "code": "3.GO.13",
+           "text": "The structure of local governments may differ from one community to another."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "economics",
+     "title": "Economics",
+     "topics": [
+      {
+       "id": "economics",
+       "title": "Economics",
+       "subtopics": [
+        {
+         "id": "economics-1-of-2",
+         "title": "Economics (1 of 2)",
+         "outcomes": [
+          {
+           "code": "3.E.14",
+           "text": "Line graphs are used to show changes in data over time."
+          },
+          {
+           "code": "3.E.15",
+           "text": "Both positive and negative incentives affect individuals' choices and behaviors."
+          },
+          {
+           "code": "3.E.16",
+           "text": "Individuals must make decisions because of the scarcity of resources. Making a decision involves a trade-off."
+          },
+          {
+           "code": "3.E.17",
+           "text": "A consumer is a person whose wants are satisfied by using goods and services. A producer makes goods and/or provides services."
+          }
+         ]
+        },
+        {
+         "id": "economics-2-of-2",
+         "title": "Economics (2 of 2)",
+         "outcomes": [
+          {
+           "code": "3.E.18",
+           "text": "A market is where buyers and sellers exchange goods and services."
+          },
+          {
+           "code": "3.E.19",
+           "text": "Making decisions involves weighing costs and benefits."
+          },
+          {
+           "code": "3.E.20",
+           "text": "A budget is a plan to help people make personal economic decisions for the present and future and to become more financially responsible."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "4",
+   "units": [
+    {
+     "id": "history",
+     "title": "History",
+     "topics": [
+      {
+       "id": "history",
+       "title": "History",
+       "subtopics": [
+        {
+         "id": "history-1-of-3",
+         "title": "History (1 of 3)",
+         "outcomes": [
+          {
+           "code": "4.H.1",
+           "text": "The order of significant events in Ohio and the United States can be shown on a timeline."
+          },
+          {
+           "code": "4.H.2",
+           "text": "Primary and secondary sources can be used to create historical narratives."
+          },
+          {
+           "code": "4.H.3",
+           "text": "Various groups of people have lived in Ohio over time including American Indians, migrating settlers and immigrants. Interactions among these groups have resulted in cooperation, conflict and compromise."
+          },
+          {
+           "code": "4.H.4",
+           "text": "The 13 colonies came together around a common cause of liberty and justice, uniting to fight for independence during the American Revolution and to form a new nation."
+          }
+         ]
+        },
+        {
+         "id": "history-2-of-3",
+         "title": "History (2 of 3)",
+         "outcomes": [
+          {
+           "code": "4.H.5",
+           "text": "The Northwest Ordinance incorporated democratic ideals into the territories. It provided a process for territories to become states and recognized them as equal to the other existing states."
+          },
+          {
+           "code": "4.H.6",
+           "text": "Ongoing conflicts on the Ohio frontier with American Indians and Great Britain contributed to the United States' involvement in the War of 1812."
+          },
+          {
+           "code": "4.H.7",
+           "text": "Following the War of 1812, Ohio continued to play a key role in national conflicts including the anti-slavery movement and the Underground Railroad."
+          },
+          {
+           "code": "4.H.8",
+           "text": "Many technological innovations that originated in Ohio benefitted the United States."
+          }
+         ]
+        },
+        {
+         "id": "history-3-of-3",
+         "title": "History (3 of 3)",
+         "outcomes": [
+          {
+           "code": "4.H.9",
+           "text": "A map scale and cardinal and intermediate directions can be used to describe the relative location of physical and human characteristics of Ohio and the United States."
+          },
+          {
+           "code": "4.H.10",
+           "text": "The economic development of the United States continues to influence and be influenced by agriculture, industry and natural resources in Ohio."
+          },
+          {
+           "code": "4.H.11",
+           "text": "The regions of the United States known as the North, South and West developed in the early 1800s largely based on their physical environments and economies."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "geography",
+     "title": "Geography",
+     "topics": [
+      {
+       "id": "geography",
+       "title": "Geography",
+       "subtopics": [
+        {
+         "id": "geography",
+         "title": "Geography",
+         "outcomes": [
+          {
+           "code": "4.GE.12",
+           "text": "People have modified the environment throughout history resulting in both positive and negative consequences in Ohio and the United States."
+          },
+          {
+           "code": "4.GE.13",
+           "text": "The population of the United States has changed over time, becoming more diverse (e.g., racial, ethnic, linguistic, religious). Ohio's population has become increasingly reflective of the multicultural diversity of the United States."
+          },
+          {
+           "code": "4.GE.14",
+           "text": "Ohio's location and its transportation systems continue to influence the movement of people, products and ideas in the United States."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "government",
+     "title": "Government",
+     "topics": [
+      {
+       "id": "government",
+       "title": "Government",
+       "subtopics": [
+        {
+         "id": "government",
+         "title": "Government",
+         "outcomes": [
+          {
+           "code": "4.GO.15",
+           "text": "Individuals have a variety of opportunities to act in and influence their state and national government. Citizens have both rights and responsibilities in Ohio and the United States."
+          },
+          {
+           "code": "4.GO.16",
+           "text": "Civic participation in a democratic society requires individuals to make informed and reasoned decisions by accessing, evaluating and using information effectively to engage in compromise."
+          },
+          {
+           "code": "4.GO.17",
+           "text": "Laws can protect rights, provide benefits and assign responsibilities."
+          },
+          {
+           "code": "4.GO.18",
+           "text": "The U.S. Constitution establishes a system of limited government and protects citizens' rights; five of these rights are addressed in the First Amendment."
+          },
+          {
+           "code": "4.GO.19",
+           "text": "A constitution is a written plan for government. The Ohio Constitution and the U.S. Constitution separate the major responsibilities of government among three branches."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "economics",
+     "title": "Economics",
+     "topics": [
+      {
+       "id": "economics",
+       "title": "Economics",
+       "subtopics": [
+        {
+         "id": "economics",
+         "title": "Economics",
+         "outcomes": [
+          {
+           "code": "4.E.20",
+           "text": "Tables and charts organize data in a variety of formats to help individuals understand information and issues."
+          },
+          {
+           "code": "4.E.21",
+           "text": "Entrepreneurs in Ohio and the United States organize productive resources and take risks to make a profit and compete with other producers."
+          },
+          {
+           "code": "4.E.22",
+           "text": "Saving a portion of income contributes to an individuals' financial well-being. Individuals can reduce spending to save more of their income."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "5",
+   "units": [
+    {
+     "id": "history",
+     "title": "History",
+     "topics": [
+      {
+       "id": "history",
+       "title": "History",
+       "subtopics": [
+        {
+         "id": "history",
+         "title": "History",
+         "outcomes": [
+          {
+           "code": "5.H.1",
+           "text": "Events can be arranged in order of occurrence using the conventions of B.C. and A.D. or B.C.E. and C.E."
+          },
+          {
+           "code": "5.H.2",
+           "text": "Early Indian civilizations (Maya, Inca, Aztec, Mississippian) existed in the Western Hemisphere prior to the arrival of Europeans. These civilizations had developed unique governments, social structures, religions, technologies, and agricultural practices."
+          },
+          {
+           "code": "5.H.3",
+           "text": "European exploration and colonization during the 1400s-1600s had lasting effects which can be used to understand the Western Hemisphere today."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "geography",
+     "title": "Geography",
+     "topics": [
+      {
+       "id": "geography",
+       "title": "Geography",
+       "subtopics": [
+        {
+         "id": "geography-1-of-2",
+         "title": "Geography (1 of 2)",
+         "outcomes": [
+          {
+           "code": "5.GE.4",
+           "text": "Geographic tools can be used to gather, process and report information about people, places and environments. Cartographers decide which information to include in maps."
+          },
+          {
+           "code": "5.GE.5",
+           "text": "Latitude and longitude can be used to make observations about location and generalizations about climate"
+          },
+          {
+           "code": "5.GE.6",
+           "text": "Regions can be determined using data related to various criteria including landform, climate, population, and cultural and economic characteristics."
+          },
+          {
+           "code": "5.GE.7",
+           "text": "The variety of physical environments within the Western Hemisphere influences human activities. Likewise, human activities modify the physical environments."
+          }
+         ]
+        },
+        {
+         "id": "geography-2-of-2",
+         "title": "Geography (2 of 2)",
+         "outcomes": [
+          {
+           "code": "5.GE.8",
+           "text": "American Indians developed unique cultures with many different ways of life. American Indian tribes and nations can be classified into cultural groups based on geographic and cultural similarities."
+          },
+          {
+           "code": "5.GE.9",
+           "text": "Political, environmental, social and economic factors cause people, products and ideas to move from place to place in the Western Hemisphere and results in diversity."
+          },
+          {
+           "code": "5.GE.10",
+           "text": "The Western Hemisphere is culturally diverse (e.g., language, food, religion, art, music) due to the influences and interactions of a variety of world cultures."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "government",
+     "title": "Government",
+     "topics": [
+      {
+       "id": "government",
+       "title": "Government",
+       "subtopics": [
+        {
+         "id": "government",
+         "title": "Government",
+         "outcomes": [
+          {
+           "code": "5.GO.11",
+           "text": "Individuals can better understand public issues by gathering, interpreting and checking information for accuracy from multiple sources. Data can be displayed graphically to effectively and efficiently communicate information."
+          },
+          {
+           "code": "5.GO.12",
+           "text": "Democracies, dictatorships and monarchies are categories for understanding the relationship between those in power or authority and citizens."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "economics",
+     "title": "Economics",
+     "topics": [
+      {
+       "id": "economics",
+       "title": "Economics",
+       "subtopics": [
+        {
+         "id": "economics",
+         "title": "Economics",
+         "outcomes": [
+          {
+           "code": "5.E.13",
+           "text": "Information displayed in circle graphs can be used to show relative proportions of segments of data to an entire body of data."
+          },
+          {
+           "code": "5.E.14",
+           "text": "The choices made by individuals and governments have both present and future consequences."
+          },
+          {
+           "code": "5.E.15",
+           "text": "The availability of productive resources (i.e., entrepreneurship, human resources, capital goods and natural resources) promotes specialization that could lead to trade."
+          },
+          {
+           "code": "5.E.16",
+           "text": "The availability of productive resources and the division of labor can have a positive or negative impact on productive capacity."
+          },
+          {
+           "code": "5.E.17",
+           "text": "Regions and countries become interdependent when they specialize in what they produce best and then trade with other regions to increase the amount and variety of goods and services available."
+          },
+          {
+           "code": "5.E.18",
+           "text": "Workers can improve their ability to earn income by gaining new knowledge, skills and experiences."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "6",
+   "units": [
+    {
+     "id": "history",
+     "title": "History",
+     "topics": [
+      {
+       "id": "history",
+       "title": "History",
+       "subtopics": [
+        {
+         "id": "history",
+         "title": "History",
+         "outcomes": [
+          {
+           "code": "6.H.1",
+           "text": "Multiple tier timelines can be used to show relationships among events and places."
+          },
+          {
+           "code": "6.H.2",
+           "text": "Early civilizations (India, Egypt, China and Mesopotamia) had unique governments, economic systems, social structures, religions, technologies and agricultural practices and products. The cultural practices and products of these early civilizations can be used to help understand the Eastern Hemisphere today."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "geography",
+     "title": "Geography",
+     "topics": [
+      {
+       "id": "geography",
+       "title": "Geography",
+       "subtopics": [
+        {
+         "id": "geography",
+         "title": "Geography",
+         "outcomes": [
+          {
+           "code": "6.GE.3",
+           "text": "Geographic tools can be used to gather, process and report information about people, places and environments. Cartographers decide which information to include and how it is displayed."
+          },
+          {
+           "code": "6.GE.4",
+           "text": "Latitude and longitude can be used to identify absolute location."
+          },
+          {
+           "code": "6.GE.5",
+           "text": "Regions can be determined, classified and compared using data related to various criteria including landform, climate, population, and cultural and economic characteristics"
+          },
+          {
+           "code": "6.GE.6",
+           "text": "The variety of physical environments within the Eastern Hemisphere influences human activities. Likewise, human activities modify the physical environment."
+          },
+          {
+           "code": "6.GE.7",
+           "text": "Political, environmental, social and economic factors cause people, products and ideas to move from place to place in the Eastern Hemisphere in the past and today."
+          },
+          {
+           "code": "6.GE.8",
+           "text": "Diffusion of agricultural practices and products, technology, cultural practices and major world religions (Buddhism, Christianity, Hinduism, Islam and Judaism) impacted the Eastern Hemisphere."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "government",
+     "title": "Government",
+     "topics": [
+      {
+       "id": "government",
+       "title": "Government",
+       "subtopics": [
+        {
+         "id": "government",
+         "title": "Government",
+         "outcomes": [
+          {
+           "code": "6.GO.9",
+           "text": "Different perspectives on a topic can be obtained from a variety of historic and contemporary sources and used to effectively communicate and defend a claim based on evidence. Sources should be examined for accuracy and credibility."
+          },
+          {
+           "code": "6.GO.10",
+           "text": "Governments can be categorized as monarchies, theocracies, dictatorships or democracies, but categories may overlap and labels may not accurately represent how governments function. The extent of citizens' liberties and responsibilities varies according to limits on governmental authority."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "economics",
+     "title": "Economics",
+     "topics": [
+      {
+       "id": "economics",
+       "title": "Economics",
+       "subtopics": [
+        {
+         "id": "economics",
+         "title": "Economics",
+         "outcomes": [
+          {
+           "code": "6.E.11",
+           "text": "Economists compare data sets to draw conclusions about relationships among them."
+          },
+          {
+           "code": "6.E.12",
+           "text": "The choices made by individuals and governments have both present and future consequences. The evaluation of choices is relative and may differ across individuals and societies."
+          },
+          {
+           "code": "6.E.13",
+           "text": "The fundamental questions of economics include what to produce, how to produce and for whom to produce."
+          },
+          {
+           "code": "6.E.14",
+           "text": "When regions and/or countries specialize, global trade occurs."
+          },
+          {
+           "code": "6.E.15",
+           "text": "The interaction of supply and demand, influenced by competition, helps to determine price in a market. This interaction also determines the quantities of outputs produced and the quantities of productive resources (entrepreneurship, human resources, natural resources and capital) used."
+          },
+          {
+           "code": "6.E.16",
+           "text": "When selecting items to buy, individuals can weigh costs and benefits and compare the price and quality of available goods and services."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "7",
+   "units": [
+    {
+     "id": "history",
+     "title": "History",
+     "topics": [
+      {
+       "id": "history",
+       "title": "History",
+       "subtopics": [
+        {
+         "id": "history-1-of-3",
+         "title": "History (1 of 3)",
+         "outcomes": [
+          {
+           "code": "7.H.1",
+           "text": "Historians and archaeologists describe historical events and issues from the perspectives of people living at the time to avoid evaluating the past in terms of today's norms and values."
+          },
+          {
+           "code": "7.H.2",
+           "text": "The civilizations that developed in Greece and Rome had an enduring impact on later civilizations. This legacy includes governance and law, engineering and technology, art and architecture, as well as literature and history. The Roman Empire also played an instrumental role in the spread of Christianity."
+          },
+          {
+           "code": "7.H.3",
+           "text": "The Roman Empire collapsed due to various internal and external factors (political, social and economic) which led to the development of feudalism and the manorial system in the region. The fall of Rome and later invasions also allowed for the creation of new empires in the region."
+          },
+          {
+           "code": "7.H.4",
+           "text": "The Mongols conquered much of Asia which led to unified states in China and Korea. Mongol failure to conquer Japan allowed a feudal system to persist."
+          }
+         ]
+        },
+        {
+         "id": "history-2-of-3",
+         "title": "History (2 of 3)",
+         "outcomes": [
+          {
+           "code": "7.H.5",
+           "text": "Achievements in medicine, science, mathematics and geography by the Islamic civilization dominated most of the Mediterranean after the decline of the Roman Empire. These achievements were introduced into Western Europe as a result of the Muslim conquests, Crusades and trade, influencing the European Renaissance."
+          },
+          {
+           "code": "7.H.6",
+           "text": "The decline of feudalism, the rise of nation-states and the Renaissance in Europe introduced revolutionary ideas, leading to cultural, scientific and social changes."
+          },
+          {
+           "code": "7.H.7",
+           "text": "The Reformation introduced changes in religion including the emergence of Protestant faiths and a decline in the political power and social influence of the Roman Catholic Church."
+          },
+          {
+           "code": "7.H.8",
+           "text": "Empires in Africa and Asia grew as commercial and cultural centers along trade routes."
+          }
+         ]
+        },
+        {
+         "id": "history-3-of-3",
+         "title": "History (3 of 3)",
+         "outcomes": [
+          {
+           "code": "7.H.9",
+           "text": "The advent of the trans-Saharan slave trade had profound effects on both West and Central Africa and the receiving societies."
+          },
+          {
+           "code": "7.H.10",
+           "text": "European economic and cultural influence dramatically increased through explorations, conquests and colonization."
+          },
+          {
+           "code": "7.H.11",
+           "text": "The Columbian exchange (i.e., the exchange of fauna, flora and pathogens) among previously unconnected parts of the world reshaped societies in ways still evident today."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "geography",
+     "title": "Geography",
+     "topics": [
+      {
+       "id": "geography",
+       "title": "Geography",
+       "subtopics": [
+        {
+         "id": "geography",
+         "title": "Geography",
+         "outcomes": [
+          {
+           "code": "7.GE.12",
+           "text": "Maps and other geographic representations can be used to trace the development of human settlement over time."
+          },
+          {
+           "code": "7.GE.13",
+           "text": "Geographic factors promote or impede the movement of people, products and ideas."
+          },
+          {
+           "code": "7.GE.14",
+           "text": "Trade routes connecting Africa, Europe and Asia helped foster the spread of ideas, technology, goods and major world religions (Buddhism, Christianity, Hinduism, Islam and Judaism) that impacted the Eastern Hemisphere."
+          },
+          {
+           "code": "7.GE.15",
+           "text": "Improvements in transportation, communication and technology have facilitated cultural diffusion among peoples around the world."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "government",
+     "title": "Government",
+     "topics": [
+      {
+       "id": "government",
+       "title": "Government",
+       "subtopics": [
+        {
+         "id": "government",
+         "title": "Government",
+         "outcomes": [
+          {
+           "code": "7.GO.16",
+           "text": "Analyzing individual and group perspectives is essential to understanding historic and contemporary issues. Opportunities for civic engagement exist for students to connect real-world issues and events to classroom learning."
+          },
+          {
+           "code": "7.GO.17",
+           "text": "Greek democracy and the Roman Republic were a radical departure from monarchy and theocracy, influencing the structure and function of modern democratic governments."
+          },
+          {
+           "code": "7.GO.18",
+           "text": "With the decline of feudalism, consolidation of power resulted in the emergence of nation-states."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "economics",
+     "title": "Economics",
+     "topics": [
+      {
+       "id": "economics",
+       "title": "Economics",
+       "subtopics": [
+        {
+         "id": "economics",
+         "title": "Economics",
+         "outcomes": [
+          {
+           "code": "7.E.19",
+           "text": "Individuals, governments and businesses must analyze costs and benefits when making economic decisions. A cost-benefit analysis consists of determining the potential costs and benefits of an action and then balancing the costs against the benefits."
+          },
+          {
+           "code": "7.E.20",
+           "text": "The variability in the distribution of productive resources in the various regions of the world contributed to specialization, trade and interdependence."
+          },
+          {
+           "code": "7.E.21",
+           "text": "The growth of cities and empires fostered the growth of markets. Market exchanges encouraged specialization and the transition from barter to monetary economies."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "8",
+   "units": [
+    {
+     "id": "history",
+     "title": "History",
+     "topics": [
+      {
+       "id": "history",
+       "title": "History",
+       "subtopics": [
+        {
+         "id": "history-1-of-3",
+         "title": "History (1 of 3)",
+         "outcomes": [
+          {
+           "code": "8.H.1",
+           "text": "Primary and secondary sources are used to examine events from multiple perspectives and to present and defend a position."
+          },
+          {
+           "code": "8.H.2",
+           "text": "North America, originally inhabited by American Indians, was explored and colonized by Europeans for economic and religious reasons."
+          },
+          {
+           "code": "8.H.3",
+           "text": "Competition for control of territory and resources in North America led to conflicts among colonizing powers."
+          },
+          {
+           "code": "8.H.4",
+           "text": "The practice of race-based slavery led to the forced migration of Africans to the American colonies and contributed to colonial economic development. Their knowledge, skills and traditions were essential to the development of the colonies."
+          },
+          {
+           "code": "8.H.5",
+           "text": "The ideas of the Enlightenment and dissatisfaction with colonial rule led English colonists to write the Declaration of Independence and launch the American"
+          }
+         ]
+        },
+        {
+         "id": "history-2-of-3",
+         "title": "History (2 of 3)",
+         "outcomes": [
+          {
+           "code": "8.H.6",
+           "text": "Key events and significant figures in American history influenced the course and outcome of the American Revolution."
+          },
+          {
+           "code": "8.H.7",
+           "text": "The outcome of the American Revolution was national independence and new political, social and economic relationships for the American people."
+          },
+          {
+           "code": "8.H.8",
+           "text": "Problems arising under the Articles of Confederation led to debate over the adoption of the U.S. Constitution."
+          },
+          {
+           "code": "8.H.9",
+           "text": "Actions of early presidential administrations established a strong federal government, provided peaceful transitions of power and repelled a foreign invasion."
+          },
+          {
+           "code": "8.H.10",
+           "text": "The United States added to its territory through treaties and purchases."
+          }
+         ]
+        },
+        {
+         "id": "history-3-of-3",
+         "title": "History (3 of 3)",
+         "outcomes": [
+          {
+           "code": "8.H.11",
+           "text": "Westward expansion contributed to economic and industrial development, debates over sectional issues, war with Mexico and the displacement of American Indians."
+          },
+          {
+           "code": "8.H.12",
+           "text": "Disputes over the nature of federalism, complicated by economic developments in the United States, resulted in sectional issues, including slavery, which led to the American Civil War."
+          },
+          {
+           "code": "8.H.13",
+           "text": "Key events and significant figures in American history influenced the course and outcome of the Civil War."
+          },
+          {
+           "code": "8.H.14",
+           "text": "The Reconstruction period resulted in changes to the U.S. Constitution, an affirmation of federal authority and lingering social and political differences."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "geography",
+     "title": "Geography",
+     "topics": [
+      {
+       "id": "geography",
+       "title": "Geography",
+       "subtopics": [
+        {
+         "id": "geography",
+         "title": "Geography",
+         "outcomes": [
+          {
+           "code": "8.GE.15",
+           "text": "Modern and historical maps and other geographic tools are used to analyze how historic events are shaped by geography."
+          },
+          {
+           "code": "8.GE.16",
+           "text": "The availability of natural resources contributed to the geographic and economic expansion of the United States, sometimes resulting in unintended environmental consequences."
+          },
+          {
+           "code": "8.GE.17",
+           "text": "The movement of people, products and ideas resulted in new patterns of settlement and land use that influenced the political and economic development of the United States."
+          },
+          {
+           "code": "8.GE.18",
+           "text": "Cultural biases, stereotypes and prejudices had social, political and economic consequences for minority groups and the population as a whole."
+          },
+          {
+           "code": "8.GE.19",
+           "text": "Americans began to develop a unique national identity among diverse regional and cultural populations based on democratic ideals."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "government",
+     "title": "Government",
+     "topics": [
+      {
+       "id": "government",
+       "title": "Government",
+       "subtopics": [
+        {
+         "id": "government",
+         "title": "Government",
+         "outcomes": [
+          {
+           "code": "8.GO.20",
+           "text": "Active participation in social and civic groups can lead to the attainment of individual and public goals."
+          },
+          {
+           "code": "8.GO.21",
+           "text": "Informed citizens understand how media and communication technology influence public opinion."
+          },
+          {
+           "code": "8.GO.22",
+           "text": "The U.S. Constitution established a federal republic, providing a framework for a national government with elected representatives, separation of powers, and checks and balances."
+          },
+          {
+           "code": "8.GO.23",
+           "text": "The U.S. Constitution protects citizens' rights by limiting the powers of government."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "economics",
+     "title": "Economics",
+     "topics": [
+      {
+       "id": "economics",
+       "title": "Economics",
+       "subtopics": [
+        {
+         "id": "economics",
+         "title": "Economics",
+         "outcomes": [
+          {
+           "code": "8.E.24",
+           "text": "Choices made by individuals, businesses and governments have both present and future consequences."
+          },
+          {
+           "code": "8.E.25",
+           "text": "The Industrial Revolution fundamentally changed the means of production as a result of improvements in technology, use of new power resources, the advent of interchangeable parts and the shift from craftwork to factory work."
+          },
+          {
+           "code": "8.E.26",
+           "text": "Governments can impact markets by means of spending, regulations, taxes and trade barriers."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "9-12",
+   "units": [
+    {
+     "id": "american-history",
+     "title": "American History",
+     "topics": [
+      {
+       "id": "american-history",
+       "title": "American History",
+       "subtopics": [
+        {
+         "id": "american-history-1-of-7",
+         "title": "American History (1 of 7)",
+         "outcomes": [
+          {
+           "code": "9-12.AH.1",
+           "text": "The use of primary and secondary sources of information includes an examination of the credibility of each source."
+          },
+          {
+           "code": "9-12.AH.2",
+           "text": "Historians develop theses and use evidence to support or refute positions."
+          },
+          {
+           "code": "9-12.AH.3",
+           "text": "Historians analyze cause, effect, sequence and correlation in historical events, including multiple causation and long-and short-term causal relations."
+          },
+          {
+           "code": "9-12.AH.4",
+           "text": "The Declaration of Independence elaborates on the rights and role of the people in building the foundations of the American nation through the principles of unalienable rights and consent of the people."
+          },
+          {
+           "code": "9-12.AH.5",
+           "text": "The Northwest Ordinance elaborates on the rights and role of the people in building the foundations of the American nation through its establishment of natural rights and setting up educational institutions."
+          }
+         ]
+        },
+        {
+         "id": "american-history-2-of-7",
+         "title": "American History (2 of 7)",
+         "outcomes": [
+          {
+           "code": "9-12.AH.6",
+           "text": "The U.S. Constitution established the foundations of the American nation and the relationship between the people and their government."
+          },
+          {
+           "code": "9-12.AH.7",
+           "text": "The debate presented by the Federalist and Anti-Federalist Papers over protections for individuals and limits on government power resulted in the Bill of Rights. The Bill of Rights provides constitutional protections for individual liberties and limits on governmental power."
+          },
+          {
+           "code": "9-12.AH.8",
+           "text": "The rise of corporations, heavy industry, mechanized farming and technological innovations transformed the American economy from an agrarian to an increasingly urban industrial society."
+          },
+          {
+           "code": "9-12.AH.9",
+           "text": "The rise of industrialization led to a rapidly expanding workforce. Labor organizations grew amidst unregulated working conditions, laissez-faire policies toward big business, and violence toward supporters of organized labor."
+          },
+          {
+           "code": "9-12.AH.10",
+           "text": "Immigration, internal migration and urbanization transformed American life."
+          }
+         ]
+        },
+        {
+         "id": "american-history-3-of-7",
+         "title": "American History (3 of 7)",
+         "outcomes": [
+          {
+           "code": "9-12.AH.11",
+           "text": "Continued settlement by Americans in the West intensified conflict with American Indians and reinforced the policy of the reservation system."
+          },
+          {
+           "code": "9-12.AH.12",
+           "text": "Following Reconstruction, old political and social structures reemerged and racial discrimination was institutionalized."
+          },
+          {
+           "code": "9-12.AH.13",
+           "text": "The Progressive era was an effort to address the ills of American society stemming from industrial capitalism, urbanization and political corruption."
+          },
+          {
+           "code": "9-12.AH.14",
+           "text": "As a result of overseas expansion, the Spanish-American War and World War I, the United States emerged as a world power."
+          },
+          {
+           "code": "9-12.AH.15",
+           "text": "After World War I, the United States pursued efforts to maintain peace in the world. However, as a result of the national debate over the Versailles Treaty ratification and the League of Nations, the United States moved away from the role of world peacekeeper and limited its involvement in international affairs."
+          }
+         ]
+        },
+        {
+         "id": "american-history-4-of-7",
+         "title": "American History (4 of 7)",
+         "outcomes": [
+          {
+           "code": "9-12.AH.16",
+           "text": "Racial intolerance, anti-immigrant attitudes and the Red Scare contributed to social unrest after World War I."
+          },
+          {
+           "code": "9-12.AH.17",
+           "text": "An improved standard of living for many, combined with technological innovations in communication, transportation and industry, resulted in social and cultural changes and tensions."
+          },
+          {
+           "code": "9-12.AH.18",
+           "text": "Movements such as the Harlem Renaissance, African-American migration, women's suffrage and Prohibition all contributed to social change."
+          },
+          {
+           "code": "9-12.AH.19",
+           "text": "The Great Depression was caused, in part, by the federal government's monetary policies, stock market speculation, and increasing consumer debt. The role of the federal government expanded as a result of the Great Depression."
+          },
+          {
+           "code": "9-12.AH.20",
+           "text": "During the 1930s, the U.S. government attempted to distance the country from earlier interventionist policies in the Western Hemisphere as well as retain an isolationist approach to events in Europe and Asia until the beginning of World War II."
+          }
+         ]
+        },
+        {
+         "id": "american-history-5-of-7",
+         "title": "American History (5 of 7)",
+         "outcomes": [
+          {
+           "code": "9-12.AH.21",
+           "text": "United States policy and mobilization of its economic and military resources during World War II affected American society. Despite mistreatment, marginalized groups played important roles in the war effort while continuing to protest unfair treatment."
+          },
+          {
+           "code": "9-12.AH.22",
+           "text": "Use of atomic weapons changed the nature of war, altered the balance of power and began the nuclear age."
+          },
+          {
+           "code": "9-12.AH.23",
+           "text": "The United States followed a policy of containment during the Cold War in response to the spread of communism."
+          },
+          {
+           "code": "9-12.AH.24",
+           "text": "The Second Red Scare and McCarthyism reflected Cold War fears in American society."
+          },
+          {
+           "code": "9-12.AH.25",
+           "text": "The Cold War and conflicts in Korea and Vietnam influenced domestic and international politics."
+          }
+         ]
+        },
+        {
+         "id": "american-history-6-of-7",
+         "title": "American History (6 of 7)",
+         "outcomes": [
+          {
+           "code": "9-12.AH.26",
+           "text": "The collapse of communist governments in Eastern Europe and the U.S.S.R. brought an end to the Cold War."
+          },
+          {
+           "code": "9-12.AH.27",
+           "text": "Following World War II, the United States experienced a struggle for racial and gender equality and the extension of civil rights."
+          },
+          {
+           "code": "9-12.AH.28",
+           "text": "The postwar economic boom and advances in science and technology, produced changes in American life."
+          },
+          {
+           "code": "9-12.AH.29",
+           "text": "The continuing population flow from cities to suburbs, the internal migrations from the Rust Belt to the Sun Belt, and the increase in immigration resulting from passage of the 1965 Immigration Act have had social and political effects."
+          },
+          {
+           "code": "9-12.AH.30",
+           "text": "Political debates focused on the extent of the role of government in the economy, environmental protection, social welfare and national security."
+          }
+         ]
+        },
+        {
+         "id": "american-history-7-of-7",
+         "title": "American History (7 of 7)",
+         "outcomes": [
+          {
+           "code": "9-12.AH.31",
+           "text": "Improved global communications, international trade, transnational business organizations, overseas competition and the shift from manufacturing to service industries have impacted the American economy."
+          },
+          {
+           "code": "9-12.AH.32",
+           "text": "The United States faced new political, national security and economic challenges in the post-Cold War world and following the attacks on September 11, 2001."
+          },
+          {
+           "code": "9-12.AH.33",
+           "text": "Focusing on foreign policy, the United States faces ongoing economic, political, military, and social challenges in the post-Cold War era and following the attacks of September 11, 2001."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "american-government",
+     "title": "American Government",
+     "topics": [
+      {
+       "id": "american-government",
+       "title": "American Government",
+       "subtopics": [
+        {
+         "id": "american-government-1-of-5",
+         "title": "American Government (1 of 5)",
+         "outcomes": [
+          {
+           "code": "9-12.AG.1",
+           "text": "Opportunities for civic engagement within the structures of government are made possible through political and public policy processes."
+          },
+          {
+           "code": "9-12.AG.2",
+           "text": "Political parties, interest groups and the media provide opportunities for civic involvement through various means."
+          },
+          {
+           "code": "9-12.AG.3",
+           "text": "Issues can be analyzed through the critical use of credible sources."
+          },
+          {
+           "code": "9-12.AG.4",
+           "text": "The processes of persuasion, compromise, consensus building and negotiation contribute to the democratic process."
+          },
+          {
+           "code": "9-12.AG.5",
+           "text": "As the supreme law of the land, the U.S. Constitution incorporates basic principles that help define the government of the United States as a federal republic including its structure, powers and relationship with the governed."
+          }
+         ]
+        },
+        {
+         "id": "american-government-2-of-5",
+         "title": "American Government (2 of 5)",
+         "outcomes": [
+          {
+           "code": "9-12.AG.6",
+           "text": "The Federalist Papers and the Anti-Federalist Papers framed the national debate over the basic principles of government encompassed by the Constitution of the United States."
+          },
+          {
+           "code": "9-12.AG.7",
+           "text": "Constitutional government in the United States has changed over time as a result of amendments to the U.S. Constitution, Supreme Court decisions, legislation and informal practices."
+          },
+          {
+           "code": "9-12.AG.8",
+           "text": "The Bill of Rights was drafted in response to the national debate over the ratification of the Constitution of the United States."
+          },
+          {
+           "code": "9-12.AG.9",
+           "text": "The constitutional amendments known collectively as the Reconstruction Amendments extended new constitutional protections to African Americans, though the struggle to fully achieve equality would continue."
+          },
+          {
+           "code": "9-12.AG.10",
+           "text": "Constitutional amendments have provided for civil rights such as suffrage for disenfranchised groups."
+          }
+         ]
+        },
+        {
+         "id": "american-government-3-of-5",
+         "title": "American Government (3 of 5)",
+         "outcomes": [
+          {
+           "code": "9-12.AG.11",
+           "text": "Constitutional amendments have altered provisions for the structure and functions of the federal government."
+          },
+          {
+           "code": "9-12.AG.12",
+           "text": "Law and public policy are created and implemented by three branches of government; each functions with its own set of powers and responsibilities."
+          },
+          {
+           "code": "9-12.AG.13",
+           "text": "The political process creates a dynamic interaction among the three branches of government in addressing current issues."
+          },
+          {
+           "code": "9-12.AG.14",
+           "text": "In the United States, people have rights that protect them from undue governmental interference. Rights carry responsibilities that help define how people use their rights and that require respect for the rights of others."
+          },
+          {
+           "code": "9-12.AG.15",
+           "text": "Historically, the United States has struggled with majority rule and the extension of minority rights. As a result of this struggle, the government has increasingly extended civil rights to marginalized groups and broadened opportunities for participation."
+          }
+         ]
+        },
+        {
+         "id": "american-government-4-of-5",
+         "title": "American Government (4 of 5)",
+         "outcomes": [
+          {
+           "code": "9-12.AG.16",
+           "text": "As a framework for the state, the Ohio Constitution has similarities and differences to the federal Constitution; it was changed in 1851 to address difficulties governing the state."
+          },
+          {
+           "code": "9-12.AG.17",
+           "text": "Individuals in Ohio have a responsibility to assist state and local governments as they address relevant and often controversial problems that directly affect their communities."
+          },
+          {
+           "code": "9-12.AG.18",
+           "text": "A variety of entities within the three branches of government, at all levels, address public policy issues that arise in domestic and international affairs."
+          },
+          {
+           "code": "9-12.AG.19",
+           "text": "Individuals and organizations play a role within federal, state and local governments in helping to determine public (domestic and foreign) policy."
+          },
+          {
+           "code": "9-12.AG.20",
+           "text": "The federal government uses spending and tax policy to maintain economic stability and foster economic growth. Regulatory actions carry economic costs and benefits."
+          }
+         ]
+        },
+        {
+         "id": "american-government-5-of-5",
+         "title": "American Government (5 of 5)",
+         "outcomes": [
+          {
+           "code": "9-12.AG.21",
+           "text": "The Federal Reserve System uses monetary tools to regulate the nation's money supply and moderate the effects of expansion and contraction in the economy."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "modern-world-history",
+     "title": "Modern World History",
+     "topics": [
+      {
+       "id": "modern-world-history",
+       "title": "Modern World History",
+       "subtopics": [
+        {
+         "id": "modern-world-history-1-of-6",
+         "title": "Modern World History (1 of 6)",
+         "outcomes": [
+          {
+           "code": "9-12.MWH.1",
+           "text": "The use of primary and secondary sources of information includes an examination of the credibility of each source."
+          },
+          {
+           "code": "9-12.MWH.2",
+           "text": "Historians develop theses and use evidence to support or refute positions."
+          },
+          {
+           "code": "9-12.MWH.3",
+           "text": "Historians analyze cause, effect, sequence, and correlation in historical events, including multiple causation and long-and short-term causal relations."
+          },
+          {
+           "code": "9-12.MWH.4",
+           "text": "The Scientific Revolution impacted religious, political, and cultural institutions by challenging how people viewed the world."
+          },
+          {
+           "code": "9-12.MWH.5",
+           "text": "Enlightenment ideas regarding human nature and society challenged religious authority, absolute rule and mercantilism."
+          }
+         ]
+        },
+        {
+         "id": "modern-world-history-2-of-6",
+         "title": "Modern World History (2 of 6)",
+         "outcomes": [
+          {
+           "code": "9-12.MWH.6",
+           "text": "Enlightenment ideas on the relationship of the individual and the government influenced the American and French Revolutions."
+          },
+          {
+           "code": "9-12.MWH.7",
+           "text": "The American and French Revolutions influenced Latin American revolutions for independence."
+          },
+          {
+           "code": "9-12.MWH.8",
+           "text": "Industrialization had social, political and economic effects on Western Europe and the world."
+          },
+          {
+           "code": "9-12.MWH.9",
+           "text": "Imperial expansion had political, economic and social roots."
+          },
+          {
+           "code": "9-12.MWH.10",
+           "text": "Imperialism involved land acquisition, extraction of raw materials, spread of Western values and direct political control."
+          }
+         ]
+        },
+        {
+         "id": "modern-world-history-3-of-6",
+         "title": "Modern World History (3 of 6)",
+         "outcomes": [
+          {
+           "code": "9-12.MWH.11",
+           "text": "The consequences of imperialism were viewed differently by the colonizers and the colonized."
+          },
+          {
+           "code": "9-12.MWH.12",
+           "text": "Advances in technology, communication and transportation improved lives, but also had negative consequences."
+          },
+          {
+           "code": "9-12.MWH.13",
+           "text": "The causes of World War I included militarism, imperialism, nationalism and alliances."
+          },
+          {
+           "code": "9-12.MWH.14",
+           "text": "The consequences of World War I and the worldwide depression set the stage for the Russian Revolution, the rise of totalitarianism, aggressive Axis expansion and the policy of appeasement which in turn led to World War II."
+          },
+          {
+           "code": "9-12.MWH.15",
+           "text": "Oppression and discrimination resulted in the Armenian Genocide during World War I and the Holocaust during World War II."
+          }
+         ]
+        },
+        {
+         "id": "modern-world-history-4-of-6",
+         "title": "Modern World History (4 of 6)",
+         "outcomes": [
+          {
+           "code": "9-12.MWH.16",
+           "text": "World War II devastated most of Europe and Asia, led to the occupation of Eastern Europe and Japan, and began the atomic age."
+          },
+          {
+           "code": "9-12.MWH.17",
+           "text": "The United States and the Soviet Union became superpowers and competed for global influence."
+          },
+          {
+           "code": "9-12.MWH.18",
+           "text": "Treaties and agreements at the end of World War II changed national boundaries and created multinational organizations."
+          },
+          {
+           "code": "9-12.MWH.19",
+           "text": "Religious diversity, the end of colonial rule and rising nationalism have led to regional conflicts in the Middle East."
+          },
+          {
+           "code": "9-12.MWH.20",
+           "text": "Postwar global politics led to the rise of nationalist movements in Africa and Southeast Asia."
+          }
+         ]
+        },
+        {
+         "id": "modern-world-history-5-of-6",
+         "title": "Modern World History (5 of 6)",
+         "outcomes": [
+          {
+           "code": "9-12.MWH.21",
+           "text": "Political and social struggles have resulted in expanded rights and freedoms for women and indigenous peoples."
+          },
+          {
+           "code": "9-12.MWH.22",
+           "text": "The break-up of the Soviet Union ended the Cold War and created challenges for its former allies, the former Soviet republics, Europe, the United States and the non-aligned world."
+          },
+          {
+           "code": "9-12.MWH.23",
+           "text": "Regional and ethnic conflicts in the post-Cold War era have resulted in acts of terrorism, genocide and ethnic cleansing."
+          },
+          {
+           "code": "9-12.MWH.24",
+           "text": "Political and cultural groups have struggled to achieve self-governance and self-determination."
+          },
+          {
+           "code": "9-12.MWH.25",
+           "text": "Emerging economic powers and improvements in technology have created a more interdependent global economy."
+          }
+         ]
+        },
+        {
+         "id": "modern-world-history-6-of-6",
+         "title": "Modern World History (6 of 6)",
+         "outcomes": [
+          {
+           "code": "9-12.MWH.26",
+           "text": "Proliferation of nuclear weapons has created a challenge to world peace."
+          },
+          {
+           "code": "9-12.MWH.27",
+           "text": "The rapid increase of global population, coupled with an increase in life expectancy and mass migrations have created societal and governmental challenges."
+          },
+          {
+           "code": "9-12.MWH.28",
+           "text": "Environmental concerns, impacted by population growth and heightened by international competition for the world's energy supplies, have resulted in a new environmental consciousness and a movement for the sustainability of the world's resources."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "economics-and-financial-literacy",
+     "title": "Economics and Financial Literacy",
+     "topics": [
+      {
+       "id": "economics-and-financial-literacy",
+       "title": "Economics and Financial Literacy",
+       "subtopics": [
+        {
+         "id": "economics-and-financial-literacy-1-of-5",
+         "title": "Economics and Financial Literacy (1 of 5)",
+         "outcomes": [
+          {
+           "code": "9-12.EFL.1",
+           "text": "Economists analyze multiple sources of data to predict trends, make inferences and arrive at conclusions."
+          },
+          {
+           "code": "9-12.EFL.2",
+           "text": "Reading financial reports (bank statements, stock market reports, mutual fund statements) enables individuals to make and analyze decisions about personal finances."
+          },
+          {
+           "code": "9-12.EFL.3",
+           "text": "People cannot have all the goods and services they want and, as a result, must choose some things and give up others."
+          },
+          {
+           "code": "9-12.EFL.4",
+           "text": "Different economic systems (traditional, market, command, and mixed) utilize different methods to allocate limited resources."
+          },
+          {
+           "code": "9-12.EFL.5",
+           "text": "Markets exist when consumers and producers interact. When supply or demand changes, market prices adjust. Those adjustments send signals and provide incentives to consumers and producers to change their own decisions."
+          }
+         ]
+        },
+        {
+         "id": "economics-and-financial-literacy-2-of-5",
+         "title": "Economics and Financial Literacy (2 of 5)",
+         "outcomes": [
+          {
+           "code": "9-12.EFL.6",
+           "text": "Competition among sellers lowers costs and prices, and encourages producers to produce more of what consumers are willing and able to buy. Competition among buyers increases prices and allocates goods and services to those people who are willing and able to pay the most for them."
+          },
+          {
+           "code": "9-12.EFL.7",
+           "text": "A nation's overall level of economic well-being is determined by the interaction of spending and production decisions made by all households, firms, government agencies and others in the economy. Economic well-being can be assessed by analyzing economic indicators gathered by the government."
+          },
+          {
+           "code": "9-12.EFL.8",
+           "text": "Economic policy decisions made by governments result in both intended and unintended consequences."
+          },
+          {
+           "code": "9-12.EFL.9",
+           "text": "When regions and nations use comparative advantage to produce at the lowest cost and then trade with others, production, consumption and interdependence increase."
+          },
+          {
+           "code": "9-12.EFL.10",
+           "text": "Government actions, such as tariffs, quotas, subsidies, trade agreements and membership in multinational economic organizations, significantly impact international trade."
+          }
+         ]
+        },
+        {
+         "id": "economics-and-financial-literacy-3-of-5",
+         "title": "Economics and Financial Literacy (3 of 5)",
+         "outcomes": [
+          {
+           "code": "9-12.EFL.11",
+           "text": "Income is determined by many factors including individual skills and abilities, work ethic and market conditions."
+          },
+          {
+           "code": "9-12.EFL.12",
+           "text": "Employee earning statements include information about gross wages, benefits, taxes and other deductions."
+          },
+          {
+           "code": "9-12.EFL.13",
+           "text": "Financial decision-making involves considering alternatives by examining costs and benefits."
+          },
+          {
+           "code": "9-12.EFL.14",
+           "text": "A personal financial plan includes financial goals and a budget, including spending on goods and services, savings and investments, insurance and philanthropy."
+          },
+          {
+           "code": "9-12.EFL.15",
+           "text": "Different payment methods have advantages and disadvantages."
+          }
+         ]
+        },
+        {
+         "id": "economics-and-financial-literacy-4-of-5",
+         "title": "Economics and Financial Literacy (4 of 5)",
+         "outcomes": [
+          {
+           "code": "9-12.EFL.16",
+           "text": "Saving and investing help to build wealth."
+          },
+          {
+           "code": "9-12.EFL.17",
+           "text": "Savings can serve as a buffer against economic hardship."
+          },
+          {
+           "code": "9-12.EFL.18",
+           "text": "Different costs and benefits are associated with saving and investing alternatives."
+          },
+          {
+           "code": "9-12.EFL.19",
+           "text": "Banks, brokerages and insurance companies provide access to investments such as certificates of deposit, stocks, bonds and mutual funds."
+          },
+          {
+           "code": "9-12.EFL.20",
+           "text": "There are costs and benefits associated with various sources of credit available from different types of financial institutions."
+          }
+         ]
+        },
+        {
+         "id": "economics-and-financial-literacy-5-of-5",
+         "title": "Economics and Financial Literacy (5 of 5)",
+         "outcomes": [
+          {
+           "code": "9-12.EFL.21",
+           "text": "Credit and debt can be managed to maintain credit worthiness."
+          },
+          {
+           "code": "9-12.EFL.22",
+           "text": "Consumer protection laws provide financial safeguards."
+          },
+          {
+           "code": "9-12.EFL.23",
+           "text": "Property and liability insurance protect against risks associated with use of property."
+          },
+          {
+           "code": "9-12.EFL.24",
+           "text": "Health, disability and life insurance protect against risks associated with increased expenses and loss of income."
+          },
+          {
+           "code": "9-12.EFL.25",
+           "text": "Steps can be taken to safeguard one's personal financial information and reduce the risk of loss."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "contemporary-world-issues",
+     "title": "Contemporary World Issues",
+     "topics": [
+      {
+       "id": "contemporary-world-issues",
+       "title": "Contemporary World Issues",
+       "subtopics": [
+        {
+         "id": "contemporary-world-issues-1-of-5",
+         "title": "Contemporary World Issues (1 of 5)",
+         "outcomes": [
+          {
+           "code": "9-12.CWI.1",
+           "text": "Trade, alliances, treaties and international organizations contribute to the increasing interconnectedness of nations and peoples in the 21st century."
+          },
+          {
+           "code": "9-12.CWI.2",
+           "text": "Advances in communications technology have profound effects on the ability of governments, interest groups, individuals and the media to share information across national and cultural borders."
+          },
+          {
+           "code": "9-12.CWI.3",
+           "text": "Individuals can evaluate media messages that are constructed using particular tools, characteristics and conventions for unique purposes. Different communication methods affect how people define and act on issues."
+          },
+          {
+           "code": "9-12.CWI.4",
+           "text": "Individuals can assess how effective communicators address diverse audiences."
+          },
+          {
+           "code": "9-12.CWI.5",
+           "text": "Individuals can identify, assess and evaluate world events, engage in deliberative civil debate and influence public processes to address global issues."
+          }
+         ]
+        },
+        {
+         "id": "contemporary-world-issues-2-of-5",
+         "title": "Contemporary World Issues (2 of 5)",
+         "outcomes": [
+          {
+           "code": "9-12.CWI.6",
+           "text": "Effective civic participation involves identifying problems or dilemmas, proposing appropriate solutions, formulating action plans, and assessing the positive and negative results of actions taken."
+          },
+          {
+           "code": "9-12.CWI.7",
+           "text": "Individuals can participate through non-governmental organizations to help address humanitarian needs."
+          },
+          {
+           "code": "9-12.CWI.8",
+           "text": "Beliefs about civil and human rights vary among social and governmental systems."
+          },
+          {
+           "code": "9-12.CWI.9",
+           "text": "Nations and international organizations pursue their own interests on issues related to civil and human rights, resulting in both conflict and cooperation particularly as it relates to injustices against minority groups."
+          },
+          {
+           "code": "9-12.CWI.10",
+           "text": "Modern instances of genocide and ethnic cleansing present individual, organizational and national issues related to the responsibilities of participants and non-participants."
+          }
+         ]
+        },
+        {
+         "id": "contemporary-world-issues-3-of-5",
+         "title": "Contemporary World Issues (3 of 5)",
+         "outcomes": [
+          {
+           "code": "9-12.CWI.11",
+           "text": "Decisions about human activities made by individuals and societies have implications for both current and future generations, including intended and unintended consequences."
+          },
+          {
+           "code": "9-12.CWI.12",
+           "text": "Sustainability issues are interpreted and treated differently by people viewing them from various political, economic and cultural perspectives."
+          },
+          {
+           "code": "9-12.CWI.13",
+           "text": "International associations and non-governmental organizations offer means of collaboration to address sustainability issues on local, national and international levels."
+          },
+          {
+           "code": "9-12.CWI.14",
+           "text": "The development and use of technology influences economic, political, ethical and social issues."
+          },
+          {
+           "code": "9-12.CWI.15",
+           "text": "Technologies inevitably involve trade-offs between costs and benefits. Decisions about the use of products and systems can result in intended and unintended consequences."
+          }
+         ]
+        },
+        {
+         "id": "contemporary-world-issues-4-of-5",
+         "title": "Contemporary World Issues (4 of 5)",
+         "outcomes": [
+          {
+           "code": "9-12.CWI.16",
+           "text": "Nations seek to ensure the security of their geographic territories, political institutions, economic systems and ways of life. Maintaining security has political, social and economic costs."
+          },
+          {
+           "code": "9-12.CWI.17",
+           "text": "Economic, political and social differences between global entities can lead to conflict unless mitigated through diplomacy or cooperative efforts."
+          },
+          {
+           "code": "9-12.CWI.18",
+           "text": "Individuals and organizations work within, or outside of, established systems of power, authority and governance to influence their own security and the security of others."
+          },
+          {
+           "code": "9-12.CWI.19",
+           "text": "The global economy creates advantages and disadvantages for different segments of the world's population."
+          },
+          {
+           "code": "9-12.CWI.20",
+           "text": "Trade agreements, multinational organizations, embargoes and protectionism impact markets."
+          }
+         ]
+        },
+        {
+         "id": "contemporary-world-issues-5-of-5",
+         "title": "Contemporary World Issues (5 of 5)",
+         "outcomes": [
+          {
+           "code": "9-12.CWI.21",
+           "text": "The distribution of wealth and economic power among countries changes over time."
+          },
+          {
+           "code": "9-12.CWI.22",
+           "text": "The global economy creates interdependence so that economic circumstances in one country impact events in other countries."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "world-geography",
+     "title": "World Geography",
+     "topics": [
+      {
+       "id": "world-geography",
+       "title": "World Geography",
+       "subtopics": [
+        {
+         "id": "world-geography-1-of-4",
+         "title": "World Geography (1 of 4)",
+         "outcomes": [
+          {
+           "code": "9-12.WG.1",
+           "text": "Properties and functions of geographic representations (e.g., maps, globes, graphs, diagrams, Internet-based mapping applications, geographic information systems, global positioning systems, remote sensing, and geographic visualizations) affect how they can be used to represent, analyze and interpret geographic patterns and processes."
+          },
+          {
+           "code": "9-12.WG.2",
+           "text": "Geographic representations and geospatial technologies are used to investigate, analyze and communicate the results of geographic problem solving."
+          },
+          {
+           "code": "9-12.WG.3",
+           "text": "Human modifications of the physical environment in one place often lead to changes in other places (e.g., construction of a dam provides downstream flood control, construction of a city by-pass reduces commercial activity in the city center, implementation of dry farming techniques in a region leads to new transportation links and hubs)."
+          },
+          {
+           "code": "9-12.WG.4",
+           "text": "Human societies use a variety of strategies to adapt to the opportunities and constraints presented by the physical environment (e.g., farming in flood plains and terraced farming, building hydroelectric plants by waterfalls and constructing hydroelectric dams, using solar panels as heat source and using extra insulation to retain heat)."
+          },
+          {
+           "code": "9-12.WG.5",
+           "text": "Physical processes influence the formation and distribution of renewable, non-renewable, and flow resources (e.g., tectonic activity plays a role in the formation and location of fossil fuels, erosion plays a role in the formation of sedimentary rocks, rainfall patterns affect regional drainage patterns)."
+          }
+         ]
+        },
+        {
+         "id": "world-geography-2-of-4",
+         "title": "World Geography (2 of 4)",
+         "outcomes": [
+          {
+           "code": "9-12.WG.6",
+           "text": "There are costs and benefits of using renewable, non-renewable, and flow resources (e.g., availability, sustainability, environmental impact, expense)."
+          },
+          {
+           "code": "9-12.WG.7",
+           "text": "Human interaction with the environment is affected by cultural characteristics (e.g., plowing with oxen or with tractors, development of water resources for industry or recreation, resource conservation or development)."
+          },
+          {
+           "code": "9-12.WG.8",
+           "text": "Physical, cultural, economic, and political factors contribute to human migrations (e.g., drought, religious conflicts, job opportunities, immigration laws)."
+          },
+          {
+           "code": "9-12.WG.9",
+           "text": "Human migrations impact physical and human systems (e.g., stress on food supplies in refugee camps, removal of natural obstacles to movement, harvest productivity and migrant labor, calls for an official language in countries with high immigration, reduction in city tax revenues due to urban emigration)."
+          },
+          {
+           "code": "9-12.WG.10",
+           "text": "Activities and patterns of trade and communication create interdependence among countries in different regions (e.g., seed corn grown in Iowa and planted in South America, high-definition televisions manufactured in Japan and viewed in the United States, news outlets from many countries available around the world via the Internet, instant access to data affects stock markets in different countries)."
+          }
+         ]
+        },
+        {
+         "id": "world-geography-3-of-4",
+         "title": "World Geography (3 of 4)",
+         "outcomes": [
+          {
+           "code": "9-12.WG.11",
+           "text": "Criteria are used to organize regions and as the criteria change, the identified regions change (e.g., types of economic activities, ethnic groups, natural vegetation)."
+          },
+          {
+           "code": "9-12.WG.12",
+           "text": "The characteristics of regions change over time and there are consequences related to those changes (e.g., industrial belt to rust belt, pristine locations to tourist attractions, colony to independent state)."
+          },
+          {
+           "code": "9-12.WG.13",
+           "text": "There are interconnections within and among physical and human regions (e.g., river systems, transportation linkages, common currency)."
+          },
+          {
+           "code": "9-12.WG.14",
+           "text": "Regions are used as a basis to analyze global geographic issues (e.g., desertification, political disputes, economic unions)."
+          },
+          {
+           "code": "9-12.WG.15",
+           "text": "Patterns of settlement change over time in terms of functions, sizes, and spatial patterns (e.g., a canal town becomes an industrial city, a rural area becomes a transportation hub, cities merge into a megalopolis)."
+          }
+         ]
+        },
+        {
+         "id": "world-geography-4-of-4",
+         "title": "World Geography (4 of 4)",
+         "outcomes": [
+          {
+           "code": "9-12.WG.16",
+           "text": "Urbanization provides opportunities and challenges for physical and human systems in cities and their surrounding regions (e.g., development of suburbs, loss of habitat, central markets, squatter settlements on city outskirts, regional specialization in services or products, creation of ethnic enclaves)."
+          },
+          {
+           "code": "9-12.WG.17",
+           "text": "Globalization has shaped new cultural, economic, and political ideas and entities (e.g., universal human rights, European Union, terrorist networks)."
+          },
+          {
+           "code": "9-12.WG.18",
+           "text": "Globalization has cultural, economic, physical and political consequences (e.g., Internet access increases availability of information, outsourcing leads to regional unemployment, development of infrastructure impacts local ecosystems and economies, computer hacking into sensitive data bases leads to insecurity)."
+          },
+          {
+           "code": "9-12.WG.19",
+           "text": "Global trade and communication systems reduce the effect of time on the distribution of goods, services, and information (e.g., reliance on local foods versus global trade in perishable foods, online brokering versus personal brokers, Internet access versus library access)."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "build": {
+  "builtAt": "2026-10-14T16:20:47.214Z",
+  "model": "none",
+  "usd": 0,
+  "expectedCodes": 314,
+  "coverage": 1,
+  "missingCodes": [],
+  "counts": {
+   "grades": 10,
+   "units": 42,
+   "topics": 42,
+   "subtopics": 76,
+   "outcomes": 314
+  },
+  "warnings": []
+ }
+}

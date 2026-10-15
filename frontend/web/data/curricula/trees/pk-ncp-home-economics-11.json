@@ -1,0 +1,163 @@
+{
+ "id": "pk-ncp-home-economics-11",
+ "region": "PK",
+ "framework": "National Curriculum of Pakistan 2022-23",
+ "board": null,
+ "qualification": "HSSC",
+ "subject": "Home Economics",
+ "syllabusCode": null,
+ "gradeSystem": "grade",
+ "source": {
+  "urls": [
+   "https://ncc.gov.pk/SiteImage/Misc/files/6-Home%20Economics%20Grade%2011.pdf"
+  ],
+  "publisher": "National Curriculum Council, Ministry of Federal Education and Professional Training",
+  "licence": "Government publication; structure + our own wording only",
+  "firstExam": null
+ },
+ "grades": [
+  {
+   "grade": "11",
+   "units": [
+    {
+     "id": "domain-a-home-management",
+     "title": "Domain A: Home Management",
+     "topics": [
+      {
+       "id": "goals-and-values",
+       "title": "Goals and values",
+       "subtopics": [
+        {
+         "id": "values-and-goals-in-the-home",
+         "title": "Values and goals in the home",
+         "outcomes": [
+          {
+           "code": "HE-11-A-01",
+           "text": "Explain why defining values and goals matters for managing a home."
+          },
+          {
+           "code": "HE-11-A-02",
+           "text": "Interpret values and goals seen in Pakistani families for home management."
+          },
+          {
+           "code": "HE-11-A-03",
+           "text": "Explain why developing goals helps realise values."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "domain-b-resources-human-and-materials",
+     "title": "Domain B: Resources: human and materials",
+     "topics": [
+      {
+       "id": "wise-use-of-resources",
+       "title": "Wise use of resources",
+       "subtopics": [
+        {
+         "id": "resources-and-time-planning",
+         "title": "Resources and time planning",
+         "outcomes": [
+          {
+           "code": "HE-11-B-01",
+           "text": "Define resource types, especially human and material."
+          },
+          {
+           "code": "HE-11-B-02",
+           "text": "Describe time planning and its advantages."
+          },
+          {
+           "code": "HE-11-B-03",
+           "text": "Interpret how wise, economical use of time helps household activities."
+          }
+         ]
+        },
+        {
+         "id": "energy-and-work-simplification",
+         "title": "Energy and work simplification",
+         "outcomes": [
+          {
+           "code": "HE-11-B-04",
+           "text": "Examine energy management and ways to avoid fatigue."
+          },
+          {
+           "code": "HE-11-B-05",
+           "text": "Identify work simplification as a way to save time and energy."
+          },
+          {
+           "code": "HE-11-B-06",
+           "text": "Analyse the principles of work simplification."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "domain-c-income-and-budgeting",
+     "title": "Domain C: Income and Budgeting",
+     "topics": [
+      {
+       "id": "income-budgeting-and-accounts",
+       "title": "Income, budgeting and accounts",
+       "subtopics": [
+        {
+         "id": "income-and-expenses",
+         "title": "Income and expenses",
+         "outcomes": [
+          {
+           "code": "HE-11-C-01",
+           "text": "Describe the types and sources of income."
+          },
+          {
+           "code": "HE-11-C-02",
+           "text": "Identify the nature of income and expenses."
+          }
+         ]
+        },
+        {
+         "id": "budgeting-and-accounts",
+         "title": "Budgeting and accounts",
+         "outcomes": [
+          {
+           "code": "HE-11-C-03",
+           "text": "Define budgeting and its advantages."
+          },
+          {
+           "code": "HE-11-C-04",
+           "text": "Interpret the importance of a family budget."
+          },
+          {
+           "code": "HE-11-C-05",
+           "text": "Examine account keeping to plan current and future spending."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "build": {
+  "builtAt": "2026-10-14T08:25:44.443Z",
+  "model": "claude-agent",
+  "usd": 0,
+  "expectedCodes": 14,
+  "coverage": 1,
+  "missingCodes": [],
+  "counts": {
+   "grades": 1,
+   "units": 3,
+   "topics": 3,
+   "subtopics": 5,
+   "outcomes": 14
+  },
+  "warnings": []
+ }
+}

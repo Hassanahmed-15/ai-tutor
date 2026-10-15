@@ -1,0 +1,2892 @@
+{
+ "id": "us-ap-chemistry",
+ "region": "US",
+ "framework": "AP Chemistry Course and Exam Description (effective fall 2024)",
+ "board": "College Board",
+ "qualification": "AP",
+ "subject": "Chemistry",
+ "syllabusCode": null,
+ "gradeSystem": "course",
+ "source": {
+  "urls": [
+   "https://apcentral.collegeboard.org/media/pdf/ap-chemistry-course-and-exam-description.pdf",
+   "https://apcentral.collegeboard.org/courses/ap-chemistry"
+  ],
+  "publisher": "College Board",
+  "licence": "© College Board; structure + our own wording only",
+  "firstExam": "2025"
+ },
+ "grades": [
+  {
+   "grade": "all",
+   "units": [
+    {
+     "id": "unit-1-atomic-structure-and-properties",
+     "title": "Unit 1: Atomic Structure and Properties",
+     "topics": [
+      {
+       "id": "1-2-mass-spectra-of-elements",
+       "title": "1.2 Mass Spectra of Elements",
+       "subtopics": [
+        {
+         "id": "reading-mass-spectra",
+         "title": "Reading Mass Spectra",
+         "outcomes": [
+          {
+           "code": "1.2.A",
+           "text": "Explain how an element’s mass spectrum relates quantitatively to its isotope masses."
+          },
+          {
+           "code": "1.2.A.1",
+           "text": "Use a single-element mass spectrum to identify isotopes and determine their natural relative abundances."
+          },
+          {
+           "code": "1.2.A.2",
+           "text": "Estimate an element’s average atomic mass by weighting isotope masses according to their relative abundances."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "1-1-moles-and-molar-mass",
+       "title": "1.1 Moles and Molar Mass",
+       "subtopics": [
+        {
+         "id": "moles-and-particle-counts",
+         "title": "Moles and Particle Counts",
+         "outcomes": [
+          {
+           "code": "1.1.A",
+           "text": "Use dimensional analysis and moles to calculate substance amounts or relative particle numbers."
+          },
+          {
+           "code": "1.1.A.1",
+           "text": "Relate measurable sample mass to the number of particles participating in chemical changes."
+          },
+          {
+           "code": "1.1.A.2",
+           "text": "Use Avogadro’s number to convert between moles and constituent particles or formula units."
+          },
+          {
+           "code": "1.1.A.3",
+           "text": "Connect atomic or molecular mass in amu with molar mass and sample particle count."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "1-3-elemental-composition-of-pure-substances",
+       "title": "1.3 Elemental Composition of Pure Substances",
+       "subtopics": [
+        {
+         "id": "composition-and-empirical-formulas",
+         "title": "Composition and Empirical Formulas",
+         "outcomes": [
+          {
+           "code": "1.3.A",
+           "text": "Relate a pure substance’s mass composition of elements to its empirical formula."
+          },
+          {
+           "code": "1.3.A.1",
+           "text": "Distinguish molecular substances from substances consisting of atoms or ions in fixed formula-unit proportions."
+          },
+          {
+           "code": "1.3.A.2",
+           "text": "Apply definite proportions: a compound always contains its elements in the same mass ratio."
+          },
+          {
+           "code": "1.3.A.3",
+           "text": "Identify an empirical formula as the smallest whole-number elemental ratio in a compound."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "1-4-composition-of-mixtures",
+       "title": "1.4 Composition of Mixtures",
+       "subtopics": [
+        {
+         "id": "mixtures-and-purity",
+         "title": "Mixtures and Purity",
+         "outcomes": [
+          {
+           "code": "1.4.A",
+           "text": "Relate elemental mass composition to the composition of substances in a mixture."
+          },
+          {
+           "code": "1.4.A.1",
+           "text": "Distinguish pure substances from mixtures based on the types and variable proportions of particles present."
+          },
+          {
+           "code": "1.4.A.2",
+           "text": "Use elemental analysis to determine atomic ratios and assess a substance’s purity."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "1-5-atomic-structure-and-electron-configuration",
+       "title": "1.5 Atomic Structure and Electron Configuration",
+       "subtopics": [
+        {
+         "id": "electron-configurations",
+         "title": "Electron Configurations",
+         "outcomes": [
+          {
+           "code": "1.5.A",
+           "text": "Represent ground-state electron configurations of atoms and ions using the Aufbau principle."
+          }
+         ]
+        },
+        {
+         "id": "atomic-structure-and-forces",
+         "title": "Atomic Structure and Forces",
+         "outcomes": [
+          {
+           "code": "1.5.A.1",
+           "text": "Describe atoms as electrons surrounding a nucleus containing protons and neutrons."
+          },
+          {
+           "code": "1.5.A.2",
+           "text": "Use Coulomb’s law to determine how charged particles’ separation and charges affect their force."
+          }
+         ]
+        },
+        {
+         "id": "shells-and-valence-electrons",
+         "title": "Shells and Valence Electrons",
+         "outcomes": [
+          {
+           "code": "1.5.A.3",
+           "text": "Describe shells, subshells, core electrons, and valence electrons through ground-state configurations and the periodic table."
+          }
+         ]
+        },
+        {
+         "id": "ionization-energy-factors",
+         "title": "Ionization Energy Factors",
+         "outcomes": [
+          {
+           "code": "1.5.A.4",
+           "text": "Explain ionization-energy differences using electron–nucleus distance, shielding, and effective nuclear charge."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "1-6-photoelectron-spectroscopy",
+       "title": "1.6 Photoelectron Spectroscopy",
+       "subtopics": [
+        {
+         "id": "1-6-photoelectron-spectroscopy",
+         "title": "1.6 Photoelectron Spectroscopy",
+         "outcomes": [
+          {
+           "code": "1.6.A",
+           "text": "Relate PES spectra to ground-state configurations and electron–nucleus interactions."
+          },
+          {
+           "code": "1.6.A.1",
+           "text": "Interpret PES peak positions as subshell electron energies and peak heights as electron counts."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "1-7-periodic-trends",
+       "title": "1.7 Periodic Trends",
+       "subtopics": [
+        {
+         "id": "periodic-table-organization",
+         "title": "Periodic Table Organization",
+         "outcomes": [
+          {
+           "code": "1.7.A",
+           "text": "Explain periodic atomic-property trends using electronic structure and periodicity."
+          },
+          {
+           "code": "1.7.A.1",
+           "text": "Explain periodic-table organization through recurring properties, electron configurations, and shell or subshell filling."
+          }
+         ]
+        },
+        {
+         "id": "periodic-property-trends",
+         "title": "Periodic Property Trends",
+         "outcomes": [
+          {
+           "code": "1.7.A.2",
+           "text": "Predict ionization energy, atomic and ionic radii, electron affinity, and electronegativity trends."
+          },
+          {
+           "code": "1.7.A.3",
+           "text": "Use periodicity to estimate atomic-property values when direct data are unavailable."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "1-8-valence-electrons-and-ionic-compounds",
+       "title": "1.8 Valence Electrons and Ionic Compounds",
+       "subtopics": [
+        {
+         "id": "valence-electrons-and-reactivity",
+         "title": "Valence Electrons and Reactivity",
+         "outcomes": [
+          {
+           "code": "1.8.A",
+           "text": "Relate elemental reactivity trends to valence electrons and periodicity."
+          },
+          {
+           "code": "1.8.A.1",
+           "text": "Explain bond formation likelihood through interactions between valence electrons and atomic nuclei."
+          }
+         ]
+        },
+        {
+         "id": "ionic-charges-and-compounds",
+         "title": "Ionic Charges and Compounds",
+         "outcomes": [
+          {
+           "code": "1.8.A.2",
+           "text": "Predict that elements in the same periodic-table column tend to form analogous compounds."
+          },
+          {
+           "code": "1.8.A.3",
+           "text": "Predict typical ionic charges from valence-electron counts and periodic-table positions."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "unit-2-compound-structure-and-properties",
+     "title": "Unit 2: Compound Structure and Properties",
+     "topics": [
+      {
+       "id": "2-1-types-of-chemical-bonds",
+       "title": "2.1 Types of Chemical Bonds",
+       "subtopics": [
+        {
+         "id": "bonding-and-periodic-trends",
+         "title": "Bonding and Periodic Trends",
+         "outcomes": [
+          {
+           "code": "2.1.A",
+           "text": "Relate bonding type to the properties of the elements forming the bond."
+          },
+          {
+           "code": "2.1.A.1",
+           "text": "Describe periodic electronegativity trends using atomic structure, shell models, and Coulomb’s law."
+          }
+         ]
+        },
+        {
+         "id": "covalent-bond-types",
+         "title": "Covalent Bond Types",
+         "outcomes": [
+          {
+           "code": "2.1.A.2",
+           "text": "Identify shared valence electrons between similarly electronegative atoms as a nonpolar covalent bond."
+          },
+          {
+           "code": "2.1.A.3",
+           "text": "Explain polar covalent bonds, including partial charges, bond dipoles, and their continuum with ionic bonding."
+          }
+         ]
+        },
+        {
+         "id": "ionic-versus-covalent-bonds",
+         "title": "Ionic Versus Covalent Bonds",
+         "outcomes": [
+          {
+           "code": "2.1.A.4",
+           "text": "Use electronegativity and compound properties to distinguish generally ionic bonds from covalent bonds."
+          }
+         ]
+        },
+        {
+         "id": "metallic-bonding",
+         "title": "Metallic Bonding",
+         "outcomes": [
+          {
+           "code": "2.1.A.5",
+           "text": "Describe metallic solids as having valence electrons delocalized among the metal atoms."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "2-2-intramolecular-force-and-potential-energy",
+       "title": "2.2 Intramolecular Force and Potential Energy",
+       "subtopics": [
+        {
+         "id": "distance-and-potential-energy",
+         "title": "Distance and Potential Energy",
+         "outcomes": [
+          {
+           "code": "2.2.A",
+           "text": "Represent how atomic distance and other factors affect interaction strength and potential energy."
+          },
+          {
+           "code": "2.2.A.1",
+           "text": "Interpret potential-energy-versus-distance graphs to identify equilibrium bond length and bond energy."
+          }
+         ]
+        },
+        {
+         "id": "covalent-bond-length",
+         "title": "Covalent Bond Length",
+         "outcomes": [
+          {
+           "code": "2.2.A.2",
+           "text": "Relate covalent bond length to atomic core size and bond order; higher-order bonds are shorter and stronger."
+          }
+         ]
+        },
+        {
+         "id": "ionic-interaction-strength",
+         "title": "Ionic Interaction Strength",
+         "outcomes": [
+          {
+           "code": "2.2.A.3",
+           "text": "Use Coulomb’s law to relate ionic interaction strength to ion charges and separation."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "2-3-structure-of-ionic-solids",
+       "title": "2.3 Structure of Ionic Solids",
+       "subtopics": [
+        {
+         "id": "2-3-structure-of-ionic-solids",
+         "title": "2.3 Structure of Ionic Solids",
+         "outcomes": [
+          {
+           "code": "2.3.A",
+           "text": "Model ionic solids consistently with Coulomb’s law and the properties of their ions."
+          },
+          {
+           "code": "2.3.A.1",
+           "text": "Describe ionic crystals as periodic three-dimensional arrays maximizing attraction and minimizing repulsion."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "2-4-structure-of-metals-and-alloys",
+       "title": "2.4 Structure of Metals and Alloys",
+       "subtopics": [
+        {
+         "id": "metallic-solids-and-bonding",
+         "title": "Metallic Solids and Bonding",
+         "outcomes": [
+          {
+           "code": "2.4.A",
+           "text": "Model metallic solids and alloys to show their structures and interactions."
+          },
+          {
+           "code": "2.4.A.1",
+           "text": "Represent metallic bonding as positive ions surrounded by delocalized valence electrons."
+          }
+         ]
+        },
+        {
+         "id": "types-of-alloys",
+         "title": "Types of Alloys",
+         "outcomes": [
+          {
+           "code": "2.4.A.2",
+           "text": "Explain interstitial alloys as smaller atoms occupying spaces among larger atoms."
+          },
+          {
+           "code": "2.4.A.3",
+           "text": "Explain substitutional alloys as similar-sized atoms replacing one another in a lattice."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "2-5-lewis-diagrams",
+       "title": "2.5 Lewis Diagrams",
+       "subtopics": [
+        {
+         "id": "2-5-lewis-diagrams",
+         "title": "2.5 Lewis Diagrams",
+         "outcomes": [
+          {
+           "code": "2.5.A",
+           "text": "Represent molecules using Lewis diagrams."
+          },
+          {
+           "code": "2.5.A.1",
+           "text": "Construct Lewis diagrams using established principles."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "2-6-resonance-and-formal-charge",
+       "title": "2.6 Resonance and Formal Charge",
+       "subtopics": [
+        {
+         "id": "resonance-structures",
+         "title": "Resonance Structures",
+         "outcomes": [
+          {
+           "code": "2.6.A",
+           "text": "Use resonance and formal charge in Lewis diagrams to model molecular structures and properties."
+          },
+          {
+           "code": "2.6.A.1",
+           "text": "Include resonance when equivalent Lewis structures are possible to improve molecular predictions."
+          }
+         ]
+        },
+        {
+         "id": "formal-charge-and-octets",
+         "title": "Formal Charge and Octets",
+         "outcomes": [
+          {
+           "code": "2.6.A.2",
+           "text": "Use octet compliance and formal charge to select the best among valid Lewis structures."
+          }
+         ]
+        },
+        {
+         "id": "limits-of-lewis-structures",
+         "title": "Limits of Lewis Structures",
+         "outcomes": [
+          {
+           "code": "2.6.A.3",
+           "text": "Recognize limitations of Lewis structures, especially for species with odd numbers of valence electrons."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "2-7-vsepr-and-hybridization",
+       "title": "2.7 VSEPR and Hybridization",
+       "subtopics": [
+        {
+         "id": "molecular-structure-properties",
+         "title": "Molecular Structure Properties",
+         "outcomes": [
+          {
+           "code": "2.7.A",
+           "text": "Use Lewis structures, VSEPR, bond order, and polarity to explain molecular structural and electron properties."
+          }
+         ]
+        },
+        {
+         "id": "electron-pair-arrangements",
+         "title": "Electron-Pair Arrangements",
+         "outcomes": [
+          {
+           "code": "2.7.A.1",
+           "text": "Use electron-pair repulsion to predict electron arrangements around a central atom."
+          }
+         ]
+        },
+        {
+         "id": "molecular-geometry-and-hybridization",
+         "title": "Molecular Geometry and Hybridization",
+         "outcomes": [
+          {
+           "code": "2.7.A.2",
+           "text": "Use Lewis structures and VSEPR to predict molecular geometry, angles, bond properties, dipoles, and hybridization."
+          },
+          {
+           "code": "2.7.A.3",
+           "text": "Relate sp, sp2, and sp3 hybridization to electron arrangements and ideal bond angles."
+          }
+         ]
+        },
+        {
+         "id": "sigma-and-pi-bonds",
+         "title": "Sigma and Pi Bonds",
+         "outcomes": [
+          {
+           "code": "2.7.A.4",
+           "text": "Explain sigma and pi bonding from orbital overlap, including effects on bond strength and rotation."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "unit-3-properties-of-substances-and-mixtures",
+     "title": "Unit 3: Properties of Substances and Mixtures",
+     "topics": [
+      {
+       "id": "3-1-intermolecular-and-interparticle-forces",
+       "title": "3.1 Intermolecular and Interparticle Forces",
+       "subtopics": [
+        {
+         "id": "strength-of-intermolecular-forces",
+         "title": "Strength of Intermolecular Forces",
+         "outcomes": [
+          {
+           "code": "3.1.A",
+           "text": "Relate molecular structure to intermolecular-force strength for identical or different chemical species."
+          },
+          {
+           "code": "3.1.A.1",
+           "text": "Explain London dispersion forces as attractions between temporary dipoles, often dominant in large molecules."
+          },
+          {
+           "code": "3.1.A.2",
+           "text": "Explain how polar molecules’ dipole moments create additional interactions with other chemical species."
+          },
+          {
+           "code": "3.1.A.3",
+           "text": "Use partial-charge signs and orientations to compare dipole-dipole and ion-dipole interaction strengths."
+          }
+         ]
+        },
+        {
+         "id": "hydrogen-bonding-and-biomolecules",
+         "title": "Hydrogen Bonding and Biomolecules",
+         "outcomes": [
+          {
+           "code": "3.1.A.4",
+           "text": "Identify hydrogen bonding as attraction involving hydrogen bonded to nitrogen, oxygen, or fluorine."
+          },
+          {
+           "code": "3.1.A.5",
+           "text": "Recognize that large biomolecules can have noncovalent interactions within or between molecules."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "3-2-properties-of-solids",
+       "title": "3.2 Properties of Solids",
+       "subtopics": [
+        {
+         "id": "particles-and-macroscopic-properties",
+         "title": "Particles and Macroscopic Properties",
+         "outcomes": [
+          {
+           "code": "3.2.A",
+           "text": "Relate macroscopic properties to a substance’s particulate structure and particle interactions."
+          },
+          {
+           "code": "3.2.A.1",
+           "text": "Relate intermolecular-force strength to vapor pressure, boiling point, and melting point."
+          },
+          {
+           "code": "3.2.A.2",
+           "text": "Use particulate representations to show how intermolecular interactions produce macroscopic properties."
+          }
+         ]
+        },
+        {
+         "id": "types-of-solid-structures",
+         "title": "Types of Solid Structures",
+         "outcomes": [
+          {
+           "code": "3.2.A.3",
+           "text": "Relate ionic-solid structure and interactions to brittleness, phase-change temperatures, vapor pressure, and conductivity."
+          },
+          {
+           "code": "3.2.A.4",
+           "text": "Relate covalent-network structures and bonding to hardness, rigidity, and high melting points."
+          },
+          {
+           "code": "3.2.A.5",
+           "text": "Relate molecular-solid structure and weak intermolecular forces to low melting points and lack of conductivity."
+          },
+          {
+           "code": "3.2.A.6",
+           "text": "Relate metallic bonding and alloy structure to conductivity, malleability, ductility, and rigidity."
+          }
+         ]
+        },
+        {
+         "id": "biomolecules-and-polymers",
+         "title": "Biomolecules and Polymers",
+         "outcomes": [
+          {
+           "code": "3.2.A.7",
+           "text": "Explain how noncovalent interactions affect the shape and properties of biomolecules and polymers."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "3-3-solids-liquids-and-gases",
+       "title": "3.3 Solids, Liquids, and Gases",
+       "subtopics": [
+        {
+         "id": "particle-models-of-matter",
+         "title": "Particle Models of Matter",
+         "outcomes": [
+          {
+           "code": "3.3.A",
+           "text": "Represent solid, liquid, and gas phases with particulate-level models."
+          },
+          {
+           "code": "3.3.A.1",
+           "text": "Distinguish crystalline and amorphous solids by particle arrangement and limited particle motion."
+          },
+          {
+           "code": "3.3.A.2",
+           "text": "Describe liquid particles as closely packed, mobile, colliding, and influenced by interparticle forces."
+          }
+         ]
+        },
+        {
+         "id": "volume-and-gas-behavior",
+         "title": "Volume and Gas Behavior",
+         "outcomes": [
+          {
+           "code": "3.3.A.3",
+           "text": "Explain why solids and liquids of one substance usually have similar molar volumes."
+          },
+          {
+           "code": "3.3.A.4",
+           "text": "Relate gas-particle motion and spacing to temperature, pressure, volume, and absence of fixed shape or volume."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "3-4-ideal-gas-law",
+       "title": "3.4 Ideal Gas Law",
+       "subtopics": [
+        {
+         "id": "using-the-ideal-gas-law",
+         "title": "Using the Ideal Gas Law",
+         "outcomes": [
+          {
+           "code": "3.4.A",
+           "text": "Use the ideal gas law to relate macroscopic properties of gas samples or mixtures."
+          },
+          {
+           "code": "3.4.A.1",
+           "text": "Apply PV = nRT to connect pressure, volume, amount, and temperature."
+          }
+         ]
+        },
+        {
+         "id": "partial-pressures-and-gas-graphs",
+         "title": "Partial Pressures and Gas Graphs",
+         "outcomes": [
+          {
+           "code": "3.4.A.2",
+           "text": "Relate partial pressures to mole fractions and calculate total pressure by summing component pressures."
+          },
+          {
+           "code": "3.4.A.3",
+           "text": "Use graphs to describe relationships among gas pressure, volume, temperature, and amount."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "3-5-kinetic-molecular-theory",
+       "title": "3.5 Kinetic Molecular Theory",
+       "subtopics": [
+        {
+         "id": "particle-motion-and-kinetic-energy",
+         "title": "Particle Motion and Kinetic Energy",
+         "outcomes": [
+          {
+           "code": "3.5.A",
+           "text": "Relate particle motion to gas properties using kinetic theory, particulate models, and graphs."
+          },
+          {
+           "code": "3.5.A.1",
+           "text": "Use kinetic molecular theory and Maxwell-Boltzmann distributions to connect particle motion with gas properties."
+          },
+          {
+           "code": "3.5.A.2",
+           "text": "Describe continuous random particle motion and relate kinetic energy to mass and velocity."
+          }
+         ]
+        },
+        {
+         "id": "temperature-and-energy-distributions",
+         "title": "Temperature and Energy Distributions",
+         "outcomes": [
+          {
+           "code": "3.5.A.3",
+           "text": "Relate Kelvin temperature to particles’ average kinetic energy."
+          },
+          {
+           "code": "3.5.A.4",
+           "text": "Interpret Maxwell-Boltzmann graphs showing particle energy or velocity distributions at a temperature."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "3-6-deviation-from-ideal-gas-law",
+       "title": "3.6 Deviation from Ideal Gas Law",
+       "subtopics": [
+        {
+         "id": "3-6-deviation-from-ideal-gas-law",
+         "title": "3.6 Deviation from Ideal Gas Law",
+         "outcomes": [
+          {
+           "code": "3.6.A",
+           "text": "Explain nonideal gas behavior using interparticle attractions and particle volumes."
+          },
+          {
+           "code": "3.6.A.1",
+           "text": "Explain deviations from ideal behavior through molecular attractions near condensation and finite particle volumes at high pressure."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "3-7-solutions-and-mixtures",
+       "title": "3.7 Solutions and Mixtures",
+       "subtopics": [
+        {
+         "id": "solutions-mixtures-and-molarity",
+         "title": "Solutions, Mixtures, and Molarity",
+         "outcomes": [
+          {
+           "code": "3.7.A",
+           "text": "Calculate solute-particle amount, solution volume, or molarity."
+          },
+          {
+           "code": "3.7.A.1",
+           "text": "Distinguish homogeneous solutions from heterogeneous mixtures using whether macroscopic properties vary throughout the sample."
+          },
+          {
+           "code": "3.7.A.2",
+           "text": "Express solution composition in different ways, especially using molarity as solute amount per liter of solution."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "3-8-representations-of-solutions",
+       "title": "3.8 Representations of Solutions",
+       "subtopics": [
+        {
+         "id": "3-8-representations-of-solutions",
+         "title": "3.8 Representations of Solutions",
+         "outcomes": [
+          {
+           "code": "3.8.A",
+           "text": "Use particulate models to show component interactions and relative concentrations in mixtures."
+          },
+          {
+           "code": "3.8.A.1",
+           "text": "Use solution models to depict component concentrations and interactions among dissolved particles."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "3-9-separation-of-solutions",
+       "title": "3.9 Separation of Solutions",
+       "subtopics": [
+        {
+         "id": "3-9-separation-of-solutions",
+         "title": "3.9 Separation of Solutions",
+         "outcomes": [
+          {
+           "code": "3.9.A",
+           "text": "Explain separation results by relating them to differences in intermolecular interactions."
+          },
+          {
+           "code": "3.9.A.1",
+           "text": "Explain how chromatography separates solution components through differing intermolecular attractions and reveals their relative polarities."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "3-10-solubility",
+       "title": "3.10 Solubility",
+       "subtopics": [
+        {
+         "id": "3-10-solubility",
+         "title": "3.10 Solubility",
+         "outcomes": [
+          {
+           "code": "3.10.A",
+           "text": "Relate ionic and molecular compound solubility in aqueous or nonaqueous solvents to intermolecular interactions."
+          },
+          {
+           "code": "3.10.A.1",
+           "text": "Predict that substances with similar intermolecular interactions are more likely to dissolve in or mix with each other."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "3-11-spectroscopy-and-the-electromagnetic-spectr",
+       "title": "3.11 Spectroscopy and the Electromagnetic Spectrum",
+       "subtopics": [
+        {
+         "id": "3-11-spectroscopy-and-the-electromagnetic-spectr",
+         "title": "3.11 Spectroscopy and the Electromagnetic Spectrum",
+         "outcomes": [
+          {
+           "code": "3.11.A",
+           "text": "Connect electromagnetic-spectrum regions with the molecular motions or electronic transitions they produce."
+          },
+          {
+           "code": "3.11.A.1",
+           "text": "Identify microwave, infrared, and ultraviolet/visible radiation with rotational, vibrational, and electronic transitions, respectively."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "3-12-properties-of-photons",
+       "title": "3.12 Properties of Photons",
+       "subtopics": [
+        {
+         "id": "photon-energy-and-transitions",
+         "title": "Photon Energy and Transitions",
+         "outcomes": [
+          {
+           "code": "3.12.A",
+           "text": "Explain how absorbing or emitting photons changes an atom’s or molecule’s energy during electronic transitions."
+          },
+          {
+           "code": "3.12.A.1",
+           "text": "Relate photon absorption or emission to an equal increase or decrease in the species’ energy."
+          },
+          {
+           "code": "3.12.A.2",
+           "text": "Use c = λν and E = hν to relate wavelength, frequency, light speed, and photon energy."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "3-13-beer-lambert-law",
+       "title": "3.13 Beer-Lambert Law",
+       "subtopics": [
+        {
+         "id": "absorbance-and-concentration",
+         "title": "Absorbance and Concentration",
+         "outcomes": [
+          {
+           "code": "3.13.A",
+           "text": "Relate solution absorbance to concentration, path length, and molar absorptivity."
+          },
+          {
+           "code": "3.13.A.1",
+           "text": "Use A = εbc to relate absorbance to molar absorptivity, path length, and concentration."
+          },
+          {
+           "code": "3.13.A.2",
+           "text": "When wavelength and path length are fixed, relate absorbance directly to absorbing-particle concentration and maximum-wavelength measurement sensitivity."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "unit-4-chemical-reactions",
+     "title": "Unit 4: Chemical Reactions",
+     "topics": [
+      {
+       "id": "4-1-introduction-for-reactions",
+       "title": "4.1 Introduction for Reactions",
+       "subtopics": [
+        {
+         "id": "physical-and-chemical-changes",
+         "title": "Physical and Chemical Changes",
+         "outcomes": [
+          {
+           "code": "4.1.A",
+           "text": "Distinguish physical changes from chemical changes using evidence about matter’s properties and composition."
+          },
+          {
+           "code": "4.1.A.1",
+           "text": "Physical changes alter properties or phases without changing composition; forming or separating mixtures are common examples."
+          },
+          {
+           "code": "4.1.A.2",
+           "text": "Chemical changes create new substances; heat, light, gas, precipitate, or color change may indicate them."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "4-2-net-ionic-equations",
+       "title": "4.2 Net Ionic Equations",
+       "subtopics": [
+        {
+         "id": "writing-balanced-equations",
+         "title": "Writing Balanced Equations",
+         "outcomes": [
+          {
+           "code": "4.2.A",
+           "text": "Write balanced molecular or net ionic equations for physical changes, specified substances, and participating ions."
+          },
+          {
+           "code": "4.2.A.1",
+           "text": "Represent every physical and chemical process with a balanced equation."
+          }
+         ]
+        },
+        {
+         "id": "conserving-atoms-and-charge",
+         "title": "Conserving Atoms and Charge",
+         "outcomes": [
+          {
+           "code": "4.2.A.2",
+           "text": "Chemical equations show atoms rearranging while conserving each element’s atoms and total charge."
+          }
+         ]
+        },
+        {
+         "id": "equation-forms",
+         "title": "Equation Forms",
+         "outcomes": [
+          {
+           "code": "4.2.A.3",
+           "text": "Use molecular, complete ionic, or net ionic forms according to the reaction’s context."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "4-3-representations-of-reactions",
+       "title": "4.3 Representations of Reactions",
+       "subtopics": [
+        {
+         "id": "4-3-representations-of-reactions",
+         "title": "4.3 Representations of Reactions",
+         "outcomes": [
+          {
+           "code": "4.3.A",
+           "text": "Create a consistent particulate model for a chemical reaction or physical process."
+          },
+          {
+           "code": "4.3.A.1",
+           "text": "Translate balanced chemical equations into symbolic representations of particles."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "4-4-physical-and-chemical-changes",
+       "title": "4.4 Physical and Chemical Changes",
+       "subtopics": [
+        {
+         "id": "bonds-and-chemical-change",
+         "title": "Bonds and Chemical Change",
+         "outcomes": [
+          {
+           "code": "4.4.A",
+           "text": "Relate observable properties to bond interactions in chemical and physical processes."
+          },
+          {
+           "code": "4.4.A.1",
+           "text": "Bond breaking or formation generally indicates chemical change, whereas changing intermolecular interactions generally indicates physical change."
+          },
+          {
+           "code": "4.4.A.2",
+           "text": "Some physical processes, such as dissolving salts, can also break chemical bonds."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "4-5-stoichiometry",
+       "title": "4.5 Stoichiometry",
+       "subtopics": [
+        {
+         "id": "using-balanced-equations",
+         "title": "Using Balanced Equations",
+         "outcomes": [
+          {
+           "code": "4.5.A",
+           "text": "Use balanced equations to explain changes in reactant and product quantities."
+          },
+          {
+           "code": "4.5.A.1",
+           "text": "Calculate product quantities from reactants or reactant quantities from products using atom conservation."
+          },
+          {
+           "code": "4.5.A.2",
+           "text": "Use equation coefficients as mole ratios in quantitative chemical calculations."
+          }
+         ]
+        },
+        {
+         "id": "stoichiometry-with-gases-and-solutions",
+         "title": "Stoichiometry with Gases and Solutions",
+         "outcomes": [
+          {
+           "code": "4.5.A.3",
+           "text": "Combine stoichiometry with the ideal gas law and molarity calculations for gases and solutions."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "4-6-introduction-to-titration",
+       "title": "4.6 Introduction to Titration",
+       "subtopics": [
+        {
+         "id": "4-6-introduction-to-titration",
+         "title": "4.6 Introduction to Titration",
+         "outcomes": [
+          {
+           "code": "4.6.A",
+           "text": "Determine a titration’s equivalence point from titrant and analyte amounts when the reaction is complete."
+          },
+          {
+           "code": "4.6.A.1",
+           "text": "Use a known, specific titrant reaction to determine analyte amount; recognize endpoint indicators of equivalence."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "4-7-types-of-chemical-reactions",
+       "title": "4.7 Types of Chemical Reactions",
+       "subtopics": [
+        {
+         "id": "reaction-types",
+         "title": "Reaction Types",
+         "outcomes": [
+          {
+           "code": "4.7.A",
+           "text": "Classify reactions as acid-base, oxidation-reduction, or precipitation."
+          },
+          {
+           "code": "4.7.A.1",
+           "text": "Acid-base reactions transfer one or more protons between chemical species."
+          },
+          {
+           "code": "4.7.A.2",
+           "text": "Redox reactions transfer electrons, changing oxidation numbers; combustion reacts a substance with oxygen."
+          }
+         ]
+        },
+        {
+         "id": "oxidation-and-reduction",
+         "title": "Oxidation and Reduction",
+         "outcomes": [
+          {
+           "code": "4.7.A.3",
+           "text": "In redox reactions, electrons move from the oxidized species to the reduced species."
+          },
+          {
+           "code": "4.7.A.4",
+           "text": "Assign oxidation numbers to identify which species undergo oxidation and reduction."
+          }
+         ]
+        },
+        {
+         "id": "precipitation-reactions",
+         "title": "Precipitation Reactions",
+         "outcomes": [
+          {
+           "code": "4.7.A.5",
+           "text": "Precipitation mixes aqueous ions to form a sparingly soluble ionic compound; sodium, potassium, ammonium, and nitrate salts dissolve."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "4-8-introduction-to-acid-base-reactions",
+       "title": "4.8 Introduction to Acid-Base Reactions",
+       "subtopics": [
+        {
+         "id": "acids-bases-and-protons",
+         "title": "Acids, Bases, and Protons",
+         "outcomes": [
+          {
+           "code": "4.8.A",
+           "text": "Identify Brønsted-Lowry acids, bases, and conjugate pairs from proton-transfer reactions."
+          },
+          {
+           "code": "4.8.A.1",
+           "text": "A Brønsted-Lowry acid donates a proton, while a base accepts one."
+          },
+          {
+           "code": "4.8.A.2",
+           "text": "In water, water molecules can accept or donate protons during acid-base reactions."
+          }
+         ]
+        },
+        {
+         "id": "conjugate-acid-base-pairs",
+         "title": "Conjugate Acid-Base Pairs",
+         "outcomes": [
+          {
+           "code": "4.8.A.3",
+           "text": "Identify conjugate acid-base pairs and compare their relative strengths when species ionize in water."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "4-9-oxidation-reduction-redox-reactions",
+       "title": "4.9 Oxidation-Reduction (Redox) Reactions",
+       "subtopics": [
+        {
+         "id": "4-9-oxidation-reduction-redox-reactions",
+         "title": "4.9 Oxidation-Reduction (Redox) Reactions",
+         "outcomes": [
+          {
+           "code": "4.9.A",
+           "text": "Represent balanced redox equations using half-reactions."
+          },
+          {
+           "code": "4.9.A.1",
+           "text": "Construct balanced redox equations by combining appropriate half-reactions."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "unit-5-kinetics",
+     "title": "Unit 5: Kinetics",
+     "topics": [
+      {
+       "id": "5-1-reaction-rates",
+       "title": "5.1 Reaction Rates",
+       "subtopics": [
+        {
+         "id": "what-reaction-rate-means",
+         "title": "What Reaction Rate Means",
+         "outcomes": [
+          {
+           "code": "5.1.A",
+           "text": "Explain how reaction rate relates to experimental conditions and parameters."
+          },
+          {
+           "code": "5.1.A.1",
+           "text": "Define reaction kinetics as the amount of reactant converted to product per unit time."
+          },
+          {
+           "code": "5.1.A.2",
+           "text": "Relate reactant and product concentration changes to stoichiometric coefficients in the balanced equation."
+          }
+         ]
+        },
+        {
+         "id": "factors-affecting-rate",
+         "title": "Factors Affecting Rate",
+         "outcomes": [
+          {
+           "code": "5.1.A.3",
+           "text": "Explain how concentrations, temperature, surface area, catalysts, and environmental conditions affect reaction rate."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "5-2-introduction-to-rate-law",
+       "title": "5.2 Introduction to Rate Law",
+       "subtopics": [
+        {
+         "id": "rate-laws-and-experiments",
+         "title": "Rate Laws and Experiments",
+         "outcomes": [
+          {
+           "code": "5.2.A",
+           "text": "Represent experimental observations with a consistent rate-law expression."
+          },
+          {
+           "code": "5.2.A.1",
+           "text": "Use experiments to monitor reactant or product amounts and determine reaction rate."
+          },
+          {
+           "code": "5.2.A.2",
+           "text": "Describe rate as proportional to each reactant concentration raised to a power."
+          }
+         ]
+        },
+        {
+         "id": "reaction-orders",
+         "title": "Reaction Orders",
+         "outcomes": [
+          {
+           "code": "5.2.A.3",
+           "text": "Identify individual reaction orders and calculate overall order from the rate-law exponents."
+          },
+          {
+           "code": "5.2.A.4",
+           "text": "Explain that the rate constant depends on temperature and has units determined by overall order."
+          },
+          {
+           "code": "5.2.A.5",
+           "text": "Use comparisons of initial rates to determine reaction order for each reactant."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "5-3-concentration-changes-over-time",
+       "title": "5.3 Concentration Changes Over Time",
+       "subtopics": [
+        {
+         "id": "find-reaction-order",
+         "title": "Find Reaction Order",
+         "outcomes": [
+          {
+           "code": "5.3.A",
+           "text": "Determine a reaction’s rate law from concentration-versus-time data."
+          },
+          {
+           "code": "5.3.A.1",
+           "text": "Infer reaction order from a graph of reactant concentration versus time."
+          }
+         ]
+        },
+        {
+         "id": "linear-kinetics-graphs",
+         "title": "Linear Kinetics Graphs",
+         "outcomes": [
+          {
+           "code": "5.3.A.2",
+           "text": "Recognize first-order behavior when ln reactant concentration versus time is linear."
+          },
+          {
+           "code": "5.3.A.3",
+           "text": "Recognize second-order behavior when reciprocal reactant concentration versus time is linear."
+          }
+         ]
+        },
+        {
+         "id": "find-rate-constants",
+         "title": "Find Rate Constants",
+         "outcomes": [
+          {
+           "code": "5.3.A.4",
+           "text": "Use concentration-time slopes for zero-, first-, and second-order reactions to find the rate constant."
+          }
+         ]
+        },
+        {
+         "id": "first-order-half-life",
+         "title": "First-Order Half-Life",
+         "outcomes": [
+          {
+           "code": "5.3.A.5",
+           "text": "Relate constant first-order half-life to the rate constant using t₁/₂ = 0.693/k."
+          },
+          {
+           "code": "5.3.A.6",
+           "text": "Identify radioactive decay as an example of first-order kinetics."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "5-4-elementary-reactions",
+       "title": "5.4 Elementary Reactions",
+       "subtopics": [
+        {
+         "id": "elementary-reaction-rate-laws",
+         "title": "Elementary Reaction Rate Laws",
+         "outcomes": [
+          {
+           "code": "5.4.A",
+           "text": "Write an elementary reaction’s rate law from its stoichiometry."
+          },
+          {
+           "code": "5.4.A.1",
+           "text": "Infer an elementary reaction’s rate law from particles colliding in that step."
+          },
+          {
+           "code": "5.4.A.2",
+           "text": "Recognize that simultaneous collisions involving three or more particles are uncommon."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "5-5-collision-model",
+       "title": "5.5 Collision Model",
+       "subtopics": [
+        {
+         "id": "successful-collisions",
+         "title": "Successful Collisions",
+         "outcomes": [
+          {
+           "code": "5.5.A",
+           "text": "Relate elementary reaction rate to collision frequency, energy, and particle orientation."
+          },
+          {
+           "code": "5.5.A.1",
+           "text": "Explain that successful reactant collisions initiate bond breaking and bond formation."
+          },
+          {
+           "code": "5.5.A.2",
+           "text": "Explain that effective collisions require sufficient energy and suitable orientation."
+          }
+         ]
+        },
+        {
+         "id": "temperature-and-collisions",
+         "title": "Temperature and Collisions",
+         "outcomes": [
+          {
+           "code": "5.5.A.3",
+           "text": "Use Maxwell-Boltzmann distributions to estimate how temperature changes the fraction of energetic collisions."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "5-6-reaction-energy-profile",
+       "title": "5.6 Reaction Energy Profile",
+       "subtopics": [
+        {
+         "id": "read-energy-profiles",
+         "title": "Read Energy Profiles",
+         "outcomes": [
+          {
+           "code": "5.6.A",
+           "text": "Represent activation energy and total energy change using an elementary reaction energy profile."
+          },
+          {
+           "code": "5.6.A.2",
+           "text": "Identify the reaction coordinate as the axis describing progress through molecular rearrangement."
+          },
+          {
+           "code": "5.6.A.3",
+           "text": "Interpret an energy profile from reactants through transition state to products and identify forward activation energy."
+          }
+         ]
+        },
+        {
+         "id": "elementary-reactions",
+         "title": "Elementary Reactions",
+         "outcomes": [
+          {
+           "code": "5.6.A.1",
+           "text": "Recognize that elementary reactions break existing bonds and form new bonds."
+          }
+         ]
+        },
+        {
+         "id": "temperature-and-reaction-rates",
+         "title": "Temperature and Reaction Rates",
+         "outcomes": [
+          {
+           "code": "5.6.A.4",
+           "text": "Explain temperature dependence of elementary reaction rates using collision energies and the Arrhenius relationship."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "5-7-introduction-to-reaction-mechanisms",
+       "title": "5.7 Introduction to Reaction Mechanisms",
+       "subtopics": [
+        {
+         "id": "mechanisms-and-elementary-steps",
+         "title": "Mechanisms and Elementary Steps",
+         "outcomes": [
+          {
+           "code": "5.7.A",
+           "text": "Identify the components and structure of a reaction mechanism."
+          },
+          {
+           "code": "5.7.A.1",
+           "text": "Describe a mechanism as sequential elementary steps involving reactants, intermediates, products, and catalysts."
+          },
+          {
+           "code": "5.7.A.2",
+           "text": "Verify that combining elementary steps produces the overall balanced reaction."
+          },
+          {
+           "code": "5.7.A.3",
+           "text": "Explain that an intermediate forms in one step and is consumed in another."
+          }
+         ]
+        },
+        {
+         "id": "testing-mechanisms",
+         "title": "Testing Mechanisms",
+         "outcomes": [
+          {
+           "code": "5.7.A.4",
+           "text": "Use experimental detection of intermediates as evidence favoring one mechanism over another."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "5-8-reaction-mechanism-and-rate-law",
+       "title": "5.8 Reaction Mechanism and Rate Law",
+       "subtopics": [
+        {
+         "id": "5-8-reaction-mechanism-and-rate-law",
+         "title": "5.8 Reaction Mechanism and Rate Law",
+         "outcomes": [
+          {
+           "code": "5.8.A",
+           "text": "Determine a reaction’s rate law from a mechanism with an irreversible or rate-limiting first step."
+          },
+          {
+           "code": "5.8.A.1",
+           "text": "Set the overall rate law from the molecularity of the slowest, rate-determining elementary step."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "5-9-pre-equilibrium-approximation",
+       "title": "5.9 Pre-Equilibrium Approximation",
+       "subtopics": [
+        {
+         "id": "5-9-pre-equilibrium-approximation",
+         "title": "5.9 Pre-Equilibrium Approximation",
+         "outcomes": [
+          {
+           "code": "5.9.A",
+           "text": "Determine a rate law when the mechanism’s first step is not rate limiting."
+          },
+          {
+           "code": "5.9.A.1",
+           "text": "Apply approximations such as pre-equilibrium to derive a rate law when the first step is not limiting."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "5-10-multistep-reaction-energy-profile",
+       "title": "5.10 Multistep Reaction Energy Profile",
+       "subtopics": [
+        {
+         "id": "5-10-multistep-reaction-energy-profile",
+         "title": "5.10 Multistep Reaction Energy Profile",
+         "outcomes": [
+          {
+           "code": "5.10.A",
+           "text": "Represent activation energies and overall energy change for multistep reactions with an energy profile."
+          },
+          {
+           "code": "5.10.A.1",
+           "text": "Construct a multistep energy profile using the energetics of each elementary reaction."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "5-11-catalysis",
+       "title": "5.11 Catalysis",
+       "subtopics": [
+        {
+         "id": "how-catalysts-work",
+         "title": "How Catalysts Work",
+         "outcomes": [
+          {
+           "code": "5.11.A",
+           "text": "Explain how catalysts alter reaction mechanisms and affect reaction rate."
+          },
+          {
+           "code": "5.11.A.1",
+           "text": "Explain that catalysts increase effective collisions or provide a pathway with lower activation energy."
+          },
+          {
+           "code": "5.11.A.2",
+           "text": "Explain how catalysts can be consumed in one step and regenerated later while maintaining constant net concentration."
+          }
+         ]
+        },
+        {
+         "id": "types-of-catalysis",
+         "title": "Types of Catalysis",
+         "outcomes": [
+          {
+           "code": "5.11.A.3",
+           "text": "Describe catalysts that bind reactants, improve orientation, lower activation energy, and form bound intermediates."
+          },
+          {
+           "code": "5.11.A.4",
+           "text": "Describe covalent or acid-base catalysis involving proton transfer and new intermediates."
+          },
+          {
+           "code": "5.11.A.5",
+           "text": "Describe surface catalysis in which reactants or intermediates bind to a surface and form new steps."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "unit-6-thermochemistry",
+     "title": "Unit 6: Thermochemistry",
+     "topics": [
+      {
+       "id": "6-1-endothermic-and-exothermic-processes",
+       "title": "6.1 Endothermic and Exothermic Processes",
+       "subtopics": [
+        {
+         "id": "recognize-energy-changes",
+         "title": "Recognize Energy Changes",
+         "outcomes": [
+          {
+           "code": "6.1.A",
+           "text": "Relate experimental observations to energy changes during chemical or physical transformations."
+          },
+          {
+           "code": "6.1.A.1",
+           "text": "Recognize that temperature changes indicate energy changes in a system."
+          },
+          {
+           "code": "6.1.A.2",
+           "text": "Classify energy changes as endothermic or exothermic during heating, cooling, phase changes, or chemical transformations."
+          }
+         ]
+        },
+        {
+         "id": "energy-transfer-in-reactions",
+         "title": "Energy Transfer in Reactions",
+         "outcomes": [
+          {
+           "code": "6.1.A.3",
+           "text": "Explain how exothermic and endothermic reactions transfer energy between the system and surroundings."
+          },
+          {
+           "code": "6.1.A.4",
+           "text": "Explain why dissolving a substance can either release or absorb energy based on interaction strengths."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "6-2-energy-diagrams",
+       "title": "6.2 Energy Diagrams",
+       "subtopics": [
+        {
+         "id": "6-2-energy-diagrams",
+         "title": "6.2 Energy Diagrams",
+         "outcomes": [
+          {
+           "code": "6.2.A",
+           "text": "Represent a chemical or physical transformation using an energy diagram."
+          },
+          {
+           "code": "6.2.A.1",
+           "text": "Use energy diagrams to show whether a physical or chemical process is endothermic or exothermic."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "6-3-heat-transfer-and-thermal-equilibrium",
+       "title": "6.3 Heat Transfer and Thermal Equilibrium",
+       "subtopics": [
+        {
+         "id": "heat-transfer-and-equilibrium",
+         "title": "Heat Transfer and Equilibrium",
+         "outcomes": [
+          {
+           "code": "6.3.A",
+           "text": "Relate thermal-energy transfer to collisions between molecules."
+          },
+          {
+           "code": "6.3.A.1",
+           "text": "Explain that warmer bodies have particles with greater average kinetic energy."
+          },
+          {
+           "code": "6.3.A.2",
+           "text": "Explain that particle collisions in thermal contact transfer energy as heat."
+          },
+          {
+           "code": "6.3.A.3",
+           "text": "Describe thermal equilibrium as equal average kinetic energies and temperatures after heat transfer."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "6-4-heat-capacity-and-calorimetry",
+       "title": "6.4 Heat Capacity and Calorimetry",
+       "subtopics": [
+        {
+         "id": "calculate-heat-transfer",
+         "title": "Calculate Heat Transfer",
+         "outcomes": [
+          {
+           "code": "6.4.A",
+           "text": "Calculate heat absorbed or released using substance amount, heat capacity, and temperature change."
+          },
+          {
+           "code": "6.4.A.1",
+           "text": "Use q = mcΔT to quantify heat transfer and understand calorimetry measurements."
+          }
+         ]
+        },
+        {
+         "id": "energy-conservation-and-temperature",
+         "title": "Energy Conservation and Temperature",
+         "outcomes": [
+          {
+           "code": "6.4.A.2",
+           "text": "Apply conservation of energy to chemical and physical processes."
+          },
+          {
+           "code": "6.4.A.3",
+           "text": "Explain why equal masses with different specific heats undergo different temperature changes for the same heat transfer."
+          },
+          {
+           "code": "6.4.A.4",
+           "text": "Relate heating to increased system energy and cooling to decreased system energy."
+          }
+         ]
+        },
+        {
+         "id": "energy-changes-in-systems",
+         "title": "Energy Changes in Systems",
+         "outcomes": [
+          {
+           "code": "6.4.A.5",
+           "text": "Use specific heat and molar heat capacity in energy calculations."
+          },
+          {
+           "code": "6.4.A.6",
+           "text": "Identify heating or cooling, phase transitions, and chemical reactions as major ways systems change energy."
+          },
+          {
+           "code": "6.4.A.7",
+           "text": "Determine energy-flow direction during dissolution from the mixture’s temperature change."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "6-5-energy-of-phase-changes",
+       "title": "6.5 Energy of Phase Changes",
+       "subtopics": [
+        {
+         "id": "energy-of-phase-changes",
+         "title": "Energy of Phase Changes",
+         "outcomes": [
+          {
+           "code": "6.5.A",
+           "text": "Calculate phase-change heat using moles and molar enthalpy."
+          },
+          {
+           "code": "6.5.A.1",
+           "text": "Explain energy changes during melting, boiling, freezing, and condensation, including constant temperature during phase change."
+          },
+          {
+           "code": "6.5.A.2",
+           "text": "Relate energy absorbed in one phase change to energy released in its reverse process."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "6-6-introduction-to-enthalpy-of-reaction",
+       "title": "6.6 Introduction to Enthalpy of Reaction",
+       "subtopics": [
+        {
+         "id": "reaction-enthalpy-and-heat",
+         "title": "Reaction Enthalpy and Heat",
+         "outcomes": [
+          {
+           "code": "6.6.A",
+           "text": "Calculate reaction heat from reacting moles and molar enthalpy."
+          },
+          {
+           "code": "6.6.A.1",
+           "text": "Interpret reaction enthalpy as heat released or absorbed at constant pressure."
+          },
+          {
+           "code": "6.6.A.2",
+           "text": "Explain heat transfer between products and surroundings as reactions reach thermal equilibrium."
+          },
+          {
+           "code": "6.6.A.3",
+           "text": "Relate bond breaking and formation to chemical potential-energy differences and observed temperature changes."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "6-7-bond-enthalpies",
+       "title": "6.7 Bond Enthalpies",
+       "subtopics": [
+        {
+         "id": "bond-energies-and-reactions",
+         "title": "Bond Energies and Reactions",
+         "outcomes": [
+          {
+           "code": "6.7.A",
+           "text": "Calculate reaction enthalpy from average energies of bonds broken and formed."
+          },
+          {
+           "code": "6.7.A.1",
+           "text": "Explain that breaking and forming bonds changes the system’s potential energy."
+          },
+          {
+           "code": "6.7.A.2",
+           "text": "Compare energy required to break reactant bonds with energy released forming product bonds to classify reaction energetics."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "6-8-enthalpy-of-formation",
+       "title": "6.8 Enthalpy of Formation",
+       "subtopics": [
+        {
+         "id": "6-8-enthalpy-of-formation",
+         "title": "6.8 Enthalpy of Formation",
+         "outcomes": [
+          {
+           "code": "6.8.A",
+           "text": "Calculate process enthalpy changes from standard enthalpies of formation."
+          },
+          {
+           "code": "6.8.A.1",
+           "text": "Use formation-enthalpy tables to calculate standard reaction enthalpy."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "6-9-hess-s-law",
+       "title": "6.9 Hess’s Law",
+       "subtopics": [
+        {
+         "id": "steps-and-overall-enthalpy",
+         "title": "Steps and Overall Enthalpy",
+         "outcomes": [
+          {
+           "code": "6.9.A",
+           "text": "Represent a chemical or physical process as a sequence of steps."
+          },
+          {
+           "code": "6.9.A.1",
+           "text": "Break a process into individual steps, each with its own energy change."
+          },
+          {
+           "code": "6.9.B",
+           "text": "Relate overall process enthalpy to the sum of enthalpy changes for individual steps."
+          },
+          {
+           "code": "6.9.B.1",
+           "text": "Use energy conservation to explain why overall enthalpy equals the sum of step enthalpies."
+          }
+         ]
+        },
+        {
+         "id": "apply-hess-s-law",
+         "title": "Apply Hess’s Law",
+         "outcomes": [
+          {
+           "code": "6.9.B.2",
+           "text": "Apply Hess’s law when reversing, scaling, or adding chemical equations and their enthalpy changes."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "unit-7-equilibrium",
+     "title": "Unit 7: Equilibrium",
+     "topics": [
+      {
+       "id": "7-1-introduction-to-equilibrium",
+       "title": "7.1 Introduction to Equilibrium",
+       "subtopics": [
+        {
+         "id": "what-equilibrium-means",
+         "title": "What Equilibrium Means",
+         "outcomes": [
+          {
+           "code": "7.1.A",
+           "text": "Relate reversible processes to the experimental observations that indicate equilibrium has been established."
+          },
+          {
+           "code": "7.1.A.1",
+           "text": "Recognize that many physical and chemical processes, including proton transfer and electron transfer, are reversible."
+          },
+          {
+           "code": "7.1.A.2",
+           "text": "Describe equilibrium as a state with no observable change, constant species concentrations or partial pressures, and reactants and products both present."
+          },
+          {
+           "code": "7.1.A.3",
+           "text": "Explain that equilibrium is dynamic because forward and reverse processes continue at equal rates."
+          }
+         ]
+        },
+        {
+         "id": "equilibrium-graphs",
+         "title": "Equilibrium Graphs",
+         "outcomes": [
+          {
+           "code": "7.1.A.4",
+           "text": "Use concentration, partial-pressure, or reaction-rate graphs to analyze how equilibrium is established."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "7-2-direction-of-reversible-reactions",
+       "title": "7.2 Direction of Reversible Reactions",
+       "subtopics": [
+        {
+         "id": "7-2-direction-of-reversible-reactions",
+         "title": "7.2 Direction of Reversible Reactions",
+         "outcomes": [
+          {
+           "code": "7.2.A",
+           "text": "Relate a reversible reaction’s direction to the relative rates of its forward and reverse reactions."
+          },
+          {
+           "code": "7.2.A.1",
+           "text": "Predict net reactant-to-product or product-to-reactant conversion from the relative forward and reverse rates, including equilibrium when rates are equal."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "7-3-reaction-quotient-and-equilibrium-constant",
+       "title": "7.3 Reaction Quotient and Equilibrium Constant",
+       "subtopics": [
+        {
+         "id": "writing-q-and-k-expressions",
+         "title": "Writing Q and K Expressions",
+         "outcomes": [
+          {
+           "code": "7.3.A",
+           "text": "Write Qc or Qp and corresponding K expressions for reversible reactions, recognizing that Q equals K at equilibrium."
+          },
+          {
+           "code": "7.3.A.1",
+           "text": "Use concentration-based or partial-pressure-based mass-action expressions for reaction quotients and equilibrium constants."
+          },
+          {
+           "code": "7.3.A.2",
+           "text": "Omit pure solids and liquids from reaction-quotient and equilibrium-constant expressions because their amounts do not affect the ratio."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "7-4-calculating-the-equilibrium-constant",
+       "title": "7.4 Calculating the Equilibrium Constant",
+       "subtopics": [
+        {
+         "id": "7-4-calculating-the-equilibrium-constant",
+         "title": "7.4 Calculating the Equilibrium Constant",
+         "outcomes": [
+          {
+           "code": "7.4.A",
+           "text": "Calculate Kc or Kp from measured equilibrium concentrations or partial pressures."
+          },
+          {
+           "code": "7.4.A.1",
+           "text": "Determine an equilibrium constant using experimental equilibrium concentrations or partial pressures of reactants and products."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "7-5-magnitude-of-the-equilibrium-constant",
+       "title": "7.5 Magnitude of the Equilibrium Constant",
+       "subtopics": [
+        {
+         "id": "7-5-magnitude-of-the-equilibrium-constant",
+         "title": "7.5 Magnitude of the Equilibrium Constant",
+         "outcomes": [
+          {
+           "code": "7.5.A",
+           "text": "Relate the size of K to the relative equilibrium concentrations of reactants and products."
+          },
+          {
+           "code": "7.5.A.1",
+           "text": "Interpret very large K values as near-complete reaction and very small values as minimal reaction."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "7-6-properties-of-the-equilibrium-constant",
+       "title": "7.6 Properties of the Equilibrium Constant",
+       "subtopics": [
+        {
+         "id": "changing-reaction-equations",
+         "title": "Changing Reaction Equations",
+         "outcomes": [
+          {
+           "code": "7.6.A",
+           "text": "Construct an overall equilibrium expression from the equilibrium expressions of constituent reactions."
+          },
+          {
+           "code": "7.6.A.1",
+           "text": "Invert K when reversing a reaction."
+          },
+          {
+           "code": "7.6.A.2",
+           "text": "Raise K to the corresponding power when all reaction coefficients are multiplied by a factor."
+          }
+         ]
+        },
+        {
+         "id": "combining-equilibrium-constants",
+         "title": "Combining Equilibrium Constants",
+         "outcomes": [
+          {
+           "code": "7.6.A.3",
+           "text": "Multiply equilibrium constants when adding reactions to obtain an overall reaction."
+          },
+          {
+           "code": "7.6.A.4",
+           "text": "Apply valid algebraic transformations of K expressions to reaction-quotient expressions."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "7-7-calculating-equilibrium-concentrations",
+       "title": "7.7 Calculating Equilibrium Concentrations",
+       "subtopics": [
+        {
+         "id": "finding-equilibrium-concentrations",
+         "title": "Finding Equilibrium Concentrations",
+         "outcomes": [
+          {
+           "code": "7.7.A",
+           "text": "Determine equilibrium concentrations or partial pressures from initial conditions, a balanced reaction, and K."
+          },
+          {
+           "code": "7.7.A.1",
+           "text": "Predict equilibrium species concentrations or partial pressures using initial values, stoichiometry, and the appropriate equilibrium constant."
+          }
+         ]
+        },
+        {
+         "id": "using-q-and-k",
+         "title": "Using Q and K",
+         "outcomes": [
+          {
+           "code": "7.7.A.2",
+           "text": "Use Q compared with K to predict reaction direction and identify dynamic equilibrium when Q equals K."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "7-8-representations-of-equilibrium",
+       "title": "7.8 Representations of Equilibrium",
+       "subtopics": [
+        {
+         "id": "7-8-representations-of-equilibrium",
+         "title": "7.8 Representations of Equilibrium",
+         "outcomes": [
+          {
+           "code": "7.8.A",
+           "text": "Model a reversible reaction system using particles."
+          },
+          {
+           "code": "7.8.A.1",
+           "text": "Use particle diagrams to show reactant and product amounts before equilibrium and relate them to K."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "7-9-introduction-to-le-cha-telier-s-principle",
+       "title": "7.9 Introduction to Le Châtelier’s Principle",
+       "subtopics": [
+        {
+         "id": "predicting-equilibrium-responses",
+         "title": "Predicting Equilibrium Responses",
+         "outcomes": [
+          {
+           "code": "7.9.A",
+           "text": "Predict how an equilibrium system responds to an external stress using Le Châtelier’s principle."
+          },
+          {
+           "code": "7.9.A.1",
+           "text": "Predict equilibrium responses to species addition or removal, temperature or pressure changes, volume changes, and dilution."
+          }
+         ]
+        },
+        {
+         "id": "measuring-equilibrium-changes",
+         "title": "Measuring Equilibrium Changes",
+         "outcomes": [
+          {
+           "code": "7.9.A.2",
+           "text": "Predict how equilibrium stresses affect measurable properties such as pH, temperature, and solution color."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "7-10-reaction-quotient-and-le-cha-telier-s-princ",
+       "title": "7.10 Reaction Quotient and Le Châtelier’s Principle",
+       "subtopics": [
+        {
+         "id": "how-q-drives-equilibrium",
+         "title": "How Q Drives Equilibrium",
+         "outcomes": [
+          {
+           "code": "7.10.A",
+           "text": "Relate Q, K, and the direction a reversible reaction takes to reach a new equilibrium."
+          },
+          {
+           "code": "7.10.A.1",
+           "text": "Explain that a disturbance changes Q relative to K and drives the system toward a state where they agree again."
+          },
+          {
+           "code": "7.10.A.2",
+           "text": "Distinguish stresses that change only Q from temperature changes that alter K, with species redistributing accordingly."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "7-11-introduction-to-solubility-equilibria",
+       "title": "7.11 Introduction to Solubility Equilibria",
+       "subtopics": [
+        {
+         "id": "solubility-and-ksp",
+         "title": "Solubility and Ksp",
+         "outcomes": [
+          {
+           "code": "7.11.A",
+           "text": "Calculate salt solubility from its solubility-product constant, Ksp."
+          },
+          {
+           "code": "7.11.A.1",
+           "text": "Relate salt dissolution as a reversible process whose extent is measured by Ksp."
+          },
+          {
+           "code": "7.11.A.2",
+           "text": "Calculate solubility from Ksp and use it to compare the relative solubilities of substances."
+          }
+         ]
+        },
+        {
+         "id": "solubility-rules-and-ksp",
+         "title": "Solubility Rules and Ksp",
+         "outcomes": [
+          {
+           "code": "7.11.A.3",
+           "text": "Connect solubility rules quantitatively to Ksp, with Ksp values above one indicating soluble salts."
+          },
+          {
+           "code": "7.11.A.4",
+           "text": "Calculate Ksp from the molar solubility of species in a saturated solution."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "7-12-common-ion-effect",
+       "title": "7.12 Common-Ion Effect",
+       "subtopics": [
+        {
+         "id": "7-12-common-ion-effect",
+         "title": "7.12 Common-Ion Effect",
+         "outcomes": [
+          {
+           "code": "7.12.A",
+           "text": "Determine salt solubility or Ksp effects from a common ion already present in solution."
+          },
+          {
+           "code": "7.12.A.1",
+           "text": "Explain or calculate why adding a common ion decreases salt solubility using Le Châtelier’s principle or Ksp."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "unit-8-acids-and-bases",
+     "title": "Unit 8: Acids and Bases",
+     "topics": [
+      {
+       "id": "8-1-introduction-to-acids",
+       "title": "8.1 Introduction to Acids",
+       "subtopics": [
+        {
+         "id": "ph-poh-and-kw",
+         "title": "pH, pOH, and Kw",
+         "outcomes": [
+          {
+           "code": "8.1.A",
+           "text": "Calculate pH and pOH using Kw and concentrations of species in neutral water."
+          },
+          {
+           "code": "8.1.A.1",
+           "text": "Relate hydronium and hydroxide concentrations to pH and pOH using logarithmic definitions."
+          },
+          {
+           "code": "8.1.A.2",
+           "text": "Describe water autoionization using the equilibrium constant Kw."
+          }
+         ]
+        },
+        {
+         "id": "neutral-water-and-temperature",
+         "title": "Neutral Water and Temperature",
+         "outcomes": [
+          {
+           "code": "8.1.A.3",
+           "text": "Recognize that pure water is neutral, with equal pH and pOH and a pH of 7 at 25°C."
+          },
+          {
+           "code": "8.1.A.4",
+           "text": "Explain how temperature-dependent Kw changes the pH of neutral pure water."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "8-2-ph-and-poh-of-strong-acids-and-bases",
+       "title": "8.2 pH and pOH of Strong Acids and Bases",
+       "subtopics": [
+        {
+         "id": "strong-acid-and-base-ph",
+         "title": "Strong Acid and Base pH",
+         "outcomes": [
+          {
+           "code": "8.2.A",
+           "text": "Calculate pH and pOH from species concentrations in strong-acid and strong-base solutions."
+          },
+          {
+           "code": "8.2.A.1",
+           "text": "Explain that strong acids completely ionize, making hydronium concentration equal to their initial concentration."
+          },
+          {
+           "code": "8.2.A.2",
+           "text": "Explain that strong bases completely dissociate and determine hydroxide concentration from their stoichiometry."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "8-3-weak-acid-and-base-equilibria",
+       "title": "8.3 Weak Acid and Base Equilibria",
+       "subtopics": [
+        {
+         "id": "weak-acid-equilibria",
+         "title": "Weak Acid Equilibria",
+         "outcomes": [
+          {
+           "code": "8.3.A",
+           "text": "Relate pH, pOH, and species concentrations in monoprotic weak-acid and weak-base solutions."
+          },
+          {
+           "code": "8.3.A.1",
+           "text": "Explain that weak acids only partly ionize, leaving most acid molecules un-ionized."
+          },
+          {
+           "code": "8.3.A.2",
+           "text": "Use Ka or pKa and initial concentration to describe and calculate weak-acid equilibrium and pH."
+          }
+         ]
+        },
+        {
+         "id": "weak-base-equilibria",
+         "title": "Weak Base Equilibria",
+         "outcomes": [
+          {
+           "code": "8.3.A.3",
+           "text": "Explain that weak bases only partly ionize, so hydroxide concentration is below the initial base concentration."
+          },
+          {
+           "code": "8.3.A.4",
+           "text": "Use Kb or pKb and initial concentration to describe and calculate weak-base equilibrium and pH."
+          }
+         ]
+        },
+        {
+         "id": "percent-ionization-and-conjugates",
+         "title": "Percent Ionization and Conjugates",
+         "outcomes": [
+          {
+           "code": "8.3.A.5",
+           "text": "Calculate weak-acid or weak-base percent ionization from equilibrium constants, initial concentrations, or equilibrium species."
+          },
+          {
+           "code": "8.3.A.6",
+           "text": "Relate Ka and Kb for conjugate pairs through Kw, including their p-value relationship."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "8-4-acid-base-reactions",
+       "title": "8.4 Acid-Base Reactions",
+       "subtopics": [
+        {
+         "id": "mixed-species-and-neutralization",
+         "title": "Mixed Species and Neutralization",
+         "outcomes": [
+          {
+           "code": "8.4.A",
+           "text": "Relate major-species concentrations when weak and strong acids or bases are mixed."
+          },
+          {
+           "code": "8.4.A.1",
+           "text": "Determine resulting pH after strong acid and strong base neutralization using the excess reagent."
+          }
+         ]
+        },
+        {
+         "id": "weak-acid-with-strong-base",
+         "title": "Weak Acid with Strong Base",
+         "outcomes": [
+          {
+           "code": "8.4.A.2",
+           "text": "Predict major species and pH when a weak acid reacts with a strong base, including buffer and equivalence cases."
+          }
+         ]
+        },
+        {
+         "id": "weak-base-with-strong-acid",
+         "title": "Weak Base with Strong Acid",
+         "outcomes": [
+          {
+           "code": "8.4.A.3",
+           "text": "Predict major species and pH when a weak base reacts with a strong acid, including buffer and equivalence cases."
+          }
+         ]
+        },
+        {
+         "id": "weak-acid-and-weak-base",
+         "title": "Weak Acid and Weak Base",
+         "outcomes": [
+          {
+           "code": "8.4.A.4",
+           "text": "Describe the equilibrium reached when a weak acid and weak base are mixed."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "8-9-henderson-hasselbalch-equation",
+       "title": "8.9 Henderson-Hasselbalch Equation",
+       "subtopics": [
+        {
+         "id": "8-9-henderson-hasselbalch-equation",
+         "title": "8.9 Henderson-Hasselbalch Equation",
+         "outcomes": [
+          {
+           "code": "8.9.A.1",
+           "text": "Relate buffer pH to pKa and the concentration ratio of conjugate base to conjugate acid using the Henderson-Hasselbalch equation."
+          },
+          {
+           "code": "8.9.A",
+           "text": "Determine a buffer’s pH from its conjugate acid-base pair and their concentrations."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "8-5-acid-base-titrations",
+       "title": "8.5 Acid-Base Titrations",
+       "subtopics": [
+        {
+         "id": "titration-curves-and-components",
+         "title": "Titration Curves and Components",
+         "outcomes": [
+          {
+           "code": "8.5.A",
+           "text": "Explain mono- and polyprotic acid or base titration results using solution properties and components."
+          },
+          {
+           "code": "8.5.A.1",
+           "text": "Interpret titration curves that show pH as titrant volume increases."
+          }
+         ]
+        },
+        {
+         "id": "equivalence-and-half-equivalence",
+         "title": "Equivalence and Half-Equivalence",
+         "outcomes": [
+          {
+           "code": "8.5.A.2",
+           "text": "Use equivalence-point mole relationships to determine an analyte concentration."
+          },
+          {
+           "code": "8.5.A.3",
+           "text": "Use half-equivalence-point concentrations and pH to determine a weak acid’s or base’s pKa or pKb."
+          },
+          {
+           "code": "8.5.A.4",
+           "text": "Explain equivalence-point pH from the acid-base character of the species remaining in solution."
+          }
+         ]
+        },
+        {
+         "id": "polyprotic-titrations",
+         "title": "Polyprotic Titrations",
+         "outcomes": [
+          {
+           "code": "8.5.A.5",
+           "text": "Use polyprotic titration curves to identify acidic protons, major species, and successive pKa values."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "8-6-molecular-structure-of-acids-and-bases",
+       "title": "8.6 Molecular Structure of Acids and Bases",
+       "subtopics": [
+        {
+         "id": "8-6-molecular-structure-of-acids-and-bases",
+         "title": "8.6 Molecular Structure of Acids and Bases",
+         "outcomes": [
+          {
+           "code": "8.6.A",
+           "text": "Relate acid or base strength to the molecular or ionic structure."
+          },
+          {
+           "code": "8.6.A.1",
+           "text": "Use electronegativity, inductive effects, resonance, and molecular structure to compare acid and base strengths."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "8-7-ph-and-pka",
+       "title": "8.7 pH and pKa",
+       "subtopics": [
+        {
+         "id": "predominant-acid-base-forms",
+         "title": "Predominant Acid-Base Forms",
+         "outcomes": [
+          {
+           "code": "8.7.A",
+           "text": "Relate the predominant weak-acid or weak-base form to solution pH and pKa or pKb."
+          },
+          {
+           "code": "8.7.A.1",
+           "text": "Predict whether protonated or deprotonated species predominates by comparing pH with pKa."
+          }
+         ]
+        },
+        {
+         "id": "indicators-and-titrations",
+         "title": "Indicators and Titrations",
+         "outcomes": [
+          {
+           "code": "8.7.A.2",
+           "text": "Explain how acid-base indicators change observable properties between protonated and deprotonated states."
+          },
+          {
+           "code": "8.7.A.3",
+           "text": "Select an indicator whose pKa is near the equivalence-point pH for accurate titration results."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "8-8-properties-of-buffers",
+       "title": "8.8 Properties of Buffers",
+       "subtopics": [
+        {
+         "id": "8-8-properties-of-buffers",
+         "title": "8.8 Properties of Buffers",
+         "outcomes": [
+          {
+           "code": "8.8.A",
+           "text": "Relate buffer pH stability to reactions occurring when acid or base is added."
+          },
+          {
+           "code": "8.8.A.1",
+           "text": "Explain how substantial amounts of both conjugate species let buffers consume added acid or base."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "8-10-buffer-capacity",
+       "title": "8.10 Buffer Capacity",
+       "subtopics": [
+        {
+         "id": "buffer-capacity-and-balance",
+         "title": "Buffer Capacity and Balance",
+         "outcomes": [
+          {
+           "code": "8.10.A",
+           "text": "Relate buffer capacity to the relative concentrations of conjugate acid and conjugate base."
+          },
+          {
+           "code": "8.10.A.1",
+           "text": "Explain that increasing both buffer component concentrations while preserving their ratio increases capacity without changing pH."
+          },
+          {
+           "code": "8.10.A.2",
+           "text": "Predict whether a buffer better neutralizes added acid or base from the relative amounts of its conjugate pair."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "8-11-ph-and-solubility",
+       "title": "8.11 pH and Solubility",
+       "subtopics": [
+        {
+         "id": "8-11-ph-and-solubility",
+         "title": "8.11 pH and Solubility",
+         "outcomes": [
+          {
+           "code": "8.11.A",
+           "text": "Identify qualitatively how pH changes affect a salt’s solubility."
+          },
+          {
+           "code": "8.11.A.1",
+           "text": "Recognize pH-sensitive salt solubility when an ion is a weak acid, weak base, or hydroxide, using Le Châtelier’s principle."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "unit-9-thermodynamics-and-electrochemistry",
+     "title": "Unit 9: Thermodynamics and Electrochemistry",
+     "topics": [
+      {
+       "id": "9-1-introduction-to-entropy",
+       "title": "9.1 Introduction to Entropy",
+       "subtopics": [
+        {
+         "id": "entropy-and-matter",
+         "title": "Entropy and Matter",
+         "outcomes": [
+          {
+           "code": "9.1.A",
+           "text": "Identify the sign and relative size of entropy changes for chemical and physical processes."
+          },
+          {
+           "code": "9.1.A.1",
+           "text": "Entropy generally rises when matter becomes more dispersed, including during phase changes, gas expansion, or increased gaseous product moles."
+          },
+          {
+           "code": "9.1.A.2",
+           "text": "Entropy increases as energy becomes more dispersed, such as when rising temperature broadens gas particle kinetic-energy distributions."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "9-2-absolute-entropy-and-entropy-change",
+       "title": "9.2 Absolute Entropy and Entropy Change",
+       "subtopics": [
+        {
+         "id": "9-2-absolute-entropy-and-entropy-change",
+         "title": "9.2 Absolute Entropy and Entropy Change",
+         "outcomes": [
+          {
+           "code": "9.2.A",
+           "text": "Calculate standard entropy changes for chemical or physical processes using species’ standard molar entropies."
+          },
+          {
+           "code": "9.2.A.1",
+           "text": "Find process entropy change by subtracting total reactant absolute entropies from total product absolute entropies."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "9-3-gibbs-free-energy-and-thermodynamic-favorabi",
+       "title": "9.3 Gibbs Free Energy and Thermodynamic Favorability",
+       "subtopics": [
+        {
+         "id": "gibbs-free-energy-basics",
+         "title": "Gibbs Free Energy Basics",
+         "outcomes": [
+          {
+           "code": "9.3.A",
+           "text": "Determine whether a physical or chemical process is thermodynamically favored from its standard Gibbs free-energy change."
+          },
+          {
+           "code": "9.3.A.1",
+           "text": "Recognize ΔG° as the Gibbs free-energy change when all substances are in their standard states."
+          },
+          {
+           "code": "9.3.A.2",
+           "text": "Interpret a negative ΔG° as indicating a thermodynamically favored process."
+          }
+         ]
+        },
+        {
+         "id": "calculating-gibbs-free-energy",
+         "title": "Calculating Gibbs Free Energy",
+         "outcomes": [
+          {
+           "code": "9.3.A.3",
+           "text": "Calculate standard Gibbs free-energy change from standard Gibbs free energies of formation."
+          },
+          {
+           "code": "9.3.A.4",
+           "text": "Recognize that both enthalpy and entropy may determine whether a process is thermodynamically favored."
+          },
+          {
+           "code": "9.3.A.5",
+           "text": "Calculate ΔG° from standard enthalpy change, standard entropy change, and temperature."
+          },
+          {
+           "code": "9.3.A.6",
+           "text": "Predict favorable temperature ranges from the signs of ΔH° and ΔS°."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "9-4-thermodynamic-and-kinetic-control",
+       "title": "9.4 Thermodynamic and Kinetic Control",
+       "subtopics": [
+        {
+         "id": "thermodynamic-and-kinetic-control",
+         "title": "Thermodynamic and Kinetic Control",
+         "outcomes": [
+          {
+           "code": "9.4.A",
+           "text": "Explain kinetically why a thermodynamically favored reaction may proceed too slowly to measure."
+          },
+          {
+           "code": "9.4.A.1",
+           "text": "Recognize that thermodynamically favored processes may be extremely slow or show no measurable progress."
+          },
+          {
+           "code": "9.4.A.2",
+           "text": "Explain kinetic control as thermodynamic favorability constrained by a high activation energy, not necessarily equilibrium."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "9-5-free-energy-and-equilibrium",
+       "title": "9.5 Free Energy and Equilibrium",
+       "subtopics": [
+        {
+         "id": "gibbs-energy-and-equilibrium",
+         "title": "Gibbs Energy and Equilibrium",
+         "outcomes": [
+          {
+           "code": "9.5.A",
+           "text": "Use the relationships among K, ΔG°, and temperature to determine thermodynamic favorability."
+          },
+          {
+           "code": "9.5.A.1",
+           "text": "Relate ΔG° less than zero to product-favored equilibrium and an equilibrium constant greater than one."
+          }
+         ]
+        },
+        {
+         "id": "k-g-and-temperature",
+         "title": "K, ΔG°, and Temperature",
+         "outcomes": [
+          {
+           "code": "9.5.A.2",
+           "text": "Use the exponential and logarithmic equations connecting K, ΔG°, R, and temperature."
+          },
+          {
+           "code": "9.5.A.3",
+           "text": "Estimate how the equilibrium constant differs from one based on the size of ΔG° relative to RT."
+          },
+          {
+           "code": "9.5.A.4",
+           "text": "Relate negative ΔG° to product-favored equilibrium and positive ΔG° to reactant-favored equilibrium."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "9-6-free-energy-of-dissolution",
+       "title": "9.6 Free Energy of Dissolution",
+       "subtopics": [
+        {
+         "id": "9-6-free-energy-of-dissolution",
+         "title": "9.6 Free Energy of Dissolution",
+         "outcomes": [
+          {
+           "code": "9.6.A",
+           "text": "Explain how salt solubility relates to enthalpy and entropy changes during dissolution."
+          },
+          {
+           "code": "9.6.A.1",
+           "text": "Analyze dissolution free energy through lattice disruption, solvent reorganization, and solute–solvent interactions."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "9-7-coupled-reactions",
+       "title": "9.7 Coupled Reactions",
+       "subtopics": [
+        {
+         "id": "driving-unfavorable-reactions",
+         "title": "Driving Unfavorable Reactions",
+         "outcomes": [
+          {
+           "code": "9.7.A",
+           "text": "Explain how external energy or coupled reactions drive thermodynamically unfavorable processes."
+          },
+          {
+           "code": "9.7.A.1",
+           "text": "Describe how electricity or light can supply energy for thermodynamically unfavorable processes."
+          },
+          {
+           "code": "9.7.A.2",
+           "text": "Explain how coupling an unfavorable reaction with a favorable one can produce a desired product and negative overall ΔG°."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "9-8-galvanic-voltaic-and-electrolytic-cells",
+       "title": "9.8 Galvanic (Voltaic) and Electrolytic Cells",
+       "subtopics": [
+        {
+         "id": "electrochemical-cell-components",
+         "title": "Electrochemical Cell Components",
+         "outcomes": [
+          {
+           "code": "9.8.A",
+           "text": "Relate electrochemical-cell components to the cell’s overall operation."
+          },
+          {
+           "code": "9.8.A.1",
+           "text": "Explain how electrodes, half-cell solutions, salt bridges, and measuring devices determine cell behavior."
+          }
+         ]
+        },
+        {
+         "id": "galvanic-and-electrolytic-cells",
+         "title": "Galvanic and Electrolytic Cells",
+         "outcomes": [
+          {
+           "code": "9.8.A.2",
+           "text": "Distinguish galvanic cells, which use favored reactions, from electrolytic cells, which require energy for unfavored reactions."
+          },
+          {
+           "code": "9.8.A.3",
+           "text": "Identify oxidation at the anode and reduction at the cathode in every electrochemical cell."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "9-9-cell-potential-and-free-energy",
+       "title": "9.9 Cell Potential and Free Energy",
+       "subtopics": [
+        {
+         "id": "cell-potential-and-favorability",
+         "title": "Cell Potential and Favorability",
+         "outcomes": [
+          {
+           "code": "9.9.A",
+           "text": "Determine cell favorability from standard cell potential and the cell’s half-reactions."
+          },
+          {
+           "code": "9.9.A.1",
+           "text": "Relate positive voltage to thermodynamically favored redox reactions and negative voltage to reactions requiring external potential."
+          },
+          {
+           "code": "9.9.A.2",
+           "text": "Calculate standard cell potential from oxidation and reduction half-reactions and their standard reduction potentials."
+          }
+         ]
+        },
+        {
+         "id": "cell-potential-and-gibbs-energy",
+         "title": "Cell Potential and Gibbs Energy",
+         "outcomes": [
+          {
+           "code": "9.9.A.3",
+           "text": "Use the relationship ΔG° = −nFE° to connect standard Gibbs free energy and cell potential."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "9-10-cell-potential-under-nonstandard-conditions",
+       "title": "9.10 Cell Potential Under Nonstandard Conditions",
+       "subtopics": [
+        {
+         "id": "conditions-and-cell-potential",
+         "title": "Conditions and Cell Potential",
+         "outcomes": [
+          {
+           "code": "9.10.A",
+           "text": "Explain how departures from standard conditions affect an electrochemical cell’s potential."
+          },
+          {
+           "code": "9.10.A.1",
+           "text": "Cell potential depends on active-species concentrations and becomes larger when the reaction is farther from equilibrium."
+          },
+          {
+           "code": "9.10.A.2",
+           "text": "Le Châtelier’s principle does not apply to electrochemical systems because they are not at equilibrium."
+          }
+         ]
+        },
+        {
+         "id": "concentration-and-cell-potential",
+         "title": "Concentration and Cell Potential",
+         "outcomes": [
+          {
+           "code": "9.10.A.3",
+           "text": "Relate reaction quotient, equilibrium, and concentration changes to the magnitude and direction of cell potential."
+          },
+          {
+           "code": "9.10.A.4",
+           "text": "Use qualitative Nernst-equation reasoning to determine how concentration changes affect cell potential."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "9-11-electrolysis-and-faraday-s-law",
+       "title": "9.11 Electrolysis and Faraday’s Law",
+       "subtopics": [
+        {
+         "id": "9-11-electrolysis-and-faraday-s-law",
+         "title": "9.11 Electrolysis and Faraday’s Law",
+         "outcomes": [
+          {
+           "code": "9.11.A",
+           "text": "Calculate charge transferred from changes in reactant and product amounts in an electrochemical cell."
+          },
+          {
+           "code": "9.11.A.1",
+           "text": "Use Faraday’s laws to relate electron transfer, deposited mass, current, time, charge, and ionic charge."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "build": {
+  "builtAt": "2026-10-14T07:53:54.636Z",
+  "model": "gpt-5.6-luna",
+  "usd": 0.06,
+  "expectedCodes": 333,
+  "coverage": 1,
+  "missingCodes": [],
+  "counts": {
+   "grades": 1,
+   "units": 9,
+   "topics": 91,
+   "subtopics": 152,
+   "outcomes": 333
+  },
+  "warnings": [
+   "grade 9 has no content",
+   "grade 10 has no content",
+   "grade 11 has no content",
+   "grade 12 has no content",
+   "unexpected grade label \"all\""
+  ]
+ }
+}

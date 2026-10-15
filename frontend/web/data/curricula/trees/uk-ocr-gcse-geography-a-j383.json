@@ -1,0 +1,799 @@
+{
+ "id": "uk-ocr-gcse-geography-a-j383",
+ "region": "UK",
+ "framework": "OCR GCSE (9-1)",
+ "board": "OCR",
+ "qualification": "GCSE",
+ "subject": "Geography A (Geographical Themes)",
+ "syllabusCode": "J383",
+ "gradeSystem": "year",
+ "source": {
+  "urls": [
+   "https://www.ocr.org.uk/Images/207306-specification-accredited-gcse-geography-a-j383.pdf"
+  ],
+  "publisher": "OCR (Oxford Cambridge and RSA)",
+  "licence": "Exam board specification, (c) OCR; structure + our own wording only",
+  "firstExam": "2018"
+ },
+ "grades": [
+  {
+   "grade": "all",
+   "units": [
+    {
+     "id": "component-01-living-in-the-uk-today",
+     "title": "Component 01: Living in the UK Today",
+     "topics": [
+      {
+       "id": "1-1-landscapes-of-the-uk",
+       "title": "1.1 Landscapes of the UK",
+       "subtopics": [
+        {
+         "id": "uk-physical-landscapes",
+         "title": "UK physical landscapes",
+         "outcomes": [
+          {
+           "code": "1.1.1",
+           "text": "Describe where upland, lowland and glaciated landscapes are found in the UK."
+          },
+          {
+           "code": null,
+           "text": "Describe the geology, climate and human activity that characterise these landscapes."
+          }
+         ]
+        },
+        {
+         "id": "geomorphic-processes",
+         "title": "Geomorphic processes",
+         "outcomes": [
+          {
+           "code": "1.1.2",
+           "text": "Define the types of weathering, mass movement, erosion, transport and deposition."
+          }
+         ]
+        },
+        {
+         "id": "river-landforms",
+         "title": "River landforms",
+         "outcomes": [
+          {
+           "code": "1.1.3",
+           "text": "Explain how waterfalls, gorges, V-shaped valleys, floodplains, levees, meanders and ox-bow lakes form along a river basin."
+          }
+         ]
+        },
+        {
+         "id": "coastal-landforms",
+         "title": "Coastal landforms",
+         "outcomes": [
+          {
+           "code": "1.1.4",
+           "text": "Explain how headlands, bays, caves, arches, stacks, beaches and spits form."
+          }
+         ]
+        },
+        {
+         "id": "uk-river-and-coast-case-studies",
+         "title": "UK river and coast case studies",
+         "outcomes": [
+          {
+           "code": "1.1.5",
+           "text": "Use a UK river basin and a UK coastal case study to show how geomorphic processes work at different scales and are shaped by geology and climate."
+          },
+          {
+           "code": null,
+           "text": "Describe the landforms and features found in each case study."
+          },
+          {
+           "code": null,
+           "text": "Explain how human activity, including management, works with geomorphic processes to affect the landscape."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "1-2-people-of-the-uk",
+       "title": "1.2 People of the UK",
+       "subtopics": [
+        {
+         "id": "uk-global-links",
+         "title": "UK global links",
+         "outcomes": [
+          {
+           "code": "1.2.1",
+           "text": "Outline the UK's major trading partners, with its main exports and imports."
+          }
+         ]
+        },
+        {
+         "id": "uk-diversity-and-inequality",
+         "title": "UK diversity and inequality",
+         "outcomes": [
+          {
+           "code": "1.2.2",
+           "text": "Describe geographical patterns of employment, income, life expectancy, education, ethnicity and broadband access in the UK."
+          }
+         ]
+        },
+        {
+         "id": "uneven-development-in-the-uk",
+         "title": "Uneven development in the UK",
+         "outcomes": [
+          {
+           "code": "1.2.3",
+           "text": "Explain the causes of uneven development in the UK: location, economic change, infrastructure and government policy."
+          },
+          {
+           "code": null,
+           "text": "Use a case study of one UK place or region to describe the consequences of economic growth or decline."
+          }
+         ]
+        },
+        {
+         "id": "uk-population-change",
+         "title": "UK population change",
+         "outcomes": [
+          {
+           "code": "1.2.4",
+           "text": "Describe changes in the UK's population structure since 1900 and its position on the Demographic Transition Model."
+          },
+          {
+           "code": null,
+           "text": "Explain the causes, effects and responses to an ageing population."
+          },
+          {
+           "code": null,
+           "text": "Outline immigration flows into the UK this century and their social and economic impacts."
+          }
+         ]
+        },
+        {
+         "id": "uk-urban-trends",
+         "title": "UK urban trends",
+         "outcomes": [
+          {
+           "code": "1.2.5",
+           "text": "Explain the causes of suburbanisation, counter-urbanisation and re-urbanisation."
+          },
+          {
+           "code": null,
+           "text": "Outline the social, economic and environmental consequences of these urban trends."
+          }
+         ]
+        },
+        {
+         "id": "a-major-uk-city",
+         "title": "A major UK city",
+         "outcomes": [
+          {
+           "code": "1.2.6",
+           "text": "Use a UK city case study to explain the city's place in its region, the country and the world."
+          },
+          {
+           "code": null,
+           "text": "Explain how migration shapes the city's growth and character."
+          },
+          {
+           "code": null,
+           "text": "Describe ways of life in the city: culture, ethnicity, housing, leisure and consumption."
+          },
+          {
+           "code": null,
+           "text": "Describe challenges of housing, transport and waste, and a sustainable strategy for one of them."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "1-3-uk-environmental-challenges",
+       "title": "1.3 UK Environmental Challenges",
+       "subtopics": [
+        {
+         "id": "uk-climate-and-extreme-weather",
+         "title": "UK climate and extreme weather",
+         "outcomes": [
+          {
+           "code": "1.3.1",
+           "text": "Explain how air masses, the North Atlantic Drift and continentality influence UK weather."
+          },
+          {
+           "code": null,
+           "text": "Explain how air masses cause extremes of wind, temperature and precipitation."
+          }
+         ]
+        },
+        {
+         "id": "uk-flood-case-study",
+         "title": "UK flood case study",
+         "outcomes": [
+          {
+           "code": "1.3.2",
+           "text": "For one UK flood caused by extreme weather, describe its causes, including the weather conditions."
+          },
+          {
+           "code": null,
+           "text": "Describe the flood's effects on people and the environment and how it was managed at different scales."
+          }
+         ]
+        },
+        {
+         "id": "using-and-modifying-uk-environments",
+         "title": "Using and modifying UK environments",
+         "outcomes": [
+          {
+           "code": "1.3.3",
+           "text": "Describe how humans modify UK environments for food (mechanised farming, commercial fishing), energy (wind farms, fracking) and water (reservoirs, transfer schemes)."
+          }
+         ]
+        },
+        {
+         "id": "uk-energy-sources",
+         "title": "UK energy sources",
+         "outcomes": [
+          {
+           "code": "1.3.4",
+           "text": "Identify renewable and non-renewable energy sources."
+          },
+          {
+           "code": null,
+           "text": "Describe how much each contributes to UK energy supply."
+          }
+         ]
+        },
+        {
+         "id": "managing-uk-energy",
+         "title": "Managing UK energy",
+         "outcomes": [
+          {
+           "code": "1.3.5",
+           "text": "Describe changing UK energy supply and demand since 1950 and the role of government and international organisations."
+          },
+          {
+           "code": null,
+           "text": "Evaluate strategies for sustainable energy use and management at local and national scales."
+          },
+          {
+           "code": null,
+           "text": "Describe renewable energy development in the UK and its impacts on people and the environment."
+          },
+          {
+           "code": null,
+           "text": "Discuss the extent to which non-renewable energy should supply the UK's future."
+          },
+          {
+           "code": null,
+           "text": "Explain the economic, political and environmental factors affecting future UK energy supply."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "component-02-the-world-around-us",
+     "title": "Component 02: The World Around Us",
+     "topics": [
+      {
+       "id": "2-1-ecosystems-of-the-planet",
+       "title": "2.1 Ecosystems of the Planet",
+       "subtopics": [
+        {
+         "id": "ecosystem-components",
+         "title": "Ecosystem components",
+         "outcomes": [
+          {
+           "code": "2.1.1",
+           "text": "Describe abiotic and biotic ecosystem components and how they are interdependent."
+          }
+         ]
+        },
+        {
+         "id": "global-ecosystems",
+         "title": "Global ecosystems",
+         "outcomes": [
+          {
+           "code": "2.1.2",
+           "text": "Describe the global distribution of polar regions, coral reefs, grasslands, temperate forests, tropical rainforests and hot deserts."
+          },
+          {
+           "code": null,
+           "text": "Describe the climate, plants and animals of these ecosystems."
+          }
+         ]
+        },
+        {
+         "id": "tropical-rainforest-locations",
+         "title": "Tropical rainforest locations",
+         "outcomes": [
+          {
+           "code": "2.1.3",
+           "text": "Locate the major tropical rainforests: Amazon, Central American, Congo Basin, Madagascan, South East Asian and Australasian."
+          }
+         ]
+        },
+        {
+         "id": "coral-reef-locations",
+         "title": "Coral reef locations",
+         "outcomes": [
+          {
+           "code": "2.1.4",
+           "text": "Locate the major warm water coral reefs, including the Great Barrier Reef, Red Sea, New Caledonia, Mesoamerican, Florida and Andros reefs."
+          }
+         ]
+        },
+        {
+         "id": "threatened-ecosystems",
+         "title": "Threatened ecosystems",
+         "outcomes": [
+          {
+           "code": "2.1.5",
+           "text": "Explain nutrient and water cycles within tropical rainforests."
+          },
+          {
+           "code": null,
+           "text": "Explain nutrient cycling within coral reefs."
+          },
+          {
+           "code": null,
+           "text": "Use a rainforest and a coral reef case study to show interdependence of climate, soil, water, plants, animals and humans."
+          },
+          {
+           "code": null,
+           "text": "Explain the value of these ecosystems to humans and the planet."
+          },
+          {
+           "code": null,
+           "text": "Describe threats to biodiversity and efforts to reduce them through sustainable use and management."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "2-2-people-of-the-planet",
+       "title": "2.2 People of the Planet",
+       "subtopics": [
+        {
+         "id": "measuring-development",
+         "title": "Measuring development",
+         "outcomes": [
+          {
+           "code": "2.2.1",
+           "text": "Give social, economic and environmental definitions of development, including sustainable development."
+          },
+          {
+           "code": null,
+           "text": "Describe development indicators (GNI per capita, Human Development Index, Internet users) with their strengths and weaknesses."
+          },
+          {
+           "code": null,
+           "text": "Explain how indicators show the consequences of uneven development."
+          },
+          {
+           "code": null,
+           "text": "Describe the current pattern of advanced countries, emerging and developing countries and low-income developing countries."
+          }
+         ]
+        },
+        {
+         "id": "causes-of-uneven-development",
+         "title": "Causes of uneven development",
+         "outcomes": [
+          {
+           "code": "2.2.2",
+           "text": "Outline reasons for uneven development, including colonialism's effect on trade and exploitation of resources."
+          },
+          {
+           "code": null,
+           "text": "Describe types of aid and how aid can both promote and hinder development."
+          }
+         ]
+        },
+        {
+         "id": "an-lidc-or-edc-case-study",
+         "title": "An LIDC or EDC case study",
+         "outcomes": [
+          {
+           "code": "2.2.3",
+           "text": "Use a case study of one LIDC or EDC to show how its location, environment, politics, trade, investment, population, employment, social factors, technology and an aid project shape its development."
+          },
+          {
+           "code": null,
+           "text": "Use Rostow's model to judge the country's path of economic development."
+          }
+         ]
+        },
+        {
+         "id": "urban-world-and-megacities",
+         "title": "Urban world and megacities",
+         "outcomes": [
+          {
+           "code": "2.2.4",
+           "text": "Define city, megacity and world city."
+          },
+          {
+           "code": null,
+           "text": "Describe the distribution of megacities and how it has changed."
+          },
+          {
+           "code": null,
+           "text": "Explain how urban growth rates vary between areas of different development."
+          }
+         ]
+        },
+        {
+         "id": "rapid-urbanisation-in-lidcs",
+         "title": "Rapid urbanisation in LIDCs",
+         "outcomes": [
+          {
+           "code": "2.2.5",
+           "text": "Explain the causes of rapid urbanisation in LIDCs: push and pull factors and natural growth."
+          },
+          {
+           "code": null,
+           "text": "Outline its social, economic and environmental consequences."
+          }
+         ]
+        },
+        {
+         "id": "a-major-lidc-or-edc-city",
+         "title": "A major LIDC or EDC city",
+         "outcomes": [
+          {
+           "code": "2.2.6",
+           "text": "Use a case study of one major LIDC or EDC city to explain its place in its region, the country and the world."
+          },
+          {
+           "code": null,
+           "text": "Explain how migration shapes the city's growth and character."
+          },
+          {
+           "code": null,
+           "text": "Describe ways of life in the city: culture, ethnicity, housing, leisure and consumption."
+          },
+          {
+           "code": null,
+           "text": "Describe challenges of housing, transport and waste, and a sustainable strategy for one of them."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "2-3-environmental-threats-to-our-planet",
+       "title": "2.3 Environmental threats to our Planet",
+       "subtopics": [
+        {
+         "id": "climate-change-through-time",
+         "title": "Climate change through time",
+         "outcomes": [
+          {
+           "code": "2.3.1",
+           "text": "Describe how climate has changed since the Quaternary began, including ice ages."
+          },
+          {
+           "code": null,
+           "text": "Describe warming and cooling periods since 1000AD: medieval warming, Little Ice Age and modern warming."
+          },
+          {
+           "code": null,
+           "text": "Describe evidence for climate change: temperature data, ice cores, tree rings, paintings and diaries."
+          }
+         ]
+        },
+        {
+         "id": "causes-of-climate-change",
+         "title": "Causes of climate change",
+         "outcomes": [
+          {
+           "code": "2.3.2",
+           "text": "Explain natural causes of climate change: solar variation, orbital changes and volcanic activity."
+          },
+          {
+           "code": null,
+           "text": "Explain how human activity causes the enhanced greenhouse effect and global warming."
+          }
+         ]
+        },
+        {
+         "id": "consequences-of-climate-change",
+         "title": "Consequences of climate change",
+         "outcomes": [
+          {
+           "code": "2.3.3",
+           "text": "Summarise consequences of climate change being experienced around the planet."
+          }
+         ]
+        },
+        {
+         "id": "global-atmospheric-circulation",
+         "title": "Global atmospheric circulation",
+         "outcomes": [
+          {
+           "code": "2.3.4",
+           "text": "Describe the distribution of the world's main climatic regions."
+          },
+          {
+           "code": null,
+           "text": "Outline how air movement between poles and equator drives the global circulation."
+          },
+          {
+           "code": null,
+           "text": "Explain how global circulation produces extreme wind, temperature and precipitation in different places."
+          }
+         ]
+        },
+        {
+         "id": "tropical-storms-and-drought",
+         "title": "Tropical storms and drought",
+         "outcomes": [
+          {
+           "code": "2.3.5",
+           "text": "Outline the causes of tropical storms and drought."
+          },
+          {
+           "code": null,
+           "text": "Describe their distribution and frequency and whether these have changed over time."
+          }
+         ]
+        },
+        {
+         "id": "drought-case-study",
+         "title": "Drought case study",
+         "outcomes": [
+          {
+           "code": "2.3.6",
+           "text": "For one El Nino or La Nina drought, explain how the extreme weather develops and leads to drought."
+          },
+          {
+           "code": null,
+           "text": "Describe the drought's effects on people and the environment."
+          },
+          {
+           "code": null,
+           "text": "Describe how people have adapted to the drought."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "component-03-geographical-skills",
+     "title": "Component 03: Geographical Skills",
+     "topics": [
+      {
+       "id": "3-1-cartographic-skills",
+       "title": "3.1 Cartographic skills",
+       "subtopics": [
+        {
+         "id": "map-skills",
+         "title": "Map skills",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Select, adapt and construct maps with suitable scales and annotations."
+          },
+          {
+           "code": null,
+           "text": "Interpret cross-sections and transects."
+          },
+          {
+           "code": null,
+           "text": "Use coordinates, scale and distance."
+          },
+          {
+           "code": null,
+           "text": "Extract, interpret, analyse and evaluate map information."
+          },
+          {
+           "code": null,
+           "text": "Use gradient, contour and spot height on OS and other isoline maps."
+          },
+          {
+           "code": null,
+           "text": "Describe, interpret and analyse geo-spatial data in a GIS."
+          }
+         ]
+        },
+        {
+         "id": "types-of-map",
+         "title": "Types of map",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Use atlas, OS (1:50 000 and 1:25 000), base, choropleth, isoline, flow line, desire-line, sphere of influence, thematic, route and sketch maps."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "3-2-graphical-skills",
+       "title": "3.2 Graphical skills",
+       "subtopics": [
+        {
+         "id": "graphs-and-charts",
+         "title": "Graphs and charts",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Select, adapt and construct graphs and charts with suitable scales and annotations."
+          },
+          {
+           "code": null,
+           "text": "Present and communicate data effectively through graphs and charts."
+          },
+          {
+           "code": null,
+           "text": "Extract, interpret, analyse and evaluate information from graphs and charts."
+          }
+         ]
+        },
+        {
+         "id": "types-of-graph",
+         "title": "Types of graph",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Use bar graphs, histograms, line graphs, scatter graphs with best fit, dispersion graphs, pie charts, climate graphs, proportional symbols, pictograms, cross-sections, population pyramids, radial graphs and rose charts."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "3-3-numerical-and-statistical-skills",
+       "title": "3.3 Numerical and statistical skills",
+       "subtopics": [
+        {
+         "id": "number-and-measurement",
+         "title": "Number and measurement",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Understand number, area and scale, and the quantitative relationships between units."
+          },
+          {
+           "code": null,
+           "text": "Use proportion, ratio, magnitude and frequency correctly."
+          },
+          {
+           "code": null,
+           "text": "Calculate percentage increase and decrease, and percentiles."
+          }
+         ]
+        },
+        {
+         "id": "averages-and-spread",
+         "title": "Averages and spread",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Use median, mean, range, quartiles, inter-quartile range, mode and modal class, and cumulative frequency."
+          }
+         ]
+        },
+        {
+         "id": "data-collection-and-interpretation",
+         "title": "Data collection and interpretation",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Design fieldwork data collection sheets, considering accuracy, sample size, procedures, control groups and reliability."
+          },
+          {
+           "code": null,
+           "text": "Interpret tables of data."
+          },
+          {
+           "code": null,
+           "text": "Describe relationships in bivariate data, sketch trend lines and draw estimated lines of best fit."
+          },
+          {
+           "code": null,
+           "text": "Make predictions by interpolating and extrapolating trends."
+          },
+          {
+           "code": null,
+           "text": "Identify weaknesses in statistical presentations and draw justified conclusions."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "3-4-visual-and-written-sources",
+       "title": "3.4 Visual and written sources",
+       "subtopics": [
+        {
+         "id": "analysing-sources",
+         "title": "Analysing sources",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Deconstruct, interpret, analyse and evaluate photographs, cartoons, pictures and diagrams."
+          },
+          {
+           "code": null,
+           "text": "Analyse written articles for understanding, interpretation and bias."
+          },
+          {
+           "code": null,
+           "text": "Suggest improvements, issues or reasons for using maps, graphs, statistics and visual sources."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "fieldwork-skills",
+       "title": "Fieldwork skills",
+       "subtopics": [
+        {
+         "id": "fieldwork-enquiry",
+         "title": "Fieldwork enquiry",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Understand the kinds of question fieldwork can investigate and the enquiry process used."
+          },
+          {
+           "code": null,
+           "text": "Understand fieldwork techniques, including observation and different kinds of measurement."
+          }
+         ]
+        },
+        {
+         "id": "fieldwork-data-and-conclusions",
+         "title": "Fieldwork data and conclusions",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Process and present fieldwork data in maps, graphs and diagrams."
+          },
+          {
+           "code": null,
+           "text": "Analyse and explain field data using geographical case studies and theories."
+          },
+          {
+           "code": null,
+           "text": "Draw evidenced conclusions and summaries from fieldwork data."
+          },
+          {
+           "code": null,
+           "text": "Reflect critically on fieldwork data, methods, conclusions and knowledge gained."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "build": {
+  "builtAt": "2026-10-14T10:50:12.039Z",
+  "model": "claude-agent",
+  "usd": 0,
+  "expectedCodes": 33,
+  "coverage": 1,
+  "missingCodes": [],
+  "counts": {
+   "grades": 1,
+   "units": 3,
+   "topics": 11,
+   "subtopics": 43,
+   "outcomes": 103
+  },
+  "warnings": [
+   "grade Year 10 has no content",
+   "grade Year 11 has no content",
+   "unexpected grade label \"all\""
+  ]
+ }
+}

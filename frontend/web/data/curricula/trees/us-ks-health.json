@@ -1,0 +1,1844 @@
+{
+ "id": "us-ks-health",
+ "region": "US",
+ "framework": "Kansas state academic standards: Health Education",
+ "board": null,
+ "qualification": "K-12",
+ "subject": "Health Education",
+ "syllabusCode": null,
+ "gradeSystem": "grade",
+ "source": {
+  "urls": [
+   "https://api.commonstandardsproject.com/api/v1/jurisdictions/3D2A9582BF3D4118B30AAD2DF9A183D1",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/B5FA941ECF7047B58CFDB80060A45930",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/EAFFE8DC26354A70B8DE3125F301A593",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/BF44317CD7F948D4921C47ED2A3356BB",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/B5F1C2B94B6843FEB8DAAA3ABA0BC6C0"
+  ],
+  "publisher": "Kansas state education agency (machine-readable via Common Standards Project / ASN)",
+  "licence": "CC BY 4.0 US, Common Curriculum, Inc.",
+  "firstExam": "2018"
+ },
+ "grades": [
+  {
+   "grade": "K-2",
+   "units": [
+    {
+     "id": "the-students-will-know-comprehend-apply-analyze-",
+     "title": "The students will know, comprehend, apply, analyze, synthesize and/or evaluate:",
+     "topics": [
+      {
+       "id": "community-health",
+       "title": "Community Health",
+       "subtopics": [
+        {
+         "id": "community-health",
+         "title": "Community Health",
+         "outcomes": [
+          {
+           "code": "2.1",
+           "text": "Community helpers (police, firefighters, nurses, sanitation, doctors, EMT, etc.)"
+          },
+          {
+           "code": "2.2",
+           "text": "Local community needs/issues/events"
+          },
+          {
+           "code": "2.3",
+           "text": "Healthy Communities (home, neighborhoods, school, etc.)"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "consumer-health",
+       "title": "Consumer Health",
+       "subtopics": [
+        {
+         "id": "consumer-health",
+         "title": "Consumer Health",
+         "outcomes": [
+          {
+           "code": "2.1",
+           "text": "Reliable health-care products, safety professionals, and services"
+          },
+          {
+           "code": "2.2",
+           "text": "Safety rules for using medicines and health-care products"
+          },
+          {
+           "code": "2.3",
+           "text": "Interpersonal and intrapersonal influences on health choices"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "environmental-health",
+       "title": "Environmental Health",
+       "subtopics": [
+        {
+         "id": "environmental-health",
+         "title": "Environmental Health",
+         "outcomes": [
+          {
+           "code": "2.1",
+           "text": "Healthy and clean communities"
+          },
+          {
+           "code": "2.2",
+           "text": "Reduce, reuse, recycle, and alternatives"
+          },
+          {
+           "code": "2.3",
+           "text": "Types of pollution"
+          },
+          {
+           "code": "2.4",
+           "text": "Environmental health hazards (air, soil, sun, water, noise, food, chemicals, etc.)"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "human-sexuality-and-relationships",
+       "title": "Human Sexuality and Relationships",
+       "subtopics": [
+        {
+         "id": "human-sexuality-and-relationships",
+         "title": "Human Sexuality and Relationships",
+         "outcomes": [
+          {
+           "code": "2.1",
+           "text": "Stages of growth and development"
+          },
+          {
+           "code": "2.2",
+           "text": "Body parts and their functions"
+          },
+          {
+           "code": "2.3",
+           "text": "Five senses"
+          },
+          {
+           "code": "2.4",
+           "text": "Similarities and differences as individuals and families"
+          },
+          {
+           "code": "2.5",
+           "text": "Adapting to changes within families"
+          },
+          {
+           "code": "2.6",
+           "text": "Responsibilities/roles of family members"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "injury-prevention-and-safety",
+       "title": "Injury Prevention and Safety",
+       "subtopics": [
+        {
+         "id": "injury-prevention-and-safety-1-of-2",
+         "title": "Injury Prevention and Safety (1 of 2)",
+         "outcomes": [
+          {
+           "code": "2.1",
+           "text": "Safety rules and laws (ex. - seat belts, helmets, crossing the street, sunscreen, fire safety, etc.)"
+          },
+          {
+           "code": "2.2",
+           "text": "Emergency and non-emergency situations"
+          },
+          {
+           "code": "2.3",
+           "text": "Refusal skills and decision making, to reduce accidents and injuries"
+          },
+          {
+           "code": "2.",
+           "text": "Responding to unwanted, threatening, or dangerous situations"
+          }
+         ]
+        },
+        {
+         "id": "injury-prevention-and-safety-2-of-2",
+         "title": "Injury Prevention and Safety (2 of 2)",
+         "outcomes": [
+          {
+           "code": "2.5",
+           "text": "Strategies to report verbal, mental and physical harm"
+          },
+          {
+           "code": "2.6",
+           "text": "Conflict resolution steps"
+          },
+          {
+           "code": "2.7",
+           "text": "Dangers of poisons"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "mental-and-emotional-health",
+       "title": "Mental and Emotional Health",
+       "subtopics": [
+        {
+         "id": "mental-and-emotional-health",
+         "title": "Mental and Emotional Health",
+         "outcomes": [
+          {
+           "code": "2.1",
+           "text": "Healthy ways to communicate needs, wants, and feelings"
+          },
+          {
+           "code": "2.2",
+           "text": "Communicating care, consideration, and respect"
+          },
+          {
+           "code": "2.",
+           "text": "Development of coping skills"
+          },
+          {
+           "code": "2.4",
+           "text": "Positive body images and self-esteem"
+          },
+          {
+           "code": "2.5",
+           "text": "Bullying/harassment prevention"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "nutrition",
+       "title": "Nutrition",
+       "subtopics": [
+        {
+         "id": "nutrition-1-of-2",
+         "title": "Nutrition (1 of 2)",
+         "outcomes": [
+          {
+           "code": "2.1",
+           "text": "Digestion"
+          },
+          {
+           "code": "2.2",
+           "text": "Role of food and nutrients in providing energy"
+          },
+          {
+           "code": "2.3",
+           "text": "Balanced diet"
+          },
+          {
+           "code": "2.4",
+           "text": "Impact of food choices"
+          }
+         ]
+        },
+        {
+         "id": "nutrition-2-of-2",
+         "title": "Nutrition (2 of 2)",
+         "outcomes": [
+          {
+           "code": "2.5",
+           "text": "Food groups"
+          },
+          {
+           "code": "2.6",
+           "text": "Daily requirements for water"
+          },
+          {
+           "code": "2.7",
+           "text": "Safe food-handling practices"
+          },
+          {
+           "code": "2.8",
+           "text": "Relationship between exercise and nutrition"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "personal-health",
+       "title": "Personal Health",
+       "subtopics": [
+        {
+         "id": "personal-health",
+         "title": "Personal Health",
+         "outcomes": [
+          {
+           "code": "2.1",
+           "text": "Functions of major body organs"
+          },
+          {
+           "code": "2.2",
+           "text": "Maintaining clean skin, hair, teeth and clothes"
+          },
+          {
+           "code": "2.",
+           "text": "Heart-healthy activities and the benefits of exercise"
+          },
+          {
+           "code": "2.",
+           "text": "Importance of personal health and to seek health care"
+          },
+          {
+           "code": "2.5",
+           "text": "Healthy and unhealthy behaviors impact personal health and self-worth"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "prevention-control-of-disease",
+       "title": "Prevention & Control of Disease",
+       "subtopics": [
+        {
+         "id": "prevention-control-of-disease-1-of-2",
+         "title": "Prevention & Control of Disease (1 of 2)",
+         "outcomes": [
+          {
+           "code": "2.1",
+           "text": "Health plan for germ protection for disease prevention"
+          },
+          {
+           "code": "2.2",
+           "text": "Common childhood illnesses and symptoms"
+          },
+          {
+           "code": "2.",
+           "text": "Communicable and non-communicable illnesses"
+          },
+          {
+           "code": "2.",
+           "text": "Roles of the body and medicines in preventing germs"
+          }
+         ]
+        },
+        {
+         "id": "prevention-control-of-disease-2-of-2",
+         "title": "Prevention & Control of Disease (2 of 2)",
+         "outcomes": [
+          {
+           "code": "2.",
+           "text": "Relationship between nutrition, exercise and disease prevention"
+          },
+          {
+           "code": "2.6",
+           "text": "Types of germs and transmissions"
+          },
+          {
+           "code": "2.7",
+           "text": "Purpose of immunizations"
+          },
+          {
+           "code": "2.8",
+           "text": "Importance of routine check-ups"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "substance-use-and-abuse-addiction",
+       "title": "Substance Use and Abuse & Addiction",
+       "subtopics": [
+        {
+         "id": "substance-use-and-abuse-addiction",
+         "title": "Substance Use and Abuse & Addiction",
+         "outcomes": [
+          {
+           "code": "2.1",
+           "text": "Drug types and dangers of each (alcohol, tobacco, other illegal drugs)"
+          },
+          {
+           "code": "2.2",
+           "text": "Helpful and harmful drugs"
+          },
+          {
+           "code": "2.3",
+           "text": "Appropriate use of medicine"
+          },
+          {
+           "code": "2.4",
+           "text": "Safe choices with medicines and drugs"
+          },
+          {
+           "code": "2.5",
+           "text": "Effects of medicines and drugs"
+          },
+          {
+           "code": "2.6",
+           "text": "Refusal skills"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "3-5",
+   "units": [
+    {
+     "id": "the-students-will-know-comprehend-apply-analyze-",
+     "title": "The students will know, comprehend, apply, analyze, synthesize and/or evaluate:",
+     "topics": [
+      {
+       "id": "community-health",
+       "title": "Community Health",
+       "subtopics": [
+        {
+         "id": "community-health",
+         "title": "Community Health",
+         "outcomes": [
+          {
+           "code": "5.1",
+           "text": "Community helpers and their roles within communities"
+          },
+          {
+           "code": "5.",
+           "text": "Local community needs/issues/events"
+          },
+          {
+           "code": "5.",
+           "text": "Structure of communities"
+          },
+          {
+           "code": "5.4",
+           "text": "Individual roles in maintaining a healthy community"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "consumer-health",
+       "title": "Consumer Health",
+       "subtopics": [
+        {
+         "id": "consumer-health",
+         "title": "Consumer Health",
+         "outcomes": [
+          {
+           "code": "5.",
+           "text": "Validity of information on health care products and services"
+          },
+          {
+           "code": "5.2",
+           "text": "Hazards and benefits of medicines and health-care products"
+          },
+          {
+           "code": "5.3",
+           "text": "Interpersonal and intrapersonal influences on health choices"
+          },
+          {
+           "code": "5.4",
+           "text": "Validity of product claims"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "environmental-health",
+       "title": "Environmental Health",
+       "subtopics": [
+        {
+         "id": "environmental-health",
+         "title": "Environmental Health",
+         "outcomes": [
+          {
+           "code": "5.1",
+           "text": "Healthy and clean communities"
+          },
+          {
+           "code": "5.",
+           "text": "Reduce, reuse, recycle, and alternatives"
+          },
+          {
+           "code": "5.3",
+           "text": "Types and effects of pollution"
+          },
+          {
+           "code": "5.4",
+           "text": "Environmental hazards and their health risks (air, soil, sun, water, noise, food, chemicals, etc.)"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "human-sexuality-and-relationships",
+       "title": "Human Sexuality and Relationships",
+       "subtopics": [
+        {
+         "id": "human-sexuality-and-relationships",
+         "title": "Human Sexuality and Relationships",
+         "outcomes": [
+          {
+           "code": "5.1",
+           "text": "Building healthy relationships"
+          },
+          {
+           "code": "5.2",
+           "text": "Changes associated with puberty"
+          },
+          {
+           "code": "5.3",
+           "text": "Respect yourself and others"
+          },
+          {
+           "code": "5.4",
+           "text": "Adapting to changes within families"
+          },
+          {
+           "code": "5.5",
+           "text": "Stages of development"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "injury-prevention-and-safety",
+       "title": "Injury Prevention and Safety",
+       "subtopics": [
+        {
+         "id": "injury-prevention-and-safety-1-of-2",
+         "title": "Injury Prevention and Safety (1 of 2)",
+         "outcomes": [
+          {
+           "code": "5.",
+           "text": "Behaviors to prevent physical injury (ex. - fire safety, exercising, bicycle safety, car safety, etc.)"
+          },
+          {
+           "code": "5.",
+           "text": "Regularly and properly use safety equipment"
+          },
+          {
+           "code": "5.",
+           "text": "Proper responses to emergency situations"
+          },
+          {
+           "code": "5.4",
+           "text": "Refusal skills and decision making, to reduce accidents and injuries"
+          }
+         ]
+        },
+        {
+         "id": "injury-prevention-and-safety-2-of-2",
+         "title": "Injury Prevention and Safety (2 of 2)",
+         "outcomes": [
+          {
+           "code": "5.5",
+           "text": "Basic first aid (including when to call 911, etc.)"
+          },
+          {
+           "code": "5.6",
+           "text": "Resources for injury prevention"
+          },
+          {
+           "code": "5.7",
+           "text": "Safety when using the internet and other technology"
+          },
+          {
+           "code": "5.8",
+           "text": "Non-violent strategies to manage or resolve conflicts"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "mental-and-emotional-health",
+       "title": "Mental and Emotional Health",
+       "subtopics": [
+        {
+         "id": "mental-and-emotional-health-1-of-2",
+         "title": "Mental and Emotional Health (1 of 2)",
+         "outcomes": [
+          {
+           "code": "5.1",
+           "text": "Appropriate methods of expressing feelings"
+          },
+          {
+           "code": "5.",
+           "text": "Expressing wants and needs in a productive and healthy manner"
+          },
+          {
+           "code": "5.3",
+           "text": "Care, consideration, and respect to self and others"
+          },
+          {
+           "code": "5.",
+           "text": "Stress management and coping skills"
+          }
+         ]
+        },
+        {
+         "id": "mental-and-emotional-health-2-of-2",
+         "title": "Mental and Emotional Health (2 of 2)",
+         "outcomes": [
+          {
+           "code": "5.5",
+           "text": "Interpersonal and intrapersonal motivation for self-efficacy"
+          },
+          {
+           "code": "5.6",
+           "text": "Relationship between body image and self-esteem"
+          },
+          {
+           "code": "5.7",
+           "text": "Techniques to prevent bullying"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "nutrition",
+       "title": "Nutrition",
+       "subtopics": [
+        {
+         "id": "nutrition-1-of-3",
+         "title": "Nutrition (1 of 3)",
+         "outcomes": [
+          {
+           "code": "5.1",
+           "text": "Digestive system (basic function and organs)"
+          },
+          {
+           "code": "5.",
+           "text": "Calories"
+          },
+          {
+           "code": "5.",
+           "text": "Food groups"
+          },
+          {
+           "code": "5.4",
+           "text": "Healthy nutrition guidelines"
+          },
+          {
+           "code": "5.5",
+           "text": "Nutritional needs through stages of development"
+          }
+         ]
+        },
+        {
+         "id": "nutrition-2-of-3",
+         "title": "Nutrition (2 of 3)",
+         "outcomes": [
+          {
+           "code": "5.6",
+           "text": "Food labels"
+          },
+          {
+           "code": "5.7",
+           "text": "Energy and nutrients"
+          },
+          {
+           "code": "5.8",
+           "text": "Food health policies"
+          },
+          {
+           "code": "5.9",
+           "text": "Eating disorders/dysfunctions"
+          },
+          {
+           "code": "5.10",
+           "text": "Links between nutrition and illness"
+          }
+         ]
+        },
+        {
+         "id": "nutrition-3-of-3",
+         "title": "Nutrition (3 of 3)",
+         "outcomes": [
+          {
+           "code": "5.11",
+           "text": "Energy drinks"
+          },
+          {
+           "code": "5.12",
+           "text": "Informed food selection"
+          },
+          {
+           "code": "5.13",
+           "text": "Impact of food choices"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "personal-health",
+       "title": "Personal Health",
+       "subtopics": [
+        {
+         "id": "personal-health",
+         "title": "Personal Health",
+         "outcomes": [
+          {
+           "code": "5.1",
+           "text": "Function and anatomy of the body systems"
+          },
+          {
+           "code": "5.",
+           "text": "Responsible care of the body (ex. - nutrition, hygiene, exercise, etc.)"
+          },
+          {
+           "code": "5.",
+           "text": "Benefits of exercise"
+          },
+          {
+           "code": "5.",
+           "text": "Importance and strategies to seek personal health care"
+          },
+          {
+           "code": "5.5",
+           "text": "Relationship between emotional, mental, social, and physical health"
+          },
+          {
+           "code": "5.6",
+           "text": "Value and impact of sleep on the body"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "prevention-control-of-disease",
+       "title": "Prevention & Control of Disease",
+       "subtopics": [
+        {
+         "id": "prevention-control-of-disease-1-of-2",
+         "title": "Prevention & Control of Disease (1 of 2)",
+         "outcomes": [
+          {
+           "code": "5.1",
+           "text": "Health plan for germ protection for disease prevention"
+          },
+          {
+           "code": "5.",
+           "text": "Common allergies and illnesses, symptoms and management"
+          },
+          {
+           "code": "5.",
+           "text": "Communicable and non-communicable illnesses"
+          },
+          {
+           "code": "5.",
+           "text": "Roles of the body and medicines in protecting against germs"
+          }
+         ]
+        },
+        {
+         "id": "prevention-control-of-disease-2-of-2",
+         "title": "Prevention & Control of Disease (2 of 2)",
+         "outcomes": [
+          {
+           "code": "5.5",
+           "text": "Relationship between lifestyle choices and disease prevention"
+          },
+          {
+           "code": "5.6",
+           "text": "Bacterial, viral, and fungal infections"
+          },
+          {
+           "code": "5.7",
+           "text": "Structure and functions of the immune system"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "substance-use-and-abuse-addiction",
+       "title": "Substance Use and Abuse & Addiction",
+       "subtopics": [
+        {
+         "id": "substance-use-and-abuse-addiction-1-of-2",
+         "title": "Substance Use and Abuse & Addiction (1 of 2)",
+         "outcomes": [
+          {
+           "code": "5.1",
+           "text": "Types of tobacco products and the risks of using these products"
+          },
+          {
+           "code": "5.2",
+           "text": "Dangers of misuse and abuse of drugs"
+          },
+          {
+           "code": "5.3",
+           "text": "Proper use of over the counter and prescription medicines"
+          },
+          {
+           "code": "5.4",
+           "text": "Short-term and long-term effects of drugs"
+          },
+          {
+           "code": "5.5",
+           "text": "Rules and laws for medicines and drugs"
+          }
+         ]
+        },
+        {
+         "id": "substance-use-and-abuse-addiction-2-of-2",
+         "title": "Substance Use and Abuse & Addiction (2 of 2)",
+         "outcomes": [
+          {
+           "code": "5.6",
+           "text": "Physical and psychological addictions"
+          },
+          {
+           "code": "5.7",
+           "text": "Values and social behaviors in preventing drug use"
+          },
+          {
+           "code": "5.8",
+           "text": "Resources and trusted experts on drugs and medicines"
+          },
+          {
+           "code": "5.9",
+           "text": "Personal strategies (assertiveness, resistance, refusal skills, and goal setting) for drug free living"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "6-8",
+   "units": [
+    {
+     "id": "the-students-will-know-comprehend-apply-analyze-",
+     "title": "The students will know, comprehend, apply, analyze, synthesize and/or evaluate:",
+     "topics": [
+      {
+       "id": "community-health",
+       "title": "Community Health",
+       "subtopics": [
+        {
+         "id": "community-health",
+         "title": "Community Health",
+         "outcomes": [
+          {
+           "code": "8.1",
+           "text": "Resources in the community for improved health"
+          },
+          {
+           "code": "8.2",
+           "text": "Local community needs/issues/events"
+          },
+          {
+           "code": "8.",
+           "text": "Local/state laws, ordinances, and policies for a healthy community"
+          },
+          {
+           "code": "8.4",
+           "text": "Impact of participation and engagement within the community"
+          },
+          {
+           "code": "8.5",
+           "text": "Global health issues"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "consumer-health",
+       "title": "Consumer Health",
+       "subtopics": [
+        {
+         "id": "consumer-health",
+         "title": "Consumer Health",
+         "outcomes": [
+          {
+           "code": "8.1",
+           "text": "Validity of information on health care products and services"
+          },
+          {
+           "code": "8.2",
+           "text": "Adolescent health care product information"
+          },
+          {
+           "code": "8.3",
+           "text": "Interpersonal and intrapersonal influences on health choices (budgeting, culture, SES, etc.)"
+          },
+          {
+           "code": "8.4",
+           "text": "Informed consumer choices regarding health"
+          },
+          {
+           "code": "8.5",
+           "text": "Seek reliable consumer health advice"
+          },
+          {
+           "code": "8.6",
+           "text": "Importance of local and state health policies"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "environmental-health",
+       "title": "Environmental Health",
+       "subtopics": [
+        {
+         "id": "environmental-health",
+         "title": "Environmental Health",
+         "outcomes": [
+          {
+           "code": "8.1",
+           "text": "Personal responsibility for community environmental issues"
+          },
+          {
+           "code": "8.2",
+           "text": "Reduce, reuse, recycle, and alternatives"
+          },
+          {
+           "code": "8.3",
+           "text": "Types and effects of pollution"
+          },
+          {
+           "code": "8.4",
+           "text": "Environmental influences on health"
+          },
+          {
+           "code": "8.5",
+           "text": "Local and state environmental issues"
+          },
+          {
+           "code": "8.6",
+           "text": "Laws, ordinances, and policies"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "human-sexuality-and-relationships",
+       "title": "Human Sexuality and Relationships",
+       "subtopics": [
+        {
+         "id": "human-sexuality-and-relationships-1-of-2",
+         "title": "Human Sexuality and Relationships (1 of 2)",
+         "outcomes": [
+          {
+           "code": "8.1",
+           "text": "Changes during puberty"
+          },
+          {
+           "code": "8.2",
+           "text": "Refusal skills"
+          },
+          {
+           "code": "8.3",
+           "text": "Responsible behaviors within relationships (communication, abstinence, etc.)"
+          },
+          {
+           "code": "8.",
+           "text": "Male and female reproductive systems"
+          }
+         ]
+        },
+        {
+         "id": "human-sexuality-and-relationships-2-of-2",
+         "title": "Human Sexuality and Relationships (2 of 2)",
+         "outcomes": [
+          {
+           "code": "8.5",
+           "text": "Potential outcomes of sexual activity"
+          },
+          {
+           "code": "8.6",
+           "text": "Seeking reliable adult advice regarding relationships, dating, and sexual activity"
+          },
+          {
+           "code": "8.7",
+           "text": "Laws associated with sexual behaviors (consent, harassment, assault, rape, etc.)"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "injury-prevention-and-safety",
+       "title": "Injury Prevention and Safety",
+       "subtopics": [
+        {
+         "id": "injury-prevention-and-safety-1-of-3",
+         "title": "Injury Prevention and Safety (1 of 3)",
+         "outcomes": [
+          {
+           "code": "8.1",
+           "text": "Basic first aid skills (including bloodborne pathogens)"
+          },
+          {
+           "code": "8.2",
+           "text": "Injury prevention at home, school and community"
+          },
+          {
+           "code": "8.3",
+           "text": "Prevention for sports, physical activity and recreation related injury"
+          },
+          {
+           "code": "8.4",
+           "text": "Resources for safety and injury prevention and response (school, work, community, home, etc.)"
+          }
+         ]
+        },
+        {
+         "id": "injury-prevention-and-safety-2-of-3",
+         "title": "Injury Prevention and Safety (2 of 3)",
+         "outcomes": [
+          {
+           "code": "8.5",
+           "text": "Intentional and unintentional injury"
+          },
+          {
+           "code": "8.6",
+           "text": "Prevention and response to physical violence (guns and/or weapons and bullying)"
+          },
+          {
+           "code": "8.7",
+           "text": "Prevention and response to mental violence (bullying and abuse)"
+          },
+          {
+           "code": "8.8",
+           "text": "Prevention and response to sexual violence (harassment, assault, rape, and abuse)"
+          }
+         ]
+        },
+        {
+         "id": "injury-prevention-and-safety-3-of-3",
+         "title": "Injury Prevention and Safety (3 of 3)",
+         "outcomes": [
+          {
+           "code": "8.9",
+           "text": "Prevention and response to social violence (relationships, conflict resolution, and cyber)"
+          },
+          {
+           "code": "8.10",
+           "text": "Media safety (social media, cyber, TV, music, advertising, etc.)"
+          },
+          {
+           "code": "8.11",
+           "text": "Weather related safety (supplies, shelter, etc.)"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "mental-and-emotional-health",
+       "title": "Mental and Emotional Health",
+       "subtopics": [
+        {
+         "id": "mental-and-emotional-health-1-of-2",
+         "title": "Mental and Emotional Health (1 of 2)",
+         "outcomes": [
+          {
+           "code": "8.1",
+           "text": "Importance of expressing emotions in a productive and healthy manner"
+          },
+          {
+           "code": "8.2",
+           "text": "Character development"
+          },
+          {
+           "code": "8.3",
+           "text": "Mental health terminology"
+          },
+          {
+           "code": "8.4",
+           "text": "Stress management and coping skills"
+          },
+          {
+           "code": "8.5",
+           "text": "Coping with loss and grief"
+          }
+         ]
+        },
+        {
+         "id": "mental-and-emotional-health-2-of-2",
+         "title": "Mental and Emotional Health (2 of 2)",
+         "outcomes": [
+          {
+           "code": "8.6",
+           "text": "Characteristics of healthy and unhealthy relationships"
+          },
+          {
+           "code": "8.7",
+           "text": "Relationship between body image and self-esteem"
+          },
+          {
+           "code": "8.8",
+           "text": "Impact of media on self-esteem"
+          },
+          {
+           "code": "8.9",
+           "text": "Bullying/harassment prevention"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "nutrition",
+       "title": "Nutrition",
+       "subtopics": [
+        {
+         "id": "nutrition-1-of-3",
+         "title": "Nutrition (1 of 3)",
+         "outcomes": [
+          {
+           "code": "8.1",
+           "text": "Nutritional needs through stages of development"
+          },
+          {
+           "code": "8.",
+           "text": "Meal planning and budgeting"
+          },
+          {
+           "code": "8.3",
+           "text": "Safe storage and food handling"
+          },
+          {
+           "code": "8.4",
+           "text": "Nutritional goals"
+          },
+          {
+           "code": "8.5",
+           "text": "Community nutrition efforts"
+          }
+         ]
+        },
+        {
+         "id": "nutrition-2-of-3",
+         "title": "Nutrition (2 of 3)",
+         "outcomes": [
+          {
+           "code": "8.6",
+           "text": "Food labels"
+          },
+          {
+           "code": "8.7",
+           "text": "Eating disorders/dysfunctions"
+          },
+          {
+           "code": "8.8",
+           "text": "Dietary guidelines"
+          },
+          {
+           "code": "8.9",
+           "text": "Establishing and maintaining healthy eating practices"
+          },
+          {
+           "code": "8.10",
+           "text": "Factors in weight control"
+          }
+         ]
+        },
+        {
+         "id": "nutrition-3-of-3",
+         "title": "Nutrition (3 of 3)",
+         "outcomes": [
+          {
+           "code": "8.11",
+           "text": "Food packaging and advertising"
+          },
+          {
+           "code": "8.12",
+           "text": "Nutritional supplements"
+          },
+          {
+           "code": "8.13",
+           "text": "Impact of food choices"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "personal-health",
+       "title": "Personal Health",
+       "subtopics": [
+        {
+         "id": "personal-health",
+         "title": "Personal Health",
+         "outcomes": [
+          {
+           "code": "8.1",
+           "text": "Major body systems, anatomy, functions, relationships between systems"
+          },
+          {
+           "code": "8.",
+           "text": "Proper adolescent hygiene habits"
+          },
+          {
+           "code": "8.3",
+           "text": "Purpose, examples, and benefits of daily exercise"
+          },
+          {
+           "code": "8.4",
+           "text": "Importance and strategies to seek personal health care"
+          },
+          {
+           "code": "8.5",
+           "text": "Develop positive relationships"
+          },
+          {
+           "code": "8.6",
+           "text": "Recommended sleep amounts"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "prevention-control-of-disease",
+       "title": "Prevention & Control of Disease",
+       "subtopics": [
+        {
+         "id": "prevention-control-of-disease-1-of-2",
+         "title": "Prevention & Control of Disease (1 of 2)",
+         "outcomes": [
+          {
+           "code": "8.",
+           "text": "Disease prevention skills"
+          },
+          {
+           "code": "8.2",
+           "text": "Common causes of death, illness and disorders"
+          },
+          {
+           "code": "8.",
+           "text": "Communicable and noncommunicable diseases"
+          },
+          {
+           "code": "8.4",
+           "text": "Medical resources, health screenings and treatment methods for disease"
+          }
+         ]
+        },
+        {
+         "id": "prevention-control-of-disease-2-of-2",
+         "title": "Prevention & Control of Disease (2 of 2)",
+         "outcomes": [
+          {
+           "code": "8.5",
+           "text": "Relationship between lifestyle choices and disease prevention"
+          },
+          {
+           "code": "8.6",
+           "text": "Differences between bacterial, viral and fungal infections"
+          },
+          {
+           "code": "8.7",
+           "text": "Structure/function of the immune system"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "substance-use-and-abuse-addiction",
+       "title": "Substance Use and Abuse & Addiction",
+       "subtopics": [
+        {
+         "id": "substance-use-and-abuse-addiction-1-of-3",
+         "title": "Substance Use and Abuse & Addiction (1 of 3)",
+         "outcomes": [
+          {
+           "code": "8.1",
+           "text": "Effects and consequences of nicotine use (all forms)"
+          },
+          {
+           "code": "8.2",
+           "text": "Effects and consequences of alcohol use"
+          },
+          {
+           "code": "8.",
+           "text": "Effects and consequences of illegal drug use"
+          },
+          {
+           "code": "8.4",
+           "text": "Cumulative risk behaviors (patterns, gateway drugs, etc.)"
+          }
+         ]
+        },
+        {
+         "id": "substance-use-and-abuse-addiction-2-of-3",
+         "title": "Substance Use and Abuse & Addiction (2 of 3)",
+         "outcomes": [
+          {
+           "code": "8.5",
+           "text": "Correct use, misuse and abuse of drug"
+          },
+          {
+           "code": "8.6",
+           "text": "Categories of drugs (ex. stimulants, opiates, depressants, hallucinogens, etc.)"
+          },
+          {
+           "code": "8.7",
+           "text": "Addiction and tolerance"
+          },
+          {
+           "code": "8.8",
+           "text": "Addictive substances and effects on all dimensions of health"
+          }
+         ]
+        },
+        {
+         "id": "substance-use-and-abuse-addiction-3-of-3",
+         "title": "Substance Use and Abuse & Addiction (3 of 3)",
+         "outcomes": [
+          {
+           "code": "8.9",
+           "text": "Media, social influences, and peer pressure of drug usage"
+          },
+          {
+           "code": "8.10",
+           "text": "Rules and laws for medicines and drugs"
+          },
+          {
+           "code": "8.11",
+           "text": "Safe alternatives to medicine"
+          },
+          {
+           "code": "8.12",
+           "text": "Treatment, intervention and prevention of drug overdose, dependency, and abuse"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "9-12",
+   "units": [
+    {
+     "id": "the-students-will-know-comprehend-apply-analyze-",
+     "title": "The students will know, comprehend, apply, analyze, synthesize and/or evaluate:",
+     "topics": [
+      {
+       "id": "community-health",
+       "title": "Community Health",
+       "subtopics": [
+        {
+         "id": "community-health",
+         "title": "Community Health",
+         "outcomes": [
+          {
+           "code": "12.1",
+           "text": "Local community needs/issues/events"
+          },
+          {
+           "code": "12.2",
+           "text": "Local/state laws, ordinances, and policies for a healthy community"
+          },
+          {
+           "code": "12.3",
+           "text": "Value of community interactions"
+          },
+          {
+           "code": "12.4",
+           "text": "Strategies to maintain a healthy community"
+          },
+          {
+           "code": "12.5",
+           "text": "Personal service for the betterment of the community"
+          },
+          {
+           "code": "12.6",
+           "text": "Global health issues"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "consumer-health",
+       "title": "Consumer Health",
+       "subtopics": [
+        {
+         "id": "consumer-health-1-of-2",
+         "title": "Consumer Health (1 of 2)",
+         "outcomes": [
+          {
+           "code": "12.1",
+           "text": "Availability and accessibility of health-care services"
+          },
+          {
+           "code": "12.2",
+           "text": "Adolescent health-care products and services"
+          },
+          {
+           "code": "12.3",
+           "text": "Interpersonal and intrapersonal influences on health choices (budgeting, culture, SES, etc.)"
+          },
+          {
+           "code": "12.4",
+           "text": "Characteristics of informed consumers"
+          }
+         ]
+        },
+        {
+         "id": "consumer-health-2-of-2",
+         "title": "Consumer Health (2 of 2)",
+         "outcomes": [
+          {
+           "code": "12.5",
+           "text": "Seek reliable advice regarding consumer health choices"
+          },
+          {
+           "code": "12.6",
+           "text": "Role of media in disseminating health information"
+          },
+          {
+           "code": "12.7",
+           "text": "Basic health insurance terminology"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "environmental-health",
+       "title": "Environmental Health",
+       "subtopics": [
+        {
+         "id": "environmental-health",
+         "title": "Environmental Health",
+         "outcomes": [
+          {
+           "code": "12.1",
+           "text": "Personal responsibility for community environmental issues"
+          },
+          {
+           "code": "12.2",
+           "text": "Reduce, reuse, recycle and alternatives"
+          },
+          {
+           "code": "12.3",
+           "text": "Relationship between environment, disease, and health"
+          },
+          {
+           "code": "12.4",
+           "text": "Local, state, and global environmental issues"
+          },
+          {
+           "code": "12.5",
+           "text": "Laws, ordinances, and policies"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "human-sexuality-and-relationships",
+       "title": "Human Sexuality and Relationships",
+       "subtopics": [
+        {
+         "id": "human-sexuality-and-relationships-1-of-2",
+         "title": "Human Sexuality and Relationships (1 of 2)",
+         "outcomes": [
+          {
+           "code": "12.1",
+           "text": "Adapting to changes associated with puberty"
+          },
+          {
+           "code": "12.2",
+           "text": "Adapting to change within the family"
+          },
+          {
+           "code": "12.3",
+           "text": "Changing responsibilities from adolescence to adulthood"
+          },
+          {
+           "code": "12.4",
+           "text": "Responsible behaviors within relationships (communication, abstinence, etc.)"
+          }
+         ]
+        },
+        {
+         "id": "human-sexuality-and-relationships-2-of-2",
+         "title": "Human Sexuality and Relationships (2 of 2)",
+         "outcomes": [
+          {
+           "code": "12.5",
+           "text": "Potential outcomes of sexual activity (STIs, pregnancy, etc.)"
+          },
+          {
+           "code": "12.6",
+           "text": "Impact of media and technology on sexual behaviors"
+          },
+          {
+           "code": "12.7",
+           "text": "Laws associated with sexual behaviors (consent, harassment, assault, rape, human trafficking, etc.)"
+          },
+          {
+           "code": "12.8",
+           "text": "Differences between individual, family, culture, community, and global values"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "injury-prevention-and-safety",
+       "title": "Injury Prevention and Safety",
+       "subtopics": [
+        {
+         "id": "injury-prevention-and-safety-1-of-2",
+         "title": "Injury Prevention and Safety (1 of 2)",
+         "outcomes": [
+          {
+           "code": "12.1",
+           "text": "Basic first aid skills"
+          },
+          {
+           "code": "12.2",
+           "text": "Demonstrate and perform CPR/AED procedures according to current and nationally recognized guidelines"
+          },
+          {
+           "code": "12.3",
+           "text": "Resources to prevent and avoid violence"
+          },
+          {
+           "code": "12.4",
+           "text": "Prevention and response to physical violence (guns and/or weapons and bullying)"
+          },
+          {
+           "code": "12.5",
+           "text": "Prevention and response to mental violence (bullying and abuse)"
+          }
+         ]
+        },
+        {
+         "id": "injury-prevention-and-safety-2-of-2",
+         "title": "Injury Prevention and Safety (2 of 2)",
+         "outcomes": [
+          {
+           "code": "12.6",
+           "text": "Prevention and response to social violence (relationships, conflict resolution, and cyber)"
+          },
+          {
+           "code": "12.7",
+           "text": "Prevention and response to sexual violence (harassment, assault, rape, and abuse)"
+          },
+          {
+           "code": "12.8",
+           "text": "Media safety (social media, cyber, TV, music, advertising, etc.)"
+          },
+          {
+           "code": "12.9",
+           "text": "Causes of conflict and non-violent conflict resolutions"
+          },
+          {
+           "code": "12.10",
+           "text": "Consequences of violence (school policies, laws, etc.)"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "mental-and-emotional-health",
+       "title": "Mental and Emotional Health",
+       "subtopics": [
+        {
+         "id": "mental-and-emotional-health-1-of-2",
+         "title": "Mental and Emotional Health (1 of 2)",
+         "outcomes": [
+          {
+           "code": "12.1",
+           "text": "Importance of expressing emotions in a productive and healthy manner"
+          },
+          {
+           "code": "12.2",
+           "text": "Mental illnesses"
+          },
+          {
+           "code": "12.3",
+           "text": "Stigmas associated with mental illness"
+          },
+          {
+           "code": "12.4",
+           "text": "Avoiding negative self-talk, self-harm, and suicide"
+          }
+         ]
+        },
+        {
+         "id": "mental-and-emotional-health-2-of-2",
+         "title": "Mental and Emotional Health (2 of 2)",
+         "outcomes": [
+          {
+           "code": "12.5",
+           "text": "Coping skills (grief, stress, depression, bullying, anxiety, etc.)"
+          },
+          {
+           "code": "12.6",
+           "text": "Characteristics of healthy and unhealthy relationships"
+          },
+          {
+           "code": "12.7",
+           "text": "Healthy versus unhealthy body image"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "nutrition",
+       "title": "Nutrition",
+       "subtopics": [
+        {
+         "id": "nutrition-1-of-3",
+         "title": "Nutrition (1 of 3)",
+         "outcomes": [
+          {
+           "code": "12.1",
+           "text": "Nutritional needs through stages of development"
+          },
+          {
+           "code": "12.2",
+           "text": "Meal planning and budgeting"
+          },
+          {
+           "code": "12.3",
+           "text": "Food safety"
+          },
+          {
+           "code": "12.4",
+           "text": "Nutritional value of foods"
+          }
+         ]
+        },
+        {
+         "id": "nutrition-2-of-3",
+         "title": "Nutrition (2 of 3)",
+         "outcomes": [
+          {
+           "code": "12.5",
+           "text": "Cultural and ethnic food choices"
+          },
+          {
+           "code": "12.6",
+           "text": "Food labels"
+          },
+          {
+           "code": "12.7",
+           "text": "Eating disorders/dysfunctions"
+          },
+          {
+           "code": "12.8",
+           "text": "Healthy eating patterns"
+          }
+         ]
+        },
+        {
+         "id": "nutrition-3-of-3",
+         "title": "Nutrition (3 of 3)",
+         "outcomes": [
+          {
+           "code": "12.9",
+           "text": "Essential nutrients"
+          },
+          {
+           "code": "12.10",
+           "text": "Performance enhancing beverages/supplements"
+          },
+          {
+           "code": "12.11",
+           "text": "Impact of food choices"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "personal-health",
+       "title": "Personal Health",
+       "subtopics": [
+        {
+         "id": "personal-health",
+         "title": "Personal Health",
+         "outcomes": [
+          {
+           "code": "12.1",
+           "text": "Major body systems, anatomy, functions, relationships between systems and connection to disease"
+          },
+          {
+           "code": "12.2",
+           "text": "Proper adolescent hygiene habits"
+          },
+          {
+           "code": "12.3",
+           "text": "Leading causes of death and risk behaviors"
+          },
+          {
+           "code": "12.4",
+           "text": "Traits and skills of lifelong learners"
+          },
+          {
+           "code": "12.5",
+           "text": "Components of wellness"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "prevention-control-of-disease",
+       "title": "Prevention & Control of Disease",
+       "subtopics": [
+        {
+         "id": "prevention-control-of-disease",
+         "title": "Prevention & Control of Disease",
+         "outcomes": [
+          {
+           "code": "12.1",
+           "text": "Disease prevention skills"
+          },
+          {
+           "code": "12.2",
+           "text": "Common causes of diseases, illness and disorders"
+          },
+          {
+           "code": "12.3",
+           "text": "Influence of heredity and diseases"
+          },
+          {
+           "code": "12.4",
+           "text": "Medical resources, health screenings and treatment methods for disease"
+          },
+          {
+           "code": "12.5",
+           "text": "Relationship between lifestyle choices and disease prevention"
+          },
+          {
+           "code": "12.6",
+           "text": "Current healthcare issues"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "substance-use-and-abuse-addiction",
+       "title": "Substance Use and Abuse & Addiction",
+       "subtopics": [
+        {
+         "id": "substance-use-and-abuse-addiction-1-of-3",
+         "title": "Substance Use and Abuse & Addiction (1 of 3)",
+         "outcomes": [
+          {
+           "code": "12.1",
+           "text": "Effects and consequences of nicotine use (all forms)"
+          },
+          {
+           "code": "12.2",
+           "text": "Effects and consequences of alcohol use"
+          },
+          {
+           "code": "12.3",
+           "text": "Effects and consequences of illegal drug use"
+          },
+          {
+           "code": "12.4",
+           "text": "Categories of drugs (ex. stimulants, opiates, depressants, hallucinogens, etc.)"
+          }
+         ]
+        },
+        {
+         "id": "substance-use-and-abuse-addiction-2-of-3",
+         "title": "Substance Use and Abuse & Addiction (2 of 3)",
+         "outcomes": [
+          {
+           "code": "12.5",
+           "text": "Cumulative risk behaviors (patterns, gateway drugs, etc.)"
+          },
+          {
+           "code": "12.6",
+           "text": "Unsafe situations involving drugs, including alcohol"
+          },
+          {
+           "code": "12.7",
+           "text": "Helpful and harmful use of prescription and non-prescription drugs"
+          },
+          {
+           "code": "12.8",
+           "text": "Strategies to resist peer pressure to engage in substance abuse"
+          }
+         ]
+        },
+        {
+         "id": "substance-use-and-abuse-addiction-3-of-3",
+         "title": "Substance Use and Abuse & Addiction (3 of 3)",
+         "outcomes": [
+          {
+           "code": "12.9",
+           "text": "Media, social influences, and societal pressure of drug usage"
+          },
+          {
+           "code": "12.10",
+           "text": "Rules and laws for medicines and drugs"
+          },
+          {
+           "code": "12.11",
+           "text": "Safe alternatives to medicine"
+          },
+          {
+           "code": "12.12",
+           "text": "Government policies and global issues in drug trends"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "build": {
+  "builtAt": "2026-10-14T16:20:42.884Z",
+  "model": "none",
+  "usd": 0,
+  "expectedCodes": 49,
+  "coverage": 1,
+  "missingCodes": [],
+  "counts": {
+   "grades": 4,
+   "units": 4,
+   "topics": 40,
+   "subtopics": 66,
+   "outcomes": 281
+  },
+  "warnings": []
+ }
+}

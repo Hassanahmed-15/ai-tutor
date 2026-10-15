@@ -1,0 +1,962 @@
+{
+ "id": "pk-nc2006-physics-9-10",
+ "region": "PK",
+ "framework": "National Curriculum 2006",
+ "board": "FBISE",
+ "qualification": "SSC",
+ "subject": "Physics",
+ "syllabusCode": null,
+ "gradeSystem": "grade",
+ "source": {
+  "urls": [
+   "https://www.fbise.edu.pk/notifications/ssc/Curriculum%20of%20Physics%20-%20IX-X%20along%20with%20SLOs.pdf"
+  ],
+  "publisher": "Ministry of Education, Government of Pakistan (hosted by FBISE)",
+  "licence": "Government publication; structure + our own wording only",
+  "firstExam": null
+ },
+ "grades": [
+  {
+   "grade": "IX",
+   "units": [
+    {
+     "id": "unit-1-physical-quantities-and-measurement",
+     "title": "Unit 1: Physical Quantities and Measurement",
+     "topics": [
+      {
+       "id": "mechanics",
+       "title": "Mechanics",
+       "subtopics": [
+        {
+         "id": "physics-and-physical-quantities",
+         "title": "Physics and physical quantities",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain physics' role in society and tell base from derived quantities, each with magnitude and unit."
+          }
+         ]
+        },
+        {
+         "id": "si-units-and-scientific-notation",
+         "title": "SI units and scientific notation",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "List the seven SI base units, convert prefixes and write results in scientific notation."
+          }
+         ]
+        },
+        {
+         "id": "vernier-callipers-and-screw-gauge",
+         "title": "Vernier callipers and screw gauge",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe how both instruments measure length and their least count and limits."
+          }
+         ]
+        },
+        {
+         "id": "significant-figures-and-other-instruments",
+         "title": "Significant figures and other instruments",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Use significant figures; measure time, mass and volume with stopwatch, balances and measuring cylinder; follow lab safety."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "unit-2-kinematics",
+     "title": "Unit 2: Kinematics",
+     "topics": [
+      {
+       "id": "mechanics",
+       "title": "Mechanics",
+       "subtopics": [
+        {
+         "id": "rest-and-motion",
+         "title": "Rest and motion",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Give examples of rest and motion together and tell translatory, rotatory and vibratory motion apart."
+          }
+         ]
+        },
+        {
+         "id": "distance-speed-scalars-and-vectors",
+         "title": "Distance, speed, scalars and vectors",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Tell distance from displacement, speed from velocity, scalars from vectors; define acceleration."
+          }
+         ]
+        },
+        {
+         "id": "motion-graphs",
+         "title": "Motion graphs",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Plot and read distance-time and speed-time graphs; use slope and area to find speed, acceleration and distance."
+          }
+         ]
+        },
+        {
+         "id": "equations-of-motion",
+         "title": "Equations of motion",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Derive and use the equations of uniformly accelerated motion, including free fall with g = 10 m/s2."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "unit-3-dynamics",
+     "title": "Unit 3: Dynamics",
+     "topics": [
+      {
+       "id": "mechanics",
+       "title": "Mechanics",
+       "subtopics": [
+        {
+         "id": "newton-s-laws-and-force",
+         "title": "Newton's laws and force",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "State the three laws, define force, inertia, mass and weight; use F = ma and w = mg."
+          }
+         ]
+        },
+        {
+         "id": "momentum-and-its-conservation",
+         "title": "Momentum and its conservation",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Define momentum, use force as change of momentum over time and conservation of momentum in collisions."
+          }
+         ]
+        },
+        {
+         "id": "friction",
+         "title": "Friction",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain friction, rolling versus sliding, effects on vehicles and ways to reduce it."
+          }
+         ]
+        },
+        {
+         "id": "circular-motion-and-centripetal-force",
+         "title": "Circular motion and centripetal force",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain curved motion by a perpendicular force and calculate centripetal force mv2/r."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "unit-4-turning-effect-of-forces",
+     "title": "Unit 4: Turning Effect of Forces",
+     "topics": [
+      {
+       "id": "mechanics",
+       "title": "Mechanics",
+       "subtopics": [
+        {
+         "id": "adding-and-resolving-forces",
+         "title": "Adding and resolving forces",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Define parallel forces, add forces head to tail and resolve a force into perpendicular components."
+          }
+         ]
+        },
+        {
+         "id": "moments-and-the-principle-of-moments",
+         "title": "Moments and the principle of moments",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Define moment of a force, link it to daily life and state the principle of moments."
+          }
+         ]
+        },
+        {
+         "id": "centre-of-mass-and-couples",
+         "title": "Centre of mass and couples",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Define centre of mass and gravity and a couple, and show a couple's moment is the same about any point."
+          }
+         ]
+        },
+        {
+         "id": "equilibrium-and-stability",
+         "title": "Equilibrium and stability",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "State the two equilibrium conditions, classify equilibrium states and relate stability to centre of mass."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "unit-5-gravitation",
+     "title": "Unit 5: Gravitation",
+     "topics": [
+      {
+       "id": "mechanics",
+       "title": "Mechanics",
+       "subtopics": [
+        {
+         "id": "law-of-gravitation",
+         "title": "Law of gravitation",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "State Newton's law, link it to the third law, define gravitational field and weight, and solve problems."
+          }
+         ]
+        },
+        {
+         "id": "earth-s-mass-g-and-satellites",
+         "title": "Earth's mass, g and satellites",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Find earth's mass from the law, explain why g falls with altitude and how satellites stay in orbit."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "unit-6-work-and-energy",
+     "title": "Unit 6: Work and Energy",
+     "topics": [
+      {
+       "id": "mechanics",
+       "title": "Mechanics",
+       "subtopics": [
+        {
+         "id": "work-kinetic-and-potential-energy",
+         "title": "Work, kinetic and potential energy",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Define work and energy; derive and use Ek = 1/2 mv2 and Ep = mgh."
+          }
+         ]
+        },
+        {
+         "id": "forms-and-sources-of-energy",
+         "title": "Forms and sources of energy",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "List energy forms and conversions, renewable versus non-renewable sources, power station flow and environmental issues."
+          }
+         ]
+        },
+        {
+         "id": "mass-energy-equation",
+         "title": "Mass-energy equation",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "State and use E = mc2."
+          }
+         ]
+        },
+        {
+         "id": "efficiency-and-power",
+         "title": "Efficiency and power",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Calculate efficiency from energy flow diagrams, explain why it is under 100%, and define power in watts and horse power."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "unit-7-properties-of-matter",
+     "title": "Unit 7: Properties of Matter",
+     "topics": [
+      {
+       "id": "mechanics",
+       "title": "Mechanics",
+       "subtopics": [
+        {
+         "id": "kinetic-molecular-model-and-density",
+         "title": "Kinetic molecular model and density",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "State the kinetic model for solids, liquids and gases, describe plasma, and compare densities."
+          }
+         ]
+        },
+        {
+         "id": "pressure-and-atmospheric-pressure",
+         "title": "Pressure and atmospheric pressure",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Define pressure, how it varies with force and area, and how atmospheric pressure is measured and changes with height."
+          }
+         ]
+        },
+        {
+         "id": "pressure-in-liquids-and-pascal-s-law",
+         "title": "Pressure in liquids and Pascal's law",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "State Pascal's law and use p = rho g h in hydraulic examples."
+          }
+         ]
+        },
+        {
+         "id": "archimedes-and-floatation",
+         "title": "Archimedes and floatation",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "State Archimedes' principle, find density with it, explain upthrust and floating."
+          }
+         ]
+        },
+        {
+         "id": "elasticity",
+         "title": "Elasticity",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Define stress, strain and Young's modulus, state Hooke's law and the elastic limit."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "unit-8-thermal-properties-of-matter",
+     "title": "Unit 8: Thermal Properties of Matter",
+     "topics": [
+      {
+       "id": "heat",
+       "title": "Heat",
+       "subtopics": [
+        {
+         "id": "temperature-and-heat",
+         "title": "Temperature and heat",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Define temperature and heat, thermometer properties, convert between scales, link temperature rise to internal energy."
+          }
+         ]
+        },
+        {
+         "id": "specific-heat-and-latent-heat",
+         "title": "Specific heat and latent heat",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Define heat capacity, specific heat capacity, heats of fusion and vaporization and read heating curves."
+          }
+         ]
+        },
+        {
+         "id": "evaporation",
+         "title": "Evaporation",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain evaporation, its cooling effect, factors affecting it and how it differs from boiling."
+          }
+         ]
+        },
+        {
+         "id": "thermal-expansion",
+         "title": "Thermal expansion",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe linear and volumetric expansion of solids and real and apparent expansion of liquids."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "unit-9-transfer-of-heat",
+     "title": "Unit 9: Transfer of Heat",
+     "topics": [
+      {
+       "id": "heat",
+       "title": "Heat",
+       "subtopics": [
+        {
+         "id": "conduction",
+         "title": "Conduction",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain conduction in solids by molecules and electrons, thermal conductivity, good and bad conductors."
+          }
+         ]
+        },
+        {
+         "id": "convection",
+         "title": "Convection",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain convection currents from density differences and everyday examples, and insulation."
+          }
+         ]
+        },
+        {
+         "id": "radiation",
+         "title": "Radiation",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe radiation without a medium and what affects its rate; link to greenhouse effect."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "X",
+   "units": [
+    {
+     "id": "unit-10-simple-harmonic-motion-and-waves",
+     "title": "Unit 10: Simple Harmonic Motion and Waves",
+     "topics": [
+      {
+       "id": "oscillations-and-waves",
+       "title": "Oscillations and Waves",
+       "subtopics": [
+        {
+         "id": "simple-harmonic-motion",
+         "title": "Simple harmonic motion",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "State SHM conditions, explain it with a pendulum, use T = 2 pi sqrt(l/g) and damping."
+          }
+         ]
+        },
+        {
+         "id": "wave-motion-and-wave-types",
+         "title": "Wave motion and wave types",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe waves as energy transfer, mechanical versus electromagnetic, transverse versus longitudinal."
+          }
+         ]
+        },
+        {
+         "id": "wave-quantities-and-equation",
+         "title": "Wave quantities and equation",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Define wave terms and use v = f lambda and f = 1/T."
+          }
+         ]
+        },
+        {
+         "id": "wave-properties",
+         "title": "Wave properties",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe reflection, refraction and diffraction using a ripple tank."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "unit-11-sound",
+     "title": "Unit 11: Sound",
+     "topics": [
+      {
+       "id": "oscillations-and-waves",
+       "title": "Oscillations and Waves",
+       "subtopics": [
+        {
+         "id": "production-and-nature-of-sound",
+         "title": "Production and nature of sound",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain sound from vibrations needing a medium and its longitudinal nature."
+          }
+         ]
+        },
+        {
+         "id": "pitch-loudness-and-intensity",
+         "title": "Pitch, loudness and intensity",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Define pitch, loudness, quality, intensity and intensity level and how they relate to frequency and amplitude."
+          }
+         ]
+        },
+        {
+         "id": "echo-noise-and-ultrasound",
+         "title": "Echo, noise and ultrasound",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain echo, audible range, noise pollution and acoustic protection."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "unit-12-geometrical-optics",
+     "title": "Unit 12: Geometrical Optics",
+     "topics": [
+      {
+       "id": "oscillations-and-waves",
+       "title": "Oscillations and Waves",
+       "subtopics": [
+        {
+         "id": "reflection-and-spherical-mirrors",
+         "title": "Reflection and spherical mirrors",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "State laws of reflection and locate images with the mirror formula."
+          }
+         ]
+        },
+        {
+         "id": "refraction-and-refractive-index",
+         "title": "Refraction and refractive index",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe refraction through parallel-sided material and use sin i / sin r = n."
+          }
+         ]
+        },
+        {
+         "id": "total-internal-reflection-and-prisms",
+         "title": "Total internal reflection and prisms",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "State conditions for total internal reflection, light through a prism and optical fibres."
+          }
+         ]
+        },
+        {
+         "id": "lenses",
+         "title": "Lenses",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe refraction by lenses, lens power and locate images with the lens formula."
+          }
+         ]
+        },
+        {
+         "id": "microscopes-and-telescopes",
+         "title": "Microscopes and telescopes",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Define magnifying and resolving power and draw ray diagrams for simple and compound microscopes and the telescope."
+          }
+         ]
+        },
+        {
+         "id": "defects-of-vision",
+         "title": "Defects of vision",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Draw ray diagrams for normal, short-sighted and long-sighted eyes and their correction."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "unit-13-electrostatics",
+     "title": "Unit 13: Electrostatics",
+     "topics": [
+      {
+       "id": "electricity-and-magnetism",
+       "title": "Electricity and Magnetism",
+       "subtopics": [
+        {
+         "id": "electric-charge",
+         "title": "Electric charge",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Show production, detection and induction of charge, the two charge types and the electroscope."
+          }
+         ]
+        },
+        {
+         "id": "coulomb-s-law",
+         "title": "Coulomb's law",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "State and apply Coulomb's law."
+          }
+         ]
+        },
+        {
+         "id": "electric-field-and-potential",
+         "title": "Electric field and potential",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Define electric field, sketch field lines, define potential, volt and potential difference; static electricity dangers."
+          }
+         ]
+        },
+        {
+         "id": "capacitors",
+         "title": "Capacitors",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Define capacitor and capacitance and find effective capacitance in series and parallel."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "unit-14-current-electricity",
+     "title": "Unit 14: Current Electricity",
+     "topics": [
+      {
+       "id": "electricity-and-magnetism",
+       "title": "Electricity and Magnetism",
+       "subtopics": [
+        {
+         "id": "current-voltage-and-ohm-s-law",
+         "title": "Current, voltage and Ohm's law",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Define current and potential difference, state Ohm's law with limits and measure with meters."
+          }
+         ]
+        },
+        {
+         "id": "resistance-and-combinations",
+         "title": "Resistance and combinations",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Define resistance, factors affecting it, series and parallel resistances, V-I graphs."
+          }
+         ]
+        },
+        {
+         "id": "electrical-power-and-joule-s-law",
+         "title": "Electrical power and Joule's law",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain energy dissipation, use E = I V t = I2 R t, and compute energy cost in kWh."
+          }
+         ]
+        },
+        {
+         "id": "circuits-and-ac-versus-dc",
+         "title": "Circuits and AC versus DC",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Identify circuit components, build series and parallel circuits and tell DC from AC."
+          }
+         ]
+        },
+        {
+         "id": "household-electricity-and-safety",
+         "title": "Household electricity and safety",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "State roles of live, neutral and earth wires, why homes use parallel wiring, hazards, fuses and breakers."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "unit-15-electromagnetism",
+     "title": "Unit 15: Electromagnetism",
+     "topics": [
+      {
+       "id": "electricity-and-magnetism",
+       "title": "Electricity and Magnetism",
+       "subtopics": [
+        {
+         "id": "magnetic-effect-of-current",
+         "title": "Magnetic effect of current",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Show that current produces a magnetic field and a force on a conductor, and torque on a coil."
+          }
+         ]
+        },
+        {
+         "id": "dc-motor",
+         "title": "DC motor",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Relate the turning effect on a coil to a DC motor."
+          }
+         ]
+        },
+        {
+         "id": "electromagnetic-induction-and-ac-generator",
+         "title": "Electromagnetic induction and AC generator",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Show a changing field induces an emf, factors affecting it, Lenz's idea and a simple AC generator."
+          }
+         ]
+        },
+        {
+         "id": "mutual-induction-and-transformers",
+         "title": "Mutual induction and transformers",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe mutual induction, transformer principle, step-up and step-down uses and power transmission."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "unit-16-introductory-electronics",
+     "title": "Unit 16: Introductory Electronics",
+     "topics": [
+      {
+       "id": "electricity-and-magnetism",
+       "title": "Electricity and Magnetism",
+       "subtopics": [
+        {
+         "id": "thermionic-emission-and-electron-beams",
+         "title": "Thermionic emission and electron beams",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain thermionic emission, the electron gun and beam deflection by electric and magnetic fields."
+          }
+         ]
+        },
+        {
+         "id": "cathode-ray-oscilloscope",
+         "title": "Cathode ray oscilloscope",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe the CRO's principle and uses."
+          }
+         ]
+        },
+        {
+         "id": "digital-electronics-and-logic-gates",
+         "title": "Digital electronics and logic gates",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Tell analogue from digital, draw NOT, OR, AND, NOR, NAND symbols with truth tables and uses."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "unit-17-information-and-communication-technology",
+     "title": "Unit 17: Information and Communication Technology",
+     "topics": [
+      {
+       "id": "electricity-and-magnetism",
+       "title": "Electricity and Magnetism",
+       "subtopics": [
+        {
+         "id": "communication-technology",
+         "title": "Communication technology",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe transmission by wires, radio waves and optical fibres and devices such as fax and cell phones."
+          }
+         ]
+        },
+        {
+         "id": "information-storage-and-use",
+         "title": "Information storage and use",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe storage devices, email and internet, and word processing and data handling functions; weigh ICT risks and benefits."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "unit-18-radioactivity",
+     "title": "Unit 18: Radioactivity",
+     "topics": [
+      {
+       "id": "atomic-and-nuclear-physics",
+       "title": "Atomic and Nuclear Physics",
+       "subtopics": [
+        {
+         "id": "atom-and-nucleus",
+         "title": "Atom and nucleus",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe the atom as nucleus and electrons, the nucleus' makeup and nuclide notation."
+          }
+         ]
+        },
+        {
+         "id": "radioactive-decay",
+         "title": "Radioactive decay",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain unstable nuclei, alpha, beta and gamma radiation, their properties and symbolic decay equations."
+          }
+         ]
+        },
+        {
+         "id": "half-life",
+         "title": "Half-life",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain randomness of decay and half-life and calculate with tables or decay curves."
+          }
+         ]
+        },
+        {
+         "id": "radioisotopes-fission-and-fusion",
+         "title": "Radioisotopes, fission and fusion",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe radioisotope uses, carbon dating, fission and fusion."
+          }
+         ]
+        },
+        {
+         "id": "background-radiation-and-safety",
+         "title": "Background radiation and safety",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Name background radiation sources, hazards and safe handling of radioactive materials."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "build": {
+  "builtAt": "2026-10-14T08:16:47.395Z",
+  "model": "claude-agent",
+  "usd": 0,
+  "expectedCodes": null,
+  "coverage": null,
+  "missingCodes": [],
+  "counts": {
+   "grades": 2,
+   "units": 18,
+   "topics": 18,
+   "subtopics": 70,
+   "outcomes": 70
+  },
+  "warnings": []
+ }
+}

@@ -1,0 +1,612 @@
+{
+ "id": "us-ne-world-languages",
+ "region": "US",
+ "framework": "Nebraska state academic standards: World Languages",
+ "board": null,
+ "qualification": "K-12",
+ "subject": "World Languages",
+ "syllabusCode": null,
+ "gradeSystem": "grade",
+ "source": {
+  "urls": [
+   "https://api.commonstandardsproject.com/api/v1/jurisdictions/12FDD9CA15FC49259C2EF4BB13D59D2F",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/2DC37ECA6E5E41C2A55EC97F7E3A9B0E"
+  ],
+  "publisher": "Nebraska state education agency (machine-readable via Common Standards Project / ASN)",
+  "licence": "CC BY 4.0 US, Common Curriculum, Inc.",
+  "firstExam": "2019"
+ },
+ "grades": [
+  {
+   "grade": "PK-12",
+   "units": [
+    {
+     "id": "communication",
+     "title": "Communication",
+     "topics": [
+      {
+       "id": "students-exchange-information-through-interactio",
+       "title": "Students exchange information through interaction and negotiation of meaning",
+       "subtopics": [
+        {
+         "id": "students-exchange-information-through-interactio",
+         "title": "Students exchange information through interaction and negotiation of meaning (1 of 2)",
+         "outcomes": [
+          {
+           "code": "WL1.1.a",
+           "text": "Novice Low: Participate in basic exchanges with isolated, high-frequency words, fragmented responses, or phrases."
+          },
+          {
+           "code": "WL1.1.b",
+           "text": "Novice Mid: Participate in basic exchanges in structured contexts about familiar and predictable topics using high-frequency vocabulary and phrasing."
+          },
+          {
+           "code": "WL1.1.c",
+           "text": "Novice High: Participate in basic exchanges by constructing simple questions and answers using familiar vocabulary and language structures."
+          },
+          {
+           "code": "WL1.1.d",
+           "text": "Intermediate Low: Initiate, sustain, and conclude exchanges about familiar topics in structured settings and formats."
+          },
+          {
+           "code": "WL1.1.e",
+           "text": "Intermediate Mid: Initiate, sustain, and conclude exchanges about familiar topics with focused structures in a series of connected sentences."
+          }
+         ]
+        },
+        {
+         "id": "students-exchange-information-through-interactio-2",
+         "title": "Students exchange information through interaction and negotiation of meaning (2 of 2)",
+         "outcomes": [
+          {
+           "code": "WL1.1.f",
+           "text": "Intermediate High: Initiate, sustain, and conclude exchanges in a variety of situations on familiar topics by manipulating advanced vocabulary and language structures."
+          },
+          {
+           "code": "WL1.1.g",
+           "text": "Advanced Low: Engage in unplanned exchanges and discussions on a variety of familiar and unfamiliar concrete topics."
+          },
+          {
+           "code": "WL1.1.h",
+           "text": "Advanced Mid: Engage in unplanned, in-depth exchanges and discussions on a variety of concrete and abstract topics across all major time frames."
+          },
+          {
+           "code": "WL1.1.i",
+           "text": "Advanced High: Engage in unplanned, in-depth exchanges by applying social and cultural norms on concrete and abstract topics, across all major time frames."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "students-understand-interpret-and-analyze-what-i",
+       "title": "Students understand, interpret, and analyze what is heard, read, or viewed on a variety of topics",
+       "subtopics": [
+        {
+         "id": "students-understand-interpret-and-analyze-what-i",
+         "title": "Students understand, interpret, and analyze what is heard, read, or viewed on a variety of topics (1 of 2)",
+         "outcomes": [
+          {
+           "code": "WL1.2.a",
+           "text": "Novice Low: Identify isolated words and phrases of messages containing high-frequency vocabulary, predictable language structures, and/or extra-linguistic support."
+          },
+          {
+           "code": "WL1.2.b",
+           "text": "Novice Mid: Identify elements of the explicit meaning of messages containing high-frequency vocabulary, predictable language structures, and/or extra-linguistic support."
+          },
+          {
+           "code": "WL1.2.d",
+           "text": "Intermediate Low: Comprehend the main idea and some supporting details of messages on familiar topics that contain familiar vocabulary and language structures."
+          },
+          {
+           "code": "WL1.2.c",
+           "text": "Novice High: Identify the explicit meaning of messages containing high-frequency vocabulary, predictable language structures, and/or extra-linguistic support."
+          },
+          {
+           "code": "WL1.2.e",
+           "text": "Intermediate Mid: Comprehend the main idea and some supporting details of messages on familiar topics that contain contextualized or familiar vocabulary and language structures."
+          }
+         ]
+        },
+        {
+         "id": "students-understand-interpret-and-analyze-what-i-2",
+         "title": "Students understand, interpret, and analyze what is heard, read, or viewed on a variety of topics (2 of 2)",
+         "outcomes": [
+          {
+           "code": "WL1.2.f",
+           "text": "Intermediate High: Comprehend and summarize main idea and some supporting details of messages on familiar topics that may contain low-frequency vocabulary, complex language structures, and/or contextual clues."
+          },
+          {
+           "code": "WL1.2.g",
+           "text": "Advanced Low: Analyze the implicit meaning literal meaning, and purpose of messages containing low-frequency vocabulary, complex language structures, and/or contextual clues."
+          },
+          {
+           "code": "WL1.2.h",
+           "text": "Advanced Mid: Analyze the implicit meaning literal meaning, and purpose of messages containing contextualized interdisciplinary and/or unfamiliar vocabulary within complex language structures."
+          },
+          {
+           "code": "WL1.2.i",
+           "text": "Advanced High: Analyze the implicit meaning literal meaning, and purpose of messages containing interdisciplinary and/or unfamiliar vocabulary within complex language structures."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "students-present-ideas-and-information-according",
+       "title": "Students present ideas and information according to a variety of purposes and audiences",
+       "subtopics": [
+        {
+         "id": "students-present-ideas-and-information-according",
+         "title": "Students present ideas and information according to a variety of purposes and audiences (1 of 2)",
+         "outcomes": [
+          {
+           "code": "WL1.3.a",
+           "text": "Novice Low: Present information on familiar and everyday topics using isolated, highfrequency words and phrases in highly structured contexts."
+          },
+          {
+           "code": "WL1.3.b",
+           "text": "Novice Mid: Present information on familiar and predictable topics using high-frequency vocabulary and phrases in structured contexts."
+          },
+          {
+           "code": "WL1.3.c",
+           "text": "Novice High: Present information on familiar and everyday topics using simple sentences in structured contexts."
+          },
+          {
+           "code": "WL1.3.d",
+           "text": "Intermediate Low: Express personal meaning by combining and recombining familiar vocabulary and language structures in short statements and discrete sentences."
+          },
+          {
+           "code": "WL1.3.e",
+           "text": "Intermediate Mid: Express personal meaning on familiar topics by creating combinations of language and structure specific to purpose and audience."
+          }
+         ]
+        },
+        {
+         "id": "students-present-ideas-and-information-according-2",
+         "title": "Students present ideas and information according to a variety of purposes and audiences (2 of 2)",
+         "outcomes": [
+          {
+           "code": "WL1.3.f",
+           "text": "Intermediate High: Express personal meaning on familiar and unfamiliar topics using known language to compensate for higher vocabulary."
+          },
+          {
+           "code": "WL1.3.g",
+           "text": "Advanced Low: Create and deliver information on familiar and unfamiliar topics, using descriptive vocabulary and organized ideas across various time frames."
+          },
+          {
+           "code": "WL1.3.h",
+           "text": "Advanced Mid: Create and deliver information on familiar and unfamiliar topics, using focused or context-specific vocabulary and organized and detailed ideas across most major time frames."
+          },
+          {
+           "code": "WL1.3.i",
+           "text": "Advanced High: Create and deliver information on familiar and unfamiliar topics, elaborating and clarifying detailed and organized ideas."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "culture",
+     "title": "Culture",
+     "topics": [
+      {
+       "id": "students-use-the-language-to-observe-and-to-disc",
+       "title": "Students use the language to observe and to discuss the relationship between the products, practices and perspectives of the cultures studied",
+       "subtopics": [
+        {
+         "id": "students-use-the-language-to-observe-and-to-disc",
+         "title": "Students use the language to observe and to discuss the relationship between the products, practices and perspectives of the cultures studied (1 of 2)",
+         "outcomes": [
+          {
+           "code": "WL2.1.a",
+           "text": "Novice Low: Identify and describe products, practices and perspectives using isolated words and phrases."
+          },
+          {
+           "code": "WL2.1.b",
+           "text": "Novice Mid: Identify products, practices, and perspectives using high-frequency vocabulary and phrases."
+          },
+          {
+           "code": "WL2.1.c",
+           "text": "Novice High: Identify and describe products, practices, and perspectives using simple sentences in structured contexts."
+          },
+          {
+           "code": "WL2.1.d",
+           "text": "Intermediate Low: Investigate, compare, and provide insight into products, practices, and perspectives using familiar vocabulary and limited language structures."
+          },
+          {
+           "code": "WL2.1.e",
+           "text": "Intermediate Mid: Investigate and compare products, practices, and perspectives using familiar vocabulary and creating combinations of limited and advanced language structures."
+          }
+         ]
+        },
+        {
+         "id": "students-use-the-language-to-observe-and-to-disc-2",
+         "title": "Students use the language to observe and to discuss the relationship between the products, practices and perspectives of the cultures studied (2 of 2)",
+         "outcomes": [
+          {
+           "code": "WL2.1.f",
+           "text": "Intermediate High: Investigate and compare products, practices, and perspectives using advanced language structures and known language to compensate for unfamiliar vocabulary."
+          },
+          {
+           "code": "WL2.1.g",
+           "text": "Advanced Low: Analyze the products, practices and perspectives of various groups using descriptive vocabulary and organized ideas."
+          },
+          {
+           "code": "WL2.1.h",
+           "text": "Advanced Mid: Analyze and explain the products, practices and perspectives of various groups using focused or context-specific vocabulary and organized and detailed ideas."
+          },
+          {
+           "code": "WL2.1.i",
+           "text": "Advanced HighL Analyze and explain the products, practices and perspectives of various groups using interdisciplinary and/or unfamiliar vocabulary within complex language structures."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "students-identify-and-apply-culturally-appropria",
+       "title": "Students identify and apply culturally-appropriate language and behavior",
+       "subtopics": [
+        {
+         "id": "students-identify-and-apply-culturally-appropria",
+         "title": "Students identify and apply culturally-appropriate language and behavior (1 of 2)",
+         "outcomes": [
+          {
+           "code": "WL2.2.a",
+           "text": "Novice Low: Identify expressions unique to the cultures studied."
+          },
+          {
+           "code": "WL2.2.b",
+           "text": "Novice Mid: Identify and react with simple expressions and idioms unique to the languages and cultures studied."
+          },
+          {
+           "code": "WL2.2.c",
+           "text": "Novice High: Identify and respond with culturally appropriate simple expressions in everyday situations in structured or highly predictable situations."
+          },
+          {
+           "code": "WL2.2.d",
+           "text": "Intermediate Low: Interact with culturally appropriate learned behaviors, familiar vocabulary, and limited language structures appropriate to the social context in everyday or common scenarios."
+          },
+          {
+           "code": "WL2.2.e",
+           "text": "Intermediate Mid: Interact with culturally appropriate learned behaviors, familiar vocabulary and combinations of limited and advanced language structures."
+          }
+         ]
+        },
+        {
+         "id": "students-identify-and-apply-culturally-appropria-2",
+         "title": "Students identify and apply culturally-appropriate language and behavior (2 of 2)",
+         "outcomes": [
+          {
+           "code": "WL2.2.f",
+           "text": "Intermediate High: Interact with culturally appropriate learned behaviors, advanced language structures and known language to compensate for unfamiliar vocabulary."
+          },
+          {
+           "code": "WL2.2.g",
+           "text": "Advanced Low: Participate in intercultural situations that require the appropriate application of vocabulary, politeness or style in a given situation using familiar language."
+          },
+          {
+           "code": "WL2.2.h",
+           "text": "Advanced Mid: Participate in intercultural situations that require the appropriate application of vocabulary, politeness or style in a given situation using both familiar and unfamiliar language."
+          },
+          {
+           "code": "WL2.2.i",
+           "text": "Advanced High: Participate appropriately and effectively in intercultural situations that require the appropriate application of vocabulary, register, courtesy or style in any given situation."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "connections",
+     "title": "Connections",
+     "topics": [
+      {
+       "id": "students-apply-the-language-of-study-to-discuss-",
+       "title": "Students apply the language of study to discuss other content areas of study",
+       "subtopics": [
+        {
+         "id": "students-apply-the-language-of-study-to-discuss-",
+         "title": "Students apply the language of study to discuss other content areas of study (1 of 2)",
+         "outcomes": [
+          {
+           "code": "WL3.1.a",
+           "text": "Novice Low: Apply isolated words and phrases to accomplish tasks or show understanding of concepts in other content areas and/or situations beyond the classroom."
+          },
+          {
+           "code": "WL3.1.b",
+           "text": "Novice Mid: Apply high-frequency vocabulary and predictable language structures to accomplish tasks or show understanding of concepts in other content areas and/or situations beyond the classroom."
+          },
+          {
+           "code": "WL3.1.c",
+           "text": "Novice High: Apply familiar vocabulary and simple sentences to accomplish tasks or show understanding of concepts in other content areas and/or situations beyond the classroom."
+          },
+          {
+           "code": "WL3.1.d",
+           "text": "Intermediate Low: Describe familiar concepts and tasks from other content areas and/or situations beyond the classroom using familiar vocabulary and language structures in short, connected sentences."
+          },
+          {
+           "code": "WL3.1.e",
+           "text": "Intermediate Mid: Describe familiar concepts and tasks from other content areas and/or situations beyond the classroom by creating combinations of limited and higher-level language structures in short, connected sentences."
+          }
+         ]
+        },
+        {
+         "id": "students-apply-the-language-of-study-to-discuss--2",
+         "title": "Students apply the language of study to discuss other content areas of study (2 of 2)",
+         "outcomes": [
+          {
+           "code": "WL3.1.f",
+           "text": "Intermediate High: Describe familiar concepts and tasks from other content areas and/or situations beyond the classroom using higher-level language structures and known language to compensate for unfamiliar vocabulary."
+          },
+          {
+           "code": "WL3.1.g",
+           "text": "Advanced Low: Synthesize concepts and engage in tasks from other content areas and/or situations beyond the classroom using low-frequency vocabulary, higher-level language structures, and various time frames."
+          },
+          {
+           "code": "WL3.1.h",
+           "text": "Advanced Mid: Synthesize concepts and engage in tasks from other content areas and/or situations beyond the classroom using interdisciplinary and/or unfamiliar vocabulary with higher-level language structures and various time frames."
+          },
+          {
+           "code": "WL3.1.i",
+           "text": "Advanced High: Synthesize concepts and engage in tasks from other content areas and/or situations beyond the classroom using interdisciplinary and/or unfamiliar vocabulary with advanced language structures and various time frames."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "communities",
+     "title": "Communities",
+     "topics": [
+      {
+       "id": "students-use-knowledge-and-skills-gained-in-the-",
+       "title": "Students use knowledge and skills gained in the language to identify and create a personal education and/or career plan",
+       "subtopics": [
+        {
+         "id": "students-use-knowledge-and-skills-gained-in-the-",
+         "title": "Students use knowledge and skills gained in the language to identify and create a personal education and/or career plan (1 of 2)",
+         "outcomes": [
+          {
+           "code": "WL4.1.a",
+           "text": "Novice Low: Identify college and career options that incorporate the language studied using isolated words and phrases."
+          },
+          {
+           "code": "WL4.1.b",
+           "text": "Novice Mid: Identify college and career options that incorporate the language studied using high-frequency vocabulary and predictable language structures."
+          },
+          {
+           "code": "WL4.1.c",
+           "text": "Novice High: Identify college and career options that incorporate the language studied using familiar vocabulary and simple sentences."
+          },
+          {
+           "code": "WL4.1.d",
+           "text": "Intermediate Low: Relate, evaluate and summarize personal interests, skills, and values using familiar vocabulary and language structures in short, connected sentences."
+          },
+          {
+           "code": "WL4.1.e",
+           "text": "Intermediate Mid: Relate and describe careers that align with personal skills and interests by creating combinations of limited and higher-level language structures in short, connected sentences."
+          }
+         ]
+        },
+        {
+         "id": "students-use-knowledge-and-skills-gained-in-the--2",
+         "title": "Students use knowledge and skills gained in the language to identify and create a personal education and/or career plan (2 of 2)",
+         "outcomes": [
+          {
+           "code": "WL4.1.f",
+           "text": "Intermediate High: Relate training, education, and/or certification requirements for careers of interest using higher-level language structures and known language to compensate for unfamiliar vocabulary."
+          },
+          {
+           "code": "WL4.1.g",
+           "text": "Advanced Low: Develop and list educational and career connections to a personal plan of language learning using low-frequency vocabulary and higher-level language structures."
+          },
+          {
+           "code": "WL4.1.h",
+           "text": "Advanced Mid: Develop and describe educational and career connections to a personal plan of language learning that aligns with personal skills and interests using interdisciplinary and/or unfamiliar vocabulary with higher-level language structures."
+          },
+          {
+           "code": "WL4.1.i",
+           "text": "Advanced High: Develop and appraise educational and career connections to a personal plan of language learning that aligns with personal skills and interests using interdisciplinary and/or unfamiliar vocabulary with advanced language structures."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "students-use-digital-tools-in-the-language-of-st",
+       "title": "Students use digital tools in the language of study to further language study and/or to connect with a variety of backgrounds and cultures, engaging with them in ways that broaden mutual understanding and learning",
+       "subtopics": [
+        {
+         "id": "students-use-digital-tools-in-the-language-of-st",
+         "title": "Students use digital tools in the language of study to further language study and/or to connect with a variety of backgrounds and cultures, engaging with them in ways that broaden mutual understanding and learning (1 of 2)",
+         "outcomes": [
+          {
+           "code": "WL4.2.a",
+           "text": "Novice Low: Use digital tools to select, categorize, and paraphrase information that tends to use isolated, high-frequency words and/or phrases and extra-linguistic supports."
+          },
+          {
+           "code": "WL4.2.b",
+           "text": "Novice Mid: Use digital tools to select, categorize, and paraphrase information that tends to use high-frequency words and phrases in structured contexts."
+          },
+          {
+           "code": "WL4.2.c",
+           "text": "Novice High: Use digital tools to select, categorize, and paraphrase information that tends to use simple sentences in structured formats on familiar or highly contextualized topics."
+          },
+          {
+           "code": "WL4.2.d",
+           "text": "Intermediate Low: Use digital tools to comment, organize, and compare information in a way that expresses personal meaning using combinations of familiar vocabulary and language structures in short statements."
+          },
+          {
+           "code": "WL4.2.e",
+           "text": "Intermediate Mid: Use digital tools to comment, organize, and compare information in a way that expresses personal meaning using combinations of familiar vocabulary and language structures in connected sentences."
+          }
+         ]
+        },
+        {
+         "id": "students-use-digital-tools-in-the-language-of-st-2",
+         "title": "Students use digital tools in the language of study to further language study and/or to connect with a variety of backgrounds and cultures, engaging with them in ways that broaden mutual understanding and learning (2 of 2)",
+         "outcomes": [
+          {
+           "code": "WL4.2.f",
+           "text": "Intermediate High: Use digital tools to comment, organize, and compare information in a way that expresses personal meaning using known language to compensate for higher vocabulary."
+          },
+          {
+           "code": "WL4.2.g",
+           "text": "Advanced Low: Use digital tools to design solutions, synthesize information, and moderate information in a way that requires an understanding of literal and implicit meaning, low-frequency vocabulary, complex language structures, and/or contextual clues."
+          },
+          {
+           "code": "WL4.2.h",
+           "text": "Advanced Mid Use digital tools to design solutions, synthesize information, and moderate information in a way that requires an understanding of literal and implicit meaning, contextualized interdisciplinary and/or unfamiliar vocabulary, and complex language structures."
+          },
+          {
+           "code": "WL4.2.i",
+           "text": "Advanced High: Use digital tools to design solutions, synthesize information, and moderate information in a way that requires an understanding of literal and implicit meaning, interdisciplinary and/or unfamiliar vocabulary, and complex language structures."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "cognition",
+     "title": "Cognition",
+     "topics": [
+      {
+       "id": "students-self-assess-growth-in-language-learning",
+       "title": "Students self-assess growth in language learning, practice, and understanding",
+       "subtopics": [
+        {
+         "id": "students-self-assess-growth-in-language-learning",
+         "title": "Students self-assess growth in language learning, practice, and understanding (1 of 2)",
+         "outcomes": [
+          {
+           "code": "WL5.1.a",
+           "text": "Novice Low: Use isolated words, phrasing, or images to identify what concepts, skills, or information have been learned."
+          },
+          {
+           "code": "WL5.1.b",
+           "text": "Novice Mid: Use simple words or phrasing to identify what concepts, skills, or information have been learned."
+          },
+          {
+           "code": "WL5.1.c",
+           "text": "Novice High: Use simple sentences or structures to identify and describe what concepts, skills, or information have been learned."
+          },
+          {
+           "code": "WL5.1.d",
+           "text": "Intermediate Low: Reflect on how personal learning, practice, and understanding are evident."
+          },
+          {
+           "code": "WL5.1.e",
+           "text": "Intermediate Mid: Reflect on how personal learning, practice, and understanding are evident and how learning might be improved."
+          }
+         ]
+        },
+        {
+         "id": "students-self-assess-growth-in-language-learning-2",
+         "title": "Students self-assess growth in language learning, practice, and understanding (2 of 2)",
+         "outcomes": [
+          {
+           "code": "WL5.1.f",
+           "text": "Intermediate High: Reflect on personal learning, practice, and understanding in response to predetermined goals, outcomes, or expectations."
+          },
+          {
+           "code": "WL5.1.g",
+           "text": "Advanced Low: Analyze how personal learning, practice, and understanding have developed over time."
+          },
+          {
+           "code": "WL5.1.h",
+           "text": "Advanced Mid: Analyze how personal learning, practice, and understanding have, or have not, prepared for future growth."
+          },
+          {
+           "code": "WL5.1.i",
+           "text": "Advanced High: Analyze how personal learning, practice, and understanding can be sustained for future growth."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "students-set-language-learning-goals-and-organiz",
+       "title": "Students set language learning goals and organize priorities",
+       "subtopics": [
+        {
+         "id": "students-set-language-learning-goals-and-organiz",
+         "title": "Students set language learning goals and organize priorities (1 of 2)",
+         "outcomes": [
+          {
+           "code": "WL5.2.a",
+           "text": "Novice Low: Identify what concepts, skills, or information are desired using isolated words, phrasing, or images."
+          },
+          {
+           "code": "WL5.2.b",
+           "text": "Novice Mid: Identify what concepts, skills, or information are desired using simple words or phrasing."
+          },
+          {
+           "code": "WL5.2.c",
+           "text": "Novice High: Identify and describe what concepts, skills, or information are desired using simple sentences or guided models."
+          },
+          {
+           "code": "WL5.2.d",
+           "text": "Intermediate Low: Create simple, short-term goal statements in response to units of study or other focused needs."
+          },
+          {
+           "code": "WL5.2.e",
+           "text": "Intermediate Mid: Create simple, measurable, attainable, relevant, and timely goals using guided models in response to units of study or other focused needs."
+          }
+         ]
+        },
+        {
+         "id": "students-set-language-learning-goals-and-organiz-2",
+         "title": "Students set language learning goals and organize priorities (2 of 2)",
+         "outcomes": [
+          {
+           "code": "WL5.2.f",
+           "text": "Intermediate High: Create simple, measurable, attainable, relevant, and timely goals that are supported by explanation and are in response to units of study or other focused needs."
+          },
+          {
+           "code": "WL5.2.g",
+           "text": "Advanced Low: Produce long-term measurable, attainable, relevant, timely goals that reflect personal interest and future plans."
+          },
+          {
+           "code": "WL5.2.h",
+           "text": "Advanced Mid: Produce long-term measurable, attainable, relevant, timely goals with detailed steps that support the achievement of the goals."
+          },
+          {
+           "code": "WL5.2.i",
+           "text": "Advanced High: Produce, explain, and analyze the success of long-term measurable, attainable, relevant, timely goals that reflect personal interest and future plans."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "build": {
+  "builtAt": "2026-10-14T16:20:45.685Z",
+  "model": "none",
+  "usd": 0,
+  "expectedCodes": 90,
+  "coverage": 1,
+  "missingCodes": [],
+  "counts": {
+   "grades": 1,
+   "units": 5,
+   "topics": 10,
+   "subtopics": 20,
+   "outcomes": 90
+  },
+  "warnings": []
+ }
+}

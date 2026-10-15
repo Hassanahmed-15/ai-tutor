@@ -1,0 +1,4823 @@
+{
+ "id": "us-ne-social-studies",
+ "region": "US",
+ "framework": "Nebraska state academic standards: Social Studies",
+ "board": null,
+ "qualification": "K-12",
+ "subject": "Social Studies",
+ "syllabusCode": null,
+ "gradeSystem": "grade",
+ "source": {
+  "urls": [
+   "https://api.commonstandardsproject.com/api/v1/jurisdictions/12FDD9CA15FC49259C2EF4BB13D59D2F",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/12FDD9CA15FC49259C2EF4BB13D59D2F_D21072654_grade-01",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/12FDD9CA15FC49259C2EF4BB13D59D2F_D21072654_grade-02",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/12FDD9CA15FC49259C2EF4BB13D59D2F_D21072654_grade-03",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/12FDD9CA15FC49259C2EF4BB13D59D2F_D21072654_grade-04",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/12FDD9CA15FC49259C2EF4BB13D59D2F_D21072654_grade-05",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/12FDD9CA15FC49259C2EF4BB13D59D2F_D21072654_grade-06",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/12FDD9CA15FC49259C2EF4BB13D59D2F_D21072654_grade-07",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/12FDD9CA15FC49259C2EF4BB13D59D2F_D21072654_grade-08",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/BDC5EA694F61479BAA600E3621905533",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/8074F0B9B7984EC782CAB6AC70577A3D",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/12FDD9CA15FC49259C2EF4BB13D59D2F_D21072654_grades-09-10-11-12",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/12FDD9CA15FC49259C2EF4BB13D59D2F_D21072654_grade-k",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/A523AB1E179B444B92B7DFDD40D728E3",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/68BB1A06F95A4463AA79B8F6FB1E8E8A",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/D3AD160FE4BC4B67A2DCFDE772C30CE4"
+  ],
+  "publisher": "Nebraska state education agency (machine-readable via Common Standards Project / ASN)",
+  "licence": "CC BY 3.0 US, D2L Corporation; CC BY 4.0 US, Common Curriculum, Inc.",
+  "firstExam": "2019"
+ },
+ "grades": [
+  {
+   "grade": "K",
+   "units": [
+    {
+     "id": "civics",
+     "title": "Civics",
+     "topics": [
+      {
+       "id": "forms-and-functions-of-government",
+       "title": "Forms and Functions of Government",
+       "subtopics": [
+        {
+         "id": "communicate-the-purpose-of-rules-and-the-roles-w",
+         "title": "Communicate the purpose of rules and the roles within learning and living environments",
+         "outcomes": [
+          {
+           "code": "SS.K.1.1.a",
+           "text": "Describe a rule and analyze its purpose."
+          },
+          {
+           "code": "SS.K.1.1.b",
+           "text": "Identify roles in a family structure and explain their importance."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "civic-participation",
+       "title": "Civic Participation",
+       "subtopics": [
+        {
+         "id": "demonstrate-positive-and-productive-citizenship-",
+         "title": "Demonstrate positive and productive citizenship skills",
+         "outcomes": [
+          {
+           "code": "SS.K.1.2.a",
+           "text": "Model citizenship skills."
+          },
+          {
+           "code": "SS.K.1.2.b",
+           "text": "Communicate patriotic symbols, songs, actions, and cultural celebrations."
+          },
+          {
+           "code": "SS.K.1.2.c",
+           "text": "Communicate historical background and significance of national holidays."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "economics",
+     "title": "Economics",
+     "topics": [
+      {
+       "id": "economic-decision-making",
+       "title": "Economic Decision Making",
+       "subtopics": [
+        {
+         "id": "differentiate-between-wants-and-needs-in-decisio",
+         "title": "Differentiate between wants and needs in decision-making",
+         "outcomes": [
+          {
+           "code": "SS.K.2.1.a",
+           "text": "Classify wants and needs and explain subsequent choices."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "financial-literacy",
+       "title": "Financial Literacy",
+       "subtopics": [
+        {
+         "id": "recognize-money-is-used-to-purchase-goods-and-se",
+         "title": "Recognize money is used to purchase goods and services to satisfy economic wants and needs",
+         "outcomes": [
+          {
+           "code": "SS.K.2.2.a",
+           "text": "Explain the purposes of money."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "exchange-and-markets",
+       "title": "Exchange and Markets",
+       "subtopics": [
+        {
+         "id": "exchange-and-markets",
+         "title": "Exchange and Markets",
+         "outcomes": [
+          {
+           "code": "SS.K.2.3",
+           "text": "Not addressed at this level"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "national-economy",
+       "title": "National Economy",
+       "subtopics": [
+        {
+         "id": "national-economy",
+         "title": "National Economy",
+         "outcomes": [
+          {
+           "code": "SS.K.2.4",
+           "text": "Not addressed at this level"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "global-economy",
+       "title": "Global Economy",
+       "subtopics": [
+        {
+         "id": "global-economy",
+         "title": "Global Economy",
+         "outcomes": [
+          {
+           "code": "SS.K.2.5",
+           "text": "Not addressed at this level."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "geography",
+     "title": "Geography",
+     "topics": [
+      {
+       "id": "location-and-place",
+       "title": "Location and Place",
+       "subtopics": [
+        {
+         "id": "explore-where-spatial-and-why-people-places-and-",
+         "title": "Explore where (spatial) and why people, places and environments are organized in the world",
+         "outcomes": [
+          {
+           "code": "SS.K.3.1.a",
+           "text": "Communicate personal directions to describe relative locations of people and objects."
+          },
+          {
+           "code": "SS.K.3.1.b",
+           "text": "Identify locations in the school and around the classroom."
+          },
+          {
+           "code": "SS.K.3.1.c",
+           "text": "Identify geographic tools as representations of local and distant places."
+          },
+          {
+           "code": "SS.K.3.1.d",
+           "text": "Identify the difference between land and water on a globe."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "regions",
+       "title": "Regions",
+       "subtopics": [
+        {
+         "id": "explore-places-and-regions",
+         "title": "Explore places and regions",
+         "outcomes": [
+          {
+           "code": "SS.K.3.2.a",
+           "text": "Identify physical characteristics of place."
+          },
+          {
+           "code": "SS.K.3.2.b",
+           "text": "Identify human characteristics of place."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "human-environment-interaction",
+       "title": "Human-Environment Interaction",
+       "subtopics": [
+        {
+         "id": "explore-the-relationship-between-humans-and-thei",
+         "title": "Explore the relationship between humans and their physical environment",
+         "outcomes": [
+          {
+           "code": "SS.K.3.3.a",
+           "text": "Identify types of weather and the impact of weather on everyday life."
+          },
+          {
+           "code": "SS.K.3.3.b",
+           "text": "Identify the four seasons."
+          },
+          {
+           "code": "SS.K.3.3.c",
+           "text": "Inquire about how people prepare for and respond to severe weather."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "movement",
+       "title": "Movement",
+       "subtopics": [
+        {
+         "id": "recognize-that-people-belong-to-different-groups",
+         "title": "Recognize that people belong to different groups and live in different settings",
+         "outcomes": [
+          {
+           "code": "SS.K.3.4.a",
+           "text": "Identify students as members of various groups."
+          },
+          {
+           "code": "SS.K.3.4.b",
+           "text": "Identify places in the community where people may live."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "geospatial-skills-and-geo-literacy",
+       "title": "Geospatial Skills and Geo-literacy",
+       "subtopics": [
+        {
+         "id": "use-geographic-skills-to-make-connections-to-stu",
+         "title": "Use geographic skills to make connections to students' lives",
+         "outcomes": [
+          {
+           "code": "SS.K.3.5.a",
+           "text": "Apply geographic knowledge and techniques to navigate the classroom."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "history",
+     "title": "History",
+     "topics": [
+      {
+       "id": "change-continuity-and-context",
+       "title": "Change, Continuity, and Context",
+       "subtopics": [
+        {
+         "id": "recognize-patterns-of-continuity-and-change-over",
+         "title": "Recognize patterns of continuity and change over time in themselves and others",
+         "outcomes": [
+          {
+           "code": "SS.K.4.1.a",
+           "text": "Identify concepts of time and chronology."
+          },
+          {
+           "code": "SS.K.4.1.b",
+           "text": "Identify the sequence of personal events and their impact."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "multiple-perspectives",
+       "title": "Multiple Perspectives",
+       "subtopics": [
+        {
+         "id": "recognize-different-perspectives-of-events",
+         "title": "Recognize different perspectives of events",
+         "outcomes": [
+          {
+           "code": "SS.K.4.2.a",
+           "text": "Compare perspectives of self and others."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "historical-analysis-and-interpretation",
+       "title": "Historical Analysis and Interpretation",
+       "subtopics": [
+        {
+         "id": "identify-historical-people-events-and-symbols",
+         "title": "Identify historical people, events, and symbols",
+         "outcomes": [
+          {
+           "code": "SS.K.4.3.a",
+           "text": "Recognize historical people from a variety of cultures."
+          },
+          {
+           "code": "SS.K.4.3.b",
+           "text": "Identify symbols of the United States."
+          },
+          {
+           "code": "SS.K.4.3.c",
+           "text": "Differentiate between stories from the present and the past."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "historical-inquiry-and-research",
+       "title": "Historical Inquiry and Research",
+       "subtopics": [
+        {
+         "id": "develop-historical-inquiry-and-research-skills",
+         "title": "Develop historical inquiry and research skills",
+         "outcomes": [
+          {
+           "code": "SS.K.4.4.a",
+           "text": "Construct questions about personal history."
+          },
+          {
+           "code": "SS.K.4.4.b",
+           "text": "Identify and cite appropriate sources when conducting historical research."
+          },
+          {
+           "code": "SS.K.4.4.c",
+           "text": "Gather and communicate historical information."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "1",
+   "units": [
+    {
+     "id": "civics",
+     "title": "Civics",
+     "topics": [
+      {
+       "id": "forms-and-functions-of-government",
+       "title": "Forms and Functions of Government",
+       "subtopics": [
+        {
+         "id": "analyze-the-relationship-between-roles-and-rules",
+         "title": "Analyze the relationship between roles and rules within learning and living environments",
+         "outcomes": [
+          {
+           "code": "SS.1.1.1.a",
+           "text": "Explain how rules reduce and help resolve conflicts between people with different perspectives."
+          },
+          {
+           "code": "SS.1.1.1.b",
+           "text": "Identify leaders within a school community and explain the importance of their roles."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "civic-participation",
+       "title": "Civic Participation",
+       "subtopics": [
+        {
+         "id": "demonstrate-positive-and-productive-citizenship-",
+         "title": "Demonstrate positive and productive citizenship skills",
+         "outcomes": [
+          {
+           "code": "SS.1.1.2.a",
+           "text": "Model and communicate citizenship skills."
+          },
+          {
+           "code": "SS.1.1.2.b",
+           "text": "Identify patriotic symbols, songs, actions, holidays, and cultural celebrations. For example: U.S. Flag, bald eagle, Pledge of Allegiance, national holidays, cultural songs"
+          },
+          {
+           "code": "SS.1.1.2.c",
+           "text": "Communicate historical background and significance of national holidays."
+          },
+          {
+           "code": "SS.1.1.2.d",
+           "text": "Compare and contrast historical and current government figures that exemplify civic engagement."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "economics",
+     "title": "Economics",
+     "topics": [
+      {
+       "id": "economic-decision-making",
+       "title": "Economic Decision Making",
+       "subtopics": [
+        {
+         "id": "explain-how-scarcity-necessitates-making-choices",
+         "title": "Explain how scarcity necessitates making choices",
+         "outcomes": [
+          {
+           "code": "SS.1.2.1.a",
+           "text": "Identify gains and losses when choices are made."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "financial-literacy",
+       "title": "Financial Literacy",
+       "subtopics": [
+        {
+         "id": "compare-spending-and-saving-opportunities",
+         "title": "Compare spending and saving opportunities",
+         "outcomes": [
+          {
+           "code": "SS.1.2.2.a",
+           "text": "Give examples of situations where students and families could choose to save for future purchases."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "exchange-and-markets",
+       "title": "Exchange and Markets",
+       "subtopics": [
+        {
+         "id": "explain-that-resources-are-used-to-produce-goods",
+         "title": "Explain that resources are used to produce goods and services",
+         "outcomes": [
+          {
+           "code": "SS.1.2.3.a",
+           "text": "Categorize human and natural resources used to create goods and services."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "national-economy",
+       "title": "National Economy",
+       "subtopics": [
+        {
+         "id": "national-economy",
+         "title": "National Economy",
+         "outcomes": [
+          {
+           "code": "SS.1.2.4",
+           "text": "Not addressed at this level"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "global-economy",
+       "title": "Global Economy",
+       "subtopics": [
+        {
+         "id": "global-economy",
+         "title": "Global Economy",
+         "outcomes": [
+          {
+           "code": "SS 1.2.5",
+           "text": "Not addressed at this level."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "geography",
+     "title": "Geography",
+     "topics": [
+      {
+       "id": "location-and-place",
+       "title": "Location and Place",
+       "subtopics": [
+        {
+         "id": "explore-where-spatial-and-why-people-places-and-",
+         "title": "Explore where (spatial) and why people, places, and environments are organized in the world",
+         "outcomes": [
+          {
+           "code": "SS.1.3.1.a",
+           "text": "Identify the four cardinal directions."
+          },
+          {
+           "code": "SS.1.3.1.b",
+           "text": "Identify and describe locations in schools and homes and explain reasons for the locations."
+          },
+          {
+           "code": "SS.1.3.1.c",
+           "text": "Create and use maps."
+          },
+          {
+           "code": "SS.1.3.1.d",
+           "text": "Distinguish between continents and oceans."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "regions",
+       "title": "Regions",
+       "subtopics": [
+        {
+         "id": "explore-places-and-regions",
+         "title": "Explore places and regions",
+         "outcomes": [
+          {
+           "code": "SS.1.3.2.a",
+           "text": "Identify and differentiate between physical features on maps, globes, graphics, and in the physical world."
+          },
+          {
+           "code": "SS.1.3.2.b",
+           "text": "Identify and differentiate between human features."
+          },
+          {
+           "code": "SS.1.3.2.c",
+           "text": "Explain how places change over time."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "human-environment-interaction",
+       "title": "Human-Environment Interaction",
+       "subtopics": [
+        {
+         "id": "explore-the-relationship-between-humans-and-thei",
+         "title": "Explore the relationship between humans and their physical environment",
+         "outcomes": [
+          {
+           "code": "SS.1.3.3.a",
+           "text": "Interpret the impact of environmental hazards and severe weather on everyday life."
+          },
+          {
+           "code": "SS.1.3.3.b",
+           "text": "Identify Earth's natural resources."
+          },
+          {
+           "code": "SS.1.3.3.c",
+           "text": "Describe how people adapt to their physical environment."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "movement",
+       "title": "Movement",
+       "subtopics": [
+        {
+         "id": "describe-the-characteristics-of-culture",
+         "title": "Describe the characteristics of culture",
+         "outcomes": [
+          {
+           "code": "SS.1.3.4.a",
+           "text": "Identify cultural traits."
+          },
+          {
+           "code": "SS.1.3.4.b",
+           "text": "Describe the characteristics of individual culture."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "geospatial-skills-and-geo-literacy",
+       "title": "Geospatial Skills and Geo-literacy",
+       "subtopics": [
+        {
+         "id": "use-geographic-skills-to-make-connections-to-stu",
+         "title": "Use geographic skills to make connections to students' lives",
+         "outcomes": [
+          {
+           "code": "SS.1.3.5.a",
+           "text": "Apply geographic knowledge and techniques to navigate the school."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "history",
+     "title": "History",
+     "topics": [
+      {
+       "id": "change-continuity-and-context",
+       "title": "Change, Continuity, and Context",
+       "subtopics": [
+        {
+         "id": "recognize-patterns-of-continuity-and-change-over",
+         "title": "Recognize patterns of continuity and change over time in families",
+         "outcomes": [
+          {
+           "code": "SS.1.4.1.a",
+           "text": "List and describe life events over time."
+          },
+          {
+           "code": "SS.1.4.1.b",
+           "text": "Compare and contrast family life from earlier times and today."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "multiple-perspectives",
+       "title": "Multiple Perspectives",
+       "subtopics": [
+        {
+         "id": "identify-multiple-perspectives-of-diverse-family",
+         "title": "Identify multiple perspectives of diverse family traditions",
+         "outcomes": [
+          {
+           "code": "SS.1.4.2.a",
+           "text": "Compare and contrast family traditions across cultures."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "historical-analysis-and-interpretation",
+       "title": "Historical Analysis and Interpretation",
+       "subtopics": [
+        {
+         "id": "describe-historical-people-events-and-symbols",
+         "title": "Describe historical people, events, and symbols",
+         "outcomes": [
+          {
+           "code": "SS.1.4.3.a",
+           "text": "Identify the contributions of historical people."
+          },
+          {
+           "code": "SS.1.4.3.b",
+           "text": "Identify symbols of the United States."
+          },
+          {
+           "code": "SS.1.4.3.c",
+           "text": "Describe how oral traditions, books, letters, and other artifacts help us to understand the past."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "historical-inquiry-and-research",
+       "title": "Historical Inquiry and Research",
+       "subtopics": [
+        {
+         "id": "develop-historical-inquiry-and-research-skills",
+         "title": "Develop historical inquiry and research skills",
+         "outcomes": [
+          {
+           "code": "SS.1.4.4.a",
+           "text": "Construct and answer questions about family history."
+          },
+          {
+           "code": "SS.1.4.4.b",
+           "text": "Identify and cite appropriate texts, letters, and other artifacts for research."
+          },
+          {
+           "code": "SS.1.4.4.c",
+           "text": "Gather and communicate historical information about families."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "2",
+   "units": [
+    {
+     "id": "civics",
+     "title": "Civics",
+     "topics": [
+      {
+       "id": "forms-and-functions-of-government",
+       "title": "Forms and Functions of Government",
+       "subtopics": [
+        {
+         "id": "investigate-and-defend-the-responsibilities-and-",
+         "title": "Investigate and defend the responsibilities and rights of citizens in their communities",
+         "outcomes": [
+          {
+           "code": "SS.2.1.1.a",
+           "text": "Contribute to developing rules by considering multiple points of view."
+          },
+          {
+           "code": "SS.2.1.1.b",
+           "text": "Demonstrate conflict management strategies as individuals, groups, and communities."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "civic-participation",
+       "title": "Civic Participation",
+       "subtopics": [
+        {
+         "id": "contribute-to-making-decisions-using-democratic-",
+         "title": "Contribute to making decisions using democratic traditions based on established rules",
+         "outcomes": [
+          {
+           "code": "SS.2.1.2.a",
+           "text": "Identify and apply civic responsibilities that are important to individuals and their communities."
+          },
+          {
+           "code": "SS.2.1.2.b",
+           "text": "Explain how patriotic symbols, songs, actions, celebrations, and holidays reflect democratic traditions."
+          },
+          {
+           "code": "SS.2.1.2.c",
+           "text": "Communicate historical background and significance of national holidays."
+          },
+          {
+           "code": "SS.2.1.2.d",
+           "text": "Investigate ways to be actively engaged to improve family, school, and community."
+          },
+          {
+           "code": "SS.2.1.2.e",
+           "text": "Model and communicate characteristics of good citizenship."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "economics",
+     "title": "Economics",
+     "topics": [
+      {
+       "id": "economic-decision-making",
+       "title": "Economic Decision Making",
+       "subtopics": [
+        {
+         "id": "evaluate-choices-about-how-to-use-scarce-resourc",
+         "title": "Evaluate choices about how to use scarce resources that involve prioritizing wants and needs",
+         "outcomes": [
+          {
+           "code": "SS.2.2.1.a",
+           "text": "Justify a decision made by providing evidence of possible gains and losses."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "financial-literacy",
+       "title": "Financial Literacy",
+       "subtopics": [
+        {
+         "id": "demonstrate-knowledge-of-currency-its-denominati",
+         "title": "Demonstrate knowledge of currency, its denominations, and use",
+         "outcomes": [
+          {
+           "code": "SS.2.2.2.a",
+           "text": "Make transactions using currency emphasizing its use as a medium of exchange."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "exchange-and-markets",
+       "title": "Exchange and Markets",
+       "subtopics": [
+        {
+         "id": "describe-how-producers-deliver-products-services",
+         "title": "Describe how producers deliver products/services, earn an income, and satisfy economic needs and wants",
+         "outcomes": [
+          {
+           "code": "SS.2.2.3.a",
+           "text": "Explain the role of goods and services and supply and demand in a community."
+          },
+          {
+           "code": "SS.2.2.3.b",
+           "text": "Describe how people in their communities earn income/wages through work."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "national-economy",
+       "title": "National Economy",
+       "subtopics": [
+        {
+         "id": "identify-the-goods-and-services-governments-prov",
+         "title": "Identify the goods and services governments provide",
+         "outcomes": [
+          {
+           "code": "SS.2.2.4.a",
+           "text": "Identify goods and services that local governments provide."
+          },
+          {
+           "code": "SS.2.2.4.b",
+           "text": "Explain how the local government uses taxes to pay for goods and services it provides."
+          },
+          {
+           "code": "SS.2.2.4.c",
+           "text": "Describe how people in their communities earn income/wages through work."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "global-economy",
+       "title": "Global Economy",
+       "subtopics": [
+        {
+         "id": "global-economy",
+         "title": "Global Economy",
+         "outcomes": [
+          {
+           "code": "SS.2.2.5",
+           "text": "Not addressed at this level."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "geography",
+     "title": "Geography",
+     "topics": [
+      {
+       "id": "location-and-place",
+       "title": "Location and Place",
+       "subtopics": [
+        {
+         "id": "explore-where-spatial-and-why-people-places-and-",
+         "title": "Explore where (spatial) and why people, places, and environments are organized in the world",
+         "outcomes": [
+          {
+           "code": "SS.2.3.1.a",
+           "text": "Compare and contrast maps and globes."
+          },
+          {
+           "code": "SS.2.3.1.b",
+           "text": "Identify and describe locations in neighborhoods."
+          },
+          {
+           "code": "SS.2.3.1.c",
+           "text": "Identify and apply map elements."
+          },
+          {
+           "code": "SS.2.3.1.d",
+           "text": "Locate communities, Nebraska, and the United States on maps and globes."
+          },
+          {
+           "code": "SS.2.3.1.e",
+           "text": "Explain why things are located where they are in neighborhoods."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "regions",
+       "title": "Regions",
+       "subtopics": [
+        {
+         "id": "compare-places-and-regions",
+         "title": "Compare places and regions",
+         "outcomes": [
+          {
+           "code": "SS.2.3.2.a",
+           "text": "Identify and differentiate between physical and human features of neighborhoods and communities."
+          },
+          {
+           "code": "SS.2.3.2.b",
+           "text": "Describe local places and regions."
+          },
+          {
+           "code": "SS.2.3.2.c",
+           "text": "Explain how places and regions change over time."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "human-environment-interaction",
+       "title": "Human-Environment Interaction",
+       "subtopics": [
+        {
+         "id": "describe-relationships-between-humans-and-the-ph",
+         "title": "Describe relationships between humans and the physical environment",
+         "outcomes": [
+          {
+           "code": "SS.2.3.3.a",
+           "text": "Identify examples of Earth's physical processes."
+          },
+          {
+           "code": "SS.2.3.3.b",
+           "text": "Describe how seasonal weather patterns, natural hazards, and natural resources affect human activities."
+          },
+          {
+           "code": "SS.2.3.3.c",
+           "text": "Match resources to their sources."
+          },
+          {
+           "code": "SS.2.3.3.d",
+           "text": "Describe how people adapt to their physical environment."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "geography",
+       "title": "Geography",
+       "subtopics": [
+        {
+         "id": "geography",
+         "title": "Geography",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Movement"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "geospatial-skills-and-geo-literacy",
+       "title": "Geospatial Skills and Geo-literacy",
+       "subtopics": [
+        {
+         "id": "use-geographic-skills-to-make-connections-to-stu",
+         "title": "Use geographic skills to make connections to students' lives",
+         "outcomes": [
+          {
+           "code": "SS.2.3.5.a",
+           "text": "Apply geographic knowledge and techniques to navigate students' homes and neighborhoods."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "history",
+     "title": "History",
+     "topics": [
+      {
+       "id": "change-continuity-and-context",
+       "title": "Change, Continuity, and Context",
+       "subtopics": [
+        {
+         "id": "recognize-patterns-of-continuity-and-change-over",
+         "title": "Recognize patterns of continuity and change over time in neighborhoods",
+         "outcomes": [
+          {
+           "code": "SS.2.4.1.a",
+           "text": "Describe how a neighborhood has changed over the course of time using maps and other artifacts."
+          },
+          {
+           "code": "SS.2.4.1.b",
+           "text": "Compare and contrast how different neighborhoods have changed over time."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "multiple-perspectives",
+       "title": "Multiple Perspectives",
+       "subtopics": [
+        {
+         "id": "compare-multiple-perspectives-of-events-within-n",
+         "title": "Compare multiple perspectives of events within neighborhoods",
+         "outcomes": [
+          {
+           "code": "SS.2.4.2.a",
+           "text": "Compare and contrast perspectives from multiple sources regarding the same event."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "historical-analysis-and-interpretation",
+       "title": "Historical Analysis and Interpretation",
+       "subtopics": [
+        {
+         "id": "determine-past-and-current-events-issues-and-peo",
+         "title": "Determine past and current events, issues, and people relevant to a neighborhood",
+         "outcomes": [
+          {
+           "code": "SS.2.4.3.a",
+           "text": "Describe historical people, events, ideas, and symbols (including various cultures and ethnic groups) that impacted a neighborhood."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "historical-inquiry-and-research",
+       "title": "Historical Inquiry and Research",
+       "subtopics": [
+        {
+         "id": "develop-historical-inquiry-and-research-skills",
+         "title": "Develop historical inquiry and research skills",
+         "outcomes": [
+          {
+           "code": "SS.2.4.4.a",
+           "text": "Construct and answer questions about neighborhood history."
+          },
+          {
+           "code": "SS.2.4.4.b",
+           "text": "Identify, obtain, and cite appropriate primary and secondary sources for research."
+          },
+          {
+           "code": "SS.2.4.4.c",
+           "text": "Gather and present historical information about a neighborhood."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "3",
+   "units": [
+    {
+     "id": "civics",
+     "title": "Civics",
+     "topics": [
+      {
+       "id": "forms-and-functions-of-government",
+       "title": "Forms and Functions of Government",
+       "subtopics": [
+        {
+         "id": "analyze-the-structure-and-function-of-local-gove",
+         "title": "Analyze the structure and function of local governments",
+         "outcomes": [
+          {
+           "code": "SS.3.1.1.a",
+           "text": "Compare and contrast the structure and function of roles commonly found in local governments."
+          },
+          {
+           "code": "SS.3.1.1.b",
+           "text": "Communicate how and why a community creates laws."
+          },
+          {
+           "code": "SS.3.1.1.c",
+           "text": "Investigate and summarize the roles that leaders and other citizens serve in local communities."
+          },
+          {
+           "code": "SS.3.1.1.d",
+           "text": "Justify the importance of roles that leaders and citizens serve in local government."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "civic-participation",
+       "title": "Civic Participation",
+       "subtopics": [
+        {
+         "id": "describe-the-impact-of-individual-and-group-deci",
+         "title": "Describe the impact of individual and group decisions at the community level",
+         "outcomes": [
+          {
+           "code": "SS.3.1.2.a",
+           "text": "Identify and model rights and responsibilities of citizens at the community level."
+          },
+          {
+           "code": "SS.3.1.2.b",
+           "text": "Explain how patriotic symbols, songs, actions, celebrations, and holidays are recognized in local communities."
+          },
+          {
+           "code": "SS.3.1.2.c",
+           "text": "Communicate the background of national holidays or historical events, their significance, and how they are recognized in the local community."
+          },
+          {
+           "code": "SS.3.1.2.d",
+           "text": "Identify and engage in opportunities to serve the local community."
+          },
+          {
+           "code": "SS.3.1.2.e",
+           "text": "Engage in discourse that demonstrates respect and consideration of multiple points of view."
+          },
+          {
+           "code": "SS.3.1.2.f",
+           "text": "Describe the decisions of local leaders and how they affect public policy."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "economics",
+     "title": "Economics",
+     "topics": [
+      {
+       "id": "economic-decision-making",
+       "title": "Economic Decision Making",
+       "subtopics": [
+        {
+         "id": "explain-that-people-choose-and-decide-what-servi",
+         "title": "Explain that people choose and decide what services they ask their local and state government to provide and pay for",
+         "outcomes": [
+          {
+           "code": "SS.3.2.1.a",
+           "text": "Identify goods and services funded through state or local taxes."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "financial-literacy",
+       "title": "Financial Literacy",
+       "subtopics": [
+        {
+         "id": "evaluate-choices-and-consequences-for-spending-a",
+         "title": "Evaluate choices and consequences for spending and saving",
+         "outcomes": [
+          {
+           "code": "SS.3.2.2.a",
+           "text": "Given a budget, make choices as to what to purchase, what to give up, and what to save."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "exchange-and-markets",
+       "title": "Exchange and Markets",
+       "subtopics": [
+        {
+         "id": "explain-that-markets-are-places-where-buyers-and",
+         "title": "Explain that markets are places where buyers and sellers exchange goods and services",
+         "outcomes": [
+          {
+           "code": "SS.3.2.3.a",
+           "text": "Indicate various markets where buyers and sellers meet."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "national-economy",
+       "title": "National Economy",
+       "subtopics": [
+        {
+         "id": "describe-how-the-local-community-trades-with-oth",
+         "title": "Describe how the local community trades with other communities",
+         "outcomes": [
+          {
+           "code": "SS.3.2.4.a",
+           "text": "Identify local goods and services that could be traded with people everywhere."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "global-economy",
+       "title": "Global Economy",
+       "subtopics": [
+        {
+         "id": "global-economy",
+         "title": "Global Economy",
+         "outcomes": [
+          {
+           "code": "SS.3.2.5",
+           "text": "Not addressed at this level."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "geography",
+     "title": "Geography",
+     "topics": [
+      {
+       "id": "location-and-place",
+       "title": "Location and Place",
+       "subtopics": [
+        {
+         "id": "explore-where-spatial-and-why-people-places-and-",
+         "title": "Explore where (spatial) and why people, places, and environments are organized in the world",
+         "outcomes": [
+          {
+           "code": "SS.3.3.1.a",
+           "text": "Identify and apply map elements."
+          },
+          {
+           "code": "SS.3.3.1.b",
+           "text": "Use a map to identify location and distribution of physical and human features."
+          },
+          {
+           "code": "SS.3.3.1.c",
+           "text": "Determine why things are located where they are in the community."
+          },
+          {
+           "code": "SS.3.3.1.d",
+           "text": "Locate specific places on maps and globes."
+          },
+          {
+           "code": "SS.3.3.1.e",
+           "text": "Identify the continents, oceans, and hemispheres."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "regions",
+       "title": "Regions",
+       "subtopics": [
+        {
+         "id": "compare-the-characteristics-of-places-and-region",
+         "title": "Compare the characteristics of places and regions",
+         "outcomes": [
+          {
+           "code": "SS.3.3.2.a",
+           "text": "Identify and differentiate between physical and human features of neighborhoods and communities."
+          },
+          {
+           "code": "SS.3.3.2.b",
+           "text": "Compare and contrast local places and regions with other places and regions."
+          },
+          {
+           "code": "SS.3.3.2.c",
+           "text": "Explain how and why places and regions change over time."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "human-environment-interaction",
+       "title": "Human-Environment Interaction",
+       "subtopics": [
+        {
+         "id": "explain-relationships-between-humans-and-the-phy",
+         "title": "Explain relationships between humans and the physical environment",
+         "outcomes": [
+          {
+           "code": "SS.3.3.3.a",
+           "text": "Describe how the environment influences human activities and how humans alter the environment to suit their needs."
+          },
+          {
+           "code": "SS.3.3.3.b",
+           "text": "Identify ecosystems."
+          },
+          {
+           "code": "SS.3.3.3.c",
+           "text": "Explain the importance of Earth's natural resources."
+          },
+          {
+           "code": "SS.3.3.3.d",
+           "text": "Describe how humans develop communities in local settings."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "movement",
+       "title": "Movement",
+       "subtopics": [
+        {
+         "id": "compare-and-contrast-the-characteristics-of-loca",
+         "title": "Compare and contrast the characteristics of local cultures",
+         "outcomes": [
+          {
+           "code": "SS.3.3.4.a",
+           "text": "Compare and contrast cultural traits within a community."
+          },
+          {
+           "code": "SS.3.3.4.b",
+           "text": "Describe examples of how and why cultures change in a community."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "geospatial-skills-and-geo-literacy",
+       "title": "Geospatial Skills and Geo-literacy",
+       "subtopics": [
+        {
+         "id": "use-geographic-skills-to-make-connections-to-iss",
+         "title": "Use geographic skills to make connections to issues and events",
+         "outcomes": [
+          {
+           "code": "SS.3.3.5.a",
+           "text": "Identify and evaluate how changes in human and physical geography have shaped the community."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "history",
+     "title": "History",
+     "topics": [
+      {
+       "id": "change-continuity-and-context",
+       "title": "Change, Continuity, and Context",
+       "subtopics": [
+        {
+         "id": "detect-and-apply-patterns-of-continuity-and-chan",
+         "title": "Detect and apply patterns of continuity and change over time in communities (town or city)",
+         "outcomes": [
+          {
+           "code": "SS.3.4.1.a",
+           "text": "Describe community events over time using maps and other artifacts."
+          },
+          {
+           "code": "SS.3.4.1.b",
+           "text": "Compare and contrast how different communities have changed over time."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "multiple-perspectives",
+       "title": "Multiple Perspectives",
+       "subtopics": [
+        {
+         "id": "describe-and-explain-multiple-perspectives-of-ev",
+         "title": "Describe and explain multiple perspectives of events within a community",
+         "outcomes": [
+          {
+           "code": "SS.3.4.2.a",
+           "text": "Describe the role of diverse groups of people, events, and ideas in the development of a community."
+          },
+          {
+           "code": "SS.3.4.2.b",
+           "text": "Compare and contrast conflicting perspectives about a past event in a community."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "historical-analysis-and-interpretation",
+       "title": "Historical Analysis and Interpretation",
+       "subtopics": [
+        {
+         "id": "select-past-and-current-events-and-people-releva",
+         "title": "Select past and current events and people relevant to the community",
+         "outcomes": [
+          {
+           "code": "SS.3.4.3.a",
+           "text": "Determine factual information about community historical events through use of a variety of sources such as artifacts, pictures, and documents."
+          },
+          {
+           "code": "SS.3.4.3.b",
+           "text": "Identify how decisions affected events in a community."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "historical-inquiry-and-research",
+       "title": "Historical Inquiry and Research",
+       "subtopics": [
+        {
+         "id": "develop-historical-inquiry-and-research-skills",
+         "title": "Develop historical inquiry and research skills",
+         "outcomes": [
+          {
+           "code": "SS.3.4.4.a",
+           "text": "Construct and answer questions about multiple community histories from viewpoints of that community."
+          },
+          {
+           "code": "SS.3.4.4.b",
+           "text": "Identify, obtain, and cite appropriate primary and secondary sources for research about the local community."
+          },
+          {
+           "code": "SS.3.4.4.c",
+           "text": "Gather and communicate historical information about the community."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "4",
+   "units": [
+    {
+     "id": "civics",
+     "title": "Civics",
+     "topics": [
+      {
+       "id": "forms-and-functions-of-government",
+       "title": "Forms and Functions of Government",
+       "subtopics": [
+        {
+         "id": "synthesize-and-justify-the-structure-and-functio",
+         "title": "Synthesize and justify the structure and function of Nebraska's government",
+         "outcomes": [
+          {
+           "code": "SS.4.1.1.a",
+           "text": "Investigate and summarize the historical foundation and events that led to the formation and structure of Nebraska's Constitution and government."
+          },
+          {
+           "code": "SS.4.1.1.b",
+           "text": "Analyze the origin, structure, and function of Nebraska's state government."
+          },
+          {
+           "code": "SS.4.1.1.c",
+           "text": "Communicate how a bill becomes a law in the Nebraska unicameral."
+          },
+          {
+           "code": "SS.4.1.1.d",
+           "text": "Investigate and summarize the roles that leaders and other citizens serve in Nebraska to equitably represent all residents in the state."
+          },
+          {
+           "code": "SS.4.1.1.e",
+           "text": "Justify the importance of roles that leaders and citizens serve in Nebraska government."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "civic-participation",
+       "title": "Civic Participation",
+       "subtopics": [
+        {
+         "id": "investigate-how-different-perspectives-impact-go",
+         "title": "Investigate how different perspectives impact government decisions at the state level",
+         "outcomes": [
+          {
+           "code": "SS.4.1.2.a",
+           "text": "Identify and model rights and responsibilities of citizens at the state level."
+          },
+          {
+           "code": "SS.4.1.2.b",
+           "text": "Investigate the meaning of state symbols, songs, and holidays."
+          },
+          {
+           "code": "SS.4.1.2.c",
+           "text": "Communicate background of Nebraska state holidays or historical events, their significance, and how they are recognized. For example: Arbor Day, George Norris Day and Nebraska Statehood Day, Native American Heritage Day"
+          },
+          {
+           "code": "SS.4.1.2.d",
+           "text": "Identify and engage in opportunities to serve the state."
+          },
+          {
+           "code": "SS.4.1.2.e",
+           "text": "Explain how individuals and groups influence the way a state issue is viewed and resolved."
+          },
+          {
+           "code": "SS.4.1.2.f",
+           "text": "Analyze the decisions of state leaders and how they impact public policy."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "economics",
+     "title": "Economics",
+     "topics": [
+      {
+       "id": "economic-decision-making",
+       "title": "Economic Decision Making",
+       "subtopics": [
+        {
+         "id": "describe-how-scarcity-requires-the-consumer-and-",
+         "title": "Describe how scarcity requires the consumer and producer to make choices and identify costs associated with them",
+         "outcomes": [
+          {
+           "code": "SS.4.2.1.a",
+           "text": "Predict how consumers would react if the price of a good or service changed."
+          },
+          {
+           "code": "SS.4.2.1.b",
+           "text": "Predict how producers would react if the profit from selling a good or service changed."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "financial-literacy",
+       "title": "Financial Literacy",
+       "subtopics": [
+        {
+         "id": "investigate-various-financial-institutions-in-ne",
+         "title": "Investigate various financial institutions in Nebraska and the reasons for people's spending and saving choices",
+         "outcomes": [
+          {
+           "code": "SS.4.2.2.a",
+           "text": "Identify financial institutions in the community and their purposes."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "exchange-and-markets",
+       "title": "Exchange and Markets",
+       "subtopics": [
+        {
+         "id": "investigate-how-resources-are-used-to-make-other",
+         "title": "Investigate how resources are used to make other goods and produce services",
+         "outcomes": [
+          {
+           "code": "SS.4.2.3.a",
+           "text": "Give examples of human, natural, capital, and entrepreneurial resources used in making goods and services in Nebraska and the United States."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "national-economy",
+       "title": "National Economy",
+       "subtopics": [
+        {
+         "id": "identify-and-explain-specialization-and-trade-an",
+         "title": "Identify and explain specialization and trade and why different regions produce different goods and services",
+         "outcomes": [
+          {
+           "code": "SS.4.2.4.a",
+           "text": "Compare Nebraska with different regions and the goods and services each region produces."
+          },
+          {
+           "code": "SS.4.2.4.b",
+           "text": "Discuss how technology has affected the specialization of Nebraska's economy and surrounding states."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "global-economy",
+       "title": "Global Economy",
+       "subtopics": [
+        {
+         "id": "global-economy",
+         "title": "Global Economy",
+         "outcomes": [
+          {
+           "code": "SS.4.2.5",
+           "text": "Not addressed at this level."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "geography",
+     "title": "Geography",
+     "topics": [
+      {
+       "id": "location-and-place",
+       "title": "Location and Place",
+       "subtopics": [
+        {
+         "id": "explore-where-spatial-and-why-people-places-and-",
+         "title": "Explore where (spatial) and why people, places, and environments are organized in the state and around the world",
+         "outcomes": [
+          {
+           "code": "SS.4.3.1.a",
+           "text": "Use local and state maps and atlases to locate physical and human features in Nebraska."
+          },
+          {
+           "code": "SS.4.3.1.b",
+           "text": "Apply map skills to analyze physical/political maps of the state."
+          },
+          {
+           "code": "SS.4.3.1.c",
+           "text": "Determine why things are located where they are in Nebraska."
+          },
+          {
+           "code": "SS.4.3.1.d",
+           "text": "Differentiate between classifications of bodies of water, cities, and land masses."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "regions",
+       "title": "Regions",
+       "subtopics": [
+        {
+         "id": "compare-the-characteristics-of-places-and-region",
+         "title": "Compare the characteristics of places and regions and their impact on human decisions",
+         "outcomes": [
+          {
+           "code": "SS.4.3.2.a",
+           "text": "Identify criteria used to define regions in the state of Nebraska and the United States."
+          },
+          {
+           "code": "SS.4.3.2.b",
+           "text": "Classify regions and places within the state of Nebraska using physical and human features."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "human-environment-interaction",
+       "title": "Human-Environment Interaction",
+       "subtopics": [
+        {
+         "id": "explain-how-human-and-natural-forces-have-modifi",
+         "title": "Explain how human and natural forces have modified different environments in Nebraska and how humans have adapted",
+         "outcomes": [
+          {
+           "code": "SS.4.3.3.a",
+           "text": "Identify physical processes that shape Nebraska's features and patterns."
+          },
+          {
+           "code": "SS.4.3.3.b",
+           "text": "Identify examples of ecosystems in Nebraska and describe related environmental issues."
+          },
+          {
+           "code": "SS.4.3.3.c",
+           "text": "Describe the impact of extreme natural events on the human and physical environment in Nebraska."
+          },
+          {
+           "code": "SS.4.3.3.d",
+           "text": "Describe how humans have adapted to Nebraska's physical environment and use available natural resources."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "movement",
+       "title": "Movement",
+       "subtopics": [
+        {
+         "id": "compare-and-contrast-the-characteristics-of-cult",
+         "title": "Compare and contrast the characteristics of culture statewide",
+         "outcomes": [
+          {
+           "code": "SS.4.3.4.a",
+           "text": "Compare and contrast patterns of culture within the state of Nebraska."
+          },
+          {
+           "code": "SS.4.3.4.b",
+           "text": "Compare and contrast population characteristics of the state of Nebraska."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "geospatial-skills-and-geo-literacy",
+       "title": "Geospatial Skills and Geo-literacy",
+       "subtopics": [
+        {
+         "id": "use-geographic-skills-to-make-connections-to-iss",
+         "title": "Use geographic skills to make connections to issues and events",
+         "outcomes": [
+          {
+           "code": "SS.4.3.5.a",
+           "text": "Identify and evaluate how changes in human and physical geography have shaped Nebraska."
+          },
+          {
+           "code": "SS.4.3.5.b",
+           "text": "Explain the interrelationships of human or physical geographic characteristics of places in Nebraska."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "history",
+     "title": "History",
+     "topics": [
+      {
+       "id": "change-continuity-and-context",
+       "title": "Change, Continuity, and Context",
+       "subtopics": [
+        {
+         "id": "investigate-patterns-of-continuity-and-change-ov",
+         "title": "Investigate patterns of continuity and change over time in Nebraska",
+         "outcomes": [
+          {
+           "code": "SS.4.4.1.a",
+           "text": "Analyze the chronology of key state and/or regional events and communicate their impact on the past, present, and future."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "multiple-perspectives",
+       "title": "Multiple Perspectives",
+       "subtopics": [
+        {
+         "id": "analyze-and-explain-multiple-perspectives-of-eve",
+         "title": "Analyze and explain multiple perspectives of events in Nebraska, including historically marginalized and underrepresented groups",
+         "outcomes": [
+          {
+           "code": "SS.4.4.2.a",
+           "text": "Compare and contrast primary and secondary sources to better understand multiple perspectives of the same event."
+          },
+          {
+           "code": "SS.4.4.2.b",
+           "text": "Identify and describe how various sources relate their perspectives of Nebraska history."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "historical-analysis-and-interpretation",
+       "title": "Historical Analysis and Interpretation",
+       "subtopics": [
+        {
+         "id": "analyze-past-and-current-events-throughout-nebra",
+         "title": "Analyze past and current events throughout Nebraska history",
+         "outcomes": [
+          {
+           "code": "SS.4.4.3.a",
+           "text": "Analyze key sources in Nebraska history to determine credibility and context."
+          },
+          {
+           "code": "SS.4.4.3.b",
+           "text": "Identify key events in American history that shaped or were shaped by Nebraskans."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "historical-inquiry-and-research",
+       "title": "Historical Inquiry and Research",
+       "subtopics": [
+        {
+         "id": "develop-historical-inquiry-and-research-skills",
+         "title": "Develop historical inquiry and research skills",
+         "outcomes": [
+          {
+           "code": "SS.4.4.4.a",
+           "text": "Construct and answer questions about Nebraska history."
+          },
+          {
+           "code": "SS.4.4.4.c",
+           "text": "Gather, analyze, and communicate historical information about Nebraska."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "5",
+   "units": [
+    {
+     "id": "civics",
+     "title": "Civics",
+     "topics": [
+      {
+       "id": "forms-and-functions-of-government",
+       "title": "Forms and Functions of Government",
+       "subtopics": [
+        {
+         "id": "synthesize-and-justify-the-structure-and-functio",
+         "title": "Synthesize and justify the structure and function of the United States government",
+         "outcomes": [
+          {
+           "code": "SS.5.1.1.a",
+           "text": "Investigate and summarize contributions that resulted in the historical foundation and formation of the United States constitutional government."
+          },
+          {
+           "code": "SS.5.1.1.b",
+           "text": "Identify and explain the structure and functions of the three branches of government."
+          },
+          {
+           "code": "SS.5.1.1.c",
+           "text": "Analyze how colonial and new states' governments' laws affected majority groups and marginalized groups within their population."
+          },
+          {
+           "code": "SS.5.1.1.d",
+           "text": "Evaluate how the decisions of the national government affect local and state government and citizens of diverse backgrounds."
+          },
+          {
+           "code": "SS.5.1.1.e",
+           "text": "Justify the principles of the American Republic."
+          },
+          {
+           "code": "SS.5.1.1.f",
+           "text": "Analyze and contrast forms of government."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "civic-participation",
+       "title": "Civic Participation",
+       "subtopics": [
+        {
+         "id": "analyze-democratic-principles-that-are-the-found",
+         "title": "Analyze democratic principles that are the foundation of the United States government systems in daily life",
+         "outcomes": [
+          {
+           "code": "SS.5.1.2.a",
+           "text": "Explore and communicate the constitutional rights and civic responsibilities of U.S. citizens."
+          },
+          {
+           "code": "SS.5.1.2.b",
+           "text": "Communicate origins of national and state holidays including historical background and significance."
+          },
+          {
+           "code": "SS.5.1.2.c",
+           "text": "Interpret and communicate the significance of patriotic symbols, songs, and activities."
+          },
+          {
+           "code": "SS.5.1.2.d",
+           "text": "Explore models of group and individual actions that illustrate civic ideas in the founding of the United States."
+          },
+          {
+           "code": "SS.5.1.2.e",
+           "text": "Examine how cooperation and conflict among people have contributed to political, economic, and social events and situations in the United States."
+          },
+          {
+           "code": "SS.5.1.2.f",
+           "text": "Determine how the roles of individuals and groups influenced government."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "economics",
+     "title": "Economics",
+     "topics": [
+      {
+       "id": "economic-decision-making",
+       "title": "Economic Decision Making",
+       "subtopics": [
+        {
+         "id": "economic-decision-making",
+         "title": "Economic Decision Making",
+         "outcomes": [
+          {
+           "code": "SS.5.2.1",
+           "text": "Not addressed at this level"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "financial-literacy",
+       "title": "Financial Literacy",
+       "subtopics": [
+        {
+         "id": "financial-literacy",
+         "title": "Financial Literacy",
+         "outcomes": [
+          {
+           "code": "SS.5.2.2",
+           "text": "Not addressed at this level"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "exchange-and-markets",
+       "title": "Exchange and Markets",
+       "subtopics": [
+        {
+         "id": "explain-how-human-capital-can-be-improved-by-edu",
+         "title": "Explain how human capital can be improved by education and training and thereby increase standards of living",
+         "outcomes": [
+          {
+           "code": "SS.5.2.3.a",
+           "text": "List examples of how additional education/training improves productivity and increases standards of living."
+          }
+         ]
+        },
+        {
+         "id": "explain-how-specialization-division-of-labor-and",
+         "title": "Explain how specialization, division of labor, and technology increase productivity and interdependence",
+         "outcomes": [
+          {
+           "code": "SS.5.2.4.a",
+           "text": "Describe the historical role of innovation and entrepreneurship in a market economy."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "national-economy",
+       "title": "National Economy",
+       "subtopics": [
+        {
+         "id": "summarize-characteristics-of-economic-institutio",
+         "title": "Summarize characteristics of economic institutions in the United States",
+         "outcomes": [
+          {
+           "code": "SS.5.2.5.a",
+           "text": "Describe the importance of financial institutions to households and businesses."
+          },
+          {
+           "code": "SS.5.2.5.b",
+           "text": "Explain the rules and laws that protect and support consumers."
+          },
+          {
+           "code": "SS.5.2.5.c",
+           "text": "Identify goods and services funded through federal taxes."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "global-economy",
+       "title": "Global Economy",
+       "subtopics": [
+        {
+         "id": "summarize-how-specialization-and-trade-impact-th",
+         "title": "Summarize how specialization and trade impact the global market and relationships with other countries",
+         "outcomes": [
+          {
+           "code": "SS.5.2.6.a",
+           "text": "Describe how international trade promotes specialization and division of labor and increases the productivity of labor, output, and consumption."
+          },
+          {
+           "code": "SS.5.2.6.b",
+           "text": "Explain how trade impacts relationships between countries."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "geography",
+     "title": "Geography",
+     "topics": [
+      {
+       "id": "location-and-place",
+       "title": "Location and Place",
+       "subtopics": [
+        {
+         "id": "explore-where-spatial-and-why-people-places-and-",
+         "title": "Explore where (spatial) and why people, places, and environments are organized in the United States",
+         "outcomes": [
+          {
+           "code": "SS.5.3.1.a",
+           "text": "Use maps and atlases to locate major human and physical features in the United States."
+          },
+          {
+           "code": "SS.5.3.1.b",
+           "text": "Apply map skills to analyze physical/political maps of the United States."
+          },
+          {
+           "code": "SS.5.3.1.c",
+           "text": "Determine why things are located where they are in the United States."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "regions",
+       "title": "Regions",
+       "subtopics": [
+        {
+         "id": "compare-the-characteristics-of-places-and-region",
+         "title": "Compare the characteristics of places and regions and draw conclusions on their impact on human decisions",
+         "outcomes": [
+          {
+           "code": "SS.5.3.2.a",
+           "text": "Identify criteria used to define regions within the United States."
+          },
+          {
+           "code": "SS.5.3.2.b",
+           "text": "Identify and classify regions and places within the United States using physical and human features."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "human-environment-interaction",
+       "title": "Human-Environment Interaction",
+       "subtopics": [
+        {
+         "id": "explain-how-human-and-natural-forces-have-modifi",
+         "title": "Explain how human and natural forces have modified different environments in the United States and how humans have adapted",
+         "outcomes": [
+          {
+           "code": "SS.5.3.3.a",
+           "text": "Identify examples of ecosystems and analyze issues related to the natural setting in the United States."
+          },
+          {
+           "code": "SS.5.3.3.b",
+           "text": "Describe the impact of extreme natural events in the United States on the human and physical environment."
+          },
+          {
+           "code": "SS.5.3.3.c",
+           "text": "Examine patterns of resource distribution and utilization in the United States."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "movement",
+       "title": "Movement",
+       "subtopics": [
+        {
+         "id": "compare-contrast-and-draw-conclusions-about-the-",
+         "title": "Compare, contrast, and draw conclusions about the characteristics of culture and migration in the United States",
+         "outcomes": [
+          {
+           "code": "SS.5.3.4.a",
+           "text": "Compare and contrast patterns of culture within the United States over time and space."
+          },
+          {
+           "code": "SS.5.3.4.b",
+           "text": "Compare and contrast population characteristics of the United States."
+          },
+          {
+           "code": "SS.5.3.4.c",
+           "text": "Explain reasons for historical and present day migrations to and within the United States."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "geospatial-skills-and-geo-literacy",
+       "title": "Geospatial Skills and Geo-literacy",
+       "subtopics": [
+        {
+         "id": "use-geographic-skills-to-interpret-issues-and-ev",
+         "title": "Use geographic skills to interpret issues and events",
+         "outcomes": [
+          {
+           "code": "SS.5.3.5.a",
+           "text": "Explain the influences of physical and human geographic features on events in the United States."
+          },
+          {
+           "code": "SS.5.3.5.b",
+           "text": "Analyze aspects of human and physical geography that have shaped the settlement and development of Early America."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "history",
+     "title": "History",
+     "topics": [
+      {
+       "id": "change-continuity-and-context",
+       "title": "Change, Continuity, and Context",
+       "subtopics": [
+        {
+         "id": "investigate-patterns-of-continuity-and-change-ov",
+         "title": "Investigate patterns of continuity and change over time from the Pre-Columbian era through the Constitution",
+         "outcomes": [
+          {
+           "code": "SS.5.4.1.a",
+           "text": "Examine the chronology of key events in the United States and communicate their impact on various groups in the past, present, and future."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "multiple-perspectives",
+       "title": "Multiple Perspectives",
+       "subtopics": [
+        {
+         "id": "describe-and-explain-multiple-perspectives-of-hi",
+         "title": "Describe and explain multiple perspectives of historical events in the Pre-Columbian era through the Constitution including marginalized and underrepresented groups",
+         "outcomes": [
+          {
+           "code": "SS.5.4.2.a",
+           "text": "Compare and contrast primary and secondary sources to better understand multiple perspectives of the same event."
+          },
+          {
+           "code": "SS.5.4.2.b",
+           "text": "Identify and describe how multiple perspectives facilitate the understanding of US history."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "historical-analysis-and-interpretation",
+       "title": "Historical Analysis and Interpretation",
+       "subtopics": [
+        {
+         "id": "analyze-past-and-current-events-and-challenges-f",
+         "title": "Analyze past and current events and challenges from the Pre- Columbian era through the Constitution",
+         "outcomes": [
+          {
+           "code": "SS.5.4.3.a",
+           "text": "Compare the impact of people, events, ideas, and symbols on various cultures and ethnic groups in the Pre-Columbian era through the Constitution."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "historical-inquiry-and-research",
+       "title": "Historical Inquiry and Research",
+       "subtopics": [
+        {
+         "id": "apply-the-inquiry-process-to-construct-and-answe",
+         "title": "Apply the inquiry process to construct and answer historical questions",
+         "outcomes": [
+          {
+           "code": "SS.5.4.4.a",
+           "text": "Construct and answer questions about the Pre-Columbian era through the Constitution based on multiple sources."
+          },
+          {
+           "code": "SS.5.4.4.b",
+           "text": "Evaluate and cite appropriate primary and secondary sources to research the Pre-Columbian era through the Constitution."
+          },
+          {
+           "code": "SS.5.4.4.c",
+           "text": "Gather, analyze, and communicate historical information from the Pre-Columbian era through the Constitution from multiple sources."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "6",
+   "units": [
+    {
+     "id": "civics",
+     "title": "Civics",
+     "topics": [
+      {
+       "id": "forms-and-functions-of-government",
+       "title": "Forms and Functions of Government",
+       "subtopics": [
+        {
+         "id": "investigate-the-foundations-structures-and-funct",
+         "title": "Investigate the foundations, structures, and functions of governmental institutions",
+         "outcomes": [
+          {
+           "code": "SS.6.1.1.a",
+           "text": "Analyze the different forms of government through the study of early civilizations."
+          },
+          {
+           "code": "SS.6.1.1.b",
+           "text": "Identify the development of written laws and artifacts."
+          },
+          {
+           "code": "SS.6.1.1.c",
+           "text": "Communicate the various ways governmental decisions have impacted people, places, and history."
+          },
+          {
+           "code": "SS.6.1.1.d",
+           "text": "Investigate important government principles."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "civic-participation",
+       "title": "Civic Participation",
+       "subtopics": [
+        {
+         "id": "investigate-the-roles-responsibilities-and-right",
+         "title": "Investigate the roles, responsibilities, and rights of citizens",
+         "outcomes": [
+          {
+           "code": "SS.6.1.2.a",
+           "text": "Describe ways individuals participate in the political process."
+          },
+          {
+           "code": "SS.6.1.2.b",
+           "text": "Compare and contrast the roles and rights of individuals In Ancient Civilizations to those in the United States today."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "economics",
+     "title": "Economics",
+     "topics": [
+      {
+       "id": "economic-decision-making",
+       "title": "Economic Decision Making",
+       "subtopics": [
+        {
+         "id": "investigate-how-economic-decisions-affect-the-we",
+         "title": "Investigate how economic decisions affect the well-being of individuals and society",
+         "outcomes": [
+          {
+           "code": "SS.6.2.1.a",
+           "text": "Compare the benefits and costs of economic decisions made by Ancient Civilizations. For example: marginal benefits of the migration of the Swahili people throughout southern Africa, Constantine the Great's decision to convert the Roman Empire to Christianity, Ancient Mesopotamians that settled along the Tigris and Euphrates to sustain life in a desert"
+          },
+          {
+           "code": "SS.6.2.1.b",
+           "text": "Examine how social and governmental decisions impact economic well-being."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "financial-literacy",
+       "title": "Financial Literacy",
+       "subtopics": [
+        {
+         "id": "financial-literacy",
+         "title": "Financial Literacy",
+         "outcomes": [
+          {
+           "code": "SS.6.2.2",
+           "text": "Not addressed at this level"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "exchange-and-markets",
+       "title": "Exchange and Markets",
+       "subtopics": [
+        {
+         "id": "explain-the-interdependence-of-producers-and-con",
+         "title": "Explain the interdependence of producers and consumers",
+         "outcomes": [
+          {
+           "code": "SS.6.2.3.a",
+           "text": "Identify producers and consumers for Ancient civilizations."
+          },
+          {
+           "code": "SS.6.2.3.b",
+           "text": "Explain how the interaction between producers and consumers satisfied economic wants and needs."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "national-economy",
+       "title": "National Economy",
+       "subtopics": [
+        {
+         "id": "national-economy",
+         "title": "National Economy",
+         "outcomes": [
+          {
+           "code": "SS.6.2.4",
+           "text": "Not addressed at this level"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "global-economy",
+       "title": "Global Economy",
+       "subtopics": [
+        {
+         "id": "global-economy",
+         "title": "Global Economy",
+         "outcomes": [
+          {
+           "code": "SS.6.2.5",
+           "text": "Not addressed at this level"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "geography",
+     "title": "Geography",
+     "topics": [
+      {
+       "id": "location-and-place",
+       "title": "Location and Place",
+       "subtopics": [
+        {
+         "id": "identify-where-spatial-and-why-people-places-and",
+         "title": "Identify where (spatial) and why people, places, and environments are organized on the Earth's surface",
+         "outcomes": [
+          {
+           "code": "SS.6.3.1.a",
+           "text": "Identify and illustrate the locations of the first cities, civilizations, and empires and the reasoning for their locations."
+          },
+          {
+           "code": "SS.6.3.1.b",
+           "text": "Investigate the human and physical characteristics of early patterns of civilizations and empires."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "regions",
+       "title": "Regions",
+       "subtopics": [
+        {
+         "id": "regions",
+         "title": "Regions",
+         "outcomes": [
+          {
+           "code": "SS.6.3.2",
+           "text": "Not addressed at this level"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "human-environment-interaction",
+       "title": "Human-Environment Interaction",
+       "subtopics": [
+        {
+         "id": "identify-how-the-natural-environment-is-changed-",
+         "title": "Identify how the natural environment is changed by natural and human forces, and how humans adapt to their surroundings",
+         "outcomes": [
+          {
+           "code": "SS.6.3.3.a",
+           "text": "Describe the impact of natural processes on the human and physical environments. For example: precipitation, drought, earthquakes, tornadoes, floods, hurricanes, volcanic eruptions, mudslides"
+          },
+          {
+           "code": "SS.6.3.3.b",
+           "text": "Summarize how early humans utilized and adapted to their physical environment."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "movement",
+       "title": "Movement",
+       "subtopics": [
+        {
+         "id": "interpret-and-summarize-patterns-of-culture-arou",
+         "title": "Interpret and summarize patterns of culture around the world",
+         "outcomes": [
+          {
+           "code": "SS.6.3.4.a",
+           "text": "Compare and contrast characteristics of groups of people/settlements. For example: characteristics of river civilizations"
+          },
+          {
+           "code": "SS.6.3.4.b",
+           "text": "Explain how cultural diffusion occurs."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "geospatial-skills-and-geo-literacy",
+       "title": "Geospatial Skills and Geo-literacy",
+       "subtopics": [
+        {
+         "id": "geospatial-skills-and-geo-literacy",
+         "title": "Geospatial Skills and Geo-literacy",
+         "outcomes": [
+          {
+           "code": "SS.6.3.5",
+           "text": "Not addressed at this level"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "history",
+     "title": "History",
+     "topics": [
+      {
+       "id": "change-continuity-and-context",
+       "title": "Change, Continuity, and Context",
+       "subtopics": [
+        {
+         "id": "analyze-patterns-of-continuity-and-change-over-t",
+         "title": "Analyze patterns of continuity and change over time in world history",
+         "outcomes": [
+          {
+           "code": "SS.6.4.1.a",
+           "text": "Examine the impact of people, events, and ideas, including various cultures and ethnic groups, on the world."
+          },
+          {
+           "code": "SS.6.4.1.b",
+           "text": "Analyze the impact of historical events in the world using symbols, maps, documents, and artifacts."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "multiple-perspectives",
+       "title": "Multiple Perspectives",
+       "subtopics": [
+        {
+         "id": "use-multiple-perspectives-to-identify-the-histor",
+         "title": "Use multiple perspectives to identify the historical, social, and cultural context of past and current events",
+         "outcomes": [
+          {
+           "code": "SS.6.4.2.a",
+           "text": "Identify evidence from multiple perspectives and sources to better understand the complexities of world history."
+          },
+          {
+           "code": "SS.6.4.2.b",
+           "text": "Explain the use of primary and secondary sources to better understand multiple perspectives of the same event."
+          }
+         ]
+        },
+        {
+         "id": "examine-historical-events-from-the-perspectives-",
+         "title": "Examine historical events from the perspectives of marginalized and underrepresented groups",
+         "outcomes": [
+          {
+           "code": "SS.6.4.3.a",
+           "text": "Identify how differing experiences can lead to the development of perspectives."
+          },
+          {
+           "code": "SS.6.4.3.b",
+           "text": "Interpret perspectives of marginalized and underrepresented regions around the world."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "historical-analysis-and-interpretation",
+       "title": "Historical Analysis and Interpretation",
+       "subtopics": [
+        {
+         "id": "interpret-and-evaluate-sources-for-historical-co",
+         "title": "Interpret and evaluate sources for historical context",
+         "outcomes": [
+          {
+           "code": "SS.6.4.4.a",
+           "text": "Compare and contrast primary and secondary sources of history."
+          },
+          {
+           "code": "SS.6.4.4.b",
+           "text": "Analyze the relationships among historical events in the world and relevant contemporary issues."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "historical-inquiry-and-research",
+       "title": "Historical Inquiry and Research",
+       "subtopics": [
+        {
+         "id": "apply-the-inquiry-process-to-construct-and-answe",
+         "title": "Apply the inquiry process to construct and answer historical questions",
+         "outcomes": [
+          {
+           "code": "SS.6.4.5.a",
+           "text": "Construct and answer inquiry questions using multiple historical sources."
+          },
+          {
+           "code": "SS.6.4.5.b",
+           "text": "Identify and cite appropriate sources for research about world history, including primary and secondary sources."
+          },
+          {
+           "code": "SS.6.4.5.c",
+           "text": "Gather, analyze, and communicate historical information about the world from multiple sources."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "7",
+   "units": [
+    {
+     "id": "civics",
+     "title": "Civics",
+     "topics": [
+      {
+       "id": "forms-and-functions-of-government",
+       "title": "Forms and Functions of Government",
+       "subtopics": [
+        {
+         "id": "analyze-the-foundations-structures-and-functions",
+         "title": "Analyze the foundations, structures, and functions of governmental institutions",
+         "outcomes": [
+          {
+           "code": "SS.7.1.1.a",
+           "text": "Describe different forms and structures of government around the world and how they address the needs of the citizens."
+          },
+          {
+           "code": "SS.7.1.1.b",
+           "text": "Identify and report significant historic events and documents that have influenced governmental institutions and their function."
+          },
+          {
+           "code": "SS.7.1.1.c",
+           "text": "Analyze how governmental systems have changed over time and how those developments influence civic life and ideals around the world."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "civic-participation",
+       "title": "Civic Participation",
+       "subtopics": [
+        {
+         "id": "analyze-the-roles-responsibilities-and-rights-of",
+         "title": "Analyze the roles, responsibilities, and rights of citizens and groups in international societies",
+         "outcomes": [
+          {
+           "code": "SS.7.1.2.a",
+           "text": "Examine ways in which individuals and groups participate in the political process in different regions of the globe."
+          },
+          {
+           "code": "SS.7.1.2.b",
+           "text": "Evaluate how cooperation and conflict among people around the world have contributed to political, economic, and social events and situations."
+          },
+          {
+           "code": "SS.7.1.2.c",
+           "text": "Explain the roles and influence of individuals, groups, and the media on governments in an interdependent society."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "economics",
+     "title": "Economics",
+     "topics": [
+      {
+       "id": "economic-decision-making",
+       "title": "Economic Decision Making",
+       "subtopics": [
+        {
+         "id": "economic-decision-making",
+         "title": "Economic Decision Making",
+         "outcomes": [
+          {
+           "code": "SS.7.2.1",
+           "text": "Not addressed at this level"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "financial-literacy",
+       "title": "Financial Literacy",
+       "subtopics": [
+        {
+         "id": "financial-literacy",
+         "title": "Financial Literacy",
+         "outcomes": [
+          {
+           "code": "SS.7.2.2",
+           "text": "Not addressed at this level"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "exchange-and-markets",
+       "title": "Exchange and Markets",
+       "subtopics": [
+        {
+         "id": "exchange-and-markets",
+         "title": "Exchange and Markets",
+         "outcomes": [
+          {
+           "code": "SS.7.2.3",
+           "text": "Not addressed at this level"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "national-economy",
+       "title": "National Economy",
+       "subtopics": [
+        {
+         "id": "investigate-how-varying-economic-systems-impact-",
+         "title": "Investigate how varying economic systems impact individuals in a civilization/society",
+         "outcomes": [
+          {
+           "code": "SS.7.2.4.a",
+           "text": "Compare and contrast characteristics of different socio-economic groups in economic systems."
+          },
+          {
+           "code": "SS.7.2.4.b",
+           "text": "Identify the relationships between diverse socio-economic groups and their economic systems in the modern world."
+          }
+         ]
+        },
+        {
+         "id": "analyze-information-using-appropriate-data-to-dr",
+         "title": "Analyze information using appropriate data to draw conclusions about the total production, income, and economic growth in various economies",
+         "outcomes": [
+          {
+           "code": "SS.7.2.5.a",
+           "text": "Define the government's role in various economic systems."
+          },
+          {
+           "code": "SS.7.2.5.b",
+           "text": "Identify various economic indicators that governments use to measure modern world societies, nations, and cultures."
+          },
+          {
+           "code": "SS.7.2.5.c",
+           "text": "Categorize goods and services provided in modern societies, nations, and cultures into the four factors of production."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "global-economy",
+       "title": "Global Economy",
+       "subtopics": [
+        {
+         "id": "illustrate-how-international-trade-impacts-indiv",
+         "title": "Illustrate how international trade impacts individuals, organizations, and nations/societies",
+         "outcomes": [
+          {
+           "code": "SS.7.2.6.a",
+           "text": "Explain how individuals gain through specialization and voluntary trade and how international trade affects the domestic economy."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "geography",
+     "title": "Geography",
+     "topics": [
+      {
+       "id": "location-and-place",
+       "title": "Location and Place",
+       "subtopics": [
+        {
+         "id": "location-and-place",
+         "title": "Location and Place",
+         "outcomes": [
+          {
+           "code": "SS.7.3.1",
+           "text": "Not addressed at this level"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "regions",
+       "title": "Regions",
+       "subtopics": [
+        {
+         "id": "evaluate-how-regions-form-and-change-over-time",
+         "title": "Evaluate how regions form and change over time",
+         "outcomes": [
+          {
+           "code": "SS.7.3.2.a",
+           "text": "Classify physical and human characteristics of places and regions."
+          },
+          {
+           "code": "SS.7.3.2.b",
+           "text": "Interpret the impact of land and water features on human decisions."
+          },
+          {
+           "code": "SS.7.3.2.c",
+           "text": "Identify how humans construct major world regions and the impact on human societies."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "human-environment-interaction",
+       "title": "Human-Environment Interaction",
+       "subtopics": [
+        {
+         "id": "determine-how-the-natural-environment-is-changed",
+         "title": "Determine how the natural environment is changed by natural and human forces and how humans adapt to their surroundings",
+         "outcomes": [
+          {
+           "code": "SS.7.3.3.a",
+           "text": "Explain the impact of natural processes on human and physical environments."
+          },
+          {
+           "code": "SS.7.3.3.b",
+           "text": "Research and describe how humans have utilized and adapted to their physical environment."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "movement",
+       "title": "Movement",
+       "subtopics": [
+        {
+         "id": "examine-and-interpret-patterns-of-culture-around",
+         "title": "Examine and interpret patterns of culture around the world",
+         "outcomes": [
+          {
+           "code": "SS.7.3.4.a",
+           "text": "Compare and contrast characteristics of groups of people/settlements."
+          },
+          {
+           "code": "SS.7.3.4.b",
+           "text": "Develop a logical process to describe how cultural diffusion occurs and how the diffusion of ideas impacts cultures."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "geospatial-skills-and-geo-literacy",
+       "title": "Geospatial Skills and Geo-literacy",
+       "subtopics": [
+        {
+         "id": "compare-issues-and-or-events-using-geographic-kn",
+         "title": "Compare issues and/or events using geographic knowledge and skills to make informed decisions",
+         "outcomes": [
+          {
+           "code": "SS.7.3.5.a",
+           "text": "Classify the physical or human factors that explain the geographic patterns of world events."
+          },
+          {
+           "code": "SS.7.3.5.b",
+           "text": "Develop geographic representations and analyze the role of geographic physical and human factors in determining the arrangement of economic activity and patterns of human settlement."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "history",
+     "title": "History",
+     "topics": [
+      {
+       "id": "change-continuity-and-context",
+       "title": "Change, Continuity, and Context",
+       "subtopics": [
+        {
+         "id": "compare-patterns-of-continuity-and-change-over-t",
+         "title": "Compare patterns of continuity and change over time in world history",
+         "outcomes": [
+          {
+           "code": "SS.7.4.1.a",
+           "text": "Analyze the impact of people, events, and ideas, including various cultures and ethnic groups, on the world."
+          },
+          {
+           "code": "SS.7.4.1.b",
+           "text": "Analyze the impact of historical events in the world using symbols, maps, documents, and artifacts."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "multiple-perspectives",
+       "title": "Multiple Perspectives",
+       "subtopics": [
+        {
+         "id": "use-multiple-perspectives-to-examine-the-histori",
+         "title": "Use multiple perspectives to examine the historical, social, and cultural context of past and current events",
+         "outcomes": [
+          {
+           "code": "SS.7.4.2.a",
+           "text": "Analyze evidence from multiple perspectives and sources to better understand the complexities of world history."
+          },
+          {
+           "code": "SS.7.4.2.b",
+           "text": "Compare and contrast primary and secondary sources to better understand multiple perspectives of the same event."
+          }
+         ]
+        },
+        {
+         "id": "examine-historical-events-from-the-perspectives-",
+         "title": "Examine historical events from the perspectives of marginalized and underrepresented groups",
+         "outcomes": [
+          {
+           "code": "SS.7.4.3.a",
+           "text": "Identify how differing experiences can lead to the development of perspectives."
+          },
+          {
+           "code": "SS.7.4.3.b",
+           "text": "Interpret perspectives of marginalized and underrepresented regions around the world."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "historical-analysis-and-interpretation",
+       "title": "Historical Analysis and Interpretation",
+       "subtopics": [
+        {
+         "id": "analyze-and-interpret-sources-for-perspective-an",
+         "title": "Analyze and interpret sources for perspective and historical context",
+         "outcomes": [
+          {
+           "code": "SS.7.4.4.a",
+           "text": "Compare and contrast primary and secondary sources of history."
+          },
+          {
+           "code": "SS.7.4.4.b",
+           "text": "Identify the cause and effect relationships among historical events in the world and relevant contemporary issues."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "historical-inquiry-and-research",
+       "title": "Historical Inquiry and Research",
+       "subtopics": [
+        {
+         "id": "apply-the-inquiry-process-to-construct-and-answe",
+         "title": "Apply the inquiry process to construct and answer historical questions",
+         "outcomes": [
+          {
+           "code": "SS.7.4.5.a",
+           "text": "Construct and answer inquiry questions using multiple historical sources."
+          },
+          {
+           "code": "SS.7.4.5.b",
+           "text": "Evaluate and cite appropriate sources for research about world history, including primary and secondary sources."
+          },
+          {
+           "code": "SS.7.4.5.c",
+           "text": "Gather, analyze, and communicate historical information about the world from multiple sources."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "8",
+   "units": [
+    {
+     "id": "civics",
+     "title": "Civics",
+     "topics": [
+      {
+       "id": "forms-and-functions-of-government",
+       "title": "Forms and Functions of Government",
+       "subtopics": [
+        {
+         "id": "investigate-and-analyze-the-foundation-structure",
+         "title": "Investigate and analyze the foundation, structure, and functions of the United States government",
+         "outcomes": [
+          {
+           "code": "SS.8.1.1.a",
+           "text": "Identify and describe the different systems of government."
+          },
+          {
+           "code": "SS.8.1.1.b",
+           "text": "Analyze the structure and roles of the United States government in meeting the needs of the citizens governed, managing conflict, and establishing order and security."
+          },
+          {
+           "code": "SS.8.1.1.c",
+           "text": "Examine the development of foundational laws and other documents in the United States government."
+          },
+          {
+           "code": "SS.8.1.1.d",
+           "text": "Evaluate how various United States government decisions impact people, place, and history."
+          },
+          {
+           "code": "SS.8.1.1.e",
+           "text": "Describe how important government principles are shown in American government."
+          },
+          {
+           "code": "SS.8.1.1.f",
+           "text": "Analyze the development and significance of political parties in the United States."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "civic-participation",
+       "title": "Civic Participation",
+       "subtopics": [
+        {
+         "id": "evaluate-the-roles-responsibilities-and-rights-a",
+         "title": "Evaluate the roles, responsibilities, and rights as local, state, national, and international citizens",
+         "outcomes": [
+          {
+           "code": "SS.8.1.2.a",
+           "text": "Demonstrate ways individuals participate in the political process."
+          },
+          {
+           "code": "SS.8.1.2.b",
+           "text": "Analyze the significance of patriotic symbols, songs and activities in terms of historical, social, and cultural contexts."
+          },
+          {
+           "code": "SS.8.1.2.c",
+           "text": "Demonstrate civic engagement."
+          },
+          {
+           "code": "SS.8.1.2.d",
+           "text": "Describe how cooperation and conflict among people have contributed to political, economic, and social events and situations in the United States."
+          },
+          {
+           "code": "SS.8.1.2.e",
+           "text": "Compare and contrast the roles and influences of individuals, groups, and the media on American government."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "economics",
+     "title": "Economics",
+     "topics": [
+      {
+       "id": "economic-decision-making",
+       "title": "Economic Decision Making",
+       "subtopics": [
+        {
+         "id": "economic-decision-making",
+         "title": "Economic Decision Making",
+         "outcomes": [
+          {
+           "code": "SS.8.2.1",
+           "text": "Not addressed at this level"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "financial-literacy",
+       "title": "Financial Literacy",
+       "subtopics": [
+        {
+         "id": "understand-personal-and-business-financial-manag",
+         "title": "Understand personal and business financial management",
+         "outcomes": [
+          {
+           "code": "SS.8.2.2.a",
+           "text": "Identify skills for future financial success."
+          },
+          {
+           "code": "SS.8.2.2.b",
+           "text": "Understand tools, strategies, and systems used to maintain, monitor, control, and plan the use of financial resources."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "exchange-and-markets",
+       "title": "Exchange and Markets",
+       "subtopics": [
+        {
+         "id": "exchange-and-markets",
+         "title": "Exchange and Markets",
+         "outcomes": [
+          {
+           "code": "SS.8.2.3",
+           "text": "Not addressed at this level"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "national-economy",
+       "title": "National Economy",
+       "subtopics": [
+        {
+         "id": "justify-and-debate-economic-decisions-made-by-no",
+         "title": "Justify and debate economic decisions made by North American societies",
+         "outcomes": [
+          {
+           "code": "SS.8.2.4.a",
+           "text": "Research the origins and development of the economic system, banks, and financial institutions in the United States."
+          },
+          {
+           "code": "SS.8.2.4.b",
+           "text": "Explain how tax revenues are collected and distributed."
+          },
+          {
+           "code": "SS.8.2.4.c",
+           "text": "Describe the progression of money and its role in early United States history."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "global-economy",
+       "title": "Global Economy",
+       "subtopics": [
+        {
+         "id": "illustrate-how-international-trade-impacts-indiv",
+         "title": "Illustrate how international trade impacts individuals, organizations, and nations",
+         "outcomes": [
+          {
+           "code": "SS.8.2.5.a",
+           "text": "Explain that currency must be converted to make purchases in other countries."
+          },
+          {
+           "code": "SS.8.2.5.b",
+           "text": "Recognize how trade barriers impact the prices and quantity of goods."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "geography",
+     "title": "Geography",
+     "topics": [
+      {
+       "id": "location-and-place",
+       "title": "Location and Place",
+       "subtopics": [
+        {
+         "id": "location-and-place",
+         "title": "Location and Place",
+         "outcomes": [
+          {
+           "code": "SS.8.3.1",
+           "text": "Not addressed at this level"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "regions",
+       "title": "Regions",
+       "subtopics": [
+        {
+         "id": "examine-how-regions-form-and-change-over-time",
+         "title": "Examine how regions form and change over time",
+         "outcomes": [
+          {
+           "code": "SS.8.3.2.a",
+           "text": "Evaluate physical and human characteristics of places and regions. For example: climate, landforms, religious groups, ethnic groups"
+          },
+          {
+           "code": "SS.8.3.2.b",
+           "text": "Determine the impact of land and water features on human decisions."
+          },
+          {
+           "code": "SS.8.3.2.c",
+           "text": "Identify and justify how humans develop major world regions and the impact on human societies."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "human-environment-interaction",
+       "title": "Human-Environment Interaction",
+       "subtopics": [
+        {
+         "id": "determine-how-the-natural-environment-is-changed",
+         "title": "Determine how the natural environment is changed by natural and human forces and how humans adapt to their surroundings",
+         "outcomes": [
+          {
+           "code": "SS.8.3.3.a",
+           "text": "Interpret the impact of natural processes on human and physical environments."
+          },
+          {
+           "code": "SS.8.3.3.b",
+           "text": "Analyze how humans have utilized and adapted to their physical environment."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "movement",
+       "title": "Movement",
+       "subtopics": [
+        {
+         "id": "movement",
+         "title": "Movement",
+         "outcomes": [
+          {
+           "code": "SS.8.3.4",
+           "text": "Not addressed at this level"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "geospatial-skills-and-geo-literacy",
+       "title": "Geospatial Skills and Geo-literacy",
+       "subtopics": [
+        {
+         "id": "geospatial-skills-and-geo-literacy",
+         "title": "Geospatial Skills and Geo-literacy",
+         "outcomes": [
+          {
+           "code": "SS.8.3.5",
+           "text": "Not addressed at this level"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "history",
+     "title": "History",
+     "topics": [
+      {
+       "id": "change-continuity-and-context",
+       "title": "Change, Continuity, and Context",
+       "subtopics": [
+        {
+         "id": "analyze-patterns-of-continuity-and-change-over-t",
+         "title": "Analyze patterns of continuity and change over time in United States history",
+         "outcomes": [
+          {
+           "code": "SS.8.4.1.a",
+           "text": "Evaluate the impact of people, events, and ideas, including various cultures and ethnic groups, on the United States."
+          },
+          {
+           "code": "SS.8.4.1.b",
+           "text": "Evaluate the impact of historical events in the United States using symbols, maps, documents, and artifacts."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "multiple-perspectives",
+       "title": "Multiple Perspectives",
+       "subtopics": [
+        {
+         "id": "use-multiple-perspectives-to-evaluate-the-histor",
+         "title": "Use multiple perspectives to evaluate the historical, social, and cultural context of past and current events",
+         "outcomes": [
+          {
+           "code": "SS.8.4.2.a",
+           "text": "Compare and interpret evidence from multiple perspectives and sources to better understand the complexities of US history."
+          },
+          {
+           "code": "SS.8.4.2.b",
+           "text": "Evaluate the relevancy, accuracy, and completeness of primary and secondary sources to better understand multiple perspectives of the same event."
+          }
+         ]
+        },
+        {
+         "id": "examine-historical-events-from-the-perspectives-",
+         "title": "Examine historical events from the perspectives of marginalized and underrepresented groups",
+         "outcomes": [
+          {
+           "code": "SS.8.4.3.a",
+           "text": "Identify how differing experiences can lead to the development of perspectives."
+          },
+          {
+           "code": "SS.8.4.3.b",
+           "text": "Interpret how and why marginalized and underrepresented groups and/or individuals might understand historical events similarly or differently."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "historical-analysis-and-interpretation",
+       "title": "Historical Analysis and Interpretation",
+       "subtopics": [
+        {
+         "id": "evaluate-and-interpret-sources-for-perspective-a",
+         "title": "Evaluate and interpret sources for perspective and historical context",
+         "outcomes": [
+          {
+           "code": "SS.8.4.4.a",
+           "text": "Compare and contrast primary and secondary sources of history."
+          },
+          {
+           "code": "SS.8.4.4.b",
+           "text": "Evaluate the relationships among historical events in the United States and relevant contemporary issues."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "historical-inquiry-and-research",
+       "title": "Historical Inquiry and Research",
+       "subtopics": [
+        {
+         "id": "apply-the-inquiry-process-to-construct-and-answe",
+         "title": "Apply the inquiry process to construct and answer historical questions",
+         "outcomes": [
+          {
+           "code": "SS.8.4.5.a",
+           "text": "Identify areas of inquiry by using student-generated questions about multiple historical sources."
+          },
+          {
+           "code": "SS.8.4.5.b",
+           "text": "Locate, analyze, and cite appropriate sources for research about United States history, including primary and secondary sources."
+          },
+          {
+           "code": "SS.8.4.5.c",
+           "text": "Gather, analyze, and communicate historical information about United States history from multiple sources."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "9-12",
+   "units": [
+    {
+     "id": "analyze-and-evaluate-patterns-of-continuity-and-",
+     "title": "Analyze and evaluate patterns of continuity and change over time in American history",
+     "topics": [
+      {
+       "id": "analyze-and-evaluate-patterns-of-continuity-and-",
+       "title": "Analyze and evaluate patterns of continuity and change over time in American history",
+       "subtopics": [
+        {
+         "id": "analyze-and-evaluate-patterns-of-continuity-and-",
+         "title": "Analyze and evaluate patterns of continuity and change over time in American history",
+         "outcomes": [
+          {
+           "code": "SS HS.4.1.a (US)",
+           "text": "Evaluate the cause and effect of historical events on various groups in the United States."
+          },
+          {
+           "code": "SS HS.4.1.b (US)",
+           "text": "Select, record, and interpret key national events in chronological order."
+          },
+          {
+           "code": "SS HS.4.1.c (US)",
+           "text": "Evaluate the impact of people, events, and ideas, including various cultures and ethnic groups, on the United States."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "analyze-the-complexity-of-the-interaction-of-mul",
+     "title": "Analyze the complexity of the interaction of multiple perspectives to investigate causes and effects of significant events in the development of history",
+     "topics": [
+      {
+       "id": "analyze-the-complexity-of-the-interaction-of-mul",
+       "title": "Analyze the complexity of the interaction of multiple perspectives to investigate causes and effects of significant events in the development of history",
+       "subtopics": [
+        {
+         "id": "analyze-the-complexity-of-the-interaction-of-mul",
+         "title": "Analyze the complexity of the interaction of multiple perspectives to investigate causes and effects of significant events in the development of history",
+         "outcomes": [
+          {
+           "code": "SS HS.4.2.a (US)",
+           "text": "Identify and evaluate how considering multiple perspectives facilitates an understanding of history."
+          },
+          {
+           "code": "SS HS.4.2.b (US)",
+           "text": "Evaluate the relevancy, accuracy, and completeness of primary and secondary sources to better understand multiple perspectives of the same event."
+          },
+          {
+           "code": "SS HS.4.2.a (WLD)",
+           "text": "Identify and evaluate how considering multiple perspectives facilitates an understanding of history."
+          },
+          {
+           "code": "SS HS.4.2.b (WLD)",
+           "text": "Evaluate the relevancy, accuracy, and completeness of primary and secondary sources to better understand multiple perspectives of the same event."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "examine-historical-events-from-the-perspectives-",
+     "title": "Examine historical events from the perspectives of marginalized and underrepresented groups",
+     "topics": [
+      {
+       "id": "examine-historical-events-from-the-perspectives-",
+       "title": "Examine historical events from the perspectives of marginalized and underrepresented groups",
+       "subtopics": [
+        {
+         "id": "examine-historical-events-from-the-perspectives-",
+         "title": "Examine historical events from the perspectives of marginalized and underrepresented groups",
+         "outcomes": [
+          {
+           "code": "SS HS.4.3.a (US)",
+           "text": "Identify how differing experiences can lead to the development of perspectives."
+          },
+          {
+           "code": "SS HS.4.3.b (US)",
+           "text": "Interpret how and why marginalized and underrepresented groups and/or individuals might understand historical events similarly or differently."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "evaluate-sources-for-perspective-limitations-acc",
+     "title": "Evaluate sources for perspective, limitations, accuracy, and historical context",
+     "topics": [
+      {
+       "id": "evaluate-sources-for-perspective-limitations-acc",
+       "title": "Evaluate sources for perspective, limitations, accuracy, and historical context",
+       "subtopics": [
+        {
+         "id": "evaluate-sources-for-perspective-limitations-acc",
+         "title": "Evaluate sources for perspective, limitations, accuracy, and historical context (1 of 2)",
+         "outcomes": [
+          {
+           "code": "SS HS.4.4.a (US)",
+           "text": "Compare, contrast, and critique the central arguments in primary and secondary sources of history from multiple media."
+          },
+          {
+           "code": "SS HS.4.4.b (US)",
+           "text": "Evaluate strengths and limitations of a variety of primary and secondary historical sources."
+          },
+          {
+           "code": "SS HS 4.4.c (US)",
+           "text": "Determine the relationship between multiple causes and effects of events and developments in the past."
+          },
+          {
+           "code": "SS HS.4.4.d (US)",
+           "text": "Synthesize the relationships among historical events in the United States and relevant contemporary issues."
+          }
+         ]
+        },
+        {
+         "id": "evaluate-sources-for-perspective-limitations-acc-2",
+         "title": "Evaluate sources for perspective, limitations, accuracy, and historical context (2 of 2)",
+         "outcomes": [
+          {
+           "code": "SS HS.4.4.a (WLD)",
+           "text": "Compare, contrast, and critique the central arguments in primary and secondary sources of history from multiple media."
+          },
+          {
+           "code": "SS HS.4.4.b (WLD)",
+           "text": "Evaluate strengths and limitations of a variety of primary and secondary historical sources."
+          },
+          {
+           "code": "SS HS.4.4.c (WLD)",
+           "text": "Determine the relationship between multiple causes and effects of events and developments in the past."
+          },
+          {
+           "code": "SS HS.4.4.d (WLD)",
+           "text": "Synthesize the relationships among historical events in the world and relevant contemporary issues."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "apply-the-inquiry-process-to-construct-and-answe",
+     "title": "Apply the inquiry process to construct and answer historical questions",
+     "topics": [
+      {
+       "id": "apply-the-inquiry-process-to-construct-and-answe",
+       "title": "Apply the inquiry process to construct and answer historical questions",
+       "subtopics": [
+        {
+         "id": "apply-the-inquiry-process-to-construct-and-answe",
+         "title": "Apply the inquiry process to construct and answer historical questions (1 of 2)",
+         "outcomes": [
+          {
+           "code": "SS HS.4.5.a (US)",
+           "text": "Construct meaningful questions about topics in U.S. history."
+          },
+          {
+           "code": "SS HS.4.5.b (US)",
+           "text": "Locate, evaluate, and cite appropriate sources for research about selected topics in U.S. History, including primary and secondary sources."
+          },
+          {
+           "code": "SS HS.4.5.c (US)",
+           "text": "Select, organize, and corroborate relevant historical information about selected topics in U.S. History."
+          },
+          {
+           "code": "SS HS.4.5.d  (US)",
+           "text": "Synthesize historical information to create new understandings."
+          },
+          {
+           "code": "SS HS.4.5.e (US)",
+           "text": "Communicate inquiry results within a historical context."
+          }
+         ]
+        },
+        {
+         "id": "apply-the-inquiry-process-to-construct-and-answe-2",
+         "title": "Apply the inquiry process to construct and answer historical questions (2 of 2)",
+         "outcomes": [
+          {
+           "code": "SS HS.4.5.a (WLD)",
+           "text": "Construct meaningful questions that initiate an inquiry."
+          },
+          {
+           "code": "SS HS.4.5.b (WLD)",
+           "text": "Locate, evaluate, and cite appropriate sources for research about selected topics in world history, including primary and secondary sources."
+          },
+          {
+           "code": "SS HS.4.5.c (WLD)",
+           "text": "Select, organize, and corroborate relevant historical information about selected topics in world history."
+          },
+          {
+           "code": "SS HS.4.5.d (WLD)",
+           "text": "Synthesize historical information to create new understandings."
+          },
+          {
+           "code": "SS HS.4.5.e (WLD)",
+           "text": "Communicate inquiry results within a historical context."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "analyze-the-foundation-structures-and-functions-",
+     "title": "Analyze the foundation, structures, and functions of the United States government as well as local, state, and international governments",
+     "topics": [
+      {
+       "id": "analyze-the-foundation-structures-and-functions-",
+       "title": "Analyze the foundation, structures, and functions of the United States government as well as local, state, and international governments",
+       "subtopics": [
+        {
+         "id": "analyze-the-foundation-structures-and-functions-",
+         "title": "Analyze the foundation, structures, and functions of the United States government as well as local, state, and international governments (1 of 2)",
+         "outcomes": [
+          {
+           "code": "SS HS.1.1.a",
+           "text": "Examine the historical foundation that influenced the creation of the United States Constitution."
+          },
+          {
+           "code": "SS HS.1.1.b",
+           "text": "Evaluate the structure of American constitutional government."
+          },
+          {
+           "code": "SS HS.1.1.c",
+           "text": "Analyze the functions of United States government and its outcomes."
+          },
+          {
+           "code": "SS HS.1.1.d",
+           "text": "Analyze the foundation, structures, and functions of local government and its outcomes."
+          }
+         ]
+        },
+        {
+         "id": "analyze-the-foundation-structures-and-functions--2",
+         "title": "Analyze the foundation, structures, and functions of the United States government as well as local, state, and international governments (2 of 2)",
+         "outcomes": [
+          {
+           "code": "SS HS.1.1.e",
+           "text": "Analyze the foundation, structures, and functions of state government and its outcomes."
+          },
+          {
+           "code": "SS HS.1.1.f",
+           "text": "Analyze the foundation, structures, and functions of supranational organizations."
+          },
+          {
+           "code": "SS HS.1.1.g",
+           "text": "Analyze the roles that political parties have played in the United States."
+          },
+          {
+           "code": "SS HS.1.1.h",
+           "text": "Analyze United States foreign policy issues."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "demonstrate-meaningful-civic-participation-by-an",
+     "title": "Demonstrate meaningful civic participation by analyzing local, state, national, or international issues and policies",
+     "topics": [
+      {
+       "id": "demonstrate-meaningful-civic-participation-by-an",
+       "title": "Demonstrate meaningful civic participation by analyzing local, state, national, or international issues and policies",
+       "subtopics": [
+        {
+         "id": "demonstrate-meaningful-civic-participation-by-an",
+         "title": "Demonstrate meaningful civic participation by analyzing local, state, national, or international issues and policies",
+         "outcomes": [
+          {
+           "code": "SS HS.1.2.a",
+           "text": "Investigate how individuals and groups can effectively use the structure and functions of various levels of government to shape policy."
+          },
+          {
+           "code": "SS HS.1.2.b",
+           "text": "Analyze and communicate the significance and impacts of patriotic symbols, songs, holidays, and activities in terms of historical, social, and cultural contexts."
+          },
+          {
+           "code": "SS HS.1.2.c",
+           "text": "Engage and reflect on participation in civic activities."
+          },
+          {
+           "code": "SS HS.1.2.d",
+           "text": "Investigate an issue and communicate which level of government is most appropriate to utilize in addressing the issue."
+          },
+          {
+           "code": "SS HS.1.2.e",
+           "text": "Demonstrate how individuals, groups, and the media check governmental practices."
+          },
+          {
+           "code": "SS HS.1.2.f",
+           "text": "Analyze various media sources for accuracy and perspective."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "civics",
+     "title": "Civics",
+     "topics": [
+      {
+       "id": "forms-and-functions-of-government",
+       "title": "Forms and Functions of Government",
+       "subtopics": [
+        {
+         "id": "analyze-the-foundation-structures-and-functions-",
+         "title": "Analyze the foundation, structures, and functions of the United States government as well as local, state, and international governments",
+         "outcomes": [
+          {
+           "code": "SS.HS.1.1.a",
+           "text": "Examine the historical foundation that influenced the creation of the United States Constitution."
+          },
+          {
+           "code": "SS.HS.1.1.b",
+           "text": "Evaluate the structure of American constitutional government."
+          },
+          {
+           "code": "SS.HS.1.1.c",
+           "text": "Analyze the functions of United States government and its outcomes."
+          },
+          {
+           "code": "SS.HS.1.1.d",
+           "text": "Analyze the foundation, structures, and functions of local government and its outcomes."
+          },
+          {
+           "code": "SS.HS.1.1.e",
+           "text": "Analyze the foundation, structures, and functions of state government and its outcomes."
+          },
+          {
+           "code": "SS.HS.1.1.f",
+           "text": "Analyze the foundation, structures, and functions of supranational organizations."
+          },
+          {
+           "code": "SS.HS.1.1.g",
+           "text": "Analyze the roles that political parties have played in the United States."
+          },
+          {
+           "code": "SS.HS.1.1.h",
+           "text": "Analyze United States foreign policy issues."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "civic-participation",
+       "title": "Civic Participation",
+       "subtopics": [
+        {
+         "id": "demonstrate-meaningful-civic-participation-by-an",
+         "title": "Demonstrate meaningful civic participation by analyzing local, state, national, or international issues and policies",
+         "outcomes": [
+          {
+           "code": "SS.HS.1.2.a",
+           "text": "Investigate how individuals and groups can effectively use the structure and functions of various levels of government to shape policy."
+          },
+          {
+           "code": "SS.HS.1.2.b",
+           "text": "Analyze and communicate the significance and impacts of patriotic symbols, songs, holidays, and activities in terms of historical, social, and cultural contexts."
+          },
+          {
+           "code": "SS.HS.1.2.c",
+           "text": "Engage and reflect on participation in civic activities."
+          },
+          {
+           "code": "SS.HS.1.2.d",
+           "text": "Investigate an issue and communicate which level of government is most appropriate to utilize in addressing the issue."
+          },
+          {
+           "code": "SS.HS.1.2.e",
+           "text": "Demonstrate how individuals, groups, and the media check governmental practices."
+          },
+          {
+           "code": "SS.HS.1.2.f",
+           "text": "Analyze various media sources for accuracy and perspective."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "economics",
+     "title": "Economics",
+     "topics": [
+      {
+       "id": "economic-decision-making",
+       "title": "Economic Decision Making",
+       "subtopics": [
+        {
+         "id": "apply-economic-concepts-that-support-rational-de",
+         "title": "Apply economic concepts that support rational decision making",
+         "outcomes": [
+          {
+           "code": "SS.HS.2.1.a",
+           "text": "Make decisions by systematically considering alternatives and consequences through the use of cost benefit analysis."
+          },
+          {
+           "code": "SS.HS.2.1.b",
+           "text": "Assess the incentives for investing in personal education, skills, and talents."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "financial-literacy",
+       "title": "Financial Literacy",
+       "subtopics": [
+        {
+         "id": "develop-a-plan-to-support-short-and-long-term-go",
+         "title": "Develop a plan to support short- and long-term goals",
+         "outcomes": [
+          {
+           "code": "SS.HS.2.2.a",
+           "text": "Develop a budget using a financial record keeping tool."
+          },
+          {
+           "code": "SS.HS.2.2.b",
+           "text": "Compare and contrast different types of banking accounts and features."
+          },
+          {
+           "code": "SS.HS.2.2.c",
+           "text": "Assess the effects of taxes on personal income."
+          },
+          {
+           "code": "SS.HS.2.2.d",
+           "text": "Compare and contrast possible career choices."
+          }
+         ]
+        },
+        {
+         "id": "critique-strategies-used-to-establish-build-main",
+         "title": "Critique strategies used to establish, build, maintain, monitor, and control credit",
+         "outcomes": [
+          {
+           "code": "SS.HS.2.3.a",
+           "text": "Compare and contrast the costs and benefits of different types and sources of credit and debt."
+          },
+          {
+           "code": "SS.HS.2.3.b",
+           "text": "Investigate strategies to effectively manage debt and factors that influence credit ratings."
+          }
+         ]
+        },
+        {
+         "id": "evaluate-savings-investment-and-risk-management-",
+         "title": "Evaluate savings, investment, and risk management strategies to achieve financial goals",
+         "outcomes": [
+          {
+           "code": "SS.HS.2.4.a",
+           "text": "Explain the importance of saving and investing early to ensure financial security."
+          },
+          {
+           "code": "SS.HS.2.4.b",
+           "text": "Develop an investment strategy to achieve short- and long-term goals utilizing a variety of investment vehicles. For example: stocks, bonds, mutual funds, retirement plans, investment in education including analysis of student loans, average income of job, and repayment of loan, investment in homeownership vs. rental"
+          },
+          {
+           "code": "SS.HS.2.4.c",
+           "text": "Examine appropriate and cost effective risk management strategies."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "exchange-and-markets",
+       "title": "Exchange and Markets",
+       "subtopics": [
+        {
+         "id": "explain-the-role-of-markets-in-determining-price",
+         "title": "Explain the role of markets in determining prices and allocating scarce goods and services",
+         "outcomes": [
+          {
+           "code": "SS.HS.2.5.a",
+           "text": "Summarize the role of competition, markets, and prices."
+          },
+          {
+           "code": "SS.HS.2.5.b",
+           "text": "Illustrate how markets determine changing equilibrium prices through supply and demand analysis."
+          },
+          {
+           "code": "SS.HS.2.5.c",
+           "text": "Hypothesize how competition between sellers could result in lower prices, higher quality products, and better customer service."
+          },
+          {
+           "code": "SS.HS.2.5.d",
+           "text": "Investigate possible causes and consequences of shortages and surpluses."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "national-economy",
+       "title": "National Economy",
+       "subtopics": [
+        {
+         "id": "explain-how-economic-institutions-impact-differe",
+         "title": "Explain how economic institutions impact different individuals and various groups",
+         "outcomes": [
+          {
+           "code": "SS.HS.2.6.a",
+           "text": "Explain how various economic institutions have played a role in United States economic policy and practice."
+          },
+          {
+           "code": "SS.HS.2.6.b",
+           "text": "Calculate and describe the impact of economic indicators."
+          },
+          {
+           "code": "SS.HS.2.6.c",
+           "text": "Describe the functions and role of the Federal Reserve System and its influence through monetary policy."
+          }
+         ]
+        },
+        {
+         "id": "assess-the-roles-of-institutions-such-as-clearly",
+         "title": "Assess the roles of institutions such as clearly defined property rights and the rule of law in a market economy",
+         "outcomes": [
+          {
+           "code": "SS.HS.2.7.a",
+           "text": "Assess how property rights are defined, enforced, and limited by government."
+          }
+         ]
+        },
+        {
+         "id": "compare-and-contrast-the-roles-and-responsibilit",
+         "title": "Compare and contrast the roles and responsibilities of government and differing outcomes from various economic systems: command/communism, mixed, socialism, market, and traditional economic systems",
+         "outcomes": [
+          {
+           "code": "SS.HS.2.8.a",
+           "text": "Examine how governments utilize taxation to provide goods and services to society."
+          },
+          {
+           "code": "SS.HS.2.8.b",
+           "text": "Evaluate the effectiveness of government policies altering market outcomes."
+          },
+          {
+           "code": "SS.HS.2.8.c",
+           "text": "Critique government policies and regulations in areas of market failure."
+          }
+         ]
+        },
+        {
+         "id": "examine-the-government-s-influence-on-economic-s",
+         "title": "Examine the government's influence on economic systems through fiscal policy",
+         "outcomes": [
+          {
+           "code": "SS.HS.2.9.a",
+           "text": "Explore various forms of taxation including income, sales, and capital gains and examine how governments can use taxing and spending policies to influence behavior."
+          },
+          {
+           "code": "SS.HS.2.9.b",
+           "text": "Examine the impact of fiscal policy on budget deficits/surpluses and national debt."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "global-economy",
+       "title": "Global Economy",
+       "subtopics": [
+        {
+         "id": "investigate-how-international-trade-affects-indi",
+         "title": "Investigate how international trade affects individuals, organizations, the domestic economy, and other nations",
+         "outcomes": [
+          {
+           "code": "SS.HS.2.10.a",
+           "text": "Explore comparative advantage among different countries."
+          },
+          {
+           "code": "SS.HS.2.10.b",
+           "text": "Analyze the impact on prices and quantities of various trade policies, both domestically and internationally."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "geography",
+     "title": "Geography",
+     "topics": [
+      {
+       "id": "location-and-place",
+       "title": "Location and Place",
+       "subtopics": [
+        {
+         "id": "evaluate-where-spatial-and-why-people-places-and",
+         "title": "Evaluate where (spatial) and why people, places, and environments are organized on the Earth's surface",
+         "outcomes": [
+          {
+           "code": "SS.HS.3.1.a",
+           "text": "Determine spatial organization of human settlements in relation to natural features."
+          },
+          {
+           "code": "SS.HS.3.1.b",
+           "text": "Analyze and explain changes in spatial patterns as a result of the interactions among human and physical processes."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "regions",
+       "title": "Regions",
+       "subtopics": [
+        {
+         "id": "evaluate-how-regions-form-and-change-over-time",
+         "title": "Evaluate how regions form and change over time",
+         "outcomes": [
+          {
+           "code": "SS.HS.3.2.a",
+           "text": "Analyze physical and human processes that shape places and regions."
+          },
+          {
+           "code": "SS.HS.3.2.b",
+           "text": "Examine the importance of places and regions to individual and social identity and how identities change over space and time."
+          },
+          {
+           "code": "SS.HS.3.2.c",
+           "text": "Evaluate the interdependence of places and regions."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "human-environment-interaction",
+       "title": "Human-Environment Interaction",
+       "subtopics": [
+        {
+         "id": "analyze-how-the-natural-environment-and-cultural",
+         "title": "Analyze how the natural environment and cultural landscape are transformed by natural and human forces and interpret how humans adapt to their surroundings",
+         "outcomes": [
+          {
+           "code": "SS.HS.3.3.a",
+           "text": "Explain components of Earth's physical systems and evaluate the impact of natural processes on human environments."
+          },
+          {
+           "code": "SS.HS.3.3.b",
+           "text": "Evaluate how humans have utilized and adapted to their physical environment."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "movement",
+       "title": "Movement",
+       "subtopics": [
+        {
+         "id": "compare-and-contrast-patterns-of-human-populatio",
+         "title": "Compare and contrast patterns of human populations and culture over space and time on a local, national, and global scale",
+         "outcomes": [
+          {
+           "code": "SS.HS.3.4.a",
+           "text": "Compare trends in human migration, urbanization, and demographic composition at a local, national, and global scale over time and short-term and long-term causes and effects."
+          },
+          {
+           "code": "SS.HS.3.4.b",
+           "text": "Examine the spread of cultural traits and the potential benefits and challenges of cultural diffusion, economic development, and globalization."
+          },
+          {
+           "code": "SS.HS.3.4.c",
+           "text": "Analyze the relationships of sovereign nations and the role of multinational organizations on conflict and cooperation both between and within countries."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "geospatial-skills-and-geo-literacy",
+       "title": "Geospatial Skills and Geo-literacy",
+       "subtopics": [
+        {
+         "id": "evaluate-issues-and-or-events-using-geographic-k",
+         "title": "Evaluate issues and/or events using geographic knowledge and geospatial skills to make informed decisions",
+         "outcomes": [
+          {
+           "code": "SS.HS.3.5.a",
+           "text": "Apply geographic knowledge and skills to interpret the past and present in order to plan for the future."
+          },
+          {
+           "code": "SS.HS.3.5.b",
+           "text": "Analyze how geospatial skills and geo-literacy are applied to improve standards of living and solve problems."
+          },
+          {
+           "code": "SS.HS.3.5.c",
+           "text": "Evaluate geographical information sources for applications, credibility, and appropriateness in displaying spatial data."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "united-states-history-progressive-era-present",
+     "title": "United States History (Progressive Era – Present)",
+     "topics": [
+      {
+       "id": "change-continuity-and-context",
+       "title": "Change, Continuity and Context",
+       "subtopics": [
+        {
+         "id": "analyze-and-evaluate-patterns-of-continuity-and-",
+         "title": "Analyze and evaluate patterns of continuity and change over time in American history",
+         "outcomes": [
+          {
+           "code": "SS.HS.4.1.a.US",
+           "text": "Evaluate the cause and effect of historical events on various groups in the United States."
+          },
+          {
+           "code": "SS.HS.4.1.b.US",
+           "text": "Select, record, and interpret key national events in chronological order."
+          },
+          {
+           "code": "SS.HS.4.1.c.US",
+           "text": "Evaluate the impact of people, events, and ideas, including various cultures and ethnic groups, on the United States."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "multiple-perspectives",
+       "title": "Multiple Perspectives",
+       "subtopics": [
+        {
+         "id": "analyze-the-complexity-of-the-interaction-of-mul",
+         "title": "Analyze the complexity of the interaction of multiple perspectives to investigate causes and effects of significant events in the development of history",
+         "outcomes": [
+          {
+           "code": "SS.HS.4.2.a.US",
+           "text": "Identify and evaluate how considering multiple perspectives facilitates an understanding of history."
+          },
+          {
+           "code": "SS.HS.4.2.b.US",
+           "text": "Evaluate the relevancy, accuracy, and completeness of primary and secondary sources to better understand multiple perspectives of the same event."
+          }
+         ]
+        },
+        {
+         "id": "examine-historical-events-from-the-perspectives-",
+         "title": "Examine historical events from the perspectives of marginalized and underrepresented groups",
+         "outcomes": [
+          {
+           "code": "SS.HS.4.3.a.US",
+           "text": "Identify how differing experiences can lead to the development of perspectives."
+          },
+          {
+           "code": "SS.HS.4.3.b.US",
+           "text": "Interpret how and why marginalized and underrepresented groups and/or individuals might understand historical events similarly or differently."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "historical-analysis-and-interpretation",
+       "title": "Historical Analysis and Interpretation",
+       "subtopics": [
+        {
+         "id": "evaluate-sources-for-perspective-limitations-acc",
+         "title": "Evaluate sources for perspective, limitations, accuracy, and historical context",
+         "outcomes": [
+          {
+           "code": "SS.HS.4.4.a.US",
+           "text": "Compare, contrast, and critique the central arguments in primary and secondary sources of history from multiple media."
+          },
+          {
+           "code": "SS.HS.4.4.b.US",
+           "text": "Evaluate strengths and limitations of a variety of primary and secondary historical sources."
+          },
+          {
+           "code": "SS.HS.4.4.c.US",
+           "text": "Determine the relationship between multiple causes and effects of events and developments in the past."
+          },
+          {
+           "code": "SS.HS.4.4.d.US",
+           "text": "Synthesize the relationships among historical events in the United States and relevant contemporary issues."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "historical-inquiry-and-research",
+       "title": "Historical Inquiry and Research",
+       "subtopics": [
+        {
+         "id": "apply-the-inquiry-process-to-construct-and-answe",
+         "title": "Apply the inquiry process to construct and answer historical questions",
+         "outcomes": [
+          {
+           "code": "SS.HS.4.5.a.US",
+           "text": "Construct meaningful questions about topics in U.S. history."
+          },
+          {
+           "code": "SS.HS.4.5.b.US",
+           "text": "Locate, evaluate, and cite appropriate sources for research about selected topics in U.S. History, including primary and secondary sources."
+          },
+          {
+           "code": "SS.HS.4.5.c.US",
+           "text": "Select, organize, and corroborate relevant historical information about selected topics in U.S. History."
+          },
+          {
+           "code": "SS.HS.4.5.d.US",
+           "text": "Synthesize historical information to create new understandings."
+          },
+          {
+           "code": "SS.HS.4.5.e.US",
+           "text": "Communicate inquiry results within a historical context."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "world-history-500-ce-present",
+     "title": "World History (500 CE – Present)",
+     "topics": [
+      {
+       "id": "change-continuity-and-context",
+       "title": "Change, Continuity, and Context",
+       "subtopics": [
+        {
+         "id": "analyze-and-evaluate-patterns-of-continuity-and-",
+         "title": "Analyze and evaluate patterns of continuity and change over time in world history",
+         "outcomes": [
+          {
+           "code": "SS.HS.4.1.a.WLD",
+           "text": "Evaluate the cause and effect of historical events in the world."
+          },
+          {
+           "code": "SS.HS.4.1.b.WLD",
+           "text": "Select, record, and interpret key global events in chronological order."
+          },
+          {
+           "code": "SS.HS.4.1.c.WLD",
+           "text": "Evaluate the impact of people, events, and ideas, including various cultures and ethnic groups, on the world."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "multiple-perspectives",
+       "title": "Multiple Perspectives",
+       "subtopics": [
+        {
+         "id": "analyze-the-complexity-of-the-interaction-of-mul",
+         "title": "Analyze the complexity of the interaction of multiple perspectives to investigate causes and effects of significant events in the development of history",
+         "outcomes": [
+          {
+           "code": "SS.HS.4.2.a.WLD",
+           "text": "Identify and evaluate how considering multiple perspectives facilitates an understanding of history."
+          },
+          {
+           "code": "SS.HS.4.2.b.WLD",
+           "text": "Evaluate the relevancy, accuracy, and completeness of primary and secondary sources to better understand multiple perspectives of the same event."
+          }
+         ]
+        },
+        {
+         "id": "examine-historical-events-from-the-perspectives-",
+         "title": "Examine historical events from the perspectives of diverse groups",
+         "outcomes": [
+          {
+           "code": "SS.HS.4.3.a.WLD",
+           "text": "Identify how differing experiences can lead to the development of perspectives."
+          },
+          {
+           "code": "SS.HS.4.3.b.WLD",
+           "text": "Interpret how and why diverse groups and/or individuals might understand historical events similarly or differently."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "historical-analysis-and-interpretation",
+       "title": "Historical Analysis and Interpretation",
+       "subtopics": [
+        {
+         "id": "evaluate-sources-for-perspective-limitations-acc",
+         "title": "Evaluate sources for perspective, limitations, accuracy, and historical context",
+         "outcomes": [
+          {
+           "code": "SS.HS.4.4.a.WLD",
+           "text": "Compare, contrast, and critique the central arguments in primary and secondary sources of history from multiple media."
+          },
+          {
+           "code": "SS.HS.4.4.b.WLD",
+           "text": "Evaluate strengths and limitations of a variety of primary and secondary historical sources."
+          },
+          {
+           "code": "SS.HS.4.4.c.WLD",
+           "text": "Determine the relationship between multiple causes and effects of events and developments in the past."
+          },
+          {
+           "code": "SS.HS.4.4.d.WLD",
+           "text": "Synthesize the relationships among historical events in the world and relevant contemporary issues."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "historical-inquiry-and-research",
+       "title": "Historical Inquiry and Research",
+       "subtopics": [
+        {
+         "id": "apply-the-inquiry-process-to-construct-and-answe",
+         "title": "Apply the inquiry process to construct and answer historical questions",
+         "outcomes": [
+          {
+           "code": "SS.HS.4.5.a.WLD",
+           "text": "Construct meaningful questions that initiate an inquiry."
+          },
+          {
+           "code": "SS.HS.4.5.b.WLD",
+           "text": "Locate, evaluate, and cite appropriate sources for research about selected topics in world history, including primary and secondary sources."
+          },
+          {
+           "code": "SS.HS.4.5.c.WLD",
+           "text": "Select, organize, and corroborate relevant historical information about selected topics in world history."
+          },
+          {
+           "code": "SS.HS.4.5.d.WLD",
+           "text": "Synthesize historical information to create new understandings."
+          },
+          {
+           "code": "SS.HS.4.5.e.WLD",
+           "text": "Communicate inquiry results within a historical context."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "evaluate-where-spatial-and-why-people-places-and",
+     "title": "Evaluate where (spatial) and why people, places, and environments are organized on the Earth’s surface",
+     "topics": [
+      {
+       "id": "evaluate-where-spatial-and-why-people-places-and",
+       "title": "Evaluate where (spatial) and why people, places, and environments are organized on the Earth’s surface",
+       "subtopics": [
+        {
+         "id": "evaluate-where-spatial-and-why-people-places-and",
+         "title": "Evaluate where (spatial) and why people, places, and environments are organized on the Earth’s surface",
+         "outcomes": [
+          {
+           "code": "SS HS.3.1.a",
+           "text": "Determine spatial organization of human settlements in relation to natural features."
+          },
+          {
+           "code": "SS HS.3.1.b",
+           "text": "Analyze and explain changes in spatial patterns as a result of the interactions among human and physical processes."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "evaluate-how-regions-form-and-change-over-time",
+     "title": "Evaluate how regions form and change over time",
+     "topics": [
+      {
+       "id": "evaluate-how-regions-form-and-change-over-time",
+       "title": "Evaluate how regions form and change over time",
+       "subtopics": [
+        {
+         "id": "evaluate-how-regions-form-and-change-over-time",
+         "title": "Evaluate how regions form and change over time",
+         "outcomes": [
+          {
+           "code": "SS HS.3.2.a",
+           "text": "Analyze physical and human processes that shape places and regions."
+          },
+          {
+           "code": "SS HS.3.2.b",
+           "text": "Examine the importance of places and regions to individual and social identity, and how identities change over space and time."
+          },
+          {
+           "code": "SS HS.3.2.c",
+           "text": "Evaluate the interdependence of places and regions."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "analyze-how-the-natural-environment-and-cultural",
+     "title": "Analyze how the natural environment and cultural landscape are transformed by natural and human forces and interpret how humans adapt to their surroundings",
+     "topics": [
+      {
+       "id": "analyze-how-the-natural-environment-and-cultural",
+       "title": "Analyze how the natural environment and cultural landscape are transformed by natural and human forces and interpret how humans adapt to their surroundings",
+       "subtopics": [
+        {
+         "id": "analyze-how-the-natural-environment-and-cultural",
+         "title": "Analyze how the natural environment and cultural landscape are transformed by natural and human forces and interpret how humans adapt to their surroundings",
+         "outcomes": [
+          {
+           "code": "SS HS.3.3.a",
+           "text": "Explain components of Earth's physical systems and evaluate the impact of natural processes on human environments."
+          },
+          {
+           "code": "SS HS.3.3.b",
+           "text": "Evaluate how humans have utilized and adapted to their physical environment."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "compare-and-contrast-patterns-of-human-populatio",
+     "title": "Compare and contrast patterns of human populations and culture over space and time on a local, national, and global scale",
+     "topics": [
+      {
+       "id": "compare-and-contrast-patterns-of-human-populatio",
+       "title": "Compare and contrast patterns of human populations and culture over space and time on a local, national, and global scale",
+       "subtopics": [
+        {
+         "id": "compare-and-contrast-patterns-of-human-populatio",
+         "title": "Compare and contrast patterns of human populations and culture over space and time on a local, national, and global scale",
+         "outcomes": [
+          {
+           "code": "SS HS.3.4.a",
+           "text": "Compare trends in human migration, urbanization, and demographic composition at a local, national, and global scale over time and short-term and long-term causes and effects."
+          },
+          {
+           "code": "SS HS.3.4.b",
+           "text": "Examine the spread of cultural traits and the potential benefits and challenges of cultural diffusion, economic development, and globalization."
+          },
+          {
+           "code": "SS HS.3.4.c",
+           "text": "Analyze the relationships of sovereign nations and the role of multinational organizations on conflict and cooperation both between and within countries."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "evaluate-issues-and-or-events-using-geographic-k",
+     "title": "Evaluate issues and/or events using geographic knowledge and geospatial skills to make informed decisions",
+     "topics": [
+      {
+       "id": "evaluate-issues-and-or-events-using-geographic-k",
+       "title": "Evaluate issues and/or events using geographic knowledge and geospatial skills to make informed decisions",
+       "subtopics": [
+        {
+         "id": "evaluate-issues-and-or-events-using-geographic-k",
+         "title": "Evaluate issues and/or events using geographic knowledge and geospatial skills to make informed decisions",
+         "outcomes": [
+          {
+           "code": "SS HS.3.5.a",
+           "text": "Apply geographic knowledge and skills to interpret the past and present in order to plan for the future."
+          },
+          {
+           "code": "SS HS.3.5.b",
+           "text": "Analyze how geospatial skills and geo-literacy are applied to improve standards of living and solve problems."
+          },
+          {
+           "code": "SS HS.3.5.c",
+           "text": "Evaluate geographical information sources for applications, credibility, and appropriateness in displaying spatial data."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "apply-economic-concepts-that-support-rational-de",
+     "title": "Apply economic concepts that support rational decision making",
+     "topics": [
+      {
+       "id": "apply-economic-concepts-that-support-rational-de",
+       "title": "Apply economic concepts that support rational decision making",
+       "subtopics": [
+        {
+         "id": "apply-economic-concepts-that-support-rational-de",
+         "title": "Apply economic concepts that support rational decision making",
+         "outcomes": [
+          {
+           "code": "SS HS.2.1.a",
+           "text": "Make decisions by systematically considering alternatives and consequences through the use of cost benefit analysis."
+          },
+          {
+           "code": "SS HS.2.1.b",
+           "text": "Assess the incentives for investing in personal education, skills, and talents."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "develop-a-plan-to-support-short-and-long-term-go",
+     "title": "Develop a plan to support short- and long-term goals",
+     "topics": [
+      {
+       "id": "develop-a-plan-to-support-short-and-long-term-go",
+       "title": "Develop a plan to support short- and long-term goals",
+       "subtopics": [
+        {
+         "id": "develop-a-plan-to-support-short-and-long-term-go",
+         "title": "Develop a plan to support short- and long-term goals",
+         "outcomes": [
+          {
+           "code": "SS HS.2.2.a",
+           "text": "Develop a budget using a financial record keeping tool."
+          },
+          {
+           "code": "SS HS.2.2.b",
+           "text": "Compare and contrast different types of banking accounts and features."
+          },
+          {
+           "code": "SS HS.2.2.c",
+           "text": "Assess the effects of taxes on personal income."
+          },
+          {
+           "code": "SS HS 2.2.d",
+           "text": "Compare and contrast possible career choices."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "critique-strategies-used-to-establish-build-main",
+     "title": "Critique strategies used to establish, build, maintain, monitor, and control credit",
+     "topics": [
+      {
+       "id": "critique-strategies-used-to-establish-build-main",
+       "title": "Critique strategies used to establish, build, maintain, monitor, and control credit",
+       "subtopics": [
+        {
+         "id": "critique-strategies-used-to-establish-build-main",
+         "title": "Critique strategies used to establish, build, maintain, monitor, and control credit",
+         "outcomes": [
+          {
+           "code": "SS HS.2.3.a",
+           "text": "Compare and contrast the costs and benefits of different types and sources of credit and debt."
+          },
+          {
+           "code": "SS HS.2.3.b",
+           "text": "Investigate strategies to effectively manage debt and factors that influence credit ratings."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "evaluate-savings-investment-and-risk-management-",
+     "title": "Evaluate savings, investment, and risk management strategies to achieve financial goals",
+     "topics": [
+      {
+       "id": "evaluate-savings-investment-and-risk-management-",
+       "title": "Evaluate savings, investment, and risk management strategies to achieve financial goals",
+       "subtopics": [
+        {
+         "id": "evaluate-savings-investment-and-risk-management-",
+         "title": "Evaluate savings, investment, and risk management strategies to achieve financial goals",
+         "outcomes": [
+          {
+           "code": "SS HS.2.4.a",
+           "text": "Explain the importance of saving and investing early to ensure financial security."
+          },
+          {
+           "code": "SS HS.2.4.b",
+           "text": "Develop an investment strategy to achieve short- and long-term goals utilizing a variety of investment vehicles."
+          },
+          {
+           "code": "SS HS.2.4.c",
+           "text": "Examine appropriate and cost effective risk management strategies."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "explain-the-role-of-markets-in-determining-price",
+     "title": "Explain the role of markets in determining prices and allocating scarce goods and services",
+     "topics": [
+      {
+       "id": "explain-the-role-of-markets-in-determining-price",
+       "title": "Explain the role of markets in determining prices and allocating scarce goods and services",
+       "subtopics": [
+        {
+         "id": "explain-the-role-of-markets-in-determining-price",
+         "title": "Explain the role of markets in determining prices and allocating scarce goods and services",
+         "outcomes": [
+          {
+           "code": "SS HS.2.5.a",
+           "text": "Summarize the role of competition, markets, and prices."
+          },
+          {
+           "code": "SS HS.2.5.b",
+           "text": "Illustrate how markets determine changing equilibrium prices through supply and demand analysis."
+          },
+          {
+           "code": "SS HS.2.5.c",
+           "text": "Hypothesize how competition between sellers could result in lower prices, higher quality products, and better customer service."
+          },
+          {
+           "code": "SS HS.2.5.d",
+           "text": "Investigate possible causes and consequences of shortages and surpluses."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "explain-how-economic-institutions-impact-differe",
+     "title": "Explain how economic institutions impact different individuals and various groups",
+     "topics": [
+      {
+       "id": "explain-how-economic-institutions-impact-differe",
+       "title": "Explain how economic institutions impact different individuals and various groups",
+       "subtopics": [
+        {
+         "id": "explain-how-economic-institutions-impact-differe",
+         "title": "Explain how economic institutions impact different individuals and various groups",
+         "outcomes": [
+          {
+           "code": "SS HS.2.6.a",
+           "text": "Explain how various economic institutions have played a role in United States economic policy and practice."
+          },
+          {
+           "code": "SS HS.2.6.b",
+           "text": "Calculate and describe the impact of economic indicators."
+          },
+          {
+           "code": "SS HS.2.6.c",
+           "text": "Describe the functions and role of the Federal Reserve System and its influence through monetary policy."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "assess-the-roles-of-institutions-such-as-clearly",
+     "title": "Assess the roles of institutions such as clearly defined property rights and the rule of law in a market economy",
+     "topics": [
+      {
+       "id": "assess-the-roles-of-institutions-such-as-clearly",
+       "title": "Assess the roles of institutions such as clearly defined property rights and the rule of law in a market economy",
+       "subtopics": [
+        {
+         "id": "assess-the-roles-of-institutions-such-as-clearly",
+         "title": "Assess the roles of institutions such as clearly defined property rights and the rule of law in a market economy",
+         "outcomes": [
+          {
+           "code": "SS HS.2.7.a",
+           "text": "Assess how property rights are defined, enforced, and limited by government."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "compare-and-contrast-the-roles-and-responsibilit",
+     "title": "Compare and contrast the roles and responsibilities of government and differing outcomes from various economic systems: command/communism, mixed, socialism, market, and traditional economic systems",
+     "topics": [
+      {
+       "id": "compare-and-contrast-the-roles-and-responsibilit",
+       "title": "Compare and contrast the roles and responsibilities of government and differing outcomes from various economic systems: command/communism, mixed, socialism, market, and traditional economic systems",
+       "subtopics": [
+        {
+         "id": "compare-and-contrast-the-roles-and-responsibilit",
+         "title": "Compare and contrast the roles and responsibilities of government and differing outcomes from various economic systems: command/communism, mixed, socialism, market, and traditional economic systems",
+         "outcomes": [
+          {
+           "code": "SS HS.2.8.a",
+           "text": "Examine how governments utilize taxation to provide goods and services to society."
+          },
+          {
+           "code": "SS HS.2.8.b",
+           "text": "Evaluate the effectiveness of government policies altering market outcomes."
+          },
+          {
+           "code": "SS HS.2.8.c",
+           "text": "Critique government policies and regulations in areas of market failure."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "examine-the-government-s-influence-on-economic-s",
+     "title": "Examine the government’s influence on economic systems through fiscal policy",
+     "topics": [
+      {
+       "id": "examine-the-government-s-influence-on-economic-s",
+       "title": "Examine the government’s influence on economic systems through fiscal policy",
+       "subtopics": [
+        {
+         "id": "examine-the-government-s-influence-on-economic-s",
+         "title": "Examine the government’s influence on economic systems through fiscal policy",
+         "outcomes": [
+          {
+           "code": "SS HS.2.9.a",
+           "text": "Explore various forms of taxation including income, sales, and capital gains and examine how governments can use taxing and spending policies to influence behavior."
+          },
+          {
+           "code": "SS HS.2.9.b",
+           "text": "Examine the impact of fiscal policy on budget deficits/surpluses and national debt."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "investigate-how-international-trade-affects-indi",
+     "title": "Investigate how international trade affects individuals, organizations, the domestic economy, and other nations",
+     "topics": [
+      {
+       "id": "investigate-how-international-trade-affects-indi",
+       "title": "Investigate how international trade affects individuals, organizations, the domestic economy, and other nations",
+       "subtopics": [
+        {
+         "id": "investigate-how-international-trade-affects-indi",
+         "title": "Investigate how international trade affects individuals, organizations, the domestic economy, and other nations",
+         "outcomes": [
+          {
+           "code": "SS HS.2.10.a",
+           "text": "Explore comparative advantage among different countries."
+          },
+          {
+           "code": "SS HS.2.10.b",
+           "text": "Analyze the impact on prices and quantities of various trade policies, both domestically and internationally."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "analyze-and-evaluate-patterns-of-continuity-and--2",
+     "title": "Analyze and evaluate patterns of continuity and change over time in world history",
+     "topics": [
+      {
+       "id": "analyze-and-evaluate-patterns-of-continuity-and-",
+       "title": "Analyze and evaluate patterns of continuity and change over time in world history",
+       "subtopics": [
+        {
+         "id": "analyze-and-evaluate-patterns-of-continuity-and-",
+         "title": "Analyze and evaluate patterns of continuity and change over time in world history",
+         "outcomes": [
+          {
+           "code": "SS HS.4.1.a (WLD)",
+           "text": "Evaluate the cause and effect of historical events in the world."
+          },
+          {
+           "code": "SS HS.4.1.b (WLD)",
+           "text": "Select, record, and interpret key global events in chronological order."
+          },
+          {
+           "code": "SS HS.4.1.c (WLD)",
+           "text": "Examine the impact of people, events, and ideas, including various cultures and ethnic groups, on the world."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "examine-historical-events-from-the-perspectives--2",
+     "title": "Examine historical events from the perspectives of diverse groups",
+     "topics": [
+      {
+       "id": "examine-historical-events-from-the-perspectives-",
+       "title": "Examine historical events from the perspectives of diverse groups",
+       "subtopics": [
+        {
+         "id": "examine-historical-events-from-the-perspectives-",
+         "title": "Examine historical events from the perspectives of diverse groups",
+         "outcomes": [
+          {
+           "code": "SS HS.4.3.a (WLD)",
+           "text": "Identify how differing experiences can lead to the development of perspectives."
+          },
+          {
+           "code": "SS HS.4.3.b (WLD)",
+           "text": "Interpret how and why diverse groups and/or individuals might understand historical events similarly or differently."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "build": {
+  "builtAt": "2026-10-14T16:20:45.743Z",
+  "model": "none",
+  "usd": 0,
+  "expectedCodes": 495,
+  "coverage": 1,
+  "missingCodes": [],
+  "counts": {
+   "grades": 10,
+   "units": 65,
+   "topics": 188,
+   "subtopics": 203,
+   "outcomes": 496
+  },
+  "warnings": [
+   "unit \"Assess the roles of institutions such as clearly defined property rights and the rule of law in a market economy\" (grade 9-12) has a single outcome"
+  ]
+ }
+}

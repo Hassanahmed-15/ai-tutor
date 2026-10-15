@@ -1,0 +1,332 @@
+{
+ "id": "pk-fbise-af-hssc-2-computer-science",
+ "region": "PK",
+ "framework": "FBISE Assessment Framework (National Curriculum of Pakistan 2022-23)",
+ "board": "FBISE",
+ "qualification": "HSSC-II",
+ "subject": "Computer Science",
+ "syllabusCode": null,
+ "gradeSystem": "grade",
+ "source": {
+  "urls": [
+   "https://www.fbise.edu.pk/ModelPaper/2025/Assessment%20Frameworks/HSSC-II/Final%20Assessment%20Framework%20%2B%20Model%20Question%20Paper%20Computer%20Science%20HSSC-II.pdf"
+  ],
+  "publisher": "Federal Board of Intermediate and Secondary Education",
+  "licence": "Government publication; structure + our own wording only",
+  "firstExam": "2026"
+ },
+ "grades": [
+  {
+   "grade": "12",
+   "units": [
+    {
+     "id": "a-computer-systems",
+     "title": "A: Computer Systems",
+     "topics": [
+      {
+       "id": "usability-and-security",
+       "title": "Usability and security",
+       "subtopics": [
+        {
+         "id": "usability-and-accessibility",
+         "title": "Usability and accessibility",
+         "outcomes": [
+          {
+           "code": "CS-12-A-01",
+           "text": "Explain the usability, security and accessibility of devices and the systems they connect to."
+          },
+          {
+           "code": "CS-12-A-02",
+           "text": "Explain how people interact with computers: usability, common problems, fixes, and ethical, social and environmental effects."
+          }
+         ]
+        },
+        {
+         "id": "security-versus-usability",
+         "title": "Security versus usability",
+         "outcomes": [
+          {
+           "code": "CS-12-A-03",
+           "text": "Weigh the tradeoffs between usability and security and recommend cybersecurity measures considering cost, privacy and ethics."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "b-computational-thinking-and-algorithms",
+     "title": "B: Computational Thinking and Algorithms",
+     "topics": [
+      {
+       "id": "algorithms-and-data-structures",
+       "title": "Algorithms and data structures",
+       "subtopics": [
+        {
+         "id": "judging-solutions",
+         "title": "Judging solutions",
+         "outcomes": [
+          {
+           "code": "CS-12-B-01",
+           "text": "Evaluate computational solutions for efficiency, clarity and correctness."
+          }
+         ]
+        },
+        {
+         "id": "trees-and-binary-search",
+         "title": "Trees and binary search",
+         "outcomes": [
+          {
+           "code": "CS-12-B-02",
+           "text": "Apply tree traversals and binary search on data structures such as lists, stacks, queues and trees."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "c-programming-fundamentals",
+     "title": "C: Programming Fundamentals",
+     "topics": [
+      {
+       "id": "programming-in-python",
+       "title": "Programming in Python",
+       "subtopics": [
+        {
+         "id": "programming-paradigms",
+         "title": "Programming paradigms",
+         "outcomes": [
+          {
+           "code": "CS-12-C-01",
+           "text": "Evaluate uses of programming paradigms and write a Python class with instance attributes."
+          }
+         ]
+        },
+        {
+         "id": "lists-files-and-databases",
+         "title": "Lists, files and databases",
+         "outcomes": [
+          {
+           "code": "CS-12-C-02",
+           "text": "Use lists, dictionaries, file handling and databases (including normalisation and SQL queries) in Python."
+          },
+          {
+           "code": "CS-12-C-03",
+           "text": "Implement algorithms with nested lists and dictionaries, such as counting letters in a text file."
+          }
+         ]
+        },
+        {
+         "id": "testing-and-debugging",
+         "title": "Testing and debugging",
+         "outcomes": [
+          {
+           "code": "CS-12-C-04",
+           "text": "Use unit tests, breakpoints, watches and print statements to test and debug Python code."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "d-data-and-analysis",
+     "title": "D: Data and Analysis",
+     "topics": [
+      {
+       "id": "data-science",
+       "title": "Data science",
+       "subtopics": [
+        {
+         "id": "machine-learning-basics",
+         "title": "Machine learning basics",
+         "outcomes": [
+          {
+           "code": "CS-12-D-01",
+           "text": "Build and assess a machine learning model, reading performance metrics and tuning hyperparameters."
+          }
+         ]
+        },
+        {
+         "id": "data-visualisation",
+         "title": "Data visualisation",
+         "outcomes": [
+          {
+           "code": "CS-12-D-02",
+           "text": "Explain and create data visualisations with SQL, Python or R, using data storytelling."
+          }
+         ]
+        },
+        {
+         "id": "hypothesis-testing",
+         "title": "Hypothesis testing",
+         "outcomes": [
+          {
+           "code": "CS-12-D-03",
+           "text": "Form null and alternative hypotheses, use p-values for conclusions, and support them with visuals."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "e-applications-of-computer-science",
+     "title": "E: Applications of Computer Science",
+     "topics": [
+      {
+       "id": "emerging-applications",
+       "title": "Emerging applications",
+       "subtopics": [
+        {
+         "id": "iot-cloud-and-blockchain-in-pakistan",
+         "title": "IoT, cloud and blockchain in Pakistan",
+         "outcomes": [
+          {
+           "code": "CS-12-E-01",
+           "text": "Design application ideas for Pakistan using IoT, cloud computing and blockchain."
+          }
+         ]
+        },
+        {
+         "id": "deep-learning",
+         "title": "Deep learning",
+         "outcomes": [
+          {
+           "code": "CS-12-E-02",
+           "text": "Describe deep learning, its link to neural networks, and its applications."
+          }
+         ]
+        },
+        {
+         "id": "data-sharing-and-privacy-policy",
+         "title": "Data sharing and privacy policy",
+         "outcomes": [
+          {
+           "code": "CS-12-E-03",
+           "text": "Assess policies that protect different stakeholders' interests."
+          },
+          {
+           "code": "CS-12-E-04",
+           "text": "Evaluate data-sharing versus privacy conflicts and suggest policy compromises."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "f-impacts-of-computing",
+     "title": "F: Impacts of Computing",
+     "topics": [
+      {
+       "id": "security-and-society",
+       "title": "Security and society",
+       "subtopics": [
+        {
+         "id": "safe-online-practice",
+         "title": "Safe online practice",
+         "outcomes": [
+          {
+           "code": "CS-12-F-01",
+           "text": "Identify and apply safe practices when working on digital and online platforms."
+          }
+         ]
+        },
+        {
+         "id": "threats-and-protection",
+         "title": "Threats and protection",
+         "outcomes": [
+          {
+           "code": "CS-12-F-02",
+           "text": "Discuss security threats and defences such as two-factor authentication, biometrics, cryptography and secure transmission."
+          }
+         ]
+        },
+        {
+         "id": "equity-and-access",
+         "title": "Equity and access",
+         "outcomes": [
+          {
+           "code": "CS-12-F-03",
+           "text": "Work together on strategies for equity and equal access to information."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "g-digital-literacy",
+     "title": "G: Digital Literacy",
+     "topics": [
+      {
+       "id": "digital-literacy",
+       "title": "Digital literacy",
+       "subtopics": [
+        {
+         "id": "research-and-communication",
+         "title": "Research and communication",
+         "outcomes": [
+          {
+           "code": "CS-12-G-01",
+           "text": "Search for information and create a digital artifact that answers a research question."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "h-entrepreneurship-in-the-digital-age",
+     "title": "H: Entrepreneurship in the Digital Age",
+     "topics": [
+      {
+       "id": "entrepreneurship",
+       "title": "Entrepreneurship",
+       "subtopics": [
+        {
+         "id": "minimum-viable-product",
+         "title": "Minimum viable product",
+         "outcomes": [
+          {
+           "code": "EN-12-H-01",
+           "text": "Explain a minimum viable product, find the riskiest assumption and beachhead market, and build and test an MVP."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "build": {
+  "builtAt": "2026-10-14T08:05:24.680Z",
+  "model": "claude-agent",
+  "usd": 0,
+  "expectedCodes": 20,
+  "coverage": 1,
+  "missingCodes": [],
+  "counts": {
+   "grades": 1,
+   "units": 8,
+   "topics": 8,
+   "subtopics": 18,
+   "outcomes": 21
+  },
+  "warnings": [
+   "unit \"G: Digital Literacy\" (grade 12) has a single outcome",
+   "unit \"H: Entrepreneurship in the Digital Age\" (grade 12) has a single outcome"
+  ]
+ }
+}

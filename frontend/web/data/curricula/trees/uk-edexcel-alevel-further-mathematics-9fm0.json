@@ -1,0 +1,1679 @@
+{
+ "id": "uk-edexcel-alevel-further-mathematics-9fm0",
+ "region": "UK",
+ "framework": "Pearson Edexcel Level 3 Advanced GCE",
+ "board": "Pearson Edexcel",
+ "qualification": "A Level",
+ "subject": "Further Mathematics",
+ "syllabusCode": "9FM0",
+ "gradeSystem": "year",
+ "source": {
+  "urls": [
+   "https://qualifications.pearson.com/content/dam/pdf/A%20Level/Mathematics/2017/specification-and-sample-assesment/a-level-l3-further-mathematics-specification.pdf"
+  ],
+  "publisher": "Pearson Education",
+  "licence": "Exam board specification, (c) Pearson; structure + our own wording only",
+  "firstExam": "2019"
+ },
+ "grades": [
+  {
+   "grade": "all",
+   "units": [
+    {
+     "id": "core-pure-mathematics-papers-1-and-2",
+     "title": "Core Pure Mathematics (Papers 1 and 2)",
+     "topics": [
+      {
+       "id": "1-proof",
+       "title": "1 Proof",
+       "subtopics": [
+        {
+         "id": "proof-by-induction",
+         "title": "Proof by induction",
+         "outcomes": [
+          {
+           "code": "1.1",
+           "text": "Prove statements by induction: sums of series, divisibility, and powers of matrices."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "2-complex-numbers",
+       "title": "2 Complex numbers",
+       "subtopics": [
+        {
+         "id": "complex-number-arithmetic-and-roots",
+         "title": "Complex number arithmetic and roots",
+         "outcomes": [
+          {
+           "code": "2.1",
+           "text": "Solve cubic and quartic equations with real coefficients when given a root or factor."
+          },
+          {
+           "code": "2.2",
+           "text": "Add, subtract, multiply and divide complex numbers; use real part, imaginary part, modulus and argument."
+          },
+          {
+           "code": "2.3",
+           "text": "Use the complex conjugate and know non-real roots of real polynomials come in conjugate pairs."
+          }
+         ]
+        },
+        {
+         "id": "argand-diagram-and-modulus-argument-form",
+         "title": "Argand diagram and modulus-argument form",
+         "outcomes": [
+          {
+           "code": "2.4",
+           "text": "Show complex numbers, sums and differences on an Argand diagram."
+          },
+          {
+           "code": "2.5",
+           "text": "Convert between Cartesian and modulus-argument form."
+          },
+          {
+           "code": "2.6",
+           "text": "Multiply and divide complex numbers in modulus-argument form."
+          },
+          {
+           "code": "2.7",
+           "text": "Draw and read simple loci and regions on an Argand diagram."
+          }
+         ]
+        },
+        {
+         "id": "de-moivre-and-roots-of-unity",
+         "title": "De Moivre and roots of unity",
+         "outcomes": [
+          {
+           "code": "2.8",
+           "text": "Use de Moivre's theorem for multiple-angle formulae and sums of series."
+          },
+          {
+           "code": "2.9",
+           "text": "Use e^(i theta) = cos + i sin and the form r e^(i theta)."
+          },
+          {
+           "code": "2.10",
+           "text": "Find the n distinct nth roots of a complex number, forming a regular n-gon."
+          },
+          {
+           "code": "2.11",
+           "text": "Use complex roots of unity to solve geometric problems."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "3-matrices",
+       "title": "3 Matrices",
+       "subtopics": [
+        {
+         "id": "matrix-algebra",
+         "title": "Matrix algebra",
+         "outcomes": [
+          {
+           "code": "3.1",
+           "text": "Add, subtract and multiply conformable matrices and multiply by a scalar."
+          },
+          {
+           "code": "3.2",
+           "text": "Use zero and identity matrices."
+          }
+         ]
+        },
+        {
+         "id": "linear-transformations",
+         "title": "Linear transformations",
+         "outcomes": [
+          {
+           "code": "3.3",
+           "text": "Use matrices for 2-D linear transformations, combined transformations, and simple 3-D ones."
+          },
+          {
+           "code": "3.4",
+           "text": "Find invariant points and lines of a linear transformation."
+          },
+          {
+           "code": "3.5",
+           "text": "Calculate 2x2 and 3x3 determinants and interpret them as scale factors and orientation change."
+          }
+         ]
+        },
+        {
+         "id": "inverse-matrices-and-simultaneous-equations",
+         "title": "Inverse matrices and simultaneous equations",
+         "outcomes": [
+          {
+           "code": "3.6",
+           "text": "Use singular and non-singular matrices; find and use inverses of 2x2 and 3x3 matrices."
+          },
+          {
+           "code": "3.7",
+           "text": "Solve three linear equations in three unknowns using an inverse matrix."
+          },
+          {
+           "code": "3.8",
+           "text": "Interpret geometrically when three planes meet at a point, form a sheaf or prism, or are inconsistent."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "4-further-algebra-and-functions",
+       "title": "4 Further algebra and functions",
+       "subtopics": [
+        {
+         "id": "roots-of-polynomials",
+         "title": "Roots of polynomials",
+         "outcomes": [
+          {
+           "code": "4.1",
+           "text": "Use relationships between roots and coefficients of polynomial equations up to quartic."
+          },
+          {
+           "code": "4.2",
+           "text": "Form a polynomial whose roots are a linear transformation of another's roots."
+          }
+         ]
+        },
+        {
+         "id": "summation-of-series",
+         "title": "Summation of series",
+         "outcomes": [
+          {
+           "code": "4.3",
+           "text": "Use formulae for sums of integers, squares and cubes to sum other series."
+          },
+          {
+           "code": "4.4",
+           "text": "Sum series using the method of differences with partial fractions."
+          }
+         ]
+        },
+        {
+         "id": "maclaurin-series",
+         "title": "Maclaurin series",
+         "outcomes": [
+          {
+           "code": "4.5",
+           "text": "Find the Maclaurin series of a function, including the general term."
+          },
+          {
+           "code": "4.6",
+           "text": "Use the Maclaurin series of e^x, ln(1+x), sin x, cos x and (1+x)^n and their validity ranges."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "5-further-calculus",
+       "title": "5 Further calculus",
+       "subtopics": [
+        {
+         "id": "volumes-improper-integrals-and-mean-value",
+         "title": "Volumes, improper integrals and mean value",
+         "outcomes": [
+          {
+           "code": "5.1",
+           "text": "Derive and calculate volumes of revolution about either axis, including parametric curves."
+          },
+          {
+           "code": "5.2",
+           "text": "Evaluate improper integrals with an undefined integrand or infinite range."
+          },
+          {
+           "code": "5.3",
+           "text": "Find the mean value of a function."
+          }
+         ]
+        },
+        {
+         "id": "integration-and-differentiation-techniques",
+         "title": "Integration and differentiation techniques",
+         "outcomes": [
+          {
+           "code": "5.4",
+           "text": "Integrate using partial fractions, including quadratic factors in the denominator."
+          },
+          {
+           "code": "5.5",
+           "text": "Differentiate inverse trigonometric functions."
+          },
+          {
+           "code": "5.6",
+           "text": "Integrate forms involving (a^2 - x^2) powers, choosing trigonometric substitutions."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "6-further-vectors",
+       "title": "6 Further vectors",
+       "subtopics": [
+        {
+         "id": "lines-and-planes",
+         "title": "Lines and planes",
+         "outcomes": [
+          {
+           "code": "6.1",
+           "text": "Use vector and Cartesian equations of a 3-D line and find intersections of lines."
+          },
+          {
+           "code": "6.2",
+           "text": "Use vector and Cartesian equations of a plane."
+          }
+         ]
+        },
+        {
+         "id": "scalar-product-and-distances",
+         "title": "Scalar product and distances",
+         "outcomes": [
+          {
+           "code": "6.3",
+           "text": "Use the scalar product for plane equations and for angles between lines, planes, and line and plane."
+          },
+          {
+           "code": "6.4",
+           "text": "Test perpendicular vectors with the scalar product."
+          },
+          {
+           "code": "6.5",
+           "text": "Find line-plane intersections and perpendicular distances between lines, point and line, point and plane."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "7-polar-coordinates",
+       "title": "7 Polar coordinates",
+       "subtopics": [
+        {
+         "id": "polar-coordinates-and-curves",
+         "title": "Polar coordinates and curves",
+         "outcomes": [
+          {
+           "code": "7.1",
+           "text": "Convert between polar and Cartesian coordinates."
+          },
+          {
+           "code": "7.2",
+           "text": "Sketch curves r = f(theta), including trigonometric functions."
+          },
+          {
+           "code": "7.3",
+           "text": "Find the area enclosed by a polar curve."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "8-hyperbolic-functions",
+       "title": "8 Hyperbolic functions",
+       "subtopics": [
+        {
+         "id": "hyperbolic-functions-and-calculus",
+         "title": "Hyperbolic functions and calculus",
+         "outcomes": [
+          {
+           "code": "8.1",
+           "text": "Define sinh, cosh and tanh, with domains, ranges and graphs."
+          },
+          {
+           "code": "8.2",
+           "text": "Differentiate and integrate hyperbolic functions."
+          }
+         ]
+        },
+        {
+         "id": "inverse-hyperbolic-functions",
+         "title": "Inverse hyperbolic functions",
+         "outcomes": [
+          {
+           "code": "8.3",
+           "text": "Use definitions, domains and ranges of inverse hyperbolic functions."
+          },
+          {
+           "code": "8.4",
+           "text": "Derive and use logarithmic forms of inverse hyperbolic functions."
+          },
+          {
+           "code": "8.5",
+           "text": "Integrate functions giving inverse hyperbolic forms, choosing substitutions."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "9-differential-equations",
+       "title": "9 Differential equations",
+       "subtopics": [
+        {
+         "id": "first-order-equations",
+         "title": "First order equations",
+         "outcomes": [
+          {
+           "code": "9.1",
+           "text": "Solve first-order equations using an integrating factor."
+          },
+          {
+           "code": "9.2",
+           "text": "Find general and particular solutions and sketch solution curves."
+          },
+          {
+           "code": "9.3",
+           "text": "Model with differential equations in kinematics and other contexts."
+          }
+         ]
+        },
+        {
+         "id": "second-order-equations",
+         "title": "Second order equations",
+         "outcomes": [
+          {
+           "code": "9.4",
+           "text": "Solve y'' + ay' + by = 0 using the auxiliary equation."
+          },
+          {
+           "code": "9.5",
+           "text": "Solve y'' + ay' + by = f(x) using complementary function and particular integral."
+          },
+          {
+           "code": "9.6",
+           "text": "Link the discriminant sign of the auxiliary equation to the form of solution."
+          }
+         ]
+        },
+        {
+         "id": "oscillations-and-coupled-systems",
+         "title": "Oscillations and coupled systems",
+         "outcomes": [
+          {
+           "code": "9.7",
+           "text": "Solve the simple harmonic motion equation and relate it to motion."
+          },
+          {
+           "code": "9.8",
+           "text": "Model damped and forced oscillations with second-order equations."
+          },
+          {
+           "code": "9.9",
+           "text": "Solve coupled first-order linear equations, such as predator-prey models."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "further-pure-mathematics-1-paper-3a",
+     "title": "Further Pure Mathematics 1 (Paper 3A)",
+     "topics": [
+      {
+       "id": "1-further-trigonometry",
+       "title": "1 Further trigonometry",
+       "subtopics": [
+        {
+         "id": "the-t-formulae",
+         "title": "The t-formulae",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Derive and use the t = tan(theta/2) formulae for sin, cos and tan."
+          },
+          {
+           "code": "1.2",
+           "text": "Apply t-formulae to prove trigonometric identities."
+          },
+          {
+           "code": "1.3",
+           "text": "Apply t-formulae to solve equations of the form a cos x + b sin x = c."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "2-further-calculus",
+       "title": "2 Further calculus",
+       "subtopics": [
+        {
+         "id": "taylor-series-and-limits",
+         "title": "Taylor series and limits",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Derive and use Taylor series about a point."
+          },
+          {
+           "code": null,
+           "text": "Use series expansions to find limits."
+          },
+          {
+           "code": null,
+           "text": "Use Leibnitz's theorem to differentiate products."
+          },
+          {
+           "code": null,
+           "text": "Use L'Hospital's rule for limits of indeterminate forms."
+          }
+         ]
+        },
+        {
+         "id": "weierstrass-substitution",
+         "title": "Weierstrass substitution",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Use tangent half-angle substitution to integrate."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "3-further-differential-equations",
+       "title": "3 Further differential equations",
+       "subtopics": [
+        {
+         "id": "series-and-substitution-methods",
+         "title": "Series and substitution methods",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Solve differential equations by Taylor series."
+          },
+          {
+           "code": null,
+           "text": "Solve differential equations reducible by a given substitution."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "4-coordinate-systems",
+       "title": "4 Coordinate systems",
+       "subtopics": [
+        {
+         "id": "conics",
+         "title": "Conics",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Use Cartesian and parametric equations for parabola, rectangular hyperbola, ellipse and hyperbola."
+          },
+          {
+           "code": null,
+           "text": "Use focus-directrix properties and eccentricity of conics."
+          },
+          {
+           "code": null,
+           "text": "Find tangents and normals to conics."
+          },
+          {
+           "code": null,
+           "text": "Solve loci problems."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "5-further-vectors",
+       "title": "5 Further vectors",
+       "subtopics": [
+        {
+         "id": "vector-and-scalar-triple-products",
+         "title": "Vector and scalar triple products",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Use the vector product, including as an area."
+          },
+          {
+           "code": null,
+           "text": "Use the scalar triple product for volumes of tetrahedra and parallelepipeds."
+          },
+          {
+           "code": null,
+           "text": "Apply vectors to 3-D geometry of points, lines and planes, with direction ratios and cosines."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "6-further-numerical-methods",
+       "title": "6 Further numerical methods",
+       "subtopics": [
+        {
+         "id": "numerical-solution",
+         "title": "Numerical solution",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Solve first and second order differential equations numerically."
+          },
+          {
+           "code": null,
+           "text": "Use Simpson's rule."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "7-inequalities",
+       "title": "7 Inequalities",
+       "subtopics": [
+        {
+         "id": "algebraic-inequalities",
+         "title": "Algebraic inequalities",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Solve algebraic inequalities, including with the modulus sign."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "further-pure-mathematics-2-paper-4a",
+     "title": "Further Pure Mathematics 2 (Paper 4A)",
+     "topics": [
+      {
+       "id": "1-groups",
+       "title": "1 Groups",
+       "subtopics": [
+        {
+         "id": "group-axioms-and-examples",
+         "title": "Group axioms and examples",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "State the axioms of a group: binary operation, closure, associativity, identity, inverse."
+          },
+          {
+           "code": null,
+           "text": "Work with examples of groups, Cayley tables and cyclic groups."
+          }
+         ]
+        },
+        {
+         "id": "order-subgroups-and-isomorphism",
+         "title": "Order, subgroups and isomorphism",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Find the order of a group and of an element; identify subgroups."
+          },
+          {
+           "code": "1.4",
+           "text": "Use Lagrange's theorem."
+          },
+          {
+           "code": "1.5",
+           "text": "Decide whether groups of order up to 8 are isomorphic."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "2-further-calculus",
+       "title": "2 Further calculus",
+       "subtopics": [
+        {
+         "id": "reduction-formulae-and-arc-length",
+         "title": "Reduction formulae and arc length",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Derive and use reduction formulae for integrals."
+          },
+          {
+           "code": null,
+           "text": "Calculate arc length and surface area of revolution."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "3-further-matrix-algebra",
+       "title": "3 Further matrix algebra",
+       "subtopics": [
+        {
+         "id": "eigenvalues-and-diagonalisation",
+         "title": "Eigenvalues and diagonalisation",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Find eigenvalues and eigenvectors of 2x2 and 3x3 matrices, including repeated and complex ones."
+          },
+          {
+           "code": null,
+           "text": "Diagonalise matrices, including orthogonal diagonalisation of symmetric matrices."
+          },
+          {
+           "code": null,
+           "text": "Use the Cayley-Hamilton theorem."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "4-further-complex-numbers",
+       "title": "4 Further complex numbers",
+       "subtopics": [
+        {
+         "id": "loci-and-transformations",
+         "title": "Loci and transformations",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Sketch further loci and regions on the Argand diagram."
+          },
+          {
+           "code": null,
+           "text": "Apply elementary transformations from the z-plane to the w-plane."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "5-number-theory",
+       "title": "5 Number theory",
+       "subtopics": [
+        {
+         "id": "euclid-and-congruences",
+         "title": "Euclid and congruences",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Use the division theorem, Euclidean algorithm and congruences."
+          },
+          {
+           "code": null,
+           "text": "Use Bezout's identity by back substitution."
+          },
+          {
+           "code": null,
+           "text": "Use modular arithmetic and the laws of congruences."
+          }
+         ]
+        },
+        {
+         "id": "fermat-divisibility-and-congruence-equations",
+         "title": "Fermat, divisibility and congruence equations",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Use Fermat's little theorem."
+          },
+          {
+           "code": null,
+           "text": "Apply divisibility tests for 2, 3, 4, 5, 6, 9, 10 and 11."
+          },
+          {
+           "code": null,
+           "text": "Solve congruence equations and find multiplicative inverses."
+          }
+         ]
+        },
+        {
+         "id": "combinatorics",
+         "title": "Combinatorics",
+         "outcomes": [
+          {
+           "code": "5.7",
+           "text": "Solve counting problems with the multiplicative, addition and subtraction principles, permutations and combinations."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "6-further-sequences-and-series",
+       "title": "6 Further sequences and series",
+       "subtopics": [
+        {
+         "id": "recurrence-relations",
+         "title": "Recurrence relations",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Use first and second order recurrence relations."
+          },
+          {
+           "code": null,
+           "text": "Solve recurrence relations to closed form and model applications."
+          },
+          {
+           "code": null,
+           "text": "Prove closed forms by induction."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "further-statistics-1-paper-3b",
+     "title": "Further Statistics 1 (Paper 3B)",
+     "topics": [
+      {
+       "id": "1-discrete-probability-distributions",
+       "title": "1 Discrete probability distributions",
+       "subtopics": [
+        {
+         "id": "mean-and-variance",
+         "title": "Mean and variance",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Calculate mean and variance of discrete distributions and E(g(X))."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "2-poisson-and-binomial-distributions",
+       "title": "2 Poisson and binomial distributions",
+       "subtopics": [
+        {
+         "id": "poisson-distribution",
+         "title": "Poisson distribution",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Use the Poisson distribution, its additive property, and comment on model suitability."
+          },
+          {
+           "code": null,
+           "text": "Use the mean and variance of binomial and Poisson distributions."
+          },
+          {
+           "code": null,
+           "text": "Approximate a binomial with a Poisson when n is large and p small."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "3-geometric-and-negative-binomial-distributions",
+       "title": "3 Geometric and negative binomial distributions",
+       "subtopics": [
+        {
+         "id": "geometric-and-negative-binomial",
+         "title": "Geometric and negative binomial",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Use geometric and negative binomial distributions."
+          },
+          {
+           "code": null,
+           "text": "Use mean and variance of a geometric distribution."
+          },
+          {
+           "code": null,
+           "text": "Use mean and variance of a negative binomial distribution."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "4-hypothesis-testing",
+       "title": "4 Hypothesis testing",
+       "subtopics": [
+        {
+         "id": "tests-for-poisson-and-geometric",
+         "title": "Tests for Poisson and geometric",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Test the mean of a Poisson distribution."
+          },
+          {
+           "code": null,
+           "text": "Test the parameter of a geometric distribution."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "5-central-limit-theorem",
+       "title": "5 Central Limit Theorem",
+       "subtopics": [
+        {
+         "id": "central-limit-theorem",
+         "title": "Central Limit Theorem",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Apply the Central Limit Theorem to other distributions."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "6-chi-squared-tests",
+       "title": "6 Chi squared tests",
+       "subtopics": [
+        {
+         "id": "goodness-of-fit-and-contingency-tables",
+         "title": "Goodness of fit and contingency tables",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Run goodness of fit and contingency tests, with hypotheses, degrees of freedom and combining cells."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "7-probability-generating-functions",
+       "title": "7 Probability generating functions",
+       "subtopics": [
+        {
+         "id": "probability-generating-functions",
+         "title": "Probability generating functions",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Define and apply probability generating functions for standard distributions."
+          },
+          {
+           "code": null,
+           "text": "Use probability generating functions to find mean and variance."
+          },
+          {
+           "code": null,
+           "text": "Find the generating function of a sum of independent variables."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "8-quality-of-tests",
+       "title": "8 Quality of tests",
+       "subtopics": [
+        {
+         "id": "errors-and-power",
+         "title": "Errors and power",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Calculate Type I and Type II error probabilities, size and power of a test."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "further-statistics-2-paper-4b",
+     "title": "Further Statistics 2 (Paper 4B)",
+     "topics": [
+      {
+       "id": "1-linear-regression",
+       "title": "1 Linear regression",
+       "subtopics": [
+        {
+         "id": "regression-and-residuals",
+         "title": "Regression and residuals",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Calculate least squares regression coefficients and understand minimising squared residuals."
+          },
+          {
+           "code": null,
+           "text": "Use residuals and the residual sum of squares to check fit and find outliers."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "2-continuous-probability-distributions",
+       "title": "2 Continuous probability distributions",
+       "subtopics": [
+        {
+         "id": "density-and-distribution-functions",
+         "title": "Density and distribution functions",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Use probability density and cumulative distribution functions of continuous variables."
+          },
+          {
+           "code": null,
+           "text": "Relate density and cumulative distribution functions."
+          }
+         ]
+        },
+        {
+         "id": "summaries-and-the-uniform-distribution",
+         "title": "Summaries and the uniform distribution",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Find mean, variance, E(g(X)), mode, median, percentiles and skewness of continuous variables."
+          },
+          {
+           "code": null,
+           "text": "Use the continuous uniform distribution, deriving its mean, variance and cumulative function."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "3-correlation",
+       "title": "3 Correlation",
+       "subtopics": [
+        {
+         "id": "correlation-coefficients",
+         "title": "Correlation coefficients",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Calculate and interpret the product moment correlation coefficient and its conditions."
+          },
+          {
+           "code": null,
+           "text": "Calculate and interpret Spearman's rank correlation coefficient, handling ties."
+          },
+          {
+           "code": null,
+           "text": "Test whether a correlation is zero using Spearman or product moment coefficients."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "4-combinations-of-random-variables",
+       "title": "4 Combinations of random variables",
+       "subtopics": [
+        {
+         "id": "linear-combinations-of-normals",
+         "title": "Linear combinations of Normals",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Use the distribution of linear combinations of independent Normal variables."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "5-estimation-confidence-intervals-and-tests-usin",
+       "title": "5 Estimation, confidence intervals and tests using a normal distribution",
+       "subtopics": [
+        {
+         "id": "estimators-and-confidence-intervals",
+         "title": "Estimators and confidence intervals",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Use standard error, estimators and bias; compare estimator quality."
+          },
+          {
+           "code": null,
+           "text": "Explain and interpret confidence intervals."
+          },
+          {
+           "code": null,
+           "text": "Find confidence limits for a Normal mean with known variance."
+          }
+         ]
+        },
+        {
+         "id": "tests-on-two-means",
+         "title": "Tests on two means",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Test the difference between two Normal means with known variances."
+          },
+          {
+           "code": null,
+           "text": "Extend to unknown variances with large samples."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "6-other-hypothesis-tests-and-confidence-interval",
+       "title": "6 Other hypothesis tests and confidence intervals",
+       "subtopics": [
+        {
+         "id": "variance-tests",
+         "title": "Variance tests",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Test and give an interval for the variance of a Normal distribution using chi squared."
+          },
+          {
+           "code": null,
+           "text": "Test whether two Normal populations have equal variances with the F-distribution."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "7-confidence-intervals-and-tests-using-the-t-dis",
+       "title": "7 Confidence intervals and tests using the t-distribution",
+       "subtopics": [
+        {
+         "id": "t-tests",
+         "title": "t-tests",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Test and give an interval for a Normal mean with unknown variance."
+          },
+          {
+           "code": null,
+           "text": "Carry out a paired t-test."
+          },
+          {
+           "code": null,
+           "text": "Test and give an interval for the difference of two means with equal unknown variances, using pooled variance."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "further-mechanics-1-paper-3c",
+     "title": "Further Mechanics 1 (Paper 3C)",
+     "topics": [
+      {
+       "id": "1-momentum-and-impulse",
+       "title": "1 Momentum and impulse",
+       "subtopics": [
+        {
+         "id": "momentum-and-impulse",
+         "title": "Momentum and impulse",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Use momentum, impulse, the impulse-momentum principle and conservation of momentum for direct collisions."
+          },
+          {
+           "code": null,
+           "text": "Treat momentum and impulse as vectors."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "2-work-energy-and-power",
+       "title": "2 Work, energy and power",
+       "subtopics": [
+        {
+         "id": "work-energy-and-power",
+         "title": "Work, energy and power",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Use kinetic and potential energy, work, power, the work-energy principle and conservation of energy."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "3-elastic-strings-and-springs-and-elastic-energy",
+       "title": "3 Elastic strings and springs and elastic energy",
+       "subtopics": [
+        {
+         "id": "hooke-s-law-and-elastic-energy",
+         "title": "Hooke's law and elastic energy",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Use Hooke's law for elastic strings and springs."
+          },
+          {
+           "code": null,
+           "text": "Calculate and use the energy stored in an elastic string or spring."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "4-elastic-collisions-in-one-dimension",
+       "title": "4 Elastic collisions in one dimension",
+       "subtopics": [
+        {
+         "id": "direct-impact",
+         "title": "Direct impact",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Use Newton's law of restitution for direct impact and calculate kinetic energy lost."
+          },
+          {
+           "code": null,
+           "text": "Analyse successive direct impacts of spheres or with a smooth plane."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "5-elastic-collisions-in-two-dimensions",
+       "title": "5 Elastic collisions in two dimensions",
+       "subtopics": [
+        {
+         "id": "oblique-impact",
+         "title": "Oblique impact",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Analyse oblique impact of smooth spheres or with a fixed surface, including energy loss."
+          },
+          {
+           "code": null,
+           "text": "Analyse successive oblique impacts with smooth planes."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "further-mechanics-2-paper-4c",
+     "title": "Further Mechanics 2 (Paper 4C)",
+     "topics": [
+      {
+       "id": "1-motion-in-a-circle",
+       "title": "1 Motion in a circle",
+       "subtopics": [
+        {
+         "id": "horizontal-and-vertical-circles",
+         "title": "Horizontal and vertical circles",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Use angular speed and radial acceleration for uniform horizontal circular motion."
+          },
+          {
+           "code": null,
+           "text": "Analyse motion in a vertical circle with energy conservation."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "2-centres-of-mass-of-plane-figures",
+       "title": "2 Centres of mass of plane figures",
+       "subtopics": [
+        {
+         "id": "centres-of-mass",
+         "title": "Centres of mass",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Use moments and find the centre of mass of discrete masses in one and two dimensions."
+          },
+          {
+           "code": null,
+           "text": "Find centres of mass of plane figures, composites and frameworks, and equilibrium of laminas."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "3-further-centres-of-mass",
+       "title": "3 Further centres of mass",
+       "subtopics": [
+        {
+         "id": "rigid-bodies",
+         "title": "Rigid bodies",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Find centres of mass of uniform and non-uniform bodies using integration or symmetry."
+          },
+          {
+           "code": null,
+           "text": "Analyse equilibrium of rigid bodies under coplanar forces."
+          },
+          {
+           "code": null,
+           "text": "Analyse toppling and sliding of a rigid body on a rough plane."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "4-further-dynamics",
+       "title": "4 Further dynamics",
+       "subtopics": [
+        {
+         "id": "variable-forces-and-shm",
+         "title": "Variable forces and SHM",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Apply Newton's laws in one dimension with variable force, including inverse square gravitation."
+          },
+          {
+           "code": null,
+           "text": "Use simple harmonic motion, including elastic string oscillations and energy."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "5-further-kinematics",
+       "title": "5 Further kinematics",
+       "subtopics": [
+        {
+         "id": "variable-acceleration",
+         "title": "Variable acceleration",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Solve straight-line motion where acceleration depends on displacement, time or velocity."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "decision-mathematics-1-paper-3d",
+     "title": "Decision Mathematics 1 (Paper 3D)",
+     "topics": [
+      {
+       "id": "1-algorithms-and-graph-theory",
+       "title": "1 Algorithms and graph theory",
+       "subtopics": [
+        {
+         "id": "algorithms-and-sorting",
+         "title": "Algorithms and sorting",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Understand algorithms from flow charts or text, and their order."
+          },
+          {
+           "code": null,
+           "text": "Perform bin packing, bubble sort and quick sort."
+          }
+         ]
+        },
+        {
+         "id": "graph-theory",
+         "title": "Graph theory",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Use node orders to decide whether a graph is Eulerian, semi-Eulerian or neither."
+          },
+          {
+           "code": null,
+           "text": "Apply the planarity algorithm."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "2-algorithms-on-graphs",
+       "title": "2 Algorithms on graphs",
+       "subtopics": [
+        {
+         "id": "spanning-trees-and-shortest-paths",
+         "title": "Spanning trees and shortest paths",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Find minimum spanning trees with Prim's and Kruskal's algorithms, including matrix form."
+          },
+          {
+           "code": null,
+           "text": "Find shortest paths with Dijkstra's and Floyd's algorithms."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "3-algorithms-on-graphs-ii",
+       "title": "3 Algorithms on graphs II",
+       "subtopics": [
+        {
+         "id": "route-inspection-and-travelling-salesman",
+         "title": "Route inspection and travelling salesman",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Solve route inspection (Chinese postman) problems."
+          },
+          {
+           "code": null,
+           "text": "Solve classical and practical travelling salesman problems using nearest neighbour and bounds from spanning trees."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "4-critical-path-analysis",
+       "title": "4 Critical path analysis",
+       "subtopics": [
+        {
+         "id": "activity-networks",
+         "title": "Activity networks",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Model a project as an activity network from a precedence table."
+          },
+          {
+           "code": null,
+           "text": "Complete the precedence table for a given network."
+          },
+          {
+           "code": null,
+           "text": "Find earliest and latest times, and the critical path."
+          }
+         ]
+        },
+        {
+         "id": "float-charts-and-scheduling",
+         "title": "Float, charts and scheduling",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Calculate total float and draw Gantt charts."
+          },
+          {
+           "code": null,
+           "text": "Construct resource histograms including resource levelling."
+          },
+          {
+           "code": null,
+           "text": "Schedule activities using the fewest workers."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "5-linear-programming",
+       "title": "5 Linear programming",
+       "subtopics": [
+        {
+         "id": "formulating-and-solving",
+         "title": "Formulating and solving",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Formulate linear programs with slack, surplus and artificial variables."
+          },
+          {
+           "code": null,
+           "text": "Solve two-variable problems graphically, including integer solutions."
+          },
+          {
+           "code": null,
+           "text": "Use the Simplex algorithm for maximising and minimising with <= constraints."
+          },
+          {
+           "code": null,
+           "text": "Use the two-stage Simplex and big-M methods with mixed constraints."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "decision-mathematics-2-paper-4d",
+     "title": "Decision Mathematics 2 (Paper 4D)",
+     "topics": [
+      {
+       "id": "1-transportation-problems",
+       "title": "1 Transportation problems",
+       "subtopics": [
+        {
+         "id": "transportation-method",
+         "title": "Transportation method",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Find an initial solution with the north-west corner method."
+          },
+          {
+           "code": null,
+           "text": "Improve it by the stepping-stone method with improvement indices, dummies and degeneracy."
+          },
+          {
+           "code": null,
+           "text": "Formulate a transportation problem as a linear program."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "2-allocation-assignment-problems",
+       "title": "2 Allocation (assignment) problems",
+       "subtopics": [
+        {
+         "id": "hungarian-algorithm",
+         "title": "Hungarian algorithm",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Use cost matrix reduction and the Hungarian algorithm, including maximum profit and dummy locations."
+          },
+          {
+           "code": null,
+           "text": "Formulate the Hungarian algorithm as a linear program."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "3-flows-in-networks",
+       "title": "3 Flows in networks",
+       "subtopics": [
+        {
+         "id": "maximum-flow",
+         "title": "Maximum flow",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Find cuts and their capacities."
+          },
+          {
+           "code": null,
+           "text": "Use the labelling procedure to augment flows to a maximum."
+          },
+          {
+           "code": null,
+           "text": "Use the max-flow min-cut theorem to prove a flow is maximum."
+          },
+          {
+           "code": null,
+           "text": "Handle multiple sources, sinks and restricted-capacity vertices."
+          },
+          {
+           "code": null,
+           "text": "Find the optimal flow rate subject to upper and lower capacities."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "4-dynamic-programming",
+       "title": "4 Dynamic programming",
+       "subtopics": [
+        {
+         "id": "dynamic-programming",
+         "title": "Dynamic programming",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Apply Bellman's principle with stage and state variables and tabulation to optimisation problems."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "5-game-theory",
+       "title": "5 Game theory",
+       "subtopics": [
+        {
+         "id": "zero-sum-games",
+         "title": "Zero-sum games",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Set up a pay-off matrix for a two-person zero-sum game."
+          },
+          {
+           "code": null,
+           "text": "Find play-safe strategies and saddle points."
+          },
+          {
+           "code": null,
+           "text": "Reduce pay-off matrices by dominance."
+          }
+         ]
+        },
+        {
+         "id": "mixed-strategies",
+         "title": "Mixed strategies",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Find optimal mixed strategies graphically for 2 x n or n x 2 games."
+          },
+          {
+           "code": null,
+           "text": "Find optimal mixed strategies by converting games to linear programs for Simplex."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "6-recurrence-relations",
+       "title": "6 Recurrence relations",
+       "subtopics": [
+        {
+         "id": "recurrence-relations",
+         "title": "Recurrence relations",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Model problems with recurrence relations."
+          },
+          {
+           "code": null,
+           "text": "Solve first and second order linear recurrence relations, homogeneous and not."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "7-decision-analysis",
+       "title": "7 Decision analysis",
+       "subtopics": [
+        {
+         "id": "decision-trees",
+         "title": "Decision trees",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Build and interpret decision trees with decision nodes, chance nodes and pay-offs."
+          },
+          {
+           "code": null,
+           "text": "Compare options using expected monetary values and utility."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "build": {
+  "builtAt": "2026-10-14T10:27:02.072Z",
+  "model": "claude-agent",
+  "usd": 0,
+  "expectedCodes": 59,
+  "coverage": 1,
+  "missingCodes": [],
+  "counts": {
+   "grades": 1,
+   "units": 9,
+   "topics": 59,
+   "subtopics": 79,
+   "outcomes": 188
+  },
+  "warnings": [
+   "grade Year 12 has no content",
+   "grade Year 13 has no content",
+   "unexpected grade label \"all\""
+  ]
+ }
+}

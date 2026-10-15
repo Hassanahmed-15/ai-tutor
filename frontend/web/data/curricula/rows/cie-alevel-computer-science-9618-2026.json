@@ -1,0 +1,1610 @@
+[
+{
+"grade": "AS",
+"unit": "1 Information representation",
+"topic": "1.1 Data Representation",
+"subtopic": "Data Representation",
+"code": "1.1",
+"outcome": "Show understanding of binary magnitudes and the difference between binary prefixes and decimal prefixes — Understand the difference between and use: kibi and kilo; mebi and mega; gibi and giga; tebi and tera."
+},
+{
+"grade": "AS",
+"unit": "1 Information representation",
+"topic": "1.1 Data Representation",
+"subtopic": "Data Representation",
+"code": null,
+"outcome": "Show understanding of different number systems — Use the binary, denary, hexadecimal number bases and Binary Coded Decimal (BCD) and one’s and two’s complement representation for binary numbers; Convert an integer value from one number base/ representation to another."
+},
+{
+"grade": "AS",
+"unit": "1 Information representation",
+"topic": "1.1 Data Representation",
+"subtopic": "Data Representation",
+"code": null,
+"outcome": "Perform binary addition and subtraction — Using positive and negative binary integers; Show understanding of how overflow can occur."
+},
+{
+"grade": "AS",
+"unit": "1 Information representation",
+"topic": "1.1 Data Representation",
+"subtopic": "Data Representation",
+"code": null,
+"outcome": "Describe practical applications where Binary Coded Decimal (BCD) and Hexadecimal are used."
+},
+{
+"grade": "AS",
+"unit": "1 Information representation",
+"topic": "1.1 Data Representation",
+"subtopic": "Data Representation",
+"code": null,
+"outcome": "Show understanding of and be able to represent character data in its internal binary form, depending on the character set used — Students are expected to be familiar with ASCII (American Standard Code for Information Interchange), extended ASCII and Unicode. Students will not be expected to memorise any particular character codes."
+},
+{
+"grade": "AS",
+"unit": "1 Information representation",
+"topic": "1.2 Multimedia",
+"subtopic": "Multimedia: Graphics",
+"code": "1.2",
+"outcome": "Show understanding of how data for a bitmapped image are encoded — Use and understand the terms: pixel, file header, image resolution, screen resolution, colour depth/ bit depth."
+},
+{
+"grade": "AS",
+"unit": "1 Information representation",
+"topic": "1.2 Multimedia",
+"subtopic": "Multimedia: Graphics",
+"code": null,
+"outcome": "Perform calculations to estimate the file size for a bitmap image."
+},
+{
+"grade": "AS",
+"unit": "1 Information representation",
+"topic": "1.2 Multimedia",
+"subtopic": "Multimedia: Graphics",
+"code": null,
+"outcome": "Show understanding of the effects of changing elements of a bitmap image on the image quality and file size — Use the terms: image resolution, colour depth / bit depth."
+},
+{
+"grade": "AS",
+"unit": "1 Information representation",
+"topic": "1.2 Multimedia",
+"subtopic": "Multimedia: Graphics",
+"code": null,
+"outcome": "Show understanding of how data for a vector graphic are encoded — Use the terms: drawing object, property, drawing list."
+},
+{
+"grade": "AS",
+"unit": "1 Information representation",
+"topic": "1.2 Multimedia",
+"subtopic": "Multimedia: Graphics",
+"code": null,
+"outcome": "Justify the use of a bitmap image or a vector graphic for a given task."
+},
+{
+"grade": "AS",
+"unit": "1 Information representation",
+"topic": "1.2 Multimedia",
+"subtopic": "Multimedia: Sound",
+"code": null,
+"outcome": "Show understanding of how sound is represented and encoded — Use the terms: sampling, sampling rate, sampling resolution, analogue and digital data."
+},
+{
+"grade": "AS",
+"unit": "1 Information representation",
+"topic": "1.2 Multimedia",
+"subtopic": "Multimedia: Sound",
+"code": null,
+"outcome": "Show understanding of the impact of changing the sampling rate and resolution — Including the impact on file size and accuracy."
+},
+{
+"grade": "AS",
+"unit": "1 Information representation",
+"topic": "1.3 Compression",
+"subtopic": "Compression",
+"code": "1.3",
+"outcome": "Show understanding of the need for and examples of the use of compression."
+},
+{
+"grade": "AS",
+"unit": "1 Information representation",
+"topic": "1.3 Compression",
+"subtopic": "Compression",
+"code": null,
+"outcome": "Show understanding of lossy and lossless compression and justify the use of a method in a given situation."
+},
+{
+"grade": "AS",
+"unit": "1 Information representation",
+"topic": "1.3 Compression",
+"subtopic": "Compression",
+"code": null,
+"outcome": "Show understanding of how a text file, bitmap image, vector graphic and sound file can be compressed — Including the use of run-length encoding (RLE)."
+},
+{
+"grade": "AS",
+"unit": "2 Communication",
+"topic": "2.1 Networks including the internet",
+"subtopic": "Networks: models, topologies and cloud",
+"code": "2.1",
+"outcome": "Show understanding of the purpose and benefits of networking devices."
+},
+{
+"grade": "AS",
+"unit": "2 Communication",
+"topic": "2.1 Networks including the internet",
+"subtopic": "Networks: models, topologies and cloud",
+"code": null,
+"outcome": "Show understanding of the characteristics of a LAN (local area network) and a WAN (wide area network)."
+},
+{
+"grade": "AS",
+"unit": "2 Communication",
+"topic": "2.1 Networks including the internet",
+"subtopic": "Networks: models, topologies and cloud",
+"code": null,
+"outcome": "Explain the client-server and peer-to-peer models of networked computers — Roles of the different computers within the network and subnetwork models; Benefits and drawbacks of each model; Justify the use of a model for a given situation."
+},
+{
+"grade": "AS",
+"unit": "2 Communication",
+"topic": "2.1 Networks including the internet",
+"subtopic": "Networks: models, topologies and cloud",
+"code": null,
+"outcome": "Show understanding of thin-client and thick-client and the differences between them."
+},
+{
+"grade": "AS",
+"unit": "2 Communication",
+"topic": "2.1 Networks including the internet",
+"subtopic": "Networks: models, topologies and cloud",
+"code": null,
+"outcome": "Show understanding of the bus, star, mesh and hybrid topologies — Understand how packets are transmitted between two hosts for a given topology; Justify the use of a topology for a given situation."
+},
+{
+"grade": "AS",
+"unit": "2 Communication",
+"topic": "2.1 Networks including the internet",
+"subtopic": "Networks: hardware, media and Ethernet",
+"code": null,
+"outcome": "Show understanding of cloud computing — Including the use of public and private clouds; Benefits and drawbacks of cloud computing."
+},
+{
+"grade": "AS",
+"unit": "2 Communication",
+"topic": "2.1 Networks including the internet",
+"subtopic": "Networks: hardware, media and Ethernet",
+"code": null,
+"outcome": "Show understanding of the differences between and implications of the use of wireless and wired networks — Describe the characteristics of copper cable, fibre-optic cable, radio waves (including WiFi), microwaves, satellites."
+},
+{
+"grade": "AS",
+"unit": "2 Communication",
+"topic": "2.1 Networks including the internet",
+"subtopic": "Networks: hardware, media and Ethernet",
+"code": null,
+"outcome": "Describe the hardware that is used to support a LAN — Including switch, server, Network Interface Card (NIC), Wireless Network Interface Card (WNIC), Wireless Access Points (WAP), cables, bridge, repeater."
+},
+{
+"grade": "AS",
+"unit": "2 Communication",
+"topic": "2.1 Networks including the internet",
+"subtopic": "Networks: hardware, media and Ethernet",
+"code": null,
+"outcome": "Describe the role and function of a router in a network."
+},
+{
+"grade": "AS",
+"unit": "2 Communication",
+"topic": "2.1 Networks including the internet",
+"subtopic": "Networks: hardware, media and Ethernet",
+"code": null,
+"outcome": "Show understanding of Ethernet and how collisions are detected and avoided — Including Carrier Sense Multiple Access / Collision Detection (CSMA / CD)."
+},
+{
+"grade": "AS",
+"unit": "2 Communication",
+"topic": "2.1 Networks including the internet",
+"subtopic": "The internet: hardware, IP addresses and URLs",
+"code": null,
+"outcome": "Show understanding of bit streaming — Methods of bit streaming, i.e. real-time and on-demand; Importance of bit rates broadband speed on bit streaming."
+},
+{
+"grade": "AS",
+"unit": "2 Communication",
+"topic": "2.1 Networks including the internet",
+"subtopic": "The internet: hardware, IP addresses and URLs",
+"code": null,
+"outcome": "Show understanding of the differences between the World Wide Web (WWW) and the internet."
+},
+{
+"grade": "AS",
+"unit": "2 Communication",
+"topic": "2.1 Networks including the internet",
+"subtopic": "The internet: hardware, IP addresses and URLs",
+"code": null,
+"outcome": "Describe the hardware that is used to support the internet — Including modems, PSTN (Public Switched Telephone Network), dedicated lines, cell phone network."
+},
+{
+"grade": "AS",
+"unit": "2 Communication",
+"topic": "2.1 Networks including the internet",
+"subtopic": "The internet: hardware, IP addresses and URLs",
+"code": null,
+"outcome": "Explain the use of IP addresses in the transmission of data over the internet — Including: format of an IP address including IPv4 and IPv6; use of subnetting in a network; how an IP address is associated with a device on a network; difference between a public IP address and a private IP address and the implications for security; difference between a static IP address and a dynamic IP address."
+},
+{
+"grade": "AS",
+"unit": "2 Communication",
+"topic": "2.1 Networks including the internet",
+"subtopic": "The internet: hardware, IP addresses and URLs",
+"code": null,
+"outcome": "Explain how a Uniform Resource Locator (URL) is used to locate a resource on the World Wide Web (WWW) and the role of the Domain Name Service (DNS)."
+},
+{
+"grade": "AS",
+"unit": "3 Hardware",
+"topic": "3.1 Computers and their components",
+"subtopic": "Computers and their components",
+"code": "3.1",
+"outcome": "Show understanding of the need for input, output, primary memory and secondary (including removable) storage."
+},
+{
+"grade": "AS",
+"unit": "3 Hardware",
+"topic": "3.1 Computers and their components",
+"subtopic": "Computers and their components",
+"code": null,
+"outcome": "Show understanding of embedded systems — Including: benefits and drawbacks of embedded systems."
+},
+{
+"grade": "AS",
+"unit": "3 Hardware",
+"topic": "3.1 Computers and their components",
+"subtopic": "Computers and their components",
+"code": null,
+"outcome": "Describe the principal operations of hardware devices — Including: Laser printer, 3D printer, microphone, speakers, magnetic hard disk, solid state (flash) memory, optical disc reader/writer, touchscreen, virtual reality headset."
+},
+{
+"grade": "AS",
+"unit": "3 Hardware",
+"topic": "3.1 Computers and their components",
+"subtopic": "Computers and their components",
+"code": null,
+"outcome": "Show understanding of the use of buffers."
+},
+{
+"grade": "AS",
+"unit": "3 Hardware",
+"topic": "3.1 Computers and their components",
+"subtopic": "Computers and their components",
+"code": null,
+"outcome": "Explain the differences between Random Access Memory (RAM) and Read Only Memory (ROM) — Including their use in a range of devices and systems."
+},
+{
+"grade": "AS",
+"unit": "3 Hardware",
+"topic": "3.1 Computers and their components",
+"subtopic": "Computers and their components",
+"code": null,
+"outcome": "Explain the differences between Static RAM (SRAM) and Dynamic RAM (DRAM) — Including the use of SRAM and DRAM in a range of devices and systems and the reasons for using one instead of the other depending on the device and its use."
+},
+{
+"grade": "AS",
+"unit": "3 Hardware",
+"topic": "3.1 Computers and their components",
+"subtopic": "Computers and their components",
+"code": null,
+"outcome": "Explain the difference between Programmable ROM (PROM), Erasable Programmable ROM (EPROM) and Electrically Erasable Programmable ROM (EEPROM)."
+},
+{
+"grade": "AS",
+"unit": "3 Hardware",
+"topic": "3.1 Computers and their components",
+"subtopic": "Computers and their components",
+"code": null,
+"outcome": "Show an understanding of monitoring and control systems — Including: difference between monitoring and control; use of sensors (including temperature, pressure, infra-red, sound) and actuators; importance of feedback."
+},
+{
+"grade": "AS",
+"unit": "3 Hardware",
+"topic": "3.2 Logic Gates and Logic Circuits",
+"subtopic": "Logic Gates and Logic Circuits",
+"code": "3.2",
+"outcome": "Use the following logic gate symbols: NOT AND OR; NAND NOR XOR."
+},
+{
+"grade": "AS",
+"unit": "3 Hardware",
+"topic": "3.2 Logic Gates and Logic Circuits",
+"subtopic": "Logic Gates and Logic Circuits",
+"code": null,
+"outcome": "Understand and define the functions of: NOT, AND, OR, NAND, NOR and XOR (EOR) gates — All gates except the NOT gate will have two inputs only."
+},
+{
+"grade": "AS",
+"unit": "3 Hardware",
+"topic": "3.2 Logic Gates and Logic Circuits",
+"subtopic": "Logic Gates and Logic Circuits",
+"code": null,
+"outcome": "Construct the truth table for each of the logic gates above."
+},
+{
+"grade": "AS",
+"unit": "3 Hardware",
+"topic": "3.2 Logic Gates and Logic Circuits",
+"subtopic": "Logic Gates and Logic Circuits",
+"code": null,
+"outcome": "Construct a logic circuit — From: a problem statement; a logic expression; a truth table."
+},
+{
+"grade": "AS",
+"unit": "3 Hardware",
+"topic": "3.2 Logic Gates and Logic Circuits",
+"subtopic": "Logic Gates and Logic Circuits",
+"code": null,
+"outcome": "Construct a truth table — From: a problem statement; a logic circuit; a logic expression."
+},
+{
+"grade": "AS",
+"unit": "3 Hardware",
+"topic": "3.2 Logic Gates and Logic Circuits",
+"subtopic": "Logic Gates and Logic Circuits",
+"code": null,
+"outcome": "Construct a logic expression — From: a problem statement; a logic circuit; a truth table."
+},
+{
+"grade": "AS",
+"unit": "4 Processor Fundamentals",
+"topic": "4.1 Central Processing Unit (CPU) Architecture",
+"subtopic": "Central Processing Unit (CPU) Architecture",
+"code": "4.1",
+"outcome": "Show understanding of the basic Von Neumann model for a computer system and the stored program concept."
+},
+{
+"grade": "AS",
+"unit": "4 Processor Fundamentals",
+"topic": "4.1 Central Processing Unit (CPU) Architecture",
+"subtopic": "Central Processing Unit (CPU) Architecture",
+"code": null,
+"outcome": "Show understanding of the purpose and role of registers, including the difference between general purpose and special purpose registers — Special purpose registers including: Program Counter (PC); Memory Data Register (MDR); Memory Address Register (MAR); The Accumulator (ACC); Index Register (IX); Current Instruction Register (CIR); Status Register."
+},
+{
+"grade": "AS",
+"unit": "4 Processor Fundamentals",
+"topic": "4.1 Central Processing Unit (CPU) Architecture",
+"subtopic": "Central Processing Unit (CPU) Architecture",
+"code": null,
+"outcome": "Show understanding of the purpose and roles of the Arithmetic and Logic Unit (ALU), Control Unit (CU) and system clock, Immediate Access Store (IAS)."
+},
+{
+"grade": "AS",
+"unit": "4 Processor Fundamentals",
+"topic": "4.1 Central Processing Unit (CPU) Architecture",
+"subtopic": "Central Processing Unit (CPU) Architecture",
+"code": null,
+"outcome": "Show understanding of how data are transferred between various components of the computer system using the address bus, data bus and control bus."
+},
+{
+"grade": "AS",
+"unit": "4 Processor Fundamentals",
+"topic": "4.1 Central Processing Unit (CPU) Architecture",
+"subtopic": "Central Processing Unit (CPU) Architecture",
+"code": null,
+"outcome": "Show understanding of how factors contribute to the performance of the computer system — Including: processor type and number of cores; the bus width; clock speed; cache memory."
+},
+{
+"grade": "AS",
+"unit": "4 Processor Fundamentals",
+"topic": "4.1 Central Processing Unit (CPU) Architecture",
+"subtopic": "Central Processing Unit (CPU) Architecture",
+"code": null,
+"outcome": "Understand how different ports provide connection to peripheral devices — Including connection to: Universal Serial Bus (USB); High Definition Multimedia Interface (HDMI); Video Graphics Array (VGA)."
+},
+{
+"grade": "AS",
+"unit": "4 Processor Fundamentals",
+"topic": "4.1 Central Processing Unit (CPU) Architecture",
+"subtopic": "Central Processing Unit (CPU) Architecture",
+"code": null,
+"outcome": "Describe the stages of the Fetch-Execute (F-E) cycle — Describe and use ‘register transfer’ notation to describe the F-E cycle."
+},
+{
+"grade": "AS",
+"unit": "4 Processor Fundamentals",
+"topic": "4.1 Central Processing Unit (CPU) Architecture",
+"subtopic": "Central Processing Unit (CPU) Architecture",
+"code": null,
+"outcome": "Show understanding of the purpose of interrupts — Including: possible causes of interrupts; applications of interrupts; use of an Interrupt Service handling Routine; (ISR); when interrupts are detected during the fetch- execute cycle; how interrupts are handled."
+},
+{
+"grade": "AS",
+"unit": "4 Processor Fundamentals",
+"topic": "4.2 Assembly Language",
+"subtopic": "Assembly Language",
+"code": "4.2",
+"outcome": "Show understanding of the relationship between assembly language and machine code."
+},
+{
+"grade": "AS",
+"unit": "4 Processor Fundamentals",
+"topic": "4.2 Assembly Language",
+"subtopic": "Assembly Language",
+"code": null,
+"outcome": "Describe the different stages of the assembly process for a two-pass assembler — Apply the two-pass assembler process to a given simple assembly language program."
+},
+{
+"grade": "AS",
+"unit": "4 Processor Fundamentals",
+"topic": "4.2 Assembly Language",
+"subtopic": "Assembly Language",
+"code": null,
+"outcome": "Trace a given simple assembly language program."
+},
+{
+"grade": "AS",
+"unit": "4 Processor Fundamentals",
+"topic": "4.2 Assembly Language",
+"subtopic": "Assembly Language",
+"code": null,
+"outcome": "Show understanding that a set of instructions are grouped — Including the following groups: Data movement; Input and output of data; Arithmetic operations; Unconditional and conditional instructions; Compare instructions."
+},
+{
+"grade": "AS",
+"unit": "4 Processor Fundamentals",
+"topic": "4.2 Assembly Language",
+"subtopic": "Assembly Language",
+"code": null,
+"outcome": "Show understanding of and be able to use different modes of addressing — Including immediate, direct, indirect, indexed, relative."
+},
+{
+"grade": "AS",
+"unit": "4 Processor Fundamentals",
+"topic": "4.2 Assembly Language",
+"subtopic": "Assembly Language",
+"code": null,
+"outcome": "Use the given instruction set (Opcode, Operand – Explanation): LDM #n Immediate addressing. Load the number n to ACC; LDD <address> Direct addressing. Load the contents of the location at the given address to ACC; LDI <address> Indirect addressing. The address to be used is at the given address. Load the contents of this second address to ACC; LDX <address> Indexed addressing. Form the address from <address> + the contents of the index register. Copy the contents of this calculated address to ACC; LDR #n Immediate addressing. Load the number n to IX; MOV <register> Move the contents of the accumulator to the given register (IX); STO <address> Store the contents of ACC at the given address; ADD <address> Add the contents of the given address to the ACC; ADD #n/Bn/&n Add the number n to the ACC; SUB <address> Subtract the contents of the given address from the ACC; SUB #n/Bn/&n Subtract the number n from the ACC; INC <register> Add 1 to the contents of the register (ACC or IX); DEC <register> Subtract 1 from the contents of the register (ACC or IX); JMP <address> Jump to the given address; CMP <address> Compare the contents of ACC with the contents of <address>; CMP #n Compare the contents of ACC with number n; CMI <address> Indirect addressing. The address to be used is at the given address. Compare the contents of ACC with the contents of this second address; JPE <address> Following a compare instruction, jump to <address> if the compare was True; JPN <address> Following a compare instruction, jump to <address> if the compare was False; IN Key in a character and store its ASCII value in ACC; OUT Output to the screen the character whose ASCII value is stored in ACC; END Return control to the operating system."
+},
+{
+"grade": "AS",
+"unit": "4 Processor Fundamentals",
+"topic": "4.2 Assembly Language",
+"subtopic": "Assembly Language",
+"code": null,
+"outcome": "Note: all questions will assume there is only one general purpose register available (Accumulator); ACC denotes Accumulator; IX denotes Index Register; <address> can be an absolute or symbolic address; # denotes a denary number, e.g. #123; B denotes a binary number, e.g. B01001010; & denotes a hexadecimal number, e.g. &4A."
+},
+{
+"grade": "AS",
+"unit": "4 Processor Fundamentals",
+"topic": "4.3 Bit manipulation",
+"subtopic": "Bit manipulation",
+"code": "4.3",
+"outcome": "Show understanding of and perform binary shifts — Logical, arithmetic and cyclic; Left shift, right shift."
+},
+{
+"grade": "AS",
+"unit": "4 Processor Fundamentals",
+"topic": "4.3 Bit manipulation",
+"subtopic": "Bit manipulation",
+"code": null,
+"outcome": "Show understanding of how bit manipulation can be used to monitor/control a device — Carry out bit manipulation operations; Test and set a bit (using bit masking)."
+},
+{
+"grade": "AS",
+"unit": "4 Processor Fundamentals",
+"topic": "4.3 Bit manipulation",
+"subtopic": "Bit manipulation",
+"code": null,
+"outcome": "Use the given bit manipulation instructions (Label, Opcode, Operand – Explanation): AND #n / Bn / &n – Bitwise AND operation of the contents of ACC with the operand; AND <address> – Bitwise AND operation of the contents of ACC with the contents of <address>; XOR #n / Bn / &n – Bitwise XOR operation of the contents of ACC with the operand; XOR <address> – Bitwise XOR operation of the contents of ACC with the contents of <address>; OR #n / Bn / &n – Bitwise OR operation of the contents of ACC with the operand; OR <address> – Bitwise OR operation of the contents of ACC with the contents of <address>; LSL #n – Bits in ACC are shifted logically n places to the left. Zeros are introduced on the right hand end; LSR #n – Bits in ACC are shifted logically n places to the right. Zeros are introduced on the left hand end; <label>: <opcode> <operand> – Labels an instruction; <label>: <data> – Gives a symbolic address <label> to the memory location with contents <data>."
+},
+{
+"grade": "AS",
+"unit": "4 Processor Fundamentals",
+"topic": "4.3 Bit manipulation",
+"subtopic": "Bit manipulation",
+"code": null,
+"outcome": "Note: all questions will assume there is only one general purpose register available (Accumulator); ACC denotes Accumulator; IX denotes Index Register; <address> can be an absolute or symbolic address; # denotes a denary number, e.g. #123; B denotes a binary number, e.g. B01001010; & denotes a hexadecimal number, e.g. &4A."
+},
+{
+"grade": "AS",
+"unit": "5 System Software",
+"topic": "5.1 Operating Systems",
+"subtopic": "Operating Systems",
+"code": "5.1",
+"outcome": "Explain why a computer system requires an Operating System (OS)."
+},
+{
+"grade": "AS",
+"unit": "5 System Software",
+"topic": "5.1 Operating Systems",
+"subtopic": "Operating Systems",
+"code": null,
+"outcome": "Explain the key management tasks carried out by the Operating System — Including memory management, file management, security management, hardware management (input / output / peripherals), process management."
+},
+{
+"grade": "AS",
+"unit": "5 System Software",
+"topic": "5.1 Operating Systems",
+"subtopic": "Operating Systems",
+"code": null,
+"outcome": "Show understanding of the need for typical utility software provided with an Operating System — Including disk formatter, virus checker, defragmentation software, disk contents analysis/ disk repair software, file compression, back-up software."
+},
+{
+"grade": "AS",
+"unit": "5 System Software",
+"topic": "5.1 Operating Systems",
+"subtopic": "Operating Systems",
+"code": null,
+"outcome": "Show understanding of program libraries — Including: software under development is often constructed using existing code from program libraries; the benefits to the developer of software constructed using library files, including; Dynamic Link Library (DLL) files."
+},
+{
+"grade": "AS",
+"unit": "5 System Software",
+"topic": "5.2 Language Translators",
+"subtopic": "Language Translators",
+"code": "5.2",
+"outcome": "Show understanding of the need for: assembler software for the translation of an assembly language program; a compiler for the translation of a high-level language program; an interpreter for translation and execution of a high-level language program."
+},
+{
+"grade": "AS",
+"unit": "5 System Software",
+"topic": "5.2 Language Translators",
+"subtopic": "Language Translators",
+"code": null,
+"outcome": "Explain the benefits and drawbacks of using either a compiler or interpreter and justify the use of each."
+},
+{
+"grade": "AS",
+"unit": "5 System Software",
+"topic": "5.2 Language Translators",
+"subtopic": "Language Translators",
+"code": null,
+"outcome": "Show awareness that high-level language programs may be partially compiled and partially interpreted, such as Java (console mode)."
+},
+{
+"grade": "AS",
+"unit": "5 System Software",
+"topic": "5.2 Language Translators",
+"subtopic": "Language Translators",
+"code": null,
+"outcome": "Describe features found in a typical Integrated Development Environment (IDE) — Including: for coding, including context-sensitive prompts; for initial error detection, including dynamic syntax checks; for presentation, including prettyprint, expand and collapse code blocks; for debugging, including single stepping, breakpoints, i.e. variables, expressions, report window."
+},
+{
+"grade": "AS",
+"unit": "6 Security, privacy and data integrity",
+"topic": "6.1 Data Security",
+"subtopic": "Data Security",
+"code": "6.1",
+"outcome": "Explain the difference between the terms security, privacy and integrity of data."
+},
+{
+"grade": "AS",
+"unit": "6 Security, privacy and data integrity",
+"topic": "6.1 Data Security",
+"subtopic": "Data Security",
+"code": null,
+"outcome": "Show appreciation of the need for both the security of data and the security of the computer system."
+},
+{
+"grade": "AS",
+"unit": "6 Security, privacy and data integrity",
+"topic": "6.1 Data Security",
+"subtopic": "Data Security",
+"code": null,
+"outcome": "Describe security measures designed to protect computer systems, ranging from the stand-alone PC to a network of computers — Including user accounts, passwords, authentication techniques such as digital signatures and biometrics, firewall, anti-virus software, anti- spyware, encryption."
+},
+{
+"grade": "AS",
+"unit": "6 Security, privacy and data integrity",
+"topic": "6.1 Data Security",
+"subtopic": "Data Security",
+"code": null,
+"outcome": "Show understanding of the threats to computer and data security posed by networks and the internet — Including malware (virus, spyware), hackers, phishing, pharming."
+},
+{
+"grade": "AS",
+"unit": "6 Security, privacy and data integrity",
+"topic": "6.1 Data Security",
+"subtopic": "Data Security",
+"code": null,
+"outcome": "Describe methods that can be used to restrict the risks posed by threats."
+},
+{
+"grade": "AS",
+"unit": "6 Security, privacy and data integrity",
+"topic": "6.1 Data Security",
+"subtopic": "Data Security",
+"code": null,
+"outcome": "Describe security methods designed to protect the security of data — Including encryption, access rights."
+},
+{
+"grade": "AS",
+"unit": "6 Security, privacy and data integrity",
+"topic": "6.2 Data Integrity",
+"subtopic": "Data Integrity",
+"code": "6.2",
+"outcome": "Describe how data validation and data verification help protect the integrity of data."
+},
+{
+"grade": "AS",
+"unit": "6 Security, privacy and data integrity",
+"topic": "6.2 Data Integrity",
+"subtopic": "Data Integrity",
+"code": null,
+"outcome": "Describe and use methods of data validation — Including range check, format check, length check, presence check, existence check, limit check, check digit."
+},
+{
+"grade": "AS",
+"unit": "6 Security, privacy and data integrity",
+"topic": "6.2 Data Integrity",
+"subtopic": "Data Integrity",
+"code": null,
+"outcome": "Describe and use methods of data verification during data entry and data transfer — During data entry including visual check, double entry; During data transfer including parity check (byte and block), checksum."
+},
+{
+"grade": "AS",
+"unit": "7 Ethics and Ownership",
+"topic": "7.1 Ethics and Ownership",
+"subtopic": "Ethics and Ownership",
+"code": "7.1",
+"outcome": "Show understanding of the need for and purpose of ethics as a computing professional — Understand the importance of joining a professional ethical body including BCS (British Computer Society), IEEE (Institute of Electrical and Electronic Engineers)."
+},
+{
+"grade": "AS",
+"unit": "7 Ethics and Ownership",
+"topic": "7.1 Ethics and Ownership",
+"subtopic": "Ethics and Ownership",
+"code": null,
+"outcome": "Show understanding of the need to act ethically and the impact of acting ethically or unethically for a given situation."
+},
+{
+"grade": "AS",
+"unit": "7 Ethics and Ownership",
+"topic": "7.1 Ethics and Ownership",
+"subtopic": "Ethics and Ownership",
+"code": null,
+"outcome": "Show understanding of the need for copyright legislation."
+},
+{
+"grade": "AS",
+"unit": "7 Ethics and Ownership",
+"topic": "7.1 Ethics and Ownership",
+"subtopic": "Ethics and Ownership",
+"code": null,
+"outcome": "Show understanding of the different types of software licencing and justify the use of a licence for a given situation — Licences to include free Software Foundation, the Open Source Initiative, shareware and commercial software."
+},
+{
+"grade": "AS",
+"unit": "7 Ethics and Ownership",
+"topic": "7.1 Ethics and Ownership",
+"subtopic": "Ethics and Ownership",
+"code": null,
+"outcome": "Show understanding of Artificial Intelligence (AI) — Understand the impact of AI including social, economic and environmental issues; Understand the applications of AI."
+},
+{
+"grade": "AS",
+"unit": "8 Databases",
+"topic": "8.1 Database Concepts",
+"subtopic": "Database Concepts",
+"code": "8.1",
+"outcome": "Show understanding of the limitations of using a file- based approach for the storage and retrieval of data."
+},
+{
+"grade": "AS",
+"unit": "8 Databases",
+"topic": "8.1 Database Concepts",
+"subtopic": "Database Concepts",
+"code": null,
+"outcome": "Describe the features of a relational database that address the limitations of a file-based approach."
+},
+{
+"grade": "AS",
+"unit": "8 Databases",
+"topic": "8.1 Database Concepts",
+"subtopic": "Database Concepts",
+"code": null,
+"outcome": "Show understanding of and use the terminology associated with a relational database model — Including entity, table, record, field, tuple, attribute, primary key, candidate key, secondary key, foreign key, relationship (one-to-many, one-to-one, many- to-many), referential integrity, indexing."
+},
+{
+"grade": "AS",
+"unit": "8 Databases",
+"topic": "8.1 Database Concepts",
+"subtopic": "Database Concepts",
+"code": null,
+"outcome": "Use an entity-relationship (E-R) diagram to document a database design."
+},
+{
+"grade": "AS",
+"unit": "8 Databases",
+"topic": "8.1 Database Concepts",
+"subtopic": "Database Concepts",
+"code": null,
+"outcome": "Show understanding of the normalisation process — First Normal Form (1NF), Second Normal Form (2NF) and Third Normal Form (3NF)."
+},
+{
+"grade": "AS",
+"unit": "8 Databases",
+"topic": "8.1 Database Concepts",
+"subtopic": "Database Concepts",
+"code": null,
+"outcome": "Explain why a given set of database tables are, or are not, in 3NF."
+},
+{
+"grade": "AS",
+"unit": "8 Databases",
+"topic": "8.1 Database Concepts",
+"subtopic": "Database Concepts",
+"code": null,
+"outcome": "Produce a normalised database design for a description of a database, a given set of data, or a given set of tables."
+},
+{
+"grade": "AS",
+"unit": "8 Databases",
+"topic": "8.2 Database Management Systems (DBMS)",
+"subtopic": "Database Management Systems (DBMS)",
+"code": "8.2",
+"outcome": "Show understanding of the features provided by a Database Management System (DBMS) that address the issues of a file based approach — Including: data management, including maintaining a data dictionary; data modelling; logical schema; data integrity; data security, including backup procedures and the use of access rights to individuals / groups of users."
+},
+{
+"grade": "AS",
+"unit": "8 Databases",
+"topic": "8.2 Database Management Systems (DBMS)",
+"subtopic": "Database Management Systems (DBMS)",
+"code": null,
+"outcome": "Show understanding of how software tools found within a DBMS are used in practice — Including the use and purpose of: developer interface; query processor."
+},
+{
+"grade": "AS",
+"unit": "8 Databases",
+"topic": "8.3 Data Definition Language (DDL) and Data Manipulation Language (DML)",
+"subtopic": "Data Definition Language (DDL) and Data Manipulation Language (DML)",
+"code": "8.3",
+"outcome": "Show understanding that the DBMS carries out all creation / modification of the database structure using its Data Definition Language (DDL)."
+},
+{
+"grade": "AS",
+"unit": "8 Databases",
+"topic": "8.3 Data Definition Language (DDL) and Data Manipulation Language (DML)",
+"subtopic": "Data Definition Language (DDL) and Data Manipulation Language (DML)",
+"code": null,
+"outcome": "Show understanding that the DBMS carries out all queries and maintenance of data using its DML."
+},
+{
+"grade": "AS",
+"unit": "8 Databases",
+"topic": "8.3 Data Definition Language (DDL) and Data Manipulation Language (DML)",
+"subtopic": "Data Definition Language (DDL) and Data Manipulation Language (DML)",
+"code": null,
+"outcome": "Show understanding that the industry standard for both DDL and DML is Structured Query Language (SQL) — Understand a given SQL statement."
+},
+{
+"grade": "AS",
+"unit": "8 Databases",
+"topic": "8.3 Data Definition Language (DDL) and Data Manipulation Language (DML)",
+"subtopic": "Data Definition Language (DDL) and Data Manipulation Language (DML)",
+"code": null,
+"outcome": "Understand given SQL (DDL) statements and be able to write simple SQL (DDL) statements using a sub-set of statements — Create a database (CREATE DATABASE); Create a table definition (CREATE TABLE), including the creation of attributes with appropriate data types: CHARACTER; VARCHAR(n); BOOLEAN; INTEGER; REAL; DATE; TIME change a table definition (ALTER TABLE); add a primary key to a table (PRIMARY KEY (field)); add a foreign key to a table (FOREIGN KEY (field) REFERENCES Table (Field))."
+},
+{
+"grade": "AS",
+"unit": "8 Databases",
+"topic": "8.3 Data Definition Language (DDL) and Data Manipulation Language (DML)",
+"subtopic": "Data Definition Language (DDL) and Data Manipulation Language (DML)",
+"code": null,
+"outcome": "Write an SQL script to query or modify data (DML) which are stored in (at most two) database tables — Queries including SELECT... FROM, WHERE, ORDER BY, GROUP BY, INNER JOIN, SUM, COUNT, AVG; Data maintenance including. INSERT INTO, DELETE FROM, UPDATE."
+},
+{
+"grade": "AS",
+"unit": "9 Algorithm Design and Problem-solving",
+"topic": "9.1 Computational Thinking Skills",
+"subtopic": "Computational Thinking Skills",
+"code": "9.1",
+"outcome": "Show an understanding of abstraction — Need for and benefits of using abstraction; Describe the purpose of abstraction; Produce an abstract model of a system by only including essential details."
+},
+{
+"grade": "AS",
+"unit": "9 Algorithm Design and Problem-solving",
+"topic": "9.1 Computational Thinking Skills",
+"subtopic": "Computational Thinking Skills",
+"code": null,
+"outcome": "Describe and use decomposition — Break down problems into sub-problems leading to the concept of a program module (procedure / function)."
+},
+{
+"grade": "AS",
+"unit": "9 Algorithm Design and Problem-solving",
+"topic": "9.2 Algorithms",
+"subtopic": "Algorithms and pseudocode",
+"code": "9.2",
+"outcome": "Show understanding that an algorithm is a solution to a problem expressed as a sequence of defined steps."
+},
+{
+"grade": "AS",
+"unit": "9 Algorithm Design and Problem-solving",
+"topic": "9.2 Algorithms",
+"subtopic": "Algorithms and pseudocode",
+"code": null,
+"outcome": "Use suitable identifier names for the representation of data used by a problem and represent these using an identifier table."
+},
+{
+"grade": "AS",
+"unit": "9 Algorithm Design and Problem-solving",
+"topic": "9.2 Algorithms",
+"subtopic": "Algorithms and pseudocode",
+"code": null,
+"outcome": "Write pseudocode that contains input, process and output."
+},
+{
+"grade": "AS",
+"unit": "9 Algorithm Design and Problem-solving",
+"topic": "9.2 Algorithms",
+"subtopic": "Algorithms and pseudocode",
+"code": null,
+"outcome": "Write pseudocode using the three basic constructs of sequence, selection and iteration (repetition)."
+},
+{
+"grade": "AS",
+"unit": "9 Algorithm Design and Problem-solving",
+"topic": "9.2 Algorithms",
+"subtopic": "Algorithms and pseudocode",
+"code": null,
+"outcome": "Document a simple algorithm using a structured English description, a flowchart or pseudocode."
+},
+{
+"grade": "AS",
+"unit": "9 Algorithm Design and Problem-solving",
+"topic": "9.2 Algorithms",
+"subtopic": "Flowcharts and stepwise refinement",
+"code": null,
+"outcome": "Write pseudocode from: a structured English description; a flowchart."
+},
+{
+"grade": "AS",
+"unit": "9 Algorithm Design and Problem-solving",
+"topic": "9.2 Algorithms",
+"subtopic": "Flowcharts and stepwise refinement",
+"code": null,
+"outcome": "Draw a flowchart from: a structured English description; pseudocode."
+},
+{
+"grade": "AS",
+"unit": "9 Algorithm Design and Problem-solving",
+"topic": "9.2 Algorithms",
+"subtopic": "Flowcharts and stepwise refinement",
+"code": null,
+"outcome": "Describe and use the process of stepwise refinement to express an algorithm to a level of detail from which the task may be programmed."
+},
+{
+"grade": "AS",
+"unit": "9 Algorithm Design and Problem-solving",
+"topic": "9.2 Algorithms",
+"subtopic": "Flowcharts and stepwise refinement",
+"code": null,
+"outcome": "Use logic statements to define parts of an algorithm solution."
+},
+{
+"grade": "AS",
+"unit": "10 Data Types and Structures",
+"topic": "10.1 Data Types and Records",
+"subtopic": "Data Types and Records",
+"code": "10.1",
+"outcome": "Select and use appropriate data types for a problem solution — including integer, real, char, string, Boolean, date (pseudocode will use the following data types: INTEGER, REAL, CHAR, STRING, BOOLEAN, DATE, ARRAY, FILE)."
+},
+{
+"grade": "AS",
+"unit": "10 Data Types and Structures",
+"topic": "10.1 Data Types and Records",
+"subtopic": "Data Types and Records",
+"code": null,
+"outcome": "Show understanding of the purpose of a record structure to hold a set of data of different data types under one identifier — Write pseudocode to define a record structure; Write pseudocode to read data from a record structure and save data to a record structure."
+},
+{
+"grade": "AS",
+"unit": "10 Data Types and Structures",
+"topic": "10.2 Arrays",
+"subtopic": "Arrays",
+"code": "10.2",
+"outcome": "Use the technical terms associated with arrays — Including index, upper and lower bound."
+},
+{
+"grade": "AS",
+"unit": "10 Data Types and Structures",
+"topic": "10.2 Arrays",
+"subtopic": "Arrays",
+"code": null,
+"outcome": "Select a suitable data structure (1D or 2D array) to use for a given task."
+},
+{
+"grade": "AS",
+"unit": "10 Data Types and Structures",
+"topic": "10.2 Arrays",
+"subtopic": "Arrays",
+"code": null,
+"outcome": "Write pseudocode for 1D and 2D arrays."
+},
+{
+"grade": "AS",
+"unit": "10 Data Types and Structures",
+"topic": "10.2 Arrays",
+"subtopic": "Arrays",
+"code": null,
+"outcome": "Write pseudocode to process array data — Sort using a bubble sort; Search using a linear search."
+},
+{
+"grade": "AS",
+"unit": "10 Data Types and Structures",
+"topic": "10.3 Files",
+"subtopic": "Files",
+"code": "10.3",
+"outcome": "Show understanding of why files are needed."
+},
+{
+"grade": "AS",
+"unit": "10 Data Types and Structures",
+"topic": "10.3 Files",
+"subtopic": "Files",
+"code": null,
+"outcome": "Write pseudocode to handle text files that consist of one or more lines."
+},
+{
+"grade": "AS",
+"unit": "10 Data Types and Structures",
+"topic": "10.4 Introduction to Abstract Data Types (ADT)",
+"subtopic": "Introduction to Abstract Data Types (ADT)",
+"code": "10.4",
+"outcome": "Show understanding that an ADT is a collection of data and a set of operations on those data."
+},
+{
+"grade": "AS",
+"unit": "10 Data Types and Structures",
+"topic": "10.4 Introduction to Abstract Data Types (ADT)",
+"subtopic": "Introduction to Abstract Data Types (ADT)",
+"code": null,
+"outcome": "Show understanding that a stack, queue and linked list are examples of ADTs — Describe the key features of a stack, queue and linked list and justify their use for a given situation."
+},
+{
+"grade": "AS",
+"unit": "10 Data Types and Structures",
+"topic": "10.4 Introduction to Abstract Data Types (ADT)",
+"subtopic": "Introduction to Abstract Data Types (ADT)",
+"code": null,
+"outcome": "Use a stack, queue and linked list to store data — Candidates will not be required to write pseudocode for these structures, but they should be able to add, edit and delete data from these structures."
+},
+{
+"grade": "AS",
+"unit": "10 Data Types and Structures",
+"topic": "10.4 Introduction to Abstract Data Types (ADT)",
+"subtopic": "Introduction to Abstract Data Types (ADT)",
+"code": null,
+"outcome": "Describe how a queue, stack and linked list can be implemented using arrays."
+},
+{
+"grade": "AS",
+"unit": "11 Programming",
+"topic": "11.1 Programming Basics",
+"subtopic": "Programming Basics",
+"code": "11.1",
+"outcome": "Implement and write pseudocode from a given design presented as either a program flowchart or structured English."
+},
+{
+"grade": "AS",
+"unit": "11 Programming",
+"topic": "11.1 Programming Basics",
+"subtopic": "Programming Basics",
+"code": null,
+"outcome": "Write pseudocode statements for: the declaration and initialisation of constants; the declaration of variables; the assignment of values to variables; expressions involving any of the arithmetic or logical operators input from the keyboard and output to the console."
+},
+{
+"grade": "AS",
+"unit": "11 Programming",
+"topic": "11.1 Programming Basics",
+"subtopic": "Programming Basics",
+"code": null,
+"outcome": "Use built-in functions and library routines — Any functions not given in the pseudocode guide will be provided; String manipulation functions will always be given."
+},
+{
+"grade": "AS",
+"unit": "11 Programming",
+"topic": "11.2 Constructs",
+"subtopic": "Constructs",
+"code": "11.2",
+"outcome": "Use pseudocode to write: an ‘IF’ statement including the ‘ELSE’ clause and nested IF statements; a ‘CASE’ structure; a ‘count-controlled’ loop: a ‘post-condition’ loop; a ‘pre-condition’ loop."
+},
+{
+"grade": "AS",
+"unit": "11 Programming",
+"topic": "11.2 Constructs",
+"subtopic": "Constructs",
+"code": null,
+"outcome": "Justify why one loop structure may be better suited to solve a problem than the others."
+},
+{
+"grade": "AS",
+"unit": "11 Programming",
+"topic": "11.3 Structured Programming",
+"subtopic": "Structured Programming",
+"code": "11.3",
+"outcome": "Define and use a procedure."
+},
+{
+"grade": "AS",
+"unit": "11 Programming",
+"topic": "11.3 Structured Programming",
+"subtopic": "Structured Programming",
+"code": null,
+"outcome": "Explain where in the construction of an algorithm it would be appropriate to use a procedure."
+},
+{
+"grade": "AS",
+"unit": "11 Programming",
+"topic": "11.3 Structured Programming",
+"subtopic": "Structured Programming",
+"code": null,
+"outcome": "Use parameters — A procedure may have none, one or more parameters; A parameter can be passed by reference or by value."
+},
+{
+"grade": "AS",
+"unit": "11 Programming",
+"topic": "11.3 Structured Programming",
+"subtopic": "Structured Programming",
+"code": null,
+"outcome": "Define and use a function."
+},
+{
+"grade": "AS",
+"unit": "11 Programming",
+"topic": "11.3 Structured Programming",
+"subtopic": "Structured Programming",
+"code": null,
+"outcome": "Explain where in the construction of an algorithm it is appropriate to use a function — A function is used in an expression, e.g. the return value replaces the call."
+},
+{
+"grade": "AS",
+"unit": "11 Programming",
+"topic": "11.3 Structured Programming",
+"subtopic": "Structured Programming",
+"code": null,
+"outcome": "Use the terminology associated with procedures and functions — including procedure / function header, procedure / function interface, parameter, argument, return value."
+},
+{
+"grade": "AS",
+"unit": "11 Programming",
+"topic": "11.3 Structured Programming",
+"subtopic": "Structured Programming",
+"code": null,
+"outcome": "Write efficient pseudocode."
+},
+{
+"grade": "AS",
+"unit": "12 Software Development",
+"topic": "12.1 Program Development Life cycle",
+"subtopic": "Program Development Life cycle",
+"code": "12.1",
+"outcome": "Show understanding of the purpose of a development life cycle."
+},
+{
+"grade": "AS",
+"unit": "12 Software Development",
+"topic": "12.1 Program Development Life cycle",
+"subtopic": "Program Development Life cycle",
+"code": null,
+"outcome": "Show understanding of the need for different development life cycles depending on the program being developed — Including: waterfall, iterative, rapid application development (RAD)."
+},
+{
+"grade": "AS",
+"unit": "12 Software Development",
+"topic": "12.1 Program Development Life cycle",
+"subtopic": "Program Development Life cycle",
+"code": null,
+"outcome": "Describe the principles, benefits and drawbacks of each type of life cycle."
+},
+{
+"grade": "AS",
+"unit": "12 Software Development",
+"topic": "12.1 Program Development Life cycle",
+"subtopic": "Program Development Life cycle",
+"code": null,
+"outcome": "Show understanding of the analysis, design, coding, testing and maintenance stages in the program development life cycle."
+},
+{
+"grade": "AS",
+"unit": "12 Software Development",
+"topic": "12.2 Program Design",
+"subtopic": "Program Design",
+"code": "12.2",
+"outcome": "Use a structure chart to decompose a problem into sub-tasks and express the parameters passed between the various modules / procedures / functions which are part of the algorithm design — Describe the purpose of a structure chart; Construct a structure chart for a given problem; Derive equivalent pseudocode from a structure chart."
+},
+{
+"grade": "AS",
+"unit": "12 Software Development",
+"topic": "12.2 Program Design",
+"subtopic": "Program Design",
+"code": null,
+"outcome": "Show understanding of the purpose of state-transition diagrams to document an algorithm."
+},
+{
+"grade": "AS",
+"unit": "12 Software Development",
+"topic": "12.3 Program Testing and Maintenance",
+"subtopic": "Program Testing and Maintenance",
+"code": "12.3",
+"outcome": "Show understanding of ways of exposing and avoiding faults in programs."
+},
+{
+"grade": "AS",
+"unit": "12 Software Development",
+"topic": "12.3 Program Testing and Maintenance",
+"subtopic": "Program Testing and Maintenance",
+"code": null,
+"outcome": "Locate and identify the different types of errors — syntax errors; logic errors; run-time errors."
+},
+{
+"grade": "AS",
+"unit": "12 Software Development",
+"topic": "12.3 Program Testing and Maintenance",
+"subtopic": "Program Testing and Maintenance",
+"code": null,
+"outcome": "Correct identified errors."
+},
+{
+"grade": "AS",
+"unit": "12 Software Development",
+"topic": "12.3 Program Testing and Maintenance",
+"subtopic": "Program Testing and Maintenance",
+"code": null,
+"outcome": "Show understanding of the methods of testing available and select appropriate data for a given method — Including dry run, walkthrough, white-box, black- box, integration, alpha, beta, acceptance, stub."
+},
+{
+"grade": "AS",
+"unit": "12 Software Development",
+"topic": "12.3 Program Testing and Maintenance",
+"subtopic": "Program Testing and Maintenance",
+"code": null,
+"outcome": "Show understanding of the need for a test strategy and test plan and their likely contents."
+},
+{
+"grade": "AS",
+"unit": "12 Software Development",
+"topic": "12.3 Program Testing and Maintenance",
+"subtopic": "Program Testing and Maintenance",
+"code": null,
+"outcome": "Choose appropriate test data for a test plan — Including normal, abnormal and extreme/boundary."
+},
+{
+"grade": "AS",
+"unit": "12 Software Development",
+"topic": "12.3 Program Testing and Maintenance",
+"subtopic": "Program Testing and Maintenance",
+"code": null,
+"outcome": "Show understanding of the need for continuing maintenance of a system and the differences between each type of maintenance — Including perfective, adaptive, corrective."
+},
+{
+"grade": "AS",
+"unit": "12 Software Development",
+"topic": "12.3 Program Testing and Maintenance",
+"subtopic": "Program Testing and Maintenance",
+"code": null,
+"outcome": "Analyse an existing program and make amendments to enhance functionality."
+},
+{
+"grade": "A Level",
+"unit": "13 Data Representation",
+"topic": "13.1 User-defined data types",
+"subtopic": "User-defined data types",
+"code": "13.1",
+"outcome": "Show understanding of why user-defined types are necessary."
+},
+{
+"grade": "A Level",
+"unit": "13 Data Representation",
+"topic": "13.1 User-defined data types",
+"subtopic": "User-defined data types",
+"code": null,
+"outcome": "Define and use non-composite types — Including enumerated, pointer."
+},
+{
+"grade": "A Level",
+"unit": "13 Data Representation",
+"topic": "13.1 User-defined data types",
+"subtopic": "User-defined data types",
+"code": null,
+"outcome": "Define and use composite data types — Including set, record and class/object."
+},
+{
+"grade": "A Level",
+"unit": "13 Data Representation",
+"topic": "13.1 User-defined data types",
+"subtopic": "User-defined data types",
+"code": null,
+"outcome": "Choose and design an appropriate user-defined data type for a given problem."
+},
+{
+"grade": "A Level",
+"unit": "13 Data Representation",
+"topic": "13.2 File organisation and access",
+"subtopic": "File organisation and access",
+"code": "13.2",
+"outcome": "Show understanding of the methods of file organisation and select an appropriate method of file organisation and file access for a given problem — Including serial, sequential (using a key field), random (using a record key)."
+},
+{
+"grade": "A Level",
+"unit": "13 Data Representation",
+"topic": "13.2 File organisation and access",
+"subtopic": "File organisation and access",
+"code": null,
+"outcome": "Show understanding of methods of file access — Including; Sequential access for serial and sequential files; Direct access for sequential and random files."
+},
+{
+"grade": "A Level",
+"unit": "13 Data Representation",
+"topic": "13.2 File organisation and access",
+"subtopic": "File organisation and access",
+"code": null,
+"outcome": "Show understanding of hashing algorithms — Describe and use different hashing algorithms to read from and write data to a random / sequential file."
+},
+{
+"grade": "A Level",
+"unit": "13 Data Representation",
+"topic": "13.3 Floating-point numbers, representation and manipulation",
+"subtopic": "Floating-point numbers, representation and manipulation",
+"code": "13.3",
+"outcome": "Describe the format of binary floating-point real numbers — Use two’s complement form; Understand of the effects of changing the allocation of bits to mantissa and exponent in a floating-point representation."
+},
+{
+"grade": "A Level",
+"unit": "13 Data Representation",
+"topic": "13.3 Floating-point numbers, representation and manipulation",
+"subtopic": "Floating-point numbers, representation and manipulation",
+"code": null,
+"outcome": "Convert binary floating-point real numbers into denary and vice versa."
+},
+{
+"grade": "A Level",
+"unit": "13 Data Representation",
+"topic": "13.3 Floating-point numbers, representation and manipulation",
+"subtopic": "Floating-point numbers, representation and manipulation",
+"code": null,
+"outcome": "Normalise floating-point numbers — Understand the reasons for normalisation."
+},
+{
+"grade": "A Level",
+"unit": "13 Data Representation",
+"topic": "13.3 Floating-point numbers, representation and manipulation",
+"subtopic": "Floating-point numbers, representation and manipulation",
+"code": null,
+"outcome": "Show understanding of the consequences of a binary representation only being an approximation to the real number it represents (in certain cases) — Understand how underflow and overflow can occur."
+},
+{
+"grade": "A Level",
+"unit": "13 Data Representation",
+"topic": "13.3 Floating-point numbers, representation and manipulation",
+"subtopic": "Floating-point numbers, representation and manipulation",
+"code": null,
+"outcome": "Show understanding that binary representations can give rise to rounding errors."
+},
+{
+"grade": "A Level",
+"unit": "14 Communication and internet technologies",
+"topic": "14.1 Protocols",
+"subtopic": "Protocols",
+"code": "14.1",
+"outcome": "Show understanding of why a protocol is essential for communication between computers."
+},
+{
+"grade": "A Level",
+"unit": "14 Communication and internet technologies",
+"topic": "14.1 Protocols",
+"subtopic": "Protocols",
+"code": null,
+"outcome": "Show understanding of how protocol implementation can be viewed as a stack, where each layer has its own functionality."
+},
+{
+"grade": "A Level",
+"unit": "14 Communication and internet technologies",
+"topic": "14.1 Protocols",
+"subtopic": "Protocols",
+"code": null,
+"outcome": "Show understanding of the TCP / IP protocol suite — Four Layers (Application, Transport, Internet, Link); Purpose and function of each layer; Application when a message is sent from one host to another on the internet."
+},
+{
+"grade": "A Level",
+"unit": "14 Communication and internet technologies",
+"topic": "14.1 Protocols",
+"subtopic": "Protocols",
+"code": null,
+"outcome": "Show understanding of protocols (HTTP, FTP, POP3, IMAP, SMTP, BitTorrent) and their purposes — BitTorrent protocol provides peer-to-peer file sharing."
+},
+{
+"grade": "A Level",
+"unit": "14 Communication and internet technologies",
+"topic": "14.2 Circuit switching, packet switching",
+"subtopic": "Circuit switching, packet switching",
+"code": "14.2",
+"outcome": "Show understanding of circuit switching — Benefits, drawbacks and where it is applicable."
+},
+{
+"grade": "A Level",
+"unit": "14 Communication and internet technologies",
+"topic": "14.2 Circuit switching, packet switching",
+"subtopic": "Circuit switching, packet switching",
+"code": null,
+"outcome": "Show understanding of packet switching — Benefits, drawbacks and where it is applicable; Show understanding of the function of a router in packet switching; Explain how packet switching is used to pass messages across a network, including the internet."
+},
+{
+"grade": "A Level",
+"unit": "15 Hardware and Virtual Machines",
+"topic": "15.1 Processors, Parallel Processing and Virtual Machines",
+"subtopic": "Processors, Parallel Processing and Virtual Machines",
+"code": "15.1",
+"outcome": "Show understanding of Reduced Instruction Set Computers (RISC) and Complex Instruction Set Computers (CISC) processors — Differences between RISC and CISC; Understand interrupt handling on CISC and RISC processors."
+},
+{
+"grade": "A Level",
+"unit": "15 Hardware and Virtual Machines",
+"topic": "15.1 Processors, Parallel Processing and Virtual Machines",
+"subtopic": "Processors, Parallel Processing and Virtual Machines",
+"code": null,
+"outcome": "Show understanding of the importance / use of pipelining and registers in RISC processors."
+},
+{
+"grade": "A Level",
+"unit": "15 Hardware and Virtual Machines",
+"topic": "15.1 Processors, Parallel Processing and Virtual Machines",
+"subtopic": "Processors, Parallel Processing and Virtual Machines",
+"code": null,
+"outcome": "Show understanding of the four basic computer architectures — SISD, SIMD, MISD, MIMD."
+},
+{
+"grade": "A Level",
+"unit": "15 Hardware and Virtual Machines",
+"topic": "15.1 Processors, Parallel Processing and Virtual Machines",
+"subtopic": "Processors, Parallel Processing and Virtual Machines",
+"code": null,
+"outcome": "Show understanding of the characteristics of massively parallel computers."
+},
+{
+"grade": "A Level",
+"unit": "15 Hardware and Virtual Machines",
+"topic": "15.1 Processors, Parallel Processing and Virtual Machines",
+"subtopic": "Processors, Parallel Processing and Virtual Machines",
+"code": null,
+"outcome": "Show understanding of the concept of a virtual machine — Give examples of the role of virtual machines; Understand the benefits and limitations of virtual machines."
+},
+{
+"grade": "A Level",
+"unit": "15 Hardware and Virtual Machines",
+"topic": "15.2 Boolean Algebra and Logic Circuits",
+"subtopic": "Boolean Algebra and Logic Circuits",
+"code": "15.2",
+"outcome": "Produce truth tables for logic circuits including half adders and full adders — May include logic gates with more than two inputs."
+},
+{
+"grade": "A Level",
+"unit": "15 Hardware and Virtual Machines",
+"topic": "15.2 Boolean Algebra and Logic Circuits",
+"subtopic": "Boolean Algebra and Logic Circuits",
+"code": null,
+"outcome": "Show understanding of a flip-flop (SR, JK) — Draw a logic circuit and derive a truth table for a flip-flop; Understand of the role of flip-flops as data storage elements."
+},
+{
+"grade": "A Level",
+"unit": "15 Hardware and Virtual Machines",
+"topic": "15.2 Boolean Algebra and Logic Circuits",
+"subtopic": "Boolean Algebra and Logic Circuits",
+"code": null,
+"outcome": "Show understanding of Boolean algebra — Understand De Morgan’s laws; Perform Boolean algebra using De Morgan’s laws; Simplify a logic circuit/expression using Boolean algebra."
+},
+{
+"grade": "A Level",
+"unit": "15 Hardware and Virtual Machines",
+"topic": "15.2 Boolean Algebra and Logic Circuits",
+"subtopic": "Boolean Algebra and Logic Circuits",
+"code": null,
+"outcome": "Show understanding of Karnaugh maps (K-map) — Understand of the benefits of using Karnaugh maps; Solve logic problems using Karnaugh maps."
+},
+{
+"grade": "A Level",
+"unit": "16 System Software",
+"topic": "16.1 Purposes of an Operating System (OS)",
+"subtopic": "Purposes of an Operating System (OS)",
+"code": "16.1",
+"outcome": "Show understanding of how an OS can maximise the use of resources."
+},
+{
+"grade": "A Level",
+"unit": "16 System Software",
+"topic": "16.1 Purposes of an Operating System (OS)",
+"subtopic": "Purposes of an Operating System (OS)",
+"code": null,
+"outcome": "Describe the ways in which the user interface hides the complexities of the hardware from the user."
+},
+{
+"grade": "A Level",
+"unit": "16 System Software",
+"topic": "16.1 Purposes of an Operating System (OS)",
+"subtopic": "Purposes of an Operating System (OS)",
+"code": null,
+"outcome": "Show understanding of process management — The concept of multi-tasking and a process; The process states: running, ready and blocked; The need for scheduling and the function and benefits of different scheduling routines (including round robin, shortest job first, first come first served, shortest remaining time); How the kernel of the OS acts as an interrupt handler and how interrupt handling is used to manage low-level scheduling."
+},
+{
+"grade": "A Level",
+"unit": "16 System Software",
+"topic": "16.1 Purposes of an Operating System (OS)",
+"subtopic": "Purposes of an Operating System (OS)",
+"code": null,
+"outcome": "Show understanding of virtual memory, paging and segmentation for memory management — The concepts of paging, virtual memory and segmentation; The difference between paging and segmentation; How pages can be replaced; How disk thrashing can occur."
+},
+{
+"grade": "A Level",
+"unit": "16 System Software",
+"topic": "16.2 Translation Software",
+"subtopic": "Translation Software",
+"code": "16.2",
+"outcome": "Show understanding of how an interpreter can execute programs without producing a translated version."
+},
+{
+"grade": "A Level",
+"unit": "16 System Software",
+"topic": "16.2 Translation Software",
+"subtopic": "Translation Software",
+"code": null,
+"outcome": "Show understanding of the various stages in the compilation of a program — Including lexical analysis, syntax analysis, code generation and optimisation."
+},
+{
+"grade": "A Level",
+"unit": "16 System Software",
+"topic": "16.2 Translation Software",
+"subtopic": "Translation Software",
+"code": null,
+"outcome": "Show understanding of how the grammar of a language can be expressed using syntax diagrams or Backus-Naur Form (BNF) notation."
+},
+{
+"grade": "A Level",
+"unit": "16 System Software",
+"topic": "16.2 Translation Software",
+"subtopic": "Translation Software",
+"code": null,
+"outcome": "Show understanding of how Reverse Polish Notation (RPN) can be used to carry out the evaluation of expressions."
+},
+{
+"grade": "A Level",
+"unit": "17 Security",
+"topic": "17.1 Encryption, Encryption Protocols and Digital Certificates",
+"subtopic": "Encryption, Encryption Protocols and Digital Certificates",
+"code": "17.1",
+"outcome": "Show understanding of how encryption works — Including the use of public key, private key, plain text, cipher text, encryption, symmetric key cryptography and asymmetric key cryptography; How the keys can be used to send a private message from the public to an individual/ organisation; How the keys can be used to send a verified message to the public; How data is encrypted and decrypted, using symmetric and asymmetric cryptography; Purpose, benefits and drawbacks of quantum cryptography."
+},
+{
+"grade": "A Level",
+"unit": "17 Security",
+"topic": "17.1 Encryption, Encryption Protocols and Digital Certificates",
+"subtopic": "Encryption, Encryption Protocols and Digital Certificates",
+"code": null,
+"outcome": "Show awareness of the Secure Socket Layer (SSL)/ Transport Layer Security (TLS) — Purpose of SSL / TLS; Use of SSL/TLS in client-server communication; Situations where the use of SSL/TLS would be appropriate."
+},
+{
+"grade": "A Level",
+"unit": "17 Security",
+"topic": "17.1 Encryption, Encryption Protocols and Digital Certificates",
+"subtopic": "Encryption, Encryption Protocols and Digital Certificates",
+"code": null,
+"outcome": "Show understanding of digital certification — How a digital certificate is acquired; How a digital certificate is used to produce digital signatures."
+},
+{
+"grade": "A Level",
+"unit": "18 Artificial Intelligence (AI)",
+"topic": "18.1 Artificial Intelligence (AI)",
+"subtopic": "Artificial Intelligence (AI)",
+"code": "18.1",
+"outcome": "Show understanding of how graphs can be used to aid Artificial Intelligence (AI) — Purpose and structure of a graph; Use A* and Dijkstra’s algorithms to perform searches on a graph; Candidates will not be required to write algorithms to set up, access, or perform searches on graphs."
+},
+{
+"grade": "A Level",
+"unit": "18 Artificial Intelligence (AI)",
+"topic": "18.1 Artificial Intelligence (AI)",
+"subtopic": "Artificial Intelligence (AI)",
+"code": null,
+"outcome": "Show understanding of how artificial neural networks have helped with machine learning."
+},
+{
+"grade": "A Level",
+"unit": "18 Artificial Intelligence (AI)",
+"topic": "18.1 Artificial Intelligence (AI)",
+"subtopic": "Artificial Intelligence (AI)",
+"code": null,
+"outcome": "Show understanding of Deep Learning, Machine Learning and Reinforcement Learning and the reasons for using these methods — Understand machine learning categories, including supervised learning, unsupervised learning."
+},
+{
+"grade": "A Level",
+"unit": "18 Artificial Intelligence (AI)",
+"topic": "18.1 Artificial Intelligence (AI)",
+"subtopic": "Artificial Intelligence (AI)",
+"code": null,
+"outcome": "Show understanding of back propagation of errors and regression methods in machine learning."
+},
+{
+"grade": "A Level",
+"unit": "19 Computational thinking and Problem-solving",
+"topic": "19.1 Algorithms",
+"subtopic": "Algorithms",
+"code": "19.1",
+"outcome": "Show understanding of linear and binary searching methods — Write an algorithm to implement a linear search; Write an algorithm to implement a binary search; The conditions necessary for the use of a binary search; How the performance of a binary search varies according to the number of data items."
+},
+{
+"grade": "A Level",
+"unit": "19 Computational thinking and Problem-solving",
+"topic": "19.1 Algorithms",
+"subtopic": "Algorithms",
+"code": null,
+"outcome": "Show understanding of insertion sort and bubble sort methods — Write an algorithm to implement an insertion sort; Write an algorithm to implement a bubble sort; Performance of a sorting routine may depend on the initial order of the data and the number of data items."
+},
+{
+"grade": "A Level",
+"unit": "19 Computational thinking and Problem-solving",
+"topic": "19.1 Algorithms",
+"subtopic": "Algorithms",
+"code": null,
+"outcome": "Show understanding of and use Abstract Data Types (ADT) — Write algorithms to find an item in each of the following: linked list, binary tree; Write algorithms to insert an item into each of the following: stack, queue, linked list, binary tree; Write algorithms to delete an item from each of the following: stack, queue, linked list; Show understanding that a graph is an example of an ADT. Describe the key features of a graph and justify its use for a given situation. Candidates will not be required to write code for a graph structure."
+},
+{
+"grade": "A Level",
+"unit": "19 Computational thinking and Problem-solving",
+"topic": "19.1 Algorithms",
+"subtopic": "Algorithms",
+"code": null,
+"outcome": "Show how it is possible for ADTs to be implemented from another ADT — Describe the following ADTs and demonstrate how they can be implemented from appropriate built- in types or other ADTs: stack, queue, linked list, dictionary, binary tree."
+},
+{
+"grade": "A Level",
+"unit": "19 Computational thinking and Problem-solving",
+"topic": "19.1 Algorithms",
+"subtopic": "Algorithms",
+"code": null,
+"outcome": "Show understanding that different algorithms which perform the same task can be compared by using criteria (e.g. time taken to complete the task and memory used) — Including use of Big O notation to specify time and space complexity."
+},
+{
+"grade": "A Level",
+"unit": "19 Computational thinking and Problem-solving",
+"topic": "19.2 Recursion",
+"subtopic": "Recursion",
+"code": "19.2",
+"outcome": "Show understanding of recursion — Essential features of recursion; How recursion is expressed in a programming language; Write and trace recursive algorithms; When the use of recursion is beneficial."
+},
+{
+"grade": "A Level",
+"unit": "19 Computational thinking and Problem-solving",
+"topic": "19.2 Recursion",
+"subtopic": "Recursion",
+"code": null,
+"outcome": "Show awareness of what a compiler has to do to translate recursive programming code — Use of stacks and unwinding."
+},
+{
+"grade": "A Level",
+"unit": "20 Further Programming",
+"topic": "20.1 Programming Paradigms",
+"subtopic": "Programming Paradigms",
+"code": "20.1",
+"outcome": "Understanding what is meant by a programming paradigm."
+},
+{
+"grade": "A Level",
+"unit": "20 Further Programming",
+"topic": "20.1 Programming Paradigms",
+"subtopic": "Programming Paradigms",
+"code": null,
+"outcome": "Show understanding of the characteristics of a number of programming paradigms: Low-level; Imperative (Procedural); Object Oriented; Declarative — Low-level Programming: understanding of and ability to write low-level code that uses various addressing modes: immediate, direct, indirect, indexed and relative; Imperative (Procedural) programming: Assumed knowledge and understanding of Structural Programming (see details in AS content section 11.3); understanding of and ability to write imperative (procedural) programming code that uses variables, constructs, procedures and functions. See details in AS content; Object-Oriented Programming (OOP): understanding of the terminology associated with OOP (including objects, properties/attributes, methods, classes, inheritance, polymorphism, containment (aggregation), encapsulation, getters, setters, instances); understanding of how to solve a problem by designing appropriate classes; understanding of and ability to write code that demonstrates the use of OOP; Declarative programming: understanding of and ability to solve a problem by writing appropriate facts and rules based on supplied information; understanding of and ability to write code that can satisfy a goal using facts and rules."
+},
+{
+"grade": "A Level",
+"unit": "20 Further Programming",
+"topic": "20.2 File Processing and Exception Handling",
+"subtopic": "File Processing and Exception Handling",
+"code": "20.2",
+"outcome": "Write code to perform file-processing operations — Open (in read, write, append mode) and close a file; Read a record from a file and write a record to a file; Perform file-processing operations on serial, sequential, random files."
+},
+{
+"grade": "A Level",
+"unit": "20 Further Programming",
+"topic": "20.2 File Processing and Exception Handling",
+"subtopic": "File Processing and Exception Handling",
+"code": null,
+"outcome": "Show understanding of an exception and the importance of exception handling — Know when it is appropriate to use exception handling; Write program code to use exception handling."
+}
+]

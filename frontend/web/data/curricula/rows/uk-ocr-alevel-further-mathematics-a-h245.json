@@ -1,0 +1,2386 @@
+[
+ {
+  "grade": "all",
+  "unit": "4 Pure Core",
+  "topic": "4.01 Proof",
+  "subtopic": "Proof by induction",
+  "code": "4.01a",
+  "outcome": "Construct proofs by mathematical induction, for example on divisibility, powers of matrices and results on powers and factorials."
+ },
+ {
+  "grade": "all",
+  "unit": "4 Pure Core",
+  "topic": "4.01 Proof",
+  "subtopic": "Proof by induction",
+  "code": "4.01b",
+  "outcome": "Construct more demanding inductive proofs, including conjecture followed by proof and sums of series."
+ },
+ {
+  "grade": "all",
+  "unit": "4 Pure Core",
+  "topic": "4.02 Complex Numbers",
+  "subtopic": "Complex number basics",
+  "code": "4.02a",
+  "outcome": "Know the meaning of real part, imaginary part, conjugate, modulus and argument."
+ },
+ {
+  "grade": "all",
+  "unit": "4 Pure Core",
+  "topic": "4.02 Complex Numbers",
+  "subtopic": "Complex number basics",
+  "code": "4.02b",
+  "outcome": "Express a complex number in cartesian and modulus-argument form."
+ },
+ {
+  "grade": "all",
+  "unit": "4 Pure Core",
+  "topic": "4.02 Complex Numbers",
+  "subtopic": "Complex number basics",
+  "code": "4.02c",
+  "outcome": "Use the notation z, z*, Re(z), Im(z), arg(z) and |z|, and know when a complex number is zero."
+ },
+ {
+  "grade": "all",
+  "unit": "4 Pure Core",
+  "topic": "4.02 Complex Numbers",
+  "subtopic": "Complex number basics",
+  "code": "4.02d",
+  "outcome": "Use the exponential form re^(i\u03b8) of a complex number."
+ },
+ {
+  "grade": "all",
+  "unit": "4 Pure Core",
+  "topic": "4.02 Complex Numbers",
+  "subtopic": "Arithmetic of complex numbers",
+  "code": "4.02e",
+  "outcome": "Add, subtract, multiply and divide complex numbers in cartesian and modulus-argument forms."
+ },
+ {
+  "grade": "all",
+  "unit": "4 Pure Core",
+  "topic": "4.02 Complex Numbers",
+  "subtopic": "Arithmetic of complex numbers",
+  "code": "4.02f",
+  "outcome": "Convert between cartesian and modulus-argument forms."
+ },
+ {
+  "grade": "all",
+  "unit": "4 Pure Core",
+  "topic": "4.02 Complex Numbers",
+  "subtopic": "Solving with complex roots",
+  "code": "4.02g",
+  "outcome": "Know that complex roots of real-coefficient polynomials come in conjugate pairs."
+ },
+ {
+  "grade": "all",
+  "unit": "4 Pure Core",
+  "topic": "4.02 Complex Numbers",
+  "subtopic": "Solving with complex roots",
+  "code": "4.02h",
+  "outcome": "Find the two square roots of a complex number algebraically."
+ },
+ {
+  "grade": "all",
+  "unit": "4 Pure Core",
+  "topic": "4.02 Complex Numbers",
+  "subtopic": "Solving with complex roots",
+  "code": "4.02i",
+  "outcome": "Solve quadratic equations with real coefficients and complex roots."
+ },
+ {
+  "grade": "all",
+  "unit": "4 Pure Core",
+  "topic": "4.02 Complex Numbers",
+  "subtopic": "Solving with complex roots",
+  "code": "4.02j",
+  "outcome": "Use conjugate pairs and the factor theorem to solve cubics and quartics with real coefficients."
+ },
+ {
+  "grade": "all",
+  "unit": "4 Pure Core",
+  "topic": "4.02 Complex Numbers",
+  "subtopic": "Argand diagrams",
+  "code": "4.02k",
+  "outcome": "Use and interpret Argand diagrams, with real and imaginary axes."
+ },
+ {
+  "grade": "all",
+  "unit": "4 Pure Core",
+  "topic": "4.02 Complex Numbers",
+  "subtopic": "Argand diagrams",
+  "code": "4.02l",
+  "outcome": "Describe the geometrical effects of conjugating, adding and subtracting complex numbers."
+ },
+ {
+  "grade": "all",
+  "unit": "4 Pure Core",
+  "topic": "4.02 Complex Numbers",
+  "subtopic": "Argand diagrams",
+  "code": "4.02m",
+  "outcome": "Describe the geometrical effects of multiplying and dividing complex numbers, including positive integer powers."
+ },
+ {
+  "grade": "all",
+  "unit": "4 Pure Core",
+  "topic": "4.02 Complex Numbers",
+  "subtopic": "Euler's formula",
+  "code": "4.02n",
+  "outcome": "Know and use Euler's formula e^(i\u03b8) = cos \u03b8 + i sin \u03b8."
+ },
+ {
+  "grade": "all",
+  "unit": "4 Pure Core",
+  "topic": "4.02 Complex Numbers",
+  "subtopic": "Loci on the Argand diagram",
+  "code": "4.02o",
+  "outcome": "Illustrate equations and inequalities as loci: circles, half-lines, lines and regions, with dashed and solid conventions."
+ },
+ {
+  "grade": "all",
+  "unit": "4 Pure Core",
+  "topic": "4.02 Complex Numbers",
+  "subtopic": "Loci on the Argand diagram",
+  "code": "4.02p",
+  "outcome": "Use set notation to describe loci."
+ },
+ {
+  "grade": "all",
+  "unit": "4 Pure Core",
+  "topic": "4.02 Complex Numbers",
+  "subtopic": "De Moivre's theorem",
+  "code": "4.02q",
+  "outcome": "Use de Moivre's theorem for multiple-angle formulae, powers of sin and cos, and sums of series."
+ },
+ {
+  "grade": "all",
+  "unit": "4 Pure Core",
+  "topic": "4.02 Complex Numbers",
+  "subtopic": "Roots of complex numbers",
+  "code": "4.02r",
+  "outcome": "Find the n distinct nth roots of re^(i\u03b8) and know they form a regular n-gon."
+ },
+ {
+  "grade": "all",
+  "unit": "4 Pure Core",
+  "topic": "4.02 Complex Numbers",
+  "subtopic": "Roots of complex numbers",
+  "code": "4.02s",
+  "outcome": "Use complex roots of unity to solve geometric problems."
+ },
+ {
+  "grade": "all",
+  "unit": "4 Pure Core",
+  "topic": "4.03 Matrices",
+  "subtopic": "Matrix language and arithmetic",
+  "code": "4.03a",
+  "outcome": "Understand matrix terms such as conformable, square, determinant, transpose and identity, for real and complex matrices."
+ },
+ {
+  "grade": "all",
+  "unit": "4 Pure Core",
+  "topic": "4.03 Matrices",
+  "subtopic": "Matrix language and arithmetic",
+  "code": "4.03b",
+  "outcome": "Add, subtract and multiply conformable matrices, multiply by a scalar and raise square matrices to powers."
+ },
+ {
+  "grade": "all",
+  "unit": "4 Pure Core",
+  "topic": "4.03 Matrices",
+  "subtopic": "Matrix language and arithmetic",
+  "code": "4.03c",
+  "outcome": "Know that matrix multiplication is associative but not commutative."
+ },
+ {
+  "grade": "all",
+  "unit": "4 Pure Core",
+  "topic": "4.03 Matrices",
+  "subtopic": "Linear transformations",
+  "code": "4.03d",
+  "outcome": "Represent 2-D linear transformations with matrices: reflection, rotation, enlargement, stretch and shear."
+ },
+ {
+  "grade": "all",
+  "unit": "4 Pure Core",
+  "topic": "4.03 Matrices",
+  "subtopic": "Linear transformations",
+  "code": "4.03e",
+  "outcome": "Represent successive transformations by matrix products, knowing AB means B then A."
+ },
+ {
+  "grade": "all",
+  "unit": "4 Pure Core",
+  "topic": "4.03 Matrices",
+  "subtopic": "Linear transformations",
+  "code": "4.03f",
+  "outcome": "Represent single 3-D transformations (reflection in coordinate planes, rotation about axes) with matrices."
+ },
+ {
+  "grade": "all",
+  "unit": "4 Pure Core",
+  "topic": "4.03 Matrices",
+  "subtopic": "Linear transformations",
+  "code": "4.03g",
+  "outcome": "Find invariant points and invariant lines, distinguishing lines of invariant points."
+ },
+ {
+  "grade": "all",
+  "unit": "4 Pure Core",
+  "topic": "4.03 Matrices",
+  "subtopic": "Determinants",
+  "code": "4.03h",
+  "outcome": "Find the determinant of a 2x2 matrix with and without a calculator."
+ },
+ {
+  "grade": "all",
+  "unit": "4 Pure Core",
+  "topic": "4.03 Matrices",
+  "subtopic": "Determinants",
+  "code": "4.03i",
+  "outcome": "Know that a 2x2 determinant is the area scale factor and its sign shows orientation change."
+ },
+ {
+  "grade": "all",
+  "unit": "4 Pure Core",
+  "topic": "4.03 Matrices",
+  "subtopic": "Determinants",
+  "code": "4.03j",
+  "outcome": "Calculate the determinant of a 3x3 matrix with and without a calculator."
+ },
+ {
+  "grade": "all",
+  "unit": "4 Pure Core",
+  "topic": "4.03 Matrices",
+  "subtopic": "Determinants",
+  "code": "4.03k",
+  "outcome": "Know that a 3x3 determinant is the volume scale factor and its sign shows orientation."
+ },
+ {
+  "grade": "all",
+  "unit": "4 Pure Core",
+  "topic": "4.03 Matrices",
+  "subtopic": "Determinants",
+  "code": "4.03l",
+  "outcome": "Use singular and non-singular matrices, including the significance of a zero determinant."
+ },
+ {
+  "grade": "all",
+  "unit": "4 Pure Core",
+  "topic": "4.03 Matrices",
+  "subtopic": "Determinants",
+  "code": "4.03m",
+  "outcome": "Use det(AB) = det(A) x det(B)."
+ },
+ {
+  "grade": "all",
+  "unit": "4 Pure Core",
+  "topic": "4.03 Matrices",
+  "subtopic": "Inverse matrices",
+  "code": "4.03n",
+  "outcome": "Find and use the inverse of a non-singular 2x2 matrix."
+ },
+ {
+  "grade": "all",
+  "unit": "4 Pure Core",
+  "topic": "4.03 Matrices",
+  "subtopic": "Inverse matrices",
+  "code": "4.03o",
+  "outcome": "Find and use the inverse of a non-singular 3x3 matrix."
+ },
+ {
+  "grade": "all",
+  "unit": "4 Pure Core",
+  "topic": "4.03 Matrices",
+  "subtopic": "Inverse matrices",
+  "code": "4.03p",
+  "outcome": "Use properties of inverses such as (AB)^-1 = B^-1 A^-1."
+ },
+ {
+  "grade": "all",
+  "unit": "4 Pure Core",
+  "topic": "4.03 Matrices",
+  "subtopic": "Inverse matrices",
+  "code": "4.03q",
+  "outcome": "Connect inverse matrices with inverse transformations."
+ },
+ {
+  "grade": "all",
+  "unit": "4 Pure Core",
+  "topic": "4.03 Matrices",
+  "subtopic": "Simultaneous equations",
+  "code": "4.03r",
+  "outcome": "Solve two or three linear simultaneous equations using an inverse matrix when a unique solution exists."
+ },
+ {
+  "grade": "all",
+  "unit": "4 Pure Core",
+  "topic": "4.03 Matrices",
+  "subtopic": "Simultaneous equations",
+  "code": "4.03s",
+  "outcome": "Decide whether equations without a unique solution are consistent (infinite solutions) or inconsistent (none)."
+ },
+ {
+  "grade": "all",
+  "unit": "4 Pure Core",
+  "topic": "4.03 Matrices",
+  "subtopic": "Intersection of planes",
+  "code": "4.03t",
+  "outcome": "Interpret the solution or failure of solution of three linear equations as the geometry of three planes."
+ },
+ {
+  "grade": "all",
+  "unit": "4 Pure Core",
+  "topic": "4.04 Further Vectors",
+  "subtopic": "Lines and planes",
+  "code": "4.04a",
+  "outcome": "Use the equation of a straight line in 2-D and 3-D in cartesian and vector form."
+ },
+ {
+  "grade": "all",
+  "unit": "4 Pure Core",
+  "topic": "4.04 Further Vectors",
+  "subtopic": "Lines and planes",
+  "code": "4.04b",
+  "outcome": "Use the equation of a plane in cartesian and vector form."
+ },
+ {
+  "grade": "all",
+  "unit": "4 Pure Core",
+  "topic": "4.04 Further Vectors",
+  "subtopic": "Scalar product",
+  "code": "4.04c",
+  "outcome": "Calculate the scalar product and use it for angles between vectors or lines and to test perpendicularity."
+ },
+ {
+  "grade": "all",
+  "unit": "4 Pure Core",
+  "topic": "4.04 Further Vectors",
+  "subtopic": "Scalar product",
+  "code": "4.04d",
+  "outcome": "Find the angle between two planes and between a line and a plane."
+ },
+ {
+  "grade": "all",
+  "unit": "4 Pure Core",
+  "topic": "4.04 Further Vectors",
+  "subtopic": "Intersections",
+  "code": "4.04e",
+  "outcome": "Find the point of intersection of two lines, deciding if they intersect, are parallel or skew."
+ },
+ {
+  "grade": "all",
+  "unit": "4 Pure Core",
+  "topic": "4.04 Further Vectors",
+  "subtopic": "Intersections",
+  "code": "4.04f",
+  "outcome": "Find the intersection of a line and a plane."
+ },
+ {
+  "grade": "all",
+  "unit": "4 Pure Core",
+  "topic": "4.04 Further Vectors",
+  "subtopic": "Vector product",
+  "code": "4.04g",
+  "outcome": "Use the vector product to find a vector perpendicular to two given vectors."
+ },
+ {
+  "grade": "all",
+  "unit": "4 Pure Core",
+  "topic": "4.04 Further Vectors",
+  "subtopic": "Shortest distances",
+  "code": "4.04h",
+  "outcome": "Find the distance between parallel lines and between skew lines."
+ },
+ {
+  "grade": "all",
+  "unit": "4 Pure Core",
+  "topic": "4.04 Further Vectors",
+  "subtopic": "Shortest distances",
+  "code": "4.04i",
+  "outcome": "Find the shortest distance between a point and a line."
+ },
+ {
+  "grade": "all",
+  "unit": "4 Pure Core",
+  "topic": "4.04 Further Vectors",
+  "subtopic": "Shortest distances",
+  "code": "4.04j",
+  "outcome": "Find the shortest distance between a point and a plane."
+ },
+ {
+  "grade": "all",
+  "unit": "4 Pure Core",
+  "topic": "4.05 Further Algebra",
+  "subtopic": "Roots of polynomials",
+  "code": "4.05a",
+  "outcome": "Use relationships between symmetric functions of roots and coefficients, up to quartics."
+ },
+ {
+  "grade": "all",
+  "unit": "4 Pure Core",
+  "topic": "4.05 Further Algebra",
+  "subtopic": "Roots of polynomials",
+  "code": "4.05b",
+  "outcome": "Use a substitution to obtain an equation whose roots relate to the original's roots."
+ },
+ {
+  "grade": "all",
+  "unit": "4 Pure Core",
+  "topic": "4.05 Further Algebra",
+  "subtopic": "Partial fractions",
+  "code": "4.05c",
+  "outcome": "Use partial fractions with quadratic factors ax^2 + c and numerators of equal or higher degree."
+ },
+ {
+  "grade": "all",
+  "unit": "4 Pure Core",
+  "topic": "4.06 Series",
+  "subtopic": "Summing series",
+  "code": "4.06a",
+  "outcome": "Use formulae for sums of integers, squares and cubes to sum related series."
+ },
+ {
+  "grade": "all",
+  "unit": "4 Pure Core",
+  "topic": "4.06 Series",
+  "subtopic": "Summing series",
+  "code": "4.06b",
+  "outcome": "Use the method of differences, with partial fractions, to sum finite or infinite series."
+ },
+ {
+  "grade": "all",
+  "unit": "4 Pure Core",
+  "topic": "4.07 Hyperbolic Functions",
+  "subtopic": "Hyperbolic functions",
+  "code": "4.07a",
+  "outcome": "Define sinh, cosh and tanh with exponentials, including domain and range."
+ },
+ {
+  "grade": "all",
+  "unit": "4 Pure Core",
+  "topic": "4.07 Hyperbolic Functions",
+  "subtopic": "Hyperbolic functions",
+  "code": "4.07b",
+  "outcome": "Sketch the graphs of the hyperbolic functions."
+ },
+ {
+  "grade": "all",
+  "unit": "4 Pure Core",
+  "topic": "4.07 Hyperbolic Functions",
+  "subtopic": "Hyperbolic functions",
+  "code": "4.07c",
+  "outcome": "Use cosh^2 x - sinh^2 x = 1 and derive or use other hyperbolic identities."
+ },
+ {
+  "grade": "all",
+  "unit": "4 Pure Core",
+  "topic": "4.07 Hyperbolic Functions",
+  "subtopic": "Calculus of hyperbolic functions",
+  "code": "4.07d",
+  "outcome": "Differentiate and integrate hyperbolic functions."
+ },
+ {
+  "grade": "all",
+  "unit": "4 Pure Core",
+  "topic": "4.07 Hyperbolic Functions",
+  "subtopic": "Inverse hyperbolic functions",
+  "code": "4.07e",
+  "outcome": "Define inverse hyperbolic functions with their domains and ranges."
+ },
+ {
+  "grade": "all",
+  "unit": "4 Pure Core",
+  "topic": "4.07 Hyperbolic Functions",
+  "subtopic": "Inverse hyperbolic functions",
+  "code": "4.07f",
+  "outcome": "Derive and use logarithmic expressions for inverse hyperbolic functions."
+ },
+ {
+  "grade": "all",
+  "unit": "4 Pure Core",
+  "topic": "4.08 Further Calculus",
+  "subtopic": "Maclaurin series",
+  "code": "4.08a",
+  "outcome": "Find the Maclaurin series of a function, including the general term."
+ },
+ {
+  "grade": "all",
+  "unit": "4 Pure Core",
+  "topic": "4.08 Further Calculus",
+  "subtopic": "Maclaurin series",
+  "code": "4.08b",
+  "outcome": "Use the standard series for e^x, sin x, cos x, ln(1+x) and (1+x)^n, with their intervals of validity."
+ },
+ {
+  "grade": "all",
+  "unit": "4 Pure Core",
+  "topic": "4.08 Further Calculus",
+  "subtopic": "Further integration",
+  "code": "4.08c",
+  "outcome": "Evaluate improper integrals where the integrand is undefined or the range is infinite."
+ },
+ {
+  "grade": "all",
+  "unit": "4 Pure Core",
+  "topic": "4.08 Further Calculus",
+  "subtopic": "Further integration",
+  "code": "4.08d",
+  "outcome": "Derive and calculate volumes of solids of revolution, including between curves and parametric curves."
+ },
+ {
+  "grade": "all",
+  "unit": "4 Pure Core",
+  "topic": "4.08 Further Calculus",
+  "subtopic": "Further integration",
+  "code": "4.08e",
+  "outcome": "Evaluate the mean value of a function."
+ },
+ {
+  "grade": "all",
+  "unit": "4 Pure Core",
+  "topic": "4.08 Further Calculus",
+  "subtopic": "Further integration",
+  "code": "4.08f",
+  "outcome": "Integrate using partial fractions."
+ },
+ {
+  "grade": "all",
+  "unit": "4 Pure Core",
+  "topic": "4.08 Further Calculus",
+  "subtopic": "Further integration",
+  "code": "4.08g",
+  "outcome": "Derive and use derivatives of inverse trigonometric and inverse hyperbolic functions."
+ },
+ {
+  "grade": "all",
+  "unit": "4 Pure Core",
+  "topic": "4.08 Further Calculus",
+  "subtopic": "Further integration",
+  "code": "4.08h",
+  "outcome": "Integrate 1/sqrt(a^2-x^2), 1/(a^2+x^2) and related forms using inverse trigonometric or hyperbolic substitutions."
+ },
+ {
+  "grade": "all",
+  "unit": "4 Pure Core",
+  "topic": "4.09 Polar Coordinates",
+  "subtopic": "Polar curves",
+  "code": "4.09a",
+  "outcome": "Use polar coordinates and convert between polar and cartesian coordinates."
+ },
+ {
+  "grade": "all",
+  "unit": "4 Pure Core",
+  "topic": "4.09 Polar Coordinates",
+  "subtopic": "Polar curves",
+  "code": "4.09b",
+  "outcome": "Sketch polar curves r = f(\u03b8), identifying symmetry and extreme values of r."
+ },
+ {
+  "grade": "all",
+  "unit": "4 Pure Core",
+  "topic": "4.09 Polar Coordinates",
+  "subtopic": "Polar curves",
+  "code": "4.09c",
+  "outcome": "Find the area enclosed by a polar curve using (1/2)\u222br^2 d\u03b8."
+ },
+ {
+  "grade": "all",
+  "unit": "4 Pure Core",
+  "topic": "4.10 Differential Equations",
+  "subtopic": "First order equations",
+  "code": "4.10a",
+  "outcome": "Distinguish and find general and particular solutions of differential equations."
+ },
+ {
+  "grade": "all",
+  "unit": "4 Pure Core",
+  "topic": "4.10 Differential Equations",
+  "subtopic": "First order equations",
+  "code": "4.10b",
+  "outcome": "Use differential equations in modelling kinematics and other contexts, including variable force."
+ },
+ {
+  "grade": "all",
+  "unit": "4 Pure Core",
+  "topic": "4.10 Differential Equations",
+  "subtopic": "First order equations",
+  "code": "4.10c",
+  "outcome": "Solve first order linear equations using an integrating factor."
+ },
+ {
+  "grade": "all",
+  "unit": "4 Pure Core",
+  "topic": "4.10 Differential Equations",
+  "subtopic": "Second order equations",
+  "code": "4.10d",
+  "outcome": "Solve y'' + ay' + by = 0 using the auxiliary equation, covering real, repeated and complex roots."
+ },
+ {
+  "grade": "all",
+  "unit": "4 Pure Core",
+  "topic": "4.10 Differential Equations",
+  "subtopic": "Second order equations",
+  "code": "4.10e",
+  "outcome": "Solve y'' + ay' + by = f(x) using a complementary function and a particular integral."
+ },
+ {
+  "grade": "all",
+  "unit": "4 Pure Core",
+  "topic": "4.10 Differential Equations",
+  "subtopic": "Oscillations and systems",
+  "code": "4.10f",
+  "outcome": "Solve the simple harmonic motion equation and relate the solution to the motion."
+ },
+ {
+  "grade": "all",
+  "unit": "4 Pure Core",
+  "topic": "4.10 Differential Equations",
+  "subtopic": "Oscillations and systems",
+  "code": "4.10g",
+  "outcome": "Model damped oscillations with second order equations and interpret under, over and critical damping."
+ },
+ {
+  "grade": "all",
+  "unit": "4 Pure Core",
+  "topic": "4.10 Differential Equations",
+  "subtopic": "Oscillations and systems",
+  "code": "4.10h",
+  "outcome": "Analyse and solve coupled first order linear systems with two dependent variables."
+ },
+ {
+  "grade": "all",
+  "unit": "5 Statistics",
+  "topic": "5.01 Probability",
+  "subtopic": "Permutations and combinations",
+  "code": "5.01a",
+  "outcome": "Evaluate probabilities using permutations and combinations (nPr, nCr)."
+ },
+ {
+  "grade": "all",
+  "unit": "5 Statistics",
+  "topic": "5.01 Probability",
+  "subtopic": "Permutations and combinations",
+  "code": "5.01b",
+  "outcome": "Evaluate probabilities in selection and arrangement contexts, including repetition and restriction."
+ },
+ {
+  "grade": "all",
+  "unit": "5 Statistics",
+  "topic": "5.02 Discrete Random Variables",
+  "subtopic": "General discrete distributions",
+  "code": "5.02a",
+  "outcome": "Use and construct discrete probability distributions for a discrete random variable."
+ },
+ {
+  "grade": "all",
+  "unit": "5 Statistics",
+  "topic": "5.02 Discrete Random Variables",
+  "subtopic": "General discrete distributions",
+  "code": "5.02b",
+  "outcome": "Calculate the expectation and variance of a discrete random variable."
+ },
+ {
+  "grade": "all",
+  "unit": "5 Statistics",
+  "topic": "5.02 Discrete Random Variables",
+  "subtopic": "General discrete distributions",
+  "code": "5.02c",
+  "outcome": "Use the effects of linear coding on mean and variance."
+ },
+ {
+  "grade": "all",
+  "unit": "5 Statistics",
+  "topic": "5.02 Discrete Random Variables",
+  "subtopic": "Binomial and uniform distributions",
+  "code": "5.02d",
+  "outcome": "Use the binomial mean np and variance np(1-p)."
+ },
+ {
+  "grade": "all",
+  "unit": "5 Statistics",
+  "topic": "5.02 Discrete Random Variables",
+  "subtopic": "Binomial and uniform distributions",
+  "code": "5.02e",
+  "outcome": "Recognise discrete uniform distributions and calculate probabilities, mean and variance."
+ },
+ {
+  "grade": "all",
+  "unit": "5 Statistics",
+  "topic": "5.02 Discrete Random Variables",
+  "subtopic": "Geometric distribution",
+  "code": "5.02f",
+  "outcome": "Know the conditions for a geometric distribution X ~ Geo(p)."
+ },
+ {
+  "grade": "all",
+  "unit": "5 Statistics",
+  "topic": "5.02 Discrete Random Variables",
+  "subtopic": "Geometric distribution",
+  "code": "5.02g",
+  "outcome": "Calculate probabilities using the geometric distribution."
+ },
+ {
+  "grade": "all",
+  "unit": "5 Statistics",
+  "topic": "5.02 Discrete Random Variables",
+  "subtopic": "Geometric distribution",
+  "code": "5.02h",
+  "outcome": "Use the geometric mean 1/p and variance (1-p)/p^2."
+ },
+ {
+  "grade": "all",
+  "unit": "5 Statistics",
+  "topic": "5.02 Discrete Random Variables",
+  "subtopic": "Poisson distribution",
+  "code": "5.02i",
+  "outcome": "Understand informally the Poisson distribution as a model for random events."
+ },
+ {
+  "grade": "all",
+  "unit": "5 Statistics",
+  "topic": "5.02 Discrete Random Variables",
+  "subtopic": "Poisson distribution",
+  "code": "5.02j",
+  "outcome": "Use the Poisson probability formula."
+ },
+ {
+  "grade": "all",
+  "unit": "5 Statistics",
+  "topic": "5.02 Discrete Random Variables",
+  "subtopic": "Poisson distribution",
+  "code": "5.02k",
+  "outcome": "Calculate Poisson probabilities with calculator functions."
+ },
+ {
+  "grade": "all",
+  "unit": "5 Statistics",
+  "topic": "5.02 Discrete Random Variables",
+  "subtopic": "Poisson distribution",
+  "code": "5.02l",
+  "outcome": "Know and explain the conditions for a Poisson distribution in context."
+ },
+ {
+  "grade": "all",
+  "unit": "5 Statistics",
+  "topic": "5.02 Discrete Random Variables",
+  "subtopic": "Poisson distribution",
+  "code": "5.02m",
+  "outcome": "Use the result that the Poisson mean and variance both equal the parameter."
+ },
+ {
+  "grade": "all",
+  "unit": "5 Statistics",
+  "topic": "5.02 Discrete Random Variables",
+  "subtopic": "Poisson distribution",
+  "code": "5.02n",
+  "outcome": "Use the result that the sum of independent Poisson variables is Poisson."
+ },
+ {
+  "grade": "all",
+  "unit": "5 Statistics",
+  "topic": "5.03 Continuous Random Variables",
+  "subtopic": "Continuous random variables",
+  "code": "5.03a",
+  "outcome": "Use continuous random variables, p.d.f. and c.d.f., including normal, uniform and exponential distributions."
+ },
+ {
+  "grade": "all",
+  "unit": "5 Statistics",
+  "topic": "5.03 Continuous Random Variables",
+  "subtopic": "Probability density functions",
+  "code": "5.03b",
+  "outcome": "Use a p.d.f. (including piecewise) to solve probability problems, knowing the total area is 1."
+ },
+ {
+  "grade": "all",
+  "unit": "5 Statistics",
+  "topic": "5.03 Continuous Random Variables",
+  "subtopic": "Probability density functions",
+  "code": "5.03c",
+  "outcome": "Calculate the mean and variance of a distribution by integration."
+ },
+ {
+  "grade": "all",
+  "unit": "5 Statistics",
+  "topic": "5.03 Continuous Random Variables",
+  "subtopic": "Probability density functions",
+  "code": "5.03d",
+  "outcome": "Use E(g(X)) = \u222bg(x)f(x)dx."
+ },
+ {
+  "grade": "all",
+  "unit": "5 Statistics",
+  "topic": "5.03 Continuous Random Variables",
+  "subtopic": "Cumulative distribution functions",
+  "code": "5.03e",
+  "outcome": "Find and use a cumulative distribution function to solve probability problems."
+ },
+ {
+  "grade": "all",
+  "unit": "5 Statistics",
+  "topic": "5.03 Continuous Random Variables",
+  "subtopic": "Cumulative distribution functions",
+  "code": "5.03f",
+  "outcome": "Relate p.d.f. and c.d.f. and find the median, quartiles and percentiles."
+ },
+ {
+  "grade": "all",
+  "unit": "5 Statistics",
+  "topic": "5.03 Continuous Random Variables",
+  "subtopic": "Cumulative distribution functions",
+  "code": "5.03g",
+  "outcome": "Find and use c.d.f.s and p.d.f.s of related variables."
+ },
+ {
+  "grade": "all",
+  "unit": "5 Statistics",
+  "topic": "5.04 Linear Combinations of Random Variables",
+  "subtopic": "Linear combinations",
+  "code": "5.04a",
+  "outcome": "Use E(aX+bY+c) and Var(aX+bY+c) results for independent variables."
+ },
+ {
+  "grade": "all",
+  "unit": "5 Statistics",
+  "topic": "5.04 Linear Combinations of Random Variables",
+  "subtopic": "Linear combinations",
+  "code": "5.04b",
+  "outcome": "Use results on linear combinations of normal random variables."
+ },
+ {
+  "grade": "all",
+  "unit": "5 Statistics",
+  "topic": "5.05 Hypothesis Tests and Confidence Intervals",
+  "subtopic": "Sample means and CLT",
+  "code": "5.05a",
+  "outcome": "Know the mean and variance of the sample mean and the central limit theorem."
+ },
+ {
+  "grade": "all",
+  "unit": "5 Statistics",
+  "topic": "5.05 Hypothesis Tests and Confidence Intervals",
+  "subtopic": "Sample means and CLT",
+  "code": "5.05b",
+  "outcome": "Use unbiased estimates of population mean and variance."
+ },
+ {
+  "grade": "all",
+  "unit": "5 Statistics",
+  "topic": "5.05 Hypothesis Tests and Confidence Intervals",
+  "subtopic": "Tests and confidence intervals",
+  "code": "5.05c",
+  "outcome": "Carry out a normal hypothesis test for a population mean in the three cases given."
+ },
+ {
+  "grade": "all",
+  "unit": "5 Statistics",
+  "topic": "5.05 Hypothesis Tests and Confidence Intervals",
+  "subtopic": "Tests and confidence intervals",
+  "code": "5.05d",
+  "outcome": "Find a normal confidence interval for a population mean."
+ },
+ {
+  "grade": "all",
+  "unit": "5 Statistics",
+  "topic": "5.06 Chi-squared Tests",
+  "subtopic": "Contingency tables",
+  "code": "5.06a",
+  "outcome": "Use a chi-squared test for independence in a contingency table, with expected frequencies and Yates' correction for 2x2."
+ },
+ {
+  "grade": "all",
+  "unit": "5 Statistics",
+  "topic": "5.06 Chi-squared Tests",
+  "subtopic": "Goodness of fit",
+  "code": "5.06b",
+  "outcome": "Fit a theoretical distribution given by a ratio, proportion or discrete uniform hypothesis."
+ },
+ {
+  "grade": "all",
+  "unit": "5 Statistics",
+  "topic": "5.06 Chi-squared Tests",
+  "subtopic": "Goodness of fit",
+  "code": "5.06c",
+  "outcome": "Fit other known or given discrete and continuous distributions to data."
+ },
+ {
+  "grade": "all",
+  "unit": "5 Statistics",
+  "topic": "5.06 Chi-squared Tests",
+  "subtopic": "Goodness of fit",
+  "code": "5.06d",
+  "outcome": "Carry out a chi-squared goodness of fit test with the right degrees of freedom."
+ },
+ {
+  "grade": "all",
+  "unit": "5 Statistics",
+  "topic": "5.07 Non-parametric tests",
+  "subtopic": "Non-parametric tests",
+  "code": "5.07a",
+  "outcome": "Understand non-parametric hypothesis tests, when they are useful, and choose an appropriate one."
+ },
+ {
+  "grade": "all",
+  "unit": "5 Statistics",
+  "topic": "5.07 Non-parametric tests",
+  "subtopic": "Non-parametric tests",
+  "code": "5.07b",
+  "outcome": "Understand the basis of sign, Wilcoxon signed-rank and Wilcoxon rank-sum (Mann-Whitney) tests."
+ },
+ {
+  "grade": "all",
+  "unit": "5 Statistics",
+  "topic": "5.07 Non-parametric tests",
+  "subtopic": "Non-parametric tests",
+  "code": "5.07c",
+  "outcome": "Test a population median with single-sample sign and signed-rank tests."
+ },
+ {
+  "grade": "all",
+  "unit": "5 Statistics",
+  "topic": "5.07 Non-parametric tests",
+  "subtopic": "Non-parametric tests",
+  "code": "5.07d",
+  "outcome": "Distinguish paired-sample from two-sample tests and select the right one."
+ },
+ {
+  "grade": "all",
+  "unit": "5 Statistics",
+  "topic": "5.07 Non-parametric tests",
+  "subtopic": "Non-parametric tests",
+  "code": "5.07e",
+  "outcome": "Test medians or identity of populations using paired sign, matched-pairs signed-rank and rank-sum tests."
+ },
+ {
+  "grade": "all",
+  "unit": "5 Statistics",
+  "topic": "5.07 Non-parametric tests",
+  "subtopic": "Non-parametric tests",
+  "code": "5.07f",
+  "outcome": "Use normal approximations with continuity corrections for large-sample Wilcoxon tests."
+ },
+ {
+  "grade": "all",
+  "unit": "5 Statistics",
+  "topic": "5.08 Correlation",
+  "subtopic": "Pearson's coefficient",
+  "code": "5.08a",
+  "outcome": "Calculate the product-moment correlation coefficient from raw or summarised data."
+ },
+ {
+  "grade": "all",
+  "unit": "5 Statistics",
+  "topic": "5.08 Correlation",
+  "subtopic": "Pearson's coefficient",
+  "code": "5.08b",
+  "outcome": "Know the coefficient is unaffected by linear coding."
+ },
+ {
+  "grade": "all",
+  "unit": "5 Statistics",
+  "topic": "5.08 Correlation",
+  "subtopic": "Pearson's coefficient",
+  "code": "5.08c",
+  "outcome": "Interpret the coefficient as how close points lie to a straight line."
+ },
+ {
+  "grade": "all",
+  "unit": "5 Statistics",
+  "topic": "5.08 Correlation",
+  "subtopic": "Pearson's coefficient",
+  "code": "5.08d",
+  "outcome": "Use Pearson's coefficient in hypothesis tests with critical values."
+ },
+ {
+  "grade": "all",
+  "unit": "5 Statistics",
+  "topic": "5.08 Correlation",
+  "subtopic": "Spearman's coefficient",
+  "code": "5.08e",
+  "outcome": "Calculate Spearman's rank correlation coefficient for up to 10 pairs and draw basic conclusions."
+ },
+ {
+  "grade": "all",
+  "unit": "5 Statistics",
+  "topic": "5.08 Correlation",
+  "subtopic": "Spearman's coefficient",
+  "code": "5.08f",
+  "outcome": "Carry out a hypothesis test for association using Spearman's coefficient."
+ },
+ {
+  "grade": "all",
+  "unit": "5 Statistics",
+  "topic": "5.08 Correlation",
+  "subtopic": "Spearman's coefficient",
+  "code": "5.08g",
+  "outcome": "Choose between Pearson's and Spearman's coefficients for a context."
+ },
+ {
+  "grade": "all",
+  "unit": "5 Statistics",
+  "topic": "5.09 Linear Regression",
+  "subtopic": "Regression lines",
+  "code": "5.09a",
+  "outcome": "Distinguish independent (controlled) and dependent (response) variables."
+ },
+ {
+  "grade": "all",
+  "unit": "5 Statistics",
+  "topic": "5.09 Linear Regression",
+  "subtopic": "Regression lines",
+  "code": "5.09b",
+  "outcome": "Understand least squares and regression lines on a scatter diagram."
+ },
+ {
+  "grade": "all",
+  "unit": "5 Statistics",
+  "topic": "5.09 Linear Regression",
+  "subtopic": "Regression lines",
+  "code": "5.09c",
+  "outcome": "Calculate the regression line of y on x from raw or summarised data."
+ },
+ {
+  "grade": "all",
+  "unit": "5 Statistics",
+  "topic": "5.09 Linear Regression",
+  "subtopic": "Regression lines",
+  "code": "5.09d",
+  "outcome": "Understand the effect of linear coding on a regression line."
+ },
+ {
+  "grade": "all",
+  "unit": "5 Statistics",
+  "topic": "5.09 Linear Regression",
+  "subtopic": "Regression lines",
+  "code": "5.09e",
+  "outcome": "Use the regression line to estimate y and interpret the uncertainty."
+ },
+ {
+  "grade": "all",
+  "unit": "6 Mechanics",
+  "topic": "6.01 Dimensional Analysis",
+  "subtopic": "Dimensions",
+  "code": "6.01a",
+  "outcome": "Find the dimensions of a quantity in M, L and T, and recognise dimensionless quantities."
+ },
+ {
+  "grade": "all",
+  "unit": "6 Mechanics",
+  "topic": "6.01 Dimensional Analysis",
+  "subtopic": "Dimensions",
+  "code": "6.01b",
+  "outcome": "Relate the units of a quantity to its dimensions."
+ },
+ {
+  "grade": "all",
+  "unit": "6 Mechanics",
+  "topic": "6.01 Dimensional Analysis",
+  "subtopic": "Using dimensional analysis",
+  "code": "6.01c",
+  "outcome": "Use dimensional analysis as an error check."
+ },
+ {
+  "grade": "all",
+  "unit": "6 Mechanics",
+  "topic": "6.01 Dimensional Analysis",
+  "subtopic": "Using dimensional analysis",
+  "code": "6.01d",
+  "outcome": "Use dimensional analysis to find unknown indices in a proposed formula."
+ },
+ {
+  "grade": "all",
+  "unit": "6 Mechanics",
+  "topic": "6.01 Dimensional Analysis",
+  "subtopic": "Using dimensional analysis",
+  "code": "6.01e",
+  "outcome": "Formulate models and derive equations of motion by dimensional argument."
+ },
+ {
+  "grade": "all",
+  "unit": "6 Mechanics",
+  "topic": "6.02 Work, Energy and Power",
+  "subtopic": "Work done",
+  "code": "6.02a",
+  "outcome": "Understand the concept of work done by a force."
+ },
+ {
+  "grade": "all",
+  "unit": "6 Mechanics",
+  "topic": "6.02 Work, Energy and Power",
+  "subtopic": "Work done",
+  "code": "6.02b",
+  "outcome": "Calculate the work done by a constant force, resolving forces in two dimensions."
+ },
+ {
+  "grade": "all",
+  "unit": "6 Mechanics",
+  "topic": "6.02 Work, Energy and Power",
+  "subtopic": "Work done",
+  "code": "6.02c",
+  "outcome": "Calculate work done by a constant force as a vector product F.x, or by a variable force by integration in one dimension."
+ },
+ {
+  "grade": "all",
+  "unit": "6 Mechanics",
+  "topic": "6.02 Work, Energy and Power",
+  "subtopic": "Kinetic and potential energy",
+  "code": "6.02d",
+  "outcome": "Understand the mechanical energy of a body as kinetic plus potential energy."
+ },
+ {
+  "grade": "all",
+  "unit": "6 Mechanics",
+  "topic": "6.02 Work, Energy and Power",
+  "subtopic": "Kinetic and potential energy",
+  "code": "6.02e",
+  "outcome": "Calculate gravitational potential energy mgh and kinetic energy (1/2)mv^2."
+ },
+ {
+  "grade": "all",
+  "unit": "6 Mechanics",
+  "topic": "6.02 Work, Energy and Power",
+  "subtopic": "Kinetic and potential energy",
+  "code": "6.02f",
+  "outcome": "Calculate kinetic energy using the scalar product (1/2)m v.v."
+ },
+ {
+  "grade": "all",
+  "unit": "6 Mechanics",
+  "topic": "6.02 Work, Energy and Power",
+  "subtopic": "Elastic energy",
+  "code": "6.02g",
+  "outcome": "Use Hooke's law T = mx/l for strings and springs."
+ },
+ {
+  "grade": "all",
+  "unit": "6 Mechanics",
+  "topic": "6.02 Work, Energy and Power",
+  "subtopic": "Elastic energy",
+  "code": "6.02h",
+  "outcome": "Calculate elastic potential energy mx^2/(2l)."
+ },
+ {
+  "grade": "all",
+  "unit": "6 Mechanics",
+  "topic": "6.02 Work, Energy and Power",
+  "subtopic": "Conservation of energy",
+  "code": "6.02i",
+  "outcome": "Use conservation of mechanical energy and the work-energy principle, including energy loss."
+ },
+ {
+  "grade": "all",
+  "unit": "6 Mechanics",
+  "topic": "6.02 Work, Energy and Power",
+  "subtopic": "Conservation of energy",
+  "code": "6.02j",
+  "outcome": "Apply conservation of energy and the work-energy principle to systems with elastic strings or springs."
+ },
+ {
+  "grade": "all",
+  "unit": "6 Mechanics",
+  "topic": "6.02 Work, Energy and Power",
+  "subtopic": "Power",
+  "code": "6.02k",
+  "outcome": "Use the definition of power as the rate of doing work, including average power."
+ },
+ {
+  "grade": "all",
+  "unit": "6 Mechanics",
+  "topic": "6.02 Work, Energy and Power",
+  "subtopic": "Power",
+  "code": "6.02l",
+  "outcome": "Use P = Fv to solve problems, including inclined planes and maximum speed."
+ },
+ {
+  "grade": "all",
+  "unit": "6 Mechanics",
+  "topic": "6.02 Work, Energy and Power",
+  "subtopic": "Power",
+  "code": "6.02m",
+  "outcome": "Calculate power of a variable force in two dimensions using P = F.v."
+ },
+ {
+  "grade": "all",
+  "unit": "6 Mechanics",
+  "topic": "6.03 Impulse and Momentum",
+  "subtopic": "Momentum",
+  "code": "6.03a",
+  "outcome": "Use the definition of linear momentum in one dimension."
+ },
+ {
+  "grade": "all",
+  "unit": "6 Mechanics",
+  "topic": "6.03 Impulse and Momentum",
+  "subtopic": "Momentum",
+  "code": "6.03b",
+  "outcome": "Apply conservation of linear momentum to two particles in one dimension."
+ },
+ {
+  "grade": "all",
+  "unit": "6 Mechanics",
+  "topic": "6.03 Impulse and Momentum",
+  "subtopic": "Momentum",
+  "code": "6.03c",
+  "outcome": "Use momentum in two dimensions in vector form mv."
+ },
+ {
+  "grade": "all",
+  "unit": "6 Mechanics",
+  "topic": "6.03 Impulse and Momentum",
+  "subtopic": "Momentum",
+  "code": "6.03d",
+  "outcome": "Apply conservation of linear momentum to two particles in two dimensions."
+ },
+ {
+  "grade": "all",
+  "unit": "6 Mechanics",
+  "topic": "6.03 Impulse and Momentum",
+  "subtopic": "Impulse",
+  "code": "6.03e",
+  "outcome": "Understand the impulse imparted by a force."
+ },
+ {
+  "grade": "all",
+  "unit": "6 Mechanics",
+  "topic": "6.03 Impulse and Momentum",
+  "subtopic": "Impulse",
+  "code": "6.03f",
+  "outcome": "Relate instantaneous impulse to the change in momentum I = mv - mu in one dimension."
+ },
+ {
+  "grade": "all",
+  "unit": "6 Mechanics",
+  "topic": "6.03 Impulse and Momentum",
+  "subtopic": "Impulse",
+  "code": "6.03g",
+  "outcome": "Apply the impulse-momentum principle in two dimensions in vector form."
+ },
+ {
+  "grade": "all",
+  "unit": "6 Mechanics",
+  "topic": "6.03 Impulse and Momentum",
+  "subtopic": "Impulse",
+  "code": "6.03h",
+  "outcome": "Apply the impulse-momentum principle for a constant force (force x time) or a variable force by integration."
+ },
+ {
+  "grade": "all",
+  "unit": "6 Mechanics",
+  "topic": "6.03 Impulse and Momentum",
+  "subtopic": "Restitution",
+  "code": "6.03i",
+  "outcome": "Use the coefficient of restitution, 0 <= e <= 1."
+ },
+ {
+  "grade": "all",
+  "unit": "6 Mechanics",
+  "topic": "6.03 Impulse and Momentum",
+  "subtopic": "Restitution",
+  "code": "6.03j",
+  "outcome": "Use the terms perfectly elastic (e = 1) and inelastic (e = 0) for collisions."
+ },
+ {
+  "grade": "all",
+  "unit": "6 Mechanics",
+  "topic": "6.03 Impulse and Momentum",
+  "subtopic": "Restitution",
+  "code": "6.03k",
+  "outcome": "Use Newton's experimental law for direct impact in one dimension."
+ },
+ {
+  "grade": "all",
+  "unit": "6 Mechanics",
+  "topic": "6.03 Impulse and Momentum",
+  "subtopic": "Restitution",
+  "code": "6.03l",
+  "outcome": "Use Newton's experimental law in two dimensions, such as oblique impacts."
+ },
+ {
+  "grade": "all",
+  "unit": "6 Mechanics",
+  "topic": "6.04 Centre of Mass",
+  "subtopic": "Centre of mass",
+  "code": "6.04a",
+  "outcome": "Apply the principle that gravity acts at the centre of mass, modelling a rigid body as a particle."
+ },
+ {
+  "grade": "all",
+  "unit": "6 Mechanics",
+  "topic": "6.04 Centre of Mass",
+  "subtopic": "Centre of mass",
+  "code": "6.04b",
+  "outcome": "Find the centre of mass of a uniform rigid body using symmetry."
+ },
+ {
+  "grade": "all",
+  "unit": "6 Mechanics",
+  "topic": "6.04 Centre of Mass",
+  "subtopic": "Centre of mass",
+  "code": "6.04c",
+  "outcome": "Find the centre of mass of a system of particles or a composite rigid body."
+ },
+ {
+  "grade": "all",
+  "unit": "6 Mechanics",
+  "topic": "6.04 Centre of Mass",
+  "subtopic": "Centre of mass",
+  "code": "6.04d",
+  "outcome": "Use integration to find the centre of mass of a uniform lamina or solid of revolution."
+ },
+ {
+  "grade": "all",
+  "unit": "6 Mechanics",
+  "topic": "6.04 Centre of Mass",
+  "subtopic": "Rigid body equilibrium",
+  "code": "6.04e",
+  "outcome": "Solve equilibrium problems for a single rigid body under coplanar forces, including toppling and sliding."
+ },
+ {
+  "grade": "all",
+  "unit": "6 Mechanics",
+  "topic": "6.05 Motion in a Circle",
+  "subtopic": "Uniform circular motion",
+  "code": "6.05a",
+  "outcome": "Use definitions of angular velocity, velocity, speed and acceleration for constant-speed circular motion."
+ },
+ {
+  "grade": "all",
+  "unit": "6 Mechanics",
+  "topic": "6.05 Motion in a Circle",
+  "subtopic": "Uniform circular motion",
+  "code": "6.05b",
+  "outcome": "Use v = r\u03c9 and a = v^2/r = r\u03c9^2 = v\u03c9."
+ },
+ {
+  "grade": "all",
+  "unit": "6 Mechanics",
+  "topic": "6.05 Motion in a Circle",
+  "subtopic": "Uniform circular motion",
+  "code": "6.05c",
+  "outcome": "Solve problems on horizontal circles such as conical pendulums and banked tracks."
+ },
+ {
+  "grade": "all",
+  "unit": "6 Mechanics",
+  "topic": "6.05 Motion in a Circle",
+  "subtopic": "Vertical circles",
+  "code": "6.05d",
+  "outcome": "Understand circular motion with variable speed, using energy to find speeds."
+ },
+ {
+  "grade": "all",
+  "unit": "6 Mechanics",
+  "topic": "6.05 Motion in a Circle",
+  "subtopic": "Vertical circles",
+  "code": "6.05e",
+  "outcome": "Use radial and tangential components of acceleration in variable-speed circular motion."
+ },
+ {
+  "grade": "all",
+  "unit": "6 Mechanics",
+  "topic": "6.05 Motion in a Circle",
+  "subtopic": "Vertical circles",
+  "code": "6.05f",
+  "outcome": "Solve problems on vertical circles including motion that leaves the circular path."
+ },
+ {
+  "grade": "all",
+  "unit": "6 Mechanics",
+  "topic": "6.06 Further Dynamics and Kinematics",
+  "subtopic": "Variable force",
+  "code": "6.06a",
+  "outcome": "Model linear motion under a variable force using a = dv/dt or a = v dv/dx."
+ },
+ {
+  "grade": "all",
+  "unit": "7 Discrete Mathematics",
+  "topic": "7.01 Mathematical Preliminaries",
+  "subtopic": "Types of problem",
+  "code": "7.01a",
+  "outcome": "Classify problems as existence, construction, enumeration or optimisation."
+ },
+ {
+  "grade": "all",
+  "unit": "7 Discrete Mathematics",
+  "topic": "7.01 Mathematical Preliminaries",
+  "subtopic": "Sets and the pigeonhole principle",
+  "code": "7.01b",
+  "outcome": "Use set language and notation, including partitions and counting them."
+ },
+ {
+  "grade": "all",
+  "unit": "7 Discrete Mathematics",
+  "topic": "7.01 Mathematical Preliminaries",
+  "subtopic": "Sets and the pigeonhole principle",
+  "code": "7.01c",
+  "outcome": "Use the pigeonhole principle to solve problems."
+ },
+ {
+  "grade": "all",
+  "unit": "7 Discrete Mathematics",
+  "topic": "7.01 Mathematical Preliminaries",
+  "subtopic": "Arrangements and selections",
+  "code": "7.01d",
+  "outcome": "Use the multiplicative principle and know there are n! arrangements of n objects."
+ },
+ {
+  "grade": "all",
+  "unit": "7 Discrete Mathematics",
+  "topic": "7.01 Mathematical Preliminaries",
+  "subtopic": "Arrangements and selections",
+  "code": "7.01e",
+  "outcome": "Count ordered subsets (permutations) of r from n elements."
+ },
+ {
+  "grade": "all",
+  "unit": "7 Discrete Mathematics",
+  "topic": "7.01 Mathematical Preliminaries",
+  "subtopic": "Arrangements and selections",
+  "code": "7.01f",
+  "outcome": "Count unordered subsets (combinations) of r from n elements."
+ },
+ {
+  "grade": "all",
+  "unit": "7 Discrete Mathematics",
+  "topic": "7.01 Mathematical Preliminaries",
+  "subtopic": "Arrangements and selections",
+  "code": "7.01g",
+  "outcome": "Count arrangements in a line with repetition or restriction."
+ },
+ {
+  "grade": "all",
+  "unit": "7 Discrete Mathematics",
+  "topic": "7.01 Mathematical Preliminaries",
+  "subtopic": "Arrangements and selections",
+  "code": "7.01h",
+  "outcome": "Count arrangements of only some of a group of objects."
+ },
+ {
+  "grade": "all",
+  "unit": "7 Discrete Mathematics",
+  "topic": "7.01 Mathematical Preliminaries",
+  "subtopic": "Arrangements and selections",
+  "code": "7.01i",
+  "outcome": "Solve selection problems with constraints."
+ },
+ {
+  "grade": "all",
+  "unit": "7 Discrete Mathematics",
+  "topic": "7.01 Mathematical Preliminaries",
+  "subtopic": "Arrangements and selections",
+  "code": "7.01j",
+  "outcome": "Solve counting problems with several constraints."
+ },
+ {
+  "grade": "all",
+  "unit": "7 Discrete Mathematics",
+  "topic": "7.01 Mathematical Preliminaries",
+  "subtopic": "Inclusion-exclusion and derangements",
+  "code": "7.01k",
+  "outcome": "Use inclusion-exclusion for two sets."
+ },
+ {
+  "grade": "all",
+  "unit": "7 Discrete Mathematics",
+  "topic": "7.01 Mathematical Preliminaries",
+  "subtopic": "Inclusion-exclusion and derangements",
+  "code": "7.01l",
+  "outcome": "Extend inclusion-exclusion to more than two sets."
+ },
+ {
+  "grade": "all",
+  "unit": "7 Discrete Mathematics",
+  "topic": "7.01 Mathematical Preliminaries",
+  "subtopic": "Inclusion-exclusion and derangements",
+  "code": "7.01m",
+  "outcome": "Find derangements of n objects by ad hoc methods."
+ },
+ {
+  "grade": "all",
+  "unit": "7 Discrete Mathematics",
+  "topic": "7.02 Graphs and Networks",
+  "subtopic": "Graph terminology",
+  "code": "7.02a",
+  "outcome": "Use the terms vertex, arc, degree, incident and adjacent."
+ },
+ {
+  "grade": "all",
+  "unit": "7 Discrete Mathematics",
+  "topic": "7.02 Graphs and Networks",
+  "subtopic": "Graph terminology",
+  "code": "7.02b",
+  "outcome": "Use the terms tree, simple, connected and simply connected, and the vertex degree restrictions they imply."
+ },
+ {
+  "grade": "all",
+  "unit": "7 Discrete Mathematics",
+  "topic": "7.02 Graphs and Networks",
+  "subtopic": "Graph terminology",
+  "code": "7.02c",
+  "outcome": "Distinguish walk, trail, path, cycle and route."
+ },
+ {
+  "grade": "all",
+  "unit": "7 Discrete Mathematics",
+  "topic": "7.02 Graphs and Networks",
+  "subtopic": "Special graphs",
+  "code": "7.02d",
+  "outcome": "Use complete graphs Kn and know they have n(n-1)/2 arcs."
+ },
+ {
+  "grade": "all",
+  "unit": "7 Discrete Mathematics",
+  "topic": "7.02 Graphs and Networks",
+  "subtopic": "Special graphs",
+  "code": "7.02e",
+  "outcome": "Use bipartite graphs and complete bipartite graphs Km,n with mn arcs."
+ },
+ {
+  "grade": "all",
+  "unit": "7 Discrete Mathematics",
+  "topic": "7.02 Graphs and Networks",
+  "subtopic": "Special graphs",
+  "code": "7.02f",
+  "outcome": "Use a colouring argument to show a graph is or is not bipartite."
+ },
+ {
+  "grade": "all",
+  "unit": "7 Discrete Mathematics",
+  "topic": "7.02 Graphs and Networks",
+  "subtopic": "Eulerian and Hamiltonian graphs",
+  "code": "7.02g",
+  "outcome": "Use vertex degrees to decide if a graph is Eulerian, semi-Eulerian or neither."
+ },
+ {
+  "grade": "all",
+  "unit": "7 Discrete Mathematics",
+  "topic": "7.02 Graphs and Networks",
+  "subtopic": "Eulerian and Hamiltonian graphs",
+  "code": "7.02h",
+  "outcome": "Use Hamiltonian paths, cycles and graphs."
+ },
+ {
+  "grade": "all",
+  "unit": "7 Discrete Mathematics",
+  "topic": "7.02 Graphs and Networks",
+  "subtopic": "Eulerian and Hamiltonian graphs",
+  "code": "7.02i",
+  "outcome": "Know and use Ore's theorem as a sufficient condition for Hamiltonian graphs."
+ },
+ {
+  "grade": "all",
+  "unit": "7 Discrete Mathematics",
+  "topic": "7.02 Graphs and Networks",
+  "subtopic": "Isomorphism and digraphs",
+  "code": "7.02j",
+  "outcome": "Understand isomorphic graphs and construct isomorphisms, knowing equal degree sequences are not sufficient."
+ },
+ {
+  "grade": "all",
+  "unit": "7 Discrete Mathematics",
+  "topic": "7.02 Graphs and Networks",
+  "subtopic": "Isomorphism and digraphs",
+  "code": "7.02k",
+  "outcome": "Use digraphs with indegree and outdegree."
+ },
+ {
+  "grade": "all",
+  "unit": "7 Discrete Mathematics",
+  "topic": "7.02 Graphs and Networks",
+  "subtopic": "Planar graphs",
+  "code": "7.02l",
+  "outcome": "Apply planarity, subdivision and contraction, and draw planar representations."
+ },
+ {
+  "grade": "all",
+  "unit": "7 Discrete Mathematics",
+  "topic": "7.02 Graphs and Networks",
+  "subtopic": "Planar graphs",
+  "code": "7.02m",
+  "outcome": "Use Euler's formula V + R = E + 2."
+ },
+ {
+  "grade": "all",
+  "unit": "7 Discrete Mathematics",
+  "topic": "7.02 Graphs and Networks",
+  "subtopic": "Planar graphs",
+  "code": "7.02n",
+  "outcome": "Use Kuratowski's theorem on K5 and K3,3 subdivisions."
+ },
+ {
+  "grade": "all",
+  "unit": "7 Discrete Mathematics",
+  "topic": "7.02 Graphs and Networks",
+  "subtopic": "Planar graphs",
+  "code": "7.02o",
+  "outcome": "Understand and use thickness."
+ },
+ {
+  "grade": "all",
+  "unit": "7 Discrete Mathematics",
+  "topic": "7.02 Graphs and Networks",
+  "subtopic": "Modelling with graphs",
+  "code": "7.02p",
+  "outcome": "Understand a network as a weighted graph and use graphs to model connections."
+ },
+ {
+  "grade": "all",
+  "unit": "7 Discrete Mathematics",
+  "topic": "7.02 Graphs and Networks",
+  "subtopic": "Modelling with graphs",
+  "code": "7.02q",
+  "outcome": "Use adjacency and weighted matrix representations."
+ },
+ {
+  "grade": "all",
+  "unit": "7 Discrete Mathematics",
+  "topic": "7.02 Graphs and Networks",
+  "subtopic": "Modelling with graphs",
+  "code": "7.02r",
+  "outcome": "Model problems with graphs or networks and solve them."
+ },
+ {
+  "grade": "all",
+  "unit": "7 Discrete Mathematics",
+  "topic": "7.03 Algorithms",
+  "subtopic": "Algorithm basics",
+  "code": "7.03a",
+  "outcome": "Understand that an algorithm has input and output and is deterministic and finite; know greedy, heuristic and recursive."
+ },
+ {
+  "grade": "all",
+  "unit": "7 Discrete Mathematics",
+  "topic": "7.03 Algorithms",
+  "subtopic": "Algorithm basics",
+  "code": "7.03b",
+  "outcome": "Appreciate why algorithms beat ad hoc methods and their practical limitations."
+ },
+ {
+  "grade": "all",
+  "unit": "7 Discrete Mathematics",
+  "topic": "7.03 Algorithms",
+  "subtopic": "Algorithm basics",
+  "code": "7.03c",
+  "outcome": "Trace, interpret and adapt algorithms in flow diagrams, words or pseudo-code, using INT and ABS."
+ },
+ {
+  "grade": "all",
+  "unit": "7 Discrete Mathematics",
+  "topic": "7.03 Algorithms",
+  "subtopic": "Order and efficiency",
+  "code": "7.03d",
+  "outcome": "Use the order of an algorithm to scale up run-time for large problems."
+ },
+ {
+  "grade": "all",
+  "unit": "7 Discrete Mathematics",
+  "topic": "7.03 Algorithms",
+  "subtopic": "Order and efficiency",
+  "code": "7.03e",
+  "outcome": "Compare the efficiency of two algorithms by counting swaps or comparisons."
+ },
+ {
+  "grade": "all",
+  "unit": "7 Discrete Mathematics",
+  "topic": "7.03 Algorithms",
+  "subtopic": "Order and efficiency",
+  "code": "7.03f",
+  "outcome": "Calculate worst-case time complexity as a function of problem size."
+ },
+ {
+  "grade": "all",
+  "unit": "7 Discrete Mathematics",
+  "topic": "7.03 Algorithms",
+  "subtopic": "Order and efficiency",
+  "code": "7.03g",
+  "outcome": "Use O(n^k) notation for k = 0 to 4."
+ },
+ {
+  "grade": "all",
+  "unit": "7 Discrete Mathematics",
+  "topic": "7.03 Algorithms",
+  "subtopic": "Order and efficiency",
+  "code": "7.03h",
+  "outcome": "Calculate run-time by considering best, worst or typical cases."
+ },
+ {
+  "grade": "all",
+  "unit": "7 Discrete Mathematics",
+  "topic": "7.03 Algorithms",
+  "subtopic": "Order and efficiency",
+  "code": "7.03i",
+  "outcome": "Use O(n^k), O(a^n) and O(log n) and know the hierarchy of orders."
+ },
+ {
+  "grade": "all",
+  "unit": "7 Discrete Mathematics",
+  "topic": "7.03 Algorithms",
+  "subtopic": "Sorting and packing",
+  "code": "7.03j",
+  "outcome": "Sort a list with bubble sort and shuttle sort."
+ },
+ {
+  "grade": "all",
+  "unit": "7 Discrete Mathematics",
+  "topic": "7.03 Algorithms",
+  "subtopic": "Sorting and packing",
+  "code": "7.03k",
+  "outcome": "Sort a list with quick sort, knowing it is O(n^2) in the worst case."
+ },
+ {
+  "grade": "all",
+  "unit": "7 Discrete Mathematics",
+  "topic": "7.03 Algorithms",
+  "subtopic": "Sorting and packing",
+  "code": "7.03l",
+  "outcome": "Use next-fit, first-fit, first-fit decreasing and full bin packing, including online and offline."
+ },
+ {
+  "grade": "all",
+  "unit": "7 Discrete Mathematics",
+  "topic": "7.03 Algorithms",
+  "subtopic": "Sorting and packing",
+  "code": "7.03m",
+  "outcome": "Extend packing methods to two or three dimensions and knapsack problems."
+ },
+ {
+  "grade": "all",
+  "unit": "7 Discrete Mathematics",
+  "topic": "7.04 Network Algorithms",
+  "subtopic": "Shortest path and spanning tree",
+  "code": "7.04a",
+  "outcome": "Use Dijkstra's algorithm to find the length and route of a least weight path."
+ },
+ {
+  "grade": "all",
+  "unit": "7 Discrete Mathematics",
+  "topic": "7.04 Network Algorithms",
+  "subtopic": "Shortest path and spanning tree",
+  "code": "7.04b",
+  "outcome": "Use Prim's and Kruskal's algorithms to find a minimum spanning tree."
+ },
+ {
+  "grade": "all",
+  "unit": "7 Discrete Mathematics",
+  "topic": "7.04 Network Algorithms",
+  "subtopic": "Travelling salesperson",
+  "code": "7.04c",
+  "outcome": "Use the nearest neighbour method to find an upper bound for the travelling salesperson problem."
+ },
+ {
+  "grade": "all",
+  "unit": "7 Discrete Mathematics",
+  "topic": "7.04 Network Algorithms",
+  "subtopic": "Travelling salesperson",
+  "code": "7.04d",
+  "outcome": "Use a minimum spanning tree on a reduced network to find a lower bound."
+ },
+ {
+  "grade": "all",
+  "unit": "7 Discrete Mathematics",
+  "topic": "7.04 Network Algorithms",
+  "subtopic": "Route inspection",
+  "code": "7.04e",
+  "outcome": "Solve the route inspection problem by pairing up to six odd nodes."
+ },
+ {
+  "grade": "all",
+  "unit": "7 Discrete Mathematics",
+  "topic": "7.04 Network Algorithms",
+  "subtopic": "Choosing an algorithm",
+  "code": "7.04f",
+  "outcome": "Choose an appropriate algorithm for a practical problem and adapt it for practical issues."
+ },
+ {
+  "grade": "all",
+  "unit": "7 Discrete Mathematics",
+  "topic": "7.05 Decision Making in Project Management",
+  "subtopic": "Critical path analysis",
+  "code": "7.05a",
+  "outcome": "Construct and interpret activity networks using activity on arc, and identify critical paths."
+ },
+ {
+  "grade": "all",
+  "unit": "7 Discrete Mathematics",
+  "topic": "7.05 Decision Making in Project Management",
+  "subtopic": "Critical path analysis",
+  "code": "7.05b",
+  "outcome": "Carry out forward and backward passes for earliest start times, latest finish times and critical activities."
+ },
+ {
+  "grade": "all",
+  "unit": "7 Discrete Mathematics",
+  "topic": "7.05 Decision Making in Project Management",
+  "subtopic": "Float",
+  "code": "7.05c",
+  "outcome": "Calculate total float."
+ },
+ {
+  "grade": "all",
+  "unit": "7 Discrete Mathematics",
+  "topic": "7.05 Decision Making in Project Management",
+  "subtopic": "Float",
+  "code": "7.05d",
+  "outcome": "Find latest start and earliest finish times and calculate independent and interfering float."
+ },
+ {
+  "grade": "all",
+  "unit": "7 Discrete Mathematics",
+  "topic": "7.05 Decision Making in Project Management",
+  "subtopic": "Cascade charts",
+  "code": "7.05e",
+  "outcome": "Construct cascade charts and use them to assess delays and scheduling with limited workers."
+ },
+ {
+  "grade": "all",
+  "unit": "7 Discrete Mathematics",
+  "topic": "7.06 Graphical Linear Programming",
+  "subtopic": "Formulating linear programmes",
+  "code": "7.06a",
+  "outcome": "Set up a linear programme: variables, constraints (including ratios) and a maximise or minimise objective."
+ },
+ {
+  "grade": "all",
+  "unit": "7 Discrete Mathematics",
+  "topic": "7.06 Graphical Linear Programming",
+  "subtopic": "Formulating linear programmes",
+  "code": "7.06b",
+  "outcome": "Use slack variables to turn inequality constraints into equations."
+ },
+ {
+  "grade": "all",
+  "unit": "7 Discrete Mathematics",
+  "topic": "7.06 Graphical Linear Programming",
+  "subtopic": "Formulating linear programmes",
+  "code": "7.06c",
+  "outcome": "Investigate constraints and objectives in numerical cases by algebra and ad hoc methods."
+ },
+ {
+  "grade": "all",
+  "unit": "7 Discrete Mathematics",
+  "topic": "7.06 Graphical Linear Programming",
+  "subtopic": "Graphical solutions",
+  "code": "7.06d",
+  "outcome": "Solve and interpret a two-variable problem graphically, including integer solutions."
+ },
+ {
+  "grade": "all",
+  "unit": "7 Discrete Mathematics",
+  "topic": "7.06 Graphical Linear Programming",
+  "subtopic": "Graphical solutions",
+  "code": "7.06e",
+  "outcome": "Discuss the effect of changing one or two coefficients on the solution."
+ },
+ {
+  "grade": "all",
+  "unit": "7 Discrete Mathematics",
+  "topic": "7.06 Graphical Linear Programming",
+  "subtopic": "Graphical solutions",
+  "code": "7.06f",
+  "outcome": "Carry out integer programming, including branch-and-bound."
+ },
+ {
+  "grade": "all",
+  "unit": "7 Discrete Mathematics",
+  "topic": "7.07 The Simplex Algorithm",
+  "subtopic": "Simplex tableau",
+  "code": "7.07a",
+  "outcome": "Set up an initial simplex tableau in standard format."
+ },
+ {
+  "grade": "all",
+  "unit": "7 Discrete Mathematics",
+  "topic": "7.07 The Simplex Algorithm",
+  "subtopic": "Simplex tableau",
+  "code": "7.07b",
+  "outcome": "Perform a simplex iteration, choosing the pivot."
+ },
+ {
+  "grade": "all",
+  "unit": "7 Discrete Mathematics",
+  "topic": "7.07 The Simplex Algorithm",
+  "subtopic": "Simplex tableau",
+  "code": "7.07c",
+  "outcome": "Interpret variables, slack variables and the objective, and know when the optimum is reached."
+ },
+ {
+  "grade": "all",
+  "unit": "7 Discrete Mathematics",
+  "topic": "7.07 The Simplex Algorithm",
+  "subtopic": "Simplex theory",
+  "code": "7.07d",
+  "outcome": "Use the terms basic feasible solution, basic variable and non-basic variable."
+ },
+ {
+  "grade": "all",
+  "unit": "7 Discrete Mathematics",
+  "topic": "7.07 The Simplex Algorithm",
+  "subtopic": "Simplex theory",
+  "code": "7.07e",
+  "outcome": "Interpret an iteration as moving along edges of a convex polygon."
+ },
+ {
+  "grade": "all",
+  "unit": "7 Discrete Mathematics",
+  "topic": "7.07 The Simplex Algorithm",
+  "subtopic": "Simplex theory",
+  "code": "7.07f",
+  "outcome": "Explain algebraically some of the calculations used in the simplex algorithm."
+ },
+ {
+  "grade": "all",
+  "unit": "7 Discrete Mathematics",
+  "topic": "7.08 Game Theory",
+  "subtopic": "Zero-sum games",
+  "code": "7.08a",
+  "outcome": "Understand a zero-sum game and its pay-off matrix."
+ },
+ {
+  "grade": "all",
+  "unit": "7 Discrete Mathematics",
+  "topic": "7.08 Game Theory",
+  "subtopic": "Zero-sum games",
+  "code": "7.08b",
+  "outcome": "Reduce a pay-off matrix using a dominance argument."
+ },
+ {
+  "grade": "all",
+  "unit": "7 Discrete Mathematics",
+  "topic": "7.08 Game Theory",
+  "subtopic": "Pure strategies",
+  "code": "7.08c",
+  "outcome": "Identify play-safe strategies and stable solutions."
+ },
+ {
+  "grade": "all",
+  "unit": "7 Discrete Mathematics",
+  "topic": "7.08 Game Theory",
+  "subtopic": "Pure strategies",
+  "code": "7.08d",
+  "outcome": "Identify a Nash equilibrium and understand what it represents."
+ },
+ {
+  "grade": "all",
+  "unit": "7 Discrete Mathematics",
+  "topic": "7.08 Game Theory",
+  "subtopic": "Mixed strategies",
+  "code": "7.08e",
+  "outcome": "Find an optimal mixed strategy by reducing to two variables and using simultaneous equations or graphs."
+ },
+ {
+  "grade": "all",
+  "unit": "7 Discrete Mathematics",
+  "topic": "7.08 Game Theory",
+  "subtopic": "Mixed strategies",
+  "code": "7.08f",
+  "outcome": "Find an optimal mixed strategy by reformulating as a linear programme for the simplex algorithm."
+ },
+ {
+  "grade": "all",
+  "unit": "8 Additional Pure Mathematics",
+  "topic": "8.01 Sequences and Series",
+  "subtopic": "Sequences",
+  "code": "8.01a",
+  "outcome": "Work with sequences given by recurrence relations or closed-form u_n = f(n)."
+ },
+ {
+  "grade": "all",
+  "unit": "8 Additional Pure Mathematics",
+  "topic": "8.01 Sequences and Series",
+  "subtopic": "Sequences",
+  "code": "8.01b",
+  "outcome": "Use induction to prove results about sequences and series."
+ },
+ {
+  "grade": "all",
+  "unit": "8 Additional Pure Mathematics",
+  "topic": "8.01 Sequences and Series",
+  "subtopic": "Behaviour of sequences",
+  "code": "8.01c",
+  "outcome": "Describe sequence behaviour: periodic, convergent, divergent, oscillating, monotonic."
+ },
+ {
+  "grade": "all",
+  "unit": "8 Additional Pure Mathematics",
+  "topic": "8.01 Sequences and Series",
+  "subtopic": "Behaviour of sequences",
+  "code": "8.01d",
+  "outcome": "Find and use the limit of the nth term, including steady states."
+ },
+ {
+  "grade": "all",
+  "unit": "8 Additional Pure Mathematics",
+  "topic": "8.01 Sequences and Series",
+  "subtopic": "Fibonacci numbers",
+  "code": "8.01e",
+  "outcome": "Work with Fibonacci and Fibonacci-like sequences, including the golden ratio."
+ },
+ {
+  "grade": "all",
+  "unit": "8 Additional Pure Mathematics",
+  "topic": "8.01 Sequences and Series",
+  "subtopic": "Solving recurrence relations",
+  "code": "8.01f",
+  "outcome": "Solve first-order linear recurrence relations with constant coefficients, homogeneous and non-homogeneous."
+ },
+ {
+  "grade": "all",
+  "unit": "8 Additional Pure Mathematics",
+  "topic": "8.01 Sequences and Series",
+  "subtopic": "Solving recurrence relations",
+  "code": "8.01g",
+  "outcome": "Solve second-order linear recurrence relations with distinct, repeated or complex auxiliary roots."
+ },
+ {
+  "grade": "all",
+  "unit": "8 Additional Pure Mathematics",
+  "topic": "8.01 Sequences and Series",
+  "subtopic": "Recurrence modelling",
+  "code": "8.01h",
+  "outcome": "Apply recurrence relations to modelling, such as birth and death rates."
+ },
+ {
+  "grade": "all",
+  "unit": "8 Additional Pure Mathematics",
+  "topic": "8.01 Sequences and Series",
+  "subtopic": "Recurrence modelling",
+  "code": "8.01i",
+  "outcome": "Model with second order recurrence relations."
+ },
+ {
+  "grade": "all",
+  "unit": "8 Additional Pure Mathematics",
+  "topic": "8.02 Number Theory",
+  "subtopic": "Number bases and divisibility",
+  "code": "8.02a",
+  "outcome": "Work with numbers written in base n."
+ },
+ {
+  "grade": "all",
+  "unit": "8 Additional Pure Mathematics",
+  "topic": "8.02 Number Theory",
+  "subtopic": "Number bases and divisibility",
+  "code": "8.02b",
+  "outcome": "Use standard divisibility tests for 2, 3, 4, 5, 8, 9 and 11."
+ },
+ {
+  "grade": "all",
+  "unit": "8 Additional Pure Mathematics",
+  "topic": "8.02 Number Theory",
+  "subtopic": "Number bases and divisibility",
+  "code": "8.02c",
+  "outcome": "Establish divisibility tests for other primes below 50."
+ },
+ {
+  "grade": "all",
+  "unit": "8 Additional Pure Mathematics",
+  "topic": "8.02 Number Theory",
+  "subtopic": "Number bases and divisibility",
+  "code": "8.02d",
+  "outcome": "Use the division algorithm a = bq + r."
+ },
+ {
+  "grade": "all",
+  "unit": "8 Additional Pure Mathematics",
+  "topic": "8.02 Number Theory",
+  "subtopic": "Modular arithmetic",
+  "code": "8.02e",
+  "outcome": "Use finite arithmetic modulo n."
+ },
+ {
+  "grade": "all",
+  "unit": "8 Additional Pure Mathematics",
+  "topic": "8.02 Number Theory",
+  "subtopic": "Modular arithmetic",
+  "code": "8.02f",
+  "outcome": "Solve single linear congruences ax \u2261 b (mod n)."
+ },
+ {
+  "grade": "all",
+  "unit": "8 Additional Pure Mathematics",
+  "topic": "8.02 Number Theory",
+  "subtopic": "Modular arithmetic",
+  "code": "8.02g",
+  "outcome": "Calculate quadratic residues and solve or disprove equations involving them."
+ },
+ {
+  "grade": "all",
+  "unit": "8 Additional Pure Mathematics",
+  "topic": "8.02 Number Theory",
+  "subtopic": "Modular arithmetic",
+  "code": "8.02h",
+  "outcome": "Solve simultaneous linear congruences."
+ },
+ {
+  "grade": "all",
+  "unit": "8 Additional Pure Mathematics",
+  "topic": "8.02 Number Theory",
+  "subtopic": "Primes and factors",
+  "code": "8.02i",
+  "outcome": "Understand primes, composites, highest common factors and coprimality, and the fundamental theorem of arithmetic."
+ },
+ {
+  "grade": "all",
+  "unit": "8 Additional Pure Mathematics",
+  "topic": "8.02 Number Theory",
+  "subtopic": "Primes and factors",
+  "code": "8.02j",
+  "outcome": "Use that a|b and a|c imply a|(bx+cy)."
+ },
+ {
+  "grade": "all",
+  "unit": "8 Additional Pure Mathematics",
+  "topic": "8.02 Number Theory",
+  "subtopic": "Primes and factors",
+  "code": "8.02k",
+  "outcome": "Use Euclid's lemma."
+ },
+ {
+  "grade": "all",
+  "unit": "8 Additional Pure Mathematics",
+  "topic": "8.02 Number Theory",
+  "subtopic": "Fermat's little theorem",
+  "code": "8.02l",
+  "outcome": "Use Fermat's little theorem in both forms and know pseudo-primes exist."
+ },
+ {
+  "grade": "all",
+  "unit": "8 Additional Pure Mathematics",
+  "topic": "8.02 Number Theory",
+  "subtopic": "Fermat's little theorem",
+  "code": "8.02m",
+  "outcome": "Know p-1 need not be the least n with a^n \u2261 1 (mod p)."
+ },
+ {
+  "grade": "all",
+  "unit": "8 Additional Pure Mathematics",
+  "topic": "8.02 Number Theory",
+  "subtopic": "Fermat's little theorem",
+  "code": "8.02n",
+  "outcome": "Know the order of a modulo p divides p-1 and find it."
+ },
+ {
+  "grade": "all",
+  "unit": "8 Additional Pure Mathematics",
+  "topic": "8.02 Number Theory",
+  "subtopic": "Fermat's little theorem",
+  "code": "8.02o",
+  "outcome": "Use the binomial theorem to show (a+b)^p \u2261 a^p + b^p (mod p)."
+ },
+ {
+  "grade": "all",
+  "unit": "8 Additional Pure Mathematics",
+  "topic": "8.03 Groups",
+  "subtopic": "Binary operations",
+  "code": "8.03a",
+  "outcome": "Work with binary operations, associativity and commutativity."
+ },
+ {
+  "grade": "all",
+  "unit": "8 Additional Pure Mathematics",
+  "topic": "8.03 Groups",
+  "subtopic": "Binary operations",
+  "code": "8.03b",
+  "outcome": "Construct Cayley tables for finite sets under a binary operation."
+ },
+ {
+  "grade": "all",
+  "unit": "8 Additional Pure Mathematics",
+  "topic": "8.03 Groups",
+  "subtopic": "Group axioms",
+  "code": "8.03c",
+  "outcome": "Use the definition of a group, identity, closure and abelian groups to test structures."
+ },
+ {
+  "grade": "all",
+  "unit": "8 Additional Pure Mathematics",
+  "topic": "8.03 Groups",
+  "subtopic": "Group axioms",
+  "code": "8.03d",
+  "outcome": "Use the Latin square property of group tables."
+ },
+ {
+  "grade": "all",
+  "unit": "8 Additional Pure Mathematics",
+  "topic": "8.03 Groups",
+  "subtopic": "Orders and subgroups",
+  "code": "8.03e",
+  "outcome": "Find the order of groups and elements, knowing an element's order divides the group's order."
+ },
+ {
+  "grade": "all",
+  "unit": "8 Additional Pure Mathematics",
+  "topic": "8.03 Groups",
+  "subtopic": "Orders and subgroups",
+  "code": "8.03f",
+  "outcome": "Define subgroups, find them and show subsets are or are not proper subgroups."
+ },
+ {
+  "grade": "all",
+  "unit": "8 Additional Pure Mathematics",
+  "topic": "8.03 Groups",
+  "subtopic": "Cyclic groups",
+  "code": "8.03g",
+  "outcome": "Recognise cyclic groups."
+ },
+ {
+  "grade": "all",
+  "unit": "8 Additional Pure Mathematics",
+  "topic": "8.03 Groups",
+  "subtopic": "Cyclic groups",
+  "code": "8.03h",
+  "outcome": "Understand generators and groups generated by two or more elements."
+ },
+ {
+  "grade": "all",
+  "unit": "8 Additional Pure Mathematics",
+  "topic": "8.03 Groups",
+  "subtopic": "Structure of groups",
+  "code": "8.03i",
+  "outcome": "Know the structure of finite groups up to order seven."
+ },
+ {
+  "grade": "all",
+  "unit": "8 Additional Pure Mathematics",
+  "topic": "8.03 Groups",
+  "subtopic": "Structure of groups",
+  "code": "8.03j",
+  "outcome": "Work with groups of higher finite order or infinite order."
+ },
+ {
+  "grade": "all",
+  "unit": "8 Additional Pure Mathematics",
+  "topic": "8.03 Groups",
+  "subtopic": "Structure of groups",
+  "code": "8.03k",
+  "outcome": "Apply Lagrange's theorem on subgroup orders."
+ },
+ {
+  "grade": "all",
+  "unit": "8 Additional Pure Mathematics",
+  "topic": "8.03 Groups",
+  "subtopic": "Isomorphism and abstract groups",
+  "code": "8.03l",
+  "outcome": "Decide informally whether two groups are isomorphic."
+ },
+ {
+  "grade": "all",
+  "unit": "8 Additional Pure Mathematics",
+  "topic": "8.03 Groups",
+  "subtopic": "Isomorphism and abstract groups",
+  "code": "8.03m",
+  "outcome": "Work with groups defined by algebraic properties."
+ },
+ {
+  "grade": "all",
+  "unit": "8 Additional Pure Mathematics",
+  "topic": "8.04 Further Vectors",
+  "subtopic": "Vector product",
+  "code": "8.04a",
+  "outcome": "Define and form the vector product in magnitude, direction and components."
+ },
+ {
+  "grade": "all",
+  "unit": "8 Additional Pure Mathematics",
+  "topic": "8.04 Further Vectors",
+  "subtopic": "Vector product",
+  "code": "8.04b",
+  "outcome": "Use the anti-commutative and distributive properties of the vector product."
+ },
+ {
+  "grade": "all",
+  "unit": "8 Additional Pure Mathematics",
+  "topic": "8.04 Further Vectors",
+  "subtopic": "Areas and volumes",
+  "code": "8.04c",
+  "outcome": "Use the vector product for areas of triangles and parallelograms."
+ },
+ {
+  "grade": "all",
+  "unit": "8 Additional Pure Mathematics",
+  "topic": "8.04 Further Vectors",
+  "subtopic": "Areas and volumes",
+  "code": "8.04d",
+  "outcome": "Understand the significance of a x b = 0."
+ },
+ {
+  "grade": "all",
+  "unit": "8 Additional Pure Mathematics",
+  "topic": "8.04 Further Vectors",
+  "subtopic": "Areas and volumes",
+  "code": "8.04e",
+  "outcome": "Use the scalar triple product for volumes of tetrahedra and parallelepipeds."
+ },
+ {
+  "grade": "all",
+  "unit": "8 Additional Pure Mathematics",
+  "topic": "8.05 Surfaces and Partial Differentiation",
+  "subtopic": "Surfaces",
+  "code": "8.05a",
+  "outcome": "Work with z = f(x,y) and g(x,y,z) = c as surfaces and their partial derivatives."
+ },
+ {
+  "grade": "all",
+  "unit": "8 Additional Pure Mathematics",
+  "topic": "8.05 Surfaces and Partial Differentiation",
+  "subtopic": "Surfaces",
+  "code": "8.05b",
+  "outcome": "Extend to surfaces with more variables and trigonometric, logarithmic and exponential functions."
+ },
+ {
+  "grade": "all",
+  "unit": "8 Additional Pure Mathematics",
+  "topic": "8.05 Surfaces and Partial Differentiation",
+  "subtopic": "Surfaces",
+  "code": "8.05c",
+  "outcome": "Sketch sections and contours of a surface."
+ },
+ {
+  "grade": "all",
+  "unit": "8 Additional Pure Mathematics",
+  "topic": "8.05 Surfaces and Partial Differentiation",
+  "subtopic": "Partial derivatives",
+  "code": "8.05d",
+  "outcome": "Find first, second and mixed partial derivatives, using the mixed derivative theorem."
+ },
+ {
+  "grade": "all",
+  "unit": "8 Additional Pure Mathematics",
+  "topic": "8.05 Surfaces and Partial Differentiation",
+  "subtopic": "Stationary points",
+  "code": "8.05e",
+  "outcome": "Find stationary points of a surface where both partial derivatives are zero."
+ },
+ {
+  "grade": "all",
+  "unit": "8 Additional Pure Mathematics",
+  "topic": "8.05 Surfaces and Partial Differentiation",
+  "subtopic": "Stationary points",
+  "code": "8.05f",
+  "outcome": "Classify stationary points using the Hessian determinant."
+ },
+ {
+  "grade": "all",
+  "unit": "8 Additional Pure Mathematics",
+  "topic": "8.05 Surfaces and Partial Differentiation",
+  "subtopic": "Tangent planes",
+  "code": "8.05g",
+  "outcome": "Find the equation of a tangent plane to a surface at a point."
+ },
+ {
+  "grade": "all",
+  "unit": "8 Additional Pure Mathematics",
+  "topic": "8.06 Further Calculus",
+  "subtopic": "Reduction formulae",
+  "code": "8.06a",
+  "outcome": "Establish and use reduction formulae to evaluate integrals recursively."
+ },
+ {
+  "grade": "all",
+  "unit": "8 Additional Pure Mathematics",
+  "topic": "8.06 Further Calculus",
+  "subtopic": "Arc length and surface area",
+  "code": "8.06b",
+  "outcome": "Find arc lengths and surface areas of revolution for cartesian and parametric curves."
+ }
+]

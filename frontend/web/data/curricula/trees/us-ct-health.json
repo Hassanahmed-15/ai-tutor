@@ -1,0 +1,3200 @@
+{
+ "id": "us-ct-health",
+ "region": "US",
+ "framework": "Connecticut state academic standards: Health Education",
+ "board": null,
+ "qualification": "K-12",
+ "subject": "Health Education",
+ "syllabusCode": null,
+ "gradeSystem": "grade",
+ "source": {
+  "urls": [
+   "https://api.commonstandardsproject.com/api/v1/jurisdictions/7ED35031669E470B98EF63BEAD17286D",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/7ED35031669E470B98EF63BEAD17286D_D2419351_grades-01-02-03-04",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/7ED35031669E470B98EF63BEAD17286D_D2419351_grades-05-06-07-08",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/7ED35031669E470B98EF63BEAD17286D_D2419351_grades-09-10-11-12",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/7ED35031669E470B98EF63BEAD17286D_D2419351_grades-k-pre-k",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/7ED35031669E470B98EF63BEAD17286D_D2740459_grades-01-02-03-04",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/7ED35031669E470B98EF63BEAD17286D_D2740459_grades-05-06-07-08",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/7ED35031669E470B98EF63BEAD17286D_D2740459_grades-09-10-11-12",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/7ED35031669E470B98EF63BEAD17286D_D2740459_grades-k-pre-k"
+  ],
+  "publisher": "Connecticut state education agency (machine-readable via Common Standards Project / ASN)",
+  "licence": "CC BY 3.0 US, Desire2Learn Incorporated; CC BY 3.0 US, D2L Corporation",
+  "firstExam": "2013"
+ },
+ "grades": [
+  {
+   "grade": "1-4",
+   "units": [
+    {
+     "id": "core-concepts",
+     "title": "Core Concepts",
+     "topics": [
+      {
+       "id": "core-concepts",
+       "title": "Core Concepts",
+       "subtopics": [
+        {
+         "id": "core-concepts-1-of-2",
+         "title": "Core Concepts (1 of 2)",
+         "outcomes": [
+          {
+           "code": "E.1.1",
+           "text": "Describe relationships between personal health behaviors and individual well-being"
+          },
+          {
+           "code": "E.1.2",
+           "text": "Describe the interrelationship of mental, emotional, social and physical health during childhood; develop an appreciation of one's own body"
+          },
+          {
+           "code": "E.1.3",
+           "text": "Describe the basic structure and functions of the human body systems using medically accurate terminology and specific functions of the body systems"
+          },
+          {
+           "code": "E.1.4",
+           "text": "Explore how families can influence personal health"
+          },
+          {
+           "code": "E.1.5",
+           "text": "Examine how physical, social and emotional environments influence personal health"
+          }
+         ]
+        },
+        {
+         "id": "core-concepts-2-of-2",
+         "title": "Core Concepts (2 of 2)",
+         "outcomes": [
+          {
+           "code": "E.1.6",
+           "text": "Identify health problems and illnesses that can be prevented or treated early"
+          },
+          {
+           "code": "E.1.7",
+           "text": "Explain how childhood injuries can be prevented or treated"
+          },
+          {
+           "code": "E.1.8",
+           "text": "Recognize how family history, individual decisions, and other risk factors are related to cause and prevention of disease and other health problems"
+          },
+          {
+           "code": "E.1.9",
+           "text": "Define the terms communicable (infectious) and non-communicable (noninfectious) diseases and identify ways to help prevent disease (e.g. HIV/AIDS, diabetes, cancer, heart disease)"
+          },
+          {
+           "code": "E.1.10",
+           "text": "Describe the physical and emotional changes that occur during puberty"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "accessing-health-information-and-resources",
+     "title": "Accessing Health Information and Resources",
+     "topics": [
+      {
+       "id": "accessing-health-information-and-resources",
+       "title": "Accessing Health Information and Resources",
+       "subtopics": [
+        {
+         "id": "accessing-health-information-and-resources-1-of-",
+         "title": "Accessing Health Information and Resources (1 of 2)",
+         "outcomes": [
+          {
+           "code": "E.2.1",
+           "text": "Demonstrate the ability to locate valid health information, products and services"
+          },
+          {
+           "code": "E.2.2",
+           "text": "Demonstrate the ability to locate resources from home, school and community that provide valid health information"
+          },
+          {
+           "code": "E.2.3",
+           "text": "Describe factors that may influence the selection of health information, products and services"
+          },
+          {
+           "code": "E.2.4",
+           "text": "Discuss ways to obtain information about human growth and development from family, school personnel, health professionals and other responsible adults"
+          }
+         ]
+        },
+        {
+         "id": "accessing-health-information-and-resources-2-of-",
+         "title": "Accessing Health Information and Resources (2 of 2)",
+         "outcomes": [
+          {
+           "code": "E.2.1",
+           "text": "Identify a trusted adult who can provide accurate information about puberty and personal hygiene."
+          },
+          {
+           "code": "E.2.2",
+           "text": "Demonstrate the ability to locate resources at home, school and in the community that provide valid health information."
+          },
+          {
+           "code": "E.2.3",
+           "text": "Discuss existing laws that are intended to protect young people from being exploited, harassed or bullied."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "self-management-of-healthy-behaviors",
+     "title": "Self-management of Healthy Behaviors",
+     "topics": [
+      {
+       "id": "self-management-of-healthy-behaviors",
+       "title": "Self-management of Healthy Behaviors",
+       "subtopics": [
+        {
+         "id": "self-management-of-healthy-behaviors",
+         "title": "Self-management of Healthy Behaviors",
+         "outcomes": [
+          {
+           "code": "E.3.1",
+           "text": "Identify responsible health behaviors"
+          },
+          {
+           "code": "E.3.2",
+           "text": "List personal health needs"
+          },
+          {
+           "code": "E.3.3",
+           "text": "Compare behaviors that are safe to those that are risky or harmful"
+          },
+          {
+           "code": "E.3.4",
+           "text": "Demonstrate strategies to improve or maintain personal health by examining influences and rules that affect decisions"
+          },
+          {
+           "code": "E.3.5",
+           "text": "Develop and practice safety techniques to avoid and reduce injury and disease"
+          },
+          {
+           "code": "E.3.6",
+           "text": "Identify and practice skills to manage stress"
+          },
+          {
+           "code": "E.3.1",
+           "text": "Discuss strategies for expressing feelings appropriately."
+          },
+          {
+           "code": "E.3.2",
+           "text": "Discuss personal behaviors that are health-enhancing."
+          },
+          {
+           "code": "E.3.7",
+           "text": "Identify ways in which an individual could respond in a situation when they or someone else is being bullied or harassed."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "analyzing-internal-and-external-influences",
+     "title": "Analyzing Internal and External Influences",
+     "topics": [
+      {
+       "id": "analyzing-internal-and-external-influences",
+       "title": "Analyzing Internal and External Influences",
+       "subtopics": [
+        {
+         "id": "analyzing-internal-and-external-influences-1-of-",
+         "title": "Analyzing Internal and External Influences (1 of 2)",
+         "outcomes": [
+          {
+           "code": "E.4.1",
+           "text": "Describe how family and culture influence personal health behaviors"
+          },
+          {
+           "code": "E.4.2",
+           "text": "Explain how media and technology influence personal and health behaviors"
+          },
+          {
+           "code": "E.4.3",
+           "text": "Explain how family, school and peers influence personal health"
+          },
+          {
+           "code": "E.4.4",
+           "text": "Identify and explain how the media may influence messages one may receive about body image"
+          }
+         ]
+        },
+        {
+         "id": "analyzing-internal-and-external-influences-2-of-",
+         "title": "Analyzing Internal and External Influences (2 of 2)",
+         "outcomes": [
+          {
+           "code": "E.4.1",
+           "text": "Describe what influences behaviors, attitudes and decisions."
+          },
+          {
+           "code": "E.4.2.a",
+           "text": "Describe how culture, media, technology and people may influence the attitudes, behaviors and decisions of young people (e.g. attractiveness, body image, relationships, self-esteem)."
+          },
+          {
+           "code": "E.4.2.b",
+           "text": "Compare positive and negative ways peers influence behaviors."
+          },
+          {
+           "code": "E.4.4",
+           "text": "Identify the ways in which technology can impact physical and emotional safety (e.g. internet, texting)."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "communication-skills",
+     "title": "Communication Skills",
+     "topics": [
+      {
+       "id": "communication-skills",
+       "title": "Communication Skills",
+       "subtopics": [
+        {
+         "id": "communication-skills-1-of-4",
+         "title": "Communication Skills (1 of 4)",
+         "outcomes": [
+          {
+           "code": "E.5.1",
+           "text": "Practice verbal and nonverbal communication as a means of enhancing health"
+          },
+          {
+           "code": "E.5.2",
+           "text": "Demonstrate characteristics needed to be a responsible individual within their group, school, family and community"
+          },
+          {
+           "code": "E.5.3",
+           "text": "Describe emotions and how they can affect an individual's behavior"
+          },
+          {
+           "code": "E.5.4",
+           "text": "Identify and demonstrate healthy ways to express needs, wants and feelings"
+          },
+          {
+           "code": "E.5.5",
+           "text": "Identify, discuss and demonstrate ways to communicate care, consideration and respect for themselves and others without bias, abuse, discrimination or harassment based on, but not limited to, race, color, sex, religion, national origin, sexual orientation, ancestry, marital status, mental retardation, mental disorder and learning and/or physical disability"
+          }
+         ]
+        },
+        {
+         "id": "communication-skills-2-of-4",
+         "title": "Communication Skills (2 of 4)",
+         "outcomes": [
+          {
+           "code": "E.5.6",
+           "text": "Demonstrate active listening skills to build and maintain healthy relationships with peers and family members"
+          },
+          {
+           "code": "E.5.7",
+           "text": "Demonstrate avoidance and refusal skills to enhance health"
+          },
+          {
+           "code": "E.5.8",
+           "text": "Identify possible causes of conflict"
+          },
+          {
+           "code": "E.5.9",
+           "text": "Demonstrate family, peer, school and community strategies to prevent, manage and resolve conflicts and identify adults who might assist, when appropriate"
+          },
+          {
+           "code": "E.5.1",
+           "text": "Identify various communication styles and the appropriate use of each (e.g. passive, assertive, aggressive, other)."
+          }
+         ]
+        },
+        {
+         "id": "communication-skills-3-of-4",
+         "title": "Communication Skills (3 of 4)",
+         "outcomes": [
+          {
+           "code": "E.5.2",
+           "text": "Demonstrate healthy ways to express emotions and feelings (e.g. affection, love, friendship, concern, empathy)."
+          },
+          {
+           "code": "E.5.3",
+           "text": "Describe and demonstrate effective negotiation and refusal skills."
+          },
+          {
+           "code": "E.5.4.a",
+           "text": "Demonstrate healthy ways to express needs, wants and feelings."
+          },
+          {
+           "code": "E.5.4.b",
+           "text": "Demonstrate ways to take action if someone is talking to you or touching you in a way that makes you feel uncomfortable."
+          },
+          {
+           "code": "E.5.4.c",
+           "text": "Demonstrate healthy ways to express empathy for others."
+          }
+         ]
+        },
+        {
+         "id": "communication-skills-4-of-4",
+         "title": "Communication Skills (4 of 4)",
+         "outcomes": [
+          {
+           "code": "E.5.4.d",
+           "text": "Demonstrate ways to show respect for different types of families."
+          },
+          {
+           "code": "E.5.5",
+           "text": "Identify various forms of communication that constitutes sexual harassment; discuss existing laws that are intended to protect young people from being exploited; and identify a trusted adult with whom you can confide."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "decision-making-skills",
+     "title": "Decision-Making Skills",
+     "topics": [
+      {
+       "id": "decision-making-skills",
+       "title": "Decision-Making Skills",
+       "subtopics": [
+        {
+         "id": "decision-making-skills",
+         "title": "Decision-Making Skills",
+         "outcomes": [
+          {
+           "code": "E.6.1",
+           "text": "Demonstrate the ability to apply a decisionmaking process to enhance health"
+          },
+          {
+           "code": "E.6.2",
+           "text": "Explain when to ask for assistance in making health-related decisions"
+          },
+          {
+           "code": "E.6.3",
+           "text": "Predict outcomes of positive health decisions"
+          },
+          {
+           "code": "E.6.1",
+           "text": "Demonstrate the ability to apply a decision-making process to enhance health."
+          },
+          {
+           "code": "E.6.2",
+           "text": "Explain how personal decisions have an impact on self and others."
+          },
+          {
+           "code": "E.6.3",
+           "text": "Identify factors that would influence one's ability to make responsible healthy decisions (e.g. peer pressure, substance abuse)."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "goal-setting-skills",
+     "title": "Goal-Setting Skills",
+     "topics": [
+      {
+       "id": "goal-setting-skills",
+       "title": "Goal-Setting Skills",
+       "subtopics": [
+        {
+         "id": "goal-setting-skills",
+         "title": "Goal-Setting Skills",
+         "outcomes": [
+          {
+           "code": "E.7.1",
+           "text": "Demonstrate the ability to apply the goalsetting process to enhance health"
+          },
+          {
+           "code": "E.7.1",
+           "text": "Identify personal goals and demonstrate the ability to apply a goal setting process to enhance health."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "advocacy",
+     "title": "Advocacy",
+     "topics": [
+      {
+       "id": "advocacy",
+       "title": "Advocacy",
+       "subtopics": [
+        {
+         "id": "advocacy-1-of-3",
+         "title": "Advocacy (1 of 3)",
+         "outcomes": [
+          {
+           "code": "E.8.1",
+           "text": "Describe a variety of methods to convey accurate health information, concepts and skills"
+          },
+          {
+           "code": "E.8.2",
+           "text": "Express opinions about health issues based on accurate health information"
+          },
+          {
+           "code": "E.8.3",
+           "text": "Identify and describe community agencies that advocate for healthy individuals, families and communities"
+          },
+          {
+           "code": "E.8.4",
+           "text": "Describe ways to encourage and support others in making positive health choices"
+          }
+         ]
+        },
+        {
+         "id": "advocacy-2-of-3",
+         "title": "Advocacy (2 of 3)",
+         "outcomes": [
+          {
+           "code": "E.8.5",
+           "text": "Identify ways to work cooperatively in small groups when advocating for healthy individuals, families and schools"
+          },
+          {
+           "code": "E.8.6",
+           "text": "Demonstrate positive ways to show care, consideration and concern for others (e.g. persons living with HIV/AIDS, diabetes, cancer)"
+          },
+          {
+           "code": "E.8.7",
+           "text": "Promote positive, healthy interpersonal relationships with respect and appreciation for each other"
+          },
+          {
+           "code": "E.8.1",
+           "text": "Demonstrate positive ways to show care, consideration and concern for others."
+          }
+         ]
+        },
+        {
+         "id": "advocacy-3-of-3",
+         "title": "Advocacy (3 of 3)",
+         "outcomes": [
+          {
+           "code": "E.8.2",
+           "text": "Define the impact stereotypes may have on people and how one might counter a stereotype."
+          },
+          {
+           "code": "E.8.3",
+           "text": "Describe ways to promote positive, healthy interpersonal relationships with respect and appreciation for each other."
+          },
+          {
+           "code": "E.8.4",
+           "text": "Persuade others to take action when someone else is being bullied or harassed."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "motor-skill-performance",
+     "title": "Motor Skill Performance",
+     "topics": [
+      {
+       "id": "motor-skill-performance",
+       "title": "Motor Skill Performance",
+       "subtopics": [
+        {
+         "id": "motor-skill-performance",
+         "title": "Motor Skill Performance",
+         "outcomes": [
+          {
+           "code": "E.9.1",
+           "text": "Demonstrate developmentally mature form in the fundamental movement skills: locomotor, nonlocomotor and manipulative, in a closed environment (skills in isolation)"
+          },
+          {
+           "code": "E.9.2",
+           "text": "Demonstrate simple applications combining locomotor, nonlocomotor and manipulative skills to participate in developmentally appropriate movement and fitness activities"
+          },
+          {
+           "code": "E.9.3",
+           "text": "Explore and adapt fundamental movement skills in a variety of dynamic environments"
+          },
+          {
+           "code": "E.9.4",
+           "text": "Acquire beginning skills for a few specialized movement forms"
+          },
+          {
+           "code": "E.9.5",
+           "text": "Participate in a variety of modified games, developmentally appropriate tasks, activities, creative movement, dance and play"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "applying-concepts-and-strategies",
+     "title": "Applying Concepts and Strategies",
+     "topics": [
+      {
+       "id": "applying-concepts-and-strategies",
+       "title": "Applying Concepts and Strategies",
+       "subtopics": [
+        {
+         "id": "applying-concepts-and-strategies",
+         "title": "Applying Concepts and Strategies",
+         "outcomes": [
+          {
+           "code": "E.10.1",
+           "text": "Demonstrate an understanding of what the body does, where the body moves, how the body performs the movement and relationships that occur in movement"
+          },
+          {
+           "code": "E.10.2",
+           "text": "Recognize critical performance skill elements in self and others using movement vocabulary"
+          },
+          {
+           "code": "E.10.3",
+           "text": "Demonstrate knowledge of rules, safety practices and procedures of specific activities"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "engaging-in-physical-activity",
+     "title": "Engaging in Physical Activity",
+     "topics": [
+      {
+       "id": "engaging-in-physical-activity",
+       "title": "Engaging in Physical Activity",
+       "subtopics": [
+        {
+         "id": "engaging-in-physical-activity",
+         "title": "Engaging in Physical Activity",
+         "outcomes": [
+          {
+           "code": "E.11.1",
+           "text": "Engage in a variety of moderate to vigorous developmentally appropriate physical activities on a regular basis"
+          },
+          {
+           "code": "E.11.2",
+           "text": "Demonstrate an understanding of a variety of movements and how they affect the body"
+          },
+          {
+           "code": "E.11.3",
+           "text": "Apply the understanding of physical activity concepts to developing movement sequences and game strategies"
+          },
+          {
+           "code": "E.11.4",
+           "text": "Engage in appropriate physical activity during and outside of school that promotes the development and improvement of physical fitness level"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "physical-fitness",
+     "title": "Physical Fitness",
+     "topics": [
+      {
+       "id": "physical-fitness",
+       "title": "Physical Fitness",
+       "subtopics": [
+        {
+         "id": "physical-fitness",
+         "title": "Physical Fitness",
+         "outcomes": [
+          {
+           "code": "E.12.1",
+           "text": "Demonstrate understanding of the relationship between activities and physical fitness components (e.g., cardiorespiratory endurance, muscular strength and endurance, flexibility, nutritional status and body composition)"
+          },
+          {
+           "code": "E.12.2",
+           "text": "Recognize physiological indicators (e.g., heart rate, body temperature, perspiration, thirst) of exercise during and after physical activity"
+          },
+          {
+           "code": "E.12.3",
+           "text": "Understand the results of formal fitness testing and correctly associate these results with overall physical fitness, nutritional levels and personal health status"
+          },
+          {
+           "code": "E.12.4",
+           "text": "Maintain a wellness log including exercise and food intake for a set period of time"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "responsible-behavior",
+     "title": "Responsible Behavior",
+     "topics": [
+      {
+       "id": "responsible-behavior",
+       "title": "Responsible Behavior",
+       "subtopics": [
+        {
+         "id": "responsible-behavior",
+         "title": "Responsible Behavior",
+         "outcomes": [
+          {
+           "code": "E.13.1",
+           "text": "Understand, participate in the development of, and follow classroom rules; follow activity-specific rules, safety practices and procedures; and demonstrate etiquette and good sportsmanship in a variety of physical activity settings"
+          },
+          {
+           "code": "E.13.2",
+           "text": "Work independently or cooperatively and productively with partners or in small groups to complete assigned tasks"
+          },
+          {
+           "code": "E.13.3",
+           "text": "Demonstrate behaviors that are sensitive to individual differences (e.g., physical, gender, cultural/ethnic, social and emotional) that can affect group activities"
+          },
+          {
+           "code": "E.13.4",
+           "text": "Develop skills needed for resolving conflicts peacefully"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "benefits-of-physical-activity",
+     "title": "Benefits of Physical Activity",
+     "topics": [
+      {
+       "id": "benefits-of-physical-activity",
+       "title": "Benefits of Physical Activity",
+       "subtopics": [
+        {
+         "id": "benefits-of-physical-activity",
+         "title": "Benefits of Physical Activity",
+         "outcomes": [
+          {
+           "code": "E.14.1",
+           "text": "Express and identify feelings about participating in physical activity and begin to make choices based on those feelings"
+          },
+          {
+           "code": "E.14.2",
+           "text": "Use physical activity as a means of selfexpression"
+          },
+          {
+           "code": "E.14.3",
+           "text": "Use physical activity as a positive opportunity for social and group interaction"
+          },
+          {
+           "code": "E.14.4",
+           "text": "Experience personal challenges through physical activity"
+          },
+          {
+           "code": "E.14.5",
+           "text": "Understand that practicing activities increases specific skill competence"
+          },
+          {
+           "code": "E.14.6",
+           "text": "Experiment with new physical activities"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "core-concepts-physical-mental-emotional-and-soci",
+     "title": "Core Concepts: Physical, Mental, Emotional and Social Growth and Development",
+     "topics": [
+      {
+       "id": "core-concepts-physical-mental-emotional-and-soci",
+       "title": "Core Concepts: Physical, Mental, Emotional and Social Growth and Development",
+       "subtopics": [
+        {
+         "id": "core-concepts-physical-mental-emotional-and-soci",
+         "title": "Core Concepts: Physical, Mental, Emotional and Social Growth and Development (1 of 3)",
+         "outcomes": [
+          {
+           "code": "E1.1",
+           "text": "Describe and demonstrate appropriate ways to express affection with different people in various situations."
+          },
+          {
+           "code": "E.1.2.a",
+           "text": "Identify characteristics of positive self-esteem and self-respect."
+          },
+          {
+           "code": "E.1.2.b",
+           "text": "Explain the likely impact of good health habits on self-esteem and how a person feels about his/her body."
+          },
+          {
+           "code": "E.1.2.c",
+           "text": "Use proper names for body parts including gender specific anatomy."
+          }
+         ]
+        },
+        {
+         "id": "core-concepts-physical-mental-emotional-and-soci-2",
+         "title": "Core Concepts: Physical, Mental, Emotional and Social Growth and Development (2 of 3)",
+         "outcomes": [
+          {
+           "code": "E.1.2.d",
+           "text": "Explain that puberty, human growth and development can vary considerably."
+          },
+          {
+           "code": "E.1.2.e",
+           "text": "Describe the physical and emotional changes that occur during puberty."
+          },
+          {
+           "code": "E.1.3.a",
+           "text": "Describe healthy families and a healthy family environment."
+          },
+          {
+           "code": "E.1.3.b",
+           "text": "Describe how families may change over time and the impact those changes may have."
+          }
+         ]
+        },
+        {
+         "id": "core-concepts-physical-mental-emotional-and-soci-3",
+         "title": "Core Concepts: Physical, Mental, Emotional and Social Growth and Development (3 of 3)",
+         "outcomes": [
+          {
+           "code": "E.1.4",
+           "text": "Discuss qualities of a healthy relationship."
+          },
+          {
+           "code": "E.1.5",
+           "text": "Examine how physical, social, cultural and emotional environments influence personal health."
+          },
+          {
+           "code": "E.1.7",
+           "text": "Identify and discuss personal behaviors that protect from disease."
+          },
+          {
+           "code": "E.1.10",
+           "text": "Define the terms communicable (infectious) and non-communicable (non-infectious) diseases and identify ways to help prevent disease (e.g. HIV/AIDS)."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "explain-the-importance-of-setting-and-respecting",
+       "title": "Explain the importance of setting and respecting personal boundaries",
+       "subtopics": [
+        {
+         "id": "explain-the-importance-of-setting-and-respecting",
+         "title": "Explain the importance of setting and respecting personal boundaries",
+         "outcomes": [
+          {
+           "code": "E.1.6.c",
+           "text": "Explain that everyone, including children, have a right to tell others not to touch their body when they do not want to be touched."
+          },
+          {
+           "code": "E.1.6.f",
+           "text": "Describe different ways in which people express their gender (e.g., dress, play, choice of jobs)."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "5-8",
+   "units": [
+    {
+     "id": "core-concepts",
+     "title": "Core Concepts",
+     "topics": [
+      {
+       "id": "core-concepts",
+       "title": "Core Concepts",
+       "subtopics": [
+        {
+         "id": "core-concepts-1-of-2",
+         "title": "Core Concepts (1 of 2)",
+         "outcomes": [
+          {
+           "code": "M.1.1",
+           "text": "Explain the relationship between positive health behaviors and prevention of injury, illness, disease and premature death"
+          },
+          {
+           "code": "M.1.2",
+           "text": "Describe the interrelationship of mental, emotional, social and physical health during preadolescence/adolescence"
+          },
+          {
+           "code": "M.1.3",
+           "text": "Explain how health is influenced by the growth and interaction of body systems"
+          },
+          {
+           "code": "M.1.4",
+           "text": "Examine how families and peers can influence the health of adolescents"
+          },
+          {
+           "code": "M.1.5",
+           "text": "Analyze ways in which the environment and personal health are interrelated"
+          }
+         ]
+        },
+        {
+         "id": "core-concepts-2-of-2",
+         "title": "Core Concepts (2 of 2)",
+         "outcomes": [
+          {
+           "code": "M.1.6",
+           "text": "Use appropriate strategies to prevent/reduce risks and promote well-being"
+          },
+          {
+           "code": "M.1.7",
+           "text": "Explain how appropriate health care can prevent premature death and disability"
+          },
+          {
+           "code": "M.1.8",
+           "text": "Describe how pathogens, family history, individual decisions and other risk factors are related to the cause or prevention of disease and other health problems"
+          },
+          {
+           "code": "M.1.9",
+           "text": "Identify and discuss causes, modes of transmission, symptoms and prevention methods of communicable and non-communicable diseases (e.g. HIV/AIDS, sexually transmitted diseases, diabetes, cancer, heart disease)"
+          },
+          {
+           "code": "M.1.10",
+           "text": "Describe puberty and human reproduction as it relates to medically accurate comprehensive sexuality education"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "accessing-health-information-and-resources",
+     "title": "Accessing Health Information and Resources",
+     "topics": [
+      {
+       "id": "accessing-health-information-and-resources",
+       "title": "Accessing Health Information and Resources",
+       "subtopics": [
+        {
+         "id": "accessing-health-information-and-resources-1-of-",
+         "title": "Accessing Health Information and Resources (1 of 2)",
+         "outcomes": [
+          {
+           "code": "M.2.1",
+           "text": "Analyze the validity of health information and the cost of products and services"
+          },
+          {
+           "code": "M.2.2",
+           "text": "Demonstrate the ability to locate and use resources from home, school and community that provide valid health information, products and services"
+          },
+          {
+           "code": "M.2.3",
+           "text": "Examine factors that may influence the personal selection of health information, products and services"
+          },
+          {
+           "code": "M.2.4",
+           "text": "Demonstrate ways to obtain medically accurate information about comprehensive sexuality education from family, school personnel, health professionals and other responsible adults"
+          }
+         ]
+        },
+        {
+         "id": "accessing-health-information-and-resources-2-of-",
+         "title": "Accessing Health Information and Resources (2 of 2)",
+         "outcomes": [
+          {
+           "code": "M.2.1",
+           "text": "Identify a trusted adult who can provide accurate information about puberty, adolescent development and sexuality."
+          },
+          {
+           "code": "M.2.2",
+           "text": "Distinguish between reliable and unreliable sources of information on sexual health (e.g. internet and social media)."
+          },
+          {
+           "code": "M.2.3.a",
+           "text": "Identify the process for getting help and to report sexual harassment, sexual assault, child abuse, human trafficking, bullying and other types of violence."
+          },
+          {
+           "code": "M.2.3.b",
+           "text": "Discuss the legal age of consent for sexual behaviors in Connecticut."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "self-management-of-healthy-behaviors",
+     "title": "Self-management of Healthy Behaviors",
+     "topics": [
+      {
+       "id": "self-management-of-healthy-behaviors",
+       "title": "Self-management of Healthy Behaviors",
+       "subtopics": [
+        {
+         "id": "self-management-of-healthy-behaviors",
+         "title": "Self-management of Healthy Behaviors",
+         "outcomes": [
+          {
+           "code": "M.3.1",
+           "text": "Explain the importance of assuming responsibility for personal health behaviors"
+          },
+          {
+           "code": "M.3.2",
+           "text": "Examine personal health status to determine needs"
+          },
+          {
+           "code": "M.3.3",
+           "text": "Distinguish between safe, risky or harmful behaviors involving themselves and/or others"
+          },
+          {
+           "code": "M.3.4",
+           "text": "Apply strategies to improve or maintain personal and family health by examining influences, rules and legal responsibilities that affect decisions"
+          },
+          {
+           "code": "M.3.5",
+           "text": "Examine and apply safety techniques to avoid and reduce injury and prevent disease"
+          },
+          {
+           "code": "M.3.6",
+           "text": "Apply skills to manage stress"
+          }
+         ]
+        },
+        {
+         "id": "self-management-of-healthy-behaviors-1-of-2",
+         "title": "Self-Management of Healthy Behaviors (1 of 2)",
+         "outcomes": [
+          {
+           "code": "M.3.1",
+           "text": "Demonstrate the ability to use self-control and express feelings appropriately."
+          },
+          {
+           "code": "M.3.2.a",
+           "text": "Identify strategies that an individual could use to abstain or delay sexual intercourse."
+          },
+          {
+           "code": "M.3.2.b",
+           "text": "Describe abstinence and its role in maintaining sexual health."
+          },
+          {
+           "code": "M.3.4",
+           "text": "Discuss the importance of personal responsibility for sexual behavior, including abstinence and sexual and reproductive health."
+          }
+         ]
+        },
+        {
+         "id": "self-management-of-healthy-behaviors-2-of-2",
+         "title": "Self-Management of Healthy Behaviors (2 of 2)",
+         "outcomes": [
+          {
+           "code": "M.3.5.a",
+           "text": "Identify strategies to use social media safely and respectfully."
+          },
+          {
+           "code": "M.3.5.b",
+           "text": "Identify sexual exploitation and behaviors that are perceived as sexually coercive and resources to address these concerns."
+          },
+          {
+           "code": "M.3.6",
+           "text": "Identify and discuss the value of postponing sexual activity, the methods and effectiveness of contraception and ways to protect oneself from communicable diseases (e.g. STD/HIV)."
+          },
+          {
+           "code": "M.3.7",
+           "text": "Discuss ways in which an individual could respond in a situation when they or someone else is being bullied or harassed."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "analyzing-internal-and-external-influences",
+     "title": "Analyzing Internal and External Influences",
+     "topics": [
+      {
+       "id": "analyzing-internal-and-external-influences",
+       "title": "Analyzing Internal and External Influences",
+       "subtopics": [
+        {
+         "id": "analyzing-internal-and-external-influences-1-of-",
+         "title": "Analyzing Internal and External Influences (1 of 2)",
+         "outcomes": [
+          {
+           "code": "M.4.1",
+           "text": "Examine the influence of family beliefs and cultural beliefs on personal health behaviors"
+          },
+          {
+           "code": "M.4.2",
+           "text": "Analyze how media, technology and other factors influence personal health behaviors"
+          },
+          {
+           "code": "M.4.3",
+           "text": "Analyze how family, school and peers influence personal health"
+          },
+          {
+           "code": "M.4.4",
+           "text": "Identify and explain how the media may influence behaviors and decisions in regard to sexuality"
+          },
+          {
+           "code": "M.4.1",
+           "text": "Describe how internal and external influences affect sexual behavior, attitudes and decisions."
+          }
+         ]
+        },
+        {
+         "id": "analyzing-internal-and-external-influences-2-of-",
+         "title": "Analyzing Internal and External Influences (2 of 2)",
+         "outcomes": [
+          {
+           "code": "M.4.2",
+           "text": "Analyze a variety of external sources that may influence sexual decision making and sexual behavior (e.g. parents, family values, media, internet, culture, peers, society)."
+          },
+          {
+           "code": "M.4.3",
+           "text": "Analyze the influence of alcohol and other drugs on sexual behavior and sexual health."
+          },
+          {
+           "code": "M.4.4.a",
+           "text": "Describe the ways in which technology can impact physical and emotional safety (e.g. internet, social media, texting)."
+          },
+          {
+           "code": "M.4.4.b",
+           "text": "Explain how sexual exploitation can occur on the internet, social media or other."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "communication-skills",
+     "title": "Communication Skills",
+     "topics": [
+      {
+       "id": "communication-skills",
+       "title": "Communication Skills",
+       "subtopics": [
+        {
+         "id": "communication-skills-1-of-4",
+         "title": "Communication Skills (1 of 4)",
+         "outcomes": [
+          {
+           "code": "M.5.1",
+           "text": "Apply effective verbal and nonverbal communication skills as a means of enhancing health"
+          },
+          {
+           "code": "M.5.2",
+           "text": "Use characteristics needed to be a responsible individual within their peer group, school, family and community"
+          },
+          {
+           "code": "M.5.3",
+           "text": "Identify ways in which emotions may affect communication, behavior and relationships"
+          },
+          {
+           "code": "M.5.4",
+           "text": "Compare and contrast healthy ways to express needs, wants and feelings"
+          }
+         ]
+        },
+        {
+         "id": "communication-skills-2-of-4",
+         "title": "Communication Skills (2 of 4)",
+         "outcomes": [
+          {
+           "code": "M.5.5",
+           "text": "Demonstrate ways to communicate care, empathy, respect and responsibility for others without bias, abuse, discrimination or harassment based on, but not limited to, race, color, sex, religion, national origin, sexual orientation, ancestry, marital status, mental retardation, mental disorder and learning and/or physical disability"
+          },
+          {
+           "code": "M.5.6",
+           "text": "Use communication skills to build and maintain healthy relationships"
+          },
+          {
+           "code": "M.5.7",
+           "text": "Demonstrate avoidance, refusal and negotiation skills to enhance healthy relationships"
+          },
+          {
+           "code": "M.5.8",
+           "text": "Examine the possible causes of conflict among youth in schools and communities"
+          }
+         ]
+        },
+        {
+         "id": "communication-skills-3-of-4",
+         "title": "Communication Skills (3 of 4)",
+         "outcomes": [
+          {
+           "code": "M.5.9",
+           "text": "Demonstrate strategies to prevent, manage and resolve conflicts in healthy ways and identify adults and peers who might assist, when appropriate"
+          },
+          {
+           "code": "M.5.1.a",
+           "text": "Discuss what influences ones decision to use various communication styles in developing and sustaining healthy relationships."
+          },
+          {
+           "code": "M.5.1.b",
+           "text": "Demonstrate positive ways to communicate differences of opinion while maintaining relationships."
+          },
+          {
+           "code": "M.5.2",
+           "text": "Identify and demonstrate verbal and non-verbal skills to refuse pressure to engage in sexual risk and other higher risk behaviors (e.g. smoking, drinking)."
+          }
+         ]
+        },
+        {
+         "id": "communication-skills-4-of-4",
+         "title": "Communication Skills (4 of 4)",
+         "outcomes": [
+          {
+           "code": "M.5.3",
+           "text": "Demonstrate effective negotiation and refusal skills to avoid sexual risk behaviors."
+          },
+          {
+           "code": "M.5.4.a",
+           "text": "Demonstrate how to communicate clear expectations, boundaries, personal safety strategies and clear limits on sexual behaviors."
+          },
+          {
+           "code": "M.5.4.c",
+           "text": "Analyze healthy ways to express empathy for others."
+          },
+          {
+           "code": "M.5.5",
+           "text": "Discuss various forms of communication that constitutes sexual harassment and identify the process for reporting incidents of sexual harassment and other types of violence."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "decision-making-skills",
+     "title": "Decision-Making Skills",
+     "topics": [
+      {
+       "id": "decision-making-skills",
+       "title": "Decision-Making Skills",
+       "subtopics": [
+        {
+         "id": "decision-making-skills",
+         "title": "Decision-Making Skills",
+         "outcomes": [
+          {
+           "code": "M.6.1",
+           "text": "Use a decisionmaking process to enhance health"
+          },
+          {
+           "code": "M.6.2",
+           "text": "Describe and analyze how health-related decisions are influenced by using resources from family, school and community"
+          },
+          {
+           "code": "M.6.3",
+           "text": "Predict how decisions regarding health behaviors have consequences for themselves and others"
+          },
+          {
+           "code": "M.6.1",
+           "text": "Describe the impact that external influences (e.g. partners, peers, family, community) have on decision-making about abstinence, sexual activity and sexual health."
+          },
+          {
+           "code": "M.6.2",
+           "text": "Predict how deciding to remain abstinent protects ones' sexual health."
+          },
+          {
+           "code": "M.6.3",
+           "text": "Explain how the use of alcohol and other drugs impacts the decision to remain abstinent or be sexually active."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "goal-setting-skills",
+     "title": "Goal-Setting Skills",
+     "topics": [
+      {
+       "id": "goal-setting-skills",
+       "title": "Goal-Setting Skills",
+       "subtopics": [
+        {
+         "id": "goal-setting-skills",
+         "title": "Goal-Setting Skills",
+         "outcomes": [
+          {
+           "code": "M.7.1",
+           "text": "Use the goal-setting process to enhance health"
+          },
+          {
+           "code": "M.7.1",
+           "text": "Discuss how internal and external influences may affect goal-setting (e.g. personal choices, sexual health, behaviors, family, peers, community, culture)."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "advocacy",
+     "title": "Advocacy",
+     "topics": [
+      {
+       "id": "advocacy",
+       "title": "Advocacy",
+       "subtopics": [
+        {
+         "id": "advocacy-1-of-3",
+         "title": "Advocacy (1 of 3)",
+         "outcomes": [
+          {
+           "code": "M.8.1",
+           "text": "Analyze various methods to accurately express health information, concepts and skills"
+          },
+          {
+           "code": "M.8.2",
+           "text": "Support a healthy position with accurate information"
+          },
+          {
+           "code": "M.8.3",
+           "text": "Analyze community agencies that advocate for healthy individuals, families and communities"
+          },
+          {
+           "code": "M.8.4",
+           "text": "Encourage and support others in making positive health choices"
+          }
+         ]
+        },
+        {
+         "id": "advocacy-2-of-3",
+         "title": "Advocacy (2 of 3)",
+         "outcomes": [
+          {
+           "code": "M.8.5",
+           "text": "Demonstrate the ability to work cooperatively in small groups when advocating for healthy individuals, families and schools"
+          },
+          {
+           "code": "M.8.6",
+           "text": "Promote positive ways to show care and consideration for others (e.g. persons living with HIV/AIDS, diabetes, cancer)"
+          },
+          {
+           "code": "M.8.7",
+           "text": "Assess the impact of family, cultural, media and societal messages on one's thoughts, feelings, values and behaviors related to sexuality"
+          },
+          {
+           "code": "M.8.1",
+           "text": "Formulate a plan to engage in an experience of caring, compassion and advocating for others (e.g., community service)."
+          }
+         ]
+        },
+        {
+         "id": "advocacy-3-of-3",
+         "title": "Advocacy (3 of 3)",
+         "outcomes": [
+          {
+           "code": "M.8.2",
+           "text": "Describe the impact discrimination has on people and how to address bias and discrimination."
+          },
+          {
+           "code": "M.8.3",
+           "text": "Discuss the benefits of and advocate for developmentally appropriate, medically accurate sexual health education."
+          },
+          {
+           "code": "M.8.4",
+           "text": "Advocate for safe environments that encourage dignified and respectful treatment of others."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "motor-skill-performance",
+     "title": "Motor Skill Performance",
+     "topics": [
+      {
+       "id": "motor-skill-performance",
+       "title": "Motor Skill Performance",
+       "subtopics": [
+        {
+         "id": "motor-skill-performance",
+         "title": "Motor Skill Performance",
+         "outcomes": [
+          {
+           "code": "M.9.1",
+           "text": "Demonstrate developmentally mature form in the fundamental movement skills in combinations of closed and open environments"
+          },
+          {
+           "code": "M.9.2",
+           "text": "Demonstrate developmentally mature applications combining locomotor, nonlocomotor and manipulative skills to participate in developmentally appropriate movement and fitness activities"
+          },
+          {
+           "code": "M.9.3",
+           "text": "Adapt and combine skills to meet the demands of increasingly dynamic environments"
+          },
+          {
+           "code": "M.9.4",
+           "text": "Develop increasing competence in more advanced specialized skills"
+          },
+          {
+           "code": "M.9.5",
+           "text": "Participate in a variety of individual, dual and team tasks, activities, creative movement, dance, play, games and sports"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "applying-concepts-and-strategies",
+     "title": "Applying Concepts and Strategies",
+     "topics": [
+      {
+       "id": "applying-concepts-and-strategies",
+       "title": "Applying Concepts and Strategies",
+       "subtopics": [
+        {
+         "id": "applying-concepts-and-strategies",
+         "title": "Applying Concepts and Strategies",
+         "outcomes": [
+          {
+           "code": "M.10.1",
+           "text": "Demonstrate an understanding of what the body does, where the body moves, how the body performs the movement and relationships that occur in increasingly more complex movement and game forms"
+          },
+          {
+           "code": "M.10.2",
+           "text": "Use self, peer, teacher and technological resources to recognize and suggest performance improvements in self and others"
+          },
+          {
+           "code": "M.10.3",
+           "text": "Demonstrate knowledge of rules, safety practices and procedures as they apply to an increasing range of movement situations"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "engaging-in-physical-activity",
+     "title": "Engaging in Physical Activity",
+     "topics": [
+      {
+       "id": "engaging-in-physical-activity",
+       "title": "Engaging in Physical Activity",
+       "subtopics": [
+        {
+         "id": "engaging-in-physical-activity",
+         "title": "Engaging in Physical Activity",
+         "outcomes": [
+          {
+           "code": "M.11.1",
+           "text": "Engage in an increased variety of moderate to vigorous developmentally appropriate physical activities on a regular basis"
+          },
+          {
+           "code": "M.11.2",
+           "text": "Apply an understanding of the connections between the purposes of movements and their effect on fitness"
+          },
+          {
+           "code": "M.11.3",
+           "text": "Apply the understanding of physical activity concepts to increasingly complex movement and game forms"
+          },
+          {
+           "code": "M.11.4",
+           "text": "Engage in a variety of appropriate physical activities during and outside of school that promote the development and improvement of physical fitness level"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "physical-fitness",
+     "title": "Physical Fitness",
+     "topics": [
+      {
+       "id": "physical-fitness",
+       "title": "Physical Fitness",
+       "subtopics": [
+        {
+         "id": "physical-fitness",
+         "title": "Physical Fitness",
+         "outcomes": [
+          {
+           "code": "M.12.1",
+           "text": "Demonstrate the skills and knowledge to assess levels of physical fitness and participate in activities that develop and maintain each component"
+          },
+          {
+           "code": "M.12.2",
+           "text": "Assess physiological responses to exercise associated with one's level of physical fitness and nutritional balance"
+          },
+          {
+           "code": "M.12.3",
+           "text": "Analyze the results of one or more components of health-related fitness"
+          },
+          {
+           "code": "M.12.4",
+           "text": "Plan a wellness program demonstrating anunderstanding of basic exercise (e.g., frequency, intensity, duration) and nutritional principles designed to meet personal wellness goals"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "responsible-behavior",
+     "title": "Responsible Behavior",
+     "topics": [
+      {
+       "id": "responsible-behavior",
+       "title": "Responsible Behavior",
+       "subtopics": [
+        {
+         "id": "responsible-behavior",
+         "title": "Responsible Behavior",
+         "outcomes": [
+          {
+           "code": "M.13.1",
+           "text": "Understand, participate in the development of, and follow classroom rules; follow activity-specific rules, safety practices and procedures; and apply safe practices, rules, procedures, etiquette and good sportsmanship in all physical activity settings"
+          },
+          {
+           "code": "M.13.2",
+           "text": "Continue to develop skills to participate productively in groups, in both cooperative and competitive activities"
+          },
+          {
+           "code": "M.13.3",
+           "text": "Develop strategies for including all persons, despite individual differences, in physical activity settings"
+          },
+          {
+           "code": "M.13.4",
+           "text": "Apply appropriate skills for resolving conflicts peacefully"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "benefits-of-physical-activity",
+     "title": "Benefits of Physical Activity",
+     "topics": [
+      {
+       "id": "benefits-of-physical-activity",
+       "title": "Benefits of Physical Activity",
+       "subtopics": [
+        {
+         "id": "benefits-of-physical-activity",
+         "title": "Benefits of Physical Activity",
+         "outcomes": [
+          {
+           "code": "M.14.1",
+           "text": "Make decisions about participating in different physical activities based on feelings and interests"
+          },
+          {
+           "code": "M.14.2",
+           "text": "Use physical activity as a means of selfand group expression"
+          },
+          {
+           "code": "M.14.3",
+           "text": "Use physical activity as a positive opportunity for social and group interaction and development of leadership skills"
+          },
+          {
+           "code": "M.14.4",
+           "text": "Realize that physical activity and challenges present opportunities for personal growth"
+          },
+          {
+           "code": "M.14.5",
+           "text": "Value the skill competence that results from practice"
+          },
+          {
+           "code": "M.14.6",
+           "text": "Demonstrate willingness to attempt a variety of new physical activities"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "core-concepts-physical-mental-emotional-and-soci",
+     "title": "Core Concepts: Physical, Mental, Emotional and Social Growth and Development",
+     "topics": [
+      {
+       "id": "core-concepts-physical-mental-emotional-and-soci",
+       "title": "Core Concepts: Physical, Mental, Emotional and Social Growth and Development",
+       "subtopics": [
+        {
+         "id": "core-concepts-physical-mental-emotional-and-soci",
+         "title": "Core Concepts: Physical, Mental, Emotional and Social Growth and Development (1 of 3)",
+         "outcomes": [
+          {
+           "code": "M.1.1",
+           "text": "Examine appropriate and healthy ways to express affection, love, friendship and concern."
+          },
+          {
+           "code": "M.1.2.a",
+           "text": "Explain how body image and self-esteem can impact decision-making regarding sexual behaviors."
+          },
+          {
+           "code": "M.1.2.c",
+           "text": "Describe male and female reproductive and sexual systems and how they work."
+          },
+          {
+           "code": "M.1.2.d",
+           "text": "Describe puberty and the process of human reproduction."
+          },
+          {
+           "code": "M.1.2.e",
+           "text": "Describe the interrelationship of mental, emotional, social and physical health during puberty and adolescence."
+          }
+         ]
+        },
+        {
+         "id": "core-concepts-physical-mental-emotional-and-soci-2",
+         "title": "Core Concepts: Physical, Mental, Emotional and Social Growth and Development (2 of 3)",
+         "outcomes": [
+          {
+           "code": "M.1.3",
+           "text": "Examine how families may change over time, and the impact these changes may have on the family structure and individual members."
+          },
+          {
+           "code": "M.1.4.a",
+           "text": "Compare and contrast the characteristics of healthy and unhealthy relationships."
+          },
+          {
+           "code": "M.1.4.b",
+           "text": "Analyze the differences and similarities between friendships and romantic relationships."
+          },
+          {
+           "code": "M.1.5.a",
+           "text": "Analyze ways in which the physical, social, cultural and emotional environment and personal health are interrelated."
+          },
+          {
+           "code": "M.1.7.a",
+           "text": "Explain the value of abstinence and/or choosing to abstain after having already engaged in sexual activity."
+          }
+         ]
+        },
+        {
+         "id": "core-concepts-physical-mental-emotional-and-soci-3",
+         "title": "Core Concepts: Physical, Mental, Emotional and Social Growth and Development (3 of 3)",
+         "outcomes": [
+          {
+           "code": "M.1.7.b",
+           "text": "Identify the methods of contraception and how they work."
+          },
+          {
+           "code": "M.1.8",
+           "text": "Identify and discuss the impact of teenage pregnancy and parenthood (e.g. future goals, financial, graduation, college)."
+          },
+          {
+           "code": "M.1.10",
+           "text": "Discuss HIV/STD and hepatitis infections as it relates to higher risk behaviors, modes of transmission and prevention methods."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "describe-healthy-and-unhealthy-dating-practices-",
+       "title": "Describe healthy and unhealthy dating practices (e.g. values, culture, dating violence)",
+       "subtopics": [
+        {
+         "id": "describe-healthy-and-unhealthy-dating-practices-",
+         "title": "Describe healthy and unhealthy dating practices (e.g. values, culture, dating violence)",
+         "outcomes": [
+          {
+           "code": "M.1.6.e",
+           "text": "Differentiate between gender identity, sexual orientation, and the concept of gender roles."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "9-12",
+   "units": [
+    {
+     "id": "core-concepts",
+     "title": "Core Concepts",
+     "topics": [
+      {
+       "id": "core-concepts",
+       "title": "Core Concepts",
+       "subtopics": [
+        {
+         "id": "core-concepts-1-of-3",
+         "title": "Core Concepts (1 of 3)",
+         "outcomes": [
+          {
+           "code": "H.1.1",
+           "text": "Analyze how behaviors can affect health maintenance and disease prevention"
+          },
+          {
+           "code": "H.1.2",
+           "text": "Describe the interrelationship of mental, emotional, social and physical health throughout adulthood"
+          },
+          {
+           "code": "H.1.3",
+           "text": "Evaluate the impact of personal health behaviors on the functioning of body systems"
+          },
+          {
+           "code": "H.1.4",
+           "text": "Evaluate how families, peers and community members can influence the health of individuals"
+          }
+         ]
+        },
+        {
+         "id": "core-concepts-2-of-3",
+         "title": "Core Concepts (2 of 3)",
+         "outcomes": [
+          {
+           "code": "H.1.5",
+           "text": "Analyze ways in which the environment influences the health of the community"
+          },
+          {
+           "code": "H.1.6",
+           "text": "Use and evaluate appropriate strategies to promote well-being, delay onset and reduce risks of potential health problems during adulthood"
+          },
+          {
+           "code": "H.1.7",
+           "text": "Assess how public health policies and government regulations can influence health promotion and disease prevention"
+          },
+          {
+           "code": "H.1.8",
+           "text": "Analyze how research and medical advances can influence the prevention and control of health problems"
+          }
+         ]
+        },
+        {
+         "id": "core-concepts-3-of-3",
+         "title": "Core Concepts (3 of 3)",
+         "outcomes": [
+          {
+           "code": "H.1.9",
+           "text": "Research and analyze factors that increase the risk of contracting communicable and non-communicable diseases (e.g. HIV/AIDS, sexually transmitted diseases, diabetes, cancer, heart disease, hepatitis)"
+          },
+          {
+           "code": "H.1.10",
+           "text": "Describe and analyze the physical, mental, emotional and sexual changes that occur over a lifetime- from birth to death"
+          },
+          {
+           "code": "H.1.11",
+           "text": "Compare and contrast abstinence to other forms of contraception to reduce risks of disease/unintended pregnancy"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "accessing-health-information-and-resources",
+     "title": "Accessing Health Information and Resources",
+     "topics": [
+      {
+       "id": "accessing-health-information-and-resources",
+       "title": "Accessing Health Information and Resources",
+       "subtopics": [
+        {
+         "id": "accessing-health-information-and-resources-1-of-",
+         "title": "Accessing Health Information and Resources (1 of 2)",
+         "outcomes": [
+          {
+           "code": "H.2.1",
+           "text": "Evaluate the validity of health information and the cost of products and services"
+          },
+          {
+           "code": "H.2.2",
+           "text": "Demonstrate the ability to access and evaluate resources from home, school and community that provide valid health information and services for themselves and others"
+          },
+          {
+           "code": "H.2.3",
+           "text": "Evaluate factors that may influence the personal selection of health products and services"
+          },
+          {
+           "code": "H.2.4",
+           "text": "Analyze medically accurate information about comprehensive sexuality education from family, school personnel, health professionals and other responsible adults"
+          }
+         ]
+        },
+        {
+         "id": "accessing-health-information-and-resources-2-of-",
+         "title": "Accessing Health Information and Resources (2 of 2)",
+         "outcomes": [
+          {
+           "code": "H.2.1",
+           "text": "Analyze and evaluate service providers and resources for health care services related to sexual health (e.g. counseling, testing, school based health centers, pediatrician, reproductive health care)."
+          },
+          {
+           "code": "H.2.2",
+           "text": "Analyze and evaluate medically accurate and reliable information about sexual health (e.g. internet and social media)."
+          },
+          {
+           "code": "H.2.3",
+           "text": "Analyze existing laws and policies designed to protect young people from sexual harassment, sexual assault, child abuse, human trafficking, sexual exploitation, bullying and other types of violence."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "self-management-of-healthy-behaviors",
+     "title": "Self-management of Healthy Behaviors",
+     "topics": [
+      {
+       "id": "self-management-of-healthy-behaviors",
+       "title": "Self-management of Healthy Behaviors",
+       "subtopics": [
+        {
+         "id": "self-management-of-healthy-behaviors",
+         "title": "Self-management of Healthy Behaviors",
+         "outcomes": [
+          {
+           "code": "H.3.1",
+           "text": "Assess the importance of assuming responsibility for personal health behaviors"
+          },
+          {
+           "code": "H.3.2",
+           "text": "Analyze personal health status to determine needs"
+          },
+          {
+           "code": "H.3.3",
+           "text": "Distinguish between safe, risky or harmful behaviors affecting themselves and others in the community"
+          },
+          {
+           "code": "H.3.4",
+           "text": "Apply and assess strategies to improve or maintain personal, family and community health by examining influences, rules and legal responsibilities that affect decisions"
+          },
+          {
+           "code": "H.3.5",
+           "text": "Use and evaluate safety techniques to avoid and reduce injury and prevent disease"
+          },
+          {
+           "code": "H.3.6",
+           "text": "Evaluate and apply appropriate stress management strategies"
+          }
+         ]
+        },
+        {
+         "id": "self-management-of-healthy-behaviors-1-of-2",
+         "title": "Self-Management of Healthy Behaviors (1 of 2)",
+         "outcomes": [
+          {
+           "code": "H.3.1",
+           "text": "Evaluate the effectiveness and outcomes of self-control strategies and ways to express feelings appropriately."
+          },
+          {
+           "code": "H.3.2",
+           "text": "Analyze and evaluate strategies that an individual could use to abstain or delay sexual intercourse."
+          },
+          {
+           "code": "H.3.3",
+           "text": "Describe appropriate reproductive health care throughout the life span."
+          },
+          {
+           "code": "H.3.4",
+           "text": "Evaluate the importance of personal responsibility as it pertains to sexual behavior, abstinence, sexual and reproductive health."
+          }
+         ]
+        },
+        {
+         "id": "self-management-of-healthy-behaviors-2-of-2",
+         "title": "Self-Management of Healthy Behaviors (2 of 2)",
+         "outcomes": [
+          {
+           "code": "H.3.5.a",
+           "text": "Describe strategies to use social media safely and respectfully."
+          },
+          {
+           "code": "H.3.5.b",
+           "text": "Analyze strategies for avoiding and addressing sexual exploitation and behaviors that may be perceived as sexually coercive (e.g. internet, social media, dating)."
+          },
+          {
+           "code": "H.3.6",
+           "text": "Analyze the value of postponing sexual activity, the methods and effectiveness of contraception and ways to protect oneself from communicable diseases (e.g. STD/HIV)."
+          },
+          {
+           "code": "H.3.7",
+           "text": "Compare and contrast ways in which an individual could respond in a situation when they or someone else is being bullied or harassed."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "analyzing-internal-and-external-influences",
+     "title": "Analyzing Internal and External Influences",
+     "topics": [
+      {
+       "id": "analyzing-internal-and-external-influences",
+       "title": "Analyzing Internal and External Influences",
+       "subtopics": [
+        {
+         "id": "analyzing-internal-and-external-influences-1-of-",
+         "title": "Analyzing Internal and External Influences (1 of 2)",
+         "outcomes": [
+          {
+           "code": "H.4.1",
+           "text": "Analyze how family and cultural diversity enriches and affects personal health behaviors"
+          },
+          {
+           "code": "H.4.2",
+           "text": "Evaluate the effects of media, technology and other factors on personal, family and community health"
+          },
+          {
+           "code": "H.4.3",
+           "text": "Evaluate how information from family, school, peers and the community influences personal health"
+          },
+          {
+           "code": "H.4.4",
+           "text": "Analyze the media influence on behaviors and decisions as it relates to sexuality"
+          },
+          {
+           "code": "H.4.1.a",
+           "text": "Analyze how internal and external influences affect sexual feelings, behavior, attitudes and decisions."
+          }
+         ]
+        },
+        {
+         "id": "analyzing-internal-and-external-influences-2-of-",
+         "title": "Analyzing Internal and External Influences (2 of 2)",
+         "outcomes": [
+          {
+           "code": "H.4.1.b",
+           "text": "Examine personal values and how they influence relationships and sexual decision-making."
+          },
+          {
+           "code": "H.4.2",
+           "text": "Evaluate the effects of external influences on sexual decision-making (e.g. parents, family values, media, internet, culture, peers, society)."
+          },
+          {
+           "code": "H.4.3",
+           "text": "Evaluate the influence of alcohol and other drugs on sexual behavior and sexual health."
+          },
+          {
+           "code": "H.4.4.a",
+           "text": "Analyze ways in which technology can impact physical and emotional safety (e.g. internet, social media, texting)."
+          },
+          {
+           "code": "H.4.4.b",
+           "text": "Analyze the various forms of sexual exploitation via the internet, social media and other means and identify prevention/intervention strategies."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "communication-skills",
+     "title": "Communication Skills",
+     "topics": [
+      {
+       "id": "communication-skills",
+       "title": "Communication Skills",
+       "subtopics": [
+        {
+         "id": "communication-skills-1-of-4",
+         "title": "Communication Skills (1 of 4)",
+         "outcomes": [
+          {
+           "code": "H.5.1",
+           "text": "Compare and contrast skills for communicating effectively with family, peers and others"
+          },
+          {
+           "code": "H.5.2",
+           "text": "Apply and evaluate characteristics needed to be a responsible individual within their peer group, school, family, and community"
+          },
+          {
+           "code": "H.5.3",
+           "text": "Demonstrate the ability to identify positive and negative emotions and analyze the impact on behavior"
+          },
+          {
+           "code": "H.5.4",
+           "text": "Analyze situations and demonstrate healthy ways to express needs, wants and feelings"
+          }
+         ]
+        },
+        {
+         "id": "communication-skills-2-of-4",
+         "title": "Communication Skills (2 of 4)",
+         "outcomes": [
+          {
+           "code": "H.5.5",
+           "text": "Demonstrate care, empathy, respect and responsibility for others without bias, abuse, discrimination or harassment based on, but not limited to, race, color, sex, religion, national origin, sexual orientation, ancestry, marital status, mental retardation, mental disorder and learning and/or physical disability"
+          },
+          {
+           "code": "H.5.6",
+           "text": "Prioritize and demonstrate strategies for maintaining healthy relationships and solving interpersonal conflicts"
+          },
+          {
+           "code": "H.5.7",
+           "text": "Demonstrate avoidance, refusal, negotiation and collaboration skills to enhance healthy relationships"
+          },
+          {
+           "code": "H.5.8",
+           "text": "Analyze the possible causes of conflict in families, among peers, and in schools and communities"
+          }
+         ]
+        },
+        {
+         "id": "communication-skills-3-of-4",
+         "title": "Communication Skills (3 of 4)",
+         "outcomes": [
+          {
+           "code": "H.5.9",
+           "text": "Demonstrate strategies used to prevent, manage and resolve conflict in healthy ways and identify adults and peers and community resources that might assist, when appropriate"
+          },
+          {
+           "code": "H.5.1",
+           "text": "Analyze the effectiveness of the various communication styles in developing and sustaining relationships."
+          },
+          {
+           "code": "H.5.2",
+           "text": "Analyze the effectiveness of verbal and non-verbal skills to refuse pressure to engage in sexual risk and other higher risk behaviors (e.g. smoking, drinking)."
+          },
+          {
+           "code": "H.5.3",
+           "text": "Analyze and evaluate effective negotiation and refusal skills for avoiding higher risk sexual behaviors (e.g. maintaining abstinence, consistent use of contraceptives; discuss HIV/STD status)."
+          }
+         ]
+        },
+        {
+         "id": "communication-skills-4-of-4",
+         "title": "Communication Skills (4 of 4)",
+         "outcomes": [
+          {
+           "code": "H.5.4.a",
+           "text": "Analyze the effectiveness of communicating clear expectations, boundaries, personal safety strategies and clear limits on sexual behaviors."
+          },
+          {
+           "code": "H.5.4.c",
+           "text": "Compare and contrast healthy ways to express empathy for others."
+          },
+          {
+           "code": "H.5.5",
+           "text": "Analyze how the use of manipulation and sexual harassment impacts relationships and the existing laws and policies designed to protect young people from sexual harassment and other types of violence."
+          },
+          {
+           "code": "H.5.6",
+           "text": "Explain the impact of culture and gender on the interpretation of various communication styles and methods."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "decision-making-skills",
+     "title": "Decision-Making Skills",
+     "topics": [
+      {
+       "id": "decision-making-skills",
+       "title": "Decision-Making Skills",
+       "subtopics": [
+        {
+         "id": "decision-making-skills",
+         "title": "Decision-Making Skills",
+         "outcomes": [
+          {
+           "code": "H.6.1",
+           "text": "Demonstrate various strategies when making decisions to enhance health"
+          },
+          {
+           "code": "H.6.2",
+           "text": "Demonstrate the ability to make healthenhancing decisions using the collaborative decisionmaking process"
+          },
+          {
+           "code": "H.6.3",
+           "text": "Predict the immediate and long-term impact of health decisions on the individual, family and community"
+          },
+          {
+           "code": "H.6.1",
+           "text": "Analyze the impact that external influences (e.g. partners, peers, family, community) have on decision-making about abstinence, sexual activity and sexual health."
+          },
+          {
+           "code": "H.6.2",
+           "text": "Predict the immediate and long-term impact of sexual health decisions on the individual, family and community."
+          },
+          {
+           "code": "H.6.3",
+           "text": "Research and examine possible outcomes of alcohol and other drug use related to sexual activity."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "goal-setting-skills",
+     "title": "Goal-Setting Skills",
+     "topics": [
+      {
+       "id": "goal-setting-skills",
+       "title": "Goal-Setting Skills",
+       "subtopics": [
+        {
+         "id": "goal-setting-skills",
+         "title": "Goal-Setting Skills",
+         "outcomes": [
+          {
+           "code": "H.7.1",
+           "text": "Demonstrate various strategies when making goal-setting decisions to enhance health"
+          },
+          {
+           "code": "H.7.1",
+           "text": "Analyze how internal and external influences may affect goal-setting (e.g. personal choices, sexual health, behaviors, family, peers, community, culture)."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "advocacy",
+     "title": "Advocacy",
+     "topics": [
+      {
+       "id": "advocacy",
+       "title": "Advocacy",
+       "subtopics": [
+        {
+         "id": "advocacy-1-of-3",
+         "title": "Advocacy (1 of 3)",
+         "outcomes": [
+          {
+           "code": "H.8.1",
+           "text": "Evaluate the effectiveness of methods for accurately expressing health information, concepts and skills"
+          },
+          {
+           "code": "H.8.2",
+           "text": "Support and defend a position with accurate health information"
+          },
+          {
+           "code": "H.8.3",
+           "text": "Engage the support of community agencies that advocate for healthy individuals, families and communities"
+          },
+          {
+           "code": "H.8.4",
+           "text": "Use the ability to influence and support others in making positive health choices"
+          }
+         ]
+        },
+        {
+         "id": "advocacy-2-of-3",
+         "title": "Advocacy (2 of 3)",
+         "outcomes": [
+          {
+           "code": "H.8.5",
+           "text": "Demonstrate the ability to work cooperatively in larger, more diverse groups when advocating for healthy communities"
+          },
+          {
+           "code": "H.8.6",
+           "text": "Engage others to develop health campaigns which promote care, consideration and concern for others (e.g. persons living with HIV/AIDS, diabetes, cancer)"
+          },
+          {
+           "code": "H.8.7",
+           "text": "Analyze the power of choice with personal relationships and examine the responsibility and consequences regarding actions/behaviors related to sexuality"
+          },
+          {
+           "code": "H.8.1",
+           "text": "Engage in authentic experiences of caring, compassion and advocating for others (e.g. community service)."
+          }
+         ]
+        },
+        {
+         "id": "advocacy-3-of-3",
+         "title": "Advocacy (3 of 3)",
+         "outcomes": [
+          {
+           "code": "H.8.2",
+           "text": "Research laws and policies; plan and engage in activities that advocate against bias and discrimination."
+          },
+          {
+           "code": "H.8.3.a",
+           "text": "Demonstrate ways to advocate for responsible behaviors that promote sexual health (e.g. health screenings, healthy relationships, access to reproductive health care)."
+          },
+          {
+           "code": "H.8.3.b",
+           "text": "Develop a campaign to advocate for developmentally appropriate, medically accurate sexual health education programs and services (e.g. school-based health centers)."
+          },
+          {
+           "code": "H.8.4",
+           "text": "Advocate for school policies and programs that promote dignified and respectful treatment for all."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "motor-skill-performance",
+     "title": "Motor Skill Performance",
+     "topics": [
+      {
+       "id": "motor-skill-performance",
+       "title": "Motor Skill Performance",
+       "subtopics": [
+        {
+         "id": "motor-skill-performance",
+         "title": "Motor Skill Performance",
+         "outcomes": [
+          {
+           "code": "H.9.1",
+           "text": "Maintain and further develop the fundamental movement skills in open environments"
+          },
+          {
+           "code": "H.9.2",
+           "text": "Demonstrate competence in applying basic locomotor, nonlocomotor and manipulative skills in the execution of more complex skills"
+          },
+          {
+           "code": "H.9.3",
+           "text": "Use complex movements and patterns within a variety of dynamic environments"
+          },
+          {
+           "code": "H.9.4",
+           "text": "Develop advanced skills in selected physical activities"
+          },
+          {
+           "code": "H.9.5",
+           "text": "Participate in a wide variety of activities, including dance, games, sports and lifetime physical activities"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "applying-concepts-and-strategies",
+     "title": "Applying Concepts and Strategies",
+     "topics": [
+      {
+       "id": "applying-concepts-and-strategies",
+       "title": "Applying Concepts and Strategies",
+       "subtopics": [
+        {
+         "id": "applying-concepts-and-strategies",
+         "title": "Applying Concepts and Strategies",
+         "outcomes": [
+          {
+           "code": "H.10.1",
+           "text": "Demonstrate an understanding of what the body does, where the body moves, how the body performs the movement and relationships that enable skilled performances"
+          },
+          {
+           "code": "H.10.2",
+           "text": "Use self, peer, teacher and technological resources as tools to implement performance improvements in self and others"
+          },
+          {
+           "code": "H.10.3",
+           "text": "Demonstrate understanding of how rules, and safety practices and procedures need to be adjusted for different movement situations"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "engaging-in-physical-activity",
+     "title": "Engaging in Physical Activity",
+     "topics": [
+      {
+       "id": "engaging-in-physical-activity",
+       "title": "Engaging in Physical Activity",
+       "subtopics": [
+        {
+         "id": "engaging-in-physical-activity",
+         "title": "Engaging in Physical Activity",
+         "outcomes": [
+          {
+           "code": "H.11.1",
+           "text": "Regularly engage in moderate to vigorous physical activities of their choice on a regular basis"
+          },
+          {
+           "code": "H.11.2",
+           "text": "Apply characteristics of performance in a variety of activities for purposeful, recreational, skill and fitness outcomes"
+          },
+          {
+           "code": "H.11.3",
+           "text": "Apply, evaluate and analyze critical elements of physical activity concepts to increasingly complex game forms"
+          },
+          {
+           "code": "H.11.4",
+           "text": "Engage in a variety of appropriate physical activities with individualized goals, during and outside of school, that promote the development and improvement of physical fitness level"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "physical-fitness",
+     "title": "Physical Fitness",
+     "topics": [
+      {
+       "id": "physical-fitness",
+       "title": "Physical Fitness",
+       "subtopics": [
+        {
+         "id": "physical-fitness",
+         "title": "Physical Fitness",
+         "outcomes": [
+          {
+           "code": "H.12.1",
+           "text": "Assess and adjust activities to maintain or improve personal level of health-related fitness"
+          },
+          {
+           "code": "H.12.2",
+           "text": "Use physiological data to adjust levels of exercise and nutrient intake to promote wellness"
+          },
+          {
+           "code": "H.12.3",
+           "text": "Use the results of fitness assessments to guide changes in her or his personal programs of physical activity"
+          },
+          {
+           "code": "H.12.4",
+           "text": "Design and implement a personal wellness program based upon information obtained from the fitness assessment and in accordance with appropriate training and nutritional principles"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "responsible-behavior",
+     "title": "Responsible Behavior",
+     "topics": [
+      {
+       "id": "responsible-behavior",
+       "title": "Responsible Behavior",
+       "subtopics": [
+        {
+         "id": "responsible-behavior",
+         "title": "Responsible Behavior",
+         "outcomes": [
+          {
+           "code": "H.13.1",
+           "text": "Apply safe practices, rules, procedures etiquette and good sportsmanship in all physical activity settings, and take initiative to encourage others to do the same"
+          },
+          {
+           "code": "H.13.2",
+           "text": "Demonstrate leadership and cooperation in order to accomplish the goals of different physical activities"
+          },
+          {
+           "code": "H.13.3",
+           "text": "Develop and demonstrate initiative in implementing strategies for including all persons, despite individual differences, in physical activity settings"
+          },
+          {
+           "code": "H.13.4",
+           "text": "Demonstrate initiative in using appropriate skills for resolving conflicts peacefully and encouraging others to do the same"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "benefits-of-physical-activity",
+     "title": "Benefits of Physical Activity",
+     "topics": [
+      {
+       "id": "benefits-of-physical-activity",
+       "title": "Benefits of Physical Activity",
+       "subtopics": [
+        {
+         "id": "benefits-of-physical-activity",
+         "title": "Benefits of Physical Activity",
+         "outcomes": [
+          {
+           "code": "H.14.1",
+           "text": "Make decisions and implement plans to participate in different physical activities based on interests and positive feelings of accomplishment in daily living"
+          },
+          {
+           "code": "H.14.2",
+           "text": "Use physical activity as a means of creative expression"
+          },
+          {
+           "code": "H.14.3",
+           "text": "Use physical activity as a positive opportunity for social and group interaction and development of lifelong skills and relationships"
+          },
+          {
+           "code": "H.14.4",
+           "text": "Seek personally challenging experiences through physical activity as a means to personal growth"
+          },
+          {
+           "code": "H.14.5",
+           "text": "Persist in practicing activities to increase specific skill competence in areas of interest"
+          },
+          {
+           "code": "H.14.6",
+           "text": "Experiment with new physical activities as part of a personal improvement plan"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "core-concepts-physical-mental-emotional-and-soci",
+     "title": "Core Concepts: Physical, Mental, Emotional and Social Growth and Development",
+     "topics": [
+      {
+       "id": "core-concepts-physical-mental-emotional-and-soci",
+       "title": "Core Concepts: Physical, Mental, Emotional and Social Growth and Development",
+       "subtopics": [
+        {
+         "id": "core-concepts-physical-mental-emotional-and-soci",
+         "title": "Core Concepts: Physical, Mental, Emotional and Social Growth and Development (1 of 4)",
+         "outcomes": [
+          {
+           "code": "H.1.1",
+           "text": "Compare, contrast and analyze appropriate ways to express needs, wants and feelings in relationships."
+          },
+          {
+           "code": "H.1.3",
+           "text": "Evaluate how families can influence the health of individuals."
+          },
+          {
+           "code": "H.1.4.a",
+           "text": "Analyze factors that may contribute to a healthy and unhealthy relationship."
+          },
+          {
+           "code": "H.1.5",
+           "text": "Analyze how physical, social, cultural and emotional environments may influence sexual health."
+          },
+          {
+           "code": "H.1.6.a",
+           "text": "Compare and contrast healthy and unhealthy dating practices (e.g. values, culture, dating violence)."
+          }
+         ]
+        },
+        {
+         "id": "core-concepts-physical-mental-emotional-and-soci-2",
+         "title": "Core Concepts: Physical, Mental, Emotional and Social Growth and Development (2 of 4)",
+         "outcomes": [
+          {
+           "code": "H.1.6.b",
+           "text": "Analyze the impact of cultural change through the generations on sexual health issues."
+          },
+          {
+           "code": "H.1.6.c",
+           "text": "Define and describe healthy sexuality and sexual expression throughout the life span."
+          },
+          {
+           "code": "H.1.6.d",
+           "text": "Research and analyze data about sexual behavior among teenagers."
+          },
+          {
+           "code": "H.1.6.e",
+           "text": "Differentiate between biological sex, sexual orientation and gender identity."
+          },
+          {
+           "code": "H.1.6.f",
+           "text": "Differentiate between sexual orientation, behavior and identity."
+          }
+         ]
+        },
+        {
+         "id": "core-concepts-physical-mental-emotional-and-soci-3",
+         "title": "Core Concepts: Physical, Mental, Emotional and Social Growth and Development (3 of 4)",
+         "outcomes": [
+          {
+           "code": "H.1.7.a",
+           "text": "Describe situations in which someone might choose to abstain from sexual activity after already engaging in the behavior, and assess the barriers that might be encountered in implementing this decision."
+          },
+          {
+           "code": "H.1.8.a",
+           "text": "Research and analyze the impact of teenage pregnancy and parenthood on society."
+          },
+          {
+           "code": "H.1.8.b",
+           "text": "Compare and contrast the legal rights and responsibilities of adolescents about pregnancy and parenting."
+          },
+          {
+           "code": "H.1.9",
+           "text": "Discuss important health assessments, screenings and examinations that are necessary to maintain reproductive health throughout the lifespan (e.g. testicular self-examinations, breast self-examinations and Pap smears)."
+          },
+          {
+           "code": "H.1.10.a",
+           "text": "Analyze the modes of transmission, prevention methods, signs and symptoms, testing and treatments for HIV/STD infections."
+          }
+         ]
+        },
+        {
+         "id": "core-concepts-physical-mental-emotional-and-soci-4",
+         "title": "Core Concepts: Physical, Mental, Emotional and Social Growth and Development (4 of 4)",
+         "outcomes": [
+          {
+           "code": "H.1.10.b",
+           "text": "Research and analyze the demographic and impact of HIV/AIDS on different populations and in different regions of the world."
+          },
+          {
+           "code": "H.1.10.c",
+           "text": "Examine the stereotypes and discrimination that exist and describe the impact this has on people living with HIV/AIDS and other communicable diseases."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "analyze-and-evaluate-the-impact-that-self-esteem",
+       "title": "Analyze and evaluate the impact that self-esteem and self-respect have on decision-making regarding sexual behaviors",
+       "subtopics": [
+        {
+         "id": "analyze-and-evaluate-the-impact-that-self-esteem",
+         "title": "Analyze and evaluate the impact that self-esteem and self-respect have on decision-making regarding sexual behaviors",
+         "outcomes": [
+          {
+           "code": "H.1.2.c",
+           "text": "Describe how the reproductive, endocrine, nervous and sexual systems work together."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "PK-K",
+   "units": [
+    {
+     "id": "core-concepts",
+     "title": "Core Concepts",
+     "topics": [
+      {
+       "id": "core-concepts",
+       "title": "Core Concepts",
+       "subtopics": [
+        {
+         "id": "core-concepts-1-of-2",
+         "title": "Core Concepts (1 of 2)",
+         "outcomes": [
+          {
+           "code": "P.1.1",
+           "text": "List personal health behaviors (e.g. hand washing, teeth brushing, independent toileting, use of tissues, explaining feelings, making healthy food choices, daily physical activity)"
+          },
+          {
+           "code": "P.1.2",
+           "text": "Describe similarities and differences between self and others and understand that the body is good and special"
+          },
+          {
+           "code": "P.1.3",
+           "text": "Identify and describe functions of body parts (e.g. stomach, feet, hands, ears, eyes, mouth)"
+          },
+          {
+           "code": "P.1.4",
+           "text": "Identify how families can influence personal health"
+          },
+          {
+           "code": "P.1.5",
+           "text": "Describe a healthy and safe environment"
+          }
+         ]
+        },
+        {
+         "id": "core-concepts-2-of-2",
+         "title": "Core Concepts (2 of 2)",
+         "outcomes": [
+          {
+           "code": "P.1.6",
+           "text": "Identify health and safety problems that can be treated early"
+          },
+          {
+           "code": "P.1.7",
+           "text": "Identify ways injuries can be prevented"
+          },
+          {
+           "code": "P.1.8",
+           "text": "Identify and practice ways to prevent disease and other health problems"
+          },
+          {
+           "code": "P.1.9",
+           "text": "Discuss germs and their connection to illness"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "accessing-health-information-and-resources",
+     "title": "Accessing Health Information and Resources",
+     "topics": [
+      {
+       "id": "accessing-health-information-and-resources",
+       "title": "Accessing Health Information and Resources",
+       "subtopics": [
+        {
+         "id": "accessing-health-information-and-resources",
+         "title": "Accessing Health Information and Resources",
+         "outcomes": [
+          {
+           "code": "P.2.1",
+           "text": "Demonstrate the ability to seek health information from trusted adults (e.g. common health and safety concerns, roles and responsibilities of community helpers)"
+          },
+          {
+           "code": "P.2.2",
+           "text": "Demonstrate the ability to seek help from trusted adults (e.g. dial 911, ask for help from firefighters or police officers)"
+          },
+          {
+           "code": "P.2.3",
+           "text": "Identify characteristics of a trusted adult"
+          },
+          {
+           "code": "P.2.1",
+           "text": "Identify characteristics of a trusted adult."
+          },
+          {
+           "code": "P.2.2",
+           "text": "Demonstrate the ability to seek health information from trusted adults."
+          },
+          {
+           "code": "P.2.3",
+           "text": "Demonstrate the ability to seek help from trusted adults."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "self-management-of-healthy-behaviors",
+     "title": "Self-management of Healthy Behaviors",
+     "topics": [
+      {
+       "id": "self-management-of-healthy-behaviors",
+       "title": "Self-management of Healthy Behaviors",
+       "subtopics": [
+        {
+         "id": "self-management-of-healthy-behaviors",
+         "title": "Self-management of Healthy Behaviors",
+         "outcomes": [
+          {
+           "code": "P.3.1",
+           "text": "Identify healthy behaviors (e.g. wearing seatbelts, hand washing)"
+          },
+          {
+           "code": "P.3.2",
+           "text": "Identify personal behaviors that are healthenhancing"
+          },
+          {
+           "code": "P.3.3",
+           "text": "Identify personal health behaviors that need to be changed"
+          },
+          {
+           "code": "P.3.4",
+           "text": "Demonstrate good hygiene practices to improve and maintain personal health"
+          },
+          {
+           "code": "P.3.5",
+           "text": "Understand and follow rules and routines"
+          },
+          {
+           "code": "P.3.6",
+           "text": "Identify ways to self-regulate stress (e.g. take a break from playing hard, quiet time)"
+          },
+          {
+           "code": "P.3.1",
+           "text": "Demonstrate how to appropriately express feelings in a healthy way."
+          },
+          {
+           "code": "P.3.2.a",
+           "text": "Identify personal behaviors that are health-enhancing."
+          },
+          {
+           "code": "P.3.2.b",
+           "text": "Demonstrate good hygiene practices to improve and maintain health."
+          },
+          {
+           "code": "P.3.7",
+           "text": "Demonstrate ways to treat self and others with dignity and respect."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "analyzing-internal-and-external-influences",
+     "title": "Analyzing Internal and External Influences",
+     "topics": [
+      {
+       "id": "analyzing-internal-and-external-influences",
+       "title": "Analyzing Internal and External Influences",
+       "subtopics": [
+        {
+         "id": "analyzing-internal-and-external-influences",
+         "title": "Analyzing Internal and External Influences",
+         "outcomes": [
+          {
+           "code": "P.4.1",
+           "text": "Discuss their roles in the family and the roles of their parents/guardians"
+          },
+          {
+           "code": "P.4.2",
+           "text": "Recognize how media and technology can influence their lives"
+          },
+          {
+           "code": "P.4.3",
+           "text": "Discuss how families and school influence personal health"
+          },
+          {
+           "code": "P.4.1",
+           "text": "Discuss their roles in the family and the roles of their parents/guardians."
+          },
+          {
+           "code": "P.4.2",
+           "text": "Discuss the influence of media and technology on personal health."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "communication-skills",
+     "title": "Communication Skills",
+     "topics": [
+      {
+       "id": "communication-skills",
+       "title": "Communication Skills",
+       "subtopics": [
+        {
+         "id": "communication-skills-1-of-3",
+         "title": "Communication Skills (1 of 3)",
+         "outcomes": [
+          {
+           "code": "P.5.1",
+           "text": "Practice using words to communicate as a means of enhancing health"
+          },
+          {
+           "code": "P.5.2",
+           "text": "Describe characteristics of a responsible individual"
+          },
+          {
+           "code": "P.5.3",
+           "text": "Practice using words to identify emotions"
+          },
+          {
+           "code": "P.5.4",
+           "text": "Identify healthy ways to express needs, wants and feelings"
+          }
+         ]
+        },
+        {
+         "id": "communication-skills-2-of-3",
+         "title": "Communication Skills (2 of 3)",
+         "outcomes": [
+          {
+           "code": "P.5.5",
+           "text": "Demonstrate caring and empathy for others"
+          },
+          {
+           "code": "P.5.6",
+           "text": "Demonstrate the ability to listen and speak in turn"
+          },
+          {
+           "code": "P.5.7",
+           "text": "Identify ways to deal with conflict"
+          },
+          {
+           "code": "P.5.8",
+           "text": "List examples of conflict"
+          }
+         ]
+        },
+        {
+         "id": "communication-skills-3-of-3",
+         "title": "Communication Skills (3 of 3)",
+         "outcomes": [
+          {
+           "code": "P.5.9",
+           "text": "Engage in developing solutions to resolve conflicts and seek help when necessary"
+          },
+          {
+           "code": "P.5.1.a",
+           "text": "Describe various ways people can communicate."
+          },
+          {
+           "code": "P.5.4.a",
+           "text": "Identify and practice healthy ways to express needs, wants and feelings."
+          },
+          {
+           "code": "P.5.4.c",
+           "text": "Identify healthy ways to express empathy for others."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "decision-making-skills",
+     "title": "Decision-Making Skills",
+     "topics": [
+      {
+       "id": "decision-making-skills",
+       "title": "Decision-Making Skills",
+       "subtopics": [
+        {
+         "id": "decision-making-skills",
+         "title": "Decision-Making Skills",
+         "outcomes": [
+          {
+           "code": "P.6.1",
+           "text": "Discuss choices that enhance health"
+          },
+          {
+           "code": "P.6.2",
+           "text": "Identify adults who can assist in making health-related decisions"
+          },
+          {
+           "code": "P.6.3",
+           "text": "Discuss reasons to make and results of making healthy choices"
+          },
+          {
+           "code": "P.6.1",
+           "text": "Identify and discuss choices that enhance health."
+          },
+          {
+           "code": "P.6.2",
+           "text": "Identify adults who can assist in making health-related decisions."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "goal-setting-skills",
+     "title": "Goal-Setting Skills",
+     "topics": [
+      {
+       "id": "goal-setting-skills",
+       "title": "Goal-Setting Skills",
+       "subtopics": [
+        {
+         "id": "goal-setting-skills",
+         "title": "Goal-Setting Skills",
+         "outcomes": [
+          {
+           "code": "P.7.1",
+           "text": "Define a healthy goal"
+          },
+          {
+           "code": "P.7.1",
+           "text": "Identify a healthy goal."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "advocacy",
+     "title": "Advocacy",
+     "topics": [
+      {
+       "id": "advocacy",
+       "title": "Advocacy",
+       "subtopics": [
+        {
+         "id": "advocacy-1-of-2",
+         "title": "Advocacy (1 of 2)",
+         "outcomes": [
+          {
+           "code": "P.8.1",
+           "text": "Use language to convey healthy behaviors"
+          },
+          {
+           "code": "P.8.2",
+           "text": "Use language to express opinions about health topics"
+          },
+          {
+           "code": "P.8.3",
+           "text": "Name trusted adults at home, in school and in the community"
+          },
+          {
+           "code": "P.8.4",
+           "text": "Identify ways to encourage others to make positive health choices"
+          }
+         ]
+        },
+        {
+         "id": "advocacy-2-of-2",
+         "title": "Advocacy (2 of 2)",
+         "outcomes": [
+          {
+           "code": "P.8.5",
+           "text": "Participate in small and large group activities, interacting cooperatively with one or more children"
+          },
+          {
+           "code": "P.8.6",
+           "text": "Discuss positive ways to show care, consideration and concern for others"
+          },
+          {
+           "code": "P.8.1.a",
+           "text": "Demonstrate through play fairness and respect for others."
+          },
+          {
+           "code": "P.8.1.b",
+           "text": "Discuss positive ways to show care, consideration and concern for others."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "motor-skill-performance",
+     "title": "Motor Skill Performance",
+     "topics": [
+      {
+       "id": "motor-skill-performance",
+       "title": "Motor Skill Performance",
+       "subtopics": [
+        {
+         "id": "motor-skill-performance",
+         "title": "Motor Skill Performance",
+         "outcomes": [
+          {
+           "code": "P.9.1",
+           "text": "Demonstrate coordination in gross motor and fine motor tasks using control, balance, strength and coordination; and demonstrate progress toward the mature form of selected fundamental motor skills"
+          },
+          {
+           "code": "P.9.2",
+           "text": "Demonstrate the ability to stop and start on a signal; combine sequences of several motor skills in an organized way; and move through an environment with body control"
+          },
+          {
+           "code": "P.9.3",
+           "text": "Apply problemsolving skills in movementrelated activities by solving simple movement challenges involving body parts in isolation or in combination"
+          },
+          {
+           "code": "P.9.4",
+           "text": "Acquire initial grossand fine-motor skills needed for engagement in developmentally appropriate tasks, activities, creative movement, dance and play"
+          },
+          {
+           "code": "P.9.5",
+           "text": "Respond to cues and problem-solve as well as use whole self in personal and general space"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "applying-concepts-and-strategies",
+     "title": "Applying Concepts and Strategies",
+     "topics": [
+      {
+       "id": "applying-concepts-and-strategies",
+       "title": "Applying Concepts and Strategies",
+       "subtopics": [
+        {
+         "id": "applying-concepts-and-strategies",
+         "title": "Applying Concepts and Strategies",
+         "outcomes": [
+          {
+           "code": "P.10.1",
+           "text": "Demonstrate an understanding of body awareness concepts by identifying large and small body parts; show understanding of quality of movement concepts and apply them to psychomotor skills (e.g., demonstrating momentary stillness in balance activities, distinguishing when to kick a ball softly or with force); and show understanding of space concepts by identifying and demonstrating personal and general space"
+          },
+          {
+           "code": "P.10.2",
+           "text": "Recognize that some movements, activities and noises are appropriate for indoors/small spaces, and some for outdoors/large spaces"
+          },
+          {
+           "code": "P.10.3",
+           "text": "Follow safety and age-appropriate classroom and playground rules and procedures"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "engaging-in-physical-activity",
+     "title": "Engaging in Physical Activity",
+     "topics": [
+      {
+       "id": "engaging-in-physical-activity",
+       "title": "Engaging in Physical Activity",
+       "subtopics": [
+        {
+         "id": "engaging-in-physical-activity",
+         "title": "Engaging in Physical Activity",
+         "outcomes": [
+          {
+           "code": "P.11.1",
+           "text": "Engage in physical activities when presented with opportunities and with teacher encouragement. Engage in a wide variety of gross-motor activities that are child-selected and teacher-initiated"
+          },
+          {
+           "code": "P.11.2",
+           "text": "Demonstrate understanding that different movements are performed by different body parts, singly and in combination (e.g., kicking with foot, throwing with hand)"
+          },
+          {
+           "code": "P.11.3",
+           "text": "Combine a sequence of several motor skills in an organized way"
+          },
+          {
+           "code": "P.11.4",
+           "text": "Participate in healthy physical activity, and demonstrate understanding that physical activity is beneficial to good health"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "physical-fitness",
+     "title": "Physical Fitness",
+     "topics": [
+      {
+       "id": "physical-fitness",
+       "title": "Physical Fitness",
+       "subtopics": [
+        {
+         "id": "physical-fitness",
+         "title": "Physical Fitness",
+         "outcomes": [
+          {
+           "code": "P.12.1",
+           "text": "Demonstrate understanding that different physical activities have different effects on the body (e.g., running, walking and sitting cause heartbeat and breathing to be faster, not as fast, and slow, respectively)"
+          },
+          {
+           "code": "P.12.2",
+           "text": "Developmentally appropriate recognition of the effects of physical activity and exercise"
+          },
+          {
+           "code": "P.12.3",
+           "text": "Use words, symbols and other media to express feelings and sensations about physical activity"
+          },
+          {
+           "code": "P.12.4",
+           "text": "Collect, describe and record feelings and observations about physical activity and its effects on the body and on how one feels during and after exercise, and before, during and after eating"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "responsible-behavior",
+     "title": "Responsible Behavior",
+     "topics": [
+      {
+       "id": "responsible-behavior",
+       "title": "Responsible Behavior",
+       "subtopics": [
+        {
+         "id": "responsible-behavior",
+         "title": "Responsible Behavior",
+         "outcomes": [
+          {
+           "code": "P.13.1",
+           "text": "Demonstrate safe behavior for self and toward others by following established class rules, procedures and safe practices with teacher guidance and reinforcement"
+          },
+          {
+           "code": "P.13.2",
+           "text": "Interact appropriately with peers and familiar adults (e.g., sharing, taking turns, following rules) with teacher guidance and reinforcement; stay on task for short periods with teacher supervision; listen quietly without interruption for short periods with teacher reinforcement; and exhibit self-control in group situations"
+          },
+          {
+           "code": "P.13.3",
+           "text": "Demonstrate willingness to play with any child in the class; and recognize similarities and appreciate differences in people"
+          },
+          {
+           "code": "P.13.4",
+           "text": "Use ageappropriate conflict resolution strategies; seek help from adults or peers when conflict arises; and engage in developing solutions and work to resolve conflicts"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "benefits-of-physical-activity",
+     "title": "Benefits of Physical Activity",
+     "topics": [
+      {
+       "id": "benefits-of-physical-activity",
+       "title": "Benefits of Physical Activity",
+       "subtopics": [
+        {
+         "id": "benefits-of-physical-activity",
+         "title": "Benefits of Physical Activity",
+         "outcomes": [
+          {
+           "code": "P.14.1",
+           "text": "Use words to express feelings and emotions; begin to develop positive feelings about being physically active; and with teacher encouragement, make connections between physical activity and fun"
+          },
+          {
+           "code": "P.14.2",
+           "text": "Participate in creative movement and dance; identify several activities that are personally enjoyable; and use a variety of means for self-expression"
+          },
+          {
+           "code": "P.14.3",
+           "text": "Demonstrate appropriate social interactions with peers during physical activity (e.g., sharing, taking turns, following rules, playing cooperatively) with teacher guidance and reinforcement"
+          },
+          {
+           "code": "P.14.4",
+           "text": "Demonstrate recognition that physical activity is beneficial to good health"
+          },
+          {
+           "code": "P.14.5",
+           "text": "Recognize the difference between physical activity levels in different children's tasks (e.g., sitting at sand table compared to playing tag)"
+          },
+          {
+           "code": "P.14.6",
+           "text": "Develop individual success and confidence by attempting movement skills and activities with teacher guidance"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "core-concepts-physical-mental-emotional-and-soci",
+     "title": "Core Concepts: Physical, Mental, Emotional and Social Growth and Development",
+     "topics": [
+      {
+       "id": "core-concepts-physical-mental-emotional-and-soci",
+       "title": "Core Concepts: Physical, Mental, Emotional and Social Growth and Development",
+       "subtopics": [
+        {
+         "id": "core-concepts-physical-mental-emotional-and-soci",
+         "title": "Core Concepts: Physical, Mental, Emotional and Social Growth and Development (1 of 3)",
+         "outcomes": [
+          {
+           "code": "P.1.1",
+           "text": "Identify displays of affection with appropriate people and situations."
+          },
+          {
+           "code": "P.1.2.a",
+           "text": "Describe similarities and differences between self and others and understand that the body is good and special."
+          },
+          {
+           "code": "P.1.2.b",
+           "text": "Describe all of the qualities and characteristics that make them special (physical, emotional, mental)."
+          },
+          {
+           "code": "P.1.2.c",
+           "text": "Identify and describe functions of body parts (e.g. stomach, feet, hands, ears, eyes, mouth) and identify those parts of the body that are considered private."
+          }
+         ]
+        },
+        {
+         "id": "core-concepts-physical-mental-emotional-and-soci-2",
+         "title": "Core Concepts: Physical, Mental, Emotional and Social Growth and Development (2 of 3)",
+         "outcomes": [
+          {
+           "code": "P.1.3.a",
+           "text": "Describe different types of families."
+          },
+          {
+           "code": "P.1.3.b",
+           "text": "Identify how families can influence personal health."
+          },
+          {
+           "code": "P.1.4",
+           "text": "Describe characteristics of a friend."
+          },
+          {
+           "code": "P.1.5.a",
+           "text": "Describe a healthy and safe environment."
+          }
+         ]
+        },
+        {
+         "id": "core-concepts-physical-mental-emotional-and-soci-3",
+         "title": "Core Concepts: Physical, Mental, Emotional and Social Growth and Development (3 of 3)",
+         "outcomes": [
+          {
+           "code": "P.1.6.c",
+           "text": "Describe appropriate and inappropriate touch."
+          },
+          {
+           "code": "P.1.7",
+           "text": "Identify and practice behaviors that help to prevent disease and other health problems."
+          },
+          {
+           "code": "P.1.10",
+           "text": "Discuss germs and their connection to illness."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "build": {
+  "builtAt": "2026-10-14T16:20:39.788Z",
+  "model": "none",
+  "usd": 0,
+  "expectedCodes": 358,
+  "coverage": 1,
+  "missingCodes": [],
+  "counts": {
+   "grades": 4,
+   "units": 60,
+   "topics": 63,
+   "subtopics": 105,
+   "outcomes": 442
+  },
+  "warnings": []
+ }
+}

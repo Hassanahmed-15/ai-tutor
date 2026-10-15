@@ -86,6 +86,14 @@ const nextConfig: NextConfig = {
      */
     "/api/document-pages": ["./scripts/pdf_pipeline.py"],
     "/api/parse-pptx": ["./scripts/pdf_pipeline.py"],
+    // The course catalogue is read from disk at request time, so tracing cannot see it.
+    "/api/curricula": ["./data/curricula/catalog.json"],
+    "/api/curricula/[id]": ["./data/curricula/trees/*.json"],
+    "/api/curricula/checkpoint": ["./data/curricula/trees/*.json"],
+    "/api/curricula/lesson": ["./data/curricula/trees/*.json", "./data/curricula/sources/*.json"],
+    // The textbook diagram library (lib/figures/library.ts) is read from disk at request time.
+    "/api/figures/asset/[id]": ["./data/figures/library/*"],
+    "/api/canvas-lecture": ["./data/figures/library/index.json"],
   },
 };
 

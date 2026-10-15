@@ -1,0 +1,2010 @@
+{
+ "id": "us-il-health",
+ "region": "US",
+ "framework": "Illinois state academic standards: Health Education",
+ "board": null,
+ "qualification": "K-12",
+ "subject": "Health Education",
+ "syllabusCode": null,
+ "gradeSystem": "grade",
+ "source": {
+  "urls": [
+   "https://api.commonstandardsproject.com/api/v1/jurisdictions/549159D28465455FB144F5B67F3ACDFF",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/549159D28465455FB144F5B67F3ACDFF_D2617309_grades-01-02-03-k",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/549159D28465455FB144F5B67F3ACDFF_D2617309_grades-04-05",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/549159D28465455FB144F5B67F3ACDFF_D2617309_grades-06-07-08",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/549159D28465455FB144F5B67F3ACDFF_D2617309_grades-09-10",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/549159D28465455FB144F5B67F3ACDFF_D2617309_grades-11-12"
+  ],
+  "publisher": "Illinois state education agency (machine-readable via Common Standards Project / ASN)",
+  "licence": "CC BY 3.0 US, Desire2Learn Incorporated",
+  "firstExam": "2014"
+ },
+ "grades": [
+  {
+   "grade": "K-3",
+   "units": [
+    {
+     "id": "acquire-movement-and-motor-skills-and-understand",
+     "title": "Acquire movement and motor skills and understand concepts necessary to engage in moderate to vigorous physical activity",
+     "topics": [
+      {
+       "id": "demonstrate-physical-competency-in-a-variety-of-",
+       "title": "Demonstrate physical competency in a variety of motor skills and movement patterns",
+       "subtopics": [
+        {
+         "id": "demonstrate-physical-competency-in-a-variety-of-",
+         "title": "Demonstrate physical competency in a variety of motor skills and movement patterns",
+         "outcomes": [
+          {
+           "code": "19.A.1a",
+           "text": "Demonstrate control when performing fundamental locomotor, non-locomotor, and manipulative skills."
+          },
+          {
+           "code": "19.A.1b",
+           "text": "Participate daily in moderate to vigorous physical activity while performing basic movement patterns."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "analyze-various-movement-concepts-and-applicatio",
+       "title": "Analyze various movement concepts and applications",
+       "subtopics": [
+        {
+         "id": "analyze-various-movement-concepts-and-applicatio",
+         "title": "Analyze various movement concepts and applications",
+         "outcomes": [
+          {
+           "code": "19.B.1a",
+           "text": "Understand spatial awareness and relationships to objects and people."
+          },
+          {
+           "code": "19.B.1b",
+           "text": "Understand how to execute basic movement patterns."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "demonstrate-knowledge-of-rules-safety-and-strate",
+       "title": "Demonstrate knowledge of rules, safety and strategies during physical activity",
+       "subtopics": [
+        {
+         "id": "demonstrate-knowledge-of-rules-safety-and-strate",
+         "title": "Demonstrate knowledge of rules, safety and strategies during physical activity",
+         "outcomes": [
+          {
+           "code": "19.C.1a",
+           "text": "Demonstrate safe movement in physical activities."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "achieve-and-maintain-a-health-enhancing-level-of",
+     "title": "Achieve and maintain a health-enhancing level of physical fitness based upon continual self-assessment",
+     "topics": [
+      {
+       "id": "know-and-apply-the-principles-and-components-of-",
+       "title": "Know and apply the principles and components of health-related and skill-related fitness as applied to learning and performance of physical activities",
+       "subtopics": [
+        {
+         "id": "know-and-apply-the-principles-and-components-of-",
+         "title": "Know and apply the principles and components of health-related and skill-related fitness as applied to learning and performance of physical activities",
+         "outcomes": [
+          {
+           "code": "20.A.1a",
+           "text": "Identify characteristics of health-related and skill-related fitness (e.g., flexibility, muscular strength, balance)."
+          },
+          {
+           "code": "20.A.1b",
+           "text": "Engage in sustained physical activity that causes increased heart rate, muscle strength and range of movement."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "assess-individual-fitness-levels",
+       "title": "Assess individual fitness levels",
+       "subtopics": [
+        {
+         "id": "assess-individual-fitness-levels",
+         "title": "Assess individual fitness levels",
+         "outcomes": [
+          {
+           "code": "20.B.1a",
+           "text": "Describe immediate effects of physical activity on the body (e.g., faster heartbeat, increased rate of breathing)."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "set-goals-based-on-fitness-data-and-develop-impl",
+       "title": "Set goals based on fitness data and develop, implement, and monitor an individual fitness improvement plan",
+       "subtopics": [
+        {
+         "id": "set-goals-based-on-fitness-data-and-develop-impl",
+         "title": "Set goals based on fitness data and develop, implement, and monitor an individual fitness improvement plan",
+         "outcomes": [
+          {
+           "code": "20.C.1a",
+           "text": "Identify a realistic health-related goal."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "develop-skills-necessary-to-become-a-successful-",
+     "title": "Develop skills necessary to become a successful member of a team by working with others during physical activity",
+     "topics": [
+      {
+       "id": "demonstrate-personal-responsibility-during-group",
+       "title": "Demonstrate personal responsibility during group physical activities",
+       "subtopics": [
+        {
+         "id": "demonstrate-personal-responsibility-during-group",
+         "title": "Demonstrate personal responsibility during group physical activities",
+         "outcomes": [
+          {
+           "code": "21.A.1a",
+           "text": "Follow directions and class procedures while participating in physical activities."
+          },
+          {
+           "code": "21.A.1b",
+           "text": "Use identified procedures and safe practices with little or no reinforcement during group physical activities."
+          },
+          {
+           "code": "21.A.1c",
+           "text": "Work independently on tasks for short periods of time."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "demonstrate-cooperative-skills-during-structured",
+       "title": "Demonstrate cooperative skills during structured group physical activity",
+       "subtopics": [
+        {
+         "id": "demonstrate-cooperative-skills-during-structured",
+         "title": "Demonstrate cooperative skills during structured group physical activity",
+         "outcomes": [
+          {
+           "code": "21.B.1a",
+           "text": "Work cooperatively with another to accomplish an assigned task."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "understand-principles-of-health-promotion-and-th",
+     "title": "Understand principles of health promotion and the prevention and treatment of illness and injury",
+     "topics": [
+      {
+       "id": "explain-the-basic-principles-of-health-promotion",
+       "title": "Explain the basic principles of health promotion, illness prevention and safety including how to access valid information, products, and services",
+       "subtopics": [
+        {
+         "id": "explain-the-basic-principles-of-health-promotion",
+         "title": "Explain the basic principles of health promotion, illness prevention and safety including how to access valid information, products, and services",
+         "outcomes": [
+          {
+           "code": "22.A.1a",
+           "text": "Identify general signs and symptoms of illness (e.g., fever, rashes, coughs, congestion)."
+          },
+          {
+           "code": "22.A.1b",
+           "text": "Identify methods of health promotion and illness prevention (e.g., obtaining immunizations, hand washing, brushing, and flossing teeth, eating practices, sleep, cleanliness)."
+          },
+          {
+           "code": "22.A.1c",
+           "text": "Identify dangerous situations and safety methods to reduce risks (e.g., traffic, improper use of medicine and poisons, strangers)."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "describe-and-explain-the-factors-that-influence-",
+       "title": "Describe and explain the factors that influence health among individuals, groups, and communities",
+       "subtopics": [
+        {
+         "id": "describe-and-explain-the-factors-that-influence-",
+         "title": "Describe and explain the factors that influence health among individuals, groups, and communities",
+         "outcomes": [
+          {
+           "code": "22.B.1a",
+           "text": "Encourage and support others in making positive health choices (e.g., eating practices, cleanliness, safety practices)."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "explain-how-the-environment-can-affect-health",
+       "title": "Explain how the environment can affect health",
+       "subtopics": [
+        {
+         "id": "explain-how-the-environment-can-affect-health",
+         "title": "Explain how the environment can affect health",
+         "outcomes": [
+          {
+           "code": "22.C.1a",
+           "text": "Identify sources and causes of environmental health risks (e.g., air, soil, sun, water, noise, food, chemicals)."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "describe-how-to-advocate-for-the-health-of-indiv",
+       "title": "Describe how to advocate for the health of individuals, families and communities",
+       "subtopics": [
+        {
+         "id": "describe-how-to-advocate-for-the-health-of-indiv",
+         "title": "Describe how to advocate for the health of individuals, families and communities",
+         "outcomes": [
+          {
+           "code": "22.D.1a",
+           "text": "Identify positive health choices and demonstrate ways to communicate individual choices."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "understand-human-body-systems-and-factors-that-i",
+     "title": "Understand human body systems and factors that influence growth and development",
+     "topics": [
+      {
+       "id": "describe-and-explain-the-structure-and-functions",
+       "title": "Describe and explain the structure and functions of the human body systems and how they interrelate",
+       "subtopics": [
+        {
+         "id": "describe-and-explain-the-structure-and-functions",
+         "title": "Describe and explain the structure and functions of the human body systems and how they interrelate",
+         "outcomes": [
+          {
+           "code": "23.A.1a",
+           "text": "Identify basic parts of body systems and their functions (e.g., heart, lungs, eyes)."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "explain-the-effects-of-health-related-actions-on",
+       "title": "Explain the effects of health-related actions on the body systems",
+       "subtopics": [
+        {
+         "id": "explain-the-effects-of-health-related-actions-on",
+         "title": "Explain the effects of health-related actions on the body systems",
+         "outcomes": [
+          {
+           "code": "23.B.1a",
+           "text": "Identify healthy actions that influence the functions of the body (e.g., cleanliness, proper diet, exercise)."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "describe-factors-that-affect-growth-and-developm",
+       "title": "Describe factors that affect growth and development",
+       "subtopics": [
+        {
+         "id": "describe-factors-that-affect-growth-and-developm",
+         "title": "Describe factors that affect growth and development",
+         "outcomes": [
+          {
+           "code": "23.C.1a",
+           "text": "Identify individual differences in growth and development among people."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "describe-and-explain-the-structures-and-function",
+       "title": "Describe and explain the structures and functions of the brain and how they are impacted by different types of physical activity and levels of fitness",
+       "subtopics": [
+        {
+         "id": "describe-and-explain-the-structures-and-function",
+         "title": "Describe and explain the structures and functions of the brain and how they are impacted by different types of physical activity and levels of fitness",
+         "outcomes": [
+          {
+           "code": "23.D.1a",
+           "text": "Locate and identify basic parts of the brain."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "promote-and-enhance-health-and-well-being-throug",
+     "title": "Promote and enhance health and well-being through the use of effective communication and decision-making skills",
+     "topics": [
+      {
+       "id": "demonstrate-procedures-for-communicating-in-posi",
+       "title": "Demonstrate procedures for communicating in positive ways, resolving differences and preventing conflict",
+       "subtopics": [
+        {
+         "id": "demonstrate-procedures-for-communicating-in-posi",
+         "title": "Demonstrate procedures for communicating in positive ways, resolving differences and preventing conflict",
+         "outcomes": [
+          {
+           "code": "24.A.1a",
+           "text": "Differentiate between positive and negative behaviors (e.g., waiting your turn vs. pushing in line, honesty vs. lying)."
+          },
+          {
+           "code": "24.A.1b",
+           "text": "Identify positive verbal and nonverbal communication skills (e.g., body language, manners, listening)."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "apply-decision-making-skills-related-to-the-prot",
+       "title": "Apply decision-making skills related to the protection and promotion of individual, family, and community health",
+       "subtopics": [
+        {
+         "id": "apply-decision-making-skills-related-to-the-prot",
+         "title": "Apply decision-making skills related to the protection and promotion of individual, family, and community health",
+         "outcomes": [
+          {
+           "code": "24.B.1a",
+           "text": "Recognize how choices can affect health (e.g., not brushing/tooth decay, smoking/risk of cancer and heart disease)."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "demonstrate-skills-essential-to-enhancing-health",
+       "title": "Demonstrate skills essential to enhancing health and avoiding dangerous situations",
+       "subtopics": [
+        {
+         "id": "demonstrate-skills-essential-to-enhancing-health",
+         "title": "Demonstrate skills essential to enhancing health and avoiding dangerous situations",
+         "outcomes": [
+          {
+           "code": "24.C.1a",
+           "text": "Demonstrate basic refusal skills (e.g., \"Just Say No\", \"Stranger Danger\")."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "4-5",
+   "units": [
+    {
+     "id": "acquire-movement-and-motor-skills-and-understand",
+     "title": "Acquire movement and motor skills and understand concepts necessary to engage in moderate to vigorous physical activity",
+     "topics": [
+      {
+       "id": "demonstrate-physical-competency-in-a-variety-of-",
+       "title": "Demonstrate physical competency in a variety of motor skills and movement patterns",
+       "subtopics": [
+        {
+         "id": "demonstrate-physical-competency-in-a-variety-of-",
+         "title": "Demonstrate physical competency in a variety of motor skills and movement patterns",
+         "outcomes": [
+          {
+           "code": "19.A.2a",
+           "text": "Demonstrate control when performing combinations and sequences in locomotor, non-locomotor, and manipulative motor patterns."
+          },
+          {
+           "code": "19.A.2b",
+           "text": "Participate daily in moderate to vigorous physical activity while performing multiple basic movement patterns with additional combination movement patterns."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "analyze-various-movement-concepts-and-applicatio",
+       "title": "Analyze various movement concepts and applications",
+       "subtopics": [
+        {
+         "id": "analyze-various-movement-concepts-and-applicatio",
+         "title": "Analyze various movement concepts and applications",
+         "outcomes": [
+          {
+           "code": "19.B.2a",
+           "text": "Identify the principles of movement (e.g., absorption and application of force, equilibrium)."
+          },
+          {
+           "code": "19.B.2b",
+           "text": "Develop a basic understanding of multiple basic movement patterns with additional combination movement patterns."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "demonstrate-knowledge-of-rules-safety-and-strate",
+       "title": "Demonstrate knowledge of rules, safety and strategies during physical activity",
+       "subtopics": [
+        {
+         "id": "demonstrate-knowledge-of-rules-safety-and-strate",
+         "title": "Demonstrate knowledge of rules, safety and strategies during physical activity",
+         "outcomes": [
+          {
+           "code": "19.C.2a",
+           "text": "Identify and apply rules and safety procedures in physical activities."
+          },
+          {
+           "code": "19.C.2b",
+           "text": "Identify offensive, defensive, and cooperative strategies in selected activities and games."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "achieve-and-maintain-a-health-enhancing-level-of",
+     "title": "Achieve and maintain a health-enhancing level of physical fitness based upon continual self-assessment",
+     "topics": [
+      {
+       "id": "know-and-apply-the-principles-and-components-of-",
+       "title": "Know and apply the principles and components of health-related and skill-related fitness as applied to learning and performance of physical activities",
+       "subtopics": [
+        {
+         "id": "know-and-apply-the-principles-and-components-of-",
+         "title": "Know and apply the principles and components of health-related and skill-related fitness as applied to learning and performance of physical activities",
+         "outcomes": [
+          {
+           "code": "20.A.2a",
+           "text": "Describe the benefits of maintaining a health-enhancing level of fitness."
+          },
+          {
+           "code": "20.A.2b",
+           "text": "Regularly participate in physical activity for the purpose of sustaining or improving individual levels of health-related and skill-related fitness."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "assess-individual-fitness-levels",
+       "title": "Assess individual fitness levels",
+       "subtopics": [
+        {
+         "id": "assess-individual-fitness-levels",
+         "title": "Assess individual fitness levels",
+         "outcomes": [
+          {
+           "code": "20.B.2a",
+           "text": "Monitor individual heart rate before, during, and after physical activity, with and without the use of technology."
+          },
+          {
+           "code": "20.B.2b",
+           "text": "Match recognized assessments of health-related fitness (e.g., FitnessGram) to corresponding components of fitness."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "set-goals-based-on-fitness-data-and-develop-impl",
+       "title": "Set goals based on fitness data and develop, implement, and monitor an individual fitness improvement plan",
+       "subtopics": [
+        {
+         "id": "set-goals-based-on-fitness-data-and-develop-impl",
+         "title": "Set goals based on fitness data and develop, implement, and monitor an individual fitness improvement plan",
+         "outcomes": [
+          {
+           "code": "20.C.2a",
+           "text": "Set a personal health-related fitness goal."
+          },
+          {
+           "code": "20.C.2b",
+           "text": "Demonstrate the relationship between movement and health-related and skill-related fitness components (e.g., running/cardiorespiratory, tug-of-war/strength)."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "develop-skills-necessary-to-become-a-successful-",
+     "title": "Develop skills necessary to become a successful member of a team by working with others during physical activity",
+     "topics": [
+      {
+       "id": "demonstrate-personal-responsibility-during-group",
+       "title": "Demonstrate personal responsibility during group physical activities",
+       "subtopics": [
+        {
+         "id": "demonstrate-personal-responsibility-during-group",
+         "title": "Demonstrate personal responsibility during group physical activities",
+         "outcomes": [
+          {
+           "code": "21.A.2a",
+           "text": "Accept responsibility for one's own actions in group physical activities."
+          },
+          {
+           "code": "21.A.2b",
+           "text": "Use identified procedures and safe practices without reminders during group physical activities."
+          },
+          {
+           "code": "21.A.2c",
+           "text": "Work independently on task until completed."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "demonstrate-cooperative-skills-during-structured",
+       "title": "Demonstrate cooperative skills during structured group physical activity",
+       "subtopics": [
+        {
+         "id": "demonstrate-cooperative-skills-during-structured",
+         "title": "Demonstrate cooperative skills during structured group physical activity",
+         "outcomes": [
+          {
+           "code": "21.B.2a",
+           "text": "Work cooperatively with a partner or small group to reach a shared goal during physical activity."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "understand-principles-of-health-promotion-and-th",
+     "title": "Understand principles of health promotion and the prevention and treatment of illness and injury",
+     "topics": [
+      {
+       "id": "explain-the-basic-principles-of-health-promotion",
+       "title": "Explain the basic principles of health promotion, illness prevention and safety including how to access valid information, products, and services",
+       "subtopics": [
+        {
+         "id": "explain-the-basic-principles-of-health-promotion",
+         "title": "Explain the basic principles of health promotion, illness prevention and safety including how to access valid information, products, and services",
+         "outcomes": [
+          {
+           "code": "22.A.2a",
+           "text": "Describe benefits of early detection and treatment of illness."
+          },
+          {
+           "code": "22.A.2b",
+           "text": "Demonstrate strategies for the prevention and reduction of communicable and non-communicable disease (e.g., practicing cleanliness, making healthy food choices, understanding the importance of immunizations, and regular health screenings)."
+          },
+          {
+           "code": "22.A.2c",
+           "text": "Describe and compare health and safety methods that reduce the risks associated with dangerous situations (e.g., wearing seat belts and helmets, using sunscreen)."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "describe-and-explain-the-factors-that-influence-",
+       "title": "Describe and explain the factors that influence health among individuals, groups, and communities",
+       "subtopics": [
+        {
+         "id": "describe-and-explain-the-factors-that-influence-",
+         "title": "Describe and explain the factors that influence health among individuals, groups, and communities",
+         "outcomes": [
+          {
+           "code": "22.B.2a",
+           "text": "Describe how individuals and groups influence the health of individuals (e.g., peer pressure, media and advertising)."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "explain-how-the-environment-can-affect-health",
+       "title": "Explain how the environment can affect health",
+       "subtopics": [
+        {
+         "id": "explain-how-the-environment-can-affect-health",
+         "title": "Explain how the environment can affect health",
+         "outcomes": [
+          {
+           "code": "22.C.2a",
+           "text": "Explain interrelationships between the environment and individual health (e.g., pollution and respiratory problems, sun and skin cancer)."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "describe-how-to-advocate-for-the-health-of-indiv",
+       "title": "Describe how to advocate for the health of individuals, families and communities",
+       "subtopics": [
+        {
+         "id": "describe-how-to-advocate-for-the-health-of-indiv",
+         "title": "Describe how to advocate for the health of individuals, families and communities",
+         "outcomes": [
+          {
+           "code": "22.D.2a",
+           "text": "Express opinions about health issues and communicate individual health needs."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "understand-human-body-systems-and-factors-that-i",
+     "title": "Understand human body systems and factors that influence growth and development",
+     "topics": [
+      {
+       "id": "describe-and-explain-the-structure-and-functions",
+       "title": "Describe and explain the structure and functions of the human body systems and how they interrelate",
+       "subtopics": [
+        {
+         "id": "describe-and-explain-the-structure-and-functions",
+         "title": "Describe and explain the structure and functions of the human body systems and how they interrelate",
+         "outcomes": [
+          {
+           "code": "23.A.2a",
+           "text": "Identify basic body systems and their functions (e.g., circulatory, respiratory, nervous)."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "explain-the-effects-of-health-related-actions-on",
+       "title": "Explain the effects of health-related actions on the body systems",
+       "subtopics": [
+        {
+         "id": "explain-the-effects-of-health-related-actions-on",
+         "title": "Explain the effects of health-related actions on the body systems",
+         "outcomes": [
+          {
+           "code": "23.B.2a",
+           "text": "Differentiate between positive and negative effects of health-related actions on body systems (e.g., drug use, exercise, diet)."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "describe-factors-that-affect-growth-and-developm",
+       "title": "Describe factors that affect growth and development",
+       "subtopics": [
+        {
+         "id": "describe-factors-that-affect-growth-and-developm",
+         "title": "Describe factors that affect growth and development",
+         "outcomes": [
+          {
+           "code": "23.C.2a",
+           "text": "Identify physical, mental, social and cultural factors affecting growth and development of children (e.g., nutrition, self-esteem, family, and illness)."
+          },
+          {
+           "code": "23.C.2b",
+           "text": "Identify stages in growth and development (e.g., stages in the life cycle from infancy to old age)."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "describe-and-explain-the-structures-and-function",
+       "title": "Describe and explain the structures and functions of the brain and how they are impacted by different types of physical activity and levels of fitness",
+       "subtopics": [
+        {
+         "id": "describe-and-explain-the-structures-and-function",
+         "title": "Describe and explain the structures and functions of the brain and how they are impacted by different types of physical activity and levels of fitness",
+         "outcomes": [
+          {
+           "code": "23.D.2a",
+           "text": "Locate, identify and describe functions of the basic parts of the brain."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "promote-and-enhance-health-and-well-being-throug",
+     "title": "Promote and enhance health and well-being through the use of effective communication and decision-making skills",
+     "topics": [
+      {
+       "id": "demonstrate-procedures-for-communicating-in-posi",
+       "title": "Demonstrate procedures for communicating in positive ways, resolving differences and preventing conflict",
+       "subtopics": [
+        {
+         "id": "demonstrate-procedures-for-communicating-in-posi",
+         "title": "Demonstrate procedures for communicating in positive ways, resolving differences and preventing conflict",
+         "outcomes": [
+          {
+           "code": "24.A.2a",
+           "text": "Identify causes and consequences of conflict among youth."
+          },
+          {
+           "code": "24.A.2b",
+           "text": "Demonstrate positive verbal and nonverbal communication skills (e.g., polite conversation, attentive listening, body language)."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "apply-decision-making-skills-related-to-the-prot",
+       "title": "Apply decision-making skills related to the protection and promotion of individual, family, and community health",
+       "subtopics": [
+        {
+         "id": "apply-decision-making-skills-related-to-the-prot",
+         "title": "Apply decision-making skills related to the protection and promotion of individual, family, and community health",
+         "outcomes": [
+          {
+           "code": "24.B.2a",
+           "text": "Describe key elements of a decision-making process."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "demonstrate-skills-essential-to-enhancing-health",
+       "title": "Demonstrate skills essential to enhancing health and avoiding dangerous situations",
+       "subtopics": [
+        {
+         "id": "demonstrate-skills-essential-to-enhancing-health",
+         "title": "Demonstrate skills essential to enhancing health and avoiding dangerous situations",
+         "outcomes": [
+          {
+           "code": "24.C.2a",
+           "text": "Describe situations where refusal skills are necessary (e.g., cyberbullying, pressure to smoke, use alcohol, and other drugs; join gangs; physical abuse; and exploitation)."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "6-8",
+   "units": [
+    {
+     "id": "acquire-movement-and-motor-skills-and-understand",
+     "title": "Acquire movement and motor skills and understand concepts necessary to engage in moderate to vigorous physical activity",
+     "topics": [
+      {
+       "id": "demonstrate-physical-competency-in-a-variety-of-",
+       "title": "Demonstrate physical competency in a variety of motor skills and movement patterns",
+       "subtopics": [
+        {
+         "id": "demonstrate-physical-competency-in-a-variety-of-",
+         "title": "Demonstrate physical competency in a variety of motor skills and movement patterns",
+         "outcomes": [
+          {
+           "code": "19.A.3a",
+           "text": "Demonstrate control when performing combinations and sequences of locomotor, non-locomotor, and manipulative motor patterns in selected activities, games, and sports."
+          },
+          {
+           "code": "19.A.3b",
+           "text": "Participate daily in moderate to vigorous physical activity while performing multiple movement patterns consistently with additional combination movement patterns."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "analyze-various-movement-concepts-and-applicatio",
+       "title": "Analyze various movement concepts and applications",
+       "subtopics": [
+        {
+         "id": "analyze-various-movement-concepts-and-applicatio",
+         "title": "Analyze various movement concepts and applications",
+         "outcomes": [
+          {
+           "code": "19.B.3a",
+           "text": "Compare and contrast efficient and inefficient movement patterns."
+          },
+          {
+           "code": "19.B.3b",
+           "text": "Understand multiple movement patterns and their effects on the brain."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "demonstrate-knowledge-of-rules-safety-and-strate",
+       "title": "Demonstrate knowledge of rules, safety and strategies during physical activity",
+       "subtopics": [
+        {
+         "id": "demonstrate-knowledge-of-rules-safety-and-strate",
+         "title": "Demonstrate knowledge of rules, safety and strategies during physical activity",
+         "outcomes": [
+          {
+           "code": "19.C.3a",
+           "text": "Apply rules and safety procedures in physical activities."
+          },
+          {
+           "code": "19.C.3b",
+           "text": "Apply basic offensive, defensive, and cooperative strategies in selected activities, games, and sports."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "achieve-and-maintain-a-health-enhancing-level-of",
+     "title": "Achieve and maintain a health-enhancing level of physical fitness based upon continual self-assessment",
+     "topics": [
+      {
+       "id": "know-and-apply-the-principles-and-components-of-",
+       "title": "Know and apply the principles and components of health-related and skill-related fitness as applied to learning and performance of physical activities",
+       "subtopics": [
+        {
+         "id": "know-and-apply-the-principles-and-components-of-",
+         "title": "Know and apply the principles and components of health-related and skill-related fitness as applied to learning and performance of physical activities",
+         "outcomes": [
+          {
+           "code": "20.A.3a",
+           "text": "Identify the principles of training: frequency, intensity, time and type (FITT)."
+          },
+          {
+           "code": "20.A.3b",
+           "text": "Identify and participate in activities associated with the components of health-related and skill-related fitness."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "assess-individual-fitness-levels",
+       "title": "Assess individual fitness levels",
+       "subtopics": [
+        {
+         "id": "assess-individual-fitness-levels",
+         "title": "Assess individual fitness levels",
+         "outcomes": [
+          {
+           "code": "20.B.3a",
+           "text": "Monitor intensity of exercise through a variety of methods (e.g., perceived exertion, pulse, heart rate monitors), with and without the use of technology."
+          },
+          {
+           "code": "20.B.3b",
+           "text": "Evaluate the strengths and weaknesses contained in a personal fitness profile."
+          },
+          {
+           "code": "20.B.3c",
+           "text": "Discuss and understand the importance of fitness as it relates to academic performance."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "set-goals-based-on-fitness-data-and-develop-impl",
+       "title": "Set goals based on fitness data and develop, implement, and monitor an individual fitness improvement plan",
+       "subtopics": [
+        {
+         "id": "set-goals-based-on-fitness-data-and-develop-impl",
+         "title": "Set goals based on fitness data and develop, implement, and monitor an individual fitness improvement plan",
+         "outcomes": [
+          {
+           "code": "20.C.3a",
+           "text": "Set realistic short-term and long-term goals for a health-related fitness component."
+          },
+          {
+           "code": "20.C.3b",
+           "text": "Identify opportunities within the community for regular participation in physical activities"
+          },
+          {
+           "code": "20.C.3c",
+           "text": "Apply the principles of training to the health-related fitness goals."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "develop-skills-necessary-to-become-a-successful-",
+     "title": "Develop skills necessary to become a successful member of a team by working with others during physical activity",
+     "topics": [
+      {
+       "id": "demonstrate-personal-responsibility-during-group",
+       "title": "Demonstrate personal responsibility during group physical activities",
+       "subtopics": [
+        {
+         "id": "demonstrate-personal-responsibility-during-group",
+         "title": "Demonstrate personal responsibility during group physical activities",
+         "outcomes": [
+          {
+           "code": "21.A.3a",
+           "text": "Follow directions and decisions of responsible individuals (e.g., teachers, peer leaders, squad leaders)."
+          },
+          {
+           "code": "21.A.3b",
+           "text": "Participate in establishing procedures for group physical activities."
+          },
+          {
+           "code": "21.A.3c",
+           "text": "Remain on task independent of distraction (e.g., peer pressure, environmental stressors)."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "demonstrate-cooperative-skills-during-structured",
+       "title": "Demonstrate cooperative skills during structured group physical activity",
+       "subtopics": [
+        {
+         "id": "demonstrate-cooperative-skills-during-structured",
+         "title": "Demonstrate cooperative skills during structured group physical activity",
+         "outcomes": [
+          {
+           "code": "21.B.3a",
+           "text": "Work cooperatively with others to accomplish a set goal in both competitive and non-competitive situations (e.g., baseball, choreographing a dance)."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "understand-principles-of-health-promotion-and-th",
+     "title": "Understand principles of health promotion and the prevention and treatment of illness and injury",
+     "topics": [
+      {
+       "id": "explain-the-basic-principles-of-health-promotion",
+       "title": "Explain the basic principles of health promotion, illness prevention and safety including how to access valid information, products, and services",
+       "subtopics": [
+        {
+         "id": "explain-the-basic-principles-of-health-promotion",
+         "title": "Explain the basic principles of health promotion, illness prevention and safety including how to access valid information, products, and services",
+         "outcomes": [
+          {
+           "code": "22.A.3a",
+           "text": "Identify and describe ways to reduce health risks common to adolescents (e.g., exercise, diet, refusal of harmful substances)."
+          },
+          {
+           "code": "22.A.3b",
+           "text": "Identify how positive health practices and relevant health care can help reduce health risks (e.g., proper diet and exercise reduce risks of cancer and heart disease)."
+          },
+          {
+           "code": "22.A.3c",
+           "text": "Explain routine safety precautions in practical situations (e.g., in motor vehicles, on bicycles, in and near water, as a pedestrian)."
+          },
+          {
+           "code": "22.A.3d",
+           "text": "Identify various careers in health promotion, health care and injury prevention."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "describe-and-explain-the-factors-that-influence-",
+       "title": "Describe and explain the factors that influence health among individuals, groups, and communities",
+       "subtopics": [
+        {
+         "id": "describe-and-explain-the-factors-that-influence-",
+         "title": "Describe and explain the factors that influence health among individuals, groups, and communities",
+         "outcomes": [
+          {
+           "code": "22.B.3a",
+           "text": "Describe how the individual influences the health and well-being of the workplace and the community (e.g., volunteerism, disaster preparedness, proper care to prevent the spread of illness)."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "explain-how-the-environment-can-affect-health",
+       "title": "Explain how the environment can affect health",
+       "subtopics": [
+        {
+         "id": "explain-how-the-environment-can-affect-health",
+         "title": "Explain how the environment can affect health",
+         "outcomes": [
+          {
+           "code": "22.C.3a",
+           "text": "Identify potential environmental conditions that may affect the health of the local community (e.g., pollution, land fill, lead-based paint)."
+          },
+          {
+           "code": "22.C.3b",
+           "text": "Develop potential solutions to address environmental problems that affect the local community's health."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "describe-how-to-advocate-for-the-health-of-indiv",
+       "title": "Describe how to advocate for the health of individuals, families and communities",
+       "subtopics": [
+        {
+         "id": "describe-how-to-advocate-for-the-health-of-indiv",
+         "title": "Describe how to advocate for the health of individuals, families and communities",
+         "outcomes": [
+          {
+           "code": "22.D.3a",
+           "text": "Identify and communicate with others within your school, family, and community regarding health issues."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "understand-human-body-systems-and-factors-that-i",
+     "title": "Understand human body systems and factors that influence growth and development",
+     "topics": [
+      {
+       "id": "describe-and-explain-the-structure-and-functions",
+       "title": "Describe and explain the structure and functions of the human body systems and how they interrelate",
+       "subtopics": [
+        {
+         "id": "describe-and-explain-the-structure-and-functions",
+         "title": "Describe and explain the structure and functions of the human body systems and how they interrelate",
+         "outcomes": [
+          {
+           "code": "23.A.3a",
+           "text": "Explain how body systems interact with each other (e.g., blood transporting nutrients from the digestive system and oxygen from the respiratory system, muscular/skeletal systems [movement] and structure of the brain)."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "explain-the-effects-of-health-related-actions-on",
+       "title": "Explain the effects of health-related actions on the body systems",
+       "subtopics": [
+        {
+         "id": "explain-the-effects-of-health-related-actions-on",
+         "title": "Explain the effects of health-related actions on the body systems",
+         "outcomes": [
+          {
+           "code": "23.B.3a",
+           "text": "Explain the effects of health-related actions upon body systems (e.g., fad diets, orthodontics, avoiding smoking, alcohol use, and other drug use)."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "describe-factors-that-affect-growth-and-developm",
+       "title": "Describe factors that affect growth and development",
+       "subtopics": [
+        {
+         "id": "describe-factors-that-affect-growth-and-developm",
+         "title": "Describe factors that affect growth and development",
+         "outcomes": [
+          {
+           "code": "23.C.3a",
+           "text": "Describe the relationships among physical, mental, and social health factors during adolescence (e.g., the effects of stress on physical and mental performance, effects of nutrition on growth)."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "describe-and-explain-the-structures-and-function",
+       "title": "Describe and explain the structures and functions of the brain and how they are impacted by different types of physical activity and levels of fitness",
+       "subtopics": [
+        {
+         "id": "describe-and-explain-the-structures-and-function",
+         "title": "Describe and explain the structures and functions of the brain and how they are impacted by different types of physical activity and levels of fitness",
+         "outcomes": [
+          {
+           "code": "23.D.3a",
+           "text": "Explain how the brain is affected by movement."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "promote-and-enhance-health-and-well-being-throug",
+     "title": "Promote and enhance health and well-being through the use of effective communication and decision-making skills",
+     "topics": [
+      {
+       "id": "demonstrate-procedures-for-communicating-in-posi",
+       "title": "Demonstrate procedures for communicating in positive ways, resolving differences and preventing conflict",
+       "subtopics": [
+        {
+         "id": "demonstrate-procedures-for-communicating-in-posi",
+         "title": "Demonstrate procedures for communicating in positive ways, resolving differences and preventing conflict",
+         "outcomes": [
+          {
+           "code": "24.A.3a",
+           "text": "Describe possible causes and consequences of conflict and violence among youth in schools and communities."
+          },
+          {
+           "code": "24.A.3b",
+           "text": "Demonstrate methods for addressing interpersonal differences without harm (e.g., avoidance, compromise, cooperation)."
+          },
+          {
+           "code": "24.A.3c",
+           "text": "Explain how positive communication helps to build and maintain relationships at school, at home and in the workplace."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "apply-decision-making-skills-related-to-the-prot",
+       "title": "Apply decision-making skills related to the protection and promotion of individual, family, and community health",
+       "subtopics": [
+        {
+         "id": "apply-decision-making-skills-related-to-the-prot",
+         "title": "Apply decision-making skills related to the protection and promotion of individual, family, and community health",
+         "outcomes": [
+          {
+           "code": "24.B.3a",
+           "text": "Apply a decision-making process to an individual health concern."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "demonstrate-skills-essential-to-enhancing-health",
+       "title": "Demonstrate skills essential to enhancing health and avoiding dangerous situations",
+       "subtopics": [
+        {
+         "id": "demonstrate-skills-essential-to-enhancing-health",
+         "title": "Demonstrate skills essential to enhancing health and avoiding dangerous situations",
+         "outcomes": [
+          {
+           "code": "24.C.3a",
+           "text": "Apply refusal and negotiation skills to potentially harmful situations."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "9-10",
+   "units": [
+    {
+     "id": "acquire-movement-and-motor-skills-and-understand",
+     "title": "Acquire movement and motor skills and understand concepts necessary to engage in moderate to vigorous physical activity",
+     "topics": [
+      {
+       "id": "demonstrate-physical-competency-in-a-variety-of-",
+       "title": "Demonstrate physical competency in a variety of motor skills and movement patterns",
+       "subtopics": [
+        {
+         "id": "demonstrate-physical-competency-in-a-variety-of-",
+         "title": "Demonstrate physical competency in a variety of motor skills and movement patterns",
+         "outcomes": [
+          {
+           "code": "19.A.4a",
+           "text": "Perform skills efficiently in a variety of leisure activities, sports, creative movement, and work-related activities."
+          },
+          {
+           "code": "19.A.4b",
+           "text": "Participate daily in moderate to vigorous physical activity while performing movement patterns in a variety of activities."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "analyze-various-movement-concepts-and-applicatio",
+       "title": "Analyze various movement concepts and applications",
+       "subtopics": [
+        {
+         "id": "analyze-various-movement-concepts-and-applicatio",
+         "title": "Analyze various movement concepts and applications",
+         "outcomes": [
+          {
+           "code": "19.B.4a",
+           "text": "Analyze various movement patterns for efficiency and effectiveness."
+          },
+          {
+           "code": "19.B.4b",
+           "text": "Analyze multiple movement patterns with additional combination movement patterns and their effects on the brain."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "demonstrate-knowledge-of-rules-safety-and-strate",
+       "title": "Demonstrate knowledge of rules, safety and strategies during physical activity",
+       "subtopics": [
+        {
+         "id": "demonstrate-knowledge-of-rules-safety-and-strate",
+         "title": "Demonstrate knowledge of rules, safety and strategies during physical activity",
+         "outcomes": [
+          {
+           "code": "19.C.4a",
+           "text": "Develop rules and safety procedures for physical activities."
+          },
+          {
+           "code": "19.C.4b",
+           "text": "Select and apply offensive, defensive, and cooperative strategies in selected activities, games, and sports."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "achieve-and-maintain-a-health-enhancing-level-of",
+     "title": "Achieve and maintain a health-enhancing level of physical fitness based upon continual self-assessment",
+     "topics": [
+      {
+       "id": "know-and-apply-the-principles-and-components-of-",
+       "title": "Know and apply the principles and components of health-related and skill-related fitness as applied to learning and performance of physical activities",
+       "subtopics": [
+        {
+         "id": "know-and-apply-the-principles-and-components-of-",
+         "title": "Know and apply the principles and components of health-related and skill-related fitness as applied to learning and performance of physical activities",
+         "outcomes": [
+          {
+           "code": "20.A.4a",
+           "text": "Interpret the effects of exercise/physical activity on the level of health-related and skill-related fitness."
+          },
+          {
+           "code": "20.A.4b",
+           "text": "Participate in various types of fitness training programs (e.g., circuit, cross and interval training) and know the implications of and the benefits from participation in those programs."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "assess-individual-fitness-levels",
+       "title": "Assess individual fitness levels",
+       "subtopics": [
+        {
+         "id": "assess-individual-fitness-levels",
+         "title": "Assess individual fitness levels",
+         "outcomes": [
+          {
+           "code": "20.B.4a",
+           "text": "Record and interpret health-related physiological data (e.g., blood pressure, body mass index, oxygen exchange), with and without the use of technology."
+          },
+          {
+           "code": "20.B.4b",
+           "text": "Prepare an individual health-related fitness profile and evaluate fitness level on each component."
+          },
+          {
+           "code": "20.B.4c",
+           "text": "Understand and explain the importance of fitness as it relates to academic performance."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "set-goals-based-on-fitness-data-and-develop-impl",
+       "title": "Set goals based on fitness data and develop, implement, and monitor an individual fitness improvement plan",
+       "subtopics": [
+        {
+         "id": "set-goals-based-on-fitness-data-and-develop-impl",
+         "title": "Set goals based on fitness data and develop, implement, and monitor an individual fitness improvement plan",
+         "outcomes": [
+          {
+           "code": "20.C.4a",
+           "text": "Set realistic, short-term, health-related fitness goals based on individual profiles."
+          },
+          {
+           "code": "20.C.4b",
+           "text": "Analyze personal fitness data and academic performance and describe the correlation between the two."
+          },
+          {
+           "code": "20.C.4c",
+           "text": "Evaluate physical fitness services, products, and advertising."
+          },
+          {
+           "code": "20.C.4d",
+           "text": "Design and implement a personal fitness program."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "develop-skills-necessary-to-become-a-successful-",
+     "title": "Develop skills necessary to become a successful member of a team by working with others during physical activity",
+     "topics": [
+      {
+       "id": "demonstrate-personal-responsibility-during-group",
+       "title": "Demonstrate personal responsibility during group physical activities",
+       "subtopics": [
+        {
+         "id": "demonstrate-personal-responsibility-during-group",
+         "title": "Demonstrate personal responsibility during group physical activities",
+         "outcomes": [
+          {
+           "code": "21.A.4a",
+           "text": "Demonstrate decision-making skills both independently and with others during physical activities."
+          },
+          {
+           "code": "21.A.4b",
+           "text": "Apply identified procedures and safe practices to all group physical activity settings."
+          },
+          {
+           "code": "21.A.4c",
+           "text": "Complete a given task on time."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "demonstrate-cooperative-skills-during-structured",
+       "title": "Demonstrate cooperative skills during structured group physical activity",
+       "subtopics": [
+        {
+         "id": "demonstrate-cooperative-skills-during-structured",
+         "title": "Demonstrate cooperative skills during structured group physical activity",
+         "outcomes": [
+          {
+           "code": "21.B.4a",
+           "text": "Work cooperatively with others to achieve group goals in competitive and non-competitive situations (e.g., challenge course, orienteering)."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "understand-principles-of-health-promotion-and-th",
+     "title": "Understand principles of health promotion and the prevention and treatment of illness and injury",
+     "topics": [
+      {
+       "id": "explain-the-basic-principles-of-health-promotion",
+       "title": "Explain the basic principles of health promotion, illness prevention and safety including how to access valid information, products, and services",
+       "subtopics": [
+        {
+         "id": "explain-the-basic-principles-of-health-promotion",
+         "title": "Explain the basic principles of health promotion, illness prevention and safety including how to access valid information, products, and services",
+         "outcomes": [
+          {
+           "code": "22.A.4a",
+           "text": "Compare and contrast communicable, chronic, and degenerative illnesses (e.g., influenza, cancer, arthritis)."
+          },
+          {
+           "code": "22.A.4b",
+           "text": "Analyze possible outcomes of effective health promotion and illness prevention (e.g., reduction in stress, improved fitness, lessened likelihood of injury and illness)."
+          },
+          {
+           "code": "22.A.4c",
+           "text": "Demonstrate basic procedures in injury prevention and emergency care that can be used in the home, workplace, and community (e.g., first aid, CPR)."
+          },
+          {
+           "code": "22.A.4d",
+           "text": "Research and report about a career in health promotion, health care and injury prevention."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "describe-and-explain-the-factors-that-influence-",
+       "title": "Describe and explain the factors that influence health among individuals, groups, and communities",
+       "subtopics": [
+        {
+         "id": "describe-and-explain-the-factors-that-influence-",
+         "title": "Describe and explain the factors that influence health among individuals, groups, and communities",
+         "outcomes": [
+          {
+           "code": "22.B.4a",
+           "text": "Explain social and economic effects of health problems on individuals and society (e.g., cost of health care, reduction in productivity)."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "explain-how-the-environment-can-affect-health",
+       "title": "Explain how the environment can affect health",
+       "subtopics": [
+        {
+         "id": "explain-how-the-environment-can-affect-health",
+         "title": "Explain how the environment can affect health",
+         "outcomes": [
+          {
+           "code": "22.C.4a",
+           "text": "Analyze how environmental conditions can affect health on a large scale (e.g., acid rain, oil spills, solid waste contamination, nuclear leaks, ozone depletion)."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "describe-how-to-advocate-for-the-health-of-indiv",
+       "title": "Describe how to advocate for the health of individuals, families and communities",
+       "subtopics": [
+        {
+         "id": "describe-how-to-advocate-for-the-health-of-indiv",
+         "title": "Describe how to advocate for the health of individuals, families and communities",
+         "outcomes": [
+          {
+           "code": "22.D.4a",
+           "text": "Identify health resources to help influence others in making healthy choices."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "understand-human-body-systems-and-factors-that-i",
+     "title": "Understand human body systems and factors that influence growth and development",
+     "topics": [
+      {
+       "id": "describe-and-explain-the-structure-and-functions",
+       "title": "Describe and explain the structure and functions of the human body systems and how they interrelate",
+       "subtopics": [
+        {
+         "id": "describe-and-explain-the-structure-and-functions",
+         "title": "Describe and explain the structure and functions of the human body systems and how they interrelate",
+         "outcomes": [
+          {
+           "code": "23.A.4a",
+           "text": "Explain how body system functions can be maintained and improved (e.g., exercise/fitness, nutrition, safety)."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "explain-the-effects-of-health-related-actions-on",
+       "title": "Explain the effects of health-related actions on the body systems",
+       "subtopics": [
+        {
+         "id": "explain-the-effects-of-health-related-actions-on",
+         "title": "Explain the effects of health-related actions on the body systems",
+         "outcomes": [
+          {
+           "code": "23.B.4a",
+           "text": "Explain immediate and long-term effects of health habits on the body systems (e.g., diet/heart disease, exercise/fat reduction, stress management/emotional health)."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "describe-factors-that-affect-growth-and-developm",
+       "title": "Describe factors that affect growth and development",
+       "subtopics": [
+        {
+         "id": "describe-factors-that-affect-growth-and-developm",
+         "title": "Describe factors that affect growth and development",
+         "outcomes": [
+          {
+           "code": "23.C.4a",
+           "text": "Describe changes in physical health and body functions at various stages of the life cycle."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "describe-and-explain-the-structures-and-function",
+       "title": "Describe and explain the structures and functions of the brain and how they are impacted by different types of physical activity and levels of fitness",
+       "subtopics": [
+        {
+         "id": "describe-and-explain-the-structures-and-function",
+         "title": "Describe and explain the structures and functions of the brain and how they are impacted by different types of physical activity and levels of fitness",
+         "outcomes": [
+          {
+           "code": "23.D.4a",
+           "text": "Explain how brain functions can be maintained and improved through activity."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "promote-and-enhance-health-and-well-being-throug",
+     "title": "Promote and enhance health and well-being through the use of effective communication and decision-making skills",
+     "topics": [
+      {
+       "id": "demonstrate-procedures-for-communicating-in-posi",
+       "title": "Demonstrate procedures for communicating in positive ways, resolving differences and preventing conflict",
+       "subtopics": [
+        {
+         "id": "demonstrate-procedures-for-communicating-in-posi",
+         "title": "Demonstrate procedures for communicating in positive ways, resolving differences and preventing conflict",
+         "outcomes": [
+          {
+           "code": "24.A.4a",
+           "text": "Describe the effects (e.g., economic losses, threats to personal safety) of conflict and violence upon the health of individuals, families, and communities."
+          },
+          {
+           "code": "24.A.4b",
+           "text": "Formulate strategies to prevent conflict and resolve differences."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "apply-decision-making-skills-related-to-the-prot",
+       "title": "Apply decision-making skills related to the protection and promotion of individual, family, and community health",
+       "subtopics": [
+        {
+         "id": "apply-decision-making-skills-related-to-the-prot",
+         "title": "Apply decision-making skills related to the protection and promotion of individual, family, and community health",
+         "outcomes": [
+          {
+           "code": "24.B.4a",
+           "text": "Explain how decision making affects the achievement of individual health goals."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "demonstrate-skills-essential-to-enhancing-health",
+       "title": "Demonstrate skills essential to enhancing health and avoiding dangerous situations",
+       "subtopics": [
+        {
+         "id": "demonstrate-skills-essential-to-enhancing-health",
+         "title": "Demonstrate skills essential to enhancing health and avoiding dangerous situations",
+         "outcomes": [
+          {
+           "code": "24.C.4a",
+           "text": "Formulate a plan to achieve individual health goals."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "11-12",
+   "units": [
+    {
+     "id": "acquire-movement-and-motor-skills-and-understand",
+     "title": "Acquire movement and motor skills and understand concepts necessary to engage in moderate to vigorous physical activity",
+     "topics": [
+      {
+       "id": "demonstrate-physical-competency-in-a-variety-of-",
+       "title": "Demonstrate physical competency in a variety of motor skills and movement patterns",
+       "subtopics": [
+        {
+         "id": "demonstrate-physical-competency-in-a-variety-of-",
+         "title": "Demonstrate physical competency in a variety of motor skills and movement patterns",
+         "outcomes": [
+          {
+           "code": "19.A.5a",
+           "text": "Demonstrate knowledge and skills in a self-selected individual sport, a team sport, creative movement, and work-related activities."
+          },
+          {
+           "code": "19.A.5b",
+           "text": "Participate daily in moderate to vigorous physical activity while performing movement patterns in a variety of activities."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "analyze-various-movement-concepts-and-applicatio",
+       "title": "Analyze various movement concepts and applications",
+       "subtopics": [
+        {
+         "id": "analyze-various-movement-concepts-and-applicatio",
+         "title": "Analyze various movement concepts and applications",
+         "outcomes": [
+          {
+           "code": "19.B.5a",
+           "text": "Apply the principles of efficient movement to evaluate personal performance."
+          },
+          {
+           "code": "19.B.5b",
+           "text": "Develop and implement a variety of movement concepts to enhance brain function."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "demonstrate-knowledge-of-rules-safety-and-strate",
+       "title": "Demonstrate knowledge of rules, safety and strategies during physical activity",
+       "subtopics": [
+        {
+         "id": "demonstrate-knowledge-of-rules-safety-and-strate",
+         "title": "Demonstrate knowledge of rules, safety and strategies during physical activity",
+         "outcomes": [
+          {
+           "code": "19.C.5a",
+           "text": "Select components (e.g., equipment, boundaries, number of players, rules) which promote participation in novel or original physical activities."
+          },
+          {
+           "code": "19.C.5b",
+           "text": "Analyze and apply complex offensive, defensive, and cooperative strategies for selected games and sports."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "achieve-and-maintain-a-health-enhancing-level-of",
+     "title": "Achieve and maintain a health-enhancing level of physical fitness based upon continual self-assessment",
+     "topics": [
+      {
+       "id": "know-and-apply-the-principles-and-components-of-",
+       "title": "Know and apply the principles and components of health-related and skill-related fitness as applied to learning and performance of physical activities",
+       "subtopics": [
+        {
+         "id": "know-and-apply-the-principles-and-components-of-",
+         "title": "Know and apply the principles and components of health-related and skill-related fitness as applied to learning and performance of physical activities",
+         "outcomes": [
+          {
+           "code": "20.A.5a",
+           "text": "Implement an individualized health-related fitness plan which includes the principles of training."
+          },
+          {
+           "code": "20.A.5b",
+           "text": "Develop and implement various types of fitness training programs (e.g., circuit, cross and interval training) and describe the characteristics, implications and benefits of each."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "assess-individual-fitness-levels",
+       "title": "Assess individual fitness levels",
+       "subtopics": [
+        {
+         "id": "assess-individual-fitness-levels",
+         "title": "Assess individual fitness levels",
+         "outcomes": [
+          {
+           "code": "20.B.5a",
+           "text": "Collect and interpret health-related fitness data over a period of time, with and without the use of technology."
+          },
+          {
+           "code": "20.B.5b",
+           "text": "Evaluate the effects of fitness choices and heredity on wellness."
+          },
+          {
+           "code": "20.B.5c",
+           "text": "Analyze and explain the correlation between level of fitness and academic achievement."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "set-goals-based-on-fitness-data-and-develop-impl",
+       "title": "Set goals based on fitness data and develop, implement, and monitor an individual fitness improvement plan",
+       "subtopics": [
+        {
+         "id": "set-goals-based-on-fitness-data-and-develop-impl",
+         "title": "Set goals based on fitness data and develop, implement, and monitor an individual fitness improvement plan",
+         "outcomes": [
+          {
+           "code": "20.C.5a",
+           "text": "Set realistic, long-term, health-related fitness goals based on individual profiles."
+          },
+          {
+           "code": "20.C.5b",
+           "text": "Understand how aging, illness, and injury affect physical activity."
+          },
+          {
+           "code": "20.C.5c",
+           "text": "Use profile data to monitor an individual wellness/fitness plan."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "develop-skills-necessary-to-become-a-successful-",
+     "title": "Develop skills necessary to become a successful member of a team by working with others during physical activity",
+     "topics": [
+      {
+       "id": "demonstrate-personal-responsibility-during-group",
+       "title": "Demonstrate personal responsibility during group physical activities",
+       "subtopics": [
+        {
+         "id": "demonstrate-personal-responsibility-during-group",
+         "title": "Demonstrate personal responsibility during group physical activities",
+         "outcomes": [
+          {
+           "code": "21.A.5a",
+           "text": "Demonstrate individual responsibility through use of various team-building strategies in physical activity settings (e.g., etiquette, fair play, self-officiating, coaching, organizing a group activity)."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "demonstrate-cooperative-skills-during-structured",
+       "title": "Demonstrate cooperative skills during structured group physical activity",
+       "subtopics": [
+        {
+         "id": "demonstrate-cooperative-skills-during-structured",
+         "title": "Demonstrate cooperative skills during structured group physical activity",
+         "outcomes": [
+          {
+           "code": "21.B.5a",
+           "text": "Demonstrate when to lead and when to be supportive to accomplish group goals."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "understand-principles-of-health-promotion-and-th",
+     "title": "Understand principles of health promotion and the prevention and treatment of illness and injury",
+     "topics": [
+      {
+       "id": "explain-the-basic-principles-of-health-promotion",
+       "title": "Explain the basic principles of health promotion, illness prevention and safety including how to access valid information, products, and services",
+       "subtopics": [
+        {
+         "id": "explain-the-basic-principles-of-health-promotion",
+         "title": "Explain the basic principles of health promotion, illness prevention and safety including how to access valid information, products, and services",
+         "outcomes": [
+          {
+           "code": "22.A.5a",
+           "text": "Explain strategies for managing contagious, chronic, and degenerative illnesses (e.g., various treatment and support systems)."
+          },
+          {
+           "code": "22.A.5b",
+           "text": "Evaluate the effectiveness of health promotion and illness prevention methods using data from actual situations (e.g., impact of worksite health promotion programs)."
+          },
+          {
+           "code": "22.A.5c",
+           "text": "Explain how health and safety problems have been altered by technology, media and medicine (e.g., product testing; control of polio; advanced surgical techniques; improved treatments for cancer, diabetes, and heart disease; worksite safety management)."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "describe-and-explain-the-factors-that-influence-",
+       "title": "Describe and explain the factors that influence health among individuals, groups, and communities",
+       "subtopics": [
+        {
+         "id": "describe-and-explain-the-factors-that-influence-",
+         "title": "Describe and explain the factors that influence health among individuals, groups, and communities",
+         "outcomes": [
+          {
+           "code": "22.B.5a",
+           "text": "Analyze how public health policies, laws, and the media function to prevent and control illness (e.g., product and food labeling, food safety and handling, school immunizations)."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "explain-how-the-environment-can-affect-health",
+       "title": "Explain how the environment can affect health",
+       "subtopics": [
+        {
+         "id": "explain-how-the-environment-can-affect-health",
+         "title": "Explain how the environment can affect health",
+         "outcomes": [
+          {
+           "code": "22.C.5a",
+           "text": "Compare and contrast how individuals, communities, and states prevent and correct health-threatening environmental problems (e.g., recycling, banning leaf burning, restaurant inspections, OSHA standards in the workplace)."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "describe-how-to-advocate-for-the-health-of-indiv",
+       "title": "Describe how to advocate for the health of individuals, families and communities",
+       "subtopics": [
+        {
+         "id": "describe-how-to-advocate-for-the-health-of-indiv",
+         "title": "Describe how to advocate for the health of individuals, families and communities",
+         "outcomes": [
+          {
+           "code": "22.D.5a",
+           "text": "Explain how individuals can improve or help sustain school or community health initiatives and/or services."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "understand-human-body-systems-and-factors-that-i",
+     "title": "Understand human body systems and factors that influence growth and development",
+     "topics": [
+      {
+       "id": "describe-and-explain-the-structure-and-functions",
+       "title": "Describe and explain the structure and functions of the human body systems and how they interrelate",
+       "subtopics": [
+        {
+         "id": "describe-and-explain-the-structure-and-functions",
+         "title": "Describe and explain the structure and functions of the human body systems and how they interrelate",
+         "outcomes": [
+          {
+           "code": "23.A.5a",
+           "text": "Explain how the systems of the body are affected by exercise and the impact that exercise has on learning."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "explain-the-effects-of-health-related-actions-on",
+       "title": "Explain the effects of health-related actions on the body systems",
+       "subtopics": [
+        {
+         "id": "explain-the-effects-of-health-related-actions-on",
+         "title": "Explain the effects of health-related actions on the body systems",
+         "outcomes": [
+          {
+           "code": "23.B.5a",
+           "text": "Understand the effects of healthy living on individuals and their future generations (e.g., not using alcohol, tobacco, and other drugs during pregnancy)."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "describe-factors-that-affect-growth-and-developm",
+       "title": "Describe factors that affect growth and development",
+       "subtopics": [
+        {
+         "id": "describe-factors-that-affect-growth-and-developm",
+         "title": "Describe factors that affect growth and development",
+         "outcomes": [
+          {
+           "code": "23.C.5a",
+           "text": "Explain how the aging process affects body systems (e.g., vision, hearing, immune system)."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "describe-and-explain-the-structures-and-function",
+       "title": "Describe and explain the structures and functions of the brain and how they are impacted by different types of physical activity and levels of fitness",
+       "subtopics": [
+        {
+         "id": "describe-and-explain-the-structures-and-function",
+         "title": "Describe and explain the structures and functions of the brain and how they are impacted by different types of physical activity and levels of fitness",
+         "outcomes": [
+          {
+           "code": "23.D.5a",
+           "text": "Analyze and communicate information regarding physical activity and fitness levels and their effects on how the brain functions."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "promote-and-enhance-health-and-well-being-throug",
+     "title": "Promote and enhance health and well-being through the use of effective communication and decision-making skills",
+     "topics": [
+      {
+       "id": "demonstrate-procedures-for-communicating-in-posi",
+       "title": "Demonstrate procedures for communicating in positive ways, resolving differences and preventing conflict",
+       "subtopics": [
+        {
+         "id": "demonstrate-procedures-for-communicating-in-posi",
+         "title": "Demonstrate procedures for communicating in positive ways, resolving differences and preventing conflict",
+         "outcomes": [
+          {
+           "code": "24.A.5a",
+           "text": "Compare and contrast strategies to prevent conflict and resolve differences."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "apply-decision-making-skills-related-to-the-prot",
+       "title": "Apply decision-making skills related to the protection and promotion of individual, family, and community health",
+       "subtopics": [
+        {
+         "id": "apply-decision-making-skills-related-to-the-prot",
+         "title": "Apply decision-making skills related to the protection and promotion of individual, family, and community health",
+         "outcomes": [
+          {
+           "code": "24.B.5a",
+           "text": "Explain immediate and long-term impacts of health decisions to the individual, family and community."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "demonstrate-skills-essential-to-enhancing-health",
+       "title": "Demonstrate skills essential to enhancing health and avoiding dangerous situations",
+       "subtopics": [
+        {
+         "id": "demonstrate-skills-essential-to-enhancing-health",
+         "title": "Demonstrate skills essential to enhancing health and avoiding dangerous situations",
+         "outcomes": [
+          {
+           "code": "24.C.5a",
+           "text": "Evaluate progress toward the attainment of a health goal."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "build": {
+  "builtAt": "2026-10-14T16:20:42.268Z",
+  "model": "none",
+  "usd": 0,
+  "expectedCodes": 156,
+  "coverage": 1,
+  "missingCodes": [],
+  "counts": {
+   "grades": 5,
+   "units": 30,
+   "topics": 95,
+   "subtopics": 95,
+   "outcomes": 156
+  },
+  "warnings": []
+ }
+}

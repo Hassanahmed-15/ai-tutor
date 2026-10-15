@@ -1,0 +1,647 @@
+{
+ "id": "au-ac9-music-f-10",
+ "region": "AU",
+ "framework": "Australian Curriculum Version 9.0 (F-10)",
+ "board": "ACARA",
+ "qualification": null,
+ "subject": "Music",
+ "syllabusCode": "ARTMUS",
+ "gradeSystem": "year",
+ "source": {
+  "urls": [
+   "https://vocabulary.curriculum.edu.au/MRAC/2024/04/LA/ART/export/MRAC/2024/04/LA/ART.jsonld",
+   "https://www.australiancurriculum.edu.au/content/dam/en/curriculum/ac-version-9/downloads/curriculum-workbook.xlsx"
+  ],
+  "publisher": "Australian Curriculum, Assessment and Reporting Authority (ACARA)",
+  "licence": "© ACARA, Australian Curriculum v9.0, CC BY 4.0",
+  "firstExam": null
+ },
+ "grades": [
+  {
+   "grade": "Foundation",
+   "units": [
+    {
+     "id": "exploring-and-responding",
+     "title": "Exploring and responding",
+     "topics": [
+      {
+       "id": "exploring-and-responding",
+       "title": "Exploring and responding",
+       "subtopics": [
+        {
+         "id": "exploring-and-responding",
+         "title": "Exploring and responding",
+         "outcomes": [
+          {
+           "code": "AC9AMUFE01",
+           "text": "explore how and why the arts are important for people and communities"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "developing-practices-and-skills",
+     "title": "Developing practices and skills",
+     "topics": [
+      {
+       "id": "developing-practices-and-skills",
+       "title": "Developing practices and skills",
+       "subtopics": [
+        {
+         "id": "developing-practices-and-skills",
+         "title": "Developing practices and skills",
+         "outcomes": [
+          {
+           "code": "AC9AMUFD01",
+           "text": "use play, imagination, arts knowledge, processes and/or skills to discover possibilities and develop ideas"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "creating-and-making",
+     "title": "Creating and making",
+     "topics": [
+      {
+       "id": "creating-and-making",
+       "title": "Creating and making",
+       "subtopics": [
+        {
+         "id": "creating-and-making",
+         "title": "Creating and making",
+         "outcomes": [
+          {
+           "code": "AC9AMUFC01",
+           "text": "create arts works that communicate ideas"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "presenting-and-performing",
+     "title": "Presenting and performing",
+     "topics": [
+      {
+       "id": "presenting-and-performing",
+       "title": "Presenting and performing",
+       "subtopics": [
+        {
+         "id": "presenting-and-performing",
+         "title": "Presenting and performing",
+         "outcomes": [
+          {
+           "code": "AC9AMUFP01",
+           "text": "share their arts works with audiences"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "1-2",
+   "units": [
+    {
+     "id": "exploring-and-responding",
+     "title": "Exploring and responding",
+     "topics": [
+      {
+       "id": "exploring-and-responding",
+       "title": "Exploring and responding",
+       "subtopics": [
+        {
+         "id": "exploring-and-responding",
+         "title": "Exploring and responding",
+         "outcomes": [
+          {
+           "code": "AC9AMU2E01",
+           "text": "explore where, why and how people across cultures, communities and/or other contexts experience music"
+          },
+          {
+           "code": "AC9AMU2E02",
+           "text": "explore examples of music composed and/or performed by First Nations Australians"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "developing-practices-and-skills",
+     "title": "Developing practices and skills",
+     "topics": [
+      {
+       "id": "developing-practices-and-skills",
+       "title": "Developing practices and skills",
+       "subtopics": [
+        {
+         "id": "developing-practices-and-skills",
+         "title": "Developing practices and skills",
+         "outcomes": [
+          {
+           "code": "AC9AMU2D01",
+           "text": "develop listening skills and skills for singing and playing instruments"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "creating-and-making",
+     "title": "Creating and making",
+     "topics": [
+      {
+       "id": "creating-and-making",
+       "title": "Creating and making",
+       "subtopics": [
+        {
+         "id": "creating-and-making",
+         "title": "Creating and making",
+         "outcomes": [
+          {
+           "code": "AC9AMU2C01",
+           "text": "select and combine elements of music when composing and practising music for performance"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "presenting-and-performing",
+     "title": "Presenting and performing",
+     "topics": [
+      {
+       "id": "presenting-and-performing",
+       "title": "Presenting and performing",
+       "subtopics": [
+        {
+         "id": "presenting-and-performing",
+         "title": "Presenting and performing",
+         "outcomes": [
+          {
+           "code": "AC9AMU2P01",
+           "text": "sing and play music in informal settings"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "3-4",
+   "units": [
+    {
+     "id": "exploring-and-responding",
+     "title": "Exploring and responding",
+     "topics": [
+      {
+       "id": "exploring-and-responding",
+       "title": "Exploring and responding",
+       "subtopics": [
+        {
+         "id": "exploring-and-responding",
+         "title": "Exploring and responding",
+         "outcomes": [
+          {
+           "code": "AC9AMU4E01",
+           "text": "explore where, why and how music is composed and/or performed across cultures, times, places and/or other contexts"
+          },
+          {
+           "code": "AC9AMU4E02",
+           "text": "explore how First Nations Australians use music to communicate their connection to and responsibility for Country/Place"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "developing-practices-and-skills",
+     "title": "Developing practices and skills",
+     "topics": [
+      {
+       "id": "developing-practices-and-skills",
+       "title": "Developing practices and skills",
+       "subtopics": [
+        {
+         "id": "developing-practices-and-skills",
+         "title": "Developing practices and skills",
+         "outcomes": [
+          {
+           "code": "AC9AMU4D01",
+           "text": "develop listening skills and skills for manipulating elements of music when singing and playing instruments"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "creating-and-making",
+     "title": "Creating and making",
+     "topics": [
+      {
+       "id": "creating-and-making",
+       "title": "Creating and making",
+       "subtopics": [
+        {
+         "id": "creating-and-making",
+         "title": "Creating and making",
+         "outcomes": [
+          {
+           "code": "AC9AMU4C01",
+           "text": "manipulate elements of music to communicate ideas, perspectives and/or meaning when composing and practising for performance"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "presenting-and-performing",
+     "title": "Presenting and performing",
+     "topics": [
+      {
+       "id": "presenting-and-performing",
+       "title": "Presenting and performing",
+       "subtopics": [
+        {
+         "id": "presenting-and-performing",
+         "title": "Presenting and performing",
+         "outcomes": [
+          {
+           "code": "AC9AMU4P01",
+           "text": "sing and play music they have learnt and/or composed in informal settings"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "5-6",
+   "units": [
+    {
+     "id": "exploring-and-responding",
+     "title": "Exploring and responding",
+     "topics": [
+      {
+       "id": "exploring-and-responding",
+       "title": "Exploring and responding",
+       "subtopics": [
+        {
+         "id": "exploring-and-responding",
+         "title": "Exploring and responding",
+         "outcomes": [
+          {
+           "code": "AC9AMU6E01",
+           "text": "explore ways that the elements of music are combined in music across cultures, times, places and/or other contexts"
+          },
+          {
+           "code": "AC9AMU6E02",
+           "text": "explore ways First Nations Australians use music to continue and revitalise culture"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "developing-practices-and-skills",
+     "title": "Developing practices and skills",
+     "topics": [
+      {
+       "id": "developing-practices-and-skills",
+       "title": "Developing practices and skills",
+       "subtopics": [
+        {
+         "id": "developing-practices-and-skills",
+         "title": "Developing practices and skills",
+         "outcomes": [
+          {
+           "code": "AC9AMU6D01",
+           "text": "develop listening/aural skills and skills for manipulating elements of music to achieve expressive effects when composing, singing and playing instruments"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "creating-and-making",
+     "title": "Creating and making",
+     "topics": [
+      {
+       "id": "creating-and-making",
+       "title": "Creating and making",
+       "subtopics": [
+        {
+         "id": "creating-and-making",
+         "title": "Creating and making",
+         "outcomes": [
+          {
+           "code": "AC9AMU6C01",
+           "text": "manipulate elements of music and use compositional devices to communicate ideas, perspectives and/or meaning when composing and practising music for performance, and notate, document and/or record the music they compose"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "presenting-and-performing",
+     "title": "Presenting and performing",
+     "topics": [
+      {
+       "id": "presenting-and-performing",
+       "title": "Presenting and performing",
+       "subtopics": [
+        {
+         "id": "presenting-and-performing",
+         "title": "Presenting and performing",
+         "outcomes": [
+          {
+           "code": "AC9AMU6P01",
+           "text": "perform music in a range of forms they have learnt and/or composed in informal and/or formal settings"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "7-8",
+   "units": [
+    {
+     "id": "exploring-and-responding",
+     "title": "Exploring and responding",
+     "topics": [
+      {
+       "id": "exploring-and-responding",
+       "title": "Exploring and responding",
+       "subtopics": [
+        {
+         "id": "exploring-and-responding",
+         "title": "Exploring and responding",
+         "outcomes": [
+          {
+           "code": "AC9AMU8E01",
+           "text": "investigate the ways that composers and/or performers use the elements of music and/or compositional devices in music composed across cultures, times, places and/or other contexts"
+          },
+          {
+           "code": "AC9AMU8E02",
+           "text": "investigate the diversity of music composed and/or performed by First Nations Australians, considering culturally responsive approaches to Indigenous Cultural and Intellectual Property rights"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "developing-practices-and-skills",
+     "title": "Developing practices and skills",
+     "topics": [
+      {
+       "id": "developing-practices-and-skills",
+       "title": "Developing practices and skills",
+       "subtopics": [
+        {
+         "id": "developing-practices-and-skills",
+         "title": "Developing practices and skills",
+         "outcomes": [
+          {
+           "code": "AC9AMU8D01",
+           "text": "develop and practise listening/aural skills and vocal and/or instrumental skills/techniques for manipulating elements of music to achieve expressive effects"
+          },
+          {
+           "code": "AC9AMU8D02",
+           "text": "reflect on their own and others’ music to inform choices they make as composers and performers about how they will manipulate elements of music and/or compositional devices"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "creating-and-making",
+     "title": "Creating and making",
+     "topics": [
+      {
+       "id": "creating-and-making",
+       "title": "Creating and making",
+       "subtopics": [
+        {
+         "id": "creating-and-making",
+         "title": "Creating and making",
+         "outcomes": [
+          {
+           "code": "AC9AMU8C01",
+           "text": "interpret music in a variety of forms and/or styles, manipulating elements of music and employing relevant vocal/instrumental techniques"
+          },
+          {
+           "code": "AC9AMU8C02",
+           "text": "compose using the elements of music and compositional devices to communicate ideas, perspectives and/or meaning, and notate, document and/or record the music"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "presenting-and-performing",
+     "title": "Presenting and performing",
+     "topics": [
+      {
+       "id": "presenting-and-performing",
+       "title": "Presenting and performing",
+       "subtopics": [
+        {
+         "id": "presenting-and-performing",
+         "title": "Presenting and performing",
+         "outcomes": [
+          {
+           "code": "AC9AMU8P01",
+           "text": "perform music using relevant vocal and/or instrumental techniques and performance skills"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "9-10",
+   "units": [
+    {
+     "id": "exploring-and-responding",
+     "title": "Exploring and responding",
+     "topics": [
+      {
+       "id": "exploring-and-responding",
+       "title": "Exploring and responding",
+       "subtopics": [
+        {
+         "id": "exploring-and-responding",
+         "title": "Exploring and responding",
+         "outcomes": [
+          {
+           "code": "AC9AMU10E01",
+           "text": "investigate composers’ and/or performers’ use of elements of music, compositional devices and/or vocal/instrumental techniques in music from a range of cultures, times, places and/or other contexts"
+          },
+          {
+           "code": "AC9AMU10E02",
+           "text": "investigate the ways that First Nations Australian performers and/or composers celebrate and challenge multiple perspectives of Australian identity through music"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "developing-practices-and-skills",
+     "title": "Developing practices and skills",
+     "topics": [
+      {
+       "id": "developing-practices-and-skills",
+       "title": "Developing practices and skills",
+       "subtopics": [
+        {
+         "id": "developing-practices-and-skills",
+         "title": "Developing practices and skills",
+         "outcomes": [
+          {
+           "code": "AC9AMU10D01",
+           "text": "develop, practise and refine the use of listening/aural skills and style-specific vocal instrumental skills/techniques to interpret music and communicate expressive effects"
+          },
+          {
+           "code": "AC9AMU10D02",
+           "text": "reflect on their own and others’ music to inform choices they make as composers and performers about how they will interpret and/or manipulate elements of music and/or compositional devices"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "creating-and-making",
+     "title": "Creating and making",
+     "topics": [
+      {
+       "id": "creating-and-making",
+       "title": "Creating and making",
+       "subtopics": [
+        {
+         "id": "creating-and-making",
+         "title": "Creating and making",
+         "outcomes": [
+          {
+           "code": "AC9AMU10C01",
+           "text": "interpret music in a variety of forms and styles, manipulating the elements of music and/or compositional devices, and using style-specific vocal/instrumental techniques to communicate ideas, perspectives and/or meaning"
+          },
+          {
+           "code": "AC9AMU10C02",
+           "text": "compose music, manipulating and combining elements of music and compositional devices relevant to chosen styles and/or forms to communicate ideas, perspectives and/or meaning and notate, document and/or record the music"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "presenting-and-performing",
+     "title": "Presenting and performing",
+     "topics": [
+      {
+       "id": "presenting-and-performing",
+       "title": "Presenting and performing",
+       "subtopics": [
+        {
+         "id": "presenting-and-performing",
+         "title": "Presenting and performing",
+         "outcomes": [
+          {
+           "code": "AC9AMU10P01",
+           "text": "rehearse and present planned performances of music they have learnt and/or composed, using relevant vocal/instrumental techniques and performance skills"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "build": {
+  "builtAt": "2026-10-14T07:55:12.017Z",
+  "model": "gpt-5.6-luna",
+  "usd": 0,
+  "expectedCodes": 33,
+  "coverage": 1,
+  "missingCodes": [],
+  "counts": {
+   "grades": 6,
+   "units": 24,
+   "topics": 24,
+   "subtopics": 24,
+   "outcomes": 33
+  },
+  "warnings": [
+   "unit \"Exploring and responding\" (grade Foundation) has a single outcome",
+   "unit \"Developing practices and skills\" (grade Foundation) has a single outcome",
+   "unit \"Creating and making\" (grade Foundation) has a single outcome",
+   "unit \"Presenting and performing\" (grade Foundation) has a single outcome",
+   "unit \"Developing practices and skills\" (grade 1-2) has a single outcome",
+   "unit \"Creating and making\" (grade 1-2) has a single outcome",
+   "unit \"Presenting and performing\" (grade 1-2) has a single outcome",
+   "unit \"Developing practices and skills\" (grade 3-4) has a single outcome",
+   "unit \"Creating and making\" (grade 3-4) has a single outcome",
+   "unit \"Presenting and performing\" (grade 3-4) has a single outcome",
+   "unit \"Developing practices and skills\" (grade 5-6) has a single outcome",
+   "unit \"Creating and making\" (grade 5-6) has a single outcome",
+   "unit \"Presenting and performing\" (grade 5-6) has a single outcome",
+   "unit \"Presenting and performing\" (grade 7-8) has a single outcome",
+   "unit \"Presenting and performing\" (grade 9-10) has a single outcome"
+  ]
+ }
+}

@@ -1,0 +1,703 @@
+{
+ "id": "uk-edexcel-gcse-french-1fr1",
+ "region": "UK",
+ "framework": "Pearson Edexcel GCSE (9-1)",
+ "board": "Pearson Edexcel",
+ "qualification": "GCSE",
+ "subject": "French",
+ "syllabusCode": "1FR1",
+ "gradeSystem": "year",
+ "source": {
+  "urls": [
+   "https://qualifications.pearson.com/content/dam/pdf/GCSE/French/2024/specification-and-sample-assessments/gq000023-gcse-french-specification-2024-issue-2.pdf"
+  ],
+  "publisher": "Pearson Education",
+  "licence": "Exam board specification, (c) Pearson; structure + our own wording only",
+  "firstExam": "2026"
+ },
+ "grades": [
+  {
+   "grade": "all",
+   "units": [
+    {
+     "id": "1-thematic-contexts",
+     "title": "1 Thematic contexts",
+     "topics": [
+      {
+       "id": "six-thematic-contexts",
+       "title": "Six thematic contexts",
+       "subtopics": [
+        {
+         "id": "my-personal-world",
+         "title": "My personal world",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Talk, read and write in French about family, friends, relationships, equality and food and drink."
+          }
+         ]
+        },
+        {
+         "id": "lifestyle-and-wellbeing",
+         "title": "Lifestyle and wellbeing",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Use French to discuss physical and mental wellbeing, food and drink, and sports."
+          }
+         ]
+        },
+        {
+         "id": "my-neighbourhood",
+         "title": "My neighbourhood",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Use French to describe places in town, shopping, transport and the natural world."
+          }
+         ]
+        },
+        {
+         "id": "media-and-technology",
+         "title": "Media and technology",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Use French to discuss social media, gaming, music, and TV and film."
+          }
+         ]
+        },
+        {
+         "id": "studying-and-my-future",
+         "title": "Studying and my future",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Use French to talk about school, work, travel and future opportunities."
+          }
+         ]
+        },
+        {
+         "id": "travel-and-tourism",
+         "title": "Travel and tourism",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Use French to talk about accommodation, tourist attractions, transport and holiday plans."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "environmental-issues",
+       "title": "Environmental issues",
+       "subtopics": [
+        {
+         "id": "environmental-issues",
+         "title": "Environmental issues",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Discuss environmental issues and the natural world in French across the different contexts."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "2-paper-1-speaking-in-french",
+     "title": "2 Paper 1: Speaking in French",
+     "topics": [
+      {
+       "id": "speaking-skills",
+       "title": "Speaking skills",
+       "subtopics": [
+        {
+         "id": "pronunciation",
+         "title": "Pronunciation",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Pronounce French clearly and comprehensibly, using what you know about sound-symbol correspondences."
+          },
+          {
+           "code": null,
+           "text": "Read aloud a short French passage, then answer two unprepared questions giving brief opinions."
+          }
+         ]
+        },
+        {
+         "id": "communicating-in-french",
+         "title": "Communicating in French",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Recall and use language in different situations and move between French and English."
+          },
+          {
+           "code": null,
+           "text": "Convey and ask for information by asking and answering questions."
+          },
+          {
+           "code": null,
+           "text": "Give opinions and develop a conversation or discussion."
+          },
+          {
+           "code": null,
+           "text": "Produce extended sequences of speech with accurate vocabulary and grammar about past, present and future events."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "role-play",
+       "title": "Role play",
+       "subtopics": [
+        {
+         "id": "transactional-role-play",
+         "title": "Transactional role play",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Make transactions such as buying tickets or ordering food, and make plans, appointments or reservations."
+          },
+          {
+           "code": null,
+           "text": "Explain or give reasons, describe, and express likes, dislikes, preferences and opinions."
+          },
+          {
+           "code": null,
+           "text": "Ask for advice, make a complaint or report a problem, and talk about activities."
+          }
+         ]
+        },
+        {
+         "id": "role-play-settings",
+         "title": "Role play settings",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Handle role plays in a cafe or restaurant, shop or market, hotel, or train station."
+          },
+          {
+           "code": null,
+           "text": "Handle role plays at a tourist office, cinema or theatre, campsite, leisure centre, doctor or hospital, and in town."
+          },
+          {
+           "code": null,
+           "text": "Ask questions and answer in present or familiar conditional forms like je voudrais; Higher answers one future-time question."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "picture-task-and-conversation",
+       "title": "Picture task and conversation",
+       "subtopics": [
+        {
+         "id": "describing-a-picture",
+         "title": "Describing a picture",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe a photo at length, covering the people, the location and the activity."
+          },
+          {
+           "code": null,
+           "text": "Answer two unprepared questions about your own experiences, likes, dislikes and opinions; Higher includes a past-tense question."
+          }
+         ]
+        },
+        {
+         "id": "broader-conversation",
+         "title": "Broader conversation",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Take part in a conversation on the chosen thematic context, giving and justifying thoughts and opinions."
+          },
+          {
+           "code": null,
+           "text": "Refer to past, present and future events and develop the conversation."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "3-paper-2-listening-and-understanding-in-french",
+     "title": "3 Paper 2: Listening and understanding in French",
+     "topics": [
+      {
+       "id": "listening-skills",
+       "title": "Listening skills",
+       "subtopics": [
+        {
+         "id": "understanding-spoken-french",
+         "title": "Understanding spoken French",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Understand standard spoken French in formal and informal, familiar and unfamiliar settings."
+          },
+          {
+           "code": null,
+           "text": "Identify and respond to key points, details and opinions in recordings such as news, announcements, podcasts and conversations."
+          },
+          {
+           "code": null,
+           "text": "Recognise the relationship between past, present and future events."
+          }
+         ]
+        },
+        {
+         "id": "dictation",
+         "title": "Dictation",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Write down a spoken French passage, applying how spelling represents sounds."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "4-paper-3-reading-and-understanding-in-french",
+     "title": "4 Paper 3: Reading and understanding in French",
+     "topics": [
+      {
+       "id": "reading-skills",
+       "title": "Reading skills",
+       "subtopics": [
+        {
+         "id": "understanding-written-french",
+         "title": "Understanding written French",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Understand written French across genres such as blogs, forums, brochures, articles, emails and diaries."
+          },
+          {
+           "code": null,
+           "text": "Identify and respond to key points, details and opinions, and recognise past, present and future events."
+          },
+          {
+           "code": null,
+           "text": "Infer the meaning of unfamiliar single words that are not in the vocabulary list."
+          }
+         ]
+        },
+        {
+         "id": "translation-into-english",
+         "title": "Translation into English",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Translate written French into accurate English."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "5-paper-4-writing-in-french",
+     "title": "5 Paper 4: Writing in French",
+     "topics": [
+      {
+       "id": "writing-skills",
+       "title": "Writing skills",
+       "subtopics": [
+        {
+         "id": "short-texts",
+         "title": "Short texts",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Write short sentences describing a photo or simple familiar stimulus accurately."
+          }
+         ]
+        },
+        {
+         "id": "extended-writing",
+         "title": "Extended writing",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Write clear, coherent texts expressing ideas and opinions for different purposes and audiences, formal and informal."
+          },
+          {
+           "code": null,
+           "text": "Use varied vocabulary and structures to describe, narrate and explain across past, present and future."
+          },
+          {
+           "code": null,
+           "text": "Express and justify opinions, present facts, and give pros and cons in longer responses."
+          }
+         ]
+        },
+        {
+         "id": "translation-into-french",
+         "title": "Translation into French",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Translate sentences and short passages from English into accurate French."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "6-grammar",
+     "title": "6 Grammar",
+     "topics": [
+      {
+       "id": "nouns-pronouns-and-determiners",
+       "title": "Nouns, pronouns and determiners",
+       "subtopics": [
+        {
+         "id": "nouns",
+         "title": "Nouns",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Form feminine and plural nouns, and use an infinitive as a noun."
+          }
+         ]
+        },
+        {
+         "id": "articles",
+         "title": "Articles",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Use definite, indefinite and partitive articles, including contractions and when to leave them out."
+          },
+          {
+           "code": null,
+           "text": "Use de after negatives and quantity expressions, and use articles with dans and en (Higher)."
+          }
+         ]
+        },
+        {
+         "id": "other-determiners",
+         "title": "Other determiners",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Use demonstrative, possessive, interrogative and indefinite adjectives; aucun(e) at Higher."
+          }
+         ]
+        },
+        {
+         "id": "subject-object-and-reflexive-pronouns",
+         "title": "Subject, object and reflexive pronouns",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Use subject, direct object, indirect object and reflexive pronouns in the right position."
+          }
+         ]
+        },
+        {
+         "id": "emphatic-and-relative-pronouns",
+         "title": "Emphatic and relative pronouns",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Use emphatic pronouns, qui relative clauses, and (Higher) que and ou clauses."
+          }
+         ]
+        },
+        {
+         "id": "y-en-and-negative-pronouns",
+         "title": "Y, en and negative pronouns",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Use y and en before the verb, and personne ne and rien ne (Higher)."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "verbs-and-sentence-structure",
+       "title": "Verbs and sentence structure",
+       "subtopics": [
+        {
+         "id": "negation",
+         "title": "Negation",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Make negatives with ne...pas, jamais, rien and personne; Higher adds plus, ni...ni, pas encore and que."
+          }
+         ]
+        },
+        {
+         "id": "asking-questions",
+         "title": "Asking questions",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Ask questions using intonation, est-ce que, and question word plus inversion."
+          }
+         ]
+        },
+        {
+         "id": "impersonal-verbs",
+         "title": "Impersonal verbs",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Use il y a, il faut, weather and time expressions; Higher adds il vaut mieux and il manque."
+          }
+         ]
+        },
+        {
+         "id": "reflexive-verbs",
+         "title": "Reflexive verbs",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Use reflexive verbs with reflexive and reciprocal meanings in all required tenses."
+          }
+         ]
+        },
+        {
+         "id": "passive-and-periphrastic-time",
+         "title": "Passive and periphrastic time",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Use the present passive with par, etre en train de and venir de (Higher)."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "verb-tenses",
+       "title": "Verb tenses",
+       "subtopics": [
+        {
+         "id": "present-tense",
+         "title": "Present tense",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Use the present tense of regular and key irregular verbs, including modal verbs and avoir expressions."
+          },
+          {
+           "code": null,
+           "text": "Use the present with depuis and more irregular verb patterns (Higher)."
+          }
+         ]
+        },
+        {
+         "id": "perfect-tense",
+         "title": "Perfect tense",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Form the perfect tense with past participles, and agree participles with a preceding direct object."
+          }
+         ]
+        },
+        {
+         "id": "imperfect-tense",
+         "title": "Imperfect tense",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Use the imperfect for habits and continuous past actions."
+          }
+         ]
+        },
+        {
+         "id": "future-tenses",
+         "title": "Future tenses",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Use aller plus infinitive to talk about the future; Higher adds the inflectional future."
+          }
+         ]
+        },
+        {
+         "id": "conditional",
+         "title": "Conditional",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Use je voudrais at Foundation, and the full conditional of -er and key verbs at Higher."
+          }
+         ]
+        },
+        {
+         "id": "imperative-and-present-participle",
+         "title": "Imperative and present participle",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Give commands in the imperative; Higher adds let's forms and en plus the present participle."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "adjectives-adverbs-and-prepositions",
+       "title": "Adjectives, adverbs and prepositions",
+       "subtopics": [
+        {
+         "id": "adjectives",
+         "title": "Adjectives",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Make adjectives agree in gender and number and place them correctly before or after nouns."
+          }
+         ]
+        },
+        {
+         "id": "comparatives-and-superlatives",
+         "title": "Comparatives and superlatives",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Compare with plus...que, moins...que and aussi...que; Higher adds superlatives."
+          }
+         ]
+        },
+        {
+         "id": "adverbs",
+         "title": "Adverbs",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Place adverbs of time, manner, frequency and place correctly, and compare with them."
+          }
+         ]
+        },
+        {
+         "id": "prepositions",
+         "title": "Prepositions",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Use a and de after verbs and adjectives, with places, for possession, and with pour, sans, avant de and apres avoir."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "derivational-morphology",
+       "title": "Derivational morphology",
+       "subtopics": [
+        {
+         "id": "word-building",
+         "title": "Word building",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Work out meanings of derived words using prefixes in-/im- and suffixes such as -ieme, -able, -ion and -ment."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "7-sound-symbol-correspondences",
+     "title": "7 Sound-symbol correspondences",
+     "topics": [
+      {
+       "id": "french-sounds-and-spelling",
+       "title": "French sounds and spelling",
+       "subtopics": [
+        {
+         "id": "vowel-sounds",
+         "title": "Vowel sounds",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Link French vowel spellings (a, i, eu, e, ou, u, e, oi) to their sounds, including silent final letters."
+          }
+         ]
+        },
+        {
+         "id": "nasal-vowels",
+         "title": "Nasal vowels",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Pronounce and spell the nasal sounds en/an, on/om and ain/in."
+          }
+         ]
+        },
+        {
+         "id": "consonant-sounds",
+         "title": "Consonant sounds",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Pronounce and spell ch, c cedilla, qu, j, gn, h, r, th and ill."
+          }
+         ]
+        },
+        {
+         "id": "liaison-and-endings",
+         "title": "Liaison and endings",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Use liaison with s, t, n and x, and recognise endings like -tion and -ien."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "build": {
+  "builtAt": "2026-10-14T10:33:13.469Z",
+  "model": "claude-agent",
+  "usd": 0,
+  "expectedCodes": null,
+  "coverage": null,
+  "missingCodes": [],
+  "counts": {
+   "grades": 1,
+   "units": 7,
+   "topics": 14,
+   "subtopics": 46,
+   "outcomes": 64
+  },
+  "warnings": [
+   "grade Year 10 has no content",
+   "grade Year 11 has no content",
+   "unexpected grade label \"all\""
+  ]
+ }
+}

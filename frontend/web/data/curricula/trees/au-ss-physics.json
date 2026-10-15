@@ -1,0 +1,1161 @@
+{
+ "id": "au-ss-physics",
+ "region": "AU",
+ "framework": "Australian Curriculum Senior Secondary, Version 8.4",
+ "board": "ACARA",
+ "qualification": "Senior Secondary (Years 11-12)",
+ "subject": "Physics",
+ "syllabusCode": null,
+ "gradeSystem": "course",
+ "source": {
+  "urls": [
+   "https://v8.australiancurriculum.edu.au/senior-secondary-curriculum/science/physics/?unit=Unit+1&unit=Unit+2&unit=Unit+3&unit=Unit+4",
+   "https://web.archive.org/web/2026/https://v8.australiancurriculum.edu.au/senior-secondary-curriculum/science/physics/?unit=Unit+1&unit=Unit+2&unit=Unit+3&unit=Unit+4"
+  ],
+  "publisher": "Australian Curriculum, Assessment and Reporting Authority (ACARA)",
+  "licence": "CC BY 4.0 (Creative Commons Attribution 4.0 International). (c) Australian Curriculum, Assessment and Reporting Authority (ACARA) 2010 to present, unless otherwise indicated; attribution required in ACARA's prescribed form (\"This material was downloaded from the Australian Curriculum website (accessed [date]) and [was/was not] modified. The material is licensed under CC BY 4.0\"). Excluded from CC BY: logos/trade marks, website design, third-party material, photographs, videos and teacher-support resources. ACARA does not endorse products; alignment claims must be to content descriptions and achievement standards, not elaborations. Aboriginal and Torres Strait Islander ICIP protocols apply (esp. the Framework for Aboriginal Languages and Torres Strait Islander Languages). Source: https://www.australiancurriculum.edu.au/copyright-and-terms-of-use",
+  "firstExam": null
+ },
+ "grades": [
+  {
+   "grade": "Unit 1",
+   "units": [
+    {
+     "id": "unit-1-thermal-nuclear-and-electrical-physics",
+     "title": "Unit 1: Thermal, nuclear and electrical physics",
+     "topics": [
+      {
+       "id": "science-inquiry-skills",
+       "title": "Science Inquiry Skills",
+       "subtopics": [
+        {
+         "id": "planning-investigations",
+         "title": "Planning investigations",
+         "outcomes": [
+          {
+           "code": "ACSPH001",
+           "text": "Form investigable questions, propose hypotheses and predict outcomes."
+          },
+          {
+           "code": "ACSPH002",
+           "text": "Design investigations with procedure, materials, data plan, risk assessment and research ethics."
+          }
+         ]
+        },
+        {
+         "id": "collecting-and-analysing-data",
+         "title": "Collecting and analysing data",
+         "outcomes": [
+          {
+           "code": "ACSPH003",
+           "text": "Carry out investigations safely and carefully using temperature, current and potential difference meters to collect valid data."
+          },
+          {
+           "code": "ACSPH004",
+           "text": "Present data with SI units, find patterns, and identify and estimate errors."
+          }
+         ]
+        },
+        {
+         "id": "evidence-and-representations",
+         "title": "Evidence and representations",
+         "outcomes": [
+          {
+           "code": "ACSPH005",
+           "text": "Interpret scientific and media texts and judge claims using the quality of evidence."
+          },
+          {
+           "code": "ACSPH006",
+           "text": "Use diagrams and other representations suited to the topic to explain concepts and solve problems."
+          },
+          {
+           "code": "ACSPH007",
+           "text": "Use graphs and algebra to solve problems and make predictions about physical systems."
+          }
+         ]
+        },
+        {
+         "id": "communicating-results",
+         "title": "Communicating results",
+         "outcomes": [
+          {
+           "code": "ACSPH008",
+           "text": "Communicate in suitable language and genres, including scientific reports."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "science-as-a-human-endeavour",
+       "title": "Science as a Human Endeavour",
+       "subtopics": [
+        {
+         "id": "nature-of-science",
+         "title": "Nature of science",
+         "outcomes": [
+          {
+           "code": "ACSPH009",
+           "text": "Explain that science is global and depends on clear communication, conventions, peer review and reproducibility."
+          },
+          {
+           "code": "ACSPH010",
+           "text": "Explain that complex models and theories need varied evidence from many people and fields."
+          },
+          {
+           "code": "ACSPH011",
+           "text": "Show how advances in one science field affect other sciences, technology and engineering."
+          }
+         ]
+        },
+        {
+         "id": "science-and-society",
+         "title": "Science and society",
+         "outcomes": [
+          {
+           "code": "ACSPH012",
+           "text": "Explain how social, economic, cultural and ethical factors affect how scientific knowledge is used."
+          },
+          {
+           "code": "ACSPH013",
+           "text": "Discuss beneficial, harmful and unintended consequences of using scientific knowledge."
+          }
+         ]
+        },
+        {
+         "id": "prediction-and-sustainability",
+         "title": "Prediction and sustainability",
+         "outcomes": [
+          {
+           "code": "ACSPH014",
+           "text": "Show how scientific knowledge gives valid explanations and reliable predictions."
+          },
+          {
+           "code": "ACSPH015",
+           "text": "Use scientific knowledge to judge economic, social and environmental impacts and plan for sustainability."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "heating-processes",
+       "title": "Heating processes",
+       "subtopics": [
+        {
+         "id": "heat-transfer",
+         "title": "Heat transfer",
+         "outcomes": [
+          {
+           "code": "ACSPH016",
+           "text": "Describe heat transfer by conduction, convection and radiation."
+          }
+         ]
+        },
+        {
+         "id": "particle-model-and-temperature",
+         "title": "Particle model and temperature",
+         "outcomes": [
+          {
+           "code": "ACSPH017",
+           "text": "Describe matter as particles in constant motion except at absolute zero."
+          },
+          {
+           "code": "ACSPH018",
+           "text": "Explain that every system has thermal energy from particle motion."
+          },
+          {
+           "code": "ACSPH019",
+           "text": "Define temperature as the average kinetic energy of particles."
+          }
+         ]
+        },
+        {
+         "id": "heat-capacity-and-state-change",
+         "title": "Heat capacity and state change",
+         "outcomes": [
+          {
+           "code": "ACSPH020",
+           "text": "Relate temperature change to energy transferred through heat capacity when no state change occurs."
+          },
+          {
+           "code": "ACSPH021",
+           "text": "Explain changes of state through internal energy changes and latent heat."
+          }
+         ]
+        },
+        {
+         "id": "thermal-equilibrium-and-work",
+         "title": "Thermal equilibrium and work",
+         "outcomes": [
+          {
+           "code": "ACSPH022",
+           "text": "Explain that systems in contact exchange energy until they reach thermal equilibrium."
+          },
+          {
+           "code": "ACSPH023",
+           "text": "Explain that a thermal system can do mechanical work and that doing work changes internal energy."
+          },
+          {
+           "code": "ACSPH024",
+           "text": "Apply energy conservation: internal energy change equals heating plus work done."
+          }
+         ]
+        },
+        {
+         "id": "efficiency-and-heat-loss",
+         "title": "Efficiency and heat loss",
+         "outcomes": [
+          {
+           "code": "ACSPH025",
+           "text": "Explain why energy transformations in machines always lose heat so efficiency is below 100 percent."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "ionising-radiation-and-nuclear-reactions",
+       "title": "Ionising radiation and nuclear reactions",
+       "subtopics": [
+        {
+         "id": "the-nucleus-and-radioactivity",
+         "title": "The nucleus and radioactivity",
+         "outcomes": [
+          {
+           "code": "ACSPH026",
+           "text": "Describe the nuclear model of the atom with protons, neutrons and electrons."
+          },
+          {
+           "code": "ACSPH027",
+           "text": "Explain nuclear stability through the strong force opposing proton repulsion."
+          },
+          {
+           "code": "ACSPH028",
+           "text": "Describe how unstable nuclides decay by emitting alpha, beta or gamma radiation."
+          }
+         ]
+        },
+        {
+         "id": "half-life-and-ionisation",
+         "title": "Half-life and ionisation",
+         "outcomes": [
+          {
+           "code": "ACSPH029",
+           "text": "Explain that each radionuclide has a characteristic half-life."
+          },
+          {
+           "code": "ACSPH030",
+           "text": "State that alpha, beta and gamma radiation can ionise atoms."
+          }
+         ]
+        },
+        {
+         "id": "mass-energy-and-transmutation",
+         "title": "Mass-energy and transmutation",
+         "outcomes": [
+          {
+           "code": "ACSPH031",
+           "text": "Use mass change and Einstein's relationship to find energy released in nuclear reactions."
+          },
+          {
+           "code": "ACSPH032",
+           "text": "Distinguish spontaneous decay from artificial transmutation of nuclides."
+          }
+         ]
+        },
+        {
+         "id": "fission-and-fusion",
+         "title": "Fission and fusion",
+         "outcomes": [
+          {
+           "code": "ACSPH033",
+           "text": "Describe neutron-induced fission of a heavy nuclide into smaller nuclides with energy released."
+          },
+          {
+           "code": "ACSPH034",
+           "text": "Explain fission chain reactions, controlled for heat or uncontrolled as explosions."
+          },
+          {
+           "code": "ACSPH035",
+           "text": "Describe fusion of light nuclides into heavier ones with energy released."
+          },
+          {
+           "code": "ACSPH036",
+           "text": "Explain why fusion releases more energy per nucleon than fission."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "electrical-circuits",
+       "title": "Electrical circuits",
+       "subtopics": [
+        {
+         "id": "energy-in-circuits",
+         "title": "Energy in circuits",
+         "outcomes": [
+          {
+           "code": "ACSPH037",
+           "text": "Explain how circuits carry electrical energy over distance and convert it to heat, motion and light."
+          }
+         ]
+        },
+        {
+         "id": "charge-and-energy-conservation",
+         "title": "Charge and energy conservation",
+         "outcomes": [
+          {
+           "code": "ACSPH038",
+           "text": "Explain that current is carried by discrete charges and charge is conserved everywhere in a circuit."
+          },
+          {
+           "code": "ACSPH039",
+           "text": "Apply energy conservation to transfers and transformations in a circuit."
+          }
+         ]
+        },
+        {
+         "id": "potential-difference-and-power",
+         "title": "Potential difference and power",
+         "outcomes": [
+          {
+           "code": "ACSPH040",
+           "text": "Define potential difference as energy change per unit charge between two points."
+          },
+          {
+           "code": "ACSPH041",
+           "text": "Explain that separating charges creates a potential difference that drives current."
+          },
+          {
+           "code": "ACSPH042",
+           "text": "Define power as the rate of energy transformation in a component and use it quantitatively."
+          }
+         ]
+        },
+        {
+         "id": "resistance-and-circuit-analysis",
+         "title": "Resistance and circuit analysis",
+         "outcomes": [
+          {
+           "code": "ACSPH043",
+           "text": "Define resistance for ohmic and non-ohmic components as potential difference divided by current."
+          },
+          {
+           "code": "ACSPH044",
+           "text": "Calculate potential difference, current and power for components in series, parallel and mixed circuits."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "Unit 2",
+   "units": [
+    {
+     "id": "unit-2-linear-motion-and-waves",
+     "title": "Unit 2: Linear Motion and Waves",
+     "topics": [
+      {
+       "id": "science-inquiry-skills",
+       "title": "Science Inquiry Skills",
+       "subtopics": [
+        {
+         "id": "planning-investigations",
+         "title": "Planning investigations",
+         "outcomes": [
+          {
+           "code": "ACSPH045",
+           "text": "Form investigable questions, propose hypotheses and predict outcomes."
+          },
+          {
+           "code": "ACSPH046",
+           "text": "Design investigations with procedure, materials, data plan, risk assessment and research ethics."
+          }
+         ]
+        },
+        {
+         "id": "collecting-and-analysing-data",
+         "title": "Collecting and analysing data",
+         "outcomes": [
+          {
+           "code": "ACSPH047",
+           "text": "Carry out investigations safely and carefully using motion-measuring devices and light-ray tools to collect valid data."
+          },
+          {
+           "code": "ACSPH048",
+           "text": "Present data with SI units, find patterns, and identify and estimate errors."
+          }
+         ]
+        },
+        {
+         "id": "evidence-and-representations",
+         "title": "Evidence and representations",
+         "outcomes": [
+          {
+           "code": "ACSPH049",
+           "text": "Interpret scientific and media texts and judge claims using the quality of evidence."
+          },
+          {
+           "code": "ACSPH050",
+           "text": "Use diagrams and other representations suited to the topic to explain concepts and solve problems."
+          },
+          {
+           "code": "ACSPH051",
+           "text": "Use graphs and algebra to solve problems and make predictions about physical systems."
+          }
+         ]
+        },
+        {
+         "id": "communicating-results",
+         "title": "Communicating results",
+         "outcomes": [
+          {
+           "code": "ACSPH052",
+           "text": "Communicate in suitable language and genres, including scientific reports."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "science-as-a-human-endeavour",
+       "title": "Science as a Human Endeavour",
+       "subtopics": [
+        {
+         "id": "nature-of-science",
+         "title": "Nature of science",
+         "outcomes": [
+          {
+           "code": "ACSPH053",
+           "text": "Explain that science is global and depends on clear communication, conventions, peer review and reproducibility."
+          },
+          {
+           "code": "ACSPH054",
+           "text": "Explain that complex models and theories need varied evidence from many people and fields."
+          },
+          {
+           "code": "ACSPH055",
+           "text": "Show how advances in one science field affect other sciences, technology and engineering."
+          }
+         ]
+        },
+        {
+         "id": "science-and-society",
+         "title": "Science and society",
+         "outcomes": [
+          {
+           "code": "ACSPH056",
+           "text": "Explain how social, economic, cultural and ethical factors affect how scientific knowledge is used."
+          },
+          {
+           "code": "ACSPH057",
+           "text": "Discuss beneficial, harmful and unintended consequences of using scientific knowledge."
+          }
+         ]
+        },
+        {
+         "id": "prediction-and-sustainability",
+         "title": "Prediction and sustainability",
+         "outcomes": [
+          {
+           "code": "ACSPH058",
+           "text": "Show how scientific knowledge gives valid explanations and reliable predictions."
+          },
+          {
+           "code": "ACSPH059",
+           "text": "Use scientific knowledge to judge economic, social and environmental impacts and plan for sustainability."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "linear-motion-and-force",
+       "title": "Linear motion and force",
+       "subtopics": [
+        {
+         "id": "describing-motion",
+         "title": "Describing motion",
+         "outcomes": [
+          {
+           "code": "ACSPH060",
+           "text": "Describe uniformly accelerated motion with displacement, speed, velocity and acceleration."
+          },
+          {
+           "code": "ACSPH061",
+           "text": "Use graphs, vectors and equations of motion to describe and predict linear motion."
+          },
+          {
+           "code": "ACSPH062",
+           "text": "Analyse vertical motion using constant gravitational acceleration near Earth's surface."
+          }
+         ]
+        },
+        {
+         "id": "newton-s-laws",
+         "title": "Newton's laws",
+         "outcomes": [
+          {
+           "code": "ACSPH063",
+           "text": "Use Newton's three laws to relate forces on a point mass to its motion."
+          }
+         ]
+        },
+        {
+         "id": "momentum-and-energy",
+         "title": "Momentum and energy",
+         "outcomes": [
+          {
+           "code": "ACSPH064",
+           "text": "Explain momentum as conserved in closed systems and transferred by forces over time."
+          },
+          {
+           "code": "ACSPH065",
+           "text": "Explain energy conservation and work as energy transferred by a force over a distance."
+          },
+          {
+           "code": "ACSPH066",
+           "text": "Distinguish elastic from inelastic collisions by whether kinetic energy is conserved."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "waves",
+       "title": "Waves",
+       "subtopics": [
+        {
+         "id": "wave-basics",
+         "title": "Wave basics",
+         "outcomes": [
+          {
+           "code": "ACSPH067",
+           "text": "Describe waves as periodic oscillations transferring energy."
+          },
+          {
+           "code": "ACSPH068",
+           "text": "Tell longitudinal from transverse waves by oscillation direction relative to wave velocity."
+          },
+          {
+           "code": "ACSPH069",
+           "text": "Represent waves with diagrams and relate period, amplitude, wavelength, frequency and velocity."
+          }
+         ]
+        },
+        {
+         "id": "mechanical-waves",
+         "title": "Mechanical waves",
+         "outcomes": [
+          {
+           "code": "ACSPH070",
+           "text": "Explain that mechanical waves move energy through a medium by oscillating the medium or its pressure."
+          },
+          {
+           "code": "ACSPH071",
+           "text": "Use the wave model to explain reflection and refraction, such as echoes and seismic effects."
+          }
+         ]
+        },
+        {
+         "id": "standing-waves-and-resonance",
+         "title": "Standing waves and resonance",
+         "outcomes": [
+          {
+           "code": "ACSPH072",
+           "text": "Explain superposition, standing waves and interference, including in pipes and strings."
+          },
+          {
+           "code": "ACSPH073",
+           "text": "Explain resonance when a system is driven at a natural frequency."
+          }
+         ]
+        },
+        {
+         "id": "light",
+         "title": "Light",
+         "outcomes": [
+          {
+           "code": "ACSPH074",
+           "text": "Explain why light shows wave properties but is not a mechanical wave since it crosses a vacuum."
+          },
+          {
+           "code": "ACSPH075",
+           "text": "Use the ray model for reflection, refraction and image formation by lenses and mirrors."
+          },
+          {
+           "code": "ACSPH076",
+           "text": "Use the wave model to explain reflection, refraction, total internal reflection, dispersion, diffraction and interference."
+          },
+          {
+           "code": "ACSPH077",
+           "text": "State that light speed is finite and enormous and its intensity falls with the inverse square of distance."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "Unit 3",
+   "units": [
+    {
+     "id": "unit-3-gravity-and-electromagnetism",
+     "title": "Unit 3: Gravity and electromagnetism",
+     "topics": [
+      {
+       "id": "science-inquiry-skills",
+       "title": "Science Inquiry Skills",
+       "subtopics": [
+        {
+         "id": "planning-investigations",
+         "title": "Planning investigations",
+         "outcomes": [
+          {
+           "code": "ACSPH078",
+           "text": "Form investigable questions, propose hypotheses and predict outcomes."
+          },
+          {
+           "code": "ACSPH079",
+           "text": "Design investigations with procedure, materials, data plan, risk assessment and research ethics."
+          }
+         ]
+        },
+        {
+         "id": "collecting-and-analysing-data",
+         "title": "Collecting and analysing data",
+         "outcomes": [
+          {
+           "code": "ACSPH080",
+           "text": "Carry out investigations safely and carefully using force measurers and electromagnetic devices to collect valid data."
+          },
+          {
+           "code": "ACSPH081",
+           "text": "Present data with SI units, find patterns, and identify and estimate errors."
+          }
+         ]
+        },
+        {
+         "id": "evidence-and-representations",
+         "title": "Evidence and representations",
+         "outcomes": [
+          {
+           "code": "ACSPH082",
+           "text": "Interpret scientific and media texts and judge claims using the quality of evidence."
+          },
+          {
+           "code": "ACSPH083",
+           "text": "Use diagrams and other representations suited to the topic to explain concepts and solve problems."
+          },
+          {
+           "code": "ACSPH084",
+           "text": "Use graphs and algebra to solve problems and make predictions about physical systems."
+          }
+         ]
+        },
+        {
+         "id": "communicating-results",
+         "title": "Communicating results",
+         "outcomes": [
+          {
+           "code": "ACSPH085",
+           "text": "Communicate in suitable language and genres, including scientific reports."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "science-as-a-human-endeavour",
+       "title": "Science as a Human Endeavour",
+       "subtopics": [
+        {
+         "id": "data-and-models",
+         "title": "Data and models",
+         "outcomes": [
+          {
+           "code": "ACSPH086",
+           "text": "Explain how technology has widened the size, accuracy and reach of scientific datasets."
+          },
+          {
+           "code": "ACSPH087",
+           "text": "Explain how models and theories are contested, refined or replaced given new evidence or better explanatory power."
+          },
+          {
+           "code": "ACSPH088",
+           "text": "Explain how social, economic and cultural context affects acceptance of scientific ideas."
+          }
+         ]
+        },
+        {
+         "id": "risk-and-limits-of-science",
+         "title": "Risk and limits of science",
+         "outcomes": [
+          {
+           "code": "ACSPH089",
+           "text": "Show how scientific knowledge informs the monitoring, assessment and evaluation of risk."
+          },
+          {
+           "code": "ACSPH090",
+           "text": "Recognise that science may not settle public debates when data is lacking or open to question."
+          }
+         ]
+        },
+        {
+         "id": "collaboration-and-sustainability",
+         "title": "Collaboration and sustainability",
+         "outcomes": [
+          {
+           "code": "ACSPH091",
+           "text": "Explain why large-scale or regional science projects need international collaboration."
+          },
+          {
+           "code": "ACSPH092",
+           "text": "Use scientific knowledge to judge economic, social and environmental impacts and plan for sustainability."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "gravity-and-motion",
+       "title": "Gravity and motion",
+       "subtopics": [
+        {
+         "id": "gravitational-fields",
+         "title": "Gravitational fields",
+         "outcomes": [
+          {
+           "code": "ACSPH093",
+           "text": "Describe the predictable motion of free-falling bodies in Earth's field."
+          },
+          {
+           "code": "ACSPH094",
+           "text": "Use Newton's law of universal gravitation to calculate attraction between masses."
+          },
+          {
+           "code": "ACSPH095",
+           "text": "Explain gravitational force through the field that masses create around them."
+          },
+          {
+           "code": "ACSPH096",
+           "text": "Explain work done on or by a gravitational field when a mass changes potential energy."
+          },
+          {
+           "code": "ACSPH097",
+           "text": "Define gravitational field strength as force per unit mass at a point."
+          }
+         ]
+        },
+        {
+         "id": "inclined-planes-and-projectiles",
+         "title": "Inclined planes and projectiles",
+         "outcomes": [
+          {
+           "code": "ACSPH098",
+           "text": "Resolve weight into components along and perpendicular to an inclined plane."
+          },
+          {
+           "code": "ACSPH099",
+           "text": "Analyse projectile motion using independent horizontal and vertical components."
+          }
+         ]
+        },
+        {
+         "id": "circular-motion-and-orbits",
+         "title": "Circular motion and orbits",
+         "outcomes": [
+          {
+           "code": "ACSPH100",
+           "text": "Explain uniform circular motion as a constant net force perpendicular to velocity, including banked tracks."
+          },
+          {
+           "code": "ACSPH101",
+           "text": "Use universal gravitation to explain Kepler's laws and satellite or planetary orbits."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "electromagnetism",
+       "title": "Electromagnetism",
+       "subtopics": [
+        {
+         "id": "electric-fields",
+         "title": "Electric fields",
+         "outcomes": [
+          {
+           "code": "ACSPH102",
+           "text": "Use Coulomb's law to calculate the force between charged objects."
+          },
+          {
+           "code": "ACSPH103",
+           "text": "Explain electrostatic force through the electric field charges create."
+          },
+          {
+           "code": "ACSPH104",
+           "text": "Define electric field strength as force per unit charge and give its direction for a positive charge."
+          },
+          {
+           "code": "ACSPH105",
+           "text": "Explain work done on or by an electric field as a charge's potential energy changes."
+          }
+         ]
+        },
+        {
+         "id": "magnetic-fields-and-forces",
+         "title": "Magnetic fields and forces",
+         "outcomes": [
+          {
+           "code": "ACSPH106",
+           "text": "Describe magnetic fields around current-carrying wires and their use in solenoids and electromagnets."
+          },
+          {
+           "code": "ACSPH107",
+           "text": "Define magnetic flux density as the strength of a current's magnetic field."
+          },
+          {
+           "code": "ACSPH108",
+           "text": "Explain forces on magnets, moving charges and current-carrying wires in a magnetic field, as in DC motors."
+          }
+         ]
+        },
+        {
+         "id": "electromagnetic-induction",
+         "title": "Electromagnetic induction",
+         "outcomes": [
+          {
+           "code": "ACSPH109",
+           "text": "Define magnetic flux from flux density and area."
+          },
+          {
+           "code": "ACSPH110",
+           "text": "Explain induction by changing flux and its use in transformers, generators and AC motors."
+          },
+          {
+           "code": "ACSPH111",
+           "text": "Use Lenz's law, an expression of energy conservation, to find induced current direction."
+          }
+         ]
+        },
+        {
+         "id": "electromagnetic-waves",
+         "title": "Electromagnetic waves",
+         "outcomes": [
+          {
+           "code": "ACSPH112",
+           "text": "Describe electromagnetic waves as transverse waves of perpendicular oscillating electric and magnetic fields."
+          },
+          {
+           "code": "ACSPH113",
+           "text": "Explain that oscillating charges emit waves of the same frequency and waves make charges oscillate."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "Unit 4",
+   "units": [
+    {
+     "id": "unit-4-revolutions-in-modern-physics",
+     "title": "Unit 4: Revolutions in modern physics",
+     "topics": [
+      {
+       "id": "science-inquiry-skills",
+       "title": "Science Inquiry Skills",
+       "subtopics": [
+        {
+         "id": "planning-investigations",
+         "title": "Planning investigations",
+         "outcomes": [
+          {
+           "code": "ACSPH114",
+           "text": "Form investigable questions, propose hypotheses and predict outcomes."
+          },
+          {
+           "code": "ACSPH115",
+           "text": "Design investigations with procedure, materials, data plan, risk assessment and research ethics."
+          }
+         ]
+        },
+        {
+         "id": "collecting-and-analysing-data",
+         "title": "Collecting and analysing data",
+         "outcomes": [
+          {
+           "code": "ACSPH116",
+           "text": "Carry out investigations safely and carefully using simulations and spectral devices to collect valid data."
+          },
+          {
+           "code": "ACSPH117",
+           "text": "Present data with SI units, find patterns, and identify and estimate errors."
+          }
+         ]
+        },
+        {
+         "id": "evidence-and-representations",
+         "title": "Evidence and representations",
+         "outcomes": [
+          {
+           "code": "ACSPH118",
+           "text": "Interpret scientific and media texts and judge claims using the quality of evidence."
+          },
+          {
+           "code": "ACSPH119",
+           "text": "Use diagrams and other representations suited to the topic to explain concepts and solve problems."
+          },
+          {
+           "code": "ACSPH120",
+           "text": "Use graphs and algebra to solve problems and make predictions about physical systems."
+          }
+         ]
+        },
+        {
+         "id": "communicating-results",
+         "title": "Communicating results",
+         "outcomes": [
+          {
+           "code": "ACSPH121",
+           "text": "Communicate in suitable language and genres, including scientific reports."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "science-as-a-human-endeavour",
+       "title": "Science as a Human Endeavour",
+       "subtopics": [
+        {
+         "id": "data-and-models",
+         "title": "Data and models",
+         "outcomes": [
+          {
+           "code": "ACSPH122",
+           "text": "Explain how technology has widened the size, accuracy and reach of scientific datasets."
+          },
+          {
+           "code": "ACSPH123",
+           "text": "Explain how models and theories are contested, refined or replaced given new evidence or better explanatory power."
+          },
+          {
+           "code": "ACSPH124",
+           "text": "Explain how social, economic and cultural context affects acceptance of scientific ideas."
+          }
+         ]
+        },
+        {
+         "id": "risk-and-limits-of-science",
+         "title": "Risk and limits of science",
+         "outcomes": [
+          {
+           "code": "ACSPH125",
+           "text": "Show how scientific knowledge informs the monitoring, assessment and evaluation of risk."
+          },
+          {
+           "code": "ACSPH126",
+           "text": "Recognise that science may not settle public debates when data is lacking or open to question."
+          }
+         ]
+        },
+        {
+         "id": "collaboration-and-sustainability",
+         "title": "Collaboration and sustainability",
+         "outcomes": [
+          {
+           "code": "ACSPH127",
+           "text": "Explain why large-scale or regional science projects need international collaboration."
+          },
+          {
+           "code": "ACSPH128",
+           "text": "Use scientific knowledge to judge economic, social and environmental impacts and plan for sustainability."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "special-relativity",
+       "title": "Special relativity",
+       "subtopics": [
+        {
+         "id": "limits-of-newtonian-physics",
+         "title": "Limits of Newtonian physics",
+         "outcomes": [
+          {
+           "code": "ACSPH129",
+           "text": "Explain observations at very high speed that Newtonian physics cannot account for."
+          },
+          {
+           "code": "ACSPH130",
+           "text": "State that special relativity gives results differing from Newton's near the speed of light."
+          }
+         ]
+        },
+        {
+         "id": "postulates-and-relative-measurement",
+         "title": "Postulates and relative measurement",
+         "outcomes": [
+          {
+           "code": "ACSPH131",
+           "text": "State the two postulates: constant light speed in vacuum and equivalent inertial frames."
+          },
+          {
+           "code": "ACSPH132",
+           "text": "Explain that motion, length and time depend on the observer's frame."
+          }
+         ]
+        },
+        {
+         "id": "momentum-and-mass-energy",
+         "title": "Momentum and mass-energy",
+         "outcomes": [
+          {
+           "code": "ACSPH133",
+           "text": "Explain that relativistic momentum rises at high speed, so nothing reaches light speed."
+          },
+          {
+           "code": "ACSPH134",
+           "text": "Explain mass-energy equivalence as the source of nuclear reaction energy."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "quantum-theory",
+       "title": "Quantum theory",
+       "subtopics": [
+        {
+         "id": "quantised-light-and-matter",
+         "title": "Quantised light and matter",
+         "outcomes": [
+          {
+           "code": "ACSPH135",
+           "text": "Explain that atomic phenomena show energy and matter in discrete quantised values."
+          },
+          {
+           "code": "ACSPH136",
+           "text": "Describe photons as light packets whose energy is proportional to frequency via Planck's constant."
+          },
+          {
+           "code": "ACSPH137",
+           "text": "Use light quanta to explain black body radiation and the photoelectric effect."
+          }
+         ]
+        },
+        {
+         "id": "atomic-spectra-and-the-bohr-model",
+         "title": "Atomic spectra and the Bohr model",
+         "outcomes": [
+          {
+           "code": "ACSPH138",
+           "text": "Explain that each element emits and absorbs unique wavelengths, the basis of spectral analysis."
+          },
+          {
+           "code": "ACSPH139",
+           "text": "Use the Bohr model to explain hydrogen and simple atom spectra."
+          }
+         ]
+        },
+        {
+         "id": "wave-particle-duality",
+         "title": "Wave-particle duality",
+         "outcomes": [
+          {
+           "code": "ACSPH140",
+           "text": "Explain that energy and matter show both wave and particle behaviour, as in double-slit interference."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "the-standard-model",
+       "title": "The Standard Model",
+       "subtopics": [
+        {
+         "id": "particles-and-forces",
+         "title": "Particles and forces",
+         "outcomes": [
+          {
+           "code": "ACSPH141",
+           "text": "Describe matter as made of quarks and leptons, with only quarks feeling the strong force."
+          },
+          {
+           "code": "ACSPH142",
+           "text": "Explain three fundamental forces through exchange of gauge bosons."
+          }
+         ]
+        },
+        {
+         "id": "particle-reactions",
+         "title": "Particle reactions",
+         "outcomes": [
+          {
+           "code": "ACSPH143",
+           "text": "Represent particle reactions with simple reaction diagrams."
+          },
+          {
+           "code": "ACSPH144",
+           "text": "Use conservation of lepton and baryon number to test proposed reactions."
+          },
+          {
+           "code": "ACSPH145",
+           "text": "Find reaction variants using time reversal and particle-antiparticle symmetry."
+          }
+         ]
+        },
+        {
+         "id": "testing-the-model",
+         "title": "Testing the model",
+         "outcomes": [
+          {
+           "code": "ACSPH146",
+           "text": "Explain how high-energy accelerators test particle theories including the Standard Model."
+          },
+          {
+           "code": "ACSPH147",
+           "text": "Use the Standard Model to describe the evolution of forces and creation of matter in the Big Bang."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "build": {
+  "builtAt": "2026-10-14T10:56:06.129Z",
+  "model": "claude-agent",
+  "usd": 0,
+  "expectedCodes": 147,
+  "coverage": 1,
+  "missingCodes": [],
+  "counts": {
+   "grades": 4,
+   "units": 4,
+   "topics": 18,
+   "subtopics": 64,
+   "outcomes": 147
+  },
+  "warnings": []
+ }
+}

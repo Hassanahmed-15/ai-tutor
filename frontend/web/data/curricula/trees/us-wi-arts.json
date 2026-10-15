@@ -1,0 +1,2511 @@
+{
+ "id": "us-wi-arts",
+ "region": "US",
+ "framework": "Wisconsin state academic standards: Fine Arts",
+ "board": null,
+ "qualification": "K-12",
+ "subject": "Fine Arts",
+ "syllabusCode": null,
+ "gradeSystem": "grade",
+ "source": {
+  "urls": [
+   "https://api.commonstandardsproject.com/api/v1/jurisdictions/745124D969E9491C9FC33D3235259386",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/D6F3D20BCF364A64894AB30BE158FB0C",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/9B1BFFD1E3314806957BDBF8430D7ADB",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/C3B886C7A6A04ABABDBC03E6CC7A8F14",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/3FB5C99B22CA41368F9BD815A5300F0D",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/2018F12F01B14796B6B92362D6389330",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/77F971CB217B480E9D82DB8B95767633",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/77FD0AF186F94B2D83E123EF61BC1300",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/9303B8DB9C794B3C9F1B296CB4B6B2E7",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/745124D969E9491C9FC33D3235259386_D2960032_grades-01-02-k",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/745124D969E9491C9FC33D3235259386_D2960032_grades-03-04-05",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/745124D969E9491C9FC33D3235259386_D2960032_grades-06-07-08",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/745124D969E9491C9FC33D3235259386_D2960032_grades-09-10-11-12",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/89E983DE41D1488B9B21A562D62CE0AB"
+  ],
+  "publisher": "Wisconsin state education agency (machine-readable via Common Standards Project / ASN)",
+  "licence": "CC BY 4.0 US, Common Curriculum, Inc.; CC BY 3.0 US, D2L Corporation",
+  "firstExam": "2019"
+ },
+ "grades": [
+  {
+   "grade": "K-2",
+   "units": [
+    {
+     "id": "art-and-design",
+     "title": "Art and Design",
+     "topics": [
+      {
+       "id": "create-students-will-generate-develop-and-refine",
+       "title": "CREATE—Students will generate, develop, and refine artistic work",
+       "subtopics": [
+        {
+         "id": "create-students-will-generate-develop-and-refine",
+         "title": "CREATE—Students will generate, develop, and refine artistic work",
+         "outcomes": [
+          {
+           "code": "A.A.Cr.1.e",
+           "text": "Investigate Explore studio skills, techniques, materials, tools, and elements and principles of art and design."
+          },
+          {
+           "code": "A.A.Cr.2.e",
+           "text": "Plan Describe process and choices while creating art."
+          },
+          {
+           "code": "A.A.Cr.3.e",
+           "text": "Make Create works of art that introduce students to media, care of tools, and basic craftsmanship skills."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "present-students-will-develop-refine-and-convey-",
+       "title": "PRESENT—Students will develop, refine, and convey meaning through the production and presentation of artistic work",
+       "subtopics": [
+        {
+         "id": "present-students-will-develop-refine-and-convey-",
+         "title": "PRESENT—Students will develop, refine, and convey meaning through the production and presentation of artistic work",
+         "outcomes": [
+          {
+           "code": "A.A.Pr.1.e",
+           "text": "Develop Meaning Explore and develop meaning by viewing personal, historical, and contemporary art."
+          },
+          {
+           "code": "A.A.Pr.2.e",
+           "text": "Communicate Explain artwork through verbal and/or written descriptions using art and design vocabulary."
+          },
+          {
+           "code": "A.A.Pr.3.e",
+           "text": "Share Share artwork through a presentation or exhibit."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "respond-students-will-critically-interpret-inten",
+       "title": "RESPOND—Students will critically interpret intent and meaning in order to evaluate artistic work",
+       "subtopics": [
+        {
+         "id": "respond-students-will-critically-interpret-inten",
+         "title": "RESPOND—Students will critically interpret intent and meaning in order to evaluate artistic work",
+         "outcomes": [
+          {
+           "code": "A.A.R.1.e",
+           "text": "Describe Identify details, basic elements, and subject matter of an artwork."
+          },
+          {
+           "code": "A.A.R.2.e",
+           "text": "Analyze Distinguish between reality and imaginary when describing a work of art."
+          },
+          {
+           "code": "A.A.R.3.e",
+           "text": "Interpret Use details and subject matter to interpret an artwork’s mood or meaning."
+          },
+          {
+           "code": "A.A.R.4.e",
+           "text": "Inquire Determine the artist’s intent by identifying the details and subject matter."
+          },
+          {
+           "code": "A.A.R.5.e",
+           "text": "Evaluate Use learned art and design vocabulary to express individual opinion of a work."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "connect-students-will-relate-their-artistic-work",
+       "title": "CONNECT—Students will relate their artistic work with prior experience and external context",
+       "subtopics": [
+        {
+         "id": "connect-students-will-relate-their-artistic-work",
+         "title": "CONNECT—Students will relate their artistic work with prior experience and external context",
+         "outcomes": [
+          {
+           "code": "A.A.Cn.1.e",
+           "text": "Interdisciplinary Recognize and demonstrate relationships between art and design, and other disciplines."
+          },
+          {
+           "code": "A.A.Cn.2.e",
+           "text": "Career Connections Recognize art and design careers."
+          },
+          {
+           "code": "A.A.Cn.3.e",
+           "text": "Cultural, Social, and Historical Awareness Understand that people from different times and places have made art and design for a variety of reasons."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "theatre-performance",
+     "title": "Theatre Performance",
+     "topics": [
+      {
+       "id": "create-students-will-generate-develop-and-refine",
+       "title": "CREATE: Students will generate, develop, and refine artistic work",
+       "subtopics": [
+        {
+         "id": "create-students-will-generate-develop-and-refine",
+         "title": "CREATE: Students will generate, develop, and refine artistic work",
+         "outcomes": [
+          {
+           "code": "TP.Cr.1.e",
+           "text": "Characterization: Portray feelings of a known or imagined character."
+          },
+          {
+           "code": "TP.Cr.2.e",
+           "text": "Improvisation: Play imaginatively within a scenario."
+          },
+          {
+           "code": "TP.Cr.3.e",
+           "text": "Text/Script: Tell a story to a teacher or a peer using known or imagined dialogue."
+          },
+          {
+           "code": "TP.Cr.4.e",
+           "text": "Direction: Listen to and follow direction given by a teacher or a student leader."
+          },
+          {
+           "code": "TP.Cr.5.e",
+           "text": "Collaboration: Contribute ideas and make decisions as a group to advance a story."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "perform-students-will-analyze-develop-and-convey",
+       "title": "PERFORM: Students will analyze, develop, and convey meaning through the presentation of artistic work",
+       "subtopics": [
+        {
+         "id": "perform-students-will-analyze-develop-and-convey",
+         "title": "PERFORM: Students will analyze, develop, and convey meaning through the presentation of artistic work",
+         "outcomes": [
+          {
+           "code": "TP.P.1.e",
+           "text": "Oral Communication: Use vocalizations and spoken language to communicate."
+          },
+          {
+           "code": "TP.P.2.e",
+           "text": "Nonverbal Communication: Use gestures, movement, and facial expressions to communicate."
+          },
+          {
+           "code": "TP.P.3.e",
+           "text": "Spatial Awareness: Use objects in an imaginative manner."
+          },
+          {
+           "code": "TP.P.4.e",
+           "text": "Public Presentation: Portray a character for a classroom presentation."
+          },
+          {
+           "code": "TP.P.5.e",
+           "text": "Protocol: Exercise developmentally appropriate stage etiquette for school or public performances."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "respond-students-will-critically-interpret-inten",
+       "title": "RESPOND: Students will critically interpret intent and meaning in order to evaluate artistic work",
+       "subtopics": [
+        {
+         "id": "respond-students-will-critically-interpret-inten",
+         "title": "RESPOND: Students will critically interpret intent and meaning in order to evaluate artistic work",
+         "outcomes": [
+          {
+           "code": "TP.R.1.e",
+           "text": "Analysis: Respond to a theatrical work by sharing what is seen, heard, and/or felt."
+          },
+          {
+           "code": "TP.R.2.e",
+           "text": "Reflection: Assess personal participation in a performance."
+          },
+          {
+           "code": "TP.R.3.e",
+           "text": "View Performance: Demonstrate developmentally appropriate audience etiquette."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "connect-students-will-relate-prior-knowledge-and",
+       "title": "CONNECT: Students will relate prior knowledge and personal experience with theatre to cultural and historical contexts",
+       "subtopics": [
+        {
+         "id": "connect-students-will-relate-prior-knowledge-and",
+         "title": "CONNECT: Students will relate prior knowledge and personal experience with theatre to cultural and historical contexts",
+         "outcomes": [
+          {
+           "code": "TP.Cn.1.e",
+           "text": "Cultural Social Context: Express how theatre relates to self and others."
+          },
+          {
+           "code": "TP.Cn.2.e",
+           "text": "Research: Identify parts of a story (characters, setting, and plot)."
+          },
+          {
+           "code": "TP.Cn.3.e",
+           "text": "Career Connections: Identify a profession in theatre."
+          },
+          {
+           "code": "TP.Cn.4.e",
+           "text": "Cross Disciplinary: Describe how theatre connects to art and music."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "theatre-production",
+     "title": "Theatre Production",
+     "topics": [
+      {
+       "id": "create-students-will-generate-develop-and-refine",
+       "title": "CREATE: Students will generate, develop, and refine artistic work",
+       "subtopics": [
+        {
+         "id": "create-students-will-generate-develop-and-refine",
+         "title": "CREATE: Students will generate, develop, and refine artistic work",
+         "outcomes": [
+          {
+           "code": "TD.Cr.1.e",
+           "text": "Design: Assemble, draw, or describe a character's costume for a story."
+          },
+          {
+           "code": "TD.Cr.2.e",
+           "text": "Text/Script: Tell a story to a teacher or a peer that includes ideas for production elements."
+          },
+          {
+           "code": "TD.Cr.3.e",
+           "text": "Management Plan: Watch a live or recorded production and identify responsibilities of some of those involved in creating the work."
+          },
+          {
+           "code": "TD.Cr.4.e",
+           "text": "Collaboration: Contribute ideas and make decisions as a group to advance a story."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "perform-students-will-analyze-develop-and-convey",
+       "title": "PERFORM: Students will analyze, develop, and convey meaning through the presentation of artistic work",
+       "subtopics": [
+        {
+         "id": "perform-students-will-analyze-develop-and-convey",
+         "title": "PERFORM: Students will analyze, develop, and convey meaning through the presentation of artistic work",
+         "outcomes": [
+          {
+           "code": "TD.P.1.e",
+           "text": "Design Execution: Arrange available furniture and props in a classroom for a show."
+          },
+          {
+           "code": "TD.P.2.e",
+           "text": "Tools & Technology Use: Use arts/crafts in the creation of props, costumes, or scenery."
+          },
+          {
+           "code": "TD.P.3.e",
+           "text": "Design & Management Documentation: Share production element(s) created."
+          },
+          {
+           "code": "TD.P.4.e",
+           "text": "Public Presentation: Perform in a production role within a classroom presentation."
+          },
+          {
+           "code": "TD.P.5.e",
+           "text": "Protocol: Exercise developmentally appropriate stage etiquette for school or public performances."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "respond-students-will-critically-interpret-inten",
+       "title": "RESPOND: Students will critically interpret intent and meaning in order to evaluate artistic work",
+       "subtopics": [
+        {
+         "id": "respond-students-will-critically-interpret-inten",
+         "title": "RESPOND: Students will critically interpret intent and meaning in order to evaluate artistic work",
+         "outcomes": [
+          {
+           "code": "TD.R.1.e",
+           "text": "Analysis: Respond to a theatrical work by sharing what is seen, heard, and/or felt."
+          },
+          {
+           "code": "TD.R.2.e",
+           "text": "Reflection: Assess personal participation in a production."
+          },
+          {
+           "code": "TD.R.3.e",
+           "text": "View Performance: Demonstrate developmentally appropriate audience etiquette."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "connect-students-will-relate-prior-knowledge-and",
+       "title": "CONNECT: Students will relate prior knowledge and personal experience with theatre to cultural and historical contexts",
+       "subtopics": [
+        {
+         "id": "connect-students-will-relate-prior-knowledge-and",
+         "title": "CONNECT: Students will relate prior knowledge and personal experience with theatre to cultural and historical contexts",
+         "outcomes": [
+          {
+           "code": "TD.Cn.1.e",
+           "text": "Cultural Social Context: Express how theatre relates to self and others."
+          },
+          {
+           "code": "TD.Cn.2.e",
+           "text": "Research: Identify parts of a story (characters, setting, and plot)."
+          },
+          {
+           "code": "TD.Cn.3.e",
+           "text": "Career Connections: Identify a production profession in theatre."
+          },
+          {
+           "code": "TD.Cn.4.e",
+           "text": "Cross Disciplinary: Describe how theatre connects to art and music."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "general-music",
+     "title": "General Music",
+     "topics": [
+      {
+       "id": "create-students-will-generate-develop-and-refine",
+       "title": "Create: Students will generate, develop, and refine artistic work",
+       "subtopics": [
+        {
+         "id": "create-students-will-generate-develop-and-refine",
+         "title": "Create: Students will generate, develop, and refine artistic work",
+         "outcomes": [
+          {
+           "code": "MG1.Cr.1.e",
+           "text": "Discover musical ideas through simple rhythm and melodic patterns."
+          },
+          {
+           "code": "MG1.Cr.2.e",
+           "text": "Improvise sounds and movement to accompany artistic play and music by use of voice, instruments, and a variety of sound sources."
+          },
+          {
+           "code": "MG.1.Cr.3.e",
+           "text": "Explore the creation of short pieces using standard and/or alternative notation."
+          },
+          {
+           "code": "MG.1.Cr.4.e",
+           "text": "Identify musical ideas through verbal, written, aural, or technological means."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "perform-students-will-analyze-develop-and-convey",
+       "title": "Perform: Students will analyze, develop, and convey meaning through the presentation of artistic work",
+       "subtopics": [
+        {
+         "id": "perform-students-will-analyze-develop-and-convey",
+         "title": "Perform: Students will analyze, develop, and convey meaning through the presentation of artistic work",
+         "outcomes": [
+          {
+           "code": "MG2.P.1.e",
+           "text": "Explore and identify the meaning of a song through its text by singing and/or playing an instrument."
+          },
+          {
+           "code": "MG2.P.2.e",
+           "text": "Discover how to express a piece of music to convey its meaning."
+          },
+          {
+           "code": "MG2.P.3.e",
+           "text": "Examine and share the performance with class and teacher."
+          },
+          {
+           "code": "MG2.P.4.e",
+           "text": "Identify persons serving in the roles of performer and audience."
+          },
+          {
+           "code": "MG2.P.5.e",
+           "text": "Explore music through both reading and aural approaches."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "respond-students-will-critically-interpret-inten",
+       "title": "Respond: Students will critically interpret intent and meaning in order to evaluate artistic work",
+       "subtopics": [
+        {
+         "id": "respond-students-will-critically-interpret-inten",
+         "title": "Respond: Students will critically interpret intent and meaning in order to evaluate artistic work",
+         "outcomes": [
+          {
+           "code": "MG3.R.1.e",
+           "text": "Recognize and respond to foundational musical elements."
+          },
+          {
+           "code": "MG3.R.2.e",
+           "text": "Express musical ideas through verbal, movement, written, or artistic means."
+          },
+          {
+           "code": "MG3.R.3.e",
+           "text": "Utilize music terminology in the analysis and evaluation of musical performances, recordings, and compositions."
+          },
+          {
+           "code": "MG3.R.4.e",
+           "text": "Identify proper concert/audience etiquette."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "connect-students-will-relate-prior-knowledge-and",
+       "title": "Connect: Students will relate prior knowledge and personal experience with music to cultural and historical context",
+       "subtopics": [
+        {
+         "id": "connect-students-will-relate-prior-knowledge-and",
+         "title": "Connect: Students will relate prior knowledge and personal experience with music to cultural and historical context",
+         "outcomes": [
+          {
+           "code": "MG4.Cn.1.e",
+           "text": "Explore the historical and cultural aspects of music as it relates to other disciplines and arts."
+          },
+          {
+           "code": "MG4.Cn.2.e",
+           "text": "Express how music relates to self and others."
+          },
+          {
+           "code": "MG4.Cn.3.e",
+           "text": "Explore musical connections, similarities, and differences."
+          },
+          {
+           "code": "MG4.Cn.4.e",
+           "text": "Share various roles of musicians in their own and other cultures."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "performance-music",
+     "title": "Performance Music",
+     "topics": [
+      {
+       "id": "create-students-will-generate-develop-and-refine",
+       "title": "Create: Students will generate, develop, and refine artistic work",
+       "subtopics": [
+        {
+         "id": "create-students-will-generate-develop-and-refine",
+         "title": "Create: Students will generate, develop, and refine artistic work",
+         "outcomes": [
+          {
+           "code": "MP1.Cr.1.e",
+           "text": "Discover musical ideas through simple rhythm and melodic patterns."
+          },
+          {
+           "code": "MP1.Cr.2.e",
+           "text": "Improvise sounds and movement to accompany artistic play and music by use of voice, instruments, and a variety of sound sources."
+          },
+          {
+           "code": "MP1.Cr.3.e",
+           "text": "Explore the creation of short pieces using standard and/or alternative notation."
+          },
+          {
+           "code": "MP1.Cr.4.e",
+           "text": "Identify musical ideas through verbal, written, aural, or technological means."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "perform-students-will-analyze-develop-and-convey",
+       "title": "Perform: Students will analyze, develop, and convey meaning through the presentation of artistic work",
+       "subtopics": [
+        {
+         "id": "perform-students-will-analyze-develop-and-convey",
+         "title": "Perform: Students will analyze, develop, and convey meaning through the presentation of artistic work (1 of 2)",
+         "outcomes": [
+          {
+           "code": "MP2.P.1.e",
+           "text": "Explore and identify the meaning of a song through its text by singing and/or playing an instrument."
+          },
+          {
+           "code": "MP2.P.2.e",
+           "text": "Discover how to express a piece of music to convey its meaning."
+          },
+          {
+           "code": "MP2.P.3.e",
+           "text": "Examine and share the performance with class and teacher."
+          },
+          {
+           "code": "MP2.P.4.e",
+           "text": "Identify the persons serving in the roles of performer and audience."
+          }
+         ]
+        },
+        {
+         "id": "perform-students-will-analyze-develop-and-convey-2",
+         "title": "Perform: Students will analyze, develop, and convey meaning through the presentation of artistic work (2 of 2)",
+         "outcomes": [
+          {
+           "code": "MP2.P.5.e",
+           "text": "Explore music through both reading and aural approaches."
+          },
+          {
+           "code": "MP2.P.6.e",
+           "text": "Perform in a classroom setting."
+          },
+          {
+           "code": "MP2.P.7.e",
+           "text": "Perform in a classroom setting within a small group."
+          },
+          {
+           "code": "MP2.P.8.e",
+           "text": "Practice proper concert etiquette for a variety of musical settings."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "respond-students-will-critically-interpret-inten",
+       "title": "Respond: Students will critically interpret intent and meaning in order to evaluate artistic work",
+       "subtopics": [
+        {
+         "id": "respond-students-will-critically-interpret-inten",
+         "title": "Respond: Students will critically interpret intent and meaning in order to evaluate artistic work",
+         "outcomes": [
+          {
+           "code": "MP3.R.1.e",
+           "text": "Recognize and respond to foundational musical elements."
+          },
+          {
+           "code": "MP3.R.2.e",
+           "text": "Express musical ideas through verbal, movement, written, or artistic means."
+          },
+          {
+           "code": "MP3.R.3.e",
+           "text": "Utilize music terminology in the analysis and evaluation of musical performances, recordings, and compositions."
+          },
+          {
+           "code": "MP3.R.4.e",
+           "text": "Identify proper concert/audience etiquette."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "connect-students-will-relate-prior-knowledge-and",
+       "title": "Connect: Students will relate prior knowledge and personal experience with music to cultural and historical context",
+       "subtopics": [
+        {
+         "id": "connect-students-will-relate-prior-knowledge-and",
+         "title": "Connect: Students will relate prior knowledge and personal experience with music to cultural and historical context",
+         "outcomes": [
+          {
+           "code": "MP4.Cn.1.e",
+           "text": "Explore the historical and cultural aspects of music as it relates to other disciplines and arts."
+          },
+          {
+           "code": "MP4.Cn.2.e",
+           "text": "Express how music relates to self and others."
+          },
+          {
+           "code": "MP4.Cn.3.e",
+           "text": "Explore musical connections, similarities, and differences."
+          },
+          {
+           "code": "MP4.Cn.4.e",
+           "text": "Share various roles of musicians in their own and other cultures."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "6-8",
+   "units": [
+    {
+     "id": "art-and-design",
+     "title": "Art and Design",
+     "topics": [
+      {
+       "id": "create-students-will-generate-develop-and-refine",
+       "title": "CREATE—Students will generate, develop, and refine artistic work",
+       "subtopics": [
+        {
+         "id": "create-students-will-generate-develop-and-refine",
+         "title": "CREATE—Students will generate, develop, and refine artistic work",
+         "outcomes": [
+          {
+           "code": "A.A.Cr.7.m",
+           "text": "Investigate Investigate and expand knowledge of studio skills, techniques, materials, tools, and elements and principles of art and design."
+          },
+          {
+           "code": "A.A.Cr.8.m",
+           "text": "Plan Generate original solutions through exploration and practice."
+          },
+          {
+           "code": "A.A.Cr.9.m",
+           "text": "Make Engage in experimentation with the expressive qualities of media, tools, and techniques with refined craftsmanship."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "present-students-will-develop-refine-and-convey-",
+       "title": "PRESENT—Students will develop, refine, and convey meaning through the production and presentation of artistic work",
+       "subtopics": [
+        {
+         "id": "present-students-will-develop-refine-and-convey-",
+         "title": "PRESENT—Students will develop, refine, and convey meaning through the production and presentation of artistic work",
+         "outcomes": [
+          {
+           "code": "A.A.Pr.7.m",
+           "text": "Develop Meaning Convey meaning and intent through the presentation of personal, historical, and contemporary work and formulation of exhibition narratives."
+          },
+          {
+           "code": "A.A.Pr.8.m",
+           "text": "Communicate Communicate the contextual meaning of artwork in written and verbal statements."
+          },
+          {
+           "code": "A.A.Pr.9.m",
+           "text": "Share Curate and exhibit a portfolio of work to convey artistic importance or meaning."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "respond-students-will-critically-interpret-inten",
+       "title": "RESPOND—Students will critically interpret intent and meaning in order to evaluate artistic work",
+       "subtopics": [
+        {
+         "id": "respond-students-will-critically-interpret-inten",
+         "title": "RESPOND—Students will critically interpret intent and meaning in order to evaluate artistic work",
+         "outcomes": [
+          {
+           "code": "A.A.R.11.m",
+           "text": "Describe Describe details, subject matter, context, and the formal characteristics of an artwork using art and design vocabulary."
+          },
+          {
+           "code": "A.A.R.12.m",
+           "text": "Analyze Compare and contrast the use of media, design principles, and context to influence ideas, emotions, and actions."
+          },
+          {
+           "code": "A.A.R.13.m",
+           "text": "Interpret Interpret the formal and expressive qualities in a work of art or design and integrate those qualities into their own work."
+          },
+          {
+           "code": "A.A.R.14.m",
+           "text": "Inquire Compare and contrast the intent of art based on an analysis of subject matter, details, media, and context."
+          },
+          {
+           "code": "A.A.R.15.m",
+           "text": "Evaluate Create a convincing argument critiquing artwork and design utilizing established criteria, considering style, process, media, and artistic goals."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "connect-students-will-relate-their-artistic-work",
+       "title": "CONNECT—Students will relate their artistic work with prior experience and external context",
+       "subtopics": [
+        {
+         "id": "connect-students-will-relate-their-artistic-work",
+         "title": "CONNECT—Students will relate their artistic work with prior experience and external context",
+         "outcomes": [
+          {
+           "code": "A.A.Cn.7.m",
+           "text": "Interdisciplinary Analyze works of art and design that illustrate interdisciplinary perspectives."
+          },
+          {
+           "code": "A.A.Cn.8.m",
+           "text": "Career Connections Analyze art and design processes in a variety of careers."
+          },
+          {
+           "code": "A.A.Cn.9.m",
+           "text": "Cultural, Social, and Historical Awareness Analyze how art and design, and viewers’ responses to them, have been influenced by the times, places, traditions, and cultures."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "general-music",
+     "title": "General Music",
+     "topics": [
+      {
+       "id": "create-students-will-generate-develop-and-refine",
+       "title": "Create: Students will generate, develop, and refine artistic work",
+       "subtopics": [
+        {
+         "id": "create-students-will-generate-develop-and-refine",
+         "title": "Create: Students will generate, develop, and refine artistic work",
+         "outcomes": [
+          {
+           "code": "MG1.Cr.9.m",
+           "text": "Develop musical compositions for voices or instruments."
+          },
+          {
+           "code": "MG1.Cr.10.m",
+           "text": "Improvise rhythmic, melodic, and harmonic variations to embellish a song."
+          },
+          {
+           "code": "MG.1.Cr.11.m",
+           "text": "Compose short pieces using standard and/or alternative notation and technology within specified guidelines, demonstrating the use of the elements of music."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "perform-students-will-analyze-develop-and-convey",
+       "title": "Perform: Students will analyze, develop, and convey meaning through the presentation of artistic work",
+       "subtopics": [
+        {
+         "id": "perform-students-will-analyze-develop-and-convey",
+         "title": "Perform: Students will analyze, develop, and convey meaning through the presentation of artistic work",
+         "outcomes": [
+          {
+           "code": "MG2.P.11.m",
+           "text": "Rehearse and demonstrate the ability to sing and/or play expressively, on pitch, and in rhythm, while using proper technique and maintaining a steady beat."
+          },
+          {
+           "code": "MG2.P.12.m",
+           "text": "Perform using expressive qualities and techniques."
+          },
+          {
+           "code": "MG2.P.13.m",
+           "text": "Discuss own ideas and feedback of others to develop strategies to address technical challenges."
+          },
+          {
+           "code": "MG2.P.14.m",
+           "text": "Illustrate how the setting and elements of music contribute to understanding the context of the music."
+          },
+          {
+           "code": "MG2.P.15.m",
+           "text": "Demonstrate an understanding of music from aural traditions and through standard and alternative notation through performance."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "respond-students-will-critically-interpret-inten",
+       "title": "Respond: Students will critically interpret intent and meaning in order to evaluate artistic work",
+       "subtopics": [
+        {
+         "id": "respond-students-will-critically-interpret-inten",
+         "title": "Respond: Students will critically interpret intent and meaning in order to evaluate artistic work",
+         "outcomes": [
+          {
+           "code": "MG3.R.9.m",
+           "text": "Define and demonstrate understanding of foundational musical elements in discussion and written reflections."
+          },
+          {
+           "code": "MG3.R.10.m",
+           "text": "Express musical ideas through verbal, movement, written, artistic, or technological means."
+          },
+          {
+           "code": "MG3.R.11.m",
+           "text": "Evaluate and critique musical performances, recordings, and compositions using appropriate music terminology and technology."
+          },
+          {
+           "code": "MG3.R.12.m",
+           "text": "Demonstrate proper concert/audience etiquette for a variety of musical settings."
+          },
+          {
+           "code": "MG3.R.13.m",
+           "text": "Reflect upon and critique performances using grade-appropriate music vocabulary."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "connect-students-will-relate-prior-knowledge-and",
+       "title": "Connect: Students will relate prior knowledge and personal experience with music to cultural and historical context",
+       "subtopics": [
+        {
+         "id": "connect-students-will-relate-prior-knowledge-and",
+         "title": "Connect: Students will relate prior knowledge and personal experience with music to cultural and historical context",
+         "outcomes": [
+          {
+           "code": "MG4.Cn.9.m",
+           "text": "Analyze the historical and cultural relationships between music and other disciplines."
+          },
+          {
+           "code": "MG4.Cn.10.m",
+           "text": "Explain how music relates to self, others, and the world using grade-appropriate music vocabulary."
+          },
+          {
+           "code": "MG4.Cn.11.m",
+           "text": "Categorize musical connections, similarities, and differences."
+          },
+          {
+           "code": "MG4.Cn.12.m",
+           "text": "Compare and contrast the roles of musicians in various music settings and world cultures."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "performance-music",
+     "title": "Performance Music",
+     "topics": [
+      {
+       "id": "create-students-will-generate-develop-and-refine",
+       "title": "Create: Students will generate, develop, and refine artistic work",
+       "subtopics": [
+        {
+         "id": "create-students-will-generate-develop-and-refine",
+         "title": "Create: Students will generate, develop, and refine artistic work",
+         "outcomes": [
+          {
+           "code": "MP1.Cr.9.m",
+           "text": "Develop musical compositions for voices or instruments."
+          },
+          {
+           "code": "MP1.Cr.10.m",
+           "text": "Improvise rhythmic, melodic, and harmonic variations to embellish a song."
+          },
+          {
+           "code": "MP1.Cr.11.m",
+           "text": "Compose short pieces using standard and/or alternative notation and technology within specified guidelines, demonstrating the use of the elements of music."
+          },
+          {
+           "code": "MP1.Cr.12.m",
+           "text": "Arrange short pieces using standard and/or alternative notation with symbols and/or technology means using specified guidelines."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "perform-students-will-analyze-develop-and-convey",
+       "title": "Perform: Students will analyze, develop, and convey meaning through the presentation of artistic work",
+       "subtopics": [
+        {
+         "id": "perform-students-will-analyze-develop-and-convey",
+         "title": "Perform: Students will analyze, develop, and convey meaning through the presentation of artistic work (1 of 2)",
+         "outcomes": [
+          {
+           "code": "MP2.P.17.m",
+           "text": "Rehearse and demonstrate the ability to sing and/or play expressively, on pitch, and in rhythm, while using proper technique and maintaining a steady beat."
+          },
+          {
+           "code": "MP2.P.18.m",
+           "text": "Perform using expressive qualities and techniques."
+          },
+          {
+           "code": "MP2.P.19.m",
+           "text": "Discuss own ideas and feedback of others to develop strategies to address technical challenges."
+          },
+          {
+           "code": "MP2.P.20.m",
+           "text": "Illustrate how the setting and music elements contribute to the context of the music."
+          }
+         ]
+        },
+        {
+         "id": "perform-students-will-analyze-develop-and-convey-2",
+         "title": "Perform: Students will analyze, develop, and convey meaning through the presentation of artistic work (2 of 2)",
+         "outcomes": [
+          {
+           "code": "MP2.P.21.m",
+           "text": "Demonstrate an understanding of music from aural traditions and through standard and non-standard notation through performance."
+          },
+          {
+           "code": "MP2.P.22.m",
+           "text": "Perform collaboratively as a part of an ensemble, demonstrating well developed ensemble skills."
+          },
+          {
+           "code": "MP2.P.23.m",
+           "text": "Perform solos and in small ensembles, contributing performance ideas collaboratively to enhance the performance."
+          },
+          {
+           "code": "MP2.P.24.m",
+           "text": "Demonstrate proper concert etiquette collaboratively in a rehearsal for a variety of musical settings."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "respond-students-will-critically-interpret-inten",
+       "title": "Respond: Students will critically interpret intent and meaning in order to evaluate artistic work",
+       "subtopics": [
+        {
+         "id": "respond-students-will-critically-interpret-inten",
+         "title": "Respond: Students will critically interpret intent and meaning in order to evaluate artistic work",
+         "outcomes": [
+          {
+           "code": "MP3.R.9.m",
+           "text": "Define and demonstrate understanding of foundational musical elements in discussion and written reflections."
+          },
+          {
+           "code": "MP3.R.10.m",
+           "text": "Express musical ideas through verbal, movement, written, artistic, or technological means."
+          },
+          {
+           "code": "MP3.R.11.m",
+           "text": "Evaluate and critique musical performances, recordings, and compositions using appropriate music terminology and technology."
+          },
+          {
+           "code": "MP3.R.12.m",
+           "text": "Demonstrate proper concert/audience etiquette for a variety of musical settings."
+          },
+          {
+           "code": "MP3.R.13.m",
+           "text": "Reflect upon and critique performances using grade-appropriate music vocabulary."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "connect-students-will-relate-prior-knowledge-and",
+       "title": "Connect: Students will relate prior knowledge and personal experience with music to cultural and historical context",
+       "subtopics": [
+        {
+         "id": "connect-students-will-relate-prior-knowledge-and",
+         "title": "Connect: Students will relate prior knowledge and personal experience with music to cultural and historical context",
+         "outcomes": [
+          {
+           "code": "MP4.Cn.9.m",
+           "text": "Analyze the historical and cultural relationships of music's interactions with other disciplines."
+          },
+          {
+           "code": "MP4.Cn.10.m",
+           "text": "Explain how music relates to self, others, and the world using grade-appropriate music vocabulary."
+          },
+          {
+           "code": "MP4.Cn.11.m",
+           "text": "Categorize musical connections, similarities, and differences."
+          },
+          {
+           "code": "MP4.Cn.12.m",
+           "text": "Compare and contrast the roles of musicians in various music settings and world cultures."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "9-12",
+   "units": [
+    {
+     "id": "art-and-design",
+     "title": "Art and Design",
+     "topics": [
+      {
+       "id": "create-students-will-generate-develop-and-refine",
+       "title": "CREATE—Students will generate, develop, and refine artistic work",
+       "subtopics": [
+        {
+         "id": "create-students-will-generate-develop-and-refine",
+         "title": "CREATE—Students will generate, develop, and refine artistic work",
+         "outcomes": [
+          {
+           "code": "A.A.Cr.10.h",
+           "text": "Investigate Engage in critical thinking, problem solving, and research through elements and principles of art and design studio practices and processes."
+          },
+          {
+           "code": "A.A.Cr.11.h",
+           "text": "Plan Formulate original concepts by practice, experimentation, and revision."
+          },
+          {
+           "code": "A.A.Cr.12.h",
+           "text": "Make Develop unique, well-crafted works of art utilizing deliberate choice of media, tools, and techniques."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "present-students-will-develop-refine-and-convey-",
+       "title": "PRESENT—Students will develop, refine, and convey meaning through the production and presentation of artistic work",
+       "subtopics": [
+        {
+         "id": "present-students-will-develop-refine-and-convey-",
+         "title": "PRESENT—Students will develop, refine, and convey meaning through the production and presentation of artistic work",
+         "outcomes": [
+          {
+           "code": "A.A.Pr.10.h",
+           "text": "Develop Meaning Curate a body of work incorporating personal, historical, and contemporary art to communicate one or more points of view."
+          },
+          {
+           "code": "A.A.Pr.11.h",
+           "text": "Communicate Analyze and describe the impact that an exhibition or collection has on personal awareness of social and cultural beliefs, and contextual understandings."
+          },
+          {
+           "code": "A.A.Pr.12.h",
+           "text": "Share Curate and exhibit artwork for presentation, portfolio development, or preservation."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "respond-students-will-critically-interpret-inten",
+       "title": "RESPOND—Students will critically interpret intent and meaning in order to evaluate artistic work",
+       "subtopics": [
+        {
+         "id": "respond-students-will-critically-interpret-inten",
+         "title": "RESPOND—Students will critically interpret intent and meaning in order to evaluate artistic work",
+         "outcomes": [
+          {
+           "code": "A.A.R.16.h",
+           "text": "Describe Describe the commonalities within a group of artists or visual images attributed to a particular type of art, timeframe, or culture."
+          },
+          {
+           "code": "A.A.R.17.h",
+           "text": "Analyze Distinguish the qualities and relationships between the components, style, and preferences communicated by media, design, artworks, and artists."
+          },
+          {
+           "code": "A.A.R.18.h",
+           "text": "Interpret Explain the intent, meanings, and impacts of different media works of art and design, considering complex factors of context and perspective."
+          },
+          {
+           "code": "A.A.R.19.h",
+           "text": "Inquire Hypothesize the intent behind a work or a collection of art works and cite evidence to support an interpretation."
+          },
+          {
+           "code": "A.A.R.20.h",
+           "text": "Evaluate Determine or develop relevant criteria and evaluate the effectiveness of design, media, and artworks to influence ideas, feelings, and reactions of specific audiences."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "connect-students-will-relate-their-artistic-work",
+       "title": "CONNECT—Students will relate their artistic work with prior experience and external context",
+       "subtopics": [
+        {
+         "id": "connect-students-will-relate-their-artistic-work",
+         "title": "CONNECT—Students will relate their artistic work with prior experience and external context",
+         "outcomes": [
+          {
+           "code": "A.A.Cn.10.h",
+           "text": "Interdisciplinary Apply interdisciplinary perspectives in own artistic work."
+          },
+          {
+           "code": "A.A.Cn.11.h",
+           "text": "Career Connections Research or experience options in art and design careers."
+          },
+          {
+           "code": "A.A.Cn.12.h",
+           "text": "Cultural, Social, and Historical Awareness Compare purposes of art in a variety of social, cultural, and historical contexts."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "theatre-performance",
+     "title": "Theatre Performance",
+     "topics": [
+      {
+       "id": "create-students-will-generate-develop-and-refine",
+       "title": "CREATE: Students will generate, develop, and refine artistic work",
+       "subtopics": [
+        {
+         "id": "create-students-will-generate-develop-and-refine",
+         "title": "CREATE: Students will generate, develop, and refine artistic work (1 of 2)",
+         "outcomes": [
+          {
+           "code": "TP.Cr.11.m",
+           "text": "Characterization: Interpret dialogue or a script using authentic actions."
+          },
+          {
+           "code": "TP.Cr.12.m",
+           "text": "Improvisation: Develop improvised plot with a predefined setting and characters."
+          },
+          {
+           "code": "TP.Cr.13.m",
+           "text": "Text/Script: Create a script or adapt an existing work for three or more characters based on a theme, image, or concept."
+          },
+          {
+           "code": "TP.Cr.14.m",
+           "text": "Direction: Formulate a vision that incorporates purposeful blocking and stage elements."
+          },
+          {
+           "code": "TP.Cr.15.m",
+           "text": "Collaboration: Share leadership and responsibilities to plan a production."
+          }
+         ]
+        },
+        {
+         "id": "create-students-will-generate-develop-and-refine-2",
+         "title": "CREATE: Students will generate, develop, and refine artistic work (2 of 2)",
+         "outcomes": [
+          {
+           "code": "TP.Cr.16.h",
+           "text": "Characterization: Create vivid, complex and wellrounded characters that authentically represent the text with defined action."
+          },
+          {
+           "code": "TP.Cr.17.h",
+           "text": "Improvisation: Develop improvised concepts, including setting, characters, and situation."
+          },
+          {
+           "code": "TP.Cr.18.h",
+           "text": "Text/Script: Devise an original or adapt an existing work that incorporates dramatic structure."
+          },
+          {
+           "code": "TP.Cr.19.h",
+           "text": "Direction: Formulate a directorial vision for the text/script as evidenced by an artistic statement or program note."
+          },
+          {
+           "code": "TP.Cr.20.h",
+           "text": "Collaboration: Collaborate as a creative team with specified roles to make artistic, interpretive choices in a devised or scripted work."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "perform-students-will-analyze-develop-and-convey",
+       "title": "PERFORM: Students will analyze, develop, and convey meaning through the presentation of artistic work",
+       "subtopics": [
+        {
+         "id": "perform-students-will-analyze-develop-and-convey",
+         "title": "PERFORM: Students will analyze, develop, and convey meaning through the presentation of artistic work (1 of 2)",
+         "outcomes": [
+          {
+           "code": "TP.P.11.m",
+           "text": "Oral Communication: Produce truthful, authentic vocal choices based on an interpretation of text."
+          },
+          {
+           "code": "TP.P.12.m",
+           "text": "Nonverbal Communication: Create a tableau depicting stories relating to emotional expression."
+          },
+          {
+           "code": "TP.P.13.m",
+           "text": "Spatial Awareness: Use a hand prop or set piece appropriate to the character with purposeful action within the stage environment."
+          },
+          {
+           "code": "TP.P.14.m",
+           "text": "Public Presentation: Recite a memorized text/script/scene in a performance."
+          },
+          {
+           "code": "TP.P.15.m",
+           "text": "Protocol: Exhibit developmentally appropriate stage etiquette for public performances; adhere to copyright laws, including rights, royalties, and recording."
+          }
+         ]
+        },
+        {
+         "id": "perform-students-will-analyze-develop-and-convey-2",
+         "title": "PERFORM: Students will analyze, develop, and convey meaning through the presentation of artistic work (2 of 2)",
+         "outcomes": [
+          {
+           "code": "TP.P.16.h",
+           "text": "Oral Communication: Create truthful, authentic vocal choices based on an internal, emotional interpretation of text."
+          },
+          {
+           "code": "TP.P.17.h",
+           "text": "Nonverbal Communication: Demonstrate a character's inner life by utilizing techniques of physical expression and movement to convey subtext."
+          },
+          {
+           "code": "TP.P.18.h",
+           "text": "Spatial Awareness: Demonstrate effective purposeful character action, interactions with others, and prop/set use within the stage environment."
+          },
+          {
+           "code": "TP.P.19.h",
+           "text": "Public Presentation: Perform memorized text/script/scene that includes blocking and related expressive techniques."
+          },
+          {
+           "code": "TP.P.20.h",
+           "text": "Protocol: Exhibit developmentally appropriate stage etiquette for public performances; adhere to copyright laws, including rights, royalties, and recording."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "respond-students-will-critically-interpret-inten",
+       "title": "RESPOND: Students will critically interpret intent and meaning in order to evaluate artistic work",
+       "subtopics": [
+        {
+         "id": "respond-students-will-critically-interpret-inten",
+         "title": "RESPOND: Students will critically interpret intent and meaning in order to evaluate artistic work",
+         "outcomes": [
+          {
+           "code": "TP.R.7.m",
+           "text": "Analysis: Express preferences for effectiveness of theatrical performance choices (what works/what does not work)."
+          },
+          {
+           "code": "TP.R.8.m",
+           "text": "Reflection: Assess personal participation in a production through constructive critique using precise theatre vocabulary."
+          },
+          {
+           "code": "TP.R.9.m",
+           "text": "View Performance: Demonstrate developmentally appropriate audience etiquette."
+          },
+          {
+           "code": "TP.R.10.h",
+           "text": "Analysis: Critically analyze the effectiveness of character choices for a theatrical production."
+          },
+          {
+           "code": "TP.R.11.h",
+           "text": "Reflection: Assess personal participation in a production through constructive critique using precise theatre vocabulary."
+          },
+          {
+           "code": "TP.R.12.h",
+           "text": "View Performance: Demonstrate developmentally appropriate audience etiquette at a professional performance."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "connect-students-will-relate-prior-knowledge-and",
+       "title": "CONNECT: Students will relate prior knowledge and personal experience with theatre to cultural and historical contexts",
+       "subtopics": [
+        {
+         "id": "connect-students-will-relate-prior-knowledge-and",
+         "title": "CONNECT: Students will relate prior knowledge and personal experience with theatre to cultural and historical contexts (1 of 2)",
+         "outcomes": [
+          {
+           "code": "TP.Cn.9.m",
+           "text": "Cultural Social Context: Examine how theatre relates to self, others, and the world in the past and present."
+          },
+          {
+           "code": "TP.Cn.10.m",
+           "text": "Research: Describe the “given circumstances,” environmental and situational conditions that influence a theatrical work."
+          },
+          {
+           "code": "TP.Cn.11.m",
+           "text": "Career Connections: Explore and differentiate theatre professions."
+          },
+          {
+           "code": "TP.Cn.12.m",
+           "text": "Cross Disciplinary: Analyze historical and cultural relationships between theatre and other disciplines."
+          }
+         ]
+        },
+        {
+         "id": "connect-students-will-relate-prior-knowledge-and-2",
+         "title": "CONNECT: Students will relate prior knowledge and personal experience with theatre to cultural and historical contexts (2 of 2)",
+         "outcomes": [
+          {
+           "code": "TP.Cn.13.h",
+           "text": "Cultural Social Context: Compare and contrast how two or more cultural and/or historical traditions impact production, text, or script."
+          },
+          {
+           "code": "TP.Cn.14.h",
+           "text": "Research: Explain performance choices based on the “given circumstances,” environmental and situational conditions of a theatrical work."
+          },
+          {
+           "code": "TP.Cn.15.h",
+           "text": "Career Connections: Explain what knowledge or training is required for theatre careers, and how theatrical skills translate to other fields."
+          },
+          {
+           "code": "TP.Cn.16.h",
+           "text": "Cross Disciplinary: Evaluate the historical and cultural relationships between theatre and other disciplines and how it can impact society."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "theatre-production",
+     "title": "Theatre Production",
+     "topics": [
+      {
+       "id": "create-students-will-generate-develop-and-refine",
+       "title": "CREATE: Students will generate, develop, and refine artistic work",
+       "subtopics": [
+        {
+         "id": "create-students-will-generate-develop-and-refine",
+         "title": "CREATE: Students will generate, develop, and refine artistic work (1 of 2)",
+         "outcomes": [
+          {
+           "code": "TD.Cr.9.m",
+           "text": "Design: Create a selection of documents or artifacts depicting some design elements of a production."
+          },
+          {
+           "code": "TD.Cr.10.m",
+           "text": "Text/Script: Outline required major production elements based on a script."
+          },
+          {
+           "code": "TD.Cr.11.m",
+           "text": "Management Plan: Read a script or watch a live or recorded production and describe sequence of steps in the process required to execute that show."
+          },
+          {
+           "code": "TD.Cr.12.m",
+           "text": "Collaboration: Share leadership and responsibilities to plan a production."
+          }
+         ]
+        },
+        {
+         "id": "create-students-will-generate-develop-and-refine-2",
+         "title": "CREATE: Students will generate, develop, and refine artistic work (2 of 2)",
+         "outcomes": [
+          {
+           "code": "TD.Cr.13.h",
+           "text": "Design: Create a selection of documents and/or artifacts for three or more design elements for a production."
+          },
+          {
+           "code": "TD.Cr.14.h",
+           "text": "Text/Script: Devise required major production and management elements of a script that support a directorial concept."
+          },
+          {
+           "code": "TD.Cr.15.h",
+           "text": "Management Plan: Create a timeline for executing production elements for a hypothetical or realized show."
+          },
+          {
+           "code": "TD.Cr.16.h",
+           "text": "Collaboration: Collaborate as a creative team with specified roles to make artistic, interpretive choices in a devised or scripted work."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "perform-students-will-analyze-develop-and-convey",
+       "title": "PERFORM: Students will analyze, develop, and convey meaning through the presentation of artistic work",
+       "subtopics": [
+        {
+         "id": "perform-students-will-analyze-develop-and-convey",
+         "title": "PERFORM: Students will analyze, develop, and convey meaning through the presentation of artistic work (1 of 2)",
+         "outcomes": [
+          {
+           "code": "TD.P.11.m",
+           "text": "Design: Execution Demonstrate a specific production role safely and within overall script/technical requirements."
+          },
+          {
+           "code": "TD.P.12.m",
+           "text": "Tools & Technology: Use Use common hand tools and technology safely and properly to create/or run a theatrical production element under direction of a teacher."
+          },
+          {
+           "code": "TD.P.13.m",
+           "text": "Design & Management Documentation: Organize artifacts and documents with personal commentary in a portfolio for a production assignment."
+          },
+          {
+           "code": "TD.P.14.m",
+           "text": "Public Presentation: Run one production element in a classroom or public performance."
+          },
+          {
+           "code": "TD.P.15.m",
+           "text": "Protocol: Exhibit developmentally appropriate stage etiquette for public performances; adhere to copyright laws, including rights, royalties, and recording."
+          }
+         ]
+        },
+        {
+         "id": "perform-students-will-analyze-develop-and-convey-2",
+         "title": "PERFORM: Students will analyze, develop, and convey meaning through the presentation of artistic work (2 of 2)",
+         "outcomes": [
+          {
+           "code": "TD.P.16.h",
+           "text": "Design Execution: Execute a specific production role safely and within overall script/technical requirements for a school or public performance."
+          },
+          {
+           "code": "TD.P.17.h",
+           "text": "Tools & Technology: Use Operate machinery/tools and/or control boards safely and as directed under supervision of a teacher/professional technician to support production elements of a theatre work."
+          },
+          {
+           "code": "TD.P.18.h",
+           "text": "Design & Management: Documentation Assemble documents, renderings, and artifacts in a portfolio that includes design concept and working within the parameters of a production."
+          },
+          {
+           "code": "TD.P.19.h",
+           "text": "Public Presentation: Execute a production element in a classroom or public performance."
+          },
+          {
+           "code": "TD.P.20.h",
+           "text": "Protocol: Exhibit developmentally appropriate stage etiquette for public performances; adhere to copyright laws, including rights, royalties, and recording."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "respond-students-will-critically-interpret-inten",
+       "title": "RESPOND: Students will critically interpret intent and meaning in order to evaluate artistic work",
+       "subtopics": [
+        {
+         "id": "respond-students-will-critically-interpret-inten",
+         "title": "RESPOND: Students will critically interpret intent and meaning in order to evaluate artistic work",
+         "outcomes": [
+          {
+           "code": "TD.R.7.m",
+           "text": "Analysis: Express preferences for effectiveness of theatrical production elements (what works/what does not work)."
+          },
+          {
+           "code": "TD.R.8.m",
+           "text": "Reflection: Assess personal participation in a production through critique using theatre vocabulary."
+          },
+          {
+           "code": "TD.R.9.m",
+           "text": "View Performance: Demonstrate developmentally appropriate audience etiquette."
+          },
+          {
+           "code": "TD.R.10.h",
+           "text": "Analysis Critically analyze the effectiveness of design and technical elements for a theatrical production."
+          },
+          {
+           "code": "TD.R.11.h",
+           "text": "Reflection: Assess personal participation in a production through constructive critique using precise theatre vocabulary."
+          },
+          {
+           "code": "TD.R.12.h",
+           "text": "View Performance: Demonstrate developmentally appropriate audience etiquette at a professional performance."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "connect-students-will-relate-prior-knowledge-and",
+       "title": "CONNECT: Students will relate prior knowledge and personal experience with theatre to cultural and historical contexts",
+       "subtopics": [
+        {
+         "id": "connect-students-will-relate-prior-knowledge-and",
+         "title": "CONNECT: Students will relate prior knowledge and personal experience with theatre to cultural and historical contexts (1 of 2)",
+         "outcomes": [
+          {
+           "code": "TD.Cn.9.m",
+           "text": "Cultural Social Context: Examine how theatre relates to self, others, and the world in the past and present."
+          },
+          {
+           "code": "TD.Cn.10.m",
+           "text": "Research: Describe the “given circumstances,” environmental and situational conditions that influence a theatrical work."
+          },
+          {
+           "code": "TD.Cn.11.m",
+           "text": "Career Connections: Explore and differentiate theatre production professions."
+          },
+          {
+           "code": "TD.Cn.12.m",
+           "text": "Cross Disciplinary: Analyze historical and cultural relationships between theatre and other disciplines."
+          }
+         ]
+        },
+        {
+         "id": "connect-students-will-relate-prior-knowledge-and-2",
+         "title": "CONNECT: Students will relate prior knowledge and personal experience with theatre to cultural and historical contexts (2 of 2)",
+         "outcomes": [
+          {
+           "code": "TD.Cn.13.h",
+           "text": "Cultural Social Context: Compare and contrast how two or more cultural and/or historical traditions impact production, text, or script."
+          },
+          {
+           "code": "TD.Cn.14.h",
+           "text": "Research: Explain production choices based on the “given circumstances,” environmental and situational conditions of a theatrical work."
+          },
+          {
+           "code": "TD.Cn.15.h",
+           "text": "Career Connections: Explain what knowledge or training is required for theatre production careers, and how theatrical skills translate to other fields."
+          },
+          {
+           "code": "TD.Cn.16.h",
+           "text": "Cross Disciplinary: Evaluate the historical and cultural relationships between theatre and other disciplines and how it can impact society."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "general-music",
+     "title": "General Music",
+     "topics": [
+      {
+       "id": "create-students-will-generate-develop-and-refine",
+       "title": "Create: Students will generate, develop, and refine artistic work",
+       "subtopics": [
+        {
+         "id": "create-students-will-generate-develop-and-refine",
+         "title": "Create: Students will generate, develop, and refine artistic work",
+         "outcomes": [
+          {
+           "code": "MG1.Cr.13.h",
+           "text": "Design and develop musical compositions for voices or instruments."
+          },
+          {
+           "code": "MG1.Cr.14.h",
+           "text": "Improvise rhythmic, melodic, and harmonic variations in a variety of genres while following a harmonic progression in a specified style of music."
+          },
+          {
+           "code": "MG.1.Cr.15.h",
+           "text": "Compose pieces in a distinct style, using standard and/or alternative notation and technology, demonstrating creativity in the use of the elements of music for expressive effect."
+          },
+          {
+           "code": "MG.1.Cr.16.h",
+           "text": "Arrange short pieces using standard and/or alternative notation with symbols and/or technology means using specified guidelines to demonstrate creativity in the elements of music."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "perform-students-will-analyze-develop-and-convey",
+       "title": "Perform: Students will analyze, develop, and convey meaning through the presentation of artistic work",
+       "subtopics": [
+        {
+         "id": "perform-students-will-analyze-develop-and-convey",
+         "title": "Perform: Students will analyze, develop, and convey meaning through the presentation of artistic work",
+         "outcomes": [
+          {
+           "code": "MG2.P.16.h",
+           "text": "Rehearse and demonstrate the ability to sing and/or play expressively, on pitch, in rhythm, and with proper technique and maintaining a steady beat."
+          },
+          {
+           "code": "MG2.P.17.h",
+           "text": "Perform using expressive qualities and techniques with the composer's intent."
+          },
+          {
+           "code": "MG2.P.18.h",
+           "text": "Discuss own ideas and feedback of others to develop and implement strategies to address technical challenges."
+          },
+          {
+           "code": "MG2.P.19.h",
+           "text": "Illustrate how the setting, and elements of music, contribute to the context and expressive qualities of the music."
+          },
+          {
+           "code": "MG2.P.20.h",
+           "text": "Interpret and perform music from aural traditions and through standard and alternative notation with stylistic accuracy."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "respond-students-will-critically-interpret-inten",
+       "title": "Respond: Students will critically interpret intent and meaning in order to evaluate artistic work",
+       "subtopics": [
+        {
+         "id": "respond-students-will-critically-interpret-inten",
+         "title": "Respond: Students will critically interpret intent and meaning in order to evaluate artistic work",
+         "outcomes": [
+          {
+           "code": "MG3.R.14.h",
+           "text": "Illustrate understanding of contrasts and similarities of expressive elements in artistic work through discussion and written reflections."
+          },
+          {
+           "code": "MG3.R.15.h",
+           "text": "Express musical ideas through verbal, movement, written, artistic, or technological means."
+          },
+          {
+           "code": "MG3.R.16.h",
+           "text": "Analyze, critique, and evaluate musical performances, recordings, and compositions using appropriate music terminology, theory, and technology."
+          },
+          {
+           "code": "MG3.R.17.h",
+           "text": "Demonstrate proper concert/audience etiquette for a variety of musical settings."
+          },
+          {
+           "code": "MG3.R.18.h",
+           "text": "Reflect upon and critique performances using grade-appropriate music vocabulary."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "connect-students-will-relate-prior-knowledge-and",
+       "title": "Connect: Students will relate prior knowledge and personal experience with music to cultural and historical context",
+       "subtopics": [
+        {
+         "id": "connect-students-will-relate-prior-knowledge-and",
+         "title": "Connect: Students will relate prior knowledge and personal experience with music to cultural and historical context",
+         "outcomes": [
+          {
+           "code": "MG4.Cn.13.h",
+           "text": "Interpret the historical and cultural relationships between music and other disciplines."
+          },
+          {
+           "code": "MG4.Cn.14.h",
+           "text": "Explain the relationship between performer and audience using grade-appropriate music vocabulary."
+          },
+          {
+           "code": "MG4.Cn.15.h",
+           "text": "Analyze connections, similarities, and differences in a musical context."
+          },
+          {
+           "code": "MG4.Cn.16.h",
+           "text": "Identify how the influence of two or more cultural traditions impact the genre and style of a piece of music."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "performance-music",
+     "title": "Performance Music",
+     "topics": [
+      {
+       "id": "create-students-will-generate-develop-and-refine",
+       "title": "Create: Students will generate, develop, and refine artistic work",
+       "subtopics": [
+        {
+         "id": "create-students-will-generate-develop-and-refine",
+         "title": "Create: Students will generate, develop, and refine artistic work",
+         "outcomes": [
+          {
+           "code": "MP1.Cr.13.h",
+           "text": "Design and develop musical compositions for voices or instruments."
+          },
+          {
+           "code": "MP1.Cr.14.h",
+           "text": "Improvise rhythmic, melodic, and harmonic variations in a variety of genres while following a harmonic progression in a specified style of music."
+          },
+          {
+           "code": "MP1.Cr.15.h",
+           "text": "Compose pieces in a distinct style, using standard and/or alternative notation and technology, demonstrating creativity in the use of the elements of music for expressive effect."
+          },
+          {
+           "code": "MP1.Cr.16.h",
+           "text": "Arrange short pieces using standard and/or alternative notation with symbols and/or technology means using specified guidelines to demonstrate creativity in the elements of music."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "perform-students-will-analyze-develop-and-convey",
+       "title": "Perform: Students will analyze, develop, and convey meaning through the presentation of artistic work",
+       "subtopics": [
+        {
+         "id": "perform-students-will-analyze-develop-and-convey",
+         "title": "Perform: Students will analyze, develop, and convey meaning through the presentation of artistic work (1 of 2)",
+         "outcomes": [
+          {
+           "code": "MP2.P.25.h",
+           "text": "Rehearse and demonstrate the ability to sing and/or play expressively, on pitch, in rhythm, and with proper technique and maintaining a steady beat."
+          },
+          {
+           "code": "MP2.P.26.h",
+           "text": "Perform using expressive qualities and techniques with the composer's intent."
+          },
+          {
+           "code": "MP2.P.27.h",
+           "text": "Discuss own ideas and feedback of others to develop and implement strategies to address technical challenges."
+          },
+          {
+           "code": "MP2.P.28.h",
+           "text": "Illustrate how the setting and music elements contribute to the context and expressive qualities of the music."
+          }
+         ]
+        },
+        {
+         "id": "perform-students-will-analyze-develop-and-convey-2",
+         "title": "Perform: Students will analyze, develop, and convey meaning through the presentation of artistic work (2 of 2)",
+         "outcomes": [
+          {
+           "code": "MP2.P.29.h",
+           "text": "Interpret and perform music from aural traditions and through standard and non-standard notation with stylistic accuracy."
+          },
+          {
+           "code": "MP2.P.30.h",
+           "text": "Demonstrate well-developed ensemble skills while working collaboratively with other performers and the conductor in a rehearsal and performance."
+          },
+          {
+           "code": "MP2.P.31.h",
+           "text": "Perform solos and in small ensembles, interacting with peers employing performance techniques which enhance the performance."
+          },
+          {
+           "code": "MP2.P.32.h",
+           "text": "Demonstrate/model proper concert etiquette for a variety of musical settings as performer and as an audience member."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "respond-students-will-critically-interpret-inten",
+       "title": "Respond: Students will critically interpret intent and meaning in order to evaluate artistic work",
+       "subtopics": [
+        {
+         "id": "respond-students-will-critically-interpret-inten",
+         "title": "Respond: Students will critically interpret intent and meaning in order to evaluate artistic work",
+         "outcomes": [
+          {
+           "code": "MP3.R.14.h",
+           "text": "Illustrate understanding of contrasts and similarities of expressive elements in artistic work through discussion and written reflections."
+          },
+          {
+           "code": "MP3.R.15.h",
+           "text": "Express musical ideas through verbal, movement, written, artistic, or technological means."
+          },
+          {
+           "code": "MP3.R.16.h",
+           "text": "Analyze, critique, and evaluate musical performances, recordings, and compositions using appropriate music terminology, theory, and technology."
+          },
+          {
+           "code": "MP3.R.17.h",
+           "text": "Demonstrate proper concert/audience etiquette for a variety of musical settings."
+          },
+          {
+           "code": "MP3.R.18.h",
+           "text": "Reflect upon and critique performances using grade-appropriate music vocabulary."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "connect-students-will-relate-prior-knowledge-and",
+       "title": "Connect: Students will relate prior knowledge and personal experience with music to cultural and historical context",
+       "subtopics": [
+        {
+         "id": "connect-students-will-relate-prior-knowledge-and",
+         "title": "Connect: Students will relate prior knowledge and personal experience with music to cultural and historical context",
+         "outcomes": [
+          {
+           "code": "MP4.Cn.13.h",
+           "text": "Interpret the historical and cultural relationships between music and other disciplines."
+          },
+          {
+           "code": "MP4.Cn.14.h",
+           "text": "Explain the relationship between performer and audience using grade-appropriate music vocabulary."
+          },
+          {
+           "code": "MP4.Cn.15.h",
+           "text": "Analyze connections, similarities, and differences in a musical context."
+          },
+          {
+           "code": "MP4.Cn.16.h",
+           "text": "Identify how the influence of two or more cultural traditions impact the genre and style of a piece of music."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "perform-students-will-analyze-develop-and-convey",
+     "title": "PERFORM: Students will analyze, develop, and convey meaning through the presentation of artistic work",
+     "topics": [
+      {
+       "id": "perform-students-will-analyze-develop-and-convey",
+       "title": "PERFORM: Students will analyze, develop, and convey meaning through the presentation of artistic work",
+       "subtopics": [
+        {
+         "id": "perform-students-will-analyze-develop-and-convey",
+         "title": "PERFORM: Students will analyze, develop, and convey meaning through the presentation of artistic work",
+         "outcomes": [
+          {
+           "code": "MP2.P.25.h",
+           "text": "Rehearse and demonstrate the ability to sing and/or play expressively, on pitch, in rhythm, and with proper technique and"
+          },
+          {
+           "code": "MP2.P.26.h",
+           "text": "Perform using expressive qualities and techniques with the composer’s intent."
+          },
+          {
+           "code": "MP2.P.29.h",
+           "text": "Interpret and perform music from aural traditions and through standard and nonstandard notation with stylistic accuracy."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "respond-students-will-critically-interpret-inten",
+     "title": "RESPOND: Students will critically interpret intent and meaning in order to evaluate artistic work",
+     "topics": [
+      {
+       "id": "respond-students-will-critically-interpret-inten",
+       "title": "RESPOND: Students will critically interpret intent and meaning in order to evaluate artistic work",
+       "subtopics": [
+        {
+         "id": "respond-students-will-critically-interpret-inten",
+         "title": "RESPOND: Students will critically interpret intent and meaning in order to evaluate artistic work",
+         "outcomes": [
+          {
+           "code": "MP3.R.18.h",
+           "text": "Reflect upon and critique performances using grade- appropriate music vocabulary."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "3-5",
+   "units": [
+    {
+     "id": "art-and-design",
+     "title": "Art and Design",
+     "topics": [
+      {
+       "id": "create-students-will-generate-develop-and-refine",
+       "title": "CREATE—Students will generate, develop, and refine artistic work",
+       "subtopics": [
+        {
+         "id": "create-students-will-generate-develop-and-refine",
+         "title": "CREATE—Students will generate, develop, and refine artistic work",
+         "outcomes": [
+          {
+           "code": "A.A.Cr.4.i",
+           "text": "Investigate Experiment with studio skills, techniques, materials, tools and elements and principles of art and design through practice."
+          },
+          {
+           "code": "A.A.Cr.5.i",
+           "text": "Plan Brainstorm, discuss, and sketch ideas to solve an art problem."
+          },
+          {
+           "code": "A.A.Cr.6.i",
+           "text": "Make Utilize more complex media to express an idea and expand knowledge of tools and techniques, with attention to craftsmanship."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "present-students-will-develop-refine-and-convey-",
+       "title": "PRESENT—Students will develop, refine, and convey meaning through the production and presentation of artistic work",
+       "subtopics": [
+        {
+         "id": "present-students-will-develop-refine-and-convey-",
+         "title": "PRESENT—Students will develop, refine, and convey meaning through the production and presentation of artistic work",
+         "outcomes": [
+          {
+           "code": "A.A.Pr.4.i",
+           "text": "Develop Meaning Explore and make connections through comparison of artwork from personal, historical, and contemporary artists."
+          },
+          {
+           "code": "A.A.Pr.5.i",
+           "text": "Communicate Using art and design vocabulary, communicate ideas and artistic process through verbal and written descriptions."
+          },
+          {
+           "code": "A.A.Pr.6.i",
+           "text": "Share Create, share, and exhibit pieces from an ongoing artistic portfolio."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "respond-students-will-critically-interpret-inten",
+       "title": "RESPOND—Students will critically interpret intent and meaning in order to evaluate artistic work",
+       "subtopics": [
+        {
+         "id": "respond-students-will-critically-interpret-inten",
+         "title": "RESPOND—Students will critically interpret intent and meaning in order to evaluate artistic work",
+         "outcomes": [
+          {
+           "code": "A.A.R.6.i",
+           "text": "Describe Describe details, subject matter, and the context of an artwork."
+          },
+          {
+           "code": "A.A.R.7.i",
+           "text": "Analyze Compare and contrast how the use of media can influence ideas."
+          },
+          {
+           "code": "A.A.R.8.i",
+           "text": "Interpret Use details, subject matter, and context to interpret an artwork’s mood or meaning."
+          },
+          {
+           "code": "A.A.R.9.i",
+           "text": "Inquire Determine an artist’s intent by identifying the details, subject matter, and context of an artwork."
+          },
+          {
+           "code": "A.A.R.10.i",
+           "text": "Evaluate Determine and apply criteria for evaluating artworks and practice constructive feedback."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "connect-students-will-relate-their-artistic-work",
+       "title": "CONNECT—Students will relate their artistic work with prior experience and external context",
+       "subtopics": [
+        {
+         "id": "connect-students-will-relate-their-artistic-work",
+         "title": "CONNECT—Students will relate their artistic work with prior experience and external context",
+         "outcomes": [
+          {
+           "code": "A.A.Cn.4.i",
+           "text": "Interdisciplinary Describe and demonstrate relationships between art and design, and their learning in other disciplines."
+          },
+          {
+           "code": "A.A.Cn.5.i",
+           "text": "Career Connections Identify art and design processes in a variety of careers."
+          },
+          {
+           "code": "A.A.Cn.6.i",
+           "text": "Cultural, Social, and Historical Awareness Explain how art and design are used to communicate ideas, beliefs, and values of groups and individuals."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "theatre-performance",
+     "title": "Theatre Performance",
+     "topics": [
+      {
+       "id": "create-students-will-generate-develop-and-refine",
+       "title": "CREATE: Students will generate, develop, and refine artistic work",
+       "subtopics": [
+        {
+         "id": "create-students-will-generate-develop-and-refine",
+         "title": "CREATE: Students will generate, develop, and refine artistic work",
+         "outcomes": [
+          {
+           "code": "TP.Cr.6.i",
+           "text": "Characterization: Use written or improvised dialogue to portray feelings and movement of a character in a known or imagined story."
+          },
+          {
+           "code": "TP.Cr.7.i",
+           "text": "Improvisation: Play a character in a story through improvisation."
+          },
+          {
+           "code": "TP.Cr.8.i",
+           "text": "Text/Script: Create a scenario for two characters based on an existing or imagined story."
+          },
+          {
+           "code": "TP.Cr.9.i",
+           "text": "Direction: Plan staging within a small group setting while utilizing stage vocabulary."
+          },
+          {
+           "code": "TP.Cr.10.i",
+           "text": "Collaboration: Execute a defined role within an ensemble."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "perform-students-will-analyze-develop-and-convey",
+       "title": "PERFORM: Students will analyze, develop, and convey meaning through the presentation of artistic work",
+       "subtopics": [
+        {
+         "id": "perform-students-will-analyze-develop-and-convey",
+         "title": "PERFORM: Students will analyze, develop, and convey meaning through the presentation of artistic work",
+         "outcomes": [
+          {
+           "code": "TP.P.6.i",
+           "text": "Oral Communication: Explore vocal choices to support an improvised or scripted work."
+          },
+          {
+           "code": "TP.P.7.i",
+           "text": "Nonverbal Communication: Use gestures, facial expressions, and movement to develop a character in an improvised or scripted work."
+          },
+          {
+           "code": "TP.P.8.i",
+           "text": "Spatial Awareness: Use a hand prop or set piece appropriate to the character while being mindful of the stage environment."
+          },
+          {
+           "code": "TP.P.9.i",
+           "text": "Public Presentation: Recite the text/script in classroom presentation."
+          },
+          {
+           "code": "TP.P.10.i",
+           "text": "Protocol: Exercise developmentally appropriate stage etiquette for school or public performances."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "respond-students-will-critically-interpret-inten",
+       "title": "RESPOND: Students will critically interpret intent and meaning in order to evaluate artistic work",
+       "subtopics": [
+        {
+         "id": "respond-students-will-critically-interpret-inten",
+         "title": "RESPOND: Students will critically interpret intent and meaning in order to evaluate artistic work",
+         "outcomes": [
+          {
+           "code": "TP.R.4.i",
+           "text": "Analysis: Identify separate elements in a theatrical work such as characters, plot, and performance elements."
+          },
+          {
+           "code": "TP.R.5.i",
+           "text": "Reflection: Assess personal participation in a performance with examples from experiences."
+          },
+          {
+           "code": "TP.R.6.i",
+           "text": "View Performance: Demonstrate developmentally appropriate audience etiquette."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "connect-students-will-relate-prior-knowledge-and",
+       "title": "CONNECT: Students will relate prior knowledge and personal experience with theatre to cultural and historical contexts",
+       "subtopics": [
+        {
+         "id": "connect-students-will-relate-prior-knowledge-and",
+         "title": "CONNECT: Students will relate prior knowledge and personal experience with theatre to cultural and historical contexts",
+         "outcomes": [
+          {
+           "code": "TP.Cn.5.i",
+           "text": "Cultural Social Context: Explain how theatre relates to self, others, and the world."
+          },
+          {
+           "code": "TP.Cn.7.i",
+           "text": "Career Connections: Describe a profession in theatre"
+          },
+          {
+           "code": "TP.Cn.6.i",
+           "text": "Research: Identify the “given circumstances,” environmental and situational conditions that influence a theatrical work."
+          },
+          {
+           "code": "TP.Cn.8.i",
+           "text": "Cross Disciplinary: Identify how theatre connects to literature and social studies"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "theatre-production",
+     "title": "Theatre Production",
+     "topics": [
+      {
+       "id": "create-students-will-generate-develop-and-refine",
+       "title": "CREATE: Students will generate, develop, and refine artistic work",
+       "subtopics": [
+        {
+         "id": "create-students-will-generate-develop-and-refine",
+         "title": "CREATE: Students will generate, develop, and refine artistic work",
+         "outcomes": [
+          {
+           "code": "TD.Cr.5.i",
+           "text": "Design: Assemble, draw, or describe multiple ideas for costumes, props, and/or scenery used for a story."
+          },
+          {
+           "code": "TD.Cr.6.i",
+           "text": "Text/Script: Create a scenario for an existing or imagined story that includes production elements."
+          },
+          {
+           "code": "TD.Cr.7.i",
+           "text": "Management Plan: Read a script or watch a live or recorded production and list responsibilities of executing a show."
+          },
+          {
+           "code": "TD.Cr.8.i",
+           "text": "Collaboration: Execute a defined role within an ensemble."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "perform-students-will-analyze-develop-and-convey",
+       "title": "PERFORM: Students will analyze, develop, and convey meaning through the presentation of artistic work",
+       "subtopics": [
+        {
+         "id": "perform-students-will-analyze-develop-and-convey",
+         "title": "PERFORM: Students will analyze, develop, and convey meaning through the presentation of artistic work",
+         "outcomes": [
+          {
+           "code": "TD.P.6.i",
+           "text": "Design Execution: Explore technical elements in a guided drama experience."
+          },
+          {
+           "code": "TD.P.7.i",
+           "text": "Tools & Technology: Use Use basic hand tools safely in the creation of props, costumes, and set elements under direction of a teacher."
+          },
+          {
+           "code": "TD.P.8.i",
+           "text": "Design & Management Documentation: Collect artifacts to highlight two or more production elements created or utilized."
+          },
+          {
+           "code": "TD.P.9.i",
+           "text": "Public Presentation: Exercise developmentally appropriate stage etiquette for school or public performances."
+          },
+          {
+           "code": "TD.P.10.i",
+           "text": "Protocol: Exercise appropriate conduct for school or public performances."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "respond-students-will-critically-interpret-inten",
+       "title": "RESPOND: Students will critically interpret intent and meaning in order to evaluate artistic work",
+       "subtopics": [
+        {
+         "id": "respond-students-will-critically-interpret-inten",
+         "title": "RESPOND: Students will critically interpret intent and meaning in order to evaluate artistic work",
+         "outcomes": [
+          {
+           "code": "TD.R.4.i",
+           "text": "Analysis: Identify separate production elements in a theatrical work."
+          },
+          {
+           "code": "TD.R.5.i",
+           "text": "Reflection Assess personal participation in a production with examples from experiences."
+          },
+          {
+           "code": "TD.R.6.i",
+           "text": "View Performance: Demonstrate developmentally appropriate audience etiquette."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "connect-students-will-relate-prior-knowledge-and",
+       "title": "CONNECT: Students will relate prior knowledge and personal experience with theatre to cultural and historical contexts",
+       "subtopics": [
+        {
+         "id": "connect-students-will-relate-prior-knowledge-and",
+         "title": "CONNECT: Students will relate prior knowledge and personal experience with theatre to cultural and historical contexts",
+         "outcomes": [
+          {
+           "code": "TD.Cn.5.i",
+           "text": "Cultural Social Context: Explain how theatre relates to self, others, and the world."
+          },
+          {
+           "code": "TD.Cn.6.i",
+           "text": "Research: Identify the “given circumstances,” environmental and situational conditions that influence a theatrical work."
+          },
+          {
+           "code": "TD.Cn.7.i",
+           "text": "Career Connections: Describe a production profession in theatre."
+          },
+          {
+           "code": "TD.Cn.8.i",
+           "text": "Cross Disciplinary: Identify how theatre connects to literature and social studies."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "general-music",
+     "title": "General Music",
+     "topics": [
+      {
+       "id": "create-students-will-generate-develop-and-refine",
+       "title": "Create: Students will generate, develop, and refine artistic work",
+       "subtopics": [
+        {
+         "id": "create-students-will-generate-develop-and-refine",
+         "title": "Create: Students will generate, develop, and refine artistic work",
+         "outcomes": [
+          {
+           "code": "MG1.Cr.5.i",
+           "text": "Explore rhythmic, melodic, and harmonic phrases."
+          },
+          {
+           "code": "MG1.Cr.6.i",
+           "text": "Improvise rhythms and melodies with voice, instruments, and a variety of sound sources to add interest to a song."
+          },
+          {
+           "code": "MG.1.Cr.7.i",
+           "text": "Compose short pieces using standard and/or alternative notation to document personal musical ideas."
+          },
+          {
+           "code": "MG.1.Cr.8.i",
+           "text": "Identify musical ideas using standard and/or alternative notation through verbal, written, aural, or technological means."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "perform-students-will-analyze-develop-and-convey",
+       "title": "Perform: Students will analyze, develop, and convey meaning through the presentation of artistic work",
+       "subtopics": [
+        {
+         "id": "perform-students-will-analyze-develop-and-convey",
+         "title": "Perform: Students will analyze, develop, and convey meaning through the presentation of artistic work",
+         "outcomes": [
+          {
+           "code": "MG2.P.6.i",
+           "text": "Explore and demonstrate an understanding of the elements of music by reading, singing and/or playing an instrument."
+          },
+          {
+           "code": "MG2.P.7.i",
+           "text": "Demonstrate expressive qualities in performance."
+          },
+          {
+           "code": "MG2.P.8.i",
+           "text": "Critique performances of self and peers."
+          },
+          {
+           "code": "MG2.P.9.i",
+           "text": "Identify the importance of the performer and the audience."
+          },
+          {
+           "code": "MG2.P.10.i",
+           "text": "Investigate music from aural traditions and through standard and alternative notation through performance."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "respond-students-will-critically-interpret-inten",
+       "title": "Respond: Students will critically interpret intent and meaning in order to evaluate artistic work",
+       "subtopics": [
+        {
+         "id": "respond-students-will-critically-interpret-inten",
+         "title": "Respond: Students will critically interpret intent and meaning in order to evaluate artistic work",
+         "outcomes": [
+          {
+           "code": "MG3.R.5.i",
+           "text": "Recognize and define grade-appropriate foundational musical elements."
+          },
+          {
+           "code": "MG3.R.6.i",
+           "text": "Express musical ideas through verbal, movement, written, or artistic means."
+          },
+          {
+           "code": "MG3.R.7.i",
+           "text": "Utilize appropriate music terminology in the evaluation/reflection of music performances."
+          },
+          {
+           "code": "MG3.R.8.i",
+           "text": "Demonstrate proper concert/audience etiquette."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "connect-students-will-relate-prior-knowledge-and",
+       "title": "Connect: Students will relate prior knowledge and personal experience with music to cultural and historical context",
+       "subtopics": [
+        {
+         "id": "connect-students-will-relate-prior-knowledge-and",
+         "title": "Connect: Students will relate prior knowledge and personal experience with music to cultural and historical context",
+         "outcomes": [
+          {
+           "code": "MG4.Cn.5.i",
+           "text": "Compare the historical and cultural aspects of music with other disciplines."
+          },
+          {
+           "code": "MG4.Cn.6.i",
+           "text": "Explain how music relates to self, others, and the world."
+          },
+          {
+           "code": "MG4.Cn.7.i",
+           "text": "Examine and evaluate musical connections, similarities, and differences."
+          },
+          {
+           "code": "MG4.Cn.8.i",
+           "text": "Describe roles of musicians in various music settings and world cultures."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "performance-music",
+     "title": "Performance Music",
+     "topics": [
+      {
+       "id": "create-students-will-generate-develop-and-refine",
+       "title": "Create: Students will generate, develop, and refine artistic work",
+       "subtopics": [
+        {
+         "id": "create-students-will-generate-develop-and-refine",
+         "title": "Create: Students will generate, develop, and refine artistic work",
+         "outcomes": [
+          {
+           "code": "MP1.Cr.5.i",
+           "text": "Explore rhythmic, melodic, and harmonic phrases."
+          },
+          {
+           "code": "MP1.Cr.6.i",
+           "text": "Improvise rhythms and melodies with voice, instruments, and a variety of sound sources to add interest to a song."
+          },
+          {
+           "code": "MP1.Cr.7.i",
+           "text": "Compose short pieces using standard and/or alternative notation to document personal musical ideas."
+          },
+          {
+           "code": "MP1.Cr.8.i",
+           "text": "Identify musical ideas using standard and/or alternative notation through verbal, written, aural, or technological means."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "perform-students-will-analyze-develop-and-convey",
+       "title": "Perform: Students will analyze, develop, and convey meaning through the presentation of artistic work",
+       "subtopics": [
+        {
+         "id": "perform-students-will-analyze-develop-and-convey",
+         "title": "Perform: Students will analyze, develop, and convey meaning through the presentation of artistic work (1 of 2)",
+         "outcomes": [
+          {
+           "code": "MP2.P.9.i",
+           "text": "Explore and demonstrate an understanding of the elements of music by reading, singing and/or playing an instrument."
+          },
+          {
+           "code": "MP2.P.10.i",
+           "text": "Demonstrate expressive qualities in performance."
+          },
+          {
+           "code": "MP2.P.11.i",
+           "text": "Critique performances of self and peers."
+          },
+          {
+           "code": "MP2.P.12.i",
+           "text": "Identify the importance of the performer and the audience."
+          }
+         ]
+        },
+        {
+         "id": "perform-students-will-analyze-develop-and-convey-2",
+         "title": "Perform: Students will analyze, develop, and convey meaning through the presentation of artistic work (2 of 2)",
+         "outcomes": [
+          {
+           "code": "MP2.P.13.i",
+           "text": "Investigate music from aural traditions and through standard and non-standard notation through performance."
+          },
+          {
+           "code": "MP2.P.14.i",
+           "text": "Perform as a part of an ensemble."
+          },
+          {
+           "code": "MP2.P.15.i",
+           "text": "Perform in small ensembles."
+          },
+          {
+           "code": "MP2.P.16.i",
+           "text": "Practice proper concert etiquette for a variety of musical settings."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "respond-students-will-critically-interpret-inten",
+       "title": "Respond: Students will critically interpret intent and meaning in order to evaluate artistic work",
+       "subtopics": [
+        {
+         "id": "respond-students-will-critically-interpret-inten",
+         "title": "Respond: Students will critically interpret intent and meaning in order to evaluate artistic work",
+         "outcomes": [
+          {
+           "code": "MP3.R.5.i",
+           "text": "Recognize and define grade-appropriate foundational musical elements."
+          },
+          {
+           "code": "MP3.R.6.i",
+           "text": "Express musical ideas through verbal, movement, written, or artistic means."
+          },
+          {
+           "code": "MP3.R.7.i",
+           "text": "Utilize appropriate music terminology in the evaluation/reflection of music performances."
+          },
+          {
+           "code": "MP3.R.8.i",
+           "text": "Demonstrate proper concert/audience etiquette."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "connect-students-will-relate-prior-knowledge-and",
+       "title": "Connect: Students will relate prior knowledge and personal experience with music to cultural and historical context",
+       "subtopics": [
+        {
+         "id": "connect-students-will-relate-prior-knowledge-and",
+         "title": "Connect: Students will relate prior knowledge and personal experience with music to cultural and historical context",
+         "outcomes": [
+          {
+           "code": "MP4.Cn.5.i",
+           "text": "Compare the historical and cultural aspects of music with other disciplines."
+          },
+          {
+           "code": "MP4.Cn.6.i",
+           "text": "Explain how music relates to self, others, and the world."
+          },
+          {
+           "code": "MP4.Cn.7.i",
+           "text": "Examine and evaluate musical connections, similarities, and differences."
+          },
+          {
+           "code": "MP4.Cn.8.i",
+           "text": "Describe roles of musicians in various music settings and world cultures."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "build": {
+  "builtAt": "2026-10-14T16:20:51.438Z",
+  "model": "none",
+  "usd": 0,
+  "expectedCodes": 339,
+  "coverage": 1,
+  "missingCodes": [],
+  "counts": {
+   "grades": 4,
+   "units": 20,
+   "topics": 74,
+   "subtopics": 84,
+   "outcomes": 343
+  },
+  "warnings": [
+   "unit \"RESPOND: Students will critically interpret intent and meaning in order to evaluate artistic work\" (grade 9-12) has a single outcome"
+  ]
+ }
+}

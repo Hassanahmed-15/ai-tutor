@@ -1,0 +1,110 @@
+{
+ "id": "uk-nc-art-design-ks3",
+ "region": "UK",
+ "framework": "National Curriculum in England (2014)",
+ "board": "Department for Education",
+ "qualification": "Secondary",
+ "subject": "Art and design",
+ "syllabusCode": null,
+ "gradeSystem": "key-stage",
+ "source": {
+  "urls": [
+   "https://assets.publishing.service.gov.uk/media/5a7c4e02ed915d3d0e87b798/SECONDARY_national_curriculum_-_Art_and_design.pdf",
+   "https://www.gov.uk/government/publications/national-curriculum-in-england-art-and-design-programmes-of-study"
+  ],
+  "publisher": "Department for Education",
+  "licence": "Open Government Licence v3.0 (Crown copyright)",
+  "firstExam": "2014"
+ },
+ "grades": [
+  {
+   "grade": "KS3",
+   "units": [
+    {
+     "id": "key-stage-3",
+     "title": "Key stage 3",
+     "topics": [
+      {
+       "id": "art-and-design",
+       "title": "Art and design",
+       "subtopics": [
+        {
+         "id": "recording-observations",
+         "title": "Recording observations",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Use a range of techniques to record observations in sketchbooks, journals and other media."
+          },
+          {
+           "code": null,
+           "text": "Use those records as a basis for exploring ideas."
+          }
+         ]
+        },
+        {
+         "id": "techniques-and-media",
+         "title": "Techniques and media",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Use a range of techniques and media, including painting."
+          },
+          {
+           "code": null,
+           "text": "Handle different materials with growing proficiency."
+          }
+         ]
+        },
+        {
+         "id": "analysing-and-evaluating",
+         "title": "Analysing and evaluating",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Analyse and evaluate your own work and that of others."
+          },
+          {
+           "code": null,
+           "text": "Use evaluation to strengthen the visual impact or application of your work."
+          }
+         ]
+        },
+        {
+         "id": "history-of-art",
+         "title": "History of art",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Learn the history of art, craft, design and architecture, from ancient times to today."
+          },
+          {
+           "code": null,
+           "text": "Recognise periods, styles and major movements, and judge artists, architects and designers with reasons."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "build": {
+  "builtAt": "2026-10-14T10:36:28.805Z",
+  "model": "claude-agent",
+  "usd": 0,
+  "expectedCodes": null,
+  "coverage": null,
+  "missingCodes": [],
+  "counts": {
+   "grades": 1,
+   "units": 1,
+   "topics": 1,
+   "subtopics": 4,
+   "outcomes": 8
+  },
+  "warnings": []
+ }
+}

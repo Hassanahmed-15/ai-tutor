@@ -1,0 +1,363 @@
+{
+ "id": "uk-edexcel-gcse-english-language-1en0",
+ "region": "UK",
+ "framework": "Pearson Edexcel GCSE (9-1)",
+ "board": "Pearson Edexcel",
+ "qualification": "GCSE",
+ "subject": "English Language",
+ "syllabusCode": "1EN0",
+ "gradeSystem": "year",
+ "source": {
+  "urls": [
+   "https://qualifications.pearson.com/content/dam/pdf/GCSE/English%20Language/2015/specification-and-sample-assesment/gcse-2015-englang-spec.pdf"
+  ],
+  "publisher": "Pearson Education",
+  "licence": "Exam board specification, (c) Pearson; structure + our own wording only",
+  "firstExam": "2017"
+ },
+ "grades": [
+  {
+   "grade": "all",
+   "units": [
+    {
+     "id": "component-1-fiction-and-imaginative-writing",
+     "title": "Component 1: Fiction and Imaginative Writing",
+     "topics": [
+      {
+       "id": "1-1-reading",
+       "title": "1.1 Reading",
+       "subtopics": [
+        {
+         "id": "reading-whole-texts",
+         "title": "Reading whole texts",
+         "outcomes": [
+          {
+           "code": "1.1.1",
+           "text": "Read and understand a range of prose fiction, including texts met for the first time."
+          }
+         ]
+        },
+        {
+         "id": "comprehension-and-inference",
+         "title": "Comprehension and inference",
+         "outcomes": [
+          {
+           "code": "1.1.2",
+           "text": "Find and interpret themes, ideas and information in good-quality writing."
+          },
+          {
+           "code": null,
+           "text": "Read in different ways for different purposes and judge how useful, relevant and well presented a text is."
+          },
+          {
+           "code": null,
+           "text": "Draw inferences and back them up with evidence; support a point of view by pointing to the text."
+          }
+         ]
+        },
+        {
+         "id": "bias-and-evidence",
+         "title": "Bias and evidence",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Spot bias and misuse of evidence, telling supported statements from unsupported ones."
+          },
+          {
+           "code": null,
+           "text": "Reflect critically on a text using its context and wider reading, and accept that readers can respond differently."
+          }
+         ]
+        },
+        {
+         "id": "summary",
+         "title": "Summary",
+         "outcomes": [
+          {
+           "code": "1.1.3",
+           "text": "Identify the main theme or themes and summarise ideas and information from a single text."
+          }
+         ]
+        },
+        {
+         "id": "writer-s-choices",
+         "title": "Writer's choices",
+         "outcomes": [
+          {
+           "code": "1.1.4",
+           "text": "Explain how vocabulary and grammar make a text effective, using linguistic and literary terms accurately."
+          },
+          {
+           "code": null,
+           "text": "Analyse and evaluate how form and structure add to a text's impact."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "1-2-writing",
+       "title": "1.2 Writing",
+       "subtopics": [
+        {
+         "id": "clear-and-coherent-writing",
+         "title": "Clear and coherent writing",
+         "outcomes": [
+          {
+           "code": "1.2.1",
+           "text": "Write accurately and effectively to describe, narrate, explain, instruct, give and respond to information, and argue."
+          },
+          {
+           "code": null,
+           "text": "Choose vocabulary, grammar, form and structure to suit audience, purpose and context."
+          },
+          {
+           "code": null,
+           "text": "Use language imaginatively and creatively, drawing on information provided by others to write in different forms."
+          },
+          {
+           "code": null,
+           "text": "Keep a consistent point of view and stay coherent and consistent across the whole text."
+          }
+         ]
+        },
+        {
+         "id": "writing-for-impact",
+         "title": "Writing for impact",
+         "outcomes": [
+          {
+           "code": "1.2.2",
+           "text": "Select, organise and emphasise facts, ideas and key points."
+          },
+          {
+           "code": null,
+           "text": "Use evidence and quotation well to support views, and create emotional impact."
+          },
+          {
+           "code": null,
+           "text": "Use persuasive language and rhetorical devices such as rhetorical questions, antithesis and parenthesis."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "component-2-non-fiction-and-transactional-writin",
+     "title": "Component 2: Non-fiction and Transactional Writing",
+     "topics": [
+      {
+       "id": "2-1-reading",
+       "title": "2.1 Reading",
+       "subtopics": [
+        {
+         "id": "reading-whole-texts",
+         "title": "Reading whole texts",
+         "outcomes": [
+          {
+           "code": "2.1.1",
+           "text": "Read and understand a range of non-fiction texts, including whole texts and unseen ones."
+          }
+         ]
+        },
+        {
+         "id": "comprehension-and-inference",
+         "title": "Comprehension and inference",
+         "outcomes": [
+          {
+           "code": "2.1.2",
+           "text": "Find and interpret themes, ideas and information in good-quality writing."
+          },
+          {
+           "code": null,
+           "text": "Read in different ways for different purposes, and compare how useful, relevant and well presented texts are."
+          },
+          {
+           "code": null,
+           "text": "Draw inferences and back them up with evidence; support a point of view by pointing to the text."
+          }
+         ]
+        },
+        {
+         "id": "bias-and-evidence",
+         "title": "Bias and evidence",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Spot bias and misuse of evidence, telling supported statements from unsupported ones."
+          },
+          {
+           "code": null,
+           "text": "Reflect critically on a text using its context and wider reading, and accept that readers can respond differently."
+          }
+         ]
+        },
+        {
+         "id": "summary-and-synthesis",
+         "title": "Summary and synthesis",
+         "outcomes": [
+          {
+           "code": "2.1.3",
+           "text": "Identify the main theme or themes and summarise ideas and information from a single text."
+          },
+          {
+           "code": null,
+           "text": "Synthesise information and ideas from more than one text."
+          }
+         ]
+        },
+        {
+         "id": "writer-s-choices",
+         "title": "Writer's choices",
+         "outcomes": [
+          {
+           "code": "2.1.4",
+           "text": "Explain how vocabulary and grammar make a text effective, using linguistic and literary terms accurately."
+          },
+          {
+           "code": null,
+           "text": "Analyse and evaluate how form and structure add to a text's impact."
+          }
+         ]
+        },
+        {
+         "id": "comparing-texts",
+         "title": "Comparing texts",
+         "outcomes": [
+          {
+           "code": "2.1.5",
+           "text": "Compare two or more texts critically on their themes, evidence and the writers' choices."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "2-2-writing",
+       "title": "2.2 Writing",
+       "subtopics": [
+        {
+         "id": "clear-and-coherent-writing",
+         "title": "Clear and coherent writing",
+         "outcomes": [
+          {
+           "code": "2.2.1",
+           "text": "Write accurately and effectively to describe, narrate, explain, instruct, give and respond to information, and argue."
+          },
+          {
+           "code": null,
+           "text": "Choose vocabulary, grammar, form and structure to suit audience, purpose and context."
+          },
+          {
+           "code": null,
+           "text": "Use language imaginatively and creatively, drawing on information provided by others to write in different forms."
+          },
+          {
+           "code": null,
+           "text": "Keep a consistent point of view and stay coherent and consistent across the whole text."
+          }
+         ]
+        },
+        {
+         "id": "writing-for-impact",
+         "title": "Writing for impact",
+         "outcomes": [
+          {
+           "code": "2.2.2",
+           "text": "Select, organise and emphasise facts, ideas and key points."
+          },
+          {
+           "code": null,
+           "text": "Use evidence and quotation well to support views, and create emotional impact."
+          },
+          {
+           "code": null,
+           "text": "Use persuasive language and rhetorical devices such as rhetorical questions, antithesis and parenthesis."
+          }
+         ]
+        },
+        {
+         "id": "transactional-text-types",
+         "title": "Transactional text types",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Write the set transactional forms: article, letter, review, speech text, and guide, textbook or leaflet section."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "spoken-language-endorsement",
+     "title": "Spoken Language Endorsement",
+     "topics": [
+      {
+       "id": "3-1-spoken-language",
+       "title": "3.1 Spoken language",
+       "subtopics": [
+        {
+         "id": "presenting-ideas",
+         "title": "Presenting ideas",
+         "outcomes": [
+          {
+           "code": "3.1.1",
+           "text": "Select and organise information and ideas effectively and persuasively for a prepared presentation."
+          },
+          {
+           "code": null,
+           "text": "Plan for different purposes and audiences, and make presentations and speeches."
+          }
+         ]
+        },
+        {
+         "id": "responding-to-questions",
+         "title": "Responding to questions",
+         "outcomes": [
+          {
+           "code": "3.1.2",
+           "text": "Listen to questions and feedback and respond appropriately."
+          }
+         ]
+        },
+        {
+         "id": "spoken-standard-english",
+         "title": "Spoken Standard English",
+         "outcomes": [
+          {
+           "code": "3.1.3",
+           "text": "Express ideas in Standard English whenever and wherever it is appropriate."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "build": {
+  "builtAt": "2026-10-14T10:32:31.620Z",
+  "model": "claude-agent",
+  "usd": 0,
+  "expectedCodes": 16,
+  "coverage": 1,
+  "missingCodes": [],
+  "counts": {
+   "grades": 1,
+   "units": 3,
+   "topics": 5,
+   "subtopics": 19,
+   "outcomes": 39
+  },
+  "warnings": [
+   "grade Year 10 has no content",
+   "grade Year 11 has no content",
+   "unexpected grade label \"all\""
+  ]
+ }
+}

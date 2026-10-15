@@ -1,0 +1,697 @@
+{
+ "id": "uk-aqa-gcse-statistics-8382",
+ "region": "UK",
+ "framework": "AQA GCSE (9-1)",
+ "board": "AQA",
+ "qualification": "GCSE",
+ "subject": "Statistics",
+ "syllabusCode": "8382",
+ "gradeSystem": "year",
+ "source": {
+  "urls": [
+   "https://cdn.sanity.io/files/p28bar15/green/17161b3b60536edced49be3482816df83348ce41.pdf"
+  ],
+  "publisher": "AQA",
+  "licence": "Exam board specification, (c) AQA; structure + our own wording only",
+  "firstExam": "2019"
+ },
+ "grades": [
+  {
+   "grade": "all",
+   "units": [
+    {
+     "id": "3-1-section-a-planning-a-statistical-enquiry",
+     "title": "3.1 Section A: Planning a statistical enquiry",
+     "topics": [
+      {
+       "id": "3-1-section-a",
+       "title": "3.1 Section A",
+       "subtopics": [
+        {
+         "id": "planning-an-investigation",
+         "title": "Planning an investigation",
+         "outcomes": [
+          {
+           "code": "3.1",
+           "text": "Plan a clear strategy for collecting, recording and processing data to answer a question."
+          },
+          {
+           "code": "3.1.1",
+           "text": "Know that a hypothesis is tested only by collecting and analysing suitable data."
+          },
+          {
+           "code": "3.1.2",
+           "text": "Name constraints in designing an investigation: time, cost, ethics, confidentiality, convenience."
+          },
+          {
+           "code": "3.1.3",
+           "text": "Plan ways to head off problems such as unclear populations, non-response and surprising results."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "3-2-section-b-collecting-data",
+     "title": "3.2 Section B: Collecting data",
+     "topics": [
+      {
+       "id": "3-2-section-b",
+       "title": "3.2 Section B",
+       "subtopics": [
+        {
+         "id": "types-of-data",
+         "title": "Types of data",
+         "outcomes": [
+          {
+           "code": "3.2",
+           "text": "Judge opportunities and limits of primary and secondary data collection to avoid bias."
+          },
+          {
+           "code": "3.2.1",
+           "text": "Use terms for data types: raw, categorical, ordinal, discrete, continuous, grouped, bivariate, multivariate."
+          },
+          {
+           "code": "3.2.2",
+           "text": "Describe advantages of merging categories and grouping data into class intervals, and choose intervals."
+          },
+          {
+           "code": "3.2.3",
+           "text": "Use the terms explanatory (independent) and response (dependent) variable."
+          }
+         ]
+        },
+        {
+         "id": "sources-of-data",
+         "title": "Sources of data",
+         "outcomes": [
+          {
+           "code": "3.2.4",
+           "text": "Tell primary from secondary data and the limits of secondary data."
+          },
+          {
+           "code": "3.2.5",
+           "text": "Describe data sources: experiments, simulation, questionnaires, observation, reference, census, sampling."
+          }
+         ]
+        },
+        {
+         "id": "reliability-and-bias",
+         "title": "Reliability and bias",
+         "outcomes": [
+          {
+           "code": "3.2.6",
+           "text": "Explain reliability (consistency) and validity (measuring what is intended)."
+          },
+          {
+           "code": "3.2.7",
+           "text": "Find causes of bias and ways to reduce data distortion, including control level."
+          }
+         ]
+        },
+        {
+         "id": "populations-and-samples",
+         "title": "Populations and samples",
+         "outcomes": [
+          {
+           "code": "3.2.8",
+           "text": "Distinguish population, sample frame and sample."
+          },
+          {
+           "code": "3.2.9",
+           "text": "Explain that \"population\" can mean different things in different contexts."
+          }
+         ]
+        },
+        {
+         "id": "sampling-methods",
+         "title": "Sampling methods",
+         "outcomes": [
+          {
+           "code": "3.2.10",
+           "text": "Explain why judgement or convenience sampling is used and the bias risk."
+          },
+          {
+           "code": "3.2.11",
+           "text": "Use random, systematic and quota sampling to avoid bias."
+          },
+          {
+           "code": "3.2.12",
+           "text": "Describe a simple random sample and tools to pick one: dice, cards, random number lists, calculators."
+          },
+          {
+           "code": "3.2.13",
+           "text": "Use stratification before sampling and know when it is suitable."
+          }
+         ]
+        },
+        {
+         "id": "collecting-data-well",
+         "title": "Collecting data well",
+         "outcomes": [
+          {
+           "code": "3.2.14",
+           "text": "Plan data collection: leading questions, biased sources, time, open and closed questions, interviews."
+          }
+         ]
+        },
+        {
+         "id": "cleaning-data",
+         "title": "Cleaning data",
+         "outcomes": [
+          {
+           "code": "3.2.15",
+           "text": "Deal with missing data, incorrect formats, non-responses and incomplete responses."
+          },
+          {
+           "code": "3.2.16",
+           "text": "Explain why data need cleaning and spot wrongly recorded values in raw or summarised data."
+          }
+         ]
+        },
+        {
+         "id": "controlling-variables",
+         "title": "Controlling variables",
+         "outcomes": [
+          {
+           "code": "3.2.17",
+           "text": "Identify and control extraneous variables, including using control groups."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "3-3-section-c-data-visualisation",
+     "title": "3.3 Section C: Data visualisation",
+     "topics": [
+      {
+       "id": "3-3-section-c",
+       "title": "3.3 Section C",
+       "subtopics": [
+        {
+         "id": "drawing-and-reading-charts",
+         "title": "Drawing and reading charts",
+         "outcomes": [
+          {
+           "code": "3.3",
+           "text": "Draw data visualisations and understand the mathematics behind them."
+          },
+          {
+           "code": "3.3.1",
+           "text": "Draw and read tabulations, tallies, pictograms, pie charts, stem and leaf and Venn diagrams."
+          },
+          {
+           "code": "3.3.2",
+           "text": "Interpret population pyramids, choropleth maps and comparative pie charts and 2D/3D representations."
+          }
+         ]
+        },
+        {
+         "id": "graphs-of-data",
+         "title": "Graphs of data",
+         "outcomes": [
+          {
+           "code": "3.3.3",
+           "text": "Draw and compare bar charts, line charts, time series, scatter charts, polygons, cumulative frequency and box plots."
+          },
+          {
+           "code": null,
+           "text": "Calculate frequency density, draw histograms with unequal widths, and read them."
+          }
+         ]
+        },
+        {
+         "id": "choosing-and-checking-charts",
+         "title": "Choosing and checking charts",
+         "outcomes": [
+          {
+           "code": "3.3.4",
+           "text": "Justify an appropriate chart format and draw it accurately."
+          },
+          {
+           "code": "3.3.5",
+           "text": "Spot misleading graphs from poor scales, truncated axes, distorted sizing or wrong frequency density."
+          },
+          {
+           "code": "3.3.7",
+           "text": "Select and justify an appropriate form of representation for the data."
+          }
+         ]
+        },
+        {
+         "id": "comparing-displays",
+         "title": "Comparing displays",
+         "outcomes": [
+          {
+           "code": "3.3.6",
+           "text": "Extract and calculate values to compare data shown in different formats."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "3-4-section-d-statistical-measures",
+     "title": "3.4 Section D: Statistical measures",
+     "topics": [
+      {
+       "id": "3-4-section-d",
+       "title": "3.4 Section D",
+       "subtopics": [
+        {
+         "id": "averages",
+         "title": "Averages",
+         "outcomes": [
+          {
+           "code": "3.4",
+           "text": "Calculate statistical measures to compare data."
+          },
+          {
+           "code": "3.4.1",
+           "text": "Calculate mode, median and arithmetic mean, and weighted, geometric and seasonal-variation means."
+          },
+          {
+           "code": "3.4.2",
+           "text": "Justify the choice of average in context, such as when a geometric mean is better."
+          }
+         ]
+        },
+        {
+         "id": "skewness",
+         "title": "Skewness",
+         "outcomes": [
+          {
+           "code": "3.4.3",
+           "text": "Judge skewness by inspection, or by calculation for higher."
+          }
+         ]
+        },
+        {
+         "id": "spread",
+         "title": "Spread",
+         "outcomes": [
+          {
+           "code": "3.4.4",
+           "text": "Calculate range, quartiles, interquartile range, percentiles, interdecile range and standard deviation."
+          }
+         ]
+        },
+        {
+         "id": "outliers",
+         "title": "Outliers",
+         "outcomes": [
+          {
+           "code": "3.4.5",
+           "text": "Spot outliers by inspection or by the 1.5 IQR and 3 standard deviation rules."
+          }
+         ]
+        },
+        {
+         "id": "trends",
+         "title": "Trends",
+         "outcomes": [
+          {
+           "code": "3.4.6",
+           "text": "Identify trends by inspection, 4-point moving averages or suitable moving averages."
+          }
+         ]
+        },
+        {
+         "id": "correlation-and-best-fit",
+         "title": "Correlation and best fit",
+         "outcomes": [
+          {
+           "code": "3.4.7",
+           "text": "Draw a line of best fit by eye, through the double mean point, or by regression line."
+          },
+          {
+           "code": "3.4.8",
+           "text": "Apply the Spearman's rank correlation formula."
+          }
+         ]
+        },
+        {
+         "id": "probability-estimates",
+         "title": "Probability estimates",
+         "outcomes": [
+          {
+           "code": "3.4.9",
+           "text": "Use collected data to estimate probabilities."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "3-5-section-e-interpreting-and-evaluating-result",
+     "title": "3.5 Section E: Interpreting and evaluating results",
+     "topics": [
+      {
+       "id": "3-5-section-e",
+       "title": "3.5 Section E",
+       "subtopics": [
+        {
+         "id": "probability",
+         "title": "Probability",
+         "outcomes": [
+          {
+           "code": "3.5",
+           "text": "Interpret results in context and judge the validity and reliability of findings."
+          },
+          {
+           "code": "3.5.1",
+           "text": "Compare probabilities on a 0 to 1 or 0 to 100% scale using fractions, decimals and percentages."
+          },
+          {
+           "code": "3.5.2",
+           "text": "Use probability to find expected frequency in a sample or population."
+          }
+         ]
+        },
+        {
+         "id": "risk",
+         "title": "Risk",
+         "outcomes": [
+          {
+           "code": "3.5.3",
+           "text": "Find and interpret relative and absolute risk as expected frequencies."
+          }
+         ]
+        },
+        {
+         "id": "experimental-probability",
+         "title": "Experimental probability",
+         "outcomes": [
+          {
+           "code": "3.5.4",
+           "text": "Compare experimental data with theory to spot bias in the design."
+          },
+          {
+           "code": "3.5.5",
+           "text": "Explain that experimental probability approaches theoretical as trials increase."
+          }
+         ]
+        },
+        {
+         "id": "probability-diagrams",
+         "title": "Probability diagrams",
+         "outcomes": [
+          {
+           "code": "3.5.6",
+           "text": "Use two-way tables, sample space, tree and Venn diagrams for up to three events."
+          }
+         ]
+        },
+        {
+         "id": "comparing-data-sets",
+         "title": "Comparing data sets",
+         "outcomes": [
+          {
+           "code": "3.5.7",
+           "text": "Compare data sets using mode, modal group, median and mean."
+          },
+          {
+           "code": "3.5.8",
+           "text": "Compare spread using range, interquartile range, percentiles and standard deviation."
+          },
+          {
+           "code": "3.5.9",
+           "text": "Use median and IQR, or mean and standard deviation, to compare samples and populations in context."
+          },
+          {
+           "code": "3.5.10",
+           "text": "Interpret data in tables, including published secondary data."
+          }
+         ]
+        },
+        {
+         "id": "independent-and-conditional-probability",
+         "title": "Independent and conditional probability",
+         "outcomes": [
+          {
+           "code": "3.5.11",
+           "text": "Use formal notation for independent events."
+          },
+          {
+           "code": "3.5.12",
+           "text": "Use formal notation for conditional probability with Venn, tree and two-way table diagrams."
+          }
+         ]
+        },
+        {
+         "id": "skewness-and-outliers",
+         "title": "Skewness and outliers",
+         "outcomes": [
+          {
+           "code": "3.5.13",
+           "text": "Describe skewness from inspection or calculation, positive or negative."
+          },
+          {
+           "code": "3.5.14",
+           "text": "Comment on outliers with reference to the original data."
+          }
+         ]
+        },
+        {
+         "id": "time-series-and-rates",
+         "title": "Time series and rates",
+         "outcomes": [
+          {
+           "code": "3.5.15",
+           "text": "Interpret seasonal and cyclic trends and use them to make predictions."
+          },
+          {
+           "code": "3.5.16",
+           "text": "Read rates of change over time like births, deaths, house prices and unemployment."
+          },
+          {
+           "code": "3.5.17",
+           "text": "Calculate rates of change over time from tables using a given formula."
+          }
+         ]
+        },
+        {
+         "id": "index-numbers",
+         "title": "Index numbers",
+         "outcomes": [
+          {
+           "code": "3.5.18",
+           "text": "Use index numbers like RPI, CPI and GDP, and weighted index numbers in context."
+          }
+         ]
+        },
+        {
+         "id": "correlation",
+         "title": "Correlation",
+         "outcomes": [
+          {
+           "code": "3.5.19",
+           "text": "Use correlation vocabulary: positive, negative, zero, causation, association, interpolation, extrapolation."
+          },
+          {
+           "code": "3.5.20",
+           "text": "Judge correlation as strong, weak or none by inspection and by value."
+          },
+          {
+           "code": "3.5.21",
+           "text": "Know correlation does not imply causation and that factors may interact."
+          }
+         ]
+        },
+        {
+         "id": "rank-and-product-moment-correlation",
+         "title": "Rank and product moment correlation",
+         "outcomes": [
+          {
+           "code": "3.5.22",
+           "text": "Interpret a given or calculated Spearman's coefficient in context."
+          },
+          {
+           "code": "3.5.23",
+           "text": "Interpret a given Pearson's coefficient in context."
+          },
+          {
+           "code": "3.5.24",
+           "text": "Distinguish Spearman's (rank order) from Pearson's (linear relationship)."
+          }
+         ]
+        },
+        {
+         "id": "distributions",
+         "title": "Distributions",
+         "outcomes": [
+          {
+           "code": "3.5.25",
+           "text": "Comment on differences between experimental and theoretical values in terms of bias."
+          },
+          {
+           "code": "3.5.26",
+           "text": "Know and interpret the characteristics of a binomial distribution."
+          },
+          {
+           "code": "3.5.27",
+           "text": "Know and interpret the characteristics of a Normal distribution."
+          },
+          {
+           "code": "3.5.28",
+           "text": "Use the 68%, 95% and three standard deviation facts for the Normal distribution."
+          },
+          {
+           "code": "3.5.29",
+           "text": "Use action and warning lines in quality assurance sampling."
+          },
+          {
+           "code": "3.5.30",
+           "text": "Standardise and interpret data from two comparable samples with means and standard deviations."
+          }
+         ]
+        },
+        {
+         "id": "estimating-populations",
+         "title": "Estimating populations",
+         "outcomes": [
+          {
+           "code": "3.5.31",
+           "text": "Use summary statistics to estimate population characteristics."
+          },
+          {
+           "code": "3.5.32",
+           "text": "Use samples to estimate a population mean."
+          },
+          {
+           "code": "3.5.33",
+           "text": "Use sample data to predict population proportions."
+          },
+          {
+           "code": "3.5.34",
+           "text": "Use the Petersen capture-recapture formula and judge its assumptions."
+          }
+         ]
+        },
+        {
+         "id": "sample-size",
+         "title": "Sample size",
+         "outcomes": [
+          {
+           "code": "3.5.35",
+           "text": "Know that sample size affects reliability and replication."
+          },
+          {
+           "code": "3.5.36",
+           "text": "Know that sample means are more closely distributed than individual values."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "3-6-statistical-enquiry-cycle-sec",
+     "title": "3.6 Statistical Enquiry Cycle (SEC)",
+     "topics": [
+      {
+       "id": "3-6-statistical-enquiry-cycle-sec",
+       "title": "3.6 Statistical Enquiry Cycle (SEC)",
+       "subtopics": [
+        {
+         "id": "the-enquiry-cycle",
+         "title": "The enquiry cycle",
+         "outcomes": [
+          {
+           "code": "3.6",
+           "text": "Apply the five-stage cycle: planning, collection, processing, interpretation, evaluation."
+          }
+         ]
+        },
+        {
+         "id": "initial-planning",
+         "title": "Initial planning",
+         "outcomes": [
+          {
+           "code": "3.6.1",
+           "text": "Define a hypothesis, choose what data to collect and plan processing, with reasons."
+          }
+         ]
+        },
+        {
+         "id": "data-collection",
+         "title": "Data collection",
+         "outcomes": [
+          {
+           "code": "3.6.2",
+           "text": "Recognise constraints on primary and secondary data, acknowledge sources, and note sensitivity issues."
+          }
+         ]
+        },
+        {
+         "id": "processing-and-presentation",
+         "title": "Processing and presentation",
+         "outcomes": [
+          {
+           "code": "3.6.3",
+           "text": "Organise data and use technology to produce diagrams and statistical measures."
+          }
+         ]
+        },
+        {
+         "id": "interpretation",
+         "title": "Interpretation",
+         "outcomes": [
+          {
+           "code": "3.6.4",
+           "text": "Interpret results in context, draw conclusions, make inferences and predictions, and discuss reliability."
+          },
+          {
+           "code": null,
+           "text": "Communicate findings clearly for the target audience."
+          }
+         ]
+        },
+        {
+         "id": "evaluation-and-review",
+         "title": "Evaluation and review",
+         "outcomes": [
+          {
+           "code": "3.6.5",
+           "text": "Evaluate weaknesses, suggest improvements and refine the hypothesis."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "build": {
+  "builtAt": "2026-10-14T10:24:07.926Z",
+  "model": "claude-agent",
+  "usd": 0,
+  "expectedCodes": 83,
+  "coverage": 1,
+  "missingCodes": [],
+  "counts": {
+   "grades": 1,
+   "units": 6,
+   "topics": 6,
+   "subtopics": 40,
+   "outcomes": 85
+  },
+  "warnings": [
+   "grade Year 10 has no content",
+   "grade Year 11 has no content",
+   "unexpected grade label \"all\""
+  ]
+ }
+}

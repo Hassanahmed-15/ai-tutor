@@ -1,0 +1,4840 @@
+{
+ "id": "us-ut-world-languages",
+ "region": "US",
+ "framework": "Utah state academic standards: World Languages",
+ "board": null,
+ "qualification": "K-12",
+ "subject": "World Languages",
+ "syllabusCode": null,
+ "gradeSystem": "grade",
+ "source": {
+  "urls": [
+   "https://api.commonstandardsproject.com/api/v1/jurisdictions/178982A93FED4D9186E0AC6A740682D9",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/FA368F3A486A46DC9A304C05BF0F0D76",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/E3C7BF5375C54CDA82E307F9C8A3A73C",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/C6AD7AAFF836415F99D530A9A8CEF41A",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/42F7BD3482A0424FB1907F4888C2EE42",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/B70C41F11D8A46EF9DB3ACDFB6ED4600",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/F44746CAF7EF46348D2C280F55AED1D5",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/784CD93D6D0A4A97AAC069501AC849C3",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/8C8F620974984B88B8700EA9B551C548",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/7B2A97AFFD344F6AA100F9387934FDA1",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/953EEB8130F249B1B778FA5A6E1FAFDA",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/F7CC960D00A54930913E2387E901433F",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/32FD5B3608A44877BFF7AAE4166A4A1B",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/9DFDD94A870C49B8B737A29425D46EC6"
+  ],
+  "publisher": "Utah state education agency (machine-readable via Common Standards Project / ASN)",
+  "licence": "CC BY 4.0 US, Common Curriculum, Inc.",
+  "firstExam": "2014"
+ },
+ "grades": [
+  {
+   "grade": "K-12",
+   "units": [
+    {
+     "id": "receptive-proficiency",
+     "title": "Receptive Proficiency",
+     "topics": [
+      {
+       "id": "the-student-will-be-able-to-recognize-and-locate",
+       "title": "The student will be able to recognize and locate objects around the house and location of non-present items",
+       "subtopics": [
+        {
+         "id": "the-student-will-be-able-to-recognize-and-locate",
+         "title": "The student will be able to recognize and locate objects around the house and location of non-present items",
+         "outcomes": [
+          {
+           "code": "RP.1.1",
+           "text": "Recognize numbers 101-109 and numbers counting by hundreds."
+          },
+          {
+           "code": "RP.1.2",
+           "text": "Recognize locative classifiers."
+          },
+          {
+           "code": "RP.1.3",
+           "text": "Recognize semantic classifiers."
+          },
+          {
+           "code": "RP.1.4",
+           "text": "Recognize location of items present and non-present."
+          },
+          {
+           "code": "RP.1.5",
+           "text": "Recognize a floor plan."
+          },
+          {
+           "code": "RP.1.6",
+           "text": "Recognize confirming and correcting information."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "the-student-will-be-able-to-recognize-and-unders",
+       "title": "The student will be able to recognize and understand complaints, suggestions and requests",
+       "subtopics": [
+        {
+         "id": "the-student-will-be-able-to-recognize-and-unders",
+         "title": "The student will be able to recognize and understand complaints, suggestions and requests",
+         "outcomes": [
+          {
+           "code": "RP.2.1",
+           "text": "Recognize recurring and continuous inflected verbs."
+          },
+          {
+           "code": "RP.2.2",
+           "text": "Recognize health problems and suggestions."
+          },
+          {
+           "code": "RP.2.3",
+           "text": "Recognize time signs."
+          },
+          {
+           "code": "RP.2.4",
+           "text": "Recognize conditional sentences."
+          },
+          {
+           "code": "RP.2.5",
+           "text": "Recognize complaints about others."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "the-student-will-be-able-to-recognize-and-unders-2",
+       "title": "The student will be able to recognize and understand the exchange of personal information: life events, nationalities and family backgrounds",
+       "subtopics": [
+        {
+         "id": "the-student-will-be-able-to-recognize-and-unders",
+         "title": "The student will be able to recognize and understand the exchange of personal information: life events, nationalities and family backgrounds (1 of 2)",
+         "outcomes": [
+          {
+           "code": "RP.3.1",
+           "text": "Recognize the sequence of when clauses."
+          },
+          {
+           "code": "RP.3.2",
+           "text": "Recognize unexpected changes in life events."
+          },
+          {
+           "code": "RP.3.3",
+           "text": "Recognize various ethnic backgrounds of families including countries and continents."
+          },
+          {
+           "code": "RP.3.4",
+           "text": "Recognize narratives of why families move and family histories."
+          }
+         ]
+        },
+        {
+         "id": "the-student-will-be-able-to-recognize-and-unders-2",
+         "title": "The student will be able to recognize and understand the exchange of personal information: life events, nationalities and family backgrounds (2 of 2)",
+         "outcomes": [
+          {
+           "code": "RP.3.5",
+           "text": "Recognize possessive forms of nouns."
+          },
+          {
+           "code": "RP.3.6",
+           "text": "Recognize the numbers 110-119, dates and addresses."
+          },
+          {
+           "code": "RP.3.7",
+           "text": "Recognize the exchange of personal information."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "the-student-will-be-able-to-recognize-and-unders-3",
+       "title": "The student will be able to recognize and understand descriptions and identifications of objects and food",
+       "subtopics": [
+        {
+         "id": "the-student-will-be-able-to-recognize-and-unders",
+         "title": "The student will be able to recognize and understand descriptions and identifications of objects and food (1 of 2)",
+         "outcomes": [
+          {
+           "code": "RP.4.1",
+           "text": "Recognize shapes, patterns and textures."
+          },
+          {
+           "code": "RP.4.2",
+           "text": "Recognize instrumental classifiers."
+          },
+          {
+           "code": "RP.4.3",
+           "text": "Recognize topic-comment structure."
+          },
+          {
+           "code": "RP.4.4",
+           "text": "Recognize non-manual markers related to descriptions."
+          }
+         ]
+        },
+        {
+         "id": "the-student-will-be-able-to-recognize-and-unders-2",
+         "title": "The student will be able to recognize and understand descriptions and identifications of objects and food (2 of 2)",
+         "outcomes": [
+          {
+           "code": "RP.4.5",
+           "text": "Recognize how something works and how it is made."
+          },
+          {
+           "code": "RP.4.6",
+           "text": "Recognize the signer’s perspective."
+          },
+          {
+           "code": "RP.4.7",
+           "text": "Recognize money signs."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "the-student-will-be-able-to-recognize-and-unders-4",
+       "title": "The student will be able to recognize and understand seasonal tasks and activities",
+       "subtopics": [
+        {
+         "id": "the-student-will-be-able-to-recognize-and-unders",
+         "title": "The student will be able to recognize and understand seasonal tasks and activities",
+         "outcomes": [
+          {
+           "code": "RP.5.1",
+           "text": "Recognize temporal sequencing."
+          },
+          {
+           "code": "RP.5.2",
+           "text": "Recognize time signs with durative aspects."
+          },
+          {
+           "code": "RP.5.3",
+           "text": "Recognize feelings and opinions about activities."
+          },
+          {
+           "code": "RP.5.4",
+           "text": "Recognize feelings and opinions about disrupted plans and disasters."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "expressive-proficiency",
+     "title": "Expressive Proficiency",
+     "topics": [
+      {
+       "id": "the-student-will-be-able-describe-a-floor-plan",
+       "title": "The student will be able describe a floor plan",
+       "subtopics": [
+        {
+         "id": "the-student-will-be-able-describe-a-floor-plan",
+         "title": "The student will be able describe a floor plan",
+         "outcomes": [
+          {
+           "code": "EP.1.1",
+           "text": "Use reference points making locations."
+          },
+          {
+           "code": "EP.1.2",
+           "text": "Demonstrate signer’s perspective."
+          },
+          {
+           "code": "EP.1.3",
+           "text": "Use varying non-manual markers appropriately. (varying and appropriate facial expressions)."
+          },
+          {
+           "code": "EP.1.4",
+           "text": "Produce signs in correct ASL word order."
+          },
+          {
+           "code": "EP.1.5",
+           "text": "Produce signs correctly."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "the-student-will-be-able-to-describe-locations-o",
+       "title": "The student will be able to describe locations of items around the house",
+       "subtopics": [
+        {
+         "id": "the-student-will-be-able-to-describe-locations-o",
+         "title": "The student will be able to describe locations of items around the house",
+         "outcomes": [
+          {
+           "code": "EP.2.1",
+           "text": "Describe furniture in a room."
+          },
+          {
+           "code": "EP.2.2",
+           "text": "Describe location of furniture using appropriate classifiers."
+          },
+          {
+           "code": "EP.2.3",
+           "text": "Describe the locations of household items within a room."
+          },
+          {
+           "code": "EP.2.4",
+           "text": "Use varying non-manual markers appropriately."
+          },
+          {
+           "code": "EP.2.5",
+           "text": "Produce signs in correct ASL word order."
+          },
+          {
+           "code": "EP.2.6",
+           "text": "Produce signs correctly."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "the-student-will-be-able-to-describe-ailments-an",
+       "title": "The student will be able to describe ailments and make suggestions",
+       "subtopics": [
+        {
+         "id": "the-student-will-be-able-to-describe-ailments-an",
+         "title": "The student will be able to describe ailments and make suggestions (1 of 2)",
+         "outcomes": [
+          {
+           "code": "EP.3.1",
+           "text": "Demonstrate “ailment” signs."
+          },
+          {
+           "code": "EP.3.2",
+           "text": "Describe the degrees of severity of the ailment and its location."
+          },
+          {
+           "code": "EP.3.3",
+           "text": "Describe the timeline of the ailment (uninflected, recurring, continuous)."
+          },
+          {
+           "code": "EP.3.4",
+           "text": "Make suggestions about health improvements."
+          }
+         ]
+        },
+        {
+         "id": "the-student-will-be-able-to-describe-ailments-an-2",
+         "title": "The student will be able to describe ailments and make suggestions (2 of 2)",
+         "outcomes": [
+          {
+           "code": "EP.3.5",
+           "text": "Use varying non-manual markers appropriately."
+          },
+          {
+           "code": "EP.3.6",
+           "text": "Produce signs in correct ASL word order."
+          },
+          {
+           "code": "EP.3.7",
+           "text": "Produce signs correctly."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "the-student-will-be-able-to-complain-about-other",
+       "title": "The student will be able to complain about others and make suggestions",
+       "subtopics": [
+        {
+         "id": "the-student-will-be-able-to-complain-about-other",
+         "title": "The student will be able to complain about others and make suggestions",
+         "outcomes": [
+          {
+           "code": "EP.4.1",
+           "text": "Make several complaints about others. (pets, children, roommates/spouse, and neighbors)."
+          },
+          {
+           "code": "EP.4.2",
+           "text": "Empathize and make suggestion."
+          },
+          {
+           "code": "EP.4.3",
+           "text": "Use varying non-manual markers appropriately."
+          },
+          {
+           "code": "EP.4.4",
+           "text": "Produce signs in correct ASL word order."
+          },
+          {
+           "code": "EP.4.5",
+           "text": "Produce signs correctly."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "the-student-will-be-able-to-make-a-request-and-n",
+       "title": "The student will be able to make a request and negotiate an agreement",
+       "subtopics": [
+        {
+         "id": "the-student-will-be-able-to-make-a-request-and-n",
+         "title": "The student will be able to make a request and negotiate an agreement (1 of 2)",
+         "outcomes": [
+          {
+           "code": "EP.5.1",
+           "text": "State the reason for their request."
+          },
+          {
+           "code": "EP.5.2",
+           "text": "Ask a favor involving a third person."
+          },
+          {
+           "code": "EP.5.3",
+           "text": "Demonstrate negotiation skills by declining a request and suggesting another solution."
+          },
+          {
+           "code": "EP.5.4",
+           "text": "Sign specific clock numbers correctly. (i.e. 10:47, 6:25, etc.)."
+          }
+         ]
+        },
+        {
+         "id": "the-student-will-be-able-to-make-a-request-and-n-2",
+         "title": "The student will be able to make a request and negotiate an agreement (2 of 2)",
+         "outcomes": [
+          {
+           "code": "EP.5.5",
+           "text": "Use varying non-manual markers appropriately."
+          },
+          {
+           "code": "EP.5.6",
+           "text": "Produce signs in correct ASL word order."
+          },
+          {
+           "code": "EP.5.7",
+           "text": "Produce signs correctly."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "the-student-will-be-able-to-ask-for-permission-t",
+       "title": "The student will be able to ask for permission to borrow something",
+       "subtopics": [
+        {
+         "id": "the-student-will-be-able-to-ask-for-permission-t",
+         "title": "The student will be able to ask for permission to borrow something",
+         "outcomes": [
+          {
+           "code": "EP.6.1",
+           "text": "Ask permission to borrow something."
+          },
+          {
+           "code": "EP.6.2",
+           "text": "Demonstrate use of appropriate registers according to formality (i.e. “permit me” or “not-mind”)."
+          },
+          {
+           "code": "EP.6.3",
+           "text": "Agree with a condition or decline and tell why."
+          },
+          {
+           "code": "EP.6.4",
+           "text": "Use varying non-manual markers appropriately."
+          },
+          {
+           "code": "EP.6.5",
+           "text": "Produce signs in correct ASL word order."
+          },
+          {
+           "code": "EP.6.6",
+           "text": "Produce signs correctly."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "the-student-will-be-able-to-describe-life-events",
+       "title": "The student will be able to describe life events using various transitions",
+       "subtopics": [
+        {
+         "id": "the-student-will-be-able-to-describe-life-events",
+         "title": "The student will be able to describe life events using various transitions (1 of 2)",
+         "outcomes": [
+          {
+           "code": "EP.7.1",
+           "text": "Use pauses."
+          },
+          {
+           "code": "EP.7.2",
+           "text": "Use when clauses (age, year, previous event)."
+          },
+          {
+           "code": "EP.7.3",
+           "text": "Use time signs (i.e., later)."
+          },
+          {
+           "code": "EP.7.4",
+           "text": "Describe an unexpected change."
+          }
+         ]
+        },
+        {
+         "id": "the-student-will-be-able-to-describe-life-events-2",
+         "title": "The student will be able to describe life events using various transitions (2 of 2)",
+         "outcomes": [
+          {
+           "code": "EP.7.5",
+           "text": "Use varying non-manual markers appropriately."
+          },
+          {
+           "code": "EP.7.6",
+           "text": "Produce signs in correct ASL word order."
+          },
+          {
+           "code": "EP.7.7",
+           "text": "Produce signs correctly."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "the-student-will-be-able-to-describe-nationaliti",
+       "title": "The student will be able to describe nationalities and family backgrounds",
+       "subtopics": [
+        {
+         "id": "the-student-will-be-able-to-describe-nationaliti",
+         "title": "The student will be able to describe nationalities and family backgrounds",
+         "outcomes": [
+          {
+           "code": "EP.8.1",
+           "text": "Use a variety of country signs."
+          },
+          {
+           "code": "EP.8.2",
+           "text": "Describe their family nationality using contrastive structure."
+          },
+          {
+           "code": "EP.8.3",
+           "text": "Describe reasons for immigration including specific years."
+          },
+          {
+           "code": "EP.8.4",
+           "text": "Use varying non-manual markers appropriately."
+          },
+          {
+           "code": "EP.8.5",
+           "text": "Produce signs in correct ASL word order."
+          },
+          {
+           "code": "EP.8.6",
+           "text": "Produce signs correctly."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "the-student-will-be-able-to-describe-objects-by-",
+       "title": "The student will be able to describe objects by how they look, how they work, and how much they cost",
+       "subtopics": [
+        {
+         "id": "the-student-will-be-able-to-describe-objects-by-",
+         "title": "The student will be able to describe objects by how they look, how they work, and how much they cost (1 of 2)",
+         "outcomes": [
+          {
+           "code": "EP.9.1",
+           "text": "Describe objects using correct descriptive classifiers."
+          },
+          {
+           "code": "EP.9.2",
+           "text": "Describe objects using correct instrument classifiers."
+          },
+          {
+           "code": "EP.9.3",
+           "text": "Describe textures and/or patterns of objects."
+          },
+          {
+           "code": "EP.9.4",
+           "text": "Appropriately describe symmetrical and/or asymmetrical objects."
+          },
+          {
+           "code": "EP.9.5",
+           "text": "Describe objects from the correct perspective. (Front, neutral, rear, sitting, on your body)."
+          }
+         ]
+        },
+        {
+         "id": "the-student-will-be-able-to-describe-objects-by--2",
+         "title": "The student will be able to describe objects by how they look, how they work, and how much they cost (2 of 2)",
+         "outcomes": [
+          {
+           "code": "EP.9.6",
+           "text": "Tell the cost of items up to $100.00."
+          },
+          {
+           "code": "EP.9.7",
+           "text": "Use varying non-manual markers appropriately"
+          },
+          {
+           "code": "EP.9.8",
+           "text": "Produce signs in correct ASL word order."
+          },
+          {
+           "code": "EP.9.9",
+           "text": "Produce signs correctly."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "the-student-will-be-able-to-describe-food-by-how",
+       "title": "The student will be able to describe food by how it is made",
+       "subtopics": [
+        {
+         "id": "the-student-will-be-able-to-describe-food-by-how",
+         "title": "The student will be able to describe food by how it is made",
+         "outcomes": [
+          {
+           "code": "EP.10.1",
+           "text": "Correctly name the ingredients in a recipe."
+          },
+          {
+           "code": "EP.10.2",
+           "text": "Describe how food is made in the correct order."
+          },
+          {
+           "code": "EP.10.3",
+           "text": "Tell his/her opinion of foods."
+          },
+          {
+           "code": "EP.10.4",
+           "text": "Use varying non-manual markers appropriately."
+          },
+          {
+           "code": "EP.10.5",
+           "text": "Produce signs in correct ASL word order."
+          },
+          {
+           "code": "EP.10.6",
+           "text": "Produce signs correctly."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "the-student-will-be-able-to-describe-a-variety-o",
+       "title": "The student will be able to describe a variety of activities they do each season",
+       "subtopics": [
+        {
+         "id": "the-student-will-be-able-to-describe-a-variety-o",
+         "title": "The student will be able to describe a variety of activities they do each season",
+         "outcomes": [
+          {
+           "code": "EP.11.1",
+           "text": "For one season, discuss tasks they do and their feelings when done."
+          },
+          {
+           "code": "EP.11.2",
+           "text": "For one season, discuss places they go or a trip they have taken and their opinion about it."
+          },
+          {
+           "code": "EP.11.3",
+           "text": "Describe the itinerary of activities for a weekend"
+          },
+          {
+           "code": "EP.11.4",
+           "text": "Use varying non-manual markers appropriately."
+          },
+          {
+           "code": "EP.11.5",
+           "text": "Produce signs in correct ASL word order."
+          },
+          {
+           "code": "EP.11.6",
+           "text": "Produce signs correctly."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "the-student-will-be-able-to-describe-different-w",
+       "title": "The student will be able to describe different ways their plans have been disrupted",
+       "subtopics": [
+        {
+         "id": "the-student-will-be-able-to-describe-different-w",
+         "title": "The student will be able to describe different ways their plans have been disrupted",
+         "outcomes": [
+          {
+           "code": "EP.12.1",
+           "text": "Describe how weekend plans are disrupted (i.e. weather, health problems, house problems, car problems, personal reasons, or job-related reasons)."
+          },
+          {
+           "code": "EP.12.2",
+           "text": "Describe how they feel when plans are disrupted. (i.e. demonstrate the degree of their feelings)."
+          },
+          {
+           "code": "EP.12.3",
+           "text": "Use varying non-manual markers appropriately."
+          },
+          {
+           "code": "EP.12.4",
+           "text": "Produce signs in correct ASL word order."
+          },
+          {
+           "code": "EP.12.5",
+           "text": "Produce signs correctly."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "the-student-will-be-able-to-recommend-and-descri",
+       "title": "The student will be able to recommend and describe places to visit",
+       "subtopics": [
+        {
+         "id": "the-student-will-be-able-to-recommend-and-descri",
+         "title": "The student will be able to recommend and describe places to visit",
+         "outcomes": [
+          {
+           "code": "EP.13.1",
+           "text": "Recommend a place to visit."
+          },
+          {
+           "code": "EP.13.2",
+           "text": "Describe the cost, location, and what to do or see there."
+          },
+          {
+           "code": "EP.13.3",
+           "text": "Give their opinion of the recommended place."
+          },
+          {
+           "code": "EP.13.4",
+           "text": "Use varying non-manual markers appropriately."
+          },
+          {
+           "code": "EP.13.5",
+           "text": "Produce signs in correct ASL word order."
+          },
+          {
+           "code": "EP.13.6",
+           "text": "Produce signs correctly."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "deaf-culture-proficiency",
+     "title": "Deaf Culture Proficiency",
+     "topics": [
+      {
+       "id": "deaf-culture-proficiency",
+       "title": "Deaf Culture Proficiency",
+       "subtopics": [
+        {
+         "id": "deaf-culture-proficiency",
+         "title": "Deaf Culture Proficiency",
+         "outcomes": [
+          {
+           "code": "DCP.1",
+           "text": "The student will identify everyday experiences of Deaf people: Accessibility of TTYs, public announcements; getting, directing and maintaining attention; interpreting services, and Deaf frustrations in a hearing world."
+          },
+          {
+           "code": "DCP.2",
+           "text": "The student will describe the cultural importance of Deaf jokes, legends and stories: Importance of Deaf jokes in the community, Deaf soldiers in the Civil War, and Deaf school stories and adventures."
+          },
+          {
+           "code": "DCP.3",
+           "text": "The student will explain the history of Deaf technological devices: Western Union TTYs, modern TTYs, alarm clocks, baby cry signal lights, closed caption devices, televisions with built-in closed captioning, relay services, door lights, phone lights, Reveille and cochlear implants."
+          },
+          {
+           "code": "DCP.4",
+           "text": "The student will recognize different signacy techniques: Cheers, ABC stories, handshape stories, poetry, songs and drama."
+          },
+          {
+           "code": "DCP.5",
+           "text": "The student will identify and describe important events and people in Deaf Education history: French Deaf education in the 1700s, American Deaf education in the 1800s, Abbe de l’Eppe, Abbe Sicard, Jean Massieu, Laurent Clerc, Thomas Hopkins Gallaudet, Alice Cogswell, Dr. Mason Cogswell, Edward Miner Gallaudet, Gallaudet University, Alexander Graham Bell, the Milan Conference, Public Law 94-142, Deaf President Now protest, Section 504 of Rehabilitation Act of 1973."
+          },
+          {
+           "code": "DCP.6",
+           "text": "The student will examine trends in Deaf Education: American Sign Language, Oralism, Cued Speech, Bilingualism-Biculturalism, Total Communication and Signed Exact English."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "K-5",
+   "units": [
+    {
+     "id": "novice-low-language-competencies",
+     "title": "Novice Low Language Competencies",
+     "topics": [
+      {
+       "id": "interpretive-listening",
+       "title": "Interpretive Listening",
+       "subtopics": [
+        {
+         "id": "i-can-recognize-a-few-memorized-words-and-phrase",
+         "title": "I can recognize a few memorized words and phrases when I hear them spoken",
+         "outcomes": [
+          {
+           "code": "NL.IL.1.a",
+           "text": "I can recognize the sound of a few letters when they are spoken or spelled out."
+          },
+          {
+           "code": "NL.IL.2.a",
+           "text": "I can understand greetings."
+          },
+          {
+           "code": "NL.IL.2.b",
+           "text": "I can recognize some color words."
+          },
+          {
+           "code": "NL.IL.2.c",
+           "text": "I can understand some numbers."
+          },
+          {
+           "code": "NL.IL.2.d",
+           "text": "I can understand some food items."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "interpretive-reading",
+       "title": "Interpretive Reading",
+       "subtopics": [
+        {
+         "id": "i-can-recognize-a-few-letters-or-characters-i-ca",
+         "title": "I can recognize a few letters or characters. I can identify a few memorized words and phrases when I read",
+         "outcomes": [
+          {
+           "code": "NL.IR.1.a",
+           "text": "I can alphabetize a few names or words."
+          },
+          {
+           "code": "NL.IR.1.b",
+           "text": "I can match a character in a headline to a supporting visual."
+          },
+          {
+           "code": "NL.IR.2a",
+           "text": "I can recognize some cities on a map."
+          },
+          {
+           "code": "NL.IR.2b",
+           "text": "I can identify some menu items."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "interpersonal-communication",
+       "title": "Interpersonal Communication",
+       "subtopics": [
+        {
+         "id": "i-can-communicate-on-some-very-familiar-topics-u",
+         "title": "I can communicate on some very familiar topics using single words and phrases that I have practiced and memorized",
+         "outcomes": [
+          {
+           "code": "NL.IC.1.a",
+           "text": "I can say hello and goodbye."
+          },
+          {
+           "code": "NL.IC.2.a",
+           "text": "I can tell someone my name."
+          },
+          {
+           "code": "NL.IC.3.a",
+           "text": "I can respond to some yes/no questions."
+          },
+          {
+           "code": "NL.IC.3.b",
+           "text": "I can answer some either/or questions."
+          },
+          {
+           "code": "NL.IC.3.c",
+           "text": "I respond to some who, what, when, where questions."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "presentational-speaking",
+       "title": "Presentational Speaking",
+       "subtopics": [
+        {
+         "id": "i-can-present-information-about-myself-and-some-",
+         "title": "I can present information about myself and some other very familiar topics using single words or memorized phrases",
+         "outcomes": [
+          {
+           "code": "NL.PS.1.a",
+           "text": "I can count from 1-10."
+          },
+          {
+           "code": "NL.PS.1.b",
+           "text": "I can say the date and the day of the week."
+          },
+          {
+           "code": "NL.PS.1.c",
+           "text": "I can list the months and seasons."
+          },
+          {
+           "code": "NL.PS.2.a",
+           "text": "I can name famous landmarks and people."
+          },
+          {
+           "code": "NL.PS.2.b",
+           "text": "I can name countries on a map."
+          },
+          {
+           "code": "NL.PS.2.c",
+           "text": "I can list items I see every day."
+          },
+          {
+           "code": "NL.PS.3.a",
+           "text": "I can state my name, age, and where I live."
+          },
+          {
+           "code": "NL.PS.3.b",
+           "text": "I can give my phone number, home address, and e-mail address."
+          },
+          {
+           "code": "NL.PS.4.a",
+           "text": "I can sing a short song."
+          },
+          {
+           "code": "NL.PS.4.b",
+           "text": "I can recite a nursery rhyme."
+          },
+          {
+           "code": "NL.PS.4.c",
+           "text": "I can recite a simple poem."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "presentational-writing",
+       "title": "Presentational Writing",
+       "subtopics": [
+        {
+         "id": "i-can-copy-some-familiar-words-or-phrases",
+         "title": "I can copy some familiar words or phrases",
+         "outcomes": [
+          {
+           "code": "NL.PW.1.a",
+           "text": "I can copy the letters of the alphabet."
+          },
+          {
+           "code": "NL.PW.1.b",
+           "text": "I can copy the characters that I am learning."
+          },
+          {
+           "code": "NL.PW.1.c",
+           "text": "I can copy a simple phrase like \"Happy Birthday,\" \"Happy Holidays,\" etc."
+          },
+          {
+           "code": "NL.PW.2.a",
+           "text": "I can write my name, home address, and my e-mail address."
+          },
+          {
+           "code": "NL.PW.2.b",
+           "text": "I can write numbers such as my phone number."
+          },
+          {
+           "code": "NL.PW.2.c",
+           "text": "I can write the date and the day of the week."
+          },
+          {
+           "code": "NL.PW.2.d",
+           "text": "I can write the months and seasons."
+          },
+          {
+           "code": "NL.PW.3.a",
+           "text": "I can label famous landmarks and people."
+          },
+          {
+           "code": "NL.PW.3.b",
+           "text": "I can write the names of countries on a map."
+          },
+          {
+           "code": "NL.PW.3.c",
+           "text": "I can list items I see every day."
+          },
+          {
+           "code": "NL.PW.3.d",
+           "text": "I can label items in a room."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "9-12",
+   "units": [
+    {
+     "id": "interpretive-listening",
+     "title": "Interpretive Listening",
+     "topics": [
+      {
+       "id": "i-can-recognize-some-familiar-words-and-phrases-",
+       "title": "I can recognize some familiar words and phrases when I hear them spoken",
+       "subtopics": [
+        {
+         "id": "i-can-understand-a-few-courtesy-phrases",
+         "title": "I can understand a few courtesy phrases",
+         "outcomes": [
+          {
+           "code": "NM.IL.1.a",
+           "text": "I can understand greetings."
+          },
+          {
+           "code": "NM.IL.1.b",
+           "text": "I can understand when people express thanks."
+          },
+          {
+           "code": "NM.IL.1.c",
+           "text": "I can understand when people introduce themselves."
+          },
+          {
+           "code": "NM.IL.1.d",
+           "text": "I can understand when someone asks for a name."
+          }
+         ]
+        },
+        {
+         "id": "i-can-recognize-and-sometimes-understand-basic-i",
+         "title": "I can recognize and sometimes understand basic information in words and phrases that I have memorized",
+         "outcomes": [
+          {
+           "code": "NM.IL.2.a",
+           "text": "I can identify days of the week and the time."
+          },
+          {
+           "code": "NM.IL.2.b",
+           "text": "I can recognize a date."
+          },
+          {
+           "code": "NM.IL.2.c",
+           "text": "I can recognize some common weather expressions."
+          }
+         ]
+        },
+        {
+         "id": "i-can-recognize-and-sometimes-understand-words-a",
+         "title": "I can recognize and sometimes understand words and phrases that I have learned for specific purposes",
+         "outcomes": [
+          {
+           "code": "NM.IL.3.a",
+           "text": "I can recognize the names of the planets in a science class."
+          },
+          {
+           "code": "NM.IL.3.b",
+           "text": "I can recognize the names of some parts of the body in a health class."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "i-can-often-understand-words-phrases-and-simple-",
+       "title": "I can often understand words, phrases, and simple sentences related to everyday life. I can recognize pieces of information and sometimes understand the main topic of what is being said",
+       "subtopics": [
+        {
+         "id": "i-can-sometimes-understand-simple-questions-or-s",
+         "title": "I can sometimes understand simple questions or statements on familiar topics",
+         "outcomes": [
+          {
+           "code": "NH.IL.1.a",
+           "text": "I can recognize the difference between a question and a statement."
+          },
+          {
+           "code": "NH.IL.1.b",
+           "text": "I can sometimes understand questions about how old I am, where I live, what I do in my free time, etc."
+          },
+          {
+           "code": "NH.IL.1.c",
+           "text": "I can sometimes understand questions or statements about my family."
+          },
+          {
+           "code": "NH.IL.1.d",
+           "text": "I can sometimes understand questions or statements about my friends and classmates or workmates."
+          }
+         ]
+        },
+        {
+         "id": "i-can-understand-simple-information-when-present",
+         "title": "I can understand simple information when presented with pictures and graphs",
+         "outcomes": [
+          {
+           "code": "NH.IL.2.a",
+           "text": "I can understand some facts about the weather when weather symbols are used."
+          },
+          {
+           "code": "NH.IL.2.b",
+           "text": "I can understand when someone describes physical descriptions from a photo or an art work."
+          },
+          {
+           "code": "NH.IL.2.c",
+           "text": "I can follow simple arithmetic problems when I can see the figures."
+          }
+         ]
+        },
+        {
+         "id": "i-can-sometimes-understand-the-main-idea-of-conv",
+         "title": "I can sometimes understand the main idea of conversations that I overhear",
+         "outcomes": [
+          {
+           "code": "NH.IL.3.a",
+           "text": "I can sometimes understand if people are referring to me in their conversation."
+          },
+          {
+           "code": "NH.IL.3.b",
+           "text": "I can sometimes understand if people are talking about their homes or asking for directions."
+          },
+          {
+           "code": "NH.IL.3.c",
+           "text": "I can sometimes understand a simple transaction between a customer and a sales clerk."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "i-can-understand-the-main-idea-in-short-simple-m",
+       "title": "I can understand the main idea in short, simple messages and presentations on familiar topics. I can understand the main idea of simple conversations that I overhear",
+       "subtopics": [
+        {
+         "id": "i-can-understand-the-basic-purpose-of-a-message",
+         "title": "I can understand the basic purpose of a message",
+         "outcomes": [
+          {
+           "code": "IL.IL.1.a",
+           "text": "I can determine if I am hearing an announcement or an advertisement."
+          },
+          {
+           "code": "IL.IL.1.b",
+           "text": "I can understand what a radio advertisement is selling."
+          },
+          {
+           "code": "IL.IL.1.c",
+           "text": "I can understand when and where an event will take place."
+          },
+          {
+           "code": "IL.IL.1.d",
+           "text": "I can understand a voice mail response accepting or rejecting an invitation."
+          }
+         ]
+        },
+        {
+         "id": "i-can-understand-messages-related-to-my-basic-ne",
+         "title": "I can understand messages related to my basic needs",
+         "outcomes": [
+          {
+           "code": "IL.IL.2.a",
+           "text": "I can understand a clear and repeated announcement about a flight's departure time and/or gate."
+          },
+          {
+           "code": "IL.IL.2.b",
+           "text": "I can understand teacher announcements about when an assignment is due."
+          },
+          {
+           "code": "IL.IL.2.c",
+           "text": "I can understand the date and time of when a voicemail message was recorded."
+          }
+         ]
+        },
+        {
+         "id": "i-can-understand-questions-and-simple-statements",
+         "title": "I can understand questions and simple statements on everyday topics when I am part of the conversation",
+         "outcomes": [
+          {
+           "code": "IL.IL.3.a",
+           "text": "I can understand questions about my work or class schedule."
+          },
+          {
+           "code": "IL.IL.3.b",
+           "text": "I can understand questions about my likes and dislikes."
+          },
+          {
+           "code": "IL.IL.3.c",
+           "text": "I can understand simple compliments related to what I am wearing or what I am doing."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "i-can-understand-the-main-idea-in-messages-and-p",
+       "title": "I can understand the main idea in messages and presentations on a variety of topics related to everyday life and personal interests and studies. I can understand the main idea in conversations that I overhear",
+       "subtopics": [
+        {
+         "id": "i-can-understand-basic-information-in-ads-announ",
+         "title": "I can understand basic information in ads, announcements and other simple recordings",
+         "outcomes": [
+          {
+           "code": "IM.IL.1.a",
+           "text": "I can understand when, where and who is playing in a concert from a radio. advertisement."
+          },
+          {
+           "code": "IM.IL.1.b",
+           "text": "I can understand the main message of an e-card greeting."
+          },
+          {
+           "code": "IM.IL.1.c",
+           "text": "I can understand what service is offering in a TV ad."
+          },
+          {
+           "code": "IM.IL.1.d",
+           "text": "I can identify the type of film from a movie preview."
+          }
+         ]
+        },
+        {
+         "id": "i-can-understand-the-main-idea-of-what-i-listen-",
+         "title": "I can understand the main idea of what I listen to for personal enjoyment",
+         "outcomes": [
+          {
+           "code": "IM.IL.2.a",
+           "text": "I can understand basic personal questions that are asked on a video conference."
+          },
+          {
+           "code": "IM.IL.2.b",
+           "text": "I can understand what a YouTube clip is about."
+          },
+          {
+           "code": "IM.IL.2.c",
+           "text": "I can understand peers' recorded descriptions about themselves or their avatars."
+          }
+         ]
+        },
+        {
+         "id": "i-can-understand-messages-related-to-my-everyday",
+         "title": "I can understand messages related to my everyday life",
+         "outcomes": [
+          {
+           "code": "IM.IL.3.a",
+           "text": "I can understand a voice message about the time and place of a meeting."
+          },
+          {
+           "code": "IM.IL.3.b",
+           "text": "I can understand a box-office recording about the times of the performances of events."
+          },
+          {
+           "code": "IM.IL.3.c",
+           "text": "I can understand that an event is being postponed or cancelled."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "i-can-easily-understand-the-main-idea-in-message",
+       "title": "I can easily understand the main idea in messages and presentations on a variety of topics related to everyday life and personal interests and studies. I can usually understand a few details of what I overhear in conversations, even when something unexpected is expressed. I can sometimes follow what I hear about events and experiences in various timeframes",
+       "subtopics": [
+        {
+         "id": "i-can-easily-understand-straightforward-informat",
+         "title": "I can easily understand straightforward information or interactions",
+         "outcomes": [
+          {
+           "code": "IH.IL.1.a",
+           "text": "I can understand the descriptions of avatars in a new video game."
+          },
+          {
+           "code": "IH.IL.1.b",
+           "text": "I can understand an interview between a student reporter and foreign visitors about activities they have done and are planning to do while in town."
+          },
+          {
+           "code": "IH.IL.1.c",
+           "text": "I can understand a tour guide's description of a city's history and attractions."
+          }
+         ]
+        },
+        {
+         "id": "i-can-understand-a-few-details-in-ads-announceme",
+         "title": "I can understand a few details in ads, announcements and other simple recordings",
+         "outcomes": [
+          {
+           "code": "IH.IL.2.a",
+           "text": "I can understand a few details about a nutritional recommendation in a public service health announcement."
+          },
+          {
+           "code": "IH.IL.2.b",
+           "text": "I can understand the services offered in an ad about a car repair service."
+          },
+          {
+           "code": "IH.IL.2.c",
+           "text": "I can understand a few details from public service announcements such as severe weather warnings or safety alerts."
+          }
+         ]
+        },
+        {
+         "id": "i-can-sometimes-understand-situations-with-compl",
+         "title": "I can sometimes understand situations with complicating factors",
+         "outcomes": [
+          {
+           "code": "IH.IL.3.a",
+           "text": "I can understand a voice message from an exchange student telling why she will be late."
+          },
+          {
+           "code": "IH.IL.3.b",
+           "text": "I can understand a phone message about a change in meeting times and place."
+          },
+          {
+           "code": "IH.IL.3.c",
+           "text": "I can understand a voice message from the airlines about changes to a flight schedule."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "i-can-understand-the-main-idea-and-some-supporti",
+       "title": "I can understand the main idea and some supporting details in organized speech on a variety of topics of personal and general interest. I can follow stories and descriptions of some length and in various timeframes. I can understand information presented in a variety of genres on familiar topics, even when something unexpected is expressed",
+       "subtopics": [
+        {
+         "id": "i-understand-descriptions-and-stories-of-events-",
+         "title": "I understand descriptions and stories of events that have happened or will happen",
+         "outcomes": [
+          {
+           "code": "AL.IL.1.a",
+           "text": "I can understand short presentations about famous people in history."
+          },
+          {
+           "code": "AL.IL.1.b",
+           "text": "I can understand a voicemail outlining the details of a plan for an upcoming outing."
+          },
+          {
+           "code": "AL.IL.1.c",
+           "text": "I can follow a video conferencing session in which the speakers recount their experience on a recent trip."
+          }
+         ]
+        },
+        {
+         "id": "i-can-understand-the-main-idea-of-popular-genres",
+         "title": "I can understand the main idea of popular genres",
+         "outcomes": [
+          {
+           "code": "AL.IL.2.a",
+           "text": "I can follow televised promotions for upcoming programs."
+          },
+          {
+           "code": "AL.IL.2.b",
+           "text": "I can follow a YouTube comparison of two popular vacation locations."
+          },
+          {
+           "code": "AL.IL.2.c",
+           "text": "I can follow simple oral stories, recorded books, summaries, and excerpts from speeches."
+          },
+          {
+           "code": "AL.IL.2.d",
+           "text": "I can understand some simple information from a movie trailer."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "i-can-understand-the-main-idea-and-most-supporti",
+       "title": "I can understand the main idea and most supporting details on a variety of topics of personal and general interest, as well as some topics of professional interest. I can follow stories and descriptions of some length and in various timeframes. I can understand information presented in most genres, even when not familiar with the topic",
+       "subtopics": [
+        {
+         "id": "i-can-understand-the-main-idea-and-many-details-",
+         "title": "I can understand the main idea and many details of descriptions or interviews",
+         "outcomes": [
+          {
+           "code": "AM.IL.1.a",
+           "text": "I can understand many details given in an interview with a famous person, such as a rock star, politician, or actor."
+          },
+          {
+           "code": "AM.IL.1.b",
+           "text": "I can understand a Web-based presentation giving a virtual tour of a city or university."
+          },
+          {
+           "code": "AM.IL.1.c",
+           "text": "I can understand an introduction that outlines the achievements of a speaker."
+          }
+         ]
+        },
+        {
+         "id": "i-can-understand-accounts-of-events",
+         "title": "I can understand accounts of events",
+         "outcomes": [
+          {
+           "code": "AM.IL.2.a",
+           "text": "I can understand a voicemail message on how someone missed a meeting because of an accident."
+          },
+          {
+           "code": "AM.IL.2.b",
+           "text": "I can understand a family member recounting an event in a recorded memoir."
+          },
+          {
+           "code": "AM.IL.2.c",
+           "text": "I can understand some autobiographical details of a well-known science figure"
+          },
+          {
+           "code": "AM.IL.2.d",
+           "text": "I can understand a commentator's summary of a sporting event on TV."
+          }
+         ]
+        },
+        {
+         "id": "i-can-understand-directions-and-instructions-on-",
+         "title": "I can understand directions and instructions on everyday tasks",
+         "outcomes": [
+          {
+           "code": "AM.IL.3.a",
+           "text": "I can understand multi-step instructions in a recipe presented on TV or YouTube."
+          },
+          {
+           "code": "AM.IL.3.b",
+           "text": "I can understand when a friend tells me how to play a sport or game."
+          },
+          {
+           "code": "AM.IL.3.c",
+           "text": "I can understand the details when a teacher presents how to complete a homework assignment to the class."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "i-can-easily-follow-narrative-informational-and-",
+       "title": "I can easily follow narrative, informational and descriptive speech. I can understand discussions on most topics that deal with special interests, unfamiliar situations, and abstract concepts. I can sometimes follow extended arguments and different points of view",
+       "subtopics": [
+        {
+         "id": "i-can-easily-understand-detailed-reports-and-exp",
+         "title": "I can easily understand detailed reports and exposés",
+         "outcomes": [
+          {
+           "code": "AH.IL.1.a",
+           "text": "I can understand an interview in which the relationship of texting and traffic accidents is detailed by victims' reports on their experiences."
+          },
+          {
+           "code": "AH.IL.1.b",
+           "text": "I can understand a radio report on the increased crime rate in a community that includes descriptions of specific incidents of crime."
+          },
+          {
+           "code": "AH.IL.1.c",
+           "text": "I can understand a televised exposé on celebrities as heroes."
+          }
+         ]
+        },
+        {
+         "id": "i-can-often-understand-various-viewpoints-in-ext",
+         "title": "I can often understand various viewpoints in extended arguments",
+         "outcomes": [
+          {
+           "code": "AH.IL.2.a",
+           "text": "I can follow the argument when students debate the advantages and disadvantages of study abroad supported by examples of their personal experiences."
+          },
+          {
+           "code": "AH.IL.2.b",
+           "text": "I can understand the main points made in a conversation I overhear where two people are arguing the pros and cons of social networking."
+          },
+          {
+           "code": "AH.IL.2.c",
+           "text": "I can understand a YouTube debate on the legal age of drinking."
+          }
+         ]
+        },
+        {
+         "id": "i-can-understand-discussions-and-presentations-o",
+         "title": "I can understand discussions and presentations on many concrete and abstract topics",
+         "outcomes": [
+          {
+           "code": "AH.IL.3.a",
+           "text": "I can understand the benefits of marathon running as detailed in a podcast."
+          },
+          {
+           "code": "AH.IL.3.b",
+           "text": "I can understand many points made in a YouTube presentation advocating for changes to immigration laws."
+          },
+          {
+           "code": "AH.IL.3.c",
+           "text": "I can understand a group leader's justification for protesting a cut in programs."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "interpretive-reading",
+     "title": "Interpretive Reading",
+     "topics": [
+      {
+       "id": "i-can-recognize-some-letters-or-characters-i-can",
+       "title": "I can recognize some letters or characters. I can understand some learned or memorized words and phrases when I read",
+       "subtopics": [
+        {
+         "id": "i-can-recognize-words-and-phrases-and-characters",
+         "title": "I can recognize words and phrases and characters with the help of visuals",
+         "outcomes": [
+          {
+           "code": "NM.IR.1.a",
+           "text": "I can recognize entrance and exit signs."
+          },
+          {
+           "code": "NM.IR.1.b",
+           "text": "I can identify family member words on a family tree."
+          },
+          {
+           "code": "NM.IR.1.c",
+           "text": "I can identify the healthy nutritional categories."
+          },
+          {
+           "code": "NM.IR.1.d",
+           "text": "I can identify the simple labels on a science-related graph."
+          }
+         ]
+        },
+        {
+         "id": "i-can-recognize-words-phrases-and-characters-whe",
+         "title": "I can recognize words, phrases, and characters when I associate them with things I already know",
+         "outcomes": [
+          {
+           "code": "NM.IR.2.a",
+           "text": "I can check off words or phrases on a to-do list, grocery list or scavenger hunt list."
+          },
+          {
+           "code": "NM.IR.2.b",
+           "text": "I can identify labeled aisles in a supermarket."
+          },
+          {
+           "code": "NM.IR.2.c",
+           "text": "I can choose a restaurant from an online list of local eateries."
+          },
+          {
+           "code": "NM.IR.2.d",
+           "text": "I can identify scores from sports teams because I recognize team names and logos."
+          },
+          {
+           "code": "NM.IR.2.e",
+           "text": "I can identify artists, titles and music genres from iTunes."
+          },
+          {
+           "code": "NM.IR.2.f",
+           "text": "I can identify the names of classes and instructors in a school schedule."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "i-can-understand-familiar-words-phrases-and-sent",
+       "title": "I can understand familiar words, phrases, and sentences within short and simple texts related to everyday life. I can sometimes understand the main idea of what I have read",
+       "subtopics": [
+        {
+         "id": "i-can-usually-understand-short-simple-messages-o",
+         "title": "I can usually understand short simple messages on familiar topics",
+         "outcomes": [
+          {
+           "code": "NH.IR.1.a",
+           "text": "I can understand basic familiar information from an ad."
+          },
+          {
+           "code": "NH.IR.1.b",
+           "text": "I can sometimes identify the purpose of a brochure."
+          },
+          {
+           "code": "NH.IR.1.c",
+           "text": "I can identify information from a movie description or poster."
+          },
+          {
+           "code": "NH.IR.1.d",
+           "text": "I can understand simple information in a text message from a friend."
+          }
+         ]
+        },
+        {
+         "id": "i-can-sometimes-understand-short-simple-descript",
+         "title": "I can sometimes understand short, simple descriptions with the help of pictures or graphs",
+         "outcomes": [
+          {
+           "code": "NH.IR.2.a",
+           "text": "I can understand simple captions under photos."
+          },
+          {
+           "code": "NH.IR.2.b",
+           "text": "I can understand very basic information from a real estate ad."
+          },
+          {
+           "code": "NH.IR.2.c",
+           "text": "I can understand Web site descriptions of clothing items to make an appropriate purchase."
+          },
+          {
+           "code": "NH.IR.2.d",
+           "text": "I can identify the categories on a graph."
+          }
+         ]
+        },
+        {
+         "id": "i-can-sometimes-understand-the-main-idea-of-publ",
+         "title": "I can sometimes understand the main idea of published materials",
+         "outcomes": [
+          {
+           "code": "NH.IR.3.a",
+           "text": "I can distinguish a birthday card from a note expressing thanks."
+          },
+          {
+           "code": "NH.IR.3.b",
+           "text": "I can identify destinations and major attractions on a travel brochure."
+          },
+          {
+           "code": "NH.IR.3.c",
+           "text": "I can locate places on city maps."
+          }
+         ]
+        },
+        {
+         "id": "i-can-understand-simple-everyday-notices-in-publ",
+         "title": "I can understand simple everyday notices in public places on topics that are familiar to me",
+         "outcomes": [
+          {
+           "code": "NH.IR.4.a",
+           "text": "I can understand a simple public transportation schedule."
+          },
+          {
+           "code": "NH.IR.4.b",
+           "text": "I can locate notices on where to park."
+          },
+          {
+           "code": "NH.IR.4.c",
+           "text": "I can understand notices that tell of street or metro closings."
+          },
+          {
+           "code": "NH.IR.4.d",
+           "text": "I can understand a store's hours of operation."
+          },
+          {
+           "code": "NH.IR.4.e",
+           "text": "I can read the labels on a recycling bin."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "i-can-understand-the-main-idea-of-short-and-simp",
+       "title": "I can understand the main idea of short and simple texts when the topic is familiar",
+       "subtopics": [
+        {
+         "id": "i-can-understand-messages-in-which-the-writer-te",
+         "title": "I can understand messages in which the writer tells or asks me about topics of personal interest",
+         "outcomes": [
+          {
+           "code": "IL.IR.1.a",
+           "text": "I can understand what an e-pal writes about interests and daily routines."
+          },
+          {
+           "code": "IL.IR.1.b",
+           "text": "I can understand a simple posting on a friend's social media page."
+          },
+          {
+           "code": "IL.IR.1.c",
+           "text": "I can understand a text from a friend about our plans."
+          },
+          {
+           "code": "IL.IR.1.d",
+           "text": "I can understand if a friend accepts or rejects an invitation."
+          }
+         ]
+        },
+        {
+         "id": "i-can-identify-some-simple-information-needed-on",
+         "title": "I can identify some simple information needed on forms",
+         "outcomes": [
+          {
+           "code": "IL.IR.2.a",
+           "text": "I can understand what information is asked for on a customs form."
+          },
+          {
+           "code": "IL.IR.2.b",
+           "text": "I can understand what information is asked for on a hotel registration form."
+          },
+          {
+           "code": "IL.IR.2.c",
+           "text": "I can understand what information is asked for on a student ID card."
+          }
+         ]
+        },
+        {
+         "id": "i-can-identify-some-information-from-news-media",
+         "title": "I can identify some information from news media",
+         "outcomes": [
+          {
+           "code": "IL.IR.3.a",
+           "text": "I can understand personal information about sports stars from photo captions"
+          },
+          {
+           "code": "IL.IR.3.b",
+           "text": "I can understand some information on job postings."
+          },
+          {
+           "code": "IL.IR.3.c",
+           "text": "I can understand basic information on weather forecasts."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "i-can-understand-the-main-idea-of-texts-related-",
+       "title": "I can understand the main idea of texts related to everyday life and personal interests or studies",
+       "subtopics": [
+        {
+         "id": "i-can-understand-simple-personal-questions",
+         "title": "I can understand simple personal questions",
+         "outcomes": [
+          {
+           "code": "IM.IR.1.a",
+           "text": "I can understand the questions asked on a career preference survey."
+          },
+          {
+           "code": "IM.IR.1.b",
+           "text": "I can understand what is asked for on a simple, popular magazine questionnaire."
+          },
+          {
+           "code": "IM.IR.1.c",
+           "text": "I can understand the personal questions to complete a profile on a social media site."
+          }
+         ]
+        },
+        {
+         "id": "i-can-understand-basic-information-in-ads-announ",
+         "title": "I can understand basic information in ads, announcements and other simple texts",
+         "outcomes": [
+          {
+           "code": "IM.IR.2.a",
+           "text": "I can understand the information in birth and wedding announcements."
+          },
+          {
+           "code": "IM.IR.2.b",
+           "text": "I can understand the information in sales ads."
+          },
+          {
+           "code": "IM.IR.2.c",
+           "text": "I can understand the main ideas in travel brochures."
+          },
+          {
+           "code": "IM.IR.2.d",
+           "text": "I can understand the main ideas on food labels."
+          }
+         ]
+        },
+        {
+         "id": "i-can-understand-the-main-idea-of-what-i-read-fo",
+         "title": "I can understand the main idea of what I read for personal enjoyment",
+         "outcomes": [
+          {
+           "code": "IM.IR.3.a",
+           "text": "I can understand updates in entertainment magazines and blogs."
+          },
+          {
+           "code": "IM.IR.3.b",
+           "text": "I can understand postings in blogs on familiar topics."
+          },
+          {
+           "code": "IM.IR.3.c",
+           "text": "I can understand postcards from friends."
+          }
+         ]
+        },
+        {
+         "id": "i-can-read-simple-written-exchanges-between-othe",
+         "title": "I can read simple written exchanges between other people",
+         "outcomes": [
+          {
+           "code": "IM.IR.4.a",
+           "text": "I can understand the main idea of personal messages exchanged in chat rooms."
+          },
+          {
+           "code": "IM.IR.4.b",
+           "text": "I can understand the main idea of a magazine biographical interview with a celebrity."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "i-can-easily-understand-the-main-idea-of-texts-r",
+       "title": "I can easily understand the main idea of texts related to everyday life, personal interests, and studies. I can sometimes follow stories and descriptions about events and experiences in various timeframes",
+       "subtopics": [
+        {
+         "id": "i-can-understand-accounts-of-personal-events-or-",
+         "title": "I can understand accounts of personal events or experiences",
+         "outcomes": [
+          {
+           "code": "IH.IR.1.a",
+           "text": "I can understand information about an upcoming excursion, such as a class trip or company event."
+          },
+          {
+           "code": "IH.IR.1.b",
+           "text": "I can understand a friend's postcard describing their family vacation."
+          },
+          {
+           "code": "IH.IR.1.c",
+           "text": "I can understand descriptions of a Peace Corps volunteer's daily life."
+          }
+         ]
+        },
+        {
+         "id": "i-can-sometimes-follow-short-written-instruction",
+         "title": "I can sometimes follow short, written instructions when supported by visuals",
+         "outcomes": [
+          {
+           "code": "IH.IR.2.a",
+           "text": "I can follow the instructions to use an ATM machine."
+          },
+          {
+           "code": "IH.IR.2.b",
+           "text": "I can follow the instructions to make an online purchase."
+          },
+          {
+           "code": "IH.IR.2.c",
+           "text": "I can follow simple directions to do an experiment in a science class."
+          },
+          {
+           "code": "IH.IR.2.d",
+           "text": "I can understand the basic instructions for playing a video game."
+          }
+         ]
+        },
+        {
+         "id": "i-can-understand-the-main-idea-of-and-a-few-supp",
+         "title": "I can understand the main idea of and a few supporting facts about famous people and historic events",
+         "outcomes": [
+          {
+           "code": "IH.IR.3.a",
+           "text": "I can read a short summary of a historical figure's accomplishments."
+          },
+          {
+           "code": "IH.IR.3.b",
+           "text": "I can understand the main idea and a few supporting facts about a scientific discovery from a summarized account."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "i-can-understand-the-main-idea-and-some-supporti",
+       "title": "I can understand the main idea and some supporting details on a variety of topics of personal and general interest. I can follow stories and descriptions of some length and in various timeframes and genres",
+       "subtopics": [
+        {
+         "id": "i-can-find-and-use-information-for-practical-pur",
+         "title": "I can find and use information for practical purposes",
+         "outcomes": [
+          {
+           "code": "AL.IR.1.a",
+           "text": "I can read about an upcoming event and decide whether or not to attend."
+          },
+          {
+           "code": "AL.IR.1.b",
+           "text": "I can read a blogger's account of a trip to plan my own."
+          },
+          {
+           "code": "AL.IR.1.c",
+           "text": "I can read a message about a friend's car accident."
+          },
+          {
+           "code": "AL.IR.1.d",
+           "text": "I can read a description about a candidate to make a voting decision."
+          },
+          {
+           "code": "AL.IR.1.e",
+           "text": "I can understand absentee and sick leave policies."
+          }
+         ]
+        },
+        {
+         "id": "i-can-read-texts-that-compare-and-contrast-infor",
+         "title": "I can read texts that compare and contrast information",
+         "outcomes": [
+          {
+           "code": "AL.IR.2.a",
+           "text": "I can read restaurant descriptions to guide my choice."
+          },
+          {
+           "code": "AL.IR.2.b",
+           "text": "I can read movie summaries to choose what to see."
+          },
+          {
+           "code": "AL.IR.2.c",
+           "text": "I can read a catalogue of course descriptions to choose my classes."
+          },
+          {
+           "code": "AL.IR.2.d",
+           "text": "I can understand the main idea and some details from a list of government job descriptions."
+          },
+          {
+           "code": "AL.IR.2.e",
+           "text": "I can read an article about how technology has changed in the past 20 years."
+          }
+         ]
+        },
+        {
+         "id": "i-can-follow-simple-written-instructions",
+         "title": "I can follow simple written instructions",
+         "outcomes": [
+          {
+           "code": "AL.IR.3.a",
+           "text": "I can follow directions for assembling a model."
+          },
+          {
+           "code": "AL.IR.3.b",
+           "text": "I can follow driving directions."
+          },
+          {
+           "code": "AL.IR.3.c",
+           "text": "I can follow the steps of a recipe."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "i-can-understand-the-main-idea-and-most-supporti",
+       "title": "I can understand the main idea and most supporting details on a variety of topics of personal and general interest, as well as some professional topics. I can follow stories and descriptions of considerable length and in various timeframes. I can understand texts written in a variety of genres, even when I am unfamiliar with the topic",
+       "subtopics": [
+        {
+         "id": "i-can-follow-the-general-idea-and-some-details-o",
+         "title": "I can follow the general idea and some details of what is written in a variety of stories and autobiographical accounts",
+         "outcomes": [
+          {
+           "code": "AM.IR.1.a",
+           "text": "I can follow the chronological plot in a simple short story."
+          },
+          {
+           "code": "AM.IR.1.b",
+           "text": "I can follow news articles reporting on community events."
+          },
+          {
+           "code": "AM.IR.1.c",
+           "text": "I can follow a short online autobiography."
+          },
+          {
+           "code": "AM.IR.1.d",
+           "text": "I can follow a cover letter and a résumé."
+          }
+         ]
+        },
+        {
+         "id": "i-can-understand-general-information-on-topics-o",
+         "title": "I can understand general information on topics outside my field of interest",
+         "outcomes": [
+          {
+           "code": "AM.IR.2.a",
+           "text": "I can understand the details about a police report on a recent crime."
+          },
+          {
+           "code": "AM.IR.2.b",
+           "text": "I can understand the details of a job or performance evaluation."
+          },
+          {
+           "code": "AM.IR.2.c",
+           "text": "I can understand the details of an article about a sporting or cultural event."
+          }
+         ]
+        },
+        {
+         "id": "i-can-handle-a-complication-or-unexpected-turn-o",
+         "title": "I can handle a complication or unexpected turn of events",
+         "outcomes": [
+          {
+           "code": "AM.IR.3.a",
+           "text": "I can understand an e-mail message explaining details about the rescheduling of an event."
+          },
+          {
+           "code": "AM.IR.3.b",
+           "text": "I can understand the details in a message about why someone missed an important meeting."
+          },
+          {
+           "code": "AM.IR.3.c",
+           "text": "I can understand detailed descriptions about a service learning project."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "i-can-easily-follow-narrative-informational-and-",
+       "title": "I can easily follow narrative, informational, and descriptive texts. I can understand what I read on most topics that deal with special interests, unfamiliar situations, and abstract concepts. I can sometimes understand extended arguments and different points of view",
+       "subtopics": [
+        {
+         "id": "i-can-understand-narrative-descriptive-and-infor",
+         "title": "I can understand narrative, descriptive, and informational texts of any length",
+         "outcomes": [
+          {
+           "code": "AH.IR.1.a",
+           "text": "I can understand a detailed account of a unique travel or cultural experience."
+          },
+          {
+           "code": "AH.IR.1.b",
+           "text": "I can understand the minutes of a student club meeting that describes new by-laws."
+          },
+          {
+           "code": "AH.IR.1.c",
+           "text": "I can understand the new perspectives of a musical group in an article that describes the direction taken in their latest CD."
+          },
+          {
+           "code": "AH.IR.1.d",
+           "text": "I can understand most documents outlining rules and regulations, such as an apartment rental contract."
+          }
+         ]
+        },
+        {
+         "id": "i-can-read-about-most-topics-of-special-interest",
+         "title": "I can read about most topics of special interest",
+         "outcomes": [
+          {
+           "code": "AH.IR.2.a",
+           "text": "I can understand a report that describes policy changes, for example, related to admission into a program or changes to social networking platforms."
+          },
+          {
+           "code": "AH.IR.2.b",
+           "text": "I can follow the reporting of national or international news, such as an election, a natural disaster, or civil unrest."
+          }
+         ]
+        },
+        {
+         "id": "i-can-read-most-general-fiction-and-non-fiction",
+         "title": "I can read most general fiction and non-fiction",
+         "outcomes": [
+          {
+           "code": "AH.IR.3.a",
+           "text": "I can understand most short stories, plays, and novels."
+          },
+          {
+           "code": "AH.IR.3.b",
+           "text": "I can understand most inferences and allusions."
+          },
+          {
+           "code": "AH.IR.3.c",
+           "text": "I can understand non-fiction texts that are specialized and complex in nature, such as essays, documentaries, technical documentation, etc."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "interpersonal-communication",
+     "title": "Interpersonal Communication",
+     "topics": [
+      {
+       "id": "i-can-communicate-on-very-familiar-topics-using-",
+       "title": "I can communicate on very familiar topics using a variety of words and phrases that I have practiced and memorized",
+       "subtopics": [
+        {
+         "id": "i-can-greet-and-leave-people-in-a-polite-way",
+         "title": "I can greet and leave people in a polite way",
+         "outcomes": [
+          {
+           "code": "NM.IC.1.a",
+           "text": "I can say hello and goodbye to someone my age or younger."
+          },
+          {
+           "code": "NM.IC.1.b",
+           "text": "I can say hello and goodbye to my teacher, professor, or supervisor."
+          },
+          {
+           "code": "NM.IC.1.c",
+           "text": "I can say hello to an adult."
+          }
+         ]
+        },
+        {
+         "id": "i-can-introduce-myself-and-others",
+         "title": "I can introduce myself and others",
+         "outcomes": [
+          {
+           "code": "NM.IC.2.a",
+           "text": "I can introduce myself and provide basic personal information."
+          },
+          {
+           "code": "NM.IC.2.b",
+           "text": "I can introduce someone else."
+          },
+          {
+           "code": "NM.IC.2.c",
+           "text": "I can respond to an introduction."
+          }
+         ]
+        },
+        {
+         "id": "i-can-answer-a-variety-of-simple-questions",
+         "title": "I can answer a variety of simple questions",
+         "outcomes": [
+          {
+           "code": "NM.IC.3.a",
+           "text": "I can answer questions about what I like and dislike."
+          },
+          {
+           "code": "NM.IC.3.b",
+           "text": "I can answer questions about what I am doing and what I did."
+          },
+          {
+           "code": "NM.IC.3.c",
+           "text": "I can answer questions about where I'm going or where I went."
+          },
+          {
+           "code": "NM.IC.3.d",
+           "text": "I can answer questions about something I have learned."
+          }
+         ]
+        },
+        {
+         "id": "i-can-make-some-simple-statements-in-a-conversat",
+         "title": "I can make some simple statements in a conversation",
+         "outcomes": [
+          {
+           "code": "NM.IC.4.a",
+           "text": "I can tell someone what I am doing."
+          },
+          {
+           "code": "NM.IC.4.b",
+           "text": "I can say where I went."
+          },
+          {
+           "code": "NM.IC.4.c",
+           "text": "I can say whom I am going to see."
+          },
+          {
+           "code": "NM.IC.4.d",
+           "text": "I can express a positive reaction, such as \"Great!\""
+          }
+         ]
+        },
+        {
+         "id": "i-can-ask-some-simple-questions",
+         "title": "I can ask some simple questions",
+         "outcomes": [
+          {
+           "code": "NM.IC.5.a",
+           "text": "I can ask who, what, when, where questions."
+          },
+          {
+           "code": "NM.IC.5.b",
+           "text": "I can ask questions about something that I am learning."
+          }
+         ]
+        },
+        {
+         "id": "i-can-communicate-basic-information-about-myself",
+         "title": "I can communicate basic information about myself and people I know",
+         "outcomes": [
+          {
+           "code": "NM.IC.6.a",
+           "text": "I can say my name and ask someone's name."
+          },
+          {
+           "code": "NM.IC.6.b",
+           "text": "I can say or write something about the members of my family and ask about someone's family."
+          },
+          {
+           "code": "NM.IC.6.c",
+           "text": "I can say or write something about friends and classmates or co-workers."
+          }
+         ]
+        },
+        {
+         "id": "i-can-communicate-some-basic-information-about-m",
+         "title": "I can communicate some basic information about my everyday life",
+         "outcomes": [
+          {
+           "code": "NM.IC.7.a",
+           "text": "I can give times, dates and weather information."
+          },
+          {
+           "code": "NM.IC.7.b",
+           "text": "I can tell about what I eat, learn, and do."
+          },
+          {
+           "code": "NM.IC.7.c",
+           "text": "I can tell about places I know."
+          },
+          {
+           "code": "NM.IC.7.d",
+           "text": "I can ask and understand how much something costs."
+          },
+          {
+           "code": "NM.IC.7.e",
+           "text": "I can tell someone the time and location of a community event."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "i-can-communicate-and-exchange-information-about",
+       "title": "I can communicate and exchange information about familiar topics using phrases and simple sentences, sometimes supported by memorized language. I can usually handle short social interactions in everyday situations by asking and answering simple questions",
+       "subtopics": [
+        {
+         "id": "i-can-exchange-some-personal-information",
+         "title": "I can exchange some personal information",
+         "outcomes": [
+          {
+           "code": "NH.IC.1.a",
+           "text": "I can ask and say a home address and e-mail address."
+          },
+          {
+           "code": "NH.IC.1.b",
+           "text": "I can ask and say someone's nationality."
+          },
+          {
+           "code": "NH.IC.1.c",
+           "text": "I can ask and tell about family members and their characteristics."
+          },
+          {
+           "code": "NH.IC.1.d",
+           "text": "I can ask and tell about friends, classmates, teachers and co-workers."
+          }
+         ]
+        },
+        {
+         "id": "i-can-exchange-information-using-texts-graphs-or",
+         "title": "I can exchange information using texts, graphs or pictures",
+         "outcomes": [
+          {
+           "code": "NH.IC.2.a",
+           "text": "I can ask about and identify familiar things in a picture from a story."
+          },
+          {
+           "code": "NH.IC.2.b",
+           "text": "I can ask about and identify important information about the weather using a map."
+          },
+          {
+           "code": "NH.IC.2.c",
+           "text": "I can ask and respond to simple questions about dates, times, places, and events on schedules, posters, and tickets."
+          },
+          {
+           "code": "NH.IC.2.d",
+           "text": "I can respond to simple questions based on graphs, or visuals that provide information containing numbers or statistics."
+          }
+         ]
+        },
+        {
+         "id": "i-can-ask-for-and-give-simple-directions",
+         "title": "I can ask for and give simple directions",
+         "outcomes": [
+          {
+           "code": "NH.IC.3.a",
+           "text": "I can ask for directions to a place."
+          },
+          {
+           "code": "NH.IC.3.b",
+           "text": "I can tell someone how to get from one place to another, such as go straight, turn left, or turn right."
+          },
+          {
+           "code": "NH.IC.3.c",
+           "text": "I can tell someone where something is located, such as next to, across from, or in the middle of."
+          }
+         ]
+        },
+        {
+         "id": "i-can-make-plans-with-others",
+         "title": "I can make plans with others",
+         "outcomes": [
+          {
+           "code": "NH.IC.4.a",
+           "text": "I can accept or reject an invitation to do something or go somewhere."
+          },
+          {
+           "code": "NH.IC.4.b",
+           "text": "I can invite and make plans with someone to do something or go somewhere."
+          },
+          {
+           "code": "NH.IC.4.c",
+           "text": "I can exchange information about where to go, such as to the store, the movie theatre, a concert, a restaurant, the lab, or when to meet."
+          }
+         ]
+        },
+        {
+         "id": "i-can-interact-with-others-in-everyday-situation",
+         "title": "I can interact with others in everyday situations",
+         "outcomes": [
+          {
+           "code": "NH.IC.5.a",
+           "text": "I can order a meal."
+          },
+          {
+           "code": "NH.IC.5.b",
+           "text": "I can make a purchase."
+          },
+          {
+           "code": "NH.IC.5.c",
+           "text": "I can buy a ticket"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "i-can-participate-in-conversations-on-a-number-o",
+       "title": "I can participate in conversations on a number of familiar topics using simple sentences. I can handle short social interactions in everyday situations by asking and answering simple questions",
+       "subtopics": [
+        {
+         "id": "i-can-have-a-simple-conversation-on-a-limited-nu",
+         "title": "I can have a simple conversation on a limited number of everyday topics",
+         "outcomes": [
+          {
+           "code": "IL.IC.1.a",
+           "text": "I can talk with someone about family or household tasks."
+          },
+          {
+           "code": "IL.IC.1.b",
+           "text": "I can talk with someone about hobbies and interests."
+          },
+          {
+           "code": "IL.IC.1.c",
+           "text": "I can talk with someone about school or work."
+          }
+         ]
+        },
+        {
+         "id": "i-can-ask-and-answer-questions-of-factual-inform",
+         "title": "I can ask and answer questions of factual information that is familiar to me",
+         "outcomes": [
+          {
+           "code": "IL.IC.2.a",
+           "text": "I can ask and answer questions related to subjects such as geography, history, art, music, math, science, language, or literature."
+          }
+         ]
+        },
+        {
+         "id": "i-can-use-the-language-to-meet-my-basic-needs-in",
+         "title": "I can use the language to meet my basic needs in familiar situations",
+         "outcomes": [
+          {
+           "code": "IL.IC.3.a",
+           "text": "I can ask for help at school, work, or in the community."
+          },
+          {
+           "code": "IL.IC.3.b",
+           "text": "I can make an appointment or reservation by phone."
+          },
+          {
+           "code": "IL.IC.3.c",
+           "text": "I can arrange for transportation, such as by train, bus, taxi, or ride with friends."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "i-can-participate-in-conversations-on-familiar-t",
+       "title": "I can participate in conversations on familiar topics using sentences and series of sentences. I can handle short social interactions in everyday situations by asking and answering a variety of questions. I can usually say what I want to say about myself and my everyday life",
+       "subtopics": [
+        {
+         "id": "i-can-start-maintain-and-end-a-conversation-on-a",
+         "title": "I can start, maintain, and end a conversation on a variety of familiar topics",
+         "outcomes": [
+          {
+           "code": "IM.IC.1.a",
+           "text": "I can start a conversation."
+          },
+          {
+           "code": "IM.IC.1.b",
+           "text": "I can ask for information, details, and explanations during a conversation."
+          },
+          {
+           "code": "IM.IC.1.c",
+           "text": "I can bring a conversation to a close."
+          },
+          {
+           "code": "IM.IC.1.d",
+           "text": "I can interview someone for a project or a publication."
+          }
+         ]
+        },
+        {
+         "id": "i-can-talk-about-my-daily-activities-and-persona",
+         "title": "I can talk about my daily activities and personal preferences",
+         "outcomes": [
+          {
+           "code": "IM.IC.2.a",
+           "text": "I can talk about my daily routine."
+          },
+          {
+           "code": "IM.IC.2.b",
+           "text": "I can talk about my interests and hobbies."
+          },
+          {
+           "code": "IM.IC.2.c",
+           "text": "I can give reasons for my preferences."
+          },
+          {
+           "code": "IM.IC.2.d",
+           "text": "I can give some information about activities I did."
+          },
+          {
+           "code": "IM.IC.2.e",
+           "text": "I can give some information about something I plan to do."
+          },
+          {
+           "code": "IM.IC.2.f",
+           "text": "I can talk about my favorite music, movies, and sports."
+          }
+         ]
+        },
+        {
+         "id": "i-can-use-my-language-to-handle-tasks-related-to",
+         "title": "I can use my language to handle tasks related to my personal needs",
+         "outcomes": [
+          {
+           "code": "IM.IC.3.a",
+           "text": "I can request services, such as phone, computer, or car."
+          },
+          {
+           "code": "IM.IC.3.b",
+           "text": "I can schedule an appointment."
+          },
+          {
+           "code": "IM.IC.3.c",
+           "text": "I can make reservations."
+          }
+         ]
+        },
+        {
+         "id": "i-can-exchange-information-about-subjects-of-spe",
+         "title": "I can exchange information about subjects of special interest to me",
+         "outcomes": [
+          {
+           "code": "IM.IC.4.a",
+           "text": "I can talk about artists from other countries."
+          },
+          {
+           "code": "IM.IC.4.b",
+           "text": "I can talk about historical events."
+          },
+          {
+           "code": "IM.IC.4.c",
+           "text": "I can talk about a mathematics, technology, or science project."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "i-can-participate-with-ease-and-confidence-in-co",
+       "title": "I can participate with ease and confidence in conversations on familiar topics. I can usually talk about events and experiences in various timeframes. I can usually describe people, places, and things. I can handle social interactions in everyday situations, sometimes even when there is an unexpected complication",
+       "subtopics": [
+        {
+         "id": "i-can-exchange-information-related-to-areas-of-m",
+         "title": "I can exchange information related to areas of mutual interest",
+         "outcomes": [
+          {
+           "code": "IH.IC.1.a",
+           "text": "I can provide information about specific events."
+          },
+          {
+           "code": "IH.IC.1.b",
+           "text": "I can ask for and provide information about a hobby or lifestyle, such as bicycling, vegetarianism, video games, or sports."
+          },
+          {
+           "code": "IH.IC.1.c",
+           "text": "I can ask for and provide descriptions of places I know and also places I would like to visit."
+          },
+          {
+           "code": "IH.IC.1.d",
+           "text": "I can talk about my family history."
+          },
+          {
+           "code": "IH.IC.1.e",
+           "text": "I can talk about jobs and career plans."
+          }
+         ]
+        },
+        {
+         "id": "i-can-use-my-language-to-do-a-task-that-requires",
+         "title": "I can use my language to do a task that requires multiple steps",
+         "outcomes": [
+          {
+           "code": "IH.IC.2.a",
+           "text": "I can give the basic rules of a game or sport and answer questions about them."
+          },
+          {
+           "code": "IH.IC.2.b",
+           "text": "I can ask for, follow, and give instructions for preparing food."
+          },
+          {
+           "code": "IH.IC.2.c",
+           "text": "I can ask for and follow directions to get from one place to another."
+          },
+          {
+           "code": "IH.IC.2.d",
+           "text": "I can tell someone how to access information online."
+          },
+          {
+           "code": "IH.IC.2.e",
+           "text": "I can explain basic rules, policies, or laws that affect us in a debate format."
+          }
+         ]
+        },
+        {
+         "id": "i-can-use-my-language-to-handle-a-situation-that",
+         "title": "I can use my language to handle a situation that may have a complication",
+         "outcomes": [
+          {
+           "code": "IH.IC.3.a",
+           "text": "I can arrange for a make-up exam or reschedule an appointment."
+          },
+          {
+           "code": "IH.IC.3.b",
+           "text": "I can return an item I have purchased to a store."
+          },
+          {
+           "code": "IH.IC.3.c",
+           "text": "I can plan an outing with a group of friends."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "i-can-participate-in-conversations-about-familia",
+       "title": "I can participate in conversations about familiar topics that go beyond my everyday life. I can talk in an organized way and with some detail about events and experiences in various timeframes. I can describe people, places, and things in an organized way and with some detail. I can handle a familiar situation with an unexpected complication",
+       "subtopics": [
+        {
+         "id": "i-can-participate-in-conversations-on-a-wide-var",
+         "title": "I can participate in conversations on a wide variety of topics that go beyond my everyday life",
+         "outcomes": [
+          {
+           "code": "AL.IC.1.a",
+           "text": "I can explain absentee and sick leave policies and answer questions about them."
+          },
+          {
+           "code": "AL.IC.1.b",
+           "text": "I can discuss current issues, such as leash laws, school dress codes, drinking age, or speed limits."
+          },
+          {
+           "code": "AL.IC.1.c",
+           "text": "I can discuss what is currently going on in another community or country."
+          }
+         ]
+        },
+        {
+         "id": "i-can-compare-and-contrast-life-in-different-loc",
+         "title": "I can compare and contrast life in different locations and in different times",
+         "outcomes": [
+          {
+           "code": "AL.IC.2.a",
+           "text": "I can explain how life has changed since I was a child and answer questions about my explanation."
+          },
+          {
+           "code": "AL.IC.2.b",
+           "text": "I can compare different jobs and study programs in discussing them with a peer."
+          },
+          {
+           "code": "AL.IC.2.c",
+           "text": "I can explain how technology has changed our lives and enter into a debate on this topic."
+          }
+         ]
+        },
+        {
+         "id": "i-can-resolve-an-unexpected-complication-that-ar",
+         "title": "I can resolve an unexpected complication that arises in a familiar situation",
+         "outcomes": [
+          {
+           "code": "AL.IC.3.a",
+           "text": "I can rearrange my itinerary, such as flights, pick-up times, and appointments when I experience travel delays."
+          },
+          {
+           "code": "AL.IC.3.b",
+           "text": "I can tell a friend how I'm going to replace an item that I borrowed and broke/lost."
+          },
+          {
+           "code": "AL.IC.3.c",
+           "text": "I can explain why I was late to class or absent from work and arrange to make up the lost time."
+          }
+         ]
+        },
+        {
+         "id": "i-can-conduct-or-participate-in-interviews",
+         "title": "I can conduct or participate in interviews",
+         "outcomes": [
+          {
+           "code": "AL.IC.4.a",
+           "text": "I can interview for a job or service opportunity related to my field of expertise."
+          },
+          {
+           "code": "AL.IC.4.b",
+           "text": "I can interview someone about his/her professional interests and activities."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "i-can-express-myself-fully-not-only-on-familiar-",
+       "title": "I can express myself fully not only on familiar topics but also on some concrete social, academic, and professional topics. I can talk in detail and in an organized way about events and experiences in various timeframes. I can confidently handle routine situations with an unexpected complication. I can share my point of view in discussions on some complex issues",
+       "subtopics": [
+        {
+         "id": "i-can-communicate-effectively-on-a-wide-variety-",
+         "title": "I can communicate effectively on a wide variety of present, past, and future events",
+         "outcomes": [
+          {
+           "code": "AM.IC.1.a",
+           "text": "I can give a clear and detailed story about childhood memories, or memorable events and answer questions about my explanation."
+          },
+          {
+           "code": "AM.IC.1.b",
+           "text": "I can give clear descriptions about cultural events and respond to questions about them."
+          },
+          {
+           "code": "AM.IC.1.c",
+           "text": "I can talk about present challenges in my school or work life, such as paying for classes or dealing with difficult colleagues."
+          },
+          {
+           "code": "AM.IC.1.d",
+           "text": "I can discuss future plans, such as where I want to settle down or what I will be doing in the next few years."
+          }
+         ]
+        },
+        {
+         "id": "i-can-exchange-general-information-on-topics-out",
+         "title": "I can exchange general information on topics outside my fields of interest",
+         "outcomes": [
+          {
+           "code": "AM.IC.2.a",
+           "text": "I can exchange general information about my community, such as demographic information and points of interests."
+          },
+          {
+           "code": "AM.IC.2.b",
+           "text": "I can exchange general information about leisure and travel, such as the world's most visited sites or most beautiful places to visit."
+          },
+          {
+           "code": "AM.IC.2.c",
+           "text": "I can exchange factual information about social and environmental questions, such as retirement, recycling, or pollution."
+          }
+         ]
+        },
+        {
+         "id": "i-can-handle-a-complication-or-unexpected-turn-o",
+         "title": "I can handle a complication or unexpected turn of events",
+         "outcomes": [
+          {
+           "code": "AM.IC.3.a",
+           "text": "I can return or exchange a purchase when a vendor makes a mistake or when parts are missing."
+          },
+          {
+           "code": "AM.IC.3.b",
+           "text": "I can clear up a major personal, school, or work place misunderstanding."
+          },
+          {
+           "code": "AM.IC.3.c",
+           "text": "I can explain an injury or illness and manage to get help."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "i-can-express-myself-freely-and-spontaneously-an",
+       "title": "I can express myself freely and spontaneously, and for the most part accurately, on concrete topics and on most complex issues. I can usually support my opinion and develop hypotheses on topics of particular interest or personal expertise",
+       "subtopics": [
+        {
+         "id": "i-can-exchange-complex-information-about-academi",
+         "title": "I can exchange complex information about academic and professional tasks",
+         "outcomes": [
+          {
+           "code": "AH.IC.1.a",
+           "text": "I can exchange complex information about my academic studies, such as why I chose the field, course requirements, projects, internship opportunities, and new advances in my field."
+          },
+          {
+           "code": "AH.IC.1.b",
+           "text": "I can exchange complex information about my work responsibilities, such as the hiring process, my work schedule, the nature of my tasks, how I interface with other employees, opportunities for advancement, and new directions in my field."
+          },
+          {
+           "code": "AH.IC.1.c",
+           "text": "I can exchange complex professional or academic information to engage in collaborative work with my counterparts in different regions or countries."
+          }
+         ]
+        },
+        {
+         "id": "i-can-exchange-detailed-information-on-topics-wi",
+         "title": "I can exchange detailed information on topics within and beyond my fields of interest",
+         "outcomes": [
+          {
+           "code": "AH.IC.2.a",
+           "text": "I can exchange detailed information about my personal and professional interests."
+          },
+          {
+           "code": "AH.IC.2.b",
+           "text": "I can exchange detailed information on technological advances."
+          },
+          {
+           "code": "AH.IC.2.c",
+           "text": "I can participate in conversations on social or cultural questions relevant to speakers of this language."
+          }
+         ]
+        },
+        {
+         "id": "i-can-support-my-opinion-and-construct-hypothese",
+         "title": "I can support my opinion and construct hypotheses",
+         "outcomes": [
+          {
+           "code": "AH.IC.3.a",
+           "text": "I can give a supported argument about work-related processes that would benefit me and my employer."
+          },
+          {
+           "code": "AH.IC.3.b",
+           "text": "I can give a supported argument about social reform, such as daycare and elder care."
+          },
+          {
+           "code": "AH.IC.3.c",
+           "text": "I can usually defend my views in a debate."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "presentational-speaking",
+     "title": "Presentational Speaking",
+     "topics": [
+      {
+       "id": "i-can-present-information-about-myself-and-some-",
+       "title": "I can present information about myself and some other very familiar topics using a variety of words, phrases, and memorized expressions",
+       "subtopics": [
+        {
+         "id": "i-can-present-information-about-myself-and-other",
+         "title": "I can present information about myself and others using words and phrases",
+         "outcomes": [
+          {
+           "code": "NM.PS.1.a",
+           "text": "I can say what I look like."
+          },
+          {
+           "code": "NM.PS.1.b",
+           "text": "I can say what I am like."
+          },
+          {
+           "code": "NM.PS.1.c",
+           "text": "I can say what someone looks like."
+          },
+          {
+           "code": "NM.PS.1.d",
+           "text": "I can say what someone is like."
+          }
+         ]
+        },
+        {
+         "id": "i-can-express-my-likes-and-dislikes-using-words-",
+         "title": "I can express my likes and dislikes using words, phrases, and memorized expressions",
+         "outcomes": [
+          {
+           "code": "NM.PS.2.a",
+           "text": "I can say which sports I like and don't like."
+          },
+          {
+           "code": "NM.PS.2.b",
+           "text": "I can list my favorite free-time activities and those I don't like."
+          },
+          {
+           "code": "NM.PS.2.c",
+           "text": "I can state my favorite foods and drinks and those I don't like."
+          }
+         ]
+        },
+        {
+         "id": "i-can-present-information-about-familiar-items-i",
+         "title": "I can present information about familiar items in my immediate environment",
+         "outcomes": [
+          {
+           "code": "NM.PS.3.a",
+           "text": "I can tell about my house"
+          },
+          {
+           "code": "NM.PS.3.b",
+           "text": "I can tell about my school or where I work."
+          },
+          {
+           "code": "NM.PS.3.c",
+           "text": "I can tell about my room or office and what is in it."
+          },
+          {
+           "code": "NM.PS.3.d",
+           "text": "I can present basic information about my community, town/city, state or country."
+          }
+         ]
+        },
+        {
+         "id": "i-can-tell-about-my-daily-activities-using-words",
+         "title": "I can tell about my daily activities using words, phrases, and memorized expressions",
+         "outcomes": [
+          {
+           "code": "NM.PS.4.a",
+           "text": "I can list my classes and tell what time they start and end."
+          },
+          {
+           "code": "NM.PS.4.b",
+           "text": "I can name activities and their times in my schedule."
+          },
+          {
+           "code": "NM.PS.4.c",
+           "text": "I can tell what I do on the weekends."
+          }
+         ]
+        },
+        {
+         "id": "i-can-present-simple-information-about-something",
+         "title": "I can present simple information about something I learned using words, phrases, and memorized expressions",
+         "outcomes": [
+          {
+           "code": "NM.PS.5.a",
+           "text": "I can talk about holiday celebrations based on pictures or photos."
+          },
+          {
+           "code": "NM.PS.5.b",
+           "text": "I can name the main cities on a map."
+          },
+          {
+           "code": "NM.PS.5.c",
+           "text": "I can talk about animals, colors, foods, historical figures, or sports based on pictures or photos."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "i-can-present-basic-information-on-familiar-topi",
+       "title": "I can present basic information on familiar topics using language I have practiced using phrases and simple sentences",
+       "subtopics": [
+        {
+         "id": "i-can-present-information-about-my-life-using-ph",
+         "title": "I can present information about my life using phrases and simple sentences",
+         "outcomes": [
+          {
+           "code": "NH.PS.1.a",
+           "text": "I can describe my family and friends."
+          },
+          {
+           "code": "NH.PS.1.b",
+           "text": "I can describe my school."
+          },
+          {
+           "code": "NH.PS.1.c",
+           "text": "I can describe where I work and what I do."
+          }
+         ]
+        },
+        {
+         "id": "i-can-present-a-familiar-experience-or-event-in-",
+         "title": "I can present a familiar experience or event in simple terms using phrases and simple sentences",
+         "outcomes": [
+          {
+           "code": "NH.PS.2.a",
+           "text": "I can tell what I do in class or at work."
+          },
+          {
+           "code": "NH.PS.2.b",
+           "text": "I can tell what I do during the weekend."
+          },
+          {
+           "code": "NH.PS.2.c",
+           "text": "I can tell what happens after school or work."
+          }
+         ]
+        },
+        {
+         "id": "i-can-present-information-about-a-familiar-perso",
+         "title": "I can present information about a familiar person, place, or thing using phrases and simple sentences",
+         "outcomes": [
+          {
+           "code": "NH.PS.3.a",
+           "text": "I can describe a useful Web site."
+          },
+          {
+           "code": "NH.PS.3.b",
+           "text": "I can talk about my favorite musical group, actor, or author."
+          },
+          {
+           "code": "NH.PS.3.c",
+           "text": "I can describe a landmark, vacation location, or a place I visit."
+          },
+          {
+           "code": "NH.PS.3.d",
+           "text": "I can talk about a famous person from history."
+          }
+         ]
+        },
+        {
+         "id": "i-can-present-information-about-others-using-phr",
+         "title": "I can present information about others using phrases and simple sentences",
+         "outcomes": [
+          {
+           "code": "NH.PS.4.a",
+           "text": "I can talk about others' likes and dislikes"
+          },
+          {
+           "code": "NH.PS.4.b",
+           "text": "I can talk about others' free-time activities."
+          },
+          {
+           "code": "NH.PS.4.c",
+           "text": "I can give basic biographical information about others."
+          }
+         ]
+        },
+        {
+         "id": "i-can-give-basic-instructions-on-how-to-make-or-",
+         "title": "I can give basic instructions on how to make or do something using phrases and simple sentences",
+         "outcomes": [
+          {
+           "code": "NH.PS.5.a",
+           "text": "I can tell how to prepare something simple to eat."
+          },
+          {
+           "code": "NH.PS.5.b",
+           "text": "I can describe a simple routine, like getting lunch in the cafeteria."
+          },
+          {
+           "code": "NH.PS.5.c",
+           "text": "I can give simple directions to a nearby location or to an online resource."
+          }
+         ]
+        },
+        {
+         "id": "i-can-present-basic-information-about-things-i-h",
+         "title": "I can present basic information about things I have learned using phrases and simple sentences",
+         "outcomes": [
+          {
+           "code": "NH.PS.6.a",
+           "text": "I can describe a simple process like a science experiment."
+          },
+          {
+           "code": "NH.PS.6.b",
+           "text": "I can present information about a topic from a lesson based on pictures or photos."
+          },
+          {
+           "code": "NH.PS.6.c",
+           "text": "I can present information about something I learned in a class or at work"
+          },
+          {
+           "code": "NH.PS.6.d",
+           "text": "I can present information about something I learned in the community."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "i-can-present-information-on-most-familiar-topic",
+       "title": "I can present information on most familiar topics using a series of simple sentences",
+       "subtopics": [
+        {
+         "id": "i-can-talk-about-people-activities-events-and-ex",
+         "title": "I can talk about people, activities, events, and experiences",
+         "outcomes": [
+          {
+           "code": "IL.PS.1.a",
+           "text": "I can describe the physical appearance of a friend or family member."
+          },
+          {
+           "code": "IL.PS.1.b",
+           "text": "I can describe another person's personality."
+          },
+          {
+           "code": "IL.PS.1.c",
+           "text": "I can describe a school or workplace."
+          },
+          {
+           "code": "IL.PS.1.d",
+           "text": "I can describe a famous place."
+          },
+          {
+           "code": "IL.PS.1.e",
+           "text": "I can describe a place I have visited or want to visit."
+          },
+          {
+           "code": "IL.PS.1.f",
+           "text": "I can present my ideas about something I have learned."
+          }
+         ]
+        },
+        {
+         "id": "i-can-express-my-needs-and-wants",
+         "title": "I can express my needs and wants",
+         "outcomes": [
+          {
+           "code": "IL.PS.2.a",
+           "text": "I can describe what I need for school or work."
+          },
+          {
+           "code": "IL.PS.2.b",
+           "text": "I can tell what I want to do each day."
+          }
+         ]
+        },
+        {
+         "id": "i-can-present-information-on-plans-instructions-",
+         "title": "I can present information on plans, instructions, and directions",
+         "outcomes": [
+          {
+           "code": "IL.PS.3.a",
+           "text": "I can explain the rules of a game."
+          },
+          {
+           "code": "IL.PS.3.b",
+           "text": "I can give multi-step instructions for preparing a recipe."
+          },
+          {
+           "code": "IL.PS.3.c",
+           "text": "I can describe what my plans are for the weekend."
+          },
+          {
+           "code": "IL.PS.3.d",
+           "text": "I can describe what my summer plans are."
+          },
+          {
+           "code": "IL.PS.3.e",
+           "text": "I can describe holiday or vacation plans."
+          },
+          {
+           "code": "IL.PS.3.f",
+           "text": "I can describe what is needed for a holiday or a celebration."
+          },
+          {
+           "code": "IL.PS.3.g",
+           "text": "I can describe what I plan to do next in my life."
+          }
+         ]
+        },
+        {
+         "id": "i-can-present-songs-short-skits-or-dramatic-read",
+         "title": "I can present songs, short skits or dramatic readings",
+         "outcomes": [
+          {
+           "code": "IL.PS.4.a",
+           "text": "I can retell a children's story."
+          },
+          {
+           "code": "IL.PS.4.b",
+           "text": "I can present a proverb, poem or nursery rhyme."
+          },
+          {
+           "code": "IL.PS.4.c",
+           "text": "I can participate in a performance of a skit or a scene from a play."
+          }
+         ]
+        },
+        {
+         "id": "i-can-express-my-preferences-on-topics-of-intere",
+         "title": "I can express my preferences on topics of interest",
+         "outcomes": [
+          {
+           "code": "IL.PS.5.a",
+           "text": "I can give a presentation about a movie or song that I like."
+          },
+          {
+           "code": "IL.PS.5.b",
+           "text": "I can give a presentation about a famous athlete, celebrity, or historical figure."
+          },
+          {
+           "code": "IL.PS.5.c",
+           "text": "I can express my thoughts about a current event I have learned about or researched."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "i-can-make-presentations-on-a-wide-variety-of-fa",
+       "title": "I can make presentations on a wide variety of familiar topics using connected sentences",
+       "subtopics": [
+        {
+         "id": "i-can-make-a-presentation-about-my-personal-and-",
+         "title": "I can make a presentation about my personal and social experiences",
+         "outcomes": [
+          {
+           "code": "IM.PS.1.a",
+           "text": "I can describe a childhood or past experience."
+          },
+          {
+           "code": "IM.PS.1.b",
+           "text": "I can report on a social event that I attended."
+          },
+          {
+           "code": "IM.PS.1.c",
+           "text": "I can make a presentation on something new I learned."
+          },
+          {
+           "code": "IM.PS.1.d",
+           "text": "I can make a presentation about my plans for the future."
+          }
+         ]
+        },
+        {
+         "id": "i-can-make-a-presentation-on-something-i-have-le",
+         "title": "I can make a presentation on something I have learned or researched",
+         "outcomes": [
+          {
+           "code": "IM.PS.2.a",
+           "text": "I can give a short presentation on a current event."
+          },
+          {
+           "code": "IM.PS.2.b",
+           "text": "I can present about a topic from an academic subject, such as science, math, art, etc."
+          },
+          {
+           "code": "IM.PS.2.c",
+           "text": "I can describe how to plan and carry out an event, such as a party or family reunion."
+          },
+          {
+           "code": "IM.PS.2.d",
+           "text": "I can give a short presentation on a famous person, landmark, or cultural event."
+          }
+         ]
+        },
+        {
+         "id": "i-can-make-a-presentation-about-common-interests",
+         "title": "I can make a presentation about common interests and issues and state my viewpoint",
+         "outcomes": [
+          {
+           "code": "IM.PS.3.a",
+           "text": "I can give a presentation about a favorite movie or song and tell why I like it."
+          },
+          {
+           "code": "IM.PS.3.b",
+           "text": "I can give a presentation about a famous person or historical figure and tell why he/she is important."
+          },
+          {
+           "code": "IM.PS.3.c",
+           "text": "I can share my reactions about a current event and explain why the event is in the news."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "i-can-make-presentations-in-a-generally-organize",
+       "title": "I can make presentations in a generally organized way on school, work, and community topics, and on topics I have researched. I can make some presentations on events and experiences in various timeframes",
+       "subtopics": [
+        {
+         "id": "i-can-present-information-on-academic-and-work-t",
+         "title": "I can present information on academic and work topics",
+         "outcomes": [
+          {
+           "code": "IH.PS.1.a",
+           "text": "I can present ideas about something I have learned, such as an historical event, a famous person, or a current environmental issue."
+          },
+          {
+           "code": "IH.PS.1.b",
+           "text": "I can explain a series of steps needed to complete a task or experiment."
+          },
+          {
+           "code": "IH.PS.1.c",
+           "text": "I can explain to someone who was absent what took place in class or on the job."
+          },
+          {
+           "code": "IH.PS.1.d",
+           "text": "I can present my qualifications and goals for an academic program, training, or job."
+          }
+         ]
+        },
+        {
+         "id": "i-can-make-a-presentation-on-events-activities-a",
+         "title": "I can make a presentation on events, activities and topics of particular interest",
+         "outcomes": [
+          {
+           "code": "IH.PS.2.a",
+           "text": "I can make a presentation on something I learned from the media."
+          },
+          {
+           "code": "IH.PS.2.b",
+           "text": "I can make a presentation about an interesting person."
+          },
+          {
+           "code": "IH.PS.2.c",
+           "text": "I can summarize a personal, historical, or cultural event."
+          },
+          {
+           "code": "IH.PS.2.d",
+           "text": "I can give a presentation about my interests, hobbies, lifestyle, or preferred activities."
+          },
+          {
+           "code": "IH.PS.2.e",
+           "text": "I can make a presentation about the history or current status of a school, organization, or company."
+          },
+          {
+           "code": "IH.PS.2.f",
+           "text": "I can make a presentation about future plans."
+          }
+         ]
+        },
+        {
+         "id": "i-can-present-my-point-of-view-and-provide-reaso",
+         "title": "I can present my point of view and provide reasons to support it",
+         "outcomes": [
+          {
+           "code": "IH.PS.3.a",
+           "text": "I can make a presentation on rules or policies such as cell phone use, dress code, or requirements for driving and explain my viewpoint."
+          },
+          {
+           "code": "IH.PS.3.b",
+           "text": "I can share and justify my opinion on common issues such as allowances for children, curfews for teenagers, budget-related topics, etc."
+          },
+          {
+           "code": "IH.PS.3.c",
+           "text": "I can explain my point of view on current event topics such as recycling, nutrition and exercise, the food supply, conserving energy resources, extreme weather events, etc."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "i-can-deliver-organized-presentations-appropriat",
+       "title": "I can deliver organized presentations appropriate to my audience on a variety of topics. I can present information about events and experiences in various timeframes",
+       "subtopics": [
+        {
+         "id": "i-can-deliver-short-presentations-on-a-number-of",
+         "title": "I can deliver short presentations on a number of academic and workplace topics",
+         "outcomes": [
+          {
+           "code": "AL.PS.1.a",
+           "text": "I can present an explanation for a work or school process, project, or policy."
+          },
+          {
+           "code": "AL.PS.1.b",
+           "text": "I can provide a rationale for the importance of certain classes, subjects, or training programs."
+          },
+          {
+           "code": "AL.PS.1.c",
+           "text": "I can present a summary of an action plan or annual report for a club or work group."
+          }
+         ]
+        },
+        {
+         "id": "i-can-deliver-short-presentations-on-social-and-",
+         "title": "I can deliver short presentations on social and cultural topics",
+         "outcomes": [
+          {
+           "code": "AL.PS.2.a",
+           "text": "I can present an explanation for a social or community project or policy."
+          },
+          {
+           "code": "AL.PS.2.b",
+           "text": "I can give a presentation about the importance of certain social and cultural practices."
+          },
+          {
+           "code": "AL.PS.2.c",
+           "text": "I can give a presentation on traditions related to social events such as homecoming, graduation, marriages, funerals, etc."
+          },
+          {
+           "code": "AL.PS.2.d",
+           "text": "I can present a summary of an action plan or annual report for a community or social organization."
+          }
+         ]
+        },
+        {
+         "id": "i-can-explain-issues-of-public-and-community-int",
+         "title": "I can explain issues of public and community interest, including different viewpoints",
+         "outcomes": [
+          {
+           "code": "AL.PS.3.a",
+           "text": "I can present reasons for or against a position on a political or social issue."
+          },
+          {
+           "code": "AL.PS.3.b",
+           "text": "I can make a presentation related to public health or safety."
+          },
+          {
+           "code": "AL.PS.3.c",
+           "text": "I can present a position during a formal debate."
+          },
+          {
+           "code": "AL.PS.3.d",
+           "text": "I can make a presentation promoting an event, a service, or a product."
+          }
+         ]
+        },
+        {
+         "id": "i-can-deliver-presentations-for-a-specific-audie",
+         "title": "I can deliver presentations for a specific audience",
+         "outcomes": [
+          {
+           "code": "AL.PS.4.a",
+           "text": "I can deliver a presentation to my classmates or colleagues."
+          },
+          {
+           "code": "AL.PS.4.b",
+           "text": "I can make presentations about special opportunities such as internships and study abroad."
+          },
+          {
+           "code": "AL.PS.4.c",
+           "text": "I can provide an explanation about a process or procedure such as obtaining a driver's license, submitting an application for college admission, or applying for a scholarship or financial aid, etc."
+          },
+          {
+           "code": "AL.PS.4.d",
+           "text": "I can present an overview about my school, community, or workplace."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "i-can-deliver-well-organized-presentations-on-co",
+       "title": "I can deliver well-organized presentations on concrete social, academic, and professional topics. I can present detailed information about events and experiences in various timeframes",
+       "subtopics": [
+        {
+         "id": "i-can-present-information-about-events-of-public",
+         "title": "I can present information about events of public or personal interest",
+         "outcomes": [
+          {
+           "code": "AM.PS.1.a",
+           "text": "I can recount the details of an historical event."
+          },
+          {
+           "code": "AM.PS.1.b",
+           "text": "I can present in detail the plot, setting, characters, etc. of a film or book."
+          },
+          {
+           "code": "AM.PS.1.c",
+           "text": "I can describe in detail a social event or a local celebration."
+          },
+          {
+           "code": "AM.PS.1.d",
+           "text": "I can present a full account of the social and cultural activities from a recent trip or excursion."
+          },
+          {
+           "code": "AM.PS.1.e",
+           "text": "I can tell a story to a particular audience for dramatic effect."
+          },
+          {
+           "code": "AM.PS.1.f",
+           "text": "I can incorporate simple analogies into presentations."
+          },
+          {
+           "code": "AM.PS.1.g",
+           "text": "I can give an accurate description of something I participated in or witnessed."
+          }
+         ]
+        },
+        {
+         "id": "i-can-convey-my-ideas-and-elaborate-on-a-variety",
+         "title": "I can convey my ideas and elaborate on a variety of academic topics",
+         "outcomes": [
+          {
+           "code": "AM.PS.2.a",
+           "text": "I can make presentations on a variety of subjects I have researched."
+          },
+          {
+           "code": "AM.PS.2.b",
+           "text": "I can teach a lesson to a particular audience."
+          },
+          {
+           "code": "AM.PS.2.c",
+           "text": "I can give detailed presentations on the process and the outcome of an experiment, research study, etc."
+          },
+          {
+           "code": "AM.PS.2.d",
+           "text": "I can make presentations to advocate for educational opportunities such as membership in a club, honor society, study abroad."
+          },
+          {
+           "code": "AM.PS.2.e",
+           "text": "I can give a presentation on a capstone or similar summative project such as a thesis or seminar."
+          }
+         ]
+        },
+        {
+         "id": "i-can-give-presentations-with-ease-and-detail-on",
+         "title": "I can give presentations with ease and detail on a wide variety of topics related to professional interests",
+         "outcomes": [
+          {
+           "code": "AM.PS.3.a",
+           "text": "I can give a presentation about my studies, work, or organization to an outside audience."
+          },
+          {
+           "code": "AM.PS.3.b",
+           "text": "I can advocate for new ideas or innovative approaches related to school, work, or training."
+          },
+          {
+           "code": "AM.PS.3.c",
+           "text": "I can present detailed information to clients, customers, or others."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "i-can-deliver-detailed-presentations-usually-wit",
+       "title": "I can deliver detailed presentations, usually with accuracy, clarity and precision, on a variety of topics and issues related to community interests and some special fields of expertise",
+       "subtopics": [
+        {
+         "id": "i-can-present-complex-information-on-many-concre",
+         "title": "I can present complex information on many concrete topics and related issues",
+         "outcomes": [
+          {
+           "code": "AH.PS.1.a",
+           "text": "I can deliver detailed and well-organized presentations about topics that I have studied, such as modern art or Internet journalism."
+          },
+          {
+           "code": "AH.PS.1.b",
+           "text": "I can present complex information about my work responsibilities, such as interfacing with other employees, and new directions in the field."
+          },
+          {
+           "code": "AH.PS.1.c",
+           "text": "I can give a presentation about cultural influences on society."
+          },
+          {
+           "code": "AH.PS.1.d",
+           "text": "I can speak about the details and value of an experiment I have performed."
+          },
+          {
+           "code": "AH.PS.1.e",
+           "text": "I can incorporate a variety of supporting media and materials such as statistics, analyses, trends, polls, etc. Into a presentation."
+          }
+         ]
+        },
+        {
+         "id": "i-can-present-a-viewpoint-with-supporting-argume",
+         "title": "I can present a viewpoint with supporting arguments on a complex issue",
+         "outcomes": [
+          {
+           "code": "AH.PS.2.a",
+           "text": "I can present a detailed, supported argument about the need for alternative energy sources or other environmental topic."
+          },
+          {
+           "code": "AH.PS.2.b",
+           "text": "I can clearly present a particular political viewpoint."
+          },
+          {
+           "code": "AH.PS.2.c",
+           "text": "I can present an argument in favor of an economic policy and support my opinion with details."
+          },
+          {
+           "code": "AH.PS.2.d",
+           "text": "I can defend or challenge a controversial action taken by a person or group."
+          }
+         ]
+        },
+        {
+         "id": "i-can-use-appropriate-presentational-conventions",
+         "title": "I can use appropriate presentational conventions and strategies",
+         "outcomes": [
+          {
+           "code": "AH.PS.3.a",
+           "text": "I can present a detailed, supported argument about the need for alternative energy sources or other environmental topic."
+          },
+          {
+           "code": "AH.PS.3.b",
+           "text": "I can clearly present a particular political viewpoint."
+          },
+          {
+           "code": "AH.PS.3.c",
+           "text": "I can present an argument in favor of an economic policy and support my opinion with details."
+          },
+          {
+           "code": "AH.PS.3.d",
+           "text": "I can defend a controversial action taken by a person or group."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "presentational-writing",
+     "title": "Presentational Writing",
+     "topics": [
+      {
+       "id": "i-can-write-lists-and-memorized-phrases-on-famil",
+       "title": "I can write lists and memorized phrases on familiar topics",
+       "subtopics": [
+        {
+         "id": "i-can-fill-out-a-simple-form-with-some-basic-per",
+         "title": "I can fill out a simple form with some basic personal information",
+         "outcomes": [
+          {
+           "code": "NM.PW.1.a",
+           "text": "I can fill out a form with my name, address, phone number, birth date, and nationality."
+          },
+          {
+           "code": "NM.PW.1.b",
+           "text": "I can complete a simple online form."
+          },
+          {
+           "code": "NM.PW.1.c",
+           "text": "I can fill out a simple schedule."
+          }
+         ]
+        },
+        {
+         "id": "i-can-write-about-myself-using-learned-phrases-a",
+         "title": "I can write about myself using learned phrases and memorized expressions",
+         "outcomes": [
+          {
+           "code": "NM.PW.2.a",
+           "text": "I can list my likes and dislikes such as favorite subjects, sports, or free-time activities."
+          },
+          {
+           "code": "NM.PW.2.b",
+           "text": "I can list my family members, their ages, their relationship to me, and what they like to do."
+          },
+          {
+           "code": "NM.PW.2.c",
+           "text": "I can list my classes and tell what time they start and end."
+          },
+          {
+           "code": "NM.PW.2.d",
+           "text": "I can write simple statements about where I live."
+          }
+         ]
+        },
+        {
+         "id": "i-can-list-my-daily-activities-and-write-lists-t",
+         "title": "I can list my daily activities and write lists that help me in my day-to-day life",
+         "outcomes": [
+          {
+           "code": "NM.PW.3.a",
+           "text": "I can label activities and their times in my daily schedule."
+          },
+          {
+           "code": "NM.PW.3.b",
+           "text": "I can write about what I do on the weekends."
+          },
+          {
+           "code": "NM.PW.3.c",
+           "text": "I can write a to-do list."
+          },
+          {
+           "code": "NM.PW.3.d",
+           "text": "I can write a shopping list."
+          }
+         ]
+        },
+        {
+         "id": "i-can-write-notes-about-something-i-have-learned",
+         "title": "I can write notes about something I have learned using lists, phrases, and memorized expressions",
+         "outcomes": [
+          {
+           "code": "NM.W.4.a",
+           "text": "I can list the main cities of a specific country."
+          },
+          {
+           "code": "NM.W.4.b",
+           "text": "I can write the phrases and memorized expressions connected with holiday wishes and celebrations in a specific country."
+          },
+          {
+           "code": "NM.W.4.c",
+           "text": "I can create a list of topics and categories using vocabulary I have learned."
+          },
+          {
+           "code": "NM.W.4.d",
+           "text": "I can write something I hear or have heard such as simple information in a phone message or a classroom activity."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "i-can-write-short-messages-and-notes-on-familiar",
+       "title": "I can write short messages and notes on familiar topics related to everyday life",
+       "subtopics": [
+        {
+         "id": "i-can-write-information-about-my-daily-life-in-a",
+         "title": "I can write information about my daily life in a letter, blog, discussion board, or email message",
+         "outcomes": [
+          {
+           "code": "NH.PW.1.a",
+           "text": "I can introduce myself."
+          },
+          {
+           "code": "NH.PW.1.b",
+           "text": "I can describe my family and friends."
+          },
+          {
+           "code": "NH.PW.1.c",
+           "text": "I can describe my school."
+          },
+          {
+           "code": "NH.PW.1.d",
+           "text": "I can describe where I work and what I do."
+          }
+         ]
+        },
+        {
+         "id": "i-can-write-short-notes-using-phrases-and-simple",
+         "title": "I can write short notes using phrases and simple sentences",
+         "outcomes": [
+          {
+           "code": "NH.PW.2.a",
+           "text": "I can write a postcard message."
+          },
+          {
+           "code": "NH.PW.2.b",
+           "text": "I can write a special occasion message such as a birthday or congratulatory note."
+          },
+          {
+           "code": "NH.PW.2.c",
+           "text": "I can write a short announcement, invitation, or thank-you note."
+          }
+         ]
+        },
+        {
+         "id": "i-can-write-about-a-familiar-experience-or-event",
+         "title": "I can write about a familiar experience or event using practiced material",
+         "outcomes": [
+          {
+           "code": "NH.PW.3.a",
+           "text": "I can write what I do in class or at work."
+          },
+          {
+           "code": "NH.PW.3.b",
+           "text": "I can write what happens after school or during the weekend."
+          },
+          {
+           "code": "NH.PW.3.c",
+           "text": "I can write about a website, a field trip, or an activity that I participated in."
+          }
+         ]
+        },
+        {
+         "id": "i-can-write-basic-information-about-things-i-hav",
+         "title": "I can write basic information about things I have learned",
+         "outcomes": [
+          {
+           "code": "NH.PW.4.a",
+           "text": "I can write up a simple process like a science experiment."
+          },
+          {
+           "code": "NH.PW.4.b",
+           "text": "I can write about a topic from a lesson using pictures or photos."
+          },
+          {
+           "code": "NH.PW.4.c",
+           "text": "I can write about something I learned online, in a class, at work, or in the community."
+          }
+         ]
+        },
+        {
+         "id": "i-can-ask-for-information-in-writing",
+         "title": "I can ask for information in writing",
+         "outcomes": [
+          {
+           "code": "NH.PW.5.a",
+           "text": "I can request resources like brochures, posted information"
+          },
+          {
+           "code": "NH.PW.5.b",
+           "text": "I can request an appointment with a classmate, teacher, or colleague."
+          },
+          {
+           "code": "NH.PW.5.c",
+           "text": "I can request an application for a job, membership in a club, or admission to a school or program."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "i-can-write-briefly-about-most-familiar-topics-a",
+       "title": "I can write briefly about most familiar topics and provide information using a series of simple sentences",
+       "subtopics": [
+        {
+         "id": "i-can-write-about-people-activities-events-and-e",
+         "title": "I can write about people, activities, events, and experiences",
+         "outcomes": [
+          {
+           "code": "IL.PW.1.a",
+           "text": "I can describe the physical appearance and personality of a friend or family member."
+          },
+          {
+           "code": "IL.PW.1.b",
+           "text": "I can write about a school, workplace, famous place, or place I have visited."
+          },
+          {
+           "code": "IL.PW.1.c",
+           "text": "I can write about a holiday, vacation, or a typical celebration."
+          },
+          {
+           "code": "IL.PW.1.d",
+           "text": "I can write about something I have learned."
+          },
+          {
+           "code": "IL.PW.1.e",
+           "text": "I can write about what I plan to do next in my life."
+          }
+         ]
+        },
+        {
+         "id": "i-can-prepare-materials-for-a-presentation",
+         "title": "I can prepare materials for a presentation",
+         "outcomes": [
+          {
+           "code": "IL.PW.2.a",
+           "text": "I can write out a draft of a presentation that I plan to present orally."
+          },
+          {
+           "code": "IL.PW.2.b",
+           "text": "I can write an outline of a project or presentation."
+          },
+          {
+           "code": "IL.PW.2.c",
+           "text": "I can write notes for a speech."
+          }
+         ]
+        },
+        {
+         "id": "i-can-write-simply-about-topics-of-interest",
+         "title": "I can write simply about topics of interest",
+         "outcomes": [
+          {
+           "code": "IL.PW.3.a",
+           "text": "I can write about a movie or song that I like."
+          },
+          {
+           "code": "IL.PW.3.b",
+           "text": "I can write about a famous athlete, celebrity, or historical figure."
+          },
+          {
+           "code": "IL.PW.3.c",
+           "text": "I can write a brief explanation of a proverb or nursery rhyme."
+          },
+          {
+           "code": "IL.PW.3.d",
+           "text": "I can write a simple poem."
+          }
+         ]
+        },
+        {
+         "id": "i-can-write-basic-instructions-on-how-to-make-or",
+         "title": "I can write basic instructions on how to make or do something",
+         "outcomes": [
+          {
+           "code": "IL.PW.4.a",
+           "text": "I can write the rules of a game."
+          },
+          {
+           "code": "IL.PW.4.b",
+           "text": "I can write about how to prepare something simple to eat."
+          },
+          {
+           "code": "IL.PW.4.c",
+           "text": "I can write about a simple routine, like getting lunch in the cafeteria."
+          },
+          {
+           "code": "IL.PW.4.d",
+           "text": "I can write simple directions to a nearby location or to an online resource."
+          }
+         ]
+        },
+        {
+         "id": "i-can-write-questions-to-obtain-information",
+         "title": "I can write questions to obtain information",
+         "outcomes": [
+          {
+           "code": "IL.PW.5.a",
+           "text": "I can post a question for discussion or reflection."
+          },
+          {
+           "code": "IL.PW.5.b",
+           "text": "I can develop a simple questionnaire or survey."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "i-can-write-on-a-wide-variety-of-familiar-topics",
+       "title": "I can write on a wide variety of familiar topics using connected sentences",
+       "subtopics": [
+        {
+         "id": "i-can-write-messages-and-announcements",
+         "title": "I can write messages and announcements",
+         "outcomes": [
+          {
+           "code": "IM.PW.1.a",
+           "text": "I can write a message to explain or clarify something."
+          },
+          {
+           "code": "IM.PW.1.b",
+           "text": "I can write about common events and daily routines."
+          },
+          {
+           "code": "IM.PW.1.c",
+           "text": "I can write an autobiographical statement for a contest, study abroad or other special program, or job application."
+          },
+          {
+           "code": "IM.PW.1.d",
+           "text": "I can write an invitation or flyer about an event I am planning."
+          }
+         ]
+        },
+        {
+         "id": "i-can-write-short-reports-about-something-i-have",
+         "title": "I can write short reports about something I have learned or researched",
+         "outcomes": [
+          {
+           "code": "IM.PW.2.a",
+           "text": "I can write a short article on a current event."
+          },
+          {
+           "code": "IM.PW.2.b",
+           "text": "I can write about an academic subject, such as science, math, art, etc."
+          },
+          {
+           "code": "IM.PW.2.c",
+           "text": "I can write the minutes or a summary from a club or other meeting."
+          }
+         ]
+        },
+        {
+         "id": "i-can-compose-communications-for-public-distribu",
+         "title": "I can compose communications for public distribution",
+         "outcomes": [
+          {
+           "code": "IM.PW.3.a",
+           "text": "I can create a flyer for an upcoming event at my school or at work."
+          },
+          {
+           "code": "IM.PW.3.b",
+           "text": "I can write a review of a movie, book, play, exhibit, etc."
+          },
+          {
+           "code": "IM.PW.3.c",
+           "text": "I can post an entry to a blog or a discussion forum."
+          },
+          {
+           "code": "IM.PW.3.d",
+           "text": "I can compose a simple letter, response, or article for a publication."
+          },
+          {
+           "code": "IM.PW.3.e",
+           "text": "I can contribute to a school or work publication."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "i-can-write-on-topics-related-to-school-work-and",
+       "title": "I can write on topics related to school, work, and community in a generally organized way. I can write some simple paragraphs about events and experiences in various timeframes",
+       "subtopics": [
+        {
+         "id": "i-can-write-about-school-and-academic-topics",
+         "title": "I can write about school and academic topics",
+         "outcomes": [
+          {
+           "code": "IH.PW.1.a",
+           "text": "I can write a simple summary about something I have learned."
+          },
+          {
+           "code": "IH.PW.1.b",
+           "text": "I can write a series of steps needed to complete a task, such as for an experiment."
+          },
+          {
+           "code": "IH.PW.1.c",
+           "text": "I can prepare notes for someone who was absent from class or school."
+          },
+          {
+           "code": "IH.PW.1.d",
+           "text": "I can write the content for a multi-media presentation, a handout, a synopsis, etc."
+          }
+         ]
+        },
+        {
+         "id": "i-can-write-about-work-and-career-topics",
+         "title": "I can write about work and career topics",
+         "outcomes": [
+          {
+           "code": "IH.PW.2.a",
+           "text": "I can write a simple summary about an assignment or task."
+          },
+          {
+           "code": "IH.PW.2.b",
+           "text": "I can document the series of steps needed to complete a task or project."
+          },
+          {
+           "code": "IH.PW.2.c",
+           "text": "I can prepare notes for someone who is new or has been absent from a project, team, or work meeting."
+          },
+          {
+           "code": "IH.PW.2.d",
+           "text": "I can draft a work plan."
+          },
+          {
+           "code": "IH.PW.2.e",
+           "text": "I can write the content for a multi-media presentation, a handout, a synopsis, etc."
+          }
+         ]
+        },
+        {
+         "id": "i-can-write-about-community-topics-and-events",
+         "title": "I can write about community topics and events",
+         "outcomes": [
+          {
+           "code": "IH.PW.3.a",
+           "text": "I can write a simple summary about something I have researched."
+          },
+          {
+           "code": "IH.PW.3.b",
+           "text": "I can write the content for a multi-media presentation, a handout, a synopsis, etc."
+          },
+          {
+           "code": "IH.PW.3.c",
+           "text": "I can write the steps needed to complete a task, such as for a community event or a fund raiser."
+          },
+          {
+           "code": "IH.PW.3.d",
+           "text": "I can summarize what has been happening in the community for someone who is new or has been away."
+          }
+         ]
+        },
+        {
+         "id": "i-can-write-about-an-entertainment-or-social-eve",
+         "title": "I can write about an entertainment or social event",
+         "outcomes": [
+          {
+           "code": "IH.PW.4.a",
+           "text": "I can summarize a conversation or interview that I had with someone."
+          },
+          {
+           "code": "IH.PW.4.b",
+           "text": "I can describe an event that I participated in or witnessed."
+          },
+          {
+           "code": "IH.PW.4.c",
+           "text": "I can write a brief summary of the plot of a movie or an episode of a TV show."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "i-can-write-on-general-interest-academic-and-pro",
+       "title": "I can write on general interest, academic, and professional topics. I can write organized paragraphs about events and experiences in various timeframes",
+       "subtopics": [
+        {
+         "id": "i-can-meet-basic-school-and-academic-writing-nee",
+         "title": "I can meet basic school and academic writing needs",
+         "outcomes": [
+          {
+           "code": "AL.PW.1.a",
+           "text": "I can revise class or meeting notes that I have taken for distribution."
+          },
+          {
+           "code": "AL.PW.1.b",
+           "text": "I can draft and revise an essay or composition as part of a school assignment."
+          },
+          {
+           "code": "AL.PW.1.c",
+           "text": "I can write an abstract for a science fair project, research study, or conference."
+          },
+          {
+           "code": "AL.PW.1.d",
+           "text": "I can write summaries or annotations for a research project."
+          }
+         ]
+        },
+        {
+         "id": "i-can-meet-basic-work-and-career-writing-needs",
+         "title": "I can meet basic work and career writing needs",
+         "outcomes": [
+          {
+           "code": "AL.PW.2.a",
+           "text": "I can write an informational memo about a project or event."
+          },
+          {
+           "code": "AL.PW.2.b",
+           "text": "I can write summaries or a multi-step work plan for a new project."
+          },
+          {
+           "code": "AL.PW.2.c",
+           "text": "I can write brief job descriptions or performance reports."
+          },
+          {
+           "code": "AL.PW.2.d",
+           "text": "I can revise meeting notes that I have taken for distribution."
+          },
+          {
+           "code": "AL.PW.2.e",
+           "text": "I can draft and revise a résumé or cover letter."
+          }
+         ]
+        },
+        {
+         "id": "i-can-meet-basic-social-and-civic-writing-needs",
+         "title": "I can meet basic social and civic writing needs",
+         "outcomes": [
+          {
+           "code": "AL.PW.3.a",
+           "text": "I can manage and edit an online journal, blog, or discussion forum."
+          },
+          {
+           "code": "AL.PW.3.b",
+           "text": "I can write an article about an event or project of a club or group."
+          },
+          {
+           "code": "AL.PW.3.c",
+           "text": "I can write a letter of advice or letter to the editor on a social, civic or political issue."
+          },
+          {
+           "code": "AL.PW.3.d",
+           "text": "I can prepare reports and online communications for a social club, community or political group."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "i-can-write-on-a-wide-variety-of-general-interes",
+       "title": "I can write on a wide variety of general interest, professional, and academic topics. I can write well-organized, detailed paragraphs in various timeframes",
+       "subtopics": [
+        {
+         "id": "i-can-write-well-organized-texts-for-a-variety-o",
+         "title": "I can write well organized texts for a variety of academic purposes",
+         "outcomes": [
+          {
+           "code": "AM.PW.1.a",
+           "text": "I can write a research paper on a topic related to my studies or area of specialization."
+          },
+          {
+           "code": "AM.PW.1.b",
+           "text": "I can write a proposal for a project or a research study."
+          },
+          {
+           "code": "AM.PW.1.c",
+           "text": "I can write a newspaper and/or magazine article about an event, project, or research initiative."
+          },
+          {
+           "code": "AM.PW.1.d",
+           "text": "I can write content for instructional resources."
+          }
+         ]
+        },
+        {
+         "id": "i-can-write-well-organized-texts-for-a-variety-o-2",
+         "title": "I can write well-organized texts for a variety of professional purposes",
+         "outcomes": [
+          {
+           "code": "AM.PW.2.a",
+           "text": "I can write letters of recommendation."
+          },
+          {
+           "code": "AM.PW.2.b",
+           "text": "I can write a project proposal or a report."
+          },
+          {
+           "code": "AM.PW.2.c",
+           "text": "I can write about the results of a survey and the recommendations that might follow."
+          },
+          {
+           "code": "AM.PW.2.d",
+           "text": "I can write a statement for a job application."
+          },
+          {
+           "code": "AM.PW.2.e",
+           "text": "I can write performance reviews or project evaluations."
+          },
+          {
+           "code": "AM.PW.2.f",
+           "text": "I can write brochures or other resources for clients or customers."
+          }
+         ]
+        },
+        {
+         "id": "i-can-write-well-organized-texts-for-a-variety-o-3",
+         "title": "I can write well organized texts for a variety of general interest purposes",
+         "outcomes": [
+          {
+           "code": "AM.PW.3.a",
+           "text": "I can write an article for a special interest magazine."
+          },
+          {
+           "code": "AM.PW.3.b",
+           "text": "I can write a family or community history."
+          },
+          {
+           "code": "AM.PW.3.c",
+           "text": "I can write brochures or other resources for community events or fund raising."
+          },
+          {
+           "code": "AM.PW.3.d",
+           "text": "I can write promotional materials."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "i-can-write-extensively-with-significant-precisi",
+       "title": "I can write extensively with significant precision and detail on a variety of topics, most complex issues, and some special fields of expertise",
+       "subtopics": [
+        {
+         "id": "i-can-write-using-target-language-and-culture-co",
+         "title": "I can write using target language and culture conventions to present and elaborate a point of view",
+         "outcomes": [
+          {
+           "code": "AH.PW.1.a",
+           "text": "I can write a position paper on an issue I have researched or that is related to my field of expertise."
+          },
+          {
+           "code": "AH.PW.1.b",
+           "text": "I can express a detailed point of view in a blog or other public forum."
+          },
+          {
+           "code": "AH.PW.1.c",
+           "text": "I can write an editorial piece in order to speculate on outcomes or implications of an issue."
+          }
+         ]
+        },
+        {
+         "id": "i-can-write-using-target-language-and-culture-co-2",
+         "title": "I can write using target language and culture conventions for informal purposes",
+         "outcomes": [
+          {
+           "code": "AH.PW.2.a",
+           "text": "I can write a personal mission statement."
+          },
+          {
+           "code": "AH.PW.2.b",
+           "text": "I can write a statement of purpose related to my professional goals."
+          },
+          {
+           "code": "AH.PW.2.c",
+           "text": "I can write entries in a reflection journal."
+          }
+         ]
+        },
+        {
+         "id": "i-can-write-using-target-language-and-culture-co-3",
+         "title": "I can write using target language and culture conventions for formal purposes",
+         "outcomes": [
+          {
+           "code": "AH.PW.3.a",
+           "text": "I can write an in-depth research paper."
+          },
+          {
+           "code": "AH.PW.3.b",
+           "text": "I can write a policy statement."
+          },
+          {
+           "code": "AH.PW.3.c",
+           "text": "I can contribute to a strategic plan."
+          },
+          {
+           "code": "AH.PW.3.d",
+           "text": "I can create a professional portfolio."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "investigation-of-products-and-practices",
+     "title": "Investigation of Products and Practices",
+     "topics": [
+      {
+       "id": "i-can-identify-some-products-and-practices-of-cu",
+       "title": "I can identify some products and practices of cultures",
+       "subtopics": [
+        {
+         "id": "i-can-identify-some-common-products-related-to-h",
+         "title": "I can identify some common products related to home and community life of other cultures and my own",
+         "outcomes": [
+          {
+           "code": "N.CPP.1.a",
+           "text": "I can identify some geographical features of other countries."
+          },
+          {
+           "code": "N.CPP.1.b",
+           "text": "I can identify familiar landmarks."
+          },
+          {
+           "code": "N.CPP.1.c",
+           "text": "I can recognize some traditional and popular songs."
+          },
+          {
+           "code": "N.CPP.1.d",
+           "text": "I can recognize some similarities and differences between the designs of houses, buildings, or towns."
+          },
+          {
+           "code": "N.CPP.1.e",
+           "text": "I can identify specific locations to have a meal, purchase a ticket, or buy something that I need."
+          },
+          {
+           "code": "N.CPP.1.f",
+           "text": "I can recognize some similarities and differences between my daily schedule and that of a peer in another culture."
+          }
+         ]
+        },
+        {
+         "id": "i-can-identify-some-common-practices-related-to-",
+         "title": "I can identify some common practices related to home and community life of other cultures and my own",
+         "outcomes": [
+          {
+           "code": "N.CPP.2.a",
+           "text": "I can identify some common habits of eating in other cultures."
+          },
+          {
+           "code": "N.CPP.2.b",
+           "text": "I can identify some habits of dress in other cultures."
+          },
+          {
+           "code": "N.CPP.2.c",
+           "text": "I can express the time and date as locals do."
+          },
+          {
+           "code": "N.CPP.2.d",
+           "text": "I can sometimes use the appropriate holiday greeting."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "i-can-identify-common-patterns-in-the-products-a",
+       "title": "I can identify common patterns in the products and practices of a culture",
+       "subtopics": [
+        {
+         "id": "i-can-explore-and-reference-current-and-past-exa",
+         "title": "I can explore and reference current and past examples of authentic cultural products and practices",
+         "outcomes": [
+          {
+           "code": "I.CPP.1.a",
+           "text": "I can understand the main idea and characters of short stories, folk tales, or graphic novels."
+          },
+          {
+           "code": "I.CPP.1.b",
+           "text": "I can recognize and reference famous artists and their works."
+          },
+          {
+           "code": "I.CPP.1.c",
+           "text": "I can understand the main idea of a movie clip or documentary."
+          },
+          {
+           "code": "I.CPP.1.d",
+           "text": "I can talk about a historical figure."
+          },
+          {
+           "code": "I.CPP.1.e",
+           "text": "I can have a simple conversation about a festival."
+          },
+          {
+           "code": "I.CPP.1.f",
+           "text": "I can summarize the contributions of a culture in a blog or multimedia presentation."
+          }
+         ]
+        },
+        {
+         "id": "i-can-compare-and-contrast-some-common-products-",
+         "title": "I can compare and contrast some common products of other cultures and my own",
+         "outcomes": [
+          {
+           "code": "I.CPP.2.a",
+           "text": "I can describe similarities and differences in artwork."
+          },
+          {
+           "code": "I.CPP.2.b",
+           "text": "I can have a simple conversation about educational systems."
+          },
+          {
+           "code": "I.CPP.2.c",
+           "text": "I can provide basic information about countries' governments."
+          },
+          {
+           "code": "I.CPP.2.d",
+           "text": "I can identify similarities among folk tales."
+          }
+         ]
+        },
+        {
+         "id": "i-can-compare-and-contrast-some-behaviors-or-pra",
+         "title": "I can compare and contrast some behaviors or practices of other cultures and my own",
+         "outcomes": [
+          {
+           "code": "I.CPP.3.a",
+           "text": "I can compare and contrast eating habits."
+          },
+          {
+           "code": "I.CPP.3.b",
+           "text": "I can compare and contrast how people buy and sell."
+          },
+          {
+           "code": "I.CPP.3.c",
+           "text": "I can compare and contrast how families interact."
+          },
+          {
+           "code": "I.CPP.3.d",
+           "text": "I can compare and contrast how people celebrate."
+          },
+          {
+           "code": "I.CPP.3.e",
+           "text": "I can compare and contrast how my peers socialize."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "i-can-explain-some-diversity-among-the-products-",
+       "title": "I can explain some diversity among the products and practices in other cultures and my own",
+       "subtopics": [
+        {
+         "id": "i-can-explain-some-of-the-factors-that-contribut",
+         "title": "I can explain some of the factors that contribute to why products and practices vary across cultures",
+         "outcomes": [
+          {
+           "code": "A.CPP.1.a",
+           "text": "I can explain how cultural factors influence art."
+          },
+          {
+           "code": "A.CPP.1.b",
+           "text": "I can explain how popular songs reflect the culture in which they were created."
+          },
+          {
+           "code": "A.CPP.1.c",
+           "text": "I can explain how a country's cuisine is influenced by its regional culture."
+          },
+          {
+           "code": "A.CPP.1.d",
+           "text": "I can explain how creators of advertisements use elements of culture to market their products."
+          },
+          {
+           "code": "A.CPP.1.e",
+           "text": "I can describe the use of cultural elements in filmmaking."
+          }
+         ]
+        },
+        {
+         "id": "i-can-analyze-how-peoples-practices-and-behavior",
+         "title": "I can analyze how peoples' practices and behaviors reflect their cultures",
+         "outcomes": [
+          {
+           "code": "A.CPP.2.a",
+           "text": "I can explain why people worship on a certain day(s) of the week."
+          },
+          {
+           "code": "A.CPP.2.b",
+           "text": "I can explain why practices of disciplining children differ among cultures."
+          },
+          {
+           "code": "A.CPP.2.c",
+           "text": "I can explain some dietary preferences between cultures."
+          },
+          {
+           "code": "A.CPP.2.d",
+           "text": "I can explain some voting practices between cultures."
+          },
+          {
+           "code": "A.CPP.2.e",
+           "text": "I can explain why some cultures prefer certain sports."
+          },
+          {
+           "code": "A.CPP.2.f",
+           "text": "I can sometimes tell the difference between a fashion choice that is personal versus one that is a cultural norm."
+          }
+         ]
+        },
+        {
+         "id": "i-can-explore-topics-of-personal-and-professiona",
+         "title": "I can explore topics of personal and professional interest",
+         "outcomes": [
+          {
+           "code": "A.CPP.3.a",
+           "text": "I can look up some facts about the genealogy of my family in other countries."
+          },
+          {
+           "code": "A.CPP.3.b",
+           "text": "I can research study or internship opportunities abroad."
+          },
+          {
+           "code": "A.CPP.3.c",
+           "text": "I can gather information about topics of personal interest such as hobbies, music, and entertainment from those in other cultures."
+          },
+          {
+           "code": "A.CPP.3.d",
+           "text": "I can research career options and job opportunities in other countries."
+          },
+          {
+           "code": "A.CPP.3.e",
+           "text": "I can research driving regulations in other countries."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "understanding-of-cultural-perspectives",
+     "title": "Understanding of Cultural Perspectives",
+     "topics": [
+      {
+       "id": "i-can-identify-some-basic-cultural-beliefs-and-v",
+       "title": "I can identify some basic cultural beliefs and values",
+       "subtopics": [
+        {
+         "id": "i-can-identify-some-beliefs-and-values-related-t",
+         "title": "I can identify some beliefs and values related to age, gender, social class and ethnicity",
+         "outcomes": [
+          {
+           "code": "N.CP.1.a",
+           "text": "I can sometimes tell the way people address each other differently based on age and social standing."
+          },
+          {
+           "code": "N.CP.1.b",
+           "text": "I can sometimes recognize that appropriate dress is determined by cultural traditions."
+          },
+          {
+           "code": "N.CP.1.c",
+           "text": "I can recognize that gender and age can determine one's role in a family, school, and the workplace."
+          }
+         ]
+        },
+        {
+         "id": "i-can-identify-some-characteristics-of-national-",
+         "title": "I can identify some characteristics of national identity",
+         "outcomes": [
+          {
+           "code": "N.CP.2.a",
+           "text": "I can identify some elements of geography that define a nation."
+          },
+          {
+           "code": "N.CP.2.b",
+           "text": "I can identify symbols that represent a nation."
+          },
+          {
+           "code": "N.CP.2.c",
+           "text": "I can identify the importance of some historical events through their celebration on national holidays and monuments."
+          },
+          {
+           "code": "N.CP.2.d",
+           "text": "I can identify major religions of a nation."
+          }
+         ]
+        },
+        {
+         "id": "i-can-identify-ways-in-which-cultures-are-global",
+         "title": "I can identify ways in which cultures are globalized",
+         "outcomes": [
+          {
+           "code": "N.CP.3.a",
+           "text": "I can identify some similar leisure activities across cultures."
+          },
+          {
+           "code": "N.CP.3.b",
+           "text": "I can identify some similar forms of dress across cultures."
+          },
+          {
+           "code": "N.CP.3.c",
+           "text": "I can identify common fast food restaurants across cultures."
+          },
+          {
+           "code": "N.CP.3.d",
+           "text": "I can identify examples of common technology use across cultures."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "i-can-compare-familiar-cultural-beliefs-and-valu",
+       "title": "I can compare familiar cultural beliefs and values",
+       "subtopics": [
+        {
+         "id": "i-can-describe-some-basic-cultural-viewpoints",
+         "title": "I can describe some basic cultural viewpoints",
+         "outcomes": [
+          {
+           "code": "I.CP.1.a",
+           "text": "I can talk about the individual role of family members and the importance of birth order."
+          },
+          {
+           "code": "I.CP.1.b",
+           "text": "I can give examples that show the importance of academics vs. sports."
+          },
+          {
+           "code": "I.CP.1.c",
+           "text": "I can describe the importance of time vs. money."
+          },
+          {
+           "code": "I.CP.1.d",
+           "text": "I can make simple comparisons about the roles of men and women in society."
+          },
+          {
+           "code": "I.CP.1.e",
+           "text": "I can describe the importance of religion."
+          },
+          {
+           "code": "I.CP.1.f",
+           "text": "I can describe how other cultures view major historical events differently."
+          }
+         ]
+        },
+        {
+         "id": "i-can-make-some-generalizations-about-a-culture",
+         "title": "I can make some generalizations about a culture",
+         "outcomes": [
+          {
+           "code": "I.CP.2.a",
+           "text": "I can sometimes identify cultural stereotypes or exaggerated views of a culture."
+          },
+          {
+           "code": "I.CP.2.b",
+           "text": "I can compare some religious beliefs."
+          },
+          {
+           "code": "I.CP.2.c",
+           "text": "I can classify the political beliefs of a nation in simple terms."
+          },
+          {
+           "code": "I.CP.2.d",
+           "text": "I can determine which TV shows and films are popular in a given culture."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "i-can-analyze-and-explain-some-cultural-perspect",
+       "title": "I can analyze and explain some cultural perspectives of individuals and institutions within a society",
+       "subtopics": [
+        {
+         "id": "i-can-explain-how-peoples-actions-reflect-their-",
+         "title": "I can explain how peoples' actions reflect their cultural beliefs",
+         "outcomes": [
+          {
+           "code": "A.CP.1.a",
+           "text": "I can explain why people place importance on long vacations in some cultures."
+          },
+          {
+           "code": "A.CP.1.b",
+           "text": "I can explain why families in some culture spend more time at meals than others."
+          },
+          {
+           "code": "A.CP.1.c",
+           "text": "I can explain why people hold certain professions in higher regard than others."
+          },
+          {
+           "code": "A.CP.1.d",
+           "text": "I can explain why people arrange marriages in a culture."
+          }
+         ]
+        },
+        {
+         "id": "i-can-explain-how-social-political-religious-and",
+         "title": "I can explain how social, political, religious, and economic institutions reflect cultural beliefs",
+         "outcomes": [
+          {
+           "code": "A.CP.2.a",
+           "text": "I can explain why universal health care is provided in some cultures."
+          },
+          {
+           "code": "A.CP.2.b",
+           "text": "I can explain why a country has a democracy instead of a monarchy."
+          },
+          {
+           "code": "A.CP.2.c",
+           "text": "I can explain why certain symbols are found on places of worship."
+          },
+          {
+           "code": "A.CP.2.d",
+           "text": "I can explain how and why business cards are presented."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "participation-in-cultural-interaction",
+     "title": "Participation in Cultural Interaction",
+     "topics": [
+      {
+       "id": "i-can-function-at-a-survival-level-in-an-authent",
+       "title": "I can function at a survival level in an authentic cultural context",
+       "subtopics": [
+        {
+         "id": "i-can-imitate-some-simple-patterns-of-behavior-i",
+         "title": "I can imitate some simple patterns of behavior in familiar settings across cultures",
+         "outcomes": [
+          {
+           "code": "N.CIA.1.a",
+           "text": "I can imitate appropriate greetings."
+          },
+          {
+           "code": "N.CIA.1.b",
+           "text": "I can recognize and imitate table manners."
+          },
+          {
+           "code": "N.CIA.1.c",
+           "text": "I can sometimes identify what is culturally appropriate to say when gift-giving in situations, such as at a birthday party, New Year's, a wedding, etc."
+          },
+          {
+           "code": "N.CIA.1.d",
+           "text": "I can recognize and imitate culturally appropriate behavior in a restaurant or other public place."
+          }
+         ]
+        },
+        {
+         "id": "i-can-use-memorized-language-and-very-basic-cult",
+         "title": "I can use memorized language and very basic cultural knowledge to interact with others",
+         "outcomes": [
+          {
+           "code": "N.CIA.2.a",
+           "text": "I can sometimes ask and answer questions or make simple comments in a familiar cultural context such a family event or a social event with peers."
+          },
+          {
+           "code": "N.CIA.2.b",
+           "text": "I can understand and mention a general cultural reference, such as a song or movie title, author or composer, in a conversation."
+          },
+          {
+           "code": "N.CIA.2.c",
+           "text": "I can play a simple board or card game with friends."
+          }
+         ]
+        },
+        {
+         "id": "i-can-use-memorized-language-and-very-basic-know",
+         "title": "I can use memorized language, and very basic knowledge of the culture to accomplish simple, routine tasks",
+         "outcomes": [
+          {
+           "code": "N.CIA.3.a",
+           "text": "I can use a city map, GPS, or signs to help me find my way."
+          },
+          {
+           "code": "N.CIA.3.b",
+           "text": "I can recognize and imitate how people count and use money in order to make a purchase."
+          },
+          {
+           "code": "N.CIA.3.c",
+           "text": "I can follow a team's win-loss record from a Web site."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "i-can-interact-at-a-functional-level-in-familiar",
+       "title": "I can interact at a functional level in familiar cultural contexts",
+       "subtopics": [
+        {
+         "id": "i-can-handle-short-interactions-with-peers-and-c",
+         "title": "I can handle short interactions with peers and colleagues in familiar situations at school, work, or play",
+         "outcomes": [
+          {
+           "code": "I.CIA.1.a",
+           "text": "I can usually accept and refuse invitations in a culturally appropriate way."
+          },
+          {
+           "code": "I.CIA.1.b",
+           "text": "I can usually offer and receive gifts in a culturally appropriate way."
+          },
+          {
+           "code": "I.CIA.1.c",
+           "text": "I can usually request assistance in a culturally appropriate way."
+          },
+          {
+           "code": "I.CIA.1.d",
+           "text": "I can respond in a culturally appropriate way when someone sneezes, toasts, pays me a compliment, etc."
+          },
+          {
+           "code": "I.CIA.1.e",
+           "text": "I can use some appropriate cultural conventions such as body language, turn-taking, interrupting, agreeing, etc. when talking with others."
+          }
+         ]
+        },
+        {
+         "id": "i-can-recognize-and-refer-to-elements-of-traditi",
+         "title": "I can recognize and refer to elements of traditional and pop culture",
+         "outcomes": [
+          {
+           "code": "I.CIA.2.a",
+           "text": "I can refer to a historical event."
+          },
+          {
+           "code": "I.CIA.2.b",
+           "text": "I can describe the outcome in a recent election."
+          },
+          {
+           "code": "I.CIA.2.c",
+           "text": "I can talk about the popularity of a hit song."
+          },
+          {
+           "code": "I.CIA.2.d",
+           "text": "I can mention the significance of a work of art in conversation."
+          },
+          {
+           "code": "I.CIA.2.e",
+           "text": "I can describe the difference between a traditional costume and a fashion trend."
+          }
+         ]
+        },
+        {
+         "id": "i-can-sometimes-recognize-when-i-have-caused-a-c",
+         "title": "I can sometimes recognize when I have caused a cultural misunderstanding and try to correct it",
+         "outcomes": [
+          {
+           "code": "I.CIA.3.a",
+           "text": "I can identify the appropriateness of topics and usually participate in conversations about them when attending a social or family event."
+          },
+          {
+           "code": "I.CIA.3.b",
+           "text": "I can sometimes recognize when I have acted or spoken too informally and try to correct it."
+          },
+          {
+           "code": "I.CIA.3.c",
+           "text": "I can sometimes recognize when my attempt at humor is misguided."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "i-can-interact-at-a-competent-level-in-familiar-",
+       "title": "I can interact at a competent level in familiar and some unfamiliar cultural contexts",
+       "subtopics": [
+        {
+         "id": "i-can-comfortably-interact-and-converse-with-pee",
+         "title": "I can comfortably interact and converse with peers and colleagues at school, work, or play",
+         "outcomes": [
+          {
+           "code": "A.CIA.1.a",
+           "text": "I can collaborate on a project with peers from another culture."
+          },
+          {
+           "code": "A.CIA.1.b",
+           "text": "I can interact appropriately when I am a guest in the home of a friend from another culture (bring a proper gift, converse on non-taboo topics, use proper etiquette, etc.)"
+          },
+          {
+           "code": "A.CIA.1.c",
+           "text": "I can engage in social conversations at a sporting event with peers."
+          },
+          {
+           "code": "A.CIA.1.d",
+           "text": "I can differentiate between appropriate and inappropriate topics and participate in conversations about most of them."
+          }
+         ]
+        },
+        {
+         "id": "i-can-interact-with-people-in-some-situations-ou",
+         "title": "I can interact with people in some situations outside of my normal routine",
+         "outcomes": [
+          {
+           "code": "A.CIA.2.a",
+           "text": "I can participate in a professional meeting in a somewhat unfamiliar situation, such as a job interview."
+          },
+          {
+           "code": "A.CIA.2.b",
+           "text": "I can participate in a community service learning project, such as volunteering at a health fair for immigrants."
+          },
+          {
+           "code": "A.CIA.2.c",
+           "text": "I can interview someone for a research project or news article."
+          },
+          {
+           "code": "A.CIA.2.d",
+           "text": "I can carry on a conversation with someone during a job shadowing experience."
+          }
+         ]
+        },
+        {
+         "id": "i-can-navigate-some-formal-and-official-procedur",
+         "title": "I can navigate some formal and official procedures",
+         "outcomes": [
+          {
+           "code": "A.CIA.3.a",
+           "text": "I can follow the steps to make an online purchase from a foreign Web site."
+          },
+          {
+           "code": "A.CIA.3.b",
+           "text": "I can help fill out forms for visas, travel and work permits, and registrations."
+          },
+          {
+           "code": "A.CIA.3.c",
+           "text": "I can explain my point of view in a minor legal procedure such as a traffic violation."
+          }
+         ]
+        },
+        {
+         "id": "i-can-understand-that-a-cultural-faux-pas-has-oc",
+         "title": "I can understand that a cultural faux pas has occurred and understand how to correct it",
+         "outcomes": [
+          {
+           "code": "A.CIA.4.a",
+           "text": "I can recognize when something is culturally inappropriate from the use of language, the tone of voice, or the body language."
+          },
+          {
+           "code": "A.CIA.4.b",
+           "text": "I can understand why a gift I gave was inappropriate and decide what to give the next time."
+          },
+          {
+           "code": "A.CIA.4.c",
+           "text": "I can understand why a comment I made was offensive and decide what to say next time."
+          },
+          {
+           "code": "A.CIA.4.d",
+           "text": "I can understand why what I wore was inappropriate and decide what to wear next time."
+          },
+          {
+           "code": "A.CIA.4.e",
+           "text": "I can understand why the food I served was not appreciated and decide what to serve next time."
+          },
+          {
+           "code": "A.CIA.4.f",
+           "text": "I can write an apology to repair a relationship."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "build": {
+  "builtAt": "2026-10-14T16:20:49.755Z",
+  "model": "none",
+  "usd": 0,
+  "expectedCodes": 771,
+  "coverage": 1,
+  "missingCodes": [],
+  "counts": {
+   "grades": 3,
+   "units": 12,
+   "topics": 73,
+   "subtopics": 197,
+   "outcomes": 771
+  },
+  "warnings": []
+ }
+}

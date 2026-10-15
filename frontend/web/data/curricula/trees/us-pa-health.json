@@ -1,0 +1,1856 @@
+{
+ "id": "us-pa-health",
+ "region": "US",
+ "framework": "Pennsylvania state academic standards: Health Education",
+ "board": null,
+ "qualification": "K-12",
+ "subject": "Health Education",
+ "syllabusCode": null,
+ "gradeSystem": "grade",
+ "source": {
+  "urls": [
+   "https://api.commonstandardsproject.com/api/v1/jurisdictions/5A99211C6D874994A2CFEE2AE40023DD",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/5A99211C6D874994A2CFEE2AE40023DD_D2386177_grade-03",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/5A99211C6D874994A2CFEE2AE40023DD_D2386177_grade-06",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/5A99211C6D874994A2CFEE2AE40023DD_D2386177_grade-09",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/5A99211C6D874994A2CFEE2AE40023DD_D2386177_grade-12"
+  ],
+  "publisher": "Pennsylvania state education agency (machine-readable via Common Standards Project / ASN)",
+  "licence": "CC BY 3.0 US, Desire2Learn Incorporated",
+  "firstExam": "2002"
+ },
+ "grades": [
+  {
+   "grade": "3",
+   "units": [
+    {
+     "id": "concepts-of-health",
+     "title": "Concepts of Health",
+     "topics": [
+      {
+       "id": "stages-of-growth-and-development",
+       "title": "Stages of Growth and Development",
+       "subtopics": [
+        {
+         "id": "stages-of-growth-and-development",
+         "title": "Stages of Growth and Development",
+         "outcomes": [
+          {
+           "code": "10.1.3.A",
+           "text": "Identify and describe the stages of growth and development. infancy childhood adolescence adulthood late adulthood"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "interaction-of-body-systems",
+       "title": "Interaction of Body Systems",
+       "subtopics": [
+        {
+         "id": "interaction-of-body-systems",
+         "title": "Interaction of Body Systems",
+         "outcomes": [
+          {
+           "code": "10.1.3.B",
+           "text": "Identify and know the location and function of the major body organs and systems. circulatory respiratory muscular skeletal digestive"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "nutrition",
+       "title": "Nutrition",
+       "subtopics": [
+        {
+         "id": "nutrition",
+         "title": "Nutrition",
+         "outcomes": [
+          {
+           "code": "10.1.3.C",
+           "text": "Explain the role of the food guide pyramid in helping people eat a healthy diet. food groups number of servings variety of food nutrients"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "alcohol-tobacco-and-chemical-substances",
+       "title": "Alcohol, Tobacco and Chemical Substances",
+       "subtopics": [
+        {
+         "id": "alcohol-tobacco-and-chemical-substances",
+         "title": "Alcohol, Tobacco and Chemical Substances",
+         "outcomes": [
+          {
+           "code": "10.1.3.D",
+           "text": "Know age appropriate drug information. definition of drugs effects of drugs proper use of medicine healthy/unhealthy risk-taking (e.g. inhalant use, smoking) skills to avoid drugs"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "health-problems-and-disease-prevention",
+       "title": "Health Problems and Disease Prevention",
+       "subtopics": [
+        {
+         "id": "health-problems-and-disease-prevention",
+         "title": "Health Problems and Disease Prevention",
+         "outcomes": [
+          {
+           "code": "10.1.3.E",
+           "text": "Identify types and causes of common health problems of children. infectious diseases (e.g., colds, flu, chickenpox) noninfectious diseases (e.g. asthma, hay fever, allergies, lyme disease) germs pathogens heredity"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "healthful-living",
+     "title": "Healthful Living",
+     "topics": [
+      {
+       "id": "health-practices-products-and-services",
+       "title": "Health Practices, Products and Services",
+       "subtopics": [
+        {
+         "id": "health-practices-products-and-services",
+         "title": "Health Practices, Products and Services",
+         "outcomes": [
+          {
+           "code": "10.2.3.A",
+           "text": "Identify personal hygiene practices and community helpers that promote health and prevent the spread of disease."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "health-information-and-consumer-choices",
+       "title": "Health Information and Consumer Choices",
+       "subtopics": [
+        {
+         "id": "health-information-and-consumer-choices",
+         "title": "Health Information and Consumer Choices",
+         "outcomes": [
+          {
+           "code": "10.2.3.B",
+           "text": "Identify health-related information. signs and symbols terminology products and services"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "health-information-and-the-media",
+       "title": "Health Information and the Media",
+       "subtopics": [
+        {
+         "id": "health-information-and-the-media",
+         "title": "Health Information and the Media",
+         "outcomes": [
+          {
+           "code": "10.2.3.C",
+           "text": "Identify media sources that influence health and safety."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "decision-making-skills",
+       "title": "Decision-making Skills",
+       "subtopics": [
+        {
+         "id": "decision-making-skills",
+         "title": "Decision-making Skills",
+         "outcomes": [
+          {
+           "code": "10.2.3.D",
+           "text": "Identify the steps in a decision-making process."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "health-and-the-environment",
+       "title": "Health and the Environment",
+       "subtopics": [
+        {
+         "id": "health-and-the-environment",
+         "title": "Health and the Environment",
+         "outcomes": [
+          {
+           "code": "10.2.3.E",
+           "text": "Identify environmental factors that affect health. pollution (e.g., air, water, noise, soil) waste disposal temperature extremes insects/animals"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "safety-and-injury-prevention",
+     "title": "Safety and Injury Prevention",
+     "topics": [
+      {
+       "id": "safe-unsafe-practices",
+       "title": "Safe/Unsafe Practices",
+       "subtopics": [
+        {
+         "id": "safe-unsafe-practices",
+         "title": "Safe/Unsafe Practices",
+         "outcomes": [
+          {
+           "code": "10.3.3.A",
+           "text": "Recognize safe/unsafe practices in the home, school and community. general (e.g., fire, electrical, animals) modes of transportation(e.g., pedestrian, bicycle, vehicular) outdoor (e.g., play, weather, water) safe around people (e.g., safe/unsafe touch, abuse, stranger, bully)"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "emergency-responses-injury-management",
+       "title": "Emergency Responses/Injury Management",
+       "subtopics": [
+        {
+         "id": "emergency-responses-injury-management",
+         "title": "Emergency Responses/Injury Management",
+         "outcomes": [
+          {
+           "code": "10.3.3.B",
+           "text": "Recognize emergency situations and explain appropriate responses. importance of remaining calm how to call for help simple assistance procedures how to protect self"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "strategies-to-avoid-manage-conflict",
+       "title": "Strategies to Avoid/Manage Conflict",
+       "subtopics": [
+        {
+         "id": "strategies-to-avoid-manage-conflict",
+         "title": "Strategies to Avoid/Manage Conflict",
+         "outcomes": [
+          {
+           "code": "10.3.3.C",
+           "text": "Recognize conflict situations and identify strategies to avoid or resolve. walk away I-statements refusal skills adult intervention"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "safe-practices-in-physical-activity",
+       "title": "Safe Practices in Physical Activity",
+       "subtopics": [
+        {
+         "id": "safe-practices-in-physical-activity",
+         "title": "Safe Practices in Physical Activity",
+         "outcomes": [
+          {
+           "code": "10.3.3.D",
+           "text": "Identify and use safe practices in physical activity settings (e.g., proper equipment, knowledge of rules, sun safety, guidelines of safe play, warm-up, cool-down)."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "physical-activity",
+     "title": "Physical Activity",
+     "topics": [
+      {
+       "id": "physical-activities-that-promote-health-and-fitn",
+       "title": "Physical Activities That Promote Health and Fitness",
+       "subtopics": [
+        {
+         "id": "physical-activities-that-promote-health-and-fitn",
+         "title": "Physical Activities That Promote Health and Fitness",
+         "outcomes": [
+          {
+           "code": "10.4.3.A",
+           "text": "Identify and engage in physical activities that promote physical fitness and health."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "effects-of-regular-participation",
+       "title": "Effects of Regular Participation",
+       "subtopics": [
+        {
+         "id": "effects-of-regular-participation",
+         "title": "Effects of Regular Participation",
+         "outcomes": [
+          {
+           "code": "10.4.3.B",
+           "text": "Know the positive and negative effects of regular participation in moderate to vigorous physical activities."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "responses-of-the-body-systems-to-physical-activi",
+       "title": "Responses of the Body Systems to Physical Activity",
+       "subtopics": [
+        {
+         "id": "responses-of-the-body-systems-to-physical-activi",
+         "title": "Responses of the Body Systems to Physical Activity",
+         "outcomes": [
+          {
+           "code": "10.4.3.C",
+           "text": "Know and recognize changes in body responses during moderate to vigorous physical activity. heart rate breathing rate"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "physical-activity-preferences",
+       "title": "Physical Activity Preferences",
+       "subtopics": [
+        {
+         "id": "physical-activity-preferences",
+         "title": "Physical Activity Preferences",
+         "outcomes": [
+          {
+           "code": "10.4.3.D",
+           "text": "Identify likes and dislikes related to participation in physical activities."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "physical-activity-and-motor-skill-improvement",
+       "title": "Physical Activity and Motor Skill Improvement",
+       "subtopics": [
+        {
+         "id": "physical-activity-and-motor-skill-improvement",
+         "title": "Physical Activity and Motor Skill Improvement",
+         "outcomes": [
+          {
+           "code": "10.4.3.E",
+           "text": "Identify reasons why regular participation in physical activities improves motor skills."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "physical-activity-and-group-interaction",
+       "title": "Physical Activity and Group Interaction",
+       "subtopics": [
+        {
+         "id": "physical-activity-and-group-interaction",
+         "title": "Physical Activity and Group Interaction",
+         "outcomes": [
+          {
+           "code": "10.4.3.F",
+           "text": "Recognize positive and negative interactions of small group activities. roles (e.g., leader, follower) cooperation/sharing on task participation"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "concepts-principles-and-strategies-of-movement",
+     "title": "Concepts, Principles and Strategies of Movement",
+     "topics": [
+      {
+       "id": "movement-skills-and-concepts",
+       "title": "Movement Skills and Concepts",
+       "subtopics": [
+        {
+         "id": "movement-skills-and-concepts",
+         "title": "Movement Skills and Concepts",
+         "outcomes": [
+          {
+           "code": "10.5.3.A",
+           "text": "Recognize and use basic movement skills and concepts. locomotor movements (e.g., run, leap, hop) non-locomotor movements (e.g.,bend, stretch, twist) manipulative movements (e.g., throw, catch, kick) relationships (e.g., over, under, beside) combination movements (e.g., locomotor, non-locomotor, manipulative) space awareness (e.g., self-space, levels, pathways, directions) effort (e.g., speed, force)"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "motor-skill-development",
+       "title": "Motor Skill Development",
+       "subtopics": [
+        {
+         "id": "motor-skill-development",
+         "title": "Motor Skill Development",
+         "outcomes": [
+          {
+           "code": "10.5.3.B",
+           "text": "Recognize and describe the concepts of motor skill development using appropriate vocabulary. form developmental differences critical elements feedback"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "practice-strategies",
+       "title": "Practice Strategies",
+       "subtopics": [
+        {
+         "id": "practice-strategies",
+         "title": "Practice Strategies",
+         "outcomes": [
+          {
+           "code": "10.5.3.C",
+           "text": "Know the function of practice."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "principles-of-exercise-training",
+       "title": "Principles of Exercise/Training",
+       "subtopics": [
+        {
+         "id": "principles-of-exercise-training",
+         "title": "Principles of Exercise/Training",
+         "outcomes": [
+          {
+           "code": "10.5.3.D",
+           "text": "Identify and use principles of exercise to improve movement and fitness activities. frequency/how often to exercise intensity/how hard to exercise time/how long to exercise type/what kind of exercise"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "scientific-principles-that-affect-movement",
+       "title": "Scientific Principles That Affect Movement",
+       "subtopics": [
+        {
+         "id": "scientific-principles-that-affect-movement",
+         "title": "Scientific Principles That Affect Movement",
+         "outcomes": [
+          {
+           "code": "10.5.3.E",
+           "text": "Know and describe scientific principles that affect movement and skills using appropriate vocabulary. gravity force production/absorption balance rotation"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "game-strategies",
+       "title": "Game Strategies",
+       "subtopics": [
+        {
+         "id": "game-strategies",
+         "title": "Game Strategies",
+         "outcomes": [
+          {
+           "code": "10.5.3.F",
+           "text": "Recognize and describe game strategies using appropriate vocabulary. faking/dodging passing/receiving move MOVING to be open defending space following rules of play"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "6",
+   "units": [
+    {
+     "id": "concepts-of-health",
+     "title": "Concepts of Health",
+     "topics": [
+      {
+       "id": "stages-of-growth-and-development",
+       "title": "Stages of Growth and Development",
+       "subtopics": [
+        {
+         "id": "stages-of-growth-and-development",
+         "title": "Stages of Growth and Development",
+         "outcomes": [
+          {
+           "code": "10.1.6.A",
+           "text": "Describe growth and development changes that occur between childhood and adolescence and identify factors that can influence these changes. education socioeconomic"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "interaction-of-body-systems",
+       "title": "Interaction of Body Systems",
+       "subtopics": [
+        {
+         "id": "interaction-of-body-systems",
+         "title": "Interaction of Body Systems",
+         "outcomes": [
+          {
+           "code": "10.1.6.B",
+           "text": "Identify and describe the structure and function of the major body systems. nervous muscular integumentary urinary endocrine reproductive immune"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "nutrition",
+       "title": "Nutrition",
+       "subtopics": [
+        {
+         "id": "nutrition",
+         "title": "Nutrition",
+         "outcomes": [
+          {
+           "code": "10.1.6.C",
+           "text": "Analyze nutritional concepts that impact health. caloric content of foods relationship of food intake and physical activity (energy output) nutrient requirements label reading healthful food selection"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "alcohol-tobacco-and-chemical-substances",
+       "title": "Alcohol, Tobacco and Chemical Substances",
+       "subtopics": [
+        {
+         "id": "alcohol-tobacco-and-chemical-substances",
+         "title": "Alcohol, Tobacco and Chemical Substances",
+         "outcomes": [
+          {
+           "code": "10.1.6.D",
+           "text": "Explain factors that influence childhood and adolescent drug use. peer influence body image (e.g., steroids, enhancers) social acceptance stress media influence decision-making/refusal skills rules, regulations and laws consequences"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "health-problems-and-disease-prevention",
+       "title": "Health Problems and Disease Prevention",
+       "subtopics": [
+        {
+         "id": "health-problems-and-disease-prevention",
+         "title": "Health Problems and Disease Prevention",
+         "outcomes": [
+          {
+           "code": "10.1.6.E",
+           "text": "Identify health problems that can occur throughout life and describe ways to prevent them. diseases (e.g., cancer, diabetes, STD/HIV/AIDS, cardiovascular disease) preventions (i.e. do not smoke, maintain proper weight, eat a balanced diet, practice sexual abstinence, be physically active)"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "healthful-living",
+     "title": "Healthful Living",
+     "topics": [
+      {
+       "id": "health-practices-products-and-services",
+       "title": "Health Practices, Products and Services",
+       "subtopics": [
+        {
+         "id": "health-practices-products-and-services",
+         "title": "Health Practices, Products and Services",
+         "outcomes": [
+          {
+           "code": "10.2.6.A",
+           "text": "Explain the relationship between personal health practices and individual well-being. immunizations health examinations"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "health-information-and-consumer-choices",
+       "title": "Health Information and Consumer Choices",
+       "subtopics": [
+        {
+         "id": "health-information-and-consumer-choices",
+         "title": "Health Information and Consumer Choices",
+         "outcomes": [
+          {
+           "code": "10.2.6.B",
+           "text": "Explain the relationship between health-related information and consumer choices. dietary guidelines/food selection sun exposure guidelines/sunscreen selection"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "health-information-and-the-media",
+       "title": "Health Information and the Media",
+       "subtopics": [
+        {
+         "id": "health-information-and-the-media",
+         "title": "Health Information and the Media",
+         "outcomes": [
+          {
+           "code": "10.2.6.C",
+           "text": "Explain the media's effect on health and safety issues."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "decision-making-skills",
+       "title": "Decision-making Skills",
+       "subtopics": [
+        {
+         "id": "decision-making-skills",
+         "title": "Decision-making Skills",
+         "outcomes": [
+          {
+           "code": "10.2.6.D",
+           "text": "Describe and apply the steps of a decision-making process to health and safety issues."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "health-and-the-environment",
+       "title": "Health and the Environment",
+       "subtopics": [
+        {
+         "id": "health-and-the-environment",
+         "title": "Health and the Environment",
+         "outcomes": [
+          {
+           "code": "10.2.6.E",
+           "text": "Analyze environmental factors that impact health. indoor air quality (e.g., second-hand smoke, allergens) chemicals, metals, gases (e.g., lead, radon, carbon monoxide) radiation natural disasters"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "safety-and-injury-prevention",
+     "title": "Safety and Injury Prevention",
+     "topics": [
+      {
+       "id": "safe-unsafe-practices",
+       "title": "Safe/Unsafe Practices",
+       "subtopics": [
+        {
+         "id": "safe-unsafe-practices",
+         "title": "Safe/Unsafe Practices",
+         "outcomes": [
+          {
+           "code": "10.3.6.A",
+           "text": "Explain and apply safe practices in the home, school and community. emergencies (e.g., fire, natural disasters) personal safety (e.g., home alone, latch key, harassment) communication (e.g., telephone, Internet) violence prevention (e.g., gangs, weapons)"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "emergency-responses-injury-management",
+       "title": "Emergency Responses/Injury Management",
+       "subtopics": [
+        {
+         "id": "emergency-responses-injury-management",
+         "title": "Emergency Responses/Injury Management",
+         "outcomes": [
+          {
+           "code": "10.3.6.B",
+           "text": "Know and apply appropriate emergency responses. basic first aid Heimlich maneuver universal precautions"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "strategies-to-avoid-manage-conflict",
+       "title": "Strategies to Avoid/Manage Conflict",
+       "subtopics": [
+        {
+         "id": "strategies-to-avoid-manage-conflict",
+         "title": "Strategies to Avoid/Manage Conflict",
+         "outcomes": [
+          {
+           "code": "10.3.6.C",
+           "text": "Describe strategies to avoid or manage conflict and violence. anger management peer mediation reflective listening negotiation"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "safe-practices-in-physical-activity",
+       "title": "Safe Practices in Physical Activity",
+       "subtopics": [
+        {
+         "id": "safe-practices-in-physical-activity",
+         "title": "Safe Practices in Physical Activity",
+         "outcomes": [
+          {
+           "code": "10.3.3.D",
+           "text": "Identify and use safe practices in physical activity settings (e.g., proper equipment, knowledge of rules, sun safety, guidelines of safe play, warm-up, cool-down)."
+          },
+          {
+           "code": "10.3.6.D",
+           "text": "Analyze the role of individual responsibility for safety during physical activity."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "physical-activity",
+     "title": "Physical Activity",
+     "topics": [
+      {
+       "id": "physical-activities-that-promote-health-and-fitn",
+       "title": "Physical Activities That Promote Health and Fitness",
+       "subtopics": [
+        {
+         "id": "physical-activities-that-promote-health-and-fitn",
+         "title": "Physical Activities That Promote Health and Fitness",
+         "outcomes": [
+          {
+           "code": "10.4.6.A",
+           "text": "Identify and engage in moderate to vigorous physical activities that contribute to physical fitness and health."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "effects-of-regular-participation",
+       "title": "Effects of Regular Participation",
+       "subtopics": [
+        {
+         "id": "effects-of-regular-participation",
+         "title": "Effects of Regular Participation",
+         "outcomes": [
+          {
+           "code": "10.4.6.B",
+           "text": "Explain the effects of regular participation in moderate to vigorous physical activities on the body systems."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "responses-of-the-body-systems-to-physical-activi",
+       "title": "Responses of the Body Systems to Physical Activity",
+       "subtopics": [
+        {
+         "id": "responses-of-the-body-systems-to-physical-activi",
+         "title": "Responses of the Body Systems to Physical Activity",
+         "outcomes": [
+          {
+           "code": "10.4.6.C",
+           "text": "Identify and apply ways to monitor and assess the body's response to moderate to vigorous physical activity. heart rate monitoring checking blood pressure fitness assessment"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "physical-activity-preferences",
+       "title": "Physical Activity Preferences",
+       "subtopics": [
+        {
+         "id": "physical-activity-preferences",
+         "title": "Physical Activity Preferences",
+         "outcomes": [
+          {
+           "code": "10.4.6.D",
+           "text": "Describe factors that affect childhood physical activity preferences. enjoyment personal interest social experience opportunities to learn new activities parental preference environment"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "physical-activity-and-motor-skill-improvement",
+       "title": "Physical Activity and Motor Skill Improvement",
+       "subtopics": [
+        {
+         "id": "physical-activity-and-motor-skill-improvement",
+         "title": "Physical Activity and Motor Skill Improvement",
+         "outcomes": [
+          {
+           "code": "10.4.6.E",
+           "text": "Identify factors that have an impact on the relationship between regular participation in physical activity and the degree of motor skill improvement. success-oriented activities school-community resources variety of activities time on task"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "physical-activity-and-group-interaction",
+       "title": "Physical Activity and Group Interaction",
+       "subtopics": [
+        {
+         "id": "physical-activity-and-group-interaction",
+         "title": "Physical Activity and Group Interaction",
+         "outcomes": [
+          {
+           "code": "10.4.6.F",
+           "text": "Identify and describe positive and negative interactions of group members in physical activities. leading following teamwork etiquette adherence to rules"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "concepts-principles-and-strategies-of-movement",
+     "title": "Concepts, Principles and Strategies of Movement",
+     "topics": [
+      {
+       "id": "movement-skills-and-concepts",
+       "title": "Movement Skills and Concepts",
+       "subtopics": [
+        {
+         "id": "movement-skills-and-concepts",
+         "title": "Movement Skills and Concepts",
+         "outcomes": [
+          {
+           "code": "10.5.6.A",
+           "text": "Explain and apply the basic movement skills and concepts to create and perform movement sequences and advanced skills."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "motor-skill-development",
+       "title": "Motor Skill Development",
+       "subtopics": [
+        {
+         "id": "motor-skill-development",
+         "title": "Motor Skill Development",
+         "outcomes": [
+          {
+           "code": "10.5.6.B",
+           "text": "Identify and apply the concepts of motor skill development to a variety of basic skills. transfer between skills selecting relevant cues types of feedback movement efficiency product (outcome/result)"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "practice-strategies",
+       "title": "Practice Strategies",
+       "subtopics": [
+        {
+         "id": "practice-strategies",
+         "title": "Practice Strategies",
+         "outcomes": [
+          {
+           "code": "10.5.6.C",
+           "text": "Describe the relationship between practice and skill development."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "principles-of-exercise-training",
+       "title": "Principles of Exercise/Training",
+       "subtopics": [
+        {
+         "id": "principles-of-exercise-training",
+         "title": "Principles of Exercise/Training",
+         "outcomes": [
+          {
+           "code": "10.5.6.D",
+           "text": "Describe and apply the principles of exercise to the components of health-related and skill-related fitness. cardio-respiratory endurance muscular strength muscular endurance flexibility body composition"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "scientific-principles-that-affect-movement",
+       "title": "Scientific Principles That Affect Movement",
+       "subtopics": [
+        {
+         "id": "scientific-principles-that-affect-movement",
+         "title": "Scientific Principles That Affect Movement",
+         "outcomes": [
+          {
+           "code": "10.5.6.E",
+           "text": "Identify and use scientific principles that affect basic movement and skills using appropriate vocabulary. Newton's Laws of Motion application of force static/dynamic balance levers flight"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "game-strategies",
+       "title": "Game Strategies",
+       "subtopics": [
+        {
+         "id": "game-strategies",
+         "title": "Game Strategies",
+         "outcomes": [
+          {
+           "code": "10.5.6.F",
+           "text": "Identify and apply game strategies to basic games and physical activities. give and go one on one peer communication"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "9",
+   "units": [
+    {
+     "id": "concepts-of-health",
+     "title": "Concepts of Health",
+     "topics": [
+      {
+       "id": "stages-of-growth-and-development",
+       "title": "Stages of Growth and Development",
+       "subtopics": [
+        {
+         "id": "stages-of-growth-and-development",
+         "title": "Stages of Growth and Development",
+         "outcomes": [
+          {
+           "code": "10.1.9.A",
+           "text": "Analyze factors that impact growth and development between adolescence and adulthood. relationships (e.g., dating, friendships, peer pressure) interpersonal communication risk factors (e.g., physical inactivity, substance abuse, intentional/unintentional injuries, dietary patterns) abstinence STD and HIV prevention community"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "interaction-of-body-systems",
+       "title": "Interaction of Body Systems",
+       "subtopics": [
+        {
+         "id": "interaction-of-body-systems",
+         "title": "Interaction of Body Systems",
+         "outcomes": [
+          {
+           "code": "10.1.9.B",
+           "text": "Analyze the interdependence existing among the body systems."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "nutrition",
+       "title": "Nutrition",
+       "subtopics": [
+        {
+         "id": "nutrition",
+         "title": "Nutrition",
+         "outcomes": [
+          {
+           "code": "10.1.9.C",
+           "text": "Analyze factors that impact nutritional choices of adolescents. body image advertising dietary guidelines eating disorders peer influence athletic goals"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "alcohol-tobacco-and-chemical-substances",
+       "title": "Alcohol, Tobacco and Chemical Substances",
+       "subtopics": [
+        {
+         "id": "alcohol-tobacco-and-chemical-substances",
+         "title": "Alcohol, Tobacco and Chemical Substances",
+         "outcomes": [
+          {
+           "code": "10.1.9.D",
+           "text": "Analyze prevention and intervention strategies in relation to adolescent and adult drug use. decision-making/refusal skills situation avoidance goal setting professional assistance (e.g., medical, counseling. support groups) parent involvement"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "health-problems-and-disease-prevention",
+       "title": "Health Problems and Disease Prevention",
+       "subtopics": [
+        {
+         "id": "health-problems-and-disease-prevention",
+         "title": "Health Problems and Disease Prevention",
+         "outcomes": [
+          {
+           "code": "10.1.9.E",
+           "text": "Analyze how personal choice, disease and genetics can impact health maintenance and disease prevention."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "healthful-living",
+     "title": "Healthful Living",
+     "topics": [
+      {
+       "id": "health-practices-products-and-services",
+       "title": "Health Practices, Products and Services",
+       "subtopics": [
+        {
+         "id": "health-practices-products-and-services",
+         "title": "Health Practices, Products and Services",
+         "outcomes": [
+          {
+           "code": "10.2.9.A",
+           "text": "Identify and describe health care products and services that impact adolescent health practices."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "health-information-and-consumer-choices",
+       "title": "Health Information and Consumer Choices",
+       "subtopics": [
+        {
+         "id": "health-information-and-consumer-choices",
+         "title": "Health Information and Consumer Choices",
+         "outcomes": [
+          {
+           "code": "10.2.9.B",
+           "text": "Analyze the relationship between health-related information and adolescent consumer choices. tobacco products weight control products"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "health-information-and-the-media",
+       "title": "Health Information and the Media",
+       "subtopics": [
+        {
+         "id": "health-information-and-the-media",
+         "title": "Health Information and the Media",
+         "outcomes": [
+          {
+           "code": "10.2.9.C",
+           "text": "Analyze media health and safety messages and describe their impact on personal health and safety."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "decision-making-skills",
+       "title": "Decision-making Skills",
+       "subtopics": [
+        {
+         "id": "decision-making-skills",
+         "title": "Decision-making Skills",
+         "outcomes": [
+          {
+           "code": "10.2.9.D",
+           "text": "Analyze and apply a decision-making process to adolescent health and safety issues."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "health-and-the-environment",
+       "title": "Health and the Environment",
+       "subtopics": [
+        {
+         "id": "health-and-the-environment",
+         "title": "Health and the Environment",
+         "outcomes": [
+          {
+           "code": "10.2.9.E",
+           "text": "Explain the interrelationship between the environment and personal health. ozone layer/skin cancer availability of health care/individual health air pollution/respiratory disease breeding environments/lyme disease/west nile virus"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "safety-and-injury-prevention",
+     "title": "Safety and Injury Prevention",
+     "topics": [
+      {
+       "id": "safe-unsafe-practices",
+       "title": "Safe/Unsafe Practices",
+       "subtopics": [
+        {
+         "id": "safe-unsafe-practices",
+         "title": "Safe/Unsafe Practices",
+         "outcomes": [
+          {
+           "code": "10.3.9.A",
+           "text": "Analyze the role of individual responsibility for safe practices and injury prevention in the home, school and community. modes of transportation (e.g., pedestrian, bicycle, vehicular, passenger, farm vehicle, all-terrain vehicle) violence prevention in school self-protection in the home self-protection in public places"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "emergency-responses-injury-management",
+       "title": "Emergency Responses/Injury Management",
+       "subtopics": [
+        {
+         "id": "emergency-responses-injury-management",
+         "title": "Emergency Responses/Injury Management",
+         "outcomes": [
+          {
+           "code": "10.3.9.B",
+           "text": "Describe and apply strategies for emergency and long-term management of injuries. rescue breathing water rescue self-care sport injuries"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "strategies-to-avoid-manage-conflict",
+       "title": "Strategies to Avoid/Manage Conflict",
+       "subtopics": [
+        {
+         "id": "strategies-to-avoid-manage-conflict",
+         "title": "Strategies to Avoid/Manage Conflict",
+         "outcomes": [
+          {
+           "code": "10.3.9.C",
+           "text": "Analyze and apply strategies to avoid or manage conflict and violence during adolescence. effective negotiation assertive behavior"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "safe-practices-in-physical-activity",
+       "title": "Safe Practices in Physical Activity",
+       "subtopics": [
+        {
+         "id": "safe-practices-in-physical-activity",
+         "title": "Safe Practices in Physical Activity",
+         "outcomes": [
+          {
+           "code": "10.3.3.D",
+           "text": "Identify and use safe practices in physical activity settings (e.g., proper equipment, knowledge of rules, sun safety, guidelines of safe play, warm-up, cool-down)."
+          },
+          {
+           "code": "10.3.9.D",
+           "text": "Analyze the role of individual responsibility for safety during organized group activities."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "physical-activity",
+     "title": "Physical Activity",
+     "topics": [
+      {
+       "id": "physical-activities-that-promote-health-and-fitn",
+       "title": "Physical Activities That Promote Health and Fitness",
+       "subtopics": [
+        {
+         "id": "physical-activities-that-promote-health-and-fitn",
+         "title": "Physical Activities That Promote Health and Fitness",
+         "outcomes": [
+          {
+           "code": "10.4.9.A",
+           "text": "Analyze and engage in physical activities that are developmentally/individually appropriate and support achievement of personal fitness and activity goals."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "effects-of-regular-participation",
+       "title": "Effects of Regular Participation",
+       "subtopics": [
+        {
+         "id": "effects-of-regular-participation",
+         "title": "Effects of Regular Participation",
+         "outcomes": [
+          {
+           "code": "10.4.9.B",
+           "text": "Analyze the effects of regular participation in moderate to vigorous physical activities in relation to adolescent health improvement. stress management disease prevention weight management"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "responses-of-the-body-systems-to-physical-activi",
+       "title": "Responses of the Body Systems to Physical Activity",
+       "subtopics": [
+        {
+         "id": "responses-of-the-body-systems-to-physical-activi",
+         "title": "Responses of the Body Systems to Physical Activity",
+         "outcomes": [
+          {
+           "code": "10.4.9.C",
+           "text": "Analyze factors that affect the responses of body systems during moderate to vigorous physical activities. exercise (e.g., climate, altitude, location, temperature) healthy fitness zone indivdual fitness status (e.g., cardiorespiratory fitness, muscular endurance, muscular strength, flexibility) drug/substance use/abuse"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "physical-activity-preferences",
+       "title": "Physical Activity Preferences",
+       "subtopics": [
+        {
+         "id": "physical-activity-preferences",
+         "title": "Physical Activity Preferences",
+         "outcomes": [
+          {
+           "code": "10.4.9.D",
+           "text": "Analyze factors that affect physical activity preferences of adolescents. skill competence social benefits previous experience activity confidence"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "physical-activity-and-motor-skill-improvement",
+       "title": "Physical Activity and Motor Skill Improvement",
+       "subtopics": [
+        {
+         "id": "physical-activity-and-motor-skill-improvement",
+         "title": "Physical Activity and Motor Skill Improvement",
+         "outcomes": [
+          {
+           "code": "10.4.9.E",
+           "text": "Analyze factors that impact on the relationship between regular participation in physical activity and motor skill improvement. personal choice developmental differences amount of physical activity authentic practice"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "physical-activity-and-group-interaction",
+       "title": "Physical Activity and Group Interaction",
+       "subtopics": [
+        {
+         "id": "physical-activity-and-group-interaction",
+         "title": "Physical Activity and Group Interaction",
+         "outcomes": [
+          {
+           "code": "10.4.9.F",
+           "text": "Analyze the effects of positive and negative interactions of adolescent group members in physical activities. group dynamics social pressure"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "concepts-principles-and-strategies-of-movement",
+     "title": "Concepts, Principles and Strategies of Movement",
+     "topics": [
+      {
+       "id": "movement-skills-and-concepts",
+       "title": "Movement Skills and Concepts",
+       "subtopics": [
+        {
+         "id": "movement-skills-and-concepts",
+         "title": "Movement Skills and Concepts",
+         "outcomes": [
+          {
+           "code": "10.5.9.A",
+           "text": "Describe and apply the components of skill-related fitness to movement performance. agility balance coordination power reaction time speed"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "motor-skill-development",
+       "title": "Motor Skill Development",
+       "subtopics": [
+        {
+         "id": "motor-skill-development",
+         "title": "Motor Skill Development",
+         "outcomes": [
+          {
+           "code": "10.5.9.B",
+           "text": "Describe and apply concepts of motor skill development that impact the quality of increasingly complex movement. response selection stages of learning a motor skill (i.e. verbal cognitive, motor, automatic) types of skill (i.e. discrete, serial, continuous)"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "practice-strategies",
+       "title": "Practice Strategies",
+       "subtopics": [
+        {
+         "id": "practice-strategies",
+         "title": "Practice Strategies",
+         "outcomes": [
+          {
+           "code": "10.5.9.C",
+           "text": "Identify and apply practice strategies for skill improvement."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "principles-of-exercise-training",
+       "title": "Principles of Exercise/Training",
+       "subtopics": [
+        {
+         "id": "principles-of-exercise-training",
+         "title": "Principles of Exercise/Training",
+         "outcomes": [
+          {
+           "code": "10.5.9.D",
+           "text": "Identify and describe the principles of training using appropriate vocabulary. specificity overload progression aerobic/anaerobic circuit/interval repetition/set"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "scientific-principles-that-affect-movement",
+       "title": "Scientific Principles That Affect Movement",
+       "subtopics": [
+        {
+         "id": "scientific-principles-that-affect-movement",
+         "title": "Scientific Principles That Affect Movement",
+         "outcomes": [
+          {
+           "code": "10.5.9.E",
+           "text": "Analyze and apply scientific and biomechanical principles to complex movements. centripetal/centrifugal force linear motion rotary motion friction/resistance equilibrium number of moving segments"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "game-strategies",
+       "title": "Game Strategies",
+       "subtopics": [
+        {
+         "id": "game-strategies",
+         "title": "Game Strategies",
+         "outcomes": [
+          {
+           "code": "10.5.9.F",
+           "text": "Describe and apply game strategies to complex games and physical activities. offensive strategies defensive strategies time management"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "12",
+   "units": [
+    {
+     "id": "concepts-of-health",
+     "title": "Concepts of Health",
+     "topics": [
+      {
+       "id": "stages-of-growth-and-development",
+       "title": "Stages of Growth and Development",
+       "subtopics": [
+        {
+         "id": "stages-of-growth-and-development",
+         "title": "Stages of Growth and Development",
+         "outcomes": [
+          {
+           "code": "10.1.12.A",
+           "text": "Evaluate factors that impact growth and development during adulthood and late adulthood. acute and chronic illness communicable and non-communicable disease health status relationships (e.g., marriage, divorce, loss) career choice aging process retirement"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "interaction-of-body-systems",
+       "title": "Interaction of Body Systems",
+       "subtopics": [
+        {
+         "id": "interaction-of-body-systems",
+         "title": "Interaction of Body Systems",
+         "outcomes": [
+          {
+           "code": "10.1.12.B",
+           "text": "Evaluate factors that impact the body systems and apply protective/preventive strategies. fitness level environment (e.g., pollutants, available health care) health status (e.g., physical, mental, social) nutrition"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "nutrition",
+       "title": "Nutrition",
+       "subtopics": [
+        {
+         "id": "nutrition",
+         "title": "Nutrition",
+         "outcomes": [
+          {
+           "code": "10.1.12.C",
+           "text": "Analyze factors that impact nutritional choices of adults. cost food preparation (e.g., time, skills) consumer skills (e.g., understanding food labels, evaluating fads) nutritional knowledge changes in nutritional requirements (e.g., age, physical activity level)"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "alcohol-tobacco-and-chemical-substances",
+       "title": "Alcohol, Tobacco and Chemical Substances",
+       "subtopics": [
+        {
+         "id": "alcohol-tobacco-and-chemical-substances",
+         "title": "Alcohol, Tobacco and Chemical Substances",
+         "outcomes": [
+          {
+           "code": "10.1.12.D",
+           "text": "Evaluate issues relating to the use/non-use of drugs. psychology of addiction social impact (e.g., cost, relationships) chemical use and fetal development laws relating to alcohol, tobacco and chemical substances impact on the individual impact on the community"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "health-problems-and-disease-prevention",
+       "title": "Health Problems and Disease Prevention",
+       "subtopics": [
+        {
+         "id": "health-problems-and-disease-prevention",
+         "title": "Health Problems and Disease Prevention",
+         "outcomes": [
+          {
+           "code": "10.1.12.E",
+           "text": "Identify and analyze factors that influence the prevention and control of health problems. research medical advances technology government policies/regulations"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "healthful-living",
+     "title": "Healthful Living",
+     "topics": [
+      {
+       "id": "health-practices-products-and-services",
+       "title": "Health Practices, Products and Services",
+       "subtopics": [
+        {
+         "id": "health-practices-products-and-services",
+         "title": "Health Practices, Products and Services",
+         "outcomes": [
+          {
+           "code": "10.2.12.A",
+           "text": "Evaluate health care products and services that impact adult health practices."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "health-information-and-consumer-choices",
+       "title": "Health Information and Consumer Choices",
+       "subtopics": [
+        {
+         "id": "health-information-and-consumer-choices",
+         "title": "Health Information and Consumer Choices",
+         "outcomes": [
+          {
+           "code": "10.2.12.B",
+           "text": "Assess factors that impact adult health consumer choices. access to health information access to health care cost safety"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "health-information-and-the-media",
+       "title": "Health Information and the Media",
+       "subtopics": [
+        {
+         "id": "health-information-and-the-media",
+         "title": "Health Information and the Media",
+         "outcomes": [
+          {
+           "code": "10.2.12.C",
+           "text": "Compare and contrast the positive and negative effects of the media on adult personal health and safety."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "decision-making-skills",
+       "title": "Decision-making Skills",
+       "subtopics": [
+        {
+         "id": "decision-making-skills",
+         "title": "Decision-making Skills",
+         "outcomes": [
+          {
+           "code": "10.2.12.D",
+           "text": "Examine and apply a decision-making process to the development of short and long-term health goals."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "health-and-the-environment",
+       "title": "Health and the Environment",
+       "subtopics": [
+        {
+         "id": "health-and-the-environment",
+         "title": "Health and the Environment",
+         "outcomes": [
+          {
+           "code": "10.2.12.E",
+           "text": "Analyze the interrelationship between environmental factors and community health. public health policies and laws/health promotion and disease prevention individual choices/maintenance of environment recreational opportunities/health status"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "safety-and-injury-prevention",
+     "title": "Safety and Injury Prevention",
+     "topics": [
+      {
+       "id": "safe-unsafe-practices",
+       "title": "Safe/Unsafe Practices",
+       "subtopics": [
+        {
+         "id": "safe-unsafe-practices",
+         "title": "Safe/Unsafe Practices",
+         "outcomes": [
+          {
+           "code": "10.3.12.A",
+           "text": "Assess the personal and legal consequences of unsafe practices in the home, school or community. loss of personal freedom personal injury loss of income impact on others loss of motor vehicle operator's license"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "emergency-responses-injury-management",
+       "title": "Emergency Responses/Injury Management",
+       "subtopics": [
+        {
+         "id": "emergency-responses-injury-management",
+         "title": "Emergency Responses/Injury Management",
+         "outcomes": [
+          {
+           "code": "10.3.12.B",
+           "text": "Analyze and apply strategies for the management of injuries. CPR advanced first aid"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "strategies-to-avoid-manage-conflict",
+       "title": "Strategies to Avoid/Manage Conflict",
+       "subtopics": [
+        {
+         "id": "strategies-to-avoid-manage-conflict",
+         "title": "Strategies to Avoid/Manage Conflict",
+         "outcomes": [
+          {
+           "code": "10.3.12.C",
+           "text": "Analyze the impact of violence on the victim and surrounding community."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "safe-practices-in-physical-activity",
+       "title": "Safe Practices in Physical Activity",
+       "subtopics": [
+        {
+         "id": "safe-practices-in-physical-activity",
+         "title": "Safe Practices in Physical Activity",
+         "outcomes": [
+          {
+           "code": "10.3.3.D",
+           "text": "Identify and use safe practices in physical activity settings (e.g., proper equipment, knowledge of rules, sun safety, guidelines of safe play, warm-up, cool-down)."
+          },
+          {
+           "code": "10.3.12.D",
+           "text": "Evaluate the benefits, risks and safety factors associated with self-selected life-long physical activities."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "physical-activity",
+     "title": "Physical Activity",
+     "topics": [
+      {
+       "id": "physical-activities-that-promote-health-and-fitn",
+       "title": "Physical Activities That Promote Health and Fitness",
+       "subtopics": [
+        {
+         "id": "physical-activities-that-promote-health-and-fitn",
+         "title": "Physical Activities That Promote Health and Fitness",
+         "outcomes": [
+          {
+           "code": "10.4.12.A",
+           "text": "Evaluate and engage in an individualized physical activity plan that supports achievement of personal fitness and activity goals and promotes life-long participation."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "effects-of-regular-participation",
+       "title": "Effects of Regular Participation",
+       "subtopics": [
+        {
+         "id": "effects-of-regular-participation",
+         "title": "Effects of Regular Participation",
+         "outcomes": [
+          {
+           "code": "10.4.12.B",
+           "text": "Analyze the effects of regular participation in a self-selected program of moderate to vigorous physical activities. social physiological psychological"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "responses-of-the-body-systems-to-physical-activi",
+       "title": "Responses of the Body Systems to Physical Activity",
+       "subtopics": [
+        {
+         "id": "responses-of-the-body-systems-to-physical-activi",
+         "title": "Responses of the Body Systems to Physical Activity",
+         "outcomes": [
+          {
+           "code": "10.4.12.C",
+           "text": "Evaluate how changes in adult health status may affect the responses of the body systems during moderate to vigorous physical activity. aging injury disease"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "physical-activity-preferences",
+       "title": "Physical Activity Preferences",
+       "subtopics": [
+        {
+         "id": "physical-activity-preferences",
+         "title": "Physical Activity Preferences",
+         "outcomes": [
+          {
+           "code": "10.4.12.D",
+           "text": "Evaluate factors that affect physical activity and exercise preferences of adults. personal challenge physical benefits finances motivation access to activity self-improvement"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "physical-activity-and-motor-skill-improvement",
+       "title": "Physical Activity and Motor Skill Improvement",
+       "subtopics": [
+        {
+         "id": "physical-activity-and-motor-skill-improvement",
+         "title": "Physical Activity and Motor Skill Improvement",
+         "outcomes": [
+          {
+           "code": "10.4.12.E",
+           "text": "Analyze the interrelationships among regular participation in physical activity, motor skill improvement and the selection and engagement in lifetime physical activities."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "physical-activity-and-group-interaction",
+       "title": "Physical Activity and Group Interaction",
+       "subtopics": [
+        {
+         "id": "physical-activity-and-group-interaction",
+         "title": "Physical Activity and Group Interaction",
+         "outcomes": [
+          {
+           "code": "10.4.12.F",
+           "text": "Assess and use strategies for enhancing adult group interaction in physical activities. shared responsibility open communication goal setting"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "concepts-principles-and-strategies-of-movement",
+     "title": "Concepts, Principles and Strategies of Movement",
+     "topics": [
+      {
+       "id": "movement-skills-and-concepts",
+       "title": "Movement Skills and Concepts",
+       "subtopics": [
+        {
+         "id": "movement-skills-and-concepts",
+         "title": "Movement Skills and Concepts",
+         "outcomes": [
+          {
+           "code": "10.5.12.A",
+           "text": "Apply knowledge of movement skills, skill-related fitness and movement concepts to identify and evaluate physical activities that promote personal lifelong participation."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "motor-skill-development",
+       "title": "Motor Skill Development",
+       "subtopics": [
+        {
+         "id": "motor-skill-development",
+         "title": "Motor Skill Development",
+         "outcomes": [
+          {
+           "code": "10.5.12.B",
+           "text": "Incorporate and synthesize knowledge of motor skill development concepts to improve the quality of motor skills. open and closed skills short-term and long-term memory aspects of good performance"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "practice-strategies",
+       "title": "Practice Strategies",
+       "subtopics": [
+        {
+         "id": "practice-strategies",
+         "title": "Practice Strategies",
+         "outcomes": [
+          {
+           "code": "10.5.12.C",
+           "text": "Evaluate the impact of practice strategies on skill development and improvement."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "principles-of-exercise-training",
+       "title": "Principles of Exercise/Training",
+       "subtopics": [
+        {
+         "id": "principles-of-exercise-training",
+         "title": "Principles of Exercise/Training",
+         "outcomes": [
+          {
+           "code": "10.5.12.D",
+           "text": "Incorporate and synthesize knowledge of exercise principles, training principles and health and skill-related fitness components to create a fitness program for personal use."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "scientific-principles-that-affect-movement",
+       "title": "Scientific Principles That Affect Movement",
+       "subtopics": [
+        {
+         "id": "scientific-principles-that-affect-movement",
+         "title": "Scientific Principles That Affect Movement",
+         "outcomes": [
+          {
+           "code": "10.5.12.E",
+           "text": "Evaluate movement forms for appropriate application of scientific and biomechanical principles. efficiency of movement mechanical advantage kinetic energy potential energy inertia safety"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "game-strategies",
+       "title": "Game Strategies",
+       "subtopics": [
+        {
+         "id": "game-strategies",
+         "title": "Game Strategies",
+         "outcomes": [
+          {
+           "code": "10.5.12.F",
+           "text": "Analyze the application of game strategies for different categories of physical activities. individual team lifetime outdoor"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "build": {
+  "builtAt": "2026-10-14T16:20:48.034Z",
+  "model": "none",
+  "usd": 0,
+  "expectedCodes": 104,
+  "coverage": 1,
+  "missingCodes": [],
+  "counts": {
+   "grades": 4,
+   "units": 20,
+   "topics": 104,
+   "subtopics": 104,
+   "outcomes": 107
+  },
+  "warnings": []
+ }
+}

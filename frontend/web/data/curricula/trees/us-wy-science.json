@@ -1,0 +1,2587 @@
+{
+ "id": "us-wy-science",
+ "region": "US",
+ "framework": "Wyoming state academic standards: Science",
+ "board": null,
+ "qualification": "K-12",
+ "subject": "Science",
+ "syllabusCode": null,
+ "gradeSystem": "grade",
+ "source": {
+  "urls": [
+   "https://api.commonstandardsproject.com/api/v1/jurisdictions/744704BE56D44FB9B3D18B543FBF9BCC",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/744704BE56D44FB9B3D18B543FBF9BCC_D21190058_grade-01",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/744704BE56D44FB9B3D18B543FBF9BCC_D21190058_grade-02",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/744704BE56D44FB9B3D18B543FBF9BCC_D21190058_grade-03",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/744704BE56D44FB9B3D18B543FBF9BCC_D21190058_grade-04",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/744704BE56D44FB9B3D18B543FBF9BCC_D21190058_grade-05",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/744704BE56D44FB9B3D18B543FBF9BCC_D21190058_grade-06",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/744704BE56D44FB9B3D18B543FBF9BCC_D21190058_grades-07-08",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/744704BE56D44FB9B3D18B543FBF9BCC_D21190058_grades-09-10-11-12",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/744704BE56D44FB9B3D18B543FBF9BCC_D21190058_grade-k"
+  ],
+  "publisher": "Wyoming state education agency (machine-readable via Common Standards Project / ASN)",
+  "licence": "CC BY 3.0 US, D2L Corporation",
+  "firstExam": "2018"
+ },
+ "grades": [
+  {
+   "grade": "K",
+   "units": [
+    {
+     "id": "motion-and-stability-forces-and-interactions",
+     "title": "Motion and Stability: Forces and Interactions",
+     "topics": [
+      {
+       "id": "motion-and-stability-forces-and-interactions",
+       "title": "Motion and Stability: Forces and Interactions",
+       "subtopics": [
+        {
+         "id": "motion-and-stability-forces-and-interactions",
+         "title": "Motion and Stability: Forces and Interactions",
+         "outcomes": [
+          {
+           "code": "SES-K-PS2-1",
+           "text": "Identify the effects of pushes and pulls on the motion of an object."
+          },
+          {
+           "code": "SES-K-PS2-2",
+           "text": "Identify changes in the speed of an object that occur with a push or pull."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "energy",
+     "title": "Energy",
+     "topics": [
+      {
+       "id": "energy",
+       "title": "Energy",
+       "subtopics": [
+        {
+         "id": "energy",
+         "title": "Energy",
+         "outcomes": [
+          {
+           "code": "SES-K-PS3-1",
+           "text": "Identify the effect of sunlight on Earth's surface."
+          },
+          {
+           "code": "SES-K-PS3-2",
+           "text": "Identify structures that will reduce the warming effect of sunlight."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "from-molecules-to-organisms-structures-processes",
+     "title": "From Molecules to Organisms: Structures & Processes",
+     "topics": [
+      {
+       "id": "from-molecules-to-organisms-structures-processes",
+       "title": "From Molecules to Organisms: Structures & Processes",
+       "subtopics": [
+        {
+         "id": "from-molecules-to-organisms-structures-processes",
+         "title": "From Molecules to Organisms: Structures & Processes",
+         "outcomes": [
+          {
+           "code": "SES-K-LS1-1",
+           "text": "Describe the basic needs that animals have for survival."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "earth-s-systems",
+     "title": "Earth's Systems",
+     "topics": [
+      {
+       "id": "earth-s-systems",
+       "title": "Earth's Systems",
+       "subtopics": [
+        {
+         "id": "earth-s-systems",
+         "title": "Earth's Systems",
+         "outcomes": [
+          {
+           "code": "SES-K-ESS2-1",
+           "text": "Identify local weather conditions."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "earth-and-human-activity",
+     "title": "Earth and Human Activity",
+     "topics": [
+      {
+       "id": "earth-and-human-activity",
+       "title": "Earth and Human Activity",
+       "subtopics": [
+        {
+         "id": "earth-and-human-activity",
+         "title": "Earth and Human Activity",
+         "outcomes": [
+          {
+           "code": "SES-K-ESS3-1",
+           "text": "Describe how animals meet their needs based on where they live."
+          },
+          {
+           "code": "SES-K-ESS3-2",
+           "text": "Identify and communicate local forms of severe weather and their warning signals."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "engineering-technology-applications-of-science",
+     "title": "Engineering, Technology, & Applications of Science",
+     "topics": [
+      {
+       "id": "engineering-technology-applications-of-science",
+       "title": "Engineering, Technology, & Applications of Science",
+       "subtopics": [
+        {
+         "id": "engineering-technology-applications-of-science",
+         "title": "Engineering, Technology, & Applications of Science",
+         "outcomes": [
+          {
+           "code": "SES-K-2-ETS1-1",
+           "text": "Identify appropriate tool(s) when presented with a problem."
+          },
+          {
+           "code": "SES-K-2-ETS1-2",
+           "text": "Identify the shape of an object and its function."
+          },
+          {
+           "code": "SES-K-2-ETS1-3",
+           "text": "Identify the differences of two objects designed to solve the same problem."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "1",
+   "units": [
+    {
+     "id": "waves-and-their-applications-in-technologies-for",
+     "title": "Waves and Their Applications in Technologies for Information Transfer",
+     "topics": [
+      {
+       "id": "waves-and-their-applications-in-technologies-for",
+       "title": "Waves and Their Applications in Technologies for Information Transfer",
+       "subtopics": [
+        {
+         "id": "waves-and-their-applications-in-technologies-for",
+         "title": "Waves and Their Applications in Technologies for Information Transfer",
+         "outcomes": [
+          {
+           "code": "SES-1-PS4-1",
+           "text": "Demonstrate that a material can produce sound through vibration."
+          },
+          {
+           "code": "SES-1-PS4-2",
+           "text": "Demonstrate and communicate that objects in darkness can be seen with a light source."
+          },
+          {
+           "code": "SES-1-PS4-3",
+           "text": "Identify a material that will allow a beam of light to shine through."
+          },
+          {
+           "code": "SES-1-PS4-4",
+           "text": "Identify multiple devices that communicate over a distance."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "from-molecules-to-organisms-structures-processes",
+     "title": "From Molecules to Organisms: Structures & Processes",
+     "topics": [
+      {
+       "id": "from-molecules-to-organisms-structures-processes",
+       "title": "From Molecules to Organisms: Structures & Processes",
+       "subtopics": [
+        {
+         "id": "from-molecules-to-organisms-structures-processes",
+         "title": "From Molecules to Organisms: Structures & Processes",
+         "outcomes": [
+          {
+           "code": "SES-1-LS1-1",
+           "text": "Identify an object used by humans that mimics an animal's or a plant's external parts."
+          },
+          {
+           "code": "SES-1-LS1-2",
+           "text": "Identify behavior of parents and offspring that help the offspring survive."
+          },
+          {
+           "code": "SES-1-LS3-1",
+           "text": "Given a variety of choices, match images of parents and their offspring."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "earth-s-place-in-the-universe",
+     "title": "Earth's Place in the Universe",
+     "topics": [
+      {
+       "id": "earth-s-place-in-the-universe",
+       "title": "Earth's Place in the Universe",
+       "subtopics": [
+        {
+         "id": "earth-s-place-in-the-universe",
+         "title": "Earth's Place in the Universe",
+         "outcomes": [
+          {
+           "code": "SES-1-ESS1-1",
+           "text": "Identify which objects are found in the sky during the day and at night."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "engineering-technology-applications-of-science",
+     "title": "Engineering, Technology, & Applications of Science",
+     "topics": [
+      {
+       "id": "engineering-technology-applications-of-science",
+       "title": "Engineering, Technology, & Applications of Science",
+       "subtopics": [
+        {
+         "id": "engineering-technology-applications-of-science",
+         "title": "Engineering, Technology, & Applications of Science",
+         "outcomes": [
+          {
+           "code": "SES-K-2-ETS1-1",
+           "text": "Identify appropriate tool(s) when presented with a problem."
+          },
+          {
+           "code": "SES-K-2-ETS1-2",
+           "text": "Identify the shape of an object and its function."
+          },
+          {
+           "code": "SES-K-2-ETS1-3",
+           "text": "Identify the differences of two objects designed to solve the same problem."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "2",
+   "units": [
+    {
+     "id": "matter-and-its-interactions",
+     "title": "Matter and Its Interactions",
+     "topics": [
+      {
+       "id": "matter-and-its-interactions",
+       "title": "Matter and Its Interactions",
+       "subtopics": [
+        {
+         "id": "matter-and-its-interactions",
+         "title": "Matter and Its Interactions",
+         "outcomes": [
+          {
+           "code": "SES-2-PS1-1",
+           "text": "Describe a material based on its observable properties."
+          },
+          {
+           "code": "SES-2-PS1-2",
+           "text": "Determine the material that is best suited for an intended purpose."
+          },
+          {
+           "code": "SES-2-PS1-3",
+           "text": "Demonstrate that smaller pieces can make a larger object."
+          },
+          {
+           "code": "SES-2-PS1-4",
+           "text": "Participate in a guided investigation which demonstrates how some changes caused by heating and cooling can be reversed and some cannot, and identify an item that changes with heating or cooling."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "ecosystems-interactions-energy-and-dynamics",
+     "title": "Ecosystems: Interactions, Energy, and Dynamics",
+     "topics": [
+      {
+       "id": "ecosystems-interactions-energy-and-dynamics",
+       "title": "Ecosystems: Interactions, Energy, and Dynamics",
+       "subtopics": [
+        {
+         "id": "ecosystems-interactions-energy-and-dynamics",
+         "title": "Ecosystems: Interactions, Energy, and Dynamics",
+         "outcomes": [
+          {
+           "code": "SES-2-LS2-1",
+           "text": "Participate in a guided investigation to determine if plants need water to grow, and communicate any observable changes."
+          },
+          {
+           "code": "SES-2-LS2-2",
+           "text": "Participate in activities that demonstrate pollination or seeding, and communicate a way that seeds are dispersed."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "biological-evolution-unity-diversity",
+     "title": "Biological Evolution: Unity & Diversity",
+     "topics": [
+      {
+       "id": "biological-evolution-unity-diversity",
+       "title": "Biological Evolution: Unity & Diversity",
+       "subtopics": [
+        {
+         "id": "biological-evolution-unity-diversity",
+         "title": "Biological Evolution: Unity & Diversity",
+         "outcomes": [
+          {
+           "code": "SES-2-LS4-1",
+           "text": "Make a model of an animal in its habitat."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "earth-s-systems",
+     "title": "Earth's Systems",
+     "topics": [
+      {
+       "id": "earth-s-systems",
+       "title": "Earth's Systems",
+       "subtopics": [
+        {
+         "id": "earth-s-systems",
+         "title": "Earth's Systems",
+         "outcomes": [
+          {
+           "code": "SES-2-ESS2-1",
+           "text": "Participate in activities that demonstrate a design made to slow or prevent water from passing, and communicate the changes."
+          },
+          {
+           "code": "SES-2-ESS2-2",
+           "text": "Given a visual representation, communicate the difference between bodies of water and landforms."
+          },
+          {
+           "code": "SES-2-ESS2-3",
+           "text": "Participate in a guided investigation and identify different states of matter (ice/solid, water/liquid, and steam/gas)."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "engineering-technology-applications-of-science",
+     "title": "Engineering, Technology, & Applications of Science",
+     "topics": [
+      {
+       "id": "engineering-technology-applications-of-science",
+       "title": "Engineering, Technology, & Applications of Science",
+       "subtopics": [
+        {
+         "id": "engineering-technology-applications-of-science",
+         "title": "Engineering, Technology, & Applications of Science",
+         "outcomes": [
+          {
+           "code": "SES-K-2-ETS1-1",
+           "text": "Identify appropriate tool(s) when presented with a problem."
+          },
+          {
+           "code": "SES-K-2-ETS1-2",
+           "text": "Identify the shape of an object and its function."
+          },
+          {
+           "code": "SES-K-2-ETS1-3",
+           "text": "Identify the differences of two objects designed to solve the same problem."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "3",
+   "units": [
+    {
+     "id": "motion-and-stability-forces-and-interactions",
+     "title": "Motion and Stability: Forces and Interactions",
+     "topics": [
+      {
+       "id": "motion-and-stability-forces-and-interactions",
+       "title": "Motion and Stability: Forces and Interactions",
+       "subtopics": [
+        {
+         "id": "motion-and-stability-forces-and-interactions",
+         "title": "Motion and Stability: Forces and Interactions",
+         "outcomes": [
+          {
+           "code": "SES-3-PS2-1",
+           "text": "Demonstrate how the direction, or speed, of an object will change due to an outside force."
+          },
+          {
+           "code": "SES-3-PS2-2",
+           "text": "Make observations about the pattern(s) of an objects motion to predict future motion."
+          },
+          {
+           "code": "SES-3-PS2-3",
+           "text": "Demonstrate the effects of a magnetic, or electric, interaction between two objects not in contact with each other."
+          },
+          {
+           "code": "SES-3-PS2-4",
+           "text": "Given a simple design problem, explore ways to solve the problem using magnets."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "from-molecules-to-organisms-structures-processes",
+     "title": "From Molecules to Organisms: Structures & Processes",
+     "topics": [
+      {
+       "id": "from-molecules-to-organisms-structures-processes",
+       "title": "From Molecules to Organisms: Structures & Processes",
+       "subtopics": [
+        {
+         "id": "from-molecules-to-organisms-structures-processes",
+         "title": "From Molecules to Organisms: Structures & Processes",
+         "outcomes": [
+          {
+           "code": "SES-3-LS1-1",
+           "text": "Use a model to demonstrate the life cycle of an organism."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "ecosystems-interactions-energy-and-dynamics",
+     "title": "Ecosystems: Interactions, Energy, and Dynamics",
+     "topics": [
+      {
+       "id": "ecosystems-interactions-energy-and-dynamics",
+       "title": "Ecosystems: Interactions, Energy, and Dynamics",
+       "subtopics": [
+        {
+         "id": "ecosystems-interactions-energy-and-dynamics",
+         "title": "Ecosystems: Interactions, Energy, and Dynamics",
+         "outcomes": [
+          {
+           "code": "SES-3-LS2-1",
+           "text": "Use a model to demonstrate that some animals form groups."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "heredity-inheritance-and-variation-of-traits",
+     "title": "Heredity: Inheritance and Variation of Traits",
+     "topics": [
+      {
+       "id": "heredity-inheritance-and-variation-of-traits",
+       "title": "Heredity: Inheritance and Variation of Traits",
+       "subtopics": [
+        {
+         "id": "heredity-inheritance-and-variation-of-traits",
+         "title": "Heredity: Inheritance and Variation of Traits",
+         "outcomes": [
+          {
+           "code": "SES-3-LS3-1",
+           "text": "Use evidence to show how offspring inherit physical traits that resemble those of their parents."
+          },
+          {
+           "code": "SES-3-LS3-2",
+           "text": "Make observations about how an organism's observable traits can be influenced by the environment."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "biological-evolution-unity-diversity",
+     "title": "Biological Evolution: Unity & Diversity",
+     "topics": [
+      {
+       "id": "biological-evolution-unity-diversity",
+       "title": "Biological Evolution: Unity & Diversity",
+       "subtopics": [
+        {
+         "id": "biological-evolution-unity-diversity",
+         "title": "Biological Evolution: Unity & Diversity",
+         "outcomes": [
+          {
+           "code": "SES-3-LS4-1",
+           "text": "Identify fossils as the remains of plants and animals that lived long ago."
+          },
+          {
+           "code": "SES-3-LS4-2",
+           "text": "Use models to identify characteristics that help organisms survive."
+          },
+          {
+           "code": "SES-3-LS4-3",
+           "text": "Determine whether or not an organism is able to survive in a given environment."
+          },
+          {
+           "code": "SES-3-LS4-4",
+           "text": "Identify what happens to organisms when there is a major environmental change."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "earth-s-systems",
+     "title": "Earth's Systems",
+     "topics": [
+      {
+       "id": "earth-s-systems",
+       "title": "Earth's Systems",
+       "subtopics": [
+        {
+         "id": "earth-s-systems",
+         "title": "Earth's Systems",
+         "outcomes": [
+          {
+           "code": "SES-3-ESS2-1",
+           "text": "Use a model to communicate typical weather conditions expected during a particular season."
+          },
+          {
+           "code": "SES-3-ESS2-2",
+           "text": "Describe the local climate."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "earth-and-human-activity",
+     "title": "Earth and Human Activity",
+     "topics": [
+      {
+       "id": "earth-and-human-activity",
+       "title": "Earth and Human Activity",
+       "subtopics": [
+        {
+         "id": "earth-and-human-activity",
+         "title": "Earth and Human Activity",
+         "outcomes": [
+          {
+           "code": "SES-3-ESS3-1",
+           "text": "Communicate a solution that reduces the impacts of weather."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "engineering-technology-applications-of-science",
+     "title": "Engineering, Technology, & Applications of Science",
+     "topics": [
+      {
+       "id": "engineering-technology-applications-of-science",
+       "title": "Engineering, Technology, & Applications of Science",
+       "subtopics": [
+        {
+         "id": "engineering-technology-applications-of-science",
+         "title": "Engineering, Technology, & Applications of Science",
+         "outcomes": [
+          {
+           "code": "SES-3-5-ETS1-1",
+           "text": "Given a solution to a simple design problem, students are able to identify materials needed to solve a simple design problem, provided a variety of materials."
+          },
+          {
+           "code": "SES-3-5-ETS1-2",
+           "text": "Generate more than one possible solution to a problem."
+          },
+          {
+           "code": "SES-3-5-ETS1-3",
+           "text": "Determine whether or not an engineering design product meets criteria, and communicate failure point(s)."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "4",
+   "units": [
+    {
+     "id": "energy",
+     "title": "Energy",
+     "topics": [
+      {
+       "id": "energy",
+       "title": "Energy",
+       "subtopics": [
+        {
+         "id": "energy",
+         "title": "Energy",
+         "outcomes": [
+          {
+           "code": "SES-4-PS3-1",
+           "text": "Demonstrate how the speed of an object is related to the energy of the object."
+          },
+          {
+           "code": "SES-4-PS3-2",
+           "text": "Make observations to describe that heat energy can be transferred from place to place."
+          },
+          {
+           "code": "SES-4-PS3-3",
+           "text": "Demonstrate how a change in energy occurs when objects collide."
+          },
+          {
+           "code": "SES-4-PS3-4",
+           "text": "Identify devices that use different types of energy."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "waves-and-their-applications-in-technologies-for",
+     "title": "Waves and Their Applications in Technologies for Information Transfer",
+     "topics": [
+      {
+       "id": "waves-and-their-applications-in-technologies-for",
+       "title": "Waves and Their Applications in Technologies for Information Transfer",
+       "subtopics": [
+        {
+         "id": "waves-and-their-applications-in-technologies-for",
+         "title": "Waves and Their Applications in Technologies for Information Transfer",
+         "outcomes": [
+          {
+           "code": "SES-4-PS4-1",
+           "text": "Use a model to show what a wave looks like."
+          },
+          {
+           "code": "SES-4-PS4-2",
+           "text": "Use a model to demonstrate that light reflects from some objects."
+          },
+          {
+           "code": "SES-4-PS4-3",
+           "text": "Use a method to send or receive information."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "from-molecules-to-organisms-structures-processes",
+     "title": "From Molecules to Organisms: Structures & Processes",
+     "topics": [
+      {
+       "id": "from-molecules-to-organisms-structures-processes",
+       "title": "From Molecules to Organisms: Structures & Processes",
+       "subtopics": [
+        {
+         "id": "from-molecules-to-organisms-structures-processes",
+         "title": "From Molecules to Organisms: Structures & Processes",
+         "outcomes": [
+          {
+           "code": "SES-4-LS1-1",
+           "text": "Use a model to demonstrate that plants and animals have structures that support their survival."
+          },
+          {
+           "code": "SES-4-LS1-2",
+           "text": "Use a model to describe that animals respond to different types of stimuli."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "earth-s-place-in-the-universe",
+     "title": "Earth's Place in the Universe",
+     "topics": [
+      {
+       "id": "earth-s-place-in-the-universe",
+       "title": "Earth's Place in the Universe",
+       "subtopics": [
+        {
+         "id": "earth-s-place-in-the-universe",
+         "title": "Earth's Place in the Universe",
+         "outcomes": [
+          {
+           "code": "SES-4-ESS1-1",
+           "text": "Describe that landscapes can change."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "earth-s-systems",
+     "title": "Earth's Systems",
+     "topics": [
+      {
+       "id": "earth-s-systems",
+       "title": "Earth's Systems",
+       "subtopics": [
+        {
+         "id": "earth-s-systems",
+         "title": "Earth's Systems",
+         "outcomes": [
+          {
+           "code": "SES-4-ESS2-1",
+           "text": "Use a model to describe an erosion event."
+          },
+          {
+           "code": "SES-4-ESS2-2",
+           "text": "Recognize different kinds of information, from maps, that describe Earth's features."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "earth-and-human-activity",
+     "title": "Earth and Human Activity",
+     "topics": [
+      {
+       "id": "earth-and-human-activity",
+       "title": "Earth and Human Activity",
+       "subtopics": [
+        {
+         "id": "earth-and-human-activity",
+         "title": "Earth and Human Activity",
+         "outcomes": [
+          {
+           "code": "SES-4-ESS3-1",
+           "text": "Describe different types of energy resources."
+          },
+          {
+           "code": "SES-4-ESS3-2",
+           "text": "Recognize the impacts of natural Earth processes on humans."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "engineering-technology-applications-of-science",
+     "title": "Engineering, Technology, & Applications of Science",
+     "topics": [
+      {
+       "id": "engineering-technology-applications-of-science",
+       "title": "Engineering, Technology, & Applications of Science",
+       "subtopics": [
+        {
+         "id": "engineering-technology-applications-of-science",
+         "title": "Engineering, Technology, & Applications of Science",
+         "outcomes": [
+          {
+           "code": "SES-3-5-ETS1-1",
+           "text": "Given a solution to a simple design problem, students are able to identify materials needed to solve a simple design problem, provided a variety of materials."
+          },
+          {
+           "code": "SES-3-5-ETS1-2",
+           "text": "Generate more than one possible solution to a problem."
+          },
+          {
+           "code": "SES-3-5-ETS1-3",
+           "text": "Determine whether or not an engineering design product meets criteria, and communicate failure point(s)."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "5",
+   "units": [
+    {
+     "id": "matter-and-its-interactions",
+     "title": "Matter and Its Interactions",
+     "topics": [
+      {
+       "id": "matter-and-its-interactions",
+       "title": "Matter and Its Interactions",
+       "subtopics": [
+        {
+         "id": "matter-and-its-interactions",
+         "title": "Matter and Its Interactions",
+         "outcomes": [
+          {
+           "code": "SES-5-PS1-1",
+           "text": "Use a model to describe that matter is made of smaller particles."
+          },
+          {
+           "code": "SES-5-PS1-2",
+           "text": "Demonstrate that a solid that melts has the same mass in its liquid form."
+          },
+          {
+           "code": "SES-5-PS1-3",
+           "text": "Make observations to identify materials based on their properties."
+          },
+          {
+           "code": "SES-5-PS1-4",
+           "text": "Determine whether mixing two substances results in a new substance."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "motion-and-stability-forces-and-interactions",
+     "title": "Motion and Stability: Forces and Interactions",
+     "topics": [
+      {
+       "id": "motion-and-stability-forces-and-interactions",
+       "title": "Motion and Stability: Forces and Interactions",
+       "subtopics": [
+        {
+         "id": "motion-and-stability-forces-and-interactions",
+         "title": "Motion and Stability: Forces and Interactions",
+         "outcomes": [
+          {
+           "code": "SES-5-PS2-1",
+           "text": "Demonstrate that gravity pulls an object to the Earth."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "energy",
+     "title": "Energy",
+     "topics": [
+      {
+       "id": "energy",
+       "title": "Energy",
+       "subtopics": [
+        {
+         "id": "energy",
+         "title": "Energy",
+         "outcomes": [
+          {
+           "code": "SES-5-PS3-1",
+           "text": "Use models to describe that plants capture energy from sunlight."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "from-molecules-to-organisms-structures-processes",
+     "title": "From Molecules to Organisms: Structures & Processes",
+     "topics": [
+      {
+       "id": "from-molecules-to-organisms-structures-processes",
+       "title": "From Molecules to Organisms: Structures & Processes",
+       "subtopics": [
+        {
+         "id": "from-molecules-to-organisms-structures-processes",
+         "title": "From Molecules to Organisms: Structures & Processes",
+         "outcomes": [
+          {
+           "code": "SES-5-LS1-1",
+           "text": "Participate in an experiment to determine what happens when plants do not have water or air."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "ecosystems-interactions-energy-and-dynamics",
+     "title": "Ecosystems: Interactions, Energy, and Dynamics",
+     "topics": [
+      {
+       "id": "ecosystems-interactions-energy-and-dynamics",
+       "title": "Ecosystems: Interactions, Energy, and Dynamics",
+       "subtopics": [
+        {
+         "id": "ecosystems-interactions-energy-and-dynamics",
+         "title": "Ecosystems: Interactions, Energy, and Dynamics",
+         "outcomes": [
+          {
+           "code": "SES-5-LS2-1",
+           "text": "Use a model to describe a food chain with multiple organisms."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "earth-s-place-in-the-universe",
+     "title": "Earth's Place in the Universe",
+     "topics": [
+      {
+       "id": "earth-s-place-in-the-universe",
+       "title": "Earth's Place in the Universe",
+       "subtopics": [
+        {
+         "id": "earth-s-place-in-the-universe",
+         "title": "Earth's Place in the Universe",
+         "outcomes": [
+          {
+           "code": "SES-5-ESS1-1",
+           "text": "Identify the relationship between apparent brightness and relative distance."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "earth-s-systems",
+     "title": "Earth's Systems",
+     "topics": [
+      {
+       "id": "earth-s-systems",
+       "title": "Earth's Systems",
+       "subtopics": [
+        {
+         "id": "earth-s-systems",
+         "title": "Earth's Systems",
+         "outcomes": [
+          {
+           "code": "SES-5-ESS2-1",
+           "text": "Given a model, show how one of Earth's spheres (geosphere, biosphere, hydrosphere, and/or atmosphere) interacts with another sphere."
+          },
+          {
+           "code": "SES-5-ESS2-2",
+           "text": "Identify the types of bodies of water by amounts and distribution of water on Earth."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "earth-and-human-activity",
+     "title": "Earth and Human Activity",
+     "topics": [
+      {
+       "id": "earth-and-human-activity",
+       "title": "Earth and Human Activity",
+       "subtopics": [
+        {
+         "id": "earth-and-human-activity",
+         "title": "Earth and Human Activity",
+         "outcomes": [
+          {
+           "code": "SES-5-ESS3-1",
+           "text": "Describe a way to reuse or recycle a resource."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "engineering-technology-applications-of-science",
+     "title": "Engineering, Technology, & Applications of Science",
+     "topics": [
+      {
+       "id": "engineering-technology-applications-of-science",
+       "title": "Engineering, Technology, & Applications of Science",
+       "subtopics": [
+        {
+         "id": "engineering-technology-applications-of-science",
+         "title": "Engineering, Technology, & Applications of Science",
+         "outcomes": [
+          {
+           "code": "SES-3-5-ETS1-1",
+           "text": "Given a solution to a simple design problem, students are able to identify materials needed to solve a simple design problem, provided a variety of materials."
+          },
+          {
+           "code": "SES-3-5-ETS1-2",
+           "text": "Generate more than one possible solution to a problem."
+          },
+          {
+           "code": "SES-3-5-ETS1-3",
+           "text": "Determine whether or not an engineering design product meets criteria, and communicate failure point(s)."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "6",
+   "units": [
+    {
+     "id": "matter-and-its-interactions",
+     "title": "Matter and Its Interactions",
+     "topics": [
+      {
+       "id": "matter-and-its-interactions",
+       "title": "Matter and Its Interactions",
+       "subtopics": [
+        {
+         "id": "matter-and-its-interactions",
+         "title": "Matter and Its Interactions",
+         "outcomes": [
+          {
+           "code": "SES-MS-PS1-1",
+           "text": "Model how simple parts can be put together to make more complex structures."
+          },
+          {
+           "code": "SES-MS-PS1-2",
+           "text": "Make observations of substances interacting to determine if a chemical reaction has occurred."
+          },
+          {
+           "code": "SES-MS-PS1-3",
+           "text": "Distinguish between natural and synthetic materials."
+          },
+          {
+           "code": "SES-MS-PS1-4",
+           "text": "Describe the relationship between changes in temperature, kinetic energy, and changes in states of matter for water."
+          },
+          {
+           "code": "SES-MS-PS1-5",
+           "text": "Show that the amount of a substance used in a reaction does not change even if the new substance looks different."
+          },
+          {
+           "code": "SES-MS-PS1-6",
+           "text": "Participate in a design project to keep thermal energy in a substance or container."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "motion-and-stability-forces-and-interactions",
+     "title": "Motion and Stability: Forces and Interactions",
+     "topics": [
+      {
+       "id": "motion-and-stability-forces-and-interactions",
+       "title": "Motion and Stability: Forces and Interactions",
+       "subtopics": [
+        {
+         "id": "motion-and-stability-forces-and-interactions",
+         "title": "Motion and Stability: Forces and Interactions",
+         "outcomes": [
+          {
+           "code": "SES-MS-PS2-1",
+           "text": "Investigate, and describe, the direction of motion of two colliding objects of equal and of unequal masses."
+          },
+          {
+           "code": "SES-MS-PS2-3",
+           "text": "Ask questions about the strength of magnetic forces."
+          },
+          {
+           "code": "SES-MS-PS2-4",
+           "text": "Use surroundings and information provided to predict the effects of gravity."
+          },
+          {
+           "code": "SES-MS-PS2-5",
+           "text": "Investigate an object that has a static charge."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "energy",
+     "title": "Energy",
+     "topics": [
+      {
+       "id": "energy",
+       "title": "Energy",
+       "subtopics": [
+        {
+         "id": "energy",
+         "title": "Energy",
+         "outcomes": [
+          {
+           "code": "SES-MS-PS3-1",
+           "text": "Identify changes in kinetic energy on a labeled diagram."
+          },
+          {
+           "code": "SES-MS-PS3-2",
+           "text": "Identify differing amounts of potential energy on a labeled diagram."
+          },
+          {
+           "code": "SES-MS-PS3-5",
+           "text": "Demonstrate how kinetic energy is transferred between objects."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "waves-and-their-applications-in-technologies-for",
+     "title": "Waves and Their Applications in Technologies for Information Transfer",
+     "topics": [
+      {
+       "id": "waves-and-their-applications-in-technologies-for",
+       "title": "Waves and Their Applications in Technologies for Information Transfer",
+       "subtopics": [
+        {
+         "id": "waves-and-their-applications-in-technologies-for",
+         "title": "Waves and Their Applications in Technologies for Information Transfer",
+         "outcomes": [
+          {
+           "code": "SES-MS-PS4-1",
+           "text": "Identify larger amplitude waves as having more energy."
+          },
+          {
+           "code": "SES-MS-PS4-2",
+           "text": "Describe how light waves behave when interacting with various materials."
+          },
+          {
+           "code": "SES-MS-PS4-3",
+           "text": "Select an electronic means and a non-digital means of sending information."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "from-molecules-to-organisms-structures-processes",
+     "title": "From Molecules to Organisms: Structures & Processes",
+     "topics": [
+      {
+       "id": "from-molecules-to-organisms-structures-processes",
+       "title": "From Molecules to Organisms: Structures & Processes",
+       "subtopics": [
+        {
+         "id": "from-molecules-to-organisms-structures-processes",
+         "title": "From Molecules to Organisms: Structures & Processes (1 of 2)",
+         "outcomes": [
+          {
+           "code": "SES-MS-LS1-1",
+           "text": "Identify the difference between living and nonliving things."
+          },
+          {
+           "code": "SES-MS-LS1-2",
+           "text": "Explore, and identify, the structure and function of major parts of a cell."
+          },
+          {
+           "code": "SES-MS-LS1-3",
+           "text": "Model that a body system is made up of interacting organs."
+          },
+          {
+           "code": "SES-MS-LS1-4",
+           "text": "Identify the characteristics of plants and behaviors of animals that support successful reproduction."
+          }
+         ]
+        },
+        {
+         "id": "from-molecules-to-organisms-structures-processes-2",
+         "title": "From Molecules to Organisms: Structures & Processes (2 of 2)",
+         "outcomes": [
+          {
+           "code": "SES-MS-LS1-5",
+           "text": "Identify environmental conditions needed for successful growth of organisms."
+          },
+          {
+           "code": "SES-MS-LS1-6",
+           "text": "Model what a plant uses, what it creates, and what the plant releases during photosynthesis."
+          },
+          {
+           "code": "SES-MS-LS1-7",
+           "text": "Recognize that food is used to produce energy for organisms to live."
+          },
+          {
+           "code": "SES-MS-LS1-8",
+           "text": "Identify situations which require a reactive behavior for survival."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "ecosystems-interactions-energy-and-dynamics",
+     "title": "Ecosystems: Interactions, Energy, and Dynamics",
+     "topics": [
+      {
+       "id": "ecosystems-interactions-energy-and-dynamics",
+       "title": "Ecosystems: Interactions, Energy, and Dynamics",
+       "subtopics": [
+        {
+         "id": "ecosystems-interactions-energy-and-dynamics",
+         "title": "Ecosystems: Interactions, Energy, and Dynamics",
+         "outcomes": [
+          {
+           "code": "SES-MS-LS2-1",
+           "text": "Recognize the effects of resource availability on individuals and on populations."
+          },
+          {
+           "code": "SES-MS-LS2-2",
+           "text": "Identify ways that organisms interact with each other within an ecosystem."
+          },
+          {
+           "code": "SES-MS-LS2-3",
+           "text": "Explain that energy moves among living and non-living parts of an ecosystem."
+          },
+          {
+           "code": "SES-MS-LS2-4",
+           "text": "Recognize how changes to an ecosystem affect populations."
+          },
+          {
+           "code": "SES-MS-LS2-5",
+           "text": "Identify an action that maintains or improves ecosystems and biodiversity."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "heredity-inheritance-and-variation-of-traits",
+     "title": "Heredity: Inheritance and Variation of Traits",
+     "topics": [
+      {
+       "id": "heredity-inheritance-and-variation-of-traits",
+       "title": "Heredity: Inheritance and Variation of Traits",
+       "subtopics": [
+        {
+         "id": "heredity-inheritance-and-variation-of-traits",
+         "title": "Heredity: Inheritance and Variation of Traits",
+         "outcomes": [
+          {
+           "code": "SES-MS-LS3-1",
+           "text": "Explain that organisms have differences in their traits that can affect their survival."
+          },
+          {
+           "code": "SES-MS-LS3-2",
+           "text": "Students will investigate, and identify, features of living organisms that come from their parents."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "biological-evolution-unity-diversity",
+     "title": "Biological Evolution: Unity & Diversity",
+     "topics": [
+      {
+       "id": "biological-evolution-unity-diversity",
+       "title": "Biological Evolution: Unity & Diversity",
+       "subtopics": [
+        {
+         "id": "biological-evolution-unity-diversity",
+         "title": "Biological Evolution: Unity & Diversity",
+         "outcomes": [
+          {
+           "code": "SES-MS-LS4-1",
+           "text": "Compare fossils with plants and animals that exist today."
+          },
+          {
+           "code": "SES-MS-LS4-2",
+           "text": "Identify anatomical similarities between modern organisms and fossil organisms."
+          },
+          {
+           "code": "SES-MS-LS4-4",
+           "text": "Incorporated in SES-MS-LS3-1."
+          },
+          {
+           "code": "SES-MS-LS4-5",
+           "text": "Identify desirable traits that can be passed on to offspring."
+          },
+          {
+           "code": "SES-MS-LS4-6",
+           "text": "Demonstrate understanding that natural selection changes distribution of traits in a population over time."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "earth-s-place-in-the-universe",
+     "title": "Earth's Place in the Universe",
+     "topics": [
+      {
+       "id": "earth-s-place-in-the-universe",
+       "title": "Earth's Place in the Universe",
+       "subtopics": [
+        {
+         "id": "earth-s-place-in-the-universe",
+         "title": "Earth's Place in the Universe",
+         "outcomes": [
+          {
+           "code": "SES-5-ESS1-2",
+           "text": "Investigate changes in shadows and/or daily changes in day and night."
+          },
+          {
+           "code": "SES-MS-ESS1-1",
+           "text": "Model the Earth-sun-moon positions for lunar phases, eclipses of the sun and moon, and seasons."
+          },
+          {
+           "code": "SES-MS-ESS1-2",
+           "text": "Model that the solar system is a collection of many varied objects, held together by gravity, that move in predictable ways."
+          },
+          {
+           "code": "SES-MS-ESS1-3",
+           "text": "Identify categories of solar system objects (e.g., planets, meteors, asteroids, comets, and moon)."
+          },
+          {
+           "code": "SES-MS-ESS1-4",
+           "text": "Organize, or model, evidence from rocks and rock strata within the geologic time scale to demonstrate Earth's history."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "earth-s-systems",
+     "title": "Earth's Systems",
+     "topics": [
+      {
+       "id": "earth-s-systems",
+       "title": "Earth's Systems",
+       "subtopics": [
+        {
+         "id": "earth-s-systems",
+         "title": "Earth's Systems",
+         "outcomes": [
+          {
+           "code": "SES-MS-ESS2-1",
+           "text": "Model the cycling processes involved in the creation of various rock forms."
+          },
+          {
+           "code": "SES-MS-ESS2-2",
+           "text": "Identify geoscience processes that can change Earth's surface over short time scales or long time scales."
+          },
+          {
+           "code": "SES-MS-ESS2-3",
+           "text": "Compare locations of fossils, rocks, continental shapes, and structures as evidence of past plate motions."
+          },
+          {
+           "code": "SES-MS-ESS2-4",
+           "text": "Identify the processes involved in the cycling of Earth's water."
+          },
+          {
+           "code": "SES-MS-ESS2-5",
+           "text": "Utilize data to compare weather conditions in different locations on the same day."
+          },
+          {
+           "code": "SES-MS-ESS2-6",
+           "text": "Identify how latitude and altitude influence climate."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "earth-and-human-activity",
+     "title": "Earth and Human Activity",
+     "topics": [
+      {
+       "id": "earth-and-human-activity",
+       "title": "Earth and Human Activity",
+       "subtopics": [
+        {
+         "id": "earth-and-human-activity",
+         "title": "Earth and Human Activity",
+         "outcomes": [
+          {
+           "code": "SES-MS-ESS3-1",
+           "text": "Identify how the levels of Earth's resources can change over time."
+          },
+          {
+           "code": "SES-MS-ESS3-2",
+           "text": "Recognize that some natural hazards (e.g., volcanic eruptions, severe weather) can be predicted while others are not currently predictable."
+          },
+          {
+           "code": "SES-MS-ESS3-3",
+           "text": "Model ways that humans can minimize their impact on the environment."
+          },
+          {
+           "code": "SES-MS-ESS3-5",
+           "text": "Recognize natural processes, and human activities, that may impact global temperatures."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "engineering-technology-applications-of-science",
+     "title": "Engineering, Technology, & Applications of Science",
+     "topics": [
+      {
+       "id": "engineering-technology-applications-of-science",
+       "title": "Engineering, Technology, & Applications of Science",
+       "subtopics": [
+        {
+         "id": "engineering-technology-applications-of-science",
+         "title": "Engineering, Technology, & Applications of Science",
+         "outcomes": [
+          {
+           "code": "SES-MS-ETS1-1",
+           "text": "Describe a problem that needs to be solved."
+          },
+          {
+           "code": "SES-MS-ETS1-2",
+           "text": "Evaluate solutions to given problems."
+          },
+          {
+           "code": "SES-MS-ETS1-3",
+           "text": "Analyze results from the testing of possible solutions."
+          },
+          {
+           "code": "SES-MS-ETS1-4",
+           "text": "Create an object or tool from materials provided."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "engineering-technology-science-and-society",
+     "title": "Engineering, Technology, Science, and Society",
+     "topics": [
+      {
+       "id": "engineering-technology-science-and-society",
+       "title": "Engineering, Technology, Science, and Society",
+       "subtopics": [
+        {
+         "id": "engineering-technology-science-and-society",
+         "title": "Engineering, Technology, Science, and Society",
+         "outcomes": [
+          {
+           "code": "SES-MS-ETS2-1",
+           "text": "Ask questions about common household, or classroom, appliances."
+          },
+          {
+           "code": "SES-MS-ETS2-2",
+           "text": "Identify consequences of human choices."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "7-8",
+   "units": [
+    {
+     "id": "matter-and-its-interactions",
+     "title": "Matter and Its Interactions",
+     "topics": [
+      {
+       "id": "matter-and-its-interactions",
+       "title": "Matter and Its Interactions",
+       "subtopics": [
+        {
+         "id": "matter-and-its-interactions",
+         "title": "Matter and Its Interactions",
+         "outcomes": [
+          {
+           "code": "SES-MS-PS1-1",
+           "text": "Model how simple parts can be put together to make more complex structures."
+          },
+          {
+           "code": "SES-MS-PS1-2",
+           "text": "Make observations of substances interacting to determine if a chemical reaction has occurred."
+          },
+          {
+           "code": "SES-MS-PS1-3",
+           "text": "Distinguish between natural and synthetic materials."
+          },
+          {
+           "code": "SES-MS-PS1-4",
+           "text": "Describe the relationship between changes in temperature, kinetic energy, and changes in states of matter for water."
+          },
+          {
+           "code": "SES-MS-PS1-5",
+           "text": "Show that the amount of a substance used in a reaction does not change even if the new substance looks different."
+          },
+          {
+           "code": "SES-MS-PS1-6",
+           "text": "Participate in a design project to keep thermal energy in a substance or container."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "motion-and-stability-forces-and-interactions",
+     "title": "Motion and Stability: Forces and Interactions",
+     "topics": [
+      {
+       "id": "motion-and-stability-forces-and-interactions",
+       "title": "Motion and Stability: Forces and Interactions",
+       "subtopics": [
+        {
+         "id": "motion-and-stability-forces-and-interactions",
+         "title": "Motion and Stability: Forces and Interactions",
+         "outcomes": [
+          {
+           "code": "SES-MS-PS2-1",
+           "text": "Investigate, and describe, the direction of motion of two colliding objects of equal and of unequal masses."
+          },
+          {
+           "code": "SES-MS-PS2-3",
+           "text": "Ask questions about the strength of magnetic forces."
+          },
+          {
+           "code": "SES-MS-PS2-4",
+           "text": "Use surroundings and information provided to predict the effects of gravity."
+          },
+          {
+           "code": "SES-MS-PS2-5",
+           "text": "Investigate an object that has a static charge."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "energy",
+     "title": "Energy",
+     "topics": [
+      {
+       "id": "energy",
+       "title": "Energy",
+       "subtopics": [
+        {
+         "id": "energy",
+         "title": "Energy",
+         "outcomes": [
+          {
+           "code": "SES-MS-PS3-1",
+           "text": "Identify changes in kinetic energy on a labeled diagram."
+          },
+          {
+           "code": "SES-MS-PS3-2",
+           "text": "Identify differing amounts of potential energy on a labeled diagram."
+          },
+          {
+           "code": "SES-MS-PS3-5",
+           "text": "Demonstrate how kinetic energy is transferred between objects."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "waves-and-their-applications-in-technologies-for",
+     "title": "Waves and Their Applications in Technologies for Information Transfer",
+     "topics": [
+      {
+       "id": "waves-and-their-applications-in-technologies-for",
+       "title": "Waves and Their Applications in Technologies for Information Transfer",
+       "subtopics": [
+        {
+         "id": "waves-and-their-applications-in-technologies-for",
+         "title": "Waves and Their Applications in Technologies for Information Transfer",
+         "outcomes": [
+          {
+           "code": "SES-MS-PS4-1",
+           "text": "Identify larger amplitude waves as having more energy."
+          },
+          {
+           "code": "SES-MS-PS4-2",
+           "text": "Describe how light waves behave when interacting with various materials."
+          },
+          {
+           "code": "SES-MS-PS4-3",
+           "text": "Select an electronic means and a non-digital means of sending information."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "from-molecules-to-organisms-structures-processes",
+     "title": "From Molecules to Organisms: Structures & Processes",
+     "topics": [
+      {
+       "id": "from-molecules-to-organisms-structures-processes",
+       "title": "From Molecules to Organisms: Structures & Processes",
+       "subtopics": [
+        {
+         "id": "from-molecules-to-organisms-structures-processes",
+         "title": "From Molecules to Organisms: Structures & Processes (1 of 2)",
+         "outcomes": [
+          {
+           "code": "SES-MS-LS1-1",
+           "text": "Identify the difference between living and nonliving things."
+          },
+          {
+           "code": "SES-MS-LS1-2",
+           "text": "Explore, and identify, the structure and function of major parts of a cell."
+          },
+          {
+           "code": "SES-MS-LS1-3",
+           "text": "Model that a body system is made up of interacting organs."
+          },
+          {
+           "code": "SES-MS-LS1-4",
+           "text": "Identify the characteristics of plants and behaviors of animals that support successful reproduction."
+          }
+         ]
+        },
+        {
+         "id": "from-molecules-to-organisms-structures-processes-2",
+         "title": "From Molecules to Organisms: Structures & Processes (2 of 2)",
+         "outcomes": [
+          {
+           "code": "SES-MS-LS1-5",
+           "text": "Identify environmental conditions needed for successful growth of organisms."
+          },
+          {
+           "code": "SES-MS-LS1-6",
+           "text": "Model what a plant uses, what it creates, and what the plant releases during photosynthesis."
+          },
+          {
+           "code": "SES-MS-LS1-7",
+           "text": "Recognize that food is used to produce energy for organisms to live."
+          },
+          {
+           "code": "SES-MS-LS1-8",
+           "text": "Identify situations which require a reactive behavior for survival."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "ecosystems-interactions-energy-and-dynamics",
+     "title": "Ecosystems: Interactions, Energy, and Dynamics",
+     "topics": [
+      {
+       "id": "ecosystems-interactions-energy-and-dynamics",
+       "title": "Ecosystems: Interactions, Energy, and Dynamics",
+       "subtopics": [
+        {
+         "id": "ecosystems-interactions-energy-and-dynamics",
+         "title": "Ecosystems: Interactions, Energy, and Dynamics",
+         "outcomes": [
+          {
+           "code": "SES-MS-LS2-1",
+           "text": "Recognize the effects of resource availability on individuals and on populations."
+          },
+          {
+           "code": "SES-MS-LS2-2",
+           "text": "Identify ways that organisms interact with each other within an ecosystem."
+          },
+          {
+           "code": "SES-MS-LS2-3",
+           "text": "Explain that energy moves among living and non-living parts of an ecosystem."
+          },
+          {
+           "code": "SES-MS-LS2-4",
+           "text": "Recognize how changes to an ecosystem affect populations."
+          },
+          {
+           "code": "SES-MS-LS2-5",
+           "text": "Identify an action that maintains or improves ecosystems and biodiversity."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "heredity-inheritance-and-variation-of-traits",
+     "title": "Heredity: Inheritance and Variation of Traits",
+     "topics": [
+      {
+       "id": "heredity-inheritance-and-variation-of-traits",
+       "title": "Heredity: Inheritance and Variation of Traits",
+       "subtopics": [
+        {
+         "id": "heredity-inheritance-and-variation-of-traits",
+         "title": "Heredity: Inheritance and Variation of Traits",
+         "outcomes": [
+          {
+           "code": "SES-MS-LS3-1",
+           "text": "Explain that organisms have differences in their traits that can affect their survival."
+          },
+          {
+           "code": "SES-MS-LS3-2",
+           "text": "Students will investigate, and identify, features of living organisms that come from their parents."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "biological-evolution-unity-diversity",
+     "title": "Biological Evolution: Unity & Diversity",
+     "topics": [
+      {
+       "id": "biological-evolution-unity-diversity",
+       "title": "Biological Evolution: Unity & Diversity",
+       "subtopics": [
+        {
+         "id": "biological-evolution-unity-diversity",
+         "title": "Biological Evolution: Unity & Diversity",
+         "outcomes": [
+          {
+           "code": "SES-MS-LS4-1",
+           "text": "Compare fossils with plants and animals that exist today."
+          },
+          {
+           "code": "SES-MS-LS4-2",
+           "text": "Identify anatomical similarities between modern organisms and fossil organisms."
+          },
+          {
+           "code": "SES-MS-LS4-4",
+           "text": "Incorporated in SES-MS-LS3-1."
+          },
+          {
+           "code": "SES-MS-LS4-5",
+           "text": "Identify desirable traits that can be passed on to offspring."
+          },
+          {
+           "code": "SES-MS-LS4-6",
+           "text": "Demonstrate understanding that natural selection changes distribution of traits in a population over time."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "earth-s-place-in-the-universe",
+     "title": "Earth's Place in the Universe",
+     "topics": [
+      {
+       "id": "earth-s-place-in-the-universe",
+       "title": "Earth's Place in the Universe",
+       "subtopics": [
+        {
+         "id": "earth-s-place-in-the-universe",
+         "title": "Earth's Place in the Universe",
+         "outcomes": [
+          {
+           "code": "SES-MS-ESS1-1",
+           "text": "Model the Earth-sun-moon positions for lunar phases, eclipses of the sun and moon, and seasons."
+          },
+          {
+           "code": "SES-MS-ESS1-2",
+           "text": "Model that the solar system is a collection of many varied objects, held together by gravity, that move in predictable ways."
+          },
+          {
+           "code": "SES-MS-ESS1-3",
+           "text": "Identify categories of solar system objects (e.g., planets, meteors, asteroids, comets, and moon)."
+          },
+          {
+           "code": "SES-MS-ESS1-4",
+           "text": "Organize, or model, evidence from rocks and rock strata within the geologic time scale to demonstrate Earth's history."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "earth-s-systems",
+     "title": "Earth's Systems",
+     "topics": [
+      {
+       "id": "earth-s-systems",
+       "title": "Earth's Systems",
+       "subtopics": [
+        {
+         "id": "earth-s-systems",
+         "title": "Earth's Systems",
+         "outcomes": [
+          {
+           "code": "SES-MS-ESS2-1",
+           "text": "Model the cycling processes involved in the creation of various rock forms."
+          },
+          {
+           "code": "SES-MS-ESS2-2",
+           "text": "Identify geoscience processes that can change Earth's surface over short time scales or long time scales."
+          },
+          {
+           "code": "SES-MS-ESS2-3",
+           "text": "Compare locations of fossils, rocks, continental shapes, and structures as evidence of past plate motions."
+          },
+          {
+           "code": "SES-MS-ESS2-4",
+           "text": "Identify the processes involved in the cycling of Earth's water."
+          },
+          {
+           "code": "SES-MS-ESS2-5",
+           "text": "Utilize data to compare weather conditions in different locations on the same day."
+          },
+          {
+           "code": "SES-MS-ESS2-6",
+           "text": "Identify how latitude and altitude influence climate."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "earth-and-human-activity",
+     "title": "Earth and Human Activity",
+     "topics": [
+      {
+       "id": "earth-and-human-activity",
+       "title": "Earth and Human Activity",
+       "subtopics": [
+        {
+         "id": "earth-and-human-activity",
+         "title": "Earth and Human Activity",
+         "outcomes": [
+          {
+           "code": "SES-MS-ESS3-1",
+           "text": "Identify how the levels of Earth's resources can change over time."
+          },
+          {
+           "code": "SES-MS-ESS3-2",
+           "text": "Recognize that some natural hazards (e.g., volcanic eruptions, severe weather) can be predicted while others are not currently predictable."
+          },
+          {
+           "code": "SES-MS-ESS3-3",
+           "text": "Model ways that humans can minimize their impact on the environment."
+          },
+          {
+           "code": "SES-MS-ESS3-5",
+           "text": "Recognize natural processes, and human activities, that may impact global temperatures."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "engineering-technology-applications-of-science",
+     "title": "Engineering, Technology, & Applications of Science",
+     "topics": [
+      {
+       "id": "engineering-technology-applications-of-science",
+       "title": "Engineering, Technology, & Applications of Science",
+       "subtopics": [
+        {
+         "id": "engineering-technology-applications-of-science",
+         "title": "Engineering, Technology, & Applications of Science",
+         "outcomes": [
+          {
+           "code": "SES-MS-ETS1-1",
+           "text": "Describe a problem that needs to be solved."
+          },
+          {
+           "code": "SES-MS-ETS1-2",
+           "text": "Evaluate solutions to given problems."
+          },
+          {
+           "code": "SES-MS-ETS1-3",
+           "text": "Analyze results from the testing of possible solutions."
+          },
+          {
+           "code": "SES-MS-ETS1-4",
+           "text": "Create an object or tool from materials provided."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "engineering-technology-science-and-society",
+     "title": "Engineering, Technology, Science, and Society",
+     "topics": [
+      {
+       "id": "engineering-technology-science-and-society",
+       "title": "Engineering, Technology, Science, and Society",
+       "subtopics": [
+        {
+         "id": "engineering-technology-science-and-society",
+         "title": "Engineering, Technology, Science, and Society",
+         "outcomes": [
+          {
+           "code": "SES-MS-ETS2-1",
+           "text": "Ask questions about common household, or classroom, appliances."
+          },
+          {
+           "code": "SES-MS-ETS2-2",
+           "text": "Identify consequences of human choices."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "9-12",
+   "units": [
+    {
+     "id": "matter-and-its-interactions",
+     "title": "Matter and Its Interactions",
+     "topics": [
+      {
+       "id": "matter-and-its-interactions",
+       "title": "Matter and Its Interactions",
+       "subtopics": [
+        {
+         "id": "matter-and-its-interactions-1-of-2",
+         "title": "Matter and Its Interactions (1 of 2)",
+         "outcomes": [
+          {
+           "code": "SES-HS-PS1-1",
+           "text": "Using a model, identify the parts of an atom (protons, neutrons, electrons)."
+          },
+          {
+           "code": "SES-HS-PS1-2",
+           "text": "Use a periodic table to identify symbols and atomic numbers for five main group elements (1-20.)"
+          },
+          {
+           "code": "SES-HS-PS1-3",
+           "text": "Using models, investigate the results of changes in states of matter."
+          },
+          {
+           "code": "SES-HS-PS1-4",
+           "text": "Using a model, determine if the product absorbs or releases energy, when given the reactants in a chemical reaction."
+          }
+         ]
+        },
+        {
+         "id": "matter-and-its-interactions-2-of-2",
+         "title": "Matter and Its Interactions (2 of 2)",
+         "outcomes": [
+          {
+           "code": "SES-HS-PS1-5",
+           "text": "Conduct an investigation measuring temperature differences, while observing and recording the reactions."
+          },
+          {
+           "code": "SES-HS-PS1-6",
+           "text": "Conduct a chemical experiment by changing a variable."
+          },
+          {
+           "code": "SES-HS-PS1-7",
+           "text": "Integrated in PS1-4."
+          },
+          {
+           "code": "SES-HS-PS1-8",
+           "text": "Compare models which illustrate fusion, fission, and radioactive decay."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "motion-and-stability-forces-and-interactions",
+     "title": "Motion and Stability: Forces and Interactions",
+     "topics": [
+      {
+       "id": "motion-and-stability-forces-and-interactions",
+       "title": "Motion and Stability: Forces and Interactions",
+       "subtopics": [
+        {
+         "id": "motion-and-stability-forces-and-interactions",
+         "title": "Motion and Stability: Forces and Interactions",
+         "outcomes": [
+          {
+           "code": "SES-HS-PS2-1",
+           "text": "Predict the outcome, when changing either mass or force, in an experiment using Newton's Second Law of Motion."
+          },
+          {
+           "code": "SES-HS-PS2-2",
+           "text": "Demonstrate what happens to the velocity of an object when the mass of the"
+          },
+          {
+           "code": "SES-HS-PS2-3",
+           "text": "Select between a variety of designs to minimize force on an object, during a collision, and record outcomes."
+          },
+          {
+           "code": "SES-HS-PS2-4",
+           "text": "Demonstrate that gravitational forces are constant."
+          },
+          {
+           "code": "SES-HS-PS2-5",
+           "text": "Conduct an experiment to test for a magnetic field around an electromagnet."
+          },
+          {
+           "code": "SES-HS-PS2-6",
+           "text": "Demonstrate why material selection is important in building stable structures."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "energy",
+     "title": "Energy",
+     "topics": [
+      {
+       "id": "energy",
+       "title": "Energy",
+       "subtopics": [
+        {
+         "id": "energy",
+         "title": "Energy",
+         "outcomes": [
+          {
+           "code": "SES-HS-PS3-1",
+           "text": "Demonstrate the differences in the energy of a system when a component is changed."
+          },
+          {
+           "code": "SES-HS-PS3-2",
+           "text": "Demonstrate that energy manifests itself in multiple ways, such as motion, sound, light, and thermal energy."
+          },
+          {
+           "code": "SES-HS-PS3-3",
+           "text": "Conduct an experiment to convert one form of energy to another form of energy."
+          },
+          {
+           "code": "SES-HS-PS3-4",
+           "text": "Conduct an experiment demonstrating the transfer of thermal energy when two components, of different temperature, are combined within a closed system."
+          },
+          {
+           "code": "SES-HS-PS3-5",
+           "text": "Demonstrate that when two interacting objects change position, the interacting forces change."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "waves-and-their-applications-in-technologies-for",
+     "title": "Waves and Their Applications in Technologies for Information Transfer",
+     "topics": [
+      {
+       "id": "waves-and-their-applications-in-technologies-for",
+       "title": "Waves and Their Applications in Technologies for Information Transfer",
+       "subtopics": [
+        {
+         "id": "waves-and-their-applications-in-technologies-for",
+         "title": "Waves and Their Applications in Technologies for Information Transfer",
+         "outcomes": [
+          {
+           "code": "SES-HS-PS4-1",
+           "text": "Demonstrate that simple waves have a repeating pattern with a specific wavelength, frequency, and amplitude."
+          },
+          {
+           "code": "SES-HS-PS4-2",
+           "text": "Explore both physical and digital storage."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "from-molecules-to-organisms-structures-processes",
+     "title": "From Molecules to Organisms: Structures & Processes",
+     "topics": [
+      {
+       "id": "from-molecules-to-organisms-structures-processes",
+       "title": "From Molecules to Organisms: Structures & Processes",
+       "subtopics": [
+        {
+         "id": "from-molecules-to-organisms-structures-processes",
+         "title": "From Molecules to Organisms: Structures & Processes (1 of 2)",
+         "outcomes": [
+          {
+           "code": "SES-HS-LS1-1",
+           "text": "Construct a model of DNA."
+          },
+          {
+           "code": "SES-HS-LS1-2",
+           "text": "Construct a model of hierarchical organization of interacting systems from smallest to largest."
+          },
+          {
+           "code": "SES-HS-LS1-3",
+           "text": "Identify a feedback mechanism that helps maintain homeostasis."
+          },
+          {
+           "code": "SES-HS-LS1-4",
+           "text": "Use a model to demonstrate mitosis."
+          }
+         ]
+        },
+        {
+         "id": "from-molecules-to-organisms-structures-processes-2",
+         "title": "From Molecules to Organisms: Structures & Processes (2 of 2)",
+         "outcomes": [
+          {
+           "code": "SES-HS-LS1-5",
+           "text": "Use a model to illustrate how photosynthesis transforms light energy into stored chemical energy."
+          },
+          {
+           "code": "SES-HS-LS1-6",
+           "text": "Construct models of carbon-based molecules."
+          },
+          {
+           "code": "SES-HS-LS1-7",
+           "text": "Use a model to demonstrate that energy can be transferred through breaking and forming bonds."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "ecosystems-interactions-energy-and-dynamics",
+     "title": "Ecosystems: Interactions, Energy, and Dynamics",
+     "topics": [
+      {
+       "id": "ecosystems-interactions-energy-and-dynamics",
+       "title": "Ecosystems: Interactions, Energy, and Dynamics",
+       "subtopics": [
+        {
+         "id": "ecosystems-interactions-energy-and-dynamics-1-of",
+         "title": "Ecosystems: Interactions, Energy, and Dynamics (1 of 2)",
+         "outcomes": [
+          {
+           "code": "SES-HS-LS2-1",
+           "text": "Describe how the population of a species changes in relation to the availability of resources."
+          },
+          {
+           "code": "SES-HS-LS2-2",
+           "text": "Identify factors that affect biodiversity in different environments."
+          },
+          {
+           "code": "SES-HS-LS2-3",
+           "text": "Construct models of matter and energy cycles."
+          },
+          {
+           "code": "SES-HS-LS2-4",
+           "text": "Integrated in SES-HS-LS2-3."
+          }
+         ]
+        },
+        {
+         "id": "ecosystems-interactions-energy-and-dynamics-2-of",
+         "title": "Ecosystems: Interactions, Energy, and Dynamics (2 of 2)",
+         "outcomes": [
+          {
+           "code": "SES-HS-LS2-5",
+           "text": "Construct a model of the carbon cycle to include interaction with the atmosphere."
+          },
+          {
+           "code": "SES-HS-LS2-6",
+           "text": "Demonstrate how a change in conditions can change an ecosystem."
+          },
+          {
+           "code": "SES-HS-LS2-7",
+           "text": "Compare and contrast detrimental or enhancing impacts on the environment."
+          },
+          {
+           "code": "SES-HS-LS2-8",
+           "text": "Identify organisms that demonstrate group behaviors."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "heredity-inheritance-and-variation-of-traits",
+     "title": "Heredity: Inheritance and Variation of Traits",
+     "topics": [
+      {
+       "id": "heredity-inheritance-and-variation-of-traits",
+       "title": "Heredity: Inheritance and Variation of Traits",
+       "subtopics": [
+        {
+         "id": "heredity-inheritance-and-variation-of-traits",
+         "title": "Heredity: Inheritance and Variation of Traits",
+         "outcomes": [
+          {
+           "code": "SES-HS-LS3-1",
+           "text": "Identify traits that are passed from parent to offspring."
+          },
+          {
+           "code": "SES-HS-LS3-2",
+           "text": "Demonstrate that mutations can occur in DNA."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "biological-evolution-unity-diversity",
+     "title": "Biological Evolution: Unity & Diversity",
+     "topics": [
+      {
+       "id": "biological-evolution-unity-diversity",
+       "title": "Biological Evolution: Unity & Diversity",
+       "subtopics": [
+        {
+         "id": "biological-evolution-unity-diversity",
+         "title": "Biological Evolution: Unity & Diversity",
+         "outcomes": [
+          {
+           "code": "SES-HS-LS4-1",
+           "text": "Construct a model demonstrating lineage from an ancient extinct animal to a modern animal."
+          },
+          {
+           "code": "SES-HS-LS4-2",
+           "text": "Demonstrate how a population can adapt to survive."
+          },
+          {
+           "code": "SES-HS-LS4-4",
+           "text": "Demonstrate how a population can change based on natural selection."
+          },
+          {
+           "code": "SES-HS-LS4-5",
+           "text": "Using evidence indicate the emergence of a new species over time."
+          },
+          {
+           "code": "SES-HS-LS4-6",
+           "text": "Observe and describe the impacts of human activity on biodiversity."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "earth-s-place-in-the-universe",
+     "title": "Earth's Place in the Universe",
+     "topics": [
+      {
+       "id": "earth-s-place-in-the-universe",
+       "title": "Earth's Place in the Universe",
+       "subtopics": [
+        {
+         "id": "earth-s-place-in-the-universe",
+         "title": "Earth's Place in the Universe",
+         "outcomes": [
+          {
+           "code": "SES-HS-ESS1-1",
+           "text": "Construct a model to illustrate the life span of the sun."
+          },
+          {
+           "code": "SES-HS-ESS1-2",
+           "text": "Construct a model of the expanding Universe."
+          },
+          {
+           "code": "SES-HS-ESS1-3",
+           "text": "Compare life cycles of other stars to our sun."
+          },
+          {
+           "code": "SES-HS-ESS1-4",
+           "text": "Use a simulation to represent the motion of orbiting objects in the solar system."
+          },
+          {
+           "code": "SES-HS-ESS1-5",
+           "text": "Use models to explore the theory of plate tectonics."
+          },
+          {
+           "code": "SES-HS-ESS1-6",
+           "text": "From a model, construct an account of Earth's formation and early history."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "earth-s-systems",
+     "title": "Earth's Systems",
+     "topics": [
+      {
+       "id": "earth-s-systems",
+       "title": "Earth's Systems",
+       "subtopics": [
+        {
+         "id": "earth-s-systems-1-of-2",
+         "title": "Earth's Systems (1 of 2)",
+         "outcomes": [
+          {
+           "code": "SES-HS-ESS2-1",
+           "text": "Construct a model that demonstrates the formation of valleys and mountains."
+          },
+          {
+           "code": "SES-HS-ESS2-2",
+           "text": "Construct a model demonstrating that one change to Earth's surface can cause changes to other Earth systems."
+          },
+          {
+           "code": "SES-HS-ESS2-3",
+           "text": "Construct a model of the Earth's interior."
+          },
+          {
+           "code": "SES-HS-ESS2-4",
+           "text": "Use a model to identify changes in the flow of energy that can change the climate."
+          }
+         ]
+        },
+        {
+         "id": "earth-s-systems-2-of-2",
+         "title": "Earth's Systems (2 of 2)",
+         "outcomes": [
+          {
+           "code": "SES-HS-ESS2-5",
+           "text": "Construct a model depicting how water in the form of ice, liquid, and/or gas has changed the landscape."
+          },
+          {
+           "code": "SES-HS-ESS2-6",
+           "text": "Integrated in SES-HS-LS2-5."
+          },
+          {
+           "code": "SES-HS-ESS2-7",
+           "text": "Explain how life on Earth had to adapt to changes in the atmosphere, hydrosphere, or geosphere."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "earth-and-human-activity",
+     "title": "Earth and Human Activity",
+     "topics": [
+      {
+       "id": "earth-and-human-activity",
+       "title": "Earth and Human Activity",
+       "subtopics": [
+        {
+         "id": "earth-and-human-activity",
+         "title": "Earth and Human Activity",
+         "outcomes": [
+          {
+           "code": "SES-HS-ESS3-1",
+           "text": "Demonstrate how the availability of natural resources, the occurrence of natural hazards, and/or changes in climate have influenced human activity."
+          },
+          {
+           "code": "SES-HS-ESS3-2",
+           "text": "From factors provided, select which factors need to be considered, prior to developing energy or mineral resources."
+          },
+          {
+           "code": "SES-HS-ESS3-3",
+           "text": "Integrated in SES-HS-ESS3-2."
+          },
+          {
+           "code": "SES-HS-ESS3-4",
+           "text": "Construct a model of a technological solution that reduces impacts of human activities on natural systems."
+          },
+          {
+           "code": "SES-HS-ESS3-5",
+           "text": "Use global climate models to identify global, or regional, change in climate and associated future impacts to Earth systems."
+          },
+          {
+           "code": "SES-HS-ESS3-6",
+           "text": "Use a computational representation to illustrate how changes to the environment affect Earth systems."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "engineering-technology-applications-of-science",
+     "title": "Engineering, Technology, & Applications of Science",
+     "topics": [
+      {
+       "id": "engineering-technology-applications-of-science",
+       "title": "Engineering, Technology, & Applications of Science",
+       "subtopics": [
+        {
+         "id": "engineering-technology-applications-of-science",
+         "title": "Engineering, Technology, & Applications of Science",
+         "outcomes": [
+          {
+           "code": "SES-HS-ETS1-1",
+           "text": "Identify a local, regional, or global challenge for solutions that account for societal needs and wants."
+          },
+          {
+           "code": "SES-HS-ETS1-2",
+           "text": "Identify a solution to a real-world problem by breaking it down into smaller, more manageable problems that can be solved through engineering."
+          },
+          {
+           "code": "SES-HS-ETS1-3",
+           "text": "Identify solutions to a real-world problem based on a range of constraints, including cost, safety, reliability, and aesthetics, as well as possible social, cultural, and environmental impacts."
+          },
+          {
+           "code": "SES-HS-ETS1-4",
+           "text": "Use a computer simulation to model the impact of proposed solutions to a real-world problem."
+          },
+          {
+           "code": "SES-HS-ETS1-5",
+           "text": "Given reliable materials, identify valid vs. invalid claims."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "build": {
+  "builtAt": "2026-10-14T16:20:51.658Z",
+  "model": "none",
+  "usd": 0,
+  "expectedCodes": 197,
+  "coverage": 1,
+  "missingCodes": [],
+  "counts": {
+   "grades": 9,
+   "units": 77,
+   "topics": 77,
+   "subtopics": 83,
+   "outcomes": 265
+  },
+  "warnings": [
+   "unit \"From Molecules to Organisms: Structures & Processes\" (grade K) has a single outcome",
+   "unit \"Earth's Systems\" (grade K) has a single outcome",
+   "unit \"Earth's Place in the Universe\" (grade 1) has a single outcome",
+   "unit \"Biological Evolution: Unity & Diversity\" (grade 2) has a single outcome",
+   "unit \"From Molecules to Organisms: Structures & Processes\" (grade 3) has a single outcome",
+   "unit \"Ecosystems: Interactions, Energy, and Dynamics\" (grade 3) has a single outcome",
+   "unit \"Earth and Human Activity\" (grade 3) has a single outcome",
+   "unit \"Earth's Place in the Universe\" (grade 4) has a single outcome",
+   "unit \"Motion and Stability: Forces and Interactions\" (grade 5) has a single outcome",
+   "unit \"Energy\" (grade 5) has a single outcome",
+   "unit \"From Molecules to Organisms: Structures & Processes\" (grade 5) has a single outcome",
+   "unit \"Ecosystems: Interactions, Energy, and Dynamics\" (grade 5) has a single outcome",
+   "unit \"Earth's Place in the Universe\" (grade 5) has a single outcome",
+   "unit \"Earth and Human Activity\" (grade 5) has a single outcome"
+  ]
+ }
+}

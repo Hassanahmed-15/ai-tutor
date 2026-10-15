@@ -1,0 +1,1953 @@
+{
+ "id": "us-mt-social-studies",
+ "region": "US",
+ "framework": "Montana state academic standards: Social Studies",
+ "board": null,
+ "qualification": "K-12",
+ "subject": "Social Studies",
+ "syllabusCode": null,
+ "gradeSystem": "grade",
+ "source": {
+  "urls": [
+   "https://api.commonstandardsproject.com/api/v1/jurisdictions/7FAA3E0A782B498DB5E5EA255681706C",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/FD1E121F96814E21821AF29A78D311AF",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/7FAA3E0A782B498DB5E5EA255681706C_D21256599_grade-01",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/7FAA3E0A782B498DB5E5EA255681706C_D21256599_grade-02",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/7FAA3E0A782B498DB5E5EA255681706C_D21256599_grade-03",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/7FAA3E0A782B498DB5E5EA255681706C_D21256599_grade-04",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/7FAA3E0A782B498DB5E5EA255681706C_D21256599_grade-05",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/7FAA3E0A782B498DB5E5EA255681706C_D21256599_grades-06-07-08",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/7FAA3E0A782B498DB5E5EA255681706C_D21256599_grades-09-10-11-12",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/7FAA3E0A782B498DB5E5EA255681706C_D21256599_grade-k"
+  ],
+  "publisher": "Montana state education agency (machine-readable via Common Standards Project / ASN)",
+  "licence": "CC BY 4.0 US, Common Curriculum, Inc.; CC BY 3.0 US, D2L Corporation",
+  "firstExam": "2021"
+ },
+ "grades": [
+  {
+   "grade": "K",
+   "units": [
+    {
+     "id": "content-skills",
+     "title": "Content Skills",
+     "topics": [
+      {
+       "id": "content-skills",
+       "title": "Content Skills",
+       "subtopics": [
+        {
+         "id": "content-skills",
+         "title": "Content Skills",
+         "outcomes": [
+          {
+           "code": "SS.K12.1",
+           "text": "develop questions"
+          },
+          {
+           "code": "SS.K12.2",
+           "text": "plan inquiries"
+          },
+          {
+           "code": "SS.K12.3",
+           "text": "compare and evaluate sources for relevance, perspective, and accuracy"
+          },
+          {
+           "code": "SS.K12.4",
+           "text": "use sources to gather evidence to develop and refine claims"
+          },
+          {
+           "code": "SS.K12.5",
+           "text": "communicate conclusions"
+          },
+          {
+           "code": "SS.K12.6",
+           "text": "take informed action"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "civics-and-government",
+     "title": "Civics and Government",
+     "topics": [
+      {
+       "id": "the-civics-and-government-content-standards-for-",
+       "title": "The civics and government content standards for kindergarten are that each student will",
+       "subtopics": [
+        {
+         "id": "the-civics-and-government-content-standards-for-",
+         "title": "The civics and government content standards for kindergarten are that each student will",
+         "outcomes": [
+          {
+           "code": "SS.CG.K.1",
+           "text": "recognize the people who create and carry out rules for the school and classroom"
+          },
+          {
+           "code": "SS.CG.K.2",
+           "text": "define that being a citizen of the classroom and school community means following established rules and expectations"
+          },
+          {
+           "code": "SS.CG.K.3",
+           "text": "demonstrate citizenship through their interactions in the classroom and school community"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "economics",
+     "title": "Economics",
+     "topics": [
+      {
+       "id": "the-economics-content-standards-for-kindergarten",
+       "title": "The economics content standards for kindergarten are that each student will",
+       "subtopics": [
+        {
+         "id": "the-economics-content-standards-for-kindergarten",
+         "title": "The economics content standards for kindergarten are that each student will",
+         "outcomes": [
+          {
+           "code": "SS.E.K.1",
+           "text": "explain and identify examples of goods and services"
+          },
+          {
+           "code": "SS.E.K.2",
+           "text": "describe goods and products that are produced in local regions"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "geography",
+     "title": "Geography",
+     "topics": [
+      {
+       "id": "geography",
+       "title": "Geography",
+       "subtopics": [
+        {
+         "id": "geography",
+         "title": "Geography",
+         "outcomes": [
+          {
+           "code": "SS.G.K",
+           "text": "The geography content standard for kindergarten is that each student will use maps, and other representations, to describe place characteristics"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "history",
+     "title": "History",
+     "topics": [
+      {
+       "id": "history",
+       "title": "History",
+       "subtopics": [
+        {
+         "id": "history",
+         "title": "History",
+         "outcomes": [
+          {
+           "code": "SS.H.K",
+           "text": "The history content standard for kindergarten is that each student will distinguish between past, present, and future time"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "1",
+   "units": [
+    {
+     "id": "content-skills",
+     "title": "Content Skills",
+     "topics": [
+      {
+       "id": "content-skills",
+       "title": "Content Skills",
+       "subtopics": [
+        {
+         "id": "content-skills",
+         "title": "Content Skills",
+         "outcomes": [
+          {
+           "code": "SS.K12.1",
+           "text": "develop questions"
+          },
+          {
+           "code": "SS.K12.2",
+           "text": "plan inquiries"
+          },
+          {
+           "code": "SS.K12.3",
+           "text": "compare and evaluate sources for relevance, perspective, and accuracy"
+          },
+          {
+           "code": "SS.K12.4",
+           "text": "use sources to gather evidence to develop and refine claims"
+          },
+          {
+           "code": "SS.K12.5",
+           "text": "communicate conclusions"
+          },
+          {
+           "code": "SS.K12.6",
+           "text": "take informed action"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "civics-and-government",
+     "title": "Civics and Government",
+     "topics": [
+      {
+       "id": "the-civics-and-government-content-standards-for-",
+       "title": "The civics and government content standards for first grade are that each student will",
+       "subtopics": [
+        {
+         "id": "the-civics-and-government-content-standards-for-",
+         "title": "The civics and government content standards for first grade are that each student will",
+         "outcomes": [
+          {
+           "code": "SS.CG.1.1",
+           "text": "demonstrate being a citizen of a classroom and school community through interactions and by following established rules and expectations"
+          },
+          {
+           "code": "SS.CG.1.2",
+           "text": "recognize the people, and their roles, who create and carry out rules for the school and classroom"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "economics",
+     "title": "Economics",
+     "topics": [
+      {
+       "id": "the-economics-content-standards-for-first-grade-",
+       "title": "The economics content standards for first grade are that each student will",
+       "subtopics": [
+        {
+         "id": "the-economics-content-standards-for-first-grade-",
+         "title": "The economics content standards for first grade are that each student will",
+         "outcomes": [
+          {
+           "code": "SS.E.1.1",
+           "text": "explain the difference between needs and wants"
+          },
+          {
+           "code": "SS.E.1.2",
+           "text": "describe goods and products that are produced in local regions"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "geography",
+     "title": "Geography",
+     "topics": [
+      {
+       "id": "the-geography-content-standards-for-first-grade-",
+       "title": "The geography content standards for first grade are that each student will",
+       "subtopics": [
+        {
+         "id": "the-geography-content-standards-for-first-grade-",
+         "title": "The geography content standards for first grade are that each student will",
+         "outcomes": [
+          {
+           "code": "SS.G.1.1",
+           "text": "identify and describe human and physical local landmarks"
+          },
+          {
+           "code": "SS.G.1.2",
+           "text": "construct maps and other representations of familiar places"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "history",
+     "title": "History",
+     "topics": [
+      {
+       "id": "the-history-content-standards-for-first-grade-ar",
+       "title": "The history content standards for first grade are that each student will",
+       "subtopics": [
+        {
+         "id": "the-history-content-standards-for-first-grade-ar",
+         "title": "The history content standards for first grade are that each student will",
+         "outcomes": [
+          {
+           "code": "SS.H.1.1",
+           "text": "distinguish between past, present, and future time"
+          },
+          {
+           "code": "SS.H.1.2",
+           "text": "understand how events might be described differently depending on historical contexts and perspectives, including those of tribes in Montana"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "2",
+   "units": [
+    {
+     "id": "content-skills",
+     "title": "Content Skills",
+     "topics": [
+      {
+       "id": "content-skills",
+       "title": "Content Skills",
+       "subtopics": [
+        {
+         "id": "content-skills",
+         "title": "Content Skills",
+         "outcomes": [
+          {
+           "code": "SS.K12.1",
+           "text": "develop questions"
+          },
+          {
+           "code": "SS.K12.2",
+           "text": "plan inquiries"
+          },
+          {
+           "code": "SS.K12.3",
+           "text": "compare and evaluate sources for relevance, perspective, and accuracy"
+          },
+          {
+           "code": "SS.K12.4",
+           "text": "use sources to gather evidence to develop and refine claims"
+          },
+          {
+           "code": "SS.K12.5",
+           "text": "communicate conclusions"
+          },
+          {
+           "code": "SS.K12.6",
+           "text": "take informed action"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "civics-and-government",
+     "title": "Civics and Government",
+     "topics": [
+      {
+       "id": "the-civics-and-government-content-standards-for-",
+       "title": "The civics and government content standards for second grade are that each student will",
+       "subtopics": [
+        {
+         "id": "the-civics-and-government-content-standards-for-",
+         "title": "The civics and government content standards for second grade are that each student will",
+         "outcomes": [
+          {
+           "code": "SS.CG.2.1",
+           "text": "explain the roles of people who help govern different communities including tribal communities"
+          },
+          {
+           "code": "SS.CG.2.2",
+           "text": "demonstrate ways to show good citizenship in the classroom, school, and community"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "economics",
+     "title": "Economics",
+     "topics": [
+      {
+       "id": "the-economics-content-standards-for-second-grade",
+       "title": "The economics content standards for second grade are that each student will",
+       "subtopics": [
+        {
+         "id": "the-economics-content-standards-for-second-grade",
+         "title": "The economics content standards for second grade are that each student will",
+         "outcomes": [
+          {
+           "code": "SS.E.2.1",
+           "text": "describe the goods and services that people in the local, state, and national community produce"
+          },
+          {
+           "code": "SS.E.2.2",
+           "text": "describe examples of the goods and services that governments provide"
+          },
+          {
+           "code": "SS.E.2.3",
+           "text": "identify resources people use to access the goods and services they want and need"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "geography",
+     "title": "Geography",
+     "topics": [
+      {
+       "id": "the-geography-content-standards-for-second-grade",
+       "title": "The geography content standards for second grade are that each student will",
+       "subtopics": [
+        {
+         "id": "the-geography-content-standards-for-second-grade",
+         "title": "The geography content standards for second grade are that each student will",
+         "outcomes": [
+          {
+           "code": "SS.G.2.1",
+           "text": "use the basic components of a map to identify physical and political features, including American Indian reservations"
+          },
+          {
+           "code": "SS.G.2.2",
+           "text": "describe how geography and human activities impact each other"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "history",
+     "title": "History",
+     "topics": [
+      {
+       "id": "the-history-content-standards-for-second-grade-a",
+       "title": "The history content standards for second grade are that each student will",
+       "subtopics": [
+        {
+         "id": "the-history-content-standards-for-second-grade-a",
+         "title": "The history content standards for second grade are that each student will",
+         "outcomes": [
+          {
+           "code": "SS.H.2.1",
+           "text": "identify how people lived differently in the past than they do today"
+          },
+          {
+           "code": "SS.H.2.2",
+           "text": "understand that there are twelve distinct and unique tribes within Montana whose people contribute to modern life"
+          },
+          {
+           "code": "SS.H.2.3",
+           "text": "identify different kinds of historical sources, including oral histories of American Indians"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "3",
+   "units": [
+    {
+     "id": "content-skills",
+     "title": "Content Skills",
+     "topics": [
+      {
+       "id": "content-skills",
+       "title": "Content Skills",
+       "subtopics": [
+        {
+         "id": "content-skills",
+         "title": "Content Skills",
+         "outcomes": [
+          {
+           "code": "SS.K12.1",
+           "text": "develop questions"
+          },
+          {
+           "code": "SS.K12.2",
+           "text": "plan inquiries"
+          },
+          {
+           "code": "SS.K12.3",
+           "text": "compare and evaluate sources for relevance, perspective, and accuracy"
+          },
+          {
+           "code": "SS.K12.4",
+           "text": "use sources to gather evidence to develop and refine claims"
+          },
+          {
+           "code": "SS.K12.5",
+           "text": "communicate conclusions"
+          },
+          {
+           "code": "SS.K12.6",
+           "text": "take informed action"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "civics-and-government",
+     "title": "Civics and Government",
+     "topics": [
+      {
+       "id": "the-civics-and-government-content-standards-for-",
+       "title": "The civics and government content standards for third grade are that each student will",
+       "subtopics": [
+        {
+         "id": "the-civics-and-government-content-standards-for-",
+         "title": "The civics and government content standards for third grade are that each student will",
+         "outcomes": [
+          {
+           "code": "SS.CG.3.1",
+           "text": "describe and identify the basic functions of local government, including tribal governments"
+          },
+          {
+           "code": "SS.CG.3.2",
+           "text": "recognize that civic participation involves remaining accurately informed about public issues, taking action, and voting in elections"
+          },
+          {
+           "code": "SS.CG.3.3",
+           "text": "identify key symbols of nations"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "economics",
+     "title": "Economics",
+     "topics": [
+      {
+       "id": "the-economics-content-standards-for-third-grade-",
+       "title": "The economics content standards for third grade are that each student will",
+       "subtopics": [
+        {
+         "id": "the-economics-content-standards-for-third-grade-",
+         "title": "The economics content standards for third grade are that each student will",
+         "outcomes": [
+          {
+           "code": "SS.E.3.1",
+           "text": "compare the benefits and costs of individual choices"
+          },
+          {
+           "code": "SS.E.3.2",
+           "text": "identify examples of human and natural resources that are used to produce goods and services"
+          },
+          {
+           "code": "SS.E.3.3",
+           "text": "explain economic interdependence within historical and contemporary contexts"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "geography",
+     "title": "Geography",
+     "topics": [
+      {
+       "id": "the-geography-content-standards-for-third-grade-",
+       "title": "The geography content standards for third grade are that each student will",
+       "subtopics": [
+        {
+         "id": "the-geography-content-standards-for-third-grade-",
+         "title": "The geography content standards for third grade are that each student will",
+         "outcomes": [
+          {
+           "code": "SS.G.3.1",
+           "text": "examine maps and other representations to identify historical and contemporary political and cultural patterns in the Americas"
+          },
+          {
+           "code": "SS.G.3.2",
+           "text": "identify environmental and technological events and conditions and how humans and the environment impact each other"
+          },
+          {
+           "code": "SS.G.3.3",
+           "text": "identify landforms and other physical characteristics of the Americas"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "history",
+     "title": "History",
+     "topics": [
+      {
+       "id": "the-history-content-standards-for-third-grade-ar",
+       "title": "The history content standards for third grade are that each student will",
+       "subtopics": [
+        {
+         "id": "the-history-content-standards-for-third-grade-ar",
+         "title": "The history content standards for third grade are that each student will",
+         "outcomes": [
+          {
+           "code": "SS.H.3.1",
+           "text": "identify tribes in Montana by their original and current names"
+          },
+          {
+           "code": "SS.H.3.2",
+           "text": "explain how perspective impacts the telling of historical events"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "4",
+   "units": [
+    {
+     "id": "content-skills",
+     "title": "Content Skills",
+     "topics": [
+      {
+       "id": "content-skills",
+       "title": "Content Skills",
+       "subtopics": [
+        {
+         "id": "content-skills",
+         "title": "Content Skills",
+         "outcomes": [
+          {
+           "code": "SS.K12.1",
+           "text": "develop questions"
+          },
+          {
+           "code": "SS.K12.2",
+           "text": "plan inquiries"
+          },
+          {
+           "code": "SS.K12.3",
+           "text": "compare and evaluate sources for relevance, perspective, and accuracy"
+          },
+          {
+           "code": "SS.K12.4",
+           "text": "use sources to gather evidence to develop and refine claims"
+          },
+          {
+           "code": "SS.K12.5",
+           "text": "communicate conclusions"
+          },
+          {
+           "code": "SS.K12.6",
+           "text": "take informed action"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "civics-and-government",
+     "title": "Civics and Government",
+     "topics": [
+      {
+       "id": "the-civics-and-government-content-standards-for-",
+       "title": "The civics and government content standards for fourth grade are that each student will",
+       "subtopics": [
+        {
+         "id": "the-civics-and-government-content-standards-for-",
+         "title": "The civics and government content standards for fourth grade are that each student will",
+         "outcomes": [
+          {
+           "code": "SS.CG.4.1",
+           "text": "demonstrate civic participation within the classroom or school"
+          },
+          {
+           "code": "SS.CG.4.2",
+           "text": "practice deliberative processes when making decisions as a group"
+          },
+          {
+           "code": "SS.CG.4.3",
+           "text": "describe how rules, laws, and policies are implemented by local, state, national, and tribal governments"
+          },
+          {
+           "code": "SS.CG.4.4",
+           "text": "define sovereignty for tribes in Montana"
+          },
+          {
+           "code": "SS.CG.4.5",
+           "text": "identify key foundational documents in Montana's government"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "economics",
+     "title": "Economics",
+     "topics": [
+      {
+       "id": "the-economics-content-standards-for-fourth-grade",
+       "title": "The economics content standards for fourth grade are that each student will",
+       "subtopics": [
+        {
+         "id": "the-economics-content-standards-for-fourth-grade",
+         "title": "The economics content standards for fourth grade are that each student will",
+         "outcomes": [
+          {
+           "code": "SS.E.4.1",
+           "text": "identify the various pressures and incentives that influence the decisions people make in short-term and long-term situations"
+          },
+          {
+           "code": "SS.E.4.2",
+           "text": "identify basic elements of Montana's state economic system including agriculture, business, natural resources, and labor"
+          },
+          {
+           "code": "SS.E.4.3",
+           "text": "identify various resources and labor that are used to provide goods and services in Montana"
+          },
+          {
+           "code": "SS.E.4.4",
+           "text": "explain how trade leads to increasing economic interdependence among groups in Montana"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "geography",
+     "title": "Geography",
+     "topics": [
+      {
+       "id": "the-geography-content-standards-for-fourth-grade",
+       "title": "The geography content standards for fourth grade are that each student will",
+       "subtopics": [
+        {
+         "id": "the-geography-content-standards-for-fourth-grade",
+         "title": "The geography content standards for fourth grade are that each student will",
+         "outcomes": [
+          {
+           "code": "SS.G.4.1",
+           "text": "examine maps and other representations to explain the movement of people"
+          },
+          {
+           "code": "SS.G.4.2",
+           "text": "identify and label the tribes in Montana and their indigenous territories, and current locations"
+          },
+          {
+           "code": "SS.G.4.3",
+           "text": "investigate the physical, political, and cultural characteristics of places, regions, and people in Montana"
+          },
+          {
+           "code": "SS.G.4.4",
+           "text": "analyze environmental and technological events and conditions and how humans and the environment impact each other with relation to settlements and migration in Montana"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "history",
+     "title": "History",
+     "topics": [
+      {
+       "id": "the-history-content-standards-for-fourth-grade-a",
+       "title": "The history content standards for fourth grade are that each student will",
+       "subtopics": [
+        {
+         "id": "the-history-content-standards-for-fourth-grade-a",
+         "title": "The history content standards for fourth grade are that each student will",
+         "outcomes": [
+          {
+           "code": "SS.H.4.1",
+           "text": "understand tribes in Montana have their own unique histories"
+          },
+          {
+           "code": "SS.H.4.2",
+           "text": "identify events and policies that have impacted and been influenced by tribes in Montana"
+          },
+          {
+           "code": "SS.H.4.3",
+           "text": "explain how Montana has changed over time given its cultural diversity and how this history impacts the present"
+          },
+          {
+           "code": "SS.H.4.4",
+           "text": "describe how historical accounts are impacted by individual perspectives"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "5",
+   "units": [
+    {
+     "id": "content-skills",
+     "title": "Content Skills",
+     "topics": [
+      {
+       "id": "content-skills",
+       "title": "Content Skills",
+       "subtopics": [
+        {
+         "id": "content-skills",
+         "title": "Content Skills",
+         "outcomes": [
+          {
+           "code": "SS.K12.1",
+           "text": "develop questions"
+          },
+          {
+           "code": "SS.K12.2",
+           "text": "plan inquiries"
+          },
+          {
+           "code": "SS.K12.3",
+           "text": "compare and evaluate sources for relevance, perspective, and accuracy"
+          },
+          {
+           "code": "SS.K12.4",
+           "text": "use sources to gather evidence to develop and refine claims"
+          },
+          {
+           "code": "SS.K12.5",
+           "text": "communicate conclusions"
+          },
+          {
+           "code": "SS.K12.6",
+           "text": "take informed action"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "civics-and-government",
+     "title": "Civics and Government",
+     "topics": [
+      {
+       "id": "the-civics-and-government-content-standards-for-",
+       "title": "The civics and government content standards for fifth grade are that each student will",
+       "subtopics": [
+        {
+         "id": "the-civics-and-government-content-standards-for-",
+         "title": "The civics and government content standards for fifth grade are that each student will",
+         "outcomes": [
+          {
+           "code": "SS.CG.5.1",
+           "text": "examine the diverse origins, ideals, and purposes of rules, laws, and key United States constitutional provisions and other foundational documents"
+          },
+          {
+           "code": "SS.CG.5.2",
+           "text": "use deliberative processes when engaging in civic participation within the classroom or school"
+          },
+          {
+           "code": "SS.CG.5.3",
+           "text": "distinguish between the responsibilities of local, state, tribal, and national governments"
+          },
+          {
+           "code": "SS.CG.5.4",
+           "text": "explain how democracy relies upon active and responsible participation of citizens"
+          },
+          {
+           "code": "SS.CG.5.5",
+           "text": "describe the basic duties of the three branches of government"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "economics",
+     "title": "Economics",
+     "topics": [
+      {
+       "id": "the-economics-content-standards-for-fifth-grade-",
+       "title": "The economics content standards for fifth grade are that each student will",
+       "subtopics": [
+        {
+         "id": "the-economics-content-standards-for-fifth-grade-",
+         "title": "The economics content standards for fifth grade are that each student will",
+         "outcomes": [
+          {
+           "code": "SS.E.5.1",
+           "text": "explain how people have to make choices between wants and needs and evaluate the outcomes or consequences of those choices"
+          },
+          {
+           "code": "SS.E.5.2",
+           "text": "identify positive and negative incentives that influence the decisions people make"
+          },
+          {
+           "code": "SS.E.5.3",
+           "text": "identify resources and labor that are used to produce goods and services"
+          },
+          {
+           "code": "SS.E.5.4",
+           "text": "explain the role of money in the exchange of goods and services"
+          },
+          {
+           "code": "SS.E.5.5",
+           "text": "describe the role of manufacturing and agriculture in the economy of the United States"
+          },
+          {
+           "code": "SS.E.5.6",
+           "text": "describe how interest rates impact economic decision making"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "geography",
+     "title": "Geography",
+     "topics": [
+      {
+       "id": "the-geography-content-standards-for-fifth-grade-",
+       "title": "The geography content standards for fifth grade are that each student will",
+       "subtopics": [
+        {
+         "id": "the-geography-content-standards-for-fifth-grade-",
+         "title": "The geography content standards for fifth grade are that each student will",
+         "outcomes": [
+          {
+           "code": "SS.G.5.1",
+           "text": "identify and label US regions, territories, states and their capitals/major cities"
+          },
+          {
+           "code": "SS.G.5.2",
+           "text": "create, organize, and present geographic information to show settlement patterns in the United States, including impacts on tribal lands"
+          },
+          {
+           "code": "SS.G.5.3",
+           "text": "analyze environmental and technological events and conditions and how humans and the environment impact each other with relation to settlements and migration"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "history",
+     "title": "History",
+     "topics": [
+      {
+       "id": "the-history-content-standards-for-fifth-grade-ar",
+       "title": "The history content standards for fifth grade are that each student will",
+       "subtopics": [
+        {
+         "id": "the-history-content-standards-for-fifth-grade-ar",
+         "title": "The history content standards for fifth grade are that each student will",
+         "outcomes": [
+          {
+           "code": "SS.H.5.1",
+           "text": "interpret data presented in timelines"
+          },
+          {
+           "code": "SS.H.5.2",
+           "text": "understand the inter-relationship of chronological historical events"
+          },
+          {
+           "code": "SS.H.5.3",
+           "text": "identify roles of individuals and groups and their impact on United States and tribal historical events"
+          },
+          {
+           "code": "SS.H.5.4",
+           "text": "understand the unique historical perspectives of American Indians"
+          },
+          {
+           "code": "SS.H.5.5",
+           "text": "analyze historical documents and their impact on tribes in Montana and their sovereignty"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "K-12",
+   "units": [
+    {
+     "id": "there-is-great-diversity-among-the-twelve-sovere",
+     "title": "There is great diversity among the twelve sovereign tribes of Montana in their languages, cultures, histories, and governments. Each tribe has a distinct and unique cultural heritage that contributes to modern Montana",
+     "topics": [
+      {
+       "id": "there-is-great-diversity-among-the-twelve-sovere",
+       "title": "There is great diversity among the twelve sovereign tribes of Montana in their languages, cultures, histories, and governments. Each tribe has a distinct and unique cultural heritage that contributes to modern Montana",
+       "subtopics": [
+        {
+         "id": "there-is-great-diversity-among-the-twelve-sovere",
+         "title": "There is great diversity among the twelve sovereign tribes of Montana in their languages, cultures, histories, and governments. Each tribe has a distinct and unique cultural heritage that contributes to modern Montana",
+         "outcomes": [
+          {
+           "code": "1.a",
+           "text": "The twelve sovereign tribes, located in what is now the state of Montana, are distinct from one another in their history, culture, and language."
+          },
+          {
+           "code": "1.b",
+           "text": "Tribal sovereignty is the inherent right of tribes to independent self-governance."
+          },
+          {
+           "code": "1.c",
+           "text": "Tribal governments are fully functioning governments that provide an array of services similar to those of federal, state, and local governments."
+          },
+          {
+           "code": "1.d",
+           "text": "The political, demographic, and cultural landscape of Montana has rapidly changed in the last two hundred years."
+          },
+          {
+           "code": "1.e",
+           "text": "American Indian individuals and tribes are still here with distinct and intact governments, languages, and cultures that contribute to modern Montana."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "just-as-there-is-great-diversity-among-tribal-na",
+     "title": "Just as there is great diversity among tribal nations, there is great diversity among individual American Indians as identity is developed, defined, and redefined by entities, organizations, and people. There is no generic American Indian",
+     "topics": [
+      {
+       "id": "just-as-there-is-great-diversity-among-tribal-na",
+       "title": "Just as there is great diversity among tribal nations, there is great diversity among individual American Indians as identity is developed, defined, and redefined by entities, organizations, and people. There is no generic American Indian",
+       "subtopics": [
+        {
+         "id": "just-as-there-is-great-diversity-among-tribal-na",
+         "title": "Just as there is great diversity among tribal nations, there is great diversity among individual American Indians as identity is developed, defined, and redefined by entities, organizations, and people. There is no generic American Indian",
+         "outcomes": [
+          {
+           "code": "2.a",
+           "text": "There exists no universally accepted rule for establishing an individual’s identity as Indian. However, as a general rule, an Indian is a person who has some biological Indian ancestry and is recognized as an Indian by a tribe."
+          },
+          {
+           "code": "2.b",
+           "text": "For millennia, individual tribal groups successfully educated their children using highly effective indigenous pedagogies that imbued Indian children with all the knowledge and skills they needed to thrive in their world."
+          },
+          {
+           "code": "2.c",
+           "text": "Boarding schools and other federal policies of assimilation brought disruptions to the traditional transference of knowledge in tribal communities and have had wide-ranging and lasting impacts on American Indian individuals and communities."
+          },
+          {
+           "code": "2.d",
+           "text": "Students who maintain a strong sense of pride in their language and culture tend not to experience school failure."
+          },
+          {
+           "code": "2.e",
+           "text": "Ideally, school curricula will offer equal recognition of the contributions students’ home cultures bring to the learning situation and will help all students develop the self-esteem and self-confidence that can enhance their learning."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "the-ideologies-of-native-traditional-beliefs-and",
+     "title": "The ideologies of Native traditional beliefs and spirituality persist into modern day life as tribal cultures, traditions, and languages are still practiced by many American Indian people and are incorporated into how tribes govern and manage their affairs. Additionally, each tribe has its own oral histories, which are as valid as written histories. These histories predate the “discovery” of North America",
+     "topics": [
+      {
+       "id": "the-ideologies-of-native-traditional-beliefs-and",
+       "title": "The ideologies of Native traditional beliefs and spirituality persist into modern day life as tribal cultures, traditions, and languages are still practiced by many American Indian people and are incorporated into how tribes govern and manage their affairs. Additionally, each tribe has its own oral histories, which are as valid as written histories. These histories predate the “discovery” of North America",
+       "subtopics": [
+        {
+         "id": "the-ideologies-of-native-traditional-beliefs-and",
+         "title": "The ideologies of Native traditional beliefs and spirituality persist into modern day life as tribal cultures, traditions, and languages are still practiced by many American Indian people and are incorporated into how tribes govern and manage their affairs. Additionally, each tribe has its own oral histories, which are as valid as written histories. These histories predate the “discovery” of North America (1 of 2)",
+         "outcomes": [
+          {
+           "code": "3.a",
+           "text": "The term spirituality within a cultural context can be limiting and misconstrued. Spirituality to Indigenous peoples generally refers to one aspect of their worldview in which all things are connected. Spirituality in this context does not necessarily equate to nor denote religion."
+          },
+          {
+           "code": "3.b",
+           "text": "A complex history of pre-Columbian tribal migrations and intertribal interactions, European colonization and Christianization efforts, and federal assimilation policies have contributed to the broad range of spiritual beliefs held by American Indians today."
+          },
+          {
+           "code": "3.c",
+           "text": "Despite this history, Native people have retained their spiritual beliefs and traditions – tribal languages are still spoken, sacred songs are still sung, and rituals and ceremonies are still performed."
+          },
+          {
+           "code": "3.d",
+           "text": "It is not important for educators to understand all the complexities of modern day American Indian cultures; however, they should be aware of their existence and the fact they can influence much of the thinking and practice of American Indians today."
+          }
+         ]
+        },
+        {
+         "id": "the-ideologies-of-native-traditional-beliefs-and-2",
+         "title": "The ideologies of Native traditional beliefs and spirituality persist into modern day life as tribal cultures, traditions, and languages are still practiced by many American Indian people and are incorporated into how tribes govern and manage their affairs. Additionally, each tribe has its own oral histories, which are as valid as written histories. These histories predate the “discovery” of North America (2 of 2)",
+         "outcomes": [
+          {
+           "code": "3.e",
+           "text": "Humor plays an important role in American Indian cultures, there was no “stoic” Indian."
+          },
+          {
+           "code": "3.f",
+           "text": "Tribal oral traditions, ideologies, worldviews, and the principles and values associated with them, are as valid as other such traditions from around the world and should be accorded the same respect and standing."
+          },
+          {
+           "code": "3.g",
+           "text": "Educators should be aware that portions of these principles and values are private and are to be used and understood by certain individuals, groups, or the entire tribe. Tribal culture bearers, experts, and others can assist educators in navigating these situations."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "though-there-have-been-tribal-peoples-living-suc",
+     "title": "Though there have been tribal peoples living successfully on the North American lands for millennia, reservations are lands that have been reserved by or for tribes for their exclusive use as permanent homelands. Some were created through treaties while others were created by statutes and executive orders. The principle that land should be acquired from tribes only through their consent with treaties involved three assumptions: Both parties to treaties were sovereign powers. Indian tribes had some form of transferable title to the land. Acquisition of Indian lands was solely a government matter not to be left to individual colonists or states",
+     "topics": [
+      {
+       "id": "though-there-have-been-tribal-peoples-living-suc",
+       "title": "Though there have been tribal peoples living successfully on the North American lands for millennia, reservations are lands that have been reserved by or for tribes for their exclusive use as permanent homelands. Some were created through treaties while others were created by statutes and executive orders. The principle that land should be acquired from tribes only through their consent with treaties involved three assumptions: Both parties to treaties were sovereign powers. Indian tribes had some form of transferable title to the land. Acquisition of Indian lands was solely a government matter not to be left to individual colonists or states",
+       "subtopics": [
+        {
+         "id": "though-there-have-been-tribal-peoples-living-suc",
+         "title": "Though there have been tribal peoples living successfully on the North American lands for millennia, reservations are lands that have been reserved by or for tribes for their exclusive use as permanent homelands. Some were created through treaties while others were created by statutes and executive orders. The principle that land should be acquired from tribes only through their consent with treaties involved three assumptions: Both parties to treaties were sovereign powers. Indian tribes had some form of transferable title to the land. Acquisition of Indian lands was solely a government matter not to be left to individual colonists or states",
+         "outcomes": [
+          {
+           "code": "4.a",
+           "text": "Reservations are lands that have been reserved by tribes or for tribes for their exclusive use as permanent homelands."
+          },
+          {
+           "code": "4.b",
+           "text": "Some reservations are the remnants of a tribe’s original land base while others were created by Congressional statute or executive order for the resettling of Indian people forcibly relocated from their homelands."
+          },
+          {
+           "code": "4.c",
+           "text": "Original Indian title to land was acknowledged by tribes and European nations, as well as the United States."
+          },
+          {
+           "code": "4.d",
+           "text": "Indian tribes fought to protect their lands and resources including actively utilizing American courts and the Indian Claims Commission."
+          },
+          {
+           "code": "4.e",
+           "text": "Today, there are 326 reservations in the United States, seven of which are located in Montana."
+          },
+          {
+           "code": "4.g",
+           "text": "After Congress officially ended treaty-making with tribes in 1871, the federal government used other means to further reduce Indian landholdings on reservations."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "there-are-two-main-treaties-that-affected-montan",
+       "title": "There are two main treaties that affected Montana tribal lands:",
+       "subtopics": [
+        {
+         "id": "there-are-two-main-treaties-that-affected-montan",
+         "title": "There are two main treaties that affected Montana tribal lands:",
+         "outcomes": [
+          {
+           "code": "4.f.1",
+           "text": "The Fort Laramie Treaty, 1851, 1868"
+          },
+          {
+           "code": "4.f.2",
+           "text": "The Hellgate Treaty of 1855"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "there-were-many-federal-policies-put-into-place-",
+     "title": "There were many federal policies put into place throughout American history that have affected Indian people in the past and continue to shape who they are today. Many of these policies conflicted with one another. Much of Indian history can be related through several major federal policy periods: Colonization/Colonial Period (1492 - 1800s), Treaty-Making and Removal Period (1778 – 1871), Reservation Period - Allotment and Assimilation (1887 – 1934), Tribal Reorganization Period (1934 – 1953), Termination and Relocation Period (1953 – 1968), Self-Determination Period (1975 - Present)",
+     "topics": [
+      {
+       "id": "there-were-many-federal-policies-put-into-place-",
+       "title": "There were many federal policies put into place throughout American history that have affected Indian people in the past and continue to shape who they are today. Many of these policies conflicted with one another. Much of Indian history can be related through several major federal policy periods: Colonization/Colonial Period (1492 - 1800s), Treaty-Making and Removal Period (1778 – 1871), Reservation Period - Allotment and Assimilation (1887 – 1934), Tribal Reorganization Period (1934 – 1953), Termination and Relocation Period (1953 – 1968), Self-Determination Period (1975 - Present)",
+       "subtopics": [
+        {
+         "id": "there-were-many-federal-policies-put-into-place-",
+         "title": "There were many federal policies put into place throughout American history that have affected Indian people in the past and continue to shape who they are today. Many of these policies conflicted with one another. Much of Indian history can be related through several major federal policy periods: Colonization/Colonial Period (1492 - 1800s), Treaty-Making and Removal Period (1778 – 1871), Reservation Period - Allotment and Assimilation (1887 – 1934), Tribal Reorganization Period (1934 – 1953), Termination and Relocation Period (1953 – 1968), Self-Determination Period (1975 - Present)",
+         "outcomes": [
+          {
+           "code": "5.a",
+           "text": "The complexity of contemporary American Indian rights and sovereignty can be difficult to decipher; however, this history can be easier to understand when it is divided into major federal policy periods."
+          },
+          {
+           "code": "5.b",
+           "text": "Early in American history, Congress exerted extensive power over Indians and since has enacted over four hundred treaties and statutes dealing with Native Americans. Regulations and guidelines implementing these laws are even more numerous, making American Indians the most regulated population in the United States."
+          },
+          {
+           "code": "5.c",
+           "text": "Federal Indian policies have fluctuated between respecting tribal sovereignty and terminating tribes’ sovereign status altogether."
+          },
+          {
+           "code": "5.d",
+           "text": "Although the history of federal Indian policy is long and complex, understanding its main legislative pieces and outcomes helps provide context for the contemporary experiences of Indian students and communities."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "history-is-a-story-most-often-related-through-th",
+     "title": "History is a story most often related through the subjective experience of the teller. With the inclusion of more and varied voices, histories are being rediscovered and revised. History told from American Indian perspectives frequently conflicts with the stories mainstream historians tell",
+     "topics": [
+      {
+       "id": "history-is-a-story-most-often-related-through-th",
+       "title": "History is a story most often related through the subjective experience of the teller. With the inclusion of more and varied voices, histories are being rediscovered and revised. History told from American Indian perspectives frequently conflicts with the stories mainstream historians tell",
+       "subtopics": [
+        {
+         "id": "history-is-a-story-most-often-related-through-th",
+         "title": "History is a story most often related through the subjective experience of the teller. With the inclusion of more and varied voices, histories are being rediscovered and revised. History told from American Indian perspectives frequently conflicts with the stories mainstream historians tell (1 of 2)",
+         "outcomes": [
+          {
+           "code": "6.a",
+           "text": "History is a story most often related through the subjective experience of the teller."
+          },
+          {
+           "code": "6.b",
+           "text": "Much of America’s history has been told from the Euro-American perspective. Only recently have American Indians begun to write about and retell history from an indigenous perspective."
+          },
+          {
+           "code": "6.c",
+           "text": "A huge amount of political capital is involved in the telling of history."
+          },
+          {
+           "code": "6.d",
+           "text": "History is a primary vehicle through which power is distributed and used; thus, the whole notion of political identity and ideology and who the United States is as a nation plays into how the story is told, and who has been privileged to tell the story."
+          }
+         ]
+        },
+        {
+         "id": "history-is-a-story-most-often-related-through-th-2",
+         "title": "History is a story most often related through the subjective experience of the teller. With the inclusion of more and varied voices, histories are being rediscovered and revised. History told from American Indian perspectives frequently conflicts with the stories mainstream historians tell (2 of 2)",
+         "outcomes": [
+          {
+           "code": "6.e",
+           "text": "It is critical that history curricula include the stories and experiences of individual men and women of diverse racial, ethnic, and religious groups."
+          },
+          {
+           "code": "6.f",
+           "text": "Providing students with textbooks, primary source documents, and surviving oral traditions allows them to gain a more objective view of history and provides them with a historical context in which to situate and understand the experiences and perspectives of these groups in American society today."
+          },
+          {
+           "code": "6.g",
+           "text": "By giving students the opportunity to view our past through the eyes of many, they can begin to create their own view of our collective history, understand the present, and become better prepared to engage the problems of the future."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "american-indian-tribal-nations-are-inherent-sove",
+     "title": "American Indian tribal nations are inherent sovereign nations and they possess sovereign powers, separate and independent from the federal and state governments. However, under the American legal system, the extent and breadth of self-governing powers are not the same for each tribe",
+     "topics": [
+      {
+       "id": "american-indian-tribal-nations-are-inherent-sove",
+       "title": "American Indian tribal nations are inherent sovereign nations and they possess sovereign powers, separate and independent from the federal and state governments. However, under the American legal system, the extent and breadth of self-governing powers are not the same for each tribe",
+       "subtopics": [
+        {
+         "id": "american-indian-tribal-nations-are-inherent-sove",
+         "title": "American Indian tribal nations are inherent sovereign nations and they possess sovereign powers, separate and independent from the federal and state governments. However, under the American legal system, the extent and breadth of self-governing powers are not the same for each tribe",
+         "outcomes": [
+          {
+           "code": "7.a",
+           "text": "Tribal sovereignty stems directly from the fact that tribal nations constitute distinct political communities that have the right to determine their own laws and form of government."
+          },
+          {
+           "code": "7.b",
+           "text": "Tribal self-governing powers predate the existence of the United States and are not delegated powers granted by Congress or any other entity; they are inherent powers of sovereign nations that have never been extinguished."
+          },
+          {
+           "code": "7.c",
+           "text": "Some limitations have been placed on tribal sovereignty throughout the past two centuries by Supreme Court rulings and Congressional statues, which is why tribes are sometimes referred to as “limited” sovereigns today."
+          },
+          {
+           "code": "7.d",
+           "text": "In general, tribes are free to exercise any of their sovereign powers unless Congress has specifically limited or modified them in some way."
+          },
+          {
+           "code": "7.e",
+           "text": "The extent and breadth of self-governing powers is not the same for every tribe."
+          },
+          {
+           "code": "7.f",
+           "text": "Despite the complex evolution of tribal sovereignty in America, it remains one of the most important attributes of tribal independence."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "6-8",
+   "units": [
+    {
+     "id": "content-skills",
+     "title": "Content Skills",
+     "topics": [
+      {
+       "id": "content-skills",
+       "title": "Content Skills",
+       "subtopics": [
+        {
+         "id": "content-skills",
+         "title": "Content Skills",
+         "outcomes": [
+          {
+           "code": "SS.K12.1",
+           "text": "develop questions"
+          },
+          {
+           "code": "SS.K12.2",
+           "text": "plan inquiries"
+          },
+          {
+           "code": "SS.K12.3",
+           "text": "compare and evaluate sources for relevance, perspective, and accuracy"
+          },
+          {
+           "code": "SS.K12.4",
+           "text": "use sources to gather evidence to develop and refine claims"
+          },
+          {
+           "code": "SS.K12.5",
+           "text": "communicate conclusions"
+          },
+          {
+           "code": "SS.K12.6",
+           "text": "take informed action"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "civics-and-government",
+     "title": "Civics and Government",
+     "topics": [
+      {
+       "id": "the-civics-and-government-content-standards-for-",
+       "title": "The civics and government content standards for sixth through eighth grade are that each student will",
+       "subtopics": [
+        {
+         "id": "the-civics-and-government-content-standards-for-",
+         "title": "The civics and government content standards for sixth through eighth grade are that each student will (1 of 2)",
+         "outcomes": [
+          {
+           "code": "SS.CG.6-8.1",
+           "text": "explain a variety of forms of government from the past or present"
+          },
+          {
+           "code": "SS.CG.6-8.2",
+           "text": "explain the structure of and key principles in foundational documents, including the Montana Constitution"
+          },
+          {
+           "code": "SS.CG.6-8.3",
+           "text": "explain how global and American Indian civilizations and governments have contributed to foundational documents of the United States"
+          },
+          {
+           "code": "SS.CG.6-8.4",
+           "text": "distinguish the structure, organization, powers, and limits of government at the local, state, national, and tribal levels"
+          }
+         ]
+        },
+        {
+         "id": "the-civics-and-government-content-standards-for--2",
+         "title": "The civics and government content standards for sixth through eighth grade are that each student will (2 of 2)",
+         "outcomes": [
+          {
+           "code": "SS.CG.6-8.5",
+           "text": "identify events and leaders that ensure that key United States principles of equality and civil rights are applied to various groups, including American Indians"
+          },
+          {
+           "code": "SS.CG.6-8.6",
+           "text": "demonstrate that the United States government includes concepts of both a democracy and a republic"
+          },
+          {
+           "code": "SS.CG.6-8.7",
+           "text": "employ strategies for civic involvement that address a state or local, or national issues"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "economics",
+     "title": "Economics",
+     "topics": [
+      {
+       "id": "the-economics-content-standards-for-sixth-throug",
+       "title": "The economics content standards for sixth through eighth grade are that each student will",
+       "subtopics": [
+        {
+         "id": "the-economics-content-standards-for-sixth-throug",
+         "title": "The economics content standards for sixth through eighth grade are that each student will",
+         "outcomes": [
+          {
+           "code": "SS.E.6-8.1",
+           "text": "explain how economic decisions impact individuals, businesses, and society, including Indigenous societies"
+          },
+          {
+           "code": "SS.E.6-8.2",
+           "text": "analyze examples of how groups and individuals have considered profit and personal values in making economic choices in the past and/or present"
+          },
+          {
+           "code": "SS.E.6-8.3",
+           "text": "explain the roles of producers and consumers in market systems"
+          },
+          {
+           "code": "SS.E.6-8.4",
+           "text": "describe the role of competition in the determination of prices and wages in a market economy"
+          },
+          {
+           "code": "SS.E.6-8.5",
+           "text": "explain ways in which money facilitates exchange and impacts transactional costs"
+          },
+          {
+           "code": "SS.E.6-8.6",
+           "text": "explain how changes in supply, demand, and labor standards cause changes in prices and quantities of goods, services, and other capital"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "geography",
+     "title": "Geography",
+     "topics": [
+      {
+       "id": "the-geography-content-standards-for-sixth-throug",
+       "title": "The geography content standards for sixth through eighth grade are that each student will",
+       "subtopics": [
+        {
+         "id": "the-geography-content-standards-for-sixth-throug",
+         "title": "The geography content standards for sixth through eighth grade are that each student will (1 of 2)",
+         "outcomes": [
+          {
+           "code": "SS.G.6-8.1",
+           "text": "construct and analyze maps using scale, direction, symbols, legends, and projections to gather information about regions across the world"
+          },
+          {
+           "code": "SS.G.6-8.2",
+           "text": "identify the location of places and regions in the world and understand their physical, political, and cultural characteristics"
+          },
+          {
+           "code": "SS.G.6-8.3",
+           "text": "analyze maps and charts from a specific time period to understand an issue or event"
+          },
+          {
+           "code": "SS.G.6-8.4",
+           "text": "explain how the environment and geographic features have affected people and how people have affected the environment throughout Montana, the United States, and the world"
+          }
+         ]
+        },
+        {
+         "id": "the-geography-content-standards-for-sixth-throug-2",
+         "title": "The geography content standards for sixth through eighth grade are that each student will (2 of 2)",
+         "outcomes": [
+          {
+           "code": "SS.G.6-8.5",
+           "text": "explain the role and impact of spatial patterns of settlement and movement in shaping societies and cultures, including Indigenous cultures"
+          },
+          {
+           "code": "SS.G.6-8.6",
+           "text": "identify how the historical and contemporary movement of people, goods, and ideas from one area can impact change, conflict, and cooperation in other areas"
+          },
+          {
+           "code": "SS.G.6-8.7",
+           "text": "identify the cultural roots of major world regions"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "history",
+     "title": "History",
+     "topics": [
+      {
+       "id": "the-history-content-standards-for-sixth-through-",
+       "title": "The history content standards for sixth through eighth grade are that each student will",
+       "subtopics": [
+        {
+         "id": "the-history-content-standards-for-sixth-through-",
+         "title": "The history content standards for sixth through eighth grade are that each student will (1 of 2)",
+         "outcomes": [
+          {
+           "code": "SS.H.6-8.1",
+           "text": "explore complex civilizations, and identify elements of change and continuity across historical eras in Montana, the Americas, and world history"
+          },
+          {
+           "code": "SS.H.6-8.2",
+           "text": "analyze how the historical events relate to one another and are shaped by historical context, including societies in the Americas"
+          },
+          {
+           "code": "SS.H.6-8.3",
+           "text": "analyze how, since European contact, historical events and policies have mutually impacted American Indian and European societies"
+          },
+          {
+           "code": "SS.H.6-8.4",
+           "text": "identify how new archaeological and scientific information shapes historical understanding"
+          },
+          {
+           "code": "SS.H.6-8.5",
+           "text": "explain how Montana has changed over time and how this history impacts the present"
+          }
+         ]
+        },
+        {
+         "id": "the-history-content-standards-for-sixth-through--2",
+         "title": "The history content standards for sixth through eighth grade are that each student will (2 of 2)",
+         "outcomes": [
+          {
+           "code": "SS.H.6-8.6",
+           "text": "understand that there are multiple perspectives and interpretations of historical events"
+          },
+          {
+           "code": "SS.H.6-8.7",
+           "text": "analyze how people's perspectives shaped the historical narratives they created"
+          },
+          {
+           "code": "SS.H.6-8.8",
+           "text": "identify limitations and biases in primary and secondary sources, specifically regarding misinformation and stereotypes"
+          },
+          {
+           "code": "SS.H.6-8.9",
+           "text": "understand that the questions people ask shape the conclusions they reach"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "9-12",
+   "units": [
+    {
+     "id": "content-skills",
+     "title": "Content Skills",
+     "topics": [
+      {
+       "id": "content-skills",
+       "title": "Content Skills",
+       "subtopics": [
+        {
+         "id": "content-skills",
+         "title": "Content Skills",
+         "outcomes": [
+          {
+           "code": "SS.K12.1",
+           "text": "develop questions"
+          },
+          {
+           "code": "SS.K12.2",
+           "text": "plan inquiries"
+          },
+          {
+           "code": "SS.K12.3",
+           "text": "compare and evaluate sources for relevance, perspective, and accuracy"
+          },
+          {
+           "code": "SS.K12.4",
+           "text": "use sources to gather evidence to develop and refine claims"
+          },
+          {
+           "code": "SS.K12.5",
+           "text": "communicate conclusions"
+          },
+          {
+           "code": "SS.K12.6",
+           "text": "take informed action"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "civics-and-government",
+     "title": "Civics and Government",
+     "topics": [
+      {
+       "id": "the-civics-and-government-content-standards-for-",
+       "title": "The civics and government content standards for ninth through twelfth grade are that each student will",
+       "subtopics": [
+        {
+         "id": "the-civics-and-government-content-standards-for-",
+         "title": "The civics and government content standards for ninth through twelfth grade are that each student will (1 of 3)",
+         "outcomes": [
+          {
+           "code": "SS.CG.9-12.1",
+           "text": "analyze and evaluate the ideas and principles contained in the foundational documents of the United States, and explain how they establish a system of government that has powers, responsibilities, and limits"
+          },
+          {
+           "code": "SS.CG.9-12.2",
+           "text": "analyze the impact of constitutions, laws, treaties, and international agreements on the maintenance of domestic and international relationships"
+          },
+          {
+           "code": "SS.CG.9-12.3",
+           "text": "evaluate the impact of international agreements on contemporary world issues"
+          },
+          {
+           "code": "SS.CG.9-12.4",
+           "text": "apply civic virtues and democratic principles when working with others"
+          }
+         ]
+        },
+        {
+         "id": "the-civics-and-government-content-standards-for--2",
+         "title": "The civics and government content standards for ninth through twelfth grade are that each student will (2 of 3)",
+         "outcomes": [
+          {
+           "code": "SS.CG.9-12.5",
+           "text": "evaluate how citizens and institutions address social and political problems at the local, state, tribal, national, and/or international levels"
+          },
+          {
+           "code": "SS.CG.9-12.6",
+           "text": "evaluate the American governmental system compared to international governmental systems"
+          },
+          {
+           "code": "SS.CG.9-12.7",
+           "text": "explain the foundations and complexity of sovereignty for federally recognized tribes in Montana"
+          },
+          {
+           "code": "SS.CG.9-12.8",
+           "text": "evaluate appropriate deliberative processes in multiple settings"
+          }
+         ]
+        },
+        {
+         "id": "the-civics-and-government-content-standards-for--3",
+         "title": "The civics and government content standards for ninth through twelfth grade are that each student will (3 of 3)",
+         "outcomes": [
+          {
+           "code": "SS.CG.9-12.9",
+           "text": "evaluate government procedures for making decisions at the local, state, national, tribal, and international levels"
+          },
+          {
+           "code": "SS.CG.9-12.10",
+           "text": "analyze historical, contemporary, and emerging means of changing societies, promoting the common good, and protecting rights"
+          },
+          {
+           "code": "SS.CG.9-12.11",
+           "text": "analyze the impact and roles of personal interests and perspectives, market, media, and group influences on the application of civic virtues, democratic principles, constitutional rights, and human rights"
+          },
+          {
+           "code": "SS.CG.9-12.12",
+           "text": "evaluate citizens' and institutions' effectiveness in ensuring civil rights at the local, state, tribal, national, and international levels"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "economics",
+     "title": "Economics",
+     "topics": [
+      {
+       "id": "the-economics-content-standards-for-ninth-throug",
+       "title": "The economics content standards for ninth through twelfth grade are that each student will",
+       "subtopics": [
+        {
+         "id": "the-economics-content-standards-for-ninth-throug",
+         "title": "The economics content standards for ninth through twelfth grade are that each student will (1 of 2)",
+         "outcomes": [
+          {
+           "code": "SS.E.9-12.1",
+           "text": "analyze how pressures and incentives impact economic choices and their costs and benefits for different groups, including American Indians"
+          },
+          {
+           "code": "SS.E.9-12.2",
+           "text": "explain how economic cycles affect personal financial decisions"
+          },
+          {
+           "code": "SS.E.9-12.3",
+           "text": "analyze the ways in which pressures and incentives influence what is produced and distributed in a market system"
+          },
+          {
+           "code": "SS.E.9-12.4",
+           "text": "evaluate the extent to which competition among producers, among consumers, and among laborers exists in specific markets"
+          },
+          {
+           "code": "SS.E.9-12.5",
+           "text": "describe the consequences of competition in specific markets"
+          }
+         ]
+        },
+        {
+         "id": "the-economics-content-standards-for-ninth-throug-2",
+         "title": "The economics content standards for ninth through twelfth grade are that each student will (2 of 2)",
+         "outcomes": [
+          {
+           "code": "SS.E.9-12.6",
+           "text": "evaluate benefits, costs, and possible outcomes of government policies to influence market outcomes"
+          },
+          {
+           "code": "SS.E.9-12.7",
+           "text": "use current data to explain the influence of changes in spending, production, and the money supply on various economic conditions"
+          },
+          {
+           "code": "SS.E.9-12.8",
+           "text": "use economic indicators to analyze the current and future state of the economy"
+          },
+          {
+           "code": "SS.E.9-12.9",
+           "text": "evaluate the selection of monetary and fiscal policies in a variety of economic conditions"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "geography",
+     "title": "Geography",
+     "topics": [
+      {
+       "id": "the-geography-content-standards-for-ninth-throug",
+       "title": "The geography content standards for ninth through twelfth grade are that each student will",
+       "subtopics": [
+        {
+         "id": "the-geography-content-standards-for-ninth-throug",
+         "title": "The geography content standards for ninth through twelfth grade are that each student will (1 of 2)",
+         "outcomes": [
+          {
+           "code": "SS.G.9-12.1",
+           "text": "use geospatial reasoning to create maps to display and explain the spatial patterns of cultural and environmental characteristics"
+          },
+          {
+           "code": "SS.G.9-12.2",
+           "text": "use geographic data to analyze variations in the spatial patterns of cultural and environmental characteristics at multiple scales"
+          },
+          {
+           "code": "SS.G.9-12.3",
+           "text": "use maps, satellite images, photographs, and other representations to explain relationships between the locations of places and regions and their political, cultural, and economic dynamics"
+          },
+          {
+           "code": "SS.G.9-12.4",
+           "text": "analyze relationships and interactions within and between human and physical systems to explain reciprocal influences that occur among them, including American Indians"
+          }
+         ]
+        },
+        {
+         "id": "the-geography-content-standards-for-ninth-throug-2",
+         "title": "The geography content standards for ninth through twelfth grade are that each student will (2 of 2)",
+         "outcomes": [
+          {
+           "code": "SS.G.9-12.5",
+           "text": "evaluate the impact of human settlement activities on the environmental, political, and cultural characteristics of specific places and regions"
+          },
+          {
+           "code": "SS.G.9-12.6",
+           "text": "analyze the role of geography on interactions and conflicts between various cultures in Montana, the United States, and the world"
+          },
+          {
+           "code": "SS.G.9-12.7",
+           "text": "evaluate the influence of long-term climate variability on human migration and settlement patterns, resource use, and land uses at local-to-global scales"
+          },
+          {
+           "code": "SS.G.9-12.8",
+           "text": "evaluate the consequences of human-driven and natural catastrophes on global trade, politics, and human migration"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "history",
+     "title": "History",
+     "topics": [
+      {
+       "id": "the-history-content-standards-for-ninth-through-",
+       "title": "The history content standards for ninth through twelfth grade are that each student will",
+       "subtopics": [
+        {
+         "id": "the-history-content-standards-for-ninth-through-",
+         "title": "The history content standards for ninth through twelfth grade are that each student will (1 of 3)",
+         "outcomes": [
+          {
+           "code": "SS.H.9-12.1",
+           "text": "analyze how unique circumstances of time, place, and historical contexts shape individuals' lives"
+          },
+          {
+           "code": "SS.H.9-12.2",
+           "text": "analyze change and continuity in historical eras in US and world history"
+          },
+          {
+           "code": "SS.H.9-12.3",
+           "text": "identify ways in which people and groups exercise agency in difficult historical, contemporary, and tribal contexts"
+          },
+          {
+           "code": "SS.H.9-12.4",
+           "text": "analyze multiple, and complex causal factors that have shaped major events in US and world history, including American Indian history"
+          },
+          {
+           "code": "SS.H.9-12.5",
+           "text": "explain events in relation to both their intended and unintended consequences, including governmental policies impacting American Indians"
+          }
+         ]
+        },
+        {
+         "id": "the-history-content-standards-for-ninth-through--2",
+         "title": "The history content standards for ninth through twelfth grade are that each student will (2 of 3)",
+         "outcomes": [
+          {
+           "code": "SS.H.9-12.6",
+           "text": "distinguish between long-term causes and triggering events in developing a historical argument"
+          },
+          {
+           "code": "SS.H.9-12.7",
+           "text": "analyze how historical, cultural, social, political, ideological, and economic contexts shape people's perspectives"
+          },
+          {
+           "code": "SS.H.9-12.8",
+           "text": "analyze the ways in which the perspectives of those writing history shaped the history they produced"
+          },
+          {
+           "code": "SS.H.9-12.9",
+           "text": "evaluate how historiography is influenced by perspective and available historical sources"
+          },
+          {
+           "code": "SS.H.9-12.10",
+           "text": "analyze perspectives of American Indians in US history"
+          }
+         ]
+        },
+        {
+         "id": "the-history-content-standards-for-ninth-through--3",
+         "title": "The history content standards for ninth through twelfth grade are that each student will (3 of 3)",
+         "outcomes": [
+          {
+           "code": "SS.H.9-12.11",
+           "text": "evaluate the limitations, biases, and credibility of various sources, especially regarding misinformation and stereotypes"
+          },
+          {
+           "code": "SS.H.9-12.12",
+           "text": "analyze multiple historical sources to pursue further inquiry and investigate additional sources"
+          },
+          {
+           "code": "SS.H.9-12.13",
+           "text": "integrate evidence from multiple relevant historical sources and interpretations into a reasoned argument about past and present people, events, and ideas"
+          },
+          {
+           "code": "SS.H.9-12.14",
+           "text": "construct arguments which reflect understanding and analysis of multiple historical sources, perspectives, and contexts"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "build": {
+  "builtAt": "2026-10-14T16:20:45.468Z",
+  "model": "none",
+  "usd": 0,
+  "expectedCodes": 192,
+  "coverage": 1,
+  "missingCodes": [],
+  "counts": {
+   "grades": 9,
+   "units": 47,
+   "topics": 48,
+   "subtopics": 59,
+   "outcomes": 234
+  },
+  "warnings": [
+   "unit \"Geography\" (grade K) has a single outcome",
+   "unit \"History\" (grade K) has a single outcome"
+  ]
+ }
+}

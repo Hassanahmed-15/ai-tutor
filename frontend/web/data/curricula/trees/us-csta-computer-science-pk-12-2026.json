@@ -1,0 +1,3981 @@
+{
+ "id": "us-csta-computer-science-pk-12-2026",
+ "region": "US",
+ "framework": "2026 CSTA PK-12 Computer Science Standards",
+ "board": "Computer Science Teachers Association",
+ "qualification": "K-12",
+ "subject": "Computer Science",
+ "syllabusCode": null,
+ "gradeSystem": "grade",
+ "source": {
+  "urls": [
+   "https://csteachers.org/wp-content/uploads/2026/07/2026-CSTA-PK%E2%80%9312-Computer-Science-Standards.pdf",
+   "https://csteachers.org/2026-csta-pk-12-computer-science-standards/",
+   "https://doi.org/10.1145/3820482"
+  ],
+  "publisher": "Computer Science Teachers Association (CSTA), with WestEd",
+  "licence": "CC BY-NC-SA 4.0",
+  "firstExam": "2026"
+ },
+ "grades": [
+  {
+   "grade": "K",
+   "units": [
+    {
+     "id": "alg-algorithms-design",
+     "title": "ALG Algorithms & Design",
+     "topics": [
+      {
+       "id": "algorithmic-problem-solving",
+       "title": "Algorithmic Problem Solving",
+       "subtopics": [
+        {
+         "id": "algorithmic-problem-solving",
+         "title": "Algorithmic Problem Solving",
+         "outcomes": [
+          {
+           "code": "EK-ALG-PS-01",
+           "text": "Follow the steps of an everyday routine in the right order."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "machine-learning",
+       "title": "Machine Learning",
+       "subtopics": [
+        {
+         "id": "machine-learning",
+         "title": "Machine Learning",
+         "outcomes": [
+          {
+           "code": "EK-ALG-ML-02",
+           "text": "Notice the features of objects to spot patterns and make decisions."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "impacts-of-algorithms-design",
+       "title": "Impacts of Algorithms & Design",
+       "subtopics": [
+        {
+         "id": "impacts-of-algorithms-design",
+         "title": "Impacts of Algorithms & Design",
+         "outcomes": [
+          {
+           "code": "EK-ALG-IM-03",
+           "text": "Describe how people create algorithms to solve problems."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "pro-programming",
+     "title": "PRO Programming",
+     "topics": [
+      {
+       "id": "program-development",
+       "title": "Program Development",
+       "subtopics": [
+        {
+         "id": "program-development",
+         "title": "Program Development",
+         "outcomes": [
+          {
+           "code": "EK-PRO-PD-04",
+           "text": "Create a sequence of commands to solve a problem or express an idea."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "variables-data-storage",
+       "title": "Variables & Data Storage",
+       "subtopics": [
+        {
+         "id": "variables-data-storage",
+         "title": "Variables & Data Storage",
+         "outcomes": [
+          {
+           "code": "EK-PRO-VD-05",
+           "text": "Identify everyday gestures and symbols that carry information people use to choose."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "reading-documenting",
+       "title": "Reading & Documenting",
+       "subtopics": [
+        {
+         "id": "reading-documenting",
+         "title": "Reading & Documenting",
+         "outcomes": [
+          {
+           "code": "EK-PRO-RD-06",
+           "text": "Describe how a sequence of commands completes a task."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "testing-refining",
+       "title": "Testing & Refining",
+       "subtopics": [
+        {
+         "id": "testing-refining",
+         "title": "Testing & Refining",
+         "outcomes": [
+          {
+           "code": "EK-PRO-TR-07",
+           "text": "Spot a step in a command sequence that does not work as expected."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "dat-data-analysis",
+     "title": "DAT Data & Analysis",
+     "topics": [
+      {
+       "id": "data-collection-preparation",
+       "title": "Data Collection & Preparation",
+       "subtopics": [
+        {
+         "id": "data-collection-preparation",
+         "title": "Data Collection & Preparation",
+         "outcomes": [
+          {
+           "code": "EK-DAT-DC-08",
+           "text": "Use collected data to help answer questions."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "data-investigation",
+       "title": "Data Investigation",
+       "subtopics": [
+        {
+         "id": "data-investigation",
+         "title": "Data Investigation",
+         "outcomes": [
+          {
+           "code": "EK-DAT-DI-09",
+           "text": "Investigate a question answerable by collecting data in everyday surroundings."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "impacts-of-data-science",
+       "title": "Impacts of Data Science",
+       "subtopics": [
+        {
+         "id": "impacts-of-data-science",
+         "title": "Impacts of Data Science",
+         "outcomes": [
+          {
+           "code": "EK-DAT-IM-10",
+           "text": "Investigate how data helps a person make informed everyday decisions."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "sys-systems-security",
+     "title": "SYS Systems & Security",
+     "topics": [
+      {
+       "id": "hardware-software",
+       "title": "Hardware & Software",
+       "subtopics": [
+        {
+         "id": "hardware-software",
+         "title": "Hardware & Software",
+         "outcomes": [
+          {
+           "code": "EK-SYS-HW-11",
+           "text": "Examine how tools help different users do a task or solve a problem."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "security",
+       "title": "Security",
+       "subtopics": [
+        {
+         "id": "security",
+         "title": "Security",
+         "outcomes": [
+          {
+           "code": "EK-SYS-SE-12",
+           "text": "Tell public information from private information."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "impacts-of-computing-systems",
+       "title": "Impacts of Computing Systems",
+       "subtopics": [
+        {
+         "id": "impacts-of-computing-systems",
+         "title": "Impacts of Computing Systems",
+         "outcomes": [
+          {
+           "code": "EK-SYS-IM-13",
+           "text": "Identify responsible behaviour when using computing systems and digital tools."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "soc-computing-society",
+     "title": "SOC Computing & Society",
+     "topics": [
+      {
+       "id": "history-of-computing",
+       "title": "History of Computing",
+       "subtopics": [
+        {
+         "id": "history-of-computing",
+         "title": "History of Computing",
+         "outcomes": [
+          {
+           "code": "EK-SOC-HI-14",
+           "text": "Identify computing technologies in daily life that have changed over time."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "humans-computing",
+       "title": "Humans & Computing",
+       "subtopics": [
+        {
+         "id": "humans-computing",
+         "title": "Humans & Computing",
+         "outcomes": [
+          {
+           "code": "EK-SOC-HU-15",
+           "text": "Explain that people design and develop computing technologies."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "career-exploration",
+       "title": "Career Exploration",
+       "subtopics": [
+        {
+         "id": "career-exploration",
+         "title": "Career Exploration",
+         "outcomes": [
+          {
+           "code": "EK-SOC-CE-16",
+           "text": "Identify how people use digital devices at home, school and work."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "1",
+   "units": [
+    {
+     "id": "alg-algorithms-design",
+     "title": "ALG Algorithms & Design",
+     "topics": [
+      {
+       "id": "algorithmic-problem-solving",
+       "title": "Algorithmic Problem Solving",
+       "subtopics": [
+        {
+         "id": "algorithmic-problem-solving",
+         "title": "Algorithmic Problem Solving",
+         "outcomes": [
+          {
+           "code": "E1-ALG-PS-01",
+           "text": "Break a task or problem into smaller parts to build an algorithm."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "machine-learning",
+       "title": "Machine Learning",
+       "subtopics": [
+        {
+         "id": "machine-learning",
+         "title": "Machine Learning",
+         "outcomes": [
+          {
+           "code": "E1-ALG-ML-02",
+           "text": "Recognise that AI systems use patterns in data to make decisions or create new things."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "impacts-of-algorithms-design",
+       "title": "Impacts of Algorithms & Design",
+       "subtopics": [
+        {
+         "id": "impacts-of-algorithms-design",
+         "title": "Impacts of Algorithms & Design",
+         "outcomes": [
+          {
+           "code": "E1-ALG-IM-03",
+           "text": "Explain how changing an algorithm changes the outcome."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "pro-programming",
+     "title": "PRO Programming",
+     "topics": [
+      {
+       "id": "program-development",
+       "title": "Program Development",
+       "subtopics": [
+        {
+         "id": "program-development",
+         "title": "Program Development",
+         "outcomes": [
+          {
+           "code": "E1-PRO-PD-04",
+           "text": "Turn an algorithm with sequence into code."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "variables-data-storage",
+       "title": "Variables & Data Storage",
+       "subtopics": [
+        {
+         "id": "variables-data-storage",
+         "title": "Variables & Data Storage",
+         "outcomes": [
+          {
+           "code": "E1-PRO-VD-05",
+           "text": "Identify words for data values that change over time in everyday life."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "reading-documenting",
+       "title": "Reading & Documenting",
+       "subtopics": [
+        {
+         "id": "reading-documenting",
+         "title": "Reading & Documenting",
+         "outcomes": [
+          {
+           "code": "E1-PRO-RD-06",
+           "text": "Explain what code with an event and a sequence does."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "testing-refining",
+       "title": "Testing & Refining",
+       "subtopics": [
+        {
+         "id": "testing-refining",
+         "title": "Testing & Refining",
+         "outcomes": [
+          {
+           "code": "E1-PRO-TR-07",
+           "text": "Debug a program made of a sequence of commands."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "dat-data-analysis",
+     "title": "DAT Data & Analysis",
+     "topics": [
+      {
+       "id": "data-collection-preparation",
+       "title": "Data Collection & Preparation",
+       "subtopics": [
+        {
+         "id": "data-collection-preparation",
+         "title": "Data Collection & Preparation",
+         "outcomes": [
+          {
+           "code": "E1-DAT-DC-08",
+           "text": "Collect both number and non-number data in several ways to answer questions."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "data-investigation",
+       "title": "Data Investigation",
+       "subtopics": [
+        {
+         "id": "data-investigation",
+         "title": "Data Investigation",
+         "outcomes": [
+          {
+           "code": "E1-DAT-DI-09",
+           "text": "Tell a question answerable through a data investigation from one answerable by other means."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "impacts-of-data-science",
+       "title": "Impacts of Data Science",
+       "subtopics": [
+        {
+         "id": "impacts-of-data-science",
+         "title": "Impacts of Data Science",
+         "outcomes": [
+          {
+           "code": "E1-DAT-IM-10",
+           "text": "Examine data questions that address the needs of a person or community."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "sys-systems-security",
+     "title": "SYS Systems & Security",
+     "topics": [
+      {
+       "id": "hardware-software",
+       "title": "Hardware & Software",
+       "subtopics": [
+        {
+         "id": "hardware-software",
+         "title": "Hardware & Software",
+         "outcomes": [
+          {
+           "code": "E1-SYS-HW-11",
+           "text": "Describe the purpose of basic hardware parts using correct terms."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "security",
+       "title": "Security",
+       "subtopics": [
+        {
+         "id": "security",
+         "title": "Security",
+         "outcomes": [
+          {
+           "code": "E1-SYS-SE-12",
+           "text": "Describe how to keep devices and online accounts safe from unauthorised access."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "impacts-of-computing-systems",
+       "title": "Impacts of Computing Systems",
+       "subtopics": [
+        {
+         "id": "impacts-of-computing-systems",
+         "title": "Impacts of Computing Systems",
+         "outcomes": [
+          {
+           "code": "E1-SYS-IM-13",
+           "text": "Describe a person's role in using computing systems responsibly."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "soc-computing-society",
+     "title": "SOC Computing & Society",
+     "topics": [
+      {
+       "id": "history-of-computing",
+       "title": "History of Computing",
+       "subtopics": [
+        {
+         "id": "history-of-computing",
+         "title": "History of Computing",
+         "outcomes": [
+          {
+           "code": "E1-SOC-HI-14",
+           "text": "Compare an everyday activity before and after a computing technology arrived."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "humans-computing",
+       "title": "Humans & Computing",
+       "subtopics": [
+        {
+         "id": "humans-computing",
+         "title": "Humans & Computing",
+         "outcomes": [
+          {
+           "code": "E1-SOC-HU-15",
+           "text": "Tell what humans do well from what computing technologies do well."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "career-exploration",
+       "title": "Career Exploration",
+       "subtopics": [
+        {
+         "id": "career-exploration",
+         "title": "Career Exploration",
+         "outcomes": [
+          {
+           "code": "E1-SOC-CE-16",
+           "text": "Describe how people use computing at home, school and in the community."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "2",
+   "units": [
+    {
+     "id": "alg-algorithms-design",
+     "title": "ALG Algorithms & Design",
+     "topics": [
+      {
+       "id": "algorithmic-problem-solving",
+       "title": "Algorithmic Problem Solving",
+       "subtopics": [
+        {
+         "id": "algorithmic-problem-solving",
+         "title": "Algorithmic Problem Solving",
+         "outcomes": [
+          {
+           "code": "E2-ALG-PS-01",
+           "text": "Build an algorithm using sequence, events and loops to solve a problem or express an idea."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "machine-learning",
+       "title": "Machine Learning",
+       "subtopics": [
+        {
+         "id": "machine-learning",
+         "title": "Machine Learning",
+         "outcomes": [
+          {
+           "code": "E2-ALG-ML-02",
+           "text": "Examine how data is used to train a machine learning model."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "impacts-of-algorithms-design",
+       "title": "Impacts of Algorithms & Design",
+       "subtopics": [
+        {
+         "id": "impacts-of-algorithms-design",
+         "title": "Impacts of Algorithms & Design",
+         "outcomes": [
+          {
+           "code": "E2-ALG-IM-03",
+           "text": "Describe how an algorithm could affect classmates in different situations."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "pro-programming",
+     "title": "PRO Programming",
+     "topics": [
+      {
+       "id": "program-development",
+       "title": "Program Development",
+       "subtopics": [
+        {
+         "id": "program-development",
+         "title": "Program Development",
+         "outcomes": [
+          {
+           "code": "E2-PRO-PD-04",
+           "text": "Turn an algorithm with sequence, events and loops into code."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "variables-data-storage",
+       "title": "Variables & Data Storage",
+       "subtopics": [
+        {
+         "id": "variables-data-storage",
+         "title": "Variables & Data Storage",
+         "outcomes": [
+          {
+           "code": "E2-PRO-VD-05",
+           "text": "Label representations of information with a name and whether the value is fixed or changing."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "reading-documenting",
+       "title": "Reading & Documenting",
+       "subtopics": [
+        {
+         "id": "reading-documenting",
+         "title": "Reading & Documenting",
+         "outcomes": [
+          {
+           "code": "E2-PRO-RD-06",
+           "text": "Explain the steps taken to create a program."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "testing-refining",
+       "title": "Testing & Refining",
+       "subtopics": [
+        {
+         "id": "testing-refining",
+         "title": "Testing & Refining",
+         "outcomes": [
+          {
+           "code": "E2-PRO-TR-07",
+           "text": "Debug a program with sequence, events and loops."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "dat-data-analysis",
+     "title": "DAT Data & Analysis",
+     "topics": [
+      {
+       "id": "data-collection-preparation",
+       "title": "Data Collection & Preparation",
+       "subtopics": [
+        {
+         "id": "data-collection-preparation",
+         "title": "Data Collection & Preparation",
+         "outcomes": [
+          {
+           "code": "E2-DAT-DC-08",
+           "text": "Compare numeric and non-numeric data by how they are collected and what they tell you."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "data-investigation",
+       "title": "Data Investigation",
+       "subtopics": [
+        {
+         "id": "data-investigation",
+         "title": "Data Investigation",
+         "outcomes": [
+          {
+           "code": "E2-DAT-DI-09",
+           "text": "Develop a question that data can answer."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "impacts-of-data-science",
+       "title": "Impacts of Data Science",
+       "subtopics": [
+        {
+         "id": "impacts-of-data-science",
+         "title": "Impacts of Data Science",
+         "outcomes": [
+          {
+           "code": "E2-DAT-IM-10",
+           "text": "Tell apart data collection approaches, including ones that may produce inaccurate or biased data."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "sys-systems-security",
+     "title": "SYS Systems & Security",
+     "topics": [
+      {
+       "id": "hardware-software",
+       "title": "Hardware & Software",
+       "subtopics": [
+        {
+         "id": "hardware-software",
+         "title": "Hardware & Software",
+         "outcomes": [
+          {
+           "code": "E2-SYS-HW-11",
+           "text": "Explain how basic hardware parts work together for input and output."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "security",
+       "title": "Security",
+       "subtopics": [
+        {
+         "id": "security",
+         "title": "Security",
+         "outcomes": [
+          {
+           "code": "E2-SYS-SE-12",
+           "text": "Explain how online actions have real-world consequences."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "impacts-of-computing-systems",
+       "title": "Impacts of Computing Systems",
+       "subtopics": [
+        {
+         "id": "impacts-of-computing-systems",
+         "title": "Impacts of Computing Systems",
+         "outcomes": [
+          {
+           "code": "E2-SYS-IM-13",
+           "text": "Describe the benefits and harms of an individual's use of digital tools."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "soc-computing-society",
+     "title": "SOC Computing & Society",
+     "topics": [
+      {
+       "id": "history-of-computing",
+       "title": "History of Computing",
+       "subtopics": [
+        {
+         "id": "history-of-computing",
+         "title": "History of Computing",
+         "outcomes": [
+          {
+           "code": "E2-SOC-HI-14",
+           "text": "Analyse how people of different cultures and times designed computing technologies to solve problems and express ideas."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "humans-computing",
+       "title": "Humans & Computing",
+       "subtopics": [
+        {
+         "id": "humans-computing",
+         "title": "Humans & Computing",
+         "outcomes": [
+          {
+           "code": "E2-SOC-HU-15",
+           "text": "Investigate situations where people created computing technologies to solve problems."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "career-exploration",
+       "title": "Career Exploration",
+       "subtopics": [
+        {
+         "id": "career-exploration",
+         "title": "Career Exploration",
+         "outcomes": [
+          {
+           "code": "E2-SOC-CE-16",
+           "text": "Investigate how personal interests link to computing in different industries and careers."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "3",
+   "units": [
+    {
+     "id": "alg-algorithms-design",
+     "title": "ALG Algorithms & Design",
+     "topics": [
+      {
+       "id": "algorithmic-problem-solving",
+       "title": "Algorithmic Problem Solving",
+       "subtopics": [
+        {
+         "id": "algorithmic-problem-solving",
+         "title": "Algorithmic Problem Solving",
+         "outcomes": [
+          {
+           "code": "E3-ALG-PS-01",
+           "text": "Build an algorithm that combines sequence, events, loops and if/then choices."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "machine-learning",
+       "title": "Machine Learning",
+       "subtopics": [
+        {
+         "id": "machine-learning",
+         "title": "Machine Learning",
+         "outcomes": [
+          {
+           "code": "E3-ALG-ML-02",
+           "text": "Investigate how a model changes when new training data is added."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "impacts-of-algorithms-design",
+       "title": "Impacts of Algorithms & Design",
+       "subtopics": [
+        {
+         "id": "impacts-of-algorithms-design",
+         "title": "Impacts of Algorithms & Design",
+         "outcomes": [
+          {
+           "code": "E3-ALG-IM-03",
+           "text": "Compare how different algorithms affect outcomes and people with a range of needs."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "pro-programming",
+     "title": "PRO Programming",
+     "topics": [
+      {
+       "id": "program-development",
+       "title": "Program Development",
+       "subtopics": [
+        {
+         "id": "program-development",
+         "title": "Program Development",
+         "outcomes": [
+          {
+           "code": "E3-PRO-PD-04",
+           "text": "Write code from your own algorithm using sequence, events, loops and choices."
+          },
+          {
+           "code": "E3-PRO-PD-05",
+           "text": "Use constructive feedback to improve a program."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "variables-data-storage",
+       "title": "Variables & Data Storage",
+       "subtopics": [
+        {
+         "id": "variables-data-storage",
+         "title": "Variables & Data Storage",
+         "outcomes": [
+          {
+           "code": "E3-PRO-VD-06",
+           "text": "Identify the variables a program stores and changes."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "reading-documenting",
+       "title": "Reading & Documenting",
+       "subtopics": [
+        {
+         "id": "reading-documenting",
+         "title": "Reading & Documenting",
+         "outcomes": [
+          {
+           "code": "E3-PRO-RD-07",
+           "text": "Explain how a segment of code serves the program's overall purpose."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "testing-refining",
+       "title": "Testing & Refining",
+       "subtopics": [
+        {
+         "id": "testing-refining",
+         "title": "Testing & Refining",
+         "outcomes": [
+          {
+           "code": "E3-PRO-TR-08",
+           "text": "Debug a program using sequence, events, loops and choices."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "dat-data-analysis",
+     "title": "DAT Data & Analysis",
+     "topics": [
+      {
+       "id": "data-collection-preparation",
+       "title": "Data Collection & Preparation",
+       "subtopics": [
+        {
+         "id": "data-collection-preparation",
+         "title": "Data Collection & Preparation",
+         "outcomes": [
+          {
+           "code": "E3-DAT-DC-09",
+           "text": "Check numeric and non-numeric data for accuracy and completeness."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "data-investigation",
+       "title": "Data Investigation",
+       "subtopics": [
+        {
+         "id": "data-investigation",
+         "title": "Data Investigation",
+         "outcomes": [
+          {
+           "code": "E3-DAT-DI-10",
+           "text": "Investigate a data question about relationships between several attributes."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "impacts-of-data-science",
+       "title": "Impacts of Data Science",
+       "subtopics": [
+        {
+         "id": "impacts-of-data-science",
+         "title": "Impacts of Data Science",
+         "outcomes": [
+          {
+           "code": "E3-DAT-IM-11",
+           "text": "Design a data collection process that serves people from different backgrounds."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "sys-systems-security",
+     "title": "SYS Systems & Security",
+     "topics": [
+      {
+       "id": "hardware-software",
+       "title": "Hardware & Software",
+       "subtopics": [
+        {
+         "id": "hardware-software",
+         "title": "Hardware & Software",
+         "outcomes": [
+          {
+           "code": "E3-SYS-HW-12",
+           "text": "Describe the role of software in a computing system."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "security",
+       "title": "Security",
+       "subtopics": [
+        {
+         "id": "security",
+         "title": "Security",
+         "outcomes": [
+          {
+           "code": "E3-SYS-SE-13",
+           "text": "Evaluate how sharing information online could reveal personal details."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "networks",
+       "title": "Networks",
+       "subtopics": [
+        {
+         "id": "networks",
+         "title": "Networks",
+         "outcomes": [
+          {
+           "code": "E3-SYS-NT-14",
+           "text": "Explain how people reach the internet to find information and communicate."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "impacts-of-computing-systems",
+       "title": "Impacts of Computing Systems",
+       "subtopics": [
+        {
+         "id": "impacts-of-computing-systems",
+         "title": "Impacts of Computing Systems",
+         "outcomes": [
+          {
+           "code": "E3-SYS-IM-15",
+           "text": "Describe how common computing systems affect a person's life and community."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "soc-computing-society",
+     "title": "SOC Computing & Society",
+     "topics": [
+      {
+       "id": "history-of-computing",
+       "title": "History of Computing",
+       "subtopics": [
+        {
+         "id": "history-of-computing",
+         "title": "History of Computing",
+         "outcomes": [
+          {
+           "code": "E3-SOC-HI-16",
+           "text": "Examine how computing innovations changed how people live, work and communicate."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "emerging-technologies",
+       "title": "Emerging Technologies",
+       "subtopics": [
+        {
+         "id": "emerging-technologies",
+         "title": "Emerging Technologies",
+         "outcomes": [
+          {
+           "code": "E3-SOC-ET-17",
+           "text": "Describe how new technologies bring both benefits and risks to personal and family life."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "humans-computing",
+       "title": "Humans & Computing",
+       "subtopics": [
+        {
+         "id": "humans-computing",
+         "title": "Humans & Computing",
+         "outcomes": [
+          {
+           "code": "E3-SOC-HU-18",
+           "text": "Examine why people design and build computing technologies."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "career-exploration",
+       "title": "Career Exploration",
+       "subtopics": [
+        {
+         "id": "career-exploration",
+         "title": "Career Exploration",
+         "outcomes": [
+          {
+           "code": "E3-SOC-CE-19",
+           "text": "Explain how people in various industries use computing technology and skills at work."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "4",
+   "units": [
+    {
+     "id": "alg-algorithms-design",
+     "title": "ALG Algorithms & Design",
+     "topics": [
+      {
+       "id": "algorithmic-problem-solving",
+       "title": "Algorithmic Problem Solving",
+       "subtopics": [
+        {
+         "id": "algorithmic-problem-solving",
+         "title": "Algorithmic Problem Solving",
+         "outcomes": [
+          {
+           "code": "E4-ALG-PS-01",
+           "text": "Write out an algorithm in everyday language using sequence, events, loops and choices."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "machine-learning",
+       "title": "Machine Learning",
+       "subtopics": [
+        {
+         "id": "machine-learning",
+         "title": "Machine Learning",
+         "outcomes": [
+          {
+           "code": "E4-ALG-ML-02",
+           "text": "Analyse how the features of training data relate to a model's output."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "impacts-of-algorithms-design",
+       "title": "Impacts of Algorithms & Design",
+       "subtopics": [
+        {
+         "id": "impacts-of-algorithms-design",
+         "title": "Impacts of Algorithms & Design",
+         "outcomes": [
+          {
+           "code": "E4-ALG-IM-03",
+           "text": "Evaluate how algorithms for the same problem can help or disadvantage different groups."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "pro-programming",
+     "title": "PRO Programming",
+     "topics": [
+      {
+       "id": "program-development",
+       "title": "Program Development",
+       "subtopics": [
+        {
+         "id": "program-development",
+         "title": "Program Development",
+         "outcomes": [
+          {
+           "code": "E4-PRO-PD-04",
+           "text": "Compare different programs for the same problem on correctness and clarity."
+          },
+          {
+           "code": "E4-PRO-PD-05",
+           "text": "Contribute meaningfully to a team's program."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "variables-data-storage",
+       "title": "Variables & Data Storage",
+       "subtopics": [
+        {
+         "id": "variables-data-storage",
+         "title": "Variables & Data Storage",
+         "outcomes": [
+          {
+           "code": "E4-PRO-VD-06",
+           "text": "Trace how data flows and variable values change in a program."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "reading-documenting",
+       "title": "Reading & Documenting",
+       "subtopics": [
+        {
+         "id": "reading-documenting",
+         "title": "Reading & Documenting",
+         "outcomes": [
+          {
+           "code": "E4-PRO-RD-07",
+           "text": "Document a program to make its function clear."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "testing-refining",
+       "title": "Testing & Refining",
+       "subtopics": [
+        {
+         "id": "testing-refining",
+         "title": "Testing & Refining",
+         "outcomes": [
+          {
+           "code": "E4-PRO-TR-08",
+           "text": "Debug a program step by step and repeatedly throughout development."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "dat-data-analysis",
+     "title": "DAT Data & Analysis",
+     "topics": [
+      {
+       "id": "data-collection-preparation",
+       "title": "Data Collection & Preparation",
+       "subtopics": [
+        {
+         "id": "data-collection-preparation",
+         "title": "Data Collection & Preparation",
+         "outcomes": [
+          {
+           "code": "E4-DAT-DC-09",
+           "text": "Organise collected data in a table with a computing tool, rows as records and columns as attributes."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "data-investigation",
+       "title": "Data Investigation",
+       "subtopics": [
+        {
+         "id": "data-investigation",
+         "title": "Data Investigation",
+         "outcomes": [
+          {
+           "code": "E4-DAT-DI-10",
+           "text": "Report a data investigation's process and results with at least one visualisation."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "impacts-of-data-science",
+       "title": "Impacts of Data Science",
+       "subtopics": [
+        {
+         "id": "impacts-of-data-science",
+         "title": "Impacts of Data Science",
+         "outcomes": [
+          {
+           "code": "E4-DAT-IM-11",
+           "text": "Investigate how data collected about people may affect individuals and groups."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "sys-systems-security",
+     "title": "SYS Systems & Security",
+     "topics": [
+      {
+       "id": "hardware-software",
+       "title": "Hardware & Software",
+       "subtopics": [
+        {
+         "id": "hardware-software",
+         "title": "Hardware & Software",
+         "outcomes": [
+          {
+           "code": "E4-SYS-HW-12",
+           "text": "Apply a basic troubleshooting process to common hardware and software problems."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "security",
+       "title": "Security",
+       "subtopics": [
+        {
+         "id": "security",
+         "title": "Security",
+         "outcomes": [
+          {
+           "code": "E4-SYS-SE-13",
+           "text": "Tell authentication from authorisation in protecting devices and private information."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "networks",
+       "title": "Networks",
+       "subtopics": [
+        {
+         "id": "networks",
+         "title": "Networks",
+         "outcomes": [
+          {
+           "code": "E4-SYS-NT-14",
+           "text": "Compare wired and wireless ways devices connect to the internet."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "impacts-of-computing-systems",
+       "title": "Impacts of Computing Systems",
+       "subtopics": [
+        {
+         "id": "impacts-of-computing-systems",
+         "title": "Impacts of Computing Systems",
+         "outcomes": [
+          {
+           "code": "E4-SYS-IM-15",
+           "text": "Investigate how common computing systems affect natural resources and the environment."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "soc-computing-society",
+     "title": "SOC Computing & Society",
+     "topics": [
+      {
+       "id": "history-of-computing",
+       "title": "History of Computing",
+       "subtopics": [
+        {
+         "id": "history-of-computing",
+         "title": "History of Computing",
+         "outcomes": [
+          {
+           "code": "E4-SOC-HI-16",
+           "text": "Investigate contributions of diverse people and communities to computing history."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "emerging-technologies",
+       "title": "Emerging Technologies",
+       "subtopics": [
+        {
+         "id": "emerging-technologies",
+         "title": "Emerging Technologies",
+         "outcomes": [
+          {
+           "code": "E4-SOC-ET-17",
+           "text": "Analyse how limits of existing technology lead to emerging technology."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "humans-computing",
+       "title": "Humans & Computing",
+       "subtopics": [
+        {
+         "id": "humans-computing",
+         "title": "Humans & Computing",
+         "outcomes": [
+          {
+           "code": "E4-SOC-HU-18",
+           "text": "Tell human learning from machine learning."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "career-exploration",
+       "title": "Career Exploration",
+       "subtopics": [
+        {
+         "id": "career-exploration",
+         "title": "Career Exploration",
+         "outcomes": [
+          {
+           "code": "E4-SOC-CE-19",
+           "text": "Investigate how the workforce adopts new computing technology and keeps its skills current."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "5",
+   "units": [
+    {
+     "id": "alg-algorithms-design",
+     "title": "ALG Algorithms & Design",
+     "topics": [
+      {
+       "id": "algorithmic-problem-solving",
+       "title": "Algorithmic Problem Solving",
+       "subtopics": [
+        {
+         "id": "algorithmic-problem-solving",
+         "title": "Algorithmic Problem Solving",
+         "outcomes": [
+          {
+           "code": "E5-ALG-PS-01",
+           "text": "Draw an algorithm that uses variables along with sequence, events, loops and choices."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "machine-learning",
+       "title": "Machine Learning",
+       "subtopics": [
+        {
+         "id": "machine-learning",
+         "title": "Machine Learning",
+         "outcomes": [
+          {
+           "code": "E5-ALG-ML-02",
+           "text": "Train a machine learning model to classify or predict."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "impacts-of-algorithms-design",
+       "title": "Impacts of Algorithms & Design",
+       "subtopics": [
+        {
+         "id": "impacts-of-algorithms-design",
+         "title": "Impacts of Algorithms & Design",
+         "outcomes": [
+          {
+           "code": "E5-ALG-IM-03",
+           "text": "Explain how human-centred design principles shape the development of a technology."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "pro-programming",
+     "title": "PRO Programming",
+     "topics": [
+      {
+       "id": "program-development",
+       "title": "Program Development",
+       "subtopics": [
+        {
+         "id": "program-development",
+         "title": "Program Development",
+         "outcomes": [
+          {
+           "code": "E5-PRO-PD-04",
+           "text": "Create a new program by modifying or combining existing ones."
+          },
+          {
+           "code": "E5-PRO-PD-05",
+           "text": "Build individual program parts that are assembled with others into a project."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "variables-data-storage",
+       "title": "Variables & Data Storage",
+       "subtopics": [
+        {
+         "id": "variables-data-storage",
+         "title": "Variables & Data Storage",
+         "outcomes": [
+          {
+           "code": "E5-PRO-VD-06",
+           "text": "Use variables to store, compare and change data in a program."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "reading-documenting",
+       "title": "Reading & Documenting",
+       "subtopics": [
+        {
+         "id": "reading-documenting",
+         "title": "Reading & Documenting",
+         "outcomes": [
+          {
+           "code": "E5-PRO-RD-07",
+           "text": "Write embedded or external documentation for a programming project."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "testing-refining",
+       "title": "Testing & Refining",
+       "subtopics": [
+        {
+         "id": "testing-refining",
+         "title": "Testing & Refining",
+         "outcomes": [
+          {
+           "code": "E5-PRO-TR-08",
+           "text": "Debug a program using systematic strategies."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "dat-data-analysis",
+     "title": "DAT Data & Analysis",
+     "topics": [
+      {
+       "id": "data-collection-preparation",
+       "title": "Data Collection & Preparation",
+       "subtopics": [
+        {
+         "id": "data-collection-preparation",
+         "title": "Data Collection & Preparation",
+         "outcomes": [
+          {
+           "code": "E5-DAT-DC-09",
+           "text": "Use computing tools to collect and organise different kinds of data."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "data-investigation",
+       "title": "Data Investigation",
+       "subtopics": [
+        {
+         "id": "data-investigation",
+         "title": "Data Investigation",
+         "outcomes": [
+          {
+           "code": "E5-DAT-DI-10",
+           "text": "Analyse a dataset to find the nature and sources of variability."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "impacts-of-data-science",
+       "title": "Impacts of Data Science",
+       "subtopics": [
+        {
+         "id": "impacts-of-data-science",
+         "title": "Impacts of Data Science",
+         "outcomes": [
+          {
+           "code": "E5-DAT-IM-11",
+           "text": "Analyse the benefits and risks of a technology that uses collected data."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "sys-systems-security",
+     "title": "SYS Systems & Security",
+     "topics": [
+      {
+       "id": "hardware-software",
+       "title": "Hardware & Software",
+       "subtopics": [
+        {
+         "id": "hardware-software",
+         "title": "Hardware & Software",
+         "outcomes": [
+          {
+           "code": "E5-SYS-HW-12",
+           "text": "Explain how hardware and software work together for input, output, processing and storage."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "security",
+       "title": "Security",
+       "subtopics": [
+        {
+         "id": "security",
+         "title": "Security",
+         "outcomes": [
+          {
+           "code": "E5-SYS-SE-13",
+           "text": "Describe the CIA triad and why each part matters in protecting information."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "networks",
+       "title": "Networks",
+       "subtopics": [
+        {
+         "id": "networks",
+         "title": "Networks",
+         "outcomes": [
+          {
+           "code": "E5-SYS-NT-14",
+           "text": "Tell apart the components of wired and wireless networks."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "impacts-of-computing-systems",
+       "title": "Impacts of Computing Systems",
+       "subtopics": [
+        {
+         "id": "impacts-of-computing-systems",
+         "title": "Impacts of Computing Systems",
+         "outcomes": [
+          {
+           "code": "E5-SYS-IM-15",
+           "text": "Examine how computing systems affect culture and the ways people live and work."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "soc-computing-society",
+     "title": "SOC Computing & Society",
+     "topics": [
+      {
+       "id": "history-of-computing",
+       "title": "History of Computing",
+       "subtopics": [
+        {
+         "id": "history-of-computing",
+         "title": "History of Computing",
+         "outcomes": [
+          {
+           "code": "E5-SOC-HI-16",
+           "text": "Analyse how including or excluding diverse people shaped the design and impact of computing technologies."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "emerging-technologies",
+       "title": "Emerging Technologies",
+       "subtopics": [
+        {
+         "id": "emerging-technologies",
+         "title": "Emerging Technologies",
+         "outcomes": [
+          {
+           "code": "E5-SOC-ET-17",
+           "text": "Examine how people decide whether to use emerging technologies."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "humans-computing",
+       "title": "Humans & Computing",
+       "subtopics": [
+        {
+         "id": "humans-computing",
+         "title": "Humans & Computing",
+         "outcomes": [
+          {
+           "code": "E5-SOC-HU-18",
+           "text": "Judge when to use or not use computing technology to solve a problem."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "career-exploration",
+       "title": "Career Exploration",
+       "subtopics": [
+        {
+         "id": "career-exploration",
+         "title": "Career Exploration",
+         "outcomes": [
+          {
+           "code": "E5-SOC-CE-19",
+           "text": "Examine how professionals collaborate using computing technology to solve problems."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "MS",
+   "units": [
+    {
+     "id": "alg-algorithms-design",
+     "title": "ALG Algorithms & Design",
+     "topics": [
+      {
+       "id": "algorithmic-problem-solving",
+       "title": "Algorithmic Problem Solving",
+       "subtopics": [
+        {
+         "id": "algorithmic-problem-solving",
+         "title": "Algorithmic Problem Solving",
+         "outcomes": [
+          {
+           "code": "MS-ALG-PS-01",
+           "text": "Design an algorithm that uses variables of several data types."
+          },
+          {
+           "code": "MS-ALG-PS-02",
+           "text": "Model a given algorithm as a flowchart or pseudocode with control structures and a procedure."
+          },
+          {
+           "code": "MS-ALG-PS-03",
+           "text": "Check that an algorithm gives the right result for given inputs."
+          },
+          {
+           "code": "MS-ALG-PS-04",
+           "text": "Decide and explain whether a problem suits step-by-step instructions, rules, data-driven methods or a mix."
+          },
+          {
+           "code": "MS-ALG-PS-05",
+           "text": "Use an AI tool to produce output that helps solve a computing problem."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "machine-learning",
+       "title": "Machine Learning",
+       "subtopics": [
+        {
+         "id": "machine-learning",
+         "title": "Machine Learning",
+         "outcomes": [
+          {
+           "code": "MS-ALG-ML-06",
+           "text": "Form a hypothesis about how a model arrives at a classification or prediction."
+          },
+          {
+           "code": "MS-ALG-ML-07",
+           "text": "Investigate how better examples and non-examples in training data improve accuracy and cut bias."
+          },
+          {
+           "code": "MS-ALG-ML-08",
+           "text": "Evaluate the strengths and limits of a machine learning model."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "impacts-of-algorithms-design",
+       "title": "Impacts of Algorithms & Design",
+       "subtopics": [
+        {
+         "id": "impacts-of-algorithms-design",
+         "title": "Impacts of Algorithms & Design",
+         "outcomes": [
+          {
+           "code": "MS-ALG-IM-09",
+           "text": "Judge which human-centred design principles an existing technology uses or lacks."
+          },
+          {
+           "code": "MS-ALG-IM-10",
+           "text": "Examine evidence of the benefits, harms, ethical issues and biases of everyday algorithms."
+          },
+          {
+           "code": "MS-ALG-IM-11",
+           "text": "Modify an algorithm to address a societal impact, ethical issue or bias."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "pro-programming",
+     "title": "PRO Programming",
+     "topics": [
+      {
+       "id": "program-development",
+       "title": "Program Development",
+       "subtopics": [
+        {
+         "id": "program-development",
+         "title": "Program Development",
+         "outcomes": [
+          {
+           "code": "MS-PRO-PD-12",
+           "text": "Use a procedure to make code clearer and reusable."
+          },
+          {
+           "code": "MS-PRO-PD-13",
+           "text": "Use reference documentation while developing programs."
+          },
+          {
+           "code": "MS-PRO-PD-14",
+           "text": "Explain why attribution and intellectual property matter when building technology."
+          },
+          {
+           "code": "MS-PRO-PD-15",
+           "text": "Develop a program using inclusive collaboration practices."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "variables-data-storage",
+       "title": "Variables & Data Storage",
+       "subtopics": [
+        {
+         "id": "variables-data-storage",
+         "title": "Variables & Data Storage",
+         "outcomes": [
+          {
+           "code": "MS-PRO-VD-16",
+           "text": "Use variables of several data types to store, access and manipulate data."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "reading-documenting",
+       "title": "Reading & Documenting",
+       "subtopics": [
+        {
+         "id": "reading-documenting",
+         "title": "Reading & Documenting",
+         "outcomes": [
+          {
+           "code": "MS-PRO-RD-17",
+           "text": "Analyse the roles of loops, choices, variables and procedures in a code segment."
+          },
+          {
+           "code": "MS-PRO-RD-18",
+           "text": "Analyse AI-generated code for accuracy and usability."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "testing-refining",
+       "title": "Testing & Refining",
+       "subtopics": [
+        {
+         "id": "testing-refining",
+         "title": "Testing & Refining",
+         "outcomes": [
+          {
+           "code": "MS-PRO-TR-19",
+           "text": "Use systematic strategies to test, refine and document changes so a technology meets its purpose."
+          },
+          {
+           "code": "MS-PRO-TR-20",
+           "text": "Refine a technology using user feedback to improve usability and accessibility."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "dat-data-analysis",
+     "title": "DAT Data & Analysis",
+     "topics": [
+      {
+       "id": "data-collection-preparation",
+       "title": "Data Collection & Preparation",
+       "subtopics": [
+        {
+         "id": "data-collection-preparation",
+         "title": "Data Collection & Preparation",
+         "outcomes": [
+          {
+           "code": "MS-DAT-DC-21",
+           "text": "Evaluate how precision and granularity in collecting data affect accuracy, storage and analysis."
+          },
+          {
+           "code": "MS-DAT-DC-22",
+           "text": "Explain how data and its metadata can be used to answer questions."
+          },
+          {
+           "code": "MS-DAT-DC-23",
+           "text": "Use a computing tool to sort, filter, group and summarise structured data."
+          },
+          {
+           "code": "MS-DAT-DC-24",
+           "text": "Analyse options for fixing a data quality problem."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "data-investigation",
+       "title": "Data Investigation",
+       "subtopics": [
+        {
+         "id": "data-investigation",
+         "title": "Data Investigation",
+         "outcomes": [
+          {
+           "code": "MS-DAT-DI-25",
+           "text": "Use a computing tool to find relationships among variables and make a classification or prediction."
+          },
+          {
+           "code": "MS-DAT-DI-26",
+           "text": "Create visualisations showing how design choices change the reading of the same data."
+          },
+          {
+           "code": "MS-DAT-DI-27",
+           "text": "Summarise a data investigation, including biases, limits and supporting evidence."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "impacts-of-data-science",
+       "title": "Impacts of Data Science",
+       "subtopics": [
+        {
+         "id": "impacts-of-data-science",
+         "title": "Impacts of Data Science",
+         "outcomes": [
+          {
+           "code": "MS-DAT-IM-28",
+           "text": "Explain the benefits and risks of collecting personal data and metadata, including ownership, privacy and sovereignty."
+          },
+          {
+           "code": "MS-DAT-IM-29",
+           "text": "Analyse how choices at each stage of working with data can lead to bias, misleading conclusions and flawed AI models."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "sys-systems-security",
+     "title": "SYS Systems & Security",
+     "topics": [
+      {
+       "id": "hardware-software",
+       "title": "Hardware & Software",
+       "subtopics": [
+        {
+         "id": "hardware-software",
+         "title": "Hardware & Software",
+         "outcomes": [
+          {
+           "code": "MS-SYS-HW-30",
+           "text": "Compare computing systems by user needs, requirements and social, environmental and ethical impacts."
+          },
+          {
+           "code": "MS-SYS-HW-31",
+           "text": "Describe computing devices used in various industries and how they do tasks."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "security",
+       "title": "Security",
+       "subtopics": [
+        {
+         "id": "security",
+         "title": "Security",
+         "outcomes": [
+          {
+           "code": "MS-SYS-SE-32",
+           "text": "Explain what happens when the CIA triad is ignored while working with data."
+          },
+          {
+           "code": "MS-SYS-SE-33",
+           "text": "Evaluate common cyber attacks and how to prevent them."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "networks",
+       "title": "Networks",
+       "subtopics": [
+        {
+         "id": "networks",
+         "title": "Networks",
+         "outcomes": [
+          {
+           "code": "MS-SYS-NT-34",
+           "text": "Model how network information is split into packets, sent and reassembled."
+          },
+          {
+           "code": "MS-SYS-NT-35",
+           "text": "Explain how the internet's resilience depends on interconnected devices and their roles."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "impacts-of-computing-systems",
+       "title": "Impacts of Computing Systems",
+       "subtopics": [
+        {
+         "id": "impacts-of-computing-systems",
+         "title": "Impacts of Computing Systems",
+         "outcomes": [
+          {
+           "code": "MS-SYS-IM-36",
+           "text": "Work together to improve a system's design for diverse users."
+          },
+          {
+           "code": "MS-SYS-IM-37",
+           "text": "Examine how access to computing varies by ability, location, income and age."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "soc-computing-society",
+     "title": "SOC Computing & Society",
+     "topics": [
+      {
+       "id": "history-of-computing",
+       "title": "History of Computing",
+       "subtopics": [
+        {
+         "id": "history-of-computing",
+         "title": "History of Computing",
+         "outcomes": [
+          {
+           "code": "MS-SOC-HI-38",
+           "text": "Compare how individuals, communities, organisations and governments shaped computing across major eras."
+          },
+          {
+           "code": "MS-SOC-HI-39",
+           "text": "Analyse intended and unintended impacts of a historical computing technology on society and environment."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "emerging-technologies",
+       "title": "Emerging Technologies",
+       "subtopics": [
+        {
+         "id": "emerging-technologies",
+         "title": "Emerging Technologies",
+         "outcomes": [
+          {
+           "code": "MS-SOC-ET-40",
+           "text": "Judge when using AI or other emerging technology suits a problem, given capabilities, limits and environmental impact."
+          },
+          {
+           "code": "MS-SOC-ET-41",
+           "text": "Evaluate how design decisions in an emerging technology affect different communities' experiences."
+          },
+          {
+           "code": "MS-SOC-ET-42",
+           "text": "Debate how an emerging technology affects social, cultural and environmental issues locally."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "humans-computing",
+       "title": "Humans & Computing",
+       "subtopics": [
+        {
+         "id": "humans-computing",
+         "title": "Humans & Computing",
+         "outcomes": [
+          {
+           "code": "MS-SOC-HU-43",
+           "text": "Analyse the ethical and social consequences of human choices when using computing technology."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "career-exploration",
+       "title": "Career Exploration",
+       "subtopics": [
+        {
+         "id": "career-exploration",
+         "title": "Career Exploration",
+         "outcomes": [
+          {
+           "code": "MS-SOC-CE-44",
+           "text": "Analyse how workers in different careers use computational thinking on real problems."
+          },
+          {
+           "code": "MS-SOC-CE-45",
+           "text": "Evaluate how automation can create or replace jobs and change how people work."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "HS",
+   "units": [
+    {
+     "id": "alg-algorithms-design",
+     "title": "ALG Algorithms & Design",
+     "topics": [
+      {
+       "id": "algorithmic-problem-solving",
+       "title": "Algorithmic Problem Solving",
+       "subtopics": [
+        {
+         "id": "algorithmic-problem-solving",
+         "title": "Algorithmic Problem Solving",
+         "outcomes": [
+          {
+           "code": "HS-ALG-PS-01",
+           "text": "Design an algorithm that picks suitable data structures for the problem."
+          },
+          {
+           "code": "HS-ALG-PS-02",
+           "text": "Improve an algorithm's design using procedural abstraction and control structures."
+          },
+          {
+           "code": "HS-ALG-PS-03",
+           "text": "Judge algorithms for efficiency, correctness and clarity using metrics or test cases."
+          },
+          {
+           "code": "HS-ALG-PS-04",
+           "text": "Explain how deterministic algorithms differ from probabilistic ones."
+          },
+          {
+           "code": "HS-ALG-PS-05",
+           "text": "Assess AI-generated output for bias, accuracy and possible harm."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "machine-learning",
+       "title": "Machine Learning",
+       "subtopics": [
+        {
+         "id": "machine-learning",
+         "title": "Machine Learning",
+         "outcomes": [
+          {
+           "code": "HS-ALG-ML-06",
+           "text": "Justify the choice of an AI algorithm type for a task."
+          },
+          {
+           "code": "HS-ALG-ML-07",
+           "text": "Evaluate training data for source, quality, representativeness, bias and privacy."
+          },
+          {
+           "code": "HS-ALG-ML-08",
+           "text": "Build a machine learning model for a task using suitable data and tools."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "impacts-of-algorithms-design",
+       "title": "Impacts of Algorithms & Design",
+       "subtopics": [
+        {
+         "id": "impacts-of-algorithms-design",
+         "title": "Impacts of Algorithms & Design",
+         "outcomes": [
+          {
+           "code": "HS-ALG-IM-09",
+           "text": "Design a technology using human-centred design principles."
+          },
+          {
+           "code": "HS-ALG-IM-10",
+           "text": "Evaluate the ethics, social impact and bias of rule-based and data-driven algorithms."
+          },
+          {
+           "code": "HS-ALG-IM-11",
+           "text": "Explain the values built into the design of an algorithmic system."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "pro-programming",
+     "title": "PRO Programming",
+     "topics": [
+      {
+       "id": "program-development",
+       "title": "Program Development",
+       "subtopics": [
+        {
+         "id": "program-development",
+         "title": "Program Development",
+         "outcomes": [
+          {
+           "code": "HS-PRO-PD-12",
+           "text": "Create a modular program using procedures, libraries or objects for reuse and readability."
+          },
+          {
+           "code": "HS-PRO-PD-13",
+           "text": "Use documentation, libraries, APIs and other tools in development."
+          },
+          {
+           "code": "HS-PRO-PD-14",
+           "text": "Credit intellectual property properly when developing technology."
+          },
+          {
+           "code": "HS-PRO-PD-15",
+           "text": "Collaborate on a project with a set workflow, design documents and clear roles."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "variables-data-storage",
+       "title": "Variables & Data Storage",
+       "subtopics": [
+        {
+         "id": "variables-data-storage",
+         "title": "Variables & Data Storage",
+         "outcomes": [
+          {
+           "code": "HS-PRO-VD-16",
+           "text": "Create a program that uses suitable data structures to store, access and manipulate data."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "reading-documenting",
+       "title": "Reading & Documenting",
+       "subtopics": [
+        {
+         "id": "reading-documenting",
+         "title": "Reading & Documenting",
+         "outcomes": [
+          {
+           "code": "HS-PRO-RD-17",
+           "text": "Analyse how code works, including parameters, return values and data structures."
+          },
+          {
+           "code": "HS-PRO-RD-18",
+           "text": "Evaluate AI-generated code for accuracy, reliability and fit to requirements."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "testing-refining",
+       "title": "Testing & Refining",
+       "subtopics": [
+        {
+         "id": "testing-refining",
+         "title": "Testing & Refining",
+         "outcomes": [
+          {
+           "code": "HS-PRO-TR-19",
+           "text": "Evaluate a technology against design specifications and responsible design values, including correctness and user experience."
+          },
+          {
+           "code": "HS-PRO-TR-20",
+           "text": "Refine a technology using user feedback, test results and responsible design values to improve its effectiveness and impact."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "dat-data-analysis",
+     "title": "DAT Data & Analysis",
+     "topics": [
+      {
+       "id": "data-collection-preparation",
+       "title": "Data Collection & Preparation",
+       "subtopics": [
+        {
+         "id": "data-collection-preparation",
+         "title": "Data Collection & Preparation",
+         "outcomes": [
+          {
+           "code": "HS-DAT-DC-21",
+           "text": "Use a computing tool to generate simulated data that fits set parameters."
+          },
+          {
+           "code": "HS-DAT-DC-22",
+           "text": "Create a data dictionary giving each attribute's name, type, allowed values and relationships."
+          },
+          {
+           "code": "HS-DAT-DC-23",
+           "text": "Use a computing tool to clean and organise text data."
+          },
+          {
+           "code": "HS-DAT-DC-24",
+           "text": "Evaluate approaches to checking data for consistent types, values and ranges."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "data-investigation",
+       "title": "Data Investigation",
+       "subtopics": [
+        {
+         "id": "data-investigation",
+         "title": "Data Investigation",
+         "outcomes": [
+          {
+           "code": "HS-DAT-DI-25",
+           "text": "Create a visualisation of a multivariate dataset to answer a question or make a classification or prediction."
+          },
+          {
+           "code": "HS-DAT-DI-26",
+           "text": "Evaluate a simulation or visualisation for answering a question and informing decisions, noting limits."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "impacts-of-data-science",
+       "title": "Impacts of Data Science",
+       "subtopics": [
+        {
+         "id": "impacts-of-data-science",
+         "title": "Impacts of Data Science",
+         "outcomes": [
+          {
+           "code": "HS-DAT-IM-27",
+           "text": "Evaluate the social, environmental and ethical implications of large-scale data collection, including in AI."
+          },
+          {
+           "code": "HS-DAT-IM-28",
+           "text": "Debate how well a policy or regulation ensures responsible data use."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "sys-systems-security",
+     "title": "SYS Systems & Security",
+     "topics": [
+      {
+       "id": "hardware-software",
+       "title": "Hardware & Software",
+       "subtopics": [
+        {
+         "id": "hardware-software",
+         "title": "Hardware & Software",
+         "outcomes": [
+          {
+           "code": "HS-SYS-HW-29",
+           "text": "Explain an operating system as software that manages hardware and other software, including memory and peripherals."
+          },
+          {
+           "code": "HS-SYS-HW-30",
+           "text": "Demonstrate the capabilities and limits of a physical or simulated device for a task."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "security",
+       "title": "Security",
+       "subtopics": [
+        {
+         "id": "security",
+         "title": "Security",
+         "outcomes": [
+          {
+           "code": "HS-SYS-SE-31",
+           "text": "Identify cybersecurity and physical security measures and their trade-offs for users, data and devices."
+          },
+          {
+           "code": "HS-SYS-SE-32",
+           "text": "Classify the causes and impacts of security breaches and social engineering attacks."
+          },
+          {
+           "code": "HS-SYS-SE-33",
+           "text": "Formulate a fix for a security flaw in a given system."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "networks",
+       "title": "Networks",
+       "subtopics": [
+        {
+         "id": "networks",
+         "title": "Networks",
+         "outcomes": [
+          {
+           "code": "HS-SYS-NT-34",
+           "text": "Diagram a network of computing systems, including hardware and software."
+          },
+          {
+           "code": "HS-SYS-NT-35",
+           "text": "Analyse how the internet is a network of networks and how it differs from other networks."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "impacts-of-computing-systems",
+       "title": "Impacts of Computing Systems",
+       "subtopics": [
+        {
+         "id": "impacts-of-computing-systems",
+         "title": "Impacts of Computing Systems",
+         "outcomes": [
+          {
+           "code": "HS-SYS-IM-36",
+           "text": "Evaluate the reasoning behind a law or policy on designing and using computing systems."
+          },
+          {
+           "code": "HS-SYS-IM-37",
+           "text": "Investigate how computing systems and infrastructure affect society and the environment and who is affected."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "soc-computing-society",
+     "title": "SOC Computing & Society",
+     "topics": [
+      {
+       "id": "history-of-computing",
+       "title": "History of Computing",
+       "subtopics": [
+        {
+         "id": "history-of-computing",
+         "title": "History of Computing",
+         "outcomes": [
+          {
+           "code": "HS-SOC-HI-38",
+           "text": "Analyse the history of a specific computing technology and its link to social and environmental factors."
+          },
+          {
+           "code": "HS-SOC-HI-39",
+           "text": "Propose changes to a policy or law that encourage ethical innovation and limit societal risks of technology."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "emerging-technologies",
+       "title": "Emerging Technologies",
+       "subtopics": [
+        {
+         "id": "emerging-technologies",
+         "title": "Emerging Technologies",
+         "outcomes": [
+          {
+           "code": "HS-SOC-ET-40",
+           "text": "Evaluate the technological differences between emerging and established technologies and how they influence computing."
+          },
+          {
+           "code": "HS-SOC-ET-41",
+           "text": "Evaluate the social and environmental impacts of an emerging technology, including inequities in access and outcomes."
+          },
+          {
+           "code": "HS-SOC-ET-42",
+           "text": "Design a conceptual solution to a real problem with an emerging technology, weighing benefits and harms."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "humans-computing",
+       "title": "Humans & Computing",
+       "subtopics": [
+        {
+         "id": "humans-computing",
+         "title": "Humans & Computing",
+         "outcomes": [
+          {
+           "code": "HS-SOC-HU-43",
+           "text": "Evaluate the risks, benefits and long-term impacts of human choices in using, designing, deploying and regulating computing technology."
+          },
+          {
+           "code": "HS-SOC-HU-44",
+           "text": "Debate views on human versus artificial intelligence and what they mean for consciousness, ethics and responsibility."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "career-exploration",
+       "title": "Career Exploration",
+       "subtopics": [
+        {
+         "id": "career-exploration",
+         "title": "Career Exploration",
+         "outcomes": [
+          {
+           "code": "HS-SOC-CE-45",
+           "text": "Analyse how diverse teams use computational thinking and technology to solve problems and express ideas."
+          },
+          {
+           "code": "HS-SOC-CE-46",
+           "text": "Connect your computing knowledge and skills to personal goals and career aims."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "HS Specialty",
+   "units": [
+    {
+     "id": "ain-artificial-intelligence",
+     "title": "AIN Artificial Intelligence",
+     "topics": [
+      {
+       "id": "specialty-i-design-development",
+       "title": "Specialty I: Design & Development",
+       "subtopics": [
+        {
+         "id": "specialty-i-design-development",
+         "title": "Specialty I: Design & Development (Artificial Intelligence)",
+         "outcomes": [
+          {
+           "code": "S1-AIN-DD-01",
+           "text": "Analyse AI systems to tell which types of problems they address."
+          },
+          {
+           "code": "S1-AIN-DD-02",
+           "text": "Change an AI system's training data to make its outputs fairer and more accurate."
+          },
+          {
+           "code": "S1-AIN-DD-03",
+           "text": "Build an application using a prebuilt supervised learning model to classify or predict."
+          },
+          {
+           "code": "S1-AIN-DD-04",
+           "text": "Compare data representations and how the choice limits which algorithms apply."
+          },
+          {
+           "code": "S1-AIN-DD-05",
+           "text": "Judge whether an AI or non-AI solution suits a real-world problem."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "specialty-i-data-science-for-ai",
+       "title": "Specialty I: Data Science for AI",
+       "subtopics": [
+        {
+         "id": "specialty-i-data-science-for-ai",
+         "title": "Specialty I: Data Science for AI",
+         "outcomes": [
+          {
+           "code": "S1-AIN-DS-06",
+           "text": "Examine how data flows through a neural network structure."
+          },
+          {
+           "code": "S1-AIN-DS-07",
+           "text": "Apply data acquisition, cleaning and transformation to prepare data for AI analysis."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "specialty-i-human-responsibility",
+       "title": "Specialty I: Human Responsibility",
+       "subtopics": [
+        {
+         "id": "specialty-i-human-responsibility",
+         "title": "Specialty I: Human Responsibility",
+         "outcomes": [
+          {
+           "code": "S1-AIN-HR-08",
+           "text": "Plan safeguards for AI that protect well-being and privacy while keeping meaningful human involvement in decisions."
+          },
+          {
+           "code": "S1-AIN-HR-09",
+           "text": "Analyse the possible biases and limits of AI systems."
+          },
+          {
+           "code": "S1-AIN-HR-10",
+           "text": "Analyse the environmental impacts of widespread AI adoption."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "specialty-i-professional-practice",
+       "title": "Specialty I: Professional Practice",
+       "subtopics": [
+        {
+         "id": "specialty-i-professional-practice",
+         "title": "Specialty I: Professional Practice (Artificial Intelligence)",
+         "outcomes": [
+          {
+           "code": "S1-AIN-PP-11",
+           "text": "Integrate a prebuilt AI agent into an application."
+          },
+          {
+           "code": "S1-AIN-PP-12",
+           "text": "Analyse how AI tools shape experiences for people of diverse backgrounds."
+          },
+          {
+           "code": "S1-AIN-PP-13",
+           "text": "Assess how unauthorised data collection has influenced the training of AI models."
+          },
+          {
+           "code": "S1-AIN-PP-14",
+           "text": "Evaluate how AI's ethical implications have changed over time."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "specialty-ii-design-development",
+       "title": "Specialty II: Design & Development",
+       "subtopics": [
+        {
+         "id": "specialty-ii-design-development",
+         "title": "Specialty II: Design & Development (Artificial Intelligence)",
+         "outcomes": [
+          {
+           "code": "S2-AIN-DD-01",
+           "text": "Analyse problems that unsupervised learning can address."
+          },
+          {
+           "code": "S2-AIN-DD-02",
+           "text": "Optimise an AI algorithm's performance for a given problem."
+          },
+          {
+           "code": "S2-AIN-DD-03",
+           "text": "Build an application using a complex supervised learning model."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "specialty-ii-data-science-for-ai",
+       "title": "Specialty II: Data Science for AI",
+       "subtopics": [
+        {
+         "id": "specialty-ii-data-science-for-ai",
+         "title": "Specialty II: Data Science for AI",
+         "outcomes": [
+          {
+           "code": "S2-AIN-DS-04",
+           "text": "Evaluate metadata and data pipelines to support transparency in choosing and deploying AI models."
+          },
+          {
+           "code": "S2-AIN-DS-05",
+           "text": "Transform data to meet an AI algorithm's input requirements."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "specialty-ii-human-responsibility",
+       "title": "Specialty II: Human Responsibility",
+       "subtopics": [
+        {
+         "id": "specialty-ii-human-responsibility",
+         "title": "Specialty II: Human Responsibility",
+         "outcomes": [
+          {
+           "code": "S2-AIN-HR-06",
+           "text": "Develop a policy that promotes transparency in AI applications."
+          },
+          {
+           "code": "S2-AIN-HR-07",
+           "text": "Analyse how model optimisation choices affect performance, interpretability and fairness."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "specialty-ii-professional-practice",
+       "title": "Specialty II: Professional Practice",
+       "subtopics": [
+        {
+         "id": "specialty-ii-professional-practice",
+         "title": "Specialty II: Professional Practice (Artificial Intelligence)",
+         "outcomes": [
+          {
+           "code": "S2-AIN-PP-08",
+           "text": "Develop an AI agent to accomplish a defined task."
+          },
+          {
+           "code": "S2-AIN-PP-09",
+           "text": "Produce professional communication that explains technical AI results to diverse audiences."
+          },
+          {
+           "code": "S2-AIN-PP-10",
+           "text": "Debate AI regulatory frameworks and legislation across countries."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "cyb-cybersecurity",
+     "title": "CYB Cybersecurity",
+     "topics": [
+      {
+       "id": "specialty-i-network-theory-design",
+       "title": "Specialty I: Network Theory & Design",
+       "subtopics": [
+        {
+         "id": "specialty-i-network-theory-design",
+         "title": "Specialty I: Network Theory & Design",
+         "outcomes": [
+          {
+           "code": "S1-CYB-ND-01",
+           "text": "Analyse how network services and protocols support secure communication and where they are vulnerable."
+          },
+          {
+           "code": "S1-CYB-ND-02",
+           "text": "Examine the OSI model and its role in network communication."
+          },
+          {
+           "code": "S1-CYB-ND-03",
+           "text": "Distinguish networks by protocols, topologies and addressing schemes."
+          },
+          {
+           "code": "S1-CYB-ND-04",
+           "text": "Examine security risks in digital systems and ways to reduce them."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "specialty-i-network-operations",
+       "title": "Specialty I: Network Operations",
+       "subtopics": [
+        {
+         "id": "specialty-i-network-operations",
+         "title": "Specialty I: Network Operations",
+         "outcomes": [
+          {
+           "code": "S1-CYB-NO-05",
+           "text": "Use diagnostic tools to fix network connectivity problems."
+          },
+          {
+           "code": "S1-CYB-NO-06",
+           "text": "Analyse system processes and network activity with command-line tools to spot security concerns."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "specialty-i-threats-security-measures",
+       "title": "Specialty I: Threats & Security Measures",
+       "subtopics": [
+        {
+         "id": "specialty-i-threats-security-measures",
+         "title": "Specialty I: Threats & Security Measures",
+         "outcomes": [
+          {
+           "code": "S1-CYB-TS-07",
+           "text": "Analyse how common network-based threats exploit system vulnerabilities."
+          },
+          {
+           "code": "S1-CYB-TS-08",
+           "text": "Evaluate a security threat using the CIA triad, states of data and types of control."
+          },
+          {
+           "code": "S1-CYB-TS-09",
+           "text": "Analyse how encryption in network communication protects privacy and security."
+          },
+          {
+           "code": "S1-CYB-TS-10",
+           "text": "Evaluate security measures as part of a layered defence for sensitive information."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "specialty-i-cybersecurity-policies",
+       "title": "Specialty I: Cybersecurity Policies",
+       "subtopics": [
+        {
+         "id": "specialty-i-cybersecurity-policies",
+         "title": "Specialty I: Cybersecurity Policies",
+         "outcomes": [
+          {
+           "code": "S1-CYB-CP-11",
+           "text": "Explain why cybersecurity policies matter for protecting organisational assets and reducing risk."
+          },
+          {
+           "code": "S1-CYB-CP-12",
+           "text": "Explain the key components of effective security policies."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "specialty-i-professional-practice",
+       "title": "Specialty I: Professional Practice",
+       "subtopics": [
+        {
+         "id": "specialty-i-professional-practice",
+         "title": "Specialty I: Professional Practice (Cybersecurity)",
+         "outcomes": [
+          {
+           "code": "S1-CYB-PP-13",
+           "text": "Analyse the possible consequences of a cybersecurity decision for individuals, organisations and society."
+          },
+          {
+           "code": "S1-CYB-PP-14",
+           "text": "Analyse social engineering techniques and how they exploit cognitive biases and organisational weaknesses."
+          },
+          {
+           "code": "S1-CYB-PP-15",
+           "text": "Explain cybersecurity concepts, risks and solutions to technical and non-technical audiences."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "specialty-ii-network-theory-design",
+       "title": "Specialty II: Network Theory & Design",
+       "subtopics": [
+        {
+         "id": "specialty-ii-network-theory-design",
+         "title": "Specialty II: Network Theory & Design",
+         "outcomes": [
+          {
+           "code": "S2-CYB-ND-01",
+           "text": "Integrate security features into networking hardware and software."
+          },
+          {
+           "code": "S2-CYB-ND-02",
+           "text": "Design a secure network with servers, switches, routers, endpoints and firewalls."
+          },
+          {
+           "code": "S2-CYB-ND-03",
+           "text": "Evaluate the security implications of different network topologies."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "specialty-ii-network-operations",
+       "title": "Specialty II: Network Operations",
+       "subtopics": [
+        {
+         "id": "specialty-ii-network-operations",
+         "title": "Specialty II: Network Operations",
+         "outcomes": [
+          {
+           "code": "S2-CYB-NO-04",
+           "text": "Analyse network traffic patterns to tell normal from possibly malicious behaviour."
+          },
+          {
+           "code": "S2-CYB-NO-05",
+           "text": "Analyse cybersecurity tasks to improve their efficiency and reliability."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "specialty-ii-threats-security-measures",
+       "title": "Specialty II: Threats & Security Measures",
+       "subtopics": [
+        {
+         "id": "specialty-ii-threats-security-measures",
+         "title": "Specialty II: Threats & Security Measures",
+         "outcomes": [
+          {
+           "code": "S2-CYB-TS-06",
+           "text": "Design access controls that protect sensitive information."
+          },
+          {
+           "code": "S2-CYB-TS-07",
+           "text": "Evaluate security risks to choose suitable risk management strategies."
+          },
+          {
+           "code": "S2-CYB-TS-08",
+           "text": "Examine an incident response plan for a real-world scenario."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "specialty-ii-cybersecurity-policies",
+       "title": "Specialty II: Cybersecurity Policies",
+       "subtopics": [
+        {
+         "id": "specialty-ii-cybersecurity-policies",
+         "title": "Specialty II: Cybersecurity Policies",
+         "outcomes": [
+          {
+           "code": "S2-CYB-CP-09",
+           "text": "Debate how regulations affect organisational security policies, procedures and compliance."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "specialty-ii-professional-practice",
+       "title": "Specialty II: Professional Practice",
+       "subtopics": [
+        {
+         "id": "specialty-ii-professional-practice",
+         "title": "Specialty II: Professional Practice (Cybersecurity)",
+         "outcomes": [
+          {
+           "code": "S2-CYB-PP-10",
+           "text": "Analyse the benefits, risks and ethics of AI in cybersecurity."
+          },
+          {
+           "code": "S2-CYB-PP-11",
+           "text": "Analyse vulnerabilities and incidents to inform responsible disclosure."
+          },
+          {
+           "code": "S2-CYB-PP-12",
+           "text": "Document cybersecurity processes and decisions to support team coordination and accountability."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "dsc-data-science",
+     "title": "DSC Data Science",
+     "topics": [
+      {
+       "id": "specialty-i-creation-curation",
+       "title": "Specialty I: Creation & Curation",
+       "subtopics": [
+        {
+         "id": "specialty-i-creation-curation",
+         "title": "Specialty I: Creation & Curation",
+         "outcomes": [
+          {
+           "code": "S1-DSC-CC-01",
+           "text": "Apply exploratory data analysis to non-hierarchical quantitative data."
+          },
+          {
+           "code": "S1-DSC-CC-02",
+           "text": "Interpret metadata when using data collected by others."
+          },
+          {
+           "code": "S1-DSC-CC-03",
+           "text": "Write a program to manipulate and transform data for analysis."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "specialty-i-analysis-modeling-techniques",
+       "title": "Specialty I: Analysis & Modeling Techniques",
+       "subtopics": [
+        {
+         "id": "specialty-i-analysis-modeling-techniques",
+         "title": "Specialty I: Analysis & Modeling Techniques",
+         "outcomes": [
+          {
+           "code": "S1-DSC-AM-04",
+           "text": "Choose analysis and visualisation techniques that suit categorical and quantitative data."
+          },
+          {
+           "code": "S1-DSC-AM-05",
+           "text": "Examine missing data and its effect on analysis."
+          },
+          {
+           "code": "S1-DSC-AM-06",
+           "text": "Analyse structured categorical or quantitative datasets using computing tools and libraries."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "specialty-i-model-interpretation-reasoning",
+       "title": "Specialty I: Model Interpretation & Reasoning",
+       "subtopics": [
+        {
+         "id": "specialty-i-model-interpretation-reasoning",
+         "title": "Specialty I: Model Interpretation & Reasoning",
+         "outcomes": [
+          {
+           "code": "S1-DSC-MI-07",
+           "text": "Interpret analysis results to explain patterns, anomalies and trends and link them to the original question."
+          },
+          {
+           "code": "S1-DSC-MI-08",
+           "text": "Explain whether predictive models are appropriate for the problem at hand."
+          },
+          {
+           "code": "S1-DSC-MI-09",
+           "text": "Explain how dataset size affects model stability and performance."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "specialty-i-visualization",
+       "title": "Specialty I: Visualization",
+       "subtopics": [
+        {
+         "id": "specialty-i-visualization",
+         "title": "Specialty I: Visualization",
+         "outcomes": [
+          {
+           "code": "S1-DSC-VZ-10",
+           "text": "Create a visualisation that communicates key findings to diverse audiences."
+          },
+          {
+           "code": "S1-DSC-VZ-11",
+           "text": "Analyse how graph conventions support accurate reading and how breaking them can mislead."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "specialty-i-professional-practice",
+       "title": "Specialty I: Professional Practice",
+       "subtopics": [
+        {
+         "id": "specialty-i-professional-practice",
+         "title": "Specialty I: Professional Practice (Data Science)",
+         "outcomes": [
+          {
+           "code": "S1-DSC-PP-12",
+           "text": "Apply ethical principles to collecting, analysing and communicating data for privacy, transparency and accountability."
+          },
+          {
+           "code": "S1-DSC-PP-13",
+           "text": "Assess how data collection and use may affect marginalised and underrepresented groups."
+          },
+          {
+           "code": "S1-DSC-PP-14",
+           "text": "Document data analysis results in a format suited to diverse audiences."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "specialty-ii-creation-curation",
+       "title": "Specialty II: Creation & Curation",
+       "subtopics": [
+        {
+         "id": "specialty-ii-creation-curation",
+         "title": "Specialty II: Creation & Curation",
+         "outcomes": [
+          {
+           "code": "S2-DSC-CC-01",
+           "text": "Apply exploratory data analysis to a hierarchical structured data source."
+          },
+          {
+           "code": "S2-DSC-CC-02",
+           "text": "Document a dataset's origin, structure and preparation for clarity and reproducibility."
+          },
+          {
+           "code": "S2-DSC-CC-03",
+           "text": "Write a program to collect and combine data from multiple sources."
+          },
+          {
+           "code": "S2-DSC-CC-04",
+           "text": "Choose what data to collect for a project given tools, skills and goals."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "specialty-ii-analysis-modeling-techniques",
+       "title": "Specialty II: Analysis & Modeling Techniques",
+       "subtopics": [
+        {
+         "id": "specialty-ii-analysis-modeling-techniques",
+         "title": "Specialty II: Analysis & Modeling Techniques",
+         "outcomes": [
+          {
+           "code": "S2-DSC-AM-05",
+           "text": "Build a model to explain relationships, predict and weigh the influence of variables."
+          },
+          {
+           "code": "S2-DSC-AM-06",
+           "text": "Evaluate strategies for handling missing data."
+          },
+          {
+           "code": "S2-DSC-AM-07",
+           "text": "Analyse unstructured, mixed-type or high-dimensional data with computing tools and libraries."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "specialty-ii-model-interpretation-reasoning",
+       "title": "Specialty II: Model Interpretation & Reasoning",
+       "subtopics": [
+        {
+         "id": "specialty-ii-model-interpretation-reasoning",
+         "title": "Specialty II: Model Interpretation & Reasoning",
+         "outcomes": [
+          {
+           "code": "S2-DSC-MI-08",
+           "text": "Evaluate model performance using established metrics."
+          },
+          {
+           "code": "S2-DSC-MI-09",
+           "text": "Analyse trade-offs among interpretability, accuracy and generalisability as model complexity grows."
+          },
+          {
+           "code": "S2-DSC-MI-10",
+           "text": "Analyse how adding or removing variables affects model behaviour and performance."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "specialty-ii-visualization",
+       "title": "Specialty II: Visualization",
+       "subtopics": [
+        {
+         "id": "specialty-ii-visualization",
+         "title": "Specialty II: Visualization",
+         "outcomes": [
+          {
+           "code": "S2-DSC-VZ-11",
+           "text": "Create a visualisation that represents data accurately and avoids misleading design."
+          },
+          {
+           "code": "S2-DSC-VZ-12",
+           "text": "Critique a visualisation for misleading elements and their role in spreading misinformation."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "specialty-ii-professional-practice",
+       "title": "Specialty II: Professional Practice",
+       "subtopics": [
+        {
+         "id": "specialty-ii-professional-practice",
+         "title": "Specialty II: Professional Practice (Data Science)",
+         "outcomes": [
+          {
+           "code": "S2-DSC-PP-13",
+           "text": "Evaluate ethical, legal and social issues of large datasets, predictive models and emerging technology."
+          },
+          {
+           "code": "S2-DSC-PP-14",
+           "text": "Evaluate protective measures in data collection, use and governance for privacy, security and fairness."
+          },
+          {
+           "code": "S2-DSC-PP-15",
+           "text": "Translate technical results for diverse audiences in professional communications."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "gmd-game-development",
+     "title": "GMD Game Development",
+     "topics": [
+      {
+       "id": "specialty-i-design-development",
+       "title": "Specialty I: Design & Development",
+       "subtopics": [
+        {
+         "id": "specialty-i-design-development",
+         "title": "Specialty I: Design & Development (Game Development)",
+         "outcomes": [
+          {
+           "code": "S1-GMD-DD-01",
+           "text": "Analyse a game's basic components: players, rules, mechanics and outcomes."
+          },
+          {
+           "code": "S1-GMD-DD-02",
+           "text": "Create a storyboard to plan and communicate a game's story and interactive experience."
+          },
+          {
+           "code": "S1-GMD-DD-03",
+           "text": "Develop an interactive experience that supports gameplay."
+          },
+          {
+           "code": "S1-GMD-DD-04",
+           "text": "Adapt rule-based logic to better control game agents or systems."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "specialty-i-player-experience",
+       "title": "Specialty I: Player Experience",
+       "subtopics": [
+        {
+         "id": "specialty-i-player-experience",
+         "title": "Specialty I: Player Experience",
+         "outcomes": [
+          {
+           "code": "S1-GMD-PX-05",
+           "text": "Create a user-friendly game interface considering accessibility, usability and look."
+          },
+          {
+           "code": "S1-GMD-PX-06",
+           "text": "Improve basic game usability through user testing and concrete design revisions."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "specialty-i-architecture",
+       "title": "Specialty I: Architecture",
+       "subtopics": [
+        {
+         "id": "specialty-i-architecture",
+         "title": "Specialty I: Architecture",
+         "outcomes": [
+          {
+           "code": "S1-GMD-AR-07",
+           "text": "Examine key hardware architecture features and what they mean for game development."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "specialty-i-professional-practice",
+       "title": "Specialty I: Professional Practice",
+       "subtopics": [
+        {
+         "id": "specialty-i-professional-practice",
+         "title": "Specialty I: Professional Practice (Game Development)",
+         "outcomes": [
+          {
+           "code": "S1-GMD-PP-08",
+           "text": "Analyse the ethics of copyright and intellectual property in game development."
+          },
+          {
+           "code": "S1-GMD-PP-09",
+           "text": "Develop a game project collaboratively in a diverse team."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "specialty-ii-design-development",
+       "title": "Specialty II: Design & Development",
+       "subtopics": [
+        {
+         "id": "specialty-ii-design-development",
+         "title": "Specialty II: Design & Development (Game Development)",
+         "outcomes": [
+          {
+           "code": "S2-GMD-DD-01",
+           "text": "Justify using responsible design principles to make an engaging, meaningful game."
+          },
+          {
+           "code": "S2-GMD-DD-02",
+           "text": "Develop a system that controls 2D or 3D animation states from game logic and player actions."
+          },
+          {
+           "code": "S2-GMD-DD-03",
+           "text": "Build in-game artificial intelligence to control non-player character behaviour."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "specialty-ii-player-experience",
+       "title": "Specialty II: Player Experience",
+       "subtopics": [
+        {
+         "id": "specialty-ii-player-experience",
+         "title": "Specialty II: Player Experience",
+         "outcomes": [
+          {
+           "code": "S2-GMD-PX-04",
+           "text": "Evaluate game interactions with diverse input devices for immersion and player experience."
+          },
+          {
+           "code": "S2-GMD-PX-05",
+           "text": "Evaluate two versions of a game with defined metrics to see which performs better."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "specialty-ii-architecture",
+       "title": "Specialty II: Architecture",
+       "subtopics": [
+        {
+         "id": "specialty-ii-architecture",
+         "title": "Specialty II: Architecture",
+         "outcomes": [
+          {
+           "code": "S2-GMD-AR-06",
+           "text": "Analyse game system architectures that support scalability, maintainability and performance."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "specialty-ii-professional-practice",
+       "title": "Specialty II: Professional Practice",
+       "subtopics": [
+        {
+         "id": "specialty-ii-professional-practice",
+         "title": "Specialty II: Professional Practice (Game Development)",
+         "outcomes": [
+          {
+           "code": "S2-GMD-PP-07",
+           "text": "Create a game using ethical principles in design and development."
+          },
+          {
+           "code": "S2-GMD-PP-08",
+           "text": "Work effectively in a team by taking assigned roles, communicating clearly and managing shared resources to deliver a game."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "phy-physical-computing",
+     "title": "PHY Physical Computing",
+     "topics": [
+      {
+       "id": "specialty-i-hardware-inputs-outputs",
+       "title": "Specialty I: Hardware, Inputs & Outputs",
+       "subtopics": [
+        {
+         "id": "specialty-i-hardware-inputs-outputs",
+         "title": "Specialty I: Hardware, Inputs & Outputs",
+         "outcomes": [
+          {
+           "code": "S1-PHY-HC-01",
+           "text": "Build an electrical circuit to power and control a physical computing device."
+          },
+          {
+           "code": "S1-PHY-IO-02",
+           "text": "Integrate sensors, actuators and peripherals into a physical computing system."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "specialty-i-design-development",
+       "title": "Specialty I: Design & Development",
+       "subtopics": [
+        {
+         "id": "specialty-i-design-development",
+         "title": "Specialty I: Design & Development (Physical Computing)",
+         "outcomes": [
+          {
+           "code": "S1-PHY-DD-03",
+           "text": "Develop software to control a physical device through iterative design."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "specialty-i-connectivity-iot",
+       "title": "Specialty I: Connectivity & IoT",
+       "subtopics": [
+        {
+         "id": "specialty-i-connectivity-iot",
+         "title": "Specialty I: Connectivity & IoT",
+         "outcomes": [
+          {
+           "code": "S1-PHY-CI-04",
+           "text": "Use IoT devices to collect sensor data and send it locally between devices or to a gateway."
+          },
+          {
+           "code": "S1-PHY-CI-05",
+           "text": "Implement IoT communication with protocols and security practices."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "specialty-i-professional-practice",
+       "title": "Specialty I: Professional Practice",
+       "subtopics": [
+        {
+         "id": "specialty-i-professional-practice",
+         "title": "Specialty I: Professional Practice (Physical Computing)",
+         "outcomes": [
+          {
+           "code": "S1-PHY-PP-06",
+           "text": "Use version control to coordinate a physical computing project."
+          },
+          {
+           "code": "S1-PHY-PP-07",
+           "text": "Evaluate the social, technical and sociotechnical impacts of a physical computing system."
+          },
+          {
+           "code": "S1-PHY-PP-08",
+           "text": "Evaluate a physical computing system's security, including data privacy, unauthorised access and vulnerabilities."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "specialty-ii-hardware-inputs-outputs",
+       "title": "Specialty II: Hardware, Inputs & Outputs",
+       "subtopics": [
+        {
+         "id": "specialty-ii-hardware-inputs-outputs",
+         "title": "Specialty II: Hardware, Inputs & Outputs",
+         "outcomes": [
+          {
+           "code": "S2-PHY-HC-01",
+           "text": "Develop an electromechanical system using a CAD tool for design and testing."
+          },
+          {
+           "code": "S2-PHY-IO-02",
+           "text": "Design a closed-loop feedback control system with different sensor types to reach a desired outcome."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "specialty-ii-design-development",
+       "title": "Specialty II: Design & Development",
+       "subtopics": [
+        {
+         "id": "specialty-ii-design-development",
+         "title": "Specialty II: Design & Development (Physical Computing)",
+         "outcomes": [
+          {
+           "code": "S2-PHY-DD-03",
+           "text": "Develop an application that extends what physical devices do and how users engage with them."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "specialty-ii-connectivity-iot",
+       "title": "Specialty II: Connectivity & IoT",
+       "subtopics": [
+        {
+         "id": "specialty-ii-connectivity-iot",
+         "title": "Specialty II: Connectivity & IoT",
+         "outcomes": [
+          {
+           "code": "S2-PHY-CI-04",
+           "text": "Develop an IoT system that manages data collection and transmission and allows remote monitoring and control."
+          },
+          {
+           "code": "S2-PHY-CI-05",
+           "text": "Develop an embedded network, weighing protocol, security and scalability trade-offs."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "specialty-ii-professional-practice",
+       "title": "Specialty II: Professional Practice",
+       "subtopics": [
+        {
+         "id": "specialty-ii-professional-practice",
+         "title": "Specialty II: Professional Practice (Physical Computing)",
+         "outcomes": [
+          {
+           "code": "S2-PHY-PP-06",
+           "text": "Apply a project management method to design, build and test a physical computing project as a team."
+          },
+          {
+           "code": "S2-PHY-PP-07",
+           "text": "Evaluate how physical computing shapes social processes, communities, power and equity globally."
+          },
+          {
+           "code": "S2-PHY-PP-08",
+           "text": "Develop a physical computing solution for diverse users using the engineering design process."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "swd-software-development",
+     "title": "SWD Software Development",
+     "topics": [
+      {
+       "id": "specialty-i-design-development",
+       "title": "Specialty I: Design & Development",
+       "subtopics": [
+        {
+         "id": "specialty-i-design-development",
+         "title": "Specialty I: Design & Development (Software Development)",
+         "outcomes": [
+          {
+           "code": "S1-SWD-DD-01",
+           "text": "Implement linear data structures to organise and access collections of data."
+          },
+          {
+           "code": "S1-SWD-DD-02",
+           "text": "Design software that handles complexity through abstraction."
+          },
+          {
+           "code": "S1-SWD-DD-03",
+           "text": "Use IDE features such as editing, debugging, version control and project management to speed up development."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "specialty-i-user-experience",
+       "title": "Specialty I: User Experience",
+       "subtopics": [
+        {
+         "id": "specialty-i-user-experience",
+         "title": "Specialty I: User Experience",
+         "outcomes": [
+          {
+           "code": "S1-SWD-UX-04",
+           "text": "Refine a user interface design using accessibility and responsive design tools."
+          },
+          {
+           "code": "S1-SWD-UX-05",
+           "text": "Create software for its intended users and contexts using human-centred design."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "specialty-i-testing-refining",
+       "title": "Specialty I: Testing & Refining",
+       "subtopics": [
+        {
+         "id": "specialty-i-testing-refining",
+         "title": "Specialty I: Testing & Refining",
+         "outcomes": [
+          {
+           "code": "S1-SWD-TR-06",
+           "text": "Use AI-assisted IDE features to understand unfamiliar code and find errors when debugging."
+          },
+          {
+           "code": "S1-SWD-TR-07",
+           "text": "Design a test plan covering functionality, edge cases, error conditions and varied user inputs."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "specialty-i-professional-practice",
+       "title": "Specialty I: Professional Practice",
+       "subtopics": [
+        {
+         "id": "specialty-i-professional-practice",
+         "title": "Specialty I: Professional Practice (Software Development)",
+         "outcomes": [
+          {
+           "code": "S1-SWD-PP-08",
+           "text": "Collaborate to develop software that reflects diverse perspectives."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "specialty-ii-design-development",
+       "title": "Specialty II: Design & Development",
+       "subtopics": [
+        {
+         "id": "specialty-ii-design-development",
+         "title": "Specialty II: Design & Development (Software Development)",
+         "outcomes": [
+          {
+           "code": "S2-SWD-DD-01",
+           "text": "Apply associative and hierarchical data structures to solve problems."
+          },
+          {
+           "code": "S2-SWD-DD-02",
+           "text": "Develop a prototype guided by diverse user personas and user journey maps."
+          },
+          {
+           "code": "S2-SWD-DD-03",
+           "text": "Develop a project in iterative cycles, recording changes and why each was made."
+          },
+          {
+           "code": "S2-SWD-DD-04",
+           "text": "Modify an algorithm to run more efficiently, considering data structures and algorithmic approaches."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "specialty-ii-user-experience",
+       "title": "Specialty II: User Experience",
+       "subtopics": [
+        {
+         "id": "specialty-ii-user-experience",
+         "title": "Specialty II: User Experience",
+         "outcomes": [
+          {
+           "code": "S2-SWD-UX-05",
+           "text": "Evaluate the user experience to improve usability."
+          },
+          {
+           "code": "S2-SWD-UX-06",
+           "text": "Create a user-friendly, accessible and responsive interface."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "specialty-ii-testing-refining",
+       "title": "Specialty II: Testing & Refining",
+       "subtopics": [
+        {
+         "id": "specialty-ii-testing-refining",
+         "title": "Specialty II: Testing & Refining",
+         "outcomes": [
+          {
+           "code": "S2-SWD-TR-07",
+           "text": "Use an IDE to test and refine a complex software project."
+          },
+          {
+           "code": "S2-SWD-TR-08",
+           "text": "Debug a complex project by finding, isolating and fixing errors."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "specialty-ii-professional-practice",
+       "title": "Specialty II: Professional Practice",
+       "subtopics": [
+        {
+         "id": "specialty-ii-professional-practice",
+         "title": "Specialty II: Professional Practice (Software Development)",
+         "outcomes": [
+          {
+           "code": "S2-SWD-PP-09",
+           "text": "Apply an industry-standard development process to plan and deliver a project while prioritising equity and justice."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "xcs-x-cs",
+     "title": "XCS X+CS",
+     "topics": [
+      {
+       "id": "specialty-i-x-cs",
+       "title": "Specialty I: X+CS",
+       "subtopics": [
+        {
+         "id": "specialty-i-x-cs",
+         "title": "Specialty I: X+CS",
+         "outcomes": [
+          {
+           "code": "S1-XCS-XC-01",
+           "text": "Explain connections between CS ideas and practices and those of a non-CS subject."
+          },
+          {
+           "code": "S1-XCS-XC-02",
+           "text": "Formulate a computational solution to a problem in another subject using computational thinking."
+          },
+          {
+           "code": "S1-XCS-XC-03",
+           "text": "Analyse a computer science technology or approach used in another subject."
+          },
+          {
+           "code": "S1-XCS-XC-04",
+           "text": "Model relationships within another subject using data, visualisations and computational methods."
+          },
+          {
+           "code": "S1-XCS-XC-05",
+           "text": "Assess how well an algorithm solves problems in another subject by its accuracy, efficiency and relevance to the goal."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "build": {
+  "builtAt": "2026-10-14T10:09:18.655Z",
+  "model": "claude-agent",
+  "usd": 0,
+  "expectedCodes": 331,
+  "coverage": 1,
+  "missingCodes": [],
+  "counts": {
+   "grades": 9,
+   "units": 47,
+   "topics": 191,
+   "subtopics": 191,
+   "outcomes": 331
+  },
+  "warnings": []
+ }
+}

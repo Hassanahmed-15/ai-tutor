@@ -1,0 +1,5172 @@
+{
+ "id": "us-mt-arts",
+ "region": "US",
+ "framework": "Montana state academic standards: Fine Arts",
+ "board": null,
+ "qualification": "K-12",
+ "subject": "Fine Arts",
+ "syllabusCode": null,
+ "gradeSystem": "grade",
+ "source": {
+  "urls": [
+   "https://api.commonstandardsproject.com/api/v1/jurisdictions/7FAA3E0A782B498DB5E5EA255681706C",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/7FAA3E0A782B498DB5E5EA255681706C_D2759804_grade-01",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/7FAA3E0A782B498DB5E5EA255681706C_D2759804_grade-02",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/7FAA3E0A782B498DB5E5EA255681706C_D2759804_grade-03",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/7FAA3E0A782B498DB5E5EA255681706C_D2759804_grade-04",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/7FAA3E0A782B498DB5E5EA255681706C_D2759804_grade-05",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/7FAA3E0A782B498DB5E5EA255681706C_D2759804_grades-06-07-08",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/7FAA3E0A782B498DB5E5EA255681706C_D2759804_grades-09-10-11-12",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/7FAA3E0A782B498DB5E5EA255681706C_D2759804_grade-k",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/7FAA3E0A782B498DB5E5EA255681706C_D2759800_grade-01",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/7FAA3E0A782B498DB5E5EA255681706C_D2759800_grade-02",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/7FAA3E0A782B498DB5E5EA255681706C_D2759800_grade-03",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/7FAA3E0A782B498DB5E5EA255681706C_D2759800_grade-04",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/7FAA3E0A782B498DB5E5EA255681706C_D2759800_grade-05",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/7FAA3E0A782B498DB5E5EA255681706C_D2759800_grades-06-07-08",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/7FAA3E0A782B498DB5E5EA255681706C_D2759800_grades-09-10-11-12",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/7FAA3E0A782B498DB5E5EA255681706C_D2759800_grade-k",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/7FAA3E0A782B498DB5E5EA255681706C_D2759803_grade-01",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/7FAA3E0A782B498DB5E5EA255681706C_D2759803_grade-02",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/7FAA3E0A782B498DB5E5EA255681706C_D2759803_grade-03",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/7FAA3E0A782B498DB5E5EA255681706C_D2759803_grade-04",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/7FAA3E0A782B498DB5E5EA255681706C_D2759803_grade-05",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/7FAA3E0A782B498DB5E5EA255681706C_D2759803_grades-06-07-08",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/7FAA3E0A782B498DB5E5EA255681706C_D2759803_grades-09-10-11-12",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/7FAA3E0A782B498DB5E5EA255681706C_D2759803_grade-k",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/7FAA3E0A782B498DB5E5EA255681706C_D2759802_grade-01",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/7FAA3E0A782B498DB5E5EA255681706C_D2759802_grade-02",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/7FAA3E0A782B498DB5E5EA255681706C_D2759802_grade-03",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/7FAA3E0A782B498DB5E5EA255681706C_D2759802_grade-04",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/7FAA3E0A782B498DB5E5EA255681706C_D2759802_grade-05",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/7FAA3E0A782B498DB5E5EA255681706C_D2759802_grades-06-07-08",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/7FAA3E0A782B498DB5E5EA255681706C_D2759802_grades-09-10-11-12",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/7FAA3E0A782B498DB5E5EA255681706C_D2759802_grade-k",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/7FAA3E0A782B498DB5E5EA255681706C_D2759801_grade-01",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/7FAA3E0A782B498DB5E5EA255681706C_D2759801_grade-02",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/7FAA3E0A782B498DB5E5EA255681706C_D2759801_grade-03",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/7FAA3E0A782B498DB5E5EA255681706C_D2759801_grade-04",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/7FAA3E0A782B498DB5E5EA255681706C_D2759801_grade-05",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/7FAA3E0A782B498DB5E5EA255681706C_D2759801_grades-06-07-08",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/7FAA3E0A782B498DB5E5EA255681706C_D2759801_grades-09-10-11-12",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/7FAA3E0A782B498DB5E5EA255681706C_D2759801_grade-k"
+  ],
+  "publisher": "Montana state education agency (machine-readable via Common Standards Project / ASN)",
+  "licence": "CC BY 3.0 US, D2L Corporation",
+  "firstExam": "2016"
+ },
+ "grades": [
+  {
+   "grade": "K",
+   "units": [
+    {
+     "id": "artistic-processes",
+     "title": "Artistic Processes",
+     "topics": [
+      {
+       "id": "creating-conceiving-and-developing-new-artistic-",
+       "title": "Creating: Conceiving and developing new artistic ideas and work",
+       "subtopics": [
+        {
+         "id": "creating-conceiving-and-developing-new-artistic-",
+         "title": "Creating: Conceiving and developing new artistic ideas and work (1 of 3)",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Generate and conceptualize artistic ideas and work"
+          },
+          {
+           "code": null,
+           "text": "Organize and develop artistic ideas and work"
+          },
+          {
+           "code": null,
+           "text": "Refine and complete artistic work"
+          },
+          {
+           "code": null,
+           "text": "Generate and conceptualize artistic ideas and work"
+          },
+          {
+           "code": null,
+           "text": "Organize and develop artistic ideas and work"
+          }
+         ]
+        },
+        {
+         "id": "creating-conceiving-and-developing-new-artistic--2",
+         "title": "Creating: Conceiving and developing new artistic ideas and work (2 of 3)",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Refine and complete artistic work"
+          },
+          {
+           "code": null,
+           "text": "Generate and conceptualize artistic ideas and work"
+          },
+          {
+           "code": null,
+           "text": "Organize and develop artistic ideas and work"
+          },
+          {
+           "code": null,
+           "text": "Refine and complete artistic work"
+          },
+          {
+           "code": null,
+           "text": "Generate and conceptualize artistic ideas and work"
+          }
+         ]
+        },
+        {
+         "id": "creating-conceiving-and-developing-new-artistic--3",
+         "title": "Creating: Conceiving and developing new artistic ideas and work (3 of 3)",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Organize and develop artistic ideas and work"
+          },
+          {
+           "code": null,
+           "text": "Refine and complete artistic work"
+          },
+          {
+           "code": null,
+           "text": "Generate and conceptualize artistic ideas and work"
+          },
+          {
+           "code": null,
+           "text": "Organize and develop artistic ideas and work"
+          },
+          {
+           "code": null,
+           "text": "Refine and complete artistic work"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "performing-realizing-artistic-ideas-and-work-thr",
+       "title": "Performing: Realizing artistic ideas and work through interpretation and presentation",
+       "subtopics": [
+        {
+         "id": "performing-realizing-artistic-ideas-and-work-thr",
+         "title": "Performing: Realizing artistic ideas and work through interpretation and presentation (1 of 2)",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Analyze, interpret, and select artistic work for presentation"
+          },
+          {
+           "code": null,
+           "text": "Develop and refine artistic work for presentation"
+          },
+          {
+           "code": null,
+           "text": "Convey meaning through the presentation of artistic work"
+          },
+          {
+           "code": null,
+           "text": "Analyze, interpret, and select artistic work for presentation"
+          },
+          {
+           "code": null,
+           "text": "Develop and refine artistic work for presentation"
+          }
+         ]
+        },
+        {
+         "id": "performing-realizing-artistic-ideas-and-work-thr-2",
+         "title": "Performing: Realizing artistic ideas and work through interpretation and presentation (2 of 2)",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Convey meaning through the presentation of artistic work"
+          },
+          {
+           "code": null,
+           "text": "Analyze, interpret, and select artistic work for presentation"
+          },
+          {
+           "code": null,
+           "text": "Develop and refine artistic work for presentation"
+          },
+          {
+           "code": null,
+           "text": "Convey meaning through the presentation of artistic work"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "responding-understanding-and-evaluating-how-the-",
+       "title": "Responding: Understanding and evaluating how the arts convey meaning",
+       "subtopics": [
+        {
+         "id": "responding-understanding-and-evaluating-how-the-",
+         "title": "Responding: Understanding and evaluating how the arts convey meaning (1 of 3)",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Perceive and analyze artistic work"
+          },
+          {
+           "code": null,
+           "text": "Construct meaningful interpretations of artistic work"
+          },
+          {
+           "code": null,
+           "text": "Apply criteria to evaluate artistic work"
+          },
+          {
+           "code": null,
+           "text": "Perceive and analyze artistic work"
+          },
+          {
+           "code": null,
+           "text": "Construct meaningful interpretations of artistic work"
+          }
+         ]
+        },
+        {
+         "id": "responding-understanding-and-evaluating-how-the--2",
+         "title": "Responding: Understanding and evaluating how the arts convey meaning (2 of 3)",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Apply criteria to evaluate artistic work"
+          },
+          {
+           "code": null,
+           "text": "Perceive and analyze artistic work"
+          },
+          {
+           "code": null,
+           "text": "Construct meaningful interpretations of artistic work"
+          },
+          {
+           "code": null,
+           "text": "Apply criteria to evaluate artistic work"
+          },
+          {
+           "code": null,
+           "text": "Perceive and analyze artistic work"
+          }
+         ]
+        },
+        {
+         "id": "responding-understanding-and-evaluating-how-the--3",
+         "title": "Responding: Understanding and evaluating how the arts convey meaning (3 of 3)",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Construct meaningful interpretations of artistic work"
+          },
+          {
+           "code": null,
+           "text": "Apply criteria to evaluate artistic work"
+          },
+          {
+           "code": null,
+           "text": "Perceive and analyze artistic work"
+          },
+          {
+           "code": null,
+           "text": "Construct meaningful interpretations of artistic work"
+          },
+          {
+           "code": null,
+           "text": "Apply criteria to evaluate artistic work"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "connecting-relating-artistic-ideas-and-work-with",
+       "title": "Connecting: Relating artistic ideas and work with personal meaning and external context",
+       "subtopics": [
+        {
+         "id": "connecting-relating-artistic-ideas-and-work-with",
+         "title": "Connecting: Relating artistic ideas and work with personal meaning and external context (1 of 2)",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Synthesize and relate knowledge and personal experiences to make art"
+          },
+          {
+           "code": null,
+           "text": "Relate artistic ideas and works with societal, cultural and historical context to deepen understanding, including artistic ideas and works by American Indians"
+          },
+          {
+           "code": null,
+           "text": "Synthesize and relate knowledge and personal experiences to make art"
+          },
+          {
+           "code": null,
+           "text": "Relate artistic ideas and works with societal, cultural and historical context to deepen understanding, including artistic ideas and works by American Indians"
+          },
+          {
+           "code": null,
+           "text": "Synthesize and relate knowledge and personal experiences to make art"
+          }
+         ]
+        },
+        {
+         "id": "connecting-relating-artistic-ideas-and-work-with-2",
+         "title": "Connecting: Relating artistic ideas and work with personal meaning and external context (2 of 2)",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Relate artistic ideas and works with societal, cultural and historical context to deepen understanding, including artistic ideas and works by American Indians"
+          },
+          {
+           "code": null,
+           "text": "Synthesize and relate knowledge and personal experiences to make art"
+          },
+          {
+           "code": null,
+           "text": "Relate artistic ideas and works with societal, cultural and historical context to deepen understanding, including artistic ideas and works by American Indians"
+          },
+          {
+           "code": null,
+           "text": "Synthesize and relate knowledge and personal experiences to make art"
+          },
+          {
+           "code": null,
+           "text": "Relate artistic ideas and works with societal, cultural and historical context to deepen understanding, including artistic ideas and works by American Indians"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "producing-realizing-artistic-ideas-and-work-thro",
+       "title": "Producing: Realizing artistic ideas and work through interpretation and presentation",
+       "subtopics": [
+        {
+         "id": "producing-realizing-artistic-ideas-and-work-thro",
+         "title": "Producing: Realizing artistic ideas and work through interpretation and presentation",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Analyze, interpret, and select artistic work for presentation"
+          },
+          {
+           "code": null,
+           "text": "Develop and refine artistic work for presentation"
+          },
+          {
+           "code": null,
+           "text": "Convey meaning through the presentation of artistic work"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "presenting-realizing-artistic-ideas-and-work-thr",
+       "title": "Presenting: Realizing artistic ideas and work through interpretation and presentation",
+       "subtopics": [
+        {
+         "id": "presenting-realizing-artistic-ideas-and-work-thr",
+         "title": "Presenting: Realizing artistic ideas and work through interpretation and presentation",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Analyze, interpret, and select artistic work for presentation"
+          },
+          {
+           "code": null,
+           "text": "Develop and refine artistic work for presentation"
+          },
+          {
+           "code": null,
+           "text": "Convey meaning through the presentation of artistic work"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "content-standards",
+     "title": "Content Standards",
+     "topics": [
+      {
+       "id": "content-standards",
+       "title": "Content Standards",
+       "subtopics": [
+        {
+         "id": "content-standards-1-of-11",
+         "title": "Content Standards (1 of 11)",
+         "outcomes": [
+          {
+           "code": "K.1",
+           "text": "respond in movement to a variety of sounds"
+          },
+          {
+           "code": "K.2",
+           "text": "explore dances with beginning, middle, and end"
+          },
+          {
+           "code": "K.3",
+           "text": "use improvised movement to change dance sequences"
+          },
+          {
+           "code": "K.4",
+           "text": "explore different movement qualities"
+          },
+          {
+           "code": "K.5",
+           "text": "coordinate dance movements with other dancers"
+          }
+         ]
+        },
+        {
+         "id": "content-standards-2-of-11",
+         "title": "Content Standards (2 of 11)",
+         "outcomes": [
+          {
+           "code": "K.6",
+           "text": "identify production elements of a dance for and with others"
+          },
+          {
+           "code": "K.7",
+           "text": "identify a movement that repeats in a dance"
+          },
+          {
+           "code": "K.8",
+           "text": "observe movement and describe it"
+          },
+          {
+           "code": "K.9",
+           "text": "identify criteria to describe movement in dance"
+          },
+          {
+           "code": "K.10",
+           "text": "identify an emotion expressed in a dance"
+          }
+         ]
+        },
+        {
+         "id": "content-standards-3-of-11",
+         "title": "Content Standards (3 of 11)",
+         "outcomes": [
+          {
+           "code": "K.11",
+           "text": "replicate movement in dances."
+          },
+          {
+           "code": "K.1",
+           "text": "explore ideas for media artworks using play and experimentation"
+          },
+          {
+           "code": "K.2",
+           "text": "explore ideas to form models for media arts productions"
+          },
+          {
+           "code": "K.3",
+           "text": "combine arts and media content to form media artworks"
+          },
+          {
+           "code": "K.4",
+           "text": "choose varied art forms and other content in media artwork"
+          }
+         ]
+        },
+        {
+         "id": "content-standards-4-of-11",
+         "title": "Content Standards (4 of 11)",
+         "outcomes": [
+          {
+           "code": "K.5",
+           "text": "identify skills and roles used to create media arts presentations"
+          },
+          {
+           "code": "K.6",
+           "text": "share reactions to the presentation of media artworks"
+          },
+          {
+           "code": "K.7",
+           "text": "recognize messages in media artworks"
+          },
+          {
+           "code": "K.8",
+           "text": "identify a variety of media artworks"
+          },
+          {
+           "code": "K.9",
+           "text": "identify qualities and possible changes in media artworks"
+          }
+         ]
+        },
+        {
+         "id": "content-standards-5-of-11",
+         "title": "Content Standards (5 of 11)",
+         "outcomes": [
+          {
+           "code": "K.10",
+           "text": "use personal experiences and choices in making media artworks"
+          },
+          {
+           "code": "K.11",
+           "text": "share ideas relating media artworks to everyday life."
+          },
+          {
+           "code": "K.1",
+           "text": "explore and experience musical concepts;"
+          },
+          {
+           "code": "K.2",
+           "text": "demonstrate a musical idea;"
+          },
+          {
+           "code": "K.3",
+           "text": "identify changes in musical ideas;"
+          }
+         ]
+        },
+        {
+         "id": "content-standards-6-of-11",
+         "title": "Content Standards (6 of 11)",
+         "outcomes": [
+          {
+           "code": "K.4",
+           "text": "identify expressive qualities in musical selections;"
+          },
+          {
+           "code": "K.5",
+           "text": "rehearse to improve performances;"
+          },
+          {
+           "code": "K.6",
+           "text": "perform music with expression;"
+          },
+          {
+           "code": "K.7",
+           "text": "discuss preferences in musical selections;"
+          },
+          {
+           "code": "K.8",
+           "text": "discuss expressive qualities of music;"
+          }
+         ]
+        },
+        {
+         "id": "content-standards-7-of-11",
+         "title": "Content Standards (7 of 11)",
+         "outcomes": [
+          {
+           "code": "K.9",
+           "text": "identify preferences in evaluating music;"
+          },
+          {
+           "code": "K.10",
+           "text": "identify emotions when experiencing music; and"
+          },
+          {
+           "code": "K.11",
+           "text": "identify connections between music, arts, and daily life in a variety of contexts."
+          },
+          {
+           "code": "K.1",
+           "text": "identify ways in which movement may be used to create or retell a story"
+          },
+          {
+           "code": "K.2",
+           "text": "express original ideas in guided creative drama"
+          }
+         ]
+        },
+        {
+         "id": "content-standards-8-of-11",
+         "title": "Content Standards (8 of 11)",
+         "outcomes": [
+          {
+           "code": "K.3",
+           "text": "identify plot details in guided creative drama"
+          },
+          {
+           "code": "K.4",
+           "text": "use facial expressions to communicate character and emotions in guided creative drama"
+          },
+          {
+           "code": "K.5",
+           "text": "identify various design elements in guided creative drama"
+          },
+          {
+           "code": "K.6",
+           "text": "use voice and sound in guided creative drama"
+          },
+          {
+           "code": "K.7",
+           "text": "describe a response to characters in guided creative drama"
+          }
+         ]
+        },
+        {
+         "id": "content-standards-9-of-11",
+         "title": "Content Standards (9 of 11)",
+         "outcomes": [
+          {
+           "code": "K.8",
+           "text": "describe a setting in creative drama"
+          },
+          {
+           "code": "K.9",
+           "text": "identify design elements in guided creative drama"
+          },
+          {
+           "code": "K.10",
+           "text": "identify similarities between characters and oneself in guided creative drama"
+          },
+          {
+           "code": "K.11",
+           "text": "identify similarities and differences in stories from multiple cultures."
+          },
+          {
+           "code": "K.1",
+           "text": "engage in creative play with art materials;"
+          }
+         ]
+        },
+        {
+         "id": "content-standards-10-of-11",
+         "title": "Content Standards (10 of 11)",
+         "outcomes": [
+          {
+           "code": "K.2",
+           "text": "create artworks or designs that represent natural and constructed objects;"
+          },
+          {
+           "code": "K.3",
+           "text": "explain the artistic process while making artworks;"
+          },
+          {
+           "code": "K.4",
+           "text": "choose art objects for a personal portfolio and display;"
+          },
+          {
+           "code": "K.5",
+           "text": "explain the purpose of a portfolio or collection;"
+          },
+          {
+           "code": "K.6",
+           "text": "explain the purpose of an art museum;"
+          }
+         ]
+        },
+        {
+         "id": "content-standards-11-of-11",
+         "title": "Content Standards (11 of 11)",
+         "outcomes": [
+          {
+           "code": "K.7",
+           "text": "identify uses of artwork within one's personal environment;"
+          },
+          {
+           "code": "K.8",
+           "text": "identify subject matter and details in artworks;"
+          },
+          {
+           "code": "K.9",
+           "text": "explain reasons for selecting a preferred artwork;"
+          },
+          {
+           "code": "K.10",
+           "text": "create art that tells a story about a personal experience; and"
+          },
+          {
+           "code": "K.11",
+           "text": "identify a purpose of an artwork."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "1",
+   "units": [
+    {
+     "id": "artistic-processes",
+     "title": "Artistic Processes",
+     "topics": [
+      {
+       "id": "creating-conceiving-and-developing-new-artistic-",
+       "title": "Creating: Conceiving and developing new artistic ideas and work",
+       "subtopics": [
+        {
+         "id": "creating-conceiving-and-developing-new-artistic-",
+         "title": "Creating: Conceiving and developing new artistic ideas and work (1 of 3)",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Generate and conceptualize artistic ideas and work"
+          },
+          {
+           "code": null,
+           "text": "Organize and develop artistic ideas and work"
+          },
+          {
+           "code": null,
+           "text": "Refine and complete artistic work"
+          },
+          {
+           "code": null,
+           "text": "Generate and conceptualize artistic ideas and work"
+          },
+          {
+           "code": null,
+           "text": "Organize and develop artistic ideas and work"
+          }
+         ]
+        },
+        {
+         "id": "creating-conceiving-and-developing-new-artistic--2",
+         "title": "Creating: Conceiving and developing new artistic ideas and work (2 of 3)",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Refine and complete artistic work"
+          },
+          {
+           "code": null,
+           "text": "Generate and conceptualize artistic ideas and work"
+          },
+          {
+           "code": null,
+           "text": "Organize and develop artistic ideas and work"
+          },
+          {
+           "code": null,
+           "text": "Refine and complete artistic work"
+          },
+          {
+           "code": null,
+           "text": "Generate and conceptualize artistic ideas and work"
+          }
+         ]
+        },
+        {
+         "id": "creating-conceiving-and-developing-new-artistic--3",
+         "title": "Creating: Conceiving and developing new artistic ideas and work (3 of 3)",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Organize and develop artistic ideas and work"
+          },
+          {
+           "code": null,
+           "text": "Refine and complete artistic work"
+          },
+          {
+           "code": null,
+           "text": "Generate and conceptualize artistic ideas and work"
+          },
+          {
+           "code": null,
+           "text": "Organize and develop artistic ideas and work"
+          },
+          {
+           "code": null,
+           "text": "Refine and complete artistic work"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "performing-realizing-artistic-ideas-and-work-thr",
+       "title": "Performing: Realizing artistic ideas and work through interpretation and presentation",
+       "subtopics": [
+        {
+         "id": "performing-realizing-artistic-ideas-and-work-thr",
+         "title": "Performing: Realizing artistic ideas and work through interpretation and presentation (1 of 2)",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Analyze, interpret, and select artistic work for presentation"
+          },
+          {
+           "code": null,
+           "text": "Develop and refine artistic work for presentation"
+          },
+          {
+           "code": null,
+           "text": "Convey meaning through the presentation of artistic work"
+          },
+          {
+           "code": null,
+           "text": "Analyze, interpret, and select artistic work for presentation"
+          },
+          {
+           "code": null,
+           "text": "Develop and refine artistic work for presentation"
+          }
+         ]
+        },
+        {
+         "id": "performing-realizing-artistic-ideas-and-work-thr-2",
+         "title": "Performing: Realizing artistic ideas and work through interpretation and presentation (2 of 2)",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Convey meaning through the presentation of artistic work"
+          },
+          {
+           "code": null,
+           "text": "Analyze, interpret, and select artistic work for presentation"
+          },
+          {
+           "code": null,
+           "text": "Develop and refine artistic work for presentation"
+          },
+          {
+           "code": null,
+           "text": "Convey meaning through the presentation of artistic work"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "responding-understanding-and-evaluating-how-the-",
+       "title": "Responding: Understanding and evaluating how the arts convey meaning",
+       "subtopics": [
+        {
+         "id": "responding-understanding-and-evaluating-how-the-",
+         "title": "Responding: Understanding and evaluating how the arts convey meaning (1 of 3)",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Perceive and analyze artistic work"
+          },
+          {
+           "code": null,
+           "text": "Construct meaningful interpretations of artistic work"
+          },
+          {
+           "code": null,
+           "text": "Apply criteria to evaluate artistic work"
+          },
+          {
+           "code": null,
+           "text": "Perceive and analyze artistic work"
+          },
+          {
+           "code": null,
+           "text": "Construct meaningful interpretations of artistic work"
+          }
+         ]
+        },
+        {
+         "id": "responding-understanding-and-evaluating-how-the--2",
+         "title": "Responding: Understanding and evaluating how the arts convey meaning (2 of 3)",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Apply criteria to evaluate artistic work"
+          },
+          {
+           "code": null,
+           "text": "Perceive and analyze artistic work"
+          },
+          {
+           "code": null,
+           "text": "Construct meaningful interpretations of artistic work"
+          },
+          {
+           "code": null,
+           "text": "Apply criteria to evaluate artistic work"
+          },
+          {
+           "code": null,
+           "text": "Perceive and analyze artistic work"
+          }
+         ]
+        },
+        {
+         "id": "responding-understanding-and-evaluating-how-the--3",
+         "title": "Responding: Understanding and evaluating how the arts convey meaning (3 of 3)",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Construct meaningful interpretations of artistic work"
+          },
+          {
+           "code": null,
+           "text": "Apply criteria to evaluate artistic work"
+          },
+          {
+           "code": null,
+           "text": "Perceive and analyze artistic work"
+          },
+          {
+           "code": null,
+           "text": "Construct meaningful interpretations of artistic work"
+          },
+          {
+           "code": null,
+           "text": "Apply criteria to evaluate artistic work"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "connecting-relating-artistic-ideas-and-work-with",
+       "title": "Connecting: Relating artistic ideas and work with personal meaning and external context",
+       "subtopics": [
+        {
+         "id": "connecting-relating-artistic-ideas-and-work-with",
+         "title": "Connecting: Relating artistic ideas and work with personal meaning and external context (1 of 2)",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Synthesize and relate knowledge and personal experiences to make art"
+          },
+          {
+           "code": null,
+           "text": "Relate artistic ideas and works with societal, cultural and historical context to deepen understanding, including artistic ideas and works by American Indians"
+          },
+          {
+           "code": null,
+           "text": "Synthesize and relate knowledge and personal experiences to make art"
+          },
+          {
+           "code": null,
+           "text": "Relate artistic ideas and works with societal, cultural and historical context to deepen understanding, including artistic ideas and works by American Indians"
+          },
+          {
+           "code": null,
+           "text": "Synthesize and relate knowledge and personal experiences to make art"
+          }
+         ]
+        },
+        {
+         "id": "connecting-relating-artistic-ideas-and-work-with-2",
+         "title": "Connecting: Relating artistic ideas and work with personal meaning and external context (2 of 2)",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Relate artistic ideas and works with societal, cultural and historical context to deepen understanding, including artistic ideas and works by American Indians"
+          },
+          {
+           "code": null,
+           "text": "Synthesize and relate knowledge and personal experiences to make art"
+          },
+          {
+           "code": null,
+           "text": "Relate artistic ideas and works with societal, cultural and historical context to deepen understanding, including artistic ideas and works by American Indians"
+          },
+          {
+           "code": null,
+           "text": "Synthesize and relate knowledge and personal experiences to make art"
+          },
+          {
+           "code": null,
+           "text": "Relate artistic ideas and works with societal, cultural and historical context to deepen understanding, including artistic ideas and works by American Indians"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "producing-realizing-artistic-ideas-and-work-thro",
+       "title": "Producing: Realizing artistic ideas and work through interpretation and presentation",
+       "subtopics": [
+        {
+         "id": "producing-realizing-artistic-ideas-and-work-thro",
+         "title": "Producing: Realizing artistic ideas and work through interpretation and presentation",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Analyze, interpret, and select artistic work for presentation"
+          },
+          {
+           "code": null,
+           "text": "Develop and refine artistic work for presentation"
+          },
+          {
+           "code": null,
+           "text": "Convey meaning through the presentation of artistic work"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "presenting-realizing-artistic-ideas-and-work-thr",
+       "title": "Presenting: Realizing artistic ideas and work through interpretation and presentation",
+       "subtopics": [
+        {
+         "id": "presenting-realizing-artistic-ideas-and-work-thr",
+         "title": "Presenting: Realizing artistic ideas and work through interpretation and presentation",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Analyze, interpret, and select artistic work for presentation"
+          },
+          {
+           "code": null,
+           "text": "Develop and refine artistic work for presentation"
+          },
+          {
+           "code": null,
+           "text": "Convey meaning through the presentation of artistic work"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "content-standards",
+     "title": "Content Standards",
+     "topics": [
+      {
+       "id": "content-standards",
+       "title": "Content Standards",
+       "subtopics": [
+        {
+         "id": "content-standards-1-of-11",
+         "title": "Content Standards (1 of 11)",
+         "outcomes": [
+          {
+           "code": "1.1",
+           "text": "experiment with movement inspired by a variety of sounds"
+          },
+          {
+           "code": "1.2",
+           "text": "improvise a dance with beginning, middle, and end"
+          },
+          {
+           "code": "1.3",
+           "text": "apply changes to movement in dance sequences"
+          },
+          {
+           "code": "1.4",
+           "text": "identify movement qualities using simple dance vocabulary"
+          },
+          {
+           "code": "1.5",
+           "text": "demonstrate a range of movements while coordinating with other dancers"
+          }
+         ]
+        },
+        {
+         "id": "content-standards-2-of-11",
+         "title": "Content Standards (2 of 11)",
+         "outcomes": [
+          {
+           "code": "1.6",
+           "text": "use production elements in a dance for and with others"
+          },
+          {
+           "code": "1.7",
+           "text": "identify a movement that repeats in a dance to make a pattern"
+          },
+          {
+           "code": "1.8",
+           "text": "discuss selected movements from a dance using dance vocabulary"
+          },
+          {
+           "code": "1.9",
+           "text": "use criteria to identify and demonstrate movements in dance"
+          },
+          {
+           "code": "1.10",
+           "text": "identify the movements in a dance that relate to a familiar experience"
+          }
+         ]
+        },
+        {
+         "id": "content-standards-3-of-11",
+         "title": "Content Standards (3 of 11)",
+         "outcomes": [
+          {
+           "code": "1.11",
+           "text": "demonstrate and describe movements in dances."
+          },
+          {
+           "code": "1.1",
+           "text": "express ideas for media artworks through traditional and nontraditional media"
+          },
+          {
+           "code": "1.2",
+           "text": "express ideas to form plans and models for media arts productions and products"
+          },
+          {
+           "code": "1.3",
+           "text": "identify the effects of making changes to the content form or presentation of media artworks"
+          },
+          {
+           "code": "1.4",
+           "text": "combine art forms and media content to form media artworks"
+          }
+         ]
+        },
+        {
+         "id": "content-standards-4-of-11",
+         "title": "Content Standards (4 of 11)",
+         "outcomes": [
+          {
+           "code": "1.5",
+           "text": "demonstrate skills and roles in media arts presentations"
+          },
+          {
+           "code": "1.6",
+           "text": "discuss the presentation of media artworks and identify reactions"
+          },
+          {
+           "code": "1.7",
+           "text": "identify components and messages in media artworks"
+          },
+          {
+           "code": "1.8",
+           "text": "describe the meanings of a variety of media artworks"
+          },
+          {
+           "code": "1.9",
+           "text": "identify qualities of media artworks considering audience"
+          }
+         ]
+        },
+        {
+         "id": "content-standards-5-of-11",
+         "title": "Content Standards (5 of 11)",
+         "outcomes": [
+          {
+           "code": "1.10",
+           "text": "use personal experiences, interests, and models in creating media artworks"
+          },
+          {
+           "code": "1.11",
+           "text": "discuss uses of media artworks in everyday life."
+          },
+          {
+           "code": "1.1",
+           "text": "create musical ideas for a purpose;"
+          },
+          {
+           "code": "1.2",
+           "text": "identify expressive intent of musical ideas;"
+          },
+          {
+           "code": "1.3",
+           "text": "discuss changes in musical ideas;"
+          }
+         ]
+        },
+        {
+         "id": "content-standards-6-of-11",
+         "title": "Content Standards (6 of 11)",
+         "outcomes": [
+          {
+           "code": "1.4",
+           "text": "describe the purpose of a variety of musical selections;"
+          },
+          {
+           "code": "1.5",
+           "text": "rehearse to revise musical performances;"
+          },
+          {
+           "code": "1.6",
+           "text": "perform music for a purpose;"
+          },
+          {
+           "code": "1.7",
+           "text": "identify influences in making musical selections;"
+          },
+          {
+           "code": "1.8",
+           "text": "identify expressive qualities of music;"
+          }
+         ]
+        },
+        {
+         "id": "content-standards-7-of-11",
+         "title": "Content Standards (7 of 11)",
+         "outcomes": [
+          {
+           "code": "1.9",
+           "text": "describe preferences while evaluating music;"
+          },
+          {
+           "code": "1.10",
+           "text": "describe emotions when experiencing music; and"
+          },
+          {
+           "code": "1.11",
+           "text": "describe connections between music, arts, and daily life in a variety of contexts."
+          },
+          {
+           "code": "1.1",
+           "text": "identify ways in which gestures and movement may be used to create or retell a story"
+          },
+          {
+           "code": "1.2",
+           "text": "contribute to the development of a sequential plot in guided creative drama"
+          }
+         ]
+        },
+        {
+         "id": "content-standards-8-of-11",
+         "title": "Content Standards (8 of 11)",
+         "outcomes": [
+          {
+           "code": "1.3",
+           "text": "contribute to the adaptation of the plot in guided creative drama"
+          },
+          {
+           "code": "1.4",
+           "text": "use body, face, gesture, and voice to communicate character and emotions in guided creative drama"
+          },
+          {
+           "code": "1.5",
+           "text": "experiment with design elements in creative drama"
+          },
+          {
+           "code": "1.6",
+           "text": "use movement and gesture to communicate emotions in guided creative drama"
+          },
+          {
+           "code": "1.7",
+           "text": "discuss an emotional response to guided creative drama"
+          }
+         ]
+        },
+        {
+         "id": "content-standards-9-of-11",
+         "title": "Content Standards (9 of 11)",
+         "outcomes": [
+          {
+           "code": "1.8",
+           "text": "discuss how setting can influence character actions in creative drama"
+          },
+          {
+           "code": "1.9",
+           "text": "describe design elements in guided creative drama"
+          },
+          {
+           "code": "1.10",
+           "text": "describe similarities between characters and oneself in a guided creative drama"
+          },
+          {
+           "code": "1.11",
+           "text": "describe similarities and differences in stories from multiple cultures."
+          },
+          {
+           "code": "1.1",
+           "text": "engage and collaborate in creative investigation of art materials;"
+          }
+         ]
+        },
+        {
+         "id": "content-standards-10-of-11",
+         "title": "Content Standards (10 of 11)",
+         "outcomes": [
+          {
+           "code": "1.2",
+           "text": "create artwork that identifies uses of everyday objects;"
+          },
+          {
+           "code": "1.3",
+           "text": "use art vocabulary to describe choices while creating art;"
+          },
+          {
+           "code": "1.4",
+           "text": "explain why objects, artifacts, and artwork are valued differently by different audiences;"
+          },
+          {
+           "code": "1.5",
+           "text": "identify how artwork should be prepared for a presentation;"
+          },
+          {
+           "code": "1.6",
+           "text": "identify the roles and responsibilities of people who visit and work in museums;"
+          }
+         ]
+        },
+        {
+         "id": "content-standards-11-of-11",
+         "title": "Content Standards (11 of 11)",
+         "outcomes": [
+          {
+           "code": "1.7",
+           "text": "select and describe artworks that illustrate daily life comparing different images that represent the same subject;"
+          },
+          {
+           "code": "1.8",
+           "text": "describe characteristics of artworks;"
+          },
+          {
+           "code": "1.9",
+           "text": "classify artwork based on reasons for preferences;"
+          },
+          {
+           "code": "1.10",
+           "text": "identify reasons to create art outside of school; and"
+          },
+          {
+           "code": "1.11",
+           "text": "describe the reasons that people from different places and times create artwork."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "2",
+   "units": [
+    {
+     "id": "artistic-processes",
+     "title": "Artistic Processes",
+     "topics": [
+      {
+       "id": "creating-conceiving-and-developing-new-artistic-",
+       "title": "Creating: Conceiving and developing new artistic ideas and work",
+       "subtopics": [
+        {
+         "id": "creating-conceiving-and-developing-new-artistic-",
+         "title": "Creating: Conceiving and developing new artistic ideas and work (1 of 3)",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Generate and conceptualize artistic ideas and work"
+          },
+          {
+           "code": null,
+           "text": "Organize and develop artistic ideas and work"
+          },
+          {
+           "code": null,
+           "text": "Refine and complete artistic work"
+          },
+          {
+           "code": null,
+           "text": "Generate and conceptualize artistic ideas and work"
+          },
+          {
+           "code": null,
+           "text": "Organize and develop artistic ideas and work"
+          }
+         ]
+        },
+        {
+         "id": "creating-conceiving-and-developing-new-artistic--2",
+         "title": "Creating: Conceiving and developing new artistic ideas and work (2 of 3)",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Refine and complete artistic work"
+          },
+          {
+           "code": null,
+           "text": "Generate and conceptualize artistic ideas and work"
+          },
+          {
+           "code": null,
+           "text": "Organize and develop artistic ideas and work"
+          },
+          {
+           "code": null,
+           "text": "Refine and complete artistic work"
+          },
+          {
+           "code": null,
+           "text": "Generate and conceptualize artistic ideas and work"
+          }
+         ]
+        },
+        {
+         "id": "creating-conceiving-and-developing-new-artistic--3",
+         "title": "Creating: Conceiving and developing new artistic ideas and work (3 of 3)",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Organize and develop artistic ideas and work"
+          },
+          {
+           "code": null,
+           "text": "Refine and complete artistic work"
+          },
+          {
+           "code": null,
+           "text": "Generate and conceptualize artistic ideas and work"
+          },
+          {
+           "code": null,
+           "text": "Organize and develop artistic ideas and work"
+          },
+          {
+           "code": null,
+           "text": "Refine and complete artistic work"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "performing-realizing-artistic-ideas-and-work-thr",
+       "title": "Performing: Realizing artistic ideas and work through interpretation and presentation",
+       "subtopics": [
+        {
+         "id": "performing-realizing-artistic-ideas-and-work-thr",
+         "title": "Performing: Realizing artistic ideas and work through interpretation and presentation (1 of 2)",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Analyze, interpret, and select artistic work for presentation"
+          },
+          {
+           "code": null,
+           "text": "Develop and refine artistic work for presentation"
+          },
+          {
+           "code": null,
+           "text": "Convey meaning through the presentation of artistic work"
+          },
+          {
+           "code": null,
+           "text": "Analyze, interpret, and select artistic work for presentation"
+          },
+          {
+           "code": null,
+           "text": "Develop and refine artistic work for presentation"
+          }
+         ]
+        },
+        {
+         "id": "performing-realizing-artistic-ideas-and-work-thr-2",
+         "title": "Performing: Realizing artistic ideas and work through interpretation and presentation (2 of 2)",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Convey meaning through the presentation of artistic work"
+          },
+          {
+           "code": null,
+           "text": "Analyze, interpret, and select artistic work for presentation"
+          },
+          {
+           "code": null,
+           "text": "Develop and refine artistic work for presentation"
+          },
+          {
+           "code": null,
+           "text": "Convey meaning through the presentation of artistic work"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "responding-understanding-and-evaluating-how-the-",
+       "title": "Responding: Understanding and evaluating how the arts convey meaning",
+       "subtopics": [
+        {
+         "id": "responding-understanding-and-evaluating-how-the-",
+         "title": "Responding: Understanding and evaluating how the arts convey meaning (1 of 3)",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Perceive and analyze artistic work"
+          },
+          {
+           "code": null,
+           "text": "Construct meaningful interpretations of artistic work"
+          },
+          {
+           "code": null,
+           "text": "Apply criteria to evaluate artistic work"
+          },
+          {
+           "code": null,
+           "text": "Perceive and analyze artistic work"
+          },
+          {
+           "code": null,
+           "text": "Construct meaningful interpretations of artistic work"
+          }
+         ]
+        },
+        {
+         "id": "responding-understanding-and-evaluating-how-the--2",
+         "title": "Responding: Understanding and evaluating how the arts convey meaning (2 of 3)",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Apply criteria to evaluate artistic work"
+          },
+          {
+           "code": null,
+           "text": "Perceive and analyze artistic work"
+          },
+          {
+           "code": null,
+           "text": "Construct meaningful interpretations of artistic work"
+          },
+          {
+           "code": null,
+           "text": "Apply criteria to evaluate artistic work"
+          },
+          {
+           "code": null,
+           "text": "Perceive and analyze artistic work"
+          }
+         ]
+        },
+        {
+         "id": "responding-understanding-and-evaluating-how-the--3",
+         "title": "Responding: Understanding and evaluating how the arts convey meaning (3 of 3)",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Construct meaningful interpretations of artistic work"
+          },
+          {
+           "code": null,
+           "text": "Apply criteria to evaluate artistic work"
+          },
+          {
+           "code": null,
+           "text": "Perceive and analyze artistic work"
+          },
+          {
+           "code": null,
+           "text": "Construct meaningful interpretations of artistic work"
+          },
+          {
+           "code": null,
+           "text": "Apply criteria to evaluate artistic work"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "connecting-relating-artistic-ideas-and-work-with",
+       "title": "Connecting: Relating artistic ideas and work with personal meaning and external context",
+       "subtopics": [
+        {
+         "id": "connecting-relating-artistic-ideas-and-work-with",
+         "title": "Connecting: Relating artistic ideas and work with personal meaning and external context (1 of 2)",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Synthesize and relate knowledge and personal experiences to make art"
+          },
+          {
+           "code": null,
+           "text": "Relate artistic ideas and works with societal, cultural and historical context to deepen understanding, including artistic ideas and works by American Indians"
+          },
+          {
+           "code": null,
+           "text": "Synthesize and relate knowledge and personal experiences to make art"
+          },
+          {
+           "code": null,
+           "text": "Relate artistic ideas and works with societal, cultural and historical context to deepen understanding, including artistic ideas and works by American Indians"
+          },
+          {
+           "code": null,
+           "text": "Synthesize and relate knowledge and personal experiences to make art"
+          }
+         ]
+        },
+        {
+         "id": "connecting-relating-artistic-ideas-and-work-with-2",
+         "title": "Connecting: Relating artistic ideas and work with personal meaning and external context (2 of 2)",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Relate artistic ideas and works with societal, cultural and historical context to deepen understanding, including artistic ideas and works by American Indians"
+          },
+          {
+           "code": null,
+           "text": "Synthesize and relate knowledge and personal experiences to make art"
+          },
+          {
+           "code": null,
+           "text": "Relate artistic ideas and works with societal, cultural and historical context to deepen understanding, including artistic ideas and works by American Indians"
+          },
+          {
+           "code": null,
+           "text": "Synthesize and relate knowledge and personal experiences to make art"
+          },
+          {
+           "code": null,
+           "text": "Relate artistic ideas and works with societal, cultural and historical context to deepen understanding, including artistic ideas and works by American Indians"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "producing-realizing-artistic-ideas-and-work-thro",
+       "title": "Producing: Realizing artistic ideas and work through interpretation and presentation",
+       "subtopics": [
+        {
+         "id": "producing-realizing-artistic-ideas-and-work-thro",
+         "title": "Producing: Realizing artistic ideas and work through interpretation and presentation",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Analyze, interpret, and select artistic work for presentation"
+          },
+          {
+           "code": null,
+           "text": "Develop and refine artistic work for presentation"
+          },
+          {
+           "code": null,
+           "text": "Convey meaning through the presentation of artistic work"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "presenting-realizing-artistic-ideas-and-work-thr",
+       "title": "Presenting: Realizing artistic ideas and work through interpretation and presentation",
+       "subtopics": [
+        {
+         "id": "presenting-realizing-artistic-ideas-and-work-thr",
+         "title": "Presenting: Realizing artistic ideas and work through interpretation and presentation",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Analyze, interpret, and select artistic work for presentation"
+          },
+          {
+           "code": null,
+           "text": "Develop and refine artistic work for presentation"
+          },
+          {
+           "code": null,
+           "text": "Convey meaning through the presentation of artistic work"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "content-standards",
+     "title": "Content Standards",
+     "topics": [
+      {
+       "id": "content-standards",
+       "title": "Content Standards",
+       "subtopics": [
+        {
+         "id": "content-standards-1-of-11",
+         "title": "Content Standards (1 of 11)",
+         "outcomes": [
+          {
+           "code": "2.1",
+           "text": "explore movement inspired by a variety of sources"
+          },
+          {
+           "code": "2.2",
+           "text": "create a dance sequence with a beginning, middle, and end"
+          },
+          {
+           "code": "2.3",
+           "text": "make choices to change movement in a dance sequence"
+          },
+          {
+           "code": "2.4",
+           "text": "correlate movement to music"
+          },
+          {
+           "code": "2.5",
+           "text": "coordinate body movements and alignment with other dancers"
+          }
+         ]
+        },
+        {
+         "id": "content-standards-2-of-11",
+         "title": "Content Standards (2 of 11)",
+         "outcomes": [
+          {
+           "code": "2.6",
+           "text": "integrate basic production elements to perform a dance sequence for and with others"
+          },
+          {
+           "code": "2.7",
+           "text": "identify movements in a dance that develop a pattern"
+          },
+          {
+           "code": "2.8",
+           "text": "identify meaning and intent from the movement in a dance"
+          },
+          {
+           "code": "2.9",
+           "text": "use criteria to describe dance movements from a specific genre"
+          },
+          {
+           "code": "2.10",
+           "text": "create and perform a dance that expresses personal meaning"
+          }
+         ]
+        },
+        {
+         "id": "content-standards-3-of-11",
+         "title": "Content Standards (3 of 11)",
+         "outcomes": [
+          {
+           "code": "2.11",
+           "text": "discuss dances and the relationship between the types of movement and the dancers."
+          },
+          {
+           "code": "2.1",
+           "text": "use resources to generate creative ideas for media artworks"
+          },
+          {
+           "code": "2.2",
+           "text": "use ideas to create plans and models for media arts productions"
+          },
+          {
+           "code": "2.3",
+           "text": "describe expressive effects in altering, refining, and completing media artworks"
+          },
+          {
+           "code": "2.4",
+           "text": "combine a variety of art and media content into unified media artworks"
+          }
+         ]
+        },
+        {
+         "id": "content-standards-4-of-11",
+         "title": "Content Standards (4 of 11)",
+         "outcomes": [
+          {
+           "code": "2.5",
+           "text": "use experimentation skills and various roles in creating media arts presentations"
+          },
+          {
+           "code": "2.6",
+           "text": "identify and describe the experience of presenting media artworks"
+          },
+          {
+           "code": "2.7",
+           "text": "describe the components and messages in media artworks"
+          },
+          {
+           "code": "2.8",
+           "text": "define the purposes and meanings of media artworks"
+          },
+          {
+           "code": "2.9",
+           "text": "discuss the effectiveness of and improvements for media artworks"
+          }
+         ]
+        },
+        {
+         "id": "content-standards-5-of-11",
+         "title": "Content Standards (5 of 11)",
+         "outcomes": [
+          {
+           "code": "2.10",
+           "text": "create media artworks and discuss their meaning and purpose"
+          },
+          {
+           "code": "2.11",
+           "text": "identify how media artworks and ideas relate to everyday life and culture."
+          },
+          {
+           "code": "2.1",
+           "text": "explore rhythmic musical ideas for a purpose;"
+          },
+          {
+           "code": "2.2",
+           "text": "discuss the expressive intent of patterns and ideas for music;"
+          },
+          {
+           "code": "2.3",
+           "text": "interpret changes in musical ideas;"
+          }
+         ]
+        },
+        {
+         "id": "content-standards-6-of-11",
+         "title": "Content Standards (6 of 11)",
+         "outcomes": [
+          {
+           "code": "2.4",
+           "text": "identify expressive qualities and the purpose of musical selections;"
+          },
+          {
+           "code": "2.5",
+           "text": "evaluate the expressiveness of musical performances;"
+          },
+          {
+           "code": "2.6",
+           "text": "perform music with expression and technical accuracy;"
+          },
+          {
+           "code": "2.7",
+           "text": "explain responses to musical selections;"
+          },
+          {
+           "code": "2.8",
+           "text": "explain how expressive qualities support intent in music;"
+          }
+         ]
+        },
+        {
+         "id": "content-standards-7-of-11",
+         "title": "Content Standards (7 of 11)",
+         "outcomes": [
+          {
+           "code": "2.9",
+           "text": "discuss personal preferences in evaluating musical selections;"
+          },
+          {
+           "code": "2.10",
+           "text": "discuss emotions when experiencing music; and"
+          },
+          {
+           "code": "2.11",
+           "text": "describe musical expressions in terms of patterns and connections to daily life."
+          },
+          {
+           "code": "2.1",
+           "text": "identify ways in which voice and sounds may be used to create or retell a story"
+          },
+          {
+           "code": "2.2",
+           "text": "develop dialogue in creative drama"
+          }
+         ]
+        },
+        {
+         "id": "content-standards-8-of-11",
+         "title": "Content Standards (8 of 11)",
+         "outcomes": [
+          {
+           "code": "2.3",
+           "text": "contribute to the adaptation of dialogue in a creative drama"
+          },
+          {
+           "code": "2.4",
+           "text": "alter voice and body to expand and articulate character in creative drama experiences"
+          },
+          {
+           "code": "2.5",
+           "text": "identify the basic design elements in creative drama experiences"
+          },
+          {
+           "code": "2.6",
+           "text": "contribute original ideas or choices to group creative drama experiences"
+          },
+          {
+           "code": "2.7",
+           "text": "describe the artistic choices made in creative drama experiences"
+          }
+         ]
+        },
+        {
+         "id": "content-standards-9-of-11",
+         "title": "Content Standards (9 of 11)",
+         "outcomes": [
+          {
+           "code": "2.8",
+           "text": "describe how setting influences character actions and consequences in creative drama"
+          },
+          {
+           "code": "2.9",
+           "text": "discuss design elements in guided creative drama"
+          },
+          {
+           "code": "2.10",
+           "text": "compare character experiences to personal experiences in creative drama"
+          },
+          {
+           "code": "2.11",
+           "text": "compare similarities and differences in stories from multiple cultures through creative drama experiences."
+          },
+          {
+           "code": "2.1",
+           "text": "discover multiple approaches and solutions to an art or design problem;"
+          }
+         ]
+        },
+        {
+         "id": "content-standards-10-of-11",
+         "title": "Content Standards (10 of 11)",
+         "outcomes": [
+          {
+           "code": "2.2",
+           "text": "demonstrate personal interest in an artwork or design using various materials, tools, and everyday objects;"
+          },
+          {
+           "code": "2.3",
+           "text": "discuss choices made in creating artwork;"
+          },
+          {
+           "code": "2.4",
+           "text": "categorize artwork based on a theme or concept for an exhibit;"
+          },
+          {
+           "code": "2.5",
+           "text": "describe different materials or artistic techniques for preparing artwork for presentation;"
+          },
+          {
+           "code": "2.6",
+           "text": "describe how exhibited art, in a variety of venues, contributes to communities;"
+          }
+         ]
+        },
+        {
+         "id": "content-standards-11-of-11",
+         "title": "Content Standards (11 of 11)",
+         "outcomes": [
+          {
+           "code": "2.7",
+           "text": "describe aesthetic characteristics of the natural world and constructed environments based on expressive properties;"
+          },
+          {
+           "code": "2.8",
+           "text": "describe the mood suggested by an artwork;"
+          },
+          {
+           "code": "2.9",
+           "text": "use art vocabulary to express preferences about artwork;"
+          },
+          {
+           "code": "2.10",
+           "text": "create artworks about events in home, school, or community life; and"
+          },
+          {
+           "code": "2.11",
+           "text": "discuss cultural uses of artwork from different times and places."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "3",
+   "units": [
+    {
+     "id": "artistic-processes",
+     "title": "Artistic Processes",
+     "topics": [
+      {
+       "id": "creating-conceiving-and-developing-new-artistic-",
+       "title": "Creating: Conceiving and developing new artistic ideas and work",
+       "subtopics": [
+        {
+         "id": "creating-conceiving-and-developing-new-artistic-",
+         "title": "Creating: Conceiving and developing new artistic ideas and work (1 of 3)",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Generate and conceptualize artistic ideas and work"
+          },
+          {
+           "code": null,
+           "text": "Organize and develop artistic ideas and work"
+          },
+          {
+           "code": null,
+           "text": "Refine and complete artistic work"
+          },
+          {
+           "code": null,
+           "text": "Generate and conceptualize artistic ideas and work"
+          },
+          {
+           "code": null,
+           "text": "Organize and develop artistic ideas and work"
+          }
+         ]
+        },
+        {
+         "id": "creating-conceiving-and-developing-new-artistic--2",
+         "title": "Creating: Conceiving and developing new artistic ideas and work (2 of 3)",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Refine and complete artistic work"
+          },
+          {
+           "code": null,
+           "text": "Generate and conceptualize artistic ideas and work"
+          },
+          {
+           "code": null,
+           "text": "Organize and develop artistic ideas and work"
+          },
+          {
+           "code": null,
+           "text": "Refine and complete artistic work"
+          },
+          {
+           "code": null,
+           "text": "Generate and conceptualize artistic ideas and work"
+          }
+         ]
+        },
+        {
+         "id": "creating-conceiving-and-developing-new-artistic--3",
+         "title": "Creating: Conceiving and developing new artistic ideas and work (3 of 3)",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Organize and develop artistic ideas and work"
+          },
+          {
+           "code": null,
+           "text": "Refine and complete artistic work"
+          },
+          {
+           "code": null,
+           "text": "Generate and conceptualize artistic ideas and work"
+          },
+          {
+           "code": null,
+           "text": "Organize and develop artistic ideas and work"
+          },
+          {
+           "code": null,
+           "text": "Refine and complete artistic work"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "performing-realizing-artistic-ideas-and-work-thr",
+       "title": "Performing: Realizing artistic ideas and work through interpretation and presentation",
+       "subtopics": [
+        {
+         "id": "performing-realizing-artistic-ideas-and-work-thr",
+         "title": "Performing: Realizing artistic ideas and work through interpretation and presentation (1 of 2)",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Analyze, interpret, and select artistic work for presentation"
+          },
+          {
+           "code": null,
+           "text": "Develop and refine artistic work for presentation"
+          },
+          {
+           "code": null,
+           "text": "Convey meaning through the presentation of artistic work"
+          },
+          {
+           "code": null,
+           "text": "Analyze, interpret, and select artistic work for presentation"
+          },
+          {
+           "code": null,
+           "text": "Develop and refine artistic work for presentation"
+          }
+         ]
+        },
+        {
+         "id": "performing-realizing-artistic-ideas-and-work-thr-2",
+         "title": "Performing: Realizing artistic ideas and work through interpretation and presentation (2 of 2)",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Convey meaning through the presentation of artistic work"
+          },
+          {
+           "code": null,
+           "text": "Analyze, interpret, and select artistic work for presentation"
+          },
+          {
+           "code": null,
+           "text": "Develop and refine artistic work for presentation"
+          },
+          {
+           "code": null,
+           "text": "Convey meaning through the presentation of artistic work"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "responding-understanding-and-evaluating-how-the-",
+       "title": "Responding: Understanding and evaluating how the arts convey meaning",
+       "subtopics": [
+        {
+         "id": "responding-understanding-and-evaluating-how-the-",
+         "title": "Responding: Understanding and evaluating how the arts convey meaning (1 of 3)",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Perceive and analyze artistic work"
+          },
+          {
+           "code": null,
+           "text": "Construct meaningful interpretations of artistic work"
+          },
+          {
+           "code": null,
+           "text": "Apply criteria to evaluate artistic work"
+          },
+          {
+           "code": null,
+           "text": "Perceive and analyze artistic work"
+          },
+          {
+           "code": null,
+           "text": "Construct meaningful interpretations of artistic work"
+          }
+         ]
+        },
+        {
+         "id": "responding-understanding-and-evaluating-how-the--2",
+         "title": "Responding: Understanding and evaluating how the arts convey meaning (2 of 3)",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Apply criteria to evaluate artistic work"
+          },
+          {
+           "code": null,
+           "text": "Perceive and analyze artistic work"
+          },
+          {
+           "code": null,
+           "text": "Construct meaningful interpretations of artistic work"
+          },
+          {
+           "code": null,
+           "text": "Apply criteria to evaluate artistic work"
+          },
+          {
+           "code": null,
+           "text": "Perceive and analyze artistic work"
+          }
+         ]
+        },
+        {
+         "id": "responding-understanding-and-evaluating-how-the--3",
+         "title": "Responding: Understanding and evaluating how the arts convey meaning (3 of 3)",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Construct meaningful interpretations of artistic work"
+          },
+          {
+           "code": null,
+           "text": "Apply criteria to evaluate artistic work"
+          },
+          {
+           "code": null,
+           "text": "Perceive and analyze artistic work"
+          },
+          {
+           "code": null,
+           "text": "Construct meaningful interpretations of artistic work"
+          },
+          {
+           "code": null,
+           "text": "Apply criteria to evaluate artistic work"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "connecting-relating-artistic-ideas-and-work-with",
+       "title": "Connecting: Relating artistic ideas and work with personal meaning and external context",
+       "subtopics": [
+        {
+         "id": "connecting-relating-artistic-ideas-and-work-with",
+         "title": "Connecting: Relating artistic ideas and work with personal meaning and external context (1 of 2)",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Synthesize and relate knowledge and personal experiences to make art"
+          },
+          {
+           "code": null,
+           "text": "Relate artistic ideas and works with societal, cultural and historical context to deepen understanding, including artistic ideas and works by American Indians"
+          },
+          {
+           "code": null,
+           "text": "Synthesize and relate knowledge and personal experiences to make art"
+          },
+          {
+           "code": null,
+           "text": "Relate artistic ideas and works with societal, cultural and historical context to deepen understanding, including artistic ideas and works by American Indians"
+          },
+          {
+           "code": null,
+           "text": "Synthesize and relate knowledge and personal experiences to make art"
+          }
+         ]
+        },
+        {
+         "id": "connecting-relating-artistic-ideas-and-work-with-2",
+         "title": "Connecting: Relating artistic ideas and work with personal meaning and external context (2 of 2)",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Relate artistic ideas and works with societal, cultural and historical context to deepen understanding, including artistic ideas and works by American Indians"
+          },
+          {
+           "code": null,
+           "text": "Synthesize and relate knowledge and personal experiences to make art"
+          },
+          {
+           "code": null,
+           "text": "Relate artistic ideas and works with societal, cultural and historical context to deepen understanding, including artistic ideas and works by American Indians"
+          },
+          {
+           "code": null,
+           "text": "Synthesize and relate knowledge and personal experiences to make art"
+          },
+          {
+           "code": null,
+           "text": "Relate artistic ideas and works with societal, cultural and historical context to deepen understanding, including artistic ideas and works by American Indians"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "producing-realizing-artistic-ideas-and-work-thro",
+       "title": "Producing: Realizing artistic ideas and work through interpretation and presentation",
+       "subtopics": [
+        {
+         "id": "producing-realizing-artistic-ideas-and-work-thro",
+         "title": "Producing: Realizing artistic ideas and work through interpretation and presentation",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Analyze, interpret, and select artistic work for presentation"
+          },
+          {
+           "code": null,
+           "text": "Develop and refine artistic work for presentation"
+          },
+          {
+           "code": null,
+           "text": "Convey meaning through the presentation of artistic work"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "presenting-realizing-artistic-ideas-and-work-thr",
+       "title": "Presenting: Realizing artistic ideas and work through interpretation and presentation",
+       "subtopics": [
+        {
+         "id": "presenting-realizing-artistic-ideas-and-work-thr",
+         "title": "Presenting: Realizing artistic ideas and work through interpretation and presentation",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Analyze, interpret, and select artistic work for presentation"
+          },
+          {
+           "code": null,
+           "text": "Develop and refine artistic work for presentation"
+          },
+          {
+           "code": null,
+           "text": "Convey meaning through the presentation of artistic work"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "content-standards",
+     "title": "Content Standards",
+     "topics": [
+      {
+       "id": "content-standards",
+       "title": "Content Standards",
+       "subtopics": [
+        {
+         "id": "content-standards-1-of-11",
+         "title": "Content Standards (1 of 11)",
+         "outcomes": [
+          {
+           "code": "3.1",
+           "text": "experiment with movement using a variety of sources"
+          },
+          {
+           "code": "3.2",
+           "text": "identify movement patterns and sequences"
+          },
+          {
+           "code": "3.3",
+           "text": "describe differences in movement changes in dance sequences"
+          },
+          {
+           "code": "3.4",
+           "text": "choose specific movements to express intent in a dance sequence"
+          },
+          {
+           "code": "3.5",
+           "text": "identify technical dance skills that coordinate with other dancers"
+          }
+         ]
+        },
+        {
+         "id": "content-standards-2-of-11",
+         "title": "Content Standards (2 of 11)",
+         "outcomes": [
+          {
+           "code": "3.6",
+           "text": "create production elements for a dance performance"
+          },
+          {
+           "code": "3.7",
+           "text": "discuss a movement pattern that creates a dance sequence"
+          },
+          {
+           "code": "3.8",
+           "text": "explain how specific movements relate to the main idea of a dance"
+          },
+          {
+           "code": "3.9",
+           "text": "use criteria to identify characteristic movements in dances from a variety of genres"
+          },
+          {
+           "code": "3.10",
+           "text": "create movement based on an event or issue"
+          }
+         ]
+        },
+        {
+         "id": "content-standards-3-of-11",
+         "title": "Content Standards (3 of 11)",
+         "outcomes": [
+          {
+           "code": "3.11",
+           "text": "explain what the movements of a dance may communicate about culture."
+          },
+          {
+           "code": "3.1",
+           "text": "develop ideas for media artworks using a variety of tools, methods, and materials"
+          },
+          {
+           "code": "3.2",
+           "text": "make plans and models for media arts productions"
+          },
+          {
+           "code": "3.3",
+           "text": "demonstrate how the use of different elements alters media artworks"
+          },
+          {
+           "code": "3.4",
+           "text": "integrate varied art forms and media content into media artworks"
+          }
+         ]
+        },
+        {
+         "id": "content-standards-4-of-11",
+         "title": "Content Standards (4 of 11)",
+         "outcomes": [
+          {
+           "code": "3.5",
+           "text": "exhibit a variety of skills and roles to create new content in media arts presentations"
+          },
+          {
+           "code": "3.6",
+           "text": "discuss ways to improve media artworks presentations"
+          },
+          {
+           "code": "3.7",
+           "text": "describe how messages are created by components in media artworks"
+          },
+          {
+           "code": "3.8",
+           "text": "discuss the purposes and meanings of media artworks"
+          },
+          {
+           "code": "3.9",
+           "text": "identify basic criteria to evaluate media artworks"
+          }
+         ]
+        },
+        {
+         "id": "content-standards-5-of-11",
+         "title": "Content Standards (5 of 11)",
+         "outcomes": [
+          {
+           "code": "3.10",
+           "text": "demonstrate how media artworks influence popular media"
+          },
+          {
+           "code": "3.11",
+           "text": "explain how media artworks and ideas can influence everyday life."
+          },
+          {
+           "code": "3.1",
+           "text": "identify the connection between rhythmic and melodic ideas;"
+          },
+          {
+           "code": "3.2",
+           "text": "identify expressive intent of selected musical ideas;"
+          },
+          {
+           "code": "3.3",
+           "text": "explain revisions to musical ideas;"
+          }
+         ]
+        },
+        {
+         "id": "content-standards-6-of-11",
+         "title": "Content Standards (6 of 11)",
+         "outcomes": [
+          {
+           "code": "3.4",
+           "text": "discuss how intent is conveyed through expressive qualities;"
+          },
+          {
+           "code": "3.5",
+           "text": "evaluate the effectiveness of musical performances;"
+          },
+          {
+           "code": "3.6",
+           "text": "perform music for a purpose with expression and technical accuracy;"
+          },
+          {
+           "code": "3.7",
+           "text": "evaluate responses to musical selections;"
+          },
+          {
+           "code": "3.8",
+           "text": "describe how expressive qualities determine intent in music;"
+          }
+         ]
+        },
+        {
+         "id": "content-standards-7-of-11",
+         "title": "Content Standards (7 of 11)",
+         "outcomes": [
+          {
+           "code": "3.9",
+           "text": "identify criteria to evaluate musical performances;"
+          },
+          {
+           "code": "3.10",
+           "text": "explain emotions experienced when creating, performing, and responding to music;"
+          },
+          {
+           "code": "3.11",
+           "text": "discuss patterns and connections between music, arts, and daily life."
+          },
+          {
+           "code": "3.1",
+           "text": "experiment with character choices in creative drama"
+          },
+          {
+           "code": "3.2",
+           "text": "devise original ideas for a creative drama experience"
+          }
+         ]
+        },
+        {
+         "id": "content-standards-8-of-11",
+         "title": "Content Standards (8 of 11)",
+         "outcomes": [
+          {
+           "code": "3.3",
+           "text": "collaborate to revise ideas of creative drama"
+          },
+          {
+           "code": "3.4",
+           "text": "determine how movement and voice are incorporated into creative drama experiences"
+          },
+          {
+           "code": "3.5",
+           "text": "describe design elements in a creative drama experience"
+          },
+          {
+           "code": "3.6",
+           "text": "rehearse and discuss reflections about a drama experience"
+          },
+          {
+           "code": "3.7",
+           "text": "discuss artistic choices and how they shape reactions to drama and theatre works"
+          }
+         ]
+        },
+        {
+         "id": "content-standards-9-of-11",
+         "title": "Content Standards (9 of 11)",
+         "outcomes": [
+          {
+           "code": "3.8",
+           "text": "discuss ways to develop a character for a creative drama"
+          },
+          {
+           "code": "3.9",
+           "text": "compare design elements in creative drama"
+          },
+          {
+           "code": "3.10",
+           "text": "discuss personal experiences and knowledge to make connections to community and culture in creative drama"
+          },
+          {
+           "code": "3.11",
+           "text": "describe how stories are adapted from literature to become drama or theatre works."
+          },
+          {
+           "code": "3.1",
+           "text": "apply knowledge of available resources to enhance personal ideas through the art-making process;"
+          }
+         ]
+        },
+        {
+         "id": "content-standards-10-of-11",
+         "title": "Content Standards (10 of 11)",
+         "outcomes": [
+          {
+           "code": "3.2",
+           "text": "create artwork using a variety of artistic processes and materials;"
+          },
+          {
+           "code": "3.3",
+           "text": "elaborate on artwork by adding details to enhance meaning;"
+          },
+          {
+           "code": "3.4",
+           "text": "research and discuss the possibilities and limitations of physical and digital spaces for exhibiting artwork;"
+          },
+          {
+           "code": "3.5",
+           "text": "prepare artworks for presentation;"
+          },
+          {
+           "code": "3.6",
+           "text": "explain how and where different cultures record and illustrate stories and history of life through art;"
+          }
+         ]
+        },
+        {
+         "id": "content-standards-11-of-11",
+         "title": "Content Standards (11 of 11)",
+         "outcomes": [
+          {
+           "code": "3.7",
+           "text": "identify processes an artist uses to create artwork;"
+          },
+          {
+           "code": "3.8",
+           "text": "discuss the use of media to create subject matter, form, and mood in artwork;"
+          },
+          {
+           "code": "3.9",
+           "text": "evaluate artwork based on criteria;"
+          },
+          {
+           "code": "3.10",
+           "text": "develop artwork based on observations and details of surroundings; and"
+          },
+          {
+           "code": "3.11",
+           "text": "compare how responses to art change based on knowledge of the artwork's cultural and historical context."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "4",
+   "units": [
+    {
+     "id": "artistic-processes",
+     "title": "Artistic Processes",
+     "topics": [
+      {
+       "id": "creating-conceiving-and-developing-new-artistic-",
+       "title": "Creating: Conceiving and developing new artistic ideas and work",
+       "subtopics": [
+        {
+         "id": "creating-conceiving-and-developing-new-artistic-",
+         "title": "Creating: Conceiving and developing new artistic ideas and work (1 of 3)",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Generate and conceptualize artistic ideas and work"
+          },
+          {
+           "code": null,
+           "text": "Organize and develop artistic ideas and work"
+          },
+          {
+           "code": null,
+           "text": "Refine and complete artistic work"
+          },
+          {
+           "code": null,
+           "text": "Generate and conceptualize artistic ideas and work"
+          },
+          {
+           "code": null,
+           "text": "Organize and develop artistic ideas and work"
+          }
+         ]
+        },
+        {
+         "id": "creating-conceiving-and-developing-new-artistic--2",
+         "title": "Creating: Conceiving and developing new artistic ideas and work (2 of 3)",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Refine and complete artistic work"
+          },
+          {
+           "code": null,
+           "text": "Generate and conceptualize artistic ideas and work"
+          },
+          {
+           "code": null,
+           "text": "Organize and develop artistic ideas and work"
+          },
+          {
+           "code": null,
+           "text": "Refine and complete artistic work"
+          },
+          {
+           "code": null,
+           "text": "Generate and conceptualize artistic ideas and work"
+          }
+         ]
+        },
+        {
+         "id": "creating-conceiving-and-developing-new-artistic--3",
+         "title": "Creating: Conceiving and developing new artistic ideas and work (3 of 3)",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Organize and develop artistic ideas and work"
+          },
+          {
+           "code": null,
+           "text": "Refine and complete artistic work"
+          },
+          {
+           "code": null,
+           "text": "Generate and conceptualize artistic ideas and work"
+          },
+          {
+           "code": null,
+           "text": "Organize and develop artistic ideas and work"
+          },
+          {
+           "code": null,
+           "text": "Refine and complete artistic work"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "performing-realizing-artistic-ideas-and-work-thr",
+       "title": "Performing: Realizing artistic ideas and work through interpretation and presentation",
+       "subtopics": [
+        {
+         "id": "performing-realizing-artistic-ideas-and-work-thr",
+         "title": "Performing: Realizing artistic ideas and work through interpretation and presentation (1 of 2)",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Analyze, interpret, and select artistic work for presentation"
+          },
+          {
+           "code": null,
+           "text": "Develop and refine artistic work for presentation"
+          },
+          {
+           "code": null,
+           "text": "Convey meaning through the presentation of artistic work"
+          },
+          {
+           "code": null,
+           "text": "Analyze, interpret, and select artistic work for presentation"
+          },
+          {
+           "code": null,
+           "text": "Develop and refine artistic work for presentation"
+          }
+         ]
+        },
+        {
+         "id": "performing-realizing-artistic-ideas-and-work-thr-2",
+         "title": "Performing: Realizing artistic ideas and work through interpretation and presentation (2 of 2)",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Convey meaning through the presentation of artistic work"
+          },
+          {
+           "code": null,
+           "text": "Analyze, interpret, and select artistic work for presentation"
+          },
+          {
+           "code": null,
+           "text": "Develop and refine artistic work for presentation"
+          },
+          {
+           "code": null,
+           "text": "Convey meaning through the presentation of artistic work"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "responding-understanding-and-evaluating-how-the-",
+       "title": "Responding: Understanding and evaluating how the arts convey meaning",
+       "subtopics": [
+        {
+         "id": "responding-understanding-and-evaluating-how-the-",
+         "title": "Responding: Understanding and evaluating how the arts convey meaning (1 of 3)",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Perceive and analyze artistic work"
+          },
+          {
+           "code": null,
+           "text": "Construct meaningful interpretations of artistic work"
+          },
+          {
+           "code": null,
+           "text": "Apply criteria to evaluate artistic work"
+          },
+          {
+           "code": null,
+           "text": "Perceive and analyze artistic work"
+          },
+          {
+           "code": null,
+           "text": "Construct meaningful interpretations of artistic work"
+          }
+         ]
+        },
+        {
+         "id": "responding-understanding-and-evaluating-how-the--2",
+         "title": "Responding: Understanding and evaluating how the arts convey meaning (2 of 3)",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Apply criteria to evaluate artistic work"
+          },
+          {
+           "code": null,
+           "text": "Perceive and analyze artistic work"
+          },
+          {
+           "code": null,
+           "text": "Construct meaningful interpretations of artistic work"
+          },
+          {
+           "code": null,
+           "text": "Apply criteria to evaluate artistic work"
+          },
+          {
+           "code": null,
+           "text": "Perceive and analyze artistic work"
+          }
+         ]
+        },
+        {
+         "id": "responding-understanding-and-evaluating-how-the--3",
+         "title": "Responding: Understanding and evaluating how the arts convey meaning (3 of 3)",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Construct meaningful interpretations of artistic work"
+          },
+          {
+           "code": null,
+           "text": "Apply criteria to evaluate artistic work"
+          },
+          {
+           "code": null,
+           "text": "Perceive and analyze artistic work"
+          },
+          {
+           "code": null,
+           "text": "Construct meaningful interpretations of artistic work"
+          },
+          {
+           "code": null,
+           "text": "Apply criteria to evaluate artistic work"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "connecting-relating-artistic-ideas-and-work-with",
+       "title": "Connecting: Relating artistic ideas and work with personal meaning and external context",
+       "subtopics": [
+        {
+         "id": "connecting-relating-artistic-ideas-and-work-with",
+         "title": "Connecting: Relating artistic ideas and work with personal meaning and external context (1 of 2)",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Synthesize and relate knowledge and personal experiences to make art"
+          },
+          {
+           "code": null,
+           "text": "Relate artistic ideas and works with societal, cultural and historical context to deepen understanding, including artistic ideas and works by American Indians"
+          },
+          {
+           "code": null,
+           "text": "Synthesize and relate knowledge and personal experiences to make art"
+          },
+          {
+           "code": null,
+           "text": "Relate artistic ideas and works with societal, cultural and historical context to deepen understanding, including artistic ideas and works by American Indians"
+          },
+          {
+           "code": null,
+           "text": "Synthesize and relate knowledge and personal experiences to make art"
+          }
+         ]
+        },
+        {
+         "id": "connecting-relating-artistic-ideas-and-work-with-2",
+         "title": "Connecting: Relating artistic ideas and work with personal meaning and external context (2 of 2)",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Relate artistic ideas and works with societal, cultural and historical context to deepen understanding, including artistic ideas and works by American Indians"
+          },
+          {
+           "code": null,
+           "text": "Synthesize and relate knowledge and personal experiences to make art"
+          },
+          {
+           "code": null,
+           "text": "Relate artistic ideas and works with societal, cultural and historical context to deepen understanding, including artistic ideas and works by American Indians"
+          },
+          {
+           "code": null,
+           "text": "Synthesize and relate knowledge and personal experiences to make art"
+          },
+          {
+           "code": null,
+           "text": "Relate artistic ideas and works with societal, cultural and historical context to deepen understanding, including artistic ideas and works by American Indians"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "producing-realizing-artistic-ideas-and-work-thro",
+       "title": "Producing: Realizing artistic ideas and work through interpretation and presentation",
+       "subtopics": [
+        {
+         "id": "producing-realizing-artistic-ideas-and-work-thro",
+         "title": "Producing: Realizing artistic ideas and work through interpretation and presentation",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Analyze, interpret, and select artistic work for presentation"
+          },
+          {
+           "code": null,
+           "text": "Develop and refine artistic work for presentation"
+          },
+          {
+           "code": null,
+           "text": "Convey meaning through the presentation of artistic work"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "presenting-realizing-artistic-ideas-and-work-thr",
+       "title": "Presenting: Realizing artistic ideas and work through interpretation and presentation",
+       "subtopics": [
+        {
+         "id": "presenting-realizing-artistic-ideas-and-work-thr",
+         "title": "Presenting: Realizing artistic ideas and work through interpretation and presentation",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Analyze, interpret, and select artistic work for presentation"
+          },
+          {
+           "code": null,
+           "text": "Develop and refine artistic work for presentation"
+          },
+          {
+           "code": null,
+           "text": "Convey meaning through the presentation of artistic work"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "content-standards",
+     "title": "Content Standards",
+     "topics": [
+      {
+       "id": "content-standards",
+       "title": "Content Standards",
+       "subtopics": [
+        {
+         "id": "content-standards-1-of-11",
+         "title": "Content Standards (1 of 11)",
+         "outcomes": [
+          {
+           "code": "4.1",
+           "text": "use elements of dance to create a series of movements"
+          },
+          {
+           "code": "4.2",
+           "text": "plan a dance sequence with a variety of movement patterns and structures"
+          },
+          {
+           "code": "4.3",
+           "text": "revise and explain choices made in movement changes within dance sequences"
+          },
+          {
+           "code": "4.4",
+           "text": "demonstrate shapes and expand the range of movements in a dance sequence"
+          },
+          {
+           "code": "4.5",
+           "text": "demonstrate technical dance skills that coordinate with other dancers"
+          }
+         ]
+        },
+        {
+         "id": "content-standards-2-of-11",
+         "title": "Content Standards (2 of 11)",
+         "outcomes": [
+          {
+           "code": "4.6",
+           "text": "use a variety of production elements to create a formal dance performance space"
+          },
+          {
+           "code": "4.7",
+           "text": "compare movement patterns within a genre or style"
+          },
+          {
+           "code": "4.8",
+           "text": "identify intent of a dance by relating the movements, ideas, and context using dance vocabulary"
+          },
+          {
+           "code": "4.9",
+           "text": "discuss and demonstrate the movement characteristics of a dance"
+          },
+          {
+           "code": "4.10",
+           "text": "explain how the main idea of a dance is similar to or different from personal experience"
+          }
+         ]
+        },
+        {
+         "id": "content-standards-3-of-11",
+         "title": "Content Standards (3 of 11)",
+         "outcomes": [
+          {
+           "code": "4.11",
+           "text": "describe how specific movements of a dance relate to culture and time period."
+          },
+          {
+           "code": "4.1",
+           "text": "develop original media artworks using a variety of creative methods"
+          },
+          {
+           "code": "4.2",
+           "text": "discuss, test, and assemble models for media arts productions"
+          },
+          {
+           "code": "4.3",
+           "text": "demonstrate intentional effect in refining media artworks"
+          },
+          {
+           "code": "4.4",
+           "text": "demonstrate how a variety of forms and content can be mixed and coordinated into media artworks"
+          }
+         ]
+        },
+        {
+         "id": "content-standards-4-of-11",
+         "title": "Content Standards (4 of 11)",
+         "outcomes": [
+          {
+           "code": "4.5",
+           "text": "apply a variety of skills and knowledge to solve problems while creating media arts presentations"
+          },
+          {
+           "code": "4.6",
+           "text": "explain results of and improvements for presenting media artworks"
+          },
+          {
+           "code": "4.7",
+           "text": "explain how various forms, methods, and styles influence the message of a media artwork"
+          },
+          {
+           "code": "4.8",
+           "text": "explain reactions to a variety of media artworks considering their purpose and context"
+          },
+          {
+           "code": "4.9",
+           "text": "apply basic criteria to evaluate and improve media artworks and production processes"
+          }
+         ]
+        },
+        {
+         "id": "content-standards-5-of-11",
+         "title": "Content Standards (5 of 11)",
+         "outcomes": [
+          {
+           "code": "4.10",
+           "text": "examine how media artworks affect meanings, situations, and cultural experiences in popular media"
+          },
+          {
+           "code": "4.11",
+           "text": "demonstrate how media artworks and ideas relate to everyday life and culture."
+          },
+          {
+           "code": "4.1",
+           "text": "explain the connection between rhythmic, melodic, and harmonic ideas;"
+          },
+          {
+           "code": "4.2",
+           "text": "organize musical ideas for an express purpose;"
+          },
+          {
+           "code": "4.3",
+           "text": "identify revisions for personal musical ideas;"
+          }
+         ]
+        },
+        {
+         "id": "content-standards-6-of-11",
+         "title": "Content Standards (6 of 11)",
+         "outcomes": [
+          {
+           "code": "4.4",
+           "text": "identify the structure and elements in music selected for performance;"
+          },
+          {
+           "code": "4.5",
+           "text": "evaluate accuracy and expressiveness of musical performances;"
+          },
+          {
+           "code": "4.6",
+           "text": "perform music with expression, technical accuracy, and interpretation;"
+          },
+          {
+           "code": "4.7",
+           "text": "explain connections to responses, musical structure, and elements;"
+          },
+          {
+           "code": "4.8",
+           "text": "explain how expressive qualities help performers interpret music;"
+          }
+         ]
+        },
+        {
+         "id": "content-standards-7-of-11",
+         "title": "Content Standards (7 of 11)",
+         "outcomes": [
+          {
+           "code": "4.9",
+           "text": "use established criteria to evaluate musical works and performances;"
+          },
+          {
+           "code": "4.10",
+           "text": "convey personal emotions using elements of music; and"
+          },
+          {
+           "code": "4.11",
+           "text": "demonstrate understanding of the connection between music and its historical and cultural context."
+          },
+          {
+           "code": "4.1",
+           "text": "design technical elements that support the story and drama experiences"
+          },
+          {
+           "code": "4.2",
+           "text": "develop original ideas for characters and plot in a theatre performance"
+          }
+         ]
+        },
+        {
+         "id": "content-standards-8-of-11",
+         "title": "Content Standards (8 of 11)",
+         "outcomes": [
+          {
+           "code": "4.3",
+           "text": "revise an improvised or scripted theatre work"
+          },
+          {
+           "code": "4.4",
+           "text": "make physical and vocal choices to develop a character in a drama experience"
+          },
+          {
+           "code": "4.5",
+           "text": "discuss the use of technical elements to enhance a drama experience"
+          },
+          {
+           "code": "4.6",
+           "text": "perform small-group drama and theatre works to an audience"
+          },
+          {
+           "code": "4.7",
+           "text": "identify artistic choices made through participation in and observation of drama and theatre works"
+          }
+         ]
+        },
+        {
+         "id": "content-standards-9-of-11",
+         "title": "Content Standards (9 of 11)",
+         "outcomes": [
+          {
+           "code": "4.8",
+           "text": "compare character qualities in drama or theatre works"
+          },
+          {
+           "code": "4.9",
+           "text": "propose criteria to evaluate drama and theatre works"
+          },
+          {
+           "code": "4.10",
+           "text": "identify the ways drama and theatre work reflect the perspectives of a community or culture"
+          },
+          {
+           "code": "4.11",
+           "text": "discuss cross-cultural approaches to storytelling in drama and theatre works."
+          },
+          {
+           "code": "4.1",
+           "text": "collaborate on multiple approaches to a creative art or design problem and develop a plan from concept to completion for an artwork;"
+          }
+         ]
+        },
+        {
+         "id": "content-standards-10-of-11",
+         "title": "Content Standards (10 of 11)",
+         "outcomes": [
+          {
+           "code": "4.2",
+           "text": "apply research to art-making for the purpose of communicating about constructed environments;"
+          },
+          {
+           "code": "4.3",
+           "text": "revise artwork on the basis of insights gained through discussion;"
+          },
+          {
+           "code": "4.4",
+           "text": "describe how past, present, and emerging technologies impact the preservation and presentation of artwork;"
+          },
+          {
+           "code": "4.5",
+           "text": "analyze considerations for presenting and protecting artworks;"
+          },
+          {
+           "code": "4.6",
+           "text": "compare purposes of art museums, art galleries, and other venues with the types of experiences they provide;"
+          }
+         ]
+        },
+        {
+         "id": "content-standards-11-of-11",
+         "title": "Content Standards (11 of 11)",
+         "outcomes": [
+          {
+           "code": "4.7",
+           "text": "compare components of visual imagery;"
+          },
+          {
+           "code": "4.8",
+           "text": "analyze subject matter, form, and use of media in artwork;"
+          },
+          {
+           "code": "4.9",
+           "text": "apply criteria to analyze artworks;"
+          },
+          {
+           "code": "4.10",
+           "text": "create artworks that reflect community cultural traditions; and"
+          },
+          {
+           "code": "4.11",
+           "text": "interpret artworks through observation and information about context."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "5",
+   "units": [
+    {
+     "id": "artistic-processes",
+     "title": "Artistic Processes",
+     "topics": [
+      {
+       "id": "creating-conceiving-and-developing-new-artistic-",
+       "title": "Creating: Conceiving and developing new artistic ideas and work",
+       "subtopics": [
+        {
+         "id": "creating-conceiving-and-developing-new-artistic-",
+         "title": "Creating: Conceiving and developing new artistic ideas and work (1 of 3)",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Generate and conceptualize artistic ideas and work"
+          },
+          {
+           "code": null,
+           "text": "Organize and develop artistic ideas and work"
+          },
+          {
+           "code": null,
+           "text": "Refine and complete artistic work"
+          },
+          {
+           "code": null,
+           "text": "Generate and conceptualize artistic ideas and work"
+          },
+          {
+           "code": null,
+           "text": "Organize and develop artistic ideas and work"
+          }
+         ]
+        },
+        {
+         "id": "creating-conceiving-and-developing-new-artistic--2",
+         "title": "Creating: Conceiving and developing new artistic ideas and work (2 of 3)",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Refine and complete artistic work"
+          },
+          {
+           "code": null,
+           "text": "Generate and conceptualize artistic ideas and work"
+          },
+          {
+           "code": null,
+           "text": "Organize and develop artistic ideas and work"
+          },
+          {
+           "code": null,
+           "text": "Refine and complete artistic work"
+          },
+          {
+           "code": null,
+           "text": "Generate and conceptualize artistic ideas and work"
+          }
+         ]
+        },
+        {
+         "id": "creating-conceiving-and-developing-new-artistic--3",
+         "title": "Creating: Conceiving and developing new artistic ideas and work (3 of 3)",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Organize and develop artistic ideas and work"
+          },
+          {
+           "code": null,
+           "text": "Refine and complete artistic work"
+          },
+          {
+           "code": null,
+           "text": "Generate and conceptualize artistic ideas and work"
+          },
+          {
+           "code": null,
+           "text": "Organize and develop artistic ideas and work"
+          },
+          {
+           "code": null,
+           "text": "Refine and complete artistic work"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "performing-realizing-artistic-ideas-and-work-thr",
+       "title": "Performing: Realizing artistic ideas and work through interpretation and presentation",
+       "subtopics": [
+        {
+         "id": "performing-realizing-artistic-ideas-and-work-thr",
+         "title": "Performing: Realizing artistic ideas and work through interpretation and presentation (1 of 2)",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Analyze, interpret, and select artistic work for presentation"
+          },
+          {
+           "code": null,
+           "text": "Develop and refine artistic work for presentation"
+          },
+          {
+           "code": null,
+           "text": "Convey meaning through the presentation of artistic work"
+          },
+          {
+           "code": null,
+           "text": "Analyze, interpret, and select artistic work for presentation"
+          },
+          {
+           "code": null,
+           "text": "Develop and refine artistic work for presentation"
+          }
+         ]
+        },
+        {
+         "id": "performing-realizing-artistic-ideas-and-work-thr-2",
+         "title": "Performing: Realizing artistic ideas and work through interpretation and presentation (2 of 2)",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Convey meaning through the presentation of artistic work"
+          },
+          {
+           "code": null,
+           "text": "Analyze, interpret, and select artistic work for presentation"
+          },
+          {
+           "code": null,
+           "text": "Develop and refine artistic work for presentation"
+          },
+          {
+           "code": null,
+           "text": "Convey meaning through the presentation of artistic work"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "responding-understanding-and-evaluating-how-the-",
+       "title": "Responding: Understanding and evaluating how the arts convey meaning",
+       "subtopics": [
+        {
+         "id": "responding-understanding-and-evaluating-how-the-",
+         "title": "Responding: Understanding and evaluating how the arts convey meaning (1 of 3)",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Perceive and analyze artistic work"
+          },
+          {
+           "code": null,
+           "text": "Construct meaningful interpretations of artistic work"
+          },
+          {
+           "code": null,
+           "text": "Apply criteria to evaluate artistic work"
+          },
+          {
+           "code": null,
+           "text": "Perceive and analyze artistic work"
+          },
+          {
+           "code": null,
+           "text": "Construct meaningful interpretations of artistic work"
+          }
+         ]
+        },
+        {
+         "id": "responding-understanding-and-evaluating-how-the--2",
+         "title": "Responding: Understanding and evaluating how the arts convey meaning (2 of 3)",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Apply criteria to evaluate artistic work"
+          },
+          {
+           "code": null,
+           "text": "Perceive and analyze artistic work"
+          },
+          {
+           "code": null,
+           "text": "Construct meaningful interpretations of artistic work"
+          },
+          {
+           "code": null,
+           "text": "Apply criteria to evaluate artistic work"
+          },
+          {
+           "code": null,
+           "text": "Perceive and analyze artistic work"
+          }
+         ]
+        },
+        {
+         "id": "responding-understanding-and-evaluating-how-the--3",
+         "title": "Responding: Understanding and evaluating how the arts convey meaning (3 of 3)",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Construct meaningful interpretations of artistic work"
+          },
+          {
+           "code": null,
+           "text": "Apply criteria to evaluate artistic work"
+          },
+          {
+           "code": null,
+           "text": "Perceive and analyze artistic work"
+          },
+          {
+           "code": null,
+           "text": "Construct meaningful interpretations of artistic work"
+          },
+          {
+           "code": null,
+           "text": "Apply criteria to evaluate artistic work"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "connecting-relating-artistic-ideas-and-work-with",
+       "title": "Connecting: Relating artistic ideas and work with personal meaning and external context",
+       "subtopics": [
+        {
+         "id": "connecting-relating-artistic-ideas-and-work-with",
+         "title": "Connecting: Relating artistic ideas and work with personal meaning and external context (1 of 2)",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Synthesize and relate knowledge and personal experiences to make art"
+          },
+          {
+           "code": null,
+           "text": "Relate artistic ideas and works with societal, cultural and historical context to deepen understanding, including artistic ideas and works by American Indians"
+          },
+          {
+           "code": null,
+           "text": "Synthesize and relate knowledge and personal experiences to make art"
+          },
+          {
+           "code": null,
+           "text": "Relate artistic ideas and works with societal, cultural and historical context to deepen understanding, including artistic ideas and works by American Indians"
+          },
+          {
+           "code": null,
+           "text": "Synthesize and relate knowledge and personal experiences to make art"
+          }
+         ]
+        },
+        {
+         "id": "connecting-relating-artistic-ideas-and-work-with-2",
+         "title": "Connecting: Relating artistic ideas and work with personal meaning and external context (2 of 2)",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Relate artistic ideas and works with societal, cultural and historical context to deepen understanding, including artistic ideas and works by American Indians"
+          },
+          {
+           "code": null,
+           "text": "Synthesize and relate knowledge and personal experiences to make art"
+          },
+          {
+           "code": null,
+           "text": "Relate artistic ideas and works with societal, cultural and historical context to deepen understanding, including artistic ideas and works by American Indians"
+          },
+          {
+           "code": null,
+           "text": "Synthesize and relate knowledge and personal experiences to make art"
+          },
+          {
+           "code": null,
+           "text": "Relate artistic ideas and works with societal, cultural and historical context to deepen understanding, including artistic ideas and works by American Indians"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "producing-realizing-artistic-ideas-and-work-thro",
+       "title": "Producing: Realizing artistic ideas and work through interpretation and presentation",
+       "subtopics": [
+        {
+         "id": "producing-realizing-artistic-ideas-and-work-thro",
+         "title": "Producing: Realizing artistic ideas and work through interpretation and presentation",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Analyze, interpret, and select artistic work for presentation"
+          },
+          {
+           "code": null,
+           "text": "Develop and refine artistic work for presentation"
+          },
+          {
+           "code": null,
+           "text": "Convey meaning through the presentation of artistic work"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "presenting-realizing-artistic-ideas-and-work-thr",
+       "title": "Presenting: Realizing artistic ideas and work through interpretation and presentation",
+       "subtopics": [
+        {
+         "id": "presenting-realizing-artistic-ideas-and-work-thr",
+         "title": "Presenting: Realizing artistic ideas and work through interpretation and presentation",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Analyze, interpret, and select artistic work for presentation"
+          },
+          {
+           "code": null,
+           "text": "Develop and refine artistic work for presentation"
+          },
+          {
+           "code": null,
+           "text": "Convey meaning through the presentation of artistic work"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "content-standards",
+     "title": "Content Standards",
+     "topics": [
+      {
+       "id": "content-standards",
+       "title": "Content Standards",
+       "subtopics": [
+        {
+         "id": "content-standards-1-of-11",
+         "title": "Content Standards (1 of 11)",
+         "outcomes": [
+          {
+           "code": "5.1",
+           "text": "use elements of dance to create a movement series"
+          },
+          {
+           "code": "5.2",
+           "text": "create a dance sequence that communicates an idea"
+          },
+          {
+           "code": "5.3",
+           "text": "revise and explain choices made to refine movement changes in dance sequences"
+          },
+          {
+           "code": "5.4",
+           "text": "perform dance sequences using a variety of rhythms"
+          },
+          {
+           "code": "5.5",
+           "text": "execute a series of dance sequences using technical dance skills"
+          }
+         ]
+        },
+        {
+         "id": "content-standards-2-of-11",
+         "title": "Content Standards (2 of 11)",
+         "outcomes": [
+          {
+           "code": "5.6",
+           "text": "collaborate to adapt dance to performance venues"
+          },
+          {
+           "code": "5.7",
+           "text": "analyze characteristics of diverse dance genres and styles"
+          },
+          {
+           "code": "5.8",
+           "text": "explain how movement can communicate meaning and intent in a dance using dance vocabulary"
+          },
+          {
+           "code": "5.9",
+           "text": "use criteria to compare characteristic movements in dances from a variety of genres and styles"
+          },
+          {
+           "code": "5.10",
+           "text": "analyze dances with contrasting themes"
+          }
+         ]
+        },
+        {
+         "id": "content-standards-3-of-11",
+         "title": "Content Standards (3 of 11)",
+         "outcomes": [
+          {
+           "code": "5.11",
+           "text": "describe how specific movements or qualities of a dance communicate the ideas and perspectives of culture."
+          },
+          {
+           "code": "5.1",
+           "text": "demonstrate original ideas and innovations for media artworks using personal and community experiences"
+          },
+          {
+           "code": "5.2",
+           "text": "develop, present, and test ideas, plans, models, and proposals for media arts productions"
+          },
+          {
+           "code": "5.3",
+           "text": "determine how elements and components can be altered for clear communication and intentional effects in media artwork"
+          },
+          {
+           "code": "5.4",
+           "text": "create media artworks through the integration of multiple contents and forms"
+          }
+         ]
+        },
+        {
+         "id": "content-standards-4-of-11",
+         "title": "Content Standards (4 of 11)",
+         "outcomes": [
+          {
+           "code": "5.5",
+           "text": "perform a variety of roles while solving problems to create media art presentations"
+          },
+          {
+           "code": "5.6",
+           "text": "compare results of and improvements for presenting media artworks"
+          },
+          {
+           "code": "5.7",
+           "text": "differentiate how message and meaning are created by components in media artworks"
+          },
+          {
+           "code": "5.8",
+           "text": "compare personal and group interpretations of a variety of media artworks considering their intention and context"
+          },
+          {
+           "code": "5.9",
+           "text": "apply criteria to evaluate media artworks and production processes, considering context and practicing constructive feedback"
+          }
+         ]
+        },
+        {
+         "id": "content-standards-5-of-11",
+         "title": "Content Standards (5 of 11)",
+         "outcomes": [
+          {
+           "code": "5.10",
+           "text": "demonstrate how media artworks affect meanings, situations, and cultural experiences"
+          },
+          {
+           "code": "5.11",
+           "text": "research how media artworks and ideas relate to personal, social, and community life and culture."
+          },
+          {
+           "code": "5.1",
+           "text": "improvise rhythmic, melodic, and harmonic ideas for a specific purpose;"
+          },
+          {
+           "code": "5.2",
+           "text": "develop musical ideas for an express purpose;"
+          },
+          {
+           "code": "5.3",
+           "text": "describe revisions to personal musical ideas;"
+          }
+         ]
+        },
+        {
+         "id": "content-standards-6-of-11",
+         "title": "Content Standards (6 of 11)",
+         "outcomes": [
+          {
+           "code": "5.4",
+           "text": "compare the structure and elements of music in works selected for performance;"
+          },
+          {
+           "code": "5.5",
+           "text": "evaluate the accuracy, effectiveness, and expressiveness of musical performances;"
+          },
+          {
+           "code": "5.6",
+           "text": "perform music with expression, technical accuracy, and interpretation that conveys the composer's intent;"
+          },
+          {
+           "code": "5.7",
+           "text": "cite evidence that connects musical selections to specific experiences;"
+          },
+          {
+           "code": "5.8",
+           "text": "describe how performers interpret expressive intent in music;"
+          }
+         ]
+        },
+        {
+         "id": "content-standards-7-of-11",
+         "title": "Content Standards (7 of 11)",
+         "outcomes": [
+          {
+           "code": "5.9",
+           "text": "use established criteria to evaluate the quality of musical works and performances;"
+          },
+          {
+           "code": "5.10",
+           "text": "demonstrate how a musical experience forms an emotional, physical, and cultural connection; and"
+          },
+          {
+           "code": "5.11",
+           "text": "compare connections between music and historical and cultural context."
+          },
+          {
+           "code": "5.1",
+           "text": "implement design ideas that support the story in a drama or theatre work"
+          },
+          {
+           "code": "5.2",
+           "text": "participate in specific responsibilities required to present a drama or theatre work informally to an audience"
+          }
+         ]
+        },
+        {
+         "id": "content-standards-8-of-11",
+         "title": "Content Standards (8 of 11)",
+         "outcomes": [
+          {
+           "code": "5.3",
+           "text": "evaluate choices to improve an improvised or scripted drama or theatre work"
+          },
+          {
+           "code": "5.4",
+           "text": "experiment with physical and vocal choices to create meaning in drama and theatre works"
+          },
+          {
+           "code": "5.5",
+           "text": "demonstrate the use of technical elements in drama and theatre works"
+          },
+          {
+           "code": "5.6",
+           "text": "present drama and theatre works informally for an audience"
+          },
+          {
+           "code": "5.7",
+           "text": "explain personal reactions to artistic choices made in drama and theatre works"
+          }
+         ]
+        },
+        {
+         "id": "content-standards-9-of-11",
+         "title": "Content Standards (9 of 11)",
+         "outcomes": [
+          {
+           "code": "5.8",
+           "text": "explain how cultural perspectives influence personal responses to characters in drama and theatre works"
+          },
+          {
+           "code": "5.9",
+           "text": "implement criteria to evaluate drama and theatre works"
+          },
+          {
+           "code": "5.10",
+           "text": "explain how drama and theatre work connects one to a community or culture"
+          },
+          {
+           "code": "5.11",
+           "text": "investigate historical, global, and cultural issues in drama and theatre works."
+          },
+          {
+           "code": "5.1",
+           "text": "combine diverse concepts and artistic methods to choose an approach and create an artwork;"
+          }
+         ]
+        },
+        {
+         "id": "content-standards-10-of-11",
+         "title": "Content Standards (10 of 11)",
+         "outcomes": [
+          {
+           "code": "5.2",
+           "text": "create artworks that document places or objects of personal significance;"
+          },
+          {
+           "code": "5.3",
+           "text": "create artist statements using art vocabulary to describe personal choices in art-making;"
+          },
+          {
+           "code": "5.4",
+           "text": "explain the role of a curator;"
+          },
+          {
+           "code": "5.5",
+           "text": "discuss responsible and effective use of materials and techniques for preparing, presenting, and preserving artwork;"
+          },
+          {
+           "code": "5.6",
+           "text": "cite evidence to explain how an exhibition presents ideas and provides information about a specific concept or topic;"
+          }
+         ]
+        },
+        {
+         "id": "content-standards-11-of-11",
+         "title": "Content Standards (11 of 11)",
+         "outcomes": [
+          {
+           "code": "5.7",
+           "text": "compare personal interpretations of artwork to others' interpretations;"
+          },
+          {
+           "code": "5.8",
+           "text": "analyze use of structure, context, and visual elements to convey ideas and mood in artworks;"
+          },
+          {
+           "code": "5.9",
+           "text": "evaluate artworks based on styles, genres, and media;"
+          },
+          {
+           "code": "5.10",
+           "text": "apply formal and conceptual knowledge of art and design to make artwork; and"
+          },
+          {
+           "code": "5.11",
+           "text": "identify how artworks are used to inform or change beliefs, values, or behaviors of an individual or society."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "6-8",
+   "units": [
+    {
+     "id": "artistic-processes",
+     "title": "Artistic Processes",
+     "topics": [
+      {
+       "id": "creating-conceiving-and-developing-new-artistic-",
+       "title": "Creating: Conceiving and developing new artistic ideas and work",
+       "subtopics": [
+        {
+         "id": "creating-conceiving-and-developing-new-artistic-",
+         "title": "Creating: Conceiving and developing new artistic ideas and work (1 of 3)",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Generate and conceptualize artistic ideas and work"
+          },
+          {
+           "code": null,
+           "text": "Organize and develop artistic ideas and work"
+          },
+          {
+           "code": null,
+           "text": "Refine and complete artistic work"
+          },
+          {
+           "code": null,
+           "text": "Generate and conceptualize artistic ideas and work"
+          },
+          {
+           "code": null,
+           "text": "Organize and develop artistic ideas and work"
+          }
+         ]
+        },
+        {
+         "id": "creating-conceiving-and-developing-new-artistic--2",
+         "title": "Creating: Conceiving and developing new artistic ideas and work (2 of 3)",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Refine and complete artistic work"
+          },
+          {
+           "code": null,
+           "text": "Generate and conceptualize artistic ideas and work"
+          },
+          {
+           "code": null,
+           "text": "Organize and develop artistic ideas and work"
+          },
+          {
+           "code": null,
+           "text": "Refine and complete artistic work"
+          },
+          {
+           "code": null,
+           "text": "Generate and conceptualize artistic ideas and work"
+          }
+         ]
+        },
+        {
+         "id": "creating-conceiving-and-developing-new-artistic--3",
+         "title": "Creating: Conceiving and developing new artistic ideas and work (3 of 3)",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Organize and develop artistic ideas and work"
+          },
+          {
+           "code": null,
+           "text": "Refine and complete artistic work"
+          },
+          {
+           "code": null,
+           "text": "Generate and conceptualize artistic ideas and work"
+          },
+          {
+           "code": null,
+           "text": "Organize and develop artistic ideas and work"
+          },
+          {
+           "code": null,
+           "text": "Refine and complete artistic work"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "performing-realizing-artistic-ideas-and-work-thr",
+       "title": "Performing: Realizing artistic ideas and work through interpretation and presentation",
+       "subtopics": [
+        {
+         "id": "performing-realizing-artistic-ideas-and-work-thr",
+         "title": "Performing: Realizing artistic ideas and work through interpretation and presentation (1 of 2)",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Analyze, interpret, and select artistic work for presentation"
+          },
+          {
+           "code": null,
+           "text": "Develop and refine artistic work for presentation"
+          },
+          {
+           "code": null,
+           "text": "Convey meaning through the presentation of artistic work"
+          },
+          {
+           "code": null,
+           "text": "Analyze, interpret, and select artistic work for presentation"
+          },
+          {
+           "code": null,
+           "text": "Develop and refine artistic work for presentation"
+          }
+         ]
+        },
+        {
+         "id": "performing-realizing-artistic-ideas-and-work-thr-2",
+         "title": "Performing: Realizing artistic ideas and work through interpretation and presentation (2 of 2)",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Convey meaning through the presentation of artistic work"
+          },
+          {
+           "code": null,
+           "text": "Analyze, interpret, and select artistic work for presentation"
+          },
+          {
+           "code": null,
+           "text": "Develop and refine artistic work for presentation"
+          },
+          {
+           "code": null,
+           "text": "Convey meaning through the presentation of artistic work"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "responding-understanding-and-evaluating-how-the-",
+       "title": "Responding: Understanding and evaluating how the arts convey meaning",
+       "subtopics": [
+        {
+         "id": "responding-understanding-and-evaluating-how-the-",
+         "title": "Responding: Understanding and evaluating how the arts convey meaning (1 of 3)",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Perceive and analyze artistic work"
+          },
+          {
+           "code": null,
+           "text": "Construct meaningful interpretations of artistic work"
+          },
+          {
+           "code": null,
+           "text": "Apply criteria to evaluate artistic work"
+          },
+          {
+           "code": null,
+           "text": "Perceive and analyze artistic work"
+          },
+          {
+           "code": null,
+           "text": "Construct meaningful interpretations of artistic work"
+          }
+         ]
+        },
+        {
+         "id": "responding-understanding-and-evaluating-how-the--2",
+         "title": "Responding: Understanding and evaluating how the arts convey meaning (2 of 3)",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Apply criteria to evaluate artistic work"
+          },
+          {
+           "code": null,
+           "text": "Perceive and analyze artistic work"
+          },
+          {
+           "code": null,
+           "text": "Construct meaningful interpretations of artistic work"
+          },
+          {
+           "code": null,
+           "text": "Apply criteria to evaluate artistic work"
+          },
+          {
+           "code": null,
+           "text": "Perceive and analyze artistic work"
+          }
+         ]
+        },
+        {
+         "id": "responding-understanding-and-evaluating-how-the--3",
+         "title": "Responding: Understanding and evaluating how the arts convey meaning (3 of 3)",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Construct meaningful interpretations of artistic work"
+          },
+          {
+           "code": null,
+           "text": "Apply criteria to evaluate artistic work"
+          },
+          {
+           "code": null,
+           "text": "Perceive and analyze artistic work"
+          },
+          {
+           "code": null,
+           "text": "Construct meaningful interpretations of artistic work"
+          },
+          {
+           "code": null,
+           "text": "Apply criteria to evaluate artistic work"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "connecting-relating-artistic-ideas-and-work-with",
+       "title": "Connecting: Relating artistic ideas and work with personal meaning and external context",
+       "subtopics": [
+        {
+         "id": "connecting-relating-artistic-ideas-and-work-with",
+         "title": "Connecting: Relating artistic ideas and work with personal meaning and external context (1 of 2)",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Synthesize and relate knowledge and personal experiences to make art"
+          },
+          {
+           "code": null,
+           "text": "Relate artistic ideas and works with societal, cultural and historical context to deepen understanding, including artistic ideas and works by American Indians"
+          },
+          {
+           "code": null,
+           "text": "Synthesize and relate knowledge and personal experiences to make art"
+          },
+          {
+           "code": null,
+           "text": "Relate artistic ideas and works with societal, cultural and historical context to deepen understanding, including artistic ideas and works by American Indians"
+          },
+          {
+           "code": null,
+           "text": "Synthesize and relate knowledge and personal experiences to make art"
+          }
+         ]
+        },
+        {
+         "id": "connecting-relating-artistic-ideas-and-work-with-2",
+         "title": "Connecting: Relating artistic ideas and work with personal meaning and external context (2 of 2)",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Relate artistic ideas and works with societal, cultural and historical context to deepen understanding, including artistic ideas and works by American Indians"
+          },
+          {
+           "code": null,
+           "text": "Synthesize and relate knowledge and personal experiences to make art"
+          },
+          {
+           "code": null,
+           "text": "Relate artistic ideas and works with societal, cultural and historical context to deepen understanding, including artistic ideas and works by American Indians"
+          },
+          {
+           "code": null,
+           "text": "Synthesize and relate knowledge and personal experiences to make art"
+          },
+          {
+           "code": null,
+           "text": "Relate artistic ideas and works with societal, cultural and historical context to deepen understanding, including artistic ideas and works by American Indians"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "producing-realizing-artistic-ideas-and-work-thro",
+       "title": "Producing: Realizing artistic ideas and work through interpretation and presentation",
+       "subtopics": [
+        {
+         "id": "producing-realizing-artistic-ideas-and-work-thro",
+         "title": "Producing: Realizing artistic ideas and work through interpretation and presentation",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Analyze, interpret, and select artistic work for presentation"
+          },
+          {
+           "code": null,
+           "text": "Develop and refine artistic work for presentation"
+          },
+          {
+           "code": null,
+           "text": "Convey meaning through the presentation of artistic work"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "presenting-realizing-artistic-ideas-and-work-thr",
+       "title": "Presenting: Realizing artistic ideas and work through interpretation and presentation",
+       "subtopics": [
+        {
+         "id": "presenting-realizing-artistic-ideas-and-work-thr",
+         "title": "Presenting: Realizing artistic ideas and work through interpretation and presentation",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Analyze, interpret, and select artistic work for presentation"
+          },
+          {
+           "code": null,
+           "text": "Develop and refine artistic work for presentation"
+          },
+          {
+           "code": null,
+           "text": "Convey meaning through the presentation of artistic work"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "content-standards",
+     "title": "Content Standards",
+     "topics": [
+      {
+       "id": "content-standards",
+       "title": "Content Standards",
+       "subtopics": [
+        {
+         "id": "content-standards-1-of-11",
+         "title": "Content Standards (1 of 11)",
+         "outcomes": [
+          {
+           "code": "6-8.1",
+           "text": "create an original dance"
+          },
+          {
+           "code": "6-8.2",
+           "text": "create an original dance that communicates an idea"
+          },
+          {
+           "code": "6-8.3",
+           "text": "revise movements in dance sequences based on artistic criteria"
+          },
+          {
+           "code": "6-8.4",
+           "text": "present dance sequences from a variety of genres and styles"
+          },
+          {
+           "code": "6-8.5",
+           "text": "execute and coordinate technical dance skills in performance"
+          }
+         ]
+        },
+        {
+         "id": "content-standards-2-of-11",
+         "title": "Content Standards (2 of 11)",
+         "outcomes": [
+          {
+           "code": "6-8.6",
+           "text": "collaborate with others to design and execute a dance production"
+          },
+          {
+           "code": "6-8.7",
+           "text": "explain how the elements of dance are used to communicate intent in a variety of genres or styles"
+          },
+          {
+           "code": "6-8.8",
+           "text": "explain relationships among the elements of dance that support intent"
+          },
+          {
+           "code": "6-8.9",
+           "text": "use criteria to determine what makes an effective performance"
+          },
+          {
+           "code": "6-8.10",
+           "text": "create a movement sequence of two contrasting ideas"
+          }
+         ]
+        },
+        {
+         "id": "content-standards-3-of-11",
+         "title": "Content Standards (3 of 11)",
+         "outcomes": [
+          {
+           "code": "6-8.11",
+           "text": "analyze how dances from a variety of cultures and time periods reveal ideas and perspectives."
+          },
+          {
+           "code": "6-8.1",
+           "text": "produce ideas, goals, and solutions for original media artworks"
+          },
+          {
+           "code": "6-8.2",
+           "text": "analyze ideas, plans, prototypes, and creative processes for media arts productions"
+          },
+          {
+           "code": "6-8.3",
+           "text": "improve the technical quality of media artworks by selecting expressive and stylistic elements to reflect an understanding of purpose, audience, and place"
+          },
+          {
+           "code": "6-8.4",
+           "text": "integrate multiple content areas and forms into media artwork productions that convey perspectives, themes, and narratives"
+          }
+         ]
+        },
+        {
+         "id": "content-standards-4-of-11",
+         "title": "Content Standards (4 of 11)",
+         "outcomes": [
+          {
+           "code": "6-8.5",
+           "text": "demonstrate a range of skills and roles in creating and performing media arts presentations"
+          },
+          {
+           "code": "6-8.6",
+           "text": "analyze results of and improvements for presenting media artworks"
+          },
+          {
+           "code": "6-8.7",
+           "text": "evaluate the qualities of and relationships between the components and style in media artworks"
+          },
+          {
+           "code": "6-8.8",
+           "text": "compare and contrast the intent of a variety of media artworks and how they impact understanding of one's own culture and other cultures"
+          },
+          {
+           "code": "6-8.9",
+           "text": "compare and contrast media artworks and production processes to context and artistic goals"
+          }
+         ]
+        },
+        {
+         "id": "content-standards-5-of-11",
+         "title": "Content Standards (5 of 11)",
+         "outcomes": [
+          {
+           "code": "6-8.10",
+           "text": "analyze how media artworks expand meaning and knowledge, create cultural experiences, and influence local and global events"
+          },
+          {
+           "code": "6-8.11",
+           "text": "compare how media artworks and ideas relate to various contexts, purposes, and values."
+          },
+          {
+           "code": "6-8.1",
+           "text": "generate rhythmic, melodic, and harmonic phrases and harmonic accompaniments;"
+          },
+          {
+           "code": "6-8.2",
+           "text": "select musical ideas for arrangements, songs, and compositions;"
+          },
+          {
+           "code": "6-8.3",
+           "text": "evaluate personal musical ideas;"
+          }
+         ]
+        },
+        {
+         "id": "content-standards-6-of-11",
+         "title": "Content Standards (6 of 11)",
+         "outcomes": [
+          {
+           "code": "6-8.4",
+           "text": "evaluate the structure of contrasting pieces of music selected for performance;"
+          },
+          {
+           "code": "6-8.5",
+           "text": "rehearse and determine when music is ready to perform;"
+          },
+          {
+           "code": "6-8.6",
+           "text": "perform music with technical accuracy, expression, and culturally respectful practices to convey the composer's intent;"
+          },
+          {
+           "code": "6-8.7",
+           "text": "compare connections between musical selections for a specific purpose;"
+          },
+          {
+           "code": "6-8.8",
+           "text": "compare how composers and performers interpret expressive qualities of music to create performances;"
+          }
+         ]
+        },
+        {
+         "id": "content-standards-7-of-11",
+         "title": "Content Standards (7 of 11)",
+         "outcomes": [
+          {
+           "code": "6-8.9",
+           "text": "develop criteria to evaluate musical works and performances;"
+          },
+          {
+           "code": "6-8.10",
+           "text": "evaluate how personal connections inform creation, performance, and response to music; and"
+          },
+          {
+           "code": "6-8.11",
+           "text": "evaluate connections between music and historical and cultural context."
+          },
+          {
+           "code": "6-8.1",
+           "text": "develop a character in a drama or theatre work"
+          },
+          {
+           "code": "6-8.2",
+           "text": "demonstrate leadership and collaboration when developing a drama or theatre work"
+          }
+         ]
+        },
+        {
+         "id": "content-standards-8-of-11",
+         "title": "Content Standards (8 of 11)",
+         "outcomes": [
+          {
+           "code": "6-8.3",
+           "text": "analyze scripted drama and theatre works"
+          },
+          {
+           "code": "6-8.4",
+           "text": "identify the essential events in a story or script that make up the dramatic structure"
+          },
+          {
+           "code": "6-8.5",
+           "text": "analyze how technical elements enhance drama and theatre works"
+          },
+          {
+           "code": "6-8.6",
+           "text": "perform a rehearsed drama or theatre work for an audience"
+          },
+          {
+           "code": "6-8.7",
+           "text": "evaluate the artistic choices in drama and theatre works"
+          }
+         ]
+        },
+        {
+         "id": "content-standards-9-of-11",
+         "title": "Content Standards (9 of 11)",
+         "outcomes": [
+          {
+           "code": "6-8.8",
+           "text": "analyze how cultural perspectives influence the evaluation of drama and theatre work"
+          },
+          {
+           "code": "6-8.9",
+           "text": "evaluate drama and theatre works using supporting evidence"
+          },
+          {
+           "code": "6-8.10",
+           "text": "research how cultural perspectives, community ideas, and personal beliefs impact a drama or theatre work"
+          },
+          {
+           "code": "6-8.11",
+           "text": "use different forms of drama and theatre work to examine contemporary, social, cultural, or global issues."
+          },
+          {
+           "code": "6-8.1",
+           "text": "design project steps and criteria to reach an identified goal and investigate personally relevant content for art-making;"
+          }
+         ]
+        },
+        {
+         "id": "content-standards-10-of-11",
+         "title": "Content Standards (10 of 11)",
+         "outcomes": [
+          {
+           "code": "6-8.2",
+           "text": "demonstrate awareness of issues and ethics of appropriation as they create artworks and design;"
+          },
+          {
+           "code": "6-8.3",
+           "text": "apply criteria to plan revisions for artwork or design;"
+          },
+          {
+           "code": "6-8.4",
+           "text": "compare similarities and differences associated with preserving and presenting two-dimensional, three-dimensional, and digital artwork;"
+          },
+          {
+           "code": "6-8.5",
+           "text": "evaluate methods for preparing and presenting artwork based on criteria;"
+          },
+          {
+           "code": "6-8.6",
+           "text": "explain and cite evidence about how exhibits reflect history and values of a community;"
+          }
+         ]
+        },
+        {
+         "id": "content-standards-11-of-11",
+         "title": "Content Standards (11 of 11)",
+         "outcomes": [
+          {
+           "code": "6-8.7",
+           "text": "explain how a person's aesthetic choices are influenced by culture and environment;"
+          },
+          {
+           "code": "6-8.8",
+           "text": "collaborate to interpret artworks;"
+          },
+          {
+           "code": "6-8.9",
+           "text": "develop criteria to evaluate artwork;"
+          },
+          {
+           "code": "6-8.10",
+           "text": "use art to express ideas and current interests; and"
+          },
+          {
+           "code": "6-8.11",
+           "text": "distinguish different ways that artworks represent, establish, reinforce, and reflect group identity."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "9-12",
+   "units": [
+    {
+     "id": "artistic-processes",
+     "title": "Artistic Processes",
+     "topics": [
+      {
+       "id": "creating-conceiving-and-developing-new-artistic-",
+       "title": "Creating: Conceiving and developing new artistic ideas and work",
+       "subtopics": [
+        {
+         "id": "creating-conceiving-and-developing-new-artistic-",
+         "title": "Creating: Conceiving and developing new artistic ideas and work (1 of 3)",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Generate and conceptualize artistic ideas and work"
+          },
+          {
+           "code": null,
+           "text": "Organize and develop artistic ideas and work"
+          },
+          {
+           "code": null,
+           "text": "Refine and complete artistic work"
+          },
+          {
+           "code": null,
+           "text": "Generate and conceptualize artistic ideas and work"
+          },
+          {
+           "code": null,
+           "text": "Organize and develop artistic ideas and work"
+          }
+         ]
+        },
+        {
+         "id": "creating-conceiving-and-developing-new-artistic--2",
+         "title": "Creating: Conceiving and developing new artistic ideas and work (2 of 3)",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Refine and complete artistic work"
+          },
+          {
+           "code": null,
+           "text": "Generate and conceptualize artistic ideas and work"
+          },
+          {
+           "code": null,
+           "text": "Organize and develop artistic ideas and work"
+          },
+          {
+           "code": null,
+           "text": "Refine and complete artistic work"
+          },
+          {
+           "code": null,
+           "text": "Generate and conceptualize artistic ideas and work"
+          }
+         ]
+        },
+        {
+         "id": "creating-conceiving-and-developing-new-artistic--3",
+         "title": "Creating: Conceiving and developing new artistic ideas and work (3 of 3)",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Organize and develop artistic ideas and work"
+          },
+          {
+           "code": null,
+           "text": "Refine and complete artistic work"
+          },
+          {
+           "code": null,
+           "text": "Generate and conceptualize artistic ideas and work"
+          },
+          {
+           "code": null,
+           "text": "Organize and develop artistic ideas and work"
+          },
+          {
+           "code": null,
+           "text": "Refine and complete artistic work"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "performing-realizing-artistic-ideas-and-work-thr",
+       "title": "Performing: Realizing artistic ideas and work through interpretation and presentation",
+       "subtopics": [
+        {
+         "id": "performing-realizing-artistic-ideas-and-work-thr",
+         "title": "Performing: Realizing artistic ideas and work through interpretation and presentation (1 of 2)",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Analyze, interpret, and select artistic work for presentation"
+          },
+          {
+           "code": null,
+           "text": "Develop and refine artistic work for presentation"
+          },
+          {
+           "code": null,
+           "text": "Convey meaning through the presentation of artistic work"
+          },
+          {
+           "code": null,
+           "text": "Analyze, interpret, and select artistic work for presentation"
+          },
+          {
+           "code": null,
+           "text": "Develop and refine artistic work for presentation"
+          }
+         ]
+        },
+        {
+         "id": "performing-realizing-artistic-ideas-and-work-thr-2",
+         "title": "Performing: Realizing artistic ideas and work through interpretation and presentation (2 of 2)",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Convey meaning through the presentation of artistic work"
+          },
+          {
+           "code": null,
+           "text": "Analyze, interpret, and select artistic work for presentation"
+          },
+          {
+           "code": null,
+           "text": "Develop and refine artistic work for presentation"
+          },
+          {
+           "code": null,
+           "text": "Convey meaning through the presentation of artistic work"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "responding-understanding-and-evaluating-how-the-",
+       "title": "Responding: Understanding and evaluating how the arts convey meaning",
+       "subtopics": [
+        {
+         "id": "responding-understanding-and-evaluating-how-the-",
+         "title": "Responding: Understanding and evaluating how the arts convey meaning (1 of 3)",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Perceive and analyze artistic work"
+          },
+          {
+           "code": null,
+           "text": "Construct meaningful interpretations of artistic work"
+          },
+          {
+           "code": null,
+           "text": "Apply criteria to evaluate artistic work"
+          },
+          {
+           "code": null,
+           "text": "Perceive and analyze artistic work"
+          },
+          {
+           "code": null,
+           "text": "Construct meaningful interpretations of artistic work"
+          }
+         ]
+        },
+        {
+         "id": "responding-understanding-and-evaluating-how-the--2",
+         "title": "Responding: Understanding and evaluating how the arts convey meaning (2 of 3)",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Apply criteria to evaluate artistic work"
+          },
+          {
+           "code": null,
+           "text": "Perceive and analyze artistic work"
+          },
+          {
+           "code": null,
+           "text": "Construct meaningful interpretations of artistic work"
+          },
+          {
+           "code": null,
+           "text": "Apply criteria to evaluate artistic work"
+          },
+          {
+           "code": null,
+           "text": "Perceive and analyze artistic work"
+          }
+         ]
+        },
+        {
+         "id": "responding-understanding-and-evaluating-how-the--3",
+         "title": "Responding: Understanding and evaluating how the arts convey meaning (3 of 3)",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Construct meaningful interpretations of artistic work"
+          },
+          {
+           "code": null,
+           "text": "Apply criteria to evaluate artistic work"
+          },
+          {
+           "code": null,
+           "text": "Perceive and analyze artistic work"
+          },
+          {
+           "code": null,
+           "text": "Construct meaningful interpretations of artistic work"
+          },
+          {
+           "code": null,
+           "text": "Apply criteria to evaluate artistic work"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "connecting-relating-artistic-ideas-and-work-with",
+       "title": "Connecting: Relating artistic ideas and work with personal meaning and external context",
+       "subtopics": [
+        {
+         "id": "connecting-relating-artistic-ideas-and-work-with",
+         "title": "Connecting: Relating artistic ideas and work with personal meaning and external context (1 of 2)",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Synthesize and relate knowledge and personal experiences to make art"
+          },
+          {
+           "code": null,
+           "text": "Relate artistic ideas and works with societal, cultural and historical context to deepen understanding, including artistic ideas and works by American Indians"
+          },
+          {
+           "code": null,
+           "text": "Synthesize and relate knowledge and personal experiences to make art"
+          },
+          {
+           "code": null,
+           "text": "Relate artistic ideas and works with societal, cultural and historical context to deepen understanding, including artistic ideas and works by American Indians"
+          },
+          {
+           "code": null,
+           "text": "Synthesize and relate knowledge and personal experiences to make art"
+          }
+         ]
+        },
+        {
+         "id": "connecting-relating-artistic-ideas-and-work-with-2",
+         "title": "Connecting: Relating artistic ideas and work with personal meaning and external context (2 of 2)",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Relate artistic ideas and works with societal, cultural and historical context to deepen understanding, including artistic ideas and works by American Indians"
+          },
+          {
+           "code": null,
+           "text": "Synthesize and relate knowledge and personal experiences to make art"
+          },
+          {
+           "code": null,
+           "text": "Relate artistic ideas and works with societal, cultural and historical context to deepen understanding, including artistic ideas and works by American Indians"
+          },
+          {
+           "code": null,
+           "text": "Synthesize and relate knowledge and personal experiences to make art"
+          },
+          {
+           "code": null,
+           "text": "Relate artistic ideas and works with societal, cultural and historical context to deepen understanding, including artistic ideas and works by American Indians"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "producing-realizing-artistic-ideas-and-work-thro",
+       "title": "Producing: Realizing artistic ideas and work through interpretation and presentation",
+       "subtopics": [
+        {
+         "id": "producing-realizing-artistic-ideas-and-work-thro",
+         "title": "Producing: Realizing artistic ideas and work through interpretation and presentation",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Analyze, interpret, and select artistic work for presentation"
+          },
+          {
+           "code": null,
+           "text": "Develop and refine artistic work for presentation"
+          },
+          {
+           "code": null,
+           "text": "Convey meaning through the presentation of artistic work"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "presenting-realizing-artistic-ideas-and-work-thr",
+       "title": "Presenting: Realizing artistic ideas and work through interpretation and presentation",
+       "subtopics": [
+        {
+         "id": "presenting-realizing-artistic-ideas-and-work-thr",
+         "title": "Presenting: Realizing artistic ideas and work through interpretation and presentation",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Analyze, interpret, and select artistic work for presentation"
+          },
+          {
+           "code": null,
+           "text": "Develop and refine artistic work for presentation"
+          },
+          {
+           "code": null,
+           "text": "Convey meaning through the presentation of artistic work"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "content-standards",
+     "title": "Content Standards",
+     "topics": [
+      {
+       "id": "content-standards",
+       "title": "Content Standards",
+       "subtopics": [
+        {
+         "id": "content-standards-1-of-11",
+         "title": "Content Standards (1 of 11)",
+         "outcomes": [
+          {
+           "code": "9-12.1",
+           "text": "analyze established dance forms to inform their own original dances"
+          },
+          {
+           "code": "9-12.2",
+           "text": "analyze dance patterns and sequences"
+          },
+          {
+           "code": "9-12.3",
+           "text": "analyze and evaluate the impact of choices made in revising dance sequences"
+          },
+          {
+           "code": "9-12.4",
+           "text": "present an expanded repertoire of movement and dance compositions"
+          },
+          {
+           "code": "9-12.5",
+           "text": "use technical dance skills to perform in a variety of dance genres"
+          }
+         ]
+        },
+        {
+         "id": "content-standards-2-of-11",
+         "title": "Content Standards (2 of 11)",
+         "outcomes": [
+          {
+           "code": "9-12.6",
+           "text": "collaborate with others to produce a dance production that reflects the artistic intent of a dance performance"
+          },
+          {
+           "code": "9-12.7",
+           "text": "compare and contrast movement patterns and the elements of dance in a variety of genres and styles"
+          },
+          {
+           "code": "9-12.8",
+           "text": "analyze and interpret how elements of dance contribute to artistic expression across genres and styles"
+          },
+          {
+           "code": "9-12.9",
+           "text": "analyze the artistic expression of a dance and discuss insights using criteria and genre-specific dance vocabulary"
+          },
+          {
+           "code": "9-12.10",
+           "text": "perform a dance inspired by a topic of interest"
+          }
+         ]
+        },
+        {
+         "id": "content-standards-3-of-11",
+         "title": "Content Standards (3 of 11)",
+         "outcomes": [
+          {
+           "code": "9-12.11",
+           "text": "analyze how dances from a variety of cultures and time periods communicate specific purpose and meaning."
+          },
+          {
+           "code": "9-12.1",
+           "text": "integrate ideas, develop artistic goals, and problem solve in media arts creation processes"
+          },
+          {
+           "code": "9-12.2",
+           "text": "apply criteria in developing and refining artistic ideas, plans, prototypes, and production processes"
+          },
+          {
+           "code": "9-12.3",
+           "text": "enhance and modify media artworks, honing aesthetic quality"
+          },
+          {
+           "code": "9-12.4",
+           "text": "synthesize various art forms and themes into media artwork productions considering the reaction and interaction of the audience"
+          }
+         ]
+        },
+        {
+         "id": "content-standards-4-of-11",
+         "title": "Content Standards (4 of 11)",
+         "outcomes": [
+          {
+           "code": "9-12.5",
+           "text": "demonstrate a progression of skills by fulfilling specific roles in the production of a variety of media arts presentations"
+          },
+          {
+           "code": "9-12.6",
+           "text": "evaluate impact and implement improvements in presenting media artworks considering personal, local, and social impacts"
+          },
+          {
+           "code": "9-12.7",
+           "text": "synthesize the qualities and relationships of the components in a variety of media artworks to create intention and persuasion"
+          },
+          {
+           "code": "9-12.8",
+           "text": "analyze the intent, meanings, and reception of a variety of media artworks, focusing on personal and cultural contexts"
+          },
+          {
+           "code": "9-12.9",
+           "text": "analyze critiques of media artworks and production processes"
+          }
+         ]
+        },
+        {
+         "id": "content-standards-5-of-11",
+         "title": "Content Standards (5 of 11)",
+         "outcomes": [
+          {
+           "code": "9-12.10",
+           "text": "demonstrate the use of media artworks to synthesize new meaning and knowledge that reflect and form cultural experiences"
+          },
+          {
+           "code": "9-12.11",
+           "text": "analyze how media artworks and ideas relate to various contexts, purposes, and values."
+          },
+          {
+           "code": "9-12.1",
+           "text": "analyze rhythmic, melodic, and harmonic phrases and harmonic accompaniments for expressive intent;"
+          },
+          {
+           "code": "9-12.2",
+           "text": "assemble and organize sounds or short musical ideas for express purposes;"
+          },
+          {
+           "code": "9-12.3",
+           "text": "analyze and revise the technical and expressive aspects of personal musical ideas;"
+          }
+         ]
+        },
+        {
+         "id": "content-standards-6-of-11",
+         "title": "Content Standards (6 of 11)",
+         "outcomes": [
+          {
+           "code": "9-12.4",
+           "text": "analyze how the elements of a musical performance relate to style and mood;"
+          },
+          {
+           "code": "9-12.5",
+           "text": "analyze ways a performance conveys the elements of music, style, and mood;"
+          },
+          {
+           "code": "9-12.6",
+           "text": "analyze musical performances to explain how the elements of music are used to convey intent;"
+          },
+          {
+           "code": "9-12.7",
+           "text": "analyze elements of music in selected works for specific responses;"
+          },
+          {
+           "code": "9-12.8",
+           "text": "analyze composers' and performers' expressive intent in interpretations of music;"
+          }
+         ]
+        },
+        {
+         "id": "content-standards-7-of-11",
+         "title": "Content Standards (7 of 11)",
+         "outcomes": [
+          {
+           "code": "9-12.9",
+           "text": "develop criteria to analyze the technical and expressive qualities of music and performances;"
+          },
+          {
+           "code": "9-12.10",
+           "text": "analyze how interests, knowledge, and skills relate to intent when creating, performing, and responding to music; and"
+          },
+          {
+           "code": "9-12.11",
+           "text": "analyze relationships between music, arts, society, and cultures."
+          },
+          {
+           "code": "9-12.1",
+           "text": "examine the roles of character, story, playwright, theatre tradition, and genre in a drama or theatre work"
+          },
+          {
+           "code": "9-12.2",
+           "text": "analyze the collaborative relationship of the actor, director, and playwright in creating a drama or theatre work"
+          }
+         ]
+        },
+        {
+         "id": "content-standards-8-of-11",
+         "title": "Content Standards (8 of 11)",
+         "outcomes": [
+          {
+           "code": "9-12.3",
+           "text": "refine design choices to support the story and impact of devised or scripted drama and theatre works"
+          },
+          {
+           "code": "9-12.4",
+           "text": "apply a variety of acting techniques in the rehearsal and performance of drama and theatre works"
+          },
+          {
+           "code": "9-12.5",
+           "text": "apply technical elements to enhance the production of drama and theatre works"
+          },
+          {
+           "code": "9-12.6",
+           "text": "perform a rehearsed scripted drama or theatre work for a specific audience"
+          },
+          {
+           "code": "9-12.7",
+           "text": "synthesize what is seen, felt, and heard in drama and theatre works to develop criteria for personal artistic choices"
+          }
+         ]
+        },
+        {
+         "id": "content-standards-9-of-11",
+         "title": "Content Standards (9 of 11)",
+         "outcomes": [
+          {
+           "code": "9-12.8",
+           "text": "analyze how artistic choices are developed from personal experiences in drama and theatre works"
+          },
+          {
+           "code": "9-12.9",
+           "text": "analyze a drama or theatre work using personal aesthetics and artistic criteria"
+          },
+          {
+           "code": "9-12.10",
+           "text": "collaborate on drama or theatre work that examines a critical issue using various perspectives"
+          },
+          {
+           "code": "9-12.11",
+           "text": "analyze the social, historical, and cultural contexts of drama and theatre works."
+          },
+          {
+           "code": "9-12.1",
+           "text": "develop plans for creating art and design works using various materials and methods from traditional and contemporary practices;"
+          }
+         ]
+        },
+        {
+         "id": "content-standards-10-of-11",
+         "title": "Content Standards (10 of 11)",
+         "outcomes": [
+          {
+           "code": "9-12.2",
+           "text": "create art or design projects in response to contemporary issues that demonstrate an awareness of ethical implications of making and distributing creative works;"
+          },
+          {
+           "code": "9-12.3",
+           "text": "complete artworks or designs incorporating relevant criteria as well as personal artistic vision;"
+          },
+          {
+           "code": "9-12.4",
+           "text": "curate artifacts and artworks for presentation and preservation;"
+          },
+          {
+           "code": "9-12.5",
+           "text": "apply appropriate methods or processes to display artwork in a specific place;"
+          },
+          {
+           "code": "9-12.6",
+           "text": "analyze an exhibit or collection's impact on personal awareness of social, cultural, or political beliefs and understandings;"
+          }
+         ]
+        },
+        {
+         "id": "content-standards-11-of-11",
+         "title": "Content Standards (11 of 11)",
+         "outcomes": [
+          {
+           "code": "9-12.7",
+           "text": "evaluate the effectiveness of an artwork as perceived by a variety of audiences;"
+          },
+          {
+           "code": "9-12.8",
+           "text": "defend an interpretation of an artwork or collections of artworks;"
+          },
+          {
+           "code": "9-12.9",
+           "text": "analyze a collection of artwork based on sets of criteria;"
+          },
+          {
+           "code": "9-12.10",
+           "text": "incorporate knowledge of personal, social, cultural, and historical life to create artworks; and"
+          },
+          {
+           "code": "9-12.11",
+           "text": "compare uses of art in a variety of personal, societal, cultural, and historical contexts."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "build": {
+  "builtAt": "2026-10-14T16:20:45.693Z",
+  "model": "none",
+  "usd": 0,
+  "expectedCodes": 88,
+  "coverage": 1,
+  "missingCodes": [],
+  "counts": {
+   "grades": 8,
+   "units": 16,
+   "topics": 56,
+   "subtopics": 184,
+   "outcomes": 880
+  },
+  "warnings": []
+ }
+}

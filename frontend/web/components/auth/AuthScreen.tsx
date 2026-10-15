@@ -25,6 +25,12 @@ const PROVIDERS: Array<{ id: ProviderId; label: string }> = [
   { id: "microsoft", label: "Microsoft" },
 ];
 
+/**
+ * Google / Apple / Microsoft buttons, hidden from the screen at the owner's request (2026-10-13:
+ * "so much text on it"). The OAuth routes and this code stay; set true to bring the buttons back.
+ */
+const SHOW_PROVIDERS = false;
+
 const PROVIDER_ERRORS: Record<string, string> = {
   "not-configured": "isn't set up on this server yet — use email for now.",
   cancelled: "sign-in was cancelled.",
@@ -67,8 +73,20 @@ const INPUT =
   "w-full rounded-[var(--radius)] border border-[var(--input-border)] bg-[var(--hud-surface)] px-4 py-3 text-[0.95rem] text-[var(--hud-text)] placeholder:text-[var(--hud-text-faint)] focus:border-[var(--hud-cyan)] focus:outline-none focus:ring-2 focus:ring-[var(--hud-cyan-glow)]";
 const LABEL = "mb-1.5 block text-[0.84rem] font-medium text-[var(--hud-text)]";
 
-export function AuthScreen({ onAuthenticated }: { onAuthenticated: () => void }) {
-  const [mode, setMode] = useState<"login" | "signup">("signup");
+export function AuthScreen({
+  onAuthenticated,
+  initialMode = "signup",
+  embedded = false,
+  note,
+}: {
+  onAuthenticated: () => void;
+  initialMode?: "login" | "signup";
+  /** Inside the welcome page's dialog: no full-screen page of its own. */
+  embedded?: boolean;
+  /** One line under the heading, e.g. the topic waiting to be taught once the account exists. */
+  note?: string;
+}) {
+  const [mode, setMode] = useState<"login" | "signup">(initialMode);
   const [email, setEmail] = useState("");
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
@@ -143,18 +161,21 @@ export function AuthScreen({ onAuthenticated }: { onAuthenticated: () => void })
     }
   }
 
-  return (
-    <main className="hud-canvas relative flex min-h-screen items-center justify-center px-6 py-12">
+  const form = (
       <div className="relative z-10 w-full max-w-sm">
         <h1 className="flex flex-col items-center gap-4 text-center text-[1.375rem] font-semibold leading-tight tracking-[-0.01em] text-[var(--hud-text)]">
           <AriaMark size={44} />
           {isSignup ? "Create your Aria account" : "Sign in to Aria"}
         </h1>
-        <p className="mt-2 text-center text-[0.9375rem] text-[var(--hud-text-dim)]">
-          Your tutor that teaches on a board and answers out loud.
-        </p>
+        {/* Over the welcome page, which already says what Aria is, only a waiting topic is named. */}
+        {(note || !embedded) && (
+          <p className="mt-2 text-center text-[0.9375rem] text-[var(--hud-text-dim)]">
+            {note ?? "Your tutor that teaches on a board and answers out loud."}
+          </p>
+        )}
 
         {/* WAY ONE: an account you already have. */}
+        {SHOW_PROVIDERS && (<>
         <div className="mt-8 space-y-2.5" role="group" aria-label={isSignup ? "Sign up with a provider" : "Sign in with a provider"}>
           {PROVIDERS.map(({ id, label }) => (
             <button
@@ -186,8 +207,10 @@ export function AuthScreen({ onAuthenticated }: { onAuthenticated: () => void })
           <span className="h-px flex-1" style={{ background: "var(--hud-line)" }} />
         </div>
 
+        </>)}
+
         {/* WAY TWO: email. */}
-        <form onSubmit={submit} className="space-y-4" noValidate={false}>
+        <form onSubmit={submit} className={`space-y-4 ${SHOW_PROVIDERS ? "" : "mt-8"}`} noValidate={false}>
           <div>
             <label htmlFor="email" className={LABEL}>Email</label>
             <input
@@ -324,6 +347,12 @@ export function AuthScreen({ onAuthenticated }: { onAuthenticated: () => void })
           </button>
         </p>
       </div>
+  );
+
+  if (embedded) return form;
+  return (
+    <main className="hud-canvas relative flex min-h-screen items-center justify-center px-6 py-12">
+      {form}
     </main>
   );
 }

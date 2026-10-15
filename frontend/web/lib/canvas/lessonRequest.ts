@@ -26,7 +26,7 @@ import { packForPrompt } from "../webSources";
  */
 export function canvasEngineFor(input: ProgressiveLectureInput, env: Record<string, string | undefined> = process.env): boolean {
   if (env.CANVAS_LECTURES === "0") return false;
-  if (referenceDocumentOf(input) || strictDocumentOf(input) || videoDocumentOf(input)) return true;
+  if (referenceDocumentOf(input) || strictDocumentOf(input) || videoDocumentOf(input) || curriculumDocumentOf(input)) return true;
   if (input.sourceType !== "prompt") return false;
   return !(input.suprnotes || input.context || input.transcript || input.documentId || input.selection || input.slideImages?.length);
 }
@@ -52,6 +52,24 @@ export function strictDocumentOf(input: ProgressiveLectureInput): SuprnotesLesso
   if (input.sourceType !== "pdf" || input.sourceScope?.fidelity !== "strict" || input.selection) return null;
   const doc = input.suprnotes as SuprnotesLessonInput | undefined;
   return doc && typeof doc === "object" && Array.isArray(doc.contentBlocks) && doc.contentBlocks.length > 0 ? doc : null;
+}
+
+/**
+ * A COURSE LESSON (lib/curriculum/lessonSpec.ts): its official outcomes, planned as boards from the
+ * syllabus, taught on the canvas like a typed prompt — one board per planned board, nothing outside
+ * the outcomes or the level.
+ */
+export function curriculumDocumentOf(input: ProgressiveLectureInput): SuprnotesLessonInput | null {
+  if (input.sourceType !== "suprnotes") return null;
+  const doc = input.suprnotes as SuprnotesLessonInput | undefined;
+  const plan = doc?.lessonPlan as { sourceType?: string; beats?: unknown[] } | undefined;
+  return doc && typeof doc === "object" && plan?.sourceType === "curriculum" && Array.isArray(doc.contentBlocks) && doc.contentBlocks.length > 0 ? doc : null;
+}
+
+/** The course lesson's planned boards, as outline parts (title + what it teaches). */
+function curriculumParts(doc: SuprnotesLessonInput): Array<{ title: string; caption?: string }> {
+  const beats = ((doc.lessonPlan as { beats?: Array<{ title?: string; objective?: string }> } | undefined)?.beats ?? []);
+  return beats.filter((b) => b.title?.trim()).map((b) => ({ title: b.title!.trim(), caption: b.objective?.trim() || undefined }));
 }
 
 /** A YouTube video's lesson, on the canvas: one board per part of the video, strictly from it. */
@@ -89,13 +107,14 @@ export function canvasPlanRequest(input: ProgressiveLectureInput, knowledge?: Pl
   const persona = input.learnerPersona?.trim();
   if (persona && !strictDoc && !video) lines.push("", persona.slice(0, 2000));
 
-  const parts = input.outline?.subtopics.filter((s) => s.title.trim()) ?? [];
+  const course = curriculumDocumentOf(input);
+  const parts = course && !input.outline ? curriculumParts(course) : input.outline?.subtopics.filter((s) => s.title.trim()) ?? [];
   const request = `${input.topic} ${input.focus ?? ""}`;
   // The planner's own reading of the request (lib/planPrompt.ts) when there is no approved outline.
   // A strict PDF lesson is a question exactly when the page narrowed it to one (LearnPage
   // questionFromUpload); a video lesson never is.
   const strictQuestion = strictDoc && input.sourceScope && input.sourceScope.breadth.kind !== "whole" ? input.sourceScope.breadth.focus : null;
-  const question = strictDoc ? Boolean(strictQuestion) : video ? false : input.outline ? input.outline.scope === "question" : isDirectQuestion(input.focus || input.topic) && !isTopicRequest(input.focus || input.topic);
+  const question = strictDoc ? Boolean(strictQuestion) : video || course ? false : input.outline ? input.outline.scope === "question" : isDirectQuestion(input.focus || input.topic) && !isTopicRequest(input.focus || input.topic);
   const boards = canvasBoardCount(input);
 
   // How much to teach is the PLANNER'S decision (the outline the student approved). The canvas
@@ -158,7 +177,34 @@ export function canvasPlanRequest(input: ProgressiveLectureInput, knowledge?: Pl
   if (doc) lines.push("", documentPlanSection(doc, listings, Boolean(question)));
   if (strictDoc) lines.push("", strictPlanSection(strictDoc, strictQuestion));
   if (video) lines.push("", videoPlanSection(video));
+  if (course) lines.push("", curriculumPlanSection(course));
   return lines.join("\n");
+}
+
+/** What the planner reads for a course lesson: its official outcomes and the board plan made from the syllabus. */
+function curriculumPlanSection(doc: SuprnotesLessonInput): string {
+  const goals = doc.lesson?.learningGoals ?? [];
+  const plan = doc.lessonPlan as { beats?: Array<{ title?: string; objective?: string; outcomeRefs?: number[]; visualRequirement?: Array<{ preferredStages?: string[]; mustShow?: string[] }> }>; visualRequirements?: Array<{ outcomeRef?: number; preferredStages?: string[]; mustShow?: string[]; reason?: string }> } | undefined;
+  return [
+    `THIS IS A LESSON OF AN OFFICIAL COURSE (${doc.lesson?.level ?? "its level"}). Its learning outcomes are fixed by the syllabus:`,
+    ...goals.map((g, i) => `${i + 1}. ${g}`),
+    "- Teach EXACTLY these outcomes, at this level: every outcome is taught on the board planned for it, with the key points, worked example, terms and depth given below. Use the course's vocabulary and notation.",
+    "- Nothing outside them: what the lesson plan lists under \"Do not teach\" is beyond this level — leave it out even if it seems helpful.",
+    "- Every board also carries \"source\": {\"pages\": [the syllabus page numbers it draws on], \"listing\": null, \"lines\": null}.",
+    "",
+    "THE LESSON PLAN (one block per board, in order):",
+    documentForCanvas(doc),
+    "",
+    "PHASE 3 VISUAL CONTRACT — enforce these requirements in the board stage and visible content:",
+    ...(plan?.beats ?? []).map((beat, i) => {
+      const refs = beat.outcomeRefs?.length ? `outcomes ${beat.outcomeRefs.join(", ")}` : `board ${i + 1}`;
+      const reqs = (beat.visualRequirement ?? []).flatMap((r) => [
+        ...(r.preferredStages ?? []),
+        ...(r.mustShow ?? []),
+      ]);
+      return `- ${refs} (${beat.title ?? `board ${i + 1}`}): ${reqs.length ? [...new Set(reqs)].join("; ") : "show the central relationship clearly"}. Do not substitute a decorative icon for required structure, labels, steps or evidence.`;
+    }),
+  ].join("\n");
 }
 
 /**
@@ -216,7 +262,8 @@ export function canvasRefresherAllowed(input: ProgressiveLectureInput, knowledge
 }
 
 export function canvasBoardCount(input: ProgressiveLectureInput): number {
-  const parts = input.outline?.subtopics.filter((s) => s.title.trim()).length ?? 0;
+  const course = curriculumDocumentOf(input);
+  const parts = course && !input.outline ? curriculumParts(course).length : input.outline?.subtopics.filter((s) => s.title.trim()).length ?? 0;
   if (parts > 0) return Math.min(14, parts);
   return 0;
 }

@@ -1,0 +1,1452 @@
+{
+ "id": "uk-edexcel-alevel-physics-9ph0",
+ "region": "UK",
+ "framework": "Pearson Edexcel Level 3 Advanced GCE",
+ "board": "Pearson Edexcel",
+ "qualification": "A Level",
+ "subject": "Physics",
+ "syllabusCode": "9PH0",
+ "gradeSystem": "year",
+ "source": {
+  "urls": [
+   "https://qualifications.pearson.com/content/dam/pdf/A%20Level/Physics/2015/Specification%20and%20sample%20assessments/pearsonedexcel-alevel-physics-spec.pdf"
+  ],
+  "publisher": "Pearson Education",
+  "licence": "Exam board specification, (c) Pearson; structure + our own wording only",
+  "firstExam": "2017"
+ },
+ "grades": [
+  {
+   "grade": "all",
+   "units": [
+    {
+     "id": "topic-1-working-as-a-physicist",
+     "title": "Topic 1: Working as a Physicist",
+     "topics": [
+      {
+       "id": "working-scientifically",
+       "title": "Working scientifically",
+       "subtopics": [
+        {
+         "id": "quantities-and-units",
+         "title": "Quantities and units",
+         "outcomes": [
+          {
+           "code": "1",
+           "text": "Tell base quantities from derived ones and give their SI units."
+          }
+         ]
+        },
+        {
+         "id": "practical-skills",
+         "title": "Practical skills",
+         "outcomes": [
+          {
+           "code": "2",
+           "text": "Show practical skills and techniques for familiar and unfamiliar experiments."
+          }
+         ]
+        },
+        {
+         "id": "estimation-and-error",
+         "title": "Estimation and error",
+         "outcomes": [
+          {
+           "code": "3",
+           "text": "Estimate physical quantities and use the estimates to solve problems."
+          },
+          {
+           "code": "4",
+           "text": "Recognise the limits of physical measurement and apply them to practical work."
+          }
+         ]
+        },
+        {
+         "id": "science-in-society",
+         "title": "Science in society",
+         "outcomes": [
+          {
+           "code": "5",
+           "text": "Communicate physics ideas in suitable forms using correct terms."
+          },
+          {
+           "code": "6",
+           "text": "Weigh up the benefits and risks of applications of science."
+          },
+          {
+           "code": "7",
+           "text": "Explain how the scientific community checks new knowledge and keeps integrity."
+          },
+          {
+           "code": "8",
+           "text": "Explain how society uses science to inform decisions."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "topic-2-mechanics",
+     "title": "Topic 2: Mechanics",
+     "topics": [
+      {
+       "id": "motion",
+       "title": "Motion",
+       "subtopics": [
+        {
+         "id": "uniform-acceleration",
+         "title": "Uniform acceleration",
+         "outcomes": [
+          {
+           "code": "9",
+           "text": "Use the equations of uniformly accelerated motion in one dimension."
+          }
+         ]
+        },
+        {
+         "id": "motion-graphs",
+         "title": "Motion graphs",
+         "outcomes": [
+          {
+           "code": "10",
+           "text": "Draw and interpret displacement-time, velocity-time and acceleration-time graphs."
+          },
+          {
+           "code": "11",
+           "text": "Know what slopes and areas of motion graphs give, including non-uniform acceleration."
+          }
+         ]
+        },
+        {
+         "id": "vectors",
+         "title": "Vectors",
+         "outcomes": [
+          {
+           "code": "12",
+           "text": "Tell scalars from vectors, give examples and use vector notation."
+          },
+          {
+           "code": "13",
+           "text": "Resolve a vector into perpendicular components by drawing and calculation."
+          },
+          {
+           "code": "14",
+           "text": "Find the resultant of two coplanar vectors by drawing, and by calculation at right angles."
+          }
+         ]
+        },
+        {
+         "id": "projectiles",
+         "title": "Projectiles",
+         "outcomes": [
+          {
+           "code": "15",
+           "text": "Use the independence of vertical and horizontal motion for a projectile."
+          }
+         ]
+        },
+        {
+         "id": "newton-s-laws",
+         "title": "Newton's laws",
+         "outcomes": [
+          {
+           "code": "16",
+           "text": "Draw and interpret free-body force diagrams for particles and rigid bodies."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "forces-momentum-and-energy",
+       "title": "Forces, momentum and energy",
+       "subtopics": [
+        {
+         "id": "newton-s-laws",
+         "title": "Newton's laws",
+         "outcomes": [
+          {
+           "code": "17",
+           "text": "Use the resultant force equation F = ma, including first law cases and terminal velocity."
+          },
+          {
+           "code": "18",
+           "text": "Use gravitational field strength and weight equations."
+          },
+          {
+           "code": "20",
+           "text": "Know Newton's third law and the properties of force pairs."
+          }
+         ]
+        },
+        {
+         "id": "momentum",
+         "title": "Momentum",
+         "outcomes": [
+          {
+           "code": "21",
+           "text": "Define momentum as p = mv."
+          },
+          {
+           "code": "22",
+           "text": "Apply conservation of linear momentum to one-dimensional problems and relate it to Newton's laws."
+          }
+         ]
+        },
+        {
+         "id": "moments",
+         "title": "Moments",
+         "outcomes": [
+          {
+           "code": "23",
+           "text": "Use the moment of a force about an axis."
+          },
+          {
+           "code": "24",
+           "text": "Use centre of gravity and the principle of moments for a body in equilibrium."
+          }
+         ]
+        },
+        {
+         "id": "work-and-energy",
+         "title": "Work and energy",
+         "outcomes": [
+          {
+           "code": "25",
+           "text": "Use work done, including when force is not along the line of motion."
+          },
+          {
+           "code": "26",
+           "text": "Use the kinetic energy equation."
+          },
+          {
+           "code": "27",
+           "text": "Use the change in gravitational potential energy near the Earth."
+          },
+          {
+           "code": "28",
+           "text": "Apply conservation of energy using work, gravitational and kinetic energy."
+          }
+         ]
+        },
+        {
+         "id": "power-and-efficiency",
+         "title": "Power and efficiency",
+         "outcomes": [
+          {
+           "code": "29",
+           "text": "Use the equations relating power, energy and time."
+          },
+          {
+           "code": "30",
+           "text": "Calculate efficiency from energy or power values."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "topic-3-electric-circuits",
+     "title": "Topic 3: Electric Circuits",
+     "topics": [
+      {
+       "id": "current-voltage-and-resistance",
+       "title": "Current, voltage and resistance",
+       "subtopics": [
+        {
+         "id": "charge-and-current",
+         "title": "Charge and current",
+         "outcomes": [
+          {
+           "code": "31",
+           "text": "Explain current as the rate of flow of charge and use I = dQ/dt."
+          },
+          {
+           "code": "32",
+           "text": "Use potential difference as energy per unit charge."
+          }
+         ]
+        },
+        {
+         "id": "resistance",
+         "title": "Resistance",
+         "outcomes": [
+          {
+           "code": "33",
+           "text": "Define resistance and state Ohm's law as a special case at constant temperature."
+          }
+         ]
+        },
+        {
+         "id": "circuit-rules",
+         "title": "Circuit rules",
+         "outcomes": [
+          {
+           "code": "34",
+           "text": "Explain current distribution in circuits as a result of charge conservation."
+          },
+          {
+           "code": "35",
+           "text": "Explain potential difference distribution as a result of energy conservation."
+          },
+          {
+           "code": "36",
+           "text": "Derive and use the series and parallel resistance equations."
+          }
+         ]
+        },
+        {
+         "id": "electrical-power",
+         "title": "Electrical power",
+         "outcomes": [
+          {
+           "code": "37",
+           "text": "Use P = VI and W = VIt and derive related equations."
+          }
+         ]
+        },
+        {
+         "id": "component-characteristics",
+         "title": "Component characteristics",
+         "outcomes": [
+          {
+           "code": "38",
+           "text": "Sketch and interpret I-V graphs for ohmic conductors, filament bulbs, thermistors and diodes."
+          }
+         ]
+        },
+        {
+         "id": "resistivity",
+         "title": "Resistivity",
+         "outcomes": [
+          {
+           "code": "39",
+           "text": "Use the resistivity equation R = rho l / A."
+          },
+          {
+           "code": "41",
+           "text": "Use I = nqvA to explain the wide range of resistivities."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "potential-dividers-and-internal-resistance",
+       "title": "Potential dividers and internal resistance",
+       "subtopics": [
+        {
+         "id": "potential-dividers",
+         "title": "Potential dividers",
+         "outcomes": [
+          {
+           "code": "42",
+           "text": "Describe how potential varies along a uniform current-carrying wire."
+          },
+          {
+           "code": "43",
+           "text": "Explain potential divider circuits and calculate p.d.s and resistances."
+          },
+          {
+           "code": "44",
+           "text": "Analyse potential dividers with a thermistor or LDR."
+          }
+         ]
+        },
+        {
+         "id": "e-m-f-and-internal-resistance",
+         "title": "E.m.f. and internal resistance",
+         "outcomes": [
+          {
+           "code": "45",
+           "text": "Define e.m.f. and internal resistance and tell e.m.f. from terminal p.d."
+          }
+         ]
+        },
+        {
+         "id": "resistance-models",
+         "title": "Resistance models",
+         "outcomes": [
+          {
+           "code": "47",
+           "text": "Model resistance change with temperature using lattice vibrations and conduction electrons."
+          },
+          {
+           "code": "48",
+           "text": "Model resistance change with light in an LDR using conduction electron numbers."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "topic-4-materials",
+     "title": "Topic 4: Materials",
+     "topics": [
+      {
+       "id": "fluids",
+       "title": "Fluids",
+       "subtopics": [
+        {
+         "id": "density-and-upthrust",
+         "title": "Density and upthrust",
+         "outcomes": [
+          {
+           "code": "49",
+           "text": "Use the density equation."
+          },
+          {
+           "code": "50",
+           "text": "Use upthrust as the weight of fluid displaced."
+          }
+         ]
+        },
+        {
+         "id": "viscous-drag",
+         "title": "Viscous drag",
+         "outcomes": [
+          {
+           "code": "51",
+           "text": "Use Stokes' law and know its limits: small spheres, low speed, laminar flow, temperature-dependent viscosity."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "solid-materials",
+       "title": "Solid materials",
+       "subtopics": [
+        {
+         "id": "stretching-materials",
+         "title": "Stretching materials",
+         "outcomes": [
+          {
+           "code": "53",
+           "text": "Use Hooke's law with stiffness k."
+          },
+          {
+           "code": "55",
+           "text": "Draw and interpret force-extension graphs and explain limit of proportionality, elastic limit, yield point, elastic and plastic deformation."
+          }
+         ]
+        },
+        {
+         "id": "stress-and-strain",
+         "title": "Stress and strain",
+         "outcomes": [
+          {
+           "code": "54",
+           "text": "Use stress, strain and the Young modulus."
+          },
+          {
+           "code": "56",
+           "text": "Draw and interpret stress-strain graphs and explain breaking stress."
+          }
+         ]
+        },
+        {
+         "id": "elastic-strain-energy",
+         "title": "Elastic strain energy",
+         "outcomes": [
+          {
+           "code": "58",
+           "text": "Calculate elastic strain energy, including from the area under a force-extension graph."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "topic-5-waves-and-particle-nature-of-light",
+     "title": "Topic 5: Waves and Particle Nature of Light",
+     "topics": [
+      {
+       "id": "waves",
+       "title": "Waves",
+       "subtopics": [
+        {
+         "id": "wave-basics",
+         "title": "Wave basics",
+         "outcomes": [
+          {
+           "code": "59",
+           "text": "Explain amplitude, frequency, period, speed and wavelength."
+          },
+          {
+           "code": "60",
+           "text": "Use the wave equation v = f lambda."
+          },
+          {
+           "code": "61",
+           "text": "Describe longitudinal waves as pressure variation and molecule displacement."
+          },
+          {
+           "code": "62",
+           "text": "Describe transverse waves."
+          },
+          {
+           "code": "63",
+           "text": "Draw and interpret graphs of transverse, longitudinal and standing waves."
+          }
+         ]
+        },
+        {
+         "id": "superposition-and-interference",
+         "title": "Superposition and interference",
+         "outcomes": [
+          {
+           "code": "65",
+           "text": "Explain wavefront, coherence, path difference, superposition, interference and phase."
+          },
+          {
+           "code": "66",
+           "text": "Relate phase difference to path difference."
+          }
+         ]
+        },
+        {
+         "id": "standing-waves",
+         "title": "Standing waves",
+         "outcomes": [
+          {
+           "code": "67",
+           "text": "Explain how standing waves form and identify nodes and antinodes."
+          },
+          {
+           "code": "68",
+           "text": "Use the speed of a transverse wave on a string."
+          }
+         ]
+        },
+        {
+         "id": "refraction",
+         "title": "Refraction",
+         "outcomes": [
+          {
+           "code": "70",
+           "text": "Use intensity as power per unit area."
+          },
+          {
+           "code": "71",
+           "text": "Apply Snell's law at an interface and refractive index n = c/v."
+          },
+          {
+           "code": "72",
+           "text": "Calculate the critical angle."
+          },
+          {
+           "code": "73",
+           "text": "Predict whether total internal reflection occurs."
+          },
+          {
+           "code": "74",
+           "text": "Describe how to measure the refractive index of a solid."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "optics",
+       "title": "Optics",
+       "subtopics": [
+        {
+         "id": "lenses",
+         "title": "Lenses",
+         "outcomes": [
+          {
+           "code": "75",
+           "text": "Explain focal length of converging and diverging lenses."
+          },
+          {
+           "code": "76",
+           "text": "Use ray diagrams to trace light through a lens and locate the image."
+          },
+          {
+           "code": "77",
+           "text": "Use lens power P = 1/f."
+          },
+          {
+           "code": "78",
+           "text": "Add the powers of thin lenses in combination."
+          },
+          {
+           "code": "79",
+           "text": "Explain real and virtual images."
+          },
+          {
+           "code": "80",
+           "text": "Use the thin lens equation with the real-is-positive convention."
+          },
+          {
+           "code": "81",
+           "text": "Calculate magnification from image and object heights, or v/u."
+          }
+         ]
+        },
+        {
+         "id": "polarisation-and-diffraction",
+         "title": "Polarisation and diffraction",
+         "outcomes": [
+          {
+           "code": "82",
+           "text": "Explain plane polarisation."
+          },
+          {
+           "code": "83",
+           "text": "Explain diffraction using Huygens' construction at slits and obstacles."
+          },
+          {
+           "code": "84",
+           "text": "Use n lambda = d sin theta for a diffraction grating."
+          }
+         ]
+        },
+        {
+         "id": "wave-particle-duality",
+         "title": "Wave-particle duality",
+         "outcomes": [
+          {
+           "code": "86",
+           "text": "Explain how diffraction experiments show the wave nature of electrons."
+          },
+          {
+           "code": "87",
+           "text": "Use the de Broglie equation."
+          }
+         ]
+        },
+        {
+         "id": "reflection-and-echoes",
+         "title": "Reflection and echoes",
+         "outcomes": [
+          {
+           "code": "88",
+           "text": "Explain transmission and reflection of waves at an interface."
+          },
+          {
+           "code": "89",
+           "text": "Explain how pulse-echo gives position and how wavelength or pulse length limits detail."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "quantum-physics",
+       "title": "Quantum physics",
+       "subtopics": [
+        {
+         "id": "photons",
+         "title": "Photons",
+         "outcomes": [
+          {
+           "code": "90",
+           "text": "Describe radiation using wave and photon models and how these developed."
+          },
+          {
+           "code": "91",
+           "text": "Use E = hf for photon energy."
+          }
+         ]
+        },
+        {
+         "id": "the-photoelectric-effect",
+         "title": "The photoelectric effect",
+         "outcomes": [
+          {
+           "code": "92",
+           "text": "Explain that absorbing a photon can release a photoelectron."
+          },
+          {
+           "code": "93",
+           "text": "Explain threshold frequency and work function and use the photoelectric equation."
+          },
+          {
+           "code": "94",
+           "text": "Use the electronvolt for small energies."
+          },
+          {
+           "code": "95",
+           "text": "Explain how the photoelectric effect supports the particle nature of radiation."
+          }
+         ]
+        },
+        {
+         "id": "energy-levels",
+         "title": "Energy levels",
+         "outcomes": [
+          {
+           "code": "96",
+           "text": "Explain line spectra as transitions between energy levels and calculate transition frequencies."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "topic-6-further-mechanics",
+     "title": "Topic 6: Further Mechanics",
+     "topics": [
+      {
+       "id": "momentum-and-collisions",
+       "title": "Momentum and collisions",
+       "subtopics": [
+        {
+         "id": "impulse-and-momentum",
+         "title": "Impulse and momentum",
+         "outcomes": [
+          {
+           "code": "97",
+           "text": "Use impulse = F dt = change in momentum."
+          }
+         ]
+        },
+        {
+         "id": "collisions",
+         "title": "Collisions",
+         "outcomes": [
+          {
+           "code": "99",
+           "text": "Apply conservation of momentum in two dimensions."
+          },
+          {
+           "code": "100",
+           "text": "Core practical 10: use ICT to analyse collisions between small spheres."
+          },
+          {
+           "code": "101",
+           "text": "Decide whether a collision is elastic or inelastic."
+          },
+          {
+           "code": "102",
+           "text": "Derive and use Ek = p squared / 2m."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "circular-motion",
+       "title": "Circular motion",
+       "subtopics": [
+        {
+         "id": "circular-motion",
+         "title": "Circular motion",
+         "outcomes": [
+          {
+           "code": "103",
+           "text": "Express angular displacement in radians and degrees and convert."
+          },
+          {
+           "code": "104",
+           "text": "Use angular velocity with v = omega r and T = 2 pi / omega."
+          },
+          {
+           "code": "105",
+           "text": "Derive and use centripetal acceleration with vector diagrams."
+          },
+          {
+           "code": "106",
+           "text": "Explain that a resultant centripetal force maintains circular motion."
+          },
+          {
+           "code": "107",
+           "text": "Use the centripetal force equations."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "topic-7-electric-and-magnetic-fields",
+     "title": "Topic 7: Electric and Magnetic Fields",
+     "topics": [
+      {
+       "id": "electric-fields",
+       "title": "Electric fields",
+       "subtopics": [
+        {
+         "id": "electric-field-basics",
+         "title": "Electric field basics",
+         "outcomes": [
+          {
+           "code": "108",
+           "text": "Define an electric field as a region where a charge feels a force."
+          },
+          {
+           "code": "109",
+           "text": "Define and use electric field strength E = F/Q."
+          }
+         ]
+        },
+        {
+         "id": "point-charges",
+         "title": "Point charges",
+         "outcomes": [
+          {
+           "code": "110",
+           "text": "Use Coulomb's law for the force between two charges."
+          },
+          {
+           "code": "111",
+           "text": "Use the field strength of a point charge."
+          }
+         ]
+        },
+        {
+         "id": "field-and-potential",
+         "title": "Field and potential",
+         "outcomes": [
+          {
+           "code": "112",
+           "text": "Relate electric field to electric potential."
+          },
+          {
+           "code": "113",
+           "text": "Use E = V/d between parallel plates."
+          },
+          {
+           "code": "114",
+           "text": "Use V = Q / 4 pi epsilon r for a radial field."
+          },
+          {
+           "code": "115",
+           "text": "Draw and interpret field lines and equipotentials for radial and uniform fields."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "capacitors",
+       "title": "Capacitors",
+       "subtopics": [
+        {
+         "id": "capacitance",
+         "title": "Capacitance",
+         "outcomes": [
+          {
+           "code": "116",
+           "text": "Define and use capacitance C = Q/V."
+          },
+          {
+           "code": "117",
+           "text": "Derive and use the energy stored in a capacitor from the area under a V-Q graph."
+          }
+         ]
+        },
+        {
+         "id": "capacitor-discharge",
+         "title": "Capacitor discharge",
+         "outcomes": [
+          {
+           "code": "118",
+           "text": "Draw and interpret RC charge and discharge curves and the time constant."
+          },
+          {
+           "code": "119",
+           "text": "Core practical 11: display and analyse capacitor p.d. while charging and discharging."
+          },
+          {
+           "code": "120",
+           "text": "Use exponential discharge equations and their log forms."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "magnetic-fields-and-induction",
+       "title": "Magnetic fields and induction",
+       "subtopics": [
+        {
+         "id": "magnetic-force",
+         "title": "Magnetic force",
+         "outcomes": [
+          {
+           "code": "121",
+           "text": "Use magnetic flux density, flux and flux linkage."
+          },
+          {
+           "code": "122",
+           "text": "Use F = Bqv sin theta with Fleming's left-hand rule."
+          },
+          {
+           "code": "123",
+           "text": "Use F = BIl sin theta with Fleming's left-hand rule."
+          }
+         ]
+        },
+        {
+         "id": "electromagnetic-induction",
+         "title": "Electromagnetic induction",
+         "outcomes": [
+          {
+           "code": "124",
+           "text": "Explain factors affecting e.m.f. induced by relative motion of coil and magnet."
+          },
+          {
+           "code": "125",
+           "text": "Explain factors affecting e.m.f. induced by changing current in a linked coil."
+          },
+          {
+           "code": "126",
+           "text": "Use Lenz's law to predict induced e.m.f. direction and link it to energy conservation."
+          },
+          {
+           "code": "127",
+           "text": "Use Faraday's and Lenz's laws to find induced e.m.f. magnitude."
+          }
+         ]
+        },
+        {
+         "id": "alternating-current",
+         "title": "Alternating current",
+         "outcomes": [
+          {
+           "code": "128",
+           "text": "Explain frequency, period, peak and r.m.s. values for a.c."
+          },
+          {
+           "code": "129",
+           "text": "Use r.m.s. equations for p.d. and current."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "topic-8-nuclear-and-particle-physics",
+     "title": "Topic 8: Nuclear and Particle Physics",
+     "topics": [
+      {
+       "id": "atomic-structure-and-accelerators",
+       "title": "Atomic structure and accelerators",
+       "subtopics": [
+        {
+         "id": "the-nuclear-atom",
+         "title": "The nuclear atom",
+         "outcomes": [
+          {
+           "code": "130",
+           "text": "Explain nucleon number and proton number."
+          },
+          {
+           "code": "131",
+           "text": "Explain how alpha scattering supports the nuclear model and how atomic ideas changed."
+          }
+         ]
+        },
+        {
+         "id": "particle-accelerators",
+         "title": "Particle accelerators",
+         "outcomes": [
+          {
+           "code": "132",
+           "text": "Explain thermionic emission and acceleration of electrons by fields."
+          },
+          {
+           "code": "133",
+           "text": "Explain the role of fields in linacs, cyclotrons and detectors."
+          },
+          {
+           "code": "134",
+           "text": "Derive and use r = p / BQ for a charged particle in a magnetic field."
+          }
+         ]
+        },
+        {
+         "id": "particle-interactions",
+         "title": "Particle interactions",
+         "outcomes": [
+          {
+           "code": "135",
+           "text": "Apply conservation of charge, energy and momentum to interactions and interpret tracks."
+          },
+          {
+           "code": "136",
+           "text": "Explain why high energies are needed to probe nucleon structure."
+          },
+          {
+           "code": "137",
+           "text": "Use delta E = c squared delta m for creation and annihilation of matter and antimatter."
+          },
+          {
+           "code": "138",
+           "text": "Use MeV, GeV, MeV/c2 and GeV/c2 and convert to SI."
+          },
+          {
+           "code": "139",
+           "text": "Explain when relativistic increase in lifetime matters."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "particle-model",
+       "title": "Particle model",
+       "subtopics": [
+        {
+         "id": "quarks-and-leptons",
+         "title": "Quarks and leptons",
+         "outcomes": [
+          {
+           "code": "140",
+           "text": "Classify particles as baryons, mesons, leptons and photons in the quark-lepton model."
+          },
+          {
+           "code": "141",
+           "text": "Know every particle has an antiparticle and deduce its properties."
+          }
+         ]
+        },
+        {
+         "id": "conservation-laws",
+         "title": "Conservation laws",
+         "outcomes": [
+          {
+           "code": "142",
+           "text": "Use conservation of charge, baryon number and lepton number to test interactions."
+          },
+          {
+           "code": "143",
+           "text": "Write and interpret particle equations."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "topic-9-thermodynamics",
+     "title": "Topic 9: Thermodynamics",
+     "topics": [
+      {
+       "id": "thermal-energy",
+       "title": "Thermal energy",
+       "subtopics": [
+        {
+         "id": "specific-heat-and-latent-heat",
+         "title": "Specific heat and latent heat",
+         "outcomes": [
+          {
+           "code": "144",
+           "text": "Use delta E = m c delta theta and delta E = L delta m."
+          },
+          {
+           "code": "145",
+           "text": "Core practical 12: calibrate a thermistor in a potential divider as a thermostat."
+          },
+          {
+           "code": "146",
+           "text": "Core practical 13: determine specific latent heat of a phase change."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "gases-and-radiation",
+       "title": "Gases and radiation",
+       "subtopics": [
+        {
+         "id": "internal-energy-and-temperature",
+         "title": "Internal energy and temperature",
+         "outcomes": [
+          {
+           "code": "147",
+           "text": "Explain internal energy as random potential and kinetic energy of molecules."
+          },
+          {
+           "code": "148",
+           "text": "Explain absolute zero and link mean kinetic energy to absolute temperature."
+          }
+         ]
+        },
+        {
+         "id": "kinetic-theory",
+         "title": "Kinetic theory",
+         "outcomes": [
+          {
+           "code": "149",
+           "text": "Derive and use pV = (1/3) N m <c squared> from kinetic theory."
+          },
+          {
+           "code": "150",
+           "text": "Use pV = NkT for an ideal gas."
+          },
+          {
+           "code": "151",
+           "text": "Core practical 14: investigate pressure and volume of a gas at fixed temperature."
+          },
+          {
+           "code": "152",
+           "text": "Derive and use (1/2) m <c squared> = (3/2) kT."
+          }
+         ]
+        },
+        {
+         "id": "black-body-radiation",
+         "title": "Black body radiation",
+         "outcomes": [
+          {
+           "code": "153",
+           "text": "Explain black body radiators and interpret radiation curves."
+          },
+          {
+           "code": "154",
+           "text": "Use the Stefan-Boltzmann law L = sigma A T4."
+          },
+          {
+           "code": "155",
+           "text": "Use Wien's law."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "topic-10-space",
+     "title": "Topic 10: Space",
+     "topics": [
+      {
+       "id": "distances-and-stars",
+       "title": "Distances and stars",
+       "subtopics": [
+        {
+         "id": "distances-to-stars",
+         "title": "Distances to stars",
+         "outcomes": [
+          {
+           "code": "156",
+           "text": "Use intensity = L / 4 pi d squared with luminosity."
+          },
+          {
+           "code": "157",
+           "text": "Explain trigonometric parallax for astronomical distances."
+          },
+          {
+           "code": "158",
+           "text": "Explain using standard candles of known luminosity to find distances."
+          }
+         ]
+        },
+        {
+         "id": "stellar-life-cycles",
+         "title": "Stellar life cycles",
+         "outcomes": [
+          {
+           "code": "159",
+           "text": "Sketch and interpret a simple Hertzsprung-Russell diagram."
+          },
+          {
+           "code": "160",
+           "text": "Relate the Hertzsprung-Russell diagram to the life cycle of stars."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "expansion-of-the-universe",
+       "title": "Expansion of the universe",
+       "subtopics": [
+        {
+         "id": "doppler-shift-and-redshift",
+         "title": "Doppler shift and redshift",
+         "outcomes": [
+          {
+           "code": "161",
+           "text": "Explain the Doppler effect for a moving wave source."
+          },
+          {
+           "code": "162",
+           "text": "Use redshift equations and Hubble's law v = H0 d."
+          },
+          {
+           "code": "163",
+           "text": "Explain the debate over the universe's age and fate, the Hubble constant and dark matter."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "topic-11-nuclear-radiation",
+     "title": "Topic 11: Nuclear Radiation",
+     "topics": [
+      {
+       "id": "nuclear-energy",
+       "title": "Nuclear energy",
+       "subtopics": [
+        {
+         "id": "binding-energy",
+         "title": "Binding energy",
+         "outcomes": [
+          {
+           "code": "164",
+           "text": "Explain nuclear binding energy and use delta E = c squared delta m for mass deficit."
+          },
+          {
+           "code": "165",
+           "text": "Use the atomic mass unit and convert to SI."
+          }
+         ]
+        },
+        {
+         "id": "fusion-and-fission",
+         "title": "Fusion and fission",
+         "outcomes": [
+          {
+           "code": "166",
+           "text": "Explain fusion and fission using the binding energy per nucleon curve."
+          },
+          {
+           "code": "167",
+           "text": "Explain why fusion needs very high density and temperature."
+          }
+         ]
+        },
+        {
+         "id": "radiation-and-its-properties",
+         "title": "Radiation and its properties",
+         "outcomes": [
+          {
+           "code": "168",
+           "text": "Explain background radiation and correct for it."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "radioactive-decay",
+       "title": "Radioactive decay",
+       "subtopics": [
+        {
+         "id": "radiation-and-its-properties",
+         "title": "Radiation and its properties",
+         "outcomes": [
+          {
+           "code": "169",
+           "text": "Compare nature, penetration, ionising ability and range of alpha, beta and gamma."
+          },
+          {
+           "code": "170",
+           "text": "Write and interpret nuclear equations."
+          },
+          {
+           "code": "171",
+           "text": "Core practical 15: investigate gamma absorption by lead."
+          }
+         ]
+        },
+        {
+         "id": "radioactive-decay",
+         "title": "Radioactive decay",
+         "outcomes": [
+          {
+           "code": "172",
+           "text": "Explain that nuclear decay is spontaneous and random."
+          },
+          {
+           "code": "173",
+           "text": "Find half-lives graphically and use the decay equations and their log forms."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "topic-12-gravitational-fields",
+     "title": "Topic 12: Gravitational Fields",
+     "topics": [
+      {
+       "id": "gravitational-fields",
+       "title": "Gravitational fields",
+       "subtopics": [
+        {
+         "id": "gravitational-fields",
+         "title": "Gravitational fields",
+         "outcomes": [
+          {
+           "code": "174",
+           "text": "Define a gravitational field as a region where a mass feels a force."
+          },
+          {
+           "code": "175",
+           "text": "Define and use gravitational field strength g = F/m."
+          },
+          {
+           "code": "176",
+           "text": "Use Newton's law of universal gravitation."
+          },
+          {
+           "code": "177",
+           "text": "Derive and use g = Gm / r squared for a point mass."
+          },
+          {
+           "code": "178",
+           "text": "Use gravitational potential V = -Gm / r for a radial field."
+          },
+          {
+           "code": "179",
+           "text": "Compare electric and gravitational fields."
+          }
+         ]
+        },
+        {
+         "id": "orbits",
+         "title": "Orbits",
+         "outcomes": [
+          {
+           "code": "180",
+           "text": "Apply Newton's laws and universal gravitation to orbital motion."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "topic-13-oscillations",
+     "title": "Topic 13: Oscillations",
+     "topics": [
+      {
+       "id": "simple-harmonic-motion",
+       "title": "Simple harmonic motion",
+       "subtopics": [
+        {
+         "id": "conditions-for-shm",
+         "title": "Conditions for SHM",
+         "outcomes": [
+          {
+           "code": "181",
+           "text": "State the condition F = -kx for SHM and identify when it occurs."
+          }
+         ]
+        },
+        {
+         "id": "shm-equations",
+         "title": "SHM equations",
+         "outcomes": [
+          {
+           "code": "182",
+           "text": "Use the SHM equations for acceleration, displacement and velocity."
+          },
+          {
+           "code": "183",
+           "text": "Use the period equations for a mass-spring system and a simple pendulum."
+          }
+         ]
+        },
+        {
+         "id": "shm-graphs",
+         "title": "SHM graphs",
+         "outcomes": [
+          {
+           "code": "184",
+           "text": "Draw and interpret displacement-time graphs, with gradient as velocity."
+          },
+          {
+           "code": "185",
+           "text": "Draw and interpret velocity-time graphs, with gradient as acceleration."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "resonance-and-damping",
+       "title": "Resonance and damping",
+       "subtopics": [
+        {
+         "id": "resonance",
+         "title": "Resonance",
+         "outcomes": [
+          {
+           "code": "186",
+           "text": "Explain resonance."
+          },
+          {
+           "code": "187",
+           "text": "Core practical 16: find an unknown mass from resonant frequencies of known masses."
+          },
+          {
+           "code": "189",
+           "text": "Tell free oscillations from forced oscillations."
+          },
+          {
+           "code": "190",
+           "text": "Describe how forced amplitude changes near natural frequency and how damping affects resonance."
+          }
+         ]
+        },
+        {
+         "id": "damping",
+         "title": "Damping",
+         "outcomes": [
+          {
+           "code": "188",
+           "text": "Apply conservation of energy to damped and undamped oscillations."
+          },
+          {
+           "code": "191",
+           "text": "Explain how damping and plastic deformation of ductile materials reduce amplitude."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "build": {
+  "builtAt": "2026-10-14T10:29:20.167Z",
+  "model": "claude-agent",
+  "usd": 0,
+  "expectedCodes": 175,
+  "coverage": 1,
+  "missingCodes": [],
+  "counts": {
+   "grades": 1,
+   "units": 13,
+   "topics": 26,
+   "subtopics": 74,
+   "outcomes": 182
+  },
+  "warnings": [
+   "9 code(s) not printed in the source were dropped: 19, 40, 46, 52, 57, 64, 69, 85, 98",
+   "grade Year 12 has no content",
+   "grade Year 13 has no content",
+   "unexpected grade label \"all\""
+  ]
+ }
+}

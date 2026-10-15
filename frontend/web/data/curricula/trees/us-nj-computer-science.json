@@ -1,0 +1,1489 @@
+{
+ "id": "us-nj-computer-science",
+ "region": "US",
+ "framework": "New Jersey state academic standards: Computer Science & Technology",
+ "board": null,
+ "qualification": "K-12",
+ "subject": "Computer Science & Technology",
+ "syllabusCode": null,
+ "gradeSystem": "grade",
+ "source": {
+  "urls": [
+   "https://api.commonstandardsproject.com/api/v1/jurisdictions/BD9F1823F64844E38377E11EB39F173B",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/34C2F08BE2FD4ED3BE301F0CAC4413E5",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/2E5A02F1AD15489A8616E57D047C18B8",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/46B09F929E1A49EABCD04199272EB471",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/C776DC9635AF4C3E940428A5677A4FBC"
+  ],
+  "publisher": "New Jersey state education agency (machine-readable via Common Standards Project / ASN)",
+  "licence": "CC BY 4.0 US, Common Curriculum, Inc.",
+  "firstExam": "2020"
+ },
+ "grades": [
+  {
+   "grade": "5",
+   "units": [
+    {
+     "id": "computing-systems",
+     "title": "Computing Systems",
+     "topics": [
+      {
+       "id": "people-interact-with-a-wide-variety-of-computing",
+       "title": "People interact with a wide variety of computing devices that collect, store, analyze, and act upon information in ways that can affect human capabilities both positively and negatively. The physical components (hardware) and instructions (software) that make up a computing system communicate and process information in digital form",
+       "subtopics": [
+        {
+         "id": "individuals-use-computing-devices-to-perform-a-v",
+         "title": "Individuals use computing devices to perform a variety of tasks accurately and quickly. Computing devices interpret and follow the instructions they are given literally",
+         "outcomes": [
+          {
+           "code": "8.1.2.CS.1",
+           "text": "Select and operate computing devices that perform a variety of tasks accurately and quickly based on user needs and preferences."
+          }
+         ]
+        },
+        {
+         "id": "a-computing-system-is-composed-of-software-and-h",
+         "title": "A computing system is composed of software and hardware",
+         "outcomes": [
+          {
+           "code": "8.1.2.CS.2",
+           "text": "Explain the functions of common software and hardware components of computing systems"
+          }
+         ]
+        },
+        {
+         "id": "describing-a-problem-is-the-first-step-toward-fi",
+         "title": "Describing a problem is the first step toward finding a solution when computing systems do not work as expected",
+         "outcomes": [
+          {
+           "code": "8.1.2.CS.3",
+           "text": "Describe basic hardware and software problems using accurate terminology"
+          }
+         ]
+        },
+        {
+         "id": "computing-devices-may-be-connected-to-other-devi",
+         "title": "Computing devices may be connected to other devices to form a system as a way to extend their capabilities",
+         "outcomes": [
+          {
+           "code": "8.1.5.CS.1",
+           "text": "Model how computing devices connect to other components to form a system."
+          }
+         ]
+        },
+        {
+         "id": "software-and-hardware-work-together-as-a-system-",
+         "title": "Software and hardware work together as a system to accomplish tasks (e.g., sending, receiving, processing, and storing units of information)",
+         "outcomes": [
+          {
+           "code": "8.1.5.CS.2",
+           "text": "Model how computer software and hardware work together as a system to accomplish tasks."
+          }
+         ]
+        },
+        {
+         "id": "shared-features-allow-for-common-troubleshooting",
+         "title": "Shared features allow for common troubleshooting strategies that can be effective for many systems",
+         "outcomes": [
+          {
+           "code": "8.1.5.CS.3",
+           "text": "Identify potential solutions for simple hardware and software problems using common troubleshooting strategies."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "networks-and-the-internet",
+     "title": "Networks and the Internet",
+     "topics": [
+      {
+       "id": "computing-devices-typically-do-not-operate-in-is",
+       "title": "Computing devices typically do not operate in isolation. Networks connect computing devices to share information and resources and are an increasingly integral part of computing. Networks and communication systems provide greater connectivity in the computing world",
+       "subtopics": [
+        {
+         "id": "computer-networks-can-be-used-to-connect-individ",
+         "title": "Computer networks can be used to connect individuals to other individuals, places, information, and ideas. The Internet enables individuals to connect with others worldwide",
+         "outcomes": [
+          {
+           "code": "8.1.2.NI.2",
+           "text": "Describe how the Internet enables individuals to connect with others worldwide."
+          },
+          {
+           "code": "8.1.2.NI.1",
+           "text": "Model and describe how individuals use computers to connect to other individuals, places, information, and ideas through a network."
+          }
+         ]
+        },
+        {
+         "id": "connecting-devices-to-a-network-or-the-internet-",
+         "title": "Connecting devices to a network or the Internet provides great benefits, but care must be taken to use authentication measures, such as strong passwords, to protect devices and information from unauthorized access",
+         "outcomes": [
+          {
+           "code": "8.1.2.NI.3",
+           "text": "Create a password that secures access to a device. Explain why it is important to create unique passwords that are not shared with others."
+          }
+         ]
+        },
+        {
+         "id": "information-needs-a-physical-or-wireless-path-to",
+         "title": "Information needs a physical or wireless path to travel to be sent and received",
+         "outcomes": [
+          {
+           "code": "8.1.5.NI.1",
+           "text": "Develop models that successfully transmit and receive information using both wired and wireless methods."
+          }
+         ]
+        },
+        {
+         "id": "distinguishing-between-public-and-private-inform",
+         "title": "Distinguishing between public and private information is important for safe and secure online interactions.Information can be protected using various security measures (i.e., physical and digital)",
+         "outcomes": [
+          {
+           "code": "8.1.5.NI.2",
+           "text": "Describe physical and digital security measures for protecting sensitive personal information."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "impacts-of-computing",
+     "title": "Impacts of Computing",
+     "topics": [
+      {
+       "id": "computing-affects-many-aspects-of-the-world-in-b",
+       "title": "Computing affects many aspects of the world in both positive and negative ways at local, national, and global levels. Individuals and communities influence computing through their behaviors and cultural and social interactions, and, in turn, computing influences new cultural practices",
+       "subtopics": [
+        {
+         "id": "computing-technology-has-positively-and-negative",
+         "title": "Computing technology has positively and negatively changed the way individuals live and work (e.g., entertainment, communication, productivity tools)",
+         "outcomes": [
+          {
+           "code": "8.1.2.IC.1",
+           "text": "Compare how individuals live and work before and after the implementation of new computing technology."
+          }
+         ]
+        },
+        {
+         "id": "the-development-and-modification-of-computing-te",
+         "title": "The development and modification of computing technology is driven by people’s needs and wants and can affect individuals differently",
+         "outcomes": [
+          {
+           "code": "8.1.5.IC.2",
+           "text": "Identify possible ways to improve the accessibility and usability of computing technologies to address the diverse needs and wants of users."
+          },
+          {
+           "code": "8.1.5.IC.1",
+           "text": "Identify computing technologies that have impacted how individuals live and work and describe the factors that influenced the changes."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "data-analysis",
+     "title": "Data & Analysis",
+     "topics": [
+      {
+       "id": "computing-systems-exist-to-process-data-the-amou",
+       "title": "Computing systems exist to process data. The amount of digital data generated in the world is rapidly expanding, so the need to process data effectively is increasingly important. Data is collected and stored so that it can be analyzed to better understand the world and make more accurate predictions",
+       "subtopics": [
+        {
+         "id": "individuals-collect-use-and-display-data-about-i",
+         "title": "Individuals collect, use, and display data about individuals and the world around them",
+         "outcomes": [
+          {
+           "code": "8.1.2.DA.1",
+           "text": "Collect and present data, including climate change data, in various visual formats."
+          }
+         ]
+        },
+        {
+         "id": "computers-store-data-that-can-be-retrieved-later",
+         "title": "Computers store data that can be retrieved later. Data can be copied, stored in multiple locations, and retrieved",
+         "outcomes": [
+          {
+           "code": "8.1.2.DA.2",
+           "text": "Store, copy, search, retrieve, modify, and delete data using a computing device."
+          }
+         ]
+        },
+        {
+         "id": "data-can-be-used-to-make-predictions-about-the-w",
+         "title": "Data can be used to make predictions about the world",
+         "outcomes": [
+          {
+           "code": "8.1.2.DA.4",
+           "text": "Make predictions based on data using charts or graphs."
+          },
+          {
+           "code": "8.1.2.DA.3",
+           "text": "Identify and describe patterns in data visualizations"
+          }
+         ]
+        },
+        {
+         "id": "data-can-be-organized-displayed-and-presented-to",
+         "title": "Data can be organized, displayed, and presented to highlight relationships",
+         "outcomes": [
+          {
+           "code": "8.1.5.DA.1",
+           "text": "Collect, organize, and display data in order to highlight relationships or support a claim."
+          }
+         ]
+        },
+        {
+         "id": "the-type-of-data-being-stored-affects-the-storag",
+         "title": "The type of data being stored affects the storage requirements",
+         "outcomes": [
+          {
+           "code": "8.1.5.DA.2",
+           "text": "Compare the amount of storage space required for different types of data."
+          }
+         ]
+        },
+        {
+         "id": "individuals-can-select-organize-and-transform-da",
+         "title": "Individuals can select, organize, and transform data into different visual representations and communicate insights gained from the data",
+         "outcomes": [
+          {
+           "code": "8.1.5.DA.4",
+           "text": "Organize and present climate change data visually to highlight relationships or support a claim."
+          },
+          {
+           "code": "8.1.5.DA.3",
+           "text": "Organize and present collected data visually to communicate insights gained from different views of the data."
+          }
+         ]
+        },
+        {
+         "id": "many-factors-influence-the-accuracy-of-inference",
+         "title": "Many factors influence the accuracy of inferences and predictions",
+         "outcomes": [
+          {
+           "code": "8.1.5.DA.5",
+           "text": "Propose cause and effect relationships, predict outcomes, or communicate ideas using data."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "algorithms-programming",
+     "title": "Algorithms & Programming",
+     "topics": [
+      {
+       "id": "an-algorithm-is-a-sequence-of-steps-designed-to-",
+       "title": "An algorithm is a sequence of steps designed to accomplish a specific task. Algorithms are translated into programs, or code, to provide instructions for computing devices. Algorithms and programming control all computing systems, empowering people to communicate with the world in new ways and solve compelling problems",
+       "subtopics": [
+        {
+         "id": "individuals-develop-and-follow-directions-as-par",
+         "title": "Individuals develop and follow directions as part of daily life. A sequence of steps can be expressed as an algorithm that a computer can process",
+         "outcomes": [
+          {
+           "code": "8.1.2.AP.1",
+           "text": "Model daily processes by creating and following algorithms to complete tasks."
+          }
+         ]
+        },
+        {
+         "id": "real-world-information-can-be-stored-and-manipul",
+         "title": "Real world information can be stored and manipulated in programs as data (e.g., numbers, words, colors, images)",
+         "outcomes": [
+          {
+           "code": "8.1.2.AP.2",
+           "text": "Model the way programs store and manipulate data by using numbers or other symbols to represent information."
+          }
+         ]
+        },
+        {
+         "id": "computers-follow-precise-sequences-of-steps-that",
+         "title": "Computers follow precise sequences of steps that automate tasks",
+         "outcomes": [
+          {
+           "code": "8.1.2.AP.3",
+           "text": "Create programs with sequences and simple loops to accomplish tasks."
+          }
+         ]
+        },
+        {
+         "id": "complex-tasks-can-be-broken-down-into-simpler-in",
+         "title": "Complex tasks can be broken down into simpler instructions, some of which can be broken down even further",
+         "outcomes": [
+          {
+           "code": "8.1.2.AP.4",
+           "text": "Break down a task into a sequence of steps."
+          }
+         ]
+        },
+        {
+         "id": "people-work-together-to-develop-programs-for-a-p",
+         "title": "People work together to develop programs for a purpose, such as expressing ideas or addressing problems.The development of a program involves identifying a sequence of events, goals, and expected outcomes, and addressing errors (when necessary)",
+         "outcomes": [
+          {
+           "code": "8.1.2.AP.6",
+           "text": "Debug errors in an algorithm or program that includes sequences and simple loops."
+          },
+          {
+           "code": "8.1.2.AP.5",
+           "text": "Describe a program’s sequence of events, goals, and expected outcomes."
+          }
+         ]
+        },
+        {
+         "id": "different-algorithms-can-achieve-the-same-result",
+         "title": "Different algorithms can achieve the same result.Some algorithms are more appropriate for a specific use than others",
+         "outcomes": [
+          {
+           "code": "8.1.5.AP.1",
+           "text": "Compare and refine multiple algorithms for the same task and determine which is the most appropriate."
+          }
+         ]
+        },
+        {
+         "id": "programming-languages-provide-variables-which-ar",
+         "title": "Programming languages provide variables, which are used to store and modify data",
+         "outcomes": [
+          {
+           "code": "8.1.5.AP.2",
+           "text": "Create programs that use clearly named variables to store and modify data."
+          }
+         ]
+        },
+        {
+         "id": "a-variety-of-control-structures-are-used-to-chan",
+         "title": "A variety of control structures are used to change the flow of program execution (e.g., sequences, events, loops, conditionals)",
+         "outcomes": [
+          {
+           "code": "8.1.5.AP.3",
+           "text": "Create programs that include sequences, events, loops, and conditionals."
+          }
+         ]
+        },
+        {
+         "id": "programs-can-be-broken-down-into-smaller-parts-t",
+         "title": "Programs can be broken down into smaller parts to facilitate their design, implementation, and review. Programs can also be created by incorporating smaller portions of programs that already exist",
+         "outcomes": [
+          {
+           "code": "8.1.5.AP.4",
+           "text": "Break down problems into smaller, manageable sub-problems to facilitate program development."
+          },
+          {
+           "code": "8.1.5.AP.5",
+           "text": "Modify, remix, or incorporate pieces of existing programs into one’s own work to add additional features or create a new program."
+          }
+         ]
+        },
+        {
+         "id": "individuals-develop-programs-using-an-iterative-",
+         "title": "Individuals develop programs using an iterative process involving design, implementation, testing, and review",
+         "outcomes": [
+          {
+           "code": "8.1.5.AP.6",
+           "text": "Develop programs using an iterative process, implement the program design, and test the program to ensure it works as intended"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "engineering-design",
+     "title": "Engineering Design",
+     "topics": [
+      {
+       "id": "people-design-for-enjoyment-and-to-solve-problem",
+       "title": "People design for enjoyment and to solve problems, extend human capabilities, satisfy needs and wants, and improve the human condition. Engineering Design, a systematic approach to creating solutions to technological problems and finding ways to meet people’s needs and desires, allows for the effective and efficient development of products and systems",
+       "subtopics": [
+        {
+         "id": "engineering-design-is-a-creative-process-for-mee",
+         "title": "Engineering design is a creative process for meeting human needs or wants that can result in multiple solutions",
+         "outcomes": [
+          {
+           "code": "8.2.2.ED.3",
+           "text": "Select and use appropriate tools and materials to build a product using the design process."
+          },
+          {
+           "code": "8.2.2.ED.2",
+           "text": "Collaborate to solve a simple problem, or to illustrate how to build a product using the design process."
+          },
+          {
+           "code": "8.2.2.ED.1",
+           "text": "Communicate the function of a product or device."
+          }
+         ]
+        },
+        {
+         "id": "limitations-constraints-must-be-considered-when-",
+         "title": "Limitations (constraints) must be considered when engineering designs",
+         "outcomes": [
+          {
+           "code": "8.2.2.ED.4",
+           "text": "Identify constraints and their role in the engineering design process."
+          }
+         ]
+        },
+        {
+         "id": "engineering-design-is-a-systematic-and-creative-",
+         "title": "Engineering design is a systematic and creative process of communicating and collaborating to meet a design challenge.Often, several design solutions exist, each better in some way than the others",
+         "outcomes": [
+          {
+           "code": "8.2.5.ED.3",
+           "text": "Follow step by step directions to assemble a product or solve a problem, using appropriate tools to accomplish the task."
+          },
+          {
+           "code": "8.2.5.ED.2",
+           "text": "Collaborate with peers to collect information, brainstorm to solve a problem, and evaluate all possible solutions to provide the best results with supporting sketches or models."
+          },
+          {
+           "code": "8.2.5.ED.1",
+           "text": "Explain the functions of a system and its subsystems."
+          }
+         ]
+        },
+        {
+         "id": "engineering-design-requirements-include-desired-",
+         "title": "Engineering design requirements include desired features and limitations that need to be considered",
+         "outcomes": [
+          {
+           "code": "8.2.5.ED.6",
+           "text": "Evaluate and test alternative solutions to a problem using the constraints and trade- offs identified in the design process."
+          },
+          {
+           "code": "8.2.5.ED.5",
+           "text": "Describe how specifications and limitations impact the engineering design process."
+          },
+          {
+           "code": "8.2.5.ED.4",
+           "text": "Explain factors that influence the development and function of products and systems (e.g., resources, criteria, desired features, constraints)."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "interaction-of-technology-and-humans",
+     "title": "Interaction of Technology and Humans",
+     "topics": [
+      {
+       "id": "societies-influence-technological-development-so",
+       "title": "Societies influence technological development. Societies are characterized by common elements such as shared values, differentiated roles, and cultural norms, as well as by entities such as community institutions, organizations, and businesses. Interaction of Technology and Humans concerns the ways society drives the improvement and creation of new technologies, and how technologies both serve and change society",
+       "subtopics": [
+        {
+         "id": "human-needs-and-desires-determine-which-new-tool",
+         "title": "Human needs and desires determine which new tools are developed",
+         "outcomes": [
+          {
+           "code": "8.2.2.ITH.2",
+           "text": "Explain the purpose of a product and its value."
+          },
+          {
+           "code": "8.2.2.ITH.1",
+           "text": "Identify products that are designed to meet human wants or needs."
+          }
+         ]
+        },
+        {
+         "id": "technology-has-changed-the-way-people-live-and-w",
+         "title": "Technology has changed the way people live and work.Various tools can improve daily tasks and quality of life",
+         "outcomes": [
+          {
+           "code": "8.2.2.ITH.4",
+           "text": "Identify how various tools reduce work and improve daily tasks."
+          },
+          {
+           "code": "8.2.2.ITH.3",
+           "text": "Identify how technology impacts or improves life."
+          },
+          {
+           "code": "8.2.2.ITH.5",
+           "text": "Design a solution to a problem affecting the community in a collaborative team and explain the intended impact of the solution."
+          }
+         ]
+        },
+        {
+         "id": "societal-needs-and-wants-determine-which-new-too",
+         "title": "Societal needs and wants determine which new tools are developed to address real-world problems",
+         "outcomes": [
+          {
+           "code": "8.2.5.ITH.1",
+           "text": "Explain how societal needs and wants influence the development and function of a product and a system."
+          }
+         ]
+        },
+        {
+         "id": "a-new-tool-may-have-favorable-or-unfavorable-res",
+         "title": "A new tool may have favorable or unfavorable results as well as both positive and negative effects on society. Technology spurs new businesses and careers",
+         "outcomes": [
+          {
+           "code": "8.2.5.ITH.4",
+           "text": "Describe a technology/tool that has made the way people live easier or has led to a new business or career."
+          },
+          {
+           "code": "8.2.5.ITH.3",
+           "text": "Analyze the effectiveness of a new product or system and identify the positive and/or negative consequences resulting from its use."
+          },
+          {
+           "code": "8.2.5.ITH.2",
+           "text": "Evaluate how well a new tool has met its intended purpose and identify any shortcomings it might have."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "nature-of-technology",
+     "title": "Nature of Technology",
+     "topics": [
+      {
+       "id": "human-population-patterns-and-movement-focus-on-",
+       "title": "Human population, patterns and movement focus on the size, composition, distribution, and movement of human populations and how they are fundamental and active features on Earth’s surface. This includes understanding that the expansion and redistribution of the human population affects patterns of settlement, environmental changes, and resource use. Patterns and movements of population also relate to physical phenomena including climate variability, landforms, and locations of various natural hazards and their effects on population size, composition, and distribution",
+       "subtopics": [
+        {
+         "id": "innovation-and-the-improvement-of-existing-techn",
+         "title": "Innovation and the improvement of existing technology involves creative thinking",
+         "outcomes": [
+          {
+           "code": "8.2.2.NT.2",
+           "text": "Brainstorm how to build a product, improve a designed product, fix a product that has stopped working, or solve a simple problem."
+          },
+          {
+           "code": "8.2.2.NT.1",
+           "text": "Model and explain how a product works after taking it apart, identifying the relationship of each part, and putting it back together."
+          }
+         ]
+        },
+        {
+         "id": "technology-innovation-and-improvement-may-be-inf",
+         "title": "Technology innovation and improvement may be influenced by a variety of factors.Engineers create and modify technologies to meet people’s needs and wants; scientists ask questions about the natural world",
+         "outcomes": [
+          {
+           "code": "8.2.5.NT.4",
+           "text": "Identify how improvement in the understanding of materials science impacts technologies."
+          },
+          {
+           "code": "8.2.5.NT.3",
+           "text": "Redesign an existing product for a different purpose in a collaborative team."
+          },
+          {
+           "code": "8.2.5.NT.2",
+           "text": "Identify new technologies resulting from the demands, values, and interests of individuals, businesses, industries, and societies."
+          },
+          {
+           "code": "8.2.5.NT.1",
+           "text": "Troubleshoot a product that has stopped working and brainstorm ideas to correct the problem."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "effects-of-technology-on-the-natural-world",
+     "title": "Effects of Technology on the Natural World",
+     "topics": [
+      {
+       "id": "many-of-engineering-and-technology-s-impacts-on-",
+       "title": "Many of engineering and technology’s impacts on society and the environment are widely regarded as desirable. However, other impacts are regarded as less desirable. Effects of Technology on the Natural World concerns the positive and negative ways that technologies affect the natural world",
+       "subtopics": [
+        {
+         "id": "the-use-of-technology-developed-for-the-human-de",
+         "title": "The use of technology developed for the human designed world can affect the environment, including land, water, air, plants, and animals.Technologies that use natural sources can have negative effects on the environment, its quality, and inhabitants.Reusing and recycling materials can save money while preserving natural resources and avoiding damage to the environment",
+         "outcomes": [
+          {
+           "code": "8.2.2.ETW.3",
+           "text": "Describe or model the system used for recycling technology."
+          },
+          {
+           "code": "8.2.2.ETW.2",
+           "text": "Identify the natural resources needed to create a product."
+          },
+          {
+           "code": "8.2.2.ETW.1",
+           "text": "Classify products as resulting from nature or produced as a result of technology."
+          },
+          {
+           "code": "8.2.2.ETW.4",
+           "text": "Explain how the disposal of or reusing a product affects the local and global environment."
+          }
+         ]
+        },
+        {
+         "id": "the-technology-developed-for-the-human-designed-",
+         "title": "The technology developed for the human designed world can have unintended consequences for the environment.Technology must be continually developed and made more efficient to reduce the need for nonrenewable resources",
+         "outcomes": [
+          {
+           "code": "8.2.5.ETW.5",
+           "text": "Identify the impact of a specific technology on the environment and determine what can be done to increase positive effects and to reduce any negative effects, such as climate change."
+          },
+          {
+           "code": "8.2.5.ETW.4",
+           "text": "Explain the impact that resources, such as energy and materials used to develop technology, have on the environment."
+          },
+          {
+           "code": "8.2.5.ETW.3",
+           "text": "Explain why human-designed systems, products, and environments need to be constantly monitored, maintained, and improved."
+          },
+          {
+           "code": "8.2.5.ETW.2",
+           "text": "Describe ways that various technologies are used to reduce improper use of resources."
+          },
+          {
+           "code": "8.2.5.ETW.1",
+           "text": "Describe how resources such as material, energy, information, time, tools, people, and capital are used in products or systems."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "ethics-culture",
+     "title": "Ethics & Culture",
+     "topics": [
+      {
+       "id": "ethics-and-culture-concerns-the-profound-effects",
+       "title": "Ethics and Culture concerns the profound effects that technologies have on people, how those effects can widen or narrow disparities, and the responsibility that people have for the societal consequences of their technological decisions",
+       "subtopics": [
+        {
+         "id": "the-availability-of-technology-for-essential-tas",
+         "title": "The availability of technology for essential tasks varies in different parts of the world",
+         "outcomes": [
+          {
+           "code": "8.2.2.EC.1",
+           "text": "Identify and compare technology used in different schools, communities, regions, and parts of the world."
+          }
+         ]
+        },
+        {
+         "id": "technological-choices-and-opportunities-vary-due",
+         "title": "Technological choices and opportunities vary due to factors such as differences in economic resources, location, and cultural values",
+         "outcomes": [
+          {
+           "code": "8.2.5.EC.1",
+           "text": "Analyze how technology has contributed to or reduced inequities in local and global communities and determine its short- and long-term effects."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "9-12",
+   "units": [
+    {
+     "id": "computer-science",
+     "title": "Computer Science",
+     "topics": [
+      {
+       "id": "computing-systems",
+       "title": "Computing Systems",
+       "subtopics": [
+        {
+         "id": "the-usability-dependability-security-and-accessi",
+         "title": "The usability, dependability, security, and accessibility of devices within integrated systems are important considerations in their design as they evolve",
+         "outcomes": [
+          {
+           "code": "8.1.12.CS.1",
+           "text": "Describe ways in which integrated systems hide underlying implementation details to simplify user experiences."
+          }
+         ]
+        },
+        {
+         "id": "a-computing-system-involves-interaction-among-th",
+         "title": "A computing system involves interaction among the user, hardware, application software, and system software",
+         "outcomes": [
+          {
+           "code": "8.1.12.CS.2",
+           "text": "Model interactions between application software, system software, and hardware."
+          },
+          {
+           "code": "8.1.12.CS.3",
+           "text": "Compare the functions of application software, system software, and hardware."
+          }
+         ]
+        },
+        {
+         "id": "successful-troubleshooting-of-complex-problems-i",
+         "title": "Successful troubleshooting of complex problems involves multiple approaches including research, analysis, reflection, interaction with peers, and drawing on past experiences",
+         "outcomes": [
+          {
+           "code": "8.1.12.CS.4",
+           "text": "Develop guidelines that convey systematic troubleshooting strategies that others can use to identify and fix errors."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "networks-and-the-internet",
+       "title": "Networks and the Internet",
+       "subtopics": [
+        {
+         "id": "the-scalability-and-reliability-of-the-internet-",
+         "title": "The scalability and reliability of the Internet are enabled by the hierarchy and redundancy in networks.Network topology is determined by many characteristics",
+         "outcomes": [
+          {
+           "code": "8.1.12.NI.1",
+           "text": "Evaluate the scalability and reliability of networks, by describing the relationship between routers, switches, servers, topology, and addressing."
+          }
+         ]
+        },
+        {
+         "id": "network-security-depends-on-a-combination-of-har",
+         "title": "Network security depends on a combination of hardware, software, and practices that protect data while it is at rest, in transit, and in use.The needs of users and the sensitivity of data determine the elvel of security implemented. Advanced attacks take advantage of common security vulnerabilities",
+         "outcomes": [
+          {
+           "code": "8.1.12.NI.2",
+           "text": "Evaluate security measures to address various common security threats."
+          },
+          {
+           "code": "8.1.12.NI.3",
+           "text": "Explain how the needs of users and the sensitivity of data determine the level of security implemented."
+          },
+          {
+           "code": "8.1.12.NI.4",
+           "text": "Explain how decisions on methods to protect data are influenced by whether the data is at rest, in transit, or in use."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "impacts-of-computing",
+       "title": "Impacts of Computing",
+       "subtopics": [
+        {
+         "id": "the-design-and-use-of-computing-technologies-and",
+         "title": "The design and use of computing technologies and artifacts can positively or negatively affect equitable access to information and opportunities",
+         "outcomes": [
+          {
+           "code": "8.1.12.IC.1",
+           "text": "Evaluate the ways computing impacts personal, ethical, social, economic, and cultural practices."
+          },
+          {
+           "code": "8.1.12.IC.2",
+           "text": "Test and refine computational artifacts ot reduce bias and equity deficits"
+          },
+          {
+           "code": "8.1.12.IC.3",
+           "text": "Predict the potential impacts and implications of emerging technologies on larger social, economic, and political structures, using evidence from credible sources."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "data-analysis",
+       "title": "Data & Analysis",
+       "subtopics": [
+        {
+         "id": "individuals-select-digital-tools-and-design-auto",
+         "title": "Individuals select digital tools and design automated processes to collect, transform, generalize, simplify, and present large data sets in different ways to influence how other people interpret and understand the underlying information",
+         "outcomes": [
+          {
+           "code": "8.1.12.DA.1",
+           "text": "Create interactive data visualizations using software tools to help others better understand real world phenomena, including climate change."
+          }
+         ]
+        },
+        {
+         "id": "choices-individuals-make-about-how-and-where-dat",
+         "title": "Choices individuals make about how and where data is organized and stored affects cost, speed, reliability, accessibility, privacy, and integrity",
+         "outcomes": [
+          {
+           "code": "8.1.12.DA.2",
+           "text": "Describe the trade-offs in how and where data is organized and stored."
+          },
+          {
+           "code": "8.1.12.DA.4",
+           "text": "Explain the relationship between binary numbers and the storage and use of data in a computing device."
+          },
+          {
+           "code": "8.1.12.DA.3",
+           "text": "Translate between decimal numbers and binary numbers."
+          }
+         ]
+        },
+        {
+         "id": "large-data-sets-can-be-transformed-generalized-s",
+         "title": "Large data sets can be transformed, generalized, simplified, and presented in different ways to influence how individuals interpret and understand the underlying information",
+         "outcomes": [
+          {
+           "code": "8.1.12.DA.5",
+           "text": "Create data visualizations from large data sets to summarize, communicate, and support different interpretations of real-world phenomena."
+          }
+         ]
+        },
+        {
+         "id": "the-accuracy-of-predictions-or-inferences-made-f",
+         "title": "The accuracy of predictions or inferences made from a computer model is affected by the amount quality, and diversity of data",
+         "outcomes": [
+          {
+           "code": "8.1.12.DA.6",
+           "text": "Create and refine computational models to better represent the relationships among different elements of data collected from a phenomenon or process."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "algorithms-programming",
+       "title": "Algorithms & Programming",
+       "subtopics": [
+        {
+         "id": "individuals-evaluate-and-select-algorithms-based",
+         "title": "Individuals evaluate and select algorithms based on performance, reusability, and ease of implementation",
+         "outcomes": [
+          {
+           "code": "8.1.12.AP.1",
+           "text": "Design algorithms to solve computational problems using a combination of original and existing algorithms."
+          }
+         ]
+        },
+        {
+         "id": "programmers-choose-data-structures-to-manage-pro",
+         "title": "Programmers choose data structures to manage program complexity based on functionality, storage, and performance trade-offs",
+         "outcomes": [
+          {
+           "code": "8.1.12.AP.2",
+           "text": "Create generalized computational solutions using collections instead of repeatedly using simple variables."
+          }
+         ]
+        },
+        {
+         "id": "trade-offs-related-to-implementation-readability",
+         "title": "Trade-offs related to implementation, readability, and program performance are considered when selecting and combining control structures",
+         "outcomes": [
+          {
+           "code": "8.1.12.AP.3",
+           "text": "Select and combine control structures for a specific application based upon performance and readability, and identify trade-offs to justify the choice."
+          },
+          {
+           "code": "8.1.12.AP.4",
+           "text": "Design and iteratively develop computational artifacts for practical intent, personal expression, or to address a societal issue."
+          }
+         ]
+        },
+        {
+         "id": "complex-programs-are-designed-as-a-system-of-int",
+         "title": "Complex programs are designed as a system of interacting modules, each with a specific role, coordinating for a common overall purpose. Modules allow for better management of complex tasks",
+         "outcomes": [
+          {
+           "code": "8.1.12.AP.5",
+           "text": "Decompose problems into smaller components through systematic analysis, using constructs such as procedures, modules, and/or objects."
+          },
+          {
+           "code": "8.1.12.AP.6",
+           "text": "Create artifacts by using procedures within a program, combinations of data and procedures, or independent but interrelated programs."
+          }
+         ]
+        },
+        {
+         "id": "complex-programs-are-developed-tested-and-analyz",
+         "title": "Complex programs are developed, tested, and analyzed by teams drawing on the members' diverse strengths using a variety of resources, libraries, and tools",
+         "outcomes": [
+          {
+           "code": "8.1.12.AP.7",
+           "text": "Collaboratively design and develop programs and artifacts for broad audiences by incorporating feedback from users."
+          },
+          {
+           "code": "8.1.12.AP.8",
+           "text": "Evaluate and refine computational artifacts to make them more usable and accessible."
+          },
+          {
+           "code": "8.1.12.AP.9",
+           "text": "Collaboratively document and present design decisions in the development of complex programs."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "design-thinking",
+     "title": "Design Thinking",
+     "topics": [
+      {
+       "id": "engineering-design",
+       "title": "Engineering Design",
+       "subtopics": [
+        {
+         "id": "engineering-design-is-a-complex-process-in-which",
+         "title": "Engineering design is a complex process in which creativity, content knowledge, research, and analysis are used to address local and global problems.Decisions on trade-offs involve systematic comparisons of all costs and benefits, and final steps that may involve redesigning for optimization",
+         "outcomes": [
+          {
+           "code": "8.2.12.ED.1",
+           "text": "Use research to design and create a product or system that addresses a problem and make modifications based on input from potential consumers."
+          },
+          {
+           "code": "8.2.12.ED.2",
+           "text": "Create scaled engineering drawings for a new product or system and make modification to increase optimization based on feedback."
+          },
+          {
+           "code": "8.2.12.ED.3",
+           "text": "Evaluate several models of the same type of product and make recommendations for a new design based on a cost benefit analysis."
+          },
+          {
+           "code": "8.2.12.ED.4",
+           "text": "Design a product or system that addresses a global problem and document decisions made based on research, constraints, trade-offs and aesthetic and ethical considerations and share this information with an appropriate audience."
+          }
+         ]
+        },
+        {
+         "id": "engineering-design-evaluation-a-process-for-dete",
+         "title": "Engineering design evaluation, a process for determining how well a solution meets requirements, involves systematic comparisons between requirements, specifications, and constraints",
+         "outcomes": [
+          {
+           "code": "8.2.12.ED.5",
+           "text": "Evaluate the effectiveness of a product or system based on factors that are related to its requirements, specifications, and constraints (e.g., safety, reliability, economic considerations, quality control, environmental concerns, manufacturability, maintenance and repair, ergonomics)."
+          },
+          {
+           "code": "8.2.12.ED.6",
+           "text": "Analyze the effects of changing resources when designing a specific product or system (e.g., materials, energy, tools, capital, labor)."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "interaction-of-technology-and-humans",
+       "title": "Interaction of Technology and Humans",
+       "subtopics": [
+        {
+         "id": "decisions-to-develop-new-technology-are-driven-b",
+         "title": "Decisions to develop new technology are driven by societal and cultural opinions and demands that differ from culture to culture",
+         "outcomes": [
+          {
+           "code": "8.2.12.ITH.1",
+           "text": "Analyze a product to determine the impact that economic, political, social, and/or cultural factors have had on its design, including its design constraints."
+          }
+         ]
+        },
+        {
+         "id": "changes-caused-by-the-introduction-and-use-of-a-",
+         "title": "Changes caused by the introduction and use of a new technology can range from gradual to rapid and from subtle to obvious and can change over time. These changes may vary from society to society as a result of differences in a society's economy, politics, and culture",
+         "outcomes": [
+          {
+           "code": "8.2.12.ITH.2",
+           "text": "Propose an innovation to meet future demands supported by an analysis of the potential costs, benefits, trade-offs, and risks related to the use of the innovation."
+          },
+          {
+           "code": "8.2.12.ITH.3",
+           "text": "Analyze the impact that globalization, social media, and access to open source technologies has had on innovation and on a society's economy, politics, and culture."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "nature-of-technology",
+       "title": "Nature of Technology",
+       "subtopics": [
+        {
+         "id": "engineers-use-science-mathematics-and-other-disc",
+         "title": "Engineers use science, mathematics, and other disciplines to improve technology. Increased collaboration among engineers, scientists, and mathematicians can improve their work and designs.Technology, product, or system redesign can be more difficult than the original design",
+         "outcomes": [
+          {
+           "code": "8.2.12.NT.1",
+           "text": "Explain how different groups can contribute to the overall design of a product."
+          },
+          {
+           "code": "8.2.12.NT.2",
+           "text": "Redesign an existing product to improve form or function."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "effects-of-technology-on-the-natural-world",
+       "title": "Effects of Technology on the Natural World",
+       "subtopics": [
+        {
+         "id": "development-and-modification-of-any-technologica",
+         "title": "Development and modification of any technological system needs to take into account how the operation of the system will affect natural resources and ecosystems.Impacts of technological systems on the environment need to be monitored and must inform decision-making.Many technologies have been designed to have a positive impact on the environment and to monitor environmental change over time",
+         "outcomes": [
+          {
+           "code": "8.2.12.ETW.1",
+           "text": "Evaluate ethical considerations regarding the sustainability of environmental resources that are used for the design, creation, and maintenance of a chosen product."
+          },
+          {
+           "code": "8.2.12.ETW.2",
+           "text": "Synthesize and analyze data collected to monitor the effects of a technological product or system on the environment."
+          },
+          {
+           "code": "8.2.12.ETW.3",
+           "text": "Identify a complex, global environmental or climate change issue, develop a systemic plan of investigation, and propose an innovative sustainable solution."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "ethics-culture",
+       "title": "Ethics & Culture",
+       "subtopics": [
+        {
+         "id": "the-ability-to-ethically-integrate-new-technolog",
+         "title": "The ability to ethically integrate new technologies requires deciding whether to introduce a technology, taking into consideration local resources and the role of culture in acceptance.Consequences of technological use may be different for different groups of people and may change over time.Since technological decisions can have ethical implications, it is essential that individuals analyze issues by gathering evidence from multiple perspectives and conceiving of alternative possibilities before proposing solutions",
+         "outcomes": [
+          {
+           "code": "8.2.12.EC.1",
+           "text": "Analyze controversial technological issues and determine the degree to which individuals, businesses, and governments have an ethical roles in decisions that are made."
+          },
+          {
+           "code": "8.2.12.EC.2",
+           "text": "Assess the positive and negative impacts of emerging technologies on developing countries and evaluate how individuals, non-profit organizations, and governments have responded."
+          },
+          {
+           "code": "8.2.12.EC.3",
+           "text": "Synthesize data, analyze trends, and draw conclusions regarding the effect of a technology on the individual, culture, society, and environment and share this information with the appropriate audience."
+          },
+          {
+           "code": "8.2.12.EC.4",
+           "text": "Research historical tensions between environmental and economic considerations as driven by human needs and wants in the development of a technological product and present the competing viewpoints."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "6-8",
+   "units": [
+    {
+     "id": "computer-science",
+     "title": "Computer Science",
+     "topics": [
+      {
+       "id": "computing-systems",
+       "title": "Computing Systems",
+       "subtopics": [
+        {
+         "id": "the-study-of-human-computer-interaction-can-impr",
+         "title": "The study of human–computer interaction can improve the design of devices and extend the abilities of humans",
+         "outcomes": [
+          {
+           "code": "8.1.8.CS.1",
+           "text": "Recommend improvements to computing devices in order to improve the ways users interact with the devices."
+          }
+         ]
+        },
+        {
+         "id": "software-and-hardware-determine-a-computing-syst",
+         "title": "Software and hardware determine a computing system’s capability to store and process information. The design or selection of a computing system involves multiple considerations and potential trade-offs",
+         "outcomes": [
+          {
+           "code": "8.1.8.CS.2",
+           "text": "Design a system that combines hardware and software components to process data."
+          },
+          {
+           "code": "8.1.8.CS.3",
+           "text": "Justify design decisions and explain potential system trade-offs."
+          }
+         ]
+        },
+        {
+         "id": "troubleshooting-a-problem-is-more-effective-when",
+         "title": "Troubleshooting a problem is more effective when knowledge of the specific device along with a systematic process is used to identify the source of a problem",
+         "outcomes": [
+          {
+           "code": "8.1.8.CS.4",
+           "text": "Systematically apply troubleshooting strategies to identify and resolve hardware and software problems in computing systems."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "networks-and-the-internet",
+       "title": "Networks and the Internet",
+       "subtopics": [
+        {
+         "id": "protocols-packets-and-addressing-are-the-key-com",
+         "title": "Protocols, packets, and addressing are the key components for reliable delivery of information across networks",
+         "outcomes": [
+          {
+           "code": "8.1.8.NI.1",
+           "text": "Model how information is broken down into smaller pieces, transmitted as addressed packets through multiple devices over networks and the Internet, and reassembled at the destination."
+          },
+          {
+           "code": "8.1.8.NI.2",
+           "text": "Model the role of protocols in transmitting data across networks and the Internet and how they enable secure and errorless communication."
+          }
+         ]
+        },
+        {
+         "id": "the-information-sent-and-received-across-network",
+         "title": "The information sent and received across networks can be protected from unauthorized access and modification in a variety of ways. The evolution of malware leads to understanding the key security measures and best practices needed to proactively address the threat to digital data",
+         "outcomes": [
+          {
+           "code": "8.1.8.NI.3",
+           "text": "Explain how network security depends on a combination of hardware, software, and practices that control access to data and systems."
+          },
+          {
+           "code": "8.1.8.NI.4",
+           "text": "Explain how new security measures have been created in response to key malware events."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "impacts-of-computing",
+       "title": "Impacts of Computing",
+       "subtopics": [
+        {
+         "id": "advancements-in-computing-technology-can-change-",
+         "title": "Advancements in computing technology can change individuals’ behaviors. Society is faced with trade-offs due to the increasing globalization and automation that computing brings",
+         "outcomes": [
+          {
+           "code": "8.1.8.IC.1",
+           "text": "Compare the trade-offs associated with computing technologies that affect individual’s everyday activities and career options."
+          },
+          {
+           "code": "8.1.8.IC.2",
+           "text": "Describe issues of bias and accessibility in the design of existing technologies."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "data-analysis",
+       "title": "Data & Analysis",
+       "subtopics": [
+        {
+         "id": "people-use-digital-devices-and-tools-to-automate",
+         "title": "People use digital devices and tools to automate the collection, use, and transformation of data. The manner in which data is collected and transformed is influenced by the type of digital device(s) available and the intended use of the data",
+         "outcomes": [
+          {
+           "code": "8.1.8.DA.1",
+           "text": "Organize and transform data collected using computational tools to make it usable for a specific purpose."
+          }
+         ]
+        },
+        {
+         "id": "data-is-represented-in-many-formats-software-too",
+         "title": "Data is represented in many formats. Software tools translate the low-level representation of bits into a form understandable by individuals. Data is organized and accessible based on the application used to store it",
+         "outcomes": [
+          {
+           "code": "8.1.8.DA.2",
+           "text": "Explain the difference between how the computer stores data as bits and how the data is displayed."
+          },
+          {
+           "code": "8.1.8.DA.3",
+           "text": "Identify the appropriate tool to access data based on its file format."
+          }
+         ]
+        },
+        {
+         "id": "the-purpose-of-cleaning-data-is-to-remove-errors",
+         "title": "The purpose of cleaning data is to remove errors and make it easier for computers to process",
+         "outcomes": [
+          {
+           "code": "8.1.8.DA.4",
+           "text": "Transform data to remove errors and improve the accuracy of the data for analysis."
+          }
+         ]
+        },
+        {
+         "id": "computer-models-can-be-used-to-simulate-events-e",
+         "title": "Computer models can be used to simulate events, examine theories and inferences, or make predictions",
+         "outcomes": [
+          {
+           "code": "8.1.8.DA.5",
+           "text": "Test, analyze, and refine computational models."
+          },
+          {
+           "code": "8.1.8.DA.6",
+           "text": "Analyze climate change computational models and propose refinements."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "algorithms-programming",
+       "title": "Algorithms & Programming",
+       "subtopics": [
+        {
+         "id": "individuals-design-algorithms-that-are-reusable-",
+         "title": "Individuals design algorithms that are reusable in many situations. Algorithms that are readable are easier to follow, test, and debug",
+         "outcomes": [
+          {
+           "code": "8.1.8.AP.1",
+           "text": "Design and illustrate algorithms that solve complex problems using flowcharts and/or pseudocode."
+          }
+         ]
+        },
+        {
+         "id": "programmers-create-variables-to-store-data-value",
+         "title": "Programmers create variables to store data values of different types and perform appropriate operations on their values",
+         "outcomes": [
+          {
+           "code": "8.1.8.AP.2",
+           "text": "Create clearly named variables that represent different data types and perform operations on their values."
+          }
+         ]
+        },
+        {
+         "id": "control-structures-are-selected-and-combined-in-",
+         "title": "Control structures are selected and combined in programs to solve more complex problems",
+         "outcomes": [
+          {
+           "code": "8.1.8.AP.3",
+           "text": "Design and iteratively develop programs that combine control structures, including nested loops and compound conditionals."
+          }
+         ]
+        },
+        {
+         "id": "programs-use-procedures-to-organize-code-and-hid",
+         "title": "Programs use procedures to organize code and hide implementation details. Procedures can be repurposed in new programs. Defining parameters for procedures can generalize behavior and increase reusability",
+         "outcomes": [
+          {
+           "code": "8.1.8.AP.4",
+           "text": "Decompose problems and sub-problems into parts to facilitate the design, implementation, and review of programs."
+          },
+          {
+           "code": "8.1.8.AP.5",
+           "text": "Create procedures with parameters to organize code and make it easier to reuse."
+          }
+         ]
+        },
+        {
+         "id": "individuals-design-and-test-solutions-to-identif",
+         "title": "Individuals design and test solutions to identify problems taking into consideration the diverse needs of the users and the community",
+         "outcomes": [
+          {
+           "code": "8.1.8.AP.6",
+           "text": "Refine a solution that meets users’ needs by incorporating feedback from team members and users."
+          },
+          {
+           "code": "8.1.8.AP.7",
+           "text": "Design programs, incorporating existing code, media, and libraries, and give attribution."
+          },
+          {
+           "code": "8.1.8.AP.8",
+           "text": "Systematically test and refine programs using a range of test cases and users."
+          },
+          {
+           "code": "8.1.8.AP.9",
+           "text": "Document programs in order to make them easier to follow, test, and debug."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "design-thinking",
+     "title": "Design Thinking",
+     "topics": [
+      {
+       "id": "engineering-design",
+       "title": "Engineering Design",
+       "subtopics": [
+        {
+         "id": "engineering-design-is-a-systematic-creative-and-",
+         "title": "Engineering design is a systematic, creative, and iterative process used to address local and global problems. The process includes generating ideas, choosing the best solution, and making, testing, and redesigning models or prototypes",
+         "outcomes": [
+          {
+           "code": "8.2.8.ED.1",
+           "text": "Evaluate the function, value, and aesthetics of a technological product or system, from the perspective of the user and the producer."
+          },
+          {
+           "code": "8.2.8.ED.2",
+           "text": "Identify the steps in the design process that could be used to solve a problem."
+          },
+          {
+           "code": "8.2.8.ED.3",
+           "text": "Develop a proposal for a solution to a real-world problem that includes a model (e.g., physical prototype, graphical/technical sketch)."
+          },
+          {
+           "code": "8.2.8.ED.4",
+           "text": "Investigate a malfunctioning system, identify its impact, and explain the step-by-step process used to troubleshoot, evaluate, and test options to repair the product in a collaborative team."
+          }
+         ]
+        },
+        {
+         "id": "engineering-design-requirements-and-specificatio",
+         "title": "Engineering design requirements and specifications involve making trade-offs between competing requirements and desired design features",
+         "outcomes": [
+          {
+           "code": "8.2.8.ED.5",
+           "text": "Explain the need for optimization in a design process."
+          },
+          {
+           "code": "8.2.8.ED.6",
+           "text": "Analyze how trade-offs can impact the design of a product."
+          },
+          {
+           "code": "8.2.8.ED.7",
+           "text": "Design a product to address a real-world problem and document the iterative design process, including decisions made as a result of specific constraints and trade-offs (e.g., annotated sketches)."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "interaction-of-technology-and-humans",
+       "title": "Interaction of Technology and Humans",
+       "subtopics": [
+        {
+         "id": "economic-political-social-and-cultural-aspects-o",
+         "title": "Economic, political, social and cultural aspects of society drive development of new technological products, processes, and systems",
+         "outcomes": [
+          {
+           "code": "8.2.8.ITH.1",
+           "text": "Explain how the development and use of technology influences economic, political, social, and cultural issues."
+          }
+         ]
+        },
+        {
+         "id": "technology-interacts-with-society-sometimes-brin",
+         "title": "Technology interacts with society, sometimes bringing about changes in a society’s economy, politics, and culture, and often leading to the creation of new needs and wants. New needs and wants may create strains on local economies and workforces. Improvements in technology are intended to make the completion of tasks easier, safer, and/or more efficient",
+         "outcomes": [
+          {
+           "code": "8.2.8.ITH.2",
+           "text": "Compare how technologies have influenced society over time"
+          },
+          {
+           "code": "8.2.8.ITH.3",
+           "text": "Evaluate the impact of sustainability on the development of a designed product or system."
+          },
+          {
+           "code": "8.2.8.ITH.4",
+           "text": "Identify technologies that have been designed to reduce the negative consequences of other technologies and explain the change in impact."
+          },
+          {
+           "code": "8.2.8.ITH.5",
+           "text": "Compare the impacts of a given technology on different societies, noting factors that may make a technology appropriate and sustainable in one society but not in another."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "nature-of-technology",
+       "title": "Nature of Technology",
+       "subtopics": [
+        {
+         "id": "technology-advances-through-the-processes-of-inn",
+         "title": "Technology advances through the processes of innovation and invention which relies upon the imaginative and inventive nature of people. Sometimes a technology developed for one purpose is adapted to serve other purposes. Engineers use a systematic process of creating or modifying technologies that is fueled and constrained by physical laws, cultural norms, and economic resources. Scientists use systematic investigation to understand the natural world",
+         "outcomes": [
+          {
+           "code": "8.2.8.NT.1",
+           "text": "Examine a malfunctioning tool, product, or system and propose solutions to the problem."
+          },
+          {
+           "code": "8.2.8.NT.2",
+           "text": "Analyze an existing technological product that has been repurposed for a different function."
+          },
+          {
+           "code": "8.2.8.NT.3",
+           "text": "Examine a system, consider how each part relates to other parts, and redesign it for another purpose."
+          },
+          {
+           "code": "8.2.8.NT.4",
+           "text": "Explain how a product designed for a specific demand was modified to meet a new demand and led to a new product."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "effects-of-technology-on-the-natural-world",
+       "title": "Effects of Technology on the Natural World",
+       "subtopics": [
+        {
+         "id": "resources-need-to-be-utilized-wisely-to-have-pos",
+         "title": "Resources need to be utilized wisely to have positive effects on the environment and society. Some technological decisions involve tradeoffs between environmental and economic needs, while others have positive effects for both the economy and environment",
+         "outcomes": [
+          {
+           "code": "8.2.8.ETW.1",
+           "text": "Illustrate how a product is upcycled into a new product and analyze the short- and long-term benefits and costs."
+          },
+          {
+           "code": "8.2.8.ETW.2",
+           "text": "Analyze the impact of modifying resources in a product or system (e.g., materials, energy, information, time, tools, people, capital)."
+          },
+          {
+           "code": "8.2.8.ETW.3",
+           "text": "Analyze the design of a product that negatively impacts the environment or society and develop possible solutions to lessen its impact."
+          },
+          {
+           "code": "8.2.8.ETW.4",
+           "text": "Compare the environmental effects of two alternative technologies devised to address climate change issues and use data to justify which choice is best."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "ethics-culture",
+       "title": "Ethics & Culture",
+       "subtopics": [
+        {
+         "id": "technological-disparities-have-consequences-for-",
+         "title": "Technological disparities have consequences for public health and prosperity",
+         "outcomes": [
+          {
+           "code": "8.2.8.EC.1",
+           "text": "Explain ethical issues that may arise from the use of new technologies."
+          },
+          {
+           "code": "8.2.8.EC.2",
+           "text": "Examine the effects of ethical and unethical practices in product design and development."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "build": {
+  "builtAt": "2026-10-14T16:20:46.054Z",
+  "model": "none",
+  "usd": 0,
+  "expectedCodes": 162,
+  "coverage": 1,
+  "missingCodes": [],
+  "counts": {
+   "grades": 3,
+   "units": 14,
+   "topics": 30,
+   "subtopics": 87,
+   "outcomes": 162
+  },
+  "warnings": []
+ }
+}

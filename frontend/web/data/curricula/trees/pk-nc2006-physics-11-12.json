@@ -1,0 +1,1450 @@
+{
+ "id": "pk-nc2006-physics-11-12",
+ "region": "PK",
+ "framework": "National Curriculum 2006",
+ "board": "FBISE",
+ "qualification": "HSSC",
+ "subject": "Physics",
+ "syllabusCode": null,
+ "gradeSystem": "grade",
+ "source": {
+  "urls": [
+   "https://www.fbise.edu.pk/notifications/hssc/Curriculum%20of%20Physics%20XI-XII%20along%20with%20SLOs.pdf"
+  ],
+  "publisher": "Ministry of Education, Government of Pakistan (hosted by FBISE)",
+  "licence": "Government publication; structure + our own wording only",
+  "firstExam": null
+ },
+ "grades": [
+  {
+   "grade": "XI",
+   "units": [
+    {
+     "id": "unit-1-measurement",
+     "title": "Unit 1: Measurement",
+     "topics": [
+      {
+       "id": "measurement",
+       "title": "Measurement",
+       "subtopics": [
+        {
+         "id": "physics-units-and-dimensions",
+         "title": "Physics, units and dimensions",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe the scope of physics in science, technology and society."
+          },
+          {
+           "code": null,
+           "text": "State SI base, derived and supplementary units and the conventions for writing them."
+          },
+          {
+           "code": null,
+           "text": "Check equations with dimensions and derive simple formulae by dimensions."
+          }
+         ]
+        },
+        {
+         "id": "errors-uncertainty-and-significant-figures",
+         "title": "Errors, uncertainty and significant figures",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain why every measurement has uncertainty and tell systematic from random errors."
+          },
+          {
+           "code": null,
+           "text": "Define least count, precision and accuracy."
+          },
+          {
+           "code": null,
+           "text": "Find uncertainty in a derived quantity and quote answers with correct significant figures."
+          }
+         ]
+        },
+        {
+         "id": "measuring-and-presenting-data",
+         "title": "Measuring and presenting data",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Measure length, mass, time and electrical quantities with suitable instruments."
+          },
+          {
+           "code": null,
+           "text": "Present data in tables and graphs and read slopes and intercepts."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "unit-2-vectors-and-equilibrium",
+     "title": "Unit 2: Vectors and Equilibrium",
+     "topics": [
+      {
+       "id": "vectors-and-equilibrium",
+       "title": "Vectors and Equilibrium",
+       "subtopics": [
+        {
+         "id": "adding-vectors",
+         "title": "Adding vectors",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe the Cartesian coordinate system."
+          },
+          {
+           "code": null,
+           "text": "Add vectors by head to tail rule and by perpendicular components."
+          }
+         ]
+        },
+        {
+         "id": "scalar-and-vector-products",
+         "title": "Scalar and vector products",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe the scalar product and the vector product of two vectors and the direction of the latter."
+          }
+         ]
+        },
+        {
+         "id": "torque-and-equilibrium",
+         "title": "Torque and equilibrium",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Define torque as r x F and list its applications."
+          },
+          {
+           "code": null,
+           "text": "State the two conditions of equilibrium and solve two dimensional statics problems."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "unit-3-forces-and-motion",
+     "title": "Unit 3: Forces and Motion",
+     "topics": [
+      {
+       "id": "forces-and-motion",
+       "title": "Forces and Motion",
+       "subtopics": [
+        {
+         "id": "velocity-and-acceleration",
+         "title": "Velocity and acceleration",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe displacement as a vector and compare average and instantaneous velocity."
+          },
+          {
+           "code": null,
+           "text": "Interpret displacement-time and velocity-time graphs and find slopes."
+          },
+          {
+           "code": null,
+           "text": "Define average and instantaneous acceleration and use equations of uniformly accelerated motion."
+          }
+         ]
+        },
+        {
+         "id": "projectile-motion",
+         "title": "Projectile motion",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain projectile motion with independent horizontal and vertical parts."
+          },
+          {
+           "code": null,
+           "text": "Work out height, range, time of flight and the launch angle for maximum range."
+          },
+          {
+           "code": null,
+           "text": "Describe the effect of air resistance on a projectile."
+          }
+         ]
+        },
+        {
+         "id": "newton-s-laws",
+         "title": "Newton's laws",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Apply Newton's laws, define mass and weight, and state the second law as rate of change of momentum."
+          },
+          {
+           "code": null,
+           "text": "Note that Newton's laws are approximate at very high speeds and small scales."
+          }
+         ]
+        },
+        {
+         "id": "momentum-and-impulse",
+         "title": "Momentum and impulse",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Define impulse and describe its effect on momentum and on stopping time."
+          },
+          {
+           "code": null,
+           "text": "Relate the third law to conservation of momentum."
+          }
+         ]
+        },
+        {
+         "id": "collisions-and-explosions",
+         "title": "Collisions and explosions",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Solve one dimensional elastic and inelastic collisions with momentum conservation."
+          },
+          {
+           "code": null,
+           "text": "Use equal speeds of approach and separation for elastic collisions."
+          },
+          {
+           "code": null,
+           "text": "Tell an explosion from a collision and explain rocket motion."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "unit-4-work-and-energy",
+     "title": "Unit 4: Work and Energy",
+     "topics": [
+      {
+       "id": "work-and-energy",
+       "title": "Work and Energy",
+       "subtopics": [
+        {
+         "id": "work-and-power",
+         "title": "Work and power",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Define work as scalar product of force and displacement and tell positive, negative and zero work."
+          },
+          {
+           "code": null,
+           "text": "Find work from the area of a force-displacement graph."
+          },
+          {
+           "code": null,
+           "text": "Express power as the scalar product of force and velocity."
+          }
+         ]
+        },
+        {
+         "id": "gravitational-field-and-potential-energy",
+         "title": "Gravitational field and potential energy",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Define gravitational field strength and show it is conservative."
+          },
+          {
+           "code": null,
+           "text": "Show that work by gravity is path independent."
+          },
+          {
+           "code": null,
+           "text": "Define gravitational potential energy, potential at a point and escape velocity."
+          },
+          {
+           "code": null,
+           "text": "Tell conservative and non-conservative forces apart."
+          }
+         ]
+        },
+        {
+         "id": "energy-losses-and-sources",
+         "title": "Energy losses and sources",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain work done against friction as heat, energy losses and efficiency."
+          },
+          {
+           "code": null,
+           "text": "Use the work-energy theorem in a resistive medium."
+          },
+          {
+           "code": null,
+           "text": "Discuss conventional and non-conventional energy sources."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "unit-5-rotational-and-circular-motion",
+     "title": "Unit 5: Rotational and Circular Motion",
+     "topics": [
+      {
+       "id": "rotational-and-circular-motion",
+       "title": "Rotational and Circular Motion",
+       "subtopics": [
+        {
+         "id": "angular-motion",
+         "title": "Angular motion",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Define angular displacement, velocity and acceleration in radians."
+          },
+          {
+           "code": null,
+           "text": "Use s = r theta, v = r omega and the equations of angular motion."
+          }
+         ]
+        },
+        {
+         "id": "centripetal-force-and-banking",
+         "title": "Centripetal force and banking",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Derive and use centripetal acceleration and force."
+          },
+          {
+           "code": null,
+           "text": "Identify tension, friction, gravity or normal force as the source of centripetal force."
+          },
+          {
+           "code": null,
+           "text": "Explain banking of roads using tan theta = v squared over r g."
+          }
+         ]
+        },
+        {
+         "id": "satellites-and-artificial-gravity",
+         "title": "Satellites and artificial gravity",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain satellite orbits, weightlessness and artificial gravity."
+          },
+          {
+           "code": null,
+           "text": "Derive orbital velocity and explain use of communication and weather satellites and geostationary orbits."
+          }
+         ]
+        },
+        {
+         "id": "moment-of-inertia-and-angular-momentum",
+         "title": "Moment of inertia and angular momentum",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Define moment of inertia and angular momentum and relate torque to angular acceleration."
+          },
+          {
+           "code": null,
+           "text": "Explain conservation of angular momentum and use moments of inertia of common bodies."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "unit-6-fluid-dynamics",
+     "title": "Unit 6: Fluid Dynamics",
+     "topics": [
+      {
+       "id": "fluid-dynamics",
+       "title": "Fluid Dynamics",
+       "subtopics": [
+        {
+         "id": "ideal-fluid-flow",
+         "title": "Ideal fluid flow",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Define steady, incompressible and non-viscous flow."
+          },
+          {
+           "code": null,
+           "text": "Explain the transition from laminar to turbulent flow."
+          },
+          {
+           "code": null,
+           "text": "Use the equation of continuity and relate it to conservation of mass."
+          }
+         ]
+        },
+        {
+         "id": "bernoulli-s-equation",
+         "title": "Bernoulli's equation",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain the Bernoulli effect and derive P + half rho v squared + rho g h = constant."
+          },
+          {
+           "code": null,
+           "text": "Apply it to filter pumps, Venturi meters, atomizers, aerofoils and blood flow."
+          }
+         ]
+        },
+        {
+         "id": "viscous-fluids",
+         "title": "Viscous fluids",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe viscous drag and how it depends on shape and speed."
+          },
+          {
+           "code": null,
+           "text": "Use Stokes' law and find terminal velocity of a falling sphere."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "unit-7-oscillations",
+     "title": "Unit 7: Oscillations",
+     "topics": [
+      {
+       "id": "oscillations",
+       "title": "Oscillations",
+       "subtopics": [
+        {
+         "id": "simple-harmonic-motion",
+         "title": "Simple harmonic motion",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe free oscillations and the conditions for simple harmonic motion."
+          },
+          {
+           "code": null,
+           "text": "Relate SHM to the projection of circular motion."
+          },
+          {
+           "code": null,
+           "text": "Define amplitude, period, frequency, angular frequency and phase difference."
+          },
+          {
+           "code": null,
+           "text": "Use a = - omega squared x as the defining equation."
+          }
+         ]
+        },
+        {
+         "id": "mass-spring-system-and-pendulum",
+         "title": "Mass-spring system and pendulum",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Show a mass on a spring executes SHM and describe energy exchange in it."
+          },
+          {
+           "code": null,
+           "text": "Show a simple pendulum is SHM and find its period."
+          }
+         ]
+        },
+        {
+         "id": "resonance-and-damping",
+         "title": "Resonance and damping",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe free and forced oscillations and resonance and the amplitude-frequency graph."
+          },
+          {
+           "code": null,
+           "text": "Describe damped oscillations, critical damping and what sets sharpness of resonance."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "unit-8-waves",
+     "title": "Unit 8: Waves",
+     "topics": [
+      {
+       "id": "waves",
+       "title": "Waves",
+       "subtopics": [
+        {
+         "id": "progressive-waves",
+         "title": "Progressive waves",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe wave motion and tell mechanical from electromagnetic waves."
+          },
+          {
+           "code": null,
+           "text": "Define wave terms and use v = f lambda."
+          },
+          {
+           "code": null,
+           "text": "Compare transverse and longitudinal waves and note energy transfer."
+          }
+         ]
+        },
+        {
+         "id": "speed-of-sound",
+         "title": "Speed of sound",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain what the speed of sound depends on, Newton's formula and the Laplace correction."
+          }
+         ]
+        },
+        {
+         "id": "superposition-and-beats",
+         "title": "Superposition and beats",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe superposition, interference of sound and the formation of beats."
+          }
+         ]
+        },
+        {
+         "id": "stationary-waves",
+         "title": "Stationary waves",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain stationary waves, nodes and antinodes."
+          },
+          {
+           "code": null,
+           "text": "Describe string vibration modes and waves in air columns."
+          }
+         ]
+        },
+        {
+         "id": "doppler-effect-and-ultrasound",
+         "title": "Doppler effect and ultrasound",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain the Doppler effect for mechanical and electromagnetic waves."
+          },
+          {
+           "code": null,
+           "text": "Explain generating and detecting ultrasound and its use in diagnosis."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "unit-9-physical-optics",
+     "title": "Unit 9: Physical Optics",
+     "topics": [
+      {
+       "id": "physical-optics",
+       "title": "Physical Optics",
+       "subtopics": [
+        {
+         "id": "wave-fronts-and-huygens-principle",
+         "title": "Wave fronts and Huygens' principle",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe light as part of the electromagnetic spectrum and the wave front."
+          },
+          {
+           "code": null,
+           "text": "State Huygens' principle and use it to construct wave fronts."
+          }
+         ]
+        },
+        {
+         "id": "interference-of-light",
+         "title": "Interference of light",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "State the conditions for interference of light."
+          },
+          {
+           "code": null,
+           "text": "Describe Young's double slit experiment and thin film colours."
+          },
+          {
+           "code": null,
+           "text": "Describe the Michelson interferometer and its uses."
+          }
+         ]
+        },
+        {
+         "id": "diffraction-and-polarization",
+         "title": "Diffraction and polarization",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain diffraction at a narrow slit and with a grating using d sin theta = n lambda; describe X-ray diffraction."
+          },
+          {
+           "code": null,
+           "text": "Explain polarization, Polaroids and how plane polarized light is made and detected."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "unit-10-thermodynamics",
+     "title": "Unit 10: Thermodynamics",
+     "topics": [
+      {
+       "id": "thermodynamics",
+       "title": "Thermodynamics",
+       "subtopics": [
+        {
+         "id": "heat-work-and-internal-energy",
+         "title": "Heat, work and internal energy",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe thermal equilibrium and heat flow from hot to cold."
+          },
+          {
+           "code": null,
+           "text": "Describe heat and work as energy transfers and define thermodynamics terms."
+          },
+          {
+           "code": null,
+           "text": "Relate temperature rise to internal energy and the mechanical equivalent of heat."
+          },
+          {
+           "code": null,
+           "text": "Calculate work done in a volume change."
+          }
+         ]
+        },
+        {
+         "id": "first-law-and-specific-heats",
+         "title": "First law and specific heats",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "State the first law as conservation of energy."
+          },
+          {
+           "code": null,
+           "text": "Define specific and molar specific heats and derive Cp minus Cv = R."
+          }
+         ]
+        },
+        {
+         "id": "heat-engines-and-carnot-cycle",
+         "title": "Heat engines and Carnot cycle",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "State the working principle of a heat engine and reversible and irreversible processes."
+          },
+          {
+           "code": null,
+           "text": "State the second law of thermodynamics."
+          },
+          {
+           "code": null,
+           "text": "Explain Carnot's engine and its efficiency."
+          },
+          {
+           "code": null,
+           "text": "Describe a refrigerator and its coefficient of performance."
+          }
+         ]
+        },
+        {
+         "id": "entropy",
+         "title": "Entropy",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain entropy change with heat, disorder and degradation of energy in natural processes."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "XII",
+   "units": [
+    {
+     "id": "unit-11-electrostatics",
+     "title": "Unit 11: Electrostatics",
+     "topics": [
+      {
+       "id": "electrostatics",
+       "title": "Electrostatics",
+       "subtopics": [
+        {
+         "id": "coulomb-s-law-and-electric-field",
+         "title": "Coulomb's law and electric field",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "State Coulomb's law and the effect of a medium."
+          },
+          {
+           "code": null,
+           "text": "Define electric field strength and use E = F/q and the point charge field."
+          },
+          {
+           "code": null,
+           "text": "Find fields of two charges and sketch field lines."
+          },
+          {
+           "code": null,
+           "text": "Describe the electric dipole."
+          }
+         ]
+        },
+        {
+         "id": "electric-flux-and-gauss-s-law",
+         "title": "Electric flux and Gauss's law",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Define electric flux and state Gauss's law."
+          },
+          {
+           "code": null,
+           "text": "Sketch fields of a charged plate, a hollow sphere and parallel plates."
+          }
+         ]
+        },
+        {
+         "id": "electric-potential",
+         "title": "Electric potential",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Define potential and use V = W/q, E = V/d and the point charge potential."
+          },
+          {
+           "code": null,
+           "text": "Relate field to potential gradient and use the electron volt."
+          }
+         ]
+        },
+        {
+         "id": "capacitors",
+         "title": "Capacitors",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Define capacitance and use C = Q/V."
+          },
+          {
+           "code": null,
+           "text": "Solve series and parallel capacitor problems and explain dielectric polarization."
+          },
+          {
+           "code": null,
+           "text": "Describe charging and discharging and derive energy stored half C V squared."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "unit-12-current-electricity",
+     "title": "Unit 12: Current Electricity",
+     "topics": [
+      {
+       "id": "current-electricity",
+       "title": "Current Electricity",
+       "subtopics": [
+        {
+         "id": "current-resistance-and-ohm-s-law",
+         "title": "Current, resistance and Ohm's law",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe steady current and state Ohm's law."
+          },
+          {
+           "code": null,
+           "text": "Define resistivity and its temperature dependence, conductance and conductivity."
+          },
+          {
+           "code": null,
+           "text": "State the characteristics and use of a thermistor."
+          }
+         ]
+        },
+        {
+         "id": "e-m-f-and-internal-resistance",
+         "title": "E.m.f. and internal resistance",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Distinguish e.m.f. from p.d. and explain internal resistance."
+          },
+          {
+           "code": null,
+           "text": "Describe sources of e.m.f. and the condition for maximum power transfer."
+          }
+         ]
+        },
+        {
+         "id": "thermoelectricity",
+         "title": "Thermoelectricity",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe the thermocouple and how thermoelectric e.m.f. varies with temperature."
+          }
+         ]
+        },
+        {
+         "id": "kirchhoff-s-laws",
+         "title": "Kirchhoff's laws",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Apply Kirchhoff's first law (charge conservation) and second law (energy conservation) to circuits."
+          }
+         ]
+        },
+        {
+         "id": "potential-divider-and-bridges",
+         "title": "Potential divider and bridges",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe the rheostat as potential divider."
+          },
+          {
+           "code": null,
+           "text": "Describe the Wheatstone bridge and the potentiometer."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "unit-13-electromagnetism",
+     "title": "Unit 13: Electromagnetism",
+     "topics": [
+      {
+       "id": "electromagnetism",
+       "title": "Electromagnetism",
+       "subtopics": [
+        {
+         "id": "magnetic-field-and-force-on-a-conductor",
+         "title": "Magnetic field and force on a conductor",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain the magnetic field and the magnetic effect of current."
+          },
+          {
+           "code": null,
+           "text": "Sketch the field of a long straight wire."
+          },
+          {
+           "code": null,
+           "text": "Use F = B I L sin theta and define flux density and magnetic flux."
+          }
+         ]
+        },
+        {
+         "id": "ampere-s-law",
+         "title": "Ampere's law",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "State Ampere's law and use it for a wire and a solenoid."
+          }
+         ]
+        },
+        {
+         "id": "moving-charges-in-magnetic-fields",
+         "title": "Moving charges in magnetic fields",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe the path of a charge in a magnetic field and the force on it."
+          },
+          {
+           "code": null,
+           "text": "Describe measuring e/m of an electron."
+          }
+         ]
+        },
+        {
+         "id": "galvanometer-and-meters",
+         "title": "Galvanometer and meters",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain torque on a current coil and the galvanometer."
+          },
+          {
+           "code": null,
+           "text": "Convert a galvanometer into a voltmeter or ammeter and use a multimeter."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "unit-14-electromagnetic-induction",
+     "title": "Unit 14: Electromagnetic Induction",
+     "topics": [
+      {
+       "id": "electromagnetic-induction",
+       "title": "Electromagnetic Induction",
+       "subtopics": [
+        {
+         "id": "induced-e-m-f",
+         "title": "Induced e.m.f.",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe producing electricity by magnetism and the two ways of inducing e.m.f."
+          },
+          {
+           "code": null,
+           "text": "State Faraday's law and Lenz's law and apply them to problems."
+          }
+         ]
+        },
+        {
+         "id": "eddy-currents-and-motional-e-m-f",
+         "title": "Eddy currents and motional e.m.f.",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain eddy currents, their effects and laminated cores."
+          },
+          {
+           "code": null,
+           "text": "Compute motional e.m.f. across a moving rod."
+          }
+         ]
+        },
+        {
+         "id": "inductance",
+         "title": "Inductance",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Define mutual and self inductance and the henry."
+          }
+         ]
+        },
+        {
+         "id": "generators-and-motors",
+         "title": "Generators and motors",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe the A.C. generator, A.C. motor and back e.m.f."
+          }
+         ]
+        },
+        {
+         "id": "transformers",
+         "title": "Transformers",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain how a transformer works and the turns ratio to voltage ratio."
+          },
+          {
+           "code": null,
+           "text": "Explain use of step-up and step-down transformers in power transmission."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "unit-15-alternating-current",
+     "title": "Unit 15: Alternating Current",
+     "topics": [
+      {
+       "id": "alternating-current",
+       "title": "Alternating Current",
+       "subtopics": [
+        {
+         "id": "describing-alternating-current",
+         "title": "Describing alternating current",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe period, frequency, peak and rms values and write x = x0 sin omega t."
+          },
+          {
+           "code": null,
+           "text": "Describe phase lag and lead."
+          }
+         ]
+        },
+        {
+         "id": "a-c-in-r-c-and-l",
+         "title": "A.C. in R, C and L",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain A.C. through resistors, capacitors and inductors and chokes."
+          },
+          {
+           "code": null,
+           "text": "Calculate reactances."
+          }
+         ]
+        },
+        {
+         "id": "impedance-and-a-c-power",
+         "title": "Impedance and A.C. power",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe impedance as vector sum and draw phasor diagrams."
+          },
+          {
+           "code": null,
+           "text": "Solve A.C. power problems."
+          }
+         ]
+        },
+        {
+         "id": "resonance-in-a-c-circuits",
+         "title": "Resonance in A.C. circuits",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain A.C. resonance and calculate the resonant frequency."
+          },
+          {
+           "code": null,
+           "text": "Describe maximum power transfer by impedance matching."
+          }
+         ]
+        },
+        {
+         "id": "electromagnetic-waves",
+         "title": "Electromagnetic waves",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe Maxwell's equations qualitatively and production of electromagnetic waves."
+          },
+          {
+           "code": null,
+           "text": "Describe the electromagnetic spectrum and radio, microwave and ultraviolet effects."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "unit-16-physics-of-solids",
+     "title": "Unit 16: Physics of Solids",
+     "topics": [
+      {
+       "id": "physics-of-solids",
+       "title": "Physics of Solids",
+       "subtopics": [
+        {
+         "id": "types-and-mechanical-properties-of-solids",
+         "title": "Types and mechanical properties of solids",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Tell crystalline, glassy, amorphous and polymeric solids apart."
+          },
+          {
+           "code": null,
+           "text": "Describe tensile and compressive deformation, Hooke's law and the spring constant."
+          },
+          {
+           "code": null,
+           "text": "Use Young's, bulk and shear moduli and interpret force-extension graphs."
+          },
+          {
+           "code": null,
+           "text": "Explain ultimate tensile stress and elastic and plastic deformation."
+          }
+         ]
+        },
+        {
+         "id": "electrical-properties-of-solids",
+         "title": "Electrical properties of solids",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe energy bands and classify insulators, conductors and semiconductors."
+          },
+          {
+           "code": null,
+           "text": "Describe superconductors and uses."
+          }
+         ]
+        },
+        {
+         "id": "magnetic-properties-of-solids",
+         "title": "Magnetic properties of solids",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Distinguish dia-, para- and ferromagnetic materials."
+          },
+          {
+           "code": null,
+           "text": "Explain magnetic domains, Curie point, hard and soft ferromagnets, and hysteresis loss."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "unit-17-electronics",
+     "title": "Unit 17: Electronics",
+     "topics": [
+      {
+       "id": "electronics",
+       "title": "Electronics",
+       "subtopics": [
+        {
+         "id": "semiconductors",
+         "title": "Semiconductors",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Distinguish intrinsic and extrinsic semiconductors and P and N type materials."
+          },
+          {
+           "code": null,
+           "text": "Explain holes and electrons in semiconductors."
+          }
+         ]
+        },
+        {
+         "id": "pn-junction-and-rectification",
+         "title": "PN junction and rectification",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe a PN junction with forward and reverse bias."
+          },
+          {
+           "code": null,
+           "text": "Describe half and full wave rectification with diodes."
+          }
+         ]
+        },
+        {
+         "id": "transistors",
+         "title": "Transistors",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Distinguish PNP and NPN transistors and describe their operation."
+          },
+          {
+           "code": null,
+           "text": "Apply the transistor current equation."
+          },
+          {
+           "code": null,
+           "text": "Explain use as a switch and amplifier."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "unit-18-dawn-of-the-modern-physics",
+     "title": "Unit 18: Dawn of the Modern Physics",
+     "topics": [
+      {
+       "id": "dawn-of-the-modern-physics",
+       "title": "Dawn of the Modern Physics",
+       "subtopics": [
+        {
+         "id": "special-relativity",
+         "title": "Special relativity",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Distinguish inertial and non-inertial frames and explain Einstein's constant speed of light."
+          },
+          {
+           "code": null,
+           "text": "Explain relativity of simultaneity, mass-energy equivalence, length contraction, time dilation and mass increase."
+          },
+          {
+           "code": null,
+           "text": "Explain the implications for space travel."
+          }
+         ]
+        },
+        {
+         "id": "quantum-theory-of-radiation",
+         "title": "Quantum theory of radiation",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe black body radiation and Planck's hypothesis."
+          },
+          {
+           "code": null,
+           "text": "Explain the photon model of light and use E = h f."
+          }
+         ]
+        },
+        {
+         "id": "photoelectric-effect",
+         "title": "Photoelectric effect",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe the photoelectric effect and its use in solar cells and photocells."
+          }
+         ]
+        },
+        {
+         "id": "compton-effect-and-pair-production",
+         "title": "Compton effect and pair production",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe the Compton effect qualitatively and pair production and annihilation."
+          }
+         ]
+        },
+        {
+         "id": "matter-waves-and-uncertainty",
+         "title": "Matter waves and uncertainty",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe de Broglie's proposal and the Davisson-Germer experiment."
+          },
+          {
+           "code": null,
+           "text": "Explain how electron microscopes reach high resolution."
+          },
+          {
+           "code": null,
+           "text": "Describe the uncertainty principle."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "unit-19-atomic-spectra",
+     "title": "Unit 19: Atomic Spectra",
+     "topics": [
+      {
+       "id": "atomic-spectra",
+       "title": "Atomic Spectra",
+       "subtopics": [
+        {
+         "id": "atomic-spectra-and-the-bohr-model",
+         "title": "Atomic spectra and the Bohr model",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain the origin of optical spectra and discrete energy levels."
+          },
+          {
+           "code": null,
+           "text": "Use spectra to identify elements and explain the hydrogen spectrum and Bohr model."
+          },
+          {
+           "code": null,
+           "text": "Find ionization and excitation energies from level diagrams and use the hydrogen series formula."
+          }
+         ]
+        },
+        {
+         "id": "x-rays",
+         "title": "X-rays",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain that inner shell transitions give characteristic X-rays."
+          }
+         ]
+        },
+        {
+         "id": "lasers",
+         "title": "Lasers",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain spontaneous and stimulated emission, metastable states, population inversion and laser action."
+          },
+          {
+           "code": null,
+           "text": "Describe the He-Ne laser."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "unit-20-nuclear-physics",
+     "title": "Unit 20: Nuclear Physics",
+     "topics": [
+      {
+       "id": "nuclear-physics",
+       "title": "Nuclear Physics",
+       "subtopics": [
+        {
+         "id": "atomic-nucleus-and-isotopes",
+         "title": "Atomic nucleus and isotopes",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe the atom model and find protons, neutrons and nucleons from nuclide notation."
+          },
+          {
+           "code": null,
+           "text": "Explain isotopes and the mass spectrograph."
+          }
+         ]
+        },
+        {
+         "id": "mass-defect-and-binding-energy",
+         "title": "Mass defect and binding energy",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Define unified mass scale and mass defect and calculate binding energy."
+          },
+          {
+           "code": null,
+           "text": "Graph binding energy per nucleon and relate it to fission and fusion."
+          }
+         ]
+        },
+        {
+         "id": "radioactivity",
+         "title": "Radioactivity",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain unstable nuclei, radioactive decay and the random nature of decay."
+          },
+          {
+           "code": null,
+           "text": "Use half life and lambda = 0.693 / T half."
+          },
+          {
+           "code": null,
+           "text": "Describe interaction of radiation with matter and detection by GM and solid state counters."
+          }
+         ]
+        },
+        {
+         "id": "nuclear-reactions-fission-and-fusion",
+         "title": "Nuclear reactions, fission and fusion",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Find energy released and the conservation of atomic and mass number in reactions."
+          },
+          {
+           "code": null,
+           "text": "Describe fission, chain reactions and reactor components, and fusion."
+          }
+         ]
+        },
+        {
+         "id": "forces-and-elementary-particles",
+         "title": "Forces and elementary particles",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe the basic forces of nature and the standard model: hadrons, leptons and quarks."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "build": {
+  "builtAt": "2026-10-14T08:18:53.433Z",
+  "model": "claude-agent",
+  "usd": 0,
+  "expectedCodes": null,
+  "coverage": null,
+  "missingCodes": [],
+  "counts": {
+   "grades": 2,
+   "units": 20,
+   "topics": 20,
+   "subtopics": 78,
+   "outcomes": 174
+  },
+  "warnings": []
+ }
+}

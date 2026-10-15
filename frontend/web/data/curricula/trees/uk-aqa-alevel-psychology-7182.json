@@ -1,0 +1,1330 @@
+{
+ "id": "uk-aqa-alevel-psychology-7182",
+ "region": "UK",
+ "framework": "AQA A-level",
+ "board": "AQA",
+ "qualification": "A Level",
+ "subject": "Psychology",
+ "syllabusCode": "7182",
+ "gradeSystem": "year",
+ "source": {
+  "urls": [
+   "https://cdn.sanity.io/files/p28bar15/green/661250c1cb8bd3586f93ddb48c89a3218a3913ca.pdf"
+  ],
+  "publisher": "AQA",
+  "licence": "Exam board specification, (c) AQA; structure + our own wording only",
+  "firstExam": "2027"
+ },
+ "grades": [
+  {
+   "grade": "Year 12",
+   "units": [
+    {
+     "id": "3-subject-content-as",
+     "title": "3 Subject content - AS",
+     "topics": [
+      {
+       "id": "3-1-introductory-topics-in-psychology",
+       "title": "3.1 Introductory topics in Psychology",
+       "subtopics": [
+        {
+         "id": "studying-introductory-topics",
+         "title": "Studying introductory topics",
+         "outcomes": [
+          {
+           "code": "3.1",
+           "text": "Know and apply concepts, theories, studies, methods and ethical issues for Paper 1, and evaluate therapies by appropriateness and effectiveness."
+          },
+          {
+           "code": null,
+           "text": "Develop research methods and maths skills by designing and conducting research and analysing data."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "3-1-1-social-influence",
+       "title": "3.1.1 Social influence",
+       "subtopics": [
+        {
+         "id": "conformity",
+         "title": "Conformity",
+         "outcomes": [
+          {
+           "code": "3.1.1",
+           "text": "Distinguish internalisation from compliance, and explain informational and normative social influence."
+          },
+          {
+           "code": null,
+           "text": "Explain variables affecting conformity (group size, unanimity, task difficulty) as investigated by Asch."
+          }
+         ]
+        },
+        {
+         "id": "obedience-and-resistance",
+         "title": "Obedience and resistance",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain obedience: agentic state and legitimacy of authority, and Milgram's variables (proximity, location, uniform)."
+          },
+          {
+           "code": null,
+           "text": "Explain the Authoritarian Personality as a dispositional explanation of obedience."
+          },
+          {
+           "code": null,
+           "text": "Explain resistance to social influence, including social support and locus of control."
+          },
+          {
+           "code": null,
+           "text": "Explain minority influence: consistency, commitment and flexibility."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "3-1-2-memory",
+       "title": "3.1.2 Memory",
+       "subtopics": [
+        {
+         "id": "models-of-memory",
+         "title": "Models of memory",
+         "outcomes": [
+          {
+           "code": "3.1.2",
+           "text": "Describe the multi-store model: sensory register, short-term and long-term memory, with coding, capacity and duration."
+          },
+          {
+           "code": null,
+           "text": "Describe the working memory model: central executive, phonological loop, visuo-spatial sketchpad and episodic buffer, with coding and capacity."
+          }
+         ]
+        },
+        {
+         "id": "forgetting-and-eyewitness-testimony",
+         "title": "Forgetting and eyewitness testimony",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain forgetting by proactive and retroactive interference and retrieval failure from missing cues."
+          },
+          {
+           "code": null,
+           "text": "Explain factors affecting eyewitness accuracy: leading questions, post-event discussion, anxiety, and the cognitive interview."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "3-1-3-attachment",
+       "title": "3.1.3 Attachment",
+       "subtopics": [
+        {
+         "id": "explaining-attachment",
+         "title": "Explaining attachment",
+         "outcomes": [
+          {
+           "code": "3.1.3",
+           "text": "Describe animal studies of attachment: Lorenz and Harlow."
+          },
+          {
+           "code": null,
+           "text": "Explain learning theory and Bowlby's monotropic theory, with critical period and internal working model."
+          }
+         ]
+        },
+        {
+         "id": "types-and-effects-of-attachment",
+         "title": "Types and effects of attachment",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe Ainsworth's Strange Situation and secure, insecure-avoidant and insecure-resistant types."
+          },
+          {
+           "code": null,
+           "text": "Explain cultural variations in attachment, including van Ijzendoorn."
+          },
+          {
+           "code": null,
+           "text": "Explain Bowlby's maternal deprivation theory and institutionalisation effects, including the English and Romanian Adoptees study."
+          },
+          {
+           "code": null,
+           "text": "Explain how early attachment influences childhood and adult relationships through the internal working model."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "3-2-psychology-in-context",
+       "title": "3.2 Psychology in context",
+       "subtopics": [
+        {
+         "id": "studying-psychology-in-context",
+         "title": "Studying psychology in context",
+         "outcomes": [
+          {
+           "code": "3.2",
+           "text": "Know and apply concepts, theories, studies, methods and ethical issues for Paper 2, and evaluate therapies and treatments."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "3-2-1-approaches-in-psychology",
+       "title": "3.2.1 Approaches in Psychology",
+       "subtopics": [
+        {
+         "id": "learning-approaches",
+         "title": "Learning approaches",
+         "outcomes": [
+          {
+           "code": "3.2.1",
+           "text": "Explain behaviourism: classical conditioning and Pavlov, operant conditioning, reinforcement types and Skinner."
+          },
+          {
+           "code": null,
+           "text": "Explain social learning theory: imitation, identification, vicarious reinforcement, mediational processes and Bandura."
+          }
+         ]
+        },
+        {
+         "id": "cognitive-and-biological-approaches",
+         "title": "Cognitive and biological approaches",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain the cognitive approach: internal mental processes, schema, and models of mental processes."
+          },
+          {
+           "code": null,
+           "text": "Explain the biological approach: genotype, phenotype, evolution, biological structures, neurochemistry and cognitive neuroscience."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "3-2-1-1-biopsychology",
+       "title": "3.2.1.1 Biopsychology",
+       "subtopics": [
+        {
+         "id": "nervous-and-endocrine-systems",
+         "title": "Nervous and endocrine systems",
+         "outcomes": [
+          {
+           "code": "3.2.1.1",
+           "text": "Describe the divisions of the nervous system: central and peripheral (somatic and autonomic)."
+          },
+          {
+           "code": null,
+           "text": "Describe sensory, relay and motor neurons, and synaptic transmission with neurotransmitters, excitation and inhibition."
+          },
+          {
+           "code": null,
+           "text": "Describe the endocrine system's glands and hormones, and the fight or flight response with adrenaline."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "3-2-2-clinical-psychology-and-mental-health",
+       "title": "3.2.2 Clinical Psychology and Mental Health",
+       "subtopics": [
+        {
+         "id": "defining-and-describing-disorders",
+         "title": "Defining and describing disorders",
+         "outcomes": [
+          {
+           "code": "3.2.2",
+           "text": "Define abnormality: deviation from ideal mental health, from social or cultural norms, failure to function adequately, and statistical infrequency."
+          },
+          {
+           "code": null,
+           "text": "Describe the behavioural, emotional and cognitive characteristics of phobias, depression and OCD."
+          }
+         ]
+        },
+        {
+         "id": "explaining-and-treating-disorders",
+         "title": "Explaining and treating disorders",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain and treat phobias by the behavioural approach: two-process model, systematic desensitisation with relaxation and hierarchy, and flooding."
+          },
+          {
+           "code": null,
+           "text": "Explain and treat depression by the cognitive approach: Beck's negative triad, Ellis's ABC model and CBT."
+          },
+          {
+           "code": null,
+           "text": "Explain and treat OCD by the biological approach: genetic and neural explanations and drug therapy."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "3-2-3-research-methods",
+       "title": "3.2.3 Research methods",
+       "subtopics": [
+        {
+         "id": "research-methods",
+         "title": "Research methods",
+         "outcomes": [
+          {
+           "code": "3.2.3",
+           "text": "Describe experimental methods: laboratory, field, natural and quasi-experiments."
+          },
+          {
+           "code": null,
+           "text": "Describe observational techniques: naturalistic or controlled, covert or overt, participant or non-participant."
+          },
+          {
+           "code": null,
+           "text": "Describe self-report techniques: questionnaires and structured or unstructured interviews."
+          },
+          {
+           "code": null,
+           "text": "Explain correlations and how they differ from experiments."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "3-2-3-1-scientific-processes",
+       "title": "3.2.3.1 Scientific processes",
+       "subtopics": [
+        {
+         "id": "aims-hypotheses-and-sampling",
+         "title": "Aims, hypotheses and sampling",
+         "outcomes": [
+          {
+           "code": "3.2.3.1",
+           "text": "State aims and tell them from hypotheses; write directional and non-directional hypotheses."
+          },
+          {
+           "code": null,
+           "text": "Explain population versus sample and sampling methods (random, systematic, stratified, opportunity, volunteer), bias and generalisation."
+          },
+          {
+           "code": null,
+           "text": "Explain pilot studies and their aims."
+          }
+         ]
+        },
+        {
+         "id": "designs-variables-and-control",
+         "title": "Designs, variables and control",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Compare experimental designs: repeated measures, independent groups, matched pairs."
+          },
+          {
+           "code": null,
+           "text": "Describe observational design: behavioural categories, event and time sampling."
+          },
+          {
+           "code": null,
+           "text": "Describe questionnaire construction with open and closed questions, and interview design."
+          },
+          {
+           "code": null,
+           "text": "Explain independent, dependent and extraneous variables and operationalisation."
+          },
+          {
+           "code": null,
+           "text": "Explain control: random allocation, counterbalancing, randomisation, standardisation, control groups; demand characteristics and investigator effects."
+          }
+         ]
+        },
+        {
+         "id": "ethics-and-science",
+         "title": "Ethics and science",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain ethics, the BPS code of ethics, ethical issues in design and conduct, and dealing with them."
+          },
+          {
+           "code": null,
+           "text": "Explain peer review and the implications of psychological research for the economy."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "3-2-3-2-data-handling-and-analysis",
+       "title": "3.2.3.2 Data handling and analysis",
+       "subtopics": [
+        {
+         "id": "types-of-data-and-descriptive-statistics",
+         "title": "Types of data and descriptive statistics",
+         "outcomes": [
+          {
+           "code": "3.2.3.2",
+           "text": "Distinguish quantitative from qualitative data and collection techniques, and primary from secondary data, including meta-analysis."
+          },
+          {
+           "code": null,
+           "text": "Calculate and use mean, median, mode, range, standard deviation and percentages; recognise positive, negative and zero correlations."
+          },
+          {
+           "code": null,
+           "text": "Present data in graphs, tables, scattergrams and bar charts, and describe normal and skewed distributions."
+          }
+         ]
+        },
+        {
+         "id": "the-sign-test",
+         "title": "The sign test",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain statistical testing, when to use the sign test, and calculate it."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "Year 13",
+   "units": [
+    {
+     "id": "4-subject-content-a-level",
+     "title": "4 Subject content - A-level",
+     "topics": [
+      {
+       "id": "4-1-introductory-topics-in-psychology",
+       "title": "4.1 Introductory topics in Psychology",
+       "subtopics": [
+        {
+         "id": "studying-introductory-topics",
+         "title": "Studying introductory topics",
+         "outcomes": [
+          {
+           "code": "4.1",
+           "text": "Know and apply concepts, theories, studies, methods and ethical issues for Paper 1, and evaluate therapies by appropriateness and effectiveness."
+          },
+          {
+           "code": null,
+           "text": "Develop research methods and maths skills by designing and conducting research and analysing data."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "4-1-1-social-influence",
+       "title": "4.1.1 Social influence",
+       "subtopics": [
+        {
+         "id": "conformity",
+         "title": "Conformity",
+         "outcomes": [
+          {
+           "code": "4.1.1",
+           "text": "Distinguish internalisation from compliance, and explain informational and normative social influence."
+          },
+          {
+           "code": null,
+           "text": "Explain variables affecting conformity (group size, unanimity, task difficulty) as investigated by Asch."
+          }
+         ]
+        },
+        {
+         "id": "obedience-and-resistance",
+         "title": "Obedience and resistance",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain obedience: agentic state and legitimacy of authority, and Milgram's variables (proximity, location, uniform)."
+          },
+          {
+           "code": null,
+           "text": "Explain the Authoritarian Personality as a dispositional explanation of obedience."
+          },
+          {
+           "code": null,
+           "text": "Explain resistance to social influence, including social support and locus of control."
+          },
+          {
+           "code": null,
+           "text": "Explain minority influence: consistency, commitment and flexibility."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "4-1-2-memory",
+       "title": "4.1.2 Memory",
+       "subtopics": [
+        {
+         "id": "models-of-memory",
+         "title": "Models of memory",
+         "outcomes": [
+          {
+           "code": "4.1.2",
+           "text": "Describe the multi-store model: sensory register, short-term and long-term memory, with coding, capacity and duration."
+          },
+          {
+           "code": null,
+           "text": "Describe the working memory model: central executive, phonological loop, visuo-spatial sketchpad and episodic buffer, with coding and capacity."
+          }
+         ]
+        },
+        {
+         "id": "forgetting-and-eyewitness-testimony",
+         "title": "Forgetting and eyewitness testimony",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain forgetting by proactive and retroactive interference and retrieval failure from missing cues."
+          },
+          {
+           "code": null,
+           "text": "Explain factors affecting eyewitness accuracy: leading questions, post-event discussion, anxiety, and the cognitive interview."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "4-1-3-attachment",
+       "title": "4.1.3 Attachment",
+       "subtopics": [
+        {
+         "id": "explaining-attachment",
+         "title": "Explaining attachment",
+         "outcomes": [
+          {
+           "code": "4.1.3",
+           "text": "Describe animal studies of attachment: Lorenz and Harlow."
+          },
+          {
+           "code": null,
+           "text": "Explain learning theory and Bowlby's monotropic theory, with critical period and internal working model."
+          }
+         ]
+        },
+        {
+         "id": "types-and-effects-of-attachment",
+         "title": "Types and effects of attachment",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe Ainsworth's Strange Situation and secure, insecure-avoidant and insecure-resistant types."
+          },
+          {
+           "code": null,
+           "text": "Explain cultural variations in attachment, including van Ijzendoorn."
+          },
+          {
+           "code": null,
+           "text": "Explain Bowlby's maternal deprivation theory and institutionalisation effects, including the English and Romanian Adoptees study."
+          },
+          {
+           "code": null,
+           "text": "Explain how early attachment influences childhood and adult relationships through the internal working model."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "4-1-4-clinical-psychology-and-mental-health",
+       "title": "4.1.4 Clinical Psychology and Mental Health",
+       "subtopics": [
+        {
+         "id": "defining-and-describing-disorders",
+         "title": "Defining and describing disorders",
+         "outcomes": [
+          {
+           "code": "4.1.4",
+           "text": "Define abnormality: deviation from ideal mental health, from social or cultural norms, failure to function adequately, and statistical infrequency."
+          },
+          {
+           "code": null,
+           "text": "Describe the behavioural, emotional and cognitive characteristics of phobias, depression and OCD."
+          }
+         ]
+        },
+        {
+         "id": "explaining-and-treating-disorders",
+         "title": "Explaining and treating disorders",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain and treat phobias by the behavioural approach: two-process model, systematic desensitisation with relaxation and hierarchy, and flooding."
+          },
+          {
+           "code": null,
+           "text": "Explain and treat depression by the cognitive approach: Beck's negative triad, Ellis's ABC model and CBT."
+          },
+          {
+           "code": null,
+           "text": "Explain and treat OCD by the biological approach: genetic and neural explanations and drug therapy."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "4-2-psychology-in-context",
+       "title": "4.2 Psychology in context",
+       "subtopics": [
+        {
+         "id": "studying-psychology-in-context",
+         "title": "Studying psychology in context",
+         "outcomes": [
+          {
+           "code": "4.2",
+           "text": "Know and apply concepts, theories, studies, methods and ethical issues for Paper 2, and evaluate therapies and treatments."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "4-2-1-approaches-in-psychology",
+       "title": "4.2.1 Approaches in Psychology",
+       "subtopics": [
+        {
+         "id": "learning-approaches",
+         "title": "Learning approaches",
+         "outcomes": [
+          {
+           "code": "4.2.1",
+           "text": "Explain behaviourism: classical conditioning and Pavlov, operant conditioning, reinforcement types and Skinner."
+          },
+          {
+           "code": null,
+           "text": "Explain social learning theory: imitation, identification, vicarious reinforcement, mediational processes and Bandura."
+          }
+         ]
+        },
+        {
+         "id": "cognitive-and-biological-approaches",
+         "title": "Cognitive and biological approaches",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain the cognitive approach: internal mental processes, schema, and models of mental processes."
+          },
+          {
+           "code": null,
+           "text": "Explain the biological approach: genotype, phenotype, evolution, biological structures, neurochemistry and cognitive neuroscience."
+          }
+         ]
+        },
+        {
+         "id": "psychodynamic-and-humanistic-approaches",
+         "title": "Psychodynamic and humanistic approaches",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain the psychodynamic approach: the unconscious, Id, Ego and Superego, defence mechanisms (repression, denial, displacement) and psychosexual stages."
+          },
+          {
+           "code": null,
+           "text": "Explain humanistic psychology: free will, self-actualisation, Maslow's hierarchy, congruence and conditions of worth."
+          },
+          {
+           "code": null,
+           "text": "Compare the approaches."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "4-2-2-biopsychology",
+       "title": "4.2.2 Biopsychology",
+       "subtopics": [
+        {
+         "id": "nervous-and-endocrine-systems",
+         "title": "Nervous and endocrine systems",
+         "outcomes": [
+          {
+           "code": "4.2.2",
+           "text": "Describe the divisions of the nervous system: central and peripheral (somatic and autonomic)."
+          },
+          {
+           "code": null,
+           "text": "Describe sensory, relay and motor neurons, and synaptic transmission with neurotransmitters, excitation and inhibition."
+          },
+          {
+           "code": null,
+           "text": "Describe the endocrine system's glands and hormones, and the fight or flight response with adrenaline."
+          }
+         ]
+        },
+        {
+         "id": "studying-the-brain",
+         "title": "Studying the brain",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe ways of studying the brain: fMRI, EEG and ERPs, and post-mortem examination."
+          },
+          {
+           "code": null,
+           "text": "Explain localisation of function and hemispheric lateralisation: motor, somatosensory, visual, auditory and language centres, Broca's and Wernicke's areas, split-brain research."
+          },
+          {
+           "code": null,
+           "text": "Explain plasticity and functional recovery after trauma."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "4-2-3-research-methods",
+       "title": "4.2.3 Research methods",
+       "subtopics": [
+        {
+         "id": "research-methods",
+         "title": "Research methods",
+         "outcomes": [
+          {
+           "code": "4.2.3",
+           "text": "Describe experimental methods: laboratory, field, natural and quasi-experiments."
+          },
+          {
+           "code": null,
+           "text": "Describe observational techniques: naturalistic or controlled, covert or overt, participant or non-participant."
+          },
+          {
+           "code": null,
+           "text": "Describe self-report techniques: questionnaires and structured or unstructured interviews."
+          },
+          {
+           "code": null,
+           "text": "Explain correlations and how they differ from experiments."
+          },
+          {
+           "code": null,
+           "text": "Describe content analysis."
+          },
+          {
+           "code": null,
+           "text": "Describe case studies."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "4-2-3-1-scientific-processes",
+       "title": "4.2.3.1 Scientific processes",
+       "subtopics": [
+        {
+         "id": "aims-hypotheses-and-sampling",
+         "title": "Aims, hypotheses and sampling",
+         "outcomes": [
+          {
+           "code": "4.2.3.1",
+           "text": "State aims and tell them from hypotheses; write directional and non-directional hypotheses."
+          },
+          {
+           "code": null,
+           "text": "Explain population versus sample and sampling methods (random, systematic, stratified, opportunity, volunteer), bias and generalisation."
+          },
+          {
+           "code": null,
+           "text": "Explain pilot studies and their aims."
+          }
+         ]
+        },
+        {
+         "id": "designs-variables-and-control",
+         "title": "Designs, variables and control",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Compare experimental designs: repeated measures, independent groups, matched pairs."
+          },
+          {
+           "code": null,
+           "text": "Describe observational design: behavioural categories, event and time sampling."
+          },
+          {
+           "code": null,
+           "text": "Describe questionnaire construction with open and closed questions, and interview design."
+          },
+          {
+           "code": null,
+           "text": "Explain independent, dependent and extraneous variables and operationalisation."
+          },
+          {
+           "code": null,
+           "text": "Explain control: random allocation, counterbalancing, randomisation, standardisation, control groups; demand characteristics and investigator effects."
+          }
+         ]
+        },
+        {
+         "id": "ethics-and-science",
+         "title": "Ethics and science",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain ethics, the BPS code of ethics, ethical issues in design and conduct, and dealing with them."
+          },
+          {
+           "code": null,
+           "text": "Explain peer review and the implications of psychological research for the economy."
+          }
+         ]
+        },
+        {
+         "id": "reliability-validity-and-science",
+         "title": "Reliability, validity and science",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain reliability, measuring it by test-retest and inter-observer methods, and improving it."
+          },
+          {
+           "code": null,
+           "text": "Explain face, concurrent, ecological and temporal validity, measuring and improving validity."
+          },
+          {
+           "code": null,
+           "text": "Explain features of science: objectivity, empirical method, replicability, falsifiability, theory construction, paradigms and paradigm shifts."
+          },
+          {
+           "code": null,
+           "text": "Describe sections of a scientific report: abstract, introduction, method, results, discussion, referencing."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "4-2-3-2-data-handling-and-analysis",
+       "title": "4.2.3.2 Data handling and analysis",
+       "subtopics": [
+        {
+         "id": "types-of-data-and-descriptive-statistics",
+         "title": "Types of data and descriptive statistics",
+         "outcomes": [
+          {
+           "code": "4.2.3.2",
+           "text": "Distinguish quantitative from qualitative data and collection techniques, and primary from secondary data, including meta-analysis."
+          },
+          {
+           "code": null,
+           "text": "Calculate and use mean, median, mode, range, standard deviation and percentages; recognise positive, negative and zero correlations."
+          },
+          {
+           "code": null,
+           "text": "Present data in graphs, tables, scattergrams and bar charts, and describe normal and skewed distributions."
+          },
+          {
+           "code": null,
+           "text": "Present data also in histograms."
+          },
+          {
+           "code": null,
+           "text": "Analyse and interpret correlation, including coefficients."
+          },
+          {
+           "code": null,
+           "text": "Explain nominal, ordinal and interval levels of measurement."
+          },
+          {
+           "code": null,
+           "text": "Explain coding in content analysis."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "4-2-3-3-inferential-testing",
+       "title": "4.2.3.3 Inferential testing",
+       "subtopics": [
+        {
+         "id": "inferential-testing",
+         "title": "Inferential testing",
+         "outcomes": [
+          {
+           "code": "4.2.3.3",
+           "text": "Explain statistical testing and the sign test: when to use it and how to calculate it."
+          },
+          {
+           "code": null,
+           "text": "Use statistical tables and critical values to judge significance; explain Type I and Type II errors."
+          },
+          {
+           "code": null,
+           "text": "Choose a test by level of measurement and design: Spearman's rho, Pearson's r, Wilcoxon, Mann-Whitney, related and unrelated t-tests, Chi-squared."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "4-3-issues-and-options-in-psychology",
+       "title": "4.3 Issues and options in Psychology",
+       "subtopics": [
+        {
+         "id": "studying-issues-and-options",
+         "title": "Studying issues and options",
+         "outcomes": [
+          {
+           "code": "4.3",
+           "text": "Know and apply concepts, theories, studies, methods and ethical issues for Paper 3, illustrating issues and debates with topics from elsewhere in the specification."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "4-3-1-issues-and-debates-in-psychology",
+       "title": "4.3.1 Issues and debates in Psychology",
+       "subtopics": [
+        {
+         "id": "bias-determinism-and-nature-nurture",
+         "title": "Bias, determinism and nature-nurture",
+         "outcomes": [
+          {
+           "code": "4.3.1",
+           "text": "Explain gender bias (androcentrism, alpha and beta bias) and cultural bias (ethnocentrism, cultural relativism), and universality."
+          },
+          {
+           "code": null,
+           "text": "Explain free will and determinism: hard and soft, biological, environmental and psychic, and the scientific emphasis on cause."
+          },
+          {
+           "code": null,
+           "text": "Explain the nature-nurture debate and the interactionist approach."
+          }
+         ]
+        },
+        {
+         "id": "levels-of-explanation-and-approach",
+         "title": "Levels of explanation and approach",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain holism and reductionism: biological and environmental (stimulus-response) reductionism."
+          },
+          {
+           "code": null,
+           "text": "Distinguish idiographic from nomothetic approaches."
+          },
+          {
+           "code": null,
+           "text": "Explain social sensitivity in psychological research."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "4-3-2-relationships",
+       "title": "4.3.2 Relationships",
+       "subtopics": [
+        {
+         "id": "romantic-relationships",
+         "title": "Romantic relationships",
+         "outcomes": [
+          {
+           "code": "4.3.2",
+           "text": "Explain attraction: self-disclosure, physical attractiveness and the matching hypothesis, and filter theory (social demography, similarity, complementarity)."
+          },
+          {
+           "code": null,
+           "text": "Explain social exchange theory, equity theory, and Rusbult's investment model."
+          },
+          {
+           "code": null,
+           "text": "Explain Duck's phase model of relationship breakdown."
+          }
+         ]
+        },
+        {
+         "id": "online-and-parasocial-relationships",
+         "title": "Online and parasocial relationships",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain online relationships: self-disclosure, deception and the absence of gating."
+          },
+          {
+           "code": null,
+           "text": "Explain parasocial relationships: levels, the absorption addiction model and attachment theory."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "4-3-3-gender",
+       "title": "4.3.3 Gender",
+       "subtopics": [
+        {
+         "id": "sex-and-gender-identity",
+         "title": "Sex and gender identity",
+         "outcomes": [
+          {
+           "code": "4.3.3",
+           "text": "Explain chromosomes and hormones (testosterone, oestrogen, oxytocin) in biological sex, and diversity in sex development (AIS, Klinefelter's, Turner)."
+          },
+          {
+           "code": null,
+           "text": "Describe gender identities (binary, non-binary, gender fluid) and the Bem Sex Role Inventory."
+          }
+         ]
+        },
+        {
+         "id": "explaining-gender-development",
+         "title": "Explaining gender development",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain biological explanations of gender development."
+          },
+          {
+           "code": null,
+           "text": "Explain cognitive explanations: Kohlberg's theory (identity, stability, constancy) and gender schema theory."
+          },
+          {
+           "code": null,
+           "text": "Apply social learning theory to gender, including the influence of culture and media."
+          },
+          {
+           "code": null,
+           "text": "Explain gender incongruence by biological and social or cultural explanations."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "4-3-4-cognition-and-development",
+       "title": "4.3.4 Cognition and development",
+       "subtopics": [
+        {
+         "id": "piaget-and-vygotsky",
+         "title": "Piaget and Vygotsky",
+         "outcomes": [
+          {
+           "code": "4.3.4",
+           "text": "Explain Piaget's theory: schemas, assimilation, accommodation, equilibration, stages, object permanence, conservation, egocentrism, class inclusion."
+          },
+          {
+           "code": null,
+           "text": "Explain Vygotsky's theory, the zone of proximal development and scaffolding."
+          }
+         ]
+        },
+        {
+         "id": "early-abilities-and-social-cognition",
+         "title": "Early abilities and social cognition",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain Baillargeon's account of early infant knowledge and violation of expectation research."
+          },
+          {
+           "code": null,
+           "text": "Explain Selman's levels of perspective-taking, theory of mind and the Sally-Anne study."
+          },
+          {
+           "code": null,
+           "text": "Explain the mirror neuron system in social cognition."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "4-3-5-schizophrenia",
+       "title": "4.3.5 Schizophrenia",
+       "subtopics": [
+        {
+         "id": "symptoms-and-explanations",
+         "title": "Symptoms and explanations",
+         "outcomes": [
+          {
+           "code": "4.3.5",
+           "text": "Describe positive symptoms (hallucinations, delusions) and negative symptoms (speech poverty, avolition), and diagnosis issues: co-morbidity, bias, symptom overlap."
+          },
+          {
+           "code": null,
+           "text": "Explain biological explanations: genetics, neural correlates and the dopamine hypothesis."
+          },
+          {
+           "code": null,
+           "text": "Explain psychological explanations: family dysfunction and cognitive explanations."
+          }
+         ]
+        },
+        {
+         "id": "treating-schizophrenia",
+         "title": "Treating schizophrenia",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain drug therapy with typical and atypical antipsychotics."
+          },
+          {
+           "code": null,
+           "text": "Explain CBT and family therapy for schizophrenia."
+          },
+          {
+           "code": null,
+           "text": "Explain the interactionist approach and the diathesis-stress model."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "4-3-6-eating-behaviour",
+       "title": "4.3.6 Eating behaviour",
+       "subtopics": [
+        {
+         "id": "food-preference-and-control-of-eating",
+         "title": "Food preference and control of eating",
+         "outcomes": [
+          {
+           "code": "4.3.6",
+           "text": "Explain evolutionary explanations of food preference (neophobia, taste aversion) and learning, social and cultural influences."
+          },
+          {
+           "code": null,
+           "text": "Explain neural and hormonal control of eating: hypothalamus, ghrelin and leptin."
+          }
+         ]
+        },
+        {
+         "id": "anorexia-and-obesity",
+         "title": "Anorexia and obesity",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain biological explanations for anorexia nervosa: genetic and neural."
+          },
+          {
+           "code": null,
+           "text": "Explain psychological explanations for anorexia: family systems theory, social learning theory and cognitive theory."
+          },
+          {
+           "code": null,
+           "text": "Explain biological explanations for obesity: genetic and neural."
+          },
+          {
+           "code": null,
+           "text": "Explain psychological explanations for obesity: restraint theory, disinhibition and the boundary model."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "4-3-7-stress",
+       "title": "4.3.7 Stress",
+       "subtopics": [
+        {
+         "id": "physiology-and-sources-of-stress",
+         "title": "Physiology and sources of stress",
+         "outcomes": [
+          {
+           "code": "4.3.7",
+           "text": "Explain the physiology of stress: general adaptation syndrome, the HPA system, the sympathomedullary pathway and cortisol."
+          },
+          {
+           "code": null,
+           "text": "Explain the role of stress in illness: immunosuppression and cardiovascular disorders."
+          },
+          {
+           "code": null,
+           "text": "Explain sources of stress: life changes, daily hassles, and workplace workload and control."
+          },
+          {
+           "code": null,
+           "text": "Explain measuring stress by self-report scales (SRRS, Hassles and Uplifts) and skin conductance."
+          }
+         ]
+        },
+        {
+         "id": "individual-differences-and-coping",
+         "title": "Individual differences and coping",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain personality types A, B and C and hardiness (commitment, challenge, control)."
+          },
+          {
+           "code": null,
+           "text": "Explain stress management by drug therapy, stress inoculation therapy and biofeedback."
+          },
+          {
+           "code": null,
+           "text": "Explain gender differences in coping and social support (instrumental, emotional, esteem)."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "4-3-8-aggression",
+       "title": "4.3.8 Aggression",
+       "subtopics": [
+        {
+         "id": "biological-and-evolutionary-explanations",
+         "title": "Biological and evolutionary explanations",
+         "outcomes": [
+          {
+           "code": "4.3.8",
+           "text": "Explain neural and hormonal mechanisms of aggression: limbic system, serotonin, testosterone, and the MAOA gene."
+          },
+          {
+           "code": null,
+           "text": "Explain the ethological explanation: innate releasing mechanisms and fixed action patterns, and evolutionary explanations."
+          }
+         ]
+        },
+        {
+         "id": "social-explanations-and-media",
+         "title": "Social explanations and media",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain frustration-aggression, social learning theory and de-individuation."
+          },
+          {
+           "code": null,
+           "text": "Explain institutional aggression in prisons: dispositional and situational explanations."
+          },
+          {
+           "code": null,
+           "text": "Explain media influences on aggression, computer games, desensitisation, disinhibition and cognitive priming."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "4-3-9-forensic-psychology",
+       "title": "4.3.9 Forensic Psychology",
+       "subtopics": [
+        {
+         "id": "profiling-and-explaining-offending",
+         "title": "Profiling and explaining offending",
+         "outcomes": [
+          {
+           "code": "4.3.9",
+           "text": "Explain offender profiling: the typology approach, the data-driven approach and geographical profiling."
+          },
+          {
+           "code": null,
+           "text": "Explain biological explanations of offending: genetics and neural."
+          },
+          {
+           "code": null,
+           "text": "Explain psychological explanations: Eysenck's criminal personality, cognitive explanations, moral reasoning, cognitive distortions and differential association theory."
+          }
+         ]
+        },
+        {
+         "id": "dealing-with-offending",
+         "title": "Dealing with offending",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain the aims and psychological effects of custodial sentencing and behaviour modification in custody."
+          },
+          {
+           "code": null,
+           "text": "Explain anger management and restorative justice programmes."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "4-3-10-addiction",
+       "title": "4.3.10 Addiction",
+       "subtopics": [
+        {
+         "id": "describing-and-explaining-addiction",
+         "title": "Describing and explaining addiction",
+         "outcomes": [
+          {
+           "code": "4.3.10",
+           "text": "Describe addiction: physical and psychological dependence, tolerance and withdrawal."
+          },
+          {
+           "code": null,
+           "text": "Explain risk factors: genetic vulnerability, personality and social influences."
+          },
+          {
+           "code": null,
+           "text": "Explain nicotine addiction: dopamine and learning theory, including cue reactivity."
+          },
+          {
+           "code": null,
+           "text": "Explain gambling addiction: learning theory with partial and variable reinforcement, and cognitive theory with bias."
+          }
+         ]
+        },
+        {
+         "id": "reducing-addiction",
+         "title": "Reducing addiction",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain drug therapy, aversion therapy, covert sensitisation and CBT for addiction."
+          },
+          {
+           "code": null,
+           "text": "Apply Prochaska's six-stage model of behaviour change."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "build": {
+  "builtAt": "2026-10-14T10:17:31.276Z",
+  "model": "claude-agent",
+  "usd": 0,
+  "expectedCodes": 34,
+  "coverage": 1,
+  "missingCodes": [],
+  "counts": {
+   "grades": 2,
+   "units": 2,
+   "topics": 34,
+   "subtopics": 62,
+   "outcomes": 174
+  },
+  "warnings": []
+ }
+}

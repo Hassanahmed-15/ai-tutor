@@ -1,0 +1,590 @@
+{
+ "id": "pk-ncp-tech-computer-hardware-9-10",
+ "region": "PK",
+ "framework": "National Curriculum of Pakistan 2022-23",
+ "board": null,
+ "qualification": "Technical stream",
+ "subject": "Computer Hardware",
+ "syllabusCode": null,
+ "gradeSystem": "grade",
+ "source": {
+  "urls": [
+   "https://ncc.gov.pk/SiteImage/Misc/files/61-Computer%20Hardware.pdf"
+  ],
+  "publisher": "National Curriculum Council, Ministry of Federal Education and Professional Training",
+  "licence": "Government publication; structure + our own wording only",
+  "firstExam": null
+ },
+ "grades": [
+  {
+   "grade": "9",
+   "units": [
+    {
+     "id": "domain-a-computer-system-hardware-and-software",
+     "title": "Domain A: Computer System (Hardware and Software)",
+     "topics": [
+      {
+       "id": "computer-systems",
+       "title": "Computer systems",
+       "subtopics": [
+        {
+         "id": "parts-of-a-computer-system",
+         "title": "Parts of a computer system",
+         "outcomes": [
+          {
+           "code": "CHW-09-A-01",
+           "text": "Explain the hardware and software building blocks of a computer system."
+          },
+          {
+           "code": "CHW-09-A-03",
+           "text": "Recognise PC hardware: CPU, memory, storage, motherboard, USB, HDMI and Ethernet."
+          }
+         ]
+        },
+        {
+         "id": "evolution-of-computers",
+         "title": "Evolution of computers",
+         "outcomes": [
+          {
+           "code": "CHW-09-A-02",
+           "text": "Explain the history of the personal computer's evolution."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "domain-b-number-system-boolean-logic-gates-and-t",
+     "title": "Domain B: Number System, Boolean Logic, Gates and Transistors",
+     "topics": [
+      {
+       "id": "number-systems-and-logic",
+       "title": "Number systems and logic",
+       "subtopics": [
+        {
+         "id": "number-systems",
+         "title": "Number systems",
+         "outcomes": [
+          {
+           "code": "CHW-09-B-01",
+           "text": "Explain decimal, binary, octal and hexadecimal and how computers store numbers."
+          },
+          {
+           "code": "CHW-09-B-02",
+           "text": "Convert between number systems."
+          }
+         ]
+        },
+        {
+         "id": "logic-gates-and-transistors",
+         "title": "Logic gates and transistors",
+         "outcomes": [
+          {
+           "code": "CHW-09-B-03",
+           "text": "Explain boolean logic and the NOT, AND, OR and XOR gates."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "domain-c-computer-architecture",
+     "title": "Domain C: Computer Architecture",
+     "topics": [
+      {
+       "id": "architecture",
+       "title": "Architecture",
+       "subtopics": [
+        {
+         "id": "cpu-memory-and-peripherals",
+         "title": "CPU, memory and peripherals",
+         "outcomes": [
+          {
+           "code": "CHW-09-C-01",
+           "text": "Explain basic computer architecture: CPU, memory and I/O peripherals."
+          },
+          {
+           "code": "CHW-09-C-02",
+           "text": "Identify the roles of CPU, memory and I/O peripherals."
+          },
+          {
+           "code": "CHW-09-C-03",
+           "text": "Explain how CPU, memory and peripherals are connected."
+          }
+         ]
+        },
+        {
+         "id": "instruction-processing",
+         "title": "Instruction processing",
+         "outcomes": [
+          {
+           "code": "CHW-09-C-04",
+           "text": "Identify basic operations: arithmetic and load/store."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "domain-d-memory",
+     "title": "Domain D: Memory",
+     "topics": [
+      {
+       "id": "memory",
+       "title": "Memory",
+       "subtopics": [
+        {
+         "id": "memory-hierarchy",
+         "title": "Memory hierarchy",
+         "outcomes": [
+          {
+           "code": "CHW-09-D-01",
+           "text": "Identify the memory hierarchy: registers, cache, RAM, hard disk, flash."
+          },
+          {
+           "code": "CHW-09-D-02",
+           "text": "Identify the role of each memory."
+          }
+         ]
+        },
+        {
+         "id": "data-and-instruction-memory",
+         "title": "Data and instruction memory",
+         "outcomes": [
+          {
+           "code": "CHW-09-D-03",
+           "text": "Distinguish data memory from instruction memory (grade 10 adds the high-level interface for reading and writing memory)."
+          },
+          {
+           "code": "CHW-09-D-04",
+           "text": "Explain technologies used to build memories and storage devices."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "domain-e-input-output-devices",
+     "title": "Domain E: Input/Output Devices",
+     "topics": [
+      {
+       "id": "input-output",
+       "title": "Input/output",
+       "subtopics": [
+        {
+         "id": "input-and-output-devices",
+         "title": "Input and output devices",
+         "outcomes": [
+          {
+           "code": "CHW-09-E-01",
+           "text": "Explore devices such as mouse, keyboard, monitor, microphone and speaker."
+          },
+          {
+           "code": "CHW-09-E-02",
+           "text": "Explain how computers communicate with these devices through software."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "domain-f-networking-devices",
+     "title": "Domain F: Networking Devices",
+     "topics": [
+      {
+       "id": "networking",
+       "title": "Networking",
+       "subtopics": [
+        {
+         "id": "networks-and-devices",
+         "title": "Networks and devices",
+         "outcomes": [
+          {
+           "code": "CHW-09-F-01",
+           "text": "Explore connecting computers with Ethernet."
+          },
+          {
+           "code": "CHW-09-F-02",
+           "text": "Differentiate switches and routers."
+          },
+          {
+           "code": "CHW-09-F-03",
+           "text": "Explore intranets and the role of Ethernet card and switch."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "domain-g-emerging-trends-in-computer-hardware",
+     "title": "Domain G: Emerging Trends in Computer Hardware",
+     "topics": [
+      {
+       "id": "emerging-trends",
+       "title": "Emerging trends",
+       "subtopics": [
+        {
+         "id": "new-hardware-platforms",
+         "title": "New hardware platforms",
+         "outcomes": [
+          {
+           "code": "CHW-09-G-01",
+           "text": "Explore multi-core processors and GPUs."
+          },
+          {
+           "code": "CHW-09-G-02",
+           "text": "Explain how conventional computers differ from new platforms."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "domain-h-design-project-build-your-own-computer",
+     "title": "Domain H: Design Project - Build your own Computer",
+     "topics": [
+      {
+       "id": "design-project",
+       "title": "Design project",
+       "subtopics": [
+        {
+         "id": "building-a-computer",
+         "title": "Building a computer",
+         "outcomes": [
+          {
+           "code": "CHW-09-H-01",
+           "text": "Build a computer from discrete parts: CPU, memory, disk, power supply, motherboard, keyboard, mouse, monitor."
+          },
+          {
+           "code": "CHW-09-H-02",
+           "text": "Check whether the computer was built properly."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "10",
+   "units": [
+    {
+     "id": "domain-a-computer-system-hardware-and-software",
+     "title": "Domain A: Computer System (Hardware and Software)",
+     "topics": [
+      {
+       "id": "computer-systems",
+       "title": "Computer systems",
+       "subtopics": [
+        {
+         "id": "parts-of-a-computer-system",
+         "title": "Parts of a computer system",
+         "outcomes": [
+          {
+           "code": "CHW-10-A-01",
+           "text": "Explain computer building blocks and abstraction layers such as application, database, network and operating system."
+          },
+          {
+           "code": "CHW-10-A-03",
+           "text": "Recognise hardware components and assemble them into a computer."
+          },
+          {
+           "code": "CHW-10-A-04",
+           "text": "Explain how hardware and software interact to perform tasks."
+          }
+         ]
+        },
+        {
+         "id": "evolution-of-computers",
+         "title": "Evolution of computers",
+         "outcomes": [
+          {
+           "code": "CHW-10-A-02",
+           "text": "Explain the evolution of personal computers, supercomputers and quantum computers."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "domain-b-number-system-boolean-logic-gates-and-t",
+     "title": "Domain B: Number System, Boolean Logic, Gates and Transistors",
+     "topics": [
+      {
+       "id": "number-systems-and-logic",
+       "title": "Number systems and logic",
+       "subtopics": [
+        {
+         "id": "number-systems",
+         "title": "Number systems",
+         "outcomes": [
+          {
+           "code": "CHW-10-B-01",
+           "text": "Explain number systems and 2's complement used in computers."
+          },
+          {
+           "code": "CHW-10-B-02",
+           "text": "Add and subtract in 2's complement."
+          }
+         ]
+        },
+        {
+         "id": "logic-gates-and-transistors",
+         "title": "Logic gates and transistors",
+         "outcomes": [
+          {
+           "code": "CHW-10-B-03",
+           "text": "Demonstrate basic gates and build complex gates from them."
+          },
+          {
+           "code": "CHW-10-B-04",
+           "text": "Build a 1-bit adder in hardware using gates."
+          },
+          {
+           "code": "CHW-10-B-05",
+           "text": "Demonstrate how a transistor works and link gates to transistors."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "domain-c-computer-architecture",
+     "title": "Domain C: Computer Architecture",
+     "topics": [
+      {
+       "id": "architecture",
+       "title": "Architecture",
+       "subtopics": [
+        {
+         "id": "cpu-memory-and-peripherals",
+         "title": "CPU, memory and peripherals",
+         "outcomes": [
+          {
+           "code": "CHW-10-C-01",
+           "text": "Explain architecture components and how they work internally."
+          },
+          {
+           "code": "CHW-10-C-02",
+           "text": "Design a small computer from CPU, memory and I/O peripherals."
+          }
+         ]
+        },
+        {
+         "id": "instruction-processing",
+         "title": "Instruction processing",
+         "outcomes": [
+          {
+           "code": "CHW-10-C-03",
+           "text": "Explain basic operations and a sample instruction format."
+          },
+          {
+           "code": "CHW-10-C-04",
+           "text": "Explain how instructions are executed."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "domain-d-memory",
+     "title": "Domain D: Memory",
+     "topics": [
+      {
+       "id": "memory",
+       "title": "Memory",
+       "subtopics": [
+        {
+         "id": "memory-hierarchy",
+         "title": "Memory hierarchy",
+         "outcomes": [
+          {
+           "code": "CHW-10-D-01",
+           "text": "Explain the hierarchy with trends in speed and capacity."
+          },
+          {
+           "code": "CHW-10-D-02",
+           "text": "Explain each memory's role and how data moves between levels."
+          }
+         ]
+        },
+        {
+         "id": "data-and-instruction-memory",
+         "title": "Data and instruction memory",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Distinguish data and instruction memory and describe the high-level interface to read and write memory."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "domain-e-input-output-devices",
+     "title": "Domain E: Input/Output Devices",
+     "topics": [
+      {
+       "id": "input-output",
+       "title": "Input/output",
+       "subtopics": [
+        {
+         "id": "input-and-output-devices",
+         "title": "Input and output devices",
+         "outcomes": [
+          {
+           "code": "CHW-10-E-01",
+           "text": "Explore conventional I/O devices and newer ones such as haptic devices."
+          },
+          {
+           "code": "CHW-10-E-02",
+           "text": "Show how the computer understands input from each input device."
+          },
+          {
+           "code": "CHW-10-E-03",
+           "text": "Show how the computer sends information to output devices."
+          },
+          {
+           "code": "CHW-10-E-04",
+           "text": "Show how I/O devices are accessed through software."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "domain-f-networking-devices",
+     "title": "Domain F: Networking Devices",
+     "topics": [
+      {
+       "id": "networking",
+       "title": "Networking",
+       "subtopics": [
+        {
+         "id": "networks-and-devices",
+         "title": "Networks and devices",
+         "outcomes": [
+          {
+           "code": "CHW-10-F-01",
+           "text": "Explore Ethernet connections with protocol description."
+          },
+          {
+           "code": "CHW-10-F-02",
+           "text": "Explore networking layers."
+          },
+          {
+           "code": "CHW-10-F-03",
+           "text": "Differentiate intranet and internet and their devices."
+          },
+          {
+           "code": "CHW-10-F-04",
+           "text": "Explain how software and hardware work together for internet access."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "domain-g-emerging-trends-in-computer-hardware",
+     "title": "Domain G: Emerging Trends in Computer Hardware",
+     "topics": [
+      {
+       "id": "emerging-trends",
+       "title": "Emerging trends",
+       "subtopics": [
+        {
+         "id": "new-hardware-platforms",
+         "title": "New hardware platforms",
+         "outcomes": [
+          {
+           "code": "CHW-10-G-01",
+           "text": "Explore multi-core, GPUs and quantum computers."
+          },
+          {
+           "code": "CHW-10-G-02",
+           "text": "Match hardware platforms to applications such as AI and office automation."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "domain-h-design-project-build-your-own-computer",
+     "title": "Domain H: Design Project - Build your own Computer",
+     "topics": [
+      {
+       "id": "design-project",
+       "title": "Design project",
+       "subtopics": [
+        {
+         "id": "building-a-computer",
+         "title": "Building a computer",
+         "outcomes": [
+          {
+           "code": "CHW-10-H-01",
+           "text": "Build a computer from discrete parts and test it using BIOS."
+          },
+          {
+           "code": "CHW-10-H-02",
+           "text": "Install an operating system."
+          },
+          {
+           "code": "CHW-10-H-03",
+           "text": "Diagnose hardware faults such as missing memory."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "build": {
+  "builtAt": "2026-10-14T08:35:00.494Z",
+  "model": "claude-agent",
+  "usd": 0,
+  "expectedCodes": 51,
+  "coverage": 1,
+  "missingCodes": [],
+  "counts": {
+   "grades": 2,
+   "units": 16,
+   "topics": 16,
+   "subtopics": 24,
+   "outcomes": 52
+  },
+  "warnings": []
+ }
+}

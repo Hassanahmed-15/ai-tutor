@@ -1,0 +1,221 @@
+{
+ "id": "uk-edexcel-alevel-english-language-and-literature-9el0",
+ "region": "UK",
+ "framework": "Pearson Edexcel Level 3 Advanced GCE",
+ "board": "Pearson Edexcel",
+ "qualification": "A Level",
+ "subject": "English Language and Literature",
+ "syllabusCode": "9EL0",
+ "gradeSystem": "year",
+ "source": {
+  "urls": [
+   "https://qualifications.pearson.com/content/dam/pdf/A%20Level/English%20Language%20and%20Literature/2015/Specification%20and%20sample%20assessments/a-level-englishlanglit-spec.pdf"
+  ],
+  "publisher": "Pearson Education",
+  "licence": "Exam board specification, (c) Pearson; structure + our own wording only",
+  "firstExam": "2017"
+ },
+ "grades": [
+  {
+   "grade": "all",
+   "units": [
+    {
+     "id": "component-1-voices-in-speech-and-writing",
+     "title": "Component 1: Voices in Speech and Writing",
+     "topics": [
+      {
+       "id": "voices-in-speech-and-writing",
+       "title": "Voices in speech and writing",
+       "subtopics": [
+        {
+         "id": "the-concept-of-voice",
+         "title": "The concept of voice",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain how spoken voices are formed and written voices created in literary, non-literary and digital texts."
+          },
+          {
+           "code": null,
+           "text": "Explain how writers and speakers shape language to present an identity or persona."
+          }
+         ]
+        },
+        {
+         "id": "analysing-texts",
+         "title": "Analysing texts",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Apply methods of text analysis from both linguistic and literary fields."
+          },
+          {
+           "code": null,
+           "text": "Choose reading and listening strategies to suit text type and purpose."
+          },
+          {
+           "code": null,
+           "text": "Describe how meanings and effects are created, using language levels: phonetics, lexis, grammar, pragmatics, discourse."
+          }
+         ]
+        },
+        {
+         "id": "context-and-connections",
+         "title": "Context and connections",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain how texts relate to the contexts of their production and reception."
+          },
+          {
+           "code": null,
+           "text": "Explore connections across literary and non-literary texts."
+          },
+          {
+           "code": null,
+           "text": "Evaluate a text's effectiveness for different audiences and purposes."
+          }
+         ]
+        },
+        {
+         "id": "the-anthology",
+         "title": "The anthology",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Study non-literary and digital 20th- and 21st-century texts such as interviews, podcasts, blogs, screenplays and travelogues."
+          },
+          {
+           "code": null,
+           "text": "Analyse linguistic and literary features and generic conventions of non-literary and digital forms."
+          }
+         ]
+        },
+        {
+         "id": "drama-set-text",
+         "title": "Drama set text",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Study one set drama text, such as A Streetcar Named Desire or The History Boys, to see how writers create voices."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "component-2-varieties-in-language-and-literature",
+     "title": "Component 2: Varieties in Language and Literature",
+     "topics": [
+      {
+       "id": "varieties-in-language-and-literature",
+       "title": "Varieties in language and literature",
+       "subtopics": [
+        {
+         "id": "ideas-and-themes-in-writing",
+         "title": "Ideas and themes in writing",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Analyse how writers use language techniques and literary devices to convey ideas on a theme."
+          },
+          {
+           "code": null,
+           "text": "Explore how different writers convey similar themes and issues in different texts."
+          },
+          {
+           "code": null,
+           "text": "Explain how different readers or listeners interpret individual texts."
+          }
+         ]
+        },
+        {
+         "id": "unseen-non-fiction",
+         "title": "Unseen non-fiction",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Read widely across non-fiction genres to respond to an unseen prose non-fiction extract."
+          }
+         ]
+        },
+        {
+         "id": "theme-society-and-the-individual",
+         "title": "Theme: Society and the Individual",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Study an anchor novel such as The Great Gatsby or Great Expectations with a second text on this theme."
+          }
+         ]
+        },
+        {
+         "id": "theme-love-and-loss",
+         "title": "Theme: Love and Loss",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Study an anchor novel such as A Single Man or Tess of the D'Urbervilles with a second text on this theme."
+          }
+         ]
+        },
+        {
+         "id": "theme-encounters",
+         "title": "Theme: Encounters",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Study an anchor novel such as A Room with a View or Wuthering Heights with a second text on this theme."
+          }
+         ]
+        },
+        {
+         "id": "theme-crossing-boundaries",
+         "title": "Theme: Crossing Boundaries",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Study an anchor novel such as Wide Sargasso Sea or Dracula with a second text on this theme."
+          }
+         ]
+        },
+        {
+         "id": "comparing-texts",
+         "title": "Comparing texts",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Compare a prose fiction anchor text with a second prose, drama or poetry text from the same theme."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "build": {
+  "builtAt": "2026-10-14T10:25:58.586Z",
+  "model": "claude-agent",
+  "usd": 0,
+  "expectedCodes": null,
+  "coverage": null,
+  "missingCodes": [],
+  "counts": {
+   "grades": 1,
+   "units": 2,
+   "topics": 2,
+   "subtopics": 12,
+   "outcomes": 20
+  },
+  "warnings": [
+   "grade Year 12 has no content",
+   "grade Year 13 has no content",
+   "unexpected grade label \"all\""
+  ]
+ }
+}

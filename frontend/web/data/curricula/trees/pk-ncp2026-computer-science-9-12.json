@@ -1,0 +1,1026 @@
+{
+ "id": "pk-ncp2026-computer-science-9-12",
+ "region": "PK",
+ "framework": "National Curriculum of Pakistan 2026 (Rationalized Curricula 9-12)",
+ "board": null,
+ "qualification": "SSC/HSSC",
+ "subject": "Computer Science",
+ "syllabusCode": null,
+ "gradeSystem": "grade",
+ "source": {
+  "urls": [
+   "https://ncc.gov.pk/SiteImage/Misc/files/Computer%20Science.pdf"
+  ],
+  "publisher": "National Curriculum Council, Ministry of Federal Education and Professional Training",
+  "licence": "Government publication; structure + our own wording only",
+  "firstExam": null
+ },
+ "grades": [
+  {
+   "grade": "9",
+   "units": [
+    {
+     "id": "domain-a-computer-system",
+     "title": "Domain A: Computer System",
+     "topics": [
+      {
+       "id": "computer-architecture-and-software",
+       "title": "Computer architecture and software",
+       "subtopics": [
+        {
+         "id": "von-neumann-architecture-and-software",
+         "title": "Von Neumann architecture and software",
+         "outcomes": [
+          {
+           "code": "CS-09-A-01",
+           "text": "Define a system and the Von Neumann architecture, its registers and the types of computer software."
+          }
+         ]
+        },
+        {
+         "id": "data-memory-and-programming-languages",
+         "title": "Data, memory and programming languages",
+         "outcomes": [
+          {
+           "code": "CS-09-A-02",
+           "text": "Explain binary and other number systems, binary addition and subtraction, memory types, data storage units, programming language types, translators and IDE parts."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "networks",
+       "title": "Networks",
+       "subtopics": [
+        {
+         "id": "data-communication-and-network-devices",
+         "title": "Data communication and network devices",
+         "outcomes": [
+          {
+           "code": "CS-09-A-03",
+           "text": "Define data communication and its parts, and name network devices like hub, router, switch, gateway and bridge."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "domain-b-computational-thinking-algorithms",
+     "title": "Domain B: Computational Thinking & Algorithms",
+     "topics": [
+      {
+       "id": "computational-thinking",
+       "title": "Computational thinking",
+       "subtopics": [
+        {
+         "id": "problem-solving-techniques",
+         "title": "Problem-solving techniques",
+         "outcomes": [
+          {
+           "code": "CS-09-B-01",
+           "text": "Explain decomposition, abstraction, pattern recognition and algorithmic thinking."
+          },
+          {
+           "code": "CS-09-B-02",
+           "text": "Define the Input-Process-Output model for systematic problem solving."
+          }
+         ]
+        },
+        {
+         "id": "applying-computational-thinking",
+         "title": "Applying computational thinking",
+         "outcomes": [
+          {
+           "code": "CS-09-B-03",
+           "text": "Apply computational thinking to real-world problems."
+          },
+          {
+           "code": "CS-09-B-04",
+           "text": "Create an IPO model to solve a complex real-world scenario."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "domain-c-programming-fundamentals",
+     "title": "Domain C: Programming Fundamentals",
+     "topics": [
+      {
+       "id": "web-development",
+       "title": "Web development",
+       "subtopics": [
+        {
+         "id": "html-and-css",
+         "title": "HTML and CSS",
+         "outcomes": [
+          {
+           "code": "CS-09-C-01",
+           "text": "Define the features of web development and static websites."
+          },
+          {
+           "code": "CS-09-C-02",
+           "text": "Explain front-end and back-end website development."
+          },
+          {
+           "code": "CS-09-C-03",
+           "text": "Write simple HTML in a text editor and test it in a browser."
+          },
+          {
+           "code": "CS-09-C-04",
+           "text": "Analyze an HTML document's structure and tell basic from advanced tags."
+          },
+          {
+           "code": "CS-09-C-05",
+           "text": "Format text, images and layout with inline and internal CSS."
+          },
+          {
+           "code": "CS-09-C-06",
+           "text": "Build a multi-page static website using HTML structure, links, tables, forms and CSS."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "domain-d-data-and-analysis",
+     "title": "Domain D: Data and Analysis",
+     "topics": [
+      {
+       "id": "data",
+       "title": "Data",
+       "subtopics": [
+        {
+         "id": "data-and-data-science",
+         "title": "Data and data science",
+         "outcomes": [
+          {
+           "code": "CS-09-D-01",
+           "text": "Define data and the types of data science."
+          },
+          {
+           "code": "CS-09-D-02",
+           "text": "Understand data collection."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "domain-e-applications-and-impacts-of-computing",
+     "title": "Domain E: Applications and Impacts of Computing",
+     "topics": [
+      {
+       "id": "ai-and-digital-citizenship",
+       "title": "AI and digital citizenship",
+       "subtopics": [
+        {
+         "id": "ai-basics-and-tools",
+         "title": "AI basics and tools",
+         "outcomes": [
+          {
+           "code": "CS-09-E-01",
+           "text": "Explain basic AI and ML ideas, AI/ML tools, digital citizenship, online safety, privacy, intellectual property and legal issues."
+          },
+          {
+           "code": "CS-09-E-02",
+           "text": "Describe how AI and ML tools are used in education, health and business."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "domain-f-digital-literacy",
+     "title": "Domain F: Digital Literacy",
+     "topics": [
+      {
+       "id": "digital-communication",
+       "title": "Digital communication",
+       "subtopics": [
+        {
+         "id": "researching-and-presenting-ideas",
+         "title": "Researching and presenting ideas",
+         "outcomes": [
+          {
+           "code": "CS-09-F-01",
+           "text": "Gather information on simple topics, extract key ideas and present them in different formats."
+          },
+          {
+           "code": "CS-09-F-02",
+           "text": "Create text and graphics like posters and billboards to communicate effectively."
+          }
+         ]
+        },
+        {
+         "id": "reaching-audiences-online",
+         "title": "Reaching audiences online",
+         "outcomes": [
+          {
+           "code": "CS-09-F-03",
+           "text": "Illustrate uses of social media platforms for communicating ideas to diverse audiences."
+          },
+          {
+           "code": "CS-09-F-04",
+           "text": "Apply best practices for reaching audiences across digital platforms."
+          },
+          {
+           "code": "CS-09-F-05",
+           "text": "Support key ideas for varied audiences using digital tools and media-rich resources."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "10",
+   "units": [
+    {
+     "id": "domain-a-computer-system",
+     "title": "Domain A: Computer System",
+     "topics": [
+      {
+       "id": "data-representation",
+       "title": "Data representation",
+       "subtopics": [
+        {
+         "id": "number-systems-and-data-encoding",
+         "title": "Number systems and data encoding",
+         "outcomes": [
+          {
+           "code": "CS-10-A-01",
+           "text": "Define number systems and encoding schemes for text, image, audio and video."
+          },
+          {
+           "code": "CS-10-A-02",
+           "text": "Convert between number systems and do binary arithmetic including 1's and 2's complement."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "operating-systems-and-networks",
+       "title": "Operating systems and networks",
+       "subtopics": [
+        {
+         "id": "operating-systems-and-topologies",
+         "title": "Operating systems and topologies",
+         "outcomes": [
+          {
+           "code": "CS-10-A-03",
+           "text": "Describe operating system functions and types, processes and the process state model."
+          },
+          {
+           "code": "CS-10-A-04",
+           "text": "Explain the features, advantages and disadvantages of bus, ring, star and mesh topologies."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "domain-b-computational-thinking-algorithms",
+     "title": "Domain B: Computational Thinking & Algorithms",
+     "topics": [
+      {
+       "id": "algorithms",
+       "title": "Algorithms",
+       "subtopics": [
+        {
+         "id": "pseudocode-flowcharts-and-dry-runs",
+         "title": "Pseudocode, flowcharts and dry runs",
+         "outcomes": [
+          {
+           "code": "CS-10-B-01",
+           "text": "Apply computational thinking to design and develop solutions with pseudocode and flowcharts."
+          },
+          {
+           "code": "CS-10-B-02",
+           "text": "Analyze algorithms using dry runs and trace tables."
+          }
+         ]
+        },
+        {
+         "id": "evaluating-and-designing-algorithms",
+         "title": "Evaluating and designing algorithms",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Evaluate algorithm correctness and efficiency by finding and justifying structural and logical errors."
+          },
+          {
+           "code": "CS-10-B-04",
+           "text": "Create pseudocode and flowcharts for scenarios like admission, book issuing and reservation systems."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "domain-c-programming-fundamentals",
+     "title": "Domain C: Programming Fundamentals",
+     "topics": [
+      {
+       "id": "web-development",
+       "title": "Web development",
+       "subtopics": [
+        {
+         "id": "javascript-basics",
+         "title": "JavaScript basics",
+         "outcomes": [
+          {
+           "code": "CS-10-C-01",
+           "text": "Tell static from dynamic websites and understand the DOM."
+          },
+          {
+           "code": "CS-10-C-02",
+           "text": "Use basic JavaScript syntax: variables, data types and operators."
+          },
+          {
+           "code": "CS-10-C-03",
+           "text": "Apply sequence, selection and repetition in JavaScript."
+          }
+         ]
+        },
+        {
+         "id": "interactive-javascript-projects",
+         "title": "Interactive JavaScript projects",
+         "outcomes": [
+          {
+           "code": "CS-10-C-04",
+           "text": "Develop dynamic websites with interactive features like image sliders and user-input pages."
+          },
+          {
+           "code": "CS-10-C-05",
+           "text": "Use event handling such as onclick, onchange and onmouseover, and build a small project."
+          },
+          {
+           "code": "CS-10-C-06",
+           "text": "Evaluate debugging and tell syntax, runtime and logical errors apart in JavaScript."
+          },
+          {
+           "code": "CS-10-C-07",
+           "text": "Develop a small project such as a quiz app or calculator."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "domain-d-data-and-analysis",
+     "title": "Domain D: Data and Analysis",
+     "topics": [
+      {
+       "id": "data-and-databases",
+       "title": "Data and databases",
+       "subtopics": [
+        {
+         "id": "data-life-cycle-and-databases",
+         "title": "Data life cycle and databases",
+         "outcomes": [
+          {
+           "code": "CS-10-D-01",
+           "text": "Understand data science, its life cycle and applications."
+          },
+          {
+           "code": "CS-10-D-02",
+           "text": "Understand data storage, the role of databases and their elements: field, record, table and primary key."
+          },
+          {
+           "code": "CS-10-D-03",
+           "text": "Create tables and do basic insert and delete operations in MS Access."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "domain-e-applications-and-impacts-of-computing",
+     "title": "Domain E: Applications and Impacts of Computing",
+     "topics": [
+      {
+       "id": "emerging-technologies",
+       "title": "Emerging technologies",
+       "subtopics": [
+        {
+         "id": "blockchain-cloud-and-ai-impacts",
+         "title": "Blockchain, cloud and AI impacts",
+         "outcomes": [
+          {
+           "code": "CS-10-E-01",
+           "text": "Describe blockchain, its uses in supply chains, copyright and voting, and cloud computing's benefits."
+          },
+          {
+           "code": null,
+           "text": "Illustrate the social effects of AI, such as injustice from misuse and designers' responsibility."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "domain-g-entrepreneurship-in-the-digital-age",
+     "title": "Domain G: Entrepreneurship in the Digital Age",
+     "topics": [
+      {
+       "id": "design-thinking-and-business-plans",
+       "title": "Design thinking and business plans",
+       "subtopics": [
+        {
+         "id": "design-thinking-and-mindset",
+         "title": "Design thinking and mindset",
+         "outcomes": [
+          {
+           "code": "CS-10-G-01",
+           "text": "Identify a problem and create a business plan using design thinking."
+          },
+          {
+           "code": "CS-10-G-02",
+           "text": "Compare growth mindset and fixed mindset in entrepreneurship."
+          },
+          {
+           "code": "CS-10-G-03",
+           "text": "Illustrate the 4Cs of problem solving: critical thinking, creativity, collaboration and communication."
+          },
+          {
+           "code": null,
+           "text": "Define design thinking: empathize, define, ideate, prototype, evolve."
+          }
+         ]
+        },
+        {
+         "id": "business-plans-and-pitches",
+         "title": "Business plans and pitches",
+         "outcomes": [
+          {
+           "code": "CS-10-G-05",
+           "text": "Use digital tools to create and present a business plan."
+          },
+          {
+           "code": "CS-10-G-06",
+           "text": "Evaluate a business plan by market size, USP, financial feasibility and go-to-market strategy."
+          },
+          {
+           "code": "CS-10-G-07",
+           "text": "Create a business idea by separating a business plan from a pitch and building customer profiles."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "11",
+   "units": [
+    {
+     "id": "domain-a-computer-system",
+     "title": "Domain A: Computer System",
+     "topics": [
+      {
+       "id": "logic-and-software-development",
+       "title": "Logic and software development",
+       "subtopics": [
+        {
+         "id": "digital-logic",
+         "title": "Digital logic",
+         "outcomes": [
+          {
+           "code": "CS-11-A-01",
+           "text": "Know analog and digital data, logic gates and Boolean functions."
+          },
+          {
+           "code": "CS-11-A-02",
+           "text": "Build truth tables, logic circuits and simplified logic."
+          }
+         ]
+        },
+        {
+         "id": "software-development-and-network-models",
+         "title": "Software development and network models",
+         "outcomes": [
+          {
+           "code": "CS-11-A-03",
+           "text": "Explain the software development life cycle stages and methodologies like waterfall and Agile."
+          },
+          {
+           "code": "CS-11-A-04",
+           "text": "Understand topology reliability and scalability, the OSI model, protocols and the TCP/IP model."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "domain-b-computational-thinking-algorithms",
+     "title": "Domain B: Computational Thinking & Algorithms",
+     "topics": [
+      {
+       "id": "algorithms",
+       "title": "Algorithms",
+       "subtopics": [
+        {
+         "id": "computational-thinking-in-real-problems",
+         "title": "Computational thinking in real problems",
+         "outcomes": [
+          {
+           "code": "CS-11-B-01",
+           "text": "Explain real-world problems by finding their components and applying decomposition and pattern recognition."
+          },
+          {
+           "code": "CS-11-B-02",
+           "text": "Describe the role of algorithms in efficiency and accuracy."
+          }
+         ]
+        },
+        {
+         "id": "searching-and-sorting",
+         "title": "Searching and sorting",
+         "outcomes": [
+          {
+           "code": "CS-11-B-03",
+           "text": "Apply searching algorithms such as linear and binary search."
+          },
+          {
+           "code": "CS-11-B-04",
+           "text": "Apply bubble and insertion sort to organize and retrieve data."
+          },
+          {
+           "code": "CS-11-B-05",
+           "text": "Create real-world solutions using abstraction, decomposition and pattern recognition."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "domain-c-programming-fundamentals",
+     "title": "Domain C: Programming Fundamentals",
+     "topics": [
+      {
+       "id": "python-programming",
+       "title": "Python programming",
+       "subtopics": [
+        {
+         "id": "python-foundations",
+         "title": "Python foundations",
+         "outcomes": [
+          {
+           "code": "CS-11-C-01",
+           "text": "Understand Python fundamentals and where it is used, such as AI, automation and games."
+          },
+          {
+           "code": "CS-11-C-02",
+           "text": "Run Python in suitable environments such as IDLE, VS Code or online compilers."
+          },
+          {
+           "code": "CS-11-C-03",
+           "text": "Apply variables, naming rules, data types and arithmetic, comparison, logical, assignment, bitwise and membership operators, with comments."
+          },
+          {
+           "code": "CS-11-C-04",
+           "text": "Write programs with input() and print() and debug syntax, runtime and logical errors."
+          }
+         ]
+        },
+        {
+         "id": "control-flow-libraries-and-projects",
+         "title": "Control flow, libraries and projects",
+         "outcomes": [
+          {
+           "code": "CS-11-C-05",
+           "text": "Apply selection and repetition in Python, using break and continue."
+          },
+          {
+           "code": "CS-11-C-06",
+           "text": "Use libraries such as math, random and datetime."
+          },
+          {
+           "code": "CS-11-C-07",
+           "text": "Develop a small Python project such as a log book, calculator, game or word counter."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "domain-d-data-and-analysis",
+     "title": "Domain D: Data and Analysis",
+     "topics": [
+      {
+       "id": "databases-and-statistics",
+       "title": "Databases and statistics",
+       "subtopics": [
+        {
+         "id": "relationships-and-database-design",
+         "title": "Relationships and database design",
+         "outcomes": [
+          {
+           "code": "CS-11-D-01",
+           "text": "Understand relationship types (1:1, 1:M, M:N) and referential integrity."
+          },
+          {
+           "code": "CS-11-D-02",
+           "text": "Apply entity-relationship models and build database objects in MS Access."
+          }
+         ]
+        },
+        {
+         "id": "summary-statistics-and-visuals",
+         "title": "Summary statistics and visuals",
+         "outcomes": [
+          {
+           "code": "CS-11-D-03",
+           "text": "Analyze datasets with grouping functions, statistics and charts using MS Access reports."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "domain-e-applications-and-impacts-of-computing",
+     "title": "Domain E: Applications and Impacts of Computing",
+     "topics": [
+      {
+       "id": "emerging-technologies",
+       "title": "Emerging technologies",
+       "subtopics": [
+        {
+         "id": "iot-and-digital-society",
+         "title": "IoT and digital society",
+         "outcomes": [
+          {
+           "code": "CS-11-E-01",
+           "text": "Describe IoT technologies, components and uses in smart cities, healthcare, education, farming and wearables."
+          },
+          {
+           "code": "CS-11-E-02",
+           "text": "Describe the reliability of digital information and the societal impacts of computing: equity, access and assistive technology."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "domain-f-digital-literacy",
+     "title": "Domain F: Digital Literacy",
+     "topics": [
+      {
+       "id": "data-collection-and-presentation",
+       "title": "Data collection and presentation",
+       "subtopics": [
+        {
+         "id": "collecting-data",
+         "title": "Collecting data",
+         "outcomes": [
+          {
+           "code": "CS-11-F-01",
+           "text": "Define data-collection strategies like interviews, surveys, prototypes and simulations."
+          },
+          {
+           "code": "CS-11-F-02",
+           "text": "Gather original data for a research question."
+          }
+         ]
+        },
+        {
+         "id": "presenting-findings",
+         "title": "Presenting findings",
+         "outcomes": [
+          {
+           "code": "CS-11-F-03",
+           "text": "Present primary and secondary data using suitable formats."
+          },
+          {
+           "code": "CS-11-F-04",
+           "text": "Present data with graphs, infographics and reports."
+          },
+          {
+           "code": "CS-11-F-05",
+           "text": "Recommend an artefact that answers a research question and draws conclusions using digital resources."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "12",
+   "units": [
+    {
+     "id": "domain-a-computer-system",
+     "title": "Domain A: Computer System",
+     "topics": [
+      {
+       "id": "human-computer-interaction",
+       "title": "Human-computer interaction",
+       "subtopics": [
+        {
+         "id": "hci-fundamentals-and-design-principles",
+         "title": "HCI fundamentals and design principles",
+         "outcomes": [
+          {
+           "code": "CS-12-A-01",
+           "text": "Define user needs for interface design and explain HCI basics and why it matters."
+          },
+          {
+           "code": "CS-12-A-02",
+           "text": "Describe design principles such as accessibility, contrast, readability and color-blind friendly design, plus HCI testing and evaluation."
+          }
+         ]
+        },
+        {
+         "id": "building-and-testing-ui-ux",
+         "title": "Building and testing UI/UX",
+         "outcomes": [
+          {
+           "code": "CS-12-A-03",
+           "text": "Implement a UI/UX design with a tool like Figma or Adobe XD."
+          },
+          {
+           "code": "CS-12-A-04",
+           "text": "Examine the testing and evaluation of a UI/UX design."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "domain-b-computational-thinking-algorithms",
+     "title": "Domain B: Computational Thinking & Algorithms",
+     "topics": [
+      {
+       "id": "data-structures-and-algorithms",
+       "title": "Data structures and algorithms",
+       "subtopics": [
+        {
+         "id": "data-structures",
+         "title": "Data structures",
+         "outcomes": [
+          {
+           "code": "CS-12-B-01",
+           "text": "Define data structures and tell linear from non-linear forms."
+          },
+          {
+           "code": "CS-12-B-02",
+           "text": "Explain data retrieval in arrays, lists and queues."
+          },
+          {
+           "code": "CS-12-B-06",
+           "text": "Develop arrays, lists and queues for a real-world scenario."
+          }
+         ]
+        },
+        {
+         "id": "advanced-algorithms",
+         "title": "Advanced algorithms",
+         "outcomes": [
+          {
+           "code": "CS-12-B-03",
+           "text": "Apply selection, quick and merge sort to organize and retrieve data."
+          },
+          {
+           "code": "CS-12-B-04",
+           "text": "Analyze algorithm correctness using trace tables and find structural and logical issues."
+          },
+          {
+           "code": "CS-12-B-05",
+           "text": "Evaluate algorithm clarity and efficiency through modularity, readability and steps, and suggest refinements."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "domain-c-programming-fundamentals",
+     "title": "Domain C: Programming Fundamentals",
+     "topics": [
+      {
+       "id": "python-programming",
+       "title": "Python programming",
+       "subtopics": [
+        {
+         "id": "collections",
+         "title": "Collections",
+         "outcomes": [
+          {
+           "code": "CS-12-C-01",
+           "text": "Understand lists, tuples, sets and dictionaries in Python."
+          },
+          {
+           "code": "CS-12-C-02",
+           "text": "Build Python programs with these collections for tasks like counting word frequency or organizing data."
+          }
+         ]
+        },
+        {
+         "id": "functions-and-libraries",
+         "title": "Functions and libraries",
+         "outcomes": [
+          {
+           "code": "CS-12-C-03",
+           "text": "Understand function structure, built-in versus user-defined functions, scope, lambda functions and parameters."
+          },
+          {
+           "code": "CS-12-C-04",
+           "text": "Develop programs using built-in libraries such as numpy, pandas and matplotlib, and user-defined functions."
+          }
+         ]
+        },
+        {
+         "id": "file-handling",
+         "title": "File handling",
+         "outcomes": [
+          {
+           "code": "CS-12-C-05",
+           "text": "Understand file handling and how data is stored, retrieved and managed in files."
+          },
+          {
+           "code": "CS-12-C-06",
+           "text": "Use file modes and functions to read, write and close files."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "domain-d-data-and-analysis",
+     "title": "Domain D: Data and Analysis",
+     "topics": [
+      {
+       "id": "databases-with-python",
+       "title": "Databases with Python",
+       "subtopics": [
+        {
+         "id": "python-and-databases",
+         "title": "Python and databases",
+         "outcomes": [
+          {
+           "code": "CS-12-D-01",
+           "text": "Memorize terminology for connecting a database (SQL tool like MySQL) with Python."
+          },
+          {
+           "code": "CS-12-D-02",
+           "text": "Connect a database to Python and run basic queries."
+          }
+         ]
+        },
+        {
+         "id": "visualization-and-project",
+         "title": "Visualization and project",
+         "outcomes": [
+          {
+           "code": "CS-12-D-03",
+           "text": "Visualize data with Python: central tendency, spread, box plots, bar charts, histograms and scatter plots."
+          },
+          {
+           "code": "CS-12-D-04",
+           "text": "Develop a small interactive Python project using a database, file handling and visualization."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "domain-e-applications-and-impacts-of-computing",
+     "title": "Domain E: Applications and Impacts of Computing",
+     "topics": [
+      {
+       "id": "emerging-technologies",
+       "title": "Emerging technologies",
+       "subtopics": [
+        {
+         "id": "neural-networks-and-secure-solutions",
+         "title": "Neural networks and secure solutions",
+         "outcomes": [
+          {
+           "code": "CS-12-E-01",
+           "text": "Explain neural networks and deep learning concepts and their applications."
+          },
+          {
+           "code": "CS-12-E-02",
+           "text": "Design secure, inclusive digital solutions covering data protection and security threat mitigation."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "domain-g-entrepreneurship-in-the-digital-age",
+     "title": "Domain G: Entrepreneurship in the Digital Age",
+     "topics": [
+      {
+       "id": "prototyping-and-mvp",
+       "title": "Prototyping and MVP",
+       "subtopics": [
+        {
+         "id": "prototypes-and-mvp",
+         "title": "Prototypes and MVP",
+         "outcomes": [
+          {
+           "code": "CS-12-G-01",
+           "text": "Discuss prototyping and why it matters in developing business ideas."
+          },
+          {
+           "code": "CS-12-G-02",
+           "text": "Test a business-idea prototype and improve it with feedback."
+          },
+          {
+           "code": "CS-12-G-03",
+           "text": "Define a minimum viable product (MVP) and a prototype."
+          },
+          {
+           "code": "CS-12-G-04",
+           "text": "Identify the riskiest business model assumptions and build an MVP with offline or online tools."
+          }
+         ]
+        },
+        {
+         "id": "building-and-improving-an-mvp",
+         "title": "Building and improving an MVP",
+         "outcomes": [
+          {
+           "code": "CS-12-G-05",
+           "text": "Develop and test an MVP: define features, estimate costs, plan marketing and gather feedback."
+          },
+          {
+           "code": "CS-12-G-06",
+           "text": "Evaluate and improve the MVP from feedback and find a beachhead market to test."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "build": {
+  "builtAt": "2026-10-14T08:42:55.160Z",
+  "model": "claude-agent",
+  "usd": 0,
+  "expectedCodes": null,
+  "coverage": null,
+  "missingCodes": [],
+  "counts": {
+   "grades": 4,
+   "units": 24,
+   "topics": 26,
+   "subtopics": 43,
+   "outcomes": 103
+  },
+  "warnings": []
+ }
+}

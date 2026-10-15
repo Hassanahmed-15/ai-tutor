@@ -1,0 +1,1828 @@
+{
+ "id": "us-az-health",
+ "region": "US",
+ "framework": "Arizona state academic standards: Health Education",
+ "board": null,
+ "qualification": "K-12",
+ "subject": "Health Education",
+ "syllabusCode": null,
+ "gradeSystem": "grade",
+ "source": {
+  "urls": [
+   "https://api.commonstandardsproject.com/api/v1/jurisdictions/0B41FFF6B5114EB0B8A89CE0E70E22D8",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/0B41FFF6B5114EB0B8A89CE0E70E22D8_D2467198_grades-01-02-k-pre-k",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/0B41FFF6B5114EB0B8A89CE0E70E22D8_D2467198_grades-03-04-05",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/0B41FFF6B5114EB0B8A89CE0E70E22D8_D2467198_grades-06-07-08",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/0B41FFF6B5114EB0B8A89CE0E70E22D8_D2467198_grades-09-10-11-12"
+  ],
+  "publisher": "Arizona state education agency (machine-readable via Common Standards Project / ASN)",
+  "licence": "CC BY 3.0 US, Desire2Learn Incorporated",
+  "firstExam": "2009"
+ },
+ "grades": [
+  {
+   "grade": "PK-2",
+   "units": [
+    {
+     "id": "comprehension-of-health-promotion-and-disease-pr",
+     "title": "Comprehension of Health Promotion and Disease Prevention Concepts",
+     "topics": [
+      {
+       "id": "understand-relationship-between-health-behaviors",
+       "title": "Understand Relationship Between Health Behaviors and Health",
+       "subtopics": [
+        {
+         "id": "understand-relationship-between-health-behaviors",
+         "title": "Understand Relationship Between Health Behaviors and Health",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Identify that healthy behaviors affect personal health and overall well-being"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "understanding-multiple-dimensions-of-health",
+       "title": "Understanding Multiple Dimensions of Health",
+       "subtopics": [
+        {
+         "id": "understanding-multiple-dimensions-of-health",
+         "title": "Understanding Multiple Dimensions of Health",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Recognize what the human body is and what it means to be healthy"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "understanding-personal-health",
+       "title": "Understanding Personal Health",
+       "subtopics": [
+        {
+         "id": "understanding-personal-health",
+         "title": "Understanding Personal Health",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe ways to prevent communicable diseases"
+          },
+          {
+           "code": null,
+           "text": "Identify that foods are classified into food groups and that a variety of food is needed for personal health, growth, and development"
+          },
+          {
+           "code": null,
+           "text": "Identify that physical activity is integral to good health"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "understanding-prevention-of-injuries-and-health-",
+       "title": "Understanding Prevention of Injuries and Health Problems",
+       "subtopics": [
+        {
+         "id": "understanding-prevention-of-injuries-and-health-",
+         "title": "Understanding Prevention of Injuries and Health Problems",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "List ways to prevent common childhood injuries"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "understanding-use-of-health-care",
+       "title": "Understanding Use of Health Care",
+       "subtopics": [
+        {
+         "id": "understanding-use-of-health-care",
+         "title": "Understanding Use of Health Care",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe why it is important to seek health care"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "analysis-of-factors-affecting-health-behaviors",
+     "title": "Analysis of Factors Affecting Health Behaviors",
+     "topics": [
+      {
+       "id": "external-influences-on-personal-health",
+       "title": "External Influences on Personal Health",
+       "subtopics": [
+        {
+         "id": "external-influences-on-personal-health",
+         "title": "External Influences on Personal Health",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Identify how the family influences personal health practices and behaviors"
+          },
+          {
+           "code": null,
+           "text": "Recognize how culture influences health practices and behaviors"
+          },
+          {
+           "code": null,
+           "text": "Recognize how peers can influence healthy and unhealthy behaviors"
+          },
+          {
+           "code": null,
+           "text": "Identify what the school can do to support personal health practices and behaviors"
+          },
+          {
+           "code": null,
+           "text": "Describe how the media can influence health behaviors"
+          },
+          {
+           "code": null,
+           "text": "Recognize how technology can influence personal health"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "access-to-health-information-products-and-servic",
+     "title": "Access to Health Information, Products, and Services to Enhance Health",
+     "topics": [
+      {
+       "id": "knowledge-of-sources-of-help",
+       "title": "Knowledge of Sources of Help",
+       "subtopics": [
+        {
+         "id": "knowledge-of-sources-of-help",
+         "title": "Knowledge of Sources of Help",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Identify trusted adults and professionals who can help promote health"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "accessing-help",
+       "title": "Accessing Help",
+       "subtopics": [
+        {
+         "id": "accessing-help",
+         "title": "Accessing Help",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Identify ways to locate school and community health helpers"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "use-of-interpersonal-communication-skills-to-enh",
+     "title": "Use of Interpersonal Communication Skills to Enhance Health",
+     "topics": [
+      {
+       "id": "communication-to-enhance-help",
+       "title": "Communication to Enhance Help",
+       "subtopics": [
+        {
+         "id": "communication-to-enhance-help",
+         "title": "Communication to Enhance Help",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Demonstrate healthy ways to express needs, wants, and feelings"
+          },
+          {
+           "code": null,
+           "text": "Demonstrate listening skills to enhance health"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "self-protection-and-dealing-with-conflict",
+       "title": "Self Protection and Dealing with Conflict",
+       "subtopics": [
+        {
+         "id": "self-protection-and-dealing-with-conflict",
+         "title": "Self Protection and Dealing with Conflict",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Demonstrate ways to respond when in an unwanted, threatening, or dangerous situation"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "asking-for-help",
+       "title": "Asking for Help",
+       "subtopics": [
+        {
+         "id": "asking-for-help",
+         "title": "Asking for Help",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Demonstrate ways to tell a trusted adult if threatened or harmed"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "use-of-decision-making-skills-to-enhance-health",
+     "title": "Use of Decision-Making Skills to Enhance Health",
+     "topics": [
+      {
+       "id": "influences-on-health-decision-making",
+       "title": "Influences on Health Decision Making",
+       "subtopics": [
+        {
+         "id": "influences-on-health-decision-making",
+         "title": "Influences on Health Decision Making",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Identify circumstances that can help or hinder healthy decision making"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "application-of-decision-making-skills-to-health",
+       "title": "Application of Decision-Making Skills to Health",
+       "subtopics": [
+        {
+         "id": "application-of-decision-making-skills-to-health",
+         "title": "Application of Decision-Making Skills to Health",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Identify situations when a health-related decision is needed"
+          },
+          {
+           "code": null,
+           "text": "Differentiate between situations when a health-related decision can be made individually or when assistance is needed"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "use-of-goal-setting-skills-to-enhance-health",
+     "title": "Use of Goal-Setting Skills to Enhance Health",
+     "topics": [
+      {
+       "id": "health-related-goal-setting",
+       "title": "Health-Related Goal Setting",
+       "subtopics": [
+        {
+         "id": "health-related-goal-setting",
+         "title": "Health-Related Goal Setting",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Identify a short-term personal health goal and take action toward achieving the goal"
+          },
+          {
+           "code": null,
+           "text": "Identify who can help when assistance is needed to achieve a personal health goal"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "ability-to-practice-health-enhancing-behaviors",
+     "title": "Ability to Practice Health-Enhancing Behaviors",
+     "topics": [
+      {
+       "id": "healthy-practices-and-behaviors",
+       "title": "Healthy Practices and Behaviors",
+       "subtopics": [
+        {
+         "id": "healthy-practices-and-behaviors",
+         "title": "Healthy Practices and Behaviors",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Demonstrate healthy practices and behaviors to maintain or improve personal health"
+          },
+          {
+           "code": null,
+           "text": "Demonstrate behaviors that avoid or reduce health risks"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "ability-to-advocate-for-health",
+     "title": "Ability to Advocate for Health",
+     "topics": [
+      {
+       "id": "personal-advocacy",
+       "title": "Personal Advocacy",
+       "subtopics": [
+        {
+         "id": "personal-advocacy",
+         "title": "Personal Advocacy",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Make requests to promote personal health"
+          },
+          {
+           "code": null,
+           "text": "Encourage family and peers to make positive health choices"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "3-5",
+   "units": [
+    {
+     "id": "comprehension-of-health-promotion-and-disease-pr",
+     "title": "Comprehension of Health Promotion and Disease Prevention Concepts",
+     "topics": [
+      {
+       "id": "understand-relationship-between-health-behaviors",
+       "title": "Understand Relationship Between Health Behaviors and Health",
+       "subtopics": [
+        {
+         "id": "understand-relationship-between-health-behaviors",
+         "title": "Understand Relationship Between Health Behaviors and Health",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe the relationship between healthy behaviors and personal health"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "understanding-multiple-dimensions-of-health",
+       "title": "Understanding Multiple Dimensions of Health",
+       "subtopics": [
+        {
+         "id": "understanding-multiple-dimensions-of-health",
+         "title": "Understanding Multiple Dimensions of Health",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Identify examples of emotional, intellectual, physical, and social health"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "understanding-personal-health",
+       "title": "Understanding Personal Health",
+       "subtopics": [
+        {
+         "id": "understanding-personal-health",
+         "title": "Understanding Personal Health",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe ways in which a safe and healthy school and community environment can promote personal health."
+          },
+          {
+           "code": null,
+           "text": "Describe the key nutrients contained in the food groups and how these nutrients affect health and learning"
+          },
+          {
+           "code": null,
+           "text": "Describe how physical activity impacts health"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "understanding-prevention-of-injuries-and-health-",
+       "title": "Understanding Prevention of Injuries and Health Problems",
+       "subtopics": [
+        {
+         "id": "understanding-prevention-of-injuries-and-health-",
+         "title": "Understanding Prevention of Injuries and Health Problems",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe ways to prevent common childhood injuries and health problems"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "understanding-use-of-health-care",
+       "title": "Understanding Use of Health Care",
+       "subtopics": [
+        {
+         "id": "understanding-use-of-health-care",
+         "title": "Understanding Use of Health Care",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe when it is important to seek health care"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "analysis-of-factors-affecting-health-behaviors",
+     "title": "Analysis of Factors Affecting Health Behaviors",
+     "topics": [
+      {
+       "id": "external-influences-on-personal-health",
+       "title": "External Influences on Personal Health",
+       "subtopics": [
+        {
+         "id": "external-influences-on-personal-health",
+         "title": "External Influences on Personal Health",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe how the family influences personal health practices and behaviors"
+          },
+          {
+           "code": null,
+           "text": "Identify the influence of culture on health practices and behaviors"
+          },
+          {
+           "code": null,
+           "text": "Describe how peers can influence healthy and unhealthy behaviors"
+          },
+          {
+           "code": null,
+           "text": "Describe how the school and community can support personal health practices and behaviors"
+          },
+          {
+           "code": null,
+           "text": "Explain how media influences thoughts, feelings, and health behaviors"
+          },
+          {
+           "code": null,
+           "text": "Describe ways that technology can influence personal health"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "access-to-health-information-products-and-servic",
+     "title": "Access to Health Information, Products, and Services to Enhance Health",
+     "topics": [
+      {
+       "id": "knowledge-of-sources-of-help",
+       "title": "Knowledge of Sources of Help",
+       "subtopics": [
+        {
+         "id": "knowledge-of-sources-of-help",
+         "title": "Knowledge of Sources of Help",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Identify characteristics of valid health information, products, and services"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "accessing-help",
+       "title": "Accessing Help",
+       "subtopics": [
+        {
+         "id": "accessing-help",
+         "title": "Accessing Help",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Locate resources from home, school, and community that provide valid health information"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "use-of-interpersonal-communication-skills-to-enh",
+     "title": "Use of Interpersonal Communication Skills to Enhance Health",
+     "topics": [
+      {
+       "id": "communication-to-enhance-help",
+       "title": "Communication to Enhance Help",
+       "subtopics": [
+        {
+         "id": "communication-to-enhance-help",
+         "title": "Communication to Enhance Help",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Demonstrate effective verbal and nonverbal communication skills to enhance health"
+          },
+          {
+           "code": null,
+           "text": "Demonstrate refusal skills that avoid or reduce health risks"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "self-protection-and-dealing-with-conflict",
+       "title": "Self Protection and Dealing with Conflict",
+       "subtopics": [
+        {
+         "id": "self-protection-and-dealing-with-conflict",
+         "title": "Self Protection and Dealing with Conflict",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Demonstrate nonviolent strategies to manage or resolve conflict"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "asking-for-help",
+       "title": "Asking for Help",
+       "subtopics": [
+        {
+         "id": "asking-for-help",
+         "title": "Asking for Help",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Demonstrate how to ask for assistance to enhance personal health"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "use-of-decision-making-skills-to-enhance-health",
+     "title": "Use of Decision-Making Skills to Enhance Health",
+     "topics": [
+      {
+       "id": "influences-on-health-decision-making",
+       "title": "Influences on Health Decision Making",
+       "subtopics": [
+        {
+         "id": "influences-on-health-decision-making",
+         "title": "Influences on Health Decision Making",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Identify circumstances that can help or hinder healthy decision making"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "application-of-decision-making-skills-to-health",
+       "title": "Application of Decision-Making Skills to Health",
+       "subtopics": [
+        {
+         "id": "application-of-decision-making-skills-to-health",
+         "title": "Application of Decision-Making Skills to Health",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Identify health-related situations that might require a thoughtful decision"
+          },
+          {
+           "code": null,
+           "text": "Analyze when assistance is needed when making a health-related decision"
+          },
+          {
+           "code": null,
+           "text": "List healthy options to health-related issues or problems"
+          },
+          {
+           "code": null,
+           "text": "Predict the potential outcomes of each option when making a health-related decision"
+          },
+          {
+           "code": null,
+           "text": "Choose a healthy option when making a decision"
+          },
+          {
+           "code": null,
+           "text": "Describe the outcomes of a health-related decision"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "use-of-goal-setting-skills-to-enhance-health",
+     "title": "Use of Goal-Setting Skills to Enhance Health",
+     "topics": [
+      {
+       "id": "health-related-goal-setting",
+       "title": "Health-Related Goal Setting",
+       "subtopics": [
+        {
+         "id": "health-related-goal-setting",
+         "title": "Health-Related Goal Setting",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Set a personal health goal and track progress toward its achievement"
+          },
+          {
+           "code": null,
+           "text": "Identify resources to assist in achieving a personal health goal"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "ability-to-practice-health-enhancing-behaviors",
+     "title": "Ability to Practice Health-Enhancing Behaviors",
+     "topics": [
+      {
+       "id": "personal-responsibility-for-health",
+       "title": "Personal Responsibility for Health",
+       "subtopics": [
+        {
+         "id": "personal-responsibility-for-health",
+         "title": "Personal Responsibility for Health",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Identify responsible personal health behaviors"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "healthy-practices-and-behaviors",
+       "title": "Healthy Practices and Behaviors",
+       "subtopics": [
+        {
+         "id": "healthy-practices-and-behaviors",
+         "title": "Healthy Practices and Behaviors",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Demonstrate a variety of healthy practices and behaviors to maintain or improve personal health"
+          },
+          {
+           "code": null,
+           "text": "Demonstrate a variety of behaviors that avoid or reduce health risks"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "ability-to-advocate-for-health",
+     "title": "Ability to Advocate for Health",
+     "topics": [
+      {
+       "id": "personal-advocacy",
+       "title": "Personal Advocacy",
+       "subtopics": [
+        {
+         "id": "personal-advocacy",
+         "title": "Personal Advocacy",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Express opinions and give accurate information about health issues"
+          },
+          {
+           "code": null,
+           "text": "Encourage others to make positive health choices"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "6-8",
+   "units": [
+    {
+     "id": "comprehension-of-health-promotion-and-disease-pr",
+     "title": "Comprehension of Health Promotion and Disease Prevention Concepts",
+     "topics": [
+      {
+       "id": "understand-relationship-between-health-behaviors",
+       "title": "Understand Relationship Between Health Behaviors and Health",
+       "subtopics": [
+        {
+         "id": "understand-relationship-between-health-behaviors",
+         "title": "Understand Relationship Between Health Behaviors and Health",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Analyze the relationship between healthy behaviors and personal health"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "understanding-multiple-dimensions-of-health",
+       "title": "Understanding Multiple Dimensions of Health",
+       "subtopics": [
+        {
+         "id": "understanding-multiple-dimensions-of-health",
+         "title": "Understanding Multiple Dimensions of Health",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe the interrelationships of emotional, intellectual, physical, and social health in adolescence"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "understanding-personal-health",
+       "title": "Understanding Personal Health",
+       "subtopics": [
+        {
+         "id": "understanding-personal-health",
+         "title": "Understanding Personal Health",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Analyze how the environment affects personal health"
+          },
+          {
+           "code": null,
+           "text": "Analyze how food provides energy and nutrients for growth and development, that nutrition requirements vary from person to person, and how food intake affects health"
+          },
+          {
+           "code": null,
+           "text": "Analyze how physical activity contributes to disease prevention"
+          },
+          {
+           "code": null,
+           "text": "Describe how family history can affect personal health"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "understanding-prevention-of-injuries-and-health-",
+       "title": "Understanding Prevention of Injuries and Health Problems",
+       "subtopics": [
+        {
+         "id": "understanding-prevention-of-injuries-and-health-",
+         "title": "Understanding Prevention of Injuries and Health Problems",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe ways to reduce or prevent injuries and other adolescent health problems"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "understanding-use-of-health-care",
+       "title": "Understanding Use of Health Care",
+       "subtopics": [
+        {
+         "id": "understanding-use-of-health-care",
+         "title": "Understanding Use of Health Care",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain how appropriate health care can promote personal health"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "understanding-healthy-vs-unhealthy-behaviors",
+       "title": "Understanding Healthy vs. Unhealthy Behaviors",
+       "subtopics": [
+        {
+         "id": "understanding-healthy-vs-unhealthy-behaviors",
+         "title": "Understanding Healthy vs. Unhealthy Behaviors",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe the benefits of and barriers to practicing healthy behaviors"
+          },
+          {
+           "code": null,
+           "text": "Examine the likelihood of injury or illness if engaging in unhealthy behaviors"
+          },
+          {
+           "code": null,
+           "text": "Examine the potential seriousness of injury or illness if engaging in unhealthy behaviors"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "analysis-of-factors-affecting-health-behaviors",
+     "title": "Analysis of Factors Affecting Health Behaviors",
+     "topics": [
+      {
+       "id": "external-influences-on-personal-health",
+       "title": "External Influences on Personal Health",
+       "subtopics": [
+        {
+         "id": "external-influences-on-personal-health",
+         "title": "External Influences on Personal Health",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Examine how the family influences the health of adolescents"
+          },
+          {
+           "code": null,
+           "text": "Describe the influence of culture on health beliefs, practices, and behaviors"
+          },
+          {
+           "code": null,
+           "text": "Analyze how peers influence healthy and unhealthy behaviors"
+          },
+          {
+           "code": null,
+           "text": "Analyze how the school and community can affect personal health practices and behaviors"
+          },
+          {
+           "code": null,
+           "text": "Analyze how messages from media influence health behaviors"
+          },
+          {
+           "code": null,
+           "text": "Analyze the influence of technology on personal and family health"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "internal-influences-on-personal-health",
+       "title": "Internal Influences on Personal Health",
+       "subtopics": [
+        {
+         "id": "internal-influences-on-personal-health",
+         "title": "Internal Influences on Personal Health",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain how the perceptions of norms influence healthy and unhealthy behaviors"
+          },
+          {
+           "code": null,
+           "text": "Explain the influence of personal values and beliefs on individual health practices and behaviors"
+          },
+          {
+           "code": null,
+           "text": "Describe how some health risk behaviors can influence the likelihood of engaging in unhealthy behaviors"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "influence-of-public-policy-on-health",
+       "title": "Influence of Public Policy on Health",
+       "subtopics": [
+        {
+         "id": "influence-of-public-policy-on-health",
+         "title": "Influence of Public Policy on Health",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Examine and explain how school and public health policies can influence health promotion and disease prevention"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "access-to-health-information-products-and-servic",
+     "title": "Access to Health Information, Products, and Services to Enhance Health",
+     "topics": [
+      {
+       "id": "knowledge-of-sources-of-help",
+       "title": "Knowledge of Sources of Help",
+       "subtopics": [
+        {
+         "id": "knowledge-of-sources-of-help",
+         "title": "Knowledge of Sources of Help",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Analyze the validity of health information, products, and services"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "accessing-help",
+       "title": "Accessing Help",
+       "subtopics": [
+        {
+         "id": "accessing-help",
+         "title": "Accessing Help",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Access valid health information from home, school, and community"
+          },
+          {
+           "code": null,
+           "text": "Determine the accessibility of products that enhance health"
+          },
+          {
+           "code": null,
+           "text": "Describe situations that may require professional health services"
+          },
+          {
+           "code": null,
+           "text": "Locate valid and reliable health products and services"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "use-of-interpersonal-communication-skills-to-enh",
+     "title": "Use of Interpersonal Communication Skills to Enhance Health",
+     "topics": [
+      {
+       "id": "communication-to-enhance-help",
+       "title": "Communication to Enhance Help",
+       "subtopics": [
+        {
+         "id": "communication-to-enhance-help",
+         "title": "Communication to Enhance Help",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Apply effective verbal and nonverbal communication skills to enhance health"
+          },
+          {
+           "code": null,
+           "text": "Demonstrate refusal and negotiation skills that avoid or reduce health risks"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "self-protection-and-dealing-with-conflict",
+       "title": "Self Protection and Dealing with Conflict",
+       "subtopics": [
+        {
+         "id": "self-protection-and-dealing-with-conflict",
+         "title": "Self Protection and Dealing with Conflict",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Identify effective conflict management or resolution strategies"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "asking-for-help",
+       "title": "Asking for Help",
+       "subtopics": [
+        {
+         "id": "asking-for-help",
+         "title": "Asking for Help",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Identify ways to ask for assistance to enhance the health of self and others"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "use-of-decision-making-skills-to-enhance-health",
+     "title": "Use of Decision-Making Skills to Enhance Health",
+     "topics": [
+      {
+       "id": "influences-on-health-decision-making",
+       "title": "Influences on Health Decision Making",
+       "subtopics": [
+        {
+         "id": "influences-on-health-decision-making",
+         "title": "Influences on Health Decision Making",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Identify circumstances that can help or hinder healthy decision making"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "application-of-decision-making-skills-to-health",
+       "title": "Application of Decision-Making Skills to Health",
+       "subtopics": [
+        {
+         "id": "application-of-decision-making-skills-to-health",
+         "title": "Application of Decision-Making Skills to Health",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Determine when health-related situations require the application of a thoughtful decision-making process"
+          },
+          {
+           "code": null,
+           "text": "Distinguish when individual or collaborative decision making is appropriate"
+          },
+          {
+           "code": null,
+           "text": "Distinguish between healthy and unhealthy alternatives to health-related issues or problems"
+          },
+          {
+           "code": null,
+           "text": "Predict the potential short-term impact of each alternative on self and others"
+          },
+          {
+           "code": null,
+           "text": "Choose healthy alternatives over unhealthy alternatives when making a decision"
+          },
+          {
+           "code": null,
+           "text": "Analyze the outcomes of a health-related decision"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "use-of-goal-setting-skills-to-enhance-health",
+     "title": "Use of Goal-Setting Skills to Enhance Health",
+     "topics": [
+      {
+       "id": "assessment-of-health",
+       "title": "Assessment of Health",
+       "subtopics": [
+        {
+         "id": "assessment-of-health",
+         "title": "Assessment of Health",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Assess personal health practices"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "health-related-goal-setting",
+       "title": "Health-Related Goal Setting",
+       "subtopics": [
+        {
+         "id": "health-related-goal-setting",
+         "title": "Health-Related Goal Setting",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Develop a goal to adopt, maintain, or improve a personal health practice"
+          },
+          {
+           "code": null,
+           "text": "Apply strategies and skills needed to attain a personal health goal"
+          },
+          {
+           "code": null,
+           "text": "Describe how personal health goals can vary with changing abilities, priorities, and responsibilities"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "ability-to-practice-health-enhancing-behaviors",
+     "title": "Ability to Practice Health-Enhancing Behaviors",
+     "topics": [
+      {
+       "id": "personal-responsibility-for-health",
+       "title": "Personal Responsibility for Health",
+       "subtopics": [
+        {
+         "id": "personal-responsibility-for-health",
+         "title": "Personal Responsibility for Health",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain the importance of assuming responsibility for personal health behaviors"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "healthy-practices-and-behaviors",
+       "title": "Healthy Practices and Behaviors",
+       "subtopics": [
+        {
+         "id": "healthy-practices-and-behaviors",
+         "title": "Healthy Practices and Behaviors",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Demonstrate healthy practices and behaviors that will maintain or improve the health of self and others"
+          },
+          {
+           "code": null,
+           "text": "Demonstrate behaviors that avoid or reduce health risks to self and others"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "ability-to-advocate-for-health",
+     "title": "Ability to Advocate for Health",
+     "topics": [
+      {
+       "id": "personal-advocacy",
+       "title": "Personal Advocacy",
+       "subtopics": [
+        {
+         "id": "personal-advocacy",
+         "title": "Personal Advocacy",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "State a health enhancing position on a topic and support it with accurate information"
+          },
+          {
+           "code": null,
+           "text": "Demonstrate how to influence and support others to make positive health choices"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "collective-advocacy",
+       "title": "Collective Advocacy",
+       "subtopics": [
+        {
+         "id": "collective-advocacy",
+         "title": "Collective Advocacy",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Demonstrate how to work cooperatively to advocate for healthy individuals, families, and schools"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "tailoring-advocacy-message-to-audience",
+       "title": "Tailoring Advocacy Message to Audience",
+       "subtopics": [
+        {
+         "id": "tailoring-advocacy-message-to-audience",
+         "title": "Tailoring Advocacy Message to Audience",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Identify ways in which health messages and communication techniques can be altered for different audiences"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "9-12",
+   "units": [
+    {
+     "id": "comprehension-of-health-promotion-and-disease-pr",
+     "title": "Comprehension of Health Promotion and Disease Prevention Concepts",
+     "topics": [
+      {
+       "id": "understand-relationship-between-health-behaviors",
+       "title": "Understand Relationship Between Health Behaviors and Health",
+       "subtopics": [
+        {
+         "id": "understand-relationship-between-health-behaviors",
+         "title": "Understand Relationship Between Health Behaviors and Health",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Predict how healthy behaviors can affect health status"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "understanding-multiple-dimensions-of-health",
+       "title": "Understanding Multiple Dimensions of Health",
+       "subtopics": [
+        {
+         "id": "understanding-multiple-dimensions-of-health",
+         "title": "Understanding Multiple Dimensions of Health",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe the interrelationships of emotional, intellectual, physical, and social health"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "understanding-personal-health",
+       "title": "Understanding Personal Health",
+       "subtopics": [
+        {
+         "id": "understanding-personal-health",
+         "title": "Understanding Personal Health",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Analyze how environment and personal health are interrelated"
+          },
+          {
+           "code": null,
+           "text": "Evaluate the impact of food and nutrition, including nutrient deficiencies on health"
+          },
+          {
+           "code": null,
+           "text": "Evaluate levels and types of physical activity and how these promote health and contribute to disease prevention"
+          },
+          {
+           "code": null,
+           "text": "Analyze how genetics and family history can impact personal health"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "understanding-prevention-of-injuries-and-health-",
+       "title": "Understanding Prevention of Injuries and Health Problems",
+       "subtopics": [
+        {
+         "id": "understanding-prevention-of-injuries-and-health-",
+         "title": "Understanding Prevention of Injuries and Health Problems",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Propose ways to reduce or prevent injuries and health problems"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "understanding-use-of-health-care",
+       "title": "Understanding Use of Health Care",
+       "subtopics": [
+        {
+         "id": "understanding-use-of-health-care",
+         "title": "Understanding Use of Health Care",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Analyze the relationship between access to health care and health status"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "understanding-healthy-vs-unhealthy-behaviors",
+       "title": "Understanding Healthy vs. Unhealthy Behaviors",
+       "subtopics": [
+        {
+         "id": "understanding-healthy-vs-unhealthy-behaviors",
+         "title": "Understanding Healthy vs. Unhealthy Behaviors",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Compare and contrast the benefits of and barriers to practicing a variety of healthy behaviors"
+          },
+          {
+           "code": null,
+           "text": "Analyze personal susceptibility to injury, illness, or death if engaging in unhealthy behaviors"
+          },
+          {
+           "code": null,
+           "text": "Analyze the potential severity of injury or illness if engaging in unhealthy behaviors"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "analysis-of-factors-affecting-health-behaviors",
+     "title": "Analysis of Factors Affecting Health Behaviors",
+     "topics": [
+      {
+       "id": "external-influences-on-personal-health",
+       "title": "External Influences on Personal Health",
+       "subtopics": [
+        {
+         "id": "external-influences-on-personal-health",
+         "title": "External Influences on Personal Health",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Analyze how the family influences the health of individuals"
+          },
+          {
+           "code": null,
+           "text": "Analyze how the culture supports and challenges health beliefs, practices, and behaviors"
+          },
+          {
+           "code": null,
+           "text": "Evaluate how peers influence healthy and unhealthy behaviors"
+          },
+          {
+           "code": null,
+           "text": "Evaluate how the school and community can impact personal health practice and behaviors"
+          },
+          {
+           "code": null,
+           "text": "Evaluate the effect of media on personal and family health"
+          },
+          {
+           "code": null,
+           "text": "Evaluate the impact of technology on personal, family, and community health"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "internal-influences-on-personal-health",
+       "title": "Internal Influences on Personal Health",
+       "subtopics": [
+        {
+         "id": "internal-influences-on-personal-health",
+         "title": "Internal Influences on Personal Health",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Analyze how the perceptions of norms influence healthy and unhealthy behaviors"
+          },
+          {
+           "code": null,
+           "text": "Analyze the influence of personal values and beliefs on individual health practices and behaviors"
+          },
+          {
+           "code": null,
+           "text": "Analyze how some health risk behaviors can influence the likelihood of engaging in unhealthy behaviors"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "influence-of-public-policy-on-health",
+       "title": "Influence of Public Policy on Health",
+       "subtopics": [
+        {
+         "id": "influence-of-public-policy-on-health",
+         "title": "Influence of Public Policy on Health",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Analyze how public health policies and government regulations can influence health promotion and disease prevention"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "access-to-health-information-products-and-servic",
+     "title": "Access to Health Information, Products, and Services to Enhance Health",
+     "topics": [
+      {
+       "id": "knowledge-of-sources-of-help",
+       "title": "Knowledge of Sources of Help",
+       "subtopics": [
+        {
+         "id": "knowledge-of-sources-of-help",
+         "title": "Knowledge of Sources of Help",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Evaluate the validity of health information, products, and services"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "accessing-help",
+       "title": "Accessing Help",
+       "subtopics": [
+        {
+         "id": "accessing-help",
+         "title": "Accessing Help",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Use resources from home, school, and community that provide valid health information"
+          },
+          {
+           "code": null,
+           "text": "Determine the accessibility of products and services that enhance health."
+          },
+          {
+           "code": null,
+           "text": "Analyze a situation in which professional health services may be required"
+          },
+          {
+           "code": null,
+           "text": "Access valid and reliable health products and services"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "use-of-interpersonal-communication-skills-to-enh",
+     "title": "Use of Interpersonal Communication Skills to Enhance Health",
+     "topics": [
+      {
+       "id": "communication-to-enhance-help",
+       "title": "Communication to Enhance Help",
+       "subtopics": [
+        {
+         "id": "communication-to-enhance-help",
+         "title": "Communication to Enhance Help",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Utilize skills for communicating effectively with family, peers, and others to enhance health"
+          },
+          {
+           "code": null,
+           "text": "Demonstrate refusal, negotiation, and collaboration skills to enhance health and avoid or reduce health risks"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "self-protection-and-dealing-with-conflict",
+       "title": "Self Protection and Dealing with Conflict",
+       "subtopics": [
+        {
+         "id": "self-protection-and-dealing-with-conflict",
+         "title": "Self Protection and Dealing with Conflict",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Evaluate strategies to prevent, manage, or resolve interpersonal conflicts without harming self or others"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "asking-for-help",
+       "title": "Asking for Help",
+       "subtopics": [
+        {
+         "id": "asking-for-help",
+         "title": "Asking for Help",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Evaluate effective ways to ask for and offer assistance to enhance the health of self and others"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "use-of-decision-making-skills-to-enhance-health",
+     "title": "Use of Decision-Making Skills to Enhance Health",
+     "topics": [
+      {
+       "id": "influences-on-health-decision-making",
+       "title": "Influences on Health Decision Making",
+       "subtopics": [
+        {
+         "id": "influences-on-health-decision-making",
+         "title": "Influences on Health Decision Making",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Examine barriers to healthy decision making"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "application-of-decision-making-skills-to-health",
+       "title": "Application of Decision-Making Skills to Health",
+       "subtopics": [
+        {
+         "id": "application-of-decision-making-skills-to-health",
+         "title": "Application of Decision-Making Skills to Health",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Determine the value of applying a thoughtful decision-making process in health-related situations"
+          },
+          {
+           "code": null,
+           "text": "Justify when individual or collaborative decision making is appropriate"
+          },
+          {
+           "code": null,
+           "text": "Analyze and propose alternatives to health-related issues or problems"
+          },
+          {
+           "code": null,
+           "text": "Predict the potential short-term and long-term impact of each alternative on self and others"
+          },
+          {
+           "code": null,
+           "text": "Defend the healthy choice when making decisions"
+          },
+          {
+           "code": null,
+           "text": "Evaluate the effectiveness of health-related decisions"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "use-of-goal-setting-skills-to-enhance-health",
+     "title": "Use of Goal-Setting Skills to Enhance Health",
+     "topics": [
+      {
+       "id": "assessment-of-health",
+       "title": "Assessment of Health",
+       "subtopics": [
+        {
+         "id": "assessment-of-health",
+         "title": "Assessment of Health",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Assess personal health practices and overall health status"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "health-related-goal-setting",
+       "title": "Health-Related Goal Setting",
+       "subtopics": [
+        {
+         "id": "health-related-goal-setting",
+         "title": "Health-Related Goal Setting",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Develop a plan to attain a personal health goal that addresses strengths, needs, and risks"
+          },
+          {
+           "code": null,
+           "text": "Implement strategies and monitor progress in achieving a personal health goal"
+          },
+          {
+           "code": null,
+           "text": "Formulate an effective long-term personal health plan"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "ability-to-practice-health-enhancing-behaviors",
+     "title": "Ability to Practice Health-Enhancing Behaviors",
+     "topics": [
+      {
+       "id": "personal-responsibility-for-health",
+       "title": "Personal Responsibility for Health",
+       "subtopics": [
+        {
+         "id": "personal-responsibility-for-health",
+         "title": "Personal Responsibility for Health",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Analyze the role of individual responsibility in enhancing health"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "healthy-practices-and-behaviors",
+       "title": "Healthy Practices and Behaviors",
+       "subtopics": [
+        {
+         "id": "healthy-practices-and-behaviors",
+         "title": "Healthy Practices and Behaviors",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Demonstrate a variety of healthy practices and behaviors that will maintain or improve the health of self and others"
+          },
+          {
+           "code": null,
+           "text": "Demonstrate a variety of behaviors that avoid or reduce health risks to self and others"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "ability-to-advocate-for-health",
+     "title": "Ability to Advocate for Health",
+     "topics": [
+      {
+       "id": "personal-advocacy",
+       "title": "Personal Advocacy",
+       "subtopics": [
+        {
+         "id": "personal-advocacy",
+         "title": "Personal Advocacy",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Use accurate peer and societal norms to formulate a health-enhancing message"
+          },
+          {
+           "code": null,
+           "text": "Influence and support others to make positive health choices"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "collective-advocacy",
+       "title": "Collective Advocacy",
+       "subtopics": [
+        {
+         "id": "collective-advocacy",
+         "title": "Collective Advocacy",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Work cooperatively as an advocate for improving personal, family, and community health"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "tailoring-advocacy-message-to-audience",
+       "title": "Tailoring Advocacy Message to Audience",
+       "subtopics": [
+        {
+         "id": "tailoring-advocacy-message-to-audience",
+         "title": "Tailoring Advocacy Message to Audience",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Adapt health messages and communication techniques to a specific target audience"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "build": {
+  "builtAt": "2026-10-14T16:20:38.665Z",
+  "model": "none",
+  "usd": 0,
+  "expectedCodes": null,
+  "coverage": null,
+  "missingCodes": [],
+  "counts": {
+   "grades": 4,
+   "units": 32,
+   "topics": 79,
+   "subtopics": 79,
+   "outcomes": 157
+  },
+  "warnings": []
+ }
+}

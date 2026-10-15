@@ -1,0 +1,1608 @@
+{
+ "id": "us-nd-social-studies",
+ "region": "US",
+ "framework": "North Dakota state academic standards: Social Studies",
+ "board": null,
+ "qualification": "K-12",
+ "subject": "Social Studies",
+ "syllabusCode": null,
+ "gradeSystem": "grade",
+ "source": {
+  "urls": [
+   "https://api.commonstandardsproject.com/api/v1/jurisdictions/071477629D00405286BC6D79576AAB79",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/071477629D00405286BC6D79576AAB79_D21045744_grades-01-02-k",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/071477629D00405286BC6D79576AAB79_D21045744_grades-03-04-05",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/071477629D00405286BC6D79576AAB79_D21045744_grades-06-07-08-09-10-11-12",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/164F76E9871B4E1EB47B6E3BA790E484"
+  ],
+  "publisher": "North Dakota state education agency (machine-readable via Common Standards Project / ASN)",
+  "licence": "D2L Corporation; CC BY 4.0 US, Common Curriculum, Inc.",
+  "firstExam": "2019"
+ },
+ "grades": [
+  {
+   "grade": "11",
+   "units": [
+    {
+     "id": "us-history-parent-standards",
+     "title": "US History (Parent Standards)",
+     "topics": [
+      {
+       "id": "us-history-parent-standards",
+       "title": "US History (Parent Standards)",
+       "subtopics": [
+        {
+         "id": "us-history-parent-standards",
+         "title": "US History (Parent Standards)",
+         "outcomes": [
+          {
+           "code": "US.6_12.1",
+           "text": "Analyze primary and secondary sources with attention to reliability, impact, and purpose."
+          },
+          {
+           "code": "US.6_12.2",
+           "text": "Examine the impact of multiple perspectives on social, political, and cultural development."
+          },
+          {
+           "code": "US.6_12.3",
+           "text": "Explain the relationship of events focusing on the link(s) between cause and effect."
+          },
+          {
+           "code": "US.6_12.4",
+           "text": "Compare how historical elements change over time."
+          },
+          {
+           "code": "US.6_12.5",
+           "text": "Analyze the significant contributions of people, policy, and the influence on an era."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "connect-the-past-to-the-present-using-current-ev",
+     "title": "Connect the past to the present using current events",
+     "topics": [
+      {
+       "id": "connect-the-past-to-the-present-using-current-ev",
+       "title": "Connect the past to the present using current events",
+       "subtopics": [
+        {
+         "id": "connect-the-past-to-the-present-using-current-ev",
+         "title": "Connect the past to the present using current events",
+         "outcomes": [
+          {
+           "code": "US.6_12.1-6.E3.6",
+           "text": "Explain the political, social, and economic events of the 1930s."
+          },
+          {
+           "code": "US.6_12.1-6.E4.1",
+           "text": "Explain the causes and consequences of U.S. involvement in World War II."
+          },
+          {
+           "code": "US.6_12.1-6.E4.2",
+           "text": "Explain the economic and/or social issues of the era and their long-lasting effects."
+          },
+          {
+           "code": "US.6_12.1-6.E4.6",
+           "text": "Identify and explain how domestic issues changed United States’ perceptions of government"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "K-2",
+   "units": [
+    {
+     "id": "civics-government",
+     "title": "Civics & Government",
+     "topics": [
+      {
+       "id": "civics-government",
+       "title": "Civics & Government",
+       "subtopics": [
+        {
+         "id": "civics-government-1-of-2",
+         "title": "Civics & Government (1 of 2)",
+         "outcomes": [
+          {
+           "code": "C.K_2.1",
+           "text": "Explain reasons for, and purposes of, rules, laws, and positions of authority."
+          },
+          {
+           "code": "C.K_2.2",
+           "text": "Explain why people form governments."
+          },
+          {
+           "code": "C.K_2.3",
+           "text": "Identify services provided by the local government and how they affect the lives of its citizens/residents."
+          },
+          {
+           "code": "C.K_2.4",
+           "text": "Describe the core values represented by symbols of the United States."
+          }
+         ]
+        },
+        {
+         "id": "civics-government-2-of-2",
+         "title": "Civics & Government (2 of 2)",
+         "outcomes": [
+          {
+           "code": "C.K_2.5",
+           "text": "Identify ways citizens/residents participate in community decisions."
+          },
+          {
+           "code": "C.K_2.6",
+           "text": "Describe important rights and responsibilities of citizens/residents."
+          },
+          {
+           "code": "C.K_2.7",
+           "text": "Explain and/or participate in a project to help or inform others about an issue."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "economics",
+     "title": "Economics",
+     "topics": [
+      {
+       "id": "economics",
+       "title": "Economics",
+       "subtopics": [
+        {
+         "id": "economics",
+         "title": "Economics",
+         "outcomes": [
+          {
+           "code": "E.K_2.1",
+           "text": "Describe the characteristics of the American economic system."
+          },
+          {
+           "code": "E.K_2.2",
+           "text": "Compare and contrast producers and consumers of goods and services."
+          },
+          {
+           "code": "E.K_2.3",
+           "text": "Identify consumer decisions and the difference between needs and wants."
+          },
+          {
+           "code": "E.K_2.4",
+           "text": "Identify how community helpers impact others."
+          },
+          {
+           "code": "E.K_2.5",
+           "text": "Explain how people earn income and save money."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "geography",
+     "title": "Geography",
+     "topics": [
+      {
+       "id": "geography",
+       "title": "Geography",
+       "subtopics": [
+        {
+         "id": "geography",
+         "title": "Geography",
+         "outcomes": [
+          {
+           "code": "G.K_2.1",
+           "text": "Construct maps, graphs, and other representations that contain symbols, labels, and legends."
+          },
+          {
+           "code": "G.K_2.2",
+           "text": "Describe how the physical environment affects people and how people affect the physical environment."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "history",
+     "title": "History",
+     "topics": [
+      {
+       "id": "history",
+       "title": "History",
+       "subtopics": [
+        {
+         "id": "history",
+         "title": "History",
+         "outcomes": [
+          {
+           "code": "H.K_2.1",
+           "text": "Compare perspectives of people in the past to those of people in the present."
+          },
+          {
+           "code": "H.K_2.2",
+           "text": "Describe national holidays or days of observance in the United States and explain the reason they are celebrated."
+          },
+          {
+           "code": "H.K_2.3",
+           "text": "Describe current events."
+          },
+          {
+           "code": "H.K_2.4",
+           "text": "Demonstrate chronological thinking by describing changes in the community over time."
+          },
+          {
+           "code": "H.K_2.5",
+           "text": "Explain how individuals and groups have made significant historical changes."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "3-5",
+   "units": [
+    {
+     "id": "civics-government",
+     "title": "Civics & Government",
+     "topics": [
+      {
+       "id": "civics-government",
+       "title": "Civics & Government",
+       "subtopics": [
+        {
+         "id": "civics-government-1-of-2",
+         "title": "Civics & Government (1 of 2)",
+         "outcomes": [
+          {
+           "code": "C.3_5.1",
+           "text": "Compare and contrast the responsibilities and powers of government officials at various levels and branches of government."
+          },
+          {
+           "code": "C.3_5.2",
+           "text": "Describe the structure of government and how it functions to serve citizens/residents. (e.g., Constitution, Amendments, government leaders)."
+          },
+          {
+           "code": "C.3_5.3",
+           "text": "Describe the structure of government in North Dakota and how it functions to serve citizens/residents."
+          },
+          {
+           "code": "C.3_5.4",
+           "text": "Explain the importance of the basic principles that provide the foundation of the American system of government (e.g., symbols, patriotic traditions, values of liberty, equality, justice, etc.)."
+          }
+         ]
+        },
+        {
+         "id": "civics-government-2-of-2",
+         "title": "Civics & Government (2 of 2)",
+         "outcomes": [
+          {
+           "code": "C.3_5.5",
+           "text": "Describe procedures for making decisions in a variety of settings."
+          },
+          {
+           "code": "C.3_5.6",
+           "text": "Compare and contrast personal and civic responsibilities and explain why they are important in community life."
+          },
+          {
+           "code": "C.3_5.7",
+           "text": "Develop and implement an action plan to address or inform others about an issue."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "economics",
+     "title": "Economics",
+     "topics": [
+      {
+       "id": "economics",
+       "title": "Economics",
+       "subtopics": [
+        {
+         "id": "economics-1-of-2",
+         "title": "Economics (1 of 2)",
+         "outcomes": [
+          {
+           "code": "E.3_5.1",
+           "text": "Utilize fundamental principles and concepts of economics to understand economic activity (e.g., needs and wants, goods and services, opportunity cost)."
+          },
+          {
+           "code": "E.3_5.2",
+           "text": "Describe how goods and services are produced and distributed."
+          },
+          {
+           "code": "E.3_5.3",
+           "text": "Identify factors that influence saving and spending choices."
+          },
+          {
+           "code": "E.3_5.4",
+           "text": "Describe the necessity and impact of community services."
+          }
+         ]
+        },
+        {
+         "id": "economics-2-of-2",
+         "title": "Economics (2 of 2)",
+         "outcomes": [
+          {
+           "code": "E.3_5.5",
+           "text": "Describe and analyze how North Dakota's location, culture, and natural resources influence its economic decisions and development."
+          },
+          {
+           "code": "E.3_5.6",
+           "text": "Compare and contrast the economic development of the geographical regions of the United States."
+          },
+          {
+           "code": "E.3_5.7",
+           "text": "Explain how natural resources affect the economies of the geographical regions of the United States."
+          },
+          {
+           "code": "E.3_5.8",
+           "text": "Describe how economics have changed over time."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "geography",
+     "title": "Geography",
+     "topics": [
+      {
+       "id": "geography",
+       "title": "Geography",
+       "subtopics": [
+        {
+         "id": "geography-1-of-2",
+         "title": "Geography (1 of 2)",
+         "outcomes": [
+          {
+           "code": "G.3_5.1",
+           "text": "Construct maps, graphs, and other representations of both familiar and unfamiliar places."
+          },
+          {
+           "code": "G.3_5.2",
+           "text": "Use geographic tools and technologies to acquire, process, and report information from a spatial perspective."
+          },
+          {
+           "code": "G.3_5.3",
+           "text": "Use maps, satellite images, photographs, and other representations to explain relationships between locations of places, regions, and their environmental characteristics."
+          },
+          {
+           "code": "G.3_5.4",
+           "text": "Explain how North Dakota regions have been influenced by physical and human characteristics."
+          }
+         ]
+        },
+        {
+         "id": "geography-2-of-2",
+         "title": "Geography (2 of 2)",
+         "outcomes": [
+          {
+           "code": "G.3_5.5",
+           "text": "Compare and contrast the three geographical regions of North Dakota."
+          },
+          {
+           "code": "G.3_5.6",
+           "text": "Explain how United States regions are created from common physical and human characteristics."
+          },
+          {
+           "code": "G.3_5.7",
+           "text": "Analyze patterns of human settlement in North Dakota."
+          },
+          {
+           "code": "G.3_5.8",
+           "text": "Analyze patterns of human settlement in North America."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "history",
+     "title": "History",
+     "topics": [
+      {
+       "id": "history",
+       "title": "History",
+       "subtopics": [
+        {
+         "id": "history-1-of-2",
+         "title": "History (1 of 2)",
+         "outcomes": [
+          {
+           "code": "H.3_5.1",
+           "text": "Compare and contrast multiple perspectives during the same time, event, or historical period."
+          },
+          {
+           "code": "H.3_5.2",
+           "text": "Describe how people's perspectives shape history."
+          },
+          {
+           "code": "H.3_5.3",
+           "text": "Describe the North Dakota Native American Essential Understandings."
+          },
+          {
+           "code": "H.3_5.4",
+           "text": "Analyze national holidays or days of observance in the United States and explain how they impact culture."
+          },
+          {
+           "code": "H.3_5.5",
+           "text": "Describe multiple causes and effects of contemporary global events and developments in relation to North Dakota."
+          }
+         ]
+        },
+        {
+         "id": "history-2-of-2",
+         "title": "History (2 of 2)",
+         "outcomes": [
+          {
+           "code": "H.3_5.6",
+           "text": "Describe multiple causes and effects of contemporary global events and developments in relation to the United States."
+          },
+          {
+           "code": "H.3_5.7",
+           "text": "Explain cause and effect relationships among historical events in the United States using primary and secondary sources."
+          },
+          {
+           "code": "H.3_5.8",
+           "text": "Explain how individuals contributed to the United States throughout different historical eras using primary and secondary sources."
+          },
+          {
+           "code": "H.3_5.9",
+           "text": "Explain how individuals and groups contributed to North Dakota."
+          },
+          {
+           "code": "H.3_5.10",
+           "text": "Describe the events and developments that led to the statehood of North Dakota."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "6-12",
+   "units": [
+    {
+     "id": "civics-government",
+     "title": "Civics & Government",
+     "topics": [
+      {
+       "id": "explain-the-historical-and-philosophical-foundat",
+       "title": "Explain the historical and philosophical foundations of government",
+       "subtopics": [
+        {
+         "id": "explain-the-historical-and-philosophical-foundat",
+         "title": "Explain the historical and philosophical foundations of government",
+         "outcomes": [
+          {
+           "code": "C.6_12.1.1",
+           "text": "Evaluate the thoughts of major political philosophers."
+          },
+          {
+           "code": "C.6_12.1.2",
+           "text": "Explain the influence of British and colonial history on early United States."
+          },
+          {
+           "code": "C.6_12.1.3",
+           "text": "Evaluate the creation and impact of primary sources on political thought in the United States."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "analyze-the-structures-and-functions-of-governme",
+       "title": "Analyze the structures and functions of governments",
+       "subtopics": [
+        {
+         "id": "analyze-the-structures-and-functions-of-governme",
+         "title": "Analyze the structures and functions of governments",
+         "outcomes": [
+          {
+           "code": "C.6_12.2.1",
+           "text": "Differentiate/compare forms and origins of governments."
+          },
+          {
+           "code": "C.6_12.2.2",
+           "text": "Examine the role and purposes of government."
+          },
+          {
+           "code": "C.6_12.2.3",
+           "text": "Analyze the structure, principles, and interpretation of the Constitution of the United States."
+          },
+          {
+           "code": "C.6_12.2.4",
+           "text": "Explain the relationship among federal, state, tribal, and local governmental powers."
+          },
+          {
+           "code": "C.6_12.2.5",
+           "text": "Explain the purposes, organization, powers, and processes of tribal and local governments."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "describe-the-rights-and-liberties-of-individuals",
+       "title": "Describe the rights and liberties of individuals",
+       "subtopics": [
+        {
+         "id": "describe-the-rights-and-liberties-of-individuals",
+         "title": "Describe the rights and liberties of individuals",
+         "outcomes": [
+          {
+           "code": "C.6_12.3.1",
+           "text": "Describe and examine the amendments to the United States Constitution and their application in the United States."
+          },
+          {
+           "code": "C.6_12.3.2",
+           "text": "Describe the impact of court cases on the rights and liberties of individuals."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "investigate-the-role-and-responsibilities-of-cit",
+       "title": "Investigate the role and responsibilities of citizenship in society",
+       "subtopics": [
+        {
+         "id": "investigate-the-role-and-responsibilities-of-cit",
+         "title": "Investigate the role and responsibilities of citizenship in society",
+         "outcomes": [
+          {
+           "code": "C.6_12.4.1",
+           "text": "Explain how citizens can influence government."
+          },
+          {
+           "code": "C.6_12.4.2",
+           "text": "Describe and evaluate the criteria and process for naturalization in the United States."
+          },
+          {
+           "code": "C.6_12.4.3",
+           "text": "Explain how citizens' personal and civic responsibilities are important to the preservation and improvement of United States constitutional republic."
+          },
+          {
+           "code": "C.6_12.4.4",
+           "text": "Identify bias and evaluate its role in media sources."
+          },
+          {
+           "code": "C.6_12.4.5",
+           "text": "Demonstrate active participation in civic life."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "economics",
+     "title": "Economics",
+     "topics": [
+      {
+       "id": "analyze-the-concept-of-scarcity-when-making-econ",
+       "title": "Analyze the concept of scarcity when making economic decisions",
+       "subtopics": [
+        {
+         "id": "analyze-the-concept-of-scarcity-when-making-econ",
+         "title": "Analyze the concept of scarcity when making economic decisions",
+         "outcomes": [
+          {
+           "code": "E.6_12.1.1",
+           "text": "Analyze the basic concepts of economic thinking."
+          },
+          {
+           "code": "E.6_12.1.2",
+           "text": "Explain the factors of production."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "compare-and-contrast-how-varying-economic-system",
+       "title": "Compare and contrast how varying economic systems impact a nation and its citizens",
+       "subtopics": [
+        {
+         "id": "compare-and-contrast-how-varying-economic-system",
+         "title": "Compare and contrast how varying economic systems impact a nation and its citizens",
+         "outcomes": [
+          {
+           "code": "E.6_12.2.1",
+           "text": "Describe the difference between a command/centrally planned economy and market economy."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "analyze-how-supply-and-demand-impact-the-allocat",
+       "title": "Analyze how supply and demand impact the allocation of goods and services",
+       "subtopics": [
+        {
+         "id": "analyze-how-supply-and-demand-impact-the-allocat",
+         "title": "Analyze how supply and demand impact the allocation of goods and services",
+         "outcomes": [
+          {
+           "code": "E.6_12.3.1",
+           "text": "Explain the law of supply and demand."
+          },
+          {
+           "code": "E.6_12.3.2",
+           "text": "Compare and contrast perfect and imperfect competition."
+          },
+          {
+           "code": "E.6_12.3.3",
+           "text": "Analyze the impact of the supply and demand on prices."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "analyze-the-various-institutions-that-drive-and-",
+       "title": "Analyze the various institutions that drive and support the market economy",
+       "subtopics": [
+        {
+         "id": "analyze-the-various-institutions-that-drive-and-",
+         "title": "Analyze the various institutions that drive and support the market economy",
+         "outcomes": [
+          {
+           "code": "E.6_12.4.1",
+           "text": "Explain the role of businesses and financial institutions in a market economy."
+          },
+          {
+           "code": "E.6_12.4.2",
+           "text": "Evaluate the role of government in a market economy"
+          },
+          {
+           "code": "E.6_12.4.3",
+           "text": "Explain the functions and role of money."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "evaluate-the-various-macroeconomic-measurements-",
+       "title": "Evaluate the various macroeconomic measurements available to determine an economy's size and strength",
+       "subtopics": [
+        {
+         "id": "evaluate-the-various-macroeconomic-measurements-",
+         "title": "Evaluate the various macroeconomic measurements available to determine an economy's size and strength",
+         "outcomes": [
+          {
+           "code": "E.6_12.5.1",
+           "text": "Describe various measurements of macroeconomics."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "analyze-how-globalization-has-impacted-various-a",
+       "title": "Analyze how globalization has impacted various aspects of economies around the world",
+       "subtopics": [
+        {
+         "id": "analyze-how-globalization-has-impacted-various-a",
+         "title": "Analyze how globalization has impacted various aspects of economies around the world",
+         "outcomes": [
+          {
+           "code": "E.6_12.6.1",
+           "text": "Describe how trade generates economic development and interdependence."
+          },
+          {
+           "code": "E.6_12.6.2",
+           "text": "Analyze the benefits and costs for individuals, producers, and governments in international trade."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "evaluate-the-elements-of-responsible-personal-fi",
+       "title": "Evaluate the elements of responsible personal finance",
+       "subtopics": [
+        {
+         "id": "evaluate-the-elements-of-responsible-personal-fi",
+         "title": "Evaluate the elements of responsible personal finance",
+         "outcomes": [
+          {
+           "code": "E.6_12.7.1",
+           "text": "Evaluate career choices and the effect on the standard of living."
+          },
+          {
+           "code": "E.6_12.7.2",
+           "text": "Evaluate the effect of taxes and other factors on income."
+          },
+          {
+           "code": "E.6_12.7.3",
+           "text": "Develop short- and long-term financial goals."
+          },
+          {
+           "code": "E.6_12.7.4",
+           "text": "Analyze the cost and benefits of different types of credit and debt; and the rights and responsibilities of borrowers."
+          },
+          {
+           "code": "E.6_12.7.5",
+           "text": "Develop strategies to avoid and manage debt effectively."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "geography",
+     "title": "Geography",
+     "topics": [
+      {
+       "id": "describe-the-physical-processes-that-shape-the-e",
+       "title": "Describe the physical processes that shape the Earth's surface and how these affect the lives of people who live there",
+       "subtopics": [
+        {
+         "id": "describe-the-physical-processes-that-shape-the-e",
+         "title": "Describe the physical processes that shape the Earth's surface and how these affect the lives of people who live there",
+         "outcomes": [
+          {
+           "code": "G.6_12.1.1",
+           "text": "Describe the physical processes that shape the Earth's surface."
+          },
+          {
+           "code": "G.6_12.1.2",
+           "text": "Explain the factors that cause different types of climates and ecosystems, and their latitudes/locations."
+          },
+          {
+           "code": "G.6_12.1.3",
+           "text": "Identify how major ecosystems provide raw materials."
+          },
+          {
+           "code": "G.6_12.1.4",
+           "text": "Analyze the physical and human characteristics of a place."
+          },
+          {
+           "code": "G.6_12.1.5",
+           "text": "Describe how combinations of human decisions and natural forces can lead to (or help people avoid) a natural disaster."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "analyze-the-movement-of-people-goods-ideas-techn",
+       "title": "Analyze the movement of people, goods, ideas, technology, etc. throughout the world",
+       "subtopics": [
+        {
+         "id": "analyze-the-movement-of-people-goods-ideas-techn",
+         "title": "Analyze the movement of people, goods, ideas, technology, etc. throughout the world",
+         "outcomes": [
+          {
+           "code": "G.6_12.2.1",
+           "text": "Explain how movement of goods, information, and population are affected by technology."
+          },
+          {
+           "code": "G.6_12.2.2",
+           "text": "Describe patterns of settlement and explain why people settle where they do and how they make their living."
+          },
+          {
+           "code": "G.6_12.2.3",
+           "text": "Explain the patterns, causes, and consequences of major human migrations."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "analyze-the-unifying-physical-and-human-characte",
+       "title": "Analyze the unifying physical and human characteristics of a region and their formal and informal boundaries",
+       "subtopics": [
+        {
+         "id": "analyze-the-unifying-physical-and-human-characte",
+         "title": "Analyze the unifying physical and human characteristics of a region and their formal and informal boundaries",
+         "outcomes": [
+          {
+           "code": "G.6_12.3.1",
+           "text": "Describe the differences and similarities among cultures around the world."
+          },
+          {
+           "code": "G.6_12.3.2",
+           "text": "Analyze the physical and human characteristics of a region."
+          },
+          {
+           "code": "G.6_12.3.3",
+           "text": "Interpret how culture and experience influence people's perception of places and regions."
+          },
+          {
+           "code": "G.6_12.3.4",
+           "text": "Identify factors that contribute to conflict and cooperation between cultural groups from multiple perspectives."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "use-geographic-tools-to-locate-both-the-absolute",
+       "title": "Use geographic tools to locate both the absolute and relative location of places and regions around the world",
+       "subtopics": [
+        {
+         "id": "use-geographic-tools-to-locate-both-the-absolute",
+         "title": "Use geographic tools to locate both the absolute and relative location of places and regions around the world",
+         "outcomes": [
+          {
+           "code": "G.6_12.4.1",
+           "text": "Explain and use a variety of geographic tools to study the world on global, regional, and local scales and draw conclusions."
+          },
+          {
+           "code": "G.6_12.4.2",
+           "text": "Apply the skills of geographic inquiry to analyze a geographic problem or issue."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "analyze-how-human-beings-are-dependent-upon-adap",
+       "title": "Analyze how human beings are dependent upon, adapt to, and modify their environment to meet their needs",
+       "subtopics": [
+        {
+         "id": "analyze-how-human-beings-are-dependent-upon-adap",
+         "title": "Analyze how human beings are dependent upon, adapt to, and modify their environment to meet their needs",
+         "outcomes": [
+          {
+           "code": "G.6_12.5.1",
+           "text": "Explain how people have modified the environment and used technology to make places more suitable for humans."
+          },
+          {
+           "code": "G.6_12.5.2",
+           "text": "Analyze how human changes to the environment in one region or place can affect another."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "united-states-history",
+     "title": "United States History",
+     "topics": [
+      {
+       "id": "analyze-primary-and-secondary-sources-with-atten",
+       "title": "Analyze primary and secondary sources with attention to reliability, impact, and purpose",
+       "subtopics": [
+        {
+         "id": "analyze-primary-and-secondary-sources-with-atten",
+         "title": "Analyze primary and secondary sources with attention to reliability, impact, and purpose",
+         "outcomes": [
+          {
+           "code": "US.6_12.1-6.E1.1",
+           "text": "Explain the social, political, and cultural causes and immediate consequences of the American Revolution."
+          },
+          {
+           "code": "US.6_12.1-6.E2.1",
+           "text": "Analyze the impacts of social, religious, and/or cultural movements."
+          },
+          {
+           "code": "US.6_12.1-6.E3.1",
+           "text": "Explain the causes and consequences of the Industrial Revolution on American society."
+          },
+          {
+           "code": "US.6_12.1-6.E4.1",
+           "text": "Explain the causes and consequences of U.S. involvement in World War II."
+          },
+          {
+           "code": "US.6_12.1-6.E5.1",
+           "text": "Connect the changing political and social climate to United States' involvement as a global superpower."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "examine-the-impact-of-multiple-perspectives-on-s",
+       "title": "Examine the impact of multiple perspectives on social, political, and cultural development",
+       "subtopics": [
+        {
+         "id": "examine-the-impact-of-multiple-perspectives-on-s",
+         "title": "Examine the impact of multiple perspectives on social, political, and cultural development",
+         "outcomes": [
+          {
+           "code": "US.6_12.1-6.E1.2",
+           "text": "Explain the development of early United States government."
+          },
+          {
+           "code": "US.6_12.1-6.E2.2",
+           "text": "Compare and contrast how the causes of the sectional divide within the United States impacted federal policy."
+          },
+          {
+           "code": "US.6_12.1-6.E3.2",
+           "text": "Explain the social, cultural, and economic impact of local, state, and federal government policy on American people."
+          },
+          {
+           "code": "US.6_12.1-6.E4.2",
+           "text": "Explain the economic and/or social issues of the era and their long-lasting effects."
+          },
+          {
+           "code": "US.6_12.1-6.E5.2",
+           "text": "Explain the social, cultural, and economic impact of changes as a result of technology."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "explain-the-relationship-of-events-focusing-on-t",
+       "title": "Explain the relationship of events focusing on the link(s) between cause and effect",
+       "subtopics": [
+        {
+         "id": "explain-the-relationship-of-events-focusing-on-t",
+         "title": "Explain the relationship of events focusing on the link(s) between cause and effect",
+         "outcomes": [
+          {
+           "code": "US.6_12.1-6.E1.3",
+           "text": "Explain the development of United States society after the American Revolution."
+          },
+          {
+           "code": "US.6_12.1-6.E2.3",
+           "text": "Explain how westward expansion affected the social, economic, and political landscape of the United States."
+          },
+          {
+           "code": "US 6-12.1-6.E3.3",
+           "text": "Explain the impact of the United States' transformation into an imperialist power."
+          },
+          {
+           "code": "US.6_12.1-6.E4.3",
+           "text": "Explain the United States' reactions toward the growth of communism."
+          },
+          {
+           "code": "US.6_12.1-6.E5.3",
+           "text": "Explain the social, political, and cultural influences on government policies regarding global immigration."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "compare-how-historical-elements-change-over-time",
+       "title": "Compare how historical elements change over time",
+       "subtopics": [
+        {
+         "id": "compare-how-historical-elements-change-over-time",
+         "title": "Compare how historical elements change over time",
+         "outcomes": [
+          {
+           "code": "US.6_12.1-6.E1.4",
+           "text": "Explain the importance of foreign and domestic decisions of the early United States government, its leaders, and political parties."
+          },
+          {
+           "code": "US.6_12.1-6.E2.4",
+           "text": "Explain the changing Native American federal policy and the impact on tribal sovereignty."
+          },
+          {
+           "code": "US.6_12.1-6.E3.4",
+           "text": "Explain the causes and effects of the United States' entrance into World War I."
+          },
+          {
+           "code": "US.6_12.1-6.E4.4",
+           "text": "Explain the impact of rapid technological change on society."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "analyze-the-significant-contributions-of",
+       "title": "Analyze the significant contributions of",
+       "subtopics": [
+        {
+         "id": "analyze-the-significant-contributions-of",
+         "title": "Analyze the significant contributions of",
+         "outcomes": [
+          {
+           "code": "US.6_12.1-6.E2.5",
+           "text": "Explain the social, economic, and political causes and effects of the Civil War."
+          },
+          {
+           "code": "US.6_12.1-6.E3.5",
+           "text": "Explain the political, social and economic changes of the 1920s."
+          },
+          {
+           "code": "US.6_12.1-6.E4.5",
+           "text": "Compare and contrast how different groups competed for equality and the effectiveness of various movements."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "connect-the-past-to-the-present-using-current-ev",
+       "title": "Connect the past to the present using current events",
+       "subtopics": [
+        {
+         "id": "connect-the-past-to-the-present-using-current-ev",
+         "title": "Connect the past to the present using current events",
+         "outcomes": [
+          {
+           "code": "US.6_12.1-6.E2.6",
+           "text": "Explain the social, economic, and political effects of Reconstruction."
+          },
+          {
+           "code": "US.6_12.1-6.E3.6",
+           "text": "Explain the political, social and economic events of the 1930s."
+          },
+          {
+           "code": "US.6_12.1-6.E4.6",
+           "text": "Identify and explain how domestic issues changed United States' perceptions of government."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "world-history",
+     "title": "World History",
+     "topics": [
+      {
+       "id": "analyze-historical-achievements-related-to-scien",
+       "title": "Analyze historical achievements related to science and technology",
+       "subtopics": [
+        {
+         "id": "analyze-historical-achievements-related-to-scien",
+         "title": "Analyze historical achievements related to science and technology",
+         "outcomes": [
+          {
+           "code": "WH.6_12.1-6.E1.1",
+           "text": "Explain multiple achievements of civilizations and connect them to the present."
+          },
+          {
+           "code": "WH.6_12.1-6.E2.1",
+           "text": "Explain the causes and effects of Medieval social structures using primary and secondary sources."
+          },
+          {
+           "code": "WH.6_12.1-6.E3.1",
+           "text": "Explain the causes and global effects of religious division."
+          },
+          {
+           "code": "WH.6_12.1-6.E4.1",
+           "text": "Analyze the causes and global effects of the world wars."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "explain-historical-changes-related-to-religions-",
+       "title": "Explain historical changes related to religions and ideologies",
+       "subtopics": [
+        {
+         "id": "explain-historical-changes-related-to-religions-",
+         "title": "Explain historical changes related to religions and ideologies",
+         "outcomes": [
+          {
+           "code": "WH.6_12.1-6.E1.2",
+           "text": "Describe the belief systems or religions of early civilizations."
+          },
+          {
+           "code": "WH.6_12.1-6.E2.2",
+           "text": "Explain how the relationship between religious and political bodies impacted the social, cultural, or economic developments of individuals."
+          },
+          {
+           "code": "WH.6_12.1-6.E3.2",
+           "text": "Explain the global connections developed during this era as a result of exploration."
+          },
+          {
+           "code": "WH.6_12.1-6.E4.2",
+           "text": "Explain how political or social ideologies shaped the 20th century."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "analyze-the-effects-of-different-political-syste",
+       "title": "Analyze the effects of different political systems on people",
+       "subtopics": [
+        {
+         "id": "analyze-the-effects-of-different-political-syste",
+         "title": "Analyze the effects of different political systems on people",
+         "outcomes": [
+          {
+           "code": "WH.6_12.1-6.E1.3",
+           "text": "Explain the impact of the development of agriculture on the social, cultural, and economic lives of individuals."
+          },
+          {
+           "code": "WH.6_12.1-6.E2.3",
+           "text": "Explain the emergence of cultural interaction between Europe and other civilizations."
+          },
+          {
+           "code": "WH.6_12.1-6.E3.3",
+           "text": "Examine and explain the influence of revolutions on social and political aspects of individuals' lives."
+          },
+          {
+           "code": "WH.6_12.1-6.E4.3",
+           "text": "Explain the social, cultural, or economic changes influenced by globalization."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "analyze-the-influence-of-social-cultural-and-eco",
+       "title": "Analyze the influence of social, cultural, and economic developments on individuals",
+       "subtopics": [
+        {
+         "id": "analyze-the-influence-of-social-cultural-and-eco",
+         "title": "Analyze the influence of social, cultural, and economic developments on individuals",
+         "outcomes": [
+          {
+           "code": "WH.6_12.1-6.E1.4",
+           "text": "Explain how political systems impacted the people in Greece and Rome and how those political systems connect to the present."
+          },
+          {
+           "code": "WH.6_12.1-6.E3.4",
+           "text": "Explain advancements related to science and technology and the global impact of these advancements."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "north-dakota-studies",
+     "title": "North Dakota Studies",
+     "topics": [
+      {
+       "id": "examine-the-physical-and-human-geography-of-nort",
+       "title": "Examine the physical and human geography of North Dakota and how it has changed",
+       "subtopics": [
+        {
+         "id": "examine-the-physical-and-human-geography-of-nort",
+         "title": "Examine the physical and human geography of North Dakota and how it has changed",
+         "outcomes": [
+          {
+           "code": "ND.6_12.1.1",
+           "text": "Identify the three landscape regions of North Dakota and describe the major features of the regions and the forces that formed them."
+          },
+          {
+           "code": "ND.6_12.1.2",
+           "text": "Explain the human settlement patterns in North Dakota."
+          },
+          {
+           "code": "ND.6_12.1.3",
+           "text": "Interpret current thematic maps to identify where people live and work and how land is used."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "explain-the-development-and-functions-of-north-d",
+       "title": "Explain the development and functions of North Dakota's state and local governments, tribal governments and the role of citizens",
+       "subtopics": [
+        {
+         "id": "explain-the-development-and-functions-of-north-d",
+         "title": "Explain the development and functions of North Dakota's state and local governments, tribal governments and the role of citizens",
+         "outcomes": [
+          {
+           "code": "ND.6_12.2.1",
+           "text": "Describe the structure, role, and formation of tribal governments, both present and past, in North Dakota."
+          },
+          {
+           "code": "ND.6_12.2.2",
+           "text": "Describe the formation, structure, and modern role of the territorial, state, county, and local government of North Dakota."
+          },
+          {
+           "code": "ND.6_12.2.3",
+           "text": "Explain the impact of political organizations and individual citizens on the political systems and institutions of North Dakota."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "evaluate-the-major-industries-and-economic-activ",
+       "title": "Evaluate the major industries and economic activities in North Dakota",
+       "subtopics": [
+        {
+         "id": "evaluate-the-major-industries-and-economic-activ",
+         "title": "Evaluate the major industries and economic activities in North Dakota",
+         "outcomes": [
+          {
+           "code": "ND.6_12.3.1",
+           "text": "Describe the early economic activities of our state prior to 1900 and how they developed into North Dakota's modern economy."
+          },
+          {
+           "code": "ND.6_12.3.2",
+           "text": "Identify the current economic activities in the state of North Dakota and evaluate their positive and negative impact."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "analyze-the-historical-and-current-events-and-th",
+       "title": "Analyze the historical and current events and their impact on the development of North Dakota",
+       "subtopics": [
+        {
+         "id": "analyze-the-historical-and-current-events-and-th",
+         "title": "Analyze the historical and current events and their impact on the development of North Dakota",
+         "outcomes": [
+          {
+           "code": "ND.6_12.4.1",
+           "text": "Identify the Native American groups in North Dakota before European contact and describe their culture."
+          },
+          {
+           "code": "ND.6_12.4.2",
+           "text": "Analyze European exploration and early settlement of North Dakota and its impact on Native American groups."
+          },
+          {
+           "code": "ND.6_12.4.3",
+           "text": "Describe the major factors that brought settlers to North Dakota."
+          },
+          {
+           "code": "ND.6_12.4.4",
+           "text": "Analyze the effect of government policy, both historical and modern, toward Native American groups in North Dakota."
+          },
+          {
+           "code": "ND.6_12.4.5",
+           "text": "Evaluate the growth and struggles of the modernization of North Dakota and the role the state has played in modern America."
+          },
+          {
+           "code": "ND.6_12.4.6",
+           "text": "Use various primary and secondary resources to acquire, analyze, and evaluate information."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "sociology",
+     "title": "Sociology",
+     "topics": [
+      {
+       "id": "utilize-critical-thinking-and-problem-solving-sk",
+       "title": "Utilize critical thinking and problem-solving skills to develop an understanding of different perspectives of sociology",
+       "subtopics": [
+        {
+         "id": "utilize-critical-thinking-and-problem-solving-sk",
+         "title": "Utilize critical thinking and problem-solving skills to develop an understanding of different perspectives of sociology",
+         "outcomes": [
+          {
+           "code": "SOC.6_12.1-2.D1.1",
+           "text": "Define sociology."
+          },
+          {
+           "code": "SOC.6_12.1-2.D1.2",
+           "text": "Explain the major methods of sociological research."
+          },
+          {
+           "code": "SOC.6_12.1-2.D2.1",
+           "text": "Define and provide examples of culture."
+          },
+          {
+           "code": "SOC.6_12.1-2.D2.2",
+           "text": "Explain the relationship between culture and society."
+          },
+          {
+           "code": "SOC.6_12.1-2.D3.1",
+           "text": "Describe the process of socialization."
+          },
+          {
+           "code": "SOC.6_12.1-2.D4.1",
+           "text": "Explain common patterns of social inequality and the impact on groups."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "practically-apply-concepts-of-sociology",
+       "title": "Practically apply concepts of sociology",
+       "subtopics": [
+        {
+         "id": "practically-apply-concepts-of-sociology-1-of-2",
+         "title": "Practically apply concepts of sociology (1 of 2)",
+         "outcomes": [
+          {
+           "code": "SOC.6_12.1-2.D1.3",
+           "text": "Explain the theories of sociology."
+          },
+          {
+           "code": "SOC.6_12.1-2.D2.3",
+           "text": "Explain important institutions in society."
+          },
+          {
+           "code": "SOC.6_12.1-2.D2.4",
+           "text": "Explain how social institutions and cultures change over time."
+          },
+          {
+           "code": "SOC.6_12.1-2.D3.2",
+           "text": "Explain the process of the social construction of the self."
+          }
+         ]
+        },
+        {
+         "id": "practically-apply-concepts-of-sociology-2-of-2",
+         "title": "Practically apply concepts of sociology (2 of 2)",
+         "outcomes": [
+          {
+           "code": "SOC.6_12.1-2.D3.3",
+           "text": "Explain the social construction of groups and their role in society."
+          },
+          {
+           "code": "SOC.6_12.1-2.D4.2",
+           "text": "Explain how racism, sexism, and ageism have evolved over time."
+          },
+          {
+           "code": "SOC.6_12.1-2.D4.3",
+           "text": "Explain the relationship between social institutions and inequality."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "sociology",
+       "title": "Sociology",
+       "subtopics": [
+        {
+         "id": "sociology",
+         "title": "Sociology",
+         "outcomes": [
+          {
+           "code": "SOC.6_12.4.4",
+           "text": "Explain individual, group, and social responses to inequality."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "psychology",
+     "title": "Psychology",
+     "topics": [
+      {
+       "id": "utilize-critical-thinking-and-problem-solving-sk",
+       "title": "Utilize critical thinking and problem-solving skills to develop an understanding of psychology",
+       "subtopics": [
+        {
+         "id": "utilize-critical-thinking-and-problem-solving-sk",
+         "title": "Utilize critical thinking and problem-solving skills to develop an understanding of psychology (1 of 2)",
+         "outcomes": [
+          {
+           "code": "PSY.6_12.1-3.D1.1",
+           "text": "Describe psychology as an empirical science."
+          },
+          {
+           "code": "PSY.6_12.1-3.D2.1",
+           "text": "Identify the functions of the major divisions and subdivisions of the human nervous system."
+          },
+          {
+           "code": "PSY.6_12.1-3.D3.1",
+           "text": "Describe the classifications of psychological disorders."
+          },
+          {
+           "code": "PSY.6_12.1-3.D4.1",
+           "text": "Describe the interaction between hereditary vs. environment."
+          },
+          {
+           "code": "PSY.6_12.1-3.D4.3",
+           "text": "Trace the physical, cognitive, and social development of the lifespan."
+          }
+         ]
+        },
+        {
+         "id": "utilize-critical-thinking-and-problem-solving-sk-2",
+         "title": "Utilize critical thinking and problem-solving skills to develop an understanding of psychology (2 of 2)",
+         "outcomes": [
+          {
+           "code": "PSY.6_12.1-3.D4.4",
+           "text": "Describe the principles of classical and operant conditioning."
+          },
+          {
+           "code": "PSY.6_12.1-3.D4.5",
+           "text": "Apply observational and cognitive learning to everyday life"
+          },
+          {
+           "code": "PSY.6_12.1-3.D6.1",
+           "text": "Explain types of motivation."
+          },
+          {
+           "code": "PSY.6_12.1-3.D7.1",
+           "text": "Explain theories of personality."
+          },
+          {
+           "code": "PSY.6_12.1-3.D8.1",
+           "text": "Describe how group dynamics influence behavior"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "practically-apply-concepts-of-psychology",
+       "title": "Practically apply concepts of psychology",
+       "subtopics": [
+        {
+         "id": "practically-apply-concepts-of-psychology-1-of-2",
+         "title": "Practically apply concepts of psychology (1 of 2)",
+         "outcomes": [
+          {
+           "code": "PSY.6_12.1-3.D1.2",
+           "text": "Analyze research methods."
+          },
+          {
+           "code": "PSY.6_12.1-3.D3.2",
+           "text": "Describe symptoms and causes of major categories of psychological disorders."
+          },
+          {
+           "code": "PSY.6_12.1-3.D4.2",
+           "text": "Explain theories of cognitive, moral, and social development."
+          },
+          {
+           "code": "PSY.6_12.1-3.D5.1",
+           "text": "Describe the types of memory"
+          }
+         ]
+        },
+        {
+         "id": "practically-apply-concepts-of-psychology-2-of-2",
+         "title": "Practically apply concepts of psychology (2 of 2)",
+         "outcomes": [
+          {
+           "code": "PSY.6_12.1-3.D5.2",
+           "text": "Explain strategies for improving the encoding of memory."
+          },
+          {
+           "code": "PSY.6_12.1-3.D6.2",
+           "text": "Explain theories of emotion."
+          },
+          {
+           "code": "PSY.6_12.1-3.D7.2",
+           "text": "Describe personality assessments."
+          },
+          {
+           "code": "PSY.6_12.1-3.D8.2",
+           "text": "Describe how society influences an individual's behavior"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "analyze-how-topics-evolve-and-research-develops-",
+       "title": "Analyze how topics evolve and research develops as discoveries occur",
+       "subtopics": [
+        {
+         "id": "analyze-how-topics-evolve-and-research-develops-",
+         "title": "Analyze how topics evolve and research develops as discoveries occur (1 of 3)",
+         "outcomes": [
+          {
+           "code": "PSY.6_12.1-3.D1.3",
+           "text": "Analyze ethical standards."
+          },
+          {
+           "code": "PSY.6_12.1-3.D1.4",
+           "text": "Describe different careers in psychology."
+          },
+          {
+           "code": "PSY.6_12.1-3.D2.2",
+           "text": "Identify the parts of the neuron and describe the basic process of neural transmission."
+          },
+          {
+           "code": "PSY.6_12.1-3.D2.3",
+           "text": "Describe the interaction between the endocrine and the nervous systems."
+          },
+          {
+           "code": "PSY.6_12.1-3.D2.4",
+           "text": "Discuss processes of sensation and perception and how they interact."
+          }
+         ]
+        },
+        {
+         "id": "analyze-how-topics-evolve-and-research-develops--2",
+         "title": "Analyze how topics evolve and research develops as discoveries occur (2 of 3)",
+         "outcomes": [
+          {
+           "code": "PSY.6_12.1-3.D2.5",
+           "text": "Identify states of consciousness."
+          },
+          {
+           "code": "PSY.6_12.1-3.D2.6",
+           "text": "Describe the sleep cycle."
+          },
+          {
+           "code": "PSY.6_12.1-3.D2.7",
+           "text": "Describe types of sleep disorders."
+          },
+          {
+           "code": "PSY.6_12.1-3.D3.3",
+           "text": "Explain the types of treatments available."
+          },
+          {
+           "code": "PSY.6_12.1-3.D5.3",
+           "text": "Explain the processes of memory retrieval and improvement."
+          }
+         ]
+        },
+        {
+         "id": "analyze-how-topics-evolve-and-research-develops--3",
+         "title": "Analyze how topics evolve and research develops as discoveries occur (3 of 3)",
+         "outcomes": [
+          {
+           "code": "PSY.6_12.1-3.D5.4",
+           "text": "Describe theories of intelligence."
+          },
+          {
+           "code": "PSY.6_12.1-3.D5.5",
+           "text": "Describe the history of intelligence testing and current methods."
+          },
+          {
+           "code": "PSY.6_12.1-3.D8.3",
+           "text": "Explain the nature and effects of stereotyping, prejudice, discrimination, and racism."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "build": {
+  "builtAt": "2026-10-14T16:20:46.983Z",
+  "model": "none",
+  "usd": 0,
+  "expectedCodes": 203,
+  "coverage": 1,
+  "missingCodes": [],
+  "counts": {
+   "grades": 4,
+   "units": 18,
+   "topics": 46,
+   "subtopics": 56,
+   "outcomes": 207
+  },
+  "warnings": []
+ }
+}

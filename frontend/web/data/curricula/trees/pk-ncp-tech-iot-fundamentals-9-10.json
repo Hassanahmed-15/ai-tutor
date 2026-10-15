@@ -1,0 +1,640 @@
+{
+ "id": "pk-ncp-tech-iot-fundamentals-9-10",
+ "region": "PK",
+ "framework": "National Curriculum of Pakistan 2022-23",
+ "board": null,
+ "qualification": "Technical stream",
+ "subject": "IoT Fundamentals",
+ "syllabusCode": null,
+ "gradeSystem": "grade",
+ "source": {
+  "urls": [
+   "https://ncc.gov.pk/SiteImage/Misc/files/46-IoT%20Fundamentals.pdf"
+  ],
+  "publisher": "National Curriculum Council, Ministry of Federal Education and Professional Training",
+  "licence": "Government publication; structure + our own wording only",
+  "firstExam": null
+ },
+ "grades": [
+  {
+   "grade": "9",
+   "units": [
+    {
+     "id": "domain-a-introduction-to-iot",
+     "title": "Domain A: Introduction to IoT",
+     "topics": [
+      {
+       "id": "role-of-iot-in-future-technology",
+       "title": "Role of IoT in future technology",
+       "subtopics": [
+        {
+         "id": "what-iot-is-and-does",
+         "title": "What IoT is and does",
+         "outcomes": [
+          {
+           "code": "IoTF-09-A-01",
+           "text": "Define the basic idea of IoT."
+          },
+          {
+           "code": "IoTF-09-A-02",
+           "text": "List real-world IoT applications."
+          },
+          {
+           "code": "IoTF-09-A-03",
+           "text": "Explain the importance and real-world impact of IoT."
+          },
+          {
+           "code": "IoTF-09-A-04",
+           "text": "Identify ways IoT can solve real-world problems."
+          },
+          {
+           "code": "IoTF-09-A-05",
+           "text": "Predict future IoT trends."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "key-iot-components-and-architecture-layers",
+       "title": "Key IoT components and architecture layers",
+       "subtopics": [
+        {
+         "id": "sensors-and-communication",
+         "title": "Sensors and communication",
+         "outcomes": [
+          {
+           "code": "IoTF-09-A-06",
+           "text": "Explain how sensors collect environment data for IoT systems."
+          },
+          {
+           "code": "IoTF-09-A-07",
+           "text": "Understand protocols, standards and technologies for device-to-cloud communication."
+          }
+         ]
+        },
+        {
+         "id": "cloud-and-application-layers",
+         "title": "Cloud and application layers",
+         "outcomes": [
+          {
+           "code": "IoTF-09-A-08",
+           "text": "Explain how the cloud layer links the device layer to the application layer."
+          },
+          {
+           "code": "IoTF-09-A-09",
+           "text": "Learn how the application layer handles user interfaces, data management and app-specific functions."
+          },
+          {
+           "code": "IoTF-09-A-10",
+           "text": "Understand building analytics and insights from collected data."
+          },
+          {
+           "code": "IoTF-09-A-11",
+           "text": "Identify how automation based on insights improves operations, efficiency and business models."
+          },
+          {
+           "code": "IoTF-09-A-12",
+           "text": "Design IoT systems with block diagrams."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "matching-concepts-to-applications",
+       "title": "Matching concepts to applications",
+       "subtopics": [
+        {
+         "id": "applications-and-a-complete-system",
+         "title": "Applications and a complete system",
+         "outcomes": [
+          {
+           "code": "IoTF-09-A-13",
+           "text": "Analyze different real-world IoT applications."
+          },
+          {
+           "code": "IoTF-09-A-14",
+           "text": "Develop a complete IoT system with hardware and user interface for a real problem."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "domain-b-microcontrollers",
+     "title": "Domain B: Microcontrollers",
+     "topics": [
+      {
+       "id": "microcontroller-architecture-and-features",
+       "title": "Microcontroller architecture and features",
+       "subtopics": [
+        {
+         "id": "microcontroller-basics",
+         "title": "Microcontroller basics",
+         "outcomes": [
+          {
+           "code": "IoTF-09-B-01",
+           "text": "Identify basic features and uses of microcontrollers."
+          },
+          {
+           "code": "IoTF-09-B-02",
+           "text": "List common IoT microcontrollers: ESP8266, ESP32, Raspberry Pi."
+          },
+          {
+           "code": "IoTF-09-B-03",
+           "text": "Understand microcontroller architecture."
+          },
+          {
+           "code": "IoTF-09-B-04",
+           "text": "Describe GPIO types and their purposes."
+          },
+          {
+           "code": "IoTF-09-B-05",
+           "text": "Describe RAM and ROM and their purposes."
+          },
+          {
+           "code": "IoTF-09-B-06",
+           "text": "Analyze the ESP8266 pin configuration."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "developing-an-arduino-program",
+       "title": "Developing an Arduino program",
+       "subtopics": [
+        {
+         "id": "arduino-ide-setup",
+         "title": "Arduino IDE setup",
+         "outcomes": [
+          {
+           "code": "IoTF-09-B-07",
+           "text": "Describe the role of an IDE in programming."
+          },
+          {
+           "code": "IoTF-09-B-08",
+           "text": "Install the Arduino IDE."
+          },
+          {
+           "code": "IoTF-09-B-09",
+           "text": "Define a board core and install the ESP8266 core."
+          },
+          {
+           "code": "IoTF-09-B-10",
+           "text": "Define a library and outline built-in ones like ESP8266WiFi and Arduino MQTT."
+          },
+          {
+           "code": "IoTF-09-B-11",
+           "text": "Install libraries in the Arduino IDE."
+          },
+          {
+           "code": "IoTF-09-B-12",
+           "text": "Install and update the USB-to-serial driver for ESP8266 on Windows."
+          }
+         ]
+        },
+        {
+         "id": "running-and-debugging-sketches",
+         "title": "Running and debugging sketches",
+         "outcomes": [
+          {
+           "code": "IoTF-09-B-13",
+           "text": "Define a port and select the COM port in the IDE."
+          },
+          {
+           "code": "IoTF-09-B-14",
+           "text": "Define baud rate and set it in the IDE."
+          },
+          {
+           "code": "IoTF-09-B-15",
+           "text": "Select the board and model in the IDE."
+          },
+          {
+           "code": "IoTF-09-B-16",
+           "text": "Run the blink LED example on ESP8266."
+          },
+          {
+           "code": "IoTF-09-B-17",
+           "text": "Explain the compile and upload buttons."
+          },
+          {
+           "code": "IoTF-09-B-18",
+           "text": "Tell a successful upload from the logs."
+          },
+          {
+           "code": "IoTF-09-B-19",
+           "text": "Fix compile and upload errors by reading logs."
+          },
+          {
+           "code": "IoTF-09-B-20",
+           "text": "Use the Serial class and Serial Monitor for debug logs."
+          }
+         ]
+        },
+        {
+         "id": "c-and-arduino-basics",
+         "title": "C and Arduino basics",
+         "outcomes": [
+          {
+           "code": "IoTF-09-B-21",
+           "text": "Explain C basics: variables, types, scope, functions, operators, semicolons, if/else."
+          },
+          {
+           "code": "IoTF-09-B-22",
+           "text": "Explain Arduino basics: setup and loop, delay, serial."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "interfacing-sensors-with-esp8266",
+       "title": "Interfacing sensors with ESP8266",
+       "subtopics": [
+        {
+         "id": "dht-sensor-with-esp8266",
+         "title": "DHT sensor with ESP8266",
+         "outcomes": [
+          {
+           "code": "IoTF-09-B-23",
+           "text": "Connect a DHT temperature sensor to ESP8266 with a circuit diagram."
+          },
+          {
+           "code": "IoTF-09-B-24",
+           "text": "Write a sketch with the DHT library and print readings on the Serial Monitor."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "domain-c-communication",
+     "title": "Domain C: Communication",
+     "topics": [
+      {
+       "id": "connectivity-layers-and-the-cloud",
+       "title": "Connectivity layers and the cloud",
+       "subtopics": [
+        {
+         "id": "protocols-and-mqtt",
+         "title": "Protocols and MQTT",
+         "outcomes": [
+          {
+           "code": "IoTF-09-C-01",
+           "text": "Identify internet connectivity layers in client-server communication."
+          },
+          {
+           "code": "IoTF-09-C-02",
+           "text": "Explain protocols: MQTT, HTTP, CoAP, Zigbee, LPWAN."
+          },
+          {
+           "code": "IoTF-09-C-03",
+           "text": "Define the core ideas of MQTT."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "connecting-a-microcontroller-to-a-broker",
+       "title": "Connecting a microcontroller to a broker",
+       "subtopics": [
+        {
+         "id": "arduino-cloud-connection",
+         "title": "Arduino Cloud connection",
+         "outcomes": [
+          {
+           "code": "IoTF-09-C-04",
+           "text": "Write a program connecting ESP8266 to WiFi."
+          },
+          {
+           "code": "IoTF-09-C-05",
+           "text": "Understand configuring a device cloud."
+          },
+          {
+           "code": "IoTF-09-C-06",
+           "text": "Sign up for Arduino Cloud."
+          },
+          {
+           "code": "IoTF-09-C-07",
+           "text": "Understand device management in Arduino Cloud."
+          },
+          {
+           "code": "IoTF-09-C-08",
+           "text": "Build a program connecting ESP8266 to Arduino Cloud over MQTT."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "send-and-receive-messages",
+       "title": "Send and receive messages",
+       "subtopics": [
+        {
+         "id": "messaging-with-arduino-cloud",
+         "title": "Messaging with Arduino Cloud",
+         "outcomes": [
+          {
+           "code": "IoTF-09-C-09",
+           "text": "Control the ESP8266 onboard LED from Arduino Cloud."
+          },
+          {
+           "code": "IoTF-09-C-10",
+           "text": "Stream temperature data from ESP8266 to Arduino Cloud."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "domain-d-user-interface",
+     "title": "Domain D: User Interface",
+     "topics": [
+      {
+       "id": "no-code-interface",
+       "title": "No-code interface",
+       "subtopics": [
+        {
+         "id": "arduino-cloud-widgets",
+         "title": "Arduino Cloud widgets",
+         "outcomes": [
+          {
+           "code": "IoTF-09-D-01",
+           "text": "Understand Arduino Cloud widgets."
+          },
+          {
+           "code": "IoTF-09-D-02",
+           "text": "Use a switch widget to send data to ESP8266."
+          },
+          {
+           "code": "IoTF-09-D-03",
+           "text": "Use a chart widget to show live sensor values from ESP8266."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "10",
+   "units": [
+    {
+     "id": "domain-a-introduction-to-iot",
+     "title": "Domain A: Introduction to IoT",
+     "topics": [
+      {
+       "id": "building-iot-at-scale",
+       "title": "Building IoT at scale",
+       "subtopics": [
+        {
+         "id": "scale-security-and-examples",
+         "title": "Scale, security and examples",
+         "outcomes": [
+          {
+           "code": "IoTF-10-A-01",
+           "text": "Describe challenges of building a scalable IoT solution."
+          },
+          {
+           "code": "IoTF-10-A-02",
+           "text": "Explain why securing IoT devices, data and communication matters."
+          },
+          {
+           "code": "IoTF-10-A-03",
+           "text": "Illustrate how an IoT system works with examples."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "solving-problems-with-iot-systems",
+       "title": "Solving problems with IoT systems",
+       "subtopics": [
+        {
+         "id": "community-and-complete-systems",
+         "title": "Community and complete systems",
+         "outcomes": [
+          {
+           "code": "IoTF-10-A-04",
+           "text": "Identify the communities of IoT developers."
+          },
+          {
+           "code": "IoTF-10-A-05",
+           "text": "Understand why contributing to open source matters."
+          },
+          {
+           "code": "IoTF-10-A-06",
+           "text": "Develop a complete IoT system with hardware and interface for a real problem."
+          },
+          {
+           "code": "IoTF-10-A-07",
+           "text": "Write an IoT tutorial on Hackster."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "domain-b-microcontrollers",
+     "title": "Domain B: Microcontrollers",
+     "topics": [
+      {
+       "id": "sensors-and-actuators",
+       "title": "Sensors and actuators",
+       "subtopics": [
+        {
+         "id": "sensors-and-actuators",
+         "title": "Sensors and actuators",
+         "outcomes": [
+          {
+           "code": "IoTF-10-B-01",
+           "text": "Describe analog and digital sensors."
+          },
+          {
+           "code": "IoTF-10-B-02",
+           "text": "Match physical quantities to the sensors that measure them."
+          },
+          {
+           "code": "IoTF-10-B-03",
+           "text": "Define actuators and identify their types."
+          },
+          {
+           "code": "IoTF-10-B-04",
+           "text": "Define ADC and explain how an analog pin turns readings into digital ones."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "interfacing-protocols",
+       "title": "Interfacing protocols",
+       "subtopics": [
+        {
+         "id": "interface-protocols-and-pwm",
+         "title": "Interface protocols and PWM",
+         "outcomes": [
+          {
+           "code": "IoTF-10-B-05",
+           "text": "List and describe interface protocols: I2C, SPI, UART."
+          },
+          {
+           "code": "IoTF-10-B-06",
+           "text": "Connect an I2C sensor to ESP8266 and read it with the OneWire library."
+          },
+          {
+           "code": "IoTF-10-B-07",
+           "text": "Define and explain PWM."
+          },
+          {
+           "code": "IoTF-10-B-08",
+           "text": "Control LED brightness with PWM on ESP8266."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "single-board-computers",
+       "title": "Single board computers",
+       "subtopics": [
+        {
+         "id": "raspberry-pi-programming",
+         "title": "Raspberry Pi programming",
+         "outcomes": [
+          {
+           "code": "IoTF-10-B-09",
+           "text": "Outline key Raspberry Pi libraries such as gpio and time."
+          },
+          {
+           "code": "IoTF-10-B-10",
+           "text": "Write and run a script to blink an LED on Raspberry Pi."
+          },
+          {
+           "code": "IoTF-10-B-11",
+           "text": "Fix code errors by reading the console."
+          },
+          {
+           "code": "IoTF-10-B-12",
+           "text": "Explain Python basics: variables, scope, functions, operators, indentation, if/else."
+          }
+         ]
+        },
+        {
+         "id": "dht-sensor-with-raspberry-pi",
+         "title": "DHT sensor with Raspberry Pi",
+         "outcomes": [
+          {
+           "code": "IoTF-10-B-13",
+           "text": "Connect a DHT temperature sensor to Raspberry Pi with a circuit diagram."
+          },
+          {
+           "code": "IoTF-10-B-14",
+           "text": "Write a script with the Adafruit_DHT library and print readings on the console."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "domain-d-user-interface",
+     "title": "Domain D: User Interface",
+     "topics": [
+      {
+       "id": "dashboards-with-grafana",
+       "title": "Dashboards with Grafana",
+       "subtopics": [
+        {
+         "id": "grafana-dashboards",
+         "title": "Grafana dashboards",
+         "outcomes": [
+          {
+           "code": "IoTF-10-D-01",
+           "text": "List visualization platforms."
+          },
+          {
+           "code": "IoTF-10-D-02",
+           "text": "Sign up for Grafana and create an instance."
+          },
+          {
+           "code": "IoTF-10-D-03",
+           "text": "Set up an MQTT data source in Grafana to receive ESP8266 data from the broker."
+          },
+          {
+           "code": "IoTF-10-D-04",
+           "text": "Identify Grafana widgets and their uses."
+          },
+          {
+           "code": "IoTF-10-D-05",
+           "text": "Show live ESP8266 readings with a display widget."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "automations-and-data-consumption",
+       "title": "Automations and data consumption",
+       "subtopics": [
+        {
+         "id": "ifttt-automations",
+         "title": "IFTTT automations",
+         "outcomes": [
+          {
+           "code": "IoTF-10-D-06",
+           "text": "List automation platforms such as IFTTT and Zapier."
+          },
+          {
+           "code": "IoTF-10-D-07",
+           "text": "Understand connecting IFTTT with Arduino Cloud."
+          },
+          {
+           "code": "IoTF-10-D-08",
+           "text": "Set up IFTTT to tweet when ESP8266 temperature passes a threshold."
+          },
+          {
+           "code": "IoTF-10-D-09",
+           "text": "Understand connecting IFTTT with Google Home."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "build": {
+  "builtAt": "2026-10-14T08:38:07.709Z",
+  "model": "claude-agent",
+  "usd": 0,
+  "expectedCodes": 81,
+  "coverage": 1,
+  "missingCodes": [],
+  "counts": {
+   "grades": 2,
+   "units": 7,
+   "topics": 17,
+   "subtopics": 21,
+   "outcomes": 81
+  },
+  "warnings": []
+ }
+}

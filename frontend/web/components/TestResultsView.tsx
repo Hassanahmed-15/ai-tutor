@@ -1,6 +1,6 @@
 "use client";
 
-import { Check, X } from "lucide-react";
+import { Check, CircleDot, X } from "lucide-react";
 import { HudEyebrow } from "@/components/hud/HudKit";
 import type { TestBank, TestGradeResult } from "@/lib/testPrompt";
 
@@ -30,6 +30,9 @@ export function TestResultsView({
   onReviewSlide?: (index: number) => void;
 }) {
   const score = results.filter((r) => r.correct).length;
+  const earned = results.reduce((sum, r) => sum + r.pointsEarned, 0);
+  const available = results.reduce((sum, r) => sum + r.pointsAvailable, 0);
+  const partial = results.filter((r) => r.status === "partial").length;
 
   return (
     <section className="relative z-10 min-h-screen w-full overflow-y-auto p-6 lg:p-10 bg-[var(--hud-bg)]">
@@ -38,7 +41,7 @@ export function TestResultsView({
         <div>
           <HudEyebrow>Test results</HudEyebrow>
           <h1 className="mt-3 font-display text-4xl font-light leading-tight sm:text-5xl">
-            {score} / {results.length} <span className="hud-text-glow italic">correct</span>
+            {earned} / {available} <span className="hud-text-glow italic">marks</span><span className="ml-3 text-lg text-[var(--hud-text-dim)]">({score} / {results.length} fully correct{partial > 0 ? `, ${partial} partial` : ""})</span>
           </h1>
         </div>
         <button onClick={onBack} className="hud-btn-ghost shrink-0 rounded-full px-5 py-2 text-sm font-bold">
@@ -50,21 +53,30 @@ export function TestResultsView({
         {bank.questions.map((q) => {
           const result = results.find((r) => r.id === q.id);
           if (!result) return null;
-          const slide = !result.correct && slideOf && onReviewSlide ? slideOf(q.beatId) : -1;
+          const slide = result.status !== "correct" && slideOf && onReviewSlide ? slideOf(q.beatId) : -1;
+          const tone = result.status === "correct" ? "border-[var(--ok)] bg-[var(--ok-dim)]" : result.status === "partial" ? "border-amber-400/55 bg-amber-400/10" : "border-[var(--hud-danger)] bg-[var(--danger-dim)]";
           return (
             <div
               key={q.id}
-              className={`rounded-2xl border p-6 ${result.correct ? "border-[var(--ok)] bg-[var(--ok-dim)]" : "border-[var(--hud-danger)] bg-[var(--danger-dim)]"}`}
+              className={`rounded-2xl border p-6 ${tone}`}
             >
               <div className="flex items-start justify-between gap-4">
                 <p className="font-display text-lg font-semibold leading-snug text-[var(--hud-text)]">
-                  {result.correct ? <Check size={16} aria-label="Correct" className="mr-1 inline align-[-2px]" /> : <X size={16} aria-label="Not quite" className="mr-1 inline align-[-2px]" />}{q.prompt}
+                  {result.status === "correct" ? <Check size={16} aria-label="Correct" className="mr-1 inline align-[-2px]" /> : result.status === "partial" ? <CircleDot size={16} aria-label="Partially correct" className="mr-1 inline align-[-2px] text-amber-400" /> : <X size={16} aria-label="Misconception" className="mr-1 inline align-[-2px]" />}{q.prompt}
                 </p>
               </div>
               {answers?.[q.id] && <p className="mt-2 text-sm text-[var(--hud-text-dim)]">Your answer: {answers[q.id]}</p>}
               <p className="mt-2 text-sm font-semibold text-[var(--hud-text-dim)]">{result.feedback}</p>
-              {!result.correct && (
+              {result.missingKeyPoints.length > 0 && <p className="mt-2 text-sm text-amber-300">Still needed: {result.missingKeyPoints.join("; ")}</p>}
+              {result.misconception && <p className="mt-2 text-sm text-[var(--hud-danger)]">Misconception to fix: {result.misconception}</p>}
+              {result.status === "misconception" && (
                 <p className="mt-2 text-sm italic text-[var(--hud-text-faint)]">A full answer: {q.rubric.modelAnswer}</p>
+              )}
+              {/* Says what actually happened: an answer with an error is not "one part missing". */}
+              {result.status === "partial" && (
+                <p className="mt-2 text-sm font-bold text-amber-400">
+                  {result.misconception ? "Partly right · contains an error" : `Accurate core answer · ${result.missingKeyPoints.length > 1 ? `${result.missingKeyPoints.length} requested parts are missing` : "a requested part is missing"}`}
+                </p>
               )}
               {slide >= 0 && (
                 <button

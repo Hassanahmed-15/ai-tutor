@@ -1,0 +1,4277 @@
+{
+ "id": "us-ut-english-language-arts",
+ "region": "US",
+ "framework": "Utah state academic standards: English Language Arts",
+ "board": null,
+ "qualification": "K-12",
+ "subject": "English Language Arts",
+ "syllabusCode": null,
+ "gradeSystem": "grade",
+ "source": {
+  "urls": [
+   "https://api.commonstandardsproject.com/api/v1/jurisdictions/178982A93FED4D9186E0AC6A740682D9",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/178982A93FED4D9186E0AC6A740682D9_D21362291_grade-01",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/178982A93FED4D9186E0AC6A740682D9_D21362291_grade-02",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/178982A93FED4D9186E0AC6A740682D9_D21362291_grade-03",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/178982A93FED4D9186E0AC6A740682D9_D21362291_grade-04",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/178982A93FED4D9186E0AC6A740682D9_D21362291_grade-05",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/178982A93FED4D9186E0AC6A740682D9_D21362291_grade-06",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/178982A93FED4D9186E0AC6A740682D9_D21362291_grades-07-08",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/178982A93FED4D9186E0AC6A740682D9_D21362291_grades-09-10",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/178982A93FED4D9186E0AC6A740682D9_D21362291_grades-11-12",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/178982A93FED4D9186E0AC6A740682D9_D21362291_grade-k",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/178982A93FED4D9186E0AC6A740682D9_D21362291_grade-pre-k",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/DF49128D30074C56A32FBEE3C0269709",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/557F2B33CC9E4D65A68B88DFB44B0B97",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/B6A3CDAB19A54C0BB31E9F87A8E20271",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/8CAA366A0BF64885A2A900F518D89744",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/53824190435D41E7BA2817350D37B3D9",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/1A91A6F259C9496E96CE56BE5FA60DE6"
+  ],
+  "publisher": "Utah state education agency (machine-readable via Common Standards Project / ASN)",
+  "licence": "D2L Corporation; CC BY 4.0 US, Common Curriculum, Inc.",
+  "firstExam": "2023"
+ },
+ "grades": [
+  {
+   "grade": "PK",
+   "units": [
+    {
+     "id": "preschool-age-3",
+     "title": "Preschool (Age 3)",
+     "topics": [
+      {
+       "id": "speaking-and-listening",
+       "title": "Speaking and Listening",
+       "subtopics": [
+        {
+         "id": "with-prompting-and-support-participate-in-conver",
+         "title": "With prompting and support, participate in conversations with peers and adults",
+         "outcomes": [
+          {
+           "code": "P3.SL.1.a",
+           "text": "Begin to recognize rules for discussion such as listening to others, staying on topic, and taking turns speaking."
+          },
+          {
+           "code": "P3.SL.1.b",
+           "text": "Follow one-step directions."
+          }
+         ]
+        },
+        {
+         "id": "speaking-and-listening",
+         "title": "Speaking and Listening",
+         "outcomes": [
+          {
+           "code": "P3.SL.2",
+           "text": "With prompting and support, speak clearly and audibly enough to be understood by familiar adults to communicate wants and needs."
+          },
+          {
+           "code": "P3.SL.3",
+           "text": "With prompting and support, use age-appropriate language, grammar, volume, and pronunciation when speaking or presenting."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "reading",
+       "title": "Reading",
+       "subtopics": [
+        {
+         "id": "demonstrate-mastery-of-age-appropriate-concepts-",
+         "title": "Demonstrate mastery of age-appropriate concepts of print",
+         "outcomes": [
+          {
+           "code": "P3.R.1.a",
+           "text": "With prompting and support, correctly hold a book and recognize that print is read from top to bottom, left to right, and from front to back."
+          },
+          {
+           "code": "P3.R.1.b",
+           "text": "With prompting and support, begin to recognize frequently seen letters and words and recognize own name in print."
+          }
+         ]
+        },
+        {
+         "id": "demonstrate-mastery-of-age-appropriate-phonologi",
+         "title": "Demonstrate mastery of age-appropriate phonological awareness skills",
+         "outcomes": [
+          {
+           "code": "P3.R.2.a",
+           "text": "With prompting and support, explore rhyming words and alliteration."
+          },
+          {
+           "code": "P3.R.2.b",
+           "text": "With prompting and support, explore syllables in simple words."
+          },
+          {
+           "code": "P3.R.2.c",
+           "text": "With prompting and support, identify initial sounds in spoken language."
+          }
+         ]
+        },
+        {
+         "id": "demonstrate-mastery-of-age-appropriate-phonics-s",
+         "title": "Demonstrate mastery of age-appropriate phonics skills",
+         "outcomes": [
+          {
+           "code": "P3.R.3.a",
+           "text": "With prompting and support, begin to identify seven or more consonant names and sounds using one-to-one letter-sound correspondence (alphabetic principle)."
+          },
+          {
+           "code": "P3.R.3.b",
+           "text": "With prompting and support, begin to identify one or more vowel names and short vowel sounds using one-to-one letter-sound correspondence (alphabetic principle)."
+          }
+         ]
+        },
+        {
+         "id": "reading-1-of-2",
+         "title": "Reading (1 of 2)",
+         "outcomes": [
+          {
+           "code": "P3.R.4",
+           "text": "Begins in kindergarten."
+          },
+          {
+           "code": "P3.R.5",
+           "text": "With prompting and support, ask and answer simple questions about a text."
+          },
+          {
+           "code": "P3.R.6-7",
+           "text": "With prompting and support, begin to retell simple texts."
+          },
+          {
+           "code": "P3.R.8",
+           "text": "Begins in P4."
+          },
+          {
+           "code": "P3.R.9",
+           "text": "Begins in kindergarten."
+          }
+         ]
+        },
+        {
+         "id": "reading-2-of-2",
+         "title": "Reading (2 of 2)",
+         "outcomes": [
+          {
+           "code": "P3.R.10",
+           "text": "Begins in grade 1."
+          },
+          {
+           "code": "P3.R.11",
+           "text": "Begins in grade 4."
+          },
+          {
+           "code": "P3.R.12",
+           "text": "Begins in grade 2."
+          },
+          {
+           "code": "P3.R.13",
+           "text": "Begins in grade 2."
+          },
+          {
+           "code": "P3.R.14",
+           "text": "Begins in grade 2."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "writing",
+       "title": "Writing",
+       "subtopics": [
+        {
+         "id": "writing",
+         "title": "Writing",
+         "outcomes": [
+          {
+           "code": "P3.W.1-3",
+           "text": "With prompting and support, begin to experiment with speaking and writing while representing ideas visually (e.g., scribbles, stamps, stickers, or gluing pictures on paper)."
+          },
+          {
+           "code": "P3.W.5",
+           "text": "With prompting and support, print some age-appropriate prewriting strokes."
+          }
+         ]
+        },
+        {
+         "id": "participate-in-shared-writing-projects",
+         "title": "Participate in shared writing projects",
+         "outcomes": [
+          {
+           "code": "P3.W.4.a",
+           "text": "With prompting and support, recall information from experiences or learned information and share it with others."
+          },
+          {
+           "code": "P3.W.4.b",
+           "text": "With prompting and support, interact and collaborate with others."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "preschool-age-4",
+     "title": "Preschool (Age 4)",
+     "topics": [
+      {
+       "id": "speaking-and-listening",
+       "title": "Speaking and Listening",
+       "subtopics": [
+        {
+         "id": "participate-in-conversations-with-peers-and-adul",
+         "title": "Participate in conversations with peers and adults, using age-appropriate vocabulary on topics and texts",
+         "outcomes": [
+          {
+           "code": "P4.SL.1.a",
+           "text": "Follow agreed-upon rules for discussions such as listening to others, staying on topic, and taking turns speaking."
+          },
+          {
+           "code": "P4.SL.1.b",
+           "text": "Follow two-step directions."
+          },
+          {
+           "code": "P4.SL.1.c",
+           "text": "Express own ideas."
+          }
+         ]
+        },
+        {
+         "id": "speaking-and-listening",
+         "title": "Speaking and Listening",
+         "outcomes": [
+          {
+           "code": "P4.SL.2",
+           "text": "Speak clearly and audibly in sentences of varying lengths to communicate wants, needs, experiences, thoughts, and emotions."
+          },
+          {
+           "code": "P4.SL.3",
+           "text": "Use age-appropriate language, grammar, volume, and pronunciation when speaking or presenting."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "reading",
+       "title": "Reading",
+       "subtopics": [
+        {
+         "id": "demonstrate-mastery-of-age-appropriate-concepts-",
+         "title": "Demonstrate mastery of age-appropriate concepts of print",
+         "outcomes": [
+          {
+           "code": "P4.R.1.a",
+           "text": "Correctly hold a book and demonstrate that print is read from top to bottom, left to right, and from front to back."
+          },
+          {
+           "code": "P4.R.1.b",
+           "text": "Begin to identify frequently seen letters and words, recognizing that words are made up of letters."
+          }
+         ]
+        },
+        {
+         "id": "demonstrate-mastery-of-age-appropriate-phonologi",
+         "title": "Demonstrate mastery of age-appropriate phonological awareness skills",
+         "outcomes": [
+          {
+           "code": "P4.R.2.a",
+           "text": "Recognize rhyming words and alliteration."
+          },
+          {
+           "code": "P4.R.2.b",
+           "text": "With prompting and support, segment words into syllables."
+          },
+          {
+           "code": "P4.R.2.c",
+           "text": "Identify initial sounds in spoken language."
+          },
+          {
+           "code": "P4.R.2.d",
+           "text": "Identify the base parts that make up a compound word."
+          },
+          {
+           "code": "P4.R.2.e",
+           "text": "With prompting and support, blend and segment initial sounds of single-syllable spoken words."
+          },
+          {
+           "code": "P4.R.2.f",
+           "text": "With prompting and support, blend and segment single-syllable words into individual phonemes."
+          }
+         ]
+        },
+        {
+         "id": "demonstrate-mastery-of-age-appropriate-phonics-s",
+         "title": "Demonstrate mastery of age-appropriate phonics skills",
+         "outcomes": [
+          {
+           "code": "P4.R.3.a",
+           "text": "Identify 13 or more of the consonant names and sounds using one-to-one letter-sound correspondence (alphabetic principle)."
+          },
+          {
+           "code": "P4.R.3.b",
+           "text": "Identify three or more vowel names and short vowel sounds using one-to-one letter-sound correspondence (alphabetic principle)."
+          }
+         ]
+        },
+        {
+         "id": "reading-1-of-2",
+         "title": "Reading (1 of 2)",
+         "outcomes": [
+          {
+           "code": "P4.R.4",
+           "text": "Begins in kindergarten."
+          },
+          {
+           "code": "P4.R.5",
+           "text": "With prompting and support, ask and answer questions and make connections about a text."
+          },
+          {
+           "code": "P4.R.6-7",
+           "text": "With prompting and support, retell simple texts, including event sequence and characters."
+          },
+          {
+           "code": "P4.R.8",
+           "text": "With prompting and support, begin to ask and answer questions about unknown words in a text."
+          },
+          {
+           "code": "P4.R.9",
+           "text": "Begins in kindergarten."
+          }
+         ]
+        },
+        {
+         "id": "reading-2-of-2",
+         "title": "Reading (2 of 2)",
+         "outcomes": [
+          {
+           "code": "P4.R.10",
+           "text": "Begins in grade 1."
+          },
+          {
+           "code": "P4.R.11",
+           "text": "Begins in grade 4."
+          },
+          {
+           "code": "P4.R.12",
+           "text": "Begins in grade 2."
+          },
+          {
+           "code": "P4.R.13",
+           "text": "Begins in grade 2."
+          },
+          {
+           "code": "P4.R.14",
+           "text": "Begins in grade 2."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "writing",
+       "title": "Writing",
+       "subtopics": [
+        {
+         "id": "writing",
+         "title": "Writing",
+         "outcomes": [
+          {
+           "code": "P4.W.1",
+           "text": "Verbally share an opinion and visually represent that opinion using simple drawing and writing (e.g., scribble writing with letter-like formations)."
+          },
+          {
+           "code": "P4.W.2",
+           "text": "Verbally share information and visually represent that information using simple drawing and writing (e.g., scribble writing with letter-like formations)."
+          },
+          {
+           "code": "P4.W.3",
+           "text": "Verbally share a narrative and visually represent that narrative using simple drawing and writing (e.g., scribble writing with letter-like formations)."
+          },
+          {
+           "code": "P4.W.5",
+           "text": "Print some mock letters, scribbles, or manuscript letters, including those in own name."
+          }
+         ]
+        },
+        {
+         "id": "participate-in-shared-writing-projects",
+         "title": "Participate in shared writing projects",
+         "outcomes": [
+          {
+           "code": "P4.W.4.a",
+           "text": "Recall information from experiences or learned information and share it with others."
+          },
+          {
+           "code": "P4.W.4.b",
+           "text": "Interact and collaborate with others."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "K",
+   "units": [
+    {
+     "id": "kindergarten",
+     "title": "Kindergarten",
+     "topics": [
+      {
+       "id": "speaking-and-listening",
+       "title": "Speaking and Listening",
+       "subtopics": [
+        {
+         "id": "participate-in-a-range-of-conversations-with-pee",
+         "title": "Participate in a range of conversations with peers and adults, using age-appropriate vocabulary on topics and texts",
+         "outcomes": [
+          {
+           "code": "K.SL.1.a",
+           "text": "Follow agreed-upon rules for discussions such as listening to others, raising hands, and taking turns speaking during discussion."
+          },
+          {
+           "code": "K.SL.1.b",
+           "text": "Continue a conversation through multiple exchanges and gain attention appropriately."
+          },
+          {
+           "code": "K.SL.1.c",
+           "text": "Express own ideas in small and large groups."
+          }
+         ]
+        },
+        {
+         "id": "speaking-and-listening",
+         "title": "Speaking and Listening",
+         "outcomes": [
+          {
+           "code": "K.SL.2",
+           "text": "Speak clearly and audibly while expressing thoughts, emotions, and ideas."
+          },
+          {
+           "code": "K.SL.3",
+           "text": "Use age-appropriate language, grammar, volume, and pronunciation when speaking or presenting and use visual displays, when appropriate, to describe information to others."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "reading",
+       "title": "Reading",
+       "subtopics": [
+        {
+         "id": "reading-1-of-3",
+         "title": "Reading (1 of 3)",
+         "outcomes": [
+          {
+           "code": "K.R.1",
+           "text": "Mastered in preschool."
+          },
+          {
+           "code": "K.R.4",
+           "text": "Read grade-level text with accuracy and fluency to support comprehension."
+          },
+          {
+           "code": "K.R.5",
+           "text": "With prompting and support, ask and answer questions about key details in text."
+          },
+          {
+           "code": "K.R.6.RL",
+           "text": "Retell familiar stories."
+          },
+          {
+           "code": "K.R.6.RI",
+           "text": "Share key details from a text."
+          }
+         ]
+        },
+        {
+         "id": "demonstrate-mastery-of-age-appropriate-phonologi",
+         "title": "Demonstrate mastery of age-appropriate phonological awareness skills",
+         "outcomes": [
+          {
+           "code": "K.R.2.a",
+           "text": "Blend and segment words at the syllable level."
+          },
+          {
+           "code": "K.R.2.b",
+           "text": "Identify the initial, medial, and final sound in 2-3 phoneme words."
+          },
+          {
+           "code": "K.R.2.c",
+           "text": "Substitute and delete one base part in a compound word."
+          },
+          {
+           "code": "K.R.2.d",
+           "text": "Pronounce, blend, and segment phonemes in 2-3 phoneme words - except for CVC words ending with /l/, /r/, or /k/ /s/ for the letter x."
+          }
+         ]
+        },
+        {
+         "id": "demonstrate-mastery-of-age-appropriate-phonics-s",
+         "title": "Demonstrate mastery of age-appropriate phonics skills",
+         "outcomes": [
+          {
+           "code": "K.R.3.a",
+           "text": "Demonstrate mastery of all consonant names and sounds using one-to-one letter-sound correspondence (alphabetic principle)."
+          },
+          {
+           "code": "K.R.3.b",
+           "text": "Demonstrate mastery of short vowel sounds (/ă/, /ĕ/, /ĭ/, /ŏ/, /ŭ/) in isolation and in VC and CVC words in single-syllable words."
+          },
+          {
+           "code": "K.R.3.c",
+           "text": "Demonstrate mastery of long vowel sounds (/ā/, /ē/, /ī/, /ō/, /ū/) associated with single letters; open syllables in single-syllable words (e.g. be, I, no)."
+          },
+          {
+           "code": "K.R.3.d",
+           "text": "Demonstrate mastery of segmenting and blending sounds in VC and CVC words when reading."
+          },
+          {
+           "code": "K.R.3.e",
+           "text": "Read and spell common irregular words."
+          }
+         ]
+        },
+        {
+         "id": "reading-2-of-3",
+         "title": "Reading (2 of 3)",
+         "outcomes": [
+          {
+           "code": "K.R.7",
+           "text": "Identify the characters, settings, and important events in a story or pieces of information in a text."
+          },
+          {
+           "code": "K.R.8",
+           "text": "Ask and answer questions about unknown words in a text."
+          },
+          {
+           "code": "K.R.9",
+           "text": "Determine or clarify the meaning of multiple-meaning words and phrases in context."
+          },
+          {
+           "code": "K.R.10",
+           "text": "Begins in grade 1."
+          },
+          {
+           "code": "K.R.11",
+           "text": "Begins in grade 4."
+          }
+         ]
+        },
+        {
+         "id": "reading-3-of-3",
+         "title": "Reading (3 of 3)",
+         "outcomes": [
+          {
+           "code": "K.R.12",
+           "text": "Begins in grade 2."
+          },
+          {
+           "code": "K.R.13",
+           "text": "Begins in grade 2."
+          },
+          {
+           "code": "K.R.14",
+           "text": "Begins in grade 2."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "writing",
+       "title": "Writing",
+       "subtopics": [
+        {
+         "id": "use-a-combination-of-drawing-and-writing-to-comp",
+         "title": "Use a combination of drawing and writing to compose opinion pieces that provide a topic and an opinion",
+         "outcomes": [
+          {
+           "code": "K.W.1.a",
+           "text": "Write, produce, and expand a complete sentence."
+          },
+          {
+           "code": "K.W.1.b",
+           "text": "Use appropriate capitalization and end punctuation."
+          }
+         ]
+        },
+        {
+         "id": "use-a-combination-of-drawing-and-writing-to-comp-2",
+         "title": "Use a combination of drawing and writing to compose informative/explanatory pieces and provide information about the topic",
+         "outcomes": [
+          {
+           "code": "K.W.2.a",
+           "text": "Write, produce, and expand a complete sentence."
+          },
+          {
+           "code": "K.W.2.b",
+           "text": "Use appropriate capitalization and end punctuation."
+          }
+         ]
+        },
+        {
+         "id": "use-a-combination-of-drawing-and-writing-to-comp-3",
+         "title": "Use a combination of drawing and writing to compose narrative pieces about an event. Provide details about the event in the appropriate sequence and a reaction to what happened",
+         "outcomes": [
+          {
+           "code": "K.W.3.a",
+           "text": "Write, produce, and expand a complete sentence."
+          },
+          {
+           "code": "K.W.3.b",
+           "text": "Use appropriate capitalization and end punctuation."
+          }
+         ]
+        },
+        {
+         "id": "participate-in-shared-writing-projects",
+         "title": "Participate in shared writing projects",
+         "outcomes": [
+          {
+           "code": "K.W.4.a",
+           "text": "Recall information from experiences or learned information."
+          },
+          {
+           "code": "K.W.4.b",
+           "text": "Interact and collaborate with others throughout the writing process."
+          }
+         ]
+        },
+        {
+         "id": "writing",
+         "title": "Writing",
+         "outcomes": [
+          {
+           "code": "K.W.5",
+           "text": "Legibly write all upper- and lowercase manuscript letters."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "1",
+   "units": [
+    {
+     "id": "grade-1",
+     "title": "Grade 1",
+     "topics": [
+      {
+       "id": "speaking-and-listening",
+       "title": "Speaking and Listening",
+       "subtopics": [
+        {
+         "id": "participate-effectively-in-a-range-of-conversati",
+         "title": "Participate effectively in a range of conversations with various partners, using age-appropriate vocabulary on topics and texts",
+         "outcomes": [
+          {
+           "code": "1.SL.1.a",
+           "text": "Continue a conversation through multiple exchanges while using appropriate tone and body language."
+          },
+          {
+           "code": "1.SL.1.b",
+           "text": "Express own ideas clearly in small and large groups and build on others' ideas."
+          }
+         ]
+        },
+        {
+         "id": "speaking-and-listening",
+         "title": "Speaking and Listening",
+         "outcomes": [
+          {
+           "code": "1.SL.2",
+           "text": "Speak clearly and audibly while expressing thoughts, emotions, and ideas while asking and answering questions."
+          },
+          {
+           "code": "1.SL.3",
+           "text": "Use age-appropriate language, grammar, volume, and clear pronunciation when speaking or presenting and use visual displays, when appropriate, to describe or clarify information to others."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "reading",
+       "title": "Reading",
+       "subtopics": [
+        {
+         "id": "reading-1-of-3",
+         "title": "Reading (1 of 3)",
+         "outcomes": [
+          {
+           "code": "1.R.1",
+           "text": "Mastered in preschool."
+          },
+          {
+           "code": "1.R.4",
+           "text": "Read grade-level text with accuracy and fluency to support comprehension."
+          },
+          {
+           "code": "1.R.5",
+           "text": "Ask and answer questions about key details in a text."
+          },
+          {
+           "code": "1.R.6",
+           "text": "Read a variety of texts including those from diverse cultures to identify and retell the main idea and key details of a text."
+          }
+         ]
+        },
+        {
+         "id": "demonstrate-mastery-of-age-appropriate-phonologi",
+         "title": "Demonstrate mastery of age-appropriate phonological awareness skills",
+         "outcomes": [
+          {
+           "code": "1.R.2.a",
+           "text": "Add, delete, and substitute initial and final phonemes in single-syllable words including blends."
+          },
+          {
+           "code": "1.R.2.b",
+           "text": "Isolate, pronounce, blend, and segment sounds in 4-5 phoneme words, including blends."
+          },
+          {
+           "code": "1.R.2.c",
+           "text": "Distinguish long and short vowel sounds in spoken single-syllable words."
+          }
+         ]
+        },
+        {
+         "id": "demonstrate-mastery-of-age-appropriate-phonics-s",
+         "title": "Demonstrate mastery of age-appropriate phonics skills",
+         "outcomes": [
+          {
+           "code": "1.R.3.a",
+           "text": "With prompting and support, identify and begin using consonant and vowel y while reading (i.e., consonant sound: /y/ as in yes, vowel sound: final sound /ī/ as in fly, final sound /ē/ as in baby, and medial sound /ĭ/ in gym)."
+          },
+          {
+           "code": "1.R.3.b",
+           "text": "With prompting and support, identify and begin reading and spelling words with all six syllable types (i.e., open, closed, CVCe, vowel team, vowel-r, consonant -le)."
+          },
+          {
+           "code": "1.R.3.c",
+           "text": "Demonstrate mastery of the hard and soft sounds of c and g."
+          },
+          {
+           "code": "1.R.3.d",
+           "text": "Blend words with 4-5 phonemes when reading."
+          },
+          {
+           "code": "1.R.3.e",
+           "text": "Decode two-syllable words by breaking the words into syllables (i.e., open, closed, VCe)."
+          },
+          {
+           "code": "1.R.3.f",
+           "text": "Read and spell words with common consonant digraphs (i.e., sh, ch, wh, th, ng)."
+          },
+          {
+           "code": "1.R.3.g",
+           "text": "Read age-appropriate compound words."
+          },
+          {
+           "code": "1.R.3.h",
+           "text": "Read words with inflectional endings (i.e., -s, -ed, -ing, -er, -est)."
+          },
+          {
+           "code": "1.R.3.i",
+           "text": "Read and spell common irregular words."
+          }
+         ]
+        },
+        {
+         "id": "reading-2-of-3",
+         "title": "Reading (2 of 3)",
+         "outcomes": [
+          {
+           "code": "1.R.7",
+           "text": "Describe characters, settings, and important events in a story or pieces of information in a text."
+          },
+          {
+           "code": "1.R.8",
+           "text": "Identify specific words and phrases that express emotion, appeal to the senses, and/or determine the meaning of content-specific words within a text."
+          },
+          {
+           "code": "1.R.10",
+           "text": "Identify a variety of texts and explain the differences between literary texts and informational texts."
+          },
+          {
+           "code": "1.R.11",
+           "text": "Begins in grade 4."
+          }
+         ]
+        },
+        {
+         "id": "determine-or-clarify-the-meaning-of-unknown-and-",
+         "title": "Determine or clarify the meaning of unknown and multiple-meaning words and phrases, choosing flexibly from a range of strategies",
+         "outcomes": [
+          {
+           "code": "1.R.9.a",
+           "text": "Begin using sentence-level context as a clue to the meaning of a word."
+          },
+          {
+           "code": "1.R.9.b",
+           "text": "Identify frequently occurring root words and their inflectional forms."
+          }
+         ]
+        },
+        {
+         "id": "reading-3-of-3",
+         "title": "Reading (3 of 3)",
+         "outcomes": [
+          {
+           "code": "1.R.12",
+           "text": "Begins in grade 2."
+          },
+          {
+           "code": "1.R.13",
+           "text": "Begins in grade 2."
+          },
+          {
+           "code": "1.R.14",
+           "text": "Begins in grade 2."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "writing",
+       "title": "Writing",
+       "subtopics": [
+        {
+         "id": "write-opinion-pieces-that-introduce-the-topic-st",
+         "title": "Write opinion pieces that introduce the topic, state an opinion, supply evidence for the opinion, and provide a concluding statement",
+         "outcomes": [
+          {
+           "code": "1.W.1.a",
+           "text": "Write, produce, and expand complete simple sentences."
+          },
+          {
+           "code": "1.W.1.b",
+           "text": "Use appropriate conventions when writing."
+          }
+         ]
+        },
+        {
+         "id": "write-informative-explanatory-pieces-that-introd",
+         "title": "Write informative/explanatory pieces that introduce a topic, supply facts about the topic, and provide a concluding statement",
+         "outcomes": [
+          {
+           "code": "1.W.2.a",
+           "text": "Write, produce, and expand complete simple sentences."
+          },
+          {
+           "code": "1.W.2.b",
+           "text": "Use appropriate conventions when writing."
+          }
+         ]
+        },
+        {
+         "id": "write-narrative-pieces-that-retell-two-or-more-e",
+         "title": "Write narrative pieces that retell two or more events. Provide details regarding the events using temporal words in sequential order and provide a concluding statement",
+         "outcomes": [
+          {
+           "code": "1.W.3.a",
+           "text": "Write, produce, and expand complete simple sentences."
+          },
+          {
+           "code": "1.W.3.b",
+           "text": "Use appropriate conventions when writing."
+          }
+         ]
+        },
+        {
+         "id": "participate-in-shared-research-and-writing-proje",
+         "title": "Participate in shared research and writing projects",
+         "outcomes": [
+          {
+           "code": "1.W.4.a",
+           "text": "Recall information from experiences or learned information."
+          },
+          {
+           "code": "1.W.4.b",
+           "text": "Interact and collaborate with others throughout the writing process."
+          }
+         ]
+        },
+        {
+         "id": "writing",
+         "title": "Writing",
+         "outcomes": [
+          {
+           "code": "1.W.5",
+           "text": "Legibly write all upper- and lowercase manuscript letters."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "2",
+   "units": [
+    {
+     "id": "grade-2",
+     "title": "Grade 2",
+     "topics": [
+      {
+       "id": "speaking-and-listening",
+       "title": "Speaking and Listening",
+       "subtopics": [
+        {
+         "id": "participate-effectively-in-a-range-of-conversati",
+         "title": "Participate effectively in a range of conversations with various partners, using age-appropriate vocabulary on topics and texts",
+         "outcomes": [
+          {
+           "code": "2.SL.1.a",
+           "text": "Initiate and build on a conversation through multiple exchanges while using appropriate tone and body language."
+          },
+          {
+           "code": "2.SL.1.b",
+           "text": "Seek other's opinions or thoughts and identify other's perspectives."
+          }
+         ]
+        },
+        {
+         "id": "speaking-and-listening",
+         "title": "Speaking and Listening",
+         "outcomes": [
+          {
+           "code": "2.SL.2",
+           "text": "Speak clearly and audibly while asking and answering questions about a topic and key details."
+          }
+         ]
+        },
+        {
+         "id": "use-age-appropriate-language-grammar-volume-and-",
+         "title": "Use age-appropriate language, grammar, volume, and clear pronunciation when speaking or presenting",
+         "outcomes": [
+          {
+           "code": "2.SL.3.a",
+           "text": "Present information, stories, or opinions, sequencing ideas logically and use descriptions, facts, and details."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "reading",
+       "title": "Reading",
+       "subtopics": [
+        {
+         "id": "reading-1-of-3",
+         "title": "Reading (1 of 3)",
+         "outcomes": [
+          {
+           "code": "2.R.1",
+           "text": "Mastered in preschool."
+          },
+          {
+           "code": "2.R.4",
+           "text": "Read grade-level text with accuracy and fluency to support comprehension."
+          },
+          {
+           "code": "2.R.5",
+           "text": "Ask and answer questions such as who, what, where, when, why, and how to demonstrate understanding of key details in a text."
+          },
+          {
+           "code": "2.R.6",
+           "text": "Read a variety of texts including those from diverse cultures, retell the narrative (RL) or informational text (RI) according to the text structure including the main idea."
+          },
+          {
+           "code": "2.R.7.RL",
+           "text": "Describe how characters respond to major events and challenges."
+          }
+         ]
+        },
+        {
+         "id": "demonstrate-mastery-of-age-appropriate-phonologi",
+         "title": "Demonstrate mastery of age-appropriate phonological awareness skills",
+         "outcomes": [
+          {
+           "code": "2.R.2.a",
+           "text": "Add, delete, and substitute initial, medial, and final sounds in 5-6 phoneme words including blends."
+          },
+          {
+           "code": "2.R.2.b",
+           "text": "Isolate, pronounce, blend, and segment phonemes in 5-6 phoneme words."
+          }
+         ]
+        },
+        {
+         "id": "demonstrate-mastery-of-age-appropriate-phonics-s",
+         "title": "Demonstrate mastery of age-appropriate phonics skills",
+         "outcomes": [
+          {
+           "code": "2.R.3.a",
+           "text": "Identify and begin reading and spelling words with all six syllable types (i.e., open, closed, CVCe, vowel team, vowel-r, consonant -le) in multisyllabic words."
+          },
+          {
+           "code": "2.R.3.b",
+           "text": "Identify and begin using schwa in multisyllabic words (e.g., ago, away, again, along, afraid) when reading and spelling."
+          },
+          {
+           "code": "2.R.3.c",
+           "text": "Blend words with 5-6 phonemes when reading."
+          },
+          {
+           "code": "2.R.3.d",
+           "text": "Decode words with common prefixes and suffixes."
+          },
+          {
+           "code": "2.R.3.e",
+           "text": "Read and spell age-appropriate compound words."
+          },
+          {
+           "code": "2.R.3.f",
+           "text": "Read and spell words with common variant digraphs (i.e., ph /f/, gh /f/, ch /sh/ and /ck/)."
+          },
+          {
+           "code": "2.R.3.g",
+           "text": "Read and spell words with common trigraphs (i.e., tch /ch/ and dge /j/)."
+          },
+          {
+           "code": "2.R.3.h",
+           "text": "Read and spell words with hard and soft c and g along with silent letters kn-, -lm, -mb, gh-, and wr-."
+          },
+          {
+           "code": "2.R.3.i",
+           "text": "Read and spell words with the following diphthongs and vowels (i.e., oi, oy; ou, ow; au, aw; oo, u)."
+          },
+          {
+           "code": "2.R.3.j",
+           "text": "Read and spell words with phonograms (i.e., -old, -ild, -ost, -olt, -ind)."
+          },
+          {
+           "code": "2.R.3.k",
+           "text": "Read and spell common irregular words."
+          }
+         ]
+        },
+        {
+         "id": "reading-2-of-3",
+         "title": "Reading (2 of 3)",
+         "outcomes": [
+          {
+           "code": "2.R.7.RI",
+           "text": "Describe the connection between a series of historical events, scientific ideas or concepts, or steps in technical procedures in a text."
+          },
+          {
+           "code": "2.R.8",
+           "text": "Explain how specific words and phrases express emotion, appeal to the senses, or determine the meaning of content-specific words within a text."
+          },
+          {
+           "code": "2.R.10",
+           "text": "Describe the overall literary and informational text structure to locate facts, details, and information efficiently."
+          },
+          {
+           "code": "2.R.11",
+           "text": "Begins in grade 4."
+          },
+          {
+           "code": "2.R.12",
+           "text": "Demonstrate understanding of story elements and/or topics by applying information gained from illustrations or text features."
+          }
+         ]
+        },
+        {
+         "id": "determine-or-clarify-the-meaning-of-unknown-and-",
+         "title": "Determine or clarify the meaning of unknown and multiple-meaning words and phrases, choosing flexibly from a range of strategies",
+         "outcomes": [
+          {
+           "code": "2.R.9.a",
+           "text": "Use sentence-level context as a clue to the meaning of a word."
+          },
+          {
+           "code": "2.R.9.b",
+           "text": "Determine the meaning of a new word when a known prefix or root is used."
+          },
+          {
+           "code": "2.R.9.c",
+           "text": "Predict the meaning of compound words using knowledge of the meaning of the individual words."
+          },
+          {
+           "code": "2.R.9.d",
+           "text": "Use glossaries and dictionaries to determine the meaning of words and phrases."
+          }
+         ]
+        },
+        {
+         "id": "reading-3-of-3",
+         "title": "Reading (3 of 3)",
+         "outcomes": [
+          {
+           "code": "2.R.13.RL",
+           "text": "Not applicable for RL."
+          },
+          {
+           "code": "2.R.13.RI",
+           "text": "Explain how specific points an author or illustrator makes in a text are supported by relevant reasons and evidence."
+          },
+          {
+           "code": "2.R.14",
+           "text": "Compare two or more versions of the same text from different cultures and the most important points presented by two texts on the same topic."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "writing",
+       "title": "Writing",
+       "subtopics": [
+        {
+         "id": "write-opinion-pieces-that-introduce-the-topic-st",
+         "title": "Write opinion pieces that introduce the topic, state an opinion, supply evidence that supports the opinion, use linking words to connect opinion and evidence, and provide a concluding statement",
+         "outcomes": [
+          {
+           "code": "2.W.1.a",
+           "text": "Write, produce, expand, and rearrange complete simple and compound sentences."
+          },
+          {
+           "code": "2.W.1.b",
+           "text": "Use appropriate conventions when writing."
+          }
+         ]
+        },
+        {
+         "id": "write-informative-explanatory-pieces-that-introd",
+         "title": "Write informative/explanatory pieces that introduce a topic, supply facts and definitions to develop points, and provide a concluding statement",
+         "outcomes": [
+          {
+           "code": "2.W.2.a",
+           "text": "Write, produce, expand, and rearrange complete simple and compound sentences."
+          },
+          {
+           "code": "2.W.2.b",
+           "text": "Use appropriate conventions when writing."
+          }
+         ]
+        },
+        {
+         "id": "write-narrative-pieces-in-which-they-retell-an-e",
+         "title": "Write narrative pieces in which they retell an elaborated event or short sequence of events; include details to describe actions, thoughts, and emotions using temporal words in sequential order; and provide a concluding statement",
+         "outcomes": [
+          {
+           "code": "2.W.3.a",
+           "text": "Write, produce, expand, and rearrange complete simple and compound sentences."
+          },
+          {
+           "code": "2.W.3.b",
+           "text": "Use appropriate conventions when writing."
+          }
+         ]
+        },
+        {
+         "id": "participate-in-shared-research-and-writing-proje",
+         "title": "Participate in shared research and writing projects on a topic",
+         "outcomes": [
+          {
+           "code": "2.W.4.a",
+           "text": "Recall and gather information from provided sources to answer a question about the topic."
+          },
+          {
+           "code": "2.W.4.b",
+           "text": "Interact and collaborate with others throughout the writing process."
+          }
+         ]
+        },
+        {
+         "id": "writing",
+         "title": "Writing",
+         "outcomes": [
+          {
+           "code": "2.W.5",
+           "text": "Fluently write all upper- and lowercase manuscript letters."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "3",
+   "units": [
+    {
+     "id": "grade-3",
+     "title": "Grade 3",
+     "topics": [
+      {
+       "id": "speaking-and-listening",
+       "title": "Speaking and Listening",
+       "subtopics": [
+        {
+         "id": "participate-effectively-in-a-range-of-conversati",
+         "title": "Participate effectively in a range of conversations and collaborations, using age-appropriate vocabulary, on topics, texts, and issues",
+         "outcomes": [
+          {
+           "code": "3.SL.1.a",
+           "text": "Respectfully acknowledge and respond to others' perspectives during discussions."
+          },
+          {
+           "code": "3.SL.1.b",
+           "text": "Recognize that comments and claims may include two perspectives."
+          },
+          {
+           "code": "3.SL.1.c",
+           "text": "Participate in conversations by asking questions, acknowledging new information, connecting responses, and keeping the discussion on topic."
+          }
+         ]
+        },
+        {
+         "id": "speaking-and-listening",
+         "title": "Speaking and Listening",
+         "outcomes": [
+          {
+           "code": "3.SL.2",
+           "text": "Speak clearly and audibly while asking and answering questions about a topic and key details presented in various media and formats."
+          }
+         ]
+        },
+        {
+         "id": "use-age-appropriate-language-grammar-volume-and-",
+         "title": "Use age-appropriate language, grammar, volume, and clear pronunciation when speaking or presenting",
+         "outcomes": [
+          {
+           "code": "3.SL.3.a",
+           "text": "Present information, stories, or opinions, sequencing ideas logically and use relevant descriptions, facts, and details to elaborate on main ideas and themes."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "reading",
+       "title": "Reading",
+       "subtopics": [
+        {
+         "id": "reading-1-of-3",
+         "title": "Reading (1 of 3)",
+         "outcomes": [
+          {
+           "code": "3.R.1",
+           "text": "Mastered in preschool."
+          },
+          {
+           "code": "3.R.4",
+           "text": "Read grade-level text with accuracy and fluency to support comprehension."
+          },
+          {
+           "code": "3.R.5",
+           "text": "Ask and answer questions to demonstrate understanding of a text, referring explicitly to the text as the basis for the answers."
+          },
+          {
+           "code": "3.R.6",
+           "text": "Read a variety of texts including those from diverse cultures, retell the text according to the text structure including the main idea and how key details support the main idea."
+          },
+          {
+           "code": "3.R.7.RL",
+           "text": "Describe characters in a story and explain how their actions contribute to the sequence of events."
+          }
+         ]
+        },
+        {
+         "id": "demonstrate-mastery-of-age-appropriate-phonologi",
+         "title": "Demonstrate mastery of age-appropriate phonological awareness skills",
+         "outcomes": [
+          {
+           "code": "3.R.2.a",
+           "text": "Reversal of phonemes."
+          },
+          {
+           "code": "3.R.2.b",
+           "text": "Phoneme chaining including addition, deletion, and substitution at all word positions (initial, final, and medial)."
+          }
+         ]
+        },
+        {
+         "id": "demonstrate-mastery-of-age-appropriate-phonics-s",
+         "title": "Demonstrate mastery of age-appropriate phonics skills",
+         "outcomes": [
+          {
+           "code": "3.R.3.a",
+           "text": "Identify and begin using the combined knowledge of all letter-sound correspondences, syllabication patterns, morphology (e.g., roots and affixes), and etymology to accurately read unfamiliar multisyllabic words in and out of context."
+          },
+          {
+           "code": "3.R.3.b",
+           "text": "Read and spell words with all six syllable types (i.e., open, closed, CVCe, vowel team, vowel-r, consonant -le) in multisyllabic words."
+          },
+          {
+           "code": "3.R.3.c",
+           "text": "Identify and know the meaning of the most common prefixes and derivational suffixes."
+          },
+          {
+           "code": "3.R.3.d",
+           "text": "Identify the unaccented syllable in multisyllabic words (e.g., nation, active, atomic) when reading and spelling."
+          },
+          {
+           "code": "3.R.3.e",
+           "text": "Read and spell common irregular words."
+          }
+         ]
+        },
+        {
+         "id": "reading-2-of-3",
+         "title": "Reading (2 of 3)",
+         "outcomes": [
+          {
+           "code": "3.R.7.RI",
+           "text": "Describe the relationship between a series of historical events, scientific ideas or concepts, or steps in technical procedures in a text, using language that pertains to time, sequence, and cause/effect."
+          },
+          {
+           "code": "3.R.8",
+           "text": "Determine the meaning of words, phrases, similes, metaphors, and academic and content-specific words within a text."
+          },
+          {
+           "code": "3.R.10.RL",
+           "text": "Identify and discuss the structural elements of different types of text when writing or speaking about a text."
+          },
+          {
+           "code": "3.R.10.RI",
+           "text": "Use text features and search tools to build comprehension and locate relevant information efficiently."
+          },
+          {
+           "code": "3.R.11",
+           "text": "Begins in grade 4."
+          }
+         ]
+        },
+        {
+         "id": "determine-or-clarify-the-meaning-of-unknown-and-",
+         "title": "Determine or clarify the meaning of unknown and multiple-meaning words and phrases choosing flexibly from a range of strategies",
+         "outcomes": [
+          {
+           "code": "3.R.9.a",
+           "text": "Use sentence-level context as a clue to the meaning of a word or phrase."
+          },
+          {
+           "code": "3.R.9.b",
+           "text": "Determine the meaning of a new word when a known affix or root is used."
+          },
+          {
+           "code": "3.R.9.c",
+           "text": "Use glossaries or dictionaries to determine or clarify the precise meaning of key words and phrases."
+          }
+         ]
+        },
+        {
+         "id": "reading-3-of-3",
+         "title": "Reading (3 of 3)",
+         "outcomes": [
+          {
+           "code": "3.R.12",
+           "text": "Explain how specific illustrations or text features contribute to what is conveyed by the words in a text."
+          },
+          {
+           "code": "3.R.13.RL",
+           "text": "Not applicable for RL."
+          },
+          {
+           "code": "3.R.13.RI",
+           "text": "Explain how claims in a text are supported by relevant reasons and evidence."
+          },
+          {
+           "code": "3.R.14.RL",
+           "text": "Compare the themes, settings, and plots of stories written about the same or similar characters."
+          },
+          {
+           "code": "3.R.14.RI",
+           "text": "Compare the most important points and key details presented in two texts on the same topic."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "writing",
+       "title": "Writing",
+       "subtopics": [
+        {
+         "id": "write-argumentative-pieces-on-topics-and-or-text",
+         "title": "Write argumentative pieces on topics and/or texts, supporting a point of view with evidence, using linking words and phrases to connect the claim to the evidence, and provide a concluding statement",
+         "outcomes": [
+          {
+           "code": "3.W.1.a",
+           "text": "Introduce the topic, state a claim, and create an organizational structure that provides evidence."
+          },
+          {
+           "code": "3.W.1.b",
+           "text": "Write, produce, and expand simple, compound, and complex sentences."
+          },
+          {
+           "code": "3.W.1.c",
+           "text": "Use appropriate conventions when writing including text cohesion, sentence structure, and phrasing."
+          }
+         ]
+        },
+        {
+         "id": "write-informative-explanatory-pieces-to-examine-",
+         "title": "Write informative/explanatory pieces to examine a topic that conveys ideas and information clearly, link ideas within categories of information using words and phrases, and provide a concluding statement",
+         "outcomes": [
+          {
+           "code": "3.W.2.a",
+           "text": "Introduce and develop a topic using facts, definitions, details, and group related information and graphics together."
+          },
+          {
+           "code": "3.W.2.b",
+           "text": "Write, produce, and expand simple, compound, and complex sentences."
+          },
+          {
+           "code": "3.W.2.c",
+           "text": "Use appropriate conventions when writing including text cohesion, sentence structure, and phrasing."
+          }
+         ]
+        },
+        {
+         "id": "write-narrative-pieces-to-develop-real-or-imagin",
+         "title": "Write narrative pieces to develop real or imagined experiences or events using effective technique, descriptive details, event sequences, and provide a concluding statement",
+         "outcomes": [
+          {
+           "code": "3.W.3.a",
+           "text": "Set the scene and introduce a narrator and/or characters; organize an event sequence that unfolds naturally."
+          },
+          {
+           "code": "3.W.3.b",
+           "text": "Write, produce, and expand simple, compound, and complex sentences."
+          },
+          {
+           "code": "3.W.3.c",
+           "text": "Use dialogue and descriptions of actions, thoughts, and emotions."
+          },
+          {
+           "code": "3.W.3.d",
+           "text": "Use appropriate conventions when writing including text cohesion, sentence structure, and phrasing."
+          }
+         ]
+        },
+        {
+         "id": "conduct-short-research-projects-to-build-knowled",
+         "title": "Conduct short research projects to build knowledge about a topic",
+         "outcomes": [
+          {
+           "code": "3.W.4.a",
+           "text": "Recall and gather relevant information from one or more sources and provide brief notes to demonstrate understanding of the topic."
+          },
+          {
+           "code": "3.W.4.b",
+           "text": "Interact and collaborate with others throughout the writing process."
+          }
+         ]
+        },
+        {
+         "id": "writing",
+         "title": "Writing",
+         "outcomes": [
+          {
+           "code": "3.W.5",
+           "text": "Legibly write all upper- and lowercase cursive and manuscript letters."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "4",
+   "units": [
+    {
+     "id": "grade-4",
+     "title": "Grade 4",
+     "topics": [
+      {
+       "id": "speaking-and-listening",
+       "title": "Speaking and Listening",
+       "subtopics": [
+        {
+         "id": "participate-effectively-in-a-range-of-conversati",
+         "title": "Participate effectively in a range of conversations and collaborations, using age-appropriate vocabulary, on topics, texts, and issues",
+         "outcomes": [
+          {
+           "code": "4.SL.1.a",
+           "text": "Respectfully acknowledge and respond to comments and claims."
+          },
+          {
+           "code": "4.SL.1.b",
+           "text": "Participate in conversations by asking questions, acknowledging new information, connecting responses with reasoning and elaboration, and keeping the discussion on topic."
+          }
+         ]
+        },
+        {
+         "id": "speaking-and-listening",
+         "title": "Speaking and Listening",
+         "outcomes": [
+          {
+           "code": "4.SL.2",
+           "text": "Clearly summarize information presented in various formats and media and explain how the information pertains to the topic."
+          }
+         ]
+        },
+        {
+         "id": "use-age-appropriate-language-grammar-volume-and-",
+         "title": "Use age-appropriate language, grammar, volume, and clear pronunciation when speaking or presenting",
+         "outcomes": [
+          {
+           "code": "4.SL.3.a",
+           "text": "Include visual displays and/or media, when appropriate, to convey information, elaborate, and enhance engagement of presentations."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "reading",
+       "title": "Reading",
+       "subtopics": [
+        {
+         "id": "reading-1-of-4",
+         "title": "Reading (1 of 4)",
+         "outcomes": [
+          {
+           "code": "4.R.1",
+           "text": "Mastered in preschool."
+          },
+          {
+           "code": "4.R.2",
+           "text": "Mastered in grade 3."
+          },
+          {
+           "code": "4.R.4",
+           "text": "Read grade-level text with accuracy and fluency to support comprehension."
+          },
+          {
+           "code": "4.R.5",
+           "text": "Refer to details and evidence in a text when explaining what the text says explicitly and when drawing inferences from the text."
+          },
+          {
+           "code": "4.R.6",
+           "text": "Read a variety of text types, including those from diverse cultures to determine a theme or main idea and explain how it is supported by key details; summarize texts using textual evidence."
+          }
+         ]
+        },
+        {
+         "id": "demonstrate-mastery-of-age-appropriate-phonics-s",
+         "title": "Demonstrate mastery of age-appropriate phonics skills",
+         "outcomes": [
+          {
+           "code": "4.R.3.a",
+           "text": "Use combined knowledge of all letter-sound correspondences, syllabication patterns, morphology (e.g., roots and affixes), and etymology to accurately read unfamiliar multisyllabic words in context and out of context."
+          }
+         ]
+        },
+        {
+         "id": "reading-2-of-4",
+         "title": "Reading (2 of 4)",
+         "outcomes": [
+          {
+           "code": "4.R.7.RL",
+           "text": "Describe in depth a character, setting, or event in a story or drama, drawing on specific details in the text."
+          },
+          {
+           "code": "4.R.7.RI",
+           "text": "Explain events, procedures, ideas, or concepts in a historical, scientific, or technical text, including what happened and why, based on specific information in the text."
+          },
+          {
+           "code": "4.R.8",
+           "text": "Determine the meaning of words, phrases, figurative language, academic and content-specific words within a text."
+          },
+          {
+           "code": "4.R.10.RL",
+           "text": "Analyze and discuss the parts of literary text using terms such as chapter, scene, and stanza."
+          },
+          {
+           "code": "4.R.10.RI",
+           "text": "Describe the overall structure using terms such as sequence, comparison, cause/effect, and problem/solution."
+          }
+         ]
+        },
+        {
+         "id": "determine-or-clarify-the-meaning-of-unknown-and-",
+         "title": "Determine or clarify the meaning of unknown and multiple-meaning words and phrases, choosing flexibly from a range of strategies",
+         "outcomes": [
+          {
+           "code": "4.R.9.a",
+           "text": "Use context as a clue to the meaning of a word."
+          },
+          {
+           "code": "4.R.9.b",
+           "text": "Use common Greek and Latin affixes and roots as clues to the meaning of a word."
+          },
+          {
+           "code": "4.R.9.c",
+           "text": "Consult reference materials to find the pronunciation and determine or clarify the precise meaning of key words and phrases."
+          }
+         ]
+        },
+        {
+         "id": "reading-3-of-4",
+         "title": "Reading (3 of 4)",
+         "outcomes": [
+          {
+           "code": "4.R.11.RL",
+           "text": "Compare the point of view from which different stories are narrated, including the difference between first- and third-person narrations."
+          },
+          {
+           "code": "4.R.11.RI",
+           "text": "Compare a primary and secondary source on the same event or topic."
+          },
+          {
+           "code": "4.R.12.RL",
+           "text": "Compare a visual or oral presentation of a story or drama with the text itself and identify where each version reflects specific descriptions and directions in the text."
+          },
+          {
+           "code": "4.R.12.RI",
+           "text": "Interpret information presented visually, orally, or quantitatively and explain how the information contributes to an understanding of the text in which it appears."
+          },
+          {
+           "code": "4.R.13.RL",
+           "text": "Not applicable to RL."
+          }
+         ]
+        },
+        {
+         "id": "reading-4-of-4",
+         "title": "Reading (4 of 4)",
+         "outcomes": [
+          {
+           "code": "4.R.13.RI",
+           "text": "Explain how an author uses reasons and evidence to support particular claims in a text."
+          },
+          {
+           "code": "4.R.14.RL",
+           "text": "Compare the treatment of similar themes and topics and patterns of events in stories, myths, and traditional literature from different cultures."
+          },
+          {
+           "code": "4.R.14.RI",
+           "text": "Integrate information from two texts on the same topic in order to write or speak about the subject knowledgeably."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "writing",
+       "title": "Writing",
+       "subtopics": [
+        {
+         "id": "write-argumentative-pieces-on-topics-and-or-text",
+         "title": "Write argumentative pieces on topics and/or texts, supporting a point of view with evidence and information, using linking words and phrases to connect the claim to the evidence, and provide a concluding section related to the claim presented",
+         "outcomes": [
+          {
+           "code": "4.W.1.a",
+           "text": "Introduce a topic, state a claim that is supported by evidence, produce complex sentences, and create an organizational structure in which related ideas are grouped to support the writer's purpose."
+          },
+          {
+           "code": "4.W.1.b",
+           "text": "Use appropriate conventions when writing including text cohesion, sentence structure, and phrasing."
+          }
+         ]
+        },
+        {
+         "id": "write-informative-explanatory-pieces-to-examine-",
+         "title": "Write informative/explanatory pieces to examine a topic that conveys ideas and information clearly, link ideas within categories of information using words and phrases, and provide a concluding section related to the information or explanation presented",
+         "outcomes": [
+          {
+           "code": "4.W.2.a",
+           "text": "Introduce a topic and group related information in paragraphs and/or sections using organizational structures, produce complex sentences, and text features to support the writer's purpose."
+          },
+          {
+           "code": "4.W.2.b",
+           "text": "Develop the topic using relevant facts, definitions, concrete details, quotations, or examples."
+          },
+          {
+           "code": "4.W.2.c",
+           "text": "Use precise language and content-specific vocabulary to inform about or explain the topic."
+          },
+          {
+           "code": "4.W.2.d",
+           "text": "Use appropriate conventions when writing including text cohesion, sentence structure, and phrasing."
+          }
+         ]
+        },
+        {
+         "id": "write-narrative-pieces-to-develop-real-or-imagin",
+         "title": "Write narrative pieces to develop real or imagined experiences or events using effective technique, descriptive details, clear event sequences, and provide a resolution",
+         "outcomes": [
+          {
+           "code": "4.W.3.a",
+           "text": "Orient the reader by establishing a situation and introducing a narrator and/or characters; organize an event sequence that unfolds naturally."
+          },
+          {
+           "code": "4.W.3.b",
+           "text": "Use dialogue and description to develop experiences and events or show the responses of characters to situations."
+          },
+          {
+           "code": "4.W.3.c",
+           "text": "Use a variety of transitional words and phrases to manage the sequence of events."
+          },
+          {
+           "code": "4.W.3.d",
+           "text": "Use concrete words, phrases, complex sentences, and sensory details to convey experiences and events precisely."
+          },
+          {
+           "code": "4.W.3.e",
+           "text": "Use appropriate conventions when writing including text cohesion, sentence structure, and phrasing."
+          }
+         ]
+        },
+        {
+         "id": "conduct-short-research-projects-to-build-knowled",
+         "title": "Conduct short research projects to build knowledge through investigation of different aspects of a topic",
+         "outcomes": [
+          {
+           "code": "4.W.4.a",
+           "text": "Recall, gather, and organize information and provide a list of relevant sources."
+          },
+          {
+           "code": "4.W.4.b",
+           "text": "Elaborate to demonstrate understanding of the topic under investigation."
+          },
+          {
+           "code": "4.W.4.c",
+           "text": "Interact and collaborate with others throughout the writing process."
+          }
+         ]
+        },
+        {
+         "id": "writing",
+         "title": "Writing",
+         "outcomes": [
+          {
+           "code": "4.W.5",
+           "text": "Fluently write in cursive and manuscript."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "5",
+   "units": [
+    {
+     "id": "grade-5",
+     "title": "Grade 5",
+     "topics": [
+      {
+       "id": "speaking-and-listening",
+       "title": "Speaking and Listening",
+       "subtopics": [
+        {
+         "id": "participate-effectively-in-a-range-of-conversati",
+         "title": "Participate effectively in a range of conversations and collaborations using age-appropriate vocabulary, on topics, texts, and issues",
+         "outcomes": [
+          {
+           "code": "5.SL.1.a",
+           "text": "Respectfully acknowledge and respond to comments and claims from multiple perspectives and determine if additional information is needed."
+          },
+          {
+           "code": "5.SL.1.b",
+           "text": "Participate in conversations by asking questions, acknowledging new information, qualifying or justifying responses with reasoning and elaboration, and keeping the discussion on topic."
+          }
+         ]
+        },
+        {
+         "id": "speaking-and-listening",
+         "title": "Speaking and Listening",
+         "outcomes": [
+          {
+           "code": "5.SL.2",
+           "text": "Investigate information presented in various formats and media in order to make informed decisions and differentiate between fact and fiction."
+          }
+         ]
+        },
+        {
+         "id": "use-age-appropriate-language-grammar-volume-and-",
+         "title": "Use age-appropriate language, grammar, volume, and clear pronunciation when speaking or presenting",
+         "outcomes": [
+          {
+           "code": "5.SL.3.a",
+           "text": "Present claims and findings, sequencing ideas logically and use relevant descriptions, facts, and details to elaborate on main ideas or themes."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "reading",
+       "title": "Reading",
+       "subtopics": [
+        {
+         "id": "reading-1-of-4",
+         "title": "Reading (1 of 4)",
+         "outcomes": [
+          {
+           "code": "5.R.1",
+           "text": "Mastered in preschool."
+          },
+          {
+           "code": "5.R.2",
+           "text": "Mastered in grade 3."
+          },
+          {
+           "code": "5.R.4",
+           "text": "Read grade-level text with accuracy and fluency to support comprehension."
+          },
+          {
+           "code": "5.R.5",
+           "text": "Identify and refer to evidence from a text when explaining what the text says explicitly and when drawing inferences from the text."
+          },
+          {
+           "code": "5.R.6",
+           "text": "Determine the theme or main idea of a text including those from diverse cultures and how it is conveyed through particular details and summarize the text."
+          }
+         ]
+        },
+        {
+         "id": "demonstrate-mastery-of-age-appropriate-phonics-s",
+         "title": "Demonstrate mastery of age-appropriate phonics skills",
+         "outcomes": [
+          {
+           "code": "5.R.3.a",
+           "text": "Read and spell all letter-sound correspondences, syllabication patterns, morphology (e.g., roots and affixes), and etymology to accurately read unfamiliar multisyllabic words in context and out of context."
+          }
+         ]
+        },
+        {
+         "id": "reading-2-of-4",
+         "title": "Reading (2 of 4)",
+         "outcomes": [
+          {
+           "code": "5.R.7.RL",
+           "text": "Compare two characters, settings, or events in a story or drama, drawing on specific details in the text."
+          },
+          {
+           "code": "5.R.7.RI",
+           "text": "Explain the relationships or interactions between two or more individuals, events, ideas, or concepts in a historical, scientific, or technical text based on specific information in the text."
+          },
+          {
+           "code": "5.R.8",
+           "text": "Determine the meaning of words, phrases, figurative language, academic and content-specific words, and analyze their effect on meaning within a text."
+          },
+          {
+           "code": "5.R.10.RL",
+           "text": "Analyze how a series of chapters, scenes, or stanzas fits together to provide the overall structure of a literary text."
+          },
+          {
+           "code": "5.R.10.RI",
+           "text": "Compare the overall structure in two or more texts using terms such as sequence, comparison, cause/effect, and problem/solution."
+          }
+         ]
+        },
+        {
+         "id": "determine-or-clarify-the-meaning-of-unknown-and-",
+         "title": "Determine or clarify the meaning of unknown and multiple-meaning words and phrases, choosing flexibly from a range of strategies",
+         "outcomes": [
+          {
+           "code": "5.R.9.a",
+           "text": "Use context as a clue to the meaning of a word or phrase."
+          },
+          {
+           "code": "5.R.9.b",
+           "text": "Use Greek and Latin affixes and roots as clues to the meaning of a word."
+          },
+          {
+           "code": "5.R.9.c",
+           "text": "Consult reference materials to find the pronunciation and determine the precise meaning of key words and phrases."
+          }
+         ]
+        },
+        {
+         "id": "reading-3-of-4",
+         "title": "Reading (3 of 4)",
+         "outcomes": [
+          {
+           "code": "5.R.11.RL",
+           "text": "Explain how a narrator's or speaker's point of view influences how events are described."
+          },
+          {
+           "code": "5.R.11.RI",
+           "text": "Analyze multiple accounts of the same event or topic, noting important similarities and differences in the point of view they represent."
+          },
+          {
+           "code": "5.R.12.RL",
+           "text": "Analyze how the visual and multimedia elements contribute to the meaning, tone, or beauty of a text."
+          },
+          {
+           "code": "5.R.12.RI",
+           "text": "Draw on information from multiple sources including media to locate an answer to a question or to solve a problem."
+          },
+          {
+           "code": "5.R.13.RL",
+           "text": "Not applicable to RL."
+          }
+         ]
+        },
+        {
+         "id": "reading-4-of-4",
+         "title": "Reading (4 of 4)",
+         "outcomes": [
+          {
+           "code": "5.R.13.RI",
+           "text": "Explain how an author uses reasons and evidence to support particular claims in a text, identifying which reasons and evidence support which claims."
+          },
+          {
+           "code": "5.R.14.RL",
+           "text": "Compare stories in the same genre on their approaches to similar themes and topics."
+          },
+          {
+           "code": "5.R.14.RI",
+           "text": "Integrate information from several texts on the same topic in order to write or speak about the subject knowledgeably."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "writing",
+       "title": "Writing",
+       "subtopics": [
+        {
+         "id": "write-argumentative-pieces-on-topics-and-or-text",
+         "title": "Write argumentative pieces on topics and/or texts, supporting a point of view with evidence and information, using linking words, phrases, and clauses to connect the claim to the evidence, and provide a concluding section related to the claim presented",
+         "outcomes": [
+          {
+           "code": "5.W.1.a",
+           "text": "Introduce a topic, state a claim supported by evidence, and create an organizational structure in which ideas are logically grouped to support the writer's purpose."
+          },
+          {
+           "code": "5.W.1.b",
+           "text": "Expand, combine, and reduce sentences for meaning, reader/listener interest, and style to develop the argument."
+          },
+          {
+           "code": "5.W.1.c",
+           "text": "Use appropriate conventions when writing including text cohesion, sentence structure, and phrasing."
+          }
+         ]
+        },
+        {
+         "id": "write-informative-explanatory-pieces-to-examine-",
+         "title": "Write informative/explanatory pieces to examine a topic that links and conveys ideas and information clearly, using words, phrases, and clauses to show the relationship between ideas, paragraphs, and/or sections, and provide a concluding section related to the information or explanation presented",
+         "outcomes": [
+          {
+           "code": "5.W.2.a",
+           "text": "Introduce a topic and group related information in paragraphs and/or sections using organizational structures, produce complex sentences, and text features, including multimedia when useful, to support the writer's purpose."
+          },
+          {
+           "code": "5.W.2.b",
+           "text": "Develop the topic using relevant facts, definitions, concrete details, quotations, or examples."
+          },
+          {
+           "code": "5.W.2.c",
+           "text": "Use precise language and content-specific vocabulary to inform about or explain the topic."
+          },
+          {
+           "code": "5.W.2.d",
+           "text": "Use appropriate conventions when writing including text cohesion, sentence structure, and phrasing"
+          }
+         ]
+        },
+        {
+         "id": "write-narrative-pieces-to-develop-real-or-imagin",
+         "title": "Write narrative pieces to develop real or imagined experiences or events using effective technique, descriptive details, well-structured event sequences, and provide a resolution",
+         "outcomes": [
+          {
+           "code": "5.W.3.a",
+           "text": "Orient the reader by establishing a situation and introducing a narrator and/or characters; organize an event sequence that unfolds naturally."
+          },
+          {
+           "code": "5.W.3.b",
+           "text": "Use narrative techniques, such as dialogue, description, and pacing, to develop experiences and events or show the responses of characters to situations."
+          },
+          {
+           "code": "5.W.3.c",
+           "text": "Use a variety of transitional words, phrases, and clauses to manage the sequence of events."
+          },
+          {
+           "code": "5.W.3.d",
+           "text": "Use concrete words, phrases, complex sentences, and sensory details to convey experiences and events precisely."
+          },
+          {
+           "code": "5.W.3.e",
+           "text": "Use appropriate conventions when writing including text cohesion, sentence structure, and phrasing."
+          }
+         ]
+        },
+        {
+         "id": "conduct-short-research-projects-to-craft-an-argu",
+         "title": "Conduct short research projects to craft an argument or answer a question",
+         "outcomes": [
+          {
+           "code": "5.W.4.a",
+           "text": "Gather, summarize, and paraphrase information and provide a list of relevant sources."
+          },
+          {
+           "code": "5.W.4.b",
+           "text": "Elaborate to demonstrate understanding of the topic under investigation."
+          },
+          {
+           "code": "5.W.4.c",
+           "text": "Interact and collaborate with others throughout the writing process."
+          }
+         ]
+        },
+        {
+         "id": "writing",
+         "title": "Writing",
+         "outcomes": [
+          {
+           "code": "5.W.5",
+           "text": "Fluently write in cursive and manuscript."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "6",
+   "units": [
+    {
+     "id": "grade-6",
+     "title": "Grade 6",
+     "topics": [
+      {
+       "id": "speaking-and-listening",
+       "title": "Speaking and Listening",
+       "subtopics": [
+        {
+         "id": "participate-effectively-in-a-range-of-conversati",
+         "title": "Participate effectively in a range of conversations and collaborations on topics, texts, and issues",
+         "outcomes": [
+          {
+           "code": "6.SL.1.a",
+           "text": "Respectfully acknowledge comments, claims, and evidence from multiple perspectives and identify contradictions when applicable."
+          },
+          {
+           "code": "6.SL.1.b",
+           "text": "Participate in conversations by posing questions, acknowledging new information, qualifying or justifying responses with reasoning and elaboration, and keeping the discussion on topic."
+          }
+         ]
+        },
+        {
+         "id": "speaking-and-listening",
+         "title": "Speaking and Listening",
+         "outcomes": [
+          {
+           "code": "6.SL.2",
+           "text": "Interpret credible information presented in various formats and media to make informed decisions."
+          }
+         ]
+        },
+        {
+         "id": "use-appropriate-language-grammar-organization-de",
+         "title": "Use appropriate language, grammar, organization, development, and delivery styles appropriate to purpose and audience for formal or informal contexts",
+         "outcomes": [
+          {
+           "code": "6.SL.3.a",
+           "text": "Use visual displays of data, including digital media, to convey information and engage the audience."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "reading",
+       "title": "Reading",
+       "subtopics": [
+        {
+         "id": "reading-1-of-4",
+         "title": "Reading (1 of 4)",
+         "outcomes": [
+          {
+           "code": "6.R.1",
+           "text": "Mastered in preschool."
+          },
+          {
+           "code": "6.R.2",
+           "text": "Mastered in grade 3."
+          },
+          {
+           "code": "6.R.3",
+           "text": "Mastered in grade 5."
+          },
+          {
+           "code": "6.R.4",
+           "text": "Read grade-level text with accuracy and fluency to support comprehension."
+          },
+          {
+           "code": "6.R.5",
+           "text": "Cite textual evidence to support analysis of what the text says explicitly as well as inferences drawn from the text."
+          }
+         ]
+        },
+        {
+         "id": "reading-2-of-4",
+         "title": "Reading (2 of 4)",
+         "outcomes": [
+          {
+           "code": "6.R.6.RL",
+           "text": "When reading texts, including those from diverse cultures, determine the theme, how characters respond to conflict or how the speaker reflects upon a topic, and summarize the text."
+          },
+          {
+           "code": "6.R.6.RI",
+           "text": "When reading texts, including those from diverse cultures, determine the main idea of a text, explain how they are supported by key details and summarize the text."
+          },
+          {
+           "code": "6.R.7.RL",
+           "text": "Compare two or more characters, settings, or events in a story or drama, drawing on specific details in the text."
+          },
+          {
+           "code": "6.R.7.RI",
+           "text": "Analyze in detail how a key individual, event, or idea is introduced, illustrated, and elaborated in a text."
+          },
+          {
+           "code": "6.R.8",
+           "text": "Determine the meaning of words and phrases, including figurative language, connotative meanings, and figures of speech. Analyze the impact of specific word choices on meaning and tone, including words with multiple meanings within a text."
+          }
+         ]
+        },
+        {
+         "id": "determine-or-clarify-the-meaning-of-unknown-and-",
+         "title": "Determine or clarify the meaning of unknown and multiple-meaning words and phrases, choosing flexibly from a range of strategies",
+         "outcomes": [
+          {
+           "code": "6.R.9.a",
+           "text": "Consistently use context as a clue to the meaning of a word or phrase."
+          },
+          {
+           "code": "6.R.9.b",
+           "text": "Consistently use Greek or Latin affixes and roots as clues to the meaning of a word."
+          },
+          {
+           "code": "6.R.9.c",
+           "text": "Consult reference materials to find the pronunciation of a word or determine its precise meaning or its part of speech."
+          }
+         ]
+        },
+        {
+         "id": "reading-3-of-4",
+         "title": "Reading (3 of 4)",
+         "outcomes": [
+          {
+           "code": "6.R.10.RL",
+           "text": "Analyze how a sentence, paragraph, stanza, chapter, scene, or section fits into the overall structure and how it contributes to the development of theme, main idea, settings, or plot."
+          },
+          {
+           "code": "6.R.10.RI",
+           "text": "Analyze how a particular sentence, paragraph, chapter, or section fits into the overall structure of a text and how it contributes to the development of the main idea."
+          },
+          {
+           "code": "6.R.11.RL",
+           "text": "Explain how an author's perspective develops the point of view of the narrator or speaker in multiple texts."
+          },
+          {
+           "code": "6.R.11.RI",
+           "text": "Analyze how the author distinguishes a perspective and/or position from that of others."
+          },
+          {
+           "code": "6.R.12",
+           "text": "Compare how different mediums, including print and digital media, contribute to the understanding of a text."
+          }
+         ]
+        },
+        {
+         "id": "reading-4-of-4",
+         "title": "Reading (4 of 4)",
+         "outcomes": [
+          {
+           "code": "6.R.13.RL",
+           "text": "Not applicable to RL."
+          },
+          {
+           "code": "6.R.13.RI",
+           "text": "Evaluate the argument and specific claims in a text, distinguishing claims that are supported by reasons and evidence from claims that are not."
+          },
+          {
+           "code": "6.R.14.RL",
+           "text": "Compare texts across different media or genres in terms of their approaches to similar themes and topics."
+          },
+          {
+           "code": "6.R.14.RI",
+           "text": "Compare one author's presentation of events with that of another."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "writing",
+       "title": "Writing",
+       "subtopics": [
+        {
+         "id": "write-arguments-to-support-claims-with-clear-rea",
+         "title": "Write arguments to support claims with clear reasons and relevant evidence, and provide a concluding section related to the argument presented",
+         "outcomes": [
+          {
+           "code": "6.W.1.a",
+           "text": "Introduce claims supported by evidence from credible sources, and create an organizational structure in which claims are logically grouped to support the writer's purpose."
+          },
+          {
+           "code": "6.W.1.b",
+           "text": "Use words, phrases, and clauses to clarify the relationships among claims and evidence."
+          },
+          {
+           "code": "6.W.1.c",
+           "text": "Use appropriate conventions and style for the audience, purpose, and task."
+          }
+         ]
+        },
+        {
+         "id": "write-informative-explanatory-texts-to-examine-a",
+         "title": "Write informative/explanatory texts to examine a topic that conveys ideas and information clearly and provide a concluding section that supports the information or explanation presented",
+         "outcomes": [
+          {
+           "code": "6.W.2.a",
+           "text": "Introduce a topic; organize ideas, concepts, and information, using strategies such as definition, classification, comparison/contrast, and cause/effect; include formatting, graphics, and multimedia when useful."
+          },
+          {
+           "code": "6.W.2.b",
+           "text": "Develop the topic with relevant facts, definitions, concrete details, quotations, and examples."
+          },
+          {
+           "code": "6.W.2.c",
+           "text": "Use appropriate transitions to clarify the relationships among ideas and concepts."
+          },
+          {
+           "code": "6.W.2.d",
+           "text": "Use precise language and content-specific vocabulary to inform about or explain the topic."
+          },
+          {
+           "code": "6.W.2.e",
+           "text": "Use appropriate conventions and style for the audience, purpose, and task."
+          }
+         ]
+        },
+        {
+         "id": "write-narrative-texts-to-develop-real-or-imagine",
+         "title": "Write narrative texts to develop real or imagined experiences or events using effective technique, relevant descriptive details, well-structured event sequences, and provide a resolution",
+         "outcomes": [
+          {
+           "code": "6.W.3.a",
+           "text": "Engage and orient the reader by establishing a context and introducing a narrator and/or characters; organize an event sequence that unfolds naturally and logically."
+          },
+          {
+           "code": "6.W.3.b",
+           "text": "Use narrative techniques, such as dialogue, description, and pacing, to develop experiences, events, and/or characters."
+          },
+          {
+           "code": "6.W.3.c",
+           "text": "Use a variety of transition words, phrases, and clauses to convey sequence and signal shifts from one time frame or setting to another."
+          },
+          {
+           "code": "6.W.3.d",
+           "text": "Use precise words, phrases and complex sentences, relevant descriptive details, and sensory language to convey experiences and events."
+          },
+          {
+           "code": "6.W.3.e",
+           "text": "Use appropriate conventions and style for the audience, purpose, and task."
+          }
+         ]
+        },
+        {
+         "id": "conduct-short-research-projects-to-craft-an-argu",
+         "title": "Conduct short research projects to craft an argument or answer a question",
+         "outcomes": [
+          {
+           "code": "6.W.4.a",
+           "text": "Gather, synthesize, and use information from credible sources on the topic."
+          },
+          {
+           "code": "6.W.4.b",
+           "text": "Generate ideas to demonstrate understanding of the topic under investigation."
+          },
+          {
+           "code": "6.W.4.c",
+           "text": "Avoid plagiarism by quoting or paraphrasing and provide basic bibliographic information for sources."
+          },
+          {
+           "code": "6.W.4.d",
+           "text": "Interact and collaborate with others throughout the writing process."
+          }
+         ]
+        },
+        {
+         "id": "writing",
+         "title": "Writing",
+         "outcomes": [
+          {
+           "code": "6.W.5",
+           "text": "Mastered in grade 5."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "7-8",
+   "units": [
+    {
+     "id": "grades-7-8",
+     "title": "Grades 7-8",
+     "topics": [
+      {
+       "id": "speaking-and-listening",
+       "title": "Speaking and Listening",
+       "subtopics": [
+        {
+         "id": "participate-effectively-in-a-range-of-conversati",
+         "title": "Participate effectively in a range of conversations and collaborations on topics, texts, and issues",
+         "outcomes": [
+          {
+           "code": "7-8.SL.1.a",
+           "text": "Respond thoughtfully in democratic discussions that involve decision-making and role-taking and determine if additional information or research is required to deepen the discussion."
+          },
+          {
+           "code": "7-8.SL.1.b",
+           "text": "Participate in conversations by asking and responding to questions and provide the opportunity to consider a range of perspectives."
+          }
+         ]
+        },
+        {
+         "id": "speaking-and-listening",
+         "title": "Speaking and Listening",
+         "outcomes": [
+          {
+           "code": "7-8.SL.2",
+           "text": "Evaluate the credibility of multiple sources of information presented in various formats and media to make informed decisions."
+          }
+         ]
+        },
+        {
+         "id": "use-appropriate-language-grammar-organization-de",
+         "title": "Use appropriate language, grammar, organization, development, and delivery styles appropriate to purpose and audience for formal or informal contexts",
+         "outcomes": [
+          {
+           "code": "7-8.SL.3.a",
+           "text": "Convey a clear perspective by presenting and citing information, findings, and supporting evidence so that listeners can follow the line of reasoning."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "reading",
+       "title": "Reading",
+       "subtopics": [
+        {
+         "id": "reading-1-of-4",
+         "title": "Reading (1 of 4)",
+         "outcomes": [
+          {
+           "code": "7-8.R.1",
+           "text": "Mastered in preschool."
+          },
+          {
+           "code": "7-8.R.2",
+           "text": "Mastered in grade 3."
+          },
+          {
+           "code": "7-8.R.3",
+           "text": "Mastered in grade 5."
+          },
+          {
+           "code": "7-8.R.4",
+           "text": "Read grade-level text with accuracy and fluency to support comprehension."
+          }
+         ]
+        },
+        {
+         "id": "reading-2-of-4",
+         "title": "Reading (2 of 4)",
+         "outcomes": [
+          {
+           "code": "7-8.R.5",
+           "text": "Cite textual evidence that supports an analysis of what the text says explicitly as well as inferences drawn from the text."
+          },
+          {
+           "code": "7-8.R.6.RL",
+           "text": "When reading texts, including those from diverse cultures, determine a theme, analyze its development including its relationship to the characters, settings, and plot, and provide an objective summary that includes textual evidence."
+          },
+          {
+           "code": "7-8.R.6.RI",
+           "text": "When reading texts, including those from diverse cultures, determine the main idea, analyze its relationship to supporting ideas, and provide an objective summary that includes textual evidence."
+          },
+          {
+           "code": "7-8.R.7.RL",
+           "text": "Analyze the impact of character and plot development on the overall story or drama."
+          }
+         ]
+        },
+        {
+         "id": "reading-3-of-4",
+         "title": "Reading (3 of 4)",
+         "outcomes": [
+          {
+           "code": "7-8.R.7.RI",
+           "text": "Analyze a complex set of ideas or sequence of events and explain how specific individuals, ideas, or events interact and develop over the course of the text."
+          },
+          {
+           "code": "7-8.R.8",
+           "text": "Determine the meaning of words and phrases, including figurative, connotative, and technical meanings. Analyze the impact of specific word choices on meaning, tone, and mood, including words with multiple meanings within a text."
+          },
+          {
+           "code": "7-8.R.10",
+           "text": "Analyze the structure an author uses to organize a text, and how it contributes to the text meaning."
+          },
+          {
+           "code": "7-8.R.11.RL",
+           "text": "Analyze how an author develops and contrasts the points of view of different characters or narrators in a text and how this creates a variety of effects (e.g., humor, sadness, suspense)."
+          }
+         ]
+        },
+        {
+         "id": "determine-or-clarify-the-meaning-of-unknown-and-",
+         "title": "Determine or clarify the meaning of unknown and multiple-meaning words and phrases, choosing flexibly from a range of strategies",
+         "outcomes": [
+          {
+           "code": "7-8.R.9.a",
+           "text": "Determine and consult appropriate reference materials to find the pronunciation of a word or determine its precise meaning or its part of speech."
+          }
+         ]
+        },
+        {
+         "id": "reading-4-of-4",
+         "title": "Reading (4 of 4)",
+         "outcomes": [
+          {
+           "code": "7-8.R.11.RI",
+           "text": "Determine an author's point of view or purpose in a text and analyze how the author distinguishes their position from that of others and responds to conflicting evidence or viewpoints."
+          },
+          {
+           "code": "7-8.R.12",
+           "text": "Compare a text to another text in a different medium about the same topic and evaluate the impact of the differences on the audience."
+          },
+          {
+           "code": "7-8.R.14.RL",
+           "text": "Compare two or more works of fiction with similar themes or topics, drawing on patterns of events or character types."
+          },
+          {
+           "code": "7-8.R.14.RI",
+           "text": "Compare how two or more texts about the same topic shape their presentations by emphasizing different evidence or advancing different interpretations of facts; identify where the texts disagree on matters of fact or interpretation."
+          }
+         ]
+        },
+        {
+         "id": "not-applicable-to-rl",
+         "title": "Not applicable to RL",
+         "outcomes": [
+          {
+           "code": "7-8.R.13.RI",
+           "text": "Evaluate an argument and specific claims in a text, assessing the validity of key statements by examining whether the supporting evidence is relevant and sufficient."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "writing",
+       "title": "Writing",
+       "subtopics": [
+        {
+         "id": "write-arguments-to-support-claims-with-logical-r",
+         "title": "Write arguments to support claims with logical reasoning, relevant evidence from accurate and credible sources, and provide a conclusion that follows from and supports the argument presented",
+         "outcomes": [
+          {
+           "code": "7-8.W.1.a",
+           "text": "Introduce claims, distinguish the claims from alternate or opposing claims, and organize the reasons and evidence logically."
+          },
+          {
+           "code": "7-8.W.1.b",
+           "text": "Use words, phrases, and clauses to create cohesion and clarify the relationships among claims, counterclaims, reasons, and evidence."
+          },
+          {
+           "code": "7-8.W.1.c",
+           "text": "Use appropriate conventions and style for the audience, purpose, and task."
+          }
+         ]
+        },
+        {
+         "id": "write-informative-explanatory-texts-to-examine-a",
+         "title": "Write informative/explanatory texts to examine a topic and convey ideas and information through the selection, organization, and analysis of relevant content, and provide a conclusion that supports the information or explanation presented",
+         "outcomes": [
+          {
+           "code": "7-8.W.2.a",
+           "text": "Introduce a topic, previewing what is to follow; organize ideas and information into broader categories; utilize formatting, graphics, and multimedia related to the topic."
+          },
+          {
+           "code": "7-8.W.2.b",
+           "text": "Develop the topic with relevant facts, definitions, concrete details, quotations, and examples."
+          },
+          {
+           "code": "7-8.W.2.c",
+           "text": "Use appropriate and varied transitions to create cohesion and clarify the relationships among ideas."
+          },
+          {
+           "code": "7-8.W.2.d",
+           "text": "Use precise language and content-specific vocabulary to inform about or explain the topic."
+          },
+          {
+           "code": "7-8.W.2.e",
+           "text": "Use appropriate conventions and style for the audience, purpose, and task."
+          }
+         ]
+        },
+        {
+         "id": "write-narrative-texts-to-develop-real-or-imagine",
+         "title": "Write narrative texts to develop real or imagined experiences or events using effective technique, well-structured event sequences, descriptive details, and provide a logical resolution",
+         "outcomes": [
+          {
+           "code": "7-8.W.3.a",
+           "text": "Engage and orient the reader by describing a problem, situation, or observation."
+          },
+          {
+           "code": "7-8.W.3.b",
+           "text": "Introduce a setting, narrator and/or characters."
+          },
+          {
+           "code": "7-8.W.3.c",
+           "text": "Apply narrative techniques, such as dialogue and description, to develop characters and well-structured event sequences."
+          },
+          {
+           "code": "7-8.W.3.d",
+           "text": "Utilize descriptive language to create a mood and tone appropriate to purpose, task, and audience."
+          },
+          {
+           "code": "7-8.W.3.e",
+           "text": "Use appropriate conventions and style for the audience, purpose, and task."
+          }
+         ]
+        },
+        {
+         "id": "conduct-short-research-projects-to-craft-an-argu",
+         "title": "Conduct short research projects to craft an argument, answer a question, or provide an analysis",
+         "outcomes": [
+          {
+           "code": "7-8.W.4.a",
+           "text": "Gather, assess, and use information from credible sources on the topic."
+          },
+          {
+           "code": "7-8.W.4.b",
+           "text": "Generate ideas to demonstrate understanding of the topic and purpose."
+          },
+          {
+           "code": "7-8.W.4.c",
+           "text": "Avoid plagiarism by quoting, paraphrasing, and citing, using a standard format for citation of evidence."
+          },
+          {
+           "code": "7-8.W.4.d",
+           "text": "Interact and collaborate with others throughout the writing process."
+          }
+         ]
+        },
+        {
+         "id": "writing",
+         "title": "Writing",
+         "outcomes": [
+          {
+           "code": "7-8.W.5",
+           "text": "Mastered in grade 5."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "9-10",
+   "units": [
+    {
+     "id": "grades-9-10",
+     "title": "Grades 9-10",
+     "topics": [
+      {
+       "id": "speaking-and-listening",
+       "title": "Speaking and Listening",
+       "subtopics": [
+        {
+         "id": "participate-effectively-in-a-range-of-conversati",
+         "title": "Participate effectively in a range of conversations and collaborations on topics, texts, and issues",
+         "outcomes": [
+          {
+           "code": "9-10.SL.1.a",
+           "text": "Respond thoughtfully to diverse perspectives in democratic discussions that involve decision-making and role-taking; synthesize comments, claims, and evidence."
+          },
+          {
+           "code": "9-10.SL.1.b",
+           "text": "Participate in conversations by asking and responding to questions and provide the opportunity to consider a range of perspectives and clarify, verify, or challenge ideas and conclusions with evidence."
+          },
+          {
+           "code": "9-10.SL.1.c",
+           "text": "Identify contradictions when applicable, and determine if additional information or research is required to deepen the investigation or conversation."
+          }
+         ]
+        },
+        {
+         "id": "speaking-and-listening",
+         "title": "Speaking and Listening",
+         "outcomes": [
+          {
+           "code": "9-10.SL.2",
+           "text": "Interpret and evaluate the credibility of multiple sources of information presented in various formats and media to solve problems and make informed decisions."
+          }
+         ]
+        },
+        {
+         "id": "use-appropriate-language-grammar-organization-de",
+         "title": "Use appropriate language, grammar, organization, development, and delivery styles appropriate to purpose and audience for formal or informal contexts",
+         "outcomes": [
+          {
+           "code": "9-10.SL.3.a",
+           "text": "Convey a clear perspective by concisely presenting and citing information, findings, and supporting evidence so that listeners can follow the line of reasoning."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "reading",
+       "title": "Reading",
+       "subtopics": [
+        {
+         "id": "reading-1-of-3",
+         "title": "Reading (1 of 3)",
+         "outcomes": [
+          {
+           "code": "9-10.R.1",
+           "text": "Mastered in preschool."
+          },
+          {
+           "code": "9-10.R.2",
+           "text": "Mastered in grade 3."
+          },
+          {
+           "code": "9-10.R.3",
+           "text": "Mastered in grade 5."
+          },
+          {
+           "code": "9-10.R.4",
+           "text": "Read grade-level text with accuracy and fluency to support comprehension."
+          },
+          {
+           "code": "9-10.R.5",
+           "text": "Cite relevant textual evidence to support analysis of what the text says explicitly as well as what inferences can be drawn from the text, including identifying where the text implies ambiguity."
+          }
+         ]
+        },
+        {
+         "id": "reading-2-of-3",
+         "title": "Reading (2 of 3)",
+         "outcomes": [
+          {
+           "code": "9-10.R.6.RL",
+           "text": "When reading texts, including those from diverse cultures, determine a theme, analyze its development in detail, including how it emerges and is shaped and refined by specific details; provide an objective summary that includes textual evidence."
+          },
+          {
+           "code": "9-10.R.6.RI",
+           "text": "When reading texts, including those from diverse cultures, determine two or more main ideas, analyze the main ideas' relationship to supporting ideas, and provide an objective summary that includes textual evidence."
+          },
+          {
+           "code": "9-10.R.7.RL",
+           "text": "Analyze how plot elements and dialogue interact, shape the characters, and propel the action."
+          },
+          {
+           "code": "9-10.R.7.RI",
+           "text": "Analyze how a text makes connections among and distinctions between individuals, ideas, or events through comparisons, analogies, or categories."
+          },
+          {
+           "code": "9-10.R.8",
+           "text": "Determine the meaning and impact of words and phrases on meaning, tone, and mood. Analyze figurative language and connotative meanings. Examine domain-specific vocabulary and how language differs across genres and text types."
+          }
+         ]
+        },
+        {
+         "id": "determine-or-clarify-the-meaning-of-unknown-and-",
+         "title": "Determine or clarify the meaning of unknown and multiple-meaning words and phrases choosing flexibly from a range of strategies",
+         "outcomes": [
+          {
+           "code": "9-10.R.9.a",
+           "text": "Identify and correctly use patterns of word parts that indicate different meanings or parts of speech."
+          },
+          {
+           "code": "9-10.R.9.b",
+           "text": "Determine and consult appropriate reference materials to find the pronunciation of a word, its precise meaning, its part of speech, or its etymology including Greek or Latin affixes and roots."
+          }
+         ]
+        },
+        {
+         "id": "reading-3-of-3",
+         "title": "Reading (3 of 3)",
+         "outcomes": [
+          {
+           "code": "9-10.R.10",
+           "text": "Analyze and evaluate the effectiveness of the structures an author uses in an exposition, argument, or narrative, including whether the structure makes points or events clear, effective, convincing, or engaging."
+          },
+          {
+           "code": "9-10.R.11",
+           "text": "Analyze how an author's geographic location, identity or background, culture, and time period affect the perspective, point of view, purpose, and implicit/explicit messages of a text."
+          },
+          {
+           "code": "9-10.R.12",
+           "text": "Compare a text to another text in a different medium analyzing the portrayal of the subject, evaluate the advantages and disadvantages of using the different mediums, and explain how and why the content stays faithful to or departs from the text or script."
+          },
+          {
+           "code": "9-10.R.14.RL",
+           "text": "Analyze two or more works of fiction with similar themes or topics, drawing on patterns of events, characters types, and stylistic choices."
+          },
+          {
+           "code": "9-10.R.14.RI",
+           "text": "Analyze how two or more texts about the same topic shape their presentations by emphasizing different evidence or advancing different interpretations of facts; identify where the texts disagree on matters of fact or interpretation."
+          }
+         ]
+        },
+        {
+         "id": "not-applicable-to-rl",
+         "title": "Not applicable to RL",
+         "outcomes": [
+          {
+           "code": "9-10.R.13.RI",
+           "text": "Delineate and evaluate an argument and specific claims in a text, assessing the validity or fallacy of key statements by examining whether the supporting evidence is relevant and sufficient. Recognize when irrelevant evidence is introduced."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "writing",
+       "title": "Writing",
+       "subtopics": [
+        {
+         "id": "write-arguments-to-support-claims-in-an-analysis",
+         "title": "Write arguments to support claims in an analysis of complex topics or texts using logical reasoning and relevant evidence, and provide a conclusion that follows from and supports the argument presented",
+         "outcomes": [
+          {
+           "code": "9-10.W.1.a",
+           "text": "Introduce claims, distinguish the claims from alternate or opposing claims, and create an organization that establishes clear relationships among claims, counterclaims, reasons, and evidence."
+          },
+          {
+           "code": "9-10.W.1.b",
+           "text": "Develop claims and counterclaims by supplying evidence from accurate, credible sources for each; point out the strengths and limitations that consider the audience."
+          },
+          {
+           "code": "9-10.W.1.c",
+           "text": "Use words, phrases, and clauses to link the major sections of the text, create cohesion, and clarify the relationships between claims and reasons, between reasons and evidence, and between claims and counterclaims."
+          },
+          {
+           "code": "9-10.W.1.d",
+           "text": "Use appropriate conventions and style for the audience, purpose, and task."
+          }
+         ]
+        },
+        {
+         "id": "write-informative-explanatory-texts-to-examine-a",
+         "title": "Write informative/explanatory texts to examine and convey related ideas and information clearly and accurately through the effective selection, organization, and analysis of content, and provide a conclusion that follows from and supports the information or explanation presented",
+         "outcomes": [
+          {
+           "code": "9-10.W.2.a",
+           "text": "Introduce a topic; organize related ideas and information to make important connections and distinctions; utilize formatting, graphics, and multimedia to show relationships."
+          },
+          {
+           "code": "9-10.W.2.b",
+           "text": "Develop the topic with relevant facts, extended definitions, concrete details, quotations, and examples."
+          },
+          {
+           "code": "9-10.W.2.c",
+           "text": "Use appropriate and varied transitions to link the major sections of the text, create cohesion, and clarify the relationships among related ideas."
+          },
+          {
+           "code": "9-10.W.2.d",
+           "text": "Use precise language and content-specific vocabulary to clarify the relationships of the ideas."
+          },
+          {
+           "code": "9-10.W.2.e",
+           "text": "Use appropriate conventions and style for the audience, purpose, and task."
+          }
+         ]
+        },
+        {
+         "id": "write-narrative-texts-to-develop-real-or-imagine",
+         "title": "Write narrative texts to develop real or imagined experiences or events using effective technique, well-structured event sequences, well-chosen details, and provide a resolution that connects to what is experienced, observed, or resolved over the course of the narrative",
+         "outcomes": [
+          {
+           "code": "9-10.W.3.a",
+           "text": "Engage and orient the reader by describing a problem, situation, or observation."
+          },
+          {
+           "code": "9-10.W.3.b",
+           "text": "Establish one or multiple point(s) of view, and introduce a setting, narrator and/or characters."
+          },
+          {
+           "code": "9-10.W.3.c",
+           "text": "Use narrative techniques such as dialogue, pacing, description, reflection, and multiple plot lines, to develop characters and well-structured event sequences."
+          },
+          {
+           "code": "9-10.W.3.d",
+           "text": "Utilize varied syntax techniques and descriptive language to create a mood and tone appropriate to purpose, task, and audience."
+          },
+          {
+           "code": "9-10.W.3.e",
+           "text": "Use appropriate conventions and style for the audience, purpose, and task."
+          }
+         ]
+        },
+        {
+         "id": "conduct-more-sustained-research-projects-to-craf",
+         "title": "Conduct more sustained research projects to craft an argument, answer a question, or provide an analysis",
+         "outcomes": [
+          {
+           "code": "9-10.W.4.a",
+           "text": "Gather, assess, and synthesize information from credible sources on the topic."
+          },
+          {
+           "code": "9-10.W.4.b",
+           "text": "Reflect on the evidence and generate ideas to demonstrate understanding of the topic and purpose."
+          },
+          {
+           "code": "9-10.W.4.c",
+           "text": "Avoid plagiarism by quoting, paraphrasing, and citing, using a standard format for citation of evidence."
+          },
+          {
+           "code": "9-10.W.4.d",
+           "text": "Interact and collaborate with others throughout the writing process."
+          }
+         ]
+        },
+        {
+         "id": "writing",
+         "title": "Writing",
+         "outcomes": [
+          {
+           "code": "9-10.W.5",
+           "text": "Mastered in grade 5."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "11-12",
+   "units": [
+    {
+     "id": "grades-11-12",
+     "title": "Grades 11-12",
+     "topics": [
+      {
+       "id": "speaking-and-listening",
+       "title": "Speaking and Listening",
+       "subtopics": [
+        {
+         "id": "participate-effectively-in-a-range-of-conversati",
+         "title": "Participate effectively in a range of conversations and collaborations on topics, texts, and issues",
+         "outcomes": [
+          {
+           "code": "11-12.SL.1.a",
+           "text": "Respond thoughtfully to diverse perspectives in democratic discussions that involve decision-making and role-taking; resolve claims and evidence."
+          },
+          {
+           "code": "11-12.SL.1.b",
+           "text": "Participate in conversations by asking and responding to questions that examine reasoning and evidence, ensuring the opportunity to consider a range of perspectives, and clarify, verify, or challenge ideas and conclusions with evidence."
+          },
+          {
+           "code": "11-12.SL.1.c",
+           "text": "Resolve contradictions when applicable, and determine if additional information or research is required to deepen the investigation or conversation."
+          }
+         ]
+        },
+        {
+         "id": "speaking-and-listening",
+         "title": "Speaking and Listening",
+         "outcomes": [
+          {
+           "code": "11-12.SL.2",
+           "text": "Interpret, evaluate, and integrate multiple sources of information presented in various formats and media to verify the credibility and accuracy of each source, and note any discrepancies among the data in order to make informed decisions."
+          }
+         ]
+        },
+        {
+         "id": "use-appropriate-language-grammar-organization-de",
+         "title": "Use appropriate language, grammar, organization, development, and delivery styles appropriate to purpose and audience for formal or informal contexts",
+         "outcomes": [
+          {
+           "code": "11-12.SL.3.a",
+           "text": "Strategically use visual displays of data and digital media, to convey information and enhance understanding of presentations."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "reading",
+       "title": "Reading",
+       "subtopics": [
+        {
+         "id": "reading-1-of-4",
+         "title": "Reading (1 of 4)",
+         "outcomes": [
+          {
+           "code": "11-12.R.1",
+           "text": "Mastered in preschool."
+          },
+          {
+           "code": "11-12.R.2",
+           "text": "Mastered in grade 3."
+          },
+          {
+           "code": "11-12.R.3",
+           "text": "Mastered in grade 5."
+          },
+          {
+           "code": "11-12.R.4",
+           "text": "Read grade-level text with accuracy and fluency to support comprehension."
+          },
+          {
+           "code": "11-12.R.5",
+           "text": "Cite relevant textual evidence to support analysis of what the text says explicitly as well as inferences drawn from the text, including analyzing where the text implies ambiguity."
+          }
+         ]
+        },
+        {
+         "id": "reading-2-of-4",
+         "title": "Reading (2 of 4)",
+         "outcomes": [
+          {
+           "code": "11-12.R.6.RL",
+           "text": "When reading texts, including those from diverse cultures, determine two or more themes and analyze their development, including how they interact and build on one another to produce a complex account, and provide an objective summary that includes textual evidence."
+          },
+          {
+           "code": "11-12.R.6.RI",
+           "text": "When reading texts, including those from diverse cultures, determine main ideas of two or more texts, analyze the main ideas, supporting details, and the relationship between/among the texts; provide an objective synthesis of the texts that includes textual evidence."
+          },
+          {
+           "code": "11-12.R.7.RL",
+           "text": "Analyze how an author develops a text through complex and/or dynamic characters, interaction with other characters, and advancement of the plot or development of the theme."
+          },
+          {
+           "code": "11-12.R.7.RI",
+           "text": "Analyze how the author develops a text through an analysis or argument, including the sequence, the introduction and development and connections of ideas."
+          },
+          {
+           "code": "11-12.R.8",
+           "text": "Determine the meaning and impact of words and phrases on tone and mood, including words with multiple meanings. Analyze figurative language, connotative meanings, and figures of speech. Examine how the author uses and refines the meaning of domain-specific vocabulary and how language differs across historical time periods, cultures, regions, and genres."
+          }
+         ]
+        },
+        {
+         "id": "determine-or-clarify-the-meaning-of-unknown-and-",
+         "title": "Determine or clarify the meaning of unknown and multiple-meaning words and phrases, choosing flexibly from a range of strategies",
+         "outcomes": [
+          {
+           "code": "11-12.R.9.a",
+           "text": "Analyze patterns of word changes that indicate different meanings or parts of speech."
+          },
+          {
+           "code": "11-12.R.9.b",
+           "text": "Determine and consult appropriate reference materials, to find the pronunciation of a word, its precise meaning, its part of speech, its etymology including Greek or Latin affixes and roots, and its usage."
+          }
+         ]
+        },
+        {
+         "id": "reading-3-of-4",
+         "title": "Reading (3 of 4)",
+         "outcomes": [
+          {
+           "code": "11-12.R.10",
+           "text": "Analyze and evaluate the effectiveness of structures across multiple texts about similar topics/themes, including whether the structures make points or events clear, effective, convincing, or engaging."
+          },
+          {
+           "code": "11-12.R.11",
+           "text": "Analyze how an author's geographic location, identity or background, culture, and time period affect the perspective, point of view, purpose, and implicit/explicit messages of a collective body of work."
+          },
+          {
+           "code": "11-12.R.12",
+           "text": "Analyze how a subject and/or content is presented in two or more mediums by determining which details are emphasized, altered, or absent in each account and how these details influence audiences' experiences and interpretations."
+          },
+          {
+           "code": "11-12.R.13",
+           "text": "Not applicable to RL."
+          },
+          {
+           "code": "11-12.R.13",
+           "text": "Delineate and evaluate arguments and specific claims across multiple texts on the same subject, assessing the validity or fallacy of key statements by examining whether the supporting evidence is relevant and sufficient. Recognize when irrelevant evidence is introduced."
+          }
+         ]
+        },
+        {
+         "id": "reading-4-of-4",
+         "title": "Reading (4 of 4)",
+         "outcomes": [
+          {
+           "code": "11-12.R.14.RL",
+           "text": "Analyze two or more texts of literary significance across and within time periods with similar topics and themes, drawing on their purposes, stylistic choices, and rhetorical features."
+          },
+          {
+           "code": "11-12.R.14.RI",
+           "text": "Analyze and evaluate works of cultural significance for the way in which these works treat similar themes, conflicts, issues, or topics, and maintain relevance for current audiences."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "writing",
+       "title": "Writing",
+       "subtopics": [
+        {
+         "id": "write-arguments-to-support-claims-in-an-analysis",
+         "title": "Write arguments to support claims in an analysis of complex topics or texts, using logical reasoning and relevant, sufficient evidence, and provide a conclusion that follows from and supports the argument presented",
+         "outcomes": [
+          {
+           "code": "11-12.W.1.a",
+           "text": "Introduce claims, establish the significance of the claims, distinguish the claims from alternate or opposing claims, and create an organization that logically sequences claims, counterclaims, reasons, and evidence."
+          },
+          {
+           "code": "11-12.W.1.b",
+           "text": "Develop claims and counterclaims by interpreting the most relevant evidence from accurate, credible sources for each; elaborate on the strengths and limitations that anticipate the audience."
+          },
+          {
+           "code": "11-12.W.1.c",
+           "text": "Use words, phrases, and clauses as well as varied syntax to link the major sections of the text, create cohesion, and clarify the relationships between claims and reasons, between reasons and evidence, and between claims and counterclaims."
+          },
+          {
+           "code": "11-12.W.1.d",
+           "text": "Use appropriate conventions and style for the audience, purpose, and task."
+          }
+         ]
+        },
+        {
+         "id": "write-informative-explanatory-texts-to-examine-a",
+         "title": "Write informative/explanatory texts to examine and convey complex ideas and information clearly and accurately through the effective selection, organization, and analysis of content, and provide a conclusion that follows from and supports the information or explanation presented",
+         "outcomes": [
+          {
+           "code": "11-12.W.2.a",
+           "text": "Introduce a topic; organize complex ideas and information so that each new element builds on that which precedes it to create a unified whole; utilize formatting, graphics, and multimedia to illustrate complexities."
+          },
+          {
+           "code": "11-12.W.2.b",
+           "text": "Develop the topic thoroughly with relevant and sufficient facts, extended definitions, concrete details, quotations, examples, and figurative language."
+          },
+          {
+           "code": "11-12.W.2.c",
+           "text": "Use appropriate and varied transitions and syntax to link the major sections of the text, create cohesion, and clarify the relationships among complex ideas."
+          },
+          {
+           "code": "11-12.W.2.d",
+           "text": "Use precise language and content-specific vocabulary to clarify the complexity of the ideas."
+          },
+          {
+           "code": "11-12.W.2.e",
+           "text": "Use appropriate conventions and style for the audience, purpose, and task."
+          }
+         ]
+        },
+        {
+         "id": "write-narrative-texts-to-develop-real-or-imagine",
+         "title": "Write narrative texts to develop real or imagined experiences or events using effective technique, well-structured event sequences, well-chosen details, and provide a resolution with closure",
+         "outcomes": [
+          {
+           "code": "11-12.W.3.a",
+           "text": "Engage and orient the reader by describing a complex problem, situation, or observation."
+          },
+          {
+           "code": "11-12.W.3.b",
+           "text": "Establish one or multiple point(s) of view, and develop a setting, narrator and/or characters."
+          },
+          {
+           "code": "11-12.W.3.c",
+           "text": "Apply narrative techniques, such as dialogue, pacing, description, reflection, flashback, and multiple plot lines to develop characters and well-structured event sequences."
+          },
+          {
+           "code": "11-12.W.3.d",
+           "text": "Utilize varied syntax techniques and descriptive language to create a mood and tone appropriate to purpose, task, and audience."
+          },
+          {
+           "code": "11-12.W.3.e",
+           "text": "Use appropriate conventions and style for the audience, purpose, and task."
+          }
+         ]
+        },
+        {
+         "id": "conduct-research-projects-to-craft-an-argument-a",
+         "title": "Conduct research projects to craft an argument, answer a question, or provide an analysis",
+         "outcomes": [
+          {
+           "code": "11-12.W.4.a",
+           "text": "Gather, assess, and synthesize information from credible sources on the topic."
+          },
+          {
+           "code": "11-12.W.4.b",
+           "text": "Evaluate the evidence and generate ideas to demonstrate understanding of the topic and purpose."
+          },
+          {
+           "code": "11-12.W.4.c",
+           "text": "Avoid plagiarism by quoting, paraphrasing, and citing, using a standard format for citation of evidence."
+          },
+          {
+           "code": "11-12.W.4.d",
+           "text": "Interact and collaborate with others throughout the writing process."
+          }
+         ]
+        },
+        {
+         "id": "writing",
+         "title": "Writing",
+         "outcomes": [
+          {
+           "code": "11-12.W.5",
+           "text": "Mastered in grade 5."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "9-12",
+   "units": [
+    {
+     "id": "writing-process-students-will-use-the-iterative-",
+     "title": "Writing Process. Students will use the iterative process of writing to produce various types of narratives, poetry, and prose",
+     "topics": [
+      {
+       "id": "writing-process-students-will-use-the-iterative-",
+       "title": "Writing Process. Students will use the iterative process of writing to produce various types of narratives, poetry, and prose",
+       "subtopics": [
+        {
+         "id": "writing-process-students-will-use-the-iterative-",
+         "title": "Writing Process. Students will use the iterative process of writing to produce various types of narratives, poetry, and prose",
+         "outcomes": [
+          {
+           "code": "1.1",
+           "text": "Generate and/or capture multiple ideas for writing through observation, processing, discussion, and reading."
+          },
+          {
+           "code": "1.2",
+           "text": "Focus ideas on addressing what is most significant and/or relevant for a specific genre, purpose, and audience."
+          },
+          {
+           "code": "1.3",
+           "text": "Use various techniques for organizing ideas such as outlining, storyboarding, timelines, and plotting."
+          },
+          {
+           "code": "1.4",
+           "text": "Compose multiple drafts with revisions as needed showing growth based on self-evaluation and/or feedback."
+          },
+          {
+           "code": "1.5",
+           "text": "Edit following the conventions of English as appropriate for grade level, genre, and purpose."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "analysis-of-genre-students-will-develop-an-under",
+     "title": "Analysis of Genre. Students will develop an understanding of genre conventions and apply them in their writing",
+     "topics": [
+      {
+       "id": "analysis-of-genre-students-will-develop-an-under",
+       "title": "Analysis of Genre. Students will develop an understanding of genre conventions and apply them in their writing",
+       "subtopics": [
+        {
+         "id": "analysis-of-genre-students-will-develop-an-under",
+         "title": "Analysis of Genre. Students will develop an understanding of genre conventions and apply them in their writing",
+         "outcomes": [
+          {
+           "code": "2.1",
+           "text": "Analyze mentor texts, peer work, and student-created content in a wide variety of genres and modes for craft, style, voice, theme, elements of language, and conventions in order to determine the effects of such writing techniques on a text."
+          },
+          {
+           "code": "2.2",
+           "text": "Analyze craft, style, voice, theme, and conventions in their own and other student’s writing in a variety of genres and modes."
+          },
+          {
+           "code": "2.3",
+           "text": "Understand the cliches and conventions of historical and contemporary genres (e.g., steampunk, stream-of-consciousness, flash fiction, novella, etc.)."
+          },
+          {
+           "code": "2.4",
+           "text": "Determine the audience and purpose of a wide variety of genres."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "craft-and-creation-students-will-produce-vivid-n",
+     "title": "Craft and Creation. Students will produce vivid narratives, poetry, and prose by effectively using a variety of genre-appropriate writing strategies and language techniques",
+     "topics": [
+      {
+       "id": "craft-and-creation-students-will-produce-vivid-n",
+       "title": "Craft and Creation. Students will produce vivid narratives, poetry, and prose by effectively using a variety of genre-appropriate writing strategies and language techniques",
+       "subtopics": [
+        {
+         "id": "craft-and-creation-students-will-produce-vivid-n",
+         "title": "Craft and Creation. Students will produce vivid narratives, poetry, and prose by effectively using a variety of genre-appropriate writing strategies and language techniques (1 of 2)",
+         "outcomes": [
+          {
+           "code": "3.1",
+           "text": "Produce writing based on historical and contemporary structures and forms (e.g., sonnet, villanelle, short story, script writing, etc.) and on a variety of idea-generation techniques (e.g., found poetry, plot structure outline, freewrite, writing prompts, etc.)."
+          },
+          {
+           "code": "3.2",
+           "text": "Craft vivid writing with attention to sound elements (e.g., alliteration, assonance, consonance, rhyme), figurative language, sensory details, scenes, and purposeful word choice and syntax."
+          },
+          {
+           "code": "3.3",
+           "text": "Develop a range of characters (e.g., main characters vs support/side, flat vs round, protagonist vs antagonist)."
+          },
+          {
+           "code": "3.4",
+           "text": "Demonstrate an understanding of the impact of “telling language” and “showing language.”"
+          }
+         ]
+        },
+        {
+         "id": "craft-and-creation-students-will-produce-vivid-n-2",
+         "title": "Craft and Creation. Students will produce vivid narratives, poetry, and prose by effectively using a variety of genre-appropriate writing strategies and language techniques (2 of 2)",
+         "outcomes": [
+          {
+           "code": "3.5",
+           "text": "Effectively weave together narration, description, and dialogue using correct conventions."
+          },
+          {
+           "code": "3.6",
+           "text": "Distinguish among and incorporate various points of view and narrative tense."
+          },
+          {
+           "code": "3.7",
+           "text": "Construct a finished product that demonstrates mastery of targeted writing techniques specific to the genre."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "collaboration-and-evaluation-students-will-colla",
+     "title": "Collaboration and Evaluation. Students will collaborate with peers in the production and evaluation of writing",
+     "topics": [
+      {
+       "id": "collaboration-and-evaluation-students-will-colla",
+       "title": "Collaboration and Evaluation. Students will collaborate with peers in the production and evaluation of writing",
+       "subtopics": [
+        {
+         "id": "collaboration-and-evaluation-students-will-colla",
+         "title": "Collaboration and Evaluation. Students will collaborate with peers in the production and evaluation of writing",
+         "outcomes": [
+          {
+           "code": "4.1",
+           "text": "Generate ideas and research in collaboration with others to draft, plan, present, and publish original work."
+          },
+          {
+           "code": "4.2",
+           "text": "Participate in consistent, collaborative discussions about writing produced by peers, self, and outside sources."
+          },
+          {
+           "code": "4.3",
+           "text": "Articulate, discuss, and reflect upon specific strengths of a piece of writing and provide suggestions for improvement."
+          },
+          {
+           "code": "4.4",
+           "text": "Consider differing perspectives and opinions when editing, critiquing, collaborating, and conferencing work."
+          },
+          {
+           "code": "4.5",
+           "text": "Evaluate personal and peer writing through the use of rubrics, checklists, and/or portfolios."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "literary-magazine-publication-students-will-deve",
+     "title": "Literary Magazine/Publication. Students will develop editorial and publishing skills to produce a literary magazine or publication (in schools where such a publication exists)",
+     "topics": [
+      {
+       "id": "literary-magazine-publication-students-will-deve",
+       "title": "Literary Magazine/Publication. Students will develop editorial and publishing skills to produce a literary magazine or publication (in schools where such a publication exists)",
+       "subtopics": [
+        {
+         "id": "literary-magazine-publication-students-will-deve",
+         "title": "Literary Magazine/Publication. Students will develop editorial and publishing skills to produce a literary magazine or publication (in schools where such a publication exists)",
+         "outcomes": [
+          {
+           "code": "5.1",
+           "text": "Apply elements of design and layout into an aesthetically pleasing magazine and/or publication."
+          },
+          {
+           "code": "5.2",
+           "text": "Organize the literary magazine and/or relevant publications based on a production schedule."
+          },
+          {
+           "code": "5.3",
+           "text": "Create products to solicit submissions as well as promote the publication such as posters, flyers, social media posts, videos and/or announcements."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "analysis-of-genre-students-will-develop-an-under-2",
+     "title": "Analysis of Genre. Students will develop an understanding of the genre of classical, world, and indigenous myths, legends, and folklore",
+     "topics": [
+      {
+       "id": "analysis-of-genre-students-will-develop-an-under",
+       "title": "Analysis of Genre. Students will develop an understanding of the genre of classical, world, and indigenous myths, legends, and folklore",
+       "subtopics": [
+        {
+         "id": "analysis-of-genre-students-will-develop-an-under",
+         "title": "Analysis of Genre. Students will develop an understanding of the genre of classical, world, and indigenous myths, legends, and folklore",
+         "outcomes": [
+          {
+           "code": "1.1",
+           "text": "Analyze the characteristics and purposes of different types of myths, legends, and folklore from a variety of cultures."
+          },
+          {
+           "code": "1.2",
+           "text": "Evaluate the significance of recurring themes, motifs, structures, and patterns in myths, legends, and folklore."
+          },
+          {
+           "code": "1.3",
+           "text": "Analyze the relevance and influence of myths, legends, and folklore on literature, art, and societal values within their respective cultures."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "relationships-and-hierarchies-of-characters-and-",
+     "title": "Relationships and Hierarchies of Characters and Deities. Students will develop an understanding of the relationships and hierarchies of characters and deities within myths, legends, and folklore",
+     "topics": [
+      {
+       "id": "relationships-and-hierarchies-of-characters-and-",
+       "title": "Relationships and Hierarchies of Characters and Deities. Students will develop an understanding of the relationships and hierarchies of characters and deities within myths, legends, and folklore",
+       "subtopics": [
+        {
+         "id": "relationships-and-hierarchies-of-characters-and-",
+         "title": "Relationships and Hierarchies of Characters and Deities. Students will develop an understanding of the relationships and hierarchies of characters and deities within myths, legends, and folklore",
+         "outcomes": [
+          {
+           "code": "2.1",
+           "text": "Identify archetypal characters and/or deities within myths and the roles they play across different cultures."
+          },
+          {
+           "code": "2.2",
+           "text": "Describe the complexities of the relationships and interactions between the characters and/or deities across and within different mythological and cultural systems."
+          },
+          {
+           "code": "2.3",
+           "text": "Derive meanings about the relationships of “the divine,” “the human,” and “the physical” in regard to “the cosmos” using storytelling as a vehicle to moralize themes such as force, violence, hubris, agency, fate, love, and knowledge."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "context-influence-and-significance-students-will",
+     "title": "Context, Influence, and Significance. Students will investigate the historicity, influence, and significance of classical, world, and indigenous myths, legends, and folklore on modern cultures and societies",
+     "topics": [
+      {
+       "id": "context-influence-and-significance-students-will",
+       "title": "Context, Influence, and Significance. Students will investigate the historicity, influence, and significance of classical, world, and indigenous myths, legends, and folklore on modern cultures and societies",
+       "subtopics": [
+        {
+         "id": "context-influence-and-significance-students-will",
+         "title": "Context, Influence, and Significance. Students will investigate the historicity, influence, and significance of classical, world, and indigenous myths, legends, and folklore on modern cultures and societies",
+         "outcomes": [
+          {
+           "code": "3.1",
+           "text": "Describe how myths, legends, and folklore portray different versions of historical events, figures, and peoples."
+          },
+          {
+           "code": "3.2",
+           "text": "Analyze how myths, legends, and folklore reflect, influence, and shape the values of cultures and societies."
+          },
+          {
+           "code": "3.3",
+           "text": "Evaluate the influences and significance of classical and global myths, legends, and folklore on modern media and culture, including themes, motifs, and archetypes."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "law-ethics-students-will-apply-knowledge-of-law-",
+     "title": "Law & Ethics. Students will apply knowledge of law and ethics related to the functioning of a free and independent press and various media platforms",
+     "topics": [
+      {
+       "id": "law-ethics-students-will-apply-knowledge-of-law-",
+       "title": "Law & Ethics. Students will apply knowledge of law and ethics related to the functioning of a free and independent press and various media platforms",
+       "subtopics": [
+        {
+         "id": "law-ethics-students-will-apply-knowledge-of-law-",
+         "title": "Law & Ethics. Students will apply knowledge of law and ethics related to the functioning of a free and independent press and various media platforms",
+         "outcomes": [
+          {
+           "code": "1.1",
+           "text": "Analyze and understand student expression under the First Amendment including protections and limitations including school district publication policies."
+          },
+          {
+           "code": "1.2",
+           "text": "Analyze laws, ethics, and landmark cases specific to journalism."
+          },
+          {
+           "code": "1.3",
+           "text": "Apply the rulings to both practice and real-life situations specific to the school community and publication(s)."
+          },
+          {
+           "code": "1.4",
+           "text": "Research and evaluate the role of a free and independent media within a democratic society."
+          },
+          {
+           "code": "1.5",
+           "text": "Seek perspectives and variety in the human experience."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "media-literacy-students-will-critically-evaluate",
+     "title": "Media Literacy. Students will critically evaluate various forms of media",
+     "topics": [
+      {
+       "id": "media-literacy-students-will-critically-evaluate",
+       "title": "Media Literacy. Students will critically evaluate various forms of media",
+       "subtopics": [
+        {
+         "id": "media-literacy-students-will-critically-evaluate",
+         "title": "Media Literacy. Students will critically evaluate various forms of media (1 of 2)",
+         "outcomes": [
+          {
+           "code": "2.1",
+           "text": "Critically analyze content found in print and digital media used to inform, persuade, entertain, and transmit social information."
+          },
+          {
+           "code": "2.2",
+           "text": "Evaluate how visual techniques or design elements carry or influence messages in various media."
+          },
+          {
+           "code": "2.3",
+           "text": "Analyze the impact of social media on trends and public opinion."
+          },
+          {
+           "code": "2.4",
+           "text": "Identify emotional appeals and logic fallacies. Distinguish writing intended as objective from that intended at subjective."
+          }
+         ]
+        },
+        {
+         "id": "media-literacy-students-will-critically-evaluate-2",
+         "title": "Media Literacy. Students will critically evaluate various forms of media (2 of 2)",
+         "outcomes": [
+          {
+           "code": "2.5",
+           "text": "Identify choices content producers make while constructing media. Evaluate how choices contribute to the impact on the audience."
+          },
+          {
+           "code": "2.6",
+           "text": "Compare and contrast coverage of the same news stories in a variety of print and digital media."
+          },
+          {
+           "code": "2.7",
+           "text": "Evaluate the credibility of sources in a variety of print and digital media stories."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "reporting-writing-process-students-will-effectiv",
+     "title": "Reporting & Writing Process. Students will effectively use the reporting and writing process to produce coherent media stories",
+     "topics": [
+      {
+       "id": "reporting-writing-process-students-will-effectiv",
+       "title": "Reporting & Writing Process. Students will effectively use the reporting and writing process to produce coherent media stories",
+       "subtopics": [
+        {
+         "id": "reporting-writing-process-students-will-effectiv",
+         "title": "Reporting & Writing Process. Students will effectively use the reporting and writing process to produce coherent media stories (1 of 2)",
+         "outcomes": [
+          {
+           "code": "3.1",
+           "text": "Compose and evaluate interview questions for written or broadcast journalism."
+          },
+          {
+           "code": "3.2",
+           "text": "Gather information from multiple, reliable sources and evaluate this information for relevance, accuracy, and completeness."
+          },
+          {
+           "code": "3.3",
+           "text": "Research using current reporting tools, from advanced Google searches to data journalism."
+          },
+          {
+           "code": "3.4",
+           "text": "Write journalistically sound headlines and captions."
+          }
+         ]
+        },
+        {
+         "id": "reporting-writing-process-students-will-effectiv-2",
+         "title": "Reporting & Writing Process. Students will effectively use the reporting and writing process to produce coherent media stories (2 of 2)",
+         "outcomes": [
+          {
+           "code": "3.5",
+           "text": "Use direct and indirect quotes in copy with appropriate attribution (e.g., punctuation, identification, verb choice)."
+          },
+          {
+           "code": "3.6",
+           "text": "Develop a variety of journalistically sound pieces (see appendix) using standard writing conventions ensuring the principles of fairness, balance and accuracy."
+          },
+          {
+           "code": "3.7",
+           "text": "Revise original pieces for content and style appropriate to the medium and audience."
+          },
+          {
+           "code": "3.8",
+           "text": "Peer- and self-edit using journalism style manuals as references."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "multimedia-tools-students-will-develop-an-unders",
+     "title": "Multimedia Tools. Students will develop an understanding of how multimedia journalism plays a pivotal role in storytelling while becoming familiar with the basics of photo, video and audio production",
+     "topics": [
+      {
+       "id": "multimedia-tools-students-will-develop-an-unders",
+       "title": "Multimedia Tools. Students will develop an understanding of how multimedia journalism plays a pivotal role in storytelling while becoming familiar with the basics of photo, video and audio production",
+       "subtopics": [
+        {
+         "id": "multimedia-tools-students-will-develop-an-unders",
+         "title": "Multimedia Tools. Students will develop an understanding of how multimedia journalism plays a pivotal role in storytelling while becoming familiar with the basics of photo, video and audio production",
+         "outcomes": [
+          {
+           "code": "4.1",
+           "text": "Analyze & evaluate photography, videography, and audio in journalism (e.g., emotional connection, how multimedia elements enhance text, reader response, storytelling quality of the photo)."
+          },
+          {
+           "code": "4.2",
+           "text": "Apply principles of photography such as composition, lighting, and other important photojournalism concepts."
+          },
+          {
+           "code": "4.3",
+           "text": "Apply principles of videography, such as wide, medium and close shots, length of shot, etc."
+          },
+          {
+           "code": "4.4",
+           "text": "Apply principles of audio production, such as natural sound, stereo, nonlinear editing."
+          },
+          {
+           "code": "4.5",
+           "text": "Use professional ethics in producing and selecting photos, videos, and audio for publication."
+          },
+          {
+           "code": "4.6",
+           "text": "Collect accurate information to provide context to the photo, video, or audio and connect it logically to the story that it illustrates (e.g. captions, metadata)."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "technology-design-students-will-apply-appropriat",
+     "title": "Technology & Design. Students will apply appropriate principles of technology and design",
+     "topics": [
+      {
+       "id": "technology-design-students-will-apply-appropriat",
+       "title": "Technology & Design. Students will apply appropriate principles of technology and design",
+       "subtopics": [
+        {
+         "id": "technology-design-students-will-apply-appropriat",
+         "title": "Technology & Design. Students will apply appropriate principles of technology and design",
+         "outcomes": [
+          {
+           "code": "5.1",
+           "text": "Apply available technologies used in publishing to create designs appropriate for media (e.g., desktop publishing, photo editing, Web-based media, word processing)."
+          },
+          {
+           "code": "5.2",
+           "text": "Analyze and apply principles of layout and design to create a visually appealing school publication that effectively communicates to the audience."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "management-organization-students-will-develop-ma",
+     "title": "Management & Organization. Students will develop management and organizational leadership skills to produce media content",
+     "topics": [
+      {
+       "id": "management-organization-students-will-develop-ma",
+       "title": "Management & Organization. Students will develop management and organizational leadership skills to produce media content",
+       "subtopics": [
+        {
+         "id": "management-organization-students-will-develop-ma",
+         "title": "Management & Organization. Students will develop management and organizational leadership skills to produce media content",
+         "outcomes": [
+          {
+           "code": "6.1",
+           "text": "Apply organizational, economic, and management skills necessary to meet student media production schedules."
+          },
+          {
+           "code": "6.2",
+           "text": "Develop and execute a marketing plan to maximize the awareness and readership of student media."
+          },
+          {
+           "code": "6.3",
+           "text": "Develop a business plan to learn principles of innovative funding models (e.g., advertising, sponsored content, nonprofit model)."
+          },
+          {
+           "code": "6.4",
+           "text": "Investigate educational opportunities and careers in journalism and mass media."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "digital-citizenship-students-will-be-able-to-rec",
+     "title": "Digital Citizenship. Students will be able to recognize good digital citizenship and use best practices in social media",
+     "topics": [
+      {
+       "id": "digital-citizenship-students-will-be-able-to-rec",
+       "title": "Digital Citizenship. Students will be able to recognize good digital citizenship and use best practices in social media",
+       "subtopics": [
+        {
+         "id": "digital-citizenship-students-will-be-able-to-rec",
+         "title": "Digital Citizenship. Students will be able to recognize good digital citizenship and use best practices in social media",
+         "outcomes": [
+          {
+           "code": "7.1",
+           "text": "Demonstrate professional social media ethics in use and production."
+          },
+          {
+           "code": "7.2",
+           "text": "Develop meaningful, engaging content for multiple social media platforms adhering to each platform’s guidelines."
+          },
+          {
+           "code": "7.3",
+           "text": "Develop strategies for finding reliable sources on social media and contacting them for interviews."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "research-and-development-students-will-read-and-",
+     "title": "Research and Development. Students will read and collect research from textual evidence to prepare for debates",
+     "topics": [
+      {
+       "id": "research-and-development-students-will-read-and-",
+       "title": "Research and Development. Students will read and collect research from textual evidence to prepare for debates",
+       "subtopics": [
+        {
+         "id": "research-and-development-students-will-read-and-",
+         "title": "Research and Development. Students will read and collect research from textual evidence to prepare for debates",
+         "outcomes": [
+          {
+           "code": "1.1",
+           "text": "Prepare for and present in a variety of speech and debate formats (see appendix)."
+          },
+          {
+           "code": "1.2",
+           "text": "Analyze current events and political atmosphere (e.g., domestic policy, economic policy, foreign policy, social climate)."
+          },
+          {
+           "code": "1.3",
+           "text": "Collaborate to define issues and develop strategies."
+          },
+          {
+           "code": "1.5",
+           "text": "Evaluate researched texts for validity, reliability, and credibility of source, content, and/or author."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "research-arguments-to-support-substantive-claims",
+       "title": "Research arguments to support substantive claims using a variety of primary and/or secondary sources including but not limited to historical, scientific, and technical texts:",
+       "subtopics": [
+        {
+         "id": "research-arguments-to-support-substantive-claims",
+         "title": "Research arguments to support substantive claims using a variety of primary and/or secondary sources including but not limited to historical, scientific, and technical texts:",
+         "outcomes": [
+          {
+           "code": "1.4.a",
+           "text": "central idea"
+          },
+          {
+           "code": "1.4.b",
+           "text": "discrepancies in content"
+          },
+          {
+           "code": "1.4.c",
+           "text": "explanation for action or events"
+          },
+          {
+           "code": "1.4.d",
+           "text": "points of view"
+          },
+          {
+           "code": "1.4.e",
+           "text": "specialized vocabulary"
+          },
+          {
+           "code": "1.4.f",
+           "text": "textual evidence"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "fundamentals-students-will-analyze-and-evaluate-",
+     "title": "Fundamentals. Students will analyze and evaluate various speech and debate formats to develop fundamental knowledge for application",
+     "topics": [
+      {
+       "id": "fundamentals-students-will-analyze-and-evaluate-",
+       "title": "Fundamentals. Students will analyze and evaluate various speech and debate formats to develop fundamental knowledge for application",
+       "subtopics": [
+        {
+         "id": "fundamentals-students-will-analyze-and-evaluate-",
+         "title": "Fundamentals. Students will analyze and evaluate various speech and debate formats to develop fundamental knowledge for application (1 of 2)",
+         "outcomes": [
+          {
+           "code": "2.1",
+           "text": "Compare and contrast classical and contemporary philosophers and their contributions to speech and debate."
+          },
+          {
+           "code": "2.2",
+           "text": "Explain the historical and contemporary role that speech and debate play in democratic society (e.g., diplomacy, government policy, justice system, politics)."
+          },
+          {
+           "code": "2.3",
+           "text": "Discuss ethical dilemmas and practices as found in various speaking topics, contentions, and presentations."
+          },
+          {
+           "code": "2.4",
+           "text": "Demonstrate ethical practices in speech and debate (e.g., behavior, courtesy, verbal and nonverbal communication)."
+          }
+         ]
+        },
+        {
+         "id": "fundamentals-students-will-analyze-and-evaluate--2",
+         "title": "Fundamentals. Students will analyze and evaluate various speech and debate formats to develop fundamental knowledge for application (2 of 2)",
+         "outcomes": [
+          {
+           "code": "2.6",
+           "text": "Analyze a variety of speech and debate structures for task, audience, and purpose."
+          },
+          {
+           "code": "2.7",
+           "text": "Use speech and debate conventions appropriately (see appendix A)."
+          },
+          {
+           "code": "2.8",
+           "text": "Use speech and debate terminology effectively (see appendix A)."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "demonstrate-effective-communication-skills-in-sp",
+       "title": "Demonstrate effective communication skills in speech and debate:",
+       "subtopics": [
+        {
+         "id": "demonstrate-effective-communication-skills-in-sp",
+         "title": "Demonstrate effective communication skills in speech and debate:",
+         "outcomes": [
+          {
+           "code": "2.5.a",
+           "text": "Speaking (e.g., framing questions, responding to questions, speaking extemporaneously, using appropriate language)"
+          },
+          {
+           "code": "2.5.b",
+           "text": "Listening (e.g., critical and attentive listening demonstrated by note taking, critiquing)"
+          },
+          {
+           "code": "2.5.c",
+           "text": "Nonverbal communication (e.g., attire, eye contact, facial expressions, gestures, proximity)"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "identify-develop-and-argue-stock-issues",
+       "title": "Identify, develop, and argue stock issues:",
+       "subtopics": [
+        {
+         "id": "identify-develop-and-argue-stock-issues",
+         "title": "Identify, develop, and argue stock issues:",
+         "outcomes": [
+          {
+           "code": "2.9.a",
+           "text": "Harm"
+          },
+          {
+           "code": "2.9.b",
+           "text": "Inherency"
+          },
+          {
+           "code": "2.9.c",
+           "text": "Significance"
+          },
+          {
+           "code": "2.9.d",
+           "text": "Solvency"
+          },
+          {
+           "code": "2.9.e",
+           "text": "Topicality"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "apply-critical-thinking-skills-when-researching-",
+       "title": "Apply critical thinking skills when researching, preparing, and presenting arguments:",
+       "subtopics": [
+        {
+         "id": "apply-critical-thinking-skills-when-researching-",
+         "title": "Apply critical thinking skills when researching, preparing, and presenting arguments:",
+         "outcomes": [
+          {
+           "code": "2.10.a",
+           "text": "Causal arguments"
+          },
+          {
+           "code": "2.10.b",
+           "text": "Logical fallacies"
+          },
+          {
+           "code": "2.10.c",
+           "text": "Source validity"
+          },
+          {
+           "code": "2.10.d",
+           "text": "Topic and analysis support using strong evidence"
+          },
+          {
+           "code": "2.10.e",
+           "text": "Challenge the status quo and current policy proposals, using a variety of arguments and rhetorical devices"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "performance-and-evaluation-students-will-demonst",
+     "title": "Performance and Evaluation. Students will demonstrate fundamental speaking and debating skills and evaluate best practices",
+     "topics": [
+      {
+       "id": "apply-principles-of-ethical-communication-approp",
+       "title": "Apply principles of ethical communication appropriate to context:",
+       "subtopics": [
+        {
+         "id": "apply-principles-of-ethical-communication-approp",
+         "title": "Apply principles of ethical communication appropriate to context:",
+         "outcomes": [
+          {
+           "code": "3.1.a",
+           "text": "Academic honesty"
+          },
+          {
+           "code": "3.1.b",
+           "text": "Bias"
+          },
+          {
+           "code": "3.1.c",
+           "text": "Communication responsibility"
+          },
+          {
+           "code": "3.1.d",
+           "text": "Plagiarism"
+          },
+          {
+           "code": "3.1.e",
+           "text": "Respect for diversity"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "performance-and-evaluation-students-will-demonst",
+       "title": "Performance and Evaluation. Students will demonstrate fundamental speaking and debating skills and evaluate best practices",
+       "subtopics": [
+        {
+         "id": "performance-and-evaluation-students-will-demonst",
+         "title": "Performance and Evaluation. Students will demonstrate fundamental speaking and debating skills and evaluate best practices",
+         "outcomes": [
+          {
+           "code": "3.2",
+           "text": "Identify and adjust behaviors and arguments based on evaluation paradigms (See appendix)."
+          },
+          {
+           "code": "3.3",
+           "text": "Present arguments using clear and concise language."
+          },
+          {
+           "code": "3.4",
+           "text": "Demonstrate the process of refutation and cross examination in debate settings and provide effective rebuttals."
+          },
+          {
+           "code": "3.5",
+           "text": "Demonstrate the ability to give and receive constructive criticism to self and peers."
+          },
+          {
+           "code": "3.7",
+           "text": "Analyze the reduction of communication barriers (see appendix)."
+          },
+          {
+           "code": "3.8",
+           "text": "Demonstrate mutual respect in interpersonal communication."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "develop-presentation-skills-to-convey-complex-id",
+       "title": "Develop presentation skills to convey complex ideas:",
+       "subtopics": [
+        {
+         "id": "develop-presentation-skills-to-convey-complex-id",
+         "title": "Develop presentation skills to convey complex ideas:",
+         "outcomes": [
+          {
+           "code": "3.6.a",
+           "text": "Extemporaneous speech"
+          },
+          {
+           "code": "3.6.b",
+           "text": "Formal register"
+          },
+          {
+           "code": "3.6.c",
+           "text": "Persuasive techniques"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "demonstrate-appropriate-critical-empathetic-appr",
+       "title": "Demonstrate appropriate critical, empathetic, appreciative, and reflective listening skills in formal and informal situations:",
+       "subtopics": [
+        {
+         "id": "demonstrate-appropriate-critical-empathetic-appr",
+         "title": "Demonstrate appropriate critical, empathetic, appreciative, and reflective listening skills in formal and informal situations:",
+         "outcomes": [
+          {
+           "code": "3.9.a",
+           "text": "Active listening behaviors"
+          },
+          {
+           "code": "3.9.b",
+           "text": "False assumptions"
+          },
+          {
+           "code": "3.9.c",
+           "text": "Loaded terms"
+          },
+          {
+           "code": "3.9.d",
+           "text": "Note-taking"
+          },
+          {
+           "code": "3.9.e",
+           "text": "Sarcasm"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "human-nature-students-will-explore-what-it-means",
+     "title": "Human Nature: Students will explore what it means to be human throughout time by studying the physical, social, aesthetic, and spiritual aspects of human nature",
+     "topics": [
+      {
+       "id": "human-nature-students-will-explore-what-it-means",
+       "title": "Human Nature: Students will explore what it means to be human throughout time by studying the physical, social, aesthetic, and spiritual aspects of human nature",
+       "subtopics": [
+        {
+         "id": "human-nature-students-will-explore-what-it-means",
+         "title": "Human Nature: Students will explore what it means to be human throughout time by studying the physical, social, aesthetic, and spiritual aspects of human nature",
+         "outcomes": [
+          {
+           "code": "1.1",
+           "text": "Analyze the interrelationships of religion, morals, ethics, and aesthetics present in the world’s societies."
+          },
+          {
+           "code": "1.2",
+           "text": "Examine exemplary works and artifacts as a means of expressing information, thoughts, and ideals within various cultures, places, and time periods."
+          },
+          {
+           "code": "1.3",
+           "text": "Evaluate exemplary works and artifacts’ use of elements of form including literary or artistic elements to express aspects of human nature."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "human-roles-behavior-students-will-examine-how-h",
+     "title": "Human Roles & Behavior: Students will examine how humans have elevated ideas, customs, and social behaviors in societies through the cultivation and refinement of literature, language, philosophy, fine arts, and performing arts throughout history",
+     "topics": [
+      {
+       "id": "human-roles-behavior-students-will-examine-how-h",
+       "title": "Human Roles & Behavior: Students will examine how humans have elevated ideas, customs, and social behaviors in societies through the cultivation and refinement of literature, language, philosophy, fine arts, and performing arts throughout history",
+       "subtopics": [
+        {
+         "id": "human-roles-behavior-students-will-examine-how-h",
+         "title": "Human Roles & Behavior: Students will examine how humans have elevated ideas, customs, and social behaviors in societies through the cultivation and refinement of literature, language, philosophy, fine arts, and performing arts throughout history",
+         "outcomes": [
+          {
+           "code": "2.1",
+           "text": "Examine how the innate desire for purpose, meaning, and fulfillment have motivated individuals to create exemplary works that express information, thoughts, and ideals within various cultures, places, and time periods."
+          },
+          {
+           "code": "2.2",
+           "text": "Examine exemplary works and artifacts as a means of expressing information, thoughts, and ideals within various cultures, places, and time periods."
+          },
+          {
+           "code": "2.3",
+           "text": "Identify and evaluate potential aspects of motivation and inspiration in the production of exemplary works and artifacts."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "human-ideals-students-will-examine-the-human-nee",
+     "title": "Human Ideals: Students will examine the human need for discovering and expressing human ideals, for example, truth, love, joy, beauty, respect, or liberty, within various cultures, places, and time periods",
+     "topics": [
+      {
+       "id": "human-ideals-students-will-examine-the-human-nee",
+       "title": "Human Ideals: Students will examine the human need for discovering and expressing human ideals, for example, truth, love, joy, beauty, respect, or liberty, within various cultures, places, and time periods",
+       "subtopics": [
+        {
+         "id": "human-ideals-students-will-examine-the-human-nee",
+         "title": "Human Ideals: Students will examine the human need for discovering and expressing human ideals, for example, truth, love, joy, beauty, respect, or liberty, within various cultures, places, and time periods",
+         "outcomes": [
+          {
+           "code": "3.1",
+           "text": "Compare human ideals as defined by different cultures, places, and time periods."
+          },
+          {
+           "code": "3.2",
+           "text": "Analyze exemplary works and artifacts as a means of discovering and expressing human ideals within various cultures, places, and time periods."
+          },
+          {
+           "code": "3.3",
+           "text": "Evaluate exemplary works’ and artifacts’ use of elements of form to express human ideals within various cultures, places, and time periods."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "reading-and-analysis-students-will-analyze-a-var",
+     "title": "Reading and Analysis. Students will analyze a variety of digital and print texts to gather information and use as quality examples of professional and technical communication",
+     "topics": [
+      {
+       "id": "reading-and-analysis-students-will-analyze-a-var",
+       "title": "Reading and Analysis. Students will analyze a variety of digital and print texts to gather information and use as quality examples of professional and technical communication",
+       "subtopics": [
+        {
+         "id": "reading-and-analysis-students-will-analyze-a-var",
+         "title": "Reading and Analysis. Students will analyze a variety of digital and print texts to gather information and use as quality examples of professional and technical communication",
+         "outcomes": [
+          {
+           "code": "1.1",
+           "text": "Distinguish key differences in audience and purpose for professional and technical communications."
+          },
+          {
+           "code": "1.2",
+           "text": "Examine and evaluate the structure, format, and syntax of a variety of professional and technical communications."
+          },
+          {
+           "code": "1.3",
+           "text": "Determine the meaning of professional and technical vocabulary to aid comprehension and conduct research."
+          },
+          {
+           "code": "1.4",
+           "text": "Analyze and summarize information and data from multiple sources for reliability, relevance, accuracy, and rhetorical purpose."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "oral-communication-students-will-engage-in-a-var",
+     "title": "Oral Communication. Students will engage in a variety of professional and technical oral communications",
+     "topics": [
+      {
+       "id": "oral-communication-students-will-engage-in-a-var",
+       "title": "Oral Communication. Students will engage in a variety of professional and technical oral communications",
+       "subtopics": [
+        {
+         "id": "oral-communication-students-will-engage-in-a-var",
+         "title": "Oral Communication. Students will engage in a variety of professional and technical oral communications",
+         "outcomes": [
+          {
+           "code": "2.1",
+           "text": "Develop professional and technical oral communication techniques using language, syntax, and organization that are appropriate to the audience, purpose, and context."
+          },
+          {
+           "code": "2.2",
+           "text": "Utilize appropriate delivery techniques (i.e., posture, gesture, eye contact, vocal expressiveness) to make presentations understandable."
+          },
+          {
+           "code": "2.3",
+           "text": "Participate in clarifying discussions about the format and content of professional and technical communications produced by self, peers, teams, and outside sources."
+          },
+          {
+           "code": "2.4",
+           "text": "Apply critical, empathetic, appreciative, and reflective listening skills in formal and informal situations."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "print-and-digital-communication-students-will-pr",
+     "title": "Print and Digital Communication. Students will produce a variety of professional and technical written communications",
+     "topics": [
+      {
+       "id": "print-and-digital-communication-students-will-pr",
+       "title": "Print and Digital Communication. Students will produce a variety of professional and technical written communications",
+       "subtopics": [
+        {
+         "id": "print-and-digital-communication-students-will-pr",
+         "title": "Print and Digital Communication. Students will produce a variety of professional and technical written communications",
+         "outcomes": [
+          {
+           "code": "3.1",
+           "text": "Develop professional and technical written print and digital communications using language, syntax, format, and delivery methods that are appropriate to the audience, purpose, and context."
+          },
+          {
+           "code": "3.2",
+           "text": "Create charts, graphs, and other visuals using appropriate data to clarify professional and technical written digital and print communications."
+          },
+          {
+           "code": "3.3",
+           "text": "Employ ethical and lawful practices when utilizing intellectual property."
+          },
+          {
+           "code": "3.4",
+           "text": "Revise original pieces for content and style appropriate to the audience, purpose, and context."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "build": {
+  "builtAt": "2026-10-14T16:20:49.806Z",
+  "model": "none",
+  "usd": 0,
+  "expectedCodes": 536,
+  "coverage": 1,
+  "missingCodes": [],
+  "counts": {
+   "grades": 12,
+   "units": 36,
+   "topics": 67,
+   "subtopics": 187,
+   "outcomes": 606
+  },
+  "warnings": []
+ }
+}

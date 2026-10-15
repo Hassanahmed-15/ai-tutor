@@ -1,0 +1,1244 @@
+{
+ "id": "us-hi-health",
+ "region": "US",
+ "framework": "Hawaii state academic standards: Health Education",
+ "board": null,
+ "qualification": "K-12",
+ "subject": "Health Education",
+ "syllabusCode": null,
+ "gradeSystem": "grade",
+ "source": {
+  "urls": [
+   "https://api.commonstandardsproject.com/api/v1/jurisdictions/64B8E297AAEF42DA886248000B292DF1",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/64B8E297AAEF42DA886248000B292DF1_D2448113_grades-01-02-k",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/64B8E297AAEF42DA886248000B292DF1_D2448113_grades-03-04-05",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/64B8E297AAEF42DA886248000B292DF1_D2448113_grades-06-07-08",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/64B8E297AAEF42DA886248000B292DF1_D2448113_grades-09-10-11-12"
+  ],
+  "publisher": "Hawaii state education agency (machine-readable via Common Standards Project / ASN)",
+  "licence": "CC BY 3.0 US, JES & Co.",
+  "firstExam": "2005"
+ },
+ "grades": [
+  {
+   "grade": "K-2",
+   "units": [
+    {
+     "id": "core-concepts-understand-concepts-related-to-hea",
+     "title": "Core Concepts — Understand concepts related to health promotion and disease prevention",
+     "topics": [
+      {
+       "id": "mental-and-emotional-health",
+       "title": "Mental and Emotional Health",
+       "subtopics": [
+        {
+         "id": "mental-and-emotional-health",
+         "title": "Mental and Emotional Health",
+         "outcomes": [
+          {
+           "code": "HE.K-2.1.1",
+           "text": "Describe appropriate ways to express feelings"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "healthy-eating-and-physical-activity",
+       "title": "Healthy Eating and Physical Activity",
+       "subtopics": [
+        {
+         "id": "healthy-eating-and-physical-activity",
+         "title": "Healthy Eating and Physical Activity",
+         "outcomes": [
+          {
+           "code": "HE.K-2.1.2",
+           "text": "Explain the benefits associated with exercise"
+          },
+          {
+           "code": "HE.K-2.1.3",
+           "text": "Describe the benefits associated with a healthy diet"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "promoting-safety-and-preventing-violence-and-uni",
+       "title": "Promoting Safety and Preventing Violence and Unintentional Injury",
+       "subtopics": [
+        {
+         "id": "promoting-safety-and-preventing-violence-and-uni",
+         "title": "Promoting Safety and Preventing Violence and Unintentional Injury",
+         "outcomes": [
+          {
+           "code": "HE.K-2.1.4",
+           "text": "Describe barriers and situations that are safe, risky, or harmful to self and others"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "personal-health-and-wellness",
+       "title": "Personal Health and Wellness",
+       "subtopics": [
+        {
+         "id": "personal-health-and-wellness",
+         "title": "Personal Health and Wellness",
+         "outcomes": [
+          {
+           "code": "HE.K-2.1.5",
+           "text": "Describe how individuals can promote and protect their own health"
+          },
+          {
+           "code": "HE.K-2.1.6",
+           "text": "Describe helpful and harmful substances and their proper use"
+          },
+          {
+           "code": "HE.K-2.1.7",
+           "text": "Describe the benefits associated with personal cleanliness"
+          },
+          {
+           "code": "HE.K-2.1.8",
+           "text": "Describe the signs and symptoms of common illness and strategies one can use to avoid spreading or catching illnesses"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "accessing-information-access-valid-health-inform",
+     "title": "Accessing Information — Access valid health information and health-promoting products and services",
+     "topics": [
+      {
+       "id": "health-information-products-and-services-across-",
+       "title": "Health Information, Products, and Services Across Topic Areas",
+       "subtopics": [
+        {
+         "id": "health-information-products-and-services-across-",
+         "title": "Health Information, Products, and Services Across Topic Areas",
+         "outcomes": [
+          {
+           "code": "HE.K-2.2.1",
+           "text": "Name people in the school and community who provide health support for others"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "self-management-practice-health-enhancing-behavi",
+     "title": "Self-Management — Practice health-enhancing behaviors and reduce health risks",
+     "topics": [
+      {
+       "id": "mental-and-emotional-health",
+       "title": "Mental and Emotional Health",
+       "subtopics": [
+        {
+         "id": "mental-and-emotional-health",
+         "title": "Mental and Emotional Health",
+         "outcomes": [
+          {
+           "code": "HE.K-2.3.1",
+           "text": "Describe personal stressors and ways to deal with stressful situations"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "analyzing-influences-understand-the-influences-o",
+     "title": "Analyzing Influences — Understand the influences of culture, family, peers, media, technology, and other factors on health",
+     "topics": [
+      {
+       "id": "factors-influencing-health-across-topic-areas",
+       "title": "Factors Influencing Health Across Topic Areas",
+       "subtopics": [
+        {
+         "id": "factors-influencing-health-across-topic-areas",
+         "title": "Factors Influencing Health Across Topic Areas",
+         "outcomes": [
+          {
+           "code": "HE.K-2.4.1",
+           "text": "Describe internal (e.g., one's own feelings, moods, curiosity, physical well-being) and external (e.g., family, school, media) factors that influence health behaviors"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "interpersonal-communication-use-interpersonal-co",
+     "title": "Interpersonal Communication — Use interpersonal communication skills to enhance health",
+     "topics": [
+      {
+       "id": "communication-skils-across-topic-areas",
+       "title": "Communication Skils Across Topic Areas",
+       "subtopics": [
+        {
+         "id": "communication-skils-across-topic-areas",
+         "title": "Communication Skils Across Topic Areas",
+         "outcomes": [
+          {
+           "code": "HE.K-2.5.1",
+           "text": "Use effective verbal and nonverbal communication"
+          },
+          {
+           "code": "HE.K-2.5.2",
+           "text": "Use effective and appropriate ways to express feelings, wants, and needs"
+          },
+          {
+           "code": "HE.K-2.5.3",
+           "text": "Describe basic refusal skills"
+          },
+          {
+           "code": "HE.K-2.5.4",
+           "text": "Describe how to be a good friend and responsible family member"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "decision-making-and-goal-setting-use-decision-ma",
+     "title": "Decision-Making and Goal-Setting — Use decision-making and goal-setting skills to enhance health",
+     "topics": [
+      {
+       "id": "decision-making-across-topic-areas",
+       "title": "Decision-Making Across Topic Areas",
+       "subtopics": [
+        {
+         "id": "decision-making-across-topic-areas",
+         "title": "Decision-Making Across Topic Areas",
+         "outcomes": [
+          {
+           "code": "HE.K-2.6.1",
+           "text": "Explain when and who to ask for help in making health-related decisions and setting goals"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "goal-setting-across-topic-areas",
+       "title": "Goal-Setting Across Topic Areas",
+       "subtopics": [
+        {
+         "id": "goal-setting-across-topic-areas",
+         "title": "Goal-Setting Across Topic Areas",
+         "outcomes": [
+          {
+           "code": "HE.K-2.6.2",
+           "text": "Name a personal health goal and describe a plan to achieve it"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "advocacy-advocate-for-personal-family-and-commun",
+     "title": "Advocacy — Advocate for personal, family, and community health",
+     "topics": [
+      {
+       "id": "advocacy-across-topic-areas",
+       "title": "Advocacy Across Topic Areas",
+       "subtopics": [
+        {
+         "id": "advocacy-across-topic-areas",
+         "title": "Advocacy Across Topic Areas",
+         "outcomes": [
+          {
+           "code": "HE.K-2.7.1",
+           "text": "Describe ways to help others promote and protect their own health"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "3-5",
+   "units": [
+    {
+     "id": "core-concepts-understand-concepts-related-to-hea",
+     "title": "Core Concepts — Understand concepts related to health promotion and disease prevention",
+     "topics": [
+      {
+       "id": "mental-and-emotional-health",
+       "title": "Mental and Emotional Health",
+       "subtopics": [
+        {
+         "id": "mental-and-emotional-health",
+         "title": "Mental and Emotional Health",
+         "outcomes": [
+          {
+           "code": "HE.3-5.1.1",
+           "text": "Describe the relationship between physical and emotional health"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "healthy-eating-and-physical-activity",
+       "title": "Healthy Eating and Physical Activity",
+       "subtopics": [
+        {
+         "id": "healthy-eating-and-physical-activity",
+         "title": "Healthy Eating and Physical Activity",
+         "outcomes": [
+          {
+           "code": "HE.3-5.1.2",
+           "text": "Describe the importance of physical activity and exercise as part of a healthy lifestyle"
+          },
+          {
+           "code": "HE.3-5.1.3",
+           "text": "Explain the importance of a healthy diet as part of a healthy lifestyle"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "promoting-safety-and-preventing-violence-and-uni",
+       "title": "Promoting Safety and Preventing Violence and Unintentional Injury",
+       "subtopics": [
+        {
+         "id": "promoting-safety-and-preventing-violence-and-uni",
+         "title": "Promoting Safety and Preventing Violence and Unintentional Injury",
+         "outcomes": [
+          {
+           "code": "HE.3-5.1.4",
+           "text": "Describe how to assess situations that might be dangerous or risky and strategies to avoid such situations"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "personal-health-and-wellness",
+       "title": "Personal Health and Wellness",
+       "subtopics": [
+        {
+         "id": "personal-health-and-wellness",
+         "title": "Personal Health and Wellness",
+         "outcomes": [
+          {
+           "code": "HE.3-5.1.8",
+           "text": "Describe the relationship between health behaviors and well-being"
+          },
+          {
+           "code": "HE.3-5.1.9",
+           "text": "Explain the consequences associated with exposure to environmental elements"
+          },
+          {
+           "code": "HE.3-5.1.10",
+           "text": "Explain the importance of early detection and treatment of disease"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "tobacco-free-lifestyle",
+       "title": "Tobacco-Free Lifestyle",
+       "subtopics": [
+        {
+         "id": "tobacco-free-lifestyle",
+         "title": "Tobacco-Free Lifestyle",
+         "outcomes": [
+          {
+           "code": "HE.3-5.1.5",
+           "text": "Identify the consequences of using tobacco products"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "alcohol-and-other-drugfree-lifestyle",
+       "title": "Alcohol and Other Drugfree Lifestyle",
+       "subtopics": [
+        {
+         "id": "alcohol-and-other-drugfree-lifestyle",
+         "title": "Alcohol and Other Drugfree Lifestyle",
+         "outcomes": [
+          {
+           "code": "HE.3-5.1.6",
+           "text": "Identify the consequences of alcohol and drug abuse"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "sexual-health-and-responsibility",
+       "title": "Sexual Health and Responsibility",
+       "subtopics": [
+        {
+         "id": "sexual-health-and-responsibility",
+         "title": "Sexual Health and Responsibility",
+         "outcomes": [
+          {
+           "code": "HE.3-5.1.7",
+           "text": "Identify the stages of growth and development in humans related to puberty and adolescence"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "accessing-information-access-valid-health-inform",
+     "title": "Accessing Information — Access valid health information and health-promoting products and services",
+     "topics": [
+      {
+       "id": "health-information-products-and-services-across-",
+       "title": "Health Information, Products, and Services Across Topic Areas",
+       "subtopics": [
+        {
+         "id": "health-information-products-and-services-across-",
+         "title": "Health Information, Products, and Services Across Topic Areas",
+         "outcomes": [
+          {
+           "code": "HE.3-5.2.1",
+           "text": "Explain where health information can be found in the home, school, and community"
+          },
+          {
+           "code": "HE.3-5.2.2",
+           "text": "Identify the characteristics of valid health information, products, and services"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "self-management-practice-health-enhancing-behavi",
+     "title": "Self-Management — Practice health-enhancing behaviors and reduce health risks",
+     "topics": [
+      {
+       "id": "mental-and-emotional-health",
+       "title": "Mental and Emotional Health",
+       "subtopics": [
+        {
+         "id": "mental-and-emotional-health",
+         "title": "Mental and Emotional Health",
+         "outcomes": [
+          {
+           "code": "HE.3-5.3.1",
+           "text": "Use appropriate strategies for dealing with emotional and stressful situations"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "personal-health-and-wellness",
+       "title": "Personal Health and Wellness",
+       "subtopics": [
+        {
+         "id": "personal-health-and-wellness",
+         "title": "Personal Health and Wellness",
+         "outcomes": [
+          {
+           "code": "HE.3-5.3.2",
+           "text": "Evaluate behaviors that are safe, risky, or harmful to self and others"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "analyzing-influences-understand-the-influences-o",
+     "title": "Analyzing Influences — Understand the influences of culture, family, peers, media, technology, and other factors on health",
+     "topics": [
+      {
+       "id": "factors-influencing-health-across-topic-areas",
+       "title": "Factors Influencing Health Across Topic Areas",
+       "subtopics": [
+        {
+         "id": "factors-influencing-health-across-topic-areas",
+         "title": "Factors Influencing Health Across Topic Areas",
+         "outcomes": [
+          {
+           "code": "HE.3-5.4.1",
+           "text": "Identify internal and external factors that influence health behaviors and health-related decisions"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "interpersonal-communication-use-interpersonal-co",
+     "title": "Interpersonal Communication — Use interpersonal communication skills to enhance health",
+     "topics": [
+      {
+       "id": "communication-skils-across-topic-areas",
+       "title": "Communication Skils Across Topic Areas",
+       "subtopics": [
+        {
+         "id": "communication-skils-across-topic-areas",
+         "title": "Communication Skils Across Topic Areas",
+         "outcomes": [
+          {
+           "code": "HE.3-5.5.1",
+           "text": "Use appropriate strategies for effective verbal and nonverbal communication in formal and informal settings"
+          },
+          {
+           "code": "HE.3-5.5.2",
+           "text": "Use strategies to avoid inappropriate communication (e.g., name-calling, put-downs, and harassment)"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "promoting-safety-and-preventing-violence-and-uni",
+       "title": "Promoting Safety and Preventing Violence and Unintentional Injury",
+       "subtopics": [
+        {
+         "id": "promoting-safety-and-preventing-violence-and-uni",
+         "title": "Promoting Safety and Preventing Violence and Unintentional Injury",
+         "outcomes": [
+          {
+           "code": "HE.3-5.5.3",
+           "text": "Know how to use appropriate non-violent strategies to deal with conflict and dispute"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "decision-making-and-goal-setting-use-decision-ma",
+     "title": "Decision-Making and Goal-Setting — Use decision-making and goal-setting skills to enhance health",
+     "topics": [
+      {
+       "id": "decision-making-across-topic-areas",
+       "title": "Decision-Making Across Topic Areas",
+       "subtopics": [
+        {
+         "id": "decision-making-across-topic-areas",
+         "title": "Decision-Making Across Topic Areas",
+         "outcomes": [
+          {
+           "code": "HE.3-5.6.1",
+           "text": "Identify the elements of a decision-making model related to health issues and problems"
+          },
+          {
+           "code": "HE.3-5.6.2",
+           "text": "Evaluate decisions made on health issues and problems"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "goal-setting-across-topic-areas",
+       "title": "Goal-Setting Across Topic Areas",
+       "subtopics": [
+        {
+         "id": "goal-setting-across-topic-areas",
+         "title": "Goal-Setting Across Topic Areas",
+         "outcomes": [
+          {
+           "code": "HE.3-5.6.3",
+           "text": "Identify appropriate goal-setting strategies to set personal health goals"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "advocacy-advocate-for-personal-family-and-commun",
+     "title": "Advocacy — Advocate for personal, family, and community health",
+     "topics": [
+      {
+       "id": "advocacy-across-topic-areas",
+       "title": "Advocacy Across Topic Areas",
+       "subtopics": [
+        {
+         "id": "advocacy-across-topic-areas",
+         "title": "Advocacy Across Topic Areas",
+         "outcomes": [
+          {
+           "code": "HE.3-5.7.1",
+           "text": "Name people or groups that advocate for healthy individuals, families, and communities"
+          },
+          {
+           "code": "HE.3-5.7.2",
+           "text": "Use appropriate strategies to express individual opinions about health issues"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "6-8",
+   "units": [
+    {
+     "id": "core-concepts-understand-concepts-related-to-hea",
+     "title": "Core Concepts — Understand concepts related to health promotion and disease prevention",
+     "topics": [
+      {
+       "id": "mental-and-emotional-health",
+       "title": "Mental and Emotional Health",
+       "subtopics": [
+        {
+         "id": "mental-and-emotional-health",
+         "title": "Mental and Emotional Health",
+         "outcomes": [
+          {
+           "code": "HE.6-8.1.1",
+           "text": "Explain the relationship between mental, emotional, social, and physical health"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "healthy-eating-and-physical-activity",
+       "title": "Healthy Eating and Physical Activity",
+       "subtopics": [
+        {
+         "id": "healthy-eating-and-physical-activity",
+         "title": "Healthy Eating and Physical Activity",
+         "outcomes": [
+          {
+           "code": "HE.6-8.1.2",
+           "text": "Describe short- and long-term effects and consequences of poor nutrition and lack of physical activity"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "promoting-safety-and-preventing-violence-and-uni",
+       "title": "Promoting Safety and Preventing Violence and Unintentional Injury",
+       "subtopics": [
+        {
+         "id": "promoting-safety-and-preventing-violence-and-uni",
+         "title": "Promoting Safety and Preventing Violence and Unintentional Injury",
+         "outcomes": [
+          {
+           "code": "HE.6-8.1.3",
+           "text": "Describe short- and long-term effects and consequences of violent or aggressive behaviors"
+          },
+          {
+           "code": "HE.6-8.1.4",
+           "text": "Describe types and degrees of risk encountered in daily living and formulate strategies to avoid or reduce threatening situations"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "personal-health-and-wellness",
+       "title": "Personal Health and Wellness",
+       "subtopics": [
+        {
+         "id": "personal-health-and-wellness",
+         "title": "Personal Health and Wellness",
+         "outcomes": [
+          {
+           "code": "HE.6-8.1.8",
+           "text": "Describe the body system functions, how they interact with each other, and how they are impacted by health behaviors"
+          },
+          {
+           "code": "HE.6-8.1.9",
+           "text": "Identify choices individuals can make to promote or harm their health"
+          },
+          {
+           "code": "HE.6-8.1.10",
+           "text": "Identify proper health care and describe how it can prevent premature death and disability"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "tobacco-free-lifestyle",
+       "title": "Tobacco-Free Lifestyle",
+       "subtopics": [
+        {
+         "id": "tobacco-free-lifestyle",
+         "title": "Tobacco-Free Lifestyle",
+         "outcomes": [
+          {
+           "code": "HE.6-8.1.5",
+           "text": "Describe short- and long-term effects and consequences of tobacco product use"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "alcohol-and-other-drugfree-lifestyle",
+       "title": "Alcohol and Other Drugfree Lifestyle",
+       "subtopics": [
+        {
+         "id": "alcohol-and-other-drugfree-lifestyle",
+         "title": "Alcohol and Other Drugfree Lifestyle",
+         "outcomes": [
+          {
+           "code": "HE.6-8.1.6",
+           "text": "Describe short- and long-term effects and consequences of drinking alcohol and using drugs"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "sexual-health-and-responsibility",
+       "title": "Sexual Health and Responsibility",
+       "subtopics": [
+        {
+         "id": "sexual-health-and-responsibility",
+         "title": "Sexual Health and Responsibility",
+         "outcomes": [
+          {
+           "code": "HE.6-8.1.7",
+           "text": "Describe short- and long-term effects and consequences of sexual activity"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "accessing-information-access-valid-health-inform",
+     "title": "Accessing Information — Access valid health information and health-promoting products and services",
+     "topics": [
+      {
+       "id": "health-information-products-and-services-across-",
+       "title": "Health Information, Products, and Services Across Topic Areas",
+       "subtopics": [
+        {
+         "id": "health-information-products-and-services-across-",
+         "title": "Health Information, Products, and Services Across Topic Areas",
+         "outcomes": [
+          {
+           "code": "HE.6-8.2.1",
+           "text": "Identify when it is necessary to access health services for self and others"
+          },
+          {
+           "code": "HE.6-8.2.2",
+           "text": "Use appropriate sources to access valid health information, products, and services"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "self-management-practice-health-enhancing-behavi",
+     "title": "Self-Management — Practice health-enhancing behaviors and reduce health risks",
+     "topics": [
+      {
+       "id": "mental-and-emotional-health",
+       "title": "Mental and Emotional Health",
+       "subtopics": [
+        {
+         "id": "mental-and-emotional-health",
+         "title": "Mental and Emotional Health",
+         "outcomes": [
+          {
+           "code": "HE.6-8.3.1",
+           "text": "Explain personal preferences for coping and stress management strategies"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "personal-health-and-wellness",
+       "title": "Personal Health and Wellness",
+       "subtopics": [
+        {
+         "id": "personal-health-and-wellness",
+         "title": "Personal Health and Wellness",
+         "outcomes": [
+          {
+           "code": "HE.6-8.3.2",
+           "text": "Explain the importance of assuming responsibility for personal health behaviors"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "analyzing-influences-understand-the-influences-o",
+     "title": "Analyzing Influences — Understand the influences of culture, family, peers, media, technology, and other factors on health",
+     "topics": [
+      {
+       "id": "factors-influencing-health-across-topic-areas",
+       "title": "Factors Influencing Health Across Topic Areas",
+       "subtopics": [
+        {
+         "id": "factors-influencing-health-across-topic-areas",
+         "title": "Factors Influencing Health Across Topic Areas",
+         "outcomes": [
+          {
+           "code": "HE.6-8.4.1",
+           "text": "Explain the influence of internal and external factors on health outcomes"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "interpersonal-communication-use-interpersonal-co",
+     "title": "Interpersonal Communication — Use interpersonal communication skills to enhance health",
+     "topics": [
+      {
+       "id": "communication-skils-across-topic-areas",
+       "title": "Communication Skils Across Topic Areas",
+       "subtopics": [
+        {
+         "id": "communication-skils-across-topic-areas",
+         "title": "Communication Skils Across Topic Areas",
+         "outcomes": [
+          {
+           "code": "HE.6-8.5.1",
+           "text": "Use effective verbal and non-verbal communication skills"
+          },
+          {
+           "code": "HE.6-8.5.2",
+           "text": "Use effective behaviors that communicate care, consideration, and respect of self and others"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "promoting-safety-and-preventing-violence-and-uni",
+       "title": "Promoting Safety and Preventing Violence and Unintentional Injury",
+       "subtopics": [
+        {
+         "id": "promoting-safety-and-preventing-violence-and-uni",
+         "title": "Promoting Safety and Preventing Violence and Unintentional Injury",
+         "outcomes": [
+          {
+           "code": "HE.6-8.5.3",
+           "text": "Identify possible causes of disputes connected to personal, family, and community matters"
+          },
+          {
+           "code": "HE.6-8.5.4",
+           "text": "Apply appropriate conflict resolution strategies to deal with potentially harmful situations"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "decision-making-and-goal-setting-use-decision-ma",
+     "title": "Decision-Making and Goal-Setting — Use decision-making and goal-setting skills to enhance health",
+     "topics": [
+      {
+       "id": "decision-making-across-topic-areas",
+       "title": "Decision-Making Across Topic Areas",
+       "subtopics": [
+        {
+         "id": "decision-making-across-topic-areas",
+         "title": "Decision-Making Across Topic Areas",
+         "outcomes": [
+          {
+           "code": "HE.6-8.6.1",
+           "text": "Describe decision-making processes related to healthrelated decisions"
+          },
+          {
+           "code": "HE.6-8.6.2",
+           "text": "Assess health-related decisions for consequences that affect oneself and others"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "goal-setting-across-topic-areas",
+       "title": "Goal-Setting Across Topic Areas",
+       "subtopics": [
+        {
+         "id": "goal-setting-across-topic-areas",
+         "title": "Goal-Setting Across Topic Areas",
+         "outcomes": [
+          {
+           "code": "HE.6-8.6.3",
+           "text": "Evaluate personal health strengths and risks to set personal goals"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "advocacy-advocate-for-personal-family-and-commun",
+     "title": "Advocacy — Advocate for personal, family, and community health",
+     "topics": [
+      {
+       "id": "advocacy-across-topic-areas",
+       "title": "Advocacy Across Topic Areas",
+       "subtopics": [
+        {
+         "id": "advocacy-across-topic-areas",
+         "title": "Advocacy Across Topic Areas",
+         "outcomes": [
+          {
+           "code": "HE.6-8.7.1",
+           "text": "Use effective strategies to influence and support others in making healthful choices"
+          },
+          {
+           "code": "HE.6-8.7.2",
+           "text": "Use appropriate methods to communicate accurate health information and ideas"
+          },
+          {
+           "code": "HE.6-8.7.3",
+           "text": "Describe how barriers can affect the communication of information, ideas, feelings, and opinions"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "9-12",
+   "units": [
+    {
+     "id": "core-concepts-understand-concepts-related-to-hea",
+     "title": "Core Concepts — Understand concepts related to health promotion and disease prevention",
+     "topics": [
+      {
+       "id": "mental-and-emotional-health",
+       "title": "Mental and Emotional Health",
+       "subtopics": [
+        {
+         "id": "mental-and-emotional-health",
+         "title": "Mental and Emotional Health",
+         "outcomes": [
+          {
+           "code": "HE.9-12.1.1",
+           "text": "Compare the relationships among mental, emotional, social, and physical health in adulthood"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "promoting-safety-and-preventing-violence-and-uni",
+       "title": "Promoting Safety and Preventing Violence and Unintentional Injury",
+       "subtopics": [
+        {
+         "id": "promoting-safety-and-preventing-violence-and-uni",
+         "title": "Promoting Safety and Preventing Violence and Unintentional Injury",
+         "outcomes": [
+          {
+           "code": "HE.9-12.1.2",
+           "text": "Know how to use appropriate strategies to avoid, reduce, and report threatening situations"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "personal-health-and-wellness",
+       "title": "Personal Health and Wellness",
+       "subtopics": [
+        {
+         "id": "personal-health-and-wellness",
+         "title": "Personal Health and Wellness",
+         "outcomes": [
+          {
+           "code": "HE.9-12.1.3",
+           "text": "Identify personal health behaviors and other factors that impact body system functions"
+          },
+          {
+           "code": "HE.9-12.1.4",
+           "text": "Explain the purpose of public health policies and government regulations in health"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "accessing-information-access-valid-health-inform",
+     "title": "Accessing Information — Access valid health information and health-promoting products and services",
+     "topics": [
+      {
+       "id": "health-information-products-and-services-across-",
+       "title": "Health Information, Products, and Services Across Topic Areas",
+       "subtopics": [
+        {
+         "id": "health-information-products-and-services-across-",
+         "title": "Health Information, Products, and Services Across Topic Areas",
+         "outcomes": [
+          {
+           "code": "HE.9-12.2.1",
+           "text": "Compare health information provided from home, school, and community resources"
+          },
+          {
+           "code": "HE.9-12.2.2",
+           "text": "Evaluate the validity of different sources of health information"
+          },
+          {
+           "code": "HE.9-12.2.3",
+           "text": "Describe when and how to access health services for self and others"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "self-management-practice-health-enhancing-behavi",
+     "title": "Self-Management — Practice health-enhancing behaviors and reduce health risks",
+     "topics": [
+      {
+       "id": "mental-and-emotional-health",
+       "title": "Mental and Emotional Health",
+       "subtopics": [
+        {
+         "id": "mental-and-emotional-health",
+         "title": "Mental and Emotional Health",
+         "outcomes": [
+          {
+           "code": "HE.9-12.3.1",
+           "text": "Compare a variety of personal coping and stress management strategies"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "personal-health-and-wellness",
+       "title": "Personal Health and Wellness",
+       "subtopics": [
+        {
+         "id": "personal-health-and-wellness",
+         "title": "Personal Health and Wellness",
+         "outcomes": [
+          {
+           "code": "HE.9-12.3.2",
+           "text": "Compare the importance of enhancing health and safety in the community, workplace, and/or at home"
+          },
+          {
+           "code": "HE.9-12.3.3",
+           "text": "Evaluate personal behaviors within the risk areas (e.g., tobacco use, alcohol and drug use, nutrition, fitness, personal safety, sexual activity)"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "analyzing-influences-understand-the-influences-o",
+     "title": "Analyzing Influences — Understand the influences of culture, family, peers, media, technology, and other factors on health",
+     "topics": [
+      {
+       "id": "factors-influencing-health-across-topic-areas",
+       "title": "Factors Influencing Health Across Topic Areas",
+       "subtopics": [
+        {
+         "id": "factors-influencing-health-across-topic-areas",
+         "title": "Factors Influencing Health Across Topic Areas",
+         "outcomes": [
+          {
+           "code": "HE.9-12.4.1",
+           "text": "Evaluate the interrelationship of internal and external factors that influence health behaviors"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "interpersonal-communication-use-interpersonal-co",
+     "title": "Interpersonal Communication — Use interpersonal communication skills to enhance health",
+     "topics": [
+      {
+       "id": "communication-skils-across-topic-areas",
+       "title": "Communication Skils Across Topic Areas",
+       "subtopics": [
+        {
+         "id": "communication-skils-across-topic-areas",
+         "title": "Communication Skils Across Topic Areas",
+         "outcomes": [
+          {
+           "code": "HE.9-12.5.1",
+           "text": "Know how to use appropriate verbal and non-verbal communication skills that are necessary to avoid potentially harmful situations"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "promoting-safety-and-preventing-violence-and-uni",
+       "title": "Promoting Safety and Preventing Violence and Unintentional Injury",
+       "subtopics": [
+        {
+         "id": "promoting-safety-and-preventing-violence-and-uni",
+         "title": "Promoting Safety and Preventing Violence and Unintentional Injury",
+         "outcomes": [
+          {
+           "code": "HE.9-12.5.2",
+           "text": "Know how to use appropriate strategies to resolve disagreements"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "decision-making-and-goal-setting-use-decision-ma",
+     "title": "Decision-Making and Goal-Setting — Use decision-making and goal-setting skills to enhance health",
+     "topics": [
+      {
+       "id": "decision-making-across-topic-areas",
+       "title": "Decision-Making Across Topic Areas",
+       "subtopics": [
+        {
+         "id": "decision-making-across-topic-areas",
+         "title": "Decision-Making Across Topic Areas",
+         "outcomes": [
+          {
+           "code": "HE.9-12.6.1",
+           "text": "Explain decision-making strategies used to make health-related decisions"
+          },
+          {
+           "code": "HE.9-12.6.2",
+           "text": "Evaluate health decisions that have immediate and long-term consequences on the individual, family, and community"
+          },
+          {
+           "code": "HE.9-12.6.3",
+           "text": "Know how to apply appropriate responses to risky situations"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "goal-setting-across-topic-areas",
+       "title": "Goal-Setting Across Topic Areas",
+       "subtopics": [
+        {
+         "id": "goal-setting-across-topic-areas",
+         "title": "Goal-Setting Across Topic Areas",
+         "outcomes": [
+          {
+           "code": "HE.9-12.6.4",
+           "text": "Create and implement a plan for enhancing life-long goals"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "advocacy-advocate-for-personal-family-and-commun",
+     "title": "Advocacy — Advocate for personal, family, and community health",
+     "topics": [
+      {
+       "id": "advocacy-across-topic-areas",
+       "title": "Advocacy Across Topic Areas",
+       "subtopics": [
+        {
+         "id": "advocacy-across-topic-areas",
+         "title": "Advocacy Across Topic Areas",
+         "outcomes": [
+          {
+           "code": "HE.9-12.7.1",
+           "text": "Use effective strategies to help others promote and protect their health"
+          },
+          {
+           "code": "HE.9-12.7.2",
+           "text": "Design a school-wide health advocacy campaign that advocates for a healthy lifestyle"
+          },
+          {
+           "code": "HE.9-12.7.3",
+           "text": "Evaluate the effectiveness of strategies in communicating health information"
+          },
+          {
+           "code": "HE.9-12.7.4",
+           "text": "Explain how health messages can be translated to particular audiences"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "build": {
+  "builtAt": "2026-10-14T16:20:41.306Z",
+  "model": "none",
+  "usd": 0,
+  "expectedCodes": 87,
+  "coverage": 1,
+  "missingCodes": [],
+  "counts": {
+   "grades": 4,
+   "units": 28,
+   "topics": 55,
+   "subtopics": 55,
+   "outcomes": 87
+  },
+  "warnings": [
+   "unit \"Accessing Information — Access valid health information and health-promoting products and services\" (grade K-2) has a single outcome",
+   "unit \"Self-Management — Practice health-enhancing behaviors and reduce health risks\" (grade K-2) has a single outcome",
+   "unit \"Analyzing Influences — Understand the influences of culture, family, peers, media, technology, and other factors on health\" (grade K-2) has a single outcome",
+   "unit \"Advocacy — Advocate for personal, family, and community health\" (grade K-2) has a single outcome",
+   "unit \"Analyzing Influences — Understand the influences of culture, family, peers, media, technology, and other factors on health\" (grade 3-5) has a single outcome",
+   "unit \"Analyzing Influences — Understand the influences of culture, family, peers, media, technology, and other factors on health\" (grade 6-8) has a single outcome",
+   "unit \"Analyzing Influences — Understand the influences of culture, family, peers, media, technology, and other factors on health\" (grade 9-12) has a single outcome"
+  ]
+ }
+}

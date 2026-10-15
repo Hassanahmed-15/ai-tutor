@@ -1,0 +1,538 @@
+{
+ "id": "cie-igcse-computer-science-0478-2026-2028",
+ "region": "INTL",
+ "framework": "Cambridge IGCSE Computer Science (0478) syllabus 2026–2028",
+ "board": "Cambridge",
+ "qualification": "IGCSE",
+ "subject": "Computer Science",
+ "syllabusCode": "0478",
+ "gradeSystem": "course",
+ "source": {
+  "urls": [
+   "https://www.cambridgeinternational.org/Images/697167-2026-2028-syllabus.pdf",
+   "https://www.cambridgeinternational.org/programmes-and-qualifications/cambridge-igcse-computer-science-0478/"
+  ],
+  "publisher": "Cambridge University Press & Assessment (Cambridge International Education)",
+  "licence": "© Cambridge University Press & Assessment; structure + our own wording only",
+  "firstExam": "2026"
+ },
+ "grades": [
+  {
+   "grade": "IGCSE",
+   "units": [
+    {
+     "id": "1-data-representation",
+     "title": "1 Data representation",
+     "topics": [
+      {
+       "id": "1-1-number-systems",
+       "title": "1.1 Number systems",
+       "subtopics": [
+        {
+         "id": "1-1-number-systems",
+         "title": "1.1 Number systems",
+         "outcomes": [
+          {
+           "code": "1.1",
+           "text": "Explain binary representation; use denary, binary, hexadecimal, binary addition, overflow, logical shifts and two’s complement for 8-bit integers."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "1-2-text-sound-and-images",
+       "title": "1.2 Text, sound and images",
+       "subtopics": [
+        {
+         "id": "1-2-text-sound-and-images",
+         "title": "1.2 Text, sound and images",
+         "outcomes": [
+          {
+           "code": "1.2",
+           "text": "Explain how computers represent text, sound and images, including character sets, sampling, sample resolution, image resolution and colour depth."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "1-3-data-storage-and-compression",
+       "title": "1.3 Data storage and compression",
+       "subtopics": [
+        {
+         "id": "1-3-data-storage-and-compression",
+         "title": "1.3 Data storage and compression",
+         "outcomes": [
+          {
+           "code": "1.3",
+           "text": "Use storage units and calculate image or sound file sizes; explain compression, including lossy and lossless methods."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "2-data-transmission",
+     "title": "2 Data transmission",
+     "topics": [
+      {
+       "id": "2-1-types-and-methods-of-data-transmission",
+       "title": "2.1 Types and methods of data transmission",
+       "subtopics": [
+        {
+         "id": "2-1-types-and-methods-of-data-transmission",
+         "title": "2.1 Types and methods of data transmission",
+         "outcomes": [
+          {
+           "code": "2.1",
+           "text": "Explain packets, packet structure and switching; compare transmission methods and describe USB data transmission."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "2-2-methods-of-error-detection",
+       "title": "2.2 Methods of error detection",
+       "subtopics": [
+        {
+         "id": "2-2-methods-of-error-detection",
+         "title": "2.2 Methods of error detection",
+         "outcomes": [
+          {
+           "code": "2.2",
+           "text": "Explain transmission errors and describe parity checks, checksums, echo checks, check digits and automatic repeat queries."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "2-3-encryption",
+       "title": "2.3 Encryption",
+       "subtopics": [
+        {
+         "id": "2-3-encryption",
+         "title": "2.3 Encryption",
+         "outcomes": [
+          {
+           "code": "2.3",
+           "text": "Explain why encryption is needed and how symmetric and asymmetric encryption use keys to protect transmitted data."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "3-hardware",
+     "title": "3 Hardware",
+     "topics": [
+      {
+       "id": "3-1-computer-architecture",
+       "title": "3.1 Computer architecture",
+       "subtopics": [
+        {
+         "id": "3-1-computer-architecture",
+         "title": "3.1 Computer architecture",
+         "outcomes": [
+          {
+           "code": "3.1",
+           "text": "Explain CPU roles, microprocessors, Von Neumann components, the fetch–decode–execute cycle, performance factors, instruction sets and embedded systems."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "3-2-input-and-output-devices",
+       "title": "3.2 Input and output devices",
+       "subtopics": [
+        {
+         "id": "3-2-input-and-output-devices",
+         "title": "3.2 Input and output devices",
+         "outcomes": [
+          {
+           "code": "3.2",
+           "text": "Explain input and output devices; identify sensor types, captured data, uses and suitable sensors for particular contexts."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "3-3-data-storage",
+       "title": "3.3 Data storage",
+       "subtopics": [
+        {
+         "id": "3-3-data-storage",
+         "title": "3.3 Data storage",
+         "outcomes": [
+          {
+           "code": "3.3",
+           "text": "Explain primary and secondary storage, magnetic, optical and solid-state technologies, virtual memory, cloud storage and cloud-versus-local storage."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "3-4-network-hardware",
+       "title": "3.4 Network hardware",
+       "subtopics": [
+        {
+         "id": "network-interface-cards",
+         "title": "Network Interface Cards",
+         "outcomes": [
+          {
+           "code": "3.4",
+           "text": "Understand that a network interface card is required for a computer to access a network."
+          }
+         ]
+        },
+        {
+         "id": "mac-addresses",
+         "title": "MAC Addresses",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain the purpose, structure and notation of a media access control address."
+          }
+         ]
+        },
+        {
+         "id": "ip-addresses",
+         "title": "IP Addresses",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain the purpose of an internet protocol address."
+          },
+          {
+           "code": null,
+           "text": "Recognise different IP address types, including the differences between IPv4 and IPv6."
+          }
+         ]
+        },
+        {
+         "id": "how-routers-work",
+         "title": "How Routers Work",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe how routers direct data, allocate IP addresses and connect local networks to the internet."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "4-software",
+     "title": "4 Software",
+     "topics": [
+      {
+       "id": "4-1-types-of-software-and-interrupts",
+       "title": "4.1 Types of software and interrupts",
+       "subtopics": [
+        {
+         "id": "types-of-software",
+         "title": "Types of Software",
+         "outcomes": [
+          {
+           "code": "4.1",
+           "text": "Distinguish system software from application software and give examples of each."
+          }
+         ]
+        },
+        {
+         "id": "operating-system-functions",
+         "title": "Operating System Functions",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe an operating system’s main functions, including managing files, memory, peripherals, security, accounts and multitasking."
+          }
+         ]
+        },
+        {
+         "id": "running-applications",
+         "title": "Running Applications",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain how hardware, firmware and an operating system work together to run applications."
+          }
+         ]
+        },
+        {
+         "id": "handling-interrupts",
+         "title": "Handling Interrupts",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe how interrupts are generated, handled by service routines and acted upon, using software and hardware examples."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "4-2-programming-languages",
+       "title": "4.2 Programming languages",
+       "subtopics": [
+        {
+         "id": "high-level-and-low-level-languages",
+         "title": "High-Level and Low-Level Languages",
+         "outcomes": [
+          {
+           "code": "4.2",
+           "text": "Compare high-level and low-level languages, including readability, debugging, machine independence and hardware control."
+          }
+         ]
+        },
+        {
+         "id": "assembly-language",
+         "title": "Assembly Language",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain that assembly language uses mnemonics and requires an assembler to produce machine code."
+          }
+         ]
+        },
+        {
+         "id": "translating-high-level-programs",
+         "title": "Translating High-Level Programs",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe how compilers and interpreters translate and execute high-level programs."
+          },
+          {
+           "code": null,
+           "text": "Compare compiler and interpreter error reporting, including whole-program reports and stopping at an error."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "8-programming",
+     "title": "8 Programming",
+     "topics": [
+      {
+       "id": "8-1-programming-concepts",
+       "title": "8.1 Programming concepts",
+       "subtopics": [
+        {
+         "id": "variables-and-data-types",
+         "title": "Variables and Data Types",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Declare and use variables and constants."
+          },
+          {
+           "code": null,
+           "text": "Understand and use integer, real, character, string and Boolean data types."
+          }
+         ]
+        },
+        {
+         "id": "input-output-and-sequence",
+         "title": "Input, Output and Sequence",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Use input and output operations."
+          },
+          {
+           "code": null,
+           "text": "Understand and use sequence in programs."
+          }
+         ]
+        },
+        {
+         "id": "selection-and-loops",
+         "title": "Selection and Loops",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Understand and use selection, including IF and CASE statements."
+          },
+          {
+           "code": null,
+           "text": "Understand and use count-controlled, pre-condition and post-condition loops."
+          }
+         ]
+        },
+        {
+         "id": "counting-and-totals",
+         "title": "Counting and Totals",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Use totalling and counting techniques."
+          }
+         ]
+        },
+        {
+         "id": "strings-and-operators",
+         "title": "Strings and Operators",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Understand and use string operations such as length, substring, upper and lower."
+          },
+          {
+           "code": null,
+           "text": "Use arithmetic, relational and logical operators."
+          }
+         ]
+        },
+        {
+         "id": "nested-statements",
+         "title": "Nested Statements",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Understand and use nested statements, including nested selection and iteration."
+          }
+         ]
+        },
+        {
+         "id": "procedures-and-functions",
+         "title": "Procedures and Functions",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Understand procedures, functions and parameters."
+          },
+          {
+           "code": null,
+           "text": "Define and use procedures and functions with or without parameters."
+          }
+         ]
+        },
+        {
+         "id": "variable-scope",
+         "title": "Variable Scope",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Understand and use local and global variables."
+          }
+         ]
+        },
+        {
+         "id": "library-routines",
+         "title": "Library Routines",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Understand and use library routines, including MOD, DIV, ROUND and RANDOM."
+          }
+         ]
+        },
+        {
+         "id": "maintainable-programs",
+         "title": "Maintainable Programs",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Create maintainable programs using meaningful identifiers, comments, procedures and functions."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "8-2-arrays",
+       "title": "8.2 Arrays",
+       "subtopics": [
+        {
+         "id": "one-and-two-dimensional-arrays",
+         "title": "One- and Two-Dimensional Arrays",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Declare and use one-dimensional and two-dimensional arrays."
+          },
+          {
+           "code": null,
+           "text": "Understand how arrays are used, including variables as indexes."
+          }
+         ]
+        },
+        {
+         "id": "reading-and-writing-arrays",
+         "title": "Reading and Writing Arrays",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Use iteration to write values to and read values from arrays."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "8-3-file-handling",
+       "title": "8.3 File handling",
+       "subtopics": [
+        {
+         "id": "why-programs-use-files",
+         "title": "Why Programs Use Files",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Understand why programs store data in files for later use."
+          },
+          {
+           "code": "8.3",
+           "text": "Explain why programs store data in files for later use."
+          }
+         ]
+        },
+        {
+         "id": "reading-and-writing-files",
+         "title": "Reading and Writing Files",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Open, close, read and write files, including individual data items and text lines."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "build": {
+  "builtAt": "2026-10-14T05:28:33.969Z",
+  "model": "gpt-5.6-luna",
+  "usd": 0.0109,
+  "expectedCodes": 12,
+  "coverage": 1,
+  "missingCodes": [],
+  "counts": {
+   "grades": 1,
+   "units": 5,
+   "topics": 15,
+   "subtopics": 34,
+   "outcomes": 43
+  },
+  "warnings": []
+ }
+}

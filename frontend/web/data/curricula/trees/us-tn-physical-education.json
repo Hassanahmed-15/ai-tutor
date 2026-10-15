@@ -1,0 +1,6288 @@
+{
+ "id": "us-tn-physical-education",
+ "region": "US",
+ "framework": "Tennessee state academic standards: Physical Education",
+ "board": null,
+ "qualification": "K-12",
+ "subject": "Physical Education",
+ "syllabusCode": null,
+ "gradeSystem": "grade",
+ "source": {
+  "urls": [
+   "https://api.commonstandardsproject.com/api/v1/jurisdictions/180878796A3C448D808F38BCCCFD26CF",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/180878796A3C448D808F38BCCCFD26CF_D2769095_grade-06",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/180878796A3C448D808F38BCCCFD26CF_D2769095_grade-07",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/180878796A3C448D808F38BCCCFD26CF_D2769095_grade-08",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/180878796A3C448D808F38BCCCFD26CF_D2769096_grades-09-10-11-12",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/180878796A3C448D808F38BCCCFD26CF_D2769094_grade-01",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/180878796A3C448D808F38BCCCFD26CF_D2769094_grade-02",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/180878796A3C448D808F38BCCCFD26CF_D2769094_grade-03",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/180878796A3C448D808F38BCCCFD26CF_D2769094_grade-04",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/180878796A3C448D808F38BCCCFD26CF_D2769094_grade-05",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/180878796A3C448D808F38BCCCFD26CF_D2769094_grade-k"
+  ],
+  "publisher": "Tennessee state education agency (machine-readable via Common Standards Project / ASN)",
+  "licence": "CC BY 3.0 US, D2L Corporation",
+  "firstExam": "2016"
+ },
+ "grades": [
+  {
+   "grade": "K",
+   "units": [
+    {
+     "id": "motor-skills",
+     "title": "Motor Skills",
+     "topics": [
+      {
+       "id": "hop-one-foot-gallop-slide-skip",
+       "title": "Hop (one foot), gallop, slide, skip",
+       "subtopics": [
+        {
+         "id": "hop-one-foot-gallop-slide-skip",
+         "title": "Hop (one foot), gallop, slide, skip",
+         "outcomes": [
+          {
+           "code": "MS.1.0",
+           "text": "Performs locomotor skills while maintaining balance."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "jog-run",
+       "title": "Jog, run",
+       "subtopics": [
+        {
+         "id": "jog-run",
+         "title": "Jog, run",
+         "outcomes": [
+          {
+           "code": "MS.2.0",
+           "text": "Jogs while maintaining balance."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "jump-land-for-distance-horizontal",
+       "title": "Jump & land for distance (horizontal)",
+       "subtopics": [
+        {
+         "id": "jump-land-for-distance-horizontal",
+         "title": "Jump & land for distance (horizontal)",
+         "outcomes": [
+          {
+           "code": "MS.3.0",
+           "text": "Jumps and lands with two feet while maintaining balance."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "jump-land-for-height-vertical",
+       "title": "Jump & land for height (vertical)",
+       "subtopics": [
+        {
+         "id": "jump-land-for-height-vertical",
+         "title": "Jump & land for height (vertical)",
+         "outcomes": [
+          {
+           "code": "MS.4.0",
+           "text": "Jumps and lands with two feet while maintaining balance."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "dance",
+       "title": "Dance",
+       "subtopics": [
+        {
+         "id": "dance",
+         "title": "Dance",
+         "outcomes": [
+          {
+           "code": "MS.5.0",
+           "text": "Demonstrates beat awareness by moving to varying rhythms."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "balance",
+       "title": "Balance",
+       "subtopics": [
+        {
+         "id": "balance",
+         "title": "Balance",
+         "outcomes": [
+          {
+           "code": "MS.6.0",
+           "text": "Maintains momentary stillness on various bases of support (body parts)."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "weight-transfer-rolling-optional",
+       "title": "Weight Transfer & Rolling (OPTIONAL)",
+       "subtopics": [
+        {
+         "id": "weight-transfer-rolling-optional",
+         "title": "Weight Transfer & Rolling (OPTIONAL)",
+         "outcomes": [
+          {
+           "code": "MS.7.0.a",
+           "text": "Transfers weight from one body part to another."
+          },
+          {
+           "code": "MS.7.0.b",
+           "text": "Rolls sideways in a narrow (log) or curled (egg) body shape."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "combinations-optional",
+       "title": "Combinations (optional)",
+       "subtopics": [
+        {
+         "id": "combinations-optional",
+         "title": "Combinations (optional)",
+         "outcomes": [
+          {
+           "code": "MS.8.0",
+           "text": "Developmentally appropriate at grade 2"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "underhand-throw",
+       "title": "Underhand Throw",
+       "subtopics": [
+        {
+         "id": "underhand-throw",
+         "title": "Underhand Throw",
+         "outcomes": [
+          {
+           "code": "MS.9.0.a",
+           "text": "Tosses underhand to self. MS.9.0b Throws underhand in a forward direction."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "overhand-throw",
+       "title": "Overhand Throw",
+       "subtopics": [
+        {
+         "id": "overhand-throw",
+         "title": "Overhand Throw",
+         "outcomes": [
+          {
+           "code": "MS.10.0",
+           "text": "Developmentally appropriate at grade 2."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "catching",
+       "title": "Catching",
+       "subtopics": [
+        {
+         "id": "catching",
+         "title": "Catching",
+         "outcomes": [
+          {
+           "code": "MS.11.0",
+           "text": "Drops and catches a ball after one bounce."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "passing-receiving-with-implements",
+       "title": "Passing & Receiving with implements",
+       "subtopics": [
+        {
+         "id": "passing-receiving-with-implements",
+         "title": "Passing & Receiving with implements",
+         "outcomes": [
+          {
+           "code": "MS.12.0",
+           "text": "Developmentally appropriate at grade 3"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "dribbling-with-hands",
+       "title": "Dribbling with hands",
+       "subtopics": [
+        {
+         "id": "dribbling-with-hands",
+         "title": "Dribbling with hands",
+         "outcomes": [
+          {
+           "code": "MS.13.0",
+           "text": "Dribbles in self-space using one or two hands."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "dribbling-with-feet",
+       "title": "Dribbling with feet",
+       "subtopics": [
+        {
+         "id": "dribbling-with-feet",
+         "title": "Dribbling with feet",
+         "outcomes": [
+          {
+           "code": "MS.14.0",
+           "text": "Dribbles (taps) a ball with feet sending ball forward."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "kicking-force-or-distance",
+       "title": "Kicking (force or distance)",
+       "subtopics": [
+        {
+         "id": "kicking-force-or-distance",
+         "title": "Kicking (force or distance)",
+         "outcomes": [
+          {
+           "code": "MS.15.0",
+           "text": "Kicks a stationary ball from a stationary position."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "passing-receiving-with-feet",
+       "title": "Passing & Receiving with feet",
+       "subtopics": [
+        {
+         "id": "passing-receiving-with-feet",
+         "title": "Passing & Receiving with feet",
+         "outcomes": [
+          {
+           "code": "MS.16.0",
+           "text": "Developmentally appropriate at grade 2"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "striking-with-hand-s",
+       "title": "Striking with hand(s)",
+       "subtopics": [
+        {
+         "id": "striking-with-hand-s",
+         "title": "Striking with hand(s)",
+         "outcomes": [
+          {
+           "code": "MS.17.0",
+           "text": "Strikes a lightweight object (eg. balloon, lightweight ball)."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "striking-short-implement",
+       "title": "Striking, short implement",
+       "subtopics": [
+        {
+         "id": "striking-short-implement",
+         "title": "Striking, short implement",
+         "outcomes": [
+          {
+           "code": "MS.18.0",
+           "text": "Strikes a lightweight object (balloon) with a paddle."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "striking-long-implement",
+       "title": "Striking, long implement",
+       "subtopics": [
+        {
+         "id": "striking-long-implement",
+         "title": "Striking, long implement",
+         "outcomes": [
+          {
+           "code": "MS.19.0",
+           "text": "Developmentally appropriate at grade 2"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "jumping-rope",
+       "title": "Jumping Rope",
+       "subtopics": [
+        {
+         "id": "jumping-rope",
+         "title": "Jumping Rope",
+         "outcomes": [
+          {
+           "code": "MS.20.0",
+           "text": "Jumps (at least one time) a long rope with teacher-assisted turning."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "movement-knowledge-application-mka",
+     "title": "Movement Knowledge & Application (MKA)",
+     "topics": [
+      {
+       "id": "space-awareness-location",
+       "title": "Space Awareness (location)",
+       "subtopics": [
+        {
+         "id": "space-awareness-location",
+         "title": "Space Awareness (location)",
+         "outcomes": [
+          {
+           "code": "MKA.1.0.a",
+           "text": "Identifies self-space."
+          },
+          {
+           "code": "MKA.1.0.b",
+           "text": "Moves in self-space."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "space-awareness-pathways-levels-directions",
+       "title": "Space Awareness (pathways, levels, directions",
+       "subtopics": [
+        {
+         "id": "space-awareness-pathways-levels-directions",
+         "title": "Space Awareness (pathways, levels, directions",
+         "outcomes": [
+          {
+           "code": "MKA.2.0.a",
+           "text": "Identifies five directions of travel (forward, backward, sideways, up/down)."
+          },
+          {
+           "code": "MKA.2.0.b",
+           "text": "Travels in five directions (forward, backward, sideways, up/down)."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "effort-speed-and-force",
+       "title": "Effort: speed and force",
+       "subtopics": [
+        {
+         "id": "effort-speed-and-force",
+         "title": "Effort: speed and force",
+         "outcomes": [
+          {
+           "code": "MKA.3.0.a",
+           "text": "Identifies fast and slow speeds."
+          },
+          {
+           "code": "MKA.3.0.b",
+           "text": "Travels using fast and slow speeds."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "relationships-body-shapes-with-objects-with-peop",
+       "title": "Relationships (body shapes, with objects, with people)",
+       "subtopics": [
+        {
+         "id": "relationships-body-shapes-with-objects-with-peop",
+         "title": "Relationships (body shapes, with objects, with people)",
+         "outcomes": [
+          {
+           "code": "MKA.4.0.a",
+           "text": "Identifies narrow, wide, curled, and twisted body shapes."
+          },
+          {
+           "code": "MKA.4.0.b",
+           "text": "Demonstrates narrow, wide, curled, and twisted body shapes."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "movement-principles-base-of-support-muscle-tensi",
+       "title": "Movement Principles (base of support, muscle tension, ready position)",
+       "subtopics": [
+        {
+         "id": "movement-principles-base-of-support-muscle-tensi",
+         "title": "Movement Principles (base of support, muscle tension, ready position)",
+         "outcomes": [
+          {
+           "code": "MKA.5.0.a",
+           "text": "Identifies bases of support (body parts)."
+          },
+          {
+           "code": "MKA.5.0.b",
+           "text": "Demonstrates bases of support on a variety of body parts."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "performance-cues",
+       "title": "Performance Cues",
+       "subtopics": [
+        {
+         "id": "performance-cues",
+         "title": "Performance Cues",
+         "outcomes": [
+          {
+           "code": "MKA.6.0",
+           "text": "Recalls performance cues of locomotor and manipulative skills."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "simple-strategies",
+       "title": "Simple Strategies",
+       "subtopics": [
+        {
+         "id": "simple-strategies",
+         "title": "Simple Strategies",
+         "outcomes": [
+          {
+           "code": "MKA.7.0",
+           "text": "Developmentally appropriate at grade 2"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "fitness-physical-activity-fpa",
+     "title": "Fitness & Physical Activity (FPA)",
+     "topics": [
+      {
+       "id": "health-related-fitness",
+       "title": "Health-related Fitness",
+       "subtopics": [
+        {
+         "id": "health-related-fitness",
+         "title": "Health-related Fitness",
+         "outcomes": [
+          {
+           "code": "FPA.1.0",
+           "text": "Recognizes that movement increases heart rate and breathing."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "physical-activity",
+       "title": "Physical Activity",
+       "subtopics": [
+        {
+         "id": "physical-activity",
+         "title": "Physical Activity",
+         "outcomes": [
+          {
+           "code": "FPA.2.0",
+           "text": "Identifies active-play opportunities outside physical education class."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "personal-social-responsibility-psr",
+     "title": "Personal & Social Responsibility (PSR)",
+     "topics": [
+      {
+       "id": "personal-responsibility",
+       "title": "Personal Responsibility",
+       "subtopics": [
+        {
+         "id": "personal-responsibility",
+         "title": "Personal Responsibility",
+         "outcomes": [
+          {
+           "code": "PSR.1.0",
+           "text": "Follows directions with few prompts (e.g., safe behaviors, taking turns)."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "feedback",
+       "title": "Feedback",
+       "subtopics": [
+        {
+         "id": "feedback",
+         "title": "Feedback",
+         "outcomes": [
+          {
+           "code": "PSR.2.0",
+           "text": "Actively listens to teacher feedback."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "working-with-others",
+       "title": "Working with others",
+       "subtopics": [
+        {
+         "id": "working-with-others",
+         "title": "Working with others",
+         "outcomes": [
+          {
+           "code": "PSR.3.0",
+           "text": "Shares equipment with others."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "procedures-rules",
+       "title": "Procedures & Rules",
+       "subtopics": [
+        {
+         "id": "procedures-rules",
+         "title": "Procedures & Rules",
+         "outcomes": [
+          {
+           "code": "PSR.4.0",
+           "text": "Recalls procedures and rules in the learning environment."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "safety",
+       "title": "Safety",
+       "subtopics": [
+        {
+         "id": "safety",
+         "title": "Safety",
+         "outcomes": [
+          {
+           "code": "PSR.5.0",
+           "text": "Participates safely and uses equipment properly with few reminders."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "values-physical-activity-vpa",
+     "title": "Values Physical Activity (VPA)",
+     "topics": [
+      {
+       "id": "appreciation",
+       "title": "Appreciation",
+       "subtopics": [
+        {
+         "id": "appreciation",
+         "title": "Appreciation",
+         "outcomes": [
+          {
+           "code": "VPA.1.0",
+           "text": "Recognizes and participates in physical activity for enjoyment."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "challenge",
+       "title": "Challenge",
+       "subtopics": [
+        {
+         "id": "challenge",
+         "title": "Challenge",
+         "outcomes": [
+          {
+           "code": "VPA.2.0",
+           "text": "Acknowledges some physical activities are challenging/difficult."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "1",
+   "units": [
+    {
+     "id": "motor-skills",
+     "title": "Motor Skills",
+     "topics": [
+      {
+       "id": "hop-one-foot-gallop-slide-skip",
+       "title": "Hop (one foot), gallop, slide, skip",
+       "subtopics": [
+        {
+         "id": "hop-one-foot-gallop-slide-skip",
+         "title": "Hop (one foot), gallop, slide, skip",
+         "outcomes": [
+          {
+           "code": "MS.1.1",
+           "text": "Hops, gallops, and slides using a mature pattern."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "jog-run",
+       "title": "Jog, run",
+       "subtopics": [
+        {
+         "id": "jog-run",
+         "title": "Jog, run",
+         "outcomes": [
+          {
+           "code": "MS.2.1",
+           "text": "Travels showing differentiation between jogging and running."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "jump-land-for-distance-horizontal",
+       "title": "Jump & land for distance (horizontal)",
+       "subtopics": [
+        {
+         "id": "jump-land-for-distance-horizontal",
+         "title": "Jump & land for distance (horizontal)",
+         "outcomes": [
+          {
+           "code": "MS.3.1",
+           "text": "Jumps and lands with two feet with proper preparation (arms back & knees bent) and lands softly with knees bent."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "jump-land-for-height-vertical",
+       "title": "Jump & land for height (vertical)",
+       "subtopics": [
+        {
+         "id": "jump-land-for-height-vertical",
+         "title": "Jump & land for height (vertical)",
+         "outcomes": [
+          {
+           "code": "MS.4.1",
+           "text": "Jumps with proper preparation (arms back & knees bent) and lands softly with knees bent."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "dance",
+       "title": "Dance",
+       "subtopics": [
+        {
+         "id": "dance",
+         "title": "Dance",
+         "outcomes": [
+          {
+           "code": "MS.5.1",
+           "text": "Combines beat awareness with locomotor and nonlocomotor movements."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "balance",
+       "title": "Balance",
+       "subtopics": [
+        {
+         "id": "balance",
+         "title": "Balance",
+         "outcomes": [
+          {
+           "code": "MS.6.1",
+           "text": "Maintains stillness on various bases of support (body parts) using different body shapes."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "weight-transfer-rolling-optional",
+       "title": "Weight Transfer & Rolling (OPTIONAL)",
+       "subtopics": [
+        {
+         "id": "weight-transfer-rolling-optional",
+         "title": "Weight Transfer & Rolling (OPTIONAL)",
+         "outcomes": [
+          {
+           "code": "MS.7.1.a",
+           "text": "Transfers weight from hands and feet to hands only for momentary weight support."
+          },
+          {
+           "code": "MS.7.1.b",
+           "text": "Performs a forward roll or shoulder roll in a tucked position (chin to chest)."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "combinations-optional",
+       "title": "Combinations (optional)",
+       "subtopics": [
+        {
+         "id": "combinations-optional",
+         "title": "Combinations (optional)",
+         "outcomes": [
+          {
+           "code": "MS.8.1",
+           "text": "Developmentally appropriate at grade 2"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "underhand-throw",
+       "title": "Underhand Throw",
+       "subtopics": [
+        {
+         "id": "underhand-throw",
+         "title": "Underhand Throw",
+         "outcomes": [
+          {
+           "code": "MS.9.1.a",
+           "text": "Throws underhand while facing target and using foot opposition."
+          },
+          {
+           "code": "MS.9.1.b",
+           "text": "Rolls object underhand in a forward direction."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "overhand-throw",
+       "title": "Overhand Throw",
+       "subtopics": [
+        {
+         "id": "overhand-throw",
+         "title": "Overhand Throw",
+         "outcomes": [
+          {
+           "code": "MS.10.1",
+           "text": "Demonstrates difference between overhand and underhand arm motion (overhead release versus waist level release)."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "catching",
+       "title": "Catching",
+       "subtopics": [
+        {
+         "id": "catching",
+         "title": "Catching",
+         "outcomes": [
+          {
+           "code": "MS.11.1",
+           "text": "Catches a self-tossed object."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "passing-receiving-with-implements",
+       "title": "Passing & Receiving with implements",
+       "subtopics": [
+        {
+         "id": "passing-receiving-with-implements",
+         "title": "Passing & Receiving with implements",
+         "outcomes": [
+          {
+           "code": "MS.12.1",
+           "text": "Developmentally appropriate at grade 3"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "dribbling-with-hands",
+       "title": "Dribbling with hands",
+       "subtopics": [
+        {
+         "id": "dribbling-with-hands",
+         "title": "Dribbling with hands",
+         "outcomes": [
+          {
+           "code": "MS.13.1",
+           "text": "Dribbles continuously in self-space using finger pads and appropriate force."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "dribbling-with-feet",
+       "title": "Dribbling with feet",
+       "subtopics": [
+        {
+         "id": "dribbling-with-feet",
+         "title": "Dribbling with feet",
+         "outcomes": [
+          {
+           "code": "MS.14.1",
+           "text": "Dribbles (taps) a ball with inside of feet while walking."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "kicking-force-or-distance",
+       "title": "Kicking (force or distance)",
+       "subtopics": [
+        {
+         "id": "kicking-force-or-distance",
+         "title": "Kicking (force or distance)",
+         "outcomes": [
+          {
+           "code": "MS.15.1",
+           "text": "Approaches stationary ball with non-kicking foot beside the ball and making contact with shoelaces."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "passing-receiving-with-feet",
+       "title": "Passing & Receiving with feet",
+       "subtopics": [
+        {
+         "id": "passing-receiving-with-feet",
+         "title": "Passing & Receiving with feet",
+         "outcomes": [
+          {
+           "code": "MS.16.1",
+           "text": "Developmentally appropriate at grade 2"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "striking-with-hand-s",
+       "title": "Striking with hand(s)",
+       "subtopics": [
+        {
+         "id": "striking-with-hand-s",
+         "title": "Striking with hand(s)",
+         "outcomes": [
+          {
+           "code": "MS.17.1",
+           "text": "Strikes an object with an open palm (forward, upward)."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "striking-short-implement",
+       "title": "Striking, short implement",
+       "subtopics": [
+        {
+         "id": "striking-short-implement",
+         "title": "Striking, short implement",
+         "outcomes": [
+          {
+           "code": "MS.18.1",
+           "text": "Strikes a lightweight object with a short-handled implement sending it upward."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "striking-long-implement",
+       "title": "Striking, long implement",
+       "subtopics": [
+        {
+         "id": "striking-long-implement",
+         "title": "Striking, long implement",
+         "outcomes": [
+          {
+           "code": "MS.19.1",
+           "text": "Developmentally appropriate at grade 2"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "jumping-rope",
+       "title": "Jumping Rope",
+       "subtopics": [
+        {
+         "id": "jumping-rope",
+         "title": "Jumping Rope",
+         "outcomes": [
+          {
+           "code": "MS.20.1.a",
+           "text": "Completes a forward OR backward jump using a self-turned rope."
+          },
+          {
+           "code": "MS.20.1.b",
+           "text": "Continuously jumps a long rope with teacher-assisted turning."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "movement-knowledge-application-mka",
+     "title": "Movement Knowledge & Application (MKA)",
+     "topics": [
+      {
+       "id": "space-awareness-location",
+       "title": "Space Awareness (location)",
+       "subtopics": [
+        {
+         "id": "space-awareness-location",
+         "title": "Space Awareness (location)",
+         "outcomes": [
+          {
+           "code": "MKA.1.1.a",
+           "text": "Describes general and self-space."
+          },
+          {
+           "code": "MKA.1.1.b",
+           "text": "Maintains self-space while traveling in general space."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "space-awareness-pathways-levels-directions",
+       "title": "Space Awareness (pathways, levels, directions",
+       "subtopics": [
+        {
+         "id": "space-awareness-pathways-levels-directions",
+         "title": "Space Awareness (pathways, levels, directions",
+         "outcomes": [
+          {
+           "code": "MKA.2.1.a",
+           "text": "Describes low, medium, and high levels."
+          },
+          {
+           "code": "MKA.2.1.b",
+           "text": "Demonstrates low, medium, and high levels while in self-space and general space."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "effort-speed-and-force",
+       "title": "Effort: speed and force",
+       "subtopics": [
+        {
+         "id": "effort-speed-and-force",
+         "title": "Effort: speed and force",
+         "outcomes": [
+          {
+           "code": "MKA.3.1.a",
+           "text": "Describes different speeds and forces."
+          },
+          {
+           "code": "MKA.3.1.b",
+           "text": "Demonstrates slow and fast speeds."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "relationships-body-shapes-with-objects-with-peop",
+       "title": "Relationships (body shapes, with objects, with people)",
+       "subtopics": [
+        {
+         "id": "relationships-body-shapes-with-objects-with-peop",
+         "title": "Relationships (body shapes, with objects, with people)",
+         "outcomes": [
+          {
+           "code": "MKA.4.1.a",
+           "text": "Describes relationships with objects or people (over, around, under, through)."
+          },
+          {
+           "code": "MKA.4.1.b",
+           "text": "Demonstrates a variety of relationships with objects or people (over, around, under, through)."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "movement-principles-base-of-support-muscle-tensi",
+       "title": "Movement Principles (base of support, muscle tension, ready position)",
+       "subtopics": [
+        {
+         "id": "movement-principles-base-of-support-muscle-tensi",
+         "title": "Movement Principles (base of support, muscle tension, ready position)",
+         "outcomes": [
+          {
+           "code": "MKA.5.1.a",
+           "text": "Contrasts the stability of wide and narrow bases of support."
+          },
+          {
+           "code": "MKA.5.1.b",
+           "text": "Differentiates wide and narrow bases of support."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "performance-cues",
+       "title": "Performance Cues",
+       "subtopics": [
+        {
+         "id": "performance-cues",
+         "title": "Performance Cues",
+         "outcomes": [
+          {
+           "code": "MKA.6.1",
+           "text": "Identifies performance cues of locomotor and manipulative skills."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "simple-strategies",
+       "title": "Simple Strategies",
+       "subtopics": [
+        {
+         "id": "simple-strategies",
+         "title": "Simple Strategies",
+         "outcomes": [
+          {
+           "code": "MKA.7.1",
+           "text": "Developmentally appropriate at grade 2"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "fitness-physical-activity-fpa",
+     "title": "Fitness & Physical Activity (FPA)",
+     "topics": [
+      {
+       "id": "health-related-fitness",
+       "title": "Health-related Fitness",
+       "subtopics": [
+        {
+         "id": "health-related-fitness",
+         "title": "Health-related Fitness",
+         "outcomes": [
+          {
+           "code": "FPA.1.1",
+           "text": "Identifies the heart as a muscle that grows stronger with play and physical activity."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "physical-activity",
+       "title": "Physical Activity",
+       "subtopics": [
+        {
+         "id": "physical-activity",
+         "title": "Physical Activity",
+         "outcomes": [
+          {
+           "code": "FPA.2.1",
+           "text": "Discusses the benefits of being active/playing."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "personal-social-responsibility-psr",
+     "title": "Personal & Social Responsibility (PSR)",
+     "topics": [
+      {
+       "id": "personal-responsibility",
+       "title": "Personal Responsibility",
+       "subtopics": [
+        {
+         "id": "personal-responsibility",
+         "title": "Personal Responsibility",
+         "outcomes": [
+          {
+           "code": "PSR.1.1",
+           "text": "Accepts personal responsibility by appropriately using equipment and space."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "feedback",
+       "title": "Feedback",
+       "subtopics": [
+        {
+         "id": "feedback",
+         "title": "Feedback",
+         "outcomes": [
+          {
+           "code": "PSR.2.1",
+           "text": "Responds appropriately to teacher feedback."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "working-with-others",
+       "title": "Working with others",
+       "subtopics": [
+        {
+         "id": "working-with-others",
+         "title": "Working with others",
+         "outcomes": [
+          {
+           "code": "PSR.3.1",
+           "text": "Works appropriately with others in a variety of class environments."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "procedures-rules",
+       "title": "Procedures & Rules",
+       "subtopics": [
+        {
+         "id": "procedures-rules",
+         "title": "Procedures & Rules",
+         "outcomes": [
+          {
+           "code": "PSR.4.1",
+           "text": "Adheres to procedures and rules in the learning environment."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "safety",
+       "title": "Safety",
+       "subtopics": [
+        {
+         "id": "safety",
+         "title": "Safety",
+         "outcomes": [
+          {
+           "code": "PSR.5.1",
+           "text": "Participates safely and uses equipment properly."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "values-physical-activity-vpa",
+     "title": "Values Physical Activity (VPA)",
+     "topics": [
+      {
+       "id": "appreciation",
+       "title": "Appreciation",
+       "subtopics": [
+        {
+         "id": "appreciation",
+         "title": "Appreciation",
+         "outcomes": [
+          {
+           "code": "VPA.1.1",
+           "text": "Describes positive feelings that result from participation in physical activity."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "challenge",
+       "title": "Challenge",
+       "subtopics": [
+        {
+         "id": "challenge",
+         "title": "Challenge",
+         "outcomes": [
+          {
+           "code": "VPA.2.1",
+           "text": "Exhibits a willingness to attempt new or challenging experiences."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "2",
+   "units": [
+    {
+     "id": "motor-skills",
+     "title": "Motor Skills",
+     "topics": [
+      {
+       "id": "hop-one-foot-gallop-slide-skip",
+       "title": "Hop (one foot), gallop, slide, skip",
+       "subtopics": [
+        {
+         "id": "hop-one-foot-gallop-slide-skip",
+         "title": "Hop (one foot), gallop, slide, skip",
+         "outcomes": [
+          {
+           "code": "MS.1.2",
+           "text": "Skips using a mature pattern."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "jog-run",
+       "title": "Jog, run",
+       "subtopics": [
+        {
+         "id": "jog-run",
+         "title": "Jog, run",
+         "outcomes": [
+          {
+           "code": "MS.2.2.a",
+           "text": "Jogs and runs using a mature pattern."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "jump-land-for-distance-horizontal",
+       "title": "Jump & land for distance (horizontal)",
+       "subtopics": [
+        {
+         "id": "jump-land-for-distance-horizontal",
+         "title": "Jump & land for distance (horizontal)",
+         "outcomes": [
+          {
+           "code": "MS.3.2",
+           "text": "Jumps and lands with two feet using 3 of 4 critical elements (arms back & knees bent, arms extend forward as body propels forward, hips, knees, & ankles bend on landing)."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "jump-land-for-height-vertical",
+       "title": "Jump & land for height (vertical)",
+       "subtopics": [
+        {
+         "id": "jump-land-for-height-vertical",
+         "title": "Jump & land for height (vertical)",
+         "outcomes": [
+          {
+           "code": "MS.4.2",
+           "text": "Jumps using 4 of 5 critical elements (hips, knees, & ankles bent, arms extend upward, body extends & stretches upward while in flight, hips, knees, & ankles bend on landing)."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "dance",
+       "title": "Dance",
+       "subtopics": [
+        {
+         "id": "dance",
+         "title": "Dance",
+         "outcomes": [
+          {
+           "code": "MS.5.2",
+           "text": "Performs a simple, creative dance using locomotor, nonlocomotor, and movement concepts."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "balance",
+       "title": "Balance",
+       "subtopics": [
+        {
+         "id": "balance",
+         "title": "Balance",
+         "outcomes": [
+          {
+           "code": "MS.6.2",
+           "text": "Maintains stillness on various bases of support at different levels."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "weight-transfer-rolling-optional",
+       "title": "Weight Transfer & Rolling (OPTIONAL)",
+       "subtopics": [
+        {
+         "id": "weight-transfer-rolling-optional",
+         "title": "Weight Transfer & Rolling (OPTIONAL)",
+         "outcomes": [
+          {
+           "code": "MS.7.2",
+           "text": "Performs a forward roll or shoulder roll while maintaining a curled body shape."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "combinations-optional",
+       "title": "Combinations (optional)",
+       "subtopics": [
+        {
+         "id": "combinations-optional",
+         "title": "Combinations (optional)",
+         "outcomes": [
+          {
+           "code": "MS.8.2",
+           "text": "Moves out of a balance using an appropriate weight transfer and/or roll."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "underhand-throw",
+       "title": "Underhand Throw",
+       "subtopics": [
+        {
+         "id": "underhand-throw",
+         "title": "Underhand Throw",
+         "outcomes": [
+          {
+           "code": "MS.9.2",
+           "text": "Throws underhand with a mature pattern."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "overhand-throw",
+       "title": "Overhand Throw",
+       "subtopics": [
+        {
+         "id": "overhand-throw",
+         "title": "Overhand Throw",
+         "outcomes": [
+          {
+           "code": "MS.10.2",
+           "text": "Throws overhand demonstrating side to target using foot opposition."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "catching",
+       "title": "Catching",
+       "subtopics": [
+        {
+         "id": "catching",
+         "title": "Catching",
+         "outcomes": [
+          {
+           "code": "MS.11.2",
+           "text": "Catches underhand (at or below the chest) using a mature pattern (from partner)."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "passing-receiving-with-implements",
+       "title": "Passing & Receiving with implements",
+       "subtopics": [
+        {
+         "id": "passing-receiving-with-implements",
+         "title": "Passing & Receiving with implements",
+         "outcomes": [
+          {
+           "code": "MS.12.2",
+           "text": "Developmentally appropriate at grade 3"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "dribbling-with-hands",
+       "title": "Dribbling with hands",
+       "subtopics": [
+        {
+         "id": "dribbling-with-hands",
+         "title": "Dribbling with hands",
+         "outcomes": [
+          {
+           "code": "MS.13.2.a",
+           "text": "Dribbles in self-space using a mature pattern."
+          },
+          {
+           "code": "MS.13.2.b",
+           "text": "Dribbles with preferred hand while walking."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "dribbling-with-feet",
+       "title": "Dribbling with feet",
+       "subtopics": [
+        {
+         "id": "dribbling-with-feet",
+         "title": "Dribbling with feet",
+         "outcomes": [
+          {
+           "code": "MS.14.2",
+           "text": "Dribbles with feet while walking, keeping control of the ball."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "kicking-force-or-distance",
+       "title": "Kicking (force or distance)",
+       "subtopics": [
+        {
+         "id": "kicking-force-or-distance",
+         "title": "Kicking (force or distance)",
+         "outcomes": [
+          {
+           "code": "MS.15.2",
+           "text": "Kicks a ball with a running approach using a mature pattern."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "passing-receiving-with-feet",
+       "title": "Passing & Receiving with feet",
+       "subtopics": [
+        {
+         "id": "passing-receiving-with-feet",
+         "title": "Passing & Receiving with feet",
+         "outcomes": [
+          {
+           "code": "MS.16.2",
+           "text": "Passes a ball with inside of foot to stationary partner."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "striking-with-hand-s",
+       "title": "Striking with hand(s)",
+       "subtopics": [
+        {
+         "id": "striking-with-hand-s",
+         "title": "Striking with hand(s)",
+         "outcomes": [
+          {
+           "code": "MS.17.2",
+           "text": "Consecutively strikes an object with an open palm."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "striking-short-implement",
+       "title": "Striking, short implement",
+       "subtopics": [
+        {
+         "id": "striking-short-implement",
+         "title": "Striking, short implement",
+         "outcomes": [
+          {
+           "code": "MS.18.2",
+           "text": "Strikes an object with a short-handled implement sending it forward using an underhand pattern."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "striking-long-implement",
+       "title": "Striking, long implement",
+       "subtopics": [
+        {
+         "id": "striking-long-implement",
+         "title": "Striking, long implement",
+         "outcomes": [
+          {
+           "code": "MS.19.2",
+           "text": "Strikes a ball off a tee with a bat using correct grip and side orientation."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "jumping-rope",
+       "title": "Jumping Rope",
+       "subtopics": [
+        {
+         "id": "jumping-rope",
+         "title": "Jumping Rope",
+         "outcomes": [
+          {
+           "code": "MS.20.2.a",
+           "text": "Continuously jumps a self-turned rope with a mature pattern."
+          },
+          {
+           "code": "MS.20.2.b",
+           "text": "Performs basic jump rope skills."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "movement-knowledge-application-mka",
+     "title": "Movement Knowledge & Application (MKA)",
+     "topics": [
+      {
+       "id": "space-awareness-location",
+       "title": "Space Awareness (location)",
+       "subtopics": [
+        {
+         "id": "space-awareness-location",
+         "title": "Space Awareness (location)",
+         "outcomes": [
+          {
+           "code": "MKA.1.2.a",
+           "text": "Explains the importance of self-space while moving."
+          },
+          {
+           "code": "MKA.1.2.b",
+           "text": "Travels using various locomotor skills in general space."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "space-awareness-pathways-levels-directions",
+       "title": "Space Awareness (pathways, levels, directions",
+       "subtopics": [
+        {
+         "id": "space-awareness-pathways-levels-directions",
+         "title": "Space Awareness (pathways, levels, directions",
+         "outcomes": [
+          {
+           "code": "MKA.2.2.a",
+           "text": "Explains the use of different pathways."
+          },
+          {
+           "code": "MKA.2.2.b",
+           "text": "Demonstrates and applies all three pathways (straight, curvy, zigzag)."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "effort-speed-and-force",
+       "title": "Effort: speed and force",
+       "subtopics": [
+        {
+         "id": "effort-speed-and-force",
+         "title": "Effort: speed and force",
+         "outcomes": [
+          {
+           "code": "MKA.3.2.a",
+           "text": "Explains the use of speeds and forces."
+          },
+          {
+           "code": "MKA.3.2.b",
+           "text": "Demonstrates various speeds and forces."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "relationships-body-shapes-with-objects-with-peop",
+       "title": "Relationships (body shapes, with objects, with people)",
+       "subtopics": [
+        {
+         "id": "relationships-body-shapes-with-objects-with-peop",
+         "title": "Relationships (body shapes, with objects, with people)",
+         "outcomes": [
+          {
+           "code": "MKA.4.2.a",
+           "text": "Explains symmetrical and non-symmetrical body shapes."
+          },
+          {
+           "code": "MKA.4.2.b",
+           "text": "Demonstrates symmetrical and non-symmetrical body shapes."
+          },
+          {
+           "code": "MKA.4.2.c",
+           "text": "Uses relationships and body shapes in simple dance and/or gymnastics sequences."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "movement-principles-base-of-support-muscle-tensi",
+       "title": "Movement Principles (base of support, muscle tension, ready position)",
+       "subtopics": [
+        {
+         "id": "movement-principles-base-of-support-muscle-tensi",
+         "title": "Movement Principles (base of support, muscle tension, ready position)",
+         "outcomes": [
+          {
+           "code": "MKA.5.2.a",
+           "text": "Explains the need for muscular tension to maintain balance."
+          },
+          {
+           "code": "MKA.5.2.b",
+           "text": "Applies the concept of muscular tension while balancing on various bases of support."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "performance-cues",
+       "title": "Performance Cues",
+       "subtopics": [
+        {
+         "id": "performance-cues",
+         "title": "Performance Cues",
+         "outcomes": [
+          {
+           "code": "MKA.6.2",
+           "text": "Describes performance cues of locomotor and manipulative skills."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "simple-strategies",
+       "title": "Simple Strategies",
+       "subtopics": [
+        {
+         "id": "simple-strategies",
+         "title": "Simple Strategies",
+         "outcomes": [
+          {
+           "code": "MKA.7.2",
+           "text": "Applies simple strategies to chase and flee (tag) activities."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "fitness-physical-activity-fpa",
+     "title": "Fitness & Physical Activity (FPA)",
+     "topics": [
+      {
+       "id": "health-related-fitness",
+       "title": "Health-related Fitness",
+       "subtopics": [
+        {
+         "id": "health-related-fitness",
+         "title": "Health-related Fitness",
+         "outcomes": [
+          {
+           "code": "FPA.1.2",
+           "text": "Identifies and participates in physical activities that increase heart rate."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "physical-activity",
+       "title": "Physical Activity",
+       "subtopics": [
+        {
+         "id": "physical-activity",
+         "title": "Physical Activity",
+         "outcomes": [
+          {
+           "code": "FPA.2.2",
+           "text": "Identifies personal physical activity choices."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "personal-social-responsibility-psr",
+     "title": "Personal & Social Responsibility (PSR)",
+     "topics": [
+      {
+       "id": "personal-responsibility",
+       "title": "Personal Responsibility",
+       "subtopics": [
+        {
+         "id": "personal-responsibility",
+         "title": "Personal Responsibility",
+         "outcomes": [
+          {
+           "code": "PSR.1.2",
+           "text": "Participates with minimal prompting."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "feedback",
+       "title": "Feedback",
+       "subtopics": [
+        {
+         "id": "feedback",
+         "title": "Feedback",
+         "outcomes": [
+          {
+           "code": "PSR.2.2",
+           "text": "Accepts specific teacher feedback"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "working-with-others",
+       "title": "Working with others",
+       "subtopics": [
+        {
+         "id": "working-with-others",
+         "title": "Working with others",
+         "outcomes": [
+          {
+           "code": "PSR.3.2",
+           "text": "Demonstrates awareness of personal behavior with regard to cooperation and sharing."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "procedures-rules",
+       "title": "Procedures & Rules",
+       "subtopics": [
+        {
+         "id": "procedures-rules",
+         "title": "Procedures & Rules",
+         "outcomes": [
+          {
+           "code": "PSR.4.2",
+           "text": "Identifies the need for procedures and rules to create a positive learning environment."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "safety",
+       "title": "Safety",
+       "subtopics": [
+        {
+         "id": "safety",
+         "title": "Safety",
+         "outcomes": [
+          {
+           "code": "PSR.5.2",
+           "text": "Recognizes potential personal safety issues."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "values-physical-activity-vpa",
+     "title": "Values Physical Activity (VPA)",
+     "topics": [
+      {
+       "id": "appreciation",
+       "title": "Appreciation",
+       "subtopics": [
+        {
+         "id": "appreciation",
+         "title": "Appreciation",
+         "outcomes": [
+          {
+           "code": "VPA.1.2",
+           "text": "Recognizes and participates in physical activity for enjoyment, self-expression, and/or social interaction."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "challenge",
+       "title": "Challenge",
+       "subtopics": [
+        {
+         "id": "challenge",
+         "title": "Challenge",
+         "outcomes": [
+          {
+           "code": "VPA.2.2",
+           "text": "Exhibits a willingness to continue practicing challenging experiences."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "3",
+   "units": [
+    {
+     "id": "motor-skills",
+     "title": "Motor Skills",
+     "topics": [
+      {
+       "id": "hop-one-foot-gallop-slide-skip",
+       "title": "Hop (one foot), gallop, slide, skip",
+       "subtopics": [
+        {
+         "id": "hop-one-foot-gallop-slide-skip",
+         "title": "Hop (one foot), gallop, slide, skip",
+         "outcomes": [
+          {
+           "code": "MS.1.3",
+           "text": "Combines at least two locomotor skills with smooth transition."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "jog-run",
+       "title": "Jog, run",
+       "subtopics": [
+        {
+         "id": "jog-run",
+         "title": "Jog, run",
+         "outcomes": [
+          {
+           "code": "MS.2.3",
+           "text": "Travels showing differentiation of speeds (e.g. Increase/decrease speed as moving)."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "jump-land-for-distance-horizontal",
+       "title": "Jump & land for distance (horizontal)",
+       "subtopics": [
+        {
+         "id": "jump-land-for-distance-horizontal",
+         "title": "Jump & land for distance (horizontal)",
+         "outcomes": [
+          {
+           "code": "MS.3.3.a",
+           "text": "Leaps using a mature pattern."
+          },
+          {
+           "code": "MS.3.3.b",
+           "text": "Jumps and lands using a mature pattern of one and two foot takeoffs and landings (e.g., 2-2, 1-2, 2-1; hopscotch, dance, gymnastics)."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "jump-land-for-height-vertical",
+       "title": "Jump & land for height (vertical)",
+       "subtopics": [
+        {
+         "id": "jump-land-for-height-vertical",
+         "title": "Jump & land for height (vertical)",
+         "outcomes": [
+          {
+           "code": "MS.4.3",
+           "text": "Jumps using a mature pattern."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "dance",
+       "title": "Dance",
+       "subtopics": [
+        {
+         "id": "dance",
+         "title": "Dance",
+         "outcomes": [
+          {
+           "code": "MS.5.3",
+           "text": "Performs a simple teacher- and/or student-designed rhythmic activity."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "balance",
+       "title": "Balance",
+       "subtopics": [
+        {
+         "id": "balance",
+         "title": "Balance",
+         "outcomes": [
+          {
+           "code": "MS.6.3.a",
+           "text": "Maintains stillness on various bases of support demonstrating muscular tension and extensions of free body parts."
+          },
+          {
+           "code": "MS.6.3.b",
+           "text": "Balances in an inverted position with stillness and supportive base."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "weight-transfer-rolling-optional",
+       "title": "Weight Transfer & Rolling (OPTIONAL)",
+       "subtopics": [
+        {
+         "id": "weight-transfer-rolling-optional",
+         "title": "Weight Transfer & Rolling (OPTIONAL)",
+         "outcomes": [
+          {
+           "code": "MS.7.3.a",
+           "text": "Transfers weight from feet to hands for momentary weight support."
+          },
+          {
+           "code": "MS.7.3.b",
+           "text": "Rolls forward and sideways using tight muscles and proper body alignment."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "combinations-optional",
+       "title": "Combinations (optional)",
+       "subtopics": [
+        {
+         "id": "combinations-optional",
+         "title": "Combinations (optional)",
+         "outcomes": [
+          {
+           "code": "MS.8.3",
+           "text": "Performs a 3-part sequence of balance-weight transfer/roll-balance."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "underhand-throw",
+       "title": "Underhand Throw",
+       "subtopics": [
+        {
+         "id": "underhand-throw",
+         "title": "Underhand Throw",
+         "outcomes": [
+          {
+           "code": "MS.9.3.a",
+           "text": "Rolls a ball using a mature pattern."
+          },
+          {
+           "code": "MS.9.3.b",
+           "text": "Throws underhand to a partner or target with appropriate force."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "overhand-throw",
+       "title": "Overhand Throw",
+       "subtopics": [
+        {
+         "id": "overhand-throw",
+         "title": "Overhand Throw",
+         "outcomes": [
+          {
+           "code": "MS.10.3",
+           "text": "Throws overhand for distance or force demonstrating side to target, arm back, and stepping with opposition."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "catching",
+       "title": "Catching",
+       "subtopics": [
+        {
+         "id": "catching",
+         "title": "Catching",
+         "outcomes": [
+          {
+           "code": "MS.11.3",
+           "text": "Catches overhand (at or above chest) using a mature pattern (from partner)."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "passing-receiving-with-implements",
+       "title": "Passing & Receiving with implements",
+       "subtopics": [
+        {
+         "id": "passing-receiving-with-implements",
+         "title": "Passing & Receiving with implements",
+         "outcomes": [
+          {
+           "code": "MS.12.3",
+           "text": "Passing and receiving with a partner while stationary with appropriate force."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "dribbling-with-hands",
+       "title": "Dribbling with hands",
+       "subtopics": [
+        {
+         "id": "dribbling-with-hands",
+         "title": "Dribbling with hands",
+         "outcomes": [
+          {
+           "code": "MS.13.3",
+           "text": "Dribbles with preferred hand while jogging with control of the ball and body."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "dribbling-with-feet",
+       "title": "Dribbling with feet",
+       "subtopics": [
+        {
+         "id": "dribbling-with-feet",
+         "title": "Dribbling with feet",
+         "outcomes": [
+          {
+           "code": "MS.14.3",
+           "text": "Dribbles with feet while jogging, keeping control of the ball and body."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "kicking-force-or-distance",
+       "title": "Kicking (force or distance)",
+       "subtopics": [
+        {
+         "id": "kicking-force-or-distance",
+         "title": "Kicking (force or distance)",
+         "outcomes": [
+          {
+           "code": "MS.15.3",
+           "text": "Kicks a ball at intended levels with a running approach."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "passing-receiving-with-feet",
+       "title": "Passing & Receiving with feet",
+       "subtopics": [
+        {
+         "id": "passing-receiving-with-feet",
+         "title": "Passing & Receiving with feet",
+         "outcomes": [
+          {
+           "code": "MS.16.3",
+           "text": "Passes and receives a ball with the insides of the feet to a stationary partner, \"giving\" on reception."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "striking-with-hand-s",
+       "title": "Striking with hand(s)",
+       "subtopics": [
+        {
+         "id": "striking-with-hand-s",
+         "title": "Striking with hand(s)",
+         "outcomes": [
+          {
+           "code": "MS.17.3",
+           "text": "Strikes an object with underhand or sidearm pattern over a net/line, to the wall, or to a partner."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "striking-short-implement",
+       "title": "Striking, short implement",
+       "subtopics": [
+        {
+         "id": "striking-short-implement",
+         "title": "Striking, short implement",
+         "outcomes": [
+          {
+           "code": "MS.18.3",
+           "text": "Strikes an object with a short-handled implement sending it forward using an underhand pattern with accuracy."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "striking-long-implement",
+       "title": "Striking, long implement",
+       "subtopics": [
+        {
+         "id": "striking-long-implement",
+         "title": "Striking, long implement",
+         "outcomes": [
+          {
+           "code": "MS.19.3",
+           "text": "Strikes an object with a long-handled implement (e.g., bat, hockey stick, golf club) sending it forward and using proper grip."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "jumping-rope",
+       "title": "Jumping Rope",
+       "subtopics": [
+        {
+         "id": "jumping-rope",
+         "title": "Jumping Rope",
+         "outcomes": [
+          {
+           "code": "MS.20.3.a",
+           "text": "Performs intermediate jump rope skills for both short and long ropes."
+          },
+          {
+           "code": "MS.20.3.b",
+           "text": "Turns a long rope correctly."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "movement-knowledge-application-mka",
+     "title": "Movement Knowledge & Application (MKA)",
+     "topics": [
+      {
+       "id": "space-awareness-location",
+       "title": "Space Awareness (location)",
+       "subtopics": [
+        {
+         "id": "space-awareness-location",
+         "title": "Space Awareness (location)",
+         "outcomes": [
+          {
+           "code": "MKA.1.3.a",
+           "text": "Recognizes the concept of open space."
+          },
+          {
+           "code": "MKA.1.3.b",
+           "text": "Applies the concept of open space while moving."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "space-awareness-pathways-levels-directions",
+       "title": "Space Awareness (pathways, levels, directions",
+       "subtopics": [
+        {
+         "id": "space-awareness-pathways-levels-directions",
+         "title": "Space Awareness (pathways, levels, directions",
+         "outcomes": [
+          {
+           "code": "MKA.2.3.a",
+           "text": "Recognizes clockwise and counter-clockwise directions."
+          },
+          {
+           "code": "MKA.2.3.b",
+           "text": "Combines levels, directions, and pathways into simple travel, dance, and gymnastic sequences."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "effort-speed-and-force",
+       "title": "Effort: speed and force",
+       "subtopics": [
+        {
+         "id": "effort-speed-and-force",
+         "title": "Effort: speed and force",
+         "outcomes": [
+          {
+           "code": "MKA.3.3.a",
+           "text": "Recognizes the need for varied speeds and forces within movement."
+          },
+          {
+           "code": "MKA.3.3.b",
+           "text": "Applies speeds or forces with throwing and kicking."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "relationships-body-shapes-with-objects-with-peop",
+       "title": "Relationships (body shapes, with objects, with people)",
+       "subtopics": [
+        {
+         "id": "relationships-body-shapes-with-objects-with-peop",
+         "title": "Relationships (body shapes, with objects, with people)",
+         "outcomes": [
+          {
+           "code": "MKA.4.3.a",
+           "text": "Differentiates relationships with people (mirror/matching, leading/following)."
+          },
+          {
+           "code": "MKA.4.3.b",
+           "text": "Demonstrates relationships with people (mirror/matching, leading/following)."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "movement-principles-base-of-support-muscle-tensi",
+       "title": "Movement Principles (base of support, muscle tension, ready position)",
+       "subtopics": [
+        {
+         "id": "movement-principles-base-of-support-muscle-tensi",
+         "title": "Movement Principles (base of support, muscle tension, ready position)",
+         "outcomes": [
+          {
+           "code": "MKA.5.3.a",
+           "text": "Recognizes the need for ready position."
+          },
+          {
+           "code": "MKA.5.3.b",
+           "text": "Applies concept of ready position to increase stability and prepare for movement."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "performance-cues",
+       "title": "Performance Cues",
+       "subtopics": [
+        {
+         "id": "performance-cues",
+         "title": "Performance Cues",
+         "outcomes": [
+          {
+           "code": "MKA.6.3",
+           "text": "Identifies errors of a skill."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "simple-strategies",
+       "title": "Simple Strategies",
+       "subtopics": [
+        {
+         "id": "simple-strategies",
+         "title": "Simple Strategies",
+         "outcomes": [
+          {
+           "code": "MKA.7.3",
+           "text": "Recognizes a variety of simple strategies in game-like activities."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "fitness-physical-activity-fpa",
+     "title": "Fitness & Physical Activity (FPA)",
+     "topics": [
+      {
+       "id": "health-related-fitness",
+       "title": "Health-related Fitness",
+       "subtopics": [
+        {
+         "id": "health-related-fitness",
+         "title": "Health-related Fitness",
+         "outcomes": [
+          {
+           "code": "FPA.1.3",
+           "text": "Describes the physiological indicators that accompany moderate to vigorous physical activity."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "physical-activity",
+       "title": "Physical Activity",
+       "subtopics": [
+        {
+         "id": "physical-activity",
+         "title": "Physical Activity",
+         "outcomes": [
+          {
+           "code": "FPA.2.3",
+           "text": "Recognizes the benefits of physical activity that contribute to a healthy lifestyle."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "personal-social-responsibility-psr",
+     "title": "Personal & Social Responsibility (PSR)",
+     "topics": [
+      {
+       "id": "personal-responsibility",
+       "title": "Personal Responsibility",
+       "subtopics": [
+        {
+         "id": "personal-responsibility",
+         "title": "Personal Responsibility",
+         "outcomes": [
+          {
+           "code": "PSR.1.3",
+           "text": "Works independently and stays on-task."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "feedback",
+       "title": "Feedback",
+       "subtopics": [
+        {
+         "id": "feedback",
+         "title": "Feedback",
+         "outcomes": [
+          {
+           "code": "PSR.2.3",
+           "text": "Implements specific teacher feedback."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "working-with-others",
+       "title": "Working with others",
+       "subtopics": [
+        {
+         "id": "working-with-others",
+         "title": "Working with others",
+         "outcomes": [
+          {
+           "code": "PSR.3.3",
+           "text": "Resolves conflict in socially acceptable ways."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "procedures-rules",
+       "title": "Procedures & Rules",
+       "subtopics": [
+        {
+         "id": "procedures-rules",
+         "title": "Procedures & Rules",
+         "outcomes": [
+          {
+           "code": "PSR.4.3",
+           "text": "Encourages others to follow procedures and rules to provide a productive learning environment."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "safety",
+       "title": "Safety",
+       "subtopics": [
+        {
+         "id": "safety",
+         "title": "Safety",
+         "outcomes": [
+          {
+           "code": "PSR.5.3",
+           "text": "Recognizes potential safety issues for self and others."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "values-physical-activity-vpa",
+     "title": "Values Physical Activity (VPA)",
+     "topics": [
+      {
+       "id": "appreciation",
+       "title": "Appreciation",
+       "subtopics": [
+        {
+         "id": "appreciation",
+         "title": "Appreciation",
+         "outcomes": [
+          {
+           "code": "VPA.1.3",
+           "text": "Reflects on reasons for participation in specific physical activities outside of physical education class."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "challenge",
+       "title": "Challenge",
+       "subtopics": [
+        {
+         "id": "challenge",
+         "title": "Challenge",
+         "outcomes": [
+          {
+           "code": "VPA.2.3",
+           "text": "Identifies personal strengths and weaknesses in physical activities."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "4",
+   "units": [
+    {
+     "id": "motor-skills",
+     "title": "Motor Skills",
+     "topics": [
+      {
+       "id": "hop-one-foot-gallop-slide-skip",
+       "title": "Hop (one foot), gallop, slide, skip",
+       "subtopics": [
+        {
+         "id": "hop-one-foot-gallop-slide-skip",
+         "title": "Hop (one foot), gallop, slide, skip",
+         "outcomes": [
+          {
+           "code": "MS.1.4",
+           "text": "Uses various locomotor skills in a variety of small-sided games/practice tasks, dance, and/or educational gymnastics experiences."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "jog-run",
+       "title": "Jog, run",
+       "subtopics": [
+        {
+         "id": "jog-run",
+         "title": "Jog, run",
+         "outcomes": [
+          {
+           "code": "MS.2.4",
+           "text": "Uses appropriate speed in chase, flee, and dodge activities."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "jump-land-for-distance-horizontal",
+       "title": "Jump & land for distance (horizontal)",
+       "subtopics": [
+        {
+         "id": "jump-land-for-distance-horizontal",
+         "title": "Jump & land for distance (horizontal)",
+         "outcomes": [
+          {
+           "code": "MS.3.4",
+           "text": "Combines jumping and landing with traveling (e.g., running and leaping)."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "jump-land-for-height-vertical",
+       "title": "Jump & land for height (vertical)",
+       "subtopics": [
+        {
+         "id": "jump-land-for-height-vertical",
+         "title": "Jump & land for height (vertical)",
+         "outcomes": [
+          {
+           "code": "MS.4.4",
+           "text": "Combines traveling with jumping and landing."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "dance",
+       "title": "Dance",
+       "subtopics": [
+        {
+         "id": "dance",
+         "title": "Dance",
+         "outcomes": [
+          {
+           "code": "MS.5.4",
+           "text": "Performs a cultural dance on beat with correct pattern."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "balance",
+       "title": "Balance",
+       "subtopics": [
+        {
+         "id": "balance",
+         "title": "Balance",
+         "outcomes": [
+          {
+           "code": "MS.6.4",
+           "text": "Balances with a partner demonstrating counterbalance, muscular tension, and extension of free body parts."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "weight-transfer-rolling-optional",
+       "title": "Weight Transfer & Rolling (OPTIONAL)",
+       "subtopics": [
+        {
+         "id": "weight-transfer-rolling-optional",
+         "title": "Weight Transfer & Rolling (OPTIONAL)",
+         "outcomes": [
+          {
+           "code": "MS.7.4.a",
+           "text": "Uses transfers of weight or rolling as a transitional movement in a sequence."
+          },
+          {
+           "code": "MS.7.4.b",
+           "text": "Performs a forward roll or shoulder roll using momentum to come to a standing position."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "combinations-optional",
+       "title": "Combinations (optional)",
+       "subtopics": [
+        {
+         "id": "combinations-optional",
+         "title": "Combinations (optional)",
+         "outcomes": [
+          {
+           "code": "MS.8.4",
+           "text": "Combines traveling, balance and weight transfers/rolls to create and perform an educational gymnastics sequence."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "underhand-throw",
+       "title": "Underhand Throw",
+       "subtopics": [
+        {
+         "id": "underhand-throw",
+         "title": "Underhand Throw",
+         "outcomes": [
+          {
+           "code": "MS.9.4",
+           "text": "Throws underhand to a partner or target with accuracy."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "overhand-throw",
+       "title": "Overhand Throw",
+       "subtopics": [
+        {
+         "id": "overhand-throw",
+         "title": "Overhand Throw",
+         "outcomes": [
+          {
+           "code": "MS.10.4",
+           "text": "Throws overhand to a partner or target with accuracy."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "catching",
+       "title": "Catching",
+       "subtopics": [
+        {
+         "id": "catching",
+         "title": "Catching",
+         "outcomes": [
+          {
+           "code": "MS.11.4",
+           "text": "Catches an object at various levels and locations around the body (from partner)."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "passing-receiving-with-implements",
+       "title": "Passing & Receiving with implements",
+       "subtopics": [
+        {
+         "id": "passing-receiving-with-implements",
+         "title": "Passing & Receiving with implements",
+         "outcomes": [
+          {
+           "code": "MS.12.4",
+           "text": "Passing and receiving with a partner while stationary with accuracy."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "dribbling-with-hands",
+       "title": "Dribbling with hands",
+       "subtopics": [
+        {
+         "id": "dribbling-with-hands",
+         "title": "Dribbling with hands",
+         "outcomes": [
+          {
+           "code": "MS.13.4.a",
+           "text": "Dribbles with preferred hand using mature pattern while jogging."
+          },
+          {
+           "code": "MS.13.4.b",
+           "text": "Dribbles while increasing and decreasing speeds."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "dribbling-with-feet",
+       "title": "Dribbling with feet",
+       "subtopics": [
+        {
+         "id": "dribbling-with-feet",
+         "title": "Dribbling with feet",
+         "outcomes": [
+          {
+           "code": "MS.14.4.a",
+           "text": "Dribbles with feet using mature pattern while jogging."
+          },
+          {
+           "code": "MS.14.4.b",
+           "text": "Dribbles with feet while increasing and decreasing speeds."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "kicking-force-or-distance",
+       "title": "Kicking (force or distance)",
+       "subtopics": [
+        {
+         "id": "kicking-force-or-distance",
+         "title": "Kicking (force or distance)",
+         "outcomes": [
+          {
+           "code": "MS.15.4.a",
+           "text": "Kicks a ball with a running approach for accuracy."
+          },
+          {
+           "code": "MS.15.4.b",
+           "text": "Kicks a moving ball with a running approach."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "passing-receiving-with-feet",
+       "title": "Passing & Receiving with feet",
+       "subtopics": [
+        {
+         "id": "passing-receiving-with-feet",
+         "title": "Passing & Receiving with feet",
+         "outcomes": [
+          {
+           "code": "MS.16.4",
+           "text": "Passes and receives the ball with the insides/outsides of the feet to a moving partner."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "striking-with-hand-s",
+       "title": "Striking with hand(s)",
+       "subtopics": [
+        {
+         "id": "striking-with-hand-s",
+         "title": "Striking with hand(s)",
+         "outcomes": [
+          {
+           "code": "MS.17.4.a",
+           "text": "Strikes an object in partner or small-sided practice tasks."
+          },
+          {
+           "code": "MS.17.4.b",
+           "text": "Overhead volleys a ball with two hands, body positioned under the ball, and contact made with finger pads sending it upward."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "striking-short-implement",
+       "title": "Striking, short implement",
+       "subtopics": [
+        {
+         "id": "striking-short-implement",
+         "title": "Striking, short implement",
+         "outcomes": [
+          {
+           "code": "MS.18.4",
+           "text": "Strikes an object with a short-handled implement sending it forward using a forehand pattern with side to target and implement back in preparation."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "striking-long-implement",
+       "title": "Striking, long implement",
+       "subtopics": [
+        {
+         "id": "striking-long-implement",
+         "title": "Striking, long implement",
+         "outcomes": [
+          {
+           "code": "MS.19.4",
+           "text": "Strikes an object with a long-handled implement (e.g., bat, hockey stick, golf club) with proper grip, body orientation, and swing plane."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "jumping-rope",
+       "title": "Jumping Rope",
+       "subtopics": [
+        {
+         "id": "jumping-rope",
+         "title": "Jumping Rope",
+         "outcomes": [
+          {
+           "code": "MS.20.4",
+           "text": "Performs a simple jump rope routine with short or long rope."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "movement-knowledge-application-mka",
+     "title": "Movement Knowledge & Application (MKA)",
+     "topics": [
+      {
+       "id": "space-awareness-location",
+       "title": "Space Awareness (location)",
+       "subtopics": [
+        {
+         "id": "space-awareness-location",
+         "title": "Space Awareness (location)",
+         "outcomes": [
+          {
+           "code": "MKA.1.4.a",
+           "text": "Compares and contrasts open and closed spaces."
+          },
+          {
+           "code": "MKA.1.4.b",
+           "text": "Applies the concept of open space to combination skills (e.g., traveling and dribbling)."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "space-awareness-pathways-levels-directions",
+       "title": "Space Awareness (pathways, levels, directions",
+       "subtopics": [
+        {
+         "id": "space-awareness-pathways-levels-directions",
+         "title": "Space Awareness (pathways, levels, directions",
+         "outcomes": [
+          {
+           "code": "MKA.2.4.a",
+           "text": "Compares and contrasts use of pathways, levels, and directions."
+          },
+          {
+           "code": "MKA.2.4.b",
+           "text": "Uses pathways, levels, and directions in a variety of small-sided games/practice tasks, dance, and/or educational gymnastics experiences."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "effort-speed-and-force",
+       "title": "Effort: speed and force",
+       "subtopics": [
+        {
+         "id": "effort-speed-and-force",
+         "title": "Effort: speed and force",
+         "outcomes": [
+          {
+           "code": "MKA.3.4.a",
+           "text": "Compares and contrasts use of speeds and forces within movement."
+          },
+          {
+           "code": "MKA.3.4.b",
+           "text": "Uses speeds and forces in a variety of small-sided games/practice tasks, dance, and/or educational gymnastics experiences."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "relationships-body-shapes-with-objects-with-peop",
+       "title": "Relationships (body shapes, with objects, with people)",
+       "subtopics": [
+        {
+         "id": "relationships-body-shapes-with-objects-with-peop",
+         "title": "Relationships (body shapes, with objects, with people)",
+         "outcomes": [
+          {
+           "code": "MKA.4.4.a",
+           "text": "Compares and contrasts relationships in movement."
+          },
+          {
+           "code": "MKA.4.4.b",
+           "text": "Uses relationships in a variety of small-sided games/practice tasks, dance, and/or educational gymnastics experiences."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "movement-principles-base-of-support-muscle-tensi",
+       "title": "Movement Principles (base of support, muscle tension, ready position)",
+       "subtopics": [
+        {
+         "id": "movement-principles-base-of-support-muscle-tensi",
+         "title": "Movement Principles (base of support, muscle tension, ready position)",
+         "outcomes": [
+          {
+           "code": "MKA.5.4.a",
+           "text": "Explains how movement principles are used in a variety of dance and/or educational gymnastic experiences."
+          },
+          {
+           "code": "MKA.5.4.b",
+           "text": "Applies movement principles in a variety of dance and/or educational gymnastics experiences."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "performance-cues",
+       "title": "Performance Cues",
+       "subtopics": [
+        {
+         "id": "performance-cues",
+         "title": "Performance Cues",
+         "outcomes": [
+          {
+           "code": "MKA.6.4",
+           "text": "Explains how to correctly perform a skill."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "simple-strategies",
+       "title": "Simple Strategies",
+       "subtopics": [
+        {
+         "id": "simple-strategies",
+         "title": "Simple Strategies",
+         "outcomes": [
+          {
+           "code": "MKA.7.4",
+           "text": "Designs and implements simple strategies in game-like activities."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "fitness-physical-activity-fpa",
+     "title": "Fitness & Physical Activity (FPA)",
+     "topics": [
+      {
+       "id": "health-related-fitness",
+       "title": "Health-related Fitness",
+       "subtopics": [
+        {
+         "id": "health-related-fitness",
+         "title": "Health-related Fitness",
+         "outcomes": [
+          {
+           "code": "FPA.1.4",
+           "text": "Identifies the components of health-related fitness."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "physical-activity",
+       "title": "Physical Activity",
+       "subtopics": [
+        {
+         "id": "physical-activity",
+         "title": "Physical Activity",
+         "outcomes": [
+          {
+           "code": "FPA.2.4",
+           "text": "Analyzes opportunities in the community for physical activity."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "personal-social-responsibility-psr",
+     "title": "Personal & Social Responsibility (PSR)",
+     "topics": [
+      {
+       "id": "personal-responsibility",
+       "title": "Personal Responsibility",
+       "subtopics": [
+        {
+         "id": "personal-responsibility",
+         "title": "Personal Responsibility",
+         "outcomes": [
+          {
+           "code": "PSR.1.4.a",
+           "text": "Exhibits responsible behavior in group settings."
+          },
+          {
+           "code": "PSR.1.4.b",
+           "text": "Reflects on personal behavior in group settings."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "feedback",
+       "title": "Feedback",
+       "subtopics": [
+        {
+         "id": "feedback",
+         "title": "Feedback",
+         "outcomes": [
+          {
+           "code": "PSR.2.4",
+           "text": "Listens respectfully to corrective feedback from teachers and peers."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "working-with-others",
+       "title": "Working with others",
+       "subtopics": [
+        {
+         "id": "working-with-others",
+         "title": "Working with others",
+         "outcomes": [
+          {
+           "code": "PSR.3.4",
+           "text": "Interacts positively with others regardless of personal differences."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "procedures-rules",
+       "title": "Procedures & Rules",
+       "subtopics": [
+        {
+         "id": "procedures-rules",
+         "title": "Procedures & Rules",
+         "outcomes": [
+          {
+           "code": "PSR.4.4",
+           "text": "Adheres to specific rules to promote fair play in small-sided games."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "safety",
+       "title": "Safety",
+       "subtopics": [
+        {
+         "id": "safety",
+         "title": "Safety",
+         "outcomes": [
+          {
+           "code": "PSR.5.4",
+           "text": "Applies safety principles in all physical activities."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "values-physical-activity-vpa",
+     "title": "Values Physical Activity (VPA)",
+     "topics": [
+      {
+       "id": "appreciation",
+       "title": "Appreciation",
+       "subtopics": [
+        {
+         "id": "appreciation",
+         "title": "Appreciation",
+         "outcomes": [
+          {
+           "code": "VPA.1.4",
+           "text": "Ranks different physical activities based on personal preference."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "challenge",
+       "title": "Challenge",
+       "subtopics": [
+        {
+         "id": "challenge",
+         "title": "Challenge",
+         "outcomes": [
+          {
+           "code": "VPA.2.4",
+           "text": "Discusses the challenge that comes from learning a new physical activity."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "5",
+   "units": [
+    {
+     "id": "motor-skills",
+     "title": "Motor Skills",
+     "topics": [
+      {
+       "id": "hop-one-foot-gallop-slide-skip",
+       "title": "Hop (one foot), gallop, slide, skip",
+       "subtopics": [
+        {
+         "id": "hop-one-foot-gallop-slide-skip",
+         "title": "Hop (one foot), gallop, slide, skip",
+         "outcomes": [
+          {
+           "code": "MS.1.5",
+           "text": "Combines traveling with manipulative skills."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "jog-run",
+       "title": "Jog, run",
+       "subtopics": [
+        {
+         "id": "jog-run",
+         "title": "Jog, run",
+         "outcomes": [
+          {
+           "code": "MS.2.5",
+           "text": "Uses appropriate pacing to run a variety of distances."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "jump-land-for-distance-horizontal",
+       "title": "Jump & land for distance (horizontal)",
+       "subtopics": [
+        {
+         "id": "jump-land-for-distance-horizontal",
+         "title": "Jump & land for distance (horizontal)",
+         "outcomes": [
+          {
+           "code": "MS.3.5",
+           "text": "Applies jumping and landing to a variety of activities (e.g., small-sided games/practice tasks, dance, and/or educational gymnastics experiences)."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "jump-land-for-height-vertical",
+       "title": "Jump & land for height (vertical)",
+       "subtopics": [
+        {
+         "id": "jump-land-for-height-vertical",
+         "title": "Jump & land for height (vertical)",
+         "outcomes": [
+          {
+           "code": "MS.4.5",
+           "text": "Applies jumping and landing to a variety of activities (e.g., small-sided games/practice tasks, dance, and educational gymnastics experiences)."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "dance",
+       "title": "Dance",
+       "subtopics": [
+        {
+         "id": "dance",
+         "title": "Dance",
+         "outcomes": [
+          {
+           "code": "MS.5.5",
+           "text": "Creates and performs dances on beat with correct pattern."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "balance",
+       "title": "Balance",
+       "subtopics": [
+        {
+         "id": "balance",
+         "title": "Balance",
+         "outcomes": [
+          {
+           "code": "MS.6.5",
+           "text": "Designs and performs a balance sequence with varying bases of support, body shapes, and levels."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "weight-transfer-rolling-optional",
+       "title": "Weight Transfer & Rolling (OPTIONAL)",
+       "subtopics": [
+        {
+         "id": "weight-transfer-rolling-optional",
+         "title": "Weight Transfer & Rolling (OPTIONAL)",
+         "outcomes": [
+          {
+           "code": "MS.7.5",
+           "text": "Transfers weight from feet to hands using body extensions (e.g. scissor kick, handstand, cartwheel)."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "combinations-optional",
+       "title": "Combinations (optional)",
+       "subtopics": [
+        {
+         "id": "combinations-optional",
+         "title": "Combinations (optional)",
+         "outcomes": [
+          {
+           "code": "MS.8.5",
+           "text": "Combines traveling, balance, weight transfers/rolls, and movement concepts to create and perform an individual or partner educational gymnastics sequence."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "underhand-throw",
+       "title": "Underhand Throw",
+       "subtopics": [
+        {
+         "id": "underhand-throw",
+         "title": "Underhand Throw",
+         "outcomes": [
+          {
+           "code": "MS.9.5",
+           "text": "Applies underhand throwing to a variety of partner or small-sided games/practice tasks."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "overhand-throw",
+       "title": "Overhand Throw",
+       "subtopics": [
+        {
+         "id": "overhand-throw",
+         "title": "Overhand Throw",
+         "outcomes": [
+          {
+           "code": "MS.10.5",
+           "text": "Throws overhand using a mature pattern."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "catching",
+       "title": "Catching",
+       "subtopics": [
+        {
+         "id": "catching",
+         "title": "Catching",
+         "outcomes": [
+          {
+           "code": "MS.11.5",
+           "text": "Applies catching on the move to a variety of partner or small-sided games/practice tasks."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "passing-receiving-with-implements",
+       "title": "Passing & Receiving with implements",
+       "subtopics": [
+        {
+         "id": "passing-receiving-with-implements",
+         "title": "Passing & Receiving with implements",
+         "outcomes": [
+          {
+           "code": "MS.12.5",
+           "text": "Passing and receiving with a partner while on the move."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "dribbling-with-hands",
+       "title": "Dribbling with hands",
+       "subtopics": [
+        {
+         "id": "dribbling-with-hands",
+         "title": "Dribbling with hands",
+         "outcomes": [
+          {
+           "code": "MS.13.5",
+           "text": "Combines dribbling and passing skills."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "dribbling-with-feet",
+       "title": "Dribbling with feet",
+       "subtopics": [
+        {
+         "id": "dribbling-with-feet",
+         "title": "Dribbling with feet",
+         "outcomes": [
+          {
+           "code": "MS.14.5",
+           "text": "Combines dribbling with feet and passing skills."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "kicking-force-or-distance",
+       "title": "Kicking (force or distance)",
+       "subtopics": [
+        {
+         "id": "kicking-force-or-distance",
+         "title": "Kicking (force or distance)",
+         "outcomes": [
+          {
+           "code": "MS.15.5.a",
+           "text": "Punts a ball using a mature pattern."
+          },
+          {
+           "code": "MS.15.5.b",
+           "text": "Applies kicking to small-sided games/practice tasks."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "passing-receiving-with-feet",
+       "title": "Passing & Receiving with feet",
+       "subtopics": [
+        {
+         "id": "passing-receiving-with-feet",
+         "title": "Passing & Receiving with feet",
+         "outcomes": [
+          {
+           "code": "MS.16.5",
+           "text": "Combine passing and receiving the ball with foot dribbling."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "striking-with-hand-s",
+       "title": "Striking with hand(s)",
+       "subtopics": [
+        {
+         "id": "striking-with-hand-s",
+         "title": "Striking with hand(s)",
+         "outcomes": [
+          {
+           "code": "MS.17.5",
+           "text": "Overhead volleys a ball using a mature pattern."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "striking-short-implement",
+       "title": "Striking, short implement",
+       "subtopics": [
+        {
+         "id": "striking-short-implement",
+         "title": "Striking, short implement",
+         "outcomes": [
+          {
+           "code": "MS.18.5",
+           "text": "Consecutively strikes a ball with a short-handled implement against a wall using a mature forehand pattern."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "striking-long-implement",
+       "title": "Striking, long implement",
+       "subtopics": [
+        {
+         "id": "striking-long-implement",
+         "title": "Striking, long implement",
+         "outcomes": [
+          {
+           "code": "MS.19.5",
+           "text": "Demonstrates a mature pattern using a long-handled implement."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "jumping-rope",
+       "title": "Jumping Rope",
+       "subtopics": [
+        {
+         "id": "jumping-rope",
+         "title": "Jumping Rope",
+         "outcomes": [
+          {
+           "code": "MS.20.5",
+           "text": "Creates and performs a jump rope routine with a partner using a short or long rope."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "movement-knowledge-application-mka",
+     "title": "Movement Knowledge & Application (MKA)",
+     "topics": [
+      {
+       "id": "space-awareness-location",
+       "title": "Space Awareness (location)",
+       "subtopics": [
+        {
+         "id": "space-awareness-location",
+         "title": "Space Awareness (location)",
+         "outcomes": [
+          {
+           "code": "MKA.1.5.a",
+           "text": "Analyzes the use of open space in a movement activity."
+          },
+          {
+           "code": "MKA.1.5.b",
+           "text": "Applies the concept of open space to small-sided games/practice tasks, dance, and/or educational gymnastics experiences."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "space-awareness-pathways-levels-directions",
+       "title": "Space Awareness (pathways, levels, directions",
+       "subtopics": [
+        {
+         "id": "space-awareness-pathways-levels-directions",
+         "title": "Space Awareness (pathways, levels, directions",
+         "outcomes": [
+          {
+           "code": "MKA.2.5.a",
+           "text": "Analyzes the use of pathways, levels, and directions in movement activity."
+          },
+          {
+           "code": "MKA.2.5.b",
+           "text": "Combines pathways, levels, and directions in a variety of small-sided games/practice tasks, dance, and/or educational gymnastics experiences."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "effort-speed-and-force",
+       "title": "Effort: speed and force",
+       "subtopics": [
+        {
+         "id": "effort-speed-and-force",
+         "title": "Effort: speed and force",
+         "outcomes": [
+          {
+           "code": "MKA.3.5.a",
+           "text": "Analyzes the use of speeds and forces in movement."
+          },
+          {
+           "code": "MKA.3.5.b",
+           "text": "Combines speeds and forces in a variety of small-sided games/practice tasks, dance, and/or educational gymnastics experiences."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "relationships-body-shapes-with-objects-with-peop",
+       "title": "Relationships (body shapes, with objects, with people)",
+       "subtopics": [
+        {
+         "id": "relationships-body-shapes-with-objects-with-peop",
+         "title": "Relationships (body shapes, with objects, with people)",
+         "outcomes": [
+          {
+           "code": "MKA.4.5.a",
+           "text": "Analyzes relationships in movement."
+          },
+          {
+           "code": "MKA.4.5.b",
+           "text": "Combines two or more relationships in a variety of small-sided games/practice tasks, dance, and/or educational gymnastics experiences."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "movement-principles-base-of-support-muscle-tensi",
+       "title": "Movement Principles (base of support, muscle tension, ready position)",
+       "subtopics": [
+        {
+         "id": "movement-principles-base-of-support-muscle-tensi",
+         "title": "Movement Principles (base of support, muscle tension, ready position)",
+         "outcomes": [
+          {
+           "code": "MKA.5.5.a",
+           "text": "Analyzes and self-corrects movement principles."
+          },
+          {
+           "code": "MKA.5.5.b",
+           "text": "Applies movement principles in a variety of small-sided games/practice tasks."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "performance-cues",
+       "title": "Performance Cues",
+       "subtopics": [
+        {
+         "id": "performance-cues",
+         "title": "Performance Cues",
+         "outcomes": [
+          {
+           "code": "MKA.6.5",
+           "text": "Analyzes and self-corrects skill performance."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "simple-strategies",
+       "title": "Simple Strategies",
+       "subtopics": [
+        {
+         "id": "simple-strategies",
+         "title": "Simple Strategies",
+         "outcomes": [
+          {
+           "code": "MKA.7.5",
+           "text": "Analyzes and modifies simple strategies in game-like activities"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "fitness-physical-activity-fpa",
+     "title": "Fitness & Physical Activity (FPA)",
+     "topics": [
+      {
+       "id": "health-related-fitness",
+       "title": "Health-related Fitness",
+       "subtopics": [
+        {
+         "id": "health-related-fitness",
+         "title": "Health-related Fitness",
+         "outcomes": [
+          {
+           "code": "FPA.1.5",
+           "text": "Identifies and participates in activities specific to each component of health-related fitness."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "physical-activity",
+       "title": "Physical Activity",
+       "subtopics": [
+        {
+         "id": "physical-activity",
+         "title": "Physical Activity",
+         "outcomes": [
+          {
+           "code": "FPA.2.5",
+           "text": "Creates a personal plan for physical activity."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "personal-social-responsibility-psr",
+     "title": "Personal & Social Responsibility (PSR)",
+     "topics": [
+      {
+       "id": "personal-responsibility",
+       "title": "Personal Responsibility",
+       "subtopics": [
+        {
+         "id": "personal-responsibility",
+         "title": "Personal Responsibility",
+         "outcomes": [
+          {
+           "code": "PSR.1.5",
+           "text": "Exhibits respect for self and others with appropriate behavior while engaging in physical activity."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "feedback",
+       "title": "Feedback",
+       "subtopics": [
+        {
+         "id": "feedback",
+         "title": "Feedback",
+         "outcomes": [
+          {
+           "code": "PSR.2.5",
+           "text": "Provides corrective feedback respectfully to peers."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "working-with-others",
+       "title": "Working with others",
+       "subtopics": [
+        {
+         "id": "working-with-others",
+         "title": "Working with others",
+         "outcomes": [
+          {
+           "code": "PSR.3.5",
+           "text": "Encourages the movement performance of others."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "procedures-rules",
+       "title": "Procedures & Rules",
+       "subtopics": [
+        {
+         "id": "procedures-rules",
+         "title": "Procedures & Rules",
+         "outcomes": [
+          {
+           "code": "PSR.4.5",
+           "text": "Critiques the rules of various activities."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "safety",
+       "title": "Safety",
+       "subtopics": [
+        {
+         "id": "safety",
+         "title": "Safety",
+         "outcomes": [
+          {
+           "code": "PSR.5.5",
+           "text": "Applies safety principles in all physical activities."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "values-physical-activity-vpa",
+     "title": "Values Physical Activity (VPA)",
+     "topics": [
+      {
+       "id": "appreciation",
+       "title": "Appreciation",
+       "subtopics": [
+        {
+         "id": "appreciation",
+         "title": "Appreciation",
+         "outcomes": [
+          {
+           "code": "VPA.1.5",
+           "text": "Evaluates other opportunities for physical activity based on personal preferences."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "challenge",
+       "title": "Challenge",
+       "subtopics": [
+        {
+         "id": "challenge",
+         "title": "Challenge",
+         "outcomes": [
+          {
+           "code": "VPA.2.5",
+           "text": "Creates a plan to overcome a physical activity challenge."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "6",
+   "units": [
+    {
+     "id": "motor-skills",
+     "title": "Motor Skills",
+     "topics": [
+      {
+       "id": "invasion-games-throwing",
+       "title": "Invasion Games/Throwing",
+       "subtopics": [
+        {
+         "id": "invasion-games-throwing",
+         "title": "Invasion Games/Throwing",
+         "outcomes": [
+          {
+           "code": "MS.1.6",
+           "text": "Using a mature overhand pattern, throws at targets of varying distance."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "invasion-games-catching",
+       "title": "Invasion Games/Catching",
+       "subtopics": [
+        {
+         "id": "invasion-games-catching",
+         "title": "Invasion Games/Catching",
+         "outcomes": [
+          {
+           "code": "MS.2.6",
+           "text": "Using a mature pattern, catches at different levels and extensions ."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "invasion-receiving",
+       "title": "Invasion/Receiving",
+       "subtopics": [
+        {
+         "id": "invasion-receiving",
+         "title": "Invasion/Receiving",
+         "outcomes": [
+          {
+           "code": "MS.3.6",
+           "text": "Passes/receives with hands/feet/implement while traveling (partner activity)."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "invasion-games-passing-and-receiving",
+       "title": "Invasion Games/Passing and Receiving",
+       "subtopics": [
+        {
+         "id": "invasion-games-passing-and-receiving",
+         "title": "Invasion Games/Passing and Receiving",
+         "outcomes": [
+          {
+           "code": "MS.4.6",
+           "text": "Passes and receives utilizing various pathways (partner activity)."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "invasion-games-offensive-skills",
+       "title": "Invasion Games/Offensive Skills",
+       "subtopics": [
+        {
+         "id": "invasion-games-offensive-skills",
+         "title": "Invasion Games/Offensive Skills",
+         "outcomes": [
+          {
+           "code": "MS.5.6",
+           "text": "Performs offensive skills (pivots, fakes, change of direction, and give and go) to create open space without defensive pressure."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "invasion-games-sports-ball-control",
+       "title": "Invasion Games/Sports-Ball Control",
+       "subtopics": [
+        {
+         "id": "invasion-games-sports-ball-control",
+         "title": "Invasion Games/Sports-Ball Control",
+         "outcomes": [
+          {
+           "code": "MS.6.6",
+           "text": "Demonstrates a dominant side (hand or foot) dribble while changing directions."
+          },
+          {
+           "code": "MS.7.6",
+           "text": "Dribbles and passes a ball with foot or implement using both inside and outside of foot or implement."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "invasion-games-sports-shooting-on-goal",
+       "title": "Invasion Games/Sports-Shooting on Goal",
+       "subtopics": [
+        {
+         "id": "invasion-games-sports-shooting-on-goal",
+         "title": "Invasion Games/Sports-Shooting on Goal",
+         "outcomes": [
+          {
+           "code": "MS.8.6",
+           "text": "Shoots on goal with appropriate force and accuracy."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "invasion-games-sports-defensive-skills",
+       "title": "Invasion Games/Sports-Defensive Skills",
+       "subtopics": [
+        {
+         "id": "invasion-games-sports-defensive-skills",
+         "title": "Invasion Games/Sports-Defensive Skills",
+         "outcomes": [
+          {
+           "code": "MS.9.6",
+           "text": "Demonstrates defensive ready position, with weight on balls of feet, arms extended, palms up and eyes on abdomen."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "games-sports-serving-net-wall",
+       "title": "Games/Sports-Serving (Net/Wall)",
+       "subtopics": [
+        {
+         "id": "games-sports-serving-net-wall",
+         "title": "Games/Sports-Serving (Net/Wall)",
+         "outcomes": [
+          {
+           "code": "MS.10.6",
+           "text": "Performs a serve (underhand/overhand) with control for net/wall games."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "games-sports-striking-net-wall",
+       "title": "Games/Sports-Striking (Net/Wall)",
+       "subtopics": [
+        {
+         "id": "games-sports-striking-net-wall",
+         "title": "Games/Sports-Striking (Net/Wall)",
+         "outcomes": [
+          {
+           "code": "MS.11.6",
+           "text": "Strikes with an overhand pattern with appropriate distance and force during various practice tasks."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "games-sports-forehand-backhand",
+       "title": "Games/Sports-Forehand/Backhand",
+       "subtopics": [
+        {
+         "id": "games-sports-forehand-backhand",
+         "title": "Games/Sports-Forehand/Backhand",
+         "outcomes": [
+          {
+           "code": "MS.12.6",
+           "text": "Demonstrates proper technique using a short or long handled implement to complete a forehand and backhand stroke."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "net-wall-games-sports-volley",
+       "title": "Net/wall Games/Sports-Volley",
+       "subtopics": [
+        {
+         "id": "net-wall-games-sports-volley",
+         "title": "Net/wall Games/Sports-Volley",
+         "outcomes": [
+          {
+           "code": "MS.13.6",
+           "text": "Executes a forearm volley using a mature pattern."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "game-sports-target-striking",
+       "title": "Game/Sports-Target ( Striking)",
+       "subtopics": [
+        {
+         "id": "game-sports-target-striking",
+         "title": "Game/Sports-Target ( Striking)",
+         "outcomes": [
+          {
+           "code": "MS.14.6",
+           "text": "Strikes a stationary object with an implement for accuracy (e.g., Croquet, shuffle board, golf)."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "games-sports-field-strike",
+       "title": "Games/Sports-Field(Strike)",
+       "subtopics": [
+        {
+         "id": "games-sports-field-strike",
+         "title": "Games/Sports-Field(Strike)",
+         "outcomes": [
+          {
+           "code": "MS.15.6",
+           "text": "Strikes a pitched ball with an implement."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "games-sports-field-fielding",
+       "title": "Games/Sports-Field (Fielding)",
+       "subtopics": [
+        {
+         "id": "games-sports-field-fielding",
+         "title": "Games/Sports-Field (Fielding)",
+         "outcomes": [
+          {
+           "code": "MS.16.6",
+           "text": "Catch (field) an object using a mature pattern."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "fitness-types-of-activities",
+       "title": "Fitness (types of activities)",
+       "subtopics": [
+        {
+         "id": "fitness-types-of-activities",
+         "title": "Fitness (types of activities)",
+         "outcomes": [
+          {
+           "code": "MS.17.6",
+           "text": "Participates in a variety of aerobic fitness activities (step aerobics, jump rope, cardio kick boxing, aerobic dance)."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "fitness-intensity",
+       "title": "Fitness (intensity)",
+       "subtopics": [
+        {
+         "id": "fitness-intensity",
+         "title": "Fitness (intensity)",
+         "outcomes": [
+          {
+           "code": "MS.18.6",
+           "text": "Participates in moderate to vigorous aerobic physical activity."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "fitness-flexibility",
+       "title": "Fitness (flexibility)",
+       "subtopics": [
+        {
+         "id": "fitness-flexibility",
+         "title": "Fitness (flexibility)",
+         "outcomes": [
+          {
+           "code": "MS.19.6",
+           "text": "Uses correct techniques for static stretching to improve flexibility."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "rhythms-dance",
+       "title": "Rhythms & Dance",
+       "subtopics": [
+        {
+         "id": "rhythms-dance",
+         "title": "Rhythms & Dance",
+         "outcomes": [
+          {
+           "code": "MS.20.6",
+           "text": "Demonstrates proper sequence of a dance with at least 32 counts."
+          },
+          {
+           "code": "MS.21.6",
+           "text": "Moves in time to the beat of music of different tempos."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "educational-gymnastics",
+       "title": "Educational Gymnastics",
+       "subtopics": [
+        {
+         "id": "educational-gymnastics",
+         "title": "Educational Gymnastics",
+         "outcomes": [
+          {
+           "code": "MS.22.6",
+           "text": "Demonstrates a prescribed educational gymnastics routine with at least 3 elements."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "aquatics",
+       "title": "Aquatics",
+       "subtopics": [
+        {
+         "id": "aquatics",
+         "title": "Aquatics",
+         "outcomes": [
+          {
+           "code": "MS.23.6",
+           "text": "Demonstrates basic water adjustment skill (submerge, hold breath, and exhale while submerged)."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "outdoor-pursuits",
+       "title": "Outdoor Pursuits",
+       "subtopics": [
+        {
+         "id": "outdoor-pursuits",
+         "title": "Outdoor Pursuits",
+         "outcomes": [
+          {
+           "code": "MS.24.6",
+           "text": "Demonstrates correct technique for basic skills in 1 selected outdoor activity (e.g., Rock Climbing, Orienteering, Hiking, Biking, Ropes Course)."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "cognitive-concepts",
+     "title": "Cognitive Concepts",
+     "topics": [
+      {
+       "id": "peer-assessment-demonstrates-higher-level-learni",
+       "title": "Peer Assessment (demonstrates higher level learning, offers feedback to peers)",
+       "subtopics": [
+        {
+         "id": "peer-assessment-demonstrates-higher-level-learni",
+         "title": "Peer Assessment (demonstrates higher level learning, offers feedback to peers)",
+         "outcomes": [
+          {
+           "code": "CC.1.6",
+           "text": "Recites the critical elements."
+          },
+          {
+           "code": "CC.2.6",
+           "text": "Uses a teacher generated checklist to evaluate a peer's performance of a skill."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "games-sports-creating-space",
+       "title": "Games/Sports- Creating Space",
+       "subtopics": [
+        {
+         "id": "games-sports-creating-space",
+         "title": "Games/Sports- Creating Space",
+         "outcomes": [
+          {
+           "code": "CC.3.6",
+           "text": "Creates open space."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "games-sports-reducing-space",
+       "title": "Games/Sports- Reducing Space",
+       "subtopics": [
+        {
+         "id": "games-sports-reducing-space",
+         "title": "Games/Sports- Reducing Space",
+         "outcomes": [
+          {
+           "code": "CC.4.6",
+           "text": "Identifies correct defensive position based on situation."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "games-sports-denial",
+       "title": "Games/Sports-Denial",
+       "subtopics": [
+        {
+         "id": "games-sports-denial",
+         "title": "Games/Sports-Denial",
+         "outcomes": [
+          {
+           "code": "CC.5.6",
+           "text": "When appropriate, denies the pass or catch."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "games-sports-transition",
+       "title": "Games/Sports-Transition",
+       "subtopics": [
+        {
+         "id": "games-sports-transition",
+         "title": "Games/Sports-Transition",
+         "outcomes": [
+          {
+           "code": "CC.6.6",
+           "text": "Successfully transitions quickly from offense to defense or defense to offense."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "games-sports-tactics-shots",
+       "title": "Games/Sports-Tactics/Shots",
+       "subtopics": [
+        {
+         "id": "games-sports-tactics-shots",
+         "title": "Games/Sports-Tactics/Shots",
+         "outcomes": [
+          {
+           "code": "CC.7.6",
+           "text": "Identifies appropriate position for anticipated shot."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "games-sports-shot-selection",
+       "title": "Games/Sports-Shot Selection",
+       "subtopics": [
+        {
+         "id": "games-sports-shot-selection",
+         "title": "Games/Sports-Shot Selection",
+         "outcomes": [
+          {
+           "code": "CC.8.6",
+           "text": "Identifies the appropriate club or shot needed based on the opponent's position or angle/distance of target."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "games-sports-offensive-strategies",
+       "title": "Games/Sports-Offensive Strategies",
+       "subtopics": [
+        {
+         "id": "games-sports-offensive-strategies",
+         "title": "Games/Sports-Offensive Strategies",
+         "outcomes": [
+          {
+           "code": "CC.9.6",
+           "text": "Explains intended location of the shot (shot on goal)"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "outdoor-pursuits-movement-concepts",
+       "title": "Outdoor Pursuits-Movement Concepts",
+       "subtopics": [
+        {
+         "id": "outdoor-pursuits-movement-concepts",
+         "title": "Outdoor Pursuits-Movement Concepts",
+         "outcomes": [
+          {
+           "code": "CC.10.6",
+           "text": "Identifies and makes appropriate decision based on skill level and conditions."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "fitness-and-physical-activiy-fpa",
+     "title": "Fitness And Physical Activiy (FPA)",
+     "topics": [
+      {
+       "id": "physical-activity-knowledge",
+       "title": "Physical Activity Knowledge",
+       "subtopics": [
+        {
+         "id": "physical-activity-knowledge",
+         "title": "Physical Activity Knowledge",
+         "outcomes": [
+          {
+           "code": "FPA.1.6",
+           "text": "Lists the benefits of daily physical activity."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "fitness-knowledge",
+       "title": "Fitness Knowledge",
+       "subtopics": [
+        {
+         "id": "fitness-knowledge",
+         "title": "Fitness Knowledge",
+         "outcomes": [
+          {
+           "code": "FPA.2.6",
+           "text": "Identifies the 6 skill related fitness components (agility, balance, coordination, power, reaction time and speed)."
+          },
+          {
+           "code": "FPA.3.6",
+           "text": "Defines resting heart rate and calculate target heart rate zone."
+          },
+          {
+           "code": "FPA.4.6",
+           "text": "Identifies the FITT Principle (Frequency, Intensity, Type, Time)."
+          },
+          {
+           "code": "FPA.5.6",
+           "text": "Identifies upper and lower body muscle groups."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "assessment-planning",
+       "title": "Assessment & Planning",
+       "subtopics": [
+        {
+         "id": "assessment-planning",
+         "title": "Assessment & Planning",
+         "outcomes": [
+          {
+           "code": "FPA.6.6",
+           "text": "Completes a 2 week activity log and compare results to a formal fitness test."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "personal-social-responsibility-psr",
+     "title": "Personal & Social Responsibility (PSR)",
+     "topics": [
+      {
+       "id": "personal-and-social-responsibility",
+       "title": "Personal and Social Responsibility",
+       "subtopics": [
+        {
+         "id": "personal-and-social-responsibility",
+         "title": "Personal and Social Responsibility",
+         "outcomes": [
+          {
+           "code": "PSR.1.6",
+           "text": "Exhibits personal responsibility by using appropriate etiquette, respect for facilities and equipment and safe behaviors."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "rules-etiquette",
+       "title": "Rules & Etiquette",
+       "subtopics": [
+        {
+         "id": "rules-etiquette",
+         "title": "Rules & Etiquette",
+         "outcomes": [
+          {
+           "code": "PSR.2.6",
+           "text": "Identifies the rules and etiquette in physical activities."
+          },
+          {
+           "code": "PSR.3.6",
+           "text": "Describes rules and guidelines for resolving conflict in physical activity."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "cooperation",
+       "title": "Cooperation",
+       "subtopics": [
+        {
+         "id": "cooperation",
+         "title": "Cooperation",
+         "outcomes": [
+          {
+           "code": "PSR.4.6",
+           "text": "Willingly includes others of a diverse population."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "values-physical-activity-vpa",
+     "title": "Values Physical Activity (VPA)",
+     "topics": [
+      {
+       "id": "appreciation",
+       "title": "Appreciation",
+       "subtopics": [
+        {
+         "id": "appreciation",
+         "title": "Appreciation",
+         "outcomes": [
+          {
+           "code": "VPA.1.6",
+           "text": "Communicates ideas and feelings towards physical activity."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "challenge",
+       "title": "Challenge",
+       "subtopics": [
+        {
+         "id": "challenge",
+         "title": "Challenge",
+         "outcomes": [
+          {
+           "code": "VPA.2.6",
+           "text": "Recognizes individual challenges and performs positive coping strategies."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "7",
+   "units": [
+    {
+     "id": "motor-skills",
+     "title": "Motor Skills",
+     "topics": [
+      {
+       "id": "invasion-games-throwing",
+       "title": "Invasion Games/Throwing",
+       "subtopics": [
+        {
+         "id": "invasion-games-throwing",
+         "title": "Invasion Games/Throwing",
+         "outcomes": [
+          {
+           "code": "MS.1.7",
+           "text": "Using a mature overhand pattern, throws to a partner at varying distances."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "invasion-games-catching",
+       "title": "Invasion Games/Catching",
+       "subtopics": [
+        {
+         "id": "invasion-games-catching",
+         "title": "Invasion Games/Catching",
+         "outcomes": [
+          {
+           "code": "MS.2.7",
+           "text": "Using a mature pattern, catches at different levels and extensions with passive defense."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "invasion-receiving",
+       "title": "Invasion/Receiving",
+       "subtopics": [
+        {
+         "id": "invasion-receiving",
+         "title": "Invasion/Receiving",
+         "outcomes": [
+          {
+           "code": "MS.3.7",
+           "text": "Passes/receives with hands/feet/implement while passing against a defender (small group)."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "invasion-games-passing-and-receiving",
+       "title": "Invasion Games/Passing and Receiving",
+       "subtopics": [
+        {
+         "id": "invasion-games-passing-and-receiving",
+         "title": "Invasion Games/Passing and Receiving",
+         "outcomes": [
+          {
+           "code": "MS.4.7",
+           "text": "Passes and receives utilizing various pathways with a single defender (small group)."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "invasion-games-offensive-skills",
+       "title": "Invasion Games/Offensive Skills",
+       "subtopics": [
+        {
+         "id": "invasion-games-offensive-skills",
+         "title": "Invasion Games/Offensive Skills",
+         "outcomes": [
+          {
+           "code": "MS.5.7",
+           "text": "With defensive pressure, performs offensive skills (pivots, fakes, change of direction, and give and go) to create open space."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "invasion-games-sports-ball-control",
+       "title": "Invasion Games/Sports-Ball Control",
+       "subtopics": [
+        {
+         "id": "invasion-games-sports-ball-control",
+         "title": "Invasion Games/Sports-Ball Control",
+         "outcomes": [
+          {
+           "code": "MS.6.7",
+           "text": "Demonstrates dominate and non-dominant side (hand or foot) dribble while changing directions."
+          },
+          {
+           "code": "MS.7.7",
+           "text": "Dribbles and passes a ball with foot or implement using both inside and outside of foot or implement with a defender."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "invasion-games-sports-shooting-on-goal",
+       "title": "Invasion Games/Sports-Shooting on Goal",
+       "subtopics": [
+        {
+         "id": "invasion-games-sports-shooting-on-goal",
+         "title": "Invasion Games/Sports-Shooting on Goal",
+         "outcomes": [
+          {
+           "code": "MS.8.7",
+           "text": "Shoots on goal with appropriate force and accuracy with a defender."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "invasion-games-sports-defensive-skills",
+       "title": "Invasion Games/Sports-Defensive Skills",
+       "subtopics": [
+        {
+         "id": "invasion-games-sports-defensive-skills",
+         "title": "Invasion Games/Sports-Defensive Skills",
+         "outcomes": [
+          {
+           "code": "MS.9.7",
+           "text": "Performs a defensive slide without crossing feet."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "games-sports-serving-net-wall",
+       "title": "Games/Sports-Serving (Net/Wall)",
+       "subtopics": [
+        {
+         "id": "games-sports-serving-net-wall",
+         "title": "Games/Sports-Serving (Net/Wall)",
+         "outcomes": [
+          {
+           "code": "MS.10.7",
+           "text": "Performs a serve (underhand/overhand) with a mature pattern to a predetermined target."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "games-sports-striking-net-wall",
+       "title": "Games/Sports-Striking (Net/Wall)",
+       "subtopics": [
+        {
+         "id": "games-sports-striking-net-wall",
+         "title": "Games/Sports-Striking (Net/Wall)",
+         "outcomes": [
+          {
+           "code": "MS.11.7",
+           "text": "Strikes with an overhand pattern with appropriate distance and force during challenge activities."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "games-sports-forehand-backhand",
+       "title": "Games/Sports-Forehand/Backhand",
+       "subtopics": [
+        {
+         "id": "games-sports-forehand-backhand",
+         "title": "Games/Sports-Forehand/Backhand",
+         "outcomes": [
+          {
+           "code": "MS.12.7",
+           "text": "Using either a short or long handled implement successfully rallies with a partner."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "net-wall-games-sports-volley",
+       "title": "Net/wall Games/Sports-Volley",
+       "subtopics": [
+        {
+         "id": "net-wall-games-sports-volley",
+         "title": "Net/wall Games/Sports-Volley",
+         "outcomes": [
+          {
+           "code": "MS.13.7",
+           "text": "Executes a forearm volley with accuracy."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "game-sports-target-striking",
+       "title": "Game/Sports-Target ( Striking)",
+       "subtopics": [
+        {
+         "id": "game-sports-target-striking",
+         "title": "Game/Sports-Target ( Striking)",
+         "outcomes": [
+          {
+           "code": "MS.14.7",
+           "text": "Strikes a stationary object with an implement with accuracy from varying distances."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "games-sports-field-strike",
+       "title": "Games/Sports-Field(Strike)",
+       "subtopics": [
+        {
+         "id": "games-sports-field-strike",
+         "title": "Games/Sports-Field(Strike)",
+         "outcomes": [
+          {
+           "code": "MS.15.7",
+           "text": "Strikes a pitched ball with an implement with force and accuracy."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "games-sports-field-fielding",
+       "title": "Games/Sports-Field (Fielding)",
+       "subtopics": [
+        {
+         "id": "games-sports-field-fielding",
+         "title": "Games/Sports-Field (Fielding)",
+         "outcomes": [
+          {
+           "code": "MS.16.7",
+           "text": "Catch (field) an object from different directions and force."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "fitness-types-of-activities",
+       "title": "Fitness (types of activities)",
+       "subtopics": [
+        {
+         "id": "fitness-types-of-activities",
+         "title": "Fitness (types of activities)",
+         "outcomes": [
+          {
+           "code": "MS.17.7",
+           "text": "Participates in a variety of strength and endurance activities (weight training, resistance training, free-weights)."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "fitness-intensity",
+       "title": "Fitness (intensity)",
+       "subtopics": [
+        {
+         "id": "fitness-intensity",
+         "title": "Fitness (intensity)",
+         "outcomes": [
+          {
+           "code": "MS.18.7",
+           "text": "Participates in moderate to vigorous strengthening activities."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "fitness-flexibility",
+       "title": "Fitness (flexibility)",
+       "subtopics": [
+        {
+         "id": "fitness-flexibility",
+         "title": "Fitness (flexibility)",
+         "outcomes": [
+          {
+           "code": "MS.19.7",
+           "text": "Uses correct techniques for dynamic stretching to improve flexibility."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "rhythms-dance",
+       "title": "Rhythms & Dance",
+       "subtopics": [
+        {
+         "id": "rhythms-dance",
+         "title": "Rhythms & Dance",
+         "outcomes": [
+          {
+           "code": "MS.20.7",
+           "text": "Demonstrates proper sequence of a dance with at least 32 counts in 2 or more dances."
+          },
+          {
+           "code": "MS.21.7",
+           "text": "Performs a partner dance to varying tempos."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "educational-gymnastics",
+       "title": "Educational Gymnastics",
+       "subtopics": [
+        {
+         "id": "educational-gymnastics",
+         "title": "Educational Gymnastics",
+         "outcomes": [
+          {
+           "code": "MS.22.7",
+           "text": "Creates and demonstrates an educational gymnastics routine with at least 4 elements."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "aquatics",
+       "title": "Aquatics",
+       "subtopics": [
+        {
+         "id": "aquatics",
+         "title": "Aquatics",
+         "outcomes": [
+          {
+           "code": "MS.23.7",
+           "text": "Demonstrates basic floating technique (front and back) and treading water."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "outdoor-pursuits",
+       "title": "Outdoor Pursuits",
+       "subtopics": [
+        {
+         "id": "outdoor-pursuits",
+         "title": "Outdoor Pursuits",
+         "outcomes": [
+          {
+           "code": "MS.24.7",
+           "text": "Demonstrates correct technique for basic skills in 2 selected outdoor activities (e.g., Rock Climbing, Orienteering, Hiking, Biking, Ropes Course)."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "cognitive-concepts",
+     "title": "Cognitive Concepts",
+     "topics": [
+      {
+       "id": "peer-assessment-demonstrates-higher-level-learni",
+       "title": "Peer Assessment (demonstrates higher level learning, offers feedback to peers)",
+       "subtopics": [
+        {
+         "id": "peer-assessment-demonstrates-higher-level-learni",
+         "title": "Peer Assessment (demonstrates higher level learning, offers feedback to peers)",
+         "outcomes": [
+          {
+           "code": "CC.1.7",
+           "text": "Evaluates a peer's performance using the critical elements."
+          },
+          {
+           "code": "CC.2.7",
+           "text": "Uses a teacher generated checklist to evaluate a peer's skill performance in a game situation."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "games-sports-creating-space",
+       "title": "Games/Sports- Creating Space",
+       "subtopics": [
+        {
+         "id": "games-sports-creating-space",
+         "title": "Games/Sports- Creating Space",
+         "outcomes": [
+          {
+           "code": "CC.3.7",
+           "text": "Creates open space by staying spread on offense."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "games-sports-reducing-space",
+       "title": "Games/Sports- Reducing Space",
+       "subtopics": [
+        {
+         "id": "games-sports-reducing-space",
+         "title": "Games/Sports- Reducing Space",
+         "outcomes": [
+          {
+           "code": "CC.4.7",
+           "text": "Executes the correct defensive position and movement based on the situation."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "games-sports-denial",
+       "title": "Games/Sports-Denial",
+       "subtopics": [
+        {
+         "id": "games-sports-denial",
+         "title": "Games/Sports-Denial",
+         "outcomes": [
+          {
+           "code": "CC.5.7",
+           "text": "When appropriate, denies the pass or catch to work toward deflection."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "games-sports-transition",
+       "title": "Games/Sports-Transition",
+       "subtopics": [
+        {
+         "id": "games-sports-transition",
+         "title": "Games/Sports-Transition",
+         "outcomes": [
+          {
+           "code": "CC.6.7",
+           "text": "Successfully transitions quickly from offense/defense and defense/offense while communicating with team mates and maintaining proper spacing."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "games-sports-tactics-shots",
+       "title": "Games/Sports-Tactics/Shots",
+       "subtopics": [
+        {
+         "id": "games-sports-tactics-shots",
+         "title": "Games/Sports-Tactics/Shots",
+         "outcomes": [
+          {
+           "code": "CC.7.7",
+           "text": "Executes appropriate shots to open space based on opponents location."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "games-sports-shot-selection",
+       "title": "Games/Sports-Shot Selection",
+       "subtopics": [
+        {
+         "id": "games-sports-shot-selection",
+         "title": "Games/Sports-Shot Selection",
+         "outcomes": [
+          {
+           "code": "CC.8.7",
+           "text": "Controls speed and/or trajectory of the shot based on the location of the target or opponent."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "games-sports-offensive-strategies",
+       "title": "Games/Sports-Offensive Strategies",
+       "subtopics": [
+        {
+         "id": "games-sports-offensive-strategies",
+         "title": "Games/Sports-Offensive Strategies",
+         "outcomes": [
+          {
+           "code": "CC.9.7",
+           "text": "Explains intended location and provides a description of shot selection (lob, high arc, line drive)."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "outdoor-pursuits-movement-concepts",
+       "title": "Outdoor Pursuits-Movement Concepts",
+       "subtopics": [
+        {
+         "id": "outdoor-pursuits-movement-concepts",
+         "title": "Outdoor Pursuits-Movement Concepts",
+         "outcomes": [
+          {
+           "code": "CC.10.7",
+           "text": "Analyzes and makes adjustments based on variables (e.g., skill, fitness, conditions, equipment)."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "fitness-and-physical-activiy-fpa",
+     "title": "Fitness And Physical Activiy (FPA)",
+     "topics": [
+      {
+       "id": "physical-activity-knowledge",
+       "title": "Physical Activity Knowledge",
+       "subtopics": [
+        {
+         "id": "physical-activity-knowledge",
+         "title": "Physical Activity Knowledge",
+         "outcomes": [
+          {
+           "code": "FPA.1.7",
+           "text": "Defines the importance of daily physical activity."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "fitness-knowledge",
+       "title": "Fitness Knowledge",
+       "subtopics": [
+        {
+         "id": "fitness-knowledge",
+         "title": "Fitness Knowledge",
+         "outcomes": [
+          {
+           "code": "FPA.2.7",
+           "text": "Differentiates between health related (cardiovascular; muscular strength, muscular endurance, body composition, flexibility) and skill related fitness."
+          },
+          {
+           "code": "FPA.3.7",
+           "text": "Interprets the Rate of Perceived Exertion (RPE) scale as it relates to intensity."
+          },
+          {
+           "code": "FPA.4.7",
+           "text": "Explains how the FITT principle relates to fitness and physical activity."
+          },
+          {
+           "code": "FPA.5.7",
+           "text": "Identifies the major muscles used in selected physical activity."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "assessment-planning",
+       "title": "Assessment & Planning",
+       "subtopics": [
+        {
+         "id": "assessment-planning",
+         "title": "Assessment & Planning",
+         "outcomes": [
+          {
+           "code": "FPA.6.7",
+           "text": "Designs a plan to improve one health-related component based on the results of fitness log and fitness test data."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "personal-social-responsibility-psr",
+     "title": "Personal & Social Responsibility (PSR)",
+     "topics": [
+      {
+       "id": "personal-and-social-responsibility",
+       "title": "Personal and Social Responsibility",
+       "subtopics": [
+        {
+         "id": "personal-and-social-responsibility",
+         "title": "Personal and Social Responsibility",
+         "outcomes": [
+          {
+           "code": "PSR.1.7",
+           "text": "Exhibits responsible social behaviors by cooperating with classmates."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "rules-etiquette",
+       "title": "Rules & Etiquette",
+       "subtopics": [
+        {
+         "id": "rules-etiquette",
+         "title": "Rules & Etiquette",
+         "outcomes": [
+          {
+           "code": "PSR.2.7",
+           "text": "Demonstrates knowledge of rules and etiquette during game like activities."
+          },
+          {
+           "code": "PSR.3.7",
+           "text": "Recognizes potential conflicts and demonstrate proactive ways to prevent conflict."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "cooperation",
+       "title": "Cooperation",
+       "subtopics": [
+        {
+         "id": "cooperation",
+         "title": "Cooperation",
+         "outcomes": [
+          {
+           "code": "PSR.4.7",
+           "text": "Cooperates respectfully with peers in a small group."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "values-physical-activity-vpa",
+     "title": "Values Physical Activity (VPA)",
+     "topics": [
+      {
+       "id": "appreciation",
+       "title": "Appreciation",
+       "subtopics": [
+        {
+         "id": "appreciation",
+         "title": "Appreciation",
+         "outcomes": [
+          {
+           "code": "VPA.1.7",
+           "text": "Shares how physical activity benefits oneself both physically and emotionally."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "challenge",
+       "title": "Challenge",
+       "subtopics": [
+        {
+         "id": "challenge",
+         "title": "Challenge",
+         "outcomes": [
+          {
+           "code": "VPA.2.7",
+           "text": "Uses positive coping strategies in a group setting."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "8",
+   "units": [
+    {
+     "id": "motor-skills",
+     "title": "Motor Skills",
+     "topics": [
+      {
+       "id": "invasion-games-throwing",
+       "title": "Invasion Games/Throwing",
+       "subtopics": [
+        {
+         "id": "invasion-games-throwing",
+         "title": "Invasion Games/Throwing",
+         "outcomes": [
+          {
+           "code": "MS.1.8",
+           "text": "Using a mature overhand pattern, throws to teammates of varying distances in a game-like situation."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "invasion-games-catching",
+       "title": "Invasion Games/Catching",
+       "subtopics": [
+        {
+         "id": "invasion-games-catching",
+         "title": "Invasion Games/Catching",
+         "outcomes": [
+          {
+           "code": "MS.2.8",
+           "text": "Demonstrates the ability to catch at various levels and extensions in a game-like situation."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "invasion-receiving",
+       "title": "Invasion/Receiving",
+       "subtopics": [
+        {
+         "id": "invasion-receiving",
+         "title": "Invasion/Receiving",
+         "outcomes": [
+          {
+           "code": "MS.3.8",
+           "text": "Passes/receives with hands/feet/implement in game-like situations."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "invasion-games-passing-and-receiving",
+       "title": "Invasion Games/Passing and Receiving",
+       "subtopics": [
+        {
+         "id": "invasion-games-passing-and-receiving",
+         "title": "Invasion Games/Passing and Receiving",
+         "outcomes": [
+          {
+           "code": "MS.4.8",
+           "text": "Passes and receives in game-like situation."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "invasion-games-offensive-skills",
+       "title": "Invasion Games/Offensive Skills",
+       "subtopics": [
+        {
+         "id": "invasion-games-offensive-skills",
+         "title": "Invasion Games/Offensive Skills",
+         "outcomes": [
+          {
+           "code": "MS.5.8",
+           "text": "Executes offensive skills (pivots, fakes, change of direction, and give and go) to create open space during game-like situation."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "invasion-games-sports-ball-control",
+       "title": "Invasion Games/Sports-Ball Control",
+       "subtopics": [
+        {
+         "id": "invasion-games-sports-ball-control",
+         "title": "Invasion Games/Sports-Ball Control",
+         "outcomes": [
+          {
+           "code": "MS.6.8",
+           "text": "Dribbles and maintains possession against a defender while changing directions and speed. (hand or foot)"
+          },
+          {
+           "code": "MS.7.8",
+           "text": "Dribbles and passes a ball with foot or implement using both inside and outside of foot or implement in a game-like situation."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "invasion-games-sports-shooting-on-goal",
+       "title": "Invasion Games/Sports-Shooting on Goal",
+       "subtopics": [
+        {
+         "id": "invasion-games-sports-shooting-on-goal",
+         "title": "Invasion Games/Sports-Shooting on Goal",
+         "outcomes": [
+          {
+           "code": "MS.8.8",
+           "text": "Shoots on goal with appropriate force and accuracy during game like situations."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "invasion-games-sports-defensive-skills",
+       "title": "Invasion Games/Sports-Defensive Skills",
+       "subtopics": [
+        {
+         "id": "invasion-games-sports-defensive-skills",
+         "title": "Invasion Games/Sports-Defensive Skills",
+         "outcomes": [
+          {
+           "code": "MS.9.8",
+           "text": "Executes a drop step."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "games-sports-serving-net-wall",
+       "title": "Games/Sports-Serving (Net/Wall)",
+       "subtopics": [
+        {
+         "id": "games-sports-serving-net-wall",
+         "title": "Games/Sports-Serving (Net/Wall)",
+         "outcomes": [
+          {
+           "code": "MS.10.8",
+           "text": "Using a mature pattern executes a serve (underhand/overhand)for accuracy and distance."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "games-sports-striking-net-wall",
+       "title": "Games/Sports-Striking (Net/Wall)",
+       "subtopics": [
+        {
+         "id": "games-sports-striking-net-wall",
+         "title": "Games/Sports-Striking (Net/Wall)",
+         "outcomes": [
+          {
+           "code": "MS.11.8",
+           "text": "Strikes with an overhand pattern with appropriate distance and force during game like situations."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "games-sports-forehand-backhand",
+       "title": "Games/Sports-Forehand/Backhand",
+       "subtopics": [
+        {
+         "id": "games-sports-forehand-backhand",
+         "title": "Games/Sports-Forehand/Backhand",
+         "outcomes": [
+          {
+           "code": "MS.12.8",
+           "text": "Using either a short or long handled implement, demonstrates forehand and backhands strokes in a game-like situation."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "net-wall-games-sports-volley",
+       "title": "Net/wall Games/Sports-Volley",
+       "subtopics": [
+        {
+         "id": "net-wall-games-sports-volley",
+         "title": "Net/wall Games/Sports-Volley",
+         "outcomes": [
+          {
+           "code": "MS.13.8",
+           "text": "Executes a forearm volley during game like situations."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "game-sports-target-striking",
+       "title": "Game/Sports-Target ( Striking)",
+       "subtopics": [
+        {
+         "id": "game-sports-target-striking",
+         "title": "Game/Sports-Target ( Striking)",
+         "outcomes": [
+          {
+           "code": "MS.14.8",
+           "text": "Strikes a stationary object with an implement in game like situations."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "games-sports-field-strike",
+       "title": "Games/Sports-Field(Strike)",
+       "subtopics": [
+        {
+         "id": "games-sports-field-strike",
+         "title": "Games/Sports-Field(Strike)",
+         "outcomes": [
+          {
+           "code": "MS.15.8",
+           "text": "Strikes a pitched ball with implement with force and accuracy in a game like situation."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "games-sports-field-fielding",
+       "title": "Games/Sports-Field (Fielding)",
+       "subtopics": [
+        {
+         "id": "games-sports-field-fielding",
+         "title": "Games/Sports-Field (Fielding)",
+         "outcomes": [
+          {
+           "code": "MS.16.8",
+           "text": "Catches (fields) an object in game like situations."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "fitness-types-of-activities",
+       "title": "Fitness (types of activities)",
+       "subtopics": [
+        {
+         "id": "fitness-types-of-activities",
+         "title": "Fitness (types of activities)",
+         "outcomes": [
+          {
+           "code": "MS.17.8",
+           "text": "Engages in a workout to include aerobic, muscular strength/endurance and flexibility training."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "fitness-intensity",
+       "title": "Fitness (intensity)",
+       "subtopics": [
+        {
+         "id": "fitness-intensity",
+         "title": "Fitness (intensity)",
+         "outcomes": [
+          {
+           "code": "MS.18.8",
+           "text": "Selects and participates in a moderate or vigorous physical activity."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "fitness-flexibility",
+       "title": "Fitness (flexibility)",
+       "subtopics": [
+        {
+         "id": "fitness-flexibility",
+         "title": "Fitness (flexibility)",
+         "outcomes": [
+          {
+           "code": "MS.19.8",
+           "text": "Engages in a flexibility warm-up that utilizes both dynamic and static stretches."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "rhythms-dance",
+       "title": "Rhythms & Dance",
+       "subtopics": [
+        {
+         "id": "rhythms-dance",
+         "title": "Rhythms & Dance",
+         "outcomes": [
+          {
+           "code": "MS.20.8",
+           "text": "Performs a student created dance with at least 32 counts."
+          },
+          {
+           "code": "MS.21.8",
+           "text": "Performs a student created small group dance routine to a tempo of choice."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "educational-gymnastics",
+       "title": "Educational Gymnastics",
+       "subtopics": [
+        {
+         "id": "educational-gymnastics",
+         "title": "Educational Gymnastics",
+         "outcomes": [
+          {
+           "code": "MS.22.8",
+           "text": "Creates and performs an educational gymnastics routine to music with at least 4 elements."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "aquatics",
+       "title": "Aquatics",
+       "subtopics": [
+        {
+         "id": "aquatics",
+         "title": "Aquatics",
+         "outcomes": [
+          {
+           "code": "MS.23.8",
+           "text": "Demonstrates correct technique of front crawl."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "outdoor-pursuits",
+       "title": "Outdoor Pursuits",
+       "subtopics": [
+        {
+         "id": "outdoor-pursuits",
+         "title": "Outdoor Pursuits",
+         "outcomes": [
+          {
+           "code": "MS.24.8",
+           "text": "Demonstrates correct technique for basic skills in 3 selected outdoor activity (e.g., Rock Climbing, Orienteering, Hiking, Biking, Ropes Course)."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "cognitive-concepts",
+     "title": "Cognitive Concepts",
+     "topics": [
+      {
+       "id": "peer-assessment-demonstrates-higher-level-learni",
+       "title": "Peer Assessment (demonstrates higher level learning, offers feedback to peers)",
+       "subtopics": [
+        {
+         "id": "peer-assessment-demonstrates-higher-level-learni",
+         "title": "Peer Assessment (demonstrates higher level learning, offers feedback to peers)",
+         "outcomes": [
+          {
+           "code": "CC.1.8",
+           "text": "Offers feedback to correct a peer's skill performance."
+          },
+          {
+           "code": "CC.2.8",
+           "text": "Student creates a checklist to evaluate a peer's skill performance and use of tactic and strategies in game-like situations."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "games-sports-creating-space",
+       "title": "Games/Sports- Creating Space",
+       "subtopics": [
+        {
+         "id": "games-sports-creating-space",
+         "title": "Games/Sports- Creating Space",
+         "outcomes": [
+          {
+           "code": "CC.3.8",
+           "text": "Creates open space by staying spread on offense while cutting and passing quickly and using fakes off the ball."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "games-sports-reducing-space",
+       "title": "Games/Sports- Reducing Space",
+       "subtopics": [
+        {
+         "id": "games-sports-reducing-space",
+         "title": "Games/Sports- Reducing Space",
+         "outcomes": [
+          {
+           "code": "CC.4.8",
+           "text": "Maximizes defensive coverage by working with teammates based on the situation."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "games-sports-denial",
+       "title": "Games/Sports-Denial",
+       "subtopics": [
+        {
+         "id": "games-sports-denial",
+         "title": "Games/Sports-Denial",
+         "outcomes": [
+          {
+           "code": "CC.5.8",
+           "text": "When appropriate, denies the pass or catch to work toward interception."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "games-sports-transition",
+       "title": "Games/Sports-Transition",
+       "subtopics": [
+        {
+         "id": "games-sports-transition",
+         "title": "Games/Sports-Transition",
+         "outcomes": [
+          {
+           "code": "CC.6.8",
+           "text": "Successfully transitions quickly from defense to offense while communicating with teammates thus capitalizing on an advantage."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "games-sports-tactics-shots",
+       "title": "Games/Sports-Tactics/Shots",
+       "subtopics": [
+        {
+         "id": "games-sports-tactics-shots",
+         "title": "Games/Sports-Tactics/Shots",
+         "outcomes": [
+          {
+           "code": "CC.7.8",
+           "text": "Utilizes a variety of shots and placement to prevent opponent anticipation."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "games-sports-shot-selection",
+       "title": "Games/Sports-Shot Selection",
+       "subtopics": [
+        {
+         "id": "games-sports-shot-selection",
+         "title": "Games/Sports-Shot Selection",
+         "outcomes": [
+          {
+           "code": "CC.8.8",
+           "text": "Controls speed and/or trajectory of the shot based on position of opponent or target."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "games-sports-offensive-strategies",
+       "title": "Games/Sports-Offensive Strategies",
+       "subtopics": [
+        {
+         "id": "games-sports-offensive-strategies",
+         "title": "Games/Sports-Offensive Strategies",
+         "outcomes": [
+          {
+           "code": "CC.9.8",
+           "text": "Identifies different strategies to advance a teammate."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "outdoor-pursuits-movement-concepts",
+       "title": "Outdoor Pursuits-Movement Concepts",
+       "subtopics": [
+        {
+         "id": "outdoor-pursuits-movement-concepts",
+         "title": "Outdoor Pursuits-Movement Concepts",
+         "outcomes": [
+          {
+           "code": "CC.10.8",
+           "text": "Follows and implements safety procedures in self-selected activities."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "fitness-and-physical-activiy-fpa",
+     "title": "Fitness And Physical Activiy (FPA)",
+     "topics": [
+      {
+       "id": "physical-activity-knowledge",
+       "title": "Physical Activity Knowledge",
+       "subtopics": [
+        {
+         "id": "physical-activity-knowledge",
+         "title": "Physical Activity Knowledge",
+         "outcomes": [
+          {
+           "code": "FPA.1.8",
+           "text": "Creates a list of a light, moderate, and vigorous activity that one can complete after school or on weekends."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "fitness-knowledge",
+       "title": "Fitness Knowledge",
+       "subtopics": [
+        {
+         "id": "fitness-knowledge",
+         "title": "Fitness Knowledge",
+         "outcomes": [
+          {
+           "code": "FPA.2.8",
+           "text": "Incorporates health and skill related fitness components in an individual fitness plan."
+          },
+          {
+           "code": "FPA.3.8",
+           "text": "Utilizes the Rate of Perceived Exertion (RPE) scale to monitor and adjust workout intensity."
+          },
+          {
+           "code": "FPA.4.8",
+           "text": "Uses the FITT Principle to design a workout."
+          },
+          {
+           "code": "FPA.5.8",
+           "text": "Identifies strengthening exercises that will help performance in physical activities."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "assessment-planning",
+       "title": "Assessment & Planning",
+       "subtopics": [
+        {
+         "id": "assessment-planning",
+         "title": "Assessment & Planning",
+         "outcomes": [
+          {
+           "code": "FPA.6.8",
+           "text": "Implements a fitness plan and assess effectiveness."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "personal-social-responsibility-psr",
+     "title": "Personal & Social Responsibility (PSR)",
+     "topics": [
+      {
+       "id": "personal-and-social-responsibility",
+       "title": "Personal and Social Responsibility",
+       "subtopics": [
+        {
+         "id": "personal-and-social-responsibility",
+         "title": "Personal and Social Responsibility",
+         "outcomes": [
+          {
+           "code": "PSR.1.8",
+           "text": "Exhibits good sportsmanship during competitive play."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "rules-etiquette",
+       "title": "Rules & Etiquette",
+       "subtopics": [
+        {
+         "id": "rules-etiquette",
+         "title": "Rules & Etiquette",
+         "outcomes": [
+          {
+           "code": "PSR.2.8",
+           "text": "Applies rules and etiquette by acting as and interacting with officials during physical activity."
+          },
+          {
+           "code": "PSR.3.8",
+           "text": "Resolves conflicts and accepts decisions of judgment in socially acceptable ways."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "cooperation",
+       "title": "Cooperation",
+       "subtopics": [
+        {
+         "id": "cooperation",
+         "title": "Cooperation",
+         "outcomes": [
+          {
+           "code": "PSR.4.8",
+           "text": "Works cooperatively with a large group to achieve group goals."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "values-physical-activity-vpa",
+     "title": "Values Physical Activity (VPA)",
+     "topics": [
+      {
+       "id": "appreciation",
+       "title": "Appreciation",
+       "subtopics": [
+        {
+         "id": "appreciation",
+         "title": "Appreciation",
+         "outcomes": [
+          {
+           "code": "VPA.1.8",
+           "text": "Recognizes differences in reasons why people participate in physical activity."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "challenge",
+       "title": "Challenge",
+       "subtopics": [
+        {
+         "id": "challenge",
+         "title": "Challenge",
+         "outcomes": [
+          {
+           "code": "VPA.2.8",
+           "text": "Provides support for teammates in challenging situations."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "9-12",
+   "units": [
+    {
+     "id": "motor-skills",
+     "title": "Motor Skills",
+     "topics": [
+      {
+       "id": "motor-skills",
+       "title": "Motor Skills",
+       "subtopics": [
+        {
+         "id": "motor-skills-1-of-3",
+         "title": "Motor Skills (1 of 3)",
+         "outcomes": [
+          {
+           "code": "MS.1",
+           "text": "Demonstrate competency in activity specific manipulative skills (e.g., throwing, catching, kicking, striking, etc.) or sport specific skills (e.g. serve, putt, cradle in lacrosse, sprint start, etc.) while participating in game or event."
+          },
+          {
+           "code": "MS.2",
+           "text": "Demonstrate game specific strategies by combining skills (e.g., softball throw to base, volleyball set to hitter, soccer pass to teammate, etc.)."
+          },
+          {
+           "code": "MS.3",
+           "text": "Execute sport skills or strategies in response to the opponent (e.g., running routes, player positioning, guarding)."
+          },
+          {
+           "code": "MS.4",
+           "text": "Demonstrate offensive skills and strategies during game play."
+          },
+          {
+           "code": "MS.5",
+           "text": "Demonstrate defensive skills and strategies during game play."
+          }
+         ]
+        },
+        {
+         "id": "motor-skills-2-of-3",
+         "title": "Motor Skills (2 of 3)",
+         "outcomes": [
+          {
+           "code": "MS.6",
+           "text": "Engage in specialized skills in health-related fitness activities (e.g., yoga, resistance training, fitness walking)."
+          },
+          {
+           "code": "MS.7",
+           "text": "Apply the principles of training to enhance an individual's current level of fitness (e.g., F.I.T.T., overload, specificity, progression)."
+          },
+          {
+           "code": "MS.8",
+           "text": "Demonstrate rhythmical or choreographed steps (i.e., jumping rope, aerobic dance, line dance, educational gymnastics routine)"
+          },
+          {
+           "code": "MS.9",
+           "text": "Demonstrate a continuous dance sequence while synchronized with group or continuous jump pattern to music/verse."
+          },
+          {
+           "code": "MS.10",
+           "text": "Demonstrate aquatic skills (e.g., floating, rhythmic breathing, kicking, treading water)."
+          }
+         ]
+        },
+        {
+         "id": "motor-skills-3-of-3",
+         "title": "Motor Skills (3 of 3)",
+         "outcomes": [
+          {
+           "code": "MS.11",
+           "text": "Demonstrate swimming strokes (e.g., freestyle, backstroke, breaststroke)."
+          },
+          {
+           "code": "MS.12",
+           "text": "Demonstrate essential skills (e.g., all-terrain walking, strength, balance, climbing)."
+          },
+          {
+           "code": "MS.13",
+           "text": "Apply specialized skills (e.g., hiking, orienteering, rock climbing, mountain biking, fishing, kayaking)."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "cognitive-concepts",
+     "title": "Cognitive Concepts",
+     "topics": [
+      {
+       "id": "cognitive-concepts",
+       "title": "Cognitive Concepts",
+       "subtopics": [
+        {
+         "id": "cognitive-concepts-1-of-2",
+         "title": "Cognitive Concepts (1 of 2)",
+         "outcomes": [
+          {
+           "code": "CC.1",
+           "text": "Analyze movement concepts and principles to improve performance (e.g., pathways, force, center of gravity)."
+          },
+          {
+           "code": "CC.2",
+           "text": "Identify critical elements (e.g., opposition, follow through, weight transfer)."
+          },
+          {
+           "code": "CC.3",
+           "text": "Justify the importance of each critical element in regards to skill performance (e.g., why, when, how)."
+          },
+          {
+           "code": "CC.4",
+           "text": "Demonstrate rule application during game play."
+          }
+         ]
+        },
+        {
+         "id": "cognitive-concepts-2-of-2",
+         "title": "Cognitive Concepts (2 of 2)",
+         "outcomes": [
+          {
+           "code": "CC.5",
+           "text": "Use appropriate sport specific terminology (e.g., travelling, out-of-bounds, offsides)."
+          },
+          {
+           "code": "CC.6",
+           "text": "Explain appropriate tactical decisions in a game situation. (e.g., use of a lob versus a drop; use of a chest pass versus a bounce pass)"
+          },
+          {
+           "code": "CC.7",
+           "text": "Assess strategies needed to achieve specific effects/outcomes. (e.g., offensive strategies in order to score, defensive strategies to obtain possession, player positioning, etc.)"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "fitness-physical-activity-fpa",
+     "title": "Fitness & Physical Activity (FPA)",
+     "topics": [
+      {
+       "id": "fitness-physical-activity-fpa",
+       "title": "Fitness & Physical Activity (FPA)",
+       "subtopics": [
+        {
+         "id": "fitness-physical-activity-fpa-1-of-3",
+         "title": "Fitness & Physical Activity (FPA) (1 of 3)",
+         "outcomes": [
+          {
+           "code": "FPA.1",
+           "text": "Explain how health-related components of fitness impact overall health status (i.e., body composition, cardiovascular endurance, muscular endurance, muscular strength, flexibility)."
+          },
+          {
+           "code": "FPA.2",
+           "text": "Participate in health-related fitness activities (e.g., weight training, stretching, cardio workouts)."
+          },
+          {
+           "code": "FPA.3",
+           "text": "Explain how skill related components impact sports and fitness (i.e., balance, agility, power, speed, coordination, and reaction time)."
+          },
+          {
+           "code": "FPA.4",
+           "text": "Participate in skill-related fitness activities (e.g., agility ladder, yoga, plyometric)."
+          },
+          {
+           "code": "FPA.5",
+           "text": "Apply fitness terminology in appropriate settings (e.g., aerobic/anaerobic, target heart rate, FITT principle, isometric, warm-up/cool-down)."
+          }
+         ]
+        },
+        {
+         "id": "fitness-physical-activity-fpa-2-of-3",
+         "title": "Fitness & Physical Activity (FPA) (2 of 3)",
+         "outcomes": [
+          {
+           "code": "FPA.6",
+           "text": "Define the principles of training (e.g., overload, specificity, progression)."
+          },
+          {
+           "code": "FPA.7",
+           "text": "Identify activities that improve each component of fitness (i.e., health-related, skill-related)."
+          },
+          {
+           "code": "FPA.8",
+           "text": "Calculate and apply resting, maximum, and target heart rate during various activities (e.g., cardiorespiratory activities, game play)."
+          },
+          {
+           "code": "FPA.9",
+           "text": "Discuss current trends in fitness technology (e.g., apps, heart rate monitors, electronic activity tracker)."
+          },
+          {
+           "code": "FPA.10",
+           "text": "Construct fitness goals (i.e., S.M.A.R.T.)"
+          }
+         ]
+        },
+        {
+         "id": "fitness-physical-activity-fpa-3-of-3",
+         "title": "Fitness & Physical Activity (FPA) (3 of 3)",
+         "outcomes": [
+          {
+           "code": "FPA.11",
+           "text": "Design a personal fitness plan based on the FITT principle i.e., Frequency, Intensity, Time, Type."
+          },
+          {
+           "code": "FPA.12",
+           "text": "Participate in health-related fitness testing (e.g., Fitnessgram)."
+          },
+          {
+           "code": "FPA.13",
+           "text": "Interpret individual results of fitness tests."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "personal-social-responsibility-psr",
+     "title": "Personal & Social Responsibility (PSR)",
+     "topics": [
+      {
+       "id": "personal-social-responsibility-psr",
+       "title": "Personal & Social Responsibility (PSR)",
+       "subtopics": [
+        {
+         "id": "personal-social-responsibility-psr-1-of-2",
+         "title": "Personal & Social Responsibility (PSR) (1 of 2)",
+         "outcomes": [
+          {
+           "code": "PSR.1",
+           "text": "Demonstrate responsible independent behaviors (e.g., best effort, compassion, initiative)."
+          },
+          {
+           "code": "PSR.2",
+           "text": "Explain the role of the leader and follower within a group."
+          },
+          {
+           "code": "PSR.3",
+           "text": "Demonstrate positive attitudes towards self and others through verbal and nonverbal behaviors."
+          },
+          {
+           "code": "PSR.4",
+           "text": "Explain the importance of following rules, procedures, etiquette and sportsmanship in the physical activity setting."
+          },
+          {
+           "code": "PSR.5",
+           "text": "Display acceptance of decisions of judgement in socially responsible ways (e.g., teachers, sport officials, peer leaders)."
+          }
+         ]
+        },
+        {
+         "id": "personal-social-responsibility-psr-2-of-2",
+         "title": "Personal & Social Responsibility (PSR) (2 of 2)",
+         "outcomes": [
+          {
+           "code": "PSR.6",
+           "text": "Provide support and encouragement for classmates (e.g., acknowledge good play, accept success/performance limitations)."
+          },
+          {
+           "code": "PSR.7",
+           "text": "Display acceptance of individual differences (e.g., ability level, cultural background, gender, interest, age)."
+          },
+          {
+           "code": "PSR.8",
+           "text": "Demonstrate conflict resolution skills."
+          },
+          {
+           "code": "PSR.9",
+           "text": "Apply best practices for participating safely in physical activity (e.g., equipment/facility use, peer awareness, environment, personal medical needs)."
+          },
+          {
+           "code": "PSR.10",
+           "text": "Engage in proper warm-up and cool-down procedures."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "values-physical-activity-vpa",
+     "title": "Values Physical Activity (VPA)",
+     "topics": [
+      {
+       "id": "values-physical-activity-vpa",
+       "title": "Values Physical Activity (VPA)",
+       "subtopics": [
+        {
+         "id": "values-physical-activity-vpa",
+         "title": "Values Physical Activity (VPA)",
+         "outcomes": [
+          {
+           "code": "VPA.1",
+           "text": "Explain the health benefits of physical activity (e.g., physical, mental/emotional, social)."
+          },
+          {
+           "code": "VPA.2",
+           "text": "Determine the value of physical activity to meet an individual's personal needs (e.g., social interaction, self expression, stress management)."
+          },
+          {
+           "code": "VPA.3",
+           "text": "Explore community resources (e.g., community centers, greenways, parks)."
+          },
+          {
+           "code": "VPA.4",
+           "text": "Demonstrate a willingness to try new activities for challenge and personal reward."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "build": {
+  "builtAt": "2026-10-14T16:20:49.030Z",
+  "model": "none",
+  "usd": 0,
+  "expectedCodes": 450,
+  "coverage": 1,
+  "missingCodes": [],
+  "counts": {
+   "grades": 10,
+   "units": 50,
+   "topics": 338,
+   "subtopics": 344,
+   "outcomes": 450
+  },
+  "warnings": []
+ }
+}

@@ -1,0 +1,655 @@
+{
+ "id": "pk-ncp-tech-basic-medical-sciences-physiology-11",
+ "region": "PK",
+ "framework": "National Curriculum of Pakistan 2022-23",
+ "board": null,
+ "qualification": "Technical stream",
+ "subject": "Basic Medical Sciences I (Physiology)",
+ "syllabusCode": null,
+ "gradeSystem": "grade",
+ "source": {
+  "urls": [
+   "https://ncc.gov.pk/SiteImage/Misc/files/54-BASIC%20MEDICAL%20SCIENCES%20I.pdf"
+  ],
+  "publisher": "National Curriculum Council, Ministry of Federal Education and Professional Training",
+  "licence": "Government publication; structure + our own wording only",
+  "firstExam": null
+ },
+ "grades": [
+  {
+   "grade": "11",
+   "units": [
+    {
+     "id": "domain-a-cell",
+     "title": "Domain A: Cell",
+     "topics": [
+      {
+       "id": "domain-a-cell",
+       "title": "Domain A: Cell",
+       "subtopics": [
+        {
+         "id": "cell-parts-and-membrane",
+         "title": "Cell parts and membrane",
+         "outcomes": [
+          {
+           "code": "MSP-11-A-01",
+           "text": "Name the main parts of a human cell: membrane, nucleus, organelles."
+          },
+          {
+           "code": "MSP-11-A-02",
+           "text": "Explain how the cell membrane keeps the cell intact and controls transport."
+          },
+          {
+           "code": "MSP-11-A-03",
+           "text": "Compare a human cell with an animal cell."
+          }
+         ]
+        },
+        {
+         "id": "cell-uptake-and-division",
+         "title": "Cell uptake and division",
+         "outcomes": [
+          {
+           "code": "MSP-11-A-04",
+           "text": "Define endocytosis and phagocytosis."
+          },
+          {
+           "code": "MSP-11-A-05",
+           "text": "Discuss how a cell ingests and digests material in phagocytosis."
+          },
+          {
+           "code": "MSP-11-A-06",
+           "text": "Explain cell division by mitosis and meiosis."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "domain-b-basic-tissues",
+     "title": "Domain B: Basic Tissues",
+     "topics": [
+      {
+       "id": "domain-b-basic-tissues",
+       "title": "Domain B: Basic Tissues",
+       "subtopics": [
+        {
+         "id": "tissue-types",
+         "title": "Tissue types",
+         "outcomes": [
+          {
+           "code": "MSP-11-B-01",
+           "text": "Define tissue and why tissues matter for organs."
+          },
+          {
+           "code": "MSP-11-B-02",
+           "text": "Describe the features and jobs of each tissue type."
+          },
+          {
+           "code": "MSP-11-B-03",
+           "text": "Tell epithelial, connective, muscle and nervous tissue apart."
+          },
+          {
+           "code": "MSP-11-B-04",
+           "text": "Define connective tissue and its function."
+          },
+          {
+           "code": "MSP-11-B-05",
+           "text": "Tell skeletal, smooth and cardiac muscle apart."
+          }
+         ]
+        },
+        {
+         "id": "body-water-and-electrolytes",
+         "title": "Body water and electrolytes",
+         "outcomes": [
+          {
+           "code": "MSP-11-B-06",
+           "text": "Define water as an essential body component."
+          },
+          {
+           "code": "MSP-11-B-07",
+           "text": "List the common electrolytes and their names."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "domain-c-circulatory-system",
+     "title": "Domain C: Circulatory system",
+     "topics": [
+      {
+       "id": "domain-c-circulatory-system",
+       "title": "Domain C: Circulatory system",
+       "subtopics": [
+        {
+         "id": "heart-and-blood-vessels",
+         "title": "Heart and blood vessels",
+         "outcomes": [
+          {
+           "code": "MSP-11-C-01",
+           "text": "Identify heart chambers, valves and major vessels."
+          },
+          {
+           "code": "MSP-11-C-02",
+           "text": "Compare arteries, veins and capillaries."
+          },
+          {
+           "code": "MSP-11-C-05",
+           "text": "Identify the AV and semilunar valves and state what they do."
+          }
+         ]
+        },
+        {
+         "id": "cardiac-cycle-and-output",
+         "title": "Cardiac cycle and output",
+         "outcomes": [
+          {
+           "code": "MSP-11-C-03",
+           "text": "Define the cardiac cycle, diastole and systole."
+          },
+          {
+           "code": "MSP-11-C-04",
+           "text": "Explain the order of events in diastole and systole."
+          },
+          {
+           "code": "MSP-11-C-06",
+           "text": "Define cardiac work output and why it matters."
+          },
+          {
+           "code": "MSP-11-C-07",
+           "text": "Define cardiac output, stroke volume, heart rate and what affects them."
+          }
+         ]
+        },
+        {
+         "id": "lymphatic-system",
+         "title": "Lymphatic system",
+         "outcomes": [
+          {
+           "code": "MSP-11-C-08",
+           "text": "Identify lymphatic structures, including lymph nodes, and their roles."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "domain-d-respiratory-system",
+     "title": "Domain D: Respiratory system",
+     "topics": [
+      {
+       "id": "domain-d-respiratory-system",
+       "title": "Domain D: Respiratory system",
+       "subtopics": [
+        {
+         "id": "mechanics-of-breathing",
+         "title": "Mechanics of breathing",
+         "outcomes": [
+          {
+           "code": "MSP-11-D-01",
+           "text": "Explain the basic mechanism of respiration and respiratory muscles."
+          },
+          {
+           "code": "MSP-11-D-02",
+           "text": "Label the diaphragm and intercostal muscles and state their role."
+          },
+          {
+           "code": "MSP-11-D-03",
+           "text": "Describe thoracic volume and pressure changes in inspiration and expiration."
+          }
+         ]
+        },
+        {
+         "id": "respiratory-volumes-and-control",
+         "title": "Respiratory volumes and control",
+         "outcomes": [
+          {
+           "code": "MSP-11-D-04",
+           "text": "Define respiratory rate and tidal volume and what influences them."
+          },
+          {
+           "code": null,
+           "text": "Identify peripheral and central chemoreceptors in respiratory control."
+          },
+          {
+           "code": null,
+           "text": "Define artificial respiration and techniques like mouth-to-mouth."
+          }
+         ]
+        },
+        {
+         "id": "gas-transport-in-blood",
+         "title": "Gas transport in blood",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain oxygen and carbon dioxide transport: haemoglobin saturation, bicarbonate formation."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "domain-e-digestive-system",
+     "title": "Domain E: Digestive system",
+     "topics": [
+      {
+       "id": "domain-e-digestive-system",
+       "title": "Domain E: Digestive system",
+       "subtopics": [
+        {
+         "id": "ingestion-and-mastication",
+         "title": "Ingestion and mastication",
+         "outcomes": [
+          {
+           "code": "MSP-11-E-01",
+           "text": "Define ingestion and its importance."
+          },
+          {
+           "code": "MSP-11-E-02",
+           "text": "Explain chewing and how it breaks down food."
+          }
+         ]
+        },
+        {
+         "id": "digestion-and-digestive-organs",
+         "title": "Digestion and digestive organs",
+         "outcomes": [
+          {
+           "code": "MSP-11-E-03",
+           "text": "Explain mechanical and chemical digestion and how food becomes absorbable."
+          },
+          {
+           "code": "MSP-11-E-04",
+           "text": "State the role of mouth, teeth, tongue, oesophagus, stomach and intestines."
+          },
+          {
+           "code": "MSP-11-E-05",
+           "text": "Discuss functions of digestive system structures."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "domain-f-secretions-of-git",
+     "title": "Domain F: Secretions of GIT",
+     "topics": [
+      {
+       "id": "domain-f-secretions-of-git",
+       "title": "Domain F: Secretions of GIT",
+       "subtopics": [
+        {
+         "id": "saliva-and-glands",
+         "title": "Saliva and glands",
+         "outcomes": [
+          {
+           "code": "MSP-11-F-01",
+           "text": "Identify major secretions and glands of the GI tract."
+          },
+          {
+           "code": null,
+           "text": "Describe saliva and the parotid, submandibular and sublingual glands."
+          },
+          {
+           "code": null,
+           "text": "Describe saliva's roles: lubrication, starch digestion by amylase, antimicrobial action."
+          }
+         ]
+        },
+        {
+         "id": "gastric-pancreatic-and-bile-secretions",
+         "title": "Gastric, pancreatic and bile secretions",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain gastric secretion, including hydrochloric acid and pepsin."
+          },
+          {
+           "code": null,
+           "text": "Describe how gastric secretions aid digestion in the stomach."
+          },
+          {
+           "code": "MSP-11-E-06",
+           "text": "Describe pancreatic juice and its role in digestion."
+          },
+          {
+           "code": "MSP-11-E-07",
+           "text": "Explain bile production by the liver and storage in the gallbladder."
+          }
+         ]
+        },
+        {
+         "id": "small-intestine-secretion-and-absorption",
+         "title": "Small intestine secretion and absorption",
+         "outcomes": [
+          {
+           "code": "MSP-11-E-08",
+           "text": "Identify small intestine secretions: enzymes and mucus."
+          },
+          {
+           "code": "MSP-11-E-09",
+           "text": "Describe digestion and absorption in the small intestine, including villi and microvilli."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "domain-e-metabolism",
+     "title": "Domain E: Metabolism",
+     "topics": [
+      {
+       "id": "domain-e-metabolism",
+       "title": "Domain E: Metabolism",
+       "subtopics": [
+        {
+         "id": "metabolism-basics",
+         "title": "Metabolism basics",
+         "outcomes": [
+          {
+           "code": "MSP-11-E-10",
+           "text": "Define metabolism and why it matters in cells."
+          },
+          {
+           "code": "MSP-11-E-11",
+           "text": "Explain basic protein, carbohydrate and fat metabolism."
+          },
+          {
+           "code": "MSP-11-E-15",
+           "text": "Explain nutrient transport from the gut to tissues."
+          }
+         ]
+        },
+        {
+         "id": "glucose-and-energy",
+         "title": "Glucose and energy",
+         "outcomes": [
+          {
+           "code": "MSP-11-E-12",
+           "text": "Explain glycolysis and gluconeogenesis and their role in energy."
+          },
+          {
+           "code": "MSP-11-E-13",
+           "text": "Explain glucose transport into tissues and the role of insulin."
+          }
+         ]
+        },
+        {
+         "id": "lipids-vitamins-and-proteins",
+         "title": "Lipids, vitamins and proteins",
+         "outcomes": [
+          {
+           "code": "MSP-11-E-14",
+           "text": "Describe lipid uptake and metabolism: lipolysis, fatty acid oxidation, triglyceride synthesis."
+          },
+          {
+           "code": "MSP-11-E-16",
+           "text": "Explain vitamins as coenzymes in metabolism."
+          },
+          {
+           "code": "MSP-11-E-17",
+           "text": "Describe proteins: amino acid structure and peptide bonds."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "domain-f-nervous-system",
+     "title": "Domain F: Nervous system",
+     "topics": [
+      {
+       "id": "domain-f-nervous-system",
+       "title": "Domain F: Nervous system",
+       "subtopics": [
+        {
+         "id": "organisation-of-the-nervous-system",
+         "title": "Organisation of the nervous system",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Define the nervous system and its coordinating role."
+          },
+          {
+           "code": "MSP-11-F-02",
+           "text": "Identify the CNS and PNS and their main parts."
+          },
+          {
+           "code": "MSP-11-F-03",
+           "text": "Describe the brain, spinal cord, nerves and ganglia."
+          }
+         ]
+        },
+        {
+         "id": "brain-regions-and-cranial-nerves",
+         "title": "Brain regions and cranial nerves",
+         "outcomes": [
+          {
+           "code": "MSP-11-F-04",
+           "text": "Explain cerebrum functions: motor control, sensing, higher thinking."
+          },
+          {
+           "code": "MSP-11-F-05",
+           "text": "Describe cerebellum roles in coordination, balance and fine movement."
+          },
+          {
+           "code": "MSP-11-F-06",
+           "text": "Explain the 12 pairs of cranial nerves and their functions."
+          }
+         ]
+        },
+        {
+         "id": "autonomic-system-and-spinal-cord",
+         "title": "Autonomic system and spinal cord",
+         "outcomes": [
+          {
+           "code": "MSP-11-F-07",
+           "text": "Define the autonomic, sympathetic and parasympathetic systems and their roles."
+          },
+          {
+           "code": "MSP-11-F-08",
+           "text": "Explain how the spinal cord carries signals and drives reflexes."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "domain-g-endocrine-system",
+     "title": "Domain G: Endocrine system",
+     "topics": [
+      {
+       "id": "domain-g-endocrine-system",
+       "title": "Domain G: Endocrine system",
+       "subtopics": [
+        {
+         "id": "glands-and-hormones",
+         "title": "Glands and hormones",
+         "outcomes": [
+          {
+           "code": "MSP-11-G-01",
+           "text": "Distinguish endocrine from exocrine glands."
+          },
+          {
+           "code": "MSP-11-G-02",
+           "text": "Describe hormones as chemical messengers."
+          },
+          {
+           "code": "MSP-11-G-03",
+           "text": "Identify the pituitary, thyroid, adrenal and parathyroid glands."
+          }
+         ]
+        },
+        {
+         "id": "pituitary-thyroid-adrenal-and-pth-hormones",
+         "title": "Pituitary, thyroid, adrenal and PTH hormones",
+         "outcomes": [
+          {
+           "code": "MSP-11-G-04",
+           "text": "Describe pituitary hormone roles in growth, lactation, thyroid, adrenal cortex and gonads."
+          },
+          {
+           "code": "MSP-11-G-05",
+           "text": "Describe thyroid hormone roles in metabolism, growth and energy balance."
+          },
+          {
+           "code": "MSP-11-G-06",
+           "text": "Describe adrenocortical hormones in stress, metabolism and electrolyte balance."
+          },
+          {
+           "code": "MSP-11-G-07",
+           "text": "Describe PTH in calcium balance, bone and kidney function."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "domain-h-reproductive-system",
+     "title": "Domain H: Reproductive system",
+     "topics": [
+      {
+       "id": "domain-h-reproductive-system",
+       "title": "Domain H: Reproductive system",
+       "subtopics": [
+        {
+         "id": "male-reproductive-system",
+         "title": "Male reproductive system",
+         "outcomes": [
+          {
+           "code": "MSP-11-H-01",
+           "text": "Identify male reproductive organs: testes, epididymis, vas deferens, accessory glands."
+          },
+          {
+           "code": "MSP-11-H-02",
+           "text": "Describe male organ functions: sperm making, storage and transport."
+          },
+          {
+           "code": "MSP-11-H-03",
+           "text": "Explain how testosterone and other hormones regulate male function."
+          }
+         ]
+        },
+        {
+         "id": "female-reproductive-system",
+         "title": "Female reproductive system",
+         "outcomes": [
+          {
+           "code": "MSP-11-H-04",
+           "text": "Identify female organs: ovaries, fallopian tubes, uterus, vagina."
+          },
+          {
+           "code": "MSP-11-H-05",
+           "text": "Describe female organ functions: eggs, fertilisation, pregnancy support."
+          },
+          {
+           "code": "MSP-11-H-06",
+           "text": "Explain how oestrogen and progesterone regulate the menstrual cycle."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "domain-i-special-senses",
+     "title": "Domain I: Special senses",
+     "topics": [
+      {
+       "id": "domain-i-special-senses",
+       "title": "Domain I: Special senses",
+       "subtopics": [
+        {
+         "id": "eye-ear-and-hearing",
+         "title": "Eye, ear and hearing",
+         "outcomes": [
+          {
+           "code": "MSP-11-H-07",
+           "text": "Identify the major sense organs: eyes, ears, tongue, nose, skin."
+          },
+          {
+           "code": "MSP-11-H-08",
+           "text": "Describe how the eye captures and processes visual information."
+          },
+          {
+           "code": "MSP-11-H-09",
+           "text": "Explain hearing: outer ear, eardrum, middle ear and the vestibular system."
+          },
+          {
+           "code": "MSP-11-H-10",
+           "text": "Explain how sound travels to the cochlea."
+          }
+         ]
+        },
+        {
+         "id": "taste-smell-and-skin",
+         "title": "Taste, smell and skin",
+         "outcomes": [
+          {
+           "code": "MSP-11-H-11",
+           "text": "Describe the tongue's roles in taste and speech."
+          },
+          {
+           "code": "MSP-11-H-12",
+           "text": "Identify major salivary glands and their roles."
+          },
+          {
+           "code": "MSP-11-H-13",
+           "text": "Describe the nose's roles in smell and filtering air."
+          },
+          {
+           "code": "MSP-11-H-14",
+           "text": "Identify skin appendages: hair, nails, sweat glands."
+          },
+          {
+           "code": "MSP-11-H-15",
+           "text": "Describe skin functions: protection, sensation, temperature control, vitamin D."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "build": {
+  "builtAt": "2026-10-14T08:34:32.715Z",
+  "model": "claude-agent",
+  "usd": 0,
+  "expectedCodes": 72,
+  "coverage": 1,
+  "missingCodes": [],
+  "counts": {
+   "grades": 1,
+   "units": 11,
+   "topics": 11,
+   "subtopics": 27,
+   "outcomes": 80
+  },
+  "warnings": []
+ }
+}

@@ -1,0 +1,204 @@
+{
+ "id": "uk-nc-pe-ks1-2",
+ "region": "UK",
+ "framework": "National Curriculum in England (2014)",
+ "board": "Department for Education",
+ "qualification": "Primary",
+ "subject": "Physical education",
+ "syllabusCode": null,
+ "gradeSystem": "key-stage",
+ "source": {
+  "urls": [
+   "https://assets.publishing.service.gov.uk/media/5a7c4edfed915d3d0e87b801/PRIMARY_national_curriculum_-_Physical_education.pdf",
+   "https://www.gov.uk/government/publications/national-curriculum-in-england-physical-education-programmes-of-study"
+  ],
+  "publisher": "Department for Education",
+  "licence": "Open Government Licence v3.0 (Crown copyright)",
+  "firstExam": "2014"
+ },
+ "grades": [
+  {
+   "grade": "KS1",
+   "units": [
+    {
+     "id": "physical-education-programme-of-study",
+     "title": "Physical education programme of study",
+     "topics": [
+      {
+       "id": "key-stage-1",
+       "title": "Key stage 1",
+       "subtopics": [
+        {
+         "id": "basic-movements",
+         "title": "Basic movements",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Master running, jumping, throwing and catching, and develop balance, agility and co-ordination, applying them in activities."
+          }
+         ]
+        },
+        {
+         "id": "team-games",
+         "title": "Team games",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Take part in team games, developing simple tactics for attacking and defending."
+          }
+         ]
+        },
+        {
+         "id": "dance",
+         "title": "Dance",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Perform dances using simple movement patterns."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "KS2",
+   "units": [
+    {
+     "id": "physical-education-programme-of-study",
+     "title": "Physical education programme of study",
+     "topics": [
+      {
+       "id": "key-stage-2",
+       "title": "Key stage 2",
+       "subtopics": [
+        {
+         "id": "combining-movement-skills",
+         "title": "Combining movement skills",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Use running, jumping, throwing and catching alone and in combination."
+          }
+         ]
+        },
+        {
+         "id": "competitive-games",
+         "title": "Competitive games",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Play competitive games, modified where appropriate, and apply basic principles of attacking and defending."
+          }
+         ]
+        },
+        {
+         "id": "fitness-and-technique",
+         "title": "Fitness and technique",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Develop flexibility, strength, technique, control and balance, for example through athletics and gymnastics."
+          }
+         ]
+        },
+        {
+         "id": "dance",
+         "title": "Dance",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Perform dances using a range of movement patterns."
+          }
+         ]
+        },
+        {
+         "id": "outdoor-and-adventurous-activity",
+         "title": "Outdoor and adventurous activity",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Take part in outdoor and adventurous challenges, both individually and within a team."
+          }
+         ]
+        },
+        {
+         "id": "evaluating-performance",
+         "title": "Evaluating performance",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Compare performances with previous ones and show improvement to achieve a personal best."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "all",
+   "units": [
+    {
+     "id": "physical-education-programme-of-study",
+     "title": "Physical education programme of study",
+     "topics": [
+      {
+       "id": "swimming-and-water-safety",
+       "title": "Swimming and water safety",
+       "subtopics": [
+        {
+         "id": "swimming-skills",
+         "title": "Swimming skills",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Swim competently, confidently and proficiently over at least 25 metres."
+          },
+          {
+           "code": null,
+           "text": "Use a range of strokes effectively, such as front crawl, backstroke and breaststroke."
+          }
+         ]
+        },
+        {
+         "id": "water-safety",
+         "title": "Water safety",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Perform safe self-rescue in different water-based situations."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "build": {
+  "builtAt": "2026-10-14T10:38:05.744Z",
+  "model": "claude-agent",
+  "usd": 0,
+  "expectedCodes": null,
+  "coverage": null,
+  "missingCodes": [],
+  "counts": {
+   "grades": 3,
+   "units": 3,
+   "topics": 3,
+   "subtopics": 11,
+   "outcomes": 12
+  },
+  "warnings": [
+   "unexpected grade label \"all\""
+  ]
+ }
+}

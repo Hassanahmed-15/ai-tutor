@@ -1,0 +1,196 @@
+{
+ "id": "us-or-personal-finance",
+ "region": "US",
+ "framework": "Oregon state academic standards: Personal Finance",
+ "board": null,
+ "qualification": "K-12",
+ "subject": "Personal Finance",
+ "syllabusCode": null,
+ "gradeSystem": "grade",
+ "source": {
+  "urls": [
+   "https://api.commonstandardsproject.com/api/v1/jurisdictions/3C4329D21BCF435C880282CBAAE12AF1",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/F48614F7B8E74A3C9D59D764E7D4F017"
+  ],
+  "publisher": "Oregon state education agency (machine-readable via Common Standards Project / ASN)",
+  "licence": "CC BY 4.0 US, Common Curriculum, Inc.",
+  "firstExam": "2024"
+ },
+ "grades": [
+  {
+   "grade": "9-12",
+   "units": [
+    {
+     "id": "credit-and-debt",
+     "title": "Credit and Debt",
+     "topics": [
+      {
+       "id": "credit-and-debt",
+       "title": "Credit and Debt",
+       "subtopics": [
+        {
+         "id": "credit-and-debt",
+         "title": "Credit and Debt",
+         "outcomes": [
+          {
+           "code": "HS.PFE.A.1",
+           "text": "Understand components used to build credit and investigate actions that could impact personal credit scores."
+          },
+          {
+           "code": "HS.PFE.A.2",
+           "text": "Compare and contrast various types of consumer credit and the costs and benefits of borrowing money."
+          },
+          {
+           "code": "HS.PFE.A.3",
+           "text": "Analyze the long-term impacts of high and low credit scores."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "banking-investing-saving-and-repayment",
+     "title": "Banking, Investing, Saving and Repayment",
+     "topics": [
+      {
+       "id": "banking-investing-saving-and-repayment",
+       "title": "Banking, Investing, Saving and Repayment",
+       "subtopics": [
+        {
+         "id": "banking-investing-saving-and-repayment",
+         "title": "Banking, Investing, Saving and Repayment",
+         "outcomes": [
+          {
+           "code": "HS.PFE.B.1",
+           "text": "Describe the roles of various types of financial institutions, and explore products and services provided by these institutions."
+          },
+          {
+           "code": "HS.PFE.B.2",
+           "text": "Develop goals for building assets using various investment options, and identify potential risks and rewards for a given strategy."
+          },
+          {
+           "code": "HS.PFE.B.3",
+           "text": "Evaluate repayment strategies, risks and costs for various types of consumer credit use, including simple or compound interest calculations."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "budgeting-spending-and-money-management",
+     "title": "Budgeting, Spending and Money Management",
+     "topics": [
+      {
+       "id": "budgeting-spending-and-money-management",
+       "title": "Budgeting, Spending and Money Management",
+       "subtopics": [
+        {
+         "id": "budgeting-spending-and-money-management",
+         "title": "Budgeting, Spending and Money Management",
+         "outcomes": [
+          {
+           "code": "HS.PFE.C.1",
+           "text": "Describe budgeting strategies for savings goals, emergency funds, fixed expenses and variable expenses."
+          },
+          {
+           "code": "HS.PFE.C.2",
+           "text": "Identify and examine the costs and benefits of financial decisions."
+          },
+          {
+           "code": "HS.PFE.C.3",
+           "text": "Apply a budgeting strategy to create a sample budget that includes common costs associated with housing, transportation, and insurance products and analyze the outcomes."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "personal-income-taxes-and-services",
+     "title": "Personal Income, Taxes and Services",
+     "topics": [
+      {
+       "id": "personal-income-taxes-and-services",
+       "title": "Personal Income, Taxes and Services",
+       "subtopics": [
+        {
+         "id": "personal-income-taxes-and-services",
+         "title": "Personal Income, Taxes and Services",
+         "outcomes": [
+          {
+           "code": "HS.PFE.D.1",
+           "text": "Define and identify examples of common types of income."
+          },
+          {
+           "code": "HS.PFE.D.2",
+           "text": "Understand the personal income tax filing cycle, including common tax forms and available tax preparation resources and options."
+          },
+          {
+           "code": "HS.PFE.D.3",
+           "text": "Understand taxes associated with various sources of income and common tax credits that could reduce individual tax liability."
+          },
+          {
+           "code": "HS.PFE.D.4",
+           "text": "Understand common types of federal, state, regional, and local taxes and associated tax-funded services provided."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "maintaining-financial-well-being",
+     "title": "Maintaining Financial Well-being",
+     "topics": [
+      {
+       "id": "maintaining-financial-well-being",
+       "title": "Maintaining Financial Well-being",
+       "subtopics": [
+        {
+         "id": "maintaining-financial-well-being",
+         "title": "Maintaining Financial Well-being",
+         "outcomes": [
+          {
+           "code": "HS.PFE.E.1",
+           "text": "Analyze the psychology of money through cultural, social, and emotional influences on financial behavior."
+          },
+          {
+           "code": "HS.PFE.E.2",
+           "text": "Analyze and apply multiple sources of information when making consumer decisions."
+          },
+          {
+           "code": "HS.PFE.E.3",
+           "text": "Understand and apply strategies to prevent fraud and personal identity theft."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "build": {
+  "builtAt": "2026-10-14T08:05:23.911Z",
+  "model": "none",
+  "usd": 0,
+  "expectedCodes": 16,
+  "coverage": 1,
+  "missingCodes": [],
+  "counts": {
+   "grades": 1,
+   "units": 5,
+   "topics": 5,
+   "subtopics": 5,
+   "outcomes": 16
+  },
+  "warnings": []
+ }
+}

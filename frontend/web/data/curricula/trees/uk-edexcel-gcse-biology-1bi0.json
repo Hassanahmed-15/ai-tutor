@@ -1,0 +1,1233 @@
+{
+ "id": "uk-edexcel-gcse-biology-1bi0",
+ "region": "UK",
+ "framework": "Pearson Edexcel GCSE (9-1)",
+ "board": "Pearson Edexcel",
+ "qualification": "GCSE",
+ "subject": "Biology",
+ "syllabusCode": "1BI0",
+ "gradeSystem": "year",
+ "source": {
+  "urls": [
+   "https://qualifications.pearson.com/content/dam/pdf/GCSE/Science/2016/Specification/gcse-biology-spec.pdf"
+  ],
+  "publisher": "Pearson Education",
+  "licence": "Exam board specification, (c) Pearson; structure + our own wording only",
+  "firstExam": "2018"
+ },
+ "grades": [
+  {
+   "grade": "all",
+   "units": [
+    {
+     "id": "topic-1-key-concepts-in-biology",
+     "title": "Topic 1 – Key concepts in biology",
+     "topics": [
+      {
+       "id": "cells-and-microscopy",
+       "title": "Cells and microscopy",
+       "subtopics": [
+        {
+         "id": "cell-structures",
+         "title": "Cell structures",
+         "outcomes": [
+          {
+           "code": "1.1",
+           "text": "Relate the sub-cellular structures of animal, plant and bacterial cells to their functions."
+          },
+          {
+           "code": "1.2",
+           "text": "Describe how sperm, egg and ciliated epithelial cells are adapted to their functions."
+          }
+         ]
+        },
+        {
+         "id": "microscopes-and-scale",
+         "title": "Microscopes and scale",
+         "outcomes": [
+          {
+           "code": "1.3",
+           "text": "Explain how better microscopes, including electron microscopes, improved our understanding of cell structures."
+          },
+          {
+           "code": "1.4",
+           "text": "Use number, size and scale, with estimations, and say when to estimate."
+          },
+          {
+           "code": "1.5",
+           "text": "Relate units milli, micro, nano and pico, and calculate in standard form."
+          },
+          {
+           "code": "1.6",
+           "text": "Core practical: investigate specimens with microscopes, with magnification calculations and labelled drawings."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "enzymes-and-food-tests",
+       "title": "Enzymes and food tests",
+       "subtopics": [
+        {
+         "id": "how-enzymes-work",
+         "title": "How enzymes work",
+         "outcomes": [
+          {
+           "code": "1.7",
+           "text": "Explain enzyme action, including the active site and specificity."
+          },
+          {
+           "code": "1.8",
+           "text": "Explain how enzymes denature when the active site changes shape."
+          },
+          {
+           "code": "1.9",
+           "text": "Explain how temperature, substrate concentration and pH affect enzyme activity."
+          }
+         ]
+        },
+        {
+         "id": "enzyme-practicals-and-roles",
+         "title": "Enzyme practicals and roles",
+         "outcomes": [
+          {
+           "code": "1.10",
+           "text": "Core practical: investigate the effect of pH on enzyme activity."
+          },
+          {
+           "code": "1.11",
+           "text": "Calculate rates for enzyme activity."
+          },
+          {
+           "code": "1.12",
+           "text": "Explain enzymes as catalysts building and breaking down carbohydrates, proteins and lipids."
+          }
+         ]
+        },
+        {
+         "id": "food-tests-and-energy",
+         "title": "Food tests and energy",
+         "outcomes": [
+          {
+           "code": "1.13B",
+           "text": "Core practical: use reagents to test for starch, reducing sugars, proteins and fats."
+          },
+          {
+           "code": "1.14B",
+           "text": "Explain how calorimetry measures the energy in food."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "transport-in-and-out-of-cells",
+       "title": "Transport in and out of cells",
+       "subtopics": [
+        {
+         "id": "diffusion-osmosis-and-active-transport",
+         "title": "Diffusion, osmosis and active transport",
+         "outcomes": [
+          {
+           "code": "1.15",
+           "text": "Explain transport in and out of cells by diffusion, osmosis and active transport."
+          },
+          {
+           "code": "1.16",
+           "text": "Core practical: investigate osmosis in potatoes."
+          },
+          {
+           "code": "1.17",
+           "text": "Calculate percentage gain and loss of mass in osmosis."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "topic-2-cells-and-control",
+     "title": "Topic 2 – Cells and control",
+     "topics": [
+      {
+       "id": "cell-division-and-growth",
+       "title": "Cell division and growth",
+       "subtopics": [
+        {
+         "id": "mitosis-and-cancer",
+         "title": "Mitosis and cancer",
+         "outcomes": [
+          {
+           "code": "2.1",
+           "text": "Describe mitosis within the cell cycle, including its stages and cytokinesis."
+          },
+          {
+           "code": "2.2",
+           "text": "Describe the importance of mitosis in growth, repair and asexual reproduction."
+          },
+          {
+           "code": "2.3",
+           "text": "Explain that mitosis gives two genetically identical diploid daughter cells."
+          },
+          {
+           "code": "2.4",
+           "text": "Describe cancer as uncontrolled cell division from changed cells."
+          }
+         ]
+        },
+        {
+         "id": "growth-and-differentiation",
+         "title": "Growth and differentiation",
+         "outcomes": [
+          {
+           "code": "2.5",
+           "text": "Describe growth in animals and plants by division, elongation and differentiation."
+          },
+          {
+           "code": "2.6",
+           "text": "Explain why cell differentiation matters for specialised cells."
+          },
+          {
+           "code": "2.7",
+           "text": "Use percentile charts to monitor growth."
+          }
+         ]
+        },
+        {
+         "id": "stem-cells",
+         "title": "Stem cells",
+         "outcomes": [
+          {
+           "code": "2.8",
+           "text": "Describe the function of embryonic stem cells, animal stem cells and plant meristems."
+          },
+          {
+           "code": "2.9",
+           "text": "Discuss benefits and risks of stem cells in medicine."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "nervous-system",
+       "title": "Nervous system",
+       "subtopics": [
+        {
+         "id": "the-brain",
+         "title": "The brain",
+         "outcomes": [
+          {
+           "code": "2.10B",
+           "text": "Describe the functions of the cerebellum, cerebral hemispheres and medulla oblongata."
+          },
+          {
+           "code": "2.11B",
+           "text": "Explain how CT and PET scans help investigate brain function."
+          },
+          {
+           "code": "2.12B",
+           "text": "Explain limits of treating brain and nervous system damage, including spinal injuries and tumours."
+          }
+         ]
+        },
+        {
+         "id": "neurones-and-reflexes",
+         "title": "Neurones and reflexes",
+         "outcomes": [
+          {
+           "code": "2.13",
+           "text": "Explain how receptors, sensory, relay and motor neurones and synapses transmit impulses."
+          },
+          {
+           "code": "2.14",
+           "text": "Explain the reflex arc with sensory, relay and motor neurones."
+          }
+         ]
+        },
+        {
+         "id": "the-eye",
+         "title": "The eye",
+         "outcomes": [
+          {
+           "code": "2.15B",
+           "text": "Explain the eye as a receptor: cornea, lens, iris, rods and cones."
+          },
+          {
+           "code": "2.16B",
+           "text": "Describe eye defects: cataracts, long and short sight, colour blindness."
+          },
+          {
+           "code": "2.17B",
+           "text": "Explain how cataracts and long and short sight are corrected."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "topic-3-genetics",
+     "title": "Topic 3 – Genetics",
+     "topics": [
+      {
+       "id": "reproduction-and-dna",
+       "title": "Reproduction and DNA",
+       "subtopics": [
+        {
+         "id": "asexual-and-sexual-reproduction",
+         "title": "Asexual and sexual reproduction",
+         "outcomes": [
+          {
+           "code": "3.1B",
+           "text": "Explain advantages and disadvantages of asexual reproduction."
+          },
+          {
+           "code": "3.2B",
+           "text": "Explain advantages and disadvantages of sexual reproduction."
+          },
+          {
+           "code": "3.3",
+           "text": "Explain meiosis producing four genetically different haploid gametes."
+          }
+         ]
+        },
+        {
+         "id": "dna-and-the-genome",
+         "title": "DNA and the genome",
+         "outcomes": [
+          {
+           "code": "3.4",
+           "text": "Describe DNA as a double helix of nucleotides with complementary base pairs."
+          },
+          {
+           "code": "3.5",
+           "text": "Describe the genome and a gene."
+          },
+          {
+           "code": "3.6",
+           "text": "Explain how DNA is extracted from fruit."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "protein-synthesis-and-variants",
+       "title": "Protein synthesis and variants",
+       "subtopics": [
+        {
+         "id": "from-dna-to-protein",
+         "title": "From DNA to protein",
+         "outcomes": [
+          {
+           "code": "3.7B",
+           "text": "Explain how base order decides amino acid order and protein shape."
+          },
+          {
+           "code": "3.8B",
+           "text": "Describe transcription and translation, with RNA polymerase, mRNA, codons, tRNA and polypeptides."
+          }
+         ]
+        },
+        {
+         "id": "genetic-variants",
+         "title": "Genetic variants",
+         "outcomes": [
+          {
+           "code": "3.9B",
+           "text": "Explain how variants in non-coding DNA alter protein quantity."
+          },
+          {
+           "code": "3.10B",
+           "text": "Explain how variants in coding DNA alter protein activity."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "inheritance",
+       "title": "Inheritance",
+       "subtopics": [
+        {
+         "id": "mendel-and-key-terms",
+         "title": "Mendel and key terms",
+         "outcomes": [
+          {
+           "code": "3.11B",
+           "text": "Describe Mendel's work and the difficulty of understanding inheritance before its mechanism."
+          },
+          {
+           "code": "3.12",
+           "text": "Explain how alleles cause inherited differences."
+          },
+          {
+           "code": "3.13",
+           "text": "Define chromosome, gene, allele, dominant, recessive, homozygous, heterozygous, genotype, phenotype, gamete, zygote."
+          }
+         ]
+        },
+        {
+         "id": "genetic-crosses",
+         "title": "Genetic crosses",
+         "outcomes": [
+          {
+           "code": "3.14",
+           "text": "Explain monohybrid inheritance with genetic diagrams, Punnett squares and pedigrees."
+          },
+          {
+           "code": "3.15",
+           "text": "Describe sex determination at fertilisation with genetic diagrams."
+          },
+          {
+           "code": "3.16",
+           "text": "Calculate outcomes of monohybrid crosses and pedigrees as probabilities, ratios and percentages."
+          },
+          {
+           "code": "3.17B",
+           "text": "Describe ABO blood group inheritance with codominance and multiple alleles."
+          },
+          {
+           "code": "3.18B",
+           "text": "Explain inheritance of sex-linked disorders."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "variation",
+       "title": "Variation",
+       "subtopics": [
+        {
+         "id": "causes-of-variation",
+         "title": "Causes of variation",
+         "outcomes": [
+          {
+           "code": "3.19",
+           "text": "State that most features come from many genes."
+          },
+          {
+           "code": "3.20",
+           "text": "Describe genetic and environmental causes of variation."
+          },
+          {
+           "code": "3.22",
+           "text": "State that populations show extensive genetic variation from mutation."
+          },
+          {
+           "code": "3.23",
+           "text": "State that most mutations have no effect, some small, rarely large."
+          }
+         ]
+        },
+        {
+         "id": "human-genome-project",
+         "title": "Human Genome Project",
+         "outcomes": [
+          {
+           "code": "3.21",
+           "text": "Discuss the Human Genome Project and its uses in medicine."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "topic-4-natural-selection-and-genetic-modificati",
+     "title": "Topic 4 – Natural selection and genetic modification",
+     "topics": [
+      {
+       "id": "evolution",
+       "title": "Evolution",
+       "subtopics": [
+        {
+         "id": "theory-of-evolution",
+         "title": "Theory of evolution",
+         "outcomes": [
+          {
+           "code": "4.1B",
+           "text": "Describe Darwin and Wallace's work on natural selection and its impact on biology."
+          },
+          {
+           "code": "4.2",
+           "text": "Explain Darwin's theory of natural selection."
+          },
+          {
+           "code": "4.3",
+           "text": "Explain how resistant organisms such as antibiotic-resistant bacteria support the theory."
+          }
+         ]
+        },
+        {
+         "id": "evidence-for-evolution",
+         "title": "Evidence for evolution",
+         "outcomes": [
+          {
+           "code": "4.4",
+           "text": "Describe fossil evidence for human evolution: Ardi, Lucy and Leakey's finds."
+          },
+          {
+           "code": "4.5",
+           "text": "Describe stone tools as evidence of human evolution, and how they are dated."
+          },
+          {
+           "code": "4.6B",
+           "text": "Describe the pentadactyl limb as evidence for evolution."
+          },
+          {
+           "code": "4.7",
+           "text": "Describe how genetic analysis suggested three domains rather than five kingdoms."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "selective-breeding-and-genetic-engineering",
+       "title": "Selective breeding and genetic engineering",
+       "subtopics": [
+        {
+         "id": "selective-breeding-and-tissue-culture",
+         "title": "Selective breeding and tissue culture",
+         "outcomes": [
+          {
+           "code": "4.8",
+           "text": "Explain selective breeding and its effects on food plants and domesticated animals."
+          },
+          {
+           "code": "4.9B",
+           "text": "Describe tissue culture and its uses in medical research and plant breeding."
+          }
+         ]
+        },
+        {
+         "id": "genetic-engineering",
+         "title": "Genetic engineering",
+         "outcomes": [
+          {
+           "code": "4.10",
+           "text": "Describe genetic engineering as modifying a genome to add desirable traits."
+          },
+          {
+           "code": "4.11",
+           "text": "Describe the stages of genetic engineering: restriction enzymes, ligase, sticky ends, vectors."
+          },
+          {
+           "code": "4.12B",
+           "text": "Evaluate GM organisms, including Bt insect-resistant crops."
+          },
+          {
+           "code": "4.13B",
+           "text": "Evaluate agricultural solutions for growing populations: fertilisers and biological control."
+          },
+          {
+           "code": "4.14",
+           "text": "Evaluate benefits, risks and ethics of genetic engineering and selective breeding."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "topic-5-health-disease-and-the-development-of-me",
+     "title": "Topic 5 – Health, disease and the development of medicines",
+     "topics": [
+      {
+       "id": "health-and-infectious-disease",
+       "title": "Health and infectious disease",
+       "subtopics": [
+        {
+         "id": "health-and-disease",
+         "title": "Health and disease",
+         "outcomes": [
+          {
+           "code": "5.1",
+           "text": "Define health as complete physical, mental and social well-being."
+          },
+          {
+           "code": "5.2",
+           "text": "Distinguish communicable from non-communicable diseases."
+          },
+          {
+           "code": "5.3",
+           "text": "Explain why one disease can raise susceptibility to others."
+          }
+         ]
+        },
+        {
+         "id": "pathogens-and-infections",
+         "title": "Pathogens and infections",
+         "outcomes": [
+          {
+           "code": "5.4",
+           "text": "Describe pathogens: viruses, bacteria, fungi and protists."
+          },
+          {
+           "code": "5.5",
+           "text": "Describe cholera, tuberculosis, ash dieback, malaria, HIV, stomach ulcers and Ebola."
+          },
+          {
+           "code": "5.6",
+           "text": "Explain how these pathogens spread and how spread can be reduced."
+          },
+          {
+           "code": "5.7B",
+           "text": "Describe the virus lifecycle with lysogenic and lytic pathways."
+          },
+          {
+           "code": "5.8",
+           "text": "Explain how Chlamydia and HIV spread and how to prevent it."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "plant-and-human-defences",
+       "title": "Plant and human defences",
+       "subtopics": [
+        {
+         "id": "plant-disease-and-defence",
+         "title": "Plant disease and defence",
+         "outcomes": [
+          {
+           "code": "5.9B",
+           "text": "Describe plant physical defences: leaf cuticle and cell wall."
+          },
+          {
+           "code": "5.10B",
+           "text": "Describe plant chemical defences, some useful as human medicines."
+          },
+          {
+           "code": "5.11B",
+           "text": "Describe ways to detect and identify plant diseases in lab and field."
+          }
+         ]
+        },
+        {
+         "id": "human-defences-and-immunity",
+         "title": "Human defences and immunity",
+         "outcomes": [
+          {
+           "code": "5.12",
+           "text": "Describe human physical and chemical barriers: mucus, cilia, skin, lysozyme, hydrochloric acid."
+          },
+          {
+           "code": "5.13",
+           "text": "Explain the specific immune response: antibodies, memory lymphocytes and the secondary response."
+          },
+          {
+           "code": "5.14",
+           "text": "Explain the body's response to immunisation with an inactive pathogen."
+          },
+          {
+           "code": "5.15B",
+           "text": "Discuss advantages and disadvantages of immunisation and herd immunity."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "medicines-and-non-communicable-disease",
+       "title": "Medicines and non-communicable disease",
+       "subtopics": [
+        {
+         "id": "antibiotics-and-microbial-culture",
+         "title": "Antibiotics and microbial culture",
+         "outcomes": [
+          {
+           "code": "5.16",
+           "text": "Explain why antibiotics treat only bacterial infections."
+          },
+          {
+           "code": "5.17B",
+           "text": "Explain aseptic techniques for culturing microorganisms."
+          },
+          {
+           "code": "5.18B",
+           "text": "Core practical: investigate effects of antiseptics, antibiotics or plant extracts on microbial cultures."
+          },
+          {
+           "code": "5.19B",
+           "text": "Calculate cross-sectional areas of cultures and clear agar using pi r squared."
+          }
+         ]
+        },
+        {
+         "id": "developing-medicines",
+         "title": "Developing medicines",
+         "outcomes": [
+          {
+           "code": "5.20",
+           "text": "Describe stages in developing medicines: discovery, development, preclinical and clinical testing."
+          },
+          {
+           "code": "5.21B",
+           "text": "Describe producing monoclonal antibodies with lymphocytes and hybridoma cells."
+          },
+          {
+           "code": "5.22B",
+           "text": "Explain uses of monoclonal antibodies: pregnancy tests, diagnosis and treatment, versus drugs and radiotherapy."
+          }
+         ]
+        },
+        {
+         "id": "non-communicable-disease",
+         "title": "Non-communicable disease",
+         "outcomes": [
+          {
+           "code": "5.23",
+           "text": "Describe how several factors combine to cause non-communicable diseases."
+          },
+          {
+           "code": "5.24",
+           "text": "Explain how exercise, diet, alcohol and smoking affect non-communicable disease, including BMI and waist-hip calculations."
+          },
+          {
+           "code": "5.25",
+           "text": "Evaluate treatments for cardiovascular disease: medication, surgery and lifestyle change."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "topic-6-plant-structures-and-their-functions",
+     "title": "Topic 6 – Plant structures and their functions",
+     "topics": [
+      {
+       "id": "photosynthesis",
+       "title": "Photosynthesis",
+       "subtopics": [
+        {
+         "id": "photosynthesis-and-limiting-factors",
+         "title": "Photosynthesis and limiting factors",
+         "outcomes": [
+          {
+           "code": "6.1",
+           "text": "Describe photosynthetic organisms as main producers of food and biomass."
+          },
+          {
+           "code": "6.2",
+           "text": "Describe photosynthesis as an endothermic reaction making glucose and oxygen."
+          },
+          {
+           "code": "6.3",
+           "text": "Explain temperature, light intensity and carbon dioxide as limiting factors."
+          },
+          {
+           "code": "6.4",
+           "text": "Explain how limiting factors interact."
+          }
+         ]
+        },
+        {
+         "id": "light-intensity",
+         "title": "Light intensity",
+         "outcomes": [
+          {
+           "code": "6.5",
+           "text": "Core practical: investigate light intensity and photosynthesis rate."
+          },
+          {
+           "code": "6.6",
+           "text": "Explain the inverse square law linking light intensity and distance."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "transport-in-plants",
+       "title": "Transport in plants",
+       "subtopics": [
+        {
+         "id": "roots-xylem-and-phloem",
+         "title": "Roots, xylem and phloem",
+         "outcomes": [
+          {
+           "code": "6.7",
+           "text": "Explain how root hair cells absorb water and mineral ions."
+          },
+          {
+           "code": "6.8",
+           "text": "Explain how xylem and phloem structure suits their functions."
+          }
+         ]
+        },
+        {
+         "id": "transpiration-and-translocation",
+         "title": "Transpiration and translocation",
+         "outcomes": [
+          {
+           "code": "6.9",
+           "text": "Explain transpiration and the role of stomata."
+          },
+          {
+           "code": "6.10",
+           "text": "Describe translocation of sucrose."
+          },
+          {
+           "code": "6.12",
+           "text": "Explain how light, air movement and temperature affect water uptake."
+          },
+          {
+           "code": "6.13",
+           "text": "Calculate transpiration rates."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "leaves-adaptation-and-hormones",
+       "title": "Leaves, adaptation and hormones",
+       "subtopics": [
+        {
+         "id": "leaf-structure-and-adaptation",
+         "title": "Leaf structure and adaptation",
+         "outcomes": [
+          {
+           "code": "6.11B",
+           "text": "Explain how leaf structure suits photosynthesis and gas exchange."
+          },
+          {
+           "code": "6.14B",
+           "text": "Explain plant adaptations to extreme environments: leaf size and shape, cuticle, stomata."
+          }
+         ]
+        },
+        {
+         "id": "plant-hormones",
+         "title": "Plant hormones",
+         "outcomes": [
+          {
+           "code": "6.15B",
+           "text": "Explain how auxins control phototropism and gravitropism."
+          },
+          {
+           "code": "6.16B",
+           "text": "Describe commercial uses of auxins, gibberellins and ethene."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "topic-7-animal-coordination-control-and-homeosta",
+     "title": "Topic 7 – Animal coordination, control and homeostasis",
+     "topics": [
+      {
+       "id": "hormones-and-reproduction",
+       "title": "Hormones and reproduction",
+       "subtopics": [
+        {
+         "id": "endocrine-system",
+         "title": "Endocrine system",
+         "outcomes": [
+          {
+           "code": "7.1",
+           "text": "Describe where hormones are made and how they reach target organs."
+          },
+          {
+           "code": "7.2",
+           "text": "Explain adrenalin's fight-or-flight effects."
+          },
+          {
+           "code": "7.3",
+           "text": "Explain how thyroxine controls metabolic rate by negative feedback."
+          }
+         ]
+        },
+        {
+         "id": "menstrual-cycle-and-contraception",
+         "title": "Menstrual cycle and contraception",
+         "outcomes": [
+          {
+           "code": "7.4",
+           "text": "Describe the menstrual cycle and the roles of oestrogen and progesterone."
+          },
+          {
+           "code": "7.5",
+           "text": "Explain how oestrogen, progesterone, FSH and LH interact in the cycle."
+          },
+          {
+           "code": "7.6",
+           "text": "Explain how hormonal contraception works."
+          },
+          {
+           "code": "7.7",
+           "text": "Evaluate hormonal and barrier contraception."
+          },
+          {
+           "code": "7.8",
+           "text": "Explain hormones in IVF and clomifene therapy."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "homeostasis",
+       "title": "Homeostasis",
+       "subtopics": [
+        {
+         "id": "homeostasis-and-temperature",
+         "title": "Homeostasis and temperature",
+         "outcomes": [
+          {
+           "code": "7.9",
+           "text": "Explain why a constant internal environment matters."
+          },
+          {
+           "code": "7.10B",
+           "text": "Explain thermoregulation and osmoregulation as homeostasis."
+          },
+          {
+           "code": "7.11B",
+           "text": "Explain thermoregulation through skin and hypothalamus."
+          },
+          {
+           "code": "7.12B",
+           "text": "Explain shivering, vasoconstriction and vasodilation."
+          }
+         ]
+        },
+        {
+         "id": "blood-glucose-and-diabetes",
+         "title": "Blood glucose and diabetes",
+         "outcomes": [
+          {
+           "code": "7.13",
+           "text": "Explain how insulin controls blood glucose."
+          },
+          {
+           "code": "7.14",
+           "text": "Explain how glucagon regulates blood glucose."
+          },
+          {
+           "code": "7.15",
+           "text": "Explain the cause and control of type 1 diabetes."
+          },
+          {
+           "code": "7.16",
+           "text": "Explain the cause and control of type 2 diabetes."
+          },
+          {
+           "code": "7.17",
+           "text": "Evaluate the link between body mass and type 2 diabetes using BMI and waist-hip ratio."
+          }
+         ]
+        },
+        {
+         "id": "the-kidney",
+         "title": "The kidney",
+         "outcomes": [
+          {
+           "code": "7.18B",
+           "text": "Describe the urinary system."
+          },
+          {
+           "code": "7.19B",
+           "text": "Explain how the nephron filters blood and forms urine."
+          },
+          {
+           "code": "7.20B",
+           "text": "Explain how ADH changes collecting duct permeability."
+          },
+          {
+           "code": "7.21B",
+           "text": "Describe kidney failure treatments: dialysis and transplant."
+          },
+          {
+           "code": "7.22B",
+           "text": "State that urea comes from breakdown of excess amino acids in the liver."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "topic-8-exchange-and-transport-in-animals",
+     "title": "Topic 8 – Exchange and transport in animals",
+     "topics": [
+      {
+       "id": "exchange",
+       "title": "Exchange",
+       "subtopics": [
+        {
+         "id": "need-for-exchange",
+         "title": "Need for exchange",
+         "outcomes": [
+          {
+           "code": "8.1",
+           "text": "Describe why organisms transport oxygen, carbon dioxide, water, food molecules, ions and urea."
+          },
+          {
+           "code": "8.2",
+           "text": "Explain the need for exchange surfaces and transport systems, with surface area to volume ratios."
+          }
+         ]
+        },
+        {
+         "id": "gas-exchange",
+         "title": "Gas exchange",
+         "outcomes": [
+          {
+           "code": "8.3",
+           "text": "Explain how alveoli suit gas exchange."
+          },
+          {
+           "code": "8.4B",
+           "text": "Describe factors affecting diffusion rate."
+          },
+          {
+           "code": "8.5B",
+           "text": "Calculate diffusion rate using Fick's law."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "blood-and-circulation",
+       "title": "Blood and circulation",
+       "subtopics": [
+        {
+         "id": "blood-and-vessels",
+         "title": "Blood and vessels",
+         "outcomes": [
+          {
+           "code": "8.6",
+           "text": "Relate blood component structure to function."
+          },
+          {
+           "code": "8.7",
+           "text": "Relate blood vessel structure to function."
+          }
+         ]
+        },
+        {
+         "id": "the-heart",
+         "title": "The heart",
+         "outcomes": [
+          {
+           "code": "8.8",
+           "text": "Relate heart and circulatory system structure to function."
+          },
+          {
+           "code": "8.12",
+           "text": "Calculate heart rate, stroke volume and cardiac output."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "respiration",
+       "title": "Respiration",
+       "subtopics": [
+        {
+         "id": "aerobic-and-anaerobic-respiration",
+         "title": "Aerobic and anaerobic respiration",
+         "outcomes": [
+          {
+           "code": "8.9",
+           "text": "Describe cellular respiration as an exothermic reaction releasing energy."
+          },
+          {
+           "code": "8.10",
+           "text": "Compare aerobic and anaerobic respiration."
+          },
+          {
+           "code": "8.11",
+           "text": "Core practical: investigate the rate of respiration in living organisms."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "topic-9-ecosystems-and-material-cycles",
+     "title": "Topic 9 – Ecosystems and material cycles",
+     "topics": [
+      {
+       "id": "ecosystems",
+       "title": "Ecosystems",
+       "subtopics": [
+        {
+         "id": "communities-and-interdependence",
+         "title": "Communities and interdependence",
+         "outcomes": [
+          {
+           "code": "9.1",
+           "text": "Describe levels of organisation from organism to ecosystem."
+          },
+          {
+           "code": "9.2",
+           "text": "Explain how abiotic and biotic factors affect communities."
+          },
+          {
+           "code": "9.3",
+           "text": "Describe interdependence in a community."
+          },
+          {
+           "code": "9.4",
+           "text": "Describe dependence between species, including parasitism and mutualism."
+          }
+         ]
+        },
+        {
+         "id": "fieldwork",
+         "title": "Fieldwork",
+         "outcomes": [
+          {
+           "code": "9.5",
+           "text": "Core practical: investigate organisms and environment using quadrats and belt transects."
+          },
+          {
+           "code": "9.6",
+           "text": "Estimate organism numbers in an area from fieldwork data."
+          }
+         ]
+        },
+        {
+         "id": "energy-and-trophic-levels",
+         "title": "Energy and trophic levels",
+         "outcomes": [
+          {
+           "code": "9.7B",
+           "text": "Explain energy loss between trophic levels and its effects on food chains and biomass pyramids."
+          },
+          {
+           "code": "9.8B",
+           "text": "Calculate efficiency of energy transfer and biomass percentages."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "human-impact-and-food-security",
+       "title": "Human impact and food security",
+       "subtopics": [
+        {
+         "id": "biodiversity",
+         "title": "Biodiversity",
+         "outcomes": [
+          {
+           "code": "9.9",
+           "text": "Explain human impacts on biodiversity: fish farming, non-indigenous species, eutrophication."
+          },
+          {
+           "code": "9.10",
+           "text": "Explain benefits of maintaining biodiversity, conservation and reforestation."
+          }
+         ]
+        },
+        {
+         "id": "food-security",
+         "title": "Food security",
+         "outcomes": [
+          {
+           "code": "9.11B",
+           "text": "Describe biological factors affecting food security."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "material-cycles",
+       "title": "Material cycles",
+       "subtopics": [
+        {
+         "id": "cycles",
+         "title": "Cycles",
+         "outcomes": [
+          {
+           "code": "9.12",
+           "text": "Describe how materials cycle through biotic and abiotic components."
+          },
+          {
+           "code": "9.13",
+           "text": "Explain the carbon cycle and decomposers."
+          },
+          {
+           "code": "9.14",
+           "text": "Explain the water cycle and potable water production, including desalination."
+          },
+          {
+           "code": "9.15",
+           "text": "Explain nitrate availability: fertilisers, crop rotation and nitrogen-cycle bacteria."
+          }
+         ]
+        },
+        {
+         "id": "pollution-and-decay",
+         "title": "Pollution and decay",
+         "outcomes": [
+          {
+           "code": "9.16B",
+           "text": "Evaluate indicator species as evidence of pollution."
+          },
+          {
+           "code": "9.17B",
+           "text": "Explain how temperature, water and oxygen affect decomposition in food preservation."
+          },
+          {
+           "code": "9.18B",
+           "text": "Explain how temperature, water and oxygen affect decomposition in composting."
+          },
+          {
+           "code": "9.19B",
+           "text": "Calculate rate changes in decay of biological material."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "build": {
+  "builtAt": "2026-10-14T10:31:26.953Z",
+  "model": "claude-agent",
+  "usd": 0,
+  "expectedCodes": 165,
+  "coverage": 1,
+  "missingCodes": [],
+  "counts": {
+   "grades": 1,
+   "units": 9,
+   "topics": 25,
+   "subtopics": 54,
+   "outcomes": 165
+  },
+  "warnings": [
+   "grade Year 10 has no content",
+   "grade Year 11 has no content",
+   "unexpected grade label \"all\""
+  ]
+ }
+}

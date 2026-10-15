@@ -1,0 +1,575 @@
+{
+ "id": "pk-ncp-tech-clinical-pathology-serology-12",
+ "region": "PK",
+ "framework": "National Curriculum of Pakistan 2022-23",
+ "board": null,
+ "qualification": "Technical stream",
+ "subject": "Clinical Pathology and Serology",
+ "syllabusCode": null,
+ "gradeSystem": "grade",
+ "source": {
+  "urls": [
+   "https://ncc.gov.pk/SiteImage/Misc/files/64-%20Clinical%20Pathology%20and%20Serology.pdf"
+  ],
+  "publisher": "National Curriculum Council, Ministry of Federal Education and Professional Training",
+  "licence": "Government publication; structure + our own wording only",
+  "firstExam": null
+ },
+ "grades": [
+  {
+   "grade": "12",
+   "units": [
+    {
+     "id": "domain-a-introduction-to-medical-technology",
+     "title": "Domain A: Introduction to Medical Technology",
+     "topics": [
+      {
+       "id": "lab-practice",
+       "title": "Lab Practice",
+       "subtopics": [
+        {
+         "id": "samples-and-lab-management",
+         "title": "Samples and lab management",
+         "outcomes": [
+          {
+           "code": "CPS-12-A-01",
+           "text": "Describe how samples are collected, stored and prepared."
+          },
+          {
+           "code": "CPS-12-A-02",
+           "text": "Explain lab technician roles, ethics, record-keeping and organisation."
+          }
+         ]
+        },
+        {
+         "id": "quality-control-and-glassware",
+         "title": "Quality control and glassware",
+         "outcomes": [
+          {
+           "code": "CPS-12-A-03",
+           "text": "Describe quality control methods across pathology branches."
+          },
+          {
+           "code": "CPS-12-A-04",
+           "text": "Explain types, uses and cleaning of lab glassware."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "domain-b-urine-analysis",
+     "title": "Domain B: Urine Analysis",
+     "topics": [
+      {
+       "id": "urine-examination",
+       "title": "Urine Examination",
+       "subtopics": [
+        {
+         "id": "collecting-and-describing-urine",
+         "title": "Collecting and describing urine",
+         "outcomes": [
+          {
+           "code": "CPS-12-B-01",
+           "text": "Describe urine composition, function, collection and transport."
+          },
+          {
+           "code": "CPS-12-B-02",
+           "text": "Define physical tests: volume, odour, colour, appearance, specific gravity."
+          }
+         ]
+        },
+        {
+         "id": "chemical-tests-and-sediments",
+         "title": "Chemical tests and sediments",
+         "outcomes": [
+          {
+           "code": "CPS-12-B-03",
+           "text": "Explain tests for protein, glucose, ketones, bile salts and haemoglobin."
+          },
+          {
+           "code": "CPS-12-B-04",
+           "text": "Identify and interpret urine sediments and normal values."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "domain-c-c-s-f-examination",
+     "title": "Domain C: C.S.F Examination",
+     "topics": [
+      {
+       "id": "cerebrospinal-fluid",
+       "title": "Cerebrospinal Fluid",
+       "subtopics": [
+        {
+         "id": "normal-csf",
+         "title": "Normal CSF",
+         "outcomes": [
+          {
+           "code": "CPS-12-C-01",
+           "text": "Describe the biochemical makeup of CSF."
+          },
+          {
+           "code": "CPS-12-C-02",
+           "text": "Identify the parts of normal CSF."
+          }
+         ]
+        },
+        {
+         "id": "csf-cells-and-diagnosis",
+         "title": "CSF cells and diagnosis",
+         "outcomes": [
+          {
+           "code": "CPS-12-C-03",
+           "text": "Describe normal CSF cells and tell them from abnormal ones."
+          },
+          {
+           "code": "CPS-12-C-04",
+           "text": "Explain CSF testing in diagnosing and monitoring neurological conditions."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "domain-d-gastric-examination",
+     "title": "Domain D: Gastric Examination",
+     "topics": [
+      {
+       "id": "gastric-juice",
+       "title": "Gastric Juice",
+       "subtopics": [
+        {
+         "id": "formation-and-function",
+         "title": "Formation and function",
+         "outcomes": [
+          {
+           "code": "CPS-12-D-01",
+           "text": "Describe how gastric juice forms."
+          },
+          {
+           "code": "CPS-12-D-02",
+           "text": "Explain gastric juice's role in digestion."
+          }
+         ]
+        },
+        {
+         "id": "gastric-analysis",
+         "title": "Gastric analysis",
+         "outcomes": [
+          {
+           "code": "CPS-12-D-03",
+           "text": "Outline patient preparation: fasting and medication limits."
+          },
+          {
+           "code": "CPS-12-D-04",
+           "text": "Identify normal findings: pH, enzymes, mucosal integrity."
+          },
+          {
+           "code": "CPS-12-D-05",
+           "text": "Explain abnormal findings in diagnosing gut disorders."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "domain-e-pregnancy-test",
+     "title": "Domain E: Pregnancy test",
+     "topics": [
+      {
+       "id": "pregnancy-testing",
+       "title": "Pregnancy Testing",
+       "subtopics": [
+        {
+         "id": "basis-of-pregnancy-tests",
+         "title": "Basis of pregnancy tests",
+         "outcomes": [
+          {
+           "code": "CPS-12-E-01",
+           "text": "Describe timing, test types and accuracy factors."
+          },
+          {
+           "code": "CPS-12-E-02",
+           "text": "Explain hCG as the marker of pregnancy."
+          }
+         ]
+        },
+        {
+         "id": "immunological-tests",
+         "title": "Immunological tests",
+         "outcomes": [
+          {
+           "code": "CPS-12-E-03",
+           "text": "Explain principles of immunological pregnancy tests."
+          },
+          {
+           "code": "CPS-12-E-04",
+           "text": "Describe sample collection, kit use and reading results."
+          },
+          {
+           "code": "CPS-12-E-05",
+           "text": "Discuss sensitivity, specificity and limits of these tests."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "domain-f-glucose-tolerance-test",
+     "title": "Domain F: Glucose Tolerance Test",
+     "topics": [
+      {
+       "id": "glucose-tolerance-test",
+       "title": "Glucose Tolerance Test",
+       "subtopics": [
+        {
+         "id": "patient-preparation-and-procedure",
+         "title": "Patient preparation and procedure",
+         "outcomes": [
+          {
+           "code": "CPS-12-F-01",
+           "text": "Explain patient preparation: diet, fasting, risks."
+          },
+          {
+           "code": "CPS-12-F-02",
+           "text": "Describe the test steps: fasting sample, glucose dose, timed readings."
+          }
+         ]
+        },
+        {
+         "id": "meaning-of-results",
+         "title": "Meaning of results",
+         "outcomes": [
+          {
+           "code": "CPS-12-F-03",
+           "text": "Explain what the test shows in diagnosis."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "domain-g-serology",
+     "title": "Domain G: Serology",
+     "topics": [
+      {
+       "id": "serology",
+       "title": "Serology",
+       "subtopics": [
+        {
+         "id": "principles-of-serology",
+         "title": "Principles of serology",
+         "outcomes": [
+          {
+           "code": "CPS-12-G-01",
+           "text": "Define serological testing, scope, limits and challenges."
+          },
+          {
+           "code": "CPS-12-G-02",
+           "text": "Explain antigen-antibody reactions: agglutination, precipitation, immunofluorescence."
+          },
+          {
+           "code": "CPS-12-G-03",
+           "text": "Describe practical uses of antigen-antibody reactions."
+          }
+         ]
+        },
+        {
+         "id": "serological-tests",
+         "title": "Serological tests",
+         "outcomes": [
+          {
+           "code": "CPS-12-G-04",
+           "text": "Learn Widal, ASOT and VDRL tests for infections."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "domain-h-clinical-pathology-and-serology-practic",
+     "title": "Domain H: Clinical Pathology and Serology (Practical)",
+     "topics": [
+      {
+       "id": "lab-organisation-and-equipment",
+       "title": "Lab organisation and equipment",
+       "subtopics": [
+        {
+         "id": "lab-organisation-and-equipment",
+         "title": "Lab organisation and equipment",
+         "outcomes": [
+          {
+           "code": "CPS-12-H-01",
+           "text": "Demonstrate collecting samples and methods for analysis."
+          },
+          {
+           "code": "CPS-12-H-02",
+           "text": "Explain basics of lab organisation and management."
+          },
+          {
+           "code": "CPS-12-H-03",
+           "text": "Demonstrate reagent storage and equipment operation."
+          },
+          {
+           "code": "CPS-12-H-04",
+           "text": "Demonstrate cleaning glassware for different purposes."
+          },
+          {
+           "code": "CPS-12-H-05",
+           "text": "Explain distillation and deionization."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "urine-collection-and-physical-tests",
+       "title": "Urine collection and physical tests",
+       "subtopics": [
+        {
+         "id": "urine-collection-and-physical-tests",
+         "title": "Urine collection and physical tests",
+         "outcomes": [
+          {
+           "code": "CPS-12-H-06",
+           "text": "Demonstrate collecting a urine sample."
+          },
+          {
+           "code": "CPS-12-H-07",
+           "text": "Explain physical examination of urine: colour, volume, odour."
+          },
+          {
+           "code": "CPS-12-H-08",
+           "text": "Describe general facts on proteinuria."
+          },
+          {
+           "code": "CPS-12-H-09",
+           "text": "Demonstrate 24-hour urine estimation by Esbach's method."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "urine-chemical-tests",
+       "title": "Urine chemical tests",
+       "subtopics": [
+        {
+         "id": "urine-chemical-tests",
+         "title": "Urine chemical tests",
+         "outcomes": [
+          {
+           "code": "CPS-12-H-10",
+           "text": "Explain basics of detecting Bence Jones protein."
+          },
+          {
+           "code": "CPS-12-H-11",
+           "text": "Describe basics of testing reducing substances."
+          },
+          {
+           "code": "CPS-12-H-12",
+           "text": "Explain basics of testing ketone bodies."
+          },
+          {
+           "code": "CPS-12-H-13",
+           "text": "Demonstrate basics of bile salt testing."
+          },
+          {
+           "code": "CPS-12-H-14",
+           "text": "Demonstrate basics of haemoglobin testing in urine."
+          },
+          {
+           "code": "CPS-12-H-15",
+           "text": "Explain basics of urobilinogen testing."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "urine-microscopy",
+       "title": "Urine microscopy",
+       "subtopics": [
+        {
+         "id": "urine-microscopy",
+         "title": "Urine microscopy",
+         "outcomes": [
+          {
+           "code": "CPS-12-H-16",
+           "text": "Demonstrate urinary sediments under the microscope."
+          },
+          {
+           "code": "CPS-12-H-17",
+           "text": "Describe examination of RBCs, WBCs and epithelial cells in urine."
+          },
+          {
+           "code": "CPS-12-H-18",
+           "text": "Describe casts in urine."
+          },
+          {
+           "code": "CPS-12-H-19",
+           "text": "Explain urinary crystals and their importance."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "csf-practicals",
+       "title": "CSF practicals",
+       "subtopics": [
+        {
+         "id": "csf-practicals",
+         "title": "CSF practicals",
+         "outcomes": [
+          {
+           "code": "CPS-12-H-20",
+           "text": "Explain basics of CSF sampling."
+          },
+          {
+           "code": "CPS-12-H-21",
+           "text": "Demonstrate physical examination of CSF."
+          },
+          {
+           "code": "CPS-12-H-22",
+           "text": "Demonstrate total cell count in CSF."
+          },
+          {
+           "code": "CPS-12-H-23",
+           "text": "Explain chemical tests for glucose, protein, globulin and chloride in CSF."
+          },
+          {
+           "code": "CPS-12-H-24",
+           "text": "Explain cytological examination of CSF."
+          },
+          {
+           "code": "CPS-12-H-25",
+           "text": "Explain bacterial examination of CSF."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "gastric-juice-pregnancy-and-semen",
+       "title": "Gastric juice, pregnancy and semen",
+       "subtopics": [
+        {
+         "id": "gastric-juice-pregnancy-and-semen",
+         "title": "Gastric juice, pregnancy and semen",
+         "outcomes": [
+          {
+           "code": "CPS-12-H-26",
+           "text": "Describe gastric juice examination and sample collection."
+          },
+          {
+           "code": "CPS-12-H-27",
+           "text": "Demonstrate pregnancy and immunochemical testing."
+          },
+          {
+           "code": "CPS-12-H-28",
+           "text": "Explain basics of semen analysis."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "glucose-tolerance-practical",
+       "title": "Glucose tolerance practical",
+       "subtopics": [
+        {
+         "id": "glucose-tolerance-practical",
+         "title": "Glucose tolerance practical",
+         "outcomes": [
+          {
+           "code": "CPS-12-H-29",
+           "text": "Demonstrate glucose tolerance test considerations and patient preparation."
+          },
+          {
+           "code": "CPS-12-H-30",
+           "text": "Describe the glucose tolerance curve and its importance."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "serology-practicals",
+       "title": "Serology practicals",
+       "subtopics": [
+        {
+         "id": "serology-practicals",
+         "title": "Serology practicals",
+         "outcomes": [
+          {
+           "code": "CPS-12-H-31",
+           "text": "Demonstrate Widal testing with reagents and interpretation."
+          },
+          {
+           "code": "CPS-12-H-32",
+           "text": "Describe the mechanism and apparatus for the Kahn test."
+          },
+          {
+           "code": "CPS-12-H-33",
+           "text": "Explain the Wassermann test procedure and interpretation."
+          },
+          {
+           "code": "CPS-12-H-34",
+           "text": "Demonstrate procedure and interpretation of ASOT."
+          },
+          {
+           "code": "CPS-12-H-35",
+           "text": "Demonstrate procedure and interpretation of RA test."
+          },
+          {
+           "code": "CPS-12-H-36",
+           "text": "Demonstrate procedure and interpretation of VDRL."
+          },
+          {
+           "code": "CPS-12-H-37",
+           "text": "Demonstrate procedure and interpretation of the pregnancy test."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "build": {
+  "builtAt": "2026-10-14T08:34:59.055Z",
+  "model": "claude-agent",
+  "usd": 0,
+  "expectedCodes": 66,
+  "coverage": 1,
+  "missingCodes": [],
+  "counts": {
+   "grades": 1,
+   "units": 8,
+   "topics": 15,
+   "subtopics": 22,
+   "outcomes": 66
+  },
+  "warnings": []
+ }
+}

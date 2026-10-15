@@ -1,0 +1,798 @@
+{
+ "id": "us-ap-seminar",
+ "region": "US",
+ "framework": "AP Seminar (AP Capstone) Course and Exam Description (effective fall 2024)",
+ "board": "College Board",
+ "qualification": "AP",
+ "subject": "Seminar (AP Capstone)",
+ "syllabusCode": null,
+ "gradeSystem": "course",
+ "source": {
+  "urls": [
+   "https://apcentral.collegeboard.org/media/pdf/ap-seminar-course-and-exam-description.pdf",
+   "https://apcentral.collegeboard.org/courses/ap-seminar"
+  ],
+  "publisher": "College Board",
+  "licence": "© College Board; structure + our own wording only",
+  "firstExam": "2025"
+ },
+ "grades": [
+  {
+   "grade": "12",
+   "units": [
+    {
+     "id": "big-idea-1-question-and-explore",
+     "title": "Big Idea 1: Question and Explore",
+     "topics": [
+      {
+       "id": "eu-1-1-curiosity-and-investigation",
+       "title": "EU 1.1 Curiosity and investigation",
+       "subtopics": [
+        {
+         "id": "contextualising-an-issue",
+         "title": "Contextualising an issue",
+         "outcomes": [
+          {
+           "code": "LO 1.1A",
+           "text": "Place a problem or issue in context and identify what makes it complex."
+          },
+          {
+           "code": "EK 1.1A1",
+           "text": "Know that examining others' views raises new questions, and that inquiry starts by narrowing scope, finding the issue's origins and setting it in a larger context."
+          }
+         ]
+        },
+        {
+         "id": "posing-questions",
+         "title": "Posing questions",
+         "outcomes": [
+          {
+           "code": "LO 1.1B",
+           "text": "Pose questions that reflect multiple, divergent or contradictory perspectives."
+          },
+          {
+           "code": "EK 1.1B1",
+           "text": "Know that good research questions account for the complexity of an issue."
+          },
+          {
+           "code": "EK 1.1B2",
+           "text": "Know that inquiry draws on curiosity and imagination to explore complex issues."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "eu-1-2-questioning-and-prior-knowledge",
+       "title": "EU 1.2 Questioning and prior knowledge",
+       "subtopics": [
+        {
+         "id": "prior-knowledge",
+         "title": "Prior knowledge",
+         "outcomes": [
+          {
+           "code": "LO 1.2A",
+           "text": "Retrieve, question, organise and use what you already know about a topic."
+          },
+          {
+           "code": "EK 1.2A1",
+           "text": "Know that understanding also comes from experience, outside sources, culture and assumptions, not just collecting information."
+          },
+          {
+           "code": "EK 1.2A2",
+           "text": "Know strategies such as brainstorming, concept maps and drafting for organising and connecting ideas."
+          },
+          {
+           "code": "EK 1.2A3",
+           "text": "Know that inquiry can confirm or challenge your existing beliefs and knowledge."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "eu-1-3-organising-and-managing-sources",
+       "title": "EU 1.3 Organising and managing sources",
+       "subtopics": [
+        {
+         "id": "finding-and-managing-sources",
+         "title": "Finding and managing sources",
+         "outcomes": [
+          {
+           "code": "LO 1.3A",
+           "text": "Find and manage information using effective strategies."
+          },
+          {
+           "code": "EK 1.3A1",
+           "text": "Tell secondary sources from primary sources, including self-collected data such as surveys and interviews."
+          },
+          {
+           "code": "EK 1.3A2",
+           "text": "Know that online databases and library catalogues hold secondary and some primary sources."
+          },
+          {
+           "code": "EK 1.3A3",
+           "text": "Use advanced search tools, Boolean logic and keywords to refine a search."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "eu-1-4-relevance-and-credibility-of-sources",
+       "title": "EU 1.4 Relevance and credibility of sources",
+       "subtopics": [
+        {
+         "id": "credibility-of-sources",
+         "title": "Credibility of sources",
+         "outcomes": [
+          {
+           "code": "LO 1.4A",
+           "text": "Judge how relevant and credible a source is for your inquiry."
+          },
+          {
+           "code": "EK 1.4A1",
+           "text": "Know that the scope and purpose of research and source credibility affect how far conclusions can be generalised and trusted."
+          },
+          {
+           "code": "EK 1.4A2",
+           "text": "Know that credible evidence comes from relevant, reliable, current and authoritative sources."
+          },
+          {
+           "code": "EK 1.4A3",
+           "text": "Judge credibility by checking the author's and publisher's credentials, perspective, methods, and peer review."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "eu-1-5-methods-of-investigation",
+       "title": "EU 1.5 Methods of investigation",
+       "subtopics": [
+        {
+         "id": "choosing-methods",
+         "title": "Choosing methods",
+         "outcomes": [
+          {
+           "code": "LO 1.5A",
+           "text": "Identify the information your inquiry needs given its context."
+          },
+          {
+           "code": "EK 1.5A1",
+           "text": "Know that how a problem is framed guides what information and gathering method are needed."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "big-idea-2-understand-and-analyze",
+     "title": "Big Idea 2: Understand and Analyze",
+     "topics": [
+      {
+       "id": "eu-2-1-comprehending-authors-ideas",
+       "title": "EU 2.1 Comprehending authors' ideas",
+       "subtopics": [
+        {
+         "id": "reading-critically",
+         "title": "Reading critically",
+         "outcomes": [
+          {
+           "code": "LO 2.1A",
+           "text": "Use suitable reading strategies and read critically for a purpose."
+          },
+          {
+           "code": "EK 2.1A1",
+           "text": "Read closely to find the main idea, tone, assumptions, context, perspective, reasoning and evidence."
+          },
+          {
+           "code": "EK 2.1A2",
+           "text": "Preview and prioritise text by skimming, scanning, rereading and questioning."
+          },
+          {
+           "code": "EK 2.1A3",
+           "text": "Make meaning by annotating, note-taking, highlighting and reading aloud."
+          },
+          {
+           "code": "EK 2.1A4",
+           "text": "Know that perspectives are shared in written, spoken, visual or performance texts and carry the author's tone."
+          }
+         ]
+        },
+        {
+         "id": "summarising-a-text",
+         "title": "Summarising a text",
+         "outcomes": [
+          {
+           "code": "LO 2.1B",
+           "text": "Summarise a text's main idea or aim without faulty generalisation or oversimplification."
+          },
+          {
+           "code": "EK 2.1B1",
+           "text": "Know that a main idea often sits in a thesis, claim or conclusion, or is implied."
+          },
+          {
+           "code": "EK 2.1B2",
+           "text": "Know that artistic works convey perspective and are understood through context, structure, style and aesthetic."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "eu-2-2-evidence-and-lines-of-reasoning",
+       "title": "EU 2.2 Evidence and lines of reasoning",
+       "subtopics": [
+        {
+         "id": "line-of-reasoning",
+         "title": "Line of reasoning",
+         "outcomes": [
+          {
+           "code": "LO 2.2A",
+           "text": "Explain and analyse the logic and line of reasoning of an argument."
+          },
+          {
+           "code": "EK 2.2A1",
+           "text": "Know that a line of reasoning is claims justified by evidence."
+          },
+          {
+           "code": "EK 2.2A2",
+           "text": "Know that reasoning is organised by purpose, for example to show causes, define or propose a solution."
+          },
+          {
+           "code": "EK 2.2A3",
+           "text": "Distinguish inductive reasoning from specific cases from deductive reasoning from general facts."
+          },
+          {
+           "code": "EK 2.2A4",
+           "text": "Know that missing the complexities of an argument leads to oversimplification."
+          },
+          {
+           "code": "EK 2.2A5",
+           "text": "Know that strong arguments address others with concession, refutation or rebuttal."
+          }
+         ]
+        },
+        {
+         "id": "evaluating-evidence",
+         "title": "Evaluating evidence",
+         "outcomes": [
+          {
+           "code": "LO 2.2B",
+           "text": "Judge how relevant and credible the evidence for an argument is, in context."
+          },
+          {
+           "code": "EK 2.2B1",
+           "text": "Know that an argument's time, purpose and relation to other arguments inform its interpretation."
+          },
+          {
+           "code": "EK 2.2B2",
+           "text": "Know that writers use qualitative and quantitative evidence of varying validity."
+          },
+          {
+           "code": "EK 2.2B3",
+           "text": "Know that authors choose evidence strategically."
+          },
+          {
+           "code": "EK 2.2B4",
+           "text": "Spot persuasive techniques such as loaded language, authority, qualifiers and fallacies."
+          },
+          {
+           "code": "EK 2.2B5",
+           "text": "Know that evidence can show comparative, causal or correlational relationships, patterns and trends."
+          },
+          {
+           "code": "EK 2.2B6",
+           "text": "Know that credibility drops when authors ignore limits, opposing views or their own biases."
+          }
+         ]
+        },
+        {
+         "id": "validity-of-arguments",
+         "title": "Validity of arguments",
+         "outcomes": [
+          {
+           "code": "LO 2.2C",
+           "text": "Evaluate whether an argument is valid."
+          },
+          {
+           "code": "EK 2.2C1",
+           "text": "Know that an argument is valid when its reasoning logically supports its conclusion."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "eu-2-3-implications-of-arguments",
+       "title": "EU 2.3 Implications of arguments",
+       "subtopics": [
+        {
+         "id": "implications",
+         "title": "Implications",
+         "outcomes": [
+          {
+           "code": "LO 2.3A",
+           "text": "Connect an argument to broader issues by examining its implications."
+          },
+          {
+           "code": "EK 2.3A1",
+           "text": "Know that arguments' consequences can be intended or unintended."
+          }
+         ]
+        },
+        {
+         "id": "judging-proposed-solutions",
+         "title": "Judging proposed solutions",
+         "outcomes": [
+          {
+           "code": "LO 2.3B",
+           "text": "Evaluate possible resolutions or solutions an argument raises."
+          },
+          {
+           "code": "EK 2.3B1",
+           "text": "Know that arguments have real-world impact by influencing behaviour."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "big-idea-3-evaluate-multiple-perspectives",
+     "title": "Big Idea 3: Evaluate Multiple Perspectives",
+     "topics": [
+      {
+       "id": "eu-3-1-competing-perspectives",
+       "title": "EU 3.1 Competing perspectives",
+       "subtopics": [
+        {
+         "id": "comparing-perspectives",
+         "title": "Comparing perspectives",
+         "outcomes": [
+          {
+           "code": "LO 3.1A",
+           "text": "Identify, compare and interpret multiple perspectives on an issue."
+          },
+          {
+           "code": "EK 3.1A1",
+           "text": "Know that a perspective is shaped by background, assumptions, worldview and outside sources."
+          },
+          {
+           "code": "EK 3.1A2",
+           "text": "Know that perspectives can agree, complement or compete."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "eu-3-2-weighing-arguments",
+       "title": "EU 3.2 Weighing arguments",
+       "subtopics": [
+        {
+         "id": "evaluating-competing-arguments",
+         "title": "Evaluating competing arguments",
+         "outcomes": [
+          {
+           "code": "LO 3.2A",
+           "text": "Evaluate alternate or competing arguments by their implications and limits."
+          },
+          {
+           "code": "EK 3.2A1",
+           "text": "Recognise arguments that appeal to emotion, values, bias, assumptions or logic."
+          },
+          {
+           "code": "EK 3.2A2",
+           "text": "Remember that your own biases and assumptions affect your judgement of arguments."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "big-idea-4-synthesize-ideas",
+     "title": "Big Idea 4: Synthesize Ideas",
+     "topics": [
+      {
+       "id": "eu-4-1-building-arguments",
+       "title": "EU 4.1 Building arguments",
+       "subtopics": [
+        {
+         "id": "forming-an-argument",
+         "title": "Forming an argument",
+         "outcomes": [
+          {
+           "code": "LO 4.1A",
+           "text": "Form a well-reasoned argument that accounts for the issue's complexities."
+          },
+          {
+           "code": "EK 4.1A1",
+           "text": "Know that effective arguments use reason and evidence to convey a perspective stated or implied in the thesis or conclusion."
+          },
+          {
+           "code": "EK 4.1A2",
+           "text": "Know that effective arguments are unified by carefully connected claims, reasons and evidence."
+          },
+          {
+           "code": "EK 4.1A3",
+           "text": "Use qualifiers to limit claims and build credibility by avoiding overgeneralisation."
+          },
+          {
+           "code": "EK 4.1A4",
+           "text": "Acknowledge and answer other arguments with concession, refutation or rebuttal."
+          }
+         ]
+        },
+        {
+         "id": "organising-the-line-of-reasoning",
+         "title": "Organising the line of reasoning",
+         "outcomes": [
+          {
+           "code": "EK 4.1A5",
+           "text": "Know that a line of reasoning is a clear logical path from reasons to conclusion."
+          },
+          {
+           "code": "EK 4.1A6",
+           "text": "Know that reasoning may be deductive (claim then evidence) or inductive (evidence then conclusion)."
+          },
+          {
+           "code": "EK 4.1A7",
+           "text": "Organise a line of reasoning by purpose, such as showing causes, evaluating, defining or proposing a solution."
+          },
+          {
+           "code": "EK 4.1A8",
+           "text": "Arrange claims and evidence spatially, chronologically or by importance to convey relationships."
+          },
+          {
+           "code": "EK 4.1A9",
+           "text": "Know that one argument can be organised or supported in several ways depending on audience and context."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "eu-4-2-using-evidence",
+       "title": "EU 4.2 Using evidence",
+       "subtopics": [
+        {
+         "id": "using-evidence",
+         "title": "Using evidence",
+         "outcomes": [
+          {
+           "code": "LO 4.2A",
+           "text": "Interpret, use and synthesise qualitative and quantitative information from varied sources to support an argument."
+          },
+          {
+           "code": "EK 4.2A1",
+           "text": "Know that evidence comes from print and non-print sources, experts, and fieldwork such as interviews and observations."
+          },
+          {
+           "code": "EK 4.2A2",
+           "text": "Know that compelling evidence is sufficient, accurate, relevant, current and credible."
+          },
+          {
+           "code": "EK 4.2A3",
+           "text": "Choose evidence by context, purpose and audience, for example to cite authority, define, illustrate or qualify."
+          },
+          {
+           "code": "EK 4.2A4",
+           "text": "Know that well-chosen, attributed evidence builds your argument's credibility."
+          }
+         ]
+        },
+        {
+         "id": "commentary",
+         "title": "Commentary",
+         "outcomes": [
+          {
+           "code": "LO 4.2B",
+           "text": "Write insightful commentary that links evidence to claims."
+          },
+          {
+           "code": "EK 4.2B1",
+           "text": "Know that commentary connects evidence to a claim through interpretation, naming patterns, trends or relationships."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "eu-4-3-attribution-and-scholarly-community",
+       "title": "EU 4.3 Attribution and scholarly community",
+       "subtopics": [
+        {
+         "id": "attribution",
+         "title": "Attribution",
+         "outcomes": [
+          {
+           "code": "LO 4.3A",
+           "text": "Credit knowledge and ideas accurately and ethically with an appropriate citation style."
+          },
+          {
+           "code": "EK 4.3A1",
+           "text": "Know that accurate, ethical attribution enhances your credibility."
+          },
+          {
+           "code": "EK 4.3A2",
+           "text": "Know that plagiarism means presenting others' ideas or words as your own and is avoided by thorough acknowledgement."
+          },
+          {
+           "code": "EK 4.3A3",
+           "text": "Introduce, integrate or embed source material into the text of your argument."
+          },
+          {
+           "code": "EK 4.3A4",
+           "text": "Credit and cite quoted and paraphrased material following a style manual."
+          },
+          {
+           "code": "EK 4.3A5",
+           "text": "Know that disciplines use style guides such as APA, MLA, Chicago and AMA."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "eu-4-4-forming-new-understandings",
+       "title": "EU 4.4 Forming new understandings",
+       "subtopics": [
+        {
+         "id": "innovation",
+         "title": "Innovation",
+         "outcomes": [
+          {
+           "code": "LO 4.4A",
+           "text": "Extend an idea, question, process or product to create new understanding."
+          },
+          {
+           "code": "EK 4.4A1",
+           "text": "Know that innovative solutions challenge assumptions, explore alternatives and use reflective skepticism."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "eu-4-5-solutions-and-consequences",
+       "title": "EU 4.5 Solutions and consequences",
+       "subtopics": [
+        {
+         "id": "offering-solutions",
+         "title": "Offering solutions",
+         "outcomes": [
+          {
+           "code": "LO 4.5A",
+           "text": "Offer resolutions or conclusions based on evidence, considering limits and implications."
+          },
+          {
+           "code": "EK 4.5A1",
+           "text": "Weigh the advantages and disadvantages of options against the goal when proposing a solution."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "big-idea-5-team-transform-and-transmit",
+     "title": "Big Idea 5: Team, Transform, and Transmit",
+     "topics": [
+      {
+       "id": "eu-5-1-presenting-arguments",
+       "title": "EU 5.1 Presenting arguments",
+       "subtopics": [
+        {
+         "id": "planning-an-argument",
+         "title": "Planning an argument",
+         "outcomes": [
+          {
+           "code": "LO 5.1A",
+           "text": "Plan, produce and present a cohesive argument for the audience, context and purpose."
+          },
+          {
+           "code": "EK 5.1A1",
+           "text": "Know the parts of an argument: introduction, thesis, reasons and evidence, counterargument, conclusion and bibliography."
+          },
+          {
+           "code": "EK 5.1A2",
+           "text": "Use transitions so ideas flow logically and smoothly."
+          }
+         ]
+        },
+        {
+         "id": "language-conventions",
+         "title": "Language conventions",
+         "outcomes": [
+          {
+           "code": "LO 5.1B",
+           "text": "Follow conventions of grammar, usage, style and mechanics."
+          },
+          {
+           "code": "EK 5.1B1",
+           "text": "Express tone through word choice, sentence structure and imagery."
+          },
+          {
+           "code": "EK 5.1B2",
+           "text": "Vary sentence structure for emphasis and interest while keeping agreement, modifiers and tense correct."
+          },
+          {
+           "code": "EK 5.1B3",
+           "text": "Use precise words to avoid confusion and wordiness."
+          },
+          {
+           "code": "EK 5.1B4",
+           "text": "Know that spelling and grammar errors undermine credibility."
+          }
+         ]
+        },
+        {
+         "id": "design-and-media",
+         "title": "Design and media",
+         "outcomes": [
+          {
+           "code": "LO 5.1C",
+           "text": "Communicate through suitable media with effective design."
+          },
+          {
+           "code": "EK 5.1C1",
+           "text": "Use headings, layout, captions and similar elements to help the audience, without overusing them."
+          },
+          {
+           "code": "EK 5.1C2",
+           "text": "Present data graphically with infographics, graphs, tables or models."
+          },
+          {
+           "code": "EK 5.1C3",
+           "text": "Choose media such as essay, poster, talk or documentary to suit context, purpose and audience."
+          }
+         ]
+        },
+        {
+         "id": "adapting-arguments",
+         "title": "Adapting arguments",
+         "outcomes": [
+          {
+           "code": "LO 5.1D",
+           "text": "Adapt an argument to its context, purpose and audience."
+          },
+          {
+           "code": "EK 5.1D1",
+           "text": "Adapt arguments by selecting and emphasising information for audience, situation, medium and purpose."
+          }
+         ]
+        },
+        {
+         "id": "delivery",
+         "title": "Delivery",
+         "outcomes": [
+          {
+           "code": "LO 5.1E",
+           "text": "Engage an audience with effective delivery or performance techniques."
+          },
+          {
+           "code": "EK 5.1E1",
+           "text": "Vary volume, tempo, movement, eye contact and energy to emphasise and engage."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "eu-5-2-teamwork",
+       "title": "EU 5.2 Teamwork",
+       "subtopics": [
+        {
+         "id": "collaboration",
+         "title": "Collaboration",
+         "outcomes": [
+          {
+           "code": "LO 5.2A",
+           "text": "Contribute individually to a team's effort towards a shared goal."
+          },
+          {
+           "code": "EK 5.2A1",
+           "text": "Know that sharing your strengths and challenges makes your contribution more effective."
+          }
+         ]
+        },
+        {
+         "id": "team-climate",
+         "title": "Team climate",
+         "outcomes": [
+          {
+           "code": "LO 5.2B",
+           "text": "Foster a constructive team climate, resolve conflict and enable everyone's contribution."
+          },
+          {
+           "code": "EK 5.2B1",
+           "text": "Know that teams are built around tasks and that low-risk team activities help performance."
+          },
+          {
+           "code": "EK 5.2B2",
+           "text": "Know that teams do best when they understand their members' diverse backgrounds, talents and skills."
+          },
+          {
+           "code": "EK 5.2B3",
+           "text": "Practise communication, consensus building, conflict resolution and negotiation."
+          },
+          {
+           "code": "EK 5.2B4",
+           "text": "Consider online collaborative tools for teamwork."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "eu-5-3-reflection",
+       "title": "EU 5.3 Reflection",
+       "subtopics": [
+        {
+         "id": "reflecting-on-your-work",
+         "title": "Reflecting on your work",
+         "outcomes": [
+          {
+           "code": "LO 5.3A",
+           "text": "Reflect on and revise your own writing, thinking and creative process."
+          },
+          {
+           "code": "EK 5.3A1",
+           "text": "Know that reflection is ongoing and recursive, using journals, self-questioning, drawing or guided contemplation."
+          },
+          {
+           "code": "EK 5.3A2",
+           "text": "Know that learning needs iterative practice: rethinking, revising and rewriting."
+          }
+         ]
+        },
+        {
+         "id": "reflecting-on-teamwork",
+         "title": "Reflecting on teamwork",
+         "outcomes": [
+          {
+           "code": "LO 5.3B",
+           "text": "Reflect on collaborative experiences."
+          },
+          {
+           "code": "EK 5.3B1",
+           "text": "Reflect on how actions affected the group and individuals, and on whether assumptions helped or hindered the task."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "build": {
+  "builtAt": "2026-10-14T12:54:41.312Z",
+  "model": "claude-agent",
+  "usd": 0,
+  "expectedCodes": 107,
+  "coverage": 1,
+  "missingCodes": [],
+  "counts": {
+   "grades": 1,
+   "units": 5,
+   "topics": 18,
+   "subtopics": 31,
+   "outcomes": 107
+  },
+  "warnings": [
+   "grade 9 has no content",
+   "grade 10 has no content",
+   "grade 11 has no content"
+  ]
+ }
+}

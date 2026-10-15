@@ -1,0 +1,610 @@
+{
+ "id": "pk-ncp-statistics-11-12",
+ "region": "PK",
+ "framework": "National Curriculum of Pakistan 2022-23",
+ "board": null,
+ "qualification": "HSSC",
+ "subject": "Statistics",
+ "syllabusCode": null,
+ "gradeSystem": "grade",
+ "source": {
+  "urls": [
+   "https://ncc.gov.pk/SiteImage/Misc/files/12-Statistics(1).pdf"
+  ],
+  "publisher": "National Curriculum Council, Ministry of Federal Education and Professional Training",
+  "licence": "Government publication; structure + our own wording only",
+  "firstExam": null
+ },
+ "grades": [
+  {
+   "grade": "11",
+   "units": [
+    {
+     "id": "domain-a-basics-of-statistics",
+     "title": "Domain A: Basics of Statistics",
+     "topics": [
+      {
+       "id": "basics-of-statistics",
+       "title": "Basics of statistics",
+       "subtopics": [
+        {
+         "id": "what-statistics-is",
+         "title": "What statistics is",
+         "outcomes": [
+          {
+           "code": "Stat-11-A-01",
+           "text": "Define statistics and explain its value in data science, business, market research and similar fields."
+          },
+          {
+           "code": "Stat-11-A-02",
+           "text": "Name the main branches of statistics, descriptive and inferential."
+          },
+          {
+           "code": "Stat-11-A-03",
+           "text": "Explain real-world uses of statistics in health, social science and climate policy."
+          }
+         ]
+        },
+        {
+         "id": "types-of-data",
+         "title": "Types of data",
+         "outcomes": [
+          {
+           "code": "Stat-11-A-04",
+           "text": "Tell qualitative data from quantitative data with examples."
+          },
+          {
+           "code": "Stat-11-A-05",
+           "text": "Tell discrete data from continuous data with examples."
+          },
+          {
+           "code": "Stat-11-A-06",
+           "text": "Define primary and secondary data and why each matters."
+          },
+          {
+           "code": "Stat-11-A-07",
+           "text": "Describe nominal, ordinal, interval and ratio scales with example variables."
+          }
+         ]
+        },
+        {
+         "id": "data-entry-and-collection",
+         "title": "Data entry and collection",
+         "outcomes": [
+          {
+           "code": "Stat-11-A-08",
+           "text": "Enter and manipulate data in tools like Minitab and Excel."
+          },
+          {
+           "code": "Stat-11-A-09",
+           "text": "Create and label variables in a dataset."
+          },
+          {
+           "code": "Stat-11-A-10",
+           "text": "Build and give out a simple questionnaire to collect primary data."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "domain-b-descriptive-statistics",
+     "title": "Domain B: Descriptive Statistics",
+     "topics": [
+      {
+       "id": "presenting-data",
+       "title": "Presenting data",
+       "subtopics": [
+        {
+         "id": "charts-and-tables",
+         "title": "Charts and tables",
+         "outcomes": [
+          {
+           "code": "Stat-11-B-01",
+           "text": "Classify data as qualitative or quantitative with real examples."
+          },
+          {
+           "code": "Stat-11-B-02",
+           "text": "Create and read simple, multiple and component bar charts, pie charts and histograms."
+          },
+          {
+           "code": "Stat-11-B-03",
+           "text": "Interpret results from different tables and charts."
+          },
+          {
+           "code": "Stat-11-B-04",
+           "text": "Summarise datasets while keeping the data represented accurately."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "measures-of-central-tendency",
+       "title": "Measures of central tendency",
+       "subtopics": [
+        {
+         "id": "means-median-and-mode",
+         "title": "Means, median and mode",
+         "outcomes": [
+          {
+           "code": "Stat-11-B-05",
+           "text": "Calculate and interpret arithmetic, geometric and harmonic means."
+          },
+          {
+           "code": "Stat-11-B-06",
+           "text": "Find the median, quantiles and mode and discuss when each is relevant."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "measures-of-dispersion",
+       "title": "Measures of dispersion",
+       "subtopics": [
+        {
+         "id": "absolute-and-relative-dispersion",
+         "title": "Absolute and relative dispersion",
+         "outcomes": [
+          {
+           "code": "Stat-11-B-07",
+           "text": "Compute range, interquartile range, mean absolute deviation, variance and standard deviation."
+          },
+          {
+           "code": "Stat-11-B-08",
+           "text": "Evaluate data with the coefficient of range and coefficient of variation."
+          },
+          {
+           "code": "Stat-11-B-09",
+           "text": "Use the five-number summary and interpret boxplots."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "skewness-and-kurtosis",
+       "title": "Skewness and kurtosis",
+       "subtopics": [
+        {
+         "id": "shape-of-a-distribution",
+         "title": "Shape of a distribution",
+         "outcomes": [
+          {
+           "code": "Stat-11-B-10",
+           "text": "Explain skewness and kurtosis using real datasets."
+          },
+          {
+           "code": "Stat-11-B-11",
+           "text": "Apply a formula for skewness and kurtosis and interpret the result."
+          },
+          {
+           "code": "Stat-11-B-12",
+           "text": "Use Minitab or Excel for data manipulation, visualisation and calculations."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "domain-c-probability",
+     "title": "Domain C: Probability",
+     "topics": [
+      {
+       "id": "probability-theory",
+       "title": "Probability theory",
+       "subtopics": [
+        {
+         "id": "sample-spaces-and-events",
+         "title": "Sample spaces and events",
+         "outcomes": [
+          {
+           "code": "Stat-11-C-01",
+           "text": "Revise set theory and use it for random experiments, sample spaces and events."
+          },
+          {
+           "code": "Stat-11-C-02",
+           "text": "Tell axiomatic from relative-frequency probability and use both to solve problems."
+          }
+         ]
+        },
+        {
+         "id": "conditional-probability-and-counting",
+         "title": "Conditional probability and counting",
+         "outcomes": [
+          {
+           "code": "Stat-11-C-03",
+           "text": "Understand and apply conditional probability and the multiplication theorem."
+          },
+          {
+           "code": "Stat-11-C-04",
+           "text": "Understand independence and apply the addition theorem."
+          },
+          {
+           "code": "Stat-11-C-05",
+           "text": "Use counting rules, permutations and combinations to compute probabilities."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "random-variables",
+       "title": "Random variables",
+       "subtopics": [
+        {
+         "id": "random-variables-and-expectation",
+         "title": "Random variables and expectation",
+         "outcomes": [
+          {
+           "code": "Stat-11-C-06",
+           "text": "Define and distinguish discrete and continuous random variables."
+          },
+          {
+           "code": "Stat-11-C-07",
+           "text": "Explore univariate distributions, joint and marginal probabilities."
+          },
+          {
+           "code": "Stat-11-C-08",
+           "text": "Calculate expectation and variance of discrete random variables."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "probability-distributions",
+       "title": "Probability distributions",
+       "subtopics": [
+        {
+         "id": "discrete-and-continuous-distributions",
+         "title": "Discrete and continuous distributions",
+         "outcomes": [
+          {
+           "code": "Stat-11-C-09",
+           "text": "Apply discrete uniform, Bernoulli, binomial, hypergeometric and Poisson distributions."
+          },
+          {
+           "code": "Stat-11-C-10",
+           "text": "Understand and apply the uniform and normal distributions."
+          },
+          {
+           "code": "Stat-11-C-11",
+           "text": "Use Minitab or Excel for data analysis tasks."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "domain-d-index-numbers-and-time-series-data",
+     "title": "Domain D: Index Numbers and Time Series Data",
+     "topics": [
+      {
+       "id": "index-numbers",
+       "title": "Index numbers",
+       "subtopics": [
+        {
+         "id": "index-numbers-and-cpi",
+         "title": "Index numbers and CPI",
+         "outcomes": [
+          {
+           "code": "Stat-11-D-01",
+           "text": "Understand simple and composite index numbers and how they differ."
+          },
+          {
+           "code": "Stat-11-D-02",
+           "text": "Calculate and interpret price and quantity index numbers."
+          },
+          {
+           "code": "Stat-11-D-03",
+           "text": "Tell weighted from unweighted index numbers and where each is used."
+          },
+          {
+           "code": "Stat-11-D-04",
+           "text": "Calculate the Consumer Price Index using weighted index numbers."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "time-series",
+       "title": "Time series",
+       "subtopics": [
+        {
+         "id": "time-series-analysis",
+         "title": "Time series analysis",
+         "outcomes": [
+          {
+           "code": "Stat-11-D-05",
+           "text": "Explain time series data and why it matters."
+          },
+          {
+           "code": "Stat-11-D-06",
+           "text": "Identify trend, seasonal, cyclical and irregular components."
+          },
+          {
+           "code": "Stat-11-D-07",
+           "text": "Analyse and interpret trends in time series data."
+          },
+          {
+           "code": "Stat-11-D-08",
+           "text": "Use Minitab or Excel for data analysis tasks."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "12",
+   "units": [
+    {
+     "id": "domain-e-sampling-techniques",
+     "title": "Domain E: Sampling Techniques",
+     "topics": [
+      {
+       "id": "sampling",
+       "title": "Sampling",
+       "subtopics": [
+        {
+         "id": "populations-samples-and-methods",
+         "title": "Populations, samples and methods",
+         "outcomes": [
+          {
+           "code": "Stat-12-E-01",
+           "text": "Tell population from sample, and parameters from statistics."
+          },
+          {
+           "code": "Stat-12-E-02",
+           "text": "Analyse the advantages of sampling in different research settings."
+          },
+          {
+           "code": "Stat-12-E-03",
+           "text": "Tell sampling error from non-sampling error and discuss their implications."
+          },
+          {
+           "code": "Stat-12-E-04",
+           "text": "Compare probability and non-probability sampling and justify choices."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "sampling-distributions",
+       "title": "Sampling distributions",
+       "subtopics": [
+        {
+         "id": "sampling-distributions-and-clt",
+         "title": "Sampling distributions and CLT",
+         "outcomes": [
+          {
+           "code": "Stat-12-E-05",
+           "text": "Describe the sampling distribution of a sample mean and its properties."
+          },
+          {
+           "code": "Stat-12-E-06",
+           "text": "Analyse differences between two sample means and their uses."
+          },
+          {
+           "code": "Stat-12-E-07",
+           "text": "Calculate and interpret proportions and differences of two proportions, with and without replacement."
+          },
+          {
+           "code": "Stat-12-E-08",
+           "text": "Explain the Central Limit Theorem and why it matters."
+          },
+          {
+           "code": "Stat-12-E-09",
+           "text": "Use Minitab or Excel for data analysis tasks."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "domain-f-statistical-inference",
+     "title": "Domain F: Statistical Inference",
+     "topics": [
+      {
+       "id": "estimation",
+       "title": "Estimation",
+       "subtopics": [
+        {
+         "id": "point-and-interval-estimation",
+         "title": "Point and interval estimation",
+         "outcomes": [
+          {
+           "code": "Stat-12-F-01",
+           "text": "Apply point estimation for mean, variance and proportion and explain unbiasedness."
+          },
+          {
+           "code": "Stat-12-F-02",
+           "text": "Build confidence intervals for a single mean with known and unknown variance."
+          },
+          {
+           "code": "Stat-12-F-03",
+           "text": "Build confidence intervals for the difference of two means, dependent and independent samples."
+          },
+          {
+           "code": "Stat-F-12-04",
+           "text": "Build confidence intervals for one proportion and for the difference of two proportions."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "categorical-data",
+       "title": "Categorical data",
+       "subtopics": [
+        {
+         "id": "chi-square-and-association",
+         "title": "Chi-square and association",
+         "outcomes": [
+          {
+           "code": "Stat-F-12-11",
+           "text": "Understand categorical data and tell nominal from ordinal scales."
+          },
+          {
+           "code": "Stat-F-12-12",
+           "text": "Analyse bivariate categorical data for association and independence."
+          },
+          {
+           "code": "Stat-F-12-13",
+           "text": "Use contingency tables to study relationships between categorical variables."
+          },
+          {
+           "code": "Stat-F-12-14",
+           "text": "Apply the chi-square test of independence to two qualitative variables."
+          },
+          {
+           "code": "Stat-F-12-15",
+           "text": "Measure association between qualitative variables with the rank correlation coefficient."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "analysis-of-variance",
+       "title": "Analysis of variance",
+       "subtopics": [
+        {
+         "id": "anova",
+         "title": "ANOVA",
+         "outcomes": [
+          {
+           "code": "Stat-F-12-16",
+           "text": "Perform and interpret one-way ANOVA to compare group means."
+          },
+          {
+           "code": "Stat-F-12-17",
+           "text": "Carry out two-way ANOVA and understand interaction between two factors."
+          },
+          {
+           "code": "Stat-F-12-18",
+           "text": "Apply one-way and two-way ANOVA to real data."
+          },
+          {
+           "code": "Stat-F-12-19",
+           "text": "Use Minitab or Excel for data analysis tasks."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "domain-g-regression-and-correlation",
+     "title": "Domain G: Regression and Correlation",
+     "topics": [
+      {
+       "id": "simple-linear-regression",
+       "title": "Simple linear regression",
+       "subtopics": [
+        {
+         "id": "regression",
+         "title": "Regression",
+         "outcomes": [
+          {
+           "code": "Stat-G-12-01",
+           "text": "Understand simple linear regression and its uses for two variables."
+          },
+          {
+           "code": "Stat-G-12-02",
+           "text": "Estimate slope and intercept of a simple linear regression model."
+          },
+          {
+           "code": "Stat-G-12-03",
+           "text": "Use the fitted model to make predictions."
+          },
+          {
+           "code": "Stat-G-12-04",
+           "text": "Apply regression models to real datasets to infer relationships and predict."
+          },
+          {
+           "code": "Stat-G-12-05",
+           "text": "Identify and discuss the limitations of simple linear regression."
+          },
+          {
+           "code": "Stat-G-12-06",
+           "text": "Distinguish correlation from association."
+          },
+          {
+           "code": "Stat-G-12-07",
+           "text": "Explain how regression differs from correlation."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "correlation",
+       "title": "Correlation",
+       "subtopics": [
+        {
+         "id": "pearson-correlation",
+         "title": "Pearson correlation",
+         "outcomes": [
+          {
+           "code": "Stat-G-12-08",
+           "text": "Use the Pearson coefficient to measure strength and direction of a linear relationship."
+          },
+          {
+           "code": "Stat-G-12-09",
+           "text": "Interpret Pearson correlation results and what they imply."
+          },
+          {
+           "code": "Stat-G-12-10",
+           "text": "Use the Pearson coefficient to measure strength and direction of a linear relationship (repeated in the document)."
+          },
+          {
+           "code": "Stat-G-12-11",
+           "text": "Interpret Pearson correlation results (repeated in the document)."
+          },
+          {
+           "code": "Stat-G-12-12",
+           "text": "Use Minitab or Excel for data analysis tasks."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "build": {
+  "builtAt": "2026-10-14T08:33:13.228Z",
+  "model": "claude-agent",
+  "usd": 0,
+  "expectedCodes": 53,
+  "coverage": 1,
+  "missingCodes": [],
+  "counts": {
+   "grades": 2,
+   "units": 7,
+   "topics": 17,
+   "subtopics": 20,
+   "outcomes": 75
+  },
+  "warnings": []
+ }
+}

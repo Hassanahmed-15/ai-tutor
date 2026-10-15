@@ -1,0 +1,1070 @@
+{
+ "id": "us-act-design-framework",
+ "region": "US",
+ "framework": "Design Framework for the ACT Enhancements (ACT Research Report R2519, Feb 2026 update)",
+ "board": "ACT",
+ "qualification": "ACT",
+ "subject": "English; Mathematics; Reading; Science; Writing",
+ "syllabusCode": null,
+ "gradeSystem": "grade",
+ "source": {
+  "urls": [
+   "https://www.act.org/content/dam/act/unsecured/documents/R2519-Design-Framework-for-the-ACT-Enhancements-2026-02.pdf",
+   "https://www.act.org/content/act/en/research/pdfs/R2519-Design-Framework-for-the-ACT-Enhancements-2025-03.html"
+  ],
+  "publisher": "ACT, Inc.",
+  "licence": "© ACT, Inc.; structure + our own wording only",
+  "firstExam": "2025"
+ },
+ "grades": [
+  {
+   "grade": "11",
+   "units": [
+    {
+     "id": "english",
+     "title": "English",
+     "topics": [
+      {
+       "id": "production-of-writing",
+       "title": "Production of Writing",
+       "subtopics": [
+        {
+         "id": "purpose-and-focus",
+         "title": "Purpose and focus",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Judge whether an essay's structure and content support its purpose."
+          },
+          {
+           "code": null,
+           "text": "Revise text to sharpen focus and cohesion."
+          },
+          {
+           "code": null,
+           "text": "Choose the strongest evidence to support a claim in an argumentative essay."
+          },
+          {
+           "code": null,
+           "text": "Identify how specific details support a claim."
+          }
+         ]
+        },
+        {
+         "id": "organization-and-cohesion",
+         "title": "Organization and cohesion",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Order sentences and paragraphs and use transitions for unity and logic."
+          },
+          {
+           "code": null,
+           "text": "Frame an essay with effective introductions and conclusions."
+          },
+          {
+           "code": null,
+           "text": "Pick a conclusion that reinforces the main claim."
+          },
+          {
+           "code": null,
+           "text": "Decide where a sentence belongs in a paragraph and where paragraphs should split."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "knowledge-of-language",
+       "title": "Knowledge of Language",
+       "subtopics": [
+        {
+         "id": "clear-and-precise-wording",
+         "title": "Clear and precise wording",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Use academic and domain-specific words precisely."
+          },
+          {
+           "code": null,
+           "text": "Remove redundancy and wordiness while keeping meaning, even across sentences."
+          }
+         ]
+        },
+        {
+         "id": "style-and-tone",
+         "title": "Style and tone",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Keep a consistent style and tone in a text."
+          },
+          {
+           "code": null,
+           "text": "Choose words, phrases and sentences purposefully for their effect on the whole text."
+          },
+          {
+           "code": null,
+           "text": "Match style to rhetorical task, formal for argument or relaxed for narrative."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "conventions-of-standard-english",
+       "title": "Conventions of Standard English",
+       "subtopics": [
+        {
+         "id": "sentence-structure-and-formation",
+         "title": "Sentence structure and formation",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Spot and fix subtle structural errors in sophisticated sentences."
+          },
+          {
+           "code": null,
+           "text": "Fix errors that depend on the meaning of several sentences or paragraphs."
+          }
+         ]
+        },
+        {
+         "id": "usage-conventions",
+         "title": "Usage conventions",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Recognize and correct usage errors in complex sentences."
+          },
+          {
+           "code": null,
+           "text": "Handle usage when related elements are separated by intervening text."
+          }
+         ]
+        },
+        {
+         "id": "punctuation-conventions",
+         "title": "Punctuation conventions",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Recognize and correct punctuation errors in complex sentences."
+          },
+          {
+           "code": null,
+           "text": "Use punctuation to reduce ambiguity in sentences and paragraphs."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "essay-types",
+       "title": "Essay types",
+       "subtopics": [
+        {
+         "id": "informational-argumentative-and-narrative-essays",
+         "title": "Informational, argumentative and narrative essays",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Work with informational essays across humanities, social and natural sciences."
+          },
+          {
+           "code": null,
+           "text": "Work with argumentative essays that develop a claim without a charged political stance."
+          },
+          {
+           "code": null,
+           "text": "Work with first-person narrative essays."
+          },
+          {
+           "code": null,
+           "text": "Handle both short (about 185 words) and long (about 340 words) essays."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "reading",
+     "title": "Reading",
+     "topics": [
+      {
+       "id": "key-ideas-and-details",
+       "title": "Key Ideas and Details",
+       "subtopics": [
+        {
+         "id": "close-reading",
+         "title": "Close reading",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Read challenging texts closely to find what they state explicitly."
+          },
+          {
+           "code": null,
+           "text": "Draw well-supported conclusions from textual evidence."
+          }
+         ]
+        },
+        {
+         "id": "relationships-in-a-text",
+         "title": "Relationships in a text",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Identify sequences of events."
+          },
+          {
+           "code": null,
+           "text": "Identify comparative and cause-effect relationships."
+          }
+         ]
+        },
+        {
+         "id": "central-ideas-and-summaries",
+         "title": "Central ideas and summaries",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Determine a central idea or theme."
+          },
+          {
+           "code": null,
+           "text": "Separate key ideas from less important ones."
+          },
+          {
+           "code": null,
+           "text": "Summarize a text concisely."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "craft-and-structure",
+       "title": "Craft and Structure",
+       "subtopics": [
+        {
+         "id": "word-meanings-and-word-choice",
+         "title": "Word meanings and word choice",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Determine meanings of words and phrases from context."
+          },
+          {
+           "code": null,
+           "text": "Interpret figurative, connotative and technical meanings, and multiple-meaning words."
+          }
+         ]
+        },
+        {
+         "id": "text-structure",
+         "title": "Text structure",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Analyze rhetorical devices and how a text is structured."
+          },
+          {
+           "code": null,
+           "text": "Explain how an author's choices create effects on the reader."
+          }
+         ]
+        },
+        {
+         "id": "purpose-and-point-of-view",
+         "title": "Purpose and point of view",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Analyze stated and implied purposes in texts."
+          },
+          {
+           "code": null,
+           "text": "Analyze point of view and narrative techniques."
+          },
+          {
+           "code": null,
+           "text": "Detect authorial bias and rhetorical techniques."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "integration-of-knowledge-and-ideas",
+       "title": "Integration of Knowledge and Ideas",
+       "subtopics": [
+        {
+         "id": "arguments",
+         "title": "Arguments",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Analyze persuasive elements and how an argument develops."
+          },
+          {
+           "code": null,
+           "text": "Judge whether evidence is relevant, sound and sufficient."
+          },
+          {
+           "code": null,
+           "text": "Distinguish claims, counterclaims and supporting evidence."
+          }
+         ]
+        },
+        {
+         "id": "synthesis-of-multiple-texts",
+         "title": "Synthesis of multiple texts",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Compare literary, thematic and structural elements of two texts."
+          },
+          {
+           "code": null,
+           "text": "Combine information across texts to build new knowledge."
+          }
+         ]
+        },
+        {
+         "id": "visual-and-quantitative-information",
+         "title": "Visual and quantitative information",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Analyze tables, charts, graphs and figures alongside text."
+          },
+          {
+           "code": null,
+           "text": "Draw conclusions from visual information and relate it to the passage."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "passages",
+       "title": "Passages",
+       "subtopics": [
+        {
+         "id": "literary-narrative-and-informational-passages",
+         "title": "Literary narrative and informational passages",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Read single, paired and data-accompanied passages."
+          },
+          {
+           "code": null,
+           "text": "Read literary narratives from fiction and memoir, and informational texts from humanities, social and natural sciences."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "mathematics",
+     "title": "Mathematics",
+     "topics": [
+      {
+       "id": "preparing-for-higher-mathematics-number-and-quan",
+       "title": "Preparing for Higher Mathematics: Number and Quantity",
+       "subtopics": [
+        {
+         "id": "rational-and-irrational-numbers",
+         "title": "Rational and irrational numbers",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Use properties of rational and irrational numbers."
+          }
+         ]
+        },
+        {
+         "id": "exponents-and-radicals",
+         "title": "Exponents and radicals",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Use properties of integer and rational exponents."
+          },
+          {
+           "code": null,
+           "text": "Relate exponents to radicals."
+          }
+         ]
+        },
+        {
+         "id": "vectors-matrices-and-complex-numbers",
+         "title": "Vectors, matrices and complex numbers",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Model and solve problems with vectors and matrices."
+          },
+          {
+           "code": null,
+           "text": "Operate with and solve equations involving complex numbers."
+          }
+         ]
+        },
+        {
+         "id": "quantities-and-units",
+         "title": "Quantities and units",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Reason quantitatively and use units to solve problems."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "preparing-for-higher-mathematics-algebra",
+       "title": "Preparing for Higher Mathematics: Algebra",
+       "subtopics": [
+        {
+         "id": "linear-expressions-and-equations",
+         "title": "Linear expressions and equations",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Model, solve and operate with linear expressions, equations and inequalities."
+          }
+         ]
+        },
+        {
+         "id": "quadratic-expressions-and-equations",
+         "title": "Quadratic expressions and equations",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Model, solve and operate with quadratic expressions, equations and inequalities."
+          }
+         ]
+        },
+        {
+         "id": "rational-and-radical-equations",
+         "title": "Rational and radical equations",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Operate with and solve rational and radical expressions and equations."
+          }
+         ]
+        },
+        {
+         "id": "polynomial-expressions-and-equations",
+         "title": "Polynomial expressions and equations",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Operate with and solve polynomial expressions and equations."
+          }
+         ]
+        },
+        {
+         "id": "systems-of-equations",
+         "title": "Systems of equations",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Solve, graph and model with systems of equations and inequalities."
+          }
+         ]
+        },
+        {
+         "id": "equivalent-forms",
+         "title": "Equivalent forms",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Rewrite expressions and equations in equivalent forms."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "preparing-for-higher-mathematics-functions",
+       "title": "Preparing for Higher Mathematics: Functions",
+       "subtopics": [
+        {
+         "id": "properties-of-functions",
+         "title": "Properties of functions",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Evaluate, create and describe properties of functions."
+          },
+          {
+           "code": null,
+           "text": "Convert between representations of a function."
+          }
+         ]
+        },
+        {
+         "id": "composing-and-inverting-functions",
+         "title": "Composing and inverting functions",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Compose and transform functions."
+          },
+          {
+           "code": null,
+           "text": "Find inverse functions."
+          },
+          {
+           "code": null,
+           "text": "State the domain and range of a composition."
+          }
+         ]
+        },
+        {
+         "id": "sequences-and-series",
+         "title": "Sequences and series",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Model and solve problems with sequences and series."
+          }
+         ]
+        },
+        {
+         "id": "trigonometric-functions",
+         "title": "Trigonometric functions",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Model and solve problems with trigonometric functions and identities."
+          }
+         ]
+        },
+        {
+         "id": "exponential-and-logarithmic-functions",
+         "title": "Exponential and logarithmic functions",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Model and solve problems with exponential and logarithmic functions."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "preparing-for-higher-mathematics-geometry",
+       "title": "Preparing for Higher Mathematics: Geometry",
+       "subtopics": [
+        {
+         "id": "transformations",
+         "title": "Transformations",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Model and solve problems with transformations of figures in a plane."
+          }
+         ]
+        },
+        {
+         "id": "proof-and-constructions",
+         "title": "Proof and constructions",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Use logical arguments to prove theorems about figures."
+          },
+          {
+           "code": null,
+           "text": "Construct geometric figures."
+          }
+         ]
+        },
+        {
+         "id": "similarity-and-right-triangles",
+         "title": "Similarity and right triangles",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Use similarity and congruence to solve problems."
+          },
+          {
+           "code": null,
+           "text": "Define trig ratios in right triangles."
+          },
+          {
+           "code": null,
+           "text": "Apply trig ratios to general triangles."
+          }
+         ]
+        },
+        {
+         "id": "coordinate-geometry-and-conics",
+         "title": "Coordinate geometry and conics",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Solve problems with figures in the coordinate plane."
+          },
+          {
+           "code": null,
+           "text": "Solve problems involving conic sections."
+          }
+         ]
+        },
+        {
+         "id": "circles",
+         "title": "Circles",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Use inscribed and central angles, radii, chords, secants and tangents."
+          }
+         ]
+        },
+        {
+         "id": "geometric-measurement-and-modeling",
+         "title": "Geometric measurement and modeling",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Apply geometric concepts in modeling situations."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "preparing-for-higher-mathematics-statistics-and-",
+       "title": "Preparing for Higher Mathematics: Statistics and Probability",
+       "subtopics": [
+        {
+         "id": "univariate-data-analysis",
+         "title": "Univariate data analysis",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Compare and interpret center, shape and spread of one-variable data, including normal distributions."
+          }
+         ]
+        },
+        {
+         "id": "bivariate-data-analysis",
+         "title": "Bivariate data analysis",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Summarize and interpret data with two categorical or two quantitative variables."
+          },
+          {
+           "code": null,
+           "text": "Decide whether two variables are associated."
+          }
+         ]
+        },
+        {
+         "id": "inferential-statistics",
+         "title": "Inferential statistics",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Use sample data and margin of error to estimate population parameters."
+          },
+          {
+           "code": null,
+           "text": "Use simulation to reject or fail to reject claims about parameters."
+          }
+         ]
+        },
+        {
+         "id": "probability-and-counting",
+         "title": "Probability and counting",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Use probability rules to compute probabilities and expected values."
+          },
+          {
+           "code": null,
+           "text": "Use counting principles, combinations and permutations for compound events."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "integrating-essential-skills",
+       "title": "Integrating Essential Skills",
+       "subtopics": [
+        {
+         "id": "real-numbers",
+         "title": "Real numbers",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Use properties of real numbers."
+          },
+          {
+           "code": null,
+           "text": "Evaluate expressions and solve problems with real numbers."
+          }
+         ]
+        },
+        {
+         "id": "ratio-proportion-and-percent",
+         "title": "Ratio, proportion and percent",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Use ratios, proportions and percents to solve problems."
+          }
+         ]
+        },
+        {
+         "id": "writing-expressions-and-equations",
+         "title": "Writing expressions and equations",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Model situations with linear and polynomial expressions."
+          },
+          {
+           "code": null,
+           "text": "Write one- and two-variable linear equations and use them to answer questions."
+          }
+         ]
+        },
+        {
+         "id": "measurement-and-unit-conversion",
+         "title": "Measurement and unit conversion",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Solve problems with measurement units and scale models."
+          }
+         ]
+        },
+        {
+         "id": "lines-angles-and-shapes",
+         "title": "Lines, angles and shapes",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Use properties of lines, angles, 2D and 3D shapes to solve problems."
+          }
+         ]
+        },
+        {
+         "id": "perimeter-area-and-volume",
+         "title": "Perimeter, area and volume",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Find perimeter, circumference and area of polygons and circles."
+          },
+          {
+           "code": null,
+           "text": "Find surface area and volume of prisms, cylinders, cones and spheres."
+          }
+         ]
+        },
+        {
+         "id": "coordinate-plane-and-pythagorean-theorem",
+         "title": "Coordinate plane and Pythagorean theorem",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Graph points and polygons in the coordinate plane."
+          },
+          {
+           "code": null,
+           "text": "Use the Pythagorean theorem to solve problems and find distances."
+          }
+         ]
+        },
+        {
+         "id": "data-and-basic-probability",
+         "title": "Data and basic probability",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Analyze scatterplots and draw informal lines of best fit."
+          },
+          {
+           "code": null,
+           "text": "Describe distributions by shape, center and spread."
+          },
+          {
+           "code": null,
+           "text": "Present data in line plots, histograms, box plots and bar charts."
+          },
+          {
+           "code": null,
+           "text": "Estimate a population parameter from a sample."
+          },
+          {
+           "code": null,
+           "text": "Compute probabilities of simple and listable compound events."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "modeling",
+       "title": "Modeling",
+       "subtopics": [
+        {
+         "id": "producing-and-interpreting-models",
+         "title": "Producing and interpreting models",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Produce a model for a real-world or mathematical context."
+          },
+          {
+           "code": null,
+           "text": "Interpret model parameters in terms of the situation."
+          }
+         ]
+        },
+        {
+         "id": "evaluating-and-improving-models",
+         "title": "Evaluating and improving models",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Decide when a model works or fails."
+          },
+          {
+           "code": null,
+           "text": "Choose the best model for a situation."
+          },
+          {
+           "code": null,
+           "text": "Improve a model by adjusting its parameters."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "science",
+     "title": "Science",
+     "topics": [
+      {
+       "id": "interpretation-of-data",
+       "title": "Interpretation of Data",
+       "subtopics": [
+        {
+         "id": "locating-and-understanding-data",
+         "title": "Locating and understanding data",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Locate data in tables, graphs and diagrams."
+          },
+          {
+           "code": null,
+           "text": "Read units, legends and axes."
+          }
+         ]
+        },
+        {
+         "id": "inferring-and-translating-data",
+         "title": "Inferring and translating data",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Identify trends and make inferences or comparisons from graphs."
+          },
+          {
+           "code": null,
+           "text": "Translate data into other graphic formats."
+          }
+         ]
+        },
+        {
+         "id": "extending-and-reevaluating-data",
+         "title": "Extending and reevaluating data",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Predict from trends in data."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "scientific-investigation",
+       "title": "Scientific Investigation",
+       "subtopics": [
+        {
+         "id": "locating-and-comparing-investigations",
+         "title": "Locating and comparing investigations",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Locate, compare and contrast information about experiments."
+          }
+         ]
+        },
+        {
+         "id": "experimental-design",
+         "title": "Experimental design",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Evaluate methods, tools, variables and controls."
+          }
+         ]
+        },
+        {
+         "id": "extending-experiments",
+         "title": "Extending experiments",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Predict results of new experimental conditions."
+          },
+          {
+           "code": null,
+           "text": "Suggest methods to improve or evaluate investigations."
+          }
+         ]
+        },
+        {
+         "id": "engineering-and-design-in-investigations",
+         "title": "Engineering and design in investigations",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Identify constraints, goals and tradeoffs in an investigation or prototype."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "evaluating-scientific-arguments-and-models-with-",
+       "title": "Evaluating Scientific Arguments and Models with Evidence",
+       "subtopics": [
+        {
+         "id": "inferences-and-results",
+         "title": "Inferences and results",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Judge the validity of scientific claims."
+          },
+          {
+           "code": null,
+           "text": "Draw conclusions and predictions from information."
+          },
+          {
+           "code": null,
+           "text": "Use claim-evidence-reasoning argument structure."
+          }
+         ]
+        },
+        {
+         "id": "competing-models",
+         "title": "Competing models",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Locate and compare information within or across competing models."
+          },
+          {
+           "code": null,
+           "text": "Evaluate predictions and hypotheses from competing models."
+          }
+         ]
+        },
+        {
+         "id": "engineering-and-design-thinking",
+         "title": "Engineering and design thinking",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Evaluate claims about solutions or prototypes."
+          },
+          {
+           "code": null,
+           "text": "Suggest new solutions."
+          },
+          {
+           "code": null,
+           "text": "Identify evidence that supports or refutes a solution's success."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "passage-formats-and-content",
+       "title": "Passage formats and content",
+       "subtopics": [
+        {
+         "id": "data-representation-research-summaries-conflicti",
+         "title": "Data Representation, Research Summaries, Conflicting Viewpoints",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Work with graphic-heavy data representation passages."
+          },
+          {
+           "code": null,
+           "text": "Work with research summaries describing experiments."
+          },
+          {
+           "code": null,
+           "text": "Work with conflicting viewpoint passages."
+          },
+          {
+           "code": null,
+           "text": "Apply skills across biology, chemistry, physics and earth/space science."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "build": {
+  "builtAt": "2026-10-14T10:00:13.306Z",
+  "model": "claude-agent",
+  "usd": 0,
+  "expectedCodes": null,
+  "coverage": null,
+  "missingCodes": [],
+  "counts": {
+   "grades": 1,
+   "units": 4,
+   "topics": 19,
+   "subtopics": 64,
+   "outcomes": 126
+  },
+  "warnings": [
+   "grade 12 has no content"
+  ]
+ }
+}

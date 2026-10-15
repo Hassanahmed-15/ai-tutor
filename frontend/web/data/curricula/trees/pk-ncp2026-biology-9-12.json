@@ -1,0 +1,3590 @@
+{
+ "id": "pk-ncp2026-biology-9-12",
+ "region": "PK",
+ "framework": "National Curriculum of Pakistan 2026 (Rationalized Curricula 9-12)",
+ "board": null,
+ "qualification": "SSC/HSSC",
+ "subject": "Biology",
+ "syllabusCode": null,
+ "gradeSystem": "grade",
+ "source": {
+  "urls": [
+   "https://ncc.gov.pk/SiteImage/Misc/files/Biology.pdf"
+  ],
+  "publisher": "National Curriculum Council, Ministry of Federal Education and Professional Training",
+  "licence": "Government publication; structure + our own wording only",
+  "firstExam": null
+ },
+ "grades": [
+  {
+   "grade": "9",
+   "units": [
+    {
+     "id": "domain-a-nature-of-biology-and-classification",
+     "title": "Domain A: Nature of Biology and Classification",
+     "topics": [
+      {
+       "id": "introduction-to-biology",
+       "title": "Introduction to Biology",
+       "subtopics": [
+        {
+         "id": "what-biology-is",
+         "title": "What biology is",
+         "outcomes": [
+          {
+           "code": "B-09-A-01",
+           "text": "Define biology."
+          },
+          {
+           "code": "B-09-A-02",
+           "text": "State that the Quran points to studying life, citing up to five verses."
+          },
+          {
+           "code": "B-09-A-03",
+           "text": "Define botany, zoology and microbiology as major fields."
+          },
+          {
+           "code": "B-09-A-04",
+           "text": "Define biology's many sub-fields with examples (cytology, genetics, ecology and others)."
+          },
+          {
+           "code": "B-09-A-05",
+           "text": "Relate biology to other sciences: biophysics, biochemistry, biostatistics, biotechnology and more."
+          }
+         ]
+        },
+        {
+         "id": "scientific-method",
+         "title": "Scientific method",
+         "outcomes": [
+          {
+           "code": "B-09-A-06",
+           "text": "Describe the steps of the scientific method from problem to inferred results."
+          },
+          {
+           "code": "B-09-A-07",
+           "text": "Evaluate the terms hypothesis, theory and law in biological research, using malaria."
+          }
+         ]
+        },
+        {
+         "id": "biostatistics",
+         "title": "Biostatistics",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Define biostatistics and show any five of its uses."
+          },
+          {
+           "code": "B-09-A-09",
+           "text": "Define and calculate mean, median and mode."
+          },
+          {
+           "code": "B-09-A-10",
+           "text": "Sketch a bar chart for given biological data."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "classification",
+       "title": "Classification",
+       "subtopics": [
+        {
+         "id": "classifying-living-things",
+         "title": "Classifying living things",
+         "outcomes": [
+          {
+           "code": "B-09-A-11",
+           "text": "Define biodiversity and classification."
+          },
+          {
+           "code": "B-09-A-12",
+           "text": "Describe any four advantages of classification."
+          },
+          {
+           "code": "B-09-A-13",
+           "text": "Explain and compare the three domains of life."
+          },
+          {
+           "code": "B-09-A-14",
+           "text": "Discuss the five-kingdom system with salient features and examples."
+          }
+         ]
+        },
+        {
+         "id": "ranks-names-and-viruses",
+         "title": "Ranks, names and viruses",
+         "outcomes": [
+          {
+           "code": "B-09-A-15",
+           "text": "Describe the taxonomic ranks with human and pea examples, and define species."
+          },
+          {
+           "code": "B-09-A-16",
+           "text": "Outline the rules and value of binomial nomenclature, with examples."
+          },
+          {
+           "code": "B-09-A-17",
+           "text": "Describe main virus features and why viruses are hard to classify."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "domain-b-molecular-biology",
+     "title": "Domain B: Molecular Biology",
+     "topics": [
+      {
+       "id": "biological-molecules",
+       "title": "Biological Molecules",
+       "subtopics": [
+        {
+         "id": "bio-elements-and-proteins",
+         "title": "Bio-elements and proteins",
+         "outcomes": [
+          {
+           "code": "B-09-B-01",
+           "text": "Define major and minor bio-elements and the main biological molecules."
+          },
+          {
+           "code": "B-09-B-02",
+           "text": "Outline protein structure levels and sketch a generalized amino acid."
+          },
+          {
+           "code": "B-09-B-03",
+           "text": "State how proteins are made from amino acids."
+          }
+         ]
+        },
+        {
+         "id": "fats-carbohydrates-and-chemical-tests",
+         "title": "Fats, carbohydrates and chemical tests",
+         "outcomes": [
+          {
+           "code": "B-09-B-04",
+           "text": "Explain the structure of a triglyceride."
+          },
+          {
+           "code": "B-09-B-05",
+           "text": "Classify carbohydrates as mono-, di- and polysaccharides with examples."
+          },
+          {
+           "code": "B-09-B-10",
+           "text": "Describe chemical tests for starch, glucose and maltose, protein and lipids."
+          }
+         ]
+        },
+        {
+         "id": "dna-and-rna",
+         "title": "DNA and RNA",
+         "outcomes": [
+          {
+           "code": "B-09-B-06",
+           "text": "Describe DNA as a double helix of nucleotides."
+          },
+          {
+           "code": "B-09-B-07",
+           "text": "Outline DNA's role as carrier of hereditary information."
+          },
+          {
+           "code": "B-09-B-08",
+           "text": "Describe RNA as a single strand of nucleotides."
+          },
+          {
+           "code": "B-09-B-09",
+           "text": "Compare the structure of DNA and RNA."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "domain-c-cell-biology",
+     "title": "Domain C: Cell Biology",
+     "topics": [
+      {
+       "id": "cells",
+       "title": "Cells",
+       "subtopics": [
+        {
+         "id": "plant-and-animal-cells",
+         "title": "Plant and animal cells",
+         "outcomes": [
+          {
+           "code": "B-09-C-01",
+           "text": "Define a cell; describe plant and animal cell parts and their roles."
+          },
+          {
+           "code": "B-09-C-02",
+           "text": "Compare animal and plant cells using diagrams."
+          },
+          {
+           "code": "B-09-C-03",
+           "text": "Describe a prokaryotic cell and compare it with a eukaryotic cell."
+          },
+          {
+           "code": "B-09-C-04",
+           "text": "Identify and sketch specialized cells: mesophyll, epidermal, neuron, muscle, red blood, liver."
+          }
+         ]
+        },
+        {
+         "id": "transport-across-the-membrane",
+         "title": "Transport across the membrane",
+         "outcomes": [
+          {
+           "code": "B-09-C-05",
+           "text": "State the cell membrane's role in keeping balance while exchanging matter."
+          },
+          {
+           "code": "B-09-C-06",
+           "text": "Define diffusion, facilitated diffusion, osmosis, filtration, active transport, endocytosis, exocytosis."
+          },
+          {
+           "code": "B-09-C-07",
+           "text": "Define turgor and its importance in plants."
+          },
+          {
+           "code": "B-09-C-08",
+           "text": "Explain effects on cells placed in solutions of different concentrations."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "levels-of-organization",
+       "title": "Levels of Organization",
+       "subtopics": [
+        {
+         "id": "tissues-organs-and-leaves",
+         "title": "Tissues, organs and leaves",
+         "outcomes": [
+          {
+           "code": "B-09-C-09",
+           "text": "Describe levels of organization from sub-cellular to individual, with examples."
+          },
+          {
+           "code": "B-09-C-10",
+           "text": "Distinguish tissues, organs and organ systems with plant and animal examples."
+          },
+          {
+           "code": "B-09-C-11",
+           "text": "Describe the four major animal tissues."
+          },
+          {
+           "code": "B-09-C-12",
+           "text": "Describe plant tissues: simple (meristematic, permanent) and compound (xylem, phloem)."
+          },
+          {
+           "code": "B-09-C-13",
+           "text": "Label a leaf and explain its adaptations for photosynthesis and gas exchange."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "cell-division",
+       "title": "Cell Division",
+       "subtopics": [
+        {
+         "id": "cell-cycle-mitosis-and-meiosis",
+         "title": "Cell cycle, mitosis and meiosis",
+         "outcomes": [
+          {
+           "code": "B-09-C-14",
+           "text": "Briefly define the cell cycle phases: interphase and M-phase."
+          },
+          {
+           "code": "B-09-C-15",
+           "text": "Differentiate diploid from haploid cells."
+          },
+          {
+           "code": "B-09-C-16",
+           "text": "Define mitosis and describe its stages with labelled diagrams."
+          },
+          {
+           "code": "B-09-C-17",
+           "text": "Define meiosis and describe its stages with labelled diagrams."
+          },
+          {
+           "code": "B-09-C-18",
+           "text": "Compare mitosis and meiosis."
+          },
+          {
+           "code": "B-09-C-19",
+           "text": "Outline why mitosis and meiosis matter."
+          },
+          {
+           "code": "B-09-C-20",
+           "text": "Define stem cells as unspecialized cells."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "domain-d-metabolism",
+     "title": "Domain D: Metabolism",
+     "topics": [
+      {
+       "id": "enzymes",
+       "title": "Enzymes",
+       "subtopics": [
+        {
+         "id": "enzyme-basics",
+         "title": "Enzyme basics",
+         "outcomes": [
+          {
+           "code": "B-09-D-01",
+           "text": "Define enzymes and describe their characteristics."
+          },
+          {
+           "code": null,
+           "text": "Describe how enzymes work."
+          },
+          {
+           "code": "B-09-D-03",
+           "text": "Assess how enzyme concentration, temperature and pH change enzyme activity."
+          },
+          {
+           "code": "B-09-D-04",
+           "text": "Describe enzyme specificity for different substrates."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "bioenergetics",
+       "title": "Bioenergetics",
+       "subtopics": [
+        {
+         "id": "metabolism-and-photosynthesis",
+         "title": "Metabolism and photosynthesis",
+         "outcomes": [
+          {
+           "code": "B-09-D-05",
+           "text": "Define metabolism, catabolism and anabolism with examples."
+          },
+          {
+           "code": "B-09-D-06",
+           "text": "Discuss ATP as the energy currency."
+          },
+          {
+           "code": "B-09-D-07",
+           "text": "Define photosynthesis and explain its overall mechanism."
+          },
+          {
+           "code": "B-09-D-08",
+           "text": "Describe the light-dependent and light-independent phases."
+          },
+          {
+           "code": "B-09-D-09",
+           "text": "State the role of chlorophyll in photosynthesis."
+          }
+         ]
+        },
+        {
+         "id": "limiting-factors",
+         "title": "Limiting factors",
+         "outcomes": [
+          {
+           "code": "B-09-D-10",
+           "text": "Describe limiting factors in photosynthesis."
+          },
+          {
+           "code": "B-09-D-11",
+           "text": "Narrate how light, CO2 and temperature affect photosynthesis rate."
+          }
+         ]
+        },
+        {
+         "id": "respiration-basics",
+         "title": "Respiration basics",
+         "outcomes": [
+          {
+           "code": "B-09-D-12",
+           "text": "Define cellular respiration and its types."
+          },
+          {
+           "code": "B-09-D-13",
+           "text": "Explain lactic acid and alcoholic fermentation as anaerobic respiration."
+          },
+          {
+           "code": "B-09-D-14",
+           "text": "Explain why lactic acid buildup in muscles causes oxygen debt."
+          },
+          {
+           "code": "B-09-D-15",
+           "text": "Outline aerobic respiration: glycolysis, pyruvate oxidation, Krebs cycle, electron transport."
+          },
+          {
+           "code": "B-09-D-16",
+           "text": "Sketch an overview diagram of aerobic respiration."
+          },
+          {
+           "code": "B-09-D-17",
+           "text": "Compare aerobic and anaerobic respiration by energy released."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "domain-e-plant-physiology",
+     "title": "Domain E: Plant Physiology",
+     "topics": [
+      {
+       "id": "plant-physiology",
+       "title": "Plant Physiology",
+       "subtopics": [
+        {
+         "id": "mineral-nutrition",
+         "title": "Mineral nutrition",
+         "outcomes": [
+          {
+           "code": "B-09-E-01",
+           "text": "Define mineral nutrition in plants."
+          },
+          {
+           "code": "B-09-E-02",
+           "text": "Sort mineral nutrients into macronutrients and micronutrients."
+          },
+          {
+           "code": "B-09-E-03",
+           "text": "State why plants need nitrogen and magnesium."
+          }
+         ]
+        },
+        {
+         "id": "roots-and-transport",
+         "title": "Roots and transport",
+         "outcomes": [
+          {
+           "code": "B-09-E-04",
+           "text": "Conceptualize transport in plants and why it is needed."
+          },
+          {
+           "code": "B-09-E-05",
+           "text": "Explain the internal structure of monocot and dicot roots."
+          },
+          {
+           "code": "B-09-E-06",
+           "text": "Describe root uptake of water and salts by active and passive absorption."
+          }
+         ]
+        },
+        {
+         "id": "transpiration",
+         "title": "Transpiration",
+         "outcomes": [
+          {
+           "code": "B-09-E-07",
+           "text": "Describe transpiration and link it to leaf area and stomatal opening."
+          },
+          {
+           "code": "B-09-E-08",
+           "text": "Describe how temperature, wind and humidity affect transpiration rate."
+          },
+          {
+           "code": "B-09-E-09",
+           "text": "Describe transport of water and salts in plants (ascent of sap)."
+          },
+          {
+           "code": "B-09-E-10",
+           "text": "Explain translocation of food by the pressure flow mechanism."
+          }
+         ]
+        },
+        {
+         "id": "gas-exchange-excretion-and-movement",
+         "title": "Gas exchange, excretion and movement",
+         "outcomes": [
+          {
+           "code": "B-09-E-11",
+           "text": "Describe gas exchange in leaf, stem and root."
+          },
+          {
+           "code": "B-09-E-12",
+           "text": "Describe plant excretion mechanisms and adaptations."
+          },
+          {
+           "code": "B-09-E-13",
+           "text": "Describe gravitropism and phototropism."
+          },
+          {
+           "code": "B-09-E-14",
+           "text": "State auxin's role in controlling shoot growth."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "reproduction-in-plants",
+       "title": "Reproduction in Plants",
+       "subtopics": [
+        {
+         "id": "asexual-and-sexual-reproduction",
+         "title": "Asexual and sexual reproduction",
+         "outcomes": [
+          {
+           "code": "B-09-E-15",
+           "text": "Differentiate asexual from sexual reproduction."
+          },
+          {
+           "code": "B-09-E-16",
+           "text": "Discuss advantages and disadvantages of asexual and sexual reproduction."
+          },
+          {
+           "code": "B-09-E-17",
+           "text": "Distinguish natural from artificial vegetative propagation."
+          },
+          {
+           "code": "B-09-E-18",
+           "text": "Explain natural vegetative propagation by runners, suckers and leaves."
+          },
+          {
+           "code": "B-09-E-19",
+           "text": "Describe artificial propagation by stem cuttings and grafting."
+          }
+         ]
+        },
+        {
+         "id": "flowers-and-seeds",
+         "title": "Flowers and seeds",
+         "outcomes": [
+          {
+           "code": "B-09-E-20",
+           "text": "Identify flower parts and their functions."
+          },
+          {
+           "code": "B-09-E-21",
+           "text": "Describe sexual reproduction through a flowering plant's life cycle."
+          },
+          {
+           "code": "B-09-E-22",
+           "text": "Describe adaptations of wind- and insect-pollinated flowers."
+          },
+          {
+           "code": "B-09-E-23",
+           "text": "Describe monocot and dicot seed structure."
+          },
+          {
+           "code": "B-09-E-24",
+           "text": "Explain epigeal and hypogeal germination."
+          },
+          {
+           "code": "B-09-E-25",
+           "text": "State conditions needed for seed germination."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "domain-m-experimentation-skills",
+     "title": "Domain M: Experimentation Skills",
+     "topics": [
+      {
+       "id": "grade-9-practicals",
+       "title": "Grade 9 Practicals",
+       "subtopics": [
+        {
+         "id": "microscope-and-cells",
+         "title": "Microscope and cells",
+         "outcomes": [
+          {
+           "code": "B-09-M-01",
+           "text": "Use a microscope to measure cell sizes."
+          },
+          {
+           "code": "B-09-M-02",
+           "text": "Calculate magnification of specimens."
+          },
+          {
+           "code": "B-09-M-03",
+           "text": "Observe stages of mitosis using slides, models and charts."
+          },
+          {
+           "code": "B-09-M-04",
+           "text": "Observe stages of meiosis using slides, models and charts."
+          },
+          {
+           "code": "B-09-M-05",
+           "text": "Prepare and stain animal cell slides, such as cheek cells."
+          },
+          {
+           "code": "B-09-M-06",
+           "text": "Prepare and stain plant cell slides, such as onion epidermis."
+          }
+         ]
+        },
+        {
+         "id": "enzymes-and-photosynthesis",
+         "title": "Enzymes and photosynthesis",
+         "outcomes": [
+          {
+           "code": "B-09-M-07",
+           "text": "Investigate temperature's effect on enzyme activity."
+          },
+          {
+           "code": "B-09-M-08",
+           "text": "Demonstrate photosynthesis with an aquatic plant such as Hydrilla."
+          },
+          {
+           "code": "B-09-M-09",
+           "text": "Investigate whether chlorophyll is needed for photosynthesis."
+          },
+          {
+           "code": "B-09-M-10",
+           "text": "Investigate whether light is needed for photosynthesis."
+          },
+          {
+           "code": "B-09-M-11",
+           "text": "Investigate whether carbon dioxide is needed for photosynthesis."
+          },
+          {
+           "code": "B-09-M-12",
+           "text": "Investigate light's effect on net gas exchange of a leaf using hydrogen-carbonate indicator."
+          }
+         ]
+        },
+        {
+         "id": "respiration-and-food-tests",
+         "title": "Respiration and food tests",
+         "outcomes": [
+          {
+           "code": "B-09-M-13",
+           "text": "Investigate release of carbon dioxide and heat in aerobic respiration of germinating seeds."
+          },
+          {
+           "code": "B-09-M-14",
+           "text": "Run Benedict's test for reducing sugar."
+          },
+          {
+           "code": "B-09-M-15",
+           "text": "Run the iodine test for starch."
+          },
+          {
+           "code": null,
+           "text": "Run the emulsion test for lipids."
+          },
+          {
+           "code": "B-09-M-17",
+           "text": "Run the Biuret test for protein."
+          }
+         ]
+        },
+        {
+         "id": "plant-physiology-experiments",
+         "title": "Plant physiology experiments",
+         "outcomes": [
+          {
+           "code": "B-09-M-18",
+           "text": "Measure change in length or weight of potato strips in salt solution and water."
+          },
+          {
+           "code": "B-09-M-19",
+           "text": "Investigate transpiration in a potted plant under a bell jar."
+          },
+          {
+           "code": "B-09-M-20",
+           "text": "Investigate wind speed's effect on transpiration."
+          },
+          {
+           "code": "B-09-M-21",
+           "text": "Investigate light intensity's effect on transpiration."
+          },
+          {
+           "code": "B-09-M-22",
+           "text": "Investigate temperature's effect on transpiration."
+          },
+          {
+           "code": "B-09-M-23",
+           "text": "Identify xylem and phloem in prepared stem, root and leaf slides."
+          },
+          {
+           "code": "B-09-M-24",
+           "text": "Investigate conditions for seed germination: temperature, oxygen, water."
+          },
+          {
+           "code": "B-09-M-25",
+           "text": "Demonstrate anaerobic respiration in yeast under different conditions."
+          },
+          {
+           "code": "B-09-M-26",
+           "text": "Identify laboratory apparatus, their uses and safety rules."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "10",
+   "units": [
+    {
+     "id": "domain-f-human-physiology",
+     "title": "Domain F: Human Physiology",
+     "topics": [
+      {
+       "id": "human-digestive-system",
+       "title": "Human Digestive System",
+       "subtopics": [
+        {
+         "id": "digestion-in-the-gut",
+         "title": "Digestion in the gut",
+         "outcomes": [
+          {
+           "code": "B-10-F-01",
+           "text": "Define ingestive heterotrophic nutrition: ingestion, digestion, absorption, assimilation, egestion."
+          },
+          {
+           "code": "B-10-F-02",
+           "text": "Describe main regions of the alimentary canal and associated organs."
+          },
+          {
+           "code": "B-10-F-03",
+           "text": "Describe swallowing and peristalsis."
+          },
+          {
+           "code": "B-10-F-04",
+           "text": "Analyze enzyme action in oral cavity, stomach and small intestine by substrate and product."
+          }
+         ]
+        },
+        {
+         "id": "liver-villi-and-disorders",
+         "title": "Liver, villi and disorders",
+         "outcomes": [
+          {
+           "code": "B-10-F-05",
+           "text": "State any five roles of the liver."
+          },
+          {
+           "code": "B-10-F-06",
+           "text": "Describe a villus and the roles of capillaries and lacteals in absorption."
+          },
+          {
+           "code": "B-10-F-07",
+           "text": "State symptoms, causes, treatment and prevention of diarrhoea, constipation and ulcer."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "human-respiratory-system",
+       "title": "Human Respiratory System",
+       "subtopics": [
+        {
+         "id": "breathing-and-lungs",
+         "title": "Breathing and lungs",
+         "outcomes": [
+          {
+           "code": "B-10-F-08",
+           "text": "Describe the roles of the air passageway parts and lungs."
+          },
+          {
+           "code": "B-10-F-09",
+           "text": "Describe breathing and effects of exercise on breathing rate."
+          },
+          {
+           "code": "B-10-F-10",
+           "text": "Differentiate the composition of inspired and expired air."
+          },
+          {
+           "code": "B-10-F-11",
+           "text": "Discuss respiratory diseases: bronchitis, pneumonia, emphysema, lung cancer."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "human-blood-circulatory-system",
+       "title": "Human Blood Circulatory System",
+       "subtopics": [
+        {
+         "id": "blood-and-vessels",
+         "title": "Blood and vessels",
+         "outcomes": [
+          {
+           "code": "B-10-F-12",
+           "text": "Define the blood circulatory system and identify its major organs and roles."
+          },
+          {
+           "code": "B-10-F-13",
+           "text": "Describe double circulation through the main pathways of blood."
+          },
+          {
+           "code": "B-10-F-14",
+           "text": "Identify blood components and state their roles."
+          },
+          {
+           "code": "B-10-F-15",
+           "text": "Compare the structure and function of artery, vein and capillary."
+          }
+         ]
+        },
+        {
+         "id": "the-heart-and-its-disease",
+         "title": "The heart and its disease",
+         "outcomes": [
+          {
+           "code": "B-10-F-16",
+           "text": "Explain the structure of the heart with a diagram."
+          },
+          {
+           "code": "B-10-F-17",
+           "text": "Describe blood flow through the atria and ventricles."
+          },
+          {
+           "code": "B-10-F-18",
+           "text": "Explain coronary artery disease: angina, myocardial infarction, cardiac arrest."
+          },
+          {
+           "code": null,
+           "text": "Relate coronary artery disease to risk factors: diet, inactivity, stress, smoking, heredity, age."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "human-urinary-system",
+       "title": "Human Urinary System",
+       "subtopics": [
+        {
+         "id": "kidneys-and-nephrons",
+         "title": "Kidneys and nephrons",
+         "outcomes": [
+          {
+           "code": "B-10-F-20",
+           "text": "Sketch and label urinary system organs and state their functions."
+          },
+          {
+           "code": "B-10-F-21",
+           "text": "Describe and sketch the internal structure of the kidney."
+          },
+          {
+           "code": "B-10-F-22",
+           "text": "Describe nephron parts and link them to filtration, reabsorption and secretion."
+          },
+          {
+           "code": "B-10-F-23",
+           "text": "State that the kidney has a key role in osmoregulation."
+          }
+         ]
+        },
+        {
+         "id": "kidney-problems",
+         "title": "Kidney problems",
+         "outcomes": [
+          {
+           "code": "B-10-F-24",
+           "text": "Identify causes and treatment of kidney stones."
+          },
+          {
+           "code": "B-10-F-25",
+           "text": "Outline causes of kidney failure and treatments: dialysis and transplant."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "coordination",
+       "title": "Coordination",
+       "subtopics": [
+        {
+         "id": "coordination-basics",
+         "title": "Coordination basics",
+         "outcomes": [
+          {
+           "code": "B-10-F-26",
+           "text": "Define coordination and its nervous and chemical types."
+          },
+          {
+           "code": "B-10-F-27",
+           "text": "Define the stimulus-response model with receptors, coordinators and effectors."
+          },
+          {
+           "code": "B-10-F-28",
+           "text": "Outline the types of neurons with diagrams."
+          },
+          {
+           "code": "B-10-F-29",
+           "text": "Discuss the central and peripheral nervous systems."
+          },
+          {
+           "code": "B-10-F-30",
+           "text": "Define nerve impulse."
+          },
+          {
+           "code": "B-10-F-31",
+           "text": "Define synapse and neurotransmitters with examples."
+          },
+          {
+           "code": "B-10-F-32",
+           "text": "Explain and sketch a reflex arc using hand withdrawal."
+          }
+         ]
+        },
+        {
+         "id": "hormones",
+         "title": "Hormones",
+         "outcomes": [
+          {
+           "code": "B-10-F-33",
+           "text": "Identify main endocrine glands and state functions of their hormones."
+          },
+          {
+           "code": null,
+           "text": "Compare nervous and hormonal coordination by speed and duration."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "reproductive-system",
+       "title": "Reproductive System",
+       "subtopics": [
+        {
+         "id": "gametes-and-rabbit-reproduction",
+         "title": "Gametes and rabbit reproduction",
+         "outcomes": [
+          {
+           "code": "B-10-F-35",
+           "text": "Describe gametogenesis and fertilization."
+          },
+          {
+           "code": "B-10-F-36",
+           "text": "Describe and sketch the male and female reproductive systems of rabbit."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "domain-g-inheritance-and-evolution",
+     "title": "Domain G: Inheritance and Evolution",
+     "topics": [
+      {
+       "id": "inheritance",
+       "title": "Inheritance",
+       "subtopics": [
+        {
+         "id": "from-dna-to-protein-karyotype",
+         "title": "From DNA to protein, karyotype",
+         "outcomes": [
+          {
+           "code": "B-10-G-01",
+           "text": "Define inheritance and outline how DNA information becomes RNA and then protein."
+          },
+          {
+           "code": "B-10-G-02",
+           "text": "Briefly explain the types of RNA and their roles in protein synthesis."
+          },
+          {
+           "code": "B-10-G-03",
+           "text": "Sketch and label the structure of chromosomes."
+          },
+          {
+           "code": "B-10-G-04",
+           "text": "Define karyotype and explain human male and female karyotypes."
+          }
+         ]
+        },
+        {
+         "id": "mendel-s-laws",
+         "title": "Mendel's laws",
+         "outcomes": [
+          {
+           "code": "B-10-G-05",
+           "text": "Define gene, allele, genotype, phenotype, homozygous, heterozygous, dominant, recessive."
+          },
+          {
+           "code": "B-10-G-06",
+           "text": "List the seven pairs of contrasting characters Mendel studied in pea."
+          },
+          {
+           "code": "B-10-G-07",
+           "text": "Justify the pea plant as a model organism."
+          },
+          {
+           "code": "B-10-G-08",
+           "text": "Describe the law of segregation through a monohybrid cross."
+          },
+          {
+           "code": "B-10-G-09",
+           "text": "Describe the law of independent assortment through a dihybrid cross."
+          }
+         ]
+        },
+        {
+         "id": "mutations",
+         "title": "Mutations",
+         "outcomes": [
+          {
+           "code": "B-10-G-10",
+           "text": "Describe gene mutation using sickle cell anaemia."
+          },
+          {
+           "code": null,
+           "text": "Describe chromosomal mutation using Down's syndrome."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "evolution",
+       "title": "Evolution",
+       "subtopics": [
+        {
+         "id": "natural-selection-and-variation",
+         "title": "Natural selection and variation",
+         "outcomes": [
+          {
+           "code": "B-10-G-12",
+           "text": "Define evolution and explain the theory of natural selection with an example."
+          },
+          {
+           "code": "B-10-G-13",
+           "text": "Justify antibiotic-resistant bacteria as an example of natural selection."
+          },
+          {
+           "code": "B-10-G-14",
+           "text": "Define variation and describe continuous and discontinuous types."
+          },
+          {
+           "code": "B-10-G-15",
+           "text": "Describe sources of variation."
+          }
+         ]
+        },
+        {
+         "id": "evidence-and-artificial-selection",
+         "title": "Evidence and artificial selection",
+         "outcomes": [
+          {
+           "code": "B-10-G-16",
+           "text": "Describe evidence of evolution from the fossil record and biogeography."
+          },
+          {
+           "code": "B-10-G-18",
+           "text": "Describe artificial selection and its significance."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "domain-h-biotechnology",
+     "title": "Domain H: Biotechnology",
+     "topics": [
+      {
+       "id": "biotechnology",
+       "title": "Biotechnology",
+       "subtopics": [
+        {
+         "id": "introduction-to-biotechnology",
+         "title": "Introduction to biotechnology",
+         "outcomes": [
+          {
+           "code": "B-10-H-01",
+           "text": "Differentiate traditional (fermentation) from modern biotechnology (genetic engineering)."
+          },
+          {
+           "code": "B-10-H-02",
+           "text": "Justify the role of bacteria and yeast in biotechnology."
+          },
+          {
+           "code": "B-10-H-03",
+           "text": "Describe the basic method of genetic engineering."
+          },
+          {
+           "code": "B-10-H-04",
+           "text": "Define genetically modified organisms."
+          },
+          {
+           "code": null,
+           "text": "Discuss uses of biotechnology in food, medicine and the environment."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "domain-i-disease-and-immunity",
+     "title": "Domain I: Disease and Immunity",
+     "topics": [
+      {
+       "id": "disease-and-immunity",
+       "title": "Disease and Immunity",
+       "subtopics": [
+        {
+         "id": "disease-basics",
+         "title": "Disease basics",
+         "outcomes": [
+          {
+           "code": "B-10-I-01",
+           "text": "Define disease, illness, prevalence, mortality and infestation."
+          },
+          {
+           "code": null,
+           "text": "Define epidemiology and pandemic, endemic and epidemic diseases."
+          },
+          {
+           "code": null,
+           "text": "Describe infectious and non-infectious diseases with examples."
+          },
+          {
+           "code": null,
+           "text": "List four pathogen types and name two diseases each."
+          },
+          {
+           "code": null,
+           "text": "Define diabetes and its subtypes and describe effects on the body."
+          },
+          {
+           "code": null,
+           "text": "List common allergies and their types."
+          }
+         ]
+        },
+        {
+         "id": "immune-system-and-vaccines",
+         "title": "Immune system and vaccines",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Define immunity and describe the main parts of the immune system."
+          },
+          {
+           "code": null,
+           "text": "Describe innate and acquired immunity and relate them to the three lines of defence."
+          },
+          {
+           "code": null,
+           "text": "State the types of acquired immunity: active and passive."
+          },
+          {
+           "code": null,
+           "text": "Define antibodies and state how they act on specific antigens."
+          },
+          {
+           "code": null,
+           "text": "Discuss how vaccines boost immunity, using the polio vaccine."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "domain-k-ecology",
+     "title": "Domain K: Ecology",
+     "topics": [
+      {
+       "id": "ecology",
+       "title": "Ecology",
+       "subtopics": [
+        {
+         "id": "ecosystems-and-trophic-levels",
+         "title": "Ecosystems and trophic levels",
+         "outcomes": [
+          {
+           "code": "B-10-K-01",
+           "text": "Define species, population, community, biome and ecosystem."
+          },
+          {
+           "code": "B-10-K-02",
+           "text": "Define ecosystem; describe its abiotic and biotic components."
+          },
+          {
+           "code": "B-10-K-07",
+           "text": "Define trophic levels."
+          },
+          {
+           "code": "B-10-K-08",
+           "text": "Discuss energy flow and loss across trophic levels."
+          },
+          {
+           "code": "B-10-K-09",
+           "text": "Interpret pyramids of number, biomass and energy."
+          }
+         ]
+        },
+        {
+         "id": "greenhouse-effect",
+         "title": "Greenhouse effect",
+         "outcomes": [
+          {
+           "code": "B-10-K-03",
+           "text": "Explain the greenhouse effect with example gases."
+          },
+          {
+           "code": "B-10-K-04",
+           "text": "Describe harmful effects of greenhouse gases on the environment."
+          }
+         ]
+        },
+        {
+         "id": "water-cycle",
+         "title": "Water cycle",
+         "outcomes": [
+          {
+           "code": "B-10-K-05",
+           "text": "Describe the water cycle in detail."
+          },
+          {
+           "code": "B-10-K-06",
+           "text": "Define aquifers and water table."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "domain-m-experimentation-skills",
+     "title": "Domain M: Experimentation Skills",
+     "topics": [
+      {
+       "id": "grade-10-practicals",
+       "title": "Grade 10 Practicals",
+       "subtopics": [
+        {
+         "id": "human-physiology-experiments",
+         "title": "Human physiology experiments",
+         "outcomes": [
+          {
+           "code": "B-10-M-01",
+           "text": "Compare inhaled and exhaled air using limewater or hydrogen-carbonate indicator."
+          },
+          {
+           "code": "B-10-M-02",
+           "text": "Compare breathing rate at rest and after exercise."
+          },
+          {
+           "code": "B-10-M-03",
+           "text": "Investigate the effect of physical activity on pulse rate."
+          },
+          {
+           "code": "B-10-M-04",
+           "text": "Examine the structure of a kidney (sheep kidney or model)."
+          },
+          {
+           "code": "B-10-M-05",
+           "text": "Observe frog muscle contraction under electric current."
+          }
+         ]
+        },
+        {
+         "id": "variation-and-lab-practice",
+         "title": "Variation and lab practice",
+         "outcomes": [
+          {
+           "code": "B-10-M-06",
+           "text": "Record class heights, identify the variation type and present as histogram or bar chart."
+          },
+          {
+           "code": "B-10-M-07",
+           "text": "Identify laboratory apparatus, their uses and safety rules."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "11",
+   "units": [
+    {
+     "id": "domain-a-nature-of-biology-and-classification",
+     "title": "Domain A: Nature of Biology and Classification",
+     "topics": [
+      {
+       "id": "acellular-life-and-prokaryotes",
+       "title": "Acellular Life and Prokaryotes",
+       "subtopics": [
+        {
+         "id": "acellular-life",
+         "title": "Acellular life",
+         "outcomes": [
+          {
+           "code": "B-11-A-01",
+           "text": "Define acellular life and list its forms: viruses, prions, viroids."
+          },
+          {
+           "code": "B-11-A-02",
+           "text": "Justify the status of acellular entities among living things."
+          },
+          {
+           "code": "B-11-A-03",
+           "text": "Classify viruses by host and structure."
+          }
+         ]
+        },
+        {
+         "id": "bacteriophage",
+         "title": "Bacteriophage",
+         "outcomes": [
+          {
+           "code": "B-11-A-04",
+           "text": "Describe the structure of a model virus, the bacteriophage."
+          },
+          {
+           "code": "B-11-A-05",
+           "text": "Describe the lytic and lysogenic life cycles of bacteriophage."
+          },
+          {
+           "code": "B-11-A-06",
+           "text": "Justify why a bacteriophage shifts from lysogenic to lytic cycle."
+          }
+         ]
+        },
+        {
+         "id": "hiv-prions-and-viroids",
+         "title": "HIV, prions and viroids",
+         "outcomes": [
+          {
+           "code": "B-11-A-07",
+           "text": "Describe HIV structure and its life cycle in helper T-cells."
+          },
+          {
+           "code": "B-11-A-08",
+           "text": "Describe prion and viroid structure and the diseases they cause."
+          },
+          {
+           "code": "B-11-A-09",
+           "text": "Classify AIDS symptoms into carrier, AIDS-related complex and full-blown stages."
+          },
+          {
+           "code": "B-11-A-10",
+           "text": "Apply common measures to prevent HIV transmission."
+          },
+          {
+           "code": "B-11-A-11",
+           "text": "Discuss useful aspects of viruses: drug delivery vehicles and vaccines."
+          }
+         ]
+        },
+        {
+         "id": "archaea-and-bacteria",
+         "title": "Archaea and bacteria",
+         "outcomes": [
+          {
+           "code": "B-11-A-12",
+           "text": "Describe classification by Carl Woese's three-domain system."
+          },
+          {
+           "code": "B-11-A-13",
+           "text": "Outline where prokaryotes sit: domains archaea and bacteria, and kingdom Monera."
+          },
+          {
+           "code": "B-11-A-14",
+           "text": "Compare the characteristics of archaea and bacteria."
+          },
+          {
+           "code": "B-11-A-15",
+           "text": "Describe and draw the structure and shapes of a generalized prokaryotic cell."
+          }
+         ]
+        },
+        {
+         "id": "bacterial-structure-and-survival",
+         "title": "Bacterial structure and survival",
+         "outcomes": [
+          {
+           "code": "B-11-A-16",
+           "text": "Describe bacterial cell wall and coverings; compare Gram-positive and Gram-negative walls."
+          },
+          {
+           "code": "B-11-A-17",
+           "text": "Justify endospore formation as a survival mechanism."
+          },
+          {
+           "code": "B-11-A-18",
+           "text": "Draw bacterial flagellum and compare it with eukaryotic flagella on three points."
+          }
+         ]
+        },
+        {
+         "id": "bacterial-reproduction-and-nutrition",
+         "title": "Bacterial reproduction and nutrition",
+         "outcomes": [
+          {
+           "code": "B-11-A-19",
+           "text": "Describe genetic recombination in bacteria: conjugation, transduction, transformation."
+          },
+          {
+           "code": "B-11-A-20",
+           "text": "Illustrate binary fission and sketch the phases of bacterial growth."
+          },
+          {
+           "code": "B-11-A-21",
+           "text": "Classify bacteria as autotrophic or heterotrophic by energy and carbon source."
+          },
+          {
+           "code": "B-11-A-22",
+           "text": "Compare photosynthesis in cyanobacteria and other photosynthetic bacteria."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "protists-and-fungi",
+       "title": "Protists and Fungi",
+       "subtopics": [
+        {
+         "id": "protists",
+         "title": "Protists",
+         "outcomes": [
+          {
+           "code": "B-11-A-23",
+           "text": "Describe features and examples of protists: protozoa, algae, Myxomycota, Oomycota."
+          },
+          {
+           "code": "B-11-A-24",
+           "text": "Justify how protists matter to humans."
+          }
+         ]
+        },
+        {
+         "id": "fungi",
+         "title": "Fungi",
+         "outcomes": [
+          {
+           "code": "B-11-A-25",
+           "text": "Outline fungal traits and classify fungi into four phyla with diagnostic features."
+          },
+          {
+           "code": "B-11-A-26",
+           "text": "Describe and draw the life cycle of the mushroom Agaricus."
+          },
+          {
+           "code": "B-11-A-27",
+           "text": "Describe the ecological importance and disease role of fungi."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "diversity-in-plants",
+       "title": "Diversity in Plants",
+       "subtopics": [
+        {
+         "id": "bryophytes-and-ferns",
+         "title": "Bryophytes and ferns",
+         "outcomes": [
+          {
+           "code": "B-11-A-28",
+           "text": "Describe the main plant divisions and outline their classification in a flowchart."
+          },
+          {
+           "code": "B-11-A-29",
+           "text": "List diagnostic features of bryophytes."
+          },
+          {
+           "code": "B-11-A-30",
+           "text": "Briefly describe the life cycle of Funaria."
+          },
+          {
+           "code": "B-11-A-31",
+           "text": "State general features of pteridophytes."
+          },
+          {
+           "code": "B-11-A-32",
+           "text": "Describe the life cycle of ferns."
+          }
+         ]
+        },
+        {
+         "id": "seed-plants",
+         "title": "Seed plants",
+         "outcomes": [
+          {
+           "code": "B-11-A-33",
+           "text": "Briefly describe how the seed habit evolved."
+          },
+          {
+           "code": "B-11-A-34",
+           "text": "List general features of gymnosperms."
+          },
+          {
+           "code": "B-11-A-35",
+           "text": "Describe the life cycle of Pinus."
+          },
+          {
+           "code": "B-11-A-36",
+           "text": "Describe general angiosperm features and classify them into monocots and dicots."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "diversity-in-animals",
+       "title": "Diversity in Animals",
+       "subtopics": [
+        {
+         "id": "animal-phyla",
+         "title": "Animal phyla",
+         "outcomes": [
+          {
+           "code": "B-11-A-37",
+           "text": "Sketch a flow chart classifying animal phyla by tissues, germ layers, symmetry, coeloms, development and backbone."
+          },
+          {
+           "code": "B-11-A-38",
+           "text": "List distinguishing features of the invertebrate phyla from Porifera to Hemichordata."
+          }
+         ]
+        },
+        {
+         "id": "chordates",
+         "title": "Chordates",
+         "outcomes": [
+          {
+           "code": "B-11-A-39",
+           "text": "List distinguishing features of phylum Chordata."
+          },
+          {
+           "code": "B-11-A-40",
+           "text": "State salient features of Urochordata, Cephalochordata and Vertebrata."
+          },
+          {
+           "code": "B-11-A-41",
+           "text": "Describe diagnostic features of the five vertebrate classes with three examples each."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "domain-b-molecular-biology",
+     "title": "Domain B: Molecular Biology",
+     "topics": [
+      {
+       "id": "biological-molecules",
+       "title": "Biological Molecules",
+       "subtopics": [
+        {
+         "id": "water-as-the-medium-of-life",
+         "title": "Water as the medium of life",
+         "outcomes": [
+          {
+           "code": "B-11-B-01",
+           "text": "Evaluate water's properties that make it the medium of life."
+          }
+         ]
+        },
+        {
+         "id": "carbohydrates-in-depth",
+         "title": "Carbohydrates in depth",
+         "outcomes": [
+          {
+           "code": "B-11-B-02",
+           "text": "Define carbohydrates and classify them as mono-, di- and polysaccharides."
+          },
+          {
+           "code": "B-11-B-03",
+           "text": "Define monosaccharides and classify them by carbon number with examples."
+          },
+          {
+           "code": null,
+           "text": "Compare open and closed chains of glucose and fructose, and glucose isomers."
+          },
+          {
+           "code": "B-11-B-05",
+           "text": "Distinguish properties and roles of sucrose, maltose and lactose."
+          },
+          {
+           "code": "B-11-B-06",
+           "text": "Describe glycosidic bonds in disaccharides."
+          },
+          {
+           "code": "B-11-B-07",
+           "text": "Describe structure, properties and roles of starch, glycogen, cellulose and chitin."
+          }
+         ]
+        },
+        {
+         "id": "proteins-in-depth",
+         "title": "Proteins in depth",
+         "outcomes": [
+          {
+           "code": "B-11-B-08",
+           "text": "Define protein and amino acid; draw glycine and alanine."
+          },
+          {
+           "code": "B-11-B-09",
+           "text": "Outline making and breaking of peptide bonds."
+          },
+          {
+           "code": "B-11-B-10",
+           "text": "Classify proteins as globular or fibrous."
+          },
+          {
+           "code": "B-11-B-11",
+           "text": "Describe haemoglobin structure including its quaternary form."
+          },
+          {
+           "code": "B-11-B-12",
+           "text": "Describe collagen molecules and how they form fibers."
+          },
+          {
+           "code": "B-11-B-13",
+           "text": "Justify why amino acid sequence matters, using sickle cell haemoglobin."
+          },
+          {
+           "code": "B-11-B-14",
+           "text": "List roles of structural and functional proteins with three examples."
+          }
+         ]
+        },
+        {
+         "id": "lipids",
+         "title": "Lipids",
+         "outcomes": [
+          {
+           "code": "B-11-B-15",
+           "text": "Define lipids; describe properties and roles of acylglycerols, phospholipids, terpenes, waxes, cholesterol, steroids."
+          },
+          {
+           "code": "B-11-B-16",
+           "text": "Illustrate the molecular structure of an acylglycerol, a phospholipid and a terpene."
+          }
+         ]
+        },
+        {
+         "id": "nucleic-acids",
+         "title": "Nucleic acids",
+         "outcomes": [
+          {
+           "code": "B-11-B-17",
+           "text": "Describe nucleic acids and nucleotide structure."
+          },
+          {
+           "code": "B-11-B-18",
+           "text": "Distinguish the nitrogenous bases in nucleotides."
+          },
+          {
+           "code": "B-11-B-19",
+           "text": "Sketch a mononucleotide (ATP) and a dinucleotide (NAD)."
+          },
+          {
+           "code": "B-11-B-20",
+           "text": "Illustrate formation of the phosphodiester bond."
+          },
+          {
+           "code": "B-11-B-21",
+           "text": "Explain DNA's double helix."
+          },
+          {
+           "code": "B-11-B-22",
+           "text": "Explain the general structure of RNA."
+          },
+          {
+           "code": "B-11-B-23",
+           "text": "Distinguish the three types of RNA by function."
+          }
+         ]
+        },
+        {
+         "id": "conjugated-molecules",
+         "title": "Conjugated molecules",
+         "outcomes": [
+          {
+           "code": "B-11-B-24",
+           "text": "Define conjugated molecules and describe roles of peptidoglycan, glycolipids, glycoproteins, lipoproteins, nucleoproteins."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "domain-c-cell-biology",
+     "title": "Domain C: Cell Biology",
+     "topics": [
+      {
+       "id": "cells",
+       "title": "Cells",
+       "subtopics": [
+        {
+         "id": "cell-theory-and-microscopes",
+         "title": "Cell theory and microscopes",
+         "outcomes": [
+          {
+           "code": "B-11-C-01",
+           "text": "State cell theory, how to validate it and its exceptions."
+          },
+          {
+           "code": "B-11-C-02",
+           "text": "Compare light and electron microscopes on resolution, magnification and live versus dead samples."
+          }
+         ]
+        },
+        {
+         "id": "organelles-and-membrane",
+         "title": "Organelles and membrane",
+         "outcomes": [
+          {
+           "code": "B-11-C-03",
+           "text": "Describe typical animal and plant cells and the structure and function of each organelle."
+          },
+          {
+           "code": "B-11-C-04",
+           "text": "Explain and draw the cell membrane's fluid mosaic model."
+          },
+          {
+           "code": "B-11-C-05",
+           "text": "Compare plant cell wall composition with fungal and bacterial walls."
+          }
+         ]
+        },
+        {
+         "id": "signaling-and-transport",
+         "title": "Signaling and transport",
+         "outcomes": [
+          {
+           "code": "B-11-C-06",
+           "text": "Define cell signaling and discuss a signal's path into the cell (protein and steroid signals)."
+          },
+          {
+           "code": "B-11-C-07",
+           "text": "Explain four membrane transport mechanisms: diffusion, facilitated diffusion, active transport, bulk transport."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "cell-division",
+       "title": "Cell Division",
+       "subtopics": [
+        {
+         "id": "cell-cycle-and-meiosis",
+         "title": "Cell cycle and meiosis",
+         "outcomes": [
+          {
+           "code": "B-11-C-08",
+           "text": "Define the cell cycle and its interphase phases with the checkpoints between them."
+          },
+          {
+           "code": "B-11-C-09",
+           "text": "Describe the phases of mitosis with diagrams."
+          },
+          {
+           "code": "B-11-C-10",
+           "text": "Describe the phases of meiosis I and II with diagrams."
+          }
+         ]
+        },
+        {
+         "id": "when-division-goes-wrong",
+         "title": "When division goes wrong",
+         "outcomes": [
+          {
+           "code": "B-11-C-11",
+           "text": "Analyze how uncontrolled mitosis can lead to tumors."
+          },
+          {
+           "code": "B-11-C-12",
+           "text": "Explain non-disjunction as a meiotic error and its consequences."
+          }
+         ]
+        },
+        {
+         "id": "stem-cells",
+         "title": "Stem cells",
+         "outcomes": [
+          {
+           "code": "B-11-C-13",
+           "text": "Define stem cells and sort them as totipotent, pluripotent, multipotent, oligopotent, unipotent."
+          },
+          {
+           "code": "B-11-C-14",
+           "text": "Evaluate pros and cons of induced pluripotent stem cells."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "domain-d-metabolism",
+     "title": "Domain D: Metabolism",
+     "topics": [
+      {
+       "id": "enzymes",
+       "title": "Enzymes",
+       "subtopics": [
+        {
+         "id": "enzyme-action-in-depth",
+         "title": "Enzyme action in depth",
+         "outcomes": [
+          {
+           "code": "B-11-D-01",
+           "text": "Define enzymes and sort them as intracellular or extracellular."
+          },
+          {
+           "code": "B-11-D-02",
+           "text": "Explain enzyme action by the lock-and-key and induced-fit hypotheses."
+          },
+          {
+           "code": "B-11-D-03",
+           "text": "Define activation energy and show on a graph how enzymes lower it."
+          },
+          {
+           "code": "B-11-D-04",
+           "text": "Define cofactors and tell inorganic ions, prosthetic groups and coenzymes apart."
+          }
+         ]
+        },
+        {
+         "id": "inhibition-and-conditions",
+         "title": "Inhibition and conditions",
+         "outcomes": [
+          {
+           "code": "B-11-D-05",
+           "text": "Describe reversible and irreversible enzyme inhibition and why it matters."
+          },
+          {
+           "code": "B-11-D-06",
+           "text": "Sort reversible inhibitors into competitive and non-competitive."
+          },
+          {
+           "code": "B-11-D-07",
+           "text": "Explain feedback inhibition using the regulation of ATP synthesis."
+          },
+          {
+           "code": "B-11-D-08",
+           "text": "Explain temperature's effect on enzyme rate, comparing humans and thermophilic bacteria."
+          },
+          {
+           "code": "B-11-D-09",
+           "text": "Investigate pH effects and compare optimum pH of trypsin, pepsin, papain."
+          },
+          {
+           "code": "B-11-D-10",
+           "text": "Demonstrate that enzyme concentration changes reaction rate."
+          }
+         ]
+        },
+        {
+         "id": "classifying-enzymes",
+         "title": "Classifying enzymes",
+         "outcomes": [
+          {
+           "code": "B-11-D-11",
+           "text": "Classify enzymes by reaction type: oxidoreductases, transferases, hydrolases, isomerases, ligases, lyases."
+          },
+          {
+           "code": "B-11-D-12",
+           "text": "Classify enzymes by the substrate they act on, such as amylase and proteases."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "bioenergetics",
+       "title": "Bioenergetics",
+       "subtopics": [
+        {
+         "id": "photosynthesis-in-depth",
+         "title": "Photosynthesis in depth",
+         "outcomes": [
+          {
+           "code": "B-11-D-13",
+           "text": "Explain the roles of light, carbon dioxide and water in photosynthesis."
+          },
+          {
+           "code": "B-11-D-14",
+           "text": "Identify the photosynthetic pigments: chlorophyll a, b, carotene, xanthophyll."
+          },
+          {
+           "code": "B-11-D-15",
+           "text": "Describe how pigments absorb and convert light energy."
+          },
+          {
+           "code": "B-11-D-16",
+           "text": "Compare absorption spectra of chlorophyll a, b and carotenoids with the action spectrum."
+          },
+          {
+           "code": "B-11-D-17",
+           "text": "Describe how pigments are arranged in photosystems I and II."
+          },
+          {
+           "code": "B-11-D-18",
+           "text": "Sketch light-dependent reactions: cyclic and non-cyclic photophosphorylation."
+          },
+          {
+           "code": "B-11-D-19",
+           "text": "Explain and sketch the Calvin cycle."
+          }
+         ]
+        },
+        {
+         "id": "aerobic-respiration-in-depth",
+         "title": "Aerobic respiration in depth",
+         "outcomes": [
+          {
+           "code": "B-11-D-20",
+           "text": "State the main events of aerobic respiration in eukaryotic cells."
+          },
+          {
+           "code": "B-11-D-21",
+           "text": "Describe glycolysis, naming reactants, products and enzymes."
+          },
+          {
+           "code": "B-11-D-22",
+           "text": "Illustrate the link reaction converting pyruvate to acetyl CoA."
+          },
+          {
+           "code": "B-11-D-23",
+           "text": "Describe and sketch the Krebs cycle steps."
+          },
+          {
+           "code": "B-11-D-24",
+           "text": "Trace electrons through the electron transport chain."
+          },
+          {
+           "code": "B-11-D-25",
+           "text": "Describe chemiosmosis and relate it to the electron transport chain."
+          },
+          {
+           "code": "B-11-D-26",
+           "text": "Explain substrate-level phosphorylation for making ATP."
+          }
+         ]
+        },
+        {
+         "id": "energy-sources-and-photorespiration",
+         "title": "Energy sources and photorespiration",
+         "outcomes": [
+          {
+           "code": "B-11-D-27",
+           "text": "Explain relative energy values of carbohydrates, lipids and proteins as respiratory substrates."
+          },
+          {
+           "code": "B-11-D-28",
+           "text": "Outline anaerobic respiration: glycolysis then pyruvate to lactic acid or ethanol."
+          },
+          {
+           "code": "B-11-D-29",
+           "text": "Justify why aerobic respiration yields far more energy than anaerobic."
+          },
+          {
+           "code": "B-11-D-30",
+           "text": "Outline how fats, proteins and carbohydrates feed linked energy pathways."
+          },
+          {
+           "code": "B-11-D-31",
+           "text": "Define photorespiration and outline its events."
+          },
+          {
+           "code": "B-11-D-32",
+           "text": "Rationalize how the wasteful process of photorespiration evolved."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "domain-e-plant-physiology",
+     "title": "Domain E: Plant Physiology",
+     "topics": [
+      {
+       "id": "plant-physiology",
+       "title": "Plant Physiology",
+       "subtopics": [
+        {
+         "id": "water-relations-and-vessels",
+         "title": "Water relations and vessels",
+         "outcomes": [
+          {
+           "code": "B-11-E-01",
+           "text": "Use water, solute and pressure potential to explain water transport."
+          },
+          {
+           "code": "B-11-E-02",
+           "text": "Describe water movement through roots by symplast, apoplast and vacuolar pathways."
+          },
+          {
+           "code": "B-11-E-03",
+           "text": "Relate tracheids, vessel elements, sieve tubes and companion cells to function."
+          },
+          {
+           "code": "B-11-E-04",
+           "text": "Explain water rise in xylem by the TACT mechanism."
+          },
+          {
+           "code": "B-11-E-05",
+           "text": "Explain sugar transport within plants."
+          }
+         ]
+        },
+        {
+         "id": "stomata-and-adaptations",
+         "title": "Stomata and adaptations",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain the role of stomata and palisade tissue in gas exchange."
+          },
+          {
+           "code": "B-11-E-07",
+           "text": "Describe how stomata open and close."
+          },
+          {
+           "code": "B-11-E-08",
+           "text": "Explain osmotic adjustments in hydrophytes, xerophytes, mesophytes and saline-soil plants."
+          },
+          {
+           "code": "B-11-E-09",
+           "text": "List plant adaptations to low and high temperature."
+          }
+         ]
+        },
+        {
+         "id": "support-and-growth",
+         "title": "Support and growth",
+         "outcomes": [
+          {
+           "code": "B-11-E-10",
+           "text": "Explain turgor pressure and how it supports herbaceous plants."
+          },
+          {
+           "code": "B-11-E-11",
+           "text": "Describe collenchyma and sclerenchyma support tissues."
+          },
+          {
+           "code": "B-11-E-12",
+           "text": "Define growth; explain primary and secondary growth."
+          },
+          {
+           "code": "B-11-E-13",
+           "text": "Justify growth rings as annual rings."
+          },
+          {
+           "code": "B-11-E-14",
+           "text": "Explain how the apical meristem influences lateral shoots."
+          }
+         ]
+        },
+        {
+         "id": "growth-regulators-and-responses",
+         "title": "Growth regulators and responses",
+         "outcomes": [
+          {
+           "code": "B-11-E-15",
+           "text": "Outline plant growth regulators: promoters (auxin, gibberellin, cytokinin) and inhibitors (abscisic acid, ethylene)."
+          },
+          {
+           "code": "B-11-E-16",
+           "text": "Explain plant movements in response to light, touch, gravity and chemicals."
+          },
+          {
+           "code": "B-11-E-17",
+           "text": "Define photoperiodism and classify plants by it."
+          },
+          {
+           "code": "B-11-E-18",
+           "text": "Describe photoperiodism through the action of phytochromes."
+          },
+          {
+           "code": "B-11-E-19",
+           "text": "Define vernalization and its role in flowering."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "domain-f-human-physiology",
+     "title": "Domain F: Human Physiology",
+     "topics": [
+      {
+       "id": "human-digestive-system",
+       "title": "Human Digestive System",
+       "subtopics": [
+        {
+         "id": "digestion-in-depth",
+         "title": "Digestion in depth",
+         "outcomes": [
+          {
+           "code": "B-11-F-01",
+           "text": "Describe mechanical and chemical digestion in the oral cavity."
+          },
+          {
+           "code": "B-11-F-02",
+           "text": "Illustrate the stomach and link each part to digestion."
+          },
+          {
+           "code": "B-11-F-03",
+           "text": "Identify roles of the nervous system and gastrin in gastric juice secretion."
+          },
+          {
+           "code": "B-11-F-04",
+           "text": "Describe actions on food in the three regions of the small intestine."
+          },
+          {
+           "code": "B-11-F-05",
+           "text": "Trace absorption of digested products from small intestine to blood."
+          },
+          {
+           "code": "B-11-F-06",
+           "text": "Describe the large intestine's components and roles."
+          }
+         ]
+        },
+        {
+         "id": "liver-and-pancreas",
+         "title": "Liver and pancreas",
+         "outcomes": [
+          {
+           "code": "B-11-F-07",
+           "text": "List the storage and metabolic roles of the liver."
+          },
+          {
+           "code": "B-11-F-08",
+           "text": "Describe bile composition, constituent roles and gallstone formation."
+          },
+          {
+           "code": "B-11-F-09",
+           "text": "Outline the pancreas and explain its exocrine function."
+          },
+          {
+           "code": "B-11-F-10",
+           "text": "Relate bile and pancreatic juice secretion to secretin and cholecystokinin."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "human-respiratory-system",
+       "title": "Human Respiratory System",
+       "subtopics": [
+        {
+         "id": "respiratory-system-in-depth",
+         "title": "Respiratory system in depth",
+         "outcomes": [
+          {
+           "code": "B-11-F-11",
+           "text": "Define the respiratory surface and list its properties."
+          },
+          {
+           "code": "B-11-F-12",
+           "text": "Describe structure and functions of human respiratory system parts."
+          },
+          {
+           "code": "B-11-F-13",
+           "text": "Explain the ventilation mechanism in humans."
+          },
+          {
+           "code": "B-11-F-14",
+           "text": "Discuss transport of oxygen and carbon dioxide in blood."
+          },
+          {
+           "code": "B-11-F-15",
+           "text": "State causes, symptoms and treatment of sinusitis, COPD and pulmonary tuberculosis."
+          }
+         ]
+        },
+        {
+         "id": "smoking",
+         "title": "Smoking",
+         "outcomes": [
+          {
+           "code": "B-11-F-16",
+           "text": "Describe effects of nicotine, carbon monoxide and tar on health."
+          },
+          {
+           "code": "B-11-F-17",
+           "text": "List effects of active and passive smoking."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "transport-systems-in-humans",
+       "title": "Transport Systems in Humans",
+       "subtopics": [
+        {
+         "id": "heart-in-depth",
+         "title": "Heart in depth",
+         "outcomes": [
+          {
+           "code": "B-11-F-18",
+           "text": "State the components of the human blood circulatory system."
+          },
+          {
+           "code": "B-11-F-19",
+           "text": "Describe the heart's external and internal structure and why chamber walls differ in thickness."
+          },
+          {
+           "code": "B-11-F-20",
+           "text": "Trace blood flow through the heart as regulated by valves."
+          },
+          {
+           "code": "B-11-F-21",
+           "text": "Discuss the phases of the heartbeat."
+          },
+          {
+           "code": "B-11-F-22",
+           "text": "Explain SA node, AV node and Purkinje fibers in controlling heartbeat."
+          },
+          {
+           "code": "B-11-F-23",
+           "text": "List principles and uses of the electrocardiogram."
+          }
+         ]
+        },
+        {
+         "id": "vessels-and-circulation",
+         "title": "Vessels and circulation",
+         "outcomes": [
+          {
+           "code": "B-11-F-24",
+           "text": "Describe the detailed structure and functions of arteries, veins and capillaries."
+          },
+          {
+           "code": "B-11-F-25",
+           "text": "Describe arterioles in vasoconstriction and vasodilation."
+          },
+          {
+           "code": "B-11-F-26",
+           "text": "Trace blood through pulmonary and systemic circulation, including coronary, hepatic-portal, renal."
+          },
+          {
+           "code": "B-11-F-27",
+           "text": "Compare blood flow rate in arteries, arterioles, capillaries, venules and veins."
+          }
+         ]
+        },
+        {
+         "id": "blood-pressure-and-disease",
+         "title": "Blood pressure and disease",
+         "outcomes": [
+          {
+           "code": "B-11-F-28",
+           "text": "Define blood pressure; explain systolic and diastolic pressure."
+          },
+          {
+           "code": "B-11-F-29",
+           "text": "State the role of baroreceptors and volume receptors in regulating blood pressure."
+          },
+          {
+           "code": "B-11-F-30",
+           "text": "Define thromboembolism; differentiate thrombus from embolus."
+          },
+          {
+           "code": "B-11-F-31",
+           "text": "Identify factors causing atherosclerosis and arteriosclerosis."
+          },
+          {
+           "code": "B-11-F-32",
+           "text": "Categorize angina pectoris, heart attack and heart failure as disease stages."
+          },
+          {
+           "code": "B-11-F-33",
+           "text": "State heart problems caused by malfunctioning valves."
+          },
+          {
+           "code": "B-11-F-34",
+           "text": "Describe the basic principle of angiography."
+          },
+          {
+           "code": "B-11-F-35",
+           "text": "Outline coronary bypass, angioplasty and open-heart surgery."
+          },
+          {
+           "code": "B-11-F-36",
+           "text": "Define hypertension and hypotension and their causes."
+          }
+         ]
+        },
+        {
+         "id": "lymph",
+         "title": "Lymph",
+         "outcomes": [
+          {
+           "code": "B-11-F-37",
+           "text": "Describe formation, composition and function of interstitial fluid and lymph."
+          },
+          {
+           "code": "B-11-F-38",
+           "text": "State the structure and role of lymph capillaries, vessels and trunks."
+          },
+          {
+           "code": "B-11-F-39",
+           "text": "Describe lymph node functions and the spleen as lymphoid tissue."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "domain-m-experimentation-skills",
+     "title": "Domain M: Experimentation Skills",
+     "topics": [
+      {
+       "id": "grade-11-practicals",
+       "title": "Grade 11 Practicals",
+       "subtopics": [
+        {
+         "id": "microscopy-and-slides",
+         "title": "Microscopy and slides",
+         "outcomes": [
+          {
+           "code": "B-11-M-01",
+           "text": "Set up a light microscope and measure a cell with an eyepiece graticule and stage micrometer."
+          },
+          {
+           "code": "B-11-M-02",
+           "text": "Find actual size, image size and magnification of a cell from photomicrographs."
+          },
+          {
+           "code": "B-11-M-03",
+           "text": "Find and draw plant tissues in permanent slides of roots, stems and leaf."
+          },
+          {
+           "code": "B-11-M-04",
+           "text": "Find and draw animal tissues in permanent slides: seminiferous tubule, Graafian follicle, blood vessels, pancreas."
+          },
+          {
+           "code": "B-11-M-05",
+           "text": "Prepare and stain temporary animal cell slides: frog skin or blood, cheek cells."
+          },
+          {
+           "code": "B-11-M-06",
+           "text": "Prepare and stain temporary plant cell slides: leaf epidermis and onion epidermis."
+          }
+         ]
+        },
+        {
+         "id": "diversity-of-organisms",
+         "title": "Diversity of organisms",
+         "outcomes": [
+          {
+           "code": "B-11-M-07",
+           "text": "Observe and identify Protista specimens with reasons."
+          },
+          {
+           "code": "B-11-M-08",
+           "text": "Identify and draw a fern (Adiantum) from specimen and slides."
+          },
+          {
+           "code": "B-11-M-09",
+           "text": "Study flower structure of a monocot and a dicot."
+          },
+          {
+           "code": "B-11-M-10",
+           "text": "Identify Amoeba, Hydra, liver fluke and Ascaris."
+          },
+          {
+           "code": "B-11-M-11",
+           "text": "Identify leech, earthworm, prawn, silkworm, honey bee, snail, starfish, shark, rohu, frog, lizard, pigeon and rabbit."
+          },
+          {
+           "code": "B-11-M-12",
+           "text": "Observe mitosis in onion root tip and grasshopper cells."
+          }
+         ]
+        },
+        {
+         "id": "biochemical-tests",
+         "title": "Biochemical tests",
+         "outcomes": [
+          {
+           "code": "B-11-M-13",
+           "text": "Run Benedict's and iodine tests."
+          },
+          {
+           "code": "B-11-M-14",
+           "text": "Run the Biuret test for protein."
+          },
+          {
+           "code": "B-11-M-15",
+           "text": "Run the emulsion test for lipids."
+          },
+          {
+           "code": "B-11-M-16",
+           "text": "Show chemically that enzymes are proteins."
+          },
+          {
+           "code": "B-11-M-17",
+           "text": "Test amylase on starch with boiled and unboiled enzyme using iodine."
+          },
+          {
+           "code": null,
+           "text": "Identify laboratory apparatus, their uses and safety rules."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "12",
+   "units": [
+    {
+     "id": "domain-f-human-physiology",
+     "title": "Domain F: Human Physiology",
+     "topics": [
+      {
+       "id": "homeostasis",
+       "title": "Homeostasis",
+       "subtopics": [
+        {
+         "id": "homeostasis-and-excretion",
+         "title": "Homeostasis and excretion",
+         "outcomes": [
+          {
+           "code": "B-12-F-01",
+           "text": "Define homeostasis and relate it to negative and positive feedback."
+          },
+          {
+           "code": "B-12-F-02",
+           "text": "Define thermoregulation and describe human thermoregulation strategies."
+          },
+          {
+           "code": "B-12-F-03",
+           "text": "List the nitrogenous compounds humans excrete."
+          },
+          {
+           "code": "B-12-F-04",
+           "text": "Outline the organs of the urinary system."
+          }
+         ]
+        },
+        {
+         "id": "kidney-in-depth",
+         "title": "Kidney in depth",
+         "outcomes": [
+          {
+           "code": "B-12-F-05",
+           "text": "Describe the structure of the kidney."
+          },
+          {
+           "code": "B-12-F-06",
+           "text": "Explain the detailed structure of a nephron."
+          },
+          {
+           "code": "B-12-F-07",
+           "text": "Explain glomerular filtration, selective reabsorption and tubular secretion."
+          },
+          {
+           "code": "B-12-F-08",
+           "text": "Explain how urine concentration is regulated."
+          },
+          {
+           "code": "B-12-F-09",
+           "text": "Justify the kidney's dual job of excretion and osmoregulation."
+          }
+         ]
+        },
+        {
+         "id": "kidney-disorders-and-treatment",
+         "title": "Kidney disorders and treatment",
+         "outcomes": [
+          {
+           "code": "B-12-F-10",
+           "text": "Explain causes and treatments of kidney stones."
+          },
+          {
+           "code": "B-12-F-11",
+           "text": "Outline causes of kidney failure."
+          },
+          {
+           "code": "B-12-F-12",
+           "text": "Explain how dialysis works and its problems."
+          },
+          {
+           "code": "B-12-F-13",
+           "text": "Describe the principles and problems of kidney transplant."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "musculoskeletal-system",
+       "title": "Musculoskeletal System",
+       "subtopics": [
+        {
+         "id": "bones-and-joints",
+         "title": "Bones and joints",
+         "outcomes": [
+          {
+           "code": "B-12-F-14",
+           "text": "Describe bone structure and compare it with cartilage."
+          },
+          {
+           "code": "B-12-F-15",
+           "text": "Explain the functions of osteoblasts, osteoclasts and osteocytes."
+          },
+          {
+           "code": "B-12-F-16",
+           "text": "List bones of the axial and appendicular skeleton."
+          },
+          {
+           "code": "B-12-F-17",
+           "text": "Describe fibrous, cartilaginous and synovial joints with six synovial sub-types."
+          }
+         ]
+        },
+        {
+         "id": "bone-and-joint-disorders",
+         "title": "Bone and joint disorders",
+         "outcomes": [
+          {
+           "code": "B-12-F-18",
+           "text": "State causes, symptoms and treatment of arthritis, osteoporosis and gout."
+          },
+          {
+           "code": "B-12-F-19",
+           "text": "State fracture types and describe repair of a simple fracture."
+          }
+         ]
+        },
+        {
+         "id": "muscles",
+         "title": "Muscles",
+         "outcomes": [
+          {
+           "code": "B-12-F-20",
+           "text": "Compare smooth, cardiac and skeletal muscle."
+          },
+          {
+           "code": "B-12-F-21",
+           "text": "Annotate the ultrastructure of skeletal muscle."
+          },
+          {
+           "code": "B-12-F-22",
+           "text": "Explain the sliding filament model of contraction."
+          },
+          {
+           "code": "B-12-F-23",
+           "text": "Describe antagonistic muscles moving the knee joint."
+          },
+          {
+           "code": "B-12-F-24",
+           "text": "State causes, symptoms and treatment of muscular dystrophy and cramps."
+          },
+          {
+           "code": "B-12-F-25",
+           "text": "Justify the effect of exercise on muscle health."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "nervous-system",
+       "title": "Nervous System",
+       "subtopics": [
+        {
+         "id": "nervous-coordination-steps",
+         "title": "Nervous coordination steps",
+         "outcomes": [
+          {
+           "code": "B-12-F-26",
+           "text": "Introduce the steps of nervous coordination: reception, integration, response."
+          },
+          {
+           "code": "B-12-F-27",
+           "text": "Recognize receptors as transducers sensitive to stimuli."
+          },
+          {
+           "code": "B-12-F-28",
+           "text": "Identify the three neuron types in impulse transmission."
+          },
+          {
+           "code": "B-12-F-29",
+           "text": "Identify muscles and glands as effectors."
+          }
+         ]
+        },
+        {
+         "id": "neurons-and-impulses",
+         "title": "Neurons and impulses",
+         "outcomes": [
+          {
+           "code": "B-12-F-30",
+           "text": "Annotate sensory, associative and motor neurons and describe their functions."
+          },
+          {
+           "code": "B-12-F-31",
+           "text": "Differentiate myelinated from non-myelinated neurons."
+          },
+          {
+           "code": "B-12-F-32",
+           "text": "Describe nerve impulse generation and transmission, resting and active membrane potential."
+          },
+          {
+           "code": "B-12-F-33",
+           "text": "Evaluate polarization, depolarization and hyperpolarization from a graph."
+          }
+         ]
+        },
+        {
+         "id": "synapse",
+         "title": "Synapse",
+         "outcomes": [
+          {
+           "code": "B-12-F-34",
+           "text": "Sketch the synapse and explain synaptic transmission."
+          },
+          {
+           "code": "B-12-F-35",
+           "text": "Classify neurotransmitters as inhibitory or excitatory with examples."
+          },
+          {
+           "code": "B-12-F-36",
+           "text": "Compare impulse velocity in the axon membrane and the synapse."
+          }
+         ]
+        },
+        {
+         "id": "brain-and-nerves",
+         "title": "Brain and nerves",
+         "outcomes": [
+          {
+           "code": "B-12-F-37",
+           "text": "Identify the main divisions of the nervous system."
+          },
+          {
+           "code": "B-12-F-38",
+           "text": "Explain the brain's structure, major parts and functions."
+          },
+          {
+           "code": "B-12-F-39",
+           "text": "Sketch a spinal cord cross section and state its function."
+          },
+          {
+           "code": "B-12-F-40",
+           "text": "List cranial and spinal nerves in man."
+          },
+          {
+           "code": "B-12-F-41",
+           "text": "Explain the structure, types and functions of the autonomic nervous system."
+          }
+         ]
+        },
+        {
+         "id": "nervous-disorders",
+         "title": "Nervous disorders",
+         "outcomes": [
+          {
+           "code": "B-12-F-42",
+           "text": "Classify nervous disorders as vascular, infectious, structural, functional, degenerative."
+          },
+          {
+           "code": "B-12-F-43",
+           "text": "Describe cause, symptoms and treatment of stroke, meningitis, brain tumor, headache, Alzheimer disease."
+          },
+          {
+           "code": null,
+           "text": "Name diagnostic tests for nervous disorders (EEG, CT, MRI) and their uses."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "endocrine-system",
+       "title": "Endocrine System",
+       "subtopics": [
+        {
+         "id": "endocrine-glands",
+         "title": "Endocrine glands",
+         "outcomes": [
+          {
+           "code": "B-12-F-45",
+           "text": "Define endocrine glands; state hormones as chemical messengers."
+          },
+          {
+           "code": "B-12-F-46",
+           "text": "Explain the hypothalamus's neurosecretory role."
+          },
+          {
+           "code": "B-12-F-47",
+           "text": "Locate endocrine glands, name their hormones and functions."
+          },
+          {
+           "code": null,
+           "text": "Relate problems to hormone imbalance."
+          },
+          {
+           "code": "B-12-F-49",
+           "text": "Outline hormone feedback: positive (oxytocin), negative (insulin and glucagon)."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "reproductive-system-and-development",
+       "title": "Reproductive System and Development",
+       "subtopics": [
+        {
+         "id": "human-reproductive-systems",
+         "title": "Human reproductive systems",
+         "outcomes": [
+          {
+           "code": "B-12-F-50",
+           "text": "Describe the male reproductive system, accessory glands and their functions."
+          },
+          {
+           "code": "B-12-F-51",
+           "text": "Define male reproductive hormones and explain their functions."
+          },
+          {
+           "code": "B-12-F-52",
+           "text": "Explain female reproductive structures and their functions."
+          }
+         ]
+        },
+        {
+         "id": "menstrual-cycle-and-development",
+         "title": "Menstrual cycle and development",
+         "outcomes": [
+          {
+           "code": "B-12-F-53",
+           "text": "Describe the menstrual cycle and hormones involved."
+          },
+          {
+           "code": "B-12-F-54",
+           "text": "Explain embryo implantation and establishment of early pregnancy."
+          },
+          {
+           "code": "B-12-F-55",
+           "text": "Describe human development across the three trimesters."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "domain-g-inheritance-and-evolution",
+     "title": "Domain G: Inheritance and Evolution",
+     "topics": [
+      {
+       "id": "inheritance",
+       "title": "Inheritance",
+       "subtopics": [
+        {
+         "id": "mendel-s-laws-in-depth",
+         "title": "Mendel's laws in depth",
+         "outcomes": [
+          {
+           "code": "B-12-G-01",
+           "text": "Explain segregation and independent assortment using pea plants."
+          },
+          {
+           "code": "B-12-G-02",
+           "text": "Relate independent assortment to random orientation of chromosomes in meiosis."
+          },
+          {
+           "code": "B-12-G-03",
+           "text": "Discuss the limits and usefulness of independent assortment."
+          },
+          {
+           "code": "B-12-G-04",
+           "text": "Show how independent assortment creates variation in gametes."
+          },
+          {
+           "code": "B-12-G-05",
+           "text": "Evaluate that gene inheritance and mixing at fertilization follow probability."
+          }
+         ]
+        },
+        {
+         "id": "beyond-mendel",
+         "title": "Beyond Mendel",
+         "outcomes": [
+          {
+           "code": "B-12-G-06",
+           "text": "List exceptions to Mendel's laws: incomplete dominance, codominance, multiple alleles."
+          },
+          {
+           "code": "B-12-G-07",
+           "text": "Explain incomplete dominance using four o'clock flower colour."
+          },
+          {
+           "code": "B-12-G-08",
+           "text": "Explain codominance using human blood group AB."
+          },
+          {
+           "code": "B-12-G-09",
+           "text": "Differentiate incomplete dominance from codominance."
+          }
+         ]
+        },
+        {
+         "id": "blood-groups",
+         "title": "Blood groups",
+         "outcomes": [
+          {
+           "code": "B-12-G-10",
+           "text": "Define multiple alleles and state the alleles behind ABO blood groups."
+          },
+          {
+           "code": "B-12-G-11",
+           "text": "Explain why O-negative is the universal donor and AB-positive the universal recipient."
+          },
+          {
+           "code": "B-12-G-12",
+           "text": "Link positive and negative blood groups to the Rh factor."
+          },
+          {
+           "code": "B-12-G-13",
+           "text": "Justify why Rh incompatibility endangers foetus and mother (erythroblastosis fetalis)."
+          },
+          {
+           "code": "B-12-G-14",
+           "text": "Suggest measures to prevent erythroblastosis fetalis."
+          }
+         ]
+        },
+        {
+         "id": "polygenic-inheritance-and-epistasis",
+         "title": "Polygenic inheritance and epistasis",
+         "outcomes": [
+          {
+           "code": "B-12-G-15",
+           "text": "Define polygenic inheritance and epistasis."
+          },
+          {
+           "code": "B-12-G-16",
+           "text": "Describe polygenic inheritance with wheat grain colour and human skin colour."
+          },
+          {
+           "code": "B-12-G-17",
+           "text": "List at least five polygenic human traits."
+          },
+          {
+           "code": "B-12-G-18",
+           "text": "Give epistasis examples (albino mammals, sweet pea) and justify modified ratios."
+          }
+         ]
+        },
+        {
+         "id": "linkage-and-sex-linkage",
+         "title": "Linkage and sex linkage",
+         "outcomes": [
+          {
+           "code": "B-12-G-19",
+           "text": "Describe gene linkage and crossing-over and how linkage is detected."
+          },
+          {
+           "code": "B-12-G-20",
+           "text": "Explain that linkage counters independent assortment and crossing-over changes progeny."
+          },
+          {
+           "code": "B-12-G-21",
+           "text": "Describe three sex-determination mechanisms: XX-XY, ZZ-ZW, XX-XO."
+          },
+          {
+           "code": "B-12-G-22",
+           "text": "Describe the concept of sex linkage."
+          },
+          {
+           "code": "B-12-G-23",
+           "text": "Explain discovery of sex-linked inheritance in Drosophila eye colour."
+          },
+          {
+           "code": "B-12-G-24",
+           "text": "Describe Y-linked (holandric) inheritance, such as SRY gene and hypertrichosis."
+          },
+          {
+           "code": "B-12-G-25",
+           "text": "Describe X-linked disorders: colour blindness, haemophilia, vitamin D-resistant rickets."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "chromosome-and-dna",
+       "title": "Chromosome and DNA",
+       "subtopics": [
+        {
+         "id": "dna-replication",
+         "title": "DNA replication",
+         "outcomes": [
+          {
+           "code": "B-12-G-26",
+           "text": "Annotate the detailed structure of a chromosome."
+          },
+          {
+           "code": "B-12-G-27",
+           "text": "Narrate experiments proving DNA is hereditary material."
+          },
+          {
+           "code": "B-12-G-28",
+           "text": "Describe the three proposed models of DNA replication."
+          },
+          {
+           "code": "B-12-G-29",
+           "text": "Narrate Meselson and Stahl's work supporting semiconservative replication."
+          },
+          {
+           "code": "B-12-G-30",
+           "text": "Describe the events of semiconservative DNA replication."
+          }
+         ]
+        },
+        {
+         "id": "gene-expression",
+         "title": "Gene expression",
+         "outcomes": [
+          {
+           "code": "B-12-G-31",
+           "text": "Define a gene as a nucleotide sequence coding for a polypeptide."
+          },
+          {
+           "code": "B-12-G-32",
+           "text": "Explain transcription."
+          },
+          {
+           "code": "B-12-G-33",
+           "text": "Explain why eukaryotic mRNA shortens before translation."
+          },
+          {
+           "code": "B-12-G-34",
+           "text": "Differentiate genetic code from codon."
+          },
+          {
+           "code": "B-12-G-35",
+           "text": "Describe features of the genetic code: universal, triplet, non-overlapping, degenerate, no punctuation."
+          },
+          {
+           "code": "B-12-G-36",
+           "text": "Describe protein synthesis (translation)."
+          }
+         ]
+        },
+        {
+         "id": "gene-regulation",
+         "title": "Gene regulation",
+         "outcomes": [
+          {
+           "code": "B-12-G-37",
+           "text": "State why regulating gene expression matters."
+          },
+          {
+           "code": "B-12-G-38",
+           "text": "Describe positive and negative control of gene expression using the lac operon."
+          }
+         ]
+        },
+        {
+         "id": "mutations-in-depth",
+         "title": "Mutations in depth",
+         "outcomes": [
+          {
+           "code": "B-12-G-39",
+           "text": "Define mutation, mutagen, mutant, mutagenesis and identify mutation sources."
+          },
+          {
+           "code": null,
+           "text": "Differentiate natural from induced mutations."
+          },
+          {
+           "code": "B-12-G-41",
+           "text": "Justify that mutations can be harmful or useful, with one example each."
+          },
+          {
+           "code": "B-12-G-42",
+           "text": "Describe symptoms, causes and treatment of sickle cell anemia and phenylketonuria."
+          },
+          {
+           "code": "B-12-G-43",
+           "text": "Describe Down's, Klinefelter's and Turner's syndromes."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "evolution",
+       "title": "Evolution",
+       "subtopics": [
+        {
+         "id": "theories-of-evolution",
+         "title": "Theories of evolution",
+         "outcomes": [
+          {
+           "code": "B-12-G-44",
+           "text": "Differentiate evolution from special creation."
+          },
+          {
+           "code": "B-12-G-45",
+           "text": "Analyze eukaryote evolution by endosymbiotic and membrane invagination theories."
+          },
+          {
+           "code": null,
+           "text": "Explain Lamarck's and Darwin's theories of evolution."
+          },
+          {
+           "code": "B-12-G-47",
+           "text": "Describe Neo-Darwinism."
+          }
+         ]
+        },
+        {
+         "id": "evidence-for-evolution",
+         "title": "Evidence for evolution",
+         "outcomes": [
+          {
+           "code": "B-12-G-48",
+           "text": "Discuss evidence from comparative anatomy, embryology and molecular biology."
+          },
+          {
+           "code": "B-12-G-49",
+           "text": "Differentiate convergent from divergent evolution via homologous and analogous structures."
+          }
+         ]
+        },
+        {
+         "id": "population-genetics",
+         "title": "Population genetics",
+         "outcomes": [
+          {
+           "code": "B-12-G-50",
+           "text": "Define allele frequency, gene pool and evolution at population level."
+          },
+          {
+           "code": "B-12-G-51",
+           "text": "Describe the t-test for comparing the means of two samples."
+          },
+          {
+           "code": "B-12-G-52",
+           "text": "Explain how selection, migration, founder effect and genetic drift change allele frequencies."
+          },
+          {
+           "code": "B-12-G-53",
+           "text": "Define the Hardy-Weinberg principle, use it to calculate frequencies, and state its conditions."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "domain-h-biotechnology",
+     "title": "Domain H: Biotechnology",
+     "topics": [
+      {
+       "id": "biotechnology",
+       "title": "Biotechnology",
+       "subtopics": [
+        {
+         "id": "genetic-engineering-tools",
+         "title": "Genetic engineering tools",
+         "outcomes": [
+          {
+           "code": "B-12-H-01",
+           "text": "Define genetic engineering."
+          },
+          {
+           "code": "B-12-H-02",
+           "text": "Define gene editing and justify it as genetic engineering."
+          },
+          {
+           "code": "B-12-H-03",
+           "text": "State roles of restriction endonuclease, DNA ligase, DNA polymerase and reverse transcriptase."
+          },
+          {
+           "code": "B-12-H-04",
+           "text": "Describe a good vector's characteristics using the pBR322 plasmid."
+          },
+          {
+           "code": "B-12-H-05",
+           "text": "Describe making human insulin in bacteria by recombinant DNA technology."
+          }
+         ]
+        },
+        {
+         "id": "pcr-fingerprinting-and-sequencing",
+         "title": "PCR, fingerprinting and sequencing",
+         "outcomes": [
+          {
+           "code": "B-12-H-06",
+           "text": "Explain PCR and list three applications."
+          },
+          {
+           "code": "B-12-H-07",
+           "text": "Compare recombinant DNA technology and PCR as gene cloning methods."
+          },
+          {
+           "code": "B-12-H-08",
+           "text": "Explain the principle and steps of DNA fingerprinting."
+          },
+          {
+           "code": "B-12-H-09",
+           "text": "Define DNA sequencing; explain the Maxam-Gilbert and Sanger methods."
+          },
+          {
+           "code": "B-12-H-10",
+           "text": "Describe the concept and use of a genomic library."
+          }
+         ]
+        },
+        {
+         "id": "screening-therapy-and-ethics",
+         "title": "Screening, therapy and ethics",
+         "outcomes": [
+          {
+           "code": "B-12-H-11",
+           "text": "Define genetic screening and state its advantages with examples."
+          },
+          {
+           "code": "B-12-H-12",
+           "text": "Define gene therapy; describe its use for hypercholesterolemia and SCID."
+          },
+          {
+           "code": "B-12-H-13",
+           "text": "Define tissue culture; describe meristem, cell suspension and anther culture."
+          },
+          {
+           "code": "B-12-H-14",
+           "text": "Define bioethics and apply it to real biotechnology cases."
+          },
+          {
+           "code": "B-12-H-15",
+           "text": "Discuss advantages and risks of genetic modification."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "domain-i-disease-and-immunity",
+     "title": "Domain I: Disease and Immunity",
+     "topics": [
+      {
+       "id": "immunity",
+       "title": "Immunity",
+       "subtopics": [
+        {
+         "id": "types-of-immunity-and-defence-lines",
+         "title": "Types of immunity and defence lines",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "State innate and acquired immunity as the two basic types."
+          },
+          {
+           "code": "B-12-I-02",
+           "text": "Differentiate active (natural, artificial) from passive (natural, artificial) immunity."
+          },
+          {
+           "code": "B-12-I-03",
+           "text": "Introduce the three lines of defence and list the parts of each."
+          },
+          {
+           "code": null,
+           "text": "Explain first-line defence: skin, digestive acids, nasal epithelium, bronchial mucus."
+          },
+          {
+           "code": null,
+           "text": "Describe second-line defence by macrophages, neutrophils and NK cells."
+          },
+          {
+           "code": null,
+           "text": "Describe the role of the complement system."
+          }
+         ]
+        },
+        {
+         "id": "second-line-fever-and-inflammation",
+         "title": "Second line, fever and inflammation",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "State and draw the inflammatory response as a general defence."
+          },
+          {
+           "code": "B-12-I-08",
+           "text": "Outline how microbial pyrogens act on the hypothalamus to raise body temperature."
+          },
+          {
+           "code": "B-12-I-09",
+           "text": "List the ways fever affects microbes."
+          }
+         ]
+        },
+        {
+         "id": "third-line-of-defence",
+         "title": "Third line of defence",
+         "outcomes": [
+          {
+           "code": "B-12-I-10",
+           "text": "Define the third line of defence as specific immunity."
+          },
+          {
+           "code": null,
+           "text": "Describe the role of T-cells in cell-mediated immunity."
+          },
+          {
+           "code": null,
+           "text": "Describe the role of B-cells in antibody-mediated immunity."
+          },
+          {
+           "code": "B-12-I-13",
+           "text": "Discuss T-cells and B-cells in transplant rejection."
+          },
+          {
+           "code": "B-12-I-14",
+           "text": "Draw the structural model of an antibody."
+          }
+         ]
+        },
+        {
+         "id": "vaccination-allergy-and-autoimmunity",
+         "title": "Vaccination, allergy and autoimmunity",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Identify vaccination as a way to develop active acquired immunity."
+          },
+          {
+           "code": null,
+           "text": "Explain the role of memory cells in long-term immunity."
+          },
+          {
+           "code": null,
+           "text": "Define allergies and link symptoms to histamine release."
+          },
+          {
+           "code": "B-12-I-18",
+           "text": "Describe autoimmune diseases with an example (rheumatoid arthritis)."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "domain-j-pharmacological-drugs",
+     "title": "Domain J: Pharmacological Drugs",
+     "topics": [
+      {
+       "id": "pharmacology",
+       "title": "Pharmacology",
+       "subtopics": [
+        {
+         "id": "drug-development-and-antimicrobials",
+         "title": "Drug development and antimicrobials",
+         "outcomes": [
+          {
+           "code": "B-12-J-01",
+           "text": "Define pharmacology, pharmacokinetics, pharmacognosy and pharmaceutics."
+          },
+          {
+           "code": null,
+           "text": "Explain drug discovery and development using aspirin."
+          },
+          {
+           "code": null,
+           "text": "Define four antibiotic classes by mode of action: penicillins, tetracyclines, fluoroquinolones, sulfonamides."
+          },
+          {
+           "code": "B-12-J-04",
+           "text": "Define antivirals and antiretrovirals with two examples each."
+          },
+          {
+           "code": "B-12-J-05",
+           "text": "Evaluate monoclonal antibodies and why they changed healthcare."
+          }
+         ]
+        },
+        {
+         "id": "narcotics-and-pain-medicine",
+         "title": "Narcotics and pain medicine",
+         "outcomes": [
+          {
+           "code": "B-12-J-06",
+           "text": "Define narcotic drugs as agents that interfere with normal nervous activity."
+          },
+          {
+           "code": "B-12-J-07",
+           "text": "Describe harm of narcotics to social values, morals and health of addicts."
+          },
+          {
+           "code": "B-12-J-08",
+           "text": "Explain drug addiction and tolerance with caffeine and nicotine."
+          },
+          {
+           "code": "B-12-J-09",
+           "text": "Describe how pain medicines reduce or numb pain."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "domain-k-ecology",
+     "title": "Domain K: Ecology",
+     "topics": [
+      {
+       "id": "ecology-and-climate-change",
+       "title": "Ecology and Climate Change",
+       "subtopics": [
+        {
+         "id": "cycles-and-populations",
+         "title": "Cycles and populations",
+         "outcomes": [
+          {
+           "code": "B-12-K-01",
+           "text": "Define biogeochemical cycles and locate primary reservoirs of their chemicals."
+          },
+          {
+           "code": "B-12-K-02",
+           "text": "Discuss and sketch the nitrogen cycle in detail."
+          },
+          {
+           "code": "B-12-K-03",
+           "text": "Describe population growth, density, distribution, carrying capacity and minimum viable size."
+          },
+          {
+           "code": "B-12-K-04",
+           "text": "Explain the effect of human population growth on ecosystems."
+          }
+         ]
+        },
+        {
+         "id": "ecosystems-of-pakistan-and-climate",
+         "title": "Ecosystems of Pakistan and climate",
+         "outcomes": [
+          {
+           "code": "B-12-K-05",
+           "text": "Describe temperate deciduous forest, grassland and desert ecosystems of Pakistan."
+          },
+          {
+           "code": "B-12-K-06",
+           "text": "Define climate change and explain natural and human causes."
+          },
+          {
+           "code": "B-12-K-07",
+           "text": "Describe how climate change affects flora and fauna."
+          },
+          {
+           "code": "B-12-K-08",
+           "text": "Name species extinct because of climate change."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "domain-l-biostatistics-and-data-handling",
+     "title": "Domain L: Biostatistics and Data Handling",
+     "topics": [
+      {
+       "id": "biostatistics-and-data-handling",
+       "title": "Biostatistics and Data Handling",
+       "subtopics": [
+        {
+         "id": "statistics-and-charts",
+         "title": "Statistics and charts",
+         "outcomes": [
+          {
+           "code": "B-12-L-01",
+           "text": "Define and calculate mean, median, mode, standard deviation, range and percentile."
+          },
+          {
+           "code": "B-12-L-02",
+           "text": "Sketch a bar chart and error bars for a data set."
+          },
+          {
+           "code": "B-12-L-03",
+           "text": "Choose the right figure for data: bar chart, pie chart, X-Y plot."
+          },
+          {
+           "code": "B-12-L-04",
+           "text": "Make a chart with title, labelled axes, legend and units."
+          }
+         ]
+        },
+        {
+         "id": "experimental-design",
+         "title": "Experimental design",
+         "outcomes": [
+          {
+           "code": "B-12-L-05",
+           "text": "Design an experiment with a control group and dependent, independent and controlled variables."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "domain-m-experimentation-skills",
+     "title": "Domain M: Experimentation Skills",
+     "topics": [
+      {
+       "id": "grade-12-practicals",
+       "title": "Grade 12 Practicals",
+       "subtopics": [
+        {
+         "id": "plant-experiments",
+         "title": "Plant experiments",
+         "outcomes": [
+          {
+           "code": "B-12-M-01",
+           "text": "Extract leaf pigments and separate them by paper chromatography."
+          },
+          {
+           "code": "B-12-M-02",
+           "text": "Measure variability in leaf surface area by the graph paper method."
+          },
+          {
+           "code": "B-12-M-03",
+           "text": "Show CO2 evolution from leaf discs in dark and light using hydrogen-carbonate indicator."
+          },
+          {
+           "code": "B-12-M-04",
+           "text": "Study plasmolysis in epidermal peels."
+          },
+          {
+           "code": "B-12-M-05",
+           "text": "Study stomata distribution on upper and lower leaf surfaces."
+          },
+          {
+           "code": "B-12-M-06",
+           "text": "Compare transpiration rates of upper and lower leaf surfaces."
+          }
+         ]
+        },
+        {
+         "id": "human-and-population-experiments",
+         "title": "Human and population experiments",
+         "outcomes": [
+          {
+           "code": "B-12-M-07",
+           "text": "Link lub-dub heart sounds to valve closing and monitor the heartbeat."
+          },
+          {
+           "code": "B-12-M-08",
+           "text": "Measure variability of height or weight among students of the same age."
+          },
+          {
+           "code": "B-12-M-09",
+           "text": "Count students with AB blood group and draw a pie chart and histogram."
+          },
+          {
+           "code": "B-12-M-10",
+           "text": "Test blood group using antisera and agglutination, including Rh."
+          },
+          {
+           "code": "B-12-M-11",
+           "text": "Observe the human skeleton and joint types using images or models."
+          },
+          {
+           "code": null,
+           "text": "Test bacterial antibiotic sensitivity by the Kirby-Bauer disc diffusion method."
+          },
+          {
+           "code": "B-12-M-13",
+           "text": "Study biostatistical parameters: variables, control and experimental groups, tables and charts, mean, median, mode, range, standard deviation."
+          },
+          {
+           "code": "B-12-M-14",
+           "text": "Identify laboratory apparatus, their uses and safety rules."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "build": {
+  "builtAt": "2026-10-14T08:43:33.161Z",
+  "model": "claude-agent",
+  "usd": 0,
+  "expectedCodes": null,
+  "coverage": null,
+  "missingCodes": [],
+  "counts": {
+   "grades": 4,
+   "units": 27,
+   "topics": 51,
+   "subtopics": 135,
+   "outcomes": 564
+  },
+  "warnings": []
+ }
+}

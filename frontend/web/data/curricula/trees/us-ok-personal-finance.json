@@ -1,0 +1,368 @@
+{
+ "id": "us-ok-personal-finance",
+ "region": "US",
+ "framework": "Oklahoma state academic standards: Personal Finance",
+ "board": null,
+ "qualification": "K-12",
+ "subject": "Personal Finance",
+ "syllabusCode": null,
+ "gradeSystem": "grade",
+ "source": {
+  "urls": [
+   "https://api.commonstandardsproject.com/api/v1/jurisdictions/39FE6BDC03A5471F877A3A0048638B13",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/FB4F7512EA1B43FC9D5A11E95F882170"
+  ],
+  "publisher": "Oklahoma state education agency (machine-readable via Common Standards Project / ASN)",
+  "licence": "CC BY 4.0 US, Common Curriculum, Inc.",
+  "firstExam": "2019"
+ },
+ "grades": [
+  {
+   "grade": "7-12",
+   "units": [
+    {
+     "id": "oklahoma-academic-standards-for-personal-financi",
+     "title": "Oklahoma Academic Standards for Personal Financial Literacy 7-12th Grades",
+     "topics": [
+      {
+       "id": "the-student-will-describe-the-importance-of-earn",
+       "title": "The student will describe the importance of earning an income and explain how to manage personal income through the use of a budget",
+       "subtopics": [
+        {
+         "id": "the-student-will-describe-the-importance-of-earn",
+         "title": "The student will describe the importance of earning an income and explain how to manage personal income through the use of a budget",
+         "outcomes": [
+          {
+           "code": "PFL.1.1",
+           "text": "Using decision-making models, evaluate how career choices, educational/vocational preparation, skills, and entrepreneurship affect income and standard of living (e.g., postsecondary degree/ certification, needs versus wants, and the ability to live on less than you earn)."
+          },
+          {
+           "code": "PFL.1.2",
+           "text": "Identify the components of a personal/family budget (e.g., income, savings/investments, taxes, emergency fund, expenses, and charitable giving) based on short, medium, and long term goals (e.g., financial, personal, educational, and career)."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "the-student-will-identify-and-describe-the-impac",
+       "title": "The student will identify and describe the impact of local, state, and federal taxes on income and standard of living",
+       "subtopics": [
+        {
+         "id": "the-student-will-identify-and-describe-the-impac",
+         "title": "The student will identify and describe the impact of local, state, and federal taxes on income and standard of living",
+         "outcomes": [
+          {
+           "code": "PFL.2.1",
+           "text": "Identify and explain types of taxes (e.g., personal income, sales, and property taxes) and explain the reasons for taxation at the local, state, and federal levels (e.g., roads, water and sanitation services, social services, schools, and law enforcement)."
+          },
+          {
+           "code": "PFL.2.2",
+           "text": "Explain how taxes, employee benefits, and payroll deductions affect income."
+          },
+          {
+           "code": "PFL.2.3",
+           "text": "Explain the individual importance of meeting tax obligations and describe possible consequences of failing to meet those obligations (e.g., fees, penalties, interest, garnishment of wages, and imprisonment)."
+          },
+          {
+           "code": "PFL.2.4",
+           "text": "Explain the societal importance for meeting tax obligations (e.g., market economy and capitalism: poverty, pollution, medical research, government assistance programs, education, and government funded services and projects)."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "the-student-will-describe-the-functions-and-uses",
+       "title": "The student will describe the functions and uses of banks and other financial service providers",
+       "subtopics": [
+        {
+         "id": "the-student-will-describe-the-functions-and-uses",
+         "title": "The student will describe the functions and uses of banks and other financial service providers",
+         "outcomes": [
+          {
+           "code": "PFL.3.1",
+           "text": "Identify and compare the basic types of financial institutions (e.g., banks, mortgage companies, credit unions, brokerage firms, and finance companies)."
+          },
+          {
+           "code": "PFL.3.2",
+           "text": "Describe and compare the most common financial products and services (e.g., checking, contactless payments systems, credit cards, Automated Teller Machines, savings, loans, investments, and insurance)."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "the-student-will-demonstrate-the-ability-to-mana",
+       "title": "The student will demonstrate the ability to manage a bank account and reconcile financial accounts",
+       "subtopics": [
+        {
+         "id": "the-student-will-demonstrate-the-ability-to-mana",
+         "title": "The student will demonstrate the ability to manage a bank account and reconcile financial accounts",
+         "outcomes": [
+          {
+           "code": "PFL.4.1",
+           "text": "Explain the reasons for balancing an account register and reconciling an account statement."
+          },
+          {
+           "code": "PFL.4.2",
+           "text": "Develop and apply banking account management skills (e.g., correctly write, endorse, and deposit checks; balance an account register, including debit withdrawals and fees; reconcile and monitor checking and savings account statements)."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "the-student-will-analyze-the-costs-and-benefits-",
+       "title": "The student will analyze the costs and benefits of saving and investing",
+       "subtopics": [
+        {
+         "id": "the-student-will-analyze-the-costs-and-benefits-",
+         "title": "The student will analyze the costs and benefits of saving and investing",
+         "outcomes": [
+          {
+           "code": "PFL.5.1",
+           "text": "Explain reasons for saving and investing to meet goals and build wealth (e.g., opportunity cost, return on investment, emergencies, major purchases, down payments, and education)."
+          },
+          {
+           "code": "PFL.5.2",
+           "text": "Identify and compare the costs and benefits of various investment strategies (e.g., compound interest, interest rates, tax implications, account liquidity, and investment diversification) and how inflation affects investment growth."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "the-student-will-explain-and-evaluate-the-import",
+       "title": "The student will explain and evaluate the importance of planning for retirement",
+       "subtopics": [
+        {
+         "id": "the-student-will-explain-and-evaluate-the-import",
+         "title": "The student will explain and evaluate the importance of planning for retirement",
+         "outcomes": [
+          {
+           "code": "PFL.6.1",
+           "text": "Describe the necessity of accumulating financial resources needed for specific retirement goals, activities and lifestyles, based on life expectancy."
+          },
+          {
+           "code": "PFL.6.2",
+           "text": "Explain the roles of Social Security, employer retirement plans (401k or 403b) and personal investments (e.g., annuities, IRAs, real estate, stocks,and bonds) as sources of retirement income, and howto acquire these plans (e.g., banks, insurance companies)."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "the-student-will-identify-the-procedures-and-ana",
+       "title": "The student will identify the procedures and analyze the responsibilities of borrowing money",
+       "subtopics": [
+        {
+         "id": "the-student-will-identify-the-procedures-and-ana",
+         "title": "The student will identify the procedures and analyze the responsibilities of borrowing money",
+         "outcomes": [
+          {
+           "code": "PFL.7.1",
+           "text": "Identify and analyze sources of credit (e.g. financial institutions, private lenders, and retail businesses) and credit products (e.g., FAFSA, student loans, credit cards, and car loans)."
+          },
+          {
+           "code": "PFL.7.2",
+           "text": "Identify standard loan practices, predatory lending practices (e.g., rapid tax return, rapid access loans, and payday loans), and legal debt collection practices."
+          },
+          {
+           "code": "PFL.7.3",
+           "text": "Explain the importance of establishing a positive credit history (e.g., maintaining a reasonable debt to income ratio), describe information contained in a credit report and explain the factors that affect a credit score(e.g., the relationship between interest rates and credit scores)."
+          },
+          {
+           "code": "PFL.7.4",
+           "text": "Explain how the terms of a loan (e.g., interest rates, fees, and repayment schedules) affect the cost of credit."
+          },
+          {
+           "code": "PFL.7.5",
+           "text": "Explain the impact of non-repayment on individuals, families, business, and the broader economic system as a whole."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "the-student-will-describe-and-explain-interest-c",
+       "title": "The student will describe and explain interest, credit cards, and online commerce",
+       "subtopics": [
+        {
+         "id": "the-student-will-describe-and-explain-interest-c",
+         "title": "The student will describe and explain interest, credit cards, and online commerce",
+         "outcomes": [
+          {
+           "code": "PFL.8.1",
+           "text": "Compare costs and benefits of using credit cards and making online purchases (e.g., interest rates, fees, repayment schedules, and personal information protection)."
+          },
+          {
+           "code": "PFL.8.2",
+           "text": "Evaluate options for payments on credit cards (e.g.,minimum payment, delayed payments, or payment in full)."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "the-student-will-identify-and-explain-consumer-f",
+       "title": "The student will identify and explain consumer fraud and identity theft",
+       "subtopics": [
+        {
+         "id": "the-student-will-identify-and-explain-consumer-f",
+         "title": "The student will identify and explain consumer fraud and identity theft",
+         "outcomes": [
+          {
+           "code": "PFL.9.1",
+           "text": "Describe potential methods of identity theft and unfair, fraudulent business practices (e.g., medical, pyramid schemes, bait and switch, hacking, dumpster diving, forgery, false billing, skimming, changing address, and phishing)."
+          },
+          {
+           "code": "PFL.9.2",
+           "text": "Describe ways to recognize and avoid identity theft (e.g., review monthly financial statements and annual credit reports; protect personal information and online passwords)."
+          },
+          {
+           "code": "PFL.9.3",
+           "text": "Describe methods to correct problems arising from identity theft and fraudulent business practices (e.g., contact national credit bureaus and local/state law enforcement agencies)."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "the-student-will-explain-and-compare-the-respons",
+       "title": "The student will explain and compare the responsibilities of renting versus buying a home",
+       "subtopics": [
+        {
+         "id": "the-student-will-explain-and-compare-the-respons",
+         "title": "The student will explain and compare the responsibilities of renting versus buying a home",
+         "outcomes": [
+          {
+           "code": "PFL.10.1",
+           "text": "Compare the costs and benefits of renting versus buying a home."
+          },
+          {
+           "code": "PFL.10.2",
+           "text": "Explain the elements of a standard lease agreement (e.g., deposit, due date, grace period, late fees, and utilities)."
+          },
+          {
+           "code": "PFL.10.3",
+           "text": "Explain the elements of a mortgage (e.g., down payment, escrow account, due date, late fees, property taxes, potential early payment penalties, and amortization tables); types of lenders; and fixed or adjustable rate mortgage loans."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "the-student-will-describe-and-explain-how-variou",
+       "title": "The student will describe and explain how various types of insurance can be used to manage risk",
+       "subtopics": [
+        {
+         "id": "the-student-will-describe-and-explain-how-variou",
+         "title": "The student will describe and explain how various types of insurance can be used to manage risk",
+         "outcomes": [
+          {
+           "code": "PFL.11.1",
+           "text": "Identify common risks to life and property (e.g., mobile phone, illness, death, natural catastrophe, and accident)."
+          },
+          {
+           "code": "PFL.11.2",
+           "text": "Explain the purpose and importance of insurance protection as a risk management strategy (e.g., life, health, property, liability, disability, and automobile)."
+          },
+          {
+           "code": "PFL.11.3",
+           "text": "Examine appropriate amounts of insurance and how insurance deductibles work."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "the-student-will-explain-and-evaluate-the-financ",
+       "title": "The student will explain and evaluate the financial impact and consequences of gambling",
+       "subtopics": [
+        {
+         "id": "the-student-will-explain-and-evaluate-the-financ",
+         "title": "The student will explain and evaluate the financial impact and consequences of gambling",
+         "outcomes": [
+          {
+           "code": "PFL.12.1",
+           "text": "Analyze the probabilities involved in winning at games of chance (e.g., sports betting, online betting, and fantasy sports)."
+          },
+          {
+           "code": "PFL.12.2",
+           "text": "Evaluate costs and benefits of gambling to individuals and society (e.g., family budget, addictive behaviors, and the local and state economy)."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "the-student-will-evaluate-the-consequences-of-ba",
+       "title": "The student will evaluate the consequences of bankruptcy",
+       "subtopics": [
+        {
+         "id": "the-student-will-evaluate-the-consequences-of-ba",
+         "title": "The student will evaluate the consequences of bankruptcy",
+         "outcomes": [
+          {
+           "code": "PFL.13.1",
+           "text": "Assess the costs and benefits of bankruptcy to individuals, families, and society."
+          },
+          {
+           "code": "PFL.13.2",
+           "text": "Examine ways to prevent bankruptcy and identify alternatives to bankruptcy (e.g., budget management, debt management, refinancing, and financial counseling)."
+          },
+          {
+           "code": "PFL.13.3",
+           "text": "Explain the importance of reestablishing a positive credit history and steps to improve a credit score after bankruptcy."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "the-student-will-explain-the-costs-and-benefits-",
+       "title": "The student will explain the costs and benefits of charitable giving",
+       "subtopics": [
+        {
+         "id": "the-student-will-explain-the-costs-and-benefits-",
+         "title": "The student will explain the costs and benefits of charitable giving",
+         "outcomes": [
+          {
+           "code": "PFL.14.1",
+           "text": "Identify types of charitable giving (e.g., monetary gifts, gifts-in-kind, and volunteer service)."
+          },
+          {
+           "code": "PFL.14.2",
+           "text": "Describe the impact of charitable giving on the entity receiving the gift, the individual giving the gift (e.g., budget, time, personal satisfaction, and tax benefits) and the community at large."
+          },
+          {
+           "code": "PFL.14.3",
+           "text": "Identify tools to research a charitable organization’s mission/purpose, activities, and recipients (e.g., specific organizations’ websites, Guidestar®, and regulatory agencies)."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "build": {
+  "builtAt": "2026-10-14T16:20:47.308Z",
+  "model": "none",
+  "usd": 0,
+  "expectedCodes": 38,
+  "coverage": 1,
+  "missingCodes": [],
+  "counts": {
+   "grades": 1,
+   "units": 1,
+   "topics": 14,
+   "subtopics": 14,
+   "outcomes": 38
+  },
+  "warnings": []
+ }
+}

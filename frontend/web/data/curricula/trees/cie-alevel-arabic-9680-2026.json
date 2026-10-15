@@ -1,0 +1,186 @@
+{
+ "id": "cie-alevel-arabic-9680-2026",
+ "region": "INTL",
+ "framework": "Cambridge International A Level Arabic (9680) syllabus 2026",
+ "board": "Cambridge",
+ "qualification": "A Level",
+ "subject": "Arabic",
+ "syllabusCode": "9680",
+ "gradeSystem": "course",
+ "source": {
+  "urls": [
+   "https://www.cambridgeinternational.org/Images/697404-2026-syllabus.pdf",
+   "https://www.cambridgeinternational.org/programmes-and-qualifications/cambridge-international-as-and-a-level-arabic-9680/"
+  ],
+  "publisher": "Cambridge University Press & Assessment (Cambridge International Education)",
+  "licence": "© Cambridge University Press & Assessment; structure + our own wording only",
+  "firstExam": "2026"
+ },
+ "grades": [
+  {
+   "grade": "A Level",
+   "units": [
+    {
+     "id": "a-level-component-3-essay",
+     "title": "[A Level] Component 3: Essay",
+     "topics": [
+      {
+       "id": "generation-gap",
+       "title": "Generation Gap",
+       "subtopics": [
+        {
+         "id": "generation-gap",
+         "title": "Generation Gap",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Study generational differences, family conflicts, relationships between young and older people, and young people’s attitudes toward family life."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "the-media",
+       "title": "The media",
+       "subtopics": [
+        {
+         "id": "the-media",
+         "title": "The media",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Study the media’s role and influence, including advertising’s power."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "employment-and-unemployment",
+       "title": "Employment and unemployment",
+       "subtopics": [
+        {
+         "id": "employment-and-unemployment",
+         "title": "Employment and unemployment",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Study careers, qualifications, job opportunities and routines, unemployment, declining industries, possible solutions and immigrant workers."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "free-time-activities",
+       "title": "Free time activities",
+       "subtopics": [
+        {
+         "id": "free-time-activities",
+         "title": "Free time activities",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Study leisure’s value, balancing work and free time, and planning leisure activities."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "social-and-economic-development",
+       "title": "Social and economic development",
+       "subtopics": [
+        {
+         "id": "social-and-economic-development",
+         "title": "Social and economic development",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Study beneficial and harmful effects of social and economic development, including recent developments and likely future trends."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "a-level-component-4-texts",
+     "title": "[A Level] Component 4: Texts",
+     "topics": [
+      {
+       "id": "section-1",
+       "title": "Section 1",
+       "subtopics": [
+        {
+         "id": "item",
+         "title": "الأدب العربي الجاهلي",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Study تاريخ الأدب العربي: العصر الجاهلي by شوقي ضيف, pages 266–299."
+          },
+          {
+           "code": null,
+           "text": "Study تاريخ الأدب العربي: العصر العباسي الأول by شوقي ضيف, pages 268–289."
+          },
+          {
+           "code": null,
+           "text": "Study من الأدب النسائي المعاصر: العربي والغربي by ليلى الصباغ, pages 52–99."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "section-2",
+       "title": "Section 2",
+       "subtopics": [
+        {
+         "id": "item",
+         "title": "مسرحية شمس النهار",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Study the play شمس النهار by توفيق الحكيم."
+          },
+          {
+           "code": null,
+           "text": "Study the short-story collection الفجر الكاذب by نجيب محفوظ as a complete set text."
+          },
+          {
+           "code": null,
+           "text": "Study these stories: الفجر الكاذب، رجل، على ضوء النجوم، فوق السحاب، الجرس يرن، ذقن الباشا، العجوز والأرض."
+          },
+          {
+           "code": null,
+           "text": "Study the novel طيور أيلول by إميلي داوود نصرالله."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "build": {
+  "builtAt": "2026-10-14T05:41:24.581Z",
+  "model": "gpt-5.6-luna",
+  "usd": 0.0057,
+  "expectedCodes": null,
+  "coverage": null,
+  "missingCodes": [],
+  "counts": {
+   "grades": 1,
+   "units": 2,
+   "topics": 7,
+   "subtopics": 7,
+   "outcomes": 12
+  },
+  "warnings": []
+ }
+}

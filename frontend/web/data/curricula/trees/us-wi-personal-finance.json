@@ -1,0 +1,2882 @@
+{
+ "id": "us-wi-personal-finance",
+ "region": "US",
+ "framework": "Wisconsin state academic standards: Personal Finance",
+ "board": null,
+ "qualification": "K-12",
+ "subject": "Personal Finance",
+ "syllabusCode": null,
+ "gradeSystem": "grade",
+ "source": {
+  "urls": [
+   "https://api.commonstandardsproject.com/api/v1/jurisdictions/745124D969E9491C9FC33D3235259386",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/DB43B28EFBEF4450A2A33DD3C65E1E54",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/C2E8C81A534641B3AE0BE1C9BBB47BB2",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/EAE62469F25C497BA717BE79589371F3",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/A4420C587D994E32A0961A656007777F"
+  ],
+  "publisher": "Wisconsin state education agency (machine-readable via Common Standards Project / ASN)",
+  "licence": "CC BY 4.0 US, Common Curriculum, Inc.",
+  "firstExam": "2020"
+ },
+ "grades": [
+  {
+   "grade": "K-2",
+   "units": [
+    {
+     "id": "financial-mindset",
+     "title": "Financial Mindset",
+     "topics": [
+      {
+       "id": "students-will-develop-strategies-to-make-intenti",
+       "title": "Students will develop strategies to make intentional financial decisions throughout their lifespan",
+       "subtopics": [
+        {
+         "id": "critical-consumer",
+         "title": "Critical Consumer",
+         "outcomes": [
+          {
+           "code": "FM.1.a.e1",
+           "text": "Differentiate between buyers (consumers) and sellers (producers)."
+          },
+          {
+           "code": "FM.1.a.e2",
+           "text": "List traits of being a responsible consumer (e.g., look at the price or compare the value of items)."
+          },
+          {
+           "code": "FM.1.a.e3",
+           "text": "Define advertising and list places advertisements can be found."
+          }
+         ]
+        },
+        {
+         "id": "functions-and-structure-of-money",
+         "title": "Functions and Structure of Money",
+         "outcomes": [
+          {
+           "code": "FM1.b.e1",
+           "text": "Categorize types of money (e.g., coins or bills), and explain why money is used."
+          }
+         ]
+        },
+        {
+         "id": "opportunity-costs",
+         "title": "Opportunity Costs",
+         "outcomes": [
+          {
+           "code": "FM1.c.e1",
+           "text": "Differentiate between a want and a need."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "students-will-analyze-how-aspects-of-financial-p",
+       "title": "Students will analyze how aspects of financial psychology impact financial well-being",
+       "subtopics": [
+        {
+         "id": "values-and-behavior",
+         "title": "Values and Behavior",
+         "outcomes": [
+          {
+           "code": "FM2.a.e1",
+           "text": "Identify why people decide to earn, save, spend, or give money."
+          }
+         ]
+        },
+        {
+         "id": "emotional-influences",
+         "title": "Emotional Influences",
+         "outcomes": [
+          {
+           "code": "FM2.b.e1",
+           "text": "Identify how emotions may be the same or different from other people."
+          }
+         ]
+        },
+        {
+         "id": "external-influences",
+         "title": "External Influences",
+         "outcomes": [
+          {
+           "code": "FM2.c.e1",
+           "text": "Identify external influences (e.g., peers, family, or community) that may affect what someone wants."
+          }
+         ]
+        },
+        {
+         "id": "financial-goals",
+         "title": "Financial Goals",
+         "outcomes": [
+          {
+           "code": "FM2.d.e1",
+           "text": "Identify the importance of a financial goal (e.g., purchasing a bicycle or toy)."
+          }
+         ]
+        },
+        {
+         "id": "civic-engagement-and-philanthropy-e-g-giving-bac",
+         "title": "Civic Engagement and Philanthropy (e.g., giving back, volunteering, donation, or charity)",
+         "outcomes": [
+          {
+           "code": "FM2.e.e1",
+           "text": "Recognize ways to give back (e.g., donating to a charity or volunteering) in our classroom, school, community, state, tribal nation, country, and in the world."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "students-will-establish-digital-awareness-to-enh",
+       "title": "Students will establish digital awareness to enhance their financial mindset",
+       "subtopics": [
+        {
+         "id": "online-and-account-security",
+         "title": "Online and Account Security",
+         "outcomes": [
+          {
+           "code": "FM3.a.e1",
+           "text": "Explain the importance of an online password, and identify reasons to use a password."
+          }
+         ]
+        },
+        {
+         "id": "digital-footprint",
+         "title": "Digital Footprint",
+         "outcomes": [
+          {
+           "code": "FM3.b.e1",
+           "text": "Define sources of digital information and storage (e.g., Internet, World Wide Web, and personal devices)."
+          }
+         ]
+        },
+        {
+         "id": "digital-resources",
+         "title": "Digital Resources",
+         "outcomes": [
+          {
+           "code": "FM3.c.e1",
+           "text": "List websites or mobile apps and identify what types of information people access online."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "education-and-employment",
+     "title": "Education and Employment",
+     "topics": [
+      {
+       "id": "students-will-compare-the-effect-of-personal-inc",
+       "title": "Students will compare the effect of personal income on their goals",
+       "subtopics": [
+        {
+         "id": "deductions-and-taxes",
+         "title": "Deductions and Taxes",
+         "outcomes": [
+          {
+           "code": "EE1.a.e1",
+           "text": "Summarize goods and Explain behaviors and services that the government decisions that reflect provides (e.g., roads, schools, interests, likes, and dislikes. or police)."
+          }
+         ]
+        },
+        {
+         "id": "types-of-compensation",
+         "title": "Types of Compensation",
+         "outcomes": [
+          {
+           "code": "EE2.b.e1",
+           "text": "Identify ways people earn money."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "students-will-evaluate-the-impact-of-lifelong-le",
+       "title": "Students will evaluate the impact of lifelong learning on one’s ability to function effectively in a diverse and changing economy",
+       "subtopics": [
+        {
+         "id": "post-secondary-education-skills-and-training",
+         "title": "Post-Secondary Education, Skills, and Training",
+         "outcomes": [
+          {
+           "code": "EE2.a.e1",
+           "text": "Identify skills needed for different types of jobs."
+          },
+          {
+           "code": "EE2.a.e2",
+           "text": "Discover the different skills associated with various job or career fields (e.g., what skills are needed to be a plumber, teacher, dentist, firefighter or store manager)."
+          }
+         ]
+        },
+        {
+         "id": "emerging-employment-and-education-trends",
+         "title": "Emerging Employment and Education Trends",
+         "outcomes": [
+          {
+           "code": "EE2.b.e1",
+           "text": "Categorize jobs as high demand or low demand."
+          },
+          {
+           "code": "EE2.b.e2",
+           "text": "Describe how specific jobs or career fields have changed over time."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "money-management",
+     "title": "Money Management",
+     "topics": [
+      {
+       "id": "students-will-demonstrate-their-ability-to-use-m",
+       "title": "Students will demonstrate their ability to use money management skills and strategies",
+       "subtopics": [
+        {
+         "id": "budgeting",
+         "title": "Budgeting",
+         "outcomes": [
+          {
+           "code": "MM1.a.e1",
+           "text": "Explain the importance of a budget."
+          }
+         ]
+        },
+        {
+         "id": "financial-management",
+         "title": "Financial Management",
+         "outcomes": [
+          {
+           "code": "MM1.b.e1",
+           "text": "Identify that there are three ways you can use money - save, spend, and give."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "students-will-utilize-financial-institutions-and",
+       "title": "Students will utilize financial institutions and service providers to support money management",
+       "subtopics": [
+        {
+         "id": "financial-institutions-and-service-providers",
+         "title": "Financial Institutions and Service Providers",
+         "outcomes": [
+          {
+           "code": "MM2.a.e1",
+           "text": "Identify financial institutions within the community."
+          }
+         ]
+        },
+        {
+         "id": "payment-types",
+         "title": "Payment Types",
+         "outcomes": [
+          {
+           "code": "MM2.b.e1",
+           "text": "Recognize that items of value, including money, can be earned and exchanged for goods and services."
+          }
+         ]
+        },
+        {
+         "id": "alternative-financial-currency",
+         "title": "Alternative Financial Currency",
+         "outcomes": [
+          {
+           "code": "MM2.c.e1",
+           "text": "Describe how paying for goods and services online is still using real money."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "savings-and-investing",
+     "title": "Savings and Investing",
+     "topics": [
+      {
+       "id": "students-will-explore-savings-concepts-and-apply",
+       "title": "Students will explore savings concepts and apply this knowledge to attain financial security",
+       "subtopics": [
+        {
+         "id": "saving-principles",
+         "title": "Saving Principles",
+         "outcomes": [
+          {
+           "code": "SI1.a.e1",
+           "text": "Identify an experience of waiting to have enough money to buy something."
+          }
+         ]
+        },
+        {
+         "id": "savings-types-and-features",
+         "title": "Savings Types and Features",
+         "outcomes": [
+          {
+           "code": "SI1.b.e1",
+           "text": "Identify places where something valuable would be secure."
+          }
+         ]
+        },
+        {
+         "id": "saving-goal-planning",
+         "title": "Saving Goal Planning",
+         "outcomes": [
+          {
+           "code": "SI1.c.e1",
+           "text": "Describe strategies to save money."
+          }
+         ]
+        },
+        {
+         "id": "saving-risk-and-reward",
+         "title": "Saving Risk and Reward",
+         "outcomes": [
+          {
+           "code": "SI1.d.e1",
+           "text": "Explain how choices we make now affect what we get in the future."
+          },
+          {
+           "code": "SI1.d.e2",
+           "text": "Explain how financial institutions help people make choices about how to save money."
+          }
+         ]
+        },
+        {
+         "id": "students-will-explore-savings-concepts-and-apply",
+         "title": "Students will explore savings concepts and apply this knowledge to attain financial security",
+         "outcomes": [
+          {
+           "code": "SI1.e",
+           "text": "Role of Government in Saving"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "students-will-explore-investing-concepts-and-app",
+       "title": "Students will explore investing concepts and apply this knowledge to attain financial security",
+       "subtopics": [
+        {
+         "id": "investing-principles",
+         "title": "Investing Principles",
+         "outcomes": [
+          {
+           "code": "SI2.a.e1",
+           "text": "Explain how gathering items of value may build net worth."
+          }
+         ]
+        },
+        {
+         "id": "investing-types-and-features",
+         "title": "Investing Types and Features",
+         "outcomes": [
+          {
+           "code": "SI2.b.e1",
+           "text": "Differentiate between owning something of value, keeping money in a financial institution, or giving money to someone else in return for future value."
+          }
+         ]
+        },
+        {
+         "id": "investing-goal-planning",
+         "title": "Investing Goal Planning",
+         "outcomes": [
+          {
+           "code": "SI2.c.e1",
+           "text": "Identify the difference between short-term and long-term (e.g., today versus Saturday versus the future or elementary versus middle school versus high school)."
+          }
+         ]
+        },
+        {
+         "id": "investing-risk-and-rewards",
+         "title": "Investing Risk and Rewards",
+         "outcomes": [
+          {
+           "code": "SI2.d.e1",
+           "text": "Identify how items of value may fluctuate over time."
+          }
+         ]
+        },
+        {
+         "id": "students-will-explore-investing-concepts-and-app",
+         "title": "Students will explore investing concepts and apply this knowledge to attain financial security",
+         "outcomes": [
+          {
+           "code": "SI2.e",
+           "text": "Role of Government in Investing"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "credit-and-debt",
+     "title": "Credit and Debt",
+     "topics": [
+      {
+       "id": "students-will-examine-the-benefits-and-costs-of-",
+       "title": "Students will examine the benefits and costs of using credit",
+       "subtopics": [
+        {
+         "id": "benefits-of-using-credit",
+         "title": "Benefits of Using Credit",
+         "outcomes": [
+          {
+           "code": "CD1.a.e1",
+           "text": "Explain why something borrowed must be returned."
+          }
+         ]
+        },
+        {
+         "id": "cost-of-using-credit",
+         "title": "Cost of Using Credit",
+         "outcomes": [
+          {
+           "code": "CD1.b.e1",
+           "text": "Explain the difference between buying and borrowing."
+          }
+         ]
+        },
+        {
+         "id": "interest-and-fees",
+         "title": "Interest and Fees",
+         "outcomes": [
+          {
+           "code": "CD1.c.e1",
+           "text": "Explain how people can borrow money or an item if they promise to return it."
+          }
+         ]
+        },
+        {
+         "id": "debt-resolution",
+         "title": "Debt Resolution",
+         "outcomes": [
+          {
+           "code": "CD1.d.e1",
+           "text": "Identify actions a borrower can take to satisfy a lender when a borrowed item cannot be repaid, is lost, or damaged."
+          },
+          {
+           "code": "CD1.d.e2",
+           "text": "Explain who can assist in solving problems (e.g., parents, teachers, or counselors)."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "students-will-interpret-lending-options-consumer",
+       "title": "Students will interpret lending options, consumer rights, and responsibilities",
+       "subtopics": [
+        {
+         "id": "credit-products-and-servies",
+         "title": "Credit Products and Servies",
+         "outcomes": [
+          {
+           "code": "CD2.a.e1",
+           "text": "Identify different forms of payment methods (e.g., online, cash, debit card, credit card, or loan)."
+          },
+          {
+           "code": "CD2.2",
+           "text": "Identify people from whom a person could borrow an item."
+          }
+         ]
+        },
+        {
+         "id": "students-will-interpret-lending-options-consumer",
+         "title": "Students will interpret lending options, consumer rights, and responsibilities",
+         "outcomes": [
+          {
+           "code": "CD2.b",
+           "text": "High-Cost Alternative Lending"
+          }
+         ]
+        },
+        {
+         "id": "consumer-credit-rights-and-responsibilities",
+         "title": "Consumer Credit Rights and Responsibilities",
+         "outcomes": [
+          {
+           "code": "CD2.c.e1",
+           "text": "Identify actions a borrower can take to satisfy a lender when a borrowed item is lost or damaged."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "risk-management-and-insurance",
+     "title": "Risk Management and Insurance",
+     "topics": [
+      {
+       "id": "students-will-contrast-different-types-of-risk-a",
+       "title": "Students will contrast different types of risk and how it could affect their financial decisions",
+       "subtopics": [
+        {
+         "id": "risk",
+         "title": "Risk",
+         "outcomes": [
+          {
+           "code": "RI1.a.e1",
+           "text": "Describe the feeling of losing an object (e.g., losing money, losing a favorite toy, or losing homework assignments)."
+          },
+          {
+           "code": "RI1.a.e2",
+           "text": "Predict some risks in everyday situations (e.g., playing on the playground, staying up too late, or riding a bike) and explain ways to limit these risks."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "students-will-assess-possible-choices-to-protect",
+       "title": "Students will assess possible choices to protect themselves from financial risk",
+       "subtopics": [
+        {
+         "id": "purpose-of-insurance",
+         "title": "Purpose of Insurance",
+         "outcomes": [
+          {
+           "code": "RI2.a.e1",
+           "text": "Determine different types of situations where a person needs protection (e.g., staying near parents, riding a bike, or crossing a busy road)."
+          }
+         ]
+        },
+        {
+         "id": "types-of-insurance",
+         "title": "Types of Insurance",
+         "outcomes": [
+          {
+           "code": "RI2.b.e1",
+           "text": "Identify why someone would get insurance on valuable items (e.g., cell phone or game console)."
+          }
+         ]
+        },
+        {
+         "id": "cost-factors-of-insurance",
+         "title": "Cost Factors of Insurance",
+         "outcomes": [
+          {
+           "code": "RI2.c.e1",
+           "text": "Predict consequences of not having protection for various scenarios."
+          }
+         ]
+        },
+        {
+         "id": "meaning-of-insurance-contracts",
+         "title": "Meaning of Insurance Contracts",
+         "outcomes": [
+          {
+           "code": "RI2.d.e1",
+           "text": "Illustrate what both people have to do when they enter an agreement."
+          }
+         ]
+        },
+        {
+         "id": "loss-prevention-plan",
+         "title": "Loss Prevention Plan",
+         "outcomes": [
+          {
+           "code": "RI2.e.e1",
+           "text": "Determine the best type(s) of protection for given scenarios regarding risk (e.g., wearing a coat in the cold or wearing a bike helmet)."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "3-5",
+   "units": [
+    {
+     "id": "financial-mindset",
+     "title": "Financial Mindset",
+     "topics": [
+      {
+       "id": "students-will-develop-strategies-to-make-intenti",
+       "title": "Students will develop strategies to make intentional financial decisions throughout their lifespan",
+       "subtopics": [
+        {
+         "id": "critical-consumer",
+         "title": "Critical Consumer",
+         "outcomes": [
+          {
+           "code": "FM1.a.i.1",
+           "text": "Describe the steps in making a purchase (i.e., consumer buying process)."
+          },
+          {
+           "code": "FM1.a.i.2",
+           "text": "Identify items that can be used in making consumer decisions (e.g., comparison shopping skills regarding price or substitutes)."
+          },
+          {
+           "code": "FM1.a.i.3",
+           "text": "Predict the motives of a sales claim and explain how consumers would verify information delivered through a range of advertisements (e.g., digital, print, audio, or product/service reviews)."
+          }
+         ]
+        },
+        {
+         "id": "functions-and-structure-of-money",
+         "title": "Functions and Structure of Money",
+         "outcomes": [
+          {
+           "code": "FM1.b.i.1",
+           "text": "Describe the role of money in everyday life."
+          }
+         ]
+        },
+        {
+         "id": "opportunity-costs",
+         "title": "Opportunity Costs",
+         "outcomes": [
+          {
+           "code": "FM1.c.i.1",
+           "text": "Compare and contrast the costs and benefits of a decision."
+          },
+          {
+           "code": "FM1.c.i.2",
+           "text": "Explain that choices may have long-term unintended consequences."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "students-will-analyze-how-aspects-of-financial-p",
+       "title": "Students will analyze how aspects of financial psychology impact financial well-being",
+       "subtopics": [
+        {
+         "id": "values-and-behavior",
+         "title": "Values and Behavior",
+         "outcomes": [
+          {
+           "code": "FM2.a.i.1",
+           "text": "Examine different cultural perspectives and behaviors regarding financial values and goals across communities."
+          }
+         ]
+        },
+        {
+         "id": "emotional-influences",
+         "title": "Emotional Influences",
+         "outcomes": [
+          {
+           "code": "FM2.b.i.1",
+           "text": "Describe how emotions impact financial decisions."
+          }
+         ]
+        },
+        {
+         "id": "external-influences",
+         "title": "External Influences",
+         "outcomes": [
+          {
+           "code": "FM2.c.i.1",
+           "text": "Explain ways financial decisions are influenced by external factors."
+          }
+         ]
+        },
+        {
+         "id": "financial-goals",
+         "title": "Financial Goals",
+         "outcomes": [
+          {
+           "code": "FM2.d.i.1",
+           "text": "Describe elements of a goal development strategy (e.g., SMART - specific, measurable, attainable, relevant, and time-bound)."
+          }
+         ]
+        },
+        {
+         "id": "civic-engagement-and-philanthropy-e-g-giving-bac",
+         "title": "Civic Engagement and Philanthropy (e.g., giving back, volunteering, donation, or charity)",
+         "outcomes": [
+          {
+           "code": "FM2.e.i.1",
+           "text": "Describe the benefits of charitable giving, volunteerism, and charities in our classroom, school, community, state, tribal nation, country, and in the world."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "students-will-establish-digital-awareness-to-enh",
+       "title": "Students will establish digital awareness to enhance their financial mindset",
+       "subtopics": [
+        {
+         "id": "online-and-account-security",
+         "title": "Online and Account Security",
+         "outcomes": [
+          {
+           "code": "FM3.a.i.1",
+           "text": "Compare and contrast strong and weak online passwords, and identify criteria for a strong password."
+          },
+          {
+           "code": "FM3.a.i.2",
+           "text": "Identify information that we protect with a password."
+          },
+          {
+           "code": "FM3.a.i.3",
+           "text": "Identify what personally identifiable information (PII) is private and should not be shared with others (digitally)."
+          }
+         ]
+        },
+        {
+         "id": "digital-footprint",
+         "title": "Digital Footprint",
+         "outcomes": [
+          {
+           "code": "FM3.b.i.1",
+           "text": "Describe ways a person leaves a financial digital footprint."
+          },
+          {
+           "code": "FM3.b.i.2",
+           "text": "Explore under supervision information a person can obtain online about other individuals."
+          }
+         ]
+        },
+        {
+         "id": "digital-resources",
+         "title": "Digital Resources",
+         "outcomes": [
+          {
+           "code": "FM3.c.i.1",
+           "text": "Determine criteria to identify safe websites and apps."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "education-and-employment",
+     "title": "Education and Employment",
+     "topics": [
+      {
+       "id": "students-will-compare-the-effect-of-personal-inc",
+       "title": "Students will compare the effect of personal income on their goals",
+       "subtopics": [
+        {
+         "id": "deductions-and-taxes",
+         "title": "Deductions and Taxes",
+         "outcomes": [
+          {
+           "code": "EE1.a.i.1",
+           "text": "List reasons a government taxes people."
+          }
+         ]
+        },
+        {
+         "id": "types-of-compensation",
+         "title": "Types of Compensation",
+         "outcomes": [
+          {
+           "code": "EE1.b.i.1",
+           "text": "Describe the ways people are compensated."
+          },
+          {
+           "code": "EE1.b.i.2",
+           "text": "Identify reasons people earn different amounts of money."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "students-will-evaluate-the-impact-of-lifelong-le",
+       "title": "Students will evaluate the impact of lifelong learning on one’s ability to function effectively in a diverse and changing economy",
+       "subtopics": [
+        {
+         "id": "post-secondary-education-skills-and-training",
+         "title": "Post-Secondary Education, Skills, and Training",
+         "outcomes": [
+          {
+           "code": "EE2.a.i.1",
+           "text": "Assess different types of jobs, based on the skills associated with each job."
+          },
+          {
+           "code": "EE2.a.i.2",
+           "text": "Interpret career information."
+          }
+         ]
+        },
+        {
+         "id": "emerging-employment-and-education-trends",
+         "title": "Emerging Employment and Education Trends",
+         "outcomes": [
+          {
+           "code": "EE2.b.i.1",
+           "text": "Explain how economic, social, and technological changes can impact employment trends and markets."
+          },
+          {
+           "code": "EE2.b.i.2",
+           "text": "Contrast jobs versus careers."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "money-management",
+     "title": "Money Management",
+     "topics": [
+      {
+       "id": "students-will-demonstrate-their-ability-to-use-m",
+       "title": "Students will demonstrate their ability to use money management skills and strategies",
+       "subtopics": [
+        {
+         "id": "budgeting",
+         "title": "Budgeting",
+         "outcomes": [
+          {
+           "code": "MM1.a.i.1",
+           "text": "Provide examples of household expenses and sources of income."
+          }
+         ]
+        },
+        {
+         "id": "financial-management",
+         "title": "Financial Management",
+         "outcomes": [
+          {
+           "code": "MM1.b.i.1",
+           "text": "Identify age-appropriate ways to save, spend, and give money."
+          },
+          {
+           "code": "MM1.b.i.2",
+           "text": "Identify the personal information necessary to establish a financial account (e.g., personal details, contact information, and social security number)."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "students-will-utilize-financial-institutions-and",
+       "title": "Students will utilize financial institutions and service providers to support money management",
+       "subtopics": [
+        {
+         "id": "financial-institutions-and-service-providers",
+         "title": "Financial Institutions and Service Providers",
+         "outcomes": [
+          {
+           "code": "MM2.a.i.1",
+           "text": "Identify the services and resources that financial institutions provide consumers."
+          }
+         ]
+        },
+        {
+         "id": "payment-types",
+         "title": "Payment Types",
+         "outcomes": [
+          {
+           "code": "MM2.b.i.1",
+           "text": "Investigate multiple ways to pay for goods and services."
+          },
+          {
+           "code": "MM2.b.i.2",
+           "text": "Compare digital banking methods and cash payments for purchasing goods and services."
+          },
+          {
+           "code": "MM2.b.i.3",
+           "text": "Identify methods to prove income has been received and payment has been made."
+          }
+         ]
+        },
+        {
+         "id": "alternative-financial-currency",
+         "title": "Alternative Financial Currency",
+         "outcomes": [
+          {
+           "code": "MM2.c.i.1",
+           "text": "Differentiate between debit- and credit-types of financial currency."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "saving-and-investing",
+     "title": "Saving and Investing",
+     "topics": [
+      {
+       "id": "students-will-explore-savings-concepts-and-apply",
+       "title": "Students will explore savings concepts and apply this knowledge to attain financial security",
+       "subtopics": [
+        {
+         "id": "saving-principles",
+         "title": "Saving Principles",
+         "outcomes": [
+          {
+           "code": "SI1.a.i.1",
+           "text": "Describe reasons why people save money."
+          },
+          {
+           "code": "SI1.a.i.2",
+           "text": "Explain the phrase pay yourself first."
+          }
+         ]
+        },
+        {
+         "id": "savings-types-and-features",
+         "title": "Savings Types and Features",
+         "outcomes": [
+          {
+           "code": "SI1.b.i.1",
+           "text": "Describe why a person deposits money into a financial institution."
+          },
+          {
+           "code": "SI1.b.i.2",
+           "text": "Describe characteristics of a secure savings account."
+          }
+         ]
+        },
+        {
+         "id": "saving-goal-planning",
+         "title": "Saving Goal Planning",
+         "outcomes": [
+          {
+           "code": "SI1.c.i.1",
+           "text": "Identify steps to reach a savings goal."
+          },
+          {
+           "code": "SI1.c.i.2",
+           "text": "Explain how people make spending and saving choices to meet personal savings goals."
+          }
+         ]
+        },
+        {
+         "id": "aving-risk-and-reward",
+         "title": "aving Risk and Reward",
+         "outcomes": [
+          {
+           "code": "SI1.d.i.1",
+           "text": "Compare types of risks and rewards when saving (e.g., no loss of principal, interest- bearing)."
+          }
+         ]
+        },
+        {
+         "id": "role-of-government-in-saving",
+         "title": "Role of Government in Saving",
+         "outcomes": [
+          {
+           "code": "SI1.e.i.1",
+           "text": "Identify the role that law enforcement has to protect personal financial assets."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "students-will-explore-investing-concepts-and-app",
+       "title": "Students will explore investing concepts and apply this knowledge to attain financial security",
+       "subtopics": [
+        {
+         "id": "investing-principles",
+         "title": "Investing Principles",
+         "outcomes": [
+          {
+           "code": "SI2.a.i.1",
+           "text": "Describe the difference between saving and investing."
+          },
+          {
+           "code": "SI2.a.i.2",
+           "text": "Describe reasons why people invest their money."
+          }
+         ]
+        },
+        {
+         "id": "investing-types-and-features",
+         "title": "Investing Types and Features",
+         "outcomes": [
+          {
+           "code": "SI2.b.i.1",
+           "text": "Identify different investing choices (e.g., collectibles, stocks, bonds, or mutual funds)."
+          },
+          {
+           "code": "SI2.b.i.2",
+           "text": "Predict financial outcomes based on investing choices."
+          }
+         ]
+        },
+        {
+         "id": "investing-goal-planning",
+         "title": "Investing Goal Planning",
+         "outcomes": [
+          {
+           "code": "SI2.c.i.1",
+           "text": "Explain reasons why people invest for future personal financial goals."
+          },
+          {
+           "code": "SI2.c.i.2",
+           "text": "Develop short- and long-term personal investing goals."
+          },
+          {
+           "code": "SI2.c.i.3",
+           "text": "Explain that people make spending, saving, and investing choices to meet personal financial goals."
+          }
+         ]
+        },
+        {
+         "id": "investing-risks-and-rewards",
+         "title": "Investing Risks and Rewards",
+         "outcomes": [
+          {
+           "code": "SI2.d.i.1",
+           "text": "Give examples of investing risks and rewards."
+          },
+          {
+           "code": "SI2.d.i.2",
+           "text": "Explain why there are different types of interest (e.g., simple or compound)."
+          },
+          {
+           "code": "SI2.d.i.3",
+           "text": "Compare rewards when investing."
+          }
+         ]
+        },
+        {
+         "id": "role-of-government-in-investing",
+         "title": "Role of Government in Investing",
+         "outcomes": [
+          {
+           "code": "SI2.e.i.1",
+           "text": "Explain how federal and state regulators help protect investors."
+          },
+          {
+           "code": "SI2.e.i.2",
+           "text": "Identify investment options that are tax free."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "credit-and-debt",
+     "title": "Credit and Debt",
+     "topics": [
+      {
+       "id": "students-will-examine-the-benefits-and-costs-of-",
+       "title": "Students will examine the benefits and costs of using credit",
+       "subtopics": [
+        {
+         "id": "benefits-of-using-credit",
+         "title": "Benefits of Using Credit",
+         "outcomes": [
+          {
+           "code": "CD1.a.i.1",
+           "text": "Identify situations when people might pay for certain items in small amounts over time."
+          },
+          {
+           "code": "CD1.a.i.2",
+           "text": "Summarize the advantages and disadvantages of using credit."
+          }
+         ]
+        },
+        {
+         "id": "costs-of-using-credit",
+         "title": "Costs of Using Credit",
+         "outcomes": [
+          {
+           "code": "CD1.b.i.1",
+           "text": "Summarize the advantages and disadvantages of using credit."
+          }
+         ]
+        },
+        {
+         "id": "interest-and-fees",
+         "title": "Interest and Fees",
+         "outcomes": [
+          {
+           "code": "CD1.c.i.1",
+           "text": "Compare the differences between income and expenses."
+          },
+          {
+           "code": "CD1.c.i.2",
+           "text": "Calculate cost of late fees over a given time period."
+          }
+         ]
+        },
+        {
+         "id": "debt-resolution",
+         "title": "Debt Resolution",
+         "outcomes": [
+          {
+           "code": "CD1.d.i.1",
+           "text": "Recognize consequences of overspending when borrowing, and reflect on what may need to be sacrificed to resolve a debt."
+          },
+          {
+           "code": "CD1.d.i.2",
+           "text": "Recognize appropriate people who could discuss financial issues."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "students-will-interpret-lending-options-consumer",
+       "title": "Students will interpret lending options, consumer rights, and responsibilities",
+       "subtopics": [
+        {
+         "id": "credit-products-and-services",
+         "title": "Credit Products and Services",
+         "outcomes": [
+          {
+           "code": "CD2.a.i.1",
+           "text": "Compare and give examples of goods and services."
+          },
+          {
+           "code": "CD2.a.i.2",
+           "text": "Explore situations where people might pay for certain items over time."
+          },
+          {
+           "code": "CD2.a.i.3",
+           "text": "Examine why financial institutions lend money."
+          },
+          {
+           "code": "CD2.a.i.4",
+           "text": "Explain why using a credit card is a form of borrowing."
+          },
+          {
+           "code": "CD2.a.i.5",
+           "text": "Identify the sources of credit."
+          }
+         ]
+        },
+        {
+         "id": "high-cost-alternative-lending",
+         "title": "High-Cost Alternative Lending",
+         "outcomes": [
+          {
+           "code": "CD2.b.i.1",
+           "text": "Provide examples of predatory lending practices (e.g., deception, coercion, misleading, exploitation, and other unethical actions toward an individual who does not need, does not want, or can’t afford the loan)."
+          }
+         ]
+        },
+        {
+         "id": "consumer-credit-rights-and-responsibilities",
+         "title": "Consumer Credit Rights and Responsibilities",
+         "outcomes": [
+          {
+           "code": "CD2.c.i.1",
+           "text": "Evaluate the qualities that would be desirable in a person who borrows a favorite personal possession."
+          },
+          {
+           "code": "CD2.c.i.2",
+           "text": "List examples of reasonable conditions to set for the use of borrowed personal property."
+          },
+          {
+           "code": "CD2.c.i.3",
+           "text": "Identify penalties associated with borrowing agreements (e.g., library or financial institutions)."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "risk-management-and-insurance",
+     "title": "Risk Management and Insurance",
+     "topics": [
+      {
+       "id": "students-will-contrast-different-types-of-risk-a",
+       "title": "Students will contrast different types of risk and how it could affect their financial decisions",
+       "subtopics": [
+        {
+         "id": "risk-management-and-insurance",
+         "title": "Risk Management and Insurance",
+         "outcomes": [
+          {
+           "code": "RMI1.a.i.1",
+           "text": "Identify life situations where the outcome was unexpected."
+          },
+          {
+           "code": "RMI1.a.i.2",
+           "text": "Determine what risks may be worth taking for a desired outcome."
+          }
+         ]
+        },
+        {
+         "id": "consequences-of-financial-risk",
+         "title": "Consequences of Financial Risk",
+         "outcomes": [
+          {
+           "code": "RMI1.b.i.1",
+           "text": "Examine how risky individual financial choices can negatively impact a family or community."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "students-will-assess-possible-choices-to-protect",
+       "title": "Students will assess possible choices to protect themselves from financial risk",
+       "subtopics": [
+        {
+         "id": "purpose-of-insurance",
+         "title": "Purpose of Insurance",
+         "outcomes": [
+          {
+           "code": "RMI2.a.i.1",
+           "text": "Describe ways to protect and lower risk of losing valuables (e.g., putting things away, not bringing things to school, locking a locker, or taking care of valuables)."
+          }
+         ]
+        },
+        {
+         "id": "types-of-insurance",
+         "title": "Types of Insurance",
+         "outcomes": [
+          {
+           "code": "RMI2.b.i.1",
+           "text": "Describe different types of insurance."
+          }
+         ]
+        },
+        {
+         "id": "cost-factors-of-insurance",
+         "title": "Cost Factors of Insurance",
+         "outcomes": [
+          {
+           "code": "RMI2.c.i.1",
+           "text": "Compare cost of insurance versus cost of loss."
+          },
+          {
+           "code": "RMI2.c.i.2",
+           "text": "Determine what factors would increase the cost of protection."
+          }
+         ]
+        },
+        {
+         "id": "meaning-of-insurance-contracts",
+         "title": "Meaning of Insurance Contracts",
+         "outcomes": [
+          {
+           "code": "RMI2.d.i.1",
+           "text": "Create an insurance plan that demonstrates the type of insurance coverage that people need for their items of value (e.g., insurance on a cell phone or game console)."
+          }
+         ]
+        },
+        {
+         "id": "loss-prevention-plan",
+         "title": "Loss Prevention Plan",
+         "outcomes": [
+          {
+           "code": "RMI2.e.i.1",
+           "text": "Create an insurance plan that demonstrates the type of insurance coverage that people need for their items of value (e.g., insurance on a cell phone or game console)."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "6-8",
+   "units": [
+    {
+     "id": "financial-mindset",
+     "title": "Financial Mindset",
+     "topics": [
+      {
+       "id": "students-will-develop-strategies-to-make-intenti",
+       "title": "Students will develop strategies to make intentional financial decisions throughout their lifespan",
+       "subtopics": [
+        {
+         "id": "critical-consumer",
+         "title": "Critical Consumer",
+         "outcomes": [
+          {
+           "code": "FM1.a.m.1",
+           "text": "Analyze the roles of consumers and producers in financial markets."
+          },
+          {
+           "code": "FM1.a.m.2",
+           "text": "Distinguish between the rights and responsibilities of buyers and sellers under consumer protection laws."
+          },
+          {
+           "code": "FM1.a.m.3",
+           "text": "Evaluate the influence on demographic groups of advertising and the media on decision making and spending."
+          }
+         ]
+        },
+        {
+         "id": "functions-and-structure-of-money",
+         "title": "Functions and Structure of Money",
+         "outcomes": [
+          {
+           "code": "FM1.b.m.1",
+           "text": "Differentiate between the functions of money as a medium of exchange (e.g., money accepted in exchange for goods or services), store of value (e.g., retention of money’s value for future exchanges), and a unit of account (e.g., stated unit of measurement to simplify transactional exchanges in contrast to bartering)."
+          }
+         ]
+        },
+        {
+         "id": "opportunity-costs",
+         "title": "Opportunity Costs",
+         "outcomes": [
+          {
+           "code": "FM1.c.m.1",
+           "text": "Predict the opportunity costs of various decisions."
+          },
+          {
+           "code": "FM1.c.m.2",
+           "text": "Explain why the opportunity cost might differ from person to person or in different situations (e.g., auto or housing)."
+          },
+          {
+           "code": "FM1.c.m.3",
+           "text": "Contrast cost-benefit and opportunity cost."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "students-will-analyze-how-aspects-of-financial-p",
+       "title": "Students will analyze how aspects of financial psychology impact financial well-being",
+       "subtopics": [
+        {
+         "id": "values-and-behavior",
+         "title": "Values and Behavior",
+         "outcomes": [
+          {
+           "code": "FM2.a.m.1",
+           "text": "Analyze different cultural perspectives and behaviors regarding financial values and goals across communities."
+          }
+         ]
+        },
+        {
+         "id": "emotional-influences",
+         "title": "Emotional Influences",
+         "outcomes": [
+          {
+           "code": "FM2.b.m.1",
+           "text": "Describe financial situations that trigger various emotions."
+          },
+          {
+           "code": "FM2.b.m.2",
+           "text": "Summarize how emotions may interfere with the achievement of financial goals."
+          }
+         ]
+        },
+        {
+         "id": "external-influences",
+         "title": "External Influences",
+         "outcomes": [
+          {
+           "code": "FM2.c.m.1",
+           "text": "Differentiate how positive and negative external influences (e.g., peers or marketing) impact financial decisions in a society with frictionless transactions (e.g., pre-stored payment information, no signature required, or biometrics)."
+          }
+         ]
+        },
+        {
+         "id": "financial-goals",
+         "title": "Financial Goals",
+         "outcomes": [
+          {
+           "code": "FM2.d.m.1",
+           "text": "Analyze long-term and short- term financial goals utilizing elements of goal development strategies."
+          }
+         ]
+        },
+        {
+         "id": "civic-engagement-and-philanthropy-e-g-giving-bac",
+         "title": "Civic Engagement and Philanthropy (e.g., giving back, volunteering, donation, or charity)",
+         "outcomes": [
+          {
+           "code": "FM2.e.m.1",
+           "text": "Research individuals or organizations that give back and describe their impact on the local, state, tribal nation, country, or world."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "students-will-establish-digital-awareness-to-enh",
+       "title": "Students will establish digital awareness to enhance their financial mindset",
+       "subtopics": [
+        {
+         "id": "online-and-account-security",
+         "title": "Online and Account Security",
+         "outcomes": [
+          {
+           "code": "FM3.a.m.1",
+           "text": "Evaluate alternatives to account passwords (e.g., facial or fingerprint recognition, or sign-in through social media accounts)."
+          },
+          {
+           "code": "FM3.a.m.2",
+           "text": "Explore methods of managing and protecting passwords for multiple accounts."
+          },
+          {
+           "code": "FM3.a.m.3",
+           "text": "Identify possible motives behind data breaches."
+          },
+          {
+           "code": "FM3.a.m.4",
+           "text": "Describe ways to determine if a person’s identity has been compromised."
+          }
+         ]
+        },
+        {
+         "id": "digital-footprint",
+         "title": "Digital Footprint",
+         "outcomes": [
+          {
+           "code": "FM3.b.m.1",
+           "text": "Compare and contrast active and passive financial digital footprints."
+          },
+          {
+           "code": "FM3.b.m.2",
+           "text": "Illustrate how a financial digital footprint can be used by others."
+          }
+         ]
+        },
+        {
+         "id": "digital-resources",
+         "title": "Digital Resources",
+         "outcomes": [
+          {
+           "code": "FM3.c.m.1",
+           "text": "Explain restrictions on why websites and mobile apps may be legally restricted based upon age (e.g., Family Educational Rights and Privacy Act)."
+          },
+          {
+           "code": "FM3.c.m.2",
+           "text": "Evaluate how financial applications are utilized to support financial transactions (e.g., access financial information, direct deposit, bill pay, transfers, or balancing a checking account)."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "education-and-employment",
+     "title": "Education and Employment",
+     "topics": [
+      {
+       "id": "students-will-compare-the-effect-of-personal-inc",
+       "title": "Students will compare the effect of personal income on their goals",
+       "subtopics": [
+        {
+         "id": "deductions-and-taxes",
+         "title": "Deductions and Taxes",
+         "outcomes": [
+          {
+           "code": "EE1.a.m.1",
+           "text": "Identify payroll taxes that are deducted from a paycheck."
+          }
+         ]
+        },
+        {
+         "id": "types-of-compensation",
+         "title": "Types of Compensation",
+         "outcomes": [
+          {
+           "code": "EE1.b.m.1",
+           "text": "Evaluate specific examples of intrinsic and extrinsic rewards for a specific career (e.g., salary, flexibility, family time, or goodwill)."
+          },
+          {
+           "code": "EE1.b.m.2",
+           "text": "Compare and contrast employment choices based on intrinsic and extrinsic factors (e.g., salary, flexibility, family time, or goodwill)."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "students-will-evaluate-the-impact-of-lifelong-le",
+       "title": "Students will evaluate the impact of lifelong learning on one’s ability to function effectively in a diverse and changing economy",
+       "subtopics": [
+        {
+         "id": "post-secondary-education-skills-and-training",
+         "title": "Post-Secondary Education, Skills, and Training",
+         "outcomes": [
+          {
+           "code": "EE2.a.m.1",
+           "text": "Compare the benefits and costs of a variety of post- secondary education and training options."
+          },
+          {
+           "code": "EE2.a.m.2",
+           "text": "Assess data on the lifetime earnings of workers with different levels of education or training."
+          },
+          {
+           "code": "EE2.a.m.3",
+           "text": "Explain cost and benefit factors such as earning potential, the total cost of education or training, and career opportunities within a chosen career pathway."
+          }
+         ]
+        },
+        {
+         "id": "emerging-employment-and-education-trends",
+         "title": "Emerging Employment and Education Trends",
+         "outcomes": [
+          {
+           "code": "EE2.b.m.1",
+           "text": "Assess and interpret resources that can be used to evaluate emerging employment trends and markets (e.g., U.S. Bureau of Labor Statistics, state agencies, or job search engines)."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "money-management",
+     "title": "Money Management",
+     "topics": [
+      {
+       "id": "students-will-demonstrate-their-ability-to-use-m",
+       "title": "Students will demonstrate their ability to use money management skills and strategies",
+       "subtopics": [
+        {
+         "id": "budgeting",
+         "title": "Budgeting",
+         "outcomes": [
+          {
+           "code": "MM1.a.m.1",
+           "text": "Construct a basic budget, including allocating spending and savings that spans for a week or a month."
+          }
+         ]
+        },
+        {
+         "id": "financial-management",
+         "title": "Financial Management",
+         "outcomes": [
+          {
+           "code": "MM1.b.m.1",
+           "text": "Plan for ways to save, spend, and give money."
+          },
+          {
+           "code": "MM1.b.m.2",
+           "text": "Compare responsible saving, spending, and charitable habits."
+          },
+          {
+           "code": "MM1.b.m.3",
+           "text": "Identify various organizations or places that provide financial resource support to individuals or families."
+          },
+          {
+           "code": "MM1.b.m.4",
+           "text": "Classify the personal eligibility criteria to establish a financial account (e.g., age, residency, or amount of deposit)."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "students-will-utilize-financial-institutions-and",
+       "title": "Students will utilize financial institutions and service providers to support money management",
+       "subtopics": [
+        {
+         "id": "financial-institutions-and-service-providers",
+         "title": "Financial Institutions and Service Providers",
+         "outcomes": [
+          {
+           "code": "MM2.a.m.1",
+           "text": "Describe and evaluate the benefits and risks of basic financial institution services."
+          }
+         ]
+        },
+        {
+         "id": "payment-types",
+         "title": "Payment Types",
+         "outcomes": [
+          {
+           "code": "MM2.b.m.1",
+           "text": "Compare features of digital banking in online banking, bill pay, transfers, and checking account transactions."
+          },
+          {
+           "code": "MM2.b.m.2",
+           "text": "Compare the use of cash, debit cards, credit cards, checks, and other modern forms of payment."
+          },
+          {
+           "code": "MM2.b.m.3",
+           "text": "Determine how pre- authorized payments impact account balances."
+          },
+          {
+           "code": "MM2.b.m.4",
+           "text": "Recognize the importance of retaining records of financial transactions."
+          }
+         ]
+        },
+        {
+         "id": "alternative-financial-currency",
+         "title": "Alternative Financial Currency",
+         "outcomes": [
+          {
+           "code": "MM2.c.m.1",
+           "text": "Analyze online and mobile systems or applications that permit consumers to acquire items or transfer money."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "saving-and-investing",
+     "title": "Saving and Investing",
+     "topics": [
+      {
+       "id": "students-will-explore-savings-concepts-and-apply",
+       "title": "Students will explore savings concepts and apply this knowledge to attain financial security",
+       "subtopics": [
+        {
+         "id": "saving-principles",
+         "title": "Saving Principles",
+         "outcomes": [
+          {
+           "code": "SI1.a.m.1",
+           "text": "Compare and contrast places that can be used to save money."
+          },
+          {
+           "code": "SI1.a.m.2",
+           "text": "Describe ways to decrease expenses in order to increase savings."
+          },
+          {
+           "code": "SI1.a.m.3",
+           "text": "Compare pay yourself first to living paycheck to paycheck."
+          },
+          {
+           "code": "SI1.a.m.4",
+           "text": "Explain why saving is a prerequisite to investing."
+          }
+         ]
+        },
+        {
+         "id": "savings-types-and-features",
+         "title": "Savings Types and Features",
+         "outcomes": [
+          {
+           "code": "SI1.b.m.1",
+           "text": "Analyze the benefits of depositing money into a financial institution."
+          },
+          {
+           "code": "SI1.b.m.2",
+           "text": "Compare and contrast savings versus checking and debit accounts."
+          }
+         ]
+        },
+        {
+         "id": "saving-goal-planning",
+         "title": "Saving Goal Planning",
+         "outcomes": [
+          {
+           "code": "SI1.c.m.1",
+           "text": "Create a savings plan to reach short- and long-term personal saving goals."
+          },
+          {
+           "code": "SI1.c.m.2",
+           "text": "Analyze how life changes or changes in circumstances can affect a personal savings goal."
+          }
+         ]
+        },
+        {
+         "id": "aving-risk-and-reward",
+         "title": "aving Risk and Reward",
+         "outcomes": [
+          {
+           "code": "SI1.d.m.1",
+           "text": "Define simple and compound interest."
+          },
+          {
+           "code": "SI1.d.m.2",
+           "text": "Analyze the relationship between opportunity cost and reward."
+          }
+         ]
+        },
+        {
+         "id": "role-of-government-in-saving",
+         "title": "Role of Government in Saving",
+         "outcomes": [
+          {
+           "code": "SI1.e.m.1",
+           "text": "Recognize the limit of the Federal Deposit Insurance Corporation (FDIC) and National Credit Union Administration (NCUA) coverage of financial accounts."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "students-will-explore-investing-concepts-and-app",
+       "title": "Students will explore investing concepts and apply this knowledge to attain financial security",
+       "subtopics": [
+        {
+         "id": "investing-principles",
+         "title": "Investing Principles",
+         "outcomes": [
+          {
+           "code": "SI2.a.m.1",
+           "text": "Explain the difference between income and net worth."
+          },
+          {
+           "code": "SI2.a.m.2",
+           "text": "Compare and contrast methods to increase net worth."
+          },
+          {
+           "code": "SI2.a.m.3",
+           "text": "Examine the time value of money (TVM) and the variables that affect time value of money."
+          }
+         ]
+        },
+        {
+         "id": "investing-types-and-features",
+         "title": "Investing Types and Features",
+         "outcomes": [
+          {
+           "code": "SI2.b.m.1",
+           "text": "Explore investing choices (e.g., collectibles, stocks, bonds, or mutual funds) which can produce income or growth."
+          },
+          {
+           "code": "SI2.b.m.2",
+           "text": "Identify the differences between banks, credit unions, and investment firms."
+          }
+         ]
+        },
+        {
+         "id": "investing-goal-planning",
+         "title": "Investing Goal Planning",
+         "outcomes": [
+          {
+           "code": "SI2.c.m.1",
+           "text": "Create a prioritized list of short- and long-term personal financial investment goals and suggest methods to achieve those goals."
+          },
+          {
+           "code": "SI2.c.m.2",
+           "text": "Compare games of chance with investing methods for financial planning."
+          },
+          {
+           "code": "SI2.c.m.3",
+           "text": "Examine the role of investing for retirement."
+          },
+          {
+           "code": "SI2.c.m.4",
+           "text": "Investigate the role of a financial planner."
+          },
+          {
+           "code": "SI2.c.m.5",
+           "text": "Analyze the difference between dividends and capital gains."
+          },
+          {
+           "code": "SI2.c.m.6",
+           "text": "Identify factors that influence financial investment planning (e.g., age, income, liabilities, assets, goals, family size, or risk tolerance)."
+          }
+         ]
+        },
+        {
+         "id": "investing-risks-and-rewards",
+         "title": "Investing Risks and Rewards",
+         "outcomes": [
+          {
+           "code": "SI2.d.m.1",
+           "text": "Compare and contrast types of risk for investing."
+          },
+          {
+           "code": "SI2.d.m.2",
+           "text": "Choose personal risk tolerance for investments."
+          },
+          {
+           "code": "SI2.d.m.3",
+           "text": "Compare and contrast levels of investment risk and levels of investment rewards."
+          }
+         ]
+        },
+        {
+         "id": "role-of-government-in-investing",
+         "title": "Role of Government in Investing",
+         "outcomes": [
+          {
+           "code": "SI2.e.m.1",
+           "text": "Investigate reliable government and industry sources to locate background information about a local person who provides investment advice."
+          },
+          {
+           "code": "SI2.e.m.2",
+           "text": "Examine the tax rate on short-term and long-term investments."
+          },
+          {
+           "code": "SI2.e.m.3",
+           "text": "Analyze the benefits of tax- advantaged investments for young people."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "credit-and-debt",
+     "title": "Credit and Debt",
+     "topics": [
+      {
+       "id": "students-will-examine-the-benefits-and-costs-of-",
+       "title": "Students will examine the benefits and costs of using credit",
+       "subtopics": [
+        {
+         "id": "benefits-of-using-credit",
+         "title": "Benefits of Using Credit",
+         "outcomes": [
+          {
+           "code": "CD1.a.m.1",
+           "text": "Assess whether a specific purchase justifies the use of credit."
+          }
+         ]
+        },
+        {
+         "id": "costs-of-using-credit",
+         "title": "Costs of Using Credit",
+         "outcomes": [
+          {
+           "code": "CD1.b.m.1",
+           "text": "Assess whether a specific purchase justifies the use of credit."
+          }
+         ]
+        },
+        {
+         "id": "interest-and-fees",
+         "title": "Interest and Fees",
+         "outcomes": [
+          {
+           "code": "CD1.c.m.1",
+           "text": "Compare options for payment on credit cards."
+          },
+          {
+           "code": "CD1.c.m.2",
+           "text": "Demonstrate balance sheet concepts (e.g., debit and credit)."
+          },
+          {
+           "code": "CD1.c.m.3",
+           "text": "Compute the amount of interest paid over time when using credit."
+          },
+          {
+           "code": "CD1.c.m.4",
+           "text": "Compare advantages and disadvantages of various debt payment methods."
+          }
+         ]
+        },
+        {
+         "id": "debt-resolution",
+         "title": "Debt Resolution",
+         "outcomes": [
+          {
+           "code": "CD1.d.m.1",
+           "text": "Identify indicators of excessive debt."
+          },
+          {
+           "code": "CD1.d.m.2",
+           "text": "Predict possible consequences of excessive debt or bankruptcy."
+          },
+          {
+           "code": "CD1.d.m.3",
+           "text": "Explain credit coaching and appropriate times to utilize it."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "students-will-interpret-lending-options-consumer",
+       "title": "Students will interpret lending options, consumer rights, and responsibilities",
+       "subtopics": [
+        {
+         "id": "credit-products-and-services",
+         "title": "Credit Products and Services",
+         "outcomes": [
+          {
+           "code": "CD2.a.m.1",
+           "text": "Compare the benefits and costs of spending decisions when selecting products or services."
+          },
+          {
+           "code": "CD2.a.m.2",
+           "text": "Differentiate between a credit card, charge card, and debit card."
+          },
+          {
+           "code": "CD2.a.m.3",
+           "text": "Assess whether a specific purchase justifies the use of credit."
+          },
+          {
+           "code": "CD2.a.m.4",
+           "text": "Evaluate potential consequences of using easy access credit."
+          },
+          {
+           "code": "CD2.a.m.5",
+           "text": "Identify the financial benefits and services of different types of lending institutions."
+          }
+         ]
+        },
+        {
+         "id": "high-cost-alternative-lending",
+         "title": "High-Cost Alternative Lending",
+         "outcomes": [
+          {
+           "code": "CD2.b.m.1",
+           "text": "Explain high-cost alternative lending products and practices (e.g., refund anticipation loan, payday lending, or rent-to-own)."
+          }
+         ]
+        },
+        {
+         "id": "consumer-credit-rights-and-responsibilities",
+         "title": "Consumer Credit Rights and Responsibilities",
+         "outcomes": [
+          {
+           "code": "CD2.c.m.1",
+           "text": "Research ways that a person can regain a lender’s trust after losing or damaging a borrowed personal property."
+          },
+          {
+           "code": "CD2.c.m.2",
+           "text": "Compare the potential payoffs of a positive borrowing reputation versus the potential consequences of a poor borrowing reputation."
+          },
+          {
+           "code": "CD2.c.m.3",
+           "text": "Explain why and how credit reports are developed."
+          },
+          {
+           "code": "CD2.c.m.4",
+           "text": "Examine the Fair Debt Collection Practice Act & Fair Credit Reporting Act."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "risk-management-and-insurance",
+     "title": "Risk Management and Insurance",
+     "topics": [
+      {
+       "id": "students-will-contrast-different-types-of-risk-a",
+       "title": "Students will contrast different types of risk and how it could affect their financial decisions",
+       "subtopics": [
+        {
+         "id": "risk-management-and-insurance",
+         "title": "Risk Management and Insurance",
+         "outcomes": [
+          {
+           "code": "RMI1.a.m.1",
+           "text": "Distinguish between personal choices that have reasonable and unreasonable risk factors."
+          },
+          {
+           "code": "RMI1.a.m.2",
+           "text": "Identify how to reduce risk by relying upon others and other loss prevention tools."
+          }
+         ]
+        },
+        {
+         "id": "consequences-of-financial-risk",
+         "title": "Consequences of Financial Risk",
+         "outcomes": [
+          {
+           "code": "RMI1.b.m.1",
+           "text": "Illustrate decisions individuals make that may inhibit their ability to meet financial obligations."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "students-will-assess-possible-choices-to-protect",
+       "title": "Students will assess possible choices to protect themselves from financial risk",
+       "subtopics": [
+        {
+         "id": "purpose-of-insurance",
+         "title": "Purpose of Insurance",
+         "outcomes": [
+          {
+           "code": "RMI2.a.m.1",
+           "text": "Describe ways in which having insurance can protect a person from financial loss."
+          }
+         ]
+        },
+        {
+         "id": "types-of-insurance",
+         "title": "Types of Insurance",
+         "outcomes": [
+          {
+           "code": "RMI2.b.m.1",
+           "text": "Describe how the different types of short-term and long- term insurance coverages can protect a person."
+          }
+         ]
+        },
+        {
+         "id": "cost-factors-of-insurance",
+         "title": "Cost Factors of Insurance",
+         "outcomes": [
+          {
+           "code": "RMI2.c.m.1",
+           "text": "Explain how insurance coverage is directly proportional to insurance premiums (e.g., higher coverage amounts, types of coverage, or statistical risk associated with the age of the person being insured)."
+          },
+          {
+           "code": "RMI2.c.m.2",
+           "text": "Evaluate how the cost of insurance can vary based on past decisions."
+          }
+         ]
+        },
+        {
+         "id": "meaning-of-insurance-contracts",
+         "title": "Meaning of Insurance Contracts",
+         "outcomes": [
+          {
+           "code": "RMI2.d.m.1",
+           "text": "Compare extended warranties, insurance, protection, and coverage."
+          },
+          {
+           "code": "RMI2.d.m.2",
+           "text": "Identify why it is important to understand the details of an insurance plan."
+          }
+         ]
+        },
+        {
+         "id": "loss-prevention-plan",
+         "title": "Loss Prevention Plan",
+         "outcomes": [
+          {
+           "code": "RMI2.e.m.1",
+           "text": "Construct a plan that shows how to use insurance effectively to protect self, family, and items of value."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "9-12",
+   "units": [
+    {
+     "id": "financial-mindset",
+     "title": "Financial Mindset",
+     "topics": [
+      {
+       "id": "students-will-develop-strategies-to-make-intenti",
+       "title": "Students will develop strategies to make intentional financial decisions throughout their lifespan",
+       "subtopics": [
+        {
+         "id": "critical-consumer",
+         "title": "Critical Consumer",
+         "outcomes": [
+          {
+           "code": "FM1.a.h.1",
+           "text": "Summarize consumer rights, responsibilities, protections and consumer vigilance (e.g., contesting incorrect billing or registering a consumer complaint)."
+          },
+          {
+           "code": "FM1.a.h.2",
+           "text": "Analyze and apply multiple sources of information when making consumer decisions (e.g., advertisements, reviews, interest rates, applicable fees, consumer movements, or choice)."
+          },
+          {
+           "code": "FM1.a.h.3",
+           "text": "Analyze the financial impact of advertising including techniques, potential for deception along with the influence of promotions, packaging, and placement."
+          }
+         ]
+        },
+        {
+         "id": "functions-and-structure-of-money",
+         "title": "Functions and Structure of Money",
+         "outcomes": [
+          {
+           "code": "FM1.b.h.1",
+           "text": "Evaluate the functions and value of money in the United States (e.g., how the value is based upon the strength and credit of the government/issuing body)."
+          },
+          {
+           "code": "FM1.b.h.2",
+           "text": "Identify the function of the foreign exchange market to establish a relative value of different currencies and the process that changes in currency values may have on purchasing power in relationship to the cost of goods and services in a global marketplace."
+          }
+         ]
+        },
+        {
+         "id": "opportunity-costs",
+         "title": "Opportunity Costs",
+         "outcomes": [
+          {
+           "code": "FM1.c.h.1",
+           "text": "Perform a cost-benefit analysis on a real-world situation."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "students-will-analyze-how-aspects-of-financial-p",
+       "title": "Students will analyze how aspects of financial psychology impact financial well-being",
+       "subtopics": [
+        {
+         "id": "values-and-behavior",
+         "title": "Values and Behavior",
+         "outcomes": [
+          {
+           "code": "FM2.a.h.1",
+           "text": "Assess the impact of individual values and behaviors on financial decisions and goals."
+          }
+         ]
+        },
+        {
+         "id": "emotional-influences",
+         "title": "Emotional Influences",
+         "outcomes": [
+          {
+           "code": "FM2.b.h.1",
+           "text": "Evaluate strategies individuals use to manage emotions impacting financial decisions."
+          }
+         ]
+        },
+        {
+         "id": "external-influences",
+         "title": "External Influences",
+         "outcomes": [
+          {
+           "code": "FM2.c.h.1",
+           "text": "Critique a financial plan and identify areas that may have been influenced by external sources."
+          }
+         ]
+        },
+        {
+         "id": "financial-goals",
+         "title": "Financial Goals",
+         "outcomes": [
+          {
+           "code": "FM2.d.h.1",
+           "text": "Distinguish how an investment plan that incorporates a goal development strategy reflects various life factors (e.g., age, personal values, income, liabilities, assets, goals, family size, risk tolerance, or net worth)."
+          }
+         ]
+        },
+        {
+         "id": "civic-engagement-and-philanthropy-e-g-giving-bac",
+         "title": "Civic Engagement and Philanthropy (e.g., giving back, volunteering, donation, or charity)",
+         "outcomes": [
+          {
+           "code": "FM2.e.h.1",
+           "text": "Describe how to incorporate philanthropic opportunities into personal financial goals."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "students-will-establish-digital-awareness-to-enh",
+       "title": "Students will establish digital awareness to enhance their financial mindset",
+       "subtopics": [
+        {
+         "id": "online-and-account-security",
+         "title": "Online and Account Security",
+         "outcomes": [
+          {
+           "code": "FM3.a.h.1",
+           "text": "Choose an effective means to manage and protect passwords for multiple online accounts."
+          },
+          {
+           "code": "FM3.a.h.2",
+           "text": "Develop strategies to guard against and respond to malicious threats including viruses, phishing, and identity theft, and recognize the importance of security protocols."
+          },
+          {
+           "code": "FM3.a.h.3",
+           "text": "Research ways online transactions, online banking, email scams, and telemarketing calls can make a person vulnerable to identity theft."
+          }
+         ]
+        },
+        {
+         "id": "digital-footprint",
+         "title": "Digital Footprint",
+         "outcomes": [
+          {
+           "code": "FM3.b.h.1",
+           "text": "Assess actions and data as beneficial or detrimental to a financial digital footprint."
+          },
+          {
+           "code": "FM3.b.h.2",
+           "text": "Strategize ways to optimize a financial digital footprint."
+          }
+         ]
+        },
+        {
+         "id": "digital-resources",
+         "title": "Digital Resources",
+         "outcomes": [
+          {
+           "code": "FM3.c.h.1",
+           "text": "Appraise a user agreement for common financial websites and applications."
+          },
+          {
+           "code": "FM3.c.h.2",
+           "text": "Evaluate benefits and costs of exclusively online banking."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "education-and-employment",
+     "title": "Education and Employment",
+     "topics": [
+      {
+       "id": "students-will-compare-the-effect-of-personal-inc",
+       "title": "Students will compare the effect of personal income on their goals",
+       "subtopics": [
+        {
+         "id": "deductions-and-taxes",
+         "title": "Deductions and Taxes",
+         "outcomes": [
+          {
+           "code": "EE1.a.h.1",
+           "text": "Evaluate a paycheck and how payroll taxes along with other deductions (e.g., insurance, retirement account, or flexible spending account for parking, childcare, and health) decrease net income."
+          },
+          {
+           "code": "EE1.a.h.2",
+           "text": "Analyze the impact of tax liability on income including potential deductions and credits that will impact state and federal income tax."
+          },
+          {
+           "code": "EE1.a.h.3",
+           "text": "Evaluate types of taxes (e.g., progressive or regressive) and earned benefits with eligibility criteria (e.g., Social Security, Medicare, or Medicaid)."
+          },
+          {
+           "code": "EE1.a.h.4",
+           "text": "Understand and follow the requirements of filing income taxes."
+          }
+         ]
+        },
+        {
+         "id": "types-of-compensation",
+         "title": "Types of Compensation",
+         "outcomes": [
+          {
+           "code": "EE1.b.h.1",
+           "text": "Assess ways workers are compensated in different industries and sectors (i.e., fringe benefits, wages, pension plan, hourly or salaried)."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "students-will-evaluate-the-impact-of-lifelong-le",
+       "title": "Students will evaluate the impact of lifelong learning on one’s ability to function effectively in a diverse and changing economy",
+       "subtopics": [
+        {
+         "id": "post-secondary-education-skills-and-training",
+         "title": "Post-Secondary Education, Skills, and Training",
+         "outcomes": [
+          {
+           "code": "EE2.a.h.1",
+           "text": "Assess how people’s willingness and ability to plan for the future affects their decision to increase their education or job training in a dynamic and changing labor market."
+          },
+          {
+           "code": "EE2.a.h.2",
+           "text": "Compare the employment rates of workers with different skills."
+          },
+          {
+           "code": "EE2.a.h.3",
+           "text": "Evaluate the return on investment of the preparation requirements for different career pathways."
+          }
+         ]
+        },
+        {
+         "id": "emerging-employment-and-education-trends",
+         "title": "Emerging Employment and Education Trends",
+         "outcomes": [
+          {
+           "code": "EE2.b.h.1",
+           "text": "Research and identify a job or field that may be high demand in the future based on emerging technologies."
+          },
+          {
+           "code": "EE2.b.h.2",
+           "text": "Assess employment trends and how those will impact future career paths."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "money-management",
+     "title": "Money Management",
+     "topics": [
+      {
+       "id": "students-will-demonstrate-their-ability-to-use-m",
+       "title": "Students will demonstrate their ability to use money management skills and strategies",
+       "subtopics": [
+        {
+         "id": "budgeting",
+         "title": "Budgeting",
+         "outcomes": [
+          {
+           "code": "MM1.a.h.1",
+           "text": "Prepare a budget or spending plan that depicts varying sources of income, a planned saving strategy, taxes, and other sources of fixed and variable spending."
+          }
+         ]
+        },
+        {
+         "id": "financial-management",
+         "title": "Financial Management",
+         "outcomes": [
+          {
+           "code": "MM1.b.h.1",
+           "text": "Compare and contrast different sources of active and passive income, savings, and investment vehicles."
+          },
+          {
+           "code": "MM1.b.h.2",
+           "text": "Develop and critique short- term and long-term personal financial plans."
+          },
+          {
+           "code": "MM1.b.h.3",
+           "text": "Evaluate circumstances when an individual may want to grant representation or consult for financial advice with a financial advisor, attorney, tax advisor, or financial planner."
+          },
+          {
+           "code": "MM1.b.h.4",
+           "text": "Summarize factors to consider when seeking financial advice and services."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "students-will-utilize-financial-institutions-and",
+       "title": "Students will utilize financial institutions and service providers to support money management",
+       "subtopics": [
+        {
+         "id": "financial-institutions-and-service-providers",
+         "title": "Financial Institutions and Service Providers",
+         "outcomes": [
+          {
+           "code": "MM2.a.h.1",
+           "text": "Compare financial institutions and service providers (e.g., banks, credit unions, investment and brokerage firms, mortgage brokers, payday lenders, online financial institutions, or loan agencies)."
+          },
+          {
+           "code": "MM2.a.h.2",
+           "text": "Analyze the reasons for regulation and the roles of financial regulators [e.g., Federal Deposit Insurance Corporation (FDIC), National Credit Union Administration (NCUA), Consumer Finance Protection Bureau (CFPB), Federal Reserve, Office of the Comptroller of the Currency (OCC), or Wisconsin Department of Financial Institutions (WDFI), Wisconsin Office of the Commissioner of Insurance (WOCI), Wisconsin Department of Agriculture, Trade, and Consumer Protection (WDATCP)]."
+          }
+         ]
+        },
+        {
+         "id": "payment-types",
+         "title": "Payment Types",
+         "outcomes": [
+          {
+           "code": "MM2.b.h.1",
+           "text": "Assess the advantages and disadvantages of digital banking (e.g., online banking, bill pay, transfers, or checking account transactions)."
+          },
+          {
+           "code": "MM2.b.h.2",
+           "text": "Summarize the tax and legal implications that require you to maintain personal records of significant financial transactions."
+          }
+         ]
+        },
+        {
+         "id": "alternative-financial-currency",
+         "title": "Alternative Financial Currency",
+         "outcomes": [
+          {
+           "code": "MM2.c.h.1",
+           "text": "Compare online and mobile systems or applications used as a means of alternative currency."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "saving-and-investing",
+     "title": "Saving and Investing",
+     "topics": [
+      {
+       "id": "students-will-explore-savings-concepts-and-apply",
+       "title": "Students will explore savings concepts and apply this knowledge to attain financial security",
+       "subtopics": [
+        {
+         "id": "saving-principles",
+         "title": "Saving Principles",
+         "outcomes": [
+          {
+           "code": "SI1.a.h.1",
+           "text": "Demonstrate how to manage savings accounts- both manually and electronically, including reconciliation."
+          },
+          {
+           "code": "SI1.a.h.2",
+           "text": "Determine the opportunity cost in relation to a saving plan (e.g., inflation or taxes)."
+          },
+          {
+           "code": "SI1.a.h.3",
+           "text": "Compare and contrast the benefits of pay yourself first and living paycheck to paycheck strategies on financial outcomes."
+          }
+         ]
+        },
+        {
+         "id": "savings-types-and-features",
+         "title": "Savings Types and Features",
+         "outcomes": [
+          {
+           "code": "SI1.b.h.1",
+           "text": "Compare and contrast characteristics of basic savings options (e.g., savings accounts, money market accounts, or certificates of deposit)."
+          },
+          {
+           "code": "SI1.b.h.2",
+           "text": "Explain the impact of electronic funds transfer (EFT) services on savings accounts."
+          }
+         ]
+        },
+        {
+         "id": "saving-goal-planning",
+         "title": "Saving Goal Planning",
+         "outcomes": [
+          {
+           "code": "SI1.c.h.1",
+           "text": "Determine the best options to achieve specific short- and long-term personal saving goals."
+          },
+          {
+           "code": "SI1.c.h.2",
+           "text": "Compare and contrast financial services and products to achieve personal saving goals."
+          }
+         ]
+        },
+        {
+         "id": "aving-risk-and-reward",
+         "title": "aving Risk and Reward",
+         "outcomes": [
+          {
+           "code": "SI1.d.h.1",
+           "text": "Compare and contrast the opportunity cost and reward of basic saving options (e.g., savings accounts, money market accounts, or certificates of deposit)."
+          },
+          {
+           "code": "SI1.d.h.2",
+           "text": "Evaluate the effect of compound interest on savings options."
+          }
+         ]
+        },
+        {
+         "id": "role-of-government-in-saving",
+         "title": "Role of Government in Saving",
+         "outcomes": [
+          {
+           "code": "SI1.e.h.1",
+           "text": "Explain the role that government agencies play in protecting deposits (e.g., Federal Deposit Insurance Corporation (FDIC), National Credit Union Administration (NCUA))."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "students-will-explore-investing-concepts-and-app",
+       "title": "Students will explore investing concepts and apply this knowledge to attain financial security",
+       "subtopics": [
+        {
+         "id": "investing-principles",
+         "title": "Investing Principles",
+         "outcomes": [
+          {
+           "code": "SI2.a.h.1",
+           "text": "Explain the role of revenue generating assets in building net worth (e.g., real estate or entrepreneurship)."
+          },
+          {
+           "code": "SI2.a.h.2",
+           "text": "Evaluate the effect of compounding earned interest on investments."
+          },
+          {
+           "code": "SI2.a.h.3",
+           "text": "Compute time value of money (TVM) principles (e.g., compound interest or Rule of 72)."
+          },
+          {
+           "code": "SI2.a.h.4",
+           "text": "Evaluate the reliability and trustworthiness of digital investment banking."
+          }
+         ]
+        },
+        {
+         "id": "investing-types-and-features",
+         "title": "Investing Types and Features",
+         "outcomes": [
+          {
+           "code": "SI2.b.h.1",
+           "text": "Describe a range of investment vehicles (short- term and long-term) for buying and selling investments."
+          },
+          {
+           "code": "SI2.b.h.2",
+           "text": "Explain the concept of asset allocation, associated fees, and their effect on the rate of return."
+          },
+          {
+           "code": "SI2.b.h.3",
+           "text": "Differentiate between different types of long-term retirement investments [e.g., IRA, Roth IRA, 401(k), or 403(b)]."
+          }
+         ]
+        },
+        {
+         "id": "investing-goal-planning",
+         "title": "Investing Goal Planning",
+         "outcomes": [
+          {
+           "code": "SI2.c.h.1",
+           "text": "Create personal criteria for investment planning."
+          },
+          {
+           "code": "SI2.c.h.2",
+           "text": "Analyze financial investment services according to personal criteria for investment planning."
+          },
+          {
+           "code": "SI2.c.h.3",
+           "text": "Assess various means of building net worth."
+          },
+          {
+           "code": "SI2.c.h.4",
+           "text": "Justify how paying yourself first early and often influences positive progress toward long-term financial planning goals."
+          },
+          {
+           "code": "SI2.c.h.5",
+           "text": "Evaluate factors that influence financial investment planning (e.g., age, income, liabilities, assets, goals, family size, or risk tolerance)."
+          },
+          {
+           "code": "SI2.c.h.6",
+           "text": "Develop an investment plan to meet individual short- and long-term financial investment goals."
+          }
+         ]
+        },
+        {
+         "id": "investing-risks-and-rewards",
+         "title": "Investing Risks and Rewards",
+         "outcomes": [
+          {
+           "code": "SI2.d.h.1",
+           "text": "Compare the risk, return, and liquidity of various investment alternatives contrasting a range of short- term and long-term investment strategies."
+          },
+          {
+           "code": "SI2.d.h.2",
+           "text": "Identify financial risks, including inflation, deflation, and recession."
+          },
+          {
+           "code": "SI2.d.h.3",
+           "text": "Assess the long-term investment potential associated with the stock market, focusing on fundamentals such as diversification, risk-reward, dollar cost averaging, and investor behavior."
+          }
+         ]
+        },
+        {
+         "id": "role-of-government-in-investing",
+         "title": "Role of Government in Investing",
+         "outcomes": [
+          {
+           "code": "SI2.e.h.1",
+           "text": "Determine information, assistance, and protection that individual investors can receive (e.g., Securities and Exchange Commission, Financial Industry Regulatory Authority, Consumer Financial Protection Bureau, or State Securities Administrators)."
+          },
+          {
+           "code": "SI2.e.h.2",
+           "text": "Compare and contrast the advantages of taxable, tax deferred and tax-advantaged investments for new savers, including Roth IRAs and employer-sponsored retirement vehicles."
+          },
+          {
+           "code": "SI2.e.h.3",
+           "text": "Assess fiduciary responsibilities and due diligence of financial professionals."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "credit-and-debt",
+     "title": "Credit and Debt",
+     "topics": [
+      {
+       "id": "students-will-examine-the-benefits-and-costs-of-",
+       "title": "Students will examine the benefits and costs of using credit",
+       "subtopics": [
+        {
+         "id": "benefits-of-using-credit",
+         "title": "Benefits of Using Credit",
+         "outcomes": [
+          {
+           "code": "CD1.a.h.1",
+           "text": "Analyze uses of credit that provide financial and personal benefits."
+          },
+          {
+           "code": "CD1.a.h.2",
+           "text": "Predict why someone would make a purchase using credit instead of cash."
+          }
+         ]
+        },
+        {
+         "id": "costs-of-using-credit",
+         "title": "Costs of Using Credit",
+         "outcomes": [
+          {
+           "code": "CD1.b.h.1",
+           "text": "Assess the total cost of incurring a loan (e.g., various rates of interest, loan origination fee, early payback, or length of term)."
+          }
+         ]
+        },
+        {
+         "id": "interest-and-fees",
+         "title": "Interest and Fees",
+         "outcomes": [
+          {
+           "code": "CD1.c.h.1",
+           "text": "Evaluate options for payment on credit cards and the consequences of each option."
+          },
+          {
+           "code": "CD1.c.h.2",
+           "text": "Compare different debt payment methods."
+          },
+          {
+           "code": "CD1.c.h.3",
+           "text": "Calculate the total cost of repaying a loan under various rates of interest and over different time periods."
+          }
+         ]
+        },
+        {
+         "id": "debt-resolution",
+         "title": "Debt Resolution",
+         "outcomes": [
+          {
+           "code": "CD1.d.h.1",
+           "text": "Examine services that consumer credit counseling agencies offer."
+          },
+          {
+           "code": "CD1.d.h.2",
+           "text": "Examine how consumers apply financial coaching to various situations."
+          },
+          {
+           "code": "CD1.d.h.3",
+           "text": "Investigate the purpose and types of bankruptcy, including its possible negative effects on assets, employability, credit availability, cost of credit, and lenders."
+          },
+          {
+           "code": "CD1.d.h.4",
+           "text": "Explore strategies that may be used to avoid bankruptcy and what debt may not be discharged through bankruptcy."
+          },
+          {
+           "code": "CD1.d.h.5",
+           "text": "Investigate common life situations that lead to financial difficulty and bankruptcy."
+          },
+          {
+           "code": "CD1.d.h.6",
+           "text": "Evaluate the methods that debt collectors take in recovering collateral from borrowers."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "students-will-interpret-lending-options-consumer",
+       "title": "Students will interpret lending options, consumer rights, and responsibilities",
+       "subtopics": [
+        {
+         "id": "credit-products-and-services",
+         "title": "Credit Products and Services",
+         "outcomes": [
+          {
+           "code": "CD2.a.h.1",
+           "text": "Analyze the impact of using a credit card versus debit card as it relates to money management."
+          },
+          {
+           "code": "CD2.a.h.2",
+           "text": "Compare various types of student loans, repayment options, and alternatives of paying for post-secondary education or training."
+          },
+          {
+           "code": "CD2.a.h.3",
+           "text": "Differentiate between adjustable- and fixed-rate debt."
+          },
+          {
+           "code": "CD2.a.h.4",
+           "text": "Analyze the effect of debt on a person’s net worth."
+          },
+          {
+           "code": "CD2.a.h.5",
+           "text": "Calculate the most cost- effective option for paying for transportation."
+          }
+         ]
+        },
+        {
+         "id": "high-cost-alternative-lending",
+         "title": "High-Cost Alternative Lending",
+         "outcomes": [
+          {
+           "code": "CD2.b.h.1",
+           "text": "Compare and contrast advantages, disadvantages, and risks of high-cost alternative lending products and practices (e.g., refund anticipation loan, payday lending, or rent-to-own)."
+          },
+          {
+           "code": "CD2.b.h.2",
+           "text": "Differentiate between short- term and long-term characteristics of a rapid access loan, peer-to-peer loan, and financial institution loan."
+          }
+         ]
+        },
+        {
+         "id": "consumer-credit-rights-and-responsibilities",
+         "title": "Consumer Credit Rights and Responsibilities",
+         "outcomes": [
+          {
+           "code": "CD2.c.h.1",
+           "text": "Explain the rights and responsibilities of buyers and sellers under the Fair Debt Collection Practice Act consumer protection laws."
+          },
+          {
+           "code": "CD2.c.h.2",
+           "text": "Explain the rights that people have to review and resolve credit score discrepancies under the Fair Credit Reporting Act."
+          },
+          {
+           "code": "CD2.c.h.3",
+           "text": "Compile examples of permissible uses of credit reports other than granting credit."
+          },
+          {
+           "code": "CD2.c.h.4",
+           "text": "Compose information on the primary organizations that maintain and provide consumer credit records."
+          },
+          {
+           "code": "CD2.c.h.5",
+           "text": "Analyze factors affecting a credit score and creditworthiness."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "risk-management-and-insurance",
+     "title": "Risk Management and Insurance",
+     "topics": [
+      {
+       "id": "students-will-contrast-different-types-of-risk-a",
+       "title": "Students will contrast different types of risk and how it could affect their financial decisions",
+       "subtopics": [
+        {
+         "id": "risk-management-and-insurance",
+         "title": "Risk Management and Insurance",
+         "outcomes": [
+          {
+           "code": "RMI1.a.h.1",
+           "text": "Determine different perceptions of risk based on age, culture, and social status."
+          },
+          {
+           "code": "RMI1.a.h.2",
+           "text": "Analyze the financial cost of taking a risk versus outsourcing the risk (e.g., contract for services, insurance, or utilization of technology)."
+          }
+         ]
+        },
+        {
+         "id": "consequences-of-financial-risk",
+         "title": "Consequences of Financial Risk",
+         "outcomes": [
+          {
+           "code": "RMI1.b.h.1",
+           "text": "Evaluate examples of personal financial decisions that prevent consumers from acquiring necessary goods and services (e.g., ability to acquire with cash or credit based upon credit score)."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "students-will-assess-possible-choices-to-protect",
+       "title": "Students will assess possible choices to protect themselves from financial risk",
+       "subtopics": [
+        {
+         "id": "purpose-of-insurance",
+         "title": "Purpose of Insurance",
+         "outcomes": [
+          {
+           "code": "RMI2.a.h.1",
+           "text": "Evaluate why some types of insurance are required by law."
+          }
+         ]
+        },
+        {
+         "id": "types-of-insurance",
+         "title": "Types of Insurance",
+         "outcomes": [
+          {
+           "code": "RMI2.b.h.1",
+           "text": "Compare the different types of insurance and the level of protection they provide including options provided by a person, an employer, and the government."
+          },
+          {
+           "code": "RMI2.b.h.2",
+           "text": "Summarize insurance and the amount of coverage mandated by various government regulations."
+          }
+         ]
+        },
+        {
+         "id": "cost-factors-of-insurance",
+         "title": "Cost Factors of Insurance",
+         "outcomes": [
+          {
+           "code": "RMI2.c.h.1",
+           "text": "Analyze insurance coverage needs that can increase or decrease insurance costs."
+          },
+          {
+           "code": "RMI2.c.h.2",
+           "text": "Compare insurance policies, rates, premiums, and deductibles to minimize costs."
+          },
+          {
+           "code": "RMI2.c.h.3",
+           "text": "Examine the conditions under which it is appropriate and necessary for young adults to have life, auto, health, and disability insurance."
+          }
+         ]
+        },
+        {
+         "id": "meaning-of-insurance-contracts",
+         "title": "Meaning of Insurance Contracts",
+         "outcomes": [
+          {
+           "code": "RMI2.d.h.1",
+           "text": "Determine when and why insurance contracts are used."
+          },
+          {
+           "code": "RMI2.d.h.2",
+           "text": "Evaluate the components of insurance contracts and their common terms and conditions."
+          },
+          {
+           "code": "RMI2.d.h.3",
+           "text": "Interpret the responsibilities and rights provided by common insurance contracts."
+          }
+         ]
+        },
+        {
+         "id": "loss-prevention-plan",
+         "title": "Loss Prevention Plan",
+         "outcomes": [
+          {
+           "code": "RMI2.e.h.1",
+           "text": "Predict what happens when someone underestimates, or overestimates a protection level, and justify an appropriate level of insurance coverage."
+          },
+          {
+           "code": "RMI2.e.h.2",
+           "text": "Evaluate insurance professionals and companies to determine whether they meet different insurance needs."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "build": {
+  "builtAt": "2026-10-14T16:20:51.209Z",
+  "model": "none",
+  "usd": 0,
+  "expectedCodes": 328,
+  "coverage": 1,
+  "missingCodes": [],
+  "counts": {
+   "grades": 4,
+   "units": 24,
+   "topics": 52,
+   "subtopics": 175,
+   "outcomes": 329
+  },
+  "warnings": []
+ }
+}

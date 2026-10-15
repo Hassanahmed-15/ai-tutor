@@ -1,0 +1,2612 @@
+{
+ "id": "uk-aqa-alevel-physics-7408",
+ "region": "UK",
+ "framework": "AQA A-level",
+ "board": "AQA",
+ "qualification": "A Level",
+ "subject": "Physics",
+ "syllabusCode": "7408",
+ "gradeSystem": "year",
+ "source": {
+  "urls": [
+   "https://cdn.sanity.io/files/p28bar15/green/fa68d54c1a3b8ef17760536c7fb2e3911c29dc73.pdf"
+  ],
+  "publisher": "AQA",
+  "licence": "Exam board specification, (c) AQA; structure + our own wording only",
+  "firstExam": "2017"
+ },
+ "grades": [
+  {
+   "grade": "Year 12",
+   "units": [
+    {
+     "id": "3-1-measurements-and-their-errors",
+     "title": "3.1 Measurements and their errors",
+     "topics": [
+      {
+       "id": "measurements-and-errors",
+       "title": "Measurements and errors",
+       "subtopics": [
+        {
+         "id": "overview-3-1",
+         "title": "Overview 3.1",
+         "outcomes": [
+          {
+           "code": "3.1",
+           "text": "Understand base units, the nature of measurement errors and their numerical treatment, and estimation."
+          }
+         ]
+        },
+        {
+         "id": "si-units-and-prefixes",
+         "title": "SI units and prefixes",
+         "outcomes": [
+          {
+           "code": "3.1.1",
+           "text": "Use base SI units (mass, length, time, amount of substance, temperature, current) and derived units."
+          },
+          {
+           "code": null,
+           "text": "Use SI prefixes T to f and standard form, and convert between units such as J and eV, J and kWh."
+          }
+         ]
+        },
+        {
+         "id": "limitation-of-measurements",
+         "title": "Limitation of measurements",
+         "outcomes": [
+          {
+           "code": "3.1.2",
+           "text": "Identify random and systematic errors and ways to reduce them; distinguish precision, repeatability, reproducibility, resolution and accuracy."
+          },
+          {
+           "code": null,
+           "text": "Combine absolute, fractional and percentage uncertainties."
+          },
+          {
+           "code": null,
+           "text": "Show uncertainty with error bars and find uncertainties in gradient and intercept."
+          }
+         ]
+        },
+        {
+         "id": "estimation",
+         "title": "Estimation",
+         "outcomes": [
+          {
+           "code": "3.1.3",
+           "text": "Estimate physical quantities to the nearest order of magnitude and derive further estimates."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "3-2-particles-and-radiation",
+     "title": "3.2 Particles and radiation",
+     "topics": [
+      {
+       "id": "3-2-1-particles",
+       "title": "3.2.1 Particles",
+       "subtopics": [
+        {
+         "id": "overview-3-2",
+         "title": "Overview 3.2",
+         "outcomes": [
+          {
+           "code": "3.2",
+           "text": "Understand fundamental properties of matter, electromagnetic radiation and quantum phenomena."
+          }
+         ]
+        },
+        {
+         "id": "overview-3-2-1",
+         "title": "Overview 3.2.1",
+         "outcomes": [
+          {
+           "code": "3.2.1",
+           "text": "Describe the particles that make up atoms and how they interact."
+          }
+         ]
+        },
+        {
+         "id": "constituents-of-the-atom",
+         "title": "Constituents of the atom",
+         "outcomes": [
+          {
+           "code": "3.2.1.1",
+           "text": "Describe the proton, neutron and electron model with charge and mass in SI and relative units."
+          },
+          {
+           "code": null,
+           "text": "Calculate specific charge of protons, electrons, nuclei and ions."
+          },
+          {
+           "code": null,
+           "text": "Use proton number, nucleon number, nuclide notation and isotope data."
+          }
+         ]
+        },
+        {
+         "id": "stable-and-unstable-nuclei",
+         "title": "Stable and unstable nuclei",
+         "outcomes": [
+          {
+           "code": "3.2.1.2",
+           "text": "Explain the strong nuclear force: attraction to about 3 fm, repulsion below 0.5 fm."
+          },
+          {
+           "code": null,
+           "text": "Write equations for alpha and beta-minus decay, including the neutrino."
+          }
+         ]
+        },
+        {
+         "id": "particles-antiparticles-and-photons",
+         "title": "Particles, antiparticles and photons",
+         "outcomes": [
+          {
+           "code": "3.2.1.3",
+           "text": "Compare particles with antiparticles in mass, charge and rest energy; know the antiparticle pairs."
+          },
+          {
+           "code": null,
+           "text": "Use the photon model E = hf = hc/wavelength."
+          },
+          {
+           "code": null,
+           "text": "Describe annihilation and pair production and their energies."
+          }
+         ]
+        },
+        {
+         "id": "particle-interactions",
+         "title": "Particle interactions",
+         "outcomes": [
+          {
+           "code": "3.2.1.4",
+           "text": "Name the four fundamental interactions and explain exchange particles."
+          },
+          {
+           "code": null,
+           "text": "Describe the electromagnetic force (virtual photons) and the weak interaction (W bosons) in beta decay, electron capture and electron-proton collisions."
+          },
+          {
+           "code": null,
+           "text": "Draw simple Feynman-style diagrams of these interactions."
+          }
+         ]
+        },
+        {
+         "id": "classification-of-particles",
+         "title": "Classification of particles",
+         "outcomes": [
+          {
+           "code": "3.2.1.5",
+           "text": "Classify hadrons as baryons and mesons; apply baryon number conservation."
+          },
+          {
+           "code": null,
+           "text": "Describe leptons (electron, muon, neutrino) and lepton number conservation."
+          },
+          {
+           "code": null,
+           "text": "Explain strange particles and strangeness conservation in strong and weak interactions."
+          }
+         ]
+        },
+        {
+         "id": "quarks-and-antiquarks",
+         "title": "Quarks and antiquarks",
+         "outcomes": [
+          {
+           "code": "3.2.1.6",
+           "text": "State charge, baryon number and strangeness of up, down and strange quarks and antiquarks."
+          },
+          {
+           "code": null,
+           "text": "Build baryons, antibaryons and mesons from quarks and describe neutron decay."
+          }
+         ]
+        },
+        {
+         "id": "applications-of-conservation-laws",
+         "title": "Applications of conservation laws",
+         "outcomes": [
+          {
+           "code": "3.2.1.7",
+           "text": "Describe quark character change in beta decay."
+          },
+          {
+           "code": null,
+           "text": "Apply conservation of charge, baryon number, lepton number, strangeness, energy and momentum to interactions."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "3-2-2-electromagnetic-radiation-and-quantum-phen",
+       "title": "3.2.2 Electromagnetic radiation and quantum phenomena",
+       "subtopics": [
+        {
+         "id": "overview-3-2-2",
+         "title": "Overview 3.2.2",
+         "outcomes": [
+          {
+           "code": "3.2.2",
+           "text": "Describe evidence for quantum behaviour of light and matter."
+          }
+         ]
+        },
+        {
+         "id": "the-photoelectric-effect",
+         "title": "The photoelectric effect",
+         "outcomes": [
+          {
+           "code": "3.2.2.1",
+           "text": "Explain threshold frequency, work function and stopping potential with the photon model."
+          },
+          {
+           "code": null,
+           "text": "Use the photoelectric equation hf = work function + maximum kinetic energy."
+          }
+         ]
+        },
+        {
+         "id": "collisions-of-electrons-with-atoms",
+         "title": "Collisions of electrons with atoms",
+         "outcomes": [
+          {
+           "code": "3.2.2.2",
+           "text": "Explain ionisation and excitation, including in a fluorescent tube."
+          },
+          {
+           "code": null,
+           "text": "Use the electron volt and convert between eV and J."
+          }
+         ]
+        },
+        {
+         "id": "energy-levels-and-photon-emission",
+         "title": "Energy levels and photon emission",
+         "outcomes": [
+          {
+           "code": "3.2.2.3",
+           "text": "Explain line spectra as evidence of discrete energy levels."
+          },
+          {
+           "code": null,
+           "text": "Use hf = E1 - E2 with energies in J or eV."
+          }
+         ]
+        },
+        {
+         "id": "wave-particle-duality",
+         "title": "Wave-particle duality",
+         "outcomes": [
+          {
+           "code": "3.2.2.4",
+           "text": "Explain how electron diffraction and the photoelectric effect show wave and particle behaviour."
+          },
+          {
+           "code": null,
+           "text": "Use the de Broglie wavelength h/mv and explain how diffraction depends on momentum."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "3-3-waves",
+     "title": "3.3 Waves",
+     "topics": [
+      {
+       "id": "3-3-1-progressive-and-stationary-waves",
+       "title": "3.3.1 Progressive and stationary waves",
+       "subtopics": [
+        {
+         "id": "overview-3-3",
+         "title": "Overview 3.3",
+         "outcomes": [
+          {
+           "code": "3.3",
+           "text": "Extend GCSE wave ideas to travelling and stationary waves, refraction, diffraction, superposition and interference."
+          }
+         ]
+        },
+        {
+         "id": "overview-3-3-1",
+         "title": "Overview 3.3.1",
+         "outcomes": [
+          {
+           "code": "3.3.1",
+           "text": "Describe progressive and stationary waves."
+          }
+         ]
+        },
+        {
+         "id": "progressive-waves",
+         "title": "Progressive waves",
+         "outcomes": [
+          {
+           "code": "3.3.1.1",
+           "text": "Describe amplitude, frequency, wavelength, speed and phase difference (in radians, degrees or cycles); use c = f lambda and f = 1/T."
+          }
+         ]
+        },
+        {
+         "id": "longitudinal-and-transverse-waves",
+         "title": "Longitudinal and transverse waves",
+         "outcomes": [
+          {
+           "code": "3.3.1.2",
+           "text": "Distinguish longitudinal and transverse waves, with sound, electromagnetic and string examples, and the speed of EM waves in a vacuum."
+          },
+          {
+           "code": null,
+           "text": "Explain polarisation as evidence for transverse waves and its applications (Polaroid, aerial alignment)."
+          }
+         ]
+        },
+        {
+         "id": "superposition-and-stationary-waves",
+         "title": "Superposition and stationary waves",
+         "outcomes": [
+          {
+           "code": "3.3.1.3",
+           "text": "Explain stationary waves from two waves of equal frequency in opposite directions, with nodes and antinodes, graphically."
+          },
+          {
+           "code": null,
+           "text": "Use f = (1/2l) sqrt(T/mu) for the first harmonic and describe harmonics on strings, microwaves and sound."
+          },
+          {
+           "code": null,
+           "text": "Required practical 1: investigate stationary wave frequency against length, tension and mass per unit length."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "3-3-2-refraction-diffraction-and-interference",
+       "title": "3.3.2 Refraction, diffraction and interference",
+       "subtopics": [
+        {
+         "id": "overview-3-3-2",
+         "title": "Overview 3.3.2",
+         "outcomes": [
+          {
+           "code": "3.3.2",
+           "text": "Describe interference, diffraction and refraction of waves."
+          }
+         ]
+        },
+        {
+         "id": "interference",
+         "title": "Interference",
+         "outcomes": [
+          {
+           "code": "3.3.2.1",
+           "text": "Explain path difference and coherence, and Young's double-slit interference with a laser or white light; use fringe spacing w = lambda D / s."
+          },
+          {
+           "code": null,
+           "text": "Describe interference with sound and electromagnetic waves and lasers safely."
+          },
+          {
+           "code": null,
+           "text": "Required practical 2: investigate interference with Young's slits and a diffraction grating."
+          }
+         ]
+        },
+        {
+         "id": "diffraction",
+         "title": "Diffraction",
+         "outcomes": [
+          {
+           "code": "3.3.2.2",
+           "text": "Describe single-slit diffraction patterns and how central maximum width varies with wavelength and slit width."
+          },
+          {
+           "code": null,
+           "text": "Use a diffraction grating at normal incidence: d sin(theta) = n lambda, and its applications."
+          }
+         ]
+        },
+        {
+         "id": "refraction-at-a-plane-surface",
+         "title": "Refraction at a plane surface",
+         "outcomes": [
+          {
+           "code": "3.3.2.3",
+           "text": "Use refractive index n = c/cs and Snell's law n1 sin(theta1) = n2 sin(theta2)."
+          },
+          {
+           "code": null,
+           "text": "Explain total internal reflection (sin thetac = n2/n1) and step-index optical fibres including cladding."
+          },
+          {
+           "code": null,
+           "text": "Explain material and modal dispersion, pulse broadening and absorption."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "3-4-mechanics-and-materials",
+     "title": "3.4 Mechanics and materials",
+     "topics": [
+      {
+       "id": "3-4-1-force-energy-and-momentum",
+       "title": "3.4.1 Force, energy and momentum",
+       "subtopics": [
+        {
+         "id": "overview-3-4",
+         "title": "Overview 3.4",
+         "outcomes": [
+          {
+           "code": "3.4",
+           "text": "Study vectors, forces, energy, momentum and bulk properties of materials."
+          }
+         ]
+        },
+        {
+         "id": "overview-3-4-1",
+         "title": "Overview 3.4.1",
+         "outcomes": [
+          {
+           "code": "3.4.1",
+           "text": "Apply forces, energy and momentum to motion."
+          }
+         ]
+        },
+        {
+         "id": "scalars-and-vectors",
+         "title": "Scalars and vectors",
+         "outcomes": [
+          {
+           "code": "3.4.1.1",
+           "text": "Distinguish scalars and vectors and add vectors by calculation or scale drawing."
+          },
+          {
+           "code": null,
+           "text": "Resolve vectors into perpendicular components, including on an inclined plane."
+          },
+          {
+           "code": null,
+           "text": "Apply conditions for equilibrium of two or three coplanar forces."
+          }
+         ]
+        },
+        {
+         "id": "moments",
+         "title": "Moments",
+         "outcomes": [
+          {
+           "code": "3.4.1.2",
+           "text": "Define moment and couple; apply the principle of moments."
+          },
+          {
+           "code": null,
+           "text": "Use centre of mass, which for a uniform regular solid is at its centre."
+          }
+         ]
+        },
+        {
+         "id": "motion-along-a-straight-line",
+         "title": "Motion along a straight line",
+         "outcomes": [
+          {
+           "code": "3.4.1.3",
+           "text": "Use displacement, speed, velocity and acceleration, and their graphs and areas and gradients."
+          },
+          {
+           "code": null,
+           "text": "Use v = u + at, s = (u+v)t/2, s = ut + at^2/2 and v^2 = u^2 + 2as."
+          },
+          {
+           "code": null,
+           "text": "Required practical 3: determine g by a free-fall method."
+          }
+         ]
+        },
+        {
+         "id": "projectile-motion",
+         "title": "Projectile motion",
+         "outcomes": [
+          {
+           "code": "3.4.1.4",
+           "text": "Treat horizontal and vertical motion independently in a uniform gravitational field."
+          },
+          {
+           "code": null,
+           "text": "Describe friction, lift, drag, terminal speed and effects of air resistance qualitatively."
+          }
+         ]
+        },
+        {
+         "id": "newton-s-laws-of-motion",
+         "title": "Newton's laws of motion",
+         "outcomes": [
+          {
+           "code": "3.4.1.5",
+           "text": "Apply Newton's three laws, including F = ma for constant mass."
+          }
+         ]
+        },
+        {
+         "id": "momentum",
+         "title": "Momentum",
+         "outcomes": [
+          {
+           "code": "3.4.1.6",
+           "text": "Use momentum, conservation of linear momentum in one dimension and F = change in mv / change in t."
+          },
+          {
+           "code": null,
+           "text": "Use impulse, force-time graphs and impact forces; distinguish elastic and inelastic collisions and explosions."
+          }
+         ]
+        },
+        {
+         "id": "work-energy-and-power",
+         "title": "Work, energy and power",
+         "outcomes": [
+          {
+           "code": "3.4.1.7",
+           "text": "Calculate work W = Fs cos(theta), power P = W/t = Fv, and area under force-displacement graphs."
+          },
+          {
+           "code": null,
+           "text": "Calculate efficiency as useful output over input."
+          }
+         ]
+        },
+        {
+         "id": "conservation-of-energy",
+         "title": "Conservation of energy",
+         "outcomes": [
+          {
+           "code": "3.4.1.8",
+           "text": "Apply energy conservation using change in Ep = mg change in h and Ek = mv^2/2, including resistive work."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "3-4-2-materials",
+       "title": "3.4.2 Materials",
+       "subtopics": [
+        {
+         "id": "overview-3-4-2",
+         "title": "Overview 3.4.2",
+         "outcomes": [
+          {
+           "code": "3.4.2",
+           "text": "Describe bulk properties of materials."
+          }
+         ]
+        },
+        {
+         "id": "bulk-properties-of-solids",
+         "title": "Bulk properties of solids",
+         "outcomes": [
+          {
+           "code": "3.4.2.1",
+           "text": "Use density rho = m/V."
+          },
+          {
+           "code": null,
+           "text": "Use Hooke's law, elastic limit, stiffness, F = k change in L, tensile stress and strain, breaking stress."
+          },
+          {
+           "code": null,
+           "text": "Calculate elastic strain energy (1/2 F change in L) and interpret force-extension and stress-strain graphs, plastic and brittle behaviour."
+          }
+         ]
+        },
+        {
+         "id": "the-young-modulus",
+         "title": "The Young modulus",
+         "outcomes": [
+          {
+           "code": "3.4.2.2",
+           "text": "Use Young modulus = stress/strain and stress-strain graphs."
+          },
+          {
+           "code": null,
+           "text": "Required practical 4: determine the Young modulus by a simple method."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "3-5-electricity",
+     "title": "3.5 Electricity",
+     "topics": [
+      {
+       "id": "3-5-1-current-electricity",
+       "title": "3.5.1 Current electricity",
+       "subtopics": [
+        {
+         "id": "overview-3-5",
+         "title": "Overview 3.5",
+         "outcomes": [
+          {
+           "code": "3.5",
+           "text": "Build on GCSE electricity to study circuits."
+          }
+         ]
+        },
+        {
+         "id": "overview-3-5-1",
+         "title": "Overview 3.5.1",
+         "outcomes": [
+          {
+           "code": "3.5.1",
+           "text": "Study current electricity."
+          }
+         ]
+        },
+        {
+         "id": "basics-of-electricity",
+         "title": "Basics of electricity",
+         "outcomes": [
+          {
+           "code": "3.5.1.1",
+           "text": "Define current as rate of flow of charge, I = dQ/dt, potential difference as W/Q, and resistance R = V/I."
+          }
+         ]
+        },
+        {
+         "id": "current-voltage-characteristics",
+         "title": "Current-voltage characteristics",
+         "outcomes": [
+          {
+           "code": "3.5.1.2",
+           "text": "Describe I-V characteristics of an ohmic conductor, semiconductor diode and filament lamp, and Ohm's law as a special case."
+          }
+         ]
+        },
+        {
+         "id": "resistivity",
+         "title": "Resistivity",
+         "outcomes": [
+          {
+           "code": "3.5.1.3",
+           "text": "Use resistivity rho = RA/L."
+          },
+          {
+           "code": null,
+           "text": "Describe temperature effects on metals and ntc thermistors and thermistor applications."
+          },
+          {
+           "code": null,
+           "text": "Describe superconductivity, critical temperature and applications."
+          },
+          {
+           "code": null,
+           "text": "Required practical 5: determine resistivity of a wire."
+          }
+         ]
+        },
+        {
+         "id": "circuits",
+         "title": "Circuits",
+         "outcomes": [
+          {
+           "code": "3.5.1.4",
+           "text": "Combine resistors in series and parallel."
+          },
+          {
+           "code": null,
+           "text": "Use E = IVt and P = IV = I^2R = V^2/R."
+          },
+          {
+           "code": null,
+           "text": "Apply conservation of charge and energy in dc circuits, including cells in series and parallel."
+          }
+         ]
+        },
+        {
+         "id": "potential-divider",
+         "title": "Potential divider",
+         "outcomes": [
+          {
+           "code": "3.5.1.5",
+           "text": "Use a potential divider with variable resistors, thermistors and LDRs to supply constant or variable pd."
+          }
+         ]
+        },
+        {
+         "id": "emf-and-internal-resistance",
+         "title": "EMF and internal resistance",
+         "outcomes": [
+          {
+           "code": "3.5.1.6",
+           "text": "Use emf, terminal pd and epsilon = E/Q = I(R + r) with non-negligible internal resistance."
+          },
+          {
+           "code": null,
+           "text": "Required practical 6: investigate emf and internal resistance of cells."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "Year 13",
+   "units": [
+    {
+     "id": "3-6-further-mechanics-and-thermal-physics",
+     "title": "3.6 Further mechanics and thermal physics",
+     "topics": [
+      {
+       "id": "3-6-1-periodic-motion",
+       "title": "3.6.1 Periodic motion",
+       "subtopics": [
+        {
+         "id": "overview-3-6",
+         "title": "Overview 3.6",
+         "outcomes": [
+          {
+           "code": "3.6",
+           "text": "Extend mechanics to circular motion and SHM, and study thermal properties, ideal gases and kinetic theory."
+          }
+         ]
+        },
+        {
+         "id": "overview-3-6-1",
+         "title": "Overview 3.6.1",
+         "outcomes": [
+          {
+           "code": "3.6.1",
+           "text": "Describe circular motion and simple harmonic motion."
+          }
+         ]
+        },
+        {
+         "id": "circular-motion",
+         "title": "Circular motion",
+         "outcomes": [
+          {
+           "code": "3.6.1.1",
+           "text": "Explain that circular motion needs a centripetal force; use angular speed omega = v/r = 2 pi f and radians."
+          },
+          {
+           "code": null,
+           "text": "Use a = v^2/r = omega^2 r and F = mv^2/r = m omega^2 r."
+          }
+         ]
+        },
+        {
+         "id": "simple-harmonic-motion",
+         "title": "Simple harmonic motion",
+         "outcomes": [
+          {
+           "code": "3.6.1.2",
+           "text": "State the SHM condition a is proportional to -x with a = -omega^2 x."
+          },
+          {
+           "code": null,
+           "text": "Use x = A cos(omega t), v = +/- omega sqrt(A^2 - x^2), max speed omega A and max acceleration omega^2 A."
+          },
+          {
+           "code": null,
+           "text": "Sketch and relate x, v and a graphs against time."
+          }
+         ]
+        },
+        {
+         "id": "simple-harmonic-systems",
+         "title": "Simple harmonic systems",
+         "outcomes": [
+          {
+           "code": "3.6.1.3",
+           "text": "Use T = 2 pi sqrt(m/k) for a mass-spring and T = 2 pi sqrt(l/g) for a simple pendulum (small-angle approximation)."
+          },
+          {
+           "code": null,
+           "text": "Describe variation of Ek, Ep and total energy, and effects of damping."
+          },
+          {
+           "code": null,
+           "text": "Required practical 7: investigate SHM with a mass-spring system and a pendulum."
+          }
+         ]
+        },
+        {
+         "id": "forced-vibrations-and-resonance",
+         "title": "Forced vibrations and resonance",
+         "outcomes": [
+          {
+           "code": "3.6.1.4",
+           "text": "Describe free and forced vibrations, resonance and how damping affects sharpness of resonance."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "3-6-2-thermal-physics",
+       "title": "3.6.2 Thermal physics",
+       "subtopics": [
+        {
+         "id": "overview-3-6-2",
+         "title": "Overview 3.6.2",
+         "outcomes": [
+          {
+           "code": "3.6.2",
+           "text": "Describe thermal energy, ideal gases and kinetic theory."
+          }
+         ]
+        },
+        {
+         "id": "thermal-energy-transfer",
+         "title": "Thermal energy transfer",
+         "outcomes": [
+          {
+           "code": "3.6.2.1",
+           "text": "Define internal energy and explain how heating and work change it (qualitative first law)."
+          },
+          {
+           "code": null,
+           "text": "Use Q = mc change in theta and Q = ml, including continuous flow, and explain energy changes in a change of state."
+          }
+         ]
+        },
+        {
+         "id": "ideal-gases",
+         "title": "Ideal gases",
+         "outcomes": [
+          {
+           "code": "3.6.2.2",
+           "text": "Describe gas laws, absolute zero and use pV = nRT and pV = NkT."
+          },
+          {
+           "code": null,
+           "text": "Calculate work done p change in V; use Avogadro constant, molar gas constant, Boltzmann constant, molar and molecular mass."
+          },
+          {
+           "code": null,
+           "text": "Required practical 8: investigate Boyle's and Charles's laws."
+          }
+         ]
+        },
+        {
+         "id": "molecular-kinetic-theory",
+         "title": "Molecular kinetic theory",
+         "outcomes": [
+          {
+           "code": "3.6.2.3",
+           "text": "Explain Brownian motion as evidence for atoms and gas laws via a molecular model."
+          },
+          {
+           "code": null,
+           "text": "Derive and use pV = (1/3) N m c_rms^2 and average molecular kinetic energy = (3/2)kT."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "3-7-fields-and-their-consequences",
+     "title": "3.7 Fields and their consequences",
+     "topics": [
+      {
+       "id": "3-7-1-fields",
+       "title": "3.7.1 Fields",
+       "subtopics": [
+        {
+         "id": "overview-3-7",
+         "title": "Overview 3.7",
+         "outcomes": [
+          {
+           "code": "3.7",
+           "text": "Unify gravitational, electric and magnetic fields and study orbits, capacitors and induction."
+          }
+         ]
+        },
+        {
+         "id": "force-fields",
+         "title": "Force fields",
+         "outcomes": [
+          {
+           "code": "3.7.1",
+           "text": "Describe a force field as a region of non-contact force, represented as a vector."
+          },
+          {
+           "code": null,
+           "text": "Compare gravitational and electrostatic forces: inverse-square laws and field lines, but charges can repel."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "3-7-2-gravitational-fields",
+       "title": "3.7.2 Gravitational fields",
+       "subtopics": [
+        {
+         "id": "overview-3-7-2",
+         "title": "Overview 3.7.2",
+         "outcomes": [
+          {
+           "code": "3.7.2",
+           "text": "Describe gravitational fields."
+          }
+         ]
+        },
+        {
+         "id": "newton-s-law-of-gravitation",
+         "title": "Newton's law of gravitation",
+         "outcomes": [
+          {
+           "code": "3.7.2.1",
+           "text": "Use F = Gm1m2/r^2 for point masses."
+          }
+         ]
+        },
+        {
+         "id": "gravitational-field-strength",
+         "title": "Gravitational field strength",
+         "outcomes": [
+          {
+           "code": "3.7.2.2",
+           "text": "Represent fields with field lines; use g = F/m and g = GM/r^2 in a radial field."
+          }
+         ]
+        },
+        {
+         "id": "gravitational-potential",
+         "title": "Gravitational potential",
+         "outcomes": [
+          {
+           "code": "3.7.2.3",
+           "text": "Define gravitational potential and potential difference, work change in W = m change in V, and equipotentials."
+          },
+          {
+           "code": null,
+           "text": "Use V = -GM/r and g = -change in V / change in r; interpret graphs of g and V against r."
+          }
+         ]
+        },
+        {
+         "id": "orbits-of-planets-and-satellites",
+         "title": "Orbits of planets and satellites",
+         "outcomes": [
+          {
+           "code": "3.7.2.4",
+           "text": "Relate orbital period and speed to radius, including T^2 proportional to r^3."
+          },
+          {
+           "code": null,
+           "text": "Describe energy of satellites, escape velocity, synchronous and geostationary orbits."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "3-7-3-electric-fields",
+       "title": "3.7.3 Electric fields",
+       "subtopics": [
+        {
+         "id": "overview-3-7-3",
+         "title": "Overview 3.7.3",
+         "outcomes": [
+          {
+           "code": "3.7.3",
+           "text": "Describe electric fields."
+          }
+         ]
+        },
+        {
+         "id": "coulomb-s-law",
+         "title": "Coulomb's law",
+         "outcomes": [
+          {
+           "code": "3.7.3.1",
+           "text": "Use F = Q1Q2/(4 pi epsilon0 r^2) and compare gravitational and electrostatic forces between subatomic particles."
+          }
+         ]
+        },
+        {
+         "id": "electric-field-strength",
+         "title": "Electric field strength",
+         "outcomes": [
+          {
+           "code": "3.7.3.2",
+           "text": "Represent fields with lines; use E = F/Q, E = V/d in uniform fields and E = Q/(4 pi epsilon0 r^2) in radial fields."
+          },
+          {
+           "code": null,
+           "text": "Describe the path of a charge entering a uniform field at right angles."
+          }
+         ]
+        },
+        {
+         "id": "electric-potential",
+         "title": "Electric potential",
+         "outcomes": [
+          {
+           "code": "3.7.3.3",
+           "text": "Define electric potential and difference; use change in W = Q change in V, equipotentials, V = Q/(4 pi epsilon0 r) and E = -change in V / change in r; interpret graphs."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "3-7-4-capacitance",
+       "title": "3.7.4 Capacitance",
+       "subtopics": [
+        {
+         "id": "overview-3-7-4",
+         "title": "Overview 3.7.4",
+         "outcomes": [
+          {
+           "code": "3.7.4",
+           "text": "Study capacitors."
+          }
+         ]
+        },
+        {
+         "id": "capacitance",
+         "title": "Capacitance",
+         "outcomes": [
+          {
+           "code": "3.7.4.1",
+           "text": "Define capacitance C = Q/V."
+          }
+         ]
+        },
+        {
+         "id": "parallel-plate-capacitor",
+         "title": "Parallel plate capacitor",
+         "outcomes": [
+          {
+           "code": "3.7.4.2",
+           "text": "Use C = A epsilon0 epsilon_r / d, relative permittivity and dielectric action of polar molecules."
+          }
+         ]
+        },
+        {
+         "id": "energy-stored-by-a-capacitor",
+         "title": "Energy stored by a capacitor",
+         "outcomes": [
+          {
+           "code": "3.7.4.3",
+           "text": "Interpret area under a Q-V graph and use E = QV/2 = CV^2/2 = Q^2/2C."
+          }
+         ]
+        },
+        {
+         "id": "capacitor-charge-and-discharge",
+         "title": "Capacitor charge and discharge",
+         "outcomes": [
+          {
+           "code": "3.7.4.4",
+           "text": "Interpret Q, V and I graphs for charging and discharging; use the time constant RC and T1/2 = 0.69RC."
+          },
+          {
+           "code": null,
+           "text": "Use Q = Q0 e^(-t/RC) and charging equation with V and I forms."
+          },
+          {
+           "code": null,
+           "text": "Required practical 9: investigate capacitor charge and discharge using log-linear plots."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "3-7-5-magnetic-fields",
+       "title": "3.7.5 Magnetic fields",
+       "subtopics": [
+        {
+         "id": "overview-3-7-5",
+         "title": "Overview 3.7.5",
+         "outcomes": [
+          {
+           "code": "3.7.5",
+           "text": "Study magnetic fields, induction and alternating current."
+          }
+         ]
+        },
+        {
+         "id": "magnetic-flux-density",
+         "title": "Magnetic flux density",
+         "outcomes": [
+          {
+           "code": "3.7.5.1",
+           "text": "Use F = BIl, Fleming's left-hand rule and the tesla."
+          },
+          {
+           "code": null,
+           "text": "Required practical 10: investigate force on a wire with a top-pan balance."
+          }
+         ]
+        },
+        {
+         "id": "moving-charges-in-a-magnetic-field",
+         "title": "Moving charges in a magnetic field",
+         "outcomes": [
+          {
+           "code": "3.7.5.2",
+           "text": "Use F = BQv, force direction on positive and negative charges, circular paths and the cyclotron."
+          }
+         ]
+        },
+        {
+         "id": "magnetic-flux-and-flux-linkage",
+         "title": "Magnetic flux and flux linkage",
+         "outcomes": [
+          {
+           "code": "3.7.5.3",
+           "text": "Define flux = BA and flux linkage N flux; use flux linkage = BAN cos(theta) for a rotating coil."
+          },
+          {
+           "code": null,
+           "text": "Required practical 11: investigate flux linkage and coil angle with a search coil."
+          }
+         ]
+        },
+        {
+         "id": "electromagnetic-induction",
+         "title": "Electromagnetic induction",
+         "outcomes": [
+          {
+           "code": "3.7.5.4",
+           "text": "Apply Faraday's and Lenz's laws and emf = N change in flux / change in t."
+          },
+          {
+           "code": null,
+           "text": "Calculate emf in a moving conductor and a rotating coil: emf = BANomega sin(omega t)."
+          }
+         ]
+        },
+        {
+         "id": "alternating-currents",
+         "title": "Alternating currents",
+         "outcomes": [
+          {
+           "code": "3.7.5.5",
+           "text": "Use rms, peak and peak-to-peak values for sinusoidal ac: Irms = I0/sqrt2, Vrms = V0/sqrt2; mains values."
+          },
+          {
+           "code": null,
+           "text": "Use an oscilloscope as ac/dc voltmeter and to measure time and frequency."
+          }
+         ]
+        },
+        {
+         "id": "the-transformer",
+         "title": "The transformer",
+         "outcomes": [
+          {
+           "code": "3.7.5.6",
+           "text": "Use Ns/Np = Vs/Vp and efficiency IsVs/IpVp; explain eddy currents and inefficiencies."
+          },
+          {
+           "code": null,
+           "text": "Calculate power loss in high-voltage transmission."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "3-8-nuclear-physics",
+     "title": "3.8 Nuclear physics",
+     "topics": [
+      {
+       "id": "3-8-1-radioactivity",
+       "title": "3.8.1 Radioactivity",
+       "subtopics": [
+        {
+         "id": "overview-3-8",
+         "title": "Overview 3.8",
+         "outcomes": [
+          {
+           "code": "3.8",
+           "text": "Link the nucleus to nuclear power through radioactivity, nuclear energy and mass."
+          }
+         ]
+        },
+        {
+         "id": "overview-3-8-1",
+         "title": "Overview 3.8.1",
+         "outcomes": [
+          {
+           "code": "3.8.1",
+           "text": "Describe radioactivity."
+          }
+         ]
+        },
+        {
+         "id": "rutherford-scattering",
+         "title": "Rutherford scattering",
+         "outcomes": [
+          {
+           "code": "3.8.1.1",
+           "text": "Describe Rutherford scattering and how understanding of the nucleus changed over time."
+          }
+         ]
+        },
+        {
+         "id": "alpha-beta-and-gamma-radiation",
+         "title": "Alpha, beta and gamma radiation",
+         "outcomes": [
+          {
+           "code": "3.8.1.2",
+           "text": "Describe properties and experimental identification of alpha, beta and gamma radiation, their hazards and uses such as thickness gauging."
+          },
+          {
+           "code": null,
+           "text": "Use the inverse-square law for gamma radiation I = k/x^2 and apply it to safe handling; allow for background radiation."
+          },
+          {
+           "code": null,
+           "text": "Weigh risks and benefits of radiation in medicine."
+          },
+          {
+           "code": null,
+           "text": "Required practical 12: investigate the inverse-square law for gamma radiation."
+          }
+         ]
+        },
+        {
+         "id": "radioactive-decay",
+         "title": "Radioactive decay",
+         "outcomes": [
+          {
+           "code": "3.8.1.3",
+           "text": "Explain random decay with constant decay probability; use dN/dt = -lambda N and N = N0 e^(-lambda t)."
+          },
+          {
+           "code": null,
+           "text": "Use activity A = lambda N and A = A0 e^(-lambda t), with molar mass or Avogadro constant."
+          },
+          {
+           "code": null,
+           "text": "Use half-life T1/2 = ln2/lambda and find it from decay and log graphs; apply to waste storage and dating."
+          }
+         ]
+        },
+        {
+         "id": "nuclear-instability",
+         "title": "Nuclear instability",
+         "outcomes": [
+          {
+           "code": "3.8.1.4",
+           "text": "Interpret the N-Z graph of stable nuclei and decay modes (alpha, beta+, beta-, electron capture)."
+          },
+          {
+           "code": null,
+           "text": "Write decay equations and use nuclear energy level diagrams; describe gamma emission and technetium-99m."
+          }
+         ]
+        },
+        {
+         "id": "nuclear-radius",
+         "title": "Nuclear radius",
+         "outcomes": [
+          {
+           "code": "3.8.1.5",
+           "text": "Estimate radius from closest approach of alpha particles and from electron diffraction."
+          },
+          {
+           "code": null,
+           "text": "Use R = R0 A^(1/3) as evidence for constant nuclear density and calculate nuclear density."
+          }
+         ]
+        },
+        {
+         "id": "mass-and-energy",
+         "title": "Mass and energy",
+         "outcomes": [
+          {
+           "code": "3.8.1.6",
+           "text": "Use E = mc^2, mass difference, binding energy, the atomic mass unit (1 u = 931.5 MeV)."
+          },
+          {
+           "code": null,
+           "text": "Describe fission and fusion, calculate energy released, and read the binding energy per nucleon graph."
+          }
+         ]
+        },
+        {
+         "id": "induced-fission",
+         "title": "Induced fission",
+         "outcomes": [
+          {
+           "code": "3.8.1.7",
+           "text": "Explain thermal-neutron fission, chain reactions and critical mass."
+          },
+          {
+           "code": null,
+           "text": "Explain the roles and materials of moderator, control rods and coolant in a thermal reactor."
+          }
+         ]
+        },
+        {
+         "id": "safety-aspects",
+         "title": "Safety aspects",
+         "outcomes": [
+          {
+           "code": "3.8.1.8",
+           "text": "Describe fuel handling, shielding, emergency shut-down and radioactive waste production, handling and storage."
+          },
+          {
+           "code": null,
+           "text": "Weigh risks and benefits of nuclear power."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "3-9-astrophysics-option",
+     "title": "3.9 Astrophysics (option)",
+     "topics": [
+      {
+       "id": "3-9-1-telescopes",
+       "title": "3.9.1 Telescopes",
+       "subtopics": [
+        {
+         "id": "overview-3-9",
+         "title": "Overview 3.9",
+         "outcomes": [
+          {
+           "code": "3.9",
+           "text": "Apply physics to the Universe and the devices used to observe it."
+          }
+         ]
+        },
+        {
+         "id": "overview-3-9-1",
+         "title": "Overview 3.9.1",
+         "outcomes": [
+          {
+           "code": "3.9.1",
+           "text": "Describe telescopes."
+          }
+         ]
+        },
+        {
+         "id": "refracting-telescope",
+         "title": "Refracting telescope",
+         "outcomes": [
+          {
+           "code": "3.9.1.1",
+           "text": "Draw ray diagrams in normal adjustment and use angular magnification M = fo/fe."
+          }
+         ]
+        },
+        {
+         "id": "reflecting-telescopes",
+         "title": "Reflecting telescopes",
+         "outcomes": [
+          {
+           "code": "3.9.1.2",
+           "text": "Describe the Cassegrain arrangement and compare reflectors with refractors, including spherical and chromatic aberration."
+          }
+         ]
+        },
+        {
+         "id": "radio-infrared-ultraviolet-and-x-ray-telescopes",
+         "title": "Radio, infrared, ultraviolet and X-ray telescopes",
+         "outcomes": [
+          {
+           "code": "3.9.1.3",
+           "text": "Compare radio telescopes with optical telescopes in structure, positioning, use, resolving and collecting power."
+          }
+         ]
+        },
+        {
+         "id": "large-diameter-telescopes",
+         "title": "Large diameter telescopes",
+         "outcomes": [
+          {
+           "code": "3.9.1.4",
+           "text": "Use the Rayleigh criterion theta = lambda/D; collecting power is proportional to diameter squared."
+          },
+          {
+           "code": null,
+           "text": "Compare the eye and CCD as detectors in quantum efficiency, resolution and convenience."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "3-9-2-classification-of-stars",
+       "title": "3.9.2 Classification of stars",
+       "subtopics": [
+        {
+         "id": "overview-3-9-2",
+         "title": "Overview 3.9.2",
+         "outcomes": [
+          {
+           "code": "3.9.2",
+           "text": "Classify stars."
+          }
+         ]
+        },
+        {
+         "id": "classification-by-luminosity",
+         "title": "Classification by luminosity",
+         "outcomes": [
+          {
+           "code": "3.9.2.1",
+           "text": "Use apparent magnitude and the Hipparcos scale: a difference of 1 is an intensity ratio of 2.51."
+          }
+         ]
+        },
+        {
+         "id": "absolute-magnitude",
+         "title": "Absolute magnitude",
+         "outcomes": [
+          {
+           "code": "3.9.2.2",
+           "text": "Use parsec, light year and absolute magnitude with m - M = 5 log(d/10)."
+          }
+         ]
+        },
+        {
+         "id": "temperature-and-black-body-radiation",
+         "title": "Temperature and black-body radiation",
+         "outcomes": [
+          {
+           "code": "3.9.2.3",
+           "text": "Use Wien's law (lambda_max T = 2.9e-3 m K) and Stefan's law P = sigma A T^4 treating stars as black bodies; apply the inverse-square law."
+          }
+         ]
+        },
+        {
+         "id": "stellar-spectral-classes",
+         "title": "Stellar spectral classes",
+         "outcomes": [
+          {
+           "code": "3.9.2.4",
+           "text": "Describe spectral classes O, B, A, F, G, K, M by colour, temperature and absorption lines, and Balmer lines (n = 2)."
+          }
+         ]
+        },
+        {
+         "id": "the-hertzsprung-russell-diagram",
+         "title": "The Hertzsprung-Russell diagram",
+         "outcomes": [
+          {
+           "code": "3.9.2.5",
+           "text": "Describe the HR diagram: main sequence, dwarfs, giants, the Sun's position, and the evolution of a Sun-like star to a white dwarf."
+          }
+         ]
+        },
+        {
+         "id": "supernovae-neutron-stars-and-black-holes",
+         "title": "Supernovae, neutron stars and black holes",
+         "outcomes": [
+          {
+           "code": "3.9.2.6",
+           "text": "Describe supernovae, neutron stars, black holes, gamma-ray bursts and supermassive black holes."
+          },
+          {
+           "code": null,
+           "text": "Use type 1a supernovae as standard candles, with dark energy and acceleration."
+          },
+          {
+           "code": null,
+           "text": "Calculate the Schwarzschild radius Rs = 2GM/c^2."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "3-9-3-cosmology",
+       "title": "3.9.3 Cosmology",
+       "subtopics": [
+        {
+         "id": "overview-3-9-3",
+         "title": "Overview 3.9.3",
+         "outcomes": [
+          {
+           "code": "3.9.3",
+           "text": "Describe the origin and structure of the Universe."
+          }
+         ]
+        },
+        {
+         "id": "doppler-effect",
+         "title": "Doppler effect",
+         "outcomes": [
+          {
+           "code": "3.9.3.1",
+           "text": "Use delta f / f = v/c and z = delta lambda / lambda = -v/c for v much less than c; analyse binary stars, galaxies and quasars."
+          }
+         ]
+        },
+        {
+         "id": "hubble-s-law",
+         "title": "Hubble's law",
+         "outcomes": [
+          {
+           "code": "3.9.3.2",
+           "text": "Use v = Hd and estimate the age of the universe; describe the Big Bang evidence: microwave background and hydrogen/helium abundance."
+          }
+         ]
+        },
+        {
+         "id": "quasars",
+         "title": "Quasars",
+         "outcomes": [
+          {
+           "code": "3.9.3.3",
+           "text": "Describe quasars as distant, bright, red-shifted radio sources powered by active supermassive black holes."
+          }
+         ]
+        },
+        {
+         "id": "detection-of-exoplanets",
+         "title": "Detection of exoplanets",
+         "outcomes": [
+          {
+           "code": "3.9.3.4",
+           "text": "Describe why direct detection is hard and the radial velocity (Doppler) and transit methods with a typical light curve."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "3-10-medical-physics-option",
+     "title": "3.10 Medical physics (option)",
+     "topics": [
+      {
+       "id": "3-10-1-physics-of-the-eye",
+       "title": "3.10.1 Physics of the eye",
+       "subtopics": [
+        {
+         "id": "overview-3-10",
+         "title": "Overview 3.10",
+         "outcomes": [
+          {
+           "code": "3.10",
+           "text": "Apply physics to the eye, ear, imaging and therapy."
+          }
+         ]
+        },
+        {
+         "id": "overview-3-10-1",
+         "title": "Overview 3.10.1",
+         "outcomes": [
+          {
+           "code": "3.10.1",
+           "text": "Describe the physics of the eye."
+          }
+         ]
+        },
+        {
+         "id": "physics-of-vision",
+         "title": "Physics of vision",
+         "outcomes": [
+          {
+           "code": "3.10.1.1",
+           "text": "Describe the eye as a refracting system with ray diagrams, its sensitivity and spatial resolution (rods and cones)."
+          }
+         ]
+        },
+        {
+         "id": "defects-of-vision",
+         "title": "Defects of vision",
+         "outcomes": [
+          {
+           "code": "3.10.1.2",
+           "text": "Use lens power P = 1/f, 1/u + 1/v = 1/f and m = v/u."
+          },
+          {
+           "code": null,
+           "text": "Describe myopia, hypermetropia and astigmatism and calculate corrective lens powers."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "3-10-2-physics-of-the-ear",
+       "title": "3.10.2 Physics of the ear",
+       "subtopics": [
+        {
+         "id": "overview-3-10-2",
+         "title": "Overview 3.10.2",
+         "outcomes": [
+          {
+           "code": "3.10.2",
+           "text": "Describe the physics of the ear."
+          }
+         ]
+        },
+        {
+         "id": "ear-as-a-sound-detector",
+         "title": "Ear as a sound detector",
+         "outcomes": [
+          {
+           "code": "3.10.2.1",
+           "text": "Describe the structure of the ear and sound transmission."
+          }
+         ]
+        },
+        {
+         "id": "sensitivity-and-frequency-response",
+         "title": "Sensitivity and frequency response",
+         "outcomes": [
+          {
+           "code": "3.10.2.2",
+           "text": "Interpret equal loudness curves and why a logarithmic scale is needed."
+          },
+          {
+           "code": null,
+           "text": "Use intensity level = 10 log(I/I0), I0 = 1.0e-12 W/m^2, and dB and dBA."
+          }
+         ]
+        },
+        {
+         "id": "defects-of-hearing",
+         "title": "Defects of hearing",
+         "outcomes": [
+          {
+           "code": "3.10.2.3",
+           "text": "Explain hearing loss from noise or age using equal loudness curves."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "3-10-3-biological-measurement",
+       "title": "3.10.3 Biological measurement",
+       "subtopics": [
+        {
+         "id": "overview-3-10-3",
+         "title": "Overview 3.10.3",
+         "outcomes": [
+          {
+           "code": "3.10.3",
+           "text": "Describe biological measurement."
+          }
+         ]
+        },
+        {
+         "id": "ecg",
+         "title": "ECG",
+         "outcomes": [
+          {
+           "code": "3.10.3.1",
+           "text": "Explain how an ECG is obtained and the shape of a normal ECG waveform."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "3-10-4-non-ionising-imaging",
+       "title": "3.10.4 Non-ionising imaging",
+       "subtopics": [
+        {
+         "id": "overview-3-10-4",
+         "title": "Overview 3.10.4",
+         "outcomes": [
+          {
+           "code": "3.10.4",
+           "text": "Describe non-ionising imaging."
+          }
+         ]
+        },
+        {
+         "id": "ultrasound-imaging",
+         "title": "Ultrasound imaging",
+         "outcomes": [
+          {
+           "code": "3.10.4.1",
+           "text": "Explain reflection at tissue boundaries, acoustic impedance Z = rho c, attenuation and Ir/Ii = ((Z2-Z1)/(Z2+Z1))^2."
+          },
+          {
+           "code": null,
+           "text": "Describe piezoelectric generation and detection, A-scans and B-scans, and compare with other imaging."
+          }
+         ]
+        },
+        {
+         "id": "fibre-optics-and-endoscopy",
+         "title": "Fibre optics and endoscopy",
+         "outcomes": [
+          {
+           "code": "3.10.4.2",
+           "text": "Explain total internal reflection in fibres and flexible endoscopes with coherent and non-coherent bundles."
+          }
+         ]
+        },
+        {
+         "id": "mr-scanner",
+         "title": "MR scanner",
+         "outcomes": [
+          {
+           "code": "3.10.4.3",
+           "text": "Explain MR scanning: proton spin alignment and precession, gradient coils, RF pulses and signal processing into images."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "3-10-5-x-ray-imaging",
+       "title": "3.10.5 X-ray imaging",
+       "subtopics": [
+        {
+         "id": "overview-3-10-5",
+         "title": "Overview 3.10.5",
+         "outcomes": [
+          {
+           "code": "3.10.5",
+           "text": "Describe X-ray imaging."
+          }
+         ]
+        },
+        {
+         "id": "diagnostic-x-rays",
+         "title": "Diagnostic X-rays",
+         "outcomes": [
+          {
+           "code": "3.10.5.1",
+           "text": "Explain X-ray production, maximum photon energy, continuous and characteristic spectra, and controlling intensity, energy, sharpness, contrast and dose in a rotating-anode tube."
+          }
+         ]
+        },
+        {
+         "id": "image-detection-and-enhancement",
+         "title": "Image detection and enhancement",
+         "outcomes": [
+          {
+           "code": "3.10.5.2",
+           "text": "Compare flat panel detectors with photographic detection, intensifying screens and fluoroscopy; explain contrast media like barium."
+          }
+         ]
+        },
+        {
+         "id": "absorption-of-x-rays",
+         "title": "Absorption of X-rays",
+         "outcomes": [
+          {
+           "code": "3.10.5.3",
+           "text": "Use I = I0 e^(-mu x), mass attenuation coefficient and half-value thickness."
+          }
+         ]
+        },
+        {
+         "id": "ct-scanner",
+         "title": "CT scanner",
+         "outcomes": [
+          {
+           "code": "3.10.5.4",
+           "text": "Describe CT principles and compare resolution, cost and safety."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "3-10-6-radionuclide-imaging-and-therapy",
+       "title": "3.10.6 Radionuclide imaging and therapy",
+       "subtopics": [
+        {
+         "id": "overview-3-10-6",
+         "title": "Overview 3.10.6",
+         "outcomes": [
+          {
+           "code": "3.10.6",
+           "text": "Describe radionuclide imaging and therapy."
+          }
+         ]
+        },
+        {
+         "id": "imaging-techniques",
+         "title": "Imaging techniques",
+         "outcomes": [
+          {
+           "code": "3.10.6.1",
+           "text": "Explain tracers (Tc-99m, I-131, In-111), their properties, the Mo-Tc generator and PET scans."
+          }
+         ]
+        },
+        {
+         "id": "half-life",
+         "title": "Half-life",
+         "outcomes": [
+          {
+           "code": "3.10.6.2",
+           "text": "Distinguish physical, biological and effective half-lives: 1/TE = 1/TB + 1/TP."
+          }
+         ]
+        },
+        {
+         "id": "gamma-camera",
+         "title": "Gamma camera",
+         "outcomes": [
+          {
+           "code": "3.10.6.3",
+           "text": "Describe the structure and operation of a photomultiplier tube and gamma camera."
+          }
+         ]
+        },
+        {
+         "id": "high-energy-x-ray-treatment",
+         "title": "High-energy X-ray treatment",
+         "outcomes": [
+          {
+           "code": "3.10.6.4",
+           "text": "Describe external treatment with high-energy X-rays and ways to limit exposure of healthy cells."
+          }
+         ]
+        },
+        {
+         "id": "radioactive-implants",
+         "title": "Radioactive implants",
+         "outcomes": [
+          {
+           "code": "3.10.6.5",
+           "text": "Describe internal treatment with beta-emitting implants."
+          }
+         ]
+        },
+        {
+         "id": "imaging-comparisons",
+         "title": "Imaging comparisons",
+         "outcomes": [
+          {
+           "code": "3.10.6.6",
+           "text": "Compare imaging techniques for resolution, convenience and safety."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "3-11-engineering-physics-option",
+     "title": "3.11 Engineering physics (option)",
+     "topics": [
+      {
+       "id": "3-11-1-rotational-dynamics",
+       "title": "3.11.1 Rotational dynamics",
+       "subtopics": [
+        {
+         "id": "overview-3-11",
+         "title": "Overview 3.11",
+         "outcomes": [
+          {
+           "code": "3.11",
+           "text": "Apply core physics to rotational dynamics and thermodynamics in engineering."
+          }
+         ]
+        },
+        {
+         "id": "overview-3-11-1",
+         "title": "Overview 3.11.1",
+         "outcomes": [
+          {
+           "code": "3.11.1",
+           "text": "Describe rotational dynamics."
+          }
+         ]
+        },
+        {
+         "id": "moment-of-inertia",
+         "title": "Moment of inertia",
+         "outcomes": [
+          {
+           "code": "3.11.1.1",
+           "text": "Use I = mr^2 and I = sum mr^2 and know factors affecting moment of inertia."
+          }
+         ]
+        },
+        {
+         "id": "rotational-kinetic-energy",
+         "title": "Rotational kinetic energy",
+         "outcomes": [
+          {
+           "code": "3.11.1.2",
+           "text": "Use Ek = I omega^2 / 2 and explain flywheels for energy storage and smoothing torque and speed."
+          }
+         ]
+        },
+        {
+         "id": "rotational-motion",
+         "title": "Rotational motion",
+         "outcomes": [
+          {
+           "code": "3.11.1.3",
+           "text": "Use angular displacement, speed, velocity and acceleration, their graphs, and equations for uniform angular acceleration; see the analogy with linear motion."
+          }
+         ]
+        },
+        {
+         "id": "torque-and-angular-acceleration",
+         "title": "Torque and angular acceleration",
+         "outcomes": [
+          {
+           "code": "3.11.1.4",
+           "text": "Use T = Fr and T = I alpha."
+          }
+         ]
+        },
+        {
+         "id": "angular-momentum",
+         "title": "Angular momentum",
+         "outcomes": [
+          {
+           "code": "3.11.1.5",
+           "text": "Use angular momentum I omega, its conservation and angular impulse T change in t = change in I omega, e.g. in sport."
+          }
+         ]
+        },
+        {
+         "id": "work-and-power-in-rotation",
+         "title": "Work and power in rotation",
+         "outcomes": [
+          {
+           "code": "3.11.1.6",
+           "text": "Use W = T theta and P = T omega and allow for frictional torque."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "3-11-2-thermodynamics-and-engines",
+       "title": "3.11.2 Thermodynamics and engines",
+       "subtopics": [
+        {
+         "id": "overview-3-11-2",
+         "title": "Overview 3.11.2",
+         "outcomes": [
+          {
+           "code": "3.11.2",
+           "text": "Describe thermodynamics and engines."
+          }
+         ]
+        },
+        {
+         "id": "first-law-of-thermodynamics",
+         "title": "First law of thermodynamics",
+         "outcomes": [
+          {
+           "code": "3.11.2.1",
+           "text": "Apply Q = change in U + W quantitatively."
+          }
+         ]
+        },
+        {
+         "id": "non-flow-processes",
+         "title": "Non-flow processes",
+         "outcomes": [
+          {
+           "code": "3.11.2.2",
+           "text": "Treat isothermal, adiabatic, constant pressure and constant volume changes using pV = nRT, pV^gamma = constant and W = p change in V."
+          }
+         ]
+        },
+        {
+         "id": "the-p-v-diagram",
+         "title": "The p-V diagram",
+         "outcomes": [
+          {
+           "code": "3.11.2.3",
+           "text": "Represent processes on p-V diagrams and find work as area, including work per cycle as loop area."
+          }
+         ]
+        },
+        {
+         "id": "engine-cycles",
+         "title": "Engine cycles",
+         "outcomes": [
+          {
+           "code": "3.11.2.4",
+           "text": "Describe four-stroke petrol and diesel cycles and indicator diagrams."
+          },
+          {
+           "code": null,
+           "text": "Calculate input, indicated, brake and friction power, and overall, thermal and mechanical efficiency."
+          }
+         ]
+        },
+        {
+         "id": "second-law-and-engines",
+         "title": "Second law and engines",
+         "outcomes": [
+          {
+           "code": "3.11.2.5",
+           "text": "Explain the second law: heat engines need a source and sink."
+          },
+          {
+           "code": null,
+           "text": "Use efficiency (QH - QC)/QH and maximum efficiency (TH - TC)/TH, reasons for lower practical efficiency and CHP."
+          }
+         ]
+        },
+        {
+         "id": "reversed-heat-engines",
+         "title": "Reversed heat engines",
+         "outcomes": [
+          {
+           "code": "3.11.2.6",
+           "text": "Describe heat pumps and refrigerators and calculate coefficients of performance."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "3-12-turning-points-in-physics-option",
+     "title": "3.12 Turning points in physics (option)",
+     "topics": [
+      {
+       "id": "3-12-1-the-discovery-of-the-electron",
+       "title": "3.12.1 The discovery of the electron",
+       "subtopics": [
+        {
+         "id": "overview-3-12",
+         "title": "Overview 3.12",
+         "outcomes": [
+          {
+           "code": "3.12",
+           "text": "Study key developments and paradigm shifts in physics."
+          }
+         ]
+        },
+        {
+         "id": "overview-3-12-1",
+         "title": "Overview 3.12.1",
+         "outcomes": [
+          {
+           "code": "3.12.1",
+           "text": "Describe the discovery of the electron."
+          }
+         ]
+        },
+        {
+         "id": "cathode-rays",
+         "title": "Cathode rays",
+         "outcomes": [
+          {
+           "code": "3.12.1.1",
+           "text": "Describe cathode ray production in a discharge tube."
+          }
+         ]
+        },
+        {
+         "id": "thermionic-emission",
+         "title": "Thermionic emission",
+         "outcomes": [
+          {
+           "code": "3.12.1.2",
+           "text": "Explain thermionic emission and use mv^2/2 = eV for an accelerated electron."
+          }
+         ]
+        },
+        {
+         "id": "specific-charge-of-the-electron",
+         "title": "Specific charge of the electron",
+         "outcomes": [
+          {
+           "code": "3.12.1.3",
+           "text": "Determine e/m by one method, explain Thomson's significance and compare with the hydrogen ion."
+          }
+         ]
+        },
+        {
+         "id": "millikan-s-oil-drop-experiment",
+         "title": "Millikan's oil drop experiment",
+         "outcomes": [
+          {
+           "code": "3.12.1.4",
+           "text": "Use QV/d = mg for a stationary droplet and terminal speed with Stokes' law F = 6 pi eta r v to find droplet mass, radius and charge."
+          },
+          {
+           "code": null,
+           "text": "Explain quantisation of charge."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "3-12-2-wave-particle-duality",
+       "title": "3.12.2 Wave-particle duality",
+       "subtopics": [
+        {
+         "id": "overview-3-12-2",
+         "title": "Overview 3.12.2",
+         "outcomes": [
+          {
+           "code": "3.12.2",
+           "text": "Describe the development of the wave-particle model."
+          }
+         ]
+        },
+        {
+         "id": "newton-s-corpuscular-theory",
+         "title": "Newton's corpuscular theory",
+         "outcomes": [
+          {
+           "code": "3.12.2.1",
+           "text": "Compare Newton's corpuscular theory with Huygens' wave theory and why Newton's was preferred."
+          }
+         ]
+        },
+        {
+         "id": "young-s-double-slits",
+         "title": "Young's double slits",
+         "outcomes": [
+          {
+           "code": "3.12.2.2",
+           "text": "Explain fringes in general terms and the delayed acceptance of the wave theory."
+          }
+         ]
+        },
+        {
+         "id": "electromagnetic-waves",
+         "title": "Electromagnetic waves",
+         "outcomes": [
+          {
+           "code": "3.12.2.3",
+           "text": "Use Maxwell's c = 1/sqrt(mu0 epsilon0); describe Hertz's radio waves and Fizeau's speed of light."
+          }
+         ]
+        },
+        {
+         "id": "discovery-of-photoelectricity",
+         "title": "Discovery of photoelectricity",
+         "outcomes": [
+          {
+           "code": "3.12.2.4",
+           "text": "Describe the ultraviolet catastrophe, Planck's quanta, failure of classical theory and Einstein's explanation."
+          }
+         ]
+        },
+        {
+         "id": "wave-particle-duality",
+         "title": "Wave-particle duality",
+         "outcomes": [
+          {
+           "code": "3.12.2.5",
+           "text": "Use de Broglie's p = h/lambda and lambda = h/sqrt(2meV); explain electron diffraction changes with speed."
+          }
+         ]
+        },
+        {
+         "id": "electron-microscopes",
+         "title": "Electron microscopes",
+         "outcomes": [
+          {
+           "code": "3.12.2.6",
+           "text": "Estimate anode voltage for atomic-scale wavelengths and describe TEM and STM operation."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "3-12-3-special-relativity",
+       "title": "3.12.3 Special relativity",
+       "subtopics": [
+        {
+         "id": "overview-3-12-3",
+         "title": "Overview 3.12.3",
+         "outcomes": [
+          {
+           "code": "3.12.3",
+           "text": "Describe special relativity."
+          }
+         ]
+        },
+        {
+         "id": "michelson-morley-experiment",
+         "title": "Michelson-Morley experiment",
+         "outcomes": [
+          {
+           "code": "3.12.3.1",
+           "text": "Describe the interferometer, why it failed to detect absolute motion and the invariance of the speed of light."
+          }
+         ]
+        },
+        {
+         "id": "einstein-s-special-relativity",
+         "title": "Einstein's special relativity",
+         "outcomes": [
+          {
+           "code": "3.12.3.2",
+           "text": "State the inertial frame concept and Einstein's two postulates."
+          }
+         ]
+        },
+        {
+         "id": "time-dilation",
+         "title": "Time dilation",
+         "outcomes": [
+          {
+           "code": "3.12.3.3",
+           "text": "Use proper time and t = t0 / sqrt(1 - v^2/c^2) with muon decay evidence."
+          }
+         ]
+        },
+        {
+         "id": "length-contraction",
+         "title": "Length contraction",
+         "outcomes": [
+          {
+           "code": "3.12.3.4",
+           "text": "Use l = l0 sqrt(1 - v^2/c^2)."
+          }
+         ]
+        },
+        {
+         "id": "mass-and-energy",
+         "title": "Mass and energy",
+         "outcomes": [
+          {
+           "code": "3.12.3.5",
+           "text": "Use E = mc^2 and E = m0c^2 / sqrt(1 - v^2/c^2); interpret mass and kinetic energy graphs and Bertozzi's experiment."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "3-13-electronics-option",
+     "title": "3.13 Electronics (option)",
+     "topics": [
+      {
+       "id": "3-13-1-discrete-semiconductor-devices",
+       "title": "3.13.1 Discrete semiconductor devices",
+       "subtopics": [
+        {
+         "id": "overview-3-13",
+         "title": "Overview 3.13",
+         "outcomes": [
+          {
+           "code": "3.13",
+           "text": "Study modern electronics from devices to data communication."
+          }
+         ]
+        },
+        {
+         "id": "overview-3-13-1",
+         "title": "Overview 3.13.1",
+         "outcomes": [
+          {
+           "code": "3.13.1",
+           "text": "Describe discrete semiconductor devices."
+          }
+         ]
+        },
+        {
+         "id": "mosfet",
+         "title": "MOSFET",
+         "outcomes": [
+          {
+           "code": "3.13.1.1",
+           "text": "Describe the N-channel enhancement MOSFET: drain, source, gate, VDS, VGS, IDSS, Vth; use as a switch and a high-input-resistance device."
+          }
+         ]
+        },
+        {
+         "id": "zener-diode",
+         "title": "Zener diode",
+         "outcomes": [
+          {
+           "code": "3.13.1.2",
+           "text": "Interpret zener characteristics; use with a resistor as a constant voltage source or reference."
+          }
+         ]
+        },
+        {
+         "id": "photodiode",
+         "title": "Photodiode",
+         "outcomes": [
+          {
+           "code": "3.13.1.3",
+           "text": "Interpret characteristic and spectral response curves; use in photo-conductive mode and with a scintillator."
+          }
+         ]
+        },
+        {
+         "id": "hall-effect-sensor",
+         "title": "Hall effect sensor",
+         "outcomes": [
+          {
+           "code": "3.13.1.4",
+           "text": "Use Hall sensors to sense magnetic field for attitude and in a tachometer."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "3-13-2-analogue-and-digital-signals",
+       "title": "3.13.2 Analogue and digital signals",
+       "subtopics": [
+        {
+         "id": "overview-3-13-2",
+         "title": "Overview 3.13.2",
+         "outcomes": [
+          {
+           "code": "3.13.2",
+           "text": "Compare analogue and digital signals."
+          }
+         ]
+        },
+        {
+         "id": "analogue-versus-digital",
+         "title": "Analogue versus digital",
+         "outcomes": [
+          {
+           "code": "3.13.2.1",
+           "text": "Use bits and bytes; explain analogue-to-digital conversion, sampling, quantisation and the effect of rate and bits on quality."
+          },
+          {
+           "code": null,
+           "text": "Weigh digital sampling, recovery of data from noise, pulse code modulation and sensors."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "3-13-3-analogue-signal-processing",
+       "title": "3.13.3 Analogue signal processing",
+       "subtopics": [
+        {
+         "id": "overview-3-13-3",
+         "title": "Overview 3.13.3",
+         "outcomes": [
+          {
+           "code": "3.13.3",
+           "text": "Describe analogue signal processing."
+          }
+         ]
+        },
+        {
+         "id": "lc-resonance-filters",
+         "title": "LC resonance filters",
+         "outcomes": [
+          {
+           "code": "3.13.3.1",
+           "text": "Use f0 = 1/(2 pi sqrt(LC)) for parallel resonance, the mass-spring analogy and Q = f0/fB."
+          }
+         ]
+        },
+        {
+         "id": "the-ideal-operational-amplifier",
+         "title": "The ideal operational amplifier",
+         "outcomes": [
+          {
+           "code": "3.13.3.2",
+           "text": "Describe ideal op-amp connections, infinite open-loop gain and input resistance; use Vout = AOL(V+ - V-) and as a comparator."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "3-13-4-operational-amplifier-configurations",
+       "title": "3.13.4 Operational amplifier configurations",
+       "subtopics": [
+        {
+         "id": "overview-3-13-4",
+         "title": "Overview 3.13.4",
+         "outcomes": [
+          {
+           "code": "3.13.4",
+           "text": "Use operational amplifier configurations."
+          }
+         ]
+        },
+        {
+         "id": "inverting-amplifier",
+         "title": "Inverting amplifier",
+         "outcomes": [
+          {
+           "code": "3.13.4.1",
+           "text": "Derive and use Vout = -(Rf/Rin) Vin with virtual earth analysis."
+          }
+         ]
+        },
+        {
+         "id": "non-inverting-amplifier",
+         "title": "Non-inverting amplifier",
+         "outcomes": [
+          {
+           "code": "3.13.4.2",
+           "text": "Use Vout/Vin = 1 + Rf/Rl."
+          }
+         ]
+        },
+        {
+         "id": "summing-and-difference-amplifiers",
+         "title": "Summing and difference amplifiers",
+         "outcomes": [
+          {
+           "code": "3.13.4.3",
+           "text": "Use summing amplifier Vout = -Rf(V1/R1 + V2/R2 + ...) and difference amplifier outputs."
+          }
+         ]
+        },
+        {
+         "id": "real-operational-amplifiers",
+         "title": "Real operational amplifiers",
+         "outcomes": [
+          {
+           "code": "3.13.4.4",
+           "text": "Describe limitations, frequency response and gain x bandwidth = constant."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "3-13-5-digital-signal-processing",
+       "title": "3.13.5 Digital signal processing",
+       "subtopics": [
+        {
+         "id": "overview-3-13-5",
+         "title": "Overview 3.13.5",
+         "outcomes": [
+          {
+           "code": "3.13.5",
+           "text": "Describe digital signal processing."
+          }
+         ]
+        },
+        {
+         "id": "combinational-logic",
+         "title": "Combinational logic",
+         "outcomes": [
+          {
+           "code": "3.13.5.1",
+           "text": "Use Boolean algebra, truth tables and AND, NAND, OR, NOR, NOT, EOR gates; build logic circuits from truth tables."
+          }
+         ]
+        },
+        {
+         "id": "sequential-logic",
+         "title": "Sequential logic",
+         "outcomes": [
+          {
+           "code": "3.13.5.2",
+           "text": "Describe binary, BCD and Johnson counters with clock, reset and up/down inputs, and modulo-n counters."
+          }
+         ]
+        },
+        {
+         "id": "astables",
+         "title": "Astables",
+         "outcomes": [
+          {
+           "code": "3.13.5.3",
+           "text": "Describe an astable as a clock oscillator: frequency, pulse width, period, duty cycle, mark-to-space ratio and RC tuning."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "3-13-6-data-communication-systems",
+       "title": "3.13.6 Data communication systems",
+       "subtopics": [
+        {
+         "id": "overview-3-13-6",
+         "title": "Overview 3.13.6",
+         "outcomes": [
+          {
+           "code": "3.13.6",
+           "text": "Describe data communication."
+          }
+         ]
+        },
+        {
+         "id": "principles-of-communication-systems",
+         "title": "Principles of communication systems",
+         "outcomes": [
+          {
+           "code": "3.13.6.1",
+           "text": "Describe the stages of a real-time communication system block diagram."
+          }
+         ]
+        },
+        {
+         "id": "transmission-media",
+         "title": "Transmission media",
+         "outcomes": [
+          {
+           "code": "3.13.6.2",
+           "text": "Compare wire, optic fibre and radio/microwave media, wave propagation, satellite links and up/down-link frequencies, by rate, cost and security."
+          }
+         ]
+        },
+        {
+         "id": "time-division-multiplexing",
+         "title": "Time-division multiplexing",
+         "outcomes": [
+          {
+           "code": "3.13.6.3",
+           "text": "Describe time-division multiplexing."
+          }
+         ]
+        },
+        {
+         "id": "am-and-fm-modulation",
+         "title": "AM and FM modulation",
+         "outcomes": [
+          {
+           "code": "3.13.6.4",
+           "text": "Describe carrier and information signals, AM and FM waveforms and bandwidths (2fM for AM, 2 change in f + fM for FM) and channel data capacity."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "build": {
+  "builtAt": "2026-10-14T10:18:10.381Z",
+  "model": "claude-agent",
+  "usd": 0,
+  "expectedCodes": 194,
+  "coverage": 1,
+  "missingCodes": [],
+  "counts": {
+   "grades": 2,
+   "units": 13,
+   "topics": 36,
+   "subtopics": 194,
+   "outcomes": 277
+  },
+  "warnings": []
+ }
+}

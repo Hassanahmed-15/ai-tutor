@@ -1,0 +1,781 @@
+{
+ "id": "uk-ocr-gcse-music-j536",
+ "region": "UK",
+ "framework": "OCR GCSE (9-1)",
+ "board": "OCR",
+ "qualification": "GCSE",
+ "subject": "Music",
+ "syllabusCode": "J536",
+ "gradeSystem": "year",
+ "source": {
+  "urls": [
+   "https://www.ocr.org.uk/Images/219378-specification-accredited-gcse-music-j536.pdf"
+  ],
+  "publisher": "OCR (Oxford Cambridge and RSA)",
+  "licence": "Exam board specification, (c) OCR; structure + our own wording only",
+  "firstExam": "2018"
+ },
+ "grades": [
+  {
+   "grade": "all",
+   "units": [
+    {
+     "id": "core-musical-knowledge",
+     "title": "Core musical knowledge",
+     "topics": [
+      {
+       "id": "musical-elements",
+       "title": "Musical elements",
+       "subtopics": [
+        {
+         "id": "pitch-and-tonality",
+         "title": "Pitch and tonality",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Understand pitch organisation, simple chord progressions, cadences and melodic devices like sequence."
+          },
+          {
+           "code": null,
+           "text": "Understand major, minor and basic modulation such as tonic to dominant."
+          }
+         ]
+        },
+        {
+         "id": "structure-and-sonority",
+         "title": "Structure and sonority",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Recognise simple structures: verse and chorus, call and response, binary, theme and variations."
+          },
+          {
+           "code": null,
+           "text": "Recognise a range of instrumental and vocal timbres and articulation like legato and staccato."
+          }
+         ]
+        },
+        {
+         "id": "texture-time-and-dynamics",
+         "title": "Texture, time and dynamics",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe how parts fit together: unison, chordal and solo textures."
+          },
+          {
+           "code": null,
+           "text": "Understand pulse, simple and compound time, and rhythmic devices such as dotted rhythms."
+          },
+          {
+           "code": null,
+           "text": "Use basic dynamic devices such as crescendo and diminuendo."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "musical-contexts",
+       "title": "Musical contexts",
+       "subtopics": [
+        {
+         "id": "purpose-and-audience",
+         "title": "Purpose and audience",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain how composer, performer or commissioner intention shapes how music is created and performed."
+          },
+          {
+           "code": null,
+           "text": "Explain how audience, time and place affect how music is created and performed."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "musical-language",
+       "title": "Musical language",
+       "subtopics": [
+        {
+         "id": "notation",
+         "title": "Notation",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Read and write staff notation: treble and bass clef names, simple-time rhythms, key signatures to four sharps and flats."
+          }
+         ]
+        },
+        {
+         "id": "chords-and-vocabulary",
+         "title": "Chords and vocabulary",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Identify major and minor chords and chord symbols in traditional and contemporary notation."
+          },
+          {
+           "code": null,
+           "text": "Use musical vocabulary accurately for each Area of Study."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "performing-composing-and-appraising",
+       "title": "Performing, composing and appraising",
+       "subtopics": [
+        {
+         "id": "performing",
+         "title": "Performing",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Perform with technical control and expressive phrasing and dynamics by playing, singing, improvising or using music technology."
+          }
+         ]
+        },
+        {
+         "id": "composing",
+         "title": "Composing",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Create and develop musical ideas with control and coherence, freely or to a brief."
+          },
+          {
+           "code": null,
+           "text": "Develop ideas using conventions and the potential of musical structures and resources."
+          }
+         ]
+        },
+        {
+         "id": "appraising",
+         "title": "Appraising",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Analyse and evaluate music aurally and in writing, including unfamiliar music."
+          },
+          {
+           "code": null,
+           "text": "Make critical judgements using attentive listening and appropriate vocabulary."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "area-of-study-1-my-music",
+     "title": "Area of Study 1: My Music",
+     "topics": [
+      {
+       "id": "your-instrument-or-voice",
+       "title": "Your instrument or voice",
+       "subtopics": [
+        {
+         "id": "instrument-capabilities",
+         "title": "Instrument capabilities",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Study your instrument, voice, DJ-ing or sequencing, including its range and characteristic timbre."
+          },
+          {
+           "code": null,
+           "text": "Know the playing techniques, genres and ensembles suited to your instrument."
+          },
+          {
+           "code": null,
+           "text": "Explain how context and culture influence the use of the instrument."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "performing-and-composing",
+       "title": "Performing and composing",
+       "subtopics": [
+        {
+         "id": "choosing-a-performance",
+         "title": "Choosing a performance",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Perform pieces of suitable difficulty alone, accompanied, in a group or as a multi-tracked or sequenced recording."
+          }
+         ]
+        },
+        {
+         "id": "composing-your-own-piece",
+         "title": "Composing your own piece",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Compose a piece of your choice for solo, accompanied solo or ensemble in any genre."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "area-of-study-2-the-concerto-through-time",
+     "title": "Area of Study 2: The Concerto Through Time",
+     "topics": [
+      {
+       "id": "the-development-of-the-concerto",
+       "title": "The development of the concerto",
+       "subtopics": [
+        {
+         "id": "concerto-types",
+         "title": "Concerto types",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Know the Baroque solo concerto, concerto grosso, Classical concerto and Romantic concerto."
+          },
+          {
+           "code": null,
+           "text": "Explain what a concerto is and how it developed from 1650 to 1910."
+          }
+         ]
+        },
+        {
+         "id": "soloist-and-orchestra",
+         "title": "Soloist and orchestra",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe solo instruments and how they developed, and the growth of the orchestra."
+          },
+          {
+           "code": null,
+           "text": "Explain the role of the soloist and the relationship between soloist and orchestra."
+          },
+          {
+           "code": null,
+           "text": "Describe how concertos grew in length, complexity and virtuosity."
+          }
+         ]
+        },
+        {
+         "id": "period-characteristics",
+         "title": "Period characteristics",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Identify the characteristics of Baroque, Classical and Romantic music in concertos."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "musical-elements-in-concertos",
+       "title": "Musical elements in concertos",
+       "subtopics": [
+        {
+         "id": "sound-and-melody",
+         "title": "Sound and melody",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain how concerto composers use instruments, timbre, pitch and melody."
+          }
+         ]
+        },
+        {
+         "id": "rhythm-and-expression",
+         "title": "Rhythm and expression",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain use of rhythm, metre, tempo, dynamics, expression and articulation."
+          }
+         ]
+        },
+        {
+         "id": "texture-and-form",
+         "title": "Texture and form",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain use of texture, structure, phrasing and cadences."
+          }
+         ]
+        },
+        {
+         "id": "harmony-and-devices",
+         "title": "Harmony and devices",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain use of harmony, tonality, repetition, sequence, imitation and ornamentation."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "concerto-context",
+       "title": "Concerto context",
+       "subtopics": [
+        {
+         "id": "composers-and-society",
+         "title": "Composers and society",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Know composers of concertos in each period and the historical and social context."
+          }
+         ]
+        },
+        {
+         "id": "venues-and-audiences",
+         "title": "Venues and audiences",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain the need for larger venues and the changing commissioners and audiences."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "area-of-study-3-rhythms-of-the-world",
+     "title": "Area of Study 3: Rhythms of the World",
+     "topics": [
+      {
+       "id": "regions-and-their-rhythms",
+       "title": "Regions and their rhythms",
+       "subtopics": [
+        {
+         "id": "india-and-punjab",
+         "title": "India and Punjab",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Study Indian Classical music and Punjabi Bhangra and their characteristic rhythms."
+          }
+         ]
+        },
+        {
+         "id": "eastern-mediterranean-and-middle-east",
+         "title": "Eastern Mediterranean and Middle East",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Study Greek, Palestinian and Israeli folk rhythms and their characteristic features."
+          }
+         ]
+        },
+        {
+         "id": "africa",
+         "title": "Africa",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Study traditional African drumming and its characteristic rhythms."
+          }
+         ]
+        },
+        {
+         "id": "central-and-south-america",
+         "title": "Central and South America",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Study traditional Calypso and Samba and their characteristic rhythms."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "learning-about-each-region",
+       "title": "Learning about each region",
+       "subtopics": [
+        {
+         "id": "rhythm-and-culture",
+         "title": "Rhythm and culture",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe characteristic rhythms and metres, and the origins and cultural context of the music."
+          },
+          {
+           "code": null,
+           "text": "Describe the musical characteristics of the folk music and the impact of modern technology."
+          }
+         ]
+        },
+        {
+         "id": "performers",
+         "title": "Performers",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Know names of performers and groups and how performers work together."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "elements-in-traditional-music",
+       "title": "Elements in traditional music",
+       "subtopics": [
+        {
+         "id": "sound-and-melody",
+         "title": "Sound and melody",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain how instruments, timbre, pitch, melody and tempo combine in traditional music."
+          }
+         ]
+        },
+        {
+         "id": "texture-and-harmony",
+         "title": "Texture and harmony",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain use of dynamics, texture, structure, harmony, tonality, ostinato and ornamentation."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "performing-traditions",
+       "title": "Performing traditions",
+       "subtopics": [
+        {
+         "id": "drumming-and-rhythm-patterns",
+         "title": "Drumming and rhythm patterns",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Know techniques of performing traditional drums and traditional rhythm patterns, including syncopation and cross rhythms."
+          }
+         ]
+        },
+        {
+         "id": "texture-and-improvisation",
+         "title": "Texture and improvisation",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain how texture builds with added parts and how improvised lines use modal and microtonal scales."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "area-of-study-4-film-music",
+     "title": "Area of Study 4: Film Music",
+     "topics": [
+      {
+       "id": "music-for-the-screen",
+       "title": "Music for the screen",
+       "subtopics": [
+        {
+         "id": "types-of-film-music",
+         "title": "Types of film music",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Study music composed for a film, Western Classical music used in film, and video game soundtracks."
+          }
+         ]
+        },
+        {
+         "id": "supporting-the-screen",
+         "title": "Supporting the screen",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain how composers support a mood or emotion on screen."
+          },
+          {
+           "code": null,
+           "text": "Explain how music supports significant characters or places, and specific actions or dramatic effects."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "elements-in-film-music",
+       "title": "Elements in film music",
+       "subtopics": [
+        {
+         "id": "sound-and-melody",
+         "title": "Sound and melody",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain dramatic use of instruments, timbre, pitch and melody."
+          }
+         ]
+        },
+        {
+         "id": "rhythm-and-expression",
+         "title": "Rhythm and expression",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain dramatic use of rhythm, metre, tempo, dynamics and articulation."
+          }
+         ]
+        },
+        {
+         "id": "texture-and-harmony",
+         "title": "Texture and harmony",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain use of texture, structure, harmony, tonality, repetition and ornamentation."
+          }
+         ]
+        },
+        {
+         "id": "motif-and-leitmotif",
+         "title": "Motif and leitmotif",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain how motifs and leitmotifs are used in film and games."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "film-music-context",
+       "title": "Film music context",
+       "subtopics": [
+        {
+         "id": "development-and-resources",
+         "title": "Development and resources",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe how music develops during a film or game, and the technology used to create soundtracks."
+          }
+         ]
+        },
+        {
+         "id": "film-composers",
+         "title": "Film composers",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Know the names of composers of film and video game music."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "area-of-study-5-conventions-of-pop",
+     "title": "Area of Study 5: Conventions of Pop",
+     "topics": [
+      {
+       "id": "popular-music-genres",
+       "title": "Popular music genres",
+       "subtopics": [
+        {
+         "id": "rock-n-roll",
+         "title": "Rock n Roll",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Study Rock n Roll of the 1950s and 1960s."
+          }
+         ]
+        },
+        {
+         "id": "rock-anthems",
+         "title": "Rock anthems",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Study Rock Anthems of the 1970s and 1980s."
+          }
+         ]
+        },
+        {
+         "id": "pop-ballads",
+         "title": "Pop ballads",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Study Pop Ballads of the 1970s, 1980s and 1990s."
+          }
+         ]
+        },
+        {
+         "id": "solo-artists",
+         "title": "Solo artists",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Study Solo Artists from 1990 to the present day."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "learning-about-pop",
+       "title": "Learning about pop",
+       "subtopics": [
+        {
+         "id": "voices-and-instruments",
+         "title": "Voices and instruments",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe vocal and instrumental techniques and how voices and instruments interact."
+          }
+         ]
+        },
+        {
+         "id": "technology-and-style",
+         "title": "Technology and style",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain how instruments, technology and styles developed over time."
+          }
+         ]
+        },
+        {
+         "id": "genre-features",
+         "title": "Genre features",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain the origins, cultural context and typical conventions of each genre."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "elements-in-pop-music",
+       "title": "Elements in pop music",
+       "subtopics": [
+        {
+         "id": "sound-and-melody",
+         "title": "Sound and melody",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain use of acoustic and electric timbres, melody, bass lines and riffs."
+          }
+         ]
+        },
+        {
+         "id": "rhythm-and-expression",
+         "title": "Rhythm and expression",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain use of rhythm, metre, tempo, dynamics, articulation and ornamentation."
+          }
+         ]
+        },
+        {
+         "id": "texture-and-harmony",
+         "title": "Texture and harmony",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain use of texture, structure, harmony, tonality, repetition, ostinato and sequence."
+          }
+         ]
+        },
+        {
+         "id": "studio-technology",
+         "title": "Studio technology",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain use of amplification and recording techniques."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "pop-context",
+       "title": "Pop context",
+       "subtopics": [
+        {
+         "id": "artists-and-industry",
+         "title": "Artists and industry",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Know solo artists and groups per genre, and the growth of the popular music industry."
+          }
+         ]
+        },
+        {
+         "id": "song-structure",
+         "title": "Song structure",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe the changing nature of song structure and the historical and social context of genres."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "build": {
+  "builtAt": "2026-10-14T10:51:11.585Z",
+  "model": "claude-agent",
+  "usd": 0,
+  "expectedCodes": null,
+  "coverage": null,
+  "missingCodes": [],
+  "counts": {
+   "grades": 1,
+   "units": 6,
+   "topics": 20,
+   "subtopics": 52,
+   "outcomes": 67
+  },
+  "warnings": [
+   "grade Year 10 has no content",
+   "grade Year 11 has no content",
+   "unexpected grade label \"all\""
+  ]
+ }
+}

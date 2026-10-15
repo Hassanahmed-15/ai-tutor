@@ -1,0 +1,89 @@
+{
+ "id": "uk-oak-rule-of-law-primary",
+ "region": "UK",
+ "framework": "Oak National Academy curriculum",
+ "board": "Oak National Academy",
+ "qualification": "Primary",
+ "subject": "Rule of law",
+ "syllabusCode": null,
+ "gradeSystem": "year",
+ "source": {
+  "urls": [
+   "https://www.thenational.academy/teachers/programmes/rule-of-law-primary/units"
+  ],
+  "publisher": "Oak National Academy",
+  "licence": "Contains Oak National Academy content licensed under the Open Government Licence v3.0",
+  "firstExam": null
+ },
+ "grades": [
+  {
+   "grade": "all-years",
+   "units": [
+    {
+     "id": "rule-of-law",
+     "title": "Rule of law",
+     "topics": [
+      {
+       "id": "what-are-rules-and-laws",
+       "title": "What are rules and laws?",
+       "subtopics": [
+        {
+         "id": "why-do-we-have-rules",
+         "title": "Why do we have rules?",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Why do we have rules?"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "what-is-the-rule-of-law",
+       "title": "What is the rule of law?",
+       "subtopics": [
+        {
+         "id": "how-does-the-rule-of-law-help-people-live-togeth",
+         "title": "How does the rule of law help people live together in society?",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "How does the rule of law help people live together in society?"
+          }
+         ]
+        },
+        {
+         "id": "who-does-the-law-apply-to",
+         "title": "Who does the law apply to?",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Who does the law apply to?"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "build": {
+  "builtAt": "2026-10-14T07:54:26.780Z",
+  "model": "none",
+  "usd": 0,
+  "expectedCodes": null,
+  "coverage": null,
+  "missingCodes": [],
+  "counts": {
+   "grades": 1,
+   "units": 1,
+   "topics": 2,
+   "subtopics": 3,
+   "outcomes": 3
+  },
+  "warnings": []
+ }
+}

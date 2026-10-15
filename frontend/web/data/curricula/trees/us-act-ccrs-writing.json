@@ -1,0 +1,613 @@
+{
+ "id": "us-act-ccrs-writing",
+ "region": "US",
+ "framework": "ACT College and Career Readiness Standards",
+ "board": "ACT",
+ "qualification": "ACT",
+ "subject": "Writing",
+ "syllabusCode": null,
+ "gradeSystem": "grade",
+ "source": {
+  "urls": [
+   "https://www.act.org/content/dam/act/unsecured/documents/CCRS-WritingStandards.pdf",
+   "https://www.act.org/standard"
+  ],
+  "publisher": "ACT, Inc.",
+  "licence": "© ACT, Inc.; structure + our own wording only",
+  "firstExam": null
+ },
+ "grades": [
+  {
+   "grade": "all",
+   "units": [
+    {
+     "id": "ideas-and-analysis",
+     "title": "Ideas and Analysis",
+     "topics": [
+      {
+       "id": "understanding-the-task-and-writing-with-purpose",
+       "title": "Understanding the task and writing with purpose",
+       "subtopics": [
+        {
+         "id": "understanding-the-task-and-writing-with-purpose-",
+         "title": "Understanding the task and writing with purpose, score 3-4",
+         "outcomes": [
+          {
+           "code": "A 201",
+           "text": "Write a thesis that is unclear or only loosely tied to the issue"
+          },
+          {
+           "code": null,
+           "text": "Respond only weakly to other perspectives"
+          }
+         ]
+        },
+        {
+         "id": "understanding-the-task-and-writing-with-purpose--2",
+         "title": "Understanding the task and writing with purpose, score 5-6",
+         "outcomes": [
+          {
+           "code": "A 301",
+           "text": "Write a somewhat clear thesis taking a stance on a contemporary issue"
+          },
+          {
+           "code": null,
+           "text": "Respond to other perspectives on the issue"
+          }
+         ]
+        },
+        {
+         "id": "understanding-the-task-and-writing-with-purpose--3",
+         "title": "Understanding the task and writing with purpose, score 7-8",
+         "outcomes": [
+          {
+           "code": "A 401",
+           "text": "Write a clear thesis taking a stance on a contemporary issue"
+          },
+          {
+           "code": null,
+           "text": "Engage with other perspectives on the issue"
+          }
+         ]
+        },
+        {
+         "id": "understanding-the-task-and-writing-with-purpose--4",
+         "title": "Understanding the task and writing with purpose, score 9-10",
+         "outcomes": [
+          {
+           "code": "A 501",
+           "text": "Write a precise thesis taking a stance on a contemporary issue"
+          },
+          {
+           "code": null,
+           "text": "Engage productively with other perspectives"
+          }
+         ]
+        },
+        {
+         "id": "understanding-the-task-and-writing-with-purpose--5",
+         "title": "Understanding the task and writing with purpose, score 11-12",
+         "outcomes": [
+          {
+           "code": "A 601",
+           "text": "Write a nuanced, precise thesis taking a stance on a contemporary issue"
+          },
+          {
+           "code": null,
+           "text": "Engage critically with other perspectives"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "analyzing-an-issue-and-differing-perspectives",
+       "title": "Analyzing an issue and differing perspectives",
+       "subtopics": [
+        {
+         "id": "analyzing-an-issue-and-differing-perspectives-sc",
+         "title": "Analyzing an issue and differing perspectives, score 3-4",
+         "outcomes": [
+          {
+           "code": "A 202",
+           "text": "Give analysis that is incomplete or largely irrelevant"
+          }
+         ]
+        },
+        {
+         "id": "analyzing-an-issue-and-differing-perspectives-sc-2",
+         "title": "Analyzing an issue and differing perspectives, score 5-6",
+         "outcomes": [
+          {
+           "code": "A 302",
+           "text": "Set up only a limited or tangential context for analysis"
+          },
+          {
+           "code": null,
+           "text": "Give analysis that is simplistic or somewhat unclear"
+          }
+         ]
+        },
+        {
+         "id": "analyzing-an-issue-and-differing-perspectives-sc-3",
+         "title": "Analyzing an issue and differing perspectives, score 7-8",
+         "outcomes": [
+          {
+           "code": "A 402",
+           "text": "Set up and use a relevant context for analysis"
+          },
+          {
+           "code": null,
+           "text": "Recognise implications, complexities, tensions, and underlying values or assumptions"
+          }
+         ]
+        },
+        {
+         "id": "analyzing-an-issue-and-differing-perspectives-sc-4",
+         "title": "Analyzing an issue and differing perspectives, score 9-10",
+         "outcomes": [
+          {
+           "code": "A 502",
+           "text": "Set up and use a thoughtful context for analysis"
+          },
+          {
+           "code": null,
+           "text": "Address implications, complexities, tensions, and underlying values or assumptions"
+          }
+         ]
+        },
+        {
+         "id": "analyzing-an-issue-and-differing-perspectives-sc-5",
+         "title": "Analyzing an issue and differing perspectives, score 11-12",
+         "outcomes": [
+          {
+           "code": "A 602",
+           "text": "Set up and use an insightful context for analysis"
+          },
+          {
+           "code": null,
+           "text": "Examine implications, complexities, tensions, and underlying values or assumptions"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "development-and-support",
+     "title": "Development and Support",
+     "topics": [
+      {
+       "id": "building-and-strengthening-the-argument",
+       "title": "Building and strengthening the argument",
+       "subtopics": [
+        {
+         "id": "building-and-strengthening-the-argument-score-3-",
+         "title": "Building and strengthening the argument, score 3-4",
+         "outcomes": [
+          {
+           "code": "S 201",
+           "text": "Reach only a weak understanding of the issue through inadequate reasoning and examples"
+          },
+          {
+           "code": null,
+           "text": "Offer a rationale that fails to clarify the argument"
+          },
+          {
+           "code": null,
+           "text": "Elaborate ideas in ways that are illogical, disjointed or circular"
+          }
+         ]
+        },
+        {
+         "id": "building-and-strengthening-the-argument-score-5-",
+         "title": "Building and strengthening the argument, score 5-6",
+         "outcomes": [
+          {
+           "code": "S 301",
+           "text": "Use mostly relevant reasoning and examples to support the thesis, reaching a simple understanding"
+          },
+          {
+           "code": null,
+           "text": "Offer a rationale that largely clarifies the argument"
+          },
+          {
+           "code": null,
+           "text": "Elaborate ideas, though somewhat repetitively or imprecisely"
+          }
+         ]
+        },
+        {
+         "id": "building-and-strengthening-the-argument-score-7-",
+         "title": "Building and strengthening the argument, score 7-8",
+         "outcomes": [
+          {
+           "code": "S 401",
+           "text": "Use clear reasoning and examples to understand the issue and other perspectives"
+          },
+          {
+           "code": null,
+           "text": "Convey adequately why the argument is worth considering"
+          },
+          {
+           "code": null,
+           "text": "Extend ideas by considering factors that complicate your own view"
+          },
+          {
+           "code": null,
+           "text": "Anticipate objections by qualifying the argument"
+          }
+         ]
+        },
+        {
+         "id": "building-and-strengthening-the-argument-score-9-",
+         "title": "Building and strengthening the argument, score 9-10",
+         "outcomes": [
+          {
+           "code": "S 501",
+           "text": "Use reasoning and examples purposefully to support the thesis and deepen understanding"
+          },
+          {
+           "code": null,
+           "text": "Convey capably why the argument is worth considering"
+          },
+          {
+           "code": null,
+           "text": "Enrich ideas by considering factors that complicate your own view"
+          },
+          {
+           "code": null,
+           "text": "Anticipate objections by qualifying the argument"
+          }
+         ]
+        },
+        {
+         "id": "building-and-strengthening-the-argument-score-11",
+         "title": "Building and strengthening the argument, score 11-12",
+         "outcomes": [
+          {
+           "code": "S 601",
+           "text": "Use reasoning and examples skilfully to broaden the context and support the thesis"
+          },
+          {
+           "code": null,
+           "text": "Convey effectively why the argument is worth considering"
+          },
+          {
+           "code": null,
+           "text": "Enrich and strengthen ideas by considering complicating factors"
+          },
+          {
+           "code": null,
+           "text": "Anticipate objections by qualifying the argument"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "organization",
+     "title": "Organization",
+     "topics": [
+      {
+       "id": "grouping-and-connecting-ideas",
+       "title": "Grouping and connecting ideas",
+       "subtopics": [
+        {
+         "id": "grouping-and-connecting-ideas-score-3-4",
+         "title": "Grouping and connecting ideas, score 3-4",
+         "outcomes": [
+          {
+           "code": "ORG 201",
+           "text": "Group ideas with little consistency or clarity"
+          },
+          {
+           "code": null,
+           "text": "Use transitions that mislead or are poorly formed"
+          }
+         ]
+        },
+        {
+         "id": "grouping-and-connecting-ideas-score-5-6",
+         "title": "Grouping and connecting ideas, score 5-6",
+         "outcomes": [
+          {
+           "code": "ORG 301",
+           "text": "Group most ideas logically"
+          },
+          {
+           "code": null,
+           "text": "Use transitions within and between paragraphs to clarify some relationships"
+          }
+         ]
+        },
+        {
+         "id": "grouping-and-connecting-ideas-score-7-8",
+         "title": "Grouping and connecting ideas, score 7-8",
+         "outcomes": [
+          {
+           "code": "ORG 401",
+           "text": "Group and sequence ideas logically"
+          },
+          {
+           "code": null,
+           "text": "Use transitions within and between paragraphs to clarify relationships"
+          }
+         ]
+        },
+        {
+         "id": "grouping-and-connecting-ideas-score-9-10",
+         "title": "Grouping and connecting ideas, score 9-10",
+         "outcomes": [
+          {
+           "code": "ORG 501",
+           "text": "Group and sequence ideas logically to make the argument more effective"
+          },
+          {
+           "code": null,
+           "text": "Use transitions consistently to clarify relationships among ideas"
+          }
+         ]
+        },
+        {
+         "id": "grouping-and-connecting-ideas-score-11-12",
+         "title": "Grouping and connecting ideas, score 11-12",
+         "outcomes": [
+          {
+           "code": "ORG 601",
+           "text": "Group and sequence ideas into a progression that builds the argument"
+          },
+          {
+           "code": null,
+           "text": "Use transitions to strengthen relationships among ideas"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "employing-an-organizational-strategy",
+       "title": "Employing an organizational strategy",
+       "subtopics": [
+        {
+         "id": "employing-an-organizational-strategy-score-3-4",
+         "title": "Employing an organizational strategy, score 3-4",
+         "outcomes": [
+          {
+           "code": "ORG 202",
+           "text": "Provide a minimal structure in which some ideas are grouped locally"
+          }
+         ]
+        },
+        {
+         "id": "employing-an-organizational-strategy-score-5-6",
+         "title": "Employing an organizational strategy, score 5-6",
+         "outcomes": [
+          {
+           "code": "ORG 302",
+           "text": "Provide a basic organisational structure"
+          }
+         ]
+        },
+        {
+         "id": "employing-an-organizational-strategy-score-7-8",
+         "title": "Employing an organizational strategy, score 7-8",
+         "outcomes": [
+          {
+           "code": "ORG 402",
+           "text": "Use an emerging controlling idea or purpose to shape the argument"
+          }
+         ]
+        },
+        {
+         "id": "employing-an-organizational-strategy-score-9-10",
+         "title": "Employing an organizational strategy, score 9-10",
+         "outcomes": [
+          {
+           "code": "ORG 502",
+           "text": "Use a controlling idea or purpose to unify the argument"
+          }
+         ]
+        },
+        {
+         "id": "employing-an-organizational-strategy-score-11-12",
+         "title": "Employing an organizational strategy, score 11-12",
+         "outcomes": [
+          {
+           "code": "ORG 602",
+           "text": "Use a controlling idea or purpose to unify and focus the argument"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "language-use-and-conventions",
+     "title": "Language Use and Conventions",
+     "topics": [
+      {
+       "id": "using-language-to-enhance-meaning",
+       "title": "Using language to enhance meaning",
+       "subtopics": [
+        {
+         "id": "using-language-to-enhance-meaning-score-3-4",
+         "title": "Using language to enhance meaning, score 3-4",
+         "outcomes": [
+          {
+           "code": "C 201",
+           "text": "Choose rudimentary words that are often imprecise"
+          },
+          {
+           "code": null,
+           "text": "Make inconsistent style choices (voice, tone, diction) that do not fit the purpose"
+          }
+         ]
+        },
+        {
+         "id": "using-language-to-enhance-meaning-score-5-6",
+         "title": "Using language to enhance meaning, score 5-6",
+         "outcomes": [
+          {
+           "code": "C 301",
+           "text": "Choose general words that are sometimes imprecise"
+          },
+          {
+           "code": null,
+           "text": "Make style choices that do not always fit purpose and topic"
+          }
+         ]
+        },
+        {
+         "id": "using-language-to-enhance-meaning-score-7-8",
+         "title": "Using language to enhance meaning, score 7-8",
+         "outcomes": [
+          {
+           "code": "C 401",
+           "text": "Choose adequate words that convey the argument clearly"
+          },
+          {
+           "code": null,
+           "text": "Make style choices (voice, tone, diction) that fit purpose and topic"
+          }
+         ]
+        },
+        {
+         "id": "using-language-to-enhance-meaning-score-9-10",
+         "title": "Using language to enhance meaning, score 9-10",
+         "outcomes": [
+          {
+           "code": "C 501",
+           "text": "Choose precise words that serve the argument"
+          },
+          {
+           "code": null,
+           "text": "Make effective style choices for purpose and topic"
+          }
+         ]
+        },
+        {
+         "id": "using-language-to-enhance-meaning-score-11-12",
+         "title": "Using language to enhance meaning, score 11-12",
+         "outcomes": [
+          {
+           "code": "C 601",
+           "text": "Choose skilful, precise words that strengthen the argument"
+          },
+          {
+           "code": null,
+           "text": "Make strategic, effective style choices for purpose and topic"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "applying-standard-written-english-conventions",
+       "title": "Applying standard written English conventions",
+       "subtopics": [
+        {
+         "id": "applying-standard-written-english-conventions-sc",
+         "title": "Applying standard written English conventions, score 3-4",
+         "outcomes": [
+          {
+           "code": "C 202",
+           "text": "Write sentences that only sometimes have clear structure"
+          },
+          {
+           "code": null,
+           "text": "Write with distracting grammar, usage and mechanics errors that often obscure meaning"
+          }
+         ]
+        },
+        {
+         "id": "applying-standard-written-english-conventions-sc-2",
+         "title": "Applying standard written English conventions, score 5-6",
+         "outcomes": [
+          {
+           "code": "C 302",
+           "text": "Write sentences with usually clear but little varied structure"
+          },
+          {
+           "code": null,
+           "text": "Write with distracting errors that mostly still convey meaning"
+          }
+         ]
+        },
+        {
+         "id": "applying-standard-written-english-conventions-sc-3",
+         "title": "Applying standard written English conventions, score 7-8",
+         "outcomes": [
+          {
+           "code": "C 402",
+           "text": "Write sentences with clear, occasionally varied structures"
+          },
+          {
+           "code": null,
+           "text": "Write with some errors that still convey meaning clearly"
+          }
+         ]
+        },
+        {
+         "id": "applying-standard-written-english-conventions-sc-4",
+         "title": "Applying standard written English conventions, score 9-10",
+         "outcomes": [
+          {
+           "code": "C 502",
+           "text": "Write sentences with clear, often varied structures"
+          },
+          {
+           "code": null,
+           "text": "Write with only minor grammar, usage and mechanics errors"
+          }
+         ]
+        },
+        {
+         "id": "applying-standard-written-english-conventions-sc-5",
+         "title": "Applying standard written English conventions, score 11-12",
+         "outcomes": [
+          {
+           "code": "C 602",
+           "text": "Write sentences with clear, consistently varied structures"
+          },
+          {
+           "code": null,
+           "text": "Write free of all but a few minor errors"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "build": {
+  "builtAt": "2026-10-14T09:59:48.417Z",
+  "model": "claude-agent",
+  "usd": 0,
+  "expectedCodes": 35,
+  "coverage": 1,
+  "missingCodes": [],
+  "counts": {
+   "grades": 1,
+   "units": 4,
+   "topics": 7,
+   "subtopics": 35,
+   "outcomes": 72
+  },
+  "warnings": [
+   "grade 8 has no content",
+   "grade 9 has no content",
+   "grade 10 has no content",
+   "grade 11 has no content",
+   "grade 12 has no content",
+   "unexpected grade label \"all\""
+  ]
+ }
+}

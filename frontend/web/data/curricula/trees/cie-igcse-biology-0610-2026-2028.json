@@ -1,0 +1,2672 @@
+{
+ "id": "cie-igcse-biology-0610-2026-2028",
+ "region": "INTL",
+ "framework": "Cambridge IGCSE Biology (0610) syllabus 2026–2028",
+ "board": "Cambridge",
+ "qualification": "IGCSE",
+ "subject": "Biology",
+ "syllabusCode": "0610",
+ "gradeSystem": "course",
+ "source": {
+  "urls": [
+   "https://www.cambridgeinternational.org/Images/697203-2026-2028-syllabus.pdf",
+   "https://www.cambridgeinternational.org/programmes-and-qualifications/cambridge-igcse-biology-0610/"
+  ],
+  "publisher": "Cambridge University Press & Assessment (Cambridge International Education)",
+  "licence": "© Cambridge University Press & Assessment; structure + our own wording only",
+  "firstExam": "2026"
+ },
+ "grades": [
+  {
+   "grade": "IGCSE",
+   "units": [
+    {
+     "id": "1-characteristics-and-classification-of-living-o",
+     "title": "1 Characteristics and classification of living organisms",
+     "topics": [
+      {
+       "id": "1-1-characteristics-of-living-organisms",
+       "title": "1.1 Characteristics of living organisms",
+       "subtopics": [
+        {
+         "id": "characteristics-of-life",
+         "title": "Characteristics of life",
+         "outcomes": [
+          {
+           "code": "1.1",
+           "text": "Describe movement and respiration as characteristics of living organisms."
+          },
+          {
+           "code": null,
+           "text": "Describe sensitivity and growth as characteristics of living organisms."
+          },
+          {
+           "code": null,
+           "text": "Describe reproduction, excretion and nutrition as characteristics of living organisms."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "1-2-concept-and-uses-of-classification-systems",
+       "title": "1.2 Concept and uses of classification systems",
+       "subtopics": [
+        {
+         "id": "species-and-naming",
+         "title": "Species and naming",
+         "outcomes": [
+          {
+           "code": "1.2",
+           "text": "State that organisms are classified into groups by shared features."
+          },
+          {
+           "code": null,
+           "text": "Describe a species as a group able to produce fertile offspring."
+          },
+          {
+           "code": null,
+           "text": "Describe the binomial system of genus and species names."
+          },
+          {
+           "code": null,
+           "text": "Construct and use dichotomous keys."
+          }
+         ]
+        },
+        {
+         "id": "classification-and-evolution",
+         "title": "Classification and evolution",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain that classification aims to reflect evolutionary relationships."
+          },
+          {
+           "code": null,
+           "text": "Explain that DNA base sequences are used for classification."
+          },
+          {
+           "code": null,
+           "text": "Explain that more closely related organisms have more similar DNA base sequences."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "1-3-features-of-organisms",
+       "title": "1.3 Features of organisms",
+       "subtopics": [
+        {
+         "id": "kingdoms",
+         "title": "Kingdoms",
+         "outcomes": [
+          {
+           "code": "1.3",
+           "text": "State the main features that place animals and plants in their kingdoms."
+          },
+          {
+           "code": null,
+           "text": "State the features that place organisms in the five kingdoms: animal, plant, fungus, prokaryote, protoctist."
+          }
+         ]
+        },
+        {
+         "id": "animal-groups",
+         "title": "Animal groups",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "State the features of vertebrate groups and arthropod groups."
+          },
+          {
+           "code": null,
+           "text": "Classify organisms using these features."
+          }
+         ]
+        },
+        {
+         "id": "plant-groups-and-viruses",
+         "title": "Plant groups and viruses",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "State the features of ferns and flowering plants (dicotyledons and monocotyledons) and classify plants."
+          },
+          {
+           "code": null,
+           "text": "State the features of viruses: protein coat and genetic material."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "2-organisation-of-the-organism",
+     "title": "2 Organisation of the organism",
+     "topics": [
+      {
+       "id": "2-1-cell-structure",
+       "title": "2.1 Cell structure",
+       "subtopics": [
+        {
+         "id": "cell-structures",
+         "title": "Cell structures",
+         "outcomes": [
+          {
+           "code": "2.1",
+           "text": "Describe and compare plant and animal cell structures."
+          },
+          {
+           "code": null,
+           "text": "Describe the structure of a bacterial cell."
+          },
+          {
+           "code": null,
+           "text": "Identify the cell structures in diagrams and images."
+          },
+          {
+           "code": null,
+           "text": "Describe the functions of the cell structures."
+          }
+         ]
+        },
+        {
+         "id": "cells-and-organisation",
+         "title": "Cells and organisation",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "State that new cells are made by division of existing cells."
+          },
+          {
+           "code": null,
+           "text": "State the functions of specialised cells: ciliated, root hair, palisade, neurones, red blood cells and gametes."
+          },
+          {
+           "code": null,
+           "text": "Describe cell, tissue, organ, organ system and organism."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "2-2-size-of-specimens",
+       "title": "2.2 Size of specimens",
+       "subtopics": [
+        {
+         "id": "magnification",
+         "title": "Magnification",
+         "outcomes": [
+          {
+           "code": "2.2",
+           "text": "State and use magnification = image size / actual size."
+          },
+          {
+           "code": null,
+           "text": "Calculate magnification and specimen size in millimetres."
+          },
+          {
+           "code": null,
+           "text": "Convert between millimetres and micrometres."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "3-movement-into-and-out-of-cells",
+     "title": "3 Movement into and out of cells",
+     "topics": [
+      {
+       "id": "3-1-diffusion",
+       "title": "3.1 Diffusion",
+       "subtopics": [
+        {
+         "id": "diffusion",
+         "title": "Diffusion",
+         "outcomes": [
+          {
+           "code": "3.1",
+           "text": "Describe diffusion as net movement down a concentration gradient due to random movement."
+          },
+          {
+           "code": null,
+           "text": "State that the energy for diffusion comes from kinetic energy of molecules and ions."
+          },
+          {
+           "code": null,
+           "text": "State that some substances cross the cell membrane by diffusion."
+          }
+         ]
+        },
+        {
+         "id": "importance-and-factors",
+         "title": "Importance and factors",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe the importance of diffusion of gases and solutes in organisms."
+          },
+          {
+           "code": null,
+           "text": "Investigate how surface area, temperature, concentration gradient and distance affect diffusion."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "3-2-osmosis",
+       "title": "3.2 Osmosis",
+       "subtopics": [
+        {
+         "id": "water-and-osmosis",
+         "title": "Water and osmosis",
+         "outcomes": [
+          {
+           "code": "3.2",
+           "text": "Describe the role of water as a solvent in digestion, excretion and transport."
+          },
+          {
+           "code": null,
+           "text": "State that water diffuses through partially permeable membranes by osmosis, including across cell membranes."
+          },
+          {
+           "code": null,
+           "text": "Describe osmosis in terms of water potential and a partially permeable membrane."
+          },
+          {
+           "code": null,
+           "text": "Investigate osmosis using materials such as dialysis tubing."
+          }
+         ]
+        },
+        {
+         "id": "osmosis-in-plants",
+         "title": "Osmosis in plants",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Investigate the effect of different solutions on plant tissues."
+          },
+          {
+           "code": null,
+           "text": "Explain effects on plant cells using turgid, turgor pressure, plasmolysis and flaccid."
+          },
+          {
+           "code": null,
+           "text": "Explain the importance of water potential and osmosis in water uptake and loss."
+          },
+          {
+           "code": null,
+           "text": "State that water pressure in cells supports plants."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "3-3-active-transport",
+       "title": "3.3 Active transport",
+       "subtopics": [
+        {
+         "id": "active-transport",
+         "title": "Active transport",
+         "outcomes": [
+          {
+           "code": "3.3",
+           "text": "Describe active transport as movement against a concentration gradient using energy from respiration."
+          },
+          {
+           "code": null,
+           "text": "State that protein carriers move molecules or ions in active transport."
+          },
+          {
+           "code": null,
+           "text": "Explain the importance of active transport, including ion uptake by root hairs."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "4-biological-molecules",
+     "title": "4 Biological molecules",
+     "topics": [
+      {
+       "id": "4-1-biological-molecules",
+       "title": "4.1 Biological molecules",
+       "subtopics": [
+        {
+         "id": "food-molecules",
+         "title": "Food molecules",
+         "outcomes": [
+          {
+           "code": "4.1",
+           "text": "List the chemical elements in carbohydrates, fats and proteins."
+          },
+          {
+           "code": null,
+           "text": "State that large molecules are built from small ones: starch, glycogen, cellulose, proteins and fats."
+          }
+         ]
+        },
+        {
+         "id": "food-tests",
+         "title": "Food tests",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe the iodine, Benedict's, biuret, ethanol emulsion and DCPIP tests."
+          }
+         ]
+        },
+        {
+         "id": "dna-structure",
+         "title": "DNA structure",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe DNA as a double helix of two strands joined by paired bases (A-T, C-G)."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "5-enzymes",
+     "title": "5 Enzymes",
+     "topics": [
+      {
+       "id": "5-1-enzymes",
+       "title": "5.1 Enzymes",
+       "subtopics": [
+        {
+         "id": "enzymes-as-catalysts",
+         "title": "Enzymes as catalysts",
+         "outcomes": [
+          {
+           "code": "5.1",
+           "text": "Describe a catalyst as speeding a reaction without being changed."
+          },
+          {
+           "code": null,
+           "text": "Describe enzymes as protein biological catalysts in all metabolic reactions."
+          },
+          {
+           "code": null,
+           "text": "Describe why enzymes matter for sustaining life."
+          }
+         ]
+        },
+        {
+         "id": "how-enzymes-work",
+         "title": "How enzymes work",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe enzyme action using the complementary shape of the active site."
+          },
+          {
+           "code": null,
+           "text": "Explain enzyme action with active site, enzyme-substrate complex, substrate and product."
+          },
+          {
+           "code": null,
+           "text": "Explain enzyme specificity from the complementary shape of the active site."
+          }
+         ]
+        },
+        {
+         "id": "temperature-and-ph",
+         "title": "Temperature and pH",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Investigate the effect of temperature and pH on enzyme activity, including optimum and denaturation."
+          },
+          {
+           "code": null,
+           "text": "Explain the effect of temperature in terms of kinetic energy, collisions and denaturation."
+          },
+          {
+           "code": null,
+           "text": "Explain the effect of pH in terms of shape, fit and denaturation."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "6-plant-nutrition",
+     "title": "6 Plant nutrition",
+     "topics": [
+      {
+       "id": "6-1-photosynthesis",
+       "title": "6.1 Photosynthesis",
+       "subtopics": [
+        {
+         "id": "photosynthesis-basics",
+         "title": "Photosynthesis basics",
+         "outcomes": [
+          {
+           "code": "6.1",
+           "text": "Describe photosynthesis as making carbohydrates from raw materials using light energy."
+          },
+          {
+           "code": null,
+           "text": "State the word and balanced equations for photosynthesis."
+          },
+          {
+           "code": null,
+           "text": "State that chlorophyll is a green pigment in chloroplasts that transfers light energy to chemical energy."
+          }
+         ]
+        },
+        {
+         "id": "products-and-minerals",
+         "title": "Products and minerals",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Outline the use and storage of photosynthesis products: starch, cellulose, glucose, sucrose and nectar."
+          },
+          {
+           "code": null,
+           "text": "Explain the importance of nitrate and magnesium ions."
+          }
+         ]
+        },
+        {
+         "id": "investigating-photosynthesis",
+         "title": "Investigating photosynthesis",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Investigate the need for chlorophyll, light and carbon dioxide using controls."
+          },
+          {
+           "code": null,
+           "text": "Investigate how light intensity, carbon dioxide and temperature affect the rate."
+          },
+          {
+           "code": null,
+           "text": "Investigate gas exchange of an aquatic plant in light and dark using hydrogencarbonate indicator."
+          },
+          {
+           "code": null,
+           "text": "Identify and explain limiting factors of photosynthesis."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "6-2-leaf-structure",
+       "title": "6.2 Leaf structure",
+       "subtopics": [
+        {
+         "id": "leaf-structure",
+         "title": "Leaf structure",
+         "outcomes": [
+          {
+           "code": "6.2",
+           "text": "State that leaves are large and thin and explain why that suits photosynthesis."
+          },
+          {
+           "code": null,
+           "text": "Identify leaf structures: cuticle, epidermis, palisade and spongy mesophyll, guard cells, stomata, air spaces and vascular bundles."
+          },
+          {
+           "code": null,
+           "text": "Explain how these structures adapt leaves for photosynthesis."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "7-human-nutrition",
+     "title": "7 Human nutrition",
+     "topics": [
+      {
+       "id": "7-1-diet",
+       "title": "7.1 Diet",
+       "subtopics": [
+        {
+         "id": "balanced-diet",
+         "title": "Balanced diet",
+         "outcomes": [
+          {
+           "code": "7.1",
+           "text": "Describe a balanced diet."
+          },
+          {
+           "code": null,
+           "text": "State the sources and importance of carbohydrates, fats, proteins, vitamins C and D, calcium, iron, fibre and water."
+          },
+          {
+           "code": null,
+           "text": "State the causes of scurvy and rickets."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "7-2-digestive-system",
+       "title": "7.2 Digestive system",
+       "subtopics": [
+        {
+         "id": "digestive-system",
+         "title": "Digestive system",
+         "outcomes": [
+          {
+           "code": "7.2",
+           "text": "Identify the organs of the alimentary canal and the associated organs in diagrams."
+          },
+          {
+           "code": null,
+           "text": "Describe organ functions: ingestion, digestion, absorption, assimilation and egestion."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "7-3-physical-digestion",
+       "title": "7.3 Physical digestion",
+       "subtopics": [
+        {
+         "id": "physical-digestion",
+         "title": "Physical digestion",
+         "outcomes": [
+          {
+           "code": "7.3",
+           "text": "Describe physical digestion and why it speeds chemical digestion by increasing surface area."
+          }
+         ]
+        },
+        {
+         "id": "teeth",
+         "title": "Teeth",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Identify the types of human teeth."
+          },
+          {
+           "code": null,
+           "text": "Describe tooth structure and the function of each type of tooth."
+          }
+         ]
+        },
+        {
+         "id": "stomach-and-bile",
+         "title": "Stomach and bile",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe the stomach's role in physical digestion."
+          },
+          {
+           "code": null,
+           "text": "Outline bile's role in emulsifying fats."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "7-4-chemical-digestion",
+       "title": "7.4 Chemical digestion",
+       "subtopics": [
+        {
+         "id": "chemical-digestion",
+         "title": "Chemical digestion",
+         "outcomes": [
+          {
+           "code": "7.4",
+           "text": "Describe chemical digestion as breaking large insoluble molecules into small soluble ones, so they can be absorbed."
+          }
+         ]
+        },
+        {
+         "id": "digestive-enzymes",
+         "title": "Digestive enzymes",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe amylase, proteases and lipase and where they are made and act."
+          },
+          {
+           "code": null,
+           "text": "Describe hydrochloric acid in gastric juice."
+          },
+          {
+           "code": null,
+           "text": "Describe starch digestion by amylase and maltase."
+          },
+          {
+           "code": null,
+           "text": "Describe protein digestion by pepsin and trypsin."
+          },
+          {
+           "code": null,
+           "text": "Explain how bile neutralises stomach contents for enzyme action."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "7-5-absorption",
+       "title": "7.5 Absorption",
+       "subtopics": [
+        {
+         "id": "absorption",
+         "title": "Absorption",
+         "outcomes": [
+          {
+           "code": "7.5",
+           "text": "State that nutrients are absorbed in the small intestine."
+          },
+          {
+           "code": null,
+           "text": "Explain how villi and microvilli increase surface area and describe a villus."
+          },
+          {
+           "code": null,
+           "text": "Describe roles of capillaries and lacteals in villi."
+          },
+          {
+           "code": null,
+           "text": "State where water is absorbed: small intestine and colon."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "8-transport-in-plants",
+     "title": "8 Transport in plants",
+     "topics": [
+      {
+       "id": "8-1-xylem-and-phloem",
+       "title": "8.1 Xylem and phloem",
+       "subtopics": [
+        {
+         "id": "xylem-and-phloem",
+         "title": "Xylem and phloem",
+         "outcomes": [
+          {
+           "code": "8.1",
+           "text": "State the functions of xylem and phloem."
+          },
+          {
+           "code": null,
+           "text": "Identify xylem and phloem in sections of roots, stems and leaves."
+          },
+          {
+           "code": null,
+           "text": "Relate xylem vessel structure to function."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "8-2-water-uptake",
+       "title": "8.2 Water uptake",
+       "subtopics": [
+        {
+         "id": "water-uptake",
+         "title": "Water uptake",
+         "outcomes": [
+          {
+           "code": "8.2",
+           "text": "Identify root hair cells and state their function and large surface area."
+          },
+          {
+           "code": null,
+           "text": "Outline the pathway of water through root, stem and leaf."
+          },
+          {
+           "code": null,
+           "text": "Investigate water pathways in a plant using a stain."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "8-3-transpiration",
+       "title": "8.3 Transpiration",
+       "subtopics": [
+        {
+         "id": "transpiration",
+         "title": "Transpiration",
+         "outcomes": [
+          {
+           "code": "8.3",
+           "text": "Describe transpiration and how water vapour leaves through stomata."
+          },
+          {
+           "code": null,
+           "text": "Explain how water loss relates to air spaces, stomata size and number."
+          },
+          {
+           "code": null,
+           "text": "Explain how transpiration pull moves water up the xylem."
+          }
+         ]
+        },
+        {
+         "id": "factors-and-wilting",
+         "title": "Factors and wilting",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Investigate how temperature and wind speed affect transpiration."
+          },
+          {
+           "code": null,
+           "text": "Explain how temperature, wind speed and humidity affect the rate."
+          },
+          {
+           "code": null,
+           "text": "Explain how and why wilting occurs."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "8-4-translocation",
+       "title": "8.4 Translocation",
+       "subtopics": [
+        {
+         "id": "translocation",
+         "title": "Translocation",
+         "outcomes": [
+          {
+           "code": "8.4",
+           "text": "Describe translocation of sucrose and amino acids in phloem from sources to sinks."
+          },
+          {
+           "code": null,
+           "text": "Describe sources and sinks."
+          },
+          {
+           "code": null,
+           "text": "Explain why a plant part can be a source and a sink at different times."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "9-transport-in-animals",
+     "title": "9 Transport in animals",
+     "topics": [
+      {
+       "id": "9-1-circulatory-systems",
+       "title": "9.1 Circulatory systems",
+       "subtopics": [
+        {
+         "id": "circulatory-systems",
+         "title": "Circulatory systems",
+         "outcomes": [
+          {
+           "code": "9.1",
+           "text": "Describe the circulatory system as vessels, a pump and valves giving one-way flow."
+          },
+          {
+           "code": null,
+           "text": "Describe the single circulation of a fish and the double circulation of a mammal."
+          },
+          {
+           "code": null,
+           "text": "Explain the advantages of double circulation."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "9-2-heart",
+       "title": "9.2 Heart",
+       "subtopics": [
+        {
+         "id": "heart-structure",
+         "title": "Heart structure",
+         "outcomes": [
+          {
+           "code": "9.2",
+           "text": "Identify the structures of the mammalian heart, including valves."
+          },
+          {
+           "code": null,
+           "text": "Explain the relative thickness of ventricle and atrial walls."
+          },
+          {
+           "code": null,
+           "text": "Explain the importance of the septum."
+          }
+         ]
+        },
+        {
+         "id": "heart-function",
+         "title": "Heart function",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe how the heart works through muscle contraction and valve action."
+          },
+          {
+           "code": null,
+           "text": "State that arteries carry blood away from the heart and veins return it."
+          },
+          {
+           "code": null,
+           "text": "State how heart activity is monitored: ECG, pulse and valve sounds."
+          },
+          {
+           "code": null,
+           "text": "Investigate and explain the effect of physical activity on heart rate."
+          }
+         ]
+        },
+        {
+         "id": "coronary-heart-disease",
+         "title": "Coronary heart disease",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe coronary heart disease and its risk factors."
+          },
+          {
+           "code": null,
+           "text": "Discuss how diet and exercise reduce the risk."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "9-3-blood-vessels",
+       "title": "9.3 Blood vessels",
+       "subtopics": [
+        {
+         "id": "blood-vessel-structure",
+         "title": "Blood vessel structure",
+         "outcomes": [
+          {
+           "code": "9.3",
+           "text": "Describe the structure of arteries, veins and capillaries."
+          },
+          {
+           "code": null,
+           "text": "State the functions of capillaries and explain how structure suits function."
+          },
+          {
+           "code": null,
+           "text": "Explain how artery and vein structure relates to blood pressure."
+          }
+         ]
+        },
+        {
+         "id": "main-blood-vessels",
+         "title": "Main blood vessels",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Identify the main vessels to and from the heart, lungs and kidney."
+          },
+          {
+           "code": null,
+           "text": "Identify the vessels to and from the liver."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "9-4-blood",
+       "title": "9.4 Blood",
+       "subtopics": [
+        {
+         "id": "blood-components",
+         "title": "Blood components",
+         "outcomes": [
+          {
+           "code": "9.4",
+           "text": "List the components of blood."
+          },
+          {
+           "code": null,
+           "text": "Identify red and white blood cells in photomicrographs and diagrams."
+          },
+          {
+           "code": null,
+           "text": "State the functions of red cells, white cells, platelets and plasma."
+          },
+          {
+           "code": null,
+           "text": "Identify lymphocytes and phagocytes and state their functions."
+          }
+         ]
+        },
+        {
+         "id": "clotting",
+         "title": "Clotting",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "State the roles of clotting: preventing blood loss and pathogen entry."
+          },
+          {
+           "code": null,
+           "text": "Describe clotting as the conversion of fibrinogen to a fibrin mesh."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "10-diseases-and-immunity",
+     "title": "10 Diseases and immunity",
+     "topics": [
+      {
+       "id": "10-1-diseases-and-immunity",
+       "title": "10.1 Diseases and immunity",
+       "subtopics": [
+        {
+         "id": "pathogens-and-transmission",
+         "title": "Pathogens and transmission",
+         "outcomes": [
+          {
+           "code": "10.1",
+           "text": "Describe a pathogen and a transmissible disease."
+          },
+          {
+           "code": null,
+           "text": "State how pathogens are transmitted directly and indirectly."
+          },
+          {
+           "code": null,
+           "text": "Describe the body's defences: skin, nose hairs, mucus, stomach acid and white blood cells."
+          },
+          {
+           "code": null,
+           "text": "Explain how clean water, hygienic food, personal hygiene, waste disposal and sewage treatment control disease."
+          }
+         ]
+        },
+        {
+         "id": "active-immunity",
+         "title": "Active immunity",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe active immunity as antibody production against a pathogen."
+          },
+          {
+           "code": null,
+           "text": "State that each pathogen has specific antigens."
+          },
+          {
+           "code": null,
+           "text": "Describe antibodies binding antigens to destroy or mark pathogens, with complementary shapes."
+          },
+          {
+           "code": null,
+           "text": "Explain that active immunity comes from infection or vaccination."
+          }
+         ]
+        },
+        {
+         "id": "vaccination",
+         "title": "Vaccination",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Outline the process of vaccination."
+          },
+          {
+           "code": null,
+           "text": "Explain how vaccination controls disease spread."
+          }
+         ]
+        },
+        {
+         "id": "passive-immunity",
+         "title": "Passive immunity",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain passive immunity as short-term defence from antibodies acquired from another individual."
+          },
+          {
+           "code": null,
+           "text": "Explain the importance of breast-feeding for passive immunity."
+          },
+          {
+           "code": null,
+           "text": "State that no memory cells are made in passive immunity."
+          }
+         ]
+        },
+        {
+         "id": "cholera",
+         "title": "Cholera",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe cholera as a bacterial disease spread in contaminated water."
+          },
+          {
+           "code": null,
+           "text": "Explain how the cholera toxin causes diarrhoea, dehydration and ion loss."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "11-gas-exchange-in-humans",
+     "title": "11 Gas exchange in humans",
+     "topics": [
+      {
+       "id": "11-1-gas-exchange-in-humans",
+       "title": "11.1 Gas exchange in humans",
+       "subtopics": [
+        {
+         "id": "gas-exchange-surfaces",
+         "title": "Gas exchange surfaces",
+         "outcomes": [
+          {
+           "code": "11.1",
+           "text": "Describe features of human gas exchange surfaces."
+          },
+          {
+           "code": null,
+           "text": "Identify parts of the breathing system."
+          },
+          {
+           "code": null,
+           "text": "Identify internal and external intercostal muscles and state the function of tracheal cartilage."
+          }
+         ]
+        },
+        {
+         "id": "ventilation",
+         "title": "Ventilation",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain how ribs, intercostal muscles and diaphragm change thorax volume and pressure for ventilation."
+          }
+         ]
+        },
+        {
+         "id": "inspired-and-expired-air",
+         "title": "Inspired and expired air",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Investigate differences between inspired and expired air using limewater."
+          },
+          {
+           "code": null,
+           "text": "Describe and explain the differences in oxygen, carbon dioxide and water vapour."
+          }
+         ]
+        },
+        {
+         "id": "exercise-and-breathing",
+         "title": "Exercise and breathing",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Investigate and describe how physical activity affects the rate and depth of breathing."
+          },
+          {
+           "code": null,
+           "text": "Explain this link through carbon dioxide in the blood detected by the brain."
+          },
+          {
+           "code": null,
+           "text": "Explain how goblet cells, mucus and ciliated cells protect the breathing system."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "12-respiration",
+     "title": "12 Respiration",
+     "topics": [
+      {
+       "id": "12-1-respiration",
+       "title": "12.1 Respiration",
+       "subtopics": [
+        {
+         "id": "uses-of-energy",
+         "title": "Uses of energy",
+         "outcomes": [
+          {
+           "code": "12.1",
+           "text": "State the uses of energy in living organisms."
+          },
+          {
+           "code": null,
+           "text": "Investigate the effect of temperature on respiration in yeast."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "12-2-aerobic-respiration",
+       "title": "12.2 Aerobic respiration",
+       "subtopics": [
+        {
+         "id": "aerobic-respiration",
+         "title": "Aerobic respiration",
+         "outcomes": [
+          {
+           "code": "12.2",
+           "text": "Describe aerobic respiration as reactions using oxygen to release energy from nutrients."
+          },
+          {
+           "code": null,
+           "text": "State the word and balanced equations for aerobic respiration."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "12-3-anaerobic-respiration",
+       "title": "12.3 Anaerobic respiration",
+       "subtopics": [
+        {
+         "id": "anaerobic-respiration",
+         "title": "Anaerobic respiration",
+         "outcomes": [
+          {
+           "code": "12.3",
+           "text": "Describe anaerobic respiration as releasing energy without oxygen."
+          },
+          {
+           "code": null,
+           "text": "State that it releases much less energy per glucose than aerobic respiration."
+          },
+          {
+           "code": null,
+           "text": "State the word and balanced equations for anaerobic respiration in yeast."
+          },
+          {
+           "code": null,
+           "text": "State the word equation for anaerobic respiration in muscles."
+          }
+         ]
+        },
+        {
+         "id": "oxygen-debt",
+         "title": "Oxygen debt",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "State that lactic acid builds up causing an oxygen debt."
+          },
+          {
+           "code": null,
+           "text": "Outline how the oxygen debt is removed after exercise."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "13-excretion-in-humans",
+     "title": "13 Excretion in humans",
+     "topics": [
+      {
+       "id": "13-1-excretion-in-humans",
+       "title": "13.1 Excretion in humans",
+       "subtopics": [
+        {
+         "id": "excretion",
+         "title": "Excretion",
+         "outcomes": [
+          {
+           "code": "13.1",
+           "text": "State that carbon dioxide is excreted by the lungs and that kidneys excrete urea, excess water and ions."
+          },
+          {
+           "code": null,
+           "text": "Explain the importance of excretion: toxicity of urea."
+          }
+         ]
+        },
+        {
+         "id": "kidneys",
+         "title": "Kidneys",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Identify the kidneys, ureters, bladder and urethra."
+          },
+          {
+           "code": null,
+           "text": "Identify the cortex and medulla of the kidney."
+          },
+          {
+           "code": null,
+           "text": "Outline nephron structure and function: filtration, reabsorption and urine formation."
+          }
+         ]
+        },
+        {
+         "id": "liver-and-urea",
+         "title": "Liver and urea",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe the liver's role in assimilating amino acids into proteins."
+          },
+          {
+           "code": null,
+           "text": "State that urea is made in the liver from excess amino acids."
+          },
+          {
+           "code": null,
+           "text": "Describe deamination."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "14-coordination-and-response",
+     "title": "14 Coordination and response",
+     "topics": [
+      {
+       "id": "14-1-coordination-and-response",
+       "title": "14.1 Coordination and response",
+       "subtopics": [
+        {
+         "id": "nervous-system",
+         "title": "Nervous system",
+         "outcomes": [
+          {
+           "code": "14.1",
+           "text": "State that electrical impulses travel along neurones."
+          },
+          {
+           "code": null,
+           "text": "Describe the CNS and PNS."
+          },
+          {
+           "code": null,
+           "text": "Describe the nervous system's role in coordination and regulation."
+          },
+          {
+           "code": null,
+           "text": "Identify sensory, relay and motor neurones."
+          }
+         ]
+        },
+        {
+         "id": "reflex-arc",
+         "title": "Reflex arc",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe a simple reflex arc: receptor, sensory neurone, relay neurone, motor neurone and effector."
+          },
+          {
+           "code": null,
+           "text": "Describe a reflex action as automatic and rapid coordination."
+          }
+         ]
+        },
+        {
+         "id": "synapses",
+         "title": "Synapses",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe a synapse as a junction between two neurones."
+          },
+          {
+           "code": null,
+           "text": "Describe synapse structure with vesicles, neurotransmitter, synaptic gap and receptor proteins."
+          },
+          {
+           "code": null,
+           "text": "Describe the events at a synapse."
+          },
+          {
+           "code": null,
+           "text": "State that synapses ensure one-way impulse travel."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "14-2-sense-organs",
+       "title": "14.2 Sense organs",
+       "subtopics": [
+        {
+         "id": "eye-structure",
+         "title": "Eye structure",
+         "outcomes": [
+          {
+           "code": "14.2",
+           "text": "Describe sense organs as groups of receptor cells responding to specific stimuli."
+          },
+          {
+           "code": null,
+           "text": "Identify the structures of the eye, including the blind spot."
+          },
+          {
+           "code": null,
+           "text": "Describe the function of cornea, iris, lens, retina and optic nerve."
+          }
+         ]
+        },
+        {
+         "id": "pupil-reflex-and-focusing",
+         "title": "Pupil reflex and focusing",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain the pupil reflex to changes in light intensity."
+          },
+          {
+           "code": null,
+           "text": "Explain the pupil reflex through antagonistic circular and radial iris muscles."
+          },
+          {
+           "code": null,
+           "text": "Explain accommodation for near and distant objects."
+          }
+         ]
+        },
+        {
+         "id": "rods-cones-and-fovea",
+         "title": "Rods, cones and fovea",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe the distribution of rods and cones in the retina."
+          },
+          {
+           "code": null,
+           "text": "Outline rods for night vision and three cone types for colour vision."
+          },
+          {
+           "code": null,
+           "text": "Identify the fovea and state its function."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "14-3-hormones",
+       "title": "14.3 Hormones",
+       "subtopics": [
+        {
+         "id": "hormones",
+         "title": "Hormones",
+         "outcomes": [
+          {
+           "code": "14.3",
+           "text": "Describe a hormone as a chemical made by a gland, carried by blood, that alters specific target organs."
+          },
+          {
+           "code": null,
+           "text": "Identify the adrenal glands, pancreas, testes and ovaries and the hormones they secrete."
+          },
+          {
+           "code": null,
+           "text": "State that glucagon is secreted by the pancreas."
+          }
+         ]
+        },
+        {
+         "id": "adrenaline",
+         "title": "Adrenaline",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe adrenaline in fight or flight, with higher breathing rate, heart rate and pupil diameter."
+          },
+          {
+           "code": null,
+           "text": "Describe adrenaline's role in raising blood glucose and heart rate."
+          },
+          {
+           "code": null,
+           "text": "Compare nervous and hormonal control by speed and duration."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "14-4-homeostasis",
+       "title": "14.4 Homeostasis",
+       "subtopics": [
+        {
+         "id": "homeostasis-and-feedback",
+         "title": "Homeostasis and feedback",
+         "outcomes": [
+          {
+           "code": "14.4",
+           "text": "Describe homeostasis as maintaining a constant internal environment."
+          },
+          {
+           "code": null,
+           "text": "Explain negative feedback around a set point."
+          }
+         ]
+        },
+        {
+         "id": "blood-glucose",
+         "title": "Blood glucose",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "State that insulin decreases blood glucose."
+          },
+          {
+           "code": null,
+           "text": "Describe blood glucose control by the liver, insulin and glucagon."
+          },
+          {
+           "code": null,
+           "text": "Outline the treatment of Type 1 diabetes."
+          }
+         ]
+        },
+        {
+         "id": "body-temperature",
+         "title": "Body temperature",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Identify structures in the skin."
+          },
+          {
+           "code": null,
+           "text": "Describe temperature control by insulation, sweating, shivering and the brain."
+          },
+          {
+           "code": null,
+           "text": "Describe temperature control by vasodilation and vasoconstriction."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "14-5-tropic-responses",
+       "title": "14.5 Tropic responses",
+       "subtopics": [
+        {
+         "id": "tropisms",
+         "title": "Tropisms",
+         "outcomes": [
+          {
+           "code": "14.5",
+           "text": "Describe gravitropism."
+          },
+          {
+           "code": null,
+           "text": "Describe phototropism."
+          },
+          {
+           "code": null,
+           "text": "Investigate gravitropism and phototropism in shoots and roots."
+          }
+         ]
+        },
+        {
+         "id": "auxin",
+         "title": "Auxin",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain tropisms as chemical control of plant growth."
+          },
+          {
+           "code": null,
+           "text": "Explain auxin's role: made in the shoot tip, diffuses, unevenly distributed and stimulates cell elongation."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "15-drugs",
+     "title": "15 Drugs",
+     "topics": [
+      {
+       "id": "15-1-drugs",
+       "title": "15.1 Drugs",
+       "subtopics": [
+        {
+         "id": "drugs-and-antibiotics",
+         "title": "Drugs and antibiotics",
+         "outcomes": [
+          {
+           "code": "15.1",
+           "text": "Describe a drug as a substance that modifies chemical reactions in the body."
+          },
+          {
+           "code": null,
+           "text": "Describe antibiotics for treating bacterial infections."
+          },
+          {
+           "code": null,
+           "text": "State that antibiotics kill bacteria but not viruses."
+          }
+         ]
+        },
+        {
+         "id": "antibiotic-resistance",
+         "title": "Antibiotic resistance",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "State that some bacteria resist antibiotics, reducing their effectiveness."
+          },
+          {
+           "code": null,
+           "text": "Explain how using antibiotics only when essential limits resistance such as MRSA."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "16-reproduction",
+     "title": "16 Reproduction",
+     "topics": [
+      {
+       "id": "16-1-asexual-reproduction",
+       "title": "16.1 Asexual reproduction",
+       "subtopics": [
+        {
+         "id": "asexual-reproduction",
+         "title": "Asexual reproduction",
+         "outcomes": [
+          {
+           "code": "16.1",
+           "text": "Describe asexual reproduction as one parent making genetically identical offspring."
+          },
+          {
+           "code": null,
+           "text": "Identify examples of asexual reproduction."
+          },
+          {
+           "code": null,
+           "text": "Discuss its advantages and disadvantages in wild populations and crops."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "16-2-sexual-reproduction",
+       "title": "16.2 Sexual reproduction",
+       "subtopics": [
+        {
+         "id": "sexual-reproduction",
+         "title": "Sexual reproduction",
+         "outcomes": [
+          {
+           "code": "16.2",
+           "text": "Describe sexual reproduction as fusion of two gametes giving genetically different offspring."
+          },
+          {
+           "code": null,
+           "text": "Describe fertilisation as fusion of gamete nuclei."
+          },
+          {
+           "code": null,
+           "text": "State that gamete nuclei are haploid and the zygote nucleus is diploid."
+          },
+          {
+           "code": null,
+           "text": "Discuss its advantages and disadvantages in wild populations and crops."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "16-3-sexual-reproduction-in-plants",
+       "title": "16.3 Sexual reproduction in plants",
+       "subtopics": [
+        {
+         "id": "flower-structure",
+         "title": "Flower structure",
+         "outcomes": [
+          {
+           "code": "16.3",
+           "text": "Identify and draw the parts of an insect-pollinated flower."
+          },
+          {
+           "code": null,
+           "text": "State the functions of these parts."
+          },
+          {
+           "code": null,
+           "text": "Describe the anthers and stigmas of a wind-pollinated flower and compare the pollen grains."
+          },
+          {
+           "code": null,
+           "text": "Describe the structural adaptations of insect- and wind-pollinated flowers."
+          }
+         ]
+        },
+        {
+         "id": "pollination",
+         "title": "Pollination",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe pollination as transfer of pollen from anther to stigma."
+          },
+          {
+           "code": null,
+           "text": "Describe self-pollination and cross-pollination."
+          },
+          {
+           "code": null,
+           "text": "Discuss their effects on variation, adaptability and reliance on pollinators."
+          }
+         ]
+        },
+        {
+         "id": "fertilisation-and-germination",
+         "title": "Fertilisation and germination",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "State that fertilisation is fusion of a pollen nucleus with an ovule nucleus."
+          },
+          {
+           "code": null,
+           "text": "Describe pollen tube growth into the ovule before fertilisation."
+          },
+          {
+           "code": null,
+           "text": "Investigate how water, oxygen and temperature affect germination."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "16-4-sexual-reproduction-in-humans",
+       "title": "16.4 Sexual reproduction in humans",
+       "subtopics": [
+        {
+         "id": "reproductive-systems",
+         "title": "Reproductive systems",
+         "outcomes": [
+          {
+           "code": "16.4",
+           "text": "Identify the male reproductive organs and state their functions."
+          },
+          {
+           "code": null,
+           "text": "Identify the female reproductive organs and state their functions."
+          }
+         ]
+        },
+        {
+         "id": "gametes-and-fertilisation",
+         "title": "Gametes and fertilisation",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe fertilisation as fusion of sperm and egg nuclei."
+          },
+          {
+           "code": null,
+           "text": "Explain adaptive features of sperm."
+          },
+          {
+           "code": null,
+           "text": "Explain adaptive features of egg cells."
+          },
+          {
+           "code": null,
+           "text": "Compare male and female gametes in size, structure, motility and numbers."
+          }
+         ]
+        },
+        {
+         "id": "development-of-the-fetus",
+         "title": "Development of the fetus",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "State that the zygote forms an embryo that implants in the uterus lining."
+          },
+          {
+           "code": null,
+           "text": "Identify the umbilical cord, placenta, amniotic sac and fluid and state their functions."
+          },
+          {
+           "code": null,
+           "text": "Describe how the placenta and cord exchange nutrients, gases and wastes between mother and fetus."
+          },
+          {
+           "code": null,
+           "text": "State that some pathogens and toxins cross the placenta."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "16-5-sex-hormones-in-humans",
+       "title": "16.5 Sex hormones in humans",
+       "subtopics": [
+        {
+         "id": "puberty-hormones",
+         "title": "Puberty hormones",
+         "outcomes": [
+          {
+           "code": "16.5",
+           "text": "Describe the roles of testosterone and oestrogen at puberty."
+          }
+         ]
+        },
+        {
+         "id": "menstrual-cycle",
+         "title": "Menstrual cycle",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe the menstrual cycle through ovary and uterus lining changes."
+          },
+          {
+           "code": null,
+           "text": "Describe where oestrogen and progesterone are produced in the cycle and pregnancy."
+          },
+          {
+           "code": null,
+           "text": "Explain hormone control of the cycle and pregnancy: FSH, LH, progesterone, oestrogen."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "16-6-sexually-transmitted-infections",
+       "title": "16.6 Sexually transmitted infections",
+       "subtopics": [
+        {
+         "id": "sexually-transmitted-infections",
+         "title": "Sexually transmitted infections",
+         "outcomes": [
+          {
+           "code": "16.6",
+           "text": "Describe an STI as an infection spread by sexual contact."
+          },
+          {
+           "code": null,
+           "text": "State that HIV is an STI pathogen and may lead to AIDS."
+          },
+          {
+           "code": null,
+           "text": "Describe how HIV is transmitted."
+          },
+          {
+           "code": null,
+           "text": "Explain how the spread of STIs is controlled."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "17-inheritance",
+     "title": "17 Inheritance",
+     "topics": [
+      {
+       "id": "17-1-chromosomes-genes-and-proteins",
+       "title": "17.1 Chromosomes, genes and proteins",
+       "subtopics": [
+        {
+         "id": "chromosomes-genes-and-alleles",
+         "title": "Chromosomes, genes and alleles",
+         "outcomes": [
+          {
+           "code": "17.1",
+           "text": "State that chromosomes are made of DNA containing genes."
+          },
+          {
+           "code": null,
+           "text": "Define a gene as a length of DNA coding for a protein."
+          },
+          {
+           "code": null,
+           "text": "Define an allele."
+          },
+          {
+           "code": null,
+           "text": "Describe the inheritance of sex with X and Y chromosomes."
+          }
+         ]
+        },
+        {
+         "id": "genes-and-proteins",
+         "title": "Genes and proteins",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "State that the base sequence in a gene determines the amino acid sequence."
+          },
+          {
+           "code": null,
+           "text": "Explain that amino acid sequences give proteins different shapes."
+          },
+          {
+           "code": null,
+           "text": "Explain that DNA controls cell function by controlling protein production."
+          },
+          {
+           "code": null,
+           "text": "Explain how a protein is made using mRNA and ribosomes."
+          },
+          {
+           "code": null,
+           "text": "Explain that most cells hold the same genes but express only some."
+          }
+         ]
+        },
+        {
+         "id": "chromosome-sets",
+         "title": "Chromosome sets",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe haploid and diploid nuclei."
+          },
+          {
+           "code": null,
+           "text": "State that diploid cells have chromosome pairs, 23 in humans."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "17-2-mitosis",
+       "title": "17.2 Mitosis",
+       "subtopics": [
+        {
+         "id": "mitosis",
+         "title": "Mitosis",
+         "outcomes": [
+          {
+           "code": "17.2",
+           "text": "Describe mitosis as nuclear division giving genetically identical cells."
+          },
+          {
+           "code": null,
+           "text": "State the roles of mitosis in growth, repair, replacement and asexual reproduction."
+          },
+          {
+           "code": null,
+           "text": "State that chromosomes replicate before mitosis and the copies separate."
+          },
+          {
+           "code": null,
+           "text": "Describe stem cells."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "17-3-meiosis",
+       "title": "17.3 Meiosis",
+       "subtopics": [
+        {
+         "id": "meiosis",
+         "title": "Meiosis",
+         "outcomes": [
+          {
+           "code": "17.3",
+           "text": "State that meiosis produces gametes."
+          },
+          {
+           "code": null,
+           "text": "Describe meiosis as reduction division from diploid to haploid giving genetically different cells."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "17-4-monohybrid-inheritance",
+       "title": "17.4 Monohybrid inheritance",
+       "subtopics": [
+        {
+         "id": "genetic-terms",
+         "title": "Genetic terms",
+         "outcomes": [
+          {
+           "code": "17.4",
+           "text": "Describe inheritance as transmission of genetic information between generations."
+          },
+          {
+           "code": null,
+           "text": "Describe genotype and phenotype."
+          },
+          {
+           "code": null,
+           "text": "Describe homozygous and heterozygous, and pure-breeding."
+          },
+          {
+           "code": null,
+           "text": "Describe dominant and recessive alleles."
+          }
+         ]
+        },
+        {
+         "id": "genetic-crosses",
+         "title": "Genetic crosses",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Interpret pedigree diagrams."
+          },
+          {
+           "code": null,
+           "text": "Use genetic diagrams for monohybrid crosses and 1:1 and 3:1 ratios."
+          },
+          {
+           "code": null,
+           "text": "Use Punnett squares to show possible genotypes."
+          },
+          {
+           "code": null,
+           "text": "Explain how a test cross identifies an unknown genotype."
+          }
+         ]
+        },
+        {
+         "id": "codominance-and-sex-linkage",
+         "title": "Codominance and sex linkage",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe codominance."
+          },
+          {
+           "code": null,
+           "text": "Explain inheritance of ABO blood groups."
+          },
+          {
+           "code": null,
+           "text": "Describe sex-linked characteristics and red-green colour blindness."
+          },
+          {
+           "code": null,
+           "text": "Use genetic diagrams for crosses involving codominance or sex linkage."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "18-variation-and-selection",
+     "title": "18 Variation and selection",
+     "topics": [
+      {
+       "id": "18-1-variation",
+       "title": "18.1 Variation",
+       "subtopics": [
+        {
+         "id": "types-of-variation",
+         "title": "Types of variation",
+         "outcomes": [
+          {
+           "code": "18.1",
+           "text": "Describe variation as differences between individuals of a species."
+          },
+          {
+           "code": null,
+           "text": "State continuous variation and give examples."
+          },
+          {
+           "code": null,
+           "text": "State discontinuous variation and give examples."
+          },
+          {
+           "code": null,
+           "text": "State that discontinuous variation is caused by genes, and continuous by genes and environment."
+          },
+          {
+           "code": null,
+           "text": "Investigate examples of continuous and discontinuous variation."
+          }
+         ]
+        },
+        {
+         "id": "mutation",
+         "title": "Mutation",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe mutation as genetic change and gene mutation as a random base sequence change."
+          },
+          {
+           "code": null,
+           "text": "State that mutation forms new alleles."
+          },
+          {
+           "code": null,
+           "text": "State that ionising radiation and some chemicals raise the mutation rate."
+          },
+          {
+           "code": null,
+           "text": "State that mutation, meiosis, random mating and random fertilisation cause variation."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "18-2-adaptive-features",
+       "title": "18.2 Adaptive features",
+       "subtopics": [
+        {
+         "id": "adaptive-features",
+         "title": "Adaptive features",
+         "outcomes": [
+          {
+           "code": "18.2",
+           "text": "Describe an adaptive feature as an inherited feature that helps survival and reproduction."
+          },
+          {
+           "code": null,
+           "text": "Interpret information about a species to describe its adaptive features."
+          },
+          {
+           "code": null,
+           "text": "Explain adaptive features of hydrophytes and xerophytes."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "18-3-selection",
+       "title": "18.3 Selection",
+       "subtopics": [
+        {
+         "id": "natural-selection",
+         "title": "Natural selection",
+         "outcomes": [
+          {
+           "code": "18.3",
+           "text": "Describe natural selection: variation, many offspring, struggle for survival, better-adapted individuals reproducing and passing on alleles."
+          },
+          {
+           "code": null,
+           "text": "Describe adaptation as populations becoming better suited over generations."
+          },
+          {
+           "code": null,
+           "text": "Describe the development of antibiotic-resistant bacteria as natural selection."
+          }
+         ]
+        },
+        {
+         "id": "selective-breeding",
+         "title": "Selective breeding",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe selective breeding: choose, cross and select offspring with desirable features."
+          },
+          {
+           "code": null,
+           "text": "Outline how selective breeding improves crops and animals over many generations."
+          },
+          {
+           "code": null,
+           "text": "Outline the differences between natural and artificial selection."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "19-organisms-and-their-environment",
+     "title": "19 Organisms and their environment",
+     "topics": [
+      {
+       "id": "19-1-energy-flow",
+       "title": "19.1 Energy flow",
+       "subtopics": [
+        {
+         "id": "energy-flow",
+         "title": "Energy flow",
+         "outcomes": [
+          {
+           "code": "19.1",
+           "text": "State that the Sun is the main energy source for biological systems."
+          },
+          {
+           "code": null,
+           "text": "Describe energy flow through organisms and its eventual transfer to the environment."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "19-2-food-chains-and-food-webs",
+       "title": "19.2 Food chains and food webs",
+       "subtopics": [
+        {
+         "id": "food-chains-and-webs",
+         "title": "Food chains and webs",
+         "outcomes": [
+          {
+           "code": "19.2",
+           "text": "Describe a food chain, starting with a producer."
+          },
+          {
+           "code": null,
+           "text": "Construct and interpret simple food chains."
+          },
+          {
+           "code": null,
+           "text": "Describe and interpret food webs."
+          }
+         ]
+        },
+        {
+         "id": "roles-in-a-food-chain",
+         "title": "Roles in a food chain",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe producers and consumers."
+          },
+          {
+           "code": null,
+           "text": "State primary, secondary, tertiary and quaternary consumers."
+          },
+          {
+           "code": null,
+           "text": "Describe herbivores, carnivores and decomposers."
+          }
+         ]
+        },
+        {
+         "id": "human-impact-on-food-webs",
+         "title": "Human impact on food webs",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Use food chains and webs to describe overharvesting and introduced species."
+          }
+         ]
+        },
+        {
+         "id": "ecological-pyramids",
+         "title": "Ecological pyramids",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Draw, describe and interpret pyramids of numbers and biomass."
+          },
+          {
+           "code": null,
+           "text": "Discuss pyramid of biomass versus numbers."
+          },
+          {
+           "code": null,
+           "text": "Draw, describe and interpret pyramids of energy."
+          },
+          {
+           "code": null,
+           "text": "Discuss pyramids of energy versus numbers or biomass."
+          }
+         ]
+        },
+        {
+         "id": "trophic-levels-and-efficiency",
+         "title": "Trophic levels and efficiency",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe trophic levels and identify them in webs, chains and pyramids."
+          },
+          {
+           "code": null,
+           "text": "Explain why energy transfer between trophic levels is inefficient."
+          },
+          {
+           "code": null,
+           "text": "Explain why food chains rarely have over five trophic levels."
+          },
+          {
+           "code": null,
+           "text": "Explain why eating crop plants is more energy efficient than eating livestock."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "19-3-nutrient-cycles",
+       "title": "19.3 Nutrient cycles",
+       "subtopics": [
+        {
+         "id": "carbon-cycle",
+         "title": "Carbon cycle",
+         "outcomes": [
+          {
+           "code": "19.3",
+           "text": "Describe the carbon cycle."
+          }
+         ]
+        },
+        {
+         "id": "nitrogen-cycle",
+         "title": "Nitrogen cycle",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe the nitrogen cycle steps."
+          },
+          {
+           "code": null,
+           "text": "State the roles of microorganisms in the nitrogen cycle."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "19-4-populations",
+       "title": "19.4 Populations",
+       "subtopics": [
+        {
+         "id": "populations-and-ecosystems",
+         "title": "Populations and ecosystems",
+         "outcomes": [
+          {
+           "code": "19.4",
+           "text": "Describe a population, a community and an ecosystem."
+          }
+         ]
+        },
+        {
+         "id": "population-growth",
+         "title": "Population growth",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Identify factors affecting population growth: food, competition, predation, disease."
+          },
+          {
+           "code": null,
+           "text": "Identify lag, exponential, stationary and death phases of the sigmoid growth curve."
+          },
+          {
+           "code": null,
+           "text": "Explain the factors behind each phase, including limiting factors."
+          },
+          {
+           "code": null,
+           "text": "Interpret graphs and diagrams of population growth."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "20-human-influences-on-ecosystems",
+     "title": "20 Human influences on ecosystems",
+     "topics": [
+      {
+       "id": "20-1-food-supply",
+       "title": "20.1 Food supply",
+       "subtopics": [
+        {
+         "id": "increasing-food-production",
+         "title": "Increasing food production",
+         "outcomes": [
+          {
+           "code": "20.1",
+           "text": "Describe how machinery, fertilisers, insecticides, herbicides and selective breeding increase food production."
+          }
+         ]
+        },
+        {
+         "id": "farming-methods",
+         "title": "Farming methods",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe the advantages and disadvantages of large-scale monocultures."
+          },
+          {
+           "code": null,
+           "text": "Describe the advantages and disadvantages of intensive livestock production."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "20-2-habitat-destruction",
+       "title": "20.2 Habitat destruction",
+       "subtopics": [
+        {
+         "id": "habitat-destruction",
+         "title": "Habitat destruction",
+         "outcomes": [
+          {
+           "code": "20.2",
+           "text": "Describe biodiversity."
+          },
+          {
+           "code": null,
+           "text": "Describe reasons for habitat destruction: housing and farmland, resource extraction and pollution."
+          },
+          {
+           "code": null,
+           "text": "State that altering food webs and chains harms habitats."
+          }
+         ]
+        },
+        {
+         "id": "deforestation",
+         "title": "Deforestation",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain the effects of deforestation: lost biodiversity, extinction, soil loss, flooding and more carbon dioxide."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "20-3-pollution",
+       "title": "20.3 Pollution",
+       "subtopics": [
+        {
+         "id": "water-pollution",
+         "title": "Water pollution",
+         "outcomes": [
+          {
+           "code": "20.3",
+           "text": "Describe effects of untreated sewage and excess fertiliser on aquatic ecosystems."
+          },
+          {
+           "code": null,
+           "text": "Explain eutrophication."
+          }
+         ]
+        },
+        {
+         "id": "plastics-and-air-pollution",
+         "title": "Plastics and air pollution",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe effects of non-biodegradable plastics."
+          },
+          {
+           "code": null,
+           "text": "Describe sources and effects of methane and carbon dioxide pollution: enhanced greenhouse effect and climate change."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "20-4-conservation",
+       "title": "20.4 Conservation",
+       "subtopics": [
+        {
+         "id": "sustainable-resources",
+         "title": "Sustainable resources",
+         "outcomes": [
+          {
+           "code": "20.4",
+           "text": "Describe a sustainable resource."
+          },
+          {
+           "code": null,
+           "text": "State that forests and fish stocks can be conserved and managed sustainably."
+          },
+          {
+           "code": null,
+           "text": "Explain how forests are conserved."
+          },
+          {
+           "code": null,
+           "text": "Explain how fish stocks are conserved."
+          }
+         ]
+        },
+        {
+         "id": "endangered-species",
+         "title": "Endangered species",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain why organisms become endangered or extinct."
+          },
+          {
+           "code": null,
+           "text": "Describe how endangered species are conserved."
+          },
+          {
+           "code": null,
+           "text": "Describe reasons for conservation programmes."
+          },
+          {
+           "code": null,
+           "text": "Describe artificial insemination and IVF in captive breeding."
+          },
+          {
+           "code": null,
+           "text": "Explain the risks of reduced genetic variation when a population shrinks."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "21-biotechnology-and-genetic-modification",
+     "title": "21 Biotechnology and genetic modification",
+     "topics": [
+      {
+       "id": "21-1-biotechnology-and-genetic-modification",
+       "title": "21.1 Biotechnology and genetic modification",
+       "subtopics": [
+        {
+         "id": "bacteria-in-biotechnology",
+         "title": "Bacteria in biotechnology",
+         "outcomes": [
+          {
+           "code": "21.1",
+           "text": "State that bacteria are useful because they reproduce quickly and make complex molecules."
+          },
+          {
+           "code": null,
+           "text": "Discuss why bacteria are useful: few ethical concerns and the presence of plasmids."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "21-2-biotechnology",
+       "title": "21.2 Biotechnology",
+       "subtopics": [
+        {
+         "id": "yeast-and-enzymes",
+         "title": "Yeast and enzymes",
+         "outcomes": [
+          {
+           "code": "21.2",
+           "text": "Describe anaerobic respiration in yeast for ethanol biofuels."
+          },
+          {
+           "code": null,
+           "text": "Describe anaerobic respiration in yeast in bread-making."
+          },
+          {
+           "code": null,
+           "text": "Describe pectinase in fruit juice production."
+          },
+          {
+           "code": null,
+           "text": "Investigate biological washing powders containing enzymes."
+          },
+          {
+           "code": null,
+           "text": "Explain lactase use to make lactose-free milk."
+          }
+         ]
+        },
+        {
+         "id": "fermenters",
+         "title": "Fermenters",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe how fermenters produce insulin, penicillin and mycoprotein."
+          },
+          {
+           "code": null,
+           "text": "Describe and explain conditions controlled in a fermenter."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "21-3-genetic-modification",
+       "title": "21.3 Genetic modification",
+       "subtopics": [
+        {
+         "id": "genetic-modification-process",
+         "title": "Genetic modification process",
+         "outcomes": [
+          {
+           "code": "21.3",
+           "text": "Describe genetic modification as removing, changing or inserting genes."
+          },
+          {
+           "code": null,
+           "text": "Outline the process using bacterial production of a human protein."
+          }
+         ]
+        },
+        {
+         "id": "uses-of-genetic-modification",
+         "title": "Uses of genetic modification",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Outline examples: human proteins in bacteria and herbicide resistance, insect resistance and better nutrition in crops."
+          },
+          {
+           "code": null,
+           "text": "Discuss advantages and disadvantages of genetically modified crops such as soya, maize and rice."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "build": {
+  "builtAt": "2026-10-14T09:45:19.547Z",
+  "model": "claude-agent",
+  "usd": 0,
+  "expectedCodes": 61,
+  "coverage": 1,
+  "missingCodes": [],
+  "counts": {
+   "grades": 1,
+   "units": 21,
+   "topics": 61,
+   "subtopics": 123,
+   "outcomes": 350
+  },
+  "warnings": []
+ }
+}

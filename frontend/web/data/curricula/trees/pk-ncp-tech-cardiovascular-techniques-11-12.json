@@ -1,0 +1,534 @@
+{
+ "id": "pk-ncp-tech-cardiovascular-techniques-11-12",
+ "region": "PK",
+ "framework": "National Curriculum of Pakistan 2022-23",
+ "board": null,
+ "qualification": "Technical stream",
+ "subject": "Cardiovascular Techniques",
+ "syllabusCode": null,
+ "gradeSystem": "grade",
+ "source": {
+  "urls": [
+   "https://ncc.gov.pk/SiteImage/Misc/files/49-Trade%20Medical%20Technology.pdf"
+  ],
+  "publisher": "National Curriculum Council, Ministry of Federal Education and Professional Training",
+  "licence": "Government publication; structure + our own wording only",
+  "firstExam": null
+ },
+ "grades": [
+  {
+   "grade": "11",
+   "units": [
+    {
+     "id": "domain-a-anatomy-of-heart-and-blood-vessels",
+     "title": "Domain A: Anatomy of Heart and Blood Vessels",
+     "topics": [
+      {
+       "id": "anatomy-of-the-heart",
+       "title": "Anatomy of the heart",
+       "subtopics": [
+        {
+         "id": "heart-structure-and-function",
+         "title": "Heart structure and function",
+         "outcomes": [
+          {
+           "code": "CT-11-A-01",
+           "text": "Link heart anatomy to its function: chambers, valves and the great vessels."
+          },
+          {
+           "code": "CT-11-A-02",
+           "text": "Interpret heart rate, blood pressure and cardiac output."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "cardiac-cycle-and-conduction",
+       "title": "Cardiac cycle and conduction",
+       "subtopics": [
+        {
+         "id": "cardiac-cycle-and-conduction-basics",
+         "title": "Cardiac cycle and conduction basics",
+         "outcomes": [
+          {
+           "code": "CT-11-A-03",
+           "text": "Describe systole and diastole in the cardiac cycle."
+          },
+          {
+           "code": "CT-11-A-04",
+           "text": "Explain what the SA node, AV node and bundle of His each do in conduction."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "domain-b-cardiac-cycle",
+     "title": "Domain B: Cardiac Cycle",
+     "topics": [
+      {
+       "id": "cardiac-cycle",
+       "title": "Cardiac cycle",
+       "subtopics": [
+        {
+         "id": "phases-of-the-cardiac-cycle",
+         "title": "Phases of the cardiac cycle",
+         "outcomes": [
+          {
+           "code": "CT-11-B-01",
+           "text": "Observe and name the phases of the cardiac cycle."
+          },
+          {
+           "code": "CT-11-B-02",
+           "text": "Explain the cardiac cycle in simple, age-appropriate words."
+          },
+          {
+           "code": "CT-11-B-03",
+           "text": "Identify systole and diastole as the basic phases."
+          },
+          {
+           "code": "CT-11-B-04",
+           "text": "Connect the cardiac cycle to the wider circulation that delivers oxygen and nutrients to cells."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "domain-c-physiology-of-the-heart",
+     "title": "Domain C: Physiology of the Heart",
+     "topics": [
+      {
+       "id": "physiology-of-the-heart",
+       "title": "Physiology of the heart",
+       "subtopics": [
+        {
+         "id": "heart-structure-and-function",
+         "title": "Heart structure and function",
+         "outcomes": [
+          {
+           "code": "CT-11-C-01",
+           "text": "Link heart anatomy to its function: chambers, valves and the great vessels."
+          }
+         ]
+        },
+        {
+         "id": "vital-signs-and-cardiac-output",
+         "title": "Vital signs and cardiac output",
+         "outcomes": [
+          {
+           "code": "CT-11-C-02",
+           "text": "Interpret heart rate, blood pressure and cardiac output."
+          }
+         ]
+        },
+        {
+         "id": "cardiac-cycle-and-conduction",
+         "title": "Cardiac cycle and conduction",
+         "outcomes": [
+          {
+           "code": "CT-11-C-03",
+           "text": "Describe systole and diastole in the cardiac cycle."
+          },
+          {
+           "code": "CT-11-C-04",
+           "text": "Explain the roles of the SA node, AV node and bundle of His in conduction."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "domain-d-conducting-system",
+     "title": "Domain D: Conducting System",
+     "topics": [
+      {
+       "id": "conducting-system",
+       "title": "Conducting system",
+       "subtopics": [
+        {
+         "id": "automaticity-and-conductivity",
+         "title": "Automaticity and conductivity",
+         "outcomes": [
+          {
+           "code": "CT-11-D-01",
+           "text": "Explain automaticity: why the heart starts its own electrical impulses."
+          },
+          {
+           "code": "CT-11-D-02",
+           "text": "Define conductivity and explain how impulses travel through cardiac tissue."
+          }
+         ]
+        },
+        {
+         "id": "pacemaker-and-his-bundle",
+         "title": "Pacemaker and His bundle",
+         "outcomes": [
+          {
+           "code": "CT-11-D-03",
+           "text": "Identify the SA node in the right atrium as the natural pacemaker that starts impulses."
+          },
+          {
+           "code": "CT-11-D-04",
+           "text": "Explain how the bundle of His and its branches carry impulses from the AV node to the ventricles for coordinated contraction."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "domain-e-ecg",
+     "title": "Domain E: ECG",
+     "topics": [
+      {
+       "id": "ecg",
+       "title": "ECG",
+       "subtopics": [
+        {
+         "id": "ecg-waveform-and-machine",
+         "title": "ECG waveform and machine",
+         "outcomes": [
+          {
+           "code": "CT-11-E-01",
+           "text": "Identify the basic parts of an ECG waveform."
+          },
+          {
+           "code": "CT-11-E-02",
+           "text": "Use and handle an ECG machine properly."
+          }
+         ]
+        },
+        {
+         "id": "leads-and-electrode-placement",
+         "title": "Leads and electrode placement",
+         "outcomes": [
+          {
+           "code": "CT-11-E-03",
+           "text": "Tell standard limb leads from precordial leads."
+          },
+          {
+           "code": "CT-11-E-04",
+           "text": "Explain why lead placement matters for picking up particular parts of the heart's activity."
+          },
+          {
+           "code": "CT-11-E-05",
+           "text": "Place electrodes correctly on the limbs and chest."
+          }
+         ]
+        },
+        {
+         "id": "reading-a-normal-ecg",
+         "title": "Reading a normal ECG",
+         "outcomes": [
+          {
+           "code": "CT-11-E-06",
+           "text": "Recognise a normal ECG waveform."
+          },
+          {
+           "code": "CT-11-E-07",
+           "text": "Understand why the baseline matters when reading an ECG."
+          },
+          {
+           "code": "CT-11-E-08",
+           "text": "Calculate heart rate from ECG data."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "12",
+   "units": [
+    {
+     "id": "domain-f-ischemic-heart-disease-ihd",
+     "title": "Domain F: Ischemic Heart Disease (IHD)",
+     "topics": [
+      {
+       "id": "ischemic-heart-disease",
+       "title": "Ischemic heart disease",
+       "subtopics": [
+        {
+         "id": "ischemic-heart-disease-basics",
+         "title": "Ischemic heart disease basics",
+         "outcomes": [
+          {
+           "code": "CT-12-F-01",
+           "text": "Define ischemic heart disease and name its causes."
+          },
+          {
+           "code": "CT-12-F-02",
+           "text": "Explain how the coronary arteries supply blood to the heart."
+          }
+         ]
+        },
+        {
+         "id": "angina-risk-and-prevention-of-ihd",
+         "title": "Angina, risk and prevention of IHD",
+         "outcomes": [
+          {
+           "code": "CT-12-F-03",
+           "text": "Interpret the symptoms of angina and why they matter."
+          },
+          {
+           "code": "CT-12-F-04",
+           "text": "Analyse the risk factors for IHD."
+          },
+          {
+           "code": "CT-12-F-05",
+           "text": "List ways to prevent IHD."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "domain-g-angina-its-types",
+     "title": "Domain G: Angina & its Types",
+     "topics": [
+      {
+       "id": "angina",
+       "title": "Angina",
+       "subtopics": [
+        {
+         "id": "stable-and-unstable-angina",
+         "title": "Stable and unstable angina",
+         "outcomes": [
+          {
+           "code": "CT-12-G-01",
+           "text": "Tell stable from unstable angina and name common triggers and symptoms."
+          },
+          {
+           "code": "CT-12-G-02",
+           "text": "Show understanding of how stable and unstable angina differ."
+          }
+         ]
+        },
+        {
+         "id": "lifestyle-and-urgency-in-angina",
+         "title": "Lifestyle and urgency in angina",
+         "outcomes": [
+          {
+           "code": "CT-12-G-03",
+           "text": "Analyse lifestyle factors that contribute to angina."
+          },
+          {
+           "code": "CT-12-G-04",
+           "text": "Explain why prompt medical attention is important for angina."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "domain-h-myocardial-infarction-mi",
+     "title": "Domain H: Myocardial Infarction (MI)",
+     "topics": [
+      {
+       "id": "myocardial-infarction",
+       "title": "Myocardial infarction",
+       "subtopics": [
+        {
+         "id": "causes-and-recognition-of-mi",
+         "title": "Causes and recognition of MI",
+         "outcomes": [
+          {
+           "code": "CT-12-H-01",
+           "text": "Define myocardial infarction and its causes."
+          },
+          {
+           "code": "CT-12-H-02",
+           "text": "Differentiate angina from myocardial infarction."
+          },
+          {
+           "code": "CT-12-H-05",
+           "text": "Recognise the symptoms of a heart attack."
+          }
+         ]
+        },
+        {
+         "id": "emergency-response-to-mi",
+         "title": "Emergency response to MI",
+         "outcomes": [
+          {
+           "code": "CT-12-H-03",
+           "text": "Identify the emergency steps for someone having an MI."
+          },
+          {
+           "code": "CT-12-H-04",
+           "text": "Understand the 'golden hour' in MI treatment."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "domain-i-hypertension-htn",
+     "title": "Domain I: Hypertension (HTN)",
+     "topics": [
+      {
+       "id": "hypertension",
+       "title": "Hypertension",
+       "subtopics": [
+        {
+         "id": "hypertension-and-its-effects",
+         "title": "Hypertension and its effects",
+         "outcomes": [
+          {
+           "code": "CT-12-I-01",
+           "text": "Define hypertension and its risk factors."
+          },
+          {
+           "code": "CT-12-I-02",
+           "text": "Explain the consequences of untreated hypertension."
+          }
+         ]
+        },
+        {
+         "id": "measuring-and-managing-blood-pressure",
+         "title": "Measuring and managing blood pressure",
+         "outcomes": [
+          {
+           "code": "CT-12-I-03",
+           "text": "Measure and interpret blood pressure readings."
+          },
+          {
+           "code": "CT-12-I-04",
+           "text": "Identify lifestyle changes that manage and prevent hypertension."
+          },
+          {
+           "code": "CT-12-I-05",
+           "text": "Explore how medications treat hypertension."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "domain-j-congestive-cardiac-failure-ccf",
+     "title": "Domain J: Congestive Cardiac Failure (CCF)",
+     "topics": [
+      {
+       "id": "congestive-cardiac-failure",
+       "title": "Congestive cardiac failure",
+       "subtopics": [
+        {
+         "id": "causes-and-effects-of-ccf",
+         "title": "Causes and effects of CCF",
+         "outcomes": [
+          {
+           "code": "CT-12-J-01",
+           "text": "Define congestive cardiac failure and its causes."
+          },
+          {
+           "code": "CT-12-J-02",
+           "text": "Recognise the symptoms of CCF."
+          },
+          {
+           "code": "CT-12-J-03",
+           "text": "Explain how CCF affects heart function."
+          }
+         ]
+        },
+        {
+         "id": "treating-and-living-with-ccf",
+         "title": "Treating and living with CCF",
+         "outcomes": [
+          {
+           "code": "CT-12-J-04",
+           "text": "Identify treatment options for congestive heart failure."
+          },
+          {
+           "code": "CT-12-J-05",
+           "text": "Explore lifestyle changes for people with CCF."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "domain-k-cardiogenic-shock",
+     "title": "Domain K: Cardiogenic Shock",
+     "topics": [
+      {
+       "id": "cardiogenic-shock",
+       "title": "Cardiogenic shock",
+       "subtopics": [
+        {
+         "id": "recognising-cardiogenic-shock",
+         "title": "Recognising cardiogenic shock",
+         "outcomes": [
+          {
+           "code": "CT-12-K-01",
+           "text": "Define cardiogenic shock and its causes."
+          },
+          {
+           "code": "CT-12-K-02",
+           "text": "Recognise signs and symptoms of cardiogenic shock."
+          }
+         ]
+        },
+        {
+         "id": "managing-cardiogenic-shock",
+         "title": "Managing cardiogenic shock",
+         "outcomes": [
+          {
+           "code": "CT-12-K-03",
+           "text": "Identify emergency measures for managing cardiogenic shock."
+          },
+          {
+           "code": "CT-12-K-04",
+           "text": "Explain how medical interventions treat cardiogenic shock."
+          },
+          {
+           "code": "CT-12-K-05",
+           "text": "Explore why rapid response matters in cardiogenic shock."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "build": {
+  "builtAt": "2026-10-14T08:34:55.305Z",
+  "model": "claude-agent",
+  "usd": 0,
+  "expectedCodes": 53,
+  "coverage": 1,
+  "missingCodes": [],
+  "counts": {
+   "grades": 2,
+   "units": 11,
+   "topics": 12,
+   "subtopics": 23,
+   "outcomes": 53
+  },
+  "warnings": []
+ }
+}

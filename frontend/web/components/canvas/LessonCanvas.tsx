@@ -6,7 +6,7 @@ import { fitView, flightMs, unionRects, viewAt, type View } from "@/lib/canvas/c
 import { evalExpr } from "@/lib/canvas/expr";
 import { layoutPanel, placePanels, toWorld, type Mark, type PanelLayout, type PanelPlacement, type Pt, type Rect } from "@/lib/canvas/layout";
 import { PANEL_H, PANEL_W, type CanvasBoardSpec, type CanvasCue, type TryItInteraction } from "@/lib/canvas/types";
-import { activeCues } from "@/lib/canvas/cues";
+import { activeCues, targetVisible } from "@/lib/canvas/cues";
 import { dotPointer, onDotPointer, setPointTarget } from "@/lib/avatar/pointTarget";
 import { CANVAS_THEMES, CHALK, chalkCss, chalkTint, panelTheme, recolour, THEME_LABEL, type BoardTheme, type CanvasThemeChoice } from "@/lib/canvas/theme";
 import { BOARD_FONT_FACES, BOARD_FONT_FAMILY, BOARD_FONT_STACK } from "@/lib/anim/boardFont";
@@ -63,6 +63,10 @@ type Props = {
   onTaskResult?: (kind: "quiz" | "drawing", correct: boolean, options?: number) => void;
   /** The student tapped "from <earlier lecture>" on a concept. */
   onOpenEarlier?: (from: EarlierBoard) => void;
+  /** The lecture was watched to the end: every board is reachable in the whole-lesson view. */
+  completed?: boolean;
+  /** The board's task was already answered at its prediction: it does not reopen at the end. */
+  taskDone?: boolean;
 };
 
 export type EarlierBoard = { lectureId: string; sequence: number; beatId: string; title: string; topic: string };
@@ -75,12 +79,15 @@ export type CanvasKnowledge = {
 const ARIA = ARIA_INK;
 const STUDENT = "#2563eb";
 
-export function LessonCanvas({ panels, currentIndex, sentence, sentenceProgress, finished, waitingForStudent, topic, onSpeak, onTellAria, onContinue, playing = true, knowledge, onTaskResult, onOpenEarlier }: Props) {
+export function LessonCanvas({ panels, currentIndex, sentence, sentenceProgress, finished, waitingForStudent, topic, onSpeak, onTellAria, onContinue, playing = true, knowledge, onTaskResult, completed = false, taskDone = false }: Props) {
   const reducedMotion = useReducedMotion();
   const containerRef = useRef<HTMLDivElement>(null);
   const svgRef = useRef<SVGSVGElement>(null);
   const [aspect, setAspect] = useState(16 / 9);
   const [mode, setMode] = useState<"follow" | "free" | "overview">("follow");
+  const [biologyExplore, setBiologyExplore] = useState(false);
+  const [moleculeRotation, setMoleculeRotation] = useState(0);
+  const [revealedPredictions, setRevealedPredictions] = useState<Record<string, boolean>>({});
 
   /**
    * THE BOARD IS MADE OF THE APP'S MATERIAL: paper when the app is light, chalk when it is dark
@@ -108,6 +115,12 @@ export function LessonCanvas({ panels, currentIndex, sentence, sentenceProgress,
     [panels, layouts],
   );
   const shownIndex = currentIndex >= 0 ? currentIndex : Math.max(0, panels.length - 1);
+  // The furthest board the student has reached (every board once the lecture is complete). The
+  // world, the whole-lesson view and the map show boards up to HERE, not just up to the current
+  // one: going back to board 2 to review must not make boards 3 and 4 vanish (audit 2026-10-15).
+  const [furthest, setFurthest] = useState(shownIndex);
+  if (shownIndex > furthest) setFurthest(shownIndex);
+  const reachedIndex = completed ? Math.max(0, panels.length - 1) : Math.max(furthest, shownIndex);
   const current = panels[shownIndex];
   const currentLayout = layouts[shownIndex];
   const currentPlace = current ? placements[current.key] : undefined;
@@ -156,12 +169,12 @@ export function LessonCanvas({ panels, currentIndex, sentence, sentenceProgress,
 
 
   const interaction = current?.spec.interaction;
-  const taskOpen = Boolean(interaction) && currentIndex >= 0 && (finished || waitingForStudent);
+  const taskOpen = Boolean(interaction) && currentIndex >= 0 && (waitingForStudent || (finished && !taskDone));
   const drawing = taskOpen && interaction?.kind === "draw";
 
   /* ── the pen: which cue is live ───────────────────────────────────────────────────────── */
 
-  const cueState = useMemo(() => activeCues(current?.spec.cues ?? [], sentence, sentenceProgress, finished || currentIndex < 0), [current, sentence, sentenceProgress, finished, currentIndex]);
+  const cueState = useMemo(() => activeCues(current?.spec.cues ?? [], sentence, sentenceProgress, finished || currentIndex < 0, (target, at) => targetVisible(current?.spec, target, at)), [current, sentence, sentenceProgress, finished, currentIndex]);
   const penCue = reactionPoint && current && reactionPoint.key === current.key ? ({ s: sentence, action: "point", target: reactionPoint.target } as CanvasCue) : cueState.visit ? undefined : cueState.pen;
   const focusId = penCue?.target;
   /** Picture hotspots: out while the student can explore — paused, finished, or moving the camera. */
@@ -183,15 +196,8 @@ export function LessonCanvas({ panels, currentIndex, sentence, sentenceProgress,
 
   /** Tasks already reported as evidence: only a first try says what the student knew. */
   const reported = useRef(new Set<string>());
-  /** Per board: element id → concept, and the first board each concept appears on in this lecture. */
-  const boardConcepts = useMemo(() => {
-    const byBoard = panels.map((_, i) => knowledge?.beats.find((b) => b.sequence === i));
-    const firstBoard: Record<string, number> = {};
-    byBoard.forEach((b, i) => {
-      for (const key of Object.values(b?.elements ?? {})) if (firstBoard[key] === undefined) firstBoard[key] = i;
-    });
-    return { byBoard, firstBoard };
-  }, [panels, knowledge]);
+  /** Per-board knowledge is kept for prerequisite hints, without placing status badges on diagrams. */
+  const boardConcepts = useMemo(() => ({ byBoard: panels.map((_, i) => knowledge?.beats.find((b) => b.sequence === i)) }), [panels, knowledge]);
   /** After a wrong prediction: the prerequisite this board's ideas build on that the student is shaky on. */
   const quizHint = useMemo(() => {
     const keys = boardConcepts.byBoard[shownIndex]?.concepts ?? [];
@@ -205,7 +211,7 @@ export function LessonCanvas({ panels, currentIndex, sentence, sentenceProgress,
   /* ── the camera ───────────────────────────────────────────────────────────────────────── */
 
   const worldRects = useMemo(() => panels.map((p) => toWorld({ x: 0, y: 0, w: PANEL_W, h: PANEL_H }, placements[p.key])), [panels, placements]);
-  const overviewView = useMemo(() => fitView(unionRects(worldRects.slice(0, shownIndex + 1)), aspect, 0.05), [worldRects, shownIndex, aspect]);
+  const overviewView = useMemo(() => fitView(unionRects(worldRects.slice(0, reachedIndex + 1)), aspect, 0.05), [worldRects, reachedIndex, aspect]);
 
   const visitIndex = cueState.visit ? panels.findIndex((p) => p.key === cueState.visit) : -1;
   const followView = useMemo((): View => {
@@ -299,6 +305,8 @@ export function LessonCanvas({ panels, currentIndex, sentence, sentenceProgress,
     setModeBoard(currentIndex);
     setMode("follow");
     setReactionPoint(null);
+    setBiologyExplore(false);
+    setMoleculeRotation(0);
   }
   useEffect(() => () => cancelAnimationFrame(flightRef.current), []);
 
@@ -368,7 +376,7 @@ export function LessonCanvas({ panels, currentIndex, sentence, sentenceProgress,
     // A click (no drag) on a board in the overview flies to it.
     if (drag.current && Math.hypot(e.clientX - drag.current.x, e.clientY - drag.current.y) < 4 && mode !== "follow") {
       const p = toWorldPoint(e.clientX, e.clientY);
-      const hit = p ? [...worldRects.keys()].reverse().find((i) => i <= shownIndex && p.x >= worldRects[i].x && p.x <= worldRects[i].x + worldRects[i].w && p.y >= worldRects[i].y && p.y <= worldRects[i].y + worldRects[i].h) : undefined;
+      const hit = p ? [...worldRects.keys()].reverse().find((i) => i <= reachedIndex && p.x >= worldRects[i].x && p.x <= worldRects[i].x + worldRects[i].w && p.y >= worldRects[i].y && p.y <= worldRects[i].y + worldRects[i].h) : undefined;
       if (hit !== undefined) {
         setMode("free");
         flyTo(fitView(worldRects[hit], aspect, 0.035));
@@ -416,8 +424,8 @@ export function LessonCanvas({ panels, currentIndex, sentence, sentenceProgress,
     const settings = task.controls.map((c) => `${c.label} = ${values[c.var]}${c.unit ? ` ${c.unit}` : ""}`).join(", ");
     onTellAria(`On the "Try it" board the student set ${settings}. You told them: "${task.reactions[i].say}"`);
     const layout = layouts[panels.findIndex((p) => p.key === panelKey)];
-    const marker = layout?.marks.find((m) => m.type === "graph") as Extract<Mark, { type: "graph" }> | undefined;
-    const target = marker?.spec.markers?.[0]?.id ?? layout?.marks.find((m) => m.type === "node" && (m as Extract<Mark, { type: "node" }>).glow)?.id;
+    const graphs = (layout?.marks ?? []).filter((m): m is Extract<Mark, { type: "graph" }> => m.type === "graph");
+    const target = graphs.flatMap((g) => g.spec.markers ?? [])[0]?.id ?? layout?.marks.find((m) => m.type === "node" && (m as Extract<Mark, { type: "node" }>).glow)?.id;
     if (target) setReactionPoint({ key: panelKey, target, at: Date.now() });
   };
   useEffect(() => {
@@ -462,7 +470,7 @@ export function LessonCanvas({ panels, currentIndex, sentence, sentenceProgress,
       aria-label="Lesson canvas"
     >
       <style>{fontCss + CANVAS_CSS + CHALK_CSS}</style>
-      <svg ref={svgRef} className="absolute inset-0 h-full w-full" preserveAspectRatio="xMidYMid meet" style={{ fontFamily: BOARD_FONT_STACK }}>
+      <svg ref={svgRef} className={`absolute inset-0 h-full w-full transition-opacity ${mode === "overview" ? "opacity-0" : "opacity-100"}`} preserveAspectRatio="xMidYMid meet" style={{ fontFamily: BOARD_FONT_STACK }}>
         <defs>
           {shadowUrl && <image id="cv-shadow-img" href={shadowUrl} x={-SHADOW_PAD} y={-SHADOW_PAD + 10} width={PANEL_W + SHADOW_PAD * 2} height={PANEL_H + SHADOW_PAD * 2} preserveAspectRatio="none" />}
           {grainUrl && (
@@ -491,7 +499,7 @@ export function LessonCanvas({ panels, currentIndex, sentence, sentenceProgress,
             <stop offset="100%" stopColor="#fbbf24" stopOpacity={0} />
           </radialGradient>
         </defs>
-        {panels.slice(0, shownIndex + 1).map((panel, i) => {
+        {panels.slice(0, reachedIndex + 1).map((panel, i) => {
           const at = placements[panel.key];
           const live = i === shownIndex && currentIndex >= 0;
           return (
@@ -509,28 +517,18 @@ export function LessonCanvas({ panels, currentIndex, sentence, sentenceProgress,
                 shownThrough={live && !finished ? sentence : Infinity}
                 sentenceProgress={live ? sentenceProgress : 0}
                 live={live}
-                vars={vars[panel.key] ?? EMPTY}
+                vars={panel.spec.stage.kind === "molecule" ? { ...(vars[panel.key] ?? EMPTY), rotation: moleculeRotation } : vars[panel.key] ?? EMPTY}
                 ghostVars={ghostVars[panel.key]}
                 focusId={live ? focusId : reactionPoint?.key === panel.key ? reactionPoint.target : undefined}
                 carryFrom={carryFrom[panel.key] ?? EMPTY_RECTS}
                 reducedMotion={reducedMotion}
+                concealStage={live && panel.spec.stage.kind === "molecule" && panel.spec.interaction?.kind === "quiz" && !revealedPredictions[panel.key]}
               />
               <Corrections layout={layouts[i]} check={corrections[panel.key]} />
               <Strokes strokes={strokes[panel.key] ?? []} live={live && drawing ? liveStroke : null} />
-              {knowledge && (
-                <KnowledgeMarks
-                  layout={layouts[i]}
-                  elements={boardConcepts.byBoard[i]?.elements}
-                  concepts={knowledge.concepts}
-                  boardIndex={i}
-                  firstBoard={boardConcepts.firstBoard}
-                  shownThrough={live && !finished ? sentence : Infinity}
-                  onOpenEarlier={onOpenEarlier}
-                />
-              )}
               {live && penCue && <Pen cue={penCue} layout={layouts[i]} vars={vars[panel.key] ?? EMPTY} />}
               {!live && reactionPoint?.key === panel.key && <Pen cue={{ s: 0, action: "point", target: reactionPoint.target }} layout={layouts[i]} vars={vars[panel.key] ?? EMPTY} />}
-              {(live ? exploring : mode !== "follow") && (
+              {(biologyExplore || (live ? exploring : mode !== "follow")) && (
                 <Hotspots
                   layout={layouts[i]}
                   spec={panel.spec}
@@ -558,6 +556,33 @@ export function LessonCanvas({ panels, currentIndex, sentence, sentenceProgress,
           );
         })}
       </svg>
+      {mode === "overview" && (
+        <div
+          className="absolute inset-0 z-[5] overflow-y-auto bg-[#0b0f14]/95 px-4 pb-16 pt-16 backdrop-blur-sm"
+          onPointerDown={(event) => event.stopPropagation()}
+          aria-label="Whole lesson board map"
+        >
+          <div className="mx-auto grid w-full max-w-6xl grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3">
+            {panels.slice(0, reachedIndex + 1).map((panel, i) => (
+              <button
+                key={panel.key}
+                type="button"
+                className="group min-h-32 rounded-2xl border border-white/15 bg-white/[0.06] p-4 text-left text-white shadow-lg transition hover:border-amber-400/70 hover:bg-white/[0.1] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-amber-400"
+                onClick={() => {
+                  setMode("free");
+                  flyTo(fitView(worldRects[i], aspect, 0.035));
+                }}
+                aria-label={`Open board ${i + 1}: ${panel.spec.heading}`}
+              >
+                <span className="mb-3 inline-flex h-8 w-8 items-center justify-center rounded-full bg-amber-400 text-sm font-black text-black">{i + 1}</span>
+                <span className="block text-base font-bold leading-snug">{panel.spec.heading}</span>
+                <span className="mt-2 block text-xs font-semibold uppercase tracking-[0.14em] text-white/50">{panel.spec.stage.kind}</span>
+                {panel.spec.notes.length > 0 && <span className="mt-3 block text-sm leading-relaxed text-white/70">{panel.spec.notes.map((note) => note.text).join(" · ")}</span>}
+              </button>
+            ))}
+          </div>
+        </div>
+      )}
       {celebration > 0 && <Confetti key={celebration} seed={celebration} />}
 
       {/* Camera controls: see the whole lesson, or go back to following Aria. */}
@@ -611,9 +636,20 @@ export function LessonCanvas({ panels, currentIndex, sentence, sentenceProgress,
           </button>
         )}
       </div>
+      {current?.spec.stage.kind === "illustration" && current.spec.stage.parts.some((part) => part.say) && (
+        <button type="button" onClick={() => setBiologyExplore((value) => !value)} aria-pressed={biologyExplore} className="absolute left-3 top-3 z-10 rounded-full border border-white/15 bg-black/65 px-3 py-1.5 text-xs font-bold text-white/90 backdrop-blur hover:bg-black/80" onPointerDown={(event) => event.stopPropagation()}>
+          {biologyExplore ? "Hide interactive layer" : "Explore parts & misconceptions"}
+        </button>
+      )}
+      {current?.spec.stage.kind === "molecule" && (
+        <label className="absolute left-3 top-3 z-10 flex items-center gap-2 rounded-full border border-white/15 bg-black/65 px-3 py-1.5 text-xs font-bold text-white/90 backdrop-blur" onPointerDown={(event) => event.stopPropagation()}>
+          Rotate model
+          <input aria-label="Rotate molecular model" type="range" min={-180} max={180} step={5} value={moleculeRotation} onChange={(event) => setMoleculeRotation(Number(event.target.value))} className="w-28 accent-amber-400" />
+        </label>
+      )}
       {mode === "overview" && (
         <p className="pointer-events-none absolute bottom-3 left-1/2 z-10 -translate-x-1/2 rounded-full bg-black/60 px-3 py-1.5 text-xs font-semibold text-white/75 backdrop-blur">
-          Click any board to fly to it · drag to move · scroll to zoom
+          Choose a board to open it at a readable size
         </p>
       )}
 
@@ -639,6 +675,7 @@ export function LessonCanvas({ panels, currentIndex, sentence, sentenceProgress,
           hint={quizHint}
           onAnswer={(i) => {
             const o = interaction.options[i];
+            setRevealedPredictions((previous) => ({ ...previous, [current.key]: true }));
             if (!reported.current.has(`quiz:${current.key}`)) {
               reported.current.add(`quiz:${current.key}`);
               onTaskResult?.("quiz", o.correct, interaction.options.length);
@@ -650,7 +687,7 @@ export function LessonCanvas({ panels, currentIndex, sentence, sentenceProgress,
           onContinue={onContinue}
         />
       )}
-      {exploring && !taskOpen && current?.spec.stage.kind === "illustration" && current.spec.stage.parts.some((p) => p.say) && (
+      {(exploring || biologyExplore) && !taskOpen && current?.spec.stage.kind === "illustration" && current.spec.stage.parts.some((p) => p.say) && (
         <p className="pointer-events-none absolute left-1/2 top-3 z-10 -translate-x-1/2 rounded-full bg-black/65 px-3 py-1.5 text-xs font-semibold text-white/85 backdrop-blur">
           Tap the glowing parts of the picture to explore them
         </p>
@@ -660,6 +697,7 @@ export function LessonCanvas({ panels, currentIndex, sentence, sentenceProgress,
         panels={panels}
         worldRects={worldRects}
         shownIndex={shownIndex}
+        reachedIndex={reachedIndex}
         visitIndex={visitIndex}
         onPick={(i) => {
           setMode("free");
@@ -813,7 +851,6 @@ function Corrections({ layout, check }: { layout: PanelLayout; check?: DrawingCh
           return (
             <g key={i}>
               <path d={roughEllipse(`fix-${i}-${m.target}`, t.x + t.w / 2, t.y + t.h / 2, t.w / 2 + 18, t.h / 2 + 16)} fill="none" stroke={ARIA} strokeWidth={3.6} strokeLinecap="round" className="cv-ring" pathLength={1} style={{ animationDelay: `${i * 450}ms` }} />
-              {m.label && <text x={t.x + t.w / 2} y={t.y - 24} textAnchor="middle" fontSize={17} fontWeight={800} fill={ARIA}>{m.label}</text>}
             </g>
           );
         }
@@ -835,7 +872,6 @@ function Corrections({ layout, check }: { layout: PanelLayout; check?: DrawingCh
           <g key={i}>
             <Ink points={quadPoints(p0, c, p1, 20)} width={5.4} color={ARIA} />
             <path d={`M${p1.x} ${p1.y} L${p1.x - vx * 16 - vy * 9} ${p1.y - vy * 16 + vx * 9} L${p1.x - vx * 16 + vy * 9} ${p1.y - vy * 16 - vx * 9} Z`} fill={ARIA} className="cv-in cv-late" />
-            {m.label && <text x={c.x} y={c.y - 10} textAnchor="middle" fontSize={16} fontWeight={800} fill={ARIA}>{m.label}</text>}
           </g>
         );
       })}
@@ -1073,104 +1109,7 @@ function QuizCard({ question, options, onAnswer, onContinue, hint }: { question:
 }
 
 /** The whole lesson in the corner: every board so far, where Aria is, and a click to fly anywhere. */
-/**
- * THE KNOWLEDGE GRAPH, ON THE BOARD. Beside each drawn element that stands for a concept: a small
- * check when the student already knew it before this lecture, "new" the first time a concept they
- * have never met appears, and "from <lecture>" when they learned it in an earlier lecture — tap it
- * to see that board again. Each mark appears with its element, never before.
- */
-function KnowledgeMarks({ layout, elements, concepts, boardIndex, firstBoard, shownThrough, onOpenEarlier }: {
-  layout: PanelLayout;
-  elements?: Record<string, string>;
-  concepts: CanvasKnowledge["concepts"];
-  boardIndex: number;
-  firstBoard: Record<string, number>;
-  shownThrough: number;
-  onOpenEarlier?: (from: EarlierBoard) => void;
-}) {
-  if (!elements) return null;
-  const marked = new Set<string>();
-  let newTags = 0;
-  return (
-    <g>
-      {Object.entries(elements).map(([elementId, key]) => {
-        const c = concepts[key];
-        let mark = layout.marks.find((m) => m.id === elementId) ?? layout.marks.find((m) => m.type === "equation" && m.tokens.some((tk) => tk.id === elementId));
-        let t: Rect | undefined = layout.targets[elementId];
-        // A part of a picture is a point; its mark goes on its written label, and an unlabelled
-        // part is not marked at all (a tag floating on a picture says nothing).
-        if (mark?.type === "part") {
-          const label = layout.marks.find((m) => m.type === "callout" && m.partId === elementId);
-          if (!label || label.type !== "callout") return null;
-          mark = label;
-          t = label.box;
-        }
-        if (!c || !t || !mark || mark.s > shownThrough || marked.has(key)) return null;
-        // Two "new" tags a board at most: more is clutter, not information.
-        if (c.status === "new" && (firstBoard[key] !== boardIndex || newTags >= 2)) return null;
-        if (c.status === "new") newTags += 1;
-        marked.add(key);
-        const x = t.x + t.w - 4;
-        const y = t.y + 4;
-        if (c.status === "known") {
-          const chip = c.from && onOpenEarlier && firstBoard[key] === boardIndex;
-          return (
-            <g key={elementId} className="cv-in">
-              <circle cx={x} cy={y} r={12} fill="#16a34a" stroke="#fff" strokeWidth={2.5} />
-              <path d={`M${x - 5} ${y} l3.5 3.5 l6.5 -7`} fill="none" stroke="#fff" strokeWidth={2.6} strokeLinecap="round" strokeLinejoin="round" />
-              <title>{`You already know ${c.label}`}</title>
-              {chip && <EarlierChip x={t.x + t.w / 2} y={t.y + t.h + 14} from={c.from!} onOpen={onOpenEarlier!} />}
-            </g>
-          );
-        }
-        if (c.status === "shaky" && c.from && onOpenEarlier && firstBoard[key] === boardIndex) {
-          return (
-            <g key={elementId} className="cv-in">
-              <EarlierChip x={t.x + t.w / 2} y={t.y + t.h + 14} from={c.from} onOpen={onOpenEarlier} />
-            </g>
-          );
-        }
-        if (c.status === "new" && firstBoard[key] === boardIndex) {
-          return (
-            <g key={elementId} className="cv-in" pointerEvents="none">
-              <rect x={x - 22} y={y - 11} width={44} height={22} rx={11} fill="#f59e0b" />
-              <text x={x} y={y + 5} textAnchor="middle" fontSize={12.5} fontWeight={800} fill="#1c1206">NEW</text>
-              <title>{`New to you: ${c.label}`}</title>
-            </g>
-          );
-        }
-        return null;
-      })}
-    </g>
-  );
-}
-
-/** "↩ from <lecture>": the board where the student learned this, one tap away. */
-function EarlierChip({ x, y, from, onOpen }: { x: number; y: number; from: EarlierBoard; onOpen: (from: EarlierBoard) => void }) {
-  const text = `↩ from ${from.topic.length > 26 ? `${from.topic.slice(0, 25)}…` : from.topic}`;
-  const w = Math.max(90, text.length * 7.4 + 22);
-  return (
-    <g
-      role="button"
-      tabIndex={0}
-      aria-label={`See where you learned this, in ${from.topic}`}
-      style={{ cursor: "pointer" }}
-      onPointerDown={(e) => e.stopPropagation()}
-      onClick={(e) => {
-        e.stopPropagation();
-        onOpen(from);
-      }}
-      onKeyDown={(e) => {
-        if (e.key === "Enter" || e.key === " ") onOpen(from);
-      }}
-    >
-      <rect x={x - w / 2} y={y - 12} width={w} height={24} rx={12} fill="#1e293b" opacity={0.92} />
-      <text x={x} y={y + 4.5} textAnchor="middle" fontSize={12.5} fontWeight={700} fill="#e2e8f0">{text}</text>
-    </g>
-  );
-}
-
-function MiniMap({ panels, themes, worldRects, shownIndex, visitIndex, onPick }: { panels: CanvasPanelInput[]; themes: BoardTheme[]; worldRects: Rect[]; shownIndex: number; visitIndex: number; onPick: (i: number) => void }) {
+function MiniMap({ panels, themes, worldRects, shownIndex, reachedIndex, visitIndex, onPick }: { panels: CanvasPanelInput[]; themes: BoardTheme[]; worldRects: Rect[]; shownIndex: number; reachedIndex: number; visitIndex: number; onPick: (i: number) => void }) {
   const top = panels.map((p, i) => ({ p, i })).filter(({ p }) => !p.spec.inside);
   if (top.length < 2) return null;
   const all = unionRects(top.map(({ i }) => worldRects[i]));
@@ -1182,7 +1121,7 @@ function MiniMap({ panels, themes, worldRects, shownIndex, visitIndex, onPick }:
       <svg width={W} height={H} aria-label="Lesson map">
         {top.map(({ p, i }) => {
           const r = worldRects[i];
-          const shown = i <= shownIndex;
+          const shown = i <= reachedIndex;
           const here = i === shownIndex || (panels[shownIndex]?.spec.inside && panels.findIndex((q) => q.key === panels[shownIndex].spec.inside!.beat) === i);
           return (
             <g key={p.key} style={{ cursor: shown ? "pointer" : "default" }} onClick={() => shown && onPick(i)}>

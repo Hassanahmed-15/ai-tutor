@@ -1,0 +1,2321 @@
+{
+ "id": "cie-alevel-physics-9702-2025-2027",
+ "region": "INTL",
+ "framework": "Cambridge International AS & A Level Physics (9702) syllabus 2025–2027",
+ "board": "Cambridge",
+ "qualification": "AS & A Level",
+ "subject": "Physics",
+ "syllabusCode": "9702",
+ "gradeSystem": "course",
+ "source": {
+  "urls": [
+   "https://www.cambridgeinternational.org/Images/664565-2025-2027-syllabus.pdf",
+   "https://www.cambridgeinternational.org/programmes-and-qualifications/cambridge-international-as-and-a-level-physics-9702/"
+  ],
+  "publisher": "Cambridge University Press & Assessment (Cambridge International Education)",
+  "licence": "© Cambridge University Press & Assessment; structure + our own wording only",
+  "firstExam": "2025"
+ },
+ "grades": [
+  {
+   "grade": "AS",
+   "units": [
+    {
+     "id": "1-physical-quantities-and-units",
+     "title": "1 Physical quantities and units",
+     "topics": [
+      {
+       "id": "1-1-physical-quantities",
+       "title": "1.1 Physical quantities",
+       "subtopics": [
+        {
+         "id": "physical-quantities",
+         "title": "Physical quantities",
+         "outcomes": [
+          {
+           "code": "1.1",
+           "text": "Understand that all physical quantities consist of a numerical magnitude and a unit"
+          },
+          {
+           "code": null,
+           "text": "Make reasonable estimates of physical quantities included within the syllabus"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "1-2-si-units",
+       "title": "1.2 SI units",
+       "subtopics": [
+        {
+         "id": "si-units",
+         "title": "SI units",
+         "outcomes": [
+          {
+           "code": "1.2",
+           "text": "Recall the following SI base quantities and their units: mass (kg), length (m), time (s), current (A), temperature (K)"
+          },
+          {
+           "code": null,
+           "text": "Express derived units as products or quotients of the SI base units and use the derived units for quantities listed in this syllabus as appropriate"
+          },
+          {
+           "code": null,
+           "text": "Use SI base units to check the homogeneity of physical equations"
+          },
+          {
+           "code": null,
+           "text": "Recall and use the following prefixes and their symbols to indicate decimal submultiples or multiples of both base and derived units: pico (p), nano (n), micro (μ), milli (m), centi (c), deci (d), kilo (k), mega (M), giga (G), tera (T)"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "1-3-errors-and-uncertainties",
+       "title": "1.3 Errors and uncertainties",
+       "subtopics": [
+        {
+         "id": "errors-and-uncertainties",
+         "title": "Errors and uncertainties",
+         "outcomes": [
+          {
+           "code": "1.3",
+           "text": "Understand and explain the effects of systematic errors (including zero errors) and random errors in measurements"
+          },
+          {
+           "code": null,
+           "text": "Understand the distinction between precision and accuracy"
+          },
+          {
+           "code": null,
+           "text": "Assess the uncertainty in a derived quantity by simple addition of absolute or percentage uncertainties"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "1-4-scalars-and-vectors",
+       "title": "1.4 Scalars and vectors",
+       "subtopics": [
+        {
+         "id": "scalars-and-vectors",
+         "title": "Scalars and vectors",
+         "outcomes": [
+          {
+           "code": "1.4",
+           "text": "Understand the difference between scalar and vector quantities and give examples of scalar and vector quantities included in the syllabus"
+          },
+          {
+           "code": null,
+           "text": "Add and subtract coplanar vectors"
+          },
+          {
+           "code": null,
+           "text": "Represent a vector as two perpendicular components"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "2-kinematics",
+     "title": "2 Kinematics",
+     "topics": [
+      {
+       "id": "2-1-equations-of-motion",
+       "title": "2.1 Equations of motion",
+       "subtopics": [
+        {
+         "id": "equations-of-motion-part-1",
+         "title": "Equations of motion (part 1)",
+         "outcomes": [
+          {
+           "code": "2.1",
+           "text": "Define and use distance, displacement, speed, velocity and acceleration"
+          },
+          {
+           "code": null,
+           "text": "Use graphical methods to represent distance, displacement, speed, velocity and acceleration"
+          },
+          {
+           "code": null,
+           "text": "Determine displacement from the area under a velocity–time graph"
+          },
+          {
+           "code": null,
+           "text": "Determine velocity using the gradient of a displacement–time graph"
+          },
+          {
+           "code": null,
+           "text": "Determine acceleration using the gradient of a velocity–time graph"
+          }
+         ]
+        },
+        {
+         "id": "equations-of-motion-part-2",
+         "title": "Equations of motion (part 2)",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Derive, from the definitions of velocity and acceleration, equations that represent uniformly accelerated motion in a straight line"
+          },
+          {
+           "code": null,
+           "text": "Solve problems using equations that represent uniformly accelerated motion in a straight line, including the motion of bodies falling in a uniform gravitational field without air resistance"
+          },
+          {
+           "code": null,
+           "text": "Describe an experiment to determine the acceleration of free fall using a falling object"
+          },
+          {
+           "code": null,
+           "text": "Describe and explain motion due to a uniform velocity in one direction and a uniform acceleration in a perpendicular direction"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "3-dynamics",
+     "title": "3 Dynamics",
+     "topics": [
+      {
+       "id": "3-1-momentum-and-newton-s-laws-of-motion",
+       "title": "3.1 Momentum and Newton’s laws of motion",
+       "subtopics": [
+        {
+         "id": "momentum-and-newton-s-laws-of-motion",
+         "title": "Momentum and Newton’s laws of motion",
+         "outcomes": [
+          {
+           "code": "3.1",
+           "text": "Understand that mass is the property of an object that resists change in motion"
+          },
+          {
+           "code": null,
+           "text": "Recall F = ma and solve problems using it, understanding that acceleration and resultant force are always in the same direction"
+          },
+          {
+           "code": null,
+           "text": "Define and use linear momentum as the product of mass and velocity"
+          },
+          {
+           "code": null,
+           "text": "Define and use force as rate of change of momentum"
+          },
+          {
+           "code": null,
+           "text": "State and apply each of Newton’s laws of motion"
+          },
+          {
+           "code": null,
+           "text": "Describe and use the concept of weight as the effect of a gravitational field on a mass and recall that the weight of an object is equal to the product of its mass and the acceleration of free fall"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "3-2-non-uniform-motion",
+       "title": "3.2 Non-uniform motion",
+       "subtopics": [
+        {
+         "id": "non-uniform-motion",
+         "title": "Non-uniform motion",
+         "outcomes": [
+          {
+           "code": "3.2",
+           "text": "Show a qualitative understanding of frictional forces and viscous/drag forces including air resistance (no treatment of the coefficients of friction and viscosity is required, and a simple model of drag force increasing as speed increases is sufficient)"
+          },
+          {
+           "code": null,
+           "text": "Describe and explain qualitatively the motion of objects in a uniform gravitational field with air resistance"
+          },
+          {
+           "code": null,
+           "text": "Understand that objects moving against a resistive force may reach a terminal (constant) velocity"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "3-3-linear-momentum-and-its-conservation",
+       "title": "3.3 Linear momentum and its conservation",
+       "subtopics": [
+        {
+         "id": "linear-momentum-and-its-conservation",
+         "title": "Linear momentum and its conservation",
+         "outcomes": [
+          {
+           "code": "3.3",
+           "text": "State the principle of conservation of momentum"
+          },
+          {
+           "code": null,
+           "text": "Apply the principle of conservation of momentum to solve simple problems, including elastic and inelastic interactions between objects in both one and two dimensions (knowledge of the concept of coefficient of restitution is not required)"
+          },
+          {
+           "code": null,
+           "text": "Recall that, for an elastic collision, total kinetic energy is conserved and the relative speed of approach is equal to the relative speed of separation"
+          },
+          {
+           "code": null,
+           "text": "Understand that, while momentum of a system is always conserved in interactions between objects, some change in kinetic energy may take place"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "4-forces-density-and-pressure",
+     "title": "4 Forces, density and pressure",
+     "topics": [
+      {
+       "id": "4-1-turning-effects-of-forces",
+       "title": "4.1 Turning effects of forces",
+       "subtopics": [
+        {
+         "id": "turning-effects-of-forces",
+         "title": "Turning effects of forces",
+         "outcomes": [
+          {
+           "code": "4.1",
+           "text": "Understand that the weight of an object may be taken as acting at a single point known as its centre of gravity"
+          },
+          {
+           "code": null,
+           "text": "Define and apply the moment of a force"
+          },
+          {
+           "code": null,
+           "text": "Understand that a couple is a pair of forces that acts to produce rotation only"
+          },
+          {
+           "code": null,
+           "text": "Define and apply the torque of a couple"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "4-2-equilibrium-of-forces",
+       "title": "4.2 Equilibrium of forces",
+       "subtopics": [
+        {
+         "id": "equilibrium-of-forces",
+         "title": "Equilibrium of forces",
+         "outcomes": [
+          {
+           "code": "4.2",
+           "text": "State and apply the principle of moments"
+          },
+          {
+           "code": null,
+           "text": "Understand that, when there is no resultant force and no resultant torque, a system is in equilibrium"
+          },
+          {
+           "code": null,
+           "text": "Use a vector triangle to represent coplanar forces in equilibrium"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "4-3-density-and-pressure",
+       "title": "4.3 Density and pressure",
+       "subtopics": [
+        {
+         "id": "density-and-pressure",
+         "title": "Density and pressure",
+         "outcomes": [
+          {
+           "code": "4.3",
+           "text": "Define and use density"
+          },
+          {
+           "code": null,
+           "text": "Define and use pressure"
+          },
+          {
+           "code": null,
+           "text": "Derive, from the definitions of pressure and density, the equation for hydrostatic pressure ∆p = ρg∆h"
+          },
+          {
+           "code": null,
+           "text": "Use the equation ∆p = ρg∆h"
+          },
+          {
+           "code": null,
+           "text": "Understand that the upthrust acting on an object in a fluid is due to a difference in hydrostatic pressure"
+          },
+          {
+           "code": null,
+           "text": "Calculate the upthrust acting on an object in a fluid using the equation F = ρgV (Archimedes’ principle)"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "5-work-energy-and-power",
+     "title": "5 Work, energy and power",
+     "topics": [
+      {
+       "id": "5-1-energy-conservation",
+       "title": "5.1 Energy conservation",
+       "subtopics": [
+        {
+         "id": "energy-conservation",
+         "title": "Energy conservation",
+         "outcomes": [
+          {
+           "code": "5.1",
+           "text": "Understand the concept of work, and recall and use work done = force × displacement in the direction of the force"
+          },
+          {
+           "code": null,
+           "text": "Recall and apply the principle of conservation of energy"
+          },
+          {
+           "code": null,
+           "text": "Recall and understand that the efficiency of a system is the ratio of useful energy output from the system to the total energy input"
+          },
+          {
+           "code": null,
+           "text": "Use the concept of efficiency to solve problems"
+          },
+          {
+           "code": null,
+           "text": "Define power as work done per unit time"
+          },
+          {
+           "code": null,
+           "text": "Solve problems using P = W / t"
+          },
+          {
+           "code": null,
+           "text": "Derive P = Fv and use it to solve problems"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "5-2-gravitational-potential-energy-and-kinetic-e",
+       "title": "5.2 Gravitational potential energy and kinetic energy",
+       "subtopics": [
+        {
+         "id": "gravitational-potential-energy-and-kinetic-energ",
+         "title": "Gravitational potential energy and kinetic energy",
+         "outcomes": [
+          {
+           "code": "5.2",
+           "text": "Derive, using W = Fs, the formula ∆EP = mg∆h for gravitational potential energy changes in a uniform gravitational field"
+          },
+          {
+           "code": null,
+           "text": "Recall and use the formula ∆EP = mg∆h for gravitational potential energy changes in a uniform gravitational field"
+          },
+          {
+           "code": null,
+           "text": "Derive, using the equations of motion, the formula for kinetic energy EK = ½mv²"
+          },
+          {
+           "code": null,
+           "text": "Recall and use EK = ½mv²"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "6-deformation-of-solids",
+     "title": "6 Deformation of solids",
+     "topics": [
+      {
+       "id": "6-1-stress-and-strain",
+       "title": "6.1 Stress and strain",
+       "subtopics": [
+        {
+         "id": "stress-and-strain",
+         "title": "Stress and strain",
+         "outcomes": [
+          {
+           "code": "6.1",
+           "text": "Understand that deformation is caused by tensile or compressive forces (forces and deformations will be assumed to be in one dimension only)"
+          },
+          {
+           "code": null,
+           "text": "Understand and use the terms load, extension, compression and limit of proportionality"
+          },
+          {
+           "code": null,
+           "text": "Recall and use Hooke’s law"
+          },
+          {
+           "code": null,
+           "text": "Recall and use the formula for the spring constant k = F / x"
+          },
+          {
+           "code": null,
+           "text": "Define and use the terms stress, strain and the Young modulus"
+          },
+          {
+           "code": null,
+           "text": "Describe an experiment to determine the Young modulus of a metal in the form of a wire"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "6-2-elastic-and-plastic-behaviour",
+       "title": "6.2 Elastic and plastic behaviour",
+       "subtopics": [
+        {
+         "id": "elastic-and-plastic-behaviour",
+         "title": "Elastic and plastic behaviour",
+         "outcomes": [
+          {
+           "code": "6.2",
+           "text": "Understand and use the terms elastic deformation, plastic deformation and elastic limit"
+          },
+          {
+           "code": null,
+           "text": "Understand that the area under the force–extension graph represents the work done"
+          },
+          {
+           "code": null,
+           "text": "Determine the elastic potential energy of a material deformed within its limit of proportionality from the area under the force–extension graph"
+          },
+          {
+           "code": null,
+           "text": "Recall and use EP = ½Fx = ½kx² for a material deformed within its limit of proportionality"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "7-waves",
+     "title": "7 Waves",
+     "topics": [
+      {
+       "id": "7-1-progressive-waves",
+       "title": "7.1 Progressive waves",
+       "subtopics": [
+        {
+         "id": "progressive-waves",
+         "title": "Progressive waves",
+         "outcomes": [
+          {
+           "code": "7.1",
+           "text": "Describe what is meant by wave motion as illustrated by vibration in ropes, springs and ripple tanks"
+          },
+          {
+           "code": null,
+           "text": "Understand and use the terms displacement, amplitude, phase difference, period, frequency, wavelength and speed"
+          },
+          {
+           "code": null,
+           "text": "Understand the use of the time-base and y-gain of a cathode-ray oscilloscope (CRO) to determine frequency and amplitude"
+          },
+          {
+           "code": null,
+           "text": "Derive, using the definitions of speed, frequency and wavelength, the wave equation v = f λ"
+          },
+          {
+           "code": null,
+           "text": "Recall and use v = f λ"
+          },
+          {
+           "code": null,
+           "text": "Understand that energy is transferred by a progressive wave"
+          },
+          {
+           "code": null,
+           "text": "Recall and use intensity = power/area and intensity ∝ (amplitude)² for a progressive wave"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "7-2-transverse-and-longitudinal-waves",
+       "title": "7.2 Transverse and longitudinal waves",
+       "subtopics": [
+        {
+         "id": "transverse-and-longitudinal-waves",
+         "title": "Transverse and longitudinal waves",
+         "outcomes": [
+          {
+           "code": "7.2",
+           "text": "Compare transverse and longitudinal waves"
+          },
+          {
+           "code": null,
+           "text": "Analyse and interpret graphical representations of transverse and longitudinal waves"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "7-3-doppler-effect-for-sound-waves",
+       "title": "7.3 Doppler effect for sound waves",
+       "subtopics": [
+        {
+         "id": "doppler-effect-for-sound-waves",
+         "title": "Doppler effect for sound waves",
+         "outcomes": [
+          {
+           "code": "7.3",
+           "text": "Understand that when a source of sound waves moves relative to a stationary observer, the observed frequency is different from the source frequency (understanding of the Doppler effect for a stationary source and a moving observer is not required)"
+          },
+          {
+           "code": null,
+           "text": "Use the expression fo = fs v / (v ± vs) for the observed frequency when a source of sound waves moves relative to a stationary observer"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "7-4-electromagnetic-spectrum",
+       "title": "7.4 Electromagnetic spectrum",
+       "subtopics": [
+        {
+         "id": "electromagnetic-spectrum",
+         "title": "Electromagnetic spectrum",
+         "outcomes": [
+          {
+           "code": "7.4",
+           "text": "State that all electromagnetic waves are transverse waves that travel with the same speed c in free space"
+          },
+          {
+           "code": null,
+           "text": "Recall the approximate range of wavelengths in free space of the principal regions of the electromagnetic spectrum from radio waves to γ-rays"
+          },
+          {
+           "code": null,
+           "text": "Recall that wavelengths in the range 400–700 nm in free space are visible to the human eye"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "7-5-polarisation",
+       "title": "7.5 Polarisation",
+       "subtopics": [
+        {
+         "id": "polarisation",
+         "title": "Polarisation",
+         "outcomes": [
+          {
+           "code": "7.5",
+           "text": "Understand that polarisation is a phenomenon associated with transverse waves"
+          },
+          {
+           "code": null,
+           "text": "Recall and use Malus’s law (I = I0 cos²θ) to calculate the intensity of a plane-polarised electromagnetic wave after transmission through a polarising filter or a series of polarising filters (calculation of the effect of a polarising filter on the intensity of an unpolarised wave is not required)"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "8-superposition",
+     "title": "8 Superposition",
+     "topics": [
+      {
+       "id": "8-1-stationary-waves",
+       "title": "8.1 Stationary waves",
+       "subtopics": [
+        {
+         "id": "stationary-waves",
+         "title": "Stationary waves",
+         "outcomes": [
+          {
+           "code": "8.1",
+           "text": "Explain and use the principle of superposition"
+          },
+          {
+           "code": null,
+           "text": "Show an understanding of experiments that demonstrate stationary waves using microwaves, stretched strings and air columns (it will be assumed that end corrections are negligible; knowledge of the concept of end corrections is not required)"
+          },
+          {
+           "code": null,
+           "text": "Explain the formation of a stationary wave using a graphical method, and identify nodes and antinodes"
+          },
+          {
+           "code": null,
+           "text": "Understand how wavelength may be determined from the positions of nodes or antinodes of a stationary wave"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "8-2-diffraction",
+       "title": "8.2 Diffraction",
+       "subtopics": [
+        {
+         "id": "diffraction",
+         "title": "Diffraction",
+         "outcomes": [
+          {
+           "code": "8.2",
+           "text": "Explain the meaning of the term diffraction"
+          },
+          {
+           "code": null,
+           "text": "Show an understanding of experiments that demonstrate diffraction including the qualitative effect of the gap width relative to the wavelength of the wave; for example diffraction of water waves in a ripple tank"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "8-3-interference",
+       "title": "8.3 Interference",
+       "subtopics": [
+        {
+         "id": "interference",
+         "title": "Interference",
+         "outcomes": [
+          {
+           "code": "8.3",
+           "text": "Understand the terms interference and coherence"
+          },
+          {
+           "code": null,
+           "text": "Show an understanding of experiments that demonstrate two-source interference using water waves in a ripple tank, sound, light and microwaves"
+          },
+          {
+           "code": null,
+           "text": "Understand the conditions required if two-source interference fringes are to be observed"
+          },
+          {
+           "code": null,
+           "text": "Recall and use λ = ax / D for double-slit interference using light"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "8-4-the-diffraction-grating",
+       "title": "8.4 The diffraction grating",
+       "subtopics": [
+        {
+         "id": "the-diffraction-grating",
+         "title": "The diffraction grating",
+         "outcomes": [
+          {
+           "code": "8.4",
+           "text": "Recall and use d sin θ = nλ"
+          },
+          {
+           "code": null,
+           "text": "Describe the use of a diffraction grating to determine the wavelength of light (the structure and use of the spectrometer are not included)"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "9-electricity",
+     "title": "9 Electricity",
+     "topics": [
+      {
+       "id": "9-1-electric-current",
+       "title": "9.1 Electric current",
+       "subtopics": [
+        {
+         "id": "electric-current",
+         "title": "Electric current",
+         "outcomes": [
+          {
+           "code": "9.1",
+           "text": "Understand that an electric current is a flow of charge carriers"
+          },
+          {
+           "code": null,
+           "text": "Understand that the charge on charge carriers is quantised"
+          },
+          {
+           "code": null,
+           "text": "Recall and use Q = It"
+          },
+          {
+           "code": null,
+           "text": "Use, for a current-carrying conductor, the expression I = Anvq, where n is the number density of charge carriers"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "9-2-potential-difference-and-power",
+       "title": "9.2 Potential difference and power",
+       "subtopics": [
+        {
+         "id": "potential-difference-and-power",
+         "title": "Potential difference and power",
+         "outcomes": [
+          {
+           "code": "9.2",
+           "text": "Define the potential difference across a component as the energy transferred per unit charge"
+          },
+          {
+           "code": null,
+           "text": "Recall and use V = W / Q"
+          },
+          {
+           "code": null,
+           "text": "Recall and use P = VI, P = I²R and P = V²/R"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "9-3-resistance-and-resistivity",
+       "title": "9.3 Resistance and resistivity",
+       "subtopics": [
+        {
+         "id": "resistance-and-resistivity",
+         "title": "Resistance and resistivity",
+         "outcomes": [
+          {
+           "code": "9.3",
+           "text": "Define resistance"
+          },
+          {
+           "code": null,
+           "text": "Recall and use V = IR"
+          },
+          {
+           "code": null,
+           "text": "Sketch the I–V characteristics of a metallic conductor at constant temperature, a semiconductor diode and a filament lamp"
+          },
+          {
+           "code": null,
+           "text": "Explain that the resistance of a filament lamp increases as current increases because its temperature increases"
+          },
+          {
+           "code": null,
+           "text": "State Ohm’s law"
+          },
+          {
+           "code": null,
+           "text": "Recall and use R = ρL / A"
+          },
+          {
+           "code": null,
+           "text": "Understand that the resistance of a light-dependent resistor (LDR) decreases as the light intensity increases"
+          },
+          {
+           "code": null,
+           "text": "Understand that the resistance of a thermistor decreases as the temperature increases (it will be assumed that thermistors have a negative temperature coefficient)"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "10-d-c-circuits",
+     "title": "10 D.C. circuits",
+     "topics": [
+      {
+       "id": "10-1-practical-circuits",
+       "title": "10.1 Practical circuits",
+       "subtopics": [
+        {
+         "id": "practical-circuits",
+         "title": "Practical circuits",
+         "outcomes": [
+          {
+           "code": "10.1",
+           "text": "Recall and use the circuit symbols shown in section 6 of this syllabus"
+          },
+          {
+           "code": null,
+           "text": "Draw and interpret circuit diagrams containing the circuit symbols shown in section 6 of this syllabus"
+          },
+          {
+           "code": null,
+           "text": "Define and use the electromotive force (e.m.f.) of a source as energy transferred per unit charge in driving charge around a complete circuit"
+          },
+          {
+           "code": null,
+           "text": "Distinguish between e.m.f. and potential difference (p.d.) in terms of energy considerations"
+          },
+          {
+           "code": null,
+           "text": "Understand the effects of the internal resistance of a source of e.m.f. on the terminal potential difference"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "10-2-kirchhoff-s-laws",
+       "title": "10.2 Kirchhoff’s laws",
+       "subtopics": [
+        {
+         "id": "kirchhoff-s-laws",
+         "title": "Kirchhoff’s laws",
+         "outcomes": [
+          {
+           "code": "10.2",
+           "text": "Recall Kirchhoff’s first law and understand that it is a consequence of conservation of charge"
+          },
+          {
+           "code": null,
+           "text": "Recall Kirchhoff’s second law and understand that it is a consequence of conservation of energy"
+          },
+          {
+           "code": null,
+           "text": "Derive, using Kirchhoff’s laws, a formula for the combined resistance of two or more resistors in series"
+          },
+          {
+           "code": null,
+           "text": "Use the formula for the combined resistance of two or more resistors in series"
+          },
+          {
+           "code": null,
+           "text": "Derive, using Kirchhoff’s laws, a formula for the combined resistance of two or more resistors in parallel"
+          },
+          {
+           "code": null,
+           "text": "Use the formula for the combined resistance of two or more resistors in parallel"
+          },
+          {
+           "code": null,
+           "text": "Use Kirchhoff’s laws to solve simple circuit problems"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "10-3-potential-dividers",
+       "title": "10.3 Potential dividers",
+       "subtopics": [
+        {
+         "id": "potential-dividers",
+         "title": "Potential dividers",
+         "outcomes": [
+          {
+           "code": "10.3",
+           "text": "Understand the principle of a potential divider circuit"
+          },
+          {
+           "code": null,
+           "text": "Recall and use the principle of the potentiometer as a means of comparing potential differences"
+          },
+          {
+           "code": null,
+           "text": "Understand the use of a galvanometer in null methods"
+          },
+          {
+           "code": null,
+           "text": "Explain the use of thermistors and light-dependent resistors in potential dividers to provide a potential difference that is dependent on temperature and light intensity"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "11-particle-physics",
+     "title": "11 Particle physics",
+     "topics": [
+      {
+       "id": "11-1-atoms-nuclei-and-radiation",
+       "title": "11.1 Atoms, nuclei and radiation",
+       "subtopics": [
+        {
+         "id": "atoms-nuclei-and-radiation-part-1",
+         "title": "Atoms, nuclei and radiation (part 1)",
+         "outcomes": [
+          {
+           "code": "11.1",
+           "text": "Infer from the results of the α-particle scattering experiment the existence and small size of the nucleus"
+          },
+          {
+           "code": null,
+           "text": "Describe a simple model for the nuclear atom to include protons, neutrons and orbital electrons"
+          },
+          {
+           "code": null,
+           "text": "Distinguish between nucleon number and proton number"
+          },
+          {
+           "code": null,
+           "text": "Understand that isotopes are forms of the same element with different numbers of neutrons in their nuclei"
+          },
+          {
+           "code": null,
+           "text": "Understand and use the notation ᴬZX (A = nucleon number, Z = proton number) for the representation of nuclides"
+          },
+          {
+           "code": null,
+           "text": "Understand that nucleon number and charge are conserved in nuclear processes"
+          }
+         ]
+        },
+        {
+         "id": "atoms-nuclei-and-radiation-part-2",
+         "title": "Atoms, nuclei and radiation (part 2)",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe the composition, mass and charge of α-, β- and γ-radiations (both β⁻ (electrons) and β⁺ (positrons) are included)"
+          },
+          {
+           "code": null,
+           "text": "Understand that an antiparticle has the same mass but opposite charge to the corresponding particle, and that a positron is the antiparticle of an electron"
+          },
+          {
+           "code": null,
+           "text": "State that (electron) antineutrinos are produced during β⁻ decay and (electron) neutrinos are produced during β⁺ decay"
+          },
+          {
+           "code": null,
+           "text": "Understand that α-particles have discrete energies but that β-particles have a continuous range of energies because (anti)neutrinos are emitted in β-decay"
+          },
+          {
+           "code": null,
+           "text": "Represent α- and β-decay by a radioactive decay equation of the form ²³⁸₉₂U → ²³⁴₉₀Th + ⁴₂α"
+          },
+          {
+           "code": null,
+           "text": "Use the unified atomic mass unit (u) as a unit of mass"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "11-2-fundamental-particles",
+       "title": "11.2 Fundamental particles",
+       "subtopics": [
+        {
+         "id": "fundamental-particles",
+         "title": "Fundamental particles",
+         "outcomes": [
+          {
+           "code": "11.2",
+           "text": "Understand that a quark is a fundamental particle and that there are six flavours (types) of quark: up, down, strange, charm, top and bottom"
+          },
+          {
+           "code": null,
+           "text": "Recall and use the charge of each flavour of quark and understand that its respective antiquark has the opposite charge (no knowledge of any other properties of quarks is required)"
+          },
+          {
+           "code": null,
+           "text": "Recall that protons and neutrons are not fundamental particles and describe protons and neutrons in terms of their quark composition"
+          },
+          {
+           "code": null,
+           "text": "Understand that a hadron may be either a baryon (consisting of three quarks) or a meson (consisting of one quark and one antiquark)"
+          },
+          {
+           "code": null,
+           "text": "Describe the changes to quark composition that take place during β⁻ and β⁺ decay"
+          },
+          {
+           "code": null,
+           "text": "Recall that electrons and neutrinos are fundamental particles called leptons"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "A Level",
+   "units": [
+    {
+     "id": "12-motion-in-a-circle",
+     "title": "12 Motion in a circle",
+     "topics": [
+      {
+       "id": "12-1-kinematics-of-uniform-circular-motion",
+       "title": "12.1 Kinematics of uniform circular motion",
+       "subtopics": [
+        {
+         "id": "kinematics-of-uniform-circular-motion",
+         "title": "Kinematics of uniform circular motion",
+         "outcomes": [
+          {
+           "code": "12.1",
+           "text": "Define the radian and express angular displacement in radians"
+          },
+          {
+           "code": null,
+           "text": "Understand and use the concept of angular speed"
+          },
+          {
+           "code": null,
+           "text": "Recall and use ω = 2π / T and v = rω"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "12-2-centripetal-acceleration",
+       "title": "12.2 Centripetal acceleration",
+       "subtopics": [
+        {
+         "id": "centripetal-acceleration",
+         "title": "Centripetal acceleration",
+         "outcomes": [
+          {
+           "code": "12.2",
+           "text": "Understand that a force of constant magnitude that is always perpendicular to the direction of motion causes centripetal acceleration"
+          },
+          {
+           "code": null,
+           "text": "Understand that centripetal acceleration causes circular motion with a constant angular speed"
+          },
+          {
+           "code": null,
+           "text": "Recall and use a = rω² and a = v²/r"
+          },
+          {
+           "code": null,
+           "text": "Recall and use F = mrω² and F = mv²/r"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "13-gravitational-fields",
+     "title": "13 Gravitational fields",
+     "topics": [
+      {
+       "id": "13-1-gravitational-field",
+       "title": "13.1 Gravitational field",
+       "subtopics": [
+        {
+         "id": "gravitational-field",
+         "title": "Gravitational field",
+         "outcomes": [
+          {
+           "code": "13.1",
+           "text": "Understand that a gravitational field is an example of a field of force and define gravitational field as force per unit mass"
+          },
+          {
+           "code": null,
+           "text": "Represent a gravitational field by means of field lines"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "13-2-gravitational-force-between-point-masses",
+       "title": "13.2 Gravitational force between point masses",
+       "subtopics": [
+        {
+         "id": "gravitational-force-between-point-masses",
+         "title": "Gravitational force between point masses",
+         "outcomes": [
+          {
+           "code": "13.2",
+           "text": "Understand that, for a point outside a uniform sphere, the mass of the sphere may be considered to be a point mass at its centre"
+          },
+          {
+           "code": null,
+           "text": "Recall and use Newton’s law of gravitation F = Gm1m2/r² for the force between two point masses"
+          },
+          {
+           "code": null,
+           "text": "Analyse circular orbits in gravitational fields by relating the gravitational force to the centripetal acceleration it causes"
+          },
+          {
+           "code": null,
+           "text": "Understand that a satellite in a geostationary orbit remains at the same point above the Earth’s surface, with an orbital period of 24 hours, orbiting from west to east, directly above the Equator"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "13-3-gravitational-field-of-a-point-mass",
+       "title": "13.3 Gravitational field of a point mass",
+       "subtopics": [
+        {
+         "id": "gravitational-field-of-a-point-mass",
+         "title": "Gravitational field of a point mass",
+         "outcomes": [
+          {
+           "code": "13.3",
+           "text": "Derive, from Newton’s law of gravitation and the definition of gravitational field, the equation g = GM/r² for the gravitational field strength due to a point mass"
+          },
+          {
+           "code": null,
+           "text": "Recall and use g = GM/r²"
+          },
+          {
+           "code": null,
+           "text": "Understand why g is approximately constant for small changes in height near the Earth’s surface"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "13-4-gravitational-potential",
+       "title": "13.4 Gravitational potential",
+       "subtopics": [
+        {
+         "id": "gravitational-potential",
+         "title": "Gravitational potential",
+         "outcomes": [
+          {
+           "code": "13.4",
+           "text": "Define gravitational potential at a point as the work done per unit mass in bringing a small test mass from infinity to the point"
+          },
+          {
+           "code": null,
+           "text": "Use ϕ = –GM / r for the gravitational potential in the field due to a point mass"
+          },
+          {
+           "code": null,
+           "text": "Understand how the concept of gravitational potential leads to the gravitational potential energy of two point masses and use EP = –GMm / r"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "14-temperature",
+     "title": "14 Temperature",
+     "topics": [
+      {
+       "id": "14-1-thermal-equilibrium",
+       "title": "14.1 Thermal equilibrium",
+       "subtopics": [
+        {
+         "id": "thermal-equilibrium",
+         "title": "Thermal equilibrium",
+         "outcomes": [
+          {
+           "code": "14.1",
+           "text": "Understand that (thermal) energy is transferred from a region of higher temperature to a region of lower temperature"
+          },
+          {
+           "code": null,
+           "text": "Understand that regions of equal temperature are in thermal equilibrium"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "14-2-temperature-scales",
+       "title": "14.2 Temperature scales",
+       "subtopics": [
+        {
+         "id": "temperature-scales",
+         "title": "Temperature scales",
+         "outcomes": [
+          {
+           "code": "14.2",
+           "text": "Understand that a physical property that varies with temperature may be used for the measurement of temperature and state examples of such properties, including the density of a liquid, volume of a gas at constant pressure, resistance of a metal, e.m.f. of a thermocouple"
+          },
+          {
+           "code": null,
+           "text": "Understand that the scale of thermodynamic temperature does not depend on the property of any particular substance"
+          },
+          {
+           "code": null,
+           "text": "Convert temperatures between kelvin and degrees Celsius and recall that T / K = θ / °C + 273.15"
+          },
+          {
+           "code": null,
+           "text": "Understand that the lowest possible temperature is zero kelvin on the thermodynamic temperature scale and that this is known as absolute zero"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "14-3-specific-heat-capacity-and-specific-latent-",
+       "title": "14.3 Specific heat capacity and specific latent heat",
+       "subtopics": [
+        {
+         "id": "specific-heat-capacity-and-specific-latent-heat",
+         "title": "Specific heat capacity and specific latent heat",
+         "outcomes": [
+          {
+           "code": "14.3",
+           "text": "Define and use specific heat capacity"
+          },
+          {
+           "code": null,
+           "text": "Define and use specific latent heat and distinguish between specific latent heat of fusion and specific latent heat of vaporisation"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "15-ideal-gases",
+     "title": "15 Ideal gases",
+     "topics": [
+      {
+       "id": "15-1-the-mole",
+       "title": "15.1 The mole",
+       "subtopics": [
+        {
+         "id": "the-mole",
+         "title": "The mole",
+         "outcomes": [
+          {
+           "code": "15.1",
+           "text": "Understand that amount of substance is an SI base quantity with the base unit mol"
+          },
+          {
+           "code": null,
+           "text": "Use molar quantities where one mole of any substance is the amount containing a number of particles of that substance equal to the Avogadro constant NA"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "15-2-equation-of-state",
+       "title": "15.2 Equation of state",
+       "subtopics": [
+        {
+         "id": "equation-of-state",
+         "title": "Equation of state",
+         "outcomes": [
+          {
+           "code": "15.2",
+           "text": "Understand that a gas obeying pV ∝ T, where T is the thermodynamic temperature, is known as an ideal gas"
+          },
+          {
+           "code": null,
+           "text": "Recall and use the equation of state for an ideal gas expressed as pV = nRT, where n = amount of substance (number of moles) and as pV = NkT, where N = number of molecules"
+          },
+          {
+           "code": null,
+           "text": "Recall that the Boltzmann constant k is given by k = R / NA"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "15-3-kinetic-theory-of-gases",
+       "title": "15.3 Kinetic theory of gases",
+       "subtopics": [
+        {
+         "id": "kinetic-theory-of-gases",
+         "title": "Kinetic theory of gases",
+         "outcomes": [
+          {
+           "code": "15.3",
+           "text": "State the basic assumptions of the kinetic theory of gases"
+          },
+          {
+           "code": null,
+           "text": "Explain how molecular movement causes the pressure exerted by a gas and derive and use the relationship pV = ⅓Nm<c²>, where <c²> is the mean-square speed (a simple model considering one-dimensional collisions and then extending to three dimensions using ⅓<c²> = <cx²> is sufficient)"
+          },
+          {
+           "code": null,
+           "text": "Understand that the root-mean-square speed cr.m.s. is given by √<c²>"
+          },
+          {
+           "code": null,
+           "text": "Compare pV = ⅓Nm<c²> with pV = NkT to deduce that the average translational kinetic energy of a molecule is (3/2)kT, and recall and use this expression"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "16-thermodynamics",
+     "title": "16 Thermodynamics",
+     "topics": [
+      {
+       "id": "16-1-internal-energy",
+       "title": "16.1 Internal energy",
+       "subtopics": [
+        {
+         "id": "internal-energy",
+         "title": "Internal energy",
+         "outcomes": [
+          {
+           "code": "16.1",
+           "text": "Understand that internal energy is determined by the state of the system and that it can be expressed as the sum of a random distribution of kinetic and potential energies associated with the molecules of a system"
+          },
+          {
+           "code": null,
+           "text": "Relate a rise in temperature of an object to an increase in its internal energy"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "16-2-the-first-law-of-thermodynamics",
+       "title": "16.2 The first law of thermodynamics",
+       "subtopics": [
+        {
+         "id": "the-first-law-of-thermodynamics",
+         "title": "The first law of thermodynamics",
+         "outcomes": [
+          {
+           "code": "16.2",
+           "text": "Recall and use W = p∆V for the work done when the volume of a gas changes at constant pressure and understand the difference between the work done by the gas and the work done on the gas"
+          },
+          {
+           "code": null,
+           "text": "Recall and use the first law of thermodynamics ∆U = q + W expressed in terms of the increase in internal energy, the heating of the system (energy transferred to the system by heating) and the work done on the system"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "17-oscillations",
+     "title": "17 Oscillations",
+     "topics": [
+      {
+       "id": "17-1-simple-harmonic-oscillations",
+       "title": "17.1 Simple harmonic oscillations",
+       "subtopics": [
+        {
+         "id": "simple-harmonic-oscillations",
+         "title": "Simple harmonic oscillations",
+         "outcomes": [
+          {
+           "code": "17.1",
+           "text": "Understand and use the terms displacement, amplitude, period, frequency, angular frequency and phase difference in the context of oscillations, and express the period in terms of both frequency and angular frequency"
+          },
+          {
+           "code": null,
+           "text": "Understand that simple harmonic motion occurs when acceleration is proportional to displacement from a fixed point and in the opposite direction"
+          },
+          {
+           "code": null,
+           "text": "Use a = –ω²x and recall and use, as a solution to this equation, x = x0 sin ωt"
+          },
+          {
+           "code": null,
+           "text": "Use the equations v = v0 cos ωt and v = ±ω√(x0² − x²)"
+          },
+          {
+           "code": null,
+           "text": "Analyse and interpret graphical representations of the variations of displacement, velocity and acceleration for simple harmonic motion"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "17-2-energy-in-simple-harmonic-motion",
+       "title": "17.2 Energy in simple harmonic motion",
+       "subtopics": [
+        {
+         "id": "energy-in-simple-harmonic-motion",
+         "title": "Energy in simple harmonic motion",
+         "outcomes": [
+          {
+           "code": "17.2",
+           "text": "Describe the interchange between kinetic and potential energy during simple harmonic motion"
+          },
+          {
+           "code": null,
+           "text": "Recall and use E = ½mω²x0² for the total energy of a system undergoing simple harmonic motion"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "17-3-damped-and-forced-oscillations-resonance",
+       "title": "17.3 Damped and forced oscillations, resonance",
+       "subtopics": [
+        {
+         "id": "damped-and-forced-oscillations-resonance",
+         "title": "Damped and forced oscillations, resonance",
+         "outcomes": [
+          {
+           "code": "17.3",
+           "text": "Understand that a resistive force acting on an oscillating system causes damping"
+          },
+          {
+           "code": null,
+           "text": "Understand and use the terms light, critical and heavy damping and sketch displacement–time graphs illustrating these types of damping"
+          },
+          {
+           "code": null,
+           "text": "Understand that resonance involves a maximum amplitude of oscillations and that this occurs when an oscillating system is forced to oscillate at its natural frequency"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "18-electric-fields",
+     "title": "18 Electric fields",
+     "topics": [
+      {
+       "id": "18-1-electric-fields-and-field-lines",
+       "title": "18.1 Electric fields and field lines",
+       "subtopics": [
+        {
+         "id": "electric-fields-and-field-lines",
+         "title": "Electric fields and field lines",
+         "outcomes": [
+          {
+           "code": "18.1",
+           "text": "Understand that an electric field is an example of a field of force and define electric field as force per unit positive charge"
+          },
+          {
+           "code": null,
+           "text": "Recall and use F = qE for the force on a charge in an electric field"
+          },
+          {
+           "code": null,
+           "text": "Represent an electric field by means of field lines"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "18-2-uniform-electric-fields",
+       "title": "18.2 Uniform electric fields",
+       "subtopics": [
+        {
+         "id": "uniform-electric-fields",
+         "title": "Uniform electric fields",
+         "outcomes": [
+          {
+           "code": "18.2",
+           "text": "Recall and use E = ∆V / ∆d to calculate the field strength of the uniform field between charged parallel plates"
+          },
+          {
+           "code": null,
+           "text": "Describe the effect of a uniform electric field on the motion of charged particles"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "18-3-electric-force-between-point-charges",
+       "title": "18.3 Electric force between point charges",
+       "subtopics": [
+        {
+         "id": "electric-force-between-point-charges",
+         "title": "Electric force between point charges",
+         "outcomes": [
+          {
+           "code": "18.3",
+           "text": "Understand that, for a point outside a spherical conductor, the charge on the sphere may be considered to be a point charge at its centre"
+          },
+          {
+           "code": null,
+           "text": "Recall and use Coulomb’s law F = Q1Q2/(4πε0r²) for the force between two point charges in free space"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "18-4-electric-field-of-a-point-charge",
+       "title": "18.4 Electric field of a point charge",
+       "subtopics": [
+        {
+         "id": "electric-field-of-a-point-charge",
+         "title": "Electric field of a point charge",
+         "outcomes": [
+          {
+           "code": "18.4",
+           "text": "Recall and use E = Q/(4πε0r²) for the electric field strength due to a point charge in free space"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "18-5-electric-potential",
+       "title": "18.5 Electric potential",
+       "subtopics": [
+        {
+         "id": "electric-potential",
+         "title": "Electric potential",
+         "outcomes": [
+          {
+           "code": "18.5",
+           "text": "Define electric potential at a point as the work done per unit positive charge in bringing a small test charge from infinity to the point"
+          },
+          {
+           "code": null,
+           "text": "Recall and use the fact that the electric field at a point is equal to the negative of potential gradient at that point"
+          },
+          {
+           "code": null,
+           "text": "Use V = Q/(4πε0r) for the electric potential in the field due to a point charge"
+          },
+          {
+           "code": null,
+           "text": "Understand how the concept of electric potential leads to the electric potential energy of two point charges and use EP = Qq/(4πε0r)"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "19-capacitance",
+     "title": "19 Capacitance",
+     "topics": [
+      {
+       "id": "19-1-capacitors-and-capacitance",
+       "title": "19.1 Capacitors and capacitance",
+       "subtopics": [
+        {
+         "id": "capacitors-and-capacitance",
+         "title": "Capacitors and capacitance",
+         "outcomes": [
+          {
+           "code": "19.1",
+           "text": "Define capacitance, as applied to both isolated spherical conductors and to parallel plate capacitors"
+          },
+          {
+           "code": null,
+           "text": "Recall and use C = Q / V"
+          },
+          {
+           "code": null,
+           "text": "Derive, using C = Q / V, formulae for the combined capacitance of capacitors in series and in parallel"
+          },
+          {
+           "code": null,
+           "text": "Use the capacitance formulae for capacitors in series and in parallel"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "19-2-energy-stored-in-a-capacitor",
+       "title": "19.2 Energy stored in a capacitor",
+       "subtopics": [
+        {
+         "id": "energy-stored-in-a-capacitor",
+         "title": "Energy stored in a capacitor",
+         "outcomes": [
+          {
+           "code": "19.2",
+           "text": "Determine the electric potential energy stored in a capacitor from the area under the potential–charge graph"
+          },
+          {
+           "code": null,
+           "text": "Recall and use W = ½QV = ½CV²"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "19-3-discharging-a-capacitor",
+       "title": "19.3 Discharging a capacitor",
+       "subtopics": [
+        {
+         "id": "discharging-a-capacitor",
+         "title": "Discharging a capacitor",
+         "outcomes": [
+          {
+           "code": "19.3",
+           "text": "Analyse graphs of the variation with time of potential difference, charge and current for a capacitor discharging through a resistor"
+          },
+          {
+           "code": null,
+           "text": "Recall and use τ = RC for the time constant for a capacitor discharging through a resistor"
+          },
+          {
+           "code": null,
+           "text": "Use equations of the form x = x0e^–(t/RC) where x could represent current, charge or potential difference for a capacitor discharging through a resistor"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "20-magnetic-fields",
+     "title": "20 Magnetic fields",
+     "topics": [
+      {
+       "id": "20-1-concept-of-a-magnetic-field",
+       "title": "20.1 Concept of a magnetic field",
+       "subtopics": [
+        {
+         "id": "concept-of-a-magnetic-field",
+         "title": "Concept of a magnetic field",
+         "outcomes": [
+          {
+           "code": "20.1",
+           "text": "Understand that a magnetic field is an example of a field of force produced either by moving charges or by permanent magnets"
+          },
+          {
+           "code": null,
+           "text": "Represent a magnetic field by field lines"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "20-2-force-on-a-current-carrying-conductor",
+       "title": "20.2 Force on a current-carrying conductor",
+       "subtopics": [
+        {
+         "id": "force-on-a-current-carrying-conductor",
+         "title": "Force on a current-carrying conductor",
+         "outcomes": [
+          {
+           "code": "20.2",
+           "text": "Understand that a force might act on a current-carrying conductor placed in a magnetic field"
+          },
+          {
+           "code": null,
+           "text": "Recall and use the equation F = BIL sin θ, with directions as interpreted by Fleming’s left-hand rule"
+          },
+          {
+           "code": null,
+           "text": "Define magnetic flux density as the force acting per unit current per unit length on a wire placed at right-angles to the magnetic field"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "20-3-force-on-a-moving-charge",
+       "title": "20.3 Force on a moving charge",
+       "subtopics": [
+        {
+         "id": "force-on-a-moving-charge",
+         "title": "Force on a moving charge",
+         "outcomes": [
+          {
+           "code": "20.3",
+           "text": "Determine the direction of the force on a charge moving in a magnetic field"
+          },
+          {
+           "code": null,
+           "text": "Recall and use F = BQv sin θ"
+          },
+          {
+           "code": null,
+           "text": "Understand the origin of the Hall voltage and derive and use the expression VH = BI / (ntq), where t = thickness"
+          },
+          {
+           "code": null,
+           "text": "Understand the use of a Hall probe to measure magnetic flux density"
+          },
+          {
+           "code": null,
+           "text": "Describe the motion of a charged particle moving in a uniform magnetic field perpendicular to the direction of motion of the particle"
+          },
+          {
+           "code": null,
+           "text": "Explain how electric and magnetic fields can be used in velocity selection"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "20-4-magnetic-fields-due-to-currents",
+       "title": "20.4 Magnetic fields due to currents",
+       "subtopics": [
+        {
+         "id": "magnetic-fields-due-to-currents",
+         "title": "Magnetic fields due to currents",
+         "outcomes": [
+          {
+           "code": "20.4",
+           "text": "Sketch magnetic field patterns due to the currents in a long straight wire, a flat circular coil and a long solenoid"
+          },
+          {
+           "code": null,
+           "text": "Understand that the magnetic field due to the current in a solenoid is increased by a ferrous core"
+          },
+          {
+           "code": null,
+           "text": "Explain the origin of the forces between current-carrying conductors and determine the direction of the forces"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "20-5-electromagnetic-induction",
+       "title": "20.5 Electromagnetic induction",
+       "subtopics": [
+        {
+         "id": "electromagnetic-induction",
+         "title": "Electromagnetic induction",
+         "outcomes": [
+          {
+           "code": "20.5",
+           "text": "Define magnetic flux as the product of the magnetic flux density and the cross-sectional area perpendicular to the direction of the magnetic flux density"
+          },
+          {
+           "code": null,
+           "text": "Recall and use Φ = BA"
+          },
+          {
+           "code": null,
+           "text": "Understand and use the concept of magnetic flux linkage"
+          },
+          {
+           "code": null,
+           "text": "Understand and explain experiments that demonstrate: that a changing magnetic flux can induce an e.m.f. in a circuit; that the induced e.m.f. is in such a direction as to oppose the change producing it; the factors affecting the magnitude of the induced e.m.f."
+          },
+          {
+           "code": null,
+           "text": "Recall and use Faraday’s and Lenz’s laws of electromagnetic induction"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "21-alternating-currents",
+     "title": "21 Alternating currents",
+     "topics": [
+      {
+       "id": "21-1-characteristics-of-alternating-currents",
+       "title": "21.1 Characteristics of alternating currents",
+       "subtopics": [
+        {
+         "id": "characteristics-of-alternating-currents",
+         "title": "Characteristics of alternating currents",
+         "outcomes": [
+          {
+           "code": "21.1",
+           "text": "Understand and use the terms period, frequency and peak value as applied to an alternating current or voltage"
+          },
+          {
+           "code": null,
+           "text": "Use equations of the form x = x0 sin ωt representing a sinusoidally alternating current or voltage"
+          },
+          {
+           "code": null,
+           "text": "Recall and use the fact that the mean power in a resistive load is half the maximum power for a sinusoidal alternating current"
+          },
+          {
+           "code": null,
+           "text": "Distinguish between root-mean-square (r.m.s.) and peak values and recall and use Ir.m.s. = I0/√2 and Vr.m.s. = V0/√2 for a sinusoidal alternating current"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "21-2-rectification-and-smoothing",
+       "title": "21.2 Rectification and smoothing",
+       "subtopics": [
+        {
+         "id": "rectification-and-smoothing",
+         "title": "Rectification and smoothing",
+         "outcomes": [
+          {
+           "code": "21.2",
+           "text": "Distinguish graphically between half-wave and full-wave rectification"
+          },
+          {
+           "code": null,
+           "text": "Explain the use of a single diode for the half-wave rectification of an alternating current"
+          },
+          {
+           "code": null,
+           "text": "Explain the use of four diodes (bridge rectifier) for the full-wave rectification of an alternating current"
+          },
+          {
+           "code": null,
+           "text": "Analyse the effect of a single capacitor in smoothing, including the effect of the values of capacitance and the load resistance"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "22-quantum-physics",
+     "title": "22 Quantum physics",
+     "topics": [
+      {
+       "id": "22-1-energy-and-momentum-of-a-photon",
+       "title": "22.1 Energy and momentum of a photon",
+       "subtopics": [
+        {
+         "id": "energy-and-momentum-of-a-photon",
+         "title": "Energy and momentum of a photon",
+         "outcomes": [
+          {
+           "code": "22.1",
+           "text": "Understand that electromagnetic radiation has a particulate nature"
+          },
+          {
+           "code": null,
+           "text": "Understand that a photon is a quantum of electromagnetic energy"
+          },
+          {
+           "code": null,
+           "text": "Recall and use E = hf"
+          },
+          {
+           "code": null,
+           "text": "Use the electronvolt (eV) as a unit of energy"
+          },
+          {
+           "code": null,
+           "text": "Understand that a photon has momentum and that the momentum is given by p = E / c"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "22-2-photoelectric-effect",
+       "title": "22.2 Photoelectric effect",
+       "subtopics": [
+        {
+         "id": "photoelectric-effect",
+         "title": "Photoelectric effect",
+         "outcomes": [
+          {
+           "code": "22.2",
+           "text": "Understand that photoelectrons may be emitted from a metal surface when it is illuminated by electromagnetic radiation"
+          },
+          {
+           "code": null,
+           "text": "Understand and use the terms threshold frequency and threshold wavelength"
+          },
+          {
+           "code": null,
+           "text": "Explain photoelectric emission in terms of photon energy and work function energy"
+          },
+          {
+           "code": null,
+           "text": "Recall and use hf = Φ + ½mvmax²"
+          },
+          {
+           "code": null,
+           "text": "Explain why the maximum kinetic energy of photoelectrons is independent of intensity, whereas the photoelectric current is proportional to intensity"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "22-3-wave-particle-duality",
+       "title": "22.3 Wave-particle duality",
+       "subtopics": [
+        {
+         "id": "wave-particle-duality",
+         "title": "Wave-particle duality",
+         "outcomes": [
+          {
+           "code": "22.3",
+           "text": "Understand that the photoelectric effect provides evidence for a particulate nature of electromagnetic radiation while phenomena such as interference and diffraction provide evidence for a wave nature"
+          },
+          {
+           "code": null,
+           "text": "Describe and interpret qualitatively the evidence provided by electron diffraction for the wave nature of particles"
+          },
+          {
+           "code": null,
+           "text": "Understand the de Broglie wavelength as the wavelength associated with a moving particle"
+          },
+          {
+           "code": null,
+           "text": "Recall and use λ = h / p"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "22-4-energy-levels-in-atoms-and-line-spectra",
+       "title": "22.4 Energy levels in atoms and line spectra",
+       "subtopics": [
+        {
+         "id": "energy-levels-in-atoms-and-line-spectra",
+         "title": "Energy levels in atoms and line spectra",
+         "outcomes": [
+          {
+           "code": "22.4",
+           "text": "Understand that there are discrete electron energy levels in isolated atoms (e.g. atomic hydrogen)"
+          },
+          {
+           "code": null,
+           "text": "Understand the appearance and formation of emission and absorption line spectra"
+          },
+          {
+           "code": null,
+           "text": "Recall and use hf = E1 – E2"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "23-nuclear-physics",
+     "title": "23 Nuclear physics",
+     "topics": [
+      {
+       "id": "23-1-mass-defect-and-nuclear-binding-energy",
+       "title": "23.1 Mass defect and nuclear binding energy",
+       "subtopics": [
+        {
+         "id": "mass-defect-and-nuclear-binding-energy",
+         "title": "Mass defect and nuclear binding energy",
+         "outcomes": [
+          {
+           "code": "23.1",
+           "text": "Understand the equivalence between energy and mass as represented by E = mc² and recall and use this equation"
+          },
+          {
+           "code": null,
+           "text": "Represent simple nuclear reactions by nuclear equations of the form ¹⁴₇N + ⁴₂He → ¹⁷₈O + ¹₁H"
+          },
+          {
+           "code": null,
+           "text": "Define and use the terms mass defect and binding energy"
+          },
+          {
+           "code": null,
+           "text": "Sketch the variation of binding energy per nucleon with nucleon number"
+          },
+          {
+           "code": null,
+           "text": "Explain what is meant by nuclear fusion and nuclear fission"
+          },
+          {
+           "code": null,
+           "text": "Explain the relevance of binding energy per nucleon to nuclear reactions, including nuclear fusion and nuclear fission"
+          },
+          {
+           "code": null,
+           "text": "Calculate the energy released in nuclear reactions using E = c²∆m"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "23-2-radioactive-decay",
+       "title": "23.2 Radioactive decay",
+       "subtopics": [
+        {
+         "id": "radioactive-decay",
+         "title": "Radioactive decay",
+         "outcomes": [
+          {
+           "code": "23.2",
+           "text": "Understand that fluctuations in count rate provide evidence for the random nature of radioactive decay"
+          },
+          {
+           "code": null,
+           "text": "Understand that radioactive decay is both spontaneous and random"
+          },
+          {
+           "code": null,
+           "text": "Define activity and decay constant, and recall and use A = λN"
+          },
+          {
+           "code": null,
+           "text": "Define half-life"
+          },
+          {
+           "code": null,
+           "text": "Use λ = 0.693/t½"
+          },
+          {
+           "code": null,
+           "text": "Understand the exponential nature of radioactive decay, and sketch and use the relationship x = x0e^–λt, where x could represent activity, number of undecayed nuclei or received count rate"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "24-medical-physics",
+     "title": "24 Medical physics",
+     "topics": [
+      {
+       "id": "24-1-production-and-use-of-ultrasound",
+       "title": "24.1 Production and use of ultrasound",
+       "subtopics": [
+        {
+         "id": "production-and-use-of-ultrasound",
+         "title": "Production and use of ultrasound",
+         "outcomes": [
+          {
+           "code": "24.1",
+           "text": "Understand that a piezo-electric crystal changes shape when a p.d. is applied across it and that the crystal generates an e.m.f. when its shape changes"
+          },
+          {
+           "code": null,
+           "text": "Understand how ultrasound waves are generated and detected by a piezoelectric transducer"
+          },
+          {
+           "code": null,
+           "text": "Understand how the reflection of pulses of ultrasound at boundaries between tissues can be used to obtain diagnostic information about internal structures"
+          },
+          {
+           "code": null,
+           "text": "Define the specific acoustic impedance of a medium as Z = ρc, where c is the speed of sound in the medium"
+          },
+          {
+           "code": null,
+           "text": "Use IR/I0 = (Z1 – Z2)²/(Z1 + Z2)² for the intensity reflection coefficient of a boundary between two media"
+          },
+          {
+           "code": null,
+           "text": "Recall and use I = I0e^–μx for the attenuation of ultrasound in matter"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "24-2-production-and-use-of-x-rays",
+       "title": "24.2 Production and use of X-rays",
+       "subtopics": [
+        {
+         "id": "production-and-use-of-x-rays",
+         "title": "Production and use of X-rays",
+         "outcomes": [
+          {
+           "code": "24.2",
+           "text": "Explain that X-rays are produced by electron bombardment of a metal target and calculate the minimum wavelength of X-rays produced from the accelerating p.d."
+          },
+          {
+           "code": null,
+           "text": "Understand the use of X-rays in imaging internal body structures, including an understanding of the term contrast in X-ray imaging"
+          },
+          {
+           "code": null,
+           "text": "Recall and use I = I0e^–μx for the attenuation of X-rays in matter"
+          },
+          {
+           "code": null,
+           "text": "Understand that computed tomography (CT) scanning produces a 3D image of an internal structure by first combining multiple X-ray images taken in the same section from different angles to obtain a 2D image of the section, then repeating this process along an axis and combining 2D images of multiple sections"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "24-3-pet-scanning",
+       "title": "24.3 PET scanning",
+       "subtopics": [
+        {
+         "id": "pet-scanning",
+         "title": "PET scanning",
+         "outcomes": [
+          {
+           "code": "24.3",
+           "text": "Understand that a tracer is a substance containing radioactive nuclei that can be introduced into the body and is then absorbed by the tissue being studied"
+          },
+          {
+           "code": null,
+           "text": "Recall that a tracer that decays by β+ decay is used in positron emission tomography (PET scanning)"
+          },
+          {
+           "code": null,
+           "text": "Understand that annihilation occurs when a particle interacts with its antiparticle and that mass–energy and momentum are conserved in the process"
+          },
+          {
+           "code": null,
+           "text": "Explain that, in PET scanning, positrons emitted by the decay of the tracer annihilate when they interact with electrons in the tissue, producing a pair of gamma-ray photons travelling in opposite directions"
+          },
+          {
+           "code": null,
+           "text": "Calculate the energy of the gamma-ray photons emitted during the annihilation of an electron-positron pair"
+          },
+          {
+           "code": null,
+           "text": "Understand that the gamma-ray photons from an annihilation event travel outside the body and can be detected, and an image of the tracer concentration in the tissue can be created by processing the arrival times of the gamma-ray photons"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "25-astronomy-and-cosmology",
+     "title": "25 Astronomy and cosmology",
+     "topics": [
+      {
+       "id": "25-1-standard-candles",
+       "title": "25.1 Standard candles",
+       "subtopics": [
+        {
+         "id": "standard-candles",
+         "title": "Standard candles",
+         "outcomes": [
+          {
+           "code": "25.1",
+           "text": "Understand the term luminosity as the total power of radiation emitted by a star"
+          },
+          {
+           "code": null,
+           "text": "Recall and use the inverse square law for radiant flux intensity F in terms of the luminosity L of the source F = L/(4πd²)"
+          },
+          {
+           "code": null,
+           "text": "Understand that an object of known luminosity is called a standard candle"
+          },
+          {
+           "code": null,
+           "text": "Understand the use of standard candles to determine distances to galaxies"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "25-2-stellar-radii",
+       "title": "25.2 Stellar radii",
+       "subtopics": [
+        {
+         "id": "stellar-radii",
+         "title": "Stellar radii",
+         "outcomes": [
+          {
+           "code": "25.2",
+           "text": "Recall and use Wien’s displacement law λmax ∝ 1 / T to estimate the peak surface temperature of a star"
+          },
+          {
+           "code": null,
+           "text": "Use the Stefan–Boltzmann law L = 4πσr²T⁴"
+          },
+          {
+           "code": null,
+           "text": "Use Wien’s displacement law and the Stefan–Boltzmann law to estimate the radius of a star"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "25-3-hubble-s-law-and-the-big-bang-theory",
+       "title": "25.3 Hubble’s law and the Big Bang theory",
+       "subtopics": [
+        {
+         "id": "hubble-s-law-and-the-big-bang-theory",
+         "title": "Hubble’s law and the Big Bang theory",
+         "outcomes": [
+          {
+           "code": "25.3",
+           "text": "Understand that the lines in the emission and absorption spectra from distant objects show an increase in wavelength from their known values"
+          },
+          {
+           "code": null,
+           "text": "Use ∆λ/λ ≈ ∆f/f ≈ v/c for the redshift of electromagnetic radiation from a source moving relative to an observer"
+          },
+          {
+           "code": null,
+           "text": "Explain why redshift leads to the idea that the Universe is expanding"
+          },
+          {
+           "code": null,
+           "text": "Recall and use Hubble’s law v ≈ H0d and explain how this leads to the Big Bang theory (candidates will only be required to use SI units)"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "build": {
+  "builtAt": "2026-10-14T16:56:02.712Z",
+  "model": "claude-agent",
+  "usd": 0,
+  "expectedCodes": 76,
+  "coverage": 1,
+  "missingCodes": [],
+  "counts": {
+   "grades": 2,
+   "units": 25,
+   "topics": 76,
+   "subtopics": 78,
+   "outcomes": 300
+  },
+  "warnings": []
+ }
+}

@@ -1,0 +1,80 @@
+{
+ "id": "us-il-english-language-development",
+ "region": "US",
+ "framework": "Illinois state academic standards: English Language Development",
+ "board": null,
+ "qualification": "K-12",
+ "subject": "English Language Development",
+ "syllabusCode": null,
+ "gradeSystem": "grade",
+ "source": {
+  "urls": [
+   "https://api.commonstandardsproject.com/api/v1/jurisdictions/549159D28465455FB144F5B67F3ACDFF",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/14869CEACA4C468295DF77C339CCFE55"
+  ],
+  "publisher": "Illinois state education agency (machine-readable via Common Standards Project / ASN)",
+  "licence": "CC BY 4.0 US, Common Curriculum, Inc.",
+  "firstExam": "2004"
+ },
+ "grades": [
+  {
+   "grade": "9-5",
+   "units": [
+    {
+     "id": "k-12",
+     "title": "K-12",
+     "topics": [
+      {
+       "id": "k-12",
+       "title": "K-12",
+       "subtopics": [
+        {
+         "id": "k-12",
+         "title": "K-12",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "English language learners communicate in English for social and instructional purposes within the school setting."
+          },
+          {
+           "code": null,
+           "text": "English language learners communicate information, ideas, and concepts necessary for academic success in the content area of language arts."
+          },
+          {
+           "code": null,
+           "text": "English language learners communicate information, ideas, and concepts necessary for academic success in the content area of mathematics."
+          },
+          {
+           "code": null,
+           "text": "English language learners communicate information, ideas, and concepts necessary for academic success in the content area of science."
+          },
+          {
+           "code": null,
+           "text": "English language learners communicate information, ideas, and concepts necessary for academic success in the content area of social studies."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "build": {
+  "builtAt": "2026-10-14T08:03:05.636Z",
+  "model": "none",
+  "usd": 0,
+  "expectedCodes": null,
+  "coverage": null,
+  "missingCodes": [],
+  "counts": {
+   "grades": 1,
+   "units": 1,
+   "topics": 1,
+   "subtopics": 1,
+   "outcomes": 5
+  },
+  "warnings": []
+ }
+}

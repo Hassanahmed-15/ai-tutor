@@ -1,0 +1,395 @@
+{
+ "id": "pk-fbise-af-ssc-2-computer-science",
+ "region": "PK",
+ "framework": "FBISE Assessment Framework (National Curriculum of Pakistan 2022-23)",
+ "board": "FBISE",
+ "qualification": "SSC-II",
+ "subject": "Computer Science",
+ "syllabusCode": null,
+ "gradeSystem": "grade",
+ "source": {
+  "urls": [
+   "https://www.fbise.edu.pk/ModelPaper/2025/Assessment%20Frameworks/SSC-II/Final%20Assessment%20Framework%20%2B%20Model%20Question%20Paper%20Computer%20Science%20SSC-II.pdf"
+  ],
+  "publisher": "Federal Board of Intermediate and Secondary Education",
+  "licence": "Government publication; structure + our own wording only",
+  "firstExam": "2026"
+ },
+ "grades": [
+  {
+   "grade": "10",
+   "units": [
+    {
+     "id": "a-computing-systems",
+     "title": "A: Computing Systems",
+     "topics": [
+      {
+       "id": "data-representation",
+       "title": "Data representation",
+       "subtopics": [
+        {
+         "id": "number-systems-and-text-encoding",
+         "title": "Number systems and text encoding",
+         "outcomes": [
+          {
+           "code": "CS-10-A-01",
+           "text": "Convert between decimal, binary, octal and hexadecimal, handle signed numbers and binary arithmetic, and explain ASCII and Unicode."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "system-software",
+       "title": "System software",
+       "subtopics": [
+        {
+         "id": "operating-systems",
+         "title": "Operating systems",
+         "outcomes": [
+          {
+           "code": "CS-10-A-02",
+           "text": "Explain what an operating system does: processes, scheduling, memory, files and how programs run on it."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "software-tools",
+       "title": "Software tools",
+       "subtopics": [
+        {
+         "id": "types-of-software-and-tools",
+         "title": "Types of software and tools",
+         "outcomes": [
+          {
+           "code": "CS-10-A-03",
+           "text": "Tell system, programming, application and driver software apart and explain tools such as compilers, IDEs and code repositories, online versus offline and cloud versus on-premise."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "b-computational-thinking-and-algorithms",
+     "title": "B: Computational Thinking and Algorithms",
+     "topics": [
+      {
+       "id": "algorithms",
+       "title": "Algorithms",
+       "subtopics": [
+        {
+         "id": "counting-and-algorithm-properties",
+         "title": "Counting and algorithm properties",
+         "outcomes": [
+          {
+           "code": "CS-10-B-01",
+           "text": "Solve counting problems, state the properties of an algorithm, use logical reasoning, and choose linear or binary search and insertion or bubble sort."
+          }
+         ]
+        },
+        {
+         "id": "tracing-and-abstraction",
+         "title": "Tracing and abstraction",
+         "outcomes": [
+          {
+           "code": "CS-10-B-02",
+           "text": "Write algorithms, trace them with dry runs and trace tables, spot syntax and logic errors and use abstraction for modular solutions."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "c-programming-fundamentals",
+     "title": "C: Programming Fundamentals",
+     "topics": [
+      {
+       "id": "web-development",
+       "title": "Web development",
+       "subtopics": [
+        {
+         "id": "front-end-and-back-end",
+         "title": "Front-end and back-end",
+         "outcomes": [
+          {
+           "code": "CS-10-C-01",
+           "text": "Tell front-end from back-end web development."
+          }
+         ]
+        },
+        {
+         "id": "tables-forms-and-css-animation",
+         "title": "Tables, forms and CSS animation",
+         "outcomes": [
+          {
+           "code": "CS-10-C-02",
+           "text": "Create HTML tables, collect user input and animate components with CSS."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "javascript",
+       "title": "JavaScript",
+       "subtopics": [
+        {
+         "id": "arrays-and-dynamic-pages",
+         "title": "Arrays and dynamic pages",
+         "outcomes": [
+          {
+           "code": "CS-10-C-03",
+           "text": "Make and use JavaScript arrays to generate page content such as bullet lists."
+          }
+         ]
+        },
+        {
+         "id": "searching-a-list",
+         "title": "Searching a list",
+         "outcomes": [
+          {
+           "code": "CS-10-C-04",
+           "text": "Write and implement in JavaScript an algorithm that finds an item in a list."
+          }
+         ]
+        },
+        {
+         "id": "testing-and-debugging",
+         "title": "Testing and debugging",
+         "outcomes": [
+          {
+           "code": "CS-10-C-05",
+           "text": "Write unit tests and use breakpoints and watches to debug JavaScript."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "d-data-and-analysis",
+     "title": "D: Data and Analysis",
+     "topics": [
+      {
+       "id": "data-science-and-ai",
+       "title": "Data science and AI",
+       "subtopics": [
+        {
+         "id": "data-science-ai-and-machine-learning",
+         "title": "Data science, AI and machine learning",
+         "outcomes": [
+          {
+           "code": "CS-10-D-01",
+           "text": "Tell data science, AI and machine learning apart, and sort problems into supervised, unsupervised or reinforcement learning."
+          }
+         ]
+        },
+        {
+         "id": "data-science-life-cycle",
+         "title": "Data science life cycle",
+         "outcomes": [
+          {
+           "code": "CS-10-D-03",
+           "text": "Turn a business problem into a data science problem and follow gathering, modelling and judging results."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "data-and-databases",
+       "title": "Data and databases",
+       "subtopics": [
+        {
+         "id": "data-visualisation-and-databases",
+         "title": "Data visualisation and databases",
+         "outcomes": [
+          {
+           "code": "CS-10-D-02",
+           "text": "Read and make charts, interpret shape, centre and spread, and use relational databases with ER diagrams and queries."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "e-applications-of-computer-science",
+     "title": "E: Applications of Computer Science",
+     "topics": [
+      {
+       "id": "emerging-technology",
+       "title": "Emerging technology",
+       "subtopics": [
+        {
+         "id": "iot-blockchain-and-cloud",
+         "title": "IoT, blockchain and cloud",
+         "outcomes": [
+          {
+           "code": "CS-10-E-01",
+           "text": "Describe applications of IoT, blockchain and cloud computing and judge whether a scenario fits."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "artificial-intelligence",
+       "title": "Artificial intelligence",
+       "subtopics": [
+        {
+         "id": "ai-applications",
+         "title": "AI applications",
+         "outcomes": [
+          {
+           "code": "CS-10-E-02",
+           "text": "Explain AI uses in speech recognition, natural language processing and robotics."
+          }
+         ]
+        },
+        {
+         "id": "social-impact-of-ai",
+         "title": "Social impact of AI",
+         "outcomes": [
+          {
+           "code": "CS-10-E-03",
+           "text": "Show how misuse of AI can cause injustice and name the ethical norms for designing AI."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "f-impacts-of-computing",
+     "title": "F: Impacts of Computing",
+     "topics": [
+      {
+       "id": "safe-computing",
+       "title": "Safe computing",
+       "subtopics": [
+        {
+         "id": "safe-internet-use-and-security",
+         "title": "Safe internet use and security",
+         "outcomes": [
+          {
+           "code": "CS-10-F-01",
+           "text": "Use the internet safely, avoid addiction, protect data and privacy, and know how developers guard devices."
+          }
+         ]
+        },
+        {
+         "id": "cyberbullying-and-cybercrime",
+         "title": "Cyberbullying and cybercrime",
+         "outcomes": [
+          {
+           "code": "CS-10-F-02",
+           "text": "Prevent and respond to cyberbullying, use hardware and software protection, and know cybercrime laws and reporting."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "society",
+       "title": "Society",
+       "subtopics": [
+        {
+         "id": "digital-divide",
+         "title": "Digital divide",
+         "outcomes": [
+          {
+           "code": "CS-10-F-03",
+           "text": "Explain the digital divide, its effects and how to design for fair access."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "g-digital-literacy",
+     "title": "G: Digital Literacy",
+     "topics": [
+      {
+       "id": "communication",
+       "title": "Communication",
+       "subtopics": [
+        {
+         "id": "publishing-ideas-with-digital-tools",
+         "title": "Publishing ideas with digital tools",
+         "outcomes": [
+          {
+           "code": "CS-10-G-01",
+           "text": "Pick key ideas and present them to different audiences across social media and other digital formats."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "h-entrepreneurship-in-the-digital-age",
+     "title": "H: Entrepreneurship in the Digital Age",
+     "topics": [
+      {
+       "id": "business-research",
+       "title": "Business research",
+       "subtopics": [
+        {
+         "id": "market-research",
+         "title": "Market research",
+         "outcomes": [
+          {
+           "code": "EN-10-H-01",
+           "text": "Use digital tools to run quantitative and qualitative research and read the results without bias."
+          }
+         ]
+        },
+        {
+         "id": "pitching-a-business-idea",
+         "title": "Pitching a business idea",
+         "outcomes": [
+          {
+           "code": "EN-10-H-02",
+           "text": "Build customer profiles and pitch a business idea with a good elevator pitch."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "build": {
+  "builtAt": "2026-10-14T08:09:33.068Z",
+  "model": "claude-agent",
+  "usd": 0,
+  "expectedCodes": 20,
+  "coverage": 1,
+  "missingCodes": [],
+  "counts": {
+   "grades": 1,
+   "units": 8,
+   "topics": 14,
+   "subtopics": 22,
+   "outcomes": 22
+  },
+  "warnings": [
+   "unit \"G: Digital Literacy\" (grade 10) has a single outcome"
+  ]
+ }
+}

@@ -1,0 +1,802 @@
+{
+ "id": "uk-nc-maths-ks3",
+ "region": "UK",
+ "framework": "National Curriculum in England (2014)",
+ "board": "Department for Education",
+ "qualification": "Secondary",
+ "subject": "Mathematics",
+ "syllabusCode": null,
+ "gradeSystem": "key-stage",
+ "source": {
+  "urls": [
+   "https://assets.publishing.service.gov.uk/media/5a7c1408e5274a1f5cc75a68/SECONDARY_national_curriculum_-_Mathematics.pdf",
+   "https://www.gov.uk/government/publications/national-curriculum-in-england-mathematics-programmes-of-study"
+  ],
+  "publisher": "Department for Education",
+  "licence": "Open Government Licence v3.0 (Crown copyright)",
+  "firstExam": "2014"
+ },
+ "grades": [
+  {
+   "grade": "KS3",
+   "units": [
+    {
+     "id": "working-mathematically",
+     "title": "Working mathematically",
+     "topics": [
+      {
+       "id": "develop-fluency",
+       "title": "Develop fluency",
+       "subtopics": [
+        {
+         "id": "number-system-and-calculation",
+         "title": "Number system and calculation",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Extend understanding of the number system and place value to decimals, fractions, powers and roots."
+          },
+          {
+           "code": null,
+           "text": "Select and use suitable calculation strategies for increasingly complex problems."
+          }
+         ]
+        },
+        {
+         "id": "algebraic-fluency",
+         "title": "Algebraic fluency",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Use algebra to generalise the structure of arithmetic and formulate mathematical relationships."
+          },
+          {
+           "code": null,
+           "text": "Substitute into, rearrange and simplify expressions, and solve equations."
+          }
+         ]
+        },
+        {
+         "id": "representations",
+         "title": "Representations",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Move freely between numerical, algebraic, graphical and diagrammatic representations, such as fractions and decimals or equations and graphs."
+          },
+          {
+           "code": null,
+           "text": "Develop algebraic and graphical fluency, including linear and simple quadratic functions."
+          },
+          {
+           "code": null,
+           "text": "Use precise language and properties to analyse numbers, expressions, 2-D and 3-D shapes, probability and statistics."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "reason-mathematically",
+       "title": "Reason mathematically",
+       "subtopics": [
+        {
+         "id": "connections-and-proportion",
+         "title": "Connections and proportion",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Connect number relationships with their algebraic and graphical representations."
+          },
+          {
+           "code": null,
+           "text": "Formalise ratio and proportion in measures and geometry and formulate proportional relations algebraically."
+          }
+         ]
+        },
+        {
+         "id": "variables-and-conjectures",
+         "title": "Variables and conjectures",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Identify variables and express relations between them algebraically and graphically."
+          },
+          {
+           "code": null,
+           "text": "Make and test conjectures about patterns, and look for proofs or counter-examples."
+          }
+         ]
+        },
+        {
+         "id": "deduction-and-inference",
+         "title": "Deduction and inference",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Begin to reason deductively in geometry, number and algebra, including with geometrical constructions."
+          },
+          {
+           "code": null,
+           "text": "Decide whether a problem needs additive, multiplicative or proportional reasoning."
+          },
+          {
+           "code": null,
+           "text": "Explore what can and cannot be inferred in statistics and probability and begin to argue formally."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "solve-problems",
+       "title": "Solve problems",
+       "subtopics": [
+        {
+         "id": "problem-solving",
+         "title": "Problem solving",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Build knowledge by solving and evaluating multi-step problems."
+          },
+          {
+           "code": null,
+           "text": "Use formal mathematics to interpret and solve problems, including financial mathematics."
+          }
+         ]
+        },
+        {
+         "id": "modelling",
+         "title": "Modelling",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Begin to model situations mathematically and express results in formal representations."
+          },
+          {
+           "code": null,
+           "text": "Choose suitable concepts, methods and techniques for unfamiliar and non-routine problems."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "number",
+     "title": "Number",
+     "topics": [
+      {
+       "id": "number",
+       "title": "Number",
+       "subtopics": [
+        {
+         "id": "place-value-and-ordering",
+         "title": "Place value and ordering",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Understand and use place value for decimals, measures and integers of any size."
+          },
+          {
+           "code": null,
+           "text": "Order positive and negative integers, decimals and fractions on the number line, using =, ≠, <, >, ≤, ≥."
+          }
+         ]
+        },
+        {
+         "id": "factors-and-multiples",
+         "title": "Factors and multiples",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Use prime numbers, factors, multiples, common factors and multiples, HCF, LCM and prime factorisation including product notation."
+          }
+         ]
+        },
+        {
+         "id": "four-operations",
+         "title": "Four operations",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Use the four operations with formal written methods on positive and negative integers, decimals, proper and improper fractions and mixed numbers."
+          }
+         ]
+        },
+        {
+         "id": "order-of-operations-and-powers",
+         "title": "Order of operations and powers",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Use conventional notation for priority of operations, including brackets, powers, roots and reciprocals."
+          },
+          {
+           "code": null,
+           "text": "Recognise and use relationships between operations, including inverses."
+          },
+          {
+           "code": null,
+           "text": "Use integer powers and real roots, know powers of 2, 3, 4, 5, and tell exact roots from decimal approximations."
+          }
+         ]
+        },
+        {
+         "id": "standard-form",
+         "title": "Standard form",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Interpret and compare numbers in standard form A x 10^n with 1 ≤ A < 10."
+          }
+         ]
+        },
+        {
+         "id": "fractions-decimals-and-percentages",
+         "title": "Fractions, decimals and percentages",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Switch between terminating decimals and their fractions."
+          },
+          {
+           "code": null,
+           "text": "Define percentage as parts per hundred and interpret percentages and percentage changes as fractions or decimals, multiplicatively."
+          },
+          {
+           "code": null,
+           "text": "Express one quantity as a percentage of another, compare quantities using percentages and work with percentages over 100%."
+          },
+          {
+           "code": null,
+           "text": "Interpret fractions and percentages as operators."
+          }
+         ]
+        },
+        {
+         "id": "measures-and-accuracy",
+         "title": "Measures and accuracy",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Use standard units of mass, length, time, money and other measures, including decimal quantities."
+          },
+          {
+           "code": null,
+           "text": "Round numbers and measures to suitable accuracy, such as decimal places or significant figures."
+          },
+          {
+           "code": null,
+           "text": "Estimate by rounding and calculate possible errors using inequality notation a < x ≤ b."
+          }
+         ]
+        },
+        {
+         "id": "calculators-and-infinity",
+         "title": "Calculators and infinity",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Use a calculator and other technologies accurately and interpret results appropriately."
+          },
+          {
+           "code": null,
+           "text": "Appreciate that the sets of integers, rational and real numbers are infinite."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "algebra",
+     "title": "Algebra",
+     "topics": [
+      {
+       "id": "algebra",
+       "title": "Algebra",
+       "subtopics": [
+        {
+         "id": "algebraic-notation",
+         "title": "Algebraic notation",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Use and interpret algebraic notation such as ab, 3y, a squared, a²b, a/b, fractional coefficients and brackets."
+          }
+         ]
+        },
+        {
+         "id": "substitution-and-vocabulary",
+         "title": "Substitution and vocabulary",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Substitute numbers into formulae and expressions, including scientific formulae."
+          },
+          {
+           "code": null,
+           "text": "Use the vocabulary of expressions, equations, inequalities, terms and factors."
+          }
+         ]
+        },
+        {
+         "id": "simplifying-expressions",
+         "title": "Simplifying expressions",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Simplify expressions by collecting like terms, multiplying a term over a bracket, and taking out common factors."
+          },
+          {
+           "code": null,
+           "text": "Expand products of two or more binomials."
+          }
+         ]
+        },
+        {
+         "id": "formulae",
+         "title": "Formulae",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Understand and use standard formulae and rearrange formulae to change the subject."
+          }
+         ]
+        },
+        {
+         "id": "modelling-and-equations",
+         "title": "Modelling and equations",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Model situations by writing algebraic expressions or formulae and drawing graphs."
+          },
+          {
+           "code": null,
+           "text": "Solve linear equations in one variable, including those needing rearrangement."
+          }
+         ]
+        },
+        {
+         "id": "graphs",
+         "title": "Graphs",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Work with coordinates in all four quadrants."
+          },
+          {
+           "code": null,
+           "text": "Recognise, sketch and plot linear and quadratic graphs with suitable scaling using the Cartesian plane."
+          },
+          {
+           "code": null,
+           "text": "Interpret mathematical relationships both algebraically and graphically."
+          }
+         ]
+        },
+        {
+         "id": "linear-graphs",
+         "title": "Linear graphs",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Write a linear equation in two variables as y = mx + c and find and interpret gradients and intercepts numerically, graphically and algebraically."
+          }
+         ]
+        },
+        {
+         "id": "using-graphs",
+         "title": "Using graphs",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Use linear and quadratic graphs to estimate y from x and the reverse, and to find approximate solutions to simultaneous linear equations."
+          },
+          {
+           "code": null,
+           "text": "Find approximate solutions to contextual problems from graphs, including piece-wise linear, exponential and reciprocal graphs."
+          }
+         ]
+        },
+        {
+         "id": "sequences",
+         "title": "Sequences",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Generate sequence terms from term-to-term or position-to-term rules."
+          },
+          {
+           "code": null,
+           "text": "Recognise arithmetic sequences and find the nth term."
+          },
+          {
+           "code": null,
+           "text": "Recognise geometric sequences and appreciate other sequences that arise."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "ratio-proportion-and-rates-of-change",
+     "title": "Ratio, proportion and rates of change",
+     "topics": [
+      {
+       "id": "ratio-proportion-and-rates-of-change",
+       "title": "Ratio, proportion and rates of change",
+       "subtopics": [
+        {
+         "id": "units-and-scale",
+         "title": "Units and scale",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Change freely between related standard units of time, length, area, volume or capacity, and mass."
+          },
+          {
+           "code": null,
+           "text": "Use scale factors, scale diagrams and maps."
+          }
+         ]
+        },
+        {
+         "id": "ratio",
+         "title": "Ratio",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Express one quantity as a fraction of another, where the fraction may be less or greater than 1."
+          },
+          {
+           "code": null,
+           "text": "Use ratio notation, including reducing to simplest form."
+          },
+          {
+           "code": null,
+           "text": "Divide a quantity into two parts in a given part:part or part:whole ratio and express a division as a ratio."
+          },
+          {
+           "code": null,
+           "text": "Know a multiplicative relationship between quantities can be written as a ratio or fraction, and link ratio language to fraction arithmetic and linear functions."
+          }
+         ]
+        },
+        {
+         "id": "percentage-change",
+         "title": "Percentage change",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Solve percentage increase, decrease and original-value problems, and simple interest."
+          }
+         ]
+        },
+        {
+         "id": "proportion-and-compound-units",
+         "title": "Proportion and compound units",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Solve direct and inverse proportion problems, including graphical and algebraic forms."
+          },
+          {
+           "code": null,
+           "text": "Use compound units such as speed, unit pricing and density to solve problems."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "geometry-and-measures",
+     "title": "Geometry and measures",
+     "topics": [
+      {
+       "id": "area-perimeter-and-volume",
+       "title": "Area, perimeter and volume",
+       "subtopics": [
+        {
+         "id": "area-and-volume-formulae",
+         "title": "Area and volume formulae",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Derive and apply formulae for perimeter and area of triangles, parallelograms and trapezia, and volume of cuboids and prisms including cylinders."
+          }
+         ]
+        },
+        {
+         "id": "circles-and-composite-shapes",
+         "title": "Circles and composite shapes",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Solve problems on perimeters of 2-D shapes including circles, and areas of circles and composite shapes."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "constructions-and-shapes",
+       "title": "Constructions and shapes",
+       "subtopics": [
+        {
+         "id": "drawing-and-measuring",
+         "title": "Drawing and measuring",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Draw and measure line segments and angles in figures, including interpreting scale drawings."
+          }
+         ]
+        },
+        {
+         "id": "ruler-and-compass-constructions",
+         "title": "Ruler and compass constructions",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Construct a perpendicular bisector, a perpendicular from or at a point, and an angle bisector."
+          },
+          {
+           "code": null,
+           "text": "Recognise the perpendicular distance from a point to a line as the shortest distance."
+          }
+         ]
+        },
+        {
+         "id": "geometric-vocabulary-and-symmetry",
+         "title": "Geometric vocabulary and symmetry",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe, sketch and draw points, lines, parallel and perpendicular lines, right angles, regular polygons and polygons with reflective and rotational symmetry."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "properties-of-shapes",
+       "title": "Properties of shapes",
+       "subtopics": [
+        {
+         "id": "triangles-and-congruence",
+         "title": "Triangles and congruence",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Use standard labelling of triangle ABC sides and angles and know and use the congruence criteria for triangles."
+          }
+         ]
+        },
+        {
+         "id": "properties-of-plane-figures",
+         "title": "Properties of plane figures",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Derive and illustrate properties of triangles, quadrilaterals, circles and other plane figures using suitable language and technology."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "transformations",
+       "title": "Transformations",
+       "subtopics": [
+        {
+         "id": "transformations",
+         "title": "Transformations",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Identify properties of and describe the results of translations, rotations and reflections."
+          }
+         ]
+        },
+        {
+         "id": "congruence-and-similarity",
+         "title": "Congruence and similarity",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Identify and construct congruent triangles and construct similar shapes by enlargement, with and without coordinate grids."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "angles-and-proof",
+       "title": "Angles and proof",
+       "subtopics": [
+        {
+         "id": "angle-facts",
+         "title": "Angle facts",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Apply angles at a point, on a straight line and vertically opposite angles."
+          },
+          {
+           "code": null,
+           "text": "Use the relationship between parallel lines and alternate and corresponding angles."
+          }
+         ]
+        },
+        {
+         "id": "angles-in-polygons",
+         "title": "Angles in polygons",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Derive and use the angle sum of a triangle, deduce the angle sum of any polygon and derive properties of regular polygons."
+          }
+         ]
+        },
+        {
+         "id": "geometric-proof",
+         "title": "Geometric proof",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Use angle facts, congruence, similarity and quadrilateral properties to derive results, including Pythagoras' theorem, and make simple proofs."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "right-angled-triangles",
+       "title": "Right-angled triangles",
+       "subtopics": [
+        {
+         "id": "pythagoras-and-trigonometry",
+         "title": "Pythagoras and trigonometry",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Use Pythagoras' theorem and trigonometric ratios in similar triangles to solve right-angled triangle problems."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "3-d-shapes",
+       "title": "3-D shapes",
+       "subtopics": [
+        {
+         "id": "solids",
+         "title": "Solids",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Use properties of faces, surfaces, edges and vertices of cubes, cuboids, prisms, cylinders, pyramids, cones and spheres to solve 3-D problems."
+          },
+          {
+           "code": null,
+           "text": "Interpret mathematical relationships both algebraically and geometrically."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "probability",
+     "title": "Probability",
+     "topics": [
+      {
+       "id": "probability",
+       "title": "Probability",
+       "subtopics": [
+        {
+         "id": "probability-experiments",
+         "title": "Probability experiments",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Record, describe and analyse frequencies of outcomes in simple experiments involving randomness, fairness and equally or unequally likely outcomes, using the 0-1 scale."
+          },
+          {
+           "code": null,
+           "text": "Understand that probabilities of all possible outcomes sum to 1."
+          }
+         ]
+        },
+        {
+         "id": "sample-spaces",
+         "title": "Sample spaces",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Enumerate sets, unions and intersections systematically using tables, grids and Venn diagrams."
+          },
+          {
+           "code": null,
+           "text": "Generate theoretical sample spaces for single and combined events with equally likely, mutually exclusive outcomes and calculate theoretical probabilities."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "statistics",
+     "title": "Statistics",
+     "topics": [
+      {
+       "id": "statistics",
+       "title": "Statistics",
+       "subtopics": [
+        {
+         "id": "distributions-and-averages",
+         "title": "Distributions and averages",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe, interpret and compare distributions of one variable using graphs of discrete, continuous and grouped data, averages (mean, mode, median) and spread (range, outliers)."
+          }
+         ]
+        },
+        {
+         "id": "charts-and-tables",
+         "title": "Charts and tables",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Construct and interpret frequency tables, bar charts, pie charts and pictograms for categorical data, and vertical line or bar charts for numerical data."
+          }
+         ]
+        },
+        {
+         "id": "scatter-graphs",
+         "title": "Scatter graphs",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe simple relationships between two variables in observational and experimental contexts and show them with scatter graphs."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "build": {
+  "builtAt": "2026-10-14T10:37:59.375Z",
+  "model": "claude-agent",
+  "usd": 0,
+  "expectedCodes": null,
+  "coverage": null,
+  "missingCodes": [],
+  "counts": {
+   "grades": 1,
+   "units": 7,
+   "topics": 15,
+   "subtopics": 48,
+   "outcomes": 85
+  },
+  "warnings": []
+ }
+}

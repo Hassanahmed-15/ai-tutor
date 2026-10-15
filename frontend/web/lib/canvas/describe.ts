@@ -24,6 +24,11 @@ export function describeCanvasSpec(spec: CanvasBoardSpec): string {
       lines.push(`Equation, step by step: ${stage.steps.map((s) => `${s.order.map((id) => text.get(id)).join(" ")}${s.caption ? ` (${s.caption})` : ""}`).join("  ⟶  ")}`);
       break;
     }
+    case "figure":
+      lines.push(stage.asset
+        ? `Textbook diagram (${stage.asset.credit}): labelled ${stage.parts.map((p) => p.name).join(", ")}.`
+        : `Figure (${stage.component}, drawn exactly): labelled ${stage.parts.map((p) => p.name).join(", ")}.`);
+      break;
     case "graph":
       lines.push(`Graph of ${stage.y.label} against ${stage.x.label} (${stage.x.min}–${stage.x.max}): ${stage.curves.map((c) => `${c.label ?? c.id} = ${c.expr}`).join("; ")}.`);
       if (stage.guides?.length) lines.push(`Marked: ${stage.guides.map((g) => `${g.label} at ${g.x}`).join(", ")}.`);
@@ -41,6 +46,12 @@ export function describeCanvasSpec(spec: CanvasBoardSpec): string {
       for (const e of stage.edits ?? []) lines.push(`Line ${e.line} was first shown wrong ("${e.from}") and then fixed to "${stage.lines[e.line - 1]}".`);
       if (stage.trace) lines.push(`Trace of ${stage.trace.vars.join(", ")}: ${stage.trace.rows.map((r) => r.values.join("/")).join(" → ")}.`);
       if (stage.output) lines.push(`It prints: ${stage.output.text.replace(/\n/g, " | ")}`);
+      break;
+    case "molecule":
+      lines.push(`Molecular models: ${stage.molecules.map((m) => `${m.label}: ${m.geometry}${m.bondAngle ? `, ${m.bondAngle}` : ""}; atoms ${m.atoms.map((a) => `${a.element}${a.lonePairs ? ` (${a.lonePairs} lone pairs)` : ""}`).join(", ")}; bonds ${m.bonds.map((b) => `${b.from}-${b.to} ${b.style ?? "line"}`).join(", ")}`).join(" | ")}.`);
+      break;
+    case "atom-map":
+      lines.push(`Atom tracking: ${stage.reactants.map((g) => g.label).join(" + ")} → ${stage.products.map((g) => g.label).join(" + ")}. Matter atoms are colour-coded and conserved.${stage.energy ? ` Separate energy lane: ${stage.energy.input} → ${stage.energy.output}.` : ""}`);
       break;
   }
   if (spec.interaction?.kind === "try") {

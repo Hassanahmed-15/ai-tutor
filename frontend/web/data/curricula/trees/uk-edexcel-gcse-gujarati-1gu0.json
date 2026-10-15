@@ -1,0 +1,585 @@
+{
+ "id": "uk-edexcel-gcse-gujarati-1gu0",
+ "region": "UK",
+ "framework": "Pearson Edexcel GCSE (9-1)",
+ "board": "Pearson Edexcel",
+ "qualification": "GCSE",
+ "subject": "Gujarati",
+ "syllabusCode": "1GU0",
+ "gradeSystem": "year",
+ "source": {
+  "urls": [
+   "https://qualifications.pearson.com/content/dam/pdf/GCSE/Gujarati/2018/specification-and-sample-assessment-material/specification-gcse2017-l12-gujarati-iss4.pdf"
+  ],
+  "publisher": "Pearson Education",
+  "licence": "Exam board specification, (c) Pearson; structure + our own wording only",
+  "firstExam": "2020"
+ },
+ "grades": [
+  {
+   "grade": "all",
+   "units": [
+    {
+     "id": "themes-and-topics",
+     "title": "Themes and topics",
+     "topics": [
+      {
+       "id": "theme-1-identity-and-culture",
+       "title": "Theme 1: Identity and culture",
+       "subtopics": [
+        {
+         "id": "who-am-i",
+         "title": "Who am I?",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Talk about relationships, friends and family, and what makes a good friend."
+          },
+          {
+           "code": null,
+           "text": "Talk about when I was younger, interests and role models."
+          },
+          {
+           "code": null,
+           "text": "Talk about socialising with friends and family."
+          }
+         ]
+        },
+        {
+         "id": "daily-life",
+         "title": "Daily life",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe customs and everyday life."
+          },
+          {
+           "code": null,
+           "text": "Talk about food and drink and shopping."
+          },
+          {
+           "code": null,
+           "text": "Discuss the use, advantages and disadvantages of social media and technology."
+          }
+         ]
+        },
+        {
+         "id": "cultural-life",
+         "title": "Cultural life",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Talk about celebrations and festivals."
+          },
+          {
+           "code": null,
+           "text": "Talk about reading, music and sport."
+          },
+          {
+           "code": null,
+           "text": "Talk about film and television."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "theme-2-local-area-holiday-and-travel",
+       "title": "Theme 2: Local area, holiday and travel",
+       "subtopics": [
+        {
+         "id": "holidays",
+         "title": "Holidays",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Talk about holiday preferences and past experiences."
+          },
+          {
+           "code": null,
+           "text": "Talk about holiday destinations."
+          }
+         ]
+        },
+        {
+         "id": "travel-and-tourist-transactions",
+         "title": "Travel and tourist transactions",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Handle travel and accommodation."
+          },
+          {
+           "code": null,
+           "text": "Ask for help and deal with problems."
+          },
+          {
+           "code": null,
+           "text": "Ask for and give directions."
+          },
+          {
+           "code": null,
+           "text": "Handle eating out and shopping."
+          }
+         ]
+        },
+        {
+         "id": "town-region-and-country",
+         "title": "Town, region and country",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe the weather."
+          },
+          {
+           "code": null,
+           "text": "Describe places to see and things to do."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "theme-3-school",
+       "title": "Theme 3: School",
+       "subtopics": [
+        {
+         "id": "what-school-is-like",
+         "title": "What school is like",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe school types, the school day and subjects."
+          },
+          {
+           "code": null,
+           "text": "Discuss school rules and pressures."
+          },
+          {
+           "code": null,
+           "text": "Talk about celebrating success."
+          }
+         ]
+        },
+        {
+         "id": "school-activities",
+         "title": "School activities",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Talk about school trips, events and exchanges."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "theme-4-future-aspirations-study-and-work",
+       "title": "Theme 4: Future aspirations, study and work",
+       "subtopics": [
+        {
+         "id": "using-languages-beyond-the-classroom",
+         "title": "Using languages beyond the classroom",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain how languages help form relationships."
+          },
+          {
+           "code": null,
+           "text": "Explain how languages help in travel and employment."
+          }
+         ]
+        },
+        {
+         "id": "ambitions",
+         "title": "Ambitions",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Talk about further study, volunteering and training."
+          }
+         ]
+        },
+        {
+         "id": "work",
+         "title": "Work",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Talk about jobs, careers and professions."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "theme-5-international-and-global-dimension",
+       "title": "Theme 5: International and global dimension",
+       "subtopics": [
+        {
+         "id": "bringing-the-world-together",
+         "title": "Bringing the world together",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Talk about sports events and music events."
+          },
+          {
+           "code": null,
+           "text": "Talk about campaigns and good causes."
+          }
+         ]
+        },
+        {
+         "id": "environmental-issues",
+         "title": "Environmental issues",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Talk about being green."
+          },
+          {
+           "code": null,
+           "text": "Talk about access to natural resources."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "language-skills",
+     "title": "Language skills",
+     "topics": [
+      {
+       "id": "paper-1-listening-and-understanding",
+       "title": "Paper 1: Listening and understanding",
+       "subtopics": [
+        {
+         "id": "understanding-spoken-gujarati",
+         "title": "Understanding spoken Gujarati",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Identify the overall message, key points, details and opinions in spoken Gujarati."
+          },
+          {
+           "code": null,
+           "text": "Deduce meaning from varied spoken texts."
+          },
+          {
+           "code": null,
+           "text": "Recognise past, present and future events."
+          },
+          {
+           "code": null,
+           "text": "Answer questions, extract information, evaluate and draw conclusions."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "paper-2-speaking",
+       "title": "Paper 2: Speaking",
+       "subtopics": [
+        {
+         "id": "role-play",
+         "title": "Role play",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Ask and answer questions and exchange information in formal and informal registers."
+          }
+         ]
+        },
+        {
+         "id": "picture-based-task",
+         "title": "Picture-based task",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe and narrate events, give information and justify opinions from a picture."
+          }
+         ]
+        },
+        {
+         "id": "conversation",
+         "title": "Conversation",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Speak spontaneously and use rephrasing or repair strategies."
+          },
+          {
+           "code": null,
+           "text": "Use varied grammar across past, present and future with accurate pronunciation."
+          },
+          {
+           "code": null,
+           "text": "Express and justify thoughts creatively on two themes."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "paper-3-reading-and-understanding",
+       "title": "Paper 3: Reading and understanding",
+       "subtopics": [
+        {
+         "id": "understanding-written-gujarati",
+         "title": "Understanding written Gujarati",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Identify overall message, key points, details and opinions in texts."
+          },
+          {
+           "code": null,
+           "text": "Deduce meaning and recognise implicit meaning and inference."
+          },
+          {
+           "code": null,
+           "text": "Understand advertisements, emails, letters, articles and literary texts."
+          }
+         ]
+        },
+        {
+         "id": "translation-into-english",
+         "title": "Translation into English",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Translate a short Gujarati passage into English accurately."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "paper-4-writing",
+       "title": "Paper 4: Writing",
+       "subtopics": [
+        {
+         "id": "writing-for-purposes",
+         "title": "Writing for purposes",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Write short texts with simple sentences and familiar language."
+          },
+          {
+           "code": null,
+           "text": "Write extended text to present facts, ideas and opinions."
+          },
+          {
+           "code": null,
+           "text": "Use varied structures to describe and narrate past, present and future events."
+          },
+          {
+           "code": null,
+           "text": "Adapt style and register and note down key points."
+          }
+         ]
+        },
+        {
+         "id": "translation-into-gujarati",
+         "title": "Translation into Gujarati",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Translate sentences and short texts from English into Gujarati."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "appendix-2-grammar-list",
+     "title": "Appendix 2: Grammar list",
+     "topics": [
+      {
+       "id": "grammar-and-structures",
+       "title": "Grammar and structures",
+       "subtopics": [
+        {
+         "id": "nouns-articles-and-adjectives",
+         "title": "Nouns, articles and adjectives",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Use noun gender, number and case."
+          },
+          {
+           "code": null,
+           "text": "Use definite and indefinite articles."
+          },
+          {
+           "code": null,
+           "text": "Make adjectives agree and place them correctly."
+          },
+          {
+           "code": null,
+           "text": "Form comparatives and superlatives with karta and sau karta."
+          },
+          {
+           "code": null,
+           "text": "Use demonstrative, indefinite, possessive and interrogative adjectives."
+          }
+         ]
+        },
+        {
+         "id": "adverbs-and-quantifiers",
+         "title": "Adverbs and quantifiers",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Form adverbs, comparatives and superlatives."
+          },
+          {
+           "code": null,
+           "text": "Use adverbs of time, place, manner, affirmation, negation, reason and probability."
+          },
+          {
+           "code": null,
+           "text": "Use interrogative adverbs and common adverbial phrases."
+          },
+          {
+           "code": null,
+           "text": "Use quantifiers and intensifiers."
+          }
+         ]
+        },
+        {
+         "id": "pronouns",
+         "title": "Pronouns",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Use personal, possessive, reflexive, interrogative and relative pronouns."
+          },
+          {
+           "code": null,
+           "text": "Use disjunctive and demonstrative pronouns."
+          },
+          {
+           "code": null,
+           "text": "Use direct and indirect object pronouns, their position and order."
+          },
+          {
+           "code": null,
+           "text": "Use indefinite pronouns."
+          }
+         ]
+        },
+        {
+         "id": "verb-forms",
+         "title": "Verb forms",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Use regular, irregular and reflexive verbs in all persons."
+          },
+          {
+           "code": null,
+           "text": "Use modes of address: tu, tame and aap."
+          },
+          {
+           "code": null,
+           "text": "Form negative and interrogative verbs."
+          },
+          {
+           "code": null,
+           "text": "Use reflexive constructions."
+          }
+         ]
+        },
+        {
+         "id": "tenses-and-moods",
+         "title": "Tenses and moods",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Use present indicative and present continuous."
+          },
+          {
+           "code": null,
+           "text": "Use perfect and imperfect."
+          },
+          {
+           "code": null,
+           "text": "Use future and conditional."
+          },
+          {
+           "code": null,
+           "text": "Use pluperfect and gerund."
+          },
+          {
+           "code": null,
+           "text": "Use the passive voice."
+          },
+          {
+           "code": null,
+           "text": "Use imperatives, including negative."
+          },
+          {
+           "code": null,
+           "text": "Use subjunctive forms."
+          },
+          {
+           "code": null,
+           "text": "Use perfect infinitive, present participle and compound verbs."
+          }
+         ]
+        },
+        {
+         "id": "prepositions-conjunctions-and-numbers",
+         "title": "Prepositions, conjunctions and numbers",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Use common and compound prepositions."
+          },
+          {
+           "code": null,
+           "text": "Use coordinating and subordinating conjunctions."
+          },
+          {
+           "code": null,
+           "text": "Use numbers, quantity, dates and time, including since constructions."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "build": {
+  "builtAt": "2026-10-14T10:33:48.413Z",
+  "model": "claude-agent",
+  "usd": 0,
+  "expectedCodes": null,
+  "coverage": null,
+  "missingCodes": [],
+  "counts": {
+   "grades": 1,
+   "units": 3,
+   "topics": 10,
+   "subtopics": 27,
+   "outcomes": 75
+  },
+  "warnings": [
+   "grade Year 10 has no content",
+   "grade Year 11 has no content",
+   "unexpected grade label \"all\""
+  ]
+ }
+}

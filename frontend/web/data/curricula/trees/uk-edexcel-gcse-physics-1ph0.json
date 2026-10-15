@@ -1,0 +1,1799 @@
+{
+ "id": "uk-edexcel-gcse-physics-1ph0",
+ "region": "UK",
+ "framework": "Pearson Edexcel GCSE (9-1)",
+ "board": "Pearson Edexcel",
+ "qualification": "GCSE",
+ "subject": "Physics",
+ "syllabusCode": "1PH0",
+ "gradeSystem": "year",
+ "source": {
+  "urls": [
+   "https://qualifications.pearson.com/content/dam/pdf/GCSE/Science/2016/Specification/gcse-physics-spec.pdf"
+  ],
+  "publisher": "Pearson Education",
+  "licence": "Exam board specification, (c) Pearson; structure + our own wording only",
+  "firstExam": "2018"
+ },
+ "grades": [
+  {
+   "grade": "all",
+   "units": [
+    {
+     "id": "topic-1-key-concepts-of-physics",
+     "title": "Topic 1 - Key concepts of physics",
+     "topics": [
+      {
+       "id": "key-concepts-of-physics",
+       "title": "Key concepts of physics",
+       "subtopics": [
+        {
+         "id": "units-and-measurement",
+         "title": "Units and measurement",
+         "outcomes": [
+          {
+           "code": "1.1",
+           "text": "Recall and use SI units for physical quantities."
+          },
+          {
+           "code": "1.2",
+           "text": "Use unit multiples and sub-multiples from giga down to nano."
+          },
+          {
+           "code": "1.3",
+           "text": "Convert between units, such as hours to seconds."
+          },
+          {
+           "code": "1.4",
+           "text": "Use significant figures and standard form where suitable."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "topic-2-motion-and-forces",
+     "title": "Topic 2 - Motion and forces",
+     "topics": [
+      {
+       "id": "motion-and-forces",
+       "title": "Motion and forces",
+       "subtopics": [
+        {
+         "id": "scalars-and-vectors",
+         "title": "Scalars and vectors",
+         "outcomes": [
+          {
+           "code": "2.1",
+           "text": "Explain that a scalar has size but no direction."
+          },
+          {
+           "code": "2.2",
+           "text": "Explain that a vector has both size and direction."
+          },
+          {
+           "code": "2.3",
+           "text": "Explain the difference between vectors and scalars."
+          },
+          {
+           "code": "2.4",
+           "text": "Recall which quantities are vectors or scalars: distance, speed, force, weight, mass, momentum, energy and others."
+          },
+          {
+           "code": "2.5",
+           "text": "Recall that velocity is speed in a stated direction."
+          }
+         ]
+        },
+        {
+         "id": "speed-distance-and-time",
+         "title": "Speed, distance and time",
+         "outcomes": [
+          {
+           "code": "2.6",
+           "text": "Recall and use speed = distance / time and distance = speed x time."
+          },
+          {
+           "code": "2.7",
+           "text": "Analyse distance-time graphs and find speed from the gradient."
+          },
+          {
+           "code": "2.11",
+           "text": "Describe lab methods for measuring speed, such as light gates."
+          },
+          {
+           "code": "2.12",
+           "text": "Recall typical speeds for wind, sound, walking, running, cycling and transport."
+          }
+         ]
+        },
+        {
+         "id": "acceleration-and-velocity-time-graphs",
+         "title": "Acceleration and velocity-time graphs",
+         "outcomes": [
+          {
+           "code": "2.8",
+           "text": "Recall and use acceleration = change in velocity / time."
+          },
+          {
+           "code": "2.9",
+           "text": "Use v squared minus u squared = 2 x a x x."
+          },
+          {
+           "code": "2.10",
+           "text": "Analyse velocity-time graphs: compare, calculate acceleration from gradient and distance from area."
+          },
+          {
+           "code": "2.13",
+           "text": "Recall that free-fall acceleration g is 10 m/s squared and estimate everyday accelerations."
+          }
+         ]
+        },
+        {
+         "id": "newton-s-first-and-second-laws",
+         "title": "Newton's first and second laws",
+         "outcomes": [
+          {
+           "code": "2.14",
+           "text": "Recall Newton's first law and apply it to zero and non-zero resultant forces."
+          },
+          {
+           "code": "2.15",
+           "text": "Recall and use F = m x a."
+          },
+          {
+           "code": "2.16",
+           "text": "Define weight and use W = m x g."
+          },
+          {
+           "code": "2.17",
+           "text": "Describe how weight is measured."
+          },
+          {
+           "code": "2.18",
+           "text": "Describe the relationship between weight and gravitational field strength."
+          },
+          {
+           "code": "2.19",
+           "text": "Core practical: investigate force, mass and acceleration by varying masses added to trolleys."
+          }
+         ]
+        },
+        {
+         "id": "circular-motion-and-inertia",
+         "title": "Circular motion and inertia",
+         "outcomes": [
+          {
+           "code": "2.20",
+           "text": "Explain that circular motion at constant speed has changing velocity."
+          },
+          {
+           "code": "2.21",
+           "text": "Explain that circular motion needs a centripetal resultant force towards the centre."
+          },
+          {
+           "code": "2.22",
+           "text": "Explain inertial mass as the ratio of force over acceleration."
+          }
+         ]
+        },
+        {
+         "id": "momentum-and-newton-s-third-law",
+         "title": "Momentum and Newton's third law",
+         "outcomes": [
+          {
+           "code": "2.23",
+           "text": "Apply Newton's third law to equilibrium and collisions and link it to conservation of momentum."
+          },
+          {
+           "code": "2.24",
+           "text": "Define momentum and use p = m x v."
+          },
+          {
+           "code": "2.25",
+           "text": "Describe examples of momentum in collisions."
+          },
+          {
+           "code": "2.26",
+           "text": "Use F = change in momentum / time."
+          }
+         ]
+        },
+        {
+         "id": "stopping-distances",
+         "title": "Stopping distances",
+         "outcomes": [
+          {
+           "code": "2.27",
+           "text": "Explain methods of measuring human reaction time and typical results."
+          },
+          {
+           "code": "2.28",
+           "text": "Recall that stopping distance = thinking distance + braking distance."
+          },
+          {
+           "code": "2.29",
+           "text": "Explain how vehicle mass, speed, reaction time, brakes, road state and tyre friction affect stopping distance."
+          },
+          {
+           "code": "2.30",
+           "text": "Describe factors affecting reaction time, including drugs and distractions."
+          },
+          {
+           "code": "2.31",
+           "text": "Explain dangers of large decelerations and estimate forces in road situations."
+          },
+          {
+           "code": "2.32P",
+           "text": "Estimate stopping distances over a range of typical speeds."
+          },
+          {
+           "code": "2.33P",
+           "text": "Calculate how braking distance depends on initial velocity squared using work done."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "topic-3-conservation-of-energy",
+     "title": "Topic 3 - Conservation of energy",
+     "topics": [
+      {
+       "id": "conservation-of-energy",
+       "title": "Conservation of energy",
+       "subtopics": [
+        {
+         "id": "energy-stores-and-equations",
+         "title": "Energy stores and equations",
+         "outcomes": [
+          {
+           "code": "3.1",
+           "text": "Calculate change in gravitational potential energy using m x g x change in height."
+          },
+          {
+           "code": "3.2",
+           "text": "Calculate kinetic energy using one half x m x v squared."
+          },
+          {
+           "code": "3.3",
+           "text": "Draw and interpret energy transfer diagrams."
+          }
+         ]
+        },
+        {
+         "id": "conservation-and-dissipation",
+         "title": "Conservation and dissipation",
+         "outcomes": [
+          {
+           "code": "3.4",
+           "text": "Explain conservation of energy."
+          },
+          {
+           "code": "3.5",
+           "text": "Analyse energy store changes in a projectile, collision, accelerating object, slowing vehicle and boiling kettle."
+          },
+          {
+           "code": "3.6",
+           "text": "Explain that total energy in a closed system does not change."
+          },
+          {
+           "code": "3.7",
+           "text": "Explain that mechanical processes waste energy by heating the surroundings."
+          },
+          {
+           "code": "3.8",
+           "text": "Explain with examples that energy dissipates into less useful stores."
+          }
+         ]
+        },
+        {
+         "id": "reducing-waste-and-efficiency",
+         "title": "Reducing waste and efficiency",
+         "outcomes": [
+          {
+           "code": "3.9",
+           "text": "Explain ways of reducing unwanted energy transfer, such as lubrication and insulation."
+          },
+          {
+           "code": "3.10",
+           "text": "Describe how wall thickness and thermal conductivity affect a building's cooling rate."
+          },
+          {
+           "code": "3.11",
+           "text": "Recall and use efficiency = useful energy out / total energy in."
+          },
+          {
+           "code": "3.12",
+           "text": "Explain how efficiency can be increased."
+          }
+         ]
+        },
+        {
+         "id": "energy-resources",
+         "title": "Energy resources",
+         "outcomes": [
+          {
+           "code": "3.13",
+           "text": "Describe the main energy sources and compare renewable and non-renewable use."
+          },
+          {
+           "code": "3.14",
+           "text": "Explain patterns and trends in the use of energy resources."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "topic-4-waves",
+     "title": "Topic 4 - Waves",
+     "topics": [
+      {
+       "id": "waves",
+       "title": "Waves",
+       "subtopics": [
+        {
+         "id": "wave-basics",
+         "title": "Wave basics",
+         "outcomes": [
+          {
+           "code": "4.1",
+           "text": "Recall that waves transfer energy and information, not matter."
+          },
+          {
+           "code": "4.2",
+           "text": "Describe evidence that in water and sound waves the wave travels, not the medium."
+          },
+          {
+           "code": "4.3",
+           "text": "Define and use frequency and wavelength."
+          },
+          {
+           "code": "4.4",
+           "text": "Use the terms amplitude, period, wave velocity and wavefront."
+          },
+          {
+           "code": "4.5",
+           "text": "Describe longitudinal and transverse waves with sound, electromagnetic, seismic and water examples."
+          }
+         ]
+        },
+        {
+         "id": "wave-speed",
+         "title": "Wave speed",
+         "outcomes": [
+          {
+           "code": "4.6",
+           "text": "Recall and use v = f x wavelength and v = x / t for all waves."
+          },
+          {
+           "code": "4.7",
+           "text": "Describe how to measure the speed of sound in air and ripples on water."
+          },
+          {
+           "code": "4.8P",
+           "text": "Calculate depth or distance from time and wave speed."
+          },
+          {
+           "code": "4.17",
+           "text": "Core practical: investigate equipment for measuring wave speed, frequency and wavelength in a solid and a fluid."
+          }
+         ]
+        },
+        {
+         "id": "waves-at-boundaries",
+         "title": "Waves at boundaries",
+         "outcomes": [
+          {
+           "code": "4.9P",
+           "text": "Describe reflection, refraction, transmission and absorption of waves at interfaces."
+          },
+          {
+           "code": "4.10",
+           "text": "Explain refraction at a boundary as a change of direction and speed."
+          },
+          {
+           "code": "4.11",
+           "text": "Recall that substances absorb, transmit, refract or reflect waves differently by wavelength."
+          }
+         ]
+        },
+        {
+         "id": "sound-ultrasound-and-infrasound",
+         "title": "Sound, ultrasound and infrasound",
+         "outcomes": [
+          {
+           "code": "4.12P",
+           "text": "Describe how sound waves and vibrations in solids convert, why this works only over a limited frequency range, and how the ear works."
+          },
+          {
+           "code": "4.13P",
+           "text": "Recall that ultrasound is above 20 000 Hz."
+          },
+          {
+           "code": "4.14P",
+           "text": "Recall that infrasound is below 20 Hz."
+          },
+          {
+           "code": "4.15P",
+           "text": "Explain uses of ultrasound and infrasound: sonar, foetal scanning and exploring Earth's core."
+          },
+          {
+           "code": "4.16P",
+           "text": "Describe how velocity, frequency and wavelength change when sound passes between media."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "topic-5-light-and-the-electromagnetic-spectrum",
+     "title": "Topic 5 - Light and the electromagnetic spectrum",
+     "topics": [
+      {
+       "id": "light-and-the-electromagnetic-spectrum",
+       "title": "Light and the electromagnetic spectrum",
+       "subtopics": [
+        {
+         "id": "reflection-refraction-and-colour",
+         "title": "Reflection, refraction and colour",
+         "outcomes": [
+          {
+           "code": "5.1P",
+           "text": "Explain reflection, refraction and total internal reflection with ray diagrams, including critical angle."
+          },
+          {
+           "code": "5.2P",
+           "text": "Explain specular and diffuse reflection."
+          },
+          {
+           "code": "5.3P",
+           "text": "Explain colour by differential absorption at surfaces and transmission through filters."
+          },
+          {
+           "code": "5.9",
+           "text": "Core practical: investigate refraction in rectangular glass blocks."
+          }
+         ]
+        },
+        {
+         "id": "lenses",
+         "title": "Lenses",
+         "outcomes": [
+          {
+           "code": "5.4P",
+           "text": "Relate lens power to focal length and shape."
+          },
+          {
+           "code": "5.5P",
+           "text": "Use ray diagrams to compare refraction by converging and diverging lenses."
+          },
+          {
+           "code": "5.6P",
+           "text": "Explain how different lenses produce real and virtual images."
+          }
+         ]
+        },
+        {
+         "id": "the-electromagnetic-spectrum",
+         "title": "The electromagnetic spectrum",
+         "outcomes": [
+          {
+           "code": "5.7",
+           "text": "Recall that EM waves are transverse and travel at the same speed in a vacuum."
+          },
+          {
+           "code": "5.8",
+           "text": "Explain with examples that EM waves transfer energy from source to observer."
+          },
+          {
+           "code": "5.10",
+           "text": "Recall the EM spectrum groups in order from radio waves to gamma rays."
+          },
+          {
+           "code": "5.11",
+           "text": "Describe the EM spectrum as continuous, with decreasing wavelength and rising frequency."
+          },
+          {
+           "code": "5.12",
+           "text": "Recall that eyes detect only a limited range of frequencies."
+          },
+          {
+           "code": "5.13",
+           "text": "Recall that substances absorb, transmit, refract or reflect EM waves differently by wavelength."
+          },
+          {
+           "code": "5.14",
+           "text": "Explain effects of different EM wave velocities in different substances."
+          }
+         ]
+        },
+        {
+         "id": "thermal-radiation",
+         "title": "Thermal radiation",
+         "outcomes": [
+          {
+           "code": "5.15P",
+           "text": "Explain that all bodies emit radiation whose intensity and wavelength depend on temperature."
+          },
+          {
+           "code": "5.16P",
+           "text": "Explain that constant temperature needs radiated power equal to absorbed power."
+          },
+          {
+           "code": "5.17P",
+           "text": "Explain what happens when radiated power is below or above absorbed power."
+          },
+          {
+           "code": "5.18P",
+           "text": "Explain how the balance of incoming and emitted radiation affects Earth's temperature."
+          },
+          {
+           "code": "5.19P",
+           "text": "Core practical: investigate how a surface affects thermal energy radiated or absorbed."
+          }
+         ]
+        },
+        {
+         "id": "dangers-uses-and-sources-of-em-radiation",
+         "title": "Dangers, uses and sources of EM radiation",
+         "outcomes": [
+          {
+           "code": "5.20",
+           "text": "Recall that danger rises with EM frequency."
+          },
+          {
+           "code": "5.21",
+           "text": "Describe harm from microwaves, infrared, ultraviolet, x-rays and gamma rays."
+          },
+          {
+           "code": "5.22",
+           "text": "Describe uses of each EM wave type from radio to gamma rays."
+          },
+          {
+           "code": "5.23",
+           "text": "Recall that radio waves are produced by, or induce, oscillations in electrical circuits."
+          },
+          {
+           "code": "5.24",
+           "text": "Recall that atomic and nuclear changes can emit and be caused by radiation across wide frequency ranges."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "topic-6-radioactivity",
+     "title": "Topic 6 - Radioactivity",
+     "topics": [
+      {
+       "id": "radioactivity",
+       "title": "Radioactivity",
+       "subtopics": [
+        {
+         "id": "atomic-structure",
+         "title": "Atomic structure",
+         "outcomes": [
+          {
+           "code": "6.1",
+           "text": "Describe the atom: tiny dense nucleus of protons and neutrons with orbiting electrons, nearly all mass in the nucleus."
+          },
+          {
+           "code": "6.2",
+           "text": "Recall the typical size of atoms and small molecules."
+          },
+          {
+           "code": "6.3",
+           "text": "Describe isotope nuclei using atomic number, mass number and symbol notation."
+          },
+          {
+           "code": "6.4",
+           "text": "Recall that isotopes of an element differ in neutron number but share nuclear charge."
+          },
+          {
+           "code": "6.5",
+           "text": "Recall relative masses and charges of protons, neutrons, electrons and positrons."
+          },
+          {
+           "code": "6.6",
+           "text": "Recall that equal protons and electrons make an atom neutral."
+          }
+         ]
+        },
+        {
+         "id": "electron-orbits-and-ions",
+         "title": "Electron orbits and ions",
+         "outcomes": [
+          {
+           "code": "6.7",
+           "text": "Recall that electrons orbit at set distances from the nucleus."
+          },
+          {
+           "code": "6.8",
+           "text": "Explain that electrons change orbit when absorbing or emitting EM radiation."
+          },
+          {
+           "code": "6.9",
+           "text": "Explain how atoms form positive ions by losing outer electrons."
+          },
+          {
+           "code": "6.17",
+           "text": "Describe how the atomic model changed: plum pudding, Rutherford scattering, Bohr model."
+          }
+         ]
+        },
+        {
+         "id": "types-of-radiation",
+         "title": "Types of radiation",
+         "outcomes": [
+          {
+           "code": "6.10",
+           "text": "Recall that alpha, beta minus, beta plus, gamma and neutron radiation come from unstable nuclei randomly."
+          },
+          {
+           "code": "6.11",
+           "text": "Recall that alpha, beta and gamma radiations are ionising."
+          },
+          {
+           "code": "6.15",
+           "text": "Recall that alpha is a helium nucleus, beta an electron from the nucleus and gamma EM radiation."
+          },
+          {
+           "code": "6.16",
+           "text": "Compare alpha, beta and gamma in penetration and ionisation."
+          }
+         ]
+        },
+        {
+         "id": "background-radiation-and-detection",
+         "title": "Background radiation and detection",
+         "outcomes": [
+          {
+           "code": "6.12",
+           "text": "Explain what background radiation is."
+          },
+          {
+           "code": "6.13",
+           "text": "Describe background radiation sources from Earth and space."
+          },
+          {
+           "code": "6.14",
+           "text": "Describe detecting radioactivity with photographic film and a Geiger-Muller tube."
+          }
+         ]
+        },
+        {
+         "id": "radioactive-decay",
+         "title": "Radioactive decay",
+         "outcomes": [
+          {
+           "code": "6.18",
+           "text": "Describe beta minus decay: a neutron becomes a proton and an electron."
+          },
+          {
+           "code": "6.19",
+           "text": "Describe beta plus decay: a proton becomes a neutron and a positron."
+          },
+          {
+           "code": "6.20",
+           "text": "Explain how decays change atomic and mass numbers."
+          },
+          {
+           "code": "6.21",
+           "text": "Recall that nuclei often lose gamma energy after rearranging."
+          },
+          {
+           "code": "6.22",
+           "text": "Balance nuclear equations for mass and charge."
+          }
+         ]
+        },
+        {
+         "id": "activity-and-half-life",
+         "title": "Activity and half-life",
+         "outcomes": [
+          {
+           "code": "6.23",
+           "text": "Describe how a source's activity falls over time."
+          },
+          {
+           "code": "6.24",
+           "text": "Recall that activity is measured in becquerels."
+          },
+          {
+           "code": "6.25",
+           "text": "Explain half-life as the time for half the nuclei to decay or activity to halve."
+          },
+          {
+           "code": "6.26",
+           "text": "Explain that individual decays are unpredictable but half-life predicts large numbers."
+          },
+          {
+           "code": "6.27",
+           "text": "Do simple half-life calculations, including graphs."
+          }
+         ]
+        },
+        {
+         "id": "uses-and-dangers-of-radioactivity",
+         "title": "Uses and dangers of radioactivity",
+         "outcomes": [
+          {
+           "code": "6.28P",
+           "text": "Describe uses of radioactivity: smoke alarms, food irradiation, sterilising, tracing and gauging, cancer diagnosis and treatment."
+          },
+          {
+           "code": "6.29",
+           "text": "Describe dangers of ionising radiation (tissue damage, mutation) and the precautions needed."
+          },
+          {
+           "code": "6.30P",
+           "text": "Explain how dangers depend on half-life and what precautions follow."
+          },
+          {
+           "code": "6.31",
+           "text": "Explain safety precautions for people exposed to radiation, including patient dose limits and risks to medical staff."
+          },
+          {
+           "code": "6.32",
+           "text": "Describe contamination versus irradiation and compare their hazards."
+          },
+          {
+           "code": "6.33P",
+           "text": "Compare internal and external radiation treatment of tumours."
+          },
+          {
+           "code": "6.34P",
+           "text": "Explain medical diagnosis uses, including PET scanners and tracers."
+          },
+          {
+           "code": "6.35P",
+           "text": "Explain why PET isotopes must be made nearby."
+          }
+         ]
+        },
+        {
+         "id": "nuclear-power",
+         "title": "Nuclear power",
+         "outcomes": [
+          {
+           "code": "6.36P",
+           "text": "Evaluate nuclear power: no CO2, risks, public perception, waste and safety."
+          },
+          {
+           "code": "6.37P",
+           "text": "Recall that fission, fusion and decay can be energy sources."
+          },
+          {
+           "code": "6.38P",
+           "text": "Explain U-235 fission into two daughter nuclei with two or more neutrons and energy release."
+          },
+          {
+           "code": "6.39P",
+           "text": "Explain a controlled nuclear chain reaction."
+          },
+          {
+           "code": "6.40P",
+           "text": "Explain how moderators and control rods control a reactor."
+          },
+          {
+           "code": "6.41P",
+           "text": "Describe how chain-reaction heat generates electricity."
+          },
+          {
+           "code": "6.42P",
+           "text": "Recall that fission products are radioactive."
+          }
+         ]
+        },
+        {
+         "id": "nuclear-fusion",
+         "title": "Nuclear fusion",
+         "outcomes": [
+          {
+           "code": "6.43P",
+           "text": "Describe fusion as forming larger nuclei with mass loss and energy release, powering stars."
+          },
+          {
+           "code": "6.44P",
+           "text": "Explain the difference between fusion and fission."
+          },
+          {
+           "code": "6.45P",
+           "text": "Explain why fusion needs high temperature and pressure because protons repel."
+          },
+          {
+           "code": "6.46P",
+           "text": "Relate fusion conditions to the difficulty of practical power stations."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "topic-7-astronomy",
+     "title": "Topic 7 - Astronomy",
+     "topics": [
+      {
+       "id": "astronomy",
+       "title": "Astronomy",
+       "subtopics": [
+        {
+         "id": "gravity-and-the-solar-system",
+         "title": "Gravity and the Solar System",
+         "outcomes": [
+          {
+           "code": "7.1P",
+           "text": "Explain how weight and g differ on the Earth, the Moon and other bodies."
+          },
+          {
+           "code": "7.2P",
+           "text": "Recall the Solar System: Sun, eight planets and their satellites, dwarf planets, asteroids and comets."
+          },
+          {
+           "code": "7.3P",
+           "text": "Recall the names and order of the eight planets."
+          },
+          {
+           "code": "7.4P",
+           "text": "Describe how ideas about the Solar System changed over time."
+          }
+         ]
+        },
+        {
+         "id": "orbits",
+         "title": "Orbits",
+         "outcomes": [
+          {
+           "code": "7.5P",
+           "text": "Describe orbits of moons, planets, comets and artificial satellites."
+          },
+          {
+           "code": "7.6P",
+           "text": "Explain how gravity changes a planet's velocity but not its speed in a circular orbit."
+          },
+          {
+           "code": "7.7P",
+           "text": "Explain that stable orbit radius must change if orbital speed changes."
+          }
+         ]
+        },
+        {
+         "id": "origin-of-the-universe",
+         "title": "Origin of the Universe",
+         "outcomes": [
+          {
+           "code": "7.8P",
+           "text": "Compare the Steady State and Big Bang theories."
+          },
+          {
+           "code": "7.9P",
+           "text": "Describe Big Bang evidence: red-shift and the cosmic microwave background."
+          },
+          {
+           "code": "7.10P",
+           "text": "Recall that more evidence supports Big Bang, so it is the accepted model."
+          }
+         ]
+        },
+        {
+         "id": "red-shift",
+         "title": "Red-shift",
+         "outcomes": [
+          {
+           "code": "7.11P",
+           "text": "Describe how a moving wave source changes observed frequency and wavelength."
+          },
+          {
+           "code": "7.12P",
+           "text": "Describe red-shift of light from galaxies at different distances."
+          },
+          {
+           "code": "7.13P",
+           "text": "Explain why red-shift shows the Universe is expanding."
+          },
+          {
+           "code": "7.14P",
+           "text": "Explain how both Big Bang and Steady State theories account for red-shift."
+          },
+          {
+           "code": "7.15P",
+           "text": "Explain how discovering the CMB made Big Bang the accepted model."
+          }
+         ]
+        },
+        {
+         "id": "life-cycle-of-stars",
+         "title": "Life cycle of stars",
+         "outcomes": [
+          {
+           "code": "7.16P",
+           "text": "Describe the evolution of Sun-like stars: nebula, main sequence, red giant, white dwarf."
+          },
+          {
+           "code": "7.17P",
+           "text": "Explain how the balance of thermal expansion and gravity shapes stars' life cycles."
+          },
+          {
+           "code": "7.18P",
+           "text": "Describe the evolution of stars more massive than the Sun."
+          },
+          {
+           "code": "7.19P",
+           "text": "Describe how observing methods changed and why some telescopes are in space."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "topic-8-energy-forces-doing-work",
+     "title": "Topic 8 - Energy - forces doing work",
+     "topics": [
+      {
+       "id": "energy-forces-doing-work",
+       "title": "Energy - forces doing work",
+       "subtopics": [
+        {
+         "id": "energy-transfers-and-work",
+         "title": "Energy transfers and work",
+         "outcomes": [
+          {
+           "code": "8.1",
+           "text": "Describe how energy stores change when systems change."
+          },
+          {
+           "code": "8.2",
+           "text": "Draw and interpret energy transfer diagrams."
+          },
+          {
+           "code": "8.3",
+           "text": "Explain that total energy in a closed system does not change."
+          },
+          {
+           "code": "8.4",
+           "text": "Identify ways to change a system's energy: work by forces, electrical equipment and heating."
+          },
+          {
+           "code": "8.5",
+           "text": "Describe measuring work done by a force; energy transferred equals work done."
+          },
+          {
+           "code": "8.6",
+           "text": "Recall and use work done = force x distance moved in the direction of the force."
+          },
+          {
+           "code": "8.7",
+           "text": "Describe and calculate energy changes when forces do work."
+          }
+         ]
+        },
+        {
+         "id": "potential-and-kinetic-energy",
+         "title": "Potential and kinetic energy",
+         "outcomes": [
+          {
+           "code": "8.8",
+           "text": "Calculate change in gravitational potential energy using m x g x change in height."
+          },
+          {
+           "code": "8.9",
+           "text": "Calculate kinetic energy using one half x m x v squared."
+          },
+          {
+           "code": "8.10",
+           "text": "Explain with examples that energy dissipates into less useful stores."
+          },
+          {
+           "code": "8.11",
+           "text": "Explain that mechanical processes waste energy by heating surroundings."
+          }
+         ]
+        },
+        {
+         "id": "power-and-efficiency",
+         "title": "Power and efficiency",
+         "outcomes": [
+          {
+           "code": "8.12",
+           "text": "Define power as the rate of energy transfer, with examples."
+          },
+          {
+           "code": "8.13",
+           "text": "Recall and use power = work done / time."
+          },
+          {
+           "code": "8.14",
+           "text": "Recall that one watt equals one joule per second."
+          },
+          {
+           "code": "8.15",
+           "text": "Recall and use efficiency = useful energy out / total energy in."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "topic-9-forces-and-their-effects",
+     "title": "Topic 9 - Forces and their effects",
+     "topics": [
+      {
+       "id": "forces-and-their-effects",
+       "title": "Forces and their effects",
+       "subtopics": [
+        {
+         "id": "types-of-force-and-vectors",
+         "title": "Types of force and vectors",
+         "outcomes": [
+          {
+           "code": "9.1",
+           "text": "Describe contact and non-contact force interactions and force pairs as vectors."
+          },
+          {
+           "code": "9.2",
+           "text": "Explain vector versus scalar quantities using examples."
+          }
+         ]
+        },
+        {
+         "id": "combining-forces",
+         "title": "Combining forces",
+         "outcomes": [
+          {
+           "code": "9.3",
+           "text": "Use scale vector diagrams for resolution of forces, net force and equilibrium."
+          },
+          {
+           "code": "9.4",
+           "text": "Draw and use free body force diagrams."
+          },
+          {
+           "code": "9.5",
+           "text": "Explain how several forces give a resultant, including balanced forces."
+          },
+          {
+           "code": "9.10",
+           "text": "Explain how lubrication reduces unwanted energy transfer."
+          }
+         ]
+        },
+        {
+         "id": "moments-levers-and-gears",
+         "title": "Moments, levers and gears",
+         "outcomes": [
+          {
+           "code": "9.6P",
+           "text": "Describe situations where forces cause rotation."
+          },
+          {
+           "code": "9.7P",
+           "text": "Recall and use moment = force x perpendicular distance."
+          },
+          {
+           "code": "9.8P",
+           "text": "Use the principle of moments for rotational equilibrium."
+          },
+          {
+           "code": "9.9P",
+           "text": "Explain how levers and gears transmit rotational effects of forces."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "topic-10-electricity-and-circuits",
+     "title": "Topic 10 - Electricity and circuits",
+     "topics": [
+      {
+       "id": "electricity-and-circuits",
+       "title": "Electricity and circuits",
+       "subtopics": [
+        {
+         "id": "circuit-basics",
+         "title": "Circuit basics",
+         "outcomes": [
+          {
+           "code": "10.1",
+           "text": "Describe atomic structure: position, mass and charge of protons, neutrons and electrons."
+          },
+          {
+           "code": "10.2",
+           "text": "Draw and use circuit diagrams with standard symbols."
+          },
+          {
+           "code": "10.3",
+           "text": "Describe differences between series and parallel circuits."
+          },
+          {
+           "code": "10.4",
+           "text": "Recall that a voltmeter is connected in parallel to measure potential difference."
+          },
+          {
+           "code": "10.7",
+           "text": "Recall that an ammeter is connected in series to measure current."
+          }
+         ]
+        },
+        {
+         "id": "charge-current-and-potential-difference",
+         "title": "Charge, current and potential difference",
+         "outcomes": [
+          {
+           "code": "10.5",
+           "text": "Explain potential difference as energy per unit charge, so a volt is a joule per coulomb."
+          },
+          {
+           "code": "10.6",
+           "text": "Recall and use E = Q x V."
+          },
+          {
+           "code": "10.8",
+           "text": "Explain current as rate of flow of charge, carried by electrons in metals."
+          },
+          {
+           "code": "10.9",
+           "text": "Recall and use Q = I x t."
+          },
+          {
+           "code": "10.10",
+           "text": "Describe that a closed circuit with a source of potential difference has current."
+          },
+          {
+           "code": "10.11",
+           "text": "Recall that current is conserved at a junction."
+          }
+         ]
+        },
+        {
+         "id": "resistance-and-ohm-s-law",
+         "title": "Resistance and Ohm's law",
+         "outcomes": [
+          {
+           "code": "10.12",
+           "text": "Explain how resistance changes current, including with a variable resistor."
+          },
+          {
+           "code": "10.13",
+           "text": "Recall and use V = I x R."
+          },
+          {
+           "code": "10.14",
+           "text": "Explain why series resistors increase and parallel resistors decrease net resistance."
+          },
+          {
+           "code": "10.15",
+           "text": "Calculate current, potential difference and resistance in series circuits."
+          },
+          {
+           "code": "10.16",
+           "text": "Explain the design of series circuits for testing and measuring."
+          },
+          {
+           "code": "10.17",
+           "text": "Core practical: build circuits to study V, I and R for a resistor and lamp, and test series and parallel circuits."
+          }
+         ]
+        },
+        {
+         "id": "component-characteristics",
+         "title": "Component characteristics",
+         "outcomes": [
+          {
+           "code": "10.18",
+           "text": "Explain how current varies with potential difference for lamps, diodes and fixed resistors."
+          },
+          {
+           "code": "10.19",
+           "text": "Describe how an LDR's resistance varies with light."
+          },
+          {
+           "code": "10.20",
+           "text": "Describe how a thermistor's resistance varies with temperature."
+          },
+          {
+           "code": "10.21",
+           "text": "Explain how circuits explore resistance variation in lamps, diodes, thermistors and LDRs."
+          }
+         ]
+        },
+        {
+         "id": "heating-effect-and-electrical-power",
+         "title": "Heating effect and electrical power",
+         "outcomes": [
+          {
+           "code": "10.22",
+           "text": "Recall that current in a resistor heats it."
+          },
+          {
+           "code": "10.23",
+           "text": "Explain that electrical work against resistance dissipates thermal energy."
+          },
+          {
+           "code": "10.24",
+           "text": "Explain heating as collisions between electrons and lattice ions."
+          },
+          {
+           "code": "10.25",
+           "text": "Explain reducing unwanted energy transfer with low-resistance wires."
+          },
+          {
+           "code": "10.26",
+           "text": "Describe advantages and disadvantages of the heating effect of current."
+          }
+         ]
+        },
+        {
+         "id": "energy-and-power-in-circuits",
+         "title": "Energy and power in circuits",
+         "outcomes": [
+          {
+           "code": "10.27",
+           "text": "Use E = I x V x t."
+          },
+          {
+           "code": "10.28",
+           "text": "Describe power as energy per second, measured in watts."
+          },
+          {
+           "code": "10.29",
+           "text": "Recall and use P = E / t."
+          },
+          {
+           "code": "10.30",
+           "text": "Explain how a device's power relates to its potential difference and current."
+          },
+          {
+           "code": "10.31",
+           "text": "Recall and use P = I x V and P = I squared x R."
+          },
+          {
+           "code": "10.32",
+           "text": "Describe energy transfers from batteries and mains to motors and heaters in domestic devices."
+          }
+         ]
+        },
+        {
+         "id": "mains-electricity-and-safety",
+         "title": "Mains electricity and safety",
+         "outcomes": [
+          {
+           "code": "10.33",
+           "text": "Explain the difference between direct and alternating voltage."
+          },
+          {
+           "code": "10.34",
+           "text": "Describe d.c. as one-direction charge flow supplied by cells and batteries."
+          },
+          {
+           "code": "10.35",
+           "text": "Describe a.c. as charge flow that changes direction."
+          },
+          {
+           "code": "10.36",
+           "text": "Recall the UK supply: a.c., 50 Hz, about 230 V."
+          }
+         ]
+        },
+        {
+         "id": "mains-wiring-and-safety",
+         "title": "Mains wiring and safety",
+         "outcomes": [
+          {
+           "code": "10.37",
+           "text": "Explain the live and neutral wires' different functions."
+          },
+          {
+           "code": "10.38",
+           "text": "Explain how an earth wire and fuses or circuit breakers give safety."
+          },
+          {
+           "code": "10.39",
+           "text": "Explain why switches and fuses go in the live wire."
+          },
+          {
+           "code": "10.40",
+           "text": "Recall the potential differences between live, neutral and earth wires."
+          },
+          {
+           "code": "10.41",
+           "text": "Explain the dangers of any connection between live wire and earth."
+          },
+          {
+           "code": "10.42",
+           "text": "Relate appliance power ratings to changes in stored energy during use."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "topic-11-static-electricity",
+     "title": "Topic 11 - Static electricity",
+     "topics": [
+      {
+       "id": "static-electricity",
+       "title": "Static electricity",
+       "subtopics": [
+        {
+         "id": "charging-by-friction",
+         "title": "Charging by friction",
+         "outcomes": [
+          {
+           "code": "11.1P",
+           "text": "Explain how friction charges an insulator by transferring electrons."
+          },
+          {
+           "code": "11.2P",
+           "text": "Explain why the electron-gaining material is negative and the other equally positive."
+          },
+          {
+           "code": "11.3P",
+           "text": "Recall that like charges repel and unlike attract."
+          }
+         ]
+        },
+        {
+         "id": "static-electricity-in-action",
+         "title": "Static electricity in action",
+         "outcomes": [
+          {
+           "code": "11.4P",
+           "text": "Explain shocks, lightning and induction attraction through electron movement."
+          },
+          {
+           "code": "11.5P",
+           "text": "Explain how earthing removes excess charge."
+          },
+          {
+           "code": "11.6P",
+           "text": "Explain everyday uses of electrostatic charge, such as insecticide sprayers."
+          },
+          {
+           "code": "11.7P",
+           "text": "Describe dangers of sparking, such as when fuelling cars, and how earthing prevents them."
+          }
+         ]
+        },
+        {
+         "id": "electric-fields",
+         "title": "Electric fields",
+         "outcomes": [
+          {
+           "code": "11.8P",
+           "text": "Define an electric field as where a charge feels a force."
+          },
+          {
+           "code": "11.9P",
+           "text": "Describe field shape and direction around a point charge and between parallel plates."
+          },
+          {
+           "code": "11.10P",
+           "text": "Explain how electric fields explain static electricity."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "topic-12-magnetism-and-the-motor-effect",
+     "title": "Topic 12 - Magnetism and the motor effect",
+     "topics": [
+      {
+       "id": "magnetism-and-the-motor-effect",
+       "title": "Magnetism and the motor effect",
+       "subtopics": [
+        {
+         "id": "magnets-and-magnetic-fields",
+         "title": "Magnets and magnetic fields",
+         "outcomes": [
+          {
+           "code": "12.1",
+           "text": "Recall that unlike magnetic poles attract and like poles repel."
+          },
+          {
+           "code": "12.2",
+           "text": "Describe uses of permanent and temporary magnetic materials such as cobalt, steel, iron and nickel."
+          },
+          {
+           "code": "12.3",
+           "text": "Explain the difference between permanent and induced magnets."
+          },
+          {
+           "code": "12.4",
+           "text": "Describe the field shape and direction around bar magnets and in a uniform field, with line density showing strength."
+          },
+          {
+           "code": "12.5",
+           "text": "Describe using plotting compasses to show magnetic field shape and direction, including Earth's."
+          },
+          {
+           "code": "12.6",
+           "text": "Explain how compass behaviour is evidence for a magnetic Earth core."
+          }
+         ]
+        },
+        {
+         "id": "electromagnetism",
+         "title": "Electromagnetism",
+         "outcomes": [
+          {
+           "code": "12.7",
+           "text": "Describe showing that current makes a magnetic field around a straight wire and how its direction relates to current."
+          },
+          {
+           "code": "12.8",
+           "text": "Recall that field strength depends on current and distance from a straight wire."
+          },
+          {
+           "code": "12.9",
+           "text": "Explain how solenoid coil fields add inside to a strong near-uniform field and cancel to a weaker field outside."
+          }
+         ]
+        },
+        {
+         "id": "the-motor-effect",
+         "title": "The motor effect",
+         "outcomes": [
+          {
+           "code": "12.10",
+           "text": "Recall that a current-carrying conductor near a magnet feels a force with an equal and opposite force on the magnet."
+          },
+          {
+           "code": "12.11",
+           "text": "Explain that magnetic forces come from interacting magnetic fields."
+          },
+          {
+           "code": "12.12",
+           "text": "Use Fleming's left-hand rule for force, current and field directions."
+          },
+          {
+           "code": "12.13",
+           "text": "Use F = B x I x l for a conductor at right angles to a field."
+          },
+          {
+           "code": "12.14P",
+           "text": "Explain how the force on a conductor causes rotation in an electric motor."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "topic-13-electromagnetic-induction",
+     "title": "Topic 13 - Electromagnetic induction",
+     "topics": [
+      {
+       "id": "electromagnetic-induction",
+       "title": "Electromagnetic induction",
+       "subtopics": [
+        {
+         "id": "generating-electricity-by-induction",
+         "title": "Generating electricity by induction",
+         "outcomes": [
+          {
+           "code": "13.1P",
+           "text": "Explain how relative movement of a magnet and conductor produces current, in the lab and in large-scale generation."
+          },
+          {
+           "code": "13.2",
+           "text": "Recall factors affecting size and direction of induced potential difference and how the induced field opposes the change."
+          },
+          {
+           "code": "13.3P",
+           "text": "Explain how alternators make a.c. and dynamos make d.c. by induction."
+          },
+          {
+           "code": "13.4P",
+           "text": "Explain how microphones, loudspeakers and headphones convert between sound pressure variations and current variations."
+          }
+         ]
+        },
+        {
+         "id": "transformers",
+         "title": "Transformers",
+         "outcomes": [
+          {
+           "code": "13.5",
+           "text": "Explain how a.c. in one circuit induces current in another in a transformer."
+          },
+          {
+           "code": "13.6",
+           "text": "Recall that a transformer can change the size of an alternating voltage."
+          },
+          {
+           "code": "13.7P",
+           "text": "Use the turns ratio equation to find a missing voltage or number of turns."
+          },
+          {
+           "code": "13.10",
+           "text": "Use Vp x Ip = Vs x Is for 100% efficient transformers."
+          }
+         ]
+        },
+        {
+         "id": "the-national-grid",
+         "title": "The national grid",
+         "outcomes": [
+          {
+           "code": "13.8",
+           "text": "Explain why the grid transmits at high voltage then lower voltage locally, to cut heat loss."
+          },
+          {
+           "code": "13.9",
+           "text": "Explain where and why step-up and step-down transformers are used in the grid."
+          },
+          {
+           "code": "13.11P",
+           "text": "Explain the advantages of high-voltage transmission using the power and transformer equations."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "topic-14-particle-model",
+     "title": "Topic 14 - Particle model",
+     "topics": [
+      {
+       "id": "particle-model",
+       "title": "Particle model",
+       "subtopics": [
+        {
+         "id": "states-of-matter-and-density",
+         "title": "States of matter and density",
+         "outcomes": [
+          {
+           "code": "14.1",
+           "text": "Use kinetic theory to explain solids, liquids and gases by particle movement and arrangement."
+          },
+          {
+           "code": "14.2",
+           "text": "Recall and use density = mass / volume."
+          },
+          {
+           "code": "14.3",
+           "text": "Core practical: investigate the densities of solids and liquids."
+          },
+          {
+           "code": "14.4",
+           "text": "Explain density differences between states using particle arrangement."
+          },
+          {
+           "code": "14.5",
+           "text": "Describe that mass is conserved in changes of state, which are reversible unlike some chemical changes."
+          }
+         ]
+        },
+        {
+         "id": "heating-and-energy",
+         "title": "Heating and energy",
+         "outcomes": [
+          {
+           "code": "14.6",
+           "text": "Explain how heating changes stored energy, raising temperature or changing state."
+          },
+          {
+           "code": "14.7",
+           "text": "Define specific heat capacity and specific latent heat and explain their difference."
+          },
+          {
+           "code": "14.8",
+           "text": "Use change in thermal energy = m x c x change in temperature."
+          },
+          {
+           "code": "14.9",
+           "text": "Use thermal energy for a change of state = m x L."
+          },
+          {
+           "code": "14.10",
+           "text": "Explain how thermal insulation reduces unwanted energy transfer."
+          },
+          {
+           "code": "14.11",
+           "text": "Core practical: find the specific heat capacity of water and plot a temperature-time graph for melting ice."
+          }
+         ]
+        },
+        {
+         "id": "gas-pressure-and-temperature",
+         "title": "Gas pressure and temperature",
+         "outcomes": [
+          {
+           "code": "14.12",
+           "text": "Explain gas pressure in terms of particle motion."
+          },
+          {
+           "code": "14.13",
+           "text": "Explain how gas temperature affects particle speed and pressure at fixed volume and mass."
+          },
+          {
+           "code": "14.14",
+           "text": "Describe absolute zero, -273 C, as no particle movement."
+          },
+          {
+           "code": "14.15",
+           "text": "Convert between kelvin and Celsius."
+          }
+         ]
+        },
+        {
+         "id": "gas-laws",
+         "title": "Gas laws",
+         "outcomes": [
+          {
+           "code": "14.16P",
+           "text": "Explain that gases can be compressed or expanded by pressure changes."
+          },
+          {
+           "code": "14.17P",
+           "text": "Explain that gas pressure gives a net force at right angles to any surface."
+          },
+          {
+           "code": "14.18P",
+           "text": "Explain how changing volume changes collision rate with the walls and pressure at constant temperature."
+          },
+          {
+           "code": "14.19P",
+           "text": "Use P1 x V1 = P2 x V2 for a fixed mass of gas at constant temperature."
+          },
+          {
+           "code": "14.20P",
+           "text": "Explain why doing work on a gas can raise its temperature, such as in a bicycle pump."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "topic-15-forces-and-matter",
+     "title": "Topic 15 - Forces and matter",
+     "topics": [
+      {
+       "id": "forces-and-matter",
+       "title": "Forces and matter",
+       "subtopics": [
+        {
+         "id": "springs-and-elastic-distortion",
+         "title": "Springs and elastic distortion",
+         "outcomes": [
+          {
+           "code": "15.1",
+           "text": "Explain, using springs, that stretching, bending or compressing needs more than one force."
+          },
+          {
+           "code": "15.2",
+           "text": "Describe elastic versus inelastic distortion."
+          },
+          {
+           "code": "15.3",
+           "text": "Recall and use F = k x extension, including finding the spring constant."
+          },
+          {
+           "code": "15.4",
+           "text": "Calculate work done stretching a spring using 0.5 x k x extension squared."
+          },
+          {
+           "code": "15.5",
+           "text": "Describe linear versus non-linear force-extension relationships."
+          },
+          {
+           "code": "15.6",
+           "text": "Core practical: investigate extension and work done when forces stretch a spring."
+          }
+         ]
+        },
+        {
+         "id": "pressure-in-fluids",
+         "title": "Pressure in fluids",
+         "outcomes": [
+          {
+           "code": "15.7P",
+           "text": "Explain how atmospheric pressure varies with height using a simple atmosphere model."
+          },
+          {
+           "code": "15.8P",
+           "text": "Describe fluid pressure as due to the fluid plus atmospheric pressure."
+          },
+          {
+           "code": "15.9P",
+           "text": "Recall that fluid pressure causes a force normal to any surface."
+          },
+          {
+           "code": "15.10P",
+           "text": "Explain how pressure relates to force and area, with examples."
+          },
+          {
+           "code": "15.11P",
+           "text": "Recall and use pressure = force / area."
+          },
+          {
+           "code": "15.12P",
+           "text": "Describe how fluid pressure rises with depth and density."
+          },
+          {
+           "code": "15.13P",
+           "text": "Explain why liquid pressure varies with density and depth."
+          },
+          {
+           "code": "15.14P",
+           "text": "Use pressure = h x density x g to calculate liquid pressure and pressure differences."
+          }
+         ]
+        },
+        {
+         "id": "upthrust-floating-and-sinking",
+         "title": "Upthrust, floating and sinking",
+         "outcomes": [
+          {
+           "code": "15.15P",
+           "text": "Explain upthrust on fully or partly immersed objects in fluids."
+          },
+          {
+           "code": "15.16P",
+           "text": "Recall that upthrust equals the weight of fluid displaced."
+          },
+          {
+           "code": "15.17P",
+           "text": "Explain how upthrust, weight and fluid density decide floating or sinking."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "build": {
+  "builtAt": "2026-10-14T10:35:52.576Z",
+  "model": "claude-agent",
+  "usd": 0,
+  "expectedCodes": 296,
+  "coverage": 1,
+  "missingCodes": [],
+  "counts": {
+   "grades": 1,
+   "units": 15,
+   "topics": 15,
+   "subtopics": 65,
+   "outcomes": 296
+  },
+  "warnings": [
+   "grade Year 10 has no content",
+   "grade Year 11 has no content",
+   "unexpected grade label \"all\""
+  ]
+ }
+}

@@ -1,0 +1,192 @@
+{
+ "id": "cie-igcse-isizulu-as-a-second-language-0531-2025-2027",
+ "region": "INTL",
+ "framework": "Cambridge IGCSE IsiZulu as a Second Language (0531) syllabus 2025–2027",
+ "board": "Cambridge",
+ "qualification": "IGCSE",
+ "subject": "IsiZulu as a Second Language",
+ "syllabusCode": "0531",
+ "gradeSystem": "course",
+ "source": {
+  "urls": [
+   "https://www.cambridgeinternational.org/Images/663184-2025-2027-syllabus.pdf",
+   "https://www.cambridgeinternational.org/programmes-and-qualifications/cambridge-igcse-isizulu-as-a-second-language-0531/"
+  ],
+  "publisher": "Cambridge University Press & Assessment (Cambridge International Education)",
+  "licence": "© Cambridge University Press & Assessment; structure + our own wording only",
+  "firstExam": "2025"
+ },
+ "grades": [
+  {
+   "grade": "IGCSE",
+   "units": [
+    {
+     "id": "reading",
+     "title": "Reading",
+     "topics": [
+      {
+       "id": "a-range-of-reading-strategies",
+       "title": "a range of reading strategies",
+       "subtopics": [
+        {
+         "id": "find-facts-and-ideas",
+         "title": "Find Facts and Ideas",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Identify and understand factual information, ideas and arguments across different text types."
+          },
+          {
+           "code": null,
+           "text": "Recognise ideas, opinions and attitudes, including how they are connected within texts."
+          }
+         ]
+        },
+        {
+         "id": "read-between-the-lines",
+         "title": "Read Between the Lines",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Interpret information, purposes and attitudes that are implied rather than directly stated."
+          }
+         ]
+        },
+        {
+         "id": "work-out-new-words",
+         "title": "Work Out New Words",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Work out the meaning of unfamiliar words and phrases using surrounding information and inference."
+          }
+         ]
+        },
+        {
+         "id": "select-useful-details",
+         "title": "Select Useful Details",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Choose relevant details when reading to achieve a specific purpose."
+          }
+         ]
+        },
+        {
+         "id": "predict-reading-answers",
+         "title": "Predict Reading Answers",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Predict possible answers before responding to reading questions."
+          }
+         ]
+        },
+        {
+         "id": "understand-question-types",
+         "title": "Understand Question Types",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Recognise what kind of information each question is seeking."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "writing",
+     "title": "Writing",
+     "topics": [
+      {
+       "id": "linking-devices-for-different-purposes",
+       "title": "linking devices for different purposes",
+       "subtopics": [
+        {
+         "id": "clear-factual-writing",
+         "title": "Clear Factual Writing",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Communicate factual information, ideas and arguments clearly, developing them with relevant detail."
+          },
+          {
+           "code": null,
+           "text": "Write texts demonstrating accurate and controlled use of language."
+          }
+         ]
+        },
+        {
+         "id": "organising-ideas-clearly",
+         "title": "Organising Ideas Clearly",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Review written work and correct errors in accuracy."
+          },
+          {
+           "code": null,
+           "text": "Select and arrange relevant information and ideas coherently using suitable connectors."
+          },
+          {
+           "code": null,
+           "text": "Organise writing logically or clearly, using paragraphs appropriately."
+          }
+         ]
+        },
+        {
+         "id": "varying-language-choices",
+         "title": "Varying Language Choices",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Use varied grammatical and vocabulary structures in written texts."
+          },
+          {
+           "code": null,
+           "text": "Reduce repetition by replacing repeated words with suitable synonyms."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "conventions-of",
+       "title": "conventions of",
+       "subtopics": [
+        {
+         "id": "conventions-of",
+         "title": "conventions of",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Respond appropriately to a written stimulus using a suitable register, style and format for its purpose and audience."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "build": {
+  "builtAt": "2026-10-14T05:33:40.786Z",
+  "model": "gpt-5.6-luna",
+  "usd": 0.0054,
+  "expectedCodes": null,
+  "coverage": null,
+  "missingCodes": [],
+  "counts": {
+   "grades": 1,
+   "units": 2,
+   "topics": 3,
+   "subtopics": 10,
+   "outcomes": 15
+  },
+  "warnings": []
+ }
+}

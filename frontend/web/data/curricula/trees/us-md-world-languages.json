@@ -1,0 +1,2340 @@
+{
+ "id": "us-md-world-languages",
+ "region": "US",
+ "framework": "Maryland state academic standards: World Languages",
+ "board": null,
+ "qualification": "K-12",
+ "subject": "World Languages",
+ "syllabusCode": null,
+ "gradeSystem": "grade",
+ "source": {
+  "urls": [
+   "https://api.commonstandardsproject.com/api/v1/jurisdictions/49FCDFBD2CF04033A9C347BFA0584DF0",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/A9864ECF301B44DCB27AF22536D95F38",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/22B441A0018F4BE1B601FF49FA6B8179",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/150B2C63F4074F6D8D342CEC47D5E928",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/62109A8A4FAE463EBEE03A64A67E8A81"
+  ],
+  "publisher": "Maryland state education agency (machine-readable via Common Standards Project / ASN)",
+  "licence": "CC BY 4.0 US, Common Curriculum, Inc.",
+  "firstExam": "2016"
+ },
+ "grades": [
+  {
+   "grade": "PK-12",
+   "units": [
+    {
+     "id": "communication-learners-communicate-effectively-i",
+     "title": "COMMUNICATION: Learners communicate effectively in more than one language in order to function in a variety of situations and for multiple purposes",
+     "topics": [
+      {
+       "id": "learners-interact-and-negotiate-meaning-in-spoke",
+       "title": "Learners interact and negotiate meaning in spoken, signed, or written conversations to share information, reactions, feelings, and opinions",
+       "subtopics": [
+        {
+         "id": "novice-low",
+         "title": "Novice Low",
+         "outcomes": [
+          {
+           "code": "1.1.NL.A",
+           "text": "Learners can communicate on some very familiar topics using single words and phrases that they have practiced and memorized."
+          }
+         ]
+        },
+        {
+         "id": "novice-mid",
+         "title": "Novice Mid",
+         "outcomes": [
+          {
+           "code": "1.1.NM.A",
+           "text": "Learners can communicate on very familiar topics using a variety of words and phrases that they have practiced and memorized."
+          }
+         ]
+        },
+        {
+         "id": "novice-high",
+         "title": "Novice High",
+         "outcomes": [
+          {
+           "code": "1.1.NH.A",
+           "text": "Learners can communicate and exchange information about familiar topics using phrases and simple sentences sometimes supported by memorized language."
+          },
+          {
+           "code": "1.1.NH.B",
+           "text": "Learners can usually handle short social interactions in everyday situations by asking and answering simple questions."
+          }
+         ]
+        },
+        {
+         "id": "intermediate-low",
+         "title": "Intermediate Low",
+         "outcomes": [
+          {
+           "code": "1.1.IL.A",
+           "text": "Learners can participate in conversations on a number of familiar topics using simple sentences."
+          },
+          {
+           "code": "1.1.IL.B",
+           "text": "Learners can handle short social interactions in everyday situations by asking and answering simple questions."
+          }
+         ]
+        },
+        {
+         "id": "intermediate-mid",
+         "title": "Intermediate Mid",
+         "outcomes": [
+          {
+           "code": "1.1.IM.A",
+           "text": "Learners can participate in conversations on familiar topics using sentences and series of sentences."
+          },
+          {
+           "code": "1.1.IM.B",
+           "text": "Learners can handle short social interactions in everyday situations by asking and answering a variety of questions."
+          },
+          {
+           "code": "1.1.IM.C",
+           "text": "Learners can usually say what they want to say about themselves and their everyday lives."
+          }
+         ]
+        },
+        {
+         "id": "intermediate-high",
+         "title": "Intermediate High",
+         "outcomes": [
+          {
+           "code": "1.1.IH.A",
+           "text": "Learners can participate with ease and confidence in conversations on familiar topics."
+          },
+          {
+           "code": "1.1.IH.B",
+           "text": "Learners can usually talk about events and experiences in various time frames."
+          },
+          {
+           "code": "1.1.IH.C",
+           "text": "Learners can usually describe people, places, and things."
+          },
+          {
+           "code": "1.1.IH.D",
+           "text": "Learners can handle social interactions in everyday situations, sometimes even when there is an unexpected complication."
+          }
+         ]
+        },
+        {
+         "id": "advanced-low",
+         "title": "Advanced Low",
+         "outcomes": [
+          {
+           "code": "1.1.AL.A",
+           "text": "Learners can participate in conversations about familiar topics that go beyond their everyday lives."
+          },
+          {
+           "code": "1.1.AL.B",
+           "text": "Learners can talk in an organized way and with some detail about events and experiences in various time frames."
+          },
+          {
+           "code": "1.1.AL.C",
+           "text": "Learners can describe people, places, and things in an organized way and with some detail."
+          },
+          {
+           "code": "1.1.AL.D",
+           "text": "Learners can handle a familiar situation with an unexpected complication."
+          }
+         ]
+        },
+        {
+         "id": "advanced-mid",
+         "title": "Advanced Mid",
+         "outcomes": [
+          {
+           "code": "1.1.AM.A",
+           "text": "Learners can express themselves fully not only on familiar topics but also on some concrete social, academic, and professional topics."
+          },
+          {
+           "code": "1.1.AM.B",
+           "text": "Learners can talk in detail and in an organized way about events and experiences in various time frames."
+          },
+          {
+           "code": "1.1.AM.C",
+           "text": "Learners can confidently handle routine situations with an unexpected complication."
+          },
+          {
+           "code": "1.1.AM.D",
+           "text": "Learners can share their points of view in discussions on some complex issues."
+          }
+         ]
+        },
+        {
+         "id": "advanced-high",
+         "title": "Advanced High",
+         "outcomes": [
+          {
+           "code": "1.1.AH.A",
+           "text": "Learners can express themselves freely and spontaneously, and for the most part accurately, on concrete topics and on most complex issues."
+          },
+          {
+           "code": "1.1.AH.B",
+           "text": "Learners can usually support their opinion and develop hypotheses on topics of particular interest or personal expertise."
+          }
+         ]
+        },
+        {
+         "id": "superior",
+         "title": "Superior",
+         "outcomes": [
+          {
+           "code": "1.1.S.A",
+           "text": "Learners can communicate with ease, accuracy, and fluency."
+          },
+          {
+           "code": "1.1.S.B",
+           "text": "Learners can participate fully and effectively in discussions on a variety of topics in formal and informal settings."
+          },
+          {
+           "code": "1.1.S.C",
+           "text": "Learners can discuss at length complex issues by structuring arguments and developing hypotheses."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "interpretive-listening-learners-understand-inter",
+       "title": "INTERPRETIVE LISTENING: Learners understand, interpret, and analyze what is heard, read, or viewed on a variety of topics",
+       "subtopics": [
+        {
+         "id": "novice-low",
+         "title": "Novice Low",
+         "outcomes": [
+          {
+           "code": "1.2L.NL.A",
+           "text": "Learners can recognize a few memorized words and phrases when they hear them spoken."
+          }
+         ]
+        },
+        {
+         "id": "novice-mid",
+         "title": "Novice Mid",
+         "outcomes": [
+          {
+           "code": "1.2L.NM.A",
+           "text": "Learners can recognize some familiar words and phrases when they hear them spoken."
+          }
+         ]
+        },
+        {
+         "id": "novice-high",
+         "title": "Novice High",
+         "outcomes": [
+          {
+           "code": "1.2L.NH.A",
+           "text": "Learners can often understand words, phrases, and simple sentences related to everyday life."
+          },
+          {
+           "code": "1.2L.NH.B",
+           "text": "Learners can recognize pieces of information and sometimes understand the main topic of what is being said."
+          }
+         ]
+        },
+        {
+         "id": "intermediate-low",
+         "title": "Intermediate Low",
+         "outcomes": [
+          {
+           "code": "1.2L.IL.A",
+           "text": "Learners can understand the main idea in messages and presentations on a variety of topics related to everyday life and personal interests and studies."
+          },
+          {
+           "code": "1.2L.IL.B",
+           "text": "Learners can understand the main idea of simple conversations that they overhear."
+          }
+         ]
+        },
+        {
+         "id": "intermediate-mid",
+         "title": "Intermediate Mid",
+         "outcomes": [
+          {
+           "code": "1.2L.IM.A",
+           "text": "Learners can understand the main idea in messages and presentations on a variety of topics related to everyday life and personal interests and studies."
+          },
+          {
+           "code": "1.2L.IM.B",
+           "text": "Learners can understand the main idea in conversations that they overhear."
+          }
+         ]
+        },
+        {
+         "id": "intermediate-high",
+         "title": "Intermediate High",
+         "outcomes": [
+          {
+           "code": "1.2L.IH.A",
+           "text": "Learners can easily understand the main idea in messages and presentations on a variety of topics related to everyday life and personal interests and studies."
+          },
+          {
+           "code": "1.2L.IH.B",
+           "text": "Learners can usually understand a few details of what they overhear in conversations, even when something unexpected is expressed."
+          },
+          {
+           "code": "1.2L.IH.C",
+           "text": "Learners can sometimes follow what they hear about events and experiences in various time frames."
+          }
+         ]
+        },
+        {
+         "id": "advanced-low",
+         "title": "Advanced Low",
+         "outcomes": [
+          {
+           "code": "1.2L.AL.A",
+           "text": "Learners can understand the main idea and some supporting details in organized speech on a variety of topics of personal and general interest."
+          },
+          {
+           "code": "1.2L.AL.B",
+           "text": "Learners can follow stories and descriptions of some length and in various time frames."
+          },
+          {
+           "code": "1.2L.AL.C",
+           "text": "Learners can understand information presented in a variety of genres on familiar topics, even when something unexpected is expressed."
+          }
+         ]
+        },
+        {
+         "id": "advanced-mid",
+         "title": "Advanced Mid",
+         "outcomes": [
+          {
+           "code": "1.2L.AM.A",
+           "text": "Learners can understand the main idea and most supporting detail on a variety of topics of personal and general interest, as well as some topics of professional interest."
+          },
+          {
+           "code": "1.2L.AM.B",
+           "text": "Learners can follow stories and descriptions of some length and in various time frames."
+          },
+          {
+           "code": "1.2L.AM.C",
+           "text": "Learners can understand information presented in most genres, even when not familiar with the topic."
+          }
+         ]
+        },
+        {
+         "id": "advanced-high",
+         "title": "Advanced High",
+         "outcomes": [
+          {
+           "code": "1.2L.AH.A",
+           "text": "Learners can easily follow narrative, informational, and descriptive speech."
+          },
+          {
+           "code": "1.2L.AH.B",
+           "text": "Learners can understand discussions on most topics that deal with special interests, unfamiliar situations, and abstract concepts."
+          },
+          {
+           "code": "1.2L.AH.C",
+           "text": "Learners can sometimes follow extended arguments and different points of view."
+          }
+         ]
+        },
+        {
+         "id": "superior",
+         "title": "Superior",
+         "outcomes": [
+          {
+           "code": "1.2L.S.A",
+           "text": "Learners can follow a wide range of academic and professional discourse on abstract and specialized topics."
+          },
+          {
+           "code": "1.2L.S.B",
+           "text": "Learners can understand all standard dialects."
+          },
+          {
+           "code": "1.2L.S.C",
+           "text": "Learners can sometimes infer complex meaning that requires deep understanding of the culture."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "interpretive-reading-learners-understand-interpr",
+       "title": "INTERPRETIVE READING: Learners understand, interpret, and analyze what is heard, read, or viewed on a variety of topics",
+       "subtopics": [
+        {
+         "id": "novice-low",
+         "title": "Novice Low",
+         "outcomes": [
+          {
+           "code": "1.2R.NL.A",
+           "text": "Learners can recognize a few letters or characters."
+          },
+          {
+           "code": "1.2R.NL.B",
+           "text": "Learners can identify a few memorized words and phrases when they read."
+          }
+         ]
+        },
+        {
+         "id": "novice-mid",
+         "title": "Novice Mid",
+         "outcomes": [
+          {
+           "code": "1.2R.NM.A",
+           "text": "Learners can recognize some letters or characters."
+          },
+          {
+           "code": "1.2R.NM.B",
+           "text": "Learners can understand some learned or memorized words and phrases when they read."
+          }
+         ]
+        },
+        {
+         "id": "novice-high",
+         "title": "Novice High",
+         "outcomes": [
+          {
+           "code": "1.2R.NH.A",
+           "text": "Learners can understand familiar words, phrases, and sentences within short and simple texts related to everyday life."
+          },
+          {
+           "code": "1.2R.NH.B",
+           "text": "Learners can sometimes understand the main idea of what they have read."
+          }
+         ]
+        },
+        {
+         "id": "intermediate-low",
+         "title": "Intermediate Low",
+         "outcomes": [
+          {
+           "code": "1.2R.IL.A",
+           "text": "Learners can understand the main idea of short and simple texts when the topic is familiar."
+          }
+         ]
+        },
+        {
+         "id": "intermediate-mid",
+         "title": "Intermediate Mid",
+         "outcomes": [
+          {
+           "code": "1.2R.IM.A",
+           "text": "Learners can understand the main idea of texts related to everyday life and personal interests or studies."
+          }
+         ]
+        },
+        {
+         "id": "intermediate-high",
+         "title": "Intermediate High",
+         "outcomes": [
+          {
+           "code": "1.2R.IH.A",
+           "text": "Learners can easily understand the main idea of texts related to everyday life, personal interests, and studies."
+          },
+          {
+           "code": "1.2R.IH.B",
+           "text": "Learners can sometimes follow stories and descriptions about events and experiences in various time frames."
+          }
+         ]
+        },
+        {
+         "id": "advanced-low",
+         "title": "Advanced Low",
+         "outcomes": [
+          {
+           "code": "1.2R.AL.A",
+           "text": "Learners can understand the main idea and some supporting details on a variety of topics of personal and general interest."
+          },
+          {
+           "code": "1.2R.AL.B",
+           "text": "Learners can follow stories and descriptions of some length and in various time frames and genres."
+          }
+         ]
+        },
+        {
+         "id": "advanced-mid",
+         "title": "Advanced Mid",
+         "outcomes": [
+          {
+           "code": "1.2R.AM.A",
+           "text": "Learners can understand the main idea and most supporting details in texts on a variety of topics of personal and general interest, as well as some professional topics."
+          },
+          {
+           "code": "1.2R.AM.B",
+           "text": "Learners can follow stories and descriptions of considerable length and in various time frames."
+          },
+          {
+           "code": "1.2R.AM.C",
+           "text": "Learners can understand texts written in a variety of genres, even when they are unfamiliar with the topic."
+          }
+         ]
+        },
+        {
+         "id": "advanced-high",
+         "title": "Advanced High",
+         "outcomes": [
+          {
+           "code": "1.2R.AH.A",
+           "text": "Learners can easily follow narrative, informational, and descriptive texts."
+          },
+          {
+           "code": "1.2R.AH.B",
+           "text": "Learners can understand what they read on most topics that deal with special interests, unfamiliar situations, and abstract concepts."
+          },
+          {
+           "code": "1.2R.AH.C",
+           "text": "Learners can sometimes understand extended arguments and different points of view."
+          }
+         ]
+        },
+        {
+         "id": "superior",
+         "title": "Superior",
+         "outcomes": [
+          {
+           "code": "1.2R.S.A",
+           "text": "Learners can follow academic, professional, and literary texts on a wide range of both familiar and unfamiliar subjects."
+          },
+          {
+           "code": "1.2R.S.B",
+           "text": "Learners can sometimes infer complex meaning that requires analysis and deep understanding of the culture."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "presentational-speaking-learners-present-informa",
+       "title": "PRESENTATIONAL SPEAKING: Learners present information, concepts, and ideas to inform, explain, persuade, and narrate on a variety of topics using appropriate media and adapting to various audiences of listeners, readers, or viewers",
+       "subtopics": [
+        {
+         "id": "novice-low",
+         "title": "Novice Low",
+         "outcomes": [
+          {
+           "code": "1.3S.NL.A",
+           "text": "Learners can present information about themselves and some other very familiar topics using single words or memorized phrases."
+          }
+         ]
+        },
+        {
+         "id": "novice-mid",
+         "title": "Novice Mid",
+         "outcomes": [
+          {
+           "code": "1.3S.NM.A",
+           "text": "Learners can present information about themselves and some other very familiar topics using a variety of words, phrases, and memorized expressions."
+          }
+         ]
+        },
+        {
+         "id": "novice-high",
+         "title": "Novice High",
+         "outcomes": [
+          {
+           "code": "1.3S.NH.A",
+           "text": "Learners can present basic information on familiar topics using language they have practiced using phrases and simple sentences."
+          }
+         ]
+        },
+        {
+         "id": "intermediate-low",
+         "title": "Intermediate Low",
+         "outcomes": [
+          {
+           "code": "1.3S.IL.A",
+           "text": "Learners can present information on most familiar topics using a series of simple sentences."
+          }
+         ]
+        },
+        {
+         "id": "intermediate-mid",
+         "title": "Intermediate Mid",
+         "outcomes": [
+          {
+           "code": "1.3S.IM.A",
+           "text": "Learners can make presentations on a wide variety of familiar topics using connected sentences."
+          }
+         ]
+        },
+        {
+         "id": "intermediate-high",
+         "title": "Intermediate High",
+         "outcomes": [
+          {
+           "code": "1.3S.IH.A",
+           "text": "Learners can make presentations in a generally organized way on school, work, and community topics, and on topics they have researched."
+          },
+          {
+           "code": "1.3S.IH.B",
+           "text": "Learners can make presentations on some events and experiences in various time frames."
+          }
+         ]
+        },
+        {
+         "id": "advanced-low",
+         "title": "Advanced Low",
+         "outcomes": [
+          {
+           "code": "1.3S.AL.A",
+           "text": "Learners can deliver organized presentations, appropriate to their audience, on a variety of topics."
+          },
+          {
+           "code": "1.3S.AL.B",
+           "text": "Learners can present information about events and experiences in various time frames."
+          }
+         ]
+        },
+        {
+         "id": "advanced-mid",
+         "title": "Advanced Mid",
+         "outcomes": [
+          {
+           "code": "1.3S.AM.A",
+           "text": "Learners can deliver well-organized presentations on concrete social, academic, and professional topics."
+          },
+          {
+           "code": "1.3S.AM.B",
+           "text": "Learners can present detailed information about events and experiences in various time frames."
+          }
+         ]
+        },
+        {
+         "id": "advanced-high",
+         "title": "Advanced High",
+         "outcomes": [
+          {
+           "code": "1.3S.AH.A",
+           "text": "Learners can deliver detailed presentations, usually with accuracy, clarity, and precision, on a variety of topics and issues related to community interests and some special fields of expertise."
+          }
+         ]
+        },
+        {
+         "id": "superior",
+         "title": "Superior",
+         "outcomes": [
+          {
+           "code": "1.3S.S.A",
+           "text": "Learners can deliver detailed presentations with accuracy, clarity, and precision to a wide variety of audiences on topics and issues ranging from broad general interests to areas of specialized expertise."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "presentational-writing-learners-present-informat",
+       "title": "PRESENTATIONAL WRITING: Learners present information, concepts, and ideas to inform, explain, persuade, and narrate on a variety of topics using appropriate media and adapting to various audiences of listeners, readers, or viewers",
+       "subtopics": [
+        {
+         "id": "novice-low",
+         "title": "Novice Low",
+         "outcomes": [
+          {
+           "code": "1.3W.NL.A",
+           "text": "Learners can copy some familiar words, characters, or phrases."
+          }
+         ]
+        },
+        {
+         "id": "novice-mid",
+         "title": "Novice Mid",
+         "outcomes": [
+          {
+           "code": "1.3W.NM.A",
+           "text": "Learners can write lists and memorized phrases on familiar topics."
+          }
+         ]
+        },
+        {
+         "id": "novice-high",
+         "title": "Novice High",
+         "outcomes": [
+          {
+           "code": "1.3W.NH.A",
+           "text": "Learners can write short messages and notes on familiar topics related to everyday life."
+          }
+         ]
+        },
+        {
+         "id": "intermediate-low",
+         "title": "Intermediate Low",
+         "outcomes": [
+          {
+           "code": "1.3W.IL.A",
+           "text": "Learners can write briefly about most familiar topics and present information using a series of simple sentences."
+          }
+         ]
+        },
+        {
+         "id": "intermediate-mid",
+         "title": "Intermediate Mid",
+         "outcomes": [
+          {
+           "code": "1.3W.IM.A",
+           "text": "Learners can write on a wide variety of familiar topics using connected sentences."
+          }
+         ]
+        },
+        {
+         "id": "intermediate-high",
+         "title": "Intermediate High",
+         "outcomes": [
+          {
+           "code": "1.3W.IH.A",
+           "text": "Learners can write on topics related to school, work, and community in a generally organized way."
+          },
+          {
+           "code": "1.3W.IH.B",
+           "text": "Learners can write some simple paragraphs about events and experiences in various time frames."
+          }
+         ]
+        },
+        {
+         "id": "advanced-low",
+         "title": "Advanced Low",
+         "outcomes": [
+          {
+           "code": "1.3W.AL.A",
+           "text": "Learners can deliver organized presentations, appropriate to their audience, on a variety of topics."
+          },
+          {
+           "code": "1.3W.AL.B",
+           "text": "Learners can present information about events and experiences in various time frames."
+          }
+         ]
+        },
+        {
+         "id": "advanced-mid",
+         "title": "Advanced Mid",
+         "outcomes": [
+          {
+           "code": "1.3W.AM.A",
+           "text": "Learners can write on general interest, academic, and professional topics."
+          },
+          {
+           "code": "1.3W.AM.B",
+           "text": "Learners can write organized paragraphs about events and experiences in various time frames."
+          }
+         ]
+        },
+        {
+         "id": "advanced-high",
+         "title": "Advanced High",
+         "outcomes": [
+          {
+           "code": "1.3W.AH.A",
+           "text": "Learners can write extensively with significant precision and detail on a variety of topics, most complex issues, and some special fields of expertise."
+          }
+         ]
+        },
+        {
+         "id": "superior",
+         "title": "Superior",
+         "outcomes": [
+          {
+           "code": "1.3W.S.A",
+           "text": "Learners can write about complex and abstract issues ranging from topics of broad general interests to areas of specialized expertise using standard structure, lexicon, and writing protocols."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "cultures-learners-interact-with-cultural-compete",
+     "title": "CULTURES: Learners interact with cultural competence and understanding",
+     "topics": [
+      {
+       "id": "relating-cultural-practices-to-perspectives-lear",
+       "title": "RELATING CULTURAL PRACTICES TO PERSPECTIVES: Learners use the language to investigate, explain, and reflect on the relationship between the practices and perspectives of the cultures studied",
+       "subtopics": [
+        {
+         "id": "novice-range",
+         "title": "Novice Range",
+         "outcomes": [
+          {
+           "code": "2.1N.a",
+           "text": "Use appropriate gestures and oral expressions for greetings, leave takings, and common classroom or social interactions."
+          },
+          {
+           "code": "2.1N.b",
+           "text": "Participate in or simulate age-appropriate cultural activities such as games, birthday celebrations, storytelling, and dramatizations."
+          },
+          {
+           "code": "2.1N.c",
+           "text": "Create or propose simple cultural triangles connecting practices to associated products and perspectives."
+          },
+          {
+           "code": "2.1N.d",
+           "text": "Imitate appropriate etiquette from the target culture at mealtime."
+          },
+          {
+           "code": "2.1N.e",
+           "text": "List practices observed in a video of a practice from the target culture."
+          },
+          {
+           "code": "2.1N.f",
+           "text": "Role play simple interactions in stores and restaurants in the target culture."
+          },
+          {
+           "code": "2.1N.a",
+           "text": "Use appropriate gestures and oral expressions for greetings, leave takings, and common classroom or social interactions."
+          },
+          {
+           "code": "2.1N.b",
+           "text": "Participate in or simulate age-appropriate cultural activities such as games, birthday celebrations, storytelling, and dramatizations."
+          },
+          {
+           "code": "2.1N.c",
+           "text": "Create or propose simple cultural triangles connecting practices to associated products and perspectives."
+          },
+          {
+           "code": "2.1N.d",
+           "text": "Observe, identify, and/or imitate simple patterns of behavior or interaction in various settings such as campus, family, and the community."
+          },
+          {
+           "code": "2.1N.e",
+           "text": "List and identify practices observed in a video that are outcomes of perspectives of the target culture."
+          },
+          {
+           "code": "2.1N.a",
+           "text": "Use appropriate gestures and oral expressions for greetings, leave takings, and common classroom or social interactions."
+          },
+          {
+           "code": "2.1N.b",
+           "text": "Participate in or simulate age-appropriate cultural activities such as games, birthday celebrations, storytelling, and dramatizations."
+          },
+          {
+           "code": "2.1N.c",
+           "text": "Create or propose simple cultural triangles connecting practices to associated products and perspectives."
+          },
+          {
+           "code": "2.1N.d",
+           "text": "Observe and imitate simple patterns of behavior at school."
+          },
+          {
+           "code": "2.1N.e",
+           "text": "Use words and phrases to describe what people from the target culture are doing in photos and short videos and ask simple questions about characteristics of daily life after looking at the photos or short videos."
+          },
+          {
+           "code": "2.1N.f",
+           "text": "List practices observed in a video of a festival or holiday celebrated in the target culture."
+          }
+         ]
+        },
+        {
+         "id": "intermediate-range",
+         "title": "Intermediate Range",
+         "outcomes": [
+          {
+           "code": "2.1I.a",
+           "text": "Observe, analyze, and exchange information on patterns of behavior typical of their peer group in the culture, such as observing and analyzing how different ways of greeting and leave-taking reflect the relationships between people in the target culture."
+          },
+          {
+           "code": "2.1I.b",
+           "text": "Participate in age-appropriate cultural practices such as games (e.g., role of leader, taking turns), sports, and entertainment (e.g., music, dance, drama)."
+          },
+          {
+           "code": "2.1I.c",
+           "text": "Identify and analyze cultural practices from authentic materials such as videos and news articles."
+          },
+          {
+           "code": "2.1I.d",
+           "text": "Engage in conversations with native speakers demonstrating an awareness of how to be culturally respectful."
+          },
+          {
+           "code": "2.1I.e",
+           "text": "Use formal and informal forms of address appropriately in rehearsed situations."
+          },
+          {
+           "code": "2.1I.f",
+           "text": "Role play culturally appropriate interactions with service personnel (e.g., shopkeepers) in the target culture."
+          },
+          {
+           "code": "2.1I.g",
+           "text": "Begin to adjust language and message to acknowledge audiences with different cultural backgrounds."
+          },
+          {
+           "code": "2.1I.h",
+           "text": "Suggest cultural triangles with reasons connecting practices to associated products and perspectives."
+          },
+          {
+           "code": "2.1I.a",
+           "text": "Observe, analyze, and exchange information on patterns of behavior typical of their peer group in the culture, such as observing and analyzing how different ways of greeting and leave-taking reflect the relationships between people in the target culture."
+          },
+          {
+           "code": "2.1I.b",
+           "text": "Participate in age-appropriate cultural practices such as games (e.g., role of leader, taking turns), sports, and entertainment (e.g., music, dance, drama)."
+          },
+          {
+           "code": "2.1I.c",
+           "text": "Observe, analyze, and exchange information on patterns of behavior typical of their peers and other groups from the target cultures found in authentic materials such as video clips, blogs, and magazine and newspaper articles."
+          },
+          {
+           "code": "2.1I.d",
+           "text": "Use culturally appropriate verbal and nonverbal behavior in daily activities among peers or mixed groups."
+          },
+          {
+           "code": "2.1I.e",
+           "text": "Explore, analyze, and present to others how (and why) common cultural practices and procedures are carried out (e.g., how to set a table, how to participate in an election, how to accept or decline an invitation)."
+          },
+          {
+           "code": "2.1I.f",
+           "text": "Begin to adjust language, behaviors, and messages to acknowledge audiences with different cultural backgrounds."
+          },
+          {
+           "code": "2.1I.g",
+           "text": "Role play a variety of situations from the target culture, using culturally appropriate behaviors and expressions."
+          },
+          {
+           "code": "2.1I.h",
+           "text": "Suggest cultural triangles with reasons connecting practices to associated products and perspectives."
+          },
+          {
+           "code": "2.1I.i",
+           "text": "Interpret authentic materials (e.g., short stories, videos, infographics, instruction booklets, magazine articles) to identify and analyze practices (e.g., respecting social media etiquette, finding a job, respecting the environment, dating, child rearing) that reflect perspectives of the target culture."
+          },
+          {
+           "code": "2.1I.a",
+           "text": "Observe, analyze, and exchange information on patterns of behavior typical of their peer group in the culture, such as observing and analyzing how different ways of greeting and leave-taking reflect the relationships between people in the target culture."
+          },
+          {
+           "code": "2.1I.b",
+           "text": "Participate in age-appropriate cultural practices such as games (e.g., role of leader, taking turns), sports, and entertainment (e.g., music, dance, drama)."
+          },
+          {
+           "code": "2.1I.c",
+           "text": "Distinguish informal and formal ways to address classmates and adults."
+          },
+          {
+           "code": "2.1I.d",
+           "text": "Role play simple situations from the target culture such as buying a snack using culturally appropriate gestures and language."
+          },
+          {
+           "code": "2.1I.e",
+           "text": "Use some culturally appropriate gestures and expressions in their interactions with others."
+          },
+          {
+           "code": "2.1I.f",
+           "text": "Create cultural triangles connecting practices to associated products and perspectives, beginning to analyze the relationship among the practices, products, and perspectives."
+          }
+         ]
+        },
+        {
+         "id": "advanced-range",
+         "title": "Advanced Range",
+         "outcomes": [
+          {
+           "code": "2.1A.a",
+           "text": "Use formal and informal forms of address appropriately."
+          },
+          {
+           "code": "2.1A.b",
+           "text": "Engage in conversations with native speakers in a culturally respectful way."
+          },
+          {
+           "code": "2.1A.c",
+           "text": "Use culturally appropriate behaviors in a variety of situations in the target culture."
+          },
+          {
+           "code": "2.1A.d",
+           "text": "Adjust language, behaviors, and messages to acknowledge audiences with different cultural backgrounds."
+          },
+          {
+           "code": "2.1A.e",
+           "text": "Connect practices to associated products, giving evidence-based reasons for the perspectives proposed."
+          },
+          {
+           "code": "2.1A.a",
+           "text": "Use formal and informal forms of address appropriately."
+          },
+          {
+           "code": "2.1A.b",
+           "text": "Engage in conversations with native speakers in a culturally respectful way."
+          },
+          {
+           "code": "2.1A.c",
+           "text": "Interact in a variety of peer- or mixed-group cultural activities, using appropriate verbal and nonverbal cues."
+          },
+          {
+           "code": "2.1A.d",
+           "text": "Engage in discussions with native speakers using culturally appropriate behaviors and language to express agreement and disagreement."
+          },
+          {
+           "code": "2.1A.e",
+           "text": "Identify, analyze, and discuss various patterns of behavior or interaction typical of the culture studied as represented in authentic materials, (e.g., literary texts, films, social media, interviews, news stories)."
+          },
+          {
+           "code": "2.1A.f",
+           "text": "Prepare oral and written presentations with attention to the cultural background of the audience."
+          },
+          {
+           "code": "2.1A.g",
+           "text": "Identify, examine, and analyze connections between socially accepted behavioral practices and cultural perspectives by conducting online and library research, observations, and interviews."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "relating-cultural-products-to-perspectives-learn",
+       "title": "RELATING CULTURAL PRODUCTS TO PERSPECTIVES: Learners use the language to investigate, explain, and reflect on the relationship between the products and perspectives of the cultures studied",
+       "subtopics": [
+        {
+         "id": "novice-range",
+         "title": "Novice Range",
+         "outcomes": [
+          {
+           "code": "2.2N.a",
+           "text": "Identify and observe tangible products of the target culture such as toys, dress, homes, monuments, currency, famous people, and art."
+          },
+          {
+           "code": "2.2N.b",
+           "text": "Identify, discuss, and produce types of artwork, crafts, or graphic representations enjoyed or made by their peer group within the target culture such as models of monuments, mosaics, murals, and traditional recipes."
+          },
+          {
+           "code": "2.2N.c",
+           "text": "Give simple reasons for the role and importance of products from the target culture."
+          },
+          {
+           "code": "2.2N.d",
+           "text": "Listen to and/or read short poems, stories, or plays from the target culture, identifying the author and country of origin."
+          },
+          {
+           "code": "2.2N.e",
+           "text": "Make simple cultural triangles connecting products to associated practices and possible perspectives."
+          },
+          {
+           "code": "2.2N.a",
+           "text": "Identify and observe tangible products of the target culture such as toys, dress, homes, monuments, currency, famous people, and art."
+          },
+          {
+           "code": "2.2N.b",
+           "text": "Identify, discuss, and produce types of artwork, crafts, or graphic representations enjoyed or made by their peer group within the target culture such as models of monuments, mosaics, murals, and traditional recipes."
+          },
+          {
+           "code": "2.2N.c",
+           "text": "Observe and demonstrate how products are used in the target culture."
+          },
+          {
+           "code": "2.2N.d",
+           "text": "Listen to and/or read short poems, stories, or plays from the target culture, identifying the author and country of origin."
+          },
+          {
+           "code": "2.2N.e",
+           "text": "Watch video clips of commercials or television programs in order to identify products and their use in the target culture."
+          },
+          {
+           "code": "2.2N.f",
+           "text": "Listen to and/or sing songs from the target culture, identifying the musician and country of origin."
+          },
+          {
+           "code": "2.2N.g",
+           "text": "Create cultural triangles and describe the connections of products to associated practices and perspectives."
+          },
+          {
+           "code": "2.2N.a",
+           "text": "Identify and observe tangible products of the target culture such as toys, dress, homes, monuments, currency, famous people, and art."
+          },
+          {
+           "code": "2.2N.b",
+           "text": "Identify, discuss, and produce types of artwork, crafts, or graphic representations enjoyed or made by their peer group within the target culture such as models of monuments, mosaics, murals, and traditional recipes."
+          },
+          {
+           "code": "2.2N.c",
+           "text": "Identify and tell the purpose of products of the target culture."
+          },
+          {
+           "code": "2.2N.d",
+           "text": "Listen to or read about expressive products of the target culture such as children’s or traditional songs, selections from the literature commonly read, and types of artwork enjoyed or produced by their peer group in the target culture."
+          },
+          {
+           "code": "2.2N.e",
+           "text": "Illustrate products associated with the target culture."
+          },
+          {
+           "code": "2.2N.f",
+           "text": "Make simple cultural triangles showing the relationship of products, practices, and perspectives."
+          }
+         ]
+        },
+        {
+         "id": "intermediate-range",
+         "title": "Intermediate Range",
+         "outcomes": [
+          {
+           "code": "2.2I.a",
+           "text": "Experience (read, listen to, observe, perform) expressive products of the target culture (e.g., stories, poetry, music, paintings, dance, drama) and explain the origin and importance of these products in today’s culture."
+          },
+          {
+           "code": "2.2I.b",
+           "text": "Identify and analyze cultural products found in literature, news stories, and films from the target culture."
+          },
+          {
+           "code": "2.2I.c",
+           "text": "Create cultural triangles connecting products to associated practices along with suggested perspectives based on background information."
+          },
+          {
+           "code": "2.2I.a",
+           "text": "Experience (read, listen to, observe, perform) expressive products of the target culture (e.g., stories, poetry, music, paintings, dance, drama) and explain the origin and importance of these products in today’s culture."
+          },
+          {
+           "code": "2.2I.b",
+           "text": "Identify, investigate, and analyze the function of everyday objects produced in the target culture (e.g., household items, tools, foods, and clothing)."
+          },
+          {
+           "code": "2.2I.c",
+           "text": "Compare and analyze perspectives reflected in news reports, social media, pamphlets, advertisements, legislation, etc.)"
+          },
+          {
+           "code": "2.2I.d",
+           "text": "Identify and discuss perspectives reflected in creative works of the target culture such as traditional and contemporary music, literature, dance, and art."
+          },
+          {
+           "code": "2.2I.a",
+           "text": "Experience (read, listen to, observe, perform) expressive products of the target culture (e.g., stories, poetry, music, paintings, dance, drama) and explain the origin and importance of these products in today’s culture."
+          },
+          {
+           "code": "2.2I.b",
+           "text": "Search for, identify, and investigate the function of products (e.g., sports equipment, household items, tools, foods, clothing) of the target culture studied compared to their function within the learners’ homes and communities."
+          }
+         ]
+        },
+        {
+         "id": "advanced-range",
+         "title": "Advanced Range",
+         "outcomes": [
+          {
+           "code": "2.2A.a",
+           "text": "Use evidence-based details to explain and analyze the historical, social, economic, and/or political significance of products found in the target culture."
+          },
+          {
+           "code": "2.2A.b",
+           "text": "Research in detail the role and importance of products from the target culture."
+          },
+          {
+           "code": "2.2A.c",
+           "text": "Identify and analyze the role and importance of cultural products found in literature, news stories, and film."
+          },
+          {
+           "code": "2.2A.d",
+           "text": "Describe how some cultural products have changed or disappeared over time."
+          },
+          {
+           "code": "2.2A.e",
+           "text": "Create cultural triangles connecting products to associated practices and giving evidence-based insights to the cultural perspective."
+          },
+          {
+           "code": "2.2A.a",
+           "text": "Use evidence-based details to explain and analyze the historical, social, economic, and/or political significance of products found in the target culture."
+          },
+          {
+           "code": "2.2A.b",
+           "text": "Identify, discuss, and analyze social, economic, and political institutions, and explore relationships among these institutions and the perspectives of the target culture."
+          },
+          {
+           "code": "2.2A.c",
+           "text": "Identify, analyze, and discuss tangible and intangible products and their use as represented in authentic materials (e.g., literary texts, films, social media, interviews, news stories)."
+          },
+          {
+           "code": "2.2A.d",
+           "text": "Identify, examine, and analyze the relationship between cultural products and perspectives by conducting online and library research, observations, and interviews."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "connections-learners-connect-with-other-discipli",
+     "title": "CONNECTIONS: Learners connect with other disciplines and acquire information and diverse perspectives in order to use the language to function in academic and career-related situations",
+     "topics": [
+      {
+       "id": "making-connections-learners-build-reinforce-and-",
+       "title": "MAKING CONNECTIONS: Learners build, reinforce, and expand their knowledge of other disciplines while using the language to develop critical thinking and to solve problems creatively",
+       "subtopics": [
+        {
+         "id": "novice-range",
+         "title": "Novice Range",
+         "outcomes": [
+          {
+           "code": "3.1N.a",
+           "text": "Use mathematics skills to convert American dollars to the currencies of countries in the target culture in order to understand prices of items such as clothing, tickets, and restaurant meals."
+          },
+          {
+           "code": "3.1N.b",
+           "text": "Use mathematics skills to convert weights and measures from the American system to the metric system in order to understand distances, sizes, and quantities of items."
+          },
+          {
+           "code": "3.1N.c",
+           "text": "Use science knowledge and skills to record daily temperatures and weather in different locations around the world, giving reasons for temperatures based on location and time of year."
+          },
+          {
+           "code": "3.1N.d",
+           "text": "Use knowledge from health and science classes to compare healthyeating recommendations using food pyramids or the equivalents from countries in the target culture."
+          },
+          {
+           "code": "3.1N.e",
+           "text": "Use skills from social studies and English language arts to present short biographical sketches of people from the past and present who have had a positive influence locally and/or globally."
+          },
+          {
+           "code": "3.1N.a",
+           "text": "Identify, label, describe, and compare items in the target language on charts and visuals used as instructional materials in other content areas, such as mathematics, art, geography, music, or social sciences."
+          },
+          {
+           "code": "3.1N.b",
+           "text": "Draw and mark maps (of places where they live and places where the target language is spoken) with civic and geographic features studied in other classes."
+          },
+          {
+           "code": "3.1N.c",
+           "text": "Read and view different text types and genres (with an emphasis on interpreting content)."
+          },
+          {
+           "code": "3.1N.a",
+           "text": "Identify and label items in the target language on charts and visuals used as instructional materials in other content areas, including weather, math facts, measurements, animals, musical instruments, or geographical formations."
+          },
+          {
+           "code": "3.1N.b",
+           "text": "Draw and mark maps of their cities, states, and of countries where the target language is used with civic and geographic features studied in other classes."
+          },
+          {
+           "code": "3.1N.c",
+           "text": "Use a website about the rainforest that was introduced in a science class to create a product in the target language that highlights plants, animal life, and weather in the area."
+          },
+          {
+           "code": "3.1N.d",
+           "text": "Read or listen to stories from the target culture and compare them to familiar stories from the same genre (e.g., folklore, fables, myths, legends)."
+          }
+         ]
+        },
+        {
+         "id": "intermediate-range",
+         "title": "Intermediate Range",
+         "outcomes": [
+          {
+           "code": "3.1N.a",
+           "text": "Seek out articles or multimedia in the target language on topics being studied in other classes and enter notes on main ideas in a journal."
+          },
+          {
+           "code": "3.1N.b",
+           "text": "Make oral or written presentations in the target language on topics being studied in other classes."
+          },
+          {
+           "code": "3.1N.c",
+           "text": "Describe and compare key characteristics of countries where the target language is spoken."
+          },
+          {
+           "code": "3.1N.d",
+           "text": "Report on and evaluate the effectiveness of efforts to protect the environment in countries where the target language is spoken."
+          },
+          {
+           "code": "3.1N.e",
+           "text": "Maintain a blog comparing attitudes and reactions to current events of global importance in countries where the target language is spoken."
+          },
+          {
+           "code": "3.1N.f",
+           "text": "Evaluate the role and importance of education for all children in countries where the target language is spoken."
+          },
+          {
+           "code": "3.1N.g",
+           "text": "Use technology to present representative examples of contemporary culture (e.g., music, art, architecture) from countries where the target language is spoken."
+          },
+          {
+           "code": "3.1N.h",
+           "text": "Research and compare how countries where the target language is spoken deal with environmental issues (such as water shortages)."
+          },
+          {
+           "code": "3.1I.a",
+           "text": "Prepare and present a concept in the target language that they studied in another academic subject (e.g., historical facts and concepts, mathematical terms and problems, scientific information)."
+          },
+          {
+           "code": "3.1I.b",
+           "text": "Draw on knowledge they have gained in another academic subject to discuss topics in the target language."
+          },
+          {
+           "code": "3.1I.c",
+           "text": "Read, view, compare, and classify different text types and genres (with an emphasis on interpreting content and form)."
+          },
+          {
+           "code": "3.1I.a",
+           "text": "Share information in the target language about topics from other school subjects, including geographical terms and concepts, historical facts and concepts, mathematical terms and problems, and scientific information."
+          },
+          {
+           "code": "3.1I.b",
+           "text": "Use their knowledge of history to create timelines of historic events in the countries where the target language is spoken."
+          },
+          {
+           "code": "3.1I.c",
+           "text": "Write original poems, stories, and plays using their understanding of the characteristics of these genres gained in English language arts."
+          },
+          {
+           "code": "3.1I.d",
+           "text": "Use their knowledge of geography to create maps of countries where the target language is spoken."
+          }
+         ]
+        },
+        {
+         "id": "advanced-range",
+         "title": "Advanced Range",
+         "outcomes": [
+          {
+           "code": "3.1A.a",
+           "text": "Write a critical analysis of a movie from a country where the target language is spoken."
+          },
+          {
+           "code": "3.1A.b",
+           "text": "Use their knowledge of subjects taught in their schools to tutor English language learners whose first language is the target language."
+          },
+          {
+           "code": "3.1A.c",
+           "text": "Use their knowledge of different forms of government to compare how leaders of countries where the target language is spoken are chosen or elected."
+          },
+          {
+           "code": "3.1A.d",
+           "text": "Create an innovation/invention to improve the quality of life of people around the world."
+          },
+          {
+           "code": "3.1A.e",
+           "text": "Write and produce an original play to highlight a challenge facing people in countries where the target language is spoken."
+          },
+          {
+           "code": "3.1A.a",
+           "text": "Explore, discuss, and debate topics from other academic subjects, including political and historical concepts, worldwide health issues, and environmental concerns."
+          },
+          {
+           "code": "3.1A.b",
+           "text": "Analyze and present information on a topic studied in other classes by conducting online and library research, observations, and interviews."
+          },
+          {
+           "code": "3.1A.c",
+           "text": "Identify and analyze characteristics of different text types and genres."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "acquiring-information-and-diverse-perspectives-l",
+       "title": "ACQUIRING INFORMATION AND DIVERSE PERSPECTIVES: Learners access and evaluate information and diverse perspectives that are available through the language and its cultures",
+       "subtopics": [
+        {
+         "id": "novice-range",
+         "title": "Novice Range",
+         "outcomes": [
+          {
+           "code": "3.2N.a",
+           "text": "Interpret the main idea(s) from infographics showing statistics such as numbers of endangered animals, changes in population of cities and countries, and popularity of various sports and leisure activities."
+          },
+          {
+           "code": "3.2N.b",
+           "text": "View video clips and identify ways that the people in the target culture protect the environment on a daily basis."
+          },
+          {
+           "code": "3.2N.c",
+           "text": "Identify the main idea(s) of current events reported in the news in the Internet from countries where the target language is spoken."
+          },
+          {
+           "code": "3.2N.d",
+           "text": "View websites of schools in countries where the target language is spoken to identify courses, schedules, and special projects, and compare the information to their school’s website."
+          },
+          {
+           "code": "3.2N.a",
+           "text": "Explore instructional websites and materials created for speakers of the target language and identify the subject areas and topics (e.g., history lesson on immigration, a geography lesson on trade routes, a biology lesson on cell structure)."
+          },
+          {
+           "code": "3.2N.b",
+           "text": "Explore news media and identify the subject areas and topics."
+          },
+          {
+           "code": "3.2N.c",
+           "text": "Discuss short texts and videos from the target culture."
+          },
+          {
+           "code": "3.2N.a",
+           "text": "Read, listen to, or talk about age-appropriate school content such as ecology, social studies, sciences, the arts, physical education, and health."
+          },
+          {
+           "code": "3.2N.b",
+           "text": "Expand vocabulary for working with school content through illustrated visuals (e.g., plants, anatomy, timelines of historical periods, maps)."
+          }
+         ]
+        },
+        {
+         "id": "intermediate-range",
+         "title": "Intermediate Range",
+         "outcomes": [
+          {
+           "code": "3.2I.a",
+           "text": "Access a current event article or broadcast on the web in the target language and chart how it compares with the same event reported in the United States."
+          },
+          {
+           "code": "3.2I.b",
+           "text": "Research how a major figure from history, science, or the arts is described in the target language and use it to expand what they already know."
+          },
+          {
+           "code": "3.2I.c",
+           "text": "Access survey results about preferences related to daily life (e.g., music, leisure activities, movies) of people in countries where the target language is spoken and compare the results to preferences of people in their community."
+          },
+          {
+           "code": "3.2I.d",
+           "text": "View publicity for products sold in countries where the target language is spoken and compare the publicity to the way similar products are marketed in the United States."
+          },
+          {
+           "code": "3.2I.e",
+           "text": "Compare news articles on front pages of newspapers from countries where the target language is spoken."
+          },
+          {
+           "code": "3.2I.f",
+           "text": "Compare listings of houses for sale in countries where the target language is spoken in terms of what features are showcased, cost, size, and location."
+          },
+          {
+           "code": "3.2I.a",
+           "text": "Analyze instructional websites and materials created for speakers of the target language and compare them to instructional resources in the United States."
+          },
+          {
+           "code": "3.2I.b",
+           "text": "Find, compare, and discuss coverage of current events in the target culture and in the United States."
+          },
+          {
+           "code": "3.2I.c",
+           "text": "Present on an internationally known figure from history, science, or the arts using target language resources."
+          },
+          {
+           "code": "3.2I.a",
+           "text": "Use sources intended for same-age speakers of the target language to prepare presentations on familiar topics."
+          }
+         ]
+        },
+        {
+         "id": "advanced-range",
+         "title": "Advanced Range",
+         "outcomes": [
+          {
+           "code": "3.2A.a",
+           "text": "Research an issue of global importance in order to provide insights from the perspective of a country or countries where the target language is spoken."
+          },
+          {
+           "code": "3.2A.b",
+           "text": "Read a piece of literature in the target language and analyze the universality of the message."
+          },
+          {
+           "code": "3.2A.c",
+           "text": "Prepare a virtual exhibit of artwork from a country where the target language is spoken, situating the contents historically, and explaining the importance of the artwork in the country of origin."
+          },
+          {
+           "code": "3.2A.a",
+           "text": "Identify and analyze pedagogical approaches used in instructional websites and materials created for speakers of the target language."
+          },
+          {
+           "code": "3.2A.b",
+           "text": "Discuss and analyze representations of pedagogical practices in literary texts and films."
+          },
+          {
+           "code": "3.2A.c",
+           "text": "Research and debate global issues as represented in target language news sources with different political slants."
+          },
+          {
+           "code": "3.2A.d",
+           "text": "Compare, analyze, and present on how and why advertisements for the same product differ in the target culture and the United States."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "comparisons-learners-develop-insight-into-the-na",
+     "title": "COMPARISONS: Learners develop insight into the nature of language and culture in order to interact with cultural competence",
+     "topics": [
+      {
+       "id": "language-comparisons-learners-use-the-language-t",
+       "title": "LANGUAGE COMPARISONS: Learners use the language to investigate, explain and reflect on the nature of language through comparisons of the language studied and their own",
+       "subtopics": [
+        {
+         "id": "novice-range",
+         "title": "Novice Range",
+         "outcomes": [
+          {
+           "code": "4.1N.a",
+           "text": "Cite and use examples of words that are similar in the language they are learning and their native language and they pose guesses about why languages in general might need to borrow words."
+          },
+          {
+           "code": "4.1N.b",
+           "text": "Identify cognates between the target language and their native language and cite the patterns that connect them, and they detect false cognates when the context in which they see them suggests a misfit."
+          },
+          {
+           "code": "4.1N.c",
+           "text": "Inventory idiomatic expressions in both their native language and the language being learned and talk about how idiomatic expressions work in general."
+          },
+          {
+           "code": "4.1N.d",
+           "text": "Compare word order in items such as the date and placement of descriptors."
+          },
+          {
+           "code": "4.1N.e",
+           "text": "Observe formal and informal forms of language in greetings and leavetakings and try out expressions of politeness in other languages and their own."
+          },
+          {
+           "code": "4.1N.f",
+           "text": "Report differences and similarities between the sound and writing systems of their own language and the language being learned."
+          },
+          {
+           "code": "4.1N.a",
+           "text": "Cite and use examples of words that are similar in the language they are learning and their native language and they pose guesses about why languages in general might need to borrow words."
+          },
+          {
+           "code": "4.1N.b",
+           "text": "Identify cognates between the target language and their native language and cite the patterns that connect them, and they detect false cognates when the context in which they see them suggests a misfit."
+          },
+          {
+           "code": "4.1N.c",
+           "text": "Inventory idiomatic expressions in both their native language and the language being learned and talk about how idiomatic expressions work in general."
+          },
+          {
+           "code": "4.1N.d",
+           "text": "Inventory and compare idiomatic expressions in the language they are learning and their own."
+          },
+          {
+           "code": "4.1N.e",
+           "text": "Observe and compare registers of language (e.g., formal and informal) in greetings and leave-takings and other common social interactions in the language they are learning and their own."
+          },
+          {
+           "code": "4.1N.f",
+           "text": "Identify similarities and differences between the sound and writing systems in the language they are learning and their own."
+          },
+          {
+           "code": "4.1N.a",
+           "text": "Cite and use examples of words that are similar in the language they are learning and their native language and they pose guesses about why languages in general might need to borrow words."
+          },
+          {
+           "code": "4.1N.b",
+           "text": "Identify cognates between the target language and their native language and cite the patterns that connect them, and they detect false cognates when the context in which they see them suggests a misfit."
+          },
+          {
+           "code": "4.1N.c",
+           "text": "Inventory idiomatic expressions in both their native language and the language being learned and talk about how idiomatic expressions work in general."
+          },
+          {
+           "code": "4.1N.d",
+           "text": "Observe and identify formal and informal forms of language in greetings and leave-takings."
+          },
+          {
+           "code": "4.1N.e",
+           "text": "Report differences and similarities between the sound and writing systems of their own language and the language being learned."
+          }
+         ]
+        },
+        {
+         "id": "intermediate-range",
+         "title": "Intermediate Range",
+         "outcomes": [
+          {
+           "code": "4.1I.a",
+           "text": "Hypothesize about the similarities of languages based on their awareness of cognates and similar idioms."
+          },
+          {
+           "code": "4.1I.b",
+           "text": "Match groups of people with ways of expressing respect and communicating status differences in their own language and the language they are learning."
+          },
+          {
+           "code": "4.1I.c",
+           "text": "Compare how different time frames are expressed in the target language and their native language and describe the shades of meaning expressed by such differences."
+          },
+          {
+           "code": "4.1I.a",
+           "text": "Identify and use borrowed words and cognates in the language they are learning and their own, and hypothesize about their origins."
+          },
+          {
+           "code": "4.1I.b",
+           "text": "Compare and analyze idiomatic expressions in the language they are learning and their own, and hypothesize about their origins."
+          },
+          {
+           "code": "4.1I.c",
+           "text": "Identify and compare language appropriate to specific social groups and situations in the language they are learning and their own."
+          },
+          {
+           "code": "4.1I.d",
+           "text": "Identify patterns and explain discrepancies between the sound and writing systems in the language they are learning and their own."
+          },
+          {
+           "code": "4.1I.a",
+           "text": "Match groups of people with ways of expressing respect and communicating status differences in their own language and the language they are learning."
+          },
+          {
+           "code": "4.1I.b",
+           "text": "Identify words in the target language that have no translation in English and vice versa."
+          },
+          {
+           "code": "4.1I.c",
+           "text": "Compare word order in the target language to English."
+          },
+          {
+           "code": "4.1I.d",
+           "text": "Notice how different time frames are expressed in the target language."
+          }
+         ]
+        },
+        {
+         "id": "advanced-range",
+         "title": "Advanced Range",
+         "outcomes": [
+          {
+           "code": "4.1A.a",
+           "text": "Compare the choice and use of prepositions among languages."
+          },
+          {
+           "code": "4.1A.b",
+           "text": "Recognize that cognates have the same as well as different meanings among languages and speculate about the evolution of language."
+          },
+          {
+           "code": "4.1A.c",
+           "text": "Keep a journal of phrases and idioms that do not translate directly from one language to another."
+          },
+          {
+           "code": "4.1A.d",
+           "text": "Analyze elements of the target language, such as time and tense and comparable linguistic elements in English, and conjecture about how languages use forms to express time and tense relationships."
+          },
+          {
+           "code": "4.1A.e",
+           "text": "Report on the relationship between word order and meaning and hypothesize on how this may or may not reflect the ways in which cultures organize information and view the world."
+          },
+          {
+           "code": "4.1A.f",
+           "text": "Compare the writing system of the target language and their own. They also examine other writing systems and report about the nature of those writing systems (e.g., logographic, syllabic, alphabetic)."
+          },
+          {
+           "code": "4.1A.a",
+           "text": "Identify and analyze lexical and grammatical changes in the language they are learning and their own (e.g., disappearance of tenses, obsolescence, neologisms) and speculate about the evolution of language."
+          },
+          {
+           "code": "4.1A.b",
+           "text": "Identify lexical and grammatical gaps between the language they are learning and their own and develop strategies for expressing nuance despite these gaps."
+          },
+          {
+           "code": "4.1A.c",
+           "text": "Analyze and compare differences between spoken and written grammar and lexicon in the language they are learning and their own, taking into account audience, purpose, and genre."
+          },
+          {
+           "code": "4.1A.d",
+           "text": "Identify, compare, and analyze sociolinguistic patterns in the language they are learning and their own by conducting online and library research, observations, and interviews."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "cultural-comparisons-learners-use-the-language-t",
+       "title": "CULTURAL COMPARISONS: Learners use the language to investigate, explain, and reflect on the concept of culture through comparisons of the cultures studied and their own",
+       "subtopics": [
+        {
+         "id": "novice-range",
+         "title": "Novice Range",
+         "outcomes": [
+          {
+           "code": "4.2N.a",
+           "text": "Compare games, stories, songs, and rhymes from their childhood to those in the target culture."
+          },
+          {
+           "code": "4.2N.b",
+           "text": "Compare daily routines in their culture and the target culture."
+          },
+          {
+           "code": "4.2N.c",
+           "text": "Compare celebrations (e.g., birthdays, holidays) in the target cultures to their own."
+          },
+          {
+           "code": "4.2N.d",
+           "text": "Compare meal time in their culture and the target culture."
+          },
+          {
+           "code": "4.2N.e",
+           "text": "Compare places in a city where the target language is spoken to places in the city where they live."
+          },
+          {
+           "code": "4.2N.a",
+           "text": "Identify, describe, and compare/contrast products (e.g., tools, toys, clothing, homes, foods) and their use in the target cultures and their own."
+          },
+          {
+           "code": "4.2N.b",
+           "text": "Observe, identify, and compare/contrast simple patterns of behavior or interaction in various settings in the target culture and their own."
+          },
+          {
+           "code": "4.2N.c",
+           "text": "Demonstrate and compare/contrast appropriate gestures and oral expressions for greetings, leave takings, and other common social interactions in the target culture and their own."
+          },
+          {
+           "code": "4.2N.d",
+           "text": "Identify and discuss similarities and differences in themes and techniques in creative works from the target culture and their own."
+          },
+          {
+           "code": "4.2N.a",
+           "text": "Appropriately use gestures used to greet friends, family, or new acquaintances."
+          },
+          {
+           "code": "4.2N.b",
+           "text": "Compare and contrast tangible products (e.g., toys, sports, equipment, foods) of the target culture and their own."
+          },
+          {
+           "code": "4.2N.c",
+           "text": "Compare simple patterns of behavior or interaction in various cultural settings (e.g., transportation to school, eating habits)."
+          },
+          {
+           "code": "4.2N.d",
+           "text": "Compare and contrast intangible products (e.g., rhymes, songs, folktales) of the target cultures and their own."
+          }
+         ]
+        },
+        {
+         "id": "intermediate-range",
+         "title": "Intermediate Range",
+         "outcomes": [
+          {
+           "code": "4.2I.a",
+           "text": "Hypothesize about the relationship between cultural perspectives and expressive products (e.g., music, visual arts, forms of literature) by analyzing selected products from the target culture and their own."
+          },
+          {
+           "code": "4.2I.b",
+           "text": "Compare and contrast the role and importance of family in the target culture to their own."
+          },
+          {
+           "code": "4.2I.c",
+           "text": "Compare and contrast school schedules, course offerings, and attitudes toward school in the target culture to their own."
+          },
+          {
+           "code": "4.2I.d",
+           "text": "Compare and contrast the role of social networking in the target culture to their own."
+          },
+          {
+           "code": "4.2I.e",
+           "text": "Compare and contrast career choices and preparation in the target culture to their own."
+          },
+          {
+           "code": "4.2I.f",
+           "text": "Compare and contrast entertainment and leisure options in the target culture and their own."
+          },
+          {
+           "code": "4.2I.a",
+           "text": "Document and contrast verbal and nonverbal behavior in daily activities among peers or mixed groups in the target cultures and their own."
+          },
+          {
+           "code": "4.2I.b",
+           "text": "Identify, investigate, and compare/contrast the function of everyday objects (e.g., household items, tools, foods, clothing) produced in the target cultures and their own."
+          },
+          {
+           "code": "4.2I.c",
+           "text": "Compare and contrast authentic materials (e.g., creative works, news, social media) from the target culture and their own to identify and analyze practices and perspectives of the target culture and their own."
+          },
+          {
+           "code": "4.2I.a",
+           "text": "Fill in a graphic organizer that compares sample daily activities in the target culture and their own."
+          },
+          {
+           "code": "4.2I.b",
+           "text": "Speculate on why certain products originate in and/or are important to particular cultures by analyzing selected products from the target culture and their own."
+          },
+          {
+           "code": "4.2I.c",
+           "text": "Hypothesize about the relationship between cultural perspectives and practices (e.g., holidays, celebrations, work habits, play) by analyzing selected practices from the target culture and their own."
+          }
+         ]
+        },
+        {
+         "id": "advanced-range",
+         "title": "Advanced Range",
+         "outcomes": [
+          {
+           "code": "4.2A.a",
+           "text": "Report on the relationship between word order and meaning and hypothesize on how this may or may not reflect the ways in which cultures organize information and view the world."
+          },
+          {
+           "code": "4.2A.b",
+           "text": "Hypothesize about the origins and use of idioms as reflections of culture, citing examples from the language and culture being studied and their own."
+          },
+          {
+           "code": "4.2A.c",
+           "text": "Compare cultural nuances of meanings of words, idioms, and vocal inflections in the target language and their won."
+          },
+          {
+           "code": "4.2A.d",
+           "text": "Identify, discuss, and analyze social, economic, and political institutions and related perspectives in the target culture and their own."
+          },
+          {
+           "code": "4.2A.e",
+           "text": "Identify, analyze, and discuss tangible and intangible products and their use in the target culture and their own, as represented in authentic materials (e.g., literary texts, films, social media, interviews, news stories)"
+          },
+          {
+           "code": "4.2A.f",
+           "text": "Identify, examine, and analyze the relationship between cultural products, practices, and perspectives in the target culture and their own by conducting research, observations, and interviews."
+          },
+          {
+           "code": "4.2A.a",
+           "text": "Report on the relationship between word order and meaning and hypothesize on how this may or may not reflect the ways in which cultures organize information and view the world."
+          },
+          {
+           "code": "4.2A.b",
+           "text": "Hypothesize about the origins and use of idioms as reflections of culture, citing examples from the language and culture being studied and their own."
+          },
+          {
+           "code": "4.2A.c",
+           "text": "Compare cultural nuances of meanings of words, idioms, and vocal inflections in the target language and their won."
+          },
+          {
+           "code": "4.2A.d",
+           "text": "Identify, discuss, and analyze social, economic, and political institutions and related perspectives in the target culture and their own."
+          },
+          {
+           "code": "4.2A.e",
+           "text": "Identify, analyze, and discuss tangible and intangible products and their use in the target culture and their own, as represented in authentic materials (e.g., literary texts, films, social media, interviews, news stories)"
+          },
+          {
+           "code": "4.2A.f",
+           "text": "Identify, examine, and analyze the relationship between cultural products, practices, and perspectives in the target culture and their own by conducting research, observations, and interviews."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "communities-learners-communicate-and-interact-wi",
+     "title": "COMMUNITIES: Learners communicate and interact with cultural competence in order to participate in multilingual communities at home and around the world",
+     "topics": [
+      {
+       "id": "school-and-global-communities-learners-use-the-l",
+       "title": "SCHOOL AND GLOBAL COMMUNITIES: Learners use the language both within and beyond the classroom to interact and collaborate in their community and the globalized world",
+       "subtopics": [
+        {
+         "id": "novice-range",
+         "title": "Novice Range",
+         "outcomes": [
+          {
+           "code": "5.1N.a",
+           "text": "Communicate on a personal level with speakers of the language in person or via email, video chats, instant messaging, and shared video clips."
+          },
+          {
+           "code": "5.1N.b",
+           "text": "Identify professions which require proficiency in another language."
+          },
+          {
+           "code": "5.1N.c",
+           "text": "Create imaginary situations to role play interactions that might take place in a community setting"
+          },
+          {
+           "code": "5.1N.d",
+           "text": "Do WebQuests and report on a cultural event or a school topic."
+          },
+          {
+           "code": "5.1N.e",
+           "text": "Write and illustrate short stories to present to others."
+          },
+          {
+           "code": "5.1N.f",
+           "text": "Perform for school, campus, or community celebrations."
+          },
+          {
+           "code": "5.1N.a",
+           "text": "Exchange basic information about themselves, their studies, or their family with speakers of the target language and/or students in other classes, in face-to-face or virtual settings (e.g., social media, instant messaging, video conferencing)."
+          },
+          {
+           "code": "5.1N.b",
+           "text": "Identify professions of interest to them that require proficiency in another language."
+          },
+          {
+           "code": "5.1N.c",
+           "text": "Simulate interactions that might take place in a community setting."
+          },
+          {
+           "code": "5.1N.d",
+           "text": "Write and illustrate short texts intended for a specific audience in collaboration with students in other classes."
+          },
+          {
+           "code": "5.1N.e",
+           "text": "Prepare a group presentation or performance for a school, campus, or community event."
+          },
+          {
+           "code": "5.1N.f",
+           "text": "Write and illustrate short stories to present to others."
+          },
+          {
+           "code": "5.1N.g",
+           "text": "Perform for school, campus, or community celebrations."
+          },
+          {
+           "code": "5.1N.a",
+           "text": "Identify places that another language is used and attempt to interact with the language in some way (e.g., finding products in the language at a grocery store, attempting to speak to a community member in a library or restaurant)."
+          },
+          {
+           "code": "5.1N.b",
+           "text": "Access relationships with speakers of the language either in person or via texting, email, social media forums, or voice chats."
+          },
+          {
+           "code": "5.1N.c",
+           "text": "Identify professions that require proficiency in another language."
+          },
+          {
+           "code": "5.1N.d",
+           "text": "Conduct online research and report on a cultural event or a school topic."
+          },
+          {
+           "code": "5.1N.e",
+           "text": "Write and illustrate short stories to present to others."
+          },
+          {
+           "code": "5.1N.f",
+           "text": "Perform for school, campus, or community celebrations."
+          }
+         ]
+        },
+        {
+         "id": "intermediate-range",
+         "title": "Intermediate Range",
+         "outcomes": [
+          {
+           "code": "5.1I.a",
+           "text": "Discuss their preferences in leisure activities and current events, in written form or orally, with peers."
+          },
+          {
+           "code": "5.1I.b",
+           "text": "Discuss steps to becoming a professional in a field requiring the ability to communicate in the target language."
+          },
+          {
+           "code": "5.1I.c",
+           "text": "Present information gained from a native speaker about a cultural event or a topic of interest."
+          },
+          {
+           "code": "5.1I.d",
+           "text": "Use their knowledge of the target language to tutor English language learners who speak the target language."
+          },
+          {
+           "code": "5.1I.e",
+           "text": "Discuss their preferences concerning leisure activities and current events, in written form or orally, with peers who speak the language."
+          },
+          {
+           "code": "5.1I.f",
+           "text": "Interact with members of the local community or with contacts made electronically to hear how they use the language in their various fields of work."
+          },
+          {
+           "code": "5.1I.g",
+           "text": "Participate in language club activities which benefit the school or community."
+          },
+          {
+           "code": "5.1I.h",
+           "text": "Write and illustrate stories to present to others."
+          },
+          {
+           "code": "5.1I.i",
+           "text": "Perform for a school, campus, or community celebration."
+          },
+          {
+           "code": "5.1I.a",
+           "text": "Discuss topics of personal interest through interpersonal oral or written exchanges with speakers of the target language and/or students in other classes, in face-to-face or virtual settings (e.g., social media, instant messaging, video conferencing)."
+          },
+          {
+           "code": "5.1I.b",
+           "text": "Interview members of communities, whether local or beyond, about how they use their knowledge of language personally and professionally, in face-to-face or virtual settings."
+          },
+          {
+           "code": "5.1I.c",
+           "text": "Solicit, organize, and present information from a speaker of the target language about a cultural event or a topic of interest."
+          },
+          {
+           "code": "5.1I.d",
+           "text": "Participate in language club activities that benefit the school, community, or other organizations."
+          },
+          {
+           "code": "5.1I.a",
+           "text": "Interact with members of the local community or with contacts made electronically to hear how they use the language in their various fields of work."
+          },
+          {
+           "code": "5.1I.b",
+           "text": "Participate in language club activities that benefit the school or community."
+          }
+         ]
+        },
+        {
+         "id": "advanced-range",
+         "title": "Advanced Range",
+         "outcomes": [
+          {
+           "code": "5.1A.a",
+           "text": "Communicate orally or in writing with members of the target culture regarding topics of personal interest, community issues, or world concern."
+          },
+          {
+           "code": "5.1A.b",
+           "text": "Participate in a career exploration or school-to-work project which requires proficiency in the target language and culture."
+          },
+          {
+           "code": "5.1A.c",
+           "text": "Use community resources to research a topic related to culture and/or language study."
+          },
+          {
+           "code": "5.1A.d",
+           "text": "Design and organize a multimedia presentation about the target language and culture to present to others."
+          },
+          {
+           "code": "5.1A.e",
+           "text": "Participate in language club activities which benefit the school or community."
+          },
+          {
+           "code": "5.1A.f",
+           "text": "Write and illustrate stories to present to others."
+          },
+          {
+           "code": "5.1A.g",
+           "text": "Read, add information, and monitor edits on wikis in the target language."
+          },
+          {
+           "code": "5.1A.h",
+           "text": "Provide service to the community by interpreting the target language at school, clinics, or daycare centers."
+          },
+          {
+           "code": "5.1A.a",
+           "text": "Discuss and express opinions on current events and issues through interpersonal oral or written exchanges with speakers of the target language and/or students in other classes, in face-to-face or virtual settings (e.g., social media, instant messaging, video conferencing)/"
+          },
+          {
+           "code": "5.1A.b",
+           "text": "Volunteer for a community organization, participate in a career exploration or school-to-work project, or complete an internship that requires proficiency in the target language and culture."
+          },
+          {
+           "code": "5.1A.c",
+           "text": "Use community resources in addition to library and online resources to research a topic related to culture and/or language study."
+          },
+          {
+           "code": "5.1A.d",
+           "text": "Initiate and organize language club activities that benefit the school, community, or other organizations."
+          },
+          {
+           "code": "5.1A.e",
+           "text": "Write and illustrate stories to present to others."
+          },
+          {
+           "code": "5.1A.f",
+           "text": "Conduct research in the target language or assist in the translation of resources for the benefit of a community organization."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "lifelong-learning-learners-set-goals-and-reflect",
+       "title": "LIFELONG LEARNING: Learners set goals and reflect on their progress in using language for enjoyment, enrichment, and advancement",
+       "subtopics": [
+        {
+         "id": "novice-range",
+         "title": "Novice Range",
+         "outcomes": [
+          {
+           "code": "5.2N.a",
+           "text": "Use the NCSSFL-ACTFL Can-Do Global Benchmarks to set SMART goals (specific, measurable, attainable, relevant, and timebound) to monitor and reflect on their progress in communication skills."
+          },
+          {
+           "code": "5.2N.b",
+           "text": "Collect evidence showing that they have achieved the SMART goals they have set for each unit of instruction."
+          },
+          {
+           "code": "5.2N.c",
+           "text": "Interpret materials and/or use media from the target language and culture for enjoyment."
+          },
+          {
+           "code": "5.2N.d",
+           "text": "Play sports or games from the target culture."
+          },
+          {
+           "code": "5.2N.e",
+           "text": "Exchange information about topics of personal interest."
+          },
+          {
+           "code": "5.2N.f",
+           "text": "Plan real or imaginary travel."
+          },
+          {
+           "code": "5.2N.g",
+           "text": "Attend or view via media cultural events and social activities."
+          },
+          {
+           "code": "5.2N.h",
+           "text": "Listen to music, sing songs, or play musical instruments from the target culture."
+          },
+          {
+           "code": "5.2N.i",
+           "text": "Explore the Internet to find sites of personal interest where they can use the target language to maintain and increase their communication skills."
+          },
+          {
+           "code": "5.2N.a",
+           "text": "Use the NCSSFL-ACTFL Can-Do Global Benchmarks to set SMART goals (specific, measurable, attainable, relevant, and timebound) to monitor and reflect on their progress in communication skills."
+          },
+          {
+           "code": "5.2N.b",
+           "text": "Collect evidence showing that they have achieved the SMART goals they have set for each unit of instruction."
+          },
+          {
+           "code": "5.2N.c",
+           "text": "Seek out and explore authentic materials in the target language related to their hobbies, goals, and interests, and expand their vocabulary in their areas."
+          },
+          {
+           "code": "5.2N.d",
+           "text": "Learn sports or games played in the target culture."
+          },
+          {
+           "code": "5.2N.e",
+           "text": "Use online resources in the target language to plan travel."
+          },
+          {
+           "code": "5.2N.f",
+           "text": "Attend or view cultural events and social activities."
+          },
+          {
+           "code": "5.2N.g",
+           "text": "Listen to music, sing songs, or play musical instruments from the target culture."
+          },
+          {
+           "code": "5.2N.h",
+           "text": "Explore the Internet to find sites of personal interest where they can use the target language to maintain and increase their communication skills."
+          },
+          {
+           "code": "5.2N.a",
+           "text": "Interpret material and/or use media from the target language and culture for enjoyment."
+          },
+          {
+           "code": "5.2N.b",
+           "text": "Play sports or games from the target culture."
+          },
+          {
+           "code": "5.2N.c",
+           "text": "Exchange information about topics of personal interest."
+          },
+          {
+           "code": "5.2N.d",
+           "text": "Plan real or imaginary travel."
+          },
+          {
+           "code": "5.2N.e",
+           "text": "Attend or use media to view cultural events and social activities."
+          },
+          {
+           "code": "5.2N.f",
+           "text": "Listen to music, sing songs, or play musical instruments from the target culture."
+          },
+          {
+           "code": "5.2N.g",
+           "text": "Create can-do statements with the help of their teachers of what they want to communicate in the target language for each unit of instruction."
+          },
+          {
+           "code": "5.2N.h",
+           "text": "Collect evidence showing that they have achieved the can-do statements for each unit."
+          }
+         ]
+        },
+        {
+         "id": "intermediate-range",
+         "title": "Intermediate Range",
+         "outcomes": [
+          {
+           "code": "5.2I.a",
+           "text": "Use the NCSSFL-ACTFL Can-Do Global Benchmarks to set SMART goals (specific, measurable, attainable, relevant, and timebound) to monitor and reflect on their progress in communication skills."
+          },
+          {
+           "code": "5.2I.b",
+           "text": "Collect evidence showing that they have achieved the SMART goals they have set for each unit of instruction."
+          },
+          {
+           "code": "5.2I.c",
+           "text": "Consult various sources in the target language to obtain information on topics of personal interest."
+          },
+          {
+           "code": "5.2I.d",
+           "text": "Play sports or games from the target culture."
+          },
+          {
+           "code": "5.2I.e",
+           "text": "Exchange information around topics of personal interest."
+          },
+          {
+           "code": "5.2I.f",
+           "text": "Use various media from the target language and culture for entertainment."
+          },
+          {
+           "code": "5.2I.g",
+           "text": "Attend or use media to view cultural events and social activities."
+          },
+          {
+           "code": "5.2I.h",
+           "text": "Listen to music, sing songs, or play musical instruments from the target culture."
+          },
+          {
+           "code": "5.2I.i",
+           "text": "Explore the Internet to find sites of personal interest where they can use the target language to maintain and increase their communication skills."
+          },
+          {
+           "code": "5.2I.a",
+           "text": "Use the NCSSFL-ACTFL Can-Do Global Benchmarks to set SMART goals (specific, measurable, attainable, relevant, and timebound) to monitor and reflect on their progress in communication skills."
+          },
+          {
+           "code": "5.2I.b",
+           "text": "Collect evidence showing that they have achieved the SMART goals they have set for each unit of instruction."
+          },
+          {
+           "code": "5.2I.c",
+           "text": "Seek out and interact with speakers of the target language who share similar hobbies, goals, and interests, in face-to-face or virtual settings."
+          },
+          {
+           "code": "5.2I.d",
+           "text": "Expand their knowledge and keep up with current events through target language resources."
+          },
+          {
+           "code": "5.2I.e",
+           "text": "Follow and participate in sports or games played in the target culture."
+          },
+          {
+           "code": "5.2I.f",
+           "text": "Join community or international groups that organize cultural events and social activities."
+          },
+          {
+           "code": "5.2I.g",
+           "text": "Explore the Internet to find sites of personal interest where they can use the target language to maintain and increase their communication skills."
+          },
+          {
+           "code": "5.2I.a",
+           "text": "Create can-do statements with the help of their teachers of what they want to communicate in the target language for each unit of instruction."
+          },
+          {
+           "code": "5.2I.b",
+           "text": "Collect evidence showing that they have achieved the can-do statements for each unit."
+          },
+          {
+           "code": "5.2I.c",
+           "text": "Consult various sources in the target language to obtain information on topics of personal interest."
+          },
+          {
+           "code": "5.2I.d",
+           "text": "Play sports or games from the target culture."
+          },
+          {
+           "code": "5.2I.e",
+           "text": "Exchange information about topics of personal interest."
+          },
+          {
+           "code": "5.2I.f",
+           "text": "Use various media from the target language and culture for entertainment."
+          },
+          {
+           "code": "5.2I.g",
+           "text": "Attend or use media to view cultural events and social activities."
+          },
+          {
+           "code": "5.2I.h",
+           "text": "Listen to music, sing songs, or play musical instruments from the target culture."
+          }
+         ]
+        },
+        {
+         "id": "advanced-range",
+         "title": "Advanced Range",
+         "outcomes": [
+          {
+           "code": "5.2A.a",
+           "text": "Use the NCSSFL-ACTFL Can-Do Global Benchmarks to set SMART goals (specific, measurable, attainable, relevant, and timebound) to monitor and reflect on their progress in communication skills."
+          },
+          {
+           "code": "5.2A.b",
+           "text": "Collect evidence showing that they have achieved the SMART goals they have set for each unit of instruction."
+          },
+          {
+           "code": "5.2A.c",
+           "text": "Consult various sources in the target language to obtain information on topics of personal interest."
+          },
+          {
+           "code": "5.2A.d",
+           "text": "Consult various sources in the target language to obtain information on topics of personal interest."
+          },
+          {
+           "code": "5.2A.e",
+           "text": "Play sports or games from the target culture."
+          },
+          {
+           "code": "5.2A.f",
+           "text": "Read and/or use various media from the target language and culture for entertainment or personal growth."
+          },
+          {
+           "code": "5.2A.g",
+           "text": "Establish and/or maintain interpersonal relations with speakers of the target language."
+          },
+          {
+           "code": "5.2A.h",
+           "text": "Attend or use media to view cultural events and social activities."
+          },
+          {
+           "code": "5.2A.i",
+           "text": "Listen to music, sing songs, or play musical instruments from the target culture."
+          },
+          {
+           "code": "5.2A.j",
+           "text": "Explore the Internet to find sites of personal interest where they can use the target language to maintain and increase their communication skills."
+          },
+          {
+           "code": "5.2A.a",
+           "text": "Use the NCSSFL-ACTFL Can-Do Global Benchmarks to set SMART goals (specific, measurable, attainable, relevant, and timebound) to monitor and reflect on their progress in communication skills."
+          },
+          {
+           "code": "5.2A.b",
+           "text": "Collect evidence showing that they have achieved the SMART goals they have set for each unit of instruction."
+          },
+          {
+           "code": "5.2A.c",
+           "text": "Regularly consult target language resources for personal enrichment, entertainment, and professional advancement."
+          },
+          {
+           "code": "5.2A.d",
+           "text": "Regularly interact with speakers of the target language in face-to-face or virtual settings."
+          },
+          {
+           "code": "5.2A.e",
+           "text": "Help organize and participate in cultural events and social activities."
+          },
+          {
+           "code": "5.2A.f",
+           "text": "Travel to places where the target language is spoken and/or host visits by speakers of the target language."
+          },
+          {
+           "code": "5.2A.g",
+           "text": "Explore the Internet to find sites of personal interest where they can use the target language to maintain and increase their communication skills."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "build": {
+  "builtAt": "2026-10-14T16:20:43.850Z",
+  "model": "none",
+  "usd": 0,
+  "expectedCodes": 249,
+  "coverage": 1,
+  "missingCodes": [],
+  "counts": {
+   "grades": 1,
+   "units": 5,
+   "topics": 13,
+   "subtopics": 74,
+   "outcomes": 433
+  },
+  "warnings": [
+   "subtopic \"Novice Range\" has 17 outcomes — too big for one lesson",
+   "subtopic \"Intermediate Range\" has 23 outcomes — too big for one lesson",
+   "subtopic \"Novice Range\" has 18 outcomes — too big for one lesson",
+   "subtopic \"Intermediate Range\" has 15 outcomes — too big for one lesson",
+   "subtopic \"Novice Range\" has 17 outcomes — too big for one lesson",
+   "subtopic \"Novice Range\" has 19 outcomes — too big for one lesson",
+   "subtopic \"Intermediate Range\" has 15 outcomes — too big for one lesson",
+   "subtopic \"Novice Range\" has 25 outcomes — too big for one lesson",
+   "subtopic \"Intermediate Range\" has 24 outcomes — too big for one lesson",
+   "subtopic \"Advanced Range\" has 17 outcomes — too big for one lesson"
+  ]
+ }
+}

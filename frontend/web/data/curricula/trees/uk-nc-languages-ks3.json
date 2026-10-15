@@ -1,0 +1,180 @@
+{
+ "id": "uk-nc-languages-ks3",
+ "region": "UK",
+ "framework": "National Curriculum in England (2014)",
+ "board": "Department for Education",
+ "qualification": "Secondary",
+ "subject": "Languages (modern foreign language)",
+ "syllabusCode": null,
+ "gradeSystem": "key-stage",
+ "source": {
+  "urls": [
+   "https://assets.publishing.service.gov.uk/media/5a7c5afae5274a7ee501a69e/SECONDARY_national_curriculum_-_Languages.pdf",
+   "https://www.gov.uk/government/publications/national-curriculum-in-england-languages-progammes-of-study"
+  ],
+  "publisher": "Department for Education",
+  "licence": "Open Government Licence v3.0 (Crown copyright)",
+  "firstExam": "2014"
+ },
+ "grades": [
+  {
+   "grade": "KS3",
+   "units": [
+    {
+     "id": "grammar-and-vocabulary",
+     "title": "Grammar and vocabulary",
+     "topics": [
+      {
+       "id": "grammar-and-vocabulary",
+       "title": "Grammar and vocabulary",
+       "subtopics": [
+        {
+         "id": "tenses-and-structures",
+         "title": "Tenses and structures",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Identify and use tenses or other structures that express present, past and future in the language studied."
+          }
+         ]
+        },
+        {
+         "id": "grammatical-patterns",
+         "title": "Grammatical patterns",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Use and manipulate key grammatical structures and patterns, including voices and moods where relevant."
+          }
+         ]
+        },
+        {
+         "id": "vocabulary-for-opinions",
+         "title": "Vocabulary for opinions",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Build a wide, deepening vocabulary beyond immediate needs to give and justify opinions and discuss wider issues."
+          }
+         ]
+        },
+        {
+         "id": "accuracy",
+         "title": "Accuracy",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Use accurate grammar, spelling and punctuation."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "linguistic-competence",
+     "title": "Linguistic competence",
+     "topics": [
+      {
+       "id": "listening-and-speaking",
+       "title": "Listening and speaking",
+       "subtopics": [
+        {
+         "id": "listening",
+         "title": "Listening",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Listen to varied spoken language to get information and respond appropriately."
+          },
+          {
+           "code": null,
+           "text": "Transcribe heard words and short sentences with increasing accuracy."
+          }
+         ]
+        },
+        {
+         "id": "conversation",
+         "title": "Conversation",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Start and sustain conversations, coping with unfamiliar language and unexpected replies and using social conventions such as formal address."
+          }
+         ]
+        },
+        {
+         "id": "speaking-clearly",
+         "title": "Speaking clearly",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Express and develop ideas clearly and accurately in speech and writing."
+          },
+          {
+           "code": null,
+           "text": "Speak coherently and confidently with increasingly accurate pronunciation and intonation."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "reading-and-writing",
+       "title": "Reading and writing",
+       "subtopics": [
+        {
+         "id": "reading-and-translating",
+         "title": "Reading and translating",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Read original and adapted materials, understand purpose, main ideas and details, and translate short suitable texts into English."
+          }
+         ]
+        },
+        {
+         "id": "reading-literature",
+         "title": "Reading literature",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Read literary texts such as stories, songs, poems and letters to spark ideas, creative expression and cultural understanding."
+          }
+         ]
+        },
+        {
+         "id": "writing-and-translating",
+         "title": "Writing and translating",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Write prose with a widening range of grammar and vocabulary, write creatively about own ideas and opinions, and translate short texts into the language."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "build": {
+  "builtAt": "2026-10-14T10:37:30.819Z",
+  "model": "claude-agent",
+  "usd": 0,
+  "expectedCodes": null,
+  "coverage": null,
+  "missingCodes": [],
+  "counts": {
+   "grades": 1,
+   "units": 2,
+   "topics": 3,
+   "subtopics": 10,
+   "outcomes": 12
+  },
+  "warnings": []
+ }
+}

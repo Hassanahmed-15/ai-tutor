@@ -1,0 +1,999 @@
+{
+ "id": "cie-igcse-marine-science-0697-2024-2026",
+ "region": "INTL",
+ "framework": "Cambridge IGCSE Marine Science (0697) syllabus 2024–2026",
+ "board": "Cambridge",
+ "qualification": "IGCSE",
+ "subject": "Marine Science",
+ "syllabusCode": "0697",
+ "gradeSystem": "course",
+ "source": {
+  "urls": [
+   "https://www.cambridgeinternational.org/Images/634451-2024-2026-syllabus.pdf",
+   "https://www.cambridgeinternational.org/programmes-and-qualifications/cambridge-igcse-marine-science-0697/"
+  ],
+  "publisher": "Cambridge University Press & Assessment (Cambridge International Education)",
+  "licence": "© Cambridge University Press & Assessment; structure + our own wording only",
+  "firstExam": "2024"
+ },
+ "grades": [
+  {
+   "grade": "all",
+   "units": [
+    {
+     "id": "1-the-marine-environment",
+     "title": "1 The marine environment",
+     "topics": [
+      {
+       "id": "1-1-structure-of-the-earth",
+       "title": "1.1 Structure of the Earth",
+       "subtopics": [
+        {
+         "id": "1-1-structure-of-the-earth",
+         "title": "1.1 Structure of the Earth",
+         "outcomes": [
+          {
+           "code": "1.1",
+           "text": "Recognise Earth as orbiting the Sun and the Moon as orbiting Earth."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "1-2-plate-tectonics",
+       "title": "1.2 Plate tectonics",
+       "subtopics": [
+        {
+         "id": "1-2-plate-tectonics",
+         "title": "1.2 Plate tectonics",
+         "outcomes": [
+          {
+           "code": "1.2",
+           "text": "Explain that Earth’s crust consists of several tectonic plates."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "1-3-oceans-and-seas",
+       "title": "1.3 Oceans and seas",
+       "subtopics": [
+        {
+         "id": "1-3-oceans-and-seas",
+         "title": "1.3 Oceans and seas",
+         "outcomes": [
+          {
+           "code": "1.3",
+           "text": "Name the Arctic, Atlantic, Pacific, Indian and Southern oceans."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "1-4-tides-and-currents",
+       "title": "1.4 Tides and currents",
+       "subtopics": [
+        {
+         "id": "1-4-tides-and-currents",
+         "title": "1.4 Tides and currents",
+         "outcomes": [
+          {
+           "code": "1.4",
+           "text": "Explain tidal patterns, including spring and neap tides, through lunar and solar gravity."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "2-marine-chemistry",
+     "title": "2 Marine chemistry",
+     "topics": [
+      {
+       "id": "2-1-the-water-cycle",
+       "title": "2.1 The water cycle",
+       "subtopics": [
+        {
+         "id": "2-1-the-water-cycle",
+         "title": "2.1 The water cycle",
+         "outcomes": [
+          {
+           "code": "2.1",
+           "text": "Use particle theory to describe solids, liquids and gases."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "2-2-ph-and-salinity",
+       "title": "2.2 pH and salinity",
+       "subtopics": [
+        {
+         "id": "2-2-ph-and-salinity",
+         "title": "2.2 pH and salinity",
+         "outcomes": [
+          {
+           "code": "2.2",
+           "text": "Explain element, compound and mixture using suitable examples."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "2-3-dissolved-gases",
+       "title": "2.3 Dissolved gases",
+       "subtopics": [
+        {
+         "id": "2-3-dissolved-gases",
+         "title": "2.3 Dissolved gases",
+         "outcomes": [
+          {
+           "code": "2.3",
+           "text": "Explain atmospheric oxygen and carbon dioxide dissolution in water, including oxygen’s low solubility."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "2-4-density",
+       "title": "2.4 Density",
+       "subtopics": [
+        {
+         "id": "2-4-density",
+         "title": "2.4 Density",
+         "outcomes": [
+          {
+           "code": "2.4",
+           "text": "Define density as mass per volume and use its formula."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "2-5-effects-of-increasing-depth",
+       "title": "2.5 Effects of increasing depth",
+       "subtopics": [
+        {
+         "id": "2-5-effects-of-increasing-depth",
+         "title": "2.5 Effects of increasing depth",
+         "outcomes": [
+          {
+           "code": "2.5",
+           "text": "State that light, pressure, temperature, salinity and dissolved oxygen vary with depth."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "2-6-upwelling",
+       "title": "2.6 Upwelling",
+       "subtopics": [
+        {
+         "id": "2-6-upwelling",
+         "title": "2.6 Upwelling",
+         "outcomes": [
+          {
+           "code": "2.6",
+           "text": "Describe wind-driven upwelling of cold, nutrient-rich deep water."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "3-marine-biology",
+     "title": "3 Marine biology",
+     "topics": [
+      {
+       "id": "3-1-cell-structure-and-function",
+       "title": "3.1 Cell structure and function",
+       "subtopics": [
+        {
+         "id": "3-1-cell-structure-and-function",
+         "title": "3.1 Cell structure and function",
+         "outcomes": [
+          {
+           "code": "3.1",
+           "text": "Compare plant and animal cell structures, including their distinctive organelles."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "3-2-reproduction",
+       "title": "3.2 Reproduction",
+       "subtopics": [
+        {
+         "id": "3-2-reproduction",
+         "title": "3.2 Reproduction",
+         "outcomes": [
+          {
+           "code": "3.2",
+           "text": "Describe asexual reproduction as one organism producing genetically identical copies."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "3-3-classification",
+       "title": "3.3 Classification",
+       "subtopics": [
+        {
+         "id": "3-3-classification",
+         "title": "3.3 Classification",
+         "outcomes": [
+          {
+           "code": "3.3",
+           "text": "Explain that shared characteristics are used to classify marine organisms."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "3-4-the-animal-kingdom",
+       "title": "3.4 The animal kingdom",
+       "subtopics": [
+        {
+         "id": "3-4-the-animal-kingdom",
+         "title": "3.4 The animal kingdom",
+         "outcomes": [
+          {
+           "code": "3.4",
+           "text": "Use skin, fertilisation method and respiratory organs to distinguish marine vertebrate groups."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "3-5-plant-and-protoctist-kingdoms",
+       "title": "3.5 Plant and protoctist kingdoms",
+       "subtopics": [
+        {
+         "id": "3-5-plant-and-protoctist-kingdoms",
+         "title": "3.5 Plant and protoctist kingdoms",
+         "outcomes": [
+          {
+           "code": "3.5",
+           "text": "Recognise seagrasses as marine plants and identify their leaves, roots, rhizomes, and flowers and their functions."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "3-6-animal-life-cycles",
+       "title": "3.6 Animal life cycles",
+       "subtopics": [
+        {
+         "id": "3-6-animal-life-cycles",
+         "title": "3.6 Animal life cycles",
+         "outcomes": [
+          {
+           "code": "3.6",
+           "text": "Describe the leatherback turtle life cycle, including nesting, temperature-dependent sex determination, hatching, growth, and maturity."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "3-7-migration",
+       "title": "3.7 Migration",
+       "subtopics": [
+        {
+         "id": "3-7-migration",
+         "title": "3.7 Migration",
+         "outcomes": [
+          {
+           "code": "3.7",
+           "text": "Define migration and explain reasons including feeding, mating, reproduction, and predator avoidance."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "4-marine-ecology",
+     "title": "4 Marine ecology",
+     "topics": [
+      {
+       "id": "4-1-nutrients",
+       "title": "4.1 Nutrients",
+       "subtopics": [
+        {
+         "id": "4-1-nutrients",
+         "title": "4.1 Nutrients",
+         "outcomes": [
+          {
+           "code": "4.1",
+           "text": "Describe nutrients as substances needed for growth, repair, and chemical energy, including gases, salts, and organic compounds."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "4-2-respiration",
+       "title": "4.2 Respiration",
+       "subtopics": [
+        {
+         "id": "4-2-respiration",
+         "title": "4.2 Respiration",
+         "outcomes": [
+          {
+           "code": "4.2",
+           "text": "Describe respiration as cellular reactions that break down nutrients and release usable energy."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "4-3-photosynthesis",
+       "title": "4.3 Photosynthesis",
+       "subtopics": [
+        {
+         "id": "4-3-photosynthesis",
+         "title": "4.3 Photosynthesis",
+         "outcomes": [
+          {
+           "code": "4.3",
+           "text": "Describe photosynthesis as light-powered glucose production from carbon dioxide and water, releasing oxygen."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "4-4-feeding-relationships",
+       "title": "4.4 Feeding relationships",
+       "subtopics": [
+        {
+         "id": "4-4-feeding-relationships",
+         "title": "4.4 Feeding relationships",
+         "outcomes": [
+          {
+           "code": "4.4",
+           "text": "State that the Sun is the main energy input for biological systems."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "5-marine-ecosystems",
+     "title": "5 Marine ecosystems",
+     "topics": [
+      {
+       "id": "5-1-components-of-ecosystems",
+       "title": "5.1 Components of ecosystems",
+       "subtopics": [
+        {
+         "id": "5-1-components-of-ecosystems",
+         "title": "5.1 Components of ecosystems",
+         "outcomes": [
+          {
+           "code": "5.1",
+           "text": "Define species, population, community, habitat, environment, and ecosystem."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "5-2-investigating-ecosystems",
+       "title": "5.2 Investigating ecosystems",
+       "subtopics": [
+        {
+         "id": "5-2-investigating-ecosystems",
+         "title": "5.2 Investigating ecosystems",
+         "outcomes": [
+          {
+           "code": "5.2",
+           "text": "Investigate population size and species richness through random quadrat sampling."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "5-3-open-ocean-ecosystem",
+       "title": "5.3 Open-ocean ecosystem",
+       "subtopics": [
+        {
+         "id": "5-3-open-ocean-ecosystem",
+         "title": "5.3 Open-ocean ecosystem",
+         "outcomes": [
+          {
+           "code": "5.3",
+           "text": "State that the pelagic zone comprises the entire open-water column."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "5-7-tropical-coral-reefs",
+       "title": "5.7 Tropical coral reefs",
+       "subtopics": [
+        {
+         "id": "coral-polyp-structure",
+         "title": "Coral polyp structure",
+         "outcomes": [
+          {
+           "code": "5.7.2",
+           "text": "Describe the tentacles, stinging cells, mouth, stomach and calcium carbonate skeleton of a coral polyp."
+          },
+          {
+           "code": null,
+           "text": "Explain that corals are colonial animals made of polyps, often containing photosynthetic microorganisms."
+          },
+          {
+           "code": null,
+           "text": "Describe a coral polyp’s tentacles, stinging cells, mouth, stomach and calcium carbonate skeleton."
+          },
+          {
+           "code": null,
+           "text": "Describe the functions of the listed coral polyp structures."
+          }
+         ]
+        },
+        {
+         "id": "corals-and-zooxanthellae",
+         "title": "Corals and zooxanthellae",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe the mutualistic relationship between coral polyps and zooxanthellae."
+          }
+         ]
+        },
+        {
+         "id": "reef-distribution-and-diversity",
+         "title": "Reef distribution and diversity",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain how biotic and abiotic factors influence coral distribution in oceans."
+          },
+          {
+           "code": null,
+           "text": "State that reef water is clear because nutrients are retained within reef organisms."
+          },
+          {
+           "code": null,
+           "text": "Describe coral reefs as ecosystems with high species richness."
+          }
+         ]
+        },
+        {
+         "id": "reef-animal-adaptations",
+         "title": "Reef animal adaptations",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe adaptations of trigger fish, parrot fish and nudibranchs living around coral reefs."
+          }
+         ]
+        },
+        {
+         "id": "atoll-formation",
+         "title": "Atoll formation",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe the Darwin–Dana–Daly theory explaining how atolls form."
+          }
+         ]
+        },
+        {
+         "id": "coral-polyps-and-colonies",
+         "title": "Coral polyps and colonies",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe corals as colonies of polyps, often containing photosynthetic microorganisms in their tissues."
+          },
+          {
+           "code": null,
+           "text": "Describe a typical coral polyp, including its tentacles, stinging cells, mouth, stomach and calcium carbonate skeleton."
+          },
+          {
+           "code": null,
+           "text": "Describe the functions of the structures found in a coral polyp."
+          }
+         ]
+        },
+        {
+         "id": "mutualism-with-zooxanthellae",
+         "title": "Mutualism with zooxanthellae",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe the mutually beneficial relationship between coral polyps and zooxanthellae."
+          }
+         ]
+        },
+        {
+         "id": "environmental-factors-and-reefs",
+         "title": "Environmental factors and reefs",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain how biological and physical environmental factors influence coral distribution in oceans."
+          },
+          {
+           "code": null,
+           "text": "State that coral reef water is clear because nutrients are retained within reef organisms."
+          }
+         ]
+        },
+        {
+         "id": "more-reef-adaptations",
+         "title": "More reef adaptations",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe adaptations that help trigger fish, parrot fish and nudibranchs live around coral reefs."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "5-4-rocky-shores",
+       "title": "5.4 Rocky shores",
+       "subtopics": [
+        {
+         "id": "5-4-rocky-shores",
+         "title": "5.4 Rocky shores",
+         "outcomes": [
+          {
+           "code": "5.4",
+           "text": "Describe rocky-shore zones, environmental factors affecting organism distribution, and adaptations of molluscs, sea anemones and macroalgae."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "5-5-sedimentary-shores",
+       "title": "5.5 Sedimentary shores",
+       "subtopics": [
+        {
+         "id": "5-5-sedimentary-shores",
+         "title": "5.5 Sedimentary shores",
+         "outcomes": [
+          {
+           "code": "5.5",
+           "text": "Describe sedimentary shore zones, compare sandy and muddy shores, and explain environmental effects and organism adaptations."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "5-6-mangrove-forest",
+       "title": "5.6 Mangrove forest",
+       "subtopics": [
+        {
+         "id": "mangrove-forest-structure",
+         "title": "Mangrove forest structure",
+         "outcomes": [
+          {
+           "code": "5.6",
+           "text": "Describe the structure of a typical mangrove forest, including its intertidal and often estuarine setting."
+          },
+          {
+           "code": null,
+           "text": "Describe the structure of a typical mangrove forest, including its intertidal and often estuarine setting."
+          }
+         ]
+        },
+        {
+         "id": "estuary-changes-with-tides",
+         "title": "Estuary changes with tides",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe how salinity, temperature and dissolved oxygen change in an estuary during a tidal cycle."
+          }
+         ]
+        },
+        {
+         "id": "mangrove-survival-adaptations",
+         "title": "Mangrove survival adaptations",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain how mangrove roots and leaves enable trees to survive waterlogged, oxygen-poor, salty conditions."
+          }
+         ]
+        },
+        {
+         "id": "mangrove-animal-adaptations",
+         "title": "Mangrove animal adaptations",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe how banded archerfish and mudskippers are adapted to live in mangrove forests."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "6-human-interactions-with-marine-ecosystems",
+     "title": "6 Human interactions with marine ecosystems",
+     "topics": [
+      {
+       "id": "6-1-overview-of-human-interactions-with-marine-e",
+       "title": "6.1 Overview of human interactions with marine ecosystems",
+       "subtopics": [
+        {
+         "id": "marine-benefits",
+         "title": "Marine Benefits",
+         "outcomes": [
+          {
+           "code": "6.1",
+           "text": "Summarise how marine ecosystems benefit people, including recreation, materials, coastal protection, food, medicines, fisheries and nursery habitats."
+          },
+          {
+           "code": null,
+           "text": "Summarise how marine ecosystems benefit people, including recreation, materials, coastal protection, food, medicines, fisheries and nursery habitats."
+          }
+         ]
+        },
+        {
+         "id": "human-harm",
+         "title": "Human Harm",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Summarise how human activities harm marine ecosystems, including pollution, tourism, construction, resource removal, fishing, farming and oil spills."
+          }
+         ]
+        },
+        {
+         "id": "endangered-species",
+         "title": "Endangered Species",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain that declining marine populations may become extinct and are therefore classified as endangered species."
+          }
+         ]
+        },
+        {
+         "id": "sustainable-use",
+         "title": "Sustainable Use",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Define sustainable use as continuing an activity at its current rate without environmental damage or exhausting the resource."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "6-3-fisheries",
+       "title": "6.3 Fisheries",
+       "subtopics": [
+        {
+         "id": "6-3-fisheries",
+         "title": "6.3 Fisheries",
+         "outcomes": [
+          {
+           "code": "6.3",
+           "text": "Understand fisheries’ importance, fishing methods, navigation, overharvesting, sustainable management, and fish-aggregating devices."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "6-2-tourism",
+       "title": "6.2 Tourism",
+       "subtopics": [
+        {
+         "id": "tourism-benefits",
+         "title": "Tourism Benefits",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe how tourism provides employment, income and improved infrastructure for local communities."
+          },
+          {
+           "code": null,
+           "text": "Explain how tourism benefits communities through employment, income and improved local infrastructure."
+          }
+         ]
+        },
+        {
+         "id": "ecotourism",
+         "title": "Ecotourism",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe ecotourism as sustainable tourism focused on natural areas, environmental understanding, cultural appreciation and conservation."
+          },
+          {
+           "code": null,
+           "text": "Define ecotourism as sustainable nature-based tourism that promotes environmental and cultural understanding, appreciation and conservation."
+          }
+         ]
+        },
+        {
+         "id": "tourism-impacts",
+         "title": "Tourism Impacts",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Discuss how tourism and ecotourism can benefit or harm marine areas."
+          },
+          {
+           "code": null,
+           "text": "Describe tourists’ effects on a named marine ecosystem."
+          },
+          {
+           "code": null,
+           "text": "Describe tourist impacts on a named marine ecosystem."
+          }
+         ]
+        },
+        {
+         "id": "reducing-tourism-harm",
+         "title": "Reducing Tourism Harm",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe education, legislation and strategic planning as ways to reduce tourism’s negative impacts."
+          },
+          {
+           "code": null,
+           "text": "Outline and assess strategies such as renewable resources, water limits, plastic bans and reduced motorised transport."
+          },
+          {
+           "code": null,
+           "text": "Describe education, legislation and planning methods that reduce tourism’s negative effects."
+          },
+          {
+           "code": null,
+           "text": "Assess strategies such as renewable resources, water limits, plastic bans and reduced motorised transport."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "6-5-energy-from-the-oceans",
+       "title": "6.5 Energy from the oceans",
+       "subtopics": [
+        {
+         "id": "6-5-energy-from-the-oceans",
+         "title": "6.5 Energy from the oceans",
+         "outcomes": [
+          {
+           "code": "6.5",
+           "text": "Understand the environmental, economic and social effects of fossil-fuel and ocean-based renewable energy, including oil spills and their mitigation."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "6-4-aquaculture",
+       "title": "6.4 Aquaculture",
+       "subtopics": [
+        {
+         "id": "aquaculture-importance",
+         "title": "Aquaculture Importance",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe the social and economic importance of aquaculture."
+          },
+          {
+           "code": null,
+           "text": "Describe aquaculture species and its contribution to global food production, including algae, fish, crustaceans, molluscs and echinoderms."
+          }
+         ]
+        },
+        {
+         "id": "aquaculture-impacts",
+         "title": "Aquaculture Impacts",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain how aquaculture may reduce fishing pressure but also affect marine ecosystems."
+          },
+          {
+           "code": null,
+           "text": "Explain how aquaculture can reduce fishing pressure but also affect marine ecosystems."
+          }
+         ]
+        },
+        {
+         "id": "fish-farming-systems",
+         "title": "Fish Farming Systems",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "State that fish farming uses either open systems, such as cages and nets, or closed tank systems."
+          }
+         ]
+        },
+        {
+         "id": "fish-aquaculture-methods",
+         "title": "Fish Aquaculture Methods",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Outline fish aquaculture methods, including broodstock, environmental conditions, feeding, water quality, growth, health and selective breeding."
+          },
+          {
+           "code": null,
+           "text": "Outline fish aquaculture methods, including broodstock, environmental conditions, feeding, water quality, growth, disease prevention and selective breeding."
+          }
+         ]
+        },
+        {
+         "id": "restoring-marine-species",
+         "title": "Restoring Marine Species",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Discuss using aquaculture to restore endangered species in damaged mangrove forests and coral reefs."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "6-6-plastic-pollution",
+       "title": "6.6 Plastic pollution",
+       "subtopics": [
+        {
+         "id": "plastic-pollution-overview",
+         "title": "Plastic Pollution Overview",
+         "outcomes": [
+          {
+           "code": "6.6",
+           "text": "Understand plastic breakdown, ecosystem impacts, garbage patches, and strategies for reducing plastic pollution and its effects."
+          },
+          {
+           "code": null,
+           "text": "Explain that plastics degrade very slowly, eventually releasing toxins and microplastics."
+          },
+          {
+           "code": null,
+           "text": "Describe how microplastics and larger plastics affect marine organisms and ecosystems."
+          }
+         ]
+        },
+        {
+         "id": "ocean-plastic-zones",
+         "title": "Ocean Plastic Zones",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain how ocean gyres create plastic accumulation zones, including the largest one in the Pacific."
+          }
+         ]
+        },
+        {
+         "id": "reducing-plastic-pollution",
+         "title": "Reducing Plastic Pollution",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe and assess methods for reducing the size of plastic accumulation zones."
+          },
+          {
+           "code": null,
+           "text": "Discuss legislation, education, and waste reduction, reuse, and recycling to lessen plastic impacts."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "6-7-eutrophication",
+       "title": "6.7 Eutrophication",
+       "subtopics": [
+        {
+         "id": "6-7-eutrophication",
+         "title": "6.7 Eutrophication",
+         "outcomes": [
+          {
+           "code": "6.7",
+           "text": "State that modern farming uses fertilisers to increase food production and improve crop yields."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "6-8-understanding-climate-change",
+       "title": "6.8 Understanding climate change",
+       "subtopics": [
+        {
+         "id": "6-8-understanding-climate-change",
+         "title": "6.8 Understanding climate change",
+         "outcomes": [
+          {
+           "code": "6.8",
+           "text": "State how Earth’s climate, carbon dioxide concentration and temperature have changed over the past 335 million years."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "6-9-conservation-strategies",
+       "title": "6.9 Conservation strategies",
+       "subtopics": [
+        {
+         "id": "6-9-conservation-strategies",
+         "title": "6.9 Conservation strategies",
+         "outcomes": [
+          {
+           "code": "6.9",
+           "text": "Define species richness as the number of different species inhabiting an area."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "build": {
+  "builtAt": "2026-10-14T05:35:42.192Z",
+  "model": "gpt-5.6-luna",
+  "usd": 0.0378,
+  "expectedCodes": 36,
+  "coverage": 0.9166666666666666,
+  "missingCodes": [
+   "5.7",
+   "6.2",
+   "6.4"
+  ],
+  "counts": {
+   "grades": 1,
+   "units": 6,
+   "topics": 37,
+   "subtopics": 60,
+   "outcomes": 83
+  },
+  "warnings": [
+   "grade IGCSE has no content",
+   "unexpected grade label \"all\""
+  ]
+ }
+}

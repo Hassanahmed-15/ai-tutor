@@ -1,0 +1,2608 @@
+{
+ "id": "us-mn-science",
+ "region": "US",
+ "framework": "Minnesota state academic standards: Science",
+ "board": null,
+ "qualification": "K-12",
+ "subject": "Science",
+ "syllabusCode": null,
+ "gradeSystem": "grade",
+ "source": {
+  "urls": [
+   "https://api.commonstandardsproject.com/api/v1/jurisdictions/B632FB4B1B83445AA8DB46DC3F079D19",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/B632FB4B1B83445AA8DB46DC3F079D19_D21429971_grade-01",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/B632FB4B1B83445AA8DB46DC3F079D19_D21429971_grade-02",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/B632FB4B1B83445AA8DB46DC3F079D19_D21429971_grade-03",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/B632FB4B1B83445AA8DB46DC3F079D19_D21429971_grade-04",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/B632FB4B1B83445AA8DB46DC3F079D19_D21429971_grade-05",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/B632FB4B1B83445AA8DB46DC3F079D19_D21429971_grade-06",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/B632FB4B1B83445AA8DB46DC3F079D19_D21429971_grade-07",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/B632FB4B1B83445AA8DB46DC3F079D19_D21429971_grade-08",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/B632FB4B1B83445AA8DB46DC3F079D19_D21429971_grades-09-10-11-12",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/B632FB4B1B83445AA8DB46DC3F079D19_D21429971_grade-k",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/29AEBEB8DFA0486A9566D9480D68E236",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/E8010D4EF35E4630949F9487F4DA5872",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/5829B9BE61FF4877996381586B95F87F",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/4DFC6B52916F495DAA92D414299627EC"
+  ],
+  "publisher": "Minnesota state education agency (machine-readable via Common Standards Project / ASN)",
+  "licence": "D2L Corporation; CC BY 4.0 US, Common Curriculum, Inc.",
+  "firstExam": "2019"
+ },
+ "grades": [
+  {
+   "grade": "K",
+   "units": [
+    {
+     "id": "kindergarten",
+     "title": "Kindergarten",
+     "topics": [
+      {
+       "id": "earth-and-space-science",
+       "title": "Earth and Space Science",
+       "subtopics": [
+        {
+         "id": "asking-questions-and-defining-problems",
+         "title": "Asking questions and defining problems",
+         "outcomes": [
+          {
+           "code": "0E.1.1.1.1",
+           "text": "Ask questions to obtain information from weather forecasts to prepare for and respond to severe weather."
+          },
+          {
+           "code": "0E.1.1.1.2",
+           "text": "Ask questions about how a person may reduce the amount of natural resources the individual uses."
+          }
+         ]
+        },
+        {
+         "id": "analyzing-and-interpreting-data",
+         "title": "Analyzing and interpreting data",
+         "outcomes": [
+          {
+           "code": "0E.2.1.1.2",
+           "text": "Make daily and seasonal observations of local weather conditions to describe patterns over time."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "physical-science",
+       "title": "Physical Science",
+       "subtopics": [
+        {
+         "id": "planning-and-carrying-out-investigations",
+         "title": "Planning and carrying out investigations",
+         "outcomes": [
+          {
+           "code": "0P.1.2.1.1",
+           "text": "Collect and organize observational data to determine the effect of sunlight on Earth's surface."
+          }
+         ]
+        },
+        {
+         "id": "analyzing-and-interpreting-data",
+         "title": "Analyzing and interpreting data",
+         "outcomes": [
+          {
+           "code": "0P.2.1.1.1",
+           "text": "Sort objects in terms of natural/human-made, color, size, shape, and texture, then communicate the reasoning for the sorting system."
+          }
+         ]
+        },
+        {
+         "id": "using-mathematics-and-computational-thinking",
+         "title": "Using mathematics and computational thinking",
+         "outcomes": [
+          {
+           "code": "0P.2.2.1.1",
+           "text": "Identify and describe patterns that emerge from the effects of different strengths or different directions of pushes and pulls on the motion of an object."
+          }
+         ]
+        },
+        {
+         "id": "constructing-explanations-and-designing-solution",
+         "title": "Constructing explanations and designing solutions",
+         "outcomes": [
+          {
+           "code": "0P.3.2.2.1",
+           "text": "Design and build a structure to reduce the warming effect of sunlight on Earth's surface."
+          }
+         ]
+        },
+        {
+         "id": "engaging-in-argument-from-evidence",
+         "title": "Engaging in argument from evidence",
+         "outcomes": [
+          {
+           "code": "0P.4.1.1.1",
+           "text": "Construct an argument supported by evidence for whether a design solution works as intended to change the speed or direction of an object with a push or a pull."
+          }
+         ]
+        },
+        {
+         "id": "obtaining-evaluating-and-communicating-informati",
+         "title": "Obtaining, evaluating and communicating information",
+         "outcomes": [
+          {
+           "code": "0P.4.2.1.1",
+           "text": "Communicate design ideas for a structure that reduces the warming effect of sunlight on Earth's surface."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "life-science",
+       "title": "Life Science",
+       "subtopics": [
+        {
+         "id": "planning-and-carrying-out-investigations",
+         "title": "Planning and carrying out investigations",
+         "outcomes": [
+          {
+           "code": "0L.1.2.1.2",
+           "text": "Make observations of plants and animals to compare the diversity of life in different habitats."
+          }
+         ]
+        },
+        {
+         "id": "analyzing-and-interpreting-data",
+         "title": "Analyzing and interpreting data",
+         "outcomes": [
+          {
+           "code": "0L.2.1.1.3",
+           "text": "Record and use observations to describe patterns of what plants and animals (including humans) need to survive."
+          }
+         ]
+        },
+        {
+         "id": "developing-and-using-models",
+         "title": "Developing and using models",
+         "outcomes": [
+          {
+           "code": "0L.3.1.1.1",
+           "text": "Develop a simple model to represent the relationship between the needs of different plants and animals (including humans) and the places they live."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "1",
+   "units": [
+    {
+     "id": "grade-1",
+     "title": "Grade 1",
+     "topics": [
+      {
+       "id": "life-science",
+       "title": "Life Science",
+       "subtopics": [
+        {
+         "id": "asking-questions-and-defining-problems",
+         "title": "Asking questions and defining problems",
+         "outcomes": [
+          {
+           "code": "1L.1.1.1.1",
+           "text": "Ask questions based on observations about the similarities and differences between young plants and animals and their parents."
+          }
+         ]
+        },
+        {
+         "id": "developing-and-using-models",
+         "title": "Developing and using models",
+         "outcomes": [
+          {
+           "code": "1L.3.1.1.1",
+           "text": "Develop a simple model based on evidence to represent how plants or animals use their external parts to help them survive, grow, and meet their needs."
+          }
+         ]
+        },
+        {
+         "id": "constructing-explanations-and-designing-solution",
+         "title": "Constructing explanations and designing solutions",
+         "outcomes": [
+          {
+           "code": "1L.3.2.2.2",
+           "text": "Plan and design a solution to a human problem by mimicking how plants and/or animals use their external parts to help them survive, grow, and meet their needs."
+          }
+         ]
+        },
+        {
+         "id": "obtaining-evaluating-and-communicating-informati",
+         "title": "Obtaining, evaluating and communicating information",
+         "outcomes": [
+          {
+           "code": "1L.4.2.1.2",
+           "text": "Obtain information using various features of texts and other media to determine patterns in the behavior of parents and offspring that help offspring survive."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "physical-science",
+       "title": "Physical Science",
+       "subtopics": [
+        {
+         "id": "planning-and-carrying-out-investigations",
+         "title": "Planning and carrying out investigations",
+         "outcomes": [
+          {
+           "code": "1P.1.2.1.1",
+           "text": "Plan and conduct investigations to provide evidence that vibrating materials can make sound and that sound can make materials vibrate."
+          }
+         ]
+        },
+        {
+         "id": "analyzing-and-interpreting-data",
+         "title": "Analyzing and interpreting data",
+         "outcomes": [
+          {
+           "code": "1P.2.1.1.1",
+           "text": "Identify and describe patterns obtained from testing different materials and determine which materials have the properties that are best suited for producing and/or transmitting sound."
+          }
+         ]
+        },
+        {
+         "id": "constructing-explanations-and-designing-solution",
+         "title": "Constructing explanations and designing solutions",
+         "outcomes": [
+          {
+           "code": "1P.3.2.2.1",
+           "text": "Design and build a device that uses light or sound to solve the problem of communicating over a distance."
+          }
+         ]
+        },
+        {
+         "id": "obtaining-evaluating-and-communicating-informati",
+         "title": "Obtaining, evaluating and communicating information",
+         "outcomes": [
+          {
+           "code": "1P.4.2.2.1",
+           "text": "Communicate solutions that use materials to provide shelter, food, or warmth needs for communities including Minnesota American Indian Tribes and communities."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "earth-and-space-science",
+       "title": "Earth and Space Science",
+       "subtopics": [
+        {
+         "id": "using-mathematics-and-computational-thinking",
+         "title": "Using mathematics and computational thinking",
+         "outcomes": [
+          {
+           "code": "1E.2.2.1.1",
+           "text": "Use quantitative data to identify and describe patterns in the amount of time it takes for Earth processes to occur and determine whether they occur quickly or slowly."
+          }
+         ]
+        },
+        {
+         "id": "engaging-in-argument-from-evidence",
+         "title": "Engaging in argument from evidence",
+         "outcomes": [
+          {
+           "code": "1E.4.1.1.1",
+           "text": "Construct an argument based on observational evidence for how plants and animals (including humans) can change the non-living aspects of the environment to meet their needs."
+          },
+          {
+           "code": "1E.4.1.2.1",
+           "text": "Construct an argument with evidence to evaluate multiple solutions designed to slow or prevent wind or water from changing the shape of the land."
+          }
+         ]
+        },
+        {
+         "id": "obtaining-evaluating-and-communicating-informati",
+         "title": "Obtaining, evaluating and communicating information",
+         "outcomes": [
+          {
+           "code": "1E.4.2.1.1",
+           "text": "Communicate solutions that will reduce the impact of humans on the land, water, air, and/or other living things in the local environment."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "2",
+   "units": [
+    {
+     "id": "grade-2",
+     "title": "Grade 2",
+     "topics": [
+      {
+       "id": "physical-science",
+       "title": "Physical Science",
+       "subtopics": [
+        {
+         "id": "asking-questions-and-defining-problems",
+         "title": "Asking questions and defining problems",
+         "outcomes": [
+          {
+           "code": "2P.1.1.1.1",
+           "text": "Ask questions about an object's motion based on observation that can be answered by an investigation."
+          }
+         ]
+        },
+        {
+         "id": "planning-and-carrying-out-investigations",
+         "title": "Planning and carrying out investigations",
+         "outcomes": [
+          {
+           "code": "2P.1.2.1.1",
+           "text": "Plan and conduct an investigation to describe how heating and cooling affects different kinds of materials based upon their observable properties."
+          }
+         ]
+        },
+        {
+         "id": "using-mathematics-and-computational-thinking",
+         "title": "Using mathematics and computational thinking",
+         "outcomes": [
+          {
+           "code": "2P.2.2.1.1",
+           "text": "Identify and predict quantitative patterns of the effects of balanced and unbalanced forces on the motion of an object."
+          }
+         ]
+        },
+        {
+         "id": "developing-and-using-models",
+         "title": "Developing and using models",
+         "outcomes": [
+          {
+           "code": "2P.3.1.1.1",
+           "text": "Develop a simple diagram or physical model to illustrate how some changes caused by heating or cooling can be reversed and some cannot."
+          }
+         ]
+        },
+        {
+         "id": "obtaining-evaluating-and-communicating-informati",
+         "title": "Obtaining, evaluating and communicating information",
+         "outcomes": [
+          {
+           "code": "2P.4.2.2.1",
+           "text": "Obtain information and communicate how Minnesota American Indian Tribes and communities and other cultures apply knowledge of the natural world in determining which materials have the properties that are best suited for an intended purpose."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "earth-and-space-science",
+       "title": "Earth and Space Science",
+       "subtopics": [
+        {
+         "id": "analyzing-and-interpreting-data",
+         "title": "Analyzing and interpreting data",
+         "outcomes": [
+          {
+           "code": "2E.2.1.1.1",
+           "text": "Represent data to describe typical weather conditions expected during a particular season."
+          },
+          {
+           "code": "2E.2.1.1.2",
+           "text": "Analyze data from tests of objects designed to reduce the impacts of weather-related hazards and compare the strengths and weaknesses of how each performs."
+          }
+         ]
+        },
+        {
+         "id": "obtaining-evaluating-and-communicating-informati",
+         "title": "Obtaining, evaluating and communicating information",
+         "outcomes": [
+          {
+           "code": "2E.4.2.1.1",
+           "text": "Obtain and use information from multiple sources to identify where water is found on Earth."
+          },
+          {
+           "code": "2E.4.2.1.2",
+           "text": "Obtain and use information from multiple sources, including electronic sources, to describe climates in different regions of the world."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "life-science",
+       "title": "Life Science",
+       "subtopics": [
+        {
+         "id": "constructing-explanations-and-designing-solution",
+         "title": "Constructing explanations and designing solutions",
+         "outcomes": [
+          {
+           "code": "2L.3.2.2.1",
+           "text": "Engineer a device that mimics the structures and functions of plants or animals in seed dispersal."
+          }
+         ]
+        },
+        {
+         "id": "engaging-in-argument-from-evidence",
+         "title": "Engaging in argument from evidence",
+         "outcomes": [
+          {
+           "code": "2L.4.1.1.1",
+           "text": "Construct an argument with evidence that evaluates how in a particular habitat some organisms can survive well, some survive less well, and some cannot survive at all."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "3",
+   "units": [
+    {
+     "id": "grade-3",
+     "title": "Grade 3",
+     "topics": [
+      {
+       "id": "physical-science",
+       "title": "Physical Science",
+       "subtopics": [
+        {
+         "id": "asking-questions-and-defining-problems",
+         "title": "Asking questions and defining problems",
+         "outcomes": [
+          {
+           "code": "3P.1.1.1.1",
+           "text": "Ask questions based on observations about why objects in darkness can be seen only when illuminated."
+          }
+         ]
+        },
+        {
+         "id": "planning-and-carrying-out-investigations",
+         "title": "Planning and carrying out investigations",
+         "outcomes": [
+          {
+           "code": "3P.1.2.1.1",
+           "text": "Plan and conduct a controlled investigation to determine the effect of placing objects made with different materials in the path of a beam of light."
+          }
+         ]
+        },
+        {
+         "id": "developing-and-using-models",
+         "title": "Developing and using models",
+         "outcomes": [
+          {
+           "code": "3P.3.1.1.1",
+           "text": "Develop a model to describe that light reflecting from objects and entering the eye allows objects to be seen."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "life-science",
+       "title": "Life Science",
+       "subtopics": [
+        {
+         "id": "planning-and-carrying-out-investigations",
+         "title": "Planning and carrying out investigations",
+         "outcomes": [
+          {
+           "code": "3L.1.2.1.2",
+           "text": "Plan and conduct an investigation to determine how amounts of sunlight and water impact the growth of a plant."
+          }
+         ]
+        },
+        {
+         "id": "developing-and-using-models",
+         "title": "Developing and using models",
+         "outcomes": [
+          {
+           "code": "3L.3.1.1.2",
+           "text": "Develop multiple models to describe how organisms have unique and diverse life cycles but all have birth, growth, reproduction, and death in common."
+          }
+         ]
+        },
+        {
+         "id": "constructing-explanations-and-designing-solution",
+         "title": "Constructing explanations and designing solutions",
+         "outcomes": [
+          {
+           "code": "3L.3.2.1.1",
+           "text": "Construct an explanation using evidence from various sources for how the variations in characteristics among individuals of the same species may provide advantages in surviving, finding mates, and reproducing."
+          }
+         ]
+        },
+        {
+         "id": "engaging-in-argument-from-evidence",
+         "title": "Engaging in argument from evidence",
+         "outcomes": [
+          {
+           "code": "3L.4.1.1.1",
+           "text": "Construct an argument about strategies animals use to survive."
+          }
+         ]
+        },
+        {
+         "id": "obtaining-evaluating-and-communicating-informati",
+         "title": "Obtaining, evaluating and communicating information",
+         "outcomes": [
+          {
+           "code": "3L.4.2.1.1",
+           "text": "Obtain information from various types of media to support an argument that plants and animals have internal and external structures that function to support survival, growth, behavior, and reproduction."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "earth-and-space-science",
+       "title": "Earth and Space Science",
+       "subtopics": [
+        {
+         "id": "analyzing-and-interpreting-data",
+         "title": "Analyzing and interpreting data",
+         "outcomes": [
+          {
+           "code": "3E.2.1.1.1",
+           "text": "Record observations of the sun, moon, and stars and use them to describe patterns that can be predicted."
+          }
+         ]
+        },
+        {
+         "id": "using-mathematics-and-computational-thinking",
+         "title": "Using mathematics and computational thinking",
+         "outcomes": [
+          {
+           "code": "3E.2.2.1.1",
+           "text": "Organize and electronically present collected data to identify and describe patterns in the amount of daylight in different times of the year."
+          }
+         ]
+        },
+        {
+         "id": "obtaining-evaluating-and-communicating-informati",
+         "title": "Obtaining, evaluating and communicating information",
+         "outcomes": [
+          {
+           "code": "3E.4.2.2.1",
+           "text": "Gather information and communicate how Minnesota American Indian Tribes and communities and other cultures use patterns in stars to make predictions and plans."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "4",
+   "units": [
+    {
+     "id": "grade-4",
+     "title": "Grade 4",
+     "topics": [
+      {
+       "id": "physical-science",
+       "title": "Physical Science",
+       "subtopics": [
+        {
+         "id": "asking-questions-and-defining-problems",
+         "title": "Asking questions and defining problems",
+         "outcomes": [
+          {
+           "code": "4P.1.1.1.1",
+           "text": "Ask questions to determine cause and effect relationships of electric and magnetic interactions between two objects not in contact with each other."
+          },
+          {
+           "code": "4P.1.1.2.1",
+           "text": "Define a simple design problem that can be solved by applying scientific ideas about magnets."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "earth-and-space-science",
+       "title": "Earth and Space Science",
+       "subtopics": [
+        {
+         "id": "asking-questions-and-defining-problems",
+         "title": "Asking questions and defining problems",
+         "outcomes": [
+          {
+           "code": "4E.1.1.1.2",
+           "text": "Ask questions about how water moves through the Earth system and identify the type of question."
+          }
+         ]
+        },
+        {
+         "id": "planning-and-carrying-out-investigations",
+         "title": "Planning and carrying out investigations",
+         "outcomes": [
+          {
+           "code": "4E.1.2.1.1",
+           "text": "Make observations and measurements to provide evidence of the effects of weathering or the rate of erosion by the forces of water, ice, wind, or vegetation."
+          },
+          {
+           "code": "4E.1.2.1.2",
+           "text": "Plan and carry out fair tests in which variables are controlled and failure points are considered to improve a model or prototype to prevent erosion."
+          }
+         ]
+        },
+        {
+         "id": "using-mathematics-and-computational-thinking",
+         "title": "Using mathematics and computational thinking",
+         "outcomes": [
+          {
+           "code": "4E.2.2.1.1",
+           "text": "Interpret charts, maps and/or graphs of the amounts of salt water and fresh water in various reservoirs to provide evidence about the distribution of water on Earth."
+          }
+         ]
+        },
+        {
+         "id": "developing-and-using-models",
+         "title": "Developing and using models",
+         "outcomes": [
+          {
+           "code": "4E.3.1.1.1",
+           "text": "Develop a model based in part on student observations or data to describe ways the geosphere, biosphere, hydrosphere, and atmosphere interact."
+          }
+         ]
+        },
+        {
+         "id": "constructing-explanations-and-designing-solution",
+         "title": "Constructing explanations and designing solutions",
+         "outcomes": [
+          {
+           "code": "4E.3.2.1.1",
+           "text": "Identify evidence from patterns in rock formations and fossils in rock layers to support an explanation for changes in a landscape over time."
+          },
+          {
+           "code": "4E.3.2.2.1",
+           "text": "Generate and compare multiple solutions to reduce the impacts of natural Earth processes on humans."
+          }
+         ]
+        },
+        {
+         "id": "obtaining-evaluating-and-communicating-informati",
+         "title": "Obtaining, evaluating and communicating information",
+         "outcomes": [
+          {
+           "code": "4E.4.2.1.1",
+           "text": "Read and comprehend grade appropriate complex texts and/or other reliable media to describe that energy and fuels are derived from natural resources and their uses affect the environment."
+          },
+          {
+           "code": "4E.4.2.2.1",
+           "text": "Obtain and combine multiple sources of information about ways individual communities, including Minnesota American Indian Tribes and communities and other cultures, use evidence and scientific principles to make decisions about the uses of Earth's resources."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "life-science",
+       "title": "Life Science",
+       "subtopics": [
+        {
+         "id": "engaging-in-argument-from-evidence",
+         "title": "Engaging in argument from evidence",
+         "outcomes": [
+          {
+           "code": "4L.4.1.1.1",
+           "text": "Construct or support an argument that traits can be influenced by different environments."
+          }
+         ]
+        },
+        {
+         "id": "obtaining-evaluating-and-communicating-informati",
+         "title": "Obtaining, evaluating and communicating information",
+         "outcomes": [
+          {
+           "code": "4L.4.2.1.2",
+           "text": "Obtain information from various media sources to determine that plants and animals have traits inherited from parents and that variation of these traits exists in a group of similar organisms."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "5",
+   "units": [
+    {
+     "id": "grade-5",
+     "title": "Grade 5",
+     "topics": [
+      {
+       "id": "physical-science",
+       "title": "Physical Science",
+       "subtopics": [
+        {
+         "id": "asking-questions-and-defining-problems",
+         "title": "Asking questions and defining problems",
+         "outcomes": [
+          {
+           "code": "5P.1.1.1.1",
+           "text": "Ask investigatable questions and predict reasonable outcomes about the changes in energy, related to speed, that occur when objects interact."
+          }
+         ]
+        },
+        {
+         "id": "planning-and-carrying-out-investigations",
+         "title": "Planning and carrying out investigations",
+         "outcomes": [
+          {
+           "code": "5P.1.2.1.1",
+           "text": "Conduct an investigation to determine whether the mixing of two or more substances results in new substances."
+          },
+          {
+           "code": "5P.1.2.1.2",
+           "text": "Evaluate appropriate methods and tools to identify materials based on their properties prior to investigation."
+          }
+         ]
+        },
+        {
+         "id": "analyzing-and-interpreting-data",
+         "title": "Analyzing and interpreting data",
+         "outcomes": [
+          {
+           "code": "5P.2.1.1.1",
+           "text": "Analyze and interpret data to show that energy can be transferred from place to place by sound, light, heat, and electric currents."
+          }
+         ]
+        },
+        {
+         "id": "using-mathematics-and-computational-thinking",
+         "title": "Using mathematics and computational thinking",
+         "outcomes": [
+          {
+           "code": "5P.2.2.1.1",
+           "text": "Measure and graph quantities to provide evidence that regardless of the type of change that occurs when heating, cooling, or mixing substances, the total weight of matter is conserved."
+          }
+         ]
+        },
+        {
+         "id": "developing-and-using-models",
+         "title": "Developing and using models",
+         "outcomes": [
+          {
+           "code": "5P.3.1.1.1",
+           "text": "Develop and refine a model to describe that matter is made of particles too small to be seen."
+          },
+          {
+           "code": "5P.3.1.1.2",
+           "text": "Use models to describe that energy in animals' food (used for body repair, growth, and motion and to maintain body warmth) was once energy from the Sun."
+          }
+         ]
+        },
+        {
+         "id": "constructing-explanations-and-designing-solution",
+         "title": "Constructing explanations and designing solutions",
+         "outcomes": [
+          {
+           "code": "5P.3.2.1.1",
+           "text": "Construct an explanation based on evidence relating the speed of an object to the energy of that object."
+          },
+          {
+           "code": "5P.3.2.2.1",
+           "text": "Apply scientific ideas to design, test, and refine a device that converts energy from one form to another."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "life-science",
+       "title": "Life Science",
+       "subtopics": [
+        {
+         "id": "planning-and-carrying-out-investigations",
+         "title": "Planning and carrying out investigations",
+         "outcomes": [
+          {
+           "code": "5L.1.2.1.3",
+           "text": "Plan and conduct an investigation to obtain evidence that plants get the materials they need for growth chiefly from air and water."
+          }
+         ]
+        },
+        {
+         "id": "developing-and-using-models",
+         "title": "Developing and using models",
+         "outcomes": [
+          {
+           "code": "5L.3.1.1.3",
+           "text": "Create an electronic visualization of the movement of matter among plants, animals, decomposers, and the environment."
+          }
+         ]
+        },
+        {
+         "id": "engaging-in-argument-from-evidence",
+         "title": "Engaging in argument from evidence",
+         "outcomes": [
+          {
+           "code": "5L.4.1.2.1",
+           "text": "Evaluate the merit of a solution to a problem caused by changes in plant and animal populations as a result of environmental changes."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "earth-and-space-science",
+       "title": "Earth and Space Science",
+       "subtopics": [
+        {
+         "id": "using-mathematics-and-computational-thinking",
+         "title": "Using mathematics and computational thinking",
+         "outcomes": [
+          {
+           "code": "5E.2.2.1.2",
+           "text": "Use data to describe patterns in the daily changes in length and direction of shadows, day and night, and the seasonal appearance of some stars in the night sky."
+          }
+         ]
+        },
+        {
+         "id": "engaging-in-argument-from-evidence",
+         "title": "Engaging in argument from evidence",
+         "outcomes": [
+          {
+           "code": "5E.4.1.1.1",
+           "text": "Use evidence to support an argument that the apparent brightness of the Sun and stars is due to their relative distances from Earth."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "6",
+   "units": [
+    {
+     "id": "grade-6",
+     "title": "Grade 6",
+     "topics": [
+      {
+       "id": "earth-s-place-in-the-universe",
+       "title": "Earth's Place in the Universe",
+       "subtopics": [
+        {
+         "id": "asking-questions-and-defining-problems",
+         "title": "Asking questions and defining problems",
+         "outcomes": [
+          {
+           "code": "6EU.1.1.1.1",
+           "text": "Ask questions that arise from observations of patterns in the movement of night sky objects to test the limitations of a solar system model."
+          }
+         ]
+        },
+        {
+         "id": "analyzing-and-interpreting-data",
+         "title": "Analyzing and interpreting data",
+         "outcomes": [
+          {
+           "code": "6EU.2.1.1.1",
+           "text": "Analyze and interpret data to determine similarities and differences among features and processes occurring on solar system objects."
+          }
+         ]
+        },
+        {
+         "id": "developing-and-using-models",
+         "title": "Developing and using models",
+         "outcomes": [
+          {
+           "code": "6EU.3.1.1.1",
+           "text": "Develop and use scale models of solar system objects to describe the sizes of objects, the location of objects, and the motion of the objects; and include the role that gravity and inertia play in controlling that motion."
+          }
+         ]
+        },
+        {
+         "id": "constructing-explanations-and-designing-solution",
+         "title": "Constructing explanations and designing solutions",
+         "outcomes": [
+          {
+           "code": "6EU.3.2.1.1",
+           "text": "Construct a scientific explanation based on evidence from rock strata for how the geologic time scale is used to organize Earth's 4.6-billion-year-old history."
+          }
+         ]
+        },
+        {
+         "id": "obtaining-evaluating-and-communicating-informati",
+         "title": "Obtaining, evaluating and communicating information",
+         "outcomes": [
+          {
+           "code": "6EU.4.2.2.1",
+           "text": "Communicate how a series of models, including those used by Minnesota American Indian Tribes and communities and other cultures, are used to explain how motion in the Earth-Sun-Moon system causes the cyclic patterns of lunar phases, eclipses and seasons."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "earth-s-systems",
+       "title": "Earth's Systems",
+       "subtopics": [
+        {
+         "id": "asking-questions-and-defining-problems",
+         "title": "Asking questions and defining problems",
+         "outcomes": [
+          {
+           "code": "6ES.1.1.1.2",
+           "text": "Ask questions to examine an interpretation about the relative ages of different rock layers within a sequence of several rock layers."
+          }
+         ]
+        },
+        {
+         "id": "planning-and-carrying-out-investigations",
+         "title": "Planning and carrying out investigations",
+         "outcomes": [
+          {
+           "code": "6ES.1.2.1.1",
+           "text": "Collect data and use digital data analysis tools to identify patterns to provide evidence for how the motions and complex interactions of air masses result in changes in weather conditions."
+          }
+         ]
+        },
+        {
+         "id": "analyzing-and-interpreting-data",
+         "title": "Analyzing and interpreting data",
+         "outcomes": [
+          {
+           "code": "6ES.2.1.1.2",
+           "text": "Analyze and interpret data on the distribution of fossils, rocks, continental shapes, and seafloor structures to provide evidence of past plate motions."
+          }
+         ]
+        },
+        {
+         "id": "developing-and-using-models",
+         "title": "Developing and using models",
+         "outcomes": [
+          {
+           "code": "6ES.3.1.1.2",
+           "text": "Develop a model, based on observational evidence, to describe the cycling and movement of Earth's rock material and the energy that drives these processes."
+          },
+          {
+           "code": "6ES.3.1.1.3",
+           "text": "Develop a model, based on observational and experimental evidence, to describe the cycling of water through Earth's systems driven by energy from the Sun and the force of gravity."
+          }
+         ]
+        },
+        {
+         "id": "engaging-in-argument-from-evidence",
+         "title": "Engaging in argument from evidence",
+         "outcomes": [
+          {
+           "code": "6ES.4.1.1.1",
+           "text": "Construct an argument, supported by evidence, for how geoscience processes have changed Earth's surface at varying time and spatial scales."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "earth-and-human-activity",
+       "title": "Earth and Human Activity",
+       "subtopics": [
+        {
+         "id": "asking-questions-and-defining-problems",
+         "title": "Asking questions and defining problems",
+         "outcomes": [
+          {
+           "code": "6EH.1.1.1.3",
+           "text": "Ask questions to clarify evidence of the factors that have caused the rise in global temperatures over the past century."
+          }
+         ]
+        },
+        {
+         "id": "analyzing-and-interpreting-data",
+         "title": "Analyzing and interpreting data",
+         "outcomes": [
+          {
+           "code": "6EH.2.1.1.3",
+           "text": "Analyze and interpret data on natural hazards to forecast future catastrophic events and inform the development of technologies to mitigate their effects."
+          }
+         ]
+        },
+        {
+         "id": "constructing-explanations-and-designing-solution",
+         "title": "Constructing explanations and designing solutions",
+         "outcomes": [
+          {
+           "code": "6EH.3.2.1.2",
+           "text": "Construct a scientific explanation based on evidence for how the uneven distribution of Earth's mineral, energy, or groundwater resources is the result of past geological processes."
+          },
+          {
+           "code": "6EH.3.2.1.3",
+           "text": "Apply scientific principles to design a method for monitoring and minimizing a human impact on the environment."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "7",
+   "units": [
+    {
+     "id": "grade-7",
+     "title": "Grade 7",
+     "topics": [
+      {
+       "id": "from-molecules-to-organisms-structures-and-proce",
+       "title": "From Molecules to Organisms: Structures and Processes",
+       "subtopics": [
+        {
+         "id": "asking-questions-and-defining-problems",
+         "title": "Asking questions and defining problems",
+         "outcomes": [
+          {
+           "code": "7LM.1.1.1.1",
+           "text": "Ask questions about the processes and outcomes of various methods of communication between cells of multicellular organisms."
+          }
+         ]
+        },
+        {
+         "id": "planning-and-carrying-out-investigations",
+         "title": "Planning and carrying out investigations",
+         "outcomes": [
+          {
+           "code": "7LM.1.2.1.1",
+           "text": "Conduct an investigation to provide evidence that living things are made of cells, either one cell or many different numbers and types of cells."
+          }
+         ]
+        },
+        {
+         "id": "developing-and-using-models",
+         "title": "Developing and using models",
+         "outcomes": [
+          {
+           "code": "7LM.3.1.1.1",
+           "text": "Develop and use a model to describe the function of a cell as a whole and describe the way cell parts contribute to the cell's function."
+          },
+          {
+           "code": "7L.3.1.1.2",
+           "text": "Develop and use a model to describe how food is rearranged through chemical reactions forming new molecules that support growth and/or release energy as this matter moves through an organism."
+          }
+         ]
+        },
+        {
+         "id": "constructing-explanations-and-designing-solution",
+         "title": "Constructing explanations and designing solutions",
+         "outcomes": [
+          {
+           "code": "7LM.3.2.1.1",
+           "text": "Construct an explanation based on evidence for how environmental and genetic factors influence the growth of organisms and/or populations."
+          },
+          {
+           "code": "7LM.3.2.1.2",
+           "text": "Construct an explanation based on evidence for the role of photosynthesis in the cycling of matter and flow of energy into and out of organisms."
+          }
+         ]
+        },
+        {
+         "id": "engaging-in-argument-from-evidence",
+         "title": "Engaging in argument from evidence",
+         "outcomes": [
+          {
+           "code": "7LM.4.1.1.1",
+           "text": "Support or refute an explanation by arguing from evidence for how the body is a system of interacting subsystems composed of groups of cells."
+          },
+          {
+           "code": "7LM.4.1.1.2",
+           "text": "Support or refute an explanation by arguing from evidence and scientific reasoning for how animal behavior and plant structures affect the probability of successful reproduction."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "heredity-inheritance-and-variation-of-traits",
+       "title": "Heredity: Inheritance and Variation of Traits",
+       "subtopics": [
+        {
+         "id": "asking-questions-and-defining-problems",
+         "title": "Asking questions and defining problems",
+         "outcomes": [
+          {
+           "code": "7LH.1.1.1.2",
+           "text": "Ask questions that arise from careful observations of phenomena or models to clarify and/or seek additional information about how changes in genes can affect organisms."
+          }
+         ]
+        },
+        {
+         "id": "developing-and-using-models",
+         "title": "Developing and using models",
+         "outcomes": [
+          {
+           "code": "7LH.3.1.1.4",
+           "text": "Develop and use a model to describe why asexual reproduction results in offspring with identical genetic information and sexual reproduction results in offspring with genetic variation."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "ecosystems-interactions-energy-and-dynamics",
+       "title": "Ecosystems: Interactions, Energy, and Dynamics",
+       "subtopics": [
+        {
+         "id": "analyzing-and-interpreting-data",
+         "title": "Analyzing and interpreting data",
+         "outcomes": [
+          {
+           "code": "7LE.2.1.1.1",
+           "text": "Analyze and interpret data to provide evidence for the effects of resource availability on organisms and populations of organisms in an ecosystem."
+          }
+         ]
+        },
+        {
+         "id": "developing-and-using-models",
+         "title": "Developing and using models",
+         "outcomes": [
+          {
+           "code": "7LE.3.1.1.3",
+           "text": "Develop and use a model to describe the cycling of matter and flow of energy among living and nonliving parts of an ecosystem."
+          }
+         ]
+        },
+        {
+         "id": "engaging-in-argument-from-evidence",
+         "title": "Engaging in argument from evidence",
+         "outcomes": [
+          {
+           "code": "7LE.4.1.2.1",
+           "text": "Construct an argument supported by empirical evidence that changes in physical or biological components of an ecosystem affect populations."
+          },
+          {
+           "code": "7LE.4.1.2.2",
+           "text": "Evaluate competing design solutions for maintaining biodiversity or ecosystem services."
+          }
+         ]
+        },
+        {
+         "id": "obtaining-evaluating-and-communicating-informati",
+         "title": "Obtaining, evaluating and communicating information",
+         "outcomes": [
+          {
+           "code": "7LE.4.2.2.1",
+           "text": "Gather multiple sources of information and communicate how Minnesota American Indian Tribes and communities and other cultures use knowledge to predict or interpret patterns of interactions among organisms across multiple ecosystems."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "biological-evolution-unity-and-diversity",
+       "title": "Biological Evolution: Unity and Diversity",
+       "subtopics": [
+        {
+         "id": "analyzing-and-interpreting-data",
+         "title": "Analyzing and interpreting data",
+         "outcomes": [
+          {
+           "code": "7LB.2.1.1.2",
+           "text": "Analyze and interpret data for patterns in the fossil record that document the existence, diversity, extinction, and change of life forms throughout the history of life on Earth."
+          },
+          {
+           "code": "7L.2.1.1.3",
+           "text": "Analyze visual data to compare patterns of similarities in the embryological development across multiple species to identify relationships not evident in the fully formed anatomy."
+          }
+         ]
+        },
+        {
+         "id": "using-mathematics-and-computational-thinking",
+         "title": "Using mathematics and computational thinking",
+         "outcomes": [
+          {
+           "code": "7LB.2.2.1.1",
+           "text": "Use an algorithm to explain how natural selection may lead to increases and decreases of specific traits in populations."
+          }
+         ]
+        },
+        {
+         "id": "constructing-explanations-and-designing-solution",
+         "title": "Constructing explanations and designing solutions",
+         "outcomes": [
+          {
+           "code": "7LB.3.2.1.3",
+           "text": "Apply scientific ideas to construct an explanation for the anatomical similarities and differences among modern organisms and between modern and fossil organisms to infer evolutionary relationships."
+          },
+          {
+           "code": "7LB.3.2.1.4",
+           "text": "Construct an explanation based on evidence that describes how genetic variations of traits in a population increase some individuals' probability of surviving and reproducing in a specific environment."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "8",
+   "units": [
+    {
+     "id": "grade-8",
+     "title": "Grade 8",
+     "topics": [
+      {
+       "id": "matter-and-its-interactions",
+       "title": "Matter and Its Interactions",
+       "subtopics": [
+        {
+         "id": "asking-questions-and-defining-problems",
+         "title": "Asking questions and defining problems",
+         "outcomes": [
+          {
+           "code": "8PI.1.1.1.1",
+           "text": "Ask questions about locations of common elements on the periodic table to note patterns in the properties of similarly grouped elements."
+          }
+         ]
+        },
+        {
+         "id": "planning-and-carrying-out-investigations",
+         "title": "Planning and carrying out investigations",
+         "outcomes": [
+          {
+           "code": "8PI.1.2.1.1",
+           "text": "Plan and conduct an investigation of changes in pure substances when thermal energy is added or removed and relate those changes to particle motion."
+          },
+          {
+           "code": "8PI.1.2.1.2",
+           "text": "Plan and conduct an investigation to provide evidence that the change in an object's motion depends on the sum of the forces on the object and the mass of the object."
+          },
+          {
+           "code": "8PI.1.2.1.3",
+           "text": "Conduct an investigation and evaluate the experimental design to provide evidence that fields exist between objects exerting forces on each other even though the objects are not in contact."
+          }
+         ]
+        },
+        {
+         "id": "analyzing-and-interpreting-data",
+         "title": "Analyzing and interpreting data",
+         "outcomes": [
+          {
+           "code": "8PI.2.1.1.1",
+           "text": "Analyze and interpret data on the properties of substances before and after the substances interact to determine if a chemical reaction has occurred."
+          }
+         ]
+        },
+        {
+         "id": "developing-and-using-models",
+         "title": "Developing and using models",
+         "outcomes": [
+          {
+           "code": "8PI.3.1.1.1",
+           "text": "Develop models to describe the atomic composition of simple molecules and crystals."
+          },
+          {
+           "code": "8PI.8P.3.1.1.2",
+           "text": "Develop and use a model to describe how the total number of atoms does not change in a chemical reaction and thus mass is conserved."
+          }
+         ]
+        },
+        {
+         "id": "constructing-explanations-and-designing-solution",
+         "title": "Constructing explanations and designing solutions",
+         "outcomes": [
+          {
+           "code": "8PI.3.2.1.1",
+           "text": "Construct an explanation based on evidence and scientific principles of a common phenomenon that can be explained by the motions of molecules."
+          },
+          {
+           "code": "8PI.3.2.2.1",
+           "text": "Construct, test and modify a device that either releases or absorbs thermal energy by chemical processes."
+          }
+         ]
+        },
+        {
+         "id": "obtaining-evaluating-and-communicating-informati",
+         "title": "Obtaining, evaluating and communicating information",
+         "outcomes": [
+          {
+           "code": "8PI.4.2.1.1",
+           "text": "Gather and evaluate information from multiple sources to describe that synthetic materials come from natural resources and impact society."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "motion-and-stability-forces-and-interactions",
+       "title": "Motion and Stability: Forces and Interactions",
+       "subtopics": [
+        {
+         "id": "asking-questions-and-defining-problems",
+         "title": "Asking questions and defining problems",
+         "outcomes": [
+          {
+           "code": "8PF.1.1.1.2",
+           "text": "Ask questions about data to determine the factors that affect the strength of electric and magnetic forces."
+          }
+         ]
+        },
+        {
+         "id": "constructing-explanations-and-designing-solution",
+         "title": "Constructing explanations and designing solutions",
+         "outcomes": [
+          {
+           "code": "8PF.3.2.2.2",
+           "text": "Design a solution to a problem involving the motion of two colliding objects using Newton's 3rd Law."
+          }
+         ]
+        },
+        {
+         "id": "engaging-in-argument-from-evidence",
+         "title": "Engaging in argument from evidence",
+         "outcomes": [
+          {
+           "code": "8PF.4.1.1.1",
+           "text": "Construct and present arguments using evidence to support the claim that gravitational interactions are attractive and depend on the masses of interacting objects."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "energy",
+       "title": "Energy",
+       "subtopics": [
+        {
+         "id": "planning-and-carrying-out-investigations",
+         "title": "Planning and carrying out investigations",
+         "outcomes": [
+          {
+           "code": "8PE.1.2.1.4",
+           "text": "Plan and conduct an investigation to determine how the temperature of a substance is affected by the transfer of energy, the amount of mass, and the type of matter."
+          }
+         ]
+        },
+        {
+         "id": "analyzing-and-interpreting-data",
+         "title": "Analyzing and interpreting data",
+         "outcomes": [
+          {
+           "code": "8PE.2.1.1.2",
+           "text": "Construct and interpret graphical displays of data to describe the relationship of kinetic energy to the mass and speed of an object."
+          }
+         ]
+        },
+        {
+         "id": "using-mathematics-and-computational-thinking",
+         "title": "Using mathematics and computational thinking",
+         "outcomes": [
+          {
+           "code": "8PE.2.2.1.2",
+           "text": "Create a computer program to illustrate the transfer of energy within a system where energy changes form."
+          }
+         ]
+        },
+        {
+         "id": "developing-and-using-models",
+         "title": "Developing and using models",
+         "outcomes": [
+          {
+           "code": "8PE.3.1.1.3",
+           "text": "Develop and revise a model to describe that when the arrangement of objects interacting at a distance changes, different amounts of potential energy are stored in the system."
+          }
+         ]
+        },
+        {
+         "id": "constructing-explanations-and-designing-solution",
+         "title": "Constructing explanations and designing solutions",
+         "outcomes": [
+          {
+           "code": "8PE.3.2.2.3",
+           "text": "Design, construct, and test a device that either minimizes or maximizes thermal energy transfer."
+          }
+         ]
+        },
+        {
+         "id": "engaging-in-argument-from-evidence",
+         "title": "Engaging in argument from evidence",
+         "outcomes": [
+          {
+           "code": "8PE.4.1.1.2",
+           "text": "Compare and evaluate evidence to support the claim that when the kinetic energy of an object changes, energy is transferred to or from the object."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "waves-and-their-applications-in-technologies-for",
+       "title": "Waves and Their Applications in Technologies for Information Transfer",
+       "subtopics": [
+        {
+         "id": "using-mathematics-and-computational-thinking",
+         "title": "Using mathematics and computational thinking",
+         "outcomes": [
+          {
+           "code": "8PW.2.2.1.1",
+           "text": "Use mathematical representations to describe a simple model for waves that includes how the amplitude of a wave is related to the energy in a wave."
+          }
+         ]
+        },
+        {
+         "id": "developing-and-using-models",
+         "title": "Developing and using models",
+         "outcomes": [
+          {
+           "code": "8PW.3.1.1.4",
+           "text": "Develop and use a model to qualitatively describe that waves are reflected, absorbed, or transmitted through various materials."
+          }
+         ]
+        },
+        {
+         "id": "obtaining-evaluating-and-communicating-informati",
+         "title": "Obtaining, evaluating and communicating information",
+         "outcomes": [
+          {
+           "code": "8PW.4.2.1.2",
+           "text": "Integrate qualitative scientific and technical information to support the claim that digitized signals are a more reliable way to encode and transmit information than analog signals."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "9-12",
+   "units": [
+    {
+     "id": "grades-9-12",
+     "title": "Grades 9-12",
+     "topics": [
+      {
+       "id": "earth-s-systems",
+       "title": "Earth's Systems",
+       "subtopics": [
+        {
+         "id": "asking-questions-and-defining-problems",
+         "title": "Asking questions and defining problems",
+         "outcomes": [
+          {
+           "code": "9ES.1.1.1.1",
+           "text": "Ask questions to clarify how seismic energy traveling through Earth's interior can provide evidence for Earth's internal structure."
+          }
+         ]
+        },
+        {
+         "id": "planning-and-carrying-out-investigations",
+         "title": "Planning and carrying out investigations",
+         "outcomes": [
+          {
+           "code": "9ES.1.2.1.1",
+           "text": "Plan and conduct an investigation of the properties of water and its effects on Earth materials and surface processes."
+          }
+         ]
+        },
+        {
+         "id": "analyzing-and-interpreting-data",
+         "title": "Analyzing and interpreting data",
+         "outcomes": [
+          {
+           "code": "9ES.2.1.1.2",
+           "text": "Analyze geoscience data to make a claim that one change to the Earth's surface can create feedbacks that cause changes to other Earth systems."
+          }
+         ]
+        },
+        {
+         "id": "using-mathematics-and-computational-thinking",
+         "title": "Using mathematics and computational thinking",
+         "outcomes": [
+          {
+           "code": "9ES.2.2.1.2",
+           "text": "Develop a computational model, based on observational data, experimental evidence, and chemical theory, to describe the cycling of carbon among Earth's systems."
+          }
+         ]
+        },
+        {
+         "id": "developing-and-using-models",
+         "title": "Developing and using models",
+         "outcomes": [
+          {
+           "code": "9ES.3.1.1.2",
+           "text": "Develop and use a model based on evidence to explain how Earth's internal and surface processes operate at different spatial and temporal scales to form continental and ocean floor features."
+          },
+          {
+           "code": "9ES.3.1.1.3",
+           "text": "Develop and use a model to describe how unequal heating and rotation of the Earth cause patterns of atmospheric and oceanic circulation that determine regional climates."
+          },
+          {
+           "code": "9ES.3.1.1.4",
+           "text": "Use a model to describe how variations in the flow of energy into and out of Earth's systems result in changes in climate."
+          }
+         ]
+        },
+        {
+         "id": "engaging-in-argument-from-evidence",
+         "title": "Engaging in argument from evidence",
+         "outcomes": [
+          {
+           "code": "9ES.4.1.1.2",
+           "text": "Evaluate the evidence and reasoning for the explanatory model that Earth's interior is layered and that thermal convection drives the cycling of matter."
+          }
+         ]
+        },
+        {
+         "id": "obtaining-evaluating-and-communicating-informati",
+         "title": "Obtaining, evaluating and communicating information",
+         "outcomes": [
+          {
+           "code": "9ES.4.2.1.1",
+           "text": "Compare, integrate and evaluate sources of information in order to determine how specific factors, including human activity, impact the groundwater system of a region."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "earth-and-human-activity",
+       "title": "Earth and Human Activity",
+       "subtopics": [
+        {
+         "id": "planning-and-carrying-out-investigations",
+         "title": "Planning and carrying out investigations",
+         "outcomes": [
+          {
+           "code": "9EH.1.2.1.2",
+           "text": "Plan and conduct an investigation of the properties of soils to model the effects of human activity on soil resources."
+          }
+         ]
+        },
+        {
+         "id": "analyzing-and-interpreting-data",
+         "title": "Analyzing and interpreting data",
+         "outcomes": [
+          {
+           "code": "9EH.2.1.1.3",
+           "text": "Analyze geoscience data and the results from global climate models to make an evidence-based forecast of the current rate of global or regional climate change and associated future impacts to Earth's systems and human infrastructure."
+          }
+         ]
+        },
+        {
+         "id": "using-mathematics-and-computational-thinking",
+         "title": "Using mathematics and computational thinking",
+         "outcomes": [
+          {
+           "code": "9EH.2.2.1.3",
+           "text": "Develop or use an algorithmic representation, based on investigations of causes and effects in complex Earth systems, to illustrate the relationships within some part of the Earth system and how human activity might affect those relationships."
+          }
+         ]
+        },
+        {
+         "id": "constructing-explanations-and-designing-solution",
+         "title": "Constructing explanations and designing solutions",
+         "outcomes": [
+          {
+           "code": "9EH.3.2.2.1",
+           "text": "Evaluate or refine a technological solution to reduce the human impacts on a natural system and base the evaluations or refinements on evidence and analysis of pertinent data."
+          }
+         ]
+        },
+        {
+         "id": "engaging-in-argument-from-evidence",
+         "title": "Engaging in argument from evidence",
+         "outcomes": [
+          {
+           "code": "9EH.4.1.1.3",
+           "text": "Evaluate competing design solutions for developing, managing, and utilizing energy and mineral resources based on cost-benefit ratios."
+          }
+         ]
+        },
+        {
+         "id": "obtaining-evaluating-and-communicating-informati",
+         "title": "Obtaining, evaluating and communicating information",
+         "outcomes": [
+          {
+           "code": "9EH.4.2.2.1",
+           "text": "Apply place-based evidence, including those from Minnesota American Indian Tribes and communities and other cultures, to construct an explanation of how a warming climate impacts the hydrosphere, geosphere, biosphere, or atmosphere."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "earth-s-place-in-the-universe",
+       "title": "Earth's Place in the Universe",
+       "subtopics": [
+        {
+         "id": "analyzing-and-interpreting-data",
+         "title": "Analyzing and interpreting data",
+         "outcomes": [
+          {
+           "code": "9EU.2.1.1.1",
+           "text": "Analyze data to make a valid scientific claim about the way stars, over their life cycle, produce elements."
+          }
+         ]
+        },
+        {
+         "id": "using-mathematics-and-computational-thinking",
+         "title": "Using mathematics and computational thinking",
+         "outcomes": [
+          {
+           "code": "9EU.2.2.1.1",
+           "text": "Use mathematical and computational representations to predict the motion of natural and human-made objects that are in orbit in the solar system."
+          }
+         ]
+        },
+        {
+         "id": "developing-and-using-models",
+         "title": "Developing and using models",
+         "outcomes": [
+          {
+           "code": "9EU.3.1.1.1",
+           "text": "Develop and use a model based on evidence to illustrate the life span of the Sun and the role of nuclear fusion in the Sun's core to release energy that eventually reaches Earth in the form of radiation."
+          }
+         ]
+        },
+        {
+         "id": "constructing-explanations-and-designing-solution",
+         "title": "Constructing explanations and designing solutions",
+         "outcomes": [
+          {
+           "code": "9EU.9E.3.2.1.1",
+           "text": "Construct an explanation that links astronomical evidence of light spectra, motion of distant galaxies, and composition of matter in the universe to the Big Bang."
+          },
+          {
+           "code": "9EU.3.2.1.2",
+           "text": "Apply scientific reasoning and evidence from ancient Earth materials, meteorites, and other planetary surfaces to construct an account of Earth's formation and early history."
+          }
+         ]
+        },
+        {
+         "id": "engaging-in-argument-from-evidence",
+         "title": "Engaging in argument from evidence",
+         "outcomes": [
+          {
+           "code": "9EU.4.1.1.1",
+           "text": "Evaluate the evidence of the past and current movements of continental and oceanic crust and the theory of plate tectonics to explain the ages of crustal rocks."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "heredity-inheritance-and-variation-of-traits",
+       "title": "Heredity: Inheritance and Variation of Traits",
+       "subtopics": [
+        {
+         "id": "asking-questions-and-defining-problems",
+         "title": "Asking questions and defining problems",
+         "outcomes": [
+          {
+           "code": "9LH.1.1.1.1",
+           "text": "Ask questions to clarify relationships about the role of DNA and chromosomes in coding the instructions for characteristic traits passed from parents to offspring."
+          }
+         ]
+        },
+        {
+         "id": "analyzing-and-interpreting-data",
+         "title": "Analyzing and interpreting data",
+         "outcomes": [
+          {
+           "code": "9LH.2.1.1.1",
+           "text": "Apply concepts of probability to explain and predict the variation and distribution of expressed traits in a population."
+          }
+         ]
+        },
+        {
+         "id": "engaging-in-argument-from-evidence",
+         "title": "Engaging in argument from evidence",
+         "outcomes": [
+          {
+           "code": "9LH.4.1.1.2",
+           "text": "Make and defend a claim based on evidence that heritable genetic variations may result from (1) new genetic combinations through meiosis, (2) viable errors occurring during replication, and/or (3) mutations caused by environmental factors."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "from-molecules-to-organisms-structures-and-proce",
+       "title": "From Molecules to Organisms: Structures and Processes",
+       "subtopics": [
+        {
+         "id": "planning-and-carrying-out-investigations",
+         "title": "Planning and carrying out investigations",
+         "outcomes": [
+          {
+           "code": "9LO.1.2.1.1",
+           "text": "Plan and conduct an investigation to provide evidence that feedback mechanisms maintain homeostasis."
+          }
+         ]
+        },
+        {
+         "id": "developing-and-using-models",
+         "title": "Developing and using models",
+         "outcomes": [
+          {
+           "code": "9LO.3.1.1.1",
+           "text": "Develop and use a model to illustrate the levels of organization of interacting systems and how that translates into specific functions in multicellular organisms."
+          },
+          {
+           "code": "9LO.3.1.1.2",
+           "text": "Use a model to illustrate the role of cellular division (mitosis) and differentiation in producing and maintaining complex organisms."
+          },
+          {
+           "code": "9LO.3.1.1.3",
+           "text": "Use a model to illustrate how photosynthesis transforms light energy into stored chemical energy."
+          },
+          {
+           "code": "9LO.3.1.1.4",
+           "text": "Use a model to illustrate that cellular respiration is a chemical process in which energy from food is used to create new compounds."
+          }
+         ]
+        },
+        {
+         "id": "constructing-explanations-and-designing-solution",
+         "title": "Constructing explanations and designing solutions",
+         "outcomes": [
+          {
+           "code": "9LO.3.2.1.1",
+           "text": "Construct an explanation based on evidence for how the structure of DNA determines the structure of the proteins that carry out the essential functions of life."
+          },
+          {
+           "code": "9LO.3.2.1.2",
+           "text": "Construct and revise an explanation based on evidence for how various elements combine with carbon to form molecules that form the basis for life on Earth."
+          },
+          {
+           "code": "9LO.3.2.1.3",
+           "text": "Construct and revise an explanation based on evidence about the role of photosynthesis and cellular respiration (including anaerobic processes) in the cycling of carbon among the biosphere, atmosphere, hydrosphere, and geosphere."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "biological-evolution-unity-and-diversity",
+       "title": "Biological Evolution: Unity and Diversity",
+       "subtopics": [
+        {
+         "id": "analyzing-and-interpreting-data",
+         "title": "Analyzing and interpreting data",
+         "outcomes": [
+          {
+           "code": "9LB.2.1.1.2",
+           "text": "Apply concepts of statistics and probability to support explanations that organisms with an advantageous heritable trait tend to increase in proportion to organisms lacking this trait."
+          }
+         ]
+        },
+        {
+         "id": "constructing-explanations-and-designing-solution",
+         "title": "Constructing explanations and designing solutions",
+         "outcomes": [
+          {
+           "code": "9LB.3.2.1.4",
+           "text": "Construct an explanation based on evidence that the process of evolution primarily results from four factors: reproduction within a species, heritable genetic variation of individuals in that species, competition for limited resources, and increased survival and reproduction of the individuals best suited for the environment."
+          },
+          {
+           "code": "9LB.3.2.1.5",
+           "text": "Construct an explanation based on evidence for how natural selection leads to the adaptation of populations."
+          }
+         ]
+        },
+        {
+         "id": "engaging-in-argument-from-evidence",
+         "title": "Engaging in argument from evidence",
+         "outcomes": [
+          {
+           "code": "9LB.4.1.1.3",
+           "text": "Evaluate the evidence supporting claims that changes in environmental conditions may result in (1) increases in the number of individuals of some species, (2) the emergence of new species over time, and (3) the extinction of other species."
+          }
+         ]
+        },
+        {
+         "id": "obtaining-evaluating-and-communicating-informati",
+         "title": "Obtaining, evaluating and communicating information",
+         "outcomes": [
+          {
+           "code": "9LB.4.2.1.1",
+           "text": "Communicate scientific information that common ancestry and biological evolution are supported by multiple lines of empirical evidence."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "ecosystems-interactions-energy-and-dynamics",
+       "title": "Ecosystems: Interactions, Energy, and Dynamics",
+       "subtopics": [
+        {
+         "id": "using-mathematics-and-computational-thinking",
+         "title": "Using mathematics and computational thinking",
+         "outcomes": [
+          {
+           "code": "9LE.2.2.1.1",
+           "text": "Use a computational model to support or revise an evidence-based explanation for factors that have ecological and economic impacts on different sized ecosystems, including factors caused by the practices of various human groups."
+          },
+          {
+           "code": "9LE.2.2.1.2",
+           "text": "Use a computational model to support claims for the cycling of matter and flow of energy among organisms in an ecosystem."
+          }
+         ]
+        },
+        {
+         "id": "engaging-in-argument-from-evidence",
+         "title": "Engaging in argument from evidence",
+         "outcomes": [
+          {
+           "code": "9LE.4.1.1.1",
+           "text": "Evaluate evidence for the role of group behavior on an individual's and species' chances to survive and reproduce."
+          }
+         ]
+        },
+        {
+         "id": "obtaining-evaluating-and-communicating-informati",
+         "title": "Obtaining, evaluating and communicating information",
+         "outcomes": [
+          {
+           "code": "9LE.4.2.2.1",
+           "text": "Obtain and communicate information about how Minnesota American Indian Tribes and communities and other cultures construct solutions to mitigate threats to biodiversity."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "chemistry-matter-and-its-interactions",
+       "title": "Chemistry: Matter and Its Interactions",
+       "subtopics": [
+        {
+         "id": "asking-questions-and-defining-problems",
+         "title": "Asking questions and defining problems",
+         "outcomes": [
+          {
+           "code": "9CM.1.1.1.1",
+           "text": "Ask questions about the impact of greenhouse gases on the Earth's climate by analyzing their molecular structure and responses during energy absorption."
+          }
+         ]
+        },
+        {
+         "id": "planning-and-carrying-out-investigations",
+         "title": "Planning and carrying out investigations",
+         "outcomes": [
+          {
+           "code": "9CM.1.2.1.1",
+           "text": "Plan and conduct an investigation to gather evidence to compare the structure of substances and infer the strength of electrical forces between particles."
+          },
+          {
+           "code": "9CM.9C.1.2.1.2",
+           "text": "Plan and conduct an investigation of acid-base reactions to test ideas about the concentrations of the hydronium ion in an aqueous solution."
+          }
+         ]
+        },
+        {
+         "id": "analyzing-and-interpreting-data",
+         "title": "Analyzing and interpreting data",
+         "outcomes": [
+          {
+           "code": "9CM.2.1.1.1",
+           "text": "Analyze patterns in air or water quality data to make claims about the causes and severity of a problem and the necessity to remediate or to recommend a treatment process."
+          }
+         ]
+        },
+        {
+         "id": "using-mathematics-and-computational-thinking",
+         "title": "Using mathematics and computational thinking",
+         "outcomes": [
+          {
+           "code": "9CM.2.2.1.1",
+           "text": "Develop a data simulation, based on observations and experimental data of how the pressure, volume, temperature, and mass of a gas are related to each other, to predict the effect on a system of changing one of those variables."
+          },
+          {
+           "code": "9CM.2.2.1.2",
+           "text": "Use mathematical representations to support the claim that atoms, and therefore mass, are conserved during a chemical reaction."
+          }
+         ]
+        },
+        {
+         "id": "developing-and-using-models",
+         "title": "Developing and using models",
+         "outcomes": [
+          {
+           "code": "9CM.3.1.1.1",
+           "text": "Use the periodic table as a model to predict the relative properties of elements based on the patterns of valence electrons."
+          },
+          {
+           "code": "9CM.3.1.1.2",
+           "text": "Develop a model based on evidence to illustrate that the release or absorption of energy from a chemical reaction system depends upon the changes in total bond energy."
+          },
+          {
+           "code": "9CM.3.1.1.3",
+           "text": "Develop models to illustrate the changes in the composition of the nucleus of the atom and the energy released during the processes of fission, fusion, and radioactive decay."
+          }
+         ]
+        },
+        {
+         "id": "constructing-explanations-and-designing-solution",
+         "title": "Constructing explanations and designing solutions",
+         "outcomes": [
+          {
+           "code": "9CM.3.2.1.1",
+           "text": "Construct and revise an explanation for the outcome of a simple chemical reaction based on the outermost electron states of atoms, trends in the periodic table, and knowledge of the patterns of chemical properties."
+          },
+          {
+           "code": "9CM.3.2.1.2",
+           "text": "Apply scientific principles and evidence to provide an explanation about the effects of changing the surface area, agitation, temperature, and concentration of the reacting particles on the rate at which the reaction occurs."
+          },
+          {
+           "code": "9CM.3.2.1.3",
+           "text": "Construct an explanation for the phenomenon of solution creation and identify from patterns how the properties of the resulting solution depend on the interactions between solute and solvent or on concentrations of solutes."
+          },
+          {
+           "code": "9CM.3.2.2.1",
+           "text": "Evaluate the design and function of products and processes involving organic compounds to meet desired needs in relationship to the molecular structures and in particular the functional groups involved."
+          }
+         ]
+        },
+        {
+         "id": "obtaining-evaluating-and-communicating-informati",
+         "title": "Obtaining, evaluating and communicating information",
+         "outcomes": [
+          {
+           "code": "9CM.4.2.1.1",
+           "text": "Communicate scientific and technical information about why the molecular-level structure is important in the functioning of designed materials."
+          },
+          {
+           "code": "9CM.4.2.1.2",
+           "text": "Review text and online sources to develop a series of questions regarding the chemistry, utility, and safety of nuclear fission."
+          },
+          {
+           "code": "9CM.4.2.2.1",
+           "text": "Communicate and evaluate claims by various stakeholders, including Minnesota American Indian Tribes and communities and other cultures, about the environmental impacts of various chemical processes on natural resources."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "physics-waves-and-their-applications-in-technolo",
+       "title": "Physics: Waves and Their Applications in Technologies for Information Transfer",
+       "subtopics": [
+        {
+         "id": "asking-questions-and-defining-problems",
+         "title": "Asking questions and defining problems",
+         "outcomes": [
+          {
+           "code": "9PW.1.1.1.1",
+           "text": "Evaluate questions about the advantages and disadvantages of using digital transmission and storage of information."
+          }
+         ]
+        },
+        {
+         "id": "engaging-in-argument-from-evidence",
+         "title": "Engaging in argument from evidence",
+         "outcomes": [
+          {
+           "code": "9PW.4.1.1.1",
+           "text": "Evaluate the claims, evidence, and reasoning behind the argument that electromagnetic radiation can be described using either a wave model or a particle model, and that for some phenomena one model is more useful than the other."
+          }
+         ]
+        },
+        {
+         "id": "obtaining-evaluating-and-communicating-informati",
+         "title": "Obtaining, evaluating and communicating information",
+         "outcomes": [
+          {
+           "code": "9PW.4.2.1.1",
+           "text": "Evaluate the validity and reliability of claims in published materials of the effects that different frequencies of electromagnetic radiation have when absorbed by matter."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "physics-motion-and-stability-forces-and-interact",
+       "title": "Physics: Motion and Stability: Forces and Interactions",
+       "subtopics": [
+        {
+         "id": "planning-and-carrying-out-investigations",
+         "title": "Planning and carrying out investigations",
+         "outcomes": [
+          {
+           "code": "9PM.1.2.1.1",
+           "text": "Plan and conduct an investigation to provide evidence that an electric current can produce a magnetic field and that a changing magnetic field can produce an electric current."
+          }
+         ]
+        },
+        {
+         "id": "analyzing-and-interpreting-data",
+         "title": "Analyzing and interpreting data",
+         "outcomes": [
+          {
+           "code": "9PM.2.1.1.1",
+           "text": "Analyze data to support the claim that Newton's second law of motion describes the mathematical relationship among the net force on a macroscopic object, its mass, and its acceleration."
+          }
+         ]
+        },
+        {
+         "id": "using-mathematics-and-computational-thinking",
+         "title": "Using mathematics and computational thinking",
+         "outcomes": [
+          {
+           "code": "9PM.2.2.1.1",
+           "text": "Apply mathematical representations to support the claim that the total momentum of a system of objects is conserved when there is no net force on the system."
+          },
+          {
+           "code": "9PM.2.2.1.2",
+           "text": "Apply mathematical representations of Newton's Law of Gravitation and Coulomb's Law to describe and predict the gravitational and electrostatic forces between objects."
+          }
+         ]
+        },
+        {
+         "id": "constructing-explanations-and-designing-solution",
+         "title": "Constructing explanations and designing solutions",
+         "outcomes": [
+          {
+           "code": "9PM.3.2.2.1",
+           "text": "Develop a computer simulation to demonstrate the impact of a proposed solution that minimizes the force on a macroscopic object during a collision."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "physics-energy",
+       "title": "Physics: Energy",
+       "subtopics": [
+        {
+         "id": "planning-and-carrying-out-investigations",
+         "title": "Planning and carrying out investigations",
+         "outcomes": [
+          {
+           "code": "9PE.1.2.1.2",
+           "text": "Plan and conduct an investigation to provide evidence that the transfer of thermal energy when two components of different temperatures are combined within a closed system results in a more uniform energy distribution among the components in the system."
+          }
+         ]
+        },
+        {
+         "id": "using-mathematics-and-computational-thinking",
+         "title": "Using mathematics and computational thinking",
+         "outcomes": [
+          {
+           "code": "9PE.2.2.1.3",
+           "text": "Create a computational model to calculate the change in the energy of one component in a system when the change in energy of the other component(s) and energy flows in or out of the system are known."
+          }
+         ]
+        },
+        {
+         "id": "developing-and-using-models",
+         "title": "Developing and using models",
+         "outcomes": [
+          {
+           "code": "9PE.3.1.1.1",
+           "text": "Develop and use models to illustrate that energy at the macroscopic scale can be accounted for as a combination of energy associated with the motions of particles (objects) and energy associated with the relative positions of particles (objects)."
+          },
+          {
+           "code": "9PE.3.1.1.2",
+           "text": "Develop and use a model of two objects interacting through electric or magnetic fields to illustrate the forces between the two objects and the changes in energy of the two objects due to the interaction and describe how these forces are present in phenomena."
+          }
+         ]
+        },
+        {
+         "id": "constructing-explanations-and-designing-solution",
+         "title": "Constructing explanations and designing solutions",
+         "outcomes": [
+          {
+           "code": "9PE.3.2.2.2",
+           "text": "Evaluate a solution to a complex energy-related problem based on prioritized criteria and tradeoffs that account for a range of constraints, including cost, safety, reliability, aesthetics, and maintenance, as well as social, cultural, and environmental impacts."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "exploring-phenomena-or-engineering-problems",
+     "title": "Exploring phenomena or engineering problems",
+     "topics": [
+      {
+       "id": "asking-questions-and-defining-problems",
+       "title": "Asking questions and defining problems",
+       "subtopics": [
+        {
+         "id": "students-will-be-able-to-ask-questions-about-asp",
+         "title": "Students will be able to ask questions about aspects of the phenomena they observe, the conclusions they draw from their models or scientific investigations, each other's ideas, and the information they read",
+         "outcomes": [
+          {
+           "code": "9E.1.1.1.1",
+           "text": "Ask questions to clarify how seismic energy traveling through Earth's interior can provide evidence for Earth’s internal structure. (P: 1, CC: 6,CI: ESS2) Emphasis is on how wave propagation depends on the density of the medium through which the wave travels and how seismic data is used to support the idea of a layered earth."
+          },
+          {
+           "code": "9L.1.1.1.1",
+           "text": "Ask questions to clarify relationships about the role of DNA and chromosomes in coding the instructions for characteristic traits passed from parents to offspring. (P: 1, CC: 2, CI: LS3) Examples of relationships may include relationships between mutated DNA sequences or chromosomal deletions and their effect on traits."
+          },
+          {
+           "code": "9C.1.1.1.1",
+           "text": "Ask questions about the impact of greenhouse gases on the Earth’s climate, by analyzing their molecular structure and responses during energy absorption (P: 1, CC: 5, CI: PS1) Emphasis should include natural and human-made sources. Structures should include molecular shape."
+          },
+          {
+           "code": "9P.1.1.1.1",
+           "text": "Evaluate questions about the advantages and disadvantages of using digital transmission and storage of information.* ** (P: 1, CC: 7, CI: PS4, ETS1) Emphasis is on the tradeoffs involved in the transmission and storage of data elements. Examples of advantages may include that digital information is stable because it can be stored reliably in computer memory, transferred easily, and copied and shared rapidly. Examples of disadvantages may include issues of easy deletion, security, and theft."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "planning-and-carrying-out-investigations",
+       "title": "Planning and carrying out investigations",
+       "subtopics": [
+        {
+         "id": "students-will-be-able-to-design-and-conduct-inve",
+         "title": "Students will be able to design and conduct investigations in the classroom, laboratory, and/or field to test students' ideas and questions, and will organize and collect data to provide evidence to support claims the students made about phenomena",
+         "outcomes": [
+          {
+           "code": "9E.1.2.1.1",
+           "text": "Plan and conduct an investigation of the properties of water and its effects on Earth materials and surface processes. (P: 3, CC: 6, CI: ESS2) Emphasis is on physical and chemical investigations with water and a variety of solid materials to provide the evidence for how processes in the water cycle and rock cycle interact. Examples of physical investigations may include transportation and deposition of various sediment types and sizes, erosion of surfaces with varying amounts of soil moisture content and/or ground cover, or frost wedging by the expansion of water as it freezes. Examples of chemical investigations may include chemical weathering and recrystallization (by testing the solubility of different materials) or melt generation (by examining how water lowers the melting temperature of most solids). Examples specific to Minnesota may include chemical weathering of limestone to create karst topography."
+          },
+          {
+           "code": "9E.1.2.1.2",
+           "text": "Plan and conduct an investigation of the properties of soils to model the effects of human activity on soil resources. (P: 3, CC: 2, CI: ESS3, ETS2) Emphasis is on identifying variables to test, developing a workable experimental design, and identifying limitations of the data. Examples of variables may include soil type and composition (particularly those found in Minnesota), erosion rate, water infiltration rates, nutrient profiles, soil conservation practices, or specific crop requirements."
+          }
+         ]
+        },
+        {
+         "id": "students-will-be-able-to-design-and-conduct-inve-2",
+         "title": "Students will be able to design and conduct investigations in the classroom, laboratory, and/or field to test students’ ideas and questions, and will organize and collect data to provide evidence to support claims the students make about phenomena",
+         "outcomes": [
+          {
+           "code": "9L.1.2.1.1",
+           "text": "Plan and conduct an investigation to provide evidence that feedback mechanisms maintain homeostasis. (P: 3, CC: 7, CI: LS1) Examples of investigations may include heart rate response to exercise, stomata response to moisture and temperature, and root development in response to water levels."
+          },
+          {
+           "code": "9C.1.2.1.1",
+           "text": "Plan and conduct an investigation to gather evidence to compare the structure of substances and infer the strength of electrical forces between particles. (P: 3, CC: 1, CI: PS1) Emphasis is on understanding the strengths of forces between particles, not on naming specific intermolecular forces (such as dipole-dipole). Examples of particles may include ions, atoms, molecules, and networked materials (such as graphite). Examples of collected evidence may include the melting point and boiling point, vapor pressure, and surface tension"
+          },
+          {
+           "code": "9C.1.2.1.2",
+           "text": "Plan and conduct an investigation of acid-base reactions to test ideas about the concentrations of the hydronium ion in an aqueous solution (pH). (P:3, CC: 3, CI: PS1) Emphasis is on developing an understanding of pH scales and various ways to measure pH. Also included is understanding the relative strength of acidity based on periodic properties of elements, the electronegativity model of electron distribution, empirical dipole moments, and molecular geometry. Examples of investigations may include household chemicals and ocean acidification analogs."
+          },
+          {
+           "code": "9P.1.2.1.1",
+           "text": "Plan and conduct an investigation to provide evidence that an electric current can produce a magnetic field and that a changing magnetic field can produce an electric current. (P: 3, CC: 2, CI: PS2) Examples of contexts for investigations may include coils, motors, generators, and transformers."
+          },
+          {
+           "code": "9P.1.2.1.2",
+           "text": "Plan and conduct an investigation to provide evidence that the transfer of thermal energy when two components of different temperatures are combined within a closed system results in a more uniform energy distribution among the components in the system. (P: 3, CC: 3, CI: PS3) Emphasis is on analyzing data from student investigations and using mathematical thinking to describe the energy changes both quantitatively and conceptually may include mixing liquids at different initial temperatures or adding objects at different temperatures to water."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "looking-at-data-and-emirical-evidence-to-underst",
+     "title": "Looking at data and emirical evidence to understand phenomena or solve problems",
+     "topics": [
+      {
+       "id": "analysing-and-interpreting-data",
+       "title": "Analysing and interpreting data",
+       "subtopics": [
+        {
+         "id": "students-will-be-able-to-represent-observations-",
+         "title": "Students will be able to represent observations and data in order to recognize patterns in the data, the meaning of those patterns, and possible relationships between variables",
+         "outcomes": [
+          {
+           "code": "9E.2.1.1.2",
+           "text": "Analyze geoscience data to make a claim that one change to the Earth's surface can create feedbacks that cause changes to other Earth systems. (P: 4, CC: 7, CI: ESS2, ETS2) Emphasis is on using data analysis tools and techniques in order to make valid scientific claims. Examples may include climate feedback mechanisms, such as how an increase in greenhouse gases causes a rise in global temperatures that melt glaciers and sea ice, which reduces the amount of sunlight reflected from the Earth's surface (albedo), increasing surface temperatures and further reducing the amount of ice. Examples may also be taken from other system interactions, such as how the loss of ground vegetation causes an increase in water runoff and soil erosion; how dammed rivers increase groundwater recharge, decrease sediment transport, and increase coastal erosion; or how the loss of wetlands causes a decrease in local humidity that further reduces the wetland extent and longevity."
+          },
+          {
+           "code": "9E.2.1.1.3",
+           "text": "Analyze geoscience data and the results from global climate models to make an evidence-based forecast of the current rate of global or regional climate change and associated future impacts to Earth's systems and human infrastructure.* (P: 4, CC: 7, ESS3, ETS1) Examples of evidence (for both data and climate model outputs) may include precipitation and temperature and their associated impacts on sea level, glacial ice volumes, and atmosphere and ocean composition. Engineering examples may include using climate change data (rising sea levels) to evaluate the impact on the ability of sewer system to handle runoff or of existing wells to produce potable water."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "using-mathematics-and-computational-thinking",
+       "title": "Using mathematics and computational thinking",
+       "subtopics": [
+        {
+         "id": "students-will-be-able-to-use-mathematics-to-repr",
+         "title": "Students will be able to use mathematics to represent physical variables and their relationships; compare mathematical expressions to the real world; and engage in computational thinking as they use or develop algorithms to describe the natural or designed worlds",
+         "outcomes": [
+          {
+           "code": "9E.2.2.1.1",
+           "text": "Use mathematical and computational representations to predict the motion of natural and human-made objects that are in orbit in the solar system.** (P: 5, CC: 3, CI: ESS1, ETS2) Emphasis is on Kepler’s laws of planetary motion and Newtonian gravitational laws governing orbital motions, which apply to human-made satellites as well as planets and moons."
+          },
+          {
+           "code": "9E.2.2.1.2",
+           "text": "Develop a computational model, based on observational data, experimental evidence, and chemical theory, to describe the cycling of carbon among Earth’s systems.** (P: 2, CC: 5, CI: ESS2) Emphasis is on quantitative modeling of carbon as it cycles through the ocean, air, rock (particularly limestone), soil, and organisms. Emphasis is also on using empirical evidence and scientific reasoning to inform the algorithmic thinking about the conservation and cycling of matter."
+          },
+          {
+           "code": "9E.2.2.1.3",
+           "text": "Develop or use an algorithmic representation, based on investigations of causes and effects in complex Earth systems, to illustrate the relationships within some part of the Earth system and how human activity might affect those relationships. (P: 5, CC: 4, CI: ESS3, ETS2) Emphasis is on students identifying the interacting components of a system, mathematically modeling how those factors interact and accounting for the effects of human activity on the system. Examples may include local systems in which natural and human-influenced variables impact the amount of runoff."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "developing-possible-explanations-of-phenomena-or",
+     "title": "Developing possible explanations of phenomena or designing solutions to engineering problems",
+     "topics": [
+      {
+       "id": "developing-and-using-models",
+       "title": "Developing and using models",
+       "subtopics": [
+        {
+         "id": "students-will-be-able-to-develop-revise-and-use-",
+         "title": "Students will be able to develop, revise, and use models to represent their understanding of phenomena or systems as they develop questions, predictions and/or explanations and communicate ideas to others",
+         "outcomes": [
+          {
+           "code": "9E.3.1.1.1",
+           "text": "Develop and use a model based on evidence to illustrate the life span of the sun and the role of nuclear fusion in the sun’s core to release energy that eventually reaches Earth in the form of radiation. (P: 2, CC: 3, CI: ESS1) Emphasis is on showing the relationships among the fuel, products and the energy transfer mechanisms that allow energy from nuclear fusion in the sun's core to reach the Earth. Examples of evidence that students might use include the masses and life times of other stars, as well as the ways that the sun's radiation varies due to sudden solar flares, sunspot cycles, and non-cyclic variations over the centuries."
+          },
+          {
+           "code": "9E.3.1.1.2",
+           "text": "Develop and use a model based on evidence to explain how Earth’s internal and surface processes operate at different spatial and temporal scales to form continental and ocean-floor features. (P: 2, CC: 7, CI: ESS2) Emphasis is on how the appearance of land features (such as mountains, and valleys), and seafloor features (such as trenches and ridges) are a result of both constructive mechanisms (such as volcanism, and tectonic motion) and destructive mechanisms (such as weathering, and coastal erosion). Examples specific to Minnesota may include features formed relatively recently during continental glaciation and volcanic features that have long since been eroded away."
+          },
+          {
+           "code": "9E.3.1.1.3",
+           "text": "Develop and use a model to describe how unequal heating and rotation of the Earth cause patterns of atmospheric and oceanic circulation that determine regional climates. (P: 2, CC: 4, CI: ESS2) Emphasis is on how patterns vary by latitude, altitude, and geographic land distribution. Emphasis of atmospheric circulation is on the sunlight-driven latitudinal banding, the Coriolis effect, and resulting prevailing winds; emphasis of ocean circulation is on the transfer of heat by the global ocean currents, which is constrained by the Coriolis effect and the outlines of continents. Examples of models may be diagrams, maps and globes, or digital representations."
+          },
+          {
+           "code": "9E.3.1.1.4",
+           "text": "Use a model to describe how variations in the flow of energy into and out of Earth’s systems result in changes in climate. (P: 2, CC: 2, CI: ESS2). Emphasis is on using a model to describe the mechanism for how energy flow affects changes in climate. Examples of the causes of climate change differ by timescale and may include: 1 - 10 years: large volcanic eruptions, ocean circulation; 10-100s of years: changes in human activity, ocean circulation, solar output; 10 - 100s of thousands of years: changes to Earth's orbit and the orientation of its axis; and 10 - 100s of millions of years: long term changes in atmospheric composition."
+          },
+          {
+           "code": "9L.3.1.1.1",
+           "text": "Develop and use a model to illustrate the levels of organization of interacting systems and how that translates into specific functions in multicellular organisms. (P: 2, CC: 6, CI: LS1) Emphasis is on specific functions at the organ system level such as nutrient uptake, water delivery, and organism movement in response to neural stimuli. Examples of models may include real (e.g. fish, birds, insects, etc.) or imaginary organisms with attention to the various structures and systems that assist the organism in performing necessary life functions."
+          },
+          {
+           "code": "9L.3.1.1.2",
+           "text": "Use a model to illustrate the role of cellular division (mitosis) and differentiation in producing and maintaining complex organisms. (P: 2, CC: 2, CI: LS1) Examples of models may include diagrams and conceptual models."
+          },
+          {
+           "code": "9L.3.1.1.3",
+           "text": "Use a model to illustrate how photosynthesis transforms light energy into stored chemical energy. (P: 2, CC: 4, CI: LS1) Emphasis is on illustrating inputs and outputs of matter and the transfer and transformation of energy in photosynthesis by plants and other photosynthesizing organisms. Examples of models may include diagrams, chemical equations, and conceptual models."
+          },
+          {
+           "code": "9L.3.1.1.4",
+           "text": "Use a model to illustrate that cellular respiration is a chemical process in which energy from food is used to create new compounds. (P: 2, CC: 5, CI: LS1) Emphasis is on the conceptual understanding of the inputs and outputs of the process of cellular respiration."
+          }
+         ]
+        },
+        {
+         "id": "students-will-be-able-to-develop-revise-and-use--2",
+         "title": "Students will be able to develop, revise, and use models to represent the students’ understanding of phenomena or systems as they develop questions, predictions and/or explanations, and communicate ideas to others",
+         "outcomes": [
+          {
+           "code": "9C.3.1.1.1",
+           "text": "Use the periodic table as a model to predict the relative properties of elements based on the patterns of valence electrons. (P: 2, CC: 1, CI: PS1) Emphasis is on properties that could be predicted from patterns may include reactivity of metals, types of bonds formed (ionic versus covalent), and numbers of bonds formed."
+          },
+          {
+           "code": "9C.3.1.1.2",
+           "text": "Develop a model based on evidence to illustrate that the release or absorption of energy from a chemical reaction system depends upon the changes in total bond energy. (P: 2, CC: 5, CI: PS1) Emphasis of the practice is on illustrating the relationships between components of the system. Emphasis of the core idea is on how a chemical reaction is a system that affects the energy change. Examples of models may include molecular level drawings, diagrams, graphs showing the relative energies of reactants and products, and representations showing energy is conserved. Not included is the calculation of the total bond energy change during a chemical reaction from the bond energies of reactants and products."
+          },
+          {
+           "code": "9C.3.1.1.3",
+           "text": "Develop models to illustrate the changes in the composition of the nucleus of the atom and the energy released during the processes of fission, fusion, and radioactive decay. (P: 2, CC: 5, CI: PS1) Emphasis is on simple qualitative models and on the scale of energy released in nuclear processes relative to other kinds of transformations. Not included is quantitative calculations of the energy released."
+          },
+          {
+           "code": "9P.3.1.1.1",
+           "text": "Develop and use models to illustrate that energy at the macroscopic scale can be accounted for as a combination of energy associated with the motions of particles (objects) and energy associated with the relative positions of particles (objects). (P: 2, CC: 5, CI: PS3) Examples of phenomena at the macroscopic scale may include the conversion of kinetic energy to thermal energy, the energy stored due to position of an object above Earth, and the energy stored between two electrically-charged plates. Examples of models may include diagrams, drawings, descriptions, and computer simulations"
+          },
+          {
+           "code": "9P.3.1.1.2",
+           "text": "Develop and use a model of two objects interacting through electric or magnetic fields to illustrate the forces between two objects and the changes in energy of the two objects due to the interaction and describe how these forces are present in phenomena. (P: 2, CC: 2, CI: PS3) Examples of models may include drawings, diagrams, and texts, such as drawings of what happens when two charges of opposite polarity are near each other. Examples of phenomena may include motors, electromagnetic induction, speakers, generators, wireless charging, and induction cooktops."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "constructing-explanations-and-designing-solution",
+       "title": "Constructing explanations and designing solutions",
+       "subtopics": [
+        {
+         "id": "students-will-be-able-to-apply-scientific-princi",
+         "title": "Students will be able to apply scientific principles and empirical evidence (primary or secondary) to explain the causes of phenomena or identify weaknesses in explanations developed by the students or others",
+         "outcomes": [
+          {
+           "code": "9E.3.2.1.1",
+           "text": "Construct an explanation that links astronomical evidence of light spectra, motion of distant galaxies, and composition of matter in the universe to the Big Bang. (P: 6, CC: 5, CI: ESS1, ETS2) Emphasis is on how the redshift of light from galaxies is an indication of cosmic expansion, on how the cosmic microwave background radiation is a remnant of the Big Bang, and on how the observed composition of ordinary matter, primarily found in stars and interstellar gases, matches that predicted by the Big Bang."
+          },
+          {
+           "code": "9E.3.2.1.2",
+           "text": "Apply scientific reasoning and evidence from ancient Earth materials, meteorites, and other planetary surfaces to construct an account of Earth’s formation and early history. (P:6, CC: 7, CI: ESS1) Emphasis of the practice is on linking the evidence to the claims about Earth’s formation. Emphasis of the core idea is on using available evidence within the solar system to reconstruct the early history of Earth. Examples of evidence include the absolute ages of ancient materials, the sizes and compositions of solar system objects, and the impact cratering record of planetary surfaces."
+          },
+          {
+           "code": "9L.3.2.1.1",
+           "text": "Construct an explanation based on evidence for how the structure of DNA determines the structure of the proteins that carry out the essential functions of life. (P: 6, CC: 6, CI: LS1)."
+          },
+          {
+           "code": "9L.3.2.1.2",
+           "text": "Construct and revise an explanation based on evidence for how various elements combine with carbon to form molecules that form the basis for life on Earth. (P: 6, CC: 5, CI: LS1) Emphasis is on using evidence from models and simulations to support explanations. Examples of molecules may include proteins, lipids, carbohydrates and nucleic acids."
+          },
+          {
+           "code": "9L.3.2.1.3",
+           "text": "Construct and revise an explanation based on evidence about the role of photosynthesis and cellular respiration (including anaerobic processes) in the cycling of carbon among the biosphere, atmosphere, hydrosphere, and geosphere. (P: 6, CC: 7, CI: LS2) Emphasis is on the importance of biological processes in the global scale cycling of carbon and on a conceptual understanding of the role of aerobic and anaerobic respiration in different environments."
+          },
+          {
+           "code": "9L.3.2.1.4",
+           "text": "Construct an explanation based on evidence that the process of evolution primarily results from four factors: reproduction within a species, heritable genetic variation of individuals in that species, competition for limited resources, and increased survival and reproduction of the individuals best suited for the environment. (P: 6, CC: 2, CI: LS4) Emphasis is on using evidence to explain the influence each of the four factors has on the number, behavior, morphology, or physiology of organisms, in terms of their ability to compete for limited resources and subsequent survival of individuals and adaptation of their species. Examples of evidence may include mathematical models such as simple distribution graphs and proportional reasoning."
+          },
+          {
+           "code": "9L.3.2.1.5",
+           "text": "Construct an explanation based on evidence for how natural selection leads to the adaptation of populations. (P: 6, CC: 2, CI: LS4) Emphasis is on using data to provide evidence for how specific biotic and abiotic differences in ecosystems contribute to a change in gene frequency over time, leading to adaptation of populations. Examples of selective forces may include long-term climate change, or variations in seasonal temperatures, pH, light cycles, geographic barriers, or in response to the evolution of other organisms."
+          },
+          {
+           "code": "9C.3.2.1.1",
+           "text": "Construct and revise an explanation for the outcome of a simple chemical reaction based on the outermost electron states of atoms, trends in the periodic table, and knowledge of the patterns of chemical properties. (P: 6, CC: 1, CI: PS1) Examples of chemical reactions may include synthesis, decomposition, or combustion."
+          },
+          {
+           "code": "9C.3.2.1.2",
+           "text": "Apply scientific principles and evidence to provide an explanation about the effects of changing the surface area, agitation, temperature, and concentration of the reacting particles on the rate at which the reaction occurs. (P: 6, CC: 1, CI: PS1) Emphasis is on student reasoning that focuses on the number and energy of collisions between molecules and on simple reactions in which there are only two reactants. Examples of evidence may include temperature, concentration, and rate data; and qualitative relationships between rate and temperature."
+          },
+          {
+           "code": "9C.3.2.1.3",
+           "text": "Construct an explanation for the phenomenon of solution creation and identify from patterns how the properties of the resulting solution depend on the interactions between solute and solvent or on concentrations of solutes. (P: 6, CC: 1, CI: PS1) Emphasis is on polarity, solubility, boiling point elevation, freezing point depression, and osmosis. Examples may include salts dissolving to make water hard, road salt, antifreeze, oil spills, reverse osmosis water systems."
+          }
+         ]
+        },
+        {
+         "id": "students-will-be-able-to-use-their-understanding",
+         "title": "Students will be able to use their understanding of scientific principles and the engineering design process to design solutions that meet established criteria and constraints",
+         "outcomes": [
+          {
+           "code": "9E.3.2.2.1",
+           "text": "Evaluate or refine a technological solution to reduce the human impacts on a natural system and base the evaluations or refinements on evidence and analysis of pertinent data.* (P: 6, CC: 7, CI: ESS3, ETS1, ETS2) Emphasis is on prioritizing identified criteria and constraints related to social and environmental considerations. Examples of data for the impacts of human activities may include the quantities and types of pollutants released into air or groundwater, changes to biomass and species diversity, or areal changes in land surface use (for surface mining, urban development, or agriculture). Examples for limiting impacts may range from local efforts (such as reducing, reusing, and recycling resources) to large-scale geoengineering design solutions (such as altering global temperatures by making large changes to the atmosphere or ocean)."
+          },
+          {
+           "code": "9C.3.2.2.1",
+           "text": "Evaluate the design and function of products and processes involving organic compounds to meet desired needs in relationship to the molecular structures and in particular, the functional groups involved.* (P: 6, CC: 6,CI: PS1, ETS1) Examples of desired needs are having flexible but durable materials made up of long-chained molecules (polymers and plastics), and having pharmaceuticals designed to interact with specific receptors."
+          },
+          {
+           "code": "9P.3.2.2.1",
+           "text": "Develop a computer simulation to demonstrate the impact of a proposed solution that minimizes the force on a macroscopic object during a collision.** (P: 6, CC: 2, CI: PS2, ETS1) Emphasis is on applying science and engineering principles and analyzing the energy conversions. Examples of a device may include a helmet, a parachute, an airbag, and packaging for safe shipping."
+          },
+          {
+           "code": "9P.3.2.2.2",
+           "text": "Evaluate a solution to a complex energy-related problem based on prioritized criteria and tradeoffs that account for a range of constraints, including cost, safety, reliability, aesthetics, and maintenance, as well as social, cultural, and environmental impacts.* (P: 6, CC: 2, CI: PS3, ETS1) Examples of energy-related problems may be drawn from alternative energy, manufacturing , and transportation systems."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "communicating-reasons-arguments-and-ideas-to-oth",
+     "title": "Communicating reasons, arguments, and ideas to others",
+     "topics": [
+      {
+       "id": "arguing-from-evidence",
+       "title": "Arguing from evidence",
+       "subtopics": [
+        {
+         "id": "students-will-be-able-to-engage-in-argument-from",
+         "title": "Students will be able to engage in argument from evidence for the explanations the students construct, defend and revise their interpretations when presented with new evidence, critically evaluate the scientific arguments of others, and present counter arguments",
+         "outcomes": [
+          {
+           "code": "9E.4.1.1.1",
+           "text": "Evaluate the evidence of the past and current movements of continental and oceanic crust and the theory of plate tectonics to explain the ages of crustal rocks. (P: 7, CC: 1, CI: ESS1) Emphasis is on evaluating the strengths, weaknesses and reliability of the given evidence along with its ability to support logical and reasonable arguments about the motion and age of crustal plates. Examples of evidence may include the ages of oceanic crust which increase with distance from mid-ocean ridges (a result of seafloor spreading), the ages of North American continental crust decreasing with distance away from a central ancient core (a result of past plate interactions)."
+          },
+          {
+           "code": "9E.4.1.1.2",
+           "text": "Evaluate the evidence and reasoning for the explanatory model that Earth's interior is layered and that thermal convection drives the cycling of matter. (P: 7, CC: 5, CI: ESS2) Emphasis is on how plate tectonics is controlled by mantle convection (due to the outward flow of energy from the decay of radioactive isotopes and the gravitational movement of denser materials toward the interior)."
+          },
+          {
+           "code": "9E.4.1.1.3",
+           "text": "Evaluate competing design solutions for developing, managing, and utilizing energy and mineral resources based on cost-benefit ratios.* (P: 7, CC: 5, CI: ESS3, ETS1) Emphasis is on the conservation, recycling, and reuse of resources (such as minerals, metals or soils) where possible, and on minimizing impacts where it is not. Examples include developing best practices for agricultural soil use, mining (for fracking sand, iron ore, and rare metals), and pumping (for oil and natural gas)."
+          },
+          {
+           "code": "9L.4.1.1.1",
+           "text": "Evaluate evidence for the role of group behavior on an individual’s and species’ chances to survive and reproduce. (P: 7, CC: 2, CI: LS2) Emphasis of the practice is on identifying evidence supporting the outcomes of group behavior, and developing logical and reasonable arguments based on evidence. Emphasis of the core idea is on distinguishing between group and individual behavior. Examples of group behavior may include herding, migratory behaviors, or various symbioses ."
+          },
+          {
+           "code": "9L.4.1.1.2",
+           "text": "Make and defend a claim based on evidence that heritable genetic variations may result from (1) new genetic combinations through meiosis, (2) viable errors occurring during replication, and/or (3) mutations caused by environmental factors. (P: 7, CC: 2, CI: LS3) Emphasis is on using data to support arguments for the ways variation occurs."
+          },
+          {
+           "code": "9L.4.1.1.3",
+           "text": "Evaluate the evidence supporting claims that changes in environmental conditions may result in (1) increases in the number of individuals of some species, (2) the emergence of new species over time, and (3) the extinction of other species (P: 7, CC: 2, CI: LS4) Emphasis is on determining cause and effect relationships for (1) how changes to the environment such as deforestation, fishing, application of fertilizers, drought, flood, and (2) the rate of change of the environment affect distribution or disappearance of traits in species"
+          },
+          {
+           "code": "9P.4.1.1.1",
+           "text": "Evaluate the claims, evidence, and reasoning behind the argument that electromagnetic radiation can be described using either by a wave model or a particle model, and that for some phenomena one model is more useful than the other. (P: 7, CC: 4, CI: PS4) Emphasis is on how the experimental evidence supports the claim and how a theory is generally modified in light of new evidence. Examples of phenomena may include resonance, interference, diffraction, and photoelectric effect."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "obtaining-evaluating-and-communicating-informati",
+       "title": "Obtaining, evaluating, and communicating information",
+       "subtopics": [
+        {
+         "id": "students-will-be-able-to-read-and-interpret-mult",
+         "title": "Students will be able to read and interpret multiple sources to obtain information, evaluate the merit and validity of claims and design solutions, and communicate information, ideas, and evidence in a variety of formats",
+         "outcomes": [
+          {
+           "code": "9E.4.2.1.1",
+           "text": "Compare, integrate and evaluate sources of information in order to determine how specific factors, including human activity, impact the groundwater system of a region. (P: 8, CC: 2, CI: ESS2, ETS2) Emphasis is on the making sense of technical information presented in a variety of formats (graphs, diagrams and words). Example of sources of information may include student experimental data. Examples of factors may include porosity, permeability, sediment or rock type, recharge or discharge factors, and potential energy. Examples of human factors may include usage rates, run-off, agricultural practices, and loss of wetlands."
+          },
+          {
+           "code": "9E.4.2.2.1",
+           "text": "Apply place-based evidence, including those from Minnesota American Indian Tribes and communities and other cultures, to construct an explanation of how a warming climate impacts the hydrosphere, geosphere, biosphere, or atmosphere. (P: 8, CC: 4, CI: ESS3) Examples of cultures may include those within the local context of the learning community and within the context of Minnesota . Emphasis is on understanding and using American Indian knowledge systems to describe regional impacts of climate change to Minnesota. Examples may include the water cycle and how precipitation change over time impacts cultural practices related to nibi (“water” in the Ojibwe language); or the decline/species loss of wiigwaas (“paper birch” in the Ojibwe language and an important tree in Anishinaabe culture) due to climate stressors like drought or changes in snow cover."
+          },
+          {
+           "code": "9L.4.2.1.1",
+           "text": "Communicate scientific information that common ancestry and biological evolution are supported by multiple lines of empirical evidence. (P: 8, CC: 1, CI: LS4) Emphasis is on conceptual understanding of the role each line of evidence has relating to common ancestry and biological evolution. Examples of evidence may include similarities in DNA sequences, the fossil record, artificial selection, anatomical structures, and the order of appearance of structures in embryological development."
+          },
+          {
+           "code": "9C.4.2.1.1",
+           "text": "Communicate scientific and technical information about why the molecular-level structure is important in the functioning of designed materials.* (P: 8, CC: 6, CI: PS1) Emphasis is on the attractive and repulsive forces that determine the functioning of the material. Examples may include why electrically conductive materials are often made of metal."
+          },
+          {
+           "code": "9C.4.2.1.2",
+           "text": "Review text and online sources to develop a series of questions regarding the chemistry, utility, and safety of nuclear fission. (P: 8, CC: 7,CI: PS1) Emphasis is on evaluating the argument and specific claims in the text including the validity of reasoning as well as the relevance and sufficiency of the evidence. Examples may include fission (nuclear power generation, nuclear weapons) and the use of fission byproducts (nuclear medicine, food irradiation)."
+          },
+          {
+           "code": "9P.4.2.1.1",
+           "text": "Evaluate the validity and reliability of claims in published materials of the effects that different frequencies of electromagnetic radiation have when absorbed by matter. (P: 8, CC: 2, CI: PS4) Emphasis is on the idea that photons associated with different frequencies of light have different energies, and the damage to living tissue from electromagnetic radiation depends on the energy of the radiation. Examples may include medical imaging technology and communication devices."
+          },
+          {
+           "code": "9P.4.2.1.2",
+           "text": "Communicate technical information about how some technological devices use the principles of wave behavior and wave interactions with matter to transmit and capture information and energy.* (P: 8, CC: 2, CI: PS4) Examples of devices may include medical imaging technologies, cell phones, GPS, Doppler radar or solar cells that capture light and convert it to electricity."
+          }
+         ]
+        },
+        {
+         "id": "students-will-be-able-to-gather-information-abou",
+         "title": "Students will be able to gather information about and communicate the methods that are used by various cultures, especially those of Minnesota American Indian Tribes and communities, to develop explanations of phenomena and design solutions to problems",
+         "outcomes": [
+          {
+           "code": "9L.4.2.2.1",
+           "text": "Obtain and communicate information about how Minnesota American Indian Tribes and communities and other cultures construct solutions to mitigate threats to biodiversity.* (P: 8, CC: 7, CI: LS2, ETS1) Examples of cultures may include those within the local context of the learning community and within the context of Minnesota . Examples of threats to biodiversity may include climate change, deforestation, urbanization, dam construction or removal, invasive species, human population growth, threatening/endangering species, agricultural practices , extraction, and the use of fossil fuels."
+          }
+         ]
+        },
+        {
+         "id": "students-will-be-able-to-gather-information-abou-2",
+         "title": "Students will be able to gather information about and communicate the methods that are used a by various cultures, especially those of Minnesota American Indian Tribes and communities, to develop explanations of phenomena and design solutions to problems",
+         "outcomes": [
+          {
+           "code": "9C.4.2.2.1",
+           "text": "Communicate and evaluate claims by various stakeholders, including Minnesota American Indian Tribes and communities and other cultures, about the environmental impacts of various chemical processes on natural resources. (P: 8, CC: 2, CI: PS1) Examples of cultures may include those within the local context of the learning community and within the context of Minnesota. Examples of natural resources may include wild rice harvesting, mining of minerals, and access to clean air and water. Examples of chemical processes may include sulfate in water/soil, acid mine drainage, and air and water pollution."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "looking-at-data-and-empirical-evidence-to-unders",
+     "title": "Looking at data and empirical evidence to understand phenomena or solve problems",
+     "topics": [
+      {
+       "id": "analyzing-and-interpreting-data",
+       "title": "Analyzing and interpreting data",
+       "subtopics": [
+        {
+         "id": "students-will-be-able-to-represent-observations-",
+         "title": "Students will be able to represent observations and data in order to recognize patterns in the data, the meaning of those patterns, and possible relationships between variables",
+         "outcomes": [
+          {
+           "code": "9L.2.1.1.1",
+           "text": "Apply concepts of probability to explain and predict the variation and distribution of expressed traits in a population. (P: 4, CC: 3, CI: LS3) Examples of traits in human groups may include lactose intolerance, or high-altitude adaptation."
+          },
+          {
+           "code": "9L.2.1.1.2",
+           "text": "Apply concepts of statistics and probability to support explanations that organisms with an advantageous heritable trait tend to increase in proportion to organisms lacking this trait. (P: 4, CC: 1, CI: LS4) Emphasis is on analyzing shifts in the numerical distribution of traits and using these shifts as evidence to support explanations. Examples of advantageous traits may antibiotic resistance in bacteria, or the coloration and camouflage of animals in response to changing environmental conditions."
+          },
+          {
+           "code": "9C.2.1.1.1",
+           "text": "Analyze patterns in air or water quality data to make claims about the causes and severity of a problem and the necessity to remediate or to recommend a treatment process. (P: 4, CC :2, CI: PS3) Emphasis is on the scale of the problem and appropriate use of concentration units. Examples of pollutant data may include ozone, lead, particulates, nitrates, or microorganisms. Examples of remediation may include physical, chemical or biological processes."
+          },
+          {
+           "code": "9P.2.1.1.1",
+           "text": "Analyze data to support the claim that Newton’s second law of motion describes the mathematical relationship among the net force on a macroscopic object, its mass, and its acceleration. (P: 4, CC: 2, PS: 2) Examples of data (including data from student investigations) may include tables or graphs of position or velocity as a function of time for objects subject to a net unbalanced force, such as a falling object, an object sliding down a ramp, or a moving object being pulled by a constant force."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "using-mathematics-and-computational-thinking",
+       "title": "Using mathematics and computational thinking",
+       "subtopics": [
+        {
+         "id": "students-will-be-able-to-use-mathematics-to-repr",
+         "title": "Students will be able to use mathematics to represent physical variables and their relationships, compare mathematical expressions to the real world, and engage in computational thinking as they use or develop algorithms to describe the natural or designed worlds",
+         "outcomes": [
+          {
+           "code": "9L.2.2.1.1",
+           "text": "Use a computational model to support or revise an evidence-based explanation for factors that have ecological and economic impacts on different sized ecosystems, including factors caused by the practices of various human groups.** (P: 5, CC: 3, CI: LS2) Examples of ecological impacts might include changes in the carrying capacity, species numbers and/or types of organisms present in an environment. Examples of human practices that can have positive or negative impacts, such as stream restoration versus deforestation as an ecological example. Examples of computational models may include online simulations of population dynamics, population ecology, or population growth."
+          },
+          {
+           "code": "9L.2.2.1.2",
+           "text": "Use a computational model to support claims for the cycling of matter and flow of energy among organisms in an ecosystem.** (P: 5, CC: 5, CI: LS2) Examples of claims about matter cycles may include how carbon, nitrogen, or water cycles through the environment, and/or how disruptions to those systems affect matter cycling. Examples of energy flow may include the transfer of the sun’s energy into and among organisms, and/or connections between fossil fuel burning and the carbon cycle. Examples of computational models may include online simulations and animated representations."
+          },
+          {
+           "code": "9C.2.2.1.1",
+           "text": "Develop a data simulation, based on observations and experimental data of how the pressure, volume temperature, and mass of a gas are related to each other, to predict the effect on a system of changing one of those variables.** (P: 5, CC: 2, CI: PS1) Emphasis is on applying the kinetic molecular theory of gases to develop gas laws. Example systems may include balloons, tires, or syringes."
+          },
+          {
+           "code": "9C.2.2.1.2",
+           "text": "Use mathematical representations to support the claim that atoms, and therefore mass, are conserved during a chemical reaction. (P: 5, CC: 5, CI: PS1) Emphasis of the practice is on using mathematical ideas to communicate the proportional relationships between the masses of atoms in the reactants and products. Emphasis of the core idea is on the translation of these relationships to the macroscopic scale using the mole as the conversion from the atomic to the macroscopic scale."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "mathematics-and-computational-thinking",
+       "title": "Mathematics and Computational Thinking",
+       "subtopics": [
+        {
+         "id": "students-will-be-able-to-use-mathematics-to-repr",
+         "title": "Students will be able to use mathematics to represent physical variables and their relationships; compare mathematical expressions to the real world; and engage in computational thinking as they use or develop algorithms to describe the natural or designed worlds",
+         "outcomes": [
+          {
+           "code": "9P.2.2.1.1",
+           "text": "Apply mathematical representations to support the claim that the total momentum of a system of objects is conserved when there is no net force on the system. (P: 5, CC: 4, CI: PS2) Emphasis is on the quantitative conservation of momentum in interactions and the qualitative meaning of this principle. Examples may include investigating changes in momentum before and after collisions in closed systems."
+          },
+          {
+           "code": "9P.2.2.1.2",
+           "text": "Apply mathematical representations of Newton’s Law of Gravitation and Coulomb’s Law to describe and predict the gravitational and electrostatic forces between objects. (P: 5, CC: 1, CI: PS2) Emphasis is on both quantitative and conceptual descriptions of gravitational and electric fields and the forces on objects in the fields."
+          },
+          {
+           "code": "9P.2.2.1.3",
+           "text": "Create a computational model to calculate the change in the energy of one component in a system when the change in energy of the other component(s) and energy flows in or out of the system are known.** (P: 5, CC: 4, CI: PS3) Emphasis is on explaining the meaning of mathematical expressions used in the model for systems of two or three components. Forms of energy may include thermal energy, kinetic energy, and elastic potential energy . Computational models may include the creation or use of a simulation or the analysis of a data set."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "build": {
+  "builtAt": "2026-10-14T16:20:44.817Z",
+  "model": "none",
+  "usd": 0,
+  "expectedCodes": 270,
+  "coverage": 1,
+  "missingCodes": [],
+  "counts": {
+   "grades": 10,
+   "units": 15,
+   "topics": 51,
+   "subtopics": 172,
+   "outcomes": 270
+  },
+  "warnings": []
+ }
+}

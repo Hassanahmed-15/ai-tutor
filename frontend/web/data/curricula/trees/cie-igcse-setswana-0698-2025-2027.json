@@ -1,0 +1,150 @@
+{
+ "id": "cie-igcse-setswana-0698-2025-2027",
+ "region": "INTL",
+ "framework": "Cambridge IGCSE First Language Setswana (0698) syllabus 2025–2027",
+ "board": "Cambridge",
+ "qualification": "IGCSE",
+ "subject": "First Language Setswana",
+ "syllabusCode": "0698",
+ "gradeSystem": "course",
+ "source": {
+  "urls": [
+   "https://www.cambridgeinternational.org/Images/663220-2025-2027-syllabus.pdf",
+   "https://www.cambridgeinternational.org/programmes-and-qualifications/cambridge-igcse-setswana-0698/"
+  ],
+  "publisher": "Cambridge University Press & Assessment (Cambridge International Education)",
+  "licence": "© Cambridge University Press & Assessment; structure + our own wording only",
+  "firstExam": "2025"
+ },
+ "grades": [
+  {
+   "grade": "IGCSE",
+   "units": [
+    {
+     "id": "igcse-literature",
+     "title": "[IGCSE] Literature",
+     "topics": [
+      {
+       "id": "section-a-prose",
+       "title": "Section A: Prose",
+       "subtopics": [
+        {
+         "id": "explore-prose-texts",
+         "title": "Explore Prose Texts",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Show detailed knowledge of the prose text by supporting responses with relevant textual evidence."
+          },
+          {
+           "code": null,
+           "text": "Explore prose characters, relationships, situations and themes."
+          }
+         ]
+        },
+        {
+         "id": "analyse-prose-writing",
+         "title": "Analyse Prose Writing",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain the prose writer’s purposes, techniques and language choices."
+          },
+          {
+           "code": null,
+           "text": "Give a personal response to the prose text that is informed by analysis."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "section-b-drama",
+       "title": "Section B: Drama",
+       "subtopics": [
+        {
+         "id": "explore-drama-texts",
+         "title": "Explore Drama Texts",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Show detailed knowledge of the drama text by supporting responses with relevant textual evidence."
+          },
+          {
+           "code": null,
+           "text": "Explore dramatic characters, relationships, situations and themes."
+          }
+         ]
+        },
+        {
+         "id": "analyse-drama-writing",
+         "title": "Analyse Drama Writing",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain the dramatist’s purposes, techniques and language choices."
+          },
+          {
+           "code": null,
+           "text": "Give a personal response to the drama text that is informed by analysis."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "section-c-poetry",
+       "title": "Section C: Poetry",
+       "subtopics": [
+        {
+         "id": "explore-poems",
+         "title": "Explore Poems",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Show detailed knowledge of poetry by supporting responses with relevant textual evidence."
+          },
+          {
+           "code": null,
+           "text": "Explore poetic characters or voices, relationships, situations and themes."
+          }
+         ]
+        },
+        {
+         "id": "analyse-poetry",
+         "title": "Analyse Poetry",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain the poet’s purposes, techniques and language choices."
+          },
+          {
+           "code": null,
+           "text": "Give a personal response to poetry that is informed by analysis."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "build": {
+  "builtAt": "2026-10-14T05:39:26.413Z",
+  "model": "gpt-5.6-luna",
+  "usd": 0.0047,
+  "expectedCodes": null,
+  "coverage": null,
+  "missingCodes": [],
+  "counts": {
+   "grades": 1,
+   "units": 1,
+   "topics": 3,
+   "subtopics": 6,
+   "outcomes": 12
+  },
+  "warnings": []
+ }
+}

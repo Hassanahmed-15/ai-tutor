@@ -1,0 +1,762 @@
+{
+ "id": "us-ne-health",
+ "region": "US",
+ "framework": "Nebraska state academic standards: Health Education",
+ "board": null,
+ "qualification": "K-12",
+ "subject": "Health Education",
+ "syllabusCode": null,
+ "gradeSystem": "grade",
+ "source": {
+  "urls": [
+   "https://api.commonstandardsproject.com/api/v1/jurisdictions/12FDD9CA15FC49259C2EF4BB13D59D2F",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/EE8E764B479D49B5A7FC261D3D3FEB01"
+  ],
+  "publisher": "Nebraska state education agency (machine-readable via Common Standards Project / ASN)",
+  "licence": "CC BY 4.0 US, Common Curriculum, Inc.",
+  "firstExam": "2021"
+ },
+ "grades": [
+  {
+   "grade": "9",
+   "units": [
+    {
+     "id": "foundations-of-personal-health",
+     "title": "Foundations of Personal Health",
+     "topics": [
+      {
+       "id": "students-will-recognize-the-relationship-between",
+       "title": "Students will recognize the relationship between the physical, mental/emotional and social aspects of a healthy individual",
+       "subtopics": [
+        {
+         "id": "students-will-recognize-the-relationship-between",
+         "title": "Students will recognize the relationship between the physical, mental/emotional and social aspects of a healthy individual",
+         "outcomes": [
+          {
+           "code": "HE.HS.1.1.a",
+           "text": "Analyze the interrelationships between the dimensions of health."
+          },
+          {
+           "code": "HE.HS.1.1.b",
+           "text": "Examine the dimensions of health and the impact on society, family, school, environmental stressors and social determinants on personal health."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "students-will-acknowledge-for-decision-making-wh",
+       "title": "Students will acknowledge for decision-making while analyzing the influence and potential outcomes of the decision",
+       "subtopics": [
+        {
+         "id": "students-will-acknowledge-for-decision-making-wh",
+         "title": "Students will acknowledge for decision-making while analyzing the influence and potential outcomes of the decision",
+         "outcomes": [
+          {
+           "code": "HE.HS.1.2.a",
+           "text": "Apply the decision making process in health-related situations."
+          },
+          {
+           "code": "HE.HS.1.2.b",
+           "text": "Analyze how peers influence health-related behaviors."
+          },
+          {
+           "code": "HE.HS.1.2.c",
+           "text": "Identify personal health-related decisions and examine the internal and external influences."
+          },
+          {
+           "code": "HE.HS.1.2.d",
+           "text": "Justify when individual or collaborative decision making is appropriate."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "students-will-focus-on-personal-development-and-",
+       "title": "Students will focus on personal development and growth",
+       "subtopics": [
+        {
+         "id": "students-will-focus-on-personal-development-and-",
+         "title": "Students will focus on personal development and growth",
+         "outcomes": [
+          {
+           "code": "HE.HS.1.3.a",
+           "text": "Analyze the role of individual responsibility for enhancing personal development and growth."
+          },
+          {
+           "code": "HE.HS.1.3.b",
+           "text": "Analyze how time management can contribute to stress reduction and a healthier life."
+          },
+          {
+           "code": "HE.HS.1.3.c",
+           "text": "Predict short term and longterm benefits and harmful consequences of behaviors based on a health assessment tool."
+          },
+          {
+           "code": "HE.HS.1.3.d",
+           "text": "Develop a plan to attain a personal, health-related goal that addresses strengths, needs, and risks."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "nutrition-and-physical-activity-promotion",
+     "title": "Nutrition and Physical Activity Promotion",
+     "topics": [
+      {
+       "id": "students-will-be-able-to-make-healthy-food-choic",
+       "title": "Students will be able to make healthy food choices based on dietary recommendations",
+       "subtopics": [
+        {
+         "id": "students-will-be-able-to-make-healthy-food-choic",
+         "title": "Students will be able to make healthy food choices based on dietary recommendations",
+         "outcomes": [
+          {
+           "code": "HE.HS.1.4.a",
+           "text": "Evaluate the dietary recommendations to implement healthy eating habits."
+          },
+          {
+           "code": "HE.HS.1.4.b",
+           "text": "Evaluate the six essential nutrients and the impact on individual health."
+          },
+          {
+           "code": "HE.HS.1.4.c",
+           "text": "Compare and contrast food labels and product information."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "students-will-exhibit-the-knowledge-to-achieve-a",
+       "title": "Students will exhibit the knowledge to achieve and maintain a health enhancing level of physical fitness",
+       "subtopics": [
+        {
+         "id": "students-will-exhibit-the-knowledge-to-achieve-a",
+         "title": "Students will exhibit the knowledge to achieve and maintain a health enhancing level of physical fitness",
+         "outcomes": [
+          {
+           "code": "HE.HS.1.5.a",
+           "text": "Analyze the amount and types of physical activity recommended for teenagers overall health and for the maintenance of healthy body weight."
+          },
+          {
+           "code": "HE.HS.1.5.b",
+           "text": "Develop an exercise program with safety and effectiveness for a specific outcome."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "students-will-recognize-the-affects-of-nutrition",
+       "title": "Students will recognize the affects of nutritional and physical activity choices on overall health",
+       "subtopics": [
+        {
+         "id": "students-will-recognize-the-affects-of-nutrition",
+         "title": "Students will recognize the affects of nutritional and physical activity choices on overall health",
+         "outcomes": [
+          {
+           "code": "HE.HS.1.6.a",
+           "text": "Describe the relationship between poor eating habits or lack of physical activity on chronic diseases such as heart disease, obesity, cancer, diabetes, hypertension and osteoporosis."
+          },
+          {
+           "code": "HE.HS.1.6.b",
+           "text": "Explore advertising claims and potential health consequences for dietary supplements, popular fad diets and weight loss products."
+          },
+          {
+           "code": "HE.HS.1.6.c",
+           "text": "Classify the effects of eating disorders and research resources for seeking help (e.g. anorexia, bulimia, obesity)."
+          },
+          {
+           "code": "HE.HS.1.6.d",
+           "text": "Identify how chronic conditions affect food choices, calorie needs and nutrient needs."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "substance-abuse-prevention",
+     "title": "Substance Abuse Prevention",
+     "topics": [
+      {
+       "id": "students-will-understand-the-difference-between-",
+       "title": "Students will understand the difference between harmful and helpful use of substances",
+       "subtopics": [
+        {
+         "id": "students-will-understand-the-difference-between-",
+         "title": "Students will understand the difference between harmful and helpful use of substances",
+         "outcomes": [
+          {
+           "code": "HE.HS.1.7.a",
+           "text": "Evaluate the use and potential risks of prescription medications, over-the-counter (OTC) medications and herbal or dietary supplements on health."
+          },
+          {
+           "code": "HE.HS.1.7.b",
+           "text": "Analyze potential risks associated with inappropriate use of medicines and drug interactions."
+          },
+          {
+           "code": "HE.HS.1.7.c",
+           "text": "Identify how prescription medications, over-the-counter (OTC) medications, and herbal or dietary supplements are more addictive than others."
+          },
+          {
+           "code": "HE.HS.1.7.d",
+           "text": "Distinguish between the different categories of prescription and over-the-counter medications and when you would use them."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "students-will-recognize-positive-and-negative-in",
+       "title": "Students will recognize positive and negative influences and effects of substance use, misuse and abuse",
+       "subtopics": [
+        {
+         "id": "students-will-recognize-positive-and-negative-in",
+         "title": "Students will recognize positive and negative influences and effects of substance use, misuse and abuse",
+         "outcomes": [
+          {
+           "code": "HE.HS.1.8.a",
+           "text": "Practice methods to resist peer pressure with regards to alcohol, tobacco, and other substances, including the misuse of prescription drugs."
+          },
+          {
+           "code": "HE.HS.1.8.b",
+           "text": "Predict how a drug-free lifestyle will support achievement of short- and long- term goals."
+          },
+          {
+           "code": "HE.HS.1.8.c",
+           "text": "Analyze the role of family, community, and cultural norms in deciding to use alcohol, tobacco, and other drugs."
+          },
+          {
+           "code": "HE.HS.1.8.d",
+           "text": "Analyze media and marketing tactics used to promote substance use."
+          },
+          {
+           "code": "HE.HS.1.8.e",
+           "text": "Clarify myths regarding the scope of alcohol, tobacco, and other drug use among adolescents."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "students-will-identify-health-risks-associated-w",
+       "title": "Students will identify health risks associated with substance use, misuse and abuse in relation to one's physical mental/emotional and social health",
+       "subtopics": [
+        {
+         "id": "students-will-identify-health-risks-associated-w",
+         "title": "Students will identify health risks associated with substance use, misuse and abuse in relation to one's physical mental/emotional and social health",
+         "outcomes": [
+          {
+           "code": "HE.HS.1.9.a",
+           "text": "Investigate consequences of alcohol, tobacco, and other drug use (e.g. physical, mental and emotional, social, legal, financial, addiction)."
+          },
+          {
+           "code": "HE.HS.1.9.b",
+           "text": "Identify and recognize the warning signs of addiction."
+          },
+          {
+           "code": "HE.HS.1.9.c",
+           "text": "Summarize the consequences of alcohol, tobacco, and other drug use during pregnancy."
+          },
+          {
+           "code": "HE.HS.1.9.d",
+           "text": "Locate community resources available for treatment of substance use, misuse and abuse."
+          },
+          {
+           "code": "HE.HS.1.9.e",
+           "text": "Analyze the relationship between using alcohol and other drugs as well as other health risks (e.g. unintentional injuries, violence, suicide, sexual activity, and tobacco use)."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "disease-prevention",
+     "title": "Disease Prevention",
+     "topics": [
+      {
+       "id": "students-will-recognize-what-a-disease-is-and-ho",
+       "title": "Students will recognize what a disease is and how it is spread or aquired",
+       "subtopics": [
+        {
+         "id": "students-will-recognize-what-a-disease-is-and-ho",
+         "title": "Students will recognize what a disease is and how it is spread or aquired (1 of 2)",
+         "outcomes": [
+          {
+           "code": "HE.HS.1.10.a",
+           "text": "Compare and contrast the signs, symptoms, and risk factors of communicable diseases."
+          },
+          {
+           "code": "HE.HS.1.10.b",
+           "text": "Analyze how genetics and family diseases can impact your personal health."
+          },
+          {
+           "code": "HE.HS.1.10.c",
+           "text": "Compare and contrast different types of pathogens and explain how they are different."
+          },
+          {
+           "code": "HE.HS.1.10.d",
+           "text": "Assess how the body defends itself against pathogens and disease."
+          }
+         ]
+        },
+        {
+         "id": "students-will-recognize-what-a-disease-is-and-ho-2",
+         "title": "Students will recognize what a disease is and how it is spread or aquired (2 of 2)",
+         "outcomes": [
+          {
+           "code": "HE.HS.1.10.e",
+           "text": "Analyze treatment options for bacterial, viral, fungal and parasitic infections."
+          },
+          {
+           "code": "HE.HS.1.10.f",
+           "text": "Analyze how Sexually Transmitted Infections spread and affect the body."
+          },
+          {
+           "code": "HE.HS.1.10.g",
+           "text": "Examine the causes and progression of noncommunicable diseases and their treatment."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "students-will-identify-ways-to-protect-from-and-",
+       "title": "Students will identify ways to protect from and reduce the risk of diseases and conditions",
+       "subtopics": [
+        {
+         "id": "students-will-identify-ways-to-protect-from-and-",
+         "title": "Students will identify ways to protect from and reduce the risk of diseases and conditions",
+         "outcomes": [
+          {
+           "code": "HE.HS.1.11.a",
+           "text": "Hypothesize how lifestyle choices can impact chronic disease."
+          },
+          {
+           "code": "HE.HS.1.11.b",
+           "text": "Analyze the influences that impact your personal health with regard to disease prevention."
+          },
+          {
+           "code": "HE.HS.1.11.c",
+           "text": "Analyze the different ways that communicable diseases spread to others."
+          },
+          {
+           "code": "HE.HS.1.11.d",
+           "text": "Connect the various stages of infection and how they correlate with immune response."
+          },
+          {
+           "code": "HE.HS.1.11.e",
+           "text": "Evaluate personal habits that promote resistance to infection (e.g. sleep patterns, nutrition, exercise)."
+          },
+          {
+           "code": "HE.HS.1.11.f",
+           "text": "Identify and compile resources for testing and treatment of Sexually Transmitted Infections (STI) and Sexually Transmitted Diseases (STD)."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "injury-prevention-safety",
+     "title": "Injury Prevention & Safety",
+     "topics": [
+      {
+       "id": "students-will-recognize-and-respond-to-an-injury",
+       "title": "Students will recognize and respond to an injury or emergency situation",
+       "subtopics": [
+        {
+         "id": "students-will-recognize-and-respond-to-an-injury",
+         "title": "Students will recognize and respond to an injury or emergency situation",
+         "outcomes": [
+          {
+           "code": "HE.HS.1.12.a",
+           "text": "Analyze the signs and symptoms of various injuries, illnesses, and emergencies to be able to respond accordingly."
+          },
+          {
+           "code": "HE.HS.1.12.b",
+           "text": "Speculate and deduce the appropriate health service required in injury or emergency situations for oneself or others."
+          },
+          {
+           "code": "HE.HS.1.12.c",
+           "text": "Demonstrate the proper emergency care and lifesaving procedures using universal precautions in various injuries and emergencies (e.g. CPR, AED, first aid, and control of bleeding."
+          },
+          {
+           "code": "HE.HS.1.12.d",
+           "text": "Interpret when a natural disaster could occur and how to respond for personal safety."
+          },
+          {
+           "code": "HE.HS.1.12.e",
+           "text": "Locate valid and reliable resources and/or other sources of support for someone who is self harming, being harassed, abused, assaulted, exploited or trafficked."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "students-will-understand-and-learn-specific-beha",
+       "title": "Students will understand and learn specific behaviors that promote injury prevention and personal safety",
+       "subtopics": [
+        {
+         "id": "students-will-understand-and-learn-specific-beha",
+         "title": "Students will understand and learn specific behaviors that promote injury prevention and personal safety (1 of 2)",
+         "outcomes": [
+          {
+           "code": "HE.HS.1.13.a",
+           "text": "Model safety rules and procedures to avoid risky behaviors and injury."
+          },
+          {
+           "code": "HE.HS.1.13.b",
+           "text": "Assess safety strategies in the home, school, and community (e.g. working, carbon/smoke alarms, gun safety, swimming, internet safety)."
+          },
+          {
+           "code": "HE.HS.1.13.c",
+           "text": "Create emergency preparedness plans in natural disaster situations for home, school, and community (e.g. tornadoes, fires, storms, etc.)."
+          },
+          {
+           "code": "HE.HS.1.13.d",
+           "text": "Recognize and describe the potential risks and dangers associated with sharing personal information, online communication, and technology."
+          }
+         ]
+        },
+        {
+         "id": "students-will-understand-and-learn-specific-beha-2",
+         "title": "Students will understand and learn specific behaviors that promote injury prevention and personal safety (2 of 2)",
+         "outcomes": [
+          {
+           "code": "HE.HS.1.13.e",
+           "text": "Practice digital citizenship."
+          },
+          {
+           "code": "HE.HS.1.13.f",
+           "text": "Assess personal behaviors that could lead to risky behaviors."
+          },
+          {
+           "code": "HE.HS.1.13.g",
+           "text": "Persuade others to avoid driving distracted or while under the influence of substances."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "social-emotional-mental-health",
+     "title": "Social, Emotional & Mental Health",
+     "topics": [
+      {
+       "id": "students-will-develop-social-skills-and-understa",
+       "title": "Students will develop social skills and understand how to positively interact with others",
+       "subtopics": [
+        {
+         "id": "students-will-develop-social-skills-and-understa",
+         "title": "Students will develop social skills and understand how to positively interact with others (1 of 2)",
+         "outcomes": [
+          {
+           "code": "HE.HS.1.14.a",
+           "text": "Demonstrate competency in active listening skills."
+          },
+          {
+           "code": "HE.HS.1.14.b",
+           "text": "Compare and contrast the effectiveness of assertive, passive, and aggressive communication styles."
+          },
+          {
+           "code": "HE.HS.1.14.c",
+           "text": "Analyze how social health impacts mental, emotional, and physical health components."
+          },
+          {
+           "code": "HE.HS.1.14.d",
+           "text": "Demonstrate appropriate conflict resolution skills."
+          }
+         ]
+        },
+        {
+         "id": "students-will-develop-social-skills-and-understa-2",
+         "title": "Students will develop social skills and understand how to positively interact with others (2 of 2)",
+         "outcomes": [
+          {
+           "code": "HE.HS.1.14.e",
+           "text": "Evaluate how social media and technology effects one's current and future interactions, reputation, relationships, and socialization."
+          },
+          {
+           "code": "HE.HS.1.14.f",
+           "text": "Demonstrate effective nonverbal communication skills for various situations."
+          },
+          {
+           "code": "HE.HS.1.14.g",
+           "text": "Examine the different types of harassment (e.g. sexual, physical, verbal, emotional, cyber) and potential legal implications."
+          },
+          {
+           "code": "HE.HS.1.14.h",
+           "text": "Compare and contrast face to face interaction and interactions via electronic devices."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "students-will-identify-and-manage-feelings-emoti",
+       "title": "Students will identify and manage feelings, emotions and behaviors in a healthy manner",
+       "subtopics": [
+        {
+         "id": "students-will-identify-and-manage-feelings-emoti",
+         "title": "Students will identify and manage feelings, emotions and behaviors in a healthy manner",
+         "outcomes": [
+          {
+           "code": "HE.HS.1.15.a",
+           "text": "Identify, evaluate, and describe different types of emotions and their causes."
+          },
+          {
+           "code": "HE.HS.1.15.b",
+           "text": "Compare and contrast healthy and unhealthy coping mechanisms."
+          },
+          {
+           "code": "HE.HS.1.15.c",
+           "text": "Determine how to appropriately express feelings and emotions."
+          },
+          {
+           "code": "HE.HS.1.15.d",
+           "text": "Develop a list of parents/guardians/trusted adults at home, school, or community that can be contacted in times of emotional distress."
+          },
+          {
+           "code": "HE.HS.1.15.e",
+           "text": "Analyze how internal and external factors help shape mental, emotional and social health."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "students-will-develop-skills-to-support-one-s-me",
+       "title": "Students will develop skills to support one's mental wellness",
+       "subtopics": [
+        {
+         "id": "students-will-develop-skills-to-support-one-s-me",
+         "title": "Students will develop skills to support one's mental wellness",
+         "outcomes": [
+          {
+           "code": "HE.HS.1.16.a",
+           "text": "Summarize how mental health conditions develop."
+          },
+          {
+           "code": "HE.HS.1.16.b",
+           "text": "Recognize and evaluate the warning signs of depression, suicide, and other self-destructive behaviors."
+          },
+          {
+           "code": "HE.HS.1.16.c",
+           "text": "Locate valid and reliable school and community resources to encourage positive mental health practices."
+          },
+          {
+           "code": "HE.HS.1.16.d",
+           "text": "Recognize and analyze protective factors of common mental health conditions."
+          },
+          {
+           "code": "HE.HS.1.16.e",
+           "text": "Analyze and explain how social media can lead to the development of mental health conditions."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "human-growth-development",
+     "title": "Human Growth & Development",
+     "topics": [
+      {
+       "id": "students-will-learn-characteristics-relating-to-",
+       "title": "Students will learn characteristics relating to healthy relationships and how to respond to unhealthy relationships",
+       "subtopics": [
+        {
+         "id": "students-will-learn-characteristics-relating-to-",
+         "title": "Students will learn characteristics relating to healthy relationships and how to respond to unhealthy relationships (1 of 2)",
+         "outcomes": [
+          {
+           "code": "HE.HS.1.16.a",
+           "text": "Formulate ways to establish and maintain healthy relationships."
+          },
+          {
+           "code": "HE.HS.1.16.b",
+           "text": "Access valid and reliable information & resources that provide help for survivors of sexual abuse, incest, rape, sexual harassment, sexual assault and dating violence."
+          },
+          {
+           "code": "HE.HS.1.16.c",
+           "text": "Determine when professional health services may be beneficial for an unhealthy relationship."
+          },
+          {
+           "code": "HE.HS.1.16.d",
+           "text": "Explain why a person who has been raped or sexually abused is not at fault."
+          }
+         ]
+        },
+        {
+         "id": "students-will-learn-characteristics-relating-to--2",
+         "title": "Students will learn characteristics relating to healthy relationships and how to respond to unhealthy relationships (2 of 2)",
+         "outcomes": [
+          {
+           "code": "HE.HS.1.16.e",
+           "text": "Demonstrate refusal skills, personal boundaries, and affirmative consent."
+          },
+          {
+           "code": "HE.HS.1.16.f",
+           "text": "Describe how pornography and sexting can impact relationships."
+          },
+          {
+           "code": "HE.HS.1.16.g",
+           "text": "Describe state and federal laws regarding age of consent and disclosure of STDs, including HIV."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "students-will-recognize-and-manage-the-changes-d",
+       "title": "Students will recognize and manage the changes during development and maturation",
+       "subtopics": [
+        {
+         "id": "students-will-recognize-and-manage-the-changes-d",
+         "title": "Students will recognize and manage the changes during development and maturation",
+         "outcomes": [
+          {
+           "code": "HE.HS.1.17.a",
+           "text": "Examine the stages of pregnancy and the contribution of prenatal care to a healthy pregnancy."
+          },
+          {
+           "code": "HE.HS.1.17.b",
+           "text": "Examine developmental progression and regression of different stages in the life cycle."
+          },
+          {
+           "code": "HE.HS.1.17.c",
+           "text": "Identify preventative care examinations available and where to access them (e.g. mammogram, pap smear, testicular exam, breast exam, prostate exam)."
+          },
+          {
+           "code": "HE.HS.1.17.d",
+           "text": "Analyze influences around sleep habits."
+          },
+          {
+           "code": "HE.HS.1.17.e",
+           "text": "Describe fertilization, fetal development, and the birth process."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "students-will-understand-the-structure-and-funct",
+       "title": "Students will understand the structure and functions of body systems",
+       "subtopics": [
+        {
+         "id": "students-will-understand-the-structure-and-funct",
+         "title": "Students will understand the structure and functions of body systems",
+         "outcomes": [
+          {
+           "code": "HE.HS.1.18.a",
+           "text": "Summarize the structures and functions of body systems."
+          },
+          {
+           "code": "HE.HS.1.18.b",
+           "text": "Describe how the different body systems are interrelated and work in unison for the body to function properly."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "consumer-environmental-safety",
+     "title": "Consumer & Environmental Safety",
+     "topics": [
+      {
+       "id": "students-will-identify-and-access-valid-and-reli",
+       "title": "Students will identify and access valid and reliable consumer products, services and resources for a healthy lifestyle",
+       "subtopics": [
+        {
+         "id": "students-will-identify-and-access-valid-and-reli",
+         "title": "Students will identify and access valid and reliable consumer products, services and resources for a healthy lifestyle",
+         "outcomes": [
+          {
+           "code": "HE.HS.1.19.a",
+           "text": "Apply criteria to evaluate the validity and reliability of health information, products, and services from a variety of sources (e.g. written, verbal, visual, electronic)."
+          },
+          {
+           "code": "HE.HS.1.19.b",
+           "text": "Identify and evaluate valid and reliable health resources from home, school, and community that protect and inform consumers."
+          },
+          {
+           "code": "HE.HS.1.19.c",
+           "text": "Explain the procedures for making an appointment, health screenings, checkups, and other early detection measures."
+          },
+          {
+           "code": "HE.HS.1.19.d",
+           "text": "Describe the terms and phrases related to health insurance. (e.g. deductibles, premium, copayment, benefits)."
+          },
+          {
+           "code": "HE.HS.1.19.e",
+           "text": "Explain the consumer components of the Health Information Portability and Accountability Act (HIPAA)."
+          },
+          {
+           "code": "HE.HS.1.19.f",
+           "text": "Evaluate the importance of regular medical and dental checkups, and examinations."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "students-will-recognize-how-the-environment-affe",
+       "title": "Students will recognize how the environment affects health",
+       "subtopics": [
+        {
+         "id": "students-will-recognize-how-the-environment-affe",
+         "title": "Students will recognize how the environment affects health",
+         "outcomes": [
+          {
+           "code": "HE.HS.1.20.a",
+           "text": "Evaluate environmental influences that encourage or discourage a person to practice a healthy lifestyle. (e.g. family, economic status, geographical influences, skills, social media, employment)."
+          },
+          {
+           "code": "HE.HS.1.20.b",
+           "text": "Formulate an accurate and effective environmental message to improve personal health."
+          },
+          {
+           "code": "HE.HS.1.20.c",
+           "text": "Develop a plan to attain a personal health related goal that addresses environmental strengths, needs and risks."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "build": {
+  "builtAt": "2026-10-14T16:20:45.724Z",
+  "model": "none",
+  "usd": 0,
+  "expectedCodes": 94,
+  "coverage": 1,
+  "missingCodes": [],
+  "counts": {
+   "grades": 1,
+   "units": 8,
+   "topics": 21,
+   "subtopics": 25,
+   "outcomes": 99
+  },
+  "warnings": []
+ }
+}

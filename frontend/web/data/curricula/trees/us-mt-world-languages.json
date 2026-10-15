@@ -1,0 +1,240 @@
+{
+ "id": "us-mt-world-languages",
+ "region": "US",
+ "framework": "Montana state academic standards: World Languages",
+ "board": null,
+ "qualification": "K-12",
+ "subject": "World Languages",
+ "syllabusCode": null,
+ "gradeSystem": "grade",
+ "source": {
+  "urls": [
+   "https://api.commonstandardsproject.com/api/v1/jurisdictions/7FAA3E0A782B498DB5E5EA255681706C",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/5C2321B9B2BF4C9F962CB916104724BB",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/BF08D440385F41D0A9773C9D8598AD82"
+  ],
+  "publisher": "Montana state education agency (machine-readable via Common Standards Project / ASN)",
+  "licence": "CC BY 4.0 US, Common Curriculum, Inc.",
+  "firstExam": "2026"
+ },
+ "grades": [
+  {
+   "grade": "10-12",
+   "units": [
+    {
+     "id": "spanish-1",
+     "title": "Spanish 1",
+     "topics": [
+      {
+       "id": "spanish-1",
+       "title": "Spanish 1",
+       "subtopics": [
+        {
+         "id": "spanish-1-1-of-2",
+         "title": "Spanish 1 (1 of 2)",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Communication Content Standard 1— Students engage in conversation, provide and obtain information, express feelings and emo- tions, and exchange opinions."
+          },
+          {
+           "code": null,
+           "text": "Communication Content Standard 2— Students understand and interpret spoken and/or written language on a variety of topics."
+          },
+          {
+           "code": null,
+           "text": "Communication Content Standard 3— Students convey information, concepts, and ideas to listeners and/or readers for a variety of purposes."
+          },
+          {
+           "code": null,
+           "text": "Cultures Content Standard 4— Students demonstrate an understanding of the relationship between the perspectives, practices, and products/contributions of cultures studied, and use this knowledge to interact effectively in cultural contexts."
+          },
+          {
+           "code": null,
+           "text": "Connections Content Standard 5— Students reinforce and increase his/her knowledge of other disciplines through world lan- guages."
+          }
+         ]
+        },
+        {
+         "id": "spanish-1-2-of-2",
+         "title": "Spanish 1 (2 of 2)",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Connections Content Standard 6—Students acquire information and perspectives through authentic materials in world languages and within cultures."
+          },
+          {
+           "code": null,
+           "text": "Comparisons Content Standard 7— Students recognize that different languages use different patterns and can apply this knowledge to his/her own language."
+          },
+          {
+           "code": null,
+           "text": "Comparisons Content Standard 8—Students demonstrate understanding of the concept of culture through comparisons of the culture studied and his/her own."
+          },
+          {
+           "code": null,
+           "text": "Content Standard 9— Students apply language skills and cultural knowledge in daily life."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "PK-12",
+   "units": [
+    {
+     "id": "communication",
+     "title": "Communication",
+     "topics": [
+      {
+       "id": "communicate-effectively-in-more-than-one-languag",
+       "title": "Communicate effectively in more than one language in order to…",
+       "subtopics": [
+        {
+         "id": "communicate-effectively-in-more-than-one-languag",
+         "title": "Communicate effectively in more than one language in order to…",
+         "outcomes": [
+          {
+           "code": "MT.WL.1.a",
+           "text": "Interpersonal communication: Learners interact and negotiate meaning in spoken, signed, or written conversations to share information, reactions, feelings, and opinions"
+          },
+          {
+           "code": "MT.WL.1.b",
+           "text": "When learners hear, read, or view a variety of topics in the target language, they can understand a variety of topics; interpret a variety of topics; and analyze a variety of topics."
+          },
+          {
+           "code": "MT.WL.1.c",
+           "text": "Presentational communication: Learners present information, concepts, and ideas pertaining to a variety of topics using appropriate media and adapting to various audiences of listeners, readers, or viewers in order to inform, explain, persuade, and narrate."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "cultures",
+     "title": "Cultures",
+     "topics": [
+      {
+       "id": "interact-with-cultural-competence-and-understand",
+       "title": "Interact with cultural competence and understanding",
+       "subtopics": [
+        {
+         "id": "interact-with-cultural-competence-and-understand",
+         "title": "Interact with cultural competence and understanding",
+         "outcomes": [
+          {
+           "code": "MT.WL.2.a",
+           "text": "Relating cultural practices to perspectives: Learners use the language to investigate, explain, and reflect on the relationship between the practices and perspectives of the cultures studied, and, where appropriate, the cultures of Montana Indigenous Tribes."
+          },
+          {
+           "code": "MT.WL.2.b",
+           "text": "Relating cultural products to perspectives: Learners use the language to investigate, explain, and reflect on the relationship between the products and perspectives of the cultures studied, and, where appropriate, the cultures of Montana Indigenous Tribes."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "connections",
+     "title": "Connections",
+     "topics": [
+      {
+       "id": "connect-with-other-disciplines-and-acquire-infor",
+       "title": "Connect with other disciplines and acquire information and diverse…",
+       "subtopics": [
+        {
+         "id": "connect-with-other-disciplines-and-acquire-infor",
+         "title": "Connect with other disciplines and acquire information and diverse…",
+         "outcomes": [
+          {
+           "code": "MT.WL.3.a",
+           "text": "Making connections: Learners build, reinforce, and expand their knowledge of other disciplines while using the language to develop critical thinking and solve problems creatively."
+          },
+          {
+           "code": "MT.WL.3.b",
+           "text": "Acquiring information and diverse perspectives: Learners access and evaluate information and diverse perspectives that are available through studying the language and its cultures."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "comparisons",
+     "title": "Comparisons",
+     "topics": [
+      {
+       "id": "develop-insight-into-the-nature-of-language-and-",
+       "title": "Develop insight into the nature of language and culture to interact…",
+       "subtopics": [
+        {
+         "id": "develop-insight-into-the-nature-of-language-and-",
+         "title": "Develop insight into the nature of language and culture to interact…",
+         "outcomes": [
+          {
+           "code": "MT.WL.4.a",
+           "text": "Language comparisons: Learners use the language to investigate, explain, and reflect on the nature of language through comparisons of the language studied, their own language, and, when appropriate, Montana Indigenous Languages."
+          },
+          {
+           "code": "MT.WL.4.b",
+           "text": "Cultural comparisons: Learners use the language to investigate, explain, and reflect on the concept of culture through comparisons between the cultures, their own way of life, and Montana Indigenous culture's history, diversity, and sovereignty"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "communities",
+     "title": "Communities",
+     "topics": [
+      {
+       "id": "communicate-and-interact-with-cultural-competenc",
+       "title": "Communicate and interact with cultural competence in order to…",
+       "subtopics": [
+        {
+         "id": "communicate-and-interact-with-cultural-competenc",
+         "title": "Communicate and interact with cultural competence in order to…",
+         "outcomes": [
+          {
+           "code": "MT.WL.5.a",
+           "text": "School, local, and global communities: Learners use the language, both within and beyond the classroom, to interact and collaborate with their local, state, and global communities, including Montana Indigenous Nations."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "build": {
+  "builtAt": "2026-10-14T08:04:21.408Z",
+  "model": "none",
+  "usd": 0,
+  "expectedCodes": 10,
+  "coverage": 1,
+  "missingCodes": [],
+  "counts": {
+   "grades": 2,
+   "units": 6,
+   "topics": 6,
+   "subtopics": 7,
+   "outcomes": 19
+  },
+  "warnings": [
+   "unit \"Communities\" (grade PK-12) has a single outcome"
+  ]
+ }
+}

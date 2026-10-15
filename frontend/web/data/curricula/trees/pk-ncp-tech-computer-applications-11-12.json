@@ -1,0 +1,556 @@
+{
+ "id": "pk-ncp-tech-computer-applications-11-12",
+ "region": "PK",
+ "framework": "National Curriculum of Pakistan 2022-23",
+ "board": null,
+ "qualification": "Technical stream",
+ "subject": "Computer Applications",
+ "syllabusCode": null,
+ "gradeSystem": "grade",
+ "source": {
+  "urls": [
+   "https://ncc.gov.pk/SiteImage/Misc/files/69-%20Computer%20Applications.pdf"
+  ],
+  "publisher": "National Curriculum Council, Ministry of Federal Education and Professional Training",
+  "licence": "Government publication; structure + our own wording only",
+  "firstExam": null
+ },
+ "grades": [
+  {
+   "grade": "11",
+   "units": [
+    {
+     "id": "domain-a-introduction-to-computers-applications",
+     "title": "Domain A: Introduction to Computers Applications",
+     "topics": [
+      {
+       "id": "introduction-to-computers-applications",
+       "title": "Introduction to Computers Applications",
+       "subtopics": [
+        {
+         "id": "parts-of-a-computer",
+         "title": "Parts of a computer",
+         "outcomes": [
+          {
+           "code": "CA-11-A-01",
+           "text": "Explain the basic components of a computer system: hardware and software."
+          }
+         ]
+        },
+        {
+         "id": "operating-systems",
+         "title": "Operating systems",
+         "outcomes": [
+          {
+           "code": "CA-11-A-02",
+           "text": "Discuss operating systems such as Windows, Linux, UNIX, Android and macOS."
+          },
+          {
+           "code": "CA-11-A-05",
+           "text": "Explain operating system basics: user interface, security and file management in Windows 10/11."
+          }
+         ]
+        },
+        {
+         "id": "hardware-and-software",
+         "title": "Hardware and software",
+         "outcomes": [
+          {
+           "code": "CA-11-A-03",
+           "text": "Tell hardware from software by category, features and function, such as system versus application software."
+          },
+          {
+           "code": "CA-11-A-04",
+           "text": "Explain how hardware and software interact in installation, maintenance, performance and networking."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "domain-b-word-processing",
+     "title": "Domain B: Word Processing",
+     "topics": [
+      {
+       "id": "word-processing",
+       "title": "Word Processing",
+       "subtopics": [
+        {
+         "id": "word-processing-basics",
+         "title": "Word processing basics",
+         "outcomes": [
+          {
+           "code": "CA-11-B-01",
+           "text": "Introduce word processing and extras such as text formatting."
+          },
+          {
+           "code": "CA-11-B-02",
+           "text": "Compare different word processor programs."
+          }
+         ]
+        },
+        {
+         "id": "document-structure",
+         "title": "Document structure",
+         "outcomes": [
+          {
+           "code": "CA-11-B-03",
+           "text": "Use tables, images, headers, footers, contents tables, sections, columns, watermarks, page numbers and captions to structure a document."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "domain-c-spreadsheets",
+     "title": "Domain C: Spreadsheets",
+     "topics": [
+      {
+       "id": "spreadsheets",
+       "title": "Spreadsheets",
+       "subtopics": [
+        {
+         "id": "spreadsheet-basics",
+         "title": "Spreadsheet basics",
+         "outcomes": [
+          {
+           "code": "CA-11-C-01",
+           "text": "Explain what spreadsheets are and create and format them: data entry, cell formats, sorting, filtering, simple charts, printing and freeze panes."
+          }
+         ]
+        },
+        {
+         "id": "formulas-and-functions",
+         "title": "Formulas and functions",
+         "outcomes": [
+          {
+           "code": "CA-11-C-02",
+           "text": "Use formulas and functions such as SUM, AVERAGE, IF, lookups, PivotTables and nested formulas to analyse data."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "domain-d-presentations",
+     "title": "Domain D: Presentations",
+     "topics": [
+      {
+       "id": "presentations",
+       "title": "Presentations",
+       "subtopics": [
+        {
+         "id": "presentation-basics",
+         "title": "Presentation basics",
+         "outcomes": [
+          {
+           "code": "CA-11-D-01",
+           "text": "Make slides with multimedia and animation, and practise delivering them."
+          }
+         ]
+        },
+        {
+         "id": "effective-slides",
+         "title": "Effective slides",
+         "outcomes": [
+          {
+           "code": "CA-11-D-02",
+           "text": "Design effective slides: layouts, themes, images, fonts, contrast, SmartArt, audio and video."
+          }
+         ]
+        },
+        {
+         "id": "animation-in-presentations",
+         "title": "Animation in presentations",
+         "outcomes": [
+          {
+           "code": "CA-11-D-03",
+           "text": "Use animations purposefully: entrance, exit, emphasis, motion paths and timing."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "domain-e-building-websites",
+     "title": "Domain E: Building Websites",
+     "topics": [
+      {
+       "id": "building-websites",
+       "title": "Building Websites",
+       "subtopics": [
+        {
+         "id": "domains-and-hosting",
+         "title": "Domains and hosting",
+         "outcomes": [
+          {
+           "code": "CA-11-E-01",
+           "text": "Explain domain registration and hosting and basic website features."
+          }
+         ]
+        },
+        {
+         "id": "wordpress-features",
+         "title": "WordPress features",
+         "outcomes": [
+          {
+           "code": "CA-11-E-02",
+           "text": "Explain WordPress features: themes, plugins, CMS, blogging, widgets, SEO and WooCommerce."
+          }
+         ]
+        },
+        {
+         "id": "building-a-wordpress-site",
+         "title": "Building a WordPress site",
+         "outcomes": [
+          {
+           "code": "CA-11-E-03",
+           "text": "Build a basic website with WordPress, from setup and theme to pages, menus, plugins and blog."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "domain-f-computer-security-and-ethics",
+     "title": "Domain F: Computer Security and Ethics",
+     "topics": [
+      {
+       "id": "computer-security-and-ethics",
+       "title": "Computer Security and Ethics",
+       "subtopics": [
+        {
+         "id": "common-security-threats",
+         "title": "Common security threats",
+         "outcomes": [
+          {
+           "code": "CA-11-F-01",
+           "text": "Identify common threats such as malware, phishing, ransomware, social engineering and password attacks."
+          }
+         ]
+        },
+        {
+         "id": "basic-protection",
+         "title": "Basic protection",
+         "outcomes": [
+          {
+           "code": "CA-11-F-02",
+           "text": "Carry out basic protection: passwords, two-factor login, updates, antivirus, firewalls and safe browsing."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "domain-g-emerging-trends-and-technologies",
+     "title": "Domain G: Emerging Trends and Technologies",
+     "topics": [
+      {
+       "id": "emerging-trends-and-technologies",
+       "title": "Emerging Trends and Technologies",
+       "subtopics": [
+        {
+         "id": "emerging-technologies",
+         "title": "Emerging technologies",
+         "outcomes": [
+          {
+           "code": "CA-11-G-01",
+           "text": "Define and explain emerging technologies in computing."
+          }
+         ]
+        },
+        {
+         "id": "technology-in-industries",
+         "title": "Technology in industries",
+         "outcomes": [
+          {
+           "code": "CA-11-G-02",
+           "text": "Explore how emerging technologies are used in healthcare, finance, education and other industries."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "12",
+   "units": [
+    {
+     "id": "domain-a-introduction-to-computers-applications",
+     "title": "Domain A: Introduction to Computers Applications",
+     "topics": [
+      {
+       "id": "introduction-to-computers-applications",
+       "title": "Introduction to Computers Applications",
+       "subtopics": [
+        {
+         "id": "computers-across-industries",
+         "title": "Computers across industries",
+         "outcomes": [
+          {
+           "code": "CA-12-A-01",
+           "text": "Analyse how computers are used in industries such as healthcare, finance, education and agriculture."
+          }
+         ]
+        },
+        {
+         "id": "evolution-of-software",
+         "title": "Evolution of software",
+         "outcomes": [
+          {
+           "code": "CA-12-A-02",
+           "text": "Trace how software applications evolved, from early programs to cloud, AI and IoT, and judge their impact on society."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "domain-b-word-processing",
+     "title": "Domain B: Word Processing",
+     "topics": [
+      {
+       "id": "word-processing",
+       "title": "Word Processing",
+       "subtopics": [
+        {
+         "id": "professional-documents",
+         "title": "Professional documents",
+         "outcomes": [
+          {
+           "code": "CA-12-B-01",
+           "text": "Make professional documents with styles, protection, cross-references, track changes, mail merge, sharing and Google Docs."
+          }
+         ]
+        },
+        {
+         "id": "proofreading",
+         "title": "Proofreading",
+         "outcomes": [
+          {
+           "code": "CA-12-B-02",
+           "text": "Use proofreading and editing tools to improve document quality."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "domain-c-spreadsheets",
+     "title": "Domain C: Spreadsheets",
+     "topics": [
+      {
+       "id": "spreadsheets",
+       "title": "Spreadsheets",
+       "subtopics": [
+        {
+         "id": "advanced-formulas",
+         "title": "Advanced formulas",
+         "outcomes": [
+          {
+           "code": "CA-12-C-01",
+           "text": "Apply advanced mathematical, logical, text, lookup, date and what-if tools for complex analysis."
+          }
+         ]
+        },
+        {
+         "id": "charts",
+         "title": "Charts",
+         "outcomes": [
+          {
+           "code": "CA-12-C-02",
+           "text": "Create clear charts by choosing the right type, styling them, labelling, adding trendlines and sharing."
+          }
+         ]
+        },
+        {
+         "id": "data-visualization",
+         "title": "Data visualization",
+         "outcomes": [
+          {
+           "code": "CA-12-C-03",
+           "text": "Choose and apply data visualization techniques, including dynamic and interactive charts."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "domain-d-presentations",
+     "title": "Domain D: Presentations",
+     "topics": [
+      {
+       "id": "presentations",
+       "title": "Presentations",
+       "subtopics": [
+        {
+         "id": "advanced-presentation-features",
+         "title": "Advanced presentation features",
+         "outcomes": [
+          {
+           "code": "CA-12-D-01",
+           "text": "Use transitions, animation, embedded media, action buttons, custom shows, presenter view and export formats."
+          }
+         ]
+        },
+        {
+         "id": "multimedia-in-presentations",
+         "title": "Multimedia in presentations",
+         "outcomes": [
+          {
+           "code": "CA-12-D-02",
+           "text": "Blend multimedia and animation smoothly in advanced presentations."
+          }
+         ]
+        },
+        {
+         "id": "professional-delivery",
+         "title": "Professional delivery",
+         "outcomes": [
+          {
+           "code": "CA-12-D-03",
+           "text": "Deliver professionally: plan, know the audience, structure, handle nerves, questions and pacing."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "domain-e-building-websites",
+     "title": "Domain E: Building Websites",
+     "topics": [
+      {
+       "id": "building-websites",
+       "title": "Building Websites",
+       "subtopics": [
+        {
+         "id": "mobile-friendly-websites",
+         "title": "Mobile-friendly websites",
+         "outcomes": [
+          {
+           "code": "CA-12-E-01",
+           "text": "Optimize sites for mobile with responsive design, media queries, light images and touch-friendly elements."
+          }
+         ]
+        },
+        {
+         "id": "website-backup-and-restore",
+         "title": "Website backup and restore",
+         "outcomes": [
+          {
+           "code": "CA-12-E-02",
+           "text": "Back up and restore websites: manual and automatic backups, schedules, verification and full restore."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "domain-f-computer-security-and-ethics",
+     "title": "Domain F: Computer Security and Ethics",
+     "topics": [
+      {
+       "id": "computer-security-and-ethics",
+       "title": "Computer Security and Ethics",
+       "subtopics": [
+        {
+         "id": "advanced-threats",
+         "title": "Advanced threats",
+         "outcomes": [
+          {
+           "code": "CA-12-F-01",
+           "text": "Analyse and respond to advanced threats such as APTs, insider threats, forensics and anomaly detection."
+          }
+         ]
+        },
+        {
+         "id": "computing-ethics",
+         "title": "Computing ethics",
+         "outcomes": [
+          {
+           "code": "CA-12-F-02",
+           "text": "Discuss ethics in computing: privacy, consent, intellectual property, AI ethics and the digital divide."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "domain-g-emerging-trends-and-technologies",
+     "title": "Domain G: Emerging Trends and Technologies",
+     "topics": [
+      {
+       "id": "emerging-trends-and-technologies",
+       "title": "Emerging Trends and Technologies",
+       "subtopics": [
+        {
+         "id": "impact-of-emerging-technologies",
+         "title": "Impact of emerging technologies",
+         "outcomes": [
+          {
+           "code": "CA-12-G-01",
+           "text": "Analyse the impact of AI, IoT, blockchain, AR/VR, quantum, 5G and edge computing on computing practice."
+          }
+         ]
+        },
+        {
+         "id": "practical-applications",
+         "title": "Practical applications",
+         "outcomes": [
+          {
+           "code": "CA-12-G-02",
+           "text": "Apply and evaluate emerging technologies in practical cases such as smart homes, telemedicine and autonomous vehicles."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "build": {
+  "builtAt": "2026-10-14T08:34:55.023Z",
+  "model": "claude-agent",
+  "usd": 0,
+  "expectedCodes": 36,
+  "coverage": 1,
+  "missingCodes": [],
+  "counts": {
+   "grades": 2,
+   "units": 14,
+   "topics": 14,
+   "subtopics": 33,
+   "outcomes": 36
+  },
+  "warnings": []
+ }
+}

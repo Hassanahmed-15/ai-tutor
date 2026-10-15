@@ -1,0 +1,112 @@
+{
+ "id": "cie-alevel-tamil-language-as-level-only-8689-2026",
+ "region": "INTL",
+ "framework": "Cambridge International AS Level Tamil - Language (8689) syllabus 2026",
+ "board": "Cambridge",
+ "qualification": "AS Level",
+ "subject": "Tamil - Language",
+ "syllabusCode": "8689",
+ "gradeSystem": "course",
+ "source": {
+  "urls": [
+   "https://www.cambridgeinternational.org/Images/697346-2026-syllabus.pdf",
+   "https://www.cambridgeinternational.org/programmes-and-qualifications/cambridge-international-as-and-a-level-tamil-language-as-level-only-8689/"
+  ],
+  "publisher": "Cambridge University Press & Assessment (Cambridge International Education)",
+  "licence": "© Cambridge University Press & Assessment; structure + our own wording only",
+  "firstExam": "2026"
+ },
+ "grades": [
+  {
+   "grade": "AS",
+   "units": [
+    {
+     "id": "4-2-component-3-essay",
+     "title": "4.2 Component 3: Essay",
+     "topics": [
+      {
+       "id": "1-generation-gap",
+       "title": "1. Generation gap",
+       "subtopics": [
+        {
+         "id": "human-relationships-family-generation-gap-young-",
+         "title": "Human relationships – family – generation gap – young people",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Understand generational differences, family conflicts, relationships between young and older people, and young people’s attitudes towards family life."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "2-the-media",
+       "title": "2. The media",
+       "subtopics": [
+        {
+         "id": "patterns-of-daily-life-urban-and-rural-life-the-",
+         "title": "Patterns of daily life – urban and rural life – the media – food and drink – law and order – philosophy and belief – health and fitness",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Understand the media’s role and influence, including the persuasive power of advertising."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "3-employment-and-unemployment",
+       "title": "3. Employment and unemployment",
+       "subtopics": [
+        {
+         "id": "work-and-leisure-equality-of-opportunity-employm",
+         "title": "Work and leisure – equality of opportunity – employment and unemployment – sport – free time activities – travel and tourism – education – cultural life/heritage",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Understand preparation for work, employment opportunities, career planning, qualifications, unemployment, declining industries, possible solutions, and immigrant workers."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "5-social-and-economic-development",
+       "title": "5. Social and economic development",
+       "subtopics": [
+        {
+         "id": "war-and-peace-social-and-economic-development",
+         "title": "War and peace – social and economic development",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Understand the positive and negative effects of social and economic development, including recent developments and predicted future trends."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "build": {
+  "builtAt": "2026-10-14T05:49:15.597Z",
+  "model": "gpt-5.6-luna",
+  "usd": 0.0047,
+  "expectedCodes": null,
+  "coverage": null,
+  "missingCodes": [],
+  "counts": {
+   "grades": 1,
+   "units": 1,
+   "topics": 4,
+   "subtopics": 4,
+   "outcomes": 4
+  },
+  "warnings": []
+ }
+}

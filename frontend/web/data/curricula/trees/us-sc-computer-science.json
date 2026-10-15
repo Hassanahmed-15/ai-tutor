@@ -1,0 +1,3980 @@
+{
+ "id": "us-sc-computer-science",
+ "region": "US",
+ "framework": "South Carolina state academic standards: Computer Science & Technology",
+ "board": null,
+ "qualification": "K-12",
+ "subject": "Computer Science & Technology",
+ "syllabusCode": null,
+ "gradeSystem": "grade",
+ "source": {
+  "urls": [
+   "https://api.commonstandardsproject.com/api/v1/jurisdictions/033B7F9D29D84F09AF312E83F31AE348",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/033B7F9D29D84F09AF312E83F31AE348_D2792522_grade-01",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/033B7F9D29D84F09AF312E83F31AE348_D2792522_grade-02",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/033B7F9D29D84F09AF312E83F31AE348_D2792522_grade-03",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/033B7F9D29D84F09AF312E83F31AE348_D2792522_grade-04",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/033B7F9D29D84F09AF312E83F31AE348_D2792522_grade-05",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/033B7F9D29D84F09AF312E83F31AE348_D2792522_grade-06",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/033B7F9D29D84F09AF312E83F31AE348_D2792522_grade-07",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/033B7F9D29D84F09AF312E83F31AE348_D2792522_grade-08",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/033B7F9D29D84F09AF312E83F31AE348_D2792522_grade-k"
+  ],
+  "publisher": "South Carolina state education agency (machine-readable via Common Standards Project / ASN)",
+  "licence": "CC BY 3.0 US, D2L Corporation",
+  "firstExam": "2017"
+ },
+ "grades": [
+  {
+   "grade": "K",
+   "units": [
+    {
+     "id": "process-standards",
+     "title": "Process Standards",
+     "topics": [
+      {
+       "id": "foster-an-inclusive-computing-culture",
+       "title": "Foster an inclusive computing culture",
+       "subtopics": [
+        {
+         "id": "foster-an-inclusive-computing-culture",
+         "title": "Foster an inclusive computing culture",
+         "outcomes": [
+          {
+           "code": "1.a",
+           "text": "Recognize that equitable access to computing benefits society as a whole."
+          },
+          {
+           "code": "1.b",
+           "text": "Consider others' perspectives as well as one's own perspective when developing computational solutions."
+          },
+          {
+           "code": "1.c",
+           "text": "Consider the needs of a variety of end users regarding accessibility and usability."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "collaborate-around-computing",
+       "title": "Collaborate around computing",
+       "subtopics": [
+        {
+         "id": "collaborate-around-computing",
+         "title": "Collaborate around computing",
+         "outcomes": [
+          {
+           "code": "2.a",
+           "text": "Select appropriate technological tools that can be used to collaborate on a project."
+          },
+          {
+           "code": "2.b",
+           "text": "Collaborate productively with individuals of varying perspectives, skills, and backgrounds."
+          },
+          {
+           "code": "2.c",
+           "text": "Set and implement equitable expectations and workloads when working in teams."
+          },
+          {
+           "code": "2.d",
+           "text": "Integrate constructive feedback while working in teams."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "recognize-define-and-analyze-computational-probl",
+       "title": "Recognize, define, and analyze computational problems",
+       "subtopics": [
+        {
+         "id": "recognize-define-and-analyze-computational-probl",
+         "title": "Recognize, define, and analyze computational problems",
+         "outcomes": [
+          {
+           "code": "3.a",
+           "text": "Recognize when it is appropriate to solve a problem computationally."
+          },
+          {
+           "code": "3.b",
+           "text": "Make sense of computational problems and persevere in solving them."
+          },
+          {
+           "code": "3.c",
+           "text": "Relate computational problems to prior knowledge."
+          },
+          {
+           "code": "3.d",
+           "text": "Recognize that there may be multiple approaches to solving a problem."
+          },
+          {
+           "code": "3.e",
+           "text": "Approach problem solving iteratively, using a cyclical process."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "create-test-and-refine-computational-artifacts",
+       "title": "Create, test, and refine computational artifacts",
+       "subtopics": [
+        {
+         "id": "create-test-and-refine-computational-artifacts",
+         "title": "Create, test, and refine computational artifacts",
+         "outcomes": [
+          {
+           "code": "4.a",
+           "text": "Consider the purpose of computational artifacts for practical use, personal expression, and/or societal impact."
+          },
+          {
+           "code": "4.b",
+           "text": "Recognize when to use the same solution for multiple problems."
+          },
+          {
+           "code": "4.c",
+           "text": "Test computational artifacts systematically by considering multiple scenarios and using test cases."
+          },
+          {
+           "code": "4.d",
+           "text": "Approach troubleshooting systematically."
+          },
+          {
+           "code": "4.e",
+           "text": "Consider performance, reliability, usability, and accessibility when evaluating and refining computational artifacts."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "communicate-about-computing",
+       "title": "Communicate about computing",
+       "subtopics": [
+        {
+         "id": "communicate-about-computing",
+         "title": "Communicate about computing",
+         "outcomes": [
+          {
+           "code": "5.a",
+           "text": "Select and use appropriate technological tools to convey solutions to computing problems."
+          },
+          {
+           "code": "5.b",
+           "text": "Communicate about computational processes and solutions using appropriate terminology consistent with the intended audience and purpose."
+          },
+          {
+           "code": "5.c",
+           "text": "Articulate ideas responsibly by observing intellectual property rights and giving appropriate attribution."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "content-standards",
+     "title": "Content Standards",
+     "topics": [
+      {
+       "id": "digital-literacy",
+       "title": "Digital Literacy",
+       "subtopics": [
+        {
+         "id": "use-software-applications-to-create-an-authentic",
+         "title": "Use software applications to create an authentic product",
+         "outcomes": [
+          {
+           "code": "K.DL.1.1",
+           "text": "Recognize a program to use for word processing."
+          },
+          {
+           "code": "K.DL.1.2",
+           "text": "Recognize a program to use for creating presentations."
+          }
+         ]
+        },
+        {
+         "id": "learn-the-fundamentals-of-digital-citizenship-an",
+         "title": "Learn the fundamentals of digital citizenship and appropriate use of digital media",
+         "outcomes": [
+          {
+           "code": "K.DL.2.1",
+           "text": "Understand safety rules when using a computing device."
+          }
+         ]
+        },
+        {
+         "id": "exhibit-responsibility-when-using-connected-comp",
+         "title": "Exhibit responsibility when using connected computing devices",
+         "outcomes": [
+          {
+           "code": "K.DL.3.1",
+           "text": "Learn how to protect personal information (e.g., username, password)."
+          }
+         ]
+        },
+        {
+         "id": "demonstrate-effective-keyboarding-skills-on-a-co",
+         "title": "Demonstrate effective keyboarding skills on a computing device",
+         "outcomes": [
+          {
+           "code": "K.DL.4.1",
+           "text": "Locate letter and number keys."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "computing-systems",
+       "title": "Computing Systems",
+       "subtopics": [
+        {
+         "id": "understand-that-computing-devices-are-used-to-pe",
+         "title": "Understand that computing devices are used to perform a variety of tasks and take many forms",
+         "outcomes": [
+          {
+           "code": "K.CS.1.1",
+           "text": "Identify traditional computing devices (e.g., tablets, smartphones, desktops, laptops) and non-traditional computing devices (e.g., microwave, oven, car)."
+          },
+          {
+           "code": "K.CS.1.2",
+           "text": "Recognize that people use computing devices to perform tasks."
+          }
+         ]
+        },
+        {
+         "id": "explore-hardware-i-e-physical-components-and-sof",
+         "title": "Explore hardware (i.e., physical components) and software of computing systems",
+         "outcomes": [
+          {
+           "code": "K.CS.2.1",
+           "text": "Use appropriate terminology in naming and identifying hardware (e.g., monitor, keyboard, mouse, earbuds, headphones, printer)."
+          },
+          {
+           "code": "K.CS.2.2",
+           "text": "Learn to handle computing devices with proper care (e.g., do not place food or drink near a computer or tablet; hold tablets or laptops with both hands when transporting them)."
+          }
+         ]
+        },
+        {
+         "id": "recognize-that-computing-systems-might-not-work-",
+         "title": "Recognize that computing systems might not work as expected because of hardware or software problems",
+         "outcomes": [
+          {
+           "code": "K.CS.3.1",
+           "text": "Identify simple hardware problems (e.g., computer is not plugged into power source)."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "networks-and-the-internet",
+       "title": "Networks and the Internet",
+       "subtopics": [
+        {
+         "id": "discover-that-computing-devices-and-the-internet",
+         "title": "Discover that computing devices and the internet enable us to connect with other people, places, information, and ideas",
+         "outcomes": [
+          {
+           "code": "K.NI.1.1",
+           "text": "Recognize that people can communicate with others by using connected computing devices (e.g., cell phones, tablets)."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "data-and-analysis",
+       "title": "Data and Analysis",
+       "subtopics": [
+        {
+         "id": "discover-how-data-can-be-stored-in-and-retrieved",
+         "title": "Discover how data can be stored in and retrieved from multiple locations",
+         "outcomes": [
+          {
+           "code": "K.DA.1.1",
+           "text": "Recognize that data can be collected and stored on different computing devices over time (e.g., progress in a video game)."
+          },
+          {
+           "code": "K.DA.1.2",
+           "text": "Recognize that data can be retrieved from different computing devices (e.g., progress in a video game; pictures from a smartphone)."
+          }
+         ]
+        },
+        {
+         "id": "explore-how-computing-devices-collect-and-displa",
+         "title": "Explore how computing devices collect and display data",
+         "outcomes": [
+          {
+           "code": "K.DA.2.1",
+           "text": "Identify and give examples of data (e.g., lunch choice, weather conditions)."
+          }
+         ]
+        },
+        {
+         "id": "explore-how-data-can-be-displayed-for-communicat",
+         "title": "Explore how data can be displayed for communication in many ways",
+         "outcomes": [
+          {
+           "code": "K.DA.3.1",
+           "text": "Recognize data displayed in picture graphs."
+          }
+         ]
+        },
+        {
+         "id": "understand-how-data-can-be-used-to-make-decision",
+         "title": "Understand how data can be used to make decisions",
+         "outcomes": [
+          {
+           "code": "K.DA.4.1",
+           "text": "Draw conclusions and make predictions from picture graphs (e.g., make predictions based on weather data presented in a picture graph)."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "impact-of-computing",
+       "title": "Impact of Computing",
+       "subtopics": [
+        {
+         "id": "understand-how-computing-devices-have-changed-pe",
+         "title": "Understand how computing devices have changed people's lives",
+         "outcomes": [
+          {
+           "code": "K.IC.1.1",
+           "text": "List different ways in which computing devices are used in your daily life."
+          },
+          {
+           "code": "K.IC.1.2",
+           "text": "Discover how some tasks can be completed with or without a computing device."
+          }
+         ]
+        },
+        {
+         "id": "discover-how-computing-devices-have-affected-the",
+         "title": "Discover how computing devices have affected the way people communicate",
+         "outcomes": [
+          {
+           "code": "K.IC.2.1",
+           "text": "List different computing devices used for communication."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "1",
+   "units": [
+    {
+     "id": "process-standards",
+     "title": "Process Standards",
+     "topics": [
+      {
+       "id": "foster-an-inclusive-computing-culture",
+       "title": "Foster an inclusive computing culture",
+       "subtopics": [
+        {
+         "id": "foster-an-inclusive-computing-culture",
+         "title": "Foster an inclusive computing culture",
+         "outcomes": [
+          {
+           "code": "1.a",
+           "text": "Recognize that equitable access to computing benefits society as a whole."
+          },
+          {
+           "code": "1.b",
+           "text": "Consider others' perspectives as well as one's own perspective when developing computational solutions."
+          },
+          {
+           "code": "1.c",
+           "text": "Consider the needs of a variety of end users regarding accessibility and usability."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "collaborate-around-computing",
+       "title": "Collaborate around computing",
+       "subtopics": [
+        {
+         "id": "collaborate-around-computing",
+         "title": "Collaborate around computing",
+         "outcomes": [
+          {
+           "code": "2.a",
+           "text": "Select appropriate technological tools that can be used to collaborate on a project."
+          },
+          {
+           "code": "2.b",
+           "text": "Collaborate productively with individuals of varying perspectives, skills, and backgrounds."
+          },
+          {
+           "code": "2.c",
+           "text": "Set and implement equitable expectations and workloads when working in teams."
+          },
+          {
+           "code": "2.d",
+           "text": "Integrate constructive feedback while working in teams."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "recognize-define-and-analyze-computational-probl",
+       "title": "Recognize, define, and analyze computational problems",
+       "subtopics": [
+        {
+         "id": "recognize-define-and-analyze-computational-probl",
+         "title": "Recognize, define, and analyze computational problems",
+         "outcomes": [
+          {
+           "code": "3.a",
+           "text": "Recognize when it is appropriate to solve a problem computationally."
+          },
+          {
+           "code": "3.b",
+           "text": "Make sense of computational problems and persevere in solving them."
+          },
+          {
+           "code": "3.c",
+           "text": "Relate computational problems to prior knowledge."
+          },
+          {
+           "code": "3.d",
+           "text": "Recognize that there may be multiple approaches to solving a problem."
+          },
+          {
+           "code": "3.e",
+           "text": "Approach problem solving iteratively, using a cyclical process."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "create-test-and-refine-computational-artifacts",
+       "title": "Create, test, and refine computational artifacts",
+       "subtopics": [
+        {
+         "id": "create-test-and-refine-computational-artifacts",
+         "title": "Create, test, and refine computational artifacts",
+         "outcomes": [
+          {
+           "code": "4.a",
+           "text": "Consider the purpose of computational artifacts for practical use, personal expression, and/or societal impact."
+          },
+          {
+           "code": "4.b",
+           "text": "Recognize when to use the same solution for multiple problems."
+          },
+          {
+           "code": "4.c",
+           "text": "Test computational artifacts systematically by considering multiple scenarios and using test cases."
+          },
+          {
+           "code": "4.d",
+           "text": "Approach troubleshooting systematically."
+          },
+          {
+           "code": "4.e",
+           "text": "Consider performance, reliability, usability, and accessibility when evaluating and refining computational artifacts."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "communicate-about-computing",
+       "title": "Communicate about computing",
+       "subtopics": [
+        {
+         "id": "communicate-about-computing",
+         "title": "Communicate about computing",
+         "outcomes": [
+          {
+           "code": "5.a",
+           "text": "Select and use appropriate technological tools to convey solutions to computing problems."
+          },
+          {
+           "code": "5.b",
+           "text": "Communicate about computational processes and solutions using appropriate terminology consistent with the intended audience and purpose."
+          },
+          {
+           "code": "5.c",
+           "text": "Articulate ideas responsibly by observing intellectual property rights and giving appropriate attribution."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "content-standards",
+     "title": "Content Standards",
+     "topics": [
+      {
+       "id": "digital-literacy",
+       "title": "Digital Literacy",
+       "subtopics": [
+        {
+         "id": "use-software-applications-to-create-an-authentic",
+         "title": "Use software applications to create an authentic product",
+         "outcomes": [
+          {
+           "code": "1.DL.1.1",
+           "text": "Produce a simple sentence using word processing software."
+          },
+          {
+           "code": "1.DL.1.2",
+           "text": "Create a simple presentation with text and/or image."
+          }
+         ]
+        },
+        {
+         "id": "learn-the-fundamentals-of-digital-citizenship-an",
+         "title": "Learn the fundamentals of digital citizenship and appropriate use of digital media",
+         "outcomes": [
+          {
+           "code": "1.DL.2.1",
+           "text": "Demonstrate appropriate behaviors towards others when using a connected computing device."
+          },
+          {
+           "code": "1.DL.2.2",
+           "text": "Recognize and avoid harmful behaviors (e.g., sharing private information)."
+          }
+         ]
+        },
+        {
+         "id": "exhibit-responsibility-when-using-connected-comp",
+         "title": "Exhibit responsibility when using connected computing devices",
+         "outcomes": [
+          {
+           "code": "1.DL.3.1",
+           "text": "Demonstrate how to log in and log out from a connected computing device."
+          },
+          {
+           "code": "1.DL.3.2",
+           "text": "Recognize the importance of logging out from a connected computing device."
+          },
+          {
+           "code": "1.DL.3.3",
+           "text": "Recognize the difference between public and private information (e.g., personal information)."
+          }
+         ]
+        },
+        {
+         "id": "demonstrate-effective-keyboarding-skills-on-a-co",
+         "title": "Demonstrate effective keyboarding skills on a computing device",
+         "outcomes": [
+          {
+           "code": "1.DL.4.1",
+           "text": "Locate and use letter and number keys."
+          },
+          {
+           "code": "1.DL.4.2",
+           "text": "Demonstrate the location of the home row keys."
+          },
+          {
+           "code": "1.DL.4.3",
+           "text": "Develop proper keyboarding technique when keying letters and numbers (e.g., use both hands; utilize proper finger placement on home row keys; use letter and number keys)."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "computing-systems",
+       "title": "Computing Systems",
+       "subtopics": [
+        {
+         "id": "understand-that-computing-devices-are-used-to-pe",
+         "title": "Understand that computing devices are used to perform a variety of tasks and take many forms",
+         "outcomes": [
+          {
+           "code": "1.CS.1.1",
+           "text": "Identify tasks that can be performed with computing devices."
+          },
+          {
+           "code": "1.CS.1.2",
+           "text": "Recognize some computing devices (e.g., computer, smartphone) can perform a variety of tasks and some computing devices are specialized (e.g., navigation system, game controller)."
+          }
+         ]
+        },
+        {
+         "id": "explore-hardware-i-e-physical-components-and-sof",
+         "title": "Explore hardware (i.e., physical components) and software of computing systems",
+         "outcomes": [
+          {
+           "code": "1.CS.2.1",
+           "text": "Use appropriate terminology in naming and identifying software (e.g., web browser, application)."
+          },
+          {
+           "code": "1.CS.2.2",
+           "text": "Recognize that software acts on the input to affect the output (e.g., clicking on a mouse opens a program or application; typing on a keyboard displays letters on a screen)."
+          }
+         ]
+        },
+        {
+         "id": "recognize-that-computing-systems-might-not-work-",
+         "title": "Recognize that computing systems might not work as expected because of hardware or software problems",
+         "outcomes": [
+          {
+           "code": "1.CS.3.1",
+           "text": "Identify and describe simple hardware problems. (e.g., headphones, keyboard, and/or mouse not plugged into the correct port)."
+          },
+          {
+           "code": "1.CS.3.2",
+           "text": "Identify and describe simple software problems (e.g., volume too soft/loud)."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "networks-and-the-internet",
+       "title": "Networks and the Internet",
+       "subtopics": [
+        {
+         "id": "discover-that-computing-devices-and-the-internet",
+         "title": "Discover that computing devices and the internet enable us to connect with other people, places, information, and ideas",
+         "outcomes": [
+          {
+           "code": "1.NI.1.1",
+           "text": "Recognize that the internet can be used to gather information."
+          },
+          {
+           "code": "1.NI.1.2",
+           "text": "Identify ways to connect with other people (e.g., direct message, voice talk, email, video chat)."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "data-and-analysis",
+       "title": "Data and Analysis",
+       "subtopics": [
+        {
+         "id": "discover-how-data-can-be-stored-in-and-retrieved",
+         "title": "Discover how data can be stored in and retrieved from multiple locations",
+         "outcomes": [
+          {
+           "code": "1.DA.1.1",
+           "text": "Recognize that a variety of data (e.g., music, video, images, text) can be stored and retrieved from a computing device."
+          }
+         ]
+        },
+        {
+         "id": "explore-how-computing-devices-collect-and-displa",
+         "title": "Explore how computing devices collect and display data",
+         "outcomes": [
+          {
+           "code": "1.DA.2.1",
+           "text": "Identify computing devices (e.g., digital thermometer, video game) that collect and display data."
+          }
+         ]
+        },
+        {
+         "id": "explore-how-data-can-be-displayed-for-communicat",
+         "title": "Explore how data can be displayed for communication in many ways",
+         "outcomes": [
+          {
+           "code": "1.DA.3.1",
+           "text": "Recognize data displayed in picture graphs, T-charts, tallies, and bar graphs."
+          }
+         ]
+        },
+        {
+         "id": "understand-how-data-can-be-used-to-make-decision",
+         "title": "Understand how data can be used to make decisions",
+         "outcomes": [
+          {
+           "code": "1.DA.4.1",
+           "text": "Draw conclusions and make predictions from different types of graphs (i.e., object graphs, picture graphs, bar graphs)."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "impact-of-computing",
+       "title": "Impact of Computing",
+       "subtopics": [
+        {
+         "id": "understand-how-computing-devices-have-changed-pe",
+         "title": "Understand how computing devices have changed people's lives",
+         "outcomes": [
+          {
+           "code": "1.IC.1.1",
+           "text": "Recognize that many different careers use computing devices."
+          },
+          {
+           "code": "1.IC.1.2",
+           "text": "Describe how some tasks can be completed with or without a computing device."
+          }
+         ]
+        },
+        {
+         "id": "discover-how-computing-devices-have-affected-the",
+         "title": "Discover how computing devices have affected the way people communicate",
+         "outcomes": [
+          {
+           "code": "1.IC.2.1",
+           "text": "Describe the different ways people can communicate using computing devices."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "2",
+   "units": [
+    {
+     "id": "process-standards",
+     "title": "Process Standards",
+     "topics": [
+      {
+       "id": "foster-an-inclusive-computing-culture",
+       "title": "Foster an inclusive computing culture",
+       "subtopics": [
+        {
+         "id": "foster-an-inclusive-computing-culture",
+         "title": "Foster an inclusive computing culture",
+         "outcomes": [
+          {
+           "code": "1.a",
+           "text": "Recognize that equitable access to computing benefits society as a whole."
+          },
+          {
+           "code": "1.b",
+           "text": "Consider others' perspectives as well as one's own perspective when developing computational solutions."
+          },
+          {
+           "code": "1.c",
+           "text": "Consider the needs of a variety of end users regarding accessibility and usability."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "collaborate-around-computing",
+       "title": "Collaborate around computing",
+       "subtopics": [
+        {
+         "id": "collaborate-around-computing",
+         "title": "Collaborate around computing",
+         "outcomes": [
+          {
+           "code": "2.a",
+           "text": "Select appropriate technological tools that can be used to collaborate on a project."
+          },
+          {
+           "code": "2.b",
+           "text": "Collaborate productively with individuals of varying perspectives, skills, and backgrounds."
+          },
+          {
+           "code": "2.c",
+           "text": "Set and implement equitable expectations and workloads when working in teams."
+          },
+          {
+           "code": "2.d",
+           "text": "Integrate constructive feedback while working in teams."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "recognize-define-and-analyze-computational-probl",
+       "title": "Recognize, define, and analyze computational problems",
+       "subtopics": [
+        {
+         "id": "recognize-define-and-analyze-computational-probl",
+         "title": "Recognize, define, and analyze computational problems",
+         "outcomes": [
+          {
+           "code": "3.a",
+           "text": "Recognize when it is appropriate to solve a problem computationally."
+          },
+          {
+           "code": "3.b",
+           "text": "Make sense of computational problems and persevere in solving them."
+          },
+          {
+           "code": "3.c",
+           "text": "Relate computational problems to prior knowledge."
+          },
+          {
+           "code": "3.d",
+           "text": "Recognize that there may be multiple approaches to solving a problem."
+          },
+          {
+           "code": "3.e",
+           "text": "Approach problem solving iteratively, using a cyclical process."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "create-test-and-refine-computational-artifacts",
+       "title": "Create, test, and refine computational artifacts",
+       "subtopics": [
+        {
+         "id": "create-test-and-refine-computational-artifacts",
+         "title": "Create, test, and refine computational artifacts",
+         "outcomes": [
+          {
+           "code": "4.a",
+           "text": "Consider the purpose of computational artifacts for practical use, personal expression, and/or societal impact."
+          },
+          {
+           "code": "4.b",
+           "text": "Recognize when to use the same solution for multiple problems."
+          },
+          {
+           "code": "4.c",
+           "text": "Test computational artifacts systematically by considering multiple scenarios and using test cases."
+          },
+          {
+           "code": "4.d",
+           "text": "Approach troubleshooting systematically."
+          },
+          {
+           "code": "4.e",
+           "text": "Consider performance, reliability, usability, and accessibility when evaluating and refining computational artifacts."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "communicate-about-computing",
+       "title": "Communicate about computing",
+       "subtopics": [
+        {
+         "id": "communicate-about-computing",
+         "title": "Communicate about computing",
+         "outcomes": [
+          {
+           "code": "5.a",
+           "text": "Select and use appropriate technological tools to convey solutions to computing problems."
+          },
+          {
+           "code": "5.b",
+           "text": "Communicate about computational processes and solutions using appropriate terminology consistent with the intended audience and purpose."
+          },
+          {
+           "code": "5.c",
+           "text": "Articulate ideas responsibly by observing intellectual property rights and giving appropriate attribution."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "content-standards",
+     "title": "Content Standards",
+     "topics": [
+      {
+       "id": "digital-literacy",
+       "title": "Digital Literacy",
+       "subtopics": [
+        {
+         "id": "use-software-applications-to-create-an-authentic",
+         "title": "Use software applications to create an authentic product",
+         "outcomes": [
+          {
+           "code": "2.DL.1.1",
+           "text": "Create text documents using a word processing program."
+          },
+          {
+           "code": "2.DL.1.2",
+           "text": "Format a text document using a word processing program (e.g., change font style, including underline, italicize, bold; change font size)."
+          },
+          {
+           "code": "2.DL.1.3",
+           "text": "Create a multi-slide presentation with graphics or images using presentation software (e.g., create a new slide; rearrange slides)."
+          }
+         ]
+        },
+        {
+         "id": "learn-the-fundamentals-of-digital-citizenship-an",
+         "title": "Learn the fundamentals of digital citizenship and appropriate use of digital media",
+         "outcomes": [
+          {
+           "code": "2.DL.2.1",
+           "text": "Demonstrate how to use appropriate behavior when sending messages online."
+          },
+          {
+           "code": "2.DL.2.2",
+           "text": "Recognize how to credit work found online (e.g., image, photograph)."
+          }
+         ]
+        },
+        {
+         "id": "exhibit-responsibility-when-using-connected-comp",
+         "title": "Exhibit responsibility when using connected computing devices",
+         "outcomes": [
+          {
+           "code": "2.DL.3.1",
+           "text": "Identify the characteristics of a strong password."
+          },
+          {
+           "code": "2.DL.3.2",
+           "text": "Discuss the effects of password misuse."
+          }
+         ]
+        },
+        {
+         "id": "demonstrate-effective-keyboarding-skills-on-a-co",
+         "title": "Demonstrate effective keyboarding skills on a computing device",
+         "outcomes": [
+          {
+           "code": "2.DL.4.1",
+           "text": "Locate and use letter, number, and punctuation keys."
+          },
+          {
+           "code": "2.DL.4.2",
+           "text": "Demonstrate the use of function keys (e.g., shift, enter, backspace, delete, spacebar)"
+          },
+          {
+           "code": "2.DL.4.3",
+           "text": "Develop proper keyboarding technique when keying letters, numbers, and symbols (e.g., use both hands; utilize proper finger placement on home row keys; use letter, number, and punctuation keys)."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "computing-systems",
+       "title": "Computing Systems",
+       "subtopics": [
+        {
+         "id": "understand-that-computing-devices-are-used-to-pe",
+         "title": "Understand that computing devices are used to perform a variety of tasks and take many forms",
+         "outcomes": [
+          {
+           "code": "2.CS.1.1",
+           "text": "Classify computing devices according to purpose (e.g., navigation, game, communication, all-purpose)."
+          },
+          {
+           "code": "2.CS.1.2",
+           "text": "Recognize that computing devices have limitations (e.g., printing, screen size, mobility)."
+          },
+          {
+           "code": "2.CS.1.3",
+           "text": "Choose the appropriate computing device to complete a given task."
+          }
+         ]
+        },
+        {
+         "id": "explore-hardware-i-e-physical-components-and-sof",
+         "title": "Explore hardware (i.e., physical components) and software of computing systems",
+         "outcomes": [
+          {
+           "code": "2.CS.2.1",
+           "text": "Describe the function of common computing devices and components (e.g., desktop computer, laptop computer, tablet, monitor, keyboard, mouse, printer)."
+          },
+          {
+           "code": "2.CS.2.2",
+           "text": "Recognize software that controls computing devices (e.g., use an application to draw on the screen; use software to write a story or control robots)."
+          },
+          {
+           "code": "2.CS.2.3",
+           "text": "Use appropriate hardware and software to complete a given task."
+          }
+         ]
+        },
+        {
+         "id": "recognize-that-computing-systems-might-not-work-",
+         "title": "Recognize that computing systems might not work as expected because of hardware or software problems",
+         "outcomes": [
+          {
+           "code": "2.CS.3.1",
+           "text": "Recognize the difference between a simple hardware problem and a simple software problem (e.g., sound problem can mean headphones are unplugged (hardware) or sound is muted (software))."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "networks-and-the-internet",
+       "title": "Networks and the Internet",
+       "subtopics": [
+        {
+         "id": "discover-that-computing-devices-and-the-internet",
+         "title": "Discover that computing devices and the internet enable us to connect with other people, places, information, and ideas",
+         "outcomes": [
+          {
+           "code": "2.NI.1.1",
+           "text": "Gather information from the internet with supervision."
+          },
+          {
+           "code": "2.NI.1.2",
+           "text": "Identify email as one way to communicate digitally."
+          },
+          {
+           "code": "2.NI.1.3",
+           "text": "Use technology to work cooperatively and collaboratively with peers, teachers, and others."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "data-and-analysis",
+       "title": "Data and Analysis",
+       "subtopics": [
+        {
+         "id": "discover-how-data-can-be-stored-in-and-retrieved",
+         "title": "Discover how data can be stored in and retrieved from multiple locations",
+         "outcomes": [
+          {
+           "code": "2.DA.1.1",
+           "text": "Recognize where data is stored (i.e., on the computing device or elsewhere)."
+          },
+          {
+           "code": "2.DA.1.2",
+           "text": "Store data (e.g., image, music) to a computing device."
+          },
+          {
+           "code": "2.DA.1.3",
+           "text": "Retrieve data (e.g., image, music) from a computing device."
+          }
+         ]
+        },
+        {
+         "id": "explore-how-computing-devices-collect-and-displa",
+         "title": "Explore how computing devices collect and display data",
+         "outcomes": [
+          {
+           "code": "2.DA.2.1",
+           "text": "Identify different ways and tools to collect data."
+          },
+          {
+           "code": "2.DA.2.2",
+           "text": "Collect, organize and display data using object graphs, picture graphs, and bar graphs."
+          }
+         ]
+        },
+        {
+         "id": "explore-how-data-can-be-displayed-for-communicat",
+         "title": "Explore how data can be displayed for communication in many ways",
+         "outcomes": [
+          {
+           "code": "2.DA.3.1",
+           "text": "Recognize how different data displays communicate information in different ways."
+          },
+          {
+           "code": "2.DA.3.2",
+           "text": "Transform data into a new representation (i.e., object graphs, picture graphs, bar graphs, charts)."
+          }
+         ]
+        },
+        {
+         "id": "understand-how-data-can-be-used-to-make-decision",
+         "title": "Understand how data can be used to make decisions",
+         "outcomes": [
+          {
+           "code": "2.DA.4.1",
+           "text": "Draw conclusions and make predictions from different types of graphs (i.e., scaled picture graphs, scaled bar graphs)."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "impact-of-computing",
+       "title": "Impact of Computing",
+       "subtopics": [
+        {
+         "id": "understand-how-computing-devices-have-changed-pe",
+         "title": "Understand how computing devices have changed people's lives",
+         "outcomes": [
+          {
+           "code": "2.IC.1.1",
+           "text": "Identify the ways that computing has changed throughout society."
+          },
+          {
+           "code": "2.IC.1.2",
+           "text": "Demonstrate how some tasks can be completed with or without a computing device."
+          }
+         ]
+        },
+        {
+         "id": "discover-how-computing-devices-have-affected-the",
+         "title": "Discover how computing devices have affected the way people communicate",
+         "outcomes": [
+          {
+           "code": "2.IC.2.1",
+           "text": "Explore similarities and differences between in-person and online communications."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "3",
+   "units": [
+    {
+     "id": "process-standards",
+     "title": "Process Standards",
+     "topics": [
+      {
+       "id": "foster-an-inclusive-computing-culture",
+       "title": "Foster an inclusive computing culture",
+       "subtopics": [
+        {
+         "id": "foster-an-inclusive-computing-culture",
+         "title": "Foster an inclusive computing culture",
+         "outcomes": [
+          {
+           "code": "1.a",
+           "text": "Recognize that equitable access to computing benefits society as a whole."
+          },
+          {
+           "code": "1.b",
+           "text": "Consider others' perspectives as well as one's own perspective when developing computational solutions."
+          },
+          {
+           "code": "1.c",
+           "text": "Consider the needs of a variety of end users regarding accessibility and usability."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "collaborate-around-computing",
+       "title": "Collaborate around computing",
+       "subtopics": [
+        {
+         "id": "collaborate-around-computing",
+         "title": "Collaborate around computing",
+         "outcomes": [
+          {
+           "code": "2.a",
+           "text": "Select appropriate technological tools that can be used to collaborate on a project."
+          },
+          {
+           "code": "2.b",
+           "text": "Collaborate productively with individuals of varying perspectives, skills, and backgrounds."
+          },
+          {
+           "code": "2.c",
+           "text": "Set and implement equitable expectations and workloads when working in teams."
+          },
+          {
+           "code": "2.d",
+           "text": "Integrate constructive feedback while working in teams."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "recognize-define-and-analyze-computational-probl",
+       "title": "Recognize, define, and analyze computational problems",
+       "subtopics": [
+        {
+         "id": "recognize-define-and-analyze-computational-probl",
+         "title": "Recognize, define, and analyze computational problems",
+         "outcomes": [
+          {
+           "code": "3.a",
+           "text": "Recognize when it is appropriate to solve a problem computationally."
+          },
+          {
+           "code": "3.b",
+           "text": "Make sense of computational problems and persevere in solving them."
+          },
+          {
+           "code": "3.c",
+           "text": "Relate computational problems to prior knowledge."
+          },
+          {
+           "code": "3.d",
+           "text": "Recognize that there may be multiple approaches to solving a problem."
+          },
+          {
+           "code": "3.e",
+           "text": "Approach problem solving iteratively, using a cyclical process."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "create-test-and-refine-computational-artifacts",
+       "title": "Create, test, and refine computational artifacts",
+       "subtopics": [
+        {
+         "id": "create-test-and-refine-computational-artifacts",
+         "title": "Create, test, and refine computational artifacts",
+         "outcomes": [
+          {
+           "code": "4.a",
+           "text": "Consider the purpose of computational artifacts for practical use, personal expression, and/or societal impact."
+          },
+          {
+           "code": "4.b",
+           "text": "Recognize when to use the same solution for multiple problems."
+          },
+          {
+           "code": "4.c",
+           "text": "Test computational artifacts systematically by considering multiple scenarios and using test cases."
+          },
+          {
+           "code": "4.d",
+           "text": "Approach troubleshooting systematically."
+          },
+          {
+           "code": "4.e",
+           "text": "Consider performance, reliability, usability, and accessibility when evaluating and refining computational artifacts."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "communicate-about-computing",
+       "title": "Communicate about computing",
+       "subtopics": [
+        {
+         "id": "communicate-about-computing",
+         "title": "Communicate about computing",
+         "outcomes": [
+          {
+           "code": "5.a",
+           "text": "Select and use appropriate technological tools to convey solutions to computing problems."
+          },
+          {
+           "code": "5.b",
+           "text": "Communicate about computational processes and solutions using appropriate terminology consistent with the intended audience and purpose."
+          },
+          {
+           "code": "5.c",
+           "text": "Articulate ideas responsibly by observing intellectual property rights and giving appropriate attribution."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "content-standards",
+     "title": "Content Standards",
+     "topics": [
+      {
+       "id": "digital-literacy",
+       "title": "Digital Literacy",
+       "subtopics": [
+        {
+         "id": "use-software-applications-to-create-an-authentic",
+         "title": "Use software applications to create an authentic product",
+         "outcomes": [
+          {
+           "code": "3.DL.1.1",
+           "text": "Create documents (e.g., essays, letters) using a word processing program."
+          },
+          {
+           "code": "3.DL.1.2",
+           "text": "Edit and format a document using a word processing program to check spelling, change fonts, and change margins."
+          },
+          {
+           "code": "3.DL.1.3",
+           "text": "Format a presentation using presentation software to insert an image/video, change background colors, and change text color."
+          },
+          {
+           "code": "3.DL.1.4",
+           "text": "Understand that bullets are a way to organize a list."
+          }
+         ]
+        },
+        {
+         "id": "demonstrate-an-awareness-of-fundamentals-of-digi",
+         "title": "Demonstrate an awareness of fundamentals of digital citizenship",
+         "outcomes": [
+          {
+           "code": "3.DL.2.1",
+           "text": "Demonstrate proper digital etiquette appropriate to the medium (e.g., not using all capital letters in an email)."
+          },
+          {
+           "code": "3.DL.2.2",
+           "text": "Recognize the disparity with regards to access to technology around the world and discuss ways in which digital equality may be reached."
+          }
+         ]
+        },
+        {
+         "id": "demonstrate-responsibility-when-using-connected-",
+         "title": "Demonstrate responsibility when using connected computing devices",
+         "outcomes": [
+          {
+           "code": "3.DL.3.1",
+           "text": "Understand the importance of acceptable use policies (e.g., to enforce safe internet usage among all members of the community)."
+          },
+          {
+           "code": "3.DL.3.2",
+           "text": "Distinguish between online content that is open and free to use and content that is protected by copyright."
+          },
+          {
+           "code": "3.DL.3.3",
+           "text": "Understand the notion of \"digital footprint\" and the permanence and trackability associated with online communication (e.g., email, social media)."
+          }
+         ]
+        },
+        {
+         "id": "demonstrate-effective-keyboarding-skills-on-a-co",
+         "title": "Demonstrate effective keyboarding skills on a computing device",
+         "outcomes": [
+          {
+           "code": "3.DL.4.1",
+           "text": "Demonstrate proper keyboarding technique when keying letters, numbers, and symbols at a rate of 5 words per minute."
+          },
+          {
+           "code": "3.DL.4.2",
+           "text": "Use software capabilities to correct errors."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "computing-systems",
+       "title": "Computing Systems",
+       "subtopics": [
+        {
+         "id": "identify-and-analyze-various-components-and-func",
+         "title": "Identify and analyze various components and functions of computing devices (e.g., tablets, laptops, smartphones)",
+         "outcomes": [
+          {
+           "code": "3.CS.1.1",
+           "text": "Compare and contrast computing devices (e.g., tablets, laptops, smartphones)."
+          },
+          {
+           "code": "3.CS.1.2",
+           "text": "Identify the parts of a computing device (e.g., input devices, output devices, processors)."
+          }
+         ]
+        },
+        {
+         "id": "analyze-the-various-types-and-functions-of-softw",
+         "title": "Analyze the various types and functions of software",
+         "outcomes": [
+          {
+           "code": "3.CS.2.1",
+           "text": "Identify actions (e.g., opening a file; closing a window) that are specific to an operating system (e.g., Windows, MacOS, Android, iOS)."
+          },
+          {
+           "code": "3.CS.2.2",
+           "text": "Compare operating systems to application software (e.g., word processor, spreadsheet, presentation software, web browser)."
+          }
+         ]
+        },
+        {
+         "id": "apply-troubleshooting-strategies-for-identifying",
+         "title": "Apply troubleshooting strategies for identifying simple hardware and software problems that may occur during use",
+         "outcomes": [
+          {
+           "code": "3.CS.3.1",
+           "text": "Troubleshoot simple hardware problems that may occur during use (e.g., hardware is plugged in or batteries charged; sound is muted/unmuted)."
+          },
+          {
+           "code": "3.CS.3.2",
+           "text": "Troubleshoot simple software problems that may occur during use (e.g., refresh or close a web browser; close a program)."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "networks-and-the-internet",
+       "title": "Networks and the Internet",
+       "subtopics": [
+        {
+         "id": "explore-different-ways-a-computer-connects-to-th",
+         "title": "Explore different ways a computer connects to the internet and other computing devices",
+         "outcomes": [
+          {
+           "code": "3.NI.1.1",
+           "text": "Identify and distinguish between wireless and wired connections."
+          }
+         ]
+        },
+        {
+         "id": "discover-the-advantages-of-internet-applications",
+         "title": "Discover the advantages of internet applications",
+         "outcomes": [
+          {
+           "code": "3.NI.2.1",
+           "text": "Communicate electronically with others with support from peers, teachers, and others."
+          },
+          {
+           "code": "3.NI.2.2",
+           "text": "Recognize particular websites as sources of research."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "data-and-analysis",
+       "title": "Data and Analysis",
+       "subtopics": [
+        {
+         "id": "identify-various-ways-in-which-data-is-stored-an",
+         "title": "Identify various ways in which data is stored and represented",
+         "outcomes": [
+          {
+           "code": "3.DA.1.1",
+           "text": "Understand the different types of data storage (e.g., flash drives, hard drives, cloud storage)."
+          },
+          {
+           "code": "3.DA.1.2",
+           "text": "Identify various kinds of data (e.g., text, images, sounds, numbers)."
+          }
+         ]
+        },
+        {
+         "id": "collect-arrange-and-represent-data",
+         "title": "Collect, arrange, and represent data",
+         "outcomes": [
+          {
+           "code": "3.DA.2.1",
+           "text": "Discuss appropriate tools for collecting data."
+          },
+          {
+           "code": "3.DA.2.2",
+           "text": "Represent data with bar graphs."
+          }
+         ]
+        },
+        {
+         "id": "interpret-and-analyze-data-and-information",
+         "title": "Interpret and analyze data and information",
+         "outcomes": [
+          {
+           "code": "3.DA.3.1",
+           "text": "Interpret and analyze given data (i.e., tables)."
+          }
+         ]
+        },
+        {
+         "id": "understand-the-accuracy-of-conclusions-and-how-t",
+         "title": "Understand the accuracy of conclusions and how they are influenced by the amount of data collected",
+         "outcomes": [
+          {
+           "code": "3.DA.4.1",
+           "text": "Draw conclusions from different types of graphs (i.e., scaled bar graphs, line plots)."
+          },
+          {
+           "code": "3.DA.4.2",
+           "text": "Discuss factors that impact accuracy."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "algorithms-and-programming",
+       "title": "Algorithms and Programming",
+       "subtopics": [
+        {
+         "id": "recognize-that-many-daily-tasks-can-be-described",
+         "title": "Recognize that many daily tasks can be described as step-by-step instructions (i.e., algorithms)",
+         "outcomes": [
+          {
+           "code": "3.AP.1.1",
+           "text": "Describe a daily task as a sequence of steps."
+          }
+         ]
+        },
+        {
+         "id": "use-an-ordered-list-of-steps-i-e-sequential-exec",
+         "title": "Use an ordered list of steps (i.e., sequential execution) and simple control structures",
+         "outcomes": [
+          {
+           "code": "3.AP.2.1",
+           "text": "Describe, using picture models, an ordered list of steps to perform a simple task."
+          }
+         ]
+        },
+        {
+         "id": "explore-how-tasks-can-be-decomposed-into-simple-",
+         "title": "Explore how tasks can be decomposed into simple tasks and simple tasks can be composed to form complex tasks",
+         "outcomes": [
+          {
+           "code": "3.AP.3.1",
+           "text": "Identify a simple task (e.g., eating breakfast; brushing your teeth; walking to the bus stop)."
+          },
+          {
+           "code": "3.AP.3.2",
+           "text": "Identify a complex task (e.g., getting ready for school)."
+          }
+         ]
+        },
+        {
+         "id": "develop-a-program-to-express-an-idea-or-address-",
+         "title": "Develop a program to express an idea or address a problem",
+         "outcomes": [
+          {
+           "code": "3.AP.4.1",
+           "text": "Use picture directions to design a series of steps to complete a simple task."
+          },
+          {
+           "code": "3.AP.4.2",
+           "text": "Test a series of directions to successfully complete a simple task."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "impact-of-computing",
+       "title": "Impact of Computing",
+       "subtopics": [
+        {
+         "id": "discuss-how-computing-has-impacted-society",
+         "title": "Discuss how computing has impacted society",
+         "outcomes": [
+          {
+           "code": "3.IC.1.1",
+           "text": "List examples of how computing technology has changed and improved the way people live, work, and interact."
+          }
+         ]
+        },
+        {
+         "id": "evaluate-the-relevance-and-appropriateness-of-el",
+         "title": "Evaluate the relevance and appropriateness of electronic information sources",
+         "outcomes": [
+          {
+           "code": "3.IC.2.1",
+           "text": "Identify and discuss the relevance and appropriateness of various electronic information sources (e.g., online databases such as Discus; web search engines)."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "4",
+   "units": [
+    {
+     "id": "process-standards",
+     "title": "Process Standards",
+     "topics": [
+      {
+       "id": "foster-an-inclusive-computing-culture",
+       "title": "Foster an inclusive computing culture",
+       "subtopics": [
+        {
+         "id": "foster-an-inclusive-computing-culture",
+         "title": "Foster an inclusive computing culture",
+         "outcomes": [
+          {
+           "code": "1.a",
+           "text": "Recognize that equitable access to computing benefits society as a whole."
+          },
+          {
+           "code": "1.b",
+           "text": "Consider others' perspectives as well as one's own perspective when developing computational solutions."
+          },
+          {
+           "code": "1.c",
+           "text": "Consider the needs of a variety of end users regarding accessibility and usability."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "collaborate-around-computing",
+       "title": "Collaborate around computing",
+       "subtopics": [
+        {
+         "id": "collaborate-around-computing",
+         "title": "Collaborate around computing",
+         "outcomes": [
+          {
+           "code": "2.a",
+           "text": "Select appropriate technological tools that can be used to collaborate on a project."
+          },
+          {
+           "code": "2.b",
+           "text": "Collaborate productively with individuals of varying perspectives, skills, and backgrounds."
+          },
+          {
+           "code": "2.c",
+           "text": "Set and implement equitable expectations and workloads when working in teams."
+          },
+          {
+           "code": "2.d",
+           "text": "Integrate constructive feedback while working in teams."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "recognize-define-and-analyze-computational-probl",
+       "title": "Recognize, define, and analyze computational problems",
+       "subtopics": [
+        {
+         "id": "recognize-define-and-analyze-computational-probl",
+         "title": "Recognize, define, and analyze computational problems",
+         "outcomes": [
+          {
+           "code": "3.a",
+           "text": "Recognize when it is appropriate to solve a problem computationally."
+          },
+          {
+           "code": "3.b",
+           "text": "Make sense of computational problems and persevere in solving them."
+          },
+          {
+           "code": "3.c",
+           "text": "Relate computational problems to prior knowledge."
+          },
+          {
+           "code": "3.d",
+           "text": "Recognize that there may be multiple approaches to solving a problem."
+          },
+          {
+           "code": "3.e",
+           "text": "Approach problem solving iteratively, using a cyclical process."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "create-test-and-refine-computational-artifacts",
+       "title": "Create, test, and refine computational artifacts",
+       "subtopics": [
+        {
+         "id": "create-test-and-refine-computational-artifacts",
+         "title": "Create, test, and refine computational artifacts",
+         "outcomes": [
+          {
+           "code": "4.a",
+           "text": "Consider the purpose of computational artifacts for practical use, personal expression, and/or societal impact."
+          },
+          {
+           "code": "4.b",
+           "text": "Recognize when to use the same solution for multiple problems."
+          },
+          {
+           "code": "4.c",
+           "text": "Test computational artifacts systematically by considering multiple scenarios and using test cases."
+          },
+          {
+           "code": "4.d",
+           "text": "Approach troubleshooting systematically."
+          },
+          {
+           "code": "4.e",
+           "text": "Consider performance, reliability, usability, and accessibility when evaluating and refining computational artifacts."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "communicate-about-computing",
+       "title": "Communicate about computing",
+       "subtopics": [
+        {
+         "id": "communicate-about-computing",
+         "title": "Communicate about computing",
+         "outcomes": [
+          {
+           "code": "5.a",
+           "text": "Select and use appropriate technological tools to convey solutions to computing problems."
+          },
+          {
+           "code": "5.b",
+           "text": "Communicate about computational processes and solutions using appropriate terminology consistent with the intended audience and purpose."
+          },
+          {
+           "code": "5.c",
+           "text": "Articulate ideas responsibly by observing intellectual property rights and giving appropriate attribution."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "content-standards",
+     "title": "Content Standards",
+     "topics": [
+      {
+       "id": "digital-literacy",
+       "title": "Digital Literacy",
+       "subtopics": [
+        {
+         "id": "use-software-applications-to-create-an-authentic",
+         "title": "Use software applications to create an authentic product",
+         "outcomes": [
+          {
+           "code": "4.DL.1.1",
+           "text": "Create various documents (e.g., essays, posters) using a word processing program and including graphics (e.g., images, headlines)."
+          },
+          {
+           "code": "4.DL.1.2",
+           "text": "Edit and format a document using a word processing program to insert, delete and move material within the document."
+          },
+          {
+           "code": "4.DL.1.3",
+           "text": "Format a presentation using presentation software to resize an image, change fonts, and change style."
+          },
+          {
+           "code": "4.DL.1.4",
+           "text": "Insert and modify a bulleted list in a word processor and presentation software."
+          }
+         ]
+        },
+        {
+         "id": "demonstrate-an-awareness-of-fundamentals-of-digi",
+         "title": "Demonstrate an awareness of fundamentals of digital citizenship",
+         "outcomes": [
+          {
+           "code": "4.DL.2.1",
+           "text": "Discuss methods for digital communication (e.g., email, instant messaging) and determine the best method for specific needs (e.g., quickly sending large amounts of information)."
+          },
+          {
+           "code": "4.DL.2.2",
+           "text": "Recognize and describe the potential risks and benefits associated with various forms of digital communication."
+          }
+         ]
+        },
+        {
+         "id": "demonstrate-responsibility-when-using-connected-",
+         "title": "Demonstrate responsibility when using connected computing devices",
+         "outcomes": [
+          {
+           "code": "4.DL.3.1",
+           "text": "Identify cyberbullying and describe potential strategies to manage and eliminate cyberbullying."
+          },
+          {
+           "code": "4.DL.3.2",
+           "text": "Distinguish legal from illegal processes for downloading, sharing, and modifying online content."
+          }
+         ]
+        },
+        {
+         "id": "demonstrate-effective-keyboarding-skills-on-a-co",
+         "title": "Demonstrate effective keyboarding skills on a computing device",
+         "outcomes": [
+          {
+           "code": "4.DL.4.1",
+           "text": "Demonstrate proper keyboarding technique when keying letters, numbers, and symbols at a rate of 10 words per minute."
+          },
+          {
+           "code": "4.DL.4.2",
+           "text": "Use software capabilities to correct errors."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "computing-systems",
+       "title": "Computing Systems",
+       "subtopics": [
+        {
+         "id": "identify-and-analyze-various-components-and-func",
+         "title": "Identify and analyze various components and functions of computing devices (e.g., tablets, laptops, smartphones)",
+         "outcomes": [
+          {
+           "code": "4.CS.1.1",
+           "text": "Describe what distinguishes humans from machines."
+          },
+          {
+           "code": "4.CS.1.2",
+           "text": "Identify a variety of computing devices and their functionality (e.g., mobility; available applications such as word processing; communication)."
+          },
+          {
+           "code": "4.CS.1.3",
+           "text": "Describe the major hardware components (e.g., memory, processor) of a computing device (e.g., tablets, laptops, smartphones)."
+          }
+         ]
+        },
+        {
+         "id": "analyze-the-various-types-and-functions-of-softw",
+         "title": "Analyze the various types and functions of software",
+         "outcomes": [
+          {
+           "code": "4.CS.2.1",
+           "text": "Explore the limitations of and advantages of various computing devices for particular uses."
+          },
+          {
+           "code": "4.CS.2.2",
+           "text": "Explore application software (e.g., word processor, spreadsheet, presentation software, web browser)."
+          }
+         ]
+        },
+        {
+         "id": "apply-troubleshooting-strategies-for-identifying",
+         "title": "Apply troubleshooting strategies for identifying simple hardware and software problems that may occur during use",
+         "outcomes": [
+          {
+           "code": "4.CS.3.1",
+           "text": "Reboot a computing device correctly."
+          },
+          {
+           "code": "4.CS.3.2",
+           "text": "Identify whether the operating system or an application is the source of an error message."
+          },
+          {
+           "code": "4.CS.3.3",
+           "text": "Identify and describe the causes of hardware (e.g., wiring), connectivity (e.g., no internet connection), and software (e.g., frozen screen) problems."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "networks-and-the-internet",
+       "title": "Networks and the Internet",
+       "subtopics": [
+        {
+         "id": "explore-different-ways-a-computer-connects-to-th",
+         "title": "Explore different ways a computer connects to the internet and other computing devices",
+         "outcomes": [
+          {
+           "code": "4.NI.1.1",
+           "text": "Identify types of wireless and wired connections (e.g., Wi-Fi, cellular)."
+          }
+         ]
+        },
+        {
+         "id": "discover-the-advantages-of-internet-applications",
+         "title": "Discover the advantages of internet applications",
+         "outcomes": [
+          {
+           "code": "4.NI.2.1",
+           "text": "Identify the appropriate use of email as a communication avenue."
+          },
+          {
+           "code": "4.NI.2.2",
+           "text": "Effectively use search engines to find information."
+          },
+          {
+           "code": "4.NI.2.3",
+           "text": "Identify websites that are appropriate sources of research."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "data-and-analysis",
+       "title": "Data and Analysis",
+       "subtopics": [
+        {
+         "id": "identify-various-ways-in-which-data-is-stored-an",
+         "title": "Identify various ways in which data is stored and represented",
+         "outcomes": [
+          {
+           "code": "4.DA.1.1",
+           "text": "Understand what it means to save a file in well-protected storage (e.g., hard drive, flash drive, cloud)."
+          },
+          {
+           "code": "4.DA.1.2",
+           "text": "Understand that computing devices have their own language (i.e., binary)."
+          }
+         ]
+        },
+        {
+         "id": "collect-arrange-and-represent-data",
+         "title": "Collect, arrange, and represent data",
+         "outcomes": [
+          {
+           "code": "4.DA.2.1",
+           "text": "Select and use appropriate non-digital and digital tools for collecting data."
+          },
+          {
+           "code": "4.DA.2.2",
+           "text": "Represent data with bar graphs and line plots."
+          }
+         ]
+        },
+        {
+         "id": "interpret-and-analyze-data-and-information",
+         "title": "Interpret and analyze data and information",
+         "outcomes": [
+          {
+           "code": "4.DA.3.1",
+           "text": "Interpret and analyze given graphs (i.e., bar graphs, line plots)."
+          }
+         ]
+        },
+        {
+         "id": "understand-the-accuracy-of-conclusions-and-how-t",
+         "title": "Understand the accuracy of conclusions and how they are influenced by the amount of data collected",
+         "outcomes": [
+          {
+           "code": "4.DA.4.1",
+           "text": "Apply factors that impact the accuracy of a conclusion."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "algorithms-and-programming",
+       "title": "Algorithms and Programming",
+       "subtopics": [
+        {
+         "id": "recognize-that-many-daily-tasks-can-be-described",
+         "title": "Recognize that many daily tasks can be described as step-by-step instructions (i.e., algorithms)",
+         "outcomes": [
+          {
+           "code": "4.AP.1.1",
+           "text": "Use step-by-step instructions to perform tasks (i.e., sequential execution)."
+          }
+         ]
+        },
+        {
+         "id": "use-an-ordered-list-of-steps-i-e-sequential-exec",
+         "title": "Use an ordered list of steps (i.e., sequential execution) and simple control structures",
+         "outcomes": [
+          {
+           "code": "4.AP.2.1",
+           "text": "Use a combination of picture models to reorder a sequence of steps."
+          },
+          {
+           "code": "4.AP.2.2",
+           "text": "Recognize that the same steps can be ordered in different ways to perform the same task (i.e., simple control structures)."
+          }
+         ]
+        },
+        {
+         "id": "explore-how-tasks-can-be-decomposed-into-simple-",
+         "title": "Explore how tasks can be decomposed into simple tasks and simple tasks can be composed to form complex tasks",
+         "outcomes": [
+          {
+           "code": "4.AP.3.1",
+           "text": "Compose simple tasks (e.g., eating breakfast; brushing your teeth; walking to the bus stop) into a complex task (e.g., getting ready for school)."
+          },
+          {
+           "code": "4.AP.3.2",
+           "text": "Decompose a complex task (e.g., getting ready for school) into simple tasks (e.g., eating breakfast; brushing your teeth; walking to the bus stop)."
+          }
+         ]
+        },
+        {
+         "id": "develop-a-program-to-express-an-idea-or-address-",
+         "title": "Develop a program to express an idea or address a problem",
+         "outcomes": [
+          {
+           "code": "4.AP.4.1",
+           "text": "Use picture directions to design a series of steps to complete a complex task."
+          },
+          {
+           "code": "4.AP.4.2",
+           "text": "Test a series of directions to successfully complete a complex task."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "impact-of-computing",
+       "title": "Impact of Computing",
+       "subtopics": [
+        {
+         "id": "discuss-how-computing-has-impacted-society",
+         "title": "Discuss how computing has impacted society",
+         "outcomes": [
+          {
+           "code": "4.IC.1.1",
+           "text": "Compare and contrast how computing has changed society from the past to the present."
+          }
+         ]
+        },
+        {
+         "id": "evaluate-the-relevance-and-appropriateness-of-el",
+         "title": "Evaluate the relevance and appropriateness of electronic information sources",
+         "outcomes": [
+          {
+           "code": "4.IC.2.1",
+           "text": "Compare the relevance and appropriateness of various electronic information sources (e.g., online databases such as Discus; web search engines)."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "5",
+   "units": [
+    {
+     "id": "process-standards",
+     "title": "Process Standards",
+     "topics": [
+      {
+       "id": "foster-an-inclusive-computing-culture",
+       "title": "Foster an inclusive computing culture",
+       "subtopics": [
+        {
+         "id": "foster-an-inclusive-computing-culture",
+         "title": "Foster an inclusive computing culture",
+         "outcomes": [
+          {
+           "code": "1.a",
+           "text": "Recognize that equitable access to computing benefits society as a whole."
+          },
+          {
+           "code": "1.b",
+           "text": "Consider others' perspectives as well as one's own perspective when developing computational solutions."
+          },
+          {
+           "code": "1.c",
+           "text": "Consider the needs of a variety of end users regarding accessibility and usability."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "collaborate-around-computing",
+       "title": "Collaborate around computing",
+       "subtopics": [
+        {
+         "id": "collaborate-around-computing",
+         "title": "Collaborate around computing",
+         "outcomes": [
+          {
+           "code": "2.a",
+           "text": "Select appropriate technological tools that can be used to collaborate on a project."
+          },
+          {
+           "code": "2.b",
+           "text": "Collaborate productively with individuals of varying perspectives, skills, and backgrounds."
+          },
+          {
+           "code": "2.c",
+           "text": "Set and implement equitable expectations and workloads when working in teams."
+          },
+          {
+           "code": "2.d",
+           "text": "Integrate constructive feedback while working in teams."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "recognize-define-and-analyze-computational-probl",
+       "title": "Recognize, define, and analyze computational problems",
+       "subtopics": [
+        {
+         "id": "recognize-define-and-analyze-computational-probl",
+         "title": "Recognize, define, and analyze computational problems",
+         "outcomes": [
+          {
+           "code": "3.a",
+           "text": "Recognize when it is appropriate to solve a problem computationally."
+          },
+          {
+           "code": "3.b",
+           "text": "Make sense of computational problems and persevere in solving them."
+          },
+          {
+           "code": "3.c",
+           "text": "Relate computational problems to prior knowledge."
+          },
+          {
+           "code": "3.d",
+           "text": "Recognize that there may be multiple approaches to solving a problem."
+          },
+          {
+           "code": "3.e",
+           "text": "Approach problem solving iteratively, using a cyclical process."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "create-test-and-refine-computational-artifacts",
+       "title": "Create, test, and refine computational artifacts",
+       "subtopics": [
+        {
+         "id": "create-test-and-refine-computational-artifacts",
+         "title": "Create, test, and refine computational artifacts",
+         "outcomes": [
+          {
+           "code": "4.a",
+           "text": "Consider the purpose of computational artifacts for practical use, personal expression, and/or societal impact."
+          },
+          {
+           "code": "4.b",
+           "text": "Recognize when to use the same solution for multiple problems."
+          },
+          {
+           "code": "4.c",
+           "text": "Test computational artifacts systematically by considering multiple scenarios and using test cases."
+          },
+          {
+           "code": "4.d",
+           "text": "Approach troubleshooting systematically."
+          },
+          {
+           "code": "4.e",
+           "text": "Consider performance, reliability, usability, and accessibility when evaluating and refining computational artifacts."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "communicate-about-computing",
+       "title": "Communicate about computing",
+       "subtopics": [
+        {
+         "id": "communicate-about-computing",
+         "title": "Communicate about computing",
+         "outcomes": [
+          {
+           "code": "5.a",
+           "text": "Select and use appropriate technological tools to convey solutions to computing problems."
+          },
+          {
+           "code": "5.b",
+           "text": "Communicate about computational processes and solutions using appropriate terminology consistent with the intended audience and purpose."
+          },
+          {
+           "code": "5.c",
+           "text": "Articulate ideas responsibly by observing intellectual property rights and giving appropriate attribution."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "content-standards",
+     "title": "Content Standards",
+     "topics": [
+      {
+       "id": "digital-literacy",
+       "title": "Digital Literacy",
+       "subtopics": [
+        {
+         "id": "use-software-applications-to-create-an-authentic",
+         "title": "Use software applications to create an authentic product",
+         "outcomes": [
+          {
+           "code": "5.DL.1.1",
+           "text": "Create various documents using a word processing program with various page elements (e.g., headers, footers, citations, tables, textboxes)."
+          },
+          {
+           "code": "5.DL.1.2",
+           "text": "Edit and format a document using a word processing program to change page and paragraph layouts."
+          },
+          {
+           "code": "5.DL.1.3",
+           "text": "Format a presentation using presentation software (e.g., add transitions and speaker notes)."
+          },
+          {
+           "code": "5.DL.1.4",
+           "text": "Demonstrate an effective use of a bulleted list in a word processor and presentation software."
+          },
+          {
+           "code": "5.DL.1.5",
+           "text": "Add data to spreadsheet software and create a simple graph."
+          }
+         ]
+        },
+        {
+         "id": "demonstrate-an-awareness-of-fundamentals-of-digi",
+         "title": "Demonstrate an awareness of fundamentals of digital citizenship",
+         "outcomes": [
+          {
+           "code": "5.DL.2.1",
+           "text": "Demonstrate an understanding of digital security (i.e., protecting your digital information)."
+          },
+          {
+           "code": "5.DL.2.2",
+           "text": "Demonstrate an understanding of digital rights and responsibilities (e.g., privacy, respectful communication)."
+          }
+         ]
+        },
+        {
+         "id": "demonstrate-responsibility-when-using-connected-",
+         "title": "Demonstrate responsibility when using connected computing devices",
+         "outcomes": [
+          {
+           "code": "5.DL.3.1",
+           "text": "Demonstrate awareness of software piracy and its consequences."
+          },
+          {
+           "code": "5.DL.3.2",
+           "text": "Understand the legal ramifications for sending or receiving inappropriate content (e.g., cyberbullying, harassment)."
+          }
+         ]
+        },
+        {
+         "id": "demonstrate-effective-keyboarding-skills-on-a-co",
+         "title": "Demonstrate effective keyboarding skills on a computing device",
+         "outcomes": [
+          {
+           "code": "5.DL.4.1",
+           "text": "Demonstrate proper keyboarding technique when keying letters, numbers, and symbols at a rate of 15 words per minute."
+          },
+          {
+           "code": "5.DL.4.2",
+           "text": "Use software capabilities to correct errors."
+          },
+          {
+           "code": "5.DL.4.3",
+           "text": "Demonstrate proper use of software capabilities to name, save, and retrieve information (e.g., organizing files and folders; following naming conventions)."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "computing-systems",
+       "title": "Computing Systems",
+       "subtopics": [
+        {
+         "id": "identify-and-analyze-various-components-and-func",
+         "title": "Identify and analyze various components and functions of computing devices (e.g., tablets, laptops, smartphones)",
+         "outcomes": [
+          {
+           "code": "5.CS.1.1",
+           "text": "Select the appropriate computing device for an application (e.g., writing an essay on a laptop versus on a smartphone)."
+          },
+          {
+           "code": "5.CS.1.2",
+           "text": "Explain the importance of the major hardware components of the computing device (e.g., input and output devices, processors)."
+          }
+         ]
+        },
+        {
+         "id": "analyze-the-various-types-and-functions-of-softw",
+         "title": "Analyze the various types and functions of software",
+         "outcomes": [
+          {
+           "code": "5.CS.2.1",
+           "text": "Justify the use of different computing devices for relevant tasks."
+          },
+          {
+           "code": "5.CS.2.2",
+           "text": "Explore and compare multiple software applications (e.g., word processor, spreadsheet, presentation software, web browser)."
+          }
+         ]
+        },
+        {
+         "id": "apply-troubleshooting-strategies-for-identifying",
+         "title": "Apply troubleshooting strategies for identifying simple hardware and software problems that may occur during use",
+         "outcomes": [
+          {
+           "code": "5.CS.3.1",
+           "text": "Respond appropriately to various error messages (e.g., \"webpage not found;\" \"incorrect password\")."
+          },
+          {
+           "code": "5.CS.3.2",
+           "text": "Identify the computing device components that may cause various problems."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "networks-and-the-internet",
+       "title": "Networks and the Internet",
+       "subtopics": [
+        {
+         "id": "explore-different-ways-a-computer-connects-to-th",
+         "title": "Explore different ways a computer connects to the internet and other computing devices",
+         "outcomes": [
+          {
+           "code": "5.NI.1.1",
+           "text": "Identify the advantages and disadvantages of various network types (e.g., wired, Wi-Fi, cellular data)."
+          }
+         ]
+        },
+        {
+         "id": "discover-the-advantages-of-internet-applications",
+         "title": "Discover the advantages of internet applications",
+         "outcomes": [
+          {
+           "code": "5.NI.2.1",
+           "text": "Recognize video conferencing as a communication avenue."
+          },
+          {
+           "code": "5.NI.2.2",
+           "text": "Modify search criteria and use advanced search tactics to improve search results."
+          },
+          {
+           "code": "5.NI.2.3",
+           "text": "Utilize websites that are appropriate sources of research."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "data-and-analysis",
+       "title": "Data and Analysis",
+       "subtopics": [
+        {
+         "id": "identify-various-ways-in-which-data-is-stored-an",
+         "title": "Identify various ways in which data is stored and represented",
+         "outcomes": [
+          {
+           "code": "5.DA.1.1",
+           "text": "Save and retrieve files on computing devices."
+          },
+          {
+           "code": "5.DA.1.2",
+           "text": "Recognize how text, images, and sounds are represented as binary numbers in computing devices."
+          }
+         ]
+        },
+        {
+         "id": "collect-arrange-and-represent-data",
+         "title": "Collect, arrange, and represent data",
+         "outcomes": [
+          {
+           "code": "5.DA.2.1",
+           "text": "Compare and contrast tools for collecting data."
+          },
+          {
+           "code": "5.DA.2.2",
+           "text": "Determine the most effective way to represent a given data set (e.g., bar graphs, line plots)."
+          }
+         ]
+        },
+        {
+         "id": "interpret-and-analyze-data-and-information",
+         "title": "Interpret and analyze data and information",
+         "outcomes": [
+          {
+           "code": "5.DA.3.1",
+           "text": "Compare and contrast models (e.g., graphs, tables) for data analysis."
+          }
+         ]
+        },
+        {
+         "id": "understand-the-accuracy-of-conclusions-and-how-t",
+         "title": "Understand the accuracy of conclusions and how they are influenced by the amount of data collected",
+         "outcomes": [
+          {
+           "code": "5.DA.4.1",
+           "text": "Discuss accuracy based on data available."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "algorithms-and-programming",
+       "title": "Algorithms and Programming",
+       "subtopics": [
+        {
+         "id": "recognize-that-many-daily-tasks-can-be-described",
+         "title": "Recognize that many daily tasks can be described as step-by-step instructions (i.e., algorithms)",
+         "outcomes": [
+          {
+           "code": "5.AP.1.1",
+           "text": "Execute a sequence of instructions (i.e., algorithm) that mimic a daily task."
+          }
+         ]
+        },
+        {
+         "id": "use-an-ordered-list-of-steps-i-e-sequential-exec",
+         "title": "Use an ordered list of steps (i.e., sequential execution) and simple control structures",
+         "outcomes": [
+          {
+           "code": "5.AP.2.1",
+           "text": "Recognize that a sequence of steps can be repeated."
+          },
+          {
+           "code": "5.AP.2.2",
+           "text": "Identify the result of a conditional statement (e.g., in the statement, \"If it is dark, then turn on the light,\" the result is the lights turning on)."
+          }
+         ]
+        },
+        {
+         "id": "explore-how-tasks-can-be-decomposed-into-simple-",
+         "title": "Explore how tasks can be decomposed into simple tasks and simple tasks can be composed to form complex tasks",
+         "outcomes": [
+          {
+           "code": "5.AP.3.1",
+           "text": "Compose multiple levels of simple tasks (e.g., eating breakfast can include going to the table, sitting down in a chair, and picking up a spoon; brushing your teeth; walking to the bus stop) to make a more complex task."
+          },
+          {
+           "code": "5.AP.3.2",
+           "text": "Decompose a complex task of higher complexity (e.g., cooking a meal) into simple tasks (e.g., selecting a recipe, getting the ingredients, preparing the food, and serving the meal, where the task of getting the ingredients can be decomposed into writing a shopping list, going to a store, selecting and buying the ingredients, and going home)."
+          }
+         ]
+        },
+        {
+         "id": "develop-a-program-to-express-an-idea-or-address-",
+         "title": "Develop a program to express an idea or address a problem",
+         "outcomes": [
+          {
+           "code": "5.AP.4.1",
+           "text": "Use a visual language to design and test a program that solves a simple task (e.g., online coding activity)."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "impact-of-computing",
+       "title": "Impact of Computing",
+       "subtopics": [
+        {
+         "id": "discuss-how-computing-has-impacted-society",
+         "title": "Discuss how computing has impacted society",
+         "outcomes": [
+          {
+           "code": "5.IC.1.1",
+           "text": "Discuss the positive and negative impacts of computing on society."
+          }
+         ]
+        },
+        {
+         "id": "evaluate-the-relevance-and-appropriateness-of-el",
+         "title": "Evaluate the relevance and appropriateness of electronic information sources",
+         "outcomes": [
+          {
+           "code": "5.IC.2.1",
+           "text": "Demonstrate an understanding of the relevance and appropriateness of various electronic information sources (e.g., online databases such as Discus; web search engines)."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "6",
+   "units": [
+    {
+     "id": "process-standards",
+     "title": "Process Standards",
+     "topics": [
+      {
+       "id": "foster-an-inclusive-computing-culture",
+       "title": "Foster an inclusive computing culture",
+       "subtopics": [
+        {
+         "id": "foster-an-inclusive-computing-culture",
+         "title": "Foster an inclusive computing culture",
+         "outcomes": [
+          {
+           "code": "1.a",
+           "text": "Recognize that equitable access to computing benefits society as a whole."
+          },
+          {
+           "code": "1.b",
+           "text": "Consider others' perspectives as well as one's own perspective when developing computational solutions."
+          },
+          {
+           "code": "1.c",
+           "text": "Consider the needs of a variety of end users regarding accessibility and usability."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "collaborate-around-computing",
+       "title": "Collaborate around computing",
+       "subtopics": [
+        {
+         "id": "collaborate-around-computing",
+         "title": "Collaborate around computing",
+         "outcomes": [
+          {
+           "code": "2.a",
+           "text": "Select appropriate technological tools that can be used to collaborate on a project."
+          },
+          {
+           "code": "2.b",
+           "text": "Collaborate productively with individuals of varying perspectives, skills, and backgrounds."
+          },
+          {
+           "code": "2.c",
+           "text": "Set and implement equitable expectations and workloads when working in teams."
+          },
+          {
+           "code": "2.d",
+           "text": "Integrate constructive feedback while working in teams."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "recognize-define-and-analyze-computational-probl",
+       "title": "Recognize, define, and analyze computational problems",
+       "subtopics": [
+        {
+         "id": "recognize-define-and-analyze-computational-probl",
+         "title": "Recognize, define, and analyze computational problems",
+         "outcomes": [
+          {
+           "code": "3.a",
+           "text": "Recognize when it is appropriate to solve a problem computationally."
+          },
+          {
+           "code": "3.b",
+           "text": "Make sense of computational problems and persevere in solving them."
+          },
+          {
+           "code": "3.c",
+           "text": "Relate computational problems to prior knowledge."
+          },
+          {
+           "code": "3.d",
+           "text": "Recognize that there may be multiple approaches to solving a problem."
+          },
+          {
+           "code": "3.e",
+           "text": "Approach problem solving iteratively, using a cyclical process."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "create-test-and-refine-computational-artifacts",
+       "title": "Create, test, and refine computational artifacts",
+       "subtopics": [
+        {
+         "id": "create-test-and-refine-computational-artifacts",
+         "title": "Create, test, and refine computational artifacts",
+         "outcomes": [
+          {
+           "code": "4.a",
+           "text": "Consider the purpose of computational artifacts for practical use, personal expression, and/or societal impact."
+          },
+          {
+           "code": "4.b",
+           "text": "Recognize when to use the same solution for multiple problems."
+          },
+          {
+           "code": "4.c",
+           "text": "Test computational artifacts systematically by considering multiple scenarios and using test cases."
+          },
+          {
+           "code": "4.d",
+           "text": "Approach troubleshooting systematically."
+          },
+          {
+           "code": "4.e",
+           "text": "Consider performance, reliability, usability, and accessibility when evaluating and refining computational artifacts."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "communicate-about-computing",
+       "title": "Communicate about computing",
+       "subtopics": [
+        {
+         "id": "communicate-about-computing",
+         "title": "Communicate about computing",
+         "outcomes": [
+          {
+           "code": "5.a",
+           "text": "Select and use appropriate technological tools to convey solutions to computing problems."
+          },
+          {
+           "code": "5.b",
+           "text": "Communicate about computational processes and solutions using appropriate terminology consistent with the intended audience and purpose."
+          },
+          {
+           "code": "5.c",
+           "text": "Articulate ideas responsibly by observing intellectual property rights and giving appropriate attribution."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "content-standards",
+     "title": "Content Standards",
+     "topics": [
+      {
+       "id": "digital-literacy",
+       "title": "Digital Literacy",
+       "subtopics": [
+        {
+         "id": "use-software-applications-to-collaborate-and-cre",
+         "title": "Use software applications to collaborate and create authentic products",
+         "outcomes": [
+          {
+           "code": "6.DL.1.1",
+           "text": "Use professional email protocol to communicate and share information with peers and teachers (e.g., addressees, subject line, body, salutations, closing)."
+          },
+          {
+           "code": "6.DL.1.2",
+           "text": "Share documents created using word processing, presentation, and spreadsheet software via email attachments."
+          },
+          {
+           "code": "6.DL.1.3",
+           "text": "Use formulas in spreadsheets to perform real-world calculations (e.g., creating budgets)."
+          }
+         ]
+        },
+        {
+         "id": "understand-risks-and-responsibilities-of-being-a",
+         "title": "Understand risks and responsibilities of being a digital citizen",
+         "outcomes": [
+          {
+           "code": "6.DL.2.1",
+           "text": "Identify rules for safe internet use."
+          },
+          {
+           "code": "6.DL.2.2",
+           "text": "Identify appropriate use of social media (e.g., cyberbullying prevention)."
+          },
+          {
+           "code": "6.DL.2.3",
+           "text": "Identify appropriate use of computing devices."
+          }
+         ]
+        },
+        {
+         "id": "understand-issues-associated-with-appropriate-us",
+         "title": "Understand issues associated with appropriate use of personal digital information",
+         "outcomes": [
+          {
+           "code": "6.DL.3.1",
+           "text": "Define and identify personal digital information."
+          },
+          {
+           "code": "6.DL.3.2",
+           "text": "Identify consequences of inappropriate sharing of personal digital information."
+          }
+         ]
+        },
+        {
+         "id": "demonstrate-keyboarding-speed-and-accuracy-on-a-",
+         "title": "Demonstrate keyboarding speed and accuracy on a computing device",
+         "outcomes": [
+          {
+           "code": "6.DL.4.1",
+           "text": "Demonstrate proper keyboarding technique when keying letters, numbers, and symbols at a rate of 20 words per minute."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "computing-systems",
+       "title": "Computing Systems",
+       "subtopics": [
+        {
+         "id": "analyze-the-use-of-computing-to-solve-relevant-p",
+         "title": "Analyze the use of computing to solve relevant problems",
+         "outcomes": [
+          {
+           "code": "6.CS.1.1",
+           "text": "Identify and describe the key functional components (e.g., input devices, output devices, processor, operating system, software applications, memory, storage) of a computer."
+          },
+          {
+           "code": "6.CS.1.2",
+           "text": "Identify relevant problems and how they are solved using computer science and various types of computing devices (e.g., directions to a location can be obtained through Global Position Systems (GPS) and/or online maps)."
+          }
+         ]
+        },
+        {
+         "id": "examine-how-computing-devices-function",
+         "title": "Examine how computing devices function",
+         "outcomes": [
+          {
+           "code": "6.CS.2.1",
+           "text": "Understand various ways software is acquired and installed."
+          }
+         ]
+        },
+        {
+         "id": "evaluate-various-solutions-to-common-hardware-an",
+         "title": "Evaluate various solutions to common hardware and software problems",
+         "outcomes": [
+          {
+           "code": "6.CS.3.1",
+           "text": "Identify the source of a problem using a systematic process (i.e., troubleshooting)."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "networks-and-the-internet",
+       "title": "Networks and the Internet",
+       "subtopics": [
+        {
+         "id": "analyze-various-network-structures-and-how-data-",
+         "title": "Analyze various network structures and how data is transmitted",
+         "outcomes": [
+          {
+           "code": "6.NI.1.1",
+           "text": "Identify and define hardware required to connect to a network (e.g., connect a school tablet or computer to Wi-Fi, network, or internet)."
+          },
+          {
+           "code": "6.NI.1.2",
+           "text": "Define an IP address and show an example."
+          },
+          {
+           "code": "6.NI.1.3",
+           "text": "Identify a Uniform Resource Locator (URL)."
+          },
+          {
+           "code": "6.NI.1.4",
+           "text": "Define a packet and explain how they are used to transmit data across a network."
+          }
+         ]
+        },
+        {
+         "id": "identify-methods-to-protect-data-information-and",
+         "title": "Identify methods to protect data, information, and computing devices across networks",
+         "outcomes": [
+          {
+           "code": "6.NI.2.1",
+           "text": "Identify common security risks associated with using computer networks (e.g., compromised passwords, phishing, viruses)."
+          },
+          {
+           "code": "6.NI.2.2",
+           "text": "Identify how individuals and organizations protect data and information from security risks associated with using computer networks."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "data-and-analysis",
+       "title": "Data and Analysis",
+       "subtopics": [
+        {
+         "id": "evaluate-the-storage-and-representation-of-data",
+         "title": "Evaluate the storage and representation of data",
+         "outcomes": [
+          {
+           "code": "6.DA.1.1",
+           "text": "Identify the file extensions (e.g., .ppt, .pdf, .mp3) associated with software programs."
+          }
+         ]
+        },
+        {
+         "id": "analyze-how-data-is-collected-with-both-computat",
+         "title": "Analyze how data is collected with both computational and non-computational tools and processes",
+         "outcomes": [
+          {
+           "code": "6.DA.2.1",
+           "text": "Explore real-world data collection (e.g., identification number at lunch; teacher taking attendance; grocery store shopping card)."
+          }
+         ]
+        },
+        {
+         "id": "analyze-various-ways-to-visually-represent-data",
+         "title": "Analyze various ways to visually represent data",
+         "outcomes": [
+          {
+           "code": "6.DA.3.1",
+           "text": "Explain how large data sets are represented graphically (e.g., frequency plots, bar graphs)."
+          },
+          {
+           "code": "6.DA.3.2",
+           "text": "Represent one set of numerical data (e.g., histograms, box plots, dot plots)."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "algorithms-and-programming",
+       "title": "Algorithms and Programming",
+       "subtopics": [
+        {
+         "id": "design-evaluate-and-modify-simple-algorithms-e-g",
+         "title": "Design, evaluate, and modify simple algorithms (e.g., steps to make a sandwich; steps to a popular dance; steps for sending an email)",
+         "outcomes": [
+          {
+           "code": "6.AP.1.1",
+           "text": "Recognize that there are multiple ways to sequence instructions that can lead to the same result."
+          },
+          {
+           "code": "6.AP.1.2",
+           "text": "Interpret pseudocode and flowcharts."
+          }
+         ]
+        },
+        {
+         "id": "use-and-compare-simple-coding-control-structures",
+         "title": "Use and compare simple coding control structures (e.g., if-then, loops)",
+         "outcomes": [
+          {
+           "code": "6.AP.2.1",
+           "text": "Select appropriate coding control structures to skip or repeat instructions."
+          }
+         ]
+        },
+        {
+         "id": "decompose-problems-into-subproblems-and-write-co",
+         "title": "Decompose problems into subproblems and write code to solve the subproblems (i.e., break down a problem into smaller parts)",
+         "outcomes": [
+          {
+           "code": "6.AP.3.1",
+           "text": "Discuss the parts of a program (e.g., components of creating a video game include keeping score, determining winners/losers, moving characters, designing game art, and advancing levels)."
+          }
+         ]
+        },
+        {
+         "id": "design-and-code-programs-to-solve-problems",
+         "title": "Design and code programs to solve problems",
+         "outcomes": [
+          {
+           "code": "6.AP.4.1",
+           "text": "Use a beginner coding language (e.g., drag-and-drop, block-based) to design and code a simple program that solves a problem."
+          }
+         ]
+        },
+        {
+         "id": "identify-variables-and-compare-the-types-of-data",
+         "title": "Identify variables and compare the types of data stored as variables",
+         "outcomes": [
+          {
+           "code": "6.AP.5.1",
+           "text": "Recognize variables that represent information (e.g., age, first name)."
+          },
+          {
+           "code": "6.AP.5.2",
+           "text": "Recognize variables can represent different types of data (e.g., numbers, words, colors, images)."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "impact-of-computing",
+       "title": "Impact of Computing",
+       "subtopics": [
+        {
+         "id": "evaluate-the-tradeoffs-of-computing-in-everyday-",
+         "title": "Evaluate the tradeoffs of computing in everyday activities",
+         "outcomes": [
+          {
+           "code": "6.IC.1.1",
+           "text": "Explore how computer science is and can be used to solve problems in students' daily lives (e.g., \"Internet of Things,\" smart appliances, smart cars)."
+          },
+          {
+           "code": "6.IC.1.2",
+           "text": "Discover positive and negative impacts of computing on society (e.g., personal, health, workforce, economy, education, culture, environment)."
+          }
+         ]
+        },
+        {
+         "id": "analyze-various-computing-platforms-used-for-com",
+         "title": "Analyze various computing platforms used for communication",
+         "outcomes": [
+          {
+           "code": "6.IC.2.1",
+           "text": "Identify current communication methods and computing devices."
+          }
+         ]
+        },
+        {
+         "id": "evaluate-the-tradeoffs-in-what-and-how-informati",
+         "title": "Evaluate the tradeoffs in what and how information is shared digitally",
+         "outcomes": [
+          {
+           "code": "6.IC.3.1",
+           "text": "Identify guidelines for safely using the internet."
+          }
+         ]
+        },
+        {
+         "id": "evaluate-how-legal-and-ethical-issues-shape-comp",
+         "title": "Evaluate how legal and ethical issues shape computing practices",
+         "outcomes": [
+          {
+           "code": "6.IC.4.1",
+           "text": "Identify unethical and illegal behavior."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "7",
+   "units": [
+    {
+     "id": "process-standards",
+     "title": "Process Standards",
+     "topics": [
+      {
+       "id": "foster-an-inclusive-computing-culture",
+       "title": "Foster an inclusive computing culture",
+       "subtopics": [
+        {
+         "id": "foster-an-inclusive-computing-culture",
+         "title": "Foster an inclusive computing culture",
+         "outcomes": [
+          {
+           "code": "1.a",
+           "text": "Recognize that equitable access to computing benefits society as a whole."
+          },
+          {
+           "code": "1.b",
+           "text": "Consider others' perspectives as well as one's own perspective when developing computational solutions."
+          },
+          {
+           "code": "1.c",
+           "text": "Consider the needs of a variety of end users regarding accessibility and usability."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "collaborate-around-computing",
+       "title": "Collaborate around computing",
+       "subtopics": [
+        {
+         "id": "collaborate-around-computing",
+         "title": "Collaborate around computing",
+         "outcomes": [
+          {
+           "code": "2.a",
+           "text": "Select appropriate technological tools that can be used to collaborate on a project."
+          },
+          {
+           "code": "2.b",
+           "text": "Collaborate productively with individuals of varying perspectives, skills, and backgrounds."
+          },
+          {
+           "code": "2.c",
+           "text": "Set and implement equitable expectations and workloads when working in teams."
+          },
+          {
+           "code": "2.d",
+           "text": "Integrate constructive feedback while working in teams."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "recognize-define-and-analyze-computational-probl",
+       "title": "Recognize, define, and analyze computational problems",
+       "subtopics": [
+        {
+         "id": "recognize-define-and-analyze-computational-probl",
+         "title": "Recognize, define, and analyze computational problems",
+         "outcomes": [
+          {
+           "code": "3.a",
+           "text": "Recognize when it is appropriate to solve a problem computationally."
+          },
+          {
+           "code": "3.b",
+           "text": "Make sense of computational problems and persevere in solving them."
+          },
+          {
+           "code": "3.c",
+           "text": "Relate computational problems to prior knowledge."
+          },
+          {
+           "code": "3.d",
+           "text": "Recognize that there may be multiple approaches to solving a problem."
+          },
+          {
+           "code": "3.e",
+           "text": "Approach problem solving iteratively, using a cyclical process."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "create-test-and-refine-computational-artifacts",
+       "title": "Create, test, and refine computational artifacts",
+       "subtopics": [
+        {
+         "id": "create-test-and-refine-computational-artifacts",
+         "title": "Create, test, and refine computational artifacts",
+         "outcomes": [
+          {
+           "code": "4.a",
+           "text": "Consider the purpose of computational artifacts for practical use, personal expression, and/or societal impact."
+          },
+          {
+           "code": "4.b",
+           "text": "Recognize when to use the same solution for multiple problems."
+          },
+          {
+           "code": "4.c",
+           "text": "Test computational artifacts systematically by considering multiple scenarios and using test cases."
+          },
+          {
+           "code": "4.d",
+           "text": "Approach troubleshooting systematically."
+          },
+          {
+           "code": "4.e",
+           "text": "Consider performance, reliability, usability, and accessibility when evaluating and refining computational artifacts."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "communicate-about-computing",
+       "title": "Communicate about computing",
+       "subtopics": [
+        {
+         "id": "communicate-about-computing",
+         "title": "Communicate about computing",
+         "outcomes": [
+          {
+           "code": "5.a",
+           "text": "Select and use appropriate technological tools to convey solutions to computing problems."
+          },
+          {
+           "code": "5.b",
+           "text": "Communicate about computational processes and solutions using appropriate terminology consistent with the intended audience and purpose."
+          },
+          {
+           "code": "5.c",
+           "text": "Articulate ideas responsibly by observing intellectual property rights and giving appropriate attribution."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "content-standards",
+     "title": "Content Standards",
+     "topics": [
+      {
+       "id": "digital-literacy",
+       "title": "Digital Literacy",
+       "subtopics": [
+        {
+         "id": "use-software-applications-to-collaborate-and-cre",
+         "title": "Use software applications to collaborate and create authentic products",
+         "outcomes": [
+          {
+           "code": "7.DL.1.1",
+           "text": "Collaborate in small groups to create and edit online documents in real time (e.g., multiple users editing one document in a shared online space)."
+          },
+          {
+           "code": "7.DL.1.2",
+           "text": "Identify and use appropriate file sharing strategies (e.g., copy and paste, links, email attachments)."
+          },
+          {
+           "code": "7.DL.1.3",
+           "text": "Apply appropriate design principles to presentations (e.g., themes, contrast, animations)."
+          }
+         ]
+        },
+        {
+         "id": "understand-risks-and-responsibilities-of-being-a",
+         "title": "Understand risks and responsibilities of being a digital citizen",
+         "outcomes": [
+          {
+           "code": "7.DL.2.1",
+           "text": "Discuss consequences of improper internet use."
+          },
+          {
+           "code": "7.DL.2.2",
+           "text": "Discuss consequences of improper use of social media (e.g., cyberbullying)."
+          }
+         ]
+        },
+        {
+         "id": "understand-issues-associated-with-appropriate-us",
+         "title": "Understand issues associated with appropriate use of personal digital information",
+         "outcomes": [
+          {
+           "code": "7.DL.3.1",
+           "text": "Identify appropriate methods for protecting personal digital information."
+          }
+         ]
+        },
+        {
+         "id": "demonstrate-keyboarding-speed-and-accuracy-on-a-",
+         "title": "Demonstrate keyboarding speed and accuracy on a computing device",
+         "outcomes": [
+          {
+           "code": "7.DL.4.1",
+           "text": "Demonstrate proper keyboarding technique when keying letters, numbers, and symbols at a rate of 25 words per minute."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "computing-systems",
+       "title": "Computing Systems",
+       "subtopics": [
+        {
+         "id": "analyze-the-use-of-computing-to-solve-relevant-p",
+         "title": "Analyze the use of computing to solve relevant problems",
+         "outcomes": [
+          {
+           "code": "7.CS.1.1",
+           "text": "Explore an expanded definition of computing devices (e.g., \"Internet of Things,\" wearable technology, robotics)."
+          },
+          {
+           "code": "7.CS.1.2",
+           "text": "Analyze relevant problems and how they are solved using computer science and various types of computing devices (e.g., Global Positioning System (GPS) and online maps provide guided step-by-step directions to locations)."
+          }
+         ]
+        },
+        {
+         "id": "examine-how-computing-devices-function",
+         "title": "Examine how computing devices function",
+         "outcomes": [
+          {
+           "code": "7.CS.2.1",
+           "text": "Describe processing speed and storage capacity using standard units of measure (e.g., 3 TB hard drive, 256 GB cell phone, 3.8 GHz processor)."
+          }
+         ]
+        },
+        {
+         "id": "evaluate-various-solutions-to-common-hardware-an",
+         "title": "Evaluate various solutions to common hardware and software problems",
+         "outcomes": [
+          {
+           "code": "7.CS.3.1",
+           "text": "Understand and communicate solutions to various computing problems (e.g., computing device is frozen; webpage does not load; application does not launch; keyboard does not work)."
+          },
+          {
+           "code": "7.CS.3.2",
+           "text": "Understand how rebooting a computing device can solve problems."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "networks-and-the-internet",
+       "title": "Networks and the Internet",
+       "subtopics": [
+        {
+         "id": "analyze-various-network-structures-and-how-data-",
+         "title": "Analyze various network structures and how data is transmitted",
+         "outcomes": [
+          {
+           "code": "7.NI.1.1",
+           "text": "Identify and compare types of networks (i.e., Local Area Networks (LANs) and Wide Area Networks (WANs))."
+          },
+          {
+           "code": "7.NI.1.2",
+           "text": "Define and understand how the internet is a network of Wide Area Networks (WANs)."
+          },
+          {
+           "code": "7.NI.1.3",
+           "text": "Compare and contrast network topologies (e.g., ring, star, mesh)."
+          }
+         ]
+        },
+        {
+         "id": "identify-methods-to-protect-data-information-and",
+         "title": "Identify methods to protect data, information, and computing devices across networks",
+         "outcomes": [
+          {
+           "code": "7.NI.2.1",
+           "text": "Identify software methods for protecting data transmitted across networks (e.g. anti-virus software)."
+          },
+          {
+           "code": "7.NI.2.2",
+           "text": "Identify physical methods for securing computing devices (e.g., biometric-thumb reader, computer lock, restricted access rooms, hardware firewall)."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "data-and-analysis",
+       "title": "Data and Analysis",
+       "subtopics": [
+        {
+         "id": "evaluate-the-storage-and-representation-of-data",
+         "title": "Evaluate the storage and representation of data",
+         "outcomes": [
+          {
+           "code": "7.DA.1.1",
+           "text": "Describe how a picture, audio, and video are stored digitally (e.g., Red, Green, and Blue (RGB), pixels, .wav)."
+          }
+         ]
+        },
+        {
+         "id": "analyze-how-data-is-collected-with-both-computat",
+         "title": "Analyze how data is collected with both computational and non-computational tools and processes",
+         "outcomes": [
+          {
+           "code": "7.DA.2.1",
+           "text": "Identify computing devices that assist with data collection (i.e., thermometers, barcode scanners, biometrics, sensors, radio-frequency identification (RFID), wearable technology)."
+          }
+         ]
+        },
+        {
+         "id": "analyze-various-ways-to-visually-represent-data",
+         "title": "Analyze various ways to visually represent data",
+         "outcomes": [
+          {
+           "code": "7.DA.3.1",
+           "text": "Create various graphical representations of large data sets (e.g., frequency plots, bar graphs, presentation software)."
+          },
+          {
+           "code": "7.DA.3.2",
+           "text": "Represent two sets of numerical data (e.g., histograms, box plots, dot plots)."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "algorithms-and-programming",
+       "title": "Algorithms and Programming",
+       "subtopics": [
+        {
+         "id": "design-evaluate-and-modify-simple-algorithms-e-g",
+         "title": "Design, evaluate, and modify simple algorithms (e.g., steps to make a sandwich; steps to a popular dance; steps for sending an email)",
+         "outcomes": [
+          {
+           "code": "7.AP.1.1",
+           "text": "Write sequences of instructions for others to perform tasks."
+          },
+          {
+           "code": "7.AP.1.2",
+           "text": "Suggest changes to the sequence of instructions that can lead to the same result (e.g., explore different ways to tying shoes)."
+          },
+          {
+           "code": "7.AP.1.3",
+           "text": "Write clear instructions using pseudocode."
+          }
+         ]
+        },
+        {
+         "id": "use-and-compare-simple-coding-control-structures",
+         "title": "Use and compare simple coding control structures (e.g., if-then, loops)",
+         "outcomes": [
+          {
+           "code": "7.AP.2.1",
+           "text": "Write code using control structures to skip or repeat instructions."
+          }
+         ]
+        },
+        {
+         "id": "decompose-problems-into-subproblems-and-write-co",
+         "title": "Decompose problems into subproblems and write code to solve the subproblems (i.e., break down a problem into smaller parts)",
+         "outcomes": [
+          {
+           "code": "7.AP.3.1",
+           "text": "Decompose a problem into smaller parts."
+          },
+          {
+           "code": "7.AP.3.2",
+           "text": "Identify the parts of a program (e.g., components of creating a video game include keeping score, determining winners/losers, moving characters, designing game art, and advancing level)."
+          }
+         ]
+        },
+        {
+         "id": "design-and-code-programs-to-solve-problems",
+         "title": "Design and code programs to solve problems",
+         "outcomes": [
+          {
+           "code": "7.AP.4.1",
+           "text": "Use a beginner coding language (e.g., drag-and-drop, block-based) to design and code a moderately complex program that solves a problem."
+          }
+         ]
+        },
+        {
+         "id": "identify-variables-and-compare-the-types-of-data",
+         "title": "Identify variables and compare the types of data stored as variables",
+         "outcomes": [
+          {
+           "code": "7.AP.5.1",
+           "text": "Identify variables as a representation for information."
+          },
+          {
+           "code": "7.AP.5.2",
+           "text": "Discuss the differences between the types of data (e.g., characters, integers, decimals)."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "impact-of-computing",
+       "title": "Impact of Computing",
+       "subtopics": [
+        {
+         "id": "evaluate-the-tradeoffs-of-computing-in-everyday-",
+         "title": "Evaluate the tradeoffs of computing in everyday activities",
+         "outcomes": [
+          {
+           "code": "7.IC.1.1",
+           "text": "Understand how computer science is and can be used to solve problems in students' daily lives (e.g., voter identification website, online tax filing)."
+          },
+          {
+           "code": "7.IC.1.2",
+           "text": "Compare positive and negative impacts of computing on society (e.g., personal, health, workforce, economy, education, culture, environment)."
+          }
+         ]
+        },
+        {
+         "id": "analyze-various-computing-platforms-used-for-com",
+         "title": "Analyze various computing platforms used for communication",
+         "outcomes": [
+          {
+           "code": "7.IC.2.1",
+           "text": "Describe current communication methods and computing devices."
+          }
+         ]
+        },
+        {
+         "id": "evaluate-the-tradeoffs-in-what-and-how-informati",
+         "title": "Evaluate the tradeoffs in what and how information is shared digitally",
+         "outcomes": [
+          {
+           "code": "7.IC.3.1",
+           "text": "Understand precautions to protect personal information (i.e., password strength, anti-virus software)."
+          }
+         ]
+        },
+        {
+         "id": "evaluate-how-legal-and-ethical-issues-shape-comp",
+         "title": "Evaluate how legal and ethical issues shape computing practices",
+         "outcomes": [
+          {
+           "code": "7.IC.4.1",
+           "text": "Understand the consequences of unethical and illegal behavior online (e.g., social media, gaming, cyberbullying)."
+          }
+         ]
+        },
+        {
+         "id": "understand-the-importance-of-access-and-equity-i",
+         "title": "Understand the importance of access and equity in computing",
+         "outcomes": [
+          {
+           "code": "7.IC.5.1",
+           "text": "Discuss and understand factors that affect access to computing resources locally, nationally, and globally (e.g., geographical location, socioeconomic status, government structure)."
+          }
+         ]
+        },
+        {
+         "id": "explore-computer-science-and-computing-intensive",
+         "title": "Explore computer science and computing-intensive careers",
+         "outcomes": [
+          {
+           "code": "7.IC.6.1",
+           "text": "Explain how computer science plays a role in every industry."
+          }
+         ]
+        },
+        {
+         "id": "evaluate-the-history-of-computers-and-computing",
+         "title": "Evaluate the history of computers and computing",
+         "outcomes": [
+          {
+           "code": "7.IC.7.1",
+           "text": "Understand and communicate the changes in computing and computer science over time."
+          },
+          {
+           "code": "7.IC.7.2",
+           "text": "Understand and communicate the history and development of the internet."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "8",
+   "units": [
+    {
+     "id": "process-standards",
+     "title": "Process Standards",
+     "topics": [
+      {
+       "id": "foster-an-inclusive-computing-culture",
+       "title": "Foster an inclusive computing culture",
+       "subtopics": [
+        {
+         "id": "foster-an-inclusive-computing-culture",
+         "title": "Foster an inclusive computing culture",
+         "outcomes": [
+          {
+           "code": "1.a",
+           "text": "Recognize that equitable access to computing benefits society as a whole."
+          },
+          {
+           "code": "1.b",
+           "text": "Consider others' perspectives as well as one's own perspective when developing computational solutions."
+          },
+          {
+           "code": "1.c",
+           "text": "Consider the needs of a variety of end users regarding accessibility and usability."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "collaborate-around-computing",
+       "title": "Collaborate around computing",
+       "subtopics": [
+        {
+         "id": "collaborate-around-computing",
+         "title": "Collaborate around computing",
+         "outcomes": [
+          {
+           "code": "2.a",
+           "text": "Select appropriate technological tools that can be used to collaborate on a project."
+          },
+          {
+           "code": "2.b",
+           "text": "Collaborate productively with individuals of varying perspectives, skills, and backgrounds."
+          },
+          {
+           "code": "2.c",
+           "text": "Set and implement equitable expectations and workloads when working in teams."
+          },
+          {
+           "code": "2.d",
+           "text": "Integrate constructive feedback while working in teams."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "recognize-define-and-analyze-computational-probl",
+       "title": "Recognize, define, and analyze computational problems",
+       "subtopics": [
+        {
+         "id": "recognize-define-and-analyze-computational-probl",
+         "title": "Recognize, define, and analyze computational problems",
+         "outcomes": [
+          {
+           "code": "3.a",
+           "text": "Recognize when it is appropriate to solve a problem computationally."
+          },
+          {
+           "code": "3.b",
+           "text": "Make sense of computational problems and persevere in solving them."
+          },
+          {
+           "code": "3.c",
+           "text": "Relate computational problems to prior knowledge."
+          },
+          {
+           "code": "3.d",
+           "text": "Recognize that there may be multiple approaches to solving a problem."
+          },
+          {
+           "code": "3.e",
+           "text": "Approach problem solving iteratively, using a cyclical process."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "create-test-and-refine-computational-artifacts",
+       "title": "Create, test, and refine computational artifacts",
+       "subtopics": [
+        {
+         "id": "create-test-and-refine-computational-artifacts",
+         "title": "Create, test, and refine computational artifacts",
+         "outcomes": [
+          {
+           "code": "4.a",
+           "text": "Consider the purpose of computational artifacts for practical use, personal expression, and/or societal impact."
+          },
+          {
+           "code": "4.b",
+           "text": "Recognize when to use the same solution for multiple problems."
+          },
+          {
+           "code": "4.c",
+           "text": "Test computational artifacts systematically by considering multiple scenarios and using test cases."
+          },
+          {
+           "code": "4.d",
+           "text": "Approach troubleshooting systematically."
+          },
+          {
+           "code": "4.e",
+           "text": "Consider performance, reliability, usability, and accessibility when evaluating and refining computational artifacts."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "communicate-about-computing",
+       "title": "Communicate about computing",
+       "subtopics": [
+        {
+         "id": "communicate-about-computing",
+         "title": "Communicate about computing",
+         "outcomes": [
+          {
+           "code": "5.a",
+           "text": "Select and use appropriate technological tools to convey solutions to computing problems."
+          },
+          {
+           "code": "5.b",
+           "text": "Communicate about computational processes and solutions using appropriate terminology consistent with the intended audience and purpose."
+          },
+          {
+           "code": "5.c",
+           "text": "Articulate ideas responsibly by observing intellectual property rights and giving appropriate attribution."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "content-standards",
+     "title": "Content Standards",
+     "topics": [
+      {
+       "id": "digital-literacy",
+       "title": "Digital Literacy",
+       "subtopics": [
+        {
+         "id": "use-software-applications-to-collaborate-and-cre",
+         "title": "Use software applications to collaborate and create authentic products",
+         "outcomes": [
+          {
+           "code": "8.DL.1.1",
+           "text": "Produce documents according to industry standards (e.g., citation styles, agendas, financial statements, resumes)."
+          },
+          {
+           "code": "8.DL.1.2",
+           "text": "Identify and use tabs in a word processing document (i.e., left, right, center, decimal)."
+          },
+          {
+           "code": "8.DL.1.3",
+           "text": "Identify and use appropriate file compression techniques to (e.g., zipping folders and files; image and file compression)."
+          }
+         ]
+        },
+        {
+         "id": "understand-risks-and-responsibilities-of-being-a",
+         "title": "Understand risks and responsibilities of being a digital citizen",
+         "outcomes": [
+          {
+           "code": "8.DL.2.1",
+           "text": "Explore legal and ethical issues of improper computer and internet use (e.g., music, video, and software piracy; cyberbullying)."
+          }
+         ]
+        },
+        {
+         "id": "understand-issues-associated-with-appropriate-us",
+         "title": "Understand issues associated with appropriate use of personal digital information",
+         "outcomes": [
+          {
+           "code": "8.DL.3.1",
+           "text": "Explore real-world examples of appropriate and inappropriate sharing of personal digital information."
+          }
+         ]
+        },
+        {
+         "id": "demonstrate-keyboarding-speed-and-accuracy-on-a-",
+         "title": "Demonstrate keyboarding speed and accuracy on a computing device",
+         "outcomes": [
+          {
+           "code": "8.DL.4.1",
+           "text": "Demonstrate proper keyboarding technique when keying letters, numbers, and symbols at a rate of 30 words per minute."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "computing-systems",
+       "title": "Computing Systems",
+       "subtopics": [
+        {
+         "id": "analyze-the-use-of-computing-to-solve-relevant-p",
+         "title": "Analyze the use of computing to solve relevant problems",
+         "outcomes": [
+          {
+           "code": "8.CS.1.1",
+           "text": "Compare and contrast relevant problems and how they are solved using computer science and various types of computing devices (e.g., Global Positioning System (GPS) and online maps include different features, including real-time traffic, satellite images, construction and accident notifications)."
+          }
+         ]
+        },
+        {
+         "id": "examine-how-computing-devices-function",
+         "title": "Examine how computing devices function",
+         "outcomes": [
+          {
+           "code": "8.CS.2.1",
+           "text": "Understand that computers receive and process data as a series of on and off signals (i.e., binary data)."
+          },
+          {
+           "code": "8.CS.2.2",
+           "text": "Determine appropriate hardware, operating systems, and software based upon the needs of users in various career fields (e.g., computing devices used by professional video producers and students differ)."
+          }
+         ]
+        },
+        {
+         "id": "evaluate-various-solutions-to-common-hardware-an",
+         "title": "Evaluate various solutions to common hardware and software problems",
+         "outcomes": [
+          {
+           "code": "8.CS.3.1",
+           "text": "Understand computer hardware and software compatibility (e.g., applications designed for Android devices cannot run on iOS devices)."
+          },
+          {
+           "code": "8.CS.3.2",
+           "text": "Identify appropriate resources for troubleshooting hardware and software problems (e.g., user manuals, online searches, technology support services)."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "networks-and-the-internet",
+       "title": "Networks and the Internet",
+       "subtopics": [
+        {
+         "id": "analyze-various-network-structures-and-how-data-",
+         "title": "Analyze various network structures and how data is transmitted",
+         "outcomes": [
+          {
+           "code": "8.NI.1.1",
+           "text": "Identify a protocol as a set of rules, and identify common protocols (e.g., Hypertext Transfer Protocol (HTTP), File Transfer Protocol (FTP), Internet Protocol (IP), Transmission Control Protocol (TCP))."
+          },
+          {
+           "code": "8.NI.1.2",
+           "text": "Diagram a small network using a switch and a router."
+          },
+          {
+           "code": "8.NI.1.3",
+           "text": "Identify the best network topology given a problem (e.g., mesh, tree, ring)."
+          }
+         ]
+        },
+        {
+         "id": "identify-methods-to-protect-data-information-and",
+         "title": "Identify methods to protect data, information, and computing devices across networks",
+         "outcomes": [
+          {
+           "code": "8.NI.2.1",
+           "text": "Discuss and understand recent events and trends regarding cybercrimes (i.e., identity theft, hacking)."
+          },
+          {
+           "code": "8.NI.2.2",
+           "text": "Discuss and understand the impact of computing copyright issues (i.e., music and software piracy; plagiarism)."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "data-and-analysis",
+       "title": "Data and Analysis",
+       "subtopics": [
+        {
+         "id": "evaluate-the-storage-and-representation-of-data",
+         "title": "Evaluate the storage and representation of data",
+         "outcomes": [
+          {
+           "code": "8.DA.1.1",
+           "text": "Discuss how text, images, and sounds are represented using binary numbers in computing devices."
+          },
+          {
+           "code": "8.DA.1.2",
+           "text": "Compare and contrast characteristics of a variety of file formats (e.g., software compatibility, file size, compressed and uncompressed files, transparency)."
+          },
+          {
+           "code": "8.DA.1.3",
+           "text": "Compare and contrast current storage mediums and their uses (e.g., flash drives, hard drives, networks, cloud)."
+          }
+         ]
+        },
+        {
+         "id": "analyze-how-data-is-collected-with-both-computat",
+         "title": "Analyze how data is collected with both computational and non-computational tools and processes",
+         "outcomes": [
+          {
+           "code": "8.DA.2.1",
+           "text": "Compare and contrast computing devices that assist with data collection (i.e., thermometers, barcode scanners, biometrics, sensors, radio-frequency identification (RFID), wearable technology)."
+          }
+         ]
+        },
+        {
+         "id": "analyze-various-ways-to-visually-represent-data",
+         "title": "Analyze various ways to visually represent data",
+         "outcomes": [
+          {
+           "code": "8.DA.3.1",
+           "text": "Identify components of infographics that can be used to represent numerical data (e.g., scatterplots)."
+          },
+          {
+           "code": "8.DA.3.2",
+           "text": "Make inferences based on collected data (e.g., online video watching history used to recommend new videos users may like)."
+          },
+          {
+           "code": "8.DA.3.3",
+           "text": "Explain how models are used to predict specific behaviors and/or outcomes (e.g., weather data presented in a model used to predict future weather conditions and activity)."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "algorithms-and-programming",
+       "title": "Algorithms and Programming",
+       "subtopics": [
+        {
+         "id": "design-evaluate-and-modify-simple-algorithms-e-g",
+         "title": "Design, evaluate, and modify simple algorithms (e.g., steps to make a sandwich; steps to a popular dance; steps for sending an email)",
+         "outcomes": [
+          {
+           "code": "8.AP.1.1",
+           "text": "Modify a sequence of instructions to solve problems."
+          },
+          {
+           "code": "8.AP.1.2",
+           "text": "Make changes to the sequence of instructions that can lead to the same result."
+          },
+          {
+           "code": "8.AP.1.3",
+           "text": "Write clear instructions using flowcharts."
+          }
+         ]
+        },
+        {
+         "id": "use-and-compare-simple-coding-control-structures",
+         "title": "Use and compare simple coding control structures (e.g., if-then, loops)",
+         "outcomes": [
+          {
+           "code": "8.AP.2.1",
+           "text": "Modify an algorithm using conditionals and iteration."
+          }
+         ]
+        },
+        {
+         "id": "decompose-problems-into-subproblems-and-write-co",
+         "title": "Decompose problems into subproblems and write code to solve the subproblems (i.e., break down a problem into smaller parts)",
+         "outcomes": [
+          {
+           "code": "8.AP.3.1",
+           "text": "Decompose a problem into functional parts."
+          },
+          {
+           "code": "8.AP.3.2",
+           "text": "Compose a program with multiple parts."
+          }
+         ]
+        },
+        {
+         "id": "design-and-code-programs-to-solve-problems",
+         "title": "Design and code programs to solve problems",
+         "outcomes": [
+          {
+           "code": "8.AP.4.1",
+           "text": "Use a beginner coding language (e.g., drag-and-drop, block-based) to design and code a complex program that solves a problem."
+          }
+         ]
+        },
+        {
+         "id": "identify-variables-and-compare-the-types-of-data",
+         "title": "Identify variables and compare the types of data stored as variables",
+         "outcomes": [
+          {
+           "code": "8.AP.5.1",
+           "text": "Compare and contrast variables that change or are constant."
+          },
+          {
+           "code": "8.AP.5.2",
+           "text": "Identify the variables needed to solve a given problem (i.e., information that needs to be tracked)."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "impact-of-computing",
+       "title": "Impact of Computing",
+       "subtopics": [
+        {
+         "id": "evaluate-the-tradeoffs-of-computing-in-everyday-",
+         "title": "Evaluate the tradeoffs of computing in everyday activities",
+         "outcomes": [
+          {
+           "code": "8.IC.1.1",
+           "text": "Justify how computer science is and can be used to solve problems in students' daily lives (e.g., mobile applications to accomplish tasks or solve problems in a neighborhood; remote traffic control)."
+          },
+          {
+           "code": "8.IC.1.2",
+           "text": "Analyze positive and negative impacts of computing on society (e.g., personal, health, workforce, economy, education, culture, environment)."
+          }
+         ]
+        },
+        {
+         "id": "analyze-various-computing-platforms-used-for-com",
+         "title": "Analyze various computing platforms used for communication",
+         "outcomes": [
+          {
+           "code": "8.IC.2.1",
+           "text": "Compare and contrast current communication methods and computing devices."
+          }
+         ]
+        },
+        {
+         "id": "evaluate-the-tradeoffs-in-what-and-how-informati",
+         "title": "Evaluate the tradeoffs in what and how information is shared digitally",
+         "outcomes": [
+          {
+           "code": "8.IC.3.1",
+           "text": "Identify risks associated with sharing information digitally (e.g., phishing, identity theft, hacking)."
+          }
+         ]
+        },
+        {
+         "id": "evaluate-how-legal-and-ethical-issues-shape-comp",
+         "title": "Evaluate how legal and ethical issues shape computing practices",
+         "outcomes": [
+          {
+           "code": "8.IC.4.1",
+           "text": "Investigate recent laws that have been created to govern computer use (e.g., privacy, piracy, censorship, intellectual property)."
+          }
+         ]
+        },
+        {
+         "id": "understand-the-importance-of-access-and-equity-i",
+         "title": "Understand the importance of access and equity in computing",
+         "outcomes": [
+          {
+           "code": "8.IC.5.1",
+           "text": "Investigate historical and current trends of under-representation in computer science (e.g., race, ethnicity, gender, socioeconomic status)."
+          },
+          {
+           "code": "8.IC.5.2",
+           "text": "Recognize computer scientists from under-represented populations who have advanced computing."
+          },
+          {
+           "code": "8.IC.5.3",
+           "text": "Explain how the lack of diverse perspectives and backgrounds restricts possible solutions to computational problems (e.g., first iteration of Google Maps included only driving directions, but later public transit and walking directions were added)."
+          }
+         ]
+        },
+        {
+         "id": "explore-computer-science-and-computing-intensive",
+         "title": "Explore computer science and computing-intensive careers",
+         "outcomes": [
+          {
+           "code": "8.IC.6.1",
+           "text": "Identify traditional and non-traditional careers that use computer science (e.g., computer science in agriculture, medical, and public safety fields)."
+          },
+          {
+           "code": "8.IC.6.2",
+           "text": "Relate the five disciplines of computing (i.e., computer science, software engineering, information technology, information systems, and computer engineering) to careers in various industries (e.g., advancements in healthcare, national security, and transportation)."
+          }
+         ]
+        },
+        {
+         "id": "evaluate-the-history-of-computers-and-computing",
+         "title": "Evaluate the history of computers and computing",
+         "outcomes": [
+          {
+           "code": "8.IC.7.1",
+           "text": "Analyze the impact of computing and computer science over time (e.g., advantages such as faster, more efficient completion of tasks and access to the information; disadvantages such as fewer human jobs due to automation)."
+          },
+          {
+           "code": "8.IC.7.2",
+           "text": "Understand the historical impact and future potential of exponential growth in computing (i.e., Moore's Law)."
+          },
+          {
+           "code": "8.IC.7.3",
+           "text": "Identify and describe emerging technologies (e.g., virtual reality, biometrics, health monitoring systems)."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "build": {
+  "builtAt": "2026-10-14T16:20:48.316Z",
+  "model": "none",
+  "usd": 0,
+  "expectedCodes": 322,
+  "coverage": 1,
+  "missingCodes": [],
+  "counts": {
+   "grades": 9,
+   "units": 18,
+   "topics": 96,
+   "subtopics": 213,
+   "outcomes": 482
+  },
+  "warnings": []
+ }
+}

@@ -33,6 +33,7 @@ import { getSpeechRecognition, type SpeechRecognitionLike } from "@/lib/speech";
 import { matchSpokenAnswer } from "@/lib/spokenAnswer";
 import { learnerContextForPrompt, learnerProfileView } from "@/lib/learnerProfileView";
 import { takePendingBrief } from "@/lib/pendingBrief";
+import type { CurriculumLessonRequest } from "@/lib/curriculum/lessonSpec";
 import type { DocumentPage, NormalisedRect, PageSelection } from "@/components/upload/PageSelector";
 import { PageStack } from "@/components/upload/PageStack";
 import { PageStackSkeleton } from "@/components/upload/PageStackSkeleton";
@@ -57,6 +58,7 @@ import {
 import { takePendingLecture } from "@/lib/pendingLecture";
 import { DEMO_HARDCODED, demoLectureBeats, demoLectureTopic } from "@/lib/demo/demoLecture";
 import type { TestBank, TestGradeResult } from "@/lib/testPrompt";
+import { curriculumBoardEvidence } from "@/lib/curriculum/visualEvidence";
 import { addCost, recordJsonCost, resetCostLedger, setCost } from "@/lib/costLedger";
 import { LectureCostBadge } from "@/components/LectureCostBadge";
 import { buildLessonInputFromMarkdown, relevantImageKeys, assetKey, type UploadedImage } from "@/lib/markdownSource";
@@ -140,6 +142,9 @@ type OutlineStreamEvent =
   | { type: "scoping-question"; subtopicIndex?: number; question?: string; options?: { label: string; instruction: string }[] }
   | { type: "outline"; topic?: string; scope?: PlanOutline["scope"]; depth?: PlanOutline["depth"]; subtopics?: PlanOutline["subtopics"]; costUsd?: number; research?: SourcePack; coverage?: PlanOutline["coverage"] }
   | { type: "error"; error?: string };
+/** A finished course lecture checked against its lesson spec (app/api/curricula/verify). */
+type CurriculumCheck = { version?: number; covered: number; total: number; missing: Array<{ n: number; text: string }>; outOfScope: string[]; accuracyIssues: string[]; passed: boolean; outcomes?: Array<{ n: number; covered: boolean; board: number; note: string; text: string }> };
+
 type LecturePayload = {
   topic: string;
   mood: string;
@@ -362,7 +367,7 @@ type BuildCost =
   const [slideContext, setSlideContext] = useState("");
   const [diagramHints, setDiagramHints] = useState("");
   const [slideImages, setSlideImages] = useState<Array<{ slide: number; descriptions: string[] }>>([]);
-  const [uploadedFile, setUploadedFile] = useState<{ name: string; slideCount?: number; kind: "pptx" | "pdf" | "suprnotes" | "task-folder" | "youtube"; assetCount?: number } | null>(null);
+  const [uploadedFile, setUploadedFile] = useState<{ name: string; slideCount?: number; kind: "pptx" | "pdf" | "suprnotes" | "task-folder" | "youtube" | "curriculum"; assetCount?: number } | null>(null);
   const [sourceDocument, setSourceDocument] = useState<unknown>(null);
   /** What the student asked about their upload, kept verbatim for the generator. */
   const [uploadFocus, setUploadFocus] = useState("");
@@ -1036,13 +1041,18 @@ type BuildCost =
     const brief = takePendingBrief();
     // Nothing handed over (a reload, a bookmark, a stray link): the front page is where a lesson
     // starts, so go there rather than show a second copy of it.
-    if (!brief || (!brief.file && !brief.videoUrl && !brief.topic?.trim())) {
+    if (!brief || (!brief.file && !brief.videoUrl && !brief.curriculum && !brief.topic?.trim())) {
       go("landing");
       return;
     }
 
     if (brief.videoUrl) {
       void ingestVideo(brief.videoUrl);
+      return;
+    }
+
+    if (brief.curriculum) {
+      void ingestCurriculum(brief.curriculum);
       return;
     }
 
@@ -1439,6 +1449,72 @@ type BuildCost =
       setUploadPhase("error");
     }
   }
+
+  /**
+   * A course lesson, by address (lib/curriculum/lessonSpec.ts). The server reads the lesson's
+   * official outcomes and syllabus pages and returns a lesson spec as a structured lesson document,
+   * which is built like a video: one source, no planning questions, every board tied to an outcome.
+   * When the lecture is finished it is checked against the spec (the effect on `progressiveComplete`).
+   */
+  const curriculumRef = useRef<CurriculumLessonRequest | null>(null);
+  const curriculumCheckedRef = useRef(false);
+  const [curriculumCheck, setCurriculumCheck] = useState<CurriculumCheck | null>(null);
+  async function ingestCurriculum(request: CurriculumLessonRequest) {
+    ensureSpendTag();
+    setUploadPhase("reading");
+    setUploadError(null);
+    // Reference, not strict: the syllabus says WHAT to teach; the lesson explains it in full.
+    const scope: SourceScope = { fidelity: "reference", breadth: { kind: "whole" }, documentLabels: [] };
+    setSourceScope(scope);
+    sourceScopeRef.current = scope;
+    sourceModeChosenRef.current = true;
+    setSourceModeStart(null);
+    resetCostLedger();
+    setSlideContext("");
+    setDiagramHints("");
+    setSlideImages([]);
+    setUploadedFile(null);
+    setSourceDocument(null);
+    setDocumentId(null);
+    setOcrTranscript("");
+    setSelectionPages([]);
+    curriculumRef.current = null;
+    curriculumCheckedRef.current = false;
+    setCurriculumCheck(null);
+    try {
+      const res = await fetch("/api/curricula/lesson", { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify(request) });
+      const data = (await res.json().catch(() => ({}))) as { error?: string; request?: CurriculumLessonRequest; spec?: { lessonTitle: string }; document?: unknown; text?: string; verification?: CurriculumCheck | null };
+      if (!res.ok || !data.spec || !data.document || !data.request) throw new Error(data.error ?? "This lesson could not be prepared.");
+      const title = data.spec.lessonTitle;
+      curriculumRef.current = data.request;
+      // A lesson already checked for an earlier student keeps its result; a new one is checked when built.
+      if (data.verification?.version === 3) { curriculumCheckedRef.current = true; setCurriculumCheck(data.verification); }
+      setSourceDocument(data.document);
+      setFullDocumentText(data.text ?? "");
+      setFocusPages([]);
+      setUploadedFile({ name: title, kind: "curriculum" });
+      setTopic(title);
+      requestTextRef.current = title;
+      autoPlannedRef.current = true;
+      setUploadPhase("ready");
+      void build(title, undefined, { sourceDocument: data.document, kind: "curriculum", documentId: null }, []);
+    } catch (error) {
+      setUploadError(error instanceof Error ? error.message : "This lesson could not be prepared.");
+      setUploadPhase("error");
+    }
+  }
+
+  // The finished course lecture, checked once against its spec: every outcome taught, nothing off-level.
+  useEffect(() => {
+    const request = curriculumRef.current;
+    if (!progressiveComplete || !request || curriculumCheckedRef.current || !beats.length) return;
+    curriculumCheckedRef.current = true;
+    const boards = beats.map(curriculumBoardEvidence);
+    void fetch("/api/curricula/verify", { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify({ request, boards }) })
+      .then((r) => (r.ok ? r.json() : null))
+      .then((v: CurriculumCheck | null) => { if (v) setCurriculumCheck(v); })
+      .catch(() => { /* the lesson still plays; the check is for review */ });
+  }, [progressiveComplete, beats]);
 
   async function ingestFiles(files: File[]) {
     if (!files.length) return;
@@ -2005,6 +2081,7 @@ type BuildCost =
       uploadedFile?.kind === "suprnotes" ||
       uploadedFile?.kind === "task-folder" ||
       uploadedFile?.kind === "youtube" ||
+      uploadedFile?.kind === "curriculum" ||
       uploadedFile?.kind === "pdf" ||
       uploadedFile?.kind === "pptx";
     return structuredUpload || Boolean(slideContext && !sourceDocument) || (DEMO_HARDCODED && !sourceDocument && !slideContext);
@@ -2704,7 +2781,7 @@ type BuildCost =
     focus?: string;
     transcript?: string;
     slideContext?: string;
-    kind?: "pdf" | "pptx" | "suprnotes" | "task-folder" | "youtube";
+    kind?: "pdf" | "pptx" | "suprnotes" | "task-folder" | "youtube" | "curriculum";
     /** A dragged page region is already an explicit scope choice; never ask the student again. */
     scopeSelected?: boolean;
     /** Handle for the page images this parse rendered. Null when none were produced. */
@@ -2722,7 +2799,7 @@ type BuildCost =
     const trimmed = t.trim();
     if (!trimmed) return;
     // What "Try again" repeats for a lecture that has no planning step (strict source, a video).
-    lastBuildRef.current = { t, approvedOutline, fresh, documentPlanningNotes, noPlanning: sourceScopeRef.current?.fidelity === "strict" || fresh?.kind === "youtube" };
+    lastBuildRef.current = { t, approvedOutline, fresh, documentPlanningNotes, noPlanning: sourceScopeRef.current?.fidelity === "strict" || fresh?.kind === "youtube" || fresh?.kind === "curriculum" };
     resetLectureSummary();
     buildAbortRef.current?.abort();
     const controller = new AbortController();
@@ -2856,6 +2933,8 @@ type BuildCost =
     setBuildStatus(
       (fresh?.kind ?? uploadedFile?.kind) === "youtube"
         ? "Building a short version of the video"
+        : (fresh?.kind ?? uploadedFile?.kind) === "curriculum"
+        ? "Building your lesson from the official syllabus"
         : doc ? `Building from your uploaded ${uploadedFile?.kind === "pdf" ? "PDF" : uploadedFile?.kind === "pptx" ? "presentation" : "source"}` : "Writing the lecture script and boards",
     );
 
@@ -2873,7 +2952,8 @@ type BuildCost =
     const payload: LecturePayload = {
       topic: trimmed,
       mood: `${selectedMode.name} learning mode: ${selectedMode.detail}.${buildSteeringLine}${documentPlanningLine}${learnerLine}`,
-      sourceType: fresh?.kind ?? uploadedFile?.kind ?? "prompt",
+      // A course lesson is a structured lesson document to the lecture writer (lib/curriculum/lessonSpec.ts).
+      sourceType: (fresh?.kind ?? uploadedFile?.kind) === "curriculum" ? "suprnotes" : (fresh?.kind ?? uploadedFile?.kind ?? "prompt") as LecturePayload["sourceType"],
       mode: selectedMode.id === "none" ? "standard" : selectedMode.id as LectureMode,
       ...(doc ? { suprnotes: doc } : slides ? { context: slides, diagramHints, slideImages } : {}),
       // The document question when there is one; otherwise the student's own words, when they say
@@ -3337,7 +3417,11 @@ type BuildCost =
         body: JSON.stringify({ kind: "playhead", playhead: lecturePlayheadRef.current, ended: true }),
       }).catch(() => {});
     }
-    if (!progressiveComplete) return;
+    // The last PLANNED board watched is the end, even if the server has not yet marked the session
+    // complete (it re-opens to "generating" after any question): returning here left the last
+    // board's Continue doing nothing (audit 2026-10-15). Earlier boards still wait for the rest.
+    const lastPlanned = Math.max(beats.length, progressivePlannedBeatCount) - 1;
+    if (!progressiveComplete && lecturePlayheadRef.current < lastPlanned) return;
     // Watched to the end: the one-slide summary unlocks, here and on every screen after this.
     setLectureCompleted(true);
     rememberLesson();
@@ -3487,6 +3571,10 @@ type BuildCost =
     setMindMapOpen(false);
     setReplayStartIndex(Math.max(0, Math.min(index, beats.length - 1)));
     setPhase("teaching");
+  }
+
+  function jumpToEvidenceBoard(index: number) {
+    setReplayStartIndex(Math.max(0, Math.min(index, beats.length - 1)));
   }
 
   function backToLectureFromTest() {
@@ -3695,12 +3783,30 @@ type BuildCost =
       default:
         // `adhd` is the ONLY difference between the two tracks at this point: same player, same UI,
         // plus the overlay. The gate lives in lib/adhd/gate.ts so this is the one place that asks.
-        player = <LessonPlayer beats={beats} title={builtTopic} onExit={endLectureToHome} onComplete={onLectureComplete} onUnderstood={finishLectureUnderstood} onCheckpointGraded={recordCheckpointGrade} mood={moodString} adhd={isAdhdLearner(profile)} startIndex={clickableMindMap ? replayStartIndex : undefined} sourceDocument={sourceDocument} slideContext={slideContext} ocrTranscript={ocrTranscript} documentId={documentId ?? ""} lessonQuestion={uploadFocus} fullDocumentText={fullDocumentText} hasMoreBeats={!progressiveComplete} totalBeatCount={progressivePlannedBeatCount || undefined} plannedParts={chatPlannedParts} onBeatIndexChange={onLectureBeatChange} onLearnerInteraction={captureLearnerInteraction} onSummarize={openLectureSummary} summaryUnlocked={lectureCompleted} selectionPages={selectionPages} focusPages={clickableMindMap ? focusPages : undefined} sourceScope={playerScope} captions={profile?.captions === true} />;
+        player = <LessonPlayer beats={beats} title={builtTopic} onExit={endLectureToHome} onComplete={onLectureComplete} onUnderstood={finishLectureUnderstood} onCheckpointGraded={recordCheckpointGrade} mood={moodString} adhd={isAdhdLearner(profile)} startIndex={replayStartIndex} sourceDocument={sourceDocument} slideContext={slideContext} ocrTranscript={ocrTranscript} documentId={documentId ?? ""} lessonQuestion={uploadFocus} fullDocumentText={fullDocumentText} hasMoreBeats={!progressiveComplete} totalBeatCount={progressivePlannedBeatCount || undefined} plannedParts={chatPlannedParts} onBeatIndexChange={onLectureBeatChange} onLearnerInteraction={captureLearnerInteraction} onSummarize={openLectureSummary} summaryUnlocked={lectureCompleted} selectionPages={selectionPages} focusPages={clickableMindMap ? focusPages : undefined} sourceScope={playerScope} captions={profile?.captions === true} />;
     }
     return (
       <div className="relative">
         {player}
         {summaryOverlay}
+        {/* A course lesson's check against its syllabus outcomes: small, and only once it has run.
+            It sits in the empty middle of the header bar: bottom-left it covered Play, Previous and
+            Next (audit 2026-10-15). Opened, its list drops down over the board top. */}
+        {curriculumCheck && (
+          <details className="pointer-events-auto fixed left-1/2 top-2 z-50 w-[min(25rem,calc(100vw-2rem))] -translate-x-1/2 rounded-2xl border border-[var(--hud-line)] bg-[var(--hud-surface)] text-[0.75rem] text-[var(--hud-text-dim)] shadow-[var(--elev-2)]">
+            <summary className="cursor-pointer list-none px-3 py-2 font-bold text-[var(--hud-text)]">
+              {curriculumCheck.missing.length ? "◐" : "✓"} Outcome evidence · {curriculumCheck.covered}/{curriculumCheck.total}
+            </summary>
+            <div className="max-h-64 space-y-1 overflow-y-auto border-t border-[var(--hud-line)] p-2">
+              {(curriculumCheck.outcomes ?? []).map((outcome) => (
+                <button key={outcome.n} type="button" disabled={!outcome.board} onClick={() => jumpToEvidenceBoard(outcome.board - 1)} className="block w-full rounded-xl px-2.5 py-2 text-left hover:bg-[var(--hud-surface-2)] disabled:cursor-default disabled:opacity-60">
+                  <span className={outcome.covered ? "text-[var(--ok)]" : "text-[var(--hud-danger)]"}>{outcome.covered ? "✓" : "○"}</span>{" "}<span className="font-semibold text-[var(--hud-text)]">{outcome.text}</span>
+                  <span className="mt-0.5 block text-[0.68rem] text-[var(--hud-text-faint)]">{outcome.board ? `Board ${outcome.board} · ${outcome.note}` : outcome.note}</span>
+                </button>
+              ))}
+            </div>
+          </details>
+        )}
         {/*
             The whole lecture's cost, not one stage of it: document, planning, generation, narration,
             questions and the live tutor each report what they measured (lib/costLedger.ts). The old
@@ -5650,4 +5756,3 @@ function questionFromUpload(start: { fresh?: { focus?: string; sourceDocument?: 
   if (!focus || isWholeDocumentRequest(focus)) return null;
   return isSpecificDocumentRequest(focus, start?.fresh?.sourceDocument) ? focus : null;
 }
-

@@ -1,0 +1,1852 @@
+{
+ "id": "us-ap-physics-1",
+ "region": "US",
+ "framework": "AP Physics 1: Algebra-Based Course and Exam Description (effective fall 2024)",
+ "board": "College Board",
+ "qualification": "AP",
+ "subject": "Physics 1: Algebra-Based",
+ "syllabusCode": null,
+ "gradeSystem": "course",
+ "source": {
+  "urls": [
+   "https://apcentral.collegeboard.org/media/pdf/ap-physics-1-course-and-exam-description.pdf",
+   "https://apcentral.collegeboard.org/courses/ap-physics-1"
+  ],
+  "publisher": "College Board",
+  "licence": "© College Board; structure + our own wording only",
+  "firstExam": "2025"
+ },
+ "grades": [
+  {
+   "grade": "all",
+   "units": [
+    {
+     "id": "unit-1-kinematics",
+     "title": "Unit 1: Kinematics",
+     "topics": [
+      {
+       "id": "1-1-scalars-and-vectors-in-one-dimension",
+       "title": "1.1 Scalars and Vectors in One Dimension",
+       "subtopics": [
+        {
+         "id": "scalars-and-vectors",
+         "title": "Scalars and vectors",
+         "outcomes": [
+          {
+           "code": "1.1.A",
+           "text": "Describe a scalar or vector quantity using magnitude and direction as appropriate"
+          },
+          {
+           "code": "1.1.A.1",
+           "text": "Scalars have magnitude only; vectors have magnitude and direction"
+          },
+          {
+           "code": "1.1.A.2",
+           "text": "Draw vectors as arrows whose length is proportional to magnitude"
+          },
+          {
+           "code": "1.1.A.3",
+           "text": "Classify distance and speed as scalars, and position, displacement, velocity, acceleration as vectors; use vector notation and signs in one dimension"
+          }
+         ]
+        },
+        {
+         "id": "vector-sums-in-one-dimension",
+         "title": "Vector sums in one dimension",
+         "outcomes": [
+          {
+           "code": "1.1.B",
+           "text": "Describe a vector sum in one dimension"
+          },
+          {
+           "code": "1.1.B.1",
+           "text": "In a one-dimensional coordinate system, opposite directions carry opposite signs when adding vectors"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "1-2-displacement-velocity-and-acceleration",
+       "title": "1.2 Displacement, Velocity, and Acceleration",
+       "subtopics": [
+        {
+         "id": "position-change-and-displacement",
+         "title": "Position change and displacement",
+         "outcomes": [
+          {
+           "code": "1.2.A",
+           "text": "Describe a change in an object's position"
+          },
+          {
+           "code": "1.2.A.1",
+           "text": "Treat an object as a single point when its size, shape and internal makeup can be ignored"
+          },
+          {
+           "code": "1.2.A.2",
+           "text": "Define displacement as the change in position"
+          }
+         ]
+        },
+        {
+         "id": "average-and-instantaneous-velocity-and-accelerat",
+         "title": "Average and instantaneous velocity and acceleration",
+         "outcomes": [
+          {
+           "code": "1.2.B",
+           "text": "Describe the average velocity and acceleration of an object"
+          },
+          {
+           "code": "1.2.B.1",
+           "text": "Calculate averages from the initial and final states over a time interval"
+          },
+          {
+           "code": "1.2.B.2",
+           "text": "Average velocity is displacement divided by elapsed time"
+          },
+          {
+           "code": "1.2.B.3",
+           "text": "Average acceleration is change in velocity divided by elapsed time"
+          },
+          {
+           "code": "1.2.B.4",
+           "text": "An object accelerates when the magnitude or direction of its velocity changes"
+          },
+          {
+           "code": "1.2.B.5",
+           "text": "Over very small intervals, averages approach instantaneous velocity and acceleration"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "1-3-representing-motion",
+       "title": "1.3 Representing Motion",
+       "subtopics": [
+        {
+         "id": "representing-and-calculating-motion",
+         "title": "Representing and calculating motion",
+         "outcomes": [
+          {
+           "code": "1.3.A",
+           "text": "Describe position, velocity and acceleration using representations of motion"
+          },
+          {
+           "code": "1.3.A.1",
+           "text": "Represent motion with diagrams, graphs, equations and narrative descriptions"
+          },
+          {
+           "code": "1.3.A.2",
+           "text": "Apply the three constant-acceleration kinematic equations in one dimension"
+          },
+          {
+           "code": "1.3.A.3",
+           "text": "Near Earth's surface, gravity gives a constant downward acceleration of about 10 m/s squared"
+          },
+          {
+           "code": "1.3.A.4",
+           "text": "Use slopes and areas of position, velocity and acceleration graphs to relate the quantities"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "1-4-reference-frames-and-relative-motion",
+       "title": "1.4 Reference Frames and Relative Motion",
+       "subtopics": [
+        {
+         "id": "reference-frames",
+         "title": "Reference frames",
+         "outcomes": [
+          {
+           "code": "1.4.A",
+           "text": "Describe the reference frame of a given observer"
+          },
+          {
+           "code": "1.4.A.1",
+           "text": "The chosen reference frame sets the direction and size of measured quantities"
+          }
+         ]
+        },
+        {
+         "id": "relative-motion",
+         "title": "Relative motion",
+         "outcomes": [
+          {
+           "code": "1.4.B",
+           "text": "Describe motion as measured by observers in different inertial frames"
+          },
+          {
+           "code": "1.4.B.1",
+           "text": "Convert measurements between reference frames"
+          },
+          {
+           "code": "1.4.B.2",
+           "text": "Observed velocity combines the object's velocity with the observer frame's velocity by vector addition; acceleration is the same in all inertial frames"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "1-5-vectors-and-motion-in-two-dimensions",
+       "title": "1.5 Vectors and Motion in Two Dimensions",
+       "subtopics": [
+        {
+         "id": "vector-components",
+         "title": "Vector components",
+         "outcomes": [
+          {
+           "code": "1.5.A",
+           "text": "Describe the perpendicular components of a vector"
+          },
+          {
+           "code": "1.5.A.1",
+           "text": "Model a vector as the resultant of two perpendicular components"
+          },
+          {
+           "code": "1.5.A.2",
+           "text": "Resolve vectors into components along a chosen coordinate system"
+          },
+          {
+           "code": "1.5.A.3",
+           "text": "Use trigonometry and the Pythagorean theorem to find components"
+          }
+         ]
+        },
+        {
+         "id": "two-dimensional-motion-and-projectiles",
+         "title": "Two-dimensional motion and projectiles",
+         "outcomes": [
+          {
+           "code": "1.5.B",
+           "text": "Describe the motion of an object moving in two dimensions"
+          },
+          {
+           "code": "1.5.B.1",
+           "text": "Analyse 2D motion by splitting it into components and using 1D kinematics"
+          },
+          {
+           "code": "1.5.B.2",
+           "text": "Projectile motion has zero acceleration in one dimension and constant nonzero acceleration in the other"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "unit-2-force-and-translational-dynamics",
+     "title": "Unit 2: Force and Translational Dynamics",
+     "topics": [
+      {
+       "id": "2-1-systems-and-center-of-mass",
+       "title": "2.1 Systems and Center of Mass",
+       "subtopics": [
+        {
+         "id": "systems-and-their-interactions",
+         "title": "Systems and their interactions",
+         "outcomes": [
+          {
+           "code": "2.1.A",
+           "text": "Describe the properties and interactions of a system"
+          },
+          {
+           "code": "2.1.A.1",
+           "text": "System properties come from the interactions of objects inside it"
+          },
+          {
+           "code": "2.1.A.2",
+           "text": "A system can be treated as one object when its internal details do not matter"
+          },
+          {
+           "code": "2.1.A.3",
+           "text": "Systems can exchange energy or mass with the environment"
+          },
+          {
+           "code": "2.1.A.4",
+           "text": "Individual objects in a system may behave differently from the system as a whole"
+          },
+          {
+           "code": "2.1.A.5",
+           "text": "The internal structure of a system affects how it must be analysed"
+          },
+          {
+           "code": "2.1.A.6",
+           "text": "Changing external variables can change a system's substructure"
+          }
+         ]
+        },
+        {
+         "id": "center-of-mass",
+         "title": "Center of mass",
+         "outcomes": [
+          {
+           "code": "2.1.B",
+           "text": "Describe the location of a system's center of mass relative to its parts"
+          },
+          {
+           "code": "2.1.B.1",
+           "text": "For symmetric mass distributions the center of mass lies on lines of symmetry"
+          },
+          {
+           "code": "2.1.B.2",
+           "text": "Calculate the center of mass along an axis for a few particles"
+          },
+          {
+           "code": "2.1.B.3",
+           "text": "Model a system as a single object at its center of mass"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "2-2-forces-and-free-body-diagrams",
+       "title": "2.2 Forces and Free-Body Diagrams",
+       "subtopics": [
+        {
+         "id": "forces-as-interactions",
+         "title": "Forces as interactions",
+         "outcomes": [
+          {
+           "code": "2.2.A",
+           "text": "Describe a force as an interaction between two objects or systems"
+          },
+          {
+           "code": "2.2.A.1",
+           "text": "Forces are vectors from interactions; an object cannot exert a net force on itself"
+          },
+          {
+           "code": "2.2.A.2",
+           "text": "Contact forces are macroscopic effects of electric forces between atoms"
+          }
+         ]
+        },
+        {
+         "id": "free-body-diagrams",
+         "title": "Free-body diagrams",
+         "outcomes": [
+          {
+           "code": "2.2.B",
+           "text": "Describe the forces on an object using a free-body diagram"
+          },
+          {
+           "code": "2.2.B.1",
+           "text": "Free-body diagrams help visualise forces and write equations"
+          },
+          {
+           "code": "2.2.B.2",
+           "text": "Show every environmental force on the object"
+          },
+          {
+           "code": "2.2.B.3",
+           "text": "Draw forces as vectors starting from the center of mass dot"
+          },
+          {
+           "code": "2.2.B.4",
+           "text": "Choose an axis parallel to the acceleration to simplify the algebra"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "2-3-newton-s-third-law",
+       "title": "2.3 Newton's Third Law",
+       "subtopics": [
+        {
+         "id": "newton-s-third-law-and-tension",
+         "title": "Newton's third law and tension",
+         "outcomes": [
+          {
+           "code": "2.3.A",
+           "text": "Describe an interaction using Newton's third law and paired forces"
+          },
+          {
+           "code": "2.3.A.1",
+           "text": "The two objects in an interaction exert equal and opposite forces on each other"
+          },
+          {
+           "code": "2.3.A.2",
+           "text": "Internal forces do not change the motion of a system's center of mass"
+          },
+          {
+           "code": "2.3.A.3",
+           "text": "Tension is the net result of forces between segments of a string under external force"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "2-4-newton-s-first-law",
+       "title": "2.4 Newton's First Law",
+       "subtopics": [
+        {
+         "id": "constant-velocity-and-equilibrium",
+         "title": "Constant velocity and equilibrium",
+         "outcomes": [
+          {
+           "code": "2.4.A",
+           "text": "Describe the conditions under which a system's velocity stays constant"
+          },
+          {
+           "code": "2.4.A.1",
+           "text": "Net force is the vector sum of all forces on the system"
+          },
+          {
+           "code": "2.4.A.2",
+           "text": "Translational equilibrium means the net force is zero"
+          },
+          {
+           "code": "2.4.A.3",
+           "text": "With zero net force, velocity stays constant (Newton's first law)"
+          },
+          {
+           "code": "2.4.A.4",
+           "text": "Forces balanced in one dimension may be unbalanced in another"
+          },
+          {
+           "code": "2.4.A.5",
+           "text": "An inertial frame is one where Newton's first law holds"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "2-5-newton-s-second-law",
+       "title": "2.5 Newton's Second Law",
+       "subtopics": [
+        {
+         "id": "newton-s-second-law",
+         "title": "Newton's second law",
+         "outcomes": [
+          {
+           "code": "2.5.A",
+           "text": "Describe the conditions under which a system's velocity changes"
+          },
+          {
+           "code": "2.5.A.1",
+           "text": "Unbalanced forces mean a nonzero net force"
+          },
+          {
+           "code": "2.5.A.2",
+           "text": "Acceleration is proportional to net force and in the same direction (Newton's second law)"
+          },
+          {
+           "code": "2.5.A.3",
+           "text": "Velocity of the center of mass changes only with a nonzero net external force"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "2-6-gravitational-force",
+       "title": "2.6 Gravitational Force",
+       "subtopics": [
+        {
+         "id": "universal-gravitation-and-fields",
+         "title": "Universal gravitation and fields",
+         "outcomes": [
+          {
+           "code": "2.6.A",
+           "text": "Describe the gravitational interaction between two objects with mass"
+          },
+          {
+           "code": "2.6.A.1",
+           "text": "Gravitational force is proportional to both masses and inversely to distance squared; attractive, along the line of centers"
+          },
+          {
+           "code": "2.6.A.2",
+           "text": "A field models a noncontact force; gravitational field strength is force per unit mass"
+          },
+          {
+           "code": "2.6.A.3",
+           "text": "Weight is the gravitational force from an astronomical body on a small nearby object"
+          }
+         ]
+        },
+        {
+         "id": "constant-gravity-near-earth",
+         "title": "Constant gravity near Earth",
+         "outcomes": [
+          {
+           "code": "2.6.B",
+           "text": "Describe when the gravitational force can be treated as constant"
+          },
+          {
+           "code": "2.6.B.1",
+           "text": "Gravity is constant when it barely changes over the displacement"
+          },
+          {
+           "code": "2.6.B.2",
+           "text": "Near Earth's surface, g is about 10 N/kg"
+          }
+         ]
+        },
+        {
+         "id": "apparent-weight",
+         "title": "Apparent weight",
+         "outcomes": [
+          {
+           "code": "2.6.C",
+           "text": "Describe when apparent weight differs from the gravitational force"
+          },
+          {
+           "code": "2.6.C.1",
+           "text": "Apparent weight is the magnitude of the normal force on the system"
+          },
+          {
+           "code": "2.6.C.2",
+           "text": "In an accelerating system, apparent weight differs from gravitational force"
+          },
+          {
+           "code": "2.6.C.3",
+           "text": "A system appears weightless when gravity is the only force on it"
+          },
+          {
+           "code": "2.6.C.4",
+           "text": "The equivalence principle: an observer in a noninertial frame cannot tell apparent weight from gravity"
+          }
+         ]
+        },
+        {
+         "id": "inertial-and-gravitational-mass",
+         "title": "Inertial and gravitational mass",
+         "outcomes": [
+          {
+           "code": "2.6.D",
+           "text": "Describe inertial and gravitational mass"
+          },
+          {
+           "code": "2.6.D.1",
+           "text": "Inertial mass measures resistance to changes in motion"
+          },
+          {
+           "code": "2.6.D.2",
+           "text": "Gravitational mass relates to the gravitational attraction between systems"
+          },
+          {
+           "code": "2.6.D.3",
+           "text": "Inertial and gravitational mass have been experimentally found to be equal"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "2-7-kinetic-and-static-friction",
+       "title": "2.7 Kinetic and Static Friction",
+       "subtopics": [
+        {
+         "id": "kinetic-friction",
+         "title": "Kinetic friction",
+         "outcomes": [
+          {
+           "code": "2.7.A",
+           "text": "Describe kinetic friction between two surfaces"
+          },
+          {
+           "code": "2.7.A.1",
+           "text": "Kinetic friction acts when surfaces slide, opposing relative motion and independent of contact area"
+          },
+          {
+           "code": "2.7.A.2",
+           "text": "Kinetic friction equals the coefficient of kinetic friction times the normal force; the normal force is perpendicular to the surface"
+          }
+         ]
+        },
+        {
+         "id": "static-friction",
+         "title": "Static friction",
+         "outcomes": [
+          {
+           "code": "2.7.B",
+           "text": "Describe static friction between two surfaces"
+          },
+          {
+           "code": "2.7.B.1",
+           "text": "Static friction can act between surfaces not moving relative to each other"
+          },
+          {
+           "code": "2.7.B.2",
+           "text": "Static friction adjusts to prevent slipping, up to a maximum value"
+          },
+          {
+           "code": "2.7.B.3",
+           "text": "The static coefficient is typically greater than the kinetic coefficient"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "2-8-spring-forces",
+       "title": "2.8 Spring Forces",
+       "subtopics": [
+        {
+         "id": "ideal-springs-and-hooke-s-law",
+         "title": "Ideal springs and Hooke's law",
+         "outcomes": [
+          {
+           "code": "2.8.A",
+           "text": "Describe the force exerted on an object by an ideal spring"
+          },
+          {
+           "code": "2.8.A.1",
+           "text": "An ideal spring is massless and exerts force proportional to its change in length"
+          },
+          {
+           "code": "2.8.A.2",
+           "text": "The spring force magnitude follows Hooke's law"
+          },
+          {
+           "code": "2.8.A.3",
+           "text": "The spring force always points toward the equilibrium position"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "2-9-circular-motion",
+       "title": "2.9 Circular Motion",
+       "subtopics": [
+        {
+         "id": "centripetal-and-tangential-acceleration",
+         "title": "Centripetal and tangential acceleration",
+         "outcomes": [
+          {
+           "code": "2.9.A",
+           "text": "Describe the motion of an object traveling in a circular path"
+          },
+          {
+           "code": "2.9.A.1",
+           "text": "Centripetal acceleration points to the center with magnitude v squared over r"
+          },
+          {
+           "code": "2.9.A.2",
+           "text": "Centripetal acceleration comes from one or more forces or force components, such as at the top of a loop, banked curves and conical pendulums"
+          },
+          {
+           "code": "2.9.A.3",
+           "text": "Tangential acceleration is the rate of change of speed, tangent to the path"
+          },
+          {
+           "code": "2.9.A.4",
+           "text": "Net acceleration is the vector sum of centripetal and tangential parts"
+          },
+          {
+           "code": "2.9.A.5",
+           "text": "Describe uniform circular motion with period and frequency"
+          }
+         ]
+        },
+        {
+         "id": "circular-orbits",
+         "title": "Circular orbits",
+         "outcomes": [
+          {
+           "code": "2.9.B",
+           "text": "Describe circular orbits using Kepler's third law"
+          },
+          {
+           "code": "2.9.B.1",
+           "text": "In circular orbit, gravity alone provides the centripetal acceleration, relating period and radius to the central mass"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "unit-3-work-energy-and-power",
+     "title": "Unit 3: Work, Energy, and Power",
+     "topics": [
+      {
+       "id": "3-1-translational-kinetic-energy",
+       "title": "3.1 Translational Kinetic Energy",
+       "subtopics": [
+        {
+         "id": "translational-kinetic-energy",
+         "title": "Translational kinetic energy",
+         "outcomes": [
+          {
+           "code": "3.1.A",
+           "text": "Describe the translational kinetic energy of an object from its mass and velocity"
+          },
+          {
+           "code": "3.1.A.1",
+           "text": "Kinetic energy equals one half mass times speed squared"
+          },
+          {
+           "code": "3.1.A.2",
+           "text": "Kinetic energy is a scalar"
+          },
+          {
+           "code": "3.1.A.3",
+           "text": "Observers in different reference frames measure different kinetic energies"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "3-2-work",
+       "title": "3.2 Work",
+       "subtopics": [
+        {
+         "id": "work-and-conservative-forces",
+         "title": "Work and conservative forces",
+         "outcomes": [
+          {
+           "code": "3.2.A",
+           "text": "Describe the work done on an object or system by a force or collection of forces"
+          },
+          {
+           "code": "3.2.A.1",
+           "text": "Work is energy transferred into or out of a system by a force acting over a distance; conservative work is path independent, nonconservative work is not"
+          },
+          {
+           "code": "3.2.A.2",
+           "text": "Work is a scalar that can be positive, negative or zero"
+          },
+          {
+           "code": "3.2.A.3",
+           "text": "Work by a constant force depends on the force component parallel to the displacement"
+          }
+         ]
+        },
+        {
+         "id": "work-energy-theorem",
+         "title": "Work-energy theorem",
+         "outcomes": [
+          {
+           "code": "3.2.A.4",
+           "text": "Net work equals the change in kinetic energy (work-energy theorem), and friction dissipates energy equal to friction force times path length"
+          },
+          {
+           "code": "3.2.A.5",
+           "text": "Work equals the area under a force versus displacement graph"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "3-3-potential-energy",
+       "title": "3.3 Potential Energy",
+       "subtopics": [
+        {
+         "id": "potential-energy-of-a-system",
+         "title": "Potential energy of a system",
+         "outcomes": [
+          {
+           "code": "3.3.A",
+           "text": "Describe the potential energy of a system"
+          },
+          {
+           "code": "3.3.A.1",
+           "text": "A system has potential energy when its objects interact only through conservative forces"
+          },
+          {
+           "code": "3.3.A.2",
+           "text": "Potential energy is a scalar tied to the positions of objects in the system"
+          },
+          {
+           "code": "3.3.A.3",
+           "text": "The zero of potential energy is chosen by the observer for convenience"
+          },
+          {
+           "code": "3.3.A.4",
+           "text": "Use elastic, general gravitational and near-surface gravitational potential energy formulas"
+          },
+          {
+           "code": "3.3.A.5",
+           "text": "Total potential energy of many objects is the sum over pairs"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "3-4-conservation-of-energy",
+       "title": "3.4 Conservation of Energy",
+       "subtopics": [
+        {
+         "id": "energies-present-in-a-system",
+         "title": "Energies present in a system",
+         "outcomes": [
+          {
+           "code": "3.4.A",
+           "text": "Describe the energies present in a system"
+          },
+          {
+           "code": "3.4.A.1",
+           "text": "A single-object system can have only kinetic energy"
+          },
+          {
+           "code": "3.4.A.2",
+           "text": "Systems with conservative interactions or reversible shape changes can have kinetic and potential energy"
+          }
+         ]
+        },
+        {
+         "id": "conservation-of-mechanical-energy",
+         "title": "Conservation of mechanical energy",
+         "outcomes": [
+          {
+           "code": "3.4.B",
+           "text": "Describe a system's behavior using conservation of mechanical energy"
+          },
+          {
+           "code": "3.4.B.1",
+           "text": "Mechanical energy is kinetic plus potential energy"
+          },
+          {
+           "code": "3.4.B.2",
+           "text": "A change in one energy type is balanced by changes in others or by transfer with the surroundings"
+          },
+          {
+           "code": "3.4.B.3",
+           "text": "A system can be chosen so its total energy is constant"
+          },
+          {
+           "code": "3.4.B.4",
+           "text": "A change in total energy equals the energy transferred in or out"
+          }
+         ]
+        },
+        {
+         "id": "system-choice-and-energy",
+         "title": "System choice and energy",
+         "outcomes": [
+          {
+           "code": "3.4.C",
+           "text": "Describe how choosing the system determines whether its energy changes"
+          },
+          {
+           "code": "3.4.C.1",
+           "text": "Energy is conserved in all interactions"
+          },
+          {
+           "code": "3.4.C.2",
+           "text": "With zero work and no nonconservative interactions, mechanical energy is constant"
+          },
+          {
+           "code": "3.4.C.3",
+           "text": "Nonzero work means energy moves between system and environment"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "3-5-power",
+       "title": "3.5 Power",
+       "subtopics": [
+        {
+         "id": "power",
+         "title": "Power",
+         "outcomes": [
+          {
+           "code": "3.5.A",
+           "text": "Describe energy transfer into, out of or within a system in terms of power"
+          },
+          {
+           "code": "3.5.A.1",
+           "text": "Power is the rate of energy change over time"
+          },
+          {
+           "code": "3.5.A.2",
+           "text": "Average power is energy transferred divided by time"
+          },
+          {
+           "code": "3.5.A.3",
+           "text": "Average power equals total work divided by time"
+          },
+          {
+           "code": "3.5.A.4",
+           "text": "Instantaneous power from a constant force equals force component along velocity times speed"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "unit-4-linear-momentum",
+     "title": "Unit 4: Linear Momentum",
+     "topics": [
+      {
+       "id": "4-1-linear-momentum",
+       "title": "4.1 Linear Momentum",
+       "subtopics": [
+        {
+         "id": "linear-momentum",
+         "title": "Linear momentum",
+         "outcomes": [
+          {
+           "code": "4.1.A",
+           "text": "Describe the linear momentum of an object or system"
+          },
+          {
+           "code": "4.1.A.1",
+           "text": "Momentum equals mass times velocity"
+          },
+          {
+           "code": "4.1.A.2",
+           "text": "Momentum is a vector in the direction of velocity"
+          },
+          {
+           "code": "4.1.A.3",
+           "text": "Use momentum to analyse collisions and explosions, using the object model for the initial and final states"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "4-2-change-in-momentum-and-impulse",
+       "title": "4.2 Change in Momentum and Impulse",
+       "subtopics": [
+        {
+         "id": "impulse",
+         "title": "Impulse",
+         "outcomes": [
+          {
+           "code": "4.2.A",
+           "text": "Describe the impulse delivered to an object or system"
+          },
+          {
+           "code": "4.2.A.1",
+           "text": "Net external force is the rate of change of momentum"
+          },
+          {
+           "code": "4.2.A.2",
+           "text": "Impulse is average force times the time it acts"
+          },
+          {
+           "code": "4.2.A.3",
+           "text": "Impulse is a vector along the net force"
+          },
+          {
+           "code": "4.2.A.4",
+           "text": "Impulse equals the area under a force versus time graph"
+          },
+          {
+           "code": "4.2.A.5",
+           "text": "Net force equals the slope of a momentum versus time graph"
+          }
+         ]
+        },
+        {
+         "id": "impulse-momentum-theorem",
+         "title": "Impulse-momentum theorem",
+         "outcomes": [
+          {
+           "code": "4.2.B",
+           "text": "Relate the impulse on a system to its change in momentum"
+          },
+          {
+           "code": "4.2.B.1",
+           "text": "Change in momentum is final minus initial momentum"
+          },
+          {
+           "code": "4.2.B.2",
+           "text": "Impulse equals change in momentum (impulse-momentum theorem)"
+          },
+          {
+           "code": "4.2.B.3",
+           "text": "Newton's second law follows from the impulse-momentum theorem for constant mass"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "4-3-conservation-of-linear-momentum",
+       "title": "4.3 Conservation of Linear Momentum",
+       "subtopics": [
+        {
+         "id": "conserving-momentum-in-a-system",
+         "title": "Conserving momentum in a system",
+         "outcomes": [
+          {
+           "code": "4.3.A",
+           "text": "Describe a system's behavior using conservation of linear momentum"
+          },
+          {
+           "code": "4.3.A.1",
+           "text": "A collection of objects has one center-of-mass velocity, constant with no net external force"
+          },
+          {
+           "code": "4.3.A.2",
+           "text": "Total momentum is the sum of the parts' momenta"
+          },
+          {
+           "code": "4.3.A.3",
+           "text": "Without external forces, momentum changes inside a system cancel; changes in system momentum equal the impulse from outside"
+          },
+          {
+           "code": "4.3.A.4",
+           "text": "Apply conservation of momentum to find velocities just before and after collisions or explosions"
+          }
+         ]
+        },
+        {
+         "id": "system-choice-and-momentum",
+         "title": "System choice and momentum",
+         "outcomes": [
+          {
+           "code": "4.3.B",
+           "text": "Describe how choosing the system determines whether its momentum changes"
+          },
+          {
+           "code": "4.3.B.1",
+           "text": "Momentum is conserved in all interactions"
+          },
+          {
+           "code": "4.3.B.2",
+           "text": "With zero net external force, total momentum is constant"
+          },
+          {
+           "code": "4.3.B.3",
+           "text": "With nonzero net external force, momentum is exchanged with the environment"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "4-4-elastic-and-inelastic-collisions",
+       "title": "4.4 Elastic and Inelastic Collisions",
+       "subtopics": [
+        {
+         "id": "elastic-and-inelastic-collisions",
+         "title": "Elastic and inelastic collisions",
+         "outcomes": [
+          {
+           "code": "4.4.A",
+           "text": "Describe whether an interaction between objects is elastic or inelastic"
+          },
+          {
+           "code": "4.4.A.1",
+           "text": "Elastic collisions keep total kinetic energy the same"
+          },
+          {
+           "code": "4.4.A.2",
+           "text": "In an elastic collision individual kinetic energies may still change"
+          },
+          {
+           "code": "4.4.A.3",
+           "text": "Inelastic collisions lose total kinetic energy"
+          },
+          {
+           "code": "4.4.A.4",
+           "text": "Lost kinetic energy is converted by nonconservative forces into other forms"
+          },
+          {
+           "code": "4.4.A.5",
+           "text": "In a perfectly inelastic collision the objects stick together"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "unit-5-torque-and-rotational-dynamics",
+     "title": "Unit 5: Torque and Rotational Dynamics",
+     "topics": [
+      {
+       "id": "5-1-rotational-kinematics",
+       "title": "5.1 Rotational Kinematics",
+       "subtopics": [
+        {
+         "id": "angular-displacement-velocity-and-acceleration",
+         "title": "Angular displacement, velocity and acceleration",
+         "outcomes": [
+          {
+           "code": "5.1.A",
+           "text": "Describe rotation over time using angular displacement, velocity and acceleration"
+          },
+          {
+           "code": "5.1.A.1",
+           "text": "Angular displacement is the angle in radians a point on a rigid system turns through about an axis; pick clockwise or counterclockwise as positive"
+          },
+          {
+           "code": "5.1.A.2",
+           "text": "Average angular velocity is the rate of change of angular position"
+          },
+          {
+           "code": "5.1.A.3",
+           "text": "Average angular acceleration is the rate of change of angular velocity"
+          },
+          {
+           "code": "5.1.A.4",
+           "text": "Rotational quantities and equations mirror linear kinematics, including constant-acceleration equations and graphs"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "5-2-connecting-linear-and-rotational-motion",
+       "title": "5.2 Connecting Linear and Rotational Motion",
+       "subtopics": [
+        {
+         "id": "linear-and-angular-quantities",
+         "title": "Linear and angular quantities",
+         "outcomes": [
+          {
+           "code": "5.2.A",
+           "text": "Link the linear motion of a point on a rotating rigid system to its rotational motion"
+          },
+          {
+           "code": "5.2.A.1",
+           "text": "Arc length equals radius times angle"
+          },
+          {
+           "code": "5.2.A.2",
+           "text": "Relate linear velocity and tangential acceleration to angular velocity and acceleration"
+          },
+          {
+           "code": "5.2.A.3",
+           "text": "All points of a rigid system share the same angular velocity and acceleration"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "5-3-torque",
+       "title": "5.3 Torque",
+       "subtopics": [
+        {
+         "id": "identifying-torques",
+         "title": "Identifying torques",
+         "outcomes": [
+          {
+           "code": "5.3.A",
+           "text": "Identify the torques exerted on a rigid system"
+          },
+          {
+           "code": "5.3.A.1",
+           "text": "Only the force component perpendicular to the position vector produces torque"
+          },
+          {
+           "code": "5.3.A.2",
+           "text": "The lever arm is the perpendicular distance from the axis to the line of action"
+          }
+         ]
+        },
+        {
+         "id": "describing-torques",
+         "title": "Describing torques",
+         "outcomes": [
+          {
+           "code": "5.3.B",
+           "text": "Describe the torques exerted on a rigid system"
+          },
+          {
+           "code": "5.3.B.1",
+           "text": "Use force diagrams that show where forces act relative to the axis"
+          },
+          {
+           "code": "5.3.B.2",
+           "text": "Torque magnitude depends on force, distance from axis and the angle between them"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "5-4-rotational-inertia",
+       "title": "5.4 Rotational Inertia",
+       "subtopics": [
+        {
+         "id": "rotational-inertia",
+         "title": "Rotational inertia",
+         "outcomes": [
+          {
+           "code": "5.4.A",
+           "text": "Describe the rotational inertia of a rigid system about an axis"
+          },
+          {
+           "code": "5.4.A.1",
+           "text": "Rotational inertia resists changes in rotation and depends on mass and its distance from the axis"
+          },
+          {
+           "code": "5.4.A.2",
+           "text": "A point mass has rotational inertia mass times radius squared"
+          },
+          {
+           "code": "5.4.A.3",
+           "text": "Total rotational inertia is the sum over the objects"
+          }
+         ]
+        },
+        {
+         "id": "parallel-axis-theorem",
+         "title": "Parallel axis theorem",
+         "outcomes": [
+          {
+           "code": "5.4.B",
+           "text": "Describe rotational inertia about an axis not through the center of mass"
+          },
+          {
+           "code": "5.4.B.1",
+           "text": "Rotational inertia is smallest when the axis passes through the center of mass"
+          },
+          {
+           "code": "5.4.B.2",
+           "text": "Use the parallel axis theorem for axes parallel to one through the center of mass"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "5-5-rotational-equilibrium-and-newton-s-first-la",
+       "title": "5.5 Rotational Equilibrium and Newton's First Law in Rotational Form",
+       "subtopics": [
+        {
+         "id": "rotational-equilibrium",
+         "title": "Rotational equilibrium",
+         "outcomes": [
+          {
+           "code": "5.5.A",
+           "text": "Describe when a system's angular velocity stays constant"
+          },
+          {
+           "code": "5.5.A.1",
+           "text": "Rotational and translational equilibrium can occur independently; rotational equilibrium means zero net torque and constant angular velocity"
+          },
+          {
+           "code": "5.5.A.2",
+           "text": "Unbalanced torques must change angular velocity"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "5-6-newton-s-second-law-in-rotational-form",
+       "title": "5.6 Newton's Second Law in Rotational Form",
+       "subtopics": [
+        {
+         "id": "torque-and-angular-acceleration",
+         "title": "Torque and angular acceleration",
+         "outcomes": [
+          {
+           "code": "5.6.A",
+           "text": "Describe when a system's angular velocity changes"
+          },
+          {
+           "code": "5.6.A.1",
+           "text": "Angular velocity changes when net torque is nonzero"
+          },
+          {
+           "code": "5.6.A.2",
+           "text": "Angular acceleration is proportional to net torque and inversely proportional to rotational inertia"
+          },
+          {
+           "code": "5.6.A.3",
+           "text": "Analyse linear and rotational motion separately for a full description"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "unit-6-energy-and-momentum-of-rotating-systems",
+     "title": "Unit 6: Energy and Momentum of Rotating Systems",
+     "topics": [
+      {
+       "id": "6-1-rotational-kinetic-energy",
+       "title": "6.1 Rotational Kinetic Energy",
+       "subtopics": [
+        {
+         "id": "rotational-kinetic-energy",
+         "title": "Rotational kinetic energy",
+         "outcomes": [
+          {
+           "code": "6.1.A",
+           "text": "Describe the rotational kinetic energy of a rigid system from its rotational inertia and angular velocity"
+          },
+          {
+           "code": "6.1.A.1",
+           "text": "Rotational kinetic energy is half rotational inertia times angular velocity squared; total kinetic energy adds the translational part"
+          },
+          {
+           "code": "6.1.A.2",
+           "text": "A rigid system can have rotational kinetic energy while its center of mass is at rest"
+          },
+          {
+           "code": "6.1.A.3",
+           "text": "Rotational kinetic energy is a scalar"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "6-2-torque-and-work",
+       "title": "6.2 Torque and Work",
+       "subtopics": [
+        {
+         "id": "work-done-by-a-torque",
+         "title": "Work done by a torque",
+         "outcomes": [
+          {
+           "code": "6.2.A",
+           "text": "Describe the work done on a rigid system by a torque"
+          },
+          {
+           "code": "6.2.A.1",
+           "text": "A torque transfers energy when exerted through an angular displacement"
+          },
+          {
+           "code": "6.2.A.2",
+           "text": "Work depends on torque magnitude and angular displacement"
+          },
+          {
+           "code": "6.2.A.3",
+           "text": "Work equals the area under a torque versus angular position graph"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "6-3-angular-momentum-and-angular-impulse",
+       "title": "6.3 Angular Momentum and Angular Impulse",
+       "subtopics": [
+        {
+         "id": "angular-momentum",
+         "title": "Angular momentum",
+         "outcomes": [
+          {
+           "code": "6.3.A",
+           "text": "Describe the angular momentum of an object or rigid system"
+          },
+          {
+           "code": "6.3.A.1",
+           "text": "Angular momentum of a rigid system is rotational inertia times angular velocity"
+          },
+          {
+           "code": "6.3.A.2",
+           "text": "Angular momentum of an object about a point depends on the chosen axis or point, mass, speed and angle"
+          }
+         ]
+        },
+        {
+         "id": "angular-impulse",
+         "title": "Angular impulse",
+         "outcomes": [
+          {
+           "code": "6.3.B",
+           "text": "Describe the angular impulse delivered by a torque"
+          },
+          {
+           "code": "6.3.B.1",
+           "text": "Angular impulse is torque times the time it acts"
+          },
+          {
+           "code": "6.3.B.2",
+           "text": "Angular impulse points in the direction of the torque"
+          },
+          {
+           "code": "6.3.B.3",
+           "text": "Angular impulse equals the area under a torque versus time graph"
+          }
+         ]
+        },
+        {
+         "id": "angular-impulse-and-momentum-change",
+         "title": "Angular impulse and momentum change",
+         "outcomes": [
+          {
+           "code": "6.3.C",
+           "text": "Relate change in angular momentum to angular impulse"
+          },
+          {
+           "code": "6.3.C.1",
+           "text": "Compare final and initial angular momentum to find the change"
+          },
+          {
+           "code": "6.3.C.2",
+           "text": "Angular impulse equals change in angular momentum, a result of the rotational second law"
+          },
+          {
+           "code": "6.3.C.3",
+           "text": "Net torque is the slope of an angular momentum versus time graph"
+          },
+          {
+           "code": "6.3.C.4",
+           "text": "Angular impulse equals the area under a net torque versus time graph"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "6-4-conservation-of-angular-momentum",
+       "title": "6.4 Conservation of Angular Momentum",
+       "subtopics": [
+        {
+         "id": "conserving-angular-momentum",
+         "title": "Conserving angular momentum",
+         "outcomes": [
+          {
+           "code": "6.4.A",
+           "text": "Describe a system's behavior using conservation of angular momentum"
+          },
+          {
+           "code": "6.4.A.1",
+           "text": "Total angular momentum is the sum over the parts about the same axis"
+          },
+          {
+           "code": "6.4.A.2",
+           "text": "Changes in angular momentum come from interaction with the surroundings; a nonrigid system can change spin by moving mass toward or away from the axis"
+          }
+         ]
+        },
+        {
+         "id": "system-choice-and-angular-momentum",
+         "title": "System choice and angular momentum",
+         "outcomes": [
+          {
+           "code": "6.4.B",
+           "text": "Describe how choosing the system determines whether its angular momentum changes"
+          },
+          {
+           "code": "6.4.B.1",
+           "text": "Angular momentum is conserved in all interactions"
+          },
+          {
+           "code": "6.4.B.2",
+           "text": "Zero net external torque means constant angular momentum"
+          },
+          {
+           "code": "6.4.B.3",
+           "text": "Nonzero net external torque transfers angular momentum to or from the environment"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "6-5-rolling",
+       "title": "6.5 Rolling",
+       "subtopics": [
+        {
+         "id": "kinetic-energy-in-rolling",
+         "title": "Kinetic energy in rolling",
+         "outcomes": [
+          {
+           "code": "6.5.A",
+           "text": "Describe the kinetic energy of a system with translation and rotation"
+          },
+          {
+           "code": "6.5.A.1",
+           "text": "Total kinetic energy is translational plus rotational"
+          }
+         ]
+        },
+        {
+         "id": "rolling-without-slipping",
+         "title": "Rolling without slipping",
+         "outcomes": [
+          {
+           "code": "6.5.B",
+           "text": "Describe a system rolling without slipping"
+          },
+          {
+           "code": "6.5.B.1",
+           "text": "Link center-of-mass speed and acceleration to angular speed and acceleration through the radius"
+          },
+          {
+           "code": "6.5.B.2",
+           "text": "In ideal rolling without slipping, friction dissipates no energy"
+          }
+         ]
+        },
+        {
+         "id": "rolling-while-slipping",
+         "title": "Rolling while slipping",
+         "outcomes": [
+          {
+           "code": "6.5.C",
+           "text": "Describe a system that rolls while slipping"
+          },
+          {
+           "code": "6.5.C.1",
+           "text": "When slipping, center-of-mass motion and rotation cannot be directly related"
+          },
+          {
+           "code": "6.5.C.2",
+           "text": "Kinetic friction at a slipping contact dissipates energy"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "6-6-motion-of-orbiting-satellites",
+       "title": "6.6 Motion of Orbiting Satellites",
+       "subtopics": [
+        {
+         "id": "orbits-and-escape-velocity",
+         "title": "Orbits and escape velocity",
+         "outcomes": [
+          {
+           "code": "6.6.A",
+           "text": "Describe the motion of two objects interacting only by gravity"
+          },
+          {
+           "code": "6.6.A.1",
+           "text": "The motion of a massive central object is negligible next to a light satellite"
+          },
+          {
+           "code": "6.6.A.2",
+           "text": "Conservation laws constrain orbits: circular orbits keep energy and angular momentum constant; elliptical orbits change speed and potential energy; gravitational potential energy is zero at infinite distance"
+          },
+          {
+           "code": "6.6.A.3",
+           "text": "Escape velocity gives zero total mechanical energy and can be derived from energy conservation"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "unit-7-oscillations",
+     "title": "Unit 7: Oscillations",
+     "topics": [
+      {
+       "id": "7-1-defining-simple-harmonic-motion-shm",
+       "title": "7.1 Defining Simple Harmonic Motion (SHM)",
+       "subtopics": [
+        {
+         "id": "what-simple-harmonic-motion-is",
+         "title": "What simple harmonic motion is",
+         "outcomes": [
+          {
+           "code": "7.1.A",
+           "text": "Describe simple harmonic motion"
+          },
+          {
+           "code": "7.1.A.1",
+           "text": "SHM is a special case of periodic motion"
+          },
+          {
+           "code": "7.1.A.2",
+           "text": "SHM occurs when the restoring force is proportional to displacement from equilibrium; small-angle pendulums qualify"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "7-2-frequency-and-period-of-shm",
+       "title": "7.2 Frequency and Period of SHM",
+       "subtopics": [
+        {
+         "id": "frequency-and-period",
+         "title": "Frequency and period",
+         "outcomes": [
+          {
+           "code": "7.2.A",
+           "text": "Describe the frequency and period of an object in SHM"
+          },
+          {
+           "code": "7.2.A.1",
+           "text": "Period is the inverse of frequency; know the period formulas for a spring oscillator and a small-angle pendulum"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "7-3-representing-and-analyzing-shm",
+       "title": "7.3 Representing and Analyzing SHM",
+       "subtopics": [
+        {
+         "id": "displacement-velocity-and-acceleration-in-shm",
+         "title": "Displacement, velocity and acceleration in SHM",
+         "outcomes": [
+          {
+           "code": "7.3.A",
+           "text": "Describe displacement, velocity and acceleration of an object in SHM"
+          },
+          {
+           "code": "7.3.A.1",
+           "text": "Displacement follows a cosine or sine of time; know where velocity and acceleration peak or vanish"
+          },
+          {
+           "code": "7.3.A.2",
+           "text": "Changing amplitude does not change period"
+          },
+          {
+           "code": "7.3.A.3",
+           "text": "Analyse SHM properties from graphs"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "7-4-energy-of-simple-harmonic-oscillators",
+       "title": "7.4 Energy of Simple Harmonic Oscillators",
+       "subtopics": [
+        {
+         "id": "energy-in-shm",
+         "title": "Energy in SHM",
+         "outcomes": [
+          {
+           "code": "7.4.A",
+           "text": "Describe the mechanical energy of a system in SHM"
+          },
+          {
+           "code": "7.4.A.1",
+           "text": "Total energy is kinetic plus potential"
+          },
+          {
+           "code": "7.4.A.2",
+           "text": "Total energy in SHM is constant"
+          },
+          {
+           "code": "7.4.A.3",
+           "text": "Kinetic energy is greatest where potential energy is least"
+          },
+          {
+           "code": "7.4.A.4",
+           "text": "Potential energy is greatest where kinetic energy is zero; amplitude sets the total energy"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "unit-8-fluids",
+     "title": "Unit 8: Fluids",
+     "topics": [
+      {
+       "id": "8-1-internal-structure-and-density",
+       "title": "8.1 Internal Structure and Density",
+       "subtopics": [
+        {
+         "id": "fluid-properties-and-density",
+         "title": "Fluid properties and density",
+         "outcomes": [
+          {
+           "code": "8.1.A",
+           "text": "Describe the properties of a fluid"
+          },
+          {
+           "code": "8.1.A.1",
+           "text": "Solids, liquids and gases differ by how their atoms and molecules interact"
+          },
+          {
+           "code": "8.1.A.2",
+           "text": "A fluid has no fixed shape"
+          },
+          {
+           "code": "8.1.A.3",
+           "text": "Density is mass per unit volume"
+          },
+          {
+           "code": "8.1.A.4",
+           "text": "An ideal fluid is incompressible and has no viscosity"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "8-2-pressure",
+       "title": "8.2 Pressure",
+       "subtopics": [
+        {
+         "id": "pressure-on-a-surface",
+         "title": "Pressure on a surface",
+         "outcomes": [
+          {
+           "code": "8.2.A",
+           "text": "Describe the pressure from a force on a surface"
+          },
+          {
+           "code": "8.2.A.1",
+           "text": "Pressure is perpendicular force per unit area"
+          },
+          {
+           "code": "8.2.A.2",
+           "text": "Pressure is a scalar"
+          },
+          {
+           "code": "8.2.A.3",
+           "text": "An incompressible fluid keeps constant volume and density under pressure"
+          }
+         ]
+        },
+        {
+         "id": "fluid-pressure",
+         "title": "Fluid pressure",
+         "outcomes": [
+          {
+           "code": "8.2.B",
+           "text": "Describe the pressure exerted by a fluid"
+          },
+          {
+           "code": "8.2.B.1",
+           "text": "Fluid pressure comes from particle interactions with the surface"
+          },
+          {
+           "code": "8.2.B.2",
+           "text": "Absolute pressure is reference (such as atmospheric) plus gauge pressure"
+          },
+          {
+           "code": "8.2.B.3",
+           "text": "Gauge pressure of a vertical fluid column depends on density, g and depth"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "8-3-fluids-and-newton-s-laws",
+       "title": "8.3 Fluids and Newton's Laws",
+       "subtopics": [
+        {
+         "id": "fluid-motion",
+         "title": "Fluid motion",
+         "outcomes": [
+          {
+           "code": "8.3.A",
+           "text": "Describe when a fluid's velocity changes"
+          },
+          {
+           "code": "8.3.A.1",
+           "text": "Newton's laws describe motion of particles in a fluid"
+          },
+          {
+           "code": "8.3.A.2",
+           "text": "Fluid behaviour results from internal interactions and external forces"
+          }
+         ]
+        },
+        {
+         "id": "buoyant-force",
+         "title": "Buoyant force",
+         "outcomes": [
+          {
+           "code": "8.3.B",
+           "text": "Describe the buoyant force on an object in a fluid"
+          },
+          {
+           "code": "8.3.B.1",
+           "text": "Buoyant force is a net upward force from the fluid"
+          },
+          {
+           "code": "8.3.B.2",
+           "text": "It results from the collective forces of fluid particles on the object"
+          },
+          {
+           "code": "8.3.B.3",
+           "text": "Its size equals the weight of displaced fluid"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "8-4-fluids-and-conservation-laws",
+       "title": "8.4 Fluids and Conservation Laws",
+       "subtopics": [
+        {
+         "id": "continuity-of-flow",
+         "title": "Continuity of flow",
+         "outcomes": [
+          {
+           "code": "8.4.A",
+           "text": "Describe incompressible flow through a cross-section using mass conservation"
+          },
+          {
+           "code": "8.4.A.1",
+           "text": "A pressure difference drives flow; flow rate depends on cross-sectional area and speed"
+          },
+          {
+           "code": "8.4.A.2",
+           "text": "The continuity equation says area times speed is constant"
+          }
+         ]
+        },
+        {
+         "id": "bernoulli-and-torricelli",
+         "title": "Bernoulli and Torricelli",
+         "outcomes": [
+          {
+           "code": "8.4.B",
+           "text": "Describe flow resulting from an energy difference in the fluid-Earth system"
+          },
+          {
+           "code": "8.4.B.1",
+           "text": "Height differences produce differences in kinetic energy and pressure by conservation laws"
+          },
+          {
+           "code": "8.4.B.2",
+           "text": "Bernoulli's equation expresses conservation of mechanical energy in flow"
+          },
+          {
+           "code": "8.4.B.3",
+           "text": "Torricelli's theorem gives exit speed from the height of the fluid surface above the opening"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "build": {
+  "builtAt": "2026-10-14T10:04:20.013Z",
+  "model": "claude-agent",
+  "usd": 0,
+  "expectedCodes": 271,
+  "coverage": 1,
+  "missingCodes": [],
+  "counts": {
+   "grades": 1,
+   "units": 8,
+   "topics": 43,
+   "subtopics": 69,
+   "outcomes": 271
+  },
+  "warnings": [
+   "grade 9 has no content",
+   "grade 10 has no content",
+   "grade 11 has no content",
+   "grade 12 has no content",
+   "unexpected grade label \"all\""
+  ]
+ }
+}

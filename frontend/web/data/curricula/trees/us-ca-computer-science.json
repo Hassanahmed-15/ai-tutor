@@ -1,0 +1,1607 @@
+{
+ "id": "us-ca-computer-science",
+ "region": "US",
+ "framework": "California state academic standards: Computer Science & Technology",
+ "board": null,
+ "qualification": "K-12",
+ "subject": "Computer Science & Technology",
+ "syllabusCode": null,
+ "gradeSystem": "grade",
+ "source": {
+  "urls": [
+   "https://api.commonstandardsproject.com/api/v1/jurisdictions/B1339AB05F0347E79200FCA63240F3B2",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/DA6AE06B85024DD1A0E4D628E365CEB9",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/1A869B3CBCA047D4A6038DF882B304C4",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/21B3CA345D0C4391BC2DB8D65E253FCF",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/E65A8322429F4C5BBD7E09BD5BB7EA05",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/FE805506EEA1404087E4058A6D9B0058"
+  ],
+  "publisher": "California state education agency (machine-readable via Common Standards Project / ASN)",
+  "licence": "CC BY 4.0 US, Common Curriculum, Inc.",
+  "firstExam": "2018"
+ },
+ "grades": [
+  {
+   "grade": "3-5",
+   "units": [
+    {
+     "id": "computing-systems",
+     "title": "Computing Systems",
+     "topics": [
+      {
+       "id": "describe-how-computing-devices-connect-to-other-",
+       "title": "Describe how computing devices connect to other components to form a system",
+       "subtopics": [
+        {
+         "id": "describe-how-computing-devices-connect-to-other-",
+         "title": "Describe how computing devices connect to other components to form a system",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Computing devices often depend on other devices or components. Students describe physical and wireless connections to other components, including both input devices (e.g., keyboards, sensors, remote controls, microphones) and output devices (e.g., 3D printers, monitors, speakers)."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "demonstrate-how-computer-hardware-and-software-w",
+       "title": "Demonstrate how computer hardware and software work together as a system to accomplish tasks",
+       "subtopics": [
+        {
+         "id": "demonstrate-how-computer-hardware-and-software-w",
+         "title": "Demonstrate how computer hardware and software work together as a system to accomplish tasks",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Hardware and software are both needed to accomplish tasks with a computing device. Students create a model to illustrate ways in which hardware and software work as a system. Students could draw a model on paper or in a drawing program, program an animation to demonstrate it, or demonstrate it by acting this out in some way. At this level, a model should only include the basic elements of a computer system, such as input, output, processor, sensors, and storage."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "determine-potential-solutions-to-solve-simple-ha",
+       "title": "Determine potential solutions to solve simple hardware and software problems using common troubleshooting strategies",
+       "subtopics": [
+        {
+         "id": "determine-potential-solutions-to-solve-simple-ha",
+         "title": "Determine potential solutions to solve simple hardware and software problems using common troubleshooting strategies",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Although computing systems vary, common troubleshooting strategies can be used across many different systems. Students use troubleshooting strategies to identify problems that could include a device not responding, lacking power, lacking a network connection, an app crashing, not playing sounds, or password entry not working. Students use and develop various solutions to address these problems. Solutions may include rebooting the device, checking for power, checking network availability, opening and closing an app, making sure speakers are turned on or headphones are plugged in, and making sure that the caps lock key is not on."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "networks-internet",
+     "title": "Networks & Internet",
+     "topics": [
+      {
+       "id": "model-how-information-is-broken-down-into-smalle",
+       "title": "Model how information is broken down into smaller pieces, transmitted as packets through multiple devices over networks and the Internet, and reassembled at the destination",
+       "subtopics": [
+        {
+         "id": "model-how-information-is-broken-down-into-smalle",
+         "title": "Model how information is broken down into smaller pieces, transmitted as packets through multiple devices over networks and the Internet, and reassembled at the destination",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Information is sent and received over physical or wireless paths. It is broken down into smaller pieces called packets, which are sent independently and reassembled at the destination. Students demonstrate their understanding of this flow of information by, for instance, drawing a model of the way packets are transmitted, programming an animation to show how packets are transmitted, or demonstrating this through an unplugged activity in which they physically act this out."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "describe-physical-and-digital-security-measures-",
+       "title": "Describe physical and digital security measures for protecting personal information",
+       "subtopics": [
+        {
+         "id": "describe-physical-and-digital-security-measures-",
+         "title": "Describe physical and digital security measures for protecting personal information",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Personal information can be protected physically and digitally. Cybersecurity is the protection from unauthorized use of electronic data, or the measures taken to achieve this. Students identify what personal information is and the reasons for protecting it. Students describe physical and digital approaches for protecting personal information such as using strong passwords and biometric scanners."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "create-patterns-to-protect-information-from-unau",
+       "title": "Create patterns to protect information from unauthorized access",
+       "subtopics": [
+        {
+         "id": "create-patterns-to-protect-information-from-unau",
+         "title": "Create patterns to protect information from unauthorized access",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Encryption is the process of converting information or data into a code, especially to prevent unauthorized access. At this level, students use patterns as a code for encryption, to protect information. Patterns should be decodable to the party for whom the message is intended, but difficult or impossible for those with unauthorized access."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "data-analysis",
+     "title": "Data & Analysis",
+     "topics": [
+      {
+       "id": "explain-that-the-amount-of-space-required-to-sto",
+       "title": "Explain that the amount of space required to store data differs based on the type of data and/or level of detail",
+       "subtopics": [
+        {
+         "id": "explain-that-the-amount-of-space-required-to-sto",
+         "title": "Explain that the amount of space required to store data differs based on the type of data and/or level of detail",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "All saved data requires space to store it, whether locally or not (e.g., on the cloud). Music, images, video, and text require different amounts of storage. Video will often require more storage and different format than music or images alone because video combines both. The level of detail represented by that data also affects storage requirements. For instance, two pictures of the same object can require different amounts of storage based upon their resolution, and a high-resolution photo could require more storage than a low-resolution video. Students select appropriate storage for their data."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "organize-and-present-collected-data-visually-to-",
+       "title": "Organize and present collected data visually to highlight relationships and support a claim",
+       "subtopics": [
+        {
+         "id": "organize-and-present-collected-data-visually-to-",
+         "title": "Organize and present collected data visually to highlight relationships and support a claim",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Raw data has little meaning on its own. Data is often sorted or grouped to provide additional clarity. Organizing data can make interpreting and communicating it to others easier. Data points can be clustered by a number of commonalities. The same data could be manipulated in different ways to emphasize particular aspects or parts of the data set."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "use-data-to-highlight-and-or-propose-relationshi",
+       "title": "Use data to highlight and/or propose relationships, predict outcomes, or communicate ideas",
+       "subtopics": [
+        {
+         "id": "use-data-to-highlight-and-or-propose-relationshi",
+         "title": "Use data to highlight and/or propose relationships, predict outcomes, or communicate ideas",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "The accuracy of data analysis is related to how the data is represented. Inferences or predictions based on data are less likely to be accurate if the data is insufficient, incomplete, or inaccurate or if the data is incorrect in some way. Additionally, people select aspects and subsets of data to be transformed, organized, and categorized. Students should be able to refer to data when communicating an idea, in order to highlight and/or propose relationships, predict outcomes, highlight different views and/or communicate insights and ideas."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "algorithms-programming",
+     "title": "Algorithms & Programming",
+     "topics": [
+      {
+       "id": "compare-and-refine-multiple-algorithms-for-the-s",
+       "title": "Compare and refine multiple algorithms for the same task and determine which is the most appropriate",
+       "subtopics": [
+        {
+         "id": "compare-and-refine-multiple-algorithms-for-the-s",
+         "title": "Compare and refine multiple algorithms for the same task and determine which is the most appropriate",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Different algorithms can achieve the same result, though sometimes one algorithm might be more appropriate for a specific solution. Students examine different ways to solve the same task and decide which would be the better solution for the specific scenario."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "create-programs-that-use-variables-to-store-and-",
+       "title": "Create programs that use variables to store and modify data",
+       "subtopics": [
+        {
+         "id": "create-programs-that-use-variables-to-store-and-",
+         "title": "Create programs that use variables to store and modify data",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Variables are used to store and modify data. Students use variables in programs they create. At this level, students may need guidance in identifying when to create variables (i.e., performing the abstraction)."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "create-programs-that-include-events-loops-and-co",
+       "title": "Create programs that include events, loops, and conditionals",
+       "subtopics": [
+        {
+         "id": "create-programs-that-include-events-loops-and-co",
+         "title": "Create programs that include events, loops, and conditionals",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Control structures specify the order (sequence) in which instructions are executed within a program and can be combined to support the creation of more complex programs. Events allow portions of a program to run based on a specific action. Conditionals allow for the execution of a portion of code in a program when a certain condition is true. Loops allow for the repetition of a sequence of code multiple times."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "decompose-problems-into-smaller-manageable-tasks",
+       "title": "Decompose problems into smaller, manageable tasks which may themselves be decomposed",
+       "subtopics": [
+        {
+         "id": "decompose-problems-into-smaller-manageable-tasks",
+         "title": "Decompose problems into smaller, manageable tasks which may themselves be decomposed",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Decomposition is the act of breaking down tasks into simpler tasks. This manages complexity in the problem solving and program development process. For example, students could create an animation to represent a story they have written. Students write a story and then break it down into different scenes. For each scene, they would select a background, place characters, and program actions in that scene."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "create-programs-by-incorporating-smaller-portion",
+       "title": "Create programs by incorporating smaller portions of existing programs, to develop something new or add more advanced features",
+       "subtopics": [
+        {
+         "id": "create-programs-by-incorporating-smaller-portion",
+         "title": "Create programs by incorporating smaller portions of existing programs, to develop something new or add more advanced features",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Programs can be broken down into smaller parts, which can be incorporated into new or existing programs. Students incorporate predefined functions into their original designs. At this level, students do not need to understand all of the underlying implementation details of the abstractions that they use. For example, students could use code from a ping pong animation to make a ball bounce in a new basketball game. They could also incorporate code from a single-player basketball game to create a two-player game with slightly different rules."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "use-an-iterative-process-to-plan-and-develop-a-p",
+       "title": "Use an iterative process to plan and develop a program by considering the perspectives and preferences of others",
+       "subtopics": [
+        {
+         "id": "use-an-iterative-process-to-plan-and-develop-a-p",
+         "title": "Use an iterative process to plan and develop a program by considering the perspectives and preferences of others",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Planning is an important part of the iterative process of program development. Students gain a basic understanding of the importance and process of planning before beginning to write code for a program. They plan the development of a program by outlining key features, time and resource constraints, and user expectations. Students should document the plan as, for example, a storyboard, flowchart, pseudocode, or story map."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "observe-intellectual-property-rights-and-give-ap",
+       "title": "Observe intellectual property rights and give appropriate attribution when creating, remixing, or combining programs",
+       "subtopics": [
+        {
+         "id": "observe-intellectual-property-rights-and-give-ap",
+         "title": "Observe intellectual property rights and give appropriate attribution when creating, remixing, or combining programs",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Intellectual property rights can vary by country, but copyright laws give the creator of a work a set of rights and prevents others from copying the work and using it in ways that they may not like. Students consider common licenses that place limitations or restrictions on the use of others' work, such as images and music downloaded from the Internet. When incorporating the work of others, students attribute the work. At this level, students could give attribution by including credits or links directly in their programs, code comments, or separate project pages."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "test-and-debug-a-program-or-algorithm-to-ensure-",
+       "title": "Test and debug a program or algorithm to ensure it accomplishes the intended task",
+       "subtopics": [
+        {
+         "id": "test-and-debug-a-program-or-algorithm-to-ensure-",
+         "title": "Test and debug a program or algorithm to ensure it accomplishes the intended task",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Programs do not always run properly. Students need to understand how to test and make necessary corrections to their programs to ensure they run properly. Students successfully identify and fix errors in (debug) their programs and programs created by others. Debugging strategies at this level may include testing to determine the first place the solution is in error and fixing accordingly, leaving \"breadcrumbs\" in a program, and soliciting assistance from peers and online resources."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "perform-different-roles-when-collaborating-with-",
+       "title": "Perform different roles when collaborating with peers during the design, implementation, and review stages of program development",
+       "subtopics": [
+        {
+         "id": "perform-different-roles-when-collaborating-with-",
+         "title": "Perform different roles when collaborating with peers during the design, implementation, and review stages of program development",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Collaborative computing is the process of creating computational artifacts by working in pairs or on teams. It involves asking for the contributions and feedback of others. Effective collaboration can often lead to better outcomes than working independently. With teacher guidance, students take turns in different roles during program development, such as driver, navigator, notetaker, facilitator, and debugger, as they design and implement their program."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "describe-choices-made-during-program-development",
+       "title": "Describe choices made during program development using code comments, presentations, and demonstrations",
+       "subtopics": [
+        {
+         "id": "describe-choices-made-during-program-development",
+         "title": "Describe choices made during program development using code comments, presentations, and demonstrations",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "People communicate about their code to help others understand and use their programs. Explaining one's design choices gives others a better understanding of one's work. Students may explain their step-by-step process of creating a program in a presentation or demonstration of their personal code journals. They describe how comments within code organize thought and process during the develpment of the program."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "impacts-of-computing",
+     "title": "Impacts of Computing",
+     "topics": [
+      {
+       "id": "discuss-computing-technologies-that-have-changed",
+       "title": "Discuss computing technologies that have changed the world, and express how those technologies influence, and are influenced by, cultural practices",
+       "subtopics": [
+        {
+         "id": "discuss-computing-technologies-that-have-changed",
+         "title": "Discuss computing technologies that have changed the world, and express how those technologies influence, and are influenced by, cultural practices",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "New computing technologies are created and existing technologies are modified for many reasons, including to increase their benefits, decrease their risks, and meet societal needs. Students, with guidance from their teacher, discuss topics that relate to the history of computing technologies and changes in the world due to these technologies. Topics could be based on current news content, such as robotics, wireless Internet, mobile computing devices, GPS systems, wearable computing, and how social media has influenced social and political changes."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "propose-ways-to-improve-the-accessibility-and-us",
+       "title": "Propose ways to improve the accessibility and usability of technology products for the diverse needs and wants of users",
+       "subtopics": [
+        {
+         "id": "propose-ways-to-improve-the-accessibility-and-us",
+         "title": "Propose ways to improve the accessibility and usability of technology products for the diverse needs and wants of users",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "The development and modification of computing technology is driven by people’s needs and wants and can affect groups differently. Students anticipate the needs and wants of diverse end users and propose ways to improve access and usability of technology, with consideration of potential perspectives of users with different backgrounds, ability levels, points of view, and disabilities."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "seek-and-explain-the-impact-of-diverse-perspecti",
+       "title": "Seek and explain the impact of diverse perspectives for the purpose of improving computational artifacts",
+       "subtopics": [
+        {
+         "id": "seek-and-explain-the-impact-of-diverse-perspecti",
+         "title": "Seek and explain the impact of diverse perspectives for the purpose of improving computational artifacts",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Computing technologies enable global collaboration and sharing of ideas. Students solicit feedback from a diverse group of users and creators and explain how this input improves their computational artifacts."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "describe-reasons-creators-might-limit-the-use-of",
+       "title": "Describe reasons creators might limit the use of their work",
+       "subtopics": [
+        {
+         "id": "describe-reasons-creators-might-limit-the-use-of",
+         "title": "Describe reasons creators might limit the use of their work",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Ethical complications arise from the opportunities provided by computing. With the ease of sending and receiving copies of media on the Internet, in formats such as video, photos, and music, students consider the opportunities for unauthorized use, such as online piracy and disregard of copyrights. The license of a downloaded image or audio file may restrict modification, require attribution, or prohibit use entirely."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "PK-2",
+   "units": [
+    {
+     "id": "computing-systems",
+     "title": "Computing Systems",
+     "topics": [
+      {
+       "id": "select-and-operate-computing-devices-that-perfor",
+       "title": "Select and operate computing devices that perform a variety of tasks accurately and quickly based on user needs and preferences",
+       "subtopics": [
+        {
+         "id": "select-and-operate-computing-devices-that-perfor",
+         "title": "Select and operate computing devices that perform a variety of tasks accurately and quickly based on user needs and preferences",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "People use computing devices to perform a variety of tasks accurately and quickly. Computing devices interpret and follow the given instructions literally. Students select and operate an appropriate computing device and corresponding program or app for a given task."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "explain-the-functions-of-common-hardware-and-sof",
+       "title": "Explain the functions of common hardware and software components of computing systems",
+       "subtopics": [
+        {
+         "id": "explain-the-functions-of-common-hardware-and-sof",
+         "title": "Explain the functions of common hardware and software components of computing systems",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "A computing system is composed of hardware and software. Hardware includes the physical components of a computer system. Software provides instructions for the system. These instructions are represented in a form that a computer can understand and are designed for specific purposes. Students identify and describe the function of hardware, such as desktop computers, laptop computers, tablet devices, monitors, keyboards, mice, trackpads, microphones, and printers. Students also identify and describe common software applications such as web browsers, games, and word processors."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "describe-basic-hardware-and-software-problems-us",
+       "title": "Describe basic hardware and software problems using accurate terminology",
+       "subtopics": [
+        {
+         "id": "describe-basic-hardware-and-software-problems-us",
+         "title": "Describe basic hardware and software problems using accurate terminology",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Problems with computing systems have different causes. Accurate description of the problem aids users in finding solutions. Students communicate a problem with accurate terminology (e.g., when an app or program is not working as expected, a device will not turn on, the sound does not work, etc.). Students at this level do not need to understand the causes of hardware and software problems."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "networks-internet",
+     "title": "Networks & Internet",
+     "topics": [
+      {
+       "id": "model-and-describe-how-people-connect-to-other-p",
+       "title": "Model and describe how people connect to other people, places, information and ideas through a network",
+       "subtopics": [
+        {
+         "id": "model-and-describe-how-people-connect-to-other-p",
+         "title": "Model and describe how people connect to other people, places, information and ideas through a network",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Information is passed between multiple points (nodes) on a network. The Internet is a network that enables people to connect with other people worldwide through many different points of connection. Students model ways that people communicate, find information, or acquire ideas through a network. Students use a network, such as the internet, to access information from multiple locations or devices."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "explain-why-people-use-passwords",
+       "title": "Explain why people use passwords",
+       "subtopics": [
+        {
+         "id": "explain-why-people-use-passwords",
+         "title": "Explain why people use passwords",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Passwords protect information from unwanted use by others. When creating passwords, people often use patterns of familiar numbers and text to more easily remember their passwords. However, this may make the passwords weaker. Knowledge about the importance of passwords is an essential first step in learning about cybersecurity. Students explain that strong passwords are needed to protect devices and information from unwanted use."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "create-patterns-to-communicate-a-message",
+       "title": "Create patterns to communicate a message",
+       "subtopics": [
+        {
+         "id": "create-patterns-to-communicate-a-message",
+         "title": "Create patterns to communicate a message",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Connecting devices to a network or the Internet provides great benefit, but care must be taken to protect devices and information from unauthorized access. Messages can be protected by using secret languages or codes. Patterns help to ensure that the intended recipient can decode the message. Students create a pattern that can be decoded and translated into a message."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "data-analysis",
+     "title": "Data & Analysis",
+     "topics": [
+      {
+       "id": "store-copy-search-retrieve-modify-and-delete-inf",
+       "title": "Store, copy, search, retrieve, modify, and delete information using a computing device, and define the information stored as data",
+       "subtopics": [
+        {
+         "id": "store-copy-search-retrieve-modify-and-delete-inf",
+         "title": "Store, copy, search, retrieve, modify, and delete information using a computing device, and define the information stored as data",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Information from the real world can be stored and processed by a computing device. When stored on a computing device, it is referred to as data. Data can include images, text documents, audio files, and video files. Students store, copy, search, retrieve, modify, and delete information using a computing device and define the information stored as data."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "collect-and-present-data-in-various-visual-forma",
+       "title": "Collect and present data in various visual formats",
+       "subtopics": [
+        {
+         "id": "collect-and-present-data-in-various-visual-forma",
+         "title": "Collect and present data in various visual formats",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Data can be collected and presented in various visual formats."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "identify-and-describe-patterns-in-data-visualiza",
+       "title": "Identify and describe patterns in data visualizations, such as charts or graphs, to make predictions",
+       "subtopics": [
+        {
+         "id": "identify-and-describe-patterns-in-data-visualiza",
+         "title": "Identify and describe patterns in data visualizations, such as charts or graphs, to make predictions",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Data can be used to make inferences or predictions about the world."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "algorithms-programming",
+     "title": "Algorithms & Programming",
+     "topics": [
+      {
+       "id": "model-daily-processes-by-creating-and-following-",
+       "title": "Model daily processes by creating and following algorithms to complete tasks",
+       "subtopics": [
+        {
+         "id": "model-daily-processes-by-creating-and-following-",
+         "title": "Model daily processes by creating and following algorithms to complete tasks",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Algorithms are sequences of instructions that describe how to complete a specific task. Students create algorithms that reflect simple life tasks inside and outside of the classroom."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "model-the-way-programs-store-data",
+       "title": "Model the way programs store data",
+       "subtopics": [
+        {
+         "id": "model-the-way-programs-store-data",
+         "title": "Model the way programs store data",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Information in the real world can be represented in computer programs. Students model the digital storage of data by transforming real-world information into symbolic representations that include text, numbers, and images."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "create-programs-with-sequences-of-commands-and-s",
+       "title": "Create programs with sequences of commands and simple loops, to express ideas or address a problem",
+       "subtopics": [
+        {
+         "id": "create-programs-with-sequences-of-commands-and-s",
+         "title": "Create programs with sequences of commands and simple loops, to express ideas or address a problem",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "People create programs by composing sequences of commands that specify the precise order in which instructions should be executed. Loops enable programs to repeat a sequence of commands multiple times."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "decompose-the-steps-needed-to-solve-a-problem-in",
+       "title": "Decompose the steps needed to solve a problem into a sequence of instructions",
+       "subtopics": [
+        {
+         "id": "decompose-the-steps-needed-to-solve-a-problem-in",
+         "title": "Decompose the steps needed to solve a problem into a sequence of instructions",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Decomposition is the act of breaking down tasks into simpler tasks. For example, students could break down the steps needed to make a peanut butter and jelly sandwich, to brush their teeth, to draw a shape, to move a character across the screen, or to solve a level of a coding app. In a visual programming environment, students could break down the steps needed to draw a shape."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "develop-plans-that-describe-a-program-s-sequence",
+       "title": "Develop plans that describe a program’s sequence of events, goals, and expected outcomes",
+       "subtopics": [
+        {
+         "id": "develop-plans-that-describe-a-program-s-sequence",
+         "title": "Develop plans that describe a program’s sequence of events, goals, and expected outcomes",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Creating a plan for what a program will do clarifies the steps that will be needed to create the program and can be used to check if a program runs as expected. Students create a planning document to illustrate their program's sequence of events, goals, and expected outcomes of what their program will do. Planning documents could include a story map, a storyboard, or a sequential graphic organizer, to illustrate their program's sequence of events, goals, and expected outcomes of what their program will do. Students at this level may complete the planning process with help from the teacher."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "give-attribution-when-using-the-ideas-and-creati",
+       "title": "Give attribution when using the ideas and creations of others while developing programs",
+       "subtopics": [
+        {
+         "id": "give-attribution-when-using-the-ideas-and-creati",
+         "title": "Give attribution when using the ideas and creations of others while developing programs",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Computing makes it easy to reuse and remix others' creations, and this comes with a level of responsibility. Students credit artifacts that were created by others, such as pictures, music, and code. Credit could be given orally if presenting their work to the class, or in writing if sharing work on a class blog or website. Proper attribution at this stage does not require formal citation, such as in a bibliography or works cited document."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "debug-errors-in-an-algorithm-or-program-that-inc",
+       "title": "Debug errors in an algorithm or program that includes sequences and simple loops",
+       "subtopics": [
+        {
+         "id": "debug-errors-in-an-algorithm-or-program-that-inc",
+         "title": "Debug errors in an algorithm or program that includes sequences and simple loops",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Algorithms or programs may not always work correctly. Students use various strategies, such as changing the sequence of the steps, following the algorithm in a step-by-step manner, or trial and error to fix problems in algorithms and programs."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "describe-the-steps-taken-and-choices-made-during",
+       "title": "Describe the steps taken and choices made during the iterative process of program development",
+       "subtopics": [
+        {
+         "id": "describe-the-steps-taken-and-choices-made-during",
+         "title": "Describe the steps taken and choices made during the iterative process of program development",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Program developers make choices and iterate to continually refine their product. At this stage, students explain or write about the goals and expected outcomes of the programs they create and the choices that they made when creating programs. Students could use coding journals, discussions with a teacher, class presentations, or blogs."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "impacts-of-computing",
+     "title": "Impacts of Computing",
+     "topics": [
+      {
+       "id": "compare-how-people-lived-and-worked-before-and-a",
+       "title": "Compare how people lived and worked before and after the adoption of new computing technologies",
+       "subtopics": [
+        {
+         "id": "compare-how-people-lived-and-worked-before-and-a",
+         "title": "Compare how people lived and worked before and after the adoption of new computing technologies",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Computing technologies have changed the way people live and work. Students describe the positive and negative impacts of these changes. For example, as a class, students could create a timeline that includes advancements in computing technologies. Each student could then choose an advancement from the timeline and make a graphic organizer noting how people's lives were different before and after its introduction into society."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "work-respectfully-and-responsibly-with-others-wh",
+       "title": "Work respectfully and responsibly with others when communicating electronically",
+       "subtopics": [
+        {
+         "id": "work-respectfully-and-responsibly-with-others-wh",
+         "title": "Work respectfully and responsibly with others when communicating electronically",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Electronic communication facilitates positive interactions, such as sharing ideas with many people, but the public and anonymous nature of electronic communication also allows intimidating and inappropriate behavior in the form of cyberbullying. Responsible electronic communication includes limiting access to personably identifiable information. Students learn and use appropriate behavior when communicating electronically (often called \"netiquette\")."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "describe-approaches-and-rationales-for-keeping-l",
+       "title": "Describe approaches and rationales for keeping login information private, and for logging off of devices appropriately",
+       "subtopics": [
+        {
+         "id": "describe-approaches-and-rationales-for-keeping-l",
+         "title": "Describe approaches and rationales for keeping login information private, and for logging off of devices appropriately",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "People use computing technology in ways that can help or hurt themselves and/or others. Harmful behaviors, such as sharing passwords or other private information and leaving public devices logged in should be recognized and avoided. Students keep login information private, log off of devices appropriately, and discuss the importance of these practices."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "6-8",
+   "units": [
+    {
+     "id": "computing-systems",
+     "title": "Computing Systems",
+     "topics": [
+      {
+       "id": "devices",
+       "title": "Devices",
+       "subtopics": [
+        {
+         "id": "devices",
+         "title": "Devices",
+         "outcomes": [
+          {
+           "code": "6-8.CS.1",
+           "text": "Design modifications to computing devices in order to improve the ways users interact with the devices."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "hardware-software",
+       "title": "Hardware & Software",
+       "subtopics": [
+        {
+         "id": "hardware-software",
+         "title": "Hardware & Software",
+         "outcomes": [
+          {
+           "code": "6-8.CS.2",
+           "text": "Design a project that combines hardware and software components to collect and exchange data."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "troubleshooting",
+       "title": "Troubleshooting",
+       "subtopics": [
+        {
+         "id": "troubleshooting",
+         "title": "Troubleshooting",
+         "outcomes": [
+          {
+           "code": "6-8.CS.3",
+           "text": "Systematically apply troubleshooting strategies to identify and resolve hardware and software problems in computing systems."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "networks-the-internet",
+     "title": "Networks & the Internet",
+     "topics": [
+      {
+       "id": "network-communication-organization",
+       "title": "Network Communication & Organization",
+       "subtopics": [
+        {
+         "id": "network-communication-organization",
+         "title": "Network Communication & Organization",
+         "outcomes": [
+          {
+           "code": "6-8.NI.4",
+           "text": "Model the role of protocols in transmitting data across networks and the internet."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "cybersecurity",
+       "title": "Cybersecurity",
+       "subtopics": [
+        {
+         "id": "cybersecurity",
+         "title": "Cybersecurity",
+         "outcomes": [
+          {
+           "code": "6-8.NI.5",
+           "text": "Explain potential security threats and security measures to mitigate threats."
+          },
+          {
+           "code": "6-8.NI.6",
+           "text": "Apply multiple methods of information protection to model the secure transmission of information."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "data-analysis",
+     "title": "Data & Analysis",
+     "topics": [
+      {
+       "id": "storage",
+       "title": "Storage",
+       "subtopics": [
+        {
+         "id": "storage",
+         "title": "Storage",
+         "outcomes": [
+          {
+           "code": "6-8.DA.7",
+           "text": "Represent data in multiple ways."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "collection-visualization-transformation",
+       "title": "Collection Visualization & Transformation",
+       "subtopics": [
+        {
+         "id": "collection-visualization-transformation",
+         "title": "Collection Visualization & Transformation",
+         "outcomes": [
+          {
+           "code": "6-8.DA.8",
+           "text": "Collect data using computational tools and transform the data to make it more useful."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "inference-models",
+       "title": "Inference & Models",
+       "subtopics": [
+        {
+         "id": "inference-models",
+         "title": "Inference & Models",
+         "outcomes": [
+          {
+           "code": "6-8.DA.9",
+           "text": "Test and analyze the effects of changing variables while using computational models."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "algorithms-programming",
+     "title": "Algorithms & Programming",
+     "topics": [
+      {
+       "id": "algorithms",
+       "title": "Algorithms",
+       "subtopics": [
+        {
+         "id": "algorithms",
+         "title": "Algorithms",
+         "outcomes": [
+          {
+           "code": "6-8.AP.10",
+           "text": "Use flowcharts and/or pseudocode to design and illustrate algorithms that solve complex problems."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "variables",
+       "title": "Variables",
+       "subtopics": [
+        {
+         "id": "variables",
+         "title": "Variables",
+         "outcomes": [
+          {
+           "code": "6-8.AP.11",
+           "text": "Create clearly named variables that store data, and perform operations on their contents."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "control",
+       "title": "Control",
+       "subtopics": [
+        {
+         "id": "control",
+         "title": "Control",
+         "outcomes": [
+          {
+           "code": "6-8.AP.12",
+           "text": "Design and iteratively develop programs that combine control structures and use compound conditions."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "modularity",
+       "title": "Modularity",
+       "subtopics": [
+        {
+         "id": "modularity",
+         "title": "Modularity",
+         "outcomes": [
+          {
+           "code": "6-8.AP.13",
+           "text": "Decompose problems and subproblems into parts to facilitate the design, implementation, and review of programs."
+          },
+          {
+           "code": "6-8.AP.14",
+           "text": "Create procedures with parameters to organize code and make it easier to reuse."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "program-development",
+       "title": "Program Development",
+       "subtopics": [
+        {
+         "id": "program-development",
+         "title": "Program Development",
+         "outcomes": [
+          {
+           "code": "6-8.AP.15",
+           "text": "Seek and incorporate feedback from team members and users to refine a solution that meets user needs."
+          },
+          {
+           "code": "6-8.AP.16",
+           "text": "Incorporate existing code, media, and libraries into original programs, and give attribution."
+          },
+          {
+           "code": "6-8.AP.17",
+           "text": "Systematically test and refine programs using a range of test cases."
+          },
+          {
+           "code": "6-8.AP.18",
+           "text": "Distribute tasks and maintain a project timeline when collaboratively developing computational artifacts."
+          },
+          {
+           "code": "6-8.AP.19",
+           "text": "Document programs in order to make them easier to use, read, test, and debug."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "impacts-of-computing",
+     "title": "Impacts of Computing",
+     "topics": [
+      {
+       "id": "culture",
+       "title": "Culture",
+       "subtopics": [
+        {
+         "id": "culture",
+         "title": "Culture",
+         "outcomes": [
+          {
+           "code": "6-8.IC.20",
+           "text": "Compare tradeoffs associated with computing technologies that affect people’s everyday activities and career options."
+          },
+          {
+           "code": "6-8.IC.21",
+           "text": "Discuss issues of bias and accessibility in the design of existing technologies."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "social-interactions",
+       "title": "Social Interactions",
+       "subtopics": [
+        {
+         "id": "social-interactions",
+         "title": "Social Interactions",
+         "outcomes": [
+          {
+           "code": "6-8.IC.22",
+           "text": "Collaborate with many contributors when creating a computational artifact."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "safety-law-ethics",
+       "title": "Safety Law & Ethics",
+       "subtopics": [
+        {
+         "id": "safety-law-ethics",
+         "title": "Safety Law & Ethics",
+         "outcomes": [
+          {
+           "code": "6-8.IC.23",
+           "text": "Compare tradeoffs associated with licenses for computational artifacts to balance the protection of the creators’ rights and the ability for others to use and modify the artifacts."
+          },
+          {
+           "code": "6-8.IC.24",
+           "text": "Compare tradeoffs between allowing information to be public and keeping information private and secure."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "9-12",
+   "units": [
+    {
+     "id": "computing-systems",
+     "title": "Computing Systems",
+     "topics": [
+      {
+       "id": "devices",
+       "title": "Devices",
+       "subtopics": [
+        {
+         "id": "devices",
+         "title": "Devices",
+         "outcomes": [
+          {
+           "code": "9-12.CS.1",
+           "text": "Describe ways in which abstractions hide the underlying implementation details of computing systems to simplify user experiences."
+          },
+          {
+           "code": "9-12S.CS.1",
+           "text": "Illustrate ways computing systems implement logic through hardware components."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "hardware-software",
+       "title": "Hardware & Software",
+       "subtopics": [
+        {
+         "id": "hardware-software",
+         "title": "Hardware & Software",
+         "outcomes": [
+          {
+           "code": "9-12.CS.2",
+           "text": "Compare levels of abstraction and interactions between application software, system software, and hardware."
+          },
+          {
+           "code": "9-12S.CS.2",
+           "text": "Categorize and describe the different functions of operating system software."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "troubleshooting",
+       "title": "Troubleshooting",
+       "subtopics": [
+        {
+         "id": "troubleshooting",
+         "title": "Troubleshooting",
+         "outcomes": [
+          {
+           "code": "9-12.CS.3",
+           "text": "Develop guidelines that convey systematic troubleshooting strategies that others can use to identify and fix errors."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "networks-the-internet",
+     "title": "Networks & the Internet",
+     "topics": [
+      {
+       "id": "network-communication-organization",
+       "title": "Network Communication & Organization",
+       "subtopics": [
+        {
+         "id": "network-communication-organization",
+         "title": "Network Communication & Organization",
+         "outcomes": [
+          {
+           "code": "9-12.NI.4",
+           "text": "Describe issues that impact network functionality."
+          },
+          {
+           "code": "9-12.NI.5",
+           "text": "Describe the design characteristics of the internet."
+          },
+          {
+           "code": "9-12S.NI.3",
+           "text": "Examine the scalability and reliability of networks, by describing the relationship between routers, switches, servers, topology, and addressing."
+          },
+          {
+           "code": "9-12S.NI.4",
+           "text": "Explain how the characteristics of the internet influence the systems developed on it."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "cybersecurity",
+       "title": "Cybersecurity",
+       "subtopics": [
+        {
+         "id": "cybersecurity",
+         "title": "Cybersecurity",
+         "outcomes": [
+          {
+           "code": "9-12.NI.6",
+           "text": "Compare and contrast security measures to address various security threats."
+          },
+          {
+           "code": "9-12.NI.7",
+           "text": "Compare and contrast cryptographic techniques to model the secure transmission of information."
+          },
+          {
+           "code": "9-12S.NI.5",
+           "text": "Develop solutions to security threats."
+          },
+          {
+           "code": "9-12S.NI.6",
+           "text": "Analyze cryptographic techniques to model the secure transmission of information."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "data-analysis",
+     "title": "Data & Analysis",
+     "topics": [
+      {
+       "id": "storage",
+       "title": "Storage",
+       "subtopics": [
+        {
+         "id": "storage",
+         "title": "Storage",
+         "outcomes": [
+          {
+           "code": "9-12.DA.8",
+           "text": "Translate between different representations of data abstractions of real-world phenomena, such as characters, numbers, and images."
+          },
+          {
+           "code": "9-12.DA.9",
+           "text": "Describe tradeoffs associated with how data elements are organized and stored."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "collection-visualization-transformation",
+       "title": "Collection Visualization & Transformation",
+       "subtopics": [
+        {
+         "id": "collection-visualization-transformation",
+         "title": "Collection Visualization & Transformation",
+         "outcomes": [
+          {
+           "code": "9-12.DA.10",
+           "text": "Create data visualizations to help others better understand real-world phenomena."
+          },
+          {
+           "code": "9-12S.DA.7",
+           "text": "Select and use data collection tools and techniques to generate data sets."
+          },
+          {
+           "code": "9-12S.DA.8",
+           "text": "Use data analysis tools and techniques to identify patterns in data representing complex systems."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "inference-models",
+       "title": "Inference & Models",
+       "subtopics": [
+        {
+         "id": "inference-models",
+         "title": "Inference & Models",
+         "outcomes": [
+          {
+           "code": "9-12.DA.11",
+           "text": "Refine computational models to better represent the relationships among different elements of data collected from a phenomenon or process."
+          },
+          {
+           "code": "9-12S.DA.9",
+           "text": "Evaluate the ability of models and simulations to test and support the refinement of hypotheses."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "algorithms-programming",
+     "title": "Algorithms & Programming",
+     "topics": [
+      {
+       "id": "algorithms",
+       "title": "Algorithms",
+       "subtopics": [
+        {
+         "id": "algorithms",
+         "title": "Algorithms",
+         "outcomes": [
+          {
+           "code": "9-12.AP.12",
+           "text": "Design algorithms to solve computational problems using a combination of original and existing algorithms."
+          },
+          {
+           "code": "9-12S.AP.10",
+           "text": "Describe how artificial intelligence drives many software and physical systems."
+          },
+          {
+           "code": "9-12S.AP.11",
+           "text": "Implement an algorithm that uses artificial intelligence to overcome a simple challenge."
+          },
+          {
+           "code": "9-12S.AP.12",
+           "text": "Implement searching and sorting algorithms to solve computational problems."
+          },
+          {
+           "code": "9-12S.AP.13",
+           "text": "Evaluate algorithms in terms of their efficiency."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "variables",
+       "title": "Variables",
+       "subtopics": [
+        {
+         "id": "variables",
+         "title": "Variables",
+         "outcomes": [
+          {
+           "code": "9-12.AP.13",
+           "text": "Create more generalized computational solutions using collections instead of repeatedly using simple variables."
+          },
+          {
+           "code": "9-12S.AP.14",
+           "text": "Compare and contrast fundamental data structures and their uses."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "control",
+       "title": "Control",
+       "subtopics": [
+        {
+         "id": "control",
+         "title": "Control",
+         "outcomes": [
+          {
+           "code": "9-12.AP.14",
+           "text": "Justify the selection of specific control structures by identifying tradeoffs associated with implementation, readability, and performance."
+          },
+          {
+           "code": "9-12.AP.15",
+           "text": "Iteratively design and develop computational artifacts for practical intent, personal expression, or to address a societal issue by using events to initiate instructions."
+          },
+          {
+           "code": "9-12.AP.16",
+           "text": "Decompose problems into smaller subproblems through systematic analysis, using constructs such as procedures, modules, and/or classes."
+          },
+          {
+           "code": "9-12S.AP.15",
+           "text": "Demonstrate the flow of execution of a recursive algorithm."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "modularity",
+       "title": "Modularity",
+       "subtopics": [
+        {
+         "id": "modularity",
+         "title": "Modularity",
+         "outcomes": [
+          {
+           "code": "9-12.AP.17",
+           "text": "Create computational artifacts using modular design."
+          },
+          {
+           "code": "9-12S.AP.16",
+           "text": "Analyze a large-scale computational problem and identify generalizable patterns or problem components that can be applied to a solution."
+          },
+          {
+           "code": "9-12S.AP.17",
+           "text": "Construct solutions to problems using student-created components, such as procedures, modules, and/or objects."
+          },
+          {
+           "code": "9-12S.AP.18",
+           "text": "Demonstrate code reuse by creating programming solutions using libraries and APIs."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "program-development",
+       "title": "Program Development",
+       "subtopics": [
+        {
+         "id": "program-development-1-of-3",
+         "title": "Program Development (1 of 3)",
+         "outcomes": [
+          {
+           "code": "9-12.AP.18",
+           "text": "Systematically design programs for broad audiences by incorporating feedback from users."
+          },
+          {
+           "code": "9-12.AP.19",
+           "text": "Explain the limitations of licenses that restrict use of computational artifacts when using resources such as libraries."
+          },
+          {
+           "code": "9-12.AP.20",
+           "text": "Iteratively evaluate and refine a computational artifact to enhance its performance, reliability, usability, and accessibility."
+          },
+          {
+           "code": "9-12.AP.21",
+           "text": "Design and develop computational artifacts working in team roles using collaborative tools."
+          },
+          {
+           "code": "9-12.AP.22",
+           "text": "Document decisions made during the design process using text, graphics, presentations, and/or demonstrations in the development of complex programs."
+          }
+         ]
+        },
+        {
+         "id": "program-development-2-of-3",
+         "title": "Program Development (2 of 3)",
+         "outcomes": [
+          {
+           "code": "9-12S.AP.19",
+           "text": "Plan and develop programs for broad audiences using a specific software life cycle process."
+          },
+          {
+           "code": "9-12S.AP.20",
+           "text": "Develop programs for multiple computing platforms."
+          },
+          {
+           "code": "9-12S.AP.21",
+           "text": "Identify and fix security issues that might compromise computer programs."
+          },
+          {
+           "code": "9-12S.AP.22",
+           "text": "Develop and use a series of test cases to verify that a program performs according to its design specifications."
+          },
+          {
+           "code": "9-12S.AP.23",
+           "text": "Modify an existing program to add additional functionality and discuss intended and unintended implications."
+          }
+         ]
+        },
+        {
+         "id": "program-development-3-of-3",
+         "title": "Program Development (3 of 3)",
+         "outcomes": [
+          {
+           "code": "9-12S.AP.24",
+           "text": "Evaluate key qualities of a program through a process such as a code review."
+          },
+          {
+           "code": "9-12S.AP.25",
+           "text": "Use version control systems, integrated development environments (IDEs), and collaborative tools and practices (e.g., code documentation) while developing software within a group."
+          },
+          {
+           "code": "9-12S.AP.26",
+           "text": "Compare multiple programming languages, and discuss how their features make them suitable for solving different types of problems."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "impacts-of-computing",
+     "title": "Impacts of Computing",
+     "topics": [
+      {
+       "id": "culture",
+       "title": "Culture",
+       "subtopics": [
+        {
+         "id": "culture-1-of-2",
+         "title": "Culture (1 of 2)",
+         "outcomes": [
+          {
+           "code": "9-12.IC.23",
+           "text": "Evaluate the ways computing impacts personal, ethical, social, economic, and cultural practices."
+          },
+          {
+           "code": "9-12.IC.24",
+           "text": "Identify impacts of bias and equity deficit on design and implementation of computational artifacts and apply appropriate processes for evaluating issues of bias."
+          },
+          {
+           "code": "9-12.IC.25",
+           "text": "Demonstrate ways a given algorithm applies to problems across disciplines."
+          },
+          {
+           "code": "9-12.IC.26",
+           "text": "Study, discuss, and think critically about the potential impacts and implications of emerging technologies on larger social, economic, and political structures, with evidence from credible sources."
+          }
+         ]
+        },
+        {
+         "id": "culture-2-of-2",
+         "title": "Culture (2 of 2)",
+         "outcomes": [
+          {
+           "code": "9-12S.IC.27",
+           "text": "Evaluate computational artifacts with regard to improving their beneficial effects and reducing harmful effects on society."
+          },
+          {
+           "code": "9-12S.IC.28",
+           "text": "Evaluate how computational innovations that have revolutionized aspects of our culture might evolve."
+          },
+          {
+           "code": "9-12S.IC.29",
+           "text": "Evaluate the impact of equity, access, and influence on the distribution of computing resources in a global society."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "social-interactions",
+       "title": "Social Interactions",
+       "subtopics": [
+        {
+         "id": "social-interactions",
+         "title": "Social Interactions",
+         "outcomes": [
+          {
+           "code": "9-12.IC.27",
+           "text": "Use collaboration tools and methods to increase connectivity with people of different cultures and careers."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "safety-law-ethics",
+       "title": "Safety Law & Ethics",
+       "subtopics": [
+        {
+         "id": "safety-law-ethics",
+         "title": "Safety Law & Ethics",
+         "outcomes": [
+          {
+           "code": "9-12.IC.28",
+           "text": "Explain the beneficial and harmful effects that intellectual property laws can have on innovation."
+          },
+          {
+           "code": "9-12.IC.29",
+           "text": "Explain the privacy concerns related to the collection and generation of data through automated processes."
+          },
+          {
+           "code": "9-12.IC.30",
+           "text": "Evaluate the social and economic implications of privacy in the context of safety, law, or ethics."
+          },
+          {
+           "code": "9-12S.IC.30",
+           "text": "Debate laws and regulations that impact the development and use of software."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "build": {
+  "builtAt": "2026-10-14T16:20:39.049Z",
+  "model": "none",
+  "usd": 0,
+  "expectedCodes": 84,
+  "coverage": 1,
+  "missingCodes": [],
+  "counts": {
+   "grades": 4,
+   "units": 20,
+   "topics": 75,
+   "subtopics": 78,
+   "outcomes": 127
+  },
+  "warnings": []
+ }
+}

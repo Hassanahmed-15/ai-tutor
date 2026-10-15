@@ -1,0 +1,183 @@
+U|Unit 1: Exploring One-Variable Data and Collecting Data
+T|1.1 Introducing Statistics: What Can We Learn from Data?
+S|Parts of a statistical study
+1.1.A|Identify the components of a statistical study
+1.1.A.1|A statistical study collects sample data to answer a question about a larger population
+1.1.A.2|Studies are needed when surveying the whole population is too hard
+1.1.A.3|A datum is one piece of information; many data form a data set
+1.1.A.4|A population is everything of interest; its size is N
+1.1.A.5|A sample is a subset of the population; its size is n
+1.1.A.6|Relate every part of a study and its results to the real-world context ("in context")
+S|Investigative questions
+1.1.B|Determine an investigative question within a statistical study
+1.1.B.1|A question has a defined purpose and is not changed after seeing results
+1.1.B.2|Pose the question so the needed data can be collected and analysed
+T|1.2 Variables
+S|Units, variables, parameters and statistics
+1.2.A|Identify observational units, variables, parameters and statistics
+1.2.A.1|An observational unit is an item or individual from which data are collected
+1.2.A.2|A variable is a characteristic that can differ between units
+1.2.A.3|Numerical and categorical data, including images, sounds and text, can carry information
+1.2.A.4|A parameter summarises a variable for a population
+1.2.A.5|A statistic summarises a variable for a sample and is used to infer the parameter
+S|Types of variables
+1.2.B|Identify types of variables
+1.2.B.1|Categorical variables take category names or group labels
+1.2.B.2|Quantitative variables take measured or counted numerical values, usually with units
+1.2.C|Identify types of quantitative variables
+1.2.C.1|Discrete variables take countable values
+1.2.C.2|Continuous variables take any value within an interval
+T|1.3 Tabular Representation and Summary Statistics for One Categorical Variable
+S|Frequency tables
+1.3.A|Construct tables for one categorical variable
+1.3.A.1|A frequency table counts units in each category
+1.3.A.2|A relative frequency table gives the proportion in each category
+1.3.B|Describe categorical tables with summary statistics
+1.3.B.1|Percentages, relative frequencies and ratios carry the same information as proportions
+1.3.B.2|Counts and relative frequencies can justify claims in context
+T|1.4 Graphical Representations for One Categorical Variable
+S|Bar charts and pie charts
+1.4.A|Construct graphs for one categorical variable
+1.4.A.1|Bar charts show frequency or relative frequency per category by bar height
+1.4.A.2|Pie charts show relative frequencies as slice areas totaling 100 percent
+S|Justifying and comparing with categorical graphs
+1.4.B|Justify a claim using categorical graphs
+1.4.B.1|Graphs of a categorical variable can justify claims in context
+1.4.C|Compare multiple categorical tables and graphs
+1.4.C.1|Use tables, bar charts and pie charts to compare data sets on the same categorical variable
+T|1.5 Graphical Representations for One Quantitative Variable
+S|Histograms, stem plots and dotplots
+1.5.A|Construct graphs for one quantitative variable
+1.5.A.1|Histograms, stem-and-leaf plots and dotplots display a distribution in natural order
+1.5.A.2|A histogram groups values into bins whose heights show frequency; bin width changes its look
+1.5.A.3|A stem-and-leaf plot splits each value into stem and leaf, both ordered
+1.5.A.4|A dotplot places one dot per value, stacking near-identical values
+T|1.6 Descriptions for One Quantitative Variable Distributions
+S|Describing a distribution
+1.6.A|Describe distributions shown in graphs of one quantitative variable
+1.6.A.1|Describe shape, center, variability and unusual features in context
+1.6.A.2|Classify shape as skewed right, skewed left or approximately symmetric
+1.6.A.3|Distinguish unimodal, bimodal and approximately uniform distributions
+1.6.A.4|Outliers are unusually small or large values
+1.6.A.5|A gap is a region with no observed data
+1.6.A.6|Clusters are concentrations of values separated by gaps
+1.6.B|Justify a claim using a distribution graph
+1.6.B.1|Graphs of a quantitative variable can justify claims in context
+T|1.7 Summary Statistics for One Quantitative Variable
+S|Center and position
+1.7.A|Calculate measures of center and position
+1.7.A.1|Mean and median are the common measures of center
+1.7.A.2|The mean is the sum of values divided by their count
+1.7.A.3|The median is the middle value of the ordered data
+1.7.A.4|Minimum and maximum are the smallest and largest values
+1.7.A.5|Quartiles Q1, Q2, Q3 split the ordered data into quarters
+1.7.A.6|The pth percentile has p percent of values at or below it
+S|Variability
+1.7.B|Calculate measures of variability
+1.7.B.1|Range, IQR and standard deviation measure spread
+1.7.B.2|Range is maximum minus minimum
+1.7.B.3|IQR is Q3 minus Q1
+1.7.B.4|Standard deviation is a typical distance from the mean; its square is the variance
+S|Units, outliers and comparison
+1.7.C|Calculate effects of different units of measurement
+1.7.C.1|Changing measurement units changes the statistics
+1.7.D|Calculate outliers
+1.7.D.1|Flag outliers by the 1.5 times IQR rule or by 2 standard deviations from the mean
+1.7.E|Compare summary statistics across samples
+1.7.E.1|Compare center, variability, shape and outliers between independent samples
+S|Choosing a summary statistic
+1.7.F|Justify the choice of summary statistic
+1.7.F.1|Median and IQR are resistant to outliers; mean, range and standard deviation are not
+1.7.F.2|Summary statistics can justify claims in context
+T|1.8 Graphical Representations of Summary Statistics for One Quantitative Variable
+S|Five-number summary and boxplots
+1.8.A|Construct graphs of summary statistics
+1.8.A.1|The five-number summary is minimum, Q1, median, Q3, maximum
+1.8.A.2|A boxplot shows the five-number summary, with whiskers and outliers marked separately
+1.8.B|Describe graphs using the mean-median relationship
+1.8.B.1|Symmetric: mean near median; right skew: mean above median; left skew: mean below
+T|1.9 Comparisons of the Distributions for One Quantitative Variable
+S|Comparing distributions
+1.9.A|Compare graphs of a quantitative variable
+1.9.A.1|Compare center, variability, shape, outliers, clusters and gaps using histograms, dotplots, stem plots and boxplots
+1.9.B|Compare graphs of summary statistics
+1.9.B.1|Comparisons can include numerical summaries such as mean and standard deviation
+1.9.C|Justify a claim using several graphs
+1.9.C.1|Multiple graphs can justify claims in context
+S|z-scores
+1.9.D|Calculate z-scores using population parameters
+1.9.D.1|A standardised score counts standard deviations from the mean
+1.9.D.2|z equals the value minus the mean, divided by the standard deviation; sample statistics can substitute
+1.9.E|Compare z-scores as relative position
+1.9.E.1|Use z-scores to compare positions within or between distributions
+T|1.10 The Investigative Question Revisited and Data Collection
+S|Components of an investigative question
+1.10.A|Determine the components of an investigative question
+1.10.A.1|The first part guides data collection and names the variables
+1.10.A.2|The second part guides the analysis, naming the parameter and the alternative direction or estimation goal
+1.10.A.3|The third part states the population and any cause-and-effect conclusion
+S|Census, experiments and observational studies
+1.10.B|Identify a census
+1.10.B.1|A census records information from every unit in the population
+1.10.C|Identify an experiment
+1.10.C.1|An experiment assigns treatments to experimental units
+1.10.C.2|The experimental unit is the unit receiving the treatment
+1.10.C.3|Explanatory variables (factors) have levels that are the treatments
+1.10.C.4|The response variable is measured after treatment
+1.10.D|Identify an observational study
+1.10.D.1|Observational studies do not impose treatments
+1.10.D.2|Prospective studies gather data now and in the future
+1.10.D.3|Retrospective studies gather past data
+1.10.D.4|A survey asks humans a standard set of questions
+1.10.D.5|A confounding variable linked to both explanatory and response variables offers an alternative explanation
+S|Justifying generalizations
+1.10.E|Justify the appropriateness of generalizations
+1.10.E.1|A random sample is chosen by a random mechanism
+1.10.E.2|Random selection allows generalising to the whole population
+1.10.E.3|Volunteer or deliberately chosen samples are not random
+1.10.E.4|Without random selection generalise only to similar individuals
+T|1.11 Random Sampling
+S|Sampling methods
+1.11.A|Identify a sampling method from a study description
+1.11.A.1|Sampling without replacement selects each unit at most once
+1.11.A.2|Sampling with replacement can select a unit more than once
+1.11.A.3|In a simple random sample every sample of size n is equally likely
+1.11.A.4|A stratified sample takes a simple random sample from each stratum
+1.11.A.5|A cluster sample randomly selects clusters and surveys everyone in them
+1.11.A.6|A systematic sample uses a random start and fixed interval
+1.11.B|Justify the appropriateness of a sampling method
+1.11.B.1|Each method suits different populations and questions
+T|1.12 Potential Problems with Sampling
+S|Sources of bias
+1.12.A|Identify potential sources of bias in sampling
+1.12.A.1|Bias is systematic error pushing a statistic consistently high or low
+1.12.A.2|Voluntary response bias arises when the sample is all volunteers
+1.12.A.3|Undercoverage bias arises when part of the population is missed
+1.12.A.4|Nonresponse bias arises when chosen individuals do not respond
+1.12.A.5|Response bias arises from confusing or leading questions or self-reports
+1.12.A.6|Nonrandom methods such as convenience samples risk bias
+T|1.13 Experimental Design
+S|Elements of a good experiment
+1.13.A|Identify elements of a well-designed experiment
+1.13.A.1|Include comparison of treatments, random assignment, replication and direct control
+1.13.A.2|A control group provides a comparison, sometimes with a placebo
+1.13.A.3|The placebo effect is the response to a placebo compared with no treatment
+1.13.A.4|In a single-blind experiment only participants or only the research team know the treatments
+1.13.A.5|In a double-blind experiment neither group knows the treatments
+1.13.A.6|An extraneous variable affects the response but is not studied
+S|Random assignment, confounding, replication
+1.13.A.7|Random assignment makes treatment groups similar on extraneous variables
+1.13.A.8|A confounding variable is tangled with the explanatory variable; good design reduces it
+1.13.A.9|Replication means more than one unit per treatment
+1.13.A.10|Direct control holds extraneous settings the same across units
+S|Experimental designs
+1.13.B|Identify experimental designs
+1.13.B.1|In a completely randomized design treatments are assigned entirely at random
+1.13.B.2|A randomized block design groups similar units into blocks and randomises within each
+1.13.B.3|Blocking separates blocking-variable variation to compare treatments more precisely
+1.13.B.4|A matched pairs design is a two-treatment block design on pairs or on repeated units
+1.13.C|Justify an experimental design
+1.13.C.1|The best design depends on goals, population, sample and variables
+1.13.D|Justify conclusions from an experiment
+1.13.D.1|Random assignment permits cause-and-effect conclusions
+1.13.D.2|When random selection is impractical or unethical, volunteers represent similar units

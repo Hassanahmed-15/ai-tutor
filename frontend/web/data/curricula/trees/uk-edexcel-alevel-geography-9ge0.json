@@ -1,0 +1,2237 @@
+{
+ "id": "uk-edexcel-alevel-geography-9ge0",
+ "region": "UK",
+ "framework": "Pearson Edexcel Level 3 Advanced GCE",
+ "board": "Pearson Edexcel",
+ "qualification": "A Level",
+ "subject": "Geography",
+ "syllabusCode": "9GE0",
+ "gradeSystem": "year",
+ "source": {
+  "urls": [
+   "https://qualifications.pearson.com/content/dam/pdf/A%20Level/Geography/2016/specification-and-sample-assessments/pearson-edexcel-a-level-geography-issue-6.pdf"
+  ],
+  "publisher": "Pearson Education",
+  "licence": "Exam board specification, (c) Pearson; structure + our own wording only",
+  "firstExam": "2018"
+ },
+ "grades": [
+  {
+   "grade": "all",
+   "units": [
+    {
+     "id": "area-of-study-1-dynamic-landscapes",
+     "title": "Area of study 1: Dynamic Landscapes",
+     "topics": [
+      {
+       "id": "topic-1-tectonic-processes-and-hazards",
+       "title": "Topic 1: Tectonic Processes and Hazards",
+       "subtopics": [
+        {
+         "id": "global-distribution-of-tectonic-hazards",
+         "title": "Global distribution of tectonic hazards",
+         "outcomes": [
+          {
+           "code": "1.1",
+           "text": "Explain the global distribution and causes of earthquakes, volcanoes and tsunamis."
+          },
+          {
+           "code": null,
+           "text": "Describe plate boundaries from divergent, convergent and conservative movement."
+          },
+          {
+           "code": null,
+           "text": "Explain intra-plate earthquakes and hot-spot volcanoes from mantle plumes."
+          }
+         ]
+        },
+        {
+         "id": "theory-of-plate-tectonics",
+         "title": "Theory of plate tectonics",
+         "outcomes": [
+          {
+           "code": "1.2",
+           "text": "Explain plate tectonics: Earth's structure, convection, subduction, ridge push, slab pull, sea-floor spreading, palaeomagnetism."
+          },
+          {
+           "code": null,
+           "text": "Describe how these processes work at destructive, constructive, collision and transform margins."
+          },
+          {
+           "code": null,
+           "text": "Explain how physical processes affect eruption type, earthquake magnitude and focal depth (Benioff zone)."
+          }
+         ]
+        },
+        {
+         "id": "causes-of-tectonic-hazards",
+         "title": "Causes of tectonic hazards",
+         "outcomes": [
+          {
+           "code": "1.3",
+           "text": "Explain how seismic waves cause fracturing, shaking, liquefaction and landslides."
+          },
+          {
+           "code": null,
+           "text": "Describe volcanic hazards: lava, pyroclastic flows, ash, gases, lahars and jokulhlaups."
+          },
+          {
+           "code": null,
+           "text": "Explain how sub-marine earthquakes at subduction zones cause tsunamis."
+          }
+         ]
+        },
+        {
+         "id": "hazards-vulnerability-and-disaster",
+         "title": "Hazards, vulnerability and disaster",
+         "outcomes": [
+          {
+           "code": "1.4",
+           "text": "Define hazard and disaster, vulnerability, resilience thresholds and the hazard risk equation."
+          },
+          {
+           "code": null,
+           "text": "Apply the Pressure and Release (PAR) model to hazards in context."
+          },
+          {
+           "code": null,
+           "text": "Assess social and economic impacts of tectonic hazards in developed, emerging and developing countries."
+          }
+         ]
+        },
+        {
+         "id": "tectonic-hazard-profiles",
+         "title": "Tectonic hazard profiles",
+         "outcomes": [
+          {
+           "code": "1.5",
+           "text": "Use the Mercalli, Moment Magnitude and VEI scales to measure magnitude and intensity."
+          },
+          {
+           "code": null,
+           "text": "Compare earthquakes, volcanoes and tsunamis through hazard profiles."
+          },
+          {
+           "code": null,
+           "text": "Use event profiles to show impact severity in countries at different development levels."
+          }
+         ]
+        },
+        {
+         "id": "development-governance-and-resilience",
+         "title": "Development, governance and resilience",
+         "outcomes": [
+          {
+           "code": "1.6",
+           "text": "Explain how unequal access to education, housing, healthcare and income affects vulnerability and resilience."
+          },
+          {
+           "code": null,
+           "text": "Explain how governance and geography (density, isolation, urbanisation) affect resilience."
+          },
+          {
+           "code": null,
+           "text": "Compare contrasting hazard events to show interaction of physical and human factors."
+          }
+         ]
+        },
+        {
+         "id": "trends-and-patterns-in-tectonic-disasters",
+         "title": "Trends and patterns in tectonic disasters",
+         "outcomes": [
+          {
+           "code": "1.7",
+           "text": "Interpret tectonic disaster trends since 1960 and judge the reliability of the data."
+          },
+          {
+           "code": null,
+           "text": "Explain how tectonic mega-disasters have regional or global significance."
+          },
+          {
+           "code": null,
+           "text": "Explain multiple-hazard zones and how hydrometeorological hazards add to tectonic disasters."
+          }
+         ]
+        },
+        {
+         "id": "frameworks-for-managing-hazards",
+         "title": "Frameworks for managing hazards",
+         "outcomes": [
+          {
+           "code": "1.8",
+           "text": "Explain how accuracy of prediction and forecasting depends on the hazard type and place."
+          },
+          {
+           "code": null,
+           "text": "Describe the hazard management cycle: response, recovery, mitigation, preparedness."
+          },
+          {
+           "code": null,
+           "text": "Use Park's model to compare hazard responses in areas at different development stages."
+          }
+         ]
+        },
+        {
+         "id": "mitigation-and-adaptation-strategies",
+         "title": "Mitigation and adaptation strategies",
+         "outcomes": [
+          {
+           "code": "1.9",
+           "text": "Describe strategies to modify the event: zoning, resistant design, defences, lava diversion."
+          },
+          {
+           "code": null,
+           "text": "Describe strategies to modify vulnerability: monitoring, prediction, education, preparedness."
+          },
+          {
+           "code": null,
+           "text": "Describe strategies to modify loss: aid, insurance, NGOs and community action."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "topic-2a-glaciated-landscapes-and-change",
+       "title": "Topic 2A: Glaciated Landscapes and Change",
+       "subtopics": [
+        {
+         "id": "climate-change-and-glaciation",
+         "title": "Climate change and glaciation",
+         "outcomes": [
+          {
+           "code": "2A.1",
+           "text": "Describe the chronology of glacial and interglacial periods since the Pleistocene."
+          },
+          {
+           "code": null,
+           "text": "Explain the causes of climate change: Milankovitch cycles, solar output, atmospheric gases, volcanoes."
+          }
+         ]
+        },
+        {
+         "id": "ice-cover-past-and-present",
+         "title": "Ice cover past and present",
+         "outcomes": [
+          {
+           "code": "2A.2",
+           "text": "Define the cryosphere and classify ice masses by scale and location."
+          },
+          {
+           "code": null,
+           "text": "Describe present-day high latitude ice sheets and evidence of Pleistocene extent."
+          },
+          {
+           "code": null,
+           "text": "Describe glaciated uplands today and relict landscapes from the Pleistocene."
+          }
+         ]
+        },
+        {
+         "id": "periglacial-landscapes",
+         "title": "Periglacial landscapes",
+         "outcomes": [
+          {
+           "code": "2A.3",
+           "text": "Describe the distribution of periglacial areas and permafrost with its active layer."
+          },
+          {
+           "code": null,
+           "text": "Explain periglacial processes: nivation, frost heave, freeze-thaw, solifluction."
+          },
+          {
+           "code": null,
+           "text": "Explain formation of periglacial landforms such as ice wedges, patterned ground, pingos, loess."
+          }
+         ]
+        },
+        {
+         "id": "glacial-mass-balance",
+         "title": "Glacial mass balance",
+         "outcomes": [
+          {
+           "code": "2A.4",
+           "text": "Explain mass balance and the equilibrium between accumulation and ablation, with feedback."
+          },
+          {
+           "code": null,
+           "text": "Describe accumulation and ablation processes."
+          },
+          {
+           "code": null,
+           "text": "Explain variations in accumulation and ablation rates and their effects over time."
+          }
+         ]
+        },
+        {
+         "id": "glacier-movement",
+         "title": "Glacier movement",
+         "outcomes": [
+          {
+           "code": "2A.5",
+           "text": "Compare movement rates of polar and temperate glaciers."
+          },
+          {
+           "code": null,
+           "text": "Explain glacier movement by basal slip, regelation creep and internal deformation."
+          },
+          {
+           "code": null,
+           "text": "Explain factors controlling rate of movement, such as altitude, basal temperature, slope and lithology."
+          }
+         ]
+        },
+        {
+         "id": "the-glacier-system",
+         "title": "The glacier system",
+         "outcomes": [
+          {
+           "code": "2A.6",
+           "text": "Explain how glaciers alter landscapes through erosion, entrainment, transport and deposition."
+          },
+          {
+           "code": null,
+           "text": "Describe glacial landforms at macro, meso and micro scale in sub-glacial, marginal, proglacial and periglacial settings."
+          },
+          {
+           "code": null,
+           "text": "Explain how landforms create upland and lowland landscapes that show former ice extent."
+          }
+         ]
+        },
+        {
+         "id": "glacial-erosion-landforms",
+         "title": "Glacial erosion landforms",
+         "outcomes": [
+          {
+           "code": "2A.7",
+           "text": "Explain erosion by abrasion, quarrying, plucking, crushing and basal melting, with freeze-thaw and mass movement."
+          },
+          {
+           "code": null,
+           "text": "Explain formation of cirques, arêtes, pyramidal peaks, troughs, hanging valleys and ribbon lakes."
+          },
+          {
+           "code": null,
+           "text": "Explain ice-sheet scouring landforms: roches moutonnées, knock and lochan, crag and tail."
+          }
+         ]
+        },
+        {
+         "id": "glacial-deposition-landforms",
+         "title": "Glacial deposition landforms",
+         "outcomes": [
+          {
+           "code": "2A.8",
+           "text": "Explain formation of moraines and drumlins."
+          },
+          {
+           "code": null,
+           "text": "Explain lowland depositional features: till plains, lodgement and ablation till."
+          },
+          {
+           "code": null,
+           "text": "Use landform assemblages to reconstruct former ice extent, movement and provenance."
+          }
+         ]
+        },
+        {
+         "id": "glacial-meltwater",
+         "title": "Glacial meltwater",
+         "outcomes": [
+          {
+           "code": "2A.9",
+           "text": "Describe water movement in supraglacial, englacial and sub-glacial flows."
+          },
+          {
+           "code": null,
+           "text": "Compare glacial and fluvioglacial deposits by stratification, sorting, imbrication and grading."
+          },
+          {
+           "code": null,
+           "text": "Explain formation of kames, eskers, kame terraces, sandurs, proglacial lakes, meltwater channels and kettleholes."
+          }
+         ]
+        },
+        {
+         "id": "value-of-glaciated-landscapes",
+         "title": "Value of glaciated landscapes",
+         "outcomes": [
+          {
+           "code": "2A.10",
+           "text": "Explain cultural and environmental value of relict and active glaciated landscapes."
+          },
+          {
+           "code": null,
+           "text": "Assess economic importance of glaciated landscapes: farming, mining, HEP, tourism, forestry."
+          },
+          {
+           "code": null,
+           "text": "Describe unique biodiversity of tundra and the role of these areas in water and carbon cycles."
+          }
+         ]
+        },
+        {
+         "id": "threats-to-glaciated-landscapes",
+         "title": "Threats to glaciated landscapes",
+         "outcomes": [
+          {
+           "code": "2A.11",
+           "text": "Describe natural and human threats to glaciated landscapes, such as avalanches, outburst floods, tourism and reservoirs."
+          },
+          {
+           "code": null,
+           "text": "Explain how human activity degrades fragile ecology: erosion, trampling, landslides, deforestation."
+          },
+          {
+           "code": null,
+           "text": "Explain how climate change alters mass balance and the hydrological cycle, e.g. Himalayan glaciers."
+          }
+         ]
+        },
+        {
+         "id": "managing-glaciated-landscapes",
+         "title": "Managing glaciated landscapes",
+         "outcomes": [
+          {
+           "code": "2A.12",
+           "text": "Explain roles of stakeholders and approaches from protection to multiple economic use, e.g. Yosemite."
+          },
+          {
+           "code": null,
+           "text": "Explain legislative frameworks that protect and conserve landscapes at varied scales."
+          },
+          {
+           "code": null,
+           "text": "Explain how climate change makes management harder and needs coordinated action."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "topic-2b-coastal-landscapes-and-change",
+       "title": "Topic 2B: Coastal Landscapes and Change",
+       "subtopics": [
+        {
+         "id": "the-coast-and-littoral-zone",
+         "title": "The coast and littoral zone",
+         "outcomes": [
+          {
+           "code": "2B.1",
+           "text": "Describe the littoral zone: backshore, nearshore, offshore."
+          },
+          {
+           "code": null,
+           "text": "Classify coasts by geology, sea level, rivers, waves and tides."
+          },
+          {
+           "code": null,
+           "text": "Compare rocky coasts with coastal plain landscapes (sandy and estuarine)."
+          }
+         ]
+        },
+        {
+         "id": "geology-and-coastal-landscapes",
+         "title": "Geology and coastal landscapes",
+         "outcomes": [
+          {
+           "code": "2B.2",
+           "text": "Explain concordant and discordant coasts from geological structure."
+          },
+          {
+           "code": null,
+           "text": "Describe Dalmatian and Haff concordant coasts, and headlands and bays."
+          },
+          {
+           "code": null,
+           "text": "Explain how bedding, jointing, dip, faulting and folding affect morphology, erosion and micro-features."
+          }
+         ]
+        },
+        {
+         "id": "rates-of-recession-and-stability",
+         "title": "Rates of recession and stability",
+         "outcomes": [
+          {
+           "code": "2B.3",
+           "text": "Explain how lithology and unconsolidated material affect rates of recession."
+          },
+          {
+           "code": null,
+           "text": "Explain differential erosion producing complex cliff profiles."
+          },
+          {
+           "code": null,
+           "text": "Explain how vegetation stabilises dunes and salt marshes through succession."
+          }
+         ]
+        },
+        {
+         "id": "marine-erosion-landforms",
+         "title": "Marine erosion landforms",
+         "outcomes": [
+          {
+           "code": "2B.4",
+           "text": "Compare constructive and destructive waves and their effects on beaches."
+          },
+          {
+           "code": null,
+           "text": "Explain erosion processes: hydraulic action, corrosion, abrasion, attrition."
+          },
+          {
+           "code": null,
+           "text": "Explain erosional landforms: notches, platforms, cliffs, cave-arch-stack-stump."
+          }
+         ]
+        },
+        {
+         "id": "sediment-transport-and-deposition",
+         "title": "Sediment transport and deposition",
+         "outcomes": [
+          {
+           "code": "2B.5",
+           "text": "Explain sediment transport by wave attack angle, longshore drift, tides and currents."
+          },
+          {
+           "code": null,
+           "text": "Explain depositional landforms: beaches, spits, bars, tombolos, cuspate forelands."
+          },
+          {
+           "code": null,
+           "text": "Use the sediment cell concept (sources, transfers, sinks) and dynamic equilibrium."
+          }
+         ]
+        },
+        {
+         "id": "subaerial-processes-at-the-coast",
+         "title": "Subaerial processes at the coast",
+         "outcomes": [
+          {
+           "code": "2B.6",
+           "text": "Explain weathering's role in sediment production and recession."
+          },
+          {
+           "code": null,
+           "text": "Describe mass movement: blockfall, slumping, landslides."
+          },
+          {
+           "code": null,
+           "text": "Describe mass movement landforms: rotational scars, talus slopes, terraced cliffs."
+          }
+         ]
+        },
+        {
+         "id": "sea-level-change",
+         "title": "Sea level change",
+         "outcomes": [
+          {
+           "code": "2B.7",
+           "text": "Explain eustatic and isostatic causes of sea level change."
+          },
+          {
+           "code": null,
+           "text": "Describe emergent and submergent coastlines, such as raised beaches, rias and fjords."
+          },
+          {
+           "code": null,
+           "text": "Assess contemporary sea level risks from warming and tectonics."
+          }
+         ]
+        },
+        {
+         "id": "rapid-coastal-retreat",
+         "title": "Rapid coastal retreat",
+         "outcomes": [
+          {
+           "code": "2B.8",
+           "text": "Explain causes of rapid recession, including human influences like dredging."
+          },
+          {
+           "code": null,
+           "text": "Explain how subaerial processes work together to influence recession."
+          },
+          {
+           "code": null,
+           "text": "Explain why recession rates vary with wind, fetch, tides, seasons and storms."
+          }
+         ]
+        },
+        {
+         "id": "coastal-flooding",
+         "title": "Coastal flooding",
+         "outcomes": [
+          {
+           "code": "2B.9",
+           "text": "Explain local factors and sea level rise that raise flood risk, e.g. Bangladesh."
+          },
+          {
+           "code": null,
+           "text": "Describe storm surges and their short-term impacts."
+          },
+          {
+           "code": null,
+           "text": "Assess how climate change may raise flood risk and the uncertainty involved."
+          }
+         ]
+        },
+        {
+         "id": "consequences-of-recession-and-flooding",
+         "title": "Consequences of recession and flooding",
+         "outcomes": [
+          {
+           "code": "2B.10",
+           "text": "Assess economic and social losses from coastal recession."
+          },
+          {
+           "code": null,
+           "text": "Assess consequences of flooding and storm surges for coastal communities."
+          },
+          {
+           "code": null,
+           "text": "Explain how climate change may create environmental refugees."
+          }
+         ]
+        },
+        {
+         "id": "coastal-management-approaches",
+         "title": "Coastal management approaches",
+         "outcomes": [
+          {
+           "code": "2B.11",
+           "text": "Evaluate hard engineering: groynes, sea walls, rip rap, revetments, breakwaters."
+          },
+          {
+           "code": null,
+           "text": "Evaluate soft engineering: beach nourishment, cliff re-grading, dune stabilisation."
+          },
+          {
+           "code": null,
+           "text": "Explain sustainable management for future threats and the local conflicts it can cause."
+          }
+         ]
+        },
+        {
+         "id": "integrated-coastal-management",
+         "title": "Integrated coastal management",
+         "outcomes": [
+          {
+           "code": "2B.12",
+           "text": "Explain littoral cells and ICZM as holistic, sustainable strategies."
+          },
+          {
+           "code": null,
+           "text": "Explain Shoreline Management Plans, cost benefit analysis and environmental impact assessment."
+          },
+          {
+           "code": null,
+           "text": "Explain conflicts between players and winners and losers, e.g. Happisburgh and Chattogram."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "area-of-study-2-dynamic-places",
+     "title": "Area of study 2: Dynamic Places",
+     "topics": [
+      {
+       "id": "topic-3-globalisation",
+       "title": "Topic 3: Globalisation",
+       "subtopics": [
+        {
+         "id": "causes-of-globalisation",
+         "title": "Causes of globalisation",
+         "outcomes": [
+          {
+           "code": "3.1",
+           "text": "Define globalisation as widening, deepening global connections and flows of goods, capital, information, people."
+          },
+          {
+           "code": null,
+           "text": "Explain how 19th and 20th century transport and trade developments created a shrinking world."
+          },
+          {
+           "code": null,
+           "text": "Explain how 21st century ICT lowered communication costs and caused time-space compression."
+          }
+         ]
+        },
+        {
+         "id": "political-and-economic-decision-making",
+         "title": "Political and economic decision making",
+         "outcomes": [
+          {
+           "code": "3.2",
+           "text": "Explain how the WTO, IMF and World Bank promote free trade and FDI."
+          },
+          {
+           "code": null,
+           "text": "Explain how governments, trading blocs and liberalisation policies speed up globalisation."
+          },
+          {
+           "code": null,
+           "text": "Explain how special economic zones, subsidies and attitudes to FDI spread globalisation, e.g. China's Open Door Policy."
+          }
+         ]
+        },
+        {
+         "id": "uneven-globalisation-and-tncs",
+         "title": "Uneven globalisation and TNCs",
+         "outcomes": [
+          {
+           "code": "3.3",
+           "text": "Measure the degree of globalisation with indices such as AT Kearney and KOF."
+          },
+          {
+           "code": null,
+           "text": "Explain how TNCs spread globalisation via production networks, glocalisation, outsourcing and offshoring."
+          },
+          {
+           "code": null,
+           "text": "Explain why some places stay detached from globalisation, e.g. North Korea or rural Niger."
+          }
+         ]
+        },
+        {
+         "id": "the-global-shift",
+         "title": "The global shift",
+         "outcomes": [
+          {
+           "code": "3.4",
+           "text": "Explain benefits and costs of the global shift of manufacturing to Asia and service outsourcing."
+          },
+          {
+           "code": null,
+           "text": "Describe environmental problems and health effects in developing communities."
+          },
+          {
+           "code": null,
+           "text": "Describe social and environmental problems in deindustrialised developed regions."
+          }
+         ]
+        },
+        {
+         "id": "migration",
+         "title": "Migration",
+         "outcomes": [
+          {
+           "code": "3.5",
+           "text": "Explain rural-urban migration and megacity growth with its challenges."
+          },
+          {
+           "code": null,
+           "text": "Explain increased international migration to global hubs and its low- and high-wage patterns."
+          },
+          {
+           "code": null,
+           "text": "Assess costs and benefits of migration for host and source locations."
+          }
+         ]
+        },
+        {
+         "id": "global-culture",
+         "title": "Global culture",
+         "outcomes": [
+          {
+           "code": "3.6",
+           "text": "Explain cultural diffusion through TNCs, media, tourism and migration and the spread of westernised culture."
+          },
+          {
+           "code": null,
+           "text": "Describe cultural erosion and environmental change, e.g. Papua New Guinea."
+          },
+          {
+           "code": null,
+           "text": "Explain opposition to globalisation from some groups and governments."
+          }
+         ]
+        },
+        {
+         "id": "globalisation-and-development",
+         "title": "Globalisation and development",
+         "outcomes": [
+          {
+           "code": "3.7",
+           "text": "Compare economic, social (HDI, GII) and environmental indicators of development."
+          },
+          {
+           "code": null,
+           "text": "Use the Gini coefficient to show widening inequality and winners and losers."
+          },
+          {
+           "code": null,
+           "text": "Compare development and environmental trends between regions since 1970."
+          }
+         ]
+        },
+        {
+         "id": "tensions-from-globalisation",
+         "title": "Tensions from globalisation",
+         "outcomes": [
+          {
+           "code": "3.8",
+           "text": "Explain social, political and cultural tensions in mixed societies, e.g. rise of nationalism in Europe."
+          },
+          {
+           "code": null,
+           "text": "Describe attempts to control globalisation: censorship, immigration limits and protectionism."
+          },
+          {
+           "code": null,
+           "text": "Contrast groups that retain cultural identity with those that embrace change, e.g. First Nations."
+          }
+         ]
+        },
+        {
+         "id": "localism-and-ethical-consumption",
+         "title": "Localism and ethical consumption",
+         "outcomes": [
+          {
+           "code": "3.9",
+           "text": "Explain local sourcing (Transition towns) as a response to globalisation and its costs and benefits."
+          },
+          {
+           "code": null,
+           "text": "Evaluate fair trade and ethical consumption schemes."
+          },
+          {
+           "code": null,
+           "text": "Explain recycling's role in managing resource consumption and ecological footprints."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "topic-4a-regenerating-places",
+       "title": "Topic 4A: Regenerating Places",
+       "subtopics": [
+        {
+         "id": "economies-vary-between-places",
+         "title": "Economies vary between places",
+         "outcomes": [
+          {
+           "code": "4A.1",
+           "text": "Classify economic activity by sector and employment type."
+          },
+          {
+           "code": null,
+           "text": "Link differences in economic activity to health, life expectancy and education."
+          },
+          {
+           "code": null,
+           "text": "Link pay inequalities to quality of life indices."
+          }
+         ]
+        },
+        {
+         "id": "changing-places",
+         "title": "Changing places",
+         "outcomes": [
+          {
+           "code": "4A.2",
+           "text": "Describe changing functions and demographic characteristics, such as gentrification."
+          },
+          {
+           "code": null,
+           "text": "Explain change using physical factors, connectedness, history and planning."
+          },
+          {
+           "code": null,
+           "text": "Measure change with employment, demography, land use and deprivation indicators."
+          }
+         ]
+        },
+        {
+         "id": "connections-shaping-places",
+         "title": "Connections shaping places",
+         "outcomes": [
+          {
+           "code": "4A.3",
+           "text": "Explain how global to regional influences shaped your chosen places."
+          },
+          {
+           "code": null,
+           "text": "Show how places can be represented in contrasting ways beyond statistics."
+          },
+          {
+           "code": null,
+           "text": "Explain how continuity and change have shaped people's lives in your places."
+          }
+         ]
+        },
+        {
+         "id": "inequality-and-perceptions-of-place",
+         "title": "Inequality and perceptions of place",
+         "outcomes": [
+          {
+           "code": "4A.4",
+           "text": "Describe successful regions such as Silicon Valley and their high property prices and skill shortages."
+          },
+          {
+           "code": null,
+           "text": "Explain spirals of decline after economic restructuring, e.g. the Rust Belt."
+          },
+          {
+           "code": null,
+           "text": "Explain why perceived need for regeneration varies."
+          }
+         ]
+        },
+        {
+         "id": "lived-experience-and-engagement",
+         "title": "Lived experience and engagement",
+         "outcomes": [
+          {
+           "code": "4A.5",
+           "text": "Describe variations in community engagement."
+          },
+          {
+           "code": null,
+           "text": "Explain how age, ethnicity, gender, length of residence and deprivation affect attachment to places."
+          },
+          {
+           "code": null,
+           "text": "Explain conflicts between groups over regeneration priorities."
+          }
+         ]
+        },
+        {
+         "id": "evaluating-the-need-for-regeneration",
+         "title": "Evaluating the need for regeneration",
+         "outcomes": [
+          {
+           "code": "4A.6",
+           "text": "Use statistics to judge the need for regeneration locally."
+          },
+          {
+           "code": null,
+           "text": "Use different media as contrasting evidence."
+          },
+          {
+           "code": null,
+           "text": "Explain how representations influence perceived need for regeneration."
+          }
+         ]
+        },
+        {
+         "id": "uk-government-and-regeneration",
+         "title": "UK government and regeneration",
+         "outcomes": [
+          {
+           "code": "4A.7",
+           "text": "Explain infrastructure investment such as high speed rail in regenerating regions."
+          },
+          {
+           "code": null,
+           "text": "Explain how planning laws, house building targets and affordability affect regeneration."
+          },
+          {
+           "code": null,
+           "text": "Explain how migration and capital market deregulation decisions affect investment."
+          }
+         ]
+        },
+        {
+         "id": "local-government-and-investment",
+         "title": "Local government and investment",
+         "outcomes": [
+          {
+           "code": "4A.8",
+           "text": "Explain how local governments compete for investment with plans and science parks."
+          },
+          {
+           "code": null,
+           "text": "Explain the role of local interest groups and tensions between preservation and change."
+          },
+          {
+           "code": null,
+           "text": "Describe regeneration strategies: retail, tourism, sport, and rural diversification."
+          }
+         ]
+        },
+        {
+         "id": "rebranding-places",
+         "title": "Rebranding places",
+         "outcomes": [
+          {
+           "code": "4A.9",
+           "text": "Explain rebranding using media to improve place image for investors."
+          },
+          {
+           "code": null,
+           "text": "Explain rebranding of deindustrialised UK cities around industrial heritage, e.g. Glasgow."
+          },
+          {
+           "code": null,
+           "text": "Describe rural rebranding based on heritage, literary links, farm diversification and outdoor pursuits."
+          }
+         ]
+        },
+        {
+         "id": "measuring-regeneration-success",
+         "title": "Measuring regeneration success",
+         "outcomes": [
+          {
+           "code": "4A.10",
+           "text": "Assess economic success by income, poverty and employment changes compared with other areas."
+          },
+          {
+           "code": null,
+           "text": "Assess social progress through reduced inequality, deprivation and better life expectancy."
+          },
+          {
+           "code": null,
+           "text": "Judge success by improvements in the living environment."
+          }
+         ]
+        },
+        {
+         "id": "urban-regeneration-case-study",
+         "title": "Urban regeneration case study",
+         "outcomes": [
+          {
+           "code": "4A.11",
+           "text": "Study urban regeneration strategies, e.g. Salford Quays, and contested local decisions."
+          },
+          {
+           "code": null,
+           "text": "Judge outcomes of urban strategies using economic, social, demographic and environmental variables."
+          },
+          {
+           "code": null,
+           "text": "Explain why stakeholders judge urban success by different criteria."
+          }
+         ]
+        },
+        {
+         "id": "rural-regeneration-case-study",
+         "title": "Rural regeneration case study",
+         "outcomes": [
+          {
+           "code": "4A.12",
+           "text": "Study rural restructuring strategies, e.g. North Antrim coast, and contested decisions."
+          },
+          {
+           "code": null,
+           "text": "Judge outcomes of rural strategies using multiple variables."
+          },
+          {
+           "code": null,
+           "text": "Explain why stakeholders judge rural success by different criteria."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "topic-4b-diverse-places",
+       "title": "Topic 4B: Diverse Places",
+       "subtopics": [
+        {
+         "id": "population-structure-varies",
+         "title": "Population structure varies",
+         "outcomes": [
+          {
+           "code": "4B.1",
+           "text": "Describe uneven UK population growth, e.g. London versus the north-east."
+          },
+          {
+           "code": null,
+           "text": "Explain how structure and density vary along the rural-urban continuum."
+          },
+          {
+           "code": null,
+           "text": "Explain how fertility, mortality and migration shape population structure."
+          }
+         ]
+        },
+        {
+         "id": "population-characteristics-vary",
+         "title": "Population characteristics vary",
+         "outcomes": [
+          {
+           "code": "4B.2",
+           "text": "Describe variation in gender and ethnicity within and between settlements."
+          },
+          {
+           "code": null,
+           "text": "Explain levels of cultural diversity through clustering, accessibility, physical factors and planning."
+          },
+          {
+           "code": null,
+           "text": "Explain how fertility, mortality and migration change cultural characteristics."
+          }
+         ]
+        },
+        {
+         "id": "connections-shaping-demographic-and-cultural-cha",
+         "title": "Connections shaping demographic and cultural character",
+         "outcomes": [
+          {
+           "code": "4B.3",
+           "text": "Explain how global to regional influences shaped your chosen places."
+          },
+          {
+           "code": null,
+           "text": "Show how places can be represented in contrasting ways."
+          },
+          {
+           "code": null,
+           "text": "Explain how continuity and change in demography and culture affected people's lives."
+          }
+         ]
+        },
+        {
+         "id": "urban-places-seen-differently",
+         "title": "Urban places seen differently",
+         "outcomes": [
+          {
+           "code": "4B.4",
+           "text": "Explain how urban places are perceived differently over time, from dangerous Victorian London to attractive today."
+          },
+          {
+           "code": null,
+           "text": "Explain why some urban places are seen as undesirable: crime, environment, reputation, media."
+          },
+          {
+           "code": null,
+           "text": "Compare perceptions of suburban and inner-city areas by age, ethnicity and life-cycle stage."
+          }
+         ]
+        },
+        {
+         "id": "rural-places-seen-differently",
+         "title": "Rural places seen differently",
+         "outcomes": [
+          {
+           "code": "4B.5",
+           "text": "Explain why rural places are seen as idyllic, e.g. Hardy's Wessex."
+          },
+          {
+           "code": null,
+           "text": "Explain why some rural places are seen as undesirable: remoteness, limited services, transport costs."
+          },
+          {
+           "code": null,
+           "text": "Describe the range of rural areas from remote to retirement and commuter villages."
+          }
+         ]
+        },
+        {
+         "id": "evaluating-how-people-view-living-spaces",
+         "title": "Evaluating how people view living spaces",
+         "outcomes": [
+          {
+           "code": "4B.6",
+           "text": "Use statistics to judge positive or negative images of a local place."
+          },
+          {
+           "code": null,
+           "text": "Use different media as contrasting evidence of image."
+          },
+          {
+           "code": null,
+           "text": "Explain how representations influence perceptions of cultural and demographic issues."
+          }
+         ]
+        },
+        {
+         "id": "diverse-culture-and-society-in-the-uk",
+         "title": "Diverse culture and society in the UK",
+         "outcomes": [
+          {
+           "code": "4B.7",
+           "text": "Explain how internal UK movement creates uneven demographic and cultural patterns."
+          },
+          {
+           "code": null,
+           "text": "Explain how international migration from former colonies and the EU changed UK culture."
+          },
+          {
+           "code": null,
+           "text": "Explain why some migrants live in rural areas, e.g. East Europeans in Lincolnshire."
+          }
+         ]
+        },
+        {
+         "id": "segregation-and-change",
+         "title": "Segregation and change",
+         "outcomes": [
+          {
+           "code": "4B.8",
+           "text": "Link migrant residential segregation to economic and social indicators."
+          },
+          {
+           "code": null,
+           "text": "Describe how ethnicity shapes urban areas through shops, worship and leisure, e.g. Southall."
+          },
+          {
+           "code": null,
+           "text": "Explain how experiences of living spaces change across generations."
+          }
+         ]
+        },
+        {
+         "id": "tension-and-conflict-in-diverse-places",
+         "title": "Tension and conflict in diverse places",
+         "outcomes": [
+          {
+           "code": "4B.9",
+           "text": "Explain how land-use changes by groups, governments and TNCs create challenges and opportunities."
+          },
+          {
+           "code": null,
+           "text": "Explain tension between long-term residents and recent in-migrants, e.g. Luton."
+          },
+          {
+           "code": null,
+           "text": "Explain hostility, benefits and social exclusion from built-environment change, e.g. Glasgow."
+          }
+         ]
+        },
+        {
+         "id": "measuring-management-of-cultural-issues",
+         "title": "Measuring management of cultural issues",
+         "outcomes": [
+          {
+           "code": "4B.10",
+           "text": "Assess management by income and employment changes within and between areas."
+          },
+          {
+           "code": null,
+           "text": "Assess social progress by reduced inequality, deprivation and better life expectancy."
+          },
+          {
+           "code": null,
+           "text": "Measure integration by voter turnout, community groups and reduced hate crime."
+          }
+         ]
+        },
+        {
+         "id": "managing-change-in-diverse-urban-places",
+         "title": "Managing change in diverse urban places",
+         "outcomes": [
+          {
+           "code": "4B.11",
+           "text": "Study how different groups view an urban living space and strategies to resolve issues, e.g. Aik Saath."
+          },
+          {
+           "code": null,
+           "text": "Judge changes using economic, social, demographic and environmental variables."
+          },
+          {
+           "code": null,
+           "text": "Explain why stakeholders judge success differently."
+          }
+         ]
+        },
+        {
+         "id": "managing-change-in-diverse-rural-places",
+         "title": "Managing change in diverse rural places",
+         "outcomes": [
+          {
+           "code": "4B.12",
+           "text": "Study how groups view a rural living space and strategies, e.g. Lake District National Park Partnership."
+          },
+          {
+           "code": null,
+           "text": "Judge rural changes using multiple variables."
+          },
+          {
+           "code": null,
+           "text": "Explain why stakeholders judge rural success differently."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "area-of-study-3-physical-systems-and-sustainabil",
+     "title": "Area of study 3: Physical Systems and Sustainability",
+     "topics": [
+      {
+       "id": "topic-5-the-water-cycle-and-water-insecurity",
+       "title": "Topic 5: The Water Cycle and Water Insecurity",
+       "subtopics": [
+        {
+         "id": "the-global-hydrological-cycle",
+         "title": "The global hydrological cycle",
+         "outcomes": [
+          {
+           "code": "5.1",
+           "text": "Explain the global water cycle as a closed system driven by solar and gravitational energy."
+          },
+          {
+           "code": null,
+           "text": "Compare sizes of water stores and annual fluxes."
+          },
+          {
+           "code": null,
+           "text": "Explain the water budget limit, residence times and non-renewable stores."
+          }
+         ]
+        },
+        {
+         "id": "the-drainage-basin-system",
+         "title": "The drainage basin system",
+         "outcomes": [
+          {
+           "code": "5.2",
+           "text": "Describe drainage basin inputs, flows and outputs."
+          },
+          {
+           "code": null,
+           "text": "Explain how climate, soils, vegetation, geology and relief affect the system."
+          },
+          {
+           "code": null,
+           "text": "Explain how humans disrupt the cycle through deforestation, land use, reservoirs and abstraction."
+          }
+         ]
+        },
+        {
+         "id": "water-budgets-and-river-regimes",
+         "title": "Water budgets and river regimes",
+         "outcomes": [
+          {
+           "code": "5.3",
+           "text": "Explain water budgets and how climate type influences them."
+          },
+          {
+           "code": null,
+           "text": "Explain river regimes using contrasting basins such as Yukon, Amazon and Indus."
+          },
+          {
+           "code": null,
+           "text": "Explain storm hydrograph shapes from physical and human factors."
+          }
+         ]
+        },
+        {
+         "id": "drought",
+         "title": "Drought",
+         "outcomes": [
+          {
+           "code": "5.4",
+           "text": "Explain meteorological and hydrological drought, longer trends and ENSO cycles."
+          },
+          {
+           "code": null,
+           "text": "Explain how over-abstraction increases drought risk."
+          },
+          {
+           "code": null,
+           "text": "Explain drought impacts on ecosystems and their resilience."
+          }
+         ]
+        },
+        {
+         "id": "flooding",
+         "title": "Flooding",
+         "outcomes": [
+          {
+           "code": "5.5",
+           "text": "Explain meteorological causes of flooding: storms, prolonged rain, monsoon, snowmelt."
+          },
+          {
+           "code": null,
+           "text": "Explain how land use change and hard engineering worsen flood risk."
+          },
+          {
+           "code": null,
+           "text": "Assess environmental and socio-economic flood damage, e.g. UK floods 2007 or 2012."
+          }
+         ]
+        },
+        {
+         "id": "climate-change-and-the-water-cycle",
+         "title": "Climate change and the water cycle",
+         "outcomes": [
+          {
+           "code": "5.6",
+           "text": "Explain how climate change affects precipitation and evaporation."
+          },
+          {
+           "code": null,
+           "text": "Explain effects on snow and glacier mass, reservoirs, permafrost, soil moisture and runoff."
+          },
+          {
+           "code": null,
+           "text": "Explain how ENSO and global warming increase uncertainty over water security."
+          }
+         ]
+        },
+        {
+         "id": "causes-of-water-insecurity",
+         "title": "Causes of water insecurity",
+         "outcomes": [
+          {
+           "code": "5.7",
+           "text": "Describe water stress and scarcity thresholds and the global pattern."
+          },
+          {
+           "code": null,
+           "text": "Explain physical and human causes of water insecurity."
+          },
+          {
+           "code": null,
+           "text": "Explain how rising demand pressures the finite water resource."
+          }
+         ]
+        },
+        {
+         "id": "consequences-of-water-insecurity",
+         "title": "Consequences of water insecurity",
+         "outcomes": [
+          {
+           "code": "5.8",
+           "text": "Explain physical and economic scarcity and why water prices vary."
+          },
+          {
+           "code": null,
+           "text": "Explain water's importance for development and wellbeing, and problems of inadequate supply."
+          },
+          {
+           "code": null,
+           "text": "Explain conflicts over water within and between countries, e.g. Nile or Mekong."
+          }
+         ]
+        },
+        {
+         "id": "managing-water-supply",
+         "title": "Managing water supply",
+         "outcomes": [
+          {
+           "code": "5.9",
+           "text": "Evaluate hard engineering: water transfers, mega dams and desalination."
+          },
+          {
+           "code": null,
+           "text": "Evaluate sustainable schemes: restoration, conservation, smart irrigation, recycling, e.g. Singapore."
+          },
+          {
+           "code": null,
+           "text": "Explain integrated basin management and water-sharing treaties."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "topic-6-the-carbon-cycle-and-energy-security",
+       "title": "Topic 6: The Carbon Cycle and Energy Security",
+       "subtopics": [
+        {
+         "id": "the-slow-carbon-cycle",
+         "title": "The slow carbon cycle",
+         "outcomes": [
+          {
+           "code": "6.1",
+           "text": "Describe carbon stores, annual fluxes and timescales."
+          },
+          {
+           "code": null,
+           "text": "Explain that most carbon is geological, held in carbonate rocks and shale, coal."
+          },
+          {
+           "code": null,
+           "text": "Explain carbonic acid weathering, ion transport, carbonate formation and volcanic release."
+          }
+         ]
+        },
+        {
+         "id": "the-fast-carbon-cycle",
+         "title": "The fast carbon cycle",
+         "outcomes": [
+          {
+           "code": "6.2",
+           "text": "Explain ocean carbon sequestration by phytoplankton, the carbonate pump and thermohaline circulation."
+          },
+          {
+           "code": null,
+           "text": "Explain terrestrial photosynthesis and respiration."
+          },
+          {
+           "code": null,
+           "text": "Explain storage as soil organic matter and decomposition."
+          }
+         ]
+        },
+        {
+         "id": "balanced-carbon-cycle-and-humans",
+         "title": "Balanced carbon cycle and humans",
+         "outcomes": [
+          {
+           "code": "6.3",
+           "text": "Explain how atmospheric carbon controls the greenhouse effect, temperature and precipitation."
+          },
+          {
+           "code": null,
+           "text": "Explain how photosynthesis regulates the atmosphere and stored carbon supports soil health."
+          },
+          {
+           "code": null,
+           "text": "Explain how fossil fuel combustion changed carbon pathways and stores."
+          }
+         ]
+        },
+        {
+         "id": "energy-security",
+         "title": "Energy security",
+         "outcomes": [
+          {
+           "code": "6.4",
+           "text": "Describe energy consumption and mix: primary and secondary, renewable and non-renewable."
+          },
+          {
+           "code": null,
+           "text": "Explain how energy access depends on availability, cost, technology, perception and development, e.g. USA versus France."
+          },
+          {
+           "code": null,
+           "text": "Explain the roles of TNCs, OPEC, consumers and governments in energy supply."
+          }
+         ]
+        },
+        {
+         "id": "fossil-fuel-reliance",
+         "title": "Fossil fuel reliance",
+         "outcomes": [
+          {
+           "code": "6.5",
+           "text": "Explain the mismatch between fossil fuel supply and demand regions."
+          },
+          {
+           "code": null,
+           "text": "Explain energy pathways and their disruption, e.g. Russian gas to Europe."
+          },
+          {
+           "code": null,
+           "text": "Assess unconventional fuels (tar sands, shale gas, deep water oil), costs and environmental risks."
+          }
+         ]
+        },
+        {
+         "id": "alternatives-to-fossil-fuels",
+         "title": "Alternatives to fossil fuels",
+         "outcomes": [
+          {
+           "code": "6.6",
+           "text": "Evaluate renewable and nuclear energy and their contribution to energy security."
+          },
+          {
+           "code": null,
+           "text": "Evaluate biofuels, food supply implications and carbon neutrality, e.g. Brazil."
+          },
+          {
+           "code": null,
+           "text": "Evaluate radical technologies such as carbon capture, hydrogen fuel cells and electric vehicles."
+          }
+         ]
+        },
+        {
+         "id": "human-threats-to-carbon-and-water-cycles",
+         "title": "Human threats to carbon and water cycles",
+         "outcomes": [
+          {
+           "code": "6.7",
+           "text": "Explain land-use cover change and its effects on terrestrial carbon stores, the water cycle and soil."
+          },
+          {
+           "code": null,
+           "text": "Explain ocean acidification and the threat to coral reefs and marine ecosystem services."
+          },
+          {
+           "code": null,
+           "text": "Explain how climate change may increase drought and affect forests as carbon stores."
+          }
+         ]
+        },
+        {
+         "id": "wellbeing-and-the-degraded-cycles",
+         "title": "Wellbeing and the degraded cycles",
+         "outcomes": [
+          {
+           "code": "6.8",
+           "text": "Assess forest loss and protection for human wellbeing, using the environmental Kuznets curve."
+          },
+          {
+           "code": null,
+           "text": "Explain how higher temperatures alter evaporation, precipitation, river regimes and water stores."
+          },
+          {
+           "code": null,
+           "text": "Explain how threats to ocean health affect developing regions' food, tourism and coastal protection."
+          }
+         ]
+        },
+        {
+         "id": "future-warming-and-responses",
+         "title": "Future warming and responses",
+         "outcomes": [
+          {
+           "code": "6.9",
+           "text": "Explain uncertainty in future warming from carbon sinks, human factors, positive feedbacks and tipping points."
+          },
+          {
+           "code": null,
+           "text": "Evaluate adaptation strategies for a changed climate and their costs and risks."
+          },
+          {
+           "code": null,
+           "text": "Evaluate mitigation strategies such as carbon taxation, renewables, afforestation, CCS, and why agreement is difficult."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "area-of-study-4-human-systems-and-geopolitics",
+     "title": "Area of study 4: Human Systems and Geopolitics",
+     "topics": [
+      {
+       "id": "topic-7-superpowers",
+       "title": "Topic 7: Superpowers",
+       "subtopics": [
+        {
+         "id": "sources-of-geopolitical-power",
+         "title": "Sources of geopolitical power",
+         "outcomes": [
+          {
+           "code": "7.1",
+           "text": "Define superpowers, emerging and regional powers by economic, political, military, cultural and demographic traits."
+          },
+          {
+           "code": null,
+           "text": "Compare hard and soft power mechanisms."
+          },
+          {
+           "code": null,
+           "text": "Explain how the importance of these changed over time, e.g. China's belt and road."
+          }
+         ]
+        },
+        {
+         "id": "changing-patterns-of-power",
+         "title": "Changing patterns of power",
+         "outcomes": [
+          {
+           "code": "7.2",
+           "text": "Explain power in the imperial era through colonial control."
+          },
+          {
+           "code": null,
+           "text": "Explain indirect and neo-colonial control, the Cold War and China's rise."
+          },
+          {
+           "code": null,
+           "text": "Compare geopolitical stability and risk under uni-, bi- and multi-polar patterns."
+          }
+         ]
+        },
+        {
+         "id": "emerging-powers",
+         "title": "Emerging powers",
+         "outcomes": [
+          {
+           "code": "7.3",
+           "text": "Explain the growing role of BRIC and G20 countries in the global economy, politics and governance."
+          },
+          {
+           "code": null,
+           "text": "Assess emerging powers' strengths and weaknesses for their future role."
+          },
+          {
+           "code": null,
+           "text": "Use World Systems, Dependency and Modernisation theories to explain power change."
+          }
+         ]
+        },
+        {
+         "id": "superpowers-and-the-global-economy",
+         "title": "Superpowers and the global economy",
+         "outcomes": [
+          {
+           "code": "7.4",
+           "text": "Explain how superpowers control the economy through IGOs such as the World Bank, IMF, WTO, WEF."
+          },
+          {
+           "code": null,
+           "text": "Explain the dominance of TNCs via technology and trade."
+          },
+          {
+           "code": null,
+           "text": "Explain cultural influence and westernisation as power."
+          }
+         ]
+        },
+        {
+         "id": "superpowers-and-international-decisions",
+         "title": "Superpowers and international decisions",
+         "outcomes": [
+          {
+           "code": "7.5",
+           "text": "Explain the role of powerful countries in crisis response, conflict and climate action."
+          },
+          {
+           "code": null,
+           "text": "Explain how military, economic and environmental alliances (NATO, EU, IPCC) create interdependence."
+          },
+          {
+           "code": null,
+           "text": "Explain the UN's role in geopolitical stability."
+          }
+         ]
+        },
+        {
+         "id": "superpowers-and-the-environment",
+         "title": "Superpowers and the environment",
+         "outcomes": [
+          {
+           "code": "7.6",
+           "text": "Explain how superpower resource demands and emissions harm the environment."
+          },
+          {
+           "code": null,
+           "text": "Compare willingness of the USA and China to cut emissions."
+          },
+          {
+           "code": null,
+           "text": "Explain how emerging middle-class consumption affects resource cost and the environment."
+          }
+         ]
+        },
+        {
+         "id": "contested-spheres-of-influence",
+         "title": "Contested spheres of influence",
+         "outcomes": [
+          {
+           "code": "7.7",
+           "text": "Explain tensions over resources such as Arctic oil and gas."
+          },
+          {
+           "code": null,
+           "text": "Explain how counterfeiting undermines intellectual property rights."
+          },
+          {
+           "code": null,
+           "text": "Explain political tensions over territory, e.g. the South and East China Seas, and open conflict."
+          }
+         ]
+        },
+        {
+         "id": "developing-nations-and-superpowers",
+         "title": "Developing nations and superpowers",
+         "outcomes": [
+          {
+           "code": "7.8",
+           "text": "Explain growing economic ties, e.g. China and Africa, and their environmental impacts."
+          },
+          {
+           "code": null,
+           "text": "Explain the rising geopolitical influence of Asian countries and regional tensions."
+          },
+          {
+           "code": null,
+           "text": "Explain Middle East tensions and the energy supply challenge to powers."
+          }
+         ]
+        },
+        {
+         "id": "challenges-to-existing-superpowers",
+         "title": "Challenges to existing superpowers",
+         "outcomes": [
+          {
+           "code": "7.9",
+           "text": "Explain economic problems facing the USA and EU."
+          },
+          {
+           "code": null,
+           "text": "Evaluate the cost of global military power and space exploration."
+          },
+          {
+           "code": null,
+           "text": "Evaluate possible global power structures in 2030 and 2050."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "topic-8a-health-human-rights-and-intervention",
+       "title": "Topic 8A: Health, Human Rights and Intervention",
+       "subtopics": [
+        {
+         "id": "concepts-of-human-development",
+         "title": "Concepts of human development",
+         "outcomes": [
+          {
+           "code": "8A.1",
+           "text": "Evaluate GDP versus broader measures of development, such as the Happy Planet Index."
+          },
+          {
+           "code": null,
+           "text": "Compare views of health, life expectancy and rights as goals with growth as the means."
+          },
+          {
+           "code": null,
+           "text": "Explain education's role in development and rights and variations in access and achievement."
+          }
+         ]
+        },
+        {
+         "id": "variations-in-health-and-life-expectancy",
+         "title": "Variations in health and life expectancy",
+         "outcomes": [
+          {
+           "code": "8A.2",
+           "text": "Explain developing-world variations from access to food, water and sanitation, and child and maternal mortality."
+          },
+          {
+           "code": null,
+           "text": "Explain developed-world variations from lifestyle, deprivation and healthcare."
+          },
+          {
+           "code": null,
+           "text": "Explain variations within countries by ethnicity and income."
+          }
+         ]
+        },
+        {
+         "id": "governments-igos-and-development-targets",
+         "title": "Governments, IGOs and development targets",
+         "outcomes": [
+          {
+           "code": "8A.3",
+           "text": "Explain how government decisions link economic and social development, from welfare states to elite-run regimes."
+          },
+          {
+           "code": null,
+           "text": "Explain the neo-liberal approach of the World Bank, IMF, WTO and recent wider programmes."
+          },
+          {
+           "code": null,
+           "text": "Assess mixed progress on the SDGs and the post-2015 agenda."
+          }
+         ]
+        },
+        {
+         "id": "human-rights-in-international-law",
+         "title": "Human rights in international law",
+         "outcomes": [
+          {
+           "code": "8A.4",
+           "text": "Explain the UDHR as a statement of intent and foreign policy framework."
+          },
+          {
+           "code": null,
+           "text": "Explain the ECHR, the Human Rights Act 1998 and the sovereignty debate."
+          },
+          {
+           "code": null,
+           "text": "Explain the Geneva Convention and gaps in enforcement."
+          }
+         ]
+        },
+        {
+         "id": "differences-in-human-rights-between-countries",
+         "title": "Differences in human rights between countries",
+         "outcomes": [
+          {
+           "code": "8A.5",
+           "text": "Compare states that invoke human rights with those prioritising economic development."
+          },
+          {
+           "code": null,
+           "text": "Compare authoritarian and democratic systems and freedom of speech."
+          },
+          {
+           "code": null,
+           "text": "Explain corruption, its measurement and its threat to rights."
+          }
+         ]
+        },
+        {
+         "id": "human-rights-within-countries",
+         "title": "Human rights within countries",
+         "outcomes": [
+          {
+           "code": "8A.6",
+           "text": "Explain groups with fewer rights in post-colonial states."
+          },
+          {
+           "code": null,
+           "text": "Link unequal rights to health and education, e.g. First Nations in Canada."
+          },
+          {
+           "code": null,
+           "text": "Explain demands for equality by women and ethnic groups at varied rates."
+          }
+         ]
+        },
+        {
+         "id": "forms-of-geopolitical-intervention",
+         "title": "Forms of geopolitical intervention",
+         "outcomes": [
+          {
+           "code": "8A.7",
+           "text": "Describe interventions from aid and embargoes to military action."
+          },
+          {
+           "code": null,
+           "text": "Explain the role of IGOs, governments and NGOs and the lack of consensus."
+          },
+          {
+           "code": null,
+           "text": "Explain how Western governments use rights as conditions for aid and military action."
+          }
+         ]
+        },
+        {
+         "id": "development-aid",
+         "title": "Development aid",
+         "outcomes": [
+          {
+           "code": "8A.8",
+           "text": "Describe forms of aid, from charitable gifts to IGO loans."
+          },
+          {
+           "code": null,
+           "text": "Evaluate aid: successes, dependency and corruption."
+          },
+          {
+           "code": null,
+           "text": "Explain harm from development by superpowers and TNCs to minority groups, e.g. Niger Delta."
+          }
+         ]
+        },
+        {
+         "id": "military-intervention-and-human-rights",
+         "title": "Military intervention and human rights",
+         "outcomes": [
+          {
+           "code": "8A.9",
+           "text": "Explain how strategic interests are justified by human rights."
+          },
+          {
+           "code": null,
+           "text": "Explain military aid to states with poor rights records."
+          },
+          {
+           "code": null,
+           "text": "Evaluate the war on terror and use of torture."
+          }
+         ]
+        },
+        {
+         "id": "measuring-intervention-success",
+         "title": "Measuring intervention success",
+         "outcomes": [
+          {
+           "code": "8A.10",
+           "text": "Use health, life expectancy, education, gender equality, speech, refugees and GDP per capita as measures."
+          },
+          {
+           "code": null,
+           "text": "Explain why some governments prioritise democratic institutions and expression."
+          },
+          {
+           "code": null,
+           "text": "Explain why others judge success by economic growth."
+          }
+         ]
+        },
+        {
+         "id": "success-of-development-aid",
+         "title": "Success of development aid",
+         "outcomes": [
+          {
+           "code": "8A.11",
+           "text": "Compare aid successes (Botswana, Ebola response) with failures (Haiti, Iraq)."
+          },
+          {
+           "code": null,
+           "text": "Explain how aid can raise or reduce inequality and affect health."
+          },
+          {
+           "code": null,
+           "text": "Explain how superpowers use aid as foreign policy."
+          }
+         ]
+        },
+        {
+         "id": "record-of-military-and-other-interventions",
+         "title": "Record of military and other interventions",
+         "outcomes": [
+          {
+           "code": "8A.12",
+           "text": "Evaluate costs of military intervention, including lost sovereignty and long-term costs."
+          },
+          {
+           "code": null,
+           "text": "Assess non-military interventions such as UN Women and UNICEF."
+          },
+          {
+           "code": null,
+           "text": "Explain the global consequences of failing to act."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "topic-8b-migration-identity-and-sovereignty",
+       "title": "Topic 8B: Migration, Identity and Sovereignty",
+       "subtopics": [
+        {
+         "id": "globalisation-and-migration",
+         "title": "Globalisation and migration",
+         "outcomes": [
+          {
+           "code": "8B.1",
+           "text": "Explain how changing labour demand drives rural-urban and international migration."
+          },
+          {
+           "code": null,
+           "text": "Explain why 3-4% live outside their birth country and why it varies."
+          },
+          {
+           "code": null,
+           "text": "Explain changing migration patterns of economic migrants, refugees and asylum seekers."
+          }
+         ]
+        },
+        {
+         "id": "causes-of-migration",
+         "title": "Causes of migration",
+         "outcomes": [
+          {
+           "code": "8B.2",
+           "text": "Explain migration for work, family and displacement by conflict and poverty."
+          },
+          {
+           "code": null,
+           "text": "Explain free movement of goods, capital and labour and the challenge to sovereignty."
+          },
+          {
+           "code": null,
+           "text": "Explain unrestricted labour movement within states and regions such as the EU."
+          }
+         ]
+        },
+        {
+         "id": "consequences-of-migration",
+         "title": "Consequences of migration",
+         "outcomes": [
+          {
+           "code": "8B.3",
+           "text": "Explain cultural and ethnic change and integration of migrants."
+          },
+          {
+           "code": null,
+           "text": "Explain political tensions, e.g. the Mexico-US border."
+          },
+          {
+           "code": null,
+           "text": "Explain how skill, income and border controls affect ability to migrate."
+          }
+         ]
+        },
+        {
+         "id": "nation-states",
+         "title": "Nation states",
+         "outcomes": [
+          {
+           "code": "8B.4",
+           "text": "Compare nation states' unity, e.g. Iceland and Singapore."
+          },
+          {
+           "code": null,
+           "text": "Explain borders from physical geography and colonial history, e.g. Iraq or Rwanda."
+          },
+          {
+           "code": null,
+           "text": "Explain contested borders and unrecognised states, e.g. Ukraine and Taiwan."
+          }
+         ]
+        },
+        {
+         "id": "nationalism-and-the-modern-world",
+         "title": "Nationalism and the modern world",
+         "outcomes": [
+          {
+           "code": "8B.5",
+           "text": "Explain 19th-century nationalism, empires and conflict."
+          },
+          {
+           "code": null,
+           "text": "Explain new states since 1945 and costly transitions to independence."
+          },
+          {
+           "code": null,
+           "text": "Explain continuing migration between former colonies and imperial core countries."
+          }
+         ]
+        },
+        {
+         "id": "deregulation-and-new-state-forms",
+         "title": "Deregulation and new state forms",
+         "outcomes": [
+          {
+           "code": "8B.6",
+           "text": "Explain growth of low-tax havens for TNC profits and wealthy expatriates."
+          },
+          {
+           "code": null,
+           "text": "Explain acceptance of tax havens and NGO objections."
+          },
+          {
+           "code": null,
+           "text": "Explain growing inequality as a threat and alternative models, e.g. Bolivia."
+          }
+         ]
+        },
+        {
+         "id": "the-united-nations-and-global-governance",
+         "title": "The United Nations and global governance",
+         "outcomes": [
+          {
+           "code": "8B.7",
+           "text": "Explain the UN's role and the effect of Security Council differences."
+          },
+          {
+           "code": null,
+           "text": "Evaluate UN sanctions and military interventions."
+          },
+          {
+           "code": null,
+           "text": "Explain independent action by states such as the US and UK."
+          }
+         ]
+        },
+        {
+         "id": "economic-igos",
+         "title": "Economic IGOs",
+         "outcomes": [
+          {
+           "code": "8B.8",
+           "text": "Explain how IMF, World Bank and WTO maintain western capitalism and free trade."
+          },
+          {
+           "code": null,
+           "text": "Evaluate structural adjustment and HIPC policies, e.g. Jamaica."
+          },
+          {
+           "code": null,
+           "text": "Explain near-universal membership, trading blocs and EU political unity."
+          }
+         ]
+        },
+        {
+         "id": "environmental-igos",
+         "title": "Environmental IGOs",
+         "outcomes": [
+          {
+           "code": "8B.9",
+           "text": "Describe agreements on the atmosphere and biosphere: Montreal Protocol, CITES."
+          },
+          {
+           "code": null,
+           "text": "Describe laws for oceans and international rivers and environmental monitoring."
+          },
+          {
+           "code": null,
+           "text": "Describe Antarctic governance through the Antarctic Treaty System."
+          }
+         ]
+        },
+        {
+         "id": "national-identity",
+         "title": "National identity",
+         "outcomes": [
+          {
+           "code": "8B.10",
+           "text": "Explain how education, sport and politics reinforce nationalism."
+          },
+          {
+           "code": null,
+           "text": "Explain identity tied to law, governance, national character and landscape."
+          },
+          {
+           "code": null,
+           "text": "Explain complexity of identity in multi-ethnic, globalising states."
+          }
+         ]
+        },
+        {
+         "id": "challenges-to-national-identity",
+         "title": "Challenges to national identity",
+         "outcomes": [
+          {
+           "code": "8B.11",
+           "text": "Explain foreign ownership of UK firms, e.g. JLR, and 'Made in Britain'."
+          },
+          {
+           "code": null,
+           "text": "Explain US-dominated westernisation by large corporations."
+          },
+          {
+           "code": null,
+           "text": "Explain non-national ownership of property and TNCs."
+          }
+         ]
+        },
+        {
+         "id": "disunity-within-nations",
+         "title": "Disunity within nations",
+         "outcomes": [
+          {
+           "code": "8B.12",
+           "text": "Explain nationalist movements seeking independence within trading groups, e.g. Catalonia and Scotland."
+          },
+          {
+           "code": null,
+           "text": "Explain political tension in emerging nations from uneven costs and benefits of globalisation."
+          },
+          {
+           "code": null,
+           "text": "Explain weak national identity in fragile states, e.g. Somalia."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "build": {
+  "builtAt": "2026-10-14T10:28:00.205Z",
+  "model": "claude-agent",
+  "usd": 0,
+  "expectedCodes": 112,
+  "coverage": 1,
+  "missingCodes": [],
+  "counts": {
+   "grades": 1,
+   "units": 4,
+   "topics": 11,
+   "subtopics": 117,
+   "outcomes": 350
+  },
+  "warnings": [
+   "grade Year 12 has no content",
+   "grade Year 13 has no content",
+   "unexpected grade label \"all\""
+  ]
+ }
+}

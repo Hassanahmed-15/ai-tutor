@@ -1,0 +1,221 @@
+{
+ "id": "ib-myp-individuals-and-societies",
+ "region": "INTL",
+ "framework": "International Baccalaureate Middle Years Programme (MYP)",
+ "board": "IB",
+ "qualification": "IB Middle Years Programme",
+ "subject": "Individuals and societies (MYP subject group)",
+ "syllabusCode": null,
+ "gradeSystem": "year",
+ "source": {
+  "urls": [
+   "https://www.ibo.org/globalassets/new-structure/brochures-and-infographics/pdfs/myp-brief_individuals-societies_2015.pdf",
+   "https://web.archive.org/web/20230206034256id_/https://www.ibo.org/globalassets/new-structure/brochures-and-infographics/pdfs/myp-brief_individuals-societies_2015.pdf"
+  ],
+  "publisher": "International Baccalaureate Organization",
+  "licence": "(c) International Baccalaureate Organization; all rights reserved, no open licence. ibo.org terms 1.8: IB copyrighted materials are licensed only under the IB's terms or a signed agreement; 'Any use not expressly permitted is prohibited unless special permission is obtained in writing from the IB'; 1.9: nothing on the IB websites confers any licence. Briefs are free public marketing summaries: take topic structure only, write everything in our own words, never reproduce brief text, and do not use IB logos/trade marks. Full subject guides are sold to schools and were NOT used. Terms: https://www.ibo.org/terms-and-conditions/ and https://www.ibo.org/copyright",
+  "firstExam": "2014"
+ },
+ "grades": [
+  {
+   "grade": "all",
+   "units": [
+    {
+     "id": "concepts-and-global-contexts",
+     "title": "Concepts and global contexts",
+     "topics": [
+      {
+       "id": "key-and-related-concepts",
+       "title": "Key and related concepts",
+       "subtopics": [
+        {
+         "id": "key-concepts",
+         "title": "Key concepts",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Use the key concepts of change, global interactions, time, place and space, and systems to frame study."
+          },
+          {
+           "code": null,
+           "text": "Use related concepts such as causality, globalization, culture and sustainability to deepen understanding."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "global-contexts",
+       "title": "Global contexts",
+       "subtopics": [
+        {
+         "id": "contexts-for-inquiry",
+         "title": "Contexts for inquiry",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explore identities and relationships, and orientation in space and time."
+          },
+          {
+           "code": null,
+           "text": "Explore personal and cultural expression, and scientific and technical innovation."
+          },
+          {
+           "code": null,
+           "text": "Explore globalization and sustainability, and fairness and development."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "topics-explored-in-on-screen-examinations",
+     "title": "Topics explored in on-screen examinations",
+     "topics": [
+      {
+       "id": "people-and-places",
+       "title": "People and places",
+       "subtopics": [
+        {
+         "id": "population-and-settlement",
+         "title": "Population and settlement",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Study demographics and human movements."
+          },
+          {
+           "code": null,
+           "text": "Study settlement and urban morphology."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "power-and-conflict",
+       "title": "Power and conflict",
+       "subtopics": [
+        {
+         "id": "power-people-and-conflict",
+         "title": "Power, people and conflict",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Study superpowers, empires, and supra-national alliances and organizations."
+          },
+          {
+           "code": null,
+           "text": "Study significant individuals."
+          },
+          {
+           "code": null,
+           "text": "Study warfare and peacekeeping."
+          },
+          {
+           "code": null,
+           "text": "Study rights and social protest."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "economics-and-development",
+       "title": "Economics and development",
+       "subtopics": [
+        {
+         "id": "trade-and-economies",
+         "title": "Trade and economies",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Study trade, aid and exchange."
+          },
+          {
+           "code": null,
+           "text": "Explain the interests and roles of economic agents: consumers, producers, governments and banks."
+          },
+          {
+           "code": null,
+           "text": "Interpret economic measurements and trends."
+          },
+          {
+           "code": null,
+           "text": "Study industrialization and technological developments."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "subject-skills-assessment-criteria",
+     "title": "Subject skills (assessment criteria)",
+     "topics": [
+      {
+       "id": "skills-in-individuals-and-societies",
+       "title": "Skills in individuals and societies",
+       "subtopics": [
+        {
+         "id": "knowing-and-investigating",
+         "title": "Knowing and investigating",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Develop factual and conceptual knowledge about individuals and societies."
+          },
+          {
+           "code": null,
+           "text": "Develop systematic research skills and investigate independently and with others."
+          }
+         ]
+        },
+        {
+         "id": "communicating-and-thinking-critically",
+         "title": "Communicating and thinking critically",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Organise, document and communicate learning in varied media and formats."
+          },
+          {
+           "code": null,
+           "text": "Use critical thinking to develop and apply understanding of individuals, societies and the investigation process."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "build": {
+  "builtAt": "2026-10-14T10:54:22.045Z",
+  "model": "claude-agent",
+  "usd": 0,
+  "expectedCodes": null,
+  "coverage": null,
+  "missingCodes": [],
+  "counts": {
+   "grades": 1,
+   "units": 3,
+   "topics": 6,
+   "subtopics": 7,
+   "outcomes": 19
+  },
+  "warnings": [
+   "grade MYP 1 has no content",
+   "grade MYP 2 has no content",
+   "grade MYP 3 has no content",
+   "grade MYP 4 has no content",
+   "grade MYP 5 has no content",
+   "unexpected grade label \"all\""
+  ]
+ }
+}

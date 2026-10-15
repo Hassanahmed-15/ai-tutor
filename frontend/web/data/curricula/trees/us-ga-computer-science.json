@@ -1,0 +1,3170 @@
+{
+ "id": "us-ga-computer-science",
+ "region": "US",
+ "framework": "Georgia state academic standards: Computer Science & Technology",
+ "board": null,
+ "qualification": "K-12",
+ "subject": "Computer Science & Technology",
+ "syllabusCode": null,
+ "gradeSystem": "grade",
+ "source": {
+  "urls": [
+   "https://api.commonstandardsproject.com/api/v1/jurisdictions/AB6E6F50DDF047E8BC3EE2CCFD33DCCC",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/3C68B03F1A8A4EBB85704393D58D781B",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/AB6E6F50DDF047E8BC3EE2CCFD33DCCC_D21388257_grade-01",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/AB6E6F50DDF047E8BC3EE2CCFD33DCCC_D21388297_grade-02",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/AB6E6F50DDF047E8BC3EE2CCFD33DCCC_D21388345_grade-03",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/AB6E6F50DDF047E8BC3EE2CCFD33DCCC_D21388391_grade-04",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/AB6E6F50DDF047E8BC3EE2CCFD33DCCC_D21388437_grade-05",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/AB6E6F50DDF047E8BC3EE2CCFD33DCCC_D21388220_grade-k",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/AB6E6F50DDF047E8BC3EE2CCFD33DCCC_D21388487_grades-06-07-08",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/AB6E6F50DDF047E8BC3EE2CCFD33DCCC_D21388610_grades-06-07-08"
+  ],
+  "publisher": "Georgia state education agency (machine-readable via Common Standards Project / ASN)",
+  "licence": "CC BY 4.0 US, Common Curriculum, Inc.; D2L Corporation",
+  "firstExam": "2021"
+ },
+ "grades": [
+  {
+   "grade": "K",
+   "units": [
+    {
+     "id": "empowered-learner",
+     "title": "Empowered Learner",
+     "topics": [
+      {
+       "id": "empowered-learner",
+       "title": "Empowered Learner",
+       "subtopics": [
+        {
+         "id": "empowered-learner",
+         "title": "Empowered Learner",
+         "outcomes": [
+          {
+           "code": "CSS.EL.K-2.1",
+           "text": "Recognize that technology provides the opportunity to enhance relevance, increase confidence, offer authentic choice, and produce positive impacts in learning."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "knowledge-constructor",
+     "title": "Knowledge Constructor",
+     "topics": [
+      {
+       "id": "use-digital-tools-e-g-computers-tablets-cameras-",
+       "title": "Use digital tools (e.g. computers, tablets, cameras, software, 3D printers, etc.…) to build knowledge, produce creative artifacts, and make meaningful learning experiences for themselves and others",
+       "subtopics": [
+        {
+         "id": "use-digital-tools-e-g-computers-tablets-cameras-",
+         "title": "Use digital tools (e.g. computers, tablets, cameras, software, 3D printers, etc.…) to build knowledge, produce creative artifacts, and make meaningful learning experiences for themselves and others",
+         "outcomes": [
+          {
+           "code": "CSS.KC.K-2.2.1",
+           "text": "Recognize the letters, numbers, and basic functions of a keyboard, touchpad/trackpad, mouse, and other input devices."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "digital-citizen",
+     "title": "Digital Citizen",
+     "topics": [
+      {
+       "id": "identify-the-rights-responsibilities-and-opportu",
+       "title": "Identify the rights, responsibilities, and opportunities of living, learning, and working in an interconnected society and model behaviors that are safe, legal, and ethical",
+       "subtopics": [
+        {
+         "id": "identify-the-rights-responsibilities-and-opportu",
+         "title": "Identify the rights, responsibilities, and opportunities of living, learning, and working in an interconnected society and model behaviors that are safe, legal, and ethical",
+         "outcomes": [
+          {
+           "code": "CSS.DC.K-2.3.1",
+           "text": "Identify personal information, understand the need to keep it private, and engage in activities keeping personal information private."
+          },
+          {
+           "code": "CSS.DC.K-2.3.2",
+           "text": "Participate in systems for keeping personal information private and protected (for example: passwords, biometric sensors)."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "innovative-designer-and-creator",
+     "title": "Innovative Designer and Creator",
+     "topics": [
+      {
+       "id": "use-the-design-process-use-modify-create-with-a-",
+       "title": "Use the Design Process (use, modify, create) with a variety of tools to identify and solve problems by creating new, modified, or imaginative solutions",
+       "subtopics": [
+        {
+         "id": "use-the-design-process-use-modify-create-with-a-",
+         "title": "Use the Design Process (use, modify, create) with a variety of tools to identify and solve problems by creating new, modified, or imaginative solutions",
+         "outcomes": [
+          {
+           "code": "CSS.IDC.K-2.4.1",
+           "text": "Understand that a model is used for developing and testing ideas for a diverse range of users."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "computational-thinker",
+     "title": "Computational Thinker",
+     "topics": [
+      {
+       "id": "develop-and-employ-computational-thinking-strate",
+       "title": "Develop and employ Computational Thinking strategies (break-down, find patterns, and create algorithms) to identify and solve problems",
+       "subtopics": [
+        {
+         "id": "develop-and-employ-computational-thinking-strate",
+         "title": "Develop and employ Computational Thinking strategies (break-down, find patterns, and create algorithms) to identify and solve problems",
+         "outcomes": [
+          {
+           "code": "CSS.CT.K-2.5.2",
+           "text": "Identify patterns."
+          },
+          {
+           "code": "CSS.CT.K-2.5.4",
+           "text": "Use Algorithms (a set of step-by-step instructions) to construct programs (using a block-based programming language or unplugged activities) that accomplish a task as a means of creative expression."
+          },
+          {
+           "code": "CSS.CT.K-2.5.5",
+           "text": "Identify multiple ways solutions can be applied to solve problems. Vocabulary Term: Abstraction"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "creative-communicator",
+     "title": "Creative Communicator",
+     "topics": [
+      {
+       "id": "use-digital-tools-to-creatively-share-and-expres",
+       "title": "Use digital tools to creatively share and express ideas",
+       "subtopics": [
+        {
+         "id": "use-digital-tools-to-creatively-share-and-expres",
+         "title": "Use digital tools to creatively share and express ideas",
+         "outcomes": [
+          {
+           "code": "CSS.CC.K-2.6.1",
+           "text": "Create a variety of artifacts."
+          },
+          {
+           "code": "CSS.CC.K-2.6.2",
+           "text": "Exchange information or ideas clearly and creatively using digital tools while considering audience and intended purpose."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "global-collaborator",
+     "title": "Global Collaborator",
+     "topics": [
+      {
+       "id": "use-digital-tools-to-collaborate-with-others-bot",
+       "title": "Use digital tools to collaborate with others both locally and globally",
+       "subtopics": [
+        {
+         "id": "use-digital-tools-to-collaborate-with-others-bot",
+         "title": "Use digital tools to collaborate with others both locally and globally",
+         "outcomes": [
+          {
+           "code": "CSS.GC.K-2.7.1",
+           "text": "Identify technology (hardware and software) that allows collaboration with others."
+          },
+          {
+           "code": "CSS.GC.K-2.7.2",
+           "text": "Use digital tools to connect with individuals from different backgrounds and cultures."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "reflective-researcher",
+     "title": "Reflective Researcher",
+     "topics": [
+      {
+       "id": "select-appropriate-sources-to-conduct-authentic-",
+       "title": "Select appropriate sources to conduct authentic research to produce a relevant and credible product",
+       "subtopics": [
+        {
+         "id": "select-appropriate-sources-to-conduct-authentic-",
+         "title": "Select appropriate sources to conduct authentic research to produce a relevant and credible product",
+         "outcomes": [
+          {
+           "code": "CSS.RR.K-2.8.1",
+           "text": "Understand that answers to questions can be found through research from a variety of sources."
+          },
+          {
+           "code": "CSS.RR.K-2.8.2",
+           "text": "Understand that resources on the Internet vary in quality and are found in a variety of places so care is needed in selection."
+          },
+          {
+           "code": "CSS.RR.K-2.8.3",
+           "text": "Understand there is an appropriate place to find information to research the answer to a question."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "digital-awareness",
+     "title": "Digital Awareness",
+     "topics": [
+      {
+       "id": "understand-how-people-can-use-technology",
+       "title": "Understand how people can use technology",
+       "subtopics": [
+        {
+         "id": "understand-how-people-can-use-technology",
+         "title": "Understand how people can use technology",
+         "outcomes": [
+          {
+           "code": "CSS.DA.K-2.9.1",
+           "text": "Understand that technology is everywhere and changes our lives."
+          },
+          {
+           "code": "CSS.DA.K-2.9.2",
+           "text": "Understand that there is a connection between people and devices."
+          },
+          {
+           "code": "CSS.DA.K-2.9.3",
+           "text": "Practice using and identifying basic hardware and software using accurate terminology."
+          },
+          {
+           "code": "CSS.DA.K-2.9.4",
+           "text": "Create simple artifacts using a computing device."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "1",
+   "units": [
+    {
+     "id": "empowered-learner",
+     "title": "Empowered Learner",
+     "topics": [
+      {
+       "id": "empowered-learner",
+       "title": "Empowered Learner",
+       "subtopics": [
+        {
+         "id": "empowered-learner",
+         "title": "Empowered Learner",
+         "outcomes": [
+          {
+           "code": "CSS.EL.K-2.1",
+           "text": "Recognize that technology provides the opportunity to enhance relevance, increase confidence, offer authentic choice, and produce positive impacts in learning."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "knowledge-constructor",
+     "title": "Knowledge Constructor",
+     "topics": [
+      {
+       "id": "use-digital-tools-e-g-computers-tablets-cameras-",
+       "title": "Use digital tools (e.g. computers, tablets, cameras, software, 3D printers, etc.…) to build knowledge, produce creative artifacts, and make meaningful learning experiences for themselves and others",
+       "subtopics": [
+        {
+         "id": "use-digital-tools-e-g-computers-tablets-cameras-",
+         "title": "Use digital tools (e.g. computers, tablets, cameras, software, 3D printers, etc.…) to build knowledge, produce creative artifacts, and make meaningful learning experiences for themselves and others",
+         "outcomes": [
+          {
+           "code": "CSS.KC.K-2.2.3",
+           "text": "Identify and use the home row of the keyboard effectively."
+          },
+          {
+           "code": "CSS.KC.K-2.2.4",
+           "text": "Build (use, modify and/or create) collections of digital images and words to communicate learning using a variety of media types."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "digital-citizen",
+     "title": "Digital Citizen",
+     "topics": [
+      {
+       "id": "identify-the-rights-responsibilities-and-opportu",
+       "title": "Identify the rights, responsibilities, and opportunities of living, learning, and working in an interconnected society and model behaviors that are safe, legal, and ethical",
+       "subtopics": [
+        {
+         "id": "identify-the-rights-responsibilities-and-opportu",
+         "title": "Identify the rights, responsibilities, and opportunities of living, learning, and working in an interconnected society and model behaviors that are safe, legal, and ethical",
+         "outcomes": [
+          {
+           "code": "CSS.DC.K-2.3.3",
+           "text": "Understand shared information on the Internet can be permanent."
+          },
+          {
+           "code": "CSS.DC.K-2.3.4",
+           "text": "Recognize and avoid harmful behaviors in online environments (e.g. viruses, in-app purchases, cyber-bullying, etc)."
+          },
+          {
+           "code": "CSS.DC.K-2.3.5",
+           "text": "Follow safety rules and exhibit responsibility when using a device."
+          },
+          {
+           "code": "CSS.DC.K-2.3.6",
+           "text": "Create an artifact that shows the use of a positive safe behavior when using technology."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "innovative-designer-and-creator",
+     "title": "Innovative Designer and Creator",
+     "topics": [
+      {
+       "id": "use-the-design-process-use-modify-create-with-a-",
+       "title": "Use the Design Process (use, modify, create) with a variety of tools to identify and solve problems by creating new, modified, or imaginative solutions",
+       "subtopics": [
+        {
+         "id": "use-the-design-process-use-modify-create-with-a-",
+         "title": "Use the Design Process (use, modify, create) with a variety of tools to identify and solve problems by creating new, modified, or imaginative solutions",
+         "outcomes": [
+          {
+           "code": "CSS.IDC.K-2.4.4",
+           "text": "Recognize that innovation in technology meets a range of needs (3D printing, coding, robotics, drones, etc.)."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "computational-thinker",
+     "title": "Computational Thinker",
+     "topics": [
+      {
+       "id": "develop-and-employ-computational-thinking-strate",
+       "title": "Develop and employ Computational Thinking strategies (break-down, find patterns, and create algorithms) to identify and solve problems",
+       "subtopics": [
+        {
+         "id": "develop-and-employ-computational-thinking-strate",
+         "title": "Develop and employ Computational Thinking strategies (break-down, find patterns, and create algorithms) to identify and solve problems",
+         "outcomes": [
+          {
+           "code": "CSS.CT.K-2.5.2",
+           "text": "Identify patterns."
+          },
+          {
+           "code": "CSS.CT.K-2.5.3",
+           "text": "Create and use Algorithms (a set of step-by-step instructions) to complete a task."
+          },
+          {
+           "code": "CSS.CT.K-2.5.4",
+           "text": "Use Algorithms (a set of step-by-step instructions) to construct programs (using a block-based programming language or unplugged activities) that accomplish a task as a means of creative expression."
+          },
+          {
+           "code": "CSS.CT.K-2.5.6",
+           "text": "Analyze and debug (identify and fix) with or without a computing device."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "creative-communicator",
+     "title": "Creative Communicator",
+     "topics": [
+      {
+       "id": "use-digital-tools-to-creatively-share-and-expres",
+       "title": "Use digital tools to creatively share and express ideas",
+       "subtopics": [
+        {
+         "id": "use-digital-tools-to-creatively-share-and-expres",
+         "title": "Use digital tools to creatively share and express ideas",
+         "outcomes": [
+          {
+           "code": "CSS.CC.K-2.6.1",
+           "text": "Create a variety of artifacts."
+          },
+          {
+           "code": "CSS.CC.K-2.6.3",
+           "text": "Present information using a digital device."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "global-collaborator",
+     "title": "Global Collaborator",
+     "topics": [
+      {
+       "id": "use-digital-tools-to-collaborate-with-others-bot",
+       "title": "Use digital tools to collaborate with others both locally and globally",
+       "subtopics": [
+        {
+         "id": "use-digital-tools-to-collaborate-with-others-bot",
+         "title": "Use digital tools to collaborate with others both locally and globally",
+         "outcomes": [
+          {
+           "code": "CSS.GC.K-2.7.3",
+           "text": "Understand features of online environments."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "reflective-researcher",
+     "title": "Reflective Researcher",
+     "topics": [
+      {
+       "id": "select-appropriate-sources-to-conduct-authentic-",
+       "title": "Select appropriate sources to conduct authentic research to produce a relevant and credible product",
+       "subtopics": [
+        {
+         "id": "select-appropriate-sources-to-conduct-authentic-",
+         "title": "Select appropriate sources to conduct authentic research to produce a relevant and credible product",
+         "outcomes": [
+          {
+           "code": "CSS.RR.K-2.8.2",
+           "text": "Understand that resources on the Internet vary in quality and are found in a variety of places so care is needed in selection."
+          },
+          {
+           "code": "CSS.RR.K-2.8.3",
+           "text": "Understand there is an appropriate place to find information to research the answer to a question."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "digital-awareness",
+     "title": "Digital Awareness",
+     "topics": [
+      {
+       "id": "understand-how-people-can-use-technology",
+       "title": "Understand how people can use technology",
+       "subtopics": [
+        {
+         "id": "understand-how-people-can-use-technology",
+         "title": "Understand how people can use technology",
+         "outcomes": [
+          {
+           "code": "CSS.DA.K-2.9.5",
+           "text": "Identify that technological innovation changes how people live and work."
+          },
+          {
+           "code": "CSS.DA.K-2.9.6",
+           "text": "Understand that when you are on a networked device you are connected to other people."
+          },
+          {
+           "code": "CSS.DA.K-2.9.7",
+           "text": "Practice using a variety of computing hardware and software to achieve personal learning goals."
+          },
+          {
+           "code": "CSS.DA.K-2.9.8",
+           "text": "Identify and describe solutions to simple hardware and software problems (ex. volume control)."
+          },
+          {
+           "code": "CSS.DA.K-2.9.9",
+           "text": "Describe how technology can impact an individual's life positively and negatively."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "2",
+   "units": [
+    {
+     "id": "empowered-learner",
+     "title": "Empowered Learner",
+     "topics": [
+      {
+       "id": "empowered-learner",
+       "title": "Empowered Learner",
+       "subtopics": [
+        {
+         "id": "empowered-learner",
+         "title": "Empowered Learner",
+         "outcomes": [
+          {
+           "code": "CSS.EL.K-2.1",
+           "text": "Recognize that technology provides the opportunity to enhance relevance, increase confidence, offer authentic choice, and produce positive impacts in learning."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "knowledge-constructor",
+     "title": "Knowledge Constructor",
+     "topics": [
+      {
+       "id": "use-digital-tools-e-g-computers-tablets-cameras-",
+       "title": "Use digital tools (e.g. computers, tablets, cameras, software, 3D printers, etc.…) to build knowledge, produce creative artifacts, and make meaningful learning experiences for themselves and others",
+       "subtopics": [
+        {
+         "id": "use-digital-tools-e-g-computers-tablets-cameras-",
+         "title": "Use digital tools (e.g. computers, tablets, cameras, software, 3D printers, etc.…) to build knowledge, produce creative artifacts, and make meaningful learning experiences for themselves and others",
+         "outcomes": [
+          {
+           "code": "CSS.KC.K-2.2.3",
+           "text": "Identify and use the home row of the keyboard effectively."
+          },
+          {
+           "code": "CSS.KC.K-2.2.4",
+           "text": "Build (use, modify and/or create) collections of digital images and words to communicate learning using a variety of media types."
+          },
+          {
+           "code": "CSS.KC.K-2.2.5",
+           "text": "Analyze collections of digital images and words for how well each collection communicates learning."
+          },
+          {
+           "code": "CSS.KC.K-2.2.6",
+           "text": "Identify a problem of interest to the learner and create a solution using digital tools."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "digital-citizen",
+     "title": "Digital Citizen",
+     "topics": [
+      {
+       "id": "identify-the-rights-responsibilities-and-opportu",
+       "title": "Identify the rights, responsibilities, and opportunities of living, learning, and working in an interconnected society and model behaviors that are safe, legal, and ethical",
+       "subtopics": [
+        {
+         "id": "identify-the-rights-responsibilities-and-opportu",
+         "title": "Identify the rights, responsibilities, and opportunities of living, learning, and working in an interconnected society and model behaviors that are safe, legal, and ethical",
+         "outcomes": [
+          {
+           "code": "CSS.DC.K-2.3.7",
+           "text": "Recognize work that is created by others."
+          },
+          {
+           "code": "CSS.DC.K-2.3.8",
+           "text": "Recognize that credit is given for the work of others found online."
+          },
+          {
+           "code": "CSS.DC.K-2.3.9",
+           "text": "Create an artifact that demonstrates a positive personal digital identity."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "innovative-designer-and-creator",
+     "title": "Innovative Designer and Creator",
+     "topics": [
+      {
+       "id": "use-the-design-process-use-modify-create-with-a-",
+       "title": "Use the Design Process (use, modify, create) with a variety of tools to identify and solve problems by creating new, modified, or imaginative solutions",
+       "subtopics": [
+        {
+         "id": "use-the-design-process-use-modify-create-with-a-",
+         "title": "Use the Design Process (use, modify, create) with a variety of tools to identify and solve problems by creating new, modified, or imaginative solutions",
+         "outcomes": [
+          {
+           "code": "CSS.IDC.K-2.4.2",
+           "text": "Modify an existing model for a specific purpose or for a specific group of users."
+          },
+          {
+           "code": "CSS.IDC.K-2.4.3",
+           "text": "Create and test a model and analyze it from the perspective of an end user."
+          },
+          {
+           "code": "CSS.IDC.K-2.4.5",
+           "text": "Understand that innovation follows a process such as system life cycle, engineering design (use, modify, create) or design thinking (empathize, define, ideate, prototype and test)."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "computational-thinker",
+     "title": "Computational Thinker",
+     "topics": [
+      {
+       "id": "develop-and-employ-computational-thinking-strate",
+       "title": "Develop and employ Computational Thinking strategies (break-down, find patterns, and create algorithms) to identify and solve problems",
+       "subtopics": [
+        {
+         "id": "develop-and-employ-computational-thinking-strate",
+         "title": "Develop and employ Computational Thinking strategies (break-down, find patterns, and create algorithms) to identify and solve problems",
+         "outcomes": [
+          {
+           "code": "CSS.CT.K-2.5.1",
+           "text": "Recognize that problems can be broken down into smaller parts in order to create a solution. Vocabulary Term: Decompose (to break down)"
+          },
+          {
+           "code": "CSS.CT.K-2.5.5",
+           "text": "Identify multiple ways solutions can be applied to solve problems. Vocabulary Term: Abstraction"
+          },
+          {
+           "code": "CSS.CT.K-2.5.6",
+           "text": "Analyze and debug (identify and fix) with or without a computing device."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "creative-communicator",
+     "title": "Creative Communicator",
+     "topics": [
+      {
+       "id": "use-digital-tools-to-creatively-share-and-expres",
+       "title": "Use digital tools to creatively share and express ideas",
+       "subtopics": [
+        {
+         "id": "use-digital-tools-to-creatively-share-and-expres",
+         "title": "Use digital tools to creatively share and express ideas",
+         "outcomes": [
+          {
+           "code": "CSS.CC.K-2.6.1",
+           "text": "Create a variety of artifacts."
+          },
+          {
+           "code": "CSS.CC.K-2.6.2",
+           "text": "Exchange information or ideas clearly and creatively using digital tools while considering audience and intended purpose."
+          },
+          {
+           "code": "CSS.CC.K-2.6.3",
+           "text": "Present information using a digital device."
+          },
+          {
+           "code": "CSS.CC.K-2.6.4",
+           "text": "Create artifacts for specific purposes that gives and receives feedback."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "global-collaborator",
+     "title": "Global Collaborator",
+     "topics": [
+      {
+       "id": "use-digital-tools-to-collaborate-with-others-bot",
+       "title": "Use digital tools to collaborate with others both locally and globally",
+       "subtopics": [
+        {
+         "id": "use-digital-tools-to-collaborate-with-others-bot",
+         "title": "Use digital tools to collaborate with others both locally and globally",
+         "outcomes": [
+          {
+           "code": "CSS.GC.K-2.7.1",
+           "text": "Identify technology (hardware and software) that allows collaboration with others."
+          },
+          {
+           "code": "CSS.GC.K-2.7.2",
+           "text": "Use digital tools to connect with individuals from different backgrounds and cultures."
+          },
+          {
+           "code": "CSS.GC.K-2.7.3",
+           "text": "Understand features of online environments."
+          },
+          {
+           "code": "CSS.GC.K-2.7.4",
+           "text": "Participate in various roles on a team to work on a common goal and create an inclusive environment."
+          },
+          {
+           "code": "CSS.GC.K-2.7.5",
+           "text": "Participate in an online collaborative learning environment."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "reflective-researcher",
+     "title": "Reflective Researcher",
+     "topics": [
+      {
+       "id": "select-appropriate-sources-to-conduct-authentic-",
+       "title": "Select appropriate sources to conduct authentic research to produce a relevant and credible product",
+       "subtopics": [
+        {
+         "id": "select-appropriate-sources-to-conduct-authentic-",
+         "title": "Select appropriate sources to conduct authentic research to produce a relevant and credible product",
+         "outcomes": [
+          {
+           "code": "CSS.RR.K-2.8.4",
+           "text": "Progress from using a teacher developed list of resources, to selecting resources independently."
+          },
+          {
+           "code": "CSS.RR.K-2.8.5",
+           "text": "Select digital and analog resources, explain why a source was selected, and describe why it was the best source."
+          },
+          {
+           "code": "CSS.RR.K-2.8.6",
+           "text": "Collect and organize data."
+          },
+          {
+           "code": "CSS.RR.K-2.8.7",
+           "text": "Create a product of research collaboratively or independently. (e.g., table of data, writing assignment, collection of resources)."
+          },
+          {
+           "code": "CSS.RR.K-2.8.8",
+           "text": "Create and share a research project reflecting and crediting a variety of quality resources."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "digital-awareness",
+     "title": "Digital Awareness",
+     "topics": [
+      {
+       "id": "understand-how-people-can-use-technology",
+       "title": "Understand how people can use technology",
+       "subtopics": [
+        {
+         "id": "understand-how-people-can-use-technology",
+         "title": "Understand how people can use technology",
+         "outcomes": [
+          {
+           "code": "CSS.DA.K-2.9.10",
+           "text": "Use devices appropriately."
+          },
+          {
+           "code": "CSS.DA.K-2.9.11",
+           "text": "Choose and use appropriate hardware and software tools for a given purpose using accurate terminology."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "3",
+   "units": [
+    {
+     "id": "empowered-learner",
+     "title": "Empowered Learner",
+     "topics": [
+      {
+       "id": "identify-the-features-of-current-technologies-an",
+       "title": "Identify the features of current technologies and use that knowledge to understand emerging technologies",
+       "subtopics": [
+        {
+         "id": "identify-the-features-of-current-technologies-an",
+         "title": "Identify the features of current technologies and use that knowledge to understand emerging technologies",
+         "outcomes": [
+          {
+           "code": "CSS.EL.3-5.1.1",
+           "text": "Describe how internal and external parts of computing devices function to form a system."
+          },
+          {
+           "code": "CSS.EL.3-5.1.2",
+           "text": "Model how computer hardware and software work together as a system to accomplish tasks."
+          },
+          {
+           "code": "CSS.EL.3-5.1.3",
+           "text": "Determine potential solutions to solve simple hardware and software problems using common troubleshooting strategies."
+          },
+          {
+           "code": "CSS.EL.3-5.1.4",
+           "text": "Develop and apply keyboarding skills, utilizing current technology."
+          },
+          {
+           "code": "CSS.EL.3-5.1.5",
+           "text": "Compare and contrast prior knowledge on current technologies with that of new or emerging technologies."
+          },
+          {
+           "code": "CSS.EL.3-5.1.6",
+           "text": "Develop, reflect on, and revise personal learning goals in collaboration with their peers."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "knowledge-constructor",
+     "title": "Knowledge Constructor",
+     "topics": [
+      {
+       "id": "curate-analyze-and-evaluate-a-variety-of-resourc",
+       "title": "Curate (analyze and evaluate) a variety of resources and digital tools to construct knowledge and produce creative artifacts",
+       "subtopics": [
+        {
+         "id": "curate-analyze-and-evaluate-a-variety-of-resourc",
+         "title": "Curate (analyze and evaluate) a variety of resources and digital tools to construct knowledge and produce creative artifacts",
+         "outcomes": [
+          {
+           "code": "CSS.KC.3-5.2.1",
+           "text": "Curate (analyze and evaluate) information from digital resources using a variety of tools and methods to create collections of artifacts that demonstrate meaningful connections or conclusions."
+          },
+          {
+           "code": "CSS.KC.3-5.2.2",
+           "text": "Build knowledge by actively exploring real-world issues."
+          },
+          {
+           "code": "CSS.KC.3-5.2.3",
+           "text": "Explain why a real-world issue exists or was created and develop a possible solution."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "digital-citizen",
+     "title": "Digital Citizen",
+     "topics": [
+      {
+       "id": "identify-the-rights-responsibilities-and-opportu",
+       "title": "Identify the rights, responsibilities, and opportunities of living, learning, and working in an interconnected digital world, and then act and model in ways that are safe, legal and ethical",
+       "subtopics": [
+        {
+         "id": "identify-the-rights-responsibilities-and-opportu",
+         "title": "Identify the rights, responsibilities, and opportunities of living, learning, and working in an interconnected digital world, and then act and model in ways that are safe, legal and ethical",
+         "outcomes": [
+          {
+           "code": "CSS.DC.3-5.3.1",
+           "text": "Discuss real-world cybersecurity problems (e.g. viruses, phishing attacks, click bait, etc) and how personal information can be protected."
+          },
+          {
+           "code": "CSS.DC.3-5.3.2",
+           "text": "Understand, demonstrate, and encourage respect for intellectual property of print and digital media."
+          },
+          {
+           "code": "CSS.DC.3-5.3.3",
+           "text": "Create and manage digital identity through positive, safe, and ethical online interactions."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "innovative-designer-and-creator",
+     "title": "Innovative Designer and Creator",
+     "topics": [
+      {
+       "id": "use-a-variety-of-technologies-within-a-design-pr",
+       "title": "Use a variety of technologies within a design process to identify and solve problems by creating new, useful, or imaginative solutions",
+       "subtopics": [
+        {
+         "id": "use-a-variety-of-technologies-within-a-design-pr",
+         "title": "Use a variety of technologies within a design process to identify and solve problems by creating new, useful, or imaginative solutions",
+         "outcomes": [
+          {
+           "code": "CSS.IDC.3-5.4.1",
+           "text": "Explore and practice a deliberate design process for generating ideas, testing theories, creating innovative artifacts, or solving authentic problems."
+          },
+          {
+           "code": "CSS.IDC.3-5.4.2",
+           "text": "Select, evaluate, and use appropriate digital tools to plan and manage a design process."
+          },
+          {
+           "code": "CSS.IDC.3-5.4.3",
+           "text": "Modify, remix, or incorporate portions of an existing program into one's own work, to develop something new or add more advanced features."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "computational-thinker",
+     "title": "Computational Thinker",
+     "topics": [
+      {
+       "id": "develop-and-employ-strategies-for-understanding-",
+       "title": "Develop and employ strategies for understanding and solving problems in ways that use the power of technological methods to develop and test solutions",
+       "subtopics": [
+        {
+         "id": "develop-and-employ-strategies-for-understanding-",
+         "title": "Develop and employ strategies for understanding and solving problems in ways that use the power of technological methods to develop and test solutions",
+         "outcomes": [
+          {
+           "code": "CSS.CT.3-5.5.1",
+           "text": "Compare and refine multiple algorithms for the same task and determine which is the most appropriate."
+          },
+          {
+           "code": "CSS.CT.3-5.5.2",
+           "text": "Decompose (break down) problems into smaller, manageable subproblems to facilitate the program development process."
+          },
+          {
+           "code": "CSS.CT.3-5.5.3",
+           "text": "Test and debug (identify and fix errors) a program or algorithm to ensure it runs as intended."
+          },
+          {
+           "code": "CSS.CT.3-5.5.4",
+           "text": "Create programs that include sequences, events, loops, conditionals, and variables."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "creative-communicator",
+     "title": "Creative Communicator",
+     "topics": [
+      {
+       "id": "select-and-use-the-most-appropriate-platform-too",
+       "title": "Select and use the most appropriate platform, tool, style, format and digital media to clearly and creatively express thoughts, messages, goals, or positions",
+       "subtopics": [
+        {
+         "id": "select-and-use-the-most-appropriate-platform-too",
+         "title": "Select and use the most appropriate platform, tool, style, format and digital media to clearly and creatively express thoughts, messages, goals, or positions",
+         "outcomes": [
+          {
+           "code": "CSS.CC.3-5.6.1",
+           "text": "Create original works or responsibly repurpose or remix digital resources into new creations."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "global-collaborator",
+     "title": "Global Collaborator",
+     "topics": [
+      {
+       "id": "use-digital-tools-to-expand-personal-viewpoints-",
+       "title": "Use digital tools to expand personal viewpoints and enrich learning by collaborating effectively both locally and globally",
+       "subtopics": [
+        {
+         "id": "use-digital-tools-to-expand-personal-viewpoints-",
+         "title": "Use digital tools to expand personal viewpoints and enrich learning by collaborating effectively both locally and globally",
+         "outcomes": [
+          {
+           "code": "CSS.GC.3-5.7.1",
+           "text": "Explore local and global issues using digital tools to connect with learners from a variety of backgrounds and cultures"
+          },
+          {
+           "code": "CSS.GC.3-5.7.5",
+           "text": "Seek diverse perspectives for the purpose of improving computational artifacts."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "reflective-researcher",
+     "title": "Reflective Researcher",
+     "topics": [
+      {
+       "id": "gather-evaluate-and-organize-quality-information",
+       "title": "Gather, evaluate, and organize quality information from multiple sources",
+       "subtopics": [
+        {
+         "id": "gather-evaluate-and-organize-quality-information",
+         "title": "Gather, evaluate, and organize quality information from multiple sources",
+         "outcomes": [
+          {
+           "code": "CSS.RR.3-5.8.1",
+           "text": "Understand and use effective research strategies to locate information and other resources."
+          },
+          {
+           "code": "CSS.RR.3-5.8.2",
+           "text": "Evaluate the accuracy, perspective, credibility and relevance of information, media, data, or other resources."
+          },
+          {
+           "code": "CSS.RR.3-5.8.3",
+           "text": "Use information from multiple sources to identify real-world issues and create solutions."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "digital-awareness",
+     "title": "Digital Awareness",
+     "topics": [
+      {
+       "id": "understand-the-relationship-between-technology-l",
+       "title": "Understand the relationship between technology, lifelong learning, and the appropriate use of information",
+       "subtopics": [
+        {
+         "id": "understand-the-relationship-between-technology-l",
+         "title": "Understand the relationship between technology, lifelong learning, and the appropriate use of information",
+         "outcomes": [
+          {
+           "code": "CSS.DA.3-5.9.1",
+           "text": "Discuss computing technologies that have changed the world, and express how those technologies influence, and are influenced by, cultural practices."
+          },
+          {
+           "code": "CSS.DA.3-5.9.2",
+           "text": "Identify and propose ways to improve usability of technology for diverse users."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "4",
+   "units": [
+    {
+     "id": "empowered-learner",
+     "title": "Empowered Learner",
+     "topics": [
+      {
+       "id": "identify-the-features-of-current-technologies-an",
+       "title": "Identify the features of current technologies and use that knowledge to understand emerging technologies",
+       "subtopics": [
+        {
+         "id": "identify-the-features-of-current-technologies-an",
+         "title": "Identify the features of current technologies and use that knowledge to understand emerging technologies",
+         "outcomes": [
+          {
+           "code": "CSS.EL.3-5.1.1",
+           "text": "Describe how internal and external parts of computing devices function to form a system."
+          },
+          {
+           "code": "CSS.EL.3-5.1.2",
+           "text": "Model how computer hardware and software work together as a system to accomplish tasks."
+          },
+          {
+           "code": "CSS.EL.3-5.1.3",
+           "text": "Determine potential solutions to solve simple hardware and software problems using common troubleshooting strategies."
+          },
+          {
+           "code": "CSS.EL.3-5.1.4",
+           "text": "Develop and apply keyboarding skills, utilizing current technology."
+          },
+          {
+           "code": "CSS.EL.3-5.1.5",
+           "text": "Compare and contrast prior knowledge on current technologies with that of new or emerging technologies."
+          },
+          {
+           "code": "CSS.EL.3-5.1.6",
+           "text": "Develop, reflect on, and revise personal learning goals in collaboration with their peers."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "knowledge-constructor",
+     "title": "Knowledge Constructor",
+     "topics": [
+      {
+       "id": "curate-analyze-and-evaluate-a-variety-of-resourc",
+       "title": "Curate (analyze and evaluate) a variety of resources and digital tools to construct knowledge and produce creative artifacts",
+       "subtopics": [
+        {
+         "id": "curate-analyze-and-evaluate-a-variety-of-resourc",
+         "title": "Curate (analyze and evaluate) a variety of resources and digital tools to construct knowledge and produce creative artifacts",
+         "outcomes": [
+          {
+           "code": "CSS.KC.3-5.2.1",
+           "text": "Curate (analyze and evaluate) information from digital resources using a variety of tools and methods to create collections of artifacts that demonstrate meaningful connections or conclusions."
+          },
+          {
+           "code": "CSS.KC.3-5.2.2",
+           "text": "Build knowledge by actively exploring real-world issues."
+          },
+          {
+           "code": "CSS.KC.3-5.2.3",
+           "text": "Explain why a real-world issue exists or was created and develop a possible solution."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "digital-citizen",
+     "title": "Digital Citizen",
+     "topics": [
+      {
+       "id": "identify-the-rights-responsibilities-and-opportu",
+       "title": "Identify the rights, responsibilities, and opportunities of living, learning, and working in an interconnected digital world, and then act and model in ways that are safe, legal and ethical",
+       "subtopics": [
+        {
+         "id": "identify-the-rights-responsibilities-and-opportu",
+         "title": "Identify the rights, responsibilities, and opportunities of living, learning, and working in an interconnected digital world, and then act and model in ways that are safe, legal and ethical",
+         "outcomes": [
+          {
+           "code": "CSS.DC.3-5.3.1",
+           "text": "Discuss real-world cybersecurity problems (e.g. viruses, phishing attacks, click bait, etc) and how personal information can be protected."
+          },
+          {
+           "code": "CSS.DC.3-5.3.2",
+           "text": "Understand, demonstrate, and encourage respect for intellectual property of print and digital media."
+          },
+          {
+           "code": "CSS.DC.3-5.3.3",
+           "text": "Create and manage digital identity through positive, safe, and ethical online interactions."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "innovative-designer-and-creator",
+     "title": "Innovative Designer and Creator",
+     "topics": [
+      {
+       "id": "use-a-variety-of-technologies-within-a-design-pr",
+       "title": "Use a variety of technologies within a design process to identify and solve problems by creating new, useful, or imaginative solutions",
+       "subtopics": [
+        {
+         "id": "use-a-variety-of-technologies-within-a-design-pr",
+         "title": "Use a variety of technologies within a design process to identify and solve problems by creating new, useful, or imaginative solutions",
+         "outcomes": [
+          {
+           "code": "CSS.IDC.3-5.4.1",
+           "text": "Explore and practice a deliberate design process for generating ideas, testing theories, creating innovative artifacts, or solving authentic problems."
+          },
+          {
+           "code": "CSS.IDC.3-5.4.2",
+           "text": "Select, evaluate, and use appropriate digital tools to plan and manage a design process."
+          },
+          {
+           "code": "CSS.IDC.3-5.4.3",
+           "text": "Modify, remix, or incorporate portions of an existing program into one's own work, to develop something new or add more advanced features."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "computational-thinker",
+     "title": "Computational Thinker",
+     "topics": [
+      {
+       "id": "develop-and-employ-strategies-for-understanding-",
+       "title": "Develop and employ strategies for understanding and solving problems in ways that use the power of technological methods to develop and test solutions",
+       "subtopics": [
+        {
+         "id": "develop-and-employ-strategies-for-understanding-",
+         "title": "Develop and employ strategies for understanding and solving problems in ways that use the power of technological methods to develop and test solutions",
+         "outcomes": [
+          {
+           "code": "CSS.CT.3-5.5.1",
+           "text": "Compare and refine multiple algorithms for the same task and determine which is the most appropriate."
+          },
+          {
+           "code": "CSS.CT.3-5.5.2",
+           "text": "Decompose (break down) problems into smaller, manageable subproblems to facilitate the program development process."
+          },
+          {
+           "code": "CSS.CT.3-5.5.3",
+           "text": "Test and debug (identify and fix errors) a program or algorithm to ensure it runs as intended."
+          },
+          {
+           "code": "CSS.CT.3-5.5.4",
+           "text": "Create programs that include sequences, events, loops, conditionals, and variables."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "creative-communicator",
+     "title": "Creative Communicator",
+     "topics": [
+      {
+       "id": "select-and-use-the-most-appropriate-platform-too",
+       "title": "Select and use the most appropriate platform, tool, style, format and digital media to clearly and creatively express thoughts, messages, goals, or positions",
+       "subtopics": [
+        {
+         "id": "select-and-use-the-most-appropriate-platform-too",
+         "title": "Select and use the most appropriate platform, tool, style, format and digital media to clearly and creatively express thoughts, messages, goals, or positions",
+         "outcomes": [
+          {
+           "code": "CSS.CC.3-5.6.1",
+           "text": "Create original works or responsibly repurpose or remix digital resources into new creations."
+          },
+          {
+           "code": "CSS.CC.3-5.6.2",
+           "text": "Communicate complex ideas clearly and effectively by creating or using a variety of digital objects."
+          },
+          {
+           "code": "CSS.CC.3-5.6.3",
+           "text": "Publish or present content that customizes the message and medium for their intended audiences."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "global-collaborator",
+     "title": "Global Collaborator",
+     "topics": [
+      {
+       "id": "use-digital-tools-to-expand-personal-viewpoints-",
+       "title": "Use digital tools to expand personal viewpoints and enrich learning by collaborating effectively both locally and globally",
+       "subtopics": [
+        {
+         "id": "use-digital-tools-to-expand-personal-viewpoints-",
+         "title": "Use digital tools to expand personal viewpoints and enrich learning by collaborating effectively both locally and globally",
+         "outcomes": [
+          {
+           "code": "CSS.GC.3-5.7.1",
+           "text": "Explore local and global issues using digital tools to connect with learners from a variety of backgrounds and cultures"
+          },
+          {
+           "code": "CSS.GC.3-5.7.3",
+           "text": "Take on varying roles, with teacher guidance, when collaborating with peers during the design, implementation, and review stages of program development."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "reflective-researcher",
+     "title": "Reflective Researcher",
+     "topics": [
+      {
+       "id": "gather-evaluate-and-organize-quality-information",
+       "title": "Gather, evaluate, and organize quality information from multiple sources",
+       "subtopics": [
+        {
+         "id": "gather-evaluate-and-organize-quality-information",
+         "title": "Gather, evaluate, and organize quality information from multiple sources",
+         "outcomes": [
+          {
+           "code": "CSS.RR.3-5.8.2",
+           "text": "Evaluate the accuracy, perspective, credibility and relevance of information, media, data, or other resources."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "digital-awareness",
+     "title": "Digital Awareness",
+     "topics": [
+      {
+       "id": "understand-the-relationship-between-technology-l",
+       "title": "Understand the relationship between technology, lifelong learning, and the appropriate use of information",
+       "subtopics": [
+        {
+         "id": "understand-the-relationship-between-technology-l",
+         "title": "Understand the relationship between technology, lifelong learning, and the appropriate use of information",
+         "outcomes": [
+          {
+           "code": "CSS.DA.3-5.9.1",
+           "text": "Discuss computing technologies that have changed the world, and express how those technologies influence, and are influenced by, cultural practices."
+          },
+          {
+           "code": "CSS.DA.3-5.9.2",
+           "text": "Identify and propose ways to improve usability of technology for diverse users."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "5",
+   "units": [
+    {
+     "id": "empowered-learner",
+     "title": "Empowered Learner",
+     "topics": [
+      {
+       "id": "identify-the-features-of-current-technologies-an",
+       "title": "Identify the features of current technologies and use that knowledge to understand emerging technologies",
+       "subtopics": [
+        {
+         "id": "identify-the-features-of-current-technologies-an",
+         "title": "Identify the features of current technologies and use that knowledge to understand emerging technologies",
+         "outcomes": [
+          {
+           "code": "CSS.EL.3-5.1.1",
+           "text": "Describe how internal and external parts of computing devices function to form a system."
+          },
+          {
+           "code": "CSS.EL.3-5.1.2",
+           "text": "Model how computer hardware and software work together as a system to accomplish tasks."
+          },
+          {
+           "code": "CSS.EL.3-5.1.3",
+           "text": "Determine potential solutions to solve simple hardware and software problems using common troubleshooting strategies."
+          },
+          {
+           "code": "CSS.EL.3-5.1.4",
+           "text": "Develop and apply keyboarding skills, utilizing current technology."
+          },
+          {
+           "code": "CSS.EL.3-5.1.5",
+           "text": "Compare and contrast prior knowledge on current technologies with that of new or emerging technologies."
+          },
+          {
+           "code": "CSS.EL.3-5.1.6",
+           "text": "Develop, reflect on, and revise personal learning goals in collaboration with their peers."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "knowledge-constructor",
+     "title": "Knowledge Constructor",
+     "topics": [
+      {
+       "id": "curate-analyze-and-evaluate-a-variety-of-resourc",
+       "title": "Curate (analyze and evaluate) a variety of resources and digital tools to construct knowledge and produce creative artifacts",
+       "subtopics": [
+        {
+         "id": "curate-analyze-and-evaluate-a-variety-of-resourc",
+         "title": "Curate (analyze and evaluate) a variety of resources and digital tools to construct knowledge and produce creative artifacts",
+         "outcomes": [
+          {
+           "code": "CSS.KC.3-5.2.1",
+           "text": "Curate (analyze and evaluate) information from digital resources using a variety of tools and methods to create collections of artifacts that demonstrate meaningful connections or conclusions."
+          },
+          {
+           "code": "CSS.KC.3-5.2.2",
+           "text": "Build knowledge by actively exploring real-world issues."
+          },
+          {
+           "code": "CSS.KC.3-5.2.3",
+           "text": "Explain why a real-world issue exists or was created and develop a possible solution."
+          },
+          {
+           "code": "CSS.KC.3-5.2.4",
+           "text": "Organize and present collected data visually to highlight relationships and support a claim."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "digital-citizen",
+     "title": "Digital Citizen",
+     "topics": [
+      {
+       "id": "identify-the-rights-responsibilities-and-opportu",
+       "title": "Identify the rights, responsibilities, and opportunities of living, learning, and working in an interconnected digital world, and then act and model in ways that are safe, legal and ethical",
+       "subtopics": [
+        {
+         "id": "identify-the-rights-responsibilities-and-opportu",
+         "title": "Identify the rights, responsibilities, and opportunities of living, learning, and working in an interconnected digital world, and then act and model in ways that are safe, legal and ethical",
+         "outcomes": [
+          {
+           "code": "CSS.DC.3-5.3.1",
+           "text": "Discuss real-world cybersecurity problems (e.g. viruses, phishing attacks, click bait, etc) and how personal information can be protected."
+          },
+          {
+           "code": "CSS.DC.3-5.3.2",
+           "text": "Understand, demonstrate, and encourage respect for intellectual property of print and digital media."
+          },
+          {
+           "code": "CSS.DC.3-5.3.3",
+           "text": "Create and manage digital identity through positive, safe, and ethical online interactions."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "innovative-designer-and-creator",
+     "title": "Innovative Designer and Creator",
+     "topics": [
+      {
+       "id": "use-a-variety-of-technologies-within-a-design-pr",
+       "title": "Use a variety of technologies within a design process to identify and solve problems by creating new, useful, or imaginative solutions",
+       "subtopics": [
+        {
+         "id": "use-a-variety-of-technologies-within-a-design-pr",
+         "title": "Use a variety of technologies within a design process to identify and solve problems by creating new, useful, or imaginative solutions",
+         "outcomes": [
+          {
+           "code": "CSS.IDC.3-5.4.1",
+           "text": "Explore and practice a deliberate design process for generating ideas, testing theories, creating innovative artifacts, or solving authentic problems."
+          },
+          {
+           "code": "CSS.IDC.3-5.4.2",
+           "text": "Select, evaluate, and use appropriate digital tools to plan and manage a design process."
+          },
+          {
+           "code": "CSS.IDC.3-5.4.3",
+           "text": "Modify, remix, or incorporate portions of an existing program into one's own work, to develop something new or add more advanced features."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "computational-thinker",
+     "title": "Computational Thinker",
+     "topics": [
+      {
+       "id": "develop-and-employ-strategies-for-understanding-",
+       "title": "Develop and employ strategies for understanding and solving problems in ways that use the power of technological methods to develop and test solutions",
+       "subtopics": [
+        {
+         "id": "develop-and-employ-strategies-for-understanding-",
+         "title": "Develop and employ strategies for understanding and solving problems in ways that use the power of technological methods to develop and test solutions",
+         "outcomes": [
+          {
+           "code": "CSS.CT.3-5.5.1",
+           "text": "Compare and refine multiple algorithms for the same task and determine which is the most appropriate."
+          },
+          {
+           "code": "CSS.CT.3-5.5.2",
+           "text": "Decompose (break down) problems into smaller, manageable subproblems to facilitate the program development process."
+          },
+          {
+           "code": "CSS.CT.3-5.5.3",
+           "text": "Test and debug (identify and fix errors) a program or algorithm to ensure it runs as intended."
+          },
+          {
+           "code": "CSS.CT.3-5.5.4",
+           "text": "Create programs that include sequences, events, loops, conditionals, and variables."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "creative-communicator",
+     "title": "Creative Communicator",
+     "topics": [
+      {
+       "id": "select-and-use-the-most-appropriate-platform-too",
+       "title": "Select and use the most appropriate platform, tool, style, format and digital media to clearly and creatively express thoughts, messages, goals, or positions",
+       "subtopics": [
+        {
+         "id": "select-and-use-the-most-appropriate-platform-too",
+         "title": "Select and use the most appropriate platform, tool, style, format and digital media to clearly and creatively express thoughts, messages, goals, or positions",
+         "outcomes": [
+          {
+           "code": "CSS.CC.3-5.6.1",
+           "text": "Create original works or responsibly repurpose or remix digital resources into new creations."
+          },
+          {
+           "code": "CSS.CC.3-5.6.2",
+           "text": "Communicate complex ideas clearly and effectively by creating or using a variety of digital objects."
+          },
+          {
+           "code": "CSS.CC.3-5.6.3",
+           "text": "Publish or present content that customizes the message and medium for their intended audiences."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "global-collaborator",
+     "title": "Global Collaborator",
+     "topics": [
+      {
+       "id": "use-digital-tools-to-expand-personal-viewpoints-",
+       "title": "Use digital tools to expand personal viewpoints and enrich learning by collaborating effectively both locally and globally",
+       "subtopics": [
+        {
+         "id": "use-digital-tools-to-expand-personal-viewpoints-",
+         "title": "Use digital tools to expand personal viewpoints and enrich learning by collaborating effectively both locally and globally",
+         "outcomes": [
+          {
+           "code": "CSS.GC.3-5.7.1",
+           "text": "Explore local and global issues using digital tools to connect with learners from a variety of backgrounds and cultures"
+          },
+          {
+           "code": "CSS.GC.3-5.7.2",
+           "text": "Plan the development of a program by including others' viewpoints and considering user preferences."
+          },
+          {
+           "code": "CSS.GC.3-5.7.3",
+           "text": "Take on varying roles, with teacher guidance, when collaborating with peers during the design, implementation, and review stages of program development."
+          },
+          {
+           "code": "CSS.GC.3-5.7.4",
+           "text": "Describe choices made during program development using code comments, presentations, and demonstrations."
+          },
+          {
+           "code": "CSS.GC.3-5.7.5",
+           "text": "Seek diverse perspectives for the purpose of improving computational artifacts."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "reflective-researcher",
+     "title": "Reflective Researcher",
+     "topics": [
+      {
+       "id": "gather-evaluate-and-organize-quality-information",
+       "title": "Gather, evaluate, and organize quality information from multiple sources",
+       "subtopics": [
+        {
+         "id": "gather-evaluate-and-organize-quality-information",
+         "title": "Gather, evaluate, and organize quality information from multiple sources",
+         "outcomes": [
+          {
+           "code": "CSS.RR.3-5.8.3",
+           "text": "Use information from multiple sources to identify real-world issues and create solutions."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "digital-awareness",
+     "title": "Digital Awareness",
+     "topics": [
+      {
+       "id": "understand-the-relationship-between-technology-l",
+       "title": "Understand the relationship between technology, lifelong learning, and the appropriate use of information",
+       "subtopics": [
+        {
+         "id": "understand-the-relationship-between-technology-l",
+         "title": "Understand the relationship between technology, lifelong learning, and the appropriate use of information",
+         "outcomes": [
+          {
+           "code": "CSS.DA.3-5.9.1",
+           "text": "Discuss computing technologies that have changed the world, and express how those technologies influence, and are influenced by, cultural practices."
+          },
+          {
+           "code": "CSS.DA.3-5.9.2",
+           "text": "Identify and propose ways to improve usability of technology for diverse users."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "9-12",
+   "units": [
+    {
+     "id": "demonstrate-employability-skills-required-by-bus",
+     "title": "Demonstrate employability skills required by business and industry and explore, research, and present careers in information technology",
+     "topics": [
+      {
+       "id": "demonstrate-employability-skills-required-by-bus",
+       "title": "Demonstrate employability skills required by business and industry and explore, research, and present careers in information technology",
+       "subtopics": [
+        {
+         "id": "demonstrate-employability-skills-required-by-bus",
+         "title": "Demonstrate employability skills required by business and industry and explore, research, and present careers in information technology",
+         "outcomes": [
+          {
+           "code": "MS-CS-FCP.1.1",
+           "text": "Communicate effectively through writing, speaking, listening, reading, and interpersonal abilities."
+          },
+          {
+           "code": "MS-CS-FCP.1.2",
+           "text": "Demonstrate an understanding of collaborative interactions in the digital world."
+          },
+          {
+           "code": "MS-CS-FCP.1.3",
+           "text": "Model work-readiness traits required for success in the workplace including integrity, honesty, accountability, punctuality, time management, and respect for diversity."
+          },
+          {
+           "code": "MS-CS-FCP.1.4",
+           "text": "Exhibit critical thinking and problem-solving skills to locate, analyze, and apply information in career planning and employment situations."
+          },
+          {
+           "code": "MS-CS-FCP.1.5",
+           "text": "Present a professional image through appearance, behavior and language."
+          },
+          {
+           "code": "MS-CS-FCP.1.6",
+           "text": "Investigate educational requirements, job responsibilities, employment trends, and opportunities within information technology career pathways using credible sources."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "explore-and-explain-the-basic-components-of-comp",
+     "title": "Explore and explain the basic components of computers and their relationships to programming",
+     "topics": [
+      {
+       "id": "explore-and-explain-the-basic-components-of-comp",
+       "title": "Explore and explain the basic components of computers and their relationships to programming",
+       "subtopics": [
+        {
+         "id": "explore-and-explain-the-basic-components-of-comp",
+         "title": "Explore and explain the basic components of computers and their relationships to programming",
+         "outcomes": [
+          {
+           "code": "MS-CS-FCP.2.1",
+           "text": "Identify the basic components of the computer (processor, operating system, memory, storage, ethernet ports) by disassembling and reassembling a demonstration model personal computer (may be done ‘virtually’ online if demo model is not available)."
+          },
+          {
+           "code": "MS-CS-FCP.2.2",
+           "text": "Demonstrate an understanding of key functional components (input/output devices, software applications, wi-fi and/or Ethernet, and IP addresses)."
+          },
+          {
+           "code": "MS-CS-FCP.2.3",
+           "text": "Demonstrate an understanding of the fundamental concepts for how computers process programming commands (hex, binary language, sequence of commands, conditional structures, looping structures)."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "utilize-computational-thinking-to-solve-problems",
+     "title": "Utilize computational thinking to solve problems",
+     "topics": [
+      {
+       "id": "utilize-computational-thinking-to-solve-problems",
+       "title": "Utilize computational thinking to solve problems",
+       "subtopics": [
+        {
+         "id": "utilize-computational-thinking-to-solve-problems",
+         "title": "Utilize computational thinking to solve problems",
+         "outcomes": [
+          {
+           "code": "MS-CS-FCP.3.1",
+           "text": "Make observations and organize the concepts of modularity, including functions and methods, as it relates to programming code reusability and cloud computing in the software industry."
+          },
+          {
+           "code": "MS-CS-FCP.3.2",
+           "text": "Develop a working vocabulary of computational thinking including sequences, algorithms, binary, pattern matching, decomposition, abstraction, parallelization, data, automation, data collection, data analysis, Boolean, integer, branches (if...then...else), and iteration {loops (For, While)}."
+          },
+          {
+           "code": "MS-CS-FCP.3.3",
+           "text": "Analyze the problem-solving process, the input-process-output-storage model of a computer, and how computers help humans solve problems."
+          },
+          {
+           "code": "MS-CS-FCP.3.4",
+           "text": "Develop an algorithm to decompose a problem of a daily task."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "design-develop-debug-and-implement-computer-prog",
+     "title": "Design, develop, debug and implement computer programs",
+     "topics": [
+      {
+       "id": "design-develop-debug-and-implement-computer-prog",
+       "title": "Design, develop, debug and implement computer programs",
+       "subtopics": [
+        {
+         "id": "design-develop-debug-and-implement-computer-prog",
+         "title": "Design, develop, debug and implement computer programs (1 of 2)",
+         "outcomes": [
+          {
+           "code": "MS-CS-FCP.4.1",
+           "text": "Develop a working vocabulary of programming including flowcharting and/or storyboarding, coding, debugging, user interfaces, usability, variables, lists, loops, conditionals, programming language, and events."
+          },
+          {
+           "code": "MS-CS-FCP.4.2",
+           "text": "Utilize the design process to brainstorm, implement, test, and revise an idea."
+          },
+          {
+           "code": "MS-CS-FCP.4.3",
+           "text": "Cite evidence on how computers represent data and media (sounds, images, video, etc.)."
+          },
+          {
+           "code": "MS-CS-FCP.4.4",
+           "text": "Design a user interface and test with other users using a paper prototype."
+          },
+          {
+           "code": "MS-CS-FCP.4.5",
+           "text": "Implement a simple algorithm in a computer program."
+          }
+         ]
+        },
+        {
+         "id": "design-develop-debug-and-implement-computer-prog-2",
+         "title": "Design, develop, debug and implement computer programs (2 of 2)",
+         "outcomes": [
+          {
+           "code": "MS-CS-FCP.4.6",
+           "text": "Develop an event driven program."
+          },
+          {
+           "code": "MS-CS-FCP.4.7",
+           "text": "Create a program that accepts user and/or sensor input and stores the result in a variable."
+          },
+          {
+           "code": "MS-CS-FCP.4.8",
+           "text": "Create a computer program that implements a loop."
+          },
+          {
+           "code": "MS-CS-FCP.4.9",
+           "text": "Develop a program that makes a decision based on data or user input."
+          },
+          {
+           "code": "MS-CS-FCP.4.10",
+           "text": "Debug a program with an error."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "explore-the-relationship-between-computer-hardwa",
+     "title": "Explore the relationship between computer hardware and software",
+     "topics": [
+      {
+       "id": "explore-the-relationship-between-computer-hardwa",
+       "title": "Explore the relationship between computer hardware and software",
+       "subtopics": [
+        {
+         "id": "explore-the-relationship-between-computer-hardwa",
+         "title": "Explore the relationship between computer hardware and software",
+         "outcomes": [
+          {
+           "code": "MS-CS-FCP.5.1",
+           "text": "Develop a working vocabulary of embedded computing including digital, analog, events, microcontrollers, sensors, light emitting diodes (LED), switches, servos, cloud computing, and internet of things."
+          },
+          {
+           "code": "MS-CS-FCP.5.2",
+           "text": "Investigate how software interacts with hardware in the boot process."
+          },
+          {
+           "code": "MS-CS-FCP.5.3",
+           "text": "Analyze and explain how computers communicate information with simple hardware inputs and outputs."
+          },
+          {
+           "code": "MS-CS-FCP.5.4",
+           "text": "Create a product that analyzes how simple computer hardware can be used to develop innovative new products that interact with the physical world."
+          },
+          {
+           "code": "MS-CS-FCP.5.5",
+           "text": "Design a computer program that senses something in the real world and changes an output based on the input."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "create-digital-artifacts-to-address-a-current-is",
+     "title": "Create digital artifacts to address a current issue requiring resolution",
+     "topics": [
+      {
+       "id": "create-digital-artifacts-to-address-a-current-is",
+       "title": "Create digital artifacts to address a current issue requiring resolution",
+       "subtopics": [
+        {
+         "id": "create-digital-artifacts-to-address-a-current-is",
+         "title": "Create digital artifacts to address a current issue requiring resolution",
+         "outcomes": [
+          {
+           "code": "MS-CS-FCP.6.1",
+           "text": "Summarize ethical, privacy, and legal issues of a digital world using current case studies."
+          },
+          {
+           "code": "MS-CS-FCP.6.2",
+           "text": "Collaborate as a team to develop an artifact that represents multiple perspectives regarding a global crisis."
+          },
+          {
+           "code": "MS-CS-FCP.6.3",
+           "text": "Analyze and explain the functionality and suitability (or appropriateness) of a computational artifact."
+          },
+          {
+           "code": "MS-CS-FCP.6.4",
+           "text": "Develop a program for creative expression or to satisfy personal curiosity which may have visual, audible, and/or tactile results."
+          },
+          {
+           "code": "MS-CS-FCP.6.5",
+           "text": "Develop a program specifically with the goal of solving a problem, creating new knowledge, or helping people, organizations, or society."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "6-8",
+   "units": [
+    {
+     "id": "empowered-learner",
+     "title": "Empowered Learner",
+     "topics": [
+      {
+       "id": "use-technology-resources-to-increase-self-direct",
+       "title": "Use technology resources to increase self-direction and self-regulation in learning, including for problem solving and collaboration (e.g., using the Internet to access online resources, edit documents collaboratively)",
+       "subtopics": [
+        {
+         "id": "use-technology-resources-to-increase-self-direct",
+         "title": "Use technology resources to increase self-direction and self-regulation in learning, including for problem solving and collaboration (e.g., using the Internet to access online resources, edit documents collaboratively)",
+         "outcomes": [
+          {
+           "code": "CSS.EL.6-8.1.1",
+           "text": "Understand the difference between editing a shared document and suggesting edits (e.g. track changes)."
+          },
+          {
+           "code": "CSS.EL.6-8.1.2",
+           "text": "Use digital tools or platforms to organize, display, annotate, and/or share a curated collection."
+          },
+          {
+           "code": "CSS.EL.6-8.1.3",
+           "text": "Complete an individual project (e.g., research or design) using technology resources."
+          },
+          {
+           "code": "CSS.EL.6-8.1.1",
+           "text": "Understand the difference between editing a shared document and suggesting edits (e.g. track changes)."
+          },
+          {
+           "code": "CSS.EL.6-8.1.2",
+           "text": "Use digital tools or platforms to organize, display, annotate, and/or share a curated collection."
+          },
+          {
+           "code": "CSS.EL.6-8.1.3",
+           "text": "Complete an individual project (e.g., research or design) using technology resources."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "digital-citizen",
+     "title": "Digital Citizen",
+     "topics": [
+      {
+       "id": "understand-benefits-and-risks-of-digital-citizen",
+       "title": "Understand benefits and risks of digital citizenship and practices safe, responsible, legal, and ethical behavior while using technology tools and resources, especially related to personal information",
+       "subtopics": [
+        {
+         "id": "understand-benefits-and-risks-of-digital-citizen",
+         "title": "Understand benefits and risks of digital citizenship and practices safe, responsible, legal, and ethical behavior while using technology tools and resources, especially related to personal information",
+         "outcomes": [
+          {
+           "code": "CSS.DC.6-8.2.1",
+           "text": "Understand that digital content is permanent and cannot be deleted."
+          },
+          {
+           "code": "CSS.DC.6-8.2.2",
+           "text": "Discuss the benefits and risks of using password management systems and storing personal information online."
+          },
+          {
+           "code": "CSS.DC.6-8.2.3",
+           "text": "Understand how browser settings such as cookies collect data and track personal information."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "digital-citizen",
+       "title": "Digital Citizen",
+       "subtopics": [
+        {
+         "id": "digital-citizen",
+         "title": "Digital Citizen",
+         "outcomes": [
+          {
+           "code": "CSS.DC.6-8.4",
+           "text": "Articulate ideas responsibly by observing intellectual property rights and giving appropriate attribution."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "understand-the-pervasiveness-and-tradeoffs-of-co",
+       "title": "Understand the pervasiveness and tradeoffs of computers and computing in daily life",
+       "subtopics": [
+        {
+         "id": "understand-the-pervasiveness-and-tradeoffs-of-co",
+         "title": "Understand the pervasiveness and tradeoffs of computers and computing in daily life",
+         "outcomes": [
+          {
+           "code": "CSS.DC.6-8.5.1",
+           "text": "Find and adjust privacy settings for online accounts; discuss the positive and negative effects that social media can have on one's life."
+          },
+          {
+           "code": "CSS.DC.6-8.5.2",
+           "text": "Recognize how the overuse of technology can impact mental, physical, and emotional health."
+          },
+          {
+           "code": "CSS.DC.6-8.5.3",
+           "text": "Identify phishing emails, insecure websites (e.g., not https), and risky links when on the Internet; build a positive digital footprint (e.g., blog, website, social media)."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "apply-strategies-for-troubleshooting-hardware-an",
+       "title": "Apply strategies for troubleshooting hardware and software problems that may occur during use",
+       "subtopics": [
+        {
+         "id": "apply-strategies-for-troubleshooting-hardware-an",
+         "title": "Apply strategies for troubleshooting hardware and software problems that may occur during use",
+         "outcomes": [
+          {
+           "code": "CSS.DC.6-8.6.1",
+           "text": "Choose the correct settings for printing and troubleshoot common printing issues (printer not turned on, printer not connected)."
+          },
+          {
+           "code": "CSS.DC.6-8.6.2",
+           "text": "Connect devices (including internet/WIFI and Bluetooth) and troubleshoot common connection issues (e.g., disrupted Internet connection, website that is not loading)."
+          },
+          {
+           "code": "CSS.DC.6-8.6.3",
+           "text": "Manage and deploy software updates and troubleshoot simple software issues (i.e., look up solutions to issues)."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "explore-the-relationship-between-computer-hardwa",
+       "title": "Explore the relationship between computer hardware and software",
+       "subtopics": [
+        {
+         "id": "explore-the-relationship-between-computer-hardwa",
+         "title": "Explore the relationship between computer hardware and software",
+         "outcomes": [
+          {
+           "code": "CSS.DC.6-8.7.1",
+           "text": "Develop a working vocabulary of embedded computing including digital, analog, events, microcontrollers, sensors, LED, switch, servo, cloud computing, and internet of things."
+          },
+          {
+           "code": "CSS.DC.6-8.7.2",
+           "text": "Investigate how software interacts with hardware in the boot process."
+          },
+          {
+           "code": "CSS.DC.6-8.7.3",
+           "text": "Analyze and explain how computers communicate information with simple hardware inputs and outputs."
+          },
+          {
+           "code": "CSS.DC.6-8.7.4",
+           "text": "Create a product that analyzes how simple computer hardware can be used to develop innovative new products that interact with the physical world."
+          },
+          {
+           "code": "CSS.DC.6-8.7.5",
+           "text": "Design a computer program that senses something in the real world and changes an output based on the input."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "explore-computer-science-and-computing-related-c",
+       "title": "Explore computer science and computing-related careers",
+       "subtopics": [
+        {
+         "id": "explore-computer-science-and-computing-related-c",
+         "title": "Explore computer science and computing-related careers",
+         "outcomes": [
+          {
+           "code": "CSS.DC.6-8.3.1",
+           "text": "Investigate a career that requires computing and technology."
+          },
+          {
+           "code": "CSS.DC.6-8.3.2",
+           "text": "Describe how computer science enhances other career fields."
+          },
+          {
+           "code": "CSS.DC.6-8.3.3",
+           "text": "Predict the role of computer science in future careers."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "investigate-and-identify-the-basic-components-of",
+       "title": "Investigate and identify the basic components of computers and networks",
+       "subtopics": [
+        {
+         "id": "investigate-and-identify-the-basic-components-of",
+         "title": "Investigate and identify the basic components of computers and networks",
+         "outcomes": [
+          {
+           "code": "CSS.DC.6-8.8.1",
+           "text": "Identify the basic components of the computer by disassembling and reassembling a demonstration model personal computer (can be done 'virtually' online if demo model is not available)."
+          },
+          {
+           "code": "CSS.DC.6-8.8.2",
+           "text": "Demonstrate an understanding of key functional components (input devices, output devices, processor, operating system, software applications, memory, storage, wi-fi and/or ethernet ports, and IP addresses)."
+          },
+          {
+           "code": "CSS.DC.6-8.8.3",
+           "text": "Demonstrate an understanding of the terms and units used to describe major hardware components (RAM, ROM, GHz, MHz, GB, MB, CD, DVD, RW)."
+          },
+          {
+           "code": "CSS.DC.6-8.8.4",
+           "text": "Explain the interrelation of the operating system software, application software, and utility software, citing specific examples of each."
+          },
+          {
+           "code": "CSS.DC.6-8.8.5",
+           "text": "Develop a basic vocabulary of networks including the Internet, wired, wireless, cellular, wi-fi, messages, packets, connections, bandwidth, broadband, firewall, hacking, cybersecurity, encryption, local area network (LAN), wide area network (WAN), and OSI model."
+          },
+          {
+           "code": "CSS.DC.6-8.8.6",
+           "text": "Demonstrate an understanding of the fundamental concepts for how computers process programming commands (hex, binary language, sequence of commands, conditional structures, looping structures)."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "networks-and-the-internet",
+       "title": "Networks and the Internet",
+       "subtopics": [
+        {
+         "id": "investigate-ways-to-differentiate-networks-and-h",
+         "title": "Investigate ways to differentiate networks and how they are used in business and industry",
+         "outcomes": [
+          {
+           "code": "CSS.DC.6-8.9.1",
+           "text": "Create diagrams to illustrate types of network topologies to include star, ring, bus, mesh, and hybrid."
+          },
+          {
+           "code": "CSS.DC.6-8.9.2",
+           "text": "Differentiate networks based on coverage area including local area network (LAN), wide area network (WAN), and personal area network (PAN)"
+          },
+          {
+           "code": "CSS.DC.6-8.9.3",
+           "text": "Differentiate between different network mediums including Wi-fi, wired, satellite, and microwave."
+          }
+         ]
+        },
+        {
+         "id": "evaluate-and-provide-a-rationale-for-the-levels-",
+         "title": "Evaluate and provide a rationale for the levels of the Open Systems Interconnection (OSI) model",
+         "outcomes": [
+          {
+           "code": "CSS.DC.6-8.10.1",
+           "text": "Summarize from multiple sources the physical and digital aspects of computing networks."
+          },
+          {
+           "code": "CSS.DC.6-8.10.2",
+           "text": "Trace the layers required to transmit data from one node to another (the OSI model)."
+          },
+          {
+           "code": "CSS.DC.6-8.10.3",
+           "text": "Construct and explain the basic functions of the OSI model."
+          }
+         ]
+        },
+        {
+         "id": "examine-the-basics-of-cybersecurity-needs-for-bu",
+         "title": "Examine the basics of cybersecurity needs for business, government, and organizations",
+         "outcomes": [
+          {
+           "code": "CSS.DC.6-8.11.1",
+           "text": "List and define the elements of the confidentiality, integrity, and availability (CIA) triad."
+          },
+          {
+           "code": "CSS.DC.6-8.11.2",
+           "text": "Explain components of access control: Identification, Authentication, Authorization, Accountability, and Non-repudiation."
+          },
+          {
+           "code": "CSS.DC.6-8.11.3",
+           "text": "Identify the characteristics of strong vs. weak passwords in data and identity security."
+          },
+          {
+           "code": "CSS.DC.6-8.11.4",
+           "text": "List and describe the basic steps in security risk management."
+          },
+          {
+           "code": "CSS.DC.6-8.11.5",
+           "text": "Develop a logical argument for the importance of physical security."
+          }
+         ]
+        },
+        {
+         "id": "cite-evidence-regarding-the-principles-of-cybers",
+         "title": "Cite evidence regarding the principles of cybersecurity and basic mechanisms used for protecting data and resources",
+         "outcomes": [
+          {
+           "code": "CSS.DC.6-8.12.1",
+           "text": "Define the cybersecurity first principles of least privilege, minimization, abstraction, domain separation, process isolation, information hiding, layering, simplicity, modularity, and resource encapsulation."
+          },
+          {
+           "code": "CSS.DC.6-8.12.2",
+           "text": "Apply concepts related to the principles behind encryption, including the purpose of cryptography, hashing, and steganography."
+          },
+          {
+           "code": "CSS.DC.6-8.12.3",
+           "text": "Draw conclusions illustrating a basic understanding of internet protocol (IP) packets, ports and network transmission."
+          },
+          {
+           "code": "CSS.DC.6-8.12.4",
+           "text": "Summarize from multiple sources a basic understanding of anti-malware, firewalls, intrusion detection system/intrusion prevention system (IDS/IPS), and virtual private network (VPN)."
+          }
+         ]
+        },
+        {
+         "id": "analyze-and-describe-the-characteristics-of-cybe",
+         "title": "Analyze and describe the characteristics of cybersecurity ethics, digital citizenship, and laws governing privacy",
+         "outcomes": [
+          {
+           "code": "CSS.DC.6-8.13.1",
+           "text": "Explain the differences between a white hat (ethical) hacker and a black hat (unethical) hacker."
+          },
+          {
+           "code": "CSS.DC.6-8.13.2",
+           "text": "Cite evidence regarding the practice of ethical digital decision-making, including plagiarism, copyright law, and software licensing types (freeware, public domain, shareware, etc.)."
+          },
+          {
+           "code": "CSS.DC.6-8.13.3",
+           "text": "Summarize and provide examples regarding security and privacy laws and their impact on society, citing recent cases."
+          },
+          {
+           "code": "CSS.DC.6-8.13.4",
+           "text": "Analyze cyberbullying to include legal and social consequences"
+          },
+          {
+           "code": "CSS.DC.6-8.13.5",
+           "text": "Develop a set of guidelines to prevent cyberbullying."
+          },
+          {
+           "code": "CSS.DC.6-8.13.6",
+           "text": "Develop arguments for policy-driven and technology-driven security."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "knowledge-constructor",
+     "title": "Knowledge Constructor",
+     "topics": [
+      {
+       "id": "data-and-analysis",
+       "title": "Data and Analysis",
+       "subtopics": [
+        {
+         "id": "evaluate-the-accuracy-relevance-appropriateness-",
+         "title": "Evaluate the accuracy, relevance, appropriateness, comprehensiveness, and biases that occur in electronic information sources",
+         "outcomes": [
+          {
+           "code": "CSS.KC.6-8.14.1",
+           "text": "Demonstrate an understanding of the credibility, bias, accuracy, relevance, age appropriateness, and comprehensiveness of electronic information sources."
+          },
+          {
+           "code": "CSS.KC.6-8.14.2",
+           "text": "Evaluate and discuss of the credibility, bias, accuracy, relevance, age appropriateness, and comprehensiveness of electronic information sources."
+          },
+          {
+           "code": "CSS.KC.6-8.14.3",
+           "text": "Apply strategies for determining the reliability of information found on the Internet."
+          }
+         ]
+        },
+        {
+         "id": "gather-manipulate-and-analyze-data-using-a-varie",
+         "title": "Gather, manipulate, and analyze data using a variety of digital tools to identify solutions and make informed decisions",
+         "outcomes": [
+          {
+           "code": "CSS.KC.6-8.15.1",
+           "text": "Gather data and calculate numerical equations using spreadsheet formulas and functions."
+          },
+          {
+           "code": "CSS.KC.6-8.15.2",
+           "text": "Use spreadsheet data to create tables, charts, and graphs."
+          },
+          {
+           "code": "CSS.KC.6-8.15.3",
+           "text": "Use spreadsheets and databases to make predictions, solve problems, and draw conclusions."
+          }
+         ]
+        },
+        {
+         "id": "data-and-analysis",
+         "title": "Data and Analysis",
+         "outcomes": [
+          {
+           "code": "CSS.KC.6-8.16",
+           "text": "Traverse online environments using critical thinking to find valid sources of information."
+          }
+         ]
+        },
+        {
+         "id": "analyze-various-ways-to-visually-represent-data",
+         "title": "Analyze various ways to visually represent data",
+         "outcomes": [
+          {
+           "code": "CSS.KC.6-8.17.1",
+           "text": "Interpret tables, charts, and graphs created by someone else."
+          },
+          {
+           "code": "CSS.KC.6-8.17.2",
+           "text": "Discuss design decisions in choosing between text, tables, charts, and graphs."
+          },
+          {
+           "code": "CSS.KC.6-8.17.3",
+           "text": "Discuss design decisions to make visualizations of data clear and concise."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "innovative-designer-and-creator",
+     "title": "Innovative Designer and Creator",
+     "topics": [
+      {
+       "id": "innovative-designer-and-creator",
+       "title": "Innovative Designer and Creator",
+       "subtopics": [
+        {
+         "id": "innovative-designer-and-creator",
+         "title": "Innovative Designer and Creator",
+         "outcomes": [
+          {
+           "code": "CSS.KC.6-8.18",
+           "text": "Recognize that there may be multiple approaches to solving a problem."
+          },
+          {
+           "code": "CSS.KC.6-8.19",
+           "text": "Approach problem solving iteratively, using a cyclical process."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "design-develop-debug-and-implement-computer-prog",
+       "title": "Design, develop, debug and implement computer programs",
+       "subtopics": [
+        {
+         "id": "design-develop-debug-and-implement-computer-prog",
+         "title": "Design, develop, debug and implement computer programs (1 of 2)",
+         "outcomes": [
+          {
+           "code": "CSS.KC.6-8.20.1",
+           "text": "Develop a working vocabulary of programming including flowcharting and/or storyboarding, coding, debugging, user interfaces, usability, variables, lists, loops, conditionals, programming language, events."
+          },
+          {
+           "code": "CSS.KC.6-8.20.2",
+           "text": "Utilize the design process to brainstorm, implement, test, and revise an idea."
+          },
+          {
+           "code": "CSS.KC.6-8.20.3",
+           "text": "Cite evidence on how computers represent data and media (sounds, images, video, etc.)."
+          },
+          {
+           "code": "CSS.KC.6-8.20.4",
+           "text": "Design a user interface and test with other users using a paper prototype."
+          },
+          {
+           "code": "CSS.KC.6-8.20.5",
+           "text": "Implement a simple algorithm in a computer program."
+          }
+         ]
+        },
+        {
+         "id": "design-develop-debug-and-implement-computer-prog-2",
+         "title": "Design, develop, debug and implement computer programs (2 of 2)",
+         "outcomes": [
+          {
+           "code": "CSS.KC.6-8.20.6",
+           "text": "Develop an event driven program."
+          },
+          {
+           "code": "CSS.KC.6-8.20.7",
+           "text": "Create a program that accepts user and/or sensor input and stores the result in a variable."
+          },
+          {
+           "code": "CSS.KC.6-8.20.8",
+           "text": "Create a computer program that implements a loop."
+          },
+          {
+           "code": "CSS.KC.6-8.20.9",
+           "text": "Develop a program that makes a decision based on data or user input."
+          },
+          {
+           "code": "CSS.KC.6-8.20.10",
+           "text": "Debug a program with an error."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "create-digital-artifacts-to-address-a-current-is",
+       "title": "Create digital artifacts to address a current issue requiring resolution",
+       "subtopics": [
+        {
+         "id": "create-digital-artifacts-to-address-a-current-is",
+         "title": "Create digital artifacts to address a current issue requiring resolution",
+         "outcomes": [
+          {
+           "code": "CSS.KC.6-8.29.1",
+           "text": "Summarize ethical, privacy, and legal issues of a digital world using current case studies."
+          },
+          {
+           "code": "CSS.KC.6-8.29.2",
+           "text": "Collaborate as a team to develop an artifact that represents multiple perspectives regarding a global crisis."
+          },
+          {
+           "code": "CSS.KC.6-8.29.3",
+           "text": "Analyze and explain the functionality and suitability (or appropriateness) of a computational artifact."
+          },
+          {
+           "code": "CSS.KC.6-8.29.4",
+           "text": "Develop a program for creative expression or to satisfy personal curiosity which may have visual, audible, and/or tactile results."
+          },
+          {
+           "code": "CSS.KC.6-8.29.5",
+           "text": "Develop a program specifically with the goal of solving a problem, creating new knowledge, or helping people, organizations, or society."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "develop-a-plan-to-create-design-and-build-a-webs",
+       "title": "Develop a plan to create, design, and build a website with digital content to a specific target market",
+       "subtopics": [
+        {
+         "id": "develop-a-plan-to-create-design-and-build-a-webs",
+         "title": "Develop a plan to create, design, and build a website with digital content to a specific target market",
+         "outcomes": [
+          {
+           "code": "CSS.KC.6-8.21.1",
+           "text": "Identify the objectives (e.g., increase sales, promote new products, increase company awareness, target new customers) for the website's target market."
+          },
+          {
+           "code": "CSS.KC.6-8.21.2",
+           "text": "Specify website requirements, including timeline and resources, and organize them into a requirements document."
+          },
+          {
+           "code": "CSS.KC.6-8.21.3",
+           "text": "Find and evaluate similar websites (in terms of overall function and layout) using an evaluation instrument for side-by-side comparison. Consider major design elements (ease of use, responsiveness, adaptability to mobile, tablet and desktop, etc.)."
+          },
+          {
+           "code": "CSS.KC.6-8.21.4",
+           "text": "Evaluate a variety of web design tools and development platforms using an evaluation instrument and choose the appropriate platform."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "design-digital-products-that-reveal-a-profession",
+       "title": "Design digital products that reveal a professional layout and look by applying design principles to produce professional quality digital products",
+       "subtopics": [
+        {
+         "id": "design-digital-products-that-reveal-a-profession",
+         "title": "Design digital products that reveal a professional layout and look by applying design principles to produce professional quality digital products",
+         "outcomes": [
+          {
+           "code": "CSS.KC.6-8.22.1",
+           "text": "Identify graphical elements and the appropriate use of elements on a web site."
+          },
+          {
+           "code": "CSS.KC.6-8.22.2",
+           "text": "Explore and apply color principles to digital products."
+          },
+          {
+           "code": "CSS.KC.6-8.22.3",
+           "text": "Establish a brand through consistent use of graphics, color, layout and text."
+          },
+          {
+           "code": "CSS.KC.6-8.22.4",
+           "text": "Analyze the look and layout of a website based on the first impression of content and page elements. Get feedback from independent people and incorporate where appropriate."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "create-a-single-functional-web-page-using-a-web-",
+       "title": "Create a single functional web page using a web development platform based on a design mockup and user requirements",
+       "subtopics": [
+        {
+         "id": "create-a-single-functional-web-page-using-a-web-",
+         "title": "Create a single functional web page using a web development platform based on a design mockup and user requirements",
+         "outcomes": [
+          {
+           "code": "CSS.KC.6-8.23.1",
+           "text": "Create and edit images and graphics for website publication."
+          },
+          {
+           "code": "CSS.KC.6-8.23.2",
+           "text": "Plan, produce, and edit digital audio for website publication."
+          },
+          {
+           "code": "CSS.KC.6-8.23.3",
+           "text": "Plan, produce, edit, and post a multimedia-rich video project to a website."
+          },
+          {
+           "code": "CSS.KC.6-8.23.4",
+           "text": "Plan, produce, and edit animations for website publication."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "develop-and-use-a-test-plan-to-debug-each-new-we",
+       "title": "Develop and use a test plan to debug each new website version to ensure it runs as intended and meets the end-user requirements for a responsive site",
+       "subtopics": [
+        {
+         "id": "develop-and-use-a-test-plan-to-debug-each-new-we",
+         "title": "Develop and use a test plan to debug each new website version to ensure it runs as intended and meets the end-user requirements for a responsive site",
+         "outcomes": [
+          {
+           "code": "CSS.KC.6-8.24.1",
+           "text": "Create a test and debug plan. Resolve issues and fix any errors that surface during the test and debug process."
+          },
+          {
+           "code": "CSS.KC.6-8.24.2",
+           "text": "Create an end user testing plan, get user feedback, and incorporate feedback into the final website."
+          },
+          {
+           "code": "CSS.KC.6-8.24.3",
+           "text": "Prepare website for publishing and promotion."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "develop-a-plan-to-create-design-and-build-a-game",
+       "title": "Develop a plan to create, design, and build a game with digital content for a specific target market",
+       "subtopics": [
+        {
+         "id": "develop-a-plan-to-create-design-and-build-a-game",
+         "title": "Develop a plan to create, design, and build a game with digital content for a specific target market",
+         "outcomes": [
+          {
+           "code": "CSS.KC.6-8.25.1",
+           "text": "Explore various game types including role-playing games (RPG), real-time strategy (RTS), simulations, puzzles, educational, massively multiplayer online (MMO), and others."
+          },
+          {
+           "code": "CSS.KC.6-8.25.2",
+           "text": "Create a Game Design Document (GDD), which includes, characters, story, theme, and gameplay mechanics."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "develop-a-visual-model-of-a-game-from-the-game-d",
+       "title": "Develop a visual model of a game from the Game Design Document (GDD)",
+       "subtopics": [
+        {
+         "id": "develop-a-visual-model-of-a-game-from-the-game-d",
+         "title": "Develop a visual model of a game from the Game Design Document (GDD)",
+         "outcomes": [
+          {
+           "code": "CSS.KC.6-8.26.1",
+           "text": "Create storyboards from the GDD that demonstrate game progression and consistent use of a theme."
+          },
+          {
+           "code": "CSS.KC.6-8.26.2",
+           "text": "Use the GDD to design the wireframes and comprehensive layout for the user experience (UX)."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "create-a-functional-game-using-a-game-developmen",
+       "title": "Create a functional game, using a game development platform, based on the storyboards, wireframes, and comprehensive layout",
+       "subtopics": [
+        {
+         "id": "create-a-functional-game-using-a-game-developmen",
+         "title": "Create a functional game, using a game development platform, based on the storyboards, wireframes, and comprehensive layout",
+         "outcomes": [
+          {
+           "code": "CSS.KC.6-8.27.1",
+           "text": "Create game elements, backgrounds, and characters."
+          },
+          {
+           "code": "CSS.KC.6-8.27.2",
+           "text": "Use scripting languages to create desired game mechanics, and to control the environment, user interface (UI), and character behaviors."
+          },
+          {
+           "code": "CSS.KC.6-8.27.3",
+           "text": "Plan, produce, and edit graphics and animations for game publication."
+          },
+          {
+           "code": "CSS.KC.6-8.27.4",
+           "text": "Plan, produce, and edit digital audio for game publication."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "develop-and-use-a-test-plan-to-debug-use-each-ti",
+       "title": "Develop and use a test plan to debug use each time a version of the game is released to ensure it runs as intended and meets the end-user requirements",
+       "subtopics": [
+        {
+         "id": "develop-and-use-a-test-plan-to-debug-use-each-ti",
+         "title": "Develop and use a test plan to debug use each time a version of the game is released to ensure it runs as intended and meets the end-user requirements",
+         "outcomes": [
+          {
+           "code": "CSS.KC.6-8.28.1",
+           "text": "Create a test and debug plan. Resolve any issues and fix any errors that surface during the test and debug process."
+          },
+          {
+           "code": "CSS.KC.6-8.28.2",
+           "text": "Create an end user testing plan, get user feedback, and incorporate feedback into the final game."
+          },
+          {
+           "code": "CSS.KC.6-8.28.3",
+           "text": "Prepare final game for publishing prior to publishing to the target audience."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "computational-thinker",
+     "title": "Computational Thinker",
+     "topics": [
+      {
+       "id": "recognzing-and-defining-computational-problems",
+       "title": "Recognzing and Defining Computational Problems",
+       "subtopics": [
+        {
+         "id": "recognzing-and-defining-computational-problems",
+         "title": "Recognzing and Defining Computational Problems",
+         "outcomes": [
+          {
+           "code": "CSS.CT.6-8.30",
+           "text": "Identify sub-problems to consider while addressing a larger problem."
+          },
+          {
+           "code": "CSS.CT.6-8.31",
+           "text": "Recognize when it is appropriate to solve a problem computationally; Make sense of computational problems and persevere in solving them."
+          },
+          {
+           "code": "CSS.CT.6-8.34",
+           "text": "Recognize when to use the same solution for multiple problems."
+          }
+         ]
+        },
+        {
+         "id": "develop-through-application-logical-observations",
+         "title": "Develop through application, logical observations relative to computational thinking procedures to analyze and solve problems current to everyday life",
+         "outcomes": [
+          {
+           "code": "CSS.CT.6-8.32.1",
+           "text": "Identify characteristics of computational thinking (decomposition, pattern recognition, algorithmic thinking and abstraction)."
+          },
+          {
+           "code": "CSS.CT.6-8.32.2",
+           "text": "Explain issues and analyze routine hardware and software problems current to everyday life."
+          },
+          {
+           "code": "CSS.CT.6-8.32.3",
+           "text": "Apply troubleshooting concepts to issues regarding compatibility, data, and identity."
+          },
+          {
+           "code": "CSS.CT.6-8.32.4",
+           "text": "Describe ways to resolve operational problems caused by hardware errors."
+          },
+          {
+           "code": "CSS.CT.6-8.32.5",
+           "text": "Explain how technology can create ethical and legal issues in the business world and a technology-based society and how it can be used to solve & manage those issues."
+          }
+         ]
+        },
+        {
+         "id": "utilize-computational-thinking-to-solve-problems",
+         "title": "Utilize computational thinking to solve problems",
+         "outcomes": [
+          {
+           "code": "CSS.CT.6-8.33.1",
+           "text": "Make observations and organize the concepts of modularity, including functions and methods, as it relates to programming code reusability and cloud computing in the software industry."
+          },
+          {
+           "code": "CSS.CT.6-8.33.2",
+           "text": "Develop a working vocabulary of computational thinking including sequences, algorithms, binary, pattern matching, decomposition, abstraction, parallelization, data, automation, data collection, data analysis, boolean, integer, branches (if...then...else), and iteration {loops (For, While)}."
+          },
+          {
+           "code": "CSS.CT.6-8.33.3",
+           "text": "Analyze the problem-solving process, the input-process-output-storage model of a computer, and how computers help humans solve problems."
+          },
+          {
+           "code": "CSS.CT.6-8.33.4",
+           "text": "Develop an algorithm to decompose a problem of a daily task."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "data-and-information",
+       "title": "Data and Information",
+       "subtopics": [
+        {
+         "id": "evaluate-the-storage-and-representation-of-data-",
+         "title": "Evaluate the storage and representation of data; Analyze how data is collected with both computational and non-computational tools and processes",
+         "outcomes": [
+          {
+           "code": "CSS.CT.6-8.35.1",
+           "text": "Discuss binary numbers, logic, sets, and functions and their application to computer science."
+          },
+          {
+           "code": "CSS.CT.6-8.35.2",
+           "text": "Explain that searches may be enhanced by using Boolean logic (e.g., using \"not\", \"or\", \"and\")."
+          },
+          {
+           "code": "CSS.CT.6-8.35.1",
+           "text": "Discuss binary numbers, logic, sets, and functions and their application to computer science."
+          },
+          {
+           "code": "CSS.CT.6-8.35.2",
+           "text": "Explain that searches may be enhanced by using Boolean logic (e.g., using \"not\", \"or\", \"and\")."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "algorithms",
+       "title": "Algorithms",
+       "subtopics": [
+        {
+         "id": "understand-and-use-the-basic-steps-in-algorithmi",
+         "title": "Understand and use the basic steps in algorithmic problem solving in computing and other authentic applications",
+         "outcomes": [
+          {
+           "code": "CSS.CT.6-8.36.1",
+           "text": "Select basic steps to solve algorithmic problems."
+          },
+          {
+           "code": "CSS.CT.6-8.36.2",
+           "text": "Evaluate basic steps of algorithmic problem solving to design solutions."
+          },
+          {
+           "code": "CSS.CT.6-8.36.3",
+           "text": "Solve algorithmic problems of increasing complexity."
+          },
+          {
+           "code": "CSS.CT.6-8.36.1",
+           "text": "Select basic steps to solve algorithmic problems."
+          },
+          {
+           "code": "CSS.CT.6-8.36.2",
+           "text": "Evaluate basic steps of algorithmic problem solving to design solutions."
+          },
+          {
+           "code": "CSS.CT.6-8.36.3",
+           "text": "Solve algorithmic problems of increasing complexity."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "programming",
+       "title": "Programming",
+       "subtopics": [
+        {
+         "id": "use-and-compare-simple-coding-control-structures",
+         "title": "Use and compare simple coding control structures (e.g., if-then, loops)",
+         "outcomes": [
+          {
+           "code": "CSS.CT.6-8.37.1",
+           "text": "Use a visual block-based and/or text-based programming language individually and collaboratively to solve problems of increasing complexity."
+          },
+          {
+           "code": "CSS.CT.6-8.37.2",
+           "text": "Create a program individually and collaboratively using a text-based programming. language; Identify variables and compare the types of data stored as variables."
+          },
+          {
+           "code": "CSS.CT.6-8.37.1",
+           "text": "Use a visual block-based and/or text-based programming language individually and collaboratively to solve problems of increasing complexity."
+          },
+          {
+           "code": "CSS.CT.6-8.37.2",
+           "text": "Create a program individually and collaboratively using a text-based programming. language; Identify variables and compare the types of data stored as variables."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "creating-computational-artifacts",
+       "title": "Creating Computational Artifacts",
+       "subtopics": [
+        {
+         "id": "consider-the-purpose-of-computational-artifacts-",
+         "title": "Consider the purpose of computational artifacts for practical use, personal expression, and/or societal impact",
+         "outcomes": [
+          {
+           "code": "CSS.CT.6-8.38.1",
+           "text": "Compare and contrast examples of high level and low-level programming languages."
+          },
+          {
+           "code": "CSS.CT.6-8.38.2",
+           "text": "Investigate the notion of hierarchy in computing including high level languages, translations, instruction sets, and logic circuits."
+          },
+          {
+           "code": "CSS.CT.6-8.38.3",
+           "text": "Develop problem solutions using a programming language, including all of the following: looping behavior, conditional statements, expressions, variables, and functions."
+          },
+          {
+           "code": "CSS.CT.6-8.38.1",
+           "text": "Compare and contrast examples of high level and low-level programming languages."
+          },
+          {
+           "code": "CSS.CT.6-8.38.2",
+           "text": "Investigate the notion of hierarchy in computing including high level languages, translations, instruction sets, and logic circuits."
+          },
+          {
+           "code": "CSS.CT.6-8.38.3",
+           "text": "Develop problem solutions using a programming language, including all of the following: looping behavior, conditional statements, expressions, variables, and functions."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "testing-and-refining-computational-artifacts",
+       "title": "Testing and Refining Computational Artifacts",
+       "subtopics": [
+        {
+         "id": "testing-and-refining-computational-artifacts",
+         "title": "Testing and Refining Computational Artifacts",
+         "outcomes": [
+          {
+           "code": "CSS.CT.6-8.39",
+           "text": "Test computational artifacts systematically by considering multiple scenarios and using test cases."
+          },
+          {
+           "code": "CSS.CT.6-8.39",
+           "text": "Test computational artifacts systematically by considering multiple scenarios and using test cases."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "human-computer-interaction",
+       "title": "Human Computer Interaction",
+       "subtopics": [
+        {
+         "id": "describe-how-humans-and-machines-interact-to-acc",
+         "title": "Describe how humans and machines interact to accomplish tasks that cannot be accomplished by either alone",
+         "outcomes": [
+          {
+           "code": "CSS.CT.6-8.40.1",
+           "text": "Identify what distinguishes humans from machines focusing on human intelligence versus machine intelligence (e.g., robot motion, speech and language understanding, and computer vision); Explain why some tasks can be accomplished more easily by computers."
+          },
+          {
+           "code": "CSS.CT.6-8.40.2",
+           "text": "Describe ways in which computers use models of intelligent behavior (e.g., robot motion, speech and language understanding, and computer vision) and how they differ (e.g., emotional decision making versus logical decisions, common sense, literal versus abstract)."
+          },
+          {
+           "code": "CSS.CT.6-8.40.3",
+           "text": "Design and demonstrate the use of a device (e.g., robot, e-textile) to accomplish a task, individually and collaboratively."
+          },
+          {
+           "code": "CSS.CT.6-8.40.1",
+           "text": "Identify what distinguishes humans from machines focusing on human intelligence versus machine intelligence (e.g., robot motion, speech and language understanding, and computer vision); Explain why some tasks can be accomplished more easily by computers."
+          },
+          {
+           "code": "CSS.CT.6-8.40.2",
+           "text": "Describe ways in which computers use models of intelligent behavior (e.g., robot motion, speech and language understanding, and computer vision) and how they differ (e.g., emotional decision making versus logical decisions, common sense, literal versus abstract)."
+          },
+          {
+           "code": "CSS.CT.6-8.40.3",
+           "text": "Design and demonstrate the use of a device (e.g., robot, e-textile) to accomplish a task, individually and collaboratively."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "recognizing-and-defining-computational-problems",
+       "title": "Recognizing and Defining Computational Problems",
+       "subtopics": [
+        {
+         "id": "develop-through-application-logical-observations",
+         "title": "Develop through application, logical observations relative to computational thinking procedures to analyze and solve problems current to everyday life",
+         "outcomes": [
+          {
+           "code": "CSS.CT.6-8.32.1",
+           "text": "Identify characteristics of computational thinking (decomposition, pattern recognition, algorithmic thinking and abstraction)."
+          },
+          {
+           "code": "CSS.CT.6-8.32.2",
+           "text": "Explain issues and analyze routine hardware and software problems current to everyday life."
+          },
+          {
+           "code": "CSS.CT.6-8.32.3",
+           "text": "Apply troubleshooting concepts to issues regarding compatibility, data, and identity."
+          },
+          {
+           "code": "CSS.CT.6-8.32.4",
+           "text": "Describe ways to resolve operational problems caused by hardware errors."
+          },
+          {
+           "code": "CSS.CT.6-8.32.5",
+           "text": "Explain how technology can create ethical and legal issues in the business world and a technology-based society and how it can be used to solve & manage those issues."
+          }
+         ]
+        },
+        {
+         "id": "utilize-computational-thinking-to-solve-problems",
+         "title": "Utilize computational thinking to solve problems",
+         "outcomes": [
+          {
+           "code": "CSS.CT.6-8.33.1",
+           "text": "Make observations and organize the concepts of modularity, including functions and methods, as it relates to programming code reusability and cloud computing in the software industry."
+          },
+          {
+           "code": "CSS.CT.6-8.33.2",
+           "text": "Develop a working vocabulary of computational thinking including sequences, algorithms, binary, pattern matching, decomposition, abstraction, parallelization, data, automation, data collection, data analysis, boolean, integer, branches (if...then...else), and iteration {loops (For, While)}."
+          },
+          {
+           "code": "CSS.CT.6-8.33.3",
+           "text": "Analyze the problem-solving process, the input-process-output-storage model of a computer, and how computers help humans solve problems."
+          },
+          {
+           "code": "CSS.CT.6-8.33.4",
+           "text": "Develop an algorithm to decompose a problem of a daily task."
+          }
+         ]
+        },
+        {
+         "id": "recognizing-and-defining-computational-problems",
+         "title": "Recognizing and Defining Computational Problems",
+         "outcomes": [
+          {
+           "code": "CSS.CT.6-8.34",
+           "text": "Recognize when to use the same solution for multiple problems."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "creative-communicator",
+     "title": "Creative Communicator",
+     "topics": [
+      {
+       "id": "collaborating-around-computing",
+       "title": "Collaborating Around Computing",
+       "subtopics": [
+        {
+         "id": "collaborating-around-computing",
+         "title": "Collaborating Around Computing",
+         "outcomes": [
+          {
+           "code": "CSS.CT.6-8.41",
+           "text": "Use online resources to participate in collaborative activities for the purpose of developing solutions or products."
+          },
+          {
+           "code": "CSS.CT.6-8.44",
+           "text": "Demonstrate correct keyboarding techniques while increasing speed and maintaining accuracy."
+          },
+          {
+           "code": "CSS.CT.6-8.45",
+           "text": "Use productivity technology tools (e.g. word processing, spreadsheet, presentation software) for individual and collaborative writing, communication, and publishing activities."
+          },
+          {
+           "code": "CSS.CT.6-8.41",
+           "text": "Use online resources to participate in collaborative activities for the purpose of developing solutions or products."
+          },
+          {
+           "code": "CSS.CT.6-8.44",
+           "text": "Demonstrate correct keyboarding techniques while increasing speed and maintaining accuracy."
+          },
+          {
+           "code": "CSS.CT.6-8.45",
+           "text": "Use productivity technology tools (e.g. word processing, spreadsheet, presentation software) for individual and collaborative writing, communication, and publishing activities."
+          }
+         ]
+        },
+        {
+         "id": "improve-teamwork-and-collaboration-skills-provid",
+         "title": "Improve teamwork and collaboration skills: providing useful feedback, integrating feedback, understanding, and accepting multiple perspectives",
+         "outcomes": [
+          {
+           "code": "CSS.CT.6-8.42.1",
+           "text": "Understand the difference between CC and BCC as well as Reply and Reply All and when to use each appropriately."
+          },
+          {
+           "code": "CSS.CT.6-8.42.1",
+           "text": "Understand the difference between CC and BCC as well as Reply and Reply All and when to use each appropriately."
+          }
+         ]
+        },
+        {
+         "id": "collaborate-productively-and-recognize-the-value",
+         "title": "Collaborate productively and recognize the value of working with individuals of varying perspectives, skills, and backgrounds",
+         "outcomes": [
+          {
+           "code": "CSS.CT.6-8.43.1",
+           "text": "Set and implement equitable expectations and workloads when working in teams."
+          },
+          {
+           "code": "CSS.CT.6-8.43.1",
+           "text": "Set and implement equitable expectations and workloads when working in teams."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "global-collaborator",
+     "title": "Global Collaborator",
+     "topics": [
+      {
+       "id": "fostering-an-inclusive-computing-culture",
+       "title": "Fostering an Inclusive Computing Culture",
+       "subtopics": [
+        {
+         "id": "fostering-an-inclusive-computing-culture",
+         "title": "Fostering an Inclusive Computing Culture",
+         "outcomes": [
+          {
+           "code": "CSS.CT.6-8.46",
+           "text": "Recognize that equitable access to computing benefits society as a whole."
+          },
+          {
+           "code": "CSS.CT.6-8.47",
+           "text": "Consider others' perspectives as well as one's own perspective when developing computational solutions."
+          },
+          {
+           "code": "CSS.CT.6-8.48",
+           "text": "Consider the needs of a variety of end users regarding accessibility and usability."
+          },
+          {
+           "code": "CSS.CT.6-8.46",
+           "text": "Recognize that equitable access to computing benefits society as a whole."
+          },
+          {
+           "code": "CSS.CT.6-8.47",
+           "text": "Consider others' perspectives as well as one's own perspective when developing computational solutions."
+          },
+          {
+           "code": "CSS.CT.6-8.48",
+           "text": "Consider the needs of a variety of end users regarding accessibility and usability."
+          }
+         ]
+        },
+        {
+         "id": "use-software-applications-to-collaborate-and-cre",
+         "title": "Use software applications to collaborate and create authentic products",
+         "outcomes": [
+          {
+           "code": "CSS.CT.6-8.49.1",
+           "text": "Identify and utilize the appropriate software application for productivity."
+          },
+          {
+           "code": "CSS.CT.6-8.49.2",
+           "text": "Use various applications in a professional manner to share and communicate with peers and teachers."
+          },
+          {
+           "code": "CSS.CT.6-8.49.3",
+           "text": "Share documents created using word processing, presentation, and spreadsheet software."
+          },
+          {
+           "code": "CSS.CT.6-8.49.4",
+           "text": "Create original works using software applications in a collaborative manner."
+          },
+          {
+           "code": "CSS.CT.6-8.49.5",
+           "text": "Collaborate in small groups to create and edit online documents in real time."
+          },
+          {
+           "code": "CSS.CT.6-8.49.6",
+           "text": "Identify and use appropriate file sharing strategies (e.g., copy and paste, links, posts, and attachments)."
+          },
+          {
+           "code": "CSS.CT.6-8.49.1",
+           "text": "Identify and utilize the appropriate software application for productivity."
+          },
+          {
+           "code": "CSS.CT.6-8.49.2",
+           "text": "Use various applications in a professional manner to share and communicate with peers and teachers."
+          },
+          {
+           "code": "CSS.CT.6-8.49.3",
+           "text": "Share documents created using word processing, presentation, and spreadsheet software."
+          },
+          {
+           "code": "CSS.CT.6-8.49.4",
+           "text": "Create original works using software applications in a collaborative manner."
+          },
+          {
+           "code": "CSS.CT.6-8.49.5",
+           "text": "Collaborate in small groups to create and edit online documents in real time."
+          },
+          {
+           "code": "CSS.CT.6-8.49.6",
+           "text": "Identify and use appropriate file sharing strategies (e.g., copy and paste, links, posts, and attachments)."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "build": {
+  "builtAt": "2026-10-14T16:20:40.676Z",
+  "model": "none",
+  "usd": 0,
+  "expectedCodes": 261,
+  "coverage": 1,
+  "missingCodes": [],
+  "counts": {
+   "grades": 8,
+   "units": 67,
+   "topics": 91,
+   "subtopics": 107,
+   "outcomes": 371
+  },
+  "warnings": [
+   "unit \"Empowered Learner\" (grade K) has a single outcome",
+   "unit \"Knowledge Constructor\" (grade K) has a single outcome",
+   "unit \"Innovative Designer and Creator\" (grade K) has a single outcome",
+   "unit \"Empowered Learner\" (grade 1) has a single outcome",
+   "unit \"Innovative Designer and Creator\" (grade 1) has a single outcome",
+   "unit \"Global Collaborator\" (grade 1) has a single outcome",
+   "unit \"Empowered Learner\" (grade 2) has a single outcome",
+   "unit \"Creative Communicator\" (grade 3) has a single outcome",
+   "unit \"Reflective Researcher\" (grade 4) has a single outcome",
+   "unit \"Reflective Researcher\" (grade 5) has a single outcome"
+  ]
+ }
+}

@@ -1,0 +1,1295 @@
+{
+ "id": "pk-ncp-tech-applied-sciences-11",
+ "region": "PK",
+ "framework": "National Curriculum of Pakistan 2022-23",
+ "board": null,
+ "qualification": "Technical stream",
+ "subject": "Applied Sciences",
+ "syllabusCode": null,
+ "gradeSystem": "grade",
+ "source": {
+  "urls": [
+   "https://ncc.gov.pk/SiteImage/Misc/files/62-%20Applied%20Science(2).pdf"
+  ],
+  "publisher": "National Curriculum Council, Ministry of Federal Education and Professional Training",
+  "licence": "Government publication; structure + our own wording only",
+  "firstExam": null
+ },
+ "grades": [
+  {
+   "grade": "11",
+   "units": [
+    {
+     "id": "physics-theory",
+     "title": "Physics (Theory)",
+     "topics": [
+      {
+       "id": "domain-a-nature-of-science",
+       "title": "Domain A: Nature of Science",
+       "subtopics": [
+        {
+         "id": "nature-of-science-and-method",
+         "title": "Nature of science and method",
+         "outcomes": [
+          {
+           "code": "API-11-A-01",
+           "text": "Define science as a systematic, evidence-based way to understand nature."
+          },
+          {
+           "code": "API-11-A-02",
+           "text": "Describe what physics studies."
+          },
+          {
+           "code": "API-11-A-03",
+           "text": "Name and sort the main divisions of science."
+          },
+          {
+           "code": "API-11-A-04",
+           "text": "State the steps of the scientific method from observation to conclusion."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "domain-b-measurements",
+       "title": "Domain B: Measurements",
+       "subtopics": [
+        {
+         "id": "measurement-and-scientific-notation",
+         "title": "Measurement and scientific notation",
+         "outcomes": [
+          {
+           "code": "API-11-B-01",
+           "text": "Define measurement in physics."
+          },
+          {
+           "code": "API-11-B-02",
+           "text": "Write very large and small numbers in powers of ten."
+          }
+         ]
+        },
+        {
+         "id": "metric-system-and-conversions",
+         "title": "Metric system and conversions",
+         "outcomes": [
+          {
+           "code": "API-11-B-03",
+           "text": "Describe the metric system as decimal-based."
+          },
+          {
+           "code": "API-11-B-04",
+           "text": "Name metric units of mass, length and volume."
+          },
+          {
+           "code": "API-11-B-05",
+           "text": "Convert between metric units."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "domain-c-mechanics",
+       "title": "Domain C: Mechanics",
+       "subtopics": [
+        {
+         "id": "kinematics-and-force",
+         "title": "Kinematics and force",
+         "outcomes": [
+          {
+           "code": "API-11-C-01",
+           "text": "Define mechanics and the ideas of position, displacement, velocity and acceleration."
+          },
+          {
+           "code": "API-11-C-02",
+           "text": "Describe force and its types."
+          },
+          {
+           "code": "API-11-C-03",
+           "text": "Give the newton and the vector nature of force."
+          }
+         ]
+        },
+        {
+         "id": "newton-s-laws-and-inertia",
+         "title": "Newton's laws and inertia",
+         "outcomes": [
+          {
+           "code": "API-11-C-04",
+           "text": "Explain Newton's three laws and derive the force formula."
+          },
+          {
+           "code": "API-11-C-05",
+           "text": "Explain inertia."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "domain-d-gravity",
+       "title": "Domain D: Gravity",
+       "subtopics": [
+        {
+         "id": "gravitation",
+         "title": "Gravitation",
+         "outcomes": [
+          {
+           "code": "API-11-D-01",
+           "text": "Define gravity and Newton's law of universal gravitation."
+          },
+          {
+           "code": "API-11-D-04",
+           "text": "Define centre of gravity and gravity's role in finding it."
+          }
+         ]
+        },
+        {
+         "id": "speed-velocity-acceleration",
+         "title": "Speed, velocity, acceleration",
+         "outcomes": [
+          {
+           "code": "API-11-D-02",
+           "text": "Explain speed, velocity and acceleration with SI units."
+          },
+          {
+           "code": "API-11-D-03",
+           "text": "Tell speed, velocity and acceleration apart."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "domain-e-work-power-and-energy",
+       "title": "Domain E: Work, Power and Energy",
+       "subtopics": [
+        {
+         "id": "work-and-energy",
+         "title": "Work and energy",
+         "outcomes": [
+          {
+           "code": "API-11-E-01",
+           "text": "Define work and calculate it by formula."
+          },
+          {
+           "code": "API-11-E-02",
+           "text": "Explain energy and its forms."
+          },
+          {
+           "code": "API-11-E-03",
+           "text": "Relate work to energy."
+          }
+         ]
+        },
+        {
+         "id": "power",
+         "title": "Power",
+         "outcomes": [
+          {
+           "code": "API-11-E-04",
+           "text": "Describe power, its formula and SI unit."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "domain-f-simple-machines",
+       "title": "Domain F: Simple Machines",
+       "subtopics": [
+        {
+         "id": "simple-machines-and-levers",
+         "title": "Simple machines and levers",
+         "outcomes": [
+          {
+           "code": "API-11-F-01",
+           "text": "Define simple machines and their basic function."
+          },
+          {
+           "code": "API-11-F-02",
+           "text": "Sort the six simple machines."
+          },
+          {
+           "code": "API-11-F-03",
+           "text": "Explain the principles of machines."
+          },
+          {
+           "code": "API-11-F-06",
+           "text": "Describe levers and their parts."
+          }
+         ]
+        },
+        {
+         "id": "friction",
+         "title": "Friction",
+         "outcomes": [
+          {
+           "code": "API-11-F-04",
+           "text": "Define friction and its types: static, kinetic, rolling."
+          },
+          {
+           "code": "API-11-F-05",
+           "text": "Explore ways to reduce friction in machines."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "domain-g-density-specific-gravity-archimedes-pri",
+       "title": "Domain G: Density, Specific Gravity, Archimedes' Principle",
+       "subtopics": [
+        {
+         "id": "density-and-specific-gravity",
+         "title": "Density and specific gravity",
+         "outcomes": [
+          {
+           "code": "API-11-G-01",
+           "text": "Explain density, its importance and SI unit."
+          },
+          {
+           "code": "API-11-G-02",
+           "text": "Calculate density from mass and volume."
+          },
+          {
+           "code": "API-11-G-03",
+           "text": "Explain specific gravity and its uses."
+          }
+         ]
+        },
+        {
+         "id": "archimedes-principle",
+         "title": "Archimedes' principle",
+         "outcomes": [
+          {
+           "code": "API-11-G-04",
+           "text": "State Archimedes' principle and why it matters."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "domain-h-pressure",
+       "title": "Domain H: Pressure",
+       "subtopics": [
+        {
+         "id": "pressure",
+         "title": "Pressure",
+         "outcomes": [
+          {
+           "code": "API-11-H-01",
+           "text": "Define pressure and its SI unit."
+          },
+          {
+           "code": "API-11-H-02",
+           "text": "Calculate pressure with formulas."
+          },
+          {
+           "code": "API-11-H-03",
+           "text": "Describe pressure in still and flowing liquids and its uses."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "domain-i-gas-laws",
+       "title": "Domain I: Gas Laws",
+       "subtopics": [
+        {
+         "id": "boyle-s-and-charles-s-laws",
+         "title": "Boyle's and Charles's laws",
+         "outcomes": [
+          {
+           "code": "API-11-I-01",
+           "text": "Explain and write Boyle's and Charles's laws mathematically."
+          },
+          {
+           "code": "API-11-I-02",
+           "text": "Describe practical uses of the two laws."
+          },
+          {
+           "code": "API-11-I-03",
+           "text": "Apply gas laws to breathing and the lungs."
+          }
+         ]
+        },
+        {
+         "id": "atmospheric-pressure",
+         "title": "Atmospheric pressure",
+         "outcomes": [
+          {
+           "code": "API-11-I-04",
+           "text": "Define atmospheric pressure and how changes affect the body."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "domain-j-heat",
+       "title": "Domain J: Heat",
+       "subtopics": [
+        {
+         "id": "heat-and-its-measurement",
+         "title": "Heat and its measurement",
+         "outcomes": [
+          {
+           "code": "API-11-J-01",
+           "text": "Define heat and its units: calorie, joule, BTU."
+          },
+          {
+           "code": "API-11-J-03",
+           "text": "Explain the calorimeter for measuring heat."
+          }
+         ]
+        },
+        {
+         "id": "heat-transfer",
+         "title": "Heat transfer",
+         "outcomes": [
+          {
+           "code": "API-11-J-02",
+           "text": "Explain conduction, convection and radiation."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "domain-k-light",
+       "title": "Domain K: Light",
+       "subtopics": [
+        {
+         "id": "nature-of-light",
+         "title": "Nature of light",
+         "outcomes": [
+          {
+           "code": "API-11-K-01",
+           "text": "Define light as electromagnetic radiation."
+          },
+          {
+           "code": "API-11-K-02",
+           "text": "Explore the speed of light in vacuum."
+          },
+          {
+           "code": "API-11-K-03",
+           "text": "Explain light in media: transparent, translucent, opaque."
+          },
+          {
+           "code": "API-11-K-04",
+           "text": "Describe reflection and refraction."
+          }
+         ]
+        },
+        {
+         "id": "lenses",
+         "title": "Lenses",
+         "outcomes": [
+          {
+           "code": "API-11-K-05",
+           "text": "Describe focal point, focal length and principal axis."
+          },
+          {
+           "code": "API-11-K-06",
+           "text": "Explain convex and concave lenses and how they refract light."
+          },
+          {
+           "code": "API-11-K-07",
+           "text": "Describe lens power in dioptres."
+          },
+          {
+           "code": "API-11-K-08",
+           "text": "Describe uses of lenses."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "domain-l-sound",
+       "title": "Domain L: Sound",
+       "subtopics": [
+        {
+         "id": "producing-and-carrying-sound",
+         "title": "Producing and carrying sound",
+         "outcomes": [
+          {
+           "code": "API-11-L-01",
+           "text": "Explain how vibrations produce sound waves."
+          },
+          {
+           "code": "API-11-L-02",
+           "text": "Describe pitch, frequency, amplitude and wavelength."
+          },
+          {
+           "code": "API-11-L-03",
+           "text": "Explain sound travel in air, solids and liquids."
+          }
+         ]
+        },
+        {
+         "id": "sound-waves-and-loudness",
+         "title": "Sound waves and loudness",
+         "outcomes": [
+          {
+           "code": "API-11-L-04",
+           "text": "Explain interference, diffraction and Doppler effect."
+          },
+          {
+           "code": "API-11-L-05",
+           "text": "Relate amplitude to loudness."
+          },
+          {
+           "code": "API-11-L-06",
+           "text": "Explain sound absorption and reflection."
+          },
+          {
+           "code": "API-11-L-07",
+           "text": "Define echoes."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "domain-m-electricity",
+       "title": "Domain M: Electricity",
+       "subtopics": [
+        {
+         "id": "charge-carriers-and-conduction",
+         "title": "Charge carriers and conduction",
+         "outcomes": [
+          {
+           "code": "API-11-M-01",
+           "text": "Describe atomic structure and its role in conduction."
+          },
+          {
+           "code": "API-11-M-02",
+           "text": "Describe free electrons and their mobility."
+          },
+          {
+           "code": "API-11-M-03",
+           "text": "Tell conductors from insulators."
+          }
+         ]
+        },
+        {
+         "id": "current-voltage-resistance",
+         "title": "Current, voltage, resistance",
+         "outcomes": [
+          {
+           "code": "API-11-M-04",
+           "text": "Define electric current and the ampere."
+          },
+          {
+           "code": "API-11-M-05",
+           "text": "Define potential difference."
+          },
+          {
+           "code": "API-11-M-06",
+           "text": "Describe resistance and the ohm."
+          },
+          {
+           "code": "API-11-M-07",
+           "text": "Describe how material, length and area change resistance."
+          }
+         ]
+        },
+        {
+         "id": "ohm-s-law-and-circuits",
+         "title": "Ohm's law and circuits",
+         "outcomes": [
+          {
+           "code": "API-11-M-08",
+           "text": "Apply Ohm's law V = IR."
+          },
+          {
+           "code": "API-11-M-09",
+           "text": "Describe series and parallel circuits."
+          }
+         ]
+        },
+        {
+         "id": "electric-power-and-energy",
+         "title": "Electric power and energy",
+         "outcomes": [
+          {
+           "code": "API-11-M-10",
+           "text": "Calculate electrical power P = VI."
+          },
+          {
+           "code": "API-11-M-11",
+           "text": "Explain electrical energy in circuits."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "domain-n-magnets-and-magnetism",
+       "title": "Domain N: Magnets and Magnetism",
+       "subtopics": [
+        {
+         "id": "magnets-and-fields",
+         "title": "Magnets and fields",
+         "outcomes": [
+          {
+           "code": "API-11-N-01",
+           "text": "Define a magnet and its properties."
+          },
+          {
+           "code": "API-11-N-02",
+           "text": "Describe magnetic fields."
+          },
+          {
+           "code": "API-11-N-03",
+           "text": "Explore patterns of magnetic field lines."
+          }
+         ]
+        },
+        {
+         "id": "electromagnetism",
+         "title": "Electromagnetism",
+         "outcomes": [
+          {
+           "code": "API-11-N-04",
+           "text": "Explain how current creates a magnetic field."
+          },
+          {
+           "code": "API-11-N-05",
+           "text": "Describe how current produces magnetism and its strength."
+          },
+          {
+           "code": "API-11-N-06",
+           "text": "Explain Ampere's law and the right-hand rule."
+          }
+         ]
+        },
+        {
+         "id": "motors-generators-and-induction",
+         "title": "Motors, generators and induction",
+         "outcomes": [
+          {
+           "code": "API-11-N-07",
+           "text": "Explain the motor and generator effects."
+          },
+          {
+           "code": "API-11-N-08",
+           "text": "Describe induction by Faraday's law."
+          }
+         ]
+        },
+        {
+         "id": "transformers",
+         "title": "Transformers",
+         "outcomes": [
+          {
+           "code": "API-11-N-09",
+           "text": "Describe transformers and their types."
+          },
+          {
+           "code": "API-11-N-10",
+           "text": "Explain how a transformer is built and works."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "domain-o-charge",
+       "title": "Domain O: Charge",
+       "subtopics": [
+        {
+         "id": "electric-charge-and-coulomb-s-law",
+         "title": "Electric charge and Coulomb's law",
+         "outcomes": [
+          {
+           "code": "API-11-O-01",
+           "text": "Explain electric charge, symbol and SI unit."
+          },
+          {
+           "code": "API-11-O-02",
+           "text": "Explain conservation of charge."
+          },
+          {
+           "code": "API-11-O-03",
+           "text": "Explain Coulomb's law."
+          }
+         ]
+        },
+        {
+         "id": "capacitors",
+         "title": "Capacitors",
+         "outcomes": [
+          {
+           "code": "API-11-O-04",
+           "text": "Describe structure and traits of a capacitor."
+          },
+          {
+           "code": "API-11-O-05",
+           "text": "Describe kinds of capacitors."
+          },
+          {
+           "code": "API-11-O-06",
+           "text": "Describe capacitor construction and charge storage."
+          },
+          {
+           "code": "API-11-O-07",
+           "text": "Compare series and parallel capacitors."
+          },
+          {
+           "code": "API-11-O-08",
+           "text": "Define capacitance, symbol and unit."
+          },
+          {
+           "code": "API-11-O-09",
+           "text": "Explain factors affecting capacitance."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "domain-p-alternating-current",
+       "title": "Domain P: Alternating Current",
+       "subtopics": [
+        {
+         "id": "alternating-current",
+         "title": "Alternating current",
+         "outcomes": [
+          {
+           "code": "API-11-P-01",
+           "text": "Define alternating current and its purpose."
+          },
+          {
+           "code": "API-11-P-02",
+           "text": "Tell direct from alternating current."
+          }
+         ]
+        },
+        {
+         "id": "rms-and-peak-values",
+         "title": "RMS and peak values",
+         "outcomes": [
+          {
+           "code": "API-11-P-03",
+           "text": "Explain RMS value and how to measure it."
+          },
+          {
+           "code": "API-11-P-04",
+           "text": "Explain peak value of a sine wave."
+          },
+          {
+           "code": "API-11-P-05",
+           "text": "Separate peak value from other wave parameters."
+          },
+          {
+           "code": "API-11-P-06",
+           "text": "Explain how peak value shows wave strength."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "domain-q-electromagnetic-radiation",
+       "title": "Domain Q: Electromagnetic Radiation",
+       "subtopics": [
+        {
+         "id": "spectrum-and-ionization",
+         "title": "Spectrum and ionization",
+         "outcomes": [
+          {
+           "code": "API-11-Q-01",
+           "text": "Describe the electromagnetic spectrum."
+          },
+          {
+           "code": "API-11-Q-02",
+           "text": "Explain ionization, excitation and their energies."
+          },
+          {
+           "code": "API-11-Q-03",
+           "text": "Explain the inverse square law."
+          }
+         ]
+        },
+        {
+         "id": "wave-quantities",
+         "title": "Wave quantities",
+         "outcomes": [
+          {
+           "code": "API-11-Q-04",
+           "text": "Define frequency, wavelength, period and amplitude."
+          },
+          {
+           "code": "API-11-Q-05",
+           "text": "Relate frequency to wavelength."
+          },
+          {
+           "code": "API-11-Q-06",
+           "text": "Calculate with c = f x wavelength."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "physics-practical",
+     "title": "Physics (Practical)",
+     "topics": [
+      {
+       "id": "domain-a-physics-practical",
+       "title": "Domain A: Physics practical",
+       "subtopics": [
+        {
+         "id": "forces-and-points",
+         "title": "Forces and points",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Measure an unknown force with apparatus."
+          },
+          {
+           "code": null,
+           "text": "Mark points on an irregular object."
+          }
+         ]
+        },
+        {
+         "id": "reflection-prism-and-lens",
+         "title": "Reflection, prism and lens",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Demonstrate the law of reflection."
+          },
+          {
+           "code": null,
+           "text": "Demonstrate a prism."
+          },
+          {
+           "code": "API-11-A-05",
+           "text": "Measure the focal point of a lens."
+          },
+          {
+           "code": "API-11-A-06",
+           "text": "Find the critical angle of glass."
+          },
+          {
+           "code": "API-11-A-08",
+           "text": "Find a convex lens's focal length."
+          }
+         ]
+        },
+        {
+         "id": "speed-of-sound-and-light",
+         "title": "Speed of sound and light",
+         "outcomes": [
+          {
+           "code": "API-11-A-07",
+           "text": "Calculate speed of sound at room temperature."
+          },
+          {
+           "code": "API-11-A-09",
+           "text": "Calculate speed of light at room temperature."
+          },
+          {
+           "code": "API-11-A-10",
+           "text": "Find a liquid's refractive index with a concave mirror."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "chemistry-practical",
+     "title": "Chemistry (Practical)",
+     "topics": [
+      {
+       "id": "domain-a-chemistry-practical",
+       "title": "Domain A: Chemistry practical",
+       "subtopics": [
+        {
+         "id": "apparatus-and-purification",
+         "title": "Apparatus and purification",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Prepare a wash bottle."
+          },
+          {
+           "code": null,
+           "text": "Purify naphthalene by crystallization."
+          },
+          {
+           "code": null,
+           "text": "Purify naphthalene by sublimation."
+          },
+          {
+           "code": null,
+           "text": "Find melting and boiling points of an organic compound."
+          }
+         ]
+        },
+        {
+         "id": "standard-solutions-and-titration",
+         "title": "Standard solutions and titration",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Prepare a standard acid or base solution."
+          },
+          {
+           "code": null,
+           "text": "Standardize NaOH with oxalic acid."
+          },
+          {
+           "code": null,
+           "text": "Standardize N/10 H2SO4 against NaOH."
+          },
+          {
+           "code": null,
+           "text": "Standardize a solution by direct methods."
+          },
+          {
+           "code": null,
+           "text": "Standardize a solution by indirect methods."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "chemistry-theory",
+     "title": "Chemistry (Theory)",
+     "topics": [
+      {
+       "id": "domain-a-introduction-to-chemistry",
+       "title": "Domain A: Introduction to Chemistry",
+       "subtopics": [
+        {
+         "id": "what-chemistry-is",
+         "title": "What chemistry is",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Define chemistry and its scope."
+          },
+          {
+           "code": null,
+           "text": "Describe the branches of chemistry and uses."
+          },
+          {
+           "code": null,
+           "text": "Describe the scientific method in chemistry."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "domain-b-composition-of-substance",
+       "title": "Domain B: Composition of Substance",
+       "subtopics": [
+        {
+         "id": "atoms",
+         "title": "Atoms",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe the atom and roles of protons, neutrons, electrons."
+          },
+          {
+           "code": null,
+           "text": "Explore subatomic particle properties."
+          },
+          {
+           "code": "API-11-B-07",
+           "text": "Describe atomic number and mass number."
+          }
+         ]
+        },
+        {
+         "id": "elements-and-periodic-table",
+         "title": "Elements and periodic table",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain elements as basic matter on the periodic table."
+          },
+          {
+           "code": null,
+           "text": "Locate elements by number, name, symbol."
+          },
+          {
+           "code": null,
+           "text": "Compare metals and nonmetals."
+          },
+          {
+           "code": "API-11-B-06",
+           "text": "Describe main periodic table elements."
+          }
+         ]
+        },
+        {
+         "id": "compounds-and-formulas",
+         "title": "Compounds and formulas",
+         "outcomes": [
+          {
+           "code": "API-11-B-08",
+           "text": "Explain compound and mixture."
+          },
+          {
+           "code": "API-11-B-09",
+           "text": "Describe chemical, empirical and molecular formulas."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "domain-c-chemical-reaction-and-equation",
+       "title": "Domain C: Chemical Reaction and Equation",
+       "subtopics": [
+        {
+         "id": "chemical-reactions",
+         "title": "Chemical reactions",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain chemical reactions and their importance."
+          },
+          {
+           "code": null,
+           "text": "Identify types of chemical reaction."
+          },
+          {
+           "code": null,
+           "text": "Define and balance chemical equations."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "domain-d-water",
+       "title": "Domain D: Water",
+       "subtopics": [
+        {
+         "id": "properties-and-impurities",
+         "title": "Properties and impurities",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Separate physical from chemical properties of water."
+          },
+          {
+           "code": null,
+           "text": "Identify deliquescent substances."
+          },
+          {
+           "code": null,
+           "text": "Describe hygroscopic substances."
+          },
+          {
+           "code": null,
+           "text": "Recognise common water impurities and sources."
+          }
+         ]
+        },
+        {
+         "id": "hard-water-and-the-water-cycle",
+         "title": "Hard water and the water cycle",
+         "outcomes": [
+          {
+           "code": "API-11-D-05",
+           "text": "Tell hard from soft water."
+          },
+          {
+           "code": "API-11-D-06",
+           "text": "Illustrate the water cycle."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "domain-e-solution",
+       "title": "Domain E: Solution",
+       "subtopics": [
+        {
+         "id": "solutions-and-types",
+         "title": "Solutions and types",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe a solution, solute and solvent."
+          },
+          {
+           "code": null,
+           "text": "Identify saturated, unsaturated, supersaturated solutions."
+          }
+         ]
+        },
+        {
+         "id": "concentration",
+         "title": "Concentration",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Identify ways to express concentration."
+          },
+          {
+           "code": null,
+           "text": "Explain molality and molarity."
+          },
+          {
+           "code": "API-11-E-05",
+           "text": "Calculate molality and molarity."
+          }
+         ]
+        },
+        {
+         "id": "solubility-and-dilution",
+         "title": "Solubility and dilution",
+         "outcomes": [
+          {
+           "code": "API-11-E-06",
+           "text": "Explain solubility and what affects it."
+          },
+          {
+           "code": "API-11-E-07",
+           "text": "Explain dilution."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "domain-f-acids-base-and-salts",
+       "title": "Domain F: Acids, Base and Salts",
+       "subtopics": [
+        {
+         "id": "acids-bases-and-salts",
+         "title": "Acids, bases and salts",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain acid, base, salt and alkali."
+          },
+          {
+           "code": null,
+           "text": "Describe Arrhenius, Bronsted-Lowry and Lewis definitions."
+          }
+         ]
+        },
+        {
+         "id": "ph",
+         "title": "pH",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Define the pH scale as logarithmic."
+          },
+          {
+           "code": null,
+           "text": "Relate pH to hydrogen-ion concentration."
+          },
+          {
+           "code": null,
+           "text": "Use the Henderson-Hasselbalch equation for pH."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "domain-g-electrolytes-and-electrolysis",
+       "title": "Domain G: Electrolytes and electrolysis",
+       "subtopics": [
+        {
+         "id": "electrolytes",
+         "title": "Electrolytes",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Define electrolytes and electrolysis."
+          },
+          {
+           "code": null,
+           "text": "Identify electrolytes and non-electrolytes."
+          }
+         ]
+        },
+        {
+         "id": "electrolysis",
+         "title": "Electrolysis",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain electrolysis and changes at electrodes."
+          },
+          {
+           "code": null,
+           "text": "Show industrial and daily uses of electrolysis."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "domain-h-amines-and-amides",
+       "title": "Domain H: Amines and Amides",
+       "subtopics": [
+        {
+         "id": "amines-and-amides",
+         "title": "Amines and amides",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Define amines and amides."
+          },
+          {
+           "code": null,
+           "text": "Classify amines and amides by structure."
+          },
+          {
+           "code": null,
+           "text": "Describe their properties and reactions."
+          },
+          {
+           "code": "API-11-H-04",
+           "text": "Tell primary, secondary and tertiary amines apart."
+          },
+          {
+           "code": "API-11-H-05",
+           "text": "Apply amines and amides in organic synthesis."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "domain-i-protein",
+       "title": "Domain I: Protein",
+       "subtopics": [
+        {
+         "id": "proteins-and-amino-acids",
+         "title": "Proteins and amino acids",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe proteins and amino acids as building blocks."
+          },
+          {
+           "code": null,
+           "text": "Explain amino acid structure and properties."
+          },
+          {
+           "code": null,
+           "text": "Explain acidic, basic and neutral amino acids."
+          },
+          {
+           "code": null,
+           "text": "Classify proteins by structure and function."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "domain-j-carbohydrates",
+       "title": "Domain J: Carbohydrates",
+       "subtopics": [
+        {
+         "id": "carbohydrates",
+         "title": "Carbohydrates",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe carbohydrates, formula and importance."
+          },
+          {
+           "code": null,
+           "text": "Tell simple from complex carbohydrates."
+          },
+          {
+           "code": null,
+           "text": "Identify mono-, di- and polysaccharides."
+          },
+          {
+           "code": "API-11-J-04",
+           "text": "Explain carbohydrates in energy storage."
+          },
+          {
+           "code": "API-11-J-05",
+           "text": "Explain isomerism in carbohydrates."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "domain-k-lipids",
+       "title": "Domain K: Lipids",
+       "subtopics": [
+        {
+         "id": "lipids",
+         "title": "Lipids",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Define lipids and composition."
+          },
+          {
+           "code": null,
+           "text": "Classify lipids by composition and function."
+          },
+          {
+           "code": null,
+           "text": "Explain lipid diversity and functions."
+          },
+          {
+           "code": null,
+           "text": "Explain lipids in cell membranes."
+          },
+          {
+           "code": null,
+           "text": "Explain lipid metabolism and health."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "build": {
+  "builtAt": "2026-10-14T08:33:59.676Z",
+  "model": "claude-agent",
+  "usd": 0,
+  "expectedCodes": 118,
+  "coverage": 1,
+  "missingCodes": [],
+  "counts": {
+   "grades": 1,
+   "units": 4,
+   "topics": 30,
+   "subtopics": 59,
+   "outcomes": 174
+  },
+  "warnings": []
+ }
+}

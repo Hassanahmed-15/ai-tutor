@@ -1,0 +1,510 @@
+{
+ "id": "us-ky-world-languages",
+ "region": "US",
+ "framework": "Kentucky state academic standards: World Languages",
+ "board": null,
+ "qualification": "K-12",
+ "subject": "World Languages",
+ "syllabusCode": null,
+ "gradeSystem": "grade",
+ "source": {
+  "urls": [
+   "https://api.commonstandardsproject.com/api/v1/jurisdictions/46C7F759B14D4334A1CD073B03B9BB7C",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/C98BA181E33A4E9888F63DB47DA20C21",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/38B777A7CF6544C3A40BF141BFBBA43D",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/50F1F71DBE3B497D9A6A977B53227AEF"
+  ],
+  "publisher": "Kentucky state education agency (machine-readable via Common Standards Project / ASN)",
+  "licence": "CC BY 4.0 US, Common Curriculum, Inc.",
+  "firstExam": "2021"
+ },
+ "grades": [
+  {
+   "grade": "K-12",
+   "units": [
+    {
+     "id": "intercultural-communication-icc-investigation-an",
+     "title": "INTERCULTURAL COMMUNICATION (ICC): Investigation and Interaction",
+     "topics": [
+      {
+       "id": "investigate-standard-learners-use-the-language-t",
+       "title": "Investigate Standard: Learners use the language to investigate, explain and reflect on the relationship between the products and practices of the cultures studied",
+       "subtopics": [
+        {
+         "id": "in-my-own-and-other-cultures-i-can-make-comparis",
+         "title": "In my own and other cultures, I can make comparisons between products and practices to help me understand perspectives",
+         "outcomes": [
+          {
+           "code": "I.ICC.1.INV.Q1",
+           "text": "Products: In my own and other cultures, I can compare products related to everyday life and personal interests or studies."
+          },
+          {
+           "code": "I.ICC.1.INV.Q2",
+           "text": "Practices: In my own and other cultures, I can compare practices related to everyday life and personal interests or studies."
+          }
+         ]
+        },
+        {
+         "id": "in-my-own-and-other-cultures-i-can-identify-prod",
+         "title": "In my own and other cultures, I can identify products and practices to help me understand perspectives",
+         "outcomes": [
+          {
+           "code": "N.ICC.1.INV.Q1",
+           "text": "Products: In my own and other cultures, I can identify some typical products related to familiar everyday life."
+          },
+          {
+           "code": "N.ICC.1.INV.Q2",
+           "text": "Practices: In my own and other cultures, I can identify some typical practices related to familiar everyday life."
+          }
+         ]
+        },
+        {
+         "id": "in-my-own-and-other-cultures-i-can-explain-some-",
+         "title": "In my own and other cultures, I can explain some diversity among products and practices and how it relates to perspectives",
+         "outcomes": [
+          {
+           "code": "A.ICC.1.INV.Q1",
+           "text": "Products: In my own and other cultures, I can explain how a variety of products of public and personal interest are related to perspectives."
+          },
+          {
+           "code": "A.ICC.1.INV.Q2",
+           "text": "Practices: In my own and other cultures, I can explain how a variety of practices within familiar and social situations are related to perspectives."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "interact-standard-learners-use-the-language-to-i",
+       "title": "Interact Standard: Learners use the language to investigate, explain and reflect on the relationship between the language and behavior of the cultures studied",
+       "subtopics": [
+        {
+         "id": "i-can-interact-at-a-functional-level-in-some-fam",
+         "title": "I can interact at a functional level in some familiar contexts",
+         "outcomes": [
+          {
+           "code": "I.ICC.2.INT.Q1",
+           "text": "Language: I can converse with peers from the target culture in familiar situations at school, work or play, and show interest in basic cultural similarities and differences."
+          },
+          {
+           "code": "I.ICC.2.INT.Q2",
+           "text": "Behavior: I can recognize that significant behaviors exist among cultures, use appropriate learned behaviors and avoid major social blunders."
+          }
+         ]
+        },
+        {
+         "id": "i-can-interact-at-a-survival-level-in-some-famil",
+         "title": "I can interact at a survival level in some familiar everyday contexts",
+         "outcomes": [
+          {
+           "code": "N.ICC.2.INT.Q1",
+           "text": "Language: I can communicate with others from the target culture in familiar everyday situations, using memorized language and showing basic cultural awareness."
+          },
+          {
+           "code": "N.ICC.2.INT.Q2",
+           "text": "I can use appropriate rehearsed behaviors and recognize some obviously inappropriate behaviors in familiar everyday situations."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "communication-interpretive-reading-ir-and-interp",
+     "title": "COMMUNICATION: Interpretive Reading (IR) and Interpretive Listening (IL)",
+     "topics": [
+      {
+       "id": "interpretive-standard-learners-understand-interp",
+       "title": "Interpretive Standard: Learners understand, interpret and analyze what is heard, read or viewed on a variety of topics",
+       "subtopics": [
+        {
+         "id": "i-can-understand-the-main-idea-and-some-pieces-o",
+         "title": "I can understand the main idea and some pieces of information on familiar topics from sentences and series of connected sentences within texts that are spoken, written or signed",
+         "outcomes": [
+          {
+           "code": "IL.C.1.IR/IL.Q1",
+           "text": "Informational and Fictional Texts: I can identify the topic and related information from simple sentences in short informational and fictional texts."
+          },
+          {
+           "code": "IL.C.1.IR/IL.Q2",
+           "text": "Conversations and Discussions: I can identify the main idea in short conversations."
+          },
+          {
+           "code": "IM.C.1.IR/IL.Q1",
+           "text": "Informational and Fictional Texts: I can understand the main idea and key information in short straightforward fictional and informational texts."
+          },
+          {
+           "code": "IM.C.1.IR/IL.Q2",
+           "text": "Conversations and Discussions: I can identify the main idea and key information in short straightforward conversations."
+          },
+          {
+           "code": "IH.C.1.IR/IL.Q1",
+           "text": "Informational and Fictional Texts: I can usually follow the main message in various time frames in straightforward, and sometimes descriptive, paragraph length fictional and informational texts."
+          },
+          {
+           "code": "IH.C.1.IR/IL.Q2",
+           "text": "Conversations and Discussions: I can usually understand the main idea and flow of events expressed in various time frames in conversations and discussions."
+          }
+         ]
+        },
+        {
+         "id": "i-can-identify-the-general-topic-and-some-basic-",
+         "title": "I can identify the general topic and some basic information in both very familiar and everyday contexts by recognizing practiced or memorized words, phrases and simple sentences in texts that are spoken, written or signed",
+         "outcomes": [
+          {
+           "code": "NL.C.1.IR/IL.Q1",
+           "text": "Informational and Fictional Texts: I can identify memorized or familiar words when they are supported by gestures or visuals in informational and fictional texts."
+          },
+          {
+           "code": "NL.C.1.IR/IL.Q2",
+           "text": "Conversations and Discussions: I can understand memorized or familiar words when they are supported by gestures or visuals in conversations."
+          },
+          {
+           "code": "NM.C.1.IR/IL.Q1",
+           "text": "Informational and Fictional Texts: I can identify some basic facts when they come from memorized or familiar words when they are supported by gestures or visuals in informational and fictional texts."
+          },
+          {
+           "code": "NM.C.1.IR/IL.Q2",
+           "text": "Conversations and Discussions: I can identify some basic facts from memorized or familiar words and phrases when they are supported by gestures or visuals in conversations."
+          },
+          {
+           "code": "NH.C.1.IR/IL.Q1",
+           "text": "Informational and Fictional Texts: I can identify the topic and some isolated facts from simple sentences in informational and fictional texts."
+          },
+          {
+           "code": "NH.C.1.IR/IL.Q2",
+           "text": "Conversations and Discussions: I can understand familiar questions and statements from simple sentences in conversations."
+          }
+         ]
+        },
+        {
+         "id": "i-can-understand-the-main-message-and-supporting",
+         "title": "I can understand the main message and supporting details on a wide variety of familiar and general interest topics across various time frames from complex, organized texts that are spoken, written or signed",
+         "outcomes": [
+          {
+           "code": "AL.C.1.IR/IL.Q1",
+           "text": "Informational and Fictional Texts: I can identify the underlying message and some supporting details across major time frames in fictional and descriptive informational texts."
+          },
+          {
+           "code": "AL.C.1.IR/IL.Q2",
+           "text": "Conversations and Discussions: I can identify the main message and some supporting details across major time frames in conversations and discussions."
+          },
+          {
+           "code": "AM.C.1.IR/IL.Q1",
+           "text": "Informational and Fictional Texts: I can understand the underlying message and most supporting details across major time frames in fictional and descriptive informational texts."
+          },
+          {
+           "code": "AM.C.1.IR/IL.Q2",
+           "text": "Conversations and Discussions: I can understand the main message and most supporting details across major time frames in conversations and discussions."
+          },
+          {
+           "code": "AH.C.1.IR/IL.Q1",
+           "text": "Informational and Fictional Texts: I can follow the flow of ideas and infer meaning from complex language on unfamiliar, abstract topics within fictional and informational texts."
+          },
+          {
+           "code": "AH.C.1.IR/IL.Q2",
+           "text": "Conversations and Discussions: I can follow the flow of ideas and some nuances from different viewpoints in conversations and discussions."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "communication-interpersonal-speaking-listening-a",
+     "title": "COMMUNICATION: Interpersonal Speaking, Listening and Writing (IS/IL/IW)",
+     "topics": [
+      {
+       "id": "interpersonal-standard-learners-interact-and-neg",
+       "title": "Interpersonal Standard: Learners interact and negotiate meaning in spoken, signed or written conversations to share information, reactions, feelings and opinions",
+       "subtopics": [
+        {
+         "id": "i-can-participate-in-spontaneous-spoken-written-",
+         "title": "I can participate in spontaneous spoken, written or signed conversations on familiar topics, creating sentences and series of sentences to ask and answer a variety of questions",
+         "outcomes": [
+          {
+           "code": "IL.C.2.IS/IL/IW.Q1",
+           "text": "Information and Ideas: I can request and provide information in conversations on familiar topics by creating simple sentences and asking appropriate follow-up questions."
+          },
+          {
+           "code": "IL.C.2.IS/IL/IW.Q2",
+           "text": "Needs and Situations: I can interact with others to meet my basic needs in familiar situations by creating simple sentences and asking appropriate follow-up questions."
+          },
+          {
+           "code": "IL.C.2.IS/IL/IW.Q3",
+           "text": "Preferences and Opinions: I can express, ask about, and react with some details to preferences, feelings or opinions on familiar topics, by creating simple sentences and asking appropriate follow-up questions."
+          },
+          {
+           "code": "IM.C.2.IS/IL/IW.Q1",
+           "text": "Information and Ideas: I can exchange information in conversations on familiar topics and some researched topics, creating sentences and series of sentences and asking a variety of follow-up questions."
+          },
+          {
+           "code": "IM.C.2.IS/IL/IW.Q2",
+           "text": "Needs and Situations: I can interact with others to meet my needs in a variety of familiar situations, creating sentences and series of sentences and asking a variety of follow-up questions."
+          },
+          {
+           "code": "IM.C.2.IS/IL/IW.Q3",
+           "text": "Preferences and Opinions: I can exchange preferences, feelings, or opinions and provide basic advice on a variety of familiar topics, creating sentences and series of sentences and asking a variety of follow-up questions."
+          },
+          {
+           "code": "IH.C.2.IS/IL/IW.Q1",
+           "text": "Information and Ideas: I can exchange information in conversations and some discussions on a variety of familiar and some concrete topics that I have researched, using connected sentences that may combine to form paragraphs and asking a variety of questions, often across various time frames."
+          },
+          {
+           "code": "IH.C.2.IS/IL/IW.Q2",
+           "text": "Needs and Situations: I can interact with others to meet my needs in a variety of situations, sometimes involving a complication, using connected sentences that may combine to form paragraphs and asking a variety of questions, often across various time frames."
+          },
+          {
+           "code": "IH.C.2.IS/IL/IW.Q3",
+           "text": "Preferences and Opinions: I can explain preferences, opinions and emotions and provide advice on a variety of familiar and some concrete topics that I have researched, using connected sentences that may combine to form paragraphs and asking a variety of questions, often across various time frames."
+          }
+         ]
+        },
+        {
+         "id": "i-can-communicate-in-spontaneous-spoken-written-",
+         "title": "I can communicate in spontaneous spoken, written or signed conversations on both very familiar and everyday topics, using a variety of practiced or memorized words, phrases, simple sentences and questions",
+         "outcomes": [
+          {
+           "code": "NL.C.2.IS/IL/IW.Q1",
+           "text": "Exchange Information and Ideas: I can provide information by answering a few simple questions on very familiar topics, using practiced or memorized words and phrases, with the help of gestures or visuals."
+          },
+          {
+           "code": "NL.C.2.IS/IL/IW.Q2",
+           "text": "Needs and Situations: I can express some basic needs, using practiced or memorized words and phrases, with the help of gestures or visuals."
+          },
+          {
+           "code": "NL.C.2.IS/IL/IW.Q3",
+           "text": "Preferences and Opinions: I can express basic preferences or feelings, using practiced or memorized words and phrases, with the help of gestures or visuals."
+          },
+          {
+           "code": "NM.C.2.IS/IL/IW.Q1",
+           "text": "Exchange Information and Ideas: I can request and provide information by asking and answering a few simple questions on very familiar and everyday topics, using a mixture of practiced or memorized words, phrases, and simple sentences."
+          },
+          {
+           "code": "NM.C.2.IS/IL/IW.Q2",
+           "text": "Needs and Situations: I can express basic needs related to familiar and everyday activities, using a mixture of practiced or memorized words, phrases, simple sentences, and questions."
+          },
+          {
+           "code": "NM.C.2.IS/IL/IW.Q3",
+           "text": "Preferences and Opinions: I can express my own preferences or feelings and react to those of others, using a mixture of practiced or memorized words, phrases, simple sentences, and questions."
+          },
+          {
+           "code": "NH.C.2.IS/IL/IW.Q1",
+           "text": "Exchange Information and Ideas: I can request and provide information by asking and answering practice and some original questions on familiar and everyday topics, using simple sentences most of the time."
+          },
+          {
+           "code": "NH.C.2.IS/IL/IW.Q2",
+           "text": "Needs and Situations: I can interact with others to meet my basic needs related to routine everyday activities, using simple sentences and questions most of the time."
+          },
+          {
+           "code": "NH.C.2.IS/IL/IW.Q3",
+           "text": "Preferences and Opinions: I can express, ask about, and react to preferences, feelings, or opinions on familiar topics, using simple sentences most of the time and asking questions to keep the conversation on topic."
+          }
+         ]
+        },
+        {
+         "id": "i-can-maintain-spontaneous-spoken-written-or-sig",
+         "title": "I can maintain spontaneous spoken, written or signed conversations and discussions across various time frames on familiar, as well as unfamiliar, concrete topics, using a series of connected sentences and probing questions",
+         "outcomes": [
+          {
+           "code": "AL.C.2.IS/IL/IW.Q1",
+           "text": "Information and Ideas: I can exchange information and ideas in discussions on a variety of familiar and concrete academic and social topics, using a few simple paragraphs across major time frames."
+          },
+          {
+           "code": "AL.C.2.IS/IL/IW.Q2",
+           "text": "Needs and Situations: I can interact and negotiate to resolve an unexpected complication that arises in a familiar situation, using a few simple paragraphs across major time frames."
+          },
+          {
+           "code": "AL.C.2.IS/IL/IW.Q3",
+           "text": "Preferences and Opinions: I can maintain conversations by providing explanations and comparisons of preferences, opinions and advice on familiar and concrete academic and social topics using a few simple paragraphs across major time frames."
+          },
+          {
+           "code": "AM.C.2.IS/IL/IW.Q1",
+           "text": "Information and Ideas: I can maintain discussions on a wide variety of familiar and unfamiliar concrete topics of personal and general interest, and sometimes academic, social or professional topics, by using probing questions and providing detailed responses across major time frames."
+          },
+          {
+           "code": "AM.C.2.IS/IL/IW.Q2",
+           "text": "Needs and Situations: I can interact and negotiate to resolve an unexpected complication that arises in a familiar situation, providing detailed explanations and offering a variety of resolutions across major time frames."
+          },
+          {
+           "code": "AM.C.2.IS/IL/IW.Q3",
+           "text": "Preferences and Opinions: I can maintain extended conversations by supporting, reacting to and comparing preferences and opinions and expressing advice and emotions in detail across major time frames and by asking probing questions."
+          },
+          {
+           "code": "AH.C.2.IS/IL/IW.Q1",
+           "text": "Information and Ideas: I can discuss and sometimes debate a variety of complex concrete and some abstract academic, social and professional topics and often deal with related issues hypothetically, using precise questions and explanations."
+          },
+          {
+           "code": "AH.C.2.IS/IL/IW.Q2",
+           "text": "Needs and Situations: I can interact and negotiate to resolve an unexpected complication in a situation that is generally unfamiliar."
+          },
+          {
+           "code": "AH.C.2.IS/IL/IW.Q3",
+           "text": "Preferences and Opinions: I can discuss, support and sometimes debate opinions and advice on a variety of complex concrete topics, often addressing hypothetical or abstract issues and asking precise questions."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "communication-presentational-writing-pw-and-pres",
+     "title": "COMMUNICATION: Presentational Writing (PW) and Presentational Speaking (PS)",
+     "topics": [
+      {
+       "id": "presentational-standard-learners-present-informa",
+       "title": "Presentational Standard: Learners present information, concepts and ideas to an audience of listeners or readers on a variety of topics",
+       "subtopics": [
+        {
+         "id": "i-can-communicate-information-make-presentations",
+         "title": "I can communicate information, make presentations, and express my thoughts about familiar topics, using sentences and series of connected sentences through spoken, written or signed language",
+         "outcomes": [
+          {
+           "code": "IL.C.3.PW/PS.Q1",
+           "text": "Narrate: I can present personal information about my life, activities and events, using simple sentences."
+          },
+          {
+           "code": "IL.C.3.PW/PS.Q2",
+           "text": "Preference or Opinion: I can express my preferences on familiar and everyday topics of interest and explain why I feel that way, using simple sentences."
+          },
+          {
+           "code": "IL.C.3.PW/PS.Q3",
+           "text": "Inform or Describe: I can present on familiar and everyday topics, using simple sentences."
+          },
+          {
+           "code": "IM.C.3.PW/PS.Q1",
+           "text": "Narrate: I can tell a story about my life, activities, events and other social experiences, using sentences and series of connected sentences."
+          },
+          {
+           "code": "IM.C.3.PW/PS.Q2",
+           "text": "Preference or Opinion: I can state my viewpoint about familiar topics and give some reasons to support it, using sentences and series of connected sentences."
+          },
+          {
+           "code": "IM.C.3.PW/PS.Q3",
+           "text": "Inform or Describe: I can give straightforward presentations on a variety of familiar topics and some concrete topics I have researched, using sentences and series of connected sentences."
+          },
+          {
+           "code": "IH.C.3.PW/PS.Q1",
+           "text": "Narrate: I can tell stories about school and community events and personal experiences, using a few short paragraphs, often across various time frames."
+          },
+          {
+           "code": "IH.C.3.PW/PS.Q2",
+           "text": "Preference or Opinion: I can state my viewpoint on familiar or researched topics and provide reasons to support it, using a few short paragraphs, often across various time frames."
+          },
+          {
+           "code": "IH.C.3.PW/PS.Q3",
+           "text": "Inform or Describe: I can give detailed presentations on a variety of familiar topics and some concrete topics I have researched, using a few short paragraphs, often across various time frames."
+          }
+         ]
+        },
+        {
+         "id": "i-can-present-information-on-both-very-familiar-",
+         "title": "I can present information on both very familiar and everyday topics using a variety of practiced or memorized words, phrases and simple sentences through spoken, written or signed language",
+         "outcomes": [
+          {
+           "code": "NL.C.3.PW/PS.Q1",
+           "text": "Narrate: I can introduce myself using practiced or memorized words and phrases, with the help of gestures and visuals."
+          },
+          {
+           "code": "NL.C.3.PW/PS.Q2",
+           "text": "Preference or Opinion: I can express my likes and dislikes using practiced or memorized words and phrases, with the help of gestures or visuals."
+          },
+          {
+           "code": "NL.C.3.PW/PS.Q3",
+           "text": "Inform or Describe: I can name very familiar people, places and objects using practiced or memorized words and phrases, with the help of gestures or visuals."
+          },
+          {
+           "code": "NM.C.3.PW/PS.Q1",
+           "text": "Narrate: I can present information about myself, my interests and my activities using a mixture of practiced or memorized words, phrases and simple sentences."
+          },
+          {
+           "code": "NM.C.3.PW/PS.Q2",
+           "text": "Preference or Opinion: I can express my likes and dislikes on very familiar and everyday topics of interest, using a mixture of practiced or memorized words, phrases and simple sentences."
+          },
+          {
+           "code": "NM.C.3.PW/PS.Q3",
+           "text": "Inform or Describe: I can present on very familiar and everyday topics using a mixture of practiced or memorized words, phrases and simple sentences."
+          },
+          {
+           "code": "NH.C.3.PW/PS.Q1",
+           "text": "Narrate: I can present personal information about my life and activities, using simple sentences most of the time."
+          },
+          {
+           "code": "NH.C.3.PW/PS.Q2",
+           "text": "Preference or Opinion: I can express my preferences on familiar and everyday topics of interest, using simple sentences most of the time."
+          },
+          {
+           "code": "NH.C.3.PW/PS.Q3",
+           "text": "Inform or Describe: I can present on familiar and everyday topics, using simple sentences most of the time."
+          }
+         ]
+        },
+        {
+         "id": "i-can-deliver-detailed-and-organized-presentatio",
+         "title": "I can deliver detailed and organized presentations on familiar as well as unfamiliar concrete topics, in paragraphs and using various time frames through spoken, written or signed language",
+         "outcomes": [
+          {
+           "code": "AL.C.3.PW/PS.Q1",
+           "text": "Narrate: I can tell stories about school and community events and personal experiences, using paragraphs across major time frames."
+          },
+          {
+           "code": "AL.C.3.PW/PS.Q2",
+           "text": "Preference or Opinion: I can state a viewpoint with supporting evidence on some concrete academic, social and professional topics of interest using paragraphs across major time frames."
+          },
+          {
+           "code": "AL.C.3.PW/PS.Q3",
+           "text": "Inform or Describe: I can deliver presentations on some concrete academic, social and professional topics of interest, using paragraphs across major time frames."
+          },
+          {
+           "code": "AM.C.3.PW/PS.Q1",
+           "text": "Narrate: I can tell stories based on concrete experiences in academic, social and professional topics of interest, using organized paragraphs across major time frames."
+          },
+          {
+           "code": "AM.C.3.PW/PS.Q2",
+           "text": "Preference or Opinion: I can present an argument with supporting evidence, based on a variety of concrete academic, social and professional topics of interest, using organized paragraphs across major time frames."
+          },
+          {
+           "code": "AM.C.3.PW/PS.Q3",
+           "text": "Inform or Describe I can deliver detailed presentations and elaborate on a variety of concrete academic, social and professional topics of interest, using organized paragraphs across major time frames."
+          },
+          {
+           "code": "AH.C.3.PW/PS.Q1",
+           "text": "Narrate: I can give complex detailed narrations beyond the concrete, often addressing abstract experiences or hypothetical issues."
+          },
+          {
+           "code": "AH.C.3.PW/PS.Q2",
+           "text": "Preference: or Opinion I can clearly and accurately present an argument with supporting evidence on complex concrete issues, and often deal with related issues hypothetically."
+          },
+          {
+           "code": "AH.C.3.PW/PS.Q3",
+           "text": "Inform or Describe: I can deliver cohesive presentations on a variety of complex concrete topics related to community interests and some specialized fields, and often deal with related issues hypothetically."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "build": {
+  "builtAt": "2026-10-14T16:20:42.970Z",
+  "model": "none",
+  "usd": 0,
+  "expectedCodes": 82,
+  "coverage": 1,
+  "missingCodes": [],
+  "counts": {
+   "grades": 1,
+   "units": 4,
+   "topics": 5,
+   "subtopics": 14,
+   "outcomes": 82
+  },
+  "warnings": []
+ }
+}

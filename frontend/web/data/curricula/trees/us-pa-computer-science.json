@@ -1,0 +1,544 @@
+{
+ "id": "us-pa-computer-science",
+ "region": "US",
+ "framework": "Pennsylvania state academic standards: Computer Science & Technology",
+ "board": null,
+ "qualification": "K-12",
+ "subject": "Computer Science & Technology",
+ "syllabusCode": null,
+ "gradeSystem": "grade",
+ "source": {
+  "urls": [
+   "https://api.commonstandardsproject.com/api/v1/jurisdictions/5A99211C6D874994A2CFEE2AE40023DD",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/5A99211C6D874994A2CFEE2AE40023DD_D21302749_grades-06-07-08",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/5A99211C6D874994A2CFEE2AE40023DD_D21302749_grades-09-10-11-12"
+  ],
+  "publisher": "Pennsylvania state education agency (machine-readable via Common Standards Project / ASN)",
+  "licence": "D2L Corporation",
+  "firstExam": "2022"
+ },
+ "grades": [
+  {
+   "grade": "6-8",
+   "units": [
+    {
+     "id": "nature-and-characteristics-of-technology-and-eng",
+     "title": "Nature and Characteristics of Technology and Engineering",
+     "topics": [
+      {
+       "id": "nature-and-characteristics-of-technology-and-eng",
+       "title": "Nature and Characteristics of Technology and Engineering",
+       "subtopics": [
+        {
+         "id": "nature-and-characteristics-of-technology-and-eng",
+         "title": "Nature and Characteristics of Technology and Engineering (1 of 2)",
+         "outcomes": [
+          {
+           "code": "1.68.1",
+           "text": "Consider historical factors that have contributed to the development of technologies and human progress."
+          },
+          {
+           "code": "1.68.2",
+           "text": "Engage in a research and development process to simulate how inventions and innovations have evolved through systematic tests and refinements."
+          },
+          {
+           "code": "1.68.3",
+           "text": "Differentiate between inputs, processes, outputs, and feedback in technological systems."
+          },
+          {
+           "code": "1.68.4",
+           "text": "Demonstrate how systems thinking involves considering relationships between every part, as well as how the systems interact with the environment in which it is used."
+          },
+          {
+           "code": "1.68.5",
+           "text": "Create an open-loop system that has no feedback path and requires human intervention."
+          }
+         ]
+        },
+        {
+         "id": "nature-and-characteristics-of-technology-and-eng-2",
+         "title": "Nature and Characteristics of Technology and Engineering (2 of 2)",
+         "outcomes": [
+          {
+           "code": "1.68.6",
+           "text": "Create a closed-loop system that has a feedback path and requires no human intervention."
+          },
+          {
+           "code": "1.68.7",
+           "text": "Predict outcomes of a future product or system at the beginning of the design process."
+          },
+          {
+           "code": "1.68.8",
+           "text": "Apply informed problem-solving strategies to the improvement of existing devices or processes or the development of new approaches."
+          },
+          {
+           "code": "1.68.9",
+           "text": "Explain how technology and engineering are closely linked to creativity, which can result in both intended and unintended innovations."
+          },
+          {
+           "code": "1.68.10",
+           "text": "Compare how different technologies involve different sets of processes."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "integration-of-knowledge-technologies-and-practi",
+     "title": "Integration of Knowledge, Technologies, and Practices",
+     "topics": [
+      {
+       "id": "integration-of-knowledge-technologies-and-practi",
+       "title": "Integration of Knowledge, Technologies, and Practices",
+       "subtopics": [
+        {
+         "id": "integration-of-knowledge-technologies-and-practi",
+         "title": "Integration of Knowledge, Technologies, and Practices",
+         "outcomes": [
+          {
+           "code": "2.68.1",
+           "text": "Compare, contrast, and identify overlap between the contributions of science, technology, engineering, and mathematics in the development of technological systems."
+          },
+          {
+           "code": "2.68.2",
+           "text": "Analyze how different technological systems often interact with economic, environmental, and social systems."
+          },
+          {
+           "code": "2.68.3",
+           "text": "Adapt and apply an existing product, system, or process to solve a problem in a different setting."
+          },
+          {
+           "code": "2.68.4",
+           "text": "Demonstrate how knowledge gained from other content areas affects the development of technological products and systems."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "applying-maintaining-assessing-and-evaluating-te",
+     "title": "Applying, Maintaining, Assessing and Evaluating Technological Products and Systems",
+     "topics": [
+      {
+       "id": "applying-maintaining-assessing-and-evaluating-te",
+       "title": "Applying, Maintaining, Assessing and Evaluating Technological Products and Systems",
+       "subtopics": [
+        {
+         "id": "applying-maintaining-assessing-and-evaluating-te",
+         "title": "Applying, Maintaining, Assessing and Evaluating Technological Products and Systems (1 of 3)",
+         "outcomes": [
+          {
+           "code": "3.68.1",
+           "text": "Examine the ways that technology can have both positive and negative effects at the same time."
+          },
+          {
+           "code": "3.68.2",
+           "text": "Analyze how the creation and use of technologies consumes renewable, non-renewable, and inexhaustible resources; creates waste; and may contribute to environmental challenges."
+          },
+          {
+           "code": "3.68.3",
+           "text": "Consider the impacts of a proposed or existing technology and devise strategies for reducing, reusing, and recycling waste caused by its creation."
+          },
+          {
+           "code": "3.68.4",
+           "text": "Analyze examples of technologies that have changed the way people think, interact, live, and communicate."
+          },
+          {
+           "code": "3.68.5",
+           "text": "Hypothesize what alternative outcomes (individual, cultural, and/or environmental) might have resulted had a different technological solution been selected."
+          }
+         ]
+        },
+        {
+         "id": "applying-maintaining-assessing-and-evaluating-te-2",
+         "title": "Applying, Maintaining, Assessing and Evaluating Technological Products and Systems (2 of 3)",
+         "outcomes": [
+          {
+           "code": "3.68.6",
+           "text": "Analyze how an invention or innovation was influenced by the context and circumstances in which it is developed."
+          },
+          {
+           "code": "3.68.7",
+           "text": "Evaluate trade-offs based on various perspectives as part of a decision process that recognizes the need for careful compromises among competing factors."
+          },
+          {
+           "code": "3.68.8",
+           "text": "Research information from various sources to use and maintain technological products or systems."
+          },
+          {
+           "code": "3.68.9",
+           "text": "Use tools, materials, and machines to safely diagnose, adjust, and repair systems."
+          },
+          {
+           "code": "3.68.10",
+           "text": "Use devices to control technological systems."
+          }
+         ]
+        },
+        {
+         "id": "applying-maintaining-assessing-and-evaluating-te-3",
+         "title": "Applying, Maintaining, Assessing and Evaluating Technological Products and Systems (3 of 3)",
+         "outcomes": [
+          {
+           "code": "3.68.11",
+           "text": "Design methods to gather data about technological systems."
+          },
+          {
+           "code": "3.68.12",
+           "text": "Interpret the accuracy of information collected."
+          },
+          {
+           "code": "3.68.13",
+           "text": "Use instruments to gather data on the performance of everyday products."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "design-thinking-in-technology-and-engineering-ed",
+     "title": "Design Thinking in Technology and Engineering Education",
+     "topics": [
+      {
+       "id": "design-thinking-in-technology-and-engineering-ed",
+       "title": "Design Thinking in Technology and Engineering Education",
+       "subtopics": [
+        {
+         "id": "design-thinking-in-technology-and-engineering-ed",
+         "title": "Design Thinking in Technology and Engineering Education (1 of 2)",
+         "outcomes": [
+          {
+           "code": "4.68.1",
+           "text": "Apply a technology and engineering design thinking process."
+          },
+          {
+           "code": "4.68.2",
+           "text": "Develop innovative products and systems that solve problems and extend capabilities based on individual or collective needs and wants."
+          },
+          {
+           "code": "4.68.3",
+           "text": "Illustrate the benefits and opportunities associated with different approaches to design."
+          },
+          {
+           "code": "4.68.4",
+           "text": "Create solutions to problems by identifying and applying human factors in design."
+          }
+         ]
+        },
+        {
+         "id": "design-thinking-in-technology-and-engineering-ed-2",
+         "title": "Design Thinking in Technology and Engineering Education (2 of 2)",
+         "outcomes": [
+          {
+           "code": "4.68.5",
+           "text": "Evaluate and assess the strengths and weaknesses of various design solutions given established principles and elements of design."
+          },
+          {
+           "code": "4.68.6",
+           "text": "Refine design solutions to address criteria and constraints."
+          },
+          {
+           "code": "4.68.7",
+           "text": "Defend decisions related to a design problem."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "9-12",
+   "units": [
+    {
+     "id": "nature-and-characteristics-of-technology-and-eng",
+     "title": "Nature and Characteristics of Technology and Engineering",
+     "topics": [
+      {
+       "id": "nature-and-characteristics-of-technology-and-eng",
+       "title": "Nature and Characteristics of Technology and Engineering",
+       "subtopics": [
+        {
+         "id": "nature-and-characteristics-of-technology-and-eng",
+         "title": "Nature and Characteristics of Technology and Engineering (1 of 3)",
+         "outcomes": [
+          {
+           "code": "1.HS.1",
+           "text": "Evaluate how technology and engineering have been powerful forces in reshaping the social, cultural, political, and economic landscapes throughout history."
+          },
+          {
+           "code": "1.HS.2",
+           "text": "Relate how technological and engineering developments have been evolutionary, often the result of a series of refinements to basic inventions or technological knowledge."
+          },
+          {
+           "code": "1.HS.3",
+           "text": "Identify and explain how the evolution of civilization has been directly affected by, and has in turn affected, the development and use of tools, materials, and processes."
+          },
+          {
+           "code": "1.HS.4",
+           "text": "Analyze how the Industrial Revolution resulted in the development of mass production, sophisticated transportation and communication systems, advanced construction practices, and improved education and leisure time."
+          }
+         ]
+        },
+        {
+         "id": "nature-and-characteristics-of-technology-and-eng-2",
+         "title": "Nature and Characteristics of Technology and Engineering (2 of 3)",
+         "outcomes": [
+          {
+           "code": "1.HS.5",
+           "text": "Investigate the widespread changes that have resulted from the Information Age, which has placed emphasis on the processing and exchange of information."
+          },
+          {
+           "code": "1.HS.6",
+           "text": "Analyze the rate of technological and engineering development and predict future diffusion and adoption of new innovations and technologies."
+          },
+          {
+           "code": "1.HS.7",
+           "text": "Demonstrate the use of conceptual, graphical, virtual, mathematical, and physical modeling to identify conflicting considerations before the entire system is developed and to aid in design decision making."
+          },
+          {
+           "code": "1.HS.8",
+           "text": "Analyze the stability of a technological system and how it is influenced by all of the components in the system, especially those in the feedback loop."
+          }
+         ]
+        },
+        {
+         "id": "nature-and-characteristics-of-technology-and-eng-3",
+         "title": "Nature and Characteristics of Technology and Engineering (3 of 3)",
+         "outcomes": [
+          {
+           "code": "1.HS.9",
+           "text": "Troubleshoot and improve a flawed system embedded within a larger technological, social, or environmental system."
+          },
+          {
+           "code": "1.HS.10",
+           "text": "Use project management tools, strategies, and processes in planning, organizing, and controlling work."
+          },
+          {
+           "code": "1.HS.11",
+           "text": "Implement quality control as a planned process to ensure that a product, service, or system meets established criteria."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "integration-of-knowledge-technologies-and-practi",
+     "title": "Integration of Knowledge, Technologies, and Practices",
+     "topics": [
+      {
+       "id": "integration-of-knowledge-technologies-and-practi",
+       "title": "Integration of Knowledge, Technologies, and Practices",
+       "subtopics": [
+        {
+         "id": "integration-of-knowledge-technologies-and-practi",
+         "title": "Integration of Knowledge, Technologies, and Practices",
+         "outcomes": [
+          {
+           "code": "2.HS.1",
+           "text": "Assess how similarities and differences among scientific, technological, engineering, and mathematical knowledge and skills contributed to the design of a product or system."
+          },
+          {
+           "code": "2.HS.2",
+           "text": "Develop a plan that incorporates knowledge from science, mathematics, and other disciplines to design or improve a technological product or system."
+          },
+          {
+           "code": "2.HS.3",
+           "text": "Analyze how technology transfer occurs when a user applies an existing innovation developed for one function for a different purpose."
+          },
+          {
+           "code": "2.HS.4",
+           "text": "Evaluate how technology enhances opportunities for new products and services through globalization."
+          },
+          {
+           "code": "2.HS.5",
+           "text": "Connect technological and engineering progress to the advancement of other areas of knowledge and vice versa."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "applying-maintaining-assessing-and-evaluating-te",
+     "title": "Applying, Maintaining, Assessing and Evaluating Technological Products and Systems",
+     "topics": [
+      {
+       "id": "applying-maintaining-assessing-and-evaluating-te",
+       "title": "Applying, Maintaining, Assessing and Evaluating Technological Products and Systems",
+       "subtopics": [
+        {
+         "id": "applying-maintaining-assessing-and-evaluating-te",
+         "title": "Applying, Maintaining, Assessing and Evaluating Technological Products and Systems (1 of 3)",
+         "outcomes": [
+          {
+           "code": "3.HS.1",
+           "text": "Develop a solution to a technological problem that has the least negative environmental and social impact."
+          },
+          {
+           "code": "3.HS.2",
+           "text": "Develop a device or system for the marketplace."
+          },
+          {
+           "code": "3.HS.3",
+           "text": "Evaluate ways that technology and engineering can impact individuals, society, and the environment."
+          },
+          {
+           "code": "3.HS.4",
+           "text": "Critique whether existing or proposed technologies use resources sustainably."
+          }
+         ]
+        },
+        {
+         "id": "applying-maintaining-assessing-and-evaluating-te-2",
+         "title": "Applying, Maintaining, Assessing and Evaluating Technological Products and Systems (2 of 3)",
+         "outcomes": [
+          {
+           "code": "3.HS.5",
+           "text": "Critically assess and evaluate a technology that minimizes resource use and resulting waste to achieve a goal."
+          },
+          {
+           "code": "3.HS.6",
+           "text": "Evaluate a technological innovation that arose from a specific society's unique need or want."
+          },
+          {
+           "code": "3.HS.7",
+           "text": "Evaluate how technology and engineering advancements alter human health and capabilities."
+          },
+          {
+           "code": "3.HS.8",
+           "text": "Evaluate a technological innovation that was met with societal resistance impacting its development."
+          }
+         ]
+        },
+        {
+         "id": "applying-maintaining-assessing-and-evaluating-te-3",
+         "title": "Applying, Maintaining, Assessing and Evaluating Technological Products and Systems (3 of 3)",
+         "outcomes": [
+          {
+           "code": "3.HS.9",
+           "text": "Use various approaches to communicate processes and procedures for using, maintaining, and assessing technological products and systems."
+          },
+          {
+           "code": "3.HS.10",
+           "text": "Synthesize data and analyze trends to make decisions about technological products, systems, or processes."
+          },
+          {
+           "code": "3.HS.11",
+           "text": "Interpret laws, regulations, policies, and other factors that impact the development and use of technology."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "design-thinking-in-technology-and-engineering-ed",
+     "title": "Design Thinking in Technology and Engineering Education",
+     "topics": [
+      {
+       "id": "design-thinking-in-technology-and-engineering-ed",
+       "title": "Design Thinking in Technology and Engineering Education",
+       "subtopics": [
+        {
+         "id": "design-thinking-in-technology-and-engineering-ed",
+         "title": "Design Thinking in Technology and Engineering Education (1 of 3)",
+         "outcomes": [
+          {
+           "code": "4.HS.1",
+           "text": "Apply a broad range of design skills to a design thinking process."
+          },
+          {
+           "code": "4.HS.2",
+           "text": "Implement and critique principles, elements, and factors of design."
+          },
+          {
+           "code": "4.HS.3",
+           "text": "Evaluate and define the purpose of a design."
+          },
+          {
+           "code": "4.HS.4",
+           "text": "Conduct research to inform intentional inventions and innovations that address specific needs and wants."
+          }
+         ]
+        },
+        {
+         "id": "design-thinking-in-technology-and-engineering-ed-2",
+         "title": "Design Thinking in Technology and Engineering Education (2 of 3)",
+         "outcomes": [
+          {
+           "code": "4.HS.5",
+           "text": "Analyze and use relevant and appropriate design thinking processes to solve technological and engineering problems."
+          },
+          {
+           "code": "4.HS.6",
+           "text": "Implement the best possible solution to a design using an explicit process."
+          },
+          {
+           "code": "4.HS.7",
+           "text": "Apply principles of human-centered design."
+          },
+          {
+           "code": "4.HS.8",
+           "text": "Optimize a design by addressing desired qualities within criteria and constraints while considering trade-offs."
+          }
+         ]
+        },
+        {
+         "id": "design-thinking-in-technology-and-engineering-ed-3",
+         "title": "Design Thinking in Technology and Engineering Education (3 of 3)",
+         "outcomes": [
+          {
+           "code": "4.HS.9",
+           "text": "Use a design thinking process to design an appropriate technology for use in a different culture."
+          },
+          {
+           "code": "4.HS.10",
+           "text": "Apply appropriate design thinking processes to diagnose, adjust, and repair systems to ensure precise, safe, and proper functionality."
+          },
+          {
+           "code": "4.HS.11",
+           "text": "Recognize and explain how their community and the world around them informs technological development and engineering design."
+          },
+          {
+           "code": "4.HS.12",
+           "text": "Safely apply an appropriate range of making skills to a design thinking process."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "build": {
+  "builtAt": "2026-10-14T16:20:47.824Z",
+  "model": "none",
+  "usd": 0,
+  "expectedCodes": 73,
+  "coverage": 1,
+  "missingCodes": [],
+  "counts": {
+   "grades": 2,
+   "units": 8,
+   "topics": 8,
+   "subtopics": 18,
+   "outcomes": 73
+  },
+  "warnings": []
+ }
+}

@@ -1,0 +1,160 @@
+{
+ "id": "cie-igcse-swahili-0262-2025-2027",
+ "region": "INTL",
+ "framework": "Cambridge IGCSE Swahili (0262) syllabus 2025–2027",
+ "board": "Cambridge",
+ "qualification": "IGCSE",
+ "subject": "Swahili",
+ "syllabusCode": "0262",
+ "gradeSystem": "course",
+ "source": {
+  "urls": [
+   "https://www.cambridgeinternational.org/Images/664586-2025-2027-syllabus.pdf",
+   "https://www.cambridgeinternational.org/programmes-and-qualifications/cambridge-igcse-swahili-0262/"
+  ],
+  "publisher": "Cambridge University Press & Assessment (Cambridge International Education)",
+  "licence": "© Cambridge University Press & Assessment; structure + our own wording only",
+  "firstExam": "2025"
+ },
+ "grades": [
+  {
+   "grade": "IGCSE",
+   "units": [
+    {
+     "id": "4-speaking-optional",
+     "title": "4 Speaking (optional)",
+     "topics": [
+      {
+       "id": "holidays",
+       "title": "Holidays",
+       "subtopics": [
+        {
+         "id": "holidays",
+         "title": "Holidays",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Discuss holidays, including tourism, school holidays, public holidays, travel and the value of travel for young people."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "clothes",
+       "title": "Clothes",
+       "subtopics": [
+        {
+         "id": "clothes",
+         "title": "Clothes",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Discuss clothes as part of everyday life and the world around us."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "shopping",
+       "title": "Shopping",
+       "subtopics": [
+        {
+         "id": "shopping",
+         "title": "Shopping",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Discuss shopping in relation to everyday life and local surroundings."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "weather",
+       "title": "Weather",
+       "subtopics": [
+        {
+         "id": "weather",
+         "title": "Weather",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Discuss weather and its effects in local and international contexts."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "animals",
+       "title": "Animals",
+       "subtopics": [
+        {
+         "id": "animals",
+         "title": "Animals",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Discuss animals as part of the natural world and the environment."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "festivals",
+       "title": "Festivals",
+       "subtopics": [
+        {
+         "id": "festivals",
+         "title": "Festivals",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Discuss festivals, including relevant local customs and cultural practices."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "employment",
+       "title": "Employment",
+       "subtopics": [
+        {
+         "id": "employment",
+         "title": "Employment",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Discuss careers, employment, further education, training and future career plans."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "build": {
+  "builtAt": "2026-10-14T07:56:26.382Z",
+  "model": "gpt-5.6-luna",
+  "usd": 0.005,
+  "expectedCodes": null,
+  "coverage": null,
+  "missingCodes": [],
+  "counts": {
+   "grades": 1,
+   "units": 1,
+   "topics": 7,
+   "subtopics": 7,
+   "outcomes": 7
+  },
+  "warnings": []
+ }
+}

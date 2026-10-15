@@ -1,0 +1,242 @@
+{
+ "id": "ib-dp-computer-science",
+ "region": "INTL",
+ "framework": "International Baccalaureate Diploma Programme (DP)",
+ "board": "IB",
+ "qualification": "IB Diploma Programme",
+ "subject": "Computer science (SL and HL)",
+ "syllabusCode": null,
+ "gradeSystem": "course",
+ "source": {
+  "urls": [
+   "https://www.ibo.org/globalassets/new-structure/university-admission/pdfs/dp_comp_sci_subjectbrief_en.pdf",
+   "https://web.archive.org/web/20240725134834id_/https://www.ibo.org/globalassets/new-structure/university-admission/pdfs/dp_comp_sci_subjectbrief_en.pdf"
+  ],
+  "publisher": "International Baccalaureate Organization",
+  "licence": "(c) International Baccalaureate Organization; all rights reserved, no open licence. ibo.org terms 1.8: IB copyrighted materials are licensed only under the IB's terms or a signed agreement; 'Any use not expressly permitted is prohibited unless special permission is obtained in writing from the IB'; 1.9: nothing on the IB websites confers any licence. Briefs are free public marketing summaries: take topic structure only, write everything in our own words, never reproduce brief text, and do not use IB logos/trade marks. Full subject guides are sold to schools and were NOT used. Terms: https://www.ibo.org/terms-and-conditions/ and https://www.ibo.org/copyright",
+  "firstExam": "2027"
+ },
+ "grades": [
+  {
+   "grade": "all",
+   "units": [
+    {
+     "id": "theme-a-concepts-in-computer-science",
+     "title": "Theme A: Concepts in computer science",
+     "topics": [
+      {
+       "id": "a-1-computer-fundamentals",
+       "title": "A.1 Computer fundamentals",
+       "subtopics": [
+        {
+         "id": "computer-fundamentals",
+         "title": "Computer fundamentals",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain how computing systems work at a fundamental level."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "a-2-networks",
+       "title": "A.2 Networks",
+       "subtopics": [
+        {
+         "id": "networks",
+         "title": "Networks",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain how networks connect computing systems."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "a-3-databases",
+       "title": "A.3 Databases",
+       "subtopics": [
+        {
+         "id": "databases",
+         "title": "Databases",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain how databases store and organise data."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "a-4-machine-learning",
+       "title": "A.4 Machine learning",
+       "subtopics": [
+        {
+         "id": "machine-learning",
+         "title": "Machine learning",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain the ideas of machine learning and the ethical issues it raises."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "theme-b-computational-thinking-and-problem-solvi",
+     "title": "Theme B: Computational thinking and problem-solving",
+     "topics": [
+      {
+       "id": "b-1-computational-thinking",
+       "title": "B.1 Computational thinking",
+       "subtopics": [
+        {
+         "id": "specifying-and-decomposing-problems",
+         "title": "Specifying and decomposing problems",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "State a problem in its computational context and set success criteria."
+          },
+          {
+           "code": null,
+           "text": "Break a complex real-world problem into smaller, manageable problems."
+          }
+         ]
+        },
+        {
+         "id": "abstraction-and-evaluation",
+         "title": "Abstraction and evaluation",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Abstract and generalise a problem to allow algorithmic thinking."
+          },
+          {
+           "code": null,
+           "text": "Test and evaluate a solution to improve it."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "b-2-programming",
+       "title": "B.2 Programming",
+       "subtopics": [
+        {
+         "id": "programming",
+         "title": "Programming",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Write programs in Python or Java to solve problems."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "b-3-object-oriented-programming-oop",
+       "title": "B.3 Object-oriented programming (OOP)",
+       "subtopics": [
+        {
+         "id": "object-oriented-programming",
+         "title": "Object-oriented programming",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Use object-oriented programming to build solutions."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "b-4-abstract-data-types-hl-only",
+       "title": "B.4 Abstract data types (HL only)",
+       "subtopics": [
+        {
+         "id": "abstract-data-types",
+         "title": "Abstract data types",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Use abstract data types in solving problems (higher level only)."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "case-study-and-practical-work",
+     "title": "Case study and practical work",
+     "topics": [
+      {
+       "id": "case-study",
+       "title": "Case study",
+       "subtopics": [
+        {
+         "id": "case-study",
+         "title": "Case study",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Study the annual case study and answer questions about it."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "computational-solution",
+       "title": "Computational solution",
+       "subtopics": [
+        {
+         "id": "developing-a-computational-solution",
+         "title": "Developing a computational solution",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Identify a real-world problem, then design, develop and evaluate a computational solution."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "build": {
+  "builtAt": "2026-10-14T10:52:51.075Z",
+  "model": "claude-agent",
+  "usd": 0,
+  "expectedCodes": null,
+  "coverage": null,
+  "missingCodes": [],
+  "counts": {
+   "grades": 1,
+   "units": 3,
+   "topics": 10,
+   "subtopics": 11,
+   "outcomes": 13
+  },
+  "warnings": [
+   "grade DP year 1 has no content",
+   "grade DP year 2 has no content",
+   "unexpected grade label \"all\""
+  ]
+ }
+}

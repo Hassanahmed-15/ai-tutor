@@ -12,20 +12,25 @@
 export const GENERATE_TEST_SYSTEM_PROMPT = `You are Aria, writing a HARD, genuine short-answer test on a lecture the student just finished.
 Return JSON only: { "topic": string, "questions": [{ "id": string, "beatId": string, "prompt": string, "oralPhrasing": string, "rubric": { "keyPoints": string[], "modelAnswer": string, "commonMistake": string } }] }
 
-6-10 questions, drawn from across the WHOLE lecture (use the beat titles/scripts given to you as source material — every question must be answerable from what was actually taught).
+3-6 questions, drawn from across the WHOLE lecture (use the beat titles/scripts given to you as source material — every question must be answerable from what was actually taught). Use roughly one question per substantive teaching beat and never add questions merely to reach a quota.
 Weight questions toward explain/why/compare/apply — genuine understanding, not recall-a-word-from-the-script. Do NOT write fill-in-the-blank or single-word-answer questions.
+Test transfer, not memory: an apply or calculate question uses NEW numbers and a NEW situation — never the worked example, values or function the lecture already solved (a student who memorised the board must still have to think). At least one question is in the curriculum's exam format when the lecture is for an exam course (its command words: State, Explain, Calculate, Show that, Justify; AP-style data in a small table when the topic suits it).
 Each question must be answerable in 1-4 sentences.
 "beatId" is the id of the beat this question is drawn from (use the ids given to you exactly).
-"rubric.keyPoints": 2-4 short things a correct answer must cover or demonstrate — NOT a list of magic words, a list of ideas.
+"rubric.keyPoints": 1-4 short things a correct answer must cover or demonstrate — NOT a list of magic words, a list of ideas. Every required key point MUST be explicitly requested by the question. Never hide an extra requirement in the rubric or model answer.
 "rubric.modelAnswer": one strong reference answer, 1-4 sentences.
 "rubric.commonMistake": one plausible WRONG answer a confused student might give — helps the grader calibrate and helps remediation later.
 "oralPhrasing": the same question rephrased for being SPOKEN aloud by a live teacher — short, natural, no visual notation, no "see the diagram."
 Output ONLY the JSON object.`;
 
-export const GRADE_ANSWER_RUBRIC_INSTRUCTION = `Judge each answer against its rubric's keyPoints and modelAnswer — not exact wording.
-A correct answer may be phrased completely differently from modelAnswer and still be correct, as long as it substantively covers the keyPoints.
+export const GRADE_ANSWER_RUBRIC_INSTRUCTION = `The question text is the grading contract. Judge whether the student's answer fully and accurately answers exactly what the question asks. Use the rubric and model answer as guidance, never as hidden requirements.
+A correct answer may be phrased completely differently from modelAnswer. It is still correct when it answers every explicitly requested part accurately, even if it omits useful context or rubric details that the question did not ask for.
+If the prompt requests a number of examples, roles, causes, differences, or steps and the student supplies that number accurately, do not require an additional explanation unless the prompt explicitly asks for one.
+Optional enrichment belongs in feedback as "For an even stronger answer..." and must not turn an otherwise complete answer into a wrong one.
 An answer that uses similar words/phrasing to the rubric but misses the actual substance, or that matches "commonMistake", is WRONG.
-Be a fair but genuinely rigorous grader — this is a hard test, not a participation check. A vague, evasive, or empty answer is WRONG.`;
+Mark an answer wrong only for a factual error, contradiction, an explicitly requested part that is missing, or an answer too vague to satisfy the stated task. Be rigorous about those requirements, but do not invent new ones.
+When the question asks the student to EXPLAIN, JUSTIFY or say WHY, credit only an explanation the student actually wrote; a correct result or working from which the reason could be inferred does not earn it — list it in missingKeyPoints.
+A wrong final result (a wrong value, derivative, product, sign or unit) is an error, never just "a part missing": name it in misconception, give method credit in pointsEarned only for the steps that are right.`;
 
 /**
  * WHY, not just what.
@@ -37,10 +42,18 @@ Be a fair but genuinely rigorous grader — this is a hard test, not a participa
  * the whole value of being graded by a model rather than by string matching, and it was being
  * thrown away.
  */
+/**
+ * MARK-SCHEME GRADING. The model judges each marking point (one rubric key point = one mark, the way
+ * an exam mark scheme lists them) and code adds them up: a holistic "pointsEarned" let a lenient
+ * verdict round itself to full marks, and a wrong final answer lose every method mark.
+ */
+export const MARK_SCHEME_INSTRUCTION = `Also return "awarded": one boolean per rubric key point, in the rubric's order — true only when the student's answer itself earns that marking point. Judge each point on its own, the way an examiner ticks a mark scheme: a correct method step earns its mark even when the final answer is wrong, and a correct final answer does not earn an explanation mark the student never wrote. The marks are added up from "awarded".`;
+
 export const GRADE_FEEDBACK_INSTRUCTION = `"feedback" is 1-2 sentences, addressed to the student as "you", explaining WHY the answer was judged the way it was. Never merely restate the verdict.
 
 If CORRECT: name the specific idea they got right, in their own terms where you can — "you correctly said the successor has to come from the right subtree, which is what keeps the ordering intact". If they were right but left something thin, say so in a clause.
-If WRONG: name the specific key point that is missing or the specific thing that is mistaken, and say in one clause why it matters — "you described finding the node but not what replaces it, which is the part that decides whether the tree stays ordered". If the answer was empty, evasive, or unrelated, say that plainly rather than inventing a misconception they did not express.
+If PARTIAL: begin with the accurate core idea, then name only the explicitly requested part that is missing. Do not describe optional elaboration as missing.
+If MISCONCEPTION: name the specific thing that is factually mistaken or contradicted, and say in one clause why it matters. If the answer was empty, evasive, or unrelated, say that plainly rather than inventing a misconception they did not express.
 
 Be concrete about THEIR answer. Never write a sentence that would fit equally well under any other question.`;
 
@@ -63,4 +76,16 @@ export type TestQuestion = {
 
 export type TestBank = { topic: string; questions: TestQuestion[] };
 
-export type TestGradeResult = { id: string; correct: boolean; feedback: string };
+export type TestGradeStatus = "correct" | "partial" | "misconception";
+export type TestGradeResult = {
+  id: string;
+  status: TestGradeStatus;
+  /** Backward-compatible full-credit flag. */
+  correct: boolean;
+  feedback: string;
+  /** Fair marking: optional detail is never silently treated as a lost mark. */
+  pointsEarned: number;
+  pointsAvailable: number;
+  missingKeyPoints: string[];
+  misconception?: string;
+};

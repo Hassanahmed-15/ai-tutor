@@ -1,0 +1,193 @@
+{
+ "id": "uk-nc-computing-ks3-4",
+ "region": "UK",
+ "framework": "National Curriculum in England (2014)",
+ "board": "Department for Education",
+ "qualification": "Secondary",
+ "subject": "Computing",
+ "syllabusCode": null,
+ "gradeSystem": "key-stage",
+ "source": {
+  "urls": [
+   "https://assets.publishing.service.gov.uk/media/5a7cb981ed915d682236228d/SECONDARY_national_curriculum_-_Computing.pdf",
+   "https://www.gov.uk/government/publications/national-curriculum-in-england-computing-programmes-of-study"
+  ],
+  "publisher": "Department for Education",
+  "licence": "Open Government Licence v3.0 (Crown copyright)",
+  "firstExam": "2014"
+ },
+ "grades": [
+  {
+   "grade": "KS3",
+   "units": [
+    {
+     "id": "key-stage-3",
+     "title": "Key stage 3",
+     "topics": [
+      {
+       "id": "computing",
+       "title": "Computing",
+       "subtopics": [
+        {
+         "id": "abstraction-and-algorithms",
+         "title": "Abstraction and algorithms",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Design, use and evaluate computational abstractions that model real-world problems and physical systems."
+          },
+          {
+           "code": null,
+           "text": "Understand key algorithms, such as sorting and searching, and compare alternatives with logical reasoning."
+          }
+         ]
+        },
+        {
+         "id": "programming",
+         "title": "Programming",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Use two or more programming languages, at least one textual, to solve a variety of problems."
+          },
+          {
+           "code": null,
+           "text": "Use data structures like lists, tables or arrays, and design modular programs with procedures or functions."
+          }
+         ]
+        },
+        {
+         "id": "boolean-logic-and-binary",
+         "title": "Boolean logic and binary",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Understand simple Boolean logic (AND, OR, NOT) and its uses in circuits and programming."
+          },
+          {
+           "code": null,
+           "text": "Represent numbers in binary and do simple binary addition and binary-decimal conversion."
+          }
+         ]
+        },
+        {
+         "id": "computer-systems",
+         "title": "Computer systems",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Understand the hardware and software components of computer systems and how they communicate."
+          },
+          {
+           "code": null,
+           "text": "Understand how instructions are stored and executed in a computer."
+          }
+         ]
+        },
+        {
+         "id": "representing-data",
+         "title": "Representing data",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Understand how text, sound and pictures are represented and manipulated as binary digits."
+          }
+         ]
+        },
+        {
+         "id": "creative-digital-projects",
+         "title": "Creative digital projects",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Combine multiple applications across devices in creative projects that collect and analyse data for known users."
+          },
+          {
+           "code": null,
+           "text": "Create, re-use, revise and re-purpose digital artefacts for an audience, considering trustworthiness, design and usability."
+          }
+         ]
+        },
+        {
+         "id": "staying-safe-online",
+         "title": "Staying safe online",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Use technology safely, respectfully, responsibly and securely, protecting online identity and privacy."
+          },
+          {
+           "code": null,
+           "text": "Recognise inappropriate content, contact and conduct, and know how to report concerns."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "KS4",
+   "units": [
+    {
+     "id": "key-stage-4",
+     "title": "Key stage 4",
+     "topics": [
+      {
+       "id": "computing",
+       "title": "Computing",
+       "subtopics": [
+        {
+         "id": "computing-capability",
+         "title": "Computing capability",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Develop capability, creativity and knowledge in computer science, digital media and information technology."
+          },
+          {
+           "code": null,
+           "text": "Develop analytic, problem-solving, design and computational thinking skills."
+          }
+         ]
+        },
+        {
+         "id": "safety-and-technology-change",
+         "title": "Safety and technology change",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Understand how changes in technology affect safety, including new ways to protect online privacy and identity."
+          },
+          {
+           "code": null,
+           "text": "Identify and report a range of concerns."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "build": {
+  "builtAt": "2026-10-14T10:36:36.524Z",
+  "model": "claude-agent",
+  "usd": 0,
+  "expectedCodes": null,
+  "coverage": null,
+  "missingCodes": [],
+  "counts": {
+   "grades": 2,
+   "units": 2,
+   "topics": 2,
+   "subtopics": 9,
+   "outcomes": 17
+  },
+  "warnings": []
+ }
+}

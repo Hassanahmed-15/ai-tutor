@@ -1,0 +1,2706 @@
+{
+ "id": "us-ne-science",
+ "region": "US",
+ "framework": "Nebraska state academic standards: Science",
+ "board": null,
+ "qualification": "K-12",
+ "subject": "Science",
+ "syllabusCode": null,
+ "gradeSystem": "grade",
+ "source": {
+  "urls": [
+   "https://api.commonstandardsproject.com/api/v1/jurisdictions/12FDD9CA15FC49259C2EF4BB13D59D2F",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/E50CBBB14BFE4AF583D97748C4246DE0",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/3907C49CCFDD47EA93B77CFB109FC9A3",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/12077EF5A49D42AAB33F0BBE6E05C81C",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/C6F644C9CB314C8C8690278C60333BE7",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/9CFDE4BA306F4D30BBEFBB3838BCA32E",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/D741B2873F6A46A0A17268212092D1FF",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/71117FBC475F42B9BFC54520325E8DC5",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/078DB3D90D12482E9F60049BDFF360E2",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/762B82A545674F76AD5540241763F915",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/E71D3D48480D45089E16B0E27130F647",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/1F036B1E2DFC45F6865B039D9FEEF789",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/C25488FC849944C3B5E9DA9A0CB279A1",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/85B3B662613745AF9EA52B72CC56DF0D",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/C7EF038BB51A4495ABDF37FE6250E6B7",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/0F1D814F6C4A4D479F82C5FFDE1FE04D",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/E173995CBCB947A59EE07016D9DC8445"
+  ],
+  "publisher": "Nebraska state education agency (machine-readable via Common Standards Project / ASN)",
+  "licence": "CC BY 4.0 US, Common Curriculum, Inc.",
+  "firstExam": "2024"
+ },
+ "grades": [
+  {
+   "grade": "K",
+   "units": [
+    {
+     "id": "forces-and-interactions-pushes-and-pulls",
+     "title": "Forces and Interactions: Pushes and Pulls",
+     "topics": [
+      {
+       "id": "gather-analyze-and-communicate-evidence-of-force",
+       "title": "Gather, analyze, and communicate evidence of forces and their interactions",
+       "subtopics": [
+        {
+         "id": "gather-analyze-and-communicate-evidence-of-force",
+         "title": "Gather, analyze, and communicate evidence of forces and their interactions",
+         "outcomes": [
+          {
+           "code": "SC.K.1.1.a",
+           "text": "Plan and conduct an investigation to compare the effects of different strengths or different directions of pushes and pulls on the motion of an object."
+          },
+          {
+           "code": "SC.K.1.1.b",
+           "text": "Analyze data to determine if a design solution works as intended to change the speed or direction of an object with a push or a pull."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "interdependent-relationships-in-ecosystems-anima",
+     "title": "Interdependent Relationships in Ecosystems: Animals, Plants, and Their Environment",
+     "topics": [
+      {
+       "id": "gather-analyze-and-communicate-evidence-of-inter",
+       "title": "Gather, analyze, and communicate evidence of interdependent relationships in ecosystems",
+       "subtopics": [
+        {
+         "id": "gather-analyze-and-communicate-evidence-of-inter",
+         "title": "Gather, analyze, and communicate evidence of interdependent relationships in ecosystems",
+         "outcomes": [
+          {
+           "code": "SC.K.7.2.a",
+           "text": "Use observations to describe patterns of what plants and animals (including humans) need to survive."
+          },
+          {
+           "code": "SC.K.7.2.b",
+           "text": "Construct an argument supported by evidence for how plants and animals (including humans) can change the environment to meet their needs."
+          },
+          {
+           "code": "SC.K.7.2.c",
+           "text": "Use a model to represent the relationship between the needs of different plants or animals (including humans) and the places they live."
+          },
+          {
+           "code": "SC.K.7.2.d",
+           "text": "Communicate solutions that will increase the positive impact of humans on the land, water, air, and/or other living things in the local environment."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "weather-and-climate",
+     "title": "Weather and Climate",
+     "topics": [
+      {
+       "id": "gather-analyze-and-communicate-evidence-of-weath",
+       "title": "Gather, analyze, and communicate evidence of weather and climate",
+       "subtopics": [
+        {
+         "id": "gather-analyze-and-communicate-evidence-of-weath",
+         "title": "Gather, analyze, and communicate evidence of weather and climate",
+         "outcomes": [
+          {
+           "code": "SC.K.12.3.a",
+           "text": "Use and share observations of local weather conditions to describe patterns over time."
+          },
+          {
+           "code": "SC.K.12.3.b",
+           "text": "Ask questions to obtain information about the purpose of weather forecasting to prepare for, and respond to, severe weather."
+          },
+          {
+           "code": "SC.K.12.3.c",
+           "text": "Make observations to determine the effect of sunlight on Earth’s surface."
+          },
+          {
+           "code": "SC.K.12.3.d",
+           "text": "Use tools and materials to design and build a structure that will reduce the warming effect of sunlight on an area."
+          },
+          {
+           "code": "SC.K.12.3.e",
+           "text": "Ask questions, make observations, and gather information about a situation people want to change to define a simple problem that can be solved through the development of a new or improved object or tool."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "1",
+   "units": [
+    {
+     "id": "waves-light-and-sound",
+     "title": "Waves: Light and Sound",
+     "topics": [
+      {
+       "id": "gather-analyze-and-communicate-evidence-of-light",
+       "title": "Gather, analyze, and communicate evidence of light and sound waves",
+       "subtopics": [
+        {
+         "id": "gather-analyze-and-communicate-evidence-of-light",
+         "title": "Gather, analyze, and communicate evidence of light and sound waves",
+         "outcomes": [
+          {
+           "code": "SC.1.2.1.a",
+           "text": "Plan and conduct investigations to provide evidence that vibrating materials can make sound and that sound can make materials vibrate."
+          },
+          {
+           "code": "SC.1.2.1.b",
+           "text": "Make observations to construct an evidence-based explanation that objects can be seen only when illuminated."
+          },
+          {
+           "code": "SC.1.2.1.c",
+           "text": "Plan and conduct an investigation to determine the effect of placing objects made with different materials in the path of a beam of light."
+          },
+          {
+           "code": "SC.1.2.1.d",
+           "text": "Use tools and materials to design and build a device that uses light or sound to solve the problem of communicating over a distance."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "structure-function-and-information-processing",
+     "title": "Structure, Function, and Information Processing",
+     "topics": [
+      {
+       "id": "gather-analyze-and-communicate-evidence-to-show-",
+       "title": "Gather, analyze, and communicate evidence to show the relationship between structure and function in living things",
+       "subtopics": [
+        {
+         "id": "gather-analyze-and-communicate-evidence-to-show-",
+         "title": "Gather, analyze, and communicate evidence to show the relationship between structure and function in living things",
+         "outcomes": [
+          {
+           "code": "SC.1.6.2.a",
+           "text": "Use materials to design a solution to a human problem by mimicking how plants and/or animals use their external parts to help them survive, grow, and meet their needs."
+          },
+          {
+           "code": "SC.1.6.2.b",
+           "text": "Develop a simple sketch, drawing, or physical model to illustrate how the shape of an object helps it function as needed to solve a given problem."
+          },
+          {
+           "code": "SC.1.6.2.c",
+           "text": "Read grade appropriate texts and use media to determine patterns in a behavior of parents and offspring that help offspring survive."
+          },
+          {
+           "code": "SC.1.6.2.d",
+           "text": "Make observations to construct an evidence-based account that young plants and animals are like, but not exactly like, their parents."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "space-systems-patterns-and-cycles",
+     "title": "Space Systems: Patterns and Cycles",
+     "topics": [
+      {
+       "id": "gather-analyze-and-communicate-evidence-of-patte",
+       "title": "Gather, analyze, and communicate evidence of patterns and cycles of space systems",
+       "subtopics": [
+        {
+         "id": "gather-analyze-and-communicate-evidence-of-patte",
+         "title": "Gather, analyze, and communicate evidence of patterns and cycles of space systems",
+         "outcomes": [
+          {
+           "code": "SC.1.11.3.a",
+           "text": "Use observations of the sun, moon, and stars to describe patterns that can be predicted."
+          },
+          {
+           "code": "SC.1.11.3.b",
+           "text": "Make observations at different times of the year to relate the amount of daylight to the time of year."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "2",
+   "units": [
+    {
+     "id": "structure-and-properties-of-matter",
+     "title": "Structure and Properties of Matter",
+     "topics": [
+      {
+       "id": "gather-analyze-and-communicate-evidence-of-the-s",
+       "title": "Gather, analyze, and communicate evidence of the structure, properties, and interactions of matter",
+       "subtopics": [
+        {
+         "id": "gather-analyze-and-communicate-evidence-of-the-s",
+         "title": "Gather, analyze, and communicate evidence of the structure, properties, and interactions of matter",
+         "outcomes": [
+          {
+           "code": "SC.2.3.1.a",
+           "text": "Plan and conduct an investigation to describe and classify different kinds of materials by their observable properties."
+          },
+          {
+           "code": "SC.2.3.1.b",
+           "text": "Analyze data obtained from testing different materials to determine which materials have the properties that are best suited for an intended purpose."
+          },
+          {
+           "code": "SC.2.3.1.c",
+           "text": "Analyze data from tests of two objects, designed to solve the same problem, to compare the strengths and weaknesses based on the properties."
+          },
+          {
+           "code": "SC.2.3.1.d",
+           "text": "Make observations to construct an evidence-based account of how an object made of a small set of pieces can be disassembled and made into a new object."
+          },
+          {
+           "code": "SC.2.3.1.e",
+           "text": "Construct an argument with evidence that some changes caused by heating or cooling can be reversed and some cannot."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "interdependent-relationships-in-ecosystems",
+     "title": "Interdependent Relationships in Ecosystems",
+     "topics": [
+      {
+       "id": "gather-analyze-and-communicate-evidence-of-inter",
+       "title": "Gather, analyze, and communicate evidence of interdependent relationships in ecosystems",
+       "subtopics": [
+        {
+         "id": "gather-analyze-and-communicate-evidence-of-inter",
+         "title": "Gather, analyze, and communicate evidence of interdependent relationships in ecosystems",
+         "outcomes": [
+          {
+           "code": "SC.2.7.2.a",
+           "text": "Plan and conduct an investigation to determine if plants need sunlight and water to grow."
+          },
+          {
+           "code": "SC.2.7.2.b",
+           "text": "Develop a simple model that mimics the function of an animal in dispersing seeds or pollinating plants."
+          },
+          {
+           "code": "SC.2.7.2.c",
+           "text": "Make observations of plants and animals to compare the diversity of life in different habitats."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "earth-s-systems-processes-that-shape-the-earth",
+     "title": "Earth’s Systems: Processes That Shape the Earth",
+     "topics": [
+      {
+       "id": "gather-analyze-and-communicate-evidence-of-the-p",
+       "title": "Gather, analyze, and communicate evidence of the processes that shape the earth",
+       "subtopics": [
+        {
+         "id": "gather-analyze-and-communicate-evidence-of-the-p",
+         "title": "Gather, analyze, and communicate evidence of the processes that shape the earth",
+         "outcomes": [
+          {
+           "code": "SC.2.13.3.a",
+           "text": "Use information from several sources to provide evidence that Earth events can occur quickly or slowly."
+          },
+          {
+           "code": "SC.2.13.3.b",
+           "text": "Compare multiple solutions designed to slow or prevent wind or water from changing the shape of the land."
+          },
+          {
+           "code": "SC.2.13.3.c",
+           "text": "Develop a model to represent the shapes and kinds of land and bodies of water in an area."
+          },
+          {
+           "code": "SC.2.13.3.d",
+           "text": "Obtain information to identify where water is found on Earth and that it can be solid or liquid."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "3",
+   "units": [
+    {
+     "id": "forces-and-interactions-motion-and-stability-sc-",
+     "title": "Forces and Interactions: Motion and Stability SC.3.1.1 Gather, analyze, and communicate evidence of",
+     "topics": [
+      {
+       "id": "gather-analyze-and-communicate-evidence-of-force",
+       "title": "Gather, analyze, and communicate evidence of forces and their interactions",
+       "subtopics": [
+        {
+         "id": "gather-analyze-and-communicate-evidence-of-force",
+         "title": "Gather, analyze, and communicate evidence of forces and their interactions",
+         "outcomes": [
+          {
+           "code": "SC.3.1.1.a",
+           "text": "Plan and conduct an investigation to provide evidence of the effects of balanced and unbalanced forces on the motion of an object."
+          },
+          {
+           "code": "SC.3.1.1.b",
+           "text": "Make observations and/or measurements of an object’s motion to provide evidence that a pattern can be used to predict future motion."
+          },
+          {
+           "code": "SC.3.1.1.c",
+           "text": "Ask questions to determine cause and effect relationships of electrical or magnetic interactions between two objects not in contact with each other."
+          },
+          {
+           "code": "SC.3.1.1.d",
+           "text": "Define a simple design problem that can be solved by applying scientific ideas about magnets."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "interdependent-relationships-in-ecosystems",
+     "title": "Interdependent Relationships in Ecosystems",
+     "topics": [
+      {
+       "id": "gather-analyze-and-communicate-evidence-of-the-i",
+       "title": "Gather, analyze, and communicate evidence of the interdependent relations in ecosystems",
+       "subtopics": [
+        {
+         "id": "gather-analyze-and-communicate-evidence-of-the-i",
+         "title": "Gather, analyze, and communicate evidence of the interdependent relations in ecosystems",
+         "outcomes": [
+          {
+           "code": "SC.3.7.2.a",
+           "text": "Construct an argument that some animals form groups that help members survive."
+          },
+          {
+           "code": "SC.3.7.2.b",
+           "text": "Analyze and interpret data from fossils to provide evidence of the organisms and environments in which they lived long ago."
+          },
+          {
+           "code": "SC.3.7.2.c",
+           "text": "Construct an argument with evidence that in a particular habitat some organisms can survive well, some survive less well, and some cannot survive at all."
+          },
+          {
+           "code": "SC.3.7.2.d",
+           "text": "Make a claim about the merit of a solution to a problem caused when the environment changes and the types of plants and animals that live there may change."
+          },
+          {
+           "code": "SC.3.7.2.e",
+           "text": "Generate and compare multiple possible solutions to a problem based on how well each is likely to meet the criteria and constraints of the problem."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "inheritance-and-variation-life-cycles-and-traits",
+     "title": "Inheritance and Variation: Life Cycles and Traits",
+     "topics": [
+      {
+       "id": "gather-and-analyze-data-to-communicate-an-unders",
+       "title": "Gather and analyze data to communicate an understanding of inheritance and variation of traits through life cycles and environmental influences",
+       "subtopics": [
+        {
+         "id": "gather-and-analyze-data-to-communicate-an-unders",
+         "title": "Gather and analyze data to communicate an understanding of inheritance and variation of traits through life cycles and environmental influences",
+         "outcomes": [
+          {
+           "code": "SC.3.9.3.a",
+           "text": "Develop models to describe that organisms have unique and diverse life cycles but all have in common birth, growth, reproduction, and death."
+          },
+          {
+           "code": "SC.3.9.3.b",
+           "text": "Analyze and interpret data to provide evidence that plants and animals have traits inherited from parents and that variation of these traits exists in a group of similar organisms."
+          },
+          {
+           "code": "SC.3.9.3.c",
+           "text": "Use evidence to support the explanation that traits can be influenced by the environment."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "weather-and-climate",
+     "title": "Weather and Climate",
+     "topics": [
+      {
+       "id": "gather-and-analyze-data-to-communicate-an-unders",
+       "title": "Gather and analyze data to communicate an understanding of weather and climate",
+       "subtopics": [
+        {
+         "id": "gather-and-analyze-data-to-communicate-an-unders",
+         "title": "Gather and analyze data to communicate an understanding of weather and climate",
+         "outcomes": [
+          {
+           "code": "SC.3.12.4.a",
+           "text": "Represent data in table, pictograph, and bar graph displays to describe typical weather conditions expected during a particular season."
+          },
+          {
+           "code": "SC.3.12.4.b",
+           "text": "Obtain and combine information to describe climates in different regions of the world."
+          },
+          {
+           "code": "SC.3.12.4.c",
+           "text": "Make a claim about the merit of a design solution that reduces the impacts of a weather-related hazard."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "4",
+   "units": [
+    {
+     "id": "waves-waves-and-information",
+     "title": "Waves: Waves and Information",
+     "topics": [
+      {
+       "id": "gather-analyze-and-communicate-evidence-of-waves",
+       "title": "Gather, analyze, and communicate evidence of waves and the information they transfer",
+       "subtopics": [
+        {
+         "id": "gather-analyze-and-communicate-evidence-of-waves",
+         "title": "Gather, analyze, and communicate evidence of waves and the information they transfer",
+         "outcomes": [
+          {
+           "code": "SC.4.2.1.a",
+           "text": "Develop a model of waves to describe patterns in terms of amplitude and wavelength and that waves can cause objects to move."
+          },
+          {
+           "code": "SC.4.2.1.b",
+           "text": "Generate and compare multiple solutions that use patterns to transfer information."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "energy-conservation-and-transfer",
+     "title": "Energy: Conservation and Transfer",
+     "topics": [
+      {
+       "id": "gather-analyze-and-communicate-evidence-of-energ",
+       "title": "Gather, analyze and communicate evidence of energy conservation and transfer",
+       "subtopics": [
+        {
+         "id": "gather-analyze-and-communicate-evidence-of-energ",
+         "title": "Gather, analyze and communicate evidence of energy conservation and transfer",
+         "outcomes": [
+          {
+           "code": "SC.4.4.2.a",
+           "text": "Use evidence to construct an explanation relating the speed of an object to the energy of that object."
+          },
+          {
+           "code": "SC.4.4.2.b",
+           "text": "Make observations to provide evidence that energy can be transferred from place to place by sound, light, heat, and electrical currents."
+          },
+          {
+           "code": "SC.4.4.2.c",
+           "text": "Ask questions and predict outcomes about the changes in energy that occur when objects collide."
+          },
+          {
+           "code": "SC.4.4.2.d",
+           "text": "Apply scientific ideas to design, test, and refine a device that converts energy from one form to another."
+          },
+          {
+           "code": "SC.4.4.2.e",
+           "text": "Plan and carry out fair tests in which variables are controlled and failure points are considered to identify aspects of a model or prototype that can be improved."
+          },
+          {
+           "code": "SC.4.4.2.f",
+           "text": "Obtain and combine information to describe that energy and fuels are derived from natural resources and that their uses affect the environment."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "structure-function-and-information-processing",
+     "title": "Structure, Function, and Information Processing",
+     "topics": [
+      {
+       "id": "gather-and-analyze-data-to-communicate-an-unders",
+       "title": "Gather and analyze data to communicate an understanding of structure, function and information processing of living things",
+       "subtopics": [
+        {
+         "id": "gather-and-analyze-data-to-communicate-an-unders",
+         "title": "Gather and analyze data to communicate an understanding of structure, function and information processing of living things",
+         "outcomes": [
+          {
+           "code": "SC.4.6.3.a",
+           "text": "Develop a model to describe that light reflecting from objects and entering the eyes allows objects to be seen."
+          },
+          {
+           "code": "SC.4.6.3.b",
+           "text": "Construct an argument that plants and animals have internal and external structures that function to support survival, growth, behavior, and reproduction."
+          },
+          {
+           "code": "SC.4.6.3.c",
+           "text": "Use a model to describe that animals receive different types of information through their senses, process the information in their brain, and respond to the information."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "earth-s-systems-processes-that-shape-the-earth",
+     "title": "Earth’s Systems: Processes That Shape the Earth",
+     "topics": [
+      {
+       "id": "gather-and-analyze-data-to-communicate-an-unders",
+       "title": "Gather and analyze data to communicate an understanding of Earth’s systems and processes that shape the Earth",
+       "subtopics": [
+        {
+         "id": "gather-and-analyze-data-to-communicate-an-unders",
+         "title": "Gather and analyze data to communicate an understanding of Earth’s systems and processes that shape the Earth",
+         "outcomes": [
+          {
+           "code": "SC.4.13.4.a",
+           "text": "Identify evidence from patterns in rock formations and fossils in rock layers to support an explanation for changes in a landscape over time."
+          },
+          {
+           "code": "SC.4.13.4.b",
+           "text": "Make observations and/or measurements to provide evidence of the effects of weathering or the rate of erosion by water, ice, wind, or vegetation."
+          },
+          {
+           "code": "SC.4.13.4.c",
+           "text": "Analyze and interpret data from maps to describe patterns of Earth’s features."
+          },
+          {
+           "code": "SC.4.13.4.d",
+           "text": "Generate and compare multiple solutions to reduce the impacts of natural Earth processes on humans."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "5",
+   "units": [
+    {
+     "id": "structure-and-properties-of-matter",
+     "title": "Structure and Properties of Matter",
+     "topics": [
+      {
+       "id": "gather-analyze-and-communicate-evidence-of-struc",
+       "title": "Gather, analyze, and communicate evidence of structure and properties of matter",
+       "subtopics": [
+        {
+         "id": "gather-analyze-and-communicate-evidence-of-struc",
+         "title": "Gather, analyze, and communicate evidence of structure and properties of matter",
+         "outcomes": [
+          {
+           "code": "SC.5.3.1.a",
+           "text": "Develop a model to describe that matter is made of particles too small to be seen."
+          },
+          {
+           "code": "SC.5.3.1.b",
+           "text": "Measure and graph quantities to provide evidence that regardless of the type of change that occurs when heating, cooling, or mixing substances, the total weight of matter is conserved."
+          },
+          {
+           "code": "SC.5.3.1.c",
+           "text": "Make observations and measurements to identify materials based on their properties."
+          },
+          {
+           "code": "SC.5.3.1.d",
+           "text": "Conduct an investigation to determine whether the mixing of two or more substances results in new substances."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "matter-and-energy-in-organisms-and-ecosystems",
+     "title": "Matter and Energy in Organisms and Ecosystems",
+     "topics": [
+      {
+       "id": "gather-and-analyze-data-to-communicate-understan",
+       "title": "Gather and analyze data to communicate understanding of matter and energy in organisms and ecosystems",
+       "subtopics": [
+        {
+         "id": "gather-and-analyze-data-to-communicate-understan",
+         "title": "Gather and analyze data to communicate understanding of matter and energy in organisms and ecosystems",
+         "outcomes": [
+          {
+           "code": "SC.5.8.2.a",
+           "text": "Use models to describe that energy in animals’ food (used for body repair, growth, and motion and to maintain body warmth) was once energy from the sun."
+          },
+          {
+           "code": "SC.5.8.2.b",
+           "text": "Support an argument that plants get the materials they need for growth chiefly from air and water."
+          },
+          {
+           "code": "SC.5.8.2.c",
+           "text": "Develop a model to describe the movement of matter among plants, animals, decomposers, and the environment."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "space-systems-earth-s-stars-and-solar-system",
+     "title": "Space Systems: Earth’s Stars and Solar System",
+     "topics": [
+      {
+       "id": "gather-and-analyze-data-to-communicate-understan",
+       "title": "Gather and analyze data to communicate understanding of space systems: Earth’s stars and solar system",
+       "subtopics": [
+        {
+         "id": "gather-and-analyze-data-to-communicate-understan",
+         "title": "Gather and analyze data to communicate understanding of space systems: Earth’s stars and solar system",
+         "outcomes": [
+          {
+           "code": "SC.5.11.3.a",
+           "text": "Support an argument that the gravitational force exerted by Earth on objects is directed down toward Earth’s center."
+          },
+          {
+           "code": "SC.5.11.3.b",
+           "text": "Support an argument that differences in the apparent brightness of the sun compared to other stars is due to their relative distances from Earth."
+          },
+          {
+           "code": "SC.5.11.3.c",
+           "text": "Represent data in graphical displays to reveal patterns of daily changes in the length and direction of shadows, length of day and night, and the seasonal appearance of some stars in the night sky."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "earth-s-systems",
+     "title": "Earth’s Systems",
+     "topics": [
+      {
+       "id": "gather-and-analyze-data-to-communicate-understan",
+       "title": "Gather and analyze data to communicate understanding of Earth’s systems",
+       "subtopics": [
+        {
+         "id": "gather-and-analyze-data-to-communicate-understan",
+         "title": "Gather and analyze data to communicate understanding of Earth’s systems",
+         "outcomes": [
+          {
+           "code": "SC.5.13.4.a",
+           "text": "Develop a model using an example to describe ways the geosphere, biosphere, hydrosphere, and/or atmosphere interact."
+          },
+          {
+           "code": "SC.5.13.4.b",
+           "text": "Describe and graph the amounts of salt water and fresh water in various reservoirs to provide evidence about the distribution of water on Earth."
+          },
+          {
+           "code": "SC.5.13.4.c",
+           "text": "Obtain and combine information about ways individual communities use science ideas to protect the Earth’s resources and environment."
+          },
+          {
+           "code": "SC.5.13.4.d",
+           "text": "Define a simple design problem that can be solved by applying scientific ideas about the conservation of fresh water on Earth."
+          },
+          {
+           "code": "SC.5.13.4.e",
+           "text": "Define a simple design problem reflecting a need or a want that includes specified criteria for success and constraints on materials, time, or cost."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "6",
+   "units": [
+    {
+     "id": "energy",
+     "title": "Energy",
+     "topics": [
+      {
+       "id": "gather-analyze-and-communicate-evidence-of-energ",
+       "title": "Gather, analyze, and communicate evidence of energy",
+       "subtopics": [
+        {
+         "id": "gather-analyze-and-communicate-evidence-of-energ",
+         "title": "Gather, analyze, and communicate evidence of energy",
+         "outcomes": [
+          {
+           "code": "SC.6.4.1.a",
+           "text": "Apply scientific principles to design, construct, and test a device that either minimizes or maximizes thermal energy transfer."
+          },
+          {
+           "code": "SC.6.4.1.b",
+           "text": "Define the criteria and constraints of a design problem with sufficient precision to ensure a successful solution, taking into account relevant scientific principle and potential impacts on people and the natural environment that may limit possible solutions."
+          },
+          {
+           "code": "SC.6.4.1.c",
+           "text": "Plan an investigation to determine the relationships among the energy transferred, type of matter, mass, and change in average kinetic energy of particles as measured by the temperature of the sample."
+          },
+          {
+           "code": "SC.6.4.1.d",
+           "text": "Construct, use, and present arguments to support the claim that when kinetic energy of an object changes, energy is transferred to or from the object."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "structure-and-function-and-information-processin",
+     "title": "Structure and Function and Information Processing",
+     "topics": [
+      {
+       "id": "gather-analyze-and-communicate-evidence-of-the-r",
+       "title": "Gather, analyze, and communicate evidence of the relationship between structure and function in living things",
+       "subtopics": [
+        {
+         "id": "gather-analyze-and-communicate-evidence-of-the-r",
+         "title": "Gather, analyze, and communicate evidence of the relationship between structure and function in living things",
+         "outcomes": [
+          {
+           "code": "SC.6.6.2.a",
+           "text": "Conduct an investigation to provide evidence that living things are made of cells; either one cell or many varied cells."
+          },
+          {
+           "code": "SC.6.6.2.b",
+           "text": "Develop and use a model to describe the function of a cell as a whole and ways parts of a cell contribute to the function."
+          },
+          {
+           "code": "SC.6.6.2.c",
+           "text": "Use argument supported by evidence for how the body is a system of interacting subsystems composed of groups of cells."
+          },
+          {
+           "code": "SC.6.6.2.d",
+           "text": "Gather and synthesize information that sensory receptors respond to stimuli by sending messages to the brain for immediate behavior or stored as memories."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "growth-development-and-reproduction-of-organisms",
+     "title": "Growth, Development, and Reproduction of Organisms",
+     "topics": [
+      {
+       "id": "gather-analyze-and-communicate-evidence-of-the-i",
+       "title": "Gather, analyze, and communicate evidence of the inheritance and variation of traits",
+       "subtopics": [
+        {
+         "id": "gather-analyze-and-communicate-evidence-of-the-i",
+         "title": "Gather, analyze, and communicate evidence of the inheritance and variation of traits",
+         "outcomes": [
+          {
+           "code": "SC.6.9.3.a",
+           "text": "Construct an argument based on evidence for how plant and animal adaptations affect the probability of successful reproduction."
+          },
+          {
+           "code": "SC.6.9.3.b",
+           "text": "Construct a scientific explanation based on evidence for how environmental and genetic factors influence the growth of organisms."
+          },
+          {
+           "code": "SC.6.9.3.c",
+           "text": "Develop and use a model to describe why asexual reproduction results in offspring with identical genetic information and sexual reproduction results in offspring with genetic variation."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "weather-and-climate",
+     "title": "Weather and Climate",
+     "topics": [
+      {
+       "id": "gather-analyze-and-communicate-evidence-of-facto",
+       "title": "Gather, analyze, and communicate evidence of factors and interactions that affect weather and climate",
+       "subtopics": [
+        {
+         "id": "gather-analyze-and-communicate-evidence-of-facto",
+         "title": "Gather, analyze, and communicate evidence of factors and interactions that affect weather and climate",
+         "outcomes": [
+          {
+           "code": "SC.6.12.4.a",
+           "text": "Collect data to provide evidence for how the motions and complex interactions of air masses result in changes in weather conditions."
+          },
+          {
+           "code": "SC.6.12.4.b",
+           "text": "Develop and use a model to describe how unequal heating and rotation of the Earth cause patterns of atmospheric and oceanic circulation that determine regional climates."
+          },
+          {
+           "code": "SC.6.12.4.c",
+           "text": "Ask questions to clarify evidence of the factors that have caused the change in global temperatures over thousands of years."
+          },
+          {
+           "code": "SC.6.12.4.d",
+           "text": "Analyze and interpret data on weather and climate to forecast future catastrophic events and inform the development of technologies to mitigate their effect."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "earth-s-systems",
+     "title": "Earth’s Systems",
+     "topics": [
+      {
+       "id": "gather-analyze-and-communicate-evidence-of-the-f",
+       "title": "Gather, analyze, and communicate evidence of the flow of energy and cycling of matter associated with Earth’s materials and processes",
+       "subtopics": [
+        {
+         "id": "gather-analyze-and-communicate-evidence-of-the-f",
+         "title": "Gather, analyze, and communicate evidence of the flow of energy and cycling of matter associated with Earth’s materials and processes",
+         "outcomes": [
+          {
+           "code": "SC.6.13.5.a",
+           "text": "Develop a model to describe how the water cycle is driven by the sun’s energy and the force of gravity."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "7",
+   "units": [
+    {
+     "id": "structure-and-properties-of-matter",
+     "title": "Structure and Properties of Matter",
+     "topics": [
+      {
+       "id": "gather-analyze-and-communicate-evidence-of-the-s",
+       "title": "Gather, analyze, and communicate evidence of the structure, properties, and interactions of matter",
+       "subtopics": [
+        {
+         "id": "gather-analyze-and-communicate-evidence-of-the-s",
+         "title": "Gather, analyze, and communicate evidence of the structure, properties, and interactions of matter",
+         "outcomes": [
+          {
+           "code": "SC.7.3.1.a",
+           "text": "Develop models to describe the atomic composition of simple molecules."
+          },
+          {
+           "code": "SC.7.3.1.b",
+           "text": "Gather and make sense of information to describe how natural materials may undergo chemical reactions to create new synthetic materials and have an impact on society."
+          },
+          {
+           "code": "SC.7.3.1.c",
+           "text": "Develop a model that predicts and describes changes in particle motion, temperature, and state of a pure substance when thermal energy is added or removed."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "chemical-reactions",
+     "title": "Chemical Reactions",
+     "topics": [
+      {
+       "id": "gather-analyze-and-communicate-evidence-of-chemi",
+       "title": "Gather, analyze, and communicate evidence of chemical reactions",
+       "subtopics": [
+        {
+         "id": "gather-analyze-and-communicate-evidence-of-chemi",
+         "title": "Gather, analyze, and communicate evidence of chemical reactions",
+         "outcomes": [
+          {
+           "code": "SC.7.5.2.a",
+           "text": "Analyze and interpret data on the properties of substances before and after the substances interact to determine if a chemical reaction has occurred."
+          },
+          {
+           "code": "SC.7.5.2.b",
+           "text": "Develop and use a model to describe how the total number of atoms does not change in a chemical reaction and thus mass is conserved."
+          },
+          {
+           "code": "SC.7.5.2.c",
+           "text": "Undertake a design project to construct, test, and modify a device that either releases or absorbs thermal energy by chemical processes."
+          },
+          {
+           "code": "SC.7.5.2.d",
+           "text": "Analyze data from tests to determine similarities and differences among several design solutions to identify the best characteristics of each that can be combined into a new solution to better meet the criteria for success."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "interdependent-relationships-in-ecosystems",
+     "title": "Interdependent Relationships in Ecosystems",
+     "topics": [
+      {
+       "id": "gather-analyze-and-communicate-evidence-of-inter",
+       "title": "Gather, analyze, and communicate evidence of interdependent relationships in ecosystems",
+       "subtopics": [
+        {
+         "id": "gather-analyze-and-communicate-evidence-of-inter",
+         "title": "Gather, analyze, and communicate evidence of interdependent relationships in ecosystems",
+         "outcomes": [
+          {
+           "code": "SC.7.7.3.a",
+           "text": "Construct an explanation that predicts patterns of interactions among organisms across multiple ecosystems."
+          },
+          {
+           "code": "SC.7.7.3.b",
+           "text": "Develop and use a model to describe how stable ecosystems maintain biodiversity and ecosystem services."
+          },
+          {
+           "code": "SC.7.7.3.c",
+           "text": "Evaluate competing design solutions using a systematic process to determine how well they meet the criteria and constraints of the problem."
+          },
+          {
+           "code": "SC.7.7.3.d",
+           "text": "Apply scientific principles to design a method for monitoring and increasing positive human impact on the environment."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "matter-and-energy-in-organisms-and-ecosystems",
+     "title": "Matter and Energy in Organisms and Ecosystems",
+     "topics": [
+      {
+       "id": "gather-analyze-and-communicate-evidence-of-the-f",
+       "title": "Gather, analyze, and communicate evidence of the flow of energy and cycling of matter in organisms and ecosystems",
+       "subtopics": [
+        {
+         "id": "gather-analyze-and-communicate-evidence-of-the-f",
+         "title": "Gather, analyze, and communicate evidence of the flow of energy and cycling of matter in organisms and ecosystems",
+         "outcomes": [
+          {
+           "code": "SC.7.8.4.a",
+           "text": "Construct a scientific explanation based on evidence for the role of photosynthesis in the cycling of matter and flow of energy into and out of organisms."
+          },
+          {
+           "code": "SC.7.8.4.b",
+           "text": "Develop a model to describe how food is rearranged through chemical reactions forming new molecules that support growth and/or release energy as matter moves through an organism."
+          },
+          {
+           "code": "SC.7.8.4.c",
+           "text": "Analyze and interpret data to provide evidence for the effects of resource availability on organisms and populations of organisms in an ecosystem."
+          },
+          {
+           "code": "SC.7.8.4.d",
+           "text": "Develop a model to describe the cycling of matter and flow of energy among living and nonliving parts of an ecosystem."
+          },
+          {
+           "code": "SC.7.8.4.e",
+           "text": "Construct an argument supported by evidence that changes to physical or biological components of an ecosystem affect populations."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "earth-s-systems",
+     "title": "Earth’s Systems",
+     "topics": [
+      {
+       "id": "gather-analyze-and-communicate-evidence-of-the-f",
+       "title": "Gather, analyze, and communicate evidence of the flow of energy and cycling of matter associated with Earth’s materials and processes",
+       "subtopics": [
+        {
+         "id": "gather-analyze-and-communicate-evidence-of-the-f",
+         "title": "Gather, analyze, and communicate evidence of the flow of energy and cycling of matter associated with Earth’s materials and processes",
+         "outcomes": [
+          {
+           "code": "SC.7.13.5.a",
+           "text": "Develop a model to describe the cycling of Earth’s materials and the flow of energy that drives this process."
+          },
+          {
+           "code": "SC.7.13.5.b",
+           "text": "Construct a scientific explanation based on evidence for how the uneven distributions of Earth’s mineral, energy, and groundwater resources are the result of past and current geoscience processes."
+          },
+          {
+           "code": "SC.7.13.5.c",
+           "text": "Construct an argument supported by evidence for how increases in human population and per-capita consumption of natural resources impact Earth’s systems."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "history-of-earth",
+     "title": "History of Earth",
+     "topics": [
+      {
+       "id": "gather-analyze-and-communicate-evidence-to-expla",
+       "title": "Gather, analyze, and communicate evidence to explain Earth’s history",
+       "subtopics": [
+        {
+         "id": "gather-analyze-and-communicate-evidence-to-expla",
+         "title": "Gather, analyze, and communicate evidence to explain Earth’s history",
+         "outcomes": [
+          {
+           "code": "SC.7.14.6.a",
+           "text": "Construct an explanation based on evidence for how geoscience processes have changed Earth’s surface at varying time and spatial scales."
+          },
+          {
+           "code": "SC.7.14.6.b",
+           "text": "Analyze and interpret data on the distribution of fossils and rocks, continental shapes, and seafloor structures to provide evidence of past plate motions."
+          },
+          {
+           "code": "SC.7.14.6.c",
+           "text": "Analyze and interpret data on geologic hazards to forecast future catastrophic events and inform the development of technologies to mitigate their effects."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "8",
+   "units": [
+    {
+     "id": "forces-and-interactions",
+     "title": "Forces and Interactions",
+     "topics": [
+      {
+       "id": "gather-analyze-and-communicate-evidence-of-force",
+       "title": "Gather, analyze, and communicate evidence of forces and interactions",
+       "subtopics": [
+        {
+         "id": "gather-analyze-and-communicate-evidence-of-force",
+         "title": "Gather, analyze, and communicate evidence of forces and interactions",
+         "outcomes": [
+          {
+           "code": "SC.8.1.1.a",
+           "text": "Apply Newton’s Third Law to design a solution to a problem involving the motion of two colliding objects."
+          },
+          {
+           "code": "SC.8.1.1.b",
+           "text": "Develop a model to generate data for iterative testing and modification of a proposed object, tool, or process such that an optimal design can be achieved."
+          },
+          {
+           "code": "SC.8.1.1.c",
+           "text": "Plan an investigation to provide evidence of Newton’s Laws that the change in an object’s motion depends on the sum of the forces on the object and the mass of the object."
+          },
+          {
+           "code": "SC.8.1.1.d",
+           "text": "Ask questions about data to determine the factors that affect the strength of electrical and magnetic forces."
+          },
+          {
+           "code": "SC.8.1.1.e",
+           "text": "Construct and present arguments using evidence to support the claim that gravitational interactions are attractive and depend on both the mass and distance of interacting objects."
+          },
+          {
+           "code": "SC.8.1.1.f",
+           "text": "Conduct an investigation and evaluate the experimental design to provide evidence that electrical and magnetic fields exist between objects exerting forces on each other even though the objects are not in contact."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "waves-and-electromagnetic-radiation",
+     "title": "Waves and Electromagnetic Radiation",
+     "topics": [
+      {
+       "id": "gather-analyze-and-communicate-evidence-of-waves",
+       "title": "Gather, analyze, and communicate evidence of waves and electromagnetic radiation",
+       "subtopics": [
+        {
+         "id": "gather-analyze-and-communicate-evidence-of-waves",
+         "title": "Gather, analyze, and communicate evidence of waves and electromagnetic radiation",
+         "outcomes": [
+          {
+           "code": "SC.8.2.2.a",
+           "text": "Use mathematical representations to describe a simple model for waves that includes how the amplitude of a wave is related to the energy in a wave."
+          },
+          {
+           "code": "SC.8.2.2.b",
+           "text": "Develop and use a model to describe that Light and mechanical waves are reflected, absorbed, or transmitted through various materials."
+          },
+          {
+           "code": "SC.8.2.2.c",
+           "text": "Gather and make sense of information to support the claim that the structure of analog and digital signals allows for encoding and transmission of information."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "energy",
+     "title": "Energy",
+     "topics": [
+      {
+       "id": "gather-analyze-and-communicate-evidence-of-energ",
+       "title": "Gather, analyze, and communicate evidence of energy",
+       "subtopics": [
+        {
+         "id": "gather-analyze-and-communicate-evidence-of-energ",
+         "title": "Gather, analyze, and communicate evidence of energy",
+         "outcomes": [
+          {
+           "code": "SC.8.4.3.a",
+           "text": "Construct and interpret graphical displays of data to describe the relationships of kinetic energy to the mass and speed of an object."
+          },
+          {
+           "code": "SC.8.4.3.b",
+           "text": "Develop a model to describe that when the arrangement of objects interacting at a distance changes, then different amounts of potential energy are stored in the system."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "heredity-inheritance-and-variation-of-traits",
+     "title": "Heredity: Inheritance and Variation of Traits",
+     "topics": [
+      {
+       "id": "gather-analyze-and-communicate-evidence-of-the-i",
+       "title": "Gather, analyze, and communicate evidence of the inheritance and variation of traits",
+       "subtopics": [
+        {
+         "id": "gather-analyze-and-communicate-evidence-of-the-i",
+         "title": "Gather, analyze, and communicate evidence of the inheritance and variation of traits",
+         "outcomes": [
+          {
+           "code": "SC.8.9.4.a",
+           "text": "Develop and use a model to describe why structural changes to genes (mutations) may result in harmful, beneficial, or neutral effects to structure and function of organisms."
+          },
+          {
+           "code": "SC.8.9.4.b",
+           "text": "Gather and synthesize information about technologies that have changed the way humans influence inheritance of desired traits in organisms."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "natural-selection-and-adaptations",
+     "title": "Natural Selection and Adaptations",
+     "topics": [
+      {
+       "id": "gather-analyze-and-communicate-evidence-of-natur",
+       "title": "Gather, analyze, and communicate evidence of natural selection and adaptations",
+       "subtopics": [
+        {
+         "id": "gather-analyze-and-communicate-evidence-of-natur",
+         "title": "Gather, analyze, and communicate evidence of natural selection and adaptations",
+         "outcomes": [
+          {
+           "code": "SC.8.10.5.a",
+           "text": "Analyze and interpret data for patterns in the fossil record that document the existence, diversity, extinction, and change of life forms throughout the history of life on Earth under the assumption that natural laws operate today as in the past."
+          },
+          {
+           "code": "SC.8.10.5.b",
+           "text": "Apply scientific ideas to construct an explanation for the anatomical similarities and differences among and between modern and fossil organisms to infer evolutionary relationships."
+          },
+          {
+           "code": "SC.8.10.5.c",
+           "text": "Construct an explanation based on evidence that describes how genetic variations of traits in a population increase some individuals’ probability of surviving and reproducing in a specific environment."
+          },
+          {
+           "code": "SC.8.10.5.d",
+           "text": "Use mathematical representations to support explanations of how natural selection may lead to increases and decreases of specific traits in populations over time."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "space-systems",
+     "title": "Space Systems",
+     "topics": [
+      {
+       "id": "gather-analyze-and-communicate-evidence-of-the-i",
+       "title": "Gather, analyze, and communicate evidence of the interactions among bodies in space",
+       "subtopics": [
+        {
+         "id": "gather-analyze-and-communicate-evidence-of-the-i",
+         "title": "Gather, analyze, and communicate evidence of the interactions among bodies in space",
+         "outcomes": [
+          {
+           "code": "SC.8.11.6.a",
+           "text": "Develop and use a model of the Earth-sun-moon system to describe the cyclic patterns of lunar phases, eclipses of the sun and moon, and seasons."
+          },
+          {
+           "code": "SC.8.11.6.b",
+           "text": "Develop and use a model to describe the role of gravity in the motions within the galaxy and the solar system."
+          },
+          {
+           "code": "SC.8.11.6.c",
+           "text": "Analyze and interpret data to determine scale properties of objects in the solar system."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "history-of-earth",
+     "title": "History of Earth",
+     "topics": [
+      {
+       "id": "gather-analyze-and-communicate-evidence-to-expla",
+       "title": "Gather, analyze, and communicate evidence to explain Earth’s history",
+       "subtopics": [
+        {
+         "id": "gather-analyze-and-communicate-evidence-to-expla",
+         "title": "Gather, analyze, and communicate evidence to explain Earth’s history",
+         "outcomes": [
+          {
+           "code": "SC.8.14.7.a",
+           "text": "Construct a scientific explanation based on evidence found within rock strata, including index fossils, for how the geologic time scale is used to organize Earth’s 4.6-billion-year-old history."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "9-12",
+   "units": [
+    {
+     "id": "forces-and-interactions",
+     "title": "Forces and Interactions",
+     "topics": [
+      {
+       "id": "gather-analyze-and-communicate-evidence-of-force",
+       "title": "Gather, analyze, and communicate evidence of forces and interactions",
+       "subtopics": [
+        {
+         "id": "gather-analyze-and-communicate-evidence-of-force",
+         "title": "Gather, analyze, and communicate evidence of forces and interactions",
+         "outcomes": [
+          {
+           "code": "SC.HS.1.1.a",
+           "text": "Analyze data to support the claim that Newton’s Second Law of Motion describes the mathematical relationship among the net force on a macroscopic object, its mass, and its acceleration."
+          },
+          {
+           "code": "SC.HS.1.1.b",
+           "text": "Use mathematical representations to support the claim that the total momentum of a system of objects is conserved when there is no net force on the system."
+          },
+          {
+           "code": "SC.HS.1.1.c",
+           "text": "Apply science and engineering ideas to design, evaluate, and refine a device that minimizes the force on a macroscopic object during a collision."
+          },
+          {
+           "code": "SC.HS.1.1.d",
+           "text": "Use mathematical representations of Newton’s Law of Gravitation and Coulomb’s Law to describe and predict the gravitational and electrostatic forces between objects."
+          },
+          {
+           "code": "SC.HS.1.1.e",
+           "text": "Plan and conduct an investigation to provide evidence that an electrical current can produce a magnetic field and that a changing magnetic field can produce an electrical current."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "waves-and-electromagnetic-radiation",
+     "title": "Waves and Electromagnetic Radiation",
+     "topics": [
+      {
+       "id": "gather-analyze-and-communicate-evidence-of-the-i",
+       "title": "Gather, analyze, and communicate evidence of the interactions of waves",
+       "subtopics": [
+        {
+         "id": "gather-analyze-and-communicate-evidence-of-the-i",
+         "title": "Gather, analyze, and communicate evidence of the interactions of waves",
+         "outcomes": [
+          {
+           "code": "SC.HS.2.2.a",
+           "text": "Use mathematical representations to support a claim regarding relationships among the frequency, wavelength, and speed of waves traveling in various media."
+          },
+          {
+           "code": "SC.HS.2.2.b",
+           "text": "Evaluate claims about the advantages of digital transmission and storage of information."
+          },
+          {
+           "code": "SC.HS.2.2.c",
+           "text": "Evaluate the claims, evidence, and reasoning behind the idea that electromagnetic radiation can be described either by a wave model or a particle model, and that for some situations one model is more useful than the other."
+          },
+          {
+           "code": "SC.HS.2.2.d",
+           "text": "Evaluate the validity and reliability of claims in published materials of the effects that different frequencies of electromagnetic radiation have when absorbed by matter."
+          },
+          {
+           "code": "SC.HS.2.2.e",
+           "text": "Communicate technical information about how some technological devices use the principles of wave behavior and wave interactions with matter to transmit and capture information and energy."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "structure-and-properties-of-matter",
+     "title": "Structure and Properties of Matter",
+     "topics": [
+      {
+       "id": "gather-analyze-and-communicate-evidence-of-the-s",
+       "title": "Gather, analyze, and communicate evidence of the structure, properties, and interactions of matter",
+       "subtopics": [
+        {
+         "id": "gather-analyze-and-communicate-evidence-of-the-s",
+         "title": "Gather, analyze, and communicate evidence of the structure, properties, and interactions of matter (1 of 3)",
+         "outcomes": [
+          {
+           "code": "SC.HS.3.3.a",
+           "text": "Use the periodic table as a model to predict the relative properties of elements based on the patterns of electrons in the outermost energy level of atoms."
+          },
+          {
+           "code": "SC.HS.3.3.b",
+           "text": "Plan and conduct an investigation to gather evidence to compare the structure of substances at the macro scale to infer the strength of electrical forces between particles."
+          },
+          {
+           "code": "SC.HS.3.3.c",
+           "text": "Develop models to illustrate the changes in the composition of the nucleus of the atom and the energy released during the processes of fission, fusion, and radioactive decay."
+          },
+          {
+           "code": "SC.HS.3.3.d",
+           "text": "Communicate scientific and technical information about why the molecular-level structure is important in the functioning of designed materials."
+          }
+         ]
+        },
+        {
+         "id": "gather-analyze-and-communicate-evidence-of-the-s-2",
+         "title": "Gather, analyze, and communicate evidence of the structure, properties, and interactions of matter (2 of 3)",
+         "outcomes": [
+          {
+           "code": "SC.HSP.3.1.a",
+           "text": "Use the periodic table as a model to predict the relative properties of elements based on the patterns of electrons in the outermost energy level of atoms."
+          },
+          {
+           "code": "SC.HSP.3.1.b",
+           "text": "Plan and conduct an investigation to gather evidence to compare the structure of substances at the macro scale to infer the strength of electrical forces between particles."
+          },
+          {
+           "code": "SC.HSP.3.1.c",
+           "text": "Develop and use models to predict and explain forces that are in and between molecules."
+          },
+          {
+           "code": "SC.HSP.3.1.d",
+           "text": "Evaluate a solution to a complex, real-world problem based on prioritized criteria and tradeoffs that account for a range of constraints, including cost, safety, reliability, and aesthetics, as well as possible social, cultural, and environmental impacts."
+          }
+         ]
+        },
+        {
+         "id": "gather-analyze-and-communicate-evidence-of-the-s-3",
+         "title": "Gather, analyze, and communicate evidence of the structure, properties, and interactions of matter (3 of 3)",
+         "outcomes": [
+          {
+           "code": "SC.HSP.3.1.e",
+           "text": "Develop models to illustrate the changes in the composition of the nucleus of the atom and the energy released during the processes of fission, fusion, and radioactive decay."
+          },
+          {
+           "code": "SC.HSP.3.1.f",
+           "text": "Develop and use models to describe and predict mechanisms of the quantum mechanical model of the atom."
+          },
+          {
+           "code": "SC.HSP.3.1.g",
+           "text": "Evaluate the evidence supporting claims about how atoms absorb and emit energy in the form of electromagnetic radiation."
+          },
+          {
+           "code": "SC.HSP.3.1.h",
+           "text": "Use mathematical representations to quantify matter through the analysis of patterns in chemical compounds at different scales."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "energy",
+     "title": "Energy",
+     "topics": [
+      {
+       "id": "gather-analyze-and-communicate-evidence-of-the-i",
+       "title": "Gather, analyze, and communicate evidence of the interactions of energy",
+       "subtopics": [
+        {
+         "id": "gather-analyze-and-communicate-evidence-of-the-i",
+         "title": "Gather, analyze, and communicate evidence of the interactions of energy",
+         "outcomes": [
+          {
+           "code": "SC.HS.4.4.a",
+           "text": "Create a computational model to calculate the change in the energy of one component in a system when the change in energy of the other component(s) and energy flows in and out of the system are known."
+          },
+          {
+           "code": "SC.HS.4.4.b",
+           "text": "Develop and use models to illustrate that energy at the macroscopic scale can be accounted for as a combination of energy associated with the motion of particles (objects) and energy associated with the relative positions of particles (objects)."
+          },
+          {
+           "code": "SC.HS.4.4.c",
+           "text": "Design, build, and refine a device that works within given constraints to convert one form of energy into another form of energy."
+          },
+          {
+           "code": "SC.HS.4.4.d",
+           "text": "Analyze a major global challenge to specify qualitative and quantitative criteria and constraints for solutions that account for societal needs and wants."
+          },
+          {
+           "code": "SC.HS.4.4.e",
+           "text": "Plan and conduct an investigation to provide evidence that the transfer of thermal energy when two components of different temperature are combined within a closed system results in a more uniform energy distribution among the components in the system (second law of thermodynamics)."
+          },
+          {
+           "code": "SC.HS.4.4.f",
+           "text": "Develop and use a model of two objects interacting through electrical or magnetic fields to illustrate the forces between objects and the changes in energy of the objects due to the interaction."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "chemical-reactions",
+     "title": "Chemical Reactions",
+     "topics": [
+      {
+       "id": "gather-analyze-and-communicate-evidence-of-chemi",
+       "title": "Gather, analyze, and communicate evidence of chemical reactions",
+       "subtopics": [
+        {
+         "id": "gather-analyze-and-communicate-evidence-of-chemi",
+         "title": "Gather, analyze, and communicate evidence of chemical reactions (1 of 3)",
+         "outcomes": [
+          {
+           "code": "SC.HS.5.5.a",
+           "text": "Construct and revise an explanation for the outcome of a simple chemical reaction based on the outermost electron states of atoms, trends in the periodic table, and knowledge of the patterns of chemical properties."
+          },
+          {
+           "code": "SC.HS.5.5.b",
+           "text": "Develop a model to illustrate that the release or absorption of energy from a chemical reaction system depends on the changes in total bond energy."
+          },
+          {
+           "code": "SC.HS.5.5.c",
+           "text": "Apply scientific principles and evidence to provide an explanation about the effects of changing the temperature or concentration of the reacting particles on the rate at which a reaction occurs."
+          },
+          {
+           "code": "SC.HS.5.5.d",
+           "text": "Refine the design of a chemical system by specifying a change in conditions that would produce increased amounts of products at equilibrium."
+          }
+         ]
+        },
+        {
+         "id": "gather-analyze-and-communicate-evidence-of-chemi-2",
+         "title": "Gather, analyze, and communicate evidence of chemical reactions (2 of 3)",
+         "outcomes": [
+          {
+           "code": "SC.HS.5.5.e",
+           "text": "Design a solution to a complex real-world problem by breaking it down into smaller, more manageable problems that can be solved through engineering."
+          },
+          {
+           "code": "SC.HS.5.5.f",
+           "text": "Use mathematical representations to support the claim that atoms, and therefore mass, are conserved during a chemical reaction."
+          },
+          {
+           "code": "SC.HSP.5.3.a",
+           "text": "Plan and conduct an investigation to generate evidence that answers scientific questions related to changes in solution chemistry."
+          },
+          {
+           "code": "SC.HSP.5.3.b",
+           "text": "Use a model to identify electron transfer and balance a redox reaction."
+          }
+         ]
+        },
+        {
+         "id": "gather-analyze-and-communicate-evidence-of-chemi-3",
+         "title": "Gather, analyze, and communicate evidence of chemical reactions (3 of 3)",
+         "outcomes": [
+          {
+           "code": "SC.HSP.5.3.c",
+           "text": "Use mathematical and/or computational representations to predict and explain relationships within chemical systems."
+          },
+          {
+           "code": "SC.HSP.5.3.d",
+           "text": "Use mathematical representations to analyze the proportion and quantity of particles in solution."
+          },
+          {
+           "code": "SC.HSP.5.3.e",
+           "text": "Plan and conduct an investigation to predict the outcome of a chemical reaction based on patterns of chemical properties."
+          },
+          {
+           "code": "SC.HSP.5.3.f",
+           "text": "Construct and revise an explanation for the outcome of a simple chemical reaction based on the outermost electron states of atoms, trends in the periodic table, and knowledge of the patterns of chemical properties."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "structure-and-function",
+     "title": "Structure and Function",
+     "topics": [
+      {
+       "id": "gather-analyze-and-communicate-evidence-of-the-r",
+       "title": "Gather, analyze, and communicate evidence of the relationship between structure and function in living things",
+       "subtopics": [
+        {
+         "id": "gather-analyze-and-communicate-evidence-of-the-r",
+         "title": "Gather, analyze, and communicate evidence of the relationship between structure and function in living things (1 of 3)",
+         "outcomes": [
+          {
+           "code": "SC.HS.6.1.a",
+           "text": "Construct an explanation based on evidence for how the structure of DNA determines the structure of proteins which carry out the essential functions of life through systems of specialized cells."
+          },
+          {
+           "code": "SC.HS.6.1.b",
+           "text": "Develop and use a model to illustrate the hierarchical organization of interacting systems that provide specific functions within multicellular organisms."
+          },
+          {
+           "code": "SC.HS.6.1.c",
+           "text": "Plan and conduct an investigation to provide evidence that feedback mechanisms maintain homeostasis."
+          },
+          {
+           "code": "SC.HS.6.1.d",
+           "text": "Use a model to illustrate the role of cellular division (mitosis) and differentiation in producing and maintaining complex organisms."
+          }
+         ]
+        },
+        {
+         "id": "gather-analyze-and-communicate-evidence-of-the-r-2",
+         "title": "Gather, analyze, and communicate evidence of the relationship between structure and function in living things (2 of 3)",
+         "outcomes": [
+          {
+           "code": "SC.HSP.6.1.a",
+           "text": "Construct an explanation based on evidence for how the sequence of DNA determines the structure of proteins which carry out the essential functions of life through systems of specialized cells."
+          },
+          {
+           "code": "SC.HSP.6.1.b",
+           "text": "Develop and use a model to illustrate the hierarchical organization of interacting systems that provide specific functions within multicellular organisms."
+          },
+          {
+           "code": "SC.HSP.6.1.c",
+           "text": "Plan and conduct an investigation to provide evidence that feedback mechanisms maintain homeostasis."
+          },
+          {
+           "code": "SC.HSP.6.1.d",
+           "text": "Use a model to illustrate the role of cells in producing signals which maintain cellular function within organisms."
+          }
+         ]
+        },
+        {
+         "id": "gather-analyze-and-communicate-evidence-of-the-r-3",
+         "title": "Gather, analyze, and communicate evidence of the relationship between structure and function in living things (3 of 3)",
+         "outcomes": [
+          {
+           "code": "SC.HSP.6.1.e",
+           "text": "Construct an explanation based on evidence that plants have structures that function to support survival, growth, behavior, and reproduction."
+          },
+          {
+           "code": "SC.HSP.6.1.f",
+           "text": "Construct an explanation based on evidence that animals have structures that function to support survival, growth, behavior, and reproduction."
+          },
+          {
+           "code": "SC.HSP.6.1.g",
+           "text": "Use a model to illustrate the role of cellular division (mitosis) and differentiation in producing and maintaining complex organisms."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "interdependent-relationships-in-ecosystems",
+     "title": "Interdependent Relationships in Ecosystems",
+     "topics": [
+      {
+       "id": "gather-analyze-and-communicate-evidence-of-inter",
+       "title": "Gather, analyze, and communicate evidence of interdependent relationships in ecosystems",
+       "subtopics": [
+        {
+         "id": "gather-analyze-and-communicate-evidence-of-inter",
+         "title": "Gather, analyze, and communicate evidence of interdependent relationships in ecosystems (1 of 3)",
+         "outcomes": [
+          {
+           "code": "SC.HS.7.2.a",
+           "text": "Use mathematical and/or computational representations to support explanations of factors that affect carrying capacity of ecosystems at different scales."
+          },
+          {
+           "code": "SC.HS.7.2.b",
+           "text": "Use mathematical representations to support and revise explanations based on evidence about factors affecting biodiversity and populations in ecosystems of different scales."
+          },
+          {
+           "code": "SC.HS.7.2.c",
+           "text": "Evaluate the claims, evidence, and reasoning that the interactions in ecosystems maintain relatively consistent numbers and types of organisms in stable conditions, but changing conditions may result in a new ecosystem."
+          },
+          {
+           "code": "SC.HS.7.2.d",
+           "text": "Evaluate the evidence for how group behavior has evolved because membership can increase the chances of survival for individuals and their genetic relatives."
+          }
+         ]
+        },
+        {
+         "id": "gather-analyze-and-communicate-evidence-of-inter-2",
+         "title": "Gather, analyze, and communicate evidence of interdependent relationships in ecosystems (2 of 3)",
+         "outcomes": [
+          {
+           "code": "SC.HS.7.2.e",
+           "text": "Design, evaluate, and refine a solution for increasing the positive impacts of human activities on the environment and biodiversity."
+          },
+          {
+           "code": "SC.HS.7.2.f",
+           "text": "Use a computer simulation to model the impact of proposed solutions to a complex real-world problem with numerous criteria and constraints on interactions within and between systems relevant to the problem."
+          },
+          {
+           "code": "SC.HSP.7.2.a",
+           "text": "Use mathematical and/or computational representations to support explanations of factors that affect carrying capacity of ecosystems at different scales."
+          },
+          {
+           "code": "SC.HSP.7.2.b",
+           "text": "Use mathematical representations to support and revise explanations based on evidence about factors affecting biodiversity and populations in ecosystems of different scales."
+          }
+         ]
+        },
+        {
+         "id": "gather-analyze-and-communicate-evidence-of-inter-3",
+         "title": "Gather, analyze, and communicate evidence of interdependent relationships in ecosystems (3 of 3)",
+         "outcomes": [
+          {
+           "code": "SC.HSP.7.2.c",
+           "text": "Evaluate the claims, evidence, and reasoning related to the principle that complex interactions in ecosystems maintain relatively consistent numbers and types of organisms in stable conditions, but changing conditions may result in a new ecosystem."
+          },
+          {
+           "code": "SC.HSP.7.2.d",
+           "text": "Design, evaluate, and refine a solution for increasing the positive impacts of human activities on the environment and biodiversity."
+          },
+          {
+           "code": "SC.HSP.7.2.e",
+           "text": "Create or revise a solution to mitigate the impacts of human activity on biodiversity."
+          },
+          {
+           "code": "SC.HSP.7.2.f",
+           "text": "Evaluate evidence for the role of behavior on individual and species’ chances to survive and reproduce."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "matter-and-energy-in-organisms-and-ecosystems",
+     "title": "Matter and Energy in Organisms and Ecosystems",
+     "topics": [
+      {
+       "id": "gather-analyze-and-communicate-evidence-of-the-f",
+       "title": "Gather, analyze, and communicate evidence of the flow of energy and cycling of matter in organisms and ecosystems",
+       "subtopics": [
+        {
+         "id": "gather-analyze-and-communicate-evidence-of-the-f",
+         "title": "Gather, analyze, and communicate evidence of the flow of energy and cycling of matter in organisms and ecosystems (1 of 3)",
+         "outcomes": [
+          {
+           "code": "SC.HS.8.3.a",
+           "text": "Use a model to illustrate how photosynthesis transforms light energy into stored chemical energy."
+          },
+          {
+           "code": "SC.HS.8.3.b",
+           "text": "Construct and revise an explanation based on evidence for how carbon, hydrogen, and oxygen from sugar molecules may combine with other molecules to form the four basic macromolecules."
+          },
+          {
+           "code": "SC.HS.8.3.c",
+           "text": "Use a model to illustrate that cellular respiration is a chemical process whereby the bonds of food molecules are broken and bonds in new compounds are formed resulting in a net transfer of energy."
+          },
+          {
+           "code": "SC.HS.8.3.d",
+           "text": "Construct and revise an explanation based on evidence for the cycling of matter and flow of energy in aerobic and anaerobic conditions."
+          },
+          {
+           "code": "SC.HS.8.3.e",
+           "text": "Use mathematical representations to support claims for the cycling of matter and flow of energy among organisms in an ecosystem."
+          }
+         ]
+        },
+        {
+         "id": "gather-analyze-and-communicate-evidence-of-the-f-2",
+         "title": "Gather, analyze, and communicate evidence of the flow of energy and cycling of matter in organisms and ecosystems (2 of 3)",
+         "outcomes": [
+          {
+           "code": "SC.HS.8.3.f",
+           "text": "Develop a model to illustrate the role of photosynthesis and cellular respiration in the cycling of carbon among the biosphere, atmosphere, hydrosphere, and geosphere."
+          },
+          {
+           "code": "SC.HSP.8.3.a",
+           "text": "Use a model to illustrate how photosynthesis transforms light energy into stored chemical energy."
+          },
+          {
+           "code": "SC.HSP.8.3.b",
+           "text": "Construct and revise an explanation based on evidence for how carbon, hydrogen, and oxygen from sugar molecules may combine with other molecules to form amino acids and/or other large carbon-based molecules."
+          },
+          {
+           "code": "SC.HSP.8.3.c",
+           "text": "Use a model to illustrate that cellular respiration is a chemical process whereby the bonds of food molecules and oxygen molecules are broken and the bonds in new compounds are formed resulting in a net transfer of energy."
+          },
+          {
+           "code": "SC.HSP.8.3.d",
+           "text": "Construct and revise an explanation based on evidence for the cycling of matter and flow of energy in aerobic and anaerobic conditions."
+          }
+         ]
+        },
+        {
+         "id": "gather-analyze-and-communicate-evidence-of-the-f-3",
+         "title": "Gather, analyze, and communicate evidence of the flow of energy and cycling of matter in organisms and ecosystems (3 of 3)",
+         "outcomes": [
+          {
+           "code": "SC.HSP.8.3.e",
+           "text": "Use mathematical representations to support claims for the cycling of matter and flow of energy among organisms in an ecosystem."
+          },
+          {
+           "code": "SC.HSP.8.3.f",
+           "text": "Develop a model to illustrate the role of photosynthesis and cellular respiration in the cycling of carbon among the biosphere, atmosphere, hydrosphere, and geosphere."
+          },
+          {
+           "code": "SC.HSP.8.3.g",
+           "text": "Use models to illustrate how atomic structure and bonding impact the properties of water and their influence on biological systems."
+          },
+          {
+           "code": "SC.HSP.8.3.h",
+           "text": "Construct an explanation based on evidence for how ATP powers cellular work and for how enzymes affect the rate of and the amount of energy needed for metabolic reactions."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "heredity-inheritance-and-variation-of-traits",
+     "title": "Heredity: Inheritance and Variation of Traits",
+     "topics": [
+      {
+       "id": "gather-analyze-and-communicate-evidence-of-the-i",
+       "title": "Gather, analyze, and communicate evidence of the inheritance and variation of traits",
+       "subtopics": [
+        {
+         "id": "gather-analyze-and-communicate-evidence-of-the-i",
+         "title": "Gather, analyze, and communicate evidence of the inheritance and variation of traits",
+         "outcomes": [
+          {
+           "code": "SC.HS.9.4.a",
+           "text": "Develop and use a model to explain the relationships between the role of DNA and chromosomes in coding the instructions for characteristic traits passed from parents to offspring."
+          },
+          {
+           "code": "SC.HS.9.4.b",
+           "text": "Make and defend a claim based on evidence that inheritable genetic variations may result from: (1) new genetic combinations through meiosis, (2) viable errors occurring during replication, and/or (3) mutations caused by environmental factors."
+          },
+          {
+           "code": "SC.HS.9.4.c",
+           "text": "Apply concepts of statistics and probability to explain the variation and distribution of expressed traits in a population."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "biological-evolution",
+     "title": "Biological Evolution",
+     "topics": [
+      {
+       "id": "gather-analyze-and-communicate-evidence-of-biolo",
+       "title": "Gather, analyze, and communicate evidence of biological evolution",
+       "subtopics": [
+        {
+         "id": "gather-analyze-and-communicate-evidence-of-biolo",
+         "title": "Gather, analyze, and communicate evidence of biological evolution (1 of 3)",
+         "outcomes": [
+          {
+           "code": "SC.HS.10.5.a",
+           "text": "Communicate scientific information that common ancestry and biological evolution are supported by multiple lines of empirical evidence."
+          },
+          {
+           "code": "SC.HS.10.5.b",
+           "text": "Construct an explanation based on evidence that natural selection primarily results from four factors: (1) the potential for a species to increase in number, (2) the heritable genetic variation of individuals in a species due to mutation and reproduction, (3) competition for limited resources, and (4) the proliferation of those organisms that are better able to survive and reproduce in the environment."
+          },
+          {
+           "code": "SC.HS.10.5.c",
+           "text": "Apply concepts of statistics and probability to support explanations that organisms with an advantageous heritable trait tend to increase in proportion to organisms lacking this trait."
+          },
+          {
+           "code": "SC.HS.10.5.d",
+           "text": "Construct an explanation based on evidence for how natural selection leads to adaptation of populations."
+          }
+         ]
+        },
+        {
+         "id": "gather-analyze-and-communicate-evidence-of-biolo-2",
+         "title": "Gather, analyze, and communicate evidence of biological evolution (2 of 3)",
+         "outcomes": [
+          {
+           "code": "SC.HS.10.5.e",
+           "text": "Evaluate the evidence supporting claims that changes in environmental conditions may result in: (1) increases in the number of individuals of some species, (2) the emergence of new species over time, and (3) the extinction of other species."
+          },
+          {
+           "code": "SC.HSP.10.5.a",
+           "text": "Communicate scientific information that common ancestry and biological evolution are supported by multiple lines of empirical evidence."
+          },
+          {
+           "code": "SC.HSP.10.5.b",
+           "text": "Construct an explanation based on evidence that the process of evolution primarily results from four factors: (1) the potential for a species to increase in number, (2) the heritable genetic variation of individuals in a species due to mutation and sexual reproduction, (3) competition for limited resources, and (4) the proliferation of those organisms that are better able to survive and reproduce in the environment."
+          },
+          {
+           "code": "SC.HSP.10.5.c",
+           "text": "Apply concepts of statistics and probability to support explanations that organisms with an advantageous heritable trait tend to increase in proportion to organisms lacking this trait."
+          }
+         ]
+        },
+        {
+         "id": "gather-analyze-and-communicate-evidence-of-biolo-3",
+         "title": "Gather, analyze, and communicate evidence of biological evolution (3 of 3)",
+         "outcomes": [
+          {
+           "code": "SC.HSP.10.5.d",
+           "text": "Construct an explanation based on evidence for how natural selection leads to adaptation of populations."
+          },
+          {
+           "code": "SC.HSP.10.5.e",
+           "text": "Evaluate evidence supporting claims that changes in environmental conditions may result in: (1) increases in the number of individuals of some species, (2) the emergence of new species over time, and (3) the extinction of other species."
+          },
+          {
+           "code": "SC.HSP.10.5.f",
+           "text": "Develop and use models to illustrate patterns in the evolutionary history of biological diversity."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "space-systems",
+     "title": "Space Systems",
+     "topics": [
+      {
+       "id": "gather-analyze-and-communicate-evidence-to-defen",
+       "title": "Gather, analyze, and communicate evidence to defend that the universe changes over time",
+       "subtopics": [
+        {
+         "id": "gather-analyze-and-communicate-evidence-to-defen",
+         "title": "Gather, analyze, and communicate evidence to defend that the universe changes over time",
+         "outcomes": [
+          {
+           "code": "SC.HS11.1.a",
+           "text": "Use a model based on evidence to illustrate how the stages of stars and the role of nuclear fusion in a star’s core releases energy that reaches Earth in the form of radiation."
+          },
+          {
+           "code": "SC.HS11.1.b",
+           "text": "Construct an explanation of the Big Bang theory based on astronomical evidence of light spectra, motion of distant galaxies, and composition of matter in the universe."
+          },
+          {
+           "code": "SC.HS11.1.c",
+           "text": "Communicate scientific ideas about the way stars, throughout their stellar stages, produce elements."
+          },
+          {
+           "code": "SC.HS11.1.d",
+           "text": "Use mathematical or computational representations to predict the motion of orbiting objects in the solar system."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "weather-and-climate",
+     "title": "Weather and Climate",
+     "topics": [
+      {
+       "id": "gather-analyze-and-communicate-evidence-to-suppo",
+       "title": "Gather, analyze, and communicate evidence to support that Earth’s climate and weather are influenced by energy flow through Earth systems",
+       "subtopics": [
+        {
+         "id": "gather-analyze-and-communicate-evidence-to-suppo",
+         "title": "Gather, analyze, and communicate evidence to support that Earth’s climate and weather are influenced by energy flow through Earth systems",
+         "outcomes": [
+          {
+           "code": "SC.HS12.2.a",
+           "text": "Construct an explanation based on evidence for how the sun’s energy moves among Earth’s systems."
+          },
+          {
+           "code": "SC.HS12.2.b",
+           "text": "Use a model to describe how variations in the flow of energy into and out of Earth’s systems result in changes in climate."
+          },
+          {
+           "code": "SC.HS12.2.c",
+           "text": "Analyze geoscience data and the results from global climate models to make an evidence-based forecast of the current rate and scale of global or regional climate changes."
+          },
+          {
+           "code": "SC.HS12.2.d",
+           "text": "Evaluate the validity and reliability of past and present models of Earth conditions to make projections of future climate trends and their impacts."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "earth-s-systems",
+     "title": "Earth’s Systems",
+     "topics": [
+      {
+       "id": "gather-analyze-and-communicate-evidence-to-defen",
+       "title": "Gather, analyze, and communicate evidence to defend the position that Earth’s systems are interconnected and impact one another",
+       "subtopics": [
+        {
+         "id": "gather-analyze-and-communicate-evidence-to-defen",
+         "title": "Gather, analyze, and communicate evidence to defend the position that Earth’s systems are interconnected and impact one another",
+         "outcomes": [
+          {
+           "code": "SC.HS13.3.a",
+           "text": "Analyze geoscience data to make the claim that one change to Earth’s surface can create feedbacks that cause changes to other Earth systems."
+          },
+          {
+           "code": "SC.HS13.3.b",
+           "text": "Develop a model based on evidence of Earth’s interior to describe the cycling of matter."
+          },
+          {
+           "code": "SC.HS13.3.c",
+           "text": "Construct an argument based on evidence to explain the multiple processes that cause Earth’s plates to move."
+          },
+          {
+           "code": "SC.HS13.3.d",
+           "text": "Plan and conduct an investigation of the properties of water and their effects on Earth materials, surface processes, and groundwater systems."
+          },
+          {
+           "code": "SC.HS13.3.e",
+           "text": "Develop a quantitative model to describe the cycling of carbon and other nutrients among the hydrosphere, atmosphere, geosphere, and biosphere, today and in the geological past."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "history-of-earth",
+     "title": "History of Earth",
+     "topics": [
+      {
+       "id": "gather-analyze-and-communicate-evidence-to-inter",
+       "title": "Gather, analyze, and communicate evidence to interpret Earth’s history",
+       "subtopics": [
+        {
+         "id": "gather-analyze-and-communicate-evidence-to-inter",
+         "title": "Gather, analyze, and communicate evidence to interpret Earth’s history",
+         "outcomes": [
+          {
+           "code": "SC.HS14.4.a",
+           "text": "Evaluate evidence of the past and current movements of continental and oceanic crust and the theory of plate tectonics to explain the differences in age, structure, and composition of crustal and sedimentary rocks."
+          },
+          {
+           "code": "SC.HS14.4.b",
+           "text": "Apply scientific reasoning and evidence from ancient Earth materials, meteorites, and other planetary surfaces to reconstruct Earth’s formation and early history."
+          },
+          {
+           "code": "SC.HS14.4.c",
+           "text": "Develop a model to illustrate how Earth’s internal and surface processes operate over time to form, modify, and recycle continental and ocean floor features."
+          },
+          {
+           "code": "SC.HS14.4.d",
+           "text": "Construct an argument based on evidence to validate coevolution of Earth’s systems and life on Earth."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "sustainability",
+     "title": "Sustainability",
+     "topics": [
+      {
+       "id": "gather-analyze-and-communicate-evidence-to-descr",
+       "title": "Gather, analyze, and communicate evidence to describe the interactions between society, environment, and economy",
+       "subtopics": [
+        {
+         "id": "gather-analyze-and-communicate-evidence-to-descr",
+         "title": "Gather, analyze, and communicate evidence to describe the interactions between society, environment, and economy",
+         "outcomes": [
+          {
+           "code": "SC.HS15.5.a",
+           "text": "Construct an explanation based on evidence for how the availability of natural resources, occurrence of natural hazards, and changes in climate have influenced human activity."
+          },
+          {
+           "code": "SC.HS15.5.b",
+           "text": "Evaluate competing design solutions for developing, managing, and utilizing energy and mineral resources based on cost-benefit ratios."
+          },
+          {
+           "code": "SC.HS15.5.c",
+           "text": "Use a computational simulation to illustrate the relationships among management of natural resources, the sustainability of human populations, and biodiversity."
+          },
+          {
+           "code": "SC.HS15.5.d",
+           "text": "Evaluate or refine a technological solution that increases positive impacts of human activities on natural systems."
+          },
+          {
+           "code": "SC.HS15.5.e",
+           "text": "Evaluate a solution to a complex real-world problem based on prioritized criteria and tradeoffs that account for a range of constraints, including cost, safety, reliability, and aesthetics, as well as possible social, cultural, and environmental impacts."
+          },
+          {
+           "code": "SC.HS15.5.f",
+           "text": "Use a computational representation to illustrate the relationships among Earth systems and the degree to which those relationships are being modified due to human activity."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "energy-chemistry",
+     "title": "Energy: Chemistry",
+     "topics": [
+      {
+       "id": "gather-analyze-and-communicate-evidence-of-the-i",
+       "title": "Gather, analyze, and communicate evidence of the interactions of energy",
+       "subtopics": [
+        {
+         "id": "gather-analyze-and-communicate-evidence-of-the-i",
+         "title": "Gather, analyze, and communicate evidence of the interactions of energy",
+         "outcomes": [
+          {
+           "code": "SC.HSP.4.2.a",
+           "text": "Use statistical and mathematical techniques to describe qualitative and quantitative thermodynamic relationships."
+          },
+          {
+           "code": "SC.HSP.4.2.b",
+           "text": "Plan and conduct an investigation to gather evidence of how the Kinetic Molecular Theory and gas laws are related."
+          },
+          {
+           "code": "SC.HSP.4.2.c",
+           "text": "Analyze and interpret data to explain changes in energy within a system and/or energy flows in and out of a system."
+          },
+          {
+           "code": "SC.HSP.4.2.d",
+           "text": "Analyze a major global challenge to specify qualitative and quantitative criteria and constraints for solutions that account for societal needs and wants."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "inheritance-and-variation-of-traits",
+     "title": "Inheritance and Variation of Traits",
+     "topics": [
+      {
+       "id": "gather-analyze-and-communicate-evidence-of-the-i",
+       "title": "Gather, analyze, and communicate evidence of the inheritance and variation of traits",
+       "subtopics": [
+        {
+         "id": "gather-analyze-and-communicate-evidence-of-the-i",
+         "title": "Gather, analyze, and communicate evidence of the inheritance and variation of traits",
+         "outcomes": [
+          {
+           "code": "SC.HSP.9.4.a",
+           "text": "Ask questions to clarify relationships about the role of DNA and chromosomes in coding the instructions for characteristic traits passed from parents to offspring."
+          },
+          {
+           "code": "SC.HSP.9.4.b",
+           "text": "Make and defend a claim based on evidence that inheritable genetic variations may result from: (1) new genetic combinations through meiosis, (2) viable errors occurring during replication, and/or (3) mutations caused by environmental factors."
+          },
+          {
+           "code": "SC.HSP.9.4.c",
+           "text": "Apply concepts of statistics and probability to explain the variation and distribution of expressed traits in a population."
+          },
+          {
+           "code": "SC.HSP.9.4.d",
+           "text": "Evaluate evidence supporting claims that gene regulation can explain the variation and distribution of expressed traits in a population."
+          },
+          {
+           "code": "SC.HSP.9.4.e",
+           "text": "Construct an explanation based on evidence for the role of biotechnology in the research and understanding of biological systems."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "structure-and-function-anatomy-physiology",
+     "title": "Structure and Function: Anatomy & Physiology",
+     "topics": [
+      {
+       "id": "gather-analyze-and-communicate-evidence-of-the-r",
+       "title": "Gather, analyze, and communicate evidence of the relationship between the structures and physiological processes of the integumentary system",
+       "subtopics": [
+        {
+         "id": "gather-analyze-and-communicate-evidence-of-the-r",
+         "title": "Gather, analyze, and communicate evidence of the relationship between the structures and physiological processes of the integumentary system",
+         "outcomes": [
+          {
+           "code": "SC.HSP.6.2.a",
+           "text": "Plan and conduct and investigation to identify patterns of organization in the integumentary system."
+          },
+          {
+           "code": "SC.HSP.6.2.b",
+           "text": "Ask questions to clarify the role of various structures in integumentary system function."
+          },
+          {
+           "code": "SC.HSP.6.2.c",
+           "text": "Develop and use a model to identify and describe the relationship between the structures and physiological processes of the integumentary system."
+          },
+          {
+           "code": "SC.HSP.6.2.d",
+           "text": "Plan and conduct an investigation to gather evidence that feedback mechanisms in the integumentary system help maintain homeostasis."
+          },
+          {
+           "code": "SC.HSP.6.2.e",
+           "text": "Engage in arguments from evidence for the role of cell division in integumentary system dysfunction."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "gather-analyze-and-communicate-evidence-of-the-r-2",
+       "title": "Gather, analyze, and communicate evidence of the relationship between the structures and physiological processes of the skeletal system",
+       "subtopics": [
+        {
+         "id": "gather-analyze-and-communicate-evidence-of-the-r",
+         "title": "Gather, analyze, and communicate evidence of the relationship between the structures and physiological processes of the skeletal system",
+         "outcomes": [
+          {
+           "code": "SC.HSP.6.3.a",
+           "text": "Plan and conduct an investigation to identify patterns of organization in the skeletal system."
+          },
+          {
+           "code": "SC.HSP.6.3.b",
+           "text": "Develop and use a model to identify and describe the relationship between the structures and physiological processes of the skeletal system."
+          },
+          {
+           "code": "SC.HSP.6.3.c",
+           "text": "Obtain, evaluate, and communicate information that feedback mechanisms in the skeletal system help maintain homeostasis."
+          },
+          {
+           "code": "SC.HSP.6.3.d",
+           "text": "Develop and use a model to explain the order of events necessary for bone formation."
+          },
+          {
+           "code": "SC.HSP.6.3.e",
+           "text": "Engage in arguments from evidence to support claims about the causes of dysfunction in the skeletal system."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "gather-analyze-and-communicate-evidence-of-the-r-3",
+       "title": "Gather, analyze, and communicate evidence of the relationship between the structures and physiological processes of the muscular system",
+       "subtopics": [
+        {
+         "id": "gather-analyze-and-communicate-evidence-of-the-r",
+         "title": "Gather, analyze, and communicate evidence of the relationship between the structures and physiological processes of the muscular system",
+         "outcomes": [
+          {
+           "code": "SC.HSP.6.4.a",
+           "text": "Plan and conduct an investigation to identify patterns of organization in the muscular system."
+          },
+          {
+           "code": "SC.HSP.6.4.b",
+           "text": "Develop and use a model to identify and describe the relationship between the structures and physiological processes of the muscular system."
+          },
+          {
+           "code": "SC.HSP.6.4.c",
+           "text": "Engage in arguments from evidence that muscle contraction is the result of biochemical reactions."
+          },
+          {
+           "code": "SC.HSP.6.4.d",
+           "text": "Obtain, evaluate, and communicate that feedback mechanisms in the muscular system help maintain homeostasis."
+          },
+          {
+           "code": "SC.HSP.6.4.e",
+           "text": "Engage in arguments from evidence to support claims about the causes of dysfunction in the muscular system."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "gather-analyze-and-communicate-evidence-of-the-r-4",
+       "title": "Gather, analyze, and communicate evidence of the relationship between the structures and physiological processes of the nervous system",
+       "subtopics": [
+        {
+         "id": "gather-analyze-and-communicate-evidence-of-the-r",
+         "title": "Gather, analyze, and communicate evidence of the relationship between the structures and physiological processes of the nervous system",
+         "outcomes": [
+          {
+           "code": "SC.HSP.6.5.a",
+           "text": "Plan and conduct an investigation to identify patterns of organization in the nervous system."
+          },
+          {
+           "code": "SC.HSP.6.5.b",
+           "text": "Develop and use a model to identify and describe the relationship between the structures and physiological processes of the nervous system."
+          },
+          {
+           "code": "SC.HSP.6.5.c",
+           "text": "Engage in arguments from evidence that production of a nerve impulse is the result of biochemical reactions."
+          },
+          {
+           "code": "SC.HSP.6.5.d",
+           "text": "Obtain, evaluate, and communicate evidence that feedback mechanisms in the nervous system help maintain homeostasis."
+          },
+          {
+           "code": "SC.HSP.6.5.e",
+           "text": "Engage in arguments from evidence to support claims about the causes of dysfunction in the nervous system."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "gather-analyze-and-communicate-evidence-of-the-r-5",
+       "title": "Gather, analyze, and communicate evidence of the relationship between the structures and physiological processes of the cardiovascular/respiratory systems",
+       "subtopics": [
+        {
+         "id": "gather-analyze-and-communicate-evidence-of-the-r",
+         "title": "Gather, analyze, and communicate evidence of the relationship between the structures and physiological processes of the cardiovascular/respiratory systems",
+         "outcomes": [
+          {
+           "code": "SC.HSP.6.6.a",
+           "text": "Plan and conduct an investigation to identify patterns of organization in the cardiovascular/respiratory systems."
+          },
+          {
+           "code": "SC.HSP.6.6.b",
+           "text": "Develop and use a model to identify and describe the relationship between the structures and physiological processes of the cardiovascular/respiratory systems."
+          },
+          {
+           "code": "SC.HSP.6.6.c",
+           "text": "Obtain, evaluate and communicate evidence that feedback mechanisms in the cardiovascular/respiratory systems help maintain homeostasis."
+          },
+          {
+           "code": "SC.HSP.6.6.d",
+           "text": "Engage in arguments from evidence to support claims about the causes of dysfunction in the cardiovascular/ respiratory systems."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "gather-analyze-and-communicate-evidence-of-the-r-6",
+       "title": "Gather, analyze, and communicate evidence of the relationship between the structures and physiological processes of the digestive system",
+       "subtopics": [
+        {
+         "id": "gather-analyze-and-communicate-evidence-of-the-r",
+         "title": "Gather, analyze, and communicate evidence of the relationship between the structures and physiological processes of the digestive system",
+         "outcomes": [
+          {
+           "code": "SC.HSP.6.7.a",
+           "text": "Plan and conduct an investigation to identify patterns of organization in the digestive system."
+          },
+          {
+           "code": "SC.HSP.6.7.b",
+           "text": "Develop and use a model to identify and describe the relationship between the structures and physiological processes of the digestive system."
+          },
+          {
+           "code": "SC.HSP.6.7.c",
+           "text": "Obtain, evaluate and communicate evidence that feedback mechanisms in the digestive system help maintain homeostasis."
+          },
+          {
+           "code": "SC.HSP.6.7.d",
+           "text": "Engage in arguments from evidence to support claims about the causes of dysfunction in the digestive system."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "gather-analyze-and-communicate-evidence-of-the-r-7",
+       "title": "Gather, analyze, and communicate evidence of the relationship between the structures and physiological processes of the urinary system",
+       "subtopics": [
+        {
+         "id": "gather-analyze-and-communicate-evidence-of-the-r",
+         "title": "Gather, analyze, and communicate evidence of the relationship between the structures and physiological processes of the urinary system",
+         "outcomes": [
+          {
+           "code": "SC.HSP.6.8.a",
+           "text": "Plan and conduct an investigation to identify patterns of organization in the urinary system."
+          },
+          {
+           "code": "SC.HSP.6.8.b",
+           "text": "Develop and use a model to identify and describe the relationship between the structures and physiological processes of the urinary system."
+          },
+          {
+           "code": "SC.HSP.6.8.c",
+           "text": "Obtain, evaluate and communicate evidence that feedback mechanisms in the urinary system help maintain homeostasis."
+          },
+          {
+           "code": "SC.HSP.6.8.d",
+           "text": "Engage in arguments from evidence to support claims about the causes of dysfunction in the urinary system."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "gather-analyze-and-communicate-evidence-of-the-r-8",
+       "title": "Gather, analyze, and communicate evidence of the relationship between the structures and physiological processes of the reproductive system",
+       "subtopics": [
+        {
+         "id": "gather-analyze-and-communicate-evidence-of-the-r",
+         "title": "Gather, analyze, and communicate evidence of the relationship between the structures and physiological processes of the reproductive system",
+         "outcomes": [
+          {
+           "code": "SC.HSP.6.9.a",
+           "text": "Plan and conduct an investigation to identify patterns of organization in the reproductive system."
+          },
+          {
+           "code": "SC.HSP.6.9.b",
+           "text": "Develop and use a model to identify and describe the relationship between the structures and physiological processes of the reproductive system."
+          },
+          {
+           "code": "SC.HSP.6.9.c",
+           "text": "Obtain, evaluate and communicate evidence that feedback mechanisms in the reproductive system help maintain homeostasis."
+          },
+          {
+           "code": "SC.HSP.6.9.d",
+           "text": "Engage in arguments from evidence to support claims about the causes of dysfunction in the reproductive system."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "engineering-in-health-sciences",
+     "title": "Engineering in Health Sciences",
+     "topics": [
+      {
+       "id": "gather-analyze-and-communicate-evidence-of-the-c",
+       "title": "Gather, analyze, and communicate evidence of the connection between health science careers and engineering",
+       "subtopics": [
+        {
+         "id": "gather-analyze-and-communicate-evidence-of-the-c",
+         "title": "Gather, analyze, and communicate evidence of the connection between health science careers and engineering",
+         "outcomes": [
+          {
+           "code": "SC.HSP.17.1.a",
+           "text": "Obtain, evaluate, and communicate information related to health science careers and the various roles they fulfill within the health care system."
+          },
+          {
+           "code": "SC.HSP.17.1.b",
+           "text": "Design a solution to a complex, real-world problem affecting body systems that can be solved through engineering."
+          },
+          {
+           "code": "SC.HSP.17.1.c",
+           "text": "Evaluate a solution to a complex, real-world human health problem based on prioritized criteria constraints that account for interactions within and between systems."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "body-systems",
+     "title": "Body Systems",
+     "topics": [
+      {
+       "id": "gather-analyze-and-communicate-evidence-of-the-c",
+       "title": "Gather, analyze, and communicate evidence of the connections between body systems",
+       "subtopics": [
+        {
+         "id": "gather-analyze-and-communicate-evidence-of-the-c",
+         "title": "Gather, analyze, and communicate evidence of the connections between body systems",
+         "outcomes": [
+          {
+           "code": "SC.HSP.18.1.a",
+           "text": "Construct and revise an explanation based on evidence for the cycling of matter and flow of energy within and between body systems."
+          },
+          {
+           "code": "SC.HSP.18.1.b",
+           "text": "Develop and use models to explain the interactions between body systems."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "9-11",
+   "units": [
+    {
+     "id": "forces-interactions-and-motion",
+     "title": "Forces, Interactions, and Motion",
+     "topics": [
+      {
+       "id": "gather-analyze-and-communicate-evidence-of-force",
+       "title": "Gather, analyze, and communicate evidence of forces, interactions, and motion",
+       "subtopics": [
+        {
+         "id": "gather-analyze-and-communicate-evidence-of-force",
+         "title": "Gather, analyze, and communicate evidence of forces, interactions, and motion",
+         "outcomes": [
+          {
+           "code": "SC.HSP.1.1.a",
+           "text": "Generate and interpret mathematical and graphical representations to describe the relationships between position, velocity, acceleration and time."
+          },
+          {
+           "code": "SC.HSP.1.1.b",
+           "text": "Use mathematical and pictorial models as applied to Newton’s second law of motion describing the relationship among the net force on a macroscopic object, its mass, and its acceleration."
+          },
+          {
+           "code": "SC.HSP.1.1.c",
+           "text": "Use mathematical representations of momentum to predict the outcome of a collision."
+          },
+          {
+           "code": "SC.HSP.1.1.d",
+           "text": "Apply scientific and engineering ideas to design, evaluate, and refine a device that minimizes the force on a macroscopic object during a collision."
+          },
+          {
+           "code": "SC.HSP.1.1.e",
+           "text": "Use mathematical representations of Newton’s Law of Gravitation and Coulomb’s Law to describe and predict the gravitational and electrostatic forces between objects."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "waves-electromagnetic-radiation-and-optics",
+     "title": "Waves, Electromagnetic Radiation, and Optics",
+     "topics": [
+      {
+       "id": "gather-analyze-and-communicate-evidence-of-the-i",
+       "title": "Gather, analyze, and communicate evidence of the interactions of waves and optics",
+       "subtopics": [
+        {
+         "id": "gather-analyze-and-communicate-evidence-of-the-i",
+         "title": "Gather, analyze, and communicate evidence of the interactions of waves and optics",
+         "outcomes": [
+          {
+           "code": "SC.HSP.2.2.a",
+           "text": "Use mathematical representations to describe the relationships among the frequency, wavelength, and speed of waves traveling in various media."
+          },
+          {
+           "code": "SC.HSP.2.2.b",
+           "text": "Develop and use models to predict interactions of longitudinal and transverse waves in various media."
+          },
+          {
+           "code": "SC.HSP.2.2.c",
+           "text": "Develop and use models to describe the behavior of light at the boundary of various media."
+          },
+          {
+           "code": "SC.HSP.2.2.d",
+           "text": "Evaluate the claims, evidence, and reasoning behind the idea that electromagnetic radiation can be described either by a wave model or a particle model, and that for some situations one model is more useful than the other"
+          },
+          {
+           "code": "SC.HSP.2.2.e",
+           "text": "Use evidence to support explanations for causes of emission and absorption spectra of electromagnetic radiation."
+          },
+          {
+           "code": "SC.HSP.2.2.f",
+           "text": "Communicate technical information about how some technological devices use the principles of wave behavior and wave interactions with matter to transmit and capture information and energy."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "energy-physics",
+     "title": "Energy: Physics",
+     "topics": [
+      {
+       "id": "gather-analyze-and-communicate-evidence-of-the-i",
+       "title": "Gather, analyze, and communicate evidence of the interactions of energy",
+       "subtopics": [
+        {
+         "id": "gather-analyze-and-communicate-evidence-of-the-i",
+         "title": "Gather, analyze, and communicate evidence of the interactions of energy",
+         "outcomes": [
+          {
+           "code": "SC.HSP.4.3.a",
+           "text": "Create a computational model to calculate the change in the energy of one component in a system when the change in energy of the other component(s) and energy flows in and out of the system are known."
+          },
+          {
+           "code": "SC.HSP.4.3.b",
+           "text": "Plan and conduct an investigation to rate the power and efficiency used in performing work on a system."
+          },
+          {
+           "code": "SC.HSP.4.3.c",
+           "text": "Design, build, and refine a device that works within given constraints to convert one form of energy into another form of energy."
+          },
+          {
+           "code": "SC.HSP.4.3.d",
+           "text": "Analyze a major global challenge to specify qualitative and quantitative criteria and constraints for solutions that account for societal needs and wants."
+          },
+          {
+           "code": "SC.HSP.4.3.e",
+           "text": "Plan and conduct an investigation to provide evidence for the transfer of thermal energy within a system based on the Laws of Thermodynamics."
+          },
+          {
+           "code": "SC.HSP.4.3.f",
+           "text": "Develop and use a model of two objects interacting through gravitational, electric, or magnetic fields to illustrate the forces between objects and the changes in energy of the objects due to the interaction."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "electricity-and-magnetism",
+     "title": "Electricity and Magnetism",
+     "topics": [
+      {
+       "id": "gather-analyze-and-communicate-evidence-of-elect",
+       "title": "Gather, analyze, and communicate evidence of electricity and magnetism",
+       "subtopics": [
+        {
+         "id": "gather-analyze-and-communicate-evidence-of-elect",
+         "title": "Gather, analyze, and communicate evidence of electricity and magnetism (1 of 2)",
+         "outcomes": [
+          {
+           "code": "SC.HSP.16.4.a",
+           "text": "Use mathematical representations of field forces to describe and predict forces at a distance between objects."
+          },
+          {
+           "code": "SC.HSP.16.4.b",
+           "text": "Use models to visualize and describe gravitational, magnetic and electrical fields and predict resulting forces on nearby objects."
+          },
+          {
+           "code": "SC.HSP.16.4.c",
+           "text": "Use mathematical representations to provide evidence that describes and predicts relationships between power, current, voltage, and resistance."
+          },
+          {
+           "code": "SC.HSP.16.4.d",
+           "text": "Evaluate competing design solutions for construction and use of electrical consumer products accounting for a range of constraints, including cost, safety, reliability, and aesthetics as well as possible social, cultural, and environmental impacts."
+          }
+         ]
+        },
+        {
+         "id": "gather-analyze-and-communicate-evidence-of-elect-2",
+         "title": "Gather, analyze, and communicate evidence of electricity and magnetism (2 of 2)",
+         "outcomes": [
+          {
+           "code": "SC.HSP.16.4.e",
+           "text": "Obtain and communicate technical information about how some technological devices use alternating current and others use direct current."
+          },
+          {
+           "code": "SC.HSP.16.4.f",
+           "text": "Design a solution to a problem using the fact that an electric current can produce a magnetic field and/or that a changing magnetic field can produce an electric current."
+          },
+          {
+           "code": "SC.HSP.16.4.g",
+           "text": "Analyze a major global challenge to specify qualitative and quantitative criteria and constraints for solutions that account for societal needs and wants."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "build": {
+  "builtAt": "2026-10-14T16:20:45.790Z",
+  "model": "none",
+  "usd": 0,
+  "expectedCodes": 325,
+  "coverage": 1,
+  "missingCodes": [],
+  "counts": {
+   "grades": 11,
+   "units": 63,
+   "topics": 70,
+   "subtopics": 83,
+   "outcomes": 325
+  },
+  "warnings": [
+   "unit \"Earth’s Systems\" (grade 6) has a single outcome",
+   "unit \"History of Earth\" (grade 8) has a single outcome"
+  ]
+ }
+}

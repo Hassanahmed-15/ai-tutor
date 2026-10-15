@@ -1,0 +1,532 @@
+{
+ "id": "pk-ncp-tech-automation-robotics-11-12",
+ "region": "PK",
+ "framework": "National Curriculum of Pakistan 2022-23",
+ "board": null,
+ "qualification": "Technical stream",
+ "subject": "Automation and Robotics Technology",
+ "syllabusCode": null,
+ "gradeSystem": "grade",
+ "source": {
+  "urls": [
+   "https://ncc.gov.pk/SiteImage/Misc/files/68-%20Automation%20and%20Robotics%20Technology.pdf"
+  ],
+  "publisher": "National Curriculum Council, Ministry of Federal Education and Professional Training",
+  "licence": "Government publication; structure + our own wording only",
+  "firstExam": null
+ },
+ "grades": [
+  {
+   "grade": "11",
+   "units": [
+    {
+     "id": "domain-a-fundamental-of-automation-and-robotics",
+     "title": "Domain A: Fundamental of Automation and Robotics",
+     "topics": [
+      {
+       "id": "fundamentals-and-applications-of-robotics",
+       "title": "Fundamentals and applications of robotics",
+       "subtopics": [
+        {
+         "id": "what-robotics-is",
+         "title": "What robotics is",
+         "outcomes": [
+          {
+           "code": "ART-11-A-01",
+           "text": "Define robotics and give real-life examples."
+          },
+          {
+           "code": "ART-11-A-02",
+           "text": "Explain the role robotics plays in automation."
+          },
+          {
+           "code": "ART-11-A-03",
+           "text": "Name the different subsystems that make up a robot."
+          }
+         ]
+        },
+        {
+         "id": "robots-in-industry",
+         "title": "Robots in industry",
+         "outcomes": [
+          {
+           "code": "ART-11-A-04",
+           "text": "Explain why automation and robotics matter across various industries."
+          },
+          {
+           "code": "ART-11-A-05",
+           "text": "Find and name real applications of automation and robotics."
+          },
+          {
+           "code": "ART-11-A-06",
+           "text": "Discuss how robots make industrial operations more efficient."
+          }
+         ]
+        },
+        {
+         "id": "safety-with-robots",
+         "title": "Safety with robots",
+         "outcomes": [
+          {
+           "code": "ART-11-A-07",
+           "text": "List safety rules for automation and robotics and spot the risks involved."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "history-and-evolution-of-automation-and-robotics",
+       "title": "History and evolution of automation and robotics",
+       "subtopics": [
+        {
+         "id": "history-of-automation",
+         "title": "History of automation",
+         "outcomes": [
+          {
+           "code": "ART-11-A-08",
+           "text": "Describe key milestones in automation and robotics from ancient times through the Industrial Revolution to today."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "electronics-fundamentals-for-robotics",
+       "title": "Electronics fundamentals for robotics",
+       "subtopics": [
+        {
+         "id": "basic-circuits",
+         "title": "Basic circuits",
+         "outcomes": [
+          {
+           "code": "ART-11-A-09",
+           "text": "Define the basics of electrical circuits."
+          },
+          {
+           "code": "ART-11-A-10",
+           "text": "Analyse and design simple circuits needed in automation and robotics systems (lab)."
+          }
+         ]
+        },
+        {
+         "id": "sensors-and-transducers",
+         "title": "Sensors and transducers",
+         "outcomes": [
+          {
+           "code": "ART-11-A-11",
+           "text": "Explain how sensors and transducers work and where robots use them."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "careers-ethics-and-trends",
+       "title": "Careers, ethics and trends",
+       "subtopics": [
+        {
+         "id": "careers-in-robotics",
+         "title": "Careers in robotics",
+         "outcomes": [
+          {
+           "code": "ART-11-A-12",
+           "text": "Explore career paths such as robotics technician, automation engineer and industrial designer."
+          },
+          {
+           "code": "ART-11-A-13",
+           "text": "Identify skills and qualifications needed for different robotics careers."
+          }
+         ]
+        },
+        {
+         "id": "industry-trends",
+         "title": "Industry trends",
+         "outcomes": [
+          {
+           "code": "ART-11-A-14",
+           "text": "Discuss industry trends and emerging technologies in Pakistan and worldwide."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "domain-b-mechatronics",
+     "title": "Domain B: Mechatronics",
+     "topics": [
+      {
+       "id": "motion-and-mechanics-of-robots",
+       "title": "Motion and mechanics of robots",
+       "subtopics": [
+        {
+         "id": "force-and-newton-s-laws",
+         "title": "Force and Newton's laws",
+         "outcomes": [
+          {
+           "code": "ART-11-B-01",
+           "text": "Define force and motion and explain Newton's laws of motion."
+          }
+         ]
+        },
+        {
+         "id": "scalar-and-vector-quantities",
+         "title": "Scalar and vector quantities",
+         "outcomes": [
+          {
+           "code": "ART-11-B-02",
+           "text": "Tell scalar from vector quantities with examples."
+          }
+         ]
+        },
+        {
+         "id": "equilibrium-and-projectiles",
+         "title": "Equilibrium and projectiles",
+         "outcomes": [
+          {
+           "code": "ART-11-B-03",
+           "text": "Define what it means for a robotic system to be in equilibrium."
+          },
+          {
+           "code": "ART-11-B-04",
+           "text": "Explain projectile motion, including angle of actuation."
+          }
+         ]
+        },
+        {
+         "id": "work-energy-and-laws-in-robots",
+         "title": "Work, energy and laws in robots",
+         "outcomes": [
+          {
+           "code": "ART-11-B-05",
+           "text": "Understand the concepts of energy and work."
+          },
+          {
+           "code": "ART-11-B-06",
+           "text": "Identify the laws of motion and how robotics applies them."
+          },
+          {
+           "code": "ART-11-B-07",
+           "text": "Apply the laws of motion in robotics using daily-life examples."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "domain-c-programming",
+     "title": "Domain C: Programming",
+     "topics": [
+      {
+       "id": "programming-and-ai-for-robotics",
+       "title": "Programming and AI for robotics",
+       "subtopics": [
+        {
+         "id": "programming-for-robots",
+         "title": "Programming for robots",
+         "outcomes": [
+          {
+           "code": "ART-11-C-01",
+           "text": "Explain why programming languages matter for robotics, with examples."
+          },
+          {
+           "code": "ART-11-C-02",
+           "text": "List the types of programming used in robotics."
+          }
+         ]
+        },
+        {
+         "id": "python-basics",
+         "title": "Python basics",
+         "outcomes": [
+          {
+           "code": "ART-11-C-03",
+           "text": "Use Python to write basic programs such as equations, a calculator and everyday problems."
+          },
+          {
+           "code": "ART-11-C-04",
+           "text": "Identify the data types of Python variables."
+          }
+         ]
+        },
+        {
+         "id": "ai-in-robotics",
+         "title": "AI in robotics",
+         "outcomes": [
+          {
+           "code": "ART-11-C-05",
+           "text": "Explain artificial intelligence and its role in robotics."
+          }
+         ]
+        },
+        {
+         "id": "simulation-with-coppeliasim",
+         "title": "Simulation with CoppeliaSim",
+         "outcomes": [
+          {
+           "code": "ART-11-C-06",
+           "text": "Define a robotic simulator and its benefits for learning robotics."
+          },
+          {
+           "code": "ART-11-C-07",
+           "text": "Design basic manipulators such as RRR, PPP, PRP and PRR in CoppeliaSim."
+          },
+          {
+           "code": "ART-11-C-08",
+           "text": "Apply Python programming in the CoppeliaSim platform."
+          },
+          {
+           "code": "ART-11-C-09",
+           "text": "Apply basic motion and control concepts within CoppeliaSim."
+          },
+          {
+           "code": "ART-11-C-10",
+           "text": "Use different sensor types in CoppeliaSim in the computer lab."
+          },
+          {
+           "code": null,
+           "text": "Design a robotic system in a virtual industrial environment."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "12",
+   "units": [
+    {
+     "id": "domain-a-fundamental-of-automation-and-robotics",
+     "title": "Domain A: Fundamental of Automation and Robotics",
+     "topics": [
+      {
+       "id": "electronics-fundamentals-for-robotics",
+       "title": "Electronics fundamentals for robotics",
+       "subtopics": [
+        {
+         "id": "digital-and-analog-electronics",
+         "title": "Digital and analog electronics",
+         "outcomes": [
+          {
+           "code": "ART-12-A-01",
+           "text": "Explain principles of digital and analog electronics for designing circuits."
+          },
+          {
+           "code": "ART-12-A-02",
+           "text": "Design basic circuits with components such as capacitors, inductors, diodes, transistors and op-amps (lab)."
+          }
+         ]
+        },
+        {
+         "id": "sensor-circuits",
+         "title": "Sensor circuits",
+         "outcomes": [
+          {
+           "code": "ART-12-A-03",
+           "text": "Build sensor-based circuits for data acquisition, using temperature, motion, strain, IR and ultrasonic sensors with Arduino."
+          }
+         ]
+        },
+        {
+         "id": "microcontrollers",
+         "title": "Microcontrollers",
+         "outcomes": [
+          {
+           "code": "ART-12-A-04",
+           "text": "Discuss what microcontrollers and microprocessors can do."
+          },
+          {
+           "code": "ART-12-A-05",
+           "text": "Design hands-on projects and simulations of real-world scenarios in the computer lab."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "careers-ethics-and-trends",
+       "title": "Careers, ethics and trends",
+       "subtopics": [
+        {
+         "id": "industry-and-entrepreneurship",
+         "title": "Industry and entrepreneurship",
+         "outcomes": [
+          {
+           "code": "ART-12-A-06",
+           "text": "Explore industrial data acquisition methods through internships or site visits."
+          },
+          {
+           "code": "ART-12-A-07",
+           "text": "Discuss entrepreneurial opportunities in automation and robotics."
+          },
+          {
+           "code": "ART-12-A-08",
+           "text": "Analyse case studies of successful robotics professionals locally and internationally."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "domain-b-mechatronics",
+     "title": "Domain B: Mechatronics",
+     "topics": [
+      {
+       "id": "motion-and-mechanics-of-robots",
+       "title": "Motion and mechanics of robots",
+       "subtopics": [
+        {
+         "id": "robot-motion-in-dimensions",
+         "title": "Robot motion in dimensions",
+         "outcomes": [
+          {
+           "code": "ART-12-B-01",
+           "text": "Define the motion of a robot in one dimension."
+          },
+          {
+           "code": "ART-12-B-02",
+           "text": "Explain robot motion in two and three dimensions, such as rotational and uniform circular motion."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "control-systems",
+       "title": "Control systems",
+       "subtopics": [
+        {
+         "id": "control-system-basics",
+         "title": "Control system basics",
+         "outcomes": [
+          {
+           "code": "ART-12-B-03",
+           "text": "Explain the control system concept and its parts."
+          },
+          {
+           "code": "ART-12-B-04",
+           "text": "Define the role of feedback in a control system."
+          }
+         ]
+        },
+        {
+         "id": "pid-control",
+         "title": "PID control",
+         "outcomes": [
+          {
+           "code": "ART-12-B-05",
+           "text": "Explain how a PID controller works."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "domain-c-programming",
+     "title": "Domain C: Programming",
+     "topics": [
+      {
+       "id": "building-robots",
+       "title": "Building robots",
+       "subtopics": [
+        {
+         "id": "sensing-and-obstacles",
+         "title": "Sensing and obstacles",
+         "outcomes": [
+          {
+           "code": "ART-12-C-01",
+           "text": "Choose and use suitable data acquisition techniques for a given scenario."
+          },
+          {
+           "code": "ART-12-C-02",
+           "text": "Design an obstacle-avoiding robot using robotics principles and sensors in the lab."
+          }
+         ]
+        },
+        {
+         "id": "line-following-and-sumo-robots",
+         "title": "Line-following and sumo robots",
+         "outcomes": [
+          {
+           "code": "ART-12-C-03",
+           "text": "Analyse and implement line-following algorithms to build a line-following robot with precise tracking."
+          },
+          {
+           "code": "ART-12-C-04",
+           "text": "Design a sumo robot combining mechanical and programming elements."
+          }
+         ]
+        },
+        {
+         "id": "fire-fighting-robot",
+         "title": "Fire-fighting robot",
+         "outcomes": [
+          {
+           "code": "ART-12-C-05",
+           "text": "Develop a fire-fighting robot that finds and extinguishes fires on its own using sensors."
+          }
+         ]
+        },
+        {
+         "id": "gripper-robot",
+         "title": "Gripper robot",
+         "outcomes": [
+          {
+           "code": "ART-12-C-06",
+           "text": "Assemble a gripper robot, showing mechanical assembly skill."
+          },
+          {
+           "code": "ART-12-C-07",
+           "text": "Design and program a gripper robot to do specified tasks."
+          },
+          {
+           "code": "ART-12-C-08",
+           "text": "Apply basic AI models to improve a gripper robot's automation."
+          }
+         ]
+        },
+        {
+         "id": "final-project",
+         "title": "Final project",
+         "outcomes": [
+          {
+           "code": "ART-12-C-09",
+           "text": "Design a project combining knowledge from the whole programme to solve a real-world challenge."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "build": {
+  "builtAt": "2026-10-14T08:34:22.571Z",
+  "model": "claude-agent",
+  "usd": 0,
+  "expectedCodes": 53,
+  "coverage": 1,
+  "missingCodes": [],
+  "counts": {
+   "grades": 2,
+   "units": 6,
+   "topics": 11,
+   "subtopics": 28,
+   "outcomes": 54
+  },
+  "warnings": []
+ }
+}

@@ -1,0 +1,94 @@
+{
+ "id": "us-nm-world-languages",
+ "region": "US",
+ "framework": "New Mexico state academic standards: World Languages",
+ "board": null,
+ "qualification": "K-12",
+ "subject": "World Languages",
+ "syllabusCode": null,
+ "gradeSystem": "grade",
+ "source": {
+  "urls": [
+   "https://api.commonstandardsproject.com/api/v1/jurisdictions/C558A97651934F3989D0D0A41196060C",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/C558A97651934F3989D0D0A41196060C_D2393134_grades-01-02-03-04-05-06-07-08-09-10-11-12-k"
+  ],
+  "publisher": "New Mexico state education agency (machine-readable via Common Standards Project / ASN)",
+  "licence": "CC BY 3.0 US, Desire2Learn Incorporated",
+  "firstExam": "2009"
+ },
+ "grades": [
+  {
+   "grade": "1-K",
+   "units": [
+    {
+     "id": "grades-k-1-2-3-4-5-6-7-8-9-10-11-12",
+     "title": "Grades K, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12",
+     "topics": [
+      {
+       "id": "grades-k-1-2-3-4-5-6-7-8-9-10-11-12",
+       "title": "Grades K, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12",
+       "subtopics": [
+        {
+         "id": "grades-k-1-2-3-4-5-6-7-8-9-10-11-12-1-of-2",
+         "title": "Grades K, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12 (1 of 2)",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "By speaking, writing or signing, students will express themselves in a culturally-appropriate manner for many purposes."
+          },
+          {
+           "code": null,
+           "text": "By listening, observing, reading and discussing, students will comprehend and interpret oral, written and visual messages on a variety of topics"
+          },
+          {
+           "code": null,
+           "text": "Students will understand the relationship between language and culture."
+          },
+          {
+           "code": null,
+           "text": "Students will develop an understanding of other cultures, including such elements as their value systems, languages, traditions and individual perspectives."
+          }
+         ]
+        },
+        {
+         "id": "grades-k-1-2-3-4-5-6-7-8-9-10-11-12-2-of-2",
+         "title": "Grades K, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12 (2 of 2)",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Students will understand how language works."
+          },
+          {
+           "code": null,
+           "text": "Students will use the language studied to reinforce and expand knowledge of other disciplines."
+          },
+          {
+           "code": null,
+           "text": "Students will use the language studied for personal enjoyment, personal enrichment and employability."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "build": {
+  "builtAt": "2026-10-14T08:04:47.124Z",
+  "model": "none",
+  "usd": 0,
+  "expectedCodes": null,
+  "coverage": null,
+  "missingCodes": [],
+  "counts": {
+   "grades": 1,
+   "units": 1,
+   "topics": 1,
+   "subtopics": 2,
+   "outcomes": 7
+  },
+  "warnings": []
+ }
+}

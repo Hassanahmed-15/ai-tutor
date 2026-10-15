@@ -1,0 +1,987 @@
+{
+ "id": "uk-ocr-alevel-computer-science-h446",
+ "region": "UK",
+ "framework": "OCR A Level",
+ "board": "OCR",
+ "qualification": "A Level",
+ "subject": "Computer Science",
+ "syllabusCode": "H446",
+ "gradeSystem": "year",
+ "source": {
+  "urls": [
+   "https://www.ocr.org.uk/Images/170844-specification-accredited-a-level-gce-computer-science-h446.pdf"
+  ],
+  "publisher": "OCR (Oxford Cambridge and RSA)",
+  "licence": "Exam board specification, (c) OCR; structure + our own wording only",
+  "firstExam": "2017"
+ },
+ "grades": [
+  {
+   "grade": "all",
+   "units": [
+    {
+     "id": "component-01-computer-systems",
+     "title": "Component 01: Computer systems",
+     "topics": [
+      {
+       "id": "1-1-1-structure-and-function-of-the-processor",
+       "title": "1.1.1 Structure and function of the processor",
+       "subtopics": [
+        {
+         "id": "inside-the-cpu",
+         "title": "Inside the CPU",
+         "outcomes": [
+          {
+           "code": "1.1.1",
+           "text": "Describe the ALU, control unit and registers (PC, ACC, MAR, MDR, CIR) and the data, address and control buses."
+          },
+          {
+           "code": null,
+           "text": "Describe the fetch-decode-execute cycle and its effect on registers."
+          }
+         ]
+        },
+        {
+         "id": "cpu-performance",
+         "title": "CPU performance",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain how clock speed, number of cores and cache affect CPU performance."
+          },
+          {
+           "code": null,
+           "text": "Explain how pipelining improves processor efficiency."
+          }
+         ]
+        },
+        {
+         "id": "processor-architectures",
+         "title": "Processor architectures",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Compare Von Neumann, Harvard and contemporary processor architectures."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "1-1-2-types-of-processor",
+       "title": "1.1.2 Types of processor",
+       "subtopics": [
+        {
+         "id": "processor-types",
+         "title": "Processor types",
+         "outcomes": [
+          {
+           "code": "1.1.2",
+           "text": "Compare CISC and RISC processors and their uses."
+          },
+          {
+           "code": null,
+           "text": "Describe GPUs and their uses, including non-graphics uses."
+          },
+          {
+           "code": null,
+           "text": "Describe multicore and parallel systems."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "1-1-3-input-output-and-storage",
+       "title": "1.1.3 Input, output and storage",
+       "subtopics": [
+        {
+         "id": "devices-and-storage",
+         "title": "Devices and storage",
+         "outcomes": [
+          {
+           "code": "1.1.3",
+           "text": "Apply different input, output and storage devices to different problems."
+          },
+          {
+           "code": null,
+           "text": "Describe uses of magnetic, flash and optical storage."
+          }
+         ]
+        },
+        {
+         "id": "memory",
+         "title": "Memory",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Distinguish RAM from ROM."
+          },
+          {
+           "code": null,
+           "text": "Explain virtual storage."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "1-2-1-systems-software",
+       "title": "1.2.1 Systems software",
+       "subtopics": [
+        {
+         "id": "operating-systems",
+         "title": "Operating systems",
+         "outcomes": [
+          {
+           "code": "1.2.1",
+           "text": "Explain the need for, and function and purpose of, operating systems."
+          },
+          {
+           "code": null,
+           "text": "Explain memory management: paging, segmentation and virtual memory."
+          }
+         ]
+        },
+        {
+         "id": "interrupts-and-scheduling",
+         "title": "Interrupts and scheduling",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain interrupts, interrupt service routines and their role in the fetch-decode-execute cycle."
+          },
+          {
+           "code": null,
+           "text": "Describe scheduling: round robin, first come first served, multi-level feedback queues, shortest job first and shortest remaining time."
+          }
+         ]
+        },
+        {
+         "id": "types-of-operating-system",
+         "title": "Types of operating system",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe distributed, embedded, multi-tasking, multi-user and real-time operating systems."
+          }
+         ]
+        },
+        {
+         "id": "bios-drivers-and-virtual-machines",
+         "title": "BIOS, drivers and virtual machines",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe the BIOS."
+          },
+          {
+           "code": null,
+           "text": "Describe device drivers."
+          },
+          {
+           "code": null,
+           "text": "Explain virtual machines, including running intermediate code or an operating system inside another."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "1-2-2-applications-generation",
+       "title": "1.2.2 Applications generation",
+       "subtopics": [
+        {
+         "id": "applications-and-utilities",
+         "title": "Applications and utilities",
+         "outcomes": [
+          {
+           "code": "1.2.2",
+           "text": "Explain the nature of applications and justify suitable applications for a purpose."
+          },
+          {
+           "code": null,
+           "text": "Describe utility software."
+          },
+          {
+           "code": null,
+           "text": "Compare open source and closed source software."
+          }
+         ]
+        },
+        {
+         "id": "translators",
+         "title": "Translators",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Compare interpreters, compilers and assemblers."
+          },
+          {
+           "code": null,
+           "text": "Describe the stages of compilation: lexical analysis, syntax analysis, code generation and optimisation."
+          },
+          {
+           "code": null,
+           "text": "Explain linkers, loaders and the use of libraries."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "1-2-3-software-development",
+       "title": "1.2.3 Software development",
+       "subtopics": [
+        {
+         "id": "development-methodologies",
+         "title": "Development methodologies",
+         "outcomes": [
+          {
+           "code": "1.2.3",
+           "text": "Describe the waterfall lifecycle, agile methodologies, extreme programming, the spiral model and rapid application development."
+          },
+          {
+           "code": null,
+           "text": "Weigh the merits and drawbacks of methodologies and when each suits."
+          },
+          {
+           "code": null,
+           "text": "Write and follow algorithms."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "1-2-4-types-of-programming-language",
+       "title": "1.2.4 Types of programming language",
+       "subtopics": [
+        {
+         "id": "paradigms",
+         "title": "Paradigms",
+         "outcomes": [
+          {
+           "code": "1.2.4",
+           "text": "Explain the need for and characteristics of a variety of programming paradigms."
+          },
+          {
+           "code": null,
+           "text": "Describe procedural languages."
+          }
+         ]
+        },
+        {
+         "id": "assembly-language",
+         "title": "Assembly language",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Follow and write simple programs with the Little Man Computer instruction set."
+          },
+          {
+           "code": null,
+           "text": "Describe memory addressing modes: immediate, direct, indirect and indexed."
+          }
+         ]
+        },
+        {
+         "id": "object-oriented-programming",
+         "title": "Object-oriented programming",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain classes, objects, methods, attributes, inheritance, encapsulation and polymorphism."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "1-3-1-compression-encryption-and-hashing",
+       "title": "1.3.1 Compression, encryption and hashing",
+       "subtopics": [
+        {
+         "id": "compression",
+         "title": "Compression",
+         "outcomes": [
+          {
+           "code": "1.3.1",
+           "text": "Distinguish lossy from lossless compression."
+          },
+          {
+           "code": null,
+           "text": "Describe run length encoding and dictionary coding for lossless compression."
+          }
+         ]
+        },
+        {
+         "id": "encryption-and-hashing",
+         "title": "Encryption and hashing",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Distinguish symmetric from asymmetric encryption."
+          },
+          {
+           "code": null,
+           "text": "Describe different uses of hashing."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "1-3-2-databases",
+       "title": "1.3.2 Databases",
+       "subtopics": [
+        {
+         "id": "relational-databases",
+         "title": "Relational databases",
+         "outcomes": [
+          {
+           "code": "1.3.2",
+           "text": "Define relational database, flat file, primary, foreign and secondary keys, entity-relationship modelling and indexing."
+          },
+          {
+           "code": null,
+           "text": "Describe methods of capturing, selecting, managing and exchanging data."
+          }
+         ]
+        },
+        {
+         "id": "normalisation",
+         "title": "Normalisation",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Normalise data to third normal form."
+          },
+          {
+           "code": null,
+           "text": "Explain referential integrity."
+          }
+         ]
+        },
+        {
+         "id": "sql-and-transactions",
+         "title": "SQL and transactions",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Interpret and modify SQL."
+          },
+          {
+           "code": null,
+           "text": "Explain transaction processing, ACID, record locking and redundancy."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "1-3-3-networks",
+       "title": "1.3.3 Networks",
+       "subtopics": [
+        {
+         "id": "network-basics",
+         "title": "Network basics",
+         "outcomes": [
+          {
+           "code": "1.3.3",
+           "text": "Describe characteristics of networks and the importance of protocols and standards."
+          }
+         ]
+        },
+        {
+         "id": "the-internet",
+         "title": "The internet",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain the internet structure: TCP/IP stack, DNS, protocol layering, LANs and WANs, packet and circuit switching."
+          }
+         ]
+        },
+        {
+         "id": "network-security-and-hardware",
+         "title": "Network security and hardware",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain network security and threats, firewalls, proxies and encryption."
+          },
+          {
+           "code": null,
+           "text": "Describe network hardware."
+          },
+          {
+           "code": null,
+           "text": "Compare client-server and peer-to-peer networks."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "1-3-4-web-technologies",
+       "title": "1.3.4 Web technologies",
+       "subtopics": [
+        {
+         "id": "building-web-pages",
+         "title": "Building web pages",
+         "outcomes": [
+          {
+           "code": "1.3.4",
+           "text": "Use HTML, CSS and JavaScript."
+          },
+          {
+           "code": null,
+           "text": "Compare server-side and client-side processing."
+          }
+         ]
+        },
+        {
+         "id": "search-engines",
+         "title": "Search engines",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain search engine indexing."
+          },
+          {
+           "code": null,
+           "text": "Explain the PageRank algorithm."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "1-4-1-data-types",
+       "title": "1.4.1 Data types",
+       "subtopics": [
+        {
+         "id": "data-types",
+         "title": "Data types",
+         "outcomes": [
+          {
+           "code": "1.4.1",
+           "text": "Describe primitive data types: integer, real, character, string and Boolean."
+          }
+         ]
+        },
+        {
+         "id": "binary-and-hexadecimal",
+         "title": "Binary and hexadecimal",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Represent positive integers in binary."
+          },
+          {
+           "code": null,
+           "text": "Represent negative numbers using sign and magnitude and two's complement."
+          },
+          {
+           "code": null,
+           "text": "Add and subtract binary integers."
+          },
+          {
+           "code": null,
+           "text": "Represent positive integers in hexadecimal."
+          },
+          {
+           "code": null,
+           "text": "Convert positive integers between binary, hexadecimal and denary."
+          }
+         ]
+        },
+        {
+         "id": "floating-point",
+         "title": "Floating point",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Represent and normalise floating point numbers in binary."
+          },
+          {
+           "code": null,
+           "text": "Add and subtract floating point numbers, positive and negative."
+          }
+         ]
+        },
+        {
+         "id": "bitwise-operations-and-text",
+         "title": "Bitwise operations and text",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Use bitwise shifts and masks combined with AND, OR and XOR."
+          },
+          {
+           "code": null,
+           "text": "Explain how ASCII and Unicode represent text."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "1-4-2-data-structures",
+       "title": "1.4.2 Data structures",
+       "subtopics": [
+        {
+         "id": "arrays-records-and-lists",
+         "title": "Arrays, records and lists",
+         "outcomes": [
+          {
+           "code": "1.4.2",
+           "text": "Use arrays (up to three dimensions), records, lists and tuples."
+          }
+         ]
+        },
+        {
+         "id": "linear-and-tree-structures",
+         "title": "Linear and tree structures",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe linked lists, graphs, stacks, queues, trees, binary search trees and hash tables."
+          },
+          {
+           "code": null,
+           "text": "Create, traverse, add to and remove data from these structures."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "1-4-3-boolean-algebra",
+       "title": "1.4.3 Boolean algebra",
+       "subtopics": [
+        {
+         "id": "boolean-logic",
+         "title": "Boolean logic",
+         "outcomes": [
+          {
+           "code": "1.4.3",
+           "text": "Define problems using Boolean logic."
+          }
+         ]
+        },
+        {
+         "id": "simplifying-boolean-expressions",
+         "title": "Simplifying Boolean expressions",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Manipulate Boolean expressions, including Karnaugh maps for simplification."
+          },
+          {
+           "code": null,
+           "text": "Use De Morgan's laws, distribution, association, commutation and double negation."
+          }
+         ]
+        },
+        {
+         "id": "logic-circuits",
+         "title": "Logic circuits",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Use logic gate diagrams and truth tables."
+          },
+          {
+           "code": null,
+           "text": "Explain the logic of D-type flip flops, half adders and full adders."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "1-5-1-computing-related-legislation",
+       "title": "1.5.1 Computing related legislation",
+       "subtopics": [
+        {
+         "id": "computing-law",
+         "title": "Computing law",
+         "outcomes": [
+          {
+           "code": "1.5.1",
+           "text": "Describe the Data Protection Act 1998."
+          },
+          {
+           "code": null,
+           "text": "Describe the Computer Misuse Act 1990."
+          },
+          {
+           "code": null,
+           "text": "Describe the Copyright Designs and Patents Act 1988."
+          },
+          {
+           "code": null,
+           "text": "Describe the Regulation of Investigatory Powers Act 2000."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "1-5-2-moral-and-ethical-issues",
+       "title": "1.5.2 Moral and ethical issues",
+       "subtopics": [
+        {
+         "id": "technology-and-work",
+         "title": "Technology and work",
+         "outcomes": [
+          {
+           "code": "1.5.2",
+           "text": "Discuss the impact of computers in the workforce."
+          },
+          {
+           "code": null,
+           "text": "Discuss automated decision making and artificial intelligence."
+          }
+         ]
+        },
+        {
+         "id": "society-and-the-internet",
+         "title": "Society and the internet",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Discuss environmental effects of computing."
+          },
+          {
+           "code": null,
+           "text": "Discuss censorship and the internet."
+          },
+          {
+           "code": null,
+           "text": "Discuss monitoring behaviour and analysing personal information."
+          },
+          {
+           "code": null,
+           "text": "Discuss piracy and offensive communications."
+          },
+          {
+           "code": null,
+           "text": "Discuss layout, colour paradigms and character sets in design."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "component-02-algorithms-and-programming",
+     "title": "Component 02: Algorithms and programming",
+     "topics": [
+      {
+       "id": "2-1-1-thinking-abstractly",
+       "title": "2.1.1 Thinking abstractly",
+       "subtopics": [
+        {
+         "id": "abstraction",
+         "title": "Abstraction",
+         "outcomes": [
+          {
+           "code": "2.1.1",
+           "text": "Explain the nature of abstraction and the need for it."
+          },
+          {
+           "code": null,
+           "text": "Explain how an abstraction differs from reality."
+          },
+          {
+           "code": null,
+           "text": "Devise an abstract model for a variety of situations."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "2-1-2-thinking-ahead",
+       "title": "2.1.2 Thinking ahead",
+       "subtopics": [
+        {
+         "id": "planning-ahead",
+         "title": "Planning ahead",
+         "outcomes": [
+          {
+           "code": "2.1.2",
+           "text": "Identify inputs and outputs for a situation."
+          },
+          {
+           "code": null,
+           "text": "Determine preconditions for a solution."
+          }
+         ]
+        },
+        {
+         "id": "caching-and-reuse",
+         "title": "Caching and reuse",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain the nature, benefits and drawbacks of caching."
+          },
+          {
+           "code": null,
+           "text": "Explain the need for reusable program components."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "2-1-3-thinking-procedurally",
+       "title": "2.1.3 Thinking procedurally",
+       "subtopics": [
+        {
+         "id": "breaking-problems-down",
+         "title": "Breaking problems down",
+         "outcomes": [
+          {
+           "code": "2.1.3",
+           "text": "Identify the components of a problem and of its solution."
+          },
+          {
+           "code": null,
+           "text": "Determine the order of steps needed to solve a problem."
+          },
+          {
+           "code": null,
+           "text": "Identify sub-procedures needed to solve a problem."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "2-1-4-thinking-logically",
+       "title": "2.1.4 Thinking logically",
+       "subtopics": [
+        {
+         "id": "decisions-in-a-solution",
+         "title": "Decisions in a solution",
+         "outcomes": [
+          {
+           "code": "2.1.4",
+           "text": "Identify the points in a solution where a decision is needed."
+          },
+          {
+           "code": null,
+           "text": "Determine the logical conditions that affect a decision's outcome."
+          },
+          {
+           "code": null,
+           "text": "Determine how decisions affect flow through a program."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "2-1-5-thinking-concurrently",
+       "title": "2.1.5 Thinking concurrently",
+       "subtopics": [
+        {
+         "id": "concurrency",
+         "title": "Concurrency",
+         "outcomes": [
+          {
+           "code": "2.1.5",
+           "text": "Determine which parts of a problem can be tackled at the same time."
+          },
+          {
+           "code": null,
+           "text": "Outline the benefits and trade-offs of concurrent processing."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "2-2-1-programming-techniques",
+       "title": "2.2.1 Programming techniques",
+       "subtopics": [
+        {
+         "id": "programming-constructs",
+         "title": "Programming constructs",
+         "outcomes": [
+          {
+           "code": "2.2.1",
+           "text": "Use sequence, iteration and branching."
+          },
+          {
+           "code": null,
+           "text": "Explain recursion and compare it with iteration."
+          },
+          {
+           "code": null,
+           "text": "Distinguish global and local variables."
+          }
+         ]
+        },
+        {
+         "id": "modularity-and-tools",
+         "title": "Modularity and tools",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Use modularity, functions and procedures, with parameters passed by value and by reference."
+          },
+          {
+           "code": null,
+           "text": "Use an IDE to develop and debug a program."
+          },
+          {
+           "code": null,
+           "text": "Use object-oriented techniques."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "2-2-2-computational-methods",
+       "title": "2.2.2 Computational methods",
+       "subtopics": [
+        {
+         "id": "is-it-computable",
+         "title": "Is it computable?",
+         "outcomes": [
+          {
+           "code": "2.2.2",
+           "text": "Describe the features that make a problem solvable by computational methods."
+          },
+          {
+           "code": null,
+           "text": "Recognise problems."
+          }
+         ]
+        },
+        {
+         "id": "decomposition-methods",
+         "title": "Decomposition methods",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Decompose a problem."
+          },
+          {
+           "code": null,
+           "text": "Use divide and conquer."
+          },
+          {
+           "code": null,
+           "text": "Use abstraction."
+          }
+         ]
+        },
+        {
+         "id": "problem-solving-techniques",
+         "title": "Problem-solving techniques",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Apply backtracking, data mining, heuristics, performance modelling, pipelining and visualisation to solve problems."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "2-3-1-algorithms",
+       "title": "2.3.1 Algorithms",
+       "subtopics": [
+        {
+         "id": "designing-algorithms",
+         "title": "Designing algorithms",
+         "outcomes": [
+          {
+           "code": "2.3.1",
+           "text": "Analyse and design algorithms for a given situation."
+          },
+          {
+           "code": null,
+           "text": "Judge the suitability of algorithms for a task and data set by time and space."
+          }
+         ]
+        },
+        {
+         "id": "algorithm-efficiency",
+         "title": "Algorithm efficiency",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Use measures such as Big O notation (constant, linear, polynomial, exponential, logarithmic) to judge efficiency."
+          },
+          {
+           "code": null,
+           "text": "Compare the complexity of algorithms."
+          }
+         ]
+        },
+        {
+         "id": "data-structure-algorithms",
+         "title": "Data structure algorithms",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Write algorithms for stacks, queues, trees and linked lists, and depth-first and breadth-first tree traversal."
+          }
+         ]
+        },
+        {
+         "id": "standard-algorithms",
+         "title": "Standard algorithms",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe bubble, insertion, merge and quick sort."
+          },
+          {
+           "code": null,
+           "text": "Describe Dijkstra's shortest path and A* algorithms."
+          },
+          {
+           "code": null,
+           "text": "Describe binary search and linear search."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "build": {
+  "builtAt": "2026-10-14T10:40:45.329Z",
+  "model": "claude-agent",
+  "usd": 0,
+  "expectedCodes": 24,
+  "coverage": 1,
+  "missingCodes": [],
+  "counts": {
+   "grades": 1,
+   "units": 2,
+   "topics": 24,
+   "subtopics": 53,
+   "outcomes": 117
+  },
+  "warnings": [
+   "grade Year 12 has no content",
+   "grade Year 13 has no content",
+   "unexpected grade label \"all\""
+  ]
+ }
+}

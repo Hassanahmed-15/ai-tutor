@@ -1,0 +1,919 @@
+{
+ "id": "cie-alevel-mathematics-further-9231-2026-2027",
+ "region": "INTL",
+ "framework": "Cambridge International AS & A Level Mathematics - Further (9231) syllabus 2026–2027",
+ "board": "Cambridge",
+ "qualification": "AS & A Level",
+ "subject": "Mathematics - Further",
+ "syllabusCode": "9231",
+ "gradeSystem": "course",
+ "source": {
+  "urls": [
+   "https://www.cambridgeinternational.org/Images/697357-2026-2027-syllabus.pdf",
+   "https://www.cambridgeinternational.org/programmes-and-qualifications/cambridge-international-as-and-a-level-mathematics-further-9231/"
+  ],
+  "publisher": "Cambridge University Press & Assessment (Cambridge International Education)",
+  "licence": "© Cambridge University Press & Assessment; structure + our own wording only",
+  "firstExam": "2026"
+ },
+ "grades": [
+  {
+   "grade": "AS",
+   "units": [
+    {
+     "id": "1-further-pure-mathematics-1",
+     "title": "1 Further Pure Mathematics 1",
+     "topics": [
+      {
+       "id": "1-1-roots-of-polynomial-equations",
+       "title": "1.1 Roots of polynomial equations",
+       "subtopics": [
+        {
+         "id": "roots-and-coefficients",
+         "title": "Roots and coefficients",
+         "outcomes": [
+          {
+           "code": "1.1",
+           "text": "Relate the roots of a quadratic, cubic or quartic to its coefficients and evaluate symmetric functions of the roots."
+          },
+          {
+           "code": null,
+           "text": "Find unknown coefficients using given facts about the roots."
+          }
+         ]
+        },
+        {
+         "id": "related-equations-by-substitution",
+         "title": "Related equations by substitution",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Use a substitution to build a new equation whose roots are simply related to the roots of the original."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "1-2-rational-functions-and-graphs",
+       "title": "1.2 Rational functions and graphs",
+       "subtopics": [
+        {
+         "id": "sketching-rational-functions",
+         "title": "Sketching rational functions",
+         "outcomes": [
+          {
+           "code": "1.2",
+           "text": "Sketch simple rational functions with numerator and denominator up to degree 2, including oblique asymptotes and the range of values taken."
+          },
+          {
+           "code": null,
+           "text": "Show turning points, asymptotes and axis intersections on a sketch."
+          }
+         ]
+        },
+        {
+         "id": "related-graphs",
+         "title": "Related graphs",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Relate the graphs of y=f(x), y^2=f(x), y=1/f(x) and y=f(|x|) and use them to solve equations or inequalities."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "1-3-summation-of-series",
+       "title": "1.3 Summation of series",
+       "subtopics": [
+        {
+         "id": "standard-sums",
+         "title": "Standard sums",
+         "outcomes": [
+          {
+           "code": "1.3",
+           "text": "Use the standard results for the sums of r, r squared and r cubed to find related sums."
+          }
+         ]
+        },
+        {
+         "id": "method-of-differences",
+         "title": "Method of differences",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Use the method of differences, with partial fractions where needed, to sum a finite series."
+          }
+         ]
+        },
+        {
+         "id": "convergent-series",
+         "title": "Convergent series",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Decide from the sum to n terms whether a series converges and find the sum to infinity."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "1-4-matrices",
+       "title": "1.4 Matrices",
+       "subtopics": [
+        {
+         "id": "matrix-operations",
+         "title": "Matrix operations",
+         "outcomes": [
+          {
+           "code": "1.4",
+           "text": "Add, subtract and multiply matrices, including non-square ones, and recognise the zero and identity matrices."
+          }
+         ]
+        },
+        {
+         "id": "determinants-and-inverses",
+         "title": "Determinants and inverses",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Know singular and non-singular matrices, and find determinants and inverses of 2x2 and 3x3 matrices."
+          },
+          {
+           "code": null,
+           "text": "Use and extend the result (AB)^-1 = B^-1 A^-1."
+          }
+         ]
+        },
+        {
+         "id": "matrices-as-transformations",
+         "title": "Matrices as transformations",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Use 2x2 matrices for rotations, reflections, enlargements, stretches and shears, and relate the transformations of A and its inverse."
+          },
+          {
+           "code": null,
+           "text": "Know that AB means B first then A, and link the area scale factor to the determinant."
+          },
+          {
+           "code": null,
+           "text": "Find the matrix for a given transformation or sequence of transformations."
+          }
+         ]
+        },
+        {
+         "id": "invariant-points-and-lines",
+         "title": "Invariant points and lines",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Understand invariant points and lines under a matrix transformation and find invariant points and lines through the origin."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "1-5-polar-coordinates",
+       "title": "1.5 Polar coordinates",
+       "subtopics": [
+        {
+         "id": "polar-curves",
+         "title": "Polar curves",
+         "outcomes": [
+          {
+           "code": "1.5",
+           "text": "Convert between Cartesian and polar coordinates and convert curve equations either way (with r at least 0)."
+          },
+          {
+           "code": null,
+           "text": "Sketch simple polar curves, showing symmetry, intersections with the initial line, behaviour at the pole and extreme values of r."
+          },
+          {
+           "code": null,
+           "text": "Recall the sector area formula half r squared d-theta and use it in simple cases."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "1-6-vectors",
+       "title": "1.6 Vectors",
+       "subtopics": [
+        {
+         "id": "planes-and-the-vector-product",
+         "title": "Planes and the vector product",
+         "outcomes": [
+          {
+           "code": "1.6",
+           "text": "Use and convert between the three forms of the equation of a plane."
+          },
+          {
+           "code": null,
+           "text": "Recall the magnitude-angle and component forms of the vector product."
+          }
+         ]
+        },
+        {
+         "id": "lines-and-planes-problems",
+         "title": "Lines and planes problems",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Use lines, planes and scalar and vector products to solve distance, angle and intersection problems."
+          },
+          {
+           "code": null,
+           "text": "Decide whether a line lies in, is parallel to, or meets a plane, and find the intersection point."
+          },
+          {
+           "code": null,
+           "text": "Find the foot of the perpendicular from a point to a plane."
+          },
+          {
+           "code": null,
+           "text": "Find the angle between a line and a plane and between two planes."
+          },
+          {
+           "code": null,
+           "text": "Find the line of intersection of two planes."
+          }
+         ]
+        },
+        {
+         "id": "skew-lines",
+         "title": "Skew lines",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Calculate the shortest distance between two skew lines and find the equation of their common perpendicular."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "1-7-proof-by-induction",
+       "title": "1.7 Proof by induction",
+       "subtopics": [
+        {
+         "id": "mathematical-induction",
+         "title": "Mathematical induction",
+         "outcomes": [
+          {
+           "code": "1.7",
+           "text": "Prove given results by induction, including series sums, recurrences, matrix powers and divisibility."
+          },
+          {
+           "code": null,
+           "text": "Spot a pattern from a few trials, conjecture a result and prove it by induction."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "3-further-mechanics",
+     "title": "3 Further Mechanics",
+     "topics": [
+      {
+       "id": "3-1-motion-of-a-projectile",
+       "title": "3.1 Motion of a projectile",
+       "subtopics": [
+        {
+         "id": "projectile-motion",
+         "title": "Projectile motion",
+         "outcomes": [
+          {
+           "code": "3.1",
+           "text": "Model a projectile as a particle with constant acceleration and understand the model's limitations."
+          },
+          {
+           "code": null,
+           "text": "Use horizontal and vertical equations of motion for velocity, range and greatest height."
+          }
+         ]
+        },
+        {
+         "id": "trajectory-equation",
+         "title": "Trajectory equation",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Derive and use the Cartesian equation of a trajectory, including cases with unknown speed or angle."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "3-2-equilibrium-of-a-rigid-body",
+       "title": "3.2 Equilibrium of a rigid body",
+       "subtopics": [
+        {
+         "id": "moments-and-centre-of-mass",
+         "title": "Moments and centre of mass",
+         "outcomes": [
+          {
+           "code": "3.2",
+           "text": "Calculate the moment of a force about a point for coplanar forces."
+          },
+          {
+           "code": null,
+           "text": "Treat gravity as one force at the centre of mass and place the centre of mass of uniform bodies by symmetry."
+          },
+          {
+           "code": null,
+           "text": "Use given centre of mass positions for a triangular lamina and other simple shapes."
+          },
+          {
+           "code": null,
+           "text": "Find the centre of mass of a composite body using an equivalent system of particles."
+          }
+         ]
+        },
+        {
+         "id": "equilibrium-of-a-rigid-body",
+         "title": "Equilibrium of a rigid body",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Use the conditions that forces sum to zero and moments about any point sum to zero, and the converse."
+          },
+          {
+           "code": null,
+           "text": "Solve single rigid body equilibrium problems under coplanar forces, including toppling and sliding."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "3-3-circular-motion",
+       "title": "3.3 Circular motion",
+       "subtopics": [
+        {
+         "id": "angular-speed-and-acceleration",
+         "title": "Angular speed and acceleration",
+         "outcomes": [
+          {
+           "code": "3.3",
+           "text": "Understand angular speed and use v = r omega."
+          },
+          {
+           "code": null,
+           "text": "Know that circular motion at constant speed has acceleration towards the centre, and use r omega squared and v squared over r."
+          }
+         ]
+        },
+        {
+         "id": "horizontal-and-vertical-circles",
+         "title": "Horizontal and vertical circles",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Solve problems of a particle in a horizontal circle at constant speed."
+          },
+          {
+           "code": null,
+           "text": "Solve vertical circle problems without energy loss, finding tension or contact force and conditions for complete motion."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "3-4-hooke-s-law",
+       "title": "3.4 Hooke's law",
+       "subtopics": [
+        {
+         "id": "hooke-s-law-and-elastic-energy",
+         "title": "Hooke's law and elastic energy",
+         "outcomes": [
+          {
+           "code": "3.4",
+           "text": "Use Hooke's law for strings and springs and understand modulus of elasticity."
+          },
+          {
+           "code": null,
+           "text": "Use the formula for elastic potential energy in a string or spring."
+          }
+         ]
+        },
+        {
+         "id": "elastic-string-problems",
+         "title": "Elastic string problems",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Solve problems with elastic strings or springs, using work and energy where needed."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "3-5-linear-motion-under-a-variable-force",
+       "title": "3.5 Linear motion under a variable force",
+       "subtopics": [
+        {
+         "id": "variable-force",
+         "title": "Variable force",
+         "outcomes": [
+          {
+           "code": "3.5",
+           "text": "Set up and solve separable differential equations for linear motion under a variable force, including a = v dv/dx."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "3-6-momentum",
+       "title": "3.6 Momentum",
+       "subtopics": [
+        {
+         "id": "coefficient-of-restitution",
+         "title": "Coefficient of restitution",
+         "outcomes": [
+          {
+           "code": "3.6",
+           "text": "Recall Newton's experimental law, the coefficient of restitution with 0 ≤ e ≤ 1, and the terms perfectly elastic and inelastic."
+          }
+         ]
+        },
+        {
+         "id": "impacts-of-spheres",
+         "title": "Impacts of spheres",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Use conservation of momentum and Newton's law for direct or oblique impacts of smooth spheres, or of a sphere with a fixed surface."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "4-further-probability-statistics",
+     "title": "4 Further Probability & Statistics",
+     "topics": [
+      {
+       "id": "4-1-continuous-random-variables",
+       "title": "4.1 Continuous random variables",
+       "subtopics": [
+        {
+         "id": "density-and-distribution-functions",
+         "title": "Density and distribution functions",
+         "outcomes": [
+          {
+           "code": "4.1",
+           "text": "Use a probability density function, including piecewise ones."
+          },
+          {
+           "code": null,
+           "text": "Use E(g(X)) as the integral of g(x) f(x) dx."
+          },
+          {
+           "code": null,
+           "text": "Link the PDF and CDF and use either for probabilities and percentiles."
+          },
+          {
+           "code": null,
+           "text": "Use CDFs to find the CDF and PDF of related variables such as Y = X cubed."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "4-2-inference-using-normal-and-t-distributions",
+       "title": "4.2 Inference using normal and t-distributions",
+       "subtopics": [
+        {
+         "id": "t-tests",
+         "title": "t-tests",
+         "outcomes": [
+          {
+           "code": "4.2",
+           "text": "Formulate hypotheses and test a population mean from a small normal sample of unknown variance with a t-test."
+          },
+          {
+           "code": null,
+           "text": "Calculate a pooled variance estimate from two samples."
+          }
+         ]
+        },
+        {
+         "id": "comparing-two-means",
+         "title": "Comparing two means",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Formulate hypotheses on a difference of means and choose between a 2-sample t-test, paired t-test or normal test."
+          }
+         ]
+        },
+        {
+         "id": "confidence-intervals",
+         "title": "Confidence intervals",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Find a confidence interval for a mean from a small sample using the t-distribution."
+          },
+          {
+           "code": null,
+           "text": "Find a confidence interval for a difference of means using a t or normal distribution."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "4-3-2-tests",
+       "title": "4.3 χ2-tests",
+       "subtopics": [
+        {
+         "id": "goodness-of-fit",
+         "title": "Goodness of fit",
+         "outcomes": [
+          {
+           "code": "4.3",
+           "text": "Fit a theoretical distribution prescribed by a hypothesis to given data."
+          },
+          {
+           "code": null,
+           "text": "Carry out a chi-squared goodness of fit test with correct degrees of freedom, combining classes so expected frequencies are at least 5."
+          }
+         ]
+        },
+        {
+         "id": "contingency-tables",
+         "title": "Contingency tables",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Carry out a chi-squared test of independence on a contingency table with correct degrees of freedom."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "4-4-non-parametric-tests",
+       "title": "4.4 Non-parametric tests",
+       "subtopics": [
+        {
+         "id": "ideas-of-non-parametric-testing",
+         "title": "Ideas of non-parametric testing",
+         "outcomes": [
+          {
+           "code": "4.4",
+           "text": "Understand non-parametric tests and when they are useful."
+          },
+          {
+           "code": null,
+           "text": "Understand the basis of the sign test and Wilcoxon signed-rank and rank-sum tests."
+          }
+         ]
+        },
+        {
+         "id": "carrying-out-the-tests",
+         "title": "Carrying out the tests",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Use a single-sample sign test and Wilcoxon signed-rank test for a population median."
+          },
+          {
+           "code": null,
+           "text": "Use paired-sample sign, Wilcoxon matched-pairs and rank-sum tests to test whether populations are identical."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "4-5-probability-generating-functions",
+       "title": "4.5 Probability generating functions",
+       "subtopics": [
+        {
+         "id": "probability-generating-functions",
+         "title": "Probability generating functions",
+         "outcomes": [
+          {
+           "code": "4.5",
+           "text": "Understand the PGF and construct and use it for discrete uniform, binomial, geometric and Poisson distributions."
+          },
+          {
+           "code": null,
+           "text": "Use PGF formulae for mean and variance."
+          },
+          {
+           "code": null,
+           "text": "Use the fact that the PGF of a sum of independent variables is the product of their PGFs."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "A Level",
+   "units": [
+    {
+     "id": "2-further-pure-mathematics-2",
+     "title": "2 Further Pure Mathematics 2",
+     "topics": [
+      {
+       "id": "2-1-hyperbolic-functions",
+       "title": "2.1 Hyperbolic functions",
+       "subtopics": [
+        {
+         "id": "hyperbolic-functions-and-identities",
+         "title": "Hyperbolic functions and identities",
+         "outcomes": [
+          {
+           "code": "2.1",
+           "text": "Define sinh, cosh, tanh, sech, cosech and coth using the exponential function."
+          },
+          {
+           "code": null,
+           "text": "Sketch the graphs of the hyperbolic functions."
+          },
+          {
+           "code": null,
+           "text": "Prove and use hyperbolic identities that mirror the trigonometric ones."
+          }
+         ]
+        },
+        {
+         "id": "inverse-hyperbolic-functions",
+         "title": "Inverse hyperbolic functions",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Define the inverse hyperbolic functions, derive their logarithmic forms and use them."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "2-2-matrices",
+       "title": "2.2 Matrices",
+       "subtopics": [
+        {
+         "id": "systems-of-three-equations",
+         "title": "Systems of three equations",
+         "outcomes": [
+          {
+           "code": "2.2",
+           "text": "Write three linear equations in three unknowns as a matrix equation and vice versa."
+          },
+          {
+           "code": null,
+           "text": "Understand consistent and inconsistent systems, link them to singularity, solve consistent ones and interpret them as lines and planes."
+          }
+         ]
+        },
+        {
+         "id": "eigenvalues-and-eigenvectors",
+         "title": "Eigenvalues and eigenvectors",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Understand characteristic equation, eigenvalue and eigenvector for square matrices."
+          },
+          {
+           "code": null,
+           "text": "Find eigenvalues and eigenvectors of 2x2 and 3x3 matrices with real distinct eigenvalues."
+          }
+         ]
+        },
+        {
+         "id": "diagonalisation",
+         "title": "Diagonalisation",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Write a matrix as QDQ^-1 and use it, for example to find powers."
+          },
+          {
+           "code": null,
+           "text": "Use the fact that a square matrix satisfies its own characteristic equation (Cayley-Hamilton)."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "2-3-differentiation",
+       "title": "2.3 Differentiation",
+       "subtopics": [
+        {
+         "id": "hyperbolic-and-inverse-derivatives",
+         "title": "Hyperbolic and inverse derivatives",
+         "outcomes": [
+          {
+           "code": "2.3",
+           "text": "Differentiate hyperbolic functions and the inverse functions sin^-1, cos^-1, sinh^-1, cosh^-1 and tanh^-1."
+          }
+         ]
+        },
+        {
+         "id": "second-derivatives-and-series",
+         "title": "Second derivatives and series",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Find the second derivative when y is defined implicitly or parametrically."
+          },
+          {
+           "code": null,
+           "text": "Derive and use the first few terms of a Maclaurin series for a function."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "2-4-integration",
+       "title": "2.4 Integration",
+       "subtopics": [
+        {
+         "id": "hyperbolic-and-standard-integrals",
+         "title": "Hyperbolic and standard integrals",
+         "outcomes": [
+          {
+           "code": "2.4",
+           "text": "Integrate hyperbolic functions and recognise integrals giving inverse trigonometric or hyperbolic forms, using completing the square and substitutions."
+          }
+         ]
+        },
+        {
+         "id": "reduction-formulae",
+         "title": "Reduction formulae",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Derive and use reduction formulae to evaluate definite integrals."
+          }
+         ]
+        },
+        {
+         "id": "sums-and-area-under-a-curve",
+         "title": "Sums and area under a curve",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Approximate area under a curve with rectangles to estimate or bound areas and derive inequalities or limits for sums."
+          }
+         ]
+        },
+        {
+         "id": "arc-length-and-surface-area",
+         "title": "Arc length and surface area",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Find arc lengths of curves in Cartesian (including parametric) or polar form."
+          },
+          {
+           "code": null,
+           "text": "Find surface areas of revolution about an axis for Cartesian or parametric curves."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "2-5-complex-numbers",
+       "title": "2.5 Complex numbers",
+       "subtopics": [
+        {
+         "id": "de-moivre-s-theorem",
+         "title": "De Moivre's theorem",
+         "outcomes": [
+          {
+           "code": "2.5",
+           "text": "Understand de Moivre's theorem for integer exponents as multiplication and division of complex numbers geometrically."
+          },
+          {
+           "code": null,
+           "text": "Prove de Moivre's theorem for positive integer exponents, for example by induction."
+          },
+          {
+           "code": null,
+           "text": "Use de Moivre's theorem with positive or negative rational exponents."
+          }
+         ]
+        },
+        {
+         "id": "applying-de-moivre",
+         "title": "Applying de Moivre",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Express trig ratios of multiple angles in powers of the basic ratios."
+          },
+          {
+           "code": null,
+           "text": "Express powers of sine and cosine in terms of multiple angles."
+          },
+          {
+           "code": null,
+           "text": "Sum series using de Moivre, including the C+iS method."
+          },
+          {
+           "code": null,
+           "text": "Find and use the nth roots of unity."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "2-6-differential-equations",
+       "title": "2.6 Differential equations",
+       "subtopics": [
+        {
+         "id": "first-order-linear-equations",
+         "title": "First order linear equations",
+         "outcomes": [
+          {
+           "code": "2.6",
+           "text": "Find an integrating factor and use it to solve a first order linear differential equation."
+          }
+         ]
+        },
+        {
+         "id": "second-order-equations-with-constant-coefficient",
+         "title": "Second order equations with constant coefficients",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Know complementary function and particular integral, and that the general solution is their sum."
+          },
+          {
+           "code": null,
+           "text": "Find the complementary function for first or second order linear equations, covering distinct, repeated and complex roots."
+          },
+          {
+           "code": null,
+           "text": "Choose and find a particular integral for polynomial, exponential and trigonometric right-hand sides, including finding unknown coefficients."
+          }
+         ]
+        },
+        {
+         "id": "substitutions-and-modelling",
+         "title": "Substitutions and modelling",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Use a given substitution to reduce an equation to a linear constant-coefficient or separable form."
+          },
+          {
+           "code": null,
+           "text": "Use initial conditions for a particular solution and interpret it in a modelled problem."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "build": {
+  "builtAt": "2026-10-14T09:41:48.901Z",
+  "model": "claude-agent",
+  "usd": 0,
+  "expectedCodes": 23,
+  "coverage": 1,
+  "missingCodes": [],
+  "counts": {
+   "grades": 2,
+   "units": 4,
+   "topics": 24,
+   "subtopics": 52,
+   "outcomes": 98
+  },
+  "warnings": []
+ }
+}

@@ -1,0 +1,512 @@
+{
+ "id": "pk-ncp-home-nursing-11",
+ "region": "PK",
+ "framework": "National Curriculum of Pakistan 2022-23",
+ "board": null,
+ "qualification": "HSSC",
+ "subject": "Home Nursing",
+ "syllabusCode": null,
+ "gradeSystem": "grade",
+ "source": {
+  "urls": [
+   "https://ncc.gov.pk/SiteImage/Misc/files/59-Home%20Nursing.pdf",
+   "https://ncc.gov.pk/SiteImage/Misc/files/59-Home%20Nursing(1).pdf"
+  ],
+  "publisher": "National Curriculum Council, Ministry of Federal Education and Professional Training",
+  "licence": "Government publication; structure + our own wording only",
+  "firstExam": null
+ },
+ "grades": [
+  {
+   "grade": "11",
+   "units": [
+    {
+     "id": "domain-a-communication",
+     "title": "Domain A: Communication",
+     "topics": [
+      {
+       "id": "communication-in-care",
+       "title": "Communication in care",
+       "subtopics": [
+        {
+         "id": "modes-and-skills",
+         "title": "Modes and skills",
+         "outcomes": [
+          {
+           "code": "HN-11-A-01",
+           "text": "Identify ways to communicate suited to the patient, such as for a disabled child or a dementia patient."
+          },
+          {
+           "code": "HN-11-A-02",
+           "text": "Show key interpersonal skills used in home nursing."
+          },
+          {
+           "code": "HN-11-A-03",
+           "text": "Describe communication skills needed with family and medical staff."
+          }
+         ]
+        },
+        {
+         "id": "informed-consent",
+         "title": "Informed consent",
+         "outcomes": [
+          {
+           "code": "HN-11-A-04",
+           "text": "Explain why informed consent matters."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "domain-b-hygiene",
+     "title": "Domain B: Hygiene",
+     "topics": [
+      {
+       "id": "hygiene",
+       "title": "Hygiene",
+       "subtopics": [
+        {
+         "id": "patient-and-personal-hygiene",
+         "title": "Patient and personal hygiene",
+         "outcomes": [
+          {
+           "code": "HN-11-B-01",
+           "text": "Identify ways to keep patients clean across situations and age groups."
+          },
+          {
+           "code": "HN-11-B-02",
+           "text": "Analyse methods of personal hygiene."
+          },
+          {
+           "code": "HN-11-B-03",
+           "text": "List reasons for personal hygiene."
+          }
+         ]
+        },
+        {
+         "id": "infection-control",
+         "title": "Infection control",
+         "outcomes": [
+          {
+           "code": "HN-11-B-04",
+           "text": "Explain ways to stop infection spreading."
+          },
+          {
+           "code": "HN-11-B-05",
+           "text": "Show clinical skills such as handwashing and scrubbing."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "domain-c-patient-handling",
+     "title": "Domain C: Patient Handling",
+     "topics": [
+      {
+       "id": "patient-handling",
+       "title": "Patient handling",
+       "subtopics": [
+        {
+         "id": "moving-and-handling-assessment",
+         "title": "Moving and handling assessment",
+         "outcomes": [
+          {
+           "code": "HN-11-C-01",
+           "text": "Define a moving and handling assessment."
+          },
+          {
+           "code": "HN-11-C-02",
+           "text": "Carry out a moving and handling assessment."
+          }
+         ]
+        },
+        {
+         "id": "risk-assessment",
+         "title": "Risk assessment",
+         "outcomes": [
+          {
+           "code": "HN-11-C-03",
+           "text": "Define a risk assessment and its key parts."
+          },
+          {
+           "code": "HN-11-C-04",
+           "text": "Discuss why a risk assessment is needed."
+          },
+          {
+           "code": "HN-11-C-05",
+           "text": "Carry out a risk assessment."
+          }
+         ]
+        },
+        {
+         "id": "using-handling-equipment",
+         "title": "Using handling equipment",
+         "outcomes": [
+          {
+           "code": "HN-11-C-06",
+           "text": "Tell correct from incorrect use of equipment such as hoists and electric beds."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "domain-d-anatomy-and-physiology",
+     "title": "Domain D: Anatomy and Physiology",
+     "topics": [
+      {
+       "id": "anatomy-and-physiology",
+       "title": "Anatomy and physiology",
+       "subtopics": [
+        {
+         "id": "digestive-system",
+         "title": "Digestive system",
+         "outcomes": [
+          {
+           "code": "HN-11-D-01",
+           "text": "Describe major organs and how they keep people healthy."
+          },
+          {
+           "code": "HN-11-D-02",
+           "text": "Describe the small and large intestine and their parts."
+          },
+          {
+           "code": "HN-11-D-03",
+           "text": "Trace food from eating to excretion."
+          },
+          {
+           "code": "HN-11-D-04",
+           "text": "Identify the enzymes used in digestion."
+          }
+         ]
+        },
+        {
+         "id": "excretory-and-urinary-systems",
+         "title": "Excretory and urinary systems",
+         "outcomes": [
+          {
+           "code": "HN-11-D-05",
+           "text": "Define excretion and name the excretory organs."
+          },
+          {
+           "code": "HN-11-D-06",
+           "text": "Outline the urinary system's structures and functions."
+          },
+          {
+           "code": "HN-11-D-07",
+           "text": "Explain how the kidneys filter blood."
+          },
+          {
+           "code": "HN-11-D-08",
+           "text": "Describe how kidneys help maintain homeostasis."
+          }
+         ]
+        },
+        {
+         "id": "reproduction-and-glands",
+         "title": "Reproduction and glands",
+         "outcomes": [
+          {
+           "code": "HN-11-D-09",
+           "text": "Identify hormones involved in reproduction."
+          },
+          {
+           "code": "HN-11-D-10",
+           "text": "Describe the menstrual cycle."
+          },
+          {
+           "code": "HN-11-D-11",
+           "text": "Explain fertilisation."
+          }
+         ]
+        },
+        {
+         "id": "endocrine-glands",
+         "title": "Endocrine glands",
+         "outcomes": [
+          {
+           "code": "HN-11-D-12",
+           "text": "Tell endocrine from exocrine glands."
+          },
+          {
+           "code": "HN-11-D-13",
+           "text": "Tell the glands apart and the hormones each makes."
+          }
+         ]
+        },
+        {
+         "id": "nervous-system",
+         "title": "Nervous system",
+         "outcomes": [
+          {
+           "code": "HN-11-D-14",
+           "text": "Explain what a neuron does."
+          },
+          {
+           "code": "HN-11-D-15",
+           "text": "Describe the spinal cord's structure and function."
+          },
+          {
+           "code": "HN-11-D-16",
+           "text": "Outline what the cerebrum and cerebellum do."
+          }
+         ]
+        },
+        {
+         "id": "musculoskeletal-system",
+         "title": "Musculoskeletal system",
+         "outcomes": [
+          {
+           "code": "HN-11-D-17",
+           "text": "Identify bones, joints, cartilage, ligaments, tendons and muscles."
+          },
+          {
+           "code": "HN-11-D-18",
+           "text": "Describe osteoblasts, osteocytes and osteoclasts and their jobs."
+          },
+          {
+           "code": "HN-11-D-19",
+           "text": "Identify the three muscle types and where they are found."
+          },
+          {
+           "code": "HN-11-D-20",
+           "text": "Tell body movements apart: flexion, extension, abduction, adduction, rotation."
+          }
+         ]
+        },
+        {
+         "id": "blood-and-circulation",
+         "title": "Blood and circulation",
+         "outcomes": [
+          {
+           "code": "HN-11-D-21",
+           "text": "Describe how blood cells form."
+          },
+          {
+           "code": "HN-11-D-22",
+           "text": "Explain why valves in blood vessels matter."
+          },
+          {
+           "code": "HN-11-D-23",
+           "text": "Describe the jobs of red cells, white cells and platelets."
+          }
+         ]
+        },
+        {
+         "id": "heart-and-blood-pressure",
+         "title": "Heart and blood pressure",
+         "outcomes": [
+          {
+           "code": "HN-11-D-24",
+           "text": "Describe the route of blood through the heart."
+          },
+          {
+           "code": "HN-11-D-25",
+           "text": "Tell heart attack from heart failure."
+          },
+          {
+           "code": "HN-11-D-26",
+           "text": "Explain blood pressure and how it is written."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "domain-e-drug-management",
+     "title": "Domain E: Drug Management",
+     "topics": [
+      {
+       "id": "drugs-and-medication",
+       "title": "Drugs and medication",
+       "subtopics": [
+        {
+         "id": "how-drugs-work",
+         "title": "How drugs work",
+         "outcomes": [
+          {
+           "code": "HN-11-E-01",
+           "text": "Explain kinds of drugs such as painkillers and antidepressants."
+          },
+          {
+           "code": "HN-11-E-02",
+           "text": "Show how drugs act on the body and which organs they affect."
+          },
+          {
+           "code": "HN-11-E-03",
+           "text": "Explain how the body processes medicine."
+          }
+         ]
+        },
+        {
+         "id": "safe-use-and-side-effects",
+         "title": "Safe use and side effects",
+         "outcomes": [
+          {
+           "code": "HN-11-E-04",
+           "text": "Explain why safe drug management matters."
+          },
+          {
+           "code": "HN-11-E-05",
+           "text": "Predict side effects from the recipient's profile."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "domain-f-ethics-and-empathy",
+     "title": "Domain F: Ethics and Empathy",
+     "topics": [
+      {
+       "id": "ethics-and-empathy",
+       "title": "Ethics and empathy",
+       "subtopics": [
+        {
+         "id": "dignity-and-consent",
+         "title": "Dignity and consent",
+         "outcomes": [
+          {
+           "code": "HN-11-F-01",
+           "text": "Discuss dignity, choice, competence, privacy and consent in care."
+          },
+          {
+           "code": "HN-11-F-02",
+           "text": "Explain why consent matters."
+          }
+         ]
+        },
+        {
+         "id": "the-6-c-s",
+         "title": "The 6 C's",
+         "outcomes": [
+          {
+           "code": "HN-11-F-03",
+           "text": "Identify the 6 C's of nursing and how they apply."
+          }
+         ]
+        },
+        {
+         "id": "patient-centred-care",
+         "title": "Patient-centred care",
+         "outcomes": [
+          {
+           "code": "HN-11-F-04",
+           "text": "Discuss why patients should join in decisions."
+          },
+          {
+           "code": "HN-11-F-05",
+           "text": "Explain patient-centred care."
+          },
+          {
+           "code": "HN-11-F-06",
+           "text": "Evaluate reasons to adapt care to values, beliefs, lifestyle and religion."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "domain-g-mental-health-and-wellbeing",
+     "title": "Domain G: Mental Health and Wellbeing",
+     "topics": [
+      {
+       "id": "mental-health",
+       "title": "Mental health",
+       "subtopics": [
+        {
+         "id": "mental-health-basics",
+         "title": "Mental health basics",
+         "outcomes": [
+          {
+           "code": "HN-11-G-01",
+           "text": "Define mental health and say why it matters."
+          },
+          {
+           "code": "HN-11-G-02",
+           "text": "Name and define mental health problems such as depression and anxiety."
+          }
+         ]
+        },
+        {
+         "id": "supporting-patients",
+         "title": "Supporting patients",
+         "outcomes": [
+          {
+           "code": "HN-11-G-03",
+           "text": "Explain ways to promote good mental health."
+          },
+          {
+           "code": "HN-11-G-04",
+           "text": "Evaluate ways to support a patient with a mental health issue."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "domain-h-safeguarding",
+     "title": "Domain H: Safeguarding",
+     "topics": [
+      {
+       "id": "safeguarding",
+       "title": "Safeguarding",
+       "subtopics": [
+        {
+         "id": "safeguarding",
+         "title": "Safeguarding",
+         "outcomes": [
+          {
+           "code": "HN-11-H-01",
+           "text": "Define safeguarding."
+          },
+          {
+           "code": "HN-11-H-02",
+           "text": "Identify risks when caring for patients and how to report them."
+          },
+          {
+           "code": "HN-11-H-03",
+           "text": "Explain with examples how to give safe and effective care."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "build": {
+  "builtAt": "2026-10-14T08:30:46.358Z",
+  "model": "claude-agent",
+  "usd": 0,
+  "expectedCodes": 59,
+  "coverage": 1,
+  "missingCodes": [],
+  "counts": {
+   "grades": 1,
+   "units": 8,
+   "topics": 8,
+   "subtopics": 23,
+   "outcomes": 59
+  },
+  "warnings": []
+ }
+}

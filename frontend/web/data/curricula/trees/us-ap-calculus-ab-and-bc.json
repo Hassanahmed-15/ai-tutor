@@ -1,0 +1,2819 @@
+{
+ "id": "us-ap-calculus-ab-and-bc",
+ "region": "US",
+ "framework": "AP Calculus AB and BC Course and Exam Description (effective fall 2020)",
+ "board": "College Board",
+ "qualification": "AP",
+ "subject": "Calculus AB and BC",
+ "syllabusCode": null,
+ "gradeSystem": "course",
+ "source": {
+  "urls": [
+   "https://apcentral.collegeboard.org/media/pdf/ap-calculus-ab-and-bc-course-and-exam-description.pdf",
+   "https://apcentral.collegeboard.org/courses/ap-calculus-ab"
+  ],
+  "publisher": "College Board",
+  "licence": "\u00a9 College Board; structure + our own wording only",
+  "firstExam": "2021"
+ },
+ "grades": [
+  {
+   "grade": "Calculus AB",
+   "units": [
+    {
+     "id": "unit-1-limits-and-continuity",
+     "title": "Unit 1: Limits and Continuity",
+     "topics": [
+      {
+       "id": "1-2-defining-limits-and-using-limit-notation",
+       "title": "1.2 Defining Limits and Using Limit Notation",
+       "subtopics": [
+        {
+         "id": "meaning-of-a-limit",
+         "title": "Meaning of a Limit",
+         "outcomes": [
+          {
+           "code": "LIM-1.B",
+           "text": "Interpret limits written in analytical notation."
+          },
+          {
+           "code": "LIM-1.A.1",
+           "text": "Understand a limit as the real value a function approaches when its input nears a specified value."
+          }
+         ]
+        },
+        {
+         "id": "ways-to-represent-limits",
+         "title": "Ways to Represent Limits",
+         "outcomes": [
+          {
+           "code": "LIM-1.B.1",
+           "text": "Recognize that limits can be represented graphically, numerically, or analytically."
+          },
+          {
+           "code": "LIM-1.A",
+           "text": "Represent limits using mathematically correct notation."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "1-1-introducing-calculus-can-change-occur-at-an-",
+       "title": "1.1 Introducing Calculus: Can Change Occur at an Instant?",
+       "subtopics": [
+        {
+         "id": "average-and-instantaneous-change",
+         "title": "Average and Instantaneous Change",
+         "outcomes": [
+          {
+           "code": "CHA-1.A",
+           "text": "Interpret instantaneous change by relating it to average change over intervals containing the instant."
+          },
+          {
+           "code": "CHA-1.A.2",
+           "text": "Recognize that average rate of change is undefined when the independent variable\u2019s change is zero."
+          }
+         ]
+        },
+        {
+         "id": "defining-instantaneous-change",
+         "title": "Defining Instantaneous Change",
+         "outcomes": [
+          {
+           "code": "CHA-1.A.1",
+           "text": "Use limits to understand and represent changing quantities."
+          },
+          {
+           "code": "CHA-1.A.3",
+           "text": "Define instantaneous rate of change using a limit of average rates of change."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "1-3-estimating-limit-values-from-graphs",
+       "title": "1.3 Estimating Limit Values from Graphs",
+       "subtopics": [
+        {
+         "id": "when-limits-fail",
+         "title": "When Limits Fail",
+         "outcomes": [
+          {
+           "code": "LIM-1.C.4",
+           "text": "Identify situations where a limit fails to exist, including unbounded, oscillating, or unequal one-sided behavior."
+          }
+         ]
+        },
+        {
+         "id": "estimating-limits-from-graphs",
+         "title": "Estimating Limits from Graphs",
+         "outcomes": [
+          {
+           "code": "LIM-1.C",
+           "text": "Estimate function limits."
+          },
+          {
+           "code": "LIM-1.C.2",
+           "text": "Use a function\u2019s graph to estimate limits."
+          },
+          {
+           "code": "LIM-1.C.3",
+           "text": "Recognize that graph scale can conceal important behavior near a point."
+          }
+         ]
+        },
+        {
+         "id": "one-sided-limits",
+         "title": "One-Sided Limits",
+         "outcomes": [
+          {
+           "code": "LIM-1.C.1",
+           "text": "Understand that limits include one-sided limits."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "1-4-estimating-limit-values-from-tables",
+       "title": "1.4 Estimating Limit Values from Tables",
+       "subtopics": [
+        {
+         "id": "1-4-estimating-limit-values-from-tables",
+         "title": "1.4 Estimating Limit Values from Tables",
+         "outcomes": [
+          {
+           "code": "LIM-1.C.5",
+           "text": "Use numerical data to estimate limits."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "1-5-determining-limits-using-algebraic-propertie",
+       "title": "1.5 Determining Limits Using Algebraic Properties of Limits",
+       "subtopics": [
+        {
+         "id": "limit-theorems",
+         "title": "Limit Theorems",
+         "outcomes": [
+          {
+           "code": "LIM-1.D",
+           "text": "Find function limits using limit theorems."
+          },
+          {
+           "code": "LIM-1.D.2",
+           "text": "Apply limit theorems to sums, differences, products, quotients, and compositions."
+          }
+         ]
+        },
+        {
+         "id": "one-sided-limits-analytically",
+         "title": "One-Sided Limits Analytically",
+         "outcomes": [
+          {
+           "code": "LIM-1.D.1",
+           "text": "Determine one-sided limits analytically or graphically."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "1-6-determining-limits-using-algebraic-manipulat",
+       "title": "1.6 Determining Limits Using Algebraic Manipulation",
+       "subtopics": [
+        {
+         "id": "1-6-determining-limits-using-algebraic-manipulat",
+         "title": "1.6 Determining Limits Using Algebraic Manipulation",
+         "outcomes": [
+          {
+           "code": "LIM-1.E",
+           "text": "Find limits by rewriting functions equivalently or applying the squeeze theorem."
+          },
+          {
+           "code": "LIM-1.E.1",
+           "text": "Rewrite expressions into equivalent forms when doing so helps evaluate a limit."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "1-8-determining-limits-using-the-squeeze-theorem",
+       "title": "1.8 Determining Limits Using the Squeeze Theorem",
+       "subtopics": [
+        {
+         "id": "1-8-determining-limits-using-the-squeeze-theorem",
+         "title": "1.8 Determining Limits Using the Squeeze Theorem",
+         "outcomes": [
+          {
+           "code": "LIM-1.E.2",
+           "text": "Use the squeeze theorem to determine a function\u2019s limit."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "1-10-exploring-types-of-discontinuities",
+       "title": "1.10 Exploring Types of Discontinuities",
+       "subtopics": [
+        {
+         "id": "1-10-exploring-types-of-discontinuities",
+         "title": "1.10 Exploring Types of Discontinuities",
+         "outcomes": [
+          {
+           "code": "LIM-2.A",
+           "text": "Justify continuity conclusions at a point using the definition of continuity."
+          },
+          {
+           "code": "LIM-2.A.1",
+           "text": "Distinguish removable, jump, and vertical-asymptote discontinuities."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "1-11-defining-continuity",
+       "title": "1.11 Defining Continuity",
+       "subtopics": [
+        {
+         "id": "1-11-defining-continuity",
+         "title": "1.11 Defining Continuity",
+         "outcomes": [
+          {
+           "code": "LIM-2.A.2",
+           "text": "A function is continuous at a point when its value and limit there exist and agree."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "1-12-confirming-continuity",
+       "title": "1.12 Confirming Continuity",
+       "subtopics": [
+        {
+         "id": "continuity-on-intervals",
+         "title": "Continuity on Intervals",
+         "outcomes": [
+          {
+           "code": "LIM-2.B",
+           "text": "Determine intervals on which a function is continuous."
+          },
+          {
+           "code": "LIM-2.B.1",
+           "text": "A function is continuous throughout an interval when it is continuous at every point there."
+          }
+         ]
+        },
+        {
+         "id": "continuous-function-families",
+         "title": "Continuous Function Families",
+         "outcomes": [
+          {
+           "code": "LIM-2.B.2",
+           "text": "Polynomial, rational, power, exponential, logarithmic, and trigonometric functions are continuous throughout their domains."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "1-13-removing-discontinuities",
+       "title": "1.13 Removing Discontinuities",
+       "subtopics": [
+        {
+         "id": "removing-discontinuities",
+         "title": "Removing Discontinuities",
+         "outcomes": [
+          {
+           "code": "LIM-2.C",
+           "text": "Find input values or parameters that make a discontinuous function continuous when possible."
+          },
+          {
+           "code": "LIM-2.C.1",
+           "text": "Remove a discontinuity by defining the function\u2019s value to equal the existing limit."
+          }
+         ]
+        },
+        {
+         "id": "piecewise-continuity",
+         "title": "Piecewise Continuity",
+         "outcomes": [
+          {
+           "code": "LIM-2.C.2",
+           "text": "Ensure adjoining piecewise formulas and the boundary value agree at a partition boundary."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "1-14-connecting-infinite-limits-and-vertical-asy",
+       "title": "1.14 Connecting Infinite Limits and Vertical Asymptotes",
+       "subtopics": [
+        {
+         "id": "infinite-limits",
+         "title": "Infinite Limits",
+         "outcomes": [
+          {
+           "code": "LIM-2.D",
+           "text": "Interpret function behavior involving infinity through limits."
+          },
+          {
+           "code": "LIM-2.D.1",
+           "text": "Extend the limit concept to describe infinite limits."
+          }
+         ]
+        },
+        {
+         "id": "vertical-asymptotes",
+         "title": "Vertical Asymptotes",
+         "outcomes": [
+          {
+           "code": "LIM-2.D.2",
+           "text": "Use limits to describe and explain asymptotic or unbounded function behavior."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "1-15-connecting-limits-at-infinity-and-horizonta",
+       "title": "1.15 Connecting Limits at Infinity and Horizontal Asymptotes",
+       "subtopics": [
+        {
+         "id": "limits-at-infinity",
+         "title": "Limits at Infinity",
+         "outcomes": [
+          {
+           "code": "LIM-2.D.3",
+           "text": "Extend the limit concept to limits as the input approaches infinity."
+          },
+          {
+           "code": "LIM-2.D.4",
+           "text": "Use limits at infinity to describe a function\u2019s end behavior."
+          }
+         ]
+        },
+        {
+         "id": "comparing-end-behavior",
+         "title": "Comparing End Behavior",
+         "outcomes": [
+          {
+           "code": "LIM-2.D.5",
+           "text": "Compare functions and their rates of change using relative magnitudes expressed through limits."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "1-16-intermediate-value-theorem",
+       "title": "1.16 Intermediate Value Theorem",
+       "subtopics": [
+        {
+         "id": "1-16-intermediate-value-theorem",
+         "title": "1.16 Intermediate Value Theorem",
+         "outcomes": [
+          {
+           "code": "FUN-1.A",
+           "text": "Use the Intermediate Value Theorem to explain that a continuous function takes every value between its endpoint values on a closed interval."
+          },
+          {
+           "code": "FUN-1.A.1",
+           "text": "For a continuous function on [a,b], conclude that every value between f(a) and f(b) occurs at some c between a and b."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "unit-2-differentiation-definition-and-fundamenta",
+     "title": "Unit 2: Differentiation: Definition and Fundamental Properties",
+     "topics": [
+      {
+       "id": "2-1-defining-average-and-instantaneous-rates-of-",
+       "title": "2.1 Defining Average and Instantaneous Rates of Change at a Point",
+       "subtopics": [
+        {
+         "id": "average-rate-of-change",
+         "title": "Average Rate of Change",
+         "outcomes": [
+          {
+           "code": "CHA-2.A",
+           "text": "Find average rates of change using appropriate difference quotients."
+          },
+          {
+           "code": "CHA-2.A.1",
+           "text": "Difference quotients calculate a function\u2019s average rate of change over an interval."
+          }
+         ]
+        },
+        {
+         "id": "instantaneous-rate-of-change",
+         "title": "Instantaneous Rate of Change",
+         "outcomes": [
+          {
+           "code": "CHA-2.B",
+           "text": "Express a function\u2019s derivative as the limit of a difference quotient."
+          },
+          {
+           "code": "CHA-2.B.1",
+           "text": "Represent instantaneous rate of change using either equivalent limiting difference-quotient definition."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "2-2-defining-the-derivative-and-derivative-notat",
+       "title": "2.2 Defining the Derivative and Derivative Notation",
+       "subtopics": [
+        {
+         "id": "derivative-definitions-and-notation",
+         "title": "Derivative Definitions and Notation",
+         "outcomes": [
+          {
+           "code": "CHA-2.B.2",
+           "text": "Define the derivative function as the limit of a difference quotient, when that limit exists."
+          },
+          {
+           "code": "CHA-2.B.3",
+           "text": "Recognize dy/dx, f\u2032(x), and y\u2032 as standard derivative notations."
+          }
+         ]
+        },
+        {
+         "id": "representing-derivatives",
+         "title": "Representing Derivatives",
+         "outcomes": [
+          {
+           "code": "CHA-2.B.4",
+           "text": "Represent derivatives graphically, numerically, analytically, or verbally."
+          }
+         ]
+        },
+        {
+         "id": "tangent-lines-and-derivatives",
+         "title": "Tangent Lines and Derivatives",
+         "outcomes": [
+          {
+           "code": "CHA-2.C",
+           "text": "Determine the tangent line equation at a specified point on a curve."
+          },
+          {
+           "code": "CHA-2.C.1",
+           "text": "Use the derivative at a point as the tangent line\u2019s slope."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "2-3-estimating-derivatives",
+       "title": "2.3 Estimating Derivatives",
+       "subtopics": [
+        {
+         "id": "estimating-derivatives",
+         "title": "Estimating Derivatives",
+         "outcomes": [
+          {
+           "code": "CHA-2.D",
+           "text": "Estimate derivatives from available information."
+          },
+          {
+           "code": "CHA-2.D.1",
+           "text": "Estimate a point derivative from graphical or tabular information."
+          },
+          {
+           "code": "CHA-2.D.2",
+           "text": "Use technology to calculate or approximate a derivative at a point."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "2-4-connecting-differentiability-and-continuity-",
+       "title": "2.4 Connecting Differentiability and Continuity: Determining When Derivatives Do and Do Not Exist",
+       "subtopics": [
+        {
+         "id": "derivative-function-behavior",
+         "title": "Derivative Function Behavior",
+         "outcomes": [
+          {
+           "code": "FUN-2",
+           "text": "Understand how derivative functions reveal related function behavior."
+          }
+         ]
+        },
+        {
+         "id": "differentiability-and-continuity",
+         "title": "Differentiability and Continuity",
+         "outcomes": [
+          {
+           "code": "FUN-2.A.2",
+           "text": "Continuity at a point does not guarantee differentiability there."
+          },
+          {
+           "code": "FUN-2.A",
+           "text": "Explain the relationship between differentiability and continuity."
+          },
+          {
+           "code": "FUN-2.A.1",
+           "text": "A function differentiable at a point must be continuous there, with its derivative defined only within its domain."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "2-5-applying-the-power-rule",
+       "title": "2.5 Applying the Power Rule",
+       "subtopics": [
+        {
+         "id": "basic-differentiation-rules",
+         "title": "Basic Differentiation Rules",
+         "outcomes": [
+          {
+           "code": "FUN-3",
+           "text": "Use suitable derivative rules to simplify differentiation."
+          },
+          {
+           "code": "FUN-3.A",
+           "text": "Calculate derivatives of familiar functions."
+          }
+         ]
+        },
+        {
+         "id": "power-rule-for-x-r",
+         "title": "Power Rule for x\u207d\u02b3\u207e",
+         "outcomes": [
+          {
+           "code": "FUN-3.A.1",
+           "text": "Differentiate functions of the form x^r using the definition or applicable rules."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "2-6-derivative-rules-constant-sum-difference-and",
+       "title": "2.6 Derivative Rules: Constant, Sum, Difference, and Constant Multiple",
+       "subtopics": [
+        {
+         "id": "2-6-derivative-rules-constant-sum-difference-and",
+         "title": "2.6 Derivative Rules: Constant, Sum, Difference, and Constant Multiple",
+         "outcomes": [
+          {
+           "code": "FUN-3.A.2",
+           "text": "Differentiate sums, differences, and constant multiples using corresponding derivative rules."
+          },
+          {
+           "code": "FUN-3.A.3",
+           "text": "Combine the power, sum, difference, and constant-multiple rules to differentiate polynomials."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "2-7-derivatives-of-cos-x-sin-x-and-or-e-x",
+       "title": "2.7 Derivatives of cos x, sin x, and/or e^x",
+       "subtopics": [
+        {
+         "id": "common-function-derivatives",
+         "title": "Common Function Derivatives",
+         "outcomes": [
+          {
+           "code": "FUN-3.A.4",
+           "text": "Apply derivative rules for sine, cosine, exponential, and logarithmic functions."
+          }
+         ]
+        },
+        {
+         "id": "derivatives-and-limits",
+         "title": "Derivatives and Limits",
+         "outcomes": [
+          {
+           "code": "LIM-3.A",
+           "text": "Interpret a limit as the derivative definition of a known function."
+          },
+          {
+           "code": "LIM-3.A.1",
+           "text": "Recognize a known derivative definition to evaluate some limits."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "2-8-the-product-rule",
+       "title": "2.8 The Product Rule",
+       "subtopics": [
+        {
+         "id": "2-8-the-product-rule",
+         "title": "2.8 The Product Rule",
+         "outcomes": [
+          {
+           "code": "FUN-3.B",
+           "text": "Differentiate products and quotients of differentiable functions."
+          },
+          {
+           "code": "FUN-3.B.1",
+           "text": "Use the product rule to differentiate products of differentiable functions."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "2-9-the-quotient-rule",
+       "title": "2.9 The Quotient Rule",
+       "subtopics": [
+        {
+         "id": "2-9-the-quotient-rule",
+         "title": "2.9 The Quotient Rule",
+         "outcomes": [
+          {
+           "code": "FUN-3.B.2",
+           "text": "Use the quotient rule to differentiate quotients of differentiable functions."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "2-10-finding-the-derivatives-of-tangent-cotangen",
+       "title": "2.10 Finding the Derivatives of Tangent, Cotangent, Secant, and/or Cosecant Functions",
+       "subtopics": [
+        {
+         "id": "2-10-finding-the-derivatives-of-tangent-cotangen",
+         "title": "2.10 Finding the Derivatives of Tangent, Cotangent, Secant, and/or Cosecant Functions",
+         "outcomes": [
+          {
+           "code": "FUN-3.B.3",
+           "text": "Rewrite tangent, cotangent, secant, or cosecant with identities before differentiating."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "unit-3-differentiation-composite-implicit-and-in",
+     "title": "Unit 3: Differentiation: Composite, Implicit, and Inverse Functions",
+     "topics": [
+      {
+       "id": "3-1-the-chain-rule",
+       "title": "3.1 The Chain Rule",
+       "subtopics": [
+        {
+         "id": "3-1-the-chain-rule",
+         "title": "3.1 The Chain Rule",
+         "outcomes": [
+          {
+           "code": "FUN-3.C",
+           "text": "Find derivatives of composite differentiable functions."
+          },
+          {
+           "code": "FUN-3.C.1",
+           "text": "Use the chain rule to differentiate composite functions."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "3-2-implicit-differentiation",
+       "title": "3.2 Implicit Differentiation",
+       "subtopics": [
+        {
+         "id": "3-2-implicit-differentiation",
+         "title": "3.2 Implicit Differentiation",
+         "outcomes": [
+          {
+           "code": "FUN-3.D",
+           "text": "Find derivatives of functions defined implicitly."
+          },
+          {
+           "code": "FUN-3.D.1",
+           "text": "Recognize that implicit differentiation relies on the chain rule."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "3-3-differentiating-inverse-functions",
+       "title": "3.3 Differentiating Inverse Functions",
+       "subtopics": [
+        {
+         "id": "3-3-differentiating-inverse-functions",
+         "title": "3.3 Differentiating Inverse Functions",
+         "outcomes": [
+          {
+           "code": "FUN-3.E",
+           "text": "Find derivatives of inverse functions and inverse trigonometric functions."
+          },
+          {
+           "code": "FUN-3.E.1",
+           "text": "Use the chain rule and inverse-function definition to differentiate an inverse function when its derivative exists."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "3-4-differentiating-inverse-trigonometric-functi",
+       "title": "3.4 Differentiating Inverse Trigonometric Functions",
+       "subtopics": [
+        {
+         "id": "3-4-differentiating-inverse-trigonometric-functi",
+         "title": "3.4 Differentiating Inverse Trigonometric Functions",
+         "outcomes": [
+          {
+           "code": "FUN-3.E.2",
+           "text": "Use inverse-function differentiation methods to find derivatives of inverse trigonometric functions."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "3-6-calculating-higher-order-derivatives",
+       "title": "3.6 Calculating Higher-Order Derivatives",
+       "subtopics": [
+        {
+         "id": "find-higher-order-derivatives",
+         "title": "Find Higher-Order Derivatives",
+         "outcomes": [
+          {
+           "code": "FUN-3.F",
+           "text": "Determine higher-order derivatives of a function."
+          },
+          {
+           "code": "FUN-3.F.1",
+           "text": "Repeatedly differentiate a function to obtain second and higher-order derivatives."
+          },
+          {
+           "code": "FUN-3.F.2",
+           "text": "Recognize multiple notations used for second and higher-order derivatives."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "unit-4-contextual-applications-of-differentiatio",
+     "title": "Unit 4: Contextual Applications of Differentiation",
+     "topics": [
+      {
+       "id": "4-1-interpreting-the-meaning-of-the-derivative-i",
+       "title": "4.1 Interpreting the Meaning of the Derivative in Context",
+       "subtopics": [
+        {
+         "id": "interpret-derivatives-in-context",
+         "title": "Interpret Derivatives in Context",
+         "outcomes": [
+          {
+           "code": "CHA-3.A",
+           "text": "Interpret a derivative as an instantaneous rate of change in a given context."
+          },
+          {
+           "code": "CHA-3.A.1",
+           "text": "A derivative represents an instantaneous rate of change relative to its independent variable."
+          },
+          {
+           "code": "CHA-3.A.2",
+           "text": "Use derivatives to represent rate-of-change information in applied situations."
+          },
+          {
+           "code": "CHA-3.A.3",
+           "text": "Determine derivative units by dividing the function\u2019s units by the independent variable\u2019s units."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "4-2-straight-line-motion-connecting-position-vel",
+       "title": "4.2 Straight-Line Motion: Connecting Position, Velocity, and Acceleration",
+       "subtopics": [
+        {
+         "id": "learning-objective",
+         "title": "Rates of Change in Context",
+         "outcomes": [
+          {
+           "code": "CHA-3.B",
+           "text": "Calculate rates of change in applied settings."
+          }
+         ]
+        },
+        {
+         "id": "essential-knowledge",
+         "title": "Motion Along a Line",
+         "outcomes": [
+          {
+           "code": "CHA-3.B.1",
+           "text": "Apply derivatives to rectilinear-motion problems involving position, speed, velocity, and acceleration."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "4-3-rates-of-change-in-applied-contexts-other-th",
+       "title": "4.3 Rates of Change in Applied Contexts Other Than Motion",
+       "subtopics": [
+        {
+         "id": "learning-objective",
+         "title": "Interpreting Rates of Change",
+         "outcomes": [
+          {
+           "code": "CHA-3.C",
+           "text": "Interpret rates of change in applied situations."
+          }
+         ]
+        },
+        {
+         "id": "essential-knowledge",
+         "title": "Applied Rates of Change",
+         "outcomes": [
+          {
+           "code": "CHA-3.C.1",
+           "text": "Use derivatives to solve applied problems involving rates of change."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "4-4-introduction-to-related-rates",
+       "title": "4.4 Introduction to Related Rates",
+       "subtopics": [
+        {
+         "id": "solve-related-rates-problems",
+         "title": "Solve Related Rates Problems",
+         "outcomes": [
+          {
+           "code": "CHA-3.D",
+           "text": "Calculate related rates in applied contexts."
+          },
+          {
+           "code": "CHA-3.D.1",
+           "text": "Use the chain rule to differentiate related variables with respect to one common independent variable."
+          },
+          {
+           "code": "CHA-3.D.2",
+           "text": "Use product and quotient rules when differentiating all variables in a related-rates equation."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "4-5-solving-related-rates-problems",
+       "title": "4.5 Solving Related Rates Problems",
+       "subtopics": [
+        {
+         "id": "learning-objective",
+         "title": "Interpreting Related Rates",
+         "outcomes": [
+          {
+           "code": "CHA-3.E",
+           "text": "Interpret related rates in applied situations."
+          }
+         ]
+        },
+        {
+         "id": "essential-knowledge",
+         "title": "Solving Related Rates",
+         "outcomes": [
+          {
+           "code": "CHA-3.E.1",
+           "text": "Solve related-rates problems by connecting one quantity\u2019s rate to known rates of other quantities."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "4-6-approximating-values-of-a-function-using-loc",
+       "title": "4.6 Approximating Values of a Function Using Local Linearity and Linearization",
+       "subtopics": [
+        {
+         "id": "use-local-linearization",
+         "title": "Use Local Linearization",
+         "outcomes": [
+          {
+           "code": "CHA-3.F",
+           "text": "Approximate a curve\u2019s value using its tangent-line equation."
+          },
+          {
+           "code": "CHA-3.F.1",
+           "text": "A tangent line provides a locally linear approximation near its point of tangency."
+          },
+          {
+           "code": "CHA-3.F.2",
+           "text": "Use nearby curve behavior to decide whether a tangent-line approximation underestimates or overestimates the function."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "4-7-using-l-hospital-s-rule-for-determining-limi",
+       "title": "4.7 Using L\u2019Hospital\u2019s Rule for Determining Limits of Indeterminate Forms",
+       "subtopics": [
+        {
+         "id": "evaluate-indeterminate-limits",
+         "title": "Evaluate Indeterminate Limits",
+         "outcomes": [
+          {
+           "code": "LIM-4.A",
+           "text": "Determine limits that produce indeterminate forms."
+          },
+          {
+           "code": "LIM-4.A.1",
+           "text": "Ratios approaching 0/0 or infinity/infinity produce indeterminate forms."
+          },
+          {
+           "code": "LIM-4.A.2",
+           "text": "Evaluate 0/0 and infinity/infinity limits using L\u2019Hospital\u2019s Rule."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "unit-5-analytical-applications-of-differentiatio",
+     "title": "Unit 5: Analytical Applications of Differentiation",
+     "topics": [
+      {
+       "id": "5-1-using-the-mean-value-theorem",
+       "title": "5.1 Using the Mean Value Theorem",
+       "subtopics": [
+        {
+         "id": "5-1-using-the-mean-value-theorem",
+         "title": "5.1 Using the Mean Value Theorem",
+         "outcomes": [
+          {
+           "code": "FUN-1.B",
+           "text": "Use the Mean Value Theorem to justify conclusions about a function over an interval."
+          },
+          {
+           "code": "FUN-1.B.1",
+           "text": "For a continuous, differentiable function, some interior point has instantaneous rate equal to the interval\u2019s average rate."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "5-2-extreme-value-theorem-global-versus-local-ex",
+       "title": "5.2 Extreme Value Theorem, Global Versus Local Extrema, and Critical Points",
+       "subtopics": [
+        {
+         "id": "extreme-value-theorem",
+         "title": "Extreme Value Theorem",
+         "outcomes": [
+          {
+           "code": "FUN-1.C",
+           "text": "Use the Extreme Value Theorem to justify conclusions about functions."
+          },
+          {
+           "code": "FUN-1.C.1",
+           "text": "A continuous function on a closed interval attains at least one minimum and one maximum."
+          }
+         ]
+        },
+        {
+         "id": "critical-points-and-extrema",
+         "title": "Critical Points and Extrema",
+         "outcomes": [
+          {
+           "code": "FUN-1.C.2",
+           "text": "A critical point occurs where a function\u2019s first derivative is zero or undefined."
+          },
+          {
+           "code": "FUN-1.C.3",
+           "text": "Local extrema occur at critical points, but critical points need not be local extrema."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "5-3-determining-intervals-on-which-a-function-is",
+       "title": "5.3 Determining Intervals on Which a Function Is Increasing or Decreasing",
+       "subtopics": [
+        {
+         "id": "5-3-determining-intervals-on-which-a-function-is",
+         "title": "5.3 Determining Intervals on Which a Function Is Increasing or Decreasing",
+         "outcomes": [
+          {
+           "code": "FUN-4.A",
+           "text": "Use derivative behavior to justify conclusions about a function\u2019s behavior."
+          },
+          {
+           "code": "FUN-4.A.1",
+           "text": "The first derivative reveals information about a function and its increasing or decreasing intervals."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "5-4-using-the-first-derivative-test-to-determine",
+       "title": "5.4 Using the First Derivative Test to Determine Relative (Local) Extrema",
+       "subtopics": [
+        {
+         "id": "5-4-using-the-first-derivative-test-to-determine",
+         "title": "5.4 Using the First Derivative Test to Determine Relative (Local) Extrema",
+         "outcomes": [
+          {
+           "code": "FUN-4.A.2",
+           "text": "The first derivative can locate a function\u2019s relative extrema."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "5-5-using-the-candidates-test-to-determine-absol",
+       "title": "5.5 Using the Candidates Test to Determine Absolute (Global) Extrema",
+       "subtopics": [
+        {
+         "id": "5-5-using-the-candidates-test-to-determine-absol",
+         "title": "5.5 Using the Candidates Test to Determine Absolute (Global) Extrema",
+         "outcomes": [
+          {
+           "code": "FUN-4.A.3",
+           "text": "On a closed interval, absolute extrema can occur only at critical points or endpoints."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "5-6-determining-concavity-of-functions-over-thei",
+       "title": "5.6 Determining Concavity of Functions over Their Domains",
+       "subtopics": [
+        {
+         "id": "concavity-and-second-derivatives",
+         "title": "Concavity and Second Derivatives",
+         "outcomes": [
+          {
+           "code": "FUN-4.A.4",
+           "text": "A graph is concave up or down where its derivative is increasing or decreasing, respectively."
+          },
+          {
+           "code": "FUN-4.A.5",
+           "text": "The second derivative identifies intervals where a graph curves upward or downward."
+          }
+         ]
+        },
+        {
+         "id": "inflection-points",
+         "title": "Inflection Points",
+         "outcomes": [
+          {
+           "code": "FUN-4.A.6",
+           "text": "The second derivative can help locate inflection points."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "5-7-using-the-second-derivative-test-to-determin",
+       "title": "5.7 Using the Second Derivative Test to Determine Extrema",
+       "subtopics": [
+        {
+         "id": "5-7-using-the-second-derivative-test-to-determin",
+         "title": "5.7 Using the Second Derivative Test to Determine Extrema",
+         "outcomes": [
+          {
+           "code": "FUN-4.A.7",
+           "text": "The second derivative can classify a critical point as a relative maximum or minimum."
+          },
+          {
+           "code": "FUN-4.A.8",
+           "text": "If a continuous function has one critical point that is a local extremum, it is also the interval\u2019s absolute extremum."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "5-8-sketching-graphs-of-functions-and-their-deri",
+       "title": "5.8 Sketching Graphs of Functions and Their Derivatives",
+       "subtopics": [
+        {
+         "id": "5-8-sketching-graphs-of-functions-and-their-deri",
+         "title": "5.8 Sketching Graphs of Functions and Their Derivatives",
+         "outcomes": [
+          {
+           "code": "FUN-4.A.9",
+           "text": "Relate important function and derivative features across graphical, numerical, and analytical representations."
+          },
+          {
+           "code": "FUN-4.A.10",
+           "text": "Use information from the first and second derivatives to predict and explain a function\u2019s behavior."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "5-9-connecting-a-function-its-first-derivative-a",
+       "title": "5.9 Connecting a Function, Its First Derivative, and Its Second Derivative",
+       "subtopics": [
+        {
+         "id": "5-9-connecting-a-function-its-first-derivative-a",
+         "title": "5.9 Connecting a Function, Its First Derivative, and Its Second Derivative",
+         "outcomes": [
+          {
+           "code": "FUN-4.A.11",
+           "text": "Relate key graphical features of a function, its first derivative, and its second derivative."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "5-10-introduction-to-optimization-problems",
+       "title": "5.10 Introduction to Optimization Problems",
+       "subtopics": [
+        {
+         "id": "5-10-introduction-to-optimization-problems",
+         "title": "5.10 Introduction to Optimization Problems",
+         "outcomes": [
+          {
+           "code": "FUN-4.B",
+           "text": "Use derivatives to find minimum and maximum values in applications or function analysis."
+          },
+          {
+           "code": "FUN-4.B.1",
+           "text": "Apply derivatives to optimize a function over a specified interval."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "5-11-solving-optimization-problems",
+       "title": "5.11 Solving Optimization Problems",
+       "subtopics": [
+        {
+         "id": "5-11-solving-optimization-problems",
+         "title": "5.11 Solving Optimization Problems",
+         "outcomes": [
+          {
+           "code": "FUN-4.C",
+           "text": "Interpret minimum and maximum values in applied settings."
+          },
+          {
+           "code": "FUN-4.C.1",
+           "text": "Minimum and maximum values represent specific quantities in real-world contexts."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "5-12-exploring-behaviors-of-implicit-relations",
+       "title": "5.12 Exploring Behaviors of Implicit Relations",
+       "subtopics": [
+        {
+         "id": "implicit-critical-points",
+         "title": "Implicit Critical Points",
+         "outcomes": [
+          {
+           "code": "FUN-4.D",
+           "text": "Find critical points of implicitly defined relations."
+          },
+          {
+           "code": "FUN-4.D.1",
+           "text": "For an implicit relation, a critical point occurs where the first derivative is zero or undefined."
+          }
+         ]
+        },
+        {
+         "id": "implicit-derivative-applications",
+         "title": "Implicit Derivative Applications",
+         "outcomes": [
+          {
+           "code": "FUN-4.E",
+           "text": "Use derivative evidence to justify conclusions about implicitly defined functions."
+          },
+          {
+           "code": "FUN-4.E.1",
+           "text": "Extend derivative applications to functions defined implicitly."
+          },
+          {
+           "code": "FUN-4.E.2",
+           "text": "Second derivatives found implicitly may involve x, y, and the first derivative."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "unit-6-integration-and-accumulation-of-change",
+     "title": "Unit 6: Integration and Accumulation of Change",
+     "topics": [
+      {
+       "id": "6-1-exploring-accumulations-of-change",
+       "title": "6.1 Exploring Accumulations of Change",
+       "subtopics": [
+        {
+         "id": "interpret-accumulated-change",
+         "title": "Interpret Accumulated Change",
+         "outcomes": [
+          {
+           "code": "CHA-4.A",
+           "text": "Interpret areas under rate-of-change graphs as accumulated change."
+          },
+          {
+           "code": "CHA-4.A.1",
+           "text": "The area between a rate function and the x-axis represents accumulated change."
+          },
+          {
+           "code": "CHA-4.A.3",
+           "text": "Determine the sign of accumulated change from whether the rate is positive or negative."
+          },
+          {
+           "code": "CHA-4.A.4",
+           "text": "Express accumulated-change units as rate units multiplied by independent-variable units."
+          }
+         ]
+        },
+        {
+         "id": "calculate-accumulated-change",
+         "title": "Calculate Accumulated Change",
+         "outcomes": [
+          {
+           "code": "CHA-4.A.2",
+           "text": "Use geometric reasoning to calculate accumulated change in suitable cases."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "6-2-approximating-areas-with-riemann-sums",
+       "title": "6.2 Approximating Areas with Riemann Sums",
+       "subtopics": [
+        {
+         "id": "approximate-definite-integrals",
+         "title": "Approximate Definite Integrals",
+         "outcomes": [
+          {
+           "code": "LIM-5.A",
+           "text": "Approximate definite integrals using geometric or numerical methods."
+          },
+          {
+           "code": "LIM-5.A.1",
+           "text": "Approximate definite integrals from graphical, numerical, analytical, or verbal function representations."
+          }
+         ]
+        },
+        {
+         "id": "use-riemann-sums",
+         "title": "Use Riemann Sums",
+         "outcomes": [
+          {
+           "code": "LIM-5.A.2",
+           "text": "Use left, right, midpoint, or trapezoidal sums with uniform or nonuniform partitions."
+          },
+          {
+           "code": "LIM-5.A.3",
+           "text": "Compute definite-integral approximations numerically, with or without technology."
+          }
+         ]
+        },
+        {
+         "id": "estimate-approximation-error",
+         "title": "Estimate Approximation Error",
+         "outcomes": [
+          {
+           "code": "LIM-5.A.4",
+           "text": "Use function behavior to identify whether an integral approximation is an underestimate or overestimate."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "6-3-riemann-sums-summation-notation-and-definite",
+       "title": "6.3 Riemann Sums, Summation Notation, and Definite Integral Notation",
+       "subtopics": [
+        {
+         "id": "understand-riemann-sums",
+         "title": "Understand Riemann Sums",
+         "outcomes": [
+          {
+           "code": "LIM-5.B",
+           "text": "Interpret the limiting form of a Riemann sum as a definite integral."
+          },
+          {
+           "code": "LIM-5.B.1",
+           "text": "Recognize that the limit of an approximating Riemann sum represents a definite integral."
+          },
+          {
+           "code": "LIM-5.B.2",
+           "text": "Describe a Riemann sum as function values multiplied by subinterval widths and then summed."
+          }
+         ]
+        },
+        {
+         "id": "connect-sums-and-integrals",
+         "title": "Connect Sums and Integrals",
+         "outcomes": [
+          {
+           "code": "LIM-5.C",
+           "text": "Represent the limiting form of a Riemann sum as a definite integral."
+          },
+          {
+           "code": "LIM-5.C.1",
+           "text": "Define a definite integral as the limit of Riemann sums as partition widths approach zero."
+          },
+          {
+           "code": "LIM-5.C.2",
+           "text": "Convert between definite-integral notation and equivalent Riemann-sum limits."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "6-4-the-fundamental-theorem-of-calculus-and-accu",
+       "title": "6.4 The Fundamental Theorem of Calculus and Accumulation Functions",
+       "subtopics": [
+        {
+         "id": "define-accumulation-functions",
+         "title": "Define Accumulation Functions",
+         "outcomes": [
+          {
+           "code": "FUN-5.A.1",
+           "text": "Use a definite integral to define a new accumulation function."
+          },
+          {
+           "code": "FUN-5.A",
+           "text": "Represent accumulation functions with definite integrals."
+          }
+         ]
+        },
+        {
+         "id": "differentiate-accumulation-functions",
+         "title": "Differentiate Accumulation Functions",
+         "outcomes": [
+          {
+           "code": "FUN-5.A.2",
+           "text": "Differentiate an accumulation function with a variable upper limit to recover its integrand."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "6-5-interpreting-the-behavior-of-functions-invol",
+       "title": "6.5 Interpreting the Behavior of Functions Involving Area",
+       "subtopics": [
+        {
+         "id": "6-5-interpreting-the-behavior-of-functions-invol",
+         "title": "6.5 Interpreting the Behavior of Functions Involving Area",
+         "outcomes": [
+          {
+           "code": "FUN-5.A.3",
+           "text": "Use graphical, numerical, analytical, and verbal information about an integrand to analyze its accumulation function."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "6-6-applying-properties-of-definite-integrals",
+       "title": "6.6 Applying Properties of Definite Integrals",
+       "subtopics": [
+        {
+         "id": "use-areas-to-integrate",
+         "title": "Use Areas to Integrate",
+         "outcomes": [
+          {
+           "code": "FUN-6.A",
+           "text": "Evaluate definite integrals using areas and integral properties."
+          },
+          {
+           "code": "FUN-6.A.1",
+           "text": "Evaluate suitable definite integrals geometrically using area."
+          }
+         ]
+        },
+        {
+         "id": "apply-integral-properties",
+         "title": "Apply Integral Properties",
+         "outcomes": [
+          {
+           "code": "FUN-6.A.2",
+           "text": "Apply constant-factor, sum, reversed-limit, and adjacent-interval integral properties."
+          }
+         ]
+        },
+        {
+         "id": "integrate-discontinuous-functions",
+         "title": "Integrate Discontinuous Functions",
+         "outcomes": [
+          {
+           "code": "FUN-6.A.3",
+           "text": "Extend definite-integral definitions to functions with removable or jump discontinuities."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "6-7-the-fundamental-theorem-of-calculus-and-defi",
+       "title": "6.7 The Fundamental Theorem of Calculus and Definite Integrals",
+       "subtopics": [
+        {
+         "id": "understand-antiderivatives",
+         "title": "Understand Antiderivatives",
+         "outcomes": [
+          {
+           "code": "FUN-6.B",
+           "text": "Evaluate definite integrals analytically using the Fundamental Theorem of Calculus."
+          },
+          {
+           "code": "FUN-6.B.1",
+           "text": "Identify an antiderivative as a function whose derivative equals the given function."
+          },
+          {
+           "code": "FUN-6.B.2",
+           "text": "Recognize an accumulation function as an antiderivative of its continuous integrand."
+          }
+         ]
+        },
+        {
+         "id": "evaluate-definite-integrals",
+         "title": "Evaluate Definite Integrals",
+         "outcomes": [
+          {
+           "code": "FUN-6.B.3",
+           "text": "Evaluate a definite integral by subtracting antiderivative values at the endpoints."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "6-8-finding-antiderivatives-and-indefinite-integ",
+       "title": "6.8 Finding Antiderivatives and Indefinite Integrals: Basic Rules and Notation",
+       "subtopics": [
+        {
+         "id": "write-indefinite-integrals",
+         "title": "Write Indefinite Integrals",
+         "outcomes": [
+          {
+           "code": "FUN-6.C",
+           "text": "Find antiderivatives and indefinite integrals using derivative knowledge."
+          },
+          {
+           "code": "FUN-6.C.1",
+           "text": "Express an indefinite integral as an antiderivative plus an arbitrary constant."
+          }
+         ]
+        },
+        {
+         "id": "find-basic-antiderivatives",
+         "title": "Find Basic Antiderivatives",
+         "outcomes": [
+          {
+           "code": "FUN-6.C.2",
+           "text": "Use differentiation rules as the basis for finding antiderivatives."
+          }
+         ]
+        },
+        {
+         "id": "recognize-nonelementary-antiderivatives",
+         "title": "Recognize Nonelementary Antiderivatives",
+         "outcomes": [
+          {
+           "code": "FUN-6.C.3",
+           "text": "Recognize that some functions lack closed-form antiderivatives."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "6-9-integrating-using-substitution",
+       "title": "6.9 Integrating Using Substitution",
+       "subtopics": [
+        {
+         "id": "use-substitution",
+         "title": "Use Substitution",
+         "outcomes": [
+          {
+           "code": "FUN-6.D",
+           "text": "Use substitution or algebraic rearrangement to find indefinite and definite integrals."
+          },
+          {
+           "code": "FUN-6.D.1",
+           "text": "Use variable substitution to find antiderivatives."
+          }
+         ]
+        },
+        {
+         "id": "change-integration-limits",
+         "title": "Change Integration Limits",
+         "outcomes": [
+          {
+           "code": "FUN-6.D.2",
+           "text": "Change the integration limits consistently when substituting in a definite integral."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "6-10-integrating-functions-using-long-division-a",
+       "title": "6.10 Integrating Functions Using Long Division and Completing the Square",
+       "subtopics": [
+        {
+         "id": "6-10-integrating-functions-using-long-division-a",
+         "title": "6.10 Integrating Functions Using Long Division and Completing the Square",
+         "outcomes": [
+          {
+           "code": "FUN-6.D.3",
+           "text": "Use algebraic rearrangements such as long division or completing the square to find antiderivatives."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "unit-7-differential-equations",
+     "title": "Unit 7: Differential Equations",
+     "topics": [
+      {
+       "id": "7-1-modeling-situations-with-differential-equati",
+       "title": "7.1 Modeling Situations with Differential Equations",
+       "subtopics": [
+        {
+         "id": "learning-objective",
+         "title": "Writing Differential Equations",
+         "outcomes": [
+          {
+           "code": "FUN-7.A",
+           "text": "Interpret verbal problem statements as differential equations involving derivatives."
+          }
+         ]
+        },
+        {
+         "id": "essential-knowledge",
+         "title": "What Differential Equations Describe",
+         "outcomes": [
+          {
+           "code": "FUN-7.A.1",
+           "text": "Recognize that differential equations connect a function of an independent variable with its derivatives."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "7-2-verifying-solutions-for-differential-equatio",
+       "title": "7.2 Verifying Solutions for Differential Equations",
+       "subtopics": [
+        {
+         "id": "check-differential-equation-solutions",
+         "title": "Check Differential Equation Solutions",
+         "outcomes": [
+          {
+           "code": "FUN-7.B",
+           "text": "Verify whether proposed functions satisfy given differential equations."
+          },
+          {
+           "code": "FUN-7.B.1",
+           "text": "Use derivatives to check whether a function solves a differential equation."
+          }
+         ]
+        },
+        {
+         "id": "families-of-solutions",
+         "title": "Families of Solutions",
+         "outcomes": [
+          {
+           "code": "FUN-7.B.2",
+           "text": "Understand that a differential equation can have infinitely many solutions."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "7-3-sketching-slope-fields",
+       "title": "7.3 Sketching Slope Fields",
+       "subtopics": [
+        {
+         "id": "read-slope-fields",
+         "title": "Read Slope Fields",
+         "outcomes": [
+          {
+           "code": "FUN-7.C",
+           "text": "Estimate solutions to differential equations."
+          },
+          {
+           "code": "FUN-7.C.1",
+           "text": "Understand a slope field as a graphical display of a differential equation at selected points."
+          }
+         ]
+        },
+        {
+         "id": "use-slope-fields",
+         "title": "Use Slope Fields",
+         "outcomes": [
+          {
+           "code": "FUN-7.C.2",
+           "text": "Use slope fields to infer the behavior of first-order differential-equation solutions."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "7-4-reasoning-using-slope-fields",
+       "title": "7.4 Reasoning Using Slope Fields",
+       "subtopics": [
+        {
+         "id": "essential-knowledge",
+         "title": "Solutions of Differential Equations",
+         "outcomes": [
+          {
+           "code": "FUN-7.C.3",
+           "text": "Recognize that differential-equation solutions can be individual functions or families of functions."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "7-7-finding-particular-solutions-using-initial-c",
+       "title": "7.7 Finding Particular Solutions Using Initial Conditions and Separation of Variables",
+       "subtopics": [
+        {
+         "id": "initial-conditions-select-solutions",
+         "title": "Initial Conditions Select Solutions",
+         "outcomes": [
+          {
+           "code": "FUN-7.E",
+           "text": "Find particular solutions of differential equations."
+          },
+          {
+           "code": "FUN-7.E.1",
+           "text": "Understand that an initial point selects one particular solution from a general family."
+          }
+         ]
+        },
+        {
+         "id": "build-particular-solutions",
+         "title": "Build Particular Solutions",
+         "outcomes": [
+          {
+           "code": "FUN-7.E.2",
+           "text": "Use an accumulation integral with an initial value to construct a particular solution."
+          }
+         ]
+        },
+        {
+         "id": "restrict-solution-domains",
+         "title": "Restrict Solution Domains",
+         "outcomes": [
+          {
+           "code": "FUN-7.E.3",
+           "text": "Account for possible domain restrictions on differential-equation solutions."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "7-8-exponential-models-with-differential-equatio",
+       "title": "7.8 Exponential Models with Differential Equations",
+       "subtopics": [
+        {
+         "id": "interpret-differential-equations",
+         "title": "Interpret Differential Equations",
+         "outcomes": [
+          {
+           "code": "FUN-7.F",
+           "text": "Interpret differential equations and their variables in context."
+          },
+          {
+           "code": "FUN-7.F.1",
+           "text": "Apply general and particular differential-equation solutions to motion and exponential growth or decay."
+          }
+         ]
+        },
+        {
+         "id": "model-proportional-growth",
+         "title": "Model Proportional Growth",
+         "outcomes": [
+          {
+           "code": "FUN-7.F.2",
+           "text": "Model proportional growth or decay with the differential equation dy/dt = ky."
+          }
+         ]
+        },
+        {
+         "id": "solve-exponential-models",
+         "title": "Solve Exponential Models",
+         "outcomes": [
+          {
+           "code": "FUN-7.G",
+           "text": "Determine general and particular solutions for contextual differential-equation problems."
+          },
+          {
+           "code": "FUN-7.G.1",
+           "text": "Solve dy/dt = ky with an initial value using an exponential model."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "unit-8-applications-of-integration",
+     "title": "Unit 8: Applications of Integration",
+     "topics": [
+      {
+       "id": "8-1-finding-the-average-value-of-a-function-on-a",
+       "title": "8.1 Finding the Average Value of a Function on an Interval",
+       "subtopics": [
+        {
+         "id": "8-1-finding-the-average-value-of-a-function-on-a",
+         "title": "8.1 Finding the Average Value of a Function on an Interval",
+         "outcomes": [
+          {
+           "code": "CHA-4.B",
+           "text": "Find a function\u2019s average value over an interval using a definite integral."
+          },
+          {
+           "code": "CHA-4.B.1",
+           "text": "For a continuous function, calculate average value by dividing its definite integral by the interval length."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "8-2-connecting-position-velocity-and-acceleratio",
+       "title": "8.2 Connecting Position, Velocity, and Acceleration of Functions Using Integrals",
+       "subtopics": [
+        {
+         "id": "8-2-connecting-position-velocity-and-acceleratio",
+         "title": "8.2 Connecting Position, Velocity, and Acceleration of Functions Using Integrals",
+         "outcomes": [
+          {
+           "code": "CHA-4.C",
+           "text": "Use definite integrals to determine position-related values and rates for particles moving along a line."
+          },
+          {
+           "code": "CHA-4.C.1",
+           "text": "Integrate velocity to find displacement and speed to find total distance traveled during rectilinear motion."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "8-3-using-accumulation-functions-and-definite-in",
+       "title": "8.3 Using Accumulation Functions and Definite Integrals in Applied Contexts",
+       "subtopics": [
+        {
+         "id": "meaning-of-definite-integrals",
+         "title": "Meaning of Definite Integrals",
+         "outcomes": [
+          {
+           "code": "CHA-4.D",
+           "text": "Explain what a definite integral means in an accumulation setting."
+          },
+          {
+           "code": "CHA-4.D.1",
+           "text": "Recognize that an integral-defined function accumulates a rate of change."
+          }
+         ]
+        },
+        {
+         "id": "net-change-from-rates",
+         "title": "Net Change from Rates",
+         "outcomes": [
+          {
+           "code": "CHA-4.D.2",
+           "text": "Use the integral of a rate over an interval to determine a quantity\u2019s net change."
+          },
+          {
+           "code": "CHA-4.E",
+           "text": "Use definite integrals to calculate net change in applied situations."
+          }
+         ]
+        },
+        {
+         "id": "representing-applied-accumulation",
+         "title": "Representing Applied Accumulation",
+         "outcomes": [
+          {
+           "code": "CHA-4.E.1",
+           "text": "Represent accumulation and net change information with definite integrals in varied applications."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "8-4-finding-the-area-between-curves-expressed-as",
+       "title": "8.4 Finding the Area Between Curves Expressed as Functions of x",
+       "subtopics": [
+        {
+         "id": "8-4-finding-the-area-between-curves-expressed-as",
+         "title": "8.4 Finding the Area Between Curves Expressed as Functions of x",
+         "outcomes": [
+          {
+           "code": "CHA-5.A",
+           "text": "Find planar areas using definite integrals."
+          },
+          {
+           "code": "CHA-5.A.1",
+           "text": "Calculate the area of a plane region with a definite integral."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "8-5-finding-the-area-between-curves-expressed-as",
+       "title": "8.5 Finding the Area Between Curves Expressed as Functions of y",
+       "subtopics": [
+        {
+         "id": "8-5-finding-the-area-between-curves-expressed-as",
+         "title": "8.5 Finding the Area Between Curves Expressed as Functions of y",
+         "outcomes": [
+          {
+           "code": "CHA-5.A.2",
+           "text": "Find planar region areas by integrating with respect to either x or y."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "8-6-finding-the-area-between-curves-that-interse",
+       "title": "8.6 Finding the Area Between Curves That Intersect at More Than Two Points",
+       "subtopics": [
+        {
+         "id": "8-6-finding-the-area-between-curves-that-interse",
+         "title": "8.6 Finding the Area Between Curves That Intersect at More Than Two Points",
+         "outcomes": [
+          {
+           "code": "CHA-5.A.3",
+           "text": "Calculate complex planar areas by adding multiple integrals or integrating the absolute function difference."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "8-7-volumes-with-cross-sections-squares-and-rect",
+       "title": "8.7 Volumes with Cross Sections: Squares and Rectangles",
+       "subtopics": [
+        {
+         "id": "8-7-volumes-with-cross-sections-squares-and-rect",
+         "title": "8.7 Volumes with Cross Sections: Squares and Rectangles",
+         "outcomes": [
+          {
+           "code": "CHA-5.B",
+           "text": "Find solid volumes from known cross sections using definite integrals."
+          },
+          {
+           "code": "CHA-5.B.1",
+           "text": "Use square or rectangular area formulas and definite integrals to calculate solid volumes."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "8-8-volumes-with-cross-sections-triangles-and-se",
+       "title": "8.8 Volumes with Cross Sections: Triangles and Semicircles",
+       "subtopics": [
+        {
+         "id": "8-8-volumes-with-cross-sections-triangles-and-se",
+         "title": "8.8 Volumes with Cross Sections: Triangles and Semicircles",
+         "outcomes": [
+          {
+           "code": "CHA-5.B.3",
+           "text": "Calculate volumes with semicircular or other geometrically specified cross sections using their area formulas and definite integrals."
+          },
+          {
+           "code": "CHA-5.B.2",
+           "text": "Use triangular cross-section formulas and definite integrals to calculate solid volumes."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "8-9-volume-with-disc-method-revolving-around-the",
+       "title": "8.9 Volume with Disc Method: Revolving Around the x- or y-axis",
+       "subtopics": [
+        {
+         "id": "8-9-volume-with-disc-method-revolving-around-the",
+         "title": "8.9 Volume with Disc Method: Revolving Around the x- or y-axis",
+         "outcomes": [
+          {
+           "code": "CHA-5.C",
+           "text": "Calculate volumes of revolution with definite integrals."
+          },
+          {
+           "code": "CHA-5.C.1",
+           "text": "Use the disc method and definite integrals to find volumes revolving around the x- or y-axis."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "8-10-volume-with-disc-method-revolving-around-ot",
+       "title": "8.10 Volume with Disc Method: Revolving Around Other Axes",
+       "subtopics": [
+        {
+         "id": "8-10-volume-with-disc-method-revolving-around-ot",
+         "title": "8.10 Volume with Disc Method: Revolving Around Other Axes",
+         "outcomes": [
+          {
+           "code": "CHA-5.C.2",
+           "text": "Use the disc method and definite integrals for revolution around any horizontal or vertical line."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "8-11-volume-with-washer-method-revolving-around-",
+       "title": "8.11 Volume with Washer Method: Revolving Around the x- or y-axis",
+       "subtopics": [
+        {
+         "id": "8-11-volume-with-washer-method-revolving-around-",
+         "title": "8.11 Volume with Washer Method: Revolving Around the x- or y-axis",
+         "outcomes": [
+          {
+           "code": "CHA-5.C.3",
+           "text": "Use the washer method and definite integrals to find ring-shaped volumes revolving around the x- or y-axis."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "8-12-volume-with-washer-method-revolving-around-",
+       "title": "8.12 Volume with Washer Method: Revolving Around Other Axes",
+       "subtopics": [
+        {
+         "id": "8-12-volume-with-washer-method-revolving-around-",
+         "title": "8.12 Volume with Washer Method: Revolving Around Other Axes",
+         "outcomes": [
+          {
+           "code": "CHA-5.C.4",
+           "text": "Use the washer method and definite integrals for ring-shaped solids revolving around any horizontal or vertical line."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "Calculus BC",
+   "units": [
+    {
+     "id": "unit-10-infinite-sequences-and-series",
+     "title": "Unit 10: Infinite Sequences and Series",
+     "topics": [
+      {
+       "id": "10-8-ratio-test-for-convergence",
+       "title": "10.8 Ratio Test for Convergence",
+       "subtopics": [
+        {
+         "id": "enduring-understanding",
+         "title": "Enduring Understanding",
+         "outcomes": [
+          {
+           "code": "LIM-7.A",
+           "text": "Use limits to determine the finite sum of infinitely many terms."
+          }
+         ]
+        },
+        {
+         "id": "essential-knowledge",
+         "title": "The Ratio Test",
+         "outcomes": [
+          {
+           "code": "LIM-7.A.11",
+           "text": "Use the ratio test to determine whether a series converges or diverges."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "10-2-working-with-geometric-series",
+       "title": "10.2 Working with Geometric Series",
+       "subtopics": [
+        {
+         "id": "learning-objective",
+         "title": "Recognising Geometric Series",
+         "outcomes": [
+          {
+           "code": "LIM-7.A.3",
+           "text": "Identify a geometric series by its constant ratio between consecutive terms."
+          }
+         ]
+        },
+        {
+         "id": "essential-knowledge",
+         "title": "Sums of Geometric Series",
+         "outcomes": [
+          {
+           "code": "LIM-7.A.4",
+           "text": "Calculate a geometric series sum as a divided by one minus r when the absolute value of r is less than one."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "10-1-defining-convergent-and-divergent-infinite-",
+       "title": "10.1 Defining Convergent and Divergent Infinite Series",
+       "subtopics": [
+        {
+         "id": "10-1-defining-convergent-and-divergent-infinite-",
+         "title": "10.1 Defining Convergent and Divergent Infinite Series",
+         "outcomes": [
+          {
+           "code": "LIM-7.A.1",
+           "text": "Define the nth partial sum as the sum of the first n terms."
+          },
+          {
+           "code": "LIM-7.A.2",
+           "text": "Recognize that a series converges to S exactly when its partial sums approach S."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "10-3-the-nth-term-test-for-divergence",
+       "title": "10.3 The nth Term Test for Divergence",
+       "subtopics": [
+        {
+         "id": "10-3-the-nth-term-test-for-divergence",
+         "title": "10.3 The nth Term Test for Divergence",
+         "outcomes": [
+          {
+           "code": "LIM-7.A.5",
+           "text": "Use the nth-term test to establish that a series diverges."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "10-4-integral-test-for-convergence",
+       "title": "10.4 Integral Test for Convergence",
+       "subtopics": [
+        {
+         "id": "10-4-integral-test-for-convergence",
+         "title": "10.4 Integral Test for Convergence",
+         "outcomes": [
+          {
+           "code": "LIM-7.A.6",
+           "text": "Use the integral test to determine whether a series converges or diverges."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "10-5-harmonic-series",
+       "title": "10.5 Harmonic Series",
+       "subtopics": [
+        {
+         "id": "10-5-harmonic-series",
+         "title": "10.5 Harmonic Series",
+         "outcomes": [
+          {
+           "code": "LIM-7.A.7",
+           "text": "Recognize harmonic, alternating harmonic, and p-series as common numerical series."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "10-6-comparison-tests-for-convergence",
+       "title": "10.6 Comparison Tests for Convergence",
+       "subtopics": [
+        {
+         "id": "10-6-comparison-tests-for-convergence",
+         "title": "10.6 Comparison Tests for Convergence",
+         "outcomes": [
+          {
+           "code": "LIM-7.A.8",
+           "text": "Use the comparison test to determine series convergence or divergence."
+          },
+          {
+           "code": "LIM-7.A.9",
+           "text": "Use the limit comparison test to determine series convergence or divergence."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "10-7-alternating-series-test-for-convergence",
+       "title": "10.7 Alternating Series Test for Convergence",
+       "subtopics": [
+        {
+         "id": "10-7-alternating-series-test-for-convergence",
+         "title": "10.7 Alternating Series Test for Convergence",
+         "outcomes": [
+          {
+           "code": "LIM-7.A.10",
+           "text": "Apply the alternating series test to determine whether an alternating series converges."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "10-9-determining-absolute-or-conditional-converg",
+       "title": "10.9 Determining Absolute or Conditional Convergence",
+       "subtopics": [
+        {
+         "id": "classify-series-convergence",
+         "title": "Classify Series Convergence",
+         "outcomes": [
+          {
+           "code": "LIM-7.A.12",
+           "text": "Classify a series as absolutely convergent, conditionally convergent, or divergent."
+          },
+          {
+           "code": "LIM-7.A.13",
+           "text": "Conclude that absolute convergence implies convergence."
+          },
+          {
+           "code": "LIM-7.A.14",
+           "text": "Explain that rearranging an absolutely convergent series preserves its sum."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "10-10-alternating-series-error-bound",
+       "title": "10.10 Alternating Series Error Bound",
+       "subtopics": [
+        {
+         "id": "10-10-alternating-series-error-bound",
+         "title": "10.10 Alternating Series Error Bound",
+         "outcomes": [
+          {
+           "code": "LIM-7.B",
+           "text": "Approximate the sum of an infinite series."
+          },
+          {
+           "code": "LIM-7.B.1",
+           "text": "Use the alternating-series error bound to estimate a partial sum\u2019s distance from the infinite sum."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "10-11-finding-taylor-polynomial-approximations-o",
+       "title": "10.11 Finding Taylor Polynomial Approximations of Functions",
+       "subtopics": [
+        {
+         "id": "build-taylor-polynomials",
+         "title": "Build Taylor Polynomials",
+         "outcomes": [
+          {
+           "code": "LIM-8.A",
+           "text": "Represent a function at a point using a Taylor polynomial."
+          },
+          {
+           "code": "LIM-8.A.1",
+           "text": "Determine Taylor polynomial coefficients from derivatives evaluated at the center."
+          }
+         ]
+        },
+        {
+         "id": "approximate-function-values",
+         "title": "Approximate Function Values",
+         "outcomes": [
+          {
+           "code": "LIM-8.A.2",
+           "text": "Understand that higher-degree Taylor polynomials may approach the original function on an interval."
+          },
+          {
+           "code": "LIM-8.B",
+           "text": "Approximate function values with a Taylor polynomial."
+          },
+          {
+           "code": "LIM-8.B.1",
+           "text": "Use a Taylor polynomial centered at a point to approximate nearby function values."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "10-12-lagrange-error-bound",
+       "title": "10.12 Lagrange Error Bound",
+       "subtopics": [
+        {
+         "id": "bound-approximation-errors",
+         "title": "Bound Approximation Errors",
+         "outcomes": [
+          {
+           "code": "LIM-8.C",
+           "text": "Determine the error bound for a Taylor polynomial approximation."
+          },
+          {
+           "code": "LIM-8.C.1",
+           "text": "Use the Lagrange error bound to establish a maximum approximation error."
+          },
+          {
+           "code": "LIM-8.C.2",
+           "text": "Use the alternating-series error bound for some Taylor polynomial approximations."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "10-13-radius-and-interval-of-convergence-of-powe",
+       "title": "10.13 Radius and Interval of Convergence of Power Series",
+       "subtopics": [
+        {
+         "id": "understand-power-series-convergence",
+         "title": "Understand Power Series Convergence",
+         "outcomes": [
+          {
+           "code": "LIM-8.D",
+           "text": "Determine a power series\u2019 radius and interval of convergence."
+          },
+          {
+           "code": "LIM-8.D.1",
+           "text": "Identify a power series as a series of powers centered at a real number."
+          },
+          {
+           "code": "LIM-8.D.2",
+           "text": "Recognize that a power series converges either at one point or throughout an interval."
+          }
+         ]
+        },
+        {
+         "id": "find-radius-and-interval",
+         "title": "Find Radius and Interval",
+         "outcomes": [
+          {
+           "code": "LIM-8.D.3",
+           "text": "Use the ratio test to find a power series\u2019 radius of convergence."
+          },
+          {
+           "code": "LIM-8.D.4",
+           "text": "Use the radius to find the open convergence interval, then test both endpoints."
+          }
+         ]
+        },
+        {
+         "id": "use-power-series-properties",
+         "title": "Use Power Series Properties",
+         "outcomes": [
+          {
+           "code": "LIM-8.D.5",
+           "text": "Recognize a positive-radius power series as the Taylor series of its sum within the open interval."
+          },
+          {
+           "code": "LIM-8.D.6",
+           "text": "Know that termwise differentiation or integration preserves a power series\u2019 radius of convergence."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "10-14-finding-taylor-or-maclaurin-series",
+       "title": "10.14 Finding Taylor or Maclaurin Series",
+       "subtopics": [
+        {
+         "id": "understand-taylor-series",
+         "title": "Understand Taylor Series",
+         "outcomes": [
+          {
+           "code": "LIM-8.E",
+           "text": "Represent a function as a Taylor or Maclaurin series."
+          },
+          {
+           "code": "LIM-8.E.1",
+           "text": "Understand that a Taylor polynomial is a partial sum of the corresponding Taylor series."
+          },
+          {
+           "code": "LIM-8.F",
+           "text": "Interpret Taylor and Maclaurin series."
+          }
+         ]
+        },
+        {
+         "id": "build-common-maclaurin-series",
+         "title": "Build Common Maclaurin Series",
+         "outcomes": [
+          {
+           "code": "LIM-8.F.1",
+           "text": "Recognize the Maclaurin series for 1/(1\u2212x) as a geometric series."
+          },
+          {
+           "code": "LIM-8.F.2",
+           "text": "Use the Maclaurin series for sine, cosine, and exponential functions to build other series."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "10-15-representing-functions-as-power-series",
+       "title": "10.15 Representing Functions as Power Series",
+       "subtopics": [
+        {
+         "id": "10-15-representing-functions-as-power-series",
+         "title": "10.15 Representing Functions as Power Series",
+         "outcomes": [
+          {
+           "code": "LIM-8.G",
+           "text": "Represent a given function as a power series."
+          },
+          {
+           "code": "LIM-8.G.1",
+           "text": "Derive power series using known series, differentiation, integration, algebra, substitutions, or geometric-series properties."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "unit-6-integration-and-accumulation-of-change",
+     "title": "Unit 6: Integration and Accumulation of Change",
+     "topics": [
+      {
+       "id": "6-11-integrating-using-integration-by-parts",
+       "title": "6.11 Integrating Using Integration by Parts",
+       "subtopics": [
+        {
+         "id": "6-11-integrating-using-integration-by-parts",
+         "title": "6.11 Integrating Using Integration by Parts",
+         "outcomes": [
+          {
+           "code": "FUN-6.E",
+           "text": "Use integration by parts to find indefinite and definite integrals."
+          },
+          {
+           "code": "FUN-6.E.1",
+           "text": "Apply integration by parts to find antiderivatives."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "6-12-integrating-using-linear-partial-fractions",
+       "title": "6.12 Integrating Using Linear Partial Fractions",
+       "subtopics": [
+        {
+         "id": "6-12-integrating-using-linear-partial-fractions",
+         "title": "6.12 Integrating Using Linear Partial Fractions",
+         "outcomes": [
+          {
+           "code": "FUN-6.F",
+           "text": "Use linear partial fractions to evaluate suitable indefinite and definite integrals."
+          },
+          {
+           "code": "FUN-6.F.1",
+           "text": "Decompose suitable rational functions into nonrepeating linear-factor fractions before integrating."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "6-13-evaluating-improper-integrals",
+       "title": "6.13 Evaluating Improper Integrals",
+       "subtopics": [
+        {
+         "id": "identify-improper-integrals",
+         "title": "Identify Improper Integrals",
+         "outcomes": [
+          {
+           "code": "LIM-6.A",
+           "text": "Evaluate improper integrals or determine that they diverge."
+          },
+          {
+           "code": "LIM-6.A.1",
+           "text": "Identify improper integrals by infinite limits or unbounded integrands."
+          }
+         ]
+        },
+        {
+         "id": "evaluate-improper-integrals",
+         "title": "Evaluate Improper Integrals",
+         "outcomes": [
+          {
+           "code": "LIM-6.A.2",
+           "text": "Evaluate improper integrals using limits of definite integrals."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "unit-7-differential-equations",
+     "title": "Unit 7: Differential Equations",
+     "topics": [
+      {
+       "id": "7-5-approximating-solutions-using-euler-s-method",
+       "title": "7.5 Approximating Solutions Using Euler\u2019s Method",
+       "subtopics": [
+        {
+         "id": "essential-knowledge",
+         "title": "Euler's Method",
+         "outcomes": [
+          {
+           "code": "FUN-7.C.4",
+           "text": "Use Euler\u2019s method to approximate a differential-equation solution or a point on its curve."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "7-6-finding-general-solutions-using-separation-o",
+       "title": "7.6 Finding General Solutions Using Separation of Variables",
+       "subtopics": [
+        {
+         "id": "separate-variables",
+         "title": "Separate Variables",
+         "outcomes": [
+          {
+           "code": "FUN-7.D",
+           "text": "Find general solutions of differential equations."
+          },
+          {
+           "code": "FUN-7.D.1",
+           "text": "Solve certain differential equations by separating variables."
+          }
+         ]
+        },
+        {
+         "id": "find-general-solutions",
+         "title": "Find General Solutions",
+         "outcomes": [
+          {
+           "code": "FUN-7.D.2",
+           "text": "Use antidifferentiation to obtain general differential-equation solutions."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "7-9-logistic-models-with-differential-equations",
+       "title": "7.9 Logistic Models with Differential Equations",
+       "subtopics": [
+        {
+         "id": "model-logistic-growth",
+         "title": "Model Logistic Growth",
+         "outcomes": [
+          {
+           "code": "FUN-7.H",
+           "text": "Interpret logistic growth models in context."
+          },
+          {
+           "code": "FUN-7.H.1",
+           "text": "Model logistic growth when rate depends on population size and remaining carrying capacity."
+          }
+         ]
+        },
+        {
+         "id": "interpret-logistic-models",
+         "title": "Interpret Logistic Models",
+         "outcomes": [
+          {
+           "code": "FUN-7.H.2",
+           "text": "Interpret logistic differential equations and initial conditions without solving them."
+          },
+          {
+           "code": "FUN-7.H.3",
+           "text": "Determine a logistic model\u2019s limiting value using its equation and initial conditions."
+          }
+         ]
+        },
+        {
+         "id": "find-fastest-logistic-growth",
+         "title": "Find Fastest Logistic Growth",
+         "outcomes": [
+          {
+           "code": "FUN-7.H.4",
+           "text": "Determine the dependent variable\u2019s value when logistic growth is fastest."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "unit-8-applications-of-integration",
+     "title": "Unit 8: Applications of Integration",
+     "topics": [
+      {
+       "id": "8-13-the-arc-length-of-a-smooth-planar-curve-and",
+       "title": "8.13 The Arc Length of a Smooth, Planar Curve and Distance Traveled",
+       "subtopics": [
+        {
+         "id": "8-13-the-arc-length-of-a-smooth-planar-curve-and",
+         "title": "8.13 The Arc Length of a Smooth, Planar Curve and Distance Traveled",
+         "outcomes": [
+          {
+           "code": "CHA-6.A",
+           "text": "Find the length of a planar curve defined by a function using a definite integral."
+          },
+          {
+           "code": "CHA-6.A.1",
+           "text": "Calculate the length of a function-defined planar curve with a definite integral."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "unit-9-parametric-equations-polar-coordinates-an",
+     "title": "Unit 9: Parametric Equations, Polar Coordinates, and Vector-Valued Functions",
+     "topics": [
+      {
+       "id": "9-1-defining-and-differentiating-parametric-equa",
+       "title": "9.1 Defining and Differentiating Parametric Equations",
+       "subtopics": [
+        {
+         "id": "differentiate-parametric-equations",
+         "title": "Differentiate Parametric Equations",
+         "outcomes": [
+          {
+           "code": "CHA-3.G",
+           "text": "Find derivatives for functions defined parametrically."
+          },
+          {
+           "code": "CHA-3.G.1",
+           "text": "Derivative methods for real-valued functions also apply to parametric functions."
+          },
+          {
+           "code": "CHA-3.G.2",
+           "text": "For a parametric curve, find the tangent slope by dividing dy/dt by dx/dt when dx/dt is nonzero."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "9-2-second-derivatives-of-parametric-equations",
+       "title": "9.2 Second Derivatives of Parametric Equations",
+       "subtopics": [
+        {
+         "id": "9-2-second-derivatives-of-parametric-equations",
+         "title": "9.2 Second Derivatives of Parametric Equations",
+         "outcomes": [
+          {
+           "code": "CHA-3.G.3",
+           "text": "Calculate a parametric curve\u2019s second derivative by differentiating dy/dx with respect to t and dividing by dx/dt."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "9-3-finding-arc-lengths-of-curves-given-by-param",
+       "title": "9.3 Finding Arc Lengths of Curves Given by Parametric Equations",
+       "subtopics": [
+        {
+         "id": "9-3-finding-arc-lengths-of-curves-given-by-param",
+         "title": "9.3 Finding Arc Lengths of Curves Given by Parametric Equations",
+         "outcomes": [
+          {
+           "code": "CHA-6.B",
+           "text": "Use a definite integral to find the length of a parametrically defined plane curve."
+          },
+          {
+           "code": "CHA-6.B.1",
+           "text": "The length of a parametrically defined curve can be found with a definite integral."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "9-4-defining-and-differentiating-vector-valued-f",
+       "title": "9.4 Defining and Differentiating Vector-Valued Functions",
+       "subtopics": [
+        {
+         "id": "9-4-defining-and-differentiating-vector-valued-f",
+         "title": "9.4 Defining and Differentiating Vector-Valued Functions",
+         "outcomes": [
+          {
+           "code": "CHA-3.H",
+           "text": "Find derivatives of vector-valued functions."
+          },
+          {
+           "code": "CHA-3.H.1",
+           "text": "Derivative methods for real-valued functions extend to vector-valued functions."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "9-5-integrating-vector-valued-functions",
+       "title": "9.5 Integrating Vector-Valued Functions",
+       "subtopics": [
+        {
+         "id": "9-5-integrating-vector-valued-functions",
+         "title": "9.5 Integrating Vector-Valued Functions",
+         "outcomes": [
+          {
+           "code": "FUN-8.A",
+           "text": "Find a particular solution from a rate vector and initial conditions."
+          },
+          {
+           "code": "FUN-8.A.1",
+           "text": "Integration methods for real-valued functions extend to parametric and vector-valued functions."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "9-6-solving-motion-problems-using-parametric-and",
+       "title": "9.6 Solving Motion Problems Using Parametric and Vector-Valued Functions",
+       "subtopics": [
+        {
+         "id": "position-velocity-and-acceleration",
+         "title": "Position Velocity and Acceleration",
+         "outcomes": [
+          {
+           "code": "FUN-8.B",
+           "text": "Find positions and rates of change for planar motion problems."
+          },
+          {
+           "code": "FUN-8.B.1",
+           "text": "Use derivatives to find velocity, speed, and acceleration along parametric or vector-defined paths."
+          }
+         ]
+        },
+        {
+         "id": "displacement-and-distance",
+         "title": "Displacement and Distance",
+         "outcomes": [
+          {
+           "code": "FUN-8.B.2",
+           "text": "Integrating velocity gives displacement; integrating speed gives total distance traveled."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "9-7-defining-polar-coordinates-and-differentiati",
+       "title": "9.7 Defining Polar Coordinates and Differentiating in Polar Form",
+       "subtopics": [
+        {
+         "id": "differentiate-polar-functions",
+         "title": "Differentiate Polar Functions",
+         "outcomes": [
+          {
+           "code": "FUN-3.G",
+           "text": "Find derivatives of functions expressed in polar coordinates."
+          },
+          {
+           "code": "FUN-3.G.1",
+           "text": "Derivative methods for real-valued functions extend to polar-coordinate functions."
+          }
+         ]
+        },
+        {
+         "id": "slopes-of-polar-curves",
+         "title": "Slopes of Polar Curves",
+         "outcomes": [
+          {
+           "code": "FUN-3.G.2",
+           "text": "Derivatives with respect to the polar angle provide information about a polar curve, including its first and second slopes."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "9-8-finding-the-area-of-a-polar-region-or-the-ar",
+       "title": "9.8 Finding the Area of a Polar Region or the Area Bounded by a Single Polar Curve",
+       "subtopics": [
+        {
+         "id": "9-8-finding-the-area-of-a-polar-region-or-the-ar",
+         "title": "9.8 Finding the Area of a Polar Region or the Area Bounded by a Single Polar Curve",
+         "outcomes": [
+          {
+           "code": "CHA-5.D",
+           "text": "Use definite integrals to find areas of regions defined by polar curves."
+          },
+          {
+           "code": "CHA-5.D.1",
+           "text": "The rectangular-coordinate area concept extends to regions described in polar coordinates."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "9-9-finding-the-area-of-the-region-bounded-by-tw",
+       "title": "9.9 Finding the Area of the Region Bounded by Two Polar Curves",
+       "subtopics": [
+        {
+         "id": "9-9-finding-the-area-of-the-region-bounded-by-tw",
+         "title": "9.9 Finding the Area of the Region Bounded by Two Polar Curves",
+         "outcomes": [
+          {
+           "code": "CHA-5.D.2",
+           "text": "Definite integrals can calculate areas bounded by two polar curves."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "build": {
+  "builtAt": "2026-10-14T07:53:38.960Z",
+  "model": "gpt-5.6-luna",
+  "usd": 0.0636,
+  "expectedCodes": 270,
+  "coverage": 1,
+  "missingCodes": [],
+  "counts": {
+   "grades": 2,
+   "units": 13,
+   "topics": 107,
+   "subtopics": 160,
+   "outcomes": 273
+  },
+  "warnings": []
+ }
+}

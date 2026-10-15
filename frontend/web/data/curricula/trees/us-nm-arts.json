@@ -1,0 +1,158 @@
+{
+ "id": "us-nm-arts",
+ "region": "US",
+ "framework": "New Mexico state academic standards: Fine Arts",
+ "board": null,
+ "qualification": "K-12",
+ "subject": "Fine Arts",
+ "syllabusCode": null,
+ "gradeSystem": "grade",
+ "source": {
+  "urls": [
+   "https://api.commonstandardsproject.com/api/v1/jurisdictions/C558A97651934F3989D0D0A41196060C",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/0E32DBA226A14201854234790D526FA4"
+  ],
+  "publisher": "New Mexico state education agency (machine-readable via Common Standards Project / ASN)",
+  "licence": "CC BY 4.0 US, Common Curriculum, Inc.",
+  "firstExam": "2018"
+ },
+ "grades": [
+  {
+   "grade": "K-12",
+   "units": [
+    {
+     "id": "creating-conceiving-and-developing-new-artistic-",
+     "title": "CREATING: Conceiving and developing new artistic ideas and work",
+     "topics": [
+      {
+       "id": "creating-conceiving-and-developing-new-artistic-",
+       "title": "CREATING: Conceiving and developing new artistic ideas and work",
+       "subtopics": [
+        {
+         "id": "creating-conceiving-and-developing-new-artistic-",
+         "title": "CREATING: Conceiving and developing new artistic ideas and work",
+         "outcomes": [
+          {
+           "code": "CR1",
+           "text": "Anchor Standard #1. Generate and conceptualize artistic ideas and work."
+          },
+          {
+           "code": "CR2",
+           "text": "Anchor Standard #2. Organize and develop artistic ideas and work."
+          },
+          {
+           "code": "CR3",
+           "text": "Anchor Standard #3. Refine and complete artistic work"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "performing-presenting-producing-realizing",
+     "title": "PERFORMING, PRESENTING, PRODUCING: Realizing",
+     "topics": [
+      {
+       "id": "performing-presenting-producing-realizing",
+       "title": "PERFORMING, PRESENTING, PRODUCING: Realizing",
+       "subtopics": [
+        {
+         "id": "performing-presenting-producing-realizing",
+         "title": "PERFORMING, PRESENTING, PRODUCING: Realizing",
+         "outcomes": [
+          {
+           "code": "PR4",
+           "text": "Anchor Standard #4. Select, analyze and interpret artistic work for presentation"
+          },
+          {
+           "code": "PR5",
+           "text": "Anchor Standard #5. Develop and refine artistic techniques and work for presentation."
+          },
+          {
+           "code": "PR6",
+           "text": "Anchor Standard #6. Convey meaning through the presentation of artistic work."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "responding-understanding-and-evaluating-how-the-",
+     "title": "RESPONDING: Understanding and evaluating how the arts convey meaning",
+     "topics": [
+      {
+       "id": "responding-understanding-and-evaluating-how-the-",
+       "title": "RESPONDING: Understanding and evaluating how the arts convey meaning",
+       "subtopics": [
+        {
+         "id": "responding-understanding-and-evaluating-how-the-",
+         "title": "RESPONDING: Understanding and evaluating how the arts convey meaning",
+         "outcomes": [
+          {
+           "code": "RE7",
+           "text": "Anchor Standard #7. Perceive and analyze artistic work."
+          },
+          {
+           "code": "RE8",
+           "text": "Anchor Standard #8. Interpret intent and meaning in artistic work."
+          },
+          {
+           "code": "RE9",
+           "text": "Anchor Standard #9. Apply criteria to evaluate artistic work."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "connecting-relating-artistic-ideas-and-work-with",
+     "title": "CONNECTING: Relating artistic ideas and work with personal meaning…",
+     "topics": [
+      {
+       "id": "connecting-relating-artistic-ideas-and-work-with",
+       "title": "CONNECTING: Relating artistic ideas and work with personal meaning…",
+       "subtopics": [
+        {
+         "id": "connecting-relating-artistic-ideas-and-work-with",
+         "title": "CONNECTING: Relating artistic ideas and work with personal meaning…",
+         "outcomes": [
+          {
+           "code": "CN10",
+           "text": "Anchor Standard #10. Synthesize and relate knowledge and personal experiences to make art."
+          },
+          {
+           "code": "CN11",
+           "text": "Anchor Standard #11. Relate artistic ideas and works with societal, cultural and historical context to deepen understanding."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "build": {
+  "builtAt": "2026-10-14T08:04:49.776Z",
+  "model": "none",
+  "usd": 0,
+  "expectedCodes": 11,
+  "coverage": 1,
+  "missingCodes": [],
+  "counts": {
+   "grades": 1,
+   "units": 4,
+   "topics": 4,
+   "subtopics": 4,
+   "outcomes": 11
+  },
+  "warnings": []
+ }
+}

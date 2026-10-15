@@ -1,0 +1,1997 @@
+{
+ "id": "uk-aqa-gcse-chemistry-8462",
+ "region": "UK",
+ "framework": "AQA GCSE (9-1)",
+ "board": "AQA",
+ "qualification": "GCSE",
+ "subject": "Chemistry",
+ "syllabusCode": "8462",
+ "gradeSystem": "year",
+ "source": {
+  "urls": [
+   "https://cdn.sanity.io/files/p28bar15/green/4b1d5e819ad08a3b6d2ee6d8ed3514487c2255b4.pdf"
+  ],
+  "publisher": "AQA",
+  "licence": "Exam board specification, (c) AQA; structure + our own wording only",
+  "firstExam": "2018"
+ },
+ "grades": [
+  {
+   "grade": "all",
+   "units": [
+    {
+     "id": "4-1-atomic-structure-and-the-periodic-table",
+     "title": "4.1 Atomic structure and the periodic table",
+     "topics": [
+      {
+       "id": "4-1-1-a-simple-model-of-the-atom-symbols-relativ",
+       "title": "4.1.1 A simple model of the atom, symbols, relative atomic mass, electronic charge and isotopes",
+       "subtopics": [
+        {
+         "id": "atoms-elements-and-compounds",
+         "title": "Atoms, elements and compounds",
+         "outcomes": [
+          {
+           "code": "4.1.1.1",
+           "text": "State that atoms are the smallest part of an element and are shown by chemical symbols in the periodic table."
+          },
+          {
+           "code": null,
+           "text": "Explain that compounds form by chemical reactions, hold elements in fixed proportions, and can only be split by reactions."
+          },
+          {
+           "code": null,
+           "text": "Name elements and compounds and write word equations, formulae and balanced symbol equations (half and ionic equations at higher tier)."
+          }
+         ]
+        },
+        {
+         "id": "mixtures-and-separation",
+         "title": "Mixtures and separation",
+         "outcomes": [
+          {
+           "code": "4.1.1.2",
+           "text": "Distinguish a mixture from a compound and say the chemical properties of each part are unchanged."
+          },
+          {
+           "code": null,
+           "text": "Describe filtration, crystallisation, simple and fractional distillation and chromatography, and pick a method for a given mixture."
+          }
+         ]
+        },
+        {
+         "id": "development-of-the-atomic-model",
+         "title": "Development of the atomic model",
+         "outcomes": [
+          {
+           "code": "4.1.1.3",
+           "text": "Describe the plum pudding model and why the alpha scattering experiment replaced it with the nuclear model."
+          },
+          {
+           "code": null,
+           "text": "Describe Bohr's orbiting electrons and the discovery of the proton and neutron."
+          }
+         ]
+        },
+        {
+         "id": "subatomic-particles",
+         "title": "Subatomic particles",
+         "outcomes": [
+          {
+           "code": "4.1.1.4",
+           "text": "Give the relative charges of protons, neutrons and electrons and state atoms are neutral."
+          },
+          {
+           "code": null,
+           "text": "Define atomic number as the number of protons and use it to tell elements apart."
+          }
+         ]
+        },
+        {
+         "id": "size-and-mass-of-atoms",
+         "title": "Size and mass of atoms",
+         "outcomes": [
+          {
+           "code": "4.1.1.5",
+           "text": "Give the size of an atom and nucleus and say nearly all the mass is in the nucleus."
+          },
+          {
+           "code": null,
+           "text": "Define mass number and isotopes, and work out protons, neutrons and electrons in an atom or ion."
+          },
+          {
+           "code": null,
+           "text": "Relate the size and scale of atoms to objects in the physical world."
+          }
+         ]
+        },
+        {
+         "id": "relative-atomic-mass",
+         "title": "Relative atomic mass",
+         "outcomes": [
+          {
+           "code": "4.1.1.6",
+           "text": "Explain relative atomic mass as an average that accounts for isotope abundance, and calculate it from percentages."
+          }
+         ]
+        },
+        {
+         "id": "electronic-structure",
+         "title": "Electronic structure",
+         "outcomes": [
+          {
+           "code": "4.1.1.7",
+           "text": "Fill energy levels from the lowest outwards and write electronic structures of the first twenty elements as numbers and diagrams."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "4-1-2-the-periodic-table",
+       "title": "4.1.2 The periodic table",
+       "subtopics": [
+        {
+         "id": "layout-of-the-periodic-table",
+         "title": "Layout of the periodic table",
+         "outcomes": [
+          {
+           "code": "4.1.2.1",
+           "text": "Explain that elements are ordered by atomic number and grouped by similar properties and outer electrons."
+          },
+          {
+           "code": null,
+           "text": "Predict reactions and reactivity from an element's position in the table."
+          }
+         ]
+        },
+        {
+         "id": "development-of-the-periodic-table",
+         "title": "Development of the periodic table",
+         "outcomes": [
+          {
+           "code": "4.1.2.2",
+           "text": "Describe how early tables used atomic weights, and how Mendeleev left gaps and reordered elements."
+          },
+          {
+           "code": null,
+           "text": "Explain how discovered elements and isotope knowledge supported Mendeleev's predictions."
+          }
+         ]
+        },
+        {
+         "id": "metals-and-non-metals",
+         "title": "Metals and non-metals",
+         "outcomes": [
+          {
+           "code": "4.1.2.3",
+           "text": "Say metals form positive ions, non-metals do not, and where each sits in the table."
+          },
+          {
+           "code": null,
+           "text": "Explain differences in properties and reactions of metals and non-metals using atomic structure."
+          }
+         ]
+        },
+        {
+         "id": "group-0-noble-gases",
+         "title": "Group 0 noble gases",
+         "outcomes": [
+          {
+           "code": "4.1.2.4",
+           "text": "Explain why noble gases are unreactive using their full outer shells."
+          },
+          {
+           "code": null,
+           "text": "State and use the trend of rising boiling points down Group 0."
+          }
+         ]
+        },
+        {
+         "id": "group-1-alkali-metals",
+         "title": "Group 1 alkali metals",
+         "outcomes": [
+          {
+           "code": "4.1.2.5",
+           "text": "Describe reactions of lithium, sodium and potassium with oxygen, chlorine and water."
+          },
+          {
+           "code": null,
+           "text": "Explain why reactivity rises down Group 1 and predict properties from the trend."
+          }
+         ]
+        },
+        {
+         "id": "group-7-halogens",
+         "title": "Group 7 halogens",
+         "outcomes": [
+          {
+           "code": "4.1.2.6",
+           "text": "Describe halogens as non-metal diatomic molecules with seven outer electrons."
+          },
+          {
+           "code": null,
+           "text": "Describe compounds formed when chlorine, bromine and iodine react with metals and non-metals."
+          },
+          {
+           "code": null,
+           "text": "State trends down Group 7: higher melting and boiling points, lower reactivity."
+          },
+          {
+           "code": null,
+           "text": "Explain displacement of a less reactive halogen by a more reactive one."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "4-1-3-properties-of-transition-metals-chemistry-",
+       "title": "4.1.3 Properties of transition metals (chemistry only)",
+       "subtopics": [
+        {
+         "id": "transition-metals",
+         "title": "Transition metals",
+         "outcomes": [
+          {
+           "code": "4.1.3.1",
+           "text": "Compare transition metals with Group 1 in melting point, density, strength, hardness and reactivity."
+          },
+          {
+           "code": null,
+           "text": "Give examples of transition metal properties using Cr, Mn, Fe, Co, Ni and Cu."
+          },
+          {
+           "code": "4.1.3.2",
+           "text": "Describe variable ion charges, coloured compounds and catalyst use of transition elements."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "4-2-bonding-structure-and-the-properties-of-matt",
+     "title": "4.2 Bonding, structure, and the properties of matter",
+     "topics": [
+      {
+       "id": "4-2-1-chemical-bonds-ionic-covalent-and-metallic",
+       "title": "4.2.1 Chemical bonds, ionic, covalent and metallic",
+       "subtopics": [
+        {
+         "id": "types-of-chemical-bond",
+         "title": "Types of chemical bond",
+         "outcomes": [
+          {
+           "code": "4.2.1.1",
+           "text": "Name the three strong bond types and the particles in each: ions, shared electron pairs, delocalised electrons."
+          },
+          {
+           "code": null,
+           "text": "Match ionic, covalent and metallic bonding to metal/non-metal compounds, non-metals and metals/alloys."
+          },
+          {
+           "code": null,
+           "text": "Explain bonding in terms of electrostatic forces and electron transfer or sharing."
+          }
+         ]
+        },
+        {
+         "id": "ionic-bonding",
+         "title": "Ionic bonding",
+         "outcomes": [
+          {
+           "code": "4.2.1.2",
+           "text": "Describe electron transfer from metal to non-metal atoms, giving ions with noble gas electronic structures."
+          },
+          {
+           "code": null,
+           "text": "Draw dot and cross diagrams for Group 1 and 2 metals with Group 6 and 7 non-metals."
+          },
+          {
+           "code": null,
+           "text": "Work out ion charges from the group number for Groups 1, 2, 6 and 7."
+          }
+         ]
+        },
+        {
+         "id": "ionic-compounds",
+         "title": "Ionic compounds",
+         "outcomes": [
+          {
+           "code": "4.2.1.3",
+           "text": "Describe an ionic compound as a giant lattice held by electrostatic attraction in all directions."
+          },
+          {
+           "code": null,
+           "text": "Deduce that a compound is ionic from a diagram of sodium chloride's structure."
+          },
+          {
+           "code": null,
+           "text": "Describe limitations of dot and cross, ball and stick and 2D/3D diagrams of ionic structures."
+          },
+          {
+           "code": null,
+           "text": "Work out an empirical formula from a model showing the ions."
+          }
+         ]
+        },
+        {
+         "id": "covalent-bonding",
+         "title": "Covalent bonding",
+         "outcomes": [
+          {
+           "code": "4.2.1.4",
+           "text": "Describe covalent bonds as shared electron pairs and recognise small molecules from their formulae."
+          },
+          {
+           "code": null,
+           "text": "Identify polymers and giant covalent structures such as diamond and silicon dioxide."
+          },
+          {
+           "code": null,
+           "text": "Draw dot and cross diagrams for H2, Cl2, O2, N2, HCl, water, ammonia and methane."
+          },
+          {
+           "code": null,
+           "text": "Represent bonds in molecules, polymer repeat units and giant structures using lines for single bonds."
+          },
+          {
+           "code": null,
+           "text": "Describe limitations of molecule diagrams and deduce a molecular formula from a model."
+          }
+         ]
+        },
+        {
+         "id": "metallic-bonding",
+         "title": "Metallic bonding",
+         "outcomes": [
+          {
+           "code": "4.2.1.5",
+           "text": "Describe a metal as a regular giant structure of atoms with delocalised outer electrons."
+          },
+          {
+           "code": null,
+           "text": "Explain that sharing delocalised electrons gives strong metallic bonds, and recognise metallic structures in diagrams."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "4-2-2-how-bonding-and-structure-are-related-to-t",
+       "title": "4.2.2 How bonding and structure are related to the properties of substances",
+       "subtopics": [
+        {
+         "id": "states-of-matter",
+         "title": "States of matter",
+         "outcomes": [
+          {
+           "code": "4.2.2.1",
+           "text": "Name solid, liquid and gas and the melting, freezing, boiling and condensing points."
+          },
+          {
+           "code": null,
+           "text": "Use the particle model to explain changes of state and why stronger forces mean higher melting and boiling points."
+          },
+          {
+           "code": null,
+           "text": "Predict states at different temperatures from data and recognise atoms lack bulk properties."
+          },
+          {
+           "code": null,
+           "text": "Explain limitations of the solid-sphere particle model (higher tier)."
+          }
+         ]
+        },
+        {
+         "id": "state-symbols",
+         "title": "State symbols",
+         "outcomes": [
+          {
+           "code": "4.2.2.2",
+           "text": "Write (s), (l), (g) and (aq) in equations for reactions in the specification."
+          }
+         ]
+        },
+        {
+         "id": "properties-of-ionic-compounds",
+         "title": "Properties of ionic compounds",
+         "outcomes": [
+          {
+           "code": "4.2.2.3",
+           "text": "Explain high melting and boiling points of ionic compounds from many strong lattice bonds."
+          },
+          {
+           "code": null,
+           "text": "Explain why ionic compounds conduct when molten or dissolved but not as solids."
+          }
+         ]
+        },
+        {
+         "id": "properties-of-small-molecules",
+         "title": "Properties of small molecules",
+         "outcomes": [
+          {
+           "code": "4.2.2.4",
+           "text": "Explain low melting and boiling points as weak intermolecular forces being overcome, not covalent bonds."
+          },
+          {
+           "code": null,
+           "text": "Explain that larger molecules have stronger intermolecular forces and that small molecules do not conduct."
+          }
+         ]
+        },
+        {
+         "id": "polymers-and-giant-covalent-structures",
+         "title": "Polymers and giant covalent structures",
+         "outcomes": [
+          {
+           "code": "4.2.2.5",
+           "text": "Explain that polymers are solids because of strong covalent bonds and relatively strong intermolecular forces."
+          },
+          {
+           "code": "4.2.2.6",
+           "text": "Explain very high melting points of giant covalent structures such as diamond, graphite and silica."
+          },
+          {
+           "code": null,
+           "text": "Recognise polymers and giant covalent structures from bonding diagrams."
+          }
+         ]
+        },
+        {
+         "id": "metals-and-alloys",
+         "title": "Metals and alloys",
+         "outcomes": [
+          {
+           "code": "4.2.2.7",
+           "text": "Explain high melting points of metals from strong metallic bonding."
+          },
+          {
+           "code": null,
+           "text": "Explain that layers of atoms let pure metals bend, and why alloys are harder through distorted layers."
+          }
+         ]
+        },
+        {
+         "id": "metals-as-conductors",
+         "title": "Metals as conductors",
+         "outcomes": [
+          {
+           "code": "4.2.2.8",
+           "text": "Explain electrical conduction in metals by moving delocalised electrons."
+          },
+          {
+           "code": null,
+           "text": "Explain thermal conduction in metals by energy transfer through delocalised electrons."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "4-2-3-structure-and-bonding-of-carbon",
+       "title": "4.2.3 Structure and bonding of carbon",
+       "subtopics": [
+        {
+         "id": "diamond-and-graphite",
+         "title": "Diamond and graphite",
+         "outcomes": [
+          {
+           "code": "4.2.3.1",
+           "text": "Explain diamond's hardness, high melting point and non-conduction from four covalent bonds per carbon."
+          },
+          {
+           "code": "4.2.3.2",
+           "text": "Describe graphite's hexagonal layers with three bonds per carbon and one delocalised electron."
+          },
+          {
+           "code": null,
+           "text": "Explain graphite's properties and compare it to metals through delocalised electrons."
+          }
+         ]
+        },
+        {
+         "id": "graphene-and-fullerenes",
+         "title": "Graphene and fullerenes",
+         "outcomes": [
+          {
+           "code": "4.2.3.3",
+           "text": "Describe graphene as a single layer of graphite and explain its properties and uses."
+          },
+          {
+           "code": null,
+           "text": "Recognise fullerenes, Buckminsterfullerene and nanotubes from structure descriptions."
+          },
+          {
+           "code": null,
+           "text": "Give uses of fullerenes including carbon nanotubes."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "4-2-4-bulk-and-surface-properties-of-matter-incl",
+       "title": "4.2.4 Bulk and surface properties of matter including nanoparticles (chemistry only)",
+       "subtopics": [
+        {
+         "id": "nanoparticle-size-and-properties",
+         "title": "Nanoparticle size and properties",
+         "outcomes": [
+          {
+           "code": "4.2.4.1",
+           "text": "Define nanoscience as 1-100 nm and compare nanoparticles with fine and coarse particles."
+          },
+          {
+           "code": null,
+           "text": "Explain that shrinking a cube by ten times raises surface area to volume ratio ten times."
+          },
+          {
+           "code": null,
+           "text": "Explain why nanoparticles differ from bulk materials and need smaller quantities."
+          },
+          {
+           "code": null,
+           "text": "Compare nano dimensions with atoms and molecules."
+          }
+         ]
+        },
+        {
+         "id": "uses-of-nanoparticles",
+         "title": "Uses of nanoparticles",
+         "outcomes": [
+          {
+           "code": "4.2.4.2",
+           "text": "Name nanoparticle uses in medicine, electronics, cosmetics, sun creams, deodorants and catalysts."
+          },
+          {
+           "code": null,
+           "text": "Evaluate nanoparticle use for a purpose and explain possible risks."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "4-3-quantitative-chemistry",
+     "title": "4.3 Quantitative chemistry",
+     "topics": [
+      {
+       "id": "4-3-1-chemical-measurements-conservation-of-mass",
+       "title": "4.3.1 Chemical measurements, conservation of mass and the quantitative interpretation of chemical equations",
+       "subtopics": [
+        {
+         "id": "conservation-of-mass-and-balancing",
+         "title": "Conservation of mass and balancing",
+         "outcomes": [
+          {
+           "code": "4.3.1.1",
+           "text": "State that no atoms are lost or made so reactant mass equals product mass."
+          },
+          {
+           "code": null,
+           "text": "Balance symbol equations and use multipliers before formulae and in subscripts."
+          }
+         ]
+        },
+        {
+         "id": "relative-formula-mass",
+         "title": "Relative formula mass",
+         "outcomes": [
+          {
+           "code": "4.3.1.2",
+           "text": "Calculate relative formula mass as the sum of relative atomic masses."
+          },
+          {
+           "code": null,
+           "text": "Show that reactant and product formula masses balance in an equation."
+          },
+          {
+           "code": null,
+           "text": "Calculate percentage by mass of an element in a compound."
+          }
+         ]
+        },
+        {
+         "id": "mass-changes-with-gases",
+         "title": "Mass changes with gases",
+         "outcomes": [
+          {
+           "code": "4.3.1.3",
+           "text": "Explain apparent mass gain or loss when a gas is a reactant or product, such as oxide formation or carbonate decomposition."
+          },
+          {
+           "code": null,
+           "text": "Explain mass changes in open systems using the balanced equation and particle model."
+          }
+         ]
+        },
+        {
+         "id": "uncertainty-in-measurements",
+         "title": "Uncertainty in measurements",
+         "outcomes": [
+          {
+           "code": "4.3.1.4",
+           "text": "Explain that every measurement has uncertainty and show the distribution of results."
+          },
+          {
+           "code": null,
+           "text": "Use the range about the mean as a measure of uncertainty."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "4-3-2-use-of-amount-of-substance-in-relation-to-",
+       "title": "4.3.2 Use of amount of substance in relation to masses of pure substances",
+       "subtopics": [
+        {
+         "id": "moles",
+         "title": "Moles",
+         "outcomes": [
+          {
+           "code": "4.3.2.1",
+           "text": "Define the mole and Avogadro constant (6.02 x 10^23) and say a mole's mass in grams equals relative formula mass (higher tier)."
+          },
+          {
+           "code": null,
+           "text": "Convert between mass and moles using relative formula mass."
+          }
+         ]
+        },
+        {
+         "id": "amounts-in-equations",
+         "title": "Amounts in equations",
+         "outcomes": [
+          {
+           "code": "4.3.2.2",
+           "text": "Interpret balanced equations in moles and calculate reactant and product masses from a given mass (higher tier)."
+          }
+         ]
+        },
+        {
+         "id": "using-moles-to-balance-equations",
+         "title": "Using moles to balance equations",
+         "outcomes": [
+          {
+           "code": "4.3.2.3",
+           "text": "Convert masses to moles and whole-number ratios to balance an equation (higher tier)."
+          }
+         ]
+        },
+        {
+         "id": "limiting-reactants",
+         "title": "Limiting reactants",
+         "outcomes": [
+          {
+           "code": "4.3.2.4",
+           "text": "Explain that the limiting reactant is used up first and sets the product amount (higher tier)."
+          }
+         ]
+        },
+        {
+         "id": "concentration-of-solutions",
+         "title": "Concentration of solutions",
+         "outcomes": [
+          {
+           "code": "4.3.2.5",
+           "text": "Calculate mass of solute from concentration in g/dm3 and volume."
+          },
+          {
+           "code": null,
+           "text": "Relate solute mass and solution volume to concentration (higher tier)."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "4-3-3-yield-and-atom-economy-of-chemical-reactio",
+       "title": "4.3.3 Yield and atom economy of chemical reactions (chemistry only)",
+       "subtopics": [
+        {
+         "id": "percentage-yield",
+         "title": "Percentage yield",
+         "outcomes": [
+          {
+           "code": "4.3.3.1",
+           "text": "Give reasons actual yield is below the calculated amount: reversible reactions, losses, side reactions."
+          },
+          {
+           "code": null,
+           "text": "Calculate percentage yield, and theoretical mass from a balanced equation (higher tier)."
+          }
+         ]
+        },
+        {
+         "id": "atom-economy",
+         "title": "Atom economy",
+         "outcomes": [
+          {
+           "code": "4.3.3.2",
+           "text": "Define atom economy and explain why high values matter for sustainability and cost."
+          },
+          {
+           "code": null,
+           "text": "Calculate percentage atom economy from a balanced equation."
+          },
+          {
+           "code": null,
+           "text": "Choose a reaction pathway using atom economy, yield, rate, equilibrium and by-products (higher tier)."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "4-3-4-using-concentrations-of-solutions-in-mol-d",
+       "title": "4.3.4 Using concentrations of solutions in mol/dm3 (chemistry only)",
+       "subtopics": [
+        {
+         "id": "concentration-in-mol-dm3",
+         "title": "Concentration in mol/dm3",
+         "outcomes": [
+          {
+           "code": "4.3.4",
+           "text": "Calculate moles or mass of solute from concentration in mol/dm3 and volume (higher tier)."
+          },
+          {
+           "code": null,
+           "text": "Find an unknown concentration from the reacting volumes of two solutions (higher tier)."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "4-3-5-use-of-amount-of-substance-in-relation-to-",
+       "title": "4.3.5 Use of amount of substance in relation to volumes of gases (chemistry only) (HT only)",
+       "subtopics": [
+        {
+         "id": "gas-volumes",
+         "title": "Gas volumes",
+         "outcomes": [
+          {
+           "code": "4.3.5",
+           "text": "State that equal moles of gases occupy equal volumes and one mole is 24 dm3 at room temperature and pressure."
+          },
+          {
+           "code": null,
+           "text": "Calculate gas volumes from mass and relative formula mass, and from a balanced equation."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "4-4-chemical-changes",
+     "title": "4.4 Chemical changes",
+     "topics": [
+      {
+       "id": "4-4-1-reactivity-of-metals",
+       "title": "4.4.1 Reactivity of metals",
+       "subtopics": [
+        {
+         "id": "metal-oxides-and-oxidation",
+         "title": "Metal oxides and oxidation",
+         "outcomes": [
+          {
+           "code": "4.4.1.1",
+           "text": "Describe metals reacting with oxygen to form oxides and define oxidation and reduction as gain or loss of oxygen."
+          }
+         ]
+        },
+        {
+         "id": "the-reactivity-series",
+         "title": "The reactivity series",
+         "outcomes": [
+          {
+           "code": "4.4.1.2",
+           "text": "Link reactivity to the tendency to form positive ions and place K, Na, Li, Ca, Mg, Zn, Fe, Cu in order."
+          },
+          {
+           "code": null,
+           "text": "Describe reactions of these metals with water and dilute acids at room temperature."
+          },
+          {
+           "code": null,
+           "text": "Explain displacement of a less reactive metal and deduce reactivity order from experimental results."
+          }
+         ]
+        },
+        {
+         "id": "extraction-of-metals-by-reduction",
+         "title": "Extraction of metals by reduction",
+         "outcomes": [
+          {
+           "code": "4.4.1.3",
+           "text": "Explain why unreactive metals occur native while most are compounds needing extraction."
+          },
+          {
+           "code": null,
+           "text": "Describe extracting metals less reactive than carbon by reducing their oxides with carbon."
+          },
+          {
+           "code": null,
+           "text": "Identify what is oxidised or reduced as gain or loss of oxygen and evaluate extraction processes from information."
+          }
+         ]
+        },
+        {
+         "id": "oxidation-and-reduction-as-electron-transfer",
+         "title": "Oxidation and reduction as electron transfer",
+         "outcomes": [
+          {
+           "code": "4.4.1.4",
+           "text": "Define oxidation as electron loss and reduction as electron gain (higher tier)."
+          },
+          {
+           "code": null,
+           "text": "Write ionic equations for displacement and identify oxidised and reduced species in half equations."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "4-4-2-reactions-of-acids",
+       "title": "4.4.2 Reactions of acids",
+       "subtopics": [
+        {
+         "id": "acids-with-metals",
+         "title": "Acids with metals",
+         "outcomes": [
+          {
+           "code": "4.4.2.1",
+           "text": "State that acids react with magnesium, zinc and iron to give salts and hydrogen."
+          },
+          {
+           "code": null,
+           "text": "Explain these as redox reactions in terms of electrons (higher tier)."
+          }
+         ]
+        },
+        {
+         "id": "neutralisation-and-salts",
+         "title": "Neutralisation and salts",
+         "outcomes": [
+          {
+           "code": "4.4.2.2",
+           "text": "Describe acids neutralised by alkalis, bases and carbonates to give salts, water and carbon dioxide."
+          },
+          {
+           "code": null,
+           "text": "Name salts from the acid used and the positive ion, and predict products."
+          },
+          {
+           "code": null,
+           "text": "Use common ion formulae to deduce the formulae of salts."
+          }
+         ]
+        },
+        {
+         "id": "making-soluble-salts",
+         "title": "Making soluble salts",
+         "outcomes": [
+          {
+           "code": "4.4.2.3",
+           "text": "Describe making a pure dry soluble salt from an acid and an excess insoluble solid, filtering and crystallising."
+          }
+         ]
+        },
+        {
+         "id": "ph-scale-and-neutralisation",
+         "title": "pH scale and neutralisation",
+         "outcomes": [
+          {
+           "code": "4.4.2.4",
+           "text": "Say acids produce H+ ions and alkalis OH- ions, and neutralisation is H+ plus OH- making water."
+          },
+          {
+           "code": null,
+           "text": "Use the 0-14 pH scale and universal indicator or pH probe to identify acids and alkalis."
+          }
+         ]
+        },
+        {
+         "id": "titrations",
+         "title": "Titrations",
+         "outcomes": [
+          {
+           "code": "4.4.2.5",
+           "text": "Describe a titration with strong acids and alkalis using an indicator to find reacting volumes (chemistry only)."
+          },
+          {
+           "code": null,
+           "text": "Calculate quantities in titrations in mol/dm3 and g/dm3 (higher tier)."
+          }
+         ]
+        },
+        {
+         "id": "strong-and-weak-acids",
+         "title": "Strong and weak acids",
+         "outcomes": [
+          {
+           "code": "4.4.2.6",
+           "text": "Distinguish strong (fully ionised) from weak (partly ionised) acids, and dilute from concentrated (higher tier)."
+          },
+          {
+           "code": null,
+           "text": "Explain that each pH unit is a tenfold change in hydrogen ion concentration."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "4-4-3-electrolysis",
+       "title": "4.4.3 Electrolysis",
+       "subtopics": [
+        {
+         "id": "the-process-of-electrolysis",
+         "title": "The process of electrolysis",
+         "outcomes": [
+          {
+           "code": "4.4.3.1",
+           "text": "Explain electrolytes as molten or dissolved ionic compounds whose ions move to the electrodes."
+          },
+          {
+           "code": null,
+           "text": "Say cations go to the cathode and anions to the anode where they are discharged; write half equations (higher tier)."
+          }
+         ]
+        },
+        {
+         "id": "electrolysis-of-molten-compounds",
+         "title": "Electrolysis of molten compounds",
+         "outcomes": [
+          {
+           "code": "4.4.3.2",
+           "text": "Predict products of electrolysing molten binary ionic compounds, such as lead bromide."
+          }
+         ]
+        },
+        {
+         "id": "extracting-metals-by-electrolysis",
+         "title": "Extracting metals by electrolysis",
+         "outcomes": [
+          {
+           "code": "4.4.3.3",
+           "text": "Explain when electrolysis is used to extract metals and why it needs large amounts of energy."
+          },
+          {
+           "code": null,
+           "text": "Describe aluminium extraction from aluminium oxide in cryolite with carbon anodes, and why the anode is replaced."
+          }
+         ]
+        },
+        {
+         "id": "electrolysis-of-aqueous-solutions",
+         "title": "Electrolysis of aqueous solutions",
+         "outcomes": [
+          {
+           "code": "4.4.3.4",
+           "text": "Explain which ions discharge in aqueous solutions using relative reactivity and water's H+ and OH- ions."
+          },
+          {
+           "code": null,
+           "text": "Predict products at the cathode and anode for solutions of a single ionic compound."
+          }
+         ]
+        },
+        {
+         "id": "half-equations-at-electrodes",
+         "title": "Half equations at electrodes",
+         "outcomes": [
+          {
+           "code": "4.4.3.5",
+           "text": "Say cathode reactions are reductions (ions gain electrons) and anode reactions are oxidations (ions lose electrons) (higher tier)."
+          },
+          {
+           "code": null,
+           "text": "Write half equations such as 2H+ + 2e- to H2 and 4OH- to O2 + 2H2O + 4e-."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "4-5-energy-changes",
+     "title": "4.5 Energy changes",
+     "topics": [
+      {
+       "id": "4-5-1-exothermic-and-endothermic-reactions",
+       "title": "4.5.1 Exothermic and endothermic reactions",
+       "subtopics": [
+        {
+         "id": "exothermic-and-endothermic-reactions",
+         "title": "Exothermic and endothermic reactions",
+         "outcomes": [
+          {
+           "code": "4.5.1.1",
+           "text": "Explain energy conservation in reactions and why exothermic products have less energy than reactants."
+          },
+          {
+           "code": null,
+           "text": "Classify reactions as exothermic or endothermic by the surroundings' temperature change and give examples."
+          },
+          {
+           "code": null,
+           "text": "Evaluate uses such as hand warmers, self-heating cans and sports injury packs."
+          }
+         ]
+        },
+        {
+         "id": "reaction-profiles",
+         "title": "Reaction profiles",
+         "outcomes": [
+          {
+           "code": "4.5.1.2",
+           "text": "Define activation energy as the minimum energy colliding particles need to react."
+          },
+          {
+           "code": null,
+           "text": "Draw reaction profiles for exothermic and endothermic reactions showing activation energy and overall energy change."
+          },
+          {
+           "code": null,
+           "text": "Use a reaction profile to identify a reaction as exothermic or endothermic."
+          }
+         ]
+        },
+        {
+         "id": "energy-change-from-bond-energies",
+         "title": "Energy change from bond energies",
+         "outcomes": [
+          {
+           "code": "4.5.1.3",
+           "text": "Explain that bond breaking takes in energy and bond making releases it (higher tier)."
+          },
+          {
+           "code": null,
+           "text": "Calculate overall energy change from bond energies and link its sign to exothermic or endothermic."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "4-5-2-chemical-cells-and-fuel-cells-chemistry-on",
+       "title": "4.5.2 Chemical cells and fuel cells (chemistry only)",
+       "subtopics": [
+        {
+         "id": "cells-and-batteries",
+         "title": "Cells and batteries",
+         "outcomes": [
+          {
+           "code": "4.5.2.1",
+           "text": "Describe a simple cell made of two different metals in an electrolyte and what sets its voltage."
+          },
+          {
+           "code": null,
+           "text": "Explain batteries as cells in series and contrast non-rechargeable with rechargeable cells."
+          },
+          {
+           "code": null,
+           "text": "Interpret metal reactivity data and evaluate the use of cells."
+          }
+         ]
+        },
+        {
+         "id": "fuel-cells",
+         "title": "Fuel cells",
+         "outcomes": [
+          {
+           "code": "4.5.2.2",
+           "text": "Describe a hydrogen fuel cell oxidising hydrogen to water to produce a potential difference."
+          },
+          {
+           "code": null,
+           "text": "Evaluate hydrogen fuel cells against rechargeable batteries."
+          },
+          {
+           "code": null,
+           "text": "Write electrode half equations for the hydrogen fuel cell (higher tier)."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "4-6-the-rate-and-extent-of-chemical-change",
+     "title": "4.6 The rate and extent of chemical change",
+     "topics": [
+      {
+       "id": "4-6-1-rate-of-reaction",
+       "title": "4.6.1 Rate of reaction",
+       "subtopics": [
+        {
+         "id": "calculating-rates",
+         "title": "Calculating rates",
+         "outcomes": [
+          {
+           "code": "4.6.1.1",
+           "text": "Calculate mean rate from quantity of reactant used or product formed over time, in g/s or cm3/s."
+          },
+          {
+           "code": null,
+           "text": "Draw and interpret quantity-time graphs."
+          },
+          {
+           "code": null,
+           "text": "Use tangent slopes to find rate at a time, with gradient calculations and mol/s at higher tier."
+          }
+         ]
+        },
+        {
+         "id": "factors-affecting-rate",
+         "title": "Factors affecting rate",
+         "outcomes": [
+          {
+           "code": "4.6.1.2",
+           "text": "Recall how concentration, pressure, surface area, temperature and catalysts change rate."
+          }
+         ]
+        },
+        {
+         "id": "collision-theory",
+         "title": "Collision theory",
+         "outcomes": [
+          {
+           "code": "4.6.1.3",
+           "text": "Explain reactions needing collisions with enough energy (activation energy)."
+          },
+          {
+           "code": null,
+           "text": "Explain how concentration, pressure and surface area raise collision frequency."
+          },
+          {
+           "code": null,
+           "text": "Explain how temperature raises collision frequency and energy."
+          },
+          {
+           "code": null,
+           "text": "Explain particle size effects through surface area to volume ratio and simple proportionality."
+          }
+         ]
+        },
+        {
+         "id": "catalysts",
+         "title": "Catalysts",
+         "outcomes": [
+          {
+           "code": "4.6.1.4",
+           "text": "State that catalysts speed reactions without being used up, and that enzymes are biological catalysts."
+          },
+          {
+           "code": null,
+           "text": "Explain catalysis as an alternative pathway with lower activation energy, shown on a reaction profile."
+          },
+          {
+           "code": null,
+           "text": "Identify catalysts from their effect and absence from the equation."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "4-6-2-reversible-reactions-and-dynamic-equilibri",
+       "title": "4.6.2 Reversible reactions and dynamic equilibrium",
+       "subtopics": [
+        {
+         "id": "reversible-reactions",
+         "title": "Reversible reactions",
+         "outcomes": [
+          {
+           "code": "4.6.2.1",
+           "text": "Describe reversible reactions where products form reactants again, and how conditions change direction."
+          },
+          {
+           "code": "4.6.2.2",
+           "text": "Explain that if one direction is exothermic the other is endothermic by the same amount of energy."
+          }
+         ]
+        },
+        {
+         "id": "equilibrium",
+         "title": "Equilibrium",
+         "outcomes": [
+          {
+           "code": "4.6.2.3",
+           "text": "Explain equilibrium in a closed system as forward and reverse rates being equal."
+          }
+         ]
+        },
+        {
+         "id": "le-chatelier-s-principle",
+         "title": "Le Chatelier's Principle",
+         "outcomes": [
+          {
+           "code": "4.6.2.4",
+           "text": "Explain that equilibrium amounts depend on conditions and the system counteracts changes (higher tier)."
+          },
+          {
+           "code": "4.6.2.5",
+           "text": "Predict effects of concentration changes on the equilibrium position."
+          },
+          {
+           "code": "4.6.2.6",
+           "text": "Predict effects of temperature changes for endothermic and exothermic reactions."
+          },
+          {
+           "code": "4.6.2.7",
+           "text": "Predict pressure effects by comparing numbers of gas molecules on each side."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "4-7-organic-chemistry",
+     "title": "4.7 Organic chemistry",
+     "topics": [
+      {
+       "id": "4-7-1-carbon-compounds-as-fuels-and-feedstock",
+       "title": "4.7.1 Carbon compounds as fuels and feedstock",
+       "subtopics": [
+        {
+         "id": "crude-oil-and-alkanes",
+         "title": "Crude oil and alkanes",
+         "outcomes": [
+          {
+           "code": "4.7.1.1",
+           "text": "Describe crude oil as a finite resource formed from buried ancient plankton, a mixture mostly of hydrocarbons."
+          },
+          {
+           "code": null,
+           "text": "Give the alkane general formula CnH2n+2 and name methane, ethane, propane and butane."
+          },
+          {
+           "code": null,
+           "text": "Recognise alkanes from their formulae and displayed structures."
+          }
+         ]
+        },
+        {
+         "id": "fractional-distillation",
+         "title": "Fractional distillation",
+         "outcomes": [
+          {
+           "code": "4.7.1.2",
+           "text": "Explain fractional distillation of crude oil into fractions of similar carbon number using evaporation and condensation."
+          },
+          {
+           "code": null,
+           "text": "Name fuels and petrochemical products made from fractions."
+          }
+         ]
+        },
+        {
+         "id": "hydrocarbon-properties-and-combustion",
+         "title": "Hydrocarbon properties and combustion",
+         "outcomes": [
+          {
+           "code": "4.7.1.3",
+           "text": "State how boiling point, viscosity and flammability change with molecule size."
+          },
+          {
+           "code": null,
+           "text": "Describe complete combustion producing carbon dioxide and water, and write balanced equations for it."
+          }
+         ]
+        },
+        {
+         "id": "cracking-and-alkenes",
+         "title": "Cracking and alkenes",
+         "outcomes": [
+          {
+           "code": "4.7.1.4",
+           "text": "Describe catalytic and steam cracking conditions and why cracking meets demand for small-molecule fuels."
+          },
+          {
+           "code": null,
+           "text": "Say cracking gives alkanes and alkenes, and that bromine water turns from orange to colourless with alkenes."
+          },
+          {
+           "code": null,
+           "text": "Balance cracking equations and explain how modern life depends on hydrocarbons."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "4-7-2-reactions-of-alkenes-and-alcohols-chemistr",
+       "title": "4.7.2 Reactions of alkenes and alcohols (chemistry only)",
+       "subtopics": [
+        {
+         "id": "alkene-structure",
+         "title": "Alkene structure",
+         "outcomes": [
+          {
+           "code": "4.7.2.1",
+           "text": "Describe alkenes as unsaturated hydrocarbons with a C=C bond and formula CnH2n."
+          },
+          {
+           "code": null,
+           "text": "Name ethene, propene, butene and pentene and recognise alkenes from formulae."
+          }
+         ]
+        },
+        {
+         "id": "reactions-of-alkenes",
+         "title": "Reactions of alkenes",
+         "outcomes": [
+          {
+           "code": "4.7.2.2",
+           "text": "Explain that alkenes burn with smoky flames from incomplete combustion."
+          },
+          {
+           "code": null,
+           "text": "Describe addition of hydrogen, water and halogens across the C=C bond with conditions."
+          },
+          {
+           "code": null,
+           "text": "Draw displayed formulae of the first four alkenes and their addition products."
+          }
+         ]
+        },
+        {
+         "id": "alcohols",
+         "title": "Alcohols",
+         "outcomes": [
+          {
+           "code": "4.7.2.3",
+           "text": "Name methanol, ethanol, propanol and butanol and recognise the -OH group."
+          },
+          {
+           "code": null,
+           "text": "Describe alcohols reacting with sodium, burning, dissolving in water and being oxidised, plus their uses."
+          },
+          {
+           "code": null,
+           "text": "Describe ethanol made by fermenting sugar with yeast and the conditions needed."
+          }
+         ]
+        },
+        {
+         "id": "carboxylic-acids",
+         "title": "Carboxylic acids",
+         "outcomes": [
+          {
+           "code": "4.7.2.4",
+           "text": "Name methanoic, ethanoic, propanoic and butanoic acid and recognise the -COOH group."
+          },
+          {
+           "code": null,
+           "text": "Describe reactions with carbonates, dissolving in water and reacting with alcohols to make esters."
+          },
+          {
+           "code": null,
+           "text": "Explain why carboxylic acids are weak acids using ionisation and pH (higher tier)."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "4-7-3-synthetic-and-naturally-occurring-polymers",
+       "title": "4.7.3 Synthetic and naturally occurring polymers (chemistry only)",
+       "subtopics": [
+        {
+         "id": "addition-polymerisation",
+         "title": "Addition polymerisation",
+         "outcomes": [
+          {
+           "code": "4.7.3.1",
+           "text": "Describe monomers joining to form polymers such as poly(ethene) with a repeating unit with the monomer's atoms."
+          },
+          {
+           "code": null,
+           "text": "Recognise addition polymers and monomers by the C=C group and draw polymer formation from an alkene."
+          }
+         ]
+        },
+        {
+         "id": "condensation-polymerisation",
+         "title": "Condensation polymerisation",
+         "outcomes": [
+          {
+           "code": "4.7.3.2",
+           "text": "Explain condensation polymerisation using monomers with two functional groups that lose small molecules like water (higher tier)."
+          },
+          {
+           "code": null,
+           "text": "Describe making a polyester from a diol and a dicarboxylic acid."
+          }
+         ]
+        },
+        {
+         "id": "amino-acids-and-natural-polymers",
+         "title": "Amino acids and natural polymers",
+         "outcomes": [
+          {
+           "code": "4.7.3.3",
+           "text": "Explain amino acids having two functional groups and polymerising into polypeptides and proteins (higher tier)."
+          },
+          {
+           "code": "4.7.3.4",
+           "text": "Describe DNA as two nucleotide polymer chains in a double helix encoding genetic instructions."
+          },
+          {
+           "code": null,
+           "text": "Name monomers of proteins, starch and cellulose."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "4-8-chemical-analysis",
+     "title": "4.8 Chemical analysis",
+     "topics": [
+      {
+       "id": "4-8-1-purity-formulations-and-chromatography",
+       "title": "4.8.1 Purity, formulations and chromatography",
+       "subtopics": [
+        {
+         "id": "pure-substances-and-formulations",
+         "title": "Pure substances and formulations",
+         "outcomes": [
+          {
+           "code": "4.8.1.1",
+           "text": "Define a pure substance chemically and use melting and boiling point data to tell pure from impure."
+          },
+          {
+           "code": "4.8.1.2",
+           "text": "Define a formulation as a designed mixture with measured components and identify examples."
+          }
+         ]
+        },
+        {
+         "id": "chromatography",
+         "title": "Chromatography",
+         "outcomes": [
+          {
+           "code": "4.8.1.3",
+           "text": "Explain paper chromatography with stationary and mobile phases separating mixtures."
+          },
+          {
+           "code": null,
+           "text": "Interpret chromatograms to judge purity and calculate Rf values."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "4-8-2-identification-of-common-gases",
+       "title": "4.8.2 Identification of common gases",
+       "subtopics": [
+        {
+         "id": "gas-tests",
+         "title": "Gas tests",
+         "outcomes": [
+          {
+           "code": "4.8.2.1",
+           "text": "Test for hydrogen with a burning splint giving a pop."
+          },
+          {
+           "code": "4.8.2.2",
+           "text": "Test for oxygen with a glowing splint that relights."
+          },
+          {
+           "code": "4.8.2.3",
+           "text": "Test for carbon dioxide with limewater turning milky."
+          },
+          {
+           "code": "4.8.2.4",
+           "text": "Test for chlorine with damp litmus paper that bleaches white."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "4-8-3-identification-of-ions-by-chemical-and-spe",
+       "title": "4.8.3 Identification of ions by chemical and spectroscopic means (chemistry only)",
+       "subtopics": [
+        {
+         "id": "flame-tests",
+         "title": "Flame tests",
+         "outcomes": [
+          {
+           "code": "4.8.3.1",
+           "text": "Identify lithium, sodium, potassium, calcium and copper ions from flame colours and note masking in mixtures."
+          }
+         ]
+        },
+        {
+         "id": "metal-hydroxide-precipitates",
+         "title": "Metal hydroxide precipitates",
+         "outcomes": [
+          {
+           "code": "4.8.3.2",
+           "text": "Identify aluminium, calcium and magnesium ions by white precipitates with sodium hydroxide, and aluminium dissolving in excess."
+          },
+          {
+           "code": null,
+           "text": "Identify copper(II), iron(II), iron(III) by blue, green and brown precipitates, and write balanced equations."
+          }
+         ]
+        },
+        {
+         "id": "carbonate-halide-and-sulfate-tests",
+         "title": "Carbonate, halide and sulfate tests",
+         "outcomes": [
+          {
+           "code": "4.8.3.3",
+           "text": "Test for carbonates with dilute acid and limewater."
+          },
+          {
+           "code": "4.8.3.4",
+           "text": "Test for halides with silver nitrate and nitric acid: white, cream and yellow precipitates."
+          },
+          {
+           "code": "4.8.3.5",
+           "text": "Test for sulfates with barium chloride and hydrochloric acid giving a white precipitate."
+          }
+         ]
+        },
+        {
+         "id": "instrumental-methods",
+         "title": "Instrumental methods",
+         "outcomes": [
+          {
+           "code": "4.8.3.6",
+           "text": "State that instrumental methods are accurate, sensitive and rapid compared with chemical tests."
+          },
+          {
+           "code": "4.8.3.7",
+           "text": "Describe flame emission spectroscopy and interpret line spectra to identify ions and concentrations."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "4-9-chemistry-of-the-atmosphere",
+     "title": "4.9 Chemistry of the atmosphere",
+     "topics": [
+      {
+       "id": "4-9-1-the-composition-and-evolution-of-the-earth",
+       "title": "4.9.1 The composition and evolution of the Earth's atmosphere",
+       "subtopics": [
+        {
+         "id": "atmosphere-composition-and-early-atmosphere",
+         "title": "Atmosphere composition and early atmosphere",
+         "outcomes": [
+          {
+           "code": "4.9.1.1",
+           "text": "Give the proportions of today's atmosphere: about 80% nitrogen, 20% oxygen and small amounts of other gases."
+          },
+          {
+           "code": "4.9.1.2",
+           "text": "Describe the volcanic-outgassing theory of the early atmosphere and the formation of the oceans."
+          },
+          {
+           "code": null,
+           "text": "Explain how dissolving carbon dioxide and carbonate sediments reduced carbon dioxide."
+          },
+          {
+           "code": null,
+           "text": "Interpret evidence and evaluate theories about the early atmosphere."
+          }
+         ]
+        },
+        {
+         "id": "how-oxygen-and-carbon-dioxide-changed",
+         "title": "How oxygen and carbon dioxide changed",
+         "outcomes": [
+          {
+           "code": "4.9.1.3",
+           "text": "Explain that algae and plants produced oxygen by photosynthesis from about 2.7 billion years ago."
+          },
+          {
+           "code": "4.9.1.4",
+           "text": "Explain that photosynthesis, sedimentary rocks and fossil fuels lowered carbon dioxide."
+          },
+          {
+           "code": null,
+           "text": "Describe the main atmospheric changes and how limestone, coal, crude oil and natural gas formed."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "4-9-2-carbon-dioxide-and-methane-as-greenhouse-g",
+       "title": "4.9.2 Carbon dioxide and methane as greenhouse gases",
+       "subtopics": [
+        {
+         "id": "the-greenhouse-effect",
+         "title": "The greenhouse effect",
+         "outcomes": [
+          {
+           "code": "4.9.2.1",
+           "text": "Name water vapour, carbon dioxide and methane as greenhouse gases that keep Earth warm enough for life."
+          },
+          {
+           "code": null,
+           "text": "Describe the greenhouse effect using short and long wavelength radiation interacting with matter."
+          }
+         ]
+        },
+        {
+         "id": "human-activity-and-climate-evidence",
+         "title": "Human activity and climate evidence",
+         "outcomes": [
+          {
+           "code": "4.9.2.2",
+           "text": "Recall two human activities that increase carbon dioxide and two that increase methane."
+          },
+          {
+           "code": null,
+           "text": "Evaluate the quality of climate change evidence, its uncertainties and the role of peer review."
+          }
+         ]
+        },
+        {
+         "id": "global-climate-change",
+         "title": "Global climate change",
+         "outcomes": [
+          {
+           "code": "4.9.2.3",
+           "text": "Describe four potential effects of climate change from rising average temperature."
+          },
+          {
+           "code": null,
+           "text": "Discuss the scale, risk and environmental implications of climate change."
+          }
+         ]
+        },
+        {
+         "id": "carbon-footprint",
+         "title": "Carbon footprint",
+         "outcomes": [
+          {
+           "code": "4.9.2.4",
+           "text": "Define carbon footprint as greenhouse gas emissions over a product's whole life cycle."
+          },
+          {
+           "code": null,
+           "text": "Describe actions to cut carbon dioxide and methane emissions and why they may be limited."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "4-9-3-common-atmospheric-pollutants-and-their-so",
+       "title": "4.9.3 Common atmospheric pollutants and their sources",
+       "subtopics": [
+        {
+         "id": "pollutants-from-burning-fuels",
+         "title": "Pollutants from burning fuels",
+         "outcomes": [
+          {
+           "code": "4.9.3.1",
+           "text": "Explain how burning fuels releases carbon monoxide, soot, sulfur dioxide and nitrogen oxides."
+          },
+          {
+           "code": null,
+           "text": "Predict combustion products from the fuel's composition and burning conditions."
+          }
+         ]
+        },
+        {
+         "id": "effects-of-pollutants",
+         "title": "Effects of pollutants",
+         "outcomes": [
+          {
+           "code": "4.9.3.2",
+           "text": "Describe carbon monoxide as a toxic, colourless, odourless gas."
+          },
+          {
+           "code": null,
+           "text": "Explain that sulfur dioxide and nitrogen oxides cause respiratory problems and acid rain, and particulates cause global dimming."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "4-10-using-resources",
+     "title": "4.10 Using resources",
+     "topics": [
+      {
+       "id": "4-10-1-using-the-earth-s-resources-and-obtaining",
+       "title": "4.10.1 Using the Earth's resources and obtaining potable water",
+       "subtopics": [
+        {
+         "id": "resources-and-sustainable-development",
+         "title": "Resources and sustainable development",
+         "outcomes": [
+          {
+           "code": "4.10.1.1",
+           "text": "Give examples of natural products replaced or supplemented by agricultural and synthetic ones."
+          },
+          {
+           "code": null,
+           "text": "Distinguish finite from renewable resources and define sustainable development."
+          },
+          {
+           "code": null,
+           "text": "Interpret resource data from charts, graphs and tables using orders of magnitude."
+          }
+         ]
+        },
+        {
+         "id": "potable-water",
+         "title": "Potable water",
+         "outcomes": [
+          {
+           "code": "4.10.1.2",
+           "text": "Distinguish potable water from chemically pure water."
+          },
+          {
+           "code": null,
+           "text": "Describe producing potable water from fresh water by source choice, filter beds and sterilising with chlorine, ozone or UV."
+          },
+          {
+           "code": null,
+           "text": "Describe desalination by distillation or reverse osmosis and why it needs much energy."
+          }
+         ]
+        },
+        {
+         "id": "waste-water-treatment",
+         "title": "Waste water treatment",
+         "outcomes": [
+          {
+           "code": "4.10.1.3",
+           "text": "Describe sewage treatment: screening, sedimentation, anaerobic digestion of sludge and aerobic treatment of effluent."
+          },
+          {
+           "code": null,
+           "text": "Compare how easily potable water is obtained from waste, ground and salt water."
+          }
+         ]
+        },
+        {
+         "id": "alternative-metal-extraction",
+         "title": "Alternative metal extraction",
+         "outcomes": [
+          {
+           "code": "4.10.1.4",
+           "text": "Describe phytomining and bioleaching to get copper from low-grade ores (higher tier)."
+          },
+          {
+           "code": null,
+           "text": "Evaluate these methods and describe obtaining copper by displacement with iron or electrolysis."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "4-10-2-life-cycle-assessment-and-recycling",
+       "title": "4.10.2 Life cycle assessment and recycling",
+       "subtopics": [
+        {
+         "id": "life-cycle-assessment",
+         "title": "Life cycle assessment",
+         "outcomes": [
+          {
+           "code": "4.10.2.1",
+           "text": "List the LCA stages: raw materials, manufacture and packaging, use, and disposal with transport."
+          },
+          {
+           "code": null,
+           "text": "Explain why LCA is not fully objective and how abbreviated LCAs can be misused."
+          },
+          {
+           "code": null,
+           "text": "Carry out a simple comparative LCA of plastic and paper shopping bags."
+          }
+         ]
+        },
+        {
+         "id": "reducing-resource-use",
+         "title": "Reducing resource use",
+         "outcomes": [
+          {
+           "code": "4.10.2.2",
+           "text": "Explain how reduce, reuse and recycle lower resource use, energy, waste and environmental impact."
+          },
+          {
+           "code": null,
+           "text": "Describe recycling of glass and metals, including scrap steel added to blast-furnace iron."
+          },
+          {
+           "code": null,
+           "text": "Evaluate ways of reducing the use of limited resources from given information."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "4-10-3-using-materials-chemistry-only",
+       "title": "4.10.3 Using materials (chemistry only)",
+       "subtopics": [
+        {
+         "id": "corrosion-and-prevention",
+         "title": "Corrosion and prevention",
+         "outcomes": [
+          {
+           "code": "4.10.3.1",
+           "text": "Define corrosion and rusting, and show that iron needs both air and water to rust."
+          },
+          {
+           "code": null,
+           "text": "Describe barrier protection by greasing, painting and electroplating, and aluminium's oxide layer."
+          },
+          {
+           "code": null,
+           "text": "Explain sacrificial protection and galvanising using relative reactivity."
+          }
+         ]
+        },
+        {
+         "id": "alloys",
+         "title": "Alloys",
+         "outcomes": [
+          {
+           "code": "4.10.3.2",
+           "text": "Recall compositions and uses of bronze, brass, gold alloys (carats), steels and aluminium alloys."
+          },
+          {
+           "code": null,
+           "text": "Compare high and low carbon steel and stainless steel, and evaluate unfamiliar alloy data."
+          }
+         ]
+        },
+        {
+         "id": "ceramics-polymers-and-composites",
+         "title": "Ceramics, polymers and composites",
+         "outcomes": [
+          {
+           "code": "4.10.3.3",
+           "text": "Describe making soda-lime and borosilicate glass and clay ceramics."
+          },
+          {
+           "code": null,
+           "text": "Explain LD and HD poly(ethene) from ethene, and thermosoftening versus thermosetting polymers by structure."
+          },
+          {
+           "code": null,
+           "text": "Describe composites as matrix plus reinforcement and recall examples."
+          },
+          {
+           "code": null,
+           "text": "Compare material properties quantitatively and select materials for uses."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "4-10-4-the-haber-process-and-the-use-of-npk-fert",
+       "title": "4.10.4 The Haber process and the use of NPK fertilisers (chemistry only)",
+       "subtopics": [
+        {
+         "id": "the-haber-process",
+         "title": "The Haber process",
+         "outcomes": [
+          {
+           "code": "4.10.4.1",
+           "text": "Describe making ammonia from nitrogen and hydrogen over an iron catalyst at about 450 C and 200 atmospheres."
+          },
+          {
+           "code": null,
+           "text": "Recall sources of the nitrogen and hydrogen, and explain recycling of unreacted gases and liquefying ammonia."
+          },
+          {
+           "code": null,
+           "text": "Explain the trade-off between rate and equilibrium position, and how conditions reflect cost and supply (higher tier)."
+          }
+         ]
+        },
+        {
+         "id": "npk-fertilisers",
+         "title": "NPK fertilisers",
+         "outcomes": [
+          {
+           "code": "4.10.4.2",
+           "text": "Explain that NPK fertilisers are formulations of nitrogen, phosphorus and potassium compounds."
+          },
+          {
+           "code": null,
+           "text": "Describe making ammonium salts and nitric acid from ammonia, and treating phosphate rock with acids."
+          },
+          {
+           "code": null,
+           "text": "Compare industrial fertiliser production with laboratory preparation."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "4-11-key-ideas",
+     "title": "4.11 Key ideas",
+     "topics": [
+      {
+       "id": "4-11-key-ideas",
+       "title": "4.11 Key ideas",
+       "subtopics": [
+        {
+         "id": "key-ideas-in-chemistry",
+         "title": "Key ideas in chemistry",
+         "outcomes": [
+          {
+           "code": "4.11",
+           "text": "Explain that matter is made of atoms of about 100 elements showing periodic patterns explained by atomic structure."
+          },
+          {
+           "code": null,
+           "text": "Explain bonding by electron transfer or sharing, and why molecule shape and giant structure affect behaviour."
+          },
+          {
+           "code": null,
+           "text": "Explain that reactions face barriers so rates differ, occur by proton transfer, electron transfer or electron sharing, and conserve energy."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "build": {
+  "builtAt": "2026-10-14T10:20:27.400Z",
+  "model": "claude-agent",
+  "usd": 0,
+  "expectedCodes": 165,
+  "coverage": 1,
+  "missingCodes": [],
+  "counts": {
+   "grades": 1,
+   "units": 11,
+   "topics": 33,
+   "subtopics": 108,
+   "outcomes": 260
+  },
+  "warnings": [
+   "grade Year 10 has no content",
+   "grade Year 11 has no content",
+   "unexpected grade label \"all\""
+  ]
+ }
+}

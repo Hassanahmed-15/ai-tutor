@@ -1,0 +1,2486 @@
+{
+ "id": "us-mt-health",
+ "region": "US",
+ "framework": "Montana state academic standards: Health Education",
+ "board": null,
+ "qualification": "K-12",
+ "subject": "Health Education",
+ "syllabusCode": null,
+ "gradeSystem": "grade",
+ "source": {
+  "urls": [
+   "https://api.commonstandardsproject.com/api/v1/jurisdictions/7FAA3E0A782B498DB5E5EA255681706C",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/7FAA3E0A782B498DB5E5EA255681706C_D2754940_grade-01",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/7FAA3E0A782B498DB5E5EA255681706C_D2754940_grade-02",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/7FAA3E0A782B498DB5E5EA255681706C_D2754940_grade-03",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/7FAA3E0A782B498DB5E5EA255681706C_D2754940_grade-04",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/7FAA3E0A782B498DB5E5EA255681706C_D2754940_grade-05",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/7FAA3E0A782B498DB5E5EA255681706C_D2754940_grades-06-07-08",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/7FAA3E0A782B498DB5E5EA255681706C_D2754940_grades-09-10-11-12",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/7FAA3E0A782B498DB5E5EA255681706C_D2754940_grade-k"
+  ],
+  "publisher": "Montana state education agency (machine-readable via Common Standards Project / ASN)",
+  "licence": "CC BY 3.0 US, D2L Corporation",
+  "firstExam": "2016"
+ },
+ "grades": [
+  {
+   "grade": "K",
+   "units": [
+    {
+     "id": "comprehend-concepts-related-to-health-promotion-",
+     "title": "Comprehend concepts related to health promotion and disease prevention to enhance personal health",
+     "topics": [
+      {
+       "id": "comprehend-concepts-related-to-health-promotion-",
+       "title": "Comprehend concepts related to health promotion and disease prevention to enhance personal health",
+       "subtopics": [
+        {
+         "id": "comprehend-concepts-related-to-health-promotion-",
+         "title": "Comprehend concepts related to health promotion and disease prevention to enhance personal health (1 of 2)",
+         "outcomes": [
+          {
+           "code": "A.K.1",
+           "text": "Identifying healthy and unhealthy behaviors;"
+          },
+          {
+           "code": "A.K.2",
+           "text": "Identifying characteristics of physical, mental, and emotional health;"
+          },
+          {
+           "code": "A.K.3",
+           "text": "Identifying characteristics of family and social health, including those of traditional and contemporary American Indian cultures and practices;"
+          },
+          {
+           "code": "A.K.4",
+           "text": "Identifying ways germs are spread;"
+          },
+          {
+           "code": "A.K.5",
+           "text": "Showing ways to prevent the spread of germs;"
+          }
+         ]
+        },
+        {
+         "id": "comprehend-concepts-related-to-health-promotion--2",
+         "title": "Comprehend concepts related to health promotion and disease prevention to enhance personal health (2 of 2)",
+         "outcomes": [
+          {
+           "code": "A.K.6",
+           "text": "Identifying environmental factors that can affect health;"
+          },
+          {
+           "code": "A.K.7",
+           "text": "Identifying safety practices at school and in the community;"
+          },
+          {
+           "code": "A.K.8",
+           "text": "Identifying common childhood injuries;"
+          },
+          {
+           "code": "A.K.9",
+           "text": "Giving examples of health care; and"
+          },
+          {
+           "code": "A.K.10",
+           "text": "Identifying body parts and their function."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "analyze-the-influence-of-family-peers-culture-me",
+     "title": "Analyze the influence of family, peers, culture, media, technology, and other factors on health behaviors",
+     "topics": [
+      {
+       "id": "analyze-the-influence-of-family-peers-culture-me",
+       "title": "Analyze the influence of family, peers, culture, media, technology, and other factors on health behaviors",
+       "subtopics": [
+        {
+         "id": "analyze-the-influence-of-family-peers-culture-me",
+         "title": "Analyze the influence of family, peers, culture, media, technology, and other factors on health behaviors",
+         "outcomes": [
+          {
+           "code": "B.K.1",
+           "text": "Identifying family practices that promote health; and"
+          },
+          {
+           "code": "B.K.2",
+           "text": "Identifying healthy practices at school."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "demonstrate-the-ability-to-access-valid-informat",
+     "title": "Demonstrate the ability to access valid information, products, and services to enhance health",
+     "topics": [
+      {
+       "id": "demonstrate-the-ability-to-access-valid-informat",
+       "title": "Demonstrate the ability to access valid information, products, and services to enhance health",
+       "subtopics": [
+        {
+         "id": "demonstrate-the-ability-to-access-valid-informat",
+         "title": "Demonstrate the ability to access valid information, products, and services to enhance health",
+         "outcomes": [
+          {
+           "code": "C.K.1",
+           "text": "Identifying adults who help promote health; and"
+          },
+          {
+           "code": "C.K.2",
+           "text": "Identifying school and community health and safety resources."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "demonstrate-the-ability-to-use-interpersonal-com",
+     "title": "Demonstrate the ability to use interpersonal communication skills to enhance health and avoid or reduce health risks",
+     "topics": [
+      {
+       "id": "demonstrate-the-ability-to-use-interpersonal-com",
+       "title": "Demonstrate the ability to use interpersonal communication skills to enhance health and avoid or reduce health risks",
+       "subtopics": [
+        {
+         "id": "demonstrate-the-ability-to-use-interpersonal-com",
+         "title": "Demonstrate the ability to use interpersonal communication skills to enhance health and avoid or reduce health risks",
+         "outcomes": [
+          {
+           "code": "D.K.1",
+           "text": "Identifying feelings and emotions;"
+          },
+          {
+           "code": "D.K.2",
+           "text": "Understanding that listening is a respectful and caring behavior;"
+          },
+          {
+           "code": "D.K.3",
+           "text": "Using refusal skills in risky situations;"
+          },
+          {
+           "code": "D.K.4",
+           "text": "Identifying risky situations; and"
+          },
+          {
+           "code": "D.K.5",
+           "text": "Identifying dangerous situations."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "demonstrate-the-ability-to-use-decision-making-s",
+     "title": "Demonstrate the ability to use decision-making skills to enhance health and safety",
+     "topics": [
+      {
+       "id": "demonstrate-the-ability-to-use-decision-making-s",
+       "title": "Demonstrate the ability to use decision-making skills to enhance health and safety",
+       "subtopics": [
+        {
+         "id": "demonstrate-the-ability-to-use-decision-making-s",
+         "title": "Demonstrate the ability to use decision-making skills to enhance health and safety",
+         "outcomes": [
+          {
+           "code": "E.K.1",
+           "text": "Giving examples of safe and healthy decisions;"
+          },
+          {
+           "code": "E.K.2",
+           "text": "Identifying persons who can assist with safety and health-related decisions;"
+          },
+          {
+           "code": "E.K.3",
+           "text": "Identifying ways to solve safety and health-related issues or problems;"
+          },
+          {
+           "code": "E.K.4",
+           "text": "Identifying possible consequences of choices when making safety and health-related decisions."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "demonstrate-the-ability-to-use-goal-setting-skil",
+     "title": "Demonstrate the ability to use goal-setting skills to enhance health",
+     "topics": [
+      {
+       "id": "demonstrate-the-ability-to-use-goal-setting-skil",
+       "title": "Demonstrate the ability to use goal-setting skills to enhance health",
+       "subtopics": [
+        {
+         "id": "demonstrate-the-ability-to-use-goal-setting-skil",
+         "title": "Demonstrate the ability to use goal-setting skills to enhance health",
+         "outcomes": [
+          {
+           "code": "F.K.1",
+           "text": "Identifying healthy habits; and"
+          },
+          {
+           "code": "F.K.2",
+           "text": "Identifying ways family members model healthy behaviors."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "demonstrate-the-ability-to-practice-health-enhan",
+     "title": "Demonstrate the ability to practice health-enhancing behaviors and avoid or reduce health risks",
+     "topics": [
+      {
+       "id": "demonstrate-the-ability-to-practice-health-enhan",
+       "title": "Demonstrate the ability to practice health-enhancing behaviors and avoid or reduce health risks",
+       "subtopics": [
+        {
+         "id": "demonstrate-the-ability-to-practice-health-enhan",
+         "title": "Demonstrate the ability to practice health-enhancing behaviors and avoid or reduce health risks",
+         "outcomes": [
+          {
+           "code": "G.K.1",
+           "text": "Identifying healthy behaviors toward self and others;"
+          },
+          {
+           "code": "G.K.2",
+           "text": "Identifying personal health practices and behaviors; and"
+          },
+          {
+           "code": "G.K.3",
+           "text": "Identifying behaviors that are harmful or risky to health."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "demonstrate-the-ability-to-advocate-for-personal",
+     "title": "Demonstrate the ability to advocate for personal, family, and community health",
+     "topics": [
+      {
+       "id": "demonstrate-the-ability-to-advocate-for-personal",
+       "title": "Demonstrate the ability to advocate for personal, family, and community health",
+       "subtopics": [
+        {
+         "id": "demonstrate-the-ability-to-advocate-for-personal",
+         "title": "Demonstrate the ability to advocate for personal, family, and community health",
+         "outcomes": [
+          {
+           "code": "H.K.1",
+           "text": "Identifying ways to ask others to assist in promoting health;"
+          },
+          {
+           "code": "H.K.2",
+           "text": "Identifying positive health choices that can be made by peers and self;"
+          },
+          {
+           "code": "H.K.3",
+           "text": "Identifying health-related messages."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "1",
+   "units": [
+    {
+     "id": "comprehend-concepts-related-to-health-promotion-",
+     "title": "Comprehend concepts related to health promotion and disease prevention to enhance personal health",
+     "topics": [
+      {
+       "id": "comprehend-concepts-related-to-health-promotion-",
+       "title": "Comprehend concepts related to health promotion and disease prevention to enhance personal health",
+       "subtopics": [
+        {
+         "id": "comprehend-concepts-related-to-health-promotion-",
+         "title": "Comprehend concepts related to health promotion and disease prevention to enhance personal health (1 of 2)",
+         "outcomes": [
+          {
+           "code": "A.1.1",
+           "text": "Describing healthy behaviors;"
+          },
+          {
+           "code": "A.1.2",
+           "text": "Giving examples of physical, mental, emotional, family, and social health, including those of traditional and contemporary American Indian cultures and practices;"
+          },
+          {
+           "code": "A.1.3",
+           "text": "Identifying ways to prevent the spread of germs;"
+          },
+          {
+           "code": "A.1.4",
+           "text": "Identifying environmental factors that can affect health;"
+          }
+         ]
+        },
+        {
+         "id": "comprehend-concepts-related-to-health-promotion--2",
+         "title": "Comprehend concepts related to health promotion and disease prevention to enhance personal health (2 of 2)",
+         "outcomes": [
+          {
+           "code": "A.1.5",
+           "text": "Identifying ways to be safe and healthy at school and in the community;"
+          },
+          {
+           "code": "A.1.6",
+           "text": "Identifying common childhood injuries and their treatment;"
+          },
+          {
+           "code": "A.1.7",
+           "text": "Identifying reasons for seeing a health care professional; and"
+          },
+          {
+           "code": "A.1.8",
+           "text": "Identifying basic body systems such as circulatory, respiratory, cardiovascular, skeletal, muscular, digestive, and nervous."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "analyze-the-influence-of-family-peers-culture-me",
+     "title": "Analyze the influence of family, peers, culture, media, technology, and other factors on health behaviors",
+     "topics": [
+      {
+       "id": "analyze-the-influence-of-family-peers-culture-me",
+       "title": "Analyze the influence of family, peers, culture, media, technology, and other factors on health behaviors",
+       "subtopics": [
+        {
+         "id": "analyze-the-influence-of-family-peers-culture-me",
+         "title": "Analyze the influence of family, peers, culture, media, technology, and other factors on health behaviors",
+         "outcomes": [
+          {
+           "code": "B.1.1",
+           "text": "Describing ways a family practices health promotion;"
+          },
+          {
+           "code": "B.1.2",
+           "text": "Identifying ways that peers influence behavior;"
+          },
+          {
+           "code": "B.1.3",
+           "text": "Identifying ways in which schools promote personal health practices and behaviors; and"
+          },
+          {
+           "code": "B.1.4",
+           "text": "Identifying examples from different media sources that influence health."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "demonstrate-the-ability-to-access-valid-informat",
+     "title": "Demonstrate the ability to access valid information, products, and services to enhance health",
+     "topics": [
+      {
+       "id": "demonstrate-the-ability-to-access-valid-informat",
+       "title": "Demonstrate the ability to access valid information, products, and services to enhance health",
+       "subtopics": [
+        {
+         "id": "demonstrate-the-ability-to-access-valid-informat",
+         "title": "Demonstrate the ability to access valid information, products, and services to enhance health",
+         "outcomes": [
+          {
+           "code": "C.1.1",
+           "text": "Describing ways adults can help promote health; and"
+          },
+          {
+           "code": "C.1.2",
+           "text": "Describing school and community health and safety resources."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "demonstrate-the-ability-to-use-interpersonal-com",
+     "title": "Demonstrate the ability to use interpersonal communication skills to enhance health and avoid or reduce health risks",
+     "topics": [
+      {
+       "id": "demonstrate-the-ability-to-use-interpersonal-com",
+       "title": "Demonstrate the ability to use interpersonal communication skills to enhance health and avoid or reduce health risks",
+       "subtopics": [
+        {
+         "id": "demonstrate-the-ability-to-use-interpersonal-com",
+         "title": "Demonstrate the ability to use interpersonal communication skills to enhance health and avoid or reduce health risks",
+         "outcomes": [
+          {
+           "code": "D.1.1",
+           "text": "Showing how to share feelings in a healthy way;"
+          },
+          {
+           "code": "D.1.2",
+           "text": "Describing ways listening is a respectful and caring behavior;"
+          },
+          {
+           "code": "D.1.3",
+           "text": "Describing and demonstrating how to use a variety of refusal skills; and"
+          },
+          {
+           "code": "D.1.4",
+           "text": "Describing how to get help in a dangerous situation."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "demonstrate-the-ability-to-use-decision-making-s",
+     "title": "Demonstrate the ability to use decision-making skills to enhance health and safety",
+     "topics": [
+      {
+       "id": "demonstrate-the-ability-to-use-decision-making-s",
+       "title": "Demonstrate the ability to use decision-making skills to enhance health and safety",
+       "subtopics": [
+        {
+         "id": "demonstrate-the-ability-to-use-decision-making-s",
+         "title": "Demonstrate the ability to use decision-making skills to enhance health and safety",
+         "outcomes": [
+          {
+           "code": "E.1.1",
+           "text": "Identifying steps in making safe and healthy decisions;"
+          },
+          {
+           "code": "E.1.2",
+           "text": "Identifying examples of responsible safety and health-related decisions;"
+          },
+          {
+           "code": "E.1.3",
+           "text": "Identifying ways to solve safety and health-related issues or problems;"
+          },
+          {
+           "code": "E.1.4",
+           "text": "Identifying possible consequences of choices when making safety and health-related decisions."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "demonstrate-the-ability-to-use-goal-setting-skil",
+     "title": "Demonstrate the ability to use goal-setting skills to enhance health",
+     "topics": [
+      {
+       "id": "demonstrate-the-ability-to-use-goal-setting-skil",
+       "title": "Demonstrate the ability to use goal-setting skills to enhance health",
+       "subtopics": [
+        {
+         "id": "demonstrate-the-ability-to-use-goal-setting-skil",
+         "title": "Demonstrate the ability to use goal-setting skills to enhance health",
+         "outcomes": [
+          {
+           "code": "F.1.1",
+           "text": "Explaining types of healthy habits; and"
+          },
+          {
+           "code": "F.1.2",
+           "text": "Identifying a goal and who can help achieve that goal."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "demonstrate-the-ability-to-practice-health-enhan",
+     "title": "Demonstrate the ability to practice health-enhancing behaviors and avoid or reduce health risks",
+     "topics": [
+      {
+       "id": "demonstrate-the-ability-to-practice-health-enhan",
+       "title": "Demonstrate the ability to practice health-enhancing behaviors and avoid or reduce health risks",
+       "subtopics": [
+        {
+         "id": "demonstrate-the-ability-to-practice-health-enhan",
+         "title": "Demonstrate the ability to practice health-enhancing behaviors and avoid or reduce health risks",
+         "outcomes": [
+          {
+           "code": "G.1.1",
+           "text": "Identifying examples of healthy behaviors toward self and others;"
+          },
+          {
+           "code": "G.1.2",
+           "text": "Telling ways to maintain or improve personal health behaviors; and"
+          },
+          {
+           "code": "G.1.3",
+           "text": "Explaining harmful or risky behaviors to health."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "demonstrate-the-ability-to-advocate-for-personal",
+     "title": "Demonstrate the ability to advocate for personal, family, and community health",
+     "topics": [
+      {
+       "id": "demonstrate-the-ability-to-advocate-for-personal",
+       "title": "Demonstrate the ability to advocate for personal, family, and community health",
+       "subtopics": [
+        {
+         "id": "demonstrate-the-ability-to-advocate-for-personal",
+         "title": "Demonstrate the ability to advocate for personal, family, and community health",
+         "outcomes": [
+          {
+           "code": "H.1.1",
+           "text": "Expressing how to ask others to assist in promoting health;"
+          },
+          {
+           "code": "H.1.2",
+           "text": "Showing how peers can make positive health choices; and"
+          },
+          {
+           "code": "H.1.3",
+           "text": "Listing a variety of health-related messages."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "2",
+   "units": [
+    {
+     "id": "comprehend-concepts-related-to-health-promotion-",
+     "title": "Comprehend concepts related to health promotion and disease prevention to enhance personal health",
+     "topics": [
+      {
+       "id": "comprehend-concepts-related-to-health-promotion-",
+       "title": "Comprehend concepts related to health promotion and disease prevention to enhance personal health",
+       "subtopics": [
+        {
+         "id": "comprehend-concepts-related-to-health-promotion-",
+         "title": "Comprehend concepts related to health promotion and disease prevention to enhance personal health (1 of 2)",
+         "outcomes": [
+          {
+           "code": "A.2.1",
+           "text": "Identifying and explaining how health behaviors affect personal health;"
+          },
+          {
+           "code": "A.2.2",
+           "text": "Recognizing that there are multiple dimensions of health, such as physical, mental, and emotional, as well as family and social health, including those of traditional and contemporary American Indian cultures and practices;"
+          },
+          {
+           "code": "A.2.3",
+           "text": "Describing some ways to prevent childhood communicable diseases;"
+          },
+          {
+           "code": "A.2.4",
+           "text": "Describing common environmental factors that can affect health;"
+          }
+         ]
+        },
+        {
+         "id": "comprehend-concepts-related-to-health-promotion--2",
+         "title": "Comprehend concepts related to health promotion and disease prevention to enhance personal health (2 of 2)",
+         "outcomes": [
+          {
+           "code": "A.2.5",
+           "text": "Giving examples of how to be safe at school and in the community;"
+          },
+          {
+           "code": "A.2.6",
+           "text": "Identifying ways to prevent and treat common childhood injuries;"
+          },
+          {
+           "code": "A.2.7",
+           "text": "Describing why it is important to seek health care; and"
+          },
+          {
+           "code": "A.2.8",
+           "text": "Identifying basic body systems and their function such as the circulatory, respiratory, cardiovascular, skeletal, muscular, digestive, and nervous."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "analyze-the-influence-of-family-peers-culture-me",
+     "title": "Analyze the influence of family, peers, culture, media, technology, and other factors on health behaviors",
+     "topics": [
+      {
+       "id": "analyze-the-influence-of-family-peers-culture-me",
+       "title": "Analyze the influence of family, peers, culture, media, technology, and other factors on health behaviors",
+       "subtopics": [
+        {
+         "id": "analyze-the-influence-of-family-peers-culture-me",
+         "title": "Analyze the influence of family, peers, culture, media, technology, and other factors on health behaviors",
+         "outcomes": [
+          {
+           "code": "B.2.1",
+           "text": "Identifying how family and culture influence personal health practices and behaviors;"
+          },
+          {
+           "code": "B.2.2",
+           "text": "Identifying ways that peers influence behavior;"
+          },
+          {
+           "code": "B.2.3",
+           "text": "Identifying what the school can do to support personal health practices and behaviors;"
+          },
+          {
+           "code": "B.2.4",
+           "text": "Describing how the media can influence health behaviors; and"
+          },
+          {
+           "code": "B.2.5",
+           "text": "Giving examples of school or community policies that promote health and safety."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "demonstrate-the-ability-to-access-valid-informat",
+     "title": "Demonstrate the ability to access valid information, products, and services to enhance health",
+     "topics": [
+      {
+       "id": "demonstrate-the-ability-to-access-valid-informat",
+       "title": "Demonstrate the ability to access valid information, products, and services to enhance health",
+       "subtopics": [
+        {
+         "id": "demonstrate-the-ability-to-access-valid-informat",
+         "title": "Demonstrate the ability to access valid information, products, and services to enhance health",
+         "outcomes": [
+          {
+           "code": "C.2.1",
+           "text": "Identifying trusted adults and professionals who can help promote health;"
+          },
+          {
+           "code": "C.2.2",
+           "text": "Identifying ways to locate school and community health and safety resources."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "demonstrate-the-ability-to-use-interpersonal-com",
+     "title": "Demonstrate the ability to use interpersonal communication skills to enhance health and avoid or reduce health risks",
+     "topics": [
+      {
+       "id": "demonstrate-the-ability-to-use-interpersonal-com",
+       "title": "Demonstrate the ability to use interpersonal communication skills to enhance health and avoid or reduce health risks",
+       "subtopics": [
+        {
+         "id": "demonstrate-the-ability-to-use-interpersonal-com",
+         "title": "Demonstrate the ability to use interpersonal communication skills to enhance health and avoid or reduce health risks",
+         "outcomes": [
+          {
+           "code": "D.2.1",
+           "text": "Identifying healthy ways to express needs, wants, and feelings;"
+          },
+          {
+           "code": "D.2.2",
+           "text": "Using listening skills to enhance health;"
+          },
+          {
+           "code": "D.2.3",
+           "text": "Exhibiting ways to respond in an unwanted, threatening, or dangerous situation; and"
+          },
+          {
+           "code": "D.2.4",
+           "text": "Expressing ways to tell a trusted adult if threatened or harmed."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "demonstrate-the-ability-to-use-decision-making-s",
+     "title": "Demonstrate the ability to use decision-making skills to enhance health and safety",
+     "topics": [
+      {
+       "id": "demonstrate-the-ability-to-use-decision-making-s",
+       "title": "Demonstrate the ability to use decision-making skills to enhance health and safety",
+       "subtopics": [
+        {
+         "id": "demonstrate-the-ability-to-use-decision-making-s",
+         "title": "Demonstrate the ability to use decision-making skills to enhance health and safety",
+         "outcomes": [
+          {
+           "code": "E.2.1",
+           "text": "Identifying situations when a safety and health-related decision is needed;"
+          },
+          {
+           "code": "E.2.2",
+           "text": "Differentiating between situations when a safety and health-related decision can be made individually or when assistance is needed;"
+          },
+          {
+           "code": "E.2.3",
+           "text": "Describing ways to solve safety and health-related issues or problems;"
+          },
+          {
+           "code": "E.2.4",
+           "text": "Describing possible consequences of choices when making safety and health-related decisions."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "demonstrate-the-ability-to-use-goal-setting-skil",
+     "title": "Demonstrate the ability to use goal-setting skills to enhance health",
+     "topics": [
+      {
+       "id": "demonstrate-the-ability-to-use-goal-setting-skil",
+       "title": "Demonstrate the ability to use goal-setting skills to enhance health",
+       "subtopics": [
+        {
+         "id": "demonstrate-the-ability-to-use-goal-setting-skil",
+         "title": "Demonstrate the ability to use goal-setting skills to enhance health",
+         "outcomes": [
+          {
+           "code": "F.2.1",
+           "text": "Identifying short-term personal health goals and taking action towards achieving goals; and"
+          },
+          {
+           "code": "F.2.2",
+           "text": "Identifying who can help when assistance is needed to achieve a personal health goal."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "demonstrate-the-ability-to-practice-health-enhan",
+     "title": "Demonstrate the ability to practice health-enhancing behaviors and avoid or reduce health risks",
+     "topics": [
+      {
+       "id": "demonstrate-the-ability-to-practice-health-enhan",
+       "title": "Demonstrate the ability to practice health-enhancing behaviors and avoid or reduce health risks",
+       "subtopics": [
+        {
+         "id": "demonstrate-the-ability-to-practice-health-enhan",
+         "title": "Demonstrate the ability to practice health-enhancing behaviors and avoid or reduce health risks",
+         "outcomes": [
+          {
+           "code": "G.2.1",
+           "text": "Exhibiting healthy behaviors toward self and others;"
+          },
+          {
+           "code": "G.2.2",
+           "text": "Exhibiting healthy practices and behaviors to maintain or improve personal health; and"
+          },
+          {
+           "code": "G.2.3",
+           "text": "Discussing behaviors that avoid or reduce health risk."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "demonstrate-the-ability-to-advocate-for-personal",
+     "title": "Demonstrate the ability to advocate for personal, family, and community health",
+     "topics": [
+      {
+       "id": "demonstrate-the-ability-to-advocate-for-personal",
+       "title": "Demonstrate the ability to advocate for personal, family, and community health",
+       "subtopics": [
+        {
+         "id": "demonstrate-the-ability-to-advocate-for-personal",
+         "title": "Demonstrate the ability to advocate for personal, family, and community health",
+         "outcomes": [
+          {
+           "code": "H.2.1",
+           "text": "Making requests to promote health;"
+          },
+          {
+           "code": "H.2.2",
+           "text": "Identifying ways to encourage others to make positive health choices; and"
+          },
+          {
+           "code": "H.2.3",
+           "text": "Describing health messages and communication techniques."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "3",
+   "units": [
+    {
+     "id": "comprehend-concepts-related-to-health-promotion-",
+     "title": "Comprehend concepts related to health promotion and disease prevention to enhance personal health",
+     "topics": [
+      {
+       "id": "comprehend-concepts-related-to-health-promotion-",
+       "title": "Comprehend concepts related to health promotion and disease prevention to enhance personal health",
+       "subtopics": [
+        {
+         "id": "comprehend-concepts-related-to-health-promotion-",
+         "title": "Comprehend concepts related to health promotion and disease prevention to enhance personal health (1 of 2)",
+         "outcomes": [
+          {
+           "code": "A.3.1",
+           "text": "Identifying links between healthy choices and personal health;"
+          },
+          {
+           "code": "A.3.2",
+           "text": "Defining life skills that improve health and wellness;"
+          },
+          {
+           "code": "A.3.3",
+           "text": "Using goal-setting to practice healthy behaviors;"
+          },
+          {
+           "code": "A.3.4",
+           "text": "Describing various characteristics of physical, mental, emotional, family, and social health, including those of traditional and contemporary American Indian cultures and practices;"
+          },
+          {
+           "code": "A.3.5",
+           "text": "Explaining the difference between childhood communicable and noncommunicable diseases;"
+          }
+         ]
+        },
+        {
+         "id": "comprehend-concepts-related-to-health-promotion--2",
+         "title": "Comprehend concepts related to health promotion and disease prevention to enhance personal health (2 of 2)",
+         "outcomes": [
+          {
+           "code": "A.3.6",
+           "text": "Identifying the potential sources of environmental factors that affect health;"
+          },
+          {
+           "code": "A.3.7",
+           "text": "Describing how health can be affected by school and community environments;"
+          },
+          {
+           "code": "A.3.8",
+           "text": "Identifying common childhood health problems;"
+          },
+          {
+           "code": "A.3.9",
+           "text": "Identifying situations that require health care; and"
+          },
+          {
+           "code": "A.3.10",
+           "text": "Identifying body systems and their function including circulatory, respiratory, cardiovascular, skeletal, muscular, digestive, and nervous."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "analyze-the-influence-of-family-peers-culture-me",
+     "title": "Analyze the influence of family, peers, culture, media, technology, and other factors on health behaviors",
+     "topics": [
+      {
+       "id": "analyze-the-influence-of-family-peers-culture-me",
+       "title": "Analyze the influence of family, peers, culture, media, technology, and other factors on health behaviors",
+       "subtopics": [
+        {
+         "id": "analyze-the-influence-of-family-peers-culture-me",
+         "title": "Analyze the influence of family, peers, culture, media, technology, and other factors on health behaviors",
+         "outcomes": [
+          {
+           "code": "B.3.1",
+           "text": "Describing ways family and culture influence personal health practices and behavior;"
+          },
+          {
+           "code": "B.3.2",
+           "text": "Describing ways that peers influence behavior;"
+          },
+          {
+           "code": "B.3.3",
+           "text": "Explaining ways the school can support personal health practices and behaviors;"
+          },
+          {
+           "code": "B.3.4",
+           "text": "Discussing ways the media can influence thoughts, feelings, and health behaviors;"
+          },
+          {
+           "code": "B.3.5",
+           "text": "Identifying types of technology that influence personal health; and"
+          },
+          {
+           "code": "B.3.6",
+           "text": "Describing ways that school and community policies promote health and safety."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "demonstrate-the-ability-to-access-valid-informat",
+     "title": "Demonstrate the ability to access valid information, products, and services to enhance health",
+     "topics": [
+      {
+       "id": "demonstrate-the-ability-to-access-valid-informat",
+       "title": "Demonstrate the ability to access valid information, products, and services to enhance health",
+       "subtopics": [
+        {
+         "id": "demonstrate-the-ability-to-access-valid-informat",
+         "title": "Demonstrate the ability to access valid information, products, and services to enhance health",
+         "outcomes": [
+          {
+           "code": "C.3.1",
+           "text": "Giving examples of valid health information, products, and services; and"
+          },
+          {
+           "code": "C.3.2",
+           "text": "Identifying resources available at home, school, tribe, and community that provide valid health information."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "demonstrate-the-ability-to-use-interpersonal-com",
+     "title": "Demonstrate the ability to use interpersonal communication skills to enhance health and avoid or reduce health risks",
+     "topics": [
+      {
+       "id": "demonstrate-the-ability-to-use-interpersonal-com",
+       "title": "Demonstrate the ability to use interpersonal communication skills to enhance health and avoid or reduce health risks",
+       "subtopics": [
+        {
+         "id": "demonstrate-the-ability-to-use-interpersonal-com",
+         "title": "Demonstrate the ability to use interpersonal communication skills to enhance health and avoid or reduce health risks",
+         "outcomes": [
+          {
+           "code": "D.3.1",
+           "text": "Expressing ways to show respect for self and others, including those of traditional and contemporary American Indian cultures and practices;"
+          },
+          {
+           "code": "D.3.2",
+           "text": "Identifying verbal and nonverbal refusal skills;"
+          },
+          {
+           "code": "D.3.3",
+           "text": "Recognizing conflict and applying nonviolent strategies to manage or resolve conflict; and"
+          },
+          {
+           "code": "D.3.4",
+           "text": "Discussing situations when it is necessary to seek assistance for the health and safety of self and others."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "demonstrate-the-ability-to-use-decision-making-s",
+     "title": "Demonstrate the ability to use decision-making skills to enhance health and safety",
+     "topics": [
+      {
+       "id": "demonstrate-the-ability-to-use-decision-making-s",
+       "title": "Demonstrate the ability to use decision-making skills to enhance health and safety",
+       "subtopics": [
+        {
+         "id": "demonstrate-the-ability-to-use-decision-making-s",
+         "title": "Demonstrate the ability to use decision-making skills to enhance health and safety",
+         "outcomes": [
+          {
+           "code": "E.3.1",
+           "text": "Identifying routine safety and health-related situations;"
+          },
+          {
+           "code": "E.3.2",
+           "text": "Discussing situations when support is needed in making safety and health-related decisions;"
+          },
+          {
+           "code": "E.3.3",
+           "text": "Discussing various options to safety and health-related issues or problems;"
+          },
+          {
+           "code": "E.3.4",
+           "text": "Discussing possible consequences of choices when making safety and health-related decisions; and"
+          },
+          {
+           "code": "E.3.5",
+           "text": "Identifying outcomes for various safety, healthy, and unhealthy decisions."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "demonstrate-the-ability-to-use-goal-setting-skil",
+     "title": "Demonstrate the ability to use goal-setting skills to enhance health",
+     "topics": [
+      {
+       "id": "demonstrate-the-ability-to-use-goal-setting-skil",
+       "title": "Demonstrate the ability to use goal-setting skills to enhance health",
+       "subtopics": [
+        {
+         "id": "demonstrate-the-ability-to-use-goal-setting-skil",
+         "title": "Demonstrate the ability to use goal-setting skills to enhance health",
+         "outcomes": [
+          {
+           "code": "F.3.1",
+           "text": "Describing ways to set personal health goals; and"
+          },
+          {
+           "code": "F.3.2",
+           "text": "Explaining how friends, adults, and resources help in achieving a personal health goal."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "demonstrate-the-ability-to-practice-health-enhan",
+     "title": "Demonstrate the ability to practice health-enhancing behaviors and avoid or reduce health risks",
+     "topics": [
+      {
+       "id": "demonstrate-the-ability-to-practice-health-enhan",
+       "title": "Demonstrate the ability to practice health-enhancing behaviors and avoid or reduce health risks",
+       "subtopics": [
+        {
+         "id": "demonstrate-the-ability-to-practice-health-enhan",
+         "title": "Demonstrate the ability to practice health-enhancing behaviors and avoid or reduce health risks",
+         "outcomes": [
+          {
+           "code": "G.3.1",
+           "text": "Describing practices of healthy behaviors toward self and others;"
+          },
+          {
+           "code": "G.3.2",
+           "text": "Discussing reasons for responsible personal health behaviors; and"
+          },
+          {
+           "code": "G.3.3",
+           "text": "Identifying healthy and unhealthy behaviors."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "demonstrate-the-ability-to-advocate-for-personal",
+     "title": "Demonstrate the ability to advocate for personal, family, and community health",
+     "topics": [
+      {
+       "id": "demonstrate-the-ability-to-advocate-for-personal",
+       "title": "Demonstrate the ability to advocate for personal, family, and community health",
+       "subtopics": [
+        {
+         "id": "demonstrate-the-ability-to-advocate-for-personal",
+         "title": "Demonstrate the ability to advocate for personal, family, and community health",
+         "outcomes": [
+          {
+           "code": "H.3.1",
+           "text": "Sharing accurate information about a health issue;"
+          },
+          {
+           "code": "H.3.2",
+           "text": "Encouraging peers to make positive health choices; and"
+          },
+          {
+           "code": "H.3.3",
+           "text": "Discussing health-related messages and communication techniques."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "4",
+   "units": [
+    {
+     "id": "comprehend-concepts-related-to-health-promotion-",
+     "title": "Comprehend concepts related to health promotion and disease prevention to enhance personal health",
+     "topics": [
+      {
+       "id": "comprehend-concepts-related-to-health-promotion-",
+       "title": "Comprehend concepts related to health promotion and disease prevention to enhance personal health",
+       "subtopics": [
+        {
+         "id": "comprehend-concepts-related-to-health-promotion-",
+         "title": "Comprehend concepts related to health promotion and disease prevention to enhance personal health (1 of 3)",
+         "outcomes": [
+          {
+           "code": "A.4.1",
+           "text": "Identifying life skills that improve health and wellness;"
+          },
+          {
+           "code": "A.4.2",
+           "text": "Discussing healthy and unhealthy behaviors and their effect on health;"
+          },
+          {
+           "code": "A.4.3",
+           "text": "Identifying personal health enhancing strategies that encompass substance abuse prevention, nutrition, exercise, injury and disease prevention, and stress management, including traditional and contemporary strategies from American Indian cultures;"
+          },
+          {
+           "code": "A.4.4",
+           "text": "Describing risky behaviors and their potential consequences;"
+          }
+         ]
+        },
+        {
+         "id": "comprehend-concepts-related-to-health-promotion--2",
+         "title": "Comprehend concepts related to health promotion and disease prevention to enhance personal health (2 of 3)",
+         "outcomes": [
+          {
+           "code": "A.4.5",
+           "text": "Discussing various characteristics of physical, mental, emotional, family, and social health, including those of traditional and contemporary American Indian cultures and practices;"
+          },
+          {
+           "code": "A.4.6",
+           "text": "Describing how universal precautions and other hygienic practices reduce the risk for contracting disease;"
+          },
+          {
+           "code": "A.4.7",
+           "text": "Describing the potential sources of environmental factors that affect health;"
+          },
+          {
+           "code": "A.4.8",
+           "text": "Discussing practices for safe school and community environments;"
+          }
+         ]
+        },
+        {
+         "id": "comprehend-concepts-related-to-health-promotion--3",
+         "title": "Comprehend concepts related to health promotion and disease prevention to enhance personal health (3 of 3)",
+         "outcomes": [
+          {
+           "code": "A.4.9",
+           "text": "Describing common childhood health problems and potential treatments;"
+          },
+          {
+           "code": "A.4.10",
+           "text": "Describing when it is important to seek health care; and"
+          },
+          {
+           "code": "A.4.11",
+           "text": "Discussing the structure and function of each of the following major systems: circulatory, respiratory, cardiovascular, skeletal, muscular, digestive, and nervous."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "analyze-the-influence-of-family-peers-culture-me",
+     "title": "Analyze the influence of family, peers, culture, media, technology, and other factors on health behaviors",
+     "topics": [
+      {
+       "id": "analyze-the-influence-of-family-peers-culture-me",
+       "title": "Analyze the influence of family, peers, culture, media, technology, and other factors on health behaviors",
+       "subtopics": [
+        {
+         "id": "analyze-the-influence-of-family-peers-culture-me",
+         "title": "Analyze the influence of family, peers, culture, media, technology, and other factors on health behaviors",
+         "outcomes": [
+          {
+           "code": "B.4.1",
+           "text": "Explaining ways family and culture influence personal health practices and behaviors;"
+          },
+          {
+           "code": "B.4.2",
+           "text": "Discussing ways that peers influence behavior;"
+          },
+          {
+           "code": "B.4.3",
+           "text": "Identifying how the school, tribe, and community can support personal health practices and behaviors;"
+          },
+          {
+           "code": "B.4.4",
+           "text": "Discussing why the media influences thoughts, feelings, and health behaviors;"
+          },
+          {
+           "code": "B.4.5",
+           "text": "Identifying ways technology can influence personal health; and"
+          },
+          {
+           "code": "B.4.6",
+           "text": "Discussing ways that school and community policies promote health, safety, and disease prevention."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "demonstrate-the-ability-to-access-valid-informat",
+     "title": "Demonstrate the ability to access valid information, products, and services to enhance health",
+     "topics": [
+      {
+       "id": "demonstrate-the-ability-to-access-valid-informat",
+       "title": "Demonstrate the ability to access valid information, products, and services to enhance health",
+       "subtopics": [
+        {
+         "id": "demonstrate-the-ability-to-access-valid-informat",
+         "title": "Demonstrate the ability to access valid information, products, and services to enhance health",
+         "outcomes": [
+          {
+           "code": "C.4.1",
+           "text": "Identifying qualities of valid health information, products, and services; and"
+          },
+          {
+           "code": "C.4.2",
+           "text": "Describing resources from home, school, tribe, and community that provide valid health information."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "demonstrate-the-ability-to-use-interpersonal-com",
+     "title": "Demonstrate the ability to use interpersonal communication skills to enhance health and avoid or reduce health risks",
+     "topics": [
+      {
+       "id": "demonstrate-the-ability-to-use-interpersonal-com",
+       "title": "Demonstrate the ability to use interpersonal communication skills to enhance health and avoid or reduce health risks",
+       "subtopics": [
+        {
+         "id": "demonstrate-the-ability-to-use-interpersonal-com",
+         "title": "Demonstrate the ability to use interpersonal communication skills to enhance health and avoid or reduce health risks",
+         "outcomes": [
+          {
+           "code": "D.4.1",
+           "text": "Demonstrating ways to communicate care, consideration, and respect of self and others, including those of traditional and contemporary American Indian cultures and practices;"
+          },
+          {
+           "code": "D.4.2",
+           "text": "Identifying reasons to use refusal skills to avoid or reduce health risks;"
+          },
+          {
+           "code": "D.4.3",
+           "text": "Identifying strategies to control angry feelings; and"
+          },
+          {
+           "code": "D.4.4",
+           "text": "Describing reasons for seeking assistance to enhance the health and safety of self and others."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "demonstrate-the-ability-to-use-decision-making-s",
+     "title": "Demonstrate the ability to use decision-making skills to enhance health and safety",
+     "topics": [
+      {
+       "id": "demonstrate-the-ability-to-use-decision-making-s",
+       "title": "Demonstrate the ability to use decision-making skills to enhance health and safety",
+       "subtopics": [
+        {
+         "id": "demonstrate-the-ability-to-use-decision-making-s",
+         "title": "Demonstrate the ability to use decision-making skills to enhance health and safety",
+         "outcomes": [
+          {
+           "code": "E.4.1",
+           "text": "Discussing options of what to do in potential safety and health-risk situations;"
+          },
+          {
+           "code": "E.4.2",
+           "text": "Identifying situations when assistance is needed to make safety and health-related decisions;"
+          },
+          {
+           "code": "E.4.3",
+           "text": "Identifying positive alternatives to resolving safety and health-related issues or problems;"
+          },
+          {
+           "code": "E.4.4",
+           "text": "Explaining possible consequences of health-related decisions; and"
+          },
+          {
+           "code": "E.4.5",
+           "text": "Creating a list of positive and negative outcomes related to various safety and health-related decisions."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "demonstrate-the-ability-to-use-goal-setting-skil",
+     "title": "Demonstrate the ability to use goal-setting skills to enhance health",
+     "topics": [
+      {
+       "id": "demonstrate-the-ability-to-use-goal-setting-skil",
+       "title": "Demonstrate the ability to use goal-setting skills to enhance health",
+       "subtopics": [
+        {
+         "id": "demonstrate-the-ability-to-use-goal-setting-skil",
+         "title": "Demonstrate the ability to use goal-setting skills to enhance health",
+         "outcomes": [
+          {
+           "code": "F.4.1",
+           "text": "Discussing reasons for setting personal health goals; and"
+          },
+          {
+           "code": "F.4.2",
+           "text": "Discussing personal health goal-setting and the resources that can assist in achieving goals."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "demonstrate-the-ability-to-practice-health-enhan",
+     "title": "Demonstrate the ability to practice health-enhancing behaviors and avoid or reduce health risks",
+     "topics": [
+      {
+       "id": "demonstrate-the-ability-to-practice-health-enhan",
+       "title": "Demonstrate the ability to practice health-enhancing behaviors and avoid or reduce health risks",
+       "subtopics": [
+        {
+         "id": "demonstrate-the-ability-to-practice-health-enhan",
+         "title": "Demonstrate the ability to practice health-enhancing behaviors and avoid or reduce health risks",
+         "outcomes": [
+          {
+           "code": "G.4.1",
+           "text": "Discussing practices of healthy behaviors toward self and others;"
+          },
+          {
+           "code": "G.4.2",
+           "text": "Identifying responsible personal health behaviors;"
+          },
+          {
+           "code": "G.4.3",
+           "text": "Explaining personal health practices and behaviors that maintain or improve personal health; and"
+          },
+          {
+           "code": "G.4.4",
+           "text": "Discussing reasons for healthy behaviors that avoid or reduce health risks."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "demonstrate-the-ability-to-advocate-for-personal",
+     "title": "Demonstrate the ability to advocate for personal, family, and community health",
+     "topics": [
+      {
+       "id": "demonstrate-the-ability-to-advocate-for-personal",
+       "title": "Demonstrate the ability to advocate for personal, family, and community health",
+       "subtopics": [
+        {
+         "id": "demonstrate-the-ability-to-advocate-for-personal",
+         "title": "Demonstrate the ability to advocate for personal, family, and community health",
+         "outcomes": [
+          {
+           "code": "H.4.1",
+           "text": "Discussing accurate information about a health issue;"
+          },
+          {
+           "code": "H.4.2",
+           "text": "Discussing ways that encourage others to make positive health choices; and"
+          },
+          {
+           "code": "H.4.3",
+           "text": "Comparing and contrasting health messages and communication techniques."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "5",
+   "units": [
+    {
+     "id": "comprehend-concepts-related-to-health-promotion-",
+     "title": "Comprehend concepts related to health promotion and disease prevention to enhance personal health",
+     "topics": [
+      {
+       "id": "comprehend-concepts-related-to-health-promotion-",
+       "title": "Comprehend concepts related to health promotion and disease prevention to enhance personal health",
+       "subtopics": [
+        {
+         "id": "comprehend-concepts-related-to-health-promotion-",
+         "title": "Comprehend concepts related to health promotion and disease prevention to enhance personal health (1 of 2)",
+         "outcomes": [
+          {
+           "code": "A.5.1",
+           "text": "Explaining the relationship between healthy behaviors and personal health;"
+          },
+          {
+           "code": "A.5.2",
+           "text": "Describing personal health enhancing strategies that encompass substance abuse prevention, nutrition, exercise, injury and disease prevention and stress management, including traditional and contemporary strategies from American Indian cultures;"
+          },
+          {
+           "code": "A.5.3",
+           "text": "Identifying potential consequences of engaging in risky behaviors;"
+          },
+          {
+           "code": "A.5.4",
+           "text": "Identifying examples of physical, mental, emotional, family and social health, including those of traditional and contemporary American Indian cultures and practices;"
+          },
+          {
+           "code": "A.5.5",
+           "text": "Explaining practices used to prevent or reduce the risk of spreading or contracting communicable diseases;"
+          }
+         ]
+        },
+        {
+         "id": "comprehend-concepts-related-to-health-promotion--2",
+         "title": "Comprehend concepts related to health promotion and disease prevention to enhance personal health (2 of 2)",
+         "outcomes": [
+          {
+           "code": "A.5.6",
+           "text": "Discussing ways environmental factors affect health;"
+          },
+          {
+           "code": "A.5.7",
+           "text": "Describing ways in which safe and healthy school and community environments can promote personal health;"
+          },
+          {
+           "code": "A.5.8",
+           "text": "Describing ways to prevent and treat common childhood injuries and health problems;"
+          },
+          {
+           "code": "A.5.9",
+           "text": "Giving examples of health care and their benefits, including the unique issues regarding American Indians and health care benefits; and"
+          },
+          {
+           "code": "A.5.10",
+           "text": "Identifying the basic structure and function of the major human body systems, including growth and development and the reproductive system."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "analyze-the-influence-of-family-peers-culture-me",
+     "title": "Analyze the influence of family, peers, culture, media, technology, and other factors on health behaviors",
+     "topics": [
+      {
+       "id": "analyze-the-influence-of-family-peers-culture-me",
+       "title": "Analyze the influence of family, peers, culture, media, technology, and other factors on health behaviors",
+       "subtopics": [
+        {
+         "id": "analyze-the-influence-of-family-peers-culture-me",
+         "title": "Analyze the influence of family, peers, culture, media, technology, and other factors on health behaviors",
+         "outcomes": [
+          {
+           "code": "B.5.1",
+           "text": "Examining how family and culture influence personal health practices and behaviors;"
+          },
+          {
+           "code": "B.5.2",
+           "text": "Identifying how peers can influence healthy and unhealthy behaviors;"
+          },
+          {
+           "code": "B.5.3",
+           "text": "Describing how the school, tribe, and community can support personal health practices and behaviors;"
+          },
+          {
+           "code": "B.5.4",
+           "text": "Explaining how media influences thoughts, feelings, and health behaviors;"
+          },
+          {
+           "code": "B.5.5",
+           "text": "Discussing ways that technology can influence personal health; and"
+          },
+          {
+           "code": "B.5.6",
+           "text": "Explaining how school, public, and tribal health policies can influence health promotion and disease prevention."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "demonstrate-the-ability-to-access-valid-informat",
+     "title": "Demonstrate the ability to access valid information, products, and services to enhance health",
+     "topics": [
+      {
+       "id": "demonstrate-the-ability-to-access-valid-informat",
+       "title": "Demonstrate the ability to access valid information, products, and services to enhance health",
+       "subtopics": [
+        {
+         "id": "demonstrate-the-ability-to-access-valid-informat",
+         "title": "Demonstrate the ability to access valid information, products, and services to enhance health",
+         "outcomes": [
+          {
+           "code": "C.5.1",
+           "text": "Identifying characteristics of valid health information, products, and services; and"
+          },
+          {
+           "code": "C.5.2",
+           "text": "Locating resources from home, school, tribe, and community that provide valid health information."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "demonstrate-the-ability-to-use-interpersonal-com",
+     "title": "Demonstrate the ability to use interpersonal communication skills to enhance health and avoid or reduce health risks",
+     "topics": [
+      {
+       "id": "demonstrate-the-ability-to-use-interpersonal-com",
+       "title": "Demonstrate the ability to use interpersonal communication skills to enhance health and avoid or reduce health risks",
+       "subtopics": [
+        {
+         "id": "demonstrate-the-ability-to-use-interpersonal-com",
+         "title": "Demonstrate the ability to use interpersonal communication skills to enhance health and avoid or reduce health risks",
+         "outcomes": [
+          {
+           "code": "D.5.1",
+           "text": "Using effective verbal and nonverbal communication skills to enhance health, including those of traditional and contemporary American Indian cultures and practices;"
+          },
+          {
+           "code": "D.5.2",
+           "text": "Using refusal skills that avoid or reduce health risks;"
+          },
+          {
+           "code": "D.5.3",
+           "text": "Using nonviolent strategies to manage or resolve conflict; and"
+          },
+          {
+           "code": "D.5.4",
+           "text": "Discussing how to ask for assistance to enhance the health and safety of self and others."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "demonstrate-the-ability-to-use-decision-making-s",
+     "title": "Demonstrate the ability to use decision-making skills to enhance health and safety",
+     "topics": [
+      {
+       "id": "demonstrate-the-ability-to-use-decision-making-s",
+       "title": "Demonstrate the ability to use decision-making skills to enhance health and safety",
+       "subtopics": [
+        {
+         "id": "demonstrate-the-ability-to-use-decision-making-s",
+         "title": "Demonstrate the ability to use decision-making skills to enhance health and safety",
+         "outcomes": [
+          {
+           "code": "E.5.1",
+           "text": "Identifying health-related situations that might require thoughtful decisions;"
+          },
+          {
+           "code": "E.5.2",
+           "text": "Analyzing when assistance is needed in making safety and health-related decisions;"
+          },
+          {
+           "code": "E.5.3",
+           "text": "Comparing and contrasting healthy options to safety and health-related issues or problems;"
+          },
+          {
+           "code": "E.5.4",
+           "text": "Predicting the potential outcomes of options when making safety and health-related decisions; and"
+          },
+          {
+           "code": "E.5.5",
+           "text": "Describing the outcomes of safety and health-related decisions."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "demonstrate-the-ability-to-use-goal-setting-skil",
+     "title": "Demonstrate the ability to use goal-setting skills to enhance health",
+     "topics": [
+      {
+       "id": "demonstrate-the-ability-to-use-goal-setting-skil",
+       "title": "Demonstrate the ability to use goal-setting skills to enhance health",
+       "subtopics": [
+        {
+         "id": "demonstrate-the-ability-to-use-goal-setting-skil",
+         "title": "Demonstrate the ability to use goal-setting skills to enhance health",
+         "outcomes": [
+          {
+           "code": "F.5.1",
+           "text": "Setting a personal health goal and tracking progress toward its achievement; and"
+          },
+          {
+           "code": "F.5.2",
+           "text": "Identifying resources to assist in achieving a personal health goal."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "demonstrate-the-ability-to-practice-health-enhan",
+     "title": "Demonstrate the ability to practice health-enhancing behaviors and avoid or reduce health risks",
+     "topics": [
+      {
+       "id": "demonstrate-the-ability-to-practice-health-enhan",
+       "title": "Demonstrate the ability to practice health-enhancing behaviors and avoid or reduce health risks",
+       "subtopics": [
+        {
+         "id": "demonstrate-the-ability-to-practice-health-enhan",
+         "title": "Demonstrate the ability to practice health-enhancing behaviors and avoid or reduce health risks",
+         "outcomes": [
+          {
+           "code": "G.5.1",
+           "text": "Explaining benefits of healthy behaviors toward self and others;"
+          },
+          {
+           "code": "G.5.2",
+           "text": "Practicing responsible personal health behaviors;"
+          },
+          {
+           "code": "G.5.3",
+           "text": "Using a variety of healthy practices and behaviors to maintain or improve personal health; and"
+          },
+          {
+           "code": "G.5.4",
+           "text": "Using a variety of behaviors to avoid or reduce health risks."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "demonstrate-the-ability-to-advocate-for-personal",
+     "title": "Demonstrate the ability to advocate for personal, family, and community health",
+     "topics": [
+      {
+       "id": "demonstrate-the-ability-to-advocate-for-personal",
+       "title": "Demonstrate the ability to advocate for personal, family, and community health",
+       "subtopics": [
+        {
+         "id": "demonstrate-the-ability-to-advocate-for-personal",
+         "title": "Demonstrate the ability to advocate for personal, family, and community health",
+         "outcomes": [
+          {
+           "code": "H.5.1",
+           "text": "Expressing opinions and giving accurate information about health issues;"
+          },
+          {
+           "code": "H.5.2",
+           "text": "Practicing and rationalizing reasons for positive health choices; and"
+          },
+          {
+           "code": "H.5.3",
+           "text": "Evaluating various health messages and communication techniques."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "6-8",
+   "units": [
+    {
+     "id": "comprehend-concepts-related-to-health-promotion-",
+     "title": "Comprehend concepts related to health promotion and disease prevention to enhance personal health",
+     "topics": [
+      {
+       "id": "comprehend-concepts-related-to-health-promotion-",
+       "title": "Comprehend concepts related to health promotion and disease prevention to enhance personal health",
+       "subtopics": [
+        {
+         "id": "comprehend-concepts-related-to-health-promotion-",
+         "title": "Comprehend concepts related to health promotion and disease prevention to enhance personal health (1 of 3)",
+         "outcomes": [
+          {
+           "code": "A.6-8.1",
+           "text": "Discussing the relationship between healthy behaviors and personal health;"
+          },
+          {
+           "code": "A.6-8.2",
+           "text": "Describing the benefits of and barriers to practicing healthy behaviors;"
+          },
+          {
+           "code": "A.6-8.3",
+           "text": "Analyzing behaviors that promote health enhancing strategies for issues such as substance abuse prevention, nutrition, sexual activity, exercise, injury and disease prevention, and stress management, including traditional and contemporary strategies from American Indian cultures;"
+          },
+          {
+           "code": "A.6-8.4",
+           "text": "Analyzing the potential consequences of engaging in risky behaviors;"
+          }
+         ]
+        },
+        {
+         "id": "comprehend-concepts-related-to-health-promotion--2",
+         "title": "Comprehend concepts related to health promotion and disease prevention to enhance personal health (2 of 3)",
+         "outcomes": [
+          {
+           "code": "A.6-8.5",
+           "text": "Identifying characteristics of physical, mental, emotional, family, and social health including those of traditional and contemporary American Indian cultures and practices;"
+          },
+          {
+           "code": "A.6-8.6",
+           "text": "Explaining practices used to prevent or reduce the risk of spreading or contracting communicable diseases;"
+          },
+          {
+           "code": "A.6-8.7",
+           "text": "Discussing ways environmental factors affect health;"
+          },
+          {
+           "code": "A.6-8.8",
+           "text": "Analyzing ways in which safe and healthy school and community environments can promote personal health;"
+          }
+         ]
+        },
+        {
+         "id": "comprehend-concepts-related-to-health-promotion--3",
+         "title": "Comprehend concepts related to health promotion and disease prevention to enhance personal health (3 of 3)",
+         "outcomes": [
+          {
+           "code": "A.6-8.9",
+           "text": "Describing ways to reduce or prevent injuries and other adolescent health problems;"
+          },
+          {
+           "code": "A.6-8.10",
+           "text": "Explaining how appropriate health care can promote personal health, including the unique issues regarding American Indians and health care benefits;"
+          },
+          {
+           "code": "A.6-8.11",
+           "text": "Defining human body systems, their function, and their interrelationship with one another; and"
+          },
+          {
+           "code": "A.6-8.12",
+           "text": "Identifying basic structures and functions of the male and female reproductive health systems."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "analyze-the-influence-of-family-peers-culture-me",
+     "title": "Analyze the influence of family, peers, culture, media, technology, and other factors on health behaviors",
+     "topics": [
+      {
+       "id": "analyze-the-influence-of-family-peers-culture-me",
+       "title": "Analyze the influence of family, peers, culture, media, technology, and other factors on health behaviors",
+       "subtopics": [
+        {
+         "id": "analyze-the-influence-of-family-peers-culture-me",
+         "title": "Analyze the influence of family, peers, culture, media, technology, and other factors on health behaviors (1 of 2)",
+         "outcomes": [
+          {
+           "code": "B.6-8.1",
+           "text": "Explaining how family and culture influence the health of adolescents;"
+          },
+          {
+           "code": "B.6-8.2",
+           "text": "Explaining how the perception of societal norms influence healthy and unhealthy behaviors;"
+          },
+          {
+           "code": "B.6-8.3",
+           "text": "Explaining the influence of personal values and beliefs on individual health practices and behaviors;"
+          },
+          {
+           "code": "B.6-8.4",
+           "text": "Describing how peers influence healthy and unhealthy behaviors;"
+          }
+         ]
+        },
+        {
+         "id": "analyze-the-influence-of-family-peers-culture-me-2",
+         "title": "Analyze the influence of family, peers, culture, media, technology, and other factors on health behaviors (2 of 2)",
+         "outcomes": [
+          {
+           "code": "B.6-8.5",
+           "text": "Explaining how the school, tribe, and community can affect personal health practices and behaviors;"
+          },
+          {
+           "code": "B.6-8.6",
+           "text": "Explaining how messages from media influence health behaviors;"
+          },
+          {
+           "code": "B.6-8.7",
+           "text": "Explaining the influence of technology on personal and family health; and"
+          },
+          {
+           "code": "B.6-8.8",
+           "text": "Comparing and contrasting how school, public, and tribal health policies can influence health promotion and disease prevention."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "demonstrate-the-ability-to-access-valid-informat",
+     "title": "Demonstrate the ability to access valid information, products, and services to enhance health",
+     "topics": [
+      {
+       "id": "demonstrate-the-ability-to-access-valid-informat",
+       "title": "Demonstrate the ability to access valid information, products, and services to enhance health",
+       "subtopics": [
+        {
+         "id": "demonstrate-the-ability-to-access-valid-informat",
+         "title": "Demonstrate the ability to access valid information, products, and services to enhance health",
+         "outcomes": [
+          {
+           "code": "C.6-8.1",
+           "text": "Analyzing the validity of health information, products, and services;"
+          },
+          {
+           "code": "C.6-8.2",
+           "text": "Accessing valid health information from home, school, tribe, and community;"
+          },
+          {
+           "code": "C.6-8.3",
+           "text": "Determining the accessibility of products that enhance health; and"
+          },
+          {
+           "code": "C.6-8.4",
+           "text": "Describing situations that may require professional health services."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "demonstrate-the-ability-to-use-interpersonal-com",
+     "title": "Demonstrate the ability to use interpersonal communication skills to enhance health and avoid or reduce health risks",
+     "topics": [
+      {
+       "id": "demonstrate-the-ability-to-use-interpersonal-com",
+       "title": "Demonstrate the ability to use interpersonal communication skills to enhance health and avoid or reduce health risks",
+       "subtopics": [
+        {
+         "id": "demonstrate-the-ability-to-use-interpersonal-com",
+         "title": "Demonstrate the ability to use interpersonal communication skills to enhance health and avoid or reduce health risks",
+         "outcomes": [
+          {
+           "code": "D.6-8.1",
+           "text": "Applying effective verbal and nonverbal communication skills to enhance health, including those of traditional and contemporary American Indian cultures and practices;"
+          },
+          {
+           "code": "D.6-8.2",
+           "text": "Using refusal and negotiation skills that avoid or reduce health risks;"
+          },
+          {
+           "code": "D.6-8.3",
+           "text": "Using effective conflict management or resolution strategies; and"
+          },
+          {
+           "code": "D.6-8.4",
+           "text": "Discussing how to ask for assistance to enhance the health and safety of self and others."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "demonstrate-the-ability-to-use-decision-making-s",
+     "title": "Demonstrate the ability to use decision-making skills to enhance health and safety",
+     "topics": [
+      {
+       "id": "demonstrate-the-ability-to-use-decision-making-s",
+       "title": "Demonstrate the ability to use decision-making skills to enhance health and safety",
+       "subtopics": [
+        {
+         "id": "demonstrate-the-ability-to-use-decision-making-s",
+         "title": "Demonstrate the ability to use decision-making skills to enhance health and safety",
+         "outcomes": [
+          {
+           "code": "E.6-8.1",
+           "text": "Identifying circumstances that can help or hinder safe and healthy decision making;"
+          },
+          {
+           "code": "E.6-8.2",
+           "text": "Determining when safety and health-related situations require the application of a thoughtful decision-making process;"
+          },
+          {
+           "code": "E.6-8.3",
+           "text": "Determining when individual or collaborative decision making is appropriate;"
+          },
+          {
+           "code": "E.6-8.4",
+           "text": "Distinguishing between safe, healthy, and unhealthy alternatives to health-related issues or problems;"
+          },
+          {
+           "code": "E.6-8.5",
+           "text": "Predicting the potential short-term and long-term impact of health and safety related options on self and others; and"
+          },
+          {
+           "code": "E.6-8.6",
+           "text": "Analyzing the outcomes of safety and health-related decisions."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "demonstrate-the-ability-to-use-goal-setting-skil",
+     "title": "Demonstrate the ability to use goal-setting skills to enhance health",
+     "topics": [
+      {
+       "id": "demonstrate-the-ability-to-use-goal-setting-skil",
+       "title": "Demonstrate the ability to use goal-setting skills to enhance health",
+       "subtopics": [
+        {
+         "id": "demonstrate-the-ability-to-use-goal-setting-skil",
+         "title": "Demonstrate the ability to use goal-setting skills to enhance health",
+         "outcomes": [
+          {
+           "code": "F.6-8.1",
+           "text": "Developing a goal to adopt, maintain, or improve personal health practices;"
+          },
+          {
+           "code": "F.6-8.2",
+           "text": "Assessing personal health practices;"
+          },
+          {
+           "code": "F.6-8.3",
+           "text": "Applying strategies and skills needed to attain a personal health goal; and"
+          },
+          {
+           "code": "F.6-8.4",
+           "text": "Describing how personal health goals can vary with changing abilities, priorities, and responsibilities."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "demonstrate-the-ability-to-practice-health-enhan",
+     "title": "Demonstrate the ability to practice health-enhancing behaviors and avoid or reduce health risks",
+     "topics": [
+      {
+       "id": "demonstrate-the-ability-to-practice-health-enhan",
+       "title": "Demonstrate the ability to practice health-enhancing behaviors and avoid or reduce health risks",
+       "subtopics": [
+        {
+         "id": "demonstrate-the-ability-to-practice-health-enhan",
+         "title": "Demonstrate the ability to practice health-enhancing behaviors and avoid or reduce health risks",
+         "outcomes": [
+          {
+           "code": "G.6-8.1",
+           "text": "Analyzing healthy practices and behaviors that will maintain or improve the health of self and others;"
+          },
+          {
+           "code": "G.6-8.2",
+           "text": "Explaining the importance of assuming responsibility for personal health behaviors; and"
+          },
+          {
+           "code": "G.6-8.3",
+           "text": "Describing behaviors to avoid or reduce health risks to self and others."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "demonstrate-the-ability-to-advocate-for-personal",
+     "title": "Demonstrate the ability to advocate for personal, family, and community health",
+     "topics": [
+      {
+       "id": "demonstrate-the-ability-to-advocate-for-personal",
+       "title": "Demonstrate the ability to advocate for personal, family, and community health",
+       "subtopics": [
+        {
+         "id": "demonstrate-the-ability-to-advocate-for-personal",
+         "title": "Demonstrate the ability to advocate for personal, family, and community health",
+         "outcomes": [
+          {
+           "code": "H.6-8.1",
+           "text": "Stating a health-enhancing position on a topic and support it with accurate information;"
+          },
+          {
+           "code": "H.6-8.2",
+           "text": "Describing how to influence and support others to make positive health choices;"
+          },
+          {
+           "code": "H.6-8.3",
+           "text": "Working cooperatively to advocate for healthy individuals, families, tribes, and schools; and"
+          },
+          {
+           "code": "H.6-8.4",
+           "text": "Identifying ways in which health-related messages and communication techniques can be altered for different audiences."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "9-12",
+   "units": [
+    {
+     "id": "comprehend-concepts-related-to-health-promotion-",
+     "title": "Comprehend concepts related to health promotion and disease prevention to enhance personal health",
+     "topics": [
+      {
+       "id": "comprehend-concepts-related-to-health-promotion-",
+       "title": "Comprehend concepts related to health promotion and disease prevention to enhance personal health",
+       "subtopics": [
+        {
+         "id": "comprehend-concepts-related-to-health-promotion-",
+         "title": "Comprehend concepts related to health promotion and disease prevention to enhance personal health (1 of 3)",
+         "outcomes": [
+          {
+           "code": "A.9-12.1",
+           "text": "Predicting how health behaviors can affect health status;"
+          },
+          {
+           "code": "A.9-12.2",
+           "text": "Comparing and contrasting the benefits of and barriers to practicing a variety of healthy behaviors;"
+          },
+          {
+           "code": "A.9-12.3",
+           "text": "Developing personal health enhancing strategies for issues such as substance abuse prevention, nutrition, exercise, sexual activity, injury and disease prevention, and stress management, including traditional and contemporary strategies from American Indian cultures;"
+          },
+          {
+           "code": "A.9-12.4",
+           "text": "Comparing and contrasting the potential consequences of engaging in risky behavior;"
+          },
+          {
+           "code": "A.9-12.5",
+           "text": "Analyzing the interrelationships of physical, mental, emotional, family and social health or personal health, including those of American Indian cultures and practices;"
+          }
+         ]
+        },
+        {
+         "id": "comprehend-concepts-related-to-health-promotion--2",
+         "title": "Comprehend concepts related to health promotion and disease prevention to enhance personal health (2 of 3)",
+         "outcomes": [
+          {
+           "code": "A.9-12.6",
+           "text": "Comparing and contrasting various ways to prevent communicable diseases;"
+          },
+          {
+           "code": "A.9-12.7",
+           "text": "Analyzing how environmental factors and personal health are interrelated;"
+          },
+          {
+           "code": "A.9-12.8",
+           "text": "Analyzing how genetics and family history can impact personal health;"
+          },
+          {
+           "code": "A.9-12.9",
+           "text": "Comparing and contrasting ways to advocate for safe and healthy school and community environments to promote personal health;"
+          },
+          {
+           "code": "A.9-12.10",
+           "text": "Proposing ways to reduce or prevent injuries and health problems;"
+          }
+         ]
+        },
+        {
+         "id": "comprehend-concepts-related-to-health-promotion--3",
+         "title": "Comprehend concepts related to health promotion and disease prevention to enhance personal health (3 of 3)",
+         "outcomes": [
+          {
+           "code": "A.9-12.11",
+           "text": "Analyzing the relationship between access to health care and health status, including the unique issues regarding American Indians and health care benefits resulting from treaty obligations;"
+          },
+          {
+           "code": "A.9-12.12",
+           "text": "Analyzing human body systems, their function and their interrelationship with one another;"
+          },
+          {
+           "code": "A.9-12.13",
+           "text": "Explaining the natural body changes of reproductive health;"
+          },
+          {
+           "code": "A.9-12.14",
+           "text": "Explaining fertilization, conception, and how the baby's sex and inherited traits are determined; and"
+          },
+          {
+           "code": "A.9-12.15",
+           "text": "Comparing and contrasting how physical, mental, social, spiritual, and cultural factors influence attitudes about sexuality."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "analyze-the-influence-of-family-peers-culture-me",
+     "title": "Analyze the influence of family, peers, culture, media, technology, and other factors on health behaviors",
+     "topics": [
+      {
+       "id": "analyze-the-influence-of-family-peers-culture-me",
+       "title": "Analyze the influence of family, peers, culture, media, technology, and other factors on health behaviors",
+       "subtopics": [
+        {
+         "id": "analyze-the-influence-of-family-peers-culture-me",
+         "title": "Analyze the influence of family, peers, culture, media, technology, and other factors on health behaviors (1 of 2)",
+         "outcomes": [
+          {
+           "code": "B.9-12.1",
+           "text": "Comparing and contrasting how the family and culture influence the health of individuals;"
+          },
+          {
+           "code": "B.9-12.2",
+           "text": "Explaining how the perception of societal norms influence healthy and unhealthy behaviors, including those of traditional and contemporary American Indian cultures and practices;"
+          },
+          {
+           "code": "B.9-12.3",
+           "text": "Explaining the influence of personal values and beliefs on individual health practices and behaviors;"
+          },
+          {
+           "code": "B.9-12.4",
+           "text": "Explaining how peers influence healthy and unhealthy behaviors;"
+          }
+         ]
+        },
+        {
+         "id": "analyze-the-influence-of-family-peers-culture-me-2",
+         "title": "Analyze the influence of family, peers, culture, media, technology, and other factors on health behaviors (2 of 2)",
+         "outcomes": [
+          {
+           "code": "B.9-12.5",
+           "text": "Evaluating how the school, tribe, and community can affect personal health practices and behaviors;"
+          },
+          {
+           "code": "B.9-12.6",
+           "text": "Evaluating the effect of media on personal and family health;"
+          },
+          {
+           "code": "B.9-12.7",
+           "text": "Evaluating the impact of technology on personal, family, and community health; and"
+          },
+          {
+           "code": "B.9-12.8",
+           "text": "Explaining how public health policies and governmental regulations, including tribal, can influence health promotion and disease prevention."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "demonstrate-the-ability-to-access-valid-informat",
+     "title": "Demonstrate the ability to access valid information, products, and services to enhance health",
+     "topics": [
+      {
+       "id": "demonstrate-the-ability-to-access-valid-informat",
+       "title": "Demonstrate the ability to access valid information, products, and services to enhance health",
+       "subtopics": [
+        {
+         "id": "demonstrate-the-ability-to-access-valid-informat",
+         "title": "Demonstrate the ability to access valid information, products, and services to enhance health",
+         "outcomes": [
+          {
+           "code": "C.9-12.1",
+           "text": "Evaluating the validity of health information, products, and services;"
+          },
+          {
+           "code": "C.9-12.2",
+           "text": "Using resources from home, school, tribe, and community that provide valid health information;"
+          },
+          {
+           "code": "C.9-12.3",
+           "text": "Determining the accessibility of products and services that enhance health; and"
+          },
+          {
+           "code": "C.9-12.4",
+           "text": "Determining when professional health services may be required."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "demonstrate-the-ability-to-use-interpersonal-com",
+     "title": "Demonstrate the ability to use interpersonal communication skills to enhance health and avoid or reduce health risks",
+     "topics": [
+      {
+       "id": "demonstrate-the-ability-to-use-interpersonal-com",
+       "title": "Demonstrate the ability to use interpersonal communication skills to enhance health and avoid or reduce health risks",
+       "subtopics": [
+        {
+         "id": "demonstrate-the-ability-to-use-interpersonal-com",
+         "title": "Demonstrate the ability to use interpersonal communication skills to enhance health and avoid or reduce health risks",
+         "outcomes": [
+          {
+           "code": "D.9-12.1",
+           "text": "Using skills for communicating effectively with family, peers, and others to enhance health, including those of traditional and contemporary American Indian cultures and practices;"
+          },
+          {
+           "code": "D.9-12.2",
+           "text": "Using refusal, negotiation, and collaboration skills to enhance health and avoid or reduce health risks;"
+          },
+          {
+           "code": "D.9-12.3",
+           "text": "Using strategies to prevent, manage, or resolve interpersonal conflicts without harming self or others; and"
+          },
+          {
+           "code": "D.9-12.4",
+           "text": "Discussing how to ask for and offer assistance to enhance the health and safety of self and others."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "demonstrate-the-ability-to-use-decision-making-s",
+     "title": "Demonstrate the ability to use decision-making skills to enhance health and safety",
+     "topics": [
+      {
+       "id": "demonstrate-the-ability-to-use-decision-making-s",
+       "title": "Demonstrate the ability to use decision-making skills to enhance health and safety",
+       "subtopics": [
+        {
+         "id": "demonstrate-the-ability-to-use-decision-making-s",
+         "title": "Demonstrate the ability to use decision-making skills to enhance health and safety",
+         "outcomes": [
+          {
+           "code": "E.9-12.1",
+           "text": "Examining barriers that can hinder safe and healthy decision making;"
+          },
+          {
+           "code": "E.9-12.2",
+           "text": "Determining the value of applying a thoughtful decision-making process in safety and health-related situations;"
+          },
+          {
+           "code": "E.9-12.3",
+           "text": "Justifying when individual or collaborative decision making is appropriate;"
+          },
+          {
+           "code": "E.9-12.4",
+           "text": "Generating alternatives to safety and health-related issues or problems;"
+          },
+          {
+           "code": "E.9-12.5",
+           "text": "Analyzing the potential short-term and long term impact of health and safety alternatives on self and others; and"
+          },
+          {
+           "code": "E.9-12.6",
+           "text": "Evaluating the effectiveness of safety and health-related decisions."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "demonstrate-the-ability-to-use-goal-setting-skil",
+     "title": "Demonstrate the ability to use goal-setting skills to enhance health",
+     "topics": [
+      {
+       "id": "demonstrate-the-ability-to-use-goal-setting-skil",
+       "title": "Demonstrate the ability to use goal-setting skills to enhance health",
+       "subtopics": [
+        {
+         "id": "demonstrate-the-ability-to-use-goal-setting-skil",
+         "title": "Demonstrate the ability to use goal-setting skills to enhance health",
+         "outcomes": [
+          {
+           "code": "F.9-12.1",
+           "text": "Developing a plan to attain a personal health goal that addresses strengths, needs, and risks;"
+          },
+          {
+           "code": "F.9-12.2",
+           "text": "Assessing personal health practices and overall health status;"
+          },
+          {
+           "code": "F.9-12.3",
+           "text": "Implementing strategies and monitoring progress in achieving a personal health goal; and"
+          },
+          {
+           "code": "F.9-12.4",
+           "text": "Formulating an effective long-term personal health plan."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "demonstrate-the-ability-to-practice-health-enhan",
+     "title": "Demonstrate the ability to practice health-enhancing behaviors and avoid or reduce health risks",
+     "topics": [
+      {
+       "id": "demonstrate-the-ability-to-practice-health-enhan",
+       "title": "Demonstrate the ability to practice health-enhancing behaviors and avoid or reduce health risks",
+       "subtopics": [
+        {
+         "id": "demonstrate-the-ability-to-practice-health-enhan",
+         "title": "Demonstrate the ability to practice health-enhancing behaviors and avoid or reduce health risks",
+         "outcomes": [
+          {
+           "code": "G.9-12.1",
+           "text": "Discussing ways to advocate for a variety of healthy practices and behaviors that will maintain or improve the health of self and others;"
+          },
+          {
+           "code": "G.9-12.2",
+           "text": "Analyzing the role of individual responsibility for enhancing health; and"
+          },
+          {
+           "code": "G.9-12.3",
+           "text": "Discussing ways to advocate for a variety of behaviors to avoid or reduce health risks to self and others."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "demonstrate-the-ability-to-advocate-for-personal",
+     "title": "Demonstrate the ability to advocate for personal, family, and community health",
+     "topics": [
+      {
+       "id": "demonstrate-the-ability-to-advocate-for-personal",
+       "title": "Demonstrate the ability to advocate for personal, family, and community health",
+       "subtopics": [
+        {
+         "id": "demonstrate-the-ability-to-advocate-for-personal",
+         "title": "Demonstrate the ability to advocate for personal, family, and community health",
+         "outcomes": [
+          {
+           "code": "H.9-12.1",
+           "text": "Using accurate peer and societal norms to formulate a health-enhancing message;"
+          },
+          {
+           "code": "H.9-12.2",
+           "text": "Advocating for behaviors and practices that will support others in making positive health choices;"
+          },
+          {
+           "code": "H.9-12.3",
+           "text": "Working cooperatively as an advocate for improving personal, family, and community health; and"
+          },
+          {
+           "code": "H.9-12.4",
+           "text": "Adapting health messages and communication techniques to target audiences."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "build": {
+  "builtAt": "2026-10-14T16:20:45.584Z",
+  "model": "none",
+  "usd": 0,
+  "expectedCodes": 293,
+  "coverage": 1,
+  "missingCodes": [],
+  "counts": {
+   "grades": 8,
+   "units": 64,
+   "topics": 64,
+   "subtopics": 77,
+   "outcomes": 293
+  },
+  "warnings": []
+ }
+}

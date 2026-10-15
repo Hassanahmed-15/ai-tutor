@@ -1,0 +1,781 @@
+{
+ "id": "uk-aqa-alevel-accounting-7127",
+ "region": "UK",
+ "framework": "AQA A-level",
+ "board": "AQA",
+ "qualification": "A Level",
+ "subject": "Accounting",
+ "syllabusCode": "7127",
+ "gradeSystem": "year",
+ "source": {
+  "urls": [
+   "https://cdn.sanity.io/files/p28bar15/green/4d3d81453c58c69d8a821b30e08e5f87aa76fad9.pdf"
+  ],
+  "publisher": "AQA",
+  "licence": "Exam board specification, (c) AQA; structure + our own wording only",
+  "firstExam": "2019"
+ },
+ "grades": [
+  {
+   "grade": "all",
+   "units": [
+    {
+     "id": "3-subject-content",
+     "title": "3 Subject content",
+     "topics": [
+      {
+       "id": "3-1-an-introduction-to-the-role-of-the-accountan",
+       "title": "3.1 An introduction to the role of the accountant in business",
+       "subtopics": [
+        {
+         "id": "the-accountant-s-role",
+         "title": "The accountant's role",
+         "outcomes": [
+          {
+           "code": "3.1",
+           "text": "Describe what an accountant is responsible for in a business."
+          },
+          {
+           "code": null,
+           "text": "Tell financial accounting from management accounting and state the purpose of each."
+          },
+          {
+           "code": null,
+           "text": "Explain how accountants run information systems and oversee bookkeepers and ledger clerks."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "3-2-types-of-business-organisation",
+       "title": "3.2 Types of business organisation",
+       "subtopics": [
+        {
+         "id": "business-ownership-types",
+         "title": "Business ownership types",
+         "outcomes": [
+          {
+           "code": "3.2",
+           "text": "Describe sole traders, partnerships, private limited companies and plcs."
+          },
+          {
+           "code": null,
+           "text": "Explain the benefits, risks and reporting impact of each ownership model."
+          }
+         ]
+        },
+        {
+         "id": "sources-of-finance",
+         "title": "Sources of finance",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Match sources of finance (capital, overdraft, loan, mortgage, shares, debentures) to business types and their risks."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "3-3-the-double-entry-model",
+       "title": "3.3 The double entry model",
+       "subtopics": [
+        {
+         "id": "source-documents-and-books-of-prime-entry",
+         "title": "Source documents and books of prime entry",
+         "outcomes": [
+          {
+           "code": "3.3",
+           "text": "Record transactions from source documents such as invoices, credit notes, till rolls and bank statements."
+          },
+          {
+           "code": null,
+           "text": "Use the purchases, sales, returns, general journals and three column cash book."
+          }
+         ]
+        },
+        {
+         "id": "ledger-accounts-and-transactions",
+         "title": "Ledger accounts and transactions",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Post to receivables, payables and general ledger accounts."
+          },
+          {
+           "code": null,
+           "text": "Handle discounts, disposals of non-current assets, irrecoverable debts and contra entries."
+          },
+          {
+           "code": null,
+           "text": "Tell revenue from capital expenditure and income."
+          }
+         ]
+        },
+        {
+         "id": "adjustments-in-the-accounts",
+         "title": "Adjustments in the accounts",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Record accruals, prepayments, income due and income received in advance."
+          },
+          {
+           "code": null,
+           "text": "Record provisions for doubtful debts, depreciation, disposals and opening/closing inventory."
+          }
+         ]
+        },
+        {
+         "id": "preparing-basic-financial-statements",
+         "title": "Preparing basic financial statements",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Prepare and understand accounting records from source documents."
+          },
+          {
+           "code": null,
+           "text": "Apply double entry in statements for a range of business organisations."
+          },
+          {
+           "code": null,
+           "text": "Prepare income statements and statements of financial position from trial balances for service and trading businesses."
+          },
+          {
+           "code": null,
+           "text": "Lay out a statement of financial position with proper subheadings."
+          }
+         ]
+        },
+        {
+         "id": "prepayments-bad-debts-and-depreciation-entries",
+         "title": "Prepayments, bad debts and depreciation entries",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Make ledger and statement entries for prepayments and accruals."
+          },
+          {
+           "code": null,
+           "text": "Make entries for irrecoverable debts and their recovery."
+          },
+          {
+           "code": null,
+           "text": "Make entries for straight line and reducing balance depreciation."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "3-4-verification-of-accounting-records",
+       "title": "3.4 Verification of accounting records",
+       "subtopics": [
+        {
+         "id": "verification-techniques",
+         "title": "Verification techniques",
+         "outcomes": [
+          {
+           "code": "3.4",
+           "text": "Use trial balances, bank reconciliations and sales and purchases ledger control accounts to check records."
+          },
+          {
+           "code": null,
+           "text": "Handle contras, overdue interest and unusual balances in control accounts."
+          }
+         ]
+        },
+        {
+         "id": "correcting-errors",
+         "title": "Correcting errors",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Correct double entry errors with the general journal and suspense account."
+          },
+          {
+           "code": null,
+           "text": "Show how errors change profit and the statement of financial position, including redrafting statements."
+          }
+         ]
+        },
+        {
+         "id": "errors-and-their-detection",
+         "title": "Errors and their detection",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Weigh the benefits and limits of each verification technique."
+          },
+          {
+           "code": null,
+           "text": "Identify errors a trial balance reveals: addition, partial omission, transposition, unequal posting."
+          },
+          {
+           "code": null,
+           "text": "Identify errors it misses: commission, reversal, compensating, omission, original entry, principle."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "3-5-accounting-concepts-used-in-the-preparation-",
+       "title": "3.5 Accounting concepts used in the preparation of accounting records",
+       "subtopics": [
+        {
+         "id": "accounting-concepts",
+         "title": "Accounting concepts",
+         "outcomes": [
+          {
+           "code": "3.5",
+           "text": "State the general accounting concepts such as money measurement, duality, cost, going concern, accruals, consistency, prudence, materiality, realisation and business entity."
+          }
+         ]
+        },
+        {
+         "id": "applying-concepts",
+         "title": "Applying concepts",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Apply concepts to preparing statements, asset valuation, depreciation and inventory valuation at cost or net realisable value."
+          },
+          {
+           "code": null,
+           "text": "Apply concepts to recording non-current asset purchases, ledger entries and sale or return goods."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "3-6-preparation-of-financial-statements-of-sole-",
+       "title": "3.6 Preparation of financial statements of sole traders",
+       "subtopics": [
+        {
+         "id": "concepts-in-sole-trader-accounts",
+         "title": "Concepts in sole trader accounts",
+         "outcomes": [
+          {
+           "code": "3.6",
+           "text": "Use concepts to record accruals, depreciation, disposals, doubtful debts, drawings in goods, sale or return and inventory."
+          }
+         ]
+        },
+        {
+         "id": "sole-trader-financial-statements",
+         "title": "Sole trader financial statements",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Prepare sole traders' statements from ledger accounts including adjustments, for service and trading businesses."
+          },
+          {
+           "code": null,
+           "text": "Prepare income statements and statements of financial position from a trial balance with adjustments."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "3-7-limited-company-accounts",
+       "title": "3.7 Limited company accounts",
+       "subtopics": [
+        {
+         "id": "internal-company-statements",
+         "title": "Internal company statements",
+         "outcomes": [
+          {
+           "code": "3.7",
+           "text": "Prepare internal income statements for limited companies, separating operating profit, profit before tax and after tax."
+          },
+          {
+           "code": null,
+           "text": "Prepare a statement of changes in equity with share issues, premiums, dividends and profit."
+          }
+         ]
+        },
+        {
+         "id": "company-statement-of-financial-position",
+         "title": "Company statement of financial position",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Prepare a company statement of financial position with the correct sub-headings."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "3-8-analysis-and-evaluation-of-financial-informa",
+       "title": "3.8 Analysis and evaluation of financial information",
+       "subtopics": [
+        {
+         "id": "financial-ratios",
+         "title": "Financial ratios",
+         "outcomes": [
+          {
+           "code": "3.8",
+           "text": "Calculate and interpret margin, markup, inventory turnover, profit and expense ratios and return on capital employed."
+          },
+          {
+           "code": null,
+           "text": "Calculate and interpret current, liquid capital, receivable days, payable days and gearing ratios."
+          }
+         ]
+        },
+        {
+         "id": "appraising-performance",
+         "title": "Appraising performance",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Appraise performance on profitability, liquidity, efficiency and capital structure."
+          },
+          {
+           "code": null,
+           "text": "Explain the difference between cash and profit and how transactions affect each."
+          },
+          {
+           "code": null,
+           "text": "Explain the limits of financial statements and ratio analysis, financial and non-financial."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "3-9-budgeting",
+       "title": "3.9 Budgeting",
+       "subtopics": [
+        {
+         "id": "why-budget",
+         "title": "Why budget",
+         "outcomes": [
+          {
+           "code": "3.9",
+           "text": "Explain why organisations budget."
+          },
+          {
+           "code": null,
+           "text": "Discuss the benefits and limits of budgeting and budgetary control, including zero-based and incremental budgets."
+          }
+         ]
+        },
+        {
+         "id": "preparing-and-using-budgets",
+         "title": "Preparing and using budgets",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Prepare cash, sales, purchases, production, labour and financial statement budgets."
+          },
+          {
+           "code": null,
+           "text": "Explain how budgets are used for planning and control and calculate and interpret variances."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "3-10-marginal-costing",
+       "title": "3.10 Marginal costing",
+       "subtopics": [
+        {
+         "id": "cost-behaviour",
+         "title": "Cost behaviour",
+         "outcomes": [
+          {
+           "code": "3.10",
+           "text": "Classify costs as direct, indirect, variable, semi-variable, fixed or stepped."
+          },
+          {
+           "code": null,
+           "text": "Define marginal cost, contribution and break-even."
+          }
+         ]
+        },
+        {
+         "id": "break-even-analysis",
+         "title": "Break-even analysis",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Calculate and interpret break-even points and break-even charts."
+          },
+          {
+           "code": null,
+           "text": "Explain the uses and limits of break-even analysis."
+          }
+         ]
+        },
+        {
+         "id": "marginal-costing-decisions",
+         "title": "Marginal costing decisions",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Use marginal costing and non-financial factors for make-or-buy, extra work, pricing, scarce resources, closing a line and target profit decisions."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "3-11-standard-costing-and-variance-analysis",
+       "title": "3.11 Standard costing and variance analysis",
+       "subtopics": [
+        {
+         "id": "standard-costing",
+         "title": "Standard costing",
+         "outcomes": [
+          {
+           "code": "3.11",
+           "text": "Explain the purpose, advantages and disadvantages of standard costing."
+          }
+         ]
+        },
+        {
+         "id": "variances",
+         "title": "Variances",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Calculate and interpret materials, labour and sales variances."
+          },
+          {
+           "code": null,
+           "text": "Explain how variances relate to each other."
+          },
+          {
+           "code": null,
+           "text": "Reconcile budgeted and actual cost or profit."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "3-12-absorption-and-activity-based-costing",
+       "title": "3.12 Absorption and activity based costing",
+       "subtopics": [
+        {
+         "id": "absorption-costing",
+         "title": "Absorption costing",
+         "outcomes": [
+          {
+           "code": "3.12",
+           "text": "Use absorption costing to find a product's total cost: allocation, apportionment, overhead absorption rates, under and over absorption."
+          }
+         ]
+        },
+        {
+         "id": "activity-based-costing",
+         "title": "Activity based costing",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Use ABC with cost pools and cost drivers to attribute indirect costs to products."
+          }
+         ]
+        },
+        {
+         "id": "selling-price-and-costing-methods",
+         "title": "Selling price and costing methods",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Use absorption and ABC costs to set selling prices."
+          },
+          {
+           "code": null,
+           "text": "Compare benefits and limits of absorption, ABC and marginal costing, including inventory valuation and profit effects."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "3-13-capital-investment-appraisal",
+       "title": "3.13 Capital investment appraisal",
+       "subtopics": [
+        {
+         "id": "payback-and-npv",
+         "title": "Payback and NPV",
+         "outcomes": [
+          {
+           "code": "3.13",
+           "text": "Calculate and use cash flows in investment appraisal."
+          },
+          {
+           "code": null,
+           "text": "Calculate the payback period and net present value of a project, using discount factors and cost of capital."
+          }
+         ]
+        },
+        {
+         "id": "evaluating-investments",
+         "title": "Evaluating investments",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Discuss the benefits and limits of payback and NPV."
+          },
+          {
+           "code": null,
+           "text": "Use appraisal measures with financial and non-financial factors to evaluate projects."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "3-14-accounting-for-organisations-with-incomplet",
+       "title": "3.14 Accounting for organisations with incomplete records",
+       "subtopics": [
+        {
+         "id": "finding-profit-from-incomplete-records",
+         "title": "Finding profit from incomplete records",
+         "outcomes": [
+          {
+           "code": "3.14",
+           "text": "Calculate profit when records are insufficient, using statements of affairs."
+          }
+         ]
+        },
+        {
+         "id": "techniques-for-missing-figures",
+         "title": "Techniques for missing figures",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Use control accounts, cash and bank accounts, ratios, depreciation and disposal calculations to find missing figures."
+          },
+          {
+           "code": null,
+           "text": "Compare single entry and double entry record keeping."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "3-15-partnership-accounts",
+       "title": "3.15 Partnership accounts",
+       "subtopics": [
+        {
+         "id": "partnership-statements",
+         "title": "Partnership statements",
+         "outcomes": [
+          {
+           "code": "3.15",
+           "text": "Prepare and comment on partnership income statements, appropriation accounts and statements of financial position."
+          },
+          {
+           "code": null,
+           "text": "Calculate interest on capital and drawings, partner salaries and loan interest, and share profits and losses."
+          }
+         ]
+        },
+        {
+         "id": "partners-accounts",
+         "title": "Partners' accounts",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Prepare partners' capital and current accounts, applying the Partnership Act 1890 when there is no agreement."
+          }
+         ]
+        },
+        {
+         "id": "changes-in-a-partnership",
+         "title": "Changes in a partnership",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Account for asset revaluation and goodwill."
+          },
+          {
+           "code": null,
+           "text": "Account for a partner's retirement or a new partner's admission."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "3-16-accounting-for-limited-companies",
+       "title": "3.16 Accounting for limited companies",
+       "subtopics": [
+        {
+         "id": "cash-flow-and-non-current-assets",
+         "title": "Cash flow and non-current assets",
+         "outcomes": [
+          {
+           "code": "3.16",
+           "text": "Draft company statements to IAS1, including cash flow statements by the indirect method (IAS7) and schedules of non-current assets."
+          },
+          {
+           "code": null,
+           "text": "Account for revaluation of non-current assets."
+          }
+         ]
+        },
+        {
+         "id": "share-issues",
+         "title": "Share issues",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Tell share issues, rights issues and bonus issues apart and record their effects in the statements."
+          }
+         ]
+        },
+        {
+         "id": "published-accounts-and-standards",
+         "title": "Published accounts and standards",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain why accounts are published, their elements and limits, and how stakeholders use them."
+          },
+          {
+           "code": null,
+           "text": "Explain the purpose and importance of the international accounting standards framework."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "3-17-interpretation-analysis-and-communication-o",
+       "title": "3.17 Interpretation, analysis and communication of accounting information",
+       "subtopics": [
+        {
+         "id": "analysing-accounting-information",
+         "title": "Analysing accounting information",
+         "outcomes": [
+          {
+           "code": "3.17",
+           "text": "Use techniques and ratios to analyse financial and management information, including investor ratios: dividend yield, EPS, dividend cover, price earnings, interest cover."
+          },
+          {
+           "code": null,
+           "text": "Evaluate performance internally across periods and externally against competitors."
+          },
+          {
+           "code": null,
+           "text": "Distinguish cash from profit and the effect of transactions on profitability and liquidity."
+          }
+         ]
+        },
+        {
+         "id": "stakeholders-and-communication",
+         "title": "Stakeholders and communication",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain the interests of internal and external stakeholders and why clear communication matters."
+          }
+         ]
+        },
+        {
+         "id": "recording-systems-and-recommendations",
+         "title": "Recording systems and recommendations",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Compare accounting software and computerised with manual systems."
+          },
+          {
+           "code": null,
+           "text": "Compare single and double entry systems."
+          },
+          {
+           "code": null,
+           "text": "Critically assess recommendations and their impact on stakeholders, the economy and the environment."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "3-18-the-impact-of-ethical-considerations",
+       "title": "3.18 The impact of ethical considerations",
+       "subtopics": [
+        {
+         "id": "ethical-principles",
+         "title": "Ethical principles",
+         "outcomes": [
+          {
+           "code": "3.18",
+           "text": "State the fundamental principles: integrity, objectivity, competence and care, confidentiality, professional behaviour."
+          },
+          {
+           "code": null,
+           "text": "Explain how these principles affect accountants, auditors, directors, governance and social responsibility."
+          }
+         ]
+        },
+        {
+         "id": "regulation-and-professional-bodies",
+         "title": "Regulation and professional bodies",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain the legal and regulatory frameworks for accounting and the consequences of breaching them."
+          },
+          {
+           "code": null,
+           "text": "Explain how professional bodies set and enforce codes of conduct."
+          }
+         ]
+        },
+        {
+         "id": "acting-ethically",
+         "title": "Acting ethically",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Act ethically with clients, suppliers, colleagues and stakeholders, following codes and regulation."
+          },
+          {
+           "code": null,
+           "text": "Choose appropriate action on suspected unethical or illegal acts: safeguards, threat evaluation, conflicts of interest, outside advice."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "build": {
+  "builtAt": "2026-10-14T10:11:52.145Z",
+  "model": "claude-agent",
+  "usd": 0,
+  "expectedCodes": 18,
+  "coverage": 1,
+  "missingCodes": [],
+  "counts": {
+   "grades": 1,
+   "units": 1,
+   "topics": 18,
+   "subtopics": 45,
+   "outcomes": 88
+  },
+  "warnings": [
+   "grade Year 12 has no content",
+   "grade Year 13 has no content",
+   "unexpected grade label \"all\""
+  ]
+ }
+}

@@ -1,0 +1,103 @@
+{
+ "id": "pk-fbise-af-hssc-1-tarjuma-quran",
+ "region": "PK",
+ "framework": "FBISE Assessment Framework (National Curriculum of Pakistan 2022-23)",
+ "board": "FBISE",
+ "qualification": "HSSC-I",
+ "subject": "Tarjuma-tul-Quran",
+ "syllabusCode": null,
+ "gradeSystem": "grade",
+ "source": {
+  "urls": [
+   "https://www.fbise.edu.pk/ModelPaper/2025/Assessment%20Frameworks/HSSC-I/Final%20Assessment%20Framework%20Tarjuma%20Quran%20HSSC-I.pdf"
+  ],
+  "publisher": "Federal Board of Intermediate and Secondary Education",
+  "licence": "Government publication; structure + our own wording only",
+  "firstExam": "2025"
+ },
+ "grades": [
+  {
+   "grade": "11",
+   "units": [
+    {
+     "id": "prescribed-surahs",
+     "title": "Prescribed Surahs",
+     "topics": [
+      {
+       "id": "translation-and-understanding-of-the-quran",
+       "title": "Translation and understanding of the Quran",
+       "subtopics": [
+        {
+         "id": "surah-introductions-and-revelation-context",
+         "title": "Surah introductions and revelation context",
+         "outcomes": [
+          {
+           "code": "I-11-A-01",
+           "text": "Give the background of each prescribed surah (Al-Baqarah, Aal-e-Imran, Al-Anfal, At-Tawbah) and when it was revealed."
+          }
+         ]
+        },
+        {
+         "id": "selected-words-and-their-meanings",
+         "title": "Selected words and their meanings",
+         "outcomes": [
+          {
+           "code": "I-11-A-02",
+           "text": "Learn the meaning of the 80 chosen Quranic words and use them to read the verses."
+          }
+         ]
+        },
+        {
+         "id": "verse-translation-and-explanation",
+         "title": "Verse translation and explanation",
+         "outcomes": [
+          {
+           "code": "I-11-A-03",
+           "text": "Translate the prescribed verses and explain them in simple words."
+          }
+         ]
+        },
+        {
+         "id": "core-teachings-of-the-surahs",
+         "title": "Core teachings of the surahs",
+         "outcomes": [
+          {
+           "code": "I-11-A-04",
+           "text": "Write short essays on the main teachings found in the assigned surahs."
+          }
+         ]
+        },
+        {
+         "id": "reading-with-understanding",
+         "title": "Reading with understanding",
+         "outcomes": [
+          {
+           "code": "I-11-A-05",
+           "text": "Recite and follow the surahs, linking the teaching to the verses taught."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "build": {
+  "builtAt": "2026-10-14T08:04:48.253Z",
+  "model": "claude-agent",
+  "usd": 0,
+  "expectedCodes": 5,
+  "coverage": 1,
+  "missingCodes": [],
+  "counts": {
+   "grades": 1,
+   "units": 1,
+   "topics": 1,
+   "subtopics": 5,
+   "outcomes": 5
+  },
+  "warnings": []
+ }
+}

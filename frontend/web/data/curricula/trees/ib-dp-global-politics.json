@@ -1,0 +1,206 @@
+{
+ "id": "ib-dp-global-politics",
+ "region": "INTL",
+ "framework": "International Baccalaureate Diploma Programme (DP)",
+ "board": "IB",
+ "qualification": "IB Diploma Programme",
+ "subject": "Global politics (SL and HL)",
+ "syllabusCode": null,
+ "gradeSystem": "course",
+ "source": {
+  "urls": [
+   "https://www.ibo.org/globalassets/new-structure/university-admission/pdfs/global-politics-sl-hl-subject-brief-en.pdf",
+   "https://web.archive.org/web/20230327173731id_/https://www.ibo.org/globalassets/new-structure/university-admission/pdfs/global-politics-sl-hl-subject-brief-en.pdf"
+  ],
+  "publisher": "International Baccalaureate Organization",
+  "licence": "(c) International Baccalaureate Organization; all rights reserved, no open licence. ibo.org terms 1.8: IB copyrighted materials are licensed only under the IB's terms or a signed agreement; 'Any use not expressly permitted is prohibited unless special permission is obtained in writing from the IB'; 1.9: nothing on the IB websites confers any licence. Briefs are free public marketing summaries: take topic structure only, write everything in our own words, never reproduce brief text, and do not use IB logos/trade marks. Full subject guides are sold to schools and were NOT used. Terms: https://www.ibo.org/terms-and-conditions/ and https://www.ibo.org/copyright",
+  "firstExam": "2026"
+ },
+ "grades": [
+  {
+   "grade": "all",
+   "units": [
+    {
+     "id": "core-understanding-power-and-global-politics",
+     "title": "Core: Understanding power and global politics",
+     "topics": [
+      {
+       "id": "power-and-key-concepts",
+       "title": "Power and key concepts",
+       "subtopics": [
+        {
+         "id": "power-in-global-politics",
+         "title": "Power in global politics",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explore and evaluate power in contemporary global politics."
+          }
+         ]
+        },
+        {
+         "id": "sovereignty-legitimacy-and-interdependence",
+         "title": "Sovereignty, legitimacy and interdependence",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Examine critically concepts such as sovereignty, legitimacy and interdependence."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "actors-and-systems",
+       "title": "Actors and systems",
+       "subtopics": [
+        {
+         "id": "state-and-non-state-actors",
+         "title": "State and non-state actors",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Examine how state and non-state actors operate and interact within political systems."
+          }
+         ]
+        },
+        {
+         "id": "cooperation-among-states",
+         "title": "Cooperation among states",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain why international cooperation may be problematic for some states, using sources and examples."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "skills",
+       "title": "Skills",
+       "subtopics": [
+        {
+         "id": "analysing-political-sources",
+         "title": "Analysing political sources",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Identify and analyse claims, perspectives and evidence in source material."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "thematic-studies",
+     "title": "Thematic studies",
+     "topics": [
+      {
+       "id": "rights-and-justice",
+       "title": "Rights and justice",
+       "subtopics": [
+        {
+         "id": "rights-and-justice",
+         "title": "Rights and justice",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Investigate contemporary issues of rights and justice from multiple perspectives."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "development-and-sustainability",
+       "title": "Development and sustainability",
+       "subtopics": [
+        {
+         "id": "development-and-sustainability",
+         "title": "Development and sustainability",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Investigate development and sustainability issues, including whether development creates inequality."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "peace-and-conflict",
+       "title": "Peace and conflict",
+       "subtopics": [
+        {
+         "id": "peace-and-conflict",
+         "title": "Peace and conflict",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Investigate peace and conflict, including structural violence and lasting peace."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "hl-extension-global-political-challenges",
+     "title": "HL extension: Global political challenges",
+     "topics": [
+      {
+       "id": "global-political-challenges",
+       "title": "Global political challenges",
+       "subtopics": [
+        {
+         "id": "researching-global-challenges",
+         "title": "Researching global challenges",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Research cases of global political challenges and the links between them."
+          }
+         ]
+        },
+        {
+         "id": "international-organisations-and-challenges",
+         "title": "International organisations and challenges",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Evaluate how effective international governmental organisations are at addressing global challenges."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "build": {
+  "builtAt": "2026-10-14T10:53:19.718Z",
+  "model": "claude-agent",
+  "usd": 0,
+  "expectedCodes": null,
+  "coverage": null,
+  "missingCodes": [],
+  "counts": {
+   "grades": 1,
+   "units": 3,
+   "topics": 7,
+   "subtopics": 10,
+   "outcomes": 10
+  },
+  "warnings": [
+   "grade DP year 1 has no content",
+   "grade DP year 2 has no content",
+   "unexpected grade label \"all\""
+  ]
+ }
+}

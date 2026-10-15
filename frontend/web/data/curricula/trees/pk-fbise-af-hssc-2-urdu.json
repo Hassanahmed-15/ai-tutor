@@ -1,0 +1,617 @@
+{
+ "id": "pk-fbise-af-hssc-2-urdu",
+ "region": "PK",
+ "framework": "FBISE Assessment Framework (National Curriculum of Pakistan 2022-23)",
+ "board": "FBISE",
+ "qualification": "HSSC-II",
+ "subject": "Urdu",
+ "syllabusCode": null,
+ "gradeSystem": "grade",
+ "source": {
+  "urls": [
+   "https://www.fbise.edu.pk/ModelPaper/2025/Assessment%20Frameworks/HSSC-II/Final%20Assessment%20Framework%20%2B%20Model%20Question%20Paper%20Urdu%20HSSC-II.pdf"
+  ],
+  "publisher": "Federal Board of Intermediate and Secondary Education",
+  "licence": "Government publication; structure + our own wording only",
+  "firstExam": "2026"
+ },
+ "grades": [
+  {
+   "grade": "12",
+   "units": [
+    {
+     "id": "skill-a-listening",
+     "title": "Skill A: Listening (سننا)",
+     "topics": [
+      {
+       "id": "listening",
+       "title": "Listening",
+       "subtopics": [
+        {
+         "id": "listening-to-spoken-urdu",
+         "title": "Listening to spoken Urdu",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Understand and respond to prose and poetry heard from different sources, such as events, stories, speeches and explanations."
+          },
+          {
+           "code": null,
+           "text": "Retell the content of a spoken piece and judge broadcast material."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "skill-b-speaking",
+     "title": "Skill B: Speaking (بولنا)",
+     "topics": [
+      {
+       "id": "speaking",
+       "title": "Speaking",
+       "subtopics": [
+        {
+         "id": "speaking-with-correct-language",
+         "title": "Speaking with correct language",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Speak with correct grammar and pronunciation, presenting reasoned views on everyday topics."
+          },
+          {
+           "code": null,
+           "text": "Deliver a short speech or talk on a topic using proper tone and delivery."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "skill-c-reading",
+     "title": "Skill C: Reading (پڑھنا)",
+     "topics": [
+      {
+       "id": "reading-prose-and-poetry",
+       "title": "Reading prose and poetry",
+       "subtopics": [
+        {
+         "id": "understanding-texts",
+         "title": "Understanding texts",
+         "outcomes": [
+          {
+           "code": "U-12-C-03",
+           "text": "Show understanding of a prose or verse text by connecting it to personal and social life."
+          },
+          {
+           "code": "U-12-C-05",
+           "text": "Read different writings such as letters, travelogues and reports and explain their purposes."
+          }
+         ]
+        },
+        {
+         "id": "responding-to-a-text",
+         "title": "Responding to a text",
+         "outcomes": [
+          {
+           "code": "U-12-C-10",
+           "text": "Give an opinion on a part of a text, with references and reasons."
+          },
+          {
+           "code": "U-12-C-16",
+           "text": "Identify the themes in a prose or poetry piece and state the author's and readers' views."
+          },
+          {
+           "code": "U-12-C-17",
+           "text": "Read a poem and explain its verses with references, critically commenting."
+          },
+          {
+           "code": "U-12-C-27",
+           "text": "Read a text and relate its ideas, views and attitudes to each other, then comment and analyse."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "literary-forms",
+       "title": "Literary forms",
+       "subtopics": [
+        {
+         "id": "prose-genres",
+         "title": "Prose genres",
+         "outcomes": [
+          {
+           "code": "U-12-C-08",
+           "text": "Read prose genres (story, dastan, fiction, drama, novel) and tell their literary styles apart."
+          }
+         ]
+        },
+        {
+         "id": "ghazal-features",
+         "title": "Ghazal features",
+         "outcomes": [
+          {
+           "code": "U-12-C-15",
+           "text": "Identify matla, matla-e-sani and maqta in a ghazal and explain why they are used."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "skill-d-writing",
+     "title": "Skill D: Writing (لکھنا)",
+     "topics": [
+      {
+       "id": "writing",
+       "title": "Writing",
+       "subtopics": [
+        {
+         "id": "writing-accurately",
+         "title": "Writing accurately",
+         "outcomes": [
+          {
+           "code": "U-12-D-01",
+           "text": "Proofread and edit writing, keeping correct spelling in different tasks."
+          }
+         ]
+        },
+        {
+         "id": "writing-sentences-and-paragraphs",
+         "title": "Writing sentences and paragraphs",
+         "outcomes": [
+          {
+           "code": "U-12-D-02",
+           "text": "Write simple and compound sentences using idioms and proverbs suited to the grade."
+          }
+         ]
+        },
+        {
+         "id": "writing-for-an-audience",
+         "title": "Writing for an audience",
+         "outcomes": [
+          {
+           "code": "U-12-D-14",
+           "text": "Write at least 350 words with verses and references for an audience and purpose."
+          }
+         ]
+        },
+        {
+         "id": "pen-portraits",
+         "title": "Pen portraits",
+         "outcomes": [
+          {
+           "code": "U-12-D-16",
+           "text": "Write pen portraits of literary figures."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "poetry-and-prose-analysis",
+       "title": "Poetry and prose analysis",
+       "subtopics": [
+        {
+         "id": "explaining-poetry",
+         "title": "Explaining poetry",
+         "outcomes": [
+          {
+           "code": "U-12-D-03",
+           "text": "Explain lines of a poem or ghazal with references, including style and poetic beauty."
+          }
+         ]
+        },
+        {
+         "id": "summarising",
+         "title": "Summarising",
+         "outcomes": [
+          {
+           "code": "U-12-D-04",
+           "text": "Summarise the key points of a poem or prose piece after reading."
+          },
+          {
+           "code": "U-12-D-13",
+           "text": "Summarise selected quotations."
+          }
+         ]
+        },
+        {
+         "id": "central-idea",
+         "title": "Central idea",
+         "outcomes": [
+          {
+           "code": "U-12-D-05",
+           "text": "Write the central idea of a text keeping the author's and reader's views in mind."
+          }
+         ]
+        },
+        {
+         "id": "translation",
+         "title": "Translation",
+         "outcomes": [
+          {
+           "code": "U-12-D-06",
+           "text": "Translate quotations from English to Urdu keeping meaning and intent."
+          }
+         ]
+        },
+        {
+         "id": "dramatic-writing",
+         "title": "Dramatic writing",
+         "outcomes": [
+          {
+           "code": "U-12-D-08",
+           "text": "Turn different literary forms into dramatic form."
+          }
+         ]
+        },
+        {
+         "id": "explaining-difficult-quotations",
+         "title": "Explaining difficult quotations",
+         "outcomes": [
+          {
+           "code": "U-12-D-15",
+           "text": "Explain, critique and analyse a quotation from an unseen text following instructions."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "essay-and-letter-writing",
+       "title": "Essay and letter writing",
+       "subtopics": [
+        {
+         "id": "essay-writing",
+         "title": "Essay writing",
+         "outcomes": [
+          {
+           "code": "U-12-D-07",
+           "text": "Write essays in descriptive, argumentative, detailed and research styles on varied topics."
+          }
+         ]
+        },
+        {
+         "id": "letters-and-applications",
+         "title": "Letters and applications",
+         "outcomes": [
+          {
+           "code": "U-12-D-09",
+           "text": "Write formal and informal letters, invitations, congratulation letters, and electronic mail."
+          }
+         ]
+        },
+        {
+         "id": "forms-and-documents",
+         "title": "Forms and documents",
+         "outcomes": [
+          {
+           "code": "U-12-D-10",
+           "text": "Fill in forms such as office, press and court documents."
+          }
+         ]
+        },
+        {
+         "id": "reports-and-reportage",
+         "title": "Reports and reportage",
+         "outcomes": [
+          {
+           "code": "U-12-D-11",
+           "text": "Tell reportage, an investigative report and a memo apart, and write them."
+          }
+         ]
+        },
+        {
+         "id": "critiquing-writing",
+         "title": "Critiquing writing",
+         "outcomes": [
+          {
+           "code": "U-12-D-12",
+           "text": "Critique formal and informal writing such as a column, report or review."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "skill-e-grammar-and-language-study",
+     "title": "Skill E: Grammar and language study (قواعد / زبان شناسی)",
+     "topics": [
+      {
+       "id": "word-forms",
+       "title": "Word forms",
+       "subtopics": [
+        {
+         "id": "singular-and-plural",
+         "title": "Singular and plural",
+         "outcomes": [
+          {
+           "code": "U-12-E-01",
+           "text": "Form and use singular and plural forms, including broken and sound plurals, in writing."
+          }
+         ]
+        },
+        {
+         "id": "gender-and-pronouns",
+         "title": "Gender and pronouns",
+         "outcomes": [
+          {
+           "code": "U-12-E-02",
+           "text": "Use masculine and feminine nouns and pronouns correctly and know how language changes."
+          }
+         ]
+        },
+        {
+         "id": "compound-words",
+         "title": "Compound words",
+         "outcomes": [
+          {
+           "code": "U-12-E-05",
+           "text": "Identify word combinations and use them properly in writing."
+          }
+         ]
+        },
+        {
+         "id": "similarity-words",
+         "title": "Similarity words",
+         "outcomes": [
+          {
+           "code": "U-12-E-06",
+           "text": "Identify similar or alike words in prose or verse by their link and effect."
+          }
+         ]
+        },
+        {
+         "id": "compounds-and-masdar",
+         "title": "Compounds and masdar",
+         "outcomes": [
+          {
+           "code": "U-12-E-10",
+           "text": "Use composite complete and incomplete compounds and form compound masdars."
+          }
+         ]
+        },
+        {
+         "id": "prefixes-and-suffixes",
+         "title": "Prefixes and suffixes",
+         "outcomes": [
+          {
+           "code": "U-12-E-12",
+           "text": "Use prefixes and suffixes in writing."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "word-meanings",
+       "title": "Word meanings",
+       "subtopics": [
+        {
+         "id": "opposites",
+         "title": "Opposites",
+         "outcomes": [
+          {
+           "code": "U-12-E-03",
+           "text": "Identify pairs of opposite words and use them in writing."
+          }
+         ]
+        },
+        {
+         "id": "synonyms",
+         "title": "Synonyms",
+         "outcomes": [
+          {
+           "code": "U-12-E-04",
+           "text": "Identify synonyms and use them suitably in writing."
+          }
+         ]
+        },
+        {
+         "id": "words-with-two-meanings",
+         "title": "Words with two meanings",
+         "outcomes": [
+          {
+           "code": "U-12-E-07",
+           "text": "Use words, sentences and phrases with double meanings in speech and writing."
+          }
+         ]
+        },
+        {
+         "id": "dictionary-use",
+         "title": "Dictionary use",
+         "outcomes": [
+          {
+           "code": "U-12-E-11",
+           "text": "Use a dictionary and thesaurus to choose words and use diacritics for correct pronunciation."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "parts-of-speech",
+       "title": "Parts of speech",
+       "subtopics": [
+        {
+         "id": "particles-and-expressive-words",
+         "title": "Particles and expressive words",
+         "outcomes": [
+          {
+           "code": "U-12-E-08",
+           "text": "Use particles such as conjunctions, prepositions, interrogatives and exclamatory words in speech and writing."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "punctuation",
+       "title": "Punctuation",
+       "subtopics": [
+        {
+         "id": "punctuation-marks",
+         "title": "Punctuation marks",
+         "outcomes": [
+          {
+           "code": "U-12-E-09",
+           "text": "Recognise and correctly use punctuation marks, including the question mark, comma and exclamation."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "sentence-structure",
+       "title": "Sentence structure",
+       "subtopics": [
+        {
+         "id": "correcting-sentences",
+         "title": "Correcting sentences",
+         "outcomes": [
+          {
+           "code": "U-12-E-13",
+           "text": "Correct sentences and paragraphs with wrong structure, idioms or proverbs."
+          }
+         ]
+        },
+        {
+         "id": "idioms-and-proverbs",
+         "title": "Idioms and proverbs",
+         "outcomes": [
+          {
+           "code": "U-12-E-14",
+           "text": "Use idioms and proverbs to add meaning and quality to creative writing."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "poetry-forms",
+       "title": "Poetry forms",
+       "subtopics": [
+        {
+         "id": "types-of-poems",
+         "title": "Types of poems",
+         "outcomes": [
+          {
+           "code": "U-12-E-15",
+           "text": "Identify poems by theme (hamd, naat, national poem, qasida, hajv, dua, manqabat, marsiya, masnavi)."
+          }
+         ]
+        },
+        {
+         "id": "poem-forms",
+         "title": "Poem forms",
+         "outcomes": [
+          {
+           "code": "U-12-E-16",
+           "text": "Tell apart poem forms such as ghazal, mukhammas and musaddas."
+          }
+         ]
+        },
+        {
+         "id": "elements-of-a-ghazal",
+         "title": "Elements of a ghazal",
+         "outcomes": [
+          {
+           "code": "U-12-E-17",
+           "text": "Identify and understand elements of a ghazal such as misra, sher, qafiya, radif, band, matla and maqta."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "figures-of-speech",
+       "title": "Figures of speech",
+       "subtopics": [
+        {
+         "id": "ilm-e-bayan-and-ilm-e-badi",
+         "title": "Ilm-e-bayan and ilm-e-badi",
+         "outcomes": [
+          {
+           "code": "U-12-E-18",
+           "text": "Recognise the beauties of poetry: simile, metaphor, kinaya, majaz-e-mursal and rhetorical devices such as tanasub and mubalagha."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "build": {
+  "builtAt": "2026-10-14T08:07:32.168Z",
+  "model": "claude-agent",
+  "usd": 0,
+  "expectedCodes": 85,
+  "coverage": 0.49411764705882355,
+  "missingCodes": [
+   "U-11-C-03",
+   "U-11-C-05",
+   "U-11-C-08",
+   "U-11-C-10",
+   "U-11-C-15",
+   "U-11-C-16",
+   "U-11-C-17",
+   "U-11-C-28",
+   "U-11-D-01",
+   "U-11-D-02",
+   "U-11-D-03",
+   "U-11-D-04",
+   "U-11-D-05",
+   "U-11-D-06",
+   "U-11-D-07",
+   "U-11-D-08",
+   "U-11-D-09",
+   "U-11-D-10",
+   "U-11-D-11",
+   "U-11-D-12",
+   "U-11-D-13",
+   "U-11-D-14",
+   "U-11-D-15",
+   "U-11-D-16",
+   "U-11-E-01",
+   "U-11-E-02",
+   "U-11-E-03",
+   "U-11-E-04",
+   "U-11-E-05",
+   "U-11-E-06",
+   "U-11-E-07",
+   "U-11-E-08",
+   "U-11-E-09",
+   "U-11-E-10",
+   "U-11-E-11",
+   "U-11-E-12",
+   "U-11-E-13",
+   "U-11-E-14",
+   "U-11-E-15",
+   "U-11-E-16",
+   "U-11-E-17",
+   "U-11-E-18",
+   "U-12-C-28"
+  ],
+  "counts": {
+   "grades": 1,
+   "units": 5,
+   "topics": 14,
+   "subtopics": 39,
+   "outcomes": 46
+  },
+  "warnings": []
+ }
+}

@@ -1,0 +1,1425 @@
+{
+ "id": "us-sc-world-languages",
+ "region": "US",
+ "framework": "South Carolina state academic standards: World Languages",
+ "board": null,
+ "qualification": "K-12",
+ "subject": "World Languages",
+ "syllabusCode": null,
+ "gradeSystem": "grade",
+ "source": {
+  "urls": [
+   "https://api.commonstandardsproject.com/api/v1/jurisdictions/033B7F9D29D84F09AF312E83F31AE348",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/033B7F9D29D84F09AF312E83F31AE348_D2529146_grades-01-02-03-04-05-06-07-08-09-10-11-12-k"
+  ],
+  "publisher": "South Carolina state education agency (machine-readable via Common Standards Project / ASN)",
+  "licence": "CC BY 3.0 US, Desire2Learn Incorporated",
+  "firstExam": "2013"
+ },
+ "grades": [
+  {
+   "grade": "K-12",
+   "units": [
+    {
+     "id": "competencies-benchmarks-indicators-for-modern-la",
+     "title": "Competencies, Benchmarks, Indicators for Modern Languages",
+     "topics": [
+      {
+       "id": "every-learner-will-use-a-world-language-in-addit",
+       "title": "Every learner will use a world language, in addition to English, to engage in meaningful, intercultural communication, understand and interpret the spoken and written language, and present information, concepts and ideas in local and global communities. Through learning the language, they will gain an understanding of the perspectives of other cultures and compare the language and cultures learned with their own",
+       "subtopics": [
+        {
+         "id": "every-learner-will-use-a-world-language-in-addit",
+         "title": "Every learner will use a world language, in addition to English, to engage in meaningful, intercultural communication, understand and interpret the spoken and written language, and present information, concepts and ideas in local and global communities. Through learning the language, they will gain an understanding of the perspectives of other cultures and compare the language and cultures learned with their own",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "I can interpret information, concepts, and ideas from a variety of culturally authentic sources on a variety of topics."
+          },
+          {
+           "code": null,
+           "text": "I can exchange information, concepts, and ideas with a variety of speakers or readers on a variety of topics in a culturally appropriate context."
+          },
+          {
+           "code": null,
+           "text": "I can present information, concepts, and ideas to an audience of listeners or readers on a variety of topics in a culturally appropriate context."
+          },
+          {
+           "code": null,
+           "text": "I can use my language skills to investigate the world beyond my immediate environment."
+          },
+          {
+           "code": null,
+           "text": "I can use my language skills to recognize and understand others' ways of thinking as well as my own."
+          },
+          {
+           "code": null,
+           "text": "I can use my language skills and cultural understanding to interact in a cultural context other than my own."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "novice",
+       "title": "Novice",
+       "subtopics": [
+        {
+         "id": "novice-low",
+         "title": "Novice Low",
+         "outcomes": [
+          {
+           "code": "NL.IL.1",
+           "text": "I can occasionally identify the sound of a character or a word."
+          },
+          {
+           "code": "NL.IL.2",
+           "text": "I can occasionally understand isolated words that I have memorized, particularly when accompanied by gestures or pictures."
+          },
+          {
+           "code": "NL.IR.1",
+           "text": "I can occasionally recognize a few letters or characters."
+          },
+          {
+           "code": "NL.IR.2",
+           "text": "I can connect some words, phrases or characters to their meanings."
+          },
+          {
+           "code": "NL.IC.1",
+           "text": "I can greet my peers."
+          },
+          {
+           "code": "NL.IC.2",
+           "text": "I can introduce myself to someone."
+          },
+          {
+           "code": "NL.IC.3",
+           "text": "I can answer a few simple questions."
+          },
+          {
+           "code": "NL.PS.1",
+           "text": "I can recite words and phrases that I have learned."
+          },
+          {
+           "code": "NL.PS.2",
+           "text": "I can state the names of familiar people, places, and objects in pictures and posters using words or memorized phrases."
+          },
+          {
+           "code": "NL.PS.3",
+           "text": "I can introduce myself to a group."
+          },
+          {
+           "code": "NL.PS.4",
+           "text": "I can recite short memorized phrases, parts of poems, and rhymes."
+          },
+          {
+           "code": "NL.PW.1",
+           "text": "I can copy some characters or letters and words that I see on the wall or board, in a book, or on the computer."
+          },
+          {
+           "code": "NL.PW.2",
+           "text": "I can write words and phrases that I have learned."
+          },
+          {
+           "code": "NL.PW.3",
+           "text": "I can label familiar people, places, and objects in pictures and posters."
+          }
+         ]
+        },
+        {
+         "id": "novice-mid",
+         "title": "Novice Mid",
+         "outcomes": [
+          {
+           "code": "NM.IL.1",
+           "text": "I can understand a few courtesy phrases."
+          },
+          {
+           "code": "NM.IL.2",
+           "text": "I can recognize and sometimes understand basic information in words and phrases that I have memorized."
+          },
+          {
+           "code": "NM.IL.3",
+           "text": "I can recognize and sometimes understand words and phrases that I have learned for specific purposes."
+          },
+          {
+           "code": "NM.IR.1",
+           "text": "I can recognize words and phrases and characters with the help of visuals."
+          },
+          {
+           "code": "NM.IR.2",
+           "text": "I can recognize words, phrases, and characters when I associate them with things I already know."
+          },
+          {
+           "code": "NM.IC.1",
+           "text": "I can greet and leave people in a polite way."
+          },
+          {
+           "code": "NM.IC.2",
+           "text": "I can introduce myself and others."
+          },
+          {
+           "code": "NM.IC.3",
+           "text": "I can answer a variety of simple questions."
+          },
+          {
+           "code": "NM.IC.4",
+           "text": "I can make some simple statements in a conversation."
+          },
+          {
+           "code": "NM.IC.5",
+           "text": "I can ask some simple questions."
+          },
+          {
+           "code": "NM.IC.6",
+           "text": "I can communicate basic information about myself and people I know."
+          },
+          {
+           "code": "NM.IC.7",
+           "text": "I can communicate some basic information about my everyday life."
+          },
+          {
+           "code": "NM.PS.1",
+           "text": "I can present information about myself and others using words and phrases."
+          },
+          {
+           "code": "NM.PS.2",
+           "text": "I can express my likes and dislikes using words, phrases, and memorized expressions."
+          },
+          {
+           "code": "NM.PS.3",
+           "text": "I can present information about familiar items in my immediate environment."
+          },
+          {
+           "code": "NM.PS.4",
+           "text": "I can tell about my daily activities using words, phrases, and memorized expressions."
+          },
+          {
+           "code": "NM.PS.5",
+           "text": "I can present simple information about something I learned using words, phrases, and memorized expressions."
+          },
+          {
+           "code": "NM.PW.1",
+           "text": "I can fill out a simple form with some basic personal information."
+          },
+          {
+           "code": "NM.PW.2",
+           "text": "I can write about myself using learned phrases and memorized expressions."
+          },
+          {
+           "code": "NM.PW.3",
+           "text": "I can list my daily activities and write lists that help me in my day-to-day life."
+          },
+          {
+           "code": "NM.W.4",
+           "text": "I can write notes about something I have learned using lists, phrases, and memorized expressions."
+          }
+         ]
+        },
+        {
+         "id": "novice-high",
+         "title": "Novice High",
+         "outcomes": [
+          {
+           "code": "NH.IL.1",
+           "text": "I can sometimes understand simple questions or statements on familiar topics."
+          },
+          {
+           "code": "NH.IL.2",
+           "text": "I can understand simple information when presented with pictures and graphs."
+          },
+          {
+           "code": "NH.IL.3",
+           "text": "I can sometimes understand the main idea of conversations that I overhear."
+          },
+          {
+           "code": "NH.IR.1",
+           "text": "I can usually understand short simple messages on familiar topics."
+          },
+          {
+           "code": "NH.IR.2",
+           "text": "I can sometimes understand short, simple descriptions with the help of pictures or graphs."
+          },
+          {
+           "code": "NH.IR.3",
+           "text": "I can sometimes understand the main idea of published materials."
+          },
+          {
+           "code": "NH.IR.4",
+           "text": "I can understand simple everyday notices in public places on topics that are familiar to me."
+          },
+          {
+           "code": "NH.IC.1",
+           "text": "I can exchange some personal information."
+          },
+          {
+           "code": "NH.IC.2",
+           "text": "I can exchange information using texts, graphs or pictures."
+          },
+          {
+           "code": "NH.IC.3",
+           "text": "I can ask for and give simple directions."
+          },
+          {
+           "code": "NH.IC.4",
+           "text": "I can make plans with others."
+          },
+          {
+           "code": "NH.IC.5",
+           "text": "I can interact with others in everyday situations."
+          },
+          {
+           "code": "NH.PS.1",
+           "text": "I can present information about my life using phrases and simple sentences."
+          },
+          {
+           "code": "NH.PS.2",
+           "text": "I can present a familiar experience or event in simple terms using phrases and simple sentences."
+          },
+          {
+           "code": "NH.PS.3",
+           "text": "I can present information about a familiar person, place, or thing using phrases and simple sentences."
+          },
+          {
+           "code": "NH.PS.4",
+           "text": "I can present information about others using phrases and simple sentences."
+          },
+          {
+           "code": "NH.PS.5",
+           "text": "I can give basic instructions on how to make or do something using phrases and simple sentences."
+          },
+          {
+           "code": "NH.PS.6",
+           "text": "I can present basic information about things I have learned using phrases and simple sentences."
+          },
+          {
+           "code": "NH.PW.1",
+           "text": "I can write information about my daily life in a letter, blog, discussion board, or email message."
+          },
+          {
+           "code": "NH.PW.2",
+           "text": "I can write short notes using phrases and simple sentences."
+          },
+          {
+           "code": "NH.PW.3",
+           "text": "I can write about a familiar experience or event using practiced material."
+          },
+          {
+           "code": "NH.PW.4",
+           "text": "I can write basic information about things I have learned."
+          },
+          {
+           "code": "NH.PW.5",
+           "text": "I can ask for information in writing."
+          }
+         ]
+        },
+        {
+         "id": "intercultrual-competencies",
+         "title": "Intercultrual Competencies",
+         "outcomes": [
+          {
+           "code": "N.CPP.1",
+           "text": "I can identify some common products related to home and community life of other cultures and my own."
+          },
+          {
+           "code": "N.CPP.2",
+           "text": "I can identify some common practices related to home and community life of other cultures and my own."
+          },
+          {
+           "code": "N.CP.1",
+           "text": "I can identify some beliefs and values related to age, gender, social class and ethnicity."
+          },
+          {
+           "code": "N.CP.2",
+           "text": "I can identify some characteristics of national identity."
+          },
+          {
+           "code": "N.CP.3",
+           "text": "I can identify ways in which cultures are globalized."
+          },
+          {
+           "code": "N.CIA.1",
+           "text": "I can imitate some simple patterns of behavior in familiar settings across cultures."
+          },
+          {
+           "code": "N.CIA.2",
+           "text": "I can use memorized language and very basic cultural knowledge to interact with others."
+          },
+          {
+           "code": "N.CIA.3",
+           "text": "I can use memorized language, and very basic cultural knowledge to accomplish simple, routine tasks."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "intermediate",
+       "title": "Intermediate",
+       "subtopics": [
+        {
+         "id": "intermediate-low",
+         "title": "Intermediate Low",
+         "outcomes": [
+          {
+           "code": "IL.IL.1",
+           "text": "I can understand the basic purpose of a message."
+          },
+          {
+           "code": "IL.IL.2",
+           "text": "I can understand messages related to my basic needs."
+          },
+          {
+           "code": "IL.IL.3",
+           "text": "I can understand questions and simple statements on everyday topics when I am part of the conversation."
+          },
+          {
+           "code": "IL.IR.1",
+           "text": "I can understand messages in which the writer tells or asks me about topics of personal interest."
+          },
+          {
+           "code": "IL.IR.2",
+           "text": "I can identify some simple information needed on forms."
+          },
+          {
+           "code": "IL.IR.3",
+           "text": "I can identify some information from news media."
+          },
+          {
+           "code": "IL.IC.1",
+           "text": "I can have a simple conversation on a limited number of everyday topics."
+          },
+          {
+           "code": "IL.IC.2",
+           "text": "I can ask and answer questions of factual information that is familiar to me"
+          },
+          {
+           "code": "IL.IC.3",
+           "text": "I can use the language to meet my basic needs in familiar situations."
+          },
+          {
+           "code": "IL.PS.1",
+           "text": "I can talk about people, activities, events, and experiences."
+          },
+          {
+           "code": "IL.PS.2",
+           "text": "I can express my needs and wants."
+          },
+          {
+           "code": "IL.PS.3",
+           "text": "I can present information on plans, instructions, and directions."
+          },
+          {
+           "code": "IL.PS.4",
+           "text": "I can present songs, short skits or dramatic readings."
+          },
+          {
+           "code": "IL.PS.5",
+           "text": "I can express my preferences on topics of interest."
+          },
+          {
+           "code": "IL.PW.1",
+           "text": "I can write about people, activities, events, and experiences."
+          },
+          {
+           "code": "IL.PW.2",
+           "text": "I can prepare materials for a presentation."
+          },
+          {
+           "code": "IL.PW.3",
+           "text": "I can write simply about topics of interest."
+          },
+          {
+           "code": "IL.PW.4",
+           "text": "I can write basic instructions on how to make or do something."
+          },
+          {
+           "code": "IL.PW.5",
+           "text": "I can write questions to obtain information."
+          }
+         ]
+        },
+        {
+         "id": "intermediate-mid",
+         "title": "Intermediate Mid",
+         "outcomes": [
+          {
+           "code": "IM.IL.1",
+           "text": "I can understand basic information in ads, announcements and other simple recordings."
+          },
+          {
+           "code": "IM.IL.2",
+           "text": "I can understand the main idea of what I listen to for personal enjoyment."
+          },
+          {
+           "code": "IM.IL.3",
+           "text": "I can understand messages related to my everyday life."
+          },
+          {
+           "code": "IM.IR.1",
+           "text": "I can understand simple personal questions."
+          },
+          {
+           "code": "IM.IR.2",
+           "text": "I can understand basic information in ads, announcements and other simple texts."
+          },
+          {
+           "code": "IM.IR.3",
+           "text": "I can understand the main idea of what I read for personal enjoyment."
+          },
+          {
+           "code": "IM.IR.4",
+           "text": "I can read simple written exchanges between other people."
+          },
+          {
+           "code": "IM.IC.1",
+           "text": "I can start, maintain, and end a conversation on a variety of familiar topics."
+          },
+          {
+           "code": "IM.IC.2",
+           "text": "I can talk about my daily activities and personal preferences."
+          },
+          {
+           "code": "IM.IC.3",
+           "text": "I can use my language to handle tasks related to my personal needs."
+          },
+          {
+           "code": "IM.IC.4",
+           "text": "I can exchange information about subjects of special interest to me."
+          },
+          {
+           "code": "IM.PS.1",
+           "text": "I can make a presentation about my personal and social experiences."
+          },
+          {
+           "code": "IM.PS.2",
+           "text": "I can make a presentation on something I have learned or researched."
+          },
+          {
+           "code": "IM.PS.3",
+           "text": "I can make a presentation about common interests and issues and state my viewpoint."
+          },
+          {
+           "code": "IM.PW.1",
+           "text": "I can write messages and announcements."
+          },
+          {
+           "code": "IM.PW.2",
+           "text": "I can write short reports about something I have learned or researched."
+          },
+          {
+           "code": "IM.PW.3",
+           "text": "I can compose communications for public distribution."
+          }
+         ]
+        },
+        {
+         "id": "intermediate-high",
+         "title": "Intermediate High",
+         "outcomes": [
+          {
+           "code": "IH.IL.1",
+           "text": "I can easily understand straightforward information or interactions."
+          },
+          {
+           "code": "IH.IL.2",
+           "text": "I can understand a few details in ads, announcements and other simple recordings."
+          },
+          {
+           "code": "IH.IL.3",
+           "text": "I can sometimes understand situations with complicating factors."
+          },
+          {
+           "code": "IH.IR.1",
+           "text": "I can understand accounts of personal events or experiences."
+          },
+          {
+           "code": "IH.IR.2",
+           "text": "I can sometimes follow short, written instructions when supported by visuals."
+          },
+          {
+           "code": "IH.IR.3",
+           "text": "I can understand the main idea of and a few supporting facts about famous people and historic events."
+          },
+          {
+           "code": "IH.IC.1",
+           "text": "I can exchange information related to areas of mutual interest."
+          },
+          {
+           "code": "IH.IC.2",
+           "text": "I can use my language to do a task that requires multiple steps."
+          },
+          {
+           "code": "IH.IC.3",
+           "text": "I can use my language to handle a situation that may have a complication."
+          },
+          {
+           "code": "IH.PS.1",
+           "text": "I can present information on academic and work topics."
+          },
+          {
+           "code": "IH.PS.2",
+           "text": "I can make a presentation on events, activities and topics of particular interest."
+          },
+          {
+           "code": "IH.PS.3",
+           "text": "I can present my point of view and provide reasons to support it."
+          },
+          {
+           "code": "IH.PW.1",
+           "text": "I can write about school and academic topics."
+          },
+          {
+           "code": "IH.PW.2",
+           "text": "I can write about work and career topics."
+          },
+          {
+           "code": "IH.PW.3",
+           "text": "I can write about community topics and events."
+          },
+          {
+           "code": "IH.PW.4",
+           "text": "I can write about an entertainment or social event."
+          }
+         ]
+        },
+        {
+         "id": "intercultrual-competencies",
+         "title": "Intercultrual Competencies",
+         "outcomes": [
+          {
+           "code": "I.CPP.1",
+           "text": "I can explore and reference current and past examples of authentic cultural products and practices."
+          },
+          {
+           "code": "I.CPP.2",
+           "text": "I can compare and contrast some common products of other cultures and my own."
+          },
+          {
+           "code": "I.CPP.3",
+           "text": "I can compare and contrast some behaviors or practices of other cultures and my own."
+          },
+          {
+           "code": "I.CP.1",
+           "text": "I can describe some basic cultural viewpoints."
+          },
+          {
+           "code": "I.CP.2",
+           "text": "I can make some generalizations about a culture."
+          },
+          {
+           "code": "I.CIA.1",
+           "text": "I can handle short interactions with peers and colleagues in familiar situations at school, work, or play."
+          },
+          {
+           "code": "I.CIA.2",
+           "text": "I can recognize and refer to elements of traditional and pop culture."
+          },
+          {
+           "code": "I.CIA.3",
+           "text": "I can sometimes recognize when I have caused a cultural misunderstanding and try to correct it."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "advanced",
+       "title": "Advanced",
+       "subtopics": [
+        {
+         "id": "advanced-low",
+         "title": "Advanced Low",
+         "outcomes": [
+          {
+           "code": "AL.IL.1",
+           "text": "I understand descriptions and stories of events that have happened or will happen."
+          },
+          {
+           "code": "AL.IL.2",
+           "text": "I can understand the main idea of popular genres."
+          },
+          {
+           "code": "AL.IR.1",
+           "text": "I can find and use information for practical purposes."
+          },
+          {
+           "code": "AL.IR.2",
+           "text": "I can read texts that compare and contrast information."
+          },
+          {
+           "code": "AL.IR.3",
+           "text": "I can follow simple written instructions."
+          },
+          {
+           "code": "AL.IC.1",
+           "text": "I can participate in conversations on a wide variety of topics that go beyond my everyday life."
+          },
+          {
+           "code": "AL.IC.2",
+           "text": "I can compare and contrast life in different locations and in different times."
+          },
+          {
+           "code": "AL.IC.3",
+           "text": "I can resolve an unexpected complication that arises in a familiar situation."
+          },
+          {
+           "code": "AL.IC.4",
+           "text": "I can conduct or participate in interviews."
+          },
+          {
+           "code": "AL.PS.1",
+           "text": "I can deliver short presentations on a number of academic and workplace topics."
+          },
+          {
+           "code": "AL.PS.2",
+           "text": "I can deliver short presentations on social and cultural topics."
+          },
+          {
+           "code": "AL.PS.3",
+           "text": "I can explain issues of public and community interest, including different viewpoints."
+          },
+          {
+           "code": "AL.PS.4",
+           "text": "I can deliver presentations for a specific audience."
+          },
+          {
+           "code": "AL.PW.1",
+           "text": "I can meet basic school and academic writing needs."
+          },
+          {
+           "code": "AL.PW.2",
+           "text": "I can meet basic work and career writing needs."
+          },
+          {
+           "code": "AL.PW.3",
+           "text": "I can meet basic social and civic writing needs."
+          }
+         ]
+        },
+        {
+         "id": "advanced-mid",
+         "title": "Advanced Mid",
+         "outcomes": [
+          {
+           "code": "AM.IL.1",
+           "text": "I can understand the main idea and many details of descriptions or interviews."
+          },
+          {
+           "code": "AM.IL.2",
+           "text": "I can understand accounts of events."
+          },
+          {
+           "code": "AM.IL.3",
+           "text": "I can understand directions and instructions on everyday tasks."
+          },
+          {
+           "code": "AM.IR.1",
+           "text": "I can follow the general idea and some details of what is written in a variety of stories and autobiographical accounts."
+          },
+          {
+           "code": "AM.IR.2",
+           "text": "I can understand general information on topics outside my field of interest."
+          },
+          {
+           "code": "AM.IR.3",
+           "text": "I can handle a complication or unexpected turn of events."
+          },
+          {
+           "code": "AM.IC.1",
+           "text": "I can communicate effectively on a wide variety of present, past, and future events."
+          },
+          {
+           "code": "AM.IC.2",
+           "text": "I can exchange general information on topics outside my fields of interest."
+          },
+          {
+           "code": "AM.IC.3",
+           "text": "I can handle a complication or unexpected turn of events."
+          },
+          {
+           "code": "AM.PS.1",
+           "text": "I can present information about events of public or personal interest."
+          },
+          {
+           "code": "AM.PS.2",
+           "text": "I can convey my ideas and elaborate on a variety of academic topics."
+          },
+          {
+           "code": "AM.PS.3",
+           "text": "I can give presentations with ease and detail on a wide variety of topics related to professional interests."
+          },
+          {
+           "code": "AM.PW.1",
+           "text": "I can write well organized texts for a variety of academic purposes."
+          },
+          {
+           "code": "AM.PW.2",
+           "text": "I can write well organized texts for a variety of professional purposes."
+          },
+          {
+           "code": "AM.PW.3",
+           "text": "I can write well organized texts for a variety of general interest purposes"
+          }
+         ]
+        },
+        {
+         "id": "advanced-high",
+         "title": "Advanced High",
+         "outcomes": [
+          {
+           "code": "AH.IL.1",
+           "text": "I can easily understand detailed reports and exposés."
+          },
+          {
+           "code": "AH.IL.2",
+           "text": "I can often understand various viewpoints in extended arguments."
+          },
+          {
+           "code": "AH.IL.3",
+           "text": "I can understand discussions and presentations on many concrete and abstract topics."
+          },
+          {
+           "code": "AH.IR.1",
+           "text": "I can understand narrative, descriptive, and informational texts of any length."
+          },
+          {
+           "code": "AH.IR.2",
+           "text": "I can read about most topics of special interest."
+          },
+          {
+           "code": "AH.IR.3",
+           "text": "I can read most general fiction and non-fiction."
+          },
+          {
+           "code": "AH.IC.1",
+           "text": "I can exchange complex information about academic and professional tasks."
+          },
+          {
+           "code": "AH.IC.2",
+           "text": "I can exchange detailed information on topics within and beyond my fields of interest."
+          },
+          {
+           "code": "AH.IC.3",
+           "text": "I can support my opinion and construct hypotheses."
+          },
+          {
+           "code": "AH.PS.1",
+           "text": "I can present complex information on many concrete topics and related issues."
+          },
+          {
+           "code": "AH.PS.2",
+           "text": "I can present a viewpoint with supporting arguments on a complex issue."
+          },
+          {
+           "code": "AH.PS.3",
+           "text": "I can use appropriate presentational conventions and strategies."
+          },
+          {
+           "code": "AH.PW.1",
+           "text": "I can write using target language and culture conventions to present and elaborate a point of view."
+          },
+          {
+           "code": "AH.PW.2",
+           "text": "I can write using target language and culture conventions for informal purposes."
+          },
+          {
+           "code": "AH.PW.3",
+           "text": "I can write using target language and culture conventions for formal purposes."
+          }
+         ]
+        },
+        {
+         "id": "intercultrual-competencies",
+         "title": "Intercultrual Competencies",
+         "outcomes": [
+          {
+           "code": "A.CPP.1",
+           "text": "I can explain some of the factors that contribute to why products and practices vary across cultures."
+          },
+          {
+           "code": "A.CPP.2",
+           "text": "I can analyze how peoples' practices and behaviors reflect their cultures."
+          },
+          {
+           "code": "A.CPP.3",
+           "text": "I can explore topics of personal and professional interest."
+          },
+          {
+           "code": "A.CP.1",
+           "text": "I can explain how peoples' actions reflect their cultural beliefs."
+          },
+          {
+           "code": "A.CP.2",
+           "text": "I can explain how social, political, religious, and economic institutions reflect cultural beliefs."
+          },
+          {
+           "code": "A.CIA.1",
+           "text": "I can comfortably interact and converse with peers and colleagues at school, work, or play."
+          },
+          {
+           "code": "A.CIA.2",
+           "text": "I can interact with people in some situations outside of my normal routine."
+          },
+          {
+           "code": "A.CIA.3",
+           "text": "I can navigate some formal and official procedures."
+          },
+          {
+           "code": "A.CIA.4",
+           "text": "I can understand that a cultural faux pas has occurred and understand how to correct it."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "competencies-benchmarks-indicators-for-classical",
+     "title": "Competencies, Benchmarks, Indicators for Classical Languages",
+     "topics": [
+      {
+       "id": "every-learner-will-use-a-world-language-other-th",
+       "title": "Every learner will use a world language, other than English, to engage in meaningful, intercultural communication, understand and interpret the spoken and written language, and present information, concepts and ideas in local and global communities. Through learning another language, they will gain an understanding of the perspectives of other cultures and compare the language and cultures learned with their own",
+       "subtopics": [
+        {
+         "id": "every-learner-will-use-a-world-language-other-th",
+         "title": "Every learner will use a world language, other than English, to engage in meaningful, intercultural communication, understand and interpret the spoken and written language, and present information, concepts and ideas in local and global communities. Through learning another language, they will gain an understanding of the perspectives of other cultures and compare the language and cultures learned with their own",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "I can interpret information, concepts, and ideas from a variety of adapted or authentic sources on a variety of topics."
+          },
+          {
+           "code": null,
+           "text": "I can exchange information, concepts, and ideas on a variety of topics."
+          },
+          {
+           "code": null,
+           "text": "I can present information, concepts, and ideas to an audience of listeners or readers on a variety of topics."
+          },
+          {
+           "code": null,
+           "text": "I can use my language skills to investigate the world beyond my immediate environment."
+          },
+          {
+           "code": null,
+           "text": "I can use my language skills to recognize and understand others' ways of thinking as well as my own."
+          },
+          {
+           "code": null,
+           "text": "I can make my knowledge of language and understanding of classical cultures relevant to the modern world."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "novice",
+       "title": "Novice",
+       "subtopics": [
+        {
+         "id": "novice-low",
+         "title": "Novice Low",
+         "outcomes": [
+          {
+           "code": "NL.IR.1",
+           "text": "I can occasionally recognize a few Roman or Greek letters."
+          },
+          {
+           "code": "NL.IR.2",
+           "text": "I can occasionally connect some words or phrases to their meanings."
+          },
+          {
+           "code": "NL.IL.1",
+           "text": "I can occasionally understand isolated words that I have memorized, particularly when accompanied by gestures or pictures."
+          },
+          {
+           "code": "NL.IL.2",
+           "text": "I can occasionally connect some words or phrases to their meanings."
+          },
+          {
+           "code": "NL.IL.3",
+           "text": "I can occasionally identify isolated words that I have memorized, particularly when accompanied by pictures."
+          },
+          {
+           "code": "NL.IC.2",
+           "text": "I can introduce myself."
+          },
+          {
+           "code": "NL.PW.1",
+           "text": "I can copy some letters and words that I see on the wall or board, in a book, or on the computer."
+          }
+         ]
+        },
+        {
+         "id": "novice-mid",
+         "title": "Novice Mid",
+         "outcomes": [
+          {
+           "code": "NM.IR.1",
+           "text": "I can recognize words and phrases with the help of visuals."
+          },
+          {
+           "code": "NM.IR.2",
+           "text": "I can recognize words and phrases with the help of visuals."
+          },
+          {
+           "code": "NM.IR.3",
+           "text": "I can recognize and sometimes understand words and phrases that I have learned for specific purposes."
+          },
+          {
+           "code": "NM.IR.4",
+           "text": "I can understand that Latin and Greek prefixes and roots of words help me understand the meaning of new words."
+          },
+          {
+           "code": "NM.IL.3",
+           "text": "I can understand some words and phrases about Roman daily life."
+          },
+          {
+           "code": "NM.IL.4",
+           "text": "I can understand some simple questions on familiar topics."
+          },
+          {
+           "code": "NM.IC.4",
+           "text": "I can ask some simple questions."
+          },
+          {
+           "code": "NM.PW.1",
+           "text": "I can write about some aspects of Roman and Greek family life using learned phrases, and memorized expressions."
+          },
+          {
+           "code": "NM.PW.2",
+           "text": "I can list daily activities and write lists that help me understand the day-to-day life of Greeks and Romans."
+          },
+          {
+           "code": "NM.PW.3",
+           "text": "I can write notes about something I have learned using lists, phrases, and memorized expressions."
+          },
+          {
+           "code": "NM.PW.4",
+           "text": "I can write simple information in writing) about something I learned using words, phrases, and memorized expressions."
+          }
+         ]
+        },
+        {
+         "id": "novice-high",
+         "title": "Novice High",
+         "outcomes": [
+          {
+           "code": "NH.IR.4",
+           "text": "I can understand simple Latin or Greek texts by recognizing grammatical structures."
+          },
+          {
+           "code": "NH.IL.4",
+           "text": "I can understand simple everyday notices in public places on topics that are familiar to me."
+          },
+          {
+           "code": "NH.IC.4",
+           "text": "I can exchange information about something I have learned."
+          },
+          {
+           "code": "NH.PS.1",
+           "text": "I can present information about Roman and Greek life using rehearsed phrases and simple sentences."
+          },
+          {
+           "code": "NH.PS.2",
+           "text": "I can express simple facts about Roman daily life."
+          },
+          {
+           "code": "NH.PS.4",
+           "text": "I can present simple information about something I learned."
+          },
+          {
+           "code": "NH.PW.1",
+           "text": "I can write about some aspects of Roman and Greek daily life."
+          },
+          {
+           "code": "NH.PW.3",
+           "text": "I can write basic information about things I have learned."
+          },
+          {
+           "code": "NH.PW.4",
+           "text": "I can write about something I have learned using phrases and simple sentences."
+          }
+         ]
+        },
+        {
+         "id": "cultural-competencies",
+         "title": "Cultural Competencies",
+         "outcomes": [
+          {
+           "code": "N.CPP.1",
+           "text": "I can identify and discuss basic Roman or Greek products designed for communication."
+          },
+          {
+           "code": "N.CPP.2",
+           "text": "I can identify and discuss basic Roman or Greek decorative products."
+          },
+          {
+           "code": "N.CPP.3",
+           "text": "I can identify and discuss basic elements of Roman or Greek infrastructure."
+          },
+          {
+           "code": "N.CPP.4",
+           "text": "I can identify and discuss basic Roman or Greek political and economic practices."
+          },
+          {
+           "code": "N.CPP.5",
+           "text": "I can identify and discuss basic Roman or Greek religious practices."
+          },
+          {
+           "code": "N.CPP.6",
+           "text": "I can identify and discuss basic aspects of Roman or Greek social life."
+          },
+          {
+           "code": "N.CP.1",
+           "text": "I can identify and discuss Roman and Greek codes of behavior."
+          },
+          {
+           "code": "N.CP.2",
+           "text": "I can identify and discuss Roman or Greek attitudes towards various members of society."
+          },
+          {
+           "code": "N.CP.3",
+           "text": "I can identify and discuss Roman or Greek attitudes toward politics and law."
+          },
+          {
+           "code": "N.CP.4",
+           "text": "I can identify and discuss Roman or Greek religious beliefs."
+          },
+          {
+           "code": "N.CP.5",
+           "text": "I can identify and discuss Roman or Greek attitudes toward art and literature."
+          },
+          {
+           "code": "N.ACC.1",
+           "text": "I can identify and discuss how Roman and Greek political and legal institutions influence other cultures."
+          },
+          {
+           "code": "N.ACC.2",
+           "text": "I can identify and discuss how Roman and Greek art and architecture influence other cultures."
+          },
+          {
+           "code": "N.ACC.3",
+           "text": "I can identify and discuss how Roman and Greek languages influence the languages of other cultures."
+          },
+          {
+           "code": "N.ACC.4",
+           "text": "I can identify and discuss how Roman and Greek religions influence other cultures."
+          },
+          {
+           "code": "N.ACC.5",
+           "text": "I can identify and discuss how Roman and Greek social customs influence other cultures."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "intermediate",
+       "title": "Intermediate",
+       "subtopics": [
+        {
+         "id": "intermediate-low",
+         "title": "Intermediate Low",
+         "outcomes": [
+          {
+           "code": "IL.IR.1",
+           "text": "I can understand messages in which the writer tells about topics of personal interest."
+          },
+          {
+           "code": "IL.IR.2",
+           "text": "I can understand how the details in a Latin or Greek text relate to the main idea."
+          },
+          {
+           "code": "IL.IR.3",
+           "text": "I can infer the meaning of unfamiliar Latin or Greek vocabulary based on my knowledge of the language."
+          },
+          {
+           "code": "IL.IL.2",
+           "text": "I can understand questions and simple statements or instructions on everyday topics."
+          },
+          {
+           "code": "IL.IL.3",
+           "text": "I can understand short, simple stories that are read aloud."
+          },
+          {
+           "code": "IL.IC.2",
+           "text": "I can ask and answer questions of factual information that is familiar to me."
+          },
+          {
+           "code": "IL.PS.2",
+           "text": "I can express needs and wants."
+          },
+          {
+           "code": "IL.PW.4",
+           "text": "I can write about something I have learned."
+          }
+         ]
+        },
+        {
+         "id": "intermediate-mid",
+         "title": "Intermediate Mid",
+         "outcomes": [
+          {
+           "code": "IM.IR.1",
+           "text": "I can understand and articulate the main idea and many details when reading some unadapted Latin or Greek speeches and propaganda."
+          },
+          {
+           "code": "IM.IR.2",
+           "text": "I can understand and articulate the main idea of poetry."
+          },
+          {
+           "code": "IM.IR.3",
+           "text": "I can understand the main idea of personal letters."
+          },
+          {
+           "code": "IM.IR.4",
+           "text": "I can infer the meaning of unfamiliar Latin or Greek vocabulary."
+          },
+          {
+           "code": "IM.IL.1",
+           "text": "I can understand the main idea and some details of what I hear in short conversations and oral presentations."
+          },
+          {
+           "code": "IM.IL.2",
+           "text": "I can understand and articulate the main idea of recited poetry."
+          },
+          {
+           "code": "IM.IL.3",
+           "text": "I can understand oral directions and instructions in familiar settings."
+          },
+          {
+           "code": "IM.IL.4",
+           "text": "I can identify the main idea in authentic Latin texts that are read aloud."
+          },
+          {
+           "code": "IM.IC.2",
+           "text": "I can express my reactions and emotions to others."
+          },
+          {
+           "code": "IM.IC.3",
+           "text": "I can exchange information about academic topics familiar to me."
+          },
+          {
+           "code": "IM.IC.4",
+           "text": "I can ask and answer questions on familiar topics to maintain a conversation."
+          },
+          {
+           "code": "IM.PS.1",
+           "text": "I can make presentations on familiar topics using a series of sentences."
+          },
+          {
+           "code": "IM.PS.2",
+           "text": "I can make a presentation on my reaction to something I have learned or researched."
+          },
+          {
+           "code": "IM.PS.3",
+           "text": "I can present a short skit or dramatic presentation using a series of sentences."
+          },
+          {
+           "code": "IM.PS.4",
+           "text": "I can express my opinion on familiar topics using a series of sentences."
+          },
+          {
+           "code": "IM.PW.1",
+           "text": "I can write short reports about a topic I have learned or researched."
+          },
+          {
+           "code": "IM.PW.2",
+           "text": "I can compose communications for public distribution."
+          },
+          {
+           "code": "IM.PW.3",
+           "text": "I can express my opinion on familiar topics using a series of sentences with some details."
+          },
+          {
+           "code": "IM.PW.4",
+           "text": "I can compare issues or people using a series of sentences."
+          }
+         ]
+        },
+        {
+         "id": "intermediate-high",
+         "title": "Intermediate High",
+         "outcomes": [
+          {
+           "code": "IH.IR.1",
+           "text": "I can understand accounts of events or experiences."
+          },
+          {
+           "code": "IH.IR.2",
+           "text": "I can identify and explain author bias in Latin and Greek texts."
+          },
+          {
+           "code": "IH.IR.3",
+           "text": "I can use prior knowledge of Roman or Greek vocabulary to figure out the meaning of unfamiliar words in complex authentic texts."
+          },
+          {
+           "code": "IH.IR.4",
+           "text": "I can understand how advanced Latin or Greek grammatical and syntactical structures help me understand a text."
+          },
+          {
+           "code": "IH.IL.2",
+           "text": "I can sometimes follow short, written instructions when supported by visuals."
+          },
+          {
+           "code": "IH.IC.1",
+           "text": "I can exchange information about Greek or Roman culture."
+          },
+          {
+           "code": "IH.IC.2",
+           "text": "I can clarify my understanding of a Greek or Roman text by discussing it with another person."
+          },
+          {
+           "code": "IH.IC.3",
+           "text": "I can participate in a class discussion about Greek or Roman culture or texts."
+          },
+          {
+           "code": "IH.IC.4",
+           "text": "I can carry out a task that requires multiple steps with a partner."
+          },
+          {
+           "code": "IH.PS.1",
+           "text": "I can make short presentations on Greek or Roman perspectives about a variety of topics."
+          },
+          {
+           "code": "IH.PS.2",
+           "text": "I can make a presentation on something I have learned using connected sentences with many details."
+          },
+          {
+           "code": "IH.PS.3",
+           "text": "I can present a point of view and provide reasons to support it."
+          },
+          {
+           "code": "IH.PS.4",
+           "text": "I can tell or summarize a story using connected sentences with many details."
+          },
+          {
+           "code": "IH.PW.1",
+           "text": "I can write personal communications on familiar topics using connected sentences with many details."
+          },
+          {
+           "code": "IH.PW.2",
+           "text": "I can write a brief persuasive argument using figures of literary style on a variety of topics."
+          },
+          {
+           "code": "IH.PW.3",
+           "text": "I can write a short analysis of a Greek or Latin text."
+          },
+          {
+           "code": "IH.PW.4",
+           "text": "I can write a description or explanation of a familiar topic using connected sentences with many details."
+          }
+         ]
+        },
+        {
+         "id": "cultural-competencies",
+         "title": "Cultural Competencies",
+         "outcomes": [
+          {
+           "code": "I.CPP.1",
+           "text": "I can explain the significance of Roman or Greek products designed for communication."
+          },
+          {
+           "code": "I.CPP.2",
+           "text": "I can explain the significance of Roman or Greek decorative products."
+          },
+          {
+           "code": "I.CPP.3",
+           "text": "I can explain the significance of elements of Roman or Greek infrastructure."
+          },
+          {
+           "code": "I.CPP.4",
+           "text": "I can explain the significance of Roman or Greek political and economic practices."
+          },
+          {
+           "code": "I.CPP.5",
+           "text": "I can explain the significance of Roman or Greek religious practices."
+          },
+          {
+           "code": "I.CPP.6",
+           "text": "I can explain the significance of various aspects of Roman or Greek social life."
+          },
+          {
+           "code": "I.CP.1",
+           "text": "I can explain the significance of Roman and Greek codes of behavior."
+          },
+          {
+           "code": "I.CP.2",
+           "text": "I can explain the significance of Roman or Greek attitudes towards various members of society."
+          },
+          {
+           "code": "I.CP.3",
+           "text": "I can explain the significance of Roman and Greek attitudes toward politics and law."
+          },
+          {
+           "code": "I.CP.4",
+           "text": "I can explain the significance of Roman and Greek religious and philosophical beliefs."
+          },
+          {
+           "code": "I.CP.5",
+           "text": "I can explain the significance of Roman and Greek attitudes toward art and literature."
+          },
+          {
+           "code": "I.ACC.1",
+           "text": "I can explain how Roman and Greek political and legal institutions influence other cultures."
+          },
+          {
+           "code": "I.ACC.2",
+           "text": "I can explain how Roman and Greek art and architecture influence other cultures."
+          },
+          {
+           "code": "I.ACC.3",
+           "text": "I can explain how Roman and Greek literature and language influenced those of other cultures."
+          },
+          {
+           "code": "I.ACC.4",
+           "text": "I can explain the influence of Roman and Greek religions on other cultures."
+          },
+          {
+           "code": "I.ACC.5",
+           "text": "I can discuss how Roman and Greek social customs influence other cultures."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "build": {
+  "builtAt": "2026-10-14T16:20:48.343Z",
+  "model": "none",
+  "usd": 0,
+  "expectedCodes": 215,
+  "coverage": 1,
+  "missingCodes": [],
+  "counts": {
+   "grades": 1,
+   "units": 2,
+   "topics": 7,
+   "subtopics": 22,
+   "outcomes": 296
+  },
+  "warnings": [
+   "subtopic \"Novice Mid\" has 21 outcomes — too big for one lesson",
+   "subtopic \"Novice High\" has 23 outcomes — too big for one lesson",
+   "subtopic \"Intermediate Low\" has 19 outcomes — too big for one lesson",
+   "subtopic \"Intermediate Mid\" has 17 outcomes — too big for one lesson",
+   "subtopic \"Intermediate High\" has 16 outcomes — too big for one lesson",
+   "subtopic \"Advanced Low\" has 16 outcomes — too big for one lesson",
+   "subtopic \"Advanced Mid\" has 15 outcomes — too big for one lesson",
+   "subtopic \"Advanced High\" has 15 outcomes — too big for one lesson",
+   "subtopic \"Cultural Competencies\" has 16 outcomes — too big for one lesson",
+   "subtopic \"Intermediate Mid\" has 19 outcomes — too big for one lesson",
+   "subtopic \"Intermediate High\" has 17 outcomes — too big for one lesson",
+   "subtopic \"Cultural Competencies\" has 16 outcomes — too big for one lesson"
+  ]
+ }
+}

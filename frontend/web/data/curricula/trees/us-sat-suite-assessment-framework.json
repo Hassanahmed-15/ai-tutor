@@ -1,0 +1,1012 @@
+{
+ "id": "us-sat-suite-assessment-framework",
+ "region": "US",
+ "framework": "Assessment Framework for the Digital SAT Suite, version 4 (September 2026)",
+ "board": "College Board",
+ "qualification": "SAT",
+ "subject": "Reading and Writing; Math",
+ "syllabusCode": null,
+ "gradeSystem": "grade",
+ "source": {
+  "urls": [
+   "https://satsuite.collegeboard.org/media/pdf/assessment-framework-for-digital-sat-suite.pdf"
+  ],
+  "publisher": "College Board",
+  "licence": "© 2026 College Board; structure + our own wording only",
+  "firstExam": "2026"
+ },
+ "grades": [
+  {
+   "grade": "all",
+   "units": [
+    {
+     "id": "reading-and-writing-information-and-ideas",
+     "title": "Reading and Writing: Information and Ideas",
+     "topics": [
+      {
+       "id": "central-ideas-and-details",
+       "title": "Central Ideas and Details",
+       "subtopics": [
+        {
+         "id": "finding-the-central-idea",
+         "title": "Finding the central idea",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Work out the central idea of a text."
+          },
+          {
+           "code": null,
+           "text": "Interpret the key details that support the central idea."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "command-of-evidence",
+       "title": "Command of Evidence",
+       "subtopics": [
+        {
+         "id": "textual-evidence",
+         "title": "Textual evidence",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Pick the fact, detail or example from a text that best backs a stated claim."
+          }
+         ]
+        },
+        {
+         "id": "quantitative-evidence",
+         "title": "Quantitative evidence",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Pick the data in a table or graph that best backs a stated claim."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "inferences",
+       "title": "Inferences",
+       "subtopics": [
+        {
+         "id": "drawing-inferences",
+         "title": "Drawing inferences",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Draw reasonable conclusions from what a text states outright or only implies."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "reading-and-writing-craft-and-structure",
+     "title": "Reading and Writing: Craft and Structure",
+     "topics": [
+      {
+       "id": "words-in-context",
+       "title": "Words in Context",
+       "subtopics": [
+        {
+         "id": "words-in-context",
+         "title": "Words in context",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Work out the meaning of a useful academic word or phrase from its context."
+          },
+          {
+           "code": null,
+           "text": "Choose the word or phrase that fits a passage's meaning and tone."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "text-structure-and-purpose",
+       "title": "Text Structure and Purpose",
+       "subtopics": [
+        {
+         "id": "structure-and-purpose",
+         "title": "Structure and purpose",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Analyze how a text is organized."
+          },
+          {
+           "code": null,
+           "text": "Identify the main rhetorical purpose of a text."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "cross-text-connections",
+       "title": "Cross-Text Connections",
+       "subtopics": [
+        {
+         "id": "connecting-two-texts",
+         "title": "Connecting two texts",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Draw reasonable connections between two texts on related topics."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "reading-and-writing-expression-of-ideas",
+     "title": "Reading and Writing: Expression of Ideas",
+     "topics": [
+      {
+       "id": "rhetorical-synthesis",
+       "title": "Rhetorical Synthesis",
+       "subtopics": [
+        {
+         "id": "rhetorical-synthesis",
+         "title": "Rhetorical synthesis",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Combine information and ideas on a topic into one effective sentence that meets a stated aim."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "transitions",
+       "title": "Transitions",
+       "subtopics": [
+        {
+         "id": "transitions",
+         "title": "Transitions",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Choose the transition word or phrase that logically links ideas in a text."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "reading-and-writing-standard-english-conventions",
+     "title": "Reading and Writing: Standard English Conventions",
+     "topics": [
+      {
+       "id": "boundaries",
+       "title": "Boundaries",
+       "subtopics": [
+        {
+         "id": "sentence-boundaries",
+         "title": "Sentence boundaries",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Use punctuation correctly to mark the end of a sentence."
+          },
+          {
+           "code": null,
+           "text": "Punctuate clauses, series, appositives and parentheticals within a sentence, and spot where no punctuation is needed."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "form-structure-and-sense",
+       "title": "Form, Structure, and Sense",
+       "subtopics": [
+        {
+         "id": "agreement",
+         "title": "Agreement",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Make a subject and its verb agree in number."
+          },
+          {
+           "code": null,
+           "text": "Make a pronoun and its antecedent agree in number."
+          }
+         ]
+        },
+        {
+         "id": "verbs-and-modifiers",
+         "title": "Verbs and modifiers",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Use verbs and verbals (gerunds, participles, infinitives) appropriately in context."
+          },
+          {
+           "code": null,
+           "text": "Choose suitable verb tenses and aspects."
+          },
+          {
+           "code": null,
+           "text": "Place modifying elements such as participles sensibly in a sentence."
+          }
+         ]
+        },
+        {
+         "id": "plurals-and-possessives",
+         "title": "Plurals and possessives",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Choose among singular, plural and possessive nouns and pronouns, and among its/it's, their/they're/there, your/you're."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "math-algebra",
+     "title": "Math: Algebra",
+     "topics": [
+      {
+       "id": "linear-equations-in-one-variable",
+       "title": "Linear equations in one variable",
+       "subtopics": [
+        {
+         "id": "linear-equations-in-one-variable",
+         "title": "Linear equations in one variable",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Create and use linear equations in one variable to solve problems in many contexts."
+          },
+          {
+           "code": null,
+           "text": "Identify or build a one-variable linear equation that matches a context."
+          },
+          {
+           "code": null,
+           "text": "Interpret a constant, variable, factor, term or solution of a linear equation in context."
+          },
+          {
+           "code": null,
+           "text": "Solve a one-variable linear equation, using algebraic structure strategically."
+          },
+          {
+           "code": null,
+           "text": "Tell when a one-variable linear equation has no, one or infinitely many solutions."
+          },
+          {
+           "code": null,
+           "text": "Solve one-variable linear equations fluently."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "linear-functions",
+       "title": "Linear functions",
+       "subtopics": [
+        {
+         "id": "building-and-reading-linear-functions",
+         "title": "Building and reading linear functions",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Create and use linear functions to solve problems in many contexts."
+          },
+          {
+           "code": null,
+           "text": "Identify or build a linear function that models a relationship between two quantities."
+          },
+          {
+           "code": null,
+           "text": "Interpret an input/output pair, constant, variable, factor or term of a contextual linear function."
+          },
+          {
+           "code": null,
+           "text": "Interpret the graph of a linear function in context."
+          }
+         ]
+        },
+        {
+         "id": "linear-function-representations",
+         "title": "Linear function representations",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Connect the table, algebraic form and graph of a linear function outside a context."
+          },
+          {
+           "code": null,
+           "text": "Connect the table, algebraic form and graph of a linear function in context."
+          },
+          {
+           "code": null,
+           "text": "Given an input find the output (or the reverse) for a contextual linear function and interpret it."
+          },
+          {
+           "code": null,
+           "text": "Write a linear function's rule from two input/output pairs or one pair and the rate of change."
+          },
+          {
+           "code": null,
+           "text": "Evaluate a linear function for an input, or find the input for a given output."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "linear-equations-in-two-variables",
+       "title": "Linear equations in two variables",
+       "subtopics": [
+        {
+         "id": "linear-equations-in-two-variables",
+         "title": "Linear equations in two variables",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Create and use linear equations in two variables to solve problems in many contexts."
+          },
+          {
+           "code": null,
+           "text": "Identify or build a two-variable linear equation modelling a constraint on two quantities."
+          },
+          {
+           "code": null,
+           "text": "Interpret a solution, constant, variable, factor or term of a two-variable linear equation in context."
+          },
+          {
+           "code": null,
+           "text": "Interpret the graph of Ax + By = C in context."
+          }
+         ]
+        },
+        {
+         "id": "representations-and-line-equations",
+         "title": "Representations and line equations",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Connect algebraic forms and graphs of two-variable linear equations outside context."
+          },
+          {
+           "code": null,
+           "text": "Connect tables with algebraic forms or graphs of two-variable linear equations outside context."
+          },
+          {
+           "code": null,
+           "text": "Connect tables, algebraic forms and graphs of two-variable linear equations in context."
+          },
+          {
+           "code": null,
+           "text": "Given one quantity in a contextual linear relationship, find the other if it exists."
+          },
+          {
+           "code": null,
+           "text": "Write a line's equation from two points, a point and slope, or a point and a parallel or perpendicular line."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "systems-of-two-linear-equations-in-two-variables",
+       "title": "Systems of two linear equations in two variables",
+       "subtopics": [
+        {
+         "id": "systems-of-linear-equations",
+         "title": "Systems of linear equations",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Create and use a system of two linear equations in two variables to solve problems in many contexts."
+          },
+          {
+           "code": null,
+           "text": "Identify or build a system of linear equations modelling constraints on two quantities."
+          },
+          {
+           "code": null,
+           "text": "Solve a system of two linear equations, using algebraic structure strategically."
+          },
+          {
+           "code": null,
+           "text": "Tell when a linear system has no, one or infinitely many solutions."
+          },
+          {
+           "code": null,
+           "text": "Connect algebraic and graphical forms of a linear system, with and without context."
+          },
+          {
+           "code": null,
+           "text": "Solve linear systems in two variables fluently."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "linear-inequalities-in-one-or-two-variables",
+       "title": "Linear inequalities in one or two variables",
+       "subtopics": [
+        {
+         "id": "linear-inequalities",
+         "title": "Linear inequalities",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Create and use linear inequalities in one or two variables to solve problems in many contexts."
+          },
+          {
+           "code": null,
+           "text": "Identify or build linear inequalities modelling constraints or conditions."
+          },
+          {
+           "code": null,
+           "text": "Interpret a constant, variable, factor, term or solution of a linear inequality in context."
+          },
+          {
+           "code": null,
+           "text": "Interpret a point in the xy-plane in terms of the solution set of an inequality or system of inequalities."
+          },
+          {
+           "code": null,
+           "text": "Move between tabular, algebraic and graphical forms of linear inequalities."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "math-advanced-math",
+     "title": "Math: Advanced Math",
+     "topics": [
+      {
+       "id": "equivalent-expressions",
+       "title": "Equivalent expressions",
+       "subtopics": [
+        {
+         "id": "equivalent-expressions",
+         "title": "Equivalent expressions",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Factor polynomials: common factors, differences of two squares, trinomials into two binomials."
+          },
+          {
+           "code": null,
+           "text": "Rewrite simple rational expressions and expressions with rational exponents in radical form, and factor other polynomials."
+          },
+          {
+           "code": null,
+           "text": "Add, subtract and multiply polynomials fluently."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "nonlinear-equations-in-one-variable-and-systems-",
+       "title": "Nonlinear equations in one variable and systems of equations in two variables",
+       "subtopics": [
+        {
+         "id": "quadratic-and-other-equations",
+         "title": "Quadratic and other equations",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Solve quadratic equations in one variable given in many forms."
+          },
+          {
+           "code": null,
+           "text": "Solve linear absolute value equations and simple rational and radical equations in one variable."
+          },
+          {
+           "code": null,
+           "text": "Solve polynomial equations in one variable written in factored form."
+          }
+         ]
+        },
+        {
+         "id": "quadratics-and-nonlinear-systems",
+         "title": "Quadratics and nonlinear systems",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Solve systems of linear and nonlinear equations in two variables."
+          },
+          {
+           "code": null,
+           "text": "Decide when a quadratic equation has no, one or two real solutions."
+          },
+          {
+           "code": null,
+           "text": "Relate the solutions of a linear-nonlinear system to the graphs of its equations."
+          },
+          {
+           "code": null,
+           "text": "Treat a multi-variable formula as an equation in one variable of interest and solve for it."
+          },
+          {
+           "code": null,
+           "text": "Solve standard-form quadratics fluently, using the quadratic formula or completing the square when efficient."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "nonlinear-functions",
+       "title": "Nonlinear functions",
+       "subtopics": [
+        {
+         "id": "quadratic-and-exponential-models",
+         "title": "Quadratic and exponential models",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Create and use quadratic or exponential functions to solve problems in many contexts."
+          },
+          {
+           "code": null,
+           "text": "Identify or build a quadratic or exponential function modelling a relationship."
+          },
+          {
+           "code": null,
+           "text": "Interpret an input/output pair, intercept, initial value, constant, variable, factor or term of a contextual quadratic or exponential function."
+          },
+          {
+           "code": null,
+           "text": "Interpret a point or other parts of the graph of a contextual quadratic or exponential function."
+          }
+         ]
+        },
+        {
+         "id": "representations-of-nonlinear-functions",
+         "title": "Representations of nonlinear functions",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Connect table, algebraic form and graph of an untransformed quadratic or exponential function outside context."
+          },
+          {
+           "code": null,
+           "text": "Connect table, algebraic form and graph of polynomial, simple rational or transformed functions outside context."
+          },
+          {
+           "code": null,
+           "text": "Connect table, algebraic form and graph of an untransformed quadratic or exponential function in context."
+          },
+          {
+           "code": null,
+           "text": "Connect table, algebraic form and graph of polynomial, rational, other nonlinear or transformed functions in context."
+          }
+         ]
+        },
+        {
+         "id": "function-forms-notation-and-zeros",
+         "title": "Function forms, notation and zeros",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Choose the most suitable expression form of a quadratic function to show its key features."
+          },
+          {
+           "code": null,
+           "text": "Choose the most suitable expression form of an exponential function to show its key features."
+          },
+          {
+           "code": null,
+           "text": "Use the fact that f(x)=0 gives x-intercepts and f(0) gives the y-intercept, and interpret this in context."
+          },
+          {
+           "code": null,
+           "text": "Evaluate a nonlinear function for an input, or find the input for a quadratic's output, using function notation."
+          },
+          {
+           "code": null,
+           "text": "Find the input for a given output of exponential, polynomial, radical and rational functions."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "math-problem-solving-and-data-analysis",
+     "title": "Math: Problem-Solving and Data Analysis",
+     "topics": [
+      {
+       "id": "ratios-rates-proportional-relationships-and-unit",
+       "title": "Ratios, rates, proportional relationships, and units",
+       "subtopics": [
+        {
+         "id": "ratios-rates-and-proportions",
+         "title": "Ratios, rates and proportions",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Solve problems with proportional relationships, ratios and rates in many contexts, including scale drawings."
+          },
+          {
+           "code": null,
+           "text": "Solve problems with derived units from products (kilowatt-hours) and quotients (people per square km)."
+          },
+          {
+           "code": null,
+           "text": "Use the fact that when one proportional quantity scales, the other scales by the same factor."
+          }
+         ]
+        },
+        {
+         "id": "unit-conversion",
+         "title": "Unit conversion",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Solve problems needing a one-step unit conversion."
+          },
+          {
+           "code": null,
+           "text": "Solve problems needing a multistep or multidimensional unit conversion."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "percentages",
+       "title": "Percentages",
+       "subtopics": [
+        {
+         "id": "percentages",
+         "title": "Percentages",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Use percentages in contexts such as discounts, interest, taxes and tips."
+          },
+          {
+           "code": null,
+           "text": "Solve percent increase and decrease problems."
+          },
+          {
+           "code": null,
+           "text": "Relate percent change to growth factor (5% and 1.05), including percentages of 100% or more."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "one-variable-data-distributions-and-measures-of-",
+       "title": "One-variable data: Distributions and measures of center and spread",
+       "subtopics": [
+        {
+         "id": "distributions-and-center",
+         "title": "Distributions and center",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Interpret numerical data shown in frequency tables, histograms, dot plots and box plots."
+          },
+          {
+           "code": null,
+           "text": "Calculate, compare and interpret mean, median and range."
+          },
+          {
+           "code": null,
+           "text": "Compare distributions using center and spread, including different means or standard deviations."
+          },
+          {
+           "code": null,
+           "text": "Describe how outliers affect mean and median."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "two-variable-data-models-and-scatterplots",
+       "title": "Two-variable data: Models and scatterplots",
+       "subtopics": [
+        {
+         "id": "scatterplots-and-models",
+         "title": "Scatterplots and models",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Interpret data in a scatterplot without making predictions."
+          },
+          {
+           "code": null,
+           "text": "Use a scatterplot to make predictions."
+          },
+          {
+           "code": null,
+           "text": "Fit linear models to scatterplot data."
+          },
+          {
+           "code": null,
+           "text": "Fit quadratic and exponential models to scatterplot data."
+          },
+          {
+           "code": null,
+           "text": "Read and interpret graphs modelling a relationship between two quantities."
+          },
+          {
+           "code": null,
+           "text": "Compare linear and exponential growth."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "probability-and-conditional-probability",
+       "title": "Probability and conditional probability",
+       "subtopics": [
+        {
+         "id": "probability-from-tables",
+         "title": "Probability from tables",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Use one- and two-way tables, area models and other displays to find relative frequency, probability and conditional probability."
+          },
+          {
+           "code": null,
+           "text": "Calculate, express or interpret the probability or conditional probability of an event from a display or description."
+          },
+          {
+           "code": null,
+           "text": "Given a probability, find an unknown count in a display or use probability to find an event's frequency."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "inference-from-sample-statistics-and-margin-of-e",
+       "title": "Inference from sample statistics and margin of error",
+       "subtopics": [
+        {
+         "id": "sample-statistics-and-margin-of-error",
+         "title": "Sample statistics and margin of error",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Use a sample mean or proportion to estimate the population value."
+          },
+          {
+           "code": null,
+           "text": "Interpret margin of error and know larger samples usually shrink it."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "evaluating-statistical-claims-observational-stud",
+       "title": "Evaluating statistical claims: Observational studies and experiments",
+       "subtopics": [
+        {
+         "id": "studies-and-causal-claims",
+         "title": "Studies and causal claims",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Say which population results from a random sample extend to."
+          },
+          {
+           "code": null,
+           "text": "Decide from a study's design whether it supports a causal relationship."
+          },
+          {
+           "code": null,
+           "text": "Explain why random assignment supports causal conclusions in an experiment."
+          },
+          {
+           "code": null,
+           "text": "Understand sampling issues and why results apply only to the sampled population."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "math-geometry-and-trigonometry",
+     "title": "Math: Geometry and Trigonometry",
+     "topics": [
+      {
+       "id": "area-and-volume",
+       "title": "Area and volume",
+       "subtopics": [
+        {
+         "id": "area-perimeter-and-volume",
+         "title": "Area, perimeter and volume",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Solve problems on the area or perimeter of a figure or an object modelled by one."
+          },
+          {
+           "code": null,
+           "text": "Solve problems on surface area or volume of a figure or modelled object."
+          },
+          {
+           "code": null,
+           "text": "Know that scaling by k changes lengths by k, areas by k squared and volumes by k cubed."
+          },
+          {
+           "code": null,
+           "text": "Choose the right area, surface area or volume formula and calculate the value."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "lines-angles-and-triangles",
+       "title": "Lines, angles, and triangles",
+       "subtopics": [
+        {
+         "id": "triangles-and-angles",
+         "title": "Triangles and angles",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Use congruence and similarity of triangles to solve problems."
+          },
+          {
+           "code": null,
+           "text": "Decide which statements are needed to prove a relationship or satisfy a theorem."
+          },
+          {
+           "code": null,
+           "text": "Know that scaling by k changes lengths by k but leaves angles unchanged."
+          },
+          {
+           "code": null,
+           "text": "Apply the triangle angle sum theorem."
+          },
+          {
+           "code": null,
+           "text": "Apply the vertical angle theorem and angle relationships when a transversal cuts parallel lines."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "right-triangles-and-trigonometry",
+       "title": "Right triangles and trigonometry",
+       "subtopics": [
+        {
+         "id": "right-triangles",
+         "title": "Right triangles",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Solve problems with the Pythagorean theorem."
+          },
+          {
+           "code": null,
+           "text": "Use properties of special right triangles."
+          },
+          {
+           "code": null,
+           "text": "Solve problems with right triangle trigonometry."
+          },
+          {
+           "code": null,
+           "text": "Use similarity to compute sine, cosine and tangent values."
+          },
+          {
+           "code": null,
+           "text": "Use the relationship between sine and cosine of complementary angles."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "circles",
+       "title": "Circles",
+       "subtopics": [
+        {
+         "id": "circle-properties-and-angles",
+         "title": "Circle properties and angles",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Use circle definitions and theorems on radii, diameters, tangents, angles, arc lengths and sector areas."
+          },
+          {
+           "code": null,
+           "text": "Solve problems using radian measure or unit-circle trigonometric ratios."
+          },
+          {
+           "code": null,
+           "text": "Convert between degrees and radians."
+          }
+         ]
+        },
+        {
+         "id": "circle-equations",
+         "title": "Circle equations",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Write an equation for a circle in the xy-plane."
+          },
+          {
+           "code": null,
+           "text": "Describe how changing a circle's equation changes its graph, and the reverse."
+          },
+          {
+           "code": null,
+           "text": "Understand that points satisfying (x-h)^2+(y-k)^2=r^2 form a circle."
+          },
+          {
+           "code": null,
+           "text": "Complete the square in a circle equation to find its properties, and use the distance formula."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "build": {
+  "builtAt": "2026-10-14T10:11:17.237Z",
+  "model": "claude-agent",
+  "usd": 0,
+  "expectedCodes": null,
+  "coverage": null,
+  "missingCodes": [],
+  "counts": {
+   "grades": 1,
+   "units": 8,
+   "topics": 29,
+   "subtopics": 39,
+   "outcomes": 127
+  },
+  "warnings": [
+   "grade 8 has no content",
+   "grade 9 has no content",
+   "grade 10 has no content",
+   "grade 11 has no content",
+   "grade 12 has no content",
+   "unexpected grade label \"all\""
+  ]
+ }
+}

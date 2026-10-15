@@ -1,0 +1,2749 @@
+{
+ "id": "uk-aqa-gcse-combined-science-synergy-8465",
+ "region": "UK",
+ "framework": "AQA GCSE (9-1)",
+ "board": "AQA",
+ "qualification": "GCSE",
+ "subject": "Combined Science: Synergy",
+ "syllabusCode": "8465",
+ "gradeSystem": "year",
+ "source": {
+  "urls": [
+   "https://cdn.sanity.io/files/p28bar15/green/22f757f3e21d8bebb3fc074d8b8445b848b1516e.pdf"
+  ],
+  "publisher": "AQA",
+  "licence": "Exam board specification, (c) AQA; structure + our own wording only",
+  "firstExam": "2018"
+ },
+ "grades": [
+  {
+   "grade": "all",
+   "units": [
+    {
+     "id": "4-1-building-blocks",
+     "title": "4.1 Building blocks",
+     "topics": [
+      {
+       "id": "4-1-1-states-of-matter",
+       "title": "4.1.1 States of matter",
+       "subtopics": [
+        {
+         "id": "unit-overview",
+         "title": "Unit overview",
+         "outcomes": [
+          {
+           "code": "4.1",
+           "text": "Link particles, atoms, cells and waves as the base for later science."
+          }
+         ]
+        },
+        {
+         "id": "topic-overview",
+         "title": "Topic overview",
+         "outcomes": [
+          {
+           "code": "4.1.1",
+           "text": "Use the particle model to explain states of matter, density, gas pressure and changes of state."
+          }
+         ]
+        },
+        {
+         "id": "a-particle-model",
+         "title": "A particle model",
+         "outcomes": [
+          {
+           "code": "4.1.1.1",
+           "text": "Explain melting, boiling, freezing and condensing with the particle model, and tell physical from chemical changes."
+          },
+          {
+           "code": null,
+           "text": "Higher tier: explain the limits of the particle model when particles are treated as inelastic spheres."
+          }
+         ]
+        },
+        {
+         "id": "density",
+         "title": "Density",
+         "outcomes": [
+          {
+           "code": "4.1.1.2",
+           "text": "Define density and explain why it differs between solids, liquids and gases using particle arrangement."
+          }
+         ]
+        },
+        {
+         "id": "gas-pressure",
+         "title": "Gas pressure",
+         "outcomes": [
+          {
+           "code": "4.1.1.3",
+           "text": "Explain how gas molecule motion links to temperature and pressure at constant volume, qualitatively."
+          }
+         ]
+        },
+        {
+         "id": "heating-and-changes-of-state",
+         "title": "Heating and changes of state",
+         "outcomes": [
+          {
+           "code": "4.1.1.4",
+           "text": "Describe how heating changes a system's stored energy and temperature or causes a change of state."
+          },
+          {
+           "code": null,
+           "text": "Explain that mass is conserved in melting, freezing, evaporating, condensing and subliming, and the changes are reversible."
+          },
+          {
+           "code": null,
+           "text": "Define specific heat capacity and tell it apart from specific latent heat."
+          },
+          {
+           "code": null,
+           "text": "Calculate energy changes when a system is heated, using temperature change and specific heat capacity."
+          }
+         ]
+        },
+        {
+         "id": "meanings-of-purity",
+         "title": "Meanings of purity",
+         "outcomes": [
+          {
+           "code": "4.1.1.5",
+           "text": "Explain scientific purity versus everyday purity and use melting point data to tell pure substances from mixtures."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "4-1-2-atomic-structure",
+       "title": "4.1.2 Atomic structure",
+       "subtopics": [
+        {
+         "id": "topic-overview",
+         "title": "Topic overview",
+         "outcomes": [
+          {
+           "code": "4.1.2",
+           "text": "Build the nuclear model of the atom, isotopes and electron shells."
+          }
+         ]
+        },
+        {
+         "id": "scientific-models-of-the-atom",
+         "title": "Scientific models of the atom",
+         "outcomes": [
+          {
+           "code": "4.1.2.1",
+           "text": "Describe how and why the model of the atom changed as new evidence appeared."
+          }
+         ]
+        },
+        {
+         "id": "the-size-of-atoms",
+         "title": "The size of atoms",
+         "outcomes": [
+          {
+           "code": "4.1.2.2",
+           "text": "Recall the typical size of atoms and small molecules."
+          }
+         ]
+        },
+        {
+         "id": "sub-atomic-particles",
+         "title": "Sub-atomic particles",
+         "outcomes": [
+          {
+           "code": "4.1.2.3",
+           "text": "Describe the atom as a small positive nucleus with electrons around it and most of the mass in the nucleus."
+          },
+          {
+           "code": null,
+           "text": "Recall that nuclei hold protons and neutrons and that elements differ in proton number and can differ in neutron number."
+          },
+          {
+           "code": null,
+           "text": "Recall relative charges and approximate relative masses of protons, neutrons and electrons."
+          }
+         ]
+        },
+        {
+         "id": "isotopes",
+         "title": "Isotopes",
+         "outcomes": [
+          {
+           "code": "4.1.2.4",
+           "text": "Relate differences between isotopes to how their identities, charges and masses are written."
+          }
+         ]
+        },
+        {
+         "id": "electrons-in-atoms",
+         "title": "Electrons in atoms",
+         "outcomes": [
+          {
+           "code": "4.1.2.5",
+           "text": "Recall that electrons sit in different energy levels at different distances from the nucleus."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "4-1-3-cells-in-animals-and-plants",
+       "title": "4.1.3 Cells in animals and plants",
+       "subtopics": [
+        {
+         "id": "topic-overview",
+         "title": "Topic overview",
+         "outcomes": [
+          {
+           "code": "4.1.3",
+           "text": "Study cell structure, transport, division and specialisation."
+          }
+         ]
+        },
+        {
+         "id": "electron-microscopy",
+         "title": "Electron microscopy",
+         "outcomes": [
+          {
+           "code": "4.1.3.1",
+           "text": "Explain how electron microscopy has improved understanding of sub-cellular structures."
+          }
+         ]
+        },
+        {
+         "id": "cell-structures",
+         "title": "Cell structures",
+         "outcomes": [
+          {
+           "code": "4.1.3.2",
+           "text": "Explain how sub-cellular structures of plant, animal and bacterial cells relate to their functions."
+          }
+         ]
+        },
+        {
+         "id": "transport-into-and-out-of-cells",
+         "title": "Transport into and out of cells",
+         "outcomes": [
+          {
+           "code": "4.1.3.3",
+           "text": "Explain how substances cross membranes by diffusion, osmosis and active transport."
+          }
+         ]
+        },
+        {
+         "id": "mitosis-and-the-cell-cycle",
+         "title": "Mitosis and the cell cycle",
+         "outcomes": [
+          {
+           "code": "4.1.3.4",
+           "text": "Describe mitosis in growth, including the cell cycle."
+          }
+         ]
+        },
+        {
+         "id": "meiosis",
+         "title": "Meiosis",
+         "outcomes": [
+          {
+           "code": "4.1.3.5",
+           "text": "Explain how meiosis halves the chromosome number to form gametes."
+          }
+         ]
+        },
+        {
+         "id": "cell-differentiation",
+         "title": "Cell differentiation",
+         "outcomes": [
+          {
+           "code": "4.1.3.6",
+           "text": "Describe the function of stem cells in embryos and adults."
+          },
+          {
+           "code": null,
+           "text": "Explain why cell differentiation is important."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "4-1-4-waves",
+       "title": "4.1.4 Waves",
+       "subtopics": [
+        {
+         "id": "topic-overview",
+         "title": "Topic overview",
+         "outcomes": [
+          {
+           "code": "4.1.4",
+           "text": "Study wave types, wave measurements and the electromagnetic spectrum."
+          }
+         ]
+        },
+        {
+         "id": "transverse-and-longitudinal-waves",
+         "title": "Transverse and longitudinal waves",
+         "outcomes": [
+          {
+           "code": "4.1.4.1",
+           "text": "Describe the difference between transverse and longitudinal waves."
+          },
+          {
+           "code": null,
+           "text": "Describe ripples as transverse and sound in air as longitudinal, and how each speed is measured."
+          },
+          {
+           "code": null,
+           "text": "Describe evidence that the wave, not the water or air, travels."
+          }
+         ]
+        },
+        {
+         "id": "a-wave-equation",
+         "title": "A wave equation",
+         "outcomes": [
+          {
+           "code": "4.1.4.2",
+           "text": "Describe waves by amplitude, wavelength, frequency and period, and apply the wave speed equation."
+          }
+         ]
+        },
+        {
+         "id": "electromagnetic-waves",
+         "title": "Electromagnetic waves",
+         "outcomes": [
+          {
+           "code": "4.1.4.3",
+           "text": "Recall that electromagnetic waves are transverse, share one speed in space and carry energy from source to absorber."
+          },
+          {
+           "code": null,
+           "text": "Describe the spectrum groups from radio to gamma, their wavelength and frequency order, and that light is one."
+          },
+          {
+           "code": null,
+           "text": "Give practical uses of each region of the spectrum."
+          }
+         ]
+        },
+        {
+         "id": "radio-waves",
+         "title": "Radio waves",
+         "outcomes": [
+          {
+           "code": "4.1.4.4",
+           "text": "Higher tier: recall that radio waves can be made by or induce oscillations in electrical circuits."
+          }
+         ]
+        },
+        {
+         "id": "reflection-and-refraction-of-electromagnetic-wav",
+         "title": "Reflection and refraction of electromagnetic waves",
+         "outcomes": [
+          {
+           "code": "4.1.4.5",
+           "text": "Higher tier: recall that substances reflect, refract or absorb waves and explain effects through changing wave speed."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "4-2-transport-over-larger-distances",
+     "title": "4.2 Transport over larger distances",
+     "topics": [
+      {
+       "id": "4-2-1-systems-in-the-human-body",
+       "title": "4.2.1 Systems in the human body",
+       "subtopics": [
+        {
+         "id": "unit-overview",
+         "title": "Unit overview",
+         "outcomes": [
+          {
+           "code": "4.2",
+           "text": "Explain how larger organisms move materials around and how the body regulates itself."
+          }
+         ]
+        },
+        {
+         "id": "topic-overview",
+         "title": "Topic overview",
+         "outcomes": [
+          {
+           "code": "4.2.1",
+           "text": "Study respiration, exchange, circulation, digestion, nerves and hormones in the body."
+          }
+         ]
+        },
+        {
+         "id": "respiration",
+         "title": "Respiration",
+         "outcomes": [
+          {
+           "code": "4.2.1.1",
+           "text": "Describe cell respiration as an exothermic reaction happening in all living cells."
+          },
+          {
+           "code": null,
+           "text": "Compare aerobic and anaerobic respiration, including lactic acid and oxygen debt."
+          }
+         ]
+        },
+        {
+         "id": "exchange-surfaces",
+         "title": "Exchange surfaces",
+         "outcomes": [
+          {
+           "code": "4.2.1.2",
+           "text": "Explain the need for exchange surfaces and a transport system in large organisms using surface area to volume ratio."
+          }
+         ]
+        },
+        {
+         "id": "the-human-circulatory-system",
+         "title": "The human circulatory system",
+         "outcomes": [
+          {
+           "code": "4.2.1.3",
+           "text": "Describe the circulatory system and gas exchange system, and how the heart and blood vessels suit their jobs."
+          },
+          {
+           "code": null,
+           "text": "Describe substances transported into and out of organisms, such as oxygen, carbon dioxide and dissolved food."
+          }
+         ]
+        },
+        {
+         "id": "blood-cells",
+         "title": "Blood cells",
+         "outcomes": [
+          {
+           "code": "4.2.1.4",
+           "text": "Explain how red cells, white cells, platelets and plasma suit their functions."
+          }
+         ]
+        },
+        {
+         "id": "the-human-digestive-system",
+         "title": "The human digestive system",
+         "outcomes": [
+          {
+           "code": "4.2.1.5",
+           "text": "Explain the role of sugars, amino acids, fatty acids and glycerol in building and breaking down carbohydrates, lipids and proteins."
+          },
+          {
+           "code": null,
+           "text": "Describe substances moved into and out of organisms, such as dissolved food molecules and urea."
+          }
+         ]
+        },
+        {
+         "id": "the-human-nervous-system",
+         "title": "The human nervous system",
+         "outcomes": [
+          {
+           "code": "4.2.1.6",
+           "text": "Explain how the nervous system structure, including neurones and receptors, suits its function."
+          },
+          {
+           "code": null,
+           "text": "Explain how a reflex arc's structure relates to its function."
+          },
+          {
+           "code": null,
+           "text": "Explain how reaction times are measured and recall typical results."
+          }
+         ]
+        },
+        {
+         "id": "the-human-endocrine-system",
+         "title": "The human endocrine system",
+         "outcomes": [
+          {
+           "code": "4.2.1.7",
+           "text": "Describe how hormones coordinate and control the body through the endocrine system."
+          },
+          {
+           "code": null,
+           "text": "Higher tier: explain the roles of thyroxine and adrenaline and thyroxine as negative feedback."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "4-2-2-plants-and-photosynthesis",
+       "title": "4.2.2 Plants and photosynthesis",
+       "subtopics": [
+        {
+         "id": "topic-overview",
+         "title": "Topic overview",
+         "outcomes": [
+          {
+           "code": "4.2.2",
+           "text": "Study plant transport, photosynthesis and the factors affecting it."
+          }
+         ]
+        },
+        {
+         "id": "meristem-tissue",
+         "title": "Meristem tissue",
+         "outcomes": [
+          {
+           "code": "4.2.2.1",
+           "text": "Describe the function of meristems and how they let plants be cloned quickly."
+          }
+         ]
+        },
+        {
+         "id": "plant-structures",
+         "title": "Plant structures",
+         "outcomes": [
+          {
+           "code": "4.2.2.2",
+           "text": "Describe substances plants take in and give out, including carbon dioxide, oxygen, water and mineral ions."
+          }
+         ]
+        },
+        {
+         "id": "transpiration",
+         "title": "Transpiration",
+         "outcomes": [
+          {
+           "code": "4.2.2.3",
+           "text": "Explain why plants need exchange surfaces and a transport system."
+          },
+          {
+           "code": null,
+           "text": "Explain how water and mineral ions enter roots through root hair cells."
+          },
+          {
+           "code": null,
+           "text": "Explain how xylem suits its function."
+          },
+          {
+           "code": null,
+           "text": "Describe transpiration including stomata structure and function."
+          },
+          {
+           "code": null,
+           "text": "Explain how light, air movement and temperature affect plant water uptake."
+          }
+         ]
+        },
+        {
+         "id": "chlorophyll-and-other-plant-pigments",
+         "title": "Chlorophyll and other plant pigments",
+         "outcomes": [
+          {
+           "code": "4.2.2.4",
+           "text": "Recall that chromatography uses a stationary and a mobile phase and separation depends on distribution between them."
+          },
+          {
+           "code": null,
+           "text": "Interpret chromatograms, including measuring Rf values."
+          },
+          {
+           "code": null,
+           "text": "Suggest chromatography methods to tell pure from impure substances."
+          }
+         ]
+        },
+        {
+         "id": "photosynthesis",
+         "title": "Photosynthesis",
+         "outcomes": [
+          {
+           "code": "4.2.2.5",
+           "text": "Describe photosynthesis as an endothermic reaction and what the plant does with the glucose."
+          }
+         ]
+        },
+        {
+         "id": "factors-affecting-the-rate-of-photosynthesis",
+         "title": "Factors affecting the rate of photosynthesis",
+         "outcomes": [
+          {
+           "code": "4.2.2.6",
+           "text": "Explain how temperature, light intensity and carbon dioxide concentration affect the rate of photosynthesis."
+          },
+          {
+           "code": null,
+           "text": "Higher tier: explain how these factors interact to limit the rate."
+          }
+         ]
+        },
+        {
+         "id": "translocation",
+         "title": "Translocation",
+         "outcomes": [
+          {
+           "code": "4.2.2.7",
+           "text": "Describe translocation and explain how phloem suits its function."
+          }
+         ]
+        },
+        {
+         "id": "plant-diseases",
+         "title": "Plant diseases",
+         "outcomes": [
+          {
+           "code": "4.2.2.8",
+           "text": "Explain how communicable diseases spread in plants."
+          },
+          {
+           "code": null,
+           "text": "Explain how plant disease spread can be reduced or prevented, with at least one example."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "4-3-interactions-with-the-environment",
+     "title": "4.3 Interactions with the environment",
+     "topics": [
+      {
+       "id": "4-3-1-lifestyle-and-health",
+       "title": "4.3.1 Lifestyle and health",
+       "subtopics": [
+        {
+         "id": "unit-overview",
+         "title": "Unit overview",
+         "outcomes": [
+          {
+           "code": "4.3",
+           "text": "Link lifestyle, radiation and disease to the balance within the body."
+          }
+         ]
+        },
+        {
+         "id": "topic-overview",
+         "title": "Topic overview",
+         "outcomes": [
+          {
+           "code": "4.3.1",
+           "text": "Study how lifestyle, hormones and treatments affect health."
+          }
+         ]
+        },
+        {
+         "id": "health-and-disease",
+         "title": "Health and disease",
+         "outcomes": [
+          {
+           "code": "4.3.1.1",
+           "text": "Describe the relationship between health and disease."
+          },
+          {
+           "code": null,
+           "text": "Describe types of disease, including communicable and non-communicable."
+          }
+         ]
+        },
+        {
+         "id": "risk-factors-for-non-communicable-diseases",
+         "title": "Risk factors for non-communicable diseases",
+         "outcomes": [
+          {
+           "code": "4.3.1.2",
+           "text": "Recall that many non-communicable diseases come from several interacting factors."
+          },
+          {
+           "code": null,
+           "text": "Explain how exercise, diet, alcohol and smoking affect disease rates locally, nationally and globally."
+          }
+         ]
+        },
+        {
+         "id": "treatments-for-cardiovascular-disease",
+         "title": "Treatments for cardiovascular disease",
+         "outcomes": [
+          {
+           "code": "4.3.1.3",
+           "text": "Evaluate treatments for cardiovascular disease such as statins, stents, valve replacement and transplants."
+          }
+         ]
+        },
+        {
+         "id": "homeostasis",
+         "title": "Homeostasis",
+         "outcomes": [
+          {
+           "code": "4.3.1.4",
+           "text": "Explain why a constant internal environment must be kept despite internal and external change."
+          }
+         ]
+        },
+        {
+         "id": "insulin-and-diabetes",
+         "title": "Insulin and diabetes",
+         "outcomes": [
+          {
+           "code": "4.3.1.5",
+           "text": "Explain how insulin controls blood sugar."
+          },
+          {
+           "code": null,
+           "text": "Higher tier: explain how glucagon works with insulin."
+          },
+          {
+           "code": null,
+           "text": "Compare Type 1 and Type 2 diabetes and how each is treated."
+          }
+         ]
+        },
+        {
+         "id": "human-reproductive-hormones",
+         "title": "Human reproductive hormones",
+         "outcomes": [
+          {
+           "code": "4.3.1.6",
+           "text": "Describe the roles of hormones in human reproduction, including the menstrual cycle."
+          },
+          {
+           "code": null,
+           "text": "Higher tier: explain how FSH, LH, oestrogen and progesterone interact in the cycle."
+          }
+         ]
+        },
+        {
+         "id": "contraception",
+         "title": "Contraception",
+         "outcomes": [
+          {
+           "code": "4.3.1.7",
+           "text": "Explain the use of hormones in contraception and evaluate hormonal and non-hormonal methods."
+          }
+         ]
+        },
+        {
+         "id": "treatments-for-infertility",
+         "title": "Treatments for infertility",
+         "outcomes": [
+          {
+           "code": "4.3.1.8",
+           "text": "Higher tier: explain the use of hormones in treating infertility, including IVF."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "4-3-2-radiation-and-risk",
+       "title": "4.3.2 Radiation and risk",
+       "subtopics": [
+        {
+         "id": "topic-overview",
+         "title": "Topic overview",
+         "outcomes": [
+          {
+           "code": "4.3.2",
+           "text": "Study ionising radiation, radioactive decay and the hazards."
+          }
+         ]
+        },
+        {
+         "id": "absorption-and-emission-of-radiation",
+         "title": "Absorption and emission of radiation",
+         "outcomes": [
+          {
+           "code": "4.3.2.1",
+           "text": "Recall that electron arrangements change when atoms absorb or emit electromagnetic radiation."
+          }
+         ]
+        },
+        {
+         "id": "radioactive-decay",
+         "title": "Radioactive decay",
+         "outcomes": [
+          {
+           "code": "4.3.2.2",
+           "text": "Recall that unstable nuclei emit alpha, beta, neutrons or gamma and how nuclear mass and charge change."
+          },
+          {
+           "code": null,
+           "text": "Use names and symbols of nuclei and particles to write balanced decay equations."
+          }
+         ]
+        },
+        {
+         "id": "half-life",
+         "title": "Half-life",
+         "outcomes": [
+          {
+           "code": "4.3.2.3",
+           "text": "Explain half-life and how it relates to the random nature of decay."
+          }
+         ]
+        },
+        {
+         "id": "penetration-properties-of-radiations",
+         "title": "Penetration properties of radiations",
+         "outcomes": [
+          {
+           "code": "4.3.2.4",
+           "text": "Recall how well alpha, beta and gamma radiation penetrate materials."
+          }
+         ]
+        },
+        {
+         "id": "contamination-and-irradiation",
+         "title": "Contamination and irradiation",
+         "outcomes": [
+          {
+           "code": "4.3.2.5",
+           "text": "Recall the difference between contamination and irradiation and compare their hazards."
+          }
+         ]
+        },
+        {
+         "id": "ionising-radiations",
+         "title": "Ionising radiations",
+         "outcomes": [
+          {
+           "code": "4.3.2.6",
+           "text": "Recall that atomic and nuclear changes can produce and absorb radiation over a wide frequency range."
+          },
+          {
+           "code": null,
+           "text": "Describe the hazardous effects of ultraviolet, X-rays and gamma rays on body tissue."
+          },
+          {
+           "code": null,
+           "text": "Recall that atoms become ions by losing outer electrons."
+          }
+         ]
+        },
+        {
+         "id": "cancer",
+         "title": "Cancer",
+         "outcomes": [
+          {
+           "code": "4.3.2.7",
+           "text": "Describe cancer as changes in cells leading to uncontrolled growth and division."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "4-3-3-preventing-treating-and-curing-diseases",
+       "title": "4.3.3 Preventing, treating and curing diseases",
+       "subtopics": [
+        {
+         "id": "topic-overview",
+         "title": "Topic overview",
+         "outcomes": [
+          {
+           "code": "4.3.3",
+           "text": "Study how disease spreads, the body's defences, and medicines."
+          }
+         ]
+        },
+        {
+         "id": "spread-of-communicable-diseases",
+         "title": "Spread of communicable diseases",
+         "outcomes": [
+          {
+           "code": "4.3.3.1",
+           "text": "Explain how communicable diseases from viruses, bacteria, protists and fungi spread in animals."
+          }
+         ]
+        },
+        {
+         "id": "human-communicable-diseases",
+         "title": "Human communicable diseases",
+         "outcomes": [
+          {
+           "code": "4.3.3.2",
+           "text": "Describe at least one common human infection and sexually transmitted infections, including HIV/AIDS."
+          },
+          {
+           "code": null,
+           "text": "Explain how the spread of these diseases can be reduced or prevented."
+          }
+         ]
+        },
+        {
+         "id": "defences-against-pathogens",
+         "title": "Defences against pathogens",
+         "outcomes": [
+          {
+           "code": "4.3.3.3",
+           "text": "Describe the non-specific defences of the human body against pathogens."
+          }
+         ]
+        },
+        {
+         "id": "the-human-immune-system",
+         "title": "The human immune system",
+         "outcomes": [
+          {
+           "code": "4.3.3.4",
+           "text": "Explain the role of the immune system in defending against disease."
+          }
+         ]
+        },
+        {
+         "id": "vaccination",
+         "title": "Vaccination",
+         "outcomes": [
+          {
+           "code": "4.3.3.5",
+           "text": "Explain how vaccines prevent and treat disease."
+          }
+         ]
+        },
+        {
+         "id": "medicines",
+         "title": "Medicines",
+         "outcomes": [
+          {
+           "code": "4.3.3.6",
+           "text": "Explain how medicines such as antibiotics and painkillers prevent and treat disease."
+          },
+          {
+           "code": null,
+           "text": "Explain that many useful materials, such as medicines, are formulations of mixtures."
+          }
+         ]
+        },
+        {
+         "id": "testing-new-drugs",
+         "title": "Testing new drugs",
+         "outcomes": [
+          {
+           "code": "4.3.3.7",
+           "text": "Describe how new medicines are discovered and developed, including preclinical and clinical testing."
+          }
+         ]
+        },
+        {
+         "id": "genetic-modification",
+         "title": "Genetic modification",
+         "outcomes": [
+          {
+           "code": "4.3.3.8",
+           "text": "Explain benefits and risks, practical and ethical, of using gene technology in medicine."
+          }
+         ]
+        },
+        {
+         "id": "stem-cells",
+         "title": "Stem cells",
+         "outcomes": [
+          {
+           "code": "4.3.3.9",
+           "text": "Discuss potential benefits and risks of using stem cells in medicine."
+          }
+         ]
+        },
+        {
+         "id": "interactions-between-different-types-of-disease",
+         "title": "Interactions between different types of disease",
+         "outcomes": [
+          {
+           "code": "4.3.3.10",
+           "text": "Describe how different types of disease can interact."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "4-4-explaining-change",
+     "title": "4.4 Explaining change",
+     "topics": [
+      {
+       "id": "4-4-1-the-earth-s-atmosphere",
+       "title": "4.4.1 The Earth's atmosphere",
+       "subtopics": [
+        {
+         "id": "unit-overview",
+         "title": "Unit overview",
+         "outcomes": [
+          {
+           "code": "4.4",
+           "text": "Explain how living and non-living systems change over time, from atmosphere to genes."
+          }
+         ]
+        },
+        {
+         "id": "topic-overview",
+         "title": "Topic overview",
+         "outcomes": [
+          {
+           "code": "4.4.1",
+           "text": "Study the atmosphere's history, cycles, climate change and water supply."
+          }
+         ]
+        },
+        {
+         "id": "development-of-the-earth-s-atmosphere",
+         "title": "Development of the Earth's atmosphere",
+         "outcomes": [
+          {
+           "code": "4.4.1.1",
+           "text": "Describe how an oxygen-rich atmosphere is thought to have developed over time."
+          }
+         ]
+        },
+        {
+         "id": "the-carbon-cycle",
+         "title": "The carbon cycle",
+         "outcomes": [
+          {
+           "code": "4.4.1.2",
+           "text": "Recall how materials cycle through the living and non-living parts of an ecosystem."
+          },
+          {
+           "code": null,
+           "text": "Explain the importance of the carbon cycle to living organisms."
+          },
+          {
+           "code": null,
+           "text": "Describe photosynthetic organisms as the main producers of food and biomass."
+          },
+          {
+           "code": null,
+           "text": "Explain the role of microorganisms in cycling materials in an ecosystem."
+          }
+         ]
+        },
+        {
+         "id": "the-greenhouse-effect",
+         "title": "The greenhouse effect",
+         "outcomes": [
+          {
+           "code": "4.4.1.3",
+           "text": "Describe the greenhouse effect as radiation interacting with matter."
+          },
+          {
+           "code": null,
+           "text": "Higher tier: recall that substances absorb, transmit or reflect waves depending on wavelength."
+          }
+         ]
+        },
+        {
+         "id": "human-impacts-on-the-climate",
+         "title": "Human impacts on the climate",
+         "outcomes": [
+          {
+           "code": "4.4.1.4",
+           "text": "Evaluate evidence for human causes of climate change, including the carbon dioxide and fossil fuel link, and the uncertainties."
+          }
+         ]
+        },
+        {
+         "id": "climate-change-impacts-and-mitigation",
+         "title": "Climate change: impacts and mitigation",
+         "outcomes": [
+          {
+           "code": "4.4.1.5",
+           "text": "Describe potential effects of more carbon dioxide and methane on climate and how they can be mitigated."
+          }
+         ]
+        },
+        {
+         "id": "pollutants-that-affect-air-quality",
+         "title": "Pollutants that affect air quality",
+         "outcomes": [
+          {
+           "code": "4.4.1.6",
+           "text": "Describe sources of carbon monoxide, sulfur dioxide, nitrogen oxides and particulates, and the problems they cause."
+          }
+         ]
+        },
+        {
+         "id": "the-water-cycle",
+         "title": "The water cycle",
+         "outcomes": [
+          {
+           "code": "4.4.1.7",
+           "text": "Explain the importance of the water cycle to living organisms."
+          }
+         ]
+        },
+        {
+         "id": "sources-of-potable-water",
+         "title": "Sources of potable water",
+         "outcomes": [
+          {
+           "code": "4.4.1.8",
+           "text": "Describe the main methods of making potable water available, including treating waste, ground and salt water."
+          },
+          {
+           "code": null,
+           "text": "Describe, explain and give examples of simple distillation."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "4-4-2-ecosystems-and-biodiversity",
+       "title": "4.4.2 Ecosystems and biodiversity",
+       "subtopics": [
+        {
+         "id": "topic-overview",
+         "title": "Topic overview",
+         "outcomes": [
+          {
+           "code": "4.4.2",
+           "text": "Study ecosystems, populations, biodiversity and human impact."
+          }
+         ]
+        },
+        {
+         "id": "levels-of-organisation-in-an-ecosystem",
+         "title": "Levels of organisation in an ecosystem",
+         "outcomes": [
+          {
+           "code": "4.4.2.1",
+           "text": "Describe the levels of organisation in an ecosystem from individual organisms to the whole ecosystem."
+          }
+         ]
+        },
+        {
+         "id": "interdependence-and-competition",
+         "title": "Interdependence and competition",
+         "outcomes": [
+          {
+           "code": "4.4.2.2",
+           "text": "Describe the importance of interdependence and competition in a community."
+          }
+         ]
+        },
+        {
+         "id": "factors-that-affect-communities",
+         "title": "Factors that affect communities",
+         "outcomes": [
+          {
+           "code": "4.4.2.3",
+           "text": "Explain how some abiotic and biotic factors affect communities."
+          }
+         ]
+        },
+        {
+         "id": "field-investigations",
+         "title": "Field investigations",
+         "outcomes": [
+          {
+           "code": "4.4.2.4",
+           "text": "Describe how to run a field investigation into distribution and abundance of organisms and find numbers in an area."
+          }
+         ]
+        },
+        {
+         "id": "biodiversity",
+         "title": "Biodiversity",
+         "outcomes": [
+          {
+           "code": "4.4.2.5",
+           "text": "Explain benefits and challenges of keeping local and global biodiversity."
+          }
+         ]
+        },
+        {
+         "id": "negative-human-impacts-on-ecosystems",
+         "title": "Negative human impacts on ecosystems",
+         "outcomes": [
+          {
+           "code": "4.4.2.6",
+           "text": "Describe negative human interactions with ecosystems and explain their impact on biodiversity."
+          }
+         ]
+        },
+        {
+         "id": "positive-human-impacts-on-ecosystems",
+         "title": "Positive human impacts on ecosystems",
+         "outcomes": [
+          {
+           "code": "4.4.2.7",
+           "text": "Describe positive human interactions with ecosystems and explain their impact on biodiversity."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "4-4-3-inheritance",
+       "title": "4.4.3 Inheritance",
+       "subtopics": [
+        {
+         "id": "topic-overview",
+         "title": "Topic overview",
+         "outcomes": [
+          {
+           "code": "4.4.3",
+           "text": "Study genes, chromosomes and how characteristics are inherited."
+          }
+         ]
+        },
+        {
+         "id": "chromosomes-and-genes",
+         "title": "Chromosomes and genes",
+         "outcomes": [
+          {
+           "code": "4.4.3.1",
+           "text": "Explain the terms gamete, chromosome and gene."
+          },
+          {
+           "code": null,
+           "text": "Describe DNA as a polymer of two strands forming a double helix."
+          },
+          {
+           "code": null,
+           "text": "Describe the genome as the entire genetic material of an organism."
+          }
+         ]
+        },
+        {
+         "id": "sex-determination-in-humans",
+         "title": "Sex determination in humans",
+         "outcomes": [
+          {
+           "code": "4.4.3.2",
+           "text": "Describe how sex is determined in humans."
+          }
+         ]
+        },
+        {
+         "id": "single-gene-inheritance",
+         "title": "Single gene inheritance",
+         "outcomes": [
+          {
+           "code": "4.4.3.3",
+           "text": "Explain single gene inheritance."
+          },
+          {
+           "code": null,
+           "text": "Predict the results of single gene crosses."
+          },
+          {
+           "code": null,
+           "text": "Explain allele, dominant, recessive, homozygous and heterozygous."
+          }
+         ]
+        },
+        {
+         "id": "genotype-and-phenotype",
+         "title": "Genotype and phenotype",
+         "outcomes": [
+          {
+           "code": "4.4.3.4",
+           "text": "Describe simply how the genome and environment shape an organism's phenotype."
+          },
+          {
+           "code": null,
+           "text": "Explain genotype and phenotype."
+          },
+          {
+           "code": null,
+           "text": "Recall that most features come from many genes rather than a single gene."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "4-4-4-variation-and-evolution",
+       "title": "4.4.4 Variation and evolution",
+       "subtopics": [
+        {
+         "id": "topic-overview",
+         "title": "Topic overview",
+         "outcomes": [
+          {
+           "code": "4.4.4",
+           "text": "Study mutation, natural selection, classification and breeding."
+          }
+         ]
+        },
+        {
+         "id": "mutations",
+         "title": "Mutations",
+         "outcomes": [
+          {
+           "code": "4.4.4.1",
+           "text": "State that there is usually plenty of genetic variation within a species."
+          },
+          {
+           "code": null,
+           "text": "Recall that variants arise from mutations and most have no effect on the phenotype."
+          }
+         ]
+        },
+        {
+         "id": "evolution-through-natural-selection",
+         "title": "Evolution through natural selection",
+         "outcomes": [
+          {
+           "code": "4.4.4.2",
+           "text": "Describe evolution as change in inherited characteristics through natural selection, which can form new species."
+          },
+          {
+           "code": null,
+           "text": "Explain how natural selection favours variants best suited to their environment."
+          }
+         ]
+        },
+        {
+         "id": "evidence-for-evolution",
+         "title": "Evidence for evolution",
+         "outcomes": [
+          {
+           "code": "4.4.4.3",
+           "text": "Describe evidence for evolution, including fossils and antibiotic resistance in bacteria."
+          }
+         ]
+        },
+        {
+         "id": "identification-and-classification-of-living-thin",
+         "title": "Identification and classification of living things",
+         "outcomes": [
+          {
+           "code": "4.4.4.4",
+           "text": "Describe how developments in biology have changed classification systems."
+          }
+         ]
+        },
+        {
+         "id": "selective-breeding",
+         "title": "Selective breeding",
+         "outcomes": [
+          {
+           "code": "4.4.4.5",
+           "text": "Explain the impact of selective breeding of food plants and domesticated animals."
+          }
+         ]
+        },
+        {
+         "id": "genetic-engineering",
+         "title": "Genetic engineering",
+         "outcomes": [
+          {
+           "code": "4.4.4.6",
+           "text": "Describe genetic engineering as modifying an organism's genome to add desirable characteristics."
+          },
+          {
+           "code": null,
+           "text": "Higher tier: describe the main steps in genetic engineering."
+          },
+          {
+           "code": null,
+           "text": "Explain benefits and risks, practical and ethical, of gene technology in modern agriculture."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "4-5-building-blocks-for-understanding",
+     "title": "4.5 Building blocks for understanding",
+     "topics": [
+      {
+       "id": "4-5-1-the-periodic-table",
+       "title": "4.5.1 The periodic table",
+       "subtopics": [
+        {
+         "id": "unit-overview",
+         "title": "Unit overview",
+         "outcomes": [
+          {
+           "code": "4.5",
+           "text": "Use the periodic table and chemical quantities as a shared language of chemistry."
+          }
+         ]
+        },
+        {
+         "id": "topic-overview",
+         "title": "Topic overview",
+         "outcomes": [
+          {
+           "code": "4.5.1",
+           "text": "Link the periodic table to atomic structure and study groups 0, 1 and 7."
+          }
+         ]
+        },
+        {
+         "id": "atomic-number-and-the-periodic-table",
+         "title": "Atomic number and the periodic table",
+         "outcomes": [
+          {
+           "code": "4.5.1.1",
+           "text": "Explain how an element's position in the periodic table relates to its electron arrangement and atomic number."
+          },
+          {
+           "code": null,
+           "text": "Explain in terms of isotopes how this changes Mendeleev's arrangement."
+          }
+         ]
+        },
+        {
+         "id": "metals-and-non-metals",
+         "title": "Metals and non-metals",
+         "outcomes": [
+          {
+           "code": "4.5.1.2",
+           "text": "Explain how atomic structure of metals and non-metals relates to their place in the periodic table."
+          },
+          {
+           "code": null,
+           "text": "Explain how elements' reactions relate to electron arrangement and atomic number."
+          }
+         ]
+        },
+        {
+         "id": "group-0",
+         "title": "Group 0",
+         "outcomes": [
+          {
+           "code": "4.5.1.3",
+           "text": "Recall the simple properties of Group 0."
+          },
+          {
+           "code": null,
+           "text": "Explain how Group 0 properties depend on outer shell electrons and predict trends down the group."
+          }
+         ]
+        },
+        {
+         "id": "group-1",
+         "title": "Group 1",
+         "outcomes": [
+          {
+           "code": "4.5.1.4",
+           "text": "Recall the simple properties of Group 1."
+          },
+          {
+           "code": null,
+           "text": "Explain how Group 1 properties depend on outer shell electrons and predict trends down the group."
+          }
+         ]
+        },
+        {
+         "id": "group-7",
+         "title": "Group 7",
+         "outcomes": [
+          {
+           "code": "4.5.1.5",
+           "text": "Recall the simple properties of Group 7."
+          },
+          {
+           "code": null,
+           "text": "Explain how Group 7 properties depend on outer shell electrons and predict trends down the group."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "4-5-2-chemical-quantities",
+       "title": "4.5.2 Chemical quantities",
+       "subtopics": [
+        {
+         "id": "topic-overview",
+         "title": "Topic overview",
+         "outcomes": [
+          {
+           "code": "4.5.2",
+           "text": "Use quantitative methods for formulae, equations and reacting amounts."
+          }
+         ]
+        },
+        {
+         "id": "chemical-equations",
+         "title": "Chemical equations",
+         "outcomes": [
+          {
+           "code": "4.5.2.1",
+           "text": "Use names and symbols of common elements and compounds and conservation of mass to write balanced chemical equations."
+          },
+          {
+           "code": null,
+           "text": "Higher tier: write half equations."
+          },
+          {
+           "code": null,
+           "text": "Use chemical symbols to write formulae of elements and simple covalent and ionic compounds."
+          },
+          {
+           "code": null,
+           "text": "Describe physical states of reactants and products using state symbols."
+          }
+         ]
+        },
+        {
+         "id": "conservation-of-mass",
+         "title": "Conservation of mass",
+         "outcomes": [
+          {
+           "code": "4.5.2.2",
+           "text": "Recall and use the law of conservation of mass."
+          },
+          {
+           "code": null,
+           "text": "Explain observed changes in mass in non-enclosed systems using the particle model."
+          }
+         ]
+        },
+        {
+         "id": "relative-formula-masses",
+         "title": "Relative formula masses",
+         "outcomes": [
+          {
+           "code": "4.5.2.3",
+           "text": "Calculate relative formula masses of species separately and in a balanced equation."
+          },
+          {
+           "code": null,
+           "text": "Calculate percentage by mass in a compound from relative formula mass and atomic masses."
+          }
+         ]
+        },
+        {
+         "id": "amounts-in-moles",
+         "title": "Amounts in moles",
+         "outcomes": [
+          {
+           "code": "4.5.2.4",
+           "text": "Higher tier: relate the mass of a substance to its amount in moles and back."
+          },
+          {
+           "code": null,
+           "text": "Higher tier: recall and use the definitions of the Avogadro constant and the mole."
+          }
+         ]
+        },
+        {
+         "id": "calculations-based-on-equations",
+         "title": "Calculations based on equations",
+         "outcomes": [
+          {
+           "code": "4.5.2.5",
+           "text": "Higher tier: deduce an equation's balancing numbers from masses and explain the effect of a limiting reactant."
+          },
+          {
+           "code": null,
+           "text": "Higher tier: use a balanced equation to calculate reactant or product masses."
+          }
+         ]
+        },
+        {
+         "id": "concentrations-of-solutions",
+         "title": "Concentrations of solutions",
+         "outcomes": [
+          {
+           "code": "4.5.2.6",
+           "text": "Higher tier: relate the mass of solute and volume of solution to concentration."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "4-6-interactions-over-small-and-large-distances",
+     "title": "4.6 Interactions over small and large distances",
+     "topics": [
+      {
+       "id": "4-6-1-forces-and-energy-changes",
+       "title": "4.6.1 Forces and energy changes",
+       "subtopics": [
+        {
+         "id": "unit-overview",
+         "title": "Unit overview",
+         "outcomes": [
+          {
+           "code": "4.6",
+           "text": "Study forces and bonds between atoms, molecules and larger structures."
+          }
+         ]
+        },
+        {
+         "id": "topic-overview",
+         "title": "Topic overview",
+         "outcomes": [
+          {
+           "code": "4.6.1",
+           "text": "Study forces as vectors, work, weight and energy stores."
+          }
+         ]
+        },
+        {
+         "id": "forces-as-vectors",
+         "title": "Forces as vectors",
+         "outcomes": [
+          {
+           "code": "4.6.1.1",
+           "text": "Recall how objects interact by gravity, electrostatics, magnetism and contact, and show these forces as vectors."
+          }
+         ]
+        },
+        {
+         "id": "resolving-forces",
+         "title": "Resolving forces",
+         "outcomes": [
+          {
+           "code": "4.6.1.2",
+           "text": "Higher tier: describe forces on an object with free body diagrams, including resultant and balanced forces."
+          }
+         ]
+        },
+        {
+         "id": "work",
+         "title": "Work",
+         "outcomes": [
+          {
+           "code": "4.6.1.3",
+           "text": "Describe and calculate energy changes when forces do work on a system."
+          },
+          {
+           "code": null,
+           "text": "Use work done, force and distance moved, describing the energy transfer."
+          }
+         ]
+        },
+        {
+         "id": "mass-and-weight",
+         "title": "Mass and weight",
+         "outcomes": [
+          {
+           "code": "4.6.1.4",
+           "text": "Define weight, how it is measured, and its relation to gravitational field strength."
+          }
+         ]
+        },
+        {
+         "id": "gravitational-potential-energy",
+         "title": "Gravitational potential energy",
+         "outcomes": [
+          {
+           "code": "4.6.1.5",
+           "text": "Calculate the energy of an object raised above ground level."
+          }
+         ]
+        },
+        {
+         "id": "elastic-deformation",
+         "title": "Elastic deformation",
+         "outcomes": [
+          {
+           "code": "4.6.1.6",
+           "text": "Explain with examples that stretching, bending or compressing needs more than one force."
+          },
+          {
+           "code": null,
+           "text": "Describe elastic versus inelastic distortion and force-extension for a spring, including linear and non-linear cases."
+          },
+          {
+           "code": null,
+           "text": "Calculate a spring constant in linear cases."
+          }
+         ]
+        },
+        {
+         "id": "energy-stored-in-a-stretched-spring",
+         "title": "Energy stored in a stretched spring",
+         "outcomes": [
+          {
+           "code": "4.6.1.7",
+           "text": "Calculate the energy associated with a stretched spring."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "4-6-2-structure-and-bonding",
+       "title": "4.6.2 Structure and bonding",
+       "subtopics": [
+        {
+         "id": "topic-overview",
+         "title": "Topic overview",
+         "outcomes": [
+          {
+           "code": "4.6.2",
+           "text": "Explain properties of materials through their bonding and structure."
+          }
+         ]
+        },
+        {
+         "id": "types-of-chemical-bonding",
+         "title": "Types of chemical bonding",
+         "outcomes": [
+          {
+           "code": "4.6.2.1",
+           "text": "Describe and compare bonds in ionic compounds, simple molecules, giant covalent structures, polymers and metals."
+          }
+         ]
+        },
+        {
+         "id": "ionic-bonding",
+         "title": "Ionic bonding",
+         "outcomes": [
+          {
+           "code": "4.6.2.2",
+           "text": "Explain chemical bonding in terms of electrostatic forces and electron transfer."
+          },
+          {
+           "code": null,
+           "text": "Construct dot and cross diagrams for simple ionic substances."
+          },
+          {
+           "code": null,
+           "text": "Deduce an empirical formula from atom numbers or a model, and the reverse."
+          },
+          {
+           "code": null,
+           "text": "Use formulae of common ions to deduce compound formulae."
+          }
+         ]
+        },
+        {
+         "id": "properties-of-ionic-compounds",
+         "title": "Properties of ionic compounds",
+         "outcomes": [
+          {
+           "code": "4.6.2.3",
+           "text": "Explain how properties of ionic materials relate to bond types, strengths and arrangement."
+          }
+         ]
+        },
+        {
+         "id": "covalent-bonding",
+         "title": "Covalent bonding",
+         "outcomes": [
+          {
+           "code": "4.6.2.4",
+           "text": "Explain chemical bonding in terms of electrostatic forces and sharing electrons."
+          },
+          {
+           "code": null,
+           "text": "Construct dot and cross diagrams for simple covalent substances."
+          },
+          {
+           "code": null,
+           "text": "Deduce an empirical formula from atom numbers or a model, and the reverse."
+          }
+         ]
+        },
+        {
+         "id": "properties-of-substances-with-covalent-bonding",
+         "title": "Properties of substances with covalent bonding",
+         "outcomes": [
+          {
+           "code": "4.6.2.5",
+           "text": "Explain how properties of covalent materials relate to bond strengths, intermolecular forces and arrangement."
+          }
+         ]
+        },
+        {
+         "id": "metallic-bonding",
+         "title": "Metallic bonding",
+         "outcomes": [
+          {
+           "code": "4.6.2.6",
+           "text": "Explain metallic bonding in terms of electrostatic forces and shared electrons."
+          }
+         ]
+        },
+        {
+         "id": "properties-of-metals",
+         "title": "Properties of metals",
+         "outcomes": [
+          {
+           "code": "4.6.2.7",
+           "text": "Explain how properties of metals and alloys relate to bond type, strength and arrangement."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "4-6-3-magnetism-and-electromagnetism",
+       "title": "4.6.3 Magnetism and electromagnetism",
+       "subtopics": [
+        {
+         "id": "topic-overview",
+         "title": "Topic overview",
+         "outcomes": [
+          {
+           "code": "4.6.3",
+           "text": "Study magnets, fields and the force on a current."
+          }
+         ]
+        },
+        {
+         "id": "magnets",
+         "title": "Magnets",
+         "outcomes": [
+          {
+           "code": "4.6.3.1",
+           "text": "Describe attraction and repulsion between poles, and the difference between permanent and induced magnets."
+          }
+         ]
+        },
+        {
+         "id": "magnetic-fields",
+         "title": "Magnetic fields",
+         "outcomes": [
+          {
+           "code": "4.6.3.2",
+           "text": "Describe a magnet's field, showing how strength and direction change from point to point."
+          }
+         ]
+        },
+        {
+         "id": "the-earth-s-magnetism",
+         "title": "The Earth's magnetism",
+         "outcomes": [
+          {
+           "code": "4.6.3.3",
+           "text": "Explain how a compass shows that the Earth's core must be magnetic."
+          }
+         ]
+        },
+        {
+         "id": "the-magnetic-effect-of-an-electric-current",
+         "title": "The magnetic effect of an electric current",
+         "outcomes": [
+          {
+           "code": "4.6.3.4",
+           "text": "Describe how to show a current creates a magnetic effect and the field directions around a wire."
+          },
+          {
+           "code": null,
+           "text": "Recall that field strength depends on current and distance, and explain how solenoids strengthen the effect."
+          }
+         ]
+        },
+        {
+         "id": "the-motor-effect",
+         "title": "The motor effect",
+         "outcomes": [
+          {
+           "code": "4.6.3.5",
+           "text": "Higher tier: describe the force between a magnet and a current-carrying conductor, using Fleming's left-hand rule."
+          },
+          {
+           "code": null,
+           "text": "Higher tier: apply the equation linking force to magnetic flux density, current and conductor length."
+          }
+         ]
+        },
+        {
+         "id": "electric-motors",
+         "title": "Electric motors",
+         "outcomes": [
+          {
+           "code": "4.6.3.6",
+           "text": "Higher tier: explain how the motor effect force makes electric motors rotate."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "4-7-movement-and-interactions",
+     "title": "4.7 Movement and interactions",
+     "topics": [
+      {
+       "id": "4-7-1-forces-and-motion",
+       "title": "4.7.1 Forces and motion",
+       "subtopics": [
+        {
+         "id": "unit-overview",
+         "title": "Unit overview",
+         "outcomes": [
+          {
+           "code": "4.7",
+           "text": "Study motion, forces, electricity and chemical reactions that matter for safe travel and daily life."
+          }
+         ]
+        },
+        {
+         "id": "topic-overview",
+         "title": "Topic overview",
+         "outcomes": [
+          {
+           "code": "4.7.1",
+           "text": "Study speed, acceleration, Newton's laws, momentum, energy and road safety."
+          }
+         ]
+        },
+        {
+         "id": "speed-and-velocity",
+         "title": "Speed and velocity",
+         "outcomes": [
+          {
+           "code": "4.7.1.1",
+           "text": "Explain the vector-scalar distinction for displacement, distance, velocity and speed."
+          },
+          {
+           "code": null,
+           "text": "Recall typical speeds for wind, sound, walking, running, cycling and transport."
+          }
+         ]
+        },
+        {
+         "id": "distance-speed-and-time",
+         "title": "Distance, speed and time",
+         "outcomes": [
+          {
+           "code": "4.7.1.2",
+           "text": "Measure distances and times, calculate speeds, and use graphs to find speeds and accelerations."
+          }
+         ]
+        },
+        {
+         "id": "circular-motion",
+         "title": "Circular motion",
+         "outcomes": [
+          {
+           "code": "4.7.1.3",
+           "text": "Higher tier: explain with examples that circular orbit means constant speed but changing velocity."
+          }
+         ]
+        },
+        {
+         "id": "free-fall",
+         "title": "Free fall",
+         "outcomes": [
+          {
+           "code": "4.7.1.4",
+           "text": "Recall the acceleration in free fall and estimate everyday accelerations."
+          }
+         ]
+        },
+        {
+         "id": "newton-s-first-law",
+         "title": "Newton's First Law",
+         "outcomes": [
+          {
+           "code": "4.7.1.5",
+           "text": "Apply Newton's First Law to objects moving at uniform velocity and objects whose speed or direction changes."
+          }
+         ]
+        },
+        {
+         "id": "newton-s-second-law",
+         "title": "Newton's Second Law",
+         "outcomes": [
+          {
+           "code": "4.7.1.6",
+           "text": "Apply Newton's Second Law in calculations linking force, mass and acceleration."
+          },
+          {
+           "code": null,
+           "text": "Higher tier: explain that inertial mass measures how hard it is to change velocity, defined as force over acceleration."
+          }
+         ]
+        },
+        {
+         "id": "newton-s-third-law",
+         "title": "Newton's Third Law",
+         "outcomes": [
+          {
+           "code": "4.7.1.7",
+           "text": "Recall Newton's Third Law and apply it to equilibrium examples."
+          }
+         ]
+        },
+        {
+         "id": "momentum",
+         "title": "Momentum",
+         "outcomes": [
+          {
+           "code": "4.7.1.8",
+           "text": "Higher tier: define momentum and describe examples in collisions."
+          }
+         ]
+        },
+        {
+         "id": "kinetic-energy",
+         "title": "Kinetic energy",
+         "outcomes": [
+          {
+           "code": "4.7.1.9",
+           "text": "Calculate the energy of a moving body."
+          },
+          {
+           "code": null,
+           "text": "Describe energy store changes for a moving object hitting an obstacle or being accelerated by a constant force."
+          }
+         ]
+        },
+        {
+         "id": "stopping-distances",
+         "title": "Stopping distances",
+         "outcomes": [
+          {
+           "code": "4.7.1.10",
+           "text": "Explain the factors affecting vehicle stopping distance in emergencies and the safety implications."
+          },
+          {
+           "code": null,
+           "text": "Explain the dangers of large decelerations and describe energy changes when a vehicle slows."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "4-7-2-electricity",
+       "title": "4.7.2 Electricity",
+       "subtopics": [
+        {
+         "id": "topic-overview",
+         "title": "Topic overview",
+         "outcomes": [
+          {
+           "code": "4.7.2",
+           "text": "Study circuits, mains electricity, power and the National Grid."
+          }
+         ]
+        },
+        {
+         "id": "electric-current",
+         "title": "Electric current",
+         "outcomes": [
+          {
+           "code": "4.7.2.1",
+           "text": "Recall that current is the rate of charge flow, needing a potential difference and a closed circuit."
+          },
+          {
+           "code": null,
+           "text": "Recall and use the relationship between charge, current and time."
+          }
+         ]
+        },
+        {
+         "id": "current-resistance-and-potential-difference",
+         "title": "Current, resistance and potential difference",
+         "outcomes": [
+          {
+           "code": "4.7.2.2",
+           "text": "Recall how current depends on resistance and potential difference and apply V = IR for ohmic resistors."
+          },
+          {
+           "code": null,
+           "text": "Explain how resistance changes in lamps, diodes, thermistors and LDRs and how circuits explore this."
+          }
+         ]
+        },
+        {
+         "id": "series-and-parallel-circuits",
+         "title": "Series and parallel circuits",
+         "outcomes": [
+          {
+           "code": "4.7.2.3",
+           "text": "Describe series and parallel circuits and why resistance rises in series and falls in parallel."
+          },
+          {
+           "code": null,
+           "text": "Calculate currents, potential differences and resistances in dc series circuits and explain their use."
+          }
+         ]
+        },
+        {
+         "id": "circuit-elements",
+         "title": "Circuit elements",
+         "outcomes": [
+          {
+           "code": "4.7.2.4",
+           "text": "Draw dc series circuits with standard symbols, including diodes, LDRs and thermistors."
+          }
+         ]
+        },
+        {
+         "id": "direct-and-alternating-currents",
+         "title": "Direct and alternating currents",
+         "outcomes": [
+          {
+           "code": "4.7.2.5",
+           "text": "Recall that UK mains is ac at 50 Hz and about 230 volts, and explain how dc differs from ac."
+          }
+         ]
+        },
+        {
+         "id": "mains-cables",
+         "title": "Mains cables",
+         "outcomes": [
+          {
+           "code": "4.7.2.6",
+           "text": "Recall the functions of live, neutral and earth wires and their potential differences."
+          },
+          {
+           "code": null,
+           "text": "Explain why a live wire is dangerous even with the switch open, and the danger of connecting live to earth."
+          }
+         ]
+        },
+        {
+         "id": "power",
+         "title": "Power",
+         "outcomes": [
+          {
+           "code": "4.7.2.7",
+           "text": "Explain with examples that power is the rate of energy transfer."
+          },
+          {
+           "code": null,
+           "text": "Explain how power in a circuit device relates to potential difference, current and energy changes."
+          }
+         ]
+        },
+        {
+         "id": "power-and-domestic-electric-appliances",
+         "title": "Power and domestic electric appliances",
+         "outcomes": [
+          {
+           "code": "4.7.2.8",
+           "text": "Describe how energy moves from batteries and mains to motors or heaters in domestic devices."
+          },
+          {
+           "code": null,
+           "text": "Describe the changes in stored energy when a device is used, such as an electric kettle."
+          },
+          {
+           "code": null,
+           "text": "Describe with examples how appliance power ratings relate to energy changes in use."
+          },
+          {
+           "code": null,
+           "text": "Describe and calculate energy changes when a current does work."
+          }
+         ]
+        },
+        {
+         "id": "the-national-grid",
+         "title": "The National Grid",
+         "outcomes": [
+          {
+           "code": "4.7.2.9",
+           "text": "Recall that grid power moves at high voltage and is lowered locally, and explain why this is efficient."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "4-7-3-acids-and-alkalis",
+       "title": "4.7.3 Acids and alkalis",
+       "subtopics": [
+        {
+         "id": "topic-overview",
+         "title": "Topic overview",
+         "outcomes": [
+          {
+           "code": "4.7.3",
+           "text": "Study acid reactions, salts, energy changes and pH."
+          }
+         ]
+        },
+        {
+         "id": "reactions-of-acids",
+         "title": "Reactions of acids",
+         "outcomes": [
+          {
+           "code": "4.7.3.1",
+           "text": "Recall that acids react with some metals and with carbonates, and write equations predicting products."
+          },
+          {
+           "code": null,
+           "text": "Describe tests to identify gases such as hydrogen and carbon dioxide."
+          },
+          {
+           "code": null,
+           "text": "Higher tier: explain that metal-acid reactions are redox reactions, and identify what is oxidised and reduced."
+          }
+         ]
+        },
+        {
+         "id": "making-salts",
+         "title": "Making salts",
+         "outcomes": [
+          {
+           "code": "4.7.3.2",
+           "text": "Describe neutralisation as acid reacting with alkali to form a salt plus water."
+          },
+          {
+           "code": null,
+           "text": "Describe, explain and give examples of filtration and crystallisation."
+          },
+          {
+           "code": null,
+           "text": "Suggest suitable purification techniques from information about the substances."
+          }
+         ]
+        },
+        {
+         "id": "energy-changes-and-reactions",
+         "title": "Energy changes and reactions",
+         "outcomes": [
+          {
+           "code": "4.7.3.3",
+           "text": "Tell endothermic from exothermic reactions using temperature change of the surroundings."
+          }
+         ]
+        },
+        {
+         "id": "the-ph-scale-and-neutralisation",
+         "title": "The pH scale and neutralisation",
+         "outcomes": [
+          {
+           "code": "4.7.3.4",
+           "text": "Recall that acids form hydrogen ions in water and alkali solutions contain hydroxide ions."
+          },
+          {
+           "code": null,
+           "text": "Higher tier: use common ion formulae to write balanced ionic equations."
+          },
+          {
+           "code": null,
+           "text": "Recall that acidity and alkalinity are measured by pH."
+          },
+          {
+           "code": null,
+           "text": "Recognise that neutralisation is hydrogen ions reacting with hydroxide ions to form water."
+          }
+         ]
+        },
+        {
+         "id": "strong-and-weak-acids",
+         "title": "Strong and weak acids",
+         "outcomes": [
+          {
+           "code": "4.7.3.5",
+           "text": "Higher tier: use and explain dilute, concentrated, weak and strong in relation to acids."
+          },
+          {
+           "code": null,
+           "text": "Higher tier: recall that each tenfold rise in hydrogen ion concentration lowers pH by one."
+          },
+          {
+           "code": null,
+           "text": "Higher tier: describe neutrality and relative acidity in terms of hydrogen ion concentration and pH."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "4-7-4-the-rate-and-extent-of-chemical-change",
+       "title": "4.7.4 The rate and extent of chemical change",
+       "subtopics": [
+        {
+         "id": "topic-overview",
+         "title": "Topic overview",
+         "outcomes": [
+          {
+           "code": "4.7.4",
+           "text": "Study reaction rates, catalysts, enzymes and equilibrium."
+          }
+         ]
+        },
+        {
+         "id": "factors-that-affect-reaction-rates",
+         "title": "Factors that affect reaction rates",
+         "outcomes": [
+          {
+           "code": "4.7.4.1",
+           "text": "Describe the effect of temperature, concentration, pressure and surface area on reaction rate."
+          },
+          {
+           "code": null,
+           "text": "Suggest practical methods for finding the rate of a given reaction."
+          }
+         ]
+        },
+        {
+         "id": "the-effect-of-surface-area-on-rates-of-reaction",
+         "title": "The effect of surface area on rates of reaction",
+         "outcomes": [
+          {
+           "code": "4.7.4.2",
+           "text": "Explain how smaller pieces of a solid affect reaction rate in terms of surface area to volume ratio."
+          }
+         ]
+        },
+        {
+         "id": "the-effect-of-temperature-concentration-and-pres",
+         "title": "The effect of temperature, concentration and pressure on rates of reaction",
+         "outcomes": [
+          {
+           "code": "4.7.4.3",
+           "text": "Explain how changes in temperature, concentration and pressure affect rate through frequency and energy of collisions."
+          }
+         ]
+        },
+        {
+         "id": "activation-energy",
+         "title": "Activation energy",
+         "outcomes": [
+          {
+           "code": "4.7.4.4",
+           "text": "Explain activation energy as the energy needed for a reaction to occur."
+          },
+          {
+           "code": null,
+           "text": "Draw and label reaction profiles for exothermic and endothermic reactions, marking activation energy."
+          }
+         ]
+        },
+        {
+         "id": "bond-breaking-and-bond-forming",
+         "title": "Bond breaking and bond forming",
+         "outcomes": [
+          {
+           "code": "4.7.4.5",
+           "text": "Higher tier: calculate reaction energy changes from bond making and bond breaking energies."
+          }
+         ]
+        },
+        {
+         "id": "catalysts",
+         "title": "Catalysts",
+         "outcomes": [
+          {
+           "code": "4.7.4.6",
+           "text": "Describe the characteristics of catalysts and their effect on rates of reaction."
+          },
+          {
+           "code": null,
+           "text": "Identify catalysts in reactions."
+          },
+          {
+           "code": null,
+           "text": "Explain catalytic action in terms of activation energy."
+          }
+         ]
+        },
+        {
+         "id": "enzymes",
+         "title": "Enzymes",
+         "outcomes": [
+          {
+           "code": "4.7.4.7",
+           "text": "Recall that enzymes act as catalysts in biological systems."
+          },
+          {
+           "code": null,
+           "text": "Explain how enzymes work, including the active site, specificity and factors affecting the rate."
+          }
+         ]
+        },
+        {
+         "id": "reversible-reactions",
+         "title": "Reversible reactions",
+         "outcomes": [
+          {
+           "code": "4.7.4.8",
+           "text": "Recall that some reactions can be reversed by changing conditions."
+          }
+         ]
+        },
+        {
+         "id": "dynamic-equilibrium",
+         "title": "Dynamic equilibrium",
+         "outcomes": [
+          {
+           "code": "4.7.4.9",
+           "text": "Recall that dynamic equilibrium happens when forward and reverse rates are equal."
+          }
+         ]
+        },
+        {
+         "id": "factors-affecting-the-position-of-equilibrium",
+         "title": "Factors affecting the position of equilibrium",
+         "outcomes": [
+          {
+           "code": "4.7.4.10",
+           "text": "Higher tier: predict the effect of changing reaction conditions on equilibrium position."
+          },
+          {
+           "code": null,
+           "text": "Higher tier: predict the effect of changing concentration and suggest conditions for a product."
+          },
+          {
+           "code": null,
+           "text": "Higher tier: predict the effect of changing temperature on equilibrium position."
+          },
+          {
+           "code": null,
+           "text": "Higher tier: predict the effect of changing pressure on equilibrium position."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "4-7-5-atoms-into-ions-and-ions-into-atoms",
+       "title": "4.7.5 Atoms into ions and ions into atoms",
+       "subtopics": [
+        {
+         "id": "topic-overview",
+         "title": "Topic overview",
+         "outcomes": [
+          {
+           "code": "4.7.5",
+           "text": "Study reactivity, electrolysis and electron transfer."
+          }
+         ]
+        },
+        {
+         "id": "a-reactivity-series-for-metals",
+         "title": "A reactivity series for metals",
+         "outcomes": [
+          {
+           "code": "4.7.5.1",
+           "text": "Explain how metal reactions with water or dilute acids relate to the tendency to form positive ions."
+          }
+         ]
+        },
+        {
+         "id": "electrolysis",
+         "title": "Electrolysis",
+         "outcomes": [
+          {
+           "code": "4.7.5.2",
+           "text": "Describe electrolysis in terms of the ions present and reactions at electrodes."
+          },
+          {
+           "code": null,
+           "text": "Recall that metals or hydrogen form at the cathode and non-metals at the anode when using inert electrodes."
+          }
+         ]
+        },
+        {
+         "id": "electrolysis-of-aqueous-solutions",
+         "title": "Electrolysis of aqueous solutions",
+         "outcomes": [
+          {
+           "code": "4.7.5.3",
+           "text": "Describe competing reactions when aqueous solutions of ionic compounds are electrolysed, in terms of the species present."
+          }
+         ]
+        },
+        {
+         "id": "tests-for-gases",
+         "title": "Tests for gases",
+         "outcomes": [
+          {
+           "code": "4.7.5.4",
+           "text": "Describe tests to identify gases including oxygen, hydrogen and chlorine."
+          }
+         ]
+        },
+        {
+         "id": "electron-transfer-reactions",
+         "title": "Electron transfer reactions",
+         "outcomes": [
+          {
+           "code": "4.7.5.5",
+           "text": "Higher tier: explain reduction and oxidation as electron gain or loss and identify species oxidised and reduced."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "4-8-guiding-spaceship-earth-towards-a-sustainabl",
+     "title": "4.8 Guiding Spaceship Earth towards a sustainable future",
+     "topics": [
+      {
+       "id": "4-8-1-carbon-chemistry",
+       "title": "4.8.1 Carbon chemistry",
+       "subtopics": [
+        {
+         "id": "unit-overview",
+         "title": "Unit overview",
+         "outcomes": [
+          {
+           "code": "4.8",
+           "text": "Use carbon chemistry, resources and energy ideas to work toward sustainability."
+          }
+         ]
+        },
+        {
+         "id": "topic-overview",
+         "title": "Topic overview",
+         "outcomes": [
+          {
+           "code": "4.8.1",
+           "text": "Study forms of carbon, hydrocarbons and how crude oil is processed."
+          }
+         ]
+        },
+        {
+         "id": "bonding-and-structure-in-forms-of-carbon",
+         "title": "Bonding and structure in forms of carbon",
+         "outcomes": [
+          {
+           "code": "4.8.1.1",
+           "text": "Explain properties of diamond, graphite, fullerenes and graphene using their structures and bonding."
+          }
+         ]
+        },
+        {
+         "id": "hydrocarbons-in-crude-oil",
+         "title": "Hydrocarbons in crude oil",
+         "outcomes": [
+          {
+           "code": "4.8.1.2",
+           "text": "Recall that crude oil is a main source of hydrocarbons and feedstock for the petrochemical industry."
+          },
+          {
+           "code": null,
+           "text": "Recognise that crude oil is a finite resource."
+          },
+          {
+           "code": null,
+           "text": "Recall that carbon can form four covalent bonds."
+          },
+          {
+           "code": null,
+           "text": "Explain that carbon's ability to form chains and rings gives a vast array of organic compounds."
+          },
+          {
+           "code": null,
+           "text": "Describe fractions as mostly alkanes of formula CnH2n+2, the alkane homologous series."
+          }
+         ]
+        },
+        {
+         "id": "fractional-distillation-of-crude-oil",
+         "title": "Fractional distillation of crude oil",
+         "outcomes": [
+          {
+           "code": "4.8.1.3",
+           "text": "Describe and explain the separation of crude oil by fractional distillation."
+          },
+          {
+           "code": null,
+           "text": "Describe, explain and give examples of fractional distillation processes."
+          },
+          {
+           "code": null,
+           "text": "Explain how modern life depends on hydrocarbons."
+          }
+         ]
+        },
+        {
+         "id": "cracking-hydrocarbons",
+         "title": "Cracking hydrocarbons",
+         "outcomes": [
+          {
+           "code": "4.8.1.4",
+           "text": "Describe how cracking produces more useful materials."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "4-8-2-resources-of-materials-and-energy",
+       "title": "4.8.2 Resources of materials and energy",
+       "subtopics": [
+        {
+         "id": "topic-overview",
+         "title": "Topic overview",
+         "outcomes": [
+          {
+           "code": "4.8.2",
+           "text": "Study metal extraction, energy resources, efficiency and recycling."
+          }
+         ]
+        },
+        {
+         "id": "metal-extraction-by-reduction-of-oxides",
+         "title": "Metal extraction by reduction of oxides",
+         "outcomes": [
+          {
+           "code": "4.8.2.1",
+           "text": "Explain reduction and oxidation as loss or gain of oxygen, identifying what is oxidised or reduced."
+          },
+          {
+           "code": null,
+           "text": "Explain, using carbon's place in the reactivity series, the principles of industrial metal extraction."
+          }
+         ]
+        },
+        {
+         "id": "metal-extraction-by-electrolysis",
+         "title": "Metal extraction by electrolysis",
+         "outcomes": [
+          {
+           "code": "4.8.2.2",
+           "text": "Explain why and how electrolysis extracts some metals from ores."
+          }
+         ]
+        },
+        {
+         "id": "metal-extraction-by-biological-methods",
+         "title": "Metal extraction by biological methods",
+         "outcomes": [
+          {
+           "code": "4.8.2.3",
+           "text": "Higher tier: evaluate biological methods of metal extraction such as bioleaching and phytoextraction."
+          }
+         ]
+        },
+        {
+         "id": "energy-resources",
+         "title": "Energy resources",
+         "outcomes": [
+          {
+           "code": "4.8.2.4",
+           "text": "Describe the main energy resources, compare how they are used, and tell renewable from non-renewable."
+          }
+         ]
+        },
+        {
+         "id": "energy-conservation-and-dissipation",
+         "title": "Energy conservation and dissipation",
+         "outcomes": [
+          {
+           "code": "4.8.2.5",
+           "text": "Describe with examples where energy is transferred in a system and where a closed system's total energy is unchanged."
+          },
+          {
+           "code": null,
+           "text": "Describe with examples how energy is dissipated so it is stored in less useful ways."
+          }
+         ]
+        },
+        {
+         "id": "preventing-unwanted-energy-transfers",
+         "title": "Preventing unwanted energy transfers",
+         "outcomes": [
+          {
+           "code": "4.8.2.6",
+           "text": "Explain ways of reducing unwanted energy transfer, such as lubrication and thermal insulation, and effects of wall thickness and conductivity on building cooling."
+          }
+         ]
+        },
+        {
+         "id": "energy-efficiency",
+         "title": "Energy efficiency",
+         "outcomes": [
+          {
+           "code": "4.8.2.7",
+           "text": "Calculate energy efficiency for any energy transfer and describe ways to raise it."
+          }
+         ]
+        },
+        {
+         "id": "life-cycle-assessment",
+         "title": "Life cycle assessment",
+         "outcomes": [
+          {
+           "code": "4.8.2.8",
+           "text": "Describe the basic principles of a life cycle assessment of a material or product."
+          },
+          {
+           "code": null,
+           "text": "Interpret data from a life cycle assessment."
+          }
+         ]
+        },
+        {
+         "id": "recycling",
+         "title": "Recycling",
+         "outcomes": [
+          {
+           "code": "4.8.2.9",
+           "text": "Describe a process where a material or product is recycled for a different use and explain why it is viable."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "4-9-key-ideas",
+     "title": "4.9 Key ideas",
+     "topics": [
+      {
+       "id": "4-9-key-ideas",
+       "title": "4.9 Key ideas",
+       "subtopics": [
+        {
+         "id": "key-ideas-in-biology",
+         "title": "Key ideas in biology",
+         "outcomes": [
+          {
+           "code": "4.9",
+           "text": "Apply key biology ideas: structure and function, cells, ecosystems, photosynthesis, respiration, cycling, genome and natural selection."
+          }
+         ]
+        },
+        {
+         "id": "key-ideas-in-chemistry",
+         "title": "Key ideas in chemistry",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Apply key chemistry ideas: atoms and elements, periodic patterns, bonding, structure, rates of reaction and energy conservation."
+          }
+         ]
+        },
+        {
+         "id": "key-ideas-in-physics",
+         "title": "Key ideas in physics",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Apply key physics ideas: models, cause and effect, fields, differences as drivers of change, proportionality and mathematical laws."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "build": {
+  "builtAt": "2026-10-14T10:21:25.437Z",
+  "model": "claude-agent",
+  "usd": 0,
+  "expectedCodes": 203,
+  "coverage": 1,
+  "missingCodes": [],
+  "counts": {
+   "grades": 1,
+   "units": 9,
+   "topics": 26,
+   "subtopics": 205,
+   "outcomes": 316
+  },
+  "warnings": [
+   "grade Year 10 has no content",
+   "grade Year 11 has no content",
+   "unexpected grade label \"all\""
+  ]
+ }
+}

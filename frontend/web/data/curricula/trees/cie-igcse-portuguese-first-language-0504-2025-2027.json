@@ -1,0 +1,150 @@
+{
+ "id": "cie-igcse-portuguese-first-language-0504-2025-2027",
+ "region": "INTL",
+ "framework": "Cambridge IGCSE Portuguese - First Language (0504) syllabus 2025–2027",
+ "board": "Cambridge",
+ "qualification": "IGCSE",
+ "subject": "Portuguese - First Language",
+ "syllabusCode": "0504",
+ "gradeSystem": "course",
+ "source": {
+  "urls": [
+   "https://www.cambridgeinternational.org/Images/663168-2025-2027-syllabus.pdf",
+   "https://www.cambridgeinternational.org/programmes-and-qualifications/cambridge-igcse-portuguese-first-language-0504/"
+  ],
+  "publisher": "Cambridge University Press & Assessment (Cambridge International Education)",
+  "licence": "© Cambridge University Press & Assessment; structure + our own wording only",
+  "firstExam": "2025"
+ },
+ "grades": [
+  {
+   "grade": "IGCSE",
+   "units": [
+    {
+     "id": "3-subject-content",
+     "title": "3 Subject content",
+     "topics": [
+      {
+       "id": "reading",
+       "title": "Reading",
+       "subtopics": [
+        {
+         "id": "understand-and-summarise-texts",
+         "title": "Understand and Summarise Texts",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Understand written texts, including the meanings of their words and phrases."
+          },
+          {
+           "code": null,
+           "text": "Summarise texts and apply their content to a specified context."
+          }
+         ]
+        },
+        {
+         "id": "analyse-ideas-and-information",
+         "title": "Analyse Ideas and Information",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Develop, analyse and evaluate facts, ideas and opinions."
+          },
+          {
+           "code": null,
+           "text": "Choose relevant information for particular purposes."
+          }
+         ]
+        },
+        {
+         "id": "writers-effects-and-techniques",
+         "title": "Writers’ Effects and Techniques",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain how writers create effects and influence their readers."
+          },
+          {
+           "code": null,
+           "text": "Identify and respond to linguistic techniques, figurative language and imagery."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "writing",
+       "title": "Writing",
+       "subtopics": [
+        {
+         "id": "communicate-ideas-and-experiences",
+         "title": "Communicate Ideas and Experiences",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Communicate thoughts, feelings and imagined experiences."
+          },
+          {
+           "code": null,
+           "text": "Organise and communicate facts, ideas and opinions effectively."
+          }
+         ]
+        },
+        {
+         "id": "choose-vocabulary-and-sentences",
+         "title": "Choose Vocabulary and Sentences",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Use a varied vocabulary suited to the context."
+          },
+          {
+           "code": null,
+           "text": "Use sentence structures effectively and with variety."
+          }
+         ]
+        },
+        {
+         "id": "audience-purpose-and-form",
+         "title": "Audience Purpose and Form",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Show awareness of the intended audience, purpose and text form."
+          }
+         ]
+        },
+        {
+         "id": "accurate-writing",
+         "title": "Accurate Writing",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Apply accurate spelling, punctuation and grammar."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "build": {
+  "builtAt": "2026-10-14T05:37:18.839Z",
+  "model": "gpt-5.6-luna",
+  "usd": 0.0037,
+  "expectedCodes": null,
+  "coverage": null,
+  "missingCodes": [],
+  "counts": {
+   "grades": 1,
+   "units": 1,
+   "topics": 2,
+   "subtopics": 7,
+   "outcomes": 12
+  },
+  "warnings": []
+ }
+}

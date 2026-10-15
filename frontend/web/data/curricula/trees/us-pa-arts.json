@@ -1,0 +1,1272 @@
+{
+ "id": "us-pa-arts",
+ "region": "US",
+ "framework": "Pennsylvania state academic standards: Fine Arts",
+ "board": null,
+ "qualification": "K-12",
+ "subject": "Fine Arts",
+ "syllabusCode": null,
+ "gradeSystem": "grade",
+ "source": {
+  "urls": [
+   "https://api.commonstandardsproject.com/api/v1/jurisdictions/5A99211C6D874994A2CFEE2AE40023DD",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/1D6E38FA9A214D80BB5F34EB6E07A18F",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/5A99211C6D874994A2CFEE2AE40023DD_D10002DC_grades-01-02-03-k",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/5A99211C6D874994A2CFEE2AE40023DD_D10002DC_grades-04-05",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/5A99211C6D874994A2CFEE2AE40023DD_D10002DC_grades-06-07-08",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/5A99211C6D874994A2CFEE2AE40023DD_D10002DC_grades-09-10-11-12",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/1907AE8753F74CD7B7469165FABAA008"
+  ],
+  "publisher": "Pennsylvania state education agency (machine-readable via Common Standards Project / ASN)",
+  "licence": "CC BY 4.0 US, Common Curriculum, Inc.; CC BY 3.0 US, Desire2Learn Incorporated",
+  "firstExam": "2002"
+ },
+ "grades": [
+  {
+   "grade": "all",
+   "units": [
+    {
+     "id": "national-core-arts-standards",
+     "title": "National Core Arts Standards",
+     "topics": [
+      {
+       "id": "national-core-arts-standards",
+       "title": "National Core Arts Standards",
+       "subtopics": [
+        {
+         "id": "national-core-arts-standards-1-of-5",
+         "title": "National Core Arts Standards (1 of 5)",
+         "outcomes": [
+          {
+           "code": "MU:Pr4.2.E.5a",
+           "text": "Demonstrate, using music reading skills where appropriate, how knowledge of formal aspects in musical works inform prepared or improvised performances."
+          },
+          {
+           "code": "MU:Pr4.3.E.5a",
+           "text": "Identify expressive qualities in a varied repertoire of music that can be demonstrated through prepared and improvised performances."
+          },
+          {
+           "code": "MU:Pr5.3.E.5a",
+           "text": "Use self-reflection and peer feedback to refine individual and ensemble performances of a varied repertoire of music."
+          },
+          {
+           "code": "MU:Pr6.1.E.5a",
+           "text": "Demonstrate attention to technical accuracy and expressive qualities in prepared and improvised performances of a varied repertoire of music."
+          },
+          {
+           "code": "MU:Pr4.1.E.5a",
+           "text": "Select varied repertoire to study based on interest, music reading skills (where appropriate), an understanding of the structure of the music, context, and the technical skill of the individual or ensemble."
+          }
+         ]
+        },
+        {
+         "id": "national-core-arts-standards-2-of-5",
+         "title": "National Core Arts Standards (2 of 5)",
+         "outcomes": [
+          {
+           "code": "MU:Cr1.1.E.5a",
+           "text": "Compose and improvise melodic and rhythmic ideas or motives that reflect characteristic(s) of music or text(s) studied in rehearsal."
+          },
+          {
+           "code": "MU:Cr2.1.E.5a",
+           "text": "Select and develop draft melodic and rhythmic ideas or motives that demonstrate understanding of characteristic(s) of music or text(s) studied in rehearsal."
+          },
+          {
+           "code": "MU:Cr3.1E..5a",
+           "text": "Evaluate and refine draft compositions and improvisations based on knowledge, skill, and teacherprovided criteria."
+          },
+          {
+           "code": "MU:Cr3.2.5b",
+           "text": "Share personally-developed melodic and rhythmic ideas or motives – individually or as an ensemble – that demonstrate understanding of characteristics of music or texts studied in rehearsal."
+          },
+          {
+           "code": "MU:Re7.1.E.5a\nIdentify reasons for selecti",
+           "text": "Identify reasons for selecting music based on characteristics found in the music, connection to interest, and purpose or context."
+          }
+         ]
+        },
+        {
+         "id": "national-core-arts-standards-3-of-5",
+         "title": "National Core Arts Standards (3 of 5)",
+         "outcomes": [
+          {
+           "code": "MU:Re7.2.E.5a",
+           "text": "Identify how knowledge of context and the use of repetition, similarities, and contrasts inform the response to music."
+          },
+          {
+           "code": "MU:Re8.1.E.5a",
+           "text": "Identify interpretations of the expressive intent and meaning of musical works, referring to the elements of music, contexts, and (when appropriate) the setting of the text."
+          },
+          {
+           "code": "MU:Re9.1.E.5a",
+           "text": "Identify and describe the effect of interest, experience, analysis, and context on the evaluation of music."
+          },
+          {
+           "code": "MU:Cr1.1.E.8a",
+           "text": "Compose and improvise ideas for melodies and rhythmic passages based on characteristic(s) of music or text(s) studied in rehearsal."
+          },
+          {
+           "code": "MU:Pr4.1.E.8a",
+           "text": "Select a varied repertoire to study based on music reading skills (where appropriate), an understanding of formal design in the music, context, and the technical skill of the individual and ensemble."
+          }
+         ]
+        },
+        {
+         "id": "national-core-arts-standards-4-of-5",
+         "title": "National Core Arts Standards (4 of 5)",
+         "outcomes": [
+          {
+           "code": "MU:Re9.1.E.8a",
+           "text": "Identify and support interpretations of the expressive intent and meaning of musical works, citing as evidence the treatment of the elements of music, contexts, and (when appropriate) the setting of the text."
+          },
+          {
+           "code": "MU:Cr1.1.E.la",
+           "text": "Compose and improvise ideas for melodies, rhythmic passages, and arrangements for specific purposes that reflect characteristic(s) of music from a variety of historical periods studied in rehearsal."
+          },
+          {
+           "code": "MU:Pr4.1.E.la",
+           "text": "Explain the criteria used to select a varied repertoire to study based on an understanding of theoretical and structural characteristics of the music, the technical skill of the individual or ensemble, and the purpose or context of the performance."
+          },
+          {
+           "code": "MU:Re7.1.E.la",
+           "text": "Apply criteria to select music for specified purposes, supporting choices by citing characteristics found in the music and connections to interest, purpose, and context."
+          },
+          {
+           "code": "MU:Cr1.1.E.lla",
+           "text": "Compose and improvise ideas for arrangements, sections, and short compositions for specific purposes that reflect characteristic(s) of music from a variety of cultures studied in rehearsal."
+          }
+         ]
+        },
+        {
+         "id": "national-core-arts-standards-5-of-5",
+         "title": "National Core Arts Standards (5 of 5)",
+         "outcomes": [
+          {
+           "code": "MU:Pr6.1.E.lla",
+           "text": "Demonstrate mastery of the technical demands and an understanding of expressive qualities of the music in prepared and improvised performances of a varied repertoire representing diverse cultures, styles, genres, and historical periods"
+          },
+          {
+           "code": "MU:Re9.1.E.lla",
+           "text": "Support interpretations of the expressive intent and meaning of musical works citing as evidence the treatment of the elements of music, contexts, (when appropriate) the setting of the text, and varied researched sources"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "K-3",
+   "units": [
+    {
+     "id": "production-performance-and-exhibition-of-dance-m",
+     "title": "Production, Performance and Exhibition of Dance, Music, Theatre and Visual Arts",
+     "topics": [
+      {
+       "id": "production-performance-and-exhibition-of-dance-m",
+       "title": "Production, Performance and Exhibition of Dance, Music, Theatre and Visual Arts",
+       "subtopics": [
+        {
+         "id": "production-performance-and-exhibition-of-dance-m",
+         "title": "Production, Performance and Exhibition of Dance, Music, Theatre and Visual Arts (1 of 3)",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Know and use the elements and principles of each art form to create works in the arts and humanities. Elements Dance: energy/force, space, time Music: duration, intensity, pitch, timbre Theatre: scenario, script/text, set design Visual Arts: color, form/shape, line, space, texture, value Principles Dance: choreography, form, genre, improvisation, style, technique Music: composition, form, genre, harmony, rhythm, texture Theatre: balance, collaboration, discipline, emphasis, focus, intention, movement, rhythm, style, voice Visual Arts: balance, contrast, emphasis/focal point, movement/rhythm, proportion/scale, repetition, unity/harmony"
+          },
+          {
+           "code": null,
+           "text": "Recognize, know, use and demonstrate a variety of appropriate arts elements and principles to produce, review and revise original works in the arts. Dance: move, perform, read and notate dance, create and choreograph, improvise Music: sing, play an instrument, read and notate music, compose and arrange, improvise Theatre: stage productions, read and write scripts, improvise, interpret a role, design sets, direct Visual Arts: paint, draw, craft, sculpt, print, design for environment, communication, multi-media"
+          },
+          {
+           "code": null,
+           "text": "Recognize and use fundamental vocabulary within each of the arts forms."
+          },
+          {
+           "code": null,
+           "text": "Use knowledge of varied styles within each art form through a performance or exhibition of unique work."
+          }
+         ]
+        },
+        {
+         "id": "production-performance-and-exhibition-of-dance-m-2",
+         "title": "Production, Performance and Exhibition of Dance, Music, Theatre and Visual Arts (2 of 3)",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Demonstrate the ability to define objects, express emotions, illustrate an action or relate an experience through creation of works in the arts."
+          },
+          {
+           "code": null,
+           "text": "Identify works of others through a performance or exhibition (e.g., exhibition of student paintings based on the study of Picasso)."
+          },
+          {
+           "code": null,
+           "text": "Recognize the function of rehearsals and practice sessions."
+          },
+          {
+           "code": null,
+           "text": "Handle materials, equipment and tools safely at work and performance spaces. Identify materials used. Identify issues of cleanliness related to the arts. Recognize some mechanical/electrical equipment. Recognize differences in selected physical space/environments. Recognize the need to select safe props/stage equipment. Identify methods for storing materials in the arts."
+          }
+         ]
+        },
+        {
+         "id": "production-performance-and-exhibition-of-dance-m-3",
+         "title": "Production, Performance and Exhibition of Dance, Music, Theatre and Visual Arts (3 of 3)",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Identify arts events that take place in schools and in communities."
+          },
+          {
+           "code": null,
+           "text": "Know and use traditional and contemporary technologies for producing, performing and exhibiting works in the arts or the works of others. Know and use traditional technologies (e.g., charcoal, pigments, clay, needle/thread, quill pens, stencils, tools for wood carving, looms, stage equipment). Know and use contemporary technologies (e.g., CDs/software, audio/sound equipment, polymers, clays, board-mixers, photographs, recorders)."
+          },
+          {
+           "code": null,
+           "text": "Know and use traditional and contemporary technologies for furthering knowledge and understanding in the humanities."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "historical-and-cultural-contexts",
+     "title": "Historical and Cultural Contexts",
+     "topics": [
+      {
+       "id": "historical-and-cultural-contexts",
+       "title": "Historical and Cultural Contexts",
+       "subtopics": [
+        {
+         "id": "historical-and-cultural-contexts-1-of-3",
+         "title": "Historical and Cultural Contexts (1 of 3)",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain the historical, cultural and social context of an individual work in the arts."
+          },
+          {
+           "code": null,
+           "text": "Relate works in the arts chronologically to historical events (e.g., 10,000 B.C. to present)."
+          },
+          {
+           "code": null,
+           "text": "Relate works in the arts to varying styles and genre and to the periods in which they were created (e.g., Bronze Age, Ming Dynasty, Renaissance, Classical, Modern, Post-Modern, Contemporary, Futuristic, others)."
+          },
+          {
+           "code": null,
+           "text": "Analyze a work of art from its historical and cultural perspective."
+          }
+         ]
+        },
+        {
+         "id": "historical-and-cultural-contexts-2-of-3",
+         "title": "Historical and Cultural Contexts (2 of 3)",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Analyze how historical events and culture impact forms, techniques and purposes of works in the arts (e.g., Gilbert and Sullivan operettas)"
+          },
+          {
+           "code": null,
+           "text": "Know and apply appropriate vocabulary used between social studies and the arts and humanities."
+          },
+          {
+           "code": null,
+           "text": "Relate works in the arts to geographic regions: Africa Asia Australia Central America Europe North America South America"
+          },
+          {
+           "code": null,
+           "text": "Identify, describe and analyze the work of Pennsylvania Artists in dance, music, theatre and visual arts."
+          }
+         ]
+        },
+        {
+         "id": "historical-and-cultural-contexts-3-of-3",
+         "title": "Historical and Cultural Contexts (3 of 3)",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Identify, explain and analyze philosophical beliefs as they relate to works in the arts (e.g., classical architecture, rock music, Native American dance, contemporary American musical theatre)."
+          },
+          {
+           "code": null,
+           "text": "Identify, explain and analyze historical and cultural differences as they relate to works in the arts (e.g., PLAYS BY Shakespeare, works by Michelangelo, ethnic dance and music)."
+          },
+          {
+           "code": null,
+           "text": "Identify, explain and analyze traditions as they relate to works in the arts (e.g., story telling – plays, oral histories- poetry, work songs- blue grass)."
+          },
+          {
+           "code": null,
+           "text": "Identify, explain and analyze common themes, forms and techniques from works in the arts (e.g., Copland and Graham's Appalachian Spring and Millet's The Gleaners)."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "critical-response",
+     "title": "Critical Response",
+     "topics": [
+      {
+       "id": "critical-response",
+       "title": "Critical Response",
+       "subtopics": [
+        {
+         "id": "critical-response-1-of-2",
+         "title": "Critical Response (1 of 2)",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Recognize critical processes used in the examination of works in the arts and humanities. Compare and contrast Analyze Interpret Form and test hypotheses Evaluate/form judgments"
+          },
+          {
+           "code": null,
+           "text": "Know that works in the arts can be described by using the arts elements, principles and concepts (e.g., use of color, shape and pattern in Mondrian's Broadway Boogie-Woogie; use of dynamics, tempo, texture in Ravel's Bolero)."
+          },
+          {
+           "code": null,
+           "text": "Know classification skills with materials and processes used to create works in the arts (e.g., sorting and matching textiles, musical chants, television comedies)."
+          },
+          {
+           "code": null,
+           "text": "Explain meanings in the arts and humanities through individual works and the works of others using a fundamental vocabulary of critical response."
+          }
+         ]
+        },
+        {
+         "id": "critical-response-2-of-2",
+         "title": "Critical Response (2 of 2)",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Recognize and identify types of critical analysis in the arts and humanities. Contextual criticism Formal criticism Intuitive criticism"
+          },
+          {
+           "code": null,
+           "text": "Know how to recognize and identify similar and different characteristics among works in the arts (e.g., Amish and Hawaiian quilts, Navaho weavings and Kente cloth from West Africa)."
+          },
+          {
+           "code": null,
+           "text": "Know and demonstrate what a critic's position or opinion is related to works in the arts and humanities (e.g., I like patriotic songs because…; The movie was enjoyed for its exceptional special effects)."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "aesthetic-response",
+     "title": "Aesthetic Response",
+     "topics": [
+      {
+       "id": "aesthetic-response",
+       "title": "Aesthetic Response",
+       "subtopics": [
+        {
+         "id": "aesthetic-response",
+         "title": "Aesthetic Response",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Know how to respond to a philosophical statement about works in the arts and humanities (e.g., \"Can artworks that depict or are about ugly or unpleasant things ever be beautiful?\")."
+          },
+          {
+           "code": null,
+           "text": "Know how to communicate an informed individual opinion about the meaning of works in the arts (e.g., works of an artist of the month)."
+          },
+          {
+           "code": null,
+           "text": "Recognize that the environment of the observer influences individual aesthetic responses to works in the arts (e.g., the effect of live music as opposed to listening to the same piece on a car radio)."
+          },
+          {
+           "code": null,
+           "text": "Recognize that choices made by artists regarding subject matter and themes communicate ideas through works in the arts and humanities (e.g., artist's interpretation through the use of classical ballet of the American West in Agnes De Mille's Rodeo)."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "4-5",
+   "units": [
+    {
+     "id": "production-performance-and-exhibition-of-dance-m",
+     "title": "Production, Performance and Exhibition of Dance, Music, Theatre and Visual Arts",
+     "topics": [
+      {
+       "id": "production-performance-and-exhibition-of-dance-m",
+       "title": "Production, Performance and Exhibition of Dance, Music, Theatre and Visual Arts",
+       "subtopics": [
+        {
+         "id": "production-performance-and-exhibition-of-dance-m",
+         "title": "Production, Performance and Exhibition of Dance, Music, Theatre and Visual Arts (1 of 3)",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Know and use the elements and principles of each art form to create works in the arts and humanities. Elements Dance: energy/force, space, time Music: duration, intensity, pitch, timbre Theatre: scenario, script/text, set design Visual Arts: color, form/shape, line, space, texture, value Principles Dance: choreography, form, genre, improvisation, style, technique Music: composition, form, genre, harmony, rhythm, texture Theatre: balance, collaboration, discipline, emphasis, focus, intention, movement, rhythm, style, voice Visual Arts: balance, contrast, emphasis/focal point, movement/rhythm, proportion/scale, repetition, unity/harmony"
+          },
+          {
+           "code": null,
+           "text": "Recognize, know, use and demonstrate a variety of appropriate arts elements and principles to produce, review and revise original works in the arts. Dance: move, perform, read and notate dance, create and choreograph, improvise Music: sing, play an instrument, read and notate music, compose and arrange, improvise Theatre: stage productions, read and write scripts, improvise, interpret a role, design sets, direct Visual Arts: paint, draw, craft, sculpt, print, design for environment, communication, multi-media"
+          },
+          {
+           "code": null,
+           "text": "Know and use fundamental vocabulary within each of the arts forms."
+          },
+          {
+           "code": null,
+           "text": "Describe and use knowledge of a specific style within each art form through a performance or exhibition of a unique work."
+          }
+         ]
+        },
+        {
+         "id": "production-performance-and-exhibition-of-dance-m-2",
+         "title": "Production, Performance and Exhibition of Dance, Music, Theatre and Visual Arts (2 of 3)",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Know and demonstrate how arts can communicate experiences, stories or emotions through the production of works in the arts."
+          },
+          {
+           "code": null,
+           "text": "Describe works of others through performance or exhibition in two art forms."
+          },
+          {
+           "code": null,
+           "text": "Identify the function and benefits of rehearsal and practice sessions."
+          },
+          {
+           "code": null,
+           "text": "Use and maintain materials, equipment and tools safely at work and performance spaces. Describe some materials used. Describe issues of cleanliness related to the arts. Describe types of mechanical/electrical equipment usage. Know how to work in selected physical space/environments. Identify the qualities of safe props/stage equipment. Describe methods for storing materials in the arts."
+          }
+         ]
+        },
+        {
+         "id": "production-performance-and-exhibition-of-dance-m-3",
+         "title": "Production, Performance and Exhibition of Dance, Music, Theatre and Visual Arts (3 of 3)",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe arts events that take place in schools and in communities."
+          },
+          {
+           "code": null,
+           "text": "Apply traditional and contemporary technologies for producing, performing and exhibiting works in the arts or the works of others. Experiment with traditional technologies (e.g., ceramic/wooden tools, earthen clays, masks, instruments, folk shoes, etching tools, folk looms). Experiment with contemporary technologies (e.g., color fills on computers, texture methods on computers, fonts/point systems, animation techniques, video teleconferencing, multimedia techniques, internet access, library computer card catalogues)."
+          },
+          {
+           "code": null,
+           "text": "Apply traditional and contemporary technology in furthering knowledge and understanding in the humanities."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "historical-and-cultural-contexts",
+     "title": "Historical and Cultural Contexts",
+     "topics": [
+      {
+       "id": "historical-and-cultural-contexts",
+       "title": "Historical and Cultural Contexts",
+       "subtopics": [
+        {
+         "id": "historical-and-cultural-contexts-1-of-3",
+         "title": "Historical and Cultural Contexts (1 of 3)",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain the historical, cultural and social context of an individual work in the arts."
+          },
+          {
+           "code": null,
+           "text": "Relate works in the arts chronologically to historical events (e.g., 10,000 B.C. to present)."
+          },
+          {
+           "code": null,
+           "text": "Relate works in the arts to varying styles and genre and to the periods in which they were created (e.g., Bronze Age, Ming Dynasty, Renaissance, Classical, Modern, Post-Modern, Contemporary, Futuristic, others)."
+          },
+          {
+           "code": null,
+           "text": "Analyze a work of art from its historical and cultural perspective."
+          }
+         ]
+        },
+        {
+         "id": "historical-and-cultural-contexts-2-of-3",
+         "title": "Historical and Cultural Contexts (2 of 3)",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Analyze how historical events and culture impact forms, techniques and purposes of works in the arts (e.g., Gilbert and Sullivan operettas)"
+          },
+          {
+           "code": null,
+           "text": "Know and apply appropriate vocabulary used between social studies and the arts and humanities."
+          },
+          {
+           "code": null,
+           "text": "Relate works in the arts to geographic regions: Africa Asia Australia Central America Europe North America South America"
+          },
+          {
+           "code": null,
+           "text": "Identify, describe and analyze the work of Pennsylvania Artists in dance, music, theatre and visual arts."
+          }
+         ]
+        },
+        {
+         "id": "historical-and-cultural-contexts-3-of-3",
+         "title": "Historical and Cultural Contexts (3 of 3)",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Identify, explain and analyze philosophical beliefs as they relate to works in the arts (e.g., classical architecture, rock music, Native American dance, contemporary American musical theatre)."
+          },
+          {
+           "code": null,
+           "text": "Identify, explain and analyze historical and cultural differences as they relate to works in the arts (e.g., PLAYS BY Shakespeare, works by Michelangelo, ethnic dance and music)."
+          },
+          {
+           "code": null,
+           "text": "Identify, explain and analyze traditions as they relate to works in the arts (e.g., story telling – plays, oral histories- poetry, work songs- blue grass)."
+          },
+          {
+           "code": null,
+           "text": "Identify, explain and analyze common themes, forms and techniques from works in the arts (e.g., Copland and Graham's Appalachian Spring and Millet's The Gleaners)."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "critical-response",
+     "title": "Critical Response",
+     "topics": [
+      {
+       "id": "critical-response",
+       "title": "Critical Response",
+       "subtopics": [
+        {
+         "id": "critical-response-1-of-2",
+         "title": "Critical Response (1 of 2)",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Identify critical processes in the examination of works in the arts and humanities. Compare and contrast Analyze Interpret Form and test hypotheses Evaluate/form judgments"
+          },
+          {
+           "code": null,
+           "text": "Describe works in the arts comparing similar and contrasting characteristics (e.g., staccato in Grieg's In the Hall of the Mountain King and in tap dance)."
+          },
+          {
+           "code": null,
+           "text": "Classify works in the arts by forms in which they are found (e.g., farce, architecture, graphic design)."
+          },
+          {
+           "code": null,
+           "text": "Compare similar and contrasting important aspects of works in the arts and humanities based on a set of guidelines using a comprehensive vocabulary of critical response."
+          }
+         ]
+        },
+        {
+         "id": "critical-response-2-of-2",
+         "title": "Critical Response (2 of 2)",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe and use types of critical analysis in the arts and humanities. Contextual criticism Formal criticism Intuitive criticism"
+          },
+          {
+           "code": null,
+           "text": "Know how to recognize the process of criticism in identifying and analyzing characteristics among works in the arts."
+          },
+          {
+           "code": null,
+           "text": "Describe a critic's position or opinion about selected works in the arts and humanities (e.g., student's presentation of a critical position on Walt Disney's Evolution of Mickey and Minnie Mouse)."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "aesthetic-response",
+     "title": "Aesthetic Response",
+     "topics": [
+      {
+       "id": "aesthetic-response",
+       "title": "Aesthetic Response",
+       "subtopics": [
+        {
+         "id": "aesthetic-response",
+         "title": "Aesthetic Response",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Identify uses of expressive symbols that show philosophical meanings in works in the arts and humanities (e.g., American TV ads versus Asian TV ads)."
+          },
+          {
+           "code": null,
+           "text": "Investigate and communicate multiple philosophical views about works in the arts."
+          },
+          {
+           "code": null,
+           "text": "Identify the attributes of various audiences' environments as they influence individual aesthetic response (e.g., Beatles' music played by the Boston Pops versus video taped concerts from the 1970s)."
+          },
+          {
+           "code": null,
+           "text": "Explain choices made regarding media, technique, form, subject matter and themes that communicate the artist's philosophy within a work in the arts and humanities (e.g., selection of stage lighting in Leonard Bernstein's West Side Story to communicate mood)."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "6-8",
+   "units": [
+    {
+     "id": "production-performance-and-exhibition-of-dance-m",
+     "title": "Production, Performance and Exhibition of Dance, Music, Theatre and Visual Arts",
+     "topics": [
+      {
+       "id": "production-performance-and-exhibition-of-dance-m",
+       "title": "Production, Performance and Exhibition of Dance, Music, Theatre and Visual Arts",
+       "subtopics": [
+        {
+         "id": "production-performance-and-exhibition-of-dance-m",
+         "title": "Production, Performance and Exhibition of Dance, Music, Theatre and Visual Arts (1 of 3)",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Know and use the elements and principles of each art form to create works in the arts and humanities. Elements Dance: energy/force, space, time Music: duration, intensity, pitch, timbre Theatre: scenario, script/text, set design Visual Arts: color, form/shape, line, space, texture, value Principles Dance: choreography, form, genre, improvisation, style, technique Music: composition, form, genre, harmony, rhythm, texture Theatre: balance, collaboration, discipline, emphasis, focus, intention, movement, rhythm, style, voice Visual Arts: balance, contrast, emphasis/focal point, movement/rhythm, proportion/scale, repetition, unity/harmony"
+          },
+          {
+           "code": null,
+           "text": "Recognize, know, use and demonstrate a variety of appropriate arts elements and principles to produce, review and revise original works in the arts. Dance: move, perform, read and notate dance, create and choreograph, improvise Music: sing, play an instrument, read and notate music, compose and arrange, improvise Theatre: stage productions, read and write scripts, improvise, interpret a role, design sets, direct Visual Arts: paint, draw, craft, sculpt, print, design for environment, communication, multi-media"
+          },
+          {
+           "code": null,
+           "text": "Identify and use comprehensive vocabulary within each of the arts forms."
+          },
+          {
+           "code": null,
+           "text": "Demonstrate knowledge of at least two styles within each art form through performance or exhibition of unique works."
+          }
+         ]
+        },
+        {
+         "id": "production-performance-and-exhibition-of-dance-m-2",
+         "title": "Production, Performance and Exhibition of Dance, Music, Theatre and Visual Arts (2 of 3)",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Communicate a unifying theme or point of view through the production of works in the arts."
+          },
+          {
+           "code": null,
+           "text": "Explain works of others within each art form through performance or exhibition."
+          },
+          {
+           "code": null,
+           "text": "Explain the function and benefits of rehearsal and practice sessions."
+          },
+          {
+           "code": null,
+           "text": "Demonstrate and maintain materials, equipment and tools safely at work and performance spaces. Analyze the use of materials. Explain issues of cleanliness related to the arts. Explain the use of mechanical/electrical equipment. Demonstrate how to work in selected physical space/environment. Demonstrate the selection of safe props/stage equipment. Demonstrate methods for storing materials in the arts."
+          }
+         ]
+        },
+        {
+         "id": "production-performance-and-exhibition-of-dance-m-3",
+         "title": "Production, Performance and Exhibition of Dance, Music, Theatre and Visual Arts (3 of 3)",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Know where arts events, performances and exhibitions occur and how to gain admission."
+          },
+          {
+           "code": null,
+           "text": "Incorporate specific uses of traditional and contemporary technologies within the design for producing, performing and exhibiting works in the arts or the works of others. Explain and demonstrate traditional technologies (e.g., paint, tools, sponges, weaving designs, instruments, natural pigments/glazes). Explain and demonstrate contemporary technologies (e.g., MIDI keyboards, Internet design, computers, interactive technologies, audio/sound equipment, board-mixer, video equipment, computerized lighting design)."
+          },
+          {
+           "code": null,
+           "text": "Incorporate specific uses of traditional and contemporary technologies in furthering knowledge and understanding in the humanities."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "historical-and-cultural-contexts",
+     "title": "Historical and Cultural Contexts",
+     "topics": [
+      {
+       "id": "historical-and-cultural-contexts",
+       "title": "Historical and Cultural Contexts",
+       "subtopics": [
+        {
+         "id": "historical-and-cultural-contexts-1-of-3",
+         "title": "Historical and Cultural Contexts (1 of 3)",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain the historical, cultural and social context of an individual work in the arts."
+          },
+          {
+           "code": null,
+           "text": "Relate works in the arts chronologically to historical events (e.g., 10,000 B.C. to present)."
+          },
+          {
+           "code": null,
+           "text": "Relate works in the arts to varying styles and genre and to the periods in which they were created (e.g., Bronze Age, Ming Dynasty, Renaissance, Classical, Modern, Post-Modern, Contemporary, Futuristic, others)."
+          },
+          {
+           "code": null,
+           "text": "Analyze a work of art from its historical and cultural perspective."
+          }
+         ]
+        },
+        {
+         "id": "historical-and-cultural-contexts-2-of-3",
+         "title": "Historical and Cultural Contexts (2 of 3)",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Analyze how historical events and culture impact forms, techniques and purposes of works in the arts (e.g., Gilbert and Sullivan operettas)"
+          },
+          {
+           "code": null,
+           "text": "Know and apply appropriate vocabulary used between social studies and the arts and humanities."
+          },
+          {
+           "code": null,
+           "text": "Relate works in the arts to geographic regions: Africa Asia Australia Central America Europe North America South America"
+          },
+          {
+           "code": null,
+           "text": "Identify, describe and analyze the work of Pennsylvania Artists in dance, music, theatre and visual arts."
+          }
+         ]
+        },
+        {
+         "id": "historical-and-cultural-contexts-3-of-3",
+         "title": "Historical and Cultural Contexts (3 of 3)",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Identify, explain and analyze philosophical beliefs as they relate to works in the arts (e.g., classical architecture, rock music, Native American dance, contemporary American musical theatre)."
+          },
+          {
+           "code": null,
+           "text": "Identify, explain and analyze historical and cultural differences as they relate to works in the arts (e.g., PLAYS BY Shakespeare, works by Michelangelo, ethnic dance and music)."
+          },
+          {
+           "code": null,
+           "text": "Identify, explain and analyze traditions as they relate to works in the arts (e.g., story telling – plays, oral histories- poetry, work songs- blue grass)."
+          },
+          {
+           "code": null,
+           "text": "Identify, explain and analyze common themes, forms and techniques from works in the arts (e.g., Copland and Graham's Appalachian Spring and Millet's The Gleaners)."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "critical-response",
+     "title": "Critical Response",
+     "topics": [
+      {
+       "id": "critical-response",
+       "title": "Critical Response",
+       "subtopics": [
+        {
+         "id": "critical-response-1-of-2",
+         "title": "Critical Response (1 of 2)",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Know and use the critical process of the examination of works in the arts and humanities. Compare and contrast Analyze Interpret Form and test hypotheses Evaluate/form judgments"
+          },
+          {
+           "code": null,
+           "text": "Analyze and interpret specific characteristics of works in the arts within each art form (e.g., pentatonic scales in Korean and Indonesian music)."
+          },
+          {
+           "code": null,
+           "text": "Identify and classify styles, forms, types and genre within art forms (e.g., modern dance and the ethnic dance, a ballad and a patriotic song)."
+          },
+          {
+           "code": null,
+           "text": "Evaluate works in the arts and humanities using a complex vocabulary of critical response."
+          }
+         ]
+        },
+        {
+         "id": "critical-response-2-of-2",
+         "title": "Critical Response (2 of 2)",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Interpret and use various types of critical analysis in the arts and humanities. Contextual criticism Formal criticism Intuitive criticism"
+          },
+          {
+           "code": null,
+           "text": "Apply the process of criticism to identify characteristics among works in the arts."
+          },
+          {
+           "code": null,
+           "text": "Compare and contrast critical positions or opinions about selected works in the arts and humanities (e.g., critic's review and comparison of Alvin Ailey's Revelations to Tchaikovsky's Swan Lake)."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "aesthetic-response",
+     "title": "Aesthetic Response",
+     "topics": [
+      {
+       "id": "aesthetic-response",
+       "title": "Aesthetic Response",
+       "subtopics": [
+        {
+         "id": "aesthetic-response",
+         "title": "Aesthetic Response",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Compare and contrast examples of group and individual philosophical meanings of works in the arts and humanities (e.g., group discussions on musical theatre versus the individual's concept of musical theatre)."
+          },
+          {
+           "code": null,
+           "text": "Compare and contrast informed individual opinions about the meaning of works in the arts to others (e.g., debate philosophical opinions within a listserve or at an artist's website)."
+          },
+          {
+           "code": null,
+           "text": "Describe how the attributes of the audience's environment influence aesthetic responses (e.g., the ambiance of the theatre in a performance of Andrew Lloyd Weber's Cats)."
+          },
+          {
+           "code": null,
+           "text": "Describe to what purpose philosophical ideas generated by artists can be conveyed through works in the arts and humanities (e.g., T. Ganson's Destructive Periods in Russia During Stalin's and Deniken's Leadership conveys her memories and emotions of a specific incident)."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "9-12",
+   "units": [
+    {
+     "id": "production-performance-and-exhibition-of-dance-m",
+     "title": "Production, Performance and Exhibition of Dance, Music, Theatre and Visual Arts",
+     "topics": [
+      {
+       "id": "production-performance-and-exhibition-of-dance-m",
+       "title": "Production, Performance and Exhibition of Dance, Music, Theatre and Visual Arts",
+       "subtopics": [
+        {
+         "id": "production-performance-and-exhibition-of-dance-m",
+         "title": "Production, Performance and Exhibition of Dance, Music, Theatre and Visual Arts (1 of 3)",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Know and use the elements and principles of each art form to create works in the arts and humanities. Elements Dance: energy/force, space, time Music: duration, intensity, pitch, timbre Theatre: scenario, script/text, set design Visual Arts: color, form/shape, line, space, texture, value Principles Dance: choreography, form, genre, improvisation, style, technique Music: composition, form, genre, harmony, rhythm, texture Theatre: balance, collaboration, discipline, emphasis, focus, intention, movement, rhythm, style, voice Visual Arts: balance, contrast, emphasis/focal point, movement/rhythm, proportion/scale, repetition, unity/harmony"
+          },
+          {
+           "code": null,
+           "text": "Recognize, know, use and demonstrate a variety of appropriate arts elements and principles to produce, review and revise original works in the arts. Dance: move, perform, read and notate dance, create and choreograph, improvise Music: sing, play an instrument, read and notate music, compose and arrange, improvise Theatre: stage productions, read and write scripts, improvise, interpret a role, design sets, direct Visual Arts: paint, draw, craft, sculpt, print, design for environment, communication, multi-media"
+          },
+          {
+           "code": null,
+           "text": "Integrate and apply advanced vocabulary to the arts forms."
+          },
+          {
+           "code": null,
+           "text": "Demonstrate specific styles in combination through the production or performance of a unique work of art (e.g., a dance composition that combines jazz dance and African dance)."
+          }
+         ]
+        },
+        {
+         "id": "production-performance-and-exhibition-of-dance-m-2",
+         "title": "Production, Performance and Exhibition of Dance, Music, Theatre and Visual Arts (2 of 3)",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Delineate a unifying theme through the production of a work of art that reflects skills in media processes and techniques."
+          },
+          {
+           "code": null,
+           "text": "Analyze works of arts influenced by experiences or historical and cultural events through production, performance or exhibition."
+          },
+          {
+           "code": null,
+           "text": "Analyze the effect of rehearsal and practice sessions."
+          },
+          {
+           "code": null,
+           "text": "Incorporate the effective and safe use of materials, equipment and tools into the production of works in the arts at work and performance spaces. Evaluate the use and applications of materials. Evaluate issues of cleanliness related to the arts. Evaluate the use and applications of mechanical/electrical equipment. Evaluate differences among selected physical space/environment. Evaluate the use and applications of safe props/stage equipment. Evaluate the use and apply safe methods for storing materials in the arts."
+          }
+         ]
+        },
+        {
+         "id": "production-performance-and-exhibition-of-dance-m-3",
+         "title": "Production, Performance and Exhibition of Dance, Music, Theatre and Visual Arts (3 of 3)",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Distinguish among a variety of regional arts events and resources and analyze methods of selection and admission."
+          },
+          {
+           "code": null,
+           "text": "Analyze and evaluate the use of traditional and contemporary technologies for producing, performing and exhibiting works in the arts or the works of others. Analyze traditional technologies (e.g., acid printing, etching methods, musical instruments, costume materials, eight track recording, super 8 movies). Analyze contemporary technologies (e.g., virtual reality design, instrument enhancements, photographic tools, broadcast equipment, film cameras, preservation tools, web graphics, computer generated marching band designs)."
+          },
+          {
+           "code": null,
+           "text": "Analyze and evaluate the use of traditional and contemporary technologies in furthering knowledge and understanding in the humanities."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "historical-and-cultural-contexts",
+     "title": "Historical and Cultural Contexts",
+     "topics": [
+      {
+       "id": "historical-and-cultural-contexts",
+       "title": "Historical and Cultural Contexts",
+       "subtopics": [
+        {
+         "id": "historical-and-cultural-contexts-1-of-3",
+         "title": "Historical and Cultural Contexts (1 of 3)",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain the historical, cultural and social context of an individual work in the arts."
+          },
+          {
+           "code": null,
+           "text": "Relate works in the arts chronologically to historical events (e.g., 10,000 B.C. to present)."
+          },
+          {
+           "code": null,
+           "text": "Relate works in the arts to varying styles and genre and to the periods in which they were created (e.g., Bronze Age, Ming Dynasty, Renaissance, Classical, Modern, Post-Modern, Contemporary, Futuristic, others)."
+          },
+          {
+           "code": null,
+           "text": "Analyze a work of art from its historical and cultural perspective."
+          }
+         ]
+        },
+        {
+         "id": "historical-and-cultural-contexts-2-of-3",
+         "title": "Historical and Cultural Contexts (2 of 3)",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Analyze how historical events and culture impact forms, techniques and purposes of works in the arts (e.g., Gilbert and Sullivan operettas)"
+          },
+          {
+           "code": null,
+           "text": "Know and apply appropriate vocabulary used between social studies and the arts and humanities."
+          },
+          {
+           "code": null,
+           "text": "Relate works in the arts to geographic regions: Africa Asia Australia Central America Europe North America South America"
+          },
+          {
+           "code": null,
+           "text": "Identify, describe and analyze the work of Pennsylvania Artists in dance, music, theatre and visual arts."
+          }
+         ]
+        },
+        {
+         "id": "historical-and-cultural-contexts-3-of-3",
+         "title": "Historical and Cultural Contexts (3 of 3)",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Identify, explain and analyze philosophical beliefs as they relate to works in the arts (e.g., classical architecture, rock music, Native American dance, contemporary American musical theatre)."
+          },
+          {
+           "code": null,
+           "text": "Identify, explain and analyze historical and cultural differences as they relate to works in the arts (e.g., PLAYS BY Shakespeare, works by Michelangelo, ethnic dance and music)."
+          },
+          {
+           "code": null,
+           "text": "Identify, explain and analyze traditions as they relate to works in the arts (e.g., story telling – plays, oral histories- poetry, work songs- blue grass)."
+          },
+          {
+           "code": null,
+           "text": "Identify, explain and analyze common themes, forms and techniques from works in the arts (e.g., Copland and Graham's Appalachian Spring and Millet's The Gleaners)."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "critical-response",
+     "title": "Critical Response",
+     "topics": [
+      {
+       "id": "critical-response",
+       "title": "Critical Response",
+       "subtopics": [
+        {
+         "id": "critical-response-1-of-2",
+         "title": "Critical Response (1 of 2)",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain and apply the critical examination processes of works in the arts and humanities. Compare and contrast Analyze Interpret Form and test hypotheses Evaluate/form judgments"
+          },
+          {
+           "code": null,
+           "text": "Determine and apply criteria to a person's work and works of others in the arts (e.g., use visual scanning techniques to critique the student's own use of sculptural space in comparison to Julio Gonzales' use of space in Woman Combing Her Hair)."
+          },
+          {
+           "code": null,
+           "text": "Apply systems of classification for interpreting works in the arts and forming a critical response."
+          },
+          {
+           "code": null,
+           "text": "Analyze and interpret works in the arts and humanities from different societies using culturally specific vocabulary of critical response."
+          }
+         ]
+        },
+        {
+         "id": "critical-response-2-of-2",
+         "title": "Critical Response (2 of 2)",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Examine and evaluate various types of critical analysis of works in the arts and humanities. Contextual criticism Formal criticism Intuitive criticism"
+          },
+          {
+           "code": null,
+           "text": "Analyze the processes of criticism used to compare the meanings of a work in the arts in both its own and present time."
+          },
+          {
+           "code": null,
+           "text": "Analyze works in the arts by referencing the judgments advanced by arts critics as well as one's own analysis and critique."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "aesthetic-response",
+     "title": "Aesthetic Response",
+     "topics": [
+      {
+       "id": "aesthetic-response",
+       "title": "Aesthetic Response",
+       "subtopics": [
+        {
+         "id": "aesthetic-response",
+         "title": "Aesthetic Response",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Evaluate an individual's philosophical statement on a work in the arts and its relationship to one's own life based on knowledge and experience."
+          },
+          {
+           "code": null,
+           "text": "Describe and analyze the effects that works in the arts have on groups, individuals and the culture (e.g., Orson Welles' 1938 radio broadcast, War of the Worlds)."
+          },
+          {
+           "code": null,
+           "text": "Compare and contrast the attributes of various audiences' environments as they influence individual aesthetic response (e.g., viewing traditional Irish dance at county fair versus the performance of River Dance in a concert hall)."
+          },
+          {
+           "code": null,
+           "text": "Analyze and interpret a philosophical position identified in works in the arts and humanities."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "K-12",
+   "units": [
+    {
+     "id": "conceiving-and-developing-new-artistic-ideas-and",
+     "title": "Conceiving and developing new artistic ideas and work",
+     "topics": [
+      {
+       "id": "conceiving-and-developing-new-artistic-ideas-and",
+       "title": "Conceiving and developing new artistic ideas and work",
+       "subtopics": [
+        {
+         "id": "conceiving-and-developing-new-artistic-ideas-and",
+         "title": "Conceiving and developing new artistic ideas and work",
+         "outcomes": [
+          {
+           "code": "Cr1",
+           "text": "Generate and conceptualize artistic ideas and work."
+          },
+          {
+           "code": "Cr2",
+           "text": "Organize and develop artistic ideas and work."
+          },
+          {
+           "code": "Cr3",
+           "text": "Refine and complete artistic work."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "realizing-artistic-ideas-and-work-through-interp",
+     "title": "Realizing artistic ideas and work through interpretation and presentation",
+     "topics": [
+      {
+       "id": "realizing-artistic-ideas-and-work-through-interp",
+       "title": "Realizing artistic ideas and work through interpretation and presentation",
+       "subtopics": [
+        {
+         "id": "realizing-artistic-ideas-and-work-through-interp",
+         "title": "Realizing artistic ideas and work through interpretation and presentation",
+         "outcomes": [
+          {
+           "code": "Pr4",
+           "text": "Analyze, interpret, and select artistic work for presentation."
+          },
+          {
+           "code": "Pr5",
+           "text": "Develop and refine artistic work for presentation."
+          },
+          {
+           "code": "Pr6",
+           "text": "Convey meaning through the presentation of artistic work."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "understanding-and-evaluating-how-the-arts-convey",
+     "title": "Understanding and evaluating how the arts convey meaning",
+     "topics": [
+      {
+       "id": "understanding-and-evaluating-how-the-arts-convey",
+       "title": "Understanding and evaluating how the arts convey meaning",
+       "subtopics": [
+        {
+         "id": "understanding-and-evaluating-how-the-arts-convey",
+         "title": "Understanding and evaluating how the arts convey meaning",
+         "outcomes": [
+          {
+           "code": "Re7",
+           "text": "Perceive and analyze artistic work."
+          },
+          {
+           "code": "Re8",
+           "text": "Interpret intent and meaning in artistic work."
+          },
+          {
+           "code": "Re9",
+           "text": "Apply criteria to evaluate artistic work."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "relating-artistic-ideas-and-work-with-personal-m",
+     "title": "Relating artistic ideas and work with personal meaning and external context",
+     "topics": [
+      {
+       "id": "relating-artistic-ideas-and-work-with-personal-m",
+       "title": "Relating artistic ideas and work with personal meaning and external context",
+       "subtopics": [
+        {
+         "id": "relating-artistic-ideas-and-work-with-personal-m",
+         "title": "Relating artistic ideas and work with personal meaning and external context",
+         "outcomes": [
+          {
+           "code": "Cn10",
+           "text": "Synthesize and relate knowledge and personal experiences to make art."
+          },
+          {
+           "code": "Cn11",
+           "text": "Relate artistic ideas and works with societal, cultural and historical context to deepen understanding."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "build": {
+  "builtAt": "2026-10-14T16:20:48.059Z",
+  "model": "none",
+  "usd": 0,
+  "expectedCodes": 33,
+  "coverage": 1,
+  "missingCodes": [],
+  "counts": {
+   "grades": 6,
+   "units": 21,
+   "topics": 21,
+   "subtopics": 45,
+   "outcomes": 169
+  },
+  "warnings": [
+   "unexpected grade label \"all\""
+  ]
+ }
+}

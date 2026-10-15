@@ -1,0 +1,2224 @@
+{
+ "id": "us-co-computer-science",
+ "region": "US",
+ "framework": "Colorado state academic standards: Computer Science & Technology",
+ "board": null,
+ "qualification": "K-12",
+ "subject": "Computer Science & Technology",
+ "syllabusCode": null,
+ "gradeSystem": "grade",
+ "source": {
+  "urls": [
+   "https://api.commonstandardsproject.com/api/v1/jurisdictions/83F29380C23C4AEB843733B243CB2243",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/B0716B00B2C1422AB2AA3B50AFC92F46",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/4ECF7A72713A4D038C585CD60F1249CB",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/C022F67AA92340EAB7071FC5CF751A1D",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/5D28BB67BA424B47A3358D31B724E308",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/B70CD51FA1A547B4A0661D1C82F23E8A",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/057D2D4F73214053A8C124A1ACD846B4",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/1710BDA4294043659E6B908A2D3D098B",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/C6EC9619A8FB4B819A1CE67255CA8191"
+  ],
+  "publisher": "Colorado state education agency (machine-readable via Common Standards Project / ASN)",
+  "licence": "CC BY 4.0 US, Common Curriculum, Inc.",
+  "firstExam": "2024"
+ },
+ "grades": [
+  {
+   "grade": "K",
+   "units": [
+    {
+     "id": "computational-thinking",
+     "title": "Computational Thinking",
+     "topics": [
+      {
+       "id": "develop-utilize-and-evaluate-algorithms-to-model",
+       "title": "Develop utilize and evaluate algorithms, to model and solve problems",
+       "subtopics": [
+        {
+         "id": "an-algorithm-is-a-set-of-step-by-step-instructio",
+         "title": "An algorithm is a set of step-by-step instructions to complete a task",
+         "outcomes": [
+          {
+           "code": "CS.K.1.1.a",
+           "text": "Follow algorithms (step by step instructions) to complete tasks."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "represent-and-analyze-data-in-order-to-generate-",
+       "title": "Represent and analyze data in order to generate new knowledge and capability",
+       "subtopics": [
+        {
+         "id": "data-contains-patterns",
+         "title": "Data contains patterns",
+         "outcomes": [
+          {
+           "code": "CS.K.1.2.a",
+           "text": "Define data as stored information."
+          },
+          {
+           "code": "CS.K.1.2.b",
+           "text": "Identify patterns in data."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "computing-systems-and-networks",
+     "title": "Computing Systems and Networks",
+     "topics": [
+      {
+       "id": "recognize-and-analyze-security-concepts",
+       "title": "Recognize and analyze security concepts",
+       "subtopics": [
+        {
+         "id": "passwords-protect-devices-and-information-from-i",
+         "title": "Passwords protect devices and information from inappropriate access",
+         "outcomes": [
+          {
+           "code": "CS.K.2.1.a",
+           "text": "Practice entering passwords to gain access to content and give a simple explanation about why passwords are necessary."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "cybersecurity",
+     "title": "Cybersecurity",
+     "topics": [
+      {
+       "id": "create-a-security-risk-profile-that-recognizes-a",
+       "title": "Create a security risk profile that recognizes and analyzes security concepts",
+       "subtopics": [
+        {
+         "id": "some-information-is-private-and-should-be-protec",
+         "title": "Some information is private and should be protected from access by users who do not have permission",
+         "outcomes": [
+          {
+           "code": "CS.K.4.1.a",
+           "text": "Keep login information private and log off devices appropriately."
+          },
+          {
+           "code": "CS.K.4.1.b",
+           "text": "Distinguish between private vs. public information."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "digital-citizenship",
+     "title": "Digital Citizenship",
+     "topics": [
+      {
+       "id": "practice-responsible-ethical-and-safe-use-of-com",
+       "title": "Practice responsible, ethical, and safe use of computing technology and the internet",
+       "subtopics": [
+        {
+         "id": "personal-information-must-be-protected-in-person",
+         "title": "Personal information must be protected in person, on digital devices and online",
+         "outcomes": [
+          {
+           "code": "CS.K.6.1.a",
+           "text": "Describe appropriate and inappropriate uses of digital devices."
+          },
+          {
+           "code": "CS.K.6.1.b",
+           "text": "Work respectfully and responsibly with others."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "1",
+   "units": [
+    {
+     "id": "computational-thinking",
+     "title": "Computational Thinking",
+     "topics": [
+      {
+       "id": "develop-utilize-and-evaluate-algorithms-to-model",
+       "title": "Develop, utilize, and evaluate algorithms, to model and solve problems",
+       "subtopics": [
+        {
+         "id": "an-algorithm-is-a-set-of-steps-for-a-specific-pu",
+         "title": "An algorithm is a set of steps for a specific purpose and can be modified",
+         "outcomes": [
+          {
+           "code": "CS.1.1.1.a",
+           "text": "Create and follow algorithms (sets of step-by-step instructions) to complete tasks."
+          },
+          {
+           "code": "CS.1.1.1.b",
+           "text": "Debug (identify and fix) errors in an algorithm or program that includes sequences and simple loops."
+          },
+          {
+           "code": "CS.1.1.1.c",
+           "text": "Using correct terminology, describe steps taken, and choices made during the process of program development and revision."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "systematically-analyze-a-problem-using-decomposi",
+       "title": "Systematically analyze a problem using decomposition and abstraction to formulate a solution",
+       "subtopics": [
+        {
+         "id": "complex-problems-can-be-broken-into-smaller-part",
+         "title": "Complex problems can be broken into smaller parts to facilitate solving the problem",
+         "outcomes": [
+          {
+           "code": "CS.1.1.2.a",
+           "text": "Decompose (break down) the steps needed to solve a problem into a precise sequence of instructions."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "represent-and-analyze-data-in-order-to-generate-",
+       "title": "Represent and analyze data in order to generate new knowledge and capability",
+       "subtopics": [
+        {
+         "id": "data-is-information-that-can-be-collected-stored",
+         "title": "Data is information that can be collected, stored, and represented in a variety of ways",
+         "outcomes": [
+          {
+           "code": "CS.1.1.3.a",
+           "text": "Find, add, change, and delete information using a computing device and define the information stored as data."
+          },
+          {
+           "code": "CS.1.1.3.b",
+           "text": "Collect and present the same data in various visual formats."
+          },
+          {
+           "code": "CS.1.1.3.c",
+           "text": "Describe patterns in data using visual representations such as charts or graphs, to make predictions."
+          },
+          {
+           "code": "CS.1.1.3.d",
+           "text": "Use numbers or other symbols to represent information and describe that this is similar to how computer programs represent information."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "computing-systems-and-networks",
+     "title": "Computing Systems and Networks",
+     "topics": [
+      {
+       "id": "use-systems-thinking-to-describe-networks-and-co",
+       "title": "Use systems thinking to describe networks and common software and hardware components",
+       "subtopics": [
+        {
+         "id": "computing-systems-rely-on-both-hardware-and-soft",
+         "title": "Computing systems rely on both hardware and software, that can be local or accessed remotely",
+         "outcomes": [
+          {
+           "code": "CS.1.2.1.a",
+           "text": "Describe basic hardware and software problems using accurate terminology."
+          },
+          {
+           "code": "CS.1.2.1.b",
+           "text": "Describe the difference between online and local use of computing devices."
+          },
+          {
+           "code": "CS.1.2.1.c",
+           "text": "Recognize that equipment is needed to access a network."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "computer-programming",
+     "title": "Computer Programming",
+     "topics": [
+      {
+       "id": "design-and-create-programs-individually-and-coll",
+       "title": "Design and create programs, individually and collaboratively, for a variety of disciplines",
+       "subtopics": [
+        {
+         "id": "a-computer-program-is-a-sequence-of-steps-that-i",
+         "title": "A computer program is a sequence of steps that is expressed in a computer programming language so that a computer can follow and perform the steps",
+         "outcomes": [
+          {
+           "code": "CS.1.3.1.a",
+           "text": "Use appropriate software to perform a variety of tasks."
+          },
+          {
+           "code": "CS.1.3.1.b",
+           "text": "Develop programs with sequences to express ideas or address a problem."
+          },
+          {
+           "code": "CS.1.3.1.c",
+           "text": "Cite sources when using the ideas and creations of others while developing programs."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "digital-citizenship",
+     "title": "Digital Citizenship",
+     "topics": [
+      {
+       "id": "practice-responsible-ethical-and-safe-use-of-com",
+       "title": "Practice responsible, ethical, and safe use of computing technology and the internet",
+       "subtopics": [
+        {
+         "id": "digital-citizenship-plays-a-role-in-our-everyday",
+         "title": "Digital citizenship plays a role in our everyday lives both in person and online",
+         "outcomes": [
+          {
+           "code": "CS.1.6.1.a",
+           "text": "Explain that there are rules for interacting online that are intended to keep people safe."
+          },
+          {
+           "code": "CS.1.6.1.b",
+           "text": "Differentiate between appropriate and inappropriate online behavior."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "2",
+   "units": [
+    {
+     "id": "computing-systems-and-networks",
+     "title": "Computing Systems and Networks",
+     "topics": [
+      {
+       "id": "develop-systems-solutions-from-a-set-of-specific",
+       "title": "Develop systems solutions from a set of specifications to complete a design process",
+       "subtopics": [
+        {
+         "id": "when-developing-a-plan-or-solution-the-designer-",
+         "title": "When developing a plan or solution, the designer must follow specifications designated for the program",
+         "outcomes": [
+          {
+           "code": "CS.2.2.1.a",
+           "text": "Develop plans that describe a program’s sequence of events, goals, and expected outcomes."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "computer-programming",
+     "title": "Computer Programming",
+     "topics": [
+      {
+       "id": "design-and-create-programs-individually-and-coll",
+       "title": "Design and create programs, individually and collaboratively, for a variety of disciplines",
+       "subtopics": [
+        {
+         "id": "a-computer-program-is-a-sequence-of-steps-expres",
+         "title": "A computer program is a sequence of steps expressed in a computer programming language so that a computer can follow and perform the steps",
+         "outcomes": [
+          {
+           "code": "CS.2.3.1.a",
+           "text": "Select and use appropriate software to perform a variety of tasks and recognize that users have different needs and preferences for the technology they use."
+          },
+          {
+           "code": "CS.2.3.1.b",
+           "text": "Develop programs with sequences and simple loops, to express ideas or address a problem."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "artificial-intelligence-ai",
+     "title": "Artificial Intelligence (AI)",
+     "topics": [
+      {
+       "id": "use-ai-tools-to-analyze-and-understand-the-world",
+       "title": "Use AI tools to analyze and understand the world and to create and inspire ideas",
+       "subtopics": [
+        {
+         "id": "ai-tools-can-perform-intelligent-tasks-such-as-r",
+         "title": "AI tools can perform intelligent tasks, such as recognition of patterns, decision-making, and classification of information, that help users understand the world",
+         "outcomes": [
+          {
+           "code": "CS.2.5.1.a",
+           "text": "Demonstrate how to train a computer to recognize something."
+          },
+          {
+           "code": "CS.2.5.1.b",
+           "text": "Describe and provide examples of how people learn and how computers learn."
+          },
+          {
+           "code": "CS.2.5.1.c",
+           "text": "Describe the kinds of tasks an intelligent assistant can and cannot perform."
+          },
+          {
+           "code": "CS.2.5.1.d",
+           "text": "Describe some jobs that no longer exist due to advances in technology."
+          },
+          {
+           "code": "CS.2.5.1.e",
+           "text": "Identify devices in daily life that use AI technologies."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "evaluate-the-uses-of-ai",
+       "title": "Evaluate the uses of AI",
+       "subtopics": [
+        {
+         "id": "ai-tools-can-be-designed-for-a-variety-of-purpos",
+         "title": "AI tools can be designed for a variety of purposes and can impact people differently based on how they are designed",
+         "outcomes": [
+          {
+           "code": "CS.2.5.2.a",
+           "text": "Examine a labeled dataset and identify problems in the data that could lead a computer to make incorrect predictions."
+          },
+          {
+           "code": "CS.2.5.2.b",
+           "text": "Identify current uses of AI and how they have impacted people."
+          },
+          {
+           "code": "CS.2.5.2.c",
+           "text": "Describe how AI can be used to solve problems that affect people."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "digital-citizenship",
+     "title": "Digital Citizenship",
+     "topics": [
+      {
+       "id": "practice-responsible-ethical-and-safe-use-of-com",
+       "title": "Practice responsible, ethical, and safe use of computing technology and the internet",
+       "subtopics": [
+        {
+         "id": "digital-citizenship-involves-being-responsible-f",
+         "title": "Digital citizenship involves being responsible for one’s own behavior and being aware of laws that protect the rights of others",
+         "outcomes": [
+          {
+           "code": "CS.2.6.1.a",
+           "text": "Discuss examples of cyberbullying and model age-appropriate responses to cyberbullying."
+          },
+          {
+           "code": "CS.2.6.1.b",
+           "text": "Discuss the concept of copyright."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "3",
+   "units": [
+    {
+     "id": "computational-thinking",
+     "title": "Computational Thinking",
+     "topics": [
+      {
+       "id": "develop-utilize-and-evaluate-algorithms-to-model",
+       "title": "Develop, utilize, and evaluate algorithms, to model and solve problems",
+       "subtopics": [
+        {
+         "id": "algorithms-can-be-improved",
+         "title": "Algorithms can be improved",
+         "outcomes": [
+          {
+           "code": "CS.3.1.1.a",
+           "text": "Refine multiple algorithms (step by step instructions) for the same task."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "computing-systems-and-networks",
+     "title": "Computing Systems and Networks",
+     "topics": [
+      {
+       "id": "recognize-and-analyze-security-concepts",
+       "title": "Recognize and analyze security concepts",
+       "subtopics": [
+        {
+         "id": "steps-can-be-taken-to-protect-private-informatio",
+         "title": "Steps can be taken to protect private information when connecting devices or engaging in cloud computing",
+         "outcomes": [
+          {
+           "code": "CS.3.2.1.a",
+           "text": "Discuss real-world cybersecurity problems and how personal information can be protected."
+          },
+          {
+           "code": "CS.3.2.1.b",
+           "text": "Demonstrate safe cloud computing practices."
+          },
+          {
+           "code": "CS.3.2.1.c",
+           "text": "Explain the vulnerabilities of connecting devices."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "cybersecurity",
+     "title": "Cybersecurity",
+     "topics": [
+      {
+       "id": "create-a-security-risk-profile-that-recognizes-a",
+       "title": "Create a security risk profile that recognizes and analyzes security concepts",
+       "subtopics": [
+        {
+         "id": "personally-identifiable-information-pii-is-any-i",
+         "title": "Personally identifiable information (PII) is any information that allows the identity of the person to whom that information belongs to be inferred",
+         "outcomes": [
+          {
+           "code": "CS.3.4.1.a",
+           "text": "Define personally identifiable information (PII)."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "artificial-intelligence-ai",
+     "title": "Artificial Intelligence (AI)",
+     "topics": [
+      {
+       "id": "evaluate-the-uses-of-ai",
+       "title": "Evaluate the uses of AI",
+       "subtopics": [
+        {
+         "id": "ai-tools-have-the-potential-to-affect-society-in",
+         "title": "AI tools have the potential to affect society in a number of ways, and their design should take into account the varying needs of users to ensure usability across populations",
+         "outcomes": [
+          {
+           "code": "CS.3.5.1.a",
+           "text": "Describe how AI-powered services are used in daily life."
+          },
+          {
+           "code": "CS.3.5.1.b",
+           "text": "Identify changes in how sectors of society operate due to the introduction of AI."
+          },
+          {
+           "code": "CS.3.5.1.c",
+           "text": "Describe how a job will change due to the introduction of AI or robotic technologies."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "digital-citizenship",
+     "title": "Digital Citizenship",
+     "topics": [
+      {
+       "id": "practice-responsible-ethical-and-safe-use-of-com",
+       "title": "Practice responsible, ethical, and safe use of computing technology and the internet",
+       "subtopics": [
+        {
+         "id": "using-digital-technologies-comes-with-responsibi",
+         "title": "Using digital technologies comes with responsibilities and can have consequences the user needs to consider",
+         "outcomes": [
+          {
+           "code": "CS.3.6.1.a",
+           "text": "Discuss and provide examples of cyberbullying and methods of age-appropriate intervention."
+          },
+          {
+           "code": "CS.3.6.1.b",
+           "text": "Describe the concept of a digital footprint."
+          },
+          {
+           "code": "CS.3.6.1.c",
+           "text": "Recognize the different motivations that influence appropriate and inappropriate online behaviors."
+          },
+          {
+           "code": "CS.3.6.1.d",
+           "text": "Discuss examples of cyber-attacks."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "4",
+   "units": [
+    {
+     "id": "computational-thinking",
+     "title": "Computational Thinking",
+     "topics": [
+      {
+       "id": "represent-analyze-and-visualize-data-in-order-to",
+       "title": "Represent, analyze, and visualize data in order to generate new knowledge and capability",
+       "subtopics": [
+        {
+         "id": "data-can-be-analyzed-and-presented-in-ways-that-",
+         "title": "Data can be analyzed and presented in ways that reveal predictable patterns and relationships between features",
+         "outcomes": [
+          {
+           "code": "CS.4.1.1.a",
+           "text": "Organize and present collected data visually to highlight relationships and support a claim."
+          },
+          {
+           "code": "CS.4.1.1.b",
+           "text": "Use data to highlight or propose cause-and-effect relationships, predict outcomes, or communicate an idea."
+          },
+          {
+           "code": "CS.4.1.1.c",
+           "text": "Give examples of how data can be analyzed to demonstrate relationships between features."
+          },
+          {
+           "code": "CS.4.1.1.d",
+           "text": "Explain how images are represented digitally in a computer."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "computing-systems-and-networks",
+     "title": "Computing Systems and Networks",
+     "topics": [
+      {
+       "id": "use-systems-thinking-to-describe-networks-and-co",
+       "title": "Use systems thinking to describe networks and common software and hardware components",
+       "subtopics": [
+        {
+         "id": "hardware-and-software-work-together-as-a-system-",
+         "title": "Hardware and software work together as a system to complete tasks and often communicate via networks to share information",
+         "outcomes": [
+          {
+           "code": "CS.4.2.1.a",
+           "text": "Use appropriate terminology in identifying and describing the function of common physical components of computing systems."
+          },
+          {
+           "code": "CS.4.2.1.b",
+           "text": "Describe how internal and external parts of computing devices function to form a system."
+          },
+          {
+           "code": "CS.4.2.1.c",
+           "text": "Model how information is broken down into smaller pieces, transmitted as packets through multiple devices over networks and the Internet, and reassembled at the destination."
+          },
+          {
+           "code": "CS.4.2.1.d",
+           "text": "Describe network communications."
+          },
+          {
+           "code": "CS.4.2.1.e",
+           "text": "Identify specific network components."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "computer-programming",
+     "title": "Computer Programming",
+     "topics": [
+      {
+       "id": "create-computational-artifacts-that-consider-sec",
+       "title": "Create computational artifacts that consider security from tampering, malicious, or otherwise",
+       "subtopics": [
+        {
+         "id": "creators-of-computer-programs-and-other-digital-",
+         "title": "Creators of computer programs and other digital artifacts must consider multiple factors when designing content, including accessibility and intellectual property rights",
+         "outcomes": [
+          {
+           "code": "CS.4.3.1.a",
+           "text": "Observe intellectual property rights and give appropriate attribution when creating or remixing programs."
+          },
+          {
+           "code": "CS.4.3.1.b",
+           "text": "Discuss computing technologies that have changed the world, and express how those technologies influence, and are influenced by, cultural practices."
+          },
+          {
+           "code": "CS.4.3.1.",
+           "text": "Brainstorm ways to improve the accessibility and usability of technology products for the diverse needs and wants of users."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "artificial-intelligence-ai",
+     "title": "Artificial Intelligence (AI)",
+     "topics": [
+      {
+       "id": "use-ai-tools-to-analyze-and-understand-the-world",
+       "title": "Use AI tools to analyze and understand the world and to create and inspire ideas",
+       "subtopics": [
+        {
+         "id": "ai-tools-solve-problems-through-the-use-of-compu",
+         "title": "AI tools solve problems through the use of computing technologies",
+         "outcomes": [
+          {
+           "code": "CS.4.5.1.a",
+           "text": "Design a solution to a societal problem that makes use of AI technology."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "digital-citizenship",
+     "title": "Digital Citizenship",
+     "topics": [
+      {
+       "id": "practice-responsible-ethical-and-safe-use-of-com",
+       "title": "Practice responsible, ethical, and safe use of computing technology and the internet",
+       "subtopics": [
+        {
+         "id": "a-digital-footprint-is-a-record-of-what-we-do-on",
+         "title": "A digital footprint is a record of what we do online, including the websites and digital spaces we visit, platforms and apps we use, the things we post and the things that others post, like pictures and videos, or comments of us and about us",
+         "outcomes": [
+          {
+           "code": "CS.4.6.1.a",
+           "text": "Define the term \"digital footprint\" and identify the online activities that contribute to it."
+          },
+          {
+           "code": "CS.4.6.1.b",
+           "text": "Identify ways users are and are not in control of their digital footprint."
+          },
+          {
+           "code": "CS.4.6.1.c",
+           "text": "Understand what responsibilities they have for the digital footprints of themselves and others."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "5",
+   "units": [
+    {
+     "id": "computational-thinking",
+     "title": "Computational Thinking",
+     "topics": [
+      {
+       "id": "develop-utilize-and-evaluate-algorithms-to-model",
+       "title": "Develop, utilize, and evaluate algorithms, to model and solve problems",
+       "subtopics": [
+        {
+         "id": "algorithms-can-be-created-tested-and-improved",
+         "title": "Algorithms can be created, tested, and improved",
+         "outcomes": [
+          {
+           "code": "CS.5.1.1.a",
+           "text": "Determine potential solutions to solve simple hardware and software problems using common troubleshooting strategies."
+          },
+          {
+           "code": "CS.5.1.1.b",
+           "text": "Compare multiple algorithms for the same task and determine which is the most appropriate."
+          },
+          {
+           "code": "CS.5.1.1.c",
+           "text": "Test and debug (identify and fix errors) a program or algorithm to ensure it runs as intended."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "systematically-analyze-a-problem-using-decomposi",
+       "title": "Systematically analyze a problem using decomposition and abstraction to formulate a solution",
+       "subtopics": [
+        {
+         "id": "complex-problems-can-be-broken-into-smaller-part",
+         "title": "Complex problems can be broken into smaller parts to facilitate the program development process",
+         "outcomes": [
+          {
+           "code": "CS.5.1.2.a",
+           "text": "Decompose (breakdown) problems into smaller, manageable subproblems to facilitate the program development process."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "computing-systems-and-networks",
+     "title": "Computing Systems and Networks",
+     "topics": [
+      {
+       "id": "develop-systems-solutions-from-a-set-of-specific",
+       "title": "Develop systems solutions from a set of specifications to complete a design process",
+       "subtopics": [
+        {
+         "id": "when-designing-or-improving-computational-artifa",
+         "title": "When designing or improving computational artifacts, the designer should consider various perspectives",
+         "outcomes": [
+          {
+           "code": "CS.5.2.1.a",
+           "text": "Seek diverse perspectives for the purpose of improving computational artifacts."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "computer-programming",
+     "title": "Computer Programming",
+     "topics": [
+      {
+       "id": "design-and-create-programs-individually-and-coll",
+       "title": "Design and create programs, individually and collaboratively, for a variety of disciplines",
+       "subtopics": [
+        {
+         "id": "computer-programs-can-include-a-variety-of-compo",
+         "title": "Computer programs can include a variety of components that can be created and revised collaboratively over time to improve and expand the function of the program",
+         "outcomes": [
+          {
+           "code": "CS.5.3.1.a",
+           "text": "Create programs that use variables to store and modify data."
+          },
+          {
+           "code": "CS.5.3.1.b",
+           "text": "Create programs that include sequences, events, loops, and conditionals."
+          },
+          {
+           "code": "CS.5.3.1.c",
+           "text": "Modify, remix, or incorporate portions of an existing program into one's own work, to develop something new or add more advanced features."
+          },
+          {
+           "code": "CS.5.3.1.d",
+           "text": "Use an iterative process to plan the development of a program by including others' perspectives and considering diverse viewpoints."
+          },
+          {
+           "code": "CS.5.3.1.e",
+           "text": "Take on varying roles, with teacher guidance, when collaborating with peers during the design, implementation, and review stages of program development."
+          },
+          {
+           "code": "CS.5.3.1.f",
+           "text": "Describe choices made during program development using code comments, presentations, and demonstrations."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "artificial-intelligence-ai",
+     "title": "Artificial Intelligence (AI)",
+     "topics": [
+      {
+       "id": "explain-how-ai-tools-work-and-how-they-are-built",
+       "title": "Explain how AI tools work and how they are built",
+       "subtopics": [
+        {
+         "id": "ai-systems-can-express-information-through-a-var",
+         "title": "AI systems can express information through a variety of ways and can perform tasks they were not explicitly programmed to perform through machine learning",
+         "outcomes": [
+          {
+           "code": "CS.5.5.1.a",
+           "text": "Give examples of intelligent vs. non intelligent machines and discuss what makes a machine intelligent."
+          },
+          {
+           "code": "CS.5.5.1.b",
+           "text": "Identify problems as either classification problems or search problems."
+          },
+          {
+           "code": "CS.5.5.1.c",
+           "text": "Identify patterns in labeled data and determine the features that predict labels."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "digital-citizenship",
+     "title": "Digital Citizenship",
+     "topics": [
+      {
+       "id": "practice-responsible-ethical-and-safe-use-of-com",
+       "title": "Practice responsible, ethical, and safe use of computing technology and the internet",
+       "subtopics": [
+        {
+         "id": "cyberbullying-is-the-use-of-digital-devices-site",
+         "title": "Cyberbullying is the use of digital devices, sites, and apps to intimidate, harm, and/or upset someone",
+         "outcomes": [
+          {
+           "code": "CS.5.6.1.a",
+           "text": "Recognize similarities and differences between in-person bullying, cyberbullying, and being mean."
+          },
+          {
+           "code": "CS.5.6.1.b",
+           "text": "Identify strategies for dealing with cyberbullying and ways they can be an upstander for those being bullied."
+          },
+          {
+           "code": "CS.5.6.1.c",
+           "text": "Explain how certain policies and laws are created to guide online interactions."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "6-8",
+   "units": [
+    {
+     "id": "computational-thinking",
+     "title": "Computational Thinking",
+     "topics": [
+      {
+       "id": "systematically-analyze-a-problem-using-decomposi",
+       "title": "Systematically analyze a problem using decomposition and abstraction to formulate a solution",
+       "subtopics": [
+        {
+         "id": "complex-problems-can-be-broken-into-smaller-part",
+         "title": "Complex problems can be broken into smaller parts to facilitate program implementation and review processes",
+         "outcomes": [
+          {
+           "code": "CS.6-8.1.2.a",
+           "text": "Decompose problems and subproblems into parts to facilitate the design, implementation, and review of programs."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "represent-and-analyze-data-in-order-to-generate-",
+       "title": "Represent and analyze data in order to generate new knowledge and capability",
+       "subtopics": [
+        {
+         "id": "data-can-be-collected-transformed-and-analyzed-t",
+         "title": "Data can be collected, transformed and analyzed to develop computational models",
+         "outcomes": [
+          {
+           "code": "CS.6-8.1.3.a",
+           "text": "Collect data using computational tools and transform the data to make it more useful and reliable."
+          },
+          {
+           "code": "CS.6-8.1.3.b",
+           "text": "Illustrate translation of a structure such as a game board, road map, or mind map into a labeled graph and explain the contributions of the components."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "computing-systems-and-networks",
+     "title": "Computing Systems and Networks",
+     "topics": [
+      {
+       "id": "use-systems-thinking-to-describe-networks-and-co",
+       "title": "Use systems thinking to describe networks and common software and hardware components",
+       "subtopics": [
+        {
+         "id": "computer-networks-are-composed-of-multiple-conne",
+         "title": "Computer networks are composed of multiple, connected components and can be arranged logically in a variety of ways",
+         "outcomes": [
+          {
+           "code": "CS.6-8.2.1.a",
+           "text": "Model the role of protocols in transmitting data across the Internet."
+          },
+          {
+           "code": "CS.6-8.2.1.b",
+           "text": "Design projects that combine hardware and software components to collect and exchange data."
+          },
+          {
+           "code": "CS.6-8.2.1.c",
+           "text": "Systematically identify and fix problems with computing devices and their components."
+          },
+          {
+           "code": "CS.6-8.2.1.",
+           "text": "Compare and contrast network topologies."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "develop-systems-solutions-from-a-set-of-specific",
+       "title": "Develop systems solutions from a set of specifications to complete a design process",
+       "subtopics": [
+        {
+         "id": "the-way-that-users-interact-with-devices-can-pro",
+         "title": "The way that users interact with devices can provide useful information for improving the design",
+         "outcomes": [
+          {
+           "code": "CS.6-8.2.2.a",
+           "text": "Recommend improvements to the design of computing devices, based on an analysis of how users interact with the devices."
+          },
+          {
+           "code": "CS.6-8.2.2.b",
+           "text": "Identify the role of connected network components."
+          },
+          {
+           "code": "CS.6-8.2.2.c",
+           "text": "Discuss issues of bias and accessibility in the design of existing technologies."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "recognize-and-analyze-security-concepts",
+       "title": "Recognize and analyze security concepts",
+       "subtopics": [
+        {
+         "id": "cybersecurity-threats-can-arise-from-a-variety-o",
+         "title": "Cybersecurity threats can arise from a variety of sources",
+         "outcomes": [
+          {
+           "code": "CS.6-8.2.3.a",
+           "text": "Describe various types of threat actors."
+          },
+          {
+           "code": "CS.6-8.2.3.b",
+           "text": "Develop strategies to raise awareness of hardware vulnerabilities."
+          },
+          {
+           "code": "CS.6-8.2.3.c",
+           "text": "Evaluate the risks and benefits of Internet of Things devices."
+          },
+          {
+           "code": "CS.6-8.2.3.d",
+           "text": "Distinguish between responsible and malicious hacking."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "computer-programming",
+     "title": "Computer Programming",
+     "topics": [
+      {
+       "id": "design-and-create-programs-individually-and-coll",
+       "title": "Design and create programs, individually and collaboratively, for a variety of disciplines",
+       "subtopics": [
+        {
+         "id": "programs-can-combine-control-structures-includin",
+         "title": "Programs can combine control structures, including nested loops and compound conditionals to solve complex problems",
+         "outcomes": [
+          {
+           "code": "CS.6-8.3.1.a",
+           "text": "Design and iteratively develop programs that combine control structures, including nested loops and compound conditionals."
+          },
+          {
+           "code": "CS.6-8.3.1.b",
+           "text": "Use flowcharts and/or pseudocode to address complex problems as algorithms."
+          },
+          {
+           "code": "CS.6-8.3.1.c",
+           "text": "Systematically test and refine programs using a range of test cases."
+          }
+         ]
+        },
+        {
+         "id": "collaborative-development-of-computational-artif",
+         "title": "Collaborative development of computational artifacts can be made more efficient by employing strategies for project management, crowdsourcing, and feedback",
+         "outcomes": [
+          {
+           "code": "CS.6-8.3.1.a",
+           "text": "Represent data using multiple encoding schemes."
+          },
+          {
+           "code": "CS.6-8.3.1.b",
+           "text": "Document programs in order to make them easier to follow, test, and debug."
+          },
+          {
+           "code": "CS.6-8.3.1.c",
+           "text": "Seek and incorporate feedback from team members and users to refine a solution that meets user needs."
+          },
+          {
+           "code": "CS.6-8.3.1.d",
+           "text": "Distribute tasks and maintain a project timeline when collaboratively developing computational artifacts."
+          },
+          {
+           "code": "CS.6-8.3.1.e",
+           "text": "Collaborate with many contributors through strategies such as crowdsourcing or surveys when creating a computational artifact."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "create-computational-artifacts-that-consider-sec",
+       "title": "Create computational artifacts that consider security from tampering, malicious or otherwise",
+       "subtopics": [
+        {
+         "id": "computational-artifacts-can-be-designed-in-ways-",
+         "title": "Computational artifacts can be designed in ways that reduce the risk of data loss or tampering",
+         "outcomes": [
+          {
+           "code": "CS.6-8.3.2.a",
+           "text": "Explain the role and importance of backups."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "cybersecurity",
+     "title": "Cybersecurity",
+     "topics": [
+      {
+       "id": "create-a-security-risk-profile-that-recognizes-a",
+       "title": "Create a security risk profile that recognizes and analyzes security concepts",
+       "subtopics": [
+        {
+         "id": "sharing-information-creates-potential-risks-that",
+         "title": "Sharing information creates potential risks that the information could be used inappropriately, but these risks can be partially mitigated",
+         "outcomes": [
+          {
+           "code": "CS.6-8.4.1.a",
+           "text": "Explain how physical and digital security measures protect electronic information."
+          },
+          {
+           "code": "CS.6-8.4.1.b",
+           "text": "Apply multiple methods of encryption to model the secure transmission of information."
+          },
+          {
+           "code": "CS.6-8.4.1.c",
+           "text": "Describe tradeoffs between allowing information to be public and keeping information private and secure."
+          },
+          {
+           "code": "CS.6-8.4.1.d",
+           "text": "Discuss the risks and benefits of sharing PII."
+          },
+          {
+           "code": "CS.6-8.4.1.e",
+           "text": "Explain techniques to detect, correct, and prevent disclosure of PII."
+          },
+          {
+           "code": "CS.6-8.4.1.f",
+           "text": "Analyze specific federal, state, and local laws as they relate to cybersecurity and privacy."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "artificial-intelligence-ai",
+     "title": "Artificial Intelligence (AI)",
+     "topics": [
+      {
+       "id": "use-ai-tools-to-analyze-and-understand-the-world",
+       "title": "Use AI tools to analyze and understand the world and to create and inspire ideas",
+       "subtopics": [
+        {
+         "id": "ai-tools-can-be-combined-and-adapted-to-solve-a-",
+         "title": "AI tools can be combined and adapted to solve a vast variety of problems and have the capacity to drive major changes in society",
+         "outcomes": [
+          {
+           "code": "CS.6-8.5.1.a",
+           "text": "Examine an aspect of daily life that is predicted to change due to the introduction of AI technologies."
+          },
+          {
+           "code": "CS.6-8.5.1.b",
+           "text": "Compare the changes AI is bringing to society with those of previous industrial revolutions."
+          },
+          {
+           "code": "CS.6-8.5.1.c",
+           "text": "Predict a new type of job that might arise, or how an existing type of job might change or go away, as a result of the adoption of AI technologies."
+          },
+          {
+           "code": "CS.6-8.5.1.d",
+           "text": "Create a novel application using some of the AI extensions or plugins available in the programming framework of your choice."
+          },
+          {
+           "code": "CS.6-8.5.1.e",
+           "text": "Research a societal problem and describe how AI technologies can be used to address that problem."
+          },
+          {
+           "code": "CS.6-8.5.1.f",
+           "text": "Create a dataset for training a decision tree classifier or predictor and explore the impact that different feature encodings have on the decision tree."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "evaluate-the-uses-of-ai",
+       "title": "Evaluate the uses of AI",
+       "subtopics": [
+        {
+         "id": "the-behavior-of-ai-systems-reflects-both-the-goa",
+         "title": "The behavior of AI systems reflects both the goals of the designers and the data used to train the system",
+         "outcomes": [
+          {
+           "code": "CS.6-8.5.2.a",
+           "text": "Describe how a vision system might exhibit cultural bias if it lacked knowledge of objects not found in the culture of the people who created it (For example: road signs in different countries)."
+          },
+          {
+           "code": "CS.6-8.5.2.b",
+           "text": "Train and evaluate a classification or prediction model using machine learning on a dataset."
+          },
+          {
+           "code": "CS.6-8.5.2.c",
+           "text": "Evaluate the ways various stakeholders' goals and values influence the design of AI systems."
+          },
+          {
+           "code": "CS.6-8.5.2.d",
+           "text": "Explain how the choice of training data shapes the behavior of the classifier, and how bias can be introduced if the training set is not properly balanced to represent the full range and distribution of items being classified."
+          },
+          {
+           "code": "CS.6-8.5.2.e",
+           "text": "Define criteria for consciousness and evaluate AI systems or fictional AI characters according to those criteria."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "explain-how-ai-tools-work-and-how-they-are-built",
+       "title": "Explain how AI tools work and how they are built",
+       "subtopics": [
+        {
+         "id": "ai-systems-combine-intelligent-agents-reasoning-",
+         "title": "AI systems combine intelligent agents, reasoning models, and machine learning to 28 perform sophisticated functions such as solving physics problems or identifying human emotional states",
+         "outcomes": [
+          {
+           "code": "CS.6-8.5.3.a",
+           "text": "Give examples of how intelligent agents combine information from multiple sensors."
+          },
+          {
+           "code": "CS.6-8.5.3.b",
+           "text": "Give examples of different types of computer perception that can extract meaning from sensory signals."
+          },
+          {
+           "code": "CS.6-8.5.3.c",
+           "text": "Illustrate how sequences of words can be recognized as phrases, even if some of the words are unclear, by looking at how the words fit together."
+          },
+          {
+           "code": "CS.6-8.5.3.d",
+           "text": "Show how a game board (e.g., tic-tac-toe, Chutes and Ladders, Monopoly, chess) can be represented by a description in plain language."
+          },
+          {
+           "code": "CS.6-8.5.3.e",
+           "text": "Evaluate how an AI system meets the design criteria of accountability and respect for privacy."
+          },
+          {
+           "code": "CS.6-8.5.3.f",
+           "text": "Contrast the unique characteristics of human learning with the ways machine learning systems operate."
+          },
+          {
+           "code": "CS.6-8.5.3.g",
+           "text": "Model how unsupervised learning finds patterns in unlabeled data."
+          },
+          {
+           "code": "CS.6-8.5.3.h",
+           "text": "Explain the difference between training and using a reasoning model."
+          },
+          {
+           "code": "CS.6-8.5.3.i",
+           "text": "Compare how a decision tree learning algorithm works vs. how a neural network learning algorithm works."
+          },
+          {
+           "code": "CS.6-8.5.3.j",
+           "text": "Explain the differences between supervised learning and reinforcement learning."
+          },
+          {
+           "code": "CS.6-8.5.3.k",
+           "text": "Illustrate the structure of a neural network and describe how its parts form a set of functions that compute an output."
+          },
+          {
+           "code": "CS.6-8.5.3.l",
+           "text": "Illustrate how a computer can solve a maze, find a route on a map, or reason about concepts in a knowledge graph by drawing a search tree."
+          },
+          {
+           "code": "CS.6-8.5.3.m",
+           "text": "Model the process of solving a graph search problem using breadth-first search to draw a search tree."
+          },
+          {
+           "code": "CS.6-8.5.3.n",
+           "text": "Categorize problems as classification, prediction, combinatorial search, or sequential decision problems."
+          },
+          {
+           "code": "CS.6-8.5.3.o",
+           "text": "Illustrate how word embeddings can be used to reason about the meaning of words."
+          },
+          {
+           "code": "CS.6-8.5.3.p",
+           "text": "Describe some NLP (Natural Language Processing) tasks computers can perform and explain how they work."
+          },
+          {
+           "code": "CS.6-8.5.3.q",
+           "text": "Explain the knowledge a computer would need to solve a naive physics reasoning problem."
+          },
+          {
+           "code": "CS.6-8.5.3.r",
+           "text": "Describe how computers use different types of cues to recognize human emotional states."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "digital-citizenship",
+     "title": "Digital Citizenship",
+     "topics": [
+      {
+       "id": "practice-responsible-ethical-and-safe-use-of-com",
+       "title": "Practice responsible, ethical, and safe use of computing technology and the Internet",
+       "subtopics": [
+        {
+         "id": "users-can-employ-specific-strategies-to-mitigate",
+         "title": "Users can employ specific strategies to mitigate the risks associated with online interactions",
+         "outcomes": [
+          {
+           "code": "CS.6-8.6.1.a",
+           "text": "Develop strategies to raise awareness of the effects of, and methods to identify and prevent, cyberbullying."
+          },
+          {
+           "code": "CS.6-8.6.1.b",
+           "text": "Recognize the many sources of data that make up a digital footprint."
+          },
+          {
+           "code": "CS.6-8.6.1.c",
+           "text": "Recognize the permanence of a digital footprint."
+          },
+          {
+           "code": "CS.6-8.6.1.d",
+           "text": "Explain how intellectual property and copyright relate to fair use."
+          },
+          {
+           "code": "CS.6-8.6.1.e",
+           "text": "Identify the role of social media in their lives."
+          },
+          {
+           "code": "CS.6-8.6.1.f",
+           "text": "Reflect on the positive and negative effects social media use has on their relationships."
+          },
+          {
+           "code": "CS.6-8.6.1.g",
+           "text": "Think about how to develop healthy habits when using digital media."
+          },
+          {
+           "code": "CS.6-8.6.1.h",
+           "text": "Explain why information about them and their behaviors is valuable to companies and consider potential strategies to limit access to information by third parties."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "9-12",
+   "units": [
+    {
+     "id": "computational-thinking",
+     "title": "Computational Thinking",
+     "topics": [
+      {
+       "id": "develop-utilize-and-evaluate-algorithms-to-model",
+       "title": "Develop, utilize and evaluate algorithms, to model and solve problems",
+       "subtopics": [
+        {
+         "id": "computational-thinking-is-used-to-create-algorit",
+         "title": "Computational thinking is used to create algorithmic solutions to real-world problems",
+         "outcomes": [
+          {
+           "code": "CS.HS.1.1.a",
+           "text": "Identify and create different types of algorithms (sort, search, etc.)."
+          },
+          {
+           "code": "CS.HS.1.1.b",
+           "text": "Predict the outcome of different types of algorithms."
+          },
+          {
+           "code": "CS.HS.1.1.c",
+           "text": "Create or adapt algorithms to solve problems for multiple purposes (e.g., personal interests, stakeholder needs)."
+          },
+          {
+           "code": "CS.HS.1.1.d",
+           "text": "Use an algorithm that involves mathematical operations and functions to solve problems."
+          },
+          {
+           "code": "CS.HS.1.1.e",
+           "text": "Use an iterative approach to utilizing and/or developing an algorithm."
+          },
+          {
+           "code": "CS.HS.1.1.f",
+           "text": "Recognize problems that cannot be solved computationally."
+          },
+          {
+           "code": "CS.HS.1.1.g",
+           "text": "Identify and describe algorithms that exist within their personal lives."
+          }
+         ]
+        },
+        {
+         "id": "algorithms-can-be-represented-and-used-in-differ",
+         "title": "Algorithms can be represented and used in different ways (e.g., languages, diagrams, pseudocode)",
+         "outcomes": [
+          {
+           "code": "CS.HS.1.2.a",
+           "text": "Illustrate the flow of execution of an iterative algorithm (e.g., recursion)."
+          },
+          {
+           "code": "CS.HS.1.2.b",
+           "text": "Explain the value of heuristic algorithms to model ways to solve problems."
+          },
+          {
+           "code": "CS.HS.1.2.c",
+           "text": "Adapt algorithms used in one problem to solve a related or different problem."
+          },
+          {
+           "code": "CS.HS.1.2.d",
+           "text": "Use multiple methods to represent an algorithm (e.g., diagram, programming 4 language, unplugged)."
+          }
+         ]
+        },
+        {
+         "id": "algorithm-development-and-use-is-an-ongoing-proc",
+         "title": "Algorithm development and use is an ongoing process that involves adapting, critiquing and troubleshooting programs and/or processes",
+         "outcomes": [
+          {
+           "code": "CS.HS.1.3.a",
+           "text": "Describe pros and cons of the performance of algorithms for the same task."
+          },
+          {
+           "code": "CS.HS.1.3.b",
+           "text": "Use an iterative approach to developing an algorithm."
+          },
+          {
+           "code": "CS.HS.1.3.c",
+           "text": "Test and troubleshoot so that algorithms produce reasonable results."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "systematically-analyze-a-problem-using-decomposi",
+       "title": "Systematically analyze a problem using decomposition and abstraction to formulate a solution",
+       "subtopics": [
+        {
+         "id": "large-complex-problems-can-be-broken-down-into-s",
+         "title": "Large, complex problems can be broken down into smaller, more manageable components",
+         "outcomes": [
+          {
+           "code": "CS.HS.1.4.a",
+           "text": "Demonstrate how the process of decomposition is iterative and used to solve problems."
+          },
+          {
+           "code": "CS.HS.1.4.b",
+           "text": "Formulate possible solutions based on the decomposition of a problem."
+          }
+         ]
+        },
+        {
+         "id": "abstraction-is-used-to-reduce-complexity-of-larg",
+         "title": "Abstraction is used to reduce complexity of larger problems by focusing on main ideas",
+         "outcomes": [
+          {
+           "code": "CS.HS.1.5.a",
+           "text": "Describe how abstraction is central to computational thinking."
+          },
+          {
+           "code": "CS.HS.1.5.b",
+           "text": "Identify and prioritize the most relevant parts of a problem while filtering out extraneous details."
+          },
+          {
+           "code": "CS.HS.1.5.c",
+           "text": "Demonstrate different ways to represent key problem components."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "represent-and-analyze-data-in-order-to-generate-",
+       "title": "Represent and analyze data in order to generate new knowledge and capability",
+       "subtopics": [
+        {
+         "id": "data-can-be-represented-in-different-ways-for-st",
+         "title": "Data can be represented in different ways for storage and exchange",
+         "outcomes": [
+          {
+           "code": "CS.HS.1.6.a",
+           "text": "Identify different types of data that are exchanged and produced by computers (e.g., protocols)."
+          },
+          {
+           "code": "CS.HS.1.6.b",
+           "text": "Evaluate the trade-offs for how data elements are organized and where data are stored (e.g., PNG/GIF, structured/unstructured)."
+          },
+          {
+           "code": "CS.HS.1.6.c",
+           "text": "Compare and contrast various data structures/techniques for storing and processing data (e.g., arrays, lists, tables)."
+          }
+         ]
+        },
+        {
+         "id": "many-problems-appropriate-for-solving-with-a-com",
+         "title": "Many problems appropriate for solving with a computer are organized around patterns",
+         "outcomes": [
+          {
+           "code": "CS.HS.1.7.a",
+           "text": "Provide multiple versions of data visualization in order to deepen problem analysis."
+          },
+          {
+           "code": "CS.HS.1.7.b",
+           "text": "Interpret and analyze data to make informed decisions."
+          }
+         ]
+        },
+        {
+         "id": "data-from-a-computer-program-can-be-visually-pre",
+         "title": "Data from a computer program can be visually presented to better understand and articulate solutions to a problem",
+         "outcomes": [
+          {
+           "code": "CS.HS.1.8.a",
+           "text": "Analyze computer output in different forms (e.g., plain text, CSV, graphs, images)."
+          },
+          {
+           "code": "CS.HS.1.8.b",
+           "text": "Design visualizations using the appropriate tool(s) with the end user in mind."
+          },
+          {
+           "code": "CS.HS.1.8.",
+           "text": "Provide multiple versions of data visualization in order to deepen problem analysis."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "computing-systems-and-networks",
+     "title": "Computing Systems and Networks",
+     "topics": [
+      {
+       "id": "use-systems-thinking-to-describe-networks-and-co",
+       "title": "Use systems thinking to describe networks and common software and hardware components",
+       "subtopics": [
+        {
+         "id": "communication-between-computers-and-over-the-int",
+         "title": "Communication between computers (and over the internet) can be configured in many different ways and consist of several hardware and software components",
+         "outcomes": [
+          {
+           "code": "CS.HS.2.1.a",
+           "text": "Describe key protocols and underlying processes of internet-based services, (e.g., https) and discuss impact of technology change on communication protocols."
+          },
+          {
+           "code": "CS.HS.2.1.b",
+           "text": "Illustrate and describe the basic components and various network types and topologies (e.g., personal, local, metropolitan, and wide)."
+          },
+          {
+           "code": "CS.HS.2.1.c",
+           "text": "Explain the difference between decimal, hexadecimal, octal and binary number formats and how they are used in computing environments."
+          }
+         ]
+        },
+        {
+         "id": "computer-hardware-the-lowest-level-of-a-computer",
+         "title": "Computer hardware, the lowest level of a computer system, consists of many different parts, each providing a specialized function",
+         "outcomes": [
+          {
+           "code": "CS.HS.2.2.a",
+           "text": "Explain the difference between memory and disk storage, internal and external storage, Random Access Memory (RAM), flash, cloud."
+          },
+          {
+           "code": "CS.HS.2.2.b",
+           "text": "Explain how to maintain safety when working on PCs, e.g., electromagnetic precautions."
+          },
+          {
+           "code": "CS.HS.2.2.c",
+           "text": "Describe how computing devices are engineered for fault tolerance and reliability, and identify potential sources of weakness (e.g., redundant power supplies, RAID, SAN/NAS connections)."
+          }
+         ]
+        },
+        {
+         "id": "computer-software-is-written-for-specific-purpos",
+         "title": "Computer software is written for specific purposes",
+         "outcomes": [
+          {
+           "code": "CS.HS.2.3.a",
+           "text": "Identify and differentiate between different kinds of software (e.g., operating systems vs. applications) and their purposes."
+          },
+          {
+           "code": "CS.HS.2.3.b",
+           "text": "Explain what an operating system is, and why it is important for a computer or computing device (e.g., Linux, Windows, iOS)."
+          },
+          {
+           "code": "CS.HS.2.3.c",
+           "text": "Describe how software interacts with hardware to complete tasks."
+          }
+         ]
+        },
+        {
+         "id": "systems-thinking-is-a-way-of-holistically-examin",
+         "title": "Systems thinking is a way of holistically examining the various components and use cases that go into a given design",
+         "outcomes": [
+          {
+           "code": "CS.HS.2.4.a",
+           "text": "Explain the integration of hardware, software and network communications components to create a networked system."
+          },
+          {
+           "code": "CS.HS.2.4.b",
+           "text": "Summarize security approaches using a systems approach perspective."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "develop-systems-solutions-from-a-set-of-specific",
+       "title": "Develop systems solutions from a set of specifications to complete a design process",
+       "subtopics": [
+        {
+         "id": "stakeholder-considerations-drive-system-design",
+         "title": "Stakeholder considerations drive system design",
+         "outcomes": [
+          {
+           "code": "CS.HS.2.5.a",
+           "text": "Identify stakeholder’s problems/needs."
+          },
+          {
+           "code": "CS.HS.2.5.b",
+           "text": "Articulate design requirements back to the stakeholder."
+          },
+          {
+           "code": "CS.HS.2.5.c",
+           "text": "Illustrate options for considerations and develop conceptual model."
+          },
+          {
+           "code": "CS.HS.2.5.d",
+           "text": "Perform system analysis based on stakeholder considerations."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "recognize-and-analyze-security-concepts",
+       "title": "Recognize and analyze security concepts",
+       "subtopics": [
+        {
+         "id": "robust-computing-systems-require-multiple-method",
+         "title": "Robust computing systems require multiple methods of recovery",
+         "outcomes": [
+          {
+           "code": "CS.HS.2.6.a",
+           "text": "Describe elements of an effective backup system."
+          },
+          {
+           "code": "CS.HS.2.6.b",
+           "text": "Compare backup systems for computer users, or a network."
+          },
+          {
+           "code": "CS.HS.2.6.c",
+           "text": "List the various backup methodologies (e.g., full, differential), and why one would pick one over the other, or use all."
+          },
+          {
+           "code": "CS.HS.2.6.",
+           "text": "Explain the ways an organization would continue to operate in light of a systems failure."
+          }
+         ]
+        },
+        {
+         "id": "robust-computing-systems-require-data-protection",
+         "title": "Robust computing systems require data protection",
+         "outcomes": [
+          {
+           "code": "CS.HS.2.7.a",
+           "text": "Identify examples of threats to systems and data."
+          },
+          {
+           "code": "CS.HS.2.7.b",
+           "text": "Describe the process by which intruders gain entry into a production system (e.g., reconnaissance)."
+          },
+          {
+           "code": "CS.HS.2.7.c",
+           "text": "Describe and compare methods to test/validate how well systems and data are protected."
+          },
+          {
+           "code": "CS.HS.2.7.d",
+           "text": "Investigate different career pathways relating to systems security."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "computer-programming",
+     "title": "Computer Programming",
+     "topics": [
+      {
+       "id": "design-and-create-programs-individually-and-coll",
+       "title": "Design and create programs, individually and collaboratively, for a variety of disciplines",
+       "subtopics": [
+        {
+         "id": "the-creation-of-a-computer-program-requires-a-de",
+         "title": "The creation of a computer program requires a design process",
+         "outcomes": [
+          {
+           "code": "CS.HS.3.1.a",
+           "text": "Analyze and apply a design methodology to identify constraints and requirements of an identified problem."
+          },
+          {
+           "code": "CS.HS.3.1.b",
+           "text": "Utilize tools and resources such as pseudocode, flowcharts, wireframes, etc., as part of the design process."
+          },
+          {
+           "code": "CS.HS.3.1.c",
+           "text": "Determine and use graphical or text-based languages."
+          },
+          {
+           "code": "CS.HS.3.1.d",
+           "text": "Understand and apply core programming concepts."
+          }
+         ]
+        },
+        {
+         "id": "the-process-of-programming-involves-solving-comp",
+         "title": "The process of programming involves solving computational problems",
+         "outcomes": [
+          {
+           "code": "CS.HS.3.2.a",
+           "text": "Write code per selected design."
+          },
+          {
+           "code": "CS.HS.3.2.b",
+           "text": "Create code comments to communicate to other developers and ensure documentation of code."
+          },
+          {
+           "code": "CS.HS.3.2.c",
+           "text": "Use various troubleshooting and debugging techniques to improve code."
+          },
+          {
+           "code": "CS.HS.3.2.d",
+           "text": "Create appropriate variables to store and retrieve data."
+          }
+         ]
+        },
+        {
+         "id": "collaborative-tools-methods-and-strategies-can-b",
+         "title": "Collaborative tools, methods and strategies can be used to design, develop and update computational artifacts",
+         "outcomes": [
+          {
+           "code": "CS.HS.3.3.a",
+           "text": "Integrate collaborative strategies to improve programming outputs."
+          },
+          {
+           "code": "CS.HS.3.3.b",
+           "text": "Identify and analyze a variety of collaborative tools (e.g., commenting, development repositories) in order to determine the appropriateness for intended use."
+          },
+          {
+           "code": "CS.HS.3.3.c",
+           "text": "Identify strategies such as peer reviews to test and refine artifacts in development."
+          },
+          {
+           "code": "CS.HS.3.3.",
+           "text": "Determine when to use standard software tools like APIs, libraries, version control repositories, etc."
+          }
+         ]
+        },
+        {
+         "id": "stakeholder-based-design-requirements-and-feedba",
+         "title": "Stakeholder-based design requirements and feedback are essential to a quality computational product or service",
+         "outcomes": [
+          {
+           "code": "CS.HS.3.4.a",
+           "text": "Understand and apply principles of stakeholder-based design."
+          },
+          {
+           "code": "CS.HS.3.4.b",
+           "text": "Guide/advise stakeholders on strategies and solutions best suited for their problem (i.e., type of platform)."
+          },
+          {
+           "code": "CS.HS.3.4.c",
+           "text": "Construct effective methods for gathering feedback from stakeholders."
+          },
+          {
+           "code": "CS.HS.3.4.d",
+           "text": "Respond to feedback from stakeholders to improve computing solutions."
+          },
+          {
+           "code": "CS.HS.3.4.e",
+           "text": "Create and share product support documentation for potential users."
+          },
+          {
+           "code": "CS.HS.3.4.f",
+           "text": "Articulate lessons learned as a result of the design and creation process."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "create-computational-artifacts-that-consider-sec",
+       "title": "Create computational artifacts that consider security from tampering, malicious or otherwise",
+       "subtopics": [
+        {
+         "id": "computing-solutions-can-have-impacts-personal-et",
+         "title": "Computing solutions can have impacts (personal, ethical, social, economic and cultural) based on their use",
+         "outcomes": [
+          {
+           "code": "CS.HS.3.5.a",
+           "text": "Investigate and understand privacy, security and protection laws."
+          },
+          {
+           "code": "CS.HS.3.5.b",
+           "text": "Articulate the importance of securing personal data information on encrypted storage systems."
+          },
+          {
+           "code": "CS.HS.3.5.c",
+           "text": "Identify and analyze current events to ensure the safety, security and well-being of all potential stakeholders and end users."
+          },
+          {
+           "code": "CS.HS.3.5.d",
+           "text": "Identify influential computing innovations, and identify the beneficial and harmful effects they have had, or could have, on society, economy and culture."
+          },
+          {
+           "code": "CS.HS.3.5.e",
+           "text": "Discuss and explain how diversity of design and issues of accessibility impact a wide range of users."
+          },
+          {
+           "code": "CS.HS.3.5.f",
+           "text": "Demonstrate ways to improve the accessibility of computational technologies and artifacts."
+          }
+         ]
+        },
+        {
+         "id": "security-and-software-licensing-can-present-cons",
+         "title": "Security and software licensing can present constraints and restrictions in computational design and development",
+         "outcomes": [
+          {
+           "code": "CS.HS.3.6.a",
+           "text": "Describe how software licensing influences program development."
+          },
+          {
+           "code": "CS.HS.3.6.b",
+           "text": "Investigate and develop solutions that discourage online software piracy."
+          },
+          {
+           "code": "CS.HS.3.6.c",
+           "text": "Explore and integrate security measures such as encryption, authentication and verification strategies to secure developed computer programs."
+          },
+          {
+           "code": "CS.HS.3.6.d",
+           "text": "Research and abide by intellectual property laws and patents."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "cybersecurity",
+     "title": "Cybersecurity",
+     "topics": [
+      {
+       "id": "recognize-and-analyze-security-concepts",
+       "title": "Recognize and analyze security concepts",
+       "subtopics": [
+        {
+         "id": "confidentiality-integrity-and-availability-cia-a",
+         "title": "Confidentiality, integrity, and availability (CIA) are core principles of cybersecurity",
+         "outcomes": [
+          {
+           "code": "CS.HS.4.1.a",
+           "text": "Define confidentiality, integrity and availability in the context of cybersecurity, and share a basic example of each."
+          },
+          {
+           "code": "CS.HS.4.1.b",
+           "text": "Analyze real-life scenarios to identify which of the core principles are at risk or have been compromised and explain why."
+          },
+          {
+           "code": "CS.HS.4.1.c",
+           "text": "Critically analyze case studies of cyber security incidents and identify where breaches in CIA have occurred."
+          },
+          {
+           "code": "CS.HS.4.1.d",
+           "text": "Research real-world examples of cyber security breaches and share their findings, focusing on how CIA principles were impacted."
+          }
+         ]
+        },
+        {
+         "id": "encryption-is-fundamental-to-data-security-and-p",
+         "title": "Encryption is fundamental to data security and privacy and is important in cybersecurity",
+         "outcomes": [
+          {
+           "code": "CS.HS.4.2.a",
+           "text": "Compare and contrast applications based on their privacy policies and permissions, evaluating the impact on individuals and society."
+          },
+          {
+           "code": "CS.HS.4.2.b",
+           "text": "Synthesize understanding of privacy practices to inform peers on healthy vs harmful practices."
+          },
+          {
+           "code": "CS.HS.4.2.c",
+           "text": "Explain the individual risks of a data breach to an organization housing personal data. (Department of Homeland Security (DHS) through CISA Grant given to Cyber.org, 2021)"
+          },
+          {
+           "code": "CS.HS.4.2.d",
+           "text": "Compare and contrast the harms and benefits between ensuring privacy and enabling convenience and usability (Dark, Daugherty, Emry, Massey, & Peyrot, 2021)"
+          },
+          {
+           "code": "CS.HS.4.2.e",
+           "text": "Compare and contrast situations where one would want to be anonymous vs. identifiable and provide an example where one party desires anonymity but the other party desires clear identification."
+          },
+          {
+           "code": "CS.HS.4.2.f",
+           "text": "Discuss and/or give an example of how privacy decisions made today may have negative implications in the future."
+          },
+          {
+           "code": "CS.HS.4.2.g",
+           "text": "Describe one or more systems used on a regular basis which reveals information about a user’s pattern of life."
+          },
+          {
+           "code": "CS.HS.4.2.h",
+           "text": "Explain why trying every possible combination (a brute force attack) will always break encryption if given enough time."
+          },
+          {
+           "code": "CS.HS.4.2.i",
+           "text": "Describe ways encryption is used today."
+          },
+          {
+           "code": "CS.HS.4.2.j",
+           "text": "Evaluate strengths and weaknesses of an encryption method in context."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "create-a-security-risk-profile-that-recognizes-a",
+       "title": "Create a security risk profile that recognizes and analyzes security concepts",
+       "subtopics": [
+        {
+         "id": "anticipate-identify-and-understand-cyber-securit",
+         "title": "Anticipate, identify and understand cyber security threats from the prospective adversary (attacker) and incorporate this into a security risk profile that takes into consideration the potential damage of a compromise vs the cost and inconvenience of implementing security",
+         "outcomes": [
+          {
+           "code": "CS.HS.4.3.a",
+           "text": "Build a list of common threats students face and explain how an adversary may try to exploit those threats (adversarial thinking)."
+          },
+          {
+           "code": "CS.HS.4.3.b",
+           "text": "Analyze real-life scenarios to identify which of the core principles are at risk or have been compromised and explain why. (This covers “Demonstrate adversarial thinking for a given problem. example: attack trees”)"
+          },
+          {
+           "code": "CS.HS.4.3.c",
+           "text": "Explain how social behaviors and human factors can impact the cybersecurity of a system design. (Dark, Daugherty, Emry, Massey, & Peyrot, 2021)"
+          },
+          {
+           "code": "CS.HS.4.3.d",
+           "text": "Evaluate digital habits and practices to identify potential risks and predict how an adversary might seek to exploit vulnerabilities."
+          },
+          {
+           "code": "CS.HS.4.3.e",
+           "text": "Analyze the motives of threat actors (Dark, Daugherty, Emry, Massey, & Peyrot, 2021)"
+          },
+          {
+           "code": "CS.HS.4.3.f",
+           "text": "Explain the variety of ways in which a security vulnerability could be created and exploited (for example: system error, social engineering, or input by an adversary)."
+          },
+          {
+           "code": "CS.HS.4.3.g",
+           "text": "Explain the difference between protecting against a random failure versus protecting against an intentional attack."
+          },
+          {
+           "code": "CS.HS.4.3.h",
+           "text": "Give an example of a system where the risk of a potential incident requires a high degree of security and an example where the risk of a potential compromise requires only a minor degree of security."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "artificial-intelligence-ai",
+     "title": "Artificial Intelligence (AI)",
+     "topics": [
+      {
+       "id": "use-ai-tools-to-analyze-and-understand-the-world",
+       "title": "Use AI tools to analyze and understand the world and to create and inspire ideas",
+       "subtopics": [
+        {
+         "id": "ai-tools-are-used-for-solving-real-world-problem",
+         "title": "AI tools are used for solving real-world problems",
+         "outcomes": [
+          {
+           "code": "CS.HS.5.1.a",
+           "text": "Explain the evolution of AI, the scope and limitations of current AI and the future of AI."
+          },
+          {
+           "code": "CS.HS.5.1.b",
+           "text": "Describe the purpose of different AI tools."
+          },
+          {
+           "code": "CS.HS.5.1.c",
+           "text": "Explain the potential ethical dilemmas and biases in developing, training, and using AI tools."
+          },
+          {
+           "code": "CS.HS.5.1.d",
+           "text": "Distinguish between AI and general computer programming."
+          },
+          {
+           "code": "CS.HS.5.1.e",
+           "text": "Describe real-world applications of AI, such as personal assistants, recommendation systems, advertising systems, and autonomous vehicles."
+          },
+          {
+           "code": "CS.HS.5.1.f",
+           "text": "Examine the differences between narrow AI and general AI, and their implications."
+          },
+          {
+           "code": "CS.HS.5.1.g",
+           "text": "Discuss the use of the term “learning” with respect to specific AI tools and techniques."
+          },
+          {
+           "code": "CS.HS.5.1.h",
+           "text": "Evaluate the kinds of data that can be used for AI problems and how they are used to train AI models."
+          },
+          {
+           "code": "CS.HS.5.1.i",
+           "text": "Evaluate, select and use appropriate AI technology to solve a problem."
+          }
+         ]
+        },
+        {
+         "id": "ai-tools-can-be-applied-to-produce-novel-creatio",
+         "title": "AI tools can be applied to produce novel creations and inspire creativity",
+         "outcomes": [
+          {
+           "code": "CS.HS.5.2.a",
+           "text": "Develop and evaluate an AI-based solution to address a real-world objective."
+          },
+          {
+           "code": "CS.HS.5.2.b",
+           "text": "Describe how AI can create novel outcomes by identifying patterns in data from the domain of interest."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "evaluate-the-uses-of-ai",
+       "title": "Evaluate the uses of AI",
+       "subtopics": [
+        {
+         "id": "using-ai-tools-requires-evaluation-of-their-resu",
+         "title": "Using AI tools requires evaluation of their results and assessment of their appropriateness for specific applications",
+         "outcomes": [
+          {
+           "code": "CS.HS.5.3.a",
+           "text": "Explain the potential limitations of AI; for example, insufficient or inaccurate data inputs, inability of the system to recognize its own errors, and flaws in the underlying algorithms."
+          },
+          {
+           "code": "CS.HS.5.3.b",
+           "text": "Evaluate the results produced by an AI tool before using it."
+          },
+          {
+           "code": "CS.HS.5.3.c",
+           "text": "Discuss challenges and considerations of AI with respect to personal privacy."
+          },
+          {
+           "code": "CS.HS.5.3.d",
+           "text": "Evaluate the implications of AI on job markets and its role in automation and productivity."
+          },
+          {
+           "code": "CS.HS.5.3.e",
+           "text": "Recognize the importance and challenges of human oversight in AI decision-making."
+          },
+          {
+           "code": "CS.HS.5.3.f",
+           "text": "Recognize the purpose and suitability of AI tools for achieving specific outcomes."
+          }
+         ]
+        },
+        {
+         "id": "the-development-of-ai-systems-can-create-ethical",
+         "title": "The development of AI systems can create ethical and legal dilemmas that will need to be resolved",
+         "outcomes": [
+          {
+           "code": "CS.HS.5.4.a",
+           "text": "Identify arguments regarding the dilemmas created by advances in artificial intelligence."
+          },
+          {
+           "code": "CS.HS.5.4.b",
+           "text": "Explain why computational artifacts can be attributed to an AI system rather than its initial programmers."
+          },
+          {
+           "code": "CS.HS.5.4.c",
+           "text": "Describe the \"Turing Test\" and its implications for distinguishing human and artificial intelligences."
+          },
+          {
+           "code": "CS.HS.5.4.d",
+           "text": "Articulate arguments against \"artificial intelligence\" qualifying as \"actual intelligence\" and counterarguments that refute those specific arguments."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "digital-citizenship",
+     "title": "Digital Citizenship",
+     "topics": [
+      {
+       "id": "practice-responsible-ethical-and-safe-use-of-com",
+       "title": "Practice responsible, ethical, and safe use of computing technology and the Internet",
+       "subtopics": [
+        {
+         "id": "digital-citizenship-involves-multiple-practices-",
+         "title": "Digital citizenship involves multiple practices intended to promote safety, well-being respectful discourse, ethical use of information, and positive relationships",
+         "outcomes": [
+          {
+           "code": "CS.HS.6.1.a",
+           "text": "Describe how active and passive social media use can lead to positive and negative feelings."
+          },
+          {
+           "code": "CS.HS.6.1.b",
+           "text": "Identify research trends related to the health impact of screen time."
+          },
+          {
+           "code": "CS.HS.6.1.c",
+           "text": "Brainstorm strategies for navigating challenging relationships in a digital environment."
+          },
+          {
+           "code": "CS.HS.6.1.d",
+           "text": "Learn strategies for civil discourse in a digital environment and apply them to a scenario involving uncivil discourse."
+          },
+          {
+           "code": "CS.HS.6.1.e",
+           "text": "Define \"digital reputation,\" and identify examples of social media posts that can have a positive or negative effect."
+          },
+          {
+           "code": "CS.HS.6.1.f",
+           "text": "Explain why you should ask permission before posting pictures or information about someone else."
+          },
+          {
+           "code": "CS.HS.6.1.g",
+           "text": "Identify strategies for protecting their privacy, including opting out of specific features and analyzing app or website privacy policies and terms of service."
+          },
+          {
+           "code": "CS.HS.6.1.h",
+           "text": "Define \"misinformation\" and explore the consequences of spreading misinformation online."
+          },
+          {
+           "code": "CS.HS.6.1.i",
+           "text": "Explore examples of confirmation bias, particularly related to news and online information."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "build": {
+  "builtAt": "2026-10-14T16:20:39.350Z",
+  "model": "none",
+  "usd": 0,
+  "expectedCodes": 275,
+  "coverage": 1,
+  "missingCodes": [],
+  "counts": {
+   "grades": 8,
+   "units": 39,
+   "topics": 57,
+   "subtopics": 74,
+   "outcomes": 278
+  },
+  "warnings": [
+   "unit \"Computing Systems and Networks\" (grade K) has a single outcome",
+   "unit \"Computing Systems and Networks\" (grade 2) has a single outcome",
+   "unit \"Computational Thinking\" (grade 3) has a single outcome",
+   "unit \"Cybersecurity\" (grade 3) has a single outcome",
+   "unit \"Artificial Intelligence (AI)\" (grade 4) has a single outcome",
+   "unit \"Computing Systems and Networks\" (grade 5) has a single outcome",
+   "subtopic \"AI systems combine intelligent agents, reasoning models, and machine learning to 28 perform sophisticated functions such as solving physics problems or identifying human emotional states\" has 18 outcomes — too big for one lesson"
+  ]
+ }
+}

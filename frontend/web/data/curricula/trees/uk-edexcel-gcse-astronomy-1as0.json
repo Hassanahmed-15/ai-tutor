@@ -1,0 +1,1415 @@
+{
+ "id": "uk-edexcel-gcse-astronomy-1as0",
+ "region": "UK",
+ "framework": "Pearson Edexcel GCSE (9-1)",
+ "board": "Pearson Edexcel",
+ "qualification": "GCSE",
+ "subject": "Astronomy",
+ "syllabusCode": "1AS0",
+ "gradeSystem": "year",
+ "source": {
+  "urls": [
+   "https://qualifications.pearson.com/content/dam/pdf/GCSE/Astronomy/2017/Specification%20and%20sample%20assessments/gcse-astronomy-specification.pdf"
+  ],
+  "publisher": "Pearson Education",
+  "licence": "Exam board specification, (c) Pearson; structure + our own wording only",
+  "firstExam": "2019"
+ },
+ "grades": [
+  {
+   "grade": "all",
+   "units": [
+    {
+     "id": "paper-1-naked-eye-astronomy",
+     "title": "Paper 1: Naked-eye Astronomy",
+     "topics": [
+      {
+       "id": "topic-1-planet-earth",
+       "title": "Topic 1 - Planet Earth",
+       "subtopics": [
+        {
+         "id": "earth-s-shape-and-layers",
+         "title": "Earth's shape and layers",
+         "outcomes": [
+          {
+           "code": "1.1",
+           "text": "State that Earth is an oblate spheroid."
+          },
+          {
+           "code": "1.2",
+           "text": "Use Earth's mean diameter of 13 000 km."
+          },
+          {
+           "code": "1.3",
+           "text": "Describe the crust, mantle, outer core and inner core."
+          }
+         ]
+        },
+        {
+         "id": "positions-on-earth",
+         "title": "Positions on Earth",
+         "outcomes": [
+          {
+           "code": "1.4",
+           "text": "Use latitude and longitude to give positions."
+          },
+          {
+           "code": "1.5",
+           "text": "Use the Equator, tropics, polar circles, Prime Meridian and poles as reference points."
+          }
+         ]
+        },
+        {
+         "id": "atmosphere-and-observing",
+         "title": "Atmosphere and observing",
+         "outcomes": [
+          {
+           "code": "1.6",
+           "text": "Explain how the atmosphere affects sky colour, skyglow and twinkling."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "topic-2-the-lunar-disc",
+       "title": "Topic 2 - The lunar disc",
+       "subtopics": [
+        {
+         "id": "moon-s-size-and-shape",
+         "title": "Moon's size and shape",
+         "outcomes": [
+          {
+           "code": "2.1",
+           "text": "State the shape of the Moon."
+          },
+          {
+           "code": "2.2",
+           "text": "Use the Moon's mean diameter of 3500 km."
+          }
+         ]
+        },
+        {
+         "id": "lunar-surface-features",
+         "title": "Lunar surface features",
+         "outcomes": [
+          {
+           "code": "2.3",
+           "text": "Recognise craters, maria, terrae, mountains and valleys."
+          },
+          {
+           "code": "2.4",
+           "text": "Explain the structure and origin of these lunar formations."
+          },
+          {
+           "code": "2.5",
+           "text": "Identify named seas, craters and the Apennine range on the lunar disc."
+          }
+         ]
+        },
+        {
+         "id": "lunar-motion-and-libration",
+         "title": "Lunar motion and libration",
+         "outcomes": [
+          {
+           "code": "2.6",
+           "text": "Use the Moon's rotation and orbital periods."
+          },
+          {
+           "code": "2.7",
+           "text": "Explain why the Moon's orbit is synchronous."
+          },
+          {
+           "code": "2.8",
+           "text": "Explain the causes of libration and its effect on what we see."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "topic-3-the-earth-moon-sun-system",
+       "title": "Topic 3 - The Earth-Moon-Sun system",
+       "subtopics": [
+        {
+         "id": "sizes-and-distances",
+         "title": "Sizes and distances",
+         "outcomes": [
+          {
+           "code": "3.1",
+           "text": "Use the relative sizes of Earth, Moon and Sun."
+          },
+          {
+           "code": "3.2",
+           "text": "Use the relative distances between Earth, Moon and Sun."
+          },
+          {
+           "code": "3.3",
+           "text": "Explain how Eratosthenes and Aristarchus found sizes and distances of Earth, Moon and Sun."
+          },
+          {
+           "code": "3.4",
+           "text": "Use the Sun's mean diameter of 1.4 million km."
+          }
+         ]
+        },
+        {
+         "id": "tides-and-precession",
+         "title": "Tides and precession",
+         "outcomes": [
+          {
+           "code": "3.5",
+           "text": "Explain how Sun and Moon produce high, low, spring and neap tides."
+          },
+          {
+           "code": "3.6",
+           "text": "Explain how precession of Earth's axis changes the sky and aids archaeoastronomy."
+          },
+          {
+           "code": "3.7",
+           "text": "Use data on the rate of precession."
+          }
+         ]
+        },
+        {
+         "id": "eclipses",
+         "title": "Eclipses",
+         "outcomes": [
+          {
+           "code": "3.8",
+           "text": "Describe partial, total and annular solar eclipses and umbral contacts."
+          },
+          {
+           "code": "3.9",
+           "text": "Describe partial and total lunar eclipses and umbral contacts."
+          },
+          {
+           "code": "3.10",
+           "text": "Explain the causes of solar and lunar eclipses."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "topic-4-time-and-the-earth-moon-sun-cycles",
+       "title": "Topic 4 - Time and the Earth-Moon-Sun cycles",
+       "subtopics": [
+        {
+         "id": "solar-and-sidereal-time",
+         "title": "Solar and sidereal time",
+         "outcomes": [
+          {
+           "code": "4.1",
+           "text": "Distinguish sidereal from synodic days."
+          },
+          {
+           "code": "4.2",
+           "text": "Explain apparent solar time from the Sun."
+          },
+          {
+           "code": "4.3",
+           "text": "Explain mean solar time and local mean time from the Mean Sun."
+          },
+          {
+           "code": "4.14",
+           "text": "Explain the relationship between sidereal and solar time."
+          }
+         ]
+        },
+        {
+         "id": "equation-of-time",
+         "title": "Equation of Time",
+         "outcomes": [
+          {
+           "code": "4.4",
+           "text": "Use the Equation of Time, AST minus MST."
+          },
+          {
+           "code": "4.5",
+           "text": "Describe the yearly variation of the Equation of Time."
+          },
+          {
+           "code": "4.6",
+           "text": "Explain the causes of that variation."
+          }
+         ]
+        },
+        {
+         "id": "shadows-and-sundials",
+         "title": "Shadows and sundials",
+         "outcomes": [
+          {
+           "code": "4.7",
+           "text": "Find local noon using shadows and a shadow stick."
+          },
+          {
+           "code": "4.8",
+           "text": "Describe how sundials are built and used."
+          }
+         ]
+        },
+        {
+         "id": "months-seasons-and-the-sun-s-path",
+         "title": "Months, seasons and the Sun's path",
+         "outcomes": [
+          {
+           "code": "4.9",
+           "text": "Explain the lunar phase cycle."
+          },
+          {
+           "code": "4.10",
+           "text": "Distinguish sidereal from synodic months."
+          },
+          {
+           "code": "4.11",
+           "text": "Explain yearly variation of sunrise and sunset times."
+          },
+          {
+           "code": "4.12",
+           "text": "Explain the significance of equinoxes and solstices."
+          },
+          {
+           "code": "4.13",
+           "text": "Describe how the Sun's apparent motion varies through the year."
+          }
+         ]
+        },
+        {
+         "id": "time-zones-and-longitude",
+         "title": "Time zones and longitude",
+         "outcomes": [
+          {
+           "code": "4.15",
+           "text": "Explain local time differences at different longitudes."
+          },
+          {
+           "code": "4.16",
+           "text": "Explain the use of time zones."
+          },
+          {
+           "code": "4.17",
+           "text": "Use time zone data."
+          },
+          {
+           "code": "4.18",
+           "text": "State that GMT at the Prime Meridian equals Universal Time."
+          }
+         ]
+        },
+        {
+         "id": "finding-longitude",
+         "title": "Finding longitude",
+         "outcomes": [
+          {
+           "code": "4.19",
+           "text": "Use shadow-stick data and the Equation of Time to find longitude."
+          },
+          {
+           "code": "4.20",
+           "text": "Explain astronomical methods of finding longitude, such as lunar distances."
+          },
+          {
+           "code": "4.21",
+           "text": "Explain the chronometer method of finding longitude."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "topic-5-solar-system-observation",
+       "title": "Topic 5 - Solar System observation",
+       "subtopics": [
+        {
+         "id": "observing-the-sun-and-planets",
+         "title": "Observing the Sun and planets",
+         "outcomes": [
+          {
+           "code": "5.1",
+           "text": "Use pinhole projection to observe the Sun safely."
+          },
+          {
+           "code": "5.2",
+           "text": "Explain that the Sun's yearly path is the ecliptic."
+          },
+          {
+           "code": "5.3",
+           "text": "Explain the changing position of planets in the night sky."
+          },
+          {
+           "code": "5.4",
+           "text": "Explain that planets move within the Zodiacal Band."
+          },
+          {
+           "code": "5.5",
+           "text": "Explain retrograde motion of planets."
+          },
+          {
+           "code": "5.6",
+           "text": "Define the First Point of Aries and First Point of Libra."
+          }
+         ]
+        },
+        {
+         "id": "meteors-and-planetary-events",
+         "title": "Meteors and planetary events",
+         "outcomes": [
+          {
+           "code": "5.7",
+           "text": "Explain meteors, meteor showers and the radiant."
+          },
+          {
+           "code": "5.8",
+           "text": "Define conjunction, opposition, elongation, transit and occultation."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "topic-6-celestial-observation",
+       "title": "Topic 6 - Celestial observation",
+       "subtopics": [
+        {
+         "id": "naked-eye-objects",
+         "title": "Naked-eye objects",
+         "outcomes": [
+          {
+           "code": "6.1",
+           "text": "Recognise naked-eye objects, from the Sun to supernovae, plus satellites and aircraft."
+          }
+         ]
+        },
+        {
+         "id": "constellations-and-pointers",
+         "title": "Constellations and pointers",
+         "outcomes": [
+          {
+           "code": "6.2",
+           "text": "Recognise and draw seven named constellations and asterisms."
+          },
+          {
+           "code": "6.3",
+           "text": "Use asterisms as pointers to find other stars and objects."
+          },
+          {
+           "code": "6.4",
+           "text": "Explain why cultures use different star names."
+          }
+         ]
+        },
+        {
+         "id": "charts-and-light-pollution",
+         "title": "Charts and light pollution",
+         "outcomes": [
+          {
+           "code": "6.5",
+           "text": "Use star charts, planispheres or apps to identify objects."
+          },
+          {
+           "code": "6.6",
+           "text": "Explain causes and effects of light pollution."
+          }
+         ]
+        },
+        {
+         "id": "celestial-coordinates",
+         "title": "Celestial coordinates",
+         "outcomes": [
+          {
+           "code": "6.7",
+           "text": "Define the celestial sphere, poles and equator."
+          },
+          {
+           "code": "6.8",
+           "text": "Use right ascension and declination."
+          },
+          {
+           "code": "6.9",
+           "text": "Use altitude and azimuth."
+          },
+          {
+           "code": "6.10",
+           "text": "Use latitude to link equatorial and horizon coordinates at the meridian."
+          },
+          {
+           "code": "6.11",
+           "text": "Explain local sidereal time and hour angle from the meridian."
+          }
+         ]
+        },
+        {
+         "id": "planning-observations",
+         "title": "Planning observations",
+         "outcomes": [
+          {
+           "code": "6.12",
+           "text": "Use coordinates to choose the best time or object to observe."
+          },
+          {
+           "code": "6.13",
+           "text": "Define cardinal points, culmination, meridian, zenith and circumpolarity."
+          }
+         ]
+        },
+        {
+         "id": "apparent-motion-of-the-sky",
+         "title": "Apparent motion of the sky",
+         "outcomes": [
+          {
+           "code": "6.14",
+           "text": "Explain the daily motion of the sky due to Earth's rotation."
+          },
+          {
+           "code": "6.15",
+           "text": "Use declination to decide if a star is circumpolar."
+          },
+          {
+           "code": "6.16",
+           "text": "Describe circumpolar motion, with upper and lower transit."
+          },
+          {
+           "code": "6.17",
+           "text": "Predict star positions from rising and setting times."
+          },
+          {
+           "code": "6.18",
+           "text": "Find an observer's latitude using Polaris."
+          }
+         ]
+        },
+        {
+         "id": "observing-technique",
+         "title": "Observing technique",
+         "outcomes": [
+          {
+           "code": "6.19",
+           "text": "Use dark adaptation and averted vision."
+          },
+          {
+           "code": "6.20",
+           "text": "Explain how rising and setting, seeing, weather and landscape affect visibility."
+          },
+          {
+           "code": "6.21",
+           "text": "Describe the naked-eye Milky Way."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "topic-7-early-models-of-the-solar-system",
+       "title": "Topic 7 - Early models of the Solar System",
+       "subtopics": [
+        {
+         "id": "ancient-astronomy",
+         "title": "Ancient astronomy",
+         "outcomes": [
+          {
+           "code": "7.1",
+           "text": "Explain how ancient civilisations used solar and lunar cycles for farming, religion, calendars and monuments."
+          },
+          {
+           "code": "7.2",
+           "text": "Explain how precession changes ancient monument alignments."
+          }
+         ]
+        },
+        {
+         "id": "early-models",
+         "title": "Early models",
+         "outcomes": [
+          {
+           "code": "7.3",
+           "text": "Describe early geocentric models."
+          },
+          {
+           "code": "7.4",
+           "text": "Explain the advantage of Ptolemy's epicycles."
+          }
+         ]
+        },
+        {
+         "id": "scale-of-the-solar-system",
+         "title": "Scale of the Solar System",
+         "outcomes": [
+          {
+           "code": "7.5",
+           "text": "Use information about Solar System scale."
+          },
+          {
+           "code": "7.6",
+           "text": "Use the AU, light year and parsec."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "topic-8-planetary-motion-and-gravity",
+       "title": "Topic 8 - Planetary motion and gravity",
+       "subtopics": [
+        {
+         "id": "from-geocentric-to-heliocentric",
+         "title": "From geocentric to heliocentric",
+         "outcomes": [
+          {
+           "code": "8.1",
+           "text": "Explain Brahe's observational contribution."
+          },
+          {
+           "code": "8.2",
+           "text": "Explain Copernicus's and Kepler's mathematical contributions."
+          }
+         ]
+        },
+        {
+         "id": "orbits-and-kepler-s-laws",
+         "title": "Orbits and Kepler's laws",
+         "outcomes": [
+          {
+           "code": "8.3",
+           "text": "Explain gravity's role in stable elliptical orbits."
+          },
+          {
+           "code": "8.4",
+           "text": "State Kepler's laws of planetary motion."
+          },
+          {
+           "code": "8.5",
+           "text": "Define aphelion, perihelion, apogee and perigee."
+          },
+          {
+           "code": "8.6",
+           "text": "Use Kepler's third law, T squared over r cubed constant."
+          },
+          {
+           "code": "8.7",
+           "text": "Explain why the constant depends inversely on central mass."
+          }
+         ]
+        },
+        {
+         "id": "newton-s-gravitation",
+         "title": "Newton's gravitation",
+         "outcomes": [
+          {
+           "code": "8.8",
+           "text": "State that Newton explained Kepler's laws with universal gravitation."
+          },
+          {
+           "code": "8.9",
+           "text": "Explain how gravity depends on masses and separation."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "paper-2-telescopic-astronomy",
+     "title": "Paper 2: Telescopic Astronomy",
+     "topics": [
+      {
+       "id": "topic-9-exploring-the-moon",
+       "title": "Topic 9 - Exploring the Moon",
+       "subtopics": [
+        {
+         "id": "the-moon-s-structure-and-sides",
+         "title": "The Moon's structure and sides",
+         "outcomes": [
+          {
+           "code": "9.1",
+           "text": "Compare the Moon's internal layers with Earth's."
+          },
+          {
+           "code": "9.2",
+           "text": "Compare the Moon's near and far sides."
+          },
+          {
+           "code": "9.3",
+           "text": "Explain how far-side information was gathered."
+          }
+         ]
+        },
+        {
+         "id": "reaching-and-forming-the-moon",
+         "title": "Reaching and forming the Moon",
+         "outcomes": [
+          {
+           "code": "9.4",
+           "text": "Explain why reaching the Moon needs escape velocity and rockets."
+          },
+          {
+           "code": "9.5",
+           "text": "Compare the Giant Impact, Capture and Co-accretion theories."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "topic-10-solar-astronomy",
+       "title": "Topic 10 - Solar astronomy",
+       "subtopics": [
+        {
+         "id": "observing-the-sun",
+         "title": "Observing the Sun",
+         "outcomes": [
+          {
+           "code": "10.1",
+           "text": "Use telescopic projection and H-alpha filters safely."
+          }
+         ]
+        },
+        {
+         "id": "inside-the-sun",
+         "title": "Inside the Sun",
+         "outcomes": [
+          {
+           "code": "10.2",
+           "text": "State the locations and temperatures of core, radiative zone, convective zone and photosphere."
+          },
+          {
+           "code": "10.3",
+           "text": "Explain how each internal region produces or transfers energy."
+          },
+          {
+           "code": "10.4",
+           "text": "Describe the proton-proton fusion cycle."
+          }
+         ]
+        },
+        {
+         "id": "the-solar-atmosphere",
+         "title": "The solar atmosphere",
+         "outcomes": [
+          {
+           "code": "10.5",
+           "text": "State the location, temperature and density of chromosphere and corona."
+          }
+         ]
+        },
+        {
+         "id": "sunspots-and-the-solar-cycle",
+         "title": "Sunspots and the solar cycle",
+         "outcomes": [
+          {
+           "code": "10.6",
+           "text": "Explain the structure, origin and evolution of sunspots."
+          },
+          {
+           "code": "10.7",
+           "text": "Use sunspot data to find the Sun's rotation period."
+          },
+          {
+           "code": "10.8",
+           "text": "Use sunspot data for the solar cycle."
+          },
+          {
+           "code": "10.9",
+           "text": "Describe the Sun's appearance across the electromagnetic spectrum."
+          }
+         ]
+        },
+        {
+         "id": "solar-wind",
+         "title": "Solar wind",
+         "outcomes": [
+          {
+           "code": "10.10",
+           "text": "Describe the nature, composition and origin of the solar wind."
+          },
+          {
+           "code": "10.11",
+           "text": "Describe solar wind effects: aurorae, comet tails, storms, and impacts on satellites and flight."
+          },
+          {
+           "code": "10.12",
+           "text": "Describe the magnetosphere and Van Allen Belts."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "topic-11-exploring-the-solar-system",
+       "title": "Topic 11 - Exploring the Solar System",
+       "subtopics": [
+        {
+         "id": "solar-system-bodies",
+         "title": "Solar System bodies",
+         "outcomes": [
+          {
+           "code": "11.1",
+           "text": "Use data on planets, dwarf planets and small bodies."
+          }
+         ]
+        },
+        {
+         "id": "comets-and-distant-regions",
+         "title": "Comets and distant regions",
+         "outcomes": [
+          {
+           "code": "11.2",
+           "text": "Describe a comet's nucleus, coma and tails."
+          },
+          {
+           "code": "11.3",
+           "text": "Explain short-period comet orbits and the Kuiper Belt."
+          },
+          {
+           "code": "11.4",
+           "text": "Explain long-period comet orbits and the Oort Cloud."
+          },
+          {
+           "code": "11.5",
+           "text": "Describe the Kuiper Belt, Oort Cloud and heliosphere."
+          }
+         ]
+        },
+        {
+         "id": "planets",
+         "title": "Planets",
+         "outcomes": [
+          {
+           "code": "11.6",
+           "text": "Compare planets' size, mass, temperature, atmosphere, satellites and rings."
+          },
+          {
+           "code": "11.7",
+           "text": "Describe theories for gas giant formation and position."
+          }
+         ]
+        },
+        {
+         "id": "scale-and-distance-units",
+         "title": "Scale and distance units",
+         "outcomes": [
+          {
+           "code": "11.8",
+           "text": "Use the size of the Solar System."
+          },
+          {
+           "code": "11.9",
+           "text": "Use the AU, light year and parsec."
+          }
+         ]
+        },
+        {
+         "id": "meteoroids-ecliptic-and-earth-s-water",
+         "title": "Meteoroids, ecliptic and Earth's water",
+         "outcomes": [
+          {
+           "code": "11.10",
+           "text": "Explain the origin and structure of meteoroids and meteorites."
+          },
+          {
+           "code": "11.11",
+           "text": "State that most bodies orbit near the ecliptic plane."
+          },
+          {
+           "code": "11.12",
+           "text": "Explain how Venus transits give the size of the AU."
+          },
+          {
+           "code": "11.13",
+           "text": "Describe theories for the origin of Earth's water."
+          }
+         ]
+        },
+        {
+         "id": "how-telescopes-work",
+         "title": "How telescopes work",
+         "outcomes": [
+          {
+           "code": "11.14",
+           "text": "State the eye's limits of aperture and sensitivity."
+          },
+          {
+           "code": "11.15",
+           "text": "Explain how objective and eyepiece gather light and magnify."
+          },
+          {
+           "code": "11.16",
+           "text": "State that lenses and mirrors collect and focus light."
+          },
+          {
+           "code": "11.17",
+           "text": "Explain how simple telescopes combine objective and eyepiece."
+          }
+         ]
+        },
+        {
+         "id": "telescope-types",
+         "title": "Telescope types",
+         "outcomes": [
+          {
+           "code": "11.18",
+           "text": "Describe Galilean, Keplerian, Newtonian and Cassegrain telescopes."
+          },
+          {
+           "code": "11.25",
+           "text": "Compare reflectors with refractors."
+          }
+         ]
+        },
+        {
+         "id": "telescope-performance",
+         "title": "Telescope performance",
+         "outcomes": [
+          {
+           "code": "11.19",
+           "text": "Explain light grasp as proportional to objective diameter squared."
+          },
+          {
+           "code": "11.20",
+           "text": "State how aperture relates to objective diameter."
+          },
+          {
+           "code": "11.21",
+           "text": "Define field of view."
+          },
+          {
+           "code": "11.22",
+           "text": "Explain how diameter and wavelength affect resolution."
+          },
+          {
+           "code": "11.23",
+           "text": "Calculate magnification from focal lengths."
+          },
+          {
+           "code": "11.24",
+           "text": "Explain Galileo's telescope evidence for a heliocentric model."
+          }
+         ]
+        },
+        {
+         "id": "space-probes-and-manned-missions",
+         "title": "Space probes and manned missions",
+         "outcomes": [
+          {
+           "code": "11.26",
+           "text": "Compare fly-by, orbiter, impactor and lander probes."
+          },
+          {
+           "code": "11.27",
+           "text": "Give an example of each probe type with its discoveries."
+          },
+          {
+           "code": "11.28",
+           "text": "Explain why probes need escape velocity and rockets."
+          },
+          {
+           "code": "11.29",
+           "text": "Weigh advantages and disadvantages of manned missions."
+          },
+          {
+           "code": "11.30",
+           "text": "Describe the main features of the Apollo programme."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "topic-12-formation-of-planetary-systems",
+       "title": "Topic 12 - Formation of planetary systems",
+       "subtopics": [
+        {
+         "id": "forces-shaping-the-solar-system",
+         "title": "Forces shaping the Solar System",
+         "outcomes": [
+          {
+           "code": "12.1",
+           "text": "Identify gravitational, tidal, multi-body, collision and solar wind effects in the Solar System."
+          },
+          {
+           "code": "12.2",
+           "text": "Explain the Roche limit, body shape and atmosphere retention."
+          },
+          {
+           "code": "12.3",
+           "text": "Describe theories of gas giant formation."
+          }
+         ]
+        },
+        {
+         "id": "exoplanets-and-life",
+         "title": "Exoplanets and life",
+         "outcomes": [
+          {
+           "code": "12.4",
+           "text": "Describe how exoplanets are found: transit, astrometry and radial velocity."
+          },
+          {
+           "code": "12.5",
+           "text": "Explain requirements for life and its chances on Titan, Europa, Enceladus and elsewhere."
+          },
+          {
+           "code": "12.6",
+           "text": "Explain Goldilocks (habitable) zones."
+          }
+         ]
+        },
+        {
+         "id": "searching-for-intelligence",
+         "title": "Searching for intelligence",
+         "outcomes": [
+          {
+           "code": "12.7",
+           "text": "Use the Drake equation to estimate civilisations in the Galaxy."
+          },
+          {
+           "code": "12.8",
+           "text": "Describe SETI and the benefits and dangers of finding extra-terrestrial life."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "topic-13-exploring-starlight",
+       "title": "Topic 13 - Exploring starlight",
+       "subtopics": [
+        {
+         "id": "magnitude-and-distance",
+         "title": "Magnitude and distance",
+         "outcomes": [
+          {
+           "code": "13.1",
+           "text": "Explain the magnitude scale and apparent magnitude."
+          },
+          {
+           "code": "13.2",
+           "text": "Define absolute magnitude."
+          },
+          {
+           "code": "13.3",
+           "text": "Use the distance modulus formula."
+          },
+          {
+           "code": "13.9",
+           "text": "Explain the inverse square law for brightness."
+          },
+          {
+           "code": "13.10",
+           "text": "Convert between degrees, arcminutes and arcseconds."
+          },
+          {
+           "code": "13.11",
+           "text": "Define the parsec."
+          },
+          {
+           "code": "13.12",
+           "text": "Find distances with heliocentric parallax."
+          }
+         ]
+        },
+        {
+         "id": "spectra-and-the-h-r-diagram",
+         "title": "Spectra and the H-R diagram",
+         "outcomes": [
+          {
+           "code": "13.4",
+           "text": "Describe what a stellar spectrum reveals."
+          },
+          {
+           "code": "13.5",
+           "text": "Classify stars by spectral type."
+          },
+          {
+           "code": "13.6",
+           "text": "Relate star colour and spectral type to temperature."
+          },
+          {
+           "code": "13.7",
+           "text": "Sketch an H-R diagram and place main sequence, giants, dwarfs and the Sun."
+          },
+          {
+           "code": "13.8",
+           "text": "Relate a star's life cycle to its H-R position."
+          },
+          {
+           "code": "13.13",
+           "text": "Use the H-R diagram to find distances to stars."
+          }
+         ]
+        },
+        {
+         "id": "variable-stars-and-stellar-groups",
+         "title": "Variable stars and stellar groups",
+         "outcomes": [
+          {
+           "code": "13.14",
+           "text": "Describe light curves of variable stars, binaries, Cepheids, novae and supernovae."
+          },
+          {
+           "code": "13.15",
+           "text": "Explain variability in eclipsing binary light curves."
+          },
+          {
+           "code": "13.16",
+           "text": "Use Cepheid variables to find distances."
+          },
+          {
+           "code": "13.17",
+           "text": "Describe binary stars and clusters."
+          },
+          {
+           "code": "13.18",
+           "text": "Find an eclipsing binary's period from its light curve."
+          },
+          {
+           "code": "13.19",
+           "text": "Use star trail photographs to find the sidereal day."
+          }
+         ]
+        },
+        {
+         "id": "detecting-light",
+         "title": "Detecting light",
+         "outcomes": [
+          {
+           "code": "13.20",
+           "text": "State that astronomers record light with digital sensors."
+          },
+          {
+           "code": "13.21",
+           "text": "Explain how spectral line patterns are obtained and studied."
+          }
+         ]
+        },
+        {
+         "id": "telescopes-across-the-spectrum",
+         "title": "Telescopes across the spectrum",
+         "outcomes": [
+          {
+           "code": "13.22",
+           "text": "State that the atmosphere blocks most wavelengths except visible and radio."
+          },
+          {
+           "code": "13.23",
+           "text": "State that only optical and radio telescopes should be at sea level."
+          },
+          {
+           "code": "13.24",
+           "text": "Describe how a simple radio telescope works."
+          },
+          {
+           "code": "13.25",
+           "text": "Explain why radio telescopes need very large apertures."
+          },
+          {
+           "code": "13.26",
+           "text": "Explain aperture synthesis with telescope arrays."
+          },
+          {
+           "code": "13.27",
+           "text": "State radio astronomy's discoveries."
+          },
+          {
+           "code": "13.28",
+           "text": "Explain why some infrared telescopes work at high altitude."
+          },
+          {
+           "code": "13.29",
+           "text": "State infrared astronomy's discoveries."
+          },
+          {
+           "code": "13.30",
+           "text": "Explain how the atmosphere degrades telescope images."
+          },
+          {
+           "code": "13.31",
+           "text": "Explain why some telescopes must be above the atmosphere."
+          },
+          {
+           "code": "13.32",
+           "text": "Weigh space telescopes' advantages and disadvantages."
+          },
+          {
+           "code": "13.33",
+           "text": "State discoveries from gamma-ray, X-ray and ultraviolet astronomy."
+          }
+         ]
+        },
+        {
+         "id": "telescopic-views",
+         "title": "Telescopic views",
+         "outcomes": [
+          {
+           "code": "13.34",
+           "text": "Describe how a telescope changes the look of stars, clusters, nebulae and galaxies."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "topic-14-stellar-evolution",
+       "title": "Topic 14 - Stellar evolution",
+       "subtopics": [
+        {
+         "id": "naming-and-balance-in-stars",
+         "title": "Naming and balance in stars",
+         "outcomes": [
+          {
+           "code": "14.1",
+           "text": "Use the Messier and NGC catalogues."
+          },
+          {
+           "code": "14.2",
+           "text": "Use the Bayer system for naming stars."
+          },
+          {
+           "code": "14.3",
+           "text": "Explain radiation pressure versus gravity in main sequence stars."
+          }
+         ]
+        },
+        {
+         "id": "sun-like-star-life-cycle",
+         "title": "Sun-like star life cycle",
+         "outcomes": [
+          {
+           "code": "14.4",
+           "text": "Explain changes in radiation pressure-gravity balance for Sun-like stars."
+          },
+          {
+           "code": "14.5",
+           "text": "Explain electron pressure balancing gravity in a white dwarf."
+          },
+          {
+           "code": "14.9",
+           "text": "Describe the stages and timescales for Sun-like stars."
+          }
+         ]
+        },
+        {
+         "id": "massive-star-life-cycle",
+         "title": "Massive star life cycle",
+         "outcomes": [
+          {
+           "code": "14.6",
+           "text": "Explain balance changes through the life of a much more massive star."
+          },
+          {
+           "code": "14.7",
+           "text": "Explain neutron pressure balancing gravity in a neutron star."
+          },
+          {
+           "code": "14.8",
+           "text": "Explain how the Chandrasekhar Limit affects a star's end."
+          },
+          {
+           "code": "14.10",
+           "text": "Describe the stages and timescales for much more massive stars."
+          },
+          {
+           "code": "14.11",
+           "text": "Explain the evidence for black holes."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "topic-15-our-place-in-the-galaxy",
+       "title": "Topic 15 - Our place in the Galaxy",
+       "subtopics": [
+        {
+         "id": "the-milky-way",
+         "title": "The Milky Way",
+         "outcomes": [
+          {
+           "code": "15.1",
+           "text": "Describe the Milky Way seen with binoculars or a small telescope."
+          },
+          {
+           "code": "15.2",
+           "text": "State the Galaxy's size and shape and where the Sun, dust and clusters lie."
+          },
+          {
+           "code": "15.3",
+           "text": "Explain how 21 cm radio waves map the Galaxy's structure and rotation."
+          }
+         ]
+        },
+        {
+         "id": "the-local-group",
+         "title": "The Local Group",
+         "outcomes": [
+          {
+           "code": "15.4",
+           "text": "State that the Local Group is linked to the Milky Way by gravity."
+          },
+          {
+           "code": "15.5",
+           "text": "Describe the Local Group's makeup, including Andromeda, the Magellanic Clouds and Triangulum."
+          }
+         ]
+        },
+        {
+         "id": "galaxy-types",
+         "title": "Galaxy types",
+         "outcomes": [
+          {
+           "code": "15.6",
+           "text": "Classify spiral, barred spiral, elliptical and irregular galaxies."
+          },
+          {
+           "code": "15.7",
+           "text": "Describe Hubble's Tuning Fork diagram."
+          },
+          {
+           "code": "15.8",
+           "text": "State that the Milky Way is a barred spiral."
+          }
+         ]
+        },
+        {
+         "id": "active-galaxies",
+         "title": "Active galaxies",
+         "outcomes": [
+          {
+           "code": "15.9",
+           "text": "State that some galaxies emit radiation beyond visible light."
+          },
+          {
+           "code": "15.10",
+           "text": "Explain that an AGN is powered by matter falling onto a super-massive black hole."
+          },
+          {
+           "code": "15.11",
+           "text": "Name Seyfert galaxies, quasars and blazars."
+          },
+          {
+           "code": "15.12",
+           "text": "State that AGNs are studied across the spectrum."
+          }
+         ]
+        },
+        {
+         "id": "galaxy-groups-and-evolution",
+         "title": "Galaxy groups and evolution",
+         "outcomes": [
+          {
+           "code": "15.13",
+           "text": "Explain why galaxies form clusters and superclusters."
+          },
+          {
+           "code": "15.14",
+           "text": "Describe theories of galaxy formation and evolution."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "topic-16-cosmology",
+       "title": "Topic 16 - Cosmology",
+       "subtopics": [
+        {
+         "id": "redshift",
+         "title": "Redshift",
+         "outcomes": [
+          {
+           "code": "16.1",
+           "text": "State that distant galaxies show redshift."
+          },
+          {
+           "code": "16.2",
+           "text": "Explain that redshift is caused by recession."
+          },
+          {
+           "code": "16.3",
+           "text": "Use the redshift formula linking wavelength change and velocity."
+          }
+         ]
+        },
+        {
+         "id": "expanding-universe",
+         "title": "Expanding Universe",
+         "outcomes": [
+          {
+           "code": "16.4",
+           "text": "Explain the evidence for the expanding Universe."
+          },
+          {
+           "code": "16.5",
+           "text": "Use Hubble's law, v = H0 d."
+          },
+          {
+           "code": "16.6",
+           "text": "Estimate the Universe's age and size from the Hubble constant."
+          }
+         ]
+        },
+        {
+         "id": "big-bang",
+         "title": "Big Bang",
+         "outcomes": [
+          {
+           "code": "16.7",
+           "text": "Explain how expansion supports the Big Bang and Steady State theories."
+          },
+          {
+           "code": "16.8",
+           "text": "Describe Big Bang evidence: quasars, CMB and the Hubble Deep Field."
+          },
+          {
+           "code": "16.9",
+           "text": "Explain the significance of CMB fluctuations, WMAP and Planck."
+          }
+         ]
+        },
+        {
+         "id": "dark-matter-dark-energy-and-fate",
+         "title": "Dark matter, dark energy and fate",
+         "outcomes": [
+          {
+           "code": "16.10",
+           "text": "Explain the significance and possible nature of dark matter and dark energy."
+          },
+          {
+           "code": "16.11",
+           "text": "Explain the difficulty of detecting them."
+          },
+          {
+           "code": "16.12",
+           "text": "Explain that models predict different futures for the Universe."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "build": {
+  "builtAt": "2026-10-14T10:31:05.453Z",
+  "model": "claude-agent",
+  "usd": 0,
+  "expectedCodes": 215,
+  "coverage": 1,
+  "missingCodes": [],
+  "counts": {
+   "grades": 1,
+   "units": 2,
+   "topics": 16,
+   "subtopics": 67,
+   "outcomes": 215
+  },
+  "warnings": [
+   "grade Year 10 has no content",
+   "grade Year 11 has no content",
+   "unexpected grade label \"all\""
+  ]
+ }
+}

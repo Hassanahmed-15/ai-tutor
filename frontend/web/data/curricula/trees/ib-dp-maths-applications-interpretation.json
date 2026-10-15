@@ -1,0 +1,492 @@
+{
+ "id": "ib-dp-maths-applications-interpretation",
+ "region": "INTL",
+ "framework": "International Baccalaureate Diploma Programme (DP)",
+ "board": "IB",
+ "qualification": "IB Diploma Programme",
+ "subject": "Mathematics: Applications and interpretation (SL and HL)",
+ "syllabusCode": null,
+ "gradeSystem": "course",
+ "source": {
+  "urls": [
+   "https://www.ibo.org/globalassets/new-structure/programmes/dp/pdfs/sb_maths_application_en.pdf",
+   "https://web.archive.org/web/20260313002033id_/https://www.ibo.org/globalassets/new-structure/programmes/dp/pdfs/sb_maths_application_en.pdf"
+  ],
+  "publisher": "International Baccalaureate Organization",
+  "licence": "(c) International Baccalaureate Organization; all rights reserved, no open licence. ibo.org terms 1.8: IB copyrighted materials are licensed only under the IB's terms or a signed agreement; 'Any use not expressly permitted is prohibited unless special permission is obtained in writing from the IB'; 1.9: nothing on the IB websites confers any licence. Briefs are free public marketing summaries: take topic structure only, write everything in our own words, never reproduce brief text, and do not use IB logos/trade marks. Full subject guides are sold to schools and were NOT used. Terms: https://www.ibo.org/terms-and-conditions/ and https://www.ibo.org/copyright",
+  "firstExam": "2029"
+ },
+ "grades": [
+  {
+   "grade": "all",
+   "units": [
+    {
+     "id": "topic-a-functions",
+     "title": "Topic A: Functions",
+     "topics": [
+      {
+       "id": "representation-of-functions",
+       "title": "Representation of functions",
+       "subtopics": [
+        {
+         "id": "representation-of-functions",
+         "title": "Representation of functions",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe functions and their graphs using equations, tables and graphs, and move between these forms."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "polynomial-functions",
+       "title": "Polynomial functions",
+       "subtopics": [
+        {
+         "id": "polynomial-functions",
+         "title": "Polynomial functions",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Work with polynomial functions, such as linear and quadratic models, and use them to model situations."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "functions-with-asymptotes",
+       "title": "Functions with asymptotes",
+       "subtopics": [
+        {
+         "id": "functions-with-asymptotes",
+         "title": "Functions with asymptotes",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Study functions whose graphs approach asymptotes and use them in models."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "trigonometric-functions",
+       "title": "Trigonometric functions",
+       "subtopics": [
+        {
+         "id": "trigonometric-functions",
+         "title": "Trigonometric functions",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Use trigonometric functions to model periodic situations."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "piecewise-functions",
+       "title": "Piecewise functions",
+       "subtopics": [
+        {
+         "id": "piecewise-functions",
+         "title": "Piecewise functions",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Define and use functions made of different rules over different intervals."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "transformations-of-graphs-and-functions-hl-only",
+       "title": "Transformations of graphs and functions (HL only)",
+       "subtopics": [
+        {
+         "id": "transformations-of-graphs-and-functions-hl-only",
+         "title": "Transformations of graphs and functions (HL only)",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe how graphs change under transformations of their functions (higher level only)."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "topic-b-number-and-algebra",
+     "title": "Topic B: Number and algebra",
+     "topics": [
+      {
+       "id": "approximation-and-error",
+       "title": "Approximation and error",
+       "subtopics": [
+        {
+         "id": "approximation-and-error",
+         "title": "Approximation and error",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Approximate values, and judge the size and effect of errors in calculations."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "sequences",
+       "title": "Sequences",
+       "subtopics": [
+        {
+         "id": "sequences",
+         "title": "Sequences",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Work with sequences and series and apply them to real situations."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "use-of-technology-applications",
+       "title": "Use of technology applications",
+       "subtopics": [
+        {
+         "id": "use-of-technology-applications",
+         "title": "Use of technology applications",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Use technology to carry out financial and other numerical calculations."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "exponentials",
+       "title": "Exponentials",
+       "subtopics": [
+        {
+         "id": "exponentials",
+         "title": "Exponentials",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Use exponential growth and decay and related ideas to model situations."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "matrices-hl-only",
+       "title": "Matrices (HL only)",
+       "subtopics": [
+        {
+         "id": "matrices-hl-only",
+         "title": "Matrices (HL only)",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Use matrices and their operations to represent and solve problems (higher level only)."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "topic-c-geometry",
+     "title": "Topic C: Geometry",
+     "topics": [
+      {
+       "id": "straight-line-geometry",
+       "title": "Straight line geometry",
+       "subtopics": [
+        {
+         "id": "straight-line-geometry",
+         "title": "Straight line geometry",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Use coordinates and equations of straight lines to solve geometric problems."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "surface-areas-volumes-and-measurement-in-circles",
+       "title": "Surface areas, volumes and measurement in circles",
+       "subtopics": [
+        {
+         "id": "surface-areas-volumes-and-measurement-in-circles",
+         "title": "Surface areas, volumes and measurement in circles",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Calculate surface areas, volumes and measurements involving circles."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "trigonometry-and-its-applications",
+       "title": "Trigonometry and its applications",
+       "subtopics": [
+        {
+         "id": "trigonometry-and-its-applications",
+         "title": "Trigonometry and its applications",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Apply trigonometry to find lengths and angles in practical situations."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "vectors-hl-only",
+       "title": "Vectors (HL only)",
+       "subtopics": [
+        {
+         "id": "vectors-hl-only",
+         "title": "Vectors (HL only)",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Use vectors to describe and solve geometric problems (higher level only)."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "graph-theory-hl-only",
+       "title": "Graph theory (HL only)",
+       "subtopics": [
+        {
+         "id": "graph-theory-hl-only",
+         "title": "Graph theory (HL only)",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Use graphs made of vertices and edges to model and solve problems (higher level only)."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "topic-d-probability-and-statistics",
+     "title": "Topic D: Probability and statistics",
+     "topics": [
+      {
+       "id": "univariate-data",
+       "title": "Univariate data",
+       "subtopics": [
+        {
+         "id": "univariate-data",
+         "title": "Univariate data",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Collect, summarise and interpret data on a single variable."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "bivariate-data",
+       "title": "Bivariate data",
+       "subtopics": [
+        {
+         "id": "bivariate-data",
+         "title": "Bivariate data",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Investigate relationships between two variables in data."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "probability",
+       "title": "Probability",
+       "subtopics": [
+        {
+         "id": "probability",
+         "title": "Probability",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Calculate and interpret probabilities of events."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "probability-distributions",
+       "title": "Probability distributions",
+       "subtopics": [
+        {
+         "id": "probability-distributions",
+         "title": "Probability distributions",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Use probability distributions to model random situations."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "inferential-statistics",
+       "title": "Inferential statistics",
+       "subtopics": [
+        {
+         "id": "inferential-statistics",
+         "title": "Inferential statistics",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Use sample data to draw and test conclusions about populations."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "topic-e-calculus",
+     "title": "Topic E: Calculus",
+     "topics": [
+      {
+       "id": "principles-of-differential-calculus",
+       "title": "Principles of differential calculus",
+       "subtopics": [
+        {
+         "id": "principles-of-differential-calculus",
+         "title": "Principles of differential calculus",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Understand rates of change and the basic ideas of differentiation."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "techniques-of-differential-calculus",
+       "title": "Techniques of differential calculus",
+       "subtopics": [
+        {
+         "id": "techniques-of-differential-calculus",
+         "title": "Techniques of differential calculus",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Apply techniques to differentiate functions."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "techniques-of-integral-calculus",
+       "title": "Techniques of integral calculus",
+       "subtopics": [
+        {
+         "id": "techniques-of-integral-calculus",
+         "title": "Techniques of integral calculus",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Apply techniques to integrate functions."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "problem-solving-using-calculus",
+       "title": "Problem-solving using calculus",
+       "subtopics": [
+        {
+         "id": "problem-solving-using-calculus",
+         "title": "Problem-solving using calculus",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Use differentiation and integration to solve practical problems."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "differential-equations-hl-only",
+       "title": "Differential equations (HL only)",
+       "subtopics": [
+        {
+         "id": "differential-equations-hl-only",
+         "title": "Differential equations (HL only)",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Form and solve differential equations that model change (higher level only)."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "build": {
+  "builtAt": "2026-10-14T10:53:52.546Z",
+  "model": "claude-agent",
+  "usd": 0,
+  "expectedCodes": null,
+  "coverage": null,
+  "missingCodes": [],
+  "counts": {
+   "grades": 1,
+   "units": 5,
+   "topics": 26,
+   "subtopics": 26,
+   "outcomes": 26
+  },
+  "warnings": [
+   "grade DP year 1 has no content",
+   "grade DP year 2 has no content",
+   "unexpected grade label \"all\""
+  ]
+ }
+}

@@ -1,0 +1,1327 @@
+{
+ "id": "uk-ocr-alevel-economics-h460",
+ "region": "UK",
+ "framework": "OCR A Level",
+ "board": "OCR",
+ "qualification": "A Level",
+ "subject": "Economics",
+ "syllabusCode": "H460",
+ "gradeSystem": "year",
+ "source": {
+  "urls": [
+   "https://www.ocr.org.uk/Images/536455-specification-accredited-a-level-gce-economics-h460.pdf"
+  ],
+  "publisher": "OCR (Oxford Cambridge and RSA)",
+  "licence": "Exam board specification, (c) OCR; structure + our own wording only",
+  "firstExam": "2021"
+ },
+ "grades": [
+  {
+   "grade": "all",
+   "units": [
+    {
+     "id": "microeconomics-1-introduction-to-microeconomics",
+     "title": "Microeconomics: 1. Introduction to Microeconomics",
+     "topics": [
+      {
+       "id": "1-1-the-economic-problem",
+       "title": "1.1 The economic problem",
+       "subtopics": [
+        {
+         "id": "scarcity-choice-and-economic-agents",
+         "title": "Scarcity, choice and economic agents",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain economic and free goods and the economic problem of scarcity, choice, needs and wants."
+          },
+          {
+           "code": null,
+           "text": "Distinguish normative from positive statements."
+          },
+          {
+           "code": null,
+           "text": "Explain the roles of government, firms and households."
+          },
+          {
+           "code": null,
+           "text": "Evaluate the problem of scarcity and the need to make choices."
+          },
+          {
+           "code": null,
+           "text": "Evaluate rationality as a way to understand economic agents and their different objectives."
+          }
+         ]
+        },
+        {
+         "id": "factors-of-production",
+         "title": "Factors of production",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain land, labour, capital and enterprise as factors of production."
+          },
+          {
+           "code": null,
+           "text": "Explain their rewards: rent, wages, interest and profit."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "1-2-the-allocation-of-resources",
+       "title": "1.2 The allocation of resources",
+       "subtopics": [
+        {
+         "id": "incentives-and-economic-systems",
+         "title": "Incentives and economic systems",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain incentives and market, planned and mixed economic systems."
+          },
+          {
+           "code": null,
+           "text": "Explain productive and allocative efficiency."
+          },
+          {
+           "code": null,
+           "text": "Evaluate how effective incentives are and how well different systems allocate resources."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "1-3-opportunity-cost",
+       "title": "1.3 Opportunity cost",
+       "subtopics": [
+        {
+         "id": "opportunity-cost-and-the-ppc",
+         "title": "Opportunity cost and the PPC",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain opportunity cost and trade-off."
+          },
+          {
+           "code": null,
+           "text": "Explain movements along and shifts of a production possibility curve with diagrams."
+          },
+          {
+           "code": null,
+           "text": "Explain how useful the concept of opportunity cost is."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "microeconomics-2-the-role-of-markets",
+     "title": "Microeconomics: 2. The role of markets",
+     "topics": [
+      {
+       "id": "2-1-specialisation-and-trade",
+       "title": "2.1 Specialisation and trade",
+       "subtopics": [
+        {
+         "id": "specialisation-and-money",
+         "title": "Specialisation and money",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain specialisation, the division of labour, barter and money as a medium of exchange."
+          },
+          {
+           "code": null,
+           "text": "Evaluate how specialisation and division of labour address scarcity."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "2-2-demand",
+       "title": "2.2 Demand",
+       "subtopics": [
+        {
+         "id": "demand-curves",
+         "title": "Demand curves",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain the relationship between price and quantity demanded, and individual and market demand."
+          },
+          {
+           "code": null,
+           "text": "Explain joint, competitive and composite demand."
+          },
+          {
+           "code": null,
+           "text": "Explain movements along and shifts of the demand curve with diagrams."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "2-3-supply",
+       "title": "2.3 Supply",
+       "subtopics": [
+        {
+         "id": "supply-curves",
+         "title": "Supply curves",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain the relationship between price and quantity supplied, and individual and market supply."
+          },
+          {
+           "code": null,
+           "text": "Explain joint and competitive supply."
+          },
+          {
+           "code": null,
+           "text": "Explain movements along and shifts of the supply curve with diagrams."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "2-4-consumer-and-producer-surplus",
+       "title": "2.4 Consumer and producer surplus",
+       "subtopics": [
+        {
+         "id": "surplus",
+         "title": "Surplus",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain consumer and producer surplus and how price changes affect each, with diagrams."
+          },
+          {
+           "code": null,
+           "text": "Evaluate the impact of price changes on consumer and producer surplus."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "2-5-the-interaction-of-markets",
+       "title": "2.5 The interaction of markets",
+       "subtopics": [
+        {
+         "id": "market-equilibrium",
+         "title": "Market equilibrium",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain ceteris paribus."
+          },
+          {
+           "code": null,
+           "text": "Explain demand and supply interacting, and equilibrium and disequilibrium, with diagrams."
+          },
+          {
+           "code": null,
+           "text": "Evaluate how changes in demand or supply in one market affect related markets."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "2-6-elasticity",
+       "title": "2.6 Elasticity",
+       "subtopics": [
+        {
+         "id": "calculating-elasticities",
+         "title": "Calculating elasticities",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain elasticity and calculate price, income and cross elasticity of demand and price elasticity of supply."
+          },
+          {
+           "code": null,
+           "text": "Explain different values of PED, YED, XED and PES with diagrams."
+          }
+         ]
+        },
+        {
+         "id": "using-elasticity",
+         "title": "Using elasticity",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain the relationship between PED and a firm's total revenue."
+          },
+          {
+           "code": null,
+           "text": "Evaluate the factors determining PED, YED, XED and PES."
+          },
+          {
+           "code": null,
+           "text": "Evaluate the usefulness and significance of these elasticities."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "2-7-the-concept-of-the-margin",
+       "title": "2.7 The concept of the margin",
+       "subtopics": [
+        {
+         "id": "margin-and-utility",
+         "title": "Margin and utility",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain margin, total and marginal utility, and diminishing marginal utility's link to the demand curve."
+          },
+          {
+           "code": null,
+           "text": "Calculate marginal values."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "2-8-market-failure-and-externalities",
+       "title": "2.8 Market failure and externalities",
+       "subtopics": [
+        {
+         "id": "externalities",
+         "title": "Externalities",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain market failure and marginal social, private and external costs and benefits."
+          },
+          {
+           "code": null,
+           "text": "Explain positive and negative externalities in consumption and production with diagrams."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "2-9-information-failure",
+       "title": "2.9 Information failure",
+       "subtopics": [
+        {
+         "id": "information-failure-and-merit-goods",
+         "title": "Information failure and merit goods",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain information failure, asymmetric information and moral hazard."
+          },
+          {
+           "code": null,
+           "text": "Explain merit and demerit goods."
+          },
+          {
+           "code": null,
+           "text": "Explain information failure as market failure with a diagram."
+          },
+          {
+           "code": null,
+           "text": "Evaluate consumption and production of merit and demerit goods."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "2-10-public-goods",
+       "title": "2.10 Public goods",
+       "subtopics": [
+        {
+         "id": "public-goods",
+         "title": "Public goods",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain public, private and quasi-public goods."
+          },
+          {
+           "code": null,
+           "text": "Explain non-excludability, non-rivalry, non-rejectability and zero marginal cost."
+          },
+          {
+           "code": null,
+           "text": "Explain the free rider problem and evaluate provision of public goods."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "2-11-government-intervention",
+       "title": "2.11 Government intervention",
+       "subtopics": [
+        {
+         "id": "intervention-and-government-failure",
+         "title": "Intervention and government failure",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain taxes, subsidies, spending, price controls, buffer stocks, public/private partnerships, legislation, regulation, tradable permits, information and competition policy."
+          },
+          {
+           "code": null,
+           "text": "Explain government failure."
+          },
+          {
+           "code": null,
+           "text": "Evaluate the effectiveness of intervention and the causes and consequences of government failure."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "microeconomics-3-business-objectives",
+     "title": "Microeconomics: 3. Business objectives",
+     "topics": [
+      {
+       "id": "3-1-business-objectives",
+       "title": "3.1 Business objectives",
+       "subtopics": [
+        {
+         "id": "objectives-of-firms",
+         "title": "Objectives of firms",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain maximisation objectives: profit, sales revenue, volume, growth and utility."
+          },
+          {
+           "code": null,
+           "text": "Explain non-maximising objectives: satisficing, social welfare and CSR."
+          },
+          {
+           "code": null,
+           "text": "Explain the principal-agent problem."
+          },
+          {
+           "code": null,
+           "text": "Evaluate maximising and non-maximising objectives and what influences the choice."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "3-2-costs-and-economies-of-scale",
+       "title": "3.2 Costs and economies of scale",
+       "subtopics": [
+        {
+         "id": "costs",
+         "title": "Costs",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain and calculate fixed, variable, total, average and marginal costs."
+          },
+          {
+           "code": null,
+           "text": "Explain the short run and long run and the law of diminishing returns."
+          }
+         ]
+        },
+        {
+         "id": "economies-of-scale",
+         "title": "Economies of scale",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain internal and external economies of scale, diseconomies and minimum efficient scale, with diagrams."
+          },
+          {
+           "code": null,
+           "text": "Evaluate the causes and significance of economies and diseconomies of scale."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "3-3-revenue-and-profit",
+       "title": "3.3 Revenue and profit",
+       "subtopics": [
+        {
+         "id": "revenue-and-profit",
+         "title": "Revenue and profit",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain and calculate total, average and marginal revenue and profit or loss."
+          },
+          {
+           "code": null,
+           "text": "Explain accounting, normal and supernormal profit."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "microeconomics-4-market-structures",
+     "title": "Microeconomics: 4. Market structures",
+     "topics": [
+      {
+       "id": "4-1-perfect-competition",
+       "title": "4.1 Perfect competition",
+       "subtopics": [
+        {
+         "id": "perfect-competition",
+         "title": "Perfect competition",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain the characteristics of perfect competition."
+          },
+          {
+           "code": null,
+           "text": "Explain short-run and long-run equilibrium, price taking, and efficiency in perfect competition with diagrams."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "4-2-monopoly",
+       "title": "4.2 Monopoly",
+       "subtopics": [
+        {
+         "id": "monopoly",
+         "title": "Monopoly",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain the characteristics of monopoly, dynamic efficiency and X-inefficiency."
+          },
+          {
+           "code": null,
+           "text": "Explain monopoly profit, price making, equilibrium and efficiency with diagrams."
+          },
+          {
+           "code": null,
+           "text": "Explain price discrimination and natural monopoly."
+          },
+          {
+           "code": null,
+           "text": "Evaluate the advantages and disadvantages of monopoly and natural monopoly."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "4-3-monopolistic-competition",
+       "title": "4.3 Monopolistic competition",
+       "subtopics": [
+        {
+         "id": "monopolistic-competition",
+         "title": "Monopolistic competition",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain the characteristics of monopolistic competition and its short- and long-run equilibria with diagrams."
+          },
+          {
+           "code": null,
+           "text": "Evaluate its advantages and disadvantages."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "4-4-oligopoly",
+       "title": "4.4 Oligopoly",
+       "subtopics": [
+        {
+         "id": "oligopoly",
+         "title": "Oligopoly",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain the characteristics of oligopoly, non-price competition, product differentiation and types of collusion."
+          },
+          {
+           "code": null,
+           "text": "Explain interdependence with the kinked demand curve."
+          },
+          {
+           "code": null,
+           "text": "Evaluate and calculate concentration ratios."
+          },
+          {
+           "code": null,
+           "text": "Evaluate the advantages and disadvantages of oligopoly."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "4-5-contestable-markets",
+       "title": "4.5 Contestable markets",
+       "subtopics": [
+        {
+         "id": "contestable-markets",
+         "title": "Contestable markets",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain the characteristics of contestable markets and their productive and allocative efficiency."
+          },
+          {
+           "code": null,
+           "text": "Evaluate their advantages and disadvantages."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "microeconomics-5-the-labour-market",
+     "title": "Microeconomics: 5. The labour market",
+     "topics": [
+      {
+       "id": "5-1-demand-for-labour",
+       "title": "5.1 Demand for labour",
+       "subtopics": [
+        {
+         "id": "labour-demand",
+         "title": "Labour demand",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain derived demand for labour and the factors affecting it."
+          },
+          {
+           "code": null,
+           "text": "Explain factors affecting wage elasticity of demand, productivity and unit labour costs."
+          },
+          {
+           "code": null,
+           "text": "Explain marginal revenue product theory for employment and wages with a diagram."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "5-2-supply-of-labour",
+       "title": "5.2 Supply of labour",
+       "subtopics": [
+        {
+         "id": "labour-supply",
+         "title": "Labour supply",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain factors affecting labour supply and its wage elasticity, and short- and long-run supply."
+          },
+          {
+           "code": null,
+           "text": "Explain economic rent and transfer earnings with a diagram."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "5-3-the-interaction-of-labour-markets",
+       "title": "5.3 The interaction of labour markets",
+       "subtopics": [
+        {
+         "id": "wages-and-labour-markets",
+         "title": "Wages and labour markets",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain wage differentials, monopsony, trade unions and bilateral monopoly."
+          },
+          {
+           "code": null,
+           "text": "Explain wage determination in a competitive labour market and the effect of changes in demand and supply."
+          },
+          {
+           "code": null,
+           "text": "Evaluate labour market flexibility, labour mobility and union activity."
+          },
+          {
+           "code": null,
+           "text": "Evaluate the impact of monopsony and bilateral monopoly."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "macroeconomics-1-aggregate-demand-and-aggregate-",
+     "title": "Macroeconomics: 1. Aggregate demand and aggregate supply",
+     "topics": [
+      {
+       "id": "1-1-circular-flow-of-income",
+       "title": "1.1 Circular flow of income",
+       "subtopics": [
+        {
+         "id": "circular-flow",
+         "title": "Circular flow",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain the circular flow with injections and leakages."
+          },
+          {
+           "code": null,
+           "text": "Explain how national income, output and expenditure are measured."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "1-2-aggregate-demand",
+       "title": "1.2 Aggregate demand",
+       "subtopics": [
+        {
+         "id": "aggregate-demand",
+         "title": "Aggregate demand",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain aggregate demand and its components."
+          },
+          {
+           "code": null,
+           "text": "Explain the AD curve's link to price level and its shifts, with diagrams."
+          },
+          {
+           "code": null,
+           "text": "Evaluate the relationship between income and consumption, and the role of expectations."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "1-3-aggregate-supply",
+       "title": "1.3 Aggregate supply",
+       "subtopics": [
+        {
+         "id": "aggregate-supply",
+         "title": "Aggregate supply",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain aggregate supply and the AS curve in the short and long run, with diagrams."
+          },
+          {
+           "code": null,
+           "text": "Explain shifts in short-run and long-run AS."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "1-4-the-interaction-of-aggregate-demand-and-supp",
+       "title": "1.4 The interaction of aggregate demand and supply",
+       "subtopics": [
+        {
+         "id": "ad-as-equilibrium",
+         "title": "AD-AS equilibrium",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain the assumptions of the AD-AS model and macroeconomic equilibrium."
+          },
+          {
+           "code": null,
+           "text": "Evaluate the effects of changes in AD and AS on macroeconomic indicators."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "1-5-the-multiplier-and-the-accelerator",
+       "title": "1.5 The multiplier and the accelerator",
+       "subtopics": [
+        {
+         "id": "multiplier-accelerator-and-output-gaps",
+         "title": "Multiplier, accelerator and output gaps",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain and calculate marginal propensities to consume, save and withdraw and the multiplier."
+          },
+          {
+           "code": null,
+           "text": "Explain the multiplier and accelerator, and their effect on AD and the economic cycle."
+          },
+          {
+           "code": null,
+           "text": "Explain output gaps using AD-AS and the PPC, and evaluate their causes and consequences."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "macroeconomics-2-economic-policy-objectives",
+     "title": "Macroeconomics: 2. Economic policy objectives",
+     "topics": [
+      {
+       "id": "2-1-economic-growth",
+       "title": "2.1 Economic growth",
+       "subtopics": [
+        {
+         "id": "growth-and-the-cycle",
+         "title": "Growth and the cycle",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain economic growth, the growth objective and stages of the economic cycle."
+          },
+          {
+           "code": null,
+           "text": "Explain real and nominal GDP, and calculate growth rates and GDP per capita."
+          },
+          {
+           "code": null,
+           "text": "Explain short-run and long-run growth with diagrams."
+          },
+          {
+           "code": null,
+           "text": "Evaluate the causes and consequences of growth."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "2-2-development",
+       "title": "2.2 Development",
+       "subtopics": [
+        {
+         "id": "development",
+         "title": "Development",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain primary, secondary and tertiary sectors and sustainable development."
+          },
+          {
+           "code": null,
+           "text": "Evaluate the link between growth and sustainable development."
+          },
+          {
+           "code": null,
+           "text": "Evaluate GDP, the HDI and other indicators."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "2-3-employment",
+       "title": "2.3 Employment",
+       "subtopics": [
+        {
+         "id": "employment-and-unemployment",
+         "title": "Employment and unemployment",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain employment, unemployment and the full employment objective."
+          },
+          {
+           "code": null,
+           "text": "Explain labour force survey and claimant count measures."
+          },
+          {
+           "code": null,
+           "text": "Evaluate the causes and consequences of unemployment and the effects of full employment."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "2-4-inflation",
+       "title": "2.4 Inflation",
+       "subtopics": [
+        {
+         "id": "inflation",
+         "title": "Inflation",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain inflation, deflation, disinflation, hyperinflation and the low, stable inflation objective."
+          },
+          {
+           "code": null,
+           "text": "Explain real and nominal values and measuring with CPI and RPI."
+          },
+          {
+           "code": null,
+           "text": "Calculate inflation using index numbers."
+          },
+          {
+           "code": null,
+           "text": "Evaluate the causes and consequences of inflation and deflation."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "2-5-balance-of-payments",
+       "title": "2.5 Balance of payments",
+       "subtopics": [
+        {
+         "id": "balance-of-payments",
+         "title": "Balance of payments",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain the current account: goods, services, primary and secondary income, and the objective of sustainability."
+          },
+          {
+           "code": null,
+           "text": "Explain and calculate balances on its components."
+          },
+          {
+           "code": null,
+           "text": "Evaluate the causes and consequences of imbalances."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "2-6-trends-in-macroeconomic-indicators",
+       "title": "2.6 Trends in macroeconomic indicators",
+       "subtopics": [
+        {
+         "id": "uk-performance",
+         "title": "UK performance",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain key trends in UK macroeconomic performance over 20 years."
+          },
+          {
+           "code": null,
+           "text": "Evaluate UK performance against developed, emerging and developing economies."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "2-7-income-distribution-and-welfare",
+       "title": "2.7 Income distribution and welfare",
+       "subtopics": [
+        {
+         "id": "inequality-and-poverty",
+         "title": "Inequality and poverty",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain income and wealth, distribution, inequality and absolute and relative poverty."
+          },
+          {
+           "code": null,
+           "text": "Explain inequality data: Gini coefficients, quantiles and the Lorenz curve."
+          },
+          {
+           "code": null,
+           "text": "Evaluate the causes and consequences of poverty and inequality."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "2-8-the-phillips-curve",
+       "title": "2.8 The Phillips Curve",
+       "subtopics": [
+        {
+         "id": "phillips-curve",
+         "title": "Phillips Curve",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain the natural rate of unemployment and NAIRU."
+          },
+          {
+           "code": null,
+           "text": "Explain Keynesian and neo-classical aggregate supply, and short- and long-run Phillips Curves."
+          },
+          {
+           "code": null,
+           "text": "Evaluate the usefulness of the Phillips Curve for policymakers."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "macroeconomics-3-implementing-policy",
+     "title": "Macroeconomics: 3. Implementing policy",
+     "topics": [
+      {
+       "id": "3-1-fiscal-policy",
+       "title": "3.1 Fiscal policy",
+       "subtopics": [
+        {
+         "id": "taxation-and-spending",
+         "title": "Taxation and spending",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain the government budget and direct, indirect, progressive, proportional and regressive taxes."
+          },
+          {
+           "code": null,
+           "text": "Explain current and capital spending, and budget surplus, deficit and balance."
+          },
+          {
+           "code": null,
+           "text": "Calculate average and marginal tax rates."
+          }
+         ]
+        },
+        {
+         "id": "fiscal-policy-tools",
+         "title": "Fiscal policy tools",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain cyclical and structural budget positions, national and government debt."
+          },
+          {
+           "code": null,
+           "text": "Explain discretionary policy, automatic stabilisers, crowding out and the Laffer curve."
+          },
+          {
+           "code": null,
+           "text": "Evaluate fiscal policy's effectiveness."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "3-2-monetary-policy",
+       "title": "3.2 Monetary policy",
+       "subtopics": [
+        {
+         "id": "monetary-policy",
+         "title": "Monetary policy",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain changes in interest rates and money supply, inflation targets, quantitative easing and exchange rate influence, with diagrams."
+          },
+          {
+           "code": null,
+           "text": "Evaluate monetary policy's effectiveness."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "3-3-supply-side-policy",
+       "title": "3.3 Supply side policy",
+       "subtopics": [
+        {
+         "id": "supply-side-policy",
+         "title": "Supply side policy",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain privatisation, deregulation, subsidies and competition policy."
+          },
+          {
+           "code": null,
+           "text": "Explain investment in infrastructure, education, training and R&D, tax and benefit reform, labour flexibility and immigration control."
+          },
+          {
+           "code": null,
+           "text": "Evaluate supply side policy's effectiveness."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "3-4-policy-conflicts",
+       "title": "3.4 Policy conflicts",
+       "subtopics": [
+        {
+         "id": "policy-conflicts",
+         "title": "Policy conflicts",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Evaluate conflicts and trade-offs between policy objectives."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "macroeconomics-4-the-global-context",
+     "title": "Macroeconomics: 4. The global context",
+     "topics": [
+      {
+       "id": "4-1-international-trade",
+       "title": "4.1 International trade",
+       "subtopics": [
+        {
+         "id": "international-trade",
+         "title": "International trade",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain international trade and its patterns over time."
+          },
+          {
+           "code": null,
+           "text": "Evaluate its advantages and disadvantages for developed, emerging and developing countries."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "4-2-exchange-rates",
+       "title": "4.2 Exchange rates",
+       "subtopics": [
+        {
+         "id": "exchange-rates",
+         "title": "Exchange rates",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain and calculate exchange rates."
+          },
+          {
+           "code": null,
+           "text": "Explain exchange rate determination in fixed and floating systems with diagrams."
+          },
+          {
+           "code": null,
+           "text": "Evaluate causes and consequences of changes, and the merits of different systems."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "4-3-globalisation",
+       "title": "4.3 Globalisation",
+       "subtopics": [
+        {
+         "id": "globalisation-and-trade-theory",
+         "title": "Globalisation and trade theory",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain globalisation and international competitiveness."
+          },
+          {
+           "code": null,
+           "text": "Explain absolute and comparative advantage."
+          },
+          {
+           "code": null,
+           "text": "Explain and calculate terms of trade, and explain the Marshall-Lerner condition and J-curve."
+          }
+         ]
+        },
+        {
+         "id": "evaluating-globalisation",
+         "title": "Evaluating globalisation",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Evaluate comparative advantage as an explanation of trade patterns."
+          },
+          {
+           "code": null,
+           "text": "Evaluate globalisation's causes and consequences for different countries."
+          },
+          {
+           "code": null,
+           "text": "Evaluate how emerging economies' performance affects others."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "4-4-trade-policies-and-negotiations",
+       "title": "4.4 Trade policies and negotiations",
+       "subtopics": [
+        {
+         "id": "protectionism-and-integration",
+         "title": "Protectionism and integration",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain protectionism and free trade areas, customs unions, monetary union and economic union."
+          },
+          {
+           "code": null,
+           "text": "Explain tariffs and quotas and trade creation and diversion with diagrams."
+          },
+          {
+           "code": null,
+           "text": "Evaluate protectionism versus free trade and the WTO's role."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "macroeconomics-5-the-financial-sector",
+     "title": "Macroeconomics: 5. The financial sector",
+     "topics": [
+      {
+       "id": "5-1-money-and-interest-rates",
+       "title": "5.1 Money and interest rates",
+       "subtopics": [
+        {
+         "id": "money",
+         "title": "Money",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain the functions and characteristics of money and how money is created and supplied."
+          },
+          {
+           "code": null,
+           "text": "Explain narrow and broad money, and the Fisher equation of exchange."
+          },
+          {
+           "code": null,
+           "text": "Explain how interest rates are determined with a diagram."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "5-2-the-financial-sector",
+       "title": "5.2 The financial sector",
+       "subtopics": [
+        {
+         "id": "finance-and-development",
+         "title": "Finance and development",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain the role of the financial sector and of savings and investment in development."
+          },
+          {
+           "code": null,
+           "text": "Explain the Harrod-Domar model and microfinance."
+          },
+          {
+           "code": null,
+           "text": "Evaluate the financial sector's role in development."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "5-3-financial-regulation",
+       "title": "5.3 Financial regulation",
+       "subtopics": [
+        {
+         "id": "regulation-and-central-banks",
+         "title": "Regulation and central banks",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain the purpose and methods of financial regulation and a central bank's role."
+          },
+          {
+           "code": null,
+           "text": "Evaluate the importance of regulating financial institutions."
+          },
+          {
+           "code": null,
+           "text": "Evaluate central bank policy measures for targeting indicators."
+          },
+          {
+           "code": null,
+           "text": "Evaluate the IMF and World Bank's role in regulating the global financial system."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "build": {
+  "builtAt": "2026-10-14T10:41:33.882Z",
+  "model": "claude-agent",
+  "usd": 0,
+  "expectedCodes": null,
+  "coverage": null,
+  "missingCodes": [],
+  "counts": {
+   "grades": 1,
+   "units": 10,
+   "topics": 49,
+   "subtopics": 54,
+   "outcomes": 151
+  },
+  "warnings": [
+   "grade Year 12 has no content",
+   "grade Year 13 has no content",
+   "unexpected grade label \"all\""
+  ]
+ }
+}

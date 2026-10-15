@@ -1,0 +1,561 @@
+{
+ "id": "uk-edexcel-alevel-chinese-9cn0",
+ "region": "UK",
+ "framework": "Pearson Edexcel Level 3 Advanced GCE",
+ "board": "Pearson Edexcel",
+ "qualification": "A Level",
+ "subject": "Chinese",
+ "syllabusCode": "9CN0",
+ "gradeSystem": "year",
+ "source": {
+  "urls": [
+   "https://qualifications.pearson.com/content/dam/pdf/A%20Level/Chinese/2017/specification-and-sample-assessments/Specification_GCE_A_level_L3_in_Chinese.pdf"
+  ],
+  "publisher": "Pearson Education",
+  "licence": "Exam board specification, (c) Pearson; structure + our own wording only",
+  "firstExam": "2019"
+ },
+ "grades": [
+  {
+   "grade": "all",
+   "units": [
+    {
+     "id": "theme-1-changes-in-chinese-speaking-society",
+     "title": "Theme 1: Changes in Chinese-speaking society",
+     "topics": [
+      {
+       "id": "family",
+       "title": "Family",
+       "subtopics": [
+        {
+         "id": "family-structure-and-generation-gap",
+         "title": "Family structure and generation gap",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Discuss family structures and the generation gap in Chinese-speaking society."
+          }
+         ]
+        },
+        {
+         "id": "family-planning-and-ageing",
+         "title": "Family planning and ageing",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Discuss family planning and the ageing population."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "education-and-work",
+       "title": "Education and work",
+       "subtopics": [
+        {
+         "id": "school-life-and-student-issues",
+         "title": "School life and student issues",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Talk about school life and issues students face."
+          }
+         ]
+        },
+        {
+         "id": "work-opportunities-and-balance",
+         "title": "Work opportunities and balance",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Discuss job opportunities and work-life balance."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "theme-2-chinese-culture",
+     "title": "Theme 2: Chinese culture",
+     "topics": [
+      {
+       "id": "traditions",
+       "title": "Traditions",
+       "subtopics": [
+        {
+         "id": "festivals",
+         "title": "Festivals",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe Spring Festival, Dragon Boat, Mid-Autumn and Qingming festivals."
+          }
+         ]
+        },
+        {
+         "id": "customs",
+         "title": "Customs",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain traditional customs linked to the festivals."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "cultural-activities",
+       "title": "Cultural activities",
+       "subtopics": [
+        {
+         "id": "film-and-television",
+         "title": "Film and television",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Discuss Chinese film and television."
+          }
+         ]
+        },
+        {
+         "id": "music-and-reading",
+         "title": "Music and reading",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Discuss music and reading related to Chinese culture."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "theme-3-evolving-chinese-society",
+     "title": "Theme 3: Evolving Chinese society",
+     "topics": [
+      {
+       "id": "communication-and-technology",
+       "title": "Communication and technology",
+       "subtopics": [
+        {
+         "id": "internet-and-social-media",
+         "title": "Internet and social media",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Discuss the internet and social media in Chinese society."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "economy-and-environment",
+       "title": "Economy and environment",
+       "subtopics": [
+        {
+         "id": "economic-development",
+         "title": "Economic development",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Discuss China's economic development."
+          }
+         ]
+        },
+        {
+         "id": "environmental-protection",
+         "title": "Environmental protection",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Discuss environmental protection."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "theme-4-impact-of-the-1978-reform-and-opening-up",
+     "title": "Theme 4: Impact of the 1978 reform and opening up",
+     "topics": [
+      {
+       "id": "change",
+       "title": "Change",
+       "subtopics": [
+        {
+         "id": "wealth-gap",
+         "title": "Wealth gap",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Discuss the gap between rich and poor."
+          }
+         ]
+        },
+        {
+         "id": "megacities-and-migration",
+         "title": "Megacities and migration",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Discuss megacities and rural-to-urban migration."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "china-uk-relations",
+       "title": "China-UK relations",
+       "subtopics": [
+        {
+         "id": "trade",
+         "title": "Trade",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Discuss trade between China and the UK."
+          }
+         ]
+        },
+        {
+         "id": "cultural-and-educational-exchange",
+         "title": "Cultural and educational exchange",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Discuss cultural and educational exchange between China and the UK."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "paper-1-listening-reading-and-translation",
+     "title": "Paper 1: Listening, reading and translation",
+     "topics": [
+      {
+       "id": "skills-for-paper-1",
+       "title": "Skills for Paper 1",
+       "subtopics": [
+        {
+         "id": "listening",
+         "title": "Listening",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Understand main points, gist and detail in spoken Chinese, infer meaning and summarise key points."
+          }
+         ]
+        },
+        {
+         "id": "reading",
+         "title": "Reading",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Understand factual and abstract authentic texts and infer meaning."
+          }
+         ]
+        },
+        {
+         "id": "translating-chinese-into-english",
+         "title": "Translating Chinese into English",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Translate accurately from Chinese into English on any theme."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "paper-2-written-response-to-works-and-translatio",
+     "title": "Paper 2: Written response to works and translation",
+     "topics": [
+      {
+       "id": "skills-for-paper-2",
+       "title": "Skills for Paper 2",
+       "subtopics": [
+        {
+         "id": "translating-english-into-chinese",
+         "title": "Translating English into Chinese",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Translate an unseen English passage into accurate Chinese."
+          }
+         ]
+        },
+        {
+         "id": "analysing-works",
+         "title": "Analysing works",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Analyse form, technique, key concepts and social context of the works studied."
+          }
+         ]
+        },
+        {
+         "id": "writing-critical-essays",
+         "title": "Writing critical essays",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Write Chinese essays presenting and justifying viewpoints with evidence from the work."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "prescribed-works",
+       "title": "Prescribed works",
+       "subtopics": [
+        {
+         "id": "literary-texts-and-films",
+         "title": "Literary texts and films",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Study two prescribed works: two literary texts, or one text and one film, from the set list."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "paper-3-speaking",
+     "title": "Paper 3: Speaking",
+     "topics": [
+      {
+       "id": "skills-for-paper-3",
+       "title": "Skills for Paper 3",
+       "subtopics": [
+        {
+         "id": "discussing-a-theme",
+         "title": "Discussing a theme",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Discuss one of the four themes in response to a stimulus statement."
+          }
+         ]
+        },
+        {
+         "id": "independent-research-presentation",
+         "title": "Independent research presentation",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Summarise at least two researched written sources and give a personal response."
+          }
+         ]
+        },
+        {
+         "id": "discussing-research",
+         "title": "Discussing research",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Answer questions and discuss the research subject in depth."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "appendix-3-grammar-list",
+     "title": "Appendix 3: Grammar list",
+     "topics": [
+      {
+       "id": "grammar",
+       "title": "Grammar",
+       "subtopics": [
+        {
+         "id": "nouns",
+         "title": "Nouns",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Use collective nouns, common noun suffixes and noun phrases with the particle de."
+          }
+         ]
+        },
+        {
+         "id": "adjectives",
+         "title": "Adjectives",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Use reduplicated adjectives, adjective collocations and ordered attributives."
+          }
+         ]
+        },
+        {
+         "id": "numerals",
+         "title": "Numerals",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Express fractions, percentages, decimals, approximation, multiples and indeterminate excess."
+          }
+         ]
+        },
+        {
+         "id": "adverbs",
+         "title": "Adverbs",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Use referential, degree, time, frequency and emphatic adverbs."
+          }
+         ]
+        },
+        {
+         "id": "quantifiers",
+         "title": "Quantifiers",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Use measure words for actions and events, plural quantifiers and part-whole terms."
+          }
+         ]
+        },
+        {
+         "id": "pronouns",
+         "title": "Pronouns",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Use reflexive, other, formal and enumerative pronouns."
+          }
+         ]
+        },
+        {
+         "id": "verbs",
+         "title": "Verbs",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Use verb-object separable verbs, verb reduplication, collocations and duration."
+          }
+         ]
+        },
+        {
+         "id": "prepositions-and-coverbs",
+         "title": "Prepositions and coverbs",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Use time, beneficiary, instrument, facing, comparison, distance and regarding coverbs."
+          }
+         ]
+        },
+        {
+         "id": "conjunctions",
+         "title": "Conjunctions",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Use linking words and paired clause conjunctions such as because-so and although-but."
+          }
+         ]
+        },
+        {
+         "id": "negation-and-question-words",
+         "title": "Negation and question words",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Form negatives and questions with question words."
+          }
+         ]
+        },
+        {
+         "id": "aspect-markers",
+         "title": "Aspect markers",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Use aspect markers including le for new situations and imminent action."
+          }
+         ]
+        },
+        {
+         "id": "structural-markers",
+         "title": "Structural markers",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Use structural particles."
+          }
+         ]
+        },
+        {
+         "id": "complements-and-other-constructions",
+         "title": "Complements and other constructions",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Use complements with de and other special sentence constructions."
+          }
+         ]
+        },
+        {
+         "id": "discourse-markers",
+         "title": "Discourse markers",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Use discourse markers to organise speech and writing."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "build": {
+  "builtAt": "2026-10-14T10:24:59.894Z",
+  "model": "claude-agent",
+  "usd": 0,
+  "expectedCodes": null,
+  "coverage": null,
+  "missingCodes": [],
+  "counts": {
+   "grades": 1,
+   "units": 8,
+   "topics": 13,
+   "subtopics": 39,
+   "outcomes": 39
+  },
+  "warnings": [
+   "grade Year 12 has no content",
+   "grade Year 13 has no content",
+   "unexpected grade label \"all\""
+  ]
+ }
+}

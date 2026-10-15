@@ -1,0 +1,673 @@
+{
+ "id": "uk-edexcel-gcse-physical-education-1pe0",
+ "region": "UK",
+ "framework": "Pearson Edexcel GCSE (9-1)",
+ "board": "Pearson Edexcel",
+ "qualification": "GCSE",
+ "subject": "Physical Education",
+ "syllabusCode": "1PE0",
+ "gradeSystem": "year",
+ "source": {
+  "urls": [
+   "https://qualifications.pearson.com/content/dam/pdf/GCSE/Physical%20Education/2016/Specification%20and%20sample%20assessments/gcse-pe-specification-issue-6.pdf"
+  ],
+  "publisher": "Pearson Education",
+  "licence": "Exam board specification, (c) Pearson; structure + our own wording only",
+  "firstExam": "2018"
+ },
+ "grades": [
+  {
+   "grade": "all",
+   "units": [
+    {
+     "id": "component-1-fitness-and-body-systems",
+     "title": "Component 1: Fitness and Body Systems",
+     "topics": [
+      {
+       "id": "topic-1-applied-anatomy-and-physiology",
+       "title": "Topic 1: Applied anatomy and physiology",
+       "subtopics": [
+        {
+         "id": "the-skeleton",
+         "title": "The skeleton",
+         "outcomes": [
+          {
+           "code": "1.1.1",
+           "text": "Explain the skeleton's functions in sport: protection, muscle attachment, movement, blood cell production, mineral storage."
+          },
+          {
+           "code": "1.1.2",
+           "text": "Classify bones as long, short, flat or irregular and link each to its role in performance."
+          },
+          {
+           "code": "1.1.3",
+           "text": "Name the main bones and regions of the skeleton and apply their use to sport."
+          }
+         ]
+        },
+        {
+         "id": "joints-and-movement",
+         "title": "Joints and movement",
+         "outcomes": [
+          {
+           "code": "1.1.4",
+           "text": "Classify pivot, hinge, ball and socket and condyloid joints and how they limit movement."
+          },
+          {
+           "code": "1.1.5",
+           "text": "Describe movements at joints: flexion, extension, adduction, abduction, rotation, circumduction, plantar-flexion, dorsi-flexion, with sporting examples."
+          },
+          {
+           "code": "1.1.6",
+           "text": "Explain the role of ligaments and tendons in participation in sport."
+          }
+         ]
+        },
+        {
+         "id": "muscles",
+         "title": "Muscles",
+         "outcomes": [
+          {
+           "code": "1.1.7",
+           "text": "Describe voluntary, involuntary and cardiac muscle and their roles in sport."
+          },
+          {
+           "code": "1.1.8",
+           "text": "Locate the main voluntary muscles (deltoid to tibialis anterior) and state what each does."
+          },
+          {
+           "code": "1.1.9",
+           "text": "Explain antagonistic muscle pairs creating opposing movement at joints."
+          },
+          {
+           "code": "1.1.10",
+           "text": "Describe fast and slow twitch fibre types and their use in activities."
+          },
+          {
+           "code": "1.1.11",
+           "text": "Explain how skeletal and muscular systems work together in sport."
+          }
+         ]
+        },
+        {
+         "id": "cardiovascular-system",
+         "title": "Cardiovascular system",
+         "outcomes": [
+          {
+           "code": "1.2.1",
+           "text": "Explain the cardiovascular system's functions: transport, clotting and temperature regulation."
+          },
+          {
+           "code": "1.2.2",
+           "text": "Describe the heart's structure and its role in circulating blood during exercise."
+          },
+          {
+           "code": "1.2.3",
+           "text": "Relate the structure of arteries, capillaries and veins to function during exercise."
+          },
+          {
+           "code": "1.2.4",
+           "text": "Explain vasoconstriction, vasodilation and vascular shunting during exercise compared with rest."
+          },
+          {
+           "code": "1.2.5",
+           "text": "Explain the importance of red and white blood cells, platelets and plasma in sport."
+          }
+         ]
+        },
+        {
+         "id": "respiratory-system",
+         "title": "Respiratory system",
+         "outcomes": [
+          {
+           "code": "1.2.6",
+           "text": "Compare inhaled and exhaled air and how exercise changes it."
+          },
+          {
+           "code": "1.2.7",
+           "text": "Explain vital capacity, tidal volume and why tidal volume rises with exercise."
+          },
+          {
+           "code": "1.2.8",
+           "text": "Locate the respiratory system's parts and their roles in moving oxygen and carbon dioxide."
+          },
+          {
+           "code": "1.2.9",
+           "text": "Explain alveoli structure and gas exchange at different exercise intensities."
+          },
+          {
+           "code": "1.2.10",
+           "text": "Explain how the cardiovascular and respiratory systems work together in sport."
+          }
+         ]
+        },
+        {
+         "id": "aerobic-and-anaerobic-exercise",
+         "title": "Aerobic and anaerobic exercise",
+         "outcomes": [
+          {
+           "code": "1.3.1",
+           "text": "Explain aerobic energy release from glucose and oxygen, and anaerobic release producing lactic acid."
+          },
+          {
+           "code": "1.3.2",
+           "text": "Explain fats and carbohydrates as fuel sources for aerobic and anaerobic activity."
+          }
+         ]
+        },
+        {
+         "id": "short-and-long-term-effects-of-exercise",
+         "title": "Short- and long-term effects of exercise",
+         "outcomes": [
+          {
+           "code": "1.4.1",
+           "text": "Explain short-term effects of exercise on lactate build-up and muscle fatigue."
+          },
+          {
+           "code": "1.4.2",
+           "text": "Explain short-term effects of exercise on heart rate, stroke volume and cardiac output."
+          },
+          {
+           "code": "1.4.3",
+           "text": "Explain short-term effects of exercise on depth and rate of breathing."
+          },
+          {
+           "code": "1.4.4",
+           "text": "Explain how breathing and circulation work together to supply muscles and aid recovery."
+          },
+          {
+           "code": "1.4.5",
+           "text": "Relate long-term effects of exercise on body systems to section 3.4."
+          },
+          {
+           "code": "1.4.6",
+           "text": "Interpret graphs of heart rate, stroke volume and cardiac output at rest and during exercise."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "topic-2-movement-analysis",
+       "title": "Topic 2: Movement analysis",
+       "subtopics": [
+        {
+         "id": "levers",
+         "title": "Levers",
+         "outcomes": [
+          {
+           "code": "2.1.1",
+           "text": "Describe first, second and third class levers and their use in sport."
+          },
+          {
+           "code": "2.1.2",
+           "text": "Explain mechanical advantage and disadvantage of the body's levers."
+          }
+         ]
+        },
+        {
+         "id": "planes-and-axes",
+         "title": "Planes and axes",
+         "outcomes": [
+          {
+           "code": "2.2.1",
+           "text": "Describe movement using sagittal, frontal and transverse planes and frontal, sagittal and vertical axes."
+          },
+          {
+           "code": "2.2.2",
+           "text": "Describe somersault movement in the sagittal plane about the frontal axis."
+          },
+          {
+           "code": "2.2.3",
+           "text": "Describe cartwheel movement in the frontal plane about the sagittal axis."
+          },
+          {
+           "code": "2.2.4",
+           "text": "Describe a full twist jump in the transverse plane about the vertical axis."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "topic-3-physical-training",
+       "title": "Topic 3: Physical training",
+       "subtopics": [
+        {
+         "id": "health-and-fitness",
+         "title": "Health and fitness",
+         "outcomes": [
+          {
+           "code": "3.1.1",
+           "text": "Define fitness, health, exercise and performance and explain how they relate."
+          },
+          {
+           "code": "3.2.1",
+           "text": "Describe the components of fitness and their relative importance in sport."
+          }
+         ]
+        },
+        {
+         "id": "fitness-testing",
+         "title": "Fitness testing",
+         "outcomes": [
+          {
+           "code": "3.2.2",
+           "text": "Explain the purpose and protocols of fitness tests and how to choose the right test."
+          },
+          {
+           "code": "3.2.3",
+           "text": "Collect and interpret fitness test data against normative tables."
+          },
+          {
+           "code": "3.2.4",
+           "text": "Describe tests: Cooper, Harvard Step, Illinois agility, grip dynamometer, sit-ups, press-ups, 30 m sprint, vertical jump, sit and reach."
+          },
+          {
+           "code": "3.2.5",
+           "text": "Relate how fitness is improved to section 3.3."
+          }
+         ]
+        },
+        {
+         "id": "principles-of-training",
+         "title": "Principles of training",
+         "outcomes": [
+          {
+           "code": "3.3.1",
+           "text": "Plan training using individual needs, specificity, overload, FITT, overtraining, reversibility and training zones."
+          },
+          {
+           "code": "3.3.2",
+           "text": "Choose training methods and intensities from fitness requirements, facilities and current level."
+          },
+          {
+           "code": "3.3.3",
+           "text": "Describe continuous, Fartlek, circuit, interval, plyometric, resistance training and fitness classes, with pros and cons."
+          }
+         ]
+        },
+        {
+         "id": "long-term-effects-of-training",
+         "title": "Long-term effects of training",
+         "outcomes": [
+          {
+           "code": "3.4.1",
+           "text": "Describe long-term effects of aerobic and anaerobic training on muscles, bones and the heart and lungs."
+          },
+          {
+           "code": "3.4.2",
+           "text": "Explain that training lets a performer train for longer and more intensely."
+          },
+          {
+           "code": "3.4.3",
+           "text": "Describe long-term benefits to the muscular-skeletal system and the need for rest and recovery."
+          },
+          {
+           "code": "3.4.4",
+           "text": "Describe long-term benefits to the cardio-respiratory system."
+          }
+         ]
+        },
+        {
+         "id": "optimising-training-and-avoiding-injury",
+         "title": "Optimising training and avoiding injury",
+         "outcomes": [
+          {
+           "code": "3.5.1",
+           "text": "Use a PARQ to assess readiness for training and adjust training."
+          },
+          {
+           "code": "3.5.2",
+           "text": "Explain how to prevent injury through training principles, rules, protective equipment and checks."
+          },
+          {
+           "code": "3.5.3",
+           "text": "Describe common sports injuries: concussion, fractures, dislocation, sprain, torn cartilage, soft tissue injury."
+          },
+          {
+           "code": "3.5.4",
+           "text": "Describe the RICE treatment."
+          },
+          {
+           "code": "3.5.5",
+           "text": "Evaluate performance-enhancing drugs and their positive and negative effects."
+          }
+         ]
+        },
+        {
+         "id": "warm-up-and-cool-down",
+         "title": "Warm-up and cool down",
+         "outcomes": [
+          {
+           "code": "3.6.1",
+           "text": "Explain the purpose of warm-ups and cool downs."
+          },
+          {
+           "code": "3.6.2",
+           "text": "Describe the phases of a warm-up."
+          },
+          {
+           "code": "3.6.3",
+           "text": "Describe activities in warm-ups and cool downs."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "topic-4-use-of-data",
+       "title": "Topic 4: Use of data",
+       "subtopics": [
+        {
+         "id": "using-data-in-sport",
+         "title": "Using data in sport",
+         "outcomes": [
+          {
+           "code": "4.1.1",
+           "text": "Develop understanding of data analysis in physical activity and sport."
+          },
+          {
+           "code": "4.1.2",
+           "text": "Explain how qualitative and quantitative data are collected in fitness and sport."
+          },
+          {
+           "code": "4.1.3",
+           "text": "Present data in tables and graphs."
+          },
+          {
+           "code": "4.1.4",
+           "text": "Interpret data accurately."
+          },
+          {
+           "code": "4.1.5",
+           "text": "Analyse and evaluate your own results against normative data."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "component-2-health-and-performance",
+     "title": "Component 2: Health and Performance",
+     "topics": [
+      {
+       "id": "topic-1-health-fitness-and-wellbeing",
+       "title": "Topic 1: Health, fitness and wellbeing",
+       "subtopics": [
+        {
+         "id": "physical-emotional-and-social-health",
+         "title": "Physical, emotional and social health",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain how improving fitness components improves physical health."
+          },
+          {
+           "code": null,
+           "text": "Explain how activity improves emotional and psychological health."
+          },
+          {
+           "code": null,
+           "text": "Explain how activity improves social health."
+          },
+          {
+           "code": null,
+           "text": "Describe the positive and negative health effects of fitness on wellbeing."
+          }
+         ]
+        },
+        {
+         "id": "personal-health-and-lifestyle",
+         "title": "Personal health and lifestyle",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain how designing, monitoring and evaluating a personal exercise programme promotes health."
+          },
+          {
+           "code": null,
+           "text": "Describe lifestyle choices: diet, activity, work/rest/sleep, alcohol and nicotine."
+          },
+          {
+           "code": null,
+           "text": "Explain positive and negative effects of lifestyle choices on health and fitness."
+          }
+         ]
+        },
+        {
+         "id": "sedentary-lifestyle",
+         "title": "Sedentary lifestyle",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain the consequences of a sedentary lifestyle: obesity, heart disease, diabetes, osteoporosis."
+          },
+          {
+           "code": null,
+           "text": "Interpret graphs of trends in physical health issues."
+          }
+         ]
+        },
+        {
+         "id": "diet-nutrition-and-hydration",
+         "title": "Diet, nutrition and hydration",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe the nutrients and ratios of a balanced diet for health and performance."
+          },
+          {
+           "code": null,
+           "text": "Explain the role of carbohydrates, proteins and fats, carbohydrate loading and protein timing."
+          },
+          {
+           "code": "1.3.3",
+           "text": "Explain the role of vitamins, minerals, water and fibre."
+          },
+          {
+           "code": "1.3.4",
+           "text": "Describe factors affecting optimum weight: sex, height, bone structure, muscle girth."
+          },
+          {
+           "code": "1.3.5",
+           "text": "Explain how optimum weight varies by role in different sports."
+          },
+          {
+           "code": "1.3.6",
+           "text": "Explain the energy balance for a healthy weight."
+          },
+          {
+           "code": "1.3.7",
+           "text": "Explain why hydration matters and how to maintain it."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "topic-2-sport-psychology",
+       "title": "Topic 2: Sport psychology",
+       "subtopics": [
+        {
+         "id": "classifying-skills-and-practice",
+         "title": "Classifying skills and practice",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Classify skills on the open-closed, basic-complex and low-high organisation continua."
+          },
+          {
+           "code": null,
+           "text": "Describe massed, distributed, fixed and variable practice."
+          },
+          {
+           "code": "2.1.3",
+           "text": "Choose the most relevant practice for developing different skills."
+          }
+         ]
+        },
+        {
+         "id": "goal-setting",
+         "title": "Goal setting",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain how goal setting improves performance."
+          },
+          {
+           "code": null,
+           "text": "Explain the SMART principles and the value of each."
+          },
+          {
+           "code": null,
+           "text": "Set and review targets to improve performance."
+          }
+         ]
+        },
+        {
+         "id": "guidance-and-feedback",
+         "title": "Guidance and feedback",
+         "outcomes": [
+          {
+           "code": "2.3.1",
+           "text": "Describe visual, verbal, manual and mechanical guidance."
+          },
+          {
+           "code": "2.3.2",
+           "text": "Evaluate each type of guidance for different performers and contexts."
+          },
+          {
+           "code": "2.3.3",
+           "text": "Describe intrinsic, extrinsic, concurrent and terminal feedback."
+          },
+          {
+           "code": "2.3.4",
+           "text": "Interpret graphs of data on feedback and performance."
+          }
+         ]
+        },
+        {
+         "id": "mental-preparation",
+         "title": "Mental preparation",
+         "outcomes": [
+          {
+           "code": "2.4.1",
+           "text": "Describe mental preparation: warm up and mental rehearsal."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "topic-3-socio-cultural-influences",
+       "title": "Topic 3: Socio-cultural influences",
+       "subtopics": [
+        {
+         "id": "participation-in-sport",
+         "title": "Participation in sport",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe how gender, age, socio-economic group, ethnicity and disability affect participation rates."
+          },
+          {
+           "code": "3.1.2",
+           "text": "Interpret graphs of participation trends."
+          }
+         ]
+        },
+        {
+         "id": "commercialisation-and-the-media",
+         "title": "Commercialisation and the media",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain the relationship between commercialisation, the media and sport."
+          },
+          {
+           "code": null,
+           "text": "Evaluate commercialisation and the media for sponsors, sports, performers and spectators."
+          },
+          {
+           "code": null,
+           "text": "Interpret graphs of trends in commercialisation of sport."
+          }
+         ]
+        },
+        {
+         "id": "ethics-and-sporting-behaviour",
+         "title": "Ethics and sporting behaviour",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe sportsmanship, gamesmanship and deviance at elite level, with reasons and consequences."
+          },
+          {
+           "code": null,
+           "text": "Interpret graphs of trends in ethical and socio-cultural issues in sport."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "topic-4-use-of-data",
+       "title": "Topic 4: Use of data",
+       "subtopics": [
+        {
+         "id": "using-data-in-sport",
+         "title": "Using data in sport",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Develop understanding of data analysis in physical activity and sport."
+          },
+          {
+           "code": null,
+           "text": "Explain how qualitative and quantitative data are collected in fitness and sport."
+          },
+          {
+           "code": null,
+           "text": "Present data in tables and graphs."
+          },
+          {
+           "code": null,
+           "text": "Interpret data accurately."
+          },
+          {
+           "code": null,
+           "text": "Analyse and evaluate your own results against normative data."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "build": {
+  "builtAt": "2026-10-14T10:35:09.723Z",
+  "model": "claude-agent",
+  "usd": 0,
+  "expectedCodes": 72,
+  "coverage": 1,
+  "missingCodes": [],
+  "counts": {
+   "grades": 1,
+   "units": 2,
+   "topics": 8,
+   "subtopics": 28,
+   "outcomes": 100
+  },
+  "warnings": [
+   "grade Year 10 has no content",
+   "grade Year 11 has no content",
+   "unexpected grade label \"all\""
+  ]
+ }
+}

@@ -1,0 +1,2648 @@
+{
+ "id": "us-tx-computer-science",
+ "region": "US",
+ "framework": "Texas state academic standards: Computer Science & Technology",
+ "board": null,
+ "qualification": "K-12",
+ "subject": "Computer Science & Technology",
+ "syllabusCode": null,
+ "gradeSystem": "grade",
+ "source": {
+  "urls": [
+   "https://api.commonstandardsproject.com/api/v1/jurisdictions/28903EF2A9F9469C9BF592D4D0BE10F8",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/3DA0411201394F0D8EB2E3C0E1E3F8DD",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/2CE1BB860515465CBF5436907C9A2D5B",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/CFF0B676DBEB44BEA34746E906E7F74B",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/A7E4127EFD6F48E5B64C14463E120D52",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/CC623E7BEEBA41DE89EFC53FB9C17953",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/B5E5CCE226BD46BE835698F2FB520D2B",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/57618181DBA64087993D0BCE5C57393C",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/21F26AFF49D6402382E798183BBFB9C0"
+  ],
+  "publisher": "Texas state education agency (machine-readable via Common Standards Project / ASN)",
+  "licence": "CC BY 4.0 US, Common Curriculum, Inc.",
+  "firstExam": "2022"
+ },
+ "grades": [
+  {
+   "grade": "K",
+   "units": [
+    {
+     "id": "implementation-the-provisions-of-this-section-sh",
+     "title": "Implementation. The provisions of this section shall be implemented by school districts beginning with the 2024-2025 school year",
+     "topics": [
+      {
+       "id": "implementation-the-provisions-of-this-section-sh",
+       "title": "Implementation. The provisions of this section shall be implemented by school districts beginning with the 2024-2025 school year",
+       "subtopics": [
+        {
+         "id": "implementation-the-provisions-of-this-section-sh",
+         "title": "Implementation. The provisions of this section shall be implemented by school districts beginning with the 2024-2025 school year",
+         "outcomes": [
+          {
+           "code": "K.a.1",
+           "text": "No later than August 1, 2024, the commissioner of education shall determine whether instructional materials funding has been made available to Texas public schools for materials that cover the essential knowledge and skills identified in this section."
+          },
+          {
+           "code": "K.a.2",
+           "text": "If the commissioner makes the determination that instructional materials funding has been made available this section shall be implemented beginning with the 2024-2025 school year and apply to the 2024-2025 and subsequent school years."
+          },
+          {
+           "code": "K.a.3",
+           "text": "If the commissioner does not make the determination that instructional materials funding has been made available under this subsection, the commissioner shall determine no later than August 1 of each subsequent school year whether instructional materials funding has been made available. If the commissioner determines that instructional materials funding has been made available, the commissioner shall notify the State Board of Education and school districts that this section shall be implemented for the following school year."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "introduction",
+     "title": "Introduction",
+     "topics": [
+      {
+       "id": "introduction",
+       "title": "Introduction",
+       "subtopics": [
+        {
+         "id": "introduction",
+         "title": "Introduction",
+         "outcomes": [
+          {
+           "code": "K.b.1",
+           "text": "Technology includes data communication, data processing, and the devices used for these tasks locally and across networks. Learning to apply these technologies motivates students to develop critical-thinking skills, higher-order thinking, and innovative problem solving. Technology applications incorporates the study of digital tools, devices, communication, and programming to empower students to apply current and emerging technologies in their careers, their education, and beyond."
+          },
+          {
+           "code": "K.b.3",
+           "text": "The technology applications TEKS can be integrated into all content areas and can support stand-alone courses. Districts have the flexibility of offering technology applications in a variety of settings, including through a stand-alone course or by integrating the technology applications standards in the essential knowledge and skills for one or more courses or subject areas."
+          },
+          {
+           "code": "K.b.4",
+           "text": "Statements containing the word \"including\" reference content that must be mastered, while those containing the phrase \"such as\" are intended as possible illustrative examples."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "the-technology-applications-texas-essential-know",
+       "title": "The technology applications Texas Essential Knowledge and Skills (TEKS) consist of five strands that prepare students to be literate in technology applications by Grade 8: computational thinking; creativity and innovation; data literacy, management, and representation; digital citizenship; and practical technology concepts. Communication and collaboration skills are embedded across the strands",
+       "subtopics": [
+        {
+         "id": "the-technology-applications-texas-essential-know",
+         "title": "The technology applications Texas Essential Knowledge and Skills (TEKS) consist of five strands that prepare students to be literate in technology applications by Grade 8: computational thinking; creativity and innovation; data literacy, management, and representation; digital citizenship; and practical technology concepts. Communication and collaboration skills are embedded across the strands",
+         "outcomes": [
+          {
+           "code": "K.b.2.A",
+           "text": "Computational thinking. Students break down the problem-solving process into four steps: decomposition, pattern recognition, abstraction, and algorithms."
+          },
+          {
+           "code": "K.b.2.B",
+           "text": "Creativity and innovation. Students use innovative design processes to develop solutions to problems. Students plan a solution, create the solution, test the solution, iterate, and debug the solution as needed and implement a completely new and innovative product."
+          },
+          {
+           "code": "K.b.2.C",
+           "text": "Data literacy, management, and representation. Students collect, organize, manage, analyze, and publish various types of data for an audience."
+          },
+          {
+           "code": "K.b.2.D",
+           "text": "Digital citizenship. Students practice the ethical and effective application of technology and develop an understanding of cybersecurity and the impact of a digital footprint to become safe, productive, and respectful digital citizens."
+          },
+          {
+           "code": "K.b.2.E",
+           "text": "Practical technology concepts. Students build their knowledge of software applications and hardware focusing on keyboarding and use of applications and tools."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "knowledge-and-skills",
+     "title": "Knowledge and skills",
+     "topics": [
+      {
+       "id": "computational-thinking-foundations-the-student-e",
+       "title": "Computational thinking--foundations. The student explores the core concepts of computational thinking, a set of problem-solving processes that involve decomposition, pattern recognition, abstraction, and algorithms. The student is expected to:",
+       "subtopics": [
+        {
+         "id": "computational-thinking-foundations-the-student-e",
+         "title": "Computational thinking--foundations. The student explores the core concepts of computational thinking, a set of problem-solving processes that involve decomposition, pattern recognition, abstraction, and algorithms. The student is expected to:",
+         "outcomes": [
+          {
+           "code": "K.c.1.A",
+           "text": "identify a problem or task such as making a sandwich and break it down (decompose) into smaller pieces;"
+          },
+          {
+           "code": "K.c.1.B",
+           "text": "identify simple patterns and make predictions based on the patterns; and"
+          },
+          {
+           "code": "K.c.1.C",
+           "text": "identify algorithms (step-by-step instructions) using a sequential process such as first, next, then, and last."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "knowledge-and-skills",
+       "title": "Knowledge and skills",
+       "subtopics": [
+        {
+         "id": "knowledge-and-skills",
+         "title": "Knowledge and skills",
+         "outcomes": [
+          {
+           "code": "K.c.2",
+           "text": "Computational thinking--applications. The student, with guidance from an educator, applies the fundamentals of computer science. The student is expected to create a sequence of code with or without technology such as solving a maze using drag-and-drop programming or creating step-by-step directions for student movement to a specific location."
+          },
+          {
+           "code": "K.c.5",
+           "text": "Digital citizenship--social interactions. The student identifies appropriate ways to communicate in various digital environments. The student is expected to identify and demonstrate responsible behavior within a digital environment."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "creativity-and-innovation-innovative-design-proc",
+       "title": "Creativity and innovation--innovative design process. The student takes an active role in learning by using a design process to solve authentic problems for a local or global audience, using a variety of technologies. The student is expected to:",
+       "subtopics": [
+        {
+         "id": "creativity-and-innovation-innovative-design-proc",
+         "title": "Creativity and innovation--innovative design process. The student takes an active role in learning by using a design process to solve authentic problems for a local or global audience, using a variety of technologies. The student is expected to:",
+         "outcomes": [
+          {
+           "code": "K.c.3.A",
+           "text": "practice personal skills, including following directions, needed to successfully implement design processes; and"
+          },
+          {
+           "code": "K.c.3.B",
+           "text": "use a design process with components such as asking questions, brainstorming, or storyboarding to identify and solve authentic problems with adult assistance."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "data-literacy-management-and-representation-coll",
+       "title": "Data literacy, management, and representation--collect data. The student defines data and explains how data can be found and collected. The student is expected to:",
+       "subtopics": [
+        {
+         "id": "data-literacy-management-and-representation-coll",
+         "title": "Data literacy, management, and representation--collect data. The student defines data and explains how data can be found and collected. The student is expected to:",
+         "outcomes": [
+          {
+           "code": "K.c.4.A",
+           "text": "communicate an understanding that data is information collected about people, events, or objects such as computer searches and weather patterns; and"
+          },
+          {
+           "code": "K.c.4.B",
+           "text": "communicate with adult assistance the idea that digital devices can search for and retrieve information."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "digital-citizenship-ethics-and-laws-the-student-",
+       "title": "Digital citizenship--ethics and laws. The student recognizes and practices responsible, legal, and ethical behavior while using digital tools and resources. The student is expected to:",
+       "subtopics": [
+        {
+         "id": "digital-citizenship-ethics-and-laws-the-student-",
+         "title": "Digital citizenship--ethics and laws. The student recognizes and practices responsible, legal, and ethical behavior while using digital tools and resources. The student is expected to:",
+         "outcomes": [
+          {
+           "code": "K.c.6.A",
+           "text": "demonstrate acceptable use of digital resources and devices as outlined in local policies or acceptable use policy (AUP); and"
+          },
+          {
+           "code": "K.c.6.B",
+           "text": "communicate an understanding that all digital content has owners."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "digital-citizenship-privacy-safety-and-security-",
+       "title": "Digital citizenship--privacy, safety, and security. The student practices safe, legal, and ethical digital behaviors to become a socially responsible digital citizen. The student is expected to:",
+       "subtopics": [
+        {
+         "id": "digital-citizenship-privacy-safety-and-security-",
+         "title": "Digital citizenship--privacy, safety, and security. The student practices safe, legal, and ethical digital behaviors to become a socially responsible digital citizen. The student is expected to:",
+         "outcomes": [
+          {
+           "code": "K.c.7.A",
+           "text": "identify ways to keep a user account safe, including not sharing login information and logging off accounts and devices; and"
+          },
+          {
+           "code": "K.c.7.B",
+           "text": "identify and discuss what information is safe to share online such as hobbies and likes and dislikes and what information is unsafe such as identifying information."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "practical-technology-concepts-skills-and-tools-t",
+       "title": "Practical technology concepts--skills and tools. The student demonstrates knowledge and appropriate use of technology systems, concepts, and operations. The student is expected to:",
+       "subtopics": [
+        {
+         "id": "practical-technology-concepts-skills-and-tools-t",
+         "title": "Practical technology concepts--skills and tools. The student demonstrates knowledge and appropriate use of technology systems, concepts, and operations. The student is expected to:",
+         "outcomes": [
+          {
+           "code": "K.c.8.A",
+           "text": "use a variety of applications, devices, and online learning environments to engage with content;"
+          },
+          {
+           "code": "K.c.8.B",
+           "text": "identify basic computer hardware, including a variety of input and output devices, and software using accurate terminology;"
+          },
+          {
+           "code": "K.c.8.C",
+           "text": "perform software application functions such as opening an application and modifying, printing, and saving digital artifacts using a variety of developmentally appropriate digital tools and resources;"
+          },
+          {
+           "code": "K.c.8.D",
+           "text": "practice ergonomically correct keyboarding techniques and developmentally appropriate hand and body positions; and"
+          },
+          {
+           "code": "K.c.8.E",
+           "text": "identify, locate, and practice using keys on the keyboard, including letters, numbers, and special keys such as space bar and backspace."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "1",
+   "units": [
+    {
+     "id": "implementation-the-provisions-of-this-section-sh",
+     "title": "Implementation. The provisions of this section shall be implemented by school districts beginning with the 2024-2025 school year",
+     "topics": [
+      {
+       "id": "implementation-the-provisions-of-this-section-sh",
+       "title": "Implementation. The provisions of this section shall be implemented by school districts beginning with the 2024-2025 school year",
+       "subtopics": [
+        {
+         "id": "implementation-the-provisions-of-this-section-sh",
+         "title": "Implementation. The provisions of this section shall be implemented by school districts beginning with the 2024-2025 school year",
+         "outcomes": [
+          {
+           "code": "1.a.1",
+           "text": "No later than August 1, 2024, the commissioner of education shall determine whether instructional materials funding has been made available to Texas public schools for materials that cover the essential knowledge and skills identified in this section."
+          },
+          {
+           "code": "1.a.2",
+           "text": "If the commissioner makes the determination that instructional materials funding has been made available this section shall be implemented beginning with the 2024-2025 school year and apply to the 2024-2025 and subsequent school years."
+          },
+          {
+           "code": "1.a.3",
+           "text": "If the commissioner does not make the determination that instructional materials funding has been made available under this subsection, the commissioner shall determine no later than August 1 of each subsequent school year whether instructional materials funding has been made available. If the commissioner determines that instructional materials funding has been made available, the commissioner shall notify the State Board of Education and school districts that this section shall be implemented for the following school year."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "introduction",
+     "title": "Introduction",
+     "topics": [
+      {
+       "id": "introduction",
+       "title": "Introduction",
+       "subtopics": [
+        {
+         "id": "introduction",
+         "title": "Introduction",
+         "outcomes": [
+          {
+           "code": "1.b.1",
+           "text": "Technology includes data communication, data processing, and the devices used for these tasks locally and across networks. Learning to apply these technologies motivates students to develop critical-thinking skills, higher-order thinking, and innovative problem solving. Technology applications incorporates the study of digital tools, devices, communication, and programming to empower students to apply current and emerging technologies in their careers, their education, and beyond."
+          },
+          {
+           "code": "1.b.3",
+           "text": "The technology applications TEKS can be integrated into all content areas and can support stand-alone courses. Districts have the flexibility of offering technology applications in a variety of settings, including through a stand-alone course or by integrating the technology applications standards in the essential knowledge and skills for one or more courses or subject areas."
+          },
+          {
+           "code": "1.b.4",
+           "text": "Statements containing the word \"including\" reference content that must be mastered, while those containing the phrase \"such as\" are intended as possible illustrative examples."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "the-technology-applications-texas-essential-know",
+       "title": "The technology applications Texas Essential Knowledge and Skills (TEKS) consist of five strands that prepare students to be literate in technology applications by grade 8: computational thinking; creativity and innovation; data literacy, management, and representation; digital citizenship; and practical technology concepts. Communication and collaboration skills are embedded across the strands",
+       "subtopics": [
+        {
+         "id": "the-technology-applications-texas-essential-know",
+         "title": "The technology applications Texas Essential Knowledge and Skills (TEKS) consist of five strands that prepare students to be literate in technology applications by grade 8: computational thinking; creativity and innovation; data literacy, management, and representation; digital citizenship; and practical technology concepts. Communication and collaboration skills are embedded across the strands",
+         "outcomes": [
+          {
+           "code": "1.b.2.A",
+           "text": "Computational thinking. Students break down the problem-solving process into four steps: decomposition, pattern recognition, abstraction, and algorithms."
+          },
+          {
+           "code": "1.b.2.B",
+           "text": "Creativity and innovation. Students use innovative design processes to develop solutions to problems. Students plan a solution, create the solution, test the solution, iterate, and debug the solution as needed, and implement a completely new and innovative product."
+          },
+          {
+           "code": "1.b.2.C",
+           "text": "Data literacy, management, and representation. Students collect, organize, manage, analyze, and publish various types of data for an audience."
+          },
+          {
+           "code": "1.b.2.D",
+           "text": "Digital citizenship. Students practice the ethical and effective application of technology and develop an understanding of cybersecurity and the impact of a digital footprint to become safe, productive, and respectful digital citizens."
+          },
+          {
+           "code": "1.b.2.E",
+           "text": "Practical technology concepts. Students build their knowledge of software applications and hardware focusing on keyboarding and use of applications and tools."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "knowledge-and-skills",
+     "title": "Knowledge and skills",
+     "topics": [
+      {
+       "id": "computational-thinking-foundations-the-student-e",
+       "title": "Computational thinking--foundations. The student explores the core concepts of computational thinking, a set of problem-solving processes that involve decomposition, pattern recognition, abstraction, and algorithms. The student is expected to:",
+       "subtopics": [
+        {
+         "id": "computational-thinking-foundations-the-student-e",
+         "title": "Computational thinking--foundations. The student explores the core concepts of computational thinking, a set of problem-solving processes that involve decomposition, pattern recognition, abstraction, and algorithms. The student is expected to:",
+         "outcomes": [
+          {
+           "code": "1.c.1.A",
+           "text": "identify and discuss a problem or task and break down (decompose) the solution into sequential steps;"
+          },
+          {
+           "code": "1.c.1.B",
+           "text": "identify the simple patterns found in the solutions to everyday problems or tasks; and"
+          },
+          {
+           "code": "1.c.1.C",
+           "text": "create a simple algorithm (step-by-step instructions) for an everyday task."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "knowledge-and-skills",
+       "title": "Knowledge and skills",
+       "subtopics": [
+        {
+         "id": "knowledge-and-skills",
+         "title": "Knowledge and skills",
+         "outcomes": [
+          {
+           "code": "1.c.2",
+           "text": "Computational thinking--applications. The student, with guidance from an educator, applies the fundamentals of computer science. The student is expected to create a sequence of code that solves a simple problem with or without technology."
+          },
+          {
+           "code": "1.c.4",
+           "text": "Creativity and innovation--emerging technologies. The student understands that technology is dynamic and impacts different communities. The student is expected to identify examples of how technology has impacted different communities."
+          },
+          {
+           "code": "1.c.6",
+           "text": "Digital citizenship--social interactions. The student identifies appropriate ways to communicate in various digital environments. The student is expected to describe and demonstrate respectful behavior within a digital environment."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "creativity-and-innovation-innovative-design-proc",
+       "title": "Creativity and innovation--innovative design process. The student takes an active role in learning by using a design process to solve authentic problems for a local or global audience, using a variety of technologies. The student is expected to:",
+       "subtopics": [
+        {
+         "id": "creativity-and-innovation-innovative-design-proc",
+         "title": "Creativity and innovation--innovative design process. The student takes an active role in learning by using a design process to solve authentic problems for a local or global audience, using a variety of technologies. The student is expected to:",
+         "outcomes": [
+          {
+           "code": "1.c.3.A",
+           "text": "practice personal skills and behaviors, including following directions and mental agility, needed to implement a design process successfully; and"
+          },
+          {
+           "code": "1.c.3.B",
+           "text": "use a design process with components such as asking questions, brainstorming, or storyboarding to identify and solve authentic problems with adult assistance."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "data-literacy-management-and-representation-coll",
+       "title": "Data literacy, management, and representation--collect data. The student defines data and explains how data can be found and collected. The student is expected to:",
+       "subtopics": [
+        {
+         "id": "data-literacy-management-and-representation-coll",
+         "title": "Data literacy, management, and representation--collect data. The student defines data and explains how data can be found and collected. The student is expected to:",
+         "outcomes": [
+          {
+           "code": "1.c.5.A",
+           "text": "explore and collect many types of data such as preferences or daily routines of people, events, or objects; and"
+          },
+          {
+           "code": "1.c.5.B",
+           "text": "conduct a basic search using provided keywords and digital sources with adult assistance."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "digital-citizenship-ethics-and-laws-the-student-",
+       "title": "Digital citizenship--ethics and laws. The student recognizes and practices responsible, legal, and ethical behavior while using digital tools and resources. The student is expected to:",
+       "subtopics": [
+        {
+         "id": "digital-citizenship-ethics-and-laws-the-student-",
+         "title": "Digital citizenship--ethics and laws. The student recognizes and practices responsible, legal, and ethical behavior while using digital tools and resources. The student is expected to:",
+         "outcomes": [
+          {
+           "code": "1.c.7.A",
+           "text": "explain and demonstrate the importance of acceptable use of digital resources and devices as outlined in local policies or acceptable use policy (AUP); and"
+          },
+          {
+           "code": "1.c.7.B",
+           "text": "communicate an understanding that all digital content has owners and explain the importance of respecting others' belongings as they apply to digital content and information."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "digital-citizenship-privacy-safety-and-security-",
+       "title": "Digital citizenship--privacy, safety, and security. The student practices safe, legal, and ethical digital behaviors to become a socially responsible digital citizen. The student is expected to:",
+       "subtopics": [
+        {
+         "id": "digital-citizenship-privacy-safety-and-security-",
+         "title": "Digital citizenship--privacy, safety, and security. The student practices safe, legal, and ethical digital behaviors to become a socially responsible digital citizen. The student is expected to:",
+         "outcomes": [
+          {
+           "code": "1.c.8.A",
+           "text": "identify ways to keep a user account safe, including not sharing login information and logging off accounts and devices;"
+          },
+          {
+           "code": "1.c.8.B",
+           "text": "identify and discuss what information is safe to share online such as hobbies and likes and dislikes and what information is unsafe such as identifying information; and"
+          },
+          {
+           "code": "1.c.8.C",
+           "text": "discuss and define cyberbullying with teacher support and guidance."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "practical-technology-concepts-skills-and-tools-t",
+       "title": "Practical technology concepts--skills and tools. The student demonstrates knowledge and appropriate use of technology systems, concepts, and operations. The student is expected to:",
+       "subtopics": [
+        {
+         "id": "practical-technology-concepts-skills-and-tools-t",
+         "title": "Practical technology concepts--skills and tools. The student demonstrates knowledge and appropriate use of technology systems, concepts, and operations. The student is expected to:",
+         "outcomes": [
+          {
+           "code": "1.c.9.A",
+           "text": "select and use a variety of applications, devices, and online learning environments to create an original product;"
+          },
+          {
+           "code": "1.c.9.B",
+           "text": "describe basic computer hardware, including a variety of input and output devices, and software using accurate terminology;"
+          },
+          {
+           "code": "1.c.9.C",
+           "text": "perform software application functions such as file management, collaboration, and the creation and revision of digital artifacts using a variety of developmentally appropriate digital tools and resources;"
+          },
+          {
+           "code": "1.c.9.D",
+           "text": "practice ergonomically correct keyboarding techniques and developmentally appropriate hand and body positions; and"
+          },
+          {
+           "code": "1.c.9.E",
+           "text": "identify, locate, and practice using keys on the keyboard, including upper- and lower-case letters, numbers, and special keys such as space bar, shift, and backspace."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "2",
+   "units": [
+    {
+     "id": "implementation-the-provisions-of-this-section-sh",
+     "title": "Implementation. The provisions of this section shall be implemented by school districts beginning with the 2024-2025 school year",
+     "topics": [
+      {
+       "id": "implementation-the-provisions-of-this-section-sh",
+       "title": "Implementation. The provisions of this section shall be implemented by school districts beginning with the 2024-2025 school year",
+       "subtopics": [
+        {
+         "id": "implementation-the-provisions-of-this-section-sh",
+         "title": "Implementation. The provisions of this section shall be implemented by school districts beginning with the 2024-2025 school year",
+         "outcomes": [
+          {
+           "code": "2.a.1",
+           "text": "No later than August 1, 2024, the commissioner of education shall determine whether instructional materials funding has been made available to Texas public schools for materials that cover the essential knowledge and skills identified in this section."
+          },
+          {
+           "code": "2.a.2",
+           "text": "If the commissioner makes the determination that instructional materials funding has been made available this section shall be implemented beginning with the 2024-2025 school year and apply to the 2024-2025 and subsequent school years."
+          },
+          {
+           "code": "2.a.3",
+           "text": "If the commissioner does not make the determination that instructional materials funding has been made available under this subsection, the commissioner shall determine no later than August 1 of each subsequent school year whether instructional materials funding has been made available. If the commissioner determines that instructional materials funding has been made available, the commissioner shall notify the State Board of Education and school districts that this section shall be implemented for the following school year."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "introduction",
+     "title": "Introduction",
+     "topics": [
+      {
+       "id": "introduction",
+       "title": "Introduction",
+       "subtopics": [
+        {
+         "id": "introduction",
+         "title": "Introduction",
+         "outcomes": [
+          {
+           "code": "2.b.1",
+           "text": "Technology includes data communication, data processing, and the devices used for these tasks locally and across networks. Learning to apply these technologies motivates students to develop critical-thinking skills, higher-order thinking, and innovative problem solving. Technology applications incorporates the study of digital tools, devices, communication, and programming to empower students to apply current and emerging technologies in their careers, their education, and beyond."
+          },
+          {
+           "code": "2.b.3",
+           "text": "The technology applications TEKS can be integrated into all content areas and can support stand-alone courses. Districts have the flexibility of offering technology applications in a variety of settings, including through a stand-alone course or by integrating the technology applications standards in the essential knowledge and skills for one or more courses or subject areas."
+          },
+          {
+           "code": "2.b.4",
+           "text": "Statements containing the word \"including\" reference content that must be mastered, while those containing the phrase \"such as\" are intended as possible illustrative examples."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "the-technology-applications-texas-essential-know",
+       "title": "The technology applications Texas Essential Knowledge and Skills (TEKS) consist of five strands that prepare students to be literate in technology applications by grade 8: computational thinking; creativity and innovation; data literacy, management, and representation; digital citizenship; and practical technology concepts. Communication and collaboration skills are embedded across the strands",
+       "subtopics": [
+        {
+         "id": "the-technology-applications-texas-essential-know",
+         "title": "The technology applications Texas Essential Knowledge and Skills (TEKS) consist of five strands that prepare students to be literate in technology applications by grade 8: computational thinking; creativity and innovation; data literacy, management, and representation; digital citizenship; and practical technology concepts. Communication and collaboration skills are embedded across the strands",
+         "outcomes": [
+          {
+           "code": "2.b.2.A",
+           "text": "Computational thinking. Students break down the problem-solving process into four steps: decomposition, pattern recognition, abstraction, and algorithms."
+          },
+          {
+           "code": "2.b.2.B",
+           "text": "Creativity and innovation. Students use innovative design processes to develop solutions to problems. Students plan a solution, create the solution, test the solution, iterate, and debug the solution as needed, and implement a completely new and innovative product."
+          },
+          {
+           "code": "2.b.2.C",
+           "text": "Data literacy, management, and representation. Students collect, organize, manage, analyze, and publish various types of data for an audience."
+          },
+          {
+           "code": "2.b.2.D",
+           "text": "Digital citizenship. Students practice the ethical and effective application of technology and develop an understanding of cybersecurity and the impact of a digital footprint to become safe, productive, and respectful digital citizens."
+          },
+          {
+           "code": "2.b.2.E",
+           "text": "Practical technology concepts. Students build their knowledge of software applications and hardware focusing on keyboarding and use of applications and tools."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "knowledge-and-skills",
+     "title": "Knowledge and skills",
+     "topics": [
+      {
+       "id": "computational-thinking-foundations-the-student-e",
+       "title": "Computational thinking--foundations. The student explores the core concepts of computational thinking, a set of problem-solving processes that involve decomposition, pattern recognition, abstraction, and algorithms. The student is expected to:",
+       "subtopics": [
+        {
+         "id": "computational-thinking-foundations-the-student-e",
+         "title": "Computational thinking--foundations. The student explores the core concepts of computational thinking, a set of problem-solving processes that involve decomposition, pattern recognition, abstraction, and algorithms. The student is expected to:",
+         "outcomes": [
+          {
+           "code": "2.c.1.A",
+           "text": "identify and communicate a problem or task and break down (decompose) multiple solutions into sequential steps;"
+          },
+          {
+           "code": "2.c.1.B",
+           "text": "identify complex patterns and make predictions based on the pattern;"
+          },
+          {
+           "code": "2.c.1.C",
+           "text": "analyze a plan with adult assistance that outlines the steps needed to complete a task; and"
+          },
+          {
+           "code": "2.c.1.D",
+           "text": "create and troubleshoot simple algorithms (step-by-step instructions) that include conditionals such as if-then statements as they apply to an everyday task."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "computational-thinking-applications-the-student-",
+       "title": "Computational thinking--applications. The student, with guidance from an educator, applies the fundamentals of computer science. The student is expected to:",
+       "subtopics": [
+        {
+         "id": "computational-thinking-applications-the-student-",
+         "title": "Computational thinking--applications. The student, with guidance from an educator, applies the fundamentals of computer science. The student is expected to:",
+         "outcomes": [
+          {
+           "code": "2.c.2.A",
+           "text": "identify and explore what a variable is in a sequence of code; and"
+          },
+          {
+           "code": "2.c.2.B",
+           "text": "use a design process to create a sequence of code that includes loops to solve a simple problem with or without technology."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "creativity-and-innovation-innovative-design-proc",
+       "title": "Creativity and innovation--innovative design process. The student takes an active role in learning by using a design process to solve authentic problems for a local or global audience, using a variety of technologies. The student is expected to:",
+       "subtopics": [
+        {
+         "id": "creativity-and-innovation-innovative-design-proc",
+         "title": "Creativity and innovation--innovative design process. The student takes an active role in learning by using a design process to solve authentic problems for a local or global audience, using a variety of technologies. The student is expected to:",
+         "outcomes": [
+          {
+           "code": "2.c.3.A",
+           "text": "demonstrate personal skills and behaviors, including effective communication, following directions, and mental agility, needed to implement a design process successfully; and"
+          },
+          {
+           "code": "2.c.3.B",
+           "text": "apply a design process with components such as testing and reflecting to create new and useful solutions to identify and solve for authentic problems."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "knowledge-and-skills",
+       "title": "Knowledge and skills",
+       "subtopics": [
+        {
+         "id": "knowledge-and-skills",
+         "title": "Knowledge and skills",
+         "outcomes": [
+          {
+           "code": "2.c.4",
+           "text": "Creativity and innovation--emerging technologies. The student demonstrates an understanding that technology is dynamic and impacts different communities. The student is expected to identify and analyze how technology impacts different communities."
+          },
+          {
+           "code": "2.c.6",
+           "text": "Data literacy, management, and representation--communicate and publish results. The student communicates data through the use of digital tools. The student is expected to use a digital tool to individually or collaboratively create and communicate data visualizations such as pictographs and bar graphs."
+          },
+          {
+           "code": "2.c.7",
+           "text": "Digital citizenship--social interactions. The student identifies appropriate ways to communicate in various digital environments. The student is expected to participate in digital environments to develop responsible and respectful interactions."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "data-literacy-management-and-representation-coll",
+       "title": "Data literacy, management, and representation--collect data. The student defines data and explains how data can be found and collected. The student is expected to:",
+       "subtopics": [
+        {
+         "id": "data-literacy-management-and-representation-coll",
+         "title": "Data literacy, management, and representation--collect data. The student defines data and explains how data can be found and collected. The student is expected to:",
+         "outcomes": [
+          {
+           "code": "2.c.5.A",
+           "text": "identify and collect non-numerical data, such as weather patterns, preferred reading genres, and holidays; and"
+          },
+          {
+           "code": "2.c.5.B",
+           "text": "conduct a basic search independently using provided keywords and digital sources."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "digital-citizenship-ethics-and-laws-the-student-",
+       "title": "Digital citizenship--ethics and laws. The student recognizes and practices responsible, legal, and ethical behavior while using digital tools and resources. The student is expected to:",
+       "subtopics": [
+        {
+         "id": "digital-citizenship-ethics-and-laws-the-student-",
+         "title": "Digital citizenship--ethics and laws. The student recognizes and practices responsible, legal, and ethical behavior while using digital tools and resources. The student is expected to:",
+         "outcomes": [
+          {
+           "code": "2.c.8.A",
+           "text": "explain and demonstrate the importance of acceptable use of digital resources and devices as outlined in local policies or acceptable use policy (AUP); and"
+          },
+          {
+           "code": "2.c.8.B",
+           "text": "communicate an understanding that all digital content has owners and explain the importance of respecting others' belongings as they apply to digital content and information."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "digital-citizenship-privacy-safety-and-security-",
+       "title": "Digital citizenship--privacy, safety, and security. The student practices safe, legal, and ethical digital behaviors to become a socially responsible digital citizen. The student is expected to:",
+       "subtopics": [
+        {
+         "id": "digital-citizenship-privacy-safety-and-security-",
+         "title": "Digital citizenship--privacy, safety, and security. The student practices safe, legal, and ethical digital behaviors to become a socially responsible digital citizen. The student is expected to:",
+         "outcomes": [
+          {
+           "code": "2.c.9.A",
+           "text": "demonstrate account safety, including creating a strong password and logging off accounts and devices;"
+          },
+          {
+           "code": "2.c.9.B",
+           "text": "compare and contrast private and public information and discuss what is safe to be shared online and with whom; and"
+          },
+          {
+           "code": "2.c.9.C",
+           "text": "discuss cyberbullying and identify examples."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "practical-technology-concepts-skills-and-tools-t",
+       "title": "Practical technology concepts--skills and tools. The student demonstrates knowledge and appropriate use of technology systems, concepts, and operations. The student is expected to:",
+       "subtopics": [
+        {
+         "id": "practical-technology-concepts-skills-and-tools-t",
+         "title": "Practical technology concepts--skills and tools. The student demonstrates knowledge and appropriate use of technology systems, concepts, and operations. The student is expected to:",
+         "outcomes": [
+          {
+           "code": "2.c.10.A",
+           "text": "select and use a variety of applications, devices, and online learning environments to create and share content;"
+          },
+          {
+           "code": "2.c.10.B",
+           "text": "identify, compare, and describe the function of basic computer hardware, including a variety of input and output devices, and software applications using accurate terminology;"
+          },
+          {
+           "code": "2.c.10.C",
+           "text": "operate a variety of developmentally appropriate digital tools and resources to perform software application functions such as reviewing digital artifacts and designing solutions to problems;"
+          },
+          {
+           "code": "2.c.10.D",
+           "text": "practice ergonomically correct keyboarding techniques and developmentally appropriate hand and body positions; and"
+          },
+          {
+           "code": "2.c.10.E",
+           "text": "identify, locate, and practice using keys on the keyboard, including secondary actions of different keys such as \"@,\" \"#,\" \"$,\" and \"?\"."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "3",
+   "units": [
+    {
+     "id": "implementation-the-provisions-of-this-section-sh",
+     "title": "Implementation. The provisions of this section shall be implemented by school districts beginning with the 2024-2025 school year",
+     "topics": [
+      {
+       "id": "implementation-the-provisions-of-this-section-sh",
+       "title": "Implementation. The provisions of this section shall be implemented by school districts beginning with the 2024-2025 school year",
+       "subtopics": [
+        {
+         "id": "implementation-the-provisions-of-this-section-sh",
+         "title": "Implementation. The provisions of this section shall be implemented by school districts beginning with the 2024-2025 school year",
+         "outcomes": [
+          {
+           "code": "3.a.1",
+           "text": "No later than August 1, 2024, the commissioner of education shall determine whether instructional materials funding has been made available to Texas public schools for materials that cover the essential knowledge and skills identified in this section."
+          },
+          {
+           "code": "3.a.2",
+           "text": "If the commissioner makes the determination that instructional materials funding has been made available this section shall be implemented beginning with the 2024-2025 school year and apply to the 2024-2025 and subsequent school years."
+          },
+          {
+           "code": "3.a.3",
+           "text": "If the commissioner does not make the determination that instructional materials funding has been made available under this subsection, the commissioner shall determine no later than August 1 of each subsequent school year whether instructional materials funding has been made available. If the commissioner determines that instructional materials funding has been made available, the commissioner shall notify the State Board of Education and school districts that this section shall be implemented for the following school year."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "introduction",
+     "title": "Introduction",
+     "topics": [
+      {
+       "id": "introduction",
+       "title": "Introduction",
+       "subtopics": [
+        {
+         "id": "introduction",
+         "title": "Introduction",
+         "outcomes": [
+          {
+           "code": "3.b.1",
+           "text": "Technology includes data communication, data processing, and the devices used for these tasks locally and across networks. Learning to apply these technologies motivates students to develop critical-thinking skills, higher-order thinking, and innovative problem solving. Technology applications incorporates the study of digital tools, devices, communication, and programming to empower students to apply current and emerging technologies in their careers, their education, and beyond."
+          },
+          {
+           "code": "3.b.3",
+           "text": "The technology applications TEKS can be integrated into all content areas and can support stand-alone courses. Districts have the flexibility of offering technology applications in a variety of settings, including through a stand-alone course or by integrating the technology applications standards in the essential knowledge and skills for one or more courses or subject areas."
+          },
+          {
+           "code": "3.b.4",
+           "text": "Statements containing the word \"including\" reference content that must be mastered, while those containing the phrase \"such as\" are intended as possible illustrative examples."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "the-technology-applications-texas-essential-know",
+       "title": "The technology applications Texas Essential Knowledge and Skills (TEKS) consist of five strands that prepare students to be literate in technology applications by Grade 8: computational thinking; creativity and innovation; data literacy, management, and representation; digital citizenship; and practical technology concepts. Communication and collaboration skills are embedded across the strands",
+       "subtopics": [
+        {
+         "id": "the-technology-applications-texas-essential-know",
+         "title": "The technology applications Texas Essential Knowledge and Skills (TEKS) consist of five strands that prepare students to be literate in technology applications by Grade 8: computational thinking; creativity and innovation; data literacy, management, and representation; digital citizenship; and practical technology concepts. Communication and collaboration skills are embedded across the strands",
+         "outcomes": [
+          {
+           "code": "3.b.2.A",
+           "text": "Computational thinking. Students break down the problem-solving process into four steps: decomposition, pattern recognition, abstraction, and algorithms."
+          },
+          {
+           "code": "3.b.2.B",
+           "text": "Creativity and innovation. Students use innovative design processes to develop solutions to problems. Students plan a solution, create the solution, test the solution, iterate, and debug the solution as needed, and implement a completely new and innovative product."
+          },
+          {
+           "code": "3.b.2.C",
+           "text": "Data literacy, management, and representation. Students collect, organize, manage, analyze, and publish various types of data for an audience."
+          },
+          {
+           "code": "3.b.2.D",
+           "text": "Digital citizenship. Students practice the ethical and effective application of technology and develop an understanding of cybersecurity and the impact of a digital footprint to become safe, productive, and respectful digital citizens."
+          },
+          {
+           "code": "3.b.2.E",
+           "text": "Practical technology concepts. Students build their knowledge of software applications and hardware focusing on keyboarding and use of applications and tools. Students also build their knowledge and use of technology systems, including integrating the use of multiple applications."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "knowledge-and-skills",
+     "title": "Knowledge and skills",
+     "topics": [
+      {
+       "id": "computational-thinking-foundations-the-student-e",
+       "title": "Computational thinking--foundations. The student explores the core concepts of computational thinking, a set of problem-solving processes that involve decomposition, pattern recognition, abstraction, and algorithms. The student is expected to:",
+       "subtopics": [
+        {
+         "id": "computational-thinking-foundations-the-student-e",
+         "title": "Computational thinking--foundations. The student explores the core concepts of computational thinking, a set of problem-solving processes that involve decomposition, pattern recognition, abstraction, and algorithms. The student is expected to:",
+         "outcomes": [
+          {
+           "code": "3.c.1.A",
+           "text": "decompose story problems into smaller, manageable subproblems and identify a solution to the problems;"
+          },
+          {
+           "code": "3.c.1.B",
+           "text": "identify simple and complex patterns in story problems;"
+          },
+          {
+           "code": "3.c.1.C",
+           "text": "develop a plan collaboratively and document a plan that outlines specific steps taken to complete a project; and"
+          },
+          {
+           "code": "3.c.1.D",
+           "text": "debug simple algorithms (set of procedures) by identifying and removing errors."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "computational-thinking-applications-the-student-",
+       "title": "Computational thinking--applications. The student applies the fundamentals of computer science. The student is expected to:",
+       "subtopics": [
+        {
+         "id": "computational-thinking-applications-the-student-",
+         "title": "Computational thinking--applications. The student applies the fundamentals of computer science. The student is expected to:",
+         "outcomes": [
+          {
+           "code": "3.c.2.A",
+           "text": "use variables within a program to store data; and"
+          },
+          {
+           "code": "3.c.2.B",
+           "text": "use a design process to create programs that include sequences, loops, and conditionals to express ideas or address a problem."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "creativity-and-innovation-innovative-design-proc",
+       "title": "Creativity and innovation--innovative design process. The student takes an active role in learning by using a design process to solve authentic problems for a local or global audience, using a variety of technologies. The student is expected to:",
+       "subtopics": [
+        {
+         "id": "creativity-and-innovation-innovative-design-proc",
+         "title": "Creativity and innovation--innovative design process. The student takes an active role in learning by using a design process to solve authentic problems for a local or global audience, using a variety of technologies. The student is expected to:",
+         "outcomes": [
+          {
+           "code": "3.c.3.A",
+           "text": "explain the importance of and demonstrate personal skills and behaviors, including metacognition, effective communication, following directions, and mental agility, needed to implement the design process successfully; and"
+          },
+          {
+           "code": "3.c.3.B",
+           "text": "apply an appropriate design process using components such as peer and teacher feedback to create new and useful solutions to authentic problems."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "knowledge-and-skills",
+       "title": "Knowledge and skills",
+       "subtopics": [
+        {
+         "id": "knowledge-and-skills",
+         "title": "Knowledge and skills",
+         "outcomes": [
+          {
+           "code": "3.c.4",
+           "text": "Creativity and innovation--emerging technologies. The student demonstrates an understanding that technology is dynamic and impacts different communities. The student is expected to define emerging technologies."
+          },
+          {
+           "code": "3.c.6",
+           "text": "Data literacy, management, and representation--organize, manage, and analyze data. The student uses data to answer questions. The student is expected to analyze data in graphs to identify and discuss trends and inferences."
+          },
+          {
+           "code": "3.c.7",
+           "text": "Data literacy, management, and representation--communicate and publish results. The student communicates data through the use of digital tools to inform an audience. The student is expected to use digital tools to communicate and publish results to inform an intended audience."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "data-literacy-management-and-representation-coll",
+       "title": "Data literacy, management, and representation--collect data. The student uses digital strategies to collect and identify data. The student is expected to:",
+       "subtopics": [
+        {
+         "id": "data-literacy-management-and-representation-coll",
+         "title": "Data literacy, management, and representation--collect data. The student uses digital strategies to collect and identify data. The student is expected to:",
+         "outcomes": [
+          {
+           "code": "3.c.5.A",
+           "text": "identify and collect numerical data such as the price of goods or temperature; and"
+          },
+          {
+           "code": "3.c.5.B",
+           "text": "use various search strategies with adult assistance."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "digital-citizenship-social-interactions-the-stud",
+       "title": "Digital citizenship--social interactions. The student understands different styles of digital communication and that a student's actions online can have a long-term impact. The student is expected to:",
+       "subtopics": [
+        {
+         "id": "digital-citizenship-social-interactions-the-stud",
+         "title": "Digital citizenship--social interactions. The student understands different styles of digital communication and that a student's actions online can have a long-term impact. The student is expected to:",
+         "outcomes": [
+          {
+           "code": "3.c.8.A",
+           "text": "define digital footprint;"
+          },
+          {
+           "code": "3.c.8.B",
+           "text": "define digital etiquette; and"
+          },
+          {
+           "code": "3.c.8.C",
+           "text": "define digital collaboration."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "digital-citizenship-ethics-and-laws-the-student-",
+       "title": "Digital citizenship--ethics and laws. The student recognizes and practices responsible, legal, and ethical behavior while using digital tools and resources. The student is expected to:",
+       "subtopics": [
+        {
+         "id": "digital-citizenship-ethics-and-laws-the-student-",
+         "title": "Digital citizenship--ethics and laws. The student recognizes and practices responsible, legal, and ethical behavior while using digital tools and resources. The student is expected to:",
+         "outcomes": [
+          {
+           "code": "3.c.9.A",
+           "text": "demonstrate adherence to local acceptable use policy (AUP) that reflects positive social behavior in the digital environment;"
+          },
+          {
+           "code": "3.c.9.B",
+           "text": "communicate the purpose of copyright law and identify appropriate and inappropriate uses of digital content and information; and"
+          },
+          {
+           "code": "3.c.9.C",
+           "text": "identify the required elements of citations for digital forms of media."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "digital-citizenship-privacy-safety-and-security-",
+       "title": "Digital citizenship--privacy, safety, and security. The student practices safe, legal, and ethical digital behaviors to become a socially responsible digital citizen. The student is expected to:",
+       "subtopics": [
+        {
+         "id": "digital-citizenship-privacy-safety-and-security-",
+         "title": "Digital citizenship--privacy, safety, and security. The student practices safe, legal, and ethical digital behaviors to become a socially responsible digital citizen. The student is expected to:",
+         "outcomes": [
+          {
+           "code": "3.c.10.A",
+           "text": "demonstrate account safety, including creating a strong password and logging off accounts and devices;"
+          },
+          {
+           "code": "3.c.10.B",
+           "text": "describe ways to employ safe practices such as protecting digital identity and avoid online dangers such as accessing unsafe websites or clicking on suspicious links; and"
+          },
+          {
+           "code": "3.c.10.C",
+           "text": "discuss cyberbullying and explain how to respond to cyberbullying."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "practical-technology-concepts-processes-the-stud",
+       "title": "Practical technology concepts--processes. The student engages with technology systems, concepts, and operations. The student is expected to:",
+       "subtopics": [
+        {
+         "id": "practical-technology-concepts-processes-the-stud",
+         "title": "Practical technology concepts--processes. The student engages with technology systems, concepts, and operations. The student is expected to:",
+         "outcomes": [
+          {
+           "code": "3.c.11.A",
+           "text": "compare and contrast applications such as word processor, spreadsheet, and presentation tools for relevance to an assigned task; and"
+          },
+          {
+           "code": "3.c.11.B",
+           "text": "perform software application functions such as inserting or deleting text, inserting images, and formatting page layout and margins."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "practical-technology-concepts-skills-and-tools-t",
+       "title": "Practical technology concepts--skills and tools. The student selects appropriate methods or techniques for an assigned task and identifies and solves simple hardware and software problems using common troubleshooting strategies. The student is expected to:",
+       "subtopics": [
+        {
+         "id": "practical-technology-concepts-skills-and-tools-t",
+         "title": "Practical technology concepts--skills and tools. The student selects appropriate methods or techniques for an assigned task and identifies and solves simple hardware and software problems using common troubleshooting strategies. The student is expected to:",
+         "outcomes": [
+          {
+           "code": "3.c.12.A",
+           "text": "communicate an understanding of terminology related to operating systems and network systems such as internet, intranet, wireless network, short-range wireless technology, and learning management systems;"
+          },
+          {
+           "code": "3.c.12.B",
+           "text": "identify where and how to save files such as using appropriate naming conventions and effective file management strategies;"
+          },
+          {
+           "code": "3.c.12.C",
+           "text": "demonstrate proper touch keyboarding techniques with accuracy and ergonomic strategies such as correct hand and body positions;"
+          },
+          {
+           "code": "3.c.12.D",
+           "text": "identify and practice using keyboard or other input device shortcuts for actions such as copy, paste, undo, or closing windows; and"
+          },
+          {
+           "code": "3.c.12.E",
+           "text": "identify minor technical problems with hardware and software and solve the issues with assistance."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "4",
+   "units": [
+    {
+     "id": "implementation-the-provisions-of-this-section-sh",
+     "title": "Implementation. The provisions of this section shall be implemented by school districts beginning with the 2024-2025 school year",
+     "topics": [
+      {
+       "id": "implementation-the-provisions-of-this-section-sh",
+       "title": "Implementation. The provisions of this section shall be implemented by school districts beginning with the 2024-2025 school year",
+       "subtopics": [
+        {
+         "id": "implementation-the-provisions-of-this-section-sh",
+         "title": "Implementation. The provisions of this section shall be implemented by school districts beginning with the 2024-2025 school year",
+         "outcomes": [
+          {
+           "code": "4.a.1",
+           "text": "No later than August 1, 2024, the commissioner of education shall determine whether instructional materials funding has been made available to Texas public schools for materials that cover the essential knowledge and skills identified in this section."
+          },
+          {
+           "code": "4.a.2",
+           "text": "If the commissioner makes the determination that instructional materials funding has been made available this section shall be implemented beginning with the 2024-2025 school year and apply to the 2024-2025 and subsequent school years."
+          },
+          {
+           "code": "4.a.3",
+           "text": "If the commissioner does not make the determination that instructional materials funding has been made available under this subsection, the commissioner shall determine no later than August 1 of each subsequent school year whether instructional materials funding has been made available. If the commissioner determines that instructional materials funding has been made available, the commissioner shall notify the State Board of Education and school districts that this section shall be implemented for the following school year."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "introduction",
+     "title": "Introduction",
+     "topics": [
+      {
+       "id": "introduction",
+       "title": "Introduction",
+       "subtopics": [
+        {
+         "id": "introduction",
+         "title": "Introduction",
+         "outcomes": [
+          {
+           "code": "4.b.1",
+           "text": "Technology includes data communication, data processing, and the devices used for these tasks locally and across networks. Learning to apply these technologies motivates students to develop critical-thinking skills, higher-order thinking, and innovative problem solving. Technology applications incorporates the study of digital tools, devices, communication, and programming to empower students to apply current and emerging technologies in their careers, their education, and beyond."
+          },
+          {
+           "code": "4.b.3",
+           "text": "The technology applications TEKS can be integrated into all content areas and can support stand-alone courses. Districts have the flexibility of offering technology applications in a variety of settings, including through a stand-alone course or by integrating the technology applications standards in the essential knowledge and skills for one or more courses or subject areas."
+          },
+          {
+           "code": "4.b.4",
+           "text": "Statements containing the word \"including\" reference content that must be mastered, while those containing the phrase \"such as\" are intended as possible illustrative examples."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "the-technology-applications-texas-essential-know",
+       "title": "The technology applications Texas Essential Knowledge and Skills (TEKS) consist of five strands that prepare students to be literate in technology applications by Grade 8: computational thinking; creativity and innovation; data literacy, management, and representation; digital citizenship; and practical technology concepts. Communication and collaboration skills are embedded across the strands",
+       "subtopics": [
+        {
+         "id": "the-technology-applications-texas-essential-know",
+         "title": "The technology applications Texas Essential Knowledge and Skills (TEKS) consist of five strands that prepare students to be literate in technology applications by Grade 8: computational thinking; creativity and innovation; data literacy, management, and representation; digital citizenship; and practical technology concepts. Communication and collaboration skills are embedded across the strands",
+         "outcomes": [
+          {
+           "code": "4.b.2.A",
+           "text": "Computational thinking. Students break down the problem-solving process into four steps: decomposition, pattern recognition, abstraction, and algorithms."
+          },
+          {
+           "code": "4.b.2.B",
+           "text": "Creativity and innovation. Students use innovative design processes to develop solutions to problems. Students plan a solution, create the solution, test the solution, iterate, and debug the solution as needed, and implement a completely new and innovative product."
+          },
+          {
+           "code": "4.b.2.C",
+           "text": "Data literacy, management, and representation. Students collect, organize, manage, analyze, and publish various types of data for an audience."
+          },
+          {
+           "code": "4.b.2.D",
+           "text": "Digital citizenship. Students practice the ethical and effective application of technology and develop an understanding of cybersecurity and the impact of a digital footprint to become safe, productive, and respectful digital citizens."
+          },
+          {
+           "code": "4.b.2.E",
+           "text": "Practical technology concepts. Students build their knowledge of software applications and hardware focusing on keyboarding and use of applications and tools. Students also build their knowledge and use of technology systems, including integrating the use of multiple applications."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "knowledge-and-skills",
+     "title": "Knowledge and skills",
+     "topics": [
+      {
+       "id": "computational-thinking-foundations-the-student-e",
+       "title": "Computational thinking--foundations. The student explores the core concepts of computational thinking, a set of problem-solving processes that involve decomposition, pattern recognition, abstraction, and algorithms. The student is expected to:",
+       "subtopics": [
+        {
+         "id": "computational-thinking-foundations-the-student-e",
+         "title": "Computational thinking--foundations. The student explores the core concepts of computational thinking, a set of problem-solving processes that involve decomposition, pattern recognition, abstraction, and algorithms. The student is expected to:",
+         "outcomes": [
+          {
+           "code": "4.c.1.A",
+           "text": "decompose story problems into smaller, manageable subproblems and discuss and document various solutions to the problems;"
+          },
+          {
+           "code": "4.c.1.B",
+           "text": "identify patterns in story problems and make predictions based on the pattern;"
+          },
+          {
+           "code": "4.c.1.C",
+           "text": "communicate design plans and solutions using a variety of options; and"
+          },
+          {
+           "code": "4.c.1.D",
+           "text": "debug algorithms (set of procedures) by identifying and removing errors."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "computational-thinking-applications-the-student-",
+       "title": "Computational thinking--applications. The student applies the fundamentals of computer science. The student is expected to:",
+       "subtopics": [
+        {
+         "id": "computational-thinking-applications-the-student-",
+         "title": "Computational thinking--applications. The student applies the fundamentals of computer science. The student is expected to:",
+         "outcomes": [
+          {
+           "code": "4.c.2.A",
+           "text": "use variables within a program to modify data; and"
+          },
+          {
+           "code": "4.c.2.B",
+           "text": "use a design process to create programs that include sequences, loops, and conditionals to express ideas or address a problem."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "creativity-and-innovation-innovative-design-proc",
+       "title": "Creativity and innovation--innovative design process. The student takes an active role in learning by using a design process to solve authentic problems for a local or global audience, using a variety of technologies. The student is expected to:",
+       "subtopics": [
+        {
+         "id": "creativity-and-innovation-innovative-design-proc",
+         "title": "Creativity and innovation--innovative design process. The student takes an active role in learning by using a design process to solve authentic problems for a local or global audience, using a variety of technologies. The student is expected to:",
+         "outcomes": [
+          {
+           "code": "4.c.3.A",
+           "text": "explain the importance of and demonstrate personal skills and behaviors, including problem solving and questioning, effective communication, following directions, mental agility, and metacognition, that are needed to implement a design process successfully; and"
+          },
+          {
+           "code": "4.c.3.B",
+           "text": "apply an appropriate design process that includes components to improve processes and refine original products for authentic problems."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "knowledge-and-skills",
+       "title": "Knowledge and skills",
+       "subtopics": [
+        {
+         "id": "knowledge-and-skills",
+         "title": "Knowledge and skills",
+         "outcomes": [
+          {
+           "code": "4.c.4",
+           "text": "Creativity and innovation--emerging technologies. The student demonstrates an understanding that technology is dynamic and impacts different communities. The student is expected to identify examples of emerging technologies."
+          },
+          {
+           "code": "4.c.6",
+           "text": "Data literacy, management, and representation--organize, manage, and analyze data. The student uses data to answer questions. The student is expected to use digital tools to transform and make inferences about data to answer a question."
+          },
+          {
+           "code": "4.c.7",
+           "text": "Data literacy, management, and representation--communicate and publish results. The student communicates data through the use of digital tools to inform an audience. The student is expected to use digital tools to communicate results of an inquiry to inform an intended audience."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "data-literacy-management-and-representation-coll",
+       "title": "Data literacy, management, and representation--collect data. The student uses digital strategies to collect and identify data. The student is expected to:",
+       "subtopics": [
+        {
+         "id": "data-literacy-management-and-representation-coll",
+         "title": "Data literacy, management, and representation--collect data. The student uses digital strategies to collect and identify data. The student is expected to:",
+         "outcomes": [
+          {
+           "code": "4.c.5.A",
+           "text": "classify numerical and non-numerical data; and"
+          },
+          {
+           "code": "4.c.5.B",
+           "text": "identify and collect data by using various search strategies, including two or more keywords within specific parameters."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "digital-citizenship-social-interactions-the-stud",
+       "title": "Digital citizenship--social interactions. The student understands different styles of digital communication and that a student's actions online can have a long-term impact. The student is expected to:",
+       "subtopics": [
+        {
+         "id": "digital-citizenship-social-interactions-the-stud",
+         "title": "Digital citizenship--social interactions. The student understands different styles of digital communication and that a student's actions online can have a long-term impact. The student is expected to:",
+         "outcomes": [
+          {
+           "code": "4.c.8.A",
+           "text": "describe how information retained online creates a permanent digital footprint;"
+          },
+          {
+           "code": "4.c.8.B",
+           "text": "describe appropriate digital etiquette for various forms of digital communication such as text, email, and online chat; and"
+          },
+          {
+           "code": "4.c.8.C",
+           "text": "demonstrate appropriate digital etiquette for various forms of digital collaboration such as shared documents, video conferencing, and other platforms."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "digital-citizenship-ethics-and-laws-the-student-",
+       "title": "Digital citizenship--ethics and laws. The student recognizes and practices responsible, legal, and ethical behavior while using digital tools and resources. The student is expected to:",
+       "subtopics": [
+        {
+         "id": "digital-citizenship-ethics-and-laws-the-student-",
+         "title": "Digital citizenship--ethics and laws. The student recognizes and practices responsible, legal, and ethical behavior while using digital tools and resources. The student is expected to:",
+         "outcomes": [
+          {
+           "code": "4.c.9.A",
+           "text": "demonstrate adherence to local acceptable use policy (AUP) and explain the importance of responsible and ethical technology use;"
+          },
+          {
+           "code": "4.c.9.B",
+           "text": "describe the rights and responsibilities of a creator, define copyright law, and explain how copyright law applies to creative work; and"
+          },
+          {
+           "code": "4.c.9.C",
+           "text": "create citations for digital forms of media with assistance."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "digital-citizenship-privacy-safety-and-security-",
+       "title": "Digital citizenship--privacy, safety, and security. The student practices safe, legal, and ethical digital behaviors to become a socially responsible digital citizen. The student is expected to:",
+       "subtopics": [
+        {
+         "id": "digital-citizenship-privacy-safety-and-security-",
+         "title": "Digital citizenship--privacy, safety, and security. The student practices safe, legal, and ethical digital behaviors to become a socially responsible digital citizen. The student is expected to:",
+         "outcomes": [
+          {
+           "code": "4.c.10.A",
+           "text": "demonstrate account safety, including creating a strong password and logging off devices, and explain the importance of these practices;"
+          },
+          {
+           "code": "4.c.10.B",
+           "text": "identify and discuss types of data collection tools such as cookies, pop-ups, smart devices, and unsecured networks and explain why it is important to maintain digital privacy; and"
+          },
+          {
+           "code": "4.c.10.C",
+           "text": "discuss and explain how to respond to cyberbullying, including advocating for self and others."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "practical-technology-concepts-processes-the-stud",
+       "title": "Practical technology concepts--processes. The student engages with technology systems, concepts, and operations. The student is expected to:",
+       "subtopics": [
+        {
+         "id": "practical-technology-concepts-processes-the-stud",
+         "title": "Practical technology concepts--processes. The student engages with technology systems, concepts, and operations. The student is expected to:",
+         "outcomes": [
+          {
+           "code": "4.c.11.A",
+           "text": "evaluate and choose applications for relevance to an assigned task; and"
+          },
+          {
+           "code": "4.c.11.B",
+           "text": "perform software application functions such as outline options, bulleting, and numbering lists, and perform editing functions such as finding and replacing."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "practical-technology-concepts-skills-and-tools-t",
+       "title": "Practical technology concepts--skills and tools. The student selects appropriate methods or techniques for an assigned task and identifies and solves simple hardware and software problems using common troubleshooting strategies. The student is expected to:",
+       "subtopics": [
+        {
+         "id": "practical-technology-concepts-skills-and-tools-t",
+         "title": "Practical technology concepts--skills and tools. The student selects appropriate methods or techniques for an assigned task and identifies and solves simple hardware and software problems using common troubleshooting strategies. The student is expected to:",
+         "outcomes": [
+          {
+           "code": "4.c.12.A",
+           "text": "communicate an understanding of terminology related to virtual systems such as video conferencing, augmented reality, and virtual reality environments;"
+          },
+          {
+           "code": "4.c.12.B",
+           "text": "evaluate where and how to save, including the use of appropriate naming conventions and effective file management strategies and folder structures;"
+          },
+          {
+           "code": "4.c.12.C",
+           "text": "demonstrate proper touch keyboarding techniques with speed and accuracy and ergonomic strategies such as correct hand and body positions;"
+          },
+          {
+           "code": "4.c.12.D",
+           "text": "identify and practice using cross-curricular symbols or other input device shortcuts on a keyboard; and"
+          },
+          {
+           "code": "4.c.12.E",
+           "text": "use troubleshooting strategies to solve minor technical problems with hardware and software such as restarting software or rebooting hardware."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "5",
+   "units": [
+    {
+     "id": "implementation-the-provisions-of-this-section-sh",
+     "title": "Implementation. The provisions of this section shall be implemented by school districts beginning with the 2024-2025 school year",
+     "topics": [
+      {
+       "id": "implementation-the-provisions-of-this-section-sh",
+       "title": "Implementation. The provisions of this section shall be implemented by school districts beginning with the 2024-2025 school year",
+       "subtopics": [
+        {
+         "id": "implementation-the-provisions-of-this-section-sh",
+         "title": "Implementation. The provisions of this section shall be implemented by school districts beginning with the 2024-2025 school year",
+         "outcomes": [
+          {
+           "code": "5.a.1",
+           "text": "No later than August 1, 2024, the commissioner of education shall determine whether instructional materials funding has been made available to Texas public schools for materials that cover the essential knowledge and skills identified in this section."
+          },
+          {
+           "code": "5.a.2",
+           "text": "If the commissioner makes the determination that instructional materials funding has been made available this section shall be implemented beginning with the 2024-2025 school year and apply to the 2024-2025 and subsequent school years."
+          },
+          {
+           "code": "5.a.3",
+           "text": "If the commissioner does not make the determination that instructional materials funding has been made available under this subsection, the commissioner shall determine no later than August 1 of each subsequent school year whether instructional materials funding has been made available. If the commissioner determines that instructional materials funding has been made available, the commissioner shall notify the State Board of Education and school districts that this section shall be implemented for the following school year."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "introduction",
+     "title": "Introduction",
+     "topics": [
+      {
+       "id": "introduction",
+       "title": "Introduction",
+       "subtopics": [
+        {
+         "id": "introduction",
+         "title": "Introduction",
+         "outcomes": [
+          {
+           "code": "5.b.1",
+           "text": "Technology includes data communication, data processing, and the devices used for these tasks locally and across networks. Learning to apply these technologies motivates students to develop critical-thinking skills, higher-order thinking, and innovative problem solving. Technology applications incorporates the study of digital tools, devices, communication, and programming to empower students to apply current and emerging technologies in their careers, their education, and beyond."
+          },
+          {
+           "code": "5.b.3",
+           "text": "The technology applications TEKS can be integrated into all content areas and can support stand-alone courses. Districts have the flexibility of offering technology applications in a variety of settings, including through a stand-alone course or by integrating the technology applications standards in the essential knowledge and skills for one or more courses or subject areas."
+          },
+          {
+           "code": "5.b.4",
+           "text": "Statements containing the word \"including\" reference content that must be mastered, while those containing the phrase \"such as\" are intended as possible illustrative examples."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "the-technology-applications-texas-essential-know",
+       "title": "The technology applications Texas Essential Knowledge and Skills (TEKS) consist of five strands that prepare students to be literate in technology applications by Grade 8: computational thinking; creativity and innovation; data literacy, management, and representation; digital citizenship; and practical technology concepts. Communication and collaboration skills are embedded across the strands",
+       "subtopics": [
+        {
+         "id": "the-technology-applications-texas-essential-know",
+         "title": "The technology applications Texas Essential Knowledge and Skills (TEKS) consist of five strands that prepare students to be literate in technology applications by Grade 8: computational thinking; creativity and innovation; data literacy, management, and representation; digital citizenship; and practical technology concepts. Communication and collaboration skills are embedded across the strands",
+         "outcomes": [
+          {
+           "code": "5.b.2.A",
+           "text": "Computational thinking. Students break down the problem-solving process into four steps: decomposition, pattern recognition, abstraction, and algorithms."
+          },
+          {
+           "code": "5.b.2.B",
+           "text": "Creativity and innovation. Students use innovative design processes to develop solutions to problems. Students plan a solution, create the solution, test the solution, iterate, and debug the solution as needed, and implement a completely new and innovative product."
+          },
+          {
+           "code": "5.b.2.C",
+           "text": "Data literacy, management, and representation. Students collect, organize, manage, analyze, and publish various types of data for an audience."
+          },
+          {
+           "code": "5.b.2.D",
+           "text": "Digital citizenship. Students practice the ethical and effective application of technology and develop an understanding of cybersecurity and the impact of a digital footprint to become safe, productive, and respectful digital citizens."
+          },
+          {
+           "code": "5.b.2.E",
+           "text": "Practical technology concepts. Students build their knowledge of software applications and hardware focusing on keyboarding and use of applications and tools. Students also build their knowledge and use of technology systems, including integrating the use of multiple applications."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "knowledge-and-skills",
+     "title": "Knowledge and skills",
+     "topics": [
+      {
+       "id": "computational-thinking-foundations-the-student-e",
+       "title": "Computational thinking--foundations. The student explores the core concepts of computational thinking, a set of problem-solving processes that involve decomposition, pattern recognition, abstraction, and algorithms. The student is expected to:",
+       "subtopics": [
+        {
+         "id": "computational-thinking-foundations-the-student-e",
+         "title": "Computational thinking--foundations. The student explores the core concepts of computational thinking, a set of problem-solving processes that involve decomposition, pattern recognition, abstraction, and algorithms. The student is expected to:",
+         "outcomes": [
+          {
+           "code": "5.c.1.A",
+           "text": "decompose a real-world problem into smaller, manageable subproblems using graphic organizers such as learning maps, concept maps, or other representations of data;"
+          },
+          {
+           "code": "5.c.1.B",
+           "text": "identify patterns in real-world problems and make predictions based on the pattern;"
+          },
+          {
+           "code": "5.c.1.C",
+           "text": "design and create an outline collaboratively that documents a problem, possible solutions, and an expected timeline for the development of a coded solution; and"
+          },
+          {
+           "code": "5.c.1.D",
+           "text": "compare multiple algorithms for the same task and determine which algorithm is the most appropriate for that task."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "computational-thinking-applications-the-student-",
+       "title": "Computational thinking--applications. The student applies the fundamentals of computer science. The student is expected to:",
+       "subtopics": [
+        {
+         "id": "computational-thinking-applications-the-student-",
+         "title": "Computational thinking--applications. The student applies the fundamentals of computer science. The student is expected to:",
+         "outcomes": [
+          {
+           "code": "5.c.2.A",
+           "text": "use variables within a program to store and modify data;"
+          },
+          {
+           "code": "5.c.2.B",
+           "text": "use a design process to create block-based programs that include sequences, loops, conditionals, and events to solve an everyday problem; and"
+          },
+          {
+           "code": "5.c.2.C",
+           "text": "analyze a code and how the code may be reused to develop new or improved programs."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "creativity-and-innovation-innovative-design-proc",
+       "title": "Creativity and innovation--innovative design process. The student takes an active role in learning by using a design process to solve authentic problems for a local or global audience, using a variety of technologies. The student is expected to:",
+       "subtopics": [
+        {
+         "id": "creativity-and-innovation-innovative-design-proc",
+         "title": "Creativity and innovation--innovative design process. The student takes an active role in learning by using a design process to solve authentic problems for a local or global audience, using a variety of technologies. The student is expected to:",
+         "outcomes": [
+          {
+           "code": "5.c.3.A",
+           "text": "explain the importance of and demonstrate personal skills and behaviors, including persistence, effective communication, following directions, mental agility, metacognition, problem solving and questioning, that are needed to implement a design process successfully; and"
+          },
+          {
+           "code": "5.c.3.B",
+           "text": "apply an appropriate design process that includes components to generate multiple solutions for an authentic problem and develop original products."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "knowledge-and-skills",
+       "title": "Knowledge and skills",
+       "subtopics": [
+        {
+         "id": "knowledge-and-skills",
+         "title": "Knowledge and skills",
+         "outcomes": [
+          {
+           "code": "5.c.4",
+           "text": "Creativity and innovation--emerging technologies. The student demonstrates an understanding that technology is dynamic and impacts different communities. The student is expected to predict how emerging technologies may impact different communities."
+          },
+          {
+           "code": "5.c.6",
+           "text": "Data literacy, management, and representation--organize, manage, and analyze data. The student uses data to answer questions. The student is expected to use digital tools to analyze and transform data and make inferences to answer questions."
+          },
+          {
+           "code": "5.c.7",
+           "text": "Data literacy, management, and representation--communicate and publish results. The student communicates data through the use of digital tools to inform an audience. The student is expected to use digital tools to communicate and display data using appropriate visualization to inform an intended audience."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "data-literacy-management-and-representation-coll",
+       "title": "Data literacy, management, and representation--collect data. The student uses digital strategies to collect and identify data. The student is expected to:",
+       "subtopics": [
+        {
+         "id": "data-literacy-management-and-representation-coll",
+         "title": "Data literacy, management, and representation--collect data. The student uses digital strategies to collect and identify data. The student is expected to:",
+         "outcomes": [
+          {
+           "code": "5.c.5.A",
+           "text": "identify and collect quantitative and qualitative data with digital tools; and"
+          },
+          {
+           "code": "5.c.5.B",
+           "text": "identify keyword(s), Boolean operators, and limiters within provided search strategies."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "digital-citizenship-social-interactions-the-stud",
+       "title": "Digital citizenship--social interactions. The student understands different styles of digital communication and that a student's actions online can have a long-term impact. The student is expected to:",
+       "subtopics": [
+        {
+         "id": "digital-citizenship-social-interactions-the-stud",
+         "title": "Digital citizenship--social interactions. The student understands different styles of digital communication and that a student's actions online can have a long-term impact. The student is expected to:",
+         "outcomes": [
+          {
+           "code": "5.c.8.A",
+           "text": "identify the components of a digital footprint such as online activity, game use, or social media platforms;"
+          },
+          {
+           "code": "5.c.8.B",
+           "text": "describe appropriate digital etiquette for addressing different audiences such as peers, teachers, and other adults; and"
+          },
+          {
+           "code": "5.c.8.C",
+           "text": "apply appropriate digital etiquette for collaborating with different audiences such as peers, teachers, and other adults."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "digital-citizenship-ethics-and-laws-the-student-",
+       "title": "Digital citizenship--ethics and laws. The student recognizes and practices responsible, legal, and ethical behavior while using digital tools and resources. The student is expected to:",
+       "subtopics": [
+        {
+         "id": "digital-citizenship-ethics-and-laws-the-student-",
+         "title": "Digital citizenship--ethics and laws. The student recognizes and practices responsible, legal, and ethical behavior while using digital tools and resources. The student is expected to:",
+         "outcomes": [
+          {
+           "code": "5.c.9.A",
+           "text": "demonstrate adherence to local acceptable use policy (AUP) and explain the importance of responsible and ethical technology use;"
+          },
+          {
+           "code": "5.c.9.B",
+           "text": "describe the purpose of copyright law and the possible consequences for inappropriate use of digital content; and"
+          },
+          {
+           "code": "5.c.9.C",
+           "text": "create citations for digital forms of media with assistance."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "digital-citizenship-privacy-safety-and-security-",
+       "title": "Digital citizenship--privacy, safety, and security. The student practices safe, legal, and ethical digital behaviors to become a socially responsible digital citizen. The student is expected to:",
+       "subtopics": [
+        {
+         "id": "digital-citizenship-privacy-safety-and-security-",
+         "title": "Digital citizenship--privacy, safety, and security. The student practices safe, legal, and ethical digital behaviors to become a socially responsible digital citizen. The student is expected to:",
+         "outcomes": [
+          {
+           "code": "5.c.10.A",
+           "text": "discuss cybersecurity strategies such as using a secured internet connection to protect digital information;"
+          },
+          {
+           "code": "5.c.10.B",
+           "text": "discuss how data collection technology is used to track online navigation and identify strategies to maintain digital privacy and security; and"
+          },
+          {
+           "code": "5.c.10.C",
+           "text": "discuss and identify how interactions can escalate online and explain ways to stand up to cyberbullying, including advocating for self and others."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "practical-technology-concepts-processes-the-stud",
+       "title": "Practical technology concepts--processes. The student engages with technology systems, concepts, and operations. The student is expected to:",
+       "subtopics": [
+        {
+         "id": "practical-technology-concepts-processes-the-stud",
+         "title": "Practical technology concepts--processes. The student engages with technology systems, concepts, and operations. The student is expected to:",
+         "outcomes": [
+          {
+           "code": "5.c.11.A",
+           "text": "identify file types for text, graphics, and multimedia files; and"
+          },
+          {
+           "code": "5.c.11.B",
+           "text": "perform software application functions, including inserting or deleting text and images and formatting tools or options."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "practical-technology-concepts-skills-and-tools-t",
+       "title": "Practical technology concepts--skills and tools. The student selects appropriate methods or techniques for an assigned task and identifies and solves simple hardware and software problems using common troubleshooting strategies. The student is expected to:",
+       "subtopics": [
+        {
+         "id": "practical-technology-concepts-skills-and-tools-t",
+         "title": "Practical technology concepts--skills and tools. The student selects appropriate methods or techniques for an assigned task and identifies and solves simple hardware and software problems using common troubleshooting strategies. The student is expected to:",
+         "outcomes": [
+          {
+           "code": "5.c.12.A",
+           "text": "describe and evaluate operating systems, learning management systems, virtual systems, and network systems such as internet, intranet, wireless network, and short-range wireless technology;"
+          },
+          {
+           "code": "5.c.12.B",
+           "text": "organize files using appropriate naming conventions and folder structures;"
+          },
+          {
+           "code": "5.c.12.C",
+           "text": "demonstrate proper touch keyboarding techniques with increasing speed and accuracy and ergonomic strategies such as correct hand and body positions;"
+          },
+          {
+           "code": "5.c.12.D",
+           "text": "demonstrate keyboard or other input device shortcuts with fluency; and"
+          },
+          {
+           "code": "5.c.12.E",
+           "text": "use help sources to research application features and solve software issues."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "7",
+   "units": [
+    {
+     "id": "implementation-the-provisions-of-this-section-sh",
+     "title": "Implementation. The provisions of this section shall be implemented by school districts beginning with the 2024-2025 school year",
+     "topics": [
+      {
+       "id": "implementation-the-provisions-of-this-section-sh",
+       "title": "Implementation. The provisions of this section shall be implemented by school districts beginning with the 2024-2025 school year",
+       "subtopics": [
+        {
+         "id": "implementation-the-provisions-of-this-section-sh",
+         "title": "Implementation. The provisions of this section shall be implemented by school districts beginning with the 2024-2025 school year",
+         "outcomes": [
+          {
+           "code": "7.a.1",
+           "text": "No later than August 1, 2024, the commissioner of education shall determine whether instructional materials funding has been made available to Texas public schools for materials that cover the essential knowledge and skills identified in this section."
+          },
+          {
+           "code": "7.a.2",
+           "text": "If the commissioner makes the determination that instructional materials funding has been made available this section shall be implemented beginning with the 2024-2025 school year and apply to the 2024-2025 and subsequent school years."
+          },
+          {
+           "code": "7.a.3",
+           "text": "If the commissioner does not make the determination that instructional materials funding has been made available under this subsection, the commissioner shall determine no later than August 1 of each subsequent school year whether instructional materials funding has been made available. If the commissioner determines that instructional materials funding has been made available, the commissioner shall notify the State Board of Education and school districts that this section shall be implemented for the following school year."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "introduction",
+     "title": "Introduction",
+     "topics": [
+      {
+       "id": "introduction",
+       "title": "Introduction",
+       "subtopics": [
+        {
+         "id": "introduction",
+         "title": "Introduction",
+         "outcomes": [
+          {
+           "code": "7.b.1",
+           "text": "Technology includes data communication, data processing, and the devices used for these tasks locally and across networks. Learning to apply these technologies motivates students to develop critical-thinking skills, higher-order thinking, and innovative problem solving. Technology applications incorporates the study of digital tools, devices, communication, and programming to empower students to apply current and emerging technologies in their careers, their education, and beyond."
+          },
+          {
+           "code": "7.b.3",
+           "text": "The technology applications TEKS can be integrated into all content areas and can support stand-alone courses. Districts have the flexibility of offering technology applications in a variety of settings, including through a stand-alone course or by integrating the technology applications standards in the essential knowledge and skills for one or more courses or subject areas."
+          },
+          {
+           "code": "7.b.4",
+           "text": "Statements containing the word \"including\" reference content that must be mastered, while those containing the phrase \"such as\" are intended as possible illustrative examples."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "the-technology-applications-texas-essential-know",
+       "title": "The technology applications Texas Essential Knowledge and Skills (TEKS) consist of five strands that prepare students to be literate in technology applications by Grade 8: computational thinking; creativity and innovation; data literacy, management, and representation; digital citizenship; and practical technology concepts. Communication and collaboration skills are embedded across the strands",
+       "subtopics": [
+        {
+         "id": "the-technology-applications-texas-essential-know",
+         "title": "The technology applications Texas Essential Knowledge and Skills (TEKS) consist of five strands that prepare students to be literate in technology applications by Grade 8: computational thinking; creativity and innovation; data literacy, management, and representation; digital citizenship; and practical technology concepts. Communication and collaboration skills are embedded across the strands",
+         "outcomes": [
+          {
+           "code": "7.b.2.A",
+           "text": "Computational thinking. Students break down the problem-solving process into four steps: decomposition, pattern recognition, abstraction, and algorithms."
+          },
+          {
+           "code": "7.b.2.B",
+           "text": "Creativity and innovation. Students use innovative design processes to develop solutions to problems. Students plan a solution, create the solution, test the solution, iterate, and debug the solution as needed, and implement a completely new and innovative product."
+          },
+          {
+           "code": "7.b.2.C",
+           "text": "Data literacy, management, and representation. Students collect, organize, manage, analyze, and publish various types of data for an audience."
+          },
+          {
+           "code": "7.b.2.D",
+           "text": "Digital citizenship. Students practice the ethical and effective application of technology and develop an understanding of cybersecurity and the impact of a digital footprint to become safe, productive, and respectful digital citizens."
+          },
+          {
+           "code": "7.b.2.E",
+           "text": "Practical technology concepts. Students build their knowledge of software applications and hardware focusing on keyboarding and use of applications and tools. Students also build their knowledge and use of technology systems, including integrating the use of multiple applications."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "knowledge-and-skills",
+     "title": "Knowledge and skills",
+     "topics": [
+      {
+       "id": "computational-thinking-foundations-the-student-e",
+       "title": "Computational thinking--foundations. The student explores the core concepts of computational thinking, a set of problem-solving processes that involve decomposition, pattern recognition, abstraction, and algorithms. The student is expected to:",
+       "subtopics": [
+        {
+         "id": "computational-thinking-foundations-the-student-e",
+         "title": "Computational thinking--foundations. The student explores the core concepts of computational thinking, a set of problem-solving processes that involve decomposition, pattern recognition, abstraction, and algorithms. The student is expected to:",
+         "outcomes": [
+          {
+           "code": "7.c.1.A",
+           "text": "decompose real-world problems into structured parts using flowcharts;"
+          },
+          {
+           "code": "7.c.1.B",
+           "text": "analyze the patterns and sequences found in flowcharts;"
+          },
+          {
+           "code": "7.c.1.C",
+           "text": "identify abstraction and analyze how an algorithm the student created can be generalized to solve additional problems;"
+          },
+          {
+           "code": "7.c.1.D",
+           "text": "design a plan collaboratively using flowcharts to document a problem, possible solutions, and an expected timeline for the development of a coded solution;"
+          },
+          {
+           "code": "7.c.1.E",
+           "text": "analyze different techniques used in debugging and apply them to an algorithm; and"
+          },
+          {
+           "code": "7.c.1.F",
+           "text": "analyze the benefits of using iteration (code and sequence repetition) in algorithms."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "computational-thinking-applications-the-student-",
+       "title": "Computational thinking--applications. The student applies the fundamentals of computer science. The student is expected to:",
+       "subtopics": [
+        {
+         "id": "computational-thinking-applications-the-student-",
+         "title": "Computational thinking--applications. The student applies the fundamentals of computer science. The student is expected to:",
+         "outcomes": [
+          {
+           "code": "7.c.2.A",
+           "text": "manipulate and rename variables and describe different data types; and"
+          },
+          {
+           "code": "7.c.2.B",
+           "text": "use a software design process to create text-based programs with nested loops that address different subproblems within a real-world context."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "creativity-and-innovation-innovative-design-proc",
+       "title": "Creativity and innovation--innovative design process. The student takes an active role in learning by using a design process and creative thinking to develop and evaluate solutions, considering a variety of local and global perspectives. The student is expected to:",
+       "subtopics": [
+        {
+         "id": "creativity-and-innovation-innovative-design-proc",
+         "title": "Creativity and innovation--innovative design process. The student takes an active role in learning by using a design process and creative thinking to develop and evaluate solutions, considering a variety of local and global perspectives. The student is expected to:",
+         "outcomes": [
+          {
+           "code": "7.c.3.A",
+           "text": "resolve challenges in design processes independently using goal setting and personal character traits such as demonstrating responsibility and advocating for self appropriately;"
+          },
+          {
+           "code": "7.c.3.B",
+           "text": "discuss and implement a design process that includes planning and selecting digital tools to develop and refine a prototype or model through trial and error; and"
+          },
+          {
+           "code": "7.c.3.C",
+           "text": "identify how the design process is used in various industries."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "creativity-and-innovation-emerging-technologies-",
+       "title": "Creativity and innovation--emerging technologies. The student demonstrates a thorough understanding of the role of technology throughout history and its impact on societies. The student is expected to:",
+       "subtopics": [
+        {
+         "id": "creativity-and-innovation-emerging-technologies-",
+         "title": "Creativity and innovation--emerging technologies. The student demonstrates a thorough understanding of the role of technology throughout history and its impact on societies. The student is expected to:",
+         "outcomes": [
+          {
+           "code": "7.c.4.A",
+           "text": "explain how changes in technology throughout history have impacted various areas of study;"
+          },
+          {
+           "code": "7.c.4.B",
+           "text": "explain how global trends impact the development of technology; and"
+          },
+          {
+           "code": "7.c.4.C",
+           "text": "transfer current knowledge to the learning of newly encountered technologies."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "data-literacy-management-and-representation-coll",
+       "title": "Data literacy, management, and representation--collect data. The student uses advanced digital strategies to collect and represent data. The student is expected to:",
+       "subtopics": [
+        {
+         "id": "data-literacy-management-and-representation-coll",
+         "title": "Data literacy, management, and representation--collect data. The student uses advanced digital strategies to collect and represent data. The student is expected to:",
+         "outcomes": [
+          {
+           "code": "7.c.5.A",
+           "text": "demonstrate how data can be represented in a binary number systems; and"
+          },
+          {
+           "code": "7.c.5.B",
+           "text": "evaluate advanced search strategies, including keywords, Boolean operators, and limiters."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "knowledge-and-skills",
+       "title": "Knowledge and skills",
+       "subtopics": [
+        {
+         "id": "knowledge-and-skills",
+         "title": "Knowledge and skills",
+         "outcomes": [
+          {
+           "code": "7.c.6",
+           "text": "Data literacy, management, and representation--organize, manage, and analyze data. The student uses digital tools to transform data, make inferences, and predictions. The student is expected to use digital tools in order to transform data to analyze trends and make inferences and predictions."
+          },
+          {
+           "code": "7.c.7",
+           "text": "Data literacy, management, and representation--communicate and publish results. The student creates digital products to communicate data to an audience for an intended purpose. The student is expected to use digital tools to communicate and display data from a product or process to inform or persuade an intended audience."
+          },
+          {
+           "code": "7.c.11",
+           "text": "Practical technology concepts--processes. The student evaluates and selects appropriate methods or techniques for an independent project and identifies and solves common hardware and software problems using troubleshooting strategies. The student is expected to choose a variety of digital tools to create, share, and communicate digital artifacts."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "digital-citizenship-social-interactions-the-stud",
+       "title": "Digital citizenship--social interactions. The student understands different styles of digital communication and that a student's actions online can have a long-term impact. The student is expected to:",
+       "subtopics": [
+        {
+         "id": "digital-citizenship-social-interactions-the-stud",
+         "title": "Digital citizenship--social interactions. The student understands different styles of digital communication and that a student's actions online can have a long-term impact. The student is expected to:",
+         "outcomes": [
+          {
+           "code": "7.c.8.A",
+           "text": "classify actions as having a positive or negative effect on a digital footprint;"
+          },
+          {
+           "code": "7.c.8.B",
+           "text": "create and revise formal and informal communications using a feedback process and appropriate digital etiquette; and"
+          },
+          {
+           "code": "7.c.8.C",
+           "text": "collaborate on digital platforms such as recording a video conference presentation using appropriate formal and informal digital etiquette."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "digital-citizenship-ethics-and-laws-the-student-",
+       "title": "Digital citizenship--ethics and laws. The student recognizes and practices responsible, legal, and ethical behavior while using digital tools and resources. The student is expected to:",
+       "subtopics": [
+        {
+         "id": "digital-citizenship-ethics-and-laws-the-student-",
+         "title": "Digital citizenship--ethics and laws. The student recognizes and practices responsible, legal, and ethical behavior while using digital tools and resources. The student is expected to:",
+         "outcomes": [
+          {
+           "code": "7.c.9.A",
+           "text": "adhere to local acceptable use policy (AUP) and practice and model safe, ethical, and positive online behaviors;"
+          },
+          {
+           "code": "7.c.9.B",
+           "text": "explain the importance of intellectual property laws, including the benefits of protection for content owners, and the consequences of violating these laws;"
+          },
+          {
+           "code": "7.c.9.C",
+           "text": "create citations and cite sources for a variety of digital forms of intellectual property; and"
+          },
+          {
+           "code": "7.c.9.D",
+           "text": "evaluate how various types of media, including social media, and technology can be used to exaggerate and misrepresent information."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "digital-citizenship-privacy-safety-and-security-",
+       "title": "Digital citizenship--privacy, safety, and security. The student practices safe, legal, and ethical digital behaviors to become a socially responsible digital citizen. The student is expected to:",
+       "subtopics": [
+        {
+         "id": "digital-citizenship-privacy-safety-and-security-",
+         "title": "Digital citizenship--privacy, safety, and security. The student practices safe, legal, and ethical digital behaviors to become a socially responsible digital citizen. The student is expected to:",
+         "outcomes": [
+          {
+           "code": "7.c.10.A",
+           "text": "describe and model ways to protect oneself from real-world cybersecurity attacks; and"
+          },
+          {
+           "code": "7.c.10.B",
+           "text": "analyze the negative impacts of cyberbullying on the victim and the bully."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "practical-technology-concepts-skills-and-tools-t",
+       "title": "Practical technology concepts--skills and tools. The student leverages technology systems, concepts, and operations to produce digital artifacts. The student is expected to:",
+       "subtopics": [
+        {
+         "id": "practical-technology-concepts-skills-and-tools-t",
+         "title": "Practical technology concepts--skills and tools. The student leverages technology systems, concepts, and operations to produce digital artifacts. The student is expected to: (1 of 2)",
+         "outcomes": [
+          {
+           "code": "7.c.12.A",
+           "text": "demonstrate proficiency in the appropriate use of technology terminology in projects through team collaboration and communication;"
+          },
+          {
+           "code": "7.c.12.B",
+           "text": "demonstrate effective file management strategies such as file naming conventions, local and remote locations, backup, hierarchy, folder structure, file conversion, tags, and emerging digital organizational strategies with assistance;"
+          },
+          {
+           "code": "7.c.12.C",
+           "text": "select and use appropriate platform and tools, including selecting and using software or hardware for a defined task;"
+          },
+          {
+           "code": "7.c.12.D",
+           "text": "demonstrate improvement in speed and accuracy as measured by words per minute when applying correct keyboarding techniques;"
+          }
+         ]
+        },
+        {
+         "id": "practical-technology-concepts-skills-and-tools-t-2",
+         "title": "Practical technology concepts--skills and tools. The student leverages technology systems, concepts, and operations to produce digital artifacts. The student is expected to: (2 of 2)",
+         "outcomes": [
+          {
+           "code": "7.c.12.E",
+           "text": "select and use appropriate shortcuts within applications;"
+          },
+          {
+           "code": "7.c.12.F",
+           "text": "research and test potential solutions to solve hardware and software problems;"
+          },
+          {
+           "code": "7.c.12.G",
+           "text": "use a variety of types of local and remote data storage to store or share data such as cloud architecture or local server; and"
+          },
+          {
+           "code": "7.c.12.H",
+           "text": "select and use productivity tools found in spread sheet, word processing, and publication applications to create digital artifacts such as reports, graphs, and charts with increasing complexity."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "8",
+   "units": [
+    {
+     "id": "implementation-the-provisions-of-this-section-sh",
+     "title": "Implementation. The provisions of this section shall be implemented by school districts beginning with the 2024-2025 school year",
+     "topics": [
+      {
+       "id": "implementation-the-provisions-of-this-section-sh",
+       "title": "Implementation. The provisions of this section shall be implemented by school districts beginning with the 2024-2025 school year",
+       "subtopics": [
+        {
+         "id": "implementation-the-provisions-of-this-section-sh",
+         "title": "Implementation. The provisions of this section shall be implemented by school districts beginning with the 2024-2025 school year",
+         "outcomes": [
+          {
+           "code": "8.a.1",
+           "text": "No later than August 1, 2024, the commissioner of education shall determine whether instructional materials funding has been made available to Texas public schools for materials that cover the essential knowledge and skills identified in this section."
+          },
+          {
+           "code": "8.a.2",
+           "text": "If the commissioner makes the determination that instructional materials funding has been made available this section shall be implemented beginning with the 2024-2025 school year and apply to the 2024-2025 and subsequent school years."
+          },
+          {
+           "code": "8.a.3",
+           "text": "If the commissioner does not make the determination that instructional materials funding has been made available under this subsection, the commissioner shall determine no later than August 1 of each subsequent school year whether instructional materials funding has been made available. If the commissioner determines that instructional materials funding has been made available, the commissioner shall notify the State Board of Education and school districts that this section shall be implemented for the following school year."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "introduction",
+     "title": "Introduction",
+     "topics": [
+      {
+       "id": "introduction",
+       "title": "Introduction",
+       "subtopics": [
+        {
+         "id": "introduction",
+         "title": "Introduction",
+         "outcomes": [
+          {
+           "code": "8.b.1",
+           "text": "Technology includes data communication, data processing, and the devices used for these tasks locally and across networks. Learning to apply these technologies motivates students to develop critical-thinking skills, higher-order thinking, and innovative problem solving. Technology applications incorporates the study of digital tools, devices, communication, and programming to empower students to apply current and emerging technologies in their careers, their education, and beyond."
+          },
+          {
+           "code": "8.b.3",
+           "text": "The technology applications TEKS can be integrated into all content areas and can support stand-alone courses. Districts have the flexibility of offering technology applications in a variety of settings, including through a stand-alone course or by integrating the technology applications standards in the essential knowledge and skills for one or more courses or subject areas."
+          },
+          {
+           "code": "8.b.4",
+           "text": "Statements containing the word \"including\" reference content that must be mastered, while those containing the phrase \"such as\" are intended as possible illustrative examples."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "the-technology-applications-texas-essential-know",
+       "title": "The technology applications Texas Essential Knowledge and Skills (TEKS) consist of five strands that prepare students to be literate in technology applications by Grade 8: computational thinking; creativity and innovation; data literacy, management, and representation; digital citizenship; and practical technology concepts. Communication and collaboration skills are embedded across the strands",
+       "subtopics": [
+        {
+         "id": "the-technology-applications-texas-essential-know",
+         "title": "The technology applications Texas Essential Knowledge and Skills (TEKS) consist of five strands that prepare students to be literate in technology applications by Grade 8: computational thinking; creativity and innovation; data literacy, management, and representation; digital citizenship; and practical technology concepts. Communication and collaboration skills are embedded across the strands",
+         "outcomes": [
+          {
+           "code": "8.b.2.A",
+           "text": "Computational thinking. Students break down the problem-solving process into four steps: decomposition, pattern recognition, abstraction, and algorithms."
+          },
+          {
+           "code": "8.b.2.B",
+           "text": "Creativity and innovation. Students use innovative design processes to develop solutions to problems. Students plan a solution, create the solution, test the solution, iterate, and debug the solution as needed, and implement a completely new and innovative product."
+          },
+          {
+           "code": "8.b.2.C",
+           "text": "Data literacy, management, and representation. Students collect, organize, manage, analyze, and publish various types of data for an audience."
+          },
+          {
+           "code": "8.b.2.D",
+           "text": "Digital citizenship. Students practice the ethical and effective application of technology and develop an understanding of cybersecurity and the impact of a digital footprint to become safe, productive, and respectful digital citizens."
+          },
+          {
+           "code": "8.b.2.E",
+           "text": "Practical technology concepts. Students build their knowledge of software applications and hardware focusing on keyboarding and use of applications and tools. Students also build their knowledge and use of technology systems, including integrating the use of multiple applications."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "knowledge-and-skills",
+     "title": "Knowledge and skills",
+     "topics": [
+      {
+       "id": "computational-thinking-foundations-the-student-e",
+       "title": "Computational thinking--foundations. The student explores the core concepts of computational thinking, a set of problem-solving processes that involve decomposition, pattern recognition, abstraction, and algorithms. The student is expected to:",
+       "subtopics": [
+        {
+         "id": "computational-thinking-foundations-the-student-e",
+         "title": "Computational thinking--foundations. The student explores the core concepts of computational thinking, a set of problem-solving processes that involve decomposition, pattern recognition, abstraction, and algorithms. The student is expected to:",
+         "outcomes": [
+          {
+           "code": "8.c.1.A",
+           "text": "decompose real-world problems into structured parts using pseudocode;"
+          },
+          {
+           "code": "8.c.1.B",
+           "text": "analyze the patterns and sequences found in pseudocode and identify its variables;"
+          },
+          {
+           "code": "8.c.1.C",
+           "text": "practice abstraction by developing a generalized algorithm that can solve different types of problems;"
+          },
+          {
+           "code": "8.c.1.D",
+           "text": "design a plan collaboratively using pseudocode to document a problem, possible solutions, and an expected timeline for the development of a coded solution;"
+          },
+          {
+           "code": "8.c.1.E",
+           "text": "develop, compare, and improve algorithms for a specific task to solve a problem; and"
+          },
+          {
+           "code": "8.c.1.F",
+           "text": "analyze the benefits of using iteration (code and sequence repetition) in algorithms."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "computational-thinking-applications-the-student-",
+       "title": "Computational thinking--applications. The student applies the fundamentals of computer science. The student is expected to:",
+       "subtopics": [
+        {
+         "id": "computational-thinking-applications-the-student-",
+         "title": "Computational thinking--applications. The student applies the fundamentals of computer science. The student is expected to:",
+         "outcomes": [
+          {
+           "code": "8.c.2.A",
+           "text": "construct named variables with multiple data types and perform operations on their values;"
+          },
+          {
+           "code": "8.c.2.B",
+           "text": "use a software design process to create text-based programs with nested loops that address different subproblems within a real-world context; and"
+          },
+          {
+           "code": "8.c.2.C",
+           "text": "modify and implement previously written code to develop improved programs."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "creativity-and-innovation-innovative-design-proc",
+       "title": "Creativity and innovation--innovative design process. The student takes an active role in learning by using a design process and creative thinking to develop and evaluate solutions, considering a variety of local and global perspectives. The student is expected to:",
+       "subtopics": [
+        {
+         "id": "creativity-and-innovation-innovative-design-proc",
+         "title": "Creativity and innovation--innovative design process. The student takes an active role in learning by using a design process and creative thinking to develop and evaluate solutions, considering a variety of local and global perspectives. The student is expected to:",
+         "outcomes": [
+          {
+           "code": "8.c.3.A",
+           "text": "demonstrate innovation in a design process using goal setting and personal character traits, including demonstrating calculated risk-taking and tolerance;"
+          },
+          {
+           "code": "8.c.3.B",
+           "text": "discuss and implement a design process that includes planning, selecting digital tools to develop, test, and evaluate design limitations, and refining a prototype or model; and"
+          },
+          {
+           "code": "8.c.3.C",
+           "text": "identify how the design process is used in various industries."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "creativity-and-innovation-emerging-technologies-",
+       "title": "Creativity and innovation--emerging technologies. The student demonstrates a thorough understanding of the role of technology throughout history and its impact on societies. The student is expected to:",
+       "subtopics": [
+        {
+         "id": "creativity-and-innovation-emerging-technologies-",
+         "title": "Creativity and innovation--emerging technologies. The student demonstrates a thorough understanding of the role of technology throughout history and its impact on societies. The student is expected to:",
+         "outcomes": [
+          {
+           "code": "8.c.4.A",
+           "text": "evaluate how changes in technology throughout history have impacted various areas of study;"
+          },
+          {
+           "code": "8.c.4.B",
+           "text": "evaluate and predict how global trends impact the development of technology; and"
+          },
+          {
+           "code": "8.c.4.C",
+           "text": "transfer current knowledge to the learning of newly encountered technologies."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "data-literacy-management-and-representation-coll",
+       "title": "Data literacy, management, and representation--collect data. The student uses advanced digital strategies to collect and represent data. The student is expected to:",
+       "subtopics": [
+        {
+         "id": "data-literacy-management-and-representation-coll",
+         "title": "Data literacy, management, and representation--collect data. The student uses advanced digital strategies to collect and represent data. The student is expected to:",
+         "outcomes": [
+          {
+           "code": "8.c.5.A",
+           "text": "compare and contrast data types, including binary, integers, real numbers, Boolean data, and text-based representations; and"
+          },
+          {
+           "code": "8.c.5.B",
+           "text": "apply appropriate search strategies, including keywords, Boolean operators, and limiters, to achieve a specified outcome that includes a variety of file formats."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "knowledge-and-skills",
+       "title": "Knowledge and skills",
+       "subtopics": [
+        {
+         "id": "knowledge-and-skills",
+         "title": "Knowledge and skills",
+         "outcomes": [
+          {
+           "code": "8.c.6",
+           "text": "Data literacy, management, and representation--organize, manage, and analyze data. The student uses digital tools to transform data, make inferences, and predictions. The student is expected to use digital tools in order to transform data, analyze trends, and predict possibilities and develop steps for the creation of an innovative process or product."
+          },
+          {
+           "code": "8.c.7",
+           "text": "Data literacy, management, and representation--communicate and publish results. The student creates digital products to communicate data to an audience for an intended purpose. The student is expected to use digital tools to communicate and publish data from a product or process to persuade an intended audience."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "digital-citizenship-social-interactions-the-stud",
+       "title": "Digital citizenship--social interactions. The student understands different styles of digital communication and that a student's actions online can have a long-term impact. The student is expected to:",
+       "subtopics": [
+        {
+         "id": "digital-citizenship-social-interactions-the-stud",
+         "title": "Digital citizenship--social interactions. The student understands different styles of digital communication and that a student's actions online can have a long-term impact. The student is expected to:",
+         "outcomes": [
+          {
+           "code": "8.c.8.A",
+           "text": "analyze the importance of managing a digital footprint and how a digital footprint can affect the future;"
+          },
+          {
+           "code": "8.c.8.B",
+           "text": "create and publish a formal digital communication for a global audience using appropriate digital etiquette; and"
+          },
+          {
+           "code": "8.c.8.C",
+           "text": "collaborate and publish for a global audience on digital platforms such as recording and editing videos using appropriate formal and informal digital etiquette."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "digital-citizenship-ethics-and-laws-the-student-",
+       "title": "Digital citizenship--ethics and laws. The student recognizes and practices responsible, legal, and ethical behavior while using digital tools and resources. The student is expected to:",
+       "subtopics": [
+        {
+         "id": "digital-citizenship-ethics-and-laws-the-student-",
+         "title": "Digital citizenship--ethics and laws. The student recognizes and practices responsible, legal, and ethical behavior while using digital tools and resources. The student is expected to:",
+         "outcomes": [
+          {
+           "code": "8.c.9.A",
+           "text": "adhere to local acceptable use policy (AUP) and practice and advocate for safe, ethical, and positive online behaviors;"
+          },
+          {
+           "code": "8.c.9.B",
+           "text": "adhere to appropriate intellectual property law when creating digital products;"
+          },
+          {
+           "code": "8.c.9.C",
+           "text": "create citations and cite sources for a variety of digital forms of intellectual property; and"
+          },
+          {
+           "code": "8.c.9.D",
+           "text": "evaluate the bias of digital information sources, including websites."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "digital-citizenship-privacy-safety-and-security-",
+       "title": "Digital citizenship--privacy, safety, and security. The student practices safe, legal, and ethical digital behaviors to become a socially responsible digital citizen. The student is expected to:",
+       "subtopics": [
+        {
+         "id": "digital-citizenship-privacy-safety-and-security-",
+         "title": "Digital citizenship--privacy, safety, and security. The student practices safe, legal, and ethical digital behaviors to become a socially responsible digital citizen. The student is expected to:",
+         "outcomes": [
+          {
+           "code": "8.c.10.A",
+           "text": "analyze real-world scenarios to identify cybersecurity threats and propose ways to prevent harm; and"
+          },
+          {
+           "code": "8.c.10.B",
+           "text": "evaluate scenarios or case studies to identify warning signs of a cyberbullying victim such as withdrawal or lack of sleep and predict the outcomes for both the victim and the bully."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "practical-technology-concepts-processes-the-stud",
+       "title": "Practical technology concepts--processes. The student evaluates and selects appropriate methods or techniques for an independent project and identifies and solves common hardware and software problems using troubleshooting strategies. The student is expected to:",
+       "subtopics": [
+        {
+         "id": "practical-technology-concepts-processes-the-stud",
+         "title": "Practical technology concepts--processes. The student evaluates and selects appropriate methods or techniques for an independent project and identifies and solves common hardware and software problems using troubleshooting strategies. The student is expected to:",
+         "outcomes": [
+          {
+           "code": "8.c.11.A",
+           "text": "combine various file formats for a specific project or audience; and"
+          },
+          {
+           "code": "8.c.11.B",
+           "text": "share and seek feedback on files in various formats, including text, raster and vector graphics, video, and audio files."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "practical-technology-concepts-skills-and-tools-t",
+       "title": "Practical technology concepts--skills and tools. The student leverages technology systems, concepts, and operations to produce digital artifacts. The student is expected to:",
+       "subtopics": [
+        {
+         "id": "practical-technology-concepts-skills-and-tools-t",
+         "title": "Practical technology concepts--skills and tools. The student leverages technology systems, concepts, and operations to produce digital artifacts. The student is expected to: (1 of 2)",
+         "outcomes": [
+          {
+           "code": "8.c.12.A",
+           "text": "integrate use of appropriate technology terminology in scholarly inquiry and dialogue such as classroom discussion and written samples;"
+          },
+          {
+           "code": "8.c.12.B",
+           "text": "implement effective file management strategies independently, including file naming conventions, local and remote locations, backup, hierarchy, folder structure, file conversion, tags, and emerging digital organizational strategies;"
+          },
+          {
+           "code": "8.c.12.C",
+           "text": "select and use appropriate platform and tools, including selecting and using software or hardware to transfer data;"
+          },
+          {
+           "code": "8.c.12.D",
+           "text": "demonstrate improvement in speed and accuracy as measured by words per minute when applying correct keyboarding techniques;"
+          }
+         ]
+        },
+        {
+         "id": "practical-technology-concepts-skills-and-tools-t-2",
+         "title": "Practical technology concepts--skills and tools. The student leverages technology systems, concepts, and operations to produce digital artifacts. The student is expected to: (2 of 2)",
+         "outcomes": [
+          {
+           "code": "8.c.12.E",
+           "text": "select and use appropriate shortcuts within applications;"
+          },
+          {
+           "code": "8.c.12.F",
+           "text": "apply appropriate troubleshooting techniques and seek technical assistance as needed;"
+          },
+          {
+           "code": "8.c.12.G",
+           "text": "compare types of local and remote data storage such as cloud architecture or local server and select the appropriate type of storage to store and share data; and"
+          },
+          {
+           "code": "8.c.12.H",
+           "text": "select and use productivity tools found in spread sheet, word processing, and publication applications to create digital artifacts, including reports, graphs, and charts, with increasing complexity."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "build": {
+  "builtAt": "2026-10-14T16:20:49.105Z",
+  "model": "none",
+  "usd": 0,
+  "expectedCodes": 311,
+  "coverage": 1,
+  "missingCodes": [],
+  "counts": {
+   "grades": 8,
+   "units": 24,
+   "topics": 97,
+   "subtopics": 99,
+   "outcomes": 311
+  },
+  "warnings": []
+ }
+}

@@ -1,0 +1,200 @@
+{
+ "id": "cie-alevel-tamil-9689-2026",
+ "region": "INTL",
+ "framework": "Cambridge International A Level Tamil (9689) syllabus 2026",
+ "board": "Cambridge",
+ "qualification": "A Level",
+ "subject": "Tamil",
+ "syllabusCode": "9689",
+ "gradeSystem": "course",
+ "source": {
+  "urls": [
+   "https://www.cambridgeinternational.org/Images/697406-2026-syllabus.pdf",
+   "https://www.cambridgeinternational.org/programmes-and-qualifications/cambridge-international-as-and-a-level-tamil-9689/"
+  ],
+  "publisher": "Cambridge University Press & Assessment (Cambridge International Education)",
+  "licence": "© Cambridge University Press & Assessment; structure + our own wording only",
+  "firstExam": "2026"
+ },
+ "grades": [
+  {
+   "grade": "A Level",
+   "units": [
+    {
+     "id": "a-level-4-2-component-3-essay",
+     "title": "[A Level] 4.2 Component 3: Essay",
+     "topics": [
+      {
+       "id": "1-generation-gap",
+       "title": "1. Generation gap",
+       "subtopics": [
+        {
+         "id": "1-generation-gap",
+         "title": "1. Generation gap",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Study conflicts between generations, relationships between young and older people, and young people’s attitudes towards family life."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "2-the-media",
+       "title": "2. The media",
+       "subtopics": [
+        {
+         "id": "2-the-media",
+         "title": "2. The media",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Study the media’s role and influence, including advertising’s power."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "3-employment-and-unemployment",
+       "title": "3. Employment and unemployment",
+       "subtopics": [
+        {
+         "id": "3-employment-and-unemployment",
+         "title": "3. Employment and unemployment",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Study employment preparation, career opportunities, qualifications, workplace routines, unemployment, declining industries, solutions and migrant workers."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "5-social-and-economic-development",
+       "title": "5. Social and economic development",
+       "subtopics": [
+        {
+         "id": "5-social-and-economic-development",
+         "title": "5. Social and economic development",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Study the benefits and drawbacks of social and economic development, including recent developments and likely future trends."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "a-level-4-5-set-texts-for-component-4",
+     "title": "[A Level] 4.5 Set texts for Component 4",
+     "topics": [
+      {
+       "id": "section-1",
+       "title": "Section 1",
+       "subtopics": [
+        {
+         "id": "selected-sangam-literature",
+         "title": "Selected Sangam Literature",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Study the selected Sangam literature, including Akanaṉūṟu, Puṟanāṉūṟu, Naṟṟiṇai and the specified Cilappatikāram passage."
+          }
+         ]
+        },
+        {
+         "id": "tirukkur-al-chapters",
+         "title": "Tirukkuṟaḷ Chapters",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Study the specified chapters of Tirukkuṟaḷ: chapters 16, 27, 42 and 98."
+          }
+         ]
+        },
+        {
+         "id": "sundaramurtti-nayanar-hymns",
+         "title": "Sundaramurtti Nayanar Hymns",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Study ten hymns from the specified seventh Thirumurai work by Sundaramurtti Nayanar."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "section-2",
+       "title": "Section 2",
+       "subtopics": [
+        {
+         "id": "puthiya-konangi",
+         "title": "Puthiya Konangi",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Study Bharatiyar’s modern poem “Puthiya Konangi”."
+          }
+         ]
+        },
+        {
+         "id": "pattanam",
+         "title": "Pattanam",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Study Bharathidasan’s “Pattanam” from Azhagin Sirippu."
+          }
+         ]
+        },
+        {
+         "id": "karippu-manigal",
+         "title": "Karippu Manigal",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Study Rajam Krishnan’s novel Karippu Manigal."
+          }
+         ]
+        },
+        {
+         "id": "specified-tamil-short-stories",
+         "title": "Specified Tamil Short Stories",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Study the five specified Tamil short stories by Puthumaippithan, Sujatha, V. V. S. Aiyar, Ki. Va. Jagannathan and S. Ramakrishnan."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "build": {
+  "builtAt": "2026-10-14T05:49:13.937Z",
+  "model": "gpt-5.6-luna",
+  "usd": 0.0061,
+  "expectedCodes": null,
+  "coverage": null,
+  "missingCodes": [],
+  "counts": {
+   "grades": 1,
+   "units": 2,
+   "topics": 6,
+   "subtopics": 11,
+   "outcomes": 11
+  },
+  "warnings": []
+ }
+}

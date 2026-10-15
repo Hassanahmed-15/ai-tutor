@@ -1,0 +1,1190 @@
+{
+ "id": "pk-ncp-computer-graphics-animation-9-12",
+ "region": "PK",
+ "framework": "National Curriculum of Pakistan 2022-23",
+ "board": null,
+ "qualification": "SSC/HSSC",
+ "subject": "Computer Graphics and Animation",
+ "syllabusCode": null,
+ "gradeSystem": "grade",
+ "source": {
+  "urls": [
+   "https://ncc.gov.pk/SiteImage/Misc/files/21-Computer%20Graphics%20and%20Animation.pdf"
+  ],
+  "publisher": "National Curriculum Council, Ministry of Federal Education and Professional Training",
+  "licence": "Government publication; structure + our own wording only",
+  "firstExam": null
+ },
+ "grades": [
+  {
+   "grade": "9",
+   "units": [
+    {
+     "id": "domain-a-display-technologies",
+     "title": "Domain A: Display technologies",
+     "topics": [
+      {
+       "id": "display-basics",
+       "title": "Display basics",
+       "subtopics": [
+        {
+         "id": "pixels-and-resolution",
+         "title": "Pixels and resolution",
+         "outcomes": [
+          {
+           "code": "CGA-09-A-01",
+           "text": "Define pixels and resolution for display devices."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "crt-and-flat-panels",
+       "title": "CRT and flat panels",
+       "subtopics": [
+        {
+         "id": "crt-monitors",
+         "title": "CRT monitors",
+         "outcomes": [
+          {
+           "code": "CGA-09-A-02",
+           "text": "Name the parts of a CRT monitor: electron gun, cathode, deflection yoke, phosphor coating, focusing system, deflection plates."
+          },
+          {
+           "code": "CGA-09-A-03",
+           "text": "Explain how a CRT monitor works."
+          }
+         ]
+        },
+        {
+         "id": "flat-panel-displays",
+         "title": "Flat panel displays",
+         "outcomes": [
+          {
+           "code": "CGA-09-A-04",
+           "text": "Define the basics of flat panel displays."
+          },
+          {
+           "code": "CGA-09-A-05",
+           "text": "Explain how LCD, LED and plasma panels work."
+          },
+          {
+           "code": "CGA-09-A-06",
+           "text": "Explain the advantages of flat panels over CRT."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "scan-systems",
+       "title": "Scan systems",
+       "subtopics": [
+        {
+         "id": "random-scan-displays",
+         "title": "Random scan displays",
+         "outcomes": [
+          {
+           "code": "CGA-09-A-07",
+           "text": "Define random scan display systems."
+          },
+          {
+           "code": "CGA-09-A-08",
+           "text": "Explain how a random scan display draws with an electron beam on specific screen areas."
+          }
+         ]
+        },
+        {
+         "id": "video-controller",
+         "title": "Video controller",
+         "outcomes": [
+          {
+           "code": "CGA-09-A-09",
+           "text": "Explain the video controller and its parts."
+          },
+          {
+           "code": "CGA-09-A-10",
+           "text": "Tell the display processor from the video controller."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "domain-b-graphics",
+     "title": "Domain B: Graphics",
+     "topics": [
+      {
+       "id": "graphics-fundamentals",
+       "title": "Graphics fundamentals",
+       "subtopics": [
+        {
+         "id": "raster-and-vector-graphics",
+         "title": "Raster and vector graphics",
+         "outcomes": [
+          {
+           "code": "CGA-09-B-01",
+           "text": "Define raster and vector graphics."
+          },
+          {
+           "code": "CGA-09-B-02",
+           "text": "Explain basic design principles of both categories."
+          },
+          {
+           "code": "CGA-09-B-03",
+           "text": "Describe pixels and paths in graphics."
+          }
+         ]
+        },
+        {
+         "id": "colour-in-graphics",
+         "title": "Colour in graphics",
+         "outcomes": [
+          {
+           "code": "CGA-09-B-04",
+           "text": "Explain primary, secondary and tertiary colours, mainly CMYK."
+          },
+          {
+           "code": "CGA-09-B-05",
+           "text": "Identify at least 20 colour combinations for digital graphics."
+          }
+         ]
+        },
+        {
+         "id": "file-types-and-elements",
+         "title": "File types and elements",
+         "outcomes": [
+          {
+           "code": "CGA-09-B-06",
+           "text": "Analyse graphic file types such as JPG, JPEG, GIF and TIFF."
+          },
+          {
+           "code": "CGA-09-B-07",
+           "text": "Explain the elements of computer graphics: line, shape, form, texture, space, imagery, typography and colour."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "making-graphics",
+       "title": "Making graphics",
+       "subtopics": [
+        {
+         "id": "vector-and-2d-design-tools",
+         "title": "Vector and 2D design tools",
+         "outcomes": [
+          {
+           "code": "CGA-09-B-08",
+           "text": "Create simple vector images in Inkscape and LibreOffice Draw."
+          },
+          {
+           "code": "CGA-09-B-09",
+           "text": "Define 2D and 3D graphics."
+          },
+          {
+           "code": "CGA-09-B-10",
+           "text": "Identify x, y and z axes for 2D and 3D plotting."
+          },
+          {
+           "code": "CGA-09-B-11",
+           "text": "Design a 2D image in Canva."
+          }
+         ]
+        },
+        {
+         "id": "simple-3d-modelling",
+         "title": "Simple 3D modelling",
+         "outcomes": [
+          {
+           "code": "CGA-09-B-012",
+           "text": "Design a 3D model in SketchUp Free as a class project."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "domain-c-audio-and-video",
+     "title": "Domain C: Audio and Video",
+     "topics": [
+      {
+       "id": "audio",
+       "title": "Audio",
+       "subtopics": [
+        {
+         "id": "sound-and-audio",
+         "title": "Sound and audio",
+         "outcomes": [
+          {
+           "code": "CGA-09-C-01",
+           "text": "Define sound and audio and their types."
+          },
+          {
+           "code": "CGA-09-C-02",
+           "text": "Identify components of analogue audio: signal levels, sound wave, continuous stream."
+          },
+          {
+           "code": "CGA-09-C-03",
+           "text": "Identify components of digital audio: digital stream and bits."
+          },
+          {
+           "code": "CGA-09-C-04",
+           "text": "Explain audio types such as MP3, WAV, AAC and WMA."
+          },
+          {
+           "code": "CGA-09-C-05",
+           "text": "Record a podcast on StreamYard and share it."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "video",
+       "title": "Video",
+       "subtopics": [
+        {
+         "id": "video-basics",
+         "title": "Video basics",
+         "outcomes": [
+          {
+           "code": "CGA-09-C-06",
+           "text": "Define video as moving visual media with sound."
+          },
+          {
+           "code": "CGA-09-C-07",
+           "text": "Identify video recorder parts: lens, imager, recorder, converter."
+          },
+          {
+           "code": "CGA-09-C-08",
+           "text": "Explain recording a video and breaking it down for frame-based editing."
+          },
+          {
+           "code": "CGA-09-C-09",
+           "text": "Explain video types: MP4, MOV, AVI and WebM."
+          }
+         ]
+        },
+        {
+         "id": "basic-video-editing",
+         "title": "Basic video editing",
+         "outcomes": [
+          {
+           "code": "CGA-09-C-010",
+           "text": "Create a video by screen recording."
+          },
+          {
+           "code": "CGA-09-C-11",
+           "text": "Add other clips to the video you made."
+          },
+          {
+           "code": "CGA-09-C-12",
+           "text": "Add transitions, trim frames, insert filters and captions."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "domain-d-animation-and-virtual-reality",
+     "title": "Domain D: Animation and Virtual Reality",
+     "topics": [
+      {
+       "id": "animation-basics",
+       "title": "Animation basics",
+       "subtopics": [
+        {
+         "id": "animation-principles",
+         "title": "Animation principles",
+         "outcomes": [
+          {
+           "code": "CGA-09-D-01",
+           "text": "Define animation as turning still images into moving ones."
+          },
+          {
+           "code": "CGA-09-D-02",
+           "text": "Discuss arcs as a design principle for smooth curved motion."
+          },
+          {
+           "code": "CGA-09-D-03",
+           "text": "Define traditional animation and the frame."
+          },
+          {
+           "code": "CGA-09-D-04",
+           "text": "Tell 2D from 3D animation."
+          },
+          {
+           "code": "CGA-09-D-05",
+           "text": "Describe animation operations: timing, spacing, squash and stretch."
+          }
+         ]
+        },
+        {
+         "id": "first-animation-and-vr",
+         "title": "First animation and VR",
+         "outcomes": [
+          {
+           "code": "CGA-09-D-06",
+           "text": "Design a simple house animation in Animaker."
+          },
+          {
+           "code": "CGA-09-D-07",
+           "text": "Define the basics of virtual reality."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "10",
+   "units": [
+    {
+     "id": "domain-a-display-technologies",
+     "title": "Domain A: Display technologies",
+     "topics": [
+      {
+       "id": "graphics-processors",
+       "title": "Graphics processors",
+       "subtopics": [
+        {
+         "id": "what-a-gpu-is",
+         "title": "What a GPU is",
+         "outcomes": [
+          {
+           "code": "CGA-10-A-01",
+           "text": "Define the graphics processor (GPU)."
+          },
+          {
+           "code": "CGA-10-A-02",
+           "text": "Explain the purpose and uses of GPUs."
+          }
+         ]
+        },
+        {
+         "id": "gpu-components",
+         "title": "GPU components",
+         "outcomes": [
+          {
+           "code": "CGA-10-A-03",
+           "text": "Name GPU parts: memory interface, digital-to-analogue converter, cooling device, connectors, PCI."
+          },
+          {
+           "code": "CGA-10-A-04",
+           "text": "Explain what each GPU component does."
+          },
+          {
+           "code": "CGA-10-A-05",
+           "text": "Define projection displays and their use."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "projection-and-led-displays",
+       "title": "Projection and LED displays",
+       "subtopics": [
+        {
+         "id": "projection-displays",
+         "title": "Projection displays",
+         "outcomes": [
+          {
+           "code": "CGA-10-A-06",
+           "text": "Name projection display parts: LCDs, arc lamps and lenses."
+          }
+         ]
+        },
+        {
+         "id": "oled-and-micro-led",
+         "title": "OLED and micro LED",
+         "outcomes": [
+          {
+           "code": "CGA-10-A-07",
+           "text": "Describe LED technologies including OLED and micro LED."
+          },
+          {
+           "code": "CGA-10-A-08",
+           "text": "Explain what OLEDs are made of."
+          },
+          {
+           "code": "CGA-10-A-09",
+           "text": "Discuss the idea of micro LED."
+          },
+          {
+           "code": "CGA-10-A-10",
+           "text": "Identify micro-LED as an emerging display with vivid colour, contrast, wide gamut and efficiency."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "domain-b-graphics",
+     "title": "Domain B: Graphics",
+     "topics": [
+      {
+       "id": "presentation-and-3d-graphics",
+       "title": "Presentation and 3D graphics",
+       "subtopics": [
+        {
+         "id": "slide-design-and-colour",
+         "title": "Slide design and colour",
+         "outcomes": [
+          {
+           "code": "CGA-10-B-01",
+           "text": "Define PowerPoint design and its importance."
+          },
+          {
+           "code": "CGA-10-B-02",
+           "text": "Add 3D graphics to slides about a favourite sport."
+          },
+          {
+           "code": "CGA-10-B-03",
+           "text": "Explain colour scaling for visualising data."
+          },
+          {
+           "code": "CGA-10-B-04",
+           "text": "Identify major colour palettes and their details."
+          }
+         ]
+        },
+        {
+         "id": "image-editing-and-compression",
+         "title": "Image editing and compression",
+         "outcomes": [
+          {
+           "code": "CGA-10-B-05",
+           "text": "Enhance images with free software."
+          },
+          {
+           "code": "CGA-10-B-06",
+           "text": "Rotate, scale and enhance 2D images."
+          },
+          {
+           "code": "CGA-10-B-07",
+           "text": "Apply compression to 2D images without degrading data."
+          }
+         ]
+        },
+        {
+         "id": "3d-graphics-basics",
+         "title": "3D graphics basics",
+         "outcomes": [
+          {
+           "code": "CGA-10-B-08",
+           "text": "Create 3D graphics in free software and identify height, width and depth."
+          },
+          {
+           "code": "CGA-10-B-09",
+           "text": "Identify the wireframe and texture components of 3D graphics."
+          },
+          {
+           "code": "CGA-10-B-10",
+           "text": "Design a 3D logo in 3D Coat as a project."
+          },
+          {
+           "code": "CGA-10-B-11",
+           "text": "Describe holograms."
+          },
+          {
+           "code": null,
+           "text": "Design a 3D wireframe on a grid using formats like VTK and HDF."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "domain-c-audio-and-video",
+     "title": "Domain C: Audio and Video",
+     "topics": [
+      {
+       "id": "digital-sound",
+       "title": "Digital sound",
+       "subtopics": [
+        {
+         "id": "sound-waves-and-hearing",
+         "title": "Sound waves and hearing",
+         "outcomes": [
+          {
+           "code": "CGA-10-C-01",
+           "text": "Explain sound waves, frequency, volume and amplitude."
+          },
+          {
+           "code": "CGA-10-C-02",
+           "text": "Define the human hearing mechanism."
+          }
+         ]
+        },
+        {
+         "id": "recording-digital-sound",
+         "title": "Recording digital sound",
+         "outcomes": [
+          {
+           "code": "CGA-10-C-03",
+           "text": "Define recording of digital sound."
+          },
+          {
+           "code": "CGA-10-C-04",
+           "text": "Identify recording devices: microphone, analogue-to-digital converters, speakers."
+          },
+          {
+           "code": "CGA-10-C-05",
+           "text": "Define sample rate, bit depth and audio files."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "video-production",
+       "title": "Video production",
+       "subtopics": [
+        {
+         "id": "recording-and-editing-video",
+         "title": "Recording and editing video",
+         "outcomes": [
+          {
+           "code": "CGA-10-C-06",
+           "text": "Make a five-minute screen recording with Movavi Screen Recorder."
+          },
+          {
+           "code": "CGA-10-C-07",
+           "text": "Add notes at the start and end of a video."
+          },
+          {
+           "code": "CGA-10-C-08",
+           "text": "Insert captions and filters on a recording."
+          },
+          {
+           "code": "CGA-10-C-09",
+           "text": "Apply rough-cut to keep frame rates consistent."
+          },
+          {
+           "code": "CGA-10-C-010",
+           "text": "Apply relevant transitions to your video."
+          }
+         ]
+        },
+        {
+         "id": "video-uses-and-techniques",
+         "title": "Video uses and techniques",
+         "outcomes": [
+          {
+           "code": "CGA-10-C-11",
+           "text": "Discuss video in education and entertainment."
+          },
+          {
+           "code": "CGA-10-C-12",
+           "text": "Define editing techniques: trimming, re-sequencing and transitions."
+          },
+          {
+           "code": "CGA-10-C-13",
+           "text": "Tell video from animation."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "domain-d-animation-and-virtual-reality",
+     "title": "Domain D: Animation and Virtual Reality",
+     "topics": [
+      {
+       "id": "animation-techniques",
+       "title": "Animation techniques",
+       "subtopics": [
+        {
+         "id": "morphing-and-tweening",
+         "title": "Morphing and tweening",
+         "outcomes": [
+          {
+           "code": "CGA-10-D-01",
+           "text": "Explain morphing."
+          },
+          {
+           "code": "CGA-10-D-02",
+           "text": "Discuss tweening, panning and zooming."
+          },
+          {
+           "code": "CGA-10-D-03",
+           "text": "Identify the use of the fractals function."
+          },
+          {
+           "code": "CGA-10-D-04",
+           "text": "Apply tweening, panning and fractals in PowerPoint."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "virtual-reality",
+       "title": "Virtual reality",
+       "subtopics": [
+        {
+         "id": "vr-and-ar-basics",
+         "title": "VR and AR basics",
+         "outcomes": [
+          {
+           "code": "CGA-10-D-05",
+           "text": "Define computer simulations such as virtual and augmented reality."
+          },
+          {
+           "code": "CGA-10-D-06",
+           "text": "Identify five devices used for VR environments."
+          },
+          {
+           "code": "CGA-10-D-07",
+           "text": "Define the make-up of VR headsets."
+          }
+         ]
+        },
+        {
+         "id": "vr-headset-tracking",
+         "title": "VR headset tracking",
+         "outcomes": [
+          {
+           "code": "CGA-10-D-08",
+           "text": "Identify separate stereoscopic displays per eye, stereo sound and sensors."
+          },
+          {
+           "code": "CGA-10-D-09",
+           "text": "Describe rotation sensors and tracking: gyroscope, accelerometer, compass."
+          },
+          {
+           "code": "CGA-10-D-10",
+           "text": "Identify inside-out tracking by headset cameras."
+          },
+          {
+           "code": "CGA-10-D-11",
+           "text": "Describe outside-in tracking by external cameras."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "11",
+   "units": [
+    {
+     "id": "domain-a-display-technologies",
+     "title": "Domain A: Display technologies",
+     "topics": [
+      {
+       "id": "foldable-and-gaming-displays",
+       "title": "Foldable and gaming displays",
+       "subtopics": [
+        {
+         "id": "foldable-displays",
+         "title": "Foldable displays",
+         "outcomes": [
+          {
+           "code": "CGA-11-A-01",
+           "text": "Define foldable display systems."
+          },
+          {
+           "code": "CGA-11-A-02",
+           "text": "Name five foldable display makers."
+          },
+          {
+           "code": "CGA-11-A-03",
+           "text": "Explain the use of polyimide plastic in foldable displays."
+          }
+         ]
+        },
+        {
+         "id": "gaming-movie-and-design-displays",
+         "title": "Gaming, movie and design displays",
+         "outcomes": [
+          {
+           "code": "CGA-11-A-04",
+           "text": "Describe gaming displays: OLED, QLED and AMOLED."
+          },
+          {
+           "code": "CGA-11-A-05",
+           "text": "Describe movie and streaming displays: 4K UHD and HDR."
+          },
+          {
+           "code": "CGA-11-A-06",
+           "text": "Describe design displays: IPS, Adobe RGB, sRGB gamuts and calibration."
+          },
+          {
+           "code": "CGA-11-A-07",
+           "text": "Explain how IPS works."
+          },
+          {
+           "code": "CGA-11-A-08",
+           "text": "Discuss the pros and cons of these display systems."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "domain-b-graphics",
+     "title": "Domain B: Graphics",
+     "topics": [
+      {
+       "id": "digital-images",
+       "title": "Digital images",
+       "subtopics": [
+        {
+         "id": "image-grids-and-algorithms",
+         "title": "Image grids and algorithms",
+         "outcomes": [
+          {
+           "code": "CGA-11-B-01",
+           "text": "Define 2D arrays as a grid of rows and columns in digital graphics."
+          },
+          {
+           "code": "CGA-11-B-02",
+           "text": "Design an algorithm for creating 2D and 3D graphics."
+          }
+         ]
+        },
+        {
+         "id": "editing-2d-images",
+         "title": "Editing 2D images",
+         "outcomes": [
+          {
+           "code": "CGA-11-B-03",
+           "text": "Design a 2D image and apply frame disposal, auto crop and quality-keeping resizing."
+          },
+          {
+           "code": "CGA-11-B-04",
+           "text": "Enhance images: reduce noise and adjust sharpness and brightness."
+          },
+          {
+           "code": "CGA-11-B-05",
+           "text": "Remove and change backgrounds with web apps."
+          },
+          {
+           "code": "CGA-11-B-06",
+           "text": "Compare raw and enhanced images and write five differences."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "3d-modelling",
+       "title": "3D modelling",
+       "subtopics": [
+        {
+         "id": "3d-modelling-and-shading",
+         "title": "3D modelling and shading",
+         "outcomes": [
+          {
+           "code": "CGA-11-B-07",
+           "text": "Explain 3D modelling and rendering."
+          },
+          {
+           "code": "CGA-11-B-08",
+           "text": "Design a 3D image and adjust lighting, shading and rotation."
+          },
+          {
+           "code": "CGA-11-B-09",
+           "text": "Discuss how shading changes with darkness level."
+          },
+          {
+           "code": "CGA-11-B-010",
+           "text": "Design a 3D artistic image of a favourite cartoon character."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "domain-c-audio-and-video",
+     "title": "Domain C: Audio and Video",
+     "topics": [
+      {
+       "id": "interactive-video",
+       "title": "Interactive video",
+       "subtopics": [
+        {
+         "id": "interactive-video-concepts",
+         "title": "Interactive video concepts",
+         "outcomes": [
+          {
+           "code": "CGA-11-C-01",
+           "text": "Describe interactive videos and their use."
+          },
+          {
+           "code": "CGA-11-C-02",
+           "text": "Describe interactive elements: hotspots, branching, quizzes, buttons and 360 view."
+          },
+          {
+           "code": "CGA-11-C-03",
+           "text": "Explain types of video: interactive, explainer, product, live stream, documentary."
+          }
+         ]
+        },
+        {
+         "id": "making-an-interactive-video",
+         "title": "Making an interactive video",
+         "outcomes": [
+          {
+           "code": "CGA-11-C-04",
+           "text": "Make an interactive video about the CGA course with CapCut."
+          },
+          {
+           "code": "CGA-11-C-05",
+           "text": "Apply transitions suited to the video content."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "domain-d-animation-and-virtual-reality",
+     "title": "Domain D: Animation and Virtual Reality",
+     "topics": [
+      {
+       "id": "3d-animation",
+       "title": "3D animation",
+       "subtopics": [
+        {
+         "id": "animating-objects",
+         "title": "Animating objects",
+         "outcomes": [
+          {
+           "code": "CGA-11-D-01",
+           "text": "Animate five objects in Cinema 4D."
+          },
+          {
+           "code": "CGA-11-D-02",
+           "text": "Design an animated film from those objects."
+          },
+          {
+           "code": "CGA-11-D-03",
+           "text": "Apply two artistic effects to a film."
+          }
+         ]
+        },
+        {
+         "id": "simulation-and-skinning",
+         "title": "Simulation and skinning",
+         "outcomes": [
+          {
+           "code": "CGA-11-D-04",
+           "text": "Define dynamic motion graphics and rigid body simulations."
+          },
+          {
+           "code": "CGA-11-D-05",
+           "text": "Explain position and orientation in real-time rigid body simulation."
+          },
+          {
+           "code": "CGA-11-D-06",
+           "text": "Define skinning."
+          },
+          {
+           "code": "CGA-11-D-07",
+           "text": "Discuss weight painting and blend shapes."
+          },
+          {
+           "code": "CGA-11-D-08",
+           "text": "Describe how skinning and rigging work."
+          }
+         ]
+        },
+        {
+         "id": "characters-and-virtual-tours",
+         "title": "Characters and virtual tours",
+         "outcomes": [
+          {
+           "code": "CGA-11-D-09",
+           "text": "Define characterisation and its five techniques."
+          },
+          {
+           "code": "CGA-11-D-10",
+           "text": "Explain 3D virtual tours and their use."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "12",
+   "units": [
+    {
+     "id": "domain-a-display-technologies",
+     "title": "Domain A: Display technologies",
+     "topics": [
+      {
+       "id": "quantum-dot-displays",
+       "title": "Quantum dot displays",
+       "subtopics": [
+        {
+         "id": "next-generation-displays",
+         "title": "Next-generation displays",
+         "outcomes": [
+          {
+           "code": "CGA-12-A-01",
+           "text": "Define next-generation displays such as QD-LED and electroluminescent quantum dots."
+          },
+          {
+           "code": "CGA-12-A-02",
+           "text": "Explain the advantages of quantum dot displays over current systems."
+          }
+         ]
+        },
+        {
+         "id": "quantum-dots",
+         "title": "Quantum dots",
+         "outcomes": [
+          {
+           "code": "CGA-12-A-03",
+           "text": "Discuss quantum dots as artificial atoms."
+          },
+          {
+           "code": "CGA-12-A-04",
+           "text": "Explain the elements quantum dots are made from, such as cadmium selenide and indium phosphide."
+          },
+          {
+           "code": "CGA-12-A-05",
+           "text": "Compare quantum dots with LCD, LED and OLED, with pros and cons."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "presentation-and-future-displays",
+       "title": "Presentation and future displays",
+       "subtopics": [
+        {
+         "id": "presentation-displays-and-demand",
+         "title": "Presentation displays and demand",
+         "outcomes": [
+          {
+           "code": "CGA-12-A-06",
+           "text": "Describe display tech for presentations: interactive displays, wireless presenting, 4K laser projectors."
+          },
+          {
+           "code": "CGA-12-A-07",
+           "text": "Describe future display demands from the user's view."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "domain-b-graphics",
+     "title": "Domain B: Graphics",
+     "topics": [
+      {
+       "id": "image-operations",
+       "title": "Image operations",
+       "subtopics": [
+        {
+         "id": "image-properties-and-operations",
+         "title": "Image properties and operations",
+         "outcomes": [
+          {
+           "code": "CGA-12-B-01",
+           "text": "Define image operations: dimension, aspect ratio, colour space, type and crop of 3D images."
+          },
+          {
+           "code": "CGA-12-B-02",
+           "text": "Define linear and non-linear operations on images."
+          },
+          {
+           "code": "CGA-12-B-03",
+           "text": "Discuss how an image is represented as a matrix."
+          }
+         ]
+        },
+        {
+         "id": "filters-layers-and-merging",
+         "title": "Filters, layers and merging",
+         "outcomes": [
+          {
+           "code": "CGA-12-B-04",
+           "text": "Apply a Gaussian filter by hand with a full dry run."
+          },
+          {
+           "code": "CGA-12-B-05",
+           "text": "Apply image slicing and layering."
+          },
+          {
+           "code": "CGA-12-B-06",
+           "text": "Contrast two images and merge them using free software."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "logos-and-3d",
+       "title": "Logos and 3D",
+       "subtopics": [
+        {
+         "id": "3d-images-and-logos",
+         "title": "3D images and logos",
+         "outcomes": [
+          {
+           "code": "CGA-12-B-07",
+           "text": "Design an image in Blender and convert it to 3D."
+          },
+          {
+           "code": "CGA-12-B-08",
+           "text": "Identify requirements of a professional logo for academic organisations."
+          },
+          {
+           "code": "CGA-12-B-09",
+           "text": "Design a professional 3D logo for your school in Adobe Illustrator."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "domain-c-audio-and-video",
+     "title": "Domain C: Audio and Video",
+     "topics": [
+      {
+       "id": "interactive-video-projects",
+       "title": "Interactive video projects",
+       "subtopics": [
+        {
+         "id": "quiz-video-project",
+         "title": "Quiz video project",
+         "outcomes": [
+          {
+           "code": "CGA-12-C-01",
+           "text": "Design an interactive video quiz on a favourite subject and share it."
+          },
+          {
+           "code": "CGA-12-C-02",
+           "text": "Explain audience engagement in interactive videos."
+          },
+          {
+           "code": "CGA-12-C-03",
+           "text": "Add user-driven navigation and polls to your video."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "domain-d-animation-and-virtual-reality",
+     "title": "Domain D: Animation and Virtual Reality",
+     "topics": [
+      {
+       "id": "virtual-tours-and-ar",
+       "title": "Virtual tours and AR",
+       "subtopics": [
+        {
+         "id": "virtual-tours",
+         "title": "Virtual tours",
+         "outcomes": [
+          {
+           "code": "CGA-12-D-01",
+           "text": "Define a virtual tour as videos, images or 360 images with other media."
+          },
+          {
+           "code": "CGA-12-D-02",
+           "text": "Discuss virtual tourism and its benefits."
+          },
+          {
+           "code": "CGA-12-D-03",
+           "text": "Design a virtual tour in Concept 3D as a project."
+          }
+         ]
+        },
+        {
+         "id": "augmented-reality",
+         "title": "Augmented reality",
+         "outcomes": [
+          {
+           "code": "CGA-12-D-04",
+           "text": "Tell virtual reality from augmented reality."
+          },
+          {
+           "code": "CGA-12-D-05",
+           "text": "Identify five mobile apps with AR features."
+          },
+          {
+           "code": "CGA-12-D-06",
+           "text": "Define the three types of AR: image tracking, location-based, world tracking."
+          }
+         ]
+        },
+        {
+         "id": "impact-of-vr-and-ar",
+         "title": "Impact of VR and AR",
+         "outcomes": [
+          {
+           "code": "CGA-12-D-07",
+           "text": "Discuss the technological impact of VR and AR on today's generations."
+          },
+          {
+           "code": "CGA-12-D-08",
+           "text": "Describe future demands in virtualisation and simulation."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "build": {
+  "builtAt": "2026-10-14T08:22:49.945Z",
+  "model": "claude-agent",
+  "usd": 0,
+  "expectedCodes": 146,
+  "coverage": 1,
+  "missingCodes": [],
+  "counts": {
+   "grades": 4,
+   "units": 16,
+   "topics": 26,
+   "subtopics": 49,
+   "outcomes": 147
+  },
+  "warnings": []
+ }
+}

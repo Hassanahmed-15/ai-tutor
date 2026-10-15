@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { GRADE_ANSWER_RUBRIC_INSTRUCTION, GRADE_FEEDBACK_INSTRUCTION, type TestQuestion } from "@/lib/testPrompt";
+import { GRADE_ANSWER_RUBRIC_INSTRUCTION, GRADE_FEEDBACK_INSTRUCTION, MARK_SCHEME_INSTRUCTION, type TestQuestion } from "@/lib/testPrompt";
 import { sanitizeGradeResults } from "@/lib/testSanitize";
 import { createOpenAI } from "@/lib/openaiClient";
 
@@ -39,8 +39,8 @@ export async function POST(req: Request) {
         {
           role: "system",
           content:
-            `You are grading a hard short-answer test. Return JSON only: { "results": [{ "id": string, "correct": boolean, "feedback": string }] }\n` +
-            `${GRADE_ANSWER_RUBRIC_INSTRUCTION}\n${GRADE_FEEDBACK_INSTRUCTION}`,
+            `You are grading a hard short-answer test. Return JSON only: { "results": [{ "id": string, "status": "correct" | "partial" | "misconception", "pointsEarned": number, "awarded": boolean[], "missingKeyPoints": string[], "misconception": string|null, "feedback": string }] }\nAward one point per rubric key point actually required by the question. "partial" means the accurate core is present but one or more explicitly requested key points are missing; report only those in missingKeyPoints. Optional enrichment is not a missing point. "misconception" means a specific factual error or contradictory model; name it in misconception and award zero for the contradicted point.\n` +
+            `${GRADE_ANSWER_RUBRIC_INSTRUCTION}\n${MARK_SCHEME_INSTRUCTION}\n${GRADE_FEEDBACK_INSTRUCTION}`,
         },
         { role: "user", content: JSON.stringify({ pairs }) },
       ],
@@ -48,7 +48,7 @@ export async function POST(req: Request) {
       max_tokens: 2000,
       response_format: { type: "json_object" },
     });
-    const results = sanitizeGradeResults(JSON.parse(completion.choices[0]?.message?.content ?? "{}"), questions.map((q) => q.id));
+    const results = sanitizeGradeResults(JSON.parse(completion.choices[0]?.message?.content ?? "{}"), questions.map((q) => q.id), questions, Object.fromEntries(pairs.map((p) => [p.id, p.studentAnswer])));
     const usage = completion.usage;
     const costUsd = usage ? usage.prompt_tokens * (2.5 / 1_000_000) + usage.completion_tokens * (10.0 / 1_000_000) : 0;
     return NextResponse.json({ results, costUsd });

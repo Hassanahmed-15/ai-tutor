@@ -1,0 +1,577 @@
+{
+ "id": "uk-aqa-gcse-psychology-8182",
+ "region": "UK",
+ "framework": "AQA GCSE (9-1)",
+ "board": "AQA",
+ "qualification": "GCSE",
+ "subject": "Psychology",
+ "syllabusCode": "8182",
+ "gradeSystem": "year",
+ "source": {
+  "urls": [
+   "https://cdn.sanity.io/files/p28bar15/green/a1264fbdd0f9ec6d8d1c4d2c0008d32e83fd3f8b.pdf"
+  ],
+  "publisher": "AQA",
+  "licence": "Exam board specification, (c) AQA; structure + our own wording only",
+  "firstExam": "2019"
+ },
+ "grades": [
+  {
+   "grade": "all",
+   "units": [
+    {
+     "id": "3-1-cognition-and-behaviour",
+     "title": "3.1 Cognition and behaviour",
+     "topics": [
+      {
+       "id": "3-1-overview",
+       "title": "3.1 Overview",
+       "subtopics": [
+        {
+         "id": "studying-cognition-and-behaviour",
+         "title": "Studying cognition and behaviour",
+         "outcomes": [
+          {
+           "code": "3.1",
+           "text": "Apply, analyse and evaluate psychological ideas, theories and studies for memory, perception, development and research methods."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "3-1-1-memory",
+       "title": "3.1.1 Memory",
+       "subtopics": [
+        {
+         "id": "processes-and-types-of-memory",
+         "title": "Processes and types of memory",
+         "outcomes": [
+          {
+           "code": "3.1.1",
+           "text": "Describe how memory encodes, stores and retrieves information."
+          },
+          {
+           "code": null,
+           "text": "Tell episodic, semantic and procedural memory apart and explain how memories are encoded and stored."
+          }
+         ]
+        },
+        {
+         "id": "the-multi-store-model",
+         "title": "The multi-store model",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe the multi-store model: sensory, short-term and long-term stores and their coding, capacity and duration."
+          },
+          {
+           "code": null,
+           "text": "Explain primacy and recency effects and Murdock's serial position study."
+          }
+         ]
+        },
+        {
+         "id": "memory-as-an-active-process",
+         "title": "Memory as an active process",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain reconstructive memory and effort after meaning, with Bartlett's War of the Ghosts."
+          },
+          {
+           "code": null,
+           "text": "Explain how interference, context and false memories affect memory accuracy."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "3-1-2-perception",
+       "title": "3.1.2 Perception",
+       "subtopics": [
+        {
+         "id": "sensation-and-depth-cues",
+         "title": "Sensation and depth cues",
+         "outcomes": [
+          {
+           "code": "3.1.2",
+           "text": "Tell sensation from perception."
+          },
+          {
+           "code": null,
+           "text": "Describe monocular depth cues (height in plane, relative size, occlusion, linear perspective) and binocular cues (retinal disparity, convergence)."
+          }
+         ]
+        },
+        {
+         "id": "theories-of-perception",
+         "title": "Theories of perception",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain Gibson's direct theory of perception and the role of motion parallax."
+          },
+          {
+           "code": null,
+           "text": "Explain Gregory's constructivist theory using inference from cues and past experience."
+          }
+         ]
+        },
+        {
+         "id": "visual-illusions",
+         "title": "Visual illusions",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain visual illusions through ambiguity, misinterpreted depth cues, fiction and size constancy."
+          },
+          {
+           "code": null,
+           "text": "Describe examples: Ponzo, Muller-Lyer, Rubin's vase, Ames Room, Kanizsa triangle and Necker cube."
+          }
+         ]
+        },
+        {
+         "id": "factors-affecting-perception",
+         "title": "Factors affecting perception",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain perceptual set and how culture, motivation, emotion and expectation affect perception."
+          },
+          {
+           "code": null,
+           "text": "Describe the Gilchrist and Nesberg motivation study and the Bruner and Minturn perceptual set study."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "3-1-3-development",
+       "title": "3.1.3 Development",
+       "subtopics": [
+        {
+         "id": "early-brain-development",
+         "title": "Early brain development",
+         "outcomes": [
+          {
+           "code": "3.1.3",
+           "text": "Describe early brain development from the womb: brain stem, thalamus, cerebellum and cortex."
+          },
+          {
+           "code": null,
+           "text": "Explain the roles of nature and nurture in development."
+          }
+         ]
+        },
+        {
+         "id": "piaget-s-theory",
+         "title": "Piaget's theory",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain Piaget's cognitive development theory, including assimilation and accommodation."
+          },
+          {
+           "code": null,
+           "text": "Describe the four stages of development and apply them in education."
+          },
+          {
+           "code": null,
+           "text": "Explain reduced egocentricity and conservation, with the naughty teddy and policeman doll studies."
+          }
+         ]
+        },
+        {
+         "id": "learning-and-development",
+         "title": "Learning and development",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain Dweck's mindset theory, praise and self-efficacy beliefs in learning."
+          },
+          {
+           "code": null,
+           "text": "Describe learning styles, including verbalisers and visualisers, and Willingham's criticism of them."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "3-1-4-research-methods",
+       "title": "3.1.4 Research methods",
+       "subtopics": [
+        {
+         "id": "hypotheses-variables-and-sampling",
+         "title": "Hypotheses, variables and sampling",
+         "outcomes": [
+          {
+           "code": "3.1.4",
+           "text": "Write testable null and alternative hypotheses."
+          },
+          {
+           "code": null,
+           "text": "Identify independent, dependent and extraneous variables."
+          },
+          {
+           "code": null,
+           "text": "Select random, opportunity, systematic and stratified samples and state strengths and weaknesses of each."
+          }
+         ]
+        },
+        {
+         "id": "research-designs",
+         "title": "Research designs",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe experimental designs (independent groups, repeated measures, matched pairs) and their strengths and weaknesses."
+          },
+          {
+           "code": null,
+           "text": "Describe laboratory, field and natural experiments, interviews, questionnaires, case studies and observations."
+          }
+         ]
+        },
+        {
+         "id": "correlation",
+         "title": "Correlation",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain correlation between two variables with scatter diagrams, and its strengths and weaknesses."
+          }
+         ]
+        },
+        {
+         "id": "research-procedures-and-ethics",
+         "title": "Research procedures and ethics",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain standardised procedures, randomisation, counterbalancing and control of extraneous variables."
+          },
+          {
+           "code": null,
+           "text": "Plan research with reliability and validity of sampling, designs and methods in mind."
+          },
+          {
+           "code": null,
+           "text": "Describe British Psychological Society ethical issues and ways of dealing with them."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "3-1-4-1-data-handling",
+       "title": "3.1.4.1 Data handling",
+       "subtopics": [
+        {
+         "id": "types-of-data",
+         "title": "Types of data",
+         "outcomes": [
+          {
+           "code": "3.1.4.1",
+           "text": "Tell quantitative from qualitative data and primary from secondary data."
+          }
+         ]
+        },
+        {
+         "id": "calculations-and-graphs",
+         "title": "Calculations and graphs",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Use decimals, standard form, ratios, fractions and percentages, estimate, and find means."
+          },
+          {
+           "code": null,
+           "text": "Calculate mean, median, mode and range."
+          },
+          {
+           "code": null,
+           "text": "Construct and interpret frequency tables, bar charts, histograms and scatter diagrams."
+          },
+          {
+           "code": null,
+           "text": "Describe the characteristics of a normal distribution."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "3-2-social-context-and-behaviour",
+     "title": "3.2 Social context and behaviour",
+     "topics": [
+      {
+       "id": "3-2-overview",
+       "title": "3.2 Overview",
+       "subtopics": [
+        {
+         "id": "studying-social-context-and-behaviour",
+         "title": "Studying social context and behaviour",
+         "outcomes": [
+          {
+           "code": "3.2",
+           "text": "Apply, analyse and evaluate psychological ideas, theories and studies for social influence, communication, the brain and psychological problems."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "3-2-1-social-influence",
+       "title": "3.2.1 Social influence",
+       "subtopics": [
+        {
+         "id": "conformity-and-obedience",
+         "title": "Conformity and obedience",
+         "outcomes": [
+          {
+           "code": "3.2.1",
+           "text": "Explain how group size, anonymity, task difficulty, personality and expertise affect conformity, with Asch's study."
+          },
+          {
+           "code": null,
+           "text": "Explain Milgram's agency theory of obedience and how authority, culture and proximity affect it."
+          },
+          {
+           "code": null,
+           "text": "Explain the Authoritarian Personality as a dispositional factor in obedience."
+          }
+         ]
+        },
+        {
+         "id": "prosocial-and-collective-behaviour",
+         "title": "Prosocial and collective behaviour",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain how the presence of others, cost of helping, similarity and expertise affect bystander intervention, with Piliavin's subway study."
+          },
+          {
+           "code": null,
+           "text": "Explain how social loafing, deindividuation, culture, personality and morality affect behaviour in crowds."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "3-2-2-language-thought-and-communication",
+       "title": "3.2.2 Language, thought and communication",
+       "subtopics": [
+        {
+         "id": "language-and-thought",
+         "title": "Language and thought",
+         "outcomes": [
+          {
+           "code": "3.2.2",
+           "text": "Compare Piaget's view that language depends on thought with the Sapir-Whorf hypothesis that thinking depends on language."
+          },
+          {
+           "code": null,
+           "text": "Describe how language and thought affect our view of the world, such as recall of events and colour recognition."
+          }
+         ]
+        },
+        {
+         "id": "human-and-animal-communication",
+         "title": "Human and animal communication",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe the limited functions of animal communication, with von Frisch's bee study."
+          },
+          {
+           "code": null,
+           "text": "Describe properties of human communication that animals lack, such as planning ahead."
+          }
+         ]
+        },
+        {
+         "id": "non-verbal-communication",
+         "title": "Non-verbal communication",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Define verbal and non-verbal communication and the functions of eye contact."
+          },
+          {
+           "code": null,
+           "text": "Describe body language (posture, postural echo, touch) and personal space differences."
+          }
+         ]
+        },
+        {
+         "id": "explaining-non-verbal-behaviour",
+         "title": "Explaining non-verbal behaviour",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain Darwin's evolutionary theory of non-verbal communication."
+          },
+          {
+           "code": null,
+           "text": "Evaluate evidence that non-verbal behaviour is innate or learned, including Yuki's emoticon study."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "3-2-3-brain-and-neuropsychology",
+       "title": "3.2.3 Brain and neuropsychology",
+       "subtopics": [
+        {
+         "id": "the-nervous-system",
+         "title": "The nervous system",
+         "outcomes": [
+          {
+           "code": "3.2.3",
+           "text": "Describe the central and peripheral (somatic and autonomic) nervous system divisions and their functions."
+          },
+          {
+           "code": null,
+           "text": "Explain the fight or flight response and the James-Lange theory of emotion."
+          }
+         ]
+        },
+        {
+         "id": "neurons",
+         "title": "Neurons",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe sensory, relay and motor neurons."
+          },
+          {
+           "code": null,
+           "text": "Explain synaptic transmission, neurotransmitter release and reuptake, excitation and inhibition, and Hebb's theory of learning."
+          }
+         ]
+        },
+        {
+         "id": "the-brain",
+         "title": "The brain",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe the frontal, temporal, parietal and occipital lobes and the cerebellum and their functions."
+          },
+          {
+           "code": null,
+           "text": "Explain localisation of function for motor, somatosensory, visual, auditory and language areas, with Penfield's study."
+          }
+         ]
+        },
+        {
+         "id": "neuropsychology",
+         "title": "Neuropsychology",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain how brain structure and function relate to behaviour in cognitive neuroscience."
+          },
+          {
+           "code": null,
+           "text": "Describe CT, PET and fMRI scans, with Tulving's memory study."
+          },
+          {
+           "code": null,
+           "text": "Describe how neurological damage such as stroke or injury affects motor abilities and behaviour."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "3-2-4-psychological-problems",
+       "title": "3.2.4 Psychological problems",
+       "subtopics": [
+        {
+         "id": "mental-health",
+         "title": "Mental health",
+         "outcomes": [
+          {
+           "code": "3.2.4",
+           "text": "Describe characteristics of mental health and how its incidence and cultural views change over time."
+          },
+          {
+           "code": null,
+           "text": "Describe the individual and social effects of significant mental health problems."
+          }
+         ]
+        },
+        {
+         "id": "depression",
+         "title": "Depression",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe clinical depression, tell unipolar from bipolar depression and sadness, and diagnosis using ICD symptoms."
+          },
+          {
+           "code": null,
+           "text": "Explain biological (neurotransmitter) and psychological (negative schemas) theories of depression."
+          },
+          {
+           "code": null,
+           "text": "Evaluate antidepressants and CBT for depression, including Wiles' study and reductionist and holistic views."
+          }
+         ]
+        },
+        {
+         "id": "addiction",
+         "title": "Addiction",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Tell addiction or dependence from substance misuse and describe ICD diagnosis of dependence syndrome."
+          },
+          {
+           "code": null,
+           "text": "Explain biological (genetic vulnerability, Kaij's twin study) and psychological (peer influence) theories of addiction."
+          },
+          {
+           "code": null,
+           "text": "Evaluate aversion therapy and self-management programmes for addiction."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "build": {
+  "builtAt": "2026-10-14T10:23:09.526Z",
+  "model": "claude-agent",
+  "usd": 0,
+  "expectedCodes": 11,
+  "coverage": 1,
+  "missingCodes": [],
+  "counts": {
+   "grades": 1,
+   "units": 2,
+   "topics": 11,
+   "subtopics": 31,
+   "outcomes": 67
+  },
+  "warnings": [
+   "grade Year 10 has no content",
+   "grade Year 11 has no content",
+   "unexpected grade label \"all\""
+  ]
+ }
+}

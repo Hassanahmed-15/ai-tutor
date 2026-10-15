@@ -1,0 +1,1341 @@
+{
+ "id": "uk-edexcel-gcse-geography-a-1ga0",
+ "region": "UK",
+ "framework": "Pearson Edexcel GCSE (9-1)",
+ "board": "Pearson Edexcel",
+ "qualification": "GCSE",
+ "subject": "Geography A",
+ "syllabusCode": "1GA0",
+ "gradeSystem": "year",
+ "source": {
+  "urls": [
+   "https://qualifications.pearson.com/content/dam/pdf/GCSE/Geography-A/2016/specification-and-sample-assessments/gcse-2016-l12-geography-a-spec.pdf"
+  ],
+  "publisher": "Pearson Education",
+  "licence": "Exam board specification, (c) Pearson; structure + our own wording only",
+  "firstExam": "2018"
+ },
+ "grades": [
+  {
+   "grade": "all",
+   "units": [
+    {
+     "id": "topic-1-the-changing-landscapes-of-the-uk",
+     "title": "Topic 1: The changing landscapes of the UK",
+     "topics": [
+      {
+       "id": "overview-of-the-uk-s-physical-landscape",
+       "title": "Overview of the UK's physical landscape",
+       "subtopics": [
+        {
+         "id": "uk-rock-types-and-geology",
+         "title": "UK rock types and geology",
+         "outcomes": [
+          {
+           "code": "1.1",
+           "text": "Describe the distribution and characteristics of the UK's sedimentary, igneous and metamorphic rock types."
+          },
+          {
+           "code": null,
+           "text": "Explain how geology and past tectonic processes shaped upland (igneous, metamorphic) and lowland (sedimentary) landscapes."
+          }
+         ]
+        },
+        {
+         "id": "how-uk-landscapes-form",
+         "title": "How UK landscapes form",
+         "outcomes": [
+          {
+           "code": "1.2",
+           "text": "Explain how upland and lowland landscapes result from glacial, weathering, river and slope processes working together."
+          },
+          {
+           "code": null,
+           "text": "Explain how agriculture, forestry and settlement have shaped landscapes over time."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "optional-sub-topic-1a-coastal-landscapes-and-pro",
+       "title": "Optional sub topic 1A: Coastal landscapes and processes",
+       "subtopics": [
+        {
+         "id": "coastal-processes",
+         "title": "Coastal processes",
+         "outcomes": [
+          {
+           "code": "1.3",
+           "text": "Describe coastal weathering, mass movement, erosion, transport (including longshore drift) and deposition."
+          },
+          {
+           "code": null,
+           "text": "Explain how geological structure, rock hardness and wave type influence coastal landforms."
+          },
+          {
+           "code": null,
+           "text": "Explain how UK weather and climate affect rates of coastal erosion and retreat."
+          }
+         ]
+        },
+        {
+         "id": "coastal-landforms",
+         "title": "Coastal landforms",
+         "outcomes": [
+          {
+           "code": "1.4",
+           "text": "Explain how erosion forms headlands, bays, caves, arches, stacks, cliffs and wave cut platforms."
+          },
+          {
+           "code": null,
+           "text": "Explain how deposition forms bars, beaches and spits."
+          }
+         ]
+        },
+        {
+         "id": "coastal-management",
+         "title": "Coastal management",
+         "outcomes": [
+          {
+           "code": "1.5",
+           "text": "Explain how human activity affects coasts and how coastal recession and flooding affect people and the environment."
+          },
+          {
+           "code": null,
+           "text": "Evaluate hard and soft coastal defences (sea walls, groynes, rip rap, beach nourishment, managed retreat)."
+          }
+         ]
+        },
+        {
+         "id": "a-named-coastal-landscape",
+         "title": "A named coastal landscape",
+         "outcomes": [
+          {
+           "code": "1.6",
+           "text": "Explain the location, formation and main factors of change of one named UK coastal landscape."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "optional-sub-topic-1b-river-landscapes-and-proce",
+       "title": "Optional sub topic 1B: River landscapes and processes",
+       "subtopics": [
+        {
+         "id": "river-processes",
+         "title": "River processes",
+         "outcomes": [
+          {
+           "code": "1.7",
+           "text": "Describe river weathering, mass movement, erosion, transport and deposition."
+          },
+          {
+           "code": null,
+           "text": "Explain how channel shape, valley profile, gradient, discharge, velocity and sediment change along a named UK river."
+          },
+          {
+           "code": null,
+           "text": "Explain how UK weather events and climate affect river processes and landforms."
+          }
+         ]
+        },
+        {
+         "id": "river-landforms",
+         "title": "River landforms",
+         "outcomes": [
+          {
+           "code": "1.8",
+           "text": "Explain how erosion and geology form interlocking spurs, waterfalls, gorges and river cliffs."
+          },
+          {
+           "code": null,
+           "text": "Explain how deposition forms flood plains, levees and point bars."
+          },
+          {
+           "code": null,
+           "text": "Explain how erosion and deposition together form meanders and oxbow lakes."
+          }
+         ]
+        },
+        {
+         "id": "river-flooding-and-management",
+         "title": "River flooding and management",
+         "outcomes": [
+          {
+           "code": "1.9",
+           "text": "Explain how land use change affects river processes and the causes and effects of flooding."
+          },
+          {
+           "code": null,
+           "text": "Evaluate hard (dams, reservoirs, channelisation) and soft (flood plain zoning, washlands) river defences."
+          }
+         ]
+        },
+        {
+         "id": "a-named-river-landscape",
+         "title": "A named river landscape",
+         "outcomes": [
+          {
+           "code": "1.10",
+           "text": "Explain the location, formation and main factors of change of one named UK river landscape."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "optional-sub-topic-1c-glaciated-upland-landscape",
+       "title": "Optional sub topic 1C: Glaciated upland landscapes and processes",
+       "subtopics": [
+        {
+         "id": "glacial-processes",
+         "title": "Glacial processes",
+         "outcomes": [
+          {
+           "code": "1.11",
+           "text": "Describe the glacial erosion, transport and deposition that once shaped upland landscapes."
+          },
+          {
+           "code": null,
+           "text": "Describe the freeze-thaw, soil movement and rock fall processes acting on glaciated landscapes today."
+          },
+          {
+           "code": null,
+           "text": "Explain how past climate and current UK weather affect processes in glaciated uplands."
+          }
+         ]
+        },
+        {
+         "id": "glacial-landforms",
+         "title": "Glacial landforms",
+         "outcomes": [
+          {
+           "code": "1.12",
+           "text": "Explain how erosion forms truncated spurs, corries, troughs, tarns, arêtes, hanging valleys and roche moutonnées."
+          },
+          {
+           "code": null,
+           "text": "Explain how deposition forms ground and terminal moraines."
+          },
+          {
+           "code": null,
+           "text": "Explain how erosion and deposition together form crag and tails and drumlins."
+          }
+         ]
+        },
+        {
+         "id": "human-impact-on-glaciated-uplands",
+         "title": "Human impact on glaciated uplands",
+         "outcomes": [
+          {
+           "code": "1.13",
+           "text": "Explain how farming, forestry and settlement affect physical processes in glaciated uplands."
+          },
+          {
+           "code": null,
+           "text": "Evaluate development such as water supply, renewable energy, tourism and conservation in glaciated uplands."
+          }
+         ]
+        },
+        {
+         "id": "a-named-glaciated-upland",
+         "title": "A named glaciated upland",
+         "outcomes": [
+          {
+           "code": "1.14",
+           "text": "Explain the location, formation and main factors of change of one named UK glaciated upland."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "topic-2-weather-hazards-and-climate-change",
+     "title": "Topic 2: Weather hazards and climate change",
+     "topics": [
+      {
+       "id": "global-atmosphere-and-climate-change",
+       "title": "Global atmosphere and climate change",
+       "subtopics": [
+        {
+         "id": "global-atmospheric-circulation",
+         "title": "Global atmospheric circulation",
+         "outcomes": [
+          {
+           "code": "2.1",
+           "text": "Describe the features of global atmospheric circulation."
+          },
+          {
+           "code": null,
+           "text": "Explain how circulation cells and ocean currents redistribute heat around the Earth."
+          }
+         ]
+        },
+        {
+         "id": "natural-climate-change",
+         "title": "Natural climate change",
+         "outcomes": [
+          {
+           "code": "2.2",
+           "text": "Describe how climate changed over Quaternary glacial and interglacial periods."
+          },
+          {
+           "code": null,
+           "text": "Explain natural causes (Milankovitch cycles, solar variation, volcanism) and the evidence (ice cores, pollen, tree rings, records) for climate change."
+          }
+         ]
+        },
+        {
+         "id": "human-caused-climate-change",
+         "title": "Human-caused climate change",
+         "outcomes": [
+          {
+           "code": "2.3",
+           "text": "Explain how industry, transport, energy and farming produce greenhouse gases that enhance the greenhouse effect."
+          },
+          {
+           "code": null,
+           "text": "Describe effects of climate change on environment and people: crop yields, sea level rise and retreating glaciers."
+          }
+         ]
+        },
+        {
+         "id": "the-uk-s-climate",
+         "title": "The UK's climate",
+         "outcomes": [
+          {
+           "code": "2.4",
+           "text": "Describe the UK's climate today and how it has changed over 1000 years."
+          },
+          {
+           "code": null,
+           "text": "Describe spatial variations in UK temperature, wind and rainfall."
+          },
+          {
+           "code": null,
+           "text": "Explain how the UK's geographic location influences its climate."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "tropical-cyclones",
+       "title": "Tropical cyclones",
+       "subtopics": [
+        {
+         "id": "how-tropical-cyclones-form",
+         "title": "How tropical cyclones form",
+         "outcomes": [
+          {
+           "code": "2.5",
+           "text": "Explain how global circulation produces tropical cyclones and the sequence of their formation."
+          },
+          {
+           "code": null,
+           "text": "Describe the characteristics, frequency and distribution of tropical cyclones and how they change over time."
+          }
+         ]
+        },
+        {
+         "id": "impacts-of-and-responses-to-tropical-cyclones",
+         "title": "Impacts of and responses to tropical cyclones",
+         "outcomes": [
+          {
+           "code": "2.6",
+           "text": "Explain why tropical cyclones are hazards: winds, rainfall, storm surges, flooding and landslides."
+          },
+          {
+           "code": null,
+           "text": "Compare social, economic and environmental impacts of tropical cyclones in a named developed and a named developing or emerging country."
+          },
+          {
+           "code": null,
+           "text": "Compare responses of individuals, organisations and governments to tropical cyclones in those two countries."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "drought",
+       "title": "Drought",
+       "subtopics": [
+        {
+         "id": "causes-of-drought",
+         "title": "Causes of drought",
+         "outcomes": [
+          {
+           "code": "2.7",
+           "text": "Contrast the characteristics of arid environments with drought conditions."
+          },
+          {
+           "code": null,
+           "text": "Explain meteorological, hydrological and human causes of drought."
+          },
+          {
+           "code": null,
+           "text": "Explain why global circulation makes some places more vulnerable to drought and how this changes over time."
+          }
+         ]
+        },
+        {
+         "id": "impacts-of-and-responses-to-drought",
+         "title": "Impacts of and responses to drought",
+         "outcomes": [
+          {
+           "code": "2.8",
+           "text": "Explain why droughts are hazardous."
+          },
+          {
+           "code": null,
+           "text": "Compare drought impacts on people and ecosystems in a named developed and a named developing or emerging country."
+          },
+          {
+           "code": null,
+           "text": "Compare responses to drought by individuals, organisations and governments in those two countries."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "topic-3-ecosystems-biodiversity-and-management",
+     "title": "Topic 3: Ecosystems, biodiversity and management",
+     "topics": [
+      {
+       "id": "global-and-uk-ecosystems",
+       "title": "Global and UK ecosystems",
+       "subtopics": [
+        {
+         "id": "global-ecosystems",
+         "title": "Global ecosystems",
+         "outcomes": [
+          {
+           "code": "3.1",
+           "text": "Describe the distribution and characteristics of the world's large-scale ecosystems."
+          },
+          {
+           "code": null,
+           "text": "Explain how climate, soils and altitude influence where ecosystems are found."
+          }
+         ]
+        },
+        {
+         "id": "the-biosphere-as-a-resource",
+         "title": "The biosphere as a resource",
+         "outcomes": [
+          {
+           "code": "3.2",
+           "text": "Explain how the biosphere supplies food, medicine, materials and fuel and is increasingly exploited for energy, water and minerals."
+          }
+         ]
+        },
+        {
+         "id": "uk-ecosystems",
+         "title": "UK ecosystems",
+         "outcomes": [
+          {
+           "code": "3.3",
+           "text": "Describe the distribution and characteristics of UK moorlands, heaths, woodlands and wetlands."
+          },
+          {
+           "code": null,
+           "text": "Explain the importance of marine ecosystems to the UK and how human activity degrades them."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "tropical-rainforests",
+       "title": "Tropical rainforests",
+       "subtopics": [
+        {
+         "id": "rainforest-characteristics",
+         "title": "Rainforest characteristics",
+         "outcomes": [
+          {
+           "code": "3.4",
+           "text": "Describe the biotic and abiotic characteristics of the tropical rainforest."
+          },
+          {
+           "code": null,
+           "text": "Explain the interdependence of these characteristics and the nutrient cycle (Gersmehl model)."
+          },
+          {
+           "code": null,
+           "text": "Explain why rainforests have high biodiversity and how plants and animals are adapted."
+          }
+         ]
+        },
+        {
+         "id": "rainforest-use-and-threats",
+         "title": "Rainforest use and threats",
+         "outcomes": [
+          {
+           "code": "3.5",
+           "text": "Give examples of goods and services from tropical rainforests."
+          },
+          {
+           "code": null,
+           "text": "Explain how climate change threatens rainforest structure, function and biodiversity."
+          },
+          {
+           "code": null,
+           "text": "Explain the economic and social causes of deforestation."
+          },
+          {
+           "code": null,
+           "text": "Explain the political and economic factors in sustainable management of a rainforest in a named region."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "deciduous-woodlands",
+       "title": "Deciduous woodlands",
+       "subtopics": [
+        {
+         "id": "woodland-characteristics",
+         "title": "Woodland characteristics",
+         "outcomes": [
+          {
+           "code": "3.6",
+           "text": "Describe the abiotic and biotic characteristics of the deciduous woodland ecosystem."
+          },
+          {
+           "code": null,
+           "text": "Explain the interdependence of these characteristics and the nutrient cycle (Gersmehl model)."
+          },
+          {
+           "code": null,
+           "text": "Explain why deciduous woodlands have moderate biodiversity and how plants and animals are adapted."
+          }
+         ]
+        },
+        {
+         "id": "woodland-use-and-threats",
+         "title": "Woodland use and threats",
+         "outcomes": [
+          {
+           "code": "3.7",
+           "text": "Give examples of goods and services from deciduous woodlands."
+          },
+          {
+           "code": null,
+           "text": "Explain how climate change threatens deciduous woodland structure, function and biodiversity."
+          },
+          {
+           "code": null,
+           "text": "Explain the economic and social causes of woodland deforestation."
+          },
+          {
+           "code": null,
+           "text": "Describe approaches to sustainable use and management of deciduous woodland in a named region."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "topic-4-changing-cities",
+     "title": "Topic 4: Changing cities",
+     "topics": [
+      {
+       "id": "overview-of-urban-patterns-and-processes",
+       "title": "Overview of urban patterns and processes",
+       "subtopics": [
+        {
+         "id": "global-urbanisation",
+         "title": "Global urbanisation",
+         "outcomes": [
+          {
+           "code": "4.1",
+           "text": "Compare urbanisation trends over 50 years in developed, emerging and developing countries."
+          },
+          {
+           "code": null,
+           "text": "Explain how and why urbanisation happened at different times and rates around the world and its effects."
+          }
+         ]
+        },
+        {
+         "id": "urbanisation-in-the-uk",
+         "title": "Urbanisation in the UK",
+         "outcomes": [
+          {
+           "code": "4.2",
+           "text": "Describe the distribution of UK urban population and its major urban centres."
+          },
+          {
+           "code": null,
+           "text": "Explain the factors causing the rate and degree of urbanisation to differ between UK regions."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "case-study-of-a-major-uk-city",
+       "title": "Case study of a major UK city",
+       "subtopics": [
+        {
+         "id": "uk-city-context-and-structure",
+         "title": "UK city context and structure",
+         "outcomes": [
+          {
+           "code": "4.3",
+           "text": "Explain the site, situation and connectivity of the chosen UK city in national, regional and global context."
+          },
+          {
+           "code": null,
+           "text": "Describe the chosen city's structure (CBD, inner city, suburbs, urban-rural fringe) by function and building age."
+          }
+         ]
+        },
+        {
+         "id": "uk-city-urbanisation-and-migration",
+         "title": "UK city urbanisation and migration",
+         "outcomes": [
+          {
+           "code": "4.4",
+           "text": "Describe urbanisation, suburbanisation, counter-urbanisation and re-urbanisation in the chosen UK city."
+          },
+          {
+           "code": null,
+           "text": "Explain the causes of migration and its impact on different parts of the chosen UK city."
+          }
+         ]
+        },
+        {
+         "id": "uk-city-challenges-and-sustainability",
+         "title": "UK city challenges and sustainability",
+         "outcomes": [
+          {
+           "code": "4.5",
+           "text": "Use Census data to describe the city's population and explain its growth or decline."
+          },
+          {
+           "code": null,
+           "text": "Explain the causes and impacts of deindustrialisation in the chosen UK city."
+          },
+          {
+           "code": null,
+           "text": "Explain how economic change increases inequality and differences in quality of life."
+          },
+          {
+           "code": null,
+           "text": "Explain how changes in retailing affect the city: CBD decline, out-of-town centres and internet shopping."
+          },
+          {
+           "code": null,
+           "text": "Describe strategies for making urban living more sustainable and improving quality of life."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "case-study-of-a-major-city-in-a-developing-or-em",
+       "title": "Case study of a major city in a developing or emerging country",
+       "subtopics": [
+        {
+         "id": "developing-world-city-context-and-structure",
+         "title": "Developing-world city context and structure",
+         "outcomes": [
+          {
+           "code": "4.6",
+           "text": "Explain the site, situation and connectivity of the chosen city in national, regional and global context."
+          },
+          {
+           "code": null,
+           "text": "Describe the chosen city's structure by function and building age."
+          }
+         ]
+        },
+        {
+         "id": "developing-world-city-growth",
+         "title": "Developing-world city growth",
+         "outcomes": [
+          {
+           "code": "4.7",
+           "text": "Explain past and present population growth trends: natural increase, migration and investment."
+          },
+          {
+           "code": null,
+           "text": "Explain the causes of migration and its impact on different parts of the chosen city."
+          },
+          {
+           "code": null,
+           "text": "Explain how growth brings inequality and differences in quality of life."
+          }
+         ]
+        },
+        {
+         "id": "developing-world-city-challenges",
+         "title": "Developing-world city challenges",
+         "outcomes": [
+          {
+           "code": "4.8",
+           "text": "Describe challenges of rapid urbanisation: infrastructure, services, housing, informal employment and pollution."
+          },
+          {
+           "code": null,
+           "text": "Evaluate bottom-up and top-down approaches to managing the city's challenges."
+          },
+          {
+           "code": null,
+           "text": "Explain the role of government policies in improving quality of life in the city."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "topic-5-global-development",
+     "title": "Topic 5: Global development",
+     "topics": [
+      {
+       "id": "overview-of-global-development",
+       "title": "Overview of global development",
+       "subtopics": [
+        {
+         "id": "defining-and-measuring-development",
+         "title": "Defining and measuring development",
+         "outcomes": [
+          {
+           "code": "5.1",
+           "text": "Compare economic and broader social and political ways of defining development."
+          },
+          {
+           "code": null,
+           "text": "Explain the economic, social, technological and cultural factors, and food and water security, that contribute to development."
+          },
+          {
+           "code": null,
+           "text": "Describe how development is measured: GDP per capita, Human Development Index, inequality measures and corruption indices."
+          }
+         ]
+        },
+        {
+         "id": "the-global-pattern-of-development",
+         "title": "The global pattern of development",
+         "outcomes": [
+          {
+           "code": "5.2",
+           "text": "Describe the global pattern of development and its unevenness between and within countries, including the UK."
+          },
+          {
+           "code": null,
+           "text": "Explain the physical, historic and economic factors behind spatial variations in development."
+          }
+         ]
+        },
+        {
+         "id": "consequences-of-uneven-development",
+         "title": "Consequences of uneven development",
+         "outcomes": [
+          {
+           "code": "5.3",
+           "text": "Explain how uneven development affects quality of life: housing, health, education, jobs, technology, food and water security."
+          }
+         ]
+        },
+        {
+         "id": "strategies-to-reduce-uneven-development",
+         "title": "Strategies to reduce uneven development",
+         "outcomes": [
+          {
+           "code": "5.4",
+           "text": "Describe international aid and inter-governmental agreements that try to reduce uneven development."
+          },
+          {
+           "code": null,
+           "text": "Compare top-down and bottom-up development projects, with their advantages and limitations."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "case-study-of-a-developing-or-emerging-country",
+       "title": "Case study of a developing or emerging country",
+       "subtopics": [
+        {
+         "id": "country-location-and-context",
+         "title": "Country location and context",
+         "outcomes": [
+          {
+           "code": "5.5",
+           "text": "Describe the chosen country's location and position in its region and globally."
+          },
+          {
+           "code": null,
+           "text": "Describe its political, social, cultural and environmental context."
+          },
+          {
+           "code": null,
+           "text": "Explain the unevenness of development within the country (core and periphery) and why it varies."
+          }
+         ]
+        },
+        {
+         "id": "economic-social-and-demographic-change",
+         "title": "Economic, social and demographic change",
+         "outcomes": [
+          {
+           "code": "5.6",
+           "text": "Evaluate positive and negative impacts of change in the primary, secondary, tertiary and quaternary sectors."
+          },
+          {
+           "code": null,
+           "text": "Describe the country's international trade and aid."
+          },
+          {
+           "code": null,
+           "text": "Explain the changing balance between public and private investment."
+          },
+          {
+           "code": null,
+           "text": "Describe changes in population structure and life expectancy over 30 years."
+          },
+          {
+           "code": null,
+           "text": "Describe changing social factors: inequality, a growing middle class and better education."
+          }
+         ]
+        },
+        {
+         "id": "geopolitics-and-technology",
+         "title": "Geopolitics and technology",
+         "outcomes": [
+          {
+           "code": "5.7",
+           "text": "Explain how geopolitical relationships affect the country's development."
+          },
+          {
+           "code": null,
+           "text": "Explain how technology and connectivity support development for different areas and groups."
+          }
+         ]
+        },
+        {
+         "id": "impacts-of-rapid-development",
+         "title": "Impacts of rapid development",
+         "outcomes": [
+          {
+           "code": "5.8",
+           "text": "Evaluate the positive and negative social, economic and environmental impacts of rapid development."
+          },
+          {
+           "code": null,
+           "text": "Explain how the government and people manage these impacts to improve quality of life and global status."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "topic-6-resource-management",
+     "title": "Topic 6: Resource management",
+     "topics": [
+      {
+       "id": "overview-of-the-global-and-uk-distribution-of-fo",
+       "title": "Overview of the global and UK distribution of food, energy and water",
+       "subtopics": [
+        {
+         "id": "natural-resources-and-exploitation",
+         "title": "Natural resources and exploitation",
+         "outcomes": [
+          {
+           "code": "6.1",
+           "text": "Define and classify natural resources as biotic, abiotic, renewable and non-renewable."
+          },
+          {
+           "code": null,
+           "text": "Describe how people exploit environments for water, food and energy."
+          },
+          {
+           "code": null,
+           "text": "Explain how exploitation changes environments: biodiversity loss, soil erosion, poorer water and air quality."
+          }
+         ]
+        },
+        {
+         "id": "resource-distribution-and-consumption",
+         "title": "Resource distribution and consumption",
+         "outcomes": [
+          {
+           "code": "6.2",
+           "text": "Describe the global and UK distribution of soil, forestry, fossil fuels, water, rock and minerals."
+          },
+          {
+           "code": null,
+           "text": "Describe global patterns of use and consumption of food, energy and water."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "optional-sub-topic-6a-energy-resource-management",
+       "title": "Optional sub topic 6A: Energy resource management",
+       "subtopics": [
+        {
+         "id": "types-of-energy-resource",
+         "title": "Types of energy resource",
+         "outcomes": [
+          {
+           "code": "6.3",
+           "text": "Classify energy resources as renewable or non-renewable."
+          },
+          {
+           "code": null,
+           "text": "Evaluate production of one non-renewable energy resource."
+          },
+          {
+           "code": null,
+           "text": "Evaluate production of one renewable energy resource."
+          }
+         ]
+        },
+        {
+         "id": "the-energy-mix",
+         "title": "The energy mix",
+         "outcomes": [
+          {
+           "code": "6.4",
+           "text": "Describe the composition of the UK's energy mix."
+          },
+          {
+           "code": null,
+           "text": "Explain how population, wealth and resource availability shape energy mixes worldwide."
+          }
+         ]
+        },
+        {
+         "id": "changing-energy-demand-and-supply",
+         "title": "Changing energy demand and supply",
+         "outcomes": [
+          {
+           "code": "6.5",
+           "text": "Explain how global energy demand and supply changed over 100 years through population growth, wealth and technology."
+          },
+          {
+           "code": null,
+           "text": "Evaluate impacts on people and environment of developing coal, oil, gas and uranium."
+          },
+          {
+           "code": null,
+           "text": "Evaluate impacts of developing hydro-electric, wind and solar power."
+          },
+          {
+           "code": null,
+           "text": "Explain how fracking can resolve energy shortages."
+          }
+         ]
+        },
+        {
+         "id": "attitudes-to-energy-use",
+         "title": "Attitudes to energy use",
+         "outcomes": [
+          {
+           "code": "6.6",
+           "text": "Explain how attitudes to energy exploitation and consumption differ among individuals, organisations and governments."
+          }
+         ]
+        },
+        {
+         "id": "sustainable-energy-management",
+         "title": "Sustainable energy management",
+         "outcomes": [
+          {
+           "code": "6.7",
+           "text": "Explain why renewable and non-renewable energy need sustainable management."
+          },
+          {
+           "code": null,
+           "text": "Compare views of individuals, organisations and governments on sustainable energy use."
+          },
+          {
+           "code": null,
+           "text": "Describe how one developed and one emerging or developing country manage energy sustainably."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "optional-sub-topic-6b-water-resource-management",
+       "title": "Optional sub topic 6B: Water resource management",
+       "subtopics": [
+        {
+         "id": "global-fresh-water-supply",
+         "title": "Global fresh water supply",
+         "outcomes": [
+          {
+           "code": "6.8",
+           "text": "Describe the global distribution of fresh water."
+          },
+          {
+           "code": null,
+           "text": "Explain how water availability varies at global, national and local scales."
+          },
+          {
+           "code": null,
+           "text": "Explain why some places have a water surplus or deficit."
+          },
+          {
+           "code": null,
+           "text": "Explain how human intervention changed water supply and demand over 50 years."
+          }
+         ]
+        },
+        {
+         "id": "water-consumption-patterns",
+         "title": "Water consumption patterns",
+         "outcomes": [
+          {
+           "code": "6.9",
+           "text": "Compare use of water by agriculture, industry and households in developed and developing countries."
+          },
+          {
+           "code": null,
+           "text": "Explain why water use differs between developed and developing countries."
+          }
+         ]
+        },
+        {
+         "id": "water-supply-problems",
+         "title": "Water supply problems",
+         "outcomes": [
+          {
+           "code": "6.10",
+           "text": "Explain why the UK has water supply problems: imbalances, seasonal gaps and ageing pipes."
+          },
+          {
+           "code": null,
+           "text": "Explain why emerging and developing countries have water supply problems."
+          }
+         ]
+        },
+        {
+         "id": "meeting-water-demand",
+         "title": "Meeting water demand",
+         "outcomes": [
+          {
+           "code": "6.11",
+           "text": "Explain how attitudes to water exploitation differ among stakeholders."
+          },
+          {
+           "code": null,
+           "text": "Explain how desalination can resolve water shortages."
+          }
+         ]
+        },
+        {
+         "id": "sustainable-water-management",
+         "title": "Sustainable water management",
+         "outcomes": [
+          {
+           "code": "6.12",
+           "text": "Explain why water resources need sustainable management."
+          },
+          {
+           "code": null,
+           "text": "Compare views of individuals, organisations and governments on sustainable water use."
+          },
+          {
+           "code": null,
+           "text": "Describe how one developed and one emerging or developing country manage water sustainably."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "topic-7-geographical-investigations-fieldwork",
+     "title": "Topic 7: Geographical investigations - fieldwork",
+     "topics": [
+      {
+       "id": "7a-investigating-physical-environments",
+       "title": "7A: Investigating physical environments",
+       "subtopics": [
+        {
+         "id": "river-fieldwork-enquiry-questions",
+         "title": "River fieldwork: enquiry questions",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Develop investigable questions about change in a river channel based on the location and task."
+          }
+         ]
+        },
+        {
+         "id": "river-fieldwork-methods-and-data",
+         "title": "River fieldwork: methods and data",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Use a quantitative method to measure river discharge and a qualitative method to record river landforms."
+          },
+          {
+           "code": null,
+           "text": "Explain the implications of river processes for people living in the catchment."
+          },
+          {
+           "code": null,
+           "text": "Use a flood risk map and one other secondary source."
+          }
+         ]
+        },
+        {
+         "id": "coastal-fieldwork-enquiry-questions",
+         "title": "Coastal fieldwork: enquiry questions",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Develop investigable questions about coastal processes using landscape evidence."
+          }
+         ]
+        },
+        {
+         "id": "coastal-fieldwork-methods-and-data",
+         "title": "Coastal fieldwork: methods and data",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Use a quantitative method to measure beach morphology and sediment, and a qualitative method to record coastal landforms."
+          },
+          {
+           "code": null,
+           "text": "Explain the implications of coastal processes for people living on the coast."
+          },
+          {
+           "code": null,
+           "text": "Use a geology map and one other secondary source."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "7b-investigating-human-environments",
+       "title": "7B: Investigating human environments",
+       "subtopics": [
+        {
+         "id": "urban-fieldwork-enquiry-questions",
+         "title": "Urban fieldwork: enquiry questions",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Develop investigable questions about change in a central or inner urban area."
+          }
+         ]
+        },
+        {
+         "id": "urban-fieldwork-methods-and-data",
+         "title": "Urban fieldwork: methods and data",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Record the quality of the urban environment qualitatively and measure land use function quantitatively."
+          },
+          {
+           "code": null,
+           "text": "Explain how physical landscape features interact with the urban area, residents and visitors."
+          },
+          {
+           "code": null,
+           "text": "Use Census data and one other secondary source."
+          }
+         ]
+        },
+        {
+         "id": "rural-fieldwork-enquiry-questions",
+         "title": "Rural fieldwork: enquiry questions",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Develop investigable questions about change in rural settlements."
+          }
+         ]
+        },
+        {
+         "id": "rural-fieldwork-methods-and-data",
+         "title": "Rural fieldwork: methods and data",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Record people's views on rural environmental quality and measure flows of people in a settlement."
+          },
+          {
+           "code": null,
+           "text": "Explain how physical landscape features interact with rural settlements, residents and visitors."
+          },
+          {
+           "code": null,
+           "text": "Use Census data and one other secondary source."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "the-fieldwork-enquiry-process",
+       "title": "The fieldwork enquiry process",
+       "subtopics": [
+        {
+         "id": "fieldwork-enquiry-stages",
+         "title": "Fieldwork enquiry stages",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain the kinds of question fieldwork can investigate and the enquiry process used."
+          },
+          {
+           "code": null,
+           "text": "Explain the range of fieldwork techniques and methods, including observation and measurement."
+          },
+          {
+           "code": null,
+           "text": "Process and present fieldwork data using maps, GIS, graphs and diagrams."
+          },
+          {
+           "code": null,
+           "text": "Analyse and explain fieldwork data using relevant case studies and theories."
+          },
+          {
+           "code": null,
+           "text": "Draw evidenced conclusions from fieldwork data."
+          },
+          {
+           "code": null,
+           "text": "Reflect critically on fieldwork data, methods, conclusions and knowledge gained."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "topic-8-geographical-investigations-uk-challenge",
+     "title": "Topic 8: Geographical investigations - UK challenges",
+     "topics": [
+      {
+       "id": "the-four-uk-challenges",
+       "title": "The four UK challenges",
+       "subtopics": [
+        {
+         "id": "uk-resource-consumption-and-sustainability",
+         "title": "UK resource consumption and sustainability",
+         "outcomes": [
+          {
+           "code": "8.1",
+           "text": "Explain how UK population change over 50 years affects resource consumption."
+          },
+          {
+           "code": null,
+           "text": "Explain the pressures of growing populations on UK ecosystems."
+          },
+          {
+           "code": null,
+           "text": "Describe national sustainable transport options for the UK."
+          }
+         ]
+        },
+        {
+         "id": "uk-settlement-population-and-economy",
+         "title": "UK settlement, population and economy",
+         "outcomes": [
+          {
+           "code": "8.2",
+           "text": "Explain the two-speed economy and options for bridging the gap between the south east and the rest of the UK."
+          },
+          {
+           "code": null,
+           "text": "Weigh the costs and benefits of greenfield development against brownfield regeneration."
+          },
+          {
+           "code": null,
+           "text": "Evaluate UK net migration statistics and the differing attitudes of stakeholders to migration."
+          }
+         ]
+        },
+        {
+         "id": "uk-landscape-challenges",
+         "title": "UK landscape challenges",
+         "outcomes": [
+          {
+           "code": "8.3",
+           "text": "Describe approaches to conserving and developing UK National Parks."
+          },
+          {
+           "code": null,
+           "text": "Describe approaches to managing river and coastal flood risk in the UK."
+          }
+         ]
+        },
+        {
+         "id": "uk-climate-change-challenges",
+         "title": "UK climate change challenges",
+         "outcomes": [
+          {
+           "code": "8.4",
+           "text": "Explain the uncertainties about how global climate change will affect the UK's future climate."
+          },
+          {
+           "code": null,
+           "text": "Describe the impacts of climate change on people and landscapes in the UK."
+          },
+          {
+           "code": null,
+           "text": "Describe local and national responses to climate change in the UK."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "build": {
+  "builtAt": "2026-10-14T10:33:48.733Z",
+  "model": "claude-agent",
+  "usd": 0,
+  "expectedCodes": 61,
+  "coverage": 1,
+  "missingCodes": [],
+  "counts": {
+   "grades": 1,
+   "units": 8,
+   "topics": 22,
+   "subtopics": 70,
+   "outcomes": 174
+  },
+  "warnings": [
+   "grade Year 10 has no content",
+   "grade Year 11 has no content",
+   "unexpected grade label \"all\""
+  ]
+ }
+}

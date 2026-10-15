@@ -1,0 +1,1954 @@
+{
+ "id": "us-ct-science",
+ "region": "US",
+ "framework": "Connecticut state academic standards: Science",
+ "board": null,
+ "qualification": "K-12",
+ "subject": "Science",
+ "syllabusCode": null,
+ "gradeSystem": "grade",
+ "source": {
+  "urls": [
+   "https://api.commonstandardsproject.com/api/v1/jurisdictions/7ED35031669E470B98EF63BEAD17286D",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/7ED35031669E470B98EF63BEAD17286D_D10003B3_grade-01",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/7ED35031669E470B98EF63BEAD17286D_D10003B3_grade-02",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/7ED35031669E470B98EF63BEAD17286D_D10003B3_grade-03",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/7ED35031669E470B98EF63BEAD17286D_D10003B3_grade-04",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/7ED35031669E470B98EF63BEAD17286D_D10003B3_grade-05",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/7ED35031669E470B98EF63BEAD17286D_D10003B3_grade-06",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/7ED35031669E470B98EF63BEAD17286D_D10003B3_grade-07",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/7ED35031669E470B98EF63BEAD17286D_D10003B3_grade-08",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/7ED35031669E470B98EF63BEAD17286D_D10003B3_grade-k",
+   "https://api.commonstandardsproject.com/api/v1/standard_sets/7ED35031669E470B98EF63BEAD17286D_D10003B3_grade-pre-k"
+  ],
+  "publisher": "Connecticut state education agency (machine-readable via Common Standards Project / ASN)",
+  "licence": "CC BY 3.0 US, Desire2Learn Incorporated",
+  "firstExam": "2010"
+ },
+ "grades": [
+  {
+   "grade": "PK",
+   "units": [
+    {
+     "id": "properties-of-matter",
+     "title": "Properties of Matter",
+     "topics": [
+      {
+       "id": "objects-have-properties-that-can-be-observed-and",
+       "title": "Objects have properties that can be observed and used to describe similarities and differences",
+       "subtopics": [
+        {
+         "id": "objects-have-properties-that-can-be-observed-and",
+         "title": "Objects have properties that can be observed and used to describe similarities and differences",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Use senses to make observations of objects and materials within the child's immediate environment."
+          },
+          {
+           "code": null,
+           "text": "Use simple tools (e.g., balances and magnifiers) and nonstandard measurement units to observe and compare properties of objects and materials."
+          },
+          {
+           "code": null,
+           "text": "Make comments or express curiosity about observed phenomena (e.g., \"I notice that…\" or \"I wonder if…\")."
+          },
+          {
+           "code": null,
+           "text": "Count, order and sort objects (e.g., blocks, crayons, toys) based on one visible property (e.g., color, shape, size)."
+          },
+          {
+           "code": null,
+           "text": "Conduct simple tests to determine if objects roll, slide or bounce."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "heredity-and-evolution",
+     "title": "Heredity and Evolution",
+     "topics": [
+      {
+       "id": "many-different-kinds-of-living-things-inhabit-th",
+       "title": "Many different kinds of living things inhabit the Earth",
+       "subtopics": [
+        {
+         "id": "many-different-kinds-of-living-things-inhabit-th",
+         "title": "Many different kinds of living things inhabit the Earth",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Use the senses and simple tools to make observations of characteristics and behaviors of living and nonliving things."
+          },
+          {
+           "code": null,
+           "text": "Give examples of living things and nonliving things."
+          },
+          {
+           "code": null,
+           "text": "Make observations and distinguish between the characteristics of plants and animals."
+          },
+          {
+           "code": null,
+           "text": "Compare attributes of self, family members or classmates, and describe how they are similar and different."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "energy-in-the-earth-s-systems",
+     "title": "Energy in the Earth's Systems",
+     "topics": [
+      {
+       "id": "weather-conditions-vary-daily-and-seasonally",
+       "title": "Weather conditions vary daily and seasonally",
+       "subtopics": [
+        {
+         "id": "weather-conditions-vary-daily-and-seasonally",
+         "title": "Weather conditions vary daily and seasonally",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Use the senses to observe and describe evidence of current or recent weather conditions (e.g., flags blowing, frost on window, puddles after rain, etc.)."
+          },
+          {
+           "code": null,
+           "text": "Notice weather conditions and use words and numbers to describe and analyze conditions over time (e.g., \"it rained five times this month\")."
+          },
+          {
+           "code": null,
+           "text": "Identify the season that corresponds with observable conditions (e.g., falling leaves, snow vs. rain, buds on trees or greener grass)."
+          },
+          {
+           "code": null,
+           "text": "Make judgments about appropriate clothing and activities based on weather conditions."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "science-and-technology-in-society",
+     "title": "Science and Technology in Society",
+     "topics": [
+      {
+       "id": "some-objects-are-natural-while-others-have-been-",
+       "title": "Some objects are natural, while others have been designed and made by people to improve the quality of life",
+       "subtopics": [
+        {
+         "id": "some-objects-are-natural-while-others-have-been-",
+         "title": "Some objects are natural, while others have been designed and made by people to improve the quality of life",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Observe, describe and sort building materials by properties such as strength, weight, stiffness or flexibility."
+          },
+          {
+           "code": null,
+           "text": "Pose questions and conduct simple tests to compare the effectiveness of different building materials (e.g., blocks of wood, plastic, foam or cardboard) for constructing towers, bridges and buildings."
+          },
+          {
+           "code": null,
+           "text": "Make judgments about the best building materials to use for different purposes (e.g., making the tallest tower or the longest bridge)."
+          },
+          {
+           "code": null,
+           "text": "Invent and explain techniques for stabilizing a structure."
+          },
+          {
+           "code": null,
+           "text": "Compare block structures to pictures and to real structures in the neighborhood."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "K",
+   "units": [
+    {
+     "id": "properties-of-matter",
+     "title": "Properties of Matter",
+     "topics": [
+      {
+       "id": "objects-have-properties-that-can-be-observed-and",
+       "title": "Objects have properties that can be observed and used to describe similarities and differences",
+       "subtopics": [
+        {
+         "id": "objects-have-properties-that-can-be-observed-and",
+         "title": "Objects have properties that can be observed and used to describe similarities and differences",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Match each of the five senses with its associated body part and the kind of information it perceives."
+          },
+          {
+           "code": null,
+           "text": "Make scientific observations using the five senses, and distinguish between an object's observable properties and its name or its uses."
+          },
+          {
+           "code": null,
+           "text": "Classify organisms or objects by one and two observable properties and explain the rule used for sorting (e.g., size, color, shape, texture or flexibility)."
+          },
+          {
+           "code": null,
+           "text": "Use simple tools and nonstandard units to estimate or predict properties such as size, heaviness, magnetic attraction and float/sink."
+          },
+          {
+           "code": null,
+           "text": "Describe properties of materials such as wood, plastic, metal, cloth or paper and sort objects by the material from which they are made."
+          },
+          {
+           "code": null,
+           "text": "Count, order and sort objects by their observable properties."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "heredity-and-evolution",
+     "title": "Heredity and Evolution",
+     "topics": [
+      {
+       "id": "many-different-kinds-of-living-things-inhabit-th",
+       "title": "Many different kinds of living things inhabit the Earth",
+       "subtopics": [
+        {
+         "id": "many-different-kinds-of-living-things-inhabit-th",
+         "title": "Many different kinds of living things inhabit the Earth",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Observe and describe differences between living and nonliving things in terms of growth, offspring and need for energy from \"food.\""
+          },
+          {
+           "code": null,
+           "text": "Sort and count living and nonliving things in the classroom, the schoolyard and in pictures."
+          },
+          {
+           "code": null,
+           "text": "Use nonstandard measures to estimate and compare the height, length or weight of different kinds of plants and animals."
+          },
+          {
+           "code": null,
+           "text": "Observe and write, speak or draw about similarities and differences between plants and animals."
+          },
+          {
+           "code": null,
+           "text": "Match pictures or models of adults with their offspring (animals and plants)."
+          },
+          {
+           "code": null,
+           "text": "Recognize varied individuals as examples of the same kind of living thing (e.g., different color rabbits are all rabbits; different breeds of dogs are all dogs)."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "energy-in-the-earth-s-systems",
+     "title": "Energy in the Earth's Systems",
+     "topics": [
+      {
+       "id": "weather-conditions-vary-daily-and-seasonally",
+       "title": "Weather conditions vary daily and seasonally",
+       "subtopics": [
+        {
+         "id": "weather-conditions-vary-daily-and-seasonally",
+         "title": "Weather conditions vary daily and seasonally",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Use the senses to observe daily weather conditions and record data systematically using organizers such as tables, charts, picture graphs or calendars."
+          },
+          {
+           "code": null,
+           "text": "Analyze weather data collected over time (during the day, from day to day, and from season to season) to identify patterns and make comparisons and predictions."
+          },
+          {
+           "code": null,
+           "text": "Observe, compare and contrast cloud shapes, sizes and colors, and relate the appearance of clouds to fair weather or precipitation."
+          },
+          {
+           "code": null,
+           "text": "Write, speak or draw ways that weather influences humans, other animals and plants."
+          },
+          {
+           "code": null,
+           "text": "Make judgments about appropriate clothing and activities based on weather conditions."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "science-and-technology-in-society",
+     "title": "Science and Technology in Society",
+     "topics": [
+      {
+       "id": "some-objects-are-natural-while-others-have-been-",
+       "title": "Some objects are natural, while others have been designed and made by people to improve the quality of life. This content standard is an application of the concepts in content standard K.1 and should be integrated into the same unit",
+       "subtopics": [
+        {
+         "id": "some-objects-are-natural-while-others-have-been-",
+         "title": "Some objects are natural, while others have been designed and made by people to improve the quality of life. This content standard is an application of the concepts in content standard K.1 and should be integrated into the same unit",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Conduct simple tests to compare the properties of different materials and their usefulness for making roofs, windows, walls or floors (e.g., waterproof, transparent, strong)."
+          },
+          {
+           "code": null,
+           "text": "Seek information in books, magazines and pictures that describes materials used to build shelters by people in different regions of the world."
+          },
+          {
+           "code": null,
+           "text": "Compare and contrast the materials used by humans and animals to build shelters."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "1",
+   "units": [
+    {
+     "id": "science-and-technology-in-society",
+     "title": "Science and Technology in Society",
+     "topics": [
+      {
+       "id": "the-properties-of-materials-and-organisms-can-be",
+       "title": "The properties of materials and organisms can be described more accurately through the use of standard measuring units. This content standard should be integrated within all PK–5 standards",
+       "subtopics": [
+        {
+         "id": "the-properties-of-materials-and-organisms-can-be",
+         "title": "The properties of materials and organisms can be described more accurately through the use of standard measuring units. This content standard should be integrated within all PK–5 standards (1 of 2)",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Use nonstandard and standard measurements to describe and compare the weight, length and size of objects and organisms."
+          },
+          {
+           "code": null,
+           "text": "Show approximate size of a centimeter, meter, inch, foot and yard using referents such as a finger, a hand or a book."
+          },
+          {
+           "code": null,
+           "text": "Select appropriate tools for measuring length, height, weight or liquid volume."
+          },
+          {
+           "code": null,
+           "text": "Use metric and customary rulers to measure length, height or distance in centimeters, meters, inches, feet and yards."
+          }
+         ]
+        },
+        {
+         "id": "the-properties-of-materials-and-organisms-can-be-2",
+         "title": "The properties of materials and organisms can be described more accurately through the use of standard measuring units. This content standard should be integrated within all PK–5 standards (2 of 2)",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Use balances and scales to compare and measure the heaviness of objects and organisms in kilograms, grams, pounds and ounces."
+          },
+          {
+           "code": null,
+           "text": "Use graduated cylinders, beakers and measuring cups to measure the volume of liquids in milliliters, liters, cups and ounces."
+          },
+          {
+           "code": null,
+           "text": "Use thermometers to measure air and water temperature in degrees Celsius and degrees Fahrenheit."
+          },
+          {
+           "code": null,
+           "text": "Make graphs to identify patterns in recorded measurements such as growth or temperature over time."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "forces-and-motion",
+     "title": "Forces and Motion",
+     "topics": [
+      {
+       "id": "the-sun-appears-to-move-across-the-sky-in-the-sa",
+       "title": "The sun appears to move across the sky in the same way every day, but its path changes gradually over the seasons",
+       "subtopics": [
+        {
+         "id": "the-sun-appears-to-move-across-the-sky-in-the-sa",
+         "title": "The sun appears to move across the sky in the same way every day, but its path changes gradually over the seasons",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Compare and contrast the relative positions of objects using words (in front of, behind, next to, inside of, above or below) and numbers (by measuring its distance from another object)."
+          },
+          {
+           "code": null,
+           "text": "Apply direct and indirect pushes and pulls to cause objects to move (change position) in different ways (e.g., straight line, forward and backward, zigzag, in a circle)."
+          },
+          {
+           "code": null,
+           "text": "Classify objects by the way they move (e.g., spinning, rolling, bouncing)."
+          },
+          {
+           "code": null,
+           "text": "Conduct simple experiments and evaluate different ways to change the speed and direction of an object's motion."
+          },
+          {
+           "code": null,
+           "text": "Observe, record and predict the sun's position at different times of day (morning, noon, afternoon or night)."
+          },
+          {
+           "code": null,
+           "text": "Conduct simple investigations of shadows and analyze how shadows change as the relative position of the sun (or an artificial light source) changes."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "structure-and-function",
+     "title": "Structure and Function",
+     "topics": [
+      {
+       "id": "living-things-have-different-structures-and-beha",
+       "title": "Living things have different structures and behaviors that allow them to meet their basic needs",
+       "subtopics": [
+        {
+         "id": "living-things-have-different-structures-and-beha",
+         "title": "Living things have different structures and behaviors that allow them to meet their basic needs",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Infer from direct observation and print or electronic information that most animals and plants need water, food and air to stay alive."
+          },
+          {
+           "code": null,
+           "text": "Identify structures and behaviors used by mammals, birds, amphibians, reptiles, fish and insects to move around, breathe and obtain food and water (e.g., legs/wings/fins, gills/lungs, claws/fingers, etc.)"
+          },
+          {
+           "code": null,
+           "text": "Sort and classify plants (or plant parts) by observable characteristics (e.g., leaf shape/size, stem or trunk covering, flower or fruit)."
+          },
+          {
+           "code": null,
+           "text": "Use senses and simple measuring tools to measure the effects of water and sunlight on plant growth."
+          },
+          {
+           "code": null,
+           "text": "Compare and contrast information about animals and plants found in fiction and nonfiction sources."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "organisms-change-in-form-and-behavior-as-part-of",
+       "title": "Organisms change in form and behavior as part of their life cycles",
+       "subtopics": [
+        {
+         "id": "organisms-change-in-form-and-behavior-as-part-of",
+         "title": "Organisms change in form and behavior as part of their life cycles",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain that living things experience a life cycle during which they undergo a predictable sequence of changes from birth, growth, reproduction and death."
+          },
+          {
+           "code": null,
+           "text": "Distinguish between animals that are born alive (e.g., humans, dogs, cows) and those that hatch from eggs (e.g., chickens, sea turtles, crocodiles)."
+          },
+          {
+           "code": null,
+           "text": "Compare and contrast the changes in structure and behavior that occur during the life cycles of animals that undergo metamorphosis with those that do not."
+          },
+          {
+           "code": null,
+           "text": "Analyze recorded observations to compare the metamorphosis stages of different animals, and make predictions based on observed patterns."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "2",
+   "units": [
+    {
+     "id": "properties-of-matter",
+     "title": "Properties of Matter",
+     "topics": [
+      {
+       "id": "materials-can-be-classified-as-solid-liquid-or-g",
+       "title": "Materials can be classified as solid, liquid or gas based on their observable properties",
+       "subtopics": [
+        {
+         "id": "materials-can-be-classified-as-solid-liquid-or-g",
+         "title": "Materials can be classified as solid, liquid or gas based on their observable properties",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Compare and contrast the properties that distinguish solids, liquids and gases."
+          },
+          {
+           "code": null,
+           "text": "Classify objects and materials according to their state of matter."
+          },
+          {
+           "code": null,
+           "text": "Measure and compare the sizes of different solids."
+          },
+          {
+           "code": null,
+           "text": "Measure and compare the volume of a liquid poured into different containers."
+          },
+          {
+           "code": null,
+           "text": "Design a fair test to compare the flow rates of different liquids and granular solids."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "science-and-technology-in-society",
+     "title": "Science and Technology in Society",
+     "topics": [
+      {
+       "id": "human-beings-like-all-other-living-things-have-s",
+       "title": "Human beings, like all other living things, have special nutritional needs for survival. This content standard is an application of the concepts in content standard 2.3 and should be integrated into the same unit",
+       "subtopics": [
+        {
+         "id": "human-beings-like-all-other-living-things-have-s",
+         "title": "Human beings, like all other living things, have special nutritional needs for survival. This content standard is an application of the concepts in content standard 2.3 and should be integrated into the same unit",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain that food is a source of carbohydrates, proteins and fats — nutrients that animals (including humans) convert to energy they use to stay alive and grow."
+          },
+          {
+           "code": null,
+           "text": "Classify foods into groups based on their source, and relate common foods to the plant or animal from which they come."
+          },
+          {
+           "code": null,
+           "text": "Give examples of ways people can improve soil quality and crop growth (e.g., irrigation, fertilizer, pest control)."
+          },
+          {
+           "code": null,
+           "text": "Compare and contrast how different cultures meet needs for basic nutrients by consuming various foods."
+          },
+          {
+           "code": null,
+           "text": "Evaluate the nutritional value of different foods by analyzing package labels."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "structure-and-function",
+     "title": "Structure and Function",
+     "topics": [
+      {
+       "id": "plants-change-their-forms-as-part-of-their-life-",
+       "title": "Plants change their forms as part of their life cycles",
+       "subtopics": [
+        {
+         "id": "plants-change-their-forms-as-part-of-their-life-",
+         "title": "Plants change their forms as part of their life cycles",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Use senses and simple tools to observe and describe the roots, stems, leaves, flowers and seeds of various plants (including trees, vegetables and grass.)"
+          },
+          {
+           "code": null,
+           "text": "Use magnifiers to observe and diagram the parts of a flower."
+          },
+          {
+           "code": null,
+           "text": "Describe the functions of roots, stems, leaves, flowers and seeds in completing a plant's life cycle."
+          },
+          {
+           "code": null,
+           "text": "Record observations and make conclusions about the sequence of stages in a flowering plant's life cycle."
+          },
+          {
+           "code": null,
+           "text": "Compare and contrast how seeds of different plants are adapted for dispersal by water, wind or animals."
+          },
+          {
+           "code": null,
+           "text": "Conduct a fair test to explore factors that affect seed germination and plant growth."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "the-changing-earth",
+     "title": "The Changing Earth",
+     "topics": [
+      {
+       "id": "earth-materials-have-varied-physical-properties-",
+       "title": "Earth materials have varied physical properties, which make them useful in different ways",
+       "subtopics": [
+        {
+         "id": "earth-materials-have-varied-physical-properties-",
+         "title": "Earth materials have varied physical properties, which make them useful in different ways",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Use senses and simple tools (e.g., sieves and beakers) to separate soil into components such as rock fragments, water, air and plant remains."
+          },
+          {
+           "code": null,
+           "text": "Classify soils by properties such as color, particle size (sand, silt or clay), or amount of organic material (loam)."
+          },
+          {
+           "code": null,
+           "text": "Explain the importance of soil to plants, animals and people."
+          },
+          {
+           "code": null,
+           "text": "Evaluate the quality of different soils in terms of observable presence of air, water, living things and plant remains."
+          },
+          {
+           "code": null,
+           "text": "Conduct fair tests to investigate how different soil types affect plant growth, and write conclusions supported by evidence."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "3",
+   "units": [
+    {
+     "id": "properties-of-matter",
+     "title": "Properties of Matter",
+     "topics": [
+      {
+       "id": "materials-have-properties-that-can-be-identified",
+       "title": "Materials have properties that can be identified and described through the use of simple tests",
+       "subtopics": [
+        {
+         "id": "materials-have-properties-that-can-be-identified",
+         "title": "Materials have properties that can be identified and described through the use of simple tests",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Compare and contrast the properties of solids, liquids and gases."
+          },
+          {
+           "code": null,
+           "text": "Demonstrate that solids, liquids and gases are all forms of matter that take up space and have weight."
+          },
+          {
+           "code": null,
+           "text": "Carry out simple tests to determine if materials dissolve, sink or float in water; conduct heat; or attract to magnets."
+          },
+          {
+           "code": null,
+           "text": "Classify materials based on their observable properties, including state of matter."
+          },
+          {
+           "code": null,
+           "text": "Design and conduct fair tests to investigate the absorbency of different materials, write conclusions based on evidence, and analyze why similar investigations might produce different results."
+          },
+          {
+           "code": null,
+           "text": "Explain the role of heating and cooling in changing matter from one state to another during freezing, melting, evaporation and condensation."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "heredity-and-evolution",
+     "title": "Heredity and Evolution",
+     "topics": [
+      {
+       "id": "organisms-can-survive-and-reproduce-only-in-envi",
+       "title": "Organisms can survive and reproduce only in environments that meet their basic needs",
+       "subtopics": [
+        {
+         "id": "organisms-can-survive-and-reproduce-only-in-envi",
+         "title": "Organisms can survive and reproduce only in environments that meet their basic needs",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Compare and contrast the external features and behaviors that enable different animals and plants (including those that are extinct) to get food, water and sunlight; find mates; and be protected in specific land and water habitats."
+          },
+          {
+           "code": null,
+           "text": "Explain how behaviors such as hibernation, dormancy and migration give species advantages for surviving unfavorable environmental conditions."
+          },
+          {
+           "code": null,
+           "text": "Give examples of ways animals benefit from camouflage."
+          },
+          {
+           "code": null,
+           "text": "Evaluate whether an adaptation gives a plant or animal a survival advantage in a given environment."
+          },
+          {
+           "code": null,
+           "text": "Design a model of an organism whose adaptations give it an advantage in a specific environment."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "science-and-technology-in-society",
+     "title": "Science and Technology in Society",
+     "topics": [
+      {
+       "id": "earth-materials-provide-resources-for-all-living",
+       "title": "Earth materials provide resources for all living things, but these resources are limited and should be conserved. This content standard is an application of the concepts in content standard 3.1 and 3.3 and should be integrated into one of these units",
+       "subtopics": [
+        {
+         "id": "earth-materials-provide-resources-for-all-living",
+         "title": "Earth materials provide resources for all living things, but these resources are limited and should be conserved. This content standard is an application of the concepts in content standard 3.1 and 3.3 and should be integrated into one of these units",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe ways people use earth materials, such as fossil fuels, trees, water, soils and rocks as natural resources to improve their lives."
+          },
+          {
+           "code": null,
+           "text": "Summarize nonfiction text to explain how humans use technology to access and use natural resources to produce electricity or other products (e.g., paper or concrete)."
+          },
+          {
+           "code": null,
+           "text": "Explain advantages and disadvantages of renewable and nonrenewable energy sources that can be used for making electricity, fueling cars or heating homes."
+          },
+          {
+           "code": null,
+           "text": "Design and conduct experiments to evaluate the effectiveness of different insulating materials for keeping a substance warm or cold (i.e., conducting heat)."
+          },
+          {
+           "code": null,
+           "text": "Use mathematics to estimate, measure and graph the quantity of a natural resource (e.g., water, paper) used by an individual (or group) in a certain time period."
+          },
+          {
+           "code": null,
+           "text": "Distinguish among reducing, reusing, recycling and replacing as conservation techniques."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "the-changing-earth",
+     "title": "The Changing Earth",
+     "topics": [
+      {
+       "id": "earth-materials-have-different-physical-and-chem",
+       "title": "Earth materials have different physical and chemical properties",
+       "subtopics": [
+        {
+         "id": "earth-materials-have-different-physical-and-chem",
+         "title": "Earth materials have different physical and chemical properties",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Differentiate between rocks and minerals."
+          },
+          {
+           "code": null,
+           "text": "Use the senses and simple measuring tools to gather data about various rocks and classify them based on observable properties (e.g., shape, size, color, weight, visible markings)."
+          },
+          {
+           "code": null,
+           "text": "Conduct simple tests to determine properties of different minerals (e.g., color, odor, streak, luster, hardness, magnetism), organize data in a table, and use the data and other resources to identify unknown mineral specimens."
+          },
+          {
+           "code": null,
+           "text": "Summarize nonfiction text to compare and contrast the conditions under which igneous, metamorphic and sedimentary rocks are formed."
+          },
+          {
+           "code": null,
+           "text": "Observe and analyze rock properties (e.g., crystal size or layers) to infer the conditions under which the rock was formed."
+          },
+          {
+           "code": null,
+           "text": "Evaluate the usefulness of different rock types for specific applications (e.g., buildings, sidewalks, stone walls, statues or monuments)."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "4",
+   "units": [
+    {
+     "id": "energy-in-the-earth-s-systems",
+     "title": "Energy in the Earth's Systems",
+     "topics": [
+      {
+       "id": "water-has-a-major-role-in-shaping-the-earth-s-su",
+       "title": "Water has a major role in shaping the Earth's surface",
+       "subtopics": [
+        {
+         "id": "water-has-a-major-role-in-shaping-the-earth-s-su",
+         "title": "Water has a major role in shaping the Earth's surface",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe the role of the sun's energy (i.e., heating and cooling) in the continuous cycling of water between the earth and the atmosphere through evaporation, condensation and precipitation."
+          },
+          {
+           "code": null,
+           "text": "Use models to demonstrate that topography causes precipitation landing on earth to move in streams and rivers from higher to lower elevations."
+          },
+          {
+           "code": null,
+           "text": "Design and conduct simple investigations to determine how moving water (flowing downhill or in ocean waves) causes changes to the land, the coastline or the course of a stream or river."
+          },
+          {
+           "code": null,
+           "text": "Pose testable questions and employ simple equipment and measuring tools to collect data about factors that affect erosion (e.g., type of earth material in an area, volume of moving water, slope of land, vegetation coverage)."
+          },
+          {
+           "code": null,
+           "text": "Present evidence to support a scientific claim about the relationship between the amount and speed of moving water and the size of earth materials moved (e.g., silt, pebbles, boulders)."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "science-and-technology-in-society",
+     "title": "Science and Technology in Society",
+     "topics": [
+      {
+       "id": "electrical-and-magnetic-energy-can-be-transferre",
+       "title": "Electrical and magnetic energy can be transferred and transformed",
+       "subtopics": [
+        {
+         "id": "electrical-and-magnetic-energy-can-be-transferre",
+         "title": "Electrical and magnetic energy can be transferred and transformed (1 of 2)",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Construct complete (closed) and incomplete (open) series circuits in which electrical energy is transformed into heat, light, sound and/or motion energy."
+          },
+          {
+           "code": null,
+           "text": "Draw labeled diagrams of complete and incomplete circuits and explain necessary components and how components must be arranged to make a complete circuit."
+          },
+          {
+           "code": null,
+           "text": "Predict whether diagrammed circuit configurations will light a bulb."
+          },
+          {
+           "code": null,
+           "text": "Develop a method for testing conductivity, and analyze data to generalize about which materials are good electrical conductors and which are good insulators."
+          },
+          {
+           "code": null,
+           "text": "Observe magnetic effects associated with electricity and investigate factors that affect the strength of an electromagnet."
+          }
+         ]
+        },
+        {
+         "id": "electrical-and-magnetic-energy-can-be-transferre-2",
+         "title": "Electrical and magnetic energy can be transferred and transformed (2 of 2)",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe materials that are attracted by magnets."
+          },
+          {
+           "code": null,
+           "text": "Design procedures to move objects and separate mixtures of solids using magnets."
+          },
+          {
+           "code": null,
+           "text": "Investigate how magnets react with other magnets and analyze findings to identify patterns in the interactions between north and south poles of magnets."
+          },
+          {
+           "code": null,
+           "text": "Give examples of uses of magnets (e.g., motors, generators, household devices)."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "forces-and-motion",
+     "title": "Forces and Motion",
+     "topics": [
+      {
+       "id": "the-position-and-motion-of-objects-can-be-change",
+       "title": "The position and motion of objects can be changed by pushing or pulling",
+       "subtopics": [
+        {
+         "id": "the-position-and-motion-of-objects-can-be-change",
+         "title": "The position and motion of objects can be changed by pushing or pulling",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Demonstrate that a force can cause an object to start moving, stop, or change speed or direction."
+          },
+          {
+           "code": null,
+           "text": "Use measurement tools and standard units to compare and contrast the motion of objects such as toy cars, balls, model rockets or planes in terms of change in position, speed and direction."
+          },
+          {
+           "code": null,
+           "text": "Design and conduct experiments to determine how the motion of objects is related to the mass of the object and the strength of the force applied."
+          },
+          {
+           "code": null,
+           "text": "Describe how friction forces caused by air resistance or interactions between surface materials affect the motion of objects."
+          },
+          {
+           "code": null,
+           "text": "Predict the effect of an object's mass on its motion."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "matter-and-energy-in-ecosystems",
+     "title": "Matter and Energy in Ecosystems",
+     "topics": [
+      {
+       "id": "all-organisms-depend-on-the-living-and-nonliving",
+       "title": "All organisms depend on the living and nonliving features of the environment for survival",
+       "subtopics": [
+        {
+         "id": "all-organisms-depend-on-the-living-and-nonliving",
+         "title": "All organisms depend on the living and nonliving features of the environment for survival",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Give examples of ways that living and nonliving things are interdependent within an ecosystem."
+          },
+          {
+           "code": null,
+           "text": "Draw diagrams showing how the sun's energy enters and is transferred from producers to consumers in a local land or aquatic food chain."
+          },
+          {
+           "code": null,
+           "text": "Design and conduct simple investigations to record interactions among producers, consumers, herbivores, carnivores, omnivores and decomposers in an ecosystem."
+          },
+          {
+           "code": null,
+           "text": "Analyze food webs to describe how energy is transferred from plants to various animals in an ecosystem."
+          },
+          {
+           "code": null,
+           "text": "Distinguish between naturally occurring changes in ecosystems and those caused by human activity."
+          },
+          {
+           "code": null,
+           "text": "Predict the effect an environmental change, such as drought or forest destruction, might have on the community of living things."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "5",
+   "units": [
+    {
+     "id": "science-and-technology-in-society",
+     "title": "Science and Technology in Society",
+     "topics": [
+      {
+       "id": "humans-have-the-capacity-to-build-and-use-tools-",
+       "title": "Humans have the capacity to build and use tools to advance the quality of their lives. This content standard is an application of the concepts in content standard 5.1 and should be integrated into the same unit",
+       "subtopics": [
+        {
+         "id": "humans-have-the-capacity-to-build-and-use-tools-",
+         "title": "Humans have the capacity to build and use tools to advance the quality of their lives. This content standard is an application of the concepts in content standard 5.1 and should be integrated into the same unit",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Generalize that optical tools, such as binoculars, telescopes, eyeglasses or periscopes, change the path of light by reflecting or refracting it."
+          },
+          {
+           "code": null,
+           "text": "Construct simple periscopes and telescopes, and analyze how the placement of their lenses and mirrors affects the quality of the image formed."
+          },
+          {
+           "code": null,
+           "text": "Evaluate the best optical instrument to perform a given task."
+          },
+          {
+           "code": null,
+           "text": "Design and conduct simple investigations to determine how the shape of a lens or mirror (concave, convex, flat) affects the direction in which light rays travel."
+          },
+          {
+           "code": null,
+           "text": "Explain how eyeglasses or contact lenses improve vision by changing the path of light to the retina."
+          },
+          {
+           "code": null,
+           "text": "Analyze the similarities and differences between structures of the human eye and those of a simple camera. HUMAN EYE CAMERA FUNCTION Eyelid Lens cap Protect interior parts Pupil Lens opening (aperture) Allow light to enter Cornea, lens Lens Focus light rays on a point Retina Film (or digital medium) Respond to light resulting in an image"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "structure-and-function",
+     "title": "Structure and Function",
+     "topics": [
+      {
+       "id": "perceiving-and-responding-to-information-about-t",
+       "title": "Perceiving and responding to information about the environment is critical to the survival of organisms",
+       "subtopics": [
+        {
+         "id": "perceiving-and-responding-to-information-about-t",
+         "title": "Perceiving and responding to information about the environment is critical to the survival of organisms (1 of 2)",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain the role of sensory organs in perceiving stimuli (e.g., light/dark, heat/cold, flavors, pain, etc.) and sending signals to the brain."
+          },
+          {
+           "code": null,
+           "text": "Pose testable questions and design experiments to explore factors that affect human reaction time."
+          },
+          {
+           "code": null,
+           "text": "Conduct simple tests to explore the capabilities of the human senses."
+          },
+          {
+           "code": null,
+           "text": "Summarize nonfiction text to explain the role of the brain and spinal cord in responding to information received from the sense organs."
+          }
+         ]
+        },
+        {
+         "id": "perceiving-and-responding-to-information-about-t-2",
+         "title": "Perceiving and responding to information about the environment is critical to the survival of organisms (2 of 2)",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Identify the major structures of the human eye, ear, nose, skin and tongue, and explain their functions."
+          },
+          {
+           "code": null,
+           "text": "Draw diagrams showing the straight path of light rays from a source to a reflecting object to the eye, allowing objects to be seen."
+          },
+          {
+           "code": null,
+           "text": "Describe the properties of different materials and the structures in the human eye that enable humans to perceive color."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "energy-transfer-and-transformations",
+     "title": "Energy Transfer and Transformations",
+     "topics": [
+      {
+       "id": "sound-and-light-are-forms-of-energy",
+       "title": "Sound and light are forms of energy",
+       "subtopics": [
+        {
+         "id": "sound-and-light-are-forms-of-energy-1-of-3",
+         "title": "Sound and light are forms of energy (1 of 3)",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Generalize that vibrating objects produce sound if the vibrations are transferred from the object through another material (e.g., air, a solid, or a liquid)."
+          },
+          {
+           "code": null,
+           "text": "Demonstrate how the loudness, pitch and quality/timbre of sound can be varied."
+          },
+          {
+           "code": null,
+           "text": "Design and conduct investigations to determine factors that affect pitch."
+          },
+          {
+           "code": null,
+           "text": "Describe the properties of materials that reflect or absorb sound."
+          },
+          {
+           "code": null,
+           "text": "Construct simple musical instruments (e.g., rubber band guitars, drums, etc.) that produce sounds with various pitches, volume and timbres."
+          }
+         ]
+        },
+        {
+         "id": "sound-and-light-are-forms-of-energy-2-of-3",
+         "title": "Sound and light are forms of energy (2 of 3)",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Provide evidence that light travels in straight lines away from a source in all directions."
+          },
+          {
+           "code": null,
+           "text": "Investigate how light is refracted as it passes through a lens or through one transparent material to another."
+          },
+          {
+           "code": null,
+           "text": "Demonstrate that white light is composed of many colors."
+          },
+          {
+           "code": null,
+           "text": "Explain that all visible objects are reflecting some light to the human eye."
+          },
+          {
+           "code": null,
+           "text": "Contrast the way light is reflected by smooth, shiny objects (e.g., mirror or pool of water) and how it is reflected by other objects."
+          }
+         ]
+        },
+        {
+         "id": "sound-and-light-are-forms-of-energy-3-of-3",
+         "title": "Sound and light are forms of energy (3 of 3)",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Measure angles to predict the path of light reflected by a mirror."
+          },
+          {
+           "code": null,
+           "text": "Determine whether a material is opaque, transparent or translucent based on how light passes through it."
+          },
+          {
+           "code": null,
+           "text": "Design and conduct light absorption experiments that vary the size, length, direction and clarity of a shadow by changing the position of the light-blocking object or the light source."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "earth-in-the-solar-system",
+     "title": "Earth in the Solar System",
+     "topics": [
+      {
+       "id": "most-objects-in-the-solar-system-are-in-a-regula",
+       "title": "Most objects in the solar system are in a regular and predictable motion",
+       "subtopics": [
+        {
+         "id": "most-objects-in-the-solar-system-are-in-a-regula",
+         "title": "Most objects in the solar system are in a regular and predictable motion",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Explain the motion of the Earth relative to the sun that causes Earth to experience cycles of day and night."
+          },
+          {
+           "code": null,
+           "text": "Construct models demonstrating Earth's rotation on its axis, the moon's revolution around the Earth, and the Earth and moon revolving around the sun."
+          },
+          {
+           "code": null,
+           "text": "Distinguish between the sun as a source of light and the moon as a reflection of that light."
+          },
+          {
+           "code": null,
+           "text": "Observe and record the moon's appearance over time and analyze findings to describe the cyclical changes in its appearance from Earth (moon phases)."
+          },
+          {
+           "code": null,
+           "text": "Relate the moon phases to changes in the moon's position relative to the Earth and sun during its 29-day revolution around the Earth."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "6",
+   "units": [
+    {
+     "id": "properties-of-matter",
+     "title": "Properties of Matter",
+     "topics": [
+      {
+       "id": "materials-can-be-classified-as-pure-substances-o",
+       "title": "Materials can be classified as pure substances or mixtures, depending on their chemical and physical properties",
+       "subtopics": [
+        {
+         "id": "materials-can-be-classified-as-pure-substances-o",
+         "title": "Materials can be classified as pure substances or mixtures, depending on their chemical and physical properties (1 of 2)",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Describe the structure of the atom and its component parts."
+          },
+          {
+           "code": null,
+           "text": "Explain that density (mass/volume) is a characteristic property that can be used to identify an element or substance."
+          },
+          {
+           "code": null,
+           "text": "Compare and contrast the properties of a metal (aluminum, iron, etc.) with a nonmetal (oxygen, carbon, etc.)"
+          },
+          {
+           "code": null,
+           "text": "Illustrate the differences in the physical and chemical properties of a molecule and the individual atoms that bonded to form that molecule."
+          }
+         ]
+        },
+        {
+         "id": "materials-can-be-classified-as-pure-substances-o-2",
+         "title": "Materials can be classified as pure substances or mixtures, depending on their chemical and physical properties (2 of 2)",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Differentiate between a mixture and an element or compound and identify examples."
+          },
+          {
+           "code": null,
+           "text": "Conduct and report on an investigation that uses physical means such as particle size, density, solubility and magnetism to separate substances in a mixture."
+          },
+          {
+           "code": null,
+           "text": "Use the patterns in the Periodic Table to locate metals, semimetals and nonmetals and to predict the general characteristics of an element."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "energy-in-the-earth-s-systems",
+     "title": "Energy in the Earth's Systems",
+     "topics": [
+      {
+       "id": "variations-in-the-amount-of-the-sun-s-energy-hit",
+       "title": "Variations in the amount of the sun's energy hitting the Earth's surface affect daily and seasonal weather patterns",
+       "subtopics": [
+        {
+         "id": "variations-in-the-amount-of-the-sun-s-energy-hit",
+         "title": "Variations in the amount of the sun's energy hitting the Earth's surface affect daily and seasonal weather patterns (1 of 2)",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Compare the composition and structure of the Earth's atmospheric layers."
+          },
+          {
+           "code": null,
+           "text": "Demonstrate how changes in temperature, pressure, moisture and density of air affect weather patterns (e.g., air masses and air pressure.)"
+          },
+          {
+           "code": null,
+           "text": "Describe in writing how solar energy drives Earth's weather systems."
+          },
+          {
+           "code": null,
+           "text": "Investigate and report on how the introduction of heat affects the motion of particles and the distance between them."
+          },
+          {
+           "code": null,
+           "text": "Illustrate the transfer of energy as matter changes phase."
+          }
+         ]
+        },
+        {
+         "id": "variations-in-the-amount-of-the-sun-s-energy-hit-2",
+         "title": "Variations in the amount of the sun's energy hitting the Earth's surface affect daily and seasonal weather patterns (2 of 2)",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Design, conduct and report in writing an investigation that reveals different substances absorb and release heat at different rates."
+          },
+          {
+           "code": null,
+           "text": "Research and give examples of heat transfer and local weather differences in Connecticut."
+          },
+          {
+           "code": null,
+           "text": "Investigate and explain the movement of local winds, including \"sea breezes\" and \"land breezes,\" based on the uneven heating of the Earth's surface and a change in air pressure."
+          },
+          {
+           "code": null,
+           "text": "Examine and explain that global winds are caused by uneven heating of the Earth's surface and the rotation of the Earth."
+          },
+          {
+           "code": null,
+           "text": "Design a weather forecast based on collected weather data."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "science-and-technology-in-society",
+     "title": "Science and Technology in Society",
+     "topics": [
+      {
+       "id": "water-moving-across-and-through-earth-materials-",
+       "title": "Water moving across and through earth materials carries with it the products of human activities. This content standard is an application of the concepts in content standard 6.3 and should be integrated into the same unit",
+       "subtopics": [
+        {
+         "id": "water-moving-across-and-through-earth-materials-",
+         "title": "Water moving across and through earth materials carries with it the products of human activities. This content standard is an application of the concepts in content standard 6.3 and should be integrated into the same unit (1 of 2)",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Discuss and chart the reasons why water is essential for life."
+          },
+          {
+           "code": null,
+           "text": "Observe, analyze and record the unique physical and chemical properties of water."
+          },
+          {
+           "code": null,
+           "text": "Research the differences in quantities between fresh water (solid and liquid) and salt water covering the Earth's surface and report on the impact to humans."
+          },
+          {
+           "code": null,
+           "text": "Investigate and explain in writing how substances, both harmful and beneficial, dissolve in and are carried by surface and ground water."
+          }
+         ]
+        },
+        {
+         "id": "water-moving-across-and-through-earth-materials--2",
+         "title": "Water moving across and through earth materials carries with it the products of human activities. This content standard is an application of the concepts in content standard 6.3 and should be integrated into the same unit (2 of 2)",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Use appropriate maps to locate and identify the major watersheds that drain into Long Island Sound and analyze how the topography influences the way water moves in the Long Island Sound watershed."
+          },
+          {
+           "code": null,
+           "text": "Research and evaluate in writing the effects of common point and nonpoint water pollutants in Connecticut."
+          },
+          {
+           "code": null,
+           "text": "Compare and contrast the general structures, processes and limitations of a septic system to a secondary wastewater treatment plant."
+          },
+          {
+           "code": null,
+           "text": "Debate the effectiveness of a law designed to protect water resources."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "matter-and-energy-in-ecosystems",
+     "title": "Matter and Energy in Ecosystems",
+     "topics": [
+      {
+       "id": "an-ecosystem-is-composed-of-all-the-populations-",
+       "title": "An ecosystem is composed of all the populations that are living in a certain space and the physical factors with which they interact",
+       "subtopics": [
+        {
+         "id": "an-ecosystem-is-composed-of-all-the-populations-",
+         "title": "An ecosystem is composed of all the populations that are living in a certain space and the physical factors with which they interact (1 of 3)",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Analyze and interpret how biotic and abiotic factors interact within a given ecosystem."
+          },
+          {
+           "code": null,
+           "text": "Design and conduct a scientific investigation to explore the porosity and permeability of soils and their ability to support different plant life."
+          },
+          {
+           "code": null,
+           "text": "Defend the statement, \"The sun is the main source of energy on Earth.\""
+          },
+          {
+           "code": null,
+           "text": "Express in general terms how plants and other photosynthetic organisms use the sun's energy."
+          }
+         ]
+        },
+        {
+         "id": "an-ecosystem-is-composed-of-all-the-populations--2",
+         "title": "An ecosystem is composed of all the populations that are living in a certain space and the physical factors with which they interact (2 of 3)",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Investigate and report on the effects of abiotic factors on a plant's ability to photosynthesize."
+          },
+          {
+           "code": null,
+           "text": "Compare and contrast how energy and matter flow in a Connecticut ecosystem, emphasizing the interactions among producers, consumers and decomposers."
+          },
+          {
+           "code": null,
+           "text": "Identify local examples of predator-prey relationships and justify the impact of each type of population on the other."
+          },
+          {
+           "code": null,
+           "text": "Create and interpret graphs that illustrate the fluctuation of populations over time."
+          }
+         ]
+        },
+        {
+         "id": "an-ecosystem-is-composed-of-all-the-populations--3",
+         "title": "An ecosystem is composed of all the populations that are living in a certain space and the physical factors with which they interact (3 of 3)",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Distinguish a food chain from a food web and identify local examples of each."
+          },
+          {
+           "code": null,
+           "text": "Explain the impact of environmental conditions such as climate, elevation, topography or water quality on food chains."
+          },
+          {
+           "code": null,
+           "text": "Predict what will happen to a population based on current trends (fires, disease, overhunting, development) and defend the prediction."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "7",
+   "units": [
+    {
+     "id": "energy-in-the-earth-s-systems",
+     "title": "Energy in the Earth's Systems",
+     "topics": [
+      {
+       "id": "landforms-are-the-result-of-the-interaction-of-c",
+       "title": "Landforms are the result of the interaction of constructive and destructive forces over time",
+       "subtopics": [
+        {
+         "id": "landforms-are-the-result-of-the-interaction-of-c",
+         "title": "Landforms are the result of the interaction of constructive and destructive forces over time (1 of 2)",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Illustrate and describe in writing the composition of the three major layers of the Earth's interior."
+          },
+          {
+           "code": null,
+           "text": "Explain how Earth's internal energy is transferred to move tectonic plates."
+          },
+          {
+           "code": null,
+           "text": "Demonstrate the processes of folding and faulting of the Earth's crust."
+          },
+          {
+           "code": null,
+           "text": "Correlate common geological features/events (deep sea trenches, mountains, earthquakes, volcanoes) with the location of plate boundaries."
+          },
+          {
+           "code": null,
+           "text": "Compare geological features that result from constructive forces (e.g., mountains and ridges) with geological features that result from destructive forces (e.g., canyons and flood plains)."
+          }
+         ]
+        },
+        {
+         "id": "landforms-are-the-result-of-the-interaction-of-c-2",
+         "title": "Landforms are the result of the interaction of constructive and destructive forces over time (2 of 2)",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Analyze and interpret data about the location, frequency and intensity of earthquakes."
+          },
+          {
+           "code": null,
+           "text": "Compare and contrast the major agents of erosion and deposition of sediments: running water, moving ice, wave action, wind and mass movement due to gravity."
+          },
+          {
+           "code": null,
+           "text": "Investigate and determine how glaciers form and affect the Earth's surface as they change over time."
+          },
+          {
+           "code": null,
+           "text": "Distinguish between weathering and erosion."
+          },
+          {
+           "code": null,
+           "text": "Observe and report on the geological events that are responsible for having shaped Connecticut's landscape."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "science-and-technology-in-society",
+     "title": "Science and Technology in Society",
+     "topics": [
+      {
+       "id": "technology-allows-us-to-improve-food-production-",
+       "title": "Technology allows us to improve food production and preservation, thus improving our ability to meet the nutritional needs of growing populations. This content standard is an application of the concepts in content standard 7.2 and should be integrated into the same unit",
+       "subtopics": [
+        {
+         "id": "technology-allows-us-to-improve-food-production-",
+         "title": "Technology allows us to improve food production and preservation, thus improving our ability to meet the nutritional needs of growing populations. This content standard is an application of the concepts in content standard 7.2 and should be integrated into the same unit",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Investigate and describe in writing different types of microbes and the environmental conditions necessary for their survival."
+          },
+          {
+           "code": null,
+           "text": "Describe the optimum conditions for rapid bacterial growth."
+          },
+          {
+           "code": null,
+           "text": "Illustrate and describe the structural differences between bacterial and animal cells."
+          },
+          {
+           "code": null,
+           "text": "Discover and discuss how humans use bacteria to produce food and identify examples."
+          },
+          {
+           "code": null,
+           "text": "Compare and contrast the role of bacteria in food production and food spoilage."
+          },
+          {
+           "code": null,
+           "text": "Evaluate and report how each method of food preservation including dehydration, pickling, irradiation and refrigeration works to stop or inhibit bacterial growth and give examples of each."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "structure-and-function",
+     "title": "Structure and Function",
+     "topics": [
+      {
+       "id": "many-organisms-including-humans-have-specialized",
+       "title": "Many organisms, including humans, have specialized organ systems that interact with each other to maintain dynamic internal balance",
+       "subtopics": [
+        {
+         "id": "many-organisms-including-humans-have-specialized",
+         "title": "Many organisms, including humans, have specialized organ systems that interact with each other to maintain dynamic internal balance (1 of 2)",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Compare and contrast single-celled organisms with multicellular organisms."
+          },
+          {
+           "code": null,
+           "text": "Illustrate and describe in writing the structure and the functions of the following: cell membrane, cytoplasm, mitochondria and nucleus of an animal cell."
+          },
+          {
+           "code": null,
+           "text": "Explain how the structure and function of multicellular organisms (animals) depends on the interaction of cells, tissues, organs and organ systems."
+          },
+          {
+           "code": null,
+           "text": "Investigate and explain in writing the basic structure and function of the human skeletal system."
+          },
+          {
+           "code": null,
+           "text": "Differentiate between the structures and range of motion associated with ball, socket and hinge joints and relate human joints to simple machines."
+          }
+         ]
+        },
+        {
+         "id": "many-organisms-including-humans-have-specialized-2",
+         "title": "Many organisms, including humans, have specialized organ systems that interact with each other to maintain dynamic internal balance (2 of 2)",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Demonstrate how the muscles, tendons, ligaments and bones interact to support the human body and allow movement."
+          },
+          {
+           "code": null,
+           "text": "Label the major parts of the human respiratory system and explain in writing the function of each part (nasal cavity, trachea, bronchi, lungs and diaphragm)."
+          },
+          {
+           "code": null,
+           "text": "Label the major parts of the human circulatory system and explain in writing the function of each part (heart, veins, arteries and capillaries)."
+          },
+          {
+           "code": null,
+           "text": "Design and conduct controlled variable experiments to analyze the interaction between the circulatory and respiratory systems as the demand for oxygen changes."
+          },
+          {
+           "code": null,
+           "text": "Label the major parts of the human digestive system and explain in writing the function of each part in the chemical and physical breakdown of food (mouth, esophagus, stomach, small intestine, large intestine and rectum)."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "energy-transfer-and-transformations",
+     "title": "Energy Transfer and Transformations",
+     "topics": [
+      {
+       "id": "energy-provides-the-ability-to-do-work-and-can-e",
+       "title": "Energy provides the ability to do work and can exist in many forms",
+       "subtopics": [
+        {
+         "id": "energy-provides-the-ability-to-do-work-and-can-e",
+         "title": "Energy provides the ability to do work and can exist in many forms (1 of 2)",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Conduct simple experiments that show and explain how forces work to change the motion of an object."
+          },
+          {
+           "code": null,
+           "text": "Calculate work done on an object as force or distance varies."
+          },
+          {
+           "code": null,
+           "text": "Explain in writing how the six simple machines make work easier but do not alter the amount of work done on an object, and demonstrate how everyday objects function as simple machines"
+          },
+          {
+           "code": null,
+           "text": "Determine ways to modify a simple machine (inclined plane, pulley and lever) to improve its mechanical advantage."
+          },
+          {
+           "code": null,
+           "text": "Defend the statement, \"Work output of a machine is always less than work input because of energy lost due to friction.\""
+          }
+         ]
+        },
+        {
+         "id": "energy-provides-the-ability-to-do-work-and-can-e-2",
+         "title": "Energy provides the ability to do work and can exist in many forms (2 of 2)",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Design and create a working compound machine from several simple machines."
+          },
+          {
+           "code": null,
+           "text": "Use a diagram or model of a moving object (roller coaster, pendulum, etc.) to describe the conversion of potential energy into kinetic energy and vice versa."
+          },
+          {
+           "code": null,
+           "text": "Discuss different forms of energy and describe how they can be converted from one form to another for use by humans (e.g., thermal, electrical, light, chemical, mechanical)."
+          },
+          {
+           "code": null,
+           "text": "Trace energy conversions that occur in the human body once food enters and explain the conversions in writing."
+          },
+          {
+           "code": null,
+           "text": "Calculate potential and kinetic energy and relate those quantities to total energy in a system."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "grade": "8",
+   "units": [
+    {
+     "id": "heredity-and-evolution",
+     "title": "Heredity and Evolution",
+     "topics": [
+      {
+       "id": "reproduction-is-a-characteristic-of-living-syste",
+       "title": "Reproduction is a characteristic of living systems and it is essential for the continuation of every species",
+       "subtopics": [
+        {
+         "id": "reproduction-is-a-characteristic-of-living-syste",
+         "title": "Reproduction is a characteristic of living systems and it is essential for the continuation of every species (1 of 2)",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Relate the continued existence of any species to its successful reproduction and explain in writing the factors that contribute to successful reproduction."
+          },
+          {
+           "code": null,
+           "text": "Describe the structure, location and function of chromosomes, genes and DNA and how they relate to each other in the living cell."
+          },
+          {
+           "code": null,
+           "text": "Illustrate and chart the purpose, cell type (somatic and germ) and resulting chromosome count during cell division in mitosis and meiosis."
+          },
+          {
+           "code": null,
+           "text": "Identify the major structures in human male and female reproductive systems and explain where meiosis and gamete formation take place."
+          }
+         ]
+        },
+        {
+         "id": "reproduction-is-a-characteristic-of-living-syste-2",
+         "title": "Reproduction is a characteristic of living systems and it is essential for the continuation of every species (2 of 2)",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Investigate and report on the role of hormone production as it initiates and regulates the creation of male and female germ cells from birth through adolescence and into adulthood."
+          },
+          {
+           "code": null,
+           "text": "Compare and contrast the events and processes that occur when a human egg is fertilized or not fertilized."
+          },
+          {
+           "code": null,
+           "text": "Demonstrate the relationship of corresponding genes on pairs of chromosomes to traits inherited by offspring."
+          },
+          {
+           "code": null,
+           "text": "Describe in writing the role of the germ cells in the formation of the human zygote and its resulting 23 pairs of chromosomes, the 23rd of which determines gender and the other 22 of which determine the characteristics of that offspring."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "science-and-technology-in-society",
+     "title": "Science and Technology in Society",
+     "topics": [
+      {
+       "id": "in-the-design-of-structures-there-is-a-need-to-c",
+       "title": "In the design of structures there is a need to consider factors such as function, materials, safety, cost and appearance. This content standard is an application of the concepts in content standard 8.1 and should be integrated into the same unit",
+       "subtopics": [
+        {
+         "id": "in-the-design-of-structures-there-is-a-need-to-c",
+         "title": "In the design of structures there is a need to consider factors such as function, materials, safety, cost and appearance. This content standard is an application of the concepts in content standard 8.1 and should be integrated into the same unit",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Identify the forces acting on a truss, beam and suspension bridge, including compression, tension and gravity using models, pictures or diagrams."
+          },
+          {
+           "code": null,
+           "text": "Explain in writing the advantages and disadvantages of truss, beam and suspension bridge design and visually identify each bridge."
+          },
+          {
+           "code": null,
+           "text": "Conduct an experiment to discover and report on a bridge's ability to support a load based on the interplay of tension and compression forces that result in a net force of zero."
+          },
+          {
+           "code": null,
+           "text": "Use technology to simulate how engineers plan, test and revise bridge designs given parameters including cost, time, safety and aesthetics."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "forces-and-motion",
+     "title": "Forces and Motion",
+     "topics": [
+      {
+       "id": "an-object-s-inertia-causes-it-to-continue-moving",
+       "title": "An object's inertia causes it to continue moving the way it is moving unless it is acted upon by a force to change its motion",
+       "subtopics": [
+        {
+         "id": "an-object-s-inertia-causes-it-to-continue-moving",
+         "title": "An object's inertia causes it to continue moving the way it is moving unless it is acted upon by a force to change its motion (1 of 2)",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Use appropriate tools and techniques to make observations and gather data to determine how forces, including friction, act on an object to change its position over time in relation to a fixed point of reference."
+          },
+          {
+           "code": null,
+           "text": "Calculate the average speed of a moving object, and distinguish between instantaneous speed and average speed of an object."
+          },
+          {
+           "code": null,
+           "text": "Create and interpret distance-time graphs for objects moving at constant and nonconstant speeds."
+          },
+          {
+           "code": null,
+           "text": "Predict the motion of an object given the magnitude and direction of forces acting on it (net force)."
+          },
+          {
+           "code": null,
+           "text": "Investigate and demonstrate how unbalanced forces cause acceleration (change in speed and/or direction of an object's motion)."
+          }
+         ]
+        },
+        {
+         "id": "an-object-s-inertia-causes-it-to-continue-moving-2",
+         "title": "An object's inertia causes it to continue moving the way it is moving unless it is acted upon by a force to change its motion (2 of 2)",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Assess in writing the relationship between an object's mass and its inertia when at rest and in motion."
+          },
+          {
+           "code": null,
+           "text": "Express mathematically how the mass of an object and the force acting on it affect its acceleration."
+          },
+          {
+           "code": null,
+           "text": "Design and conduct an experiment to determine how gravity and friction (air resistance) affect a falling object."
+          },
+          {
+           "code": null,
+           "text": "Illustrate how the circular motion of an object is caused by a center-seeking force (centripetal force) resulting in the object's constant acceleration."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "earth-in-the-solar-system",
+     "title": "Earth in the Solar System",
+     "topics": [
+      {
+       "id": "the-solar-system-is-composed-of-planets-and-othe",
+       "title": "The solar system is composed of planets and other objects that orbit the sun",
+       "subtopics": [
+        {
+         "id": "the-solar-system-is-composed-of-planets-and-othe",
+         "title": "The solar system is composed of planets and other objects that orbit the sun (1 of 2)",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Relate the strength of gravitational force between two objects to their mass and the distance between the centers of the two objects and provide examples."
+          },
+          {
+           "code": null,
+           "text": "Describe in writing how gravitational attraction and the inertia of objects in the solar system keep them on a predictable elliptical pathway."
+          },
+          {
+           "code": null,
+           "text": "Distinguish between rotation of Earth on its axis and its elliptical revolution around the sun."
+          },
+          {
+           "code": null,
+           "text": "Investigate and report in writing how the Earth's revolution around the sun affects changes in daylight and seasons."
+          }
+         ]
+        },
+        {
+         "id": "the-solar-system-is-composed-of-planets-and-othe-2",
+         "title": "The solar system is composed of planets and other objects that orbit the sun (2 of 2)",
+         "outcomes": [
+          {
+           "code": null,
+           "text": "Compare the revolution times of all the planets and relate it to their distance from the sun."
+          },
+          {
+           "code": null,
+           "text": "Conduct and report on an investigation that shows how the Earth's tilt on its axis and position around the sun relates to the intensity of light striking the Earth's surface."
+          },
+          {
+           "code": null,
+           "text": "Use a model to demonstrate the phases of the moon relative to the position of the sun, Earth and moon."
+          },
+          {
+           "code": null,
+           "text": "Develop a model or illustration to show the relative positions of the Earth, sun and moon during a lunar and solar eclipse and explain how those positions influence the view from Earth."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "build": {
+  "builtAt": "2026-10-14T16:20:39.835Z",
+  "model": "none",
+  "usd": 0,
+  "expectedCodes": null,
+  "coverage": null,
+  "missingCodes": [],
+  "counts": {
+   "grades": 10,
+   "units": 39,
+   "topics": 40,
+   "subtopics": 56,
+   "outcomes": 262
+  },
+  "warnings": []
+ }
+}

@@ -125,7 +125,7 @@ export function AriaBot({ size = 196 }: { size?: number }) {
 }
 
 /** The mouth for one typed letter of `text` (index `i`), as viseme weights. Spaces and punctuation rest. */
-function letterMouth(text: string, i: number): DotMouthInput {
+export function letterMouth(text: string, i: number): DotMouthInput {
   const c = text[i]?.toLowerCase() ?? " ";
   const next = text[i + 1]?.toLowerCase() ?? "";
   const v: VisemeName | null =
